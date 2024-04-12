@@ -24,6 +24,12 @@
 	spell_type = /datum/action/cooldown/spell/rod_form
 	category = "Offensive"
 
+/datum/spellbook_entry/scrunch
+	name = "Scrunch"
+	desc = "Scrunches a target."
+	spell_type = /datum/action/cooldown/spell/pointed/scrunch
+	category = "Offensive"
+
 /datum/spellbook_entry/disintegrate
 	name = "Smite"
 	desc = "Charges your hand with an unholy energy that can be used to cause a touched victim to violently explode."

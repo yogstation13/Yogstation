@@ -165,6 +165,7 @@
 	desc = "A wall with a bamboo finish."
 	icon = 'icons/turf/walls/bamboo_wall.dmi'
 	icon_state = "wall-0"
+	base_icon_state = "bamboo_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/bamboo
 	hardness = 60
 	smoothing_flags = SMOOTH_BITMASK

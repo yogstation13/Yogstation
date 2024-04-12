@@ -131,23 +131,22 @@
 /obj/projectile/blastwave/Range()
 	..()
 	var/amount_destruction = EXPLODE_NONE
-	var/wallbreak_chance = 0
+	var/wall_damage = 0
 	if(heavyr)
 		amount_destruction = EXPLODE_DEVASTATE
-		wallbreak_chance = 99
+		wall_damage = INFINITY
 	else if(mediumr)
 		amount_destruction = EXPLODE_HEAVY
-		wallbreak_chance = 66
+		wall_damage = 500
 	else if(lightr)
 		amount_destruction = EXPLODE_LIGHT
-		wallbreak_chance = 33
+		wall_damage = 150
 	if(amount_destruction)
 		if(hugbox)
 			loc.contents_explosion(EXPLODE_HEAVY, loc)
 			if(istype(loc, /turf/closed/wall))
 				var/turf/closed/wall/W = loc
-				if(prob(wallbreak_chance))
-					W.dismantle_wall(TRUE, TRUE)
+				W.take_damage(wall_damage, BRUTE, BOMB) 
 		else
 			switch(amount_destruction)
 				if(EXPLODE_DEVASTATE)

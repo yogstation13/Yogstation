@@ -106,8 +106,8 @@
 	. = ..()
 	update_quickbind(user)
 
-/obj/item/clockwork/slab/worn_overlays(isinhands = FALSE, icon_file)
-	. = list()
+/obj/item/clockwork/slab/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
+	. = ..()
 	if(isinhands && item_state && inhand_overlay)
 		var/mutable_appearance/M = mutable_appearance(icon_file, "slab_[inhand_overlay]")
 		. += M

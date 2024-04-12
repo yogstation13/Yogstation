@@ -1,4 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - mapping: "Fixed every fire alarm that was facing the wrong direction on Box"

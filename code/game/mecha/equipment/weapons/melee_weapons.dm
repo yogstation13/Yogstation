@@ -45,7 +45,7 @@
 	///	Effect on hitting something
 	var/hit_effect = ATTACK_EFFECT_SLASH
 	///	Effect of the cleave attack
-	var/cleave_effect = /obj/effect/temp_visual/dir_setting/firing_effect/mecha_swipe
+	var/cleave_effect = /obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/can_attach(obj/mecha/M)
 	if(!..())
@@ -210,8 +210,7 @@
 						O.visible_message(span_danger("[chassis.name] strikes [O] with a wide swing of [src]!"))	//Don't really need to make a message for EVERY object, just important ones
 					playsound(O,'sound/weapons/smash.ogg', 50)	//metallic bonk noise
 
-	var/turf/cleave_effect_loc = get_step(get_turf(src), SOUTHWEST)
-	new cleave_effect(cleave_effect_loc, chassis.dir)
+	new cleave_effect(get_turf(src), chassis.dir)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/precise_attack(atom/target)
 	special_hit(target)
@@ -503,14 +502,12 @@
 	weapon_damage = 20
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist/precise_attack(atom/target)
-	target.mech_melee_attack(chassis, FALSE)	//DONT SET THIS TO TRUE
+	target.mech_melee_attack(chassis, chassis.force + weapon_damage, FALSE)	//DONT SET THIS TO TRUE
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist/on_select()
-	chassis.force += weapon_damage	//PUNCH HARDER
 	chassis.melee_cooldown *= 0.8	//PUNCH FASTER
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist/on_deselect()
-	chassis.force -= weapon_damage	//Return to babby fist
 	chassis.melee_cooldown /= 0.8	
 
 
@@ -634,6 +631,8 @@
 			playsound(moved_atom, 'sound/effects/gib_step.ogg', 50, 1)
 			qdel(moved_atom)
 			continue
+		if(isobserver(moved_atom))
+			continue // what the fuck?
 		if(moved_atom.wash(CLEAN_SCRUB))
 			cleaned = TRUE
 		if(moved_atom.anchored)
@@ -651,8 +650,7 @@
 	playsound(chassis, attack_sound, 50, 1)
 	for(var/turf/T in list(get_turf(chassis), get_step(chassis, chassis.dir), get_step(chassis, turn(chassis.dir, -45)), get_step(chassis, turn(chassis.dir, 45))))
 		do_mop(chassis, T, 3) // mop the floor with them!
-	var/turf/cleave_effect_loc = get_step(get_turf(src), SOUTHWEST)
-	new cleave_effect(cleave_effect_loc, chassis.dir)
+	new cleave_effect(get_turf(src), chassis.dir)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/flyswatter
 	name = "comically large flyswatter"

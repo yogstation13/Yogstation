@@ -1,7 +1,19 @@
 /obj/item/ammo_box/magazine/toy
 	name = "foam force META magazine"
-	ammo_type = /obj/item/ammo_casing/reusable/foam_dart
+	ammo_type = /obj/item/ammo_casing/reusable/foam_dart	
 	caliber = CALIBER_FOAM
+	var/hugbox = FALSE
+
+/obj/item/ammo_box/magazine/toy/Initialize(mapload)
+	. = ..()
+	if(hugbox) //noob
+		name = "safety-first [name]"
+
+/obj/item/ammo_box/magazine/toy/attempt_load(obj/item/A, mob/user, silent, replace_spent)
+	if(istype(A, /obj/item/ammo_casing/reusable/foam_dart/riot) && hugbox)
+		to_chat(user, span_danger("The dart seems to be blocked from entering by a bright orange piece of plastic! How annoying."))
+		return
+	..()
 
 /obj/item/ammo_box/magazine/toy/smg
 	name = "foam force SMG magazine"
@@ -46,7 +58,6 @@
 /obj/item/ammo_box/magazine/toy/m762
 	name = "donksoft box magazine"
 	icon_state = "a762-toy"
-	caliber = CALIBER_FOAM
 	ammo_type = /obj/item/ammo_casing/reusable/foam_dart
 	max_ammo = 50
 
@@ -57,3 +68,16 @@
 /obj/item/ammo_box/magazine/toy/m762/riot
 	icon_state = "a762-riot"
 	ammo_type = /obj/item/ammo_casing/reusable/foam_dart/riot
+
+//Hugboxed mags for roundstart vendors.
+/obj/item/ammo_box/magazine/toy/smg/hugbox
+	hugbox = TRUE
+
+/obj/item/ammo_box/magazine/toy/pistol/hugbox
+	hugbox = TRUE
+
+/obj/item/ammo_box/magazine/toy/m762/hugbox
+	hugbox = TRUE
+
+/obj/item/ammo_box/magazine/toy/smgm45/hugbox
+	hugbox = TRUE

@@ -119,20 +119,16 @@
 	var/cameraMemoryTickCount = 0
 
 	//Did we get the death prompt?
-	var/is_dying = FALSE
-	///Multiplier for amount of points gained when passively using CPU for science
-	var/research_point_booster = 1
+	var/is_dying = FALSE 
 
 
 
-/mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai, shunted)
+
+/mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai, shunted, forced_relocate = TRUE)
 	. = ..()
 	if(!target_ai) //If there is no player/brain inside.
 		//new/obj/structure/ai_core/deactivated(loc) //New empty terminal.
 		return INITIALIZE_HINT_QDEL //Delete AI.
-
-	if(!istype(loc, /obj/machinery/ai/data_core) && !shunted)
-		relocate(TRUE)
 
 	if(L && istype(L, /datum/ai_laws))
 		laws = L
@@ -187,6 +183,9 @@
 
 	dashboard = new(src)
 
+	if(!istype(loc, /obj/machinery/ai/data_core) && !shunted && forced_relocate)
+		relocate(TRUE, TRUE)
+
 	if(isvalidAIloc(loc))
 		add_verb(src, list(/mob/living/silicon/ai/proc/ai_network_change, \
 		/mob/living/silicon/ai/proc/ai_statuschange, /mob/living/silicon/ai/proc/ai_hologram_change, \
@@ -201,6 +200,8 @@
 	builtInCamera.c_tag = real_name
 	builtInCamera.network = list("ss13")
 	builtInCamera.built_in = src
+
+	
 
 /mob/living/silicon/ai/key_down(_key, client/user)
 	if(findtext(_key, "numpad")) //if it's a numpad number, we can convert it to just the number
@@ -229,9 +230,11 @@
 	qdel(eyeobj) // No AI, no Eye
 	malfhack = null
 	apc_override = null
-	GLOB.ai_os.remove_ai(src)
+	ai_network?.remove_ai(src)
+
 	if(modularInterface)
 		QDEL_NULL(modularInterface)
+
 	. = ..()
 
 /mob/living/silicon/ai/ignite_mob()
@@ -553,7 +556,7 @@
 	if(href_list["instant_download"])
 		if(!href_list["console"])
 			return
-		var/obj/machinery/computer/ai_control_console/C = locate(href_list["console"])
+		var/datum/computer_file/program/ai/ai_network_interface/C = locate(href_list["console"])
 		if(!C)
 			return
 		if(C.downloading != src)
@@ -562,6 +565,13 @@
 			return
 		if(C.downloading == src)
 			C.finish_download()
+	if(href_list["emergency_disconnect"])
+		if(alert("Are you sure you want to disconnect all remote networks and lock all networking devices? This means you'll be unable to switch cores unless they're physically connected!", "No", "Yes") != "Yes")
+			return
+		for(var/obj/machinery/ai/networking/N in ai_network.get_local_nodes_oftype())
+			N.disconnect()
+			N.locked = TRUE
+
 	if(href_list["go_to_machine"])
 		var/atom/target = locate(href_list["go_to_machine"])
 		if(!target)
@@ -571,6 +581,10 @@
 		else
 			to_chat(src, "[target] is not on or near any active cameras on the station.")
 
+
+/mob/living/silicon/ai/proc/switch_ainet(datum/ai_network/old_net, datum/ai_network/new_net)
+	for(var/datum/ai_project/project in dashboard.completed_projects)
+		project.switch_network(old_net, new_net)
 
 
 /mob/living/silicon/ai/proc/switchCamera(obj/machinery/camera/C)
@@ -1087,6 +1101,37 @@
 		target.deploy_init(src)
 		mind.transfer_to(target)
 	diag_hud_set_deployed()
+
+
+/mob/living/silicon/ai/proc/deploy_to_synth_pod(obj/machinery/synth_pod/pod)
+
+	if(incapacitated())
+		return
+	if(control_disabled)
+		to_chat(src, span_warning("Wireless networking module is offline."))
+		return
+
+
+
+	var/confirm = tgui_alert(src, "Are you sure you want to deploy as a synthetic? You will not be notified in the case that a core goes offline.", "Confirm Deployment", list("Yes", "No"))
+	if(confirm != "Yes")
+		return
+
+	if(!pod.stored)
+		return
+
+	var/mob/living/carbon/human/target = pod.stored
+
+	if (!target || target.stat == DEAD || target.mind )
+		return
+
+	else if(mind)
+		soullink(/datum/soullink/sharedbody, src, target)
+		mind.transfer_to(target)
+		to_chat(target, span_danger("You must still follow your laws!"))
+	diag_hud_set_deployed()
+	return TRUE
+
 
 /datum/action/innate/deploy_shell
 	name = "Deploy to AI Shell"

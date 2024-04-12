@@ -1087,7 +1087,7 @@
 /obj/item/storage/box/ingredients/italian/PopulateContents()
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/food/snacks/grown/tomato(src)
-		new /obj/item/reagent_containers/food/snacks/meatball(src) //YOGS - bigotry rule
+		new /obj/item/reagent_containers/food/snacks/raw_meatball(src) //YOGS - bigotry rule
 	new /obj/item/reagent_containers/food/drinks/bottle/wine(src)
 
 /obj/item/storage/box/ingredients/vegetarian
@@ -1110,7 +1110,7 @@
 		new /obj/item/reagent_containers/food/snacks/grown/potato(src)
 		new /obj/item/reagent_containers/food/snacks/grown/tomato(src)
 		new /obj/item/reagent_containers/food/snacks/grown/corn(src)
-	new /obj/item/reagent_containers/food/snacks/meatball(src) //YOGS - bigotry rule
+	new /obj/item/reagent_containers/food/snacks/raw_meatball(src) //YOGS - bigotry rule
 
 /obj/item/storage/box/ingredients/fruity
 	theme_name = "fruity"
@@ -1166,7 +1166,7 @@
 	new /obj/item/reagent_containers/food/snacks/carpmeat(src)
 	new /obj/item/reagent_containers/food/snacks/meat/slab/xeno(src)
 	new /obj/item/reagent_containers/food/snacks/meat/slab/corgi(src)
-	new /obj/item/reagent_containers/food/snacks/meatball(src) //YOGS - bigotry rule
+	new /obj/item/reagent_containers/food/snacks/raw_meatball(src) //YOGS - bigotry rule
 
 /obj/item/storage/box/ingredients/exotic
 	theme_name = "exotic"
@@ -1335,7 +1335,7 @@
 	icon = 'icons/obj/food/containers.dmi'
 	var/beantype = /obj/item/reagent_containers/food/snacks/grown/coffee
 
-/obj/item/storage/box/cofeepack/Initialize(mapload)
+/obj/item/storage/box/coffeepack/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 5
@@ -1343,8 +1343,8 @@
 
 /obj/item/storage/box/coffeepack/PopulateContents()
 	var/static/items_inside = list(
-		/obj/item/reagent_containers/food/snacks/grown/coffee = 5,
-		/obj/item/reagent_containers/food/snacks/grown/coffee/robusta = 5)
+		beantype = 5
+		)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/coffeepack/robusta

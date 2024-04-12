@@ -76,4 +76,3 @@ turf/open/floor/plasteel/ameridiner
 	name = "slot machine"
 	desc = "Gambling for the antisocial."
 	icon = 'yogstation/icons/obj/special_slot_machine.dmi'
-	icon_state = "slots1"

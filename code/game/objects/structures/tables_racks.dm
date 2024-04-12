@@ -515,7 +515,7 @@
 		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
 
 /obj/structure/table/reinforced/brass/ratvar_act()
-	obj_integrity = max_integrity
+	update_integrity(max_integrity)
 
 /obj/structure/table/bronze
 	name = "bronze table"

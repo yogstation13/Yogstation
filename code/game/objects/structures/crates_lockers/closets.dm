@@ -316,7 +316,8 @@ GLOBAL_LIST_EMPTY(lockers)
 		new material_drop(loc, material_drop_amount)
 	qdel(src)
 
-/obj/structure/closet/obj_break(damage_flag)
+/obj/structure/closet/atom_break(damage_flag)
+	. = ..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		bust_open()
 
@@ -674,9 +675,15 @@ GLOBAL_LIST_EMPTY(lockers)
 	return ..()
 
 /obj/structure/closet/CanAStarPass(ID, dir, caller)
-	if(can_open(caller) || allowed(caller))
-		return TRUE
+	//The parent function just checks if it's not dense, and if a closet is open then it's not dense 
 	. = ..()
+	if(!.)
+		if(ismob(caller))
+			//i'm hilarious, but fr only mobs should be passed to allowed()
+			var/mob/mobchamp = caller
+			return can_open(mobchamp) && allowed(mobchamp)
+		else
+			return can_open(caller) && check_access(ID)
 	
 	/// Signal proc for [COMSIG_ATOM_MAGICALLY_UNLOCKED]. Unlock and open up when we get knock casted.
 /obj/structure/closet/proc/on_magic_unlock(datum/source, datum/action/cooldown/spell/aoe/knock/spell, mob/living/caster)

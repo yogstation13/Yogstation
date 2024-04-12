@@ -4,7 +4,6 @@
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pdapainter"
 	density = TRUE
-	obj_integrity = 200
 	max_integrity = 200
 	var/obj/item/bodypart/storedpart
 	var/initial_icon_state
@@ -77,7 +76,7 @@
 			update_appearance(UPDATE_ICON)
 
 	else if(O.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM)
-		if(obj_integrity < max_integrity)
+		if(atom_integrity < max_integrity)
 			if(!O.tool_start_check(user, amount=0))
 				return
 
@@ -90,7 +89,7 @@
 					return
 				to_chat(user, span_notice("You repair [src]."))
 				stat &= ~BROKEN
-				obj_integrity = max(obj_integrity, max_integrity)
+				update_integrity(max(atom_integrity, max_integrity))
 				update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_notice("[src] does not need repairs."))

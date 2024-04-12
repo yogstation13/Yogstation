@@ -709,7 +709,7 @@
 			to_chat(user, span_warning("[src] has both electronics and a cell."))
 			return
 	else if (istype(W, /obj/item/wallframe/apc) && opened)
-		if (!(stat & BROKEN || opened==APC_COVER_REMOVED || obj_integrity < max_integrity)) // There is nothing to repair
+		if (!(stat & BROKEN || opened==APC_COVER_REMOVED || atom_integrity < max_integrity)) // There is nothing to repair
 			to_chat(user, span_warning("You found no reason for repairing this APC"))
 			return
 		if (!(stat & BROKEN) && opened==APC_COVER_REMOVED) // Cover is the only thing broken, we do not need to remove elctronicks to replace cover
@@ -730,7 +730,7 @@
 			to_chat(user, span_notice("You replace the damaged APC frame with a new one."))
 			qdel(W)
 			stat &= ~BROKEN
-			obj_integrity = max_integrity
+			update_integrity(max_integrity)
 			if (opened==APC_COVER_REMOVED)
 				opened = APC_COVER_OPENED
 			update_appearance()
@@ -860,13 +860,13 @@
 	last_light_switch = world.time
 	set_nightshift(!nightshift_lights)
 
-/obj/machinery/power/apc/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
+/obj/machinery/power/apc/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
 	if(damage_flag == MELEE && damage_amount < 10 && (!(stat & BROKEN) || malfai))
 		return 0
 	. = ..()
 
 
-/obj/machinery/power/apc/obj_break(damage_flag)
+/obj/machinery/power/apc/atom_break(damage_flag)
 	. = ..()
 	if(.)
 		set_broken()
@@ -1127,6 +1127,18 @@
 	if(!integration_cog)
 		return FALSE
 	_try_interact(user)
+
+/obj/machinery/power/apc/attack_ai(mob/user)
+	if(!isAI(user))
+		return ..()
+	
+	var/mob/living/silicon/ai/AI = user
+	if(AI.has_subcontroller_connection(get_area(src)))
+		return ..()
+
+	to_chat(AI, span_warning("No connection to subcontroller detected. Polling APC..."))
+	if(do_after(AI, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
+		return ..()
 
 /obj/machinery/power/apc/proc/toggle_breaker(mob/user)
 	if(!is_operational() || failure_timer)
@@ -1486,7 +1498,7 @@
 	if(malfai && operating)
 		malfai.malf_picker.processing_time = clamp(malfai.malf_picker.processing_time - 10,0,1000)
 	operating = FALSE
-	obj_break()
+	atom_break()
 	if(occupier)
 		malfvacate(1)
 	update()

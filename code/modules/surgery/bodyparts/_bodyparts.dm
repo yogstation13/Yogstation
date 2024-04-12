@@ -849,10 +849,14 @@
 		species_flags_list = S.species_traits
 
 		if(S.use_skintones)
-			skin_tone = H.skin_tone
+			if(S.forced_skintone)
+				skin_tone = S.forced_skintone
+			else
+				skin_tone = H.skin_tone
 			should_draw_greyscale = TRUE
 		else
 			skin_tone = ""
+
 
 		body_gender = H.gender
 		should_draw_gender = S.sexes
@@ -954,12 +958,6 @@
 				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 			else
 				limb.icon_state = "[species_id]_[body_zone]"
-		if(should_draw_yogs) //yogs start
-			limb.icon = 'yogstation/icons/mob/mutant_bodyparts.dmi'
-			if(should_draw_gender)
-				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
-			else
-				limb.icon_state = "[species_id]_[body_zone]" //yogs end
 		if(aux_zone)
 			aux = image(limb.icon, "[species_id]_[aux_zone]", -aux_layer, image_dir)
 			. += aux

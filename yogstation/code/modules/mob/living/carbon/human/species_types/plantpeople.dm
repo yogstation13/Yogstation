@@ -10,6 +10,7 @@
 	default_features = list("mcolor" = "#00FF00", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage")
 	rare_say_mod = list("rustles" = 10)
 	attack_verb = "slash"
+	attack_effect = ATTACK_EFFECT_CLAW
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	burnmod = 2
@@ -57,8 +58,11 @@
 	C.faction -= "plants"
 	C.faction -= "vines"
 
+/datum/species/pod/get_butt_sprite()
+	return BUTT_SPRITE_FLOWERPOT
+
 /datum/species/pod/spec_life(mob/living/carbon/human/H)
-	if(H.stat == DEAD || H.stat == UNCONSCIOUS || (H.mind && H.mind.has_antag_datum(ANTAG_DATUM_THRALL)))
+	if(H.stat == DEAD || H.stat == UNCONSCIOUS)
 		return
 	if(IS_BLOODSUCKER(H) && !HAS_TRAIT(H, TRAIT_MASQUERADE))
 		return

@@ -121,6 +121,10 @@
 			S.cost = 1
 			S.source = get_or_create_estorage(/datum/robot_energy_storage/wire)
 
+		else if(istype(S, /obj/item/stack/ethernet_coil))
+			S.cost = 1
+			S.source = get_or_create_estorage(/datum/robot_energy_storage/ethernet)
+
 		else if(istype(S, /obj/item/stack/marker_beacon))
 			S.cost = 1
 			S.source = get_or_create_estorage(/datum/robot_energy_storage/beacon)
@@ -379,6 +383,7 @@
 		/obj/item/stack/rods/cyborg,
 		/obj/item/stack/tile/plasteel/cyborg,
 		/obj/item/stack/cable_coil/cyborg,
+		/obj/item/stack/ethernet_coil/cyborg,
 		/obj/item/barrier_taperoll/engineering)
 	radio_channels = list(RADIO_CHANNEL_ENGINEERING)
 	emag_modules = list(/obj/item/gun/energy/printer/flamethrower)
@@ -912,6 +917,7 @@
 		/obj/item/stack/tile/plasteel/cyborg,
 		/obj/item/destTagger/borg,
 		/obj/item/stack/cable_coil/cyborg,
+		/obj/item/stack/ethernet_coil/cyborg,
 		/obj/item/pinpointer/syndicate_cyborg,
 		/obj/item/borg_chameleon,
 		)
@@ -960,6 +966,11 @@
 	max_energy = 50
 	recharge_rate = 2
 	name = "Wire Synthesizer"
+
+/datum/robot_energy_storage/ethernet
+	max_energy = 50
+	recharge_rate = 2
+	name = "Ethernet Cable Synthesizer"
 
 /datum/robot_energy_storage/medical
 	max_energy = 2500

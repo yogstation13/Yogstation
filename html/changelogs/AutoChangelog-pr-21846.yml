@@ -1,0 +1,4 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed a couple circuit boards being invisible"

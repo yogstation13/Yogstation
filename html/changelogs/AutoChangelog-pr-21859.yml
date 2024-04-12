@@ -1,0 +1,4 @@
+author: "JohnFulpWillard"
+delete-after: true 
+changes: 
+  - bugfix: "Worn overlays (like plasmamen helmets and blood) now work again."

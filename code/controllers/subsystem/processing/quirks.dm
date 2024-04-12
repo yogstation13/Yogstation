@@ -11,13 +11,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	var/list/quirks = list()		//Assoc. list of all roundstart quirk datum types; "name" = /path/
 	var/list/quirk_points = list()	//Assoc. list of quirk names and their "point cost"; positive numbers are good traits, and negative ones are bad
 	var/list/quirk_objects = list()	//A list of all quirk objects in the game, since some may process
-	var/list/quirk_blacklist = list() //A list a list of quirks that can not be used with each other. Format: list(quirk1,quirk2),list(quirk3,quirk4)
-
-/datum/controller/subsystem/processing/quirks/Initialize(timeofday)
-	if(!quirks.len)
-		SetupQuirks()
-
-	quirk_blacklist = list(
+	var/static/list/quirk_blacklist = list( //A list a list of quirks that can not be used with each other. Format: list(quirk1,quirk2),list(quirk3,quirk4)
 		list("Blind","Nearsighted"),
 		list("Jolly","Depression","Apathetic","Hypersensitive"),
 		list("Ageusia","Vegetarian","Deviant Tastes"),
@@ -30,8 +24,18 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		list("Prosthetic Limb (Left Leg)","Paraplegic"),
 		list("Prosthetic Limb (Right Leg)","Paraplegic"),
 		list("Prosthetic Limb","Paraplegic")
-	)
+	) 
+
+/datum/controller/subsystem/processing/quirks/Initialize(timeofday)
+	if(!quirks.len)
+		SetupQuirks()
 	return SS_INIT_SUCCESS
+
+//basically a lazily loaded list of quirks, never access .quirks directly.
+/datum/controller/subsystem/processing/quirks/proc/get_quirks()
+	if(!quirks.len)
+		SetupQuirks()
+	return quirks
 
 /datum/controller/subsystem/processing/quirks/proc/SetupQuirks()
 	// Sort by Positive, Negative, Neutral; and then by name
@@ -86,8 +90,10 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	// If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
 	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (prefs.read_preference(/datum/preference/toggle/mood_enabled)))
 
+	var/list/all_quirks = get_quirks() //forces a load of the quirks if they aren't setup already
+
 	for (var/quirk_name in quirks)
-		var/datum/quirk/quirk = SSquirks.quirks[quirk_name]
+		var/datum/quirk/quirk = all_quirks[quirk_name]
 		if (isnull(quirk))
 			continue
 

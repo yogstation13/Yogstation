@@ -254,8 +254,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		statue.name = "bananium plated [statue.name]"
 		statue.desc = "An incredibly lifelike bananium carving."
 		statue.add_atom_colour("#ffd700", FIXED_COLOUR_PRIORITY)
-		statue.max_integrity = 9999
-		statue.obj_integrity = 9999
+		statue.modify_max_integrity(9999, can_break=FALSE)
 	return TRUE
 
 /obj/item/stack/ore/titanium
@@ -408,6 +407,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	force = 1
 	throwforce = 2
 	w_class = WEIGHT_CLASS_TINY
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 	var/string_attached
 	var/list/sideslist = list("heads","tails")
 	var/cmineral = null

@@ -6,6 +6,7 @@
 	icon_state_unpowered = "tablet"
 	icon_state_powered = "tablet"
 	icon_state_menu = "menu"
+	icon_state_screensaver = null
 	id_rename = TRUE
 	hardware_flag = PROGRAM_TABLET
 	max_hardware_size = WEIGHT_CLASS_SMALL
@@ -36,9 +37,9 @@
 		var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
 		var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
 		if(card_slot2?.stored_card || card_slot?.stored_card)
+			update_appearance(UPDATE_ICON)
 			return ..()
-		else
-			remove_pen()
+		remove_pen()
 	else
 		return ..()
 

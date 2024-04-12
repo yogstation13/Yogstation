@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "quirks won't delete themselves from your characters if you load in fast anymore"

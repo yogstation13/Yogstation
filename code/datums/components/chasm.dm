@@ -35,7 +35,7 @@
 	RegisterSignal(parent, COMSIG_ATOM_ABSTRACT_EXITED, PROC_REF(exited))
 	RegisterSignal(parent, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON, PROC_REF(initialized_on))
 	RegisterSignal(parent, COMSIG_ATOM_INTERCEPT_TELEPORTING, PROC_REF(block_teleport))
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(fish))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(fish))
 	//allow catwalks to give the turf the CHASM_STOPPED trait before dropping stuff when the turf is changed.
 	//otherwise don't do anything because turfs and areas are initialized before movables.
 	if(!mapload)
@@ -118,8 +118,7 @@
 				return CHASM_REGISTER_SIGNALS
 		if(ishuman(dropped_thing))
 			var/mob/living/carbon/human/victim = dropped_thing
-			if(istype(victim.belt, /obj/item/wormhole_jaunter))
-				var/obj/item/wormhole_jaunter/jaunter = victim.belt
+			for(var/obj/item/wormhole_jaunter/jaunter in victim.get_all_contents())
 				var/turf/chasm = get_turf(victim)
 				var/fall_into_chasm = jaunter.chasm_react(victim)
 				if(!fall_into_chasm)
@@ -150,13 +149,11 @@
 			return
 
 		// send to the turf below
+		var/turf/above_turf = get_turf(dropped_thing)
 		dropped_thing.visible_message(span_boldwarning("[dropped_thing] falls into [parent]!"), span_userdanger("[fall_message]"))
 		below_turf.visible_message(span_boldwarning("[dropped_thing] falls from above!"))
 		dropped_thing.forceMove(below_turf)
-		if(isliving(dropped_thing))
-			var/mob/living/fallen = dropped_thing
-			fallen.Paralyze(100)
-			fallen.adjustBruteLoss(30)
+		below_turf.zImpact(dropped_thing, abs(above_turf.z - below_turf.z), get_turf(dropped_thing), FALL_NO_MESSAGE)
 		falling_atoms -= falling_ref
 		return
 
@@ -209,7 +206,7 @@
 		if (fallen_mob.stat != DEAD)
 			fallen_mob.investigate_log("has died from falling into a chasm.", INVESTIGATE_DEATHS)
 			fallen_mob.death(TRUE)
-			fallen_mob.apply_damage(300)
+			fallen_mob.adjustBruteLoss(300)
 
 	falling_atoms -= falling_ref
 

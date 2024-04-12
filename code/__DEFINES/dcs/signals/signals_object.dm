@@ -147,6 +147,11 @@
 #define COMSIG_ITEM_HIT_REACT "item_hit_react"
 	#define COMPONENT_HIT_REACTION_BLOCK (1<<0)
 
+/// from /datum/component/cleave_attack/perform_sweep(): (atom/target, obj/item/item, mob/living/user, params) 
+#define COMSIG_ATOM_CLEAVE_ATTACK "atom_cleave_attack"
+	// allows cleave attack to hit things it normally wouldn't
+	#define ATOM_ALLOW_CLEAVE_ATTACK (1<<0)
+
 /// Called before an item is embedded (mob/living/carbon/target = carbon that it is getting embedded into)
 #define COMSIG_ITEM_EMBEDDED "mob_carbon_embedded" 
 	// Prevents the embed
@@ -185,6 +190,8 @@
 	#define COMPONENT_OFFER_TAKE_INTERRUPT (1<<0)
 /// sent from obj/effect/attackby(): (/obj/effect/hit_effect, /mob/living/attacker, params)
 #define COMSIG_ITEM_ATTACK_EFFECT "item_effect_attacked"
+/// Called by /obj/item/proc/worn_overlays(list/overlays, mutable_appearance/standing, isinhands, icon_file)
+#define COMSIG_ITEM_GET_WORN_OVERLAYS "item_get_worn_overlays"
 /// for tc refunding items: (mob/living/user); returns TRUE if refund is allowed, FALSE if not.
 #define COMSIG_ITEM_REFUND	"item_refund"						
 
@@ -452,3 +459,19 @@
 
 /// from /obj/item/detective_scanner/scan(): (mob/user, list/extra_data)
 #define COMSIG_DETECTIVE_SCANNED "det_scanned"
+
+// /datum/element/light_eater
+///from base of [/datum/element/light_eater/proc/table_buffet]: (list/light_queue, datum/light_eater)
+#define COMSIG_LIGHT_EATER_QUEUE "light_eater_queue"
+///from base of [/datum/element/light_eater/proc/devour]: (datum/light_eater)
+#define COMSIG_LIGHT_EATER_ACT "light_eater_act"
+	///Prevents the default light eater behavior from running in case of immunity or custom behavior
+	#define COMPONENT_BLOCK_LIGHT_EATER (1<<0)
+///from base of [/datum/element/light_eater/proc/devour]: (atom/eaten_light)
+#define COMSIG_LIGHT_EATER_DEVOUR "light_eater_devour"
+
+
+/// Flag for when /afterattack potentially acts on an item.
+/// Used for the swap hands/drop tutorials to know when you might just be trying to do something normally.
+/// Does not necessarily imply success, or even that it did hit an item, just intent.
+#define COMPONENT_AFTERATTACK_PROCESSED_ITEM (1<<0)

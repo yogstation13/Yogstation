@@ -17,3 +17,6 @@
 	. = ..()
 	var/datum/atom_hud/abductor_hud = GLOB.huds[DATA_HUD_ABDUCTOR]
 	abductor_hud.hide_from(C)
+
+/datum/species/abductor/get_butt_sprite()
+	return BUTT_SPRITE_GREY

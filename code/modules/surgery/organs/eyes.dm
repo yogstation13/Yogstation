@@ -42,16 +42,17 @@
 			HMN.eye_color = eye_color
 		else
 			eye_color = HMN.eye_color
+		HMN.dna.update_ui_block(DNA_EYE_COLOR_BLOCK) //updates eye icon
+		HMN.update_body()
 	M.update_tint()
 	owner.update_sight()
-	if(M.has_dna() && ishuman(M))
-		M.dna.species.handle_body(M) //updates eye icon
 
 /obj/item/organ/eyes/Remove(mob/living/carbon/M, special = 0)
 	..()
 	if(ishuman(M) && eye_color)
 		var/mob/living/carbon/human/HMN = M
 		HMN.eye_color = old_eye_color
+		HMN.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
 		HMN.update_body()
 	M.cure_blind(list(EYE_DAMAGE)) // can't be blind from eye damage if there's no eye to be damaged, still blind from not having eyes though
 	M.cure_nearsighted(list(EYE_DAMAGE)) // likewise for nearsightedness
@@ -476,6 +477,9 @@
 	if(!isnull(light_flags))
 		set_light_flags(light_flags)
 
+/obj/item/organ/eyes/robotic/synth
+	flash_protect = 2
+
 /obj/item/organ/eyes/moth
 	name = "moth eyes"
 	desc = "These eyes can see just a little too well, light doesn't entirely agree with them."
@@ -489,8 +493,22 @@
 
 /obj/item/organ/eyes/polysmorph
 	name = "polysmorph eyes"
-	desc = "Eyes from a polysmorph, capable of retaining slightly more vision in low light environments"
-	lighting_cutoff = LIGHTING_CUTOFF_REAL_LOW
+	desc = "Eyes from a polysmorph, better capable of sensing heat than other eyes."
+	actions_types = list(/datum/action/item_action/organ_action/use)
+	var/infrared = FALSE
+
+/obj/item/organ/eyes/polysmorph/Remove(mob/living/carbon/M, special)
+	REMOVE_TRAIT(owner, TRAIT_INFRARED_VISION, type)
+	owner.update_sight()
+	. = ..()
+	
+/obj/item/organ/eyes/polysmorph/ui_action_click()
+	if(infrared)
+		REMOVE_TRAIT(owner, TRAIT_INFRARED_VISION, type)
+	else
+		ADD_TRAIT(owner, TRAIT_INFRARED_VISION, type)
+	owner.update_sight()
+	infrared = !infrared
 
 /obj/item/organ/eyes/ethereal
 	name = "fractal eyes"

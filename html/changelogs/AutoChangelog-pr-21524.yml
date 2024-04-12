@@ -1,6 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Preternis eyes now also care about if a species is powerhungry instead of only robotic"
-  - tweak: "Preternis eyes night vision now consumes power from powerhungry species"
-  - tweak: "Preternis eyes only take damage in non powerhungry species when nightvision is turned on"

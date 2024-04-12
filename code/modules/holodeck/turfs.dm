@@ -123,6 +123,8 @@
 
 /turf/open/floor/holofloor/carpet/update_icon(updates=ALL)
 	. = ..()
+	if(!.)
+		return FALSE
 	if((updates & UPDATE_SMOOTHING) && overfloor_placed && smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
 		QUEUE_SMOOTH(src)
 
