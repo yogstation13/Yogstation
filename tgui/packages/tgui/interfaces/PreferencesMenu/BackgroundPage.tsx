@@ -1,8 +1,11 @@
-import { useBackend, useLocalState } from "../../../../../backend";
-import { Button, Section, TextArea, Box, Grid } from "../../../../../components";
+import { classes } from "common/react";
+import { useBackend, useLocalState } from "../../backend";
+import { Box, Button, Section, TextArea, Grid } from "../../components";
+import { createSetPreference, PreferencesMenuData, ServerData } from "./data";
+import { ServerPreferencesFetcher } from "./ServerPreferencesFetcher";
 
-export const BackgroundInformation = (props, context) => {
-  const { act, data, config } = useBackend<BackgroundInformationData>(context);
+export const BackgroundPageInner = (props, context) => {
+  const { act, data } = useBackend<PreferencesMenuData>(context);
   const {
     slot,
     flavor_text,
@@ -49,9 +52,7 @@ export const BackgroundInformation = (props, context) => {
               onClick={() => act('flavor_text', { characterDesc })}>
               Save
             </Button>
-            <Button
-              icon="times"
-              onClick={() => setCharacterDesc(flavor_text)}>
+            <Button icon="times" onClick={() => setCharacterDesc(flavor_text)}>
               Reset
             </Button>
           </Box>
@@ -76,9 +77,7 @@ export const BackgroundInformation = (props, context) => {
                   onClick={() => act('med_record', { medicalDesc })}>
                   Save
                 </Button>
-                <Button
-                  icon="times"
-                  onClick={() => setMedicalDesc(med_record)}>
+                <Button icon="times" onClick={() => setMedicalDesc(med_record)}>
                   Reset
                 </Button>
               </Box>
@@ -173,5 +172,24 @@ export const BackgroundInformation = (props, context) => {
         </Grid.Column>
       </Grid>
     </Section>
+  );
+};
+
+export const BackgroundPage = (props: {
+  closeBackground: () => void,
+}) => {
+  return (
+    <ServerPreferencesFetcher
+      render={serverData => {
+        if (serverData) {
+          return (<BackgroundPageInner
+            handleClose={props.closeBackground}
+            species={serverData.species}
+          />);
+        } else {
+          return <Box>Loading species...</Box>;
+        }
+      }}
+    />
   );
 };
