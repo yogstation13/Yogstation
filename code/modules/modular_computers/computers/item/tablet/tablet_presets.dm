@@ -4,8 +4,7 @@
 	starting_components = list( /obj/item/computer_hardware/processor_unit/small,
 								/obj/item/stock_parts/cell/computer/micro,
 								/obj/item/computer_hardware/hard_drive/small/pda,
-								/obj/item/computer_hardware/network_card,
-								/obj/item/computer_hardware/card_slot)
+								/obj/item/computer_hardware/network_card)
 
 // Alternative version, an average one, for higher ranked positions mostly
 /obj/item/modular_computer/tablet/preset/advanced
@@ -13,7 +12,6 @@
 								/obj/item/stock_parts/cell/computer,
 								/obj/item/computer_hardware/hard_drive/small/pda,
 								/obj/item/computer_hardware/network_card,
-								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/printer/mini)
 
 /obj/item/modular_computer/tablet/preset/cargo
@@ -21,7 +19,6 @@
 								/obj/item/stock_parts/cell/computer,
 								/obj/item/computer_hardware/hard_drive/small/pda,
 								/obj/item/computer_hardware/network_card,
-								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/printer/mini)
 
 /obj/item/modular_computer/tablet/preset/advanced/atmos //This will be defunct and will be replaced when NtOS PDAs are fully implemented
@@ -29,7 +26,6 @@
 								/obj/item/stock_parts/cell/computer,
 								/obj/item/computer_hardware/hard_drive/small/pda,
 								/obj/item/computer_hardware/network_card,
-								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/printer/mini,
 								/obj/item/computer_hardware/sensorpackage)
 
@@ -38,9 +34,7 @@
 								/obj/item/stock_parts/cell/computer,
 								/obj/item/computer_hardware/hard_drive/small/pda,
 								/obj/item/computer_hardware/network_card,
-								/obj/item/computer_hardware/card_slot,
-								/obj/item/computer_hardware/printer/mini,
-								/obj/item/computer_hardware/card_slot/secondary)
+								/obj/item/computer_hardware/printer/mini,)
 
 /// A simple syndicate tablet, used for comms agents
 /obj/item/modular_computer/tablet/preset/syndicate
@@ -48,7 +42,6 @@
 								/obj/item/stock_parts/cell/computer,
 								/obj/item/computer_hardware/hard_drive/small/syndicate,
 								/obj/item/computer_hardware/network_card/advanced,
-								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/printer/mini)
 	finish_color = "crimson"
 
@@ -58,7 +51,6 @@
 								/obj/item/stock_parts/cell/computer,
 								/obj/item/computer_hardware/hard_drive/small/syndicate,
 								/obj/item/computer_hardware/network_card,
-								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/printer/mini)
 
 	starting_files = list(new /datum/computer_file/program/contract_uplink)

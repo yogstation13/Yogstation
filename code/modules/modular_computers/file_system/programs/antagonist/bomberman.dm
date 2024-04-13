@@ -80,7 +80,7 @@ GLOBAL_LIST_EMPTY(PDABombCodes)
 				
 				var/obj/item/card/id/targetid
 				if(target_computer) // Find ID
-					var/obj/item/computer_hardware/card_slot/card_slot = target_computer.all_components[MC_CARD]
+					var/card_slot = target_computer.all_components[MC_CARD]
 					if(card_slot)
 						targetid = card_slot.GetID()
 					

@@ -66,19 +66,15 @@
 //Useful when player is being seen by other mobs
 /mob/living/carbon/human/proc/get_id_name(if_no_id = "Unknown")
 	var/obj/item/storage/wallet/wallet = wear_id
-	var/obj/item/pda/pda = wear_id
+	var/obj/item/modular_computer/tablet/p = wear_id
 	var/obj/item/card/id/id = wear_id
-	var/obj/item/modular_computer/tablet/tablet = wear_id
 	if(istype(wallet))
 		id = wallet.front_id
+		
 	if(istype(id))
 		. = id.registered_name
-	else if(istype(pda))
-		. = pda.owner
-	else if(istype(tablet))
-		var/obj/item/computer_hardware/card_slot/card_slot = tablet.all_components[MC_CARD]
-		if(card_slot?.stored_card)
-			. = card_slot.stored_card.registered_name
+	else if(istype(p) && p.computer_id_slot)
+		. = p.computer_id_slot.registered_name
 	if(!.)
 		. = if_no_id	//to prevent null-names making the mob unclickable
 	return
@@ -393,14 +389,14 @@
 		var/obj/item/modular_computer/tablet/tablet_copy = item_copy
 		var/obj/item/modular_computer/tablet/tablet_instance = item_instance
 		tablet_copy.finish_color = tablet_instance.finish_color
-		var/obj/item/computer_hardware/card_slot/card_slot = tablet_instance.all_components[MC_CARD]
+		var/card_slot = tablet_instance.all_components[MC_CARD]
 		if(card_slot?.stored_card)
 			var/obj/item/card/id/id_copy = new card_slot.stored_card.type
 			var/obj/item/card/id/id_instance = card_slot.stored_card
 			id_copy.registered_name = id_instance.registered_name
 			id_copy.assignment = id_instance.assignment
 			id_copy.originalassignment = id_instance.originalassignment
-			var/obj/item/computer_hardware/card_slot/card_slot_copy = tablet_copy.all_components[MC_CARD]
+			var/card_slot_copy = tablet_copy.all_components[MC_CARD]
 			if(!card_slot_copy)
 				card_slot_copy = new
 				tablet_copy.install_component(card_slot_copy)

@@ -53,7 +53,6 @@
 		var/obj/item/computer_hardware/battery/battery_module = null
 		if(fabricate)
 			fabricated_laptop = new /obj/item/modular_computer/laptop/buildable(src)
-			fabricated_laptop.install_component(new /obj/item/computer_hardware/card_slot)
 			fabricated_laptop.install_component(new /obj/item/computer_hardware/battery)
 			battery_module = fabricated_laptop.all_components[MC_CELL]
 		total_price = 49
@@ -106,10 +105,6 @@
 			total_price += 49
 			if(fabricate)
 				fabricated_laptop.install_component(new /obj/item/computer_hardware/printer/mini)
-		if(dev_card)
-			total_price += 99
-			if(fabricate)
-				fabricated_laptop.install_component(new /obj/item/computer_hardware/card_slot/secondary)
 
 		return total_price
 
@@ -119,7 +114,6 @@
 			fabricated_tablet = new(src)
 			fabricated_tablet.install_component(new /obj/item/computer_hardware/battery)
 			fabricated_tablet.install_component(new /obj/item/computer_hardware/processor_unit/small)
-			fabricated_tablet.install_component(new/obj/item/computer_hardware/card_slot)
 			battery_module = fabricated_tablet.all_components[MC_CELL]
 		total_price = 99
 		switch(dev_battery)
@@ -159,10 +153,7 @@
 			total_price += 49
 			if(fabricate)
 				fabricated_tablet.install_component(new/obj/item/computer_hardware/printer/mini)
-		if(dev_card)
-			total_price += 199
-			if(fabricate)
-				fabricated_tablet.install_component(new/obj/item/computer_hardware/card_slot/secondary)
+		
 		return total_price
 
 	else if(devtype == 3) 	// Phone, very portable and can function similar to the PDA, though it is even more expensive than a tablet.
@@ -170,7 +161,6 @@
 		if(fabricate)
 			fabricated_phone = new(src)
 			fabricated_phone.install_component(new /obj/item/computer_hardware/battery)
-			fabricated_phone.install_component(new /obj/item/computer_hardware/card_slot)
 			fabricated_phone.install_component(new /obj/item/computer_hardware/processor_unit/small)
 			battery_module = fabricated_phone.all_components[MC_CELL]
 		total_price = 149
@@ -209,11 +199,6 @@
 				total_price += 149
 		if(dev_printer)
 			fabricated_phone.install_component(new/obj/item/computer_hardware/printer/mini)
-		if(dev_card)
-			total_price += 199
-			if(fabricate)
-				fabricated_phone.install_component(new/obj/item/computer_hardware/card_slot/secondary)
-		return total_price
 	return 0
 
 

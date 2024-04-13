@@ -103,12 +103,8 @@
 	if(..())
 		return TRUE
 
-	var/obj/item/computer_hardware/card_slot/card_slot
-	var/obj/item/computer_hardware/card_slot/card_slot2
 	var/obj/item/computer_hardware/printer/printer
 	if(computer)
-		card_slot = computer.all_components[MC_CARD]
-		card_slot2 = computer.all_components[MC_CARD2]
 		printer = computer.all_components[MC_PRINT]
 		if(!card_slot || !card_slot2)
 			return
@@ -327,11 +323,10 @@
 /datum/computer_file/program/card_mod/ui_data(mob/user)
 	var/list/data = get_header_data()
 
-	var/obj/item/computer_hardware/card_slot/card_slot2
+	var/card_slot2
 	var/obj/item/computer_hardware/printer/printer
 
 	if(computer)
-		card_slot2 = computer.all_components[MC_CARD2]
 		printer = computer.all_components[MC_PRINT]
 
 	data["station_name"] = station_name()

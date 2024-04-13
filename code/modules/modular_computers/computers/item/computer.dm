@@ -80,6 +80,9 @@
 	///The color of that light
 	var/comp_light_color = "#FFFFFF"
 
+	///The ID currently stored in the computer.
+	var/obj/item/card/id/computer_id_slot
+
 	///The full name of the stored ID card's identity. These vars should probably be on the PDA.
 	var/saved_identification
 	///The job title of the stored ID card
@@ -154,77 +157,78 @@
 
 
 /obj/item/modular_computer/AltClick(mob/user)
-	..()
+	. = ..()
 	if(issilicon(user))
-		return
+		return FALSE
 
-	if(user.canUseTopic(src, BE_CLOSE))
-		var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
-		var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
-		var/obj/item/computer_hardware/ai_slot/ai_slot = all_components[MC_AI]
-		if(ai_slot)
-			ai_slot.try_eject(user)
-		if(card_slot2)
-			var/obj/item/card/id/target_id_card = card_slot2.stored_card
-			if(!target_id_card)
-				return card_slot?.try_eject(user)
-			GLOB.data_core.manifest_modify(target_id_card.registered_name, target_id_card.assignment)
-			return card_slot2.try_eject(user)
-		return card_slot?.try_eject(user)
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return FALSE
+
+	if(RemoveID(user))
+		return TRUE
 
 
 // Gets IDs/access levels from card slot. Would be useful when/if PDAs would become modular PCs.
 /obj/item/modular_computer/GetAccess()
-	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
-	if(card_slot)
-		return card_slot.GetAccess()
+	if(computer_id_slot)
+		return computer_id_slot.GetAccess()
 	return ..()
 
-/obj/item/modular_computer/RemoveID()
-	var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
-	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
-	if(card_slot2?.try_eject() || card_slot?.try_eject()) //Try the secondary one first.
-		update_appearance(UPDATE_ICON)
-		return TRUE
-	return FALSE
-
-/obj/item/modular_computer/InsertID(obj/item/inserting_item)
-	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
-	var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
-	if(!(card_slot || card_slot2))
-		//to_chat(user, "<span class='warning'>There isn't anywhere you can fit a card into on this computer.</span>")
+/obj/item/modular_computer/InsertID(obj/item/card/inserting_id, mob/user)
+	//all slots taken
+	if(computer_id_slot)
 		return FALSE
 
-	var/obj/item/card/inserting_id = inserting_item.RemoveID()
-	if(!inserting_id)
-		return FALSE
+	computer_id_slot = inserting_id
+	if(user)
+		if(!user.transferItemToLoc(inserting_id, src))
+			return FALSE
+		to_chat(user, span_notice("You insert \the [inserting_id] into the card slot."))
+	else
+		inserting_id.forceMove(src)
 
-	if((card_slot?.try_insert(inserting_id)) || (card_slot2?.try_insert(inserting_id)))
-		update_appearance(UPDATE_ICON)
-		return TRUE
-	//to_chat(user, "<span class='warning'>This computer doesn't have an open card slot.</span>")
-	return FALSE
+	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
+	if(ishuman(loc))
+		var/mob/living/carbon/human/human_wearer = loc
+		if(human_wearer.wear_id == src)
+			human_wearer.sec_hud_set_ID()
+	update_appearance()
+	update_slot_icon()
+	return TRUE
+
+/**
+ * Removes the ID card from the computer, and puts it in loc's hand if it's a mob
+ * Args:
+ * user - The mob trying to remove the ID, if there is one
+ */
+/obj/item/modular_computer/RemoveID(mob/user)
+	if(!computer_id_slot)
+		return ..()
+
+	if(user)
+		if(!issilicon(user) && in_range(src, user))
+			user.put_in_hands(computer_id_slot)
+		balloon_alert(user, "removed ID")
+		to_chat(user, span_notice("You remove the card from the card slot."))
+	else
+		computer_id_slot.forceMove(drop_location())
+
+	computer_id_slot = null
+	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
+
+	if(ishuman(loc))
+		var/mob/living/carbon/human/human_wearer = loc
+		if(human_wearer.wear_id == src)
+			human_wearer.sec_hud_set_ID()
+	update_slot_icon()
+	update_appearance()
+	return TRUE
+
 
 /obj/item/modular_computer/GetID()
-	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
-	if(card_slot)
-		return card_slot.GetID()
-	return ..()
+	if(computer_id_slot)
+		return computer_id_slot
 
-/obj/item/modular_computer/RemoveID()
-	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
-	if(!card_slot)
-		return
-	return card_slot.RemoveID()
-
-/obj/item/modular_computer/InsertID(obj/item/inserting_item)
-	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
-	if(!card_slot)
-		return FALSE
-	var/obj/item/card/inserting_id = inserting_item.RemoveID()
-	if(!inserting_id)
-		return FALSE
-	return card_slot.try_insert(inserting_id)
 
 /obj/item/modular_computer/MouseDrop(obj/over_object, src_location, over_location)
 	var/mob/M = usr
@@ -279,6 +283,13 @@
 		. += span_warning("It is damaged.")
 
 	. += get_modular_computer_parts_examine(user)
+
+	if(computer_id_slot)
+		if(Adjacent(user))
+			. += "It has \the [computer_id_slot] card installed in its card slot."
+		else
+			. += "Its identification card slot is currently occupied."
+		. += span_info("Alt-click [src] to eject the identification card.")
 
 /obj/item/modular_computer/update_icon(updates=ALL)
 	if(!physical)

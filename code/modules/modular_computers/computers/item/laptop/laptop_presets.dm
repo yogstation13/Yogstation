@@ -3,7 +3,7 @@
 								/obj/item/stock_parts/cell/computer,
 								/obj/item/computer_hardware/hard_drive,
 								/obj/item/computer_hardware/network_card,
-								/obj/item/computer_hardware/card_slot)
+								)
 
 /obj/item/modular_computer/laptop/preset/civillian
 	desc = "A low-end laptop often used for personal recreation."
@@ -30,7 +30,7 @@
 								/obj/item/stock_parts/cell/computer,
 								/obj/item/computer_hardware/hard_drive,
 								/obj/item/computer_hardware/network_card/advanced,
-								/obj/item/computer_hardware/card_slot)
+								)
 
 /obj/item/modular_computer/laptop/preset/paramedic/mining_medic/Initialize(mapload)
 	starting_files |= list(
@@ -47,4 +47,4 @@
 								/obj/item/computer_hardware/network_card,
 								/obj/item/computer_hardware/ai_interface,
 								/obj/item/computer_hardware/ai_slot,
-								/obj/item/computer_hardware/card_slot)
+								)

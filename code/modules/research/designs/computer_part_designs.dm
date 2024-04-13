@@ -112,24 +112,6 @@
 	category = list("Computer Parts")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
-// Card slot
-/datum/design/cardslot
-	name = "ID Card Slot"
-	id = "cardslot"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 600)
-	build_path = /obj/item/computer_hardware/card_slot
-	category = list("Computer Parts")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
-
-/datum/design/cardslot/secondary
-	name = "Auxilary ID Card Slot"
-	id = "secondcardslot"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 600)
-	build_path = /obj/item/computer_hardware/card_slot/secondary
-	category = list("Computer Parts")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 // Intellicard slot
 /datum/design/aislot

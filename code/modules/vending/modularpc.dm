@@ -17,11 +17,9 @@
 					/obj/item/stock_parts/cell/computer = 8,
 					/obj/item/computer_hardware/processor_unit = 4,
 					/obj/item/computer_hardware/processor_unit/small = 4,
-					/obj/item/computer_hardware/card_slot = 4,
 					/obj/item/computer_hardware/sensorpackage = 4)
 	premium = list(/obj/item/modular_computer/tablet = 3,
 					/obj/item/modular_computer/tablet/phone = 2,
-					/obj/item/computer_hardware/card_slot/secondary = 2,
 					/obj/item/computer_hardware/ai_slot = 2,
 					/obj/item/computer_hardware/printer/mini = 2,
 					/obj/item/computer_hardware/recharger/APC = 2,

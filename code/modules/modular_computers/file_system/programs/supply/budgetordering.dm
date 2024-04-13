@@ -47,11 +47,7 @@
 
 	//Aquire access from the inserted ID card.
 	if(!length(access))
-		var/obj/item/card/id/D
-		var/obj/item/computer_hardware/card_slot/card_slot
-		if(computer)
-			card_slot = computer.all_components[MC_CARD]
-			D = card_slot?.GetID()
+		var/obj/item/card/id/D = computer?.computer_id_slot?.GetID()
 		if(!D)
 			return FALSE
 		access = D.GetAccess()
@@ -72,8 +68,8 @@
 	var/list/data = get_header_data()
 	data["location"] = SSshuttle.supply.getStatusText()
 	var/datum/bank_account/buyer = SSeconomy.get_dep_account(ACCOUNT_CAR)
-	var/obj/item/computer_hardware/card_slot/card_slot = computer.all_components[MC_CARD]
-	var/obj/item/card/id/id_card = card_slot?.GetID()
+	var/obj/item/card/id/id_card = computer.computer_id_slot?.GetID()
+
 	if(id_card?.registered_account)
 		unlock_budget = TRUE
 		if(id_card?.registered_account?.account_job?.paycheck_department == ACCOUNT_CAR)
@@ -158,9 +154,9 @@
 	return data
 
 /datum/computer_file/program/budgetorders/ui_act(action, params, datum/tgui/ui)
-	if(..())
+	. = ..()
+	if(.)
 		return
-	var/obj/item/computer_hardware/card_slot/card_slot = computer.all_components[MC_CARD]
 	switch(action)
 		if("send")
 			if(!SSshuttle.supply.canMove())
@@ -230,13 +226,13 @@
 					return
 
 			var/reason = ""
-			if((requestonly && !self_paid) || !(card_slot?.GetID()))
+			if((requestonly && !self_paid) || !(computer.computer_id_slot?.GetID()))
 				reason = stripped_input("Reason:", name, "")
 				if(isnull(reason) || ..())
 					return
 
 			if(!self_paid && ishuman(usr) && !account)
-				var/obj/item/card/id/id_card = card_slot?.GetID()
+				var/obj/item/card/id/id_card = computer.computer_id_slot?.GetID()
 				if(budget_order)
 					account = SSeconomy.get_dep_account(id_card?.registered_account?.account_job.paycheck_department)
 					name = account.account_holder
@@ -245,7 +241,7 @@
 			var/turf/T = get_turf(computer)
 			var/datum/supply_order/SO = new(pack, name, rank, ckey, reason, account, account?.account_holder)
 			SO.generateRequisition(T)
-			if((requestonly && !self_paid) || !(card_slot?.GetID()))
+			if((requestonly && !self_paid) || !(computer.computer_id_slot?.GetID()))
 				SSshuttle.request_list += SO
 			else
 				SSshuttle.shopping_list += SO

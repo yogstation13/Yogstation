@@ -25,13 +25,8 @@
 	var/list/botlist = list()
 	var/list/mulelist = list()
 
-	var/obj/item/computer_hardware/card_slot/card_slot = computer ? computer.all_components[MC_CARD] : null
-	data["have_id_slot"] = !!card_slot
 	if(computer)
-		var/obj/item/card/id/id_card = card_slot ? card_slot.stored_card : null
-		data["has_id"] = !!id_card
-		data["id_owner"] = id_card ? id_card.registered_name : "No Card Inserted."
-		data["access_on_card"] = id_card ? id_card.access : null
+		data["id_owner"] = computer.computer_id_slot || ""
 
 	botcount = 0
 	current_user = user
@@ -58,13 +53,7 @@
 /datum/computer_file/program/robocontrol/ui_act(action, list/params)
 	if(..())
 		return TRUE
-	var/obj/item/computer_hardware/card_slot/card_slot
-	var/obj/item/card/id/id_card
-	if(computer)
-		computer.play_interact_sound()
-		card_slot = computer.all_components[MC_CARD]
-		if(card_slot)
-			id_card = card_slot.stored_card
+	var/obj/item/card/id/id_card = computer?.computer_id_slot
 
 	var/list/standard_actions = list("patroloff", "patrolon", "ejectpai")
 	var/list/MULE_actions = list("stop", "go", "home", "destination", "setid", "sethome", "unload", "autoret", "autopick", "report", "ejectpai")
@@ -82,11 +71,11 @@
 		if("summon")
 			Bot.bot_control(action, current_user, id_card ? id_card.access : current_access)
 		if("ejectcard")
-			if(!computer || !card_slot)
+			if(!computer || !computer.computer_id_slot)
 				return
 			if(id_card)
 				GLOB.data_core.manifest_modify(id_card.registered_name, id_card.assignment)
-				card_slot.try_eject(current_user)
+				computer.RemoveID(usr)
 			else
 				playsound(get_turf(ui_host()) , 'sound/machines/buzz-sigh.ogg', 25, FALSE)
 	return

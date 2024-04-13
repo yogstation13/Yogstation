@@ -78,8 +78,6 @@
 #define MC_CPU "CPU"
 #define MC_HDD "HDD"
 #define MC_SDD "SDD"
-#define MC_CARD "CARD"
-#define MC_CARD2 "CARD2"
 #define MC_NET "NET"
 #define MC_PRINT "PRINT"
 #define MC_CELL "CELL"

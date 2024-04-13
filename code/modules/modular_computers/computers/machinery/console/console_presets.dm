@@ -3,7 +3,7 @@
 								/obj/item/computer_hardware/recharger/APC,
 								/obj/item/computer_hardware/hard_drive/super,
 								/obj/item/computer_hardware/processor_unit,
-								/obj/item/computer_hardware/card_slot)
+								)
 
 
 
@@ -68,7 +68,7 @@
 								/obj/item/computer_hardware/recharger/APC,
 								/obj/item/computer_hardware/hard_drive/super,
 								/obj/item/computer_hardware/processor_unit,
-								/obj/item/computer_hardware/card_slot,
+								,
 								/obj/item/computer_hardware/printer)
 
 	starting_files = list(	new /datum/computer_file/program/bounty_board,
@@ -107,9 +107,7 @@
 								/obj/item/computer_hardware/recharger/APC,
 								/obj/item/computer_hardware/hard_drive/super,
 								/obj/item/computer_hardware/processor_unit,
-								/obj/item/computer_hardware/card_slot,
-								/obj/item/computer_hardware/printer,
-								/obj/item/computer_hardware/card_slot/secondary)
+								/obj/item/computer_hardware/printer,)
 
 	starting_files = list(	new /datum/computer_file/program/chatclient,
 							new /datum/computer_file/program/budgetorders,
@@ -158,9 +156,7 @@
 								/obj/item/computer_hardware/recharger/APC,
 								/obj/item/computer_hardware/hard_drive/super,
 								/obj/item/computer_hardware/processor_unit,
-								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/printer,
-								/obj/item/computer_hardware/card_slot/secondary,
 								/obj/item/computer_hardware/ai_slot)
 
 	starting_files = list(	new /datum/computer_file/program/chatclient,
@@ -198,7 +194,7 @@
 								/obj/item/computer_hardware/recharger/APC,
 								/obj/item/computer_hardware/hard_drive/super,
 								/obj/item/computer_hardware/processor_unit,
-								/obj/item/computer_hardware/card_slot,
+								,
 								/obj/item/computer_hardware/printer)
 
 	starting_files = list(	new /datum/computer_file/program/portrait_printer)
@@ -233,4 +229,4 @@
 							/obj/item/computer_hardware/hard_drive/super,
 							/obj/item/computer_hardware/processor_unit,
 							/obj/item/computer_hardware/ai_slot,
-							/obj/item/computer_hardware/card_slot)
+							)

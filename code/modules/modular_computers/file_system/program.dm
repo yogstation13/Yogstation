@@ -142,10 +142,9 @@
 
 	if(!length(access))
 		var/obj/item/card/id/D
-		var/obj/item/computer_hardware/card_slot/card_slot
+
 		if(computer)
-			card_slot = computer.all_components[MC_CARD]
-			D = card_slot?.GetID()
+			D = computer.computer_id_slot?.GetID()
 
 		if(!D)
 			if(loud)
