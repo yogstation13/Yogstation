@@ -237,7 +237,7 @@
 
 /datum/reagent/toxin/mindbreaker/changeling/on_mob_life(mob/living/carbon/M)
 	if(!M.has_trauma_type(/datum/brain_trauma/mild/reality_dissociation))
-		M.adjust_hallucinations(40 SECONDS)
+		M.adjust_hallucinations(20 SECONDS)
 	return ..()
 
 /datum/reagent/toxin/relaxant
