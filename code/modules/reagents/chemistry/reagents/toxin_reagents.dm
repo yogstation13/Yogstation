@@ -231,6 +231,15 @@
 		M.adjust_hallucinations(20 SECONDS)
 	return ..()
 
+/datum/reagent/toxin/mindbreaker/changeling
+	name = "Mind Destroyer Toxin"
+	description = "An even more powerful hallucinogen only created by changeling toxin sacs. Not a thing to be messed with."
+
+/datum/reagent/toxin/mindbreaker/changeling/on_mob_life(mob/living/carbon/M)
+	if(!M.has_trauma_type(/datum/brain_trauma/mild/reality_dissociation))
+		M.adjust_hallucinations(40 SECONDS)
+	return ..()
+
 /datum/reagent/toxin/relaxant
 	name = "Muscle Relaxant"
 	description = "A potent paralytic chemical that causes the patient to move and act slower."
