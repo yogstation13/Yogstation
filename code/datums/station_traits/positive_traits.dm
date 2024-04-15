@@ -199,5 +199,5 @@
 
 	if(isAI(living_mob))
 		var/mob/living/silicon/ai/ai = living_mob
-		ai.eyeobj.relay_speech = TRUE //surveillance upgrade. the ai gets cybernetics too.
+		ai.eyeobj.relay_speech = TRUE
 		return
