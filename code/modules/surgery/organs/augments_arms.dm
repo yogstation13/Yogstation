@@ -329,6 +329,7 @@
 	lefthand_file = active_tool.lefthand_file
 	righthand_file = active_tool.righthand_file
 	linkedarm.owner.update_inv_hands()
+	SET_PLANE_EXPLICIT(src, ABOVE_HUD_PLANE, linkedarm.owner)
 
 /obj/item/toolset_handler/attack_self(mob/user)
 	linkedarm.ui_action_click()

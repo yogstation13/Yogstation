@@ -58,20 +58,19 @@
 		if(I.tool_behaviour == TOOL_MULTITOOL)
 			if(!multitool_check_buffer(user, I))
 				return
-			var/obj/item/multitool/M = I
-			M.buffer = src
+			multitool_set_buffer(user, I, src)
 			to_chat(user, span_notice("You save the data in [I]'s buffer. It can now be saved to pads with closed panels."))
 			return TRUE
 	else if(I.tool_behaviour == TOOL_MULTITOOL)
 		if(!multitool_check_buffer(user, I))
 			return
-		var/obj/item/multitool/M = I
-		if(istype(M.buffer, /obj/machinery/quantumpad))
-			if(M.buffer == src)
+		var/atom/buffer_atom = multitool_get_buffer(user, I)
+		if(istype(buffer_atom, /obj/machinery/quantumpad))
+			if(buffer_atom == src)
 				to_chat(user, span_warning("You cannot link a pad to itself!"))
 				return TRUE
 			else
-				linked_pad = M.buffer
+				linked_pad = buffer_atom
 				to_chat(user, span_notice("You link [src] to the one in [I]'s buffer."))
 				return TRUE
 		else

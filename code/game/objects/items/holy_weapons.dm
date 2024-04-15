@@ -308,6 +308,15 @@
 	menutab = MENU_WEAPON
 	additional_desc = "An exceptionally large sword, glows brightly from an unknown power within."
 
+/obj/item/nullrod/glowing/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
+
+/obj/item/nullrod/glowing/proc/on_light_eater(atom/source, datum/light_eater)
+	SIGNAL_HANDLER 
+	visible_message("The undying glow of \the [src] refuses to fade.")
+	return COMPONENT_BLOCK_LIGHT_EATER
+
 /obj/item/nullrod/Hypertool
 	name = "hypertool"
 	desc = "A tool so powerful even you cannot perfectly use it."
@@ -862,7 +871,7 @@
 			var/mob/living/carbon/human/C = loc
 			C.regenerate_icons()
 
-/obj/item/nullrod/staff/worn_overlays(isinhands)
+/obj/item/nullrod/staff/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(isinhands)
 		. += mutable_appearance('icons/effects/effects.dmi', shield_icon, MOB_LAYER + 0.01)
@@ -951,7 +960,7 @@
 			// Everyone else still takes damage but less real damage
 			// Average DPS is 5|15 or 10|10 if unholy (burn|stam)
 			// Should be incredibly difficult to metacheck with this due to RNG and fast processing
-			if(iscultist(L) || is_clockcult(L) || iswizard(L) || isvampire(L) || IS_BLOODSUCKER(L) || IS_VASSAL(L) || IS_HERETIC(L) || IS_HERETIC_MONSTER(L))
+			if(iscultist(L) || is_clockcult(L) || iswizard(L) || isvampire(L) || IS_BLOODSUCKER(L) || IS_VASSAL(L) || IS_HERETIC(L) || IS_HERETIC_MONSTER(L) || isshadowperson(L))
 				if(damage)
 					L.adjustFireLoss(rand(3,5) * 0.5) // 1.5-2.5 AVG 2.0
 				if(L.getStaminaLoss() < 65)

@@ -10,14 +10,12 @@
 	opacity = FALSE
 	density = TRUE
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
-	light_color = "#21007F"
-	light_power = 0.3
-	light_range = 2
 
 /obj/structure/psionic_barrier/Initialize(mapload, time = 500)
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, time)
+	update_appearance(UPDATE_OVERLAYS)
 
 /obj/structure/psionic_barrier/Destroy()
 	if(!atom_integrity)
@@ -29,3 +27,7 @@
 
 /obj/structure/psionic_barrier/process()
 	update_integrity(max(0, min(max_integrity, atom_integrity + 1)))
+
+/obj/structure/psionic_barrier/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, "shieldsparkles", src)

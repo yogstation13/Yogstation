@@ -62,7 +62,7 @@
 	return BUTT_SPRITE_FLOWERPOT
 
 /datum/species/pod/spec_life(mob/living/carbon/human/H)
-	if(H.stat == DEAD || H.stat == UNCONSCIOUS || (H.mind && H.mind.has_antag_datum(ANTAG_DATUM_THRALL)))
+	if(H.stat == DEAD || H.stat == UNCONSCIOUS)
 		return
 	if(IS_BLOODSUCKER(H) && !HAS_TRAIT(H, TRAIT_MASQUERADE))
 		return

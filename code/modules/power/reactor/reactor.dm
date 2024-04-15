@@ -207,10 +207,9 @@
 	return TRUE
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/multitool_act(mob/living/user, obj/item/multitool/I)
-	if(istype(I))
-		to_chat(user, "<span class='notice'>You add \the [src]'s ID into the multitool's buffer.</span>")
-		I.buffer = src
-		return TRUE
+	to_chat(user, "<span class='notice'>You add \the [src]'s ID into the multitool's buffer.</span>")
+	multitool_set_buffer(user, I, src)
+	return TRUE
 
 //Admin procs to mess with the reaction environment.
 
@@ -678,7 +677,7 @@
 
 /obj/machinery/computer/reactor/multitool_act(mob/living/user, obj/item/multitool/I)
 	if(isnull(id) || isnum(id))
-		var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/N = I.buffer
+		var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/N = multitool_get_buffer(user, I)
 		if(!istype(N))
 			user.balloon_alert(user, "invalid reactor ID!")
 			return TRUE
@@ -696,7 +695,7 @@
 
 /obj/item/circuitboard/computer/reactor
 	name = "Reactor Control (Computer Board)"
-	icon_state = "engineering"
+	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/computer/reactor
 
 /obj/machinery/computer/reactor/Initialize(mapload, obj/item/circuitboard/C)
