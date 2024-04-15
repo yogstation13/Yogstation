@@ -146,7 +146,6 @@
 		/datum/job/atmos = /obj/item/organ/cyberimp/mouth/breathing_tube, // Inhaling gases.
 		/datum/job/bartender = /obj/item/organ/liver/cybernetic/upgraded, // Drinking their own drinks.
 		/datum/job/brigphysician = /obj/item/organ/cyberimp/eyes/hud/medical,
-		/datum/job/hydro = /obj/item/organ/cyberimp/chest/nutriment,
 		/datum/job/captain = /obj/item/organ/heart/cybernetic/upgraded,
 		/datum/job/cargo_tech = /obj/item/organ/stomach/cybernetic/upgraded,
 		/datum/job/chaplain = /obj/item/organ/cyberimp/brain/anti_drop, // Preventing null rod loss.
@@ -163,6 +162,7 @@
 		/datum/job/geneticist = /obj/item/organ/stomach/fly,
 		/datum/job/head_of_personnel = /obj/item/organ/eyes/robotic,
 		/datum/job/hos = /obj/item/organ/cyberimp/brain/anti_drop,
+		/datum/job/hydro = /obj/item/organ/cyberimp/chest/nutriment,
 		/datum/job/janitor = /obj/item/organ/heart/cybernetic, // ACTUAL x-ray eyes is likely "not balanced" and all alternatives suck. So boring heart.
 		/datum/job/lawyer = /obj/item/organ/heart/cybernetic/upgraded,
 		/datum/job/mime = /obj/item/organ/tongue/robot, // ...
