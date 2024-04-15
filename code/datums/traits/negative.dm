@@ -859,27 +859,27 @@
 		COMSIG_CARBON_ATTACH_LIMB,
 		COMSIG_CARBON_REMOVE_LIMB,
 	))
-	quirk_holder.clear_mood_event("body_purist")
+	SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "body_purist")
 
 /datum/quirk/body_purist/proc/check_cybernetics()
 	var/mob/living/carbon/owner = quirk_holder
 	if(!istype(owner))
 		return
 	for(var/obj/item/bodypart/limb as anything in owner.bodyparts)
-		if(!IS_ORGANIC_LIMB(limb))
+		if(!limb.is_organic_limb())
 			cybernetics_level++
 	for(var/obj/item/organ/internal/organ as anything in owner.internal_organs)
 		if(organ.organ_flags & ORGAN_SYNTHETIC)
 			cybernetics_level++
-	for(var/obj/item/organ/external/organ as anything in owner.external_organs)
-		if(organ.organ_flags & ORGAN_SYNTHETIC)
-			cybernetics_level++
+	//for(var/obj/item/organ/external/organ as anything in owner.external_organs)
+	//	if(organ.organ_flags & ORGAN_SYNTHETIC)
+	//		cybernetics_level++
 	update_mood()
 
 /datum/quirk/body_purist/proc/update_mood()
-	quirk_holder.clear_mood_event("body_purist")
+	SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "body_purist")
 	if(cybernetics_level)
-		quirk_holder.add_mood_event("body_purist", /datum/mood_event/body_purist, -cybernetics_level * 10)
+		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "body_purist", /datum/mood_event/body_purist, -cybernetics_level * 10)
 
 /datum/quirk/body_purist/proc/on_organ_gain(datum/source, obj/item/organ/new_organ, special)
 	SIGNAL_HANDLER
@@ -895,12 +895,12 @@
 
 /datum/quirk/body_purist/proc/on_limb_gain(datum/source, obj/item/bodypart/new_limb, special)
 	SIGNAL_HANDLER
-	if(!IS_ORGANIC_LIMB(new_limb))
+	if(!new_limb.is_organic_limb())
 		cybernetics_level++
 		update_mood()
 
 /datum/quirk/body_purist/proc/on_limb_lose(datum/source, obj/item/bodypart/old_limb, special)
 	SIGNAL_HANDLER
-	if(!IS_ORGANIC_LIMB(old_limb))
+	if(!old_limb.is_organic_limb())
 		cybernetics_level--
 		update_mood()
