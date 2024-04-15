@@ -147,7 +147,7 @@
 		/datum/job/bartender = /obj/item/organ/liver/cybernetic/upgraded, // Drinking their own drinks.
 		/datum/job/brigphysician = /obj/item/organ/cyberimp/eyes/hud/medical,
 		/datum/job/captain = /obj/item/organ/heart/cybernetic/upgraded,
-		/datum/job/cargo_tech = /obj/item/organ/stomach/cybernetic/upgraded,
+		/datum/job/cargo_tech = /obj/item/organ/stomach/cybernetic,
 		/datum/job/chaplain = /obj/item/organ/cyberimp/brain/anti_drop, // Preventing null rod loss.
 		/datum/job/chemist = /obj/item/organ/cyberimp/eyes/hud/science, // For seeing reagents.
 		/datum/job/chief_engineer = /obj/item/organ/cyberimp/chest/thrusters,
