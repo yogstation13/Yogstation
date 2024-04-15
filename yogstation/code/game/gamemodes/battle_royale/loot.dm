@@ -379,7 +379,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/storage/backpack/duffelbag/syndie/c4 = -3, //C4 Is kind of useless when you have AA
 		/obj/item/battleroyale/itemspawner/construct = -3,
 		/obj/item/book/granter/action/spell/forcewall = -3,
-		/obj/item/antag_spawner/slaughter_demon = -3, //why the hell not
 		/obj/item/antag_spawner/slaughter_demon/laughter = -3, //people still get disqualified, but they at least get to come back
 		/obj/item/storage/backpack/holding = -3,
 		/obj/effect/spawner/lootdrop/stronggene = -3,

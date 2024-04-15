@@ -20,6 +20,8 @@
 /mob/living/carbon/human/virtual_reality/Destroy()
 	revert_to_reality()
 	for(var/obj/item/I in get_all_contents())
+		if(I.item_flags & ABSTRACT)
+			continue
 		dropItemToGround(I, TRUE, TRUE)
 	return ..()
 

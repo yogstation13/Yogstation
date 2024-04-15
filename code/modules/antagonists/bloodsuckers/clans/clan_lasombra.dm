@@ -52,7 +52,7 @@
 	bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/restingplace)
 
 /datum/bloodsucker_clan/lasombra/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
-	vassaldatum.BuyPower(new /datum/action/cooldown/spell/pointed/lesser_glare)
+	vassaldatum.BuyPower(new /datum/action/cooldown/spell/pointed/seize/lesser)
 	vassaldatum.BuyPower(new /datum/action/cooldown/spell/jaunt/shadow_walk)
 	if(ishuman(vassaldatum.owner.current))
 		var/mob/living/carbon/human/vassal = vassaldatum.owner.current

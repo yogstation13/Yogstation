@@ -86,9 +86,15 @@
 		// You aren't the source? don't change yourself
 		return
 	RegisterSignal(SSmapping, COMSIG_PLANE_OFFSET_INCREASE, PROC_REF(on_offset_increase))
+
 	RegisterSignal(SSdcs, COMSIG_NARSIE_SUMMON_UPDATE, PROC_REF(narsie_modified))
 	if(GLOB.narsie_summon_count >= 1)
 		narsie_start_midway(GLOB.narsie_effect_last_modified) // We assume we're on the start, so we can use this number
+
+	RegisterSignal(SSdcs, COMSIG_DARKSPAWN_ASCENSION, PROC_REF(darkspawn_ascension))
+	if(GLOB.sacrament_done) //so no runtimes prior to the round starting
+		darkspawn_ascension(0)
+
 	offset_increase(0, SSmapping.max_plane_offset)
 
 /atom/movable/screen/plane_master/parallax/proc/on_offset_increase(datum/source, old_offset, new_offset)
@@ -159,6 +165,9 @@
 
 /atom/movable/screen/plane_master/parallax/proc/narsie_unsummoned()
 	animate(src, color = null, time = 8 SECONDS)
+
+/atom/movable/screen/plane_master/parallax/proc/darkspawn_ascension(delay = 15 SECONDS)
+	animate(src, color = "#555555", time = delay) //greatly dimmed stars
 
 /atom/movable/screen/plane_master/gravpulse
 	name = "Gravpulse"
