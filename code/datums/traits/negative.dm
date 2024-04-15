@@ -868,12 +868,9 @@
 	for(var/obj/item/bodypart/limb as anything in owner.bodyparts)
 		if(!limb.is_organic_limb())
 			cybernetics_level++
-	for(var/obj/item/organ/internal/organ as anything in owner.internal_organs)
-		if(organ.organ_flags & ORGAN_SYNTHETIC)
+	for(var/obj/item/organ/organ as anything in owner.internal_organs)
+		if(organ.organ_flags & ORGAN_SYNTHETIC || organ.status == ORGAN_ROBOTIC)
 			cybernetics_level++
-	//for(var/obj/item/organ/external/organ as anything in owner.external_organs)
-	//	if(organ.organ_flags & ORGAN_SYNTHETIC)
-	//		cybernetics_level++
 	update_mood()
 
 /datum/quirk/body_purist/proc/update_mood()
