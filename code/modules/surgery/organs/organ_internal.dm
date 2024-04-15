@@ -57,6 +57,7 @@
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.Grant(M)
+	SEND_SIGNAL(M, COMSIG_CARBON_GAIN_ORGAN, src, special)
 
 //Special is for instant replacement like autosurgeons
 /obj/item/organ/proc/Remove(mob/living/carbon/M, special = FALSE)
@@ -70,7 +71,7 @@
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.Remove(M)
-
+	SEND_SIGNAL(M, COMSIG_CARBON_LOSE_ORGAN, src, special)
 
 /obj/item/organ/proc/on_find(mob/living/finder)
 	return

@@ -324,7 +324,9 @@
 /obj/item/bodypart/proc/attach_limb(mob/living/carbon/C, special)
 	moveToNullspace()
 	set_owner(C)
+	SEND_SIGNAL(C, COMSIG_CARBON_ATTACH_LIMB, src, special)
 	C.bodyparts += src
+
 	if(held_index)
 		if(held_index > C.hand_bodyparts.len)
 			C.hand_bodyparts.len = held_index
