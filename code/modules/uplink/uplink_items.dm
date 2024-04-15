@@ -2120,7 +2120,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	..()
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
 		// All implants are half off and can be as low as one TC.
-		cost = max(1, round(cost/2))
+		cost = max(1, ROUND_UP(cost/2))
 
 /datum/uplink_item/implants/reusable
 	name = "Reusable Autosurgeon"
@@ -2297,7 +2297,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/implants/emp_shield/New()
 	..()
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
-		cost = max(1, round(cost/2))
+		cost = max(1, ROUND_UP(cost/2))
 
 // Events
 /datum/uplink_item/services
@@ -2391,7 +2391,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/race_restricted/hammerimplant/New()
 	..()
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
-		cost = max(1, round(cost/2))
+		cost = max(1, ROUND_UP(cost/2))
 
 /datum/uplink_item/race_restricted/killertomatos
 	name = "Killer Tomatoes"
@@ -2477,8 +2477,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/role_restricted/arm_medical_gun/New()
 	..()
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
-		// All implants are half off and can be as low as one TC.
-		cost = max(1, round(cost/2))
+		// All implants are half off (rounded) and can be as low as one TC.
+		cost = max(1, ROUND_UP(cost/2))
 
 /datum/uplink_item/role_restricted/brainwash_disk
 	name = "Brainwashing Surgery Program"
