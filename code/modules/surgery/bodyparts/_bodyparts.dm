@@ -957,7 +957,7 @@
 	var/species_type = GLOB.species_list[species_id]
 	if(species_type)
 		id_to_species = new species_type()
-	if(((body_zone != BODY_ZONE_HEAD && body_zone != BODY_ZONE_CHEST )) || !id_to_species?.is_dimorphic)
+	if(((body_zone != BODY_ZONE_HEAD && body_zone != BODY_ZONE_CHEST )) || (id_to_species && !id_to_species.is_dimorphic))
 		should_draw_gender = FALSE
 
 	if(status == BODYPART_ORGANIC || (status == BODYPART_ROBOTIC && render_like_organic == TRUE)) // So IPC augments can be colorful without disrupting normal BODYPART_ROBOTIC render code.

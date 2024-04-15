@@ -289,11 +289,7 @@
 
 /obj/item/organ/brain/vox/emp_act(severity)
 	to_chat(owner, span_warning("Your head hurts."))
-	switch(severity)
-		if(EMP_HEAVY)
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(25, 50))
-		if(EMP_LIGHT)
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(0, 25))
+	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, clamp(severity*5, 5, 50))
 
 /obj/item/organ/brain/positron
 	name = "positronic brain"

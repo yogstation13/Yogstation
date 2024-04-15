@@ -425,7 +425,8 @@
 	if(left_leg?.species_id == right_leg?.species_id)
 		species_id = left_leg.species_id
 		var/species_type = GLOB.species_list[species_id]
-		species = new species_type()
+		if(species_type)
+			species = new species_type()
 	return species?.get_footprint_sprite() || shoes?.footprint_sprite || left_leg?.footprint_sprite || right_leg?.footprint_sprite
 
 /mob/living/carbon/human/assess_threat(judgement_criteria, lasercolor = "", datum/callback/weaponcheck=null)
