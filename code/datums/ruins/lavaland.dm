@@ -257,7 +257,7 @@
 /datum/map_template/ruin/lavaland/miningbase //THIS IS THE MINING BASE. DO NOT FUCK WITH THIS UNLESS YOU ARE 100% CERTAIN YOU KNOW WHAT YOU'RE DOING, OR THE MINING BASE WILL DISAPPEAR
 	name = "Mining Base"
 	id = "miningbase"
-	description = "The mining base that Nanotrasen uses for their mining operations."
+	description = "The mining base that yogscast uses for their mining operations."
 	suffix = "miningbase.dmm"
 	always_place = TRUE
 	unpickable = TRUE
@@ -268,7 +268,7 @@
 /datum/map_template/ruin/lavaland/toyshop
 	name = "Toy Shop"
 	id = "toyshop"
-	description = "A shop that has the entire collection of Nanotrasen brand action figures!"
+	description = "A shop that has the entire collection of yogscast brand action figures!"
 	suffix = "lavaland_surface_cursedtoyshop.dmm"
 	cost = 10
 	allow_duplicates = FALSE
@@ -362,7 +362,7 @@
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/ntsurveyor
-	name = "Nanotrasen Surveyor"
+	name = "yogscast Surveyor"
 	id = "ntsurveyo"
 	description = "The most tragic part about it all is the ship didn't even have any donuts"
 	suffix = "lavaland_surface_ntsurveyor.dmm"

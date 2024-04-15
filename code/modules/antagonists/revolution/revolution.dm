@@ -279,7 +279,7 @@
 	. = ..()
 	company = /datum/corporation/bolsynpowell
 	owner.add_employee(company)
-	to_chat(owner.current, "<span class='notice'>Your employer [initial(company.name)] will be paying you an extra [initial(company.paymodifier)]x your nanotrasen paycheck.")
+	to_chat(owner.current, "<span class='notice'>Your employer [initial(company.name)] will be paying you an extra [initial(company.paymodifier)]x your yogscast paycheck.")
 
 /datum/antagonist/rev/head/on_removal()
 	.=..()

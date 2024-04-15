@@ -205,7 +205,7 @@
 	},
 /area/awaymission/undergroundoutpost45/central)
 "aH" = (
-/obj/structure/sign/poster/official/nanotrasen_logo{
+/obj/structure/sign/poster/official/yogscast_logo{
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel{
@@ -719,7 +719,7 @@
 	},
 /area/awaymission/undergroundoutpost45/central)
 "bK" = (
-/obj/structure/sign/poster/official/nanotrasen_logo{
+/obj/structure/sign/poster/official/yogscast_logo{
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel{
@@ -740,7 +740,7 @@
 /area/awaymission/undergroundoutpost45/central)
 "bN" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/poster/official/nanotrasen_logo{
+/obj/structure/sign/poster/official/yogscast_logo{
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel{
@@ -10380,7 +10380,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/item/soap/nanotrasen,
+/obj/item/soap/yogscast,
 /turf/open/floor/plasteel/freezer{
 	heat_capacity = 1e+006
 	},

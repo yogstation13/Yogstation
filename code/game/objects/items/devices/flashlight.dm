@@ -321,7 +321,7 @@
 
 /obj/item/flashlight/flare
 	name = "flare"
-	desc = "A red Nanotrasen issued flare. There are instructions on the side, it reads 'pull cord, make light'."
+	desc = "A red yogscast issued flare. There are instructions on the side, it reads 'pull cord, make light'."
 	w_class = WEIGHT_CLASS_SMALL
 	light_range = 7 // Pretty bright.
 	icon_state = "flare"
@@ -446,7 +446,7 @@
 
 /obj/item/flashlight/flare/emergency
 	name = "safety flare"
-	desc = "A flare issued to Nanotrasen employees for emergencies. There are instructions on the side, it reads 'pull cord, make light, obey Nanotrasen'."
+	desc = "A flare issued to yogscast employees for emergencies. There are instructions on the side, it reads 'pull cord, make light, obey yogscast'."
 	light_range = 3
 	item_state = "flare"
 	icon_state = "flaresafety"
@@ -456,7 +456,7 @@
 
 /obj/item/flashlight/flare/signal
 	name = "signalling flare"
-	desc = "A specialized formulation of the standard Nanotrasen-issued flare, containing increased magnesium content. There are instructions on the side, it reads 'pull cord, make intense light'."
+	desc = "A specialized formulation of the standard yogscast-issued flare, containing increased magnesium content. There are instructions on the side, it reads 'pull cord, make intense light'."
 	light_range = 5
 	light_power = 2
 	item_state = "flaresignal"

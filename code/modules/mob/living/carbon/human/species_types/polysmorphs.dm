@@ -74,12 +74,12 @@
 	return list(
 		"The final failures in the attempts at creating xenomorphs hybrids to access the alien hivemind, polysmorphs were spawned \
 		in now-abandoned planetary and space colonies where they were studied. After it was discovered that the hybrids had their \
-		link to the hivemind cut, the project that birthed them was abandoned and Nanotrasen stepped in to employ those that \
+		link to the hivemind cut, the project that birthed them was abandoned and yogscast stepped in to employ those that \
 		remained onto their space stations, using the opportunity to give them extremely reduced pay and benefits for massive profits.",
 
-		"The impending doom of the polysmorph species interests few people, as most individuals who never have been on a Nanotrasen \
+		"The impending doom of the polysmorph species interests few people, as most individuals who never have been on a yogscast \
 		space station have probably never seen one before and their eccentricities give them trouble integrating into society. \
-		The SIC only accepted the release of the polysmorphs outside their colony under the promise that Nanotrasen would take \
+		The SIC only accepted the release of the polysmorphs outside their colony under the promise that yogscast would take \
 		full responsibility for the hybrids' actions.",
 
 		"While deprived of the link to the hivemind, polysmorphs still retain an instinctual tendency toward certain roles \

@@ -105,7 +105,7 @@
   *
   * Triggered by a signal from the selected supermatter at the start of a delamination,
   * this proc sends a notification to the computer if this program is the active one.
-  * We do this so that people carrying a tablet with NT CIMS open but with the NTOS window
+  * We do this so that people carrying a tablet withYCCIMS open but with the NTOS window
   * closed will still get one audio alert. This is not sent to computers with the program
   * minimized or closed to avoid double-notifications.
  */

@@ -1,12 +1,12 @@
 /datum/bounty/item/chef/birthday_cake
 	name = "Birthday Cake"
-	description = "Nanotrasen's birthday is coming up! Ship them a birthday cake to celebrate!"
+	description = "yogscast's birthday is coming up! Ship them a birthday cake to celebrate!"
 	reward = 4000
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/store/cake/birthday, /obj/item/reagent_containers/food/snacks/cakeslice/birthday)
 
 /datum/bounty/item/chef/soup
 	name = "Soup"
-	description = "To quell the homeless uprising, Nanotrasen will be serving soup to all underpaid workers. Ship any type of soup."
+	description = "To quell the homeless uprising, yogscast will be serving soup to all underpaid workers. Ship any type of soup."
 	reward = 3000
 	required_count = 3
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/soup)
@@ -20,7 +20,7 @@
 
 /datum/bounty/item/chef/onionrings
 	name = "Onion Rings"
-	description = "Nanotrasen is remembering Saturn day. Ship onion rings to show the station's support."
+	description = "yogscast is remembering Saturn day. Ship onion rings to show the station's support."
 	reward = 3000
 	required_count = 3
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/onionrings)
@@ -78,7 +78,7 @@
 
 /datum/bounty/item/chef/hotdog
 	name = "Hot Dog"
-	description = "Nanotrasen is conducting taste tests to determine the best hot dog recipe. Ship your station's version to participate."
+	description = "yogscast is conducting taste tests to determine the best hot dog recipe. Ship your station's version to participate."
 	reward = 8000
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/hotdog)
 
@@ -98,7 +98,7 @@
 
 /datum/bounty/item/chef/chawanmushi
 	name = "Chawanmushi"
-	description = "Nanotrasen wants to improve relations with its sister company, Japanotrasen. Ship Chawanmushi immediately."
+	description = "yogscast wants to improve relations with its sister company, Japanotrasen. Ship Chawanmushi immediately."
 	reward = 8000
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/chawanmushi)
 
@@ -117,7 +117,7 @@
 
 /datum/bounty/item/chef/pancakes
 	name = "Pancakes"
-	description = "Here at Nanotrasen we consider employees to be family. And you know what families love? Pancakes. Ship a baker's dozen."
+	description = "Here at yogscast we consider employees to be family. And you know what families love? Pancakes. Ship a baker's dozen."
 	reward = 5000
 	required_count = 13
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/pancakes)

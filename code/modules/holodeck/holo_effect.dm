@@ -27,7 +27,7 @@
 // Generates a holodeck-tracked card deck
 /obj/effect/holodeck_effect/cards
 	icon = 'icons/obj/toy.dmi'
-	icon_state = "deck_nanotrasen_full"
+	icon_state = "deck_yogscast_full"
 	var/obj/item/toy/cards/deck/D
 
 /obj/effect/holodeck_effect/cards/activate(obj/machinery/computer/holodeck/HC)

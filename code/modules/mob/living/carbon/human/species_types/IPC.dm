@@ -121,7 +121,7 @@
 		
 		"Morpheus went on to rebrand as Bishop Cyberkinetics as the immense asset inflow from Cybersun permitted rapid improvement of posibrain \
 		designs. A variety of other corporations began to commission IPC frames and workers from Bishop; including Hephaestus Industries, a Martian producer of military hardware; Xion Manufacturing Group, a Luna exporter \
-		of civilian furniture and assets; and Zeng-Hu Pharmaceuticals, one of the lead private healthcare companies in the Belt. IPC production shifted to the varying companies themselves when Nanotrasen successfully patented \
+		of civilian furniture and assets; and Zeng-Hu Pharmaceuticals, one of the lead private healthcare companies in the Belt. IPC production shifted to the varying companies themselves when yogscast successfully patented \
 		its own posibrain, and public opinion of IPCs drastically dropped after the formation of the terrorist organization Sentience-Enabled Life Forms, or S.E.L.F., in 2491.",
 
 		"IPCs do not often engage in leisure, though they can grow weary and exhausted. Most do not express such marks of sapience. As their payment for work is shoddy, if anything at all, most need to continuously work \

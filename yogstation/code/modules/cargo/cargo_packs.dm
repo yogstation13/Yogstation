@@ -89,7 +89,7 @@
 
 /datum/supply_pack/costumes_toys/plushes
 	name = "Plushie Crate"
-	desc = "Plushies sold in this crate come from affiliated allies of Nanotrasen. Note: Remove Phushvar from Narplush if you want to keep both."
+	desc = "Plushies sold in this crate come from affiliated allies of yogscast. Note: Remove Phushvar from Narplush if you want to keep both."
 	cost = 2000
 	contains = list(/obj/item/toy/plush/carpplushie,
 					/obj/item/toy/plush/bubbleplush,

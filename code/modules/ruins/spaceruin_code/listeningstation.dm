@@ -20,7 +20,7 @@
 
 /obj/item/paper/fluff/ruins/listeningstation/reports/june
 	name = "june report"
-	info = "Nanotrasen communications have been noticeably less frequent recently.  The pirate radio station I found last month has been transmitting pro-Nanotrasen propaganda. I will continue to monitor it."
+	info = "yogscast communications have been noticeably less frequent recently.  The pirate radio station I found last month has been transmitting pro-yogscast propaganda. I will continue to monitor it."
 
 /obj/item/paper/fluff/ruins/listeningstation/reports/may
 	name = "may report"
@@ -28,7 +28,7 @@
 
 /obj/item/paper/fluff/ruins/listeningstation/reports/april
 	name = "april report"
-	info = "A good start to the operation: intercepted Nanotrasen military communications. A convoy is scheduled to transfer nuclear warheads to a new military base. This is as good a chance as any to get our hands on some heavy weaponry, I suggest we take it."
+	info = "A good start to the operation: intercepted yogscast military communications. A convoy is scheduled to transfer nuclear warheads to a new military base. This is as good a chance as any to get our hands on some heavy weaponry, I suggest we take it."
 
 /obj/item/paper/fluff/ruins/listeningstation/receipt
 	name = "receipt"
@@ -40,10 +40,10 @@
 
 /obj/item/paper/fluff/ruins/listeningstation/briefing
 	name = "mission briefing"
-	info = "<b>Mission Details</b>: You have been assigned to a newly constructed listening post constructed within an asteroid in Nanotrasen space to monitor their plasma mining operations. Accurate intel is crucial to the success of our operatives onboard, do not fail us."
+	info = "<b>Mission Details</b>: You have been assigned to a newly constructed listening post constructed within an asteroid in yogscast space to monitor their plasma mining operations. Accurate intel is crucial to the success of our operatives onboard, do not fail us."
 
 /obj/item/paper/fluff/ruins/listeningstation/frequencies
 	name = "radio frequencies guide"
-	info = "The following is a list of Nanotrasen-standard radio frequencies.<br><ul><li>145.9 - Common Channel</li><li>144.7 - Private AI Channel</li><li>135.9 - Security Channel</li><li>135.7 - Engineering Channel</li><li>135.5 - Medical Channel</li><li>135.3 - Command Channel</li><li>135.1 - Science Channel</li><li>134.9 - Service Channel</li><li>134.7 - Supply Channel</li>"
+	info = "The following is a list of yogscast-standard radio frequencies.<br><ul><li>145.9 - Common Channel</li><li>144.7 - Private AI Channel</li><li>135.9 - Security Channel</li><li>135.7 - Engineering Channel</li><li>135.5 - Medical Channel</li><li>135.3 - Command Channel</li><li>135.1 - Science Channel</li><li>134.9 - Service Channel</li><li>134.7 - Supply Channel</li>"
 
 

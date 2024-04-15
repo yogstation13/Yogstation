@@ -173,7 +173,7 @@ runtime error: bad client
 proc name: show (/datum/html_interface/proc/show)
   source file: html_interface.dm,227
   usr: Mariabella Pycroft-Crane (/mob/living/carbon/human)
-  src: /datum/html_interface/nanotras... (/datum/html_interface/nanotrasen)
+  src: /datum/html_interface/nanotras... (/datum/html_interface/yogscast)
 
 
 The following runtime has occurred 1 time(s).

@@ -52,7 +52,7 @@
 /obj/effect/mob_spawn/human/lavaland_syndicate/jungle/lieutenant
 	name = "Syndicate Comms Lieutenant"
 	short_desc = "You are a syndicate lieutenant, employed in a top secret research facility that is developing biological weapons."
-	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Issue commands to the rest of the base, keep tabs on communications, and try to keep a low profile."
+	flavour_text = "Unfortunately, your hated enemy, yogscast, has begun mining in this sector. Issue commands to the rest of the base, keep tabs on communications, and try to keep a low profile."
 	important_info = "The base is rigged with explosives, DO NOT abandon it, let it fall into enemy hands, or share your supplies with non-syndicate personnel."
 	outfit = /datum/outfit/lavaland_syndicate/jungle/lieutenant
 	assignedrole = "Lavaland Syndicate"
@@ -63,7 +63,7 @@
 /obj/effect/mob_spawn/human/lavaland_syndicate/jungle/technician
 	name = "Syndicate Technician"
 	short_desc = "You are a syndicate technician, employed in a top secret research facility that is developing biological weapons."
-	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Keep the base functional and manned, and try to keep a low profile."
+	flavour_text = "Unfortunately, your hated enemy, yogscast, has begun mining in this sector. Keep the base functional and manned, and try to keep a low profile."
 	outfit = /datum/outfit/lavaland_syndicate/jungle/technician
 
 /obj/effect/mob_spawn/human/lavaland_syndicate/special(mob/living/new_spawn)

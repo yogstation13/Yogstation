@@ -381,7 +381,7 @@
 					/obj/item/clothing/suit/caution = 6,
 					/obj/item/holosign_creator/janibarrier = 2,
 					/obj/item/lightreplacer = 2,
-					/obj/item/soap/nanotrasen = 2,
+					/obj/item/soap/yogscast = 2,
 					/obj/item/storage/bag/trash = 2,
 					/obj/item/clothing/shoes/galoshes = 2,
 					/obj/item/watertank/janitor = 2,

@@ -411,7 +411,7 @@
 /turf/open/floor/plating,
 /area/ruin/unpowered)
 "Jy" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier{
+/obj/effect/mob_spawn/human/corpse/yogscastsoldier{
 	head = null;
 	id_job = "Outpost Officer";
 	name = "Outpost Officer";

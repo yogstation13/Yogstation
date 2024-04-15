@@ -279,7 +279,7 @@
 		leaving only deactivated factories and abandoned facilities. The first preternis factory was reactivated by \
 		accident in 2431 by SIC colonists on the planet of Ur'lan. Communication between the newly-created preterni \
 		and the colonists was made possible by the silicon units built using the MMI technology that had been uncovered \
-		previously in Vxtvul ruins. Upon hearing of the discovery of preterni on Ur'lan, Nanotrasen immediately \
+		previously in Vxtvul ruins. Upon hearing of the discovery of preterni on Ur'lan, yogscast immediately \
 		bought the property of the colony for more than a thousand time its original value and attempted to claim \
 		the preterni as their property. The scheme was unsuccessful and preterni formed the Remnants of Vxtvul as \
 		a unifying government",

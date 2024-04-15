@@ -52,7 +52,7 @@
 
 /obj/structure/sign/plaques/kiddie/perfect_man
 	name = "\improper 'Perfect Man' sign"
-	desc = "A guide to the exhibit, explaining how recent developments in mindshield implant and cloning technologies by Nanotrasen Corporation have led to the development and the effective immortality of the 'perfect man', the loyal Nanotrasen Employee."
+	desc = "A guide to the exhibit, explaining how recent developments in mindshield implant and cloning technologies by yogscast Corporation have led to the development and the effective immortality of the 'perfect man', the loyal yogscast Employee."
 
 /obj/structure/sign/plaques/kiddie/perfect_drone
 	name = "\improper 'Perfect Drone' sign"

@@ -403,7 +403,7 @@
 
 /obj/effect/mob_spawn/human/bartender/alive/space
 	name = "space bartender sleeper"
-	flavour_text = "You got this place from your old man, a bar in the middle of nowhere. Or at least, until Nanotrasen decided to move in. Time to mix drinks and change lives."
+	flavour_text = "You got this place from your old man, a bar in the middle of nowhere. Or at least, until yogscast decided to move in. Time to mix drinks and change lives."
 	important_info = "Do not leave your post under any circumstances!"
 	outfit = /datum/outfit/spacebartender/space
 
@@ -487,15 +487,15 @@
 	id = /obj/item/card/id
 
 
-/////////////////Officers+Nanotrasen Security//////////////////////
+/////////////////Officers+yogscast Security//////////////////////
 
 /obj/effect/mob_spawn/human/bridgeofficer
 	name = "Bridge Officer"
 	id_job = "Bridge Officer"
 	id_access_list = list(ACCESS_CENT_CAPTAIN)
-	outfit = /datum/outfit/nanotrasenbridgeofficercorpse
+	outfit = /datum/outfit/yogscastbridgeofficercorpse
 
-/datum/outfit/nanotrasenbridgeofficercorpse
+/datum/outfit/yogscastbridgeofficercorpse
 	name = "Bridge Officer Corpse"
 	ears = /obj/item/radio/headset/heads/hop
 	uniform = /obj/item/clothing/under/rank/centcom_officer
@@ -509,10 +509,10 @@
 	name = "Commander"
 	id_job = "Commander"
 	id_access_list = list(ACCESS_CENT_CAPTAIN, ACCESS_CENT_GENERAL, ACCESS_CENT_SPECOPS, ACCESS_CENT_MEDICAL, ACCESS_CENT_STORAGE)
-	outfit = /datum/outfit/nanotrasencommandercorpse
+	outfit = /datum/outfit/yogscastcommandercorpse
 
-/datum/outfit/nanotrasencommandercorpse
-	name = "Nanotrasen Private Security Commander"
+/datum/outfit/yogscastcommandercorpse
+	name = "yogscast Private Security Commander"
 	uniform = /obj/item/clothing/under/rank/centcom_commander
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	ears = /obj/item/radio/headset/heads/captain
@@ -525,20 +525,20 @@
 	id = /obj/item/card/id
 
 
-/obj/effect/mob_spawn/human/nanotrasensoldier
-	name = "Nanotrasen Private Security Officer"
+/obj/effect/mob_spawn/human/yogscastsoldier
+	name = "yogscast Private Security Officer"
 	id_job = "Private Security Force"
 	id_access_list = list(ACCESS_CENT_CAPTAIN, ACCESS_CENT_GENERAL, ACCESS_CENT_SPECOPS, ACCESS_CENT_MEDICAL, ACCESS_CENT_STORAGE, ACCESS_SECURITY, ACCESS_MECH_SECURITY)
-	outfit = /datum/outfit/nanotrasensoldiercorpse
+	outfit = /datum/outfit/yogscastsoldiercorpse
 
-/datum/outfit/nanotrasensoldiercorpse
+/datum/outfit/yogscastsoldiercorpse
 	name = "NT Private Security Officer Corpse"
 	uniform = /obj/item/clothing/under/rank/security
 	suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/combat
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
-	head = /obj/item/clothing/head/helmet/swat/nanotrasen
+	head = /obj/item/clothing/head/helmet/swat/yogscast
 	back = /obj/item/storage/backpack/security
 	id = /obj/item/card/id
 
@@ -546,21 +546,21 @@
 /obj/effect/mob_spawn/human/commander/alive
 	death = FALSE
 	roundstart = FALSE
-	mob_name = "Nanotrasen Commander"
+	mob_name = "yogscast Commander"
 	name = "sleeper"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	short_desc = "You are a Nanotrasen Commander!"
+	short_desc = "You are a yogscast Commander!"
 
-/obj/effect/mob_spawn/human/nanotrasensoldier/alive
+/obj/effect/mob_spawn/human/yogscastsoldier/alive
 	death = FALSE
 	roundstart = FALSE
 	mob_name = "Private Security Officer"
 	name = "sleeper"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	faction = "nanotrasenprivate"
-	short_desc = "You are a Nanotrasen Private Security Officer!"
+	faction = "yogscastprivate"
+	short_desc = "You are a yogscast Private Security Officer!"
 
 
 /////////////////Spooky Undead//////////////////////

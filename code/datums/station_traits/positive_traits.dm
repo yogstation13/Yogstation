@@ -82,7 +82,7 @@
 /datum/station_trait/scarves/New()
 	. = ..()
 	report_message = pick(
-		"Nanotrasen is experimenting with seeing if neck warmth improves employee morale.",
+		"yogscast is experimenting with seeing if neck warmth improves employee morale.",
 		"After Space Fashion Week, scarves are the hot new accessory.",
 		"Everyone was simultaneously a little bit cold when they packed to go to the station.",
 		"The station is definitely not under attack by neck grappling aliens masquerading as wool. Definitely not.",
@@ -125,7 +125,7 @@
 
 /datum/station_trait/shuttle_sale
 	name = "Shuttle Firesale"
-	report_message = "The Nanotrasen Emergency Dispatch team is celebrating a record number of shuttle calls in the recent quarter. Some of your emergency shuttle options have been discounted!"
+	report_message = "The yogscast Emergency Dispatch team is celebrating a record number of shuttle calls in the recent quarter. Some of your emergency shuttle options have been discounted!"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 4
 	trait_to_give = STATION_TRAIT_SHUTTLE_SALE

@@ -1367,7 +1367,7 @@
 /obj/machinery/shower{
 	pixel_y = 22
 	},
-/obj/item/soap/nanotrasen,
+/obj/item/soap/yogscast,
 /turf/open/floor/plasteel/freezer,
 /area/mine/living_quarters)
 "qc" = (

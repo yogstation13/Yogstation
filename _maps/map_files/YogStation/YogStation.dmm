@@ -1278,7 +1278,7 @@
 /area/maintenance/port/aft)
 "aiy" = (
 /mob/living/simple_animal/hostile/retaliate/bat{
-	desc = "A fierce companion for any person of power, this spider has been carefully trained by Nanotrasen specialists. Its beady, staring eyes send shivers down your spine.";
+	desc = "A fierce companion for any person of power, this spider has been carefully trained by yogscast specialists. Its beady, staring eyes send shivers down your spine.";
 	emote_hear = list("chitters");
 	faction = list("spiders");
 	harm_intent_damage = 3;
@@ -20084,7 +20084,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/item/soap/nanotrasen,
+/obj/item/soap/yogscast,
 /obj/structure/cloth_curtain{
 	color = "#99ccff";
 	pixel_x = -32
@@ -39892,7 +39892,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "lAB" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/yogscast,
 /turf/closed/wall,
 /area/science/nanite)
 "lAJ" = (
@@ -47481,7 +47481,7 @@
 /obj/machinery/shower{
 	dir = 8
 	},
-/obj/item/soap/nanotrasen,
+/obj/item/soap/yogscast,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},

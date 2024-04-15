@@ -152,7 +152,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "abD" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/yogscast,
 /turf/closed/wall/r_wall,
 /area/science/misc_lab)
 "abE" = (
@@ -402,7 +402,7 @@
 	},
 /obj/structure/table,
 /obj/item/razor,
-/obj/item/soap/nanotrasen,
+/obj/item/soap/yogscast,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/locker)
 "adB" = (
@@ -2860,7 +2860,7 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/cryopods)
 "azO" = (
-/obj/structure/sign/poster/official/nanotrasen_logo,
+/obj/structure/sign/poster/official/yogscast_logo,
 /turf/closed/wall/r_wall,
 /area/bridge)
 "azP" = (
@@ -29934,7 +29934,7 @@
 /turf/open/space,
 /area/solar/port/aft)
 "iDD" = (
-/obj/structure/sign/poster/official/nanotrasen_logo{
+/obj/structure/sign/poster/official/yogscast_logo{
 	pixel_y = -32
 	},
 /turf/open/floor/carpet,
@@ -43360,7 +43360,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/yogscast{
 	pixel_y = 32
 	},
 /obj/structure/cable{
@@ -66556,7 +66556,7 @@
 /obj/machinery/shower{
 	dir = 8
 	},
-/obj/item/soap/nanotrasen,
+/obj/item/soap/yogscast,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/fitness)
 "tQb" = (
@@ -74760,7 +74760,7 @@
 /obj/machinery/shower{
 	pixel_y = 20
 	},
-/obj/item/soap/nanotrasen,
+/obj/item/soap/yogscast,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/security/prison)
@@ -79501,7 +79501,7 @@
 /area/science/explab)
 "xUB" = (
 /mob/living/simple_animal/hostile/retaliate/bat{
-	desc = "A fierce companion for any person of power, this spider has been carefully trained by Nanotrasen specialists. Its beady, staring eyes send shivers down your spine.";
+	desc = "A fierce companion for any person of power, this spider has been carefully trained by yogscast specialists. Its beady, staring eyes send shivers down your spine.";
 	emote_hear = list("chitters");
 	faction = list("spiders");
 	harm_intent_damage = 3;

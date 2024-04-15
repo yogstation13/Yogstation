@@ -7,7 +7,7 @@
 /datum/export/large/crate/total_printout(datum/export_report/ex, notes = TRUE) // That's why a goddamn metal crate costs that much.
 	. = ..()
 	if(. && notes)
-		. += " Thanks for participating in Nanotrasen Crates Recycling Program."
+		. += " Thanks for participating in yogscast Crates Recycling Program."
 
 /datum/export/large/crate/cheap
 	cost = 100
@@ -157,7 +157,7 @@
 	export_limit = 10 //you get half of a bike if you for some reason mass produce these, diversify your holdings
 
 /datum/export/large/mech/sellable/syndiegygax
-	cost = 50000 // You somehow stole a nuke op's gygax and sold it to nanotrasen. Go you.
+	cost = 50000 // You somehow stole a nuke op's gygax and sold it to yogscast. Go you.
 	unit_name = "captured syndicate gygax"
 	export_types = list(/obj/mecha/combat/gygax/dark)
 

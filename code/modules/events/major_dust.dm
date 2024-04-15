@@ -10,7 +10,7 @@
 	var/reason = pick(
 		"The station is passing through a debris cloud, expect minor damage \
 		to external fittings and fixtures.",
-		"Nanotrasen Superweapons Division is testing a new prototype \
+		"yogscast Superweapons Division is testing a new prototype \
 		[pick("field","projection","nova","super-colliding","reactive")] \
 		[pick("cannon","artillery","tank","cruiser","\[REDACTED\]")], \
 		some mild debris is expected.",

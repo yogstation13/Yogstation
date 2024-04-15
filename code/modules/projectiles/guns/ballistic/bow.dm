@@ -269,10 +269,10 @@
 
 /obj/item/gun/ballistic/bow/toy/blue
 	name = "blue toy bow"
-	desc = "A toy bow equipped with a screeching voice box, themed after Nanotrasen."
+	desc = "A toy bow equipped with a screeching voice box, themed after yogscast."
 	icon_state = "bow_toy_blue"
 	item_state = "bow_ert_arrow_pulse"
-	assembly = /obj/item/assembly/voice_box/bow/nanotrasen
+	assembly = /obj/item/assembly/voice_box/bow/yogscast
 
 /obj/item/gun/ballistic/bow/toy/red
 	name = "red toy bow"
@@ -588,7 +588,7 @@
 
 /obj/item/gun/ballistic/bow/energy/ert
 	name = "\improper HL-P1 Multipurpose Combat Bow"
-	desc = "An expensive hardlight bow designed by Nanotrasen and often sold to the SIC's espionage branch. Capable of firing disabler, energy, pulse, and taser bolts."
+	desc = "An expensive hardlight bow designed by yogscast and often sold to the SIC's espionage branch. Capable of firing disabler, energy, pulse, and taser bolts."
 	icon_state = "bow_ert"
 	item_state = "bow_ert"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/ert

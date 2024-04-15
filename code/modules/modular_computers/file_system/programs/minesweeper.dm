@@ -10,7 +10,7 @@
 
 /datum/computer_file/program/minesweeper
 	filename = "minesweeper"
-	filedesc = "Nanotrasen Micro Arcade: Minesweeper"
+	filedesc = "yogscast Micro Arcade: Minesweeper"
 	program_icon_state = "arcade"
 	extended_desc = "A port of the classic game 'Minesweeper', redesigned to run on tablets."
 	requires_ntnet = FALSE

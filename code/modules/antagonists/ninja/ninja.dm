@@ -36,8 +36,8 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 /datum/antagonist/ninja/proc/addMemories()
 	antag_memory += "I am an elite mercenary assassin of the mighty Spider Clan. A <font color='red'><B>SPACE NINJA</B></font>!<br>"
 	antag_memory += "Surprise is my weapon. Shadows are my armor. Without them, I am nothing. (//initialize your suit by clicking the initialize UI button, to use abilities like stealth)!<br>"
-	antag_memory += "Officially, [helping_station?"Nanotrasen":"The Syndicate"] are my employer.<br>"
-	name = "[helping_station?"Nanotrasen Ninja":"Syndicate Ninja"]" // yogs - ninja disposition
+	antag_memory += "Officially, [helping_station?"yogscast":"The Syndicate"] are my employer.<br>"
+	name = "[helping_station?"yogscast Ninja":"Syndicate Ninja"]" // yogs - ninja disposition
 
 /datum/antagonist/ninja/proc/addObjectives(quantity = 6)
 	var/list/possible_targets = list()
@@ -127,10 +127,10 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	SEND_SOUND(owner.current, sound('sound/effects/ninja_greeting.ogg'))
 	to_chat(owner.current, "I am an elite mercenary assassin of the mighty Spider Clan. A <font color='red'><B>SPACE NINJA</B></font>!")
 	to_chat(owner.current, "Surprise is my weapon. Shadows are my armor. Without them, I am nothing. (//initialize your suit by right clicking on it, to use abilities like stealth)!")
-	to_chat(owner.current, "Officially, [helping_station?"Nanotrasen":"The Syndicate"] are my employer.")
+	to_chat(owner.current, "Officially, [helping_station?"yogscast":"The Syndicate"] are my employer.")
 	to_chat(owner.current, "<b>If you are new to playing the Space Ninja, please review the <a href='https://wiki.yogstation.net/wiki/Space_Ninja'>Space Ninja</a> wiki entry for explanations and abilities.</b>") //Yogs
 	if(helping_station) {
-		to_chat(owner.current, "<b>As a Nanotrasen ninja, you are beholden to <a href='https://forums.yogstation.net/help/rules/#rule-3_1_1'>rule 3.1.1</a>: Do not murderbone.</b>")
+		to_chat(owner.current, "<b>As a yogscast ninja, you are beholden to <a href='https://forums.yogstation.net/help/rules/#rule-3_1_1'>rule 3.1.1</a>: Do not murderbone.</b>")
 	}
 	owner.announce_objectives()
 	return
@@ -163,14 +163,14 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 
 /datum/antagonist/ninja/admin_add(datum/mind/new_owner,mob/admin)
 	var/adj
-	switch(input("What kind of ninja?", "Ninja") as null|anything in list("Random","Syndicate","Nanotrasen","No objectives"))
+	switch(input("What kind of ninja?", "Ninja") as null|anything in list("Random","Syndicate","yogscast","No objectives"))
 		if("Random")
 			helping_station = pick(TRUE,FALSE)
 			adj = ""
 		if("Syndicate")
 			helping_station = FALSE
 			adj = "syndie"
-		if("Nanotrasen")
+		if("yogscast")
 			helping_station = TRUE
 			adj = "friendly"
 		if("No objectives")

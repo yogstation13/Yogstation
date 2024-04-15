@@ -235,7 +235,7 @@
 
 /obj/item/reagent_containers/food/snacks/patty
 	name = "patty"
-	desc = "The nanotrasen patty is the patty for you and me!"
+	desc = "The yogscast patty is the patty for you and me!"
 	icon_state = "patty"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
 	filling_color = "#8C4E2E"

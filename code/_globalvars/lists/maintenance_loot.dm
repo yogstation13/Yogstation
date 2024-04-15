@@ -45,7 +45,7 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional,list(
 	/obj/item/sign_backing = W_UNCOMMON,
 	/obj/item/soap = W_UNCOMMON,
 	/obj/item/soap/deluxe = W_UNCOMMON,
-	/obj/item/soap/nanotrasen = W_UNCOMMON,
+	/obj/item/soap/yogscast = W_UNCOMMON,
 	/obj/item/soap/syndie = W_UNCOMMON,
 	/obj/item/stack/conveyor/thirty = W_UNCOMMON,
 	/obj/item/stack/marker_beacon/ten = W_UNCOMMON,
@@ -976,7 +976,7 @@ GLOBAL_LIST_INIT(maintenance_loot_major,list(
 //Has significant round-defining mechanical usage; stuff you'd rarely find and would seriously benefit the player and alter the round significantly right off the bat. Major contraband goes here.
 GLOBAL_LIST_INIT(maintenance_loot_serious,list(
 	/obj/item/batterer = W_RARE,
-	/obj/item/bodybag/environmental/nanotrasen = W_MYTHICAL,
+	/obj/item/bodybag/environmental/yogscast = W_MYTHICAL,
 	/obj/item/camera/rewind = W_LEGENDARY,
 	/obj/item/camera/tator = W_LEGENDARY,
 	/obj/item/camera/timefreeze = W_LEGENDARY,

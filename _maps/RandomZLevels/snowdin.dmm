@@ -2712,7 +2712,7 @@
 "gg" = (
 /obj/structure/bed,
 /obj/effect/landmark/awaystart,
-/obj/item/bedsheet/nanotrasen,
+/obj/item/bedsheet/yogscast,
 /turf/open/floor/carpet,
 /area/awaymission/snowdin/post/dorm)
 "gh" = (
@@ -4711,7 +4711,7 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/yogscast,
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/snowdin/outside)
 "kq" = (
@@ -7669,7 +7669,7 @@
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/engineering)
 "qE" = (
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/yogscast{
 	pixel_x = 32
 	},
 /obj/machinery/light/small/broken{
@@ -8420,7 +8420,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/yogscast{
 	pixel_x = 32
 	},
 /turf/open/floor/plating/snowed/cavern,
@@ -9694,7 +9694,7 @@
 	},
 /area/awaymission/snowdin/cave)
 "vR" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/yogscast,
 /turf/closed/wall/mineral/titanium,
 /area/awaymission/snowdin/post/broken_shuttle)
 "vS" = (
@@ -10267,7 +10267,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/old,
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier{
+/obj/effect/mob_spawn/human/corpse/yogscastsoldier{
 	brute_damage = 145;
 	mob_name = "James Reed";
 	name = "James Reed";
@@ -11386,7 +11386,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/yogscast{
 	pixel_y = 32
 	},
 /turf/open/floor/plating/snowed/cavern,
@@ -13527,7 +13527,7 @@
 /area/awaymission/snowdin/outside)
 "Fv" = (
 /obj/machinery/light/small,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/yogscast{
 	pixel_y = -32
 	},
 /turf/open/floor/plating/asteroid/snow/ice,
@@ -13734,7 +13734,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/mining_dock)
 "FW" = (
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/yogscast{
 	pixel_y = -32
 	},
 /turf/open/floor/plating/asteroid/snow/ice,

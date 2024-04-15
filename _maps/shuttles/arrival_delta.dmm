@@ -280,7 +280,7 @@
 /turf/open/floor/grass,
 /area/shuttle/arrival)
 "z" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/yogscast,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
 "A" = (

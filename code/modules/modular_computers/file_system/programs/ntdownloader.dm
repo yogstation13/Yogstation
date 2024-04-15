@@ -2,7 +2,7 @@
 	filename = "ntndownloader"
 	filedesc = "Software Download Tool"
 	program_icon_state = "generic"
-	extended_desc = "This program allows downloads of software from official NT repositories"
+	extended_desc = "This program allows downloads of software from officialYCrepositories"
 	unsendable = TRUE
 	undeletable = TRUE
 	size = 1

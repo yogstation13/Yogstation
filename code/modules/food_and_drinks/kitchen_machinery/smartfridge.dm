@@ -706,7 +706,7 @@
 	name = "smart chemical storage"
 	desc = "A refrigerated storage unit for medicine storage."
 	max_n_of_items = 100
-	product_slogans = "Medicine for what ails ya.;Get your medicine here!;Disclaimer: These chemicals are not regulated by the Nanotrasen Drug Administration.;Do you have a prescription for that?;This unit can dispense chemicals, medicines, toxins, and quite possibly also narcotics.;Ask your doctor or CMO about Chloral Hydrate(tm) today!;Check out our expanded inventory of pharmaceuticals.;Chemist, did you remember to make Mannitol?"
+	product_slogans = "Medicine for what ails ya.;Get your medicine here!;Disclaimer: These chemicals are not regulated by the yogscast Drug Administration.;Do you have a prescription for that?;This unit can dispense chemicals, medicines, toxins, and quite possibly also narcotics.;Ask your doctor or CMO about Chloral Hydrate(tm) today!;Check out our expanded inventory of pharmaceuticals.;Chemist, did you remember to make Mannitol?"
 	pitches = TRUE
 
 /obj/machinery/smartfridge/chemistry/accept_check(obj/item/O)

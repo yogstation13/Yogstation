@@ -206,7 +206,7 @@
 				shuttle_spawns.Add(/obj/effect/mob_spawn/human/corpse/bee_terrorist)
 				shuttle_spawns.Add(/obj/effect/mob_spawn/human/corpse/cargo_tech)
 				shuttle_spawns.Add(/obj/effect/mob_spawn/human/corpse/cargo_tech)
-				shuttle_spawns.Add(/obj/effect/mob_spawn/human/corpse/nanotrasensoldier)
+				shuttle_spawns.Add(/obj/effect/mob_spawn/human/corpse/yogscastsoldier)
 				shuttle_spawns.Add(/obj/item/gun/ballistic/automatic/pistol/no_mag)
 				shuttle_spawns.Add(/obj/item/gun/ballistic/automatic/pistol/m1911/no_mag)
 				shuttle_spawns.Add(/obj/item/honey_frame)
@@ -264,7 +264,7 @@
 
 /obj/item/paper/fluff/bee_objectives
 	name = "Objectives of a Bee Liberation Front Operative"
-	info = "<b>Objective #1</b>. Liberate all bees on the NT transport vessel 2416/B. <b>Success!</b>  <br><b>Objective #2</b>. Escape alive. <b>Failed.</b>"
+	info = "<b>Objective #1</b>. Liberate all bees on theYCtransport vessel 2416/B. <b>Success!</b>  <br><b>Objective #2</b>. Escape alive. <b>Failed.</b>"
 
 /obj/machinery/syndicatebomb/shuttle_loan/Initialize(mapload)
 	. = ..()

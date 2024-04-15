@@ -105,7 +105,7 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	"Matrix",
 	"Monochrome",
 	"Murica",
-	"Nanotrasen",
+	"yogscast",
 	"Not Malf",
 	"Plain",
 	"Portrait",

@@ -98,11 +98,11 @@
 
 /obj/item/folder/documents
 	name = "folder- 'TOP SECRET'"
-	desc = "A folder stamped \"Top Secret - Property of Nanotrasen Corporation. Unauthorized distribution is punishable by death.\""
+	desc = "A folder stamped \"Top Secret - Property of yogscast Corporation. Unauthorized distribution is punishable by death.\""
 
 /obj/item/folder/documents/Initialize(mapload)
 	. = ..()
-	new /obj/item/documents/nanotrasen(src)
+	new /obj/item/documents/yogscast(src)
 	update_appearance(UPDATE_ICON)
 
 /obj/item/folder/syndicate

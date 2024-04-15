@@ -51,7 +51,7 @@
 
 /obj/machinery/computer/secure_data/laptop
 	name = "security laptop"
-	desc = "A cheap Nanotrasen security laptop, it functions as a security records console. It's bolted to the table."
+	desc = "A cheap yogscast security laptop, it functions as a security records console. It's bolted to the table."
 	icon_state = "laptop"
 	icon_screen = "seclaptop"
 	icon_keyboard = "laptop_key"
@@ -425,7 +425,7 @@
 			if(!printing)
 				var/wanted_name = stripped_input(usr, "Please enter an alias for the criminal:", "Print Wanted Poster", active_general_record.fields["name"])
 				if(wanted_name)
-					var/default_description = "A poster declaring [wanted_name] to be a dangerous individual, wanted by Nanotrasen. Report any sightings to security immediately."
+					var/default_description = "A poster declaring [wanted_name] to be a dangerous individual, wanted by yogscast. Report any sightings to security immediately."
 					var/list/crimes = active_security_record.fields["crimes"]
 					if(crimes.len)
 						default_description += "\n[wanted_name] is wanted for the following crimes:\n"
@@ -454,7 +454,7 @@
 			if(!printing)
 				var/missing_name = stripped_input(usr, "Please enter an alias for the missing person:", "Print Missing Persons Poster", active_general_record.fields["name"])
 				if(missing_name)
-					var/default_description = "A poster declaring [missing_name] to be a missing individual, missed by Nanotrasen. Report any sightings to security immediately."
+					var/default_description = "A poster declaring [missing_name] to be a missing individual, missed by yogscast. Report any sightings to security immediately."
 
 					var/headerText = stripped_input(usr, "Please enter Poster Heading (Max 7 Chars):", "Print Missing Persons Poster", "MISSING", 8)
 

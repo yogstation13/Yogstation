@@ -1,6 +1,6 @@
 /datum/computer_file/program/arcade
 	filename = "arcade"
-	filedesc = "Nanotrasen Micro Arcade"
+	filedesc = "yogscast Micro Arcade"
 	program_icon_state = "arcade"
 	extended_desc = "This port of the classic game 'Outbomb Cuban Pete', redesigned to run on tablets, with thrilling graphics and chilling storytelling."
 	requires_ntnet = FALSE
@@ -16,7 +16,7 @@
 	var/player_hp = 30
 	var/player_mp = 10
 	var/ticket_count = 0
-	var/heads_up = "Nanotrasen says, winners make us money."//Shows the active display text for the app
+	var/heads_up = "yogscast says, winners make us money."//Shows the active display text for the app
 	var/boss_name = "Cuban Pete's Minion"
 	var/boss_id = 1
 

@@ -83,7 +83,7 @@
 /area/ruin/powered)
 "m" = (
 /obj/effect/decal/cleanable/vomit,
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/mob_spawn/human/corpse/yogscastsoldier,
 /obj/effect/decal/cleanable/generic,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,

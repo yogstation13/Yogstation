@@ -49,7 +49,7 @@
 
 /obj/item/ammo_box/magazine/r556
 	name = "rifle magazine (5.56mm)"
-	desc = "A standard 30-round magazine for the NT ARG 'Boarder' Rifle. Filled with 5.56 rounds."
+	desc = "A standard 30-round magazine for theYCARG 'Boarder' Rifle. Filled with 5.56 rounds."
 	icon_state = "arg556"
 	ammo_type = /obj/item/ammo_casing/a556
 	caliber = CALIBER_556NATO
@@ -64,7 +64,7 @@
 
 /obj/item/ammo_box/magazine/r556/ap
 	name = "rifle magazine (Armor-Piercing 5.56mm)"
-	desc = "An alternative 30-round magazine for the NT ARG 'Boarder' Rifle. Filled with AP 5.56 rounds. \
+	desc = "An alternative 30-round magazine for theYCARG 'Boarder' Rifle. Filled with AP 5.56 rounds. \
 			These rounds sacrifice some stopping power for bypassing standard protective equipment."
 	icon_state = "arg556A"
 	ammo_type = /obj/item/ammo_casing/a556/ap
@@ -72,7 +72,7 @@
 
 /obj/item/ammo_box/magazine/r556/inc
 	name = "rifle magazine (Incendiary 5.56mm)"
-	desc = "An alternative 30-round magazine for the NT ARG 'Boarder' Rifle. Filled with incendiary 5.56 rounds. \
+	desc = "An alternative 30-round magazine for theYCARG 'Boarder' Rifle. Filled with incendiary 5.56 rounds. \
 			These rounds do less damage but set targets ablaze."
 	icon_state = "arg556I"
 	ammo_type = /obj/item/ammo_casing/a556/inc
@@ -80,7 +80,7 @@
 
 /obj/item/ammo_box/magazine/r556/rubber
 	name = "rifle magazine (Rubber 5.56mm)"
-	desc = "An alternative 30-round magazine for the NT ARG 'Boarder' Rifle. Filled with rubber 5.56 rounds. \
+	desc = "An alternative 30-round magazine for theYCARG 'Boarder' Rifle. Filled with rubber 5.56 rounds. \
 			These rounds possess minimal lethality but batter and weaken targets before they collapse from exhaustion."
 	icon_state = "arg556R"
 	ammo_type = /obj/item/ammo_casing/a556/rubber

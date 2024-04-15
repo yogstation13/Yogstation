@@ -45,7 +45,7 @@
 
 /obj/item/clothing/under/plasmaman/curator
 	name = "prototype envirosuit"
-	desc = "The far lighter, second-generation variant of the plasmaman uniforms designed by Nanotrasen. Unlike the first-generation variants, this uniform is made of fire-resistant fabrics, rather than clunky hardsuit plating. The latest extinguishers have also been installed."
+	desc = "The far lighter, second-generation variant of the plasmaman uniforms designed by yogscast. Unlike the first-generation variants, this uniform is made of fire-resistant fabrics, rather than clunky hardsuit plating. The latest extinguishers have also been installed."
 	icon_state = "plasmaman_OLD"
 	item_state = "plasmaman_OLD"
 

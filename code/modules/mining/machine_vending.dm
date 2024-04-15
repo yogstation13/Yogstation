@@ -59,7 +59,7 @@
 		new /datum/data/mining_equipment("1 Marker Beacon",				/obj/item/stack/marker_beacon,										10, VENDING_TOOL),
 		new /datum/data/mining_equipment("10 Marker Beacons",			/obj/item/stack/marker_beacon/ten,									100, VENDING_TOOL),
 		new /datum/data/mining_equipment("30 Marker Beacons",			/obj/item/stack/marker_beacon/thirty,								300, VENDING_TOOL),
-		new /datum/data/mining_equipment("Nanotrasen Minebot",			/mob/living/simple_animal/hostile/mining_drone,						800, VENDING_MINEBOT),
+		new /datum/data/mining_equipment("yogscast Minebot",			/mob/living/simple_animal/hostile/mining_drone,						800, VENDING_MINEBOT),
 		new /datum/data/mining_equipment("Minebot Melee Upgrade",		/obj/item/mine_bot_upgrade,											400, VENDING_MINEBOT),
 		new /datum/data/mining_equipment("Minebot Armor Upgrade",		/obj/item/mine_bot_upgrade/health,									400, VENDING_MINEBOT),
 		new /datum/data/mining_equipment("Minebot Cooldown Upgrade",	/obj/item/borg/upgrade/modkit/cooldown/minebot,						600, VENDING_MINEBOT),
@@ -87,7 +87,7 @@
 		new /datum/data/mining_equipment("Whiskey",						/obj/item/reagent_containers/food/drinks/bottle/whiskey,			100, VENDING_MISC),
 		new /datum/data/mining_equipment("Absinthe",					/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,	100, VENDING_MISC),
 		new /datum/data/mining_equipment("Cigar",						/obj/item/clothing/mask/cigarette/cigar/havana,						150, VENDING_MISC),
-		new /datum/data/mining_equipment("Soap",						/obj/item/soap/nanotrasen,											200, VENDING_MISC),
+		new /datum/data/mining_equipment("Soap",						/obj/item/soap/yogscast,											200, VENDING_MISC),
 		new /datum/data/mining_equipment("Laser Pointer",				/obj/item/laser_pointer,											300, VENDING_MISC),
 		new /datum/data/mining_equipment("Space Cash",					/obj/item/stack/spacecash/c1000,									2000, VENDING_MISC),
 		new /datum/data/mining_equipment("Giga Drill",					/obj/vehicle/ridden/gigadrill,										50000, VENDING_MISC)
@@ -298,7 +298,7 @@
 
 /obj/machinery/mineral/equipment_vendor/free_miner
 	name = "free miner ship equipment vendor"
-	desc = "A vendor sold by Nanotrasen to profit off small mining contractors."
+	desc = "A vendor sold by yogscast to profit off small mining contractors."
 	prize_list = list(
 		new /datum/data/mining_equipment("Kinetic Accelerator", 		/obj/item/gun/energy/kinetic_accelerator,						750, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Resonator",          			/obj/item/resonator,											800, VENDING_WEAPON),

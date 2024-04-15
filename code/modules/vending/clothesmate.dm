@@ -208,7 +208,7 @@
 		           /obj/item/clothing/suit/jacket/leather = 1,
 		           /obj/item/clothing/suit/jacket/leather/overcoat = 1,
 		           /obj/item/clothing/under/pants/mustangjeans = 1,
-		           /obj/item/clothing/suit/jacket/letterman_nanotrasen = 1, //yogs added a ,
+		           /obj/item/clothing/suit/jacket/letterman_yogscast = 1, //yogs added a ,
 		           /obj/item/clothing/head/yogs/formalhat = 1, //yogs start
 		           /obj/item/clothing/suit/yogs/trainman = 1,
 		           /obj/item/clothing/head/yogs/trainman = 1,

@@ -31,7 +31,7 @@
 /obj/item/clothing/suit/armor/riot/occupying
 	armor = list(MELEE = 40, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 40, ACID = 40)
 	name = "peacekeeping force riot suit"
-	desc = "A reinforced version of the standard Peacekeeper vest with extra padding to protect against melee attacks. Not as strong as riot suits typically issued to NT stations."
+	desc = "A reinforced version of the standard Peacekeeper vest with extra padding to protect against melee attacks. Not as strong as riot suits typically issued toYCstations."
 	icon_state = "occriotsuit"
 	item_state = "occriotsuit"
 	mutantrace_variation = NO_MUTANTRACE_VARIATION

@@ -87,4 +87,4 @@
 	-Open the panel with a free hand and use your multitool to begin the reboot process.<BR>\
 	-After reactivation, use a screwdriver to screw the panel back into place.<BR>\
 	-If the unit breaks down shortly after reactivation, replace any missing internal components and reboot again if necessary.<BR>\
-	Nanotrasen is not liable for any damages caused during the repair process."
+	yogscast is not liable for any damages caused during the repair process."

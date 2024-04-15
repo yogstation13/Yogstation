@@ -81,7 +81,7 @@
 /datum/map_template/shuttle/emergency/asteroid
 	suffix = "asteroid"
 	name = "Asteroid Station Emergency Shuttle"
-	description = "A respectable mid-sized shuttle that first saw service shuttling Nanotrasen crew to and from their asteroid belt embedded facilities."
+	description = "A respectable mid-sized shuttle that first saw service shuttling yogscast crew to and from their asteroid belt embedded facilities."
 	credit_cost = 3000
 
 /datum/map_template/shuttle/emergency/bar
@@ -145,7 +145,7 @@
 /datum/map_template/shuttle/emergency/discoinferno
 	suffix = "discoinferno"
 	name = "Disco Inferno"
-	description = "The glorious results of centuries of plasma research done by Nanotrasen employees. This is the reason why you are here. Get on and dance like you're on fire, burn baby burn!"
+	description = "The glorious results of centuries of plasma research done by yogscast employees. This is the reason why you are here. Get on and dance like you're on fire, burn baby burn!"
 	admin_notes = "Flaming hot. The main area has a dance machine as well as plasma floor tiles that will be ignited by players every single time."
 	credit_cost = 10000
 	emag_only = TRUE
@@ -245,7 +245,7 @@
 /datum/map_template/shuttle/emergency/octa
 	suffix = "octa"
 	name = "Octa Prototype Emergency Shuttle"
-	description = "Nanotrasen's experimental shuttle utilizing a unique shape to manipulate reality for a percieved larger shuttle in a smaller package. \
+	description = "yogscast's experimental shuttle utilizing a unique shape to manipulate reality for a percieved larger shuttle in a smaller package. \
 		While experimental, it offers great views of outside and decently stocked emergency and medical supplies."
 	admin_notes = "Doughnut yummy."
 	credit_cost = 9500 //experimental = expensive
@@ -305,7 +305,7 @@
 /datum/map_template/shuttle/emergency/goon
 	suffix = "goon"
 	name = "NES Port"
-	description = "The Nanotrasen Emergency Shuttle Port(NES Port for short) is a shuttle used at other less known Nanotrasen facilities and has a more open inside for larger crowds, but fewer onboard shuttle facilities."
+	description = "The yogscast Emergency Shuttle Port(NES Port for short) is a shuttle used at other less known yogscast facilities and has a more open inside for larger crowds, but fewer onboard shuttle facilities."
 	credit_cost = 500
 
 /datum/map_template/shuttle/emergency/kilo
@@ -317,7 +317,7 @@
 /datum/map_template/shuttle/emergency/rollerdome
 	suffix = "rollerdome"
 	name = "Uncle Pete's Rollerdome"
-	description = "Created by a freak accident in which a member of the NT Temporal Discovery Division accidentally warped a building from the past into our second Disco Inferno shuttle. \
+	description = "Created by a freak accident in which a member of theYCTemporal Discovery Division accidentally warped a building from the past into our second Disco Inferno shuttle. \
 	It resembles a 1990s era rollerdome all the way down to the carpet texture."
 	admin_notes = "ONLY NINETIES KIDS REMEMBER. Uses the fun balloon and drone from the Emergency Bar."
 	credit_cost = 2500

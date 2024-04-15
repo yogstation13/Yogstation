@@ -69,7 +69,7 @@
   */
 /obj/item/clothing/mask/yogs/cluwne/happy_cluwne
 	name = "Happy Cluwne Mask"
-	desc = "The mask of a poor cluwne that has been scrubbed of its curse by the Nanotrasen supernatural machinations division. Guaranteed to be 99% curse free and 99.9% not haunted. "
+	desc = "The mask of a poor cluwne that has been scrubbed of its curse by the yogscast supernatural machinations division. Guaranteed to be 99% curse free and 99.9% not haunted. "
 	item_flags = ABSTRACT
 	clothing_flags = VOICEBOX_TOGGLABLE
 	auto_cluwne = FALSE

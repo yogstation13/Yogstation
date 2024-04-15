@@ -147,7 +147,7 @@
 	listeningTo = user
 
 	playsound(src, 'sound/effects/bamf.ogg', 100, 1, -6)
-	to_chat(user, span_notice("You are now disguised as the Nanotrasen [input_module] cyborg \"[friendlyName]\"."))
+	to_chat(user, span_notice("You are now disguised as the yogscast [input_module] cyborg \"[friendlyName]\"."))
 
 /obj/item/borg_chameleon/proc/deactivate(mob/living/silicon/robot/user)
 	STOP_PROCESSING(SSobj, src)

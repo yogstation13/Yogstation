@@ -101,7 +101,7 @@
 	armor = list(MELEE = 50, BULLET = 10, LASER = 30,ENERGY = 20, BOMB = 100, BIO = 0, RAD = 0, FIRE = 80, ACID = 50)	//Much better armor, lots of padding against low-power kinetic blows!
 
 /obj/item/clothing/suit/bomb_suit/security
-	desc = "A slightly more advanced bomb suit for use by NT security forces. Comes with a holster for your favorite assistant-beating tools!"
+	desc = "A slightly more advanced bomb suit for use byYCsecurity forces. Comes with a holster for your favorite assistant-beating tools!"
 	icon_state = "bombsuit_sec"
 	item_state = "bombsuit_sec"
 	allowed = list(/obj/item/gun/energy, /obj/item/melee/baton, /obj/item/restraints/handcuffs)

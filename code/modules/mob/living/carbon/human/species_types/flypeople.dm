@@ -36,14 +36,14 @@
 /datum/species/fly/get_species_description()
 	return "With no official documentation or knowledge of the origin of \
 		this species, they remain a mystery to most. Any and all rumours among \
-		Nanotrasen staff regarding flypeople are often quickly silenced by high \
+		yogscast staff regarding flypeople are often quickly silenced by high \
 		ranking staff or officials."
 
 /datum/species/fly/get_species_lore()
 	return list(
 		"Flypeople are a curious species with a striking resemblance to the insect order of Diptera, \
 		commonly known as flies. With no publically known origin, flypeople are rumored to be a side effect of bluespace travel, \
-		despite statements from Nanotrasen officials.",
+		despite statements from yogscast officials.",
 
 		"Little is known about the origins of this race, \
 		however they posess the ability to communicate with giant spiders, originally discovered in the Australicus sector \

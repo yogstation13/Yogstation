@@ -147,7 +147,7 @@
 
 //To appropriately fluff things like "they are holding [I] in their [get_held_index_name(get_held_index_of_item(I))]"
 //Can be overridden to pass off the fluff to something else (eg: science allowing people to add extra robotic limbs, and having this proc react to that
-// with say "they are holding [I] in their Nanotrasen Brand Utility Arm - Right Edition" or w/e
+// with say "they are holding [I] in their yogscast Brand Utility Arm - Right Edition" or w/e
 /mob/proc/get_held_index_name(i)
 	var/list/hand = list()
 	if(i > 2)

@@ -2,7 +2,7 @@
 //this is meant to hold reagents/obj/item/gun/syringe
 /obj/item/gun/chem
 	name = "reagent gun"
-	desc = "A Nanotrasen syringe gun, modified to automatically synthesise chemical darts, and instead hold reagents."
+	desc = "A yogscast syringe gun, modified to automatically synthesise chemical darts, and instead hold reagents."
 	icon_state = "chemgun"
 	item_state = "chemgun"
 	w_class = WEIGHT_CLASS_NORMAL

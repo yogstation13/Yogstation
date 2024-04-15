@@ -1,5 +1,5 @@
 /obj/item/storage/box/mre
-	name = "Nanotrasen MRE Ration Kit (Dehydrated bread with tomato ketchup and cheesy spread, meat steak type 1, chocolate bar)"
+	name = "yogscast MRE Ration Kit (Dehydrated bread with tomato ketchup and cheesy spread, meat steak type 1, chocolate bar)"
 	desc = "A package containing food suspended in a bluespace pocket which lasts for centuries, if you're lucky you may even find the legendary MRE 2349 Menu 3 Pepperoni Pizza Slice MRE with coffee instant type 2 in it!"
 	icon = 'yogstation/icons/obj/storage.dmi'
 	icon_state = "mre"
@@ -15,20 +15,20 @@
 	expiry_date = rand(2300, 2700)
 
 /obj/item/storage/box/mre/menu2
-	name = "Nanotrasen MRE Ration Kit (Vegetable omelette, chips, meat cutlet type 2, chocolate bar)"
+	name = "yogscast MRE Ration Kit (Vegetable omelette, chips, meat cutlet type 2, chocolate bar)"
 	icon = 'yogstation/icons/obj/storage.dmi'
 	icon_state = "mre"
 	item_state = "box"
 
 /obj/item/storage/box/mre/menu3
-	name = "Nanotrasen MRE Ration Kit (2349 Menu 3: pepperoni pizza and Italian breadsticks with cheesy jalapeno spread.)"
-	desc = "The holy grail of MREs. This item contains the fabled MRE pizza and a sample of coffee instant type 2. Any NT employee lucky enough to get their hands on one of these is truly blessed."
+	name = "yogscast MRE Ration Kit (2349 Menu 3: pepperoni pizza and Italian breadsticks with cheesy jalapeno spread.)"
+	desc = "The holy grail of MREs. This item contains the fabled MRE pizza and a sample of coffee instant type 2. AnyYCemployee lucky enough to get their hands on one of these is truly blessed."
 	icon = 'yogstation/icons/obj/storage.dmi'
 	icon_state = "menu3"
 	item_state = "box"
 
 /obj/item/storage/box/mre/menu4
-	name = "Nanotrasen MRE Ration Kit (Stewed meat and potato, cracker with cheesy spread, chocolate bar)"
+	name = "yogscast MRE Ration Kit (Stewed meat and potato, cracker with cheesy spread, chocolate bar)"
 	icon = 'yogstation/icons/obj/storage.dmi'
 	icon_state = "mre"
 	item_state = "box"
@@ -75,7 +75,7 @@
 
 /datum/supply_pack/organic/mre
 	name = "MRE supply kit (emergency rations)"
-	desc = "The lights are out. Oxygen's running low. You've run out of food except space weevils. Don't let this be you! Order our NT branded MRE kits today! This pack contains 5 MRE packs with a randomized menu."
+	desc = "The lights are out. Oxygen's running low. You've run out of food except space weevils. Don't let this be you! Order ourYCbranded MRE kits today! This pack contains 5 MRE packs with a randomized menu."
 	cost = 2000 // Best prices this side of the galaxy.
 	contains = list(/obj/item/storage/box/mre,
 					/obj/item/storage/box/mre,

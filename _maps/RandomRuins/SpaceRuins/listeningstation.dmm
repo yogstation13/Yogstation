@@ -2433,7 +2433,7 @@
 "KJ" = (
 /obj/machinery/photocopier/faxmachine{
 	department = "Unidentified";
-	desc = "Used to send black pages to Nanotrasen stations.";
+	desc = "Used to send black pages to yogscast stations.";
 	name = "Syndicate Fax Machine";
 	req_one_access = list(150)
 	},
@@ -3234,7 +3234,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/crew/syndie{
-	desc = "Used to monitor active health sensors built into most of the uniforms of Nanotrasen employees.";
+	desc = "Used to monitor active health sensors built into most of the uniforms of yogscast employees.";
 	name = "suit sensors tracking console"
 	},
 /turf/open/floor/plasteel/dark,

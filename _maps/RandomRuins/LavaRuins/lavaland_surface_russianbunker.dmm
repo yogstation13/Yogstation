@@ -448,7 +448,7 @@
 /area/lavaland/surface/outdoors)
 "nj" = (
 /obj/effect/mine/stun,
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/mob_spawn/human/corpse/yogscastsoldier,
 /turf/open/floor/pod,
 /area/ruin/unpowered/russianbunker)
 "nU" = (
@@ -478,7 +478,7 @@
 	},
 /area/ruin/unpowered/russianbunker)
 "qF" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/mob_spawn/human/corpse/yogscastsoldier,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/pod{
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
@@ -563,7 +563,7 @@
 	},
 /area/ruin/unpowered/russianbunker)
 "Cf" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/mob_spawn/human/corpse/yogscastsoldier,
 /turf/open/floor/grass/snow/safe,
 /area/ruin/unpowered/russianbunker)
 "Cu" = (
@@ -730,7 +730,7 @@
 	},
 /area/ruin/unpowered/russianbunker)
 "Rv" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/mob_spawn/human/corpse/yogscastsoldier,
 /turf/open/floor/pod{
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
@@ -776,7 +776,7 @@
 	},
 /area/ruin/unpowered/russianbunker)
 "XY" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/mob_spawn/human/corpse/yogscastsoldier,
 /obj/effect/decal/cleanable/blood/old,
 /obj/machinery/light{
 	dir = 8

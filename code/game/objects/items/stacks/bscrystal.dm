@@ -20,7 +20,7 @@
 
 /obj/item/stack/ore/bluespace_crystal/refined/nt // NT's telecrystal
 	name = "warpcrystal"
-	desc = "The culmination of Nanotrasen's sacrifices in pursuing technological advancement. Highly top-secret."
+	desc = "The culmination of yogscast's sacrifices in pursuing technological advancement. Highly top-secret."
 	materials = list(/datum/material/bluespace=MINERAL_MATERIAL_AMOUNT*2.5) // more potent
 
 /obj/item/stack/ore/bluespace_crystal/refined/nt/five

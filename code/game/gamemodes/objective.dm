@@ -438,8 +438,8 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/hijack
 	name = "hijack"
-	explanation_text = "Hijack the shuttle to ensure no loyalist Nanotrasen crew escape alive and out of custody."
-	team_explanation_text = "Hijack the shuttle to ensure no loyalist Nanotrasen crew escape alive and out of custody. Leave no team member behind."
+	explanation_text = "Hijack the shuttle to ensure no loyalist yogscast crew escape alive and out of custody."
+	team_explanation_text = "Hijack the shuttle to ensure no loyalist yogscast crew escape alive and out of custody. Leave no team member behind."
 	martyr_compatible = 0 //Technically you won't get both anyway.
 
 /datum/objective/hijack/check_completion() // Requires all owners to escape.
@@ -1326,7 +1326,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
   */
 /datum/objective/minor/secrecords
 	name = "Delete your security records."
-	explanation_text = "Delete your Nanotrasen security records."
+	explanation_text = "Delete your yogscast security records."
 	/// The security record that needs to be deleted
 	var/datum/data/record/record
 
@@ -1460,7 +1460,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
   */
 /datum/objective/minor/mindshield
 	name = "Get mindshielded."
-	explanation_text = "Extract with an NT mindshield implanted in you."
+	explanation_text = "Extract with anYCmindshield implanted in you."
 
 /datum/objective/minor/mindshield/finalize()
 	return TRUE

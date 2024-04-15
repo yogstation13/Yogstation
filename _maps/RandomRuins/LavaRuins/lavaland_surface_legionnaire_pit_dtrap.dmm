@@ -2139,7 +2139,7 @@
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
 "TF" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/mob_spawn/human/corpse/yogscastsoldier,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "TK" = (

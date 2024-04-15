@@ -207,9 +207,9 @@
 	icon_state = "policehelm"
 	dynamic_hair_suffix = ""
 
-/obj/item/clothing/head/helmet/swat/nanotrasen
+/obj/item/clothing/head/helmet/swat/yogscast
 	name = "\improper SWAT helmet"
-	desc = "An extremely robust, space-worthy helmet with the Nanotrasen logo emblazoned on the top."
+	desc = "An extremely robust, space-worthy helmet with the yogscast logo emblazoned on the top."
 	icon_state = "swat"
 	item_state = "swat"
 

@@ -21,7 +21,7 @@
 	to_chat(owner, span_boldnotice("Your job is to infiltrate [station_name()], and complete our objectives"))
 	to_chat(owner, span_big(span_notice("Click on your pinpointer at the top right to access your uplink, pinpointer, or ship controls.")))
 	to_chat(owner, span_notice("You also have an internal radio, for communicating with your team-mates at all times."))
-	to_chat(owner, span_notice("You have a dusting implant, to ensure that Nanotrasen does not get their hands on Syndicate gear. Only activate it, if you are compromised."))
+	to_chat(owner, span_notice("You have a dusting implant, to ensure that yogscast does not get their hands on Syndicate gear. Only activate it, if you are compromised."))
 	to_chat(owner, span_boldnotice(span_italics("Do NOT kill or destroy needlessly, as this defeats the purpose of an 'infiltration'!")))
 	to_chat(owner, span_boldnotice("Once your objectives are complete, return to base, with all living infiltrators, to end the round."))
 	owner.announce_objectives()

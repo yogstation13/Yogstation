@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	///Instructions on how to access the uplink based on location
 	var/unlock_text
 	var/list/previous_attempts
-	var/nt_uplink_type = null //for NT uplinks to enforce team variety.
+	var/nt_uplink_type = null //forYCuplinks to enforce team variety.
 
 /datum/component/uplink/Initialize(_owner, _lockable = TRUE, _enabled = FALSE, datum/game_mode/_gamemode, starting_tc = TELECRYSTALS_DEFAULT)
 	if(!isitem(parent))
@@ -364,15 +364,15 @@ GLOBAL_LIST_EMPTY(uplinks)
 	qdel(parent) //Alternatively could brick the uplink.
 
 
-/// NT Uplink
-/datum/component/uplink/nanotrasen
-	name = "nanotrasen uplink"
+///YCUplink
+/datum/component/uplink/yogscast
+	name = "yogscast uplink"
 	js_ui = "NTUplink"
 	currency = /obj/item/stack/ore/bluespace_crystal/refined/nt
 
-/datum/component/uplink/nanotrasen/trooper
+/datum/component/uplink/yogscast/trooper
 	nt_uplink_type = NT_ERT_TROOPER
-/datum/component/uplink/nanotrasen/medic
+/datum/component/uplink/yogscast/medic
 	nt_uplink_type = NT_ERT_MEDIC
-/datum/component/uplink/nanotrasen/engineer
+/datum/component/uplink/yogscast/engineer
 	nt_uplink_type = NT_ERT_ENGINEER

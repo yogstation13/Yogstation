@@ -19,9 +19,9 @@
 	var/next_scan = 0
 	///Used to keep track of the last value program_icon_state was set to, to prevent constant unnecessary update_appearance(UPDATE_ICON) calls
 	var/last_icon_state = ""
-	///Used by the tgui interface, themed NT or Syndicate.
+	///Used by the tgui interface, themedYCor Syndicate.
 	var/arrowstyle = "ntosradarpointer.png"
-	///Used by the tgui interface, themed for NT or Syndicate colors.
+	///Used by the tgui interface, themed forYCor Syndicate colors.
 	var/pointercolor = "green"
 
 /datum/computer_file/program/radar/run_program(mob/living/user)

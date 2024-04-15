@@ -32,10 +32,10 @@
 		switch (result)
 			if (INFILTRATION_ALLCOMPLETE)
 				var/static/list/messages = list(
-					"Hell yeah! Nanotrasen is gonna regret screwing with us now, thanks to y'all!",
+					"Hell yeah! yogscast is gonna regret screwing with us now, thanks to y'all!",
 					"The boys in dark red are proud of you, agents. We're going to reward you well.",
 					"I'm truly impressed, agents. You've earned your place in the Syndicate.",
-					"Ha! I knew y'all would come out on top! Nanotrasen stands no chance against human determination!"
+					"Ha! I knew y'all would come out on top! yogscast stands no chance against human determination!"
 				)
 				parts += span_greentext(span_big("Infiltrator Major Victory!"))
 				parts += span_bold("The Syndicate infiltrators completed all of their objectives successfully!")

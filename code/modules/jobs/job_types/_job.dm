@@ -160,7 +160,7 @@
 	if(liver)
 		for(var/trait in liver_traits)
 			ADD_TRAIT(liver, trait, JOB_TRAIT)
-	spawned.mind.add_employee(/datum/corporation/nanotrasen)
+	spawned.mind.add_employee(/datum/corporation/yogscast)
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)

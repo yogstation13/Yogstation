@@ -450,8 +450,8 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	name = "cultist's bedsheet"
 	unlock_path = /obj/item/bedsheet/cult
 /datum/donator_gear/sheetnt
-	name = "nanotrasen bedsheet"
-	unlock_path = /obj/item/bedsheet/nanotrasen
+	name = "yogscast bedsheet"
+	unlock_path = /obj/item/bedsheet/yogscast
 /datum/donator_gear/sheetcentcom
 	name = "CentCom bedsheet"
 	unlock_path = /obj/item/bedsheet/centcom

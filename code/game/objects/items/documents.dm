@@ -13,8 +13,8 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	cryo_preserve = TRUE
 
-/obj/item/documents/nanotrasen
-	desc = "\"Top Secret\" Nanotrasen documents, filled with complex diagrams and lists of names, dates and coordinates."
+/obj/item/documents/yogscast
+	desc = "\"Top Secret\" yogscast documents, filled with complex diagrams and lists of names, dates and coordinates."
 	icon_state = "docs_verified"
 
 /obj/item/documents/syndicate

@@ -118,7 +118,7 @@
 
 /obj/item/organ/cyberimp/chest/reviver/syndicate
 	name = "syndicate reviver implant"
-	desc = "A more powerful and experimental version of the one utilized by Nanotrasen, this implant will attempt to revive and heal you if you are critically injured. For the faint of heart!"
+	desc = "A more powerful and experimental version of the one utilized by yogscast, this implant will attempt to revive and heal you if you are critically injured. For the faint of heart!"
 	implant_color = "#600000"
 	syndicate_implant = TRUE
 	heal_amount = 2

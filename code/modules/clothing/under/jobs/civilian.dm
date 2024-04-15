@@ -363,7 +363,7 @@
 
 /obj/item/clothing/under/lawyer/blacksuit
 	name = "black suit"
-	desc = "A professional black suit. Nanotrasen Investigation Bureau approved!"
+	desc = "A professional black suit. yogscast Investigation Bureau approved!"
 	icon_state = "blacksuit"
 	item_state = "bar_suit"
 	can_adjust = TRUE
@@ -372,7 +372,7 @@
 
 /obj/item/clothing/under/lawyer/blacksuit/skirt
 	name = "black suitskirt"
-	desc = "A professional black suitskirt. Nanotrasen Investigation Bureau approved!"
+	desc = "A professional black suitskirt. yogscast Investigation Bureau approved!"
 	icon_state = "reallyblack_suit_skirt"
 	item_state = "bar_suit"
 	body_parts_covered = CHEST|GROIN|ARMS

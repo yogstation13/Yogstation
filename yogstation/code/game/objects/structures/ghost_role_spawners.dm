@@ -105,7 +105,7 @@
 
 /obj/effect/mob_spawn/human/bus/crewmember
 	name = "cryogenics pod"
-	desc = "A humming cryo pod. You can barely recognise a standard issue Nanotrasen uniform underneath the ice. The machine is fully operational."
+	desc = "A humming cryo pod. You can barely recognise a standard issue yogscast uniform underneath the ice. The machine is fully operational."
 	mob_name = "a crew member"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
@@ -113,7 +113,7 @@
 	death = FALSE
 	random = TRUE
 	mob_species = /datum/species/human
-	flavour_text = "<span class='big bold'>You are a crew member working for Nanotrasen,</span><b> stationed onboard a state of the art research ship. It has been quite a while \
+	flavour_text = "<span class='big bold'>You are a crew member working for yogscast,</span><b> stationed onboard a state of the art research ship. It has been quite a while \
 	since you left port. The clock in the cryopod does not match the planned wakeup date. You should check \
 	the bridge and figure out what is going on. A dark feeling swells in your gut as you climb out of your pod. \
 	Listen to the captain and help your fellow crew members survive. Do not attempt to leave the ship unless instructed to.</b>"
@@ -135,7 +135,7 @@
 	
 /obj/effect/mob_spawn/human/bus/crewmember/sec
 	name = "security cryogenics pod"
-	desc = "A humming cryo pod. You can barely recognise a standard issue Nanotrasen security uniform underneath the ice. The machine is fully operational."
+	desc = "A humming cryo pod. You can barely recognise a standard issue yogscast security uniform underneath the ice. The machine is fully operational."
 	mob_name = "a security officer"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
@@ -143,7 +143,7 @@
 	death = FALSE
 	random = TRUE
 	mob_species = /datum/species/human
-	flavour_text = "<span class='big bold'>You are a security officer working for Nanotrasen,</span><b> stationed onboard a state of the art research ship. It has been quite a while \
+	flavour_text = "<span class='big bold'>You are a security officer working for yogscast,</span><b> stationed onboard a state of the art research ship. It has been quite a while \
 	since you left port. The clock in the cryopod does not match the planned wakeup date. You should check \
 	the bridge and figure out what is going on. A dark feeling swells in your gut as you climb out of your pod. \
 	Listen to the captain and prevent the crew from panicking. Do not attempt to leave the ship unless instructed to.</b>"
@@ -172,7 +172,7 @@
 	
 /obj/effect/mob_spawn/human/bus/crewmember/captain
 	name = "command cryogenics pod"
-	desc = "A humming cryo pod. You can barely recognise a standard issue Nanotrasen security uniform underneath the ice. The machine is fully operational."
+	desc = "A humming cryo pod. You can barely recognise a standard issue yogscast security uniform underneath the ice. The machine is fully operational."
 	mob_name = "a security officer"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
@@ -180,7 +180,7 @@
 	death = FALSE
 	random = TRUE
 	mob_species = /datum/species/human
-	flavour_text = "<span class='big bold'>You are a captain controlling a Nanotrasen,</span><b> state of the art research ship. It has been quite a while \
+	flavour_text = "<span class='big bold'>You are a captain controlling a yogscast,</span><b> state of the art research ship. It has been quite a while \
 	since you left port. The clock in the cryopod does not match the planned wakeup date. You should check \
 	the bridge and figure out what is going on. A dark feeling swells in your gut as you climb out of your pod. \
 	Ensure that your crew survives this journey.. Do not attempt to leave the ship unless instructed to.</b>"

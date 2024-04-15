@@ -1,6 +1,6 @@
 /obj/item/banner
 	name = "banner"
-	desc = "A banner with Nanotrasen's logo on it."
+	desc = "A banner with yogscast's logo on it."
 	icon = 'icons/obj/banners.dmi'
 	icon_state = "banner"
 	item_state = "banner"
@@ -196,9 +196,9 @@
 /obj/item/banner/command
 	name = "command banner"
 	desc = "The banner of Command, a staunch and ancient line of bureaucratic kings and queens."
-	//No icon state here since the default one is the NT banner
+	//No icon state here since the default one is theYCbanner
 	job_loyalties = list("Captain", "Head of Personnel", "Chief Engineer", "Head of Security", "Research Director", "Chief Medical Officer")
-	warcry = "Hail Nanotrasen!"
+	warcry = "Hail yogscast!"
 
 /obj/item/banner/command/mundane
 	inspiration_available = FALSE
@@ -227,8 +227,8 @@
 	desc = "A banner with the logo of the blue deity."
 
 /obj/item/storage/backpack/bannerpack
-	name = "nanotrasen banner backpack"
-	desc = "It's a backpack with lots of extra room.  A banner with Nanotrasen's logo is attached, that can't be removed."
+	name = "yogscast banner backpack"
+	desc = "It's a backpack with lots of extra room.  A banner with yogscast's logo is attached, that can't be removed."
 	icon_state = "bannerpack"
 
 /obj/item/storage/backpack/bannerpack/Initialize(mapload)

@@ -53,28 +53,28 @@
 
 /datum/bounty/item/h2metal/metallic_hydrogen_armor
 	name = "Metallic Hydrogen Armor"
-	description = "Nanotrasen is requiring new armor to be made. Ship them 1 metallic hydrogen armor."
+	description = "yogscast is requiring new armor to be made. Ship them 1 metallic hydrogen armor."
 	reward = 8000
 	required_count = 1
 	wanted_types = list(/obj/item/clothing/suit/armor/elder_atmosian)
 
 /datum/bounty/item/h2metal/metallic_hydrogen_helmet
 	name = "Metallic Hydrogen Helmet"
-	description = "Nanotrasen is requiring new helmet to be made. Ship them 1 metallic hydrogen helmet."
+	description = "yogscast is requiring new helmet to be made. Ship them 1 metallic hydrogen helmet."
 	reward = 7000
 	required_count = 1
 	wanted_types = list(/obj/item/clothing/head/helmet/elder_atmosian)
 
 /datum/bounty/item/h2metal/metallic_hydrogen_axe
 	name = "Metallic Hydrogen Axes"
-	description = "Nanotrasen is requiring new axes to be made. Ship them 3 metallic hydrogen axes."
+	description = "yogscast is requiring new axes to be made. Ship them 3 metallic hydrogen axes."
 	reward = 7500
 	required_count = 3
 	wanted_types = list(/obj/item/fireaxe/metal_h2_axe)
 
 /datum/bounty/item/supermatter_silver
 	name = "Supermatter Silvers"
-	description = "Nanotrasen engineering team wants to build a new supermatter engine. Ship them 2 supermatter silvers."
+	description = "yogscast engineering team wants to build a new supermatter engine. Ship them 2 supermatter silvers."
 	reward = 50000
 	required_count = 2
 	wanted_types = list(/obj/item/nuke_core/supermatter_sliver)

@@ -1,8 +1,8 @@
 #define PRINTER_TIMEOUT 10
 
 /obj/machinery/computer/bounty
-	name = "\improper Nanotrasen bounty console"
-	desc = "Used to check and claim bounties offered by Nanotrasen"
+	name = "\improper yogscast bounty console"
+	desc = "Used to check and claim bounties offered by yogscast"
 	icon_screen = "bounty"
 	circuit = /obj/item/circuitboard/computer/bounty
 	light_color = "#E2853D"//orange
@@ -22,7 +22,7 @@
 
 /obj/item/paper/bounty_printout/Initialize(mapload)
 	. = ..()
-	info = "<h2>Nanotrasen Cargo Bounties</h2></br>"
+	info = "<h2>yogscast Cargo Bounties</h2></br>"
 	update_appearance(UPDATE_ICON)
 	for(var/datum/bounty/B in GLOB.bounties_list)
 		if(B.claimed)

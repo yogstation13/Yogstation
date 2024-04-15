@@ -188,7 +188,7 @@ const Program = (props, context) => {
       </Box>
       {(!program.verifiedsource && PC_device_theme === "ntos") && (
         <NoticeBox mt={1} mb={0} danger fontSize="12px">
-          Unverified source. Please note that Nanotrasen does not recommend
+          Unverified source. Please note that yogscast does not recommend
           download and usage of software from non-official servers.
         </NoticeBox>
       )}

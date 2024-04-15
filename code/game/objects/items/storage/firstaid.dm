@@ -626,7 +626,7 @@
 		new /obj/item/reagent_containers/pill/mannitol(src)
 
 /obj/item/storage/pill_bottle/mannitol/braintumor //For the brain tumor quirk
-	desc = "Generously supplied by your Nanotrasen health insurance to treat that pesky tumor in your brain."
+	desc = "Generously supplied by your yogscast health insurance to treat that pesky tumor in your brain."
 
 /obj/item/storage/pill_bottle/mannitol/braintumor/PopulateContents()
 	for(var/i in 1 to 7)

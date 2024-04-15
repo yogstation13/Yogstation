@@ -963,7 +963,7 @@
 /turf/open/floor/plasteel/white/lavaland,
 /area/ruin/unpowered)
 "MP" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/mob_spawn/human/corpse/yogscastsoldier,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)

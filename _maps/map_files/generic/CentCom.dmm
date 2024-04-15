@@ -3175,7 +3175,7 @@
 /turf/closed/indestructible/riveted,
 /area/centcom/control)
 "ain" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/yogscast,
 /turf/closed/indestructible/riveted,
 /area/centcom/control)
 "aio" = (
@@ -3312,7 +3312,7 @@
 /obj/structure/closet/secure_closet/security,
 /obj/item/storage/belt/security/full,
 /obj/item/gun/ballistic/automatic/wt550,
-/obj/item/clothing/head/helmet/swat/nanotrasen,
+/obj/item/clothing/head/helmet/swat/yogscast,
 /obj/item/crowbar/red,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -3323,7 +3323,7 @@
 /obj/structure/closet/secure_closet/security,
 /obj/item/storage/belt/security/full,
 /obj/item/gun/ballistic/automatic/wt550,
-/obj/item/clothing/head/helmet/swat/nanotrasen,
+/obj/item/clothing/head/helmet/swat/yogscast,
 /obj/item/crowbar/red,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -3339,7 +3339,7 @@
 	},
 /area/centcom/supply)
 "aiH" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/yogscast,
 /turf/closed/indestructible/riveted,
 /area/centcom/prison)
 "aiI" = (
@@ -3441,7 +3441,7 @@
 /obj/structure/closet/secure_closet/security,
 /obj/item/storage/belt/security/full,
 /obj/item/gun/ballistic/automatic/wt550,
-/obj/item/clothing/head/helmet/swat/nanotrasen,
+/obj/item/clothing/head/helmet/swat/yogscast,
 /obj/item/crowbar/red,
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -3452,7 +3452,7 @@
 /obj/structure/closet/secure_closet/security,
 /obj/item/storage/belt/security/full,
 /obj/item/gun/ballistic/automatic/wt550,
-/obj/item/clothing/head/helmet/swat/nanotrasen,
+/obj/item/clothing/head/helmet/swat/yogscast,
 /obj/item/crowbar/red,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -4043,7 +4043,7 @@
 "akf" = (
 /obj/structure/table/wood,
 /obj/item/phone{
-	desc = "Supposedly a direct line to Nanotrasen Central Command. It's not even plugged in.";
+	desc = "Supposedly a direct line to yogscast Central Command. It's not even plugged in.";
 	pixel_x = -3;
 	pixel_y = 3
 	},
@@ -6530,7 +6530,7 @@
 "apa" = (
 /obj/structure/table/wood,
 /obj/item/phone{
-	desc = "Supposedly a direct line to Nanotrasen Central Command. It's not even plugged in.";
+	desc = "Supposedly a direct line to yogscast Central Command. It's not even plugged in.";
 	pixel_x = -3;
 	pixel_y = 3
 	},
@@ -7566,7 +7566,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
 "aqR" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/yogscast,
 /turf/closed/indestructible/riveted,
 /area/centcom/ferry)
 "aqS" = (
@@ -8223,7 +8223,7 @@
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/gym)
 "asd" = (
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/yogscast{
 	pixel_y = 32
 	},
 /turf/closed/indestructible/riveted,
@@ -11616,7 +11616,7 @@
 "ayZ" = (
 /obj/structure/table/wood,
 /obj/item/phone{
-	desc = "Supposedly a direct line to Nanotrasen Central Command. It's not even plugged in.";
+	desc = "Supposedly a direct line to yogscast Central Command. It's not even plugged in.";
 	pixel_x = -3;
 	pixel_y = 3
 	},
@@ -11757,7 +11757,7 @@
 	pixel_y = 3
 	},
 /obj/item/gun/energy/e_gun,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/yogscast{
 	pixel_y = 32
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -12069,7 +12069,7 @@
 /area/holodeck/rec_center/basketball)
 "azS" = (
 /obj/structure/bed,
-/obj/item/bedsheet/nanotrasen,
+/obj/item/bedsheet/yogscast,
 /turf/open/floor/carpet/blue,
 /area/centcom/evac)
 "azT" = (
@@ -13693,7 +13693,7 @@
 /obj/structure/closet/secure_closet/security,
 /obj/item/storage/belt/security/full,
 /obj/item/gun/ballistic/automatic/wt550,
-/obj/item/clothing/head/helmet/swat/nanotrasen,
+/obj/item/clothing/head/helmet/swat/yogscast,
 /obj/item/crowbar/red,
 /obj/machinery/light{
 	dir = 8
@@ -13772,7 +13772,7 @@
 /obj/structure/closet/secure_closet/security,
 /obj/item/storage/belt/security/full,
 /obj/item/gun/ballistic/automatic/wt550,
-/obj/item/clothing/head/helmet/swat/nanotrasen,
+/obj/item/clothing/head/helmet/swat/yogscast,
 /obj/item/crowbar/red,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -15042,7 +15042,7 @@
 /turf/open/floor/plasteel/white,
 /area/centcom/tdome/tdomeobserve)
 "aFE" = (
-/obj/item/soap/nanotrasen,
+/obj/item/soap/yogscast,
 /turf/open/floor/plasteel/white,
 /area/centcom/tdome/tdomeobserve)
 "aFF" = (
@@ -15418,7 +15418,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/tdome/tdomeobserve)
 "aGy" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/yogscast,
 /turf/closed/indestructible/riveted,
 /area/centcom/tdome/tdomeobserve)
 "aGz" = (
@@ -17625,7 +17625,7 @@
 "aKr" = (
 /obj/structure/table/wood,
 /obj/item/phone{
-	desc = "Supposedly a direct line to Nanotrasen Central Command. It's not even plugged in.";
+	desc = "Supposedly a direct line to yogscast Central Command. It's not even plugged in.";
 	pixel_x = -3;
 	pixel_y = 3
 	},

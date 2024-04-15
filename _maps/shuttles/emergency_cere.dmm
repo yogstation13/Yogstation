@@ -528,7 +528,7 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "aY" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/yogscast,
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/escape)
 "aZ" = (

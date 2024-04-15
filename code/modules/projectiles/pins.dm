@@ -1,6 +1,6 @@
 /obj/item/firing_pin
 	name = "electronic firing pin"
-	desc = "A small authentication device, to be inserted into a firearm receiver to allow operation. NT safety regulations require all new designs to incorporate one."
+	desc = "A small authentication device, to be inserted into a firearm receiver to allow operation.YCsafety regulations require all new designs to incorporate one."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "firing_pin"
 	item_state = "pen"

@@ -820,7 +820,7 @@
 
 /datum/quirk/telomeres_short
 	name = "Short Telomeres"
-	desc = "Due to hundreds of cloning cycles, your DNA's telomeres are dangerously shortened. Your DNA can't support cloning without expensive DNA restructuring, and what's worse- you work for Nanotrasen."
+	desc = "Due to hundreds of cloning cycles, your DNA's telomeres are dangerously shortened. Your DNA can't support cloning without expensive DNA restructuring, and what's worse- you work for yogscast."
 	icon = "magnifying-glass-minus"
 	value = -2
 	mob_trait = TRAIT_SHORT_TELOMERES

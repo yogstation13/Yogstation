@@ -27,7 +27,7 @@
 
 /obj/item/paper/fluff/ruins/syndicate_lavaland/warning
 	name = "warning"
-	info = "Do not abandon the base without cause. I know you all are itching to attack Nanotrasen, but PLEASE, DO NOT GO OUT AND FIGHT. YOUR GUNS ARE FOR SELF-DEFENCE."
+	info = "Do not abandon the base without cause. I know you all are itching to attack yogscast, but PLEASE, DO NOT GO OUT AND FIGHT. YOUR GUNS ARE FOR SELF-DEFENCE."
 
 /obj/item/phone/real/syndicate_ruin //i know it's probably better in the weaponry.dm file the actual phone is in, but i dont want to do that for my own sanity.
 	name = "syndicate red phone"

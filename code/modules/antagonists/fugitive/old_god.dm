@@ -39,11 +39,11 @@
 /mob/camera/yalp_elor/Login() // Yogs -- better Login() dialogue
 	..()
 	to_chat(src,span_boldnotice("You are [name], the old god!"))
-	to_chat(src,span_notice("You must protect your followers from Nanotrasen!"))
+	to_chat(src,span_notice("You must protect your followers from yogscast!"))
 	to_chat(src,span_notice("Only your followers can hear you, and you can speak to send messages to all of them, wherever they are. <i>You can also locally whisper to anyone.</i>"))
 	var/passed_time = hunters_release_time - world.time
 	if(passed_time > 0)
-		to_chat(src, span_warning("Nanotrasen will reach you and your followers in about [DisplayTimeText(passed_time)]. Make sure they are ready when the time is up."))
+		to_chat(src, span_warning("yogscast will reach you and your followers in about [DisplayTimeText(passed_time)]. Make sure they are ready when the time is up."))
 //yogs end
 
 /mob/camera/yalp_elor/Move(NewLoc, direct)

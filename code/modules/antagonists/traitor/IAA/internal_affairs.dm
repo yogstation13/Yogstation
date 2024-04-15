@@ -221,7 +221,7 @@
 						if(!marauder)
 							fail_msg += span_userdanger("You no longer have permission to die. Track the treacherous vermin down, and kill them. No loose ends are permitted.")
 						else
-							fail_msg += span_userdanger("They will not judge us weak.</font><B><font size=5 color=red> Cease your terror on Nanotrasen and eliminate the tenacious target once more. Fail to do this, and a bullet awaits you at the base.")
+							fail_msg += span_userdanger("They will not judge us weak.</font><B><font size=5 color=red> Cease your terror on yogscast and eliminate the tenacious target once more. Fail to do this, and a bullet awaits you at the base.")
 						reinstate_escape_objective(owner)
 						last_man_standing = FALSE
 					to_chat(owner.current, fail_msg)
@@ -265,7 +265,7 @@
 /datum/antagonist/traitor/internal_affairs/proc/greet_iaa()
 	to_chat(owner.current, span_userdanger("You are the [special_role]."))
 	if(!marauder)
-		to_chat(owner.current, span_userdanger("An intel leak suggests that operatives on this station have been turned by Nanotrasen. For now, your target is the only confirmed turncoat."))
+		to_chat(owner.current, span_userdanger("An intel leak suggests that operatives on this station have been turned by yogscast. For now, your target is the only confirmed turncoat."))
 		to_chat(owner.current, "<B><font size=5 color=red>Any apparent damage you cause may draw early suspicion to an intelligence leak. Limit collateral damage to avoid this.</font></B>") //yogs - murderbone rule exists, apparently
 		to_chat(owner.current, span_userdanger("You have been provided with a standard uplink to accomplish your task."))
 	else

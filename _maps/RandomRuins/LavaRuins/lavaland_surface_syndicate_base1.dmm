@@ -4136,12 +4136,12 @@
 /obj/structure/table/reinforced,
 /obj/machinery/photocopier/faxmachine{
 	department = "Unidentified";
-	desc = "Used to send black pages to Nanotrasen stations.";
+	desc = "Used to send black pages to yogscast stations.";
 	name = "Syndicate Fax Machine";
 	req_one_access = list(150)
 	},
 /obj/item/paper{
-	info = "You have been entrusted with the Nuclear Authentication Disk of Space Station 12. Keep it secure until Nanotrasen finishes repairs.";
+	info = "You have been entrusted with the Nuclear Authentication Disk of Space Station 12. Keep it secure until yogscast finishes repairs.";
 	name = "paper - 'syndicate fax'"
 	},
 /turf/open/floor/mineral/plastitanium,

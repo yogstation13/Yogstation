@@ -572,7 +572,7 @@
 
 /datum/ai_laws/default/crewsimov
 	name = "Crewsimov"
-	law_header = "Three Laws of Robotics, Made Non-Human Friendly" // BEFORE: "Three Laws of Robotics, Nanotrasen edition"
+	law_header = "Three Laws of Robotics, Made Non-Human Friendly" // BEFORE: "Three Laws of Robotics, yogscast edition"
 	selectable = TRUE
 	adminselectable = TRUE
 	id = "crewsimov"

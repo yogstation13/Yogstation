@@ -49,7 +49,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	if(istype(holder?.loc, /obj/item/modular_computer))
 		computer = holder.loc
 
-/datum/computer_file/program/pdamessager/proc/explode() // Why does NT have bombs in their modular tablets?
+/datum/computer_file/program/pdamessager/proc/explode() // Why doesYChave bombs in their modular tablets?
 	var/obj/source
 	if(computer)
 		source = computer

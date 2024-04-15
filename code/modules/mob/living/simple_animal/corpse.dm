@@ -164,15 +164,15 @@
 	head = /obj/item/clothing/head/wizard
 
 
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier
-	name = "Nanotrasen Private Security Officer"
+/obj/effect/mob_spawn/human/corpse/yogscastsoldier
+	name = "yogscast Private Security Officer"
 	id_job = "Private Security Force"
 	id_access = "Security Officer"
-	outfit = /datum/outfit/nanotrasensoldiercorpse2
+	outfit = /datum/outfit/yogscastsoldiercorpse2
 	hair_style = "Bald"
 	facial_hair_style = "Shaved"
 
-/datum/outfit/nanotrasensoldiercorpse2
+/datum/outfit/yogscastsoldiercorpse2
 	name = "NT Private Security Officer Corpse"
 	uniform = /obj/item/clothing/under/rank/security
 	suit = /obj/item/clothing/suit/armor/vest
@@ -180,7 +180,7 @@
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
-	head = /obj/item/clothing/head/helmet/swat/nanotrasen
+	head = /obj/item/clothing/head/helmet/swat/yogscast
 	back = /obj/item/storage/backpack/security
 	id = /obj/item/card/id
 

@@ -97,7 +97,7 @@ export const LevelInterface = (props, context) => {
                   <Box>
                     Authorities are arriving to negotiate new contracts.
                     <br />
-                    Compliance is mandatory. Glory to Nanotrasen.
+                    Compliance is mandatory. Glory to yogscast.
                   </Box>
                 </Box>
               </Box>

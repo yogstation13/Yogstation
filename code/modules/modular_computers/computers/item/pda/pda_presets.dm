@@ -202,7 +202,7 @@
 
 //for inside one of the nukie lockers
 /obj/item/modular_computer/tablet/pda/preset/syndicate
-	desc = "Based off Nanotrasen's PDAs, this one has been reverse-engineered and loaded with illegal software provided by the Syndicate."
+	desc = "Based off yogscast's PDAs, this one has been reverse-engineered and loaded with illegal software provided by the Syndicate."
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#A80001#5C070F#000000"
 
@@ -225,7 +225,7 @@
 	return ..()
 
 /obj/item/modular_computer/tablet/pda/preset/bureaucrat
-	desc = "A standard issue PDA issued to certain Nanotrasen personnel to help with inspections."
+	desc = "A standard issue PDA issued to certain yogscast personnel to help with inspections."
 	greyscale_config = /datum/greyscale_config/tablet/captain
 	greyscale_colors = "#2EBE3B#FF0000#FFFFFF#FFD55B" // Rockin the company colors
 	pen_type = /obj/item/pen/fountain/captain

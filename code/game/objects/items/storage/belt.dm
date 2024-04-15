@@ -113,7 +113,7 @@
 	//much roomier now that we've managed to remove two tools
 
 /obj/item/storage/belt/utility/chief/full/ert
-	name = "advanced nanotrasen toolbelt"
+	name = "advanced yogscast toolbelt"
 	desc = "Full of top of the line tools for all of your engineering needs."
 
 /obj/item/storage/belt/utility/chief/full/get_types_to_preload()
@@ -740,7 +740,7 @@
 /obj/item/storage/belt/janitor/full/PopulateContents()
 	new /obj/item/lightreplacer(src)
 	new /obj/item/reagent_containers/spray/cleaner(src)
-	new /obj/item/soap/nanotrasen(src)
+	new /obj/item/soap/yogscast(src)
 	new /obj/item/holosign_creator/janibarrier(src)
 	new /obj/item/melee/flyswatter(src)
 

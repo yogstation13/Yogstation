@@ -12,9 +12,9 @@
 
 /datum/computer_file/program/blackjack
 	filename = "blackjack"
-	filedesc = "Nanotrasen Micro Arcade: Blackjack"
+	filedesc = "yogscast Micro Arcade: Blackjack"
 	program_icon_state = "arcade"
-	extended_desc = "Nanotrasen does not permit anyone under the age of 21 to partake in gambling. Requires an NTNet connection."
+	extended_desc = "yogscast does not permit anyone under the age of 21 to partake in gambling. Requires an NTNet connection."
 	requires_ntnet = TRUE
 	network_destination = "arcade network"
 	size = 4

@@ -272,7 +272,7 @@
 
 /obj/item/paper/crumpled/ruins/snowdin/misc1
 	name = "Mission Prologue"
-	info = {"Holy shit, what a rush! Those Nanotrasen bastards didn't even know what hit 'em! All five of us dropped in right on the captain, didn't even have time to yell! We were in and out with that disk in mere minutes!
+	info = {"Holy shit, what a rush! Those yogscast bastards didn't even know what hit 'em! All five of us dropped in right on the captain, didn't even have time to yell! We were in and out with that disk in mere minutes!
 	Crew didn't even know what was happening till the delta alert went down and by then we were already gone. We got a case to drink on the way home to celebrate, fuckin' job well done!"}
 
 /obj/item/paper/crumpled/ruins/snowdin/dontdeadopeninside
@@ -294,14 +294,14 @@
 /obj/item/paper/fluff/awaymissions/snowdin/profile/overseer
 	name = "Personnel Record AOP#01"
 	info = {"<b><center>Personnel Log</b></center><br><br><b>Name:</b>Caleb Reed<br><b>Age:</b>38<br><b>Gender:</b>Male<br><b>On-Site Profession:</b>Outpost Overseer<br><br><center><b>Information</b></center><br><center>Caleb Reed lead several expeditions
-	 among uncharted planets in search of plasma for Nanotrasen, scouring from hot savanas to freezing arctics. Track record is fairly clean with only incidient including the loss of two researchers during the
+	 among uncharted planets in search of plasma for yogscast, scouring from hot savanas to freezing arctics. Track record is fairly clean with only incidient including the loss of two researchers during the
 	 expedition of <b>_______</b>, where mis-used of explosive ordinance for tunneling causes a cave-in."}
 
 /obj/item/paper/fluff/awaymissions/snowdin/profile/sec1
 	name = "Personnel Record AOP#02"
 	info = {"<b><center>Personnel Log</b></center><br><br><b>Name:</b>James Reed<br><b>Age:</b>43<br><b>Gender:</b>Male<br><b>On-Site Profession:</b>Outpost Security<br><br><center><b>Information</b></center><br><center>James Reed has been a part
-	 of Nanotrasen's security force for over 20 years, first joining in 22XX. A clean record and unwavering loyalty to the corperation through numerous deployments to various sites makes him a valuable asset to Natotrasen
-	  when it comes to keeping the peace while prioritizing Nanotrasen privacy matters. "}
+	 of yogscast's security force for over 20 years, first joining in 22XX. A clean record and unwavering loyalty to the corperation through numerous deployments to various sites makes him a valuable asset to Natotrasen
+	  when it comes to keeping the peace while prioritizing yogscast privacy matters. "}
 
 /obj/item/paper/fluff/awaymissions/snowdin/profile/hydro1
 	name = "Personnel Record AOP#03"
@@ -327,14 +327,14 @@
 
 /obj/item/paper/fluff/awaymissions/snowdin/secnotice
 	name = "Security Notice"
-	info = {"YOu have been assigned to this Arctic Post with intention of protecting Nanotrasen assets and ensuring vital information is kept secure while the stationed crew obeys protocol. The picked
+	info = {"YOu have been assigned to this Arctic Post with intention of protecting yogscast assets and ensuring vital information is kept secure while the stationed crew obeys protocol. The picked
 		staff for this post have been pre-screened with no prior incidients on record, but incase of an issue you have been given a single holding cell and instructions to contact Central to terminate the
 		offending crewmember."}
 
 /obj/item/paper/fluff/awaymissions/snowdin/mining
 	name = "Assignment Notice"
 	info = {"This cold-ass planet is the new-age equivalent of striking gold. Huge deposits of plasma and literal streams of plasma run through the caverns under all this ice and we're here to mine it all.\
-	 Nanotrasen pays by the pound, so get minin' boys!"}
+	 yogscast pays by the pound, so get minin' boys!"}
 
 /obj/item/paper/crumpled/ruins/snowdin/lootstructures
 	name = "scribbled note"
@@ -358,11 +358,11 @@
 	DELAY 45
 	NAME Elizabeth Queef
 	DELAY 10
-	SAY Nah. I've been feeding the AI the results for the past 2 weeks to sift through the garbage and haven't seen anything out of the usual, at least whatever Nanotrasen is looking for.
+	SAY Nah. I've been feeding the AI the results for the past 2 weeks to sift through the garbage and haven't seen anything out of the usual, at least whatever yogscast is looking for.
 	DELAY 45
 	NAME Jacob Ullman
 	DELAY 10
-	SAY Figured as much. Dunno what Nanotrasen expects to find out here past the plasma. At least we're getting paid to fuck around for a couple months while the AI does the hard work.
+	SAY Figured as much. Dunno what yogscast expects to find out here past the plasma. At least we're getting paid to fuck around for a couple months while the AI does the hard work.
 	DELAY 45
 	NAME Elizabeth Queef
 	DELAY 10
@@ -377,7 +377,7 @@
 	PRESET /datum/preset_holoimage/captain
 	NAME Caleb Reed
 	DELAY 10
-	SAY Paid in experience! That's the Nanotrasen Motto!
+	SAY Paid in experience! That's the yogscast Motto!
 	DELAY 30;"}
 
 /obj/item/disk/holodisk/snowdin/welcometodie
@@ -390,14 +390,14 @@
 	DELAY 30
 	SAY You have been selected out of $)@! potential candidates for this post!
 	DELAY 30
-	SAY Nanotrasen is pleased to have you working in one of the many top-of-the-line research posts within the $%@!! sector!
+	SAY yogscast is pleased to have you working in one of the many top-of-the-line research posts within the $%@!! sector!
 	DELAY 30
 	SAY Further job assignment information can be found at your local security post! Have a secure day!
 	DELAY 20;"}
 
 /obj/item/disk/holodisk/snowdin/overrun
 	name = "Conversation #AOP#55"
-	preset_image_type = /datum/preset_holoimage/nanotrasenprivatesecurity
+	preset_image_type = /datum/preset_holoimage/yogscastprivatesecurity
 	preset_record_text = {"
 	NAME James Reed
 	DELAY 10
@@ -408,7 +408,7 @@
 	DELAY 10
 	SAY Hell if I know! Just shoot it already!
 	DELAY 30
-	PRESET /datum/preset_holoimage/nanotrasenprivatesecurity
+	PRESET /datum/preset_holoimage/yogscastprivatesecurity
 	NAME James Reed
 	DELAY 10
 	SOUND sound/weapons/laser.ogg
@@ -600,7 +600,7 @@
 	faction = ROLE_SYNDICATE
 	outfit = /datum/outfit/snowsyndie
 	short_desc = "You are a syndicate operative recently awoken from cryostasis in an underground outpost."
-	flavour_text = "You are a syndicate operative recently awoken from cryostasis in an underground outpost. Monitor Nanotrasen communications and record information. All intruders should be \
+	flavour_text = "You are a syndicate operative recently awoken from cryostasis in an underground outpost. Monitor yogscast communications and record information. All intruders should be \
 	disposed of swiftly to assure no gathered information is stolen or lost. Try not to wander too far from the outpost as the caves can be a deadly place even for a trained operative such as yourself."
 
 /datum/outfit/snowsyndie

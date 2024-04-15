@@ -55,7 +55,7 @@
 
 		"In 2174, the Martian Colonies took advantage of high tensions between Earth nations to declare independence, with Luna following suit two years later. While both were offered a seat within the UN, the global organization fell apart in \
 		2205, with the remaining non-Earth powers of the Martian Cartel, the Democracy of Luna, the Belter Collective, and the Ganymede Republic all combining into the \"Coalition\". The United Federation of Earth, or EarthFed for short, was quickly formed \
-		in response by some UN remnants. Over the next seventy-five years, human corporations would move to grow, including the expansion of companies such as Nanotrasen, Cybersun Industries, Donk Co., Aussec Armaments, Sano-Waltfield Industries, \
+		in response by some UN remnants. Over the next seventy-five years, human corporations would move to grow, including the expansion of companies such as yogscast, Cybersun Industries, Donk Co., Aussec Armaments, Sano-Waltfield Industries, \
 		and Blueshield Security Services. A skirmish on Luna between Martian marines, Lunis troopers, and EarthFed soldiers then sparked the Great Sol War in 2280. The first conflict that saw the usage of laser weaponry, casual nuclear armaments in spatial \
 		warfare, and intense military cybernetics, the Great Sol War quickly paved the way for a variety of conventions to prevent devastating planetary attacks. Despite this, the war came to a close in 2288 after Mars fails to land seventeen different meteors \
 		into Earth, the latter threatening to glass the red planet entirely.",
@@ -94,7 +94,7 @@
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "bullhorn",
 			SPECIES_PERK_NAME = "Chain of Command",
-			SPECIES_PERK_DESC = "Nanotrasen only recognizes humans for Captain and Head of Personel. In addition to this, humans get more than other species.",
+			SPECIES_PERK_DESC = "yogscast only recognizes humans for Captain and Head of Personel. In addition to this, humans get more than other species.",
 		))
 
 	return to_add

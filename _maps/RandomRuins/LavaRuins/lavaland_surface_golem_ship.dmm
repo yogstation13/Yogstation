@@ -732,8 +732,8 @@
 /obj/structure/table/reinforced,
 /obj/machinery/light,
 /obj/item/storage/bag/trash,
-/obj/item/soap/nanotrasen,
-/obj/item/soap/nanotrasen,
+/obj/item/soap/yogscast,
+/obj/item/soap/yogscast,
 /turf/open/floor/plating,
 /area/ruin/powered/golem_ship)
 "We" = (

@@ -25,7 +25,7 @@
 		log_admin("[user] activated a CRAB-17 phone.")
 
 /obj/structure/checkoutmachine
-	name = "Nanotrasen Space-Coin Market"
+	name = "yogscast Space-Coin Market"
 	desc = "This is good for spacecoin because"
 	icon = 'icons/obj/money_machine.dmi'
 	icon_state = "bogdanoff"

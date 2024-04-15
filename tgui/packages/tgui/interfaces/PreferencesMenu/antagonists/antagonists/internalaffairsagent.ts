@@ -3,7 +3,7 @@ import { multiline } from "common/string";
 
 export const IAA_MECHANICAL_DESCRIPTION
    = multiline`
-      Minimize damage to Nanotrasen civilians and their station, but utilize an uplink to eliminate all rogue agents. Be wary; others will be moving against you.
+      Minimize damage to yogscast civilians and their station, but utilize an uplink to eliminate all rogue agents. Be wary; others will be moving against you.
    `;
 
 

@@ -59,7 +59,7 @@
 /area/ruin/unpowered)
 "ap" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/mob_spawn/human/corpse/yogscastsoldier,
 /obj/item/book/manual/wiki/security_space_law,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
@@ -71,7 +71,7 @@
 "ar" = (
 /obj/structure/closet/crate/bin,
 /obj/item/paper{
-	info = "If you are reading this then you just unpackaged your Fortress in a pill! Simply shake the pill in your hand and place it where you wish to have your desired fortress! Nanotrasen is not responsible for any unfortunate death, maiming, grevious injuries and sudden unexpected live burials. Have a safe and secure day!";
+	info = "If you are reading this then you just unpackaged your Fortress in a pill! Simply shake the pill in your hand and place it where you wish to have your desired fortress! yogscast is not responsible for any unfortunate death, maiming, grevious injuries and sudden unexpected live burials. Have a safe and secure day!";
 	name = "Paper- Fortress Pill!"
 	},
 /obj/effect/decal/cleanable/ash,

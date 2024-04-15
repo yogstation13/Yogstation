@@ -534,7 +534,7 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "aT" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/yogscast,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "aU" = (

@@ -27,7 +27,7 @@ the %ADJECTIVE% bridge
 the %ADJECTIVE% brig
 %A% %ADJECTIVE% shuttle
 %A% %ADJECTIVE% laboratory
-Nanotrasen
+yogscast
 the Syndicate
 the Wizard Federation
 %ADJECTIVE% blood

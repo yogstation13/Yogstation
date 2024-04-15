@@ -933,7 +933,7 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior/engineering)
 "cr" = (
-/obj/effect/mob_spawn/human/nanotrasensoldier{
+/obj/effect/mob_spawn/human/yogscastsoldier{
 	brute_damage = 200
 	},
 /obj/effect/decal/cleanable/blood,
@@ -1169,7 +1169,7 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior)
 "cP" = (
-/obj/effect/mob_spawn/human/nanotrasensoldier{
+/obj/effect/mob_spawn/human/yogscastsoldier{
 	brute_damage = 200
 	},
 /obj/effect/turf_decal/tile/yellow{
@@ -1571,7 +1571,7 @@
 /turf/open/floor/plating,
 /area/awaymission/research/interior/maint)
 "dz" = (
-/obj/effect/mob_spawn/human/nanotrasensoldier{
+/obj/effect/mob_spawn/human/yogscastsoldier{
 	brute_damage = 200
 	},
 /obj/effect/turf_decal/tile/yellow,
@@ -1689,7 +1689,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/research/interior/security)
 "dI" = (
-/mob/living/simple_animal/hostile/nanotrasen/ranged,
+/mob/living/simple_animal/hostile/yogscast/ranged,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -2158,7 +2158,7 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior/cryo)
 "eB" = (
-/mob/living/simple_animal/hostile/nanotrasen/ranged,
+/mob/living/simple_animal/hostile/yogscast/ranged,
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
@@ -2324,7 +2324,7 @@
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/secure)
 "eV" = (
-/mob/living/simple_animal/hostile/nanotrasen/ranged/smg,
+/mob/living/simple_animal/hostile/yogscast/ranged/smg,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/secure)
 "eW" = (
@@ -2597,7 +2597,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/nanotrasen/ranged/smg,
+/mob/living/simple_animal/hostile/yogscast/ranged/smg,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/secure)
 "fB" = (
@@ -2860,7 +2860,7 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior/security)
 "fY" = (
-/mob/living/simple_animal/hostile/nanotrasen/ranged/smg,
+/mob/living/simple_animal/hostile/yogscast/ranged/smg,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -2984,7 +2984,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/mob/living/simple_animal/hostile/nanotrasen/ranged/smg,
+/mob/living/simple_animal/hostile/yogscast/ranged/smg,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/secure)
 "gk" = (
@@ -3129,7 +3129,7 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior/cryo)
 "gv" = (
-/mob/living/simple_animal/hostile/nanotrasen/ranged,
+/mob/living/simple_animal/hostile/yogscast/ranged,
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
@@ -3674,7 +3674,7 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior/security)
 "hj" = (
-/mob/living/simple_animal/hostile/nanotrasen,
+/mob/living/simple_animal/hostile/yogscast,
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
@@ -3750,7 +3750,7 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior/security)
 "hq" = (
-/mob/living/simple_animal/hostile/nanotrasen/ranged/smg,
+/mob/living/simple_animal/hostile/yogscast/ranged/smg,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -4204,7 +4204,7 @@
 /mob/living/simple_animal/bot/secbot/beepsky{
 	desc = "A beefy variant of the standard securitron model.";
 	emagged = 1;
-	faction = list("nanotrasenprivate");
+	faction = list("yogscastprivate");
 	health = 50;
 	maxHealth = 50;
 	name = "Officer Genesky"

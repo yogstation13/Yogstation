@@ -261,9 +261,9 @@
 /area/template_noop)
 "X" = (
 /obj/item/toy/beach_ball{
-	desc = "The simple beach ball is one of Nanotrasen's most popular products. 'Why do we make beach balls? Because we can! (TM)' - Nanotrasen";
+	desc = "The simple beach ball is one of yogscast's most popular products. 'Why do we make beach balls? Because we can! (TM)' - yogscast";
 	item_state = "beachball";
-	name = "Nanotrasen-brand beach ball";
+	name = "yogscast-brand beach ball";
 	pixel_y = 7
 	},
 /turf/open/floor/plating/beach/sand,

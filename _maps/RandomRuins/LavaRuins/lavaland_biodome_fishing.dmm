@@ -494,7 +494,7 @@
 	pixel_x = 6;
 	pixel_y = 1
 	},
-/obj/item/soap/nanotrasen,
+/obj/item/soap/yogscast,
 /obj/item/radio/intercom{
 	broadcasting = 1;
 	frequency = 1558;
@@ -1219,7 +1219,7 @@
 /area/ruin/powered/fishing/shop)
 "Dn" = (
 /obj/effect/mapping_helpers/no_lava,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/yogscast{
 	pixel_y = -32
 	},
 /turf/open/floor/plating/lavaland_baseturf,
@@ -1789,7 +1789,7 @@
 "SM" = (
 /obj/structure/window/reinforced/spawner/east,
 /mob/living/simple_animal/hostile/carp/cayenne{
-	desc = "A failed experiment of Nanotrasen to create weaponised carp technology. This less than intimidating carp now serves as an authority figure's pet.";
+	desc = "A failed experiment of yogscast to create weaponised carp technology. This less than intimidating carp now serves as an authority figure's pet.";
 	health = 200;
 	icon_dead = "base_dead";
 	icon_gib = "carp_gib";
@@ -1917,7 +1917,7 @@
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
 "Vu" = (
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/yogscast{
 	pixel_y = 32
 	},
 /obj/effect/mapping_helpers/no_lava,

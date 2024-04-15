@@ -58,7 +58,7 @@
 
 /obj/structure/showcase/mecha/marauder
 	name = "combat mech exhibit"
-	desc = "A stand with an empty old Nanotrasen Corporation combat mech bolted to it. It is described as the premier unit used to defend corporate interests and employees."
+	desc = "A stand with an empty old yogscast Corporation combat mech bolted to it. It is described as the premier unit used to defend corporate interests and employees."
 	icon = 'icons/mecha/mecha.dmi'
 	icon_state = "marauder"
 
@@ -68,7 +68,7 @@
 
 /obj/structure/showcase/mecha/gygax
 	name = "combat mech exhibit"
-	desc = "A stand with an empty old Nanotrasen Corporation combat mech bolted to it. It is described as a lightweight forward combat exosuit for security teams."
+	desc = "A stand with an empty old yogscast Corporation combat mech bolted to it. It is described as a lightweight forward combat exosuit for security teams."
 	icon = 'icons/mecha/mecha.dmi'
 	icon_state = "gygax"
 
@@ -83,30 +83,30 @@
 	icon_state = "firefighter"
 
 /obj/structure/showcase/machinery/implanter
-	name = "Nanotrasen automated mindshield implanter exhibit"
-	desc = "A flimsy model of a standard Nanotrasen automated mindshield implant machine. With secure positioning harnesses and a robotic surgical injector, brain damage and other serious medical anomalies are now up to 60% less likely!"
+	name = "yogscast automated mindshield implanter exhibit"
+	desc = "A flimsy model of a standard yogscast automated mindshield implant machine. With secure positioning harnesses and a robotic surgical injector, brain damage and other serious medical anomalies are now up to 60% less likely!"
 	icon = 'icons/obj/machines/implantchair.dmi'
 	icon_state = "implantchair"
 
 /obj/structure/showcase/machinery/microwave
-	name = "Nanotrasen-brand microwave"
-	desc = "The famous Nanotrasen-brand microwave, the multi-purpose cooking appliance every station needs! This one appears to be drawn onto a cardboard box."
+	name = "yogscast-brand microwave"
+	desc = "The famous yogscast-brand microwave, the multi-purpose cooking appliance every station needs! This one appears to be drawn onto a cardboard box."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "mw"
 
 /obj/structure/showcase/machinery/cloning_pod
 	name = "cloning pod exhibit"
-	desc = "Signs describe how cloning pods like these ensure that every Nanotrasen employee can carry out their contracts in full, even in the unlikely event of their catastrophic death. Hopefully they aren't all made of cardboard, like this one."
+	desc = "Signs describe how cloning pods like these ensure that every yogscast employee can carry out their contracts in full, even in the unlikely event of their catastrophic death. Hopefully they aren't all made of cardboard, like this one."
 	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "pod_0"
 
 /obj/structure/showcase/perfect_employee
 	name = "'Perfect Man' employee exhibit"
-	desc = "A stand with a model of the perfect Nanotrasen Employee bolted to it. Signs indicate it is robustly genetically engineered, as well as being ruthlessly loyal."
+	desc = "A stand with a model of the perfect yogscast Employee bolted to it. Signs indicate it is robustly genetically engineered, as well as being ruthlessly loyal."
 
 /obj/structure/showcase/machinery/tv
-	name = "Nanotrasen corporate newsfeed"
-	desc = "A slightly battered looking TV. Various Nanotrasen infomercials play on a loop, accompanied by a jaunty tune."
+	name = "yogscast corporate newsfeed"
+	desc = "A slightly battered looking TV. Various yogscast infomercials play on a loop, accompanied by a jaunty tune."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "television"
 

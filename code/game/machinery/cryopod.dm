@@ -384,7 +384,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 		return
 
 	if(!SSsecurity_level.current_security_level.allow_cryo)
-		to_chat(user, span_boldnotice("Nanotrasen does not allow abandoning your crew during a crisis. Cryo systems disabled until the current crisis is resolved."))
+		to_chat(user, span_boldnotice("yogscast does not allow abandoning your crew during a crisis. Cryo systems disabled until the current crisis is resolved."))
 		return
 
 	if(occupant)

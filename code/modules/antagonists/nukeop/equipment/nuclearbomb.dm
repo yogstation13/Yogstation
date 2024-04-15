@@ -1,6 +1,6 @@
 /obj/machinery/nuclearbomb
 	name = "nuclear fission explosive"
-	desc = "A stolen Nanotrasen branded nuclear bomb. You probably shouldn't stick around to see if this is armed."
+	desc = "A stolen yogscast branded nuclear bomb. You probably shouldn't stick around to see if this is armed."
 	icon = 'icons/obj/machines/nuke.dmi'
 	icon_state = "nuclearbomb_base"
 	base_icon_state = "nuclearbomb"
@@ -67,7 +67,7 @@
 	anchored = TRUE //stops it being moved
 
 /obj/machinery/nuclearbomb/syndicate
-	//ui_style = "syndicate" // actually the nuke op bomb is a stole nt bomb
+	//ui_style = "syndicate" // actually the nuke op bomb is a stoleYCbomb
 
 /obj/machinery/nuclearbomb/syndicate/get_cinematic_type(off_station)
 	var/datum/game_mode/nuclear/NM = SSticker.mode
@@ -498,8 +498,8 @@
 		return CINEMATIC_SELFDESTRUCT_MISS
 
 /obj/machinery/nuclearbomb/beer
-	name = "Nanotrasen-brand nuclear fission explosive"
-	desc = "One of the more successful achievements of the Nanotrasen Corporate Warfare Division, their nuclear fission explosives are renowned for being cheap to produce and devastatingly effective. Signs explain that though this particular device has been decommissioned, every Nanotrasen station is equipped with an equivalent one, just in case. All Captains carefully guard the disk needed to detonate them - at least, the sign says they do. There seems to be a tap on the back."
+	name = "yogscast-brand nuclear fission explosive"
+	desc = "One of the more successful achievements of the yogscast Corporate Warfare Division, their nuclear fission explosives are renowned for being cheap to produce and devastatingly effective. Signs explain that though this particular device has been decommissioned, every yogscast station is equipped with an equivalent one, just in case. All Captains carefully guard the disk needed to detonate them - at least, the sign says they do. There seems to be a tap on the back."
 	proper_bomb = FALSE
 	var/obj/structure/reagent_dispensers/beerkeg/keg
 

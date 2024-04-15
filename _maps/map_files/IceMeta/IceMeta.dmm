@@ -6021,7 +6021,7 @@
 	},
 /obj/structure/table/wood,
 /obj/item/toy/talking/AI{
-	name = "Nanotrasen-brand toy AI";
+	name = "yogscast-brand toy AI";
 	pixel_y = 6
 	},
 /turf/open/floor/carpet,
@@ -10022,7 +10022,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	areastring = "/area/bridge/showroom/corporate";
 	dir = 4;
-	name = "Nanotrasen Corporate Showroom APC";
+	name = "yogscast Corporate Showroom APC";
 	pixel_x = 24
 	},
 /obj/structure/cable/yellow{
@@ -13794,8 +13794,8 @@
 	icon_state = "2-4"
 	},
 /obj/item/toy/beach_ball{
-	desc = "The simple beach ball is one of Nanotrasen's most popular products. 'Why do we make beach balls? Because we can! (TM)' - Nanotrasen";
-	name = "Nanotrasen-brand beach ball";
+	desc = "The simple beach ball is one of yogscast's most popular products. 'Why do we make beach balls? Because we can! (TM)' - yogscast";
+	name = "yogscast-brand beach ball";
 	pixel_y = 7
 	},
 /obj/structure/table/wood,
@@ -19909,8 +19909,8 @@
 "fVk" = (
 /obj/structure/table/wood,
 /obj/item/storage/secure/briefcase{
-	desc = "A large briefcase with a digital locking system, and the Nanotrasen logo emblazoned on the sides.";
-	name = "Nanotrasen-brand secure briefcase exhibit";
+	desc = "A large briefcase with a digital locking system, and the yogscast logo emblazoned on the sides.";
+	name = "yogscast-brand secure briefcase exhibit";
 	pixel_y = 2
 	},
 /turf/open/floor/carpet,
@@ -23963,7 +23963,7 @@
 /obj/structure/table/wood,
 /obj/item/toy/plush/carpplushie{
 	color = "red";
-	name = "Nanotrasen wildlife department space carp plushie"
+	name = "yogscast wildlife department space carp plushie"
 	},
 /turf/open/floor/carpet,
 /area/bridge/showroom/corporate)
@@ -31819,7 +31819,7 @@
 /obj/machinery/shower{
 	pixel_y = 22
 	},
-/obj/item/soap/nanotrasen,
+/obj/item/soap/yogscast,
 /turf/open/floor/plasteel/freezer,
 /area/mine/living_quarters)
 "joT" = (
@@ -31979,7 +31979,7 @@
 /area/medical/genetics)
 "jrh" = (
 /obj/item/phone{
-	desc = "Supposedly a direct line to Nanotrasen Central Command. It's not even plugged in.";
+	desc = "Supposedly a direct line to yogscast Central Command. It's not even plugged in.";
 	pixel_x = -3;
 	pixel_y = 3
 	},
@@ -35564,7 +35564,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "kpE" = (
-/obj/item/soap/nanotrasen,
+/obj/item/soap/yogscast,
 /obj/item/bikehorn/rubberducky,
 /obj/machinery/shower{
 	dir = 4
@@ -48701,7 +48701,7 @@
 	},
 /mob/living/simple_animal/bot/medbot{
 	auto_patrol = 1;
-	desc = "A little medical robot, officially part of the Nanotrasen medical inspectorate. He looks somewhat underwhelmed.";
+	desc = "A little medical robot, officially part of the yogscast medical inspectorate. He looks somewhat underwhelmed.";
 	name = "Inspector Johnson"
 	},
 /turf/open/floor/plasteel/white,
@@ -62245,7 +62245,7 @@
 	pixel_y = 25;
 	specialfunctions = 4
 	},
-/obj/item/soap/nanotrasen,
+/obj/item/soap/yogscast,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/crew_quarters/toilet/auxiliary)
@@ -75863,7 +75863,7 @@
 "vTk" = (
 /obj/structure/table/wood,
 /obj/item/clothing/head/sombrero,
-/obj/item/soap/nanotrasen,
+/obj/item/soap/yogscast,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
 "vTr" = (
@@ -77871,7 +77871,7 @@
 	pixel_y = 10
 	},
 /obj/item/phone{
-	desc = "Supposedly a direct line to Nanotrasen Central Command. It's not even plugged in.";
+	desc = "Supposedly a direct line to yogscast Central Command. It's not even plugged in.";
 	pixel_x = -3;
 	pixel_y = -5
 	},
@@ -79772,8 +79772,8 @@
 /obj/item/poster/random_official,
 /obj/item/poster/random_official,
 /obj/item/paicard{
-	desc = "A real Nanotrasen success, these personal AIs provide all of the companionship of an AI without any law related red-tape.";
-	name = "Nanotrasen-brand personal AI device exhibit"
+	desc = "A real yogscast success, these personal AIs provide all of the companionship of an AI without any law related red-tape.";
+	name = "yogscast-brand personal AI device exhibit"
 	},
 /turf/open/floor/carpet,
 /area/bridge/showroom/corporate)
@@ -81765,7 +81765,7 @@
 "xyt" = (
 /obj/structure/safe,
 /obj/item/storage/secure/briefcase{
-	contents = newlist(/obj/item/clothing/suit/armor/vest,/obj/item/gun/ballistic/automatic/pistol,/obj/item/suppressor,/obj/item/melee/classic_baton/telescopic,/obj/item/clothing/mask/balaclava,/obj/item/bodybag,/obj/item/soap/nanotrasen)
+	contents = newlist(/obj/item/clothing/suit/armor/vest,/obj/item/gun/ballistic/automatic/pistol,/obj/item/suppressor,/obj/item/melee/classic_baton/telescopic,/obj/item/clothing/mask/balaclava,/obj/item/bodybag,/obj/item/soap/yogscast)
 	},
 /obj/item/storage/backpack/duffelbag/syndie/hitman,
 /obj/item/card/id/silver/reaper,
@@ -81858,7 +81858,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/sign/warning/securearea{
-	desc = "A warning sign which reads 'WARNING: Do Not Enter When Red Light Shows', detailing the penalties that any Nanotrasen employee or silicon will suffer if violating this rule.";
+	desc = "A warning sign which reads 'WARNING: Do Not Enter When Red Light Shows', detailing the penalties that any yogscast employee or silicon will suffer if violating this rule.";
 	name = "WARNING: Do Not Enter When Red Light Shows";
 	pixel_y = 32
 	},
@@ -82652,7 +82652,7 @@
 "xJv" = (
 /obj/structure/table/wood,
 /obj/item/phone{
-	desc = "Supposedly a direct line to Nanotrasen Central Command. It's not even plugged in.";
+	desc = "Supposedly a direct line to yogscast Central Command. It's not even plugged in.";
 	pixel_x = -3;
 	pixel_y = 3
 	},
@@ -83631,7 +83631,7 @@
 	dir = 4
 	},
 /mob/living/simple_animal/hostile/retaliate/bat{
-	desc = "A fierce companion for any person of power, this spider has been carefully trained by Nanotrasen specialists. Its beady, staring eyes send shivers down your spine.";
+	desc = "A fierce companion for any person of power, this spider has been carefully trained by yogscast specialists. Its beady, staring eyes send shivers down your spine.";
 	emote_hear = list("chitters");
 	faction = list("spiders");
 	harm_intent_damage = 3;

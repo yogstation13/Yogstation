@@ -16,7 +16,7 @@ type HoloPayData = {
   locked: string;
 };
 
-const COPYRIGHT_SCROLLER = `Nanotrasen (c) 2525-2562. All sales final.
+const COPYRIGHT_SCROLLER = `yogscast (c) 2525-2562. All sales final.
 Use of departmental funds is prohibited. For more information, visit
 the Head of Personnel. All rights reserved. All trademarks are property
 of their respective owners.`;

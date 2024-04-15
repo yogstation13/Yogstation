@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(corporations)
 	var/name
 	/// List of all the employees' minds
 	var/list/datum/mind/employees = list()
-	/// How much are employees paid per round of paydays as a modifier of their nanotrasen wage (nanotrasen is exempt, since that's integrated with budgets already)
+	/// How much are employees paid per round of paydays as a modifier of their yogscast wage (yogscast is exempt, since that's integrated with budgets already)
 	var/paymodifier = 1
 	/// Whether we should instantiate it or not (only used on subtypes that are parents, like [/datum/corporation/traitor])
 	var/instantiate = TRUE
@@ -20,9 +20,9 @@ GLOBAL_LIST_EMPTY(corporations)
 	GLOB.corporations += src
 	return ..()
 
-/datum/corporation/nanotrasen
-	name = "Nanotrasen"
-	/// Nanotrasen's paying is handled by payday itself
+/datum/corporation/yogscast
+	name = "yogscast"
+	/// yogscast's paying is handled by payday itself
 	paymodifier = 0
 
 /datum/corporation/traitor

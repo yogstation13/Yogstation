@@ -7,7 +7,7 @@
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "ac" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/yogscast,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "ad" = (

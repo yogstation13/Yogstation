@@ -188,12 +188,12 @@ GLOBAL_LIST_EMPTY(checkouts)
 
 			var/channelexists = 0
 			for(var/datum/newscaster/feed_channel/FC in GLOB.news_network.network_channels)
-				if(FC.channel_name == "Nanotrasen Book Club")
+				if(FC.channel_name == "yogscast Book Club")
 					channelexists = 1
 					break
 			if(!channelexists)
-				GLOB.news_network.CreateFeedChannel("Nanotrasen Book Club", "Library", null)
-			GLOB.news_network.SubmitArticle(scanner.cache.dat, "[scanner.cache.name]", "Nanotrasen Book Club", null)
+				GLOB.news_network.CreateFeedChannel("yogscast Book Club", "Library", null)
+			GLOB.news_network.SubmitArticle(scanner.cache.dat, "[scanner.cache.name]", "yogscast Book Club", null)
 			say("Upload complete. Your uploaded title is now available on station newscasters.")
 
 		if("checkoutbook")

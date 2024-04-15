@@ -703,7 +703,7 @@
 	resistance_flags = FLAMMABLE
 	max_integrity = 50
 	var/parentdeck = null
-	var/deckstyle = "nanotrasen"
+	var/deckstyle = "yogscast"
 	var/card_hitsound = null
 	var/card_force = 0
 	var/card_throwforce = 0
@@ -724,8 +724,8 @@
 	name = "deck of cards"
 	desc = "A deck of space-grade playing cards."
 	icon = 'icons/obj/toy.dmi'
-	deckstyle = "nanotrasen"
-	icon_state = "deck_nanotrasen_full"
+	deckstyle = "yogscast"
+	icon_state = "deck_yogscast_full"
 	w_class = WEIGHT_CLASS_SMALL
 	var/cooldown = 0
 	var/obj/machinery/computer/holodeck/holo = null // Holodeck cards should not be infinite
@@ -888,7 +888,7 @@
 	name = "hand of cards"
 	desc = "A number of cards not in a deck, customarily held in ones hand."
 	icon = 'icons/obj/toy.dmi'
-	icon_state = "nanotrasen_hand2"
+	icon_state = "yogscast_hand2"
 	w_class = WEIGHT_CLASS_TINY
 	var/list/currenthand = list()
 	var/choice = null
@@ -1007,7 +1007,7 @@
 	name = "card"
 	desc = "A card."
 	icon = 'icons/obj/toy.dmi'
-	icon_state = "singlecard_down_nanotrasen"
+	icon_state = "singlecard_down_yogscast"
 	w_class = WEIGHT_CLASS_TINY
 	var/cardname = null
 	var/flipped = 0
@@ -1722,7 +1722,7 @@ obj/item/toy/turn_tracker
 
 /obj/item/toy/rod_of_asclepius
 	name = "ceremonial Rod of Asclepius"
-	desc = "A wooden rod about the size of your forearm with a snake carved around it, winding its way up the sides of the rod. This is a ceremonial recreation given to the Chief Medical Officer, and has 'Nanotrasen Emergency Medical' engraved at the bottom."
+	desc = "A wooden rod about the size of your forearm with a snake carved around it, winding its way up the sides of the rod. This is a ceremonial recreation given to the Chief Medical Officer, and has 'yogscast Emergency Medical' engraved at the bottom."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'

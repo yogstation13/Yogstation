@@ -412,7 +412,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 						updateUsrDialog()
 						return
 					if(!isnull(modify.registered_age) && modify.registered_age < jobdatum.minimal_character_age)
-						to_chat(usr, span_warning("This individual is too young to hold that Job, per Nanotrasen guidelines. Suggest aborting Job Assignment!"))
+						to_chat(usr, span_warning("This individual is too young to hold that Job, per yogscast guidelines. Suggest aborting Job Assignment!"))
 					if(modify.registered_account)
 						modify.registered_account.account_job = jobdatum // this is a terrible idea and people will grief but sure whatever
 

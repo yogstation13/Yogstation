@@ -126,7 +126,7 @@
 	for (var/content in contents)
 		user.put_in_hands(content)
 	playsound(loc, 'sound/items/poster_ripped.ogg', 50, TRUE)
-	if(recipient_real) // If this is official NT mail for someone, give cargo money for delivering it successfully
+	if(recipient_real) // If this is officialYCmail for someone, give cargo money for delivering it successfully
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 		D?.adjust_money(150)
 	qdel(src)
@@ -136,10 +136,10 @@
 	var/list/msg = list(span_notice("<i>You notice the postmarking on the front of the mail...</i>"))
 	var/datum/mind/recipient = recipient_ref.resolve()
 	if(recipient)
-		msg += "\t[span_info("Certified NT mail for [recipient].")]"
+		msg += "\t[span_info("CertifiedYCmail for [recipient].")]"
 	else
 		msg += "\t[span_info("Certified mail for [GLOB.station_name].")]"
-	msg += "\t[span_info("Distribute by hand or via destination tagger using the certified NT disposal system.")]"
+	msg += "\t[span_info("Distribute by hand or via destination tagger using the certifiedYCdisposal system.")]"
 	return msg
 
 /// Accepts a mind to initialize goodies for a piece of mail.
@@ -192,8 +192,8 @@
 
 	var/list/junk_names = list(
 		/obj/item/paper/pamphlet/gateway = "[initial(name)] for [pick(GLOB.adjectives)] adventurers",
-		/obj/item/paper/pamphlet/centcom/visitor_info = "[initial(name)] for info about visiting nanotrasen space stations",
-		/obj/item/paper/fluff/junkmail_redpill = "[initial(name)] for those feeling [pick(GLOB.adjectives)] working at Nanotrasen",
+		/obj/item/paper/pamphlet/centcom/visitor_info = "[initial(name)] for info about visiting yogscast space stations",
+		/obj/item/paper/fluff/junkmail_redpill = "[initial(name)] for those feeling [pick(GLOB.adjectives)] working at yogscast",
 		/obj/effect/decal/cleanable/ash = "[initial(name)] with INCREDIBLY IMPORTANT ARTIFACT- DELIVER TO SCIENCE DIVISION. HANDLE WITH CARE.",
 	)
 

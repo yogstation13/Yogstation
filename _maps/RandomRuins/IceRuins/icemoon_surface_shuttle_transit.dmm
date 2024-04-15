@@ -39,7 +39,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/ruin/unpowered)
 "T" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/yogscast,
 /turf/closed/wall/mineral/titanium,
 /area/ruin/unpowered)
 "V" = (

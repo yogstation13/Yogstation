@@ -308,14 +308,14 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 			outfit.uniform = /obj/item/clothing/under/rank/prisoner
 			outfit.shoes = /obj/item/clothing/shoes/sneakers/orange
 		if(3)
-			flavour_text += "you were a doctor on one of Nanotrasen's space stations, but you left behind that damn corporation's tyranny and everything it stood for. From a metaphorical hell \
+			flavour_text += "you were a doctor on one of yogscast's space stations, but you left behind that damn corporation's tyranny and everything it stood for. From a metaphorical hell \
 			to a literal one, you find yourself nonetheless missing the recycled air and warm floors of what you left behind... but you'd still rather be here than there."
 			outfit.uniform = /obj/item/clothing/under/rank/medical
 			outfit.suit = /obj/item/clothing/suit/toggle/labcoat
 			outfit.back = /obj/item/storage/backpack/medic
 		if(4)
 			flavour_text += "you were always joked about by your friends for \"not playing with a full deck\", as they so kindly put it. It seems that they were right when you, on a tour \
-			at one of Nanotrasen's state-of-the-art research facilities, were in one of the escape pods alone and saw the red button. It was big and shiny, and it caught your eye. You pressed \
+			at one of yogscast's state-of-the-art research facilities, were in one of the escape pods alone and saw the red button. It was big and shiny, and it caught your eye. You pressed \
 			it, and after a terrifying and fast ride for days, you landed here. You've had time to wisen up since then, and you think that your old friends wouldn't be laughing now."
 
 /obj/effect/mob_spawn/human/hermit/Destroy()
@@ -356,13 +356,13 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	outfit = /datum/outfit/lavalandprisoner
 	roundstart = FALSE
 	death = FALSE
-	short_desc = "You're a prisoner, sentenced to hard work in one of Nanotrasen's labor camps."
+	short_desc = "You're a prisoner, sentenced to hard work in one of yogscast's labor camps."
 	flavour_text = "Good. It seems as though your ship crashed. It seems as \
 	though fate has other plans for you. You remember that you were convicted of "
 	assignedrole = "Escaped Prisoner"
 
 /obj/effect/mob_spawn/human/prisoner_transport/special(mob/living/L)
-	L.fully_replace_character_name(null,"NTP #LL-0[rand(111,999)]") //Nanotrasen Prisoner #Lavaland-(numbers)
+	L.fully_replace_character_name(null,"NTP #LL-0[rand(111,999)]") //yogscast Prisoner #Lavaland-(numbers)
 
 /obj/effect/mob_spawn/human/prisoner_transport/Initialize(mapload)
 	. = ..()
@@ -486,13 +486,13 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	desc = "A grave.  It's dirt seems to be churned up, with signs of recent activity."
 	roundstart = FALSE
 	death = FALSE
-	important_info = "Do not board the Nanotrasen station under any circumstances."
+	important_info = "Do not board the yogscast station under any circumstances."
 	icon = 'icons/obj/lavaland/misc.dmi'
 	icon_state = "grave"
 	mob_species = /datum/species/zombie
 	outfit = /datum/outfit/icemoon_walker
 	short_desc = "You are an Icemoon Walker, created by The Syndicate's early experiments with Romerol."
-	flavour_text = "You suffer from an eternal hunger, due to a curse bestowed upon you by Syndicate scientists. The snowy wastes are filled with meat, including that of Nanotrasen miners. Your feast awaits."
+	flavour_text = "You suffer from an eternal hunger, due to a curse bestowed upon you by Syndicate scientists. The snowy wastes are filled with meat, including that of yogscast miners. Your feast awaits."
 	assignedrole = "Icemoon Walker"
 
 /datum/outfit/icemoon_walker
@@ -508,13 +508,13 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	desc = "A grave.  It's dirt is perfectly shaped, as though someone has smoothed it out recently."
 	roundstart = FALSE
 	death = FALSE
-	important_info = "Do not board the Nanotrasen station under any circumstances."
+	important_info = "Do not board the yogscast station under any circumstances."
 	icon = 'icons/obj/lavaland/misc.dmi'
 	icon_state = "grave"
 	mob_species = /datum/species/zombie
 	outfit = /datum/outfit/icemoon_walker/chieftain
 	short_desc = "You lead a tribe of Icemoon Walkers, zombies created by The Syndicate's early experiments with Romerol."
-	flavour_text = "You suffer from an eternal hunger, due to a curse bestowed upon you by Syndicate scientists. The snowy wastes are filled with meat, including that of Nanotrasen miners. Your feast awaits."
+	flavour_text = "You suffer from an eternal hunger, due to a curse bestowed upon you by Syndicate scientists. The snowy wastes are filled with meat, including that of yogscast miners. Your feast awaits."
 	assignedrole = "Icemoon Walker Chieftain"
 
 /datum/outfit/icemoon_walker/chieftain
@@ -604,7 +604,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	name = "Syndicate Outpost Agent"
 	short_desc = "You are an agent at the Syndicate icemoon outpost."
 	flavour_text = "You are meant to work within the outpost and may take any role within the base you see fit."
-	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	important_info = "Do not abandon the base or give supplies toYCemployees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base
 	assignedrole = "Icemoon Syndicate"
 
@@ -622,7 +622,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	name = "Syndicate Outpost Security Officer"
 	short_desc = "You are a security officer at the Syndicate icemoon outpost."
 	flavour_text = "Protect the outpost at all costs and prevent its destruction by any means necessary."
-	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	important_info = "Do not abandon the base or give supplies toYCemployees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/security
 
 /datum/outfit/syndicate_empty/icemoon_base/security
@@ -638,7 +638,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	name = "Syndicate Outpost Researcher"
 	short_desc = "You are a researcher at the Syndicate icemoon outpost."
 	flavour_text = "Perform research for the sake of the Syndicate and advance technology."
-	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	important_info = "Do not abandon the base or give supplies toYCemployees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/scientist
 
 /datum/outfit/syndicate_empty/icemoon_base/scientist
@@ -653,7 +653,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	name = "Syndicate Outpost Engineer"
 	short_desc = "You are an engineer at the Syndicate icemoon outpost."
 	flavour_text = "Maintain and upgrade the base's systems and equipment."
-	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	important_info = "Do not abandon the base or give supplies toYCemployees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/engineer
 
 /datum/outfit/syndicate_empty/icemoon_base/engineer
@@ -669,7 +669,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	name = "Syndicate Outpost Doctor"
 	short_desc = "You are a medical officer at the Syndicate icemoon outpost."
 	flavour_text = "Provide medical aid to the crew of the outpost and keep them all alive."
-	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	important_info = "Do not abandon the base or give supplies toYCemployees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/medic
 
 /datum/outfit/syndicate_empty/icemoon_base/medic
@@ -684,7 +684,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	name = "Syndicate Outpost Commander"
 	short_desc = "You are the commander of the Syndicate icemoon outpost."
 	flavour_text = "Direct the agents working under your command to operate the base, and keep it secure. If the situation gets dire, activate the emergency self-destruct located in the control room."
-	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	important_info = "Do not abandon the base or give supplies toYCemployees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/captain
 	id_access_list = list(150,151)
 
@@ -692,7 +692,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	name = "Syndicate Icemoon Outpost Commander"
 	glasses = /obj/item/clothing/glasses/sunglasses/big //big man get big sunglasses
 	ears = /obj/item/radio/headset/syndicate/alt/leader //big voice
-	accessory = /obj/item/clothing/accessory/medal/gold //because the captain one is NT brand
+	accessory = /obj/item/clothing/accessory/medal/gold //because the captain one isYCbrand
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
 	l_pocket = /obj/item/melee/transforming/energy/sword/saber/red
 	mask = /obj/item/clothing/mask/chameleon/gps //best one to give a GPS is this guy because he has a fast-firing 2-shot kill to defend his home with
@@ -713,7 +713,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	short_desc = "After becoming disillusioned with society, you chose a life here with the ice and snow."
 	roundstart = FALSE
 	death = FALSE
-	flavour_text = "Your solitude might be threatened by the new Nanotrasen facility constructed nearby, but it also might offer minor comforts and services that you haven't experienced in years."
+	flavour_text = "Your solitude might be threatened by the new yogscast facility constructed nearby, but it also might offer minor comforts and services that you haven't experienced in years."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	outfit = /datum/outfit/ice_hermit
@@ -729,7 +729,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	l_pocket = /obj/item/tank/internals/emergency_oxygen
 	r_pocket = /obj/item/flashlight/glowstick
 
-//Ancient cryogenic sleepers. Players become NT crewmen from a hundred year old space station, now on the verge of collapse.
+//Ancient cryogenic sleepers. Players becomeYCcrewmen from a hundred year old space station, now on the verge of collapse.
 /obj/effect/mob_spawn/human/oldsec
 	name = "old cryogenics pod"
 	desc = "A humming cryo pod. You can barely recognise a security uniform underneath the built up ice. The machine is attempting to wake up its occupant."
@@ -740,7 +740,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	death = FALSE
 	random = TRUE
 	mob_species = /datum/species/human
-	short_desc = "You are a security officer working for Nanotrasen, stationed onboard a state of the art research station."
+	short_desc = "You are a security officer working for yogscast, stationed onboard a state of the art research station."
 	flavour_text = "You vaguely recall rushing into a cryogenics pod due to an oncoming radiation storm. \
 	The last thing you remember is the station's Artificial Program telling you that you would only be asleep for eight hours. As you open \
 	your eyes, everything seems rusted and broken, a dark feeling swells in your gut as you climb out of your pod."
@@ -766,7 +766,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	death = FALSE
 	random = TRUE
 	mob_species = /datum/species/human
-	short_desc = "You are an engineer working for Nanotrasen, stationed onboard a state of the art research station."
+	short_desc = "You are an engineer working for yogscast, stationed onboard a state of the art research station."
 	flavour_text = "You vaguely recall rushing into a cryogenics pod due to an oncoming radiation storm. The last thing \
 	you remember is the station's Artificial Program telling you that you would only be asleep for eight hours. As you open \
 	your eyes, everything seems rusted and broken, a dark feeling swells in your gut as you climb out of your pod."
@@ -792,7 +792,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	death = FALSE
 	random = TRUE
 	mob_species = /datum/species/human
-	short_desc = "You are a scientist working for Nanotrasen, stationed onboard a state of the art research station."
+	short_desc = "You are a scientist working for yogscast, stationed onboard a state of the art research station."
 	flavour_text = "You vaguely recall rushing into a cryogenics pod due to an oncoming radiation storm. \
 	The last thing you remember is the station's Artificial Program telling you that you would only be asleep for eight hours. As you open \
 	your eyes, everything seems rusted and broken, a dark feeling swells in your gut as you climb out of your pod."

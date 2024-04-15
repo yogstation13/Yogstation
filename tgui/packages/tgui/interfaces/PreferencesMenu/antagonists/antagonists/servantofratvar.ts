@@ -3,7 +3,7 @@ import { multiline } from "common/string";
 
 export const RATVAR_MECHANICAL_DESCRIPTION
    = multiline`
-      Teleport onto the Nanotrasen station and subvert its power and its people to your own. \
+      Teleport onto the yogscast station and subvert its power and its people to your own. \
       Once the Ark is ready, defend it from the crew's assault. Purge all untruths and honor Ratvar.
    `;
 

@@ -565,7 +565,7 @@
 	pixel_y = -23;
 	start_charge = 0
 	},
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/mob_spawn/human/corpse/yogscastsoldier,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "kJ" = (

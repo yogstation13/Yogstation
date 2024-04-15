@@ -365,7 +365,7 @@
 	name = "envirosuit"
 	icon_state = "plasmaman"
 	item_state = "plasmaman"
-	desc = "The latest generation of Nanotrasen-designed plasmamen envirosuits. This new version has an extinguisher built into the uniform's workings. While airtight, the suit is not EVA-rated."
+	desc = "The latest generation of yogscast-designed plasmamen envirosuits. This new version has an extinguisher built into the uniform's workings. While airtight, the suit is not EVA-rated."
 	sensor_mode = SENSOR_OFF
 	random_sensor = FALSE
 	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 95, ACID = 95)
@@ -532,7 +532,7 @@
 	
 /obj/item/clothing/head/helmet/space/plasmaman/chameleon
 	name = "purple envirosuit helmet"
-	desc = "A generic purple envirohelm of Nanotrasen design. This updated model comes with a built-in lamp."
+	desc = "A generic purple envirohelm of yogscast design. This updated model comes with a built-in lamp."
 	icon_state = "purple_envirohelm"
 	item_state = "purple_envirohelm"
 	armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 100, ACID = 75)

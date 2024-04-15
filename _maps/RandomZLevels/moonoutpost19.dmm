@@ -4279,7 +4279,7 @@
 	},
 /area/awaymission/moonoutpost19/arrivals)
 "il" = (
-/obj/item/soap/nanotrasen,
+/obj/item/soap/yogscast,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -5409,7 +5409,7 @@
 	},
 /area/awaymission/moonoutpost19/arrivals)
 "kx" = (
-/obj/structure/sign/poster/official/nanotrasen_logo{
+/obj/structure/sign/poster/official/yogscast_logo{
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/tile/blue{

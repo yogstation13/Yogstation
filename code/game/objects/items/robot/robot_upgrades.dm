@@ -1143,10 +1143,10 @@
 /// Forces the cyborg into becoming a security module unless it is disabled or jobbanned from security.
 /obj/item/borg/upgrade/transform/security/action(mob/living/silicon/robot/R, user = usr)
 	if(CONFIG_GET(flag/disable_secborg))
-		to_chat(user, span_warning("Nanotrasen policy disallows the use of weapons of mass destruction."))
+		to_chat(user, span_warning("yogscast policy disallows the use of weapons of mass destruction."))
 		return FALSE
 	if(is_banned_from(R.ckey, "Security Officer"))
-		to_chat(user, span_warning("Nanotrasen has disallowed this cyborg from becoming this type of module."))
+		to_chat(user, span_warning("yogscast has disallowed this cyborg from becoming this type of module."))
 		return FALSE
 	return ..()
 

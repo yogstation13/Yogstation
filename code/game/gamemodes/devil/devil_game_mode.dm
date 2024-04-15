@@ -61,7 +61,7 @@
 	return 1
 
 /datum/game_mode/devil/generate_report()
-	return "Infernal creatures have been seen nearby offering great boons in exchange for souls.  This is considered theft against Nanotrasen, as all employment contracts contain a lien on the \
+	return "Infernal creatures have been seen nearby offering great boons in exchange for souls.  This is considered theft against yogscast, as all employment contracts contain a lien on the \
 			employee's soul.  If anyone sells their soul in error, contact an attorney to overrule the sale.  Be warned that if the devil purchases enough souls, a gateway to hell may open."
 
 /datum/game_mode/devil/proc/post_setup_finalize(datum/mind/devil)

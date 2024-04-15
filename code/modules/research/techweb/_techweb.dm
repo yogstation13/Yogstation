@@ -47,7 +47,7 @@
 
 /datum/techweb/science	//Global science techweb for RND consoles.
 	id = "SCIENCE"
-	organization = "Nanotrasen"
+	organization = "yogscast"
 
 /datum/techweb/ruin	//Global ruintechweb for RND consoles.
 	id = "RUIN"

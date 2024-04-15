@@ -98,7 +98,7 @@
 	mob_type = /mob/living/carbon/human/virtual_reality
 	outfit = /datum/outfit/vr
 	flavour_text = "<span class='big bold'>You have connected to another stations virtual reality system</span>\n\
-	<b>You have been assigned a mission by nanotrasen to increase productivity in a station that lacks any and all teamwork.\n\
+	<b>You have been assigned a mission by yogscast to increase productivity in a station that lacks any and all teamwork.\n\
 	Your objective is to help other people by completing tasks, whether social or combatative, together, while also improving your own skills.</b>"
 	assignedrole = "Vr"
 

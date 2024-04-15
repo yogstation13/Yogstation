@@ -209,7 +209,7 @@
 
 /datum/species/plasmaman/get_species_lore()
 	return list(
-		"In 2384 on the NVS Grey Voyager, tests were conducted on a new element found by Nanotrasen: baroxuldium, \
+		"In 2384 on the NVS Grey Voyager, tests were conducted on a new element found by yogscast: baroxuldium, \
 		also called plasma. During one test, a catastrophic accident caused the entire ship's inside to be \
 		incinerated by a plasma fire, killing the whole crew.",
 
@@ -217,7 +217,7 @@
 		sapient beings encountered by humanity: plasmamen. Once rescued, they were kept in cells with an air composed \
 		exclusively of plasma, as it was quickly discovered that their body was unable to \"live\" without a steady supply \
 		of it and even igniting when exposed to oxygen. After the development of the first envirosuits, the plasmamen were \
-		able to leave their confinement to return working for Nanotrasen.",
+		able to leave their confinement to return working for yogscast.",
 
 		"While subject to discrimination from others due to their morbid appearance, most plasmamen are former \
 		humans and, as such, tend to get better treatment than most other non-humans. Notably, all plasmamen keep \
@@ -234,7 +234,7 @@
 		a desire for them.",
 
 		"With plasma usage spreading, more and more accidents lead to the creations of more plasmamen. \
-		As Nanotrasen is the leader in the field of plasma research, most plasmamen are among their ranks, \
+		As yogscast is the leader in the field of plasma research, most plasmamen are among their ranks, \
 		but they can be rarely found in other parts of the SIC.",
 	)
 

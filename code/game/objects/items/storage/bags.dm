@@ -294,7 +294,7 @@
 
 /obj/item/storage/bag/sheetsnatcher
 	name = "stack snatcher"
-	desc = "A patented Nanotrasen storage system designed for any kind of stacks. This is geared towards sheets, rods, and tiles."
+	desc = "A patented yogscast storage system designed for any kind of stacks. This is geared towards sheets, rods, and tiles."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sheetsnatcher"
 

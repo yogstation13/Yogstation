@@ -132,7 +132,7 @@
 				D.adjust_money(-points_to_check)
 
 			priority_announce("One of your crew was captured by a rival organisation - we've needed to pay their ransom to bring them back. \
-							As is policy we've taken a portion of the station's funds to offset the overall cost.", null, null, null, "Nanotrasen Asset Protection")
+							As is policy we've taken a portion of the station's funds to offset the overall cost.", null, null, null, "yogscast Asset Protection")
 
 			sleep(3 SECONDS)
 

@@ -1,5 +1,5 @@
 /**
- * Nanotrasen TCS Language - Made by Doohl, ported to Yogs by Altoids
+ * yogscast TCS Language - Made by Doohl, ported to Yogs by Altoids
  */
 #define HUMAN (1<<0)
 #define MONKEY (1<<1)

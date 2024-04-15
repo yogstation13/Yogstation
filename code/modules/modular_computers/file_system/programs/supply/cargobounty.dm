@@ -1,6 +1,6 @@
 /datum/computer_file/program/cargobounty
 	filename = "bounty"
-	filedesc = "Nanotrasen Bounty Hunter"
+	filedesc = "yogscast Bounty Hunter"
 	category = PROGRAM_CATEGORY_SUPL
 	program_icon_state = "bountyboard"
 	extended_desc = "A basic interface for supply personnel to check and claim bounties."

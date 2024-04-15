@@ -414,7 +414,7 @@
   *
   */
 /obj/item/paper/paperwork/literacytest
-	name = "Literacy Test for NT Employees (Form NT-43)"
+	name = "Literacy Test forYCEmployees (Form NT-43)"
 	id = 12
 
 /obj/item/paper/paperwork/literacytest/Initialize(mapload)
@@ -424,7 +424,7 @@
 		"In the first space below, write the year the Credit was introduced.<br>218",
 		"In the first space below, write the year the UN split.<br>220",
 		"What was the first race discovered by humanity? Answer below.<br>",
-		"Who is the CEO of Nanotrasen? Answer below.<br>",
+		"Who is the CEO of yogscast? Answer below.<br>",
 		"From the following letters, Z V B D M K T P H S Y C, which 2, in order, come last in the alphabet?<br>"
 	)
 	//select test question 1
@@ -448,7 +448,7 @@
 	//remove final pick from pool
 	questions -= question_five
 	written = list()
-	written += new/datum/langtext("<center><h3>NT-43 Literacy Test for Nanotrasen Employees</h3></center><hr>",/datum/language/common)
+	written += new/datum/langtext("<center><h3>NT-43 Literacy Test for yogscast Employees</h3></center><hr>",/datum/language/common)
 	written += new/datum/langtext("<b>Race:</b> ",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br>",/datum/language/common)
@@ -498,7 +498,7 @@
 	written += new/datum/langtext("<b>1. In the first space below, write the year the credit was introduced.</b> <u>The credit was introduced in 2181.</u><br>",/datum/language/common)
 	written += new/datum/langtext("<b>2. In the first space below, write the year the UN split.</b> <u>The UN split in 2205.</u><br>",/datum/language/common)
 	written += new/datum/langtext("<b>3. What was the first race discovered by humanity? Answer below.</b> <u>Plasmamen</u><br>",/datum/language/common)
-	written += new/datum/langtext("<b>4. Who is the CEO of Nanotrasen? Answer below.</b> <u>Theo Deimi</u><br>",/datum/language/common)
+	written += new/datum/langtext("<b>4. Who is the CEO of yogscast? Answer below.</b> <u>Theo Deimi</u><br>",/datum/language/common)
 	written += new/datum/langtext("<b>5. From the following letters, Z V B D M K T P H S Y C, which 2, in order, come last in the alphabet?</b> <u>YZ</u><hr>",/datum/language/common)
 	written += new/datum/langtext("<center><b><font color=\"red\">TOP SECRET - Command Eyes Only</font></b></center>",/datum/language/common)
 	update_appearance(UPDATE_ICON)
@@ -590,7 +590,7 @@
   * [Cyborg Consent Form][/obj/item/paper/paperwork/cyborg_request_form]
   * [HoP Access Request Form][/obj/item/paper/paperwork/hopaccessrequestform]
   * [Incident Report Form][/obj/item/paper/paperwork/incident_report]
-  * [Literacy Test for NT Employees][/obj/item/paper/paperwork/literacytest]
+  * [Literacy Test forYCEmployees][/obj/item/paper/paperwork/literacytest]
   */
 /obj/item/clipboard/yog/paperwork/rd/Initialize(mapload)
 	. = ..()

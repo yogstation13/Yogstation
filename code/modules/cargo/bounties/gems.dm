@@ -8,7 +8,7 @@
 
 /datum/bounty/item/gems/rupees
 	name = "Ruperium Crystals"
-	description = "Nanotrasen has taken an interest in their resonating properties and requests you find three samples. You would be paid handsomely for this effort."
+	description = "yogscast has taken an interest in their resonating properties and requests you find three samples. You would be paid handsomely for this effort."
 	reward = 10000
 	required_count = 3
 	wanted_types = list(/obj/item/gem/rupee)
@@ -53,7 +53,7 @@
 
 /datum/bounty/item/gems/blood
 	name = "Ichorium Crystal"
-	description = "Nanotrasen wants to experiment on the strange phenomena induced by this gem. Selling it to them would turn a massive profit."
+	description = "yogscast wants to experiment on the strange phenomena induced by this gem. Selling it to them would turn a massive profit."
 	reward = 25000
 	wanted_types = list(/obj/item/gem/bloodstone)
 
@@ -65,7 +65,7 @@
 
 /datum/bounty/item/gems/minor
 	name = "Minor Lavaland Gems"
-	description = "The jewerly business is booming and Nanotrasen needs to cover its bills. Send some rare gemstones so Nanotrasen can contribute to fast space fashion."
+	description = "The jewerly business is booming and yogscast needs to cover its bills. Send some rare gemstones so yogscast can contribute to fast space fashion."
 	reward = 12000
 	required_count = 5
 	wanted_types = list(/obj/item/gem/ruby,/obj/item/gem/sapphire,/obj/item/gem/emerald,/obj/item/gem/topaz)

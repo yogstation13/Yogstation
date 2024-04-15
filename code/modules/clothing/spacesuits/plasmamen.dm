@@ -38,7 +38,7 @@
 //I just want the light feature of the hardsuit helmet
 /obj/item/clothing/head/helmet/space/plasmaman
 	name = "purple envirosuit helmet"
-	desc = "A generic purple envirohelm of Nanotrasen design. This updated model comes with a built-in lamp."
+	desc = "A generic purple envirohelm of yogscast design. This updated model comes with a built-in lamp."
 	icon_state = "purple_envirohelm"
 	item_state = "purple_envirohelm"
 	strip_delay = 80
@@ -157,7 +157,7 @@
 
 /obj/item/clothing/head/helmet/space/plasmaman/curator
 	name = "prototype envirosuit helmet"
-	desc = "An ancient envirohelm from the second generation of Nanotrasen-plasmaman related equipment. Clunky, but still sees use due to its reliability."
+	desc = "An ancient envirohelm from the second generation of yogscast-plasmaman related equipment. Clunky, but still sees use due to its reliability."
 	icon_state = "curator_envirohelm"
 	item_state = "curator_envirohelm"
 	pref_alteration = FALSE

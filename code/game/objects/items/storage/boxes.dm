@@ -819,7 +819,7 @@
 
 /obj/item/storage/box/deputy
 	name = "box of deputy armbands"
-	desc = "A box of old Nanotrasen deputy armbands, they stopped serving a purpose ever since the deputization of crew was outlawed."
+	desc = "A box of old yogscast deputy armbands, they stopped serving a purpose ever since the deputization of crew was outlawed."
 
 /obj/item/storage/box/deputy/PopulateContents()
 	for(var/i in 1 to 7)
@@ -966,7 +966,7 @@
 		new randomFigure(src)
 
 #define NODESIGN "None"
-#define NANOTRASEN "NanotrasenStandard"
+#define yogscast "yogscastStandard"
 #define SYNDI "SyndiSnacks"
 #define HEART "Heart"
 #define SMILEY "SmileyFace"
@@ -993,7 +993,7 @@
 		if(contents.len)
 			to_chat(user, span_warning("You can't modify [src] with items still inside!"))
 			return
-		var/list/designs = list(NODESIGN, NANOTRASEN, SYNDI, HEART, SMILEY, "Cancel")
+		var/list/designs = list(NODESIGN, yogscast, SYNDI, HEART, SMILEY, "Cancel")
 		var/switchDesign = input("Select a Design:", "Paper Sack Design", designs[1]) in designs
 		if(get_dist(usr, src) > 1)
 			to_chat(usr, span_warning("You have moved too far away!"))
@@ -1008,8 +1008,8 @@
 		switch(designs[choice])
 			if(NODESIGN)
 				desc = "A sack neatly crafted out of paper."
-			if(NANOTRASEN)
-				desc = "A standard Nanotrasen paper lunch sack for loyal employees on the go."
+			if(yogscast)
+				desc = "A standard yogscast paper lunch sack for loyal employees on the go."
 			if(SYNDI)
 				desc = "The design on this paper sack is a remnant of the notorious 'SyndieSnacks' program."
 			if(HEART)
@@ -1032,7 +1032,7 @@
 	return ..()
 
 #undef NODESIGN
-#undef NANOTRASEN
+#undef yogscast
 #undef SYNDI
 #undef HEART
 #undef SMILEY

@@ -335,7 +335,7 @@ GLOBAL_VAR(final_zone)
 /datum/antagonist/battleroyale/greet()
 	SEND_SOUND(owner.current, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
 	to_chat(owner.current, "<span_class='bigbold'>Welcome contestant!</span>")
-	to_chat(owner.current, "<span_class='danger'>You have been entered into Nanotrasen's up and coming TV show! : <b> LAST MAN STANDING </b>. \n\ KILL YOUR COWORKERS TO ACHIEVE THE VICTORY ROYALE! Attempting to leave the station will disqualify you from the round!</span>")
+	to_chat(owner.current, "<span_class='danger'>You have been entered into yogscast's up and coming TV show! : <b> LAST MAN STANDING </b>. \n\ KILL YOUR COWORKERS TO ACHIEVE THE VICTORY ROYALE! Attempting to leave the station will disqualify you from the round!</span>")
 	owner.announce_objectives()
 
 /datum/antagonist/battleroyale/roundend_report()

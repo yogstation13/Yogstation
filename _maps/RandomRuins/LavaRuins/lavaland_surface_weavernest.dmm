@@ -188,7 +188,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "Dx" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/mob_spawn/human/corpse/yogscastsoldier,
 /obj/effect/turf_decal/sand,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plasteel/lavaland,
@@ -199,7 +199,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "DK" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/mob_spawn/human/corpse/yogscastsoldier,
 /obj/item/melee/classic_baton,
 /obj/item/gun/ballistic/shotgun/doublebarrel,
 /obj/structure/spider/stickyweb,

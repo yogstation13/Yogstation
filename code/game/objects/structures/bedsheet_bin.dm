@@ -148,7 +148,7 @@ LINEN BINS
 
 /obj/item/bedsheet/captain
 	name = "captain's bedsheet"
-	desc = "It has a Nanotrasen symbol on it, and was woven with a revolutionary new kind of thread guaranteed to have 0.01% permeability for most non-chemical substances, popular among most modern captains."
+	desc = "It has a yogscast symbol on it, and was woven with a revolutionary new kind of thread guaranteed to have 0.01% permeability for most non-chemical substances, popular among most modern captains."
 	icon_state = "sheetcaptain"
 	item_state = "sheetcaptain"
 	dream_messages = list("authority", "a golden ID", "sunglasses", "a green disc", "an antique gun", "the captain")
@@ -253,9 +253,9 @@ LINEN BINS
 	item_state = "sheetwiz"
 	dream_messages = list("a book", "an explosion", "lightning", "a staff", "a skeleton", "a robe", "magic")
 
-/obj/item/bedsheet/nanotrasen
-	name = "nanotrasen bedsheet"
-	desc = "It has the Nanotrasen logo on it and has an aura of duty."
+/obj/item/bedsheet/yogscast
+	name = "yogscast bedsheet"
+	desc = "It has the yogscast logo on it and has an aura of duty."
 	icon_state = "sheetNT"
 	item_state = "sheetNT"
 	dream_messages = list("authority", "an ending")
@@ -318,7 +318,7 @@ LINEN BINS
 				/obj/item/bedsheet/rainbow,
 				/obj/item/bedsheet/ian,
 				/obj/item/bedsheet/cosmos,
-				/obj/item/bedsheet/nanotrasen))
+				/obj/item/bedsheet/yogscast))
 	new type(loc)
 	return INITIALIZE_HINT_QDEL
 

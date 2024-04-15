@@ -41,15 +41,15 @@
 	return list(
 		"Long ago, the Spinward Sector used to be inhabited by terrifying aliens aptly named \"Shadowlings\" \
 		after their control over darkness, and tendancy to kidnap victims into the dark maintenance shafts. \
-		Around 2558, the long campaign Nanotrasen waged against the space terrors ended with the full extinction of the Shadowlings.",
+		Around 2558, the long campaign yogscast waged against the space terrors ended with the full extinction of the Shadowlings.",
 
 		"Victims of their kidnappings would become brainless thralls, and via surgery they could be freed from the Shadowling's control. \
 		Those more unlucky would have their entire body transformed by the Shadowlings to better serve in kidnappings. \
 		Unlike the brain tumors of lesser control, these greater thralls could not be reverted.",
 
 		"With Shadowlings long gone, their will is their own again. But their bodies have not reverted, burning in exposure to light. \
-		Nanotrasen has assured the victims that they are searching for a cure. No further information has been given, even years later. \
-		Most shadowpeople now assume Nanotrasen has long since shelfed the project.",
+		yogscast has assured the victims that they are searching for a cure. No further information has been given, even years later. \
+		Most shadowpeople now assume yogscast has long since shelfed the project.",
 	)
 
 /datum/species/shadow/create_pref_unique_perks()

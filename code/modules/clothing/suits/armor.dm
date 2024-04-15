@@ -86,7 +86,7 @@
 
 /obj/item/clothing/suit/armor/vest/leather
 	name = "security overcoat"
-	desc = "Lightly armored leather overcoat meant as casual wear for high-ranking officers. Bears the crest of Nanotrasen Security."
+	desc = "Lightly armored leather overcoat meant as casual wear for high-ranking officers. Bears the crest of yogscast Security."
 	icon_state = "leathercoat-sec"
 	item_state = "hostrench"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
@@ -124,7 +124,7 @@
 
 /obj/item/clothing/suit/armor/vest/capcarapace/centcom
 	name = "\improper CentCom carapace"
-	desc = "A CentCom green alteration of the captain's carapace. Issued only to Nanotrasen's finest, although it does chafe your pecks."
+	desc = "A CentCom green alteration of the captain's carapace. Issued only to yogscast's finest, although it does chafe your pecks."
 	icon_state = "centcarapace"
 	item_state = "centcarapace"
 

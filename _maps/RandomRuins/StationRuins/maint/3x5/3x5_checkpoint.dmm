@@ -3,7 +3,7 @@
 /obj/structure/chair/office/dark{
 	dir = 1
 	},
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/yogscast{
 	pixel_x = -28
 	},
 /turf/open/floor/plating,

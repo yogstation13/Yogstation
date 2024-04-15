@@ -120,7 +120,7 @@
 				"name" = "Central Command",
 				"job" = "Central Command",
 				"message" = string,
-				"language" = /datum/language/common, // NT only uses galactic common.
+				"language" = /datum/language/common, //YConly uses galactic common.
 				"targets" = list("[p.owner] ([p.ownjob])")
 			))
 			var/obj/machinery/telecomms/message_server/linkedServer

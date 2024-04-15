@@ -11,7 +11,7 @@
 
 /obj/item/clothing/under/rank/security
 	name = "security jumpsuit"
-	desc = "A tactical security jumpsuit for officers. Complete with Nanotrasen belt buckle."
+	desc = "A tactical security jumpsuit for officers. Complete with yogscast belt buckle."
 	icon_state = "rsecurity"
 	item_state = "r_suit"
 	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 30, WOUND = 10)
@@ -23,7 +23,7 @@
 
 /obj/item/clothing/under/rank/security/grey
 	name = "grey security jumpsuit"
-	desc = "A tactical relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood."
+	desc = "A tactical relic of years past before yogscast decided it was cheaper to dye the suits red instead of washing out the blood."
 	icon_state = "security"
 	item_state = "gy_suit"
 
@@ -48,7 +48,7 @@
 
 /obj/item/clothing/under/rank/warden
 	name = "security suit"
-	desc = "A formal security suit for officers. Complete with Nanotrasen belt buckle."
+	desc = "A formal security suit for officers. Complete with yogscast belt buckle."
 	icon_state = "rwarden"
 	item_state = "r_suit"
 	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 30, WOUND = 10)
@@ -61,13 +61,13 @@
 
 /obj/item/clothing/under/rank/warden/grey
 	name = "grey security suit"
-	desc = "A formal relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood."
+	desc = "A formal relic of years past before yogscast decided it was cheaper to dye the suits red instead of washing out the blood."
 	icon_state = "warden"
 	item_state = "gy_suit"
 
 /obj/item/clothing/under/rank/warden/skirt
 	name = "warden's suitskirt"
-	desc = "A formal security suitskirt for officers. Complete with Nanotrasen belt buckle."
+	desc = "A formal security suitskirt for officers. Complete with yogscast belt buckle."
 	icon_state = "rwarden_skirt"
 	item_state = "r_suit"
 	body_parts_covered = CHEST|GROIN|ARMS

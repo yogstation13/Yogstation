@@ -22,7 +22,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
-/obj/item/bedsheet/nanotrasen,
+/obj/item/bedsheet/yogscast,
 /turf/open/floor/carpet/blue,
 /area/template_noop)
 "y" = (

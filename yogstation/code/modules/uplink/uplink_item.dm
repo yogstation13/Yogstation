@@ -75,7 +75,7 @@
 
 /datum/uplink_item/explosives/trap_disk
 	name = "Syndicate Trapped Disk"
-	desc = "A bomb disguised as a syndicate disk that triggers on removal or when tampered with. Nanotrasen IT staff will likely be able to identify its true nature at a glance."
+	desc = "A bomb disguised as a syndicate disk that triggers on removal or when tampered with. yogscast IT staff will likely be able to identify its true nature at a glance."
 	item = /obj/item/computer_hardware/hard_drive/portable/syndicate/trap
 	cost = 5
 	surplus = 10
@@ -98,7 +98,7 @@
 
 /datum/uplink_item/role_restricted/gondola_meat
 	name = "Gondola meat"
-	desc = "A slice of gondola meat will turn any hard-working, brainwashed NT employee into a goody-two-shoes gondola in a matter of minutes."
+	desc = "A slice of gondola meat will turn any hard-working, brainwashedYCemployee into a goody-two-shoes gondola in a matter of minutes."
 	item = /obj/item/reagent_containers/food/snacks/meat/slab/gondola
 	cost = 6
 	restricted_roles = list("Cook")

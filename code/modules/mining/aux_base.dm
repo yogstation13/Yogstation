@@ -221,7 +221,7 @@
 /obj/machinery/computer/auxiliary_base/proc/set_landing_zone(turf/T, mob/user, no_restrictions)
 	var/obj/docking_port/mobile/auxiliary_base/base_dock = locate(/obj/docking_port/mobile/auxiliary_base) in SSshuttle.mobile_docking_ports
 	if(!base_dock) //Not all maps have an Aux base. This object is useless in that case.
-		to_chat(user, span_warning("This station is not equipped with an auxiliary base. Please contact your Nanotrasen contractor."))
+		to_chat(user, span_warning("This station is not equipped with an auxiliary base. Please contact your yogscast contractor."))
 		return
 	if(!no_restrictions)
 		var/static/list/disallowed_turf_types = typecacheof(list(
@@ -412,7 +412,7 @@
 
 			break
 	if(!Mport)
-		to_chat(user, span_warning("This station is not equipped with an appropriate mining shuttle. Please contact Nanotrasen Support."))
+		to_chat(user, span_warning("This station is not equipped with an appropriate mining shuttle. Please contact yogscast Support."))
 		return
 
 	var/obj/docking_port/mobile/mining_shuttle
@@ -425,7 +425,7 @@
 		break
 
 	if(!mining_shuttle) //Not having a mining shuttle is a map issue
-		to_chat(user, span_warning("No mining shuttle signal detected. Please contact Nanotrasen Support."))
+		to_chat(user, span_warning("No mining shuttle signal detected. Please contact yogscast Support."))
 		SSshuttle.stationary_docking_ports.Remove(Mport)
 		qdel(Mport)
 		return

@@ -490,9 +490,9 @@
 	icon_state = "letterman_s"
 	item_state = "letterman_s"
 
-/obj/item/clothing/suit/jacket/letterman_nanotrasen
+/obj/item/clothing/suit/jacket/letterman_yogscast
 	name = "blue letterman jacket"
-	desc = "A blue letterman jacket with a proud Nanotrasen N on the back. The tag says that it was made in Space China."
+	desc = "A blue letterman jacket with a proud yogscast N on the back. The tag says that it was made in Space China."
 	icon_state = "letterman_n"
 	item_state = "letterman_n"
 
@@ -585,7 +585,7 @@
 
 /obj/item/clothing/suit/hooded/cultrobes/eldritch_toy
 	name = "fashionable robe"
-	desc = "A trendy robe straight from this year's Nanotrasen fashion show. You can't remember seeing this entry on the catwalk."
+	desc = "A trendy robe straight from this year's yogscast fashion show. You can't remember seeing this entry on the catwalk."
 	icon_state = "eldritch_armor"
 	item_state = "eldritch_armor"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS

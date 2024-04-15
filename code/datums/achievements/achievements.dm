@@ -190,7 +190,7 @@
 	id = GREENTEXT + 5
 
 /datum/achievement/greentext/revolution
-	name = "Down with Nanotrasen"
+	name = "Down with yogscast"
 	desc = "As a revolutionary, complete your objectives"
 	id = GREENTEXT + 6
 

@@ -46,7 +46,7 @@ GLOBAL_PROTECT(href_token)
 		CRASH("Admin datum created without a ckey")
 	target = ckey
 	name = "[ckey]'s admin datum"
-	admin_signature = "Nanotrasen Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
+	admin_signature = "yogscast Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
 	href_token = GenerateToken()
 	if(rights & R_DEBUG) //grant profile access
 		world.SetConfig("APP/admin", ckey, "role=admin")

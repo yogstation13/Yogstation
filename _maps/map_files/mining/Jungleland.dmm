@@ -1424,7 +1424,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/item/soap/nanotrasen,
+/obj/item/soap/yogscast,
 /turf/open/floor/plasteel/freezer,
 /area/mine/laborcamp)
 "XR" = (

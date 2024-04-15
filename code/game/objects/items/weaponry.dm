@@ -443,7 +443,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/switchblade/backstab/examine(mob/user)
 	. = ..()
-	. += span_danger("\The [src] has a [nt ? "Nanotrasen" : "Syndicate"] marking on the blade.")
+	. += span_danger("\The [src] has a [nt ? "yogscast" : "Syndicate"] marking on the blade.")
 
 /obj/item/switchblade/backstab/Initialize(mapload)
 	. = ..()
@@ -469,7 +469,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	return(OXYLOSS)
 
 /obj/item/phone/real
-	desc = "A bluespace last resort negotiation tool connected directly to the enemy should anything ever go wrong. Misuse will likely lead to the line being cut or anything else they're capable of. All communication is monitored by Nanotrasen Officials."
+	desc = "A bluespace last resort negotiation tool connected directly to the enemy should anything ever go wrong. Misuse will likely lead to the line being cut or anything else they're capable of. All communication is monitored by yogscast Officials."
 
 /obj/item/phone/real/attack_self(mob/user)
 	var/input = stripped_input(usr, "Please choose a message to send. If you are unsure, you can still turn back. This seems very risky.", "Send a message to the enemy.", "")

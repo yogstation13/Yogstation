@@ -1,9 +1,9 @@
-/mob/living/simple_animal/hostile/nanotrasen
-	name = "Nanotrasen Private Security Officer"
-	desc = "An officer part of Nanotrasen's private security force, he seems rather unpleased to meet you."
+/mob/living/simple_animal/hostile/yogscast
+	name = "yogscast Private Security Officer"
+	desc = "An officer part of yogscast's private security force, he seems rather unpleased to meet you."
 	icon = 'icons/mob/simple_human.dmi'
-	icon_state = "nanotrasen"
-	icon_living = "nanotrasen"
+	icon_state = "yogscast"
+	icon_living = "yogscast"
 	icon_dead = null
 	icon_gib = "syndicate_gib"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
@@ -23,39 +23,39 @@
 	attacktext = "punches"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	a_intent = INTENT_HARM
-	loot = list(/obj/effect/mob_spawn/human/corpse/nanotrasensoldier)
+	loot = list(/obj/effect/mob_spawn/human/corpse/yogscastsoldier)
 	atmos_requirements = list("min_oxy" = 5, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 5, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 15
-	faction = list("nanotrasenprivate")
+	faction = list("yogscastprivate")
 	status_flags = CANPUSH
 	speak = list("Stop resisting!", "I AM THE LAW!", "Face the wrath of the golden bolt!", "Stop breaking the law, asshole!")
 	search_objects = 1
 	footstep_type = FOOTSTEP_MOB_SHOE
 
 
-/mob/living/simple_animal/hostile/nanotrasen/Aggro()
+/mob/living/simple_animal/hostile/yogscast/Aggro()
 	..()
 	summon_backup(15)
 	say("411 in progress, requesting backup!")
 
 
-/mob/living/simple_animal/hostile/nanotrasen/ranged
-	icon_state = "nanotrasenranged"
-	icon_living = "nanotrasenranged"
+/mob/living/simple_animal/hostile/yogscast/ranged
+	icon_state = "yogscastranged"
+	icon_living = "yogscastranged"
 	ranged = 1
 	retreat_distance = 3
 	minimum_distance = 5
 	casingtype = /obj/item/ammo_casing/c45
 	projectilesound = 'sound/weapons/gunshot.ogg'
 	loot = list(/obj/item/gun/ballistic/automatic/pistol/m1911,
-				/obj/effect/mob_spawn/human/corpse/nanotrasensoldier)
+				/obj/effect/mob_spawn/human/corpse/yogscastsoldier)
 
 
-/mob/living/simple_animal/hostile/nanotrasen/ranged/smg
-	icon_state = "nanotrasenrangedsmg"
-	icon_living = "nanotrasenrangedsmg"
+/mob/living/simple_animal/hostile/yogscast/ranged/smg
+	icon_state = "yogscastrangedsmg"
+	icon_living = "yogscastrangedsmg"
 	rapid = 3
 	casingtype = /obj/item/ammo_casing/c46x30mm
 	projectilesound = 'sound/weapons/gunshot_smg.ogg'
 	loot = list(/obj/item/gun/ballistic/automatic/wt550,
-				/obj/effect/mob_spawn/human/corpse/nanotrasensoldier)
+				/obj/effect/mob_spawn/human/corpse/yogscastsoldier)

@@ -128,7 +128,7 @@
 
 /obj/item/multitool/makeshift
 	name = "makeshift multitool"
-	desc = "As crappy as it is, its still mostly the same as a standard issue Nanotrasen one."
+	desc = "As crappy as it is, its still mostly the same as a standard issue yogscast one."
 	icon = 'icons/obj/improvised.dmi'
 	icon_state = "multitool_makeshift"
 	toolspeed = 2

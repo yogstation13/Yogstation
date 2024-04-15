@@ -9,7 +9,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "Nanotrasen officers and Space law" //Changed to officer to separate from CentCom officials being their superior.
+	supervisors = "yogscast officers and Space law" //Changed to officer to separate from CentCom officials being their superior.
 	req_admin_notify = 1
 	space_law_notify = 1 //Yogs
 	minimal_player_age = 14

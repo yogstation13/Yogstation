@@ -3,7 +3,7 @@
 #define CALCULATE_STATS_COOLDOWN 2
 
 /obj/machinery/computer/custom_shuttle
-	name = "nanotrasen shuttle flight controller"
+	name = "yogscast shuttle flight controller"
 	desc = "A terminal used to fly shuttles defined by the Shuttle Zoning Designator"
 	circuit = /obj/item/circuitboard/computer/shuttle/flight_control
 	icon_screen = "shuttle"

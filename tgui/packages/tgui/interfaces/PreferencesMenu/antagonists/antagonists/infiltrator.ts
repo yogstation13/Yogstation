@@ -13,7 +13,7 @@ const Infiltrator: Antagonist = {
   name: "Syndicate Infiltrator",
   description: [
     multiline`
-      It's been quiet on the moon base ever since your team moved in to keep tabs on the nearby Nanotrasen station.
+      It's been quiet on the moon base ever since your team moved in to keep tabs on the nearby yogscast station.
       Nothing you observe provokes the brief transmission that comes in one day.
       The objectives are simple, and to be done as quietly as possible.
     `,

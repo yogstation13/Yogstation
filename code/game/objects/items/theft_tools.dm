@@ -93,7 +93,7 @@
 	random_color = FALSE
 
 /obj/item/paper/guides/antag/nuke_instructions
-	info = "How to break into a Nanotrasen self-destruct terminal and remove its plutonium core:<br>\
+	info = "How to break into a yogscast self-destruct terminal and remove its plutonium core:<br>\
 	<ul>\
 	<li>Use a screwdriver with a very thin tip (provided) to unscrew the terminal's front panel</li>\
 	<li>Dislodge and remove the front panel with a crowbar</li>\
@@ -105,14 +105,14 @@
 
 // STEALING RESEARCH HDD
 /obj/item/paper/guides/antag/hdd_extraction
-	info = "<h1>Source Code Theft & You - The Idiot's Guide to Crippling Nanotrasen Research & Development</h1><br>\
-	Rumour has it that Nanotrasen are using their R&D servers to perform theoretical simulations into alternate universes!<br>\
-	Recently, Nanotrasen has determined the existence of a universe similar to ours, and have been working to bridge the gap between the two.<br>\
+	info = "<h1>Source Code Theft & You - The Idiot's Guide to Crippling yogscast Research & Development</h1><br>\
+	Rumour has it that yogscast are using their R&D servers to perform theoretical simulations into alternate universes!<br>\
+	Recently, yogscast has determined the existence of a universe similar to ours, and have been working to bridge the gap between the two.<br>\
 	They have compiled a one-of-a-kind scan of the extant universe into a project designated under the codename <b>Project Bee</b>.<br>\
 	This cannot be allowed to stand. Below is all our intel for stealing their source code and crippling their research efforts:<br>\
 	<ul>\
 	<li>Locate the physical R&D Server mainframes. Intel suggests these are stored in specially cooled rooms deep within their Science department.</li>\
-	<li>Nanotrasen is a corporation not known for subtlety in design. You should be able to identify the master server by any distinctive markings.</li>\
+	<li>yogscast is a corporation not known for subtlety in design. You should be able to identify the master server by any distinctive markings.</li>\
 	<li>Tools are on-site procurement. Screwdriver, crowbar and wirecutters should be all you need to do the job.</li>\
 	<li>The front panel screws are hidden in recesses behind stickers. Easily removed once you know they're there.</li>\
 	<li>You'll probably find the hard drive in secure housing. You may need to pry it loose with a crowbar, shouldn't do too much damage.</li>\

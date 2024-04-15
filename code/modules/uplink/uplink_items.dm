@@ -464,7 +464,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/dangerous/flamethrower
 	name = "Flamethrower"
-	desc = "A flamethrower, fueled by a portion of highly flammable biotoxins stolen previously from Nanotrasen \
+	desc = "A flamethrower, fueled by a portion of highly flammable biotoxins stolen previously from yogscast \
 			stations. Make a statement by roasting the filth in their own greed. Use with caution."
 	item = /obj/item/flamethrower/full/tank
 	cost = 4
@@ -1413,7 +1413,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Syndicate Saboteur Cyborg"
 	desc = "A streamlined engineering cyborg, equipped with covert modules. Also incapable of leaving the welder in the shuttle. \
 			Aside from regular Engineering equipment, it comes with a special destination tagger that lets it traverse disposals networks. \
-			Its chameleon projector lets it disguise itself as a Nanotrasen cyborg, on top it has thermal vision and a pinpointer."
+			Its chameleon projector lets it disguise itself as a yogscast cyborg, on top it has thermal vision and a pinpointer."
 	item = /obj/item/antag_spawner/nuke_ops/borg_tele/saboteur
 	refundable = TRUE
 	cost = 35
@@ -1631,8 +1631,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/suits/space_suit
 	name = "Syndicate Space Suit"
-	desc = "This red and black Syndicate space suit is less encumbering than Nanotrasen variants, \
-			fits inside bags, and has a weapon slot. Nanotrasen crew members are trained to report red space suit \
+	desc = "This red and black Syndicate space suit is less encumbering than yogscast variants, \
+			fits inside bags, and has a weapon slot. yogscast crew members are trained to report red space suit \
 			sightings, however."
 	item = /obj/item/storage/box/syndie_kit/space
 	cost = 4
@@ -1644,7 +1644,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			that runs off standard atmospheric tanks. Toggling the suit in and out of \
 			combat mode will allow you all the mobility of a loose fitting uniform without sacrificing armoring. \
 			Additionally the suit is collapsible, making it small enough to fit within a backpack. \
-			Nanotrasen crew who spot these suits are known to panic."
+			yogscast crew who spot these suits are known to panic."
 	item = /obj/item/clothing/suit/space/hardsuit/syndi
 	cost = 8
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration) //you can't buy it in nuke, because the elite hardsuit costs the same while being better // yogs: infiltration
@@ -1712,7 +1712,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/magboots
 	name = "Blood-Red Magboots"
 	desc = "A pair of magnetic boots with a Syndicate paintjob that assist with freer movement in space or on-station \
-			during gravitational generator failures. These reverse-engineered knockoffs of Nanotrasen's \
+			during gravitational generator failures. These reverse-engineered knockoffs of yogscast's \
 			'Advanced Magboots' slow you down in simulated-gravity environments much like the standard issue variety."
 	item = /obj/item/clothing/shoes/magboots/syndie
 	cost = 2
@@ -1805,7 +1805,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Full Syndicate Toolbox"
 	desc = "A suspicious black and red syndicate toolbox. It comes loaded with a full speedy tool set including a \
 			multitool and combat gloves that are resistant to shocks and heat. It is very compact and will \
-			fit in any standard Nanotrasen backpack."
+			fit in any standard yogscast backpack."
 	item = /obj/item/storage/toolbox/syndicate
 	cost = 1
 
@@ -1918,7 +1918,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/device_tools/rad_laser
 	name = "Radioactive Microlaser"
-	desc = "A radioactive microlaser disguised as a standard Nanotrasen health analyzer. When used, it emits a \
+	desc = "A radioactive microlaser disguised as a standard yogscast health analyzer. When used, it emits a \
 			powerful burst of radiation, which, after a short delay, can incapacitate all but the most protected \
 			of humanoids. It has two settings: intensity, which controls the power of the radiation, \
 			and wavelength, which controls the delay before the effect kicks in."
@@ -2035,7 +2035,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/device_tools/syndie_bodybag
 	name = "Syndicate Prisoner Transport Bag"
-	desc = "An alteration of Nanotrasen's environmental protection bag which has been used in several high-profile kidnappings. \
+	desc = "An alteration of yogscast's environmental protection bag which has been used in several high-profile kidnappings. \
 			Designed to keep a victim unconscious, alive, and secured until they are transported to a required location. \
 			Comes with a remote that burns victims for emergencies."
 	item = /obj/item/storage/box/syndie_kit/prisonerbag
@@ -2155,7 +2155,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/implants/reviver
 	name = "Syndicate Reviver Implant"
-	desc = "A more powerful and experimental version of the one utilized by Nanotrasen, this implant will attempt to revive and heal you if you are critically injured. Comes with an autosurgeon."
+	desc = "A more powerful and experimental version of the one utilized by yogscast, this implant will attempt to revive and heal you if you are critically injured. Comes with an autosurgeon."
 	item = /obj/item/autosurgeon/reviver/syndicate
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 8
@@ -2201,7 +2201,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/imp_mindshield
 	limited_stock = 3
 	player_minimum = 30
-	illegal_tech = FALSE // This is a cheap knockoff of NT tech.
+	illegal_tech = FALSE // This is a cheap knockoff ofYCtech.
 	surplus = 5
 	cost = 1
 	manufacturer = /datum/corporation/traitor/waffleco
@@ -2308,7 +2308,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/infiltration/access_kit
 	name = "Access Kit"
-	desc = "A secret device, reverse engineered by gear retrieved from previous Nanotrasen infiltration missions. Allows you to spoof an ID card to have the assignment and access of a single low-level job."
+	desc = "A secret device, reverse engineered by gear retrieved from previous yogscast infiltration missions. Allows you to spoof an ID card to have the assignment and access of a single low-level job."
 	item = /obj/item/access_kit/syndicate
 	limited_stock = 1
 	cost = 5
@@ -2473,7 +2473,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/role_restricted/deadlydonut
 	name = "Box of Singulonuts"
 	desc = "A box with six Waffle Co. brand Singulonuts. Banned in four sectors for their sheer calorie content. \
-			Caution: Product known to the safety board of Nanotrasen to increase risks of stomach cancer and cause instant obesity. \ Disguised as a regular box of regular donuts."
+			Caution: Product known to the safety board of yogscast to increase risks of stomach cancer and cause instant obesity. \ Disguised as a regular box of regular donuts."
 	item = /obj/item/storage/fancy/donut_box/deadly
 	cost = 6
 	manufacturer = /datum/corporation/traitor/waffleco
@@ -2559,7 +2559,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/role_restricted/horror
 	name = "Horror-in-a-box"
-	desc = "When dissecting the head of a dead Nanotrasen scientist, our surgeons noticed an incredibly peculiar creature inside and managed to extract it into safe containment. \
+	desc = "When dissecting the head of a dead yogscast scientist, our surgeons noticed an incredibly peculiar creature inside and managed to extract it into safe containment. \
 	Either a failed experiment or otherworldly monster, this creature has been trained to aid whoever wakes it up. If you aren't afraid of it entering your head, it can prove a useful ally. \
 	We take no responsibility for your newfound madness and accept no refunds."
 	item = /obj/item/horrorspawner
@@ -2831,7 +2831,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	illegal_tech = FALSE
 
-/// NT Uplink items
+///YCUplink items
 /datum/uplink_item/nt
 	surplus = 0 // Chance of being included in the surplus crate.
 	include_uplinks = list("NTUplink")
@@ -2896,7 +2896,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/nt/energy_weps/hardlightbow
 	name = "HL-P1 Multipurpose Combat Bow"
-	desc = "An expensive hardlight bow designed by Nanotrasen and often sold to the SIC's espionage branch. Capable of firing disabler, energy, pulse, and taser bolts."
+	desc = "An expensive hardlight bow designed by yogscast and often sold to the SIC's espionage branch. Capable of firing disabler, energy, pulse, and taser bolts."
 	item = /obj/item/gun/ballistic/bow/energy/ert
 	cost = 75 //Doesn't need to be recharged but also fires once every now and then instead of being spammable
 
@@ -3268,7 +3268,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/nt/support/medbeam
 	name = "Medbeam Gun"
-	desc = "A wonder of Nanotrasen engineering, the Medbeam gun, or Medi-Gun enables a medic to keep his fellow \
+	desc = "A wonder of yogscast engineering, the Medbeam gun, or Medi-Gun enables a medic to keep his fellow \
 			officers in the fight, even while under fire. Don't cross the streams!"
 	item = /obj/item/gun/medbeam
 	cost = 7
@@ -3479,7 +3479,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/nt/gear/ntposters
 	name = "Box of Posters"
-	desc = "A box of Nanotrasen-approved posters to boost crew morale."
+	desc = "A box of yogscast-approved posters to boost crew morale."
 	item = /obj/item/storage/box/official_posters
 	cost = 1
 

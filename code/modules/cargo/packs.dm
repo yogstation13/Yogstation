@@ -307,7 +307,7 @@
 
 /datum/supply_pack/security/forensics
 	name = "Forensics Crate"
-	desc = "Stay hot on the criminal's heels with Nanotrasen's Detective Essentials(tm). Contains a forensics scanner, six evidence bags, camera, tape recorder, white crayon, and of course, a fedora. Requires Security access to open."
+	desc = "Stay hot on the criminal's heels with yogscast's Detective Essentials(tm). Contains a forensics scanner, six evidence bags, camera, tape recorder, white crayon, and of course, a fedora. Requires Security access to open."
 	cost = 2000
 	access_view = ACCESS_MORGUE
 	contains = list(/obj/item/detective_scanner,
@@ -448,7 +448,7 @@
 
 /datum/supply_pack/security/justiceinbound
 	name = "Standard Justice Enforcer Crate"
-	desc = "This is it. The Bee's Knees. The Creme of the Crop. The Pick of the Litter. The best of the best of the best. The Crown Jewel of Nanotrasen. The Alpha and the Omega of security headwear. Guaranteed to strike fear into the hearts of each and every criminal aboard the station. Also comes with a security gasmask. Requires Security access to open."
+	desc = "This is it. The Bee's Knees. The Creme of the Crop. The Pick of the Litter. The best of the best of the best. The Crown Jewel of yogscast. The Alpha and the Omega of security headwear. Guaranteed to strike fear into the hearts of each and every criminal aboard the station. Also comes with a security gasmask. Requires Security access to open."
 	cost = 6000 //justice comes at a price. An expensive, noisy price.
 	contraband = TRUE
 	contains = list(/obj/item/clothing/head/helmet/justice,
@@ -624,10 +624,10 @@
 
 /datum/supply_pack/security/armory/swat
 	name = "SWAT Crate"
-	desc = "Contains two fullbody sets of tough, fireproof, pressurized suits designed in a joint effort by IS-ERI and Nanotrasen. Each set contains a suit, helmet, mask, combat belt, and combat gloves. Requires Armory access to open."
+	desc = "Contains two fullbody sets of tough, fireproof, pressurized suits designed in a joint effort by IS-ERI and yogscast. Each set contains a suit, helmet, mask, combat belt, and combat gloves. Requires Armory access to open."
 	cost = 6000
-	contains = list(/obj/item/clothing/head/helmet/swat/nanotrasen,
-					/obj/item/clothing/head/helmet/swat/nanotrasen,
+	contains = list(/obj/item/clothing/head/helmet/swat/yogscast,
+					/obj/item/clothing/head/helmet/swat/yogscast,
 					/obj/item/clothing/suit/space/swat,
 					/obj/item/clothing/suit/space/swat,
 					/obj/item/clothing/mask/gas/sechailer/swat,
@@ -680,7 +680,7 @@
 
 /datum/supply_pack/weaponry/combatknives_single
 	name = "Combat Knife Single-Pack"
-	desc = "Contains one sharpened combat knife. Guaranteed to fit snugly inside any Nanotrasen-standard boot. Requires Armory access to open."
+	desc = "Contains one sharpened combat knife. Guaranteed to fit snugly inside any yogscast-standard boot. Requires Armory access to open."
 	cost = 500
 	small_item = TRUE
 	contains = list(/obj/item/kitchen/knife/combat)
@@ -857,7 +857,7 @@
 
 /datum/supply_pack/engineering/shieldgen
 	name = "Anti-breach Shield Projector Crate"
-	desc = "Hull breaches again? Say no more with the Nanotrasen Anti-Breach Shield Projector! Uses forcefield technology to keep the air in, and the space out. Contains two shield projectors."
+	desc = "Hull breaches again? Say no more with the yogscast Anti-Breach Shield Projector! Uses forcefield technology to keep the air in, and the space out. Contains two shield projectors."
 	cost = 2500
 	access_view = ACCESS_ENGINE_EQUIP
 	contains = list(/obj/machinery/shieldgen,
@@ -1028,7 +1028,7 @@
 
 /datum/supply_pack/engineering/bsa
 	name = "Bluespace Artillery Parts"
-	desc = "The pride of Nanotrasen Naval Command. The legendary Bluespace Artillery Cannon is a devastating feat of human engineering and testament to wartime determination. Highly advanced research is required for proper construction. "
+	desc = "The pride of yogscast Naval Command. The legendary Bluespace Artillery Cannon is a devastating feat of human engineering and testament to wartime determination. Highly advanced research is required for proper construction. "
 	cost = 15000
 	special = TRUE
 	access_view = ACCESS_HEADS
@@ -1786,7 +1786,7 @@
 
 /datum/supply_pack/science/rped
 	name = "RPED crate"
-	desc = "Need to rebuild the ORM but science got annihialted after a bomb test? Buy this for the most advanced parts NT can give you."
+	desc = "Need to rebuild the ORM but science got annihialted after a bomb test? Buy this for the most advanced partsYCcan give you."
 	cost = 1500
 	access_view = FALSE
 	contains = list(/obj/item/storage/part_replacer/cargo)
@@ -1859,7 +1859,7 @@
 
 /datum/supply_pack/service/janitor
 	name = "Janitorial Supplies Crate"
-	desc = "Fight back against dirt and grime with Nanotrasen's Janitorial Essentials(tm)! Contains three buckets, caution signs, and cleaner grenades. Also has a single mop, spray cleaner, rag, and trash bag."
+	desc = "Fight back against dirt and grime with yogscast's Janitorial Essentials(tm)! Contains three buckets, caution signs, and cleaner grenades. Also has a single mop, spray cleaner, rag, and trash bag."
 	cost = 1000
 	access_view = ACCESS_JANITOR
 	contains = list(/obj/item/reagent_containers/glass/bucket,
@@ -1906,7 +1906,7 @@
 
 /datum/supply_pack/service/party
 	name = "Party Equipment"
-	desc = "Celebrate both life and death on the station with Nanotrasen's Party Essentials(tm)! Contains seven colored glowsticks, four beers, two ales, and a bottle of patron, goldschlager, and shaker!"
+	desc = "Celebrate both life and death on the station with yogscast's Party Essentials(tm)! Contains seven colored glowsticks, four beers, two ales, and a bottle of patron, goldschlager, and shaker!"
 	cost = 2000
 	contains = list(/obj/item/storage/box/drinkingglasses,
 					/obj/item/reagent_containers/food/drinks/shaker,
@@ -2185,7 +2185,7 @@
 
 /datum/supply_pack/organic/hydroponics/beekeeping_fullkit
 	name = "Beekeeping Starter Crate"
-	desc = "BEES BEES BEES. Contains three honey frames, a beekeeper suit and helmet, flyswatter, bee house, and, of course, a pure-bred Nanotrasen-Standardized Queen Bee!"
+	desc = "BEES BEES BEES. Contains three honey frames, a beekeeper suit and helmet, flyswatter, bee house, and, of course, a pure-bred yogscast-Standardized Queen Bee!"
 	cost = 1500
 	contains = list(/obj/structure/beebox/unwrenched,
 					/obj/item/honey_frame,
@@ -2365,7 +2365,7 @@
 
 /datum/supply_pack/organic/potted_plants
 	name = "Potted Plants Crate"
-	desc = "Spruce up the station with these lovely plants! Contains a random assortment of five potted plants from Nanotrasen's potted plant research division. Warranty void if thrown."
+	desc = "Spruce up the station with these lovely plants! Contains a random assortment of five potted plants from yogscast's potted plant research division. Warranty void if thrown."
 	cost = 700
 	contains = list(/obj/item/kirbyplants/random,
 					/obj/item/kirbyplants/random,
@@ -2830,7 +2830,7 @@
 
 /datum/supply_pack/costumes_toys/costume
 	name = "Standard Costume Crate"
-	desc = "Supply the station's entertainers with the equipment of their trade with these Nanotrasen-approved costumes! Contains a full clown and mime outfit, along with a bike horn and a bottle of nothing."
+	desc = "Supply the station's entertainers with the equipment of their trade with these yogscast-approved costumes! Contains a full clown and mime outfit, along with a bike horn and a bottle of nothing."
 	cost = 1000
 	access = ACCESS_THEATRE
 	contains = list(/obj/item/storage/backpack/clown,
@@ -2929,7 +2929,7 @@
 
 /datum/supply_pack/costumes_toys/wizard
 	name = "Wizard Costume Crate"
-	desc = "Pretend to join the Wizard Federation with this full wizard outfit! Nanotrasen would like to remind its employees that actually joining the Wizard Federation is subject to termination of job and life."
+	desc = "Pretend to join the Wizard Federation with this full wizard outfit! yogscast would like to remind its employees that actually joining the Wizard Federation is subject to termination of job and life."
 	cost = 2000
 	contains = list(/obj/item/staff,
 					/obj/item/clothing/suit/wizrobe/fake,
@@ -3037,7 +3037,7 @@
 
 /datum/supply_pack/misc/bicycle
 	name = "Bicycle"
-	desc = "Nanotrasen reminds all employees to never toy with powers outside their control."
+	desc = "yogscast reminds all employees to never toy with powers outside their control."
 	cost = 1000000
 	contains = list(/obj/vehicle/ridden/bicycle)
 	crate_name = "Bicycle Crate"
@@ -3062,7 +3062,7 @@
 
 /datum/supply_pack/misc/book_crate
 	name = "Book Crate"
-	desc = "Surplus from the Nanotrasen Archives, these five books are sure to be good reads."
+	desc = "Surplus from the yogscast Archives, these five books are sure to be good reads."
 	cost = 1500
 	access_view = ACCESS_LIBRARY
 	contains = list(/obj/item/book/codex_gigas,
@@ -3212,7 +3212,7 @@
 
 /datum/supply_pack/misc/telescreen
 	name = "Modular Telescreen Crate"
-	desc = "A create containing four modular telescreens, featuring the latest in Nanotrasen digital displaying technology."
+	desc = "A create containing four modular telescreens, featuring the latest in yogscast digital displaying technology."
 	cost = 250
 	small_item = TRUE
 	contains = list(/obj/item/wallframe/telescreen/preset)

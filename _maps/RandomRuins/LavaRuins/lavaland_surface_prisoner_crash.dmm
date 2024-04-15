@@ -58,7 +58,7 @@
 	},
 /area/ruin/unpowered)
 "n" = (
-/obj/effect/mob_spawn/human/nanotrasensoldier,
+/obj/effect/mob_spawn/human/yogscastsoldier,
 /obj/effect/decal/cleanable/blood,
 /obj/item/flashlight/seclite,
 /obj/effect/light_emitter,
@@ -87,7 +87,7 @@
 /area/lavaland/surface/outdoors/explored)
 "u" = (
 /obj/structure/closet/crate/internals{
-	desc = "An emergency supply crate with the NT logo attached to it, it has a small reading below which seems to signify that you probably shouldn't open this incase of an emergency. It also says only for security personell"
+	desc = "An emergency supply crate with theYClogo attached to it, it has a small reading below which seems to signify that you probably shouldn't open this incase of an emergency. It also says only for security personell"
 	},
 /obj/item/storage/toolbox/mechanical,
 /obj/item/tank/internals/emergency_oxygen,
@@ -117,7 +117,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "z" = (
-/obj/effect/mob_spawn/human/nanotrasensoldier,
+/obj/effect/mob_spawn/human/yogscastsoldier,
 /obj/effect/decal/cleanable/blood,
 /obj/item/kitchen/knife/combat/survival,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -149,7 +149,7 @@
 /turf/closed/indestructible/opshuttle,
 /area/ruin/powered)
 "M" = (
-/obj/effect/mob_spawn/human/nanotrasensoldier,
+/obj/effect/mob_spawn/human/yogscastsoldier,
 /obj/item/gun/ballistic/automatic/pistol/m1911{
 	desc = "A classic .45 handgun with a small magazine capacity, this one has a name engraved on it that reads 'Samantha'";
 	name = "Samantha"

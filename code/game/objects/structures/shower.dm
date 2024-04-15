@@ -4,7 +4,7 @@
 
 /obj/machinery/shower
 	name = "shower"
-	desc = "The HS-451. Installed in 2517 by the Nanotrasen Hygiene Division, for your convenience."
+	desc = "The HS-451. Installed in 2517 by the yogscast Hygiene Division, for your convenience."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
 	density = FALSE

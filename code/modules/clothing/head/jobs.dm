@@ -181,7 +181,7 @@
 
 /obj/item/clothing/head/beret/archaic
 	name = "archaic beret"
-	desc = "An absolutely ancient beret, allegedly worn by the first mime to ever step foot on a Nanotrasen station."
+	desc = "An absolutely ancient beret, allegedly worn by the first mime to ever step foot on a yogscast station."
 	icon_state = "archaicberet"
 	dog_fashion = null
 
@@ -338,7 +338,7 @@
 
 /obj/item/clothing/head/beret/sec/centcom
 	name = "\improper CentCom beret"
-	desc = "A special beret with the Nanotrasen logo emblazoned on it. For where no man has gone before."
+	desc = "A special beret with the yogscast logo emblazoned on it. For where no man has gone before."
 	icon_state = "official"
 
 //Curator

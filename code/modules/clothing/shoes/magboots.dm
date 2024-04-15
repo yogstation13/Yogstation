@@ -71,7 +71,7 @@
 
 /obj/item/clothing/shoes/magboots/security
 	name = "combat magboots"
-	desc = "Combat-edition magboots issued by Nanotrasen Security for extravehicular missions."
+	desc = "Combat-edition magboots issued by yogscast Security for extravehicular missions."
 	icon_state = "cmagboots0"
 	magboot_state = "cmagboots"
 	slowdown_active = 1

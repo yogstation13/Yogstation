@@ -18,7 +18,7 @@
 
 /datum/ert/New()
 	if (!polldesc)
-		polldesc = "a Code [code] Nanotrasen Emergency Response Team"
+		polldesc = "a Code [code] yogscast Emergency Response Team"
 
 /datum/ert/blue
 	opendoors = FALSE
@@ -56,7 +56,7 @@
 	openmech = TRUE
 	code = "Delta"
 	mission = "Leave no witnesses."
-	polldesc = "an elite Nanotrasen Strike Team"
+	polldesc = "an elite yogscast Strike Team"
 
 /datum/ert/mining
 	leader_role = /datum/antagonist/ert/mining
@@ -132,7 +132,7 @@
 	leader_role = /datum/antagonist/ert/commander/inquisitor
 	rename_team = "Inquisition"
 	mission = "Destroy any traces of paranormal activity aboard the station."
-	polldesc = "a Nanotrasen paranormal response team"
+	polldesc = "a yogscast paranormal response team"
 
 /datum/ert/janitor
 	roles = list(/datum/antagonist/ert/janitor, /datum/antagonist/ert/janitor/heavy)
@@ -141,7 +141,7 @@
 	opendoors = FALSE
 	rename_team = "Janitor"
 	mission = "Clean up EVERYTHING."
-	polldesc = "a Nanotrasen Janitorial Response Team"
+	polldesc = "a yogscast Janitorial Response Team"
 
 /datum/ert/clown
 	roles = list(/datum/antagonist/ert/clown)
@@ -159,7 +159,7 @@
 	opendoors = TRUE
 	rename_team = "HONK Squad"
 	mission = "HONK them into submission."
-	polldesc = "an elite Nanotrasen tactical pranking squad"
+	polldesc = "an elite yogscast tactical pranking squad"
 	code = "HOOOOOOOOOONK"
 
 /datum/ert/imperial

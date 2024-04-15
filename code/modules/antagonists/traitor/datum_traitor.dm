@@ -253,7 +253,7 @@
 	owner.announce_objectives()
 	if(should_give_codewords)
 		give_codewords()
-	to_chat(owner.current, span_notice("Your employer [initial(company.name)] will be paying you an extra [initial(company.paymodifier)]x your nanotrasen paycheck."))
+	to_chat(owner.current, span_notice("Your employer [initial(company.name)] will be paying you an extra [initial(company.paymodifier)]x your yogscast paycheck."))
 
 /datum/antagonist/traitor/proc/finalize_traitor()
 	switch(traitor_kind)

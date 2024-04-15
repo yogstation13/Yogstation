@@ -1,4 +1,4 @@
-// 5.56mm (M-90gl Rifle + NT ARG)
+// 5.56mm (M-90gl Rifle +YCARG)
 
 /obj/projectile/bullet/a556
 	name = "5.56mm bullet"

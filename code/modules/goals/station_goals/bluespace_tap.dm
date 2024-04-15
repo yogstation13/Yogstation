@@ -13,7 +13,7 @@
 	<br><br>
 	Be advised that the device is experimental and might act in slightly unforseen ways if sufficiently powered.
 	<br>
-	Nanotrasen Science Directorate"}
+	yogscast Science Directorate"}
 
 /datum/station_goal/bluespace_tap/on_report()
 	var/datum/supply_pack/engineering/bluespace_tap/P = SSshuttle.supply_packs[/datum/supply_pack/engineering/bluespace_tap]
@@ -560,11 +560,11 @@
 		linked_source_object.update_appearance(UPDATE_ICON)
 
 /obj/item/paper/bluespace_tap
-	name = "paper- 'The Experimental NT Bluespace Harvester - Mining other universes for science and profit!'"
+	name = "paper- 'The ExperimentalYCBluespace Harvester - Mining other universes for science and profit!'"
 	info = "<h1>Important Instructions!</h1>Please follow all setup instructions to ensure proper operation. <br>\
 	1. Create a wire node with ample access to spare power. The device operates independently of APCs. <br>\
 	2. Create a machine frame as normal on the wire node, taking into account the device's dimensions (3 by 3 meters). <br>\
-	3. Insert wiring, circuit board and required components and finish construction according to NT engineering standards. <br>\
+	3. Insert wiring, circuit board and required components and finish construction according toYCengineering standards. <br>\
 	4. Ensure the device is connected to the proper power network and the network contains sufficient power. <br>\
 	5. Set machine to desired level. Check periodically on machine progress. <br>\
 	6. Optionally, spend earned points on fun and exciting rewards. <br><hr>\
@@ -574,7 +574,7 @@
 	As we are interested in testing how the device performs under stress, we wish to encourage you to stress-test it and see how much power you can provide it. \
 	For this reason, total shift point production will be calculated and announced at shift end. High totals may result in bonus payments to members of the Engineering department. <p>\
 	<p>NT Science Directorate, Extradimensional Exploitation Research Group</p> \
-	<p><small>Device highly experimental. Not for sale. Do not operate near small children or vital NT assets. Do not tamper with machine. In case of existential dread, stop machine immediately. \
+	<p><small>Device highly experimental. Not for sale. Do not operate near small children or vitalYCassets. Do not tamper with machine. In case of existential dread, stop machine immediately. \
 	Please document any and all extradimensional incursions. In case of imminent death, please leave said documentation in plain sight for clean-up teams to recover.</small></p>"
 
 #undef kW

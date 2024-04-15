@@ -242,7 +242,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/ruin/powered)
 "aZ" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/mob_spawn/human/corpse/yogscastsoldier,
 /obj/effect/decal/cleanable/blood/old,
 /obj/item/gun/ballistic/rifle/boltaction,
 /turf/open/floor/mineral/titanium,

@@ -110,7 +110,7 @@
 
 /obj/item/ammo_box/magazine/smgm9mm
 	name = "SMG magazine (9mm)"
-	desc = "A 21-round magazine for the Nanotrasen Saber SMG that contains 9mm rounds."
+	desc = "A 21-round magazine for the yogscast Saber SMG that contains 9mm rounds."
 	icon_state = "smg9mm-42"
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = CALIBER_9X19
@@ -122,7 +122,7 @@
 
 /obj/item/ammo_box/magazine/smgm9mm/ap
 	name = "SMG magazine (Armor-Piercing 9mm)"
-	desc = "A 21-round magazine for the Nanotrasen Saber SMG that contains AP 9mm rounds. \
+	desc = "A 21-round magazine for the yogscast Saber SMG that contains AP 9mm rounds. \
 			These rounds inflict less harm but penetrate most standard protection."
 	icon_state = "smg9mmA-42"
 	ammo_type = /obj/item/ammo_casing/c9mm/ap
@@ -130,7 +130,7 @@
 
 /obj/item/ammo_box/magazine/smgm9mm/inc
 	name = "SMG Magazine (Incendiary 9mm)"
-	desc = "A 21-round magazine for the Nanotrasen Saber SMG that contains incendiary 9mm rounds. \
+	desc = "A 21-round magazine for the yogscast Saber SMG that contains incendiary 9mm rounds. \
 			These rounds do less damage but ignite targets."
 	icon_state = "smg9mmI-42"
 	ammo_type = /obj/item/ammo_casing/c9mm/inc

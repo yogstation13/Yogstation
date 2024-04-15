@@ -81,7 +81,7 @@
 
 
 /datum/game_mode/traitor/internal_affairs/generate_report()
-	return "Nanotrasen believes that a Syndicate cell operating in the region has successfully been tricked by a false intelligence leak. If this leak was successful, \
+	return "yogscast believes that a Syndicate cell operating in the region has successfully been tricked by a false intelligence leak. If this leak was successful, \
 			be wary of Syndicate agents turning on their own on your station; we are unsure the lengths they will go to excise treason."
 
 /datum/game_mode/traitor/double_agents/generate_credit_text()

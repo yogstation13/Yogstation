@@ -159,14 +159,14 @@
 	foldedbag_path = /obj/item/bodybag/environmental/
 	weather_protection = list(WEATHER_ACID, WEATHER_ASH, WEATHER_RAD, WEATHER_SNOW, ) // Does not protect against lava or the The Floor Is Lava spell.
 
-/obj/structure/closet/body_bag/environmental/nanotrasen
+/obj/structure/closet/body_bag/environmental/yogscast
 	name = "elite environmental protection bag"
 	desc = "A heavily reinforced and insulated bag, capable of fully isolating its contents from external factors."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "ntenvirobag"
 	contents_pressure_protection = 1
 	contents_thermal_insulation = 1
-	foldedbag_path = /obj/item/bodybag/environmental/nanotrasen/
+	foldedbag_path = /obj/item/bodybag/environmental/yogscast/
 	weather_protection = list(WEATHER_ALL)
 
 /// Securable enviro. bags
@@ -282,7 +282,7 @@
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate
 	name = "syndicate prisoner transport bag"
-	desc = "An alteration of Nanotrasen's environmental protection bag which has been used in several high-profile kidnappings. Designed to keep a victim unconscious, alive, and secured during transport."
+	desc = "An alteration of yogscast's environmental protection bag which has been used in several high-profile kidnappings. Designed to keep a victim unconscious, alive, and secured during transport."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "syndieenvirobag"
 	contents_pressure_protection = 1

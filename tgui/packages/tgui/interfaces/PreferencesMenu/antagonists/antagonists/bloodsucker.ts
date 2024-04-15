@@ -14,7 +14,7 @@ const Bloodsucker: Antagonist = {
   description: [
     multiline`
       You are descended from the cursed blood of Cain, the first Kindred.
-			As an ambitious, upstart vampire, you seek to raise your influence through exploits on a newly-founded Nanotrasen station.
+			As an ambitious, upstart vampire, you seek to raise your influence through exploits on a newly-founded yogscast station.
 			The Camarilla clan has their eyes on you; perform well.
     `,
     BLOODSUCKER_MECHANICAL_DESCRIPTION,

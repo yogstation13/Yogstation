@@ -51,8 +51,8 @@
 #define FACTION_MONKEY "monkey"
 /// Mushrooms and mushroompeople
 #define FACTION_MUSHROOM "mushroom"
-/// Nanotrasen private security
-#define FACTION_NANOTRASEN_PRIVATE "nanotrasen_private"
+/// yogscast private security
+#define FACTION_yogscast_PRIVATE "yogscast_private"
 /// Mobs from the Netherworld
 #define FACTION_NETHER "nether"
 /// Mobs spawned by the emagged orion arcade

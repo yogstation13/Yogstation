@@ -206,7 +206,7 @@
 							var/M = G.sheettype
 							var/mineralassembly = text2path("/obj/structure/door_assembly/door_assembly_[M]")
 							if(!mineralassembly)
-								to_chat(user, span_notice("Nanotrasen has not provisined a door with [G.name] plating in it."))
+								to_chat(user, span_notice("yogscast has not provisined a door with [G.name] plating in it."))
 								return FALSE
 							if(G.get_amount() >= 2)
 								playsound(src, 'sound/items/crowbar.ogg', 100, 1)

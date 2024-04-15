@@ -879,7 +879,7 @@
 /area/ruin/syndicate_icemoon/medical)
 "fV" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/mob_spawn/human/corpse/yogscastsoldier,
 /obj/structure/bodycontainer/morgue{
 	dir = 2
 	},
@@ -1449,7 +1449,7 @@
 /area/ruin/syndicate_icemoon/engine)
 "kV" = (
 /obj/machinery/computer/crew/syndie{
-	desc = "Used to monitor active health sensors built into the uniforms of most Nanotrasen employees.";
+	desc = "Used to monitor active health sensors built into the uniforms of most yogscast employees.";
 	dir = 8;
 	name = "suit sensor monitoring console"
 	},
@@ -4870,7 +4870,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/photocopier/faxmachine{
 	department = "Unidentified";
-	desc = "Used to send black pages to Nanotrasen stations.";
+	desc = "Used to send black pages to yogscast stations.";
 	name = "Syndicate Fax Machine";
 	req_one_access = list(150)
 	},

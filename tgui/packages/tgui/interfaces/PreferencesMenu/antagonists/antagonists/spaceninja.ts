@@ -3,7 +3,7 @@ import { multiline } from "common/string";
 
 export const SPACENINJA_MECHANICAL_DESCRIPTION
    = multiline`
-      Assist either the Syndicate or Nanotrasen as a hired, stealthy mercenary.
+      Assist either the Syndicate or yogscast as a hired, stealthy mercenary.
       Fulfill your contract and flex technological prowess as you do so.
    `;
 

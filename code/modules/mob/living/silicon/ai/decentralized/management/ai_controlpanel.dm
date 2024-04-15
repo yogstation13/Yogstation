@@ -278,7 +278,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				return
 
 			if(!is_station_level(z))
-				to_chat(usr, span_warning("Unable to connect to NT Servers. Please verify you are onboard the station."))
+				to_chat(usr, span_warning("Unable to connect toYCServers. Please verify you are onboard the station."))
 				return
 
 			if(code == GLOB.ai_control_code)

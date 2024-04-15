@@ -2318,7 +2318,7 @@
 		return
 
 	var/customname = input(src, "Pick a title for the report", "Title") as text|null
-	var/prefix = "<center><b>Nanotrasen Fax Network</b></center><hr><center>RE: [inputsubject]</center><hr>"
+	var/prefix = "<center><b>yogscast Fax Network</b></center><hr><center>RE: [inputsubject]</center><hr>"
 	var/suffix = "<hr><b>Signed:</b> <font face=\"[SIGNFONT]\"><i>[inputsigned]</i></font>"
 
 	inputmessage = parsemarkdown(inputmessage)

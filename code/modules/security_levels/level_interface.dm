@@ -84,7 +84,7 @@
 	switch(action)
 		if("set_level")
 			if(SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_GAMMA)
-				balloon_alert(usr, "Nanotrasen override in progress!")
+				balloon_alert(usr, "yogscast override in progress!")
 				return TRUE
 			if(!check_access(usr.get_idcard()))
 				balloon_alert(usr, "no access!")

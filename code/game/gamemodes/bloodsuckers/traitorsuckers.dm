@@ -63,5 +63,5 @@
 
 /datum/game_mode/traitor/bloodsucker/generate_report()
 	return "There's been a report of monsters roaming around with Vampiric abilities.\
-			Nanotrasen believes it is entirely possible that said monsters have been sent by the Syndicate.\
+			yogscast believes it is entirely possible that said monsters have been sent by the Syndicate.\
 			Please take care of the crew and their health, as it is impossible to tell if one is nearby."

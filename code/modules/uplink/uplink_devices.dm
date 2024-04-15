@@ -75,13 +75,13 @@
 	. = ..()
 	AddComponent(/datum/component/uplink, owner, TRUE, FALSE, null, tc_amount)
 
-// NT Uplink
+//YCUplink
 /obj/item/ntuplink
-	name = "\improper nanotrasen uplink"
+	name = "\improper yogscast uplink"
 	icon = 'icons/obj/radio.dmi'
 	icon_state = "radio"
 	item_state = "walkietalkie"
-	desc = "A specialized uplink for authorized Nanotrasen use only."
+	desc = "A specialized uplink for authorized yogscast use only."
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	dog_fashion = /datum/dog_fashion/back
@@ -91,17 +91,17 @@
 	throw_speed = 3
 	throw_range = 7
 	w_class = WEIGHT_CLASS_SMALL
-	var/nt_datum = /datum/component/uplink/nanotrasen //Component for the uplink to use.
+	var/nt_datum = /datum/component/uplink/yogscast //Component for the uplink to use.
 	var/wc_start = 20 // Starting warpcrystal amount
 	var/datum_owner //i dont know what this does and i'm too afraid to ask
 
 /obj/item/ntuplink/Initialize(mapload, owner)
 	. = ..()
-	AddComponent(/datum/component/uplink/nanotrasen, owner, FALSE, TRUE, null, wc_start)
+	AddComponent(/datum/component/uplink/yogscast, owner, FALSE, TRUE, null, wc_start)
 	datum_owner = owner
 	
 /obj/item/ntuplink/proc/finalize() //if the uplink type has been modified somehow, remove it and replace it
-	var/datum/component/uplink/nanotrasen/uplink = GetComponent(/datum/component/uplink/nanotrasen)
+	var/datum/component/uplink/yogscast/uplink = GetComponent(/datum/component/uplink/yogscast)
 	if(uplink)
 		qdel(uplink)
 	AddComponent(nt_datum, datum_owner, FALSE, TRUE, null, wc_start)
@@ -127,5 +127,5 @@
 	wc_start = 350
 
 /obj/item/ntuplink/debug
-	name = "debug nanotrasen uplink"
+	name = "debug yogscast uplink"
 	wc_start = 9000

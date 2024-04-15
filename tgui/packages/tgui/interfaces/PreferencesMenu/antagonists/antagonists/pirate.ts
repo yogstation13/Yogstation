@@ -15,7 +15,7 @@ const Pirate: Antagonist = {
     multiline`
       YARR! Pirating be a good life, ye think.
       Ye and yer fellow crew be sailing the stars fer years now, but Hector's rum never be the same after ye were cursed to be skeletons!
-      Though the Syndicate be paying ye fine, in addition to whatever booty ye loot. Here's a Nanotrasen station; prime fer a raid!
+      Though the Syndicate be paying ye fine, in addition to whatever booty ye loot. Here's a yogscast station; prime fer a raid!
     `,
     PIRATE_MECHANICAL_DESCRIPTION,
   ],

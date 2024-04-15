@@ -26,7 +26,7 @@
 
 /obj/item/clothing/suit/hooded/wintercoat/centcom
 	name = "centcom winter coat"
-	desc = "A luxurious winter coat woven in the bright green and gold colours of Central Command. It has a small pin in the shape of the Nanotrasen logo for a zipper."
+	desc = "A luxurious winter coat woven in the bright green and gold colours of Central Command. It has a small pin in the shape of the yogscast logo for a zipper."
 	icon_state = "coatcentcom"
 	item_state = "coatcentcom"
 	armor = list(MELEE = 35, BULLET = 40, LASER = 40, ENERGY = 50, BOMB = 35, BIO = 10, RAD = 10, FIRE = 10, ACID = 60)

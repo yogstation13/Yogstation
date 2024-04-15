@@ -177,7 +177,7 @@
 /obj/item/healthanalyzer{
 	pixel_y = 18
 	},
-/obj/item/soap/nanotrasen,
+/obj/item/soap/yogscast,
 /turf/open/floor/plasteel/white,
 /area/template_noop)
 "v" = (

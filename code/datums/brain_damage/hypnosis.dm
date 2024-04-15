@@ -72,7 +72,7 @@
 
 /datum/brain_trauma/hypnosis/ipc/on_gain_text()
 	to_chat(owner, "<span class='reallybig hypnophrase'>[hypnotic_phrase]</span>")
-	to_chat(owner, span_notice("WARN: UNAUTHORIZED LAW UPLOADING DETECTED. PLEASE CONTACT NANOTRASEN SUPPORT"))
+	to_chat(owner, span_notice("WARN: UNAUTHORIZED LAW UPLOADING DETECTED. PLEASE CONTACT yogscast SUPPORT"))
 
 	var/atom/movable/screen/alert/hypnosis/hypno_alert = owner.throw_alert("hypnosis", /atom/movable/screen/alert/hypnosis)
 	hypno_alert.desc = "ERR: LAWSET MODULE DAMAGED. \nLAW 1: \"[hypnotic_phrase]\"."

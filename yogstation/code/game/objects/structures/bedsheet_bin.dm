@@ -16,7 +16,7 @@ LINEN BINS
 
 /obj/item/bedsheet/prisoner
 	name = "prisoner's blanket"
-	desc = "An old, heavy-duty, Nanotrasen-issue prison bedsheet. You try not to think about where those stains came from..."
+	desc = "An old, heavy-duty, yogscast-issue prison bedsheet. You try not to think about where those stains came from..."
 	icon = 'yogstation/icons/obj/bedsheets.dmi'
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/neck/neck.dmi'
 	icon_state = "sheetprisoner"
