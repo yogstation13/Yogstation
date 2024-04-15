@@ -163,7 +163,7 @@
 		/datum/job/geneticist = /obj/item/organ/stomach/fly,
 		/datum/job/head_of_personnel = /obj/item/organ/eyes/robotic,
 		/datum/job/hos = /obj/item/organ/cyberimp/brain/anti_drop,
-		/datum/job/janitor = /obj/item/organ/eyes/robotic/xray, // Meson eyes, I guess.
+		/datum/job/janitor = /obj/item/organ/heart/cybernetic, // ACTUAL x-ray eyes is likely "not balanced" and all alternatives suck. So boring heart.
 		/datum/job/lawyer = /obj/item/organ/heart/cybernetic/upgraded,
 		/datum/job/mime = /obj/item/organ/tongue/robot, // ...
 		/datum/job/mining = /obj/item/organ/cyberimp/chest/reviver, // Replace with a reusable mining-specific implant if one is added later.
