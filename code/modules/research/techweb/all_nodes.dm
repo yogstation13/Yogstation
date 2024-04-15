@@ -598,7 +598,7 @@ datum/techweb_node/cyber_organs/New()
 
 /datum/techweb_node/illegal_cyber_implants
 	id = "illegal_cyber_implants"
-	display_name = "Illegal Cybernetic Implants"	
+	display_name = "Illegal Cybernetic Implants"
 	description = "Nanotrasen would like to remind employees that use of unlicensed cybernetic implants violates multiple employee contract clauses."
 	prereq_ids = list("combat_cyber_implants","syndicate_basic")
 	design_ids = list("ci-noslipwater")
