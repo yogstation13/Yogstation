@@ -840,8 +840,8 @@
 	icon = "person-rays"
 	value = -2
 	mood_quirk = TRUE
-	gain_text = "<span class='danger'>You now begin to hate the idea of having cybernetic implants.</span>"
-	lose_text = "<span class='notice'>Maybe cybernetics aren't so bad. You now feel okay with augmentations and prosthetics.</span>"
+	gain_text = span_danger("You now begin to hate the idea of having cybernetic implants.")
+	lose_text = span_notice("Maybe cybernetics aren't so bad. You now feel okay with augmentations and prosthetics.")
 	medical_record_text = "This patient has disclosed an extreme hatred for unnatural bodyparts and augmentations."
 	var/cybernetics_level = 0
 
@@ -883,7 +883,7 @@
 
 /datum/quirk/body_purist/proc/on_organ_gain(datum/source, obj/item/organ/new_organ, special)
 	SIGNAL_HANDLER
-	if(new_organ.organ_flags & ORGAN_SYNTHETIC || new_organ.status == ORGAN_ROBOTIC) //why the fuck are there 2 of them
+	if(new_organ.organ_flags & ORGAN_SYNTHETIC || new_organ.status == ORGAN_ROBOTIC)
 		cybernetics_level++
 		update_mood()
 

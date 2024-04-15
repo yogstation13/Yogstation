@@ -132,9 +132,9 @@
 	show_in_report = TRUE
 
 /datum/station_trait/cybernetic_revolution
-	name = "Cybernetic Revolution" // todo: announcement shows <i> which is not good
+	name = "Cybernetic Revolution"
 	trait_type = STATION_TRAIT_POSITIVE
-	weight = 200
+	weight = 1
 	show_in_report = TRUE
 	report_message = "The new trends in cybernetics have come to the station! Everyone has some form of cybernetic implant."
 	trait_to_give = STATION_TRAIT_CYBERNETIC_REVOLUTION
@@ -192,10 +192,8 @@
 	var/cybernetic_type = job_to_cybernetic[job.type]
 	if(cybernetic_type)
 		var/obj/item/organ/cybernetic = new cybernetic_type()
-		to_chat(world, "START: person was given [cybernetic_type]")
 		// Timer is needed because doing it immediately doesn't REPLACE organs for some unknown reason, so got to do it next tick or whatever.
 		addtimer(CALLBACK(cybernetic, TYPE_PROC_REF(/obj/item/organ, Insert), living_mob), 1)
-		to_chat(world, "END: person was given [cybernetic_type]")
 		return
 
 	if(isAI(living_mob))
