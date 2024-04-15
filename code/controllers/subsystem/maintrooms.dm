@@ -47,6 +47,8 @@ SUBSYSTEM_DEF(maintrooms)
 			continue
 		if(!is_type_in_typecache(L, valid_lockers))
 			continue
+		if(L.open)
+			continue
 		lockers_list += L
 	return get_turf(pick(lockers_list)) //no way this is safe, but it's probably fine.... right?
 
