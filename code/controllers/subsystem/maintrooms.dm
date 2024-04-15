@@ -50,7 +50,10 @@ SUBSYSTEM_DEF(maintrooms)
 		if(L.opened)
 			continue
 		lockers_list += L
-	return get_turf(pick(lockers_list)) //no way this is safe, but it's probably fine.... right?
+	var/obj/structure/closet/exit = pick(lockers_list)
+	if(!exit)
+		exit = new(get_safe_random_station_turf())
+	return get_turf(exit)
 
 /obj/effect/portal/permanent/one_way/backrooms/teleport(atom/movable/M, force)
 	. = ..()
