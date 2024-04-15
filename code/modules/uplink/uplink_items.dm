@@ -2294,11 +2294,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/emp_shield
 	cost = 6
 
-/datum/uplink_item/implants/emp_shield/New()
-	..()
-	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
-		cost = max(1, ROUND_UP(cost/2))
-
 // Events
 /datum/uplink_item/services
 	category = "Services"
