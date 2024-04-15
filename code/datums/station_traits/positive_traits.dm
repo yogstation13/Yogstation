@@ -184,8 +184,9 @@
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_JOB_AFTER_SPAWN, PROC_REF(on_job_after_spawn))
 
-/datum/station_trait/cybernetic_revolution/proc/on_job_after_spawn(datum/source, datum/job/job, mob/living/living_mob, mob/M, joined_late)
-	if(living_mob.has_quirk(/datum/quirk/body_purist))
+/datum/station_trait/cybernetic_revolution/proc/on_job_after_spawn(datum/source, datum/job/job, mob/living/living_mob, mob/new_player_mob, joined_late)
+	var/datum/quirk/body_purist/body_purist = /datum/quirk/body_purist
+	if(initial(body_purist.name) in new_player_mob.client.prefs.all_quirks)
 		return
 
 	var/cybernetic_type = job_to_cybernetic[job.type]
