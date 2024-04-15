@@ -843,8 +843,6 @@
 	gain_text = "<span class='danger'>You now begin to hate the idea of having cybernetic implants.</span>"
 	lose_text = "<span class='notice'>Maybe cybernetics aren't so bad. You now feel okay with augmentations and prosthetics.</span>"
 	medical_record_text = "This patient has disclosed an extreme hatred for unnatural bodyparts and augmentations."
-	hardcore_value = 3
-	mail_goodies = list(/obj/item/paper/pamphlet/cybernetics)
 	var/cybernetics_level = 0
 
 /datum/quirk/body_purist/add()
