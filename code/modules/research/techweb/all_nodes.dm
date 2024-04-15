@@ -531,6 +531,11 @@
 	design_ids = list("cybernetic_heart", "cybernetic_liver", "cybernetic_lungs", "cybernetic_stomach", "cybernetic_ears", "cybernetic_appendix")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 
+datum/techweb_node/cyber_organs/New()
+	..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
+		research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
+
 /datum/techweb_node/cyber_organs_upgraded
 	id = "cyber_organs_upgraded"
 	display_name = "Upgraded Cybernetic Organs"
@@ -538,6 +543,11 @@
 	prereq_ids = list("cyber_organs")
 	design_ids = list("cybernetic_heart_u", "cybernetic_liver_u", "cybernetic_lungs_u", "cybernetic_stomach_u")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
+
+/datum/techweb_node/cyber_organs_upgraded/New()
+	..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
+		research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 750)
 
 /datum/techweb_node/ipc_organs
 	id = "ipc_organs"
@@ -555,6 +565,11 @@
 	design_ids = list("ci-nutriment", "ci-breather", "ci-gloweyes", "ci-meson", "ci-welding", "ci-medhud", "ci-sechud", "ci-scihud", "ci-diaghud")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
+/datum/techweb_node/cyber_implants/New()
+	..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
+		research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1250)
+
 /datum/techweb_node/adv_cyber_implants
 	id = "adv_cyber_implants"
 	display_name = "Advanced Cybernetic Implants"
@@ -562,6 +577,11 @@
 	prereq_ids = list("neural_programming", "cyber_implants","integrated_HUDs")
 	design_ids = list("ci-toolset", "ci-surgery", "ci-reviver", "ci-nutrimentplus", "ci-magboots")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
+/datum/techweb_node/adv_cyber_implants/New()
+	..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
+		research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1250)
 
 /datum/techweb_node/combat_cyber_implants
 	id = "combat_cyber_implants"
@@ -571,13 +591,23 @@
 	design_ids = list("ci-antidrop", "ci-antistun", "ci-thrusters", "ci-jumpboots", "ci-wheelies")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
+/datum/techweb_node/combat_cyber_implants/New()
+	..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
+		research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1250)
+
 /datum/techweb_node/illegal_cyber_implants
 	id = "illegal_cyber_implants"
-	display_name = "Illegal Cybernetic Implants"
+	display_name = "Illegal Cybernetic Implants"	
 	description = "Nanotrasen would like to remind employees that use of unlicensed cybernetic implants violates multiple employee contract clauses."
 	prereq_ids = list("combat_cyber_implants","syndicate_basic")
 	design_ids = list("ci-noslipwater")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+
+/datum/techweb_node/illegal_cyber_implants/New()
+	..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
+		research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 
 ////////////////////////Tools////////////////////////
 
