@@ -111,7 +111,6 @@
 			set_light_on(FALSE)
 		else
 			set_light_on(TRUE)
-			set_light()
 	else
 		item_state = "holotool"
 		icon_state = "holotool"
