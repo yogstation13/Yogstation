@@ -139,6 +139,7 @@
 	report_message = "The new trends in cybernetics have come to the station! Everyone has some form of cybernetic implant."
 	trait_to_give = STATION_TRAIT_CYBERNETIC_REVOLUTION
 	/// List of all job types with the cybernetics they should receive.
+	// Should be themed around their job/department. If no theme is possible, a basic cybernetic organ is fine.
 	var/static/list/job_to_cybernetic = list(
 		/datum/job/assistant = /obj/item/organ/heart/cybernetic,
 		/datum/job/artist = /obj/item/organ/heart/cybernetic, 
@@ -151,7 +152,7 @@
 		/datum/job/chaplain = /obj/item/organ/cyberimp/brain/anti_drop, // Preventing null rod loss.
 		/datum/job/chemist = /obj/item/organ/cyberimp/eyes/hud/science, // For seeing reagents.
 		/datum/job/chief_engineer = /obj/item/organ/cyberimp/chest/thrusters,
-		/datum/job/clerk = /obj/item/organ/stomach/cybernetic/upgraded,
+		/datum/job/clerk = /obj/item/organ/stomach/cybernetic,
 		/datum/job/clown = /obj/item/organ/cyberimp/brain/anti_stun, // Funny.
 		/datum/job/cmo = /obj/item/organ/cyberimp/chest/reviver,
 		/datum/job/cook = /obj/item/organ/cyberimp/chest/nutriment/plus,
@@ -161,8 +162,8 @@
 		/datum/job/engineer = /obj/item/organ/cyberimp/arm/toolset,
 		/datum/job/geneticist = /obj/item/organ/stomach/fly,
 		/datum/job/head_of_personnel = /obj/item/organ/eyes/robotic,
-		/datum/job/hos = /obj/item/organ/eyes/robotic/thermals,
-		/datum/job/janitor = /obj/item/organ/eyes/robotic/xray/syndicate, // See all, clean all.
+		/datum/job/hos = /obj/item/organ/cyberimp/brain/anti_drop,
+		/datum/job/janitor = /obj/item/organ/eyes/robotic/xray, // Meson eyes, I guess.
 		/datum/job/lawyer = /obj/item/organ/heart/cybernetic/upgraded,
 		/datum/job/mime = /obj/item/organ/tongue/robot, // ...
 		/datum/job/mining = /obj/item/organ/cyberimp/chest/reviver, // Replace with a reusable mining-specific implant if one is added later.
@@ -170,8 +171,8 @@
 		/datum/job/network_admin = /obj/item/organ/cyberimp/arm/toolset,
 		/datum/job/officer = /obj/item/organ/cyberimp/arm/flash,
 		/datum/job/paramedic = /obj/item/organ/cyberimp/eyes/hud/medical,
-		/datum/job/psych = /obj/item/organ/ears/cybernetic, // Hearing people out.
-		/datum/job/qm = /obj/item/organ/stomach/cybernetic/upgraded,
+		/datum/job/psych = /obj/item/organ/ears/cybernetic,
+		/datum/job/qm = /obj/item/organ/stomach/cybernetic,
 		/datum/job/rd = /obj/item/organ/cyberimp/eyes/hud/diagnostic, // Replace with a very cool science implant if one is added later.
 		/datum/job/roboticist = /obj/item/organ/cyberimp/eyes/hud/diagnostic, // Robots and mechs.
 		/datum/job/scientist = /obj/item/organ/cyberimp/eyes/hud/science, // Science, duh.
