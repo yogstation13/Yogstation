@@ -1,0 +1,4 @@
+author: "JohnFulpWillard"
+delete-after: true 
+changes: 
+  - bugfix: "Buster arm should now remove properly, and you can properly not stack buster arm on top of an existing martial art."
