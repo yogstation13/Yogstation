@@ -1,0 +1,4 @@
+author: "JohnFulpWillard"
+delete-after: true 
+changes: 
+  - bugfix: "Holotool now doesn't cause errors and lights should more consistently follow the player."
