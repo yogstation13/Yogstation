@@ -428,8 +428,7 @@
 	semicd = FALSE
 
 /obj/item/gun/attack(mob/M, mob/living/user, params)
-	var/list/modifiers = params2list(params)
-	if(user.combat_mode && !modifiers?[RIGHT_CLICK]) //Flogging
+	if(user.combat_mode) //Flogging
 		if(bayonet)
 			M.attackby(bayonet, user)
 			return
