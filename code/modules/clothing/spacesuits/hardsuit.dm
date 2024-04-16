@@ -44,7 +44,7 @@
 		var/datum/action/A = X
 		A.build_all_button_icons()
 
-/obj/item/clothing/head/helmet/space/hardsuit/worn_overlays(isinhands = FALSE)
+/obj/item/clothing/head/helmet/space/hardsuit/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(!isinhands && hat_overlay)
 		. += hat_overlay
@@ -1008,7 +1008,7 @@
 			var/mob/living/carbon/human/C = loc
 			C.update_inv_wear_suit()
 
-/obj/item/clothing/suit/space/hardsuit/shielded/worn_overlays(isinhands)
+/obj/item/clothing/suit/space/hardsuit/shielded/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(!isinhands)
 		. += mutable_appearance('icons/effects/effects.dmi', shield_state, MOB_LAYER + 0.01)

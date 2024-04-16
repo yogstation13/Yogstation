@@ -631,6 +631,8 @@
 			playsound(moved_atom, 'sound/effects/gib_step.ogg', 50, 1)
 			qdel(moved_atom)
 			continue
+		if(isobserver(moved_atom))
+			continue // what the fuck?
 		if(moved_atom.wash(CLEAN_SCRUB))
 			cleaned = TRUE
 		if(moved_atom.anchored)

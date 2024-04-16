@@ -87,7 +87,7 @@
 	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
 
-/obj/item/clothing/head/helmet/space/plasmaman/worn_overlays(isinhands = FALSE)
+/obj/item/clothing/head/helmet/space/plasmaman/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(isinhands)
 		return
