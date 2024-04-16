@@ -186,6 +186,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_JOB_AFTER_SPAWN, PROC_REF(on_job_after_spawn))
 
 /datum/station_trait/cybernetic_revolution/proc/on_job_after_spawn(datum/source, datum/job/job, mob/living/living_mob, mob/new_player_mob, joined_late)
+	// Having the Body Purist quirk prevents the effects of this station trait from being applied to you.
 	var/datum/quirk/body_purist/body_purist = /datum/quirk/body_purist
 	if(initial(body_purist.name) in new_player_mob.client.prefs.all_quirks)
 		return
