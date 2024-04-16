@@ -184,11 +184,6 @@
 	materials.retrieve_all()
 
 /obj/machinery/autolathe/attackby(obj/item/O, mob/living/user, params)
-	var/list/modifiers = params2list(params)
-	// right click to open the panel
-	if(modifiers && modifiers[RIGHT_CLICK] && default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", O))
-		return TRUE
-
 	if(default_deconstruction_crowbar(O))
 		return TRUE
 
@@ -211,6 +206,11 @@
 			update_static_data(user)
 		return TRUE
 
+	return ..()
+
+/obj/machinery/autolathe/attackby_secondary(obj/item/weapon, mob/user, params)
+	if(default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", weapon))
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	return ..()
 
 /obj/machinery/autolathe/proc/AfterMaterialInsert(type_inserted, id_inserted, amount_inserted)

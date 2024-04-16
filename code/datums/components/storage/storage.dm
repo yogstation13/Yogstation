@@ -496,6 +496,10 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 //This proc is called when you want to place an item into the storage item.
 /datum/component/storage/proc/attackby(datum/source, obj/item/I, mob/M, params)
+	var/list/modifiers = params2list(params)
+	if(modifiers[RIGHT_CLICK]) // open the storage on right click
+		on_alt_click(source, M)
+		return TRUE
 	if(istype(I, /obj/item/hand_labeler))
 		var/obj/item/hand_labeler/labeler = I
 		if(labeler.mode)

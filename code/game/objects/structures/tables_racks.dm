@@ -227,6 +227,21 @@
 	else
 		return ..()
 
+/obj/structure/table/attackby_secondary(obj/item/weapon, mob/user, params) // right click to deconstruct
+	if(!(flags_1 & NODECONSTRUCT_1) && deconstruction_ready)
+		if(weapon.tool_behaviour == TOOL_SCREWDRIVER)
+			to_chat(user, span_notice("You start disassembling [src]..."))
+			if(weapon.use_tool(src, user, 20, volume=50))
+				deconstruct(TRUE)
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+		if(weapon.tool_behaviour == TOOL_WRENCH)
+			to_chat(user, span_notice("You start deconstructing [src]..."))
+			if(weapon.use_tool(src, user, 40, volume=50))
+				playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
+				deconstruct(TRUE, 1)
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	return ..()
 
 /obj/structure/table/deconstruct(disassembled = TRUE, wrench_disassembly = 0)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -464,23 +479,23 @@
 	else
 		return span_notice("The top cover is firmly <b>welded</b> on.")
 
-/obj/structure/table/reinforced/attackby(obj/item/W, mob/user, params)
-	if(W.tool_behaviour == TOOL_WELDER)
-		if(!W.tool_start_check(user, amount=0))
-			return
+/obj/structure/table/reinforced/attackby_secondary(obj/item/weapon, mob/user, params)
+	if(weapon.tool_behaviour == TOOL_WELDER)
+		if(!weapon.tool_start_check(user, amount=0))
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 		if(deconstruction_ready)
 			to_chat(user, span_notice("You start strengthening the reinforced table..."))
-			if (W.use_tool(src, user, 50, volume=50))
+			if (weapon.use_tool(src, user, 50, volume=50))
 				to_chat(user, span_notice("You strengthen the table."))
 				deconstruction_ready = 0
 		else
 			to_chat(user, span_notice("You start weakening the reinforced table..."))
-			if (W.use_tool(src, user, 50, volume=50))
+			if (weapon.use_tool(src, user, 50, volume=50))
 				to_chat(user, span_notice("You weaken the table."))
 				deconstruction_ready = 1
-	else
-		. = ..()
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	return ..()
 
 /obj/structure/table/reinforced/brass
 	name = "brass table"
@@ -608,15 +623,17 @@
 		step(O, get_dir(O, src))
 
 /obj/structure/rack/attackby(obj/item/W, mob/living/user, params)
-	var/list/modifiers = params2list(params)
-	if (W.tool_behaviour == TOOL_WRENCH && !(flags_1&NODECONSTRUCT_1) && modifiers && modifiers[RIGHT_CLICK])
-		W.play_tool_sound(src)
-		deconstruct(TRUE)
-		return
 	if(user.combat_mode)
 		return ..()
 	if(user.transferItemToLoc(W, drop_location()))
 		return TRUE
+
+/obj/structure/rack/attackby_secondary(obj/item/weapon, mob/user, params)
+	if(weapon.tool_behaviour == TOOL_WRENCH && !(flags_1 & NODECONSTRUCT_1))
+		weapon.play_tool_sound(src)
+		deconstruct(TRUE)
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	return ..()
 
 /obj/structure/rack/attack_paw(mob/living/user)
 	attack_hand(user)
