@@ -20,6 +20,9 @@
 	// We can rely on the lighting plane to handle that for us
 	see_in_dark = 1e6
 
+	/// Whether the context menu is opened with shift-right-click as opposed to right-click
+	var/shift_to_open_context_menu = TRUE
+
 	/// Percentage of how much rgb to max the lighting plane at
 	/// This lets us brighten it without washing out color
 	/// Scale from 0-100, reset off update_sight()
