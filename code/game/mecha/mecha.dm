@@ -989,6 +989,16 @@
 		to_chat(user, span_warning("You stop entering the exosuit!"))
 	return
 
+/obj/mecha/proc/register_occupant(mob/living/new_occupant)
+	RegisterSignal(new_occupant, COMSIG_MOVABLE_KEYBIND_FACE_DIR, PROC_REF(on_turn), TRUE)
+
+/obj/mecha/proc/unregister_occupant(mob/living/new_occupant)
+	UnregisterSignal(new_occupant, COMSIG_MOVABLE_KEYBIND_FACE_DIR)
+
+/obj/mecha/proc/on_turn()
+	SIGNAL_HANDLER
+	return COMSIG_IGNORE_MOVEMENT_LOCK
+
 /obj/mecha/proc/moved_inside(mob/living/carbon/human/H)
 	if(H && H.client && (H in range(1)))
 		occupant = H
@@ -1001,6 +1011,7 @@
 		icon_state = initial(icon_state)
 		setDir(dir_in)
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
+		register_occupant(H)
 		if(!internal_damage)
 			SEND_SOUND(occupant, sound('sound/mecha/nominal.ogg',volume=50))
 		return 1
@@ -1056,6 +1067,7 @@
 	icon_state = initial(icon_state)
 	update_appearance(UPDATE_ICON)
 	setDir(dir_in)
+	register_occupant(mmi_as_oc)
 	log_message("[mmi_as_oc] moved in as pilot.", LOG_MECHA)
 	if(istype(mmi_as_oc, /obj/item/mmi/posibrain))											//yogs start reminder to posibrain to not be shitlers
 		to_chat(brainmob, "<b>As a synthetic intelligence, you answer to all crewmembers and the AI.\n\
@@ -1120,6 +1132,7 @@
 		var/mob/living/silicon/ai/AI = occupant
 		if(forced)//This should only happen if there are multiple AIs in a round, and at least one is Malf.
 			RemoveActions(occupant)
+			unregister_occupant(occupant)
 			occupant.gib()  //If one Malf decides to steal a mech from another AI (even other Malfs!), they are destroyed, as they have nowhere to go when replaced.
 			occupant = null
 			silicon_pilot = FALSE
