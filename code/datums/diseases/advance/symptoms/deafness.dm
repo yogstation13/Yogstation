@@ -18,6 +18,7 @@ Bonus
 /datum/symptom/deafness
 
 	name = "Deafness"
+	icon = "deafness"
 	desc = "The virus causes inflammation of the eardrums, causing intermittent deafness."
 	stealth = -1
 	resistance = -2
@@ -32,7 +33,7 @@ Bonus
 		"Resistance 9" = "Causes permanent deafness, instead of intermittent.",
 		"Stealth 4" = "The symptom remains hidden until active.",
 	)
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/symptom/deafness/Start(datum/disease/advance/A)
 	. = ..()

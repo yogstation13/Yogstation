@@ -206,11 +206,11 @@
 
 /datum/action/changeling/sting/mute
 	name = "Mute Sting"
-	desc = "We silently sting a human, completely silencing them for a short time. Costs 20 chemicals."
+	desc = "We silently sting a human, completely silencing them for a short time. Costs 40 chemicals."
 	helptext = "Does not provide a warning to the victim that they have been stung, until they try to speak and cannot."
 	button_icon_state = "sting_mute"
 	sting_icon = "sting_mute"
-	chemical_cost = 20
+	chemical_cost = 40
 	dna_cost = 2
 
 /datum/action/changeling/sting/mute/sting_action(mob/user, mob/living/carbon/target)
@@ -221,11 +221,11 @@
 
 /datum/action/changeling/sting/blind
 	name = "Blind Sting"
-	desc = "We temporarily blind our victim. Costs 25 chemicals."
+	desc = "We temporarily blind our victim. Costs 40 chemicals."
 	helptext = "This sting completely blinds a target for a short time, and leaves them with blurred vision for a long time."
 	button_icon_state = "sting_blind"
 	sting_icon = "sting_blind"
-	chemical_cost = 25
+	chemical_cost = 40
 	dna_cost = 1
 
 /datum/action/changeling/sting/blind/sting_action(mob/user, mob/living/carbon/target)
@@ -233,7 +233,7 @@
 	to_chat(target, span_danger("Your eyes burn horrifically!"))
 	target.become_nearsighted(EYE_DAMAGE)
 	target.blind_eyes(20)
-	target.blur_eyes(40)
+	target.adjust_eye_blur(40)
 	return TRUE
 
 /datum/action/changeling/sting/LSD
@@ -253,11 +253,11 @@
 
 /datum/action/changeling/sting/cryo
 	name = "Cryogenic Sting"
-	desc = "We silently sting our victim with a cocktail of chemicals that freezes them from the inside. Costs 15 chemicals."
+	desc = "We silently sting our victim with a cocktail of chemicals that freezes them from the inside. Costs 30 chemicals."
 	helptext = "Does not provide a warning to the victim, though they will likely realize they are suddenly freezing."
 	button_icon_state = "sting_cryo"
 	sting_icon = "sting_cryo"
-	chemical_cost = 15
+	chemical_cost = 30
 	dna_cost = 2
 	xenoling_available = FALSE
 

@@ -11,7 +11,7 @@
 
 /obj/item/clothing/neck/skillcape/trimmed
 	name = "trimmed cape of skill"
-	desc = "a golden trimmed cape, marks proof of excellence."
+	desc = "A golden-trimmed cape, marks proof of excellence."
 
 /obj/item/clothing/neck/skillcape/admin
 	name = "cape of mighty judgement"

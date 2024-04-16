@@ -332,7 +332,7 @@
 	return
 
 //Bullets
-/mob/living/simple_animal/parrot/bullet_act(obj/item/projectile/Proj)
+/mob/living/simple_animal/parrot/bullet_act(obj/projectile/Proj)
 	. = ..()
 	if(!stat && !client)
 		if(parrot_state == PARROT_PERCH)
@@ -797,7 +797,7 @@
 	to_chat(src, span_warning("There is no perch nearby to sit on!"))
 	return
 
-/mob/living/simple_animal/parrot/Moved(oldLoc, dir)
+/mob/living/simple_animal/parrot/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(. && !stat && client && parrot_state == PARROT_PERCH)
 		if(!buckled)

@@ -1,6 +1,6 @@
 /obj/item/deskbell
 	name = "desk bell"
-	desc = "ding. ding."
+	desc = "Ding! Ding! Ding!"
 	icon = 'icons/obj/bell.dmi'
 	icon_state = "bell"
 	force = 5

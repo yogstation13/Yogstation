@@ -6,6 +6,7 @@ export const Wires = (props, context) => {
   const { act, data } = useBackend(context);
   const wires = data.wires || [];
   const statuses = data.status || [];
+  const colorblind = data.colorblind;
   return (
     <Window
       width={350}
@@ -17,9 +18,9 @@ export const Wires = (props, context) => {
               <LabeledList.Item
                 key={wire.color}
                 className="candystripe"
-                label={wire.color}
-                labelColor={wire.color}
-                color={wire.color}
+                label={colorblind ? "grey" : wire.color}
+                labelColor={colorblind ? "grey" : wire.color}
+                color={colorblind ? "grey" : wire.color}
                 buttons={(
                   <>
                     <Button

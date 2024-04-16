@@ -110,20 +110,28 @@
 	M.forceMove(src)
 	job = "Spider Bot"
 
-/mob/living/simple_animal/spiderbot/emag_act(mob/user)
-	if (emagged)
+/mob/living/simple_animal/spiderbot/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(emagged)
 		to_chat(user, span_warning("[src] is already overloaded - better run."))
+		return FALSE
+	emagged = 1
+	to_chat(user, span_notice("You short out the security protocols and overload [src]'s cell, priming it to explode in a short time."))
+	addtimer(CALLBACK(src, PROC_REF(finish_emag_act), 1), 10 SECONDS)
+	return TRUE
+
+/mob/living/simple_animal/spiderbot/proc/finish_emag_act(progress)
+	if(QDELETED(src))
 		return
-	else
-		emagged = 1
-		to_chat(user, span_notice("You short out the security protocols and overload [src]'s cell, priming it to explode in a short time."))
-		spawn(100)
-			to_chat(src, span_warning("Your cell seems to be outputting a lot of power..."))
-		spawn(200)
-			to_chat(src, span_warning("Internal heat sensors are spiking! Something is badly wrong with your cell!"))
-		spawn(300)
-			explode()
-		return
+	if(progress)
+		switch(progress)
+			if(1)
+				to_chat(src, span_warning("Your cell seems to be outputting a lot of power..."))
+				addtimer(CALLBACK(src, PROC_REF(finish_emag_act), 2), 10 SECONDS)
+			if(2)
+				to_chat(src, span_warning("Internal heat sensors are spiking! Something is badly wrong with your cell!"))
+				addtimer(CALLBACK(src, PROC_REF(finish_emag_act), 3), 10 SECONDS)
+			if(3)
+				explode()
 
 /mob/living/simple_animal/spiderbot/proc/explode() //When emagged.
 	visible_message(span_warning("[src] makes an odd warbling noise, fizzles, and explodes."))

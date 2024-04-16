@@ -7,7 +7,8 @@
 
 /obj/item/implant/infiltrator/Initialize(mapload, _owner, _team)
 	. = ..()
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES | EMP_PROTECT_CONTENTS)
+	ADD_TRAIT(src, TRAIT_EMPPROOF_SELF, "innate_empproof")
+	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
 	var/datum/component/uplink/uplink = AddComponent(/datum/component/uplink, _owner, TRUE, FALSE, null, 20)
 	uplink.set_gamemode(/datum/game_mode/infiltration)
 	alert_radio = new(src)
@@ -131,7 +132,7 @@
 
 /datum/status_effect/infiltrator_pinpointer/New()
 	. = ..()
-	scan_target = SSshuttle.getShuttle("syndicatecutter")
+	//scan_target = SSshuttle.getShuttle("syndicatecutter")
 
 /datum/status_effect/infiltrator_pinpointer/proc/point_to_target() //If we found what we're looking for, show the distance and direction
 	linked_alert.cut_overlays()

@@ -55,7 +55,7 @@
 	if(href_list["pouches"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
 		visible_message(span_danger("[usr] tries to empty [src]'s pouches."), \
 						span_userdanger("[usr] tries to empty [src]'s pouches."))
-		if(do_mob(usr, src, POCKET_STRIP_DELAY * 0.5))
+		if(do_after(usr, POCKET_STRIP_DELAY * 0.5, src))
 			dropItemToGround(r_store)
 			dropItemToGround(l_store)
 
@@ -115,6 +115,9 @@
 	if(breath?.total_moles() > 0 && !HAS_TRAIT(src, TRAIT_ALIEN_SNEAK))
 		playsound(get_turf(src), pick('sound/voice/lowHiss2.ogg', 'sound/voice/lowHiss3.ogg', 'sound/voice/lowHiss4.ogg'), 50, 0, -5)
 	return ..()
+
+/mob/living/carbon/alien/humanoid/get_butt_sprite()
+	return BUTT_SPRITE_XENOMORPH
 
 /mob/living/carbon/alien/adult/proc/grab(mob/living/carbon/human/target)
 	if(target.check_block())

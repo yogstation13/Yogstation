@@ -37,15 +37,13 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	var/list/template_names = list()
 	/// Whether or not we can choose templates that have already been chosen
 	var/unique = FALSE
-	layer = BULLET_HOLE_LAYER
 
-/obj/effect/landmark/stationroom/New()
-	..()
+/obj/effect/landmark/stationroom/Initialize(mapload)
+	. = ..()
 	GLOB.stationroom_landmarks += src
 
 /obj/effect/landmark/stationroom/Destroy()
-	if(src in GLOB.stationroom_landmarks)
-		GLOB.stationroom_landmarks -= src
+	GLOB.stationroom_landmarks -= src
 	return ..()
 
 /obj/effect/landmark/stationroom/proc/load(template_name)
@@ -95,17 +93,24 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	return chosen_template
 
 /obj/effect/landmark/stationroom/box/bar
-	template_names = list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", "Bar Clock", "Bar Arcade")
-	icon = 'yogstation/icons/rooms/box/bar.dmi'
-	icon_state = "bar_box"
+	template_names = list(
+		"Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", 
+		"Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", 
+		"Bar Clock", "Bar Arcade")
 
 /obj/effect/landmark/stationroom/box/bar/load(template_name)
 	GLOB.stationroom_landmarks -= src
 	return TRUE
 
+/obj/effect/landmark/stationroom/box/clerk
+	template_names = list("Clerk Box", "Clerk Pod", "Clerk Meta", "Clerk Gambling Hall")
+
+/obj/effect/landmark/stationroom/box/clerk/load(template_name)
+	GLOB.stationroom_landmarks -= src
+	return TRUE
+
 /obj/effect/landmark/stationroom/box/engine
-	template_names = list("Engine SM" = 60, "Engine Singulo And Tesla" = 40)
-	icon = 'yogstation/icons/rooms/box/engine.dmi'
+	template_names = list("Engine SM" = 40, "Engine Singulo And Tesla" = 20, "Engine Nuclear Reactor" = 20,"Engine TEG" = 20)
 
 /obj/effect/landmark/stationroom/box/engine/choose()
 	. = ..()
@@ -117,6 +122,11 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 			return "Engine Singulo And Tesla"
 		if(3)
 			return . //We let the normal choose() do the work if we want to have all of them in play
+		if(4)
+			return "Engine Nuclear Reactor"
+		if(5)
+			return "Engine TEG"
+
 
 /obj/effect/landmark/stationroom/box/testingsite
 	template_names = list("Bunker Bomb Range","Syndicate Bomb Range","Clown Bomb Range", "Clerk Bomb Range")
@@ -136,8 +146,12 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 /obj/effect/landmark/stationroom/box/chapel
 	template_names = list("Chapel 1", "Chapel 2")
 
+/obj/effect/landmark/stationroom/box/chapel/load(template_name)
+	GLOB.stationroom_landmarks -= src
+	return TRUE
+
 /obj/effect/landmark/stationroom/meta/engine
-	template_names = list("Meta Singulo And Tesla" = 40, "Meta SM" = 60, "Meta TEG" = 0)
+	template_names = list("Meta SM" = 45, "Meta Nuclear Reactor" = 30, "Meta TEG" = 25) // tesla is loud as fuck and singulo doesn't make sense, so SM/reactor only
 
 /obj/effect/landmark/stationroom/meta/engine/choose()
 	. = ..()
@@ -150,6 +164,8 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 		if(3)
 			return . //We let the normal choose() do the work if we want to have all of them in play
 		if(4)
+			return "Meta Nuclear Reactor"
+		if(5)
 			return "Meta TEG"
 
 

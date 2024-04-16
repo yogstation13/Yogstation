@@ -118,6 +118,9 @@
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("You don't want to harm [M]!"))
 		return
+	if(!synth_check(user, SYNTH_ORGANIC_HARM))
+		to_chat(user, span_warning("You don't want to harm [M]!"))
+		return
 	if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 		M = user
 	return eyestab(M,user)
@@ -210,15 +213,15 @@
 /obj/item/jawsoflife/jimmy/proc/pump_cooldown()
 	is_pumping = FALSE
 
-/obj/item/jawsoflife/jimmy/emag_act(mob/user)
+/obj/item/jawsoflife/jimmy/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("Nothing new seems to happen when you swipe the emag."))
-		return
+		return FALSE
 	to_chat(user, span_notice("You swipe the emag on [src]'s pressure gage' enabling you to pump more pressure. "))
 	obj_flags |= EMAGGED
 	pump_max = 150
 	pump_cost = 75
-	. = ..()
+	return TRUE
 
 /obj/item/jawsoflife/jimmy/examine(mob/user)
 	. = ..()

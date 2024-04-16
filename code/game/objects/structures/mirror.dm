@@ -23,7 +23,7 @@
 /obj/structure/mirror/Initialize(mapload)
 	. = ..()
 	if(icon_state == "mirror_broke" && !broken)
-		obj_break(null, mapload)
+		atom_break(null, mapload)
 
 /obj/structure/mirror/proc/get_choices(mob/living/carbon/human/H)
 	. = list()
@@ -78,6 +78,10 @@
 	if(broken || !Adjacent(user))
 		return
 
+	if(is_synth(user))
+		to_chat(user, span_warning("You may not change your appearance."))
+		return
+
 	if(user && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/choices = get_choices(H) // Get the choices you can change
@@ -94,12 +98,8 @@
 			return
 		. = apply_choices(selection, newstyle, H) // Now apply the style
 
-/obj/structure/mirror/examine_status(mob/user)
-	if(broken)
-		return list()// no message spam
-	return ..()
-
-/obj/structure/mirror/obj_break(damage_flag, mapload)
+/obj/structure/mirror/atom_break(damage_flag, mapload)
+	. = ..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		icon_state = "mirror_broke"
 		if(!mapload)
@@ -112,6 +112,8 @@
 	if(!(flags_1 & NODECONSTRUCT_1))
 		if(!disassembled)
 			new /obj/item/shard( src.loc )
+			new /obj/item/stack/sheet/mineral/silver( src.loc )
+			new /obj/item/stack/rods( src.loc )
 	qdel(src)
 
 /obj/structure/mirror/welder_act(mob/living/user, obj/item/I)
@@ -140,6 +142,13 @@
 		if(BURN)
 			playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 
+/obj/item/wallframe/mirror
+	name = "mirror"
+	desc = "A mirror on your hand, what are you gonna do?"
+	icon = 'icons/obj/watercloset.dmi'
+	icon_state = "mirror"
+	result_path = /obj/structure/mirror
+	pixel_shift = -30
 
 /obj/structure/mirror/magic
 	name = "magic mirror"

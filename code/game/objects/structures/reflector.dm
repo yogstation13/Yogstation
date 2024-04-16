@@ -14,7 +14,7 @@
 	var/framebuildstackamount = 5
 	var/buildstacktype = /obj/item/stack/sheet/metal
 	var/buildstackamount = 0
-	var/list/allowed_projectile_typecache = list(/obj/item/projectile/beam, /obj/item/projectile/energy/nuclear_particle)
+	var/list/allowed_projectile_typecache = list(/obj/projectile/beam, /obj/projectile/energy/nuclear_particle)
 	var/rotation_angle = -1
 
 /obj/structure/reflector/Initialize(mapload)
@@ -58,7 +58,7 @@
 /obj/structure/reflector/proc/dir_map_to_angle(dir)
 	return 0
 
-/obj/structure/reflector/bullet_act(obj/item/projectile/P)
+/obj/structure/reflector/bullet_act(obj/projectile/P)
 	var/pdir = P.dir
 	var/pangle = P.Angle
 	var/ploc = get_turf(P)
@@ -68,10 +68,12 @@
 		return ..()
 	return BULLET_ACT_FORCE_PIERCE
 
-/obj/structure/reflector/proc/auto_reflect(obj/item/projectile/P, pdir, turf/ploc, pangle)
+/obj/structure/reflector/proc/auto_reflect(obj/projectile/P, pdir, turf/ploc, pangle)
 	P.ignore_source_check = TRUE
 	P.range = P.decayedRange
 	P.decayedRange = max(P.decayedRange--, 0)
+	if(P.hitscan)
+		P.store_hitscan_collision(P.trajectory.copy_to())
 	return BULLET_ACT_FORCE_PIERCE
 
 /obj/structure/reflector/attackby(obj/item/W, mob/user, params)
@@ -96,7 +98,7 @@
 				new buildstacktype(drop_location(), buildstackamount)
 			qdel(src)
 	else if(W.tool_behaviour == TOOL_WELDER)
-		if(obj_integrity < max_integrity)
+		if(atom_integrity < max_integrity)
 			if(!W.tool_start_check(user, amount=0))
 				return
 
@@ -104,7 +106,7 @@
 								span_notice("You begin repairing [src]..."),
 								span_italics("You hear welding."))
 			if(W.use_tool(src, user, 40, volume=40))
-				obj_integrity = max_integrity
+				update_integrity(max_integrity)
 				user.visible_message("[user] has repaired [src].", \
 									span_notice("You finish repairing [src]."))
 
@@ -193,7 +195,7 @@
 	admin = TRUE
 	anchored = TRUE
 
-/obj/structure/reflector/single/auto_reflect(obj/item/projectile/P, pdir, turf/ploc, pangle)
+/obj/structure/reflector/single/auto_reflect(obj/projectile/P, pdir, turf/ploc, pangle)
 	var/incidence = GET_ANGLE_OF_INCIDENCE(rotation_angle, (P.Angle + 180))
 	if(abs(incidence) > 90 && abs(incidence) < 270)
 		return FALSE
@@ -219,7 +221,7 @@
 	admin = TRUE
 	anchored = TRUE
 
-/obj/structure/reflector/double/auto_reflect(obj/item/projectile/P, pdir, turf/ploc, pangle)
+/obj/structure/reflector/double/auto_reflect(obj/projectile/P, pdir, turf/ploc, pangle)
 	var/incidence = GET_ANGLE_OF_INCIDENCE(rotation_angle, (P.Angle + 180))
 	var/new_angle = SIMPLIFY_DEGREES(rotation_angle + incidence)
 	P.setAngle(new_angle)
@@ -243,7 +245,7 @@
 	admin = TRUE
 	anchored = TRUE
 
-/obj/structure/reflector/box/auto_reflect(obj/item/projectile/P)
+/obj/structure/reflector/box/auto_reflect(obj/projectile/P)
 	P.setAngle(rotation_angle)
 	return ..()
 

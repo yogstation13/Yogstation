@@ -29,6 +29,8 @@ GLOBAL_LIST_EMPTY(uplinks)
 	var/hidden_crystals = 0
 	var/unlock_note
 	var/unlock_code
+	/// Set to true if failsafe_code should blow up the device
+	var/has_failsafe = FALSE
 	var/failsafe_code
 	var/debug = FALSE
 	var/compact_mode = FALSE
@@ -42,7 +44,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 		return COMPONENT_INCOMPATIBLE
 
 
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(OnAttackBy))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(OnAttackBy))
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(interact))
 	if(istype(parent, /obj/item/implant))
 		RegisterSignal(parent, COMSIG_IMPLANT_ACTIVATED, PROC_REF(implant_activation))
@@ -353,7 +355,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 		return L
 
 /datum/component/uplink/proc/failsafe()
-	if(!parent)
+	if(!parent || !has_failsafe)
 		return
 	var/turf/T = get_turf(parent)
 	if(!T)

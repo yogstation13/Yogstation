@@ -79,6 +79,9 @@ GLOBAL_LIST_EMPTY(all_ongoing_hallucinations)
 
 		if(is_blind(nearby_living))
 			continue
+		
+		if(HAS_TRAIT(nearby_living, TRAIT_MESONS))
+			continue
 
 		// Everyone else gets hallucinations.
 		var/dist = sqrt(1 / max(1, get_dist(nearby_living, center)))

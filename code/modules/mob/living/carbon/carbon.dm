@@ -25,9 +25,6 @@
 	QDEL_NULL(dna)
 	GLOB.carbon_list -= src
 
-/mob/living/carbon/initialize_footstep()
-	AddComponent(/datum/component/footstep, 1, 2)
-
 /mob/living/carbon/perform_hand_swap(held_index)
 	. = ..()
 	if(!.)
@@ -91,11 +88,11 @@
 	return ..()
 
 /mob/living/carbon/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(mind?.martial_art.handle_throw(hit_atom, src))
-		return
-	if(HAS_TRAIT(src, TRAIT_IMPACTIMMUNE))
+	if(mind?.martial_art.handle_throw(hit_atom, src, throwingdatum))
 		return
 	. = ..()
+	if(HAS_TRAIT(src, TRAIT_IMPACTIMMUNE))
+		return
 	var/hurt = TRUE
 	var/extra_speed = 0
 	if(throwingdatum.thrower != src)
@@ -180,6 +177,9 @@
 				if(HAS_TRAIT(src, TRAIT_PACIFISM))
 					to_chat(src, span_notice("You gently let go of [throwable_mob]."))
 					return
+				if(!synth_check(src, SYNTH_ORGANIC_HARM))
+					to_chat(src, span_notice("You gently let go of [throwable_mob]."))
+					return
 				var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 				var/turf/end_T = get_turf(target)
 				if(start_T && end_T)
@@ -191,6 +191,9 @@
 		dropItemToGround(I, silent = TRUE)
 
 		if(HAS_TRAIT(src, TRAIT_PACIFISM) && I.throwforce)
+			to_chat(src, span_notice("You set [I] down gently on the ground."))
+			return
+		if(!synth_check(src, SYNTH_RESTRICTED_WEAPON))
 			to_chat(src, span_notice("You set [I] down gently on the ground."))
 			return
 
@@ -263,7 +266,7 @@
 		if(ITEM && istype(ITEM, /obj/item/tank) && wear_mask && (wear_mask.clothing_flags & MASKINTERNALS))
 			visible_message(span_danger("[usr] tries to [internal ? "close" : "open"] the valve on [src]'s [ITEM.name]."), \
 							span_userdanger("[usr] tries to [internal ? "close" : "open"] the valve on [src]'s [ITEM.name]."))
-			if(do_mob(usr, src, POCKET_STRIP_DELAY))
+			if(do_after(usr, POCKET_STRIP_DELAY, src, interaction_key = REF(ITEM)))
 				if(internal)
 					cutoff_internals()
 				else if(ITEM && istype(ITEM, /obj/item/tank))
@@ -283,7 +286,7 @@
 			return
 		var/time_taken = I.embedding.embedded_unsafe_removal_time*I.w_class
 		usr.visible_message(span_warning("[usr] attempts to remove [I] from [usr.p_their()] [L.name]."),span_notice("You attempt to remove [I] from your [L.name]... (It will take [DisplayTimeText(time_taken)].)"))
-		if(do_after(usr, time_taken, needhand = 1, target = src))
+		if(do_after(usr, time_taken, target = src))
 			if(!I || !L || I.loc != src)
 				return
 			var/damage_amount = I.embedding.embedded_unsafe_removal_pain_multiplier * I.w_class
@@ -310,7 +313,7 @@
 			buckle_cd = O.breakouttime
 		visible_message(span_warning("[src] attempts to unbuckle [p_them()]self!"), \
 					span_notice("You attempt to unbuckle yourself... (This will take around [round(buckle_cd/10,1)] second\s, and you need to stay still.)"))
-		if(do_after(src, buckle_cd, src, FALSE))
+		if(do_after(src, buckle_cd, src, timed_action_flags = IGNORE_HELD_ITEM))
 			if(!buckled)
 				return
 			buckled.user_unbuckle_mob(src,src)
@@ -361,7 +364,7 @@
 	if(!cuff_break)
 		visible_message(span_warning("[src] attempts to remove [I]!"))
 		to_chat(src, span_notice("You attempt to remove [I]... (This will take around [DisplayTimeText(breakouttime)] and you need to stand still.)"))
-		if(do_after(src, breakouttime, src, FALSE))
+		if(do_after(src, breakouttime, src, timed_action_flags = IGNORE_HELD_ITEM))
 			clear_cuffs(I, cuff_break)
 		else
 			to_chat(src, span_warning("You fail to remove [I]!"))
@@ -370,7 +373,7 @@
 		breakouttime = 5 SECONDS
 		visible_message(span_warning("[src] is trying to break [I]!"))
 		to_chat(src, span_notice("You attempt to break [I]... (This will take around 5 seconds and you need to stand still.)"))
-		if(do_after(src, breakouttime, src, FALSE))
+		if(do_after(src, breakouttime, src, timed_action_flags = IGNORE_HELD_ITEM))
 			clear_cuffs(I, cuff_break)
 		else
 			to_chat(src, span_warning("You fail to break [I]!"))
@@ -403,7 +406,7 @@
 
 	if(!QDELETED(cuff)) //if it didn't delete on drop, update planes
 		cuff.layer = initial(cuff.layer)
-		cuff.plane = initial(cuff.plane)
+		SET_PLANE_IMPLICIT(cuff, initial(cuff.plane))
 
 	changeNext_move(0)
 
@@ -544,10 +547,6 @@
 
 /mob/living/carbon/update_stamina()
 	var/stam = getStaminaLoss()
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src //leaving this here but sus
-		if(stam && H.hulk_stamina_check())
-			return
 	if(stam > DAMAGE_PRECISION && (maxHealth - stam) <= crit_threshold)
 		if(!stat)
 			enter_stamcrit()
@@ -565,27 +564,30 @@
 		return
 	if(stat == DEAD)
 		if(SSmapping.level_trait(z, ZTRAIT_NOXRAY))
-			sight = null
+			set_sight(null)
 		else if(is_secret_level(z))
-			sight = initial(sight)
+			set_sight(initial(sight))
 		else
-			sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_OBSERVER
+			set_sight(SEE_TURFS|SEE_MOBS|SEE_OBJS)
+		set_invis_see(SEE_INVISIBLE_OBSERVER)
 		return
 
-	sight = initial(sight)
+	var/new_sight = initial(sight)
 	see_infrared = initial(see_infrared)
-	lighting_alpha = initial(lighting_alpha)
-	var/obj/item/organ/eyes/E = get_organ_slot(ORGAN_SLOT_EYES)
-	if(!E)
-		update_tint()
-	else
-		see_invisible = E.see_invisible
-		see_in_dark = E.see_in_dark
-		sight |= E.sight_flags
-		if(!isnull(E.lighting_alpha))
-			lighting_alpha = E.lighting_alpha
+	lighting_cutoff = initial(lighting_cutoff)
+	lighting_color_cutoffs = list(lighting_cutoff_red, lighting_cutoff_green, lighting_cutoff_blue)
+
+	var/obj/item/organ/eyes/eyes = get_organ_slot(ORGAN_SLOT_EYES)
+	if(eyes)
+		set_invis_see(eyes.see_invisible)
+		new_sight |= eyes.sight_flags
+		if(!isnull(eyes.lighting_cutoff))
+			lighting_cutoff = eyes.lighting_cutoff
+		if(!isnull(eyes.color_cutoffs))
+			lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, eyes.color_cutoffs)
+		if(istype(eyes, /obj/item/organ/eyes/ethereal) && client) //special view range ethereal eyes
+			client.view_size.resetToDefault(getScreenSize(client.prefs.read_preference(/datum/preference/toggle/widescreen)))
+			client.view_size.addTo("2x2")
 
 	for(var/image/I in infra_images)
 		if(client)
@@ -593,50 +595,60 @@
 	infra_images = list()
 	remove_client_colour(/datum/client_colour/monochrome_infra)
 
-	if(client.eye != src)
+	if(client.eye && client.eye != src)
 		var/atom/A = client.eye
 		if(A.update_remote_sight(src)) //returns 1 if we override all other sight updates.
 			return
 
 	if(glasses)
-		var/obj/item/clothing/glasses/G = glasses
-		sight |= G.vision_flags
-		see_in_dark = max(G.darkness_view, see_in_dark)
-		if(G.invis_override)
-			see_invisible = G.invis_override
+		new_sight |= glasses.vision_flags
+		if(glasses.invis_override)
+			set_invis_see(glasses.invis_override)
 		else
-			see_invisible = min(G.invis_view, see_invisible)
-		if(!isnull(G.lighting_alpha))
-			lighting_alpha = min(lighting_alpha, G.lighting_alpha)
+			set_invis_see(min(glasses.invis_view, see_invisible))
+		if(!isnull(glasses.lighting_cutoff))
+			lighting_cutoff = max(lighting_cutoff, glasses.lighting_cutoff)
+		if(length(glasses.color_cutoffs))
+			lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, glasses.color_cutoffs)
 
 	if(HAS_TRAIT(src, TRAIT_INFRARED_VISION))
 		add_client_colour(/datum/client_colour/monochrome_infra)
 		var/image/A = null
 		see_infrared = TRUE
-		lighting_alpha = min(lighting_alpha, LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
+		lighting_cutoff = max(lighting_cutoff, 10)
 
 		if(client)
 			for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+				if(H == src)
+					continue
 				A = image('icons/mob/simple_human.dmi', H, "fullwhite")
+				A.add_overlay(emissive_appearance('icons/mob/simple_human.dmi', "fullwhite", H))
 				A.name = "white haze"
 				A.override = 1
 				infra_images |= A
 				client.images |= A
 
+	if(HAS_TRAIT(src, TRAIT_TRUE_NIGHT_VISION))
+		lighting_cutoff = max(lighting_cutoff, LIGHTING_CUTOFF_HIGH)
+
+	if(HAS_TRAIT(src, TRAIT_MESON_VISION))
+		new_sight |= SEE_TURFS
+		lighting_cutoff = max(lighting_cutoff, LIGHTING_CUTOFF_MEDIUM)
+
 	if(HAS_TRAIT(src, TRAIT_THERMAL_VISION))
-		sight |= (SEE_MOBS)
-		lighting_alpha = min(lighting_alpha, LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
+		new_sight |= SEE_MOBS
+		lighting_cutoff = max(lighting_cutoff, LIGHTING_CUTOFF_MEDIUM)
 
 	if(HAS_TRAIT(src, TRAIT_XRAY_VISION))
-		sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_in_dark = max(see_in_dark, 8)
+		new_sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 
 	if(see_override)
-		see_invisible = see_override
+		set_invis_see(see_override)
 
 	if(SSmapping.level_trait(z, ZTRAIT_NOXRAY))
-		sight = null
+		new_sight = NONE
 
+	set_sight(new_sight)
 	return ..()
 
 /mob/living/carbon/update_stamina_hud(shown_stamina_amount)
@@ -973,18 +985,18 @@
 		O.set_owner(src)
 		bodyparts.Remove(X)
 		bodyparts.Add(O)
-		if(O.body_part == ARM_LEFT)
+		if(O.body_part & ARM_LEFT)
 			l_arm_index_next += 2
 			O.held_index = l_arm_index_next //1, 3, 5, 7...
 			hand_bodyparts += O
-		else if(O.body_part == ARM_RIGHT)
+		else if(O.body_part & ARM_RIGHT)
 			r_arm_index_next += 2
 			O.held_index = r_arm_index_next //2, 4, 6, 8...
 			hand_bodyparts += O
 
 /mob/living/carbon/do_after_coefficent()
 	. = ..()
-	var/datum/component/mood/mood = src.GetComponent(/datum/component/mood) //Currently, only carbons or higher use mood, move this once that changes.
+	var/datum/component/mood/mood = GetComponent(/datum/component/mood) //Currently, only carbons or higher use mood, move this once that changes.
 	if(mood)
 		switch(mood.sanity) //Alters do_after delay based on how sane you are
 			if(-INFINITY to SANITY_DISTURBED)
@@ -992,14 +1004,16 @@
 			if(SANITY_NEUTRAL to INFINITY)
 				. *= 0.90
 
-	for(var/i in status_effects)
-		var/datum/status_effect/S = i
+	for(var/datum/status_effect/S as anything in status_effects)
 		. *= S.interact_speed_modifier()
 
 /mob/living/carbon/proc/create_internal_organs()
 	for(var/X in internal_organs)
 		var/obj/item/organ/I = X
 		I.Insert(src)
+
+/mob/living/carbon/proc/get_footprint_sprite()
+	return FOOTPRINT_SPRITE_PAWS
 
 /mob/living/carbon/vv_get_dropdown()
 	. = ..()
@@ -1054,11 +1068,11 @@
 						to_chat(usr, span_boldwarning("Only humans can be augmented."))
 		admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src]")
 	if(href_list[VV_HK_MODIFY_ORGANS])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 		usr.client.manipulate_organs(src)
 	if(href_list[VV_HK_MARTIAL_ART])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 		var/list/artpaths = subtypesof(/datum/martial_art)
 		var/list/artnames = list()
@@ -1078,7 +1092,7 @@
 			log_admin("[key_name(usr)] has taught [MA] to [key_name(src)].")
 			message_admins(span_notice("[key_name_admin(usr)] has taught [MA] to [key_name_admin(src)]."))
 	if(href_list[VV_HK_GIVE_TRAUMA])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 		var/list/traumas = subtypesof(/datum/brain_trauma)
 		var/result = input(usr, "Choose the brain trauma to apply","Traumatize") as null|anything in sortList(traumas, /proc/cmp_typepaths_asc)
@@ -1094,13 +1108,13 @@
 			log_admin("[key_name(usr)] has traumatized [key_name(src)] with [BT.name]")
 			message_admins(span_notice("[key_name_admin(usr)] has traumatized [key_name_admin(src)] with [BT.name]."))
 	if(href_list[VV_HK_CURE_TRAUMA])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 		cure_all_traumas(TRAUMA_RESILIENCE_ABSOLUTE)
 		log_admin("[key_name(usr)] has cured all traumas from [key_name(src)].")
 		message_admins(span_notice("[key_name_admin(usr)] has cured all traumas from [key_name_admin(src)]."))
 	if(href_list[VV_HK_HALLUCINATION])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 		var/list/hallucinations = subtypesof(/datum/hallucination)
 		var/result = input(usr, "Choose the hallucination to apply","Send Hallucination") as null|anything in sortList(hallucinations, /proc/cmp_typepaths_asc)
@@ -1157,7 +1171,7 @@
 
 /// Returns if the carbon is wearing shock proof gloves
 /mob/living/carbon/proc/wearing_shock_proof_gloves()
-	return gloves?.siemens_coefficient == 0
+	return gloves?.armor.getRating(ELECTRIC) >= 100
 
 /mob/living/carbon/wash(clean_types)
 	. = ..()
@@ -1277,7 +1291,15 @@
 /mob/living/carbon/proc/spray_blood(splatter_direction, splatter_strength = 3)
 	if(!isturf(loc))
 		return
-	var/obj/effect/decal/cleanable/blood/hitsplatter/our_splatter = new(loc)
+	var/splatter_color = null
+	if(dna?.blood_type)
+		splatter_color = dna.blood_type.color
+	else
+		var/blood_id = get_blood_id()
+		if(blood_id != /datum/reagent/blood)//special blood substance
+			var/datum/reagent/R = GLOB.chemical_reagents_list[blood_id]
+			splatter_color = R.color
+	var/obj/effect/decal/cleanable/blood/hitsplatter/our_splatter = new(loc, splatter_strength, splatter_color)
 	our_splatter.add_blood_DNA(return_blood_DNA())
 	our_splatter.blood_dna_info = get_blood_dna_list()
 	var/turf/targ = get_ranged_target_turf(src, splatter_direction, splatter_strength)

@@ -4,7 +4,7 @@
 	icon_state = "hardhat0_yellow"
 	item_state = "hardhat0_yellow"
 	mob_overlay_icon = 'icons/mob/clothing/head/head.dmi'
-	armor = list(MELEE = 15, BULLET = 5, LASER = 20, ENERGY = 10, BOMB = 20, BIO = 10, RAD = 20, FIRE = 100, ACID = 50, WOUND = 10)
+	armor = list(MELEE = 15, BULLET = 5, LASER = 20, ENERGY = 10, BOMB = 20, BIO = 10, RAD = 20, FIRE = 100, ACID = 50, WOUND = 10, ELECTRIC = 100) // now OSHA-compliant!
 	flags_inv = 0
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 	resistance_flags = FIRE_PROOF
@@ -61,7 +61,7 @@
 	hat_type = "red"
 	dog_fashion = null
 	name = "firefighter helmet"
-	clothing_flags = STOPSPRESSUREDAMAGE
+	clothing_flags = STOPSHIGHPRESSURE
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
 	cold_protection = HEAD
@@ -84,7 +84,7 @@
 	icon_state = "hardhat0_white"
 	item_state = "hardhat0_white"
 	hat_type = "white"
-	clothing_flags = STOPSPRESSUREDAMAGE
+	clothing_flags = STOPSHIGHPRESSURE
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
 	cold_protection = HEAD
@@ -149,12 +149,13 @@
 		playsound(src, 'sound/mecha/mechmove03.ogg', 50, 1) //Visors don't just come from nothing
 	update_appearance(UPDATE_ICON)
 
-/obj/item/clothing/head/hardhat/weldhat/worn_overlays(isinhands)
+/obj/item/clothing/head/hardhat/weldhat/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
-	if(!isinhands)
-		. += mutable_appearance(mob_overlay_icon, "weldhelmet")
-		if(!up)
-			. += mutable_appearance(mob_overlay_icon, "weldvisor")
+	if(isinhands)
+		return
+
+	if(!up)
+		. += mutable_appearance('icons/mob/clothing/head/head.dmi', "weldvisor")
 
 /obj/item/clothing/head/hardhat/weldhat/update_overlays()
 	. = ..()

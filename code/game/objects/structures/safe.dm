@@ -242,5 +242,9 @@ FLOOR SAFES
 	density = FALSE
 	layer = LOW_OBJ_LAYER
 
+/obj/structure/safe/floor/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/undertile)
+
 #undef SOUND_CHANCE
 #undef BROKEN_THRESHOLD

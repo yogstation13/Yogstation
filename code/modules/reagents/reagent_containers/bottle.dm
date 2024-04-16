@@ -209,6 +209,11 @@
 	desc = "A small bottle. Contains histamine."
 	list_reagents = list(/datum/reagent/toxin/histamine = 30)
 
+/obj/item/reagent_containers/glass/bottle/ambusher_toxin
+	name = "carpenter toxin bottle"
+	desc = "A small bottle. Contains a toxin from an unknown source."
+	list_reagents = list(/datum/reagent/toxin/ambusher_toxin = 30)
+
 /obj/item/reagent_containers/glass/bottle/diphenhydramine
 	name = "antihistamine bottle"
 	desc = "A small bottle of diphenhydramine."
@@ -447,6 +452,20 @@
 	icon = 'icons/obj/drinks.dmi'
 	volume = 30
 
+/obj/item/reagent_containers/glass/coffee_cup
+	name = "coffee cup"
+	desc = "A heat-formed plastic coffee cup. Can theoretically be used for other hot drinks, if you're feeling adventurous."
+	icon = 'icons/obj/machines/coffeemaker.dmi'
+	icon_state = "coffee_cup_e"
+	base_icon_state = "coffee_cup"
+	possible_transfer_amounts = list(10)
+	volume = 30
+	spillable = TRUE
+
+/obj/item/reagent_containers/glass/coffee_cup/update_icon_state()
+	icon_state = reagents.total_volume ? base_icon_state : "[base_icon_state]_e"
+	return ..()
+
 
 //Yogs: Vials
 /obj/item/reagent_containers/glass/bottle/vial
@@ -456,14 +475,14 @@
 	base_icon_state = "viallarge"
 	item_state = "atoxinbottle"	
 	unique_reskin = list(
-		"vial" = "vial",
-		"white vial" = "vial_white",
-		"red vial" = "vial_red",
-		"blue vial" = "vial_blue",
-		"green vial" = "vial_green",
-		"orange vial" = "vial_orange",
-		"purple vial" = "vial_purple",
-		"black vial" = "vial_black"
+		"vial" = "viallarge",
+		"white vial" = "viallarge_white",
+		"red vial" = "viallarge_red",
+		"blue vial" = "viallarge_blue",
+		"green vial" = "viallarge_green",
+		"orange vial" = "viallarge_orange",
+		"purple vial" = "viallarge_purple",
+		"black vial" = "viallarge_black"
 	)
 	possible_transfer_amounts = list(5, 10, 15, 30)
 	reagent_flags = OPENCONTAINER_NOSPILL
@@ -537,7 +556,7 @@
 	custom_premium_price = 30
 
 /obj/item/reagent_containers/glass/bottle/vial/sal_acid
-	name = "vial (Salicyclic Acid)"
+	name = "vial (Salicylic Acid)"
 	icon_state = "viallarge_white"
 	list_reagents = list(/datum/reagent/medicine/sal_acid = 15)
 	custom_premium_price = 50
@@ -682,3 +701,105 @@
 						)
 	possible_transfer_amounts = list(5,10,15,30,45)
 	volume = 60
+
+/*
+ *	Syrup bottles, basically a unspillable cup that transfers reagents upon clicking on it with a cup
+ */
+
+/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle
+	name = "syrup bottle"
+	desc = "A bottle with a syrup pump to dispense the delicious substance directly into your coffee cup."
+	icon = 'icons/obj/food/containers.dmi'
+	icon_state = "syrup"
+	fill_icon_state = "syrup"
+	fill_icon_thresholds = list(0, 20, 40, 60, 80, 100)
+	possible_transfer_amounts = list(5, 10)
+	amount_per_transfer_from_this = 5
+	spillable = FALSE
+	///variable to tell if the bottle can be refilled
+	var/cap_on = TRUE
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC
+
+/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/examine(mob/user)
+	. = ..()
+	. += span_notice("Alt-click to toggle the pump cap.")
+	. += span_notice("Use a pen on it to rename it.")
+	return
+
+//when you attack the syrup bottle with a container it refills it
+/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/attackby(obj/item/attacking_item, mob/user, params)
+
+	if(!cap_on)
+		return ..()
+
+	if(!check_allowed_items(attacking_item,target_self = TRUE))
+		return
+
+	if(attacking_item.is_refillable())
+		if(!reagents.total_volume)
+			balloon_alert(user, "bottle empty!")
+			return TRUE
+
+		if(attacking_item.reagents.holder_full())
+			balloon_alert(user, "container full!")
+			return TRUE
+
+		flick("syrup_anim",src)
+
+	attacking_item.update_appearance()
+	update_appearance()
+
+	return TRUE
+
+/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/AltClick(mob/user)
+	cap_on = !cap_on
+	if(!cap_on)
+		icon_state = "syrup_open"
+		balloon_alert(user, "removed pump cap")
+	else
+		icon_state = "syrup"
+		balloon_alert(user, "put pump cap on")
+	update_icon_state()
+	return ..()
+
+//types of syrups
+
+/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/caramel
+	name = "bottle of caramel syrup"
+	desc = "A pump bottle containing caramalized sugar, also known as caramel. Do not lick."
+	list_reagents = list(/datum/reagent/consumable/caramel = 50)
+
+/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/liqueur
+	name = "bottle of coffee liqueur syrup"
+	desc = "A pump bottle containing mexican coffee-flavoured liqueur syrup. In production since 1936, HONK."
+	list_reagents = list(/datum/reagent/consumable/ethanol/kahlua = 50)
+
+/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/korta_nectar
+	name = "bottle of korta syrup"
+	desc = "A pump bottle containing korta syrup. A sweet, sugary substance made from crushed sweet korta nuts."
+	list_reagents = list(/datum/reagent/consumable/korta_nectar = 50)
+
+//secret syrup
+/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/laughsyrup
+	name = "bottle of laugh syrup"
+	desc = "A pump bottle containing laugh syrup. The product of juicing Laughin' Peas. Fizzy, and seems to change flavour based on what it's used with!"
+	list_reagents = list(/datum/reagent/consumable/laughsyrup = 50)
+
+
+//Coffeepots: for reference, a standard cup is 30u, to allow 20u for sugar/sweetener/milk/creamer
+/obj/item/reagent_containers/food/drinks/bottle/coffeepot
+	icon = 'icons/obj/food/containers.dmi'
+	name = "coffeepot"
+	desc = "A large pot for dispensing that ambrosia of corporate life known to mortals only as coffee. Contains 4 standard cups."
+	volume = 120
+	icon_state = "coffeepot"
+	fill_icon_state = "coffeepot"
+	fill_icon_thresholds = list(0, 1, 30, 60, 100)
+
+/obj/item/reagent_containers/food/drinks/bottle/coffeepot/bluespace
+	icon = 'icons/obj/food/containers.dmi'
+	name = "bluespace coffeepot"
+	desc = "The most advanced coffeepot the eggheads could cook up: sleek design; graduated lines; connection to a pocket dimension for coffee containment; yep, it's got it all. Contains 8 standard cups."
+	volume = 240
+	icon_state = "coffeepot_bluespace"
+	fill_icon_thresholds = list(0)

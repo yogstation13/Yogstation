@@ -1,0 +1,4976 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aq" = (
+/obj/structure/stone_tile/slab/cracked{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"at" = (
+/obj/structure/stone_tile/surrounding_tile/burnt{
+	dir = 1
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"aN" = (
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion{
+	color = "#e215d6";
+	desc = "You can still see what was once a human under the shifting mass of corruption. This one feels oddly... helpful?";
+	loot = list(/obj/item/organ/regenerative_core/legion,/obj/item/clothing/mask/yogs/freddy);
+	move_to_delay = 420;
+	name = "helpy"
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"aW" = (
+/obj/structure/stone_tile/slab,
+/obj/item/coin/diamond{
+	pixel_x = 7;
+	pixel_y = -7
+	},
+/obj/item/coin/gold{
+	pixel_x = 1;
+	pixel_y = -3
+	},
+/mob/living/simple_animal/hostile/asteroid/elite/legionnaire{
+	faction = list("boss","mining")
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"aX" = (
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"bn" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"br" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/trap/fire,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"bQ" = (
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"bR" = (
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 8
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"bT" = (
+/mob/living/simple_animal/hostile/skeleton/plasmaminer{
+	faction = list("skeleton","mining")
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"bW" = (
+/obj/structure/ladder/unbreakable/rune{
+	color = "#ff0000";
+	height = 1;
+	id = "legionnaire_corpsepile"
+	},
+/obj/structure/stone_tile/slab,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"ce" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"cf" = (
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/effect/mob_spawn/human/corpse/damaged/legioninfested,
+/turf/open/chasm/lavaland,
+/area/ruin/unpowered)
+"cw" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"db" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 6
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"de" = (
+/obj/item/coin/gold{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/obj/item/coin/mythril{
+	pixel_x = 10;
+	pixel_y = -1
+	},
+/obj/item/gem/random{
+	pixel_x = 5;
+	pixel_y = 10
+	},
+/obj/item/coin/gold,
+/obj/item/coin/mythril{
+	pixel_x = -16;
+	pixel_y = -5
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"dv" = (
+/obj/structure/ladder/unbreakable/rune{
+	color = "#ff0000";
+	id = "legionnaire_maze_1"
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"dw" = (
+/obj/structure/spawner/lavaland/legion,
+/obj/structure/stone_tile/surrounding,
+/obj/structure/stone_tile/slab,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"dC" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/turf/open/chasm/lavaland,
+/area/lavaland/surface/outdoors)
+"dF" = (
+/turf/open/chasm/lavaland,
+/area/ruin/unpowered)
+"dH" = (
+/mob/living/simple_animal/hostile/skeleton{
+	faction = list("skeleton","mining")
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"dK" = (
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/center,
+/obj/item/gem/random{
+	pixel_x = 3;
+	pixel_y = -11
+	},
+/obj/item/gem/random{
+	pixel_x = -2;
+	pixel_y = 11
+	},
+/obj/item/gem/random{
+	pixel_x = 3
+	},
+/obj/item/gem/random{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/obj/item/coin/mythril{
+	pixel_x = -2;
+	pixel_y = -4
+	},
+/obj/item/coin/mythril{
+	pixel_x = -11;
+	pixel_y = 7
+	},
+/obj/item/coin/mythril{
+	pixel_x = -5;
+	pixel_y = -12
+	},
+/obj/item/coin/mythril{
+	pixel_x = 7;
+	pixel_y = -7
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"dL" = (
+/obj/structure/ladder/unbreakable/rune{
+	color = "#ff0000";
+	id = "legionnaire_pit"
+	},
+/obj/structure/stone_tile/surrounding,
+/obj/structure/stone_tile/center,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"dM" = (
+/obj/structure/stone_tile/surrounding,
+/mob/living/simple_animal/hostile/asteroid/goliath/beast/random,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"dV" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"ed" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ek" = (
+/obj/structure/stone_tile/surrounding,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"ev" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/closet/crate/necropolis/tendril,
+/obj/item/stack/sheet/capitalisium,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"fd" = (
+/obj/structure/stone_tile,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"fu" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/stone_tile/center,
+/mob/living/simple_animal/hostile/asteroid/marrowweaver,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"fB" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/block,
+/turf/open/chasm/lavaland,
+/area/ruin/unpowered)
+"fK" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/table/wood/fancy/black,
+/obj/item/stack/sheet/mineral/plasma/fifty,
+/obj/item/stack/sheet/mineral/silver/fifty,
+/obj/item/stack/sheet/bluespace_crystal{
+	amount = 50
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"gb" = (
+/obj/structure/stone_tile/slab,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"ge" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"gg" = (
+/obj/structure/stone_tile/block,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"gZ" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/center,
+/obj/structure/rack/skeletal/right{
+	dir = 4
+	},
+/obj/item/stack/sheet/mineral/titanium/fifty,
+/obj/item/stack/sheet/mineral/uranium/fifty,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"hq" = (
+/obj/structure/stone_tile/surrounding_tile/burnt{
+	dir = 8
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"hu" = (
+/obj/effect/mob_spawn/human/corpse/damaged/legioninfested,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"hS" = (
+/turf/closed/indestructible/riveted/boss,
+/area/lavaland/surface/outdoors)
+"ic" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/item/coin/diamond{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/obj/item/coin/gold{
+	pixel_x = -6;
+	pixel_y = -2
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"il" = (
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/item/coin/gold{
+	pixel_x = -1;
+	pixel_y = -8
+	},
+/obj/item/stack/sheet/mineral/diamond/fifty{
+	pixel_x = -9;
+	pixel_y = 6
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"iq" = (
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/effect/mob_spawn/human/corpse/assistant/brainrot_infection,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"iv" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"iL" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"iQ" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/center,
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"jd" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"jg" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/block,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"jA" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"jB" = (
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random,
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"jJ" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/stone_tile/center,
+/obj/effect/mob_spawn/human/corpse/damaged/legioninfested,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"ki" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 10
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"kB" = (
+/obj/structure/stone_tile/slab,
+/obj/item/coin/diamond{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/gem/random{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"ll" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/effect/mob_spawn/human/corpse/damaged/legioninfested,
+/turf/open/chasm/lavaland,
+/area/ruin/unpowered)
+"lu" = (
+/obj/structure/trap/chill,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"lv" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"lC" = (
+/turf/open/chasm/lavaland,
+/area/lavaland/surface/outdoors)
+"lE" = (
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"lT" = (
+/obj/structure/stone_tile/slab,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ma" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/item/coin/diamond{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/coin/gold{
+	pixel_x = 11;
+	pixel_y = 12
+	},
+/obj/item/coin/diamond{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"mm" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"mp" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/item/coin/gold{
+	pixel_x = -9;
+	pixel_y = 2
+	},
+/obj/item/coin/gold{
+	pixel_x = -3;
+	pixel_y = -11
+	},
+/obj/item/coin/gold{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/item/gem/random{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"mr" = (
+/obj/structure/stone_tile/slab,
+/obj/effect/spawner/lootdrop/mob/marrow_weaver,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"mt" = (
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"mv" = (
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/mob/living/simple_animal/hostile/skeleton{
+	faction = list("skeleton","mining")
+	},
+/obj/effect/mob_spawn/human/corpse/wizard,
+/obj/effect/decal/remains/xeno/larva{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/obj/effect/decal/remains/human{
+	pixel_x = 10;
+	pixel_y = 9
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"mw" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"mO" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"mP" = (
+/mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient,
+/obj/structure/stone_tile/surrounding,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"nf" = (
+/obj/machinery/door/keycard/necropolis,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"nh" = (
+/obj/item/gem/random{
+	pixel_x = -13;
+	pixel_y = 4
+	},
+/obj/item/coin/gold{
+	pixel_x = -6;
+	pixel_y = -11
+	},
+/obj/structure/trap/stun,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"nl" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/item/gem/random{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/obj/item/gem/random{
+	pixel_x = -1;
+	pixel_y = 5
+	},
+/obj/item/coin/gold{
+	pixel_x = -7;
+	pixel_y = -10
+	},
+/obj/item/coin/gold{
+	pixel_x = 6;
+	pixel_y = -1
+	},
+/obj/item/coin/gold{
+	pixel_x = -9;
+	pixel_y = -4
+	},
+/obj/item/coin/gold{
+	pixel_y = -6
+	},
+/obj/item/coin/diamond{
+	pixel_x = 5;
+	pixel_y = -3
+	},
+/obj/item/coin/diamond{
+	pixel_x = -9;
+	pixel_y = -12
+	},
+/obj/item/coin/adamantine{
+	pixel_x = 9;
+	pixel_y = -11
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"nt" = (
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ny" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/ladder/unbreakable/rune{
+	color = "#ff0000";
+	id = "legionnaire_corpsepile"
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"nF" = (
+/obj/structure/stone_tile/slab/cracked,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"nY" = (
+/turf/closed/indestructible/riveted/boss,
+/area/ruin/unpowered)
+"ou" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ov" = (
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"oA" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/indestructible/boss,
+/area/lavaland/surface/outdoors)
+"oC" = (
+/mob/living/simple_animal/hostile/asteroid/fugu{
+	armour_penetration = 50;
+	color = "#990000";
+	desc = "The wumborian fugu rapidly increases its body mass in order to ward off its prey. Great care should be taken to avoid it while it's in this state as it is nearly invincible, but it cannot maintain its form forever. This one seems to have adapted to its new living conditions after thrashing its containment.";
+	melee_damage_lower = 15;
+	melee_damage_upper = 20;
+	movement_type = 2;
+	name = "ashen fugu"
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"oE" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"oK" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/stone_tile/center,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"oM" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"oN" = (
+/turf/closed/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"oV" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"pt" = (
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"pv" = (
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/center,
+/obj/structure/rack/skeletal/left{
+	dir = 4
+	},
+/obj/item/soulstone/anybody/purified,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"pz" = (
+/obj/structure/elite_tumor,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"pF" = (
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/obj/structure/trap/fire,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"pR" = (
+/obj/structure/stone_tile/surrounding_tile/cracked,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"qp" = (
+/turf/closed/indestructible/necropolis,
+/area/ruin/unpowered)
+"qM" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/rack/skeletal,
+/obj/item/break_blade,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"qO" = (
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/center,
+/obj/structure/constructshell,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"qW" = (
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"rl" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"rs" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/mob/marrow_weaver,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"ru" = (
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/center,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"sd" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"sm" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/closet/crate/necropolis/tendril,
+/obj/item/crusher_trophy/legionnaire_spine,
+/obj/item/fishingrod/collapsible,
+/obj/item/stack/sheet/mineral/mythril{
+	amount = 50
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"sw" = (
+/obj/structure/stone_tile/surrounding/burnt,
+/obj/structure/stone_tile/center/burnt,
+/mob/living/simple_animal/hostile/asteroid/elite/broodmother_child{
+	faction = list("boss","mining")
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"sx" = (
+/obj/effect/mob_spawn/human/corpse/assistant/beesease_infection,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"sV" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/turf/open/indestructible/boss,
+/area/lavaland/surface/outdoors)
+"tf" = (
+/mob/living/simple_animal/hostile/skeleton{
+	faction = list("skeleton","mining")
+	},
+/mob/living/simple_animal/hostile/skeleton{
+	faction = list("skeleton","mining")
+	},
+/obj/effect/decal/remains/xeno{
+	pixel_x = -1;
+	pixel_y = -5
+	},
+/obj/effect/decal/remains/human{
+	pixel_x = 18;
+	pixel_y = 7
+	},
+/obj/effect/mob_spawn/human/corpse/damaged/legioninfested,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"tx" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/table/wood/fancy/black,
+/obj/item/stack/sheet/mineral/plasma/fifty,
+/obj/item/stack/sheet/mineral/silver/fifty,
+/obj/item/stack/sheet/dilithium_crystal{
+	amount = 50
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"ty" = (
+/turf/closed/mineral/magmite/volcanic/harder,
+/area/ruin/unpowered)
+"ud" = (
+/obj/item/storage/bag/money/vault{
+	pixel_x = 3;
+	pixel_y = -4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"uq" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"ut" = (
+/obj/item/gem/random{
+	pixel_x = 11;
+	pixel_y = -5
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"uI" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/center,
+/obj/structure/rack/skeletal/right{
+	dir = 8
+	},
+/obj/item/stack/sheet/mineral/titanium/fifty,
+/obj/item/stack/sheet/mineral/uranium/fifty,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"uP" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/center,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"uV" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"vv" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"ww" = (
+/obj/structure/spawner/lavaland/goliath,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"wX" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"xp" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/machinery/door/keycard/necropolis,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"xG" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/stone_tile/center,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"xZ" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"yc" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/ladder/unbreakable/rune{
+	color = "#ff0000";
+	height = 1;
+	id = "legionnaire_pit"
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"yj" = (
+/turf/closed/mineral/volcanic/lava_land_surface/harder,
+/area/ruin/unpowered)
+"yn" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"yw" = (
+/obj/structure/ladder/unbreakable/rune{
+	color = "#ff0000";
+	height = 1;
+	id = "legionnaire_maze_1"
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"yX" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/item/coin/mythril{
+	pixel_x = -5;
+	pixel_y = -1
+	},
+/obj/item/coin/mythril{
+	pixel_x = 6;
+	pixel_y = -8
+	},
+/obj/item/coin/mythril{
+	pixel_x = -7;
+	pixel_y = -6
+	},
+/obj/item/coin/mythril{
+	pixel_x = -12;
+	pixel_y = -8
+	},
+/obj/item/gem/random{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"zb" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/effect/mob_spawn/human/corpse/assistant/beesease_infection,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"zg" = (
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/skeleton{
+	faction = list("skeleton","mining")
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"zu" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"zv" = (
+/obj/structure/spawner/lavaland,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"zC" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/effect/mob_spawn/human/corpse/damaged/legioninfested,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"zZ" = (
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Af" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Am" = (
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Ar" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"AC" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"AM" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Bm" = (
+/obj/effect/spawner/lootdrop/mob/marrow_weaver,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"By" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/ladder/unbreakable/rune{
+	color = "#ff0000";
+	id = "legionnaire_lavapit"
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"BA" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"BD" = (
+/obj/structure/stone_tile/center/burnt,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"BJ" = (
+/obj/effect/decal/remains/human{
+	pixel_x = 18;
+	pixel_y = 7
+	},
+/obj/effect/decal/remains/human{
+	pixel_x = -2;
+	pixel_y = -4
+	},
+/obj/structure/trap/fire,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Cg" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/center,
+/obj/structure/constructshell,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Cv" = (
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"CJ" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"CQ" = (
+/obj/structure/stone_tile/slab,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"CS" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/item/golem_shell/servant,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"Dk" = (
+/obj/structure/stone_tile/block,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"Dq" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"Dt" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"DM" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/item/gem/random{
+	pixel_x = -8;
+	pixel_y = 2
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Ed" = (
+/obj/structure/stone_tile/slab,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/advanced,
+/turf/open/chasm/lavaland,
+/area/ruin/unpowered)
+"Eo" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/turf/open/indestructible/boss,
+/area/lavaland/surface/outdoors)
+"Er" = (
+/obj/structure/stone_tile/slab,
+/obj/item/storage/bag/gem{
+	pixel_x = -1
+	},
+/obj/item/survivalcapsule/luxuryelite{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"ES" = (
+/obj/structure/stone_tile/cracked,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Fd" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"FM" = (
+/obj/structure/stone_tile/slab,
+/obj/effect/mob_spawn/human/corpse/assistant/spanishflu_infection,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"Ge" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/center,
+/obj/structure/rack/skeletal/left{
+	dir = 4
+	},
+/obj/item/stack/hypernoblium_crystal,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Gg" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Gi" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/block,
+/turf/open/chasm/lavaland,
+/area/lavaland/surface/outdoors)
+"Gl" = (
+/obj/structure/ladder/unbreakable/rune{
+	color = "#ff0000";
+	id = "legionnaire_maze_2"
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Gq" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/center,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Gs" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"GF" = (
+/obj/structure/stone_tile/slab/cracked{
+	dir = 5
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"GX" = (
+/obj/structure/stone_tile/slab,
+/obj/effect/mob_spawn/human/corpse/damaged/legioninfested,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"Hc" = (
+/obj/structure/stone_tile/block/burnt{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Hk" = (
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/indestructible/boss,
+/area/lavaland/surface/outdoors)
+"Hl" = (
+/obj/structure/stone_tile/burnt{
+	dir = 8
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Hp" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Ht" = (
+/obj/structure/stone_tile/slab,
+/obj/machinery/door/keycard/necropolis,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"HD" = (
+/mob/living/simple_animal/hostile/skeleton/plasmaminer/jackhammer{
+	faction = list("skeleton","mining")
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"HL" = (
+/obj/structure/stone_tile/surrounding,
+/obj/item/wormhole_jaunter,
+/obj/structure/table/wood/fancy/red,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"HP" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/closet/crate/necropolis/tendril,
+/obj/item/crusher_trophy/watcher_wing,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"HY" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Id" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/turf/open/chasm/lavaland,
+/area/ruin/unpowered)
+"If" = (
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing,
+/turf/open/chasm/lavaland,
+/area/ruin/unpowered)
+"Ii" = (
+/obj/structure/stone_tile/center/cracked,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"IH" = (
+/obj/effect/spawner/lootdrop/mob/marrow_weaver,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"II" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"IR" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"IS" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"IU" = (
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random,
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"IX" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/item/gem/random{
+	pixel_x = -5;
+	pixel_y = -8
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"Jd" = (
+/obj/structure/stone_tile/block/burnt{
+	dir = 8
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Je" = (
+/obj/structure/ladder/unbreakable/rune{
+	color = "#ff0000";
+	height = 1;
+	id = "legionnaire_maze_2"
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"Ji" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/center,
+/obj/structure/rack/skeletal/right{
+	dir = 4
+	},
+/obj/item/stack/tile/brass/fifty,
+/obj/item/flashlight/flashdark,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Jk" = (
+/obj/effect/decal/remains/human{
+	pixel_x = 1;
+	pixel_y = -1
+	},
+/obj/effect/decal/remains/human{
+	pixel_x = -20;
+	pixel_y = 8
+	},
+/obj/structure/trap/fire,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Jr" = (
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"JV" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"JZ" = (
+/obj/structure/trap/stun,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Ku" = (
+/obj/structure/stone_tile/surrounding,
+/obj/effect/spawner/lootdrop/mob/marrow_weaver,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"KB" = (
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"KS" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/item/gem/random{
+	pixel_x = 2;
+	pixel_y = -8
+	},
+/mob/living/simple_animal/hostile/asteroid/marrowweaver/ice,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Lc" = (
+/obj/machinery/door/keycard/necropolis,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Lr" = (
+/obj/structure/stone_tile/slab,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"Ls" = (
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"LC" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/big_legion{
+	armour_penetration = 75;
+	color = "#808080";
+	desc = "One of many. An amorphous mass of skulls combined into one, unstable to the core.";
+	light_color = "#8a0303";
+	light_range = 6;
+	melee_damage_upper = 35;
+	name = "legion?"
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"LQ" = (
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/center,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"LS" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/center,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"LV" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/rack/skeletal{
+	dir = 1
+	},
+/obj/item/coin/adamantine{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/item/nullrod/pitchfork,
+/obj/structure/life_candle{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Mg" = (
+/mob/living/simple_animal/hostile/asteroid/elite/legionnaire{
+	faction = list("boss","mining")
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"Ms" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"MZ" = (
+/obj/structure/trap/damage,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Nh" = (
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 6
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Nm" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Nq" = (
+/mob/living/simple_animal/hostile/asteroid/marrowweaver,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Nr" = (
+/turf/template_noop,
+/area/template_noop)
+"Nw" = (
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/indestructible/boss,
+/area/lavaland/surface/outdoors)
+"NB" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/turf/open/indestructible/boss,
+/area/lavaland/surface/outdoors)
+"NC" = (
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"NF" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/skeleton{
+	faction = list("skeleton","mining")
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"NN" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Og" = (
+/obj/structure/stone_tile/slab,
+/mob/living/simple_animal/hostile/skeleton{
+	faction = list("skeleton","mining")
+	},
+/turf/open/chasm/lavaland,
+/area/ruin/unpowered)
+"OD" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"OE" = (
+/obj/structure/stone_tile/surrounding,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"OG" = (
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/effect/mob_spawn/human/corpse/damaged/legioninfested,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"Pj" = (
+/obj/structure/stone_tile/surrounding/burnt,
+/obj/structure/stone_tile/center/cracked,
+/mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Pl" = (
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"PE" = (
+/obj/effect/mob_spawn/human/corpse/damaged/legioninfested,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"PM" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/center,
+/obj/item/gem/random{
+	pixel_x = -2;
+	pixel_y = 1
+	},
+/obj/item/gem/random{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/obj/item/gem/random{
+	pixel_x = 2;
+	pixel_y = 1
+	},
+/obj/item/gem/random{
+	pixel_x = -3;
+	pixel_y = -1
+	},
+/obj/item/coin/mythril{
+	pixel_x = -1;
+	pixel_y = -8
+	},
+/obj/item/coin/mythril{
+	pixel_x = 9;
+	pixel_y = 3
+	},
+/obj/item/coin/mythril{
+	pixel_x = -13;
+	pixel_y = 8
+	},
+/obj/item/coin/mythril{
+	pixel_x = 7;
+	pixel_y = -11
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"PQ" = (
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"PY" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Qb" = (
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/chasm/lavaland,
+/area/lavaland/surface/outdoors)
+"Qo" = (
+/obj/effect/decal/remains/xeno/larva{
+	pixel_x = -11;
+	pixel_y = -5
+	},
+/obj/effect/decal/remains/human{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/mob/living/simple_animal/hostile/skeleton{
+	faction = list("skeleton","mining")
+	},
+/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"QA" = (
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"QM" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/center,
+/obj/item/gem/random{
+	pixel_x = 4;
+	pixel_y = -10
+	},
+/obj/item/gem/random{
+	pixel_x = 2;
+	pixel_y = -11
+	},
+/obj/item/gem/random{
+	pixel_x = -3;
+	pixel_y = 10
+	},
+/obj/item/gem/random{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/obj/item/coin/mythril{
+	pixel_x = 9;
+	pixel_y = -2
+	},
+/obj/item/coin/mythril{
+	pixel_x = -8;
+	pixel_y = -9
+	},
+/obj/item/coin/mythril{
+	pixel_x = -9;
+	pixel_y = 3
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"QV" = (
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"QW" = (
+/obj/structure/stone_tile/surrounding,
+/obj/item/dragon_egg,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Rc" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/skeleton{
+	faction = list("skeleton","mining")
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"Rt" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/center,
+/obj/structure/rack/skeletal/left{
+	dir = 8
+	},
+/obj/item/soulstone/anybody/chaplain,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"RD" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"RT" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/item/coin/gold{
+	pixel_x = 7;
+	pixel_y = 9
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Sv" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/turf/open/indestructible/boss,
+/area/lavaland/surface/outdoors)
+"Sy" = (
+/obj/structure/stone_tile/surrounding_tile,
+/obj/item/gem/random{
+	pixel_x = 3;
+	pixel_y = -4
+	},
+/obj/item/gem/random{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/obj/item/coin/gold{
+	pixel_x = 4;
+	pixel_y = -12
+	},
+/obj/item/coin/gold{
+	pixel_x = -9;
+	pixel_y = -12
+	},
+/obj/item/coin/gold{
+	pixel_x = 9;
+	pixel_y = -8
+	},
+/obj/item/coin/gold{
+	pixel_x = -3;
+	pixel_y = -16
+	},
+/obj/item/coin/adamantine{
+	pixel_x = -3;
+	pixel_y = -7
+	},
+/obj/item/coin/diamond{
+	pixel_x = 10;
+	pixel_y = -11
+	},
+/obj/item/coin/diamond{
+	pixel_x = -9;
+	pixel_y = -10
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"SC" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/ladder/unbreakable/rune{
+	color = "#ff0000";
+	height = 1;
+	id = "legionnaire_lavapit"
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"SF" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/effect/mob_spawn/human/corpse/damaged/legioninfested,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"SG" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/center,
+/obj/structure/rack/skeletal/left{
+	dir = 8
+	},
+/obj/item/magmite_parts,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"SR" = (
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"Ta" = (
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"Tg" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"Tu" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/stone_tile/center,
+/obj/machinery/door/keycard/necropolis,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"TA" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"TC" = (
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/rack/skeletal,
+/obj/item/kitchen/knife/bloodletter,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"TF" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"TK" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/item/coin/gold{
+	pixel_x = 6;
+	pixel_y = 10
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"TN" = (
+/obj/structure/trap/fire,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"Ui" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"Uw" = (
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Uz" = (
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/block,
+/obj/structure/closet/crate/necropolis/tendril,
+/obj/item/crusher_trophy/legion_skull,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"UE" = (
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/chasm/lavaland,
+/area/ruin/unpowered)
+"UF" = (
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 9
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"UM" = (
+/mob/living/simple_animal/hostile/skeleton/plasmaminer{
+	faction = list("skeleton","mining")
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"UX" = (
+/obj/structure/stone_tile/slab/cracked{
+	dir = 10
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"UY" = (
+/obj/structure/stone_tile/slab,
+/turf/open/chasm/lavaland,
+/area/ruin/unpowered)
+"Vl" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Vy" = (
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/chasm/lavaland,
+/area/lavaland/surface/outdoors)
+"VH" = (
+/obj/structure/stone_tile/slab,
+/obj/machinery/door/keycard/necropolis,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"VL" = (
+/obj/structure/stone_tile/slab/burnt,
+/obj/structure/trap/fire,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"VQ" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"Wa" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Wi" = (
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/center,
+/obj/structure/rack/skeletal/right{
+	dir = 8
+	},
+/obj/item/stack/sheet/runed_metal/fifty,
+/obj/item/flashlight/lantern/jade,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"Wj" = (
+/obj/item/coin/gold{
+	pixel_x = 7;
+	pixel_y = 8
+	},
+/obj/item/coin/mythril{
+	pixel_x = 11;
+	pixel_y = -1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"Wr" = (
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Wv" = (
+/mob/living/simple_animal/hostile/skeleton{
+	faction = list("skeleton","mining")
+	},
+/mob/living/simple_animal/hostile/skeleton{
+	faction = list("skeleton","mining")
+	},
+/obj/effect/mob_spawn/human/corpse/damaged/legioninfested/dwarf,
+/obj/effect/decal/remains/xeno{
+	pixel_x = -11;
+	pixel_y = -7
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"WH" = (
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"WJ" = (
+/obj/structure/stone_tile/surrounding,
+/mob/living/simple_animal/hostile/skeleton/plasmaminer/jackhammer{
+	faction = list("skeleton","mining")
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Xn" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/closet/crate/necropolis/tendril,
+/obj/item/stack/sheet/cheese,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Yg" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/asteroid/goliath/beast/random,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"YE" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/center,
+/obj/item/gem/random{
+	pixel_x = -3;
+	pixel_y = -13
+	},
+/obj/item/gem/random{
+	pixel_x = 4;
+	pixel_y = 8
+	},
+/obj/item/gem/random{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/gem/random{
+	pixel_x = 1;
+	pixel_y = -16
+	},
+/obj/item/coin/mythril{
+	pixel_x = -7
+	},
+/obj/item/coin/mythril{
+	pixel_x = 5;
+	pixel_y = -7
+	},
+/obj/item/coin/mythril{
+	pixel_x = -11;
+	pixel_y = -6
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"YN" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Zd" = (
+/obj/structure/stone_tile/surrounding,
+/mob/living/simple_animal/hostile/skeleton{
+	faction = list("skeleton","mining")
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Ze" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 9
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"ZB" = (
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ZI" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/item/coin/diamond{
+	pixel_x = -11;
+	pixel_y = 11
+	},
+/obj/item/gem/random{
+	pixel_x = -17;
+	pixel_y = -1
+	},
+/obj/item/stack/sheet/mineral/gold{
+	amount = 35;
+	pixel_x = 6;
+	pixel_y = 9
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"ZN" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/trap/fire,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+
+(1,1,1) = {"
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Uw
+Uw
+Uw
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Uw
+Uw
+Uw
+Uw
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+nt
+nt
+nt
+nt
+Nr
+Nr
+Nr
+Nr
+"}
+(2,1,1) = {"
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Nr
+Uw
+Uw
+Uw
+Uw
+Uw
+Nr
+Nr
+Nr
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+nt
+nt
+nt
+nt
+nt
+nt
+nt
+Nr
+Nr
+Nr
+"}
+(3,1,1) = {"
+Nr
+Nr
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+nY
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+oN
+Uw
+Uw
+Uw
+Nr
+Nr
+Nr
+Nr
+Nr
+nt
+nt
+nt
+nY
+nY
+nY
+nY
+nY
+nt
+nt
+nt
+Nr
+"}
+(4,1,1) = {"
+Nr
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+nY
+nY
+Uw
+Uw
+Uw
+oN
+oN
+oN
+Uw
+Uw
+hS
+Uw
+Uw
+Uw
+Uw
+oN
+oN
+oN
+Uw
+Uw
+Uw
+Nr
+Nr
+Nr
+Nr
+Nr
+nt
+nY
+nY
+nY
+nY
+ev
+nY
+nY
+nY
+nY
+nt
+Nr
+"}
+(5,1,1) = {"
+Nr
+Uw
+Uw
+oN
+nt
+nt
+qp
+qp
+qp
+nt
+nY
+UE
+UE
+nY
+nt
+oN
+nt
+Qb
+Qb
+Qb
+nt
+nt
+nt
+nt
+nt
+qp
+Qb
+Qb
+Qb
+Qb
+nt
+Uw
+Uw
+Uw
+Nr
+Nr
+Nr
+nt
+nt
+nY
+nY
+uI
+SG
+PY
+dK
+Cg
+nY
+nY
+nt
+nt
+"}
+(6,1,1) = {"
+Nr
+Uw
+Uw
+nt
+nt
+qp
+qp
+nt
+nt
+nt
+nY
+UE
+UE
+nY
+nt
+nt
+nt
+Qb
+qp
+Qb
+nt
+nY
+nt
+nt
+nY
+qp
+qp
+Qb
+nY
+nY
+nt
+nt
+Uw
+Uw
+Nr
+Nr
+nt
+nt
+nY
+nY
+nl
+RT
+jA
+NC
+Ar
+LQ
+Gg
+nY
+nt
+nt
+"}
+(7,1,1) = {"
+Nr
+Uw
+nY
+nt
+nY
+nY
+qp
+qp
+nY
+nY
+nY
+qp
+nY
+nY
+qp
+nY
+qp
+qp
+qp
+qp
+nY
+nY
+qp
+nY
+nY
+nY
+qp
+qp
+qp
+nY
+nY
+nt
+Uw
+Uw
+Nr
+Nr
+nt
+nt
+nY
+HL
+gg
+oK
+Ar
+By
+jA
+oK
+QW
+nY
+nt
+nt
+"}
+(8,1,1) = {"
+Uw
+Uw
+nY
+nY
+nY
+SC
+bR
+Ls
+Jd
+qp
+nY
+qp
+nY
+qp
+qp
+nY
+qp
+nY
+nY
+qp
+qp
+qp
+qp
+qp
+qp
+qp
+qp
+nY
+qp
+qp
+nY
+nt
+Uw
+Uw
+Nr
+Nr
+nt
+nt
+nY
+nY
+TC
+Af
+jA
+rl
+Ar
+Gq
+PY
+nY
+nt
+nt
+"}
+(9,1,1) = {"
+Uw
+Uw
+nt
+qp
+qp
+Ls
+UF
+BD
+nF
+ty
+yj
+Pj
+yj
+qp
+ek
+yj
+AC
+QA
+QA
+dv
+Cv
+qp
+Nq
+QA
+PE
+nY
+QA
+QA
+IH
+nY
+nY
+nt
+Uw
+Uw
+Nr
+Nr
+Nr
+nt
+nt
+nY
+nY
+QM
+uP
+Gg
+Ji
+pv
+nY
+nY
+nt
+nt
+"}
+(10,1,1) = {"
+Uw
+Uw
+nt
+UE
+qp
+aq
+lE
+Ls
+db
+qp
+qp
+qp
+yj
+qp
+Cv
+nY
+AC
+qp
+QA
+qp
+BJ
+qp
+QA
+nY
+AC
+mO
+Wr
+nY
+QA
+nY
+nt
+nt
+Uw
+Uw
+Nr
+Nr
+Nr
+Nr
+nt
+nY
+nY
+nY
+nY
+tx
+nY
+nY
+nY
+nY
+nt
+Nr
+"}
+(11,1,1) = {"
+Uw
+Uw
+nt
+UE
+nY
+Ii
+ki
+GF
+ES
+qp
+QA
+HD
+QA
+QA
+QA
+qp
+AC
+AC
+AC
+qp
+tf
+qp
+AC
+TN
+AC
+nY
+ek
+dH
+QA
+nY
+nY
+nt
+Uw
+Uw
+Nr
+Nr
+Nr
+Nr
+nt
+nt
+nt
+nY
+nY
+nY
+nY
+nY
+nt
+nt
+nt
+Nr
+"}
+(12,1,1) = {"
+Uw
+Uw
+qp
+UE
+nY
+ov
+Ls
+db
+Ls
+qp
+QA
+qp
+qp
+QA
+qp
+qp
+SR
+qp
+qp
+qp
+Qo
+qp
+AC
+bn
+AC
+qp
+nY
+AC
+nY
+qp
+nY
+nt
+Uw
+Uw
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+nt
+nt
+nt
+nt
+nt
+nt
+nt
+Nr
+Nr
+Nr
+"}
+(13,1,1) = {"
+Nr
+Uw
+qp
+qp
+nY
+Ze
+Hl
+Hc
+sw
+qp
+QA
+qp
+ek
+QA
+QA
+AC
+AC
+AC
+QA
+nY
+Lc
+nY
+Dt
+CQ
+nY
+qp
+AC
+AC
+ZN
+qp
+nY
+nt
+Uw
+Uw
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+nt
+nt
+nt
+nt
+Nr
+Nr
+Nr
+Nr
+"}
+(14,1,1) = {"
+Nr
+Uw
+nt
+qp
+qp
+BD
+oC
+Nh
+Ls
+qp
+QA
+qp
+qp
+TN
+nY
+yj
+nY
+qp
+QA
+qp
+AC
+TA
+mO
+CQ
+dH
+qp
+Bm
+nY
+CQ
+qp
+nY
+nt
+ZB
+ZB
+ZB
+ZB
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+"}
+(15,1,1) = {"
+Nr
+Uw
+nt
+nt
+qp
+Ls
+Ls
+aq
+db
+qp
+AC
+SR
+AC
+AC
+qp
+fu
+qp
+QA
+QA
+qp
+yw
+TA
+CQ
+ek
+ek
+qp
+RD
+AC
+AC
+qp
+nY
+ZB
+ZB
+Uw
+Uw
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+"}
+(16,1,1) = {"
+Nr
+Uw
+nt
+qp
+qp
+at
+Ii
+hq
+lE
+nY
+yj
+nY
+ek
+AC
+qp
+AC
+qp
+bT
+qp
+qp
+UM
+TA
+mO
+CQ
+AC
+qp
+rs
+dM
+RD
+nY
+nY
+ZB
+Uw
+Uw
+ZB
+ZB
+Uw
+ZB
+Uw
+Uw
+ZB
+ZB
+ZB
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+"}
+(17,1,1) = {"
+Nr
+Uw
+nt
+qp
+nY
+UX
+Ls
+Ls
+pR
+qp
+AC
+qp
+qp
+AC
+nY
+AC
+QA
+QA
+ek
+nY
+nY
+nY
+IU
+CQ
+TN
+qp
+VQ
+CQ
+CQ
+nY
+ZB
+ZB
+Uw
+ZB
+ZB
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+ZB
+ZB
+ZB
+Nr
+Nr
+Nr
+Nr
+Nr
+"}
+(18,1,1) = {"
+Nr
+Uw
+nt
+qp
+nY
+Nh
+VL
+hq
+Ls
+qp
+QA
+Zd
+qp
+TN
+nf
+AC
+qp
+qp
+nY
+nY
+qp
+qp
+hu
+bn
+dF
+qp
+ek
+IR
+QV
+nY
+nY
+ZB
+Uw
+Uw
+ZB
+ZB
+ZB
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+ZB
+ZB
+ZB
+ZB
+Nr
+Nr
+"}
+(19,1,1) = {"
+Uw
+Uw
+nt
+nt
+nY
+qp
+dF
+qp
+qp
+qp
+QA
+qp
+qp
+QA
+nY
+AC
+pF
+AC
+nY
+CQ
+ek
+dF
+AC
+AC
+dF
+qp
+QV
+AC
+dH
+qp
+nY
+ZB
+Uw
+Uw
+Uw
+ZB
+Uw
+Uw
+Uw
+Uw
+Sv
+Sv
+NB
+Uw
+Uw
+Uw
+Uw
+ZB
+ZB
+Nr
+"}
+(20,1,1) = {"
+Uw
+Uw
+qp
+nt
+qp
+qp
+dF
+dF
+dF
+qp
+QA
+QA
+QA
+QA
+qp
+AC
+qp
+IR
+Ht
+Gs
+IR
+dF
+AC
+aX
+dF
+dF
+QA
+QA
+AC
+qp
+nY
+nY
+ZB
+Uw
+Uw
+Uw
+Uw
+lC
+lC
+ZB
+PQ
+PQ
+Eo
+Vy
+Vy
+NB
+Uw
+Uw
+ZB
+Nr
+"}
+(21,1,1) = {"
+Uw
+Uw
+qp
+qp
+qp
+dF
+dF
+dF
+If
+qp
+QA
+qp
+qp
+Ls
+qp
+AC
+qp
+xG
+nY
+qp
+CQ
+qp
+zv
+AC
+dF
+dF
+AC
+QA
+QA
+qp
+qp
+nY
+nY
+nY
+Uw
+Uw
+lC
+lC
+nY
+ZB
+Uw
+Uw
+PQ
+PQ
+ZB
+Eo
+Vy
+Gi
+ZB
+ZB
+"}
+(22,1,1) = {"
+Uw
+Uw
+qW
+qp
+qp
+If
+ut
+Wj
+dF
+qp
+QA
+MZ
+Ls
+Ls
+qp
+Lr
+qp
+Ls
+Ls
+OD
+OD
+qp
+dF
+dF
+dF
+dF
+TN
+AC
+AC
+QA
+qp
+qp
+qp
+Uw
+Uw
+Uw
+lC
+nY
+nY
+nY
+nY
+Uw
+Uw
+PQ
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+"}
+(23,1,1) = {"
+Uw
+nY
+qW
+UE
+qp
+ud
+nh
+de
+nY
+qp
+RD
+QA
+nY
+WH
+Ls
+yn
+Ls
+Ls
+MZ
+cw
+Am
+uV
+Ls
+Ls
+dF
+qp
+Gg
+AC
+QA
+QA
+zZ
+KB
+IS
+mt
+Uw
+lC
+lC
+nY
+qp
+qp
+qp
+qp
+Uw
+PQ
+PQ
+PQ
+PQ
+ZB
+ZB
+ZB
+"}
+(24,1,1) = {"
+Uw
+nY
+nY
+UE
+qp
+il
+ZI
+mw
+nY
+ek
+Dk
+AC
+Tg
+nY
+iQ
+OD
+dF
+Ls
+Ls
+QA
+Af
+nY
+Ls
+Ls
+vv
+qp
+CQ
+RD
+QA
+pt
+gb
+Nm
+JZ
+zu
+Uw
+lC
+nY
+nY
+LQ
+Ms
+LS
+qp
+BA
+OE
+HY
+Uw
+PQ
+PQ
+ZB
+ZB
+"}
+(25,1,1) = {"
+Uw
+Uw
+nY
+UE
+qp
+yX
+Hp
+bQ
+Lc
+br
+Dk
+Mg
+pz
+xp
+Vl
+mP
+dF
+Ls
+Ls
+IH
+iv
+Tu
+bn
+dw
+CQ
+qp
+aN
+Dk
+QA
+gb
+dL
+NN
+ek
+II
+Uw
+lC
+nY
+qp
+iv
+yc
+oV
+xG
+wX
+jd
+lT
+jd
+ed
+PQ
+PQ
+ZB
+"}
+(26,1,1) = {"
+Uw
+nY
+nY
+UE
+qp
+HP
+KS
+ma
+nY
+ek
+Dk
+AC
+ce
+nY
+ru
+OD
+dF
+Ls
+Ls
+QA
+cw
+nY
+Ls
+Ls
+iL
+qp
+CQ
+QV
+QA
+uq
+gb
+Jr
+lu
+ge
+Uw
+lC
+nY
+nY
+Gq
+dV
+LQ
+qp
+ou
+OE
+Pl
+Uw
+PQ
+PQ
+ZB
+ZB
+"}
+(27,1,1) = {"
+Uw
+nY
+qW
+UE
+qp
+sm
+xZ
+ic
+nY
+qp
+QV
+QA
+nY
+WH
+Ls
+IR
+Ls
+Ls
+MZ
+Af
+vv
+YN
+Ls
+Ls
+dF
+qp
+PY
+AC
+QA
+QA
+CJ
+sd
+oE
+fd
+Uw
+lC
+lC
+nY
+qp
+qp
+qp
+qp
+Uw
+PQ
+PQ
+PQ
+PQ
+ZB
+ZB
+ZB
+"}
+(28,1,1) = {"
+Uw
+Uw
+qW
+qp
+qp
+Uz
+xZ
+mp
+Er
+qp
+QA
+MZ
+Ls
+Ls
+qp
+Lr
+qp
+Ls
+Ls
+OD
+OD
+qp
+dF
+dF
+dF
+dF
+TN
+AC
+AC
+QA
+qp
+qp
+qp
+Uw
+Uw
+Uw
+lC
+nY
+nY
+nY
+nY
+Uw
+Uw
+PQ
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+"}
+(29,1,1) = {"
+Uw
+Uw
+qp
+qp
+qp
+CS
+IX
+aW
+LV
+qp
+QA
+qp
+qp
+Ls
+qp
+AC
+qp
+xG
+nY
+qp
+CQ
+qp
+ww
+AC
+dF
+dF
+AC
+QA
+QA
+qp
+qp
+nY
+nY
+nY
+Uw
+Uw
+lC
+lC
+nY
+ZB
+Uw
+Uw
+PQ
+PQ
+ZB
+Nw
+dC
+Gi
+ZB
+ZB
+"}
+(30,1,1) = {"
+Uw
+Uw
+qp
+nt
+qp
+qp
+Ui
+DM
+kB
+qp
+QA
+ek
+qp
+AC
+qp
+AC
+qp
+Vl
+Ht
+Gs
+IR
+dF
+AC
+aX
+dF
+dF
+QA
+QA
+AC
+qp
+nY
+nY
+ZB
+Uw
+Uw
+Uw
+Uw
+lC
+lC
+ZB
+PQ
+PQ
+Hk
+dC
+dC
+sV
+Uw
+Uw
+ZB
+Nr
+"}
+(31,1,1) = {"
+Uw
+Uw
+nt
+nt
+nY
+qp
+VH
+qp
+qp
+qp
+QA
+QA
+qp
+AC
+nY
+AC
+pF
+AC
+nY
+CQ
+ek
+dF
+AC
+hu
+dF
+qp
+AC
+AC
+Rc
+qp
+nY
+ZB
+Uw
+Uw
+Uw
+ZB
+Uw
+Uw
+Uw
+Uw
+oA
+oA
+sV
+Uw
+Uw
+Uw
+Uw
+ZB
+ZB
+Nr
+"}
+(32,1,1) = {"
+Nr
+Uw
+nt
+qp
+nY
+mm
+rl
+lv
+ek
+qp
+qp
+QA
+QA
+TN
+nf
+AC
+qp
+UM
+nY
+nY
+qp
+qp
+AC
+bn
+dF
+qp
+ce
+ek
+IR
+nY
+nY
+ZB
+Uw
+Uw
+ZB
+ZB
+ZB
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+ZB
+ZB
+ZB
+ZB
+Nr
+Nr
+"}
+(33,1,1) = {"
+Nr
+Uw
+nt
+qp
+nY
+zC
+iq
+NC
+GX
+qp
+Zd
+QA
+qp
+AC
+nY
+QA
+qp
+AC
+AC
+nY
+nY
+nY
+jB
+CQ
+TN
+qp
+CQ
+CQ
+Ta
+nY
+ZB
+ZB
+Uw
+ZB
+ZB
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+ZB
+ZB
+ZB
+Nr
+Nr
+Nr
+Nr
+Nr
+"}
+(34,1,1) = {"
+Nr
+Uw
+nt
+qp
+qp
+Ar
+Ar
+LC
+oK
+qp
+nY
+yj
+nY
+AC
+qp
+Nq
+qp
+nY
+AC
+qp
+UM
+TA
+OD
+CQ
+AC
+qp
+Tg
+Yg
+Ku
+nY
+nY
+ZB
+Uw
+Uw
+ZB
+ZB
+Uw
+ZB
+Uw
+Uw
+ZB
+ZB
+ZB
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+"}
+(35,1,1) = {"
+Nr
+Uw
+nt
+nt
+qp
+JV
+ll
+fB
+oM
+qp
+AC
+AC
+AC
+AC
+AC
+QA
+QA
+yj
+ek
+qp
+Je
+TA
+CQ
+ek
+ek
+qp
+AC
+AC
+Tg
+qp
+nY
+ZB
+ZB
+Uw
+Uw
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+"}
+(36,1,1) = {"
+Nr
+Uw
+nt
+qp
+qp
+cf
+Og
+UY
+SF
+qp
+AC
+qp
+qp
+TN
+qp
+qp
+Cv
+nY
+qp
+qp
+AC
+TA
+OD
+CQ
+dH
+qp
+mr
+nY
+AC
+qp
+nY
+nt
+ZB
+ZB
+ZB
+ZB
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+"}
+(37,1,1) = {"
+Nr
+Uw
+qp
+qp
+nY
+nY
+nY
+UY
+FM
+qp
+AC
+SR
+QA
+QA
+qp
+ek
+QA
+QA
+AC
+nY
+Lc
+nY
+Fd
+CQ
+nY
+qp
+CQ
+AC
+TN
+qp
+nY
+nt
+Uw
+Uw
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+nt
+nt
+nt
+nt
+Nr
+Nr
+Nr
+Nr
+"}
+(38,1,1) = {"
+Uw
+Uw
+qp
+UE
+nY
+Id
+Ed
+UY
+zg
+qp
+TF
+AC
+qp
+Cv
+qp
+nY
+yj
+nY
+AC
+qp
+mv
+qp
+hu
+jg
+AC
+qp
+nY
+AC
+nY
+qp
+nY
+nt
+Uw
+Uw
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+nt
+nt
+nt
+nt
+nt
+nt
+nt
+Nr
+Nr
+Nr
+"}
+(39,1,1) = {"
+Uw
+Uw
+nt
+UE
+nY
+JV
+ll
+fB
+Dq
+qp
+SR
+AC
+qp
+QA
+QA
+QA
+QA
+qp
+AC
+qp
+Wv
+qp
+AC
+TN
+AC
+nY
+ek
+dH
+QA
+nY
+nY
+nt
+Uw
+Uw
+Nr
+Nr
+Nr
+Nr
+nt
+nt
+nt
+nY
+nY
+nY
+nY
+nY
+nt
+nt
+nt
+Nr
+"}
+(40,1,1) = {"
+Uw
+Uw
+nt
+UE
+qp
+jJ
+zb
+jA
+jA
+gb
+AC
+AC
+qp
+qp
+QA
+qp
+AC
+qp
+AC
+qp
+Jk
+qp
+QA
+nY
+AC
+mO
+Wa
+nY
+QA
+nY
+nt
+nt
+Uw
+Uw
+Nr
+Nr
+Nr
+Nr
+nt
+nY
+nY
+nY
+nY
+fK
+nY
+nY
+nY
+nY
+nt
+Nr
+"}
+(41,1,1) = {"
+Uw
+Uw
+nt
+qp
+qp
+gb
+lv
+NF
+jA
+GX
+AC
+SR
+WJ
+qp
+QA
+AC
+AC
+AC
+AC
+Gl
+sx
+qp
+Nq
+QA
+QA
+nY
+QA
+QA
+IH
+nY
+nY
+nt
+Uw
+Uw
+Nr
+Nr
+Nr
+nt
+nt
+nY
+nY
+YE
+LS
+PY
+Wi
+Rt
+nY
+nY
+nt
+nt
+"}
+(42,1,1) = {"
+Uw
+Uw
+nY
+nY
+nY
+bW
+NC
+OG
+AM
+qp
+nY
+qp
+qp
+nY
+nY
+qp
+nY
+nY
+nY
+qp
+qp
+qp
+qp
+qp
+qp
+qp
+qp
+nY
+qp
+qp
+nY
+nt
+Uw
+Uw
+Nr
+Nr
+nt
+nt
+nY
+nY
+qM
+cw
+jA
+NC
+Ar
+LQ
+Gg
+nY
+nt
+nt
+"}
+(43,1,1) = {"
+Nr
+Uw
+nY
+nt
+nY
+nY
+qp
+qp
+nY
+qp
+nY
+nY
+qp
+nY
+qp
+qp
+qp
+qp
+qp
+qp
+nY
+nY
+qp
+nY
+nY
+nY
+qp
+qp
+qp
+nY
+nY
+nt
+Uw
+Uw
+Nr
+Nr
+nt
+nt
+nY
+HL
+gg
+oK
+Ar
+ny
+jA
+oK
+QW
+nY
+nt
+nt
+"}
+(44,1,1) = {"
+Nr
+Uw
+Uw
+nt
+nt
+qp
+qp
+nt
+nt
+nt
+nY
+UE
+UE
+nY
+nt
+nt
+nt
+Qb
+qp
+Qb
+nt
+nY
+nt
+nt
+nY
+qp
+qp
+Qb
+nY
+nY
+nt
+nt
+Uw
+Uw
+Nr
+Nr
+nt
+nt
+nY
+nY
+Sy
+TK
+jA
+rl
+Ar
+Gq
+PY
+nY
+nt
+nt
+"}
+(45,1,1) = {"
+Nr
+Uw
+Uw
+oN
+nt
+nt
+qp
+qp
+qp
+nt
+nY
+UE
+UE
+nY
+nt
+oN
+nt
+Qb
+Qb
+Qb
+nt
+nt
+nt
+nt
+nt
+qp
+Qb
+Qb
+Qb
+Qb
+nt
+Uw
+Uw
+Uw
+Nr
+Nr
+Nr
+nt
+nt
+nY
+nY
+gZ
+Ge
+Gg
+PM
+qO
+nY
+nY
+nt
+nt
+"}
+(46,1,1) = {"
+Nr
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+nY
+nY
+Uw
+Uw
+Uw
+oN
+oN
+oN
+Uw
+Uw
+hS
+Uw
+Uw
+Uw
+Uw
+oN
+oN
+oN
+Uw
+Uw
+Uw
+Nr
+Nr
+Nr
+Nr
+Nr
+nt
+nY
+nY
+nY
+nY
+Xn
+nY
+nY
+nY
+nY
+nt
+Nr
+"}
+(47,1,1) = {"
+Nr
+Nr
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+nY
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+oN
+Uw
+Uw
+Uw
+Nr
+Nr
+Nr
+Nr
+Nr
+nt
+nt
+nt
+nY
+nY
+nY
+nY
+nY
+nt
+nt
+nt
+Nr
+"}
+(48,1,1) = {"
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Nr
+Uw
+Uw
+Uw
+Uw
+Uw
+Nr
+Nr
+Nr
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Uw
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+nt
+nt
+nt
+nt
+nt
+nt
+nt
+Nr
+Nr
+Nr
+"}
+(49,1,1) = {"
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Uw
+Uw
+Uw
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Uw
+Uw
+Uw
+Uw
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+Nr
+nt
+nt
+nt
+nt
+Nr
+Nr
+Nr
+Nr
+"}

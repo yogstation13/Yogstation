@@ -58,8 +58,10 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/addiction_threshold = 0
 	/// increases as addiction gets worse
 	var/addiction_stage = 0
-	/// What can process this? ORGANIC, SYNTHETIC, or ORGANIC | SYNTHETIC?. We'll assume by default that it affects organics.
-	var/process_flags = ORGANIC
+	/// Alternative names used for the drug
+	var/addiction_name = null
+	/// What biotypes can process this? We'll assume by default that it affects organics (and undead, for plasmemes)
+	var/compatible_biotypes = ALL_NON_ROBOTIC
 	/// How flammable is this material?
 	var/accelerant_quality = 0
 	/// You fucked up and this is now triggering its overdose effects, purge that shit quick.
@@ -158,30 +160,39 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 /// Called when addiction hits stage1, see [/datum/reagents/proc/metabolize]
 /datum/reagent/proc/addiction_act_stage1(mob/living/M)
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_light, name)
+	if(!addiction_name)
+		addiction_name = name
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_light, addiction_name)
 	if(prob(30))
-		to_chat(M, span_notice("You feel like having some [name] right about now."))
+
+		to_chat(M, span_notice("You feel like having some [addiction_name] right about now."))
 	return
 
 /// Called when addiction hits stage2, see [/datum/reagents/proc/metabolize]
 /datum/reagent/proc/addiction_act_stage2(mob/living/M)
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_medium, name)
+	if(!addiction_name)
+		addiction_name = name
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_medium, addiction_name)
 	if(prob(30))
-		to_chat(M, span_notice("You feel like you need [name]. You just can't get enough."))
+		to_chat(M, span_notice("You feel like you need [addiction_name]. You just can't get enough."))
 	return
 
 /// Called when addiction hits stage3, see [/datum/reagents/proc/metabolize]
 /datum/reagent/proc/addiction_act_stage3(mob/living/M)
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_severe, name)
+	if(!addiction_name)
+		addiction_name = name
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_severe, addiction_name)
 	if(prob(30))
-		to_chat(M, span_danger("You have an intense craving for [name]."))
+		to_chat(M, span_danger("You have an intense craving for [addiction_name]."))
 	return
 
 /// Called when addiction hits stage4, see [/datum/reagents/proc/metabolize]
 /datum/reagent/proc/addiction_act_stage4(mob/living/M)
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_critical, name)
+	if(!addiction_name)
+		addiction_name = name
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_critical, addiction_name)
 	if(prob(30))
-		to_chat(M, span_boldannounce("You're not feeling good at all! You really need some [name]."))
+		to_chat(M, span_boldannounce("You're not feeling good at all! You really need some [addiction_name]."))
 	return
 
 /proc/pretty_string_from_reagent_list(list/reagent_list)

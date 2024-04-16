@@ -1,19 +1,19 @@
-/obj/item/projectile/bullet/reusable/dart
+/obj/projectile/bullet/reusable/dart
 	name = "dart"
 	icon_state = "cbbolt"
 	damage = 6
 	var/piercing = FALSE
 
-/obj/item/projectile/bullet/reusable/dart/Initialize(mapload)
+/obj/projectile/bullet/reusable/dart/Initialize(mapload)
 	. = ..()
 
-/obj/item/projectile/bullet/reusable/dart/proc/add_dart(obj/item/reagent_containers/new_dart, syrpierce)
+/obj/projectile/bullet/reusable/dart/proc/add_dart(obj/item/reagent_containers/new_dart, syrpierce)
 	piercing = syrpierce
 	ammo_type = new_dart
 	new_dart.forceMove(src)
 	name = new_dart.name
 
-/obj/item/projectile/bullet/reusable/dart/handle_drop(mob/living/carbon/target, blocked)
+/obj/projectile/bullet/reusable/dart/handle_drop(mob/living/carbon/target, blocked)
 	if(dropped || !isitem(ammo_type) || !iscarbon(target))
 		return ..()
 
@@ -25,16 +25,16 @@
 
 	return ..() // Run further handle_drop stuff, for if the syringe doesn't embbed in the target
 
-/obj/item/projectile/bullet/reusable/dart/syringe
+/obj/projectile/bullet/reusable/dart/syringe
 	name = "syringe"
 	icon_state = "syringeproj"
 
-/obj/item/projectile/bullet/reusable/dart/syringe/blowgun
+/obj/projectile/bullet/reusable/dart/syringe/blowgun
 	name = "syringe"
 	icon_state = "syringeproj"
 	range = 2
 
-/obj/item/projectile/bullet/reusable/dart/hidden
+/obj/projectile/bullet/reusable/dart/hidden
 	name = "beanbag slug"
 	icon_state = "bullet" //So it doesn't look like a goddamned syringe
 	stamina = 5 // gotta act like we did stamina

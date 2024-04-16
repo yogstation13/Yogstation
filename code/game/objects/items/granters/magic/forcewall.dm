@@ -10,7 +10,7 @@
 		"This is some surprisingly strong magic to create a wall nobody can pass through...",
 		"Why the dumb stance? It's just a flick of the hand...",
 		"Why are the pages so hard to turn, is this even paper?",
-		"I can't mo Oh, i'm fine...",
+		"I can't mo Oh, I'm fine...",
 	)
 
 /obj/item/book/granter/action/spell/forcewall/recoil(mob/living/user)

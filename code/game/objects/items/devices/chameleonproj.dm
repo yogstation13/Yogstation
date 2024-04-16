@@ -63,7 +63,7 @@
 	var/obj/temp = new/obj()
 	temp.appearance = target.appearance
 	temp.layer = initial(target.layer) // scanning things in your inventory
-	temp.plane = initial(target.plane)
+	SET_PLANE_IMPLICIT(temp, initial(target.plane))
 	saved_appearance = temp.appearance
 
 /obj/item/chameleon/proc/check_sprite(atom/target)

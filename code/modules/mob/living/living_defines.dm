@@ -1,7 +1,6 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
 	sight = 0
-	see_in_dark = 2
 	hud_possible = list(HEALTH_HUD,STATUS_HUD,ANTAG_HUD,NANITE_HUD,DIAG_NANITE_FULL_HUD)
 	pressure_resistance = 10
 	infra_luminosity = 10
@@ -75,14 +74,13 @@
 	var/has_limbs = 0 //does the mob have distinct limbs?(arms,legs, chest,head)
 
 	var/list/pipes_shown = list()
+	var/list/wires_shown = list()
 	var/last_played_vent
 
 	var/smoke_delay = FALSE //used to prevent spam with smoke reagent reaction on mob.
 	var/foam_delay = FALSE //used to prevent spam with foam reagent reaction on mob.
 
 	var/health_doll_icon //if this exists AND the normal sprite is bigger than 32x32, this is the replacement icon state (because health doll size limitations). the icon will always be screen_gen.dmi
-
-	var/bubble_icon = "default" //what icon the mob uses for speechbubbles
 
 	var/last_bumped = 0
 	var/unique_name = FALSE //if a mob's name should be appended with an id when created e.g. Mob (666)
@@ -138,5 +136,23 @@
 	//Allergies
 	var/allergies
 
-	//Last item/projectile that damaged this mob, not including surgery
+	//Last projectile that damaged this mob, not including surgery
 	var/last_damage = ""
+
+	//Due to the fact that silicon and carbons can both be connected to a network we share at this level of inheritance
+	var/datum/ai_network/ai_network
+	/// Variable to track the body position of a mob, regardgless of the actual angle of rotation (usually matching it, but not necessarily).
+	var/body_position = STANDING_UP
+	///The x amount a mob's sprite should be offset due to the current position they're in
+	var/body_position_pixel_x_offset = 0
+	///The y amount a mob's sprite should be offset due to the current position they're in or size (e.g. lying down moves your sprite down)
+	var/body_position_pixel_y_offset = 0
+
+	///How many hands does this mob have by default. This shouldn't change at runtime.
+	var/default_num_hands = 2
+	///How many hands hands does this mob currently have. Should only be changed through set_num_hands()
+	var/num_hands = 2
+	///How many usable hands does this mob currently have. Should only be changed through set_usable_hands()
+	var/usable_hands = 2
+	/// What our current gravity state is. Used to avoid duplicate animates and such
+	var/gravity_state = null

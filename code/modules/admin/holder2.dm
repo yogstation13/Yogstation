@@ -23,6 +23,9 @@ GLOBAL_PROTECT(href_token)
 
 	var/deadmined
 
+	var/datum/filter_editor/filteriffic
+	var/datum/plane_master_debug/plane_debug
+
 	var/ip_cache
 	var/cid_cache
 
@@ -51,6 +54,7 @@ GLOBAL_PROTECT(href_token)
 		activate()
 	else
 		deactivate()
+	plane_debug = new(src)
 
 /datum/admins/Destroy()
 	if(IsAdminAdvancedProcCall())
@@ -75,6 +79,7 @@ GLOBAL_PROTECT(href_token)
 	GLOB.permissions.deadmins -= target
 	GLOB.permissions.admin_datums[target] = src
 	deadmined = FALSE
+	QDEL_NULL(plane_debug)
 	if (GLOB.directory[target])
 		associate(GLOB.directory[target])	//find the client for a ckey if they are connected and associate them with us
 

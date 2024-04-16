@@ -9,7 +9,7 @@
 	icon = 'icons/mecha/mecha.dmi'
 	density = TRUE
 	anchored = FALSE
-	opacity = 0
+	opacity = FALSE
 	var/state = MECHA_WRECK_CUT
 	var/orig_mecha
 	var/can_be_reconstructed = FALSE
@@ -206,11 +206,6 @@
 	icon_state = "ripley-broken"
 	orig_mecha = /obj/mecha/working/ripley
 
-/obj/structure/mecha_wreckage/ripley/mkii
-	name = "\improper Ripley MK-II wreckage"
-	icon_state = "ripleymkii-broken"
-	orig_mecha = /obj/mecha/working/ripley/mkii
-
 /obj/structure/mecha_wreckage/ripley/firefighter
 	name = "\improper Firefighter wreckage"
 	icon_state = "firefighter-broken"
@@ -250,4 +245,10 @@
 /obj/structure/mecha_wreckage/sidewinder
 	name = "\improper Sidewinder wreckage"
 	icon_state = "sidewinder-broken"
+	desc = "It continues to twitch, as if barely alive."
 	orig_mecha = /obj/mecha/combat/sidewinder
+
+/obj/structure/mecha_wreckage/sidewinder/mamba
+	name = "\improper mamba wreckage"
+	icon_state = "mamba-broken"
+	orig_mecha = /obj/mecha/combat/sidewinder/mamba

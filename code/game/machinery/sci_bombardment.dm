@@ -53,7 +53,7 @@
 			break
 	radio = new /obj/item/radio/(src)
 	radio.frequency = radio_freq
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/machinery/sci_bombardment/Destroy()
 	QDEL_NULL(radio)
@@ -79,7 +79,7 @@
 			scibomb = B
 			playsound(src, 'sound/effects/bin_close.ogg', 100, 1)
 			to_chat(usr, span_notice("You load [B] into the firing mechanism."))
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 		else
 			to_chat(usr, span_warning("There is already a transfer valve loaded in the firing mechanism!"))
 	else
@@ -131,7 +131,7 @@
 	targetdest = initial(dest)
 	tcoords = initial(tcoords)
 	scibomb = initial(scibomb)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	. = TRUE
 
 /**
@@ -143,7 +143,7 @@
 */
 /obj/machinery/sci_bombardment/proc/reset_lam()
 	target_delay = !target_delay
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	if(target_delay)
 		spawn(100)
 			reset_lam()
@@ -173,8 +173,7 @@
 	var/list/signals = list()
 	data["signals"] = list()
 
-	for(var/gps in GLOB.GPS_list)
-		var/obj/item/gps/G = gps
+	for(var/datum/component/gps/G in GLOB.GPS_list) //nulls on the list somehow
 		var/turf/pos = get_turf_global(G) // yogs - get_turf_global instead of get_turf
 		if(G.emped || !G.tracking || pos.z != lavaland)
 			continue
@@ -201,7 +200,7 @@
 					radio.talk_into(src, "Controls [locked ? "locked" : "unlocked"] by [I.registered_name].",)
 				else
 					to_chat(usr, span_warning("Access denied. Please seek assistance from station AI or Research Director."))
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 			. = TRUE
 		if("count")//Prompts user to change countdown timer (Minimum based on mincount)
 			if(locked)
@@ -221,7 +220,7 @@
 			to_chat(usr, span_notice("[scibomb] is ejected from the loading chamber."))
 			scibomb.forceMove(drop_location())
 			scibomb = null
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 			. = TRUE
 		if("launch")//Transfers var/countdown to var/tick before proc'ing countdown()
 			if(locked || target_delay || !scibomb || !dest)

@@ -66,10 +66,6 @@ ENABLE_LOCALHOST_RANK
 ## The default value assumes youtube-dl is in your system PATH
 # INVOKE_YOUTUBEDL youtube-dl
 
-## Defines the ticklimit for subsystem initialization (In percents of a byond tick). Lower makes world start smoother. Higher makes it faster.
-##This is currently a testing optimized setting. A good value for production would be 98.
-TICK_LIMIT_MC_INIT 500
-
 ## Should SQL be enabled? Uncomment to enable
 #SQL_ENABLED
 
@@ -90,9 +86,8 @@ VOICE_ANNOUNCE_DIR ../Yogstation.net/voice_announce_tmp
 ## Enable the demo subsystem
 #DEMOS_ENABLED
 
-## Starlight for exterior walls and breaches. Uncomment for starlight!
-## This is disabled by default to make testing quicker, should be enabled on production servers or testing servers messing with lighting
-#STARLIGHT
+## Enable automatic profiling - Byond 513.1506 and newer only.
+#AUTO_PROFILE
 
 
 ## Assets can opt-in to caching their results into `tmp`.

@@ -15,16 +15,16 @@
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 	dog_fashion = /datum/dog_fashion/back
 	resistance_flags = FIRE_PROOF
-	var/max_water = 100
+	var/max_water = 200
 	var/last_use = 1
 	var/chem = /datum/reagent/water
+	var/chem_amount = 2 //how much of the chem is added to each spray (x5 because of how many sprays per shot)
 	var/safety = TRUE
 	var/refilling = FALSE
 	var/tanktype = /obj/structure/reagent_dispensers/watertank
 	var/sprite_name = "fire_extinguisher"
 	var/power = 5 //Maximum distance launched water will travel
 	var/precision = FALSE //By default, turfs picked from a spray are random, set to 1 to make it always have at least one water effect per row
-	var/cooling_power = 2 //Sets the cooling_temperature of the water reagent datum inside of the extinguisher when it is refilled
 
 /obj/item/extinguisher/mini
 	name = "pocket fire extinguisher"
@@ -38,6 +38,7 @@
 	force = 3
 	materials = list(/datum/material/iron = 50, /datum/material/glass = 40)
 	max_water = 30
+	chem_amount = 1
 	sprite_name = "miniFE"
 	dog_fashion = null
 
@@ -53,8 +54,9 @@
 	name = "advanced fire extinguisher"
 	desc = "Used to stop thermonuclear fires from spreading inside your engine."
 	icon_state = "foam_extinguisher0"
-	//item_state = "foam_extinguisher" needs sprite
+	item_state = "foam_extinguisher"
 	max_water = 150
+	chem_amount = 1
 	w_class = WEIGHT_CLASS_NORMAL
 	dog_fashion = null
 	chem = /datum/reagent/firefighting_foam
@@ -86,7 +88,7 @@
 	else
 		return ..()
 
-/obj/item/extinguisher/attack_obj(obj/O, mob/living/user)
+/obj/item/extinguisher/attack_atom(obj/O, mob/living/user)
 	if(AttemptRefill(O, user))
 		refilling = TRUE
 		return FALSE
@@ -113,8 +115,6 @@
 		if(transferred > 0)
 			to_chat(user, span_notice("\The [src] has been refilled by [transferred] units."))
 			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
-			for(var/datum/reagent/water/R in reagents.reagent_list)
-				R.cooling_temperature = cooling_power
 		else
 			to_chat(user, span_warning("\The [W] is empty!"))
 		safety = safety_save
@@ -177,7 +177,7 @@
 			var/datum/reagents/water_reagents = new /datum/reagents(5)
 			water.reagents = water_reagents
 			water_reagents.my_atom = water
-			reagents.trans_to(water, 1, transfered_by = user)
+			reagents.trans_to(water, chem_amount, transfered_by = user)
 
 		//Make em move dat ass, hun
 		move_particles(water_particles)

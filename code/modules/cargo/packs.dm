@@ -17,11 +17,27 @@
 	var/DropPodOnly = FALSE//only usable by the Bluespace Drop Pod via the express cargo console
 	var/admin_spawned = FALSE
 	var/small_item = FALSE //Small items can be grouped into a single crate.
+	var/budget_radioactive = FALSE //Overwrite budget crate into radiation protective crate
 
 /datum/supply_pack/proc/generate(atom/A, datum/bank_account/paying_account)
 	var/obj/structure/closet/crate/C
 	if(paying_account)
-		C = new /obj/structure/closet/crate/secure/owned(A, paying_account)
+		if(budget_radioactive)
+			C = new /obj/structure/closet/crate/secure/owned/radiation(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_MED))
+			C = new /obj/structure/closet/crate/secure/owned/medical(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_ENG))
+			C = new /obj/structure/closet/crate/secure/owned/engineering(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_SCI))
+			C = new /obj/structure/closet/crate/secure/owned/science(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_SRV))
+			C = new /obj/structure/closet/crate/secure/owned/hydroponics(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_SEC))
+			C = new /obj/structure/closet/crate/secure/owned/gear(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_CIV))
+			C = new /obj/structure/closet/crate/secure/owned/civ(A, paying_account)
+		else
+			C = new /obj/structure/closet/crate/secure/owned(A, paying_account)
 		C.name = "[crate_name] - Purchased by [paying_account.account_holder]"
 	else
 		C = new crate_type(A)
@@ -260,12 +276,15 @@
 
 /datum/supply_pack/security/armor
 	name = "Armor Crate"
-	desc = "Three vests of well-rounded, decently-protective armor. Requires Security access to open."
-	cost = 1000
+	desc = "Three sets of well-rounded, decently-protective armor and helmet. Requires Security access to open."
+	cost = 2000
 	access_view = ACCESS_SECURITY
-	contains = list(/obj/item/clothing/suit/armor/vest,
-					/obj/item/clothing/suit/armor/vest,
-					/obj/item/clothing/suit/armor/vest)
+	contains = list(/obj/item/clothing/suit/armor/vest/alt,
+					/obj/item/clothing/suit/armor/vest/alt,
+					/obj/item/clothing/suit/armor/vest/alt,
+					/obj/item/clothing/head/helmet/sec,
+					/obj/item/clothing/head/helmet/sec,
+					/obj/item/clothing/head/helmet/sec)
 	crate_name = "armor crate"
 
 /datum/supply_pack/security/disabler
@@ -298,15 +317,6 @@
 					/obj/item/toy/crayon/white,
 					/obj/item/clothing/head/fedora/det_hat)
 	crate_name = "forensics crate"
-
-/datum/supply_pack/security/helmets
-	name = "Helmets Crate"
-	desc = "Contains three standard-issue brain buckets. Requires Security access to open."
-	cost = 1000
-	contains = list(/obj/item/clothing/head/helmet/sec,
-					/obj/item/clothing/head/helmet/sec,
-					/obj/item/clothing/head/helmet/sec)
-	crate_name = "helmet crate"
 
 /datum/supply_pack/security/laser
 	name = "Lasers Crate"
@@ -506,21 +516,15 @@
 
 /datum/supply_pack/security/armory/bulletarmor
 	name = "Bulletproof Armor Crate"
-	desc = "Contains three sets of bulletproof armor. Guaranteed to reduce a bullet's stopping power by over half. Requires Armory access to open."
-	cost = 1500
+	desc = "Contains three sets of bulletproof armor and helmet. Guaranteed to reduce a bullet's stopping power by over half. Requires Armory access to open."
+	cost = 3000
 	contains = list(/obj/item/clothing/suit/armor/bulletproof,
 					/obj/item/clothing/suit/armor/bulletproof,
-					/obj/item/clothing/suit/armor/bulletproof)
-	crate_name = "bulletproof armor crate"
-
-/datum/supply_pack/security/armory/bullethelmets
-	name = "Bulletproof Helmet Crate"
-	desc = "Contains three bulletproof helmets, perfect for protecting the void inside your skull. Requires Armory access to open."
-	cost = 1500
-	contains = list(/obj/item/clothing/head/helmet/alt,
+					/obj/item/clothing/suit/armor/bulletproof,
+					/obj/item/clothing/head/helmet/alt,
 					/obj/item/clothing/head/helmet/alt,
 					/obj/item/clothing/head/helmet/alt)
-	crate_name = "bulletproof helmet crate"
+	crate_name = "bulletproof armor crate"
 
 /datum/supply_pack/security/armory/chemimp
 	name = "Chemical Implants Crate"
@@ -563,21 +567,15 @@
 
 /datum/supply_pack/security/armory/riotarmor
 	name = "Riot Armor Crate"
-	desc = "Contains three sets of heavy body armor. Advanced padding protects against close-ranged weaponry, making melee attacks feel only half as potent to the user. Requires Armory access to open."
-	cost = 1500
+	desc = "Contains three sets of heavy body armor and helmet. Advanced padding protects against close-ranged weaponry, making melee attacks feel only half as potent to the user. Requires Armory access to open."
+	cost = 3000
 	contains = list(/obj/item/clothing/suit/armor/riot,
 					/obj/item/clothing/suit/armor/riot,
-					/obj/item/clothing/suit/armor/riot)
-	crate_name = "riot armor crate"
-
-/datum/supply_pack/security/armory/riothelmets
-	name = "Riot Helmets Crate"
-	desc = "Contains three riot helmets. Requires Armory access to open."
-	cost = 1500
-	contains = list(/obj/item/clothing/head/helmet/riot,
+					/obj/item/clothing/suit/armor/riot,
+					/obj/item/clothing/head/helmet/riot,
 					/obj/item/clothing/head/helmet/riot,
 					/obj/item/clothing/head/helmet/riot)
-	crate_name = "riot helmets crate"
+	crate_name = "riot armor crate"
 
 /datum/supply_pack/security/armory/riotshields
 	name = "Riot Shields Crate"
@@ -986,17 +984,6 @@
 	crate_name = "power cell crate"
 	crate_type = /obj/structure/closet/crate/engineering/electrical
 
-/datum/supply_pack/engineering/portable_pumps
-	name = "Portable Pumps"
-	desc = "A set of spare portable pumps. Perfect for larger atmospheric projects or restocking after a toxins problem goes wrong."
-	cost = 1500
-	contains = list(
-		/obj/machinery/portable_atmospherics/pump,
-		/obj/machinery/portable_atmospherics/pump
-	)
-	crate_name = "portable pump crate"
-	crate_type = /obj/structure/closet/crate/large
-
 /datum/supply_pack/engineering/portable_scrubbers
 	name = "Portable Scrubbers"
 	desc = "A set of spare portable scrubbers. Perfect for when plasma 'accidentally' gets into the air supply."
@@ -1233,6 +1220,46 @@
 	crate_name = "HFR crate"
 	crate_type = /obj/structure/closet/crate/secure/engineering
 	dangerous = TRUE
+
+/datum/supply_pack/engine/fuel_rod_basic
+	name = "Uranium-235 Fuel Rods Crate"
+	desc = "Contains 5 Enriched Uranium Control Rods."
+	cost = 5000
+	contains = list(/obj/item/fuel_rod,
+					/obj/item/fuel_rod,
+					/obj/item/fuel_rod,
+					/obj/item/fuel_rod,
+					/obj/item/fuel_rod)
+	crate_name = "Uranium-235 Fuel Rods"
+	crate_type = /obj/structure/closet/crate/secure/radiation
+	budget_radioactive = TRUE
+
+/datum/supply_pack/engine/fuel_rod_plutonium
+	name = "Plutonium-239 Fuel Rods Crate"
+	desc = "Contains 5 Plutonium-239 Control Rods."
+	cost = 15000
+	contains = list(/obj/item/fuel_rod/plutonium,
+					/obj/item/fuel_rod/plutonium,
+					/obj/item/fuel_rod/plutonium,
+					/obj/item/fuel_rod/plutonium,
+					/obj/item/fuel_rod/plutonium)
+	crate_name = "Plutonium-239 Fuel Rods"
+	crate_type = /obj/structure/closet/crate/secure/radiation
+	budget_radioactive = TRUE
+
+/datum/supply_pack/engine/fuel_rod_bananium
+	name = "Bananium Fuel Rods Crate"
+	desc = "Contains 5 Bananium Control Rods."
+	cost = 15000
+	contraband = TRUE
+	contains = list(/obj/item/fuel_rod/material/bananium,
+					/obj/item/fuel_rod/material/bananium,
+					/obj/item/fuel_rod/material/bananium,
+					/obj/item/fuel_rod/material/bananium,
+					/obj/item/fuel_rod/material/bananium)
+	crate_name = "Bananium Fuel Rods"
+	crate_type = /obj/structure/closet/crate/secure/radiation
+	budget_radioactive = TRUE
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////// Canisters & Materials ////////////////////////////////
@@ -1920,16 +1947,16 @@
 	name = "Exotic Carpet Crate"
 	desc = "Exotic carpets straight from Space Russia, for all your decorating needs. Contains 100 tiles each of 8 different flooring patterns."
 	cost = 4000
-	contains = list(/obj/item/stack/tile/carpet/exoticblue/fifty,
-					/obj/item/stack/tile/carpet/exoticblue/fifty,
+	contains = list(/obj/item/stack/tile/carpet/blue/fifty,
+					/obj/item/stack/tile/carpet/blue/fifty,
 					/obj/item/stack/tile/carpet/cyan/fifty,
 					/obj/item/stack/tile/carpet/cyan/fifty,
-					/obj/item/stack/tile/carpet/exoticgreen/fifty,
-					/obj/item/stack/tile/carpet/exoticgreen/fifty,
+					/obj/item/stack/tile/carpet/green/fifty,
+					/obj/item/stack/tile/carpet/green/fifty,
 					/obj/item/stack/tile/carpet/orange/fifty,
 					/obj/item/stack/tile/carpet/orange/fifty,
-					/obj/item/stack/tile/carpet/exoticpurple/fifty,
-					/obj/item/stack/tile/carpet/exoticpurple/fifty,
+					/obj/item/stack/tile/carpet/purple/fifty,
+					/obj/item/stack/tile/carpet/purple/fifty,
 					/obj/item/stack/tile/carpet/red/fifty,
 					/obj/item/stack/tile/carpet/red/fifty,
 					/obj/item/stack/tile/carpet/royalblue/fifty,
@@ -2025,6 +2052,55 @@
 	cost = 1000
 	contains = list(/obj/item/vending_refill/assist)
 	crate_name = "vendomat supply crate"
+
+/datum/supply_pack/service/syrup
+	name = "Coffee Syrups Box"
+	desc = "A packaged box of various syrups, perfect for making your delicious coffee even more diabetic."
+	cost = 1400
+	contains = list(
+		/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/caramel,
+		/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/liqueur,
+		/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/korta_nectar,
+	)
+	crate_name = "coffee syrups box"
+	crate_type = /obj/structure/closet/crate
+
+/datum/supply_pack/service/syrup_contraband
+	contraband = TRUE
+	name = "Contraband Syrups Box"
+	desc = "A packaged box containing illegal coffee syrups. Possession of these carries a penalty established in the galactic penal code."
+	cost = 400
+	contains = list(
+		/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/laughsyrup,
+		/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/laughsyrup,
+	)
+	crate_name = "illegal syrups box"
+	crate_type = /obj/structure/closet/crate
+
+/datum/supply_pack/service/coffeekit
+	name = "Coffee Equipment Crate"
+	desc = "A complete kit to setup your own cozy coffee shop, the coffeemaker is for some reason not included."
+	cost = 1000
+	contains = list(
+		/obj/item/storage/box/coffeepack/robusta,
+		/obj/item/storage/box/coffeepack,
+		/obj/item/reagent_containers/food/drinks/bottle/coffeepot,
+		/obj/item/storage/box/coffee_condi_display,
+		/obj/item/reagent_containers/food/condiment/cream,
+		/obj/item/reagent_containers/food/condiment/milk,
+		/obj/item/reagent_containers/food/condiment/soymilk,
+		/obj/item/reagent_containers/food/condiment/sugar,
+		/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/caramel, //one extra syrup as a treat
+	)
+	crate_name = "coffee equipment crate"
+
+/datum/supply_pack/service/coffeemaker
+	name = "Impressa Coffeemaker Crate"
+	desc = "An assembled Impressa model coffeemaker."
+	cost = 1000
+	contains = list(/obj/machinery/coffeemaker/impressa)
+	crate_name = "coffeemaker crate"
+	crate_type = /obj/structure/closet/crate
 
 /datum/supply_pack/service/emptycrate
 	name = "Empty Crate"
@@ -2316,7 +2392,8 @@
 					/obj/item/seeds/sunflower,
 					/obj/item/seeds/chanter,
 					/obj/item/seeds/potato,
-					/obj/item/seeds/sugarcane)
+					/obj/item/seeds/sugarcane,
+					/obj/item/seeds/cucumber)
 	crate_name = "seeds crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
@@ -2331,7 +2408,8 @@
 					/obj/item/reagent_containers/food/snacks/grown/carrot,
 					/obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle,
 					/obj/item/reagent_containers/food/snacks/grown/onion,
-					/obj/item/reagent_containers/food/snacks/grown/pumpkin)
+					/obj/item/reagent_containers/food/snacks/grown/pumpkin,
+					/obj/item/reagent_containers/food/snacks/grown/cucumber)
 	crate_name = "food crate"
 
 /datum/supply_pack/organic/vending/hydro_refills
@@ -3004,6 +3082,7 @@
 					/obj/item/hand_labeler_refill,
 					/obj/item/hand_labeler_refill,
 					/obj/item/paper_bin,
+					/obj/item/storage/pencil_holder,
 					/obj/item/pen/fourcolor,
 					/obj/item/pen/fourcolor,
 					/obj/item/pen,

@@ -14,11 +14,12 @@
 	var/status = BODYPART_ORGANIC
 	var/sub_status = BODYPART_SUBTYPE_ORGANIC
 	var/needs_processing = FALSE
-
+	///This is effectively the icon_state prefix for limbs.
+	var/limb_id
 	var/body_zone //BODY_ZONE_CHEST, BODY_ZONE_L_ARM, etc , used for def_zone
 	var/aux_zone // used for hands
 	var/aux_layer
-	var/body_part = null //bitflag used to check which clothes cover this bodypart
+	var/body_part = NONE //bitflag used to check which clothes cover this bodypart
 	var/use_digitigrade = NOT_DIGITIGRADE //Used for alternate legs, useless elsewhere
 	var/list/embedded_objects = list()
 	var/held_index = 0 //are we a hand? if so, which one!
@@ -45,6 +46,7 @@
 
 	var/brute_reduction = 0 //Subtracted to brute damage taken
 	var/burn_reduction = 0	//Subtracted to burn damage taken
+	var/emp_reduction = 0	//Subtracted to EMP severity
 
 	//Coloring and proper item icon update
 	var/skin_tone = ""
@@ -55,6 +57,10 @@
 	var/species_color = ""
 	var/mutation_color = ""
 	var/no_update = 0
+	/// The colour of damage done to this bodypart
+	var/damage_color = ""
+	/// Should we even use a color?
+	var/use_damage_color = FALSE
 
 	var/animal_origin = null //for nonhuman bodypart (e.g. monkey)
 	var/dismemberable = 1 //whether it can be dismembered with a weapon.
@@ -127,6 +133,32 @@
 /obj/item/bodypart/blob_act()
 	take_damage(max_damage)
 
+/obj/item/bodypart/emp_act(severity, emp_message=TRUE)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+
+	var/blocked = owner.getarmor(body_zone, ENERGY) // energy armor protects against EMPs
+	severity *= (100 - blocked) / 100
+	severity -= emp_reduction
+	if(severity < 1)
+		return
+
+	if(receive_damage(0, severity / 2, severity, FALSE, TRUE, BODYPART_ROBOTIC, CANT_WOUND)) // returns false for non-robotic limbs
+		if(severity > EMP_LIGHT)
+			ADD_TRAIT(src, TRAIT_PARALYSIS, "EMP")
+			addtimer(CALLBACK(src, PROC_REF(after_emp)), min((severity / 2) SECONDS, 5 SECONDS), TIMER_UNIQUE | TIMER_OVERRIDE)
+		if(owner && emp_message)
+			owner.emote("scream")
+			to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
+
+	if(!(. & EMP_PROTECT_CONTENTS))
+		for(var/obj/item/organ/O as anything in get_organs())
+			O.emp_act(severity)
+
+/obj/item/bodypart/proc/after_emp()
+	REMOVE_TRAIT(src, TRAIT_PARALYSIS, "EMP")
+
 /obj/item/bodypart/Destroy()
 	if(owner)
 		owner.bodyparts -= src
@@ -140,7 +172,7 @@
 			if(!H.get_bodypart(body_zone) && !animal_origin)
 				if(iscarbon(user))
 					var/mob/living/carbon/target = user
-					if(target.dna && target.dna.species && (target.mob_biotypes * MOB_ROBOTIC) && src.status != BODYPART_ROBOTIC)
+					if(target.dna && target.dna.species && (target.mob_biotypes & MOB_ROBOTIC) && src.status != BODYPART_ROBOTIC)
 						if(H == user)
 							to_chat(H, "<span class='warning'>You try to force [src] into your empty socket, but it doesn't fit</span>")
 						else
@@ -398,6 +430,9 @@
   */
 /obj/item/bodypart/proc/check_wounding(woundtype, damage, wound_bonus, bare_wound_bonus, attack_direction)
 	// note that these are fed into an exponent, so these are magnified
+	if(HAS_TRAIT(owner, TRAIT_HARDLY_WOUNDED))
+		damage *= 0.33
+
 	if(HAS_TRAIT(owner, TRAIT_EASILY_WOUNDED))
 		damage *= 1.5
 	else
@@ -425,7 +460,7 @@
 	// quick re-check to see if bare_wound_bonus applies, for the benefit of log_wound(), see about getting the check from check_wounding_mods() somehow
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_wearer = owner
-		var/list/clothing = human_wearer.clothingonpart(src)
+		var/list/clothing = human_wearer.clothingonpart(body_part)
 		for(var/i in clothing)
 			var/obj/item/clothing/clothes_check = i
 			// unlike normal armor checks, we tabluate these piece-by-piece manually so we can also pass on appropriate damage the clothing's limbs if necessary
@@ -448,12 +483,12 @@
 		if(initial(possible_wound.threshold_minimum) < injury_roll)
 			var/datum/wound/new_wound
 			if(replaced_wound)
-				new_wound = replaced_wound.replace_wound(possible_wound)
-				log_wound(owner, new_wound, damage, wound_bonus, bare_wound_bonus, base_roll, attack_direction = attack_direction) // dismembering wounds are logged in the apply_wound() for loss wounds since they delete themselves immediately, these will be immediately returned
+				new_wound = replaced_wound.replace_wound(possible_wound, attack_direction = attack_direction)
+				log_wound(owner, new_wound, damage, wound_bonus, bare_wound_bonus, base_roll) // dismembering wounds are logged in the apply_wound() for loss wounds since they delete themselves immediately, these will be immediately returned
 			else
 				new_wound = new possible_wound
-				new_wound.apply_wound(src)
-				log_wound(owner, new_wound, damage, wound_bonus, bare_wound_bonus, base_roll, attack_direction = attack_direction)
+				new_wound.apply_wound(src, attack_direction = attack_direction)
+				log_wound(owner, new_wound, damage, wound_bonus, bare_wound_bonus, base_roll)
 			return new_wound
 
 // try forcing a specific wound, but only if there isn't already a wound of that severity or greater for that type on this bodypart
@@ -489,7 +524,7 @@
 		if(H?.physiology?.armor?.wound)//if there is any innate wound armor (poly or genetics)
 			armor_ablation += H.physiology.armor.getRating(WOUND)
 
-		var/list/clothing = H.clothingonpart(src)
+		var/list/clothing = H.clothingonpart(body_part)
 		for(var/c in clothing)
 			var/obj/item/clothing/C = c
 			// unlike normal armor checks, we tabluate these piece-by-piece manually so we can also pass on appropriate damage the clothing's limbs if necessary
@@ -525,11 +560,15 @@
 	if(!(required_status == BODYPART_ANY) && (required_status && status != required_status) ) //So we can only heal certain kinds of limbs, ie robotic vs organic.
 		return
 
+
 	if(brute)
+		SEND_SIGNAL(owner, COMSIG_BODYPART_HEALED, min(brute, brute_dam), BRUTE, body_zone)
 		set_brute_dam(round(max(brute_dam - brute, 0), DAMAGE_PRECISION))
 	if(burn)
+		SEND_SIGNAL(owner, COMSIG_BODYPART_HEALED, min(burn, burn_dam), BURN, body_zone)
 		set_burn_dam(round(max(burn_dam - burn, 0), DAMAGE_PRECISION))
 	if(stamina)
+		SEND_SIGNAL(owner, COMSIG_BODYPART_HEALED, min(stamina, stamina_dam), STAMINA, body_zone)
 		set_stamina_dam(round(max(stamina_dam - stamina, 0), DAMAGE_PRECISION))
 
 	if(owner)
@@ -597,7 +636,7 @@
 		if(!HAS_TRAIT(owner, TRAIT_STUNIMMUNE) && stamina_dam >= max_damage)
 			if(!last_maxed)
 				if(owner.stat < UNCONSCIOUS)
-					owner.emote("scream")
+					INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "scream")
 				last_maxed = TRUE
 			set_disabled(TRUE)
 			return
@@ -615,7 +654,7 @@
 	if(total_damage >= max_damage * disable_threshold)
 		if(!last_maxed)
 			if(owner.stat < UNCONSCIOUS)
-				owner.emote("scream")
+				INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "scream")
 			last_maxed = TRUE
 		set_disabled(TRUE)
 		return
@@ -691,6 +730,9 @@
 				SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS),
 				))
 		set_disabled(FALSE)
+
+/obj/item/bodypart/proc/set_digitigrade(use_digi = FALSE)
+	return
 
 ///Called when TRAIT_PARALYSIS is added to the limb.
 /obj/item/bodypart/proc/on_paralysis_trait_gain(obj/item/bodypart/source)
@@ -807,13 +849,18 @@
 		species_flags_list = S.species_traits
 
 		if(S.use_skintones)
-			skin_tone = H.skin_tone
+			if(S.forced_skintone)
+				skin_tone = S.forced_skintone
+			else
+				skin_tone = H.skin_tone
 			should_draw_greyscale = TRUE
 		else
 			skin_tone = ""
 
+
 		body_gender = H.gender
 		should_draw_gender = S.sexes
+		use_damage_color = S.use_damage_color
 
 		if((MUTCOLORS in S.species_traits) || (DYNCOLORS in S.species_traits))
 			if(S.fixed_mut_color)
@@ -824,7 +871,7 @@
 		else
 			species_color = ""
 
-		if(!dropping_limb && (H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK)))
+		if(!dropping_limb && (H.dna.check_mutation(HULK)))
 			mutation_color = "#00aa00"
 		else
 			mutation_color = ""
@@ -863,7 +910,10 @@
 		image_dir = SOUTH
 		if(dmg_overlay_type)
 			if(brutestate)
-				. += image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0", -DAMAGE_LAYER, image_dir)
+				var/image/bruteoverlay = image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0", -DAMAGE_LAYER, image_dir)
+				if(use_damage_color)
+					bruteoverlay.color = damage_color
+				. += bruteoverlay
 			if(burnstate)
 				. += image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_0[burnstate]", -DAMAGE_LAYER, image_dir)
 
@@ -908,12 +958,6 @@
 				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 			else
 				limb.icon_state = "[species_id]_[body_zone]"
-		if(should_draw_yogs) //yogs start
-			limb.icon = 'yogstation/icons/mob/mutant_bodyparts.dmi'
-			if(should_draw_gender)
-				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
-			else
-				limb.icon_state = "[species_id]_[body_zone]" //yogs end
 		if(aux_zone)
 			aux = image(limb.icon, "[species_id]_[aux_zone]", -aux_layer, image_dir)
 			. += aux

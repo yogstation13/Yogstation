@@ -43,14 +43,9 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 		// FIXME: this can cause a runtime since user can be a living mob
 		if(istype(user))
 			user.jobs_menu_mounted = FALSE
-			addtimer(CALLBACK(src, PROC_REF(scream_at_player), user), 5 SECONDS)
 
 		ui = new(user, src, "JobSelection", "Latejoin Menu")
 		ui.open()
-
-/datum/latejoin_menu/proc/scream_at_player(mob/dead/new_player/player)
-	if(!player.jobs_menu_mounted)
-		to_chat(player, span_notice("If the late join menu isn't showing, you can open the fallback menu using the verb in the Preferences tab!"))
 
 /datum/latejoin_menu/ui_data(mob/user)
 	var/mob/dead/new_player/owner = user

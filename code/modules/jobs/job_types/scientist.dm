@@ -7,14 +7,13 @@
 	total_positions = 5
 	spawn_positions = 3
 	supervisors = "the research director"
-	selection_color = "#ffeeff"
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
 	alt_titles = list("Researcher", "Toxins Specialist", "Physicist", "Test Associate", "Anomalist", "Quantum Physicist", "Theoretical Physicist", "Xenobiologist", "Explosives Technician", "Hypothetical Physicist")
 	outfit = /datum/outfit/job/scientist
 
 	added_access = list(ACCESS_ROBO_CONTROL, ACCESS_TECH_STORAGE, ACCESS_GENETICS)
-	base_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MECH_SCIENCE, ACCESS_MINERAL_STOREROOM)
+	base_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_RND, ACCESS_XENOBIOLOGY, ACCESS_MECH_SCIENCE, ACCESS_MINERAL_STOREROOM)
 
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_SCI
@@ -36,13 +35,23 @@
 		/obj/item/camera_bug = 1
 	)
 
+	lightup_areas = list(/area/storage/tech, /area/science/robotics)
+	minimal_lightup_areas = list(
+		/area/science/explab,
+		/area/science/misc_lab,
+		/area/science/mixing,
+		/area/science/nanite,
+		/area/science/storage,
+		/area/science/xenobiology
+	)
+	
 	smells_like = "slime"
 
 /datum/outfit/job/scientist
 	name = "Scientist"
 	jobtype = /datum/job/scientist
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/scientist
 
 	ears = /obj/item/radio/headset/headset_sci
 	uniform = /obj/item/clothing/under/rank/scientist

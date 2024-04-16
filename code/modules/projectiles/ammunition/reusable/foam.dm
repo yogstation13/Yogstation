@@ -1,8 +1,8 @@
 /obj/item/ammo_casing/reusable/foam_dart
 	name = "foam dart"
 	desc = "It's nerf or nothing! Ages 8 and up."
-	projectile_type = /obj/item/projectile/bullet/reusable/foam_dart
-	caliber = "foam_force"
+	projectile_type = /obj/projectile/bullet/reusable/foam_dart
+	caliber = CALIBER_FOAM
 	icon = 'icons/obj/guns/toy.dmi'
 	icon_state = "foamdart"
 	materials = list(/datum/material/iron = 11.25)
@@ -61,6 +61,6 @@
 /obj/item/ammo_casing/reusable/foam_dart/riot
 	name = "riot foam dart"
 	desc = "Whose smart idea was it to use toys as crowd control? Ages 18 and up."
-	projectile_type = /obj/item/projectile/bullet/reusable/foam_dart/riot
+	projectile_type = /obj/projectile/bullet/reusable/foam_dart/riot
 	icon_state = "foamdart_riot"
 	materials = list(/datum/material/iron = 1125)

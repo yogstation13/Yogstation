@@ -46,6 +46,16 @@
 			"value" = initial(quirk.value),
 			"mood" = initial(quirk.mood_quirk),
 		)
+		quirk = new quirk(no_init = TRUE);
+		var/blacklist_len = LAZYLEN(quirk.job_blacklist)
+		if(blacklist_len)
+			var/fullstring = ""
+			var/spot = 1
+			for(var/thing in quirk.job_blacklist)
+				fullstring += "[spot == 1 ? "" :", "][spot == blacklist_len ? "and " : ""] [thing]"
+				spot ++
+			fullstring += " cannot use this quirk."
+			quirk_info[sanitize_css_class_name(quirk_name)]["blacklisted"] = fullstring
 
 	return list(
 		"max_positive_quirks" = MAX_QUIRKS,

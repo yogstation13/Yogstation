@@ -6,11 +6,11 @@
 	faction = list(ROLE_ALIEN)
 	ventcrawler = VENTCRAWLER_ALWAYS
 	sight = SEE_MOBS
-	see_in_dark = 4
 	verb_say = "hisses"
 	initial_language_holder = /datum/language_holder/alien
-	bubble_icon = "alien"
+	bubble_icon = BUBBLE_ALIEN
 	type_of_meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
 	var/obj/item/card/id/wear_id = null // Fix for station bounced radios -- Skie
 	var/has_fine_manipulation = 0
@@ -25,6 +25,7 @@
 
 	var/static/regex/alien_name_regex = new("alien (larva|sentinel|drone|hunter|praetorian|queen)( \\(\\d+\\))?")
 	blood_volume = BLOOD_VOLUME_XENO //Yogs -- Makes monkeys/xenos have different amounts of blood from normal carbonbois
+	var/datum/techweb/linked_techweb
 
 /mob/living/carbon/alien/Initialize(mapload)
 	add_verb(src, /mob/living/proc/mob_sleep)
@@ -34,13 +35,16 @@
 
 	create_internal_organs()
 
+	if(!linked_techweb)
+		linked_techweb = SSresearch.science_tech
+
 	. = ..()
 
 /mob/living/carbon/alien/create_internal_organs()
 	internal_organs += new /obj/item/organ/brain/alien
 	internal_organs += new /obj/item/organ/alien/hivenode
 	internal_organs += new /obj/item/organ/tongue/alien
-	internal_organs += new /obj/item/organ/eyes/night_vision/alien
+	internal_organs += new /obj/item/organ/eyes/alien
 	internal_organs += new /obj/item/organ/liver/alien
 	internal_organs += new /obj/item/organ/ears
 	..()
@@ -109,7 +113,7 @@ Des: Gives the client of the alien an image on each infected mob.
 			if(HAS_TRAIT(L, TRAIT_XENO_HOST))
 				var/obj/item/organ/body_egg/alien_embryo/A = L.getorgan(/obj/item/organ/body_egg/alien_embryo)
 				if(A)
-					var/I = image('icons/mob/alien.dmi', loc = L, icon_state = "infected[A.stage]")
+					var/I = image('icons/mob/alien.dmi', loc = L, icon_state = "infected[A.current_stage]")
 					client.images += I
 	return
 

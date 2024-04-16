@@ -37,6 +37,6 @@
 	if(owner.resting && remove_duration(2 * initial(tick_interval)))
 		return
 
-	owner.blur_eyes(4 SECONDS)
+	owner.adjust_eye_blur(4 SECONDS)
 	if(prob(5))
 		owner.AdjustSleeping(10 SECONDS)

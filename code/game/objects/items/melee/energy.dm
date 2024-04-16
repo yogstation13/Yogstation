@@ -105,6 +105,10 @@
 	block_chance = 50
 	saber_color = "green"
 
+/obj/item/melee/transforming/energy/sword/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack) // very cool
+
 /obj/item/melee/transforming/energy/sword/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/melee/transforming/energy/sword))
 		if(HAS_TRAIT(I, TRAIT_NODROP) || HAS_TRAIT(src, TRAIT_NODROP))

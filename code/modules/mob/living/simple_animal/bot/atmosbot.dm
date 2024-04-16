@@ -62,7 +62,7 @@
 	text_dehack = "You detect errors in [name] and reset his programming."
 	text_dehack_fail = "[name] is not responding to reset commands!"
 
-/mob/living/simple_animal/bot/atmosbot/emag_act(mob/user)
+/mob/living/simple_animal/bot/atmosbot/emag_act(mob/user, obj/item/card/emag/emag_card)
 	. = ..()
 	if(emagged == 2)
 		audible_message("<span class='danger'>[src] ominously whirs....</span>")
@@ -135,7 +135,7 @@
 		return ATMOSBOT_CHECK_BREACH
 	//Too little oxygen or too little pressure
 	var/partial_pressure = R_IDEAL_GAS_EQUATION * gas_mix.return_temperature() / gas_mix.return_volume()
-	var/oxygen_moles = gas_mix.get_moles(/datum/gas/oxygen) * partial_pressure
+	var/oxygen_moles = gas_mix.get_moles(GAS_O2) * partial_pressure
 	if(oxygen_moles < 20 || gas_mix.return_pressure() < WARNING_LOW_PRESSURE)
 		return ATMOSBOT_LOW_OXYGEN
 
@@ -159,12 +159,12 @@
 		for(var/obj/structure/holosign/barrier/atmos/A in checking_turf)
 			blocked = TRUE
 			break
-		if(blocked || !checking_turf.CanAtmosPass(checking_turf))
+		if(blocked || !checking_turf.can_atmos_pass(checking_turf))
 			continue
 		//Add adjacent turfs
 		for(var/direction in list(NORTH, SOUTH, EAST, WEST))
 			var/turf/adjacent_turf = get_step(checking_turf, direction)
-			if(adjacent_turf in checked_turfs || !adjacent_turf.CanAtmosPass(adjacent_turf) || istype(adjacent_turf.loc, /area/space))
+			if(adjacent_turf in checked_turfs || !adjacent_turf.can_atmos_pass(adjacent_turf) || istype(adjacent_turf.loc, /area/space))
 				continue
 			if(isspaceturf(adjacent_turf))
 				return checking_turf

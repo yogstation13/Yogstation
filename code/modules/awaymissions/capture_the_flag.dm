@@ -47,7 +47,7 @@
 		forceMove(get_turf(src.reset))
 		for(var/mob/M in GLOB.player_list)
 			var/area/mob_area = get_area(M)
-			if(istype(mob_area, /area/ctf))
+			if(istype(mob_area, /area/centcom/ctf))
 				to_chat(M, span_userdanger("\The [src] has been returned to base!"))
 		STOP_PROCESSING(SSobj, src)
 
@@ -71,7 +71,7 @@
 	user.status_flags &= ~CANPUSH
 	for(var/mob/M in GLOB.player_list)
 		var/area/mob_area = get_area(M)
-		if(istype(mob_area, /area/ctf))
+		if(istype(mob_area, /area/centcom/ctf))
 			to_chat(M, span_userdanger("\The [src] has been taken!"))
 	STOP_PROCESSING(SSobj, src)
 	..()
@@ -84,7 +84,7 @@
 	START_PROCESSING(SSobj, src)
 	for(var/mob/M in GLOB.player_list)
 		var/area/mob_area = get_area(M)
-		if(istype(mob_area, /area/ctf))
+		if(istype(mob_area, /area/centcom/ctf))
 			to_chat(M, span_userdanger("\The [src] has been dropped!"))
 	anchored = TRUE
 
@@ -266,7 +266,7 @@
 /obj/machinery/capture_the_flag/proc/spawn_team_member(client/new_team_member)
 	var/mob/living/carbon/human/M = new/mob/living/carbon/human(get_turf(src))
 	new_team_member.prefs.apply_prefs_to(M)
-	M.set_species(/datum/species/synth)
+	M.set_species(/datum/species/ipc/self)
 	M.key = new_team_member.key
 	M.faction += team
 	M.equipOutfit(ctf_gear)
@@ -286,7 +286,7 @@
 			points++
 			for(var/mob/M in GLOB.player_list)
 				var/area/mob_area = get_area(M)
-				if(istype(mob_area, /area/ctf))
+				if(istype(mob_area, /area/centcom/ctf))
 					to_chat(M, "<span class='userdanger [team_span]'>[user.real_name] has captured \the [flag], scoring a point for [team] team! They now have [points]/[points_to_win] points!</span>")
 		if(points >= points_to_win)
 			victory()
@@ -294,7 +294,7 @@
 /obj/machinery/capture_the_flag/proc/victory()
 	for(var/mob/living/M as anything in GLOB.mob_list)
 		var/area/mob_area = get_area(M)
-		if(istype(mob_area, /area/ctf))
+		if(istype(mob_area, /area/centcom/ctf))
 			to_chat(M, "<span class='narsie [team_span]'>[team] team wins!</span>")
 			to_chat(M, span_userdanger("Teams have been cleared. Click on the machines to vote to begin another round."))
 			for(var/obj/item/ctf_flag/W in M)
@@ -345,7 +345,7 @@
 			continue
 		if(isstructure(atm))
 			var/obj/structure/S = atm
-			S.obj_integrity = S.max_integrity
+			S.update_integrity(S.max_integrity)
 		else if(!is_type_in_typecache(atm, ctf_object_typecache))
 			qdel(atm)
 
@@ -390,12 +390,12 @@
 	ammo_type = /obj/item/ammo_casing/a50/ctf
 
 /obj/item/ammo_casing/a50/ctf
-	projectile_type = /obj/item/projectile/bullet/ctf
+	projectile_type = /obj/projectile/bullet/ctf
 
-/obj/item/projectile/bullet/ctf
+/obj/projectile/bullet/ctf
 	damage = 0
 
-/obj/item/projectile/bullet/ctf/prehit(atom/target)
+/obj/projectile/bullet/ctf/prehit(atom/target)
 	if(is_ctf_target(target))
 		damage = 60
 	. = ..()
@@ -425,13 +425,13 @@
 		qdel(src)
 
 /obj/item/ammo_casing/caseless/laser/ctf
-	projectile_type = /obj/item/projectile/beam/ctf
+	projectile_type = /obj/projectile/beam/ctf
 
-/obj/item/projectile/beam/ctf
+/obj/projectile/beam/ctf
 	damage = 0
 	icon_state = "omnilaser"
 
-/obj/item/projectile/beam/ctf/prehit(atom/target)
+/obj/projectile/beam/ctf/prehit(atom/target)
 	if(is_ctf_target(target))
 		damage = 150
 	. = ..()
@@ -454,9 +454,9 @@
 	ammo_type = /obj/item/ammo_casing/caseless/laser/ctf/red
 
 /obj/item/ammo_casing/caseless/laser/ctf/red
-	projectile_type = /obj/item/projectile/beam/ctf/red
+	projectile_type = /obj/projectile/beam/ctf/red
 
-/obj/item/projectile/beam/ctf/red
+/obj/projectile/beam/ctf/red
 	icon_state = "laser"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 
@@ -469,9 +469,9 @@
 	ammo_type = /obj/item/ammo_casing/caseless/laser/ctf/blue
 
 /obj/item/ammo_casing/caseless/laser/ctf/blue
-	projectile_type = /obj/item/projectile/beam/ctf/blue
+	projectile_type = /obj/projectile/beam/ctf/blue
 
-/obj/item/projectile/beam/ctf/blue
+/obj/projectile/beam/ctf/blue
 	icon_state = "bluelaser"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 
@@ -605,10 +605,13 @@
 
 /obj/effect/ctf/ammo/Initialize(mapload)
 	..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 	QDEL_IN(src, AMMO_DROP_LIFETIME)
 
-/obj/effect/ctf/ammo/Crossed(atom/movable/AM)
-	. = ..()
+/obj/effect/ctf/ammo/proc/on_entered(datum/source, atom/movable/AM, ...)
 	reload(AM)
 
 /obj/effect/ctf/ammo/Bump(atom/A)
@@ -684,7 +687,7 @@
 				icon_state = "dominator-[CTF.team]"
 				for(var/mob/M in GLOB.player_list)
 					var/area/mob_area = get_area(M)
-					if(istype(mob_area, /area/ctf))
+					if(istype(mob_area, /area/centcom/ctf))
 						to_chat(M, span_userdanger("[user.real_name] has captured \the [src], claiming it for [CTF.team]! Go take it back!"))
 				break
 

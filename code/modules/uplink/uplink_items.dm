@@ -114,7 +114,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/proc/purchase(mob/user, datum/component/uplink/U)
 	var/atom/A = spawn_item(item, user, U)
 	if(refundable)
-		A.AddComponent(/datum/component/refundable, user.mind, cost)
+		var/refund = cost
+		if(manufacturer && user.mind.is_employee(manufacturer))
+			refund = CEILING(cost*0.8, 1)
+		A.AddComponent(/datum/component/refundable, user.mind, refund)
 	if(purchase_log_vis && U.purchase_log)
 		U.purchase_log.LogPurchase(A, src, cost)
 
@@ -336,6 +339,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
 
+/datum/uplink_item/dangerous/gasharpoon
+	name = "Gasharpoon"
+	desc = "A repurposed space-whaling tool attatched to a glove, can be used as a sturdy weapon in both hands, or worn as a glove to allow access to it's harpoon."
+	item = /obj/item/clothing/gloves/gasharpoon
+	cost = 10
+	surplus = 0
+
 /datum/uplink_item/dangerous/rawketlawnchair
 	name = "84mm Rocket Propelled Grenade Launcher"
 	desc = "A reusable rocket propelled grenade launcher preloaded with a low-yield 84mm HE round. \
@@ -523,7 +533,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Upon hitting a target, the piston-ram will extend forward to make contact for some serious damage. \
 			Using a wrench on the piston valve will allow you to tweak the amount of gas used per punch to \
 			deal extra damage and hit targets further. Use a screwdriver to take out any attached tanks."
-	item = /obj/item/melee/powerfist
+	item = /obj/item/clothing/gloves/powerfist
 	cost = 6
 	manufacturer = /datum/corporation/traitor/waffleco
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
@@ -607,6 +617,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			darts effective at incapacitating a target."
 	item = /obj/item/gun/ballistic/automatic/toy/pistol/riot
 	cost = 1
+	manufacturer = /datum/corporation/traitor/donkco
+	surplus = 10
+
+/datum/uplink_item/dangerous/watergun
+	name = "Extended Capacity Hyper-Soaker"
+	desc = "A simple yet effective way of applying chemicals to a target's skin. \
+			Comes with a high-power nozzle and larger tank."
+	item = /obj/item/gun/water/syndicate
+	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 10
 
@@ -695,6 +714,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			deflecting all ranged weapon fire when throwmode is enabled, but you also refuse to use dishonorable ranged weaponry."
 	item = /obj/item/book/granter/martial/carp
 	cost = 14
+	player_minimum = 20
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
@@ -771,6 +791,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/ammo/pistol
+	name = "Random 10mm Handgun Magazines"
+	desc = "A box that contains four random 10-round 10mm magazines at a discount; compatible with the Stechkin Pistol."
+	item = /obj/item/storage/box/syndie_kit/pistolammo/random
+	cost = 2 // same mentality as the 357. You can get 4 mags for 2-4 TC, so giving in to the random chance give you a deal
+
 /datum/uplink_item/ammo/pistol/cs
 	name = "Pair of 10mm Caseless Magazines"
 	desc = "A box that contains two additional 10-round 10mm magazines; compatible with the Stechkin Pistol. \
@@ -817,9 +843,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun
 	cost = 12 //Instead of 18
 
+/datum/uplink_item/ammo/shotgun/bag/random
+	name = "Randomized 12g Ammo Duffel Bag"
+	desc = "A duffel bag containing 10 random drum mags for the Bulldog shotgun, bundled together at a big discount."
+	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/random
+	cost = 10 // Random ammo, so its cheaper?
+
 /datum/uplink_item/ammo/shotgun/buck
 	name = "12g Buckshot Drum"
-	desc = "An additional 8-round buckshot magazine for use with the Bulldog shotgun. Front towards enemy."
+	desc = "An additional 8-round buckshot magazine for use with the Bulldog shotgun.\
+			Front towards enemy."
 	item = /obj/item/ammo_box/magazine/m12g
 
 /datum/uplink_item/ammo/shotgun/dragon
@@ -861,6 +894,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 	illegal_tech = FALSE
+
+/datum/uplink_item/ammo/revolver/random
+	name = "Random .357 Speed Loader Box"
+	desc = "A box with four random .357 speed loaders. Who knows what fun toys you might get?"
+	item = /obj/item/storage/box/syndie_kit/revolverammo/random
+	cost = 2// four would cost between 2 and 4 TC, so i think its fair
 
 /datum/uplink_item/ammo/revolver/ironfeather
 	name = ".357 Ironfeather Speed Loader Box"
@@ -927,6 +966,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/smg
 	cost = 20 //instead of 29 TC
 	include_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/ammo/smg/bag/random
+	name = "Randomized .45 Ammo Duffel Bag"
+	desc = "A duffel bag containing eleven randomly picked, standard .45 magazines for the C-20r submachine gun, bundled together at a big discount."
+	cost = 18 // bit cheaper for more random crap
+	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/smg/random
 
 /datum/uplink_item/ammo/smg
 	name = ".45 SMG Magazine"
@@ -1398,6 +1443,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cant_discount = TRUE
 	cost = 105 //Yogs change
 
+/datum/uplink_item/support/mamba
+	name = "Black Mamba Exosuit"
+	desc = "A stealthy, quick, and deadly combat exosuit, this modified sidewinder chassis is capable of suddenly striking and retreating while \
+			the effects of its venomous weapons take hold. Comes with a venom carbine, dual daggers, and an anti-projectile armor booster."
+	item = /obj/mecha/combat/sidewinder/mamba/loaded
+	cant_discount = TRUE
+	cost = 75
+
 // Stealth Items
 /datum/uplink_item/stealthy_tools
 	category = "Stealth Gadgets"
@@ -1427,6 +1480,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/multitool/ai_detect
 	cost = 1
 	manufacturer = /datum/corporation/traitor/cybersun
+
+/datum/uplink_item/stealthy_tools/pseudocider
+	name = "Pseudocider"
+	desc = "Disguised as a common pocket watch, the pseudocider will convincingly feign your fall, making you invisible \
+			completely silent as you slip away from the scene, or into a better position! You will not be able to take \
+			any actions for the 7 second duration."
+	item = /obj/item/pseudocider
+	cost = 8
+	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_tools/shadowcloak
 	name = "Cloaker Belt"
@@ -1558,7 +1620,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/stealthy_tools/angelcoolboy
 	name = "Syndicate Angel Potion"
 	desc = "After many failed attempts, the syndicate has reverse engineered an angel potion smuggled off of the lava planet V-227. \
-			Preliminary testing could only sprout wings in Humans, Vuulen, Ex'hau, Preterni, IPCs, and Phytosians."
+			Preliminary testing found that of the most common species, neither plasmamen nor polysmorph were capable of sprouting wings."
 	cost = 2
 	item = /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
 
@@ -1731,6 +1793,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/failsafe/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	if(!U)
 		return
+	U.has_failsafe = TRUE
 	U.failsafe_code = U.generate_code()
 	var/code = "[islist(U.failsafe_code) ? english_list(U.failsafe_code) : U.failsafe_code]"
 	to_chat(user, span_warning("The new failsafe code for this uplink is now : [code]."))
@@ -1764,7 +1827,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Hacked AI Law Upload Module"
 	desc = "When used with an upload console, this module allows you to upload priority laws to an artificial intelligence. \
 			Be careful with wording, as artificial intelligences may look for loopholes to exploit."
-	item = /obj/item/aiModule/syndicate
+	item = /obj/item/aiModule/hacked
 	cost = 4
 	manufacturer = /datum/corporation/traitor/cybersun
 	exclude_modes = list(/datum/game_mode/infiltration)
@@ -1908,8 +1971,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/device_tools/surgerybag
 	name = "Syndicate Surgery Duffel Bag"
-	desc = "The Syndicate surgery duffel bag is a toolkit containing all surgery tools, surgical drapes, \
-			a Syndicate brand MMI, an implant case, a straitjacket, and a muzzle."
+	desc = "A red and black duffel bag containing all surgery tools, a surgical mat, \
+			a normal MMI, an implant case, a straitjacket, and a muzzle. The surgery tools are twice as fast compared to normal surgery tools."
 	manufacturer = /datum/corporation/traitor/vahlen
 	item = /obj/item/storage/backpack/duffelbag/syndie/surgery
 	cost = 2
@@ -2183,9 +2246,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Stimulates your central nervous system in order to enable you to perform muscle movements faster. Careful not to overuse it."
 	item = /obj/item/autosurgeon/syndicate/spinalspeed
 	manufacturer = /datum/corporation/traitor/vahlen
-	cost = 14
-	surplus = 0
-	limited_stock = 1
+	cost = 12
+	exclude_modes = list(/datum/game_mode/infiltration, /datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+
+/datum/uplink_item/implants/spinal/nukie
+	cost = 20
+	exclude_modes = list()
+	include_modes = list(/datum/game_mode/infiltration, /datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/implants/emp_shield
 	name = "EMP Shield Implant"
@@ -2249,7 +2316,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 //Race-specific items
 /datum/uplink_item/race_restricted
 	category = "Species-Restricted"
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	surplus = 0
 
 /datum/uplink_item/race_restricted/syndilamp
@@ -2300,6 +2366,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/waffleco
 	item = /obj/item/grenade/chem_grenade/radiation
 	restricted_species = list("plasmaman")
+
+/datum/uplink_item/race_restricted/hulk
+	name = "Hulk Mutator"
+	desc = "Stolen research from a SIC scientist who went postal led to the development of this revolutionary mutator. Causes extreme muscle growth, enough to punch through walls, and practically limitless stamina, at the cost of reduced cognitive ability, and green skin pigmentation."
+	cost = 12
+	manufacturer = /datum/corporation/traitor/vahlen
+	item = /obj/item/dnainjector/hulkmut
+	restricted_species = list("human")
 
 // Role-specific items
 /datum/uplink_item/role_restricted
@@ -2480,7 +2554,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	To activate His Grace, simply unlatch Him."
 	item = /obj/item/his_grace
 	cost = 20
-	restricted_roles = list("Chaplain")
+	restricted_roles = list("Chaplain", "Assistant")
 	surplus = 0 //This is a hijack item. Do not add this into surplus.
 
 /datum/uplink_item/role_restricted/horror
@@ -2616,6 +2690,20 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/fireaxe/energy
 	cost = 10
 	restricted_roles = list("Station Engineer","Atmospheric Technician","Network Admin","Chief Engineer")
+
+/datum/uplink_item/role_restricted/syndie_mmi
+	name = "Syndicate MMI"
+	desc = "A syndicate developed man-machine-interface which will mindslave any brain inserted into it, for as long as it's in. Cyborgs made with this MMI will be permanently slaved to you through a Zeroth law but otherwise function normally. Safeguards are in place to maintain the Zeroth law regardless of law changes."
+	item = /obj/item/mmi/syndie
+	cost = 3
+	restricted_roles = list("Roboticist", "Research Director")
+
+/datum/uplink_item/role_restricted/cmag
+	name = "Jestographic Sequencer"
+	desc = "The jestographic sequencer, also known as a cmag, is a small card that inverts the access on any door it's used on. Perfect for locking command out of their own departments. Honk!"
+	item = /obj/item/card/cmag
+	cost = 4 // Not as "destructive" as the emag. In addition, less features than the normal emag. Increase price once more impactful features are added.
+	restricted_roles = list("Clown")
 
 // Pointless
 /datum/uplink_item/badass

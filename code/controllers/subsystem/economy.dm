@@ -1,6 +1,3 @@
-GLOBAL_VAR_INIT(stolen_paycheck_money, 0)
-
-
 SUBSYSTEM_DEF(economy)
 	name = "Economy"
 	wait = 5 MINUTES
@@ -149,7 +146,9 @@ SUBSYSTEM_DEF(economy)
 /datum/controller/subsystem/economy/proc/eng_payout()
 	var/engineering_cash = 3000
 	engineering_check.count()
-	var/station_integrity = min(PERCENT(GLOB.start_state.score(engineering_check)), 100)
+	var/station_integrity = 100
+	if(GLOB.start_state)
+		station_integrity = min(PERCENT(GLOB.start_state.score(engineering_check)), 100)
 	station_integrity *= 0.01
 	engineering_cash *= station_integrity
 	if(moneysink)

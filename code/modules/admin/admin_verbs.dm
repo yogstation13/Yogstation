@@ -20,8 +20,10 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/stop_sounds,
 	/client/proc/fix_air, // yogs - fix air verb
 	/client/proc/fix_air_z,
+	/client/proc/clear_all_pipenets,
 	/client/proc/debugstatpanel,
 	/client/proc/clear_mfa,
+	/client/proc/show_rights
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -77,8 +79,8 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/datum/admins/proc/open_shuttlepanel, /* Opens shuttle manipulator UI */
 	/client/proc/respawn_character,
 	/client/proc/discord_id_manipulation,
+	/datum/admins/proc/manage_silicon_laws,
 	/datum/admins/proc/open_borgopanel,
-	/datum/admins/proc/change_laws,
 	/datum/admins/proc/restart, //yogs - moved from +server
 	/client/proc/admin_pick_random_player, //yogs
 	/client/proc/get_law_history, //yogs - silicon law history
@@ -128,7 +130,9 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/rejuv_all, // yogs - Revive All
 	/client/proc/admin_vox, // yogs - Admin AI Vox
 	/client/proc/admin_away,
-	/client/proc/centcom_podlauncher/*Open a window to launch a Supplypod and configure it or it's contents*/
+	/client/proc/centcom_podlauncher,/*Open a window to launch a Supplypod and configure it or it's contents*/
+	/client/proc/load_json_admin_event,
+	/client/proc/event_role_manager
 	))
 GLOBAL_PROTECT(admin_verbs_fun)
 GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character, /datum/admins/proc/beaker_panel))
@@ -152,9 +156,9 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/client/proc/panicbunker,
 	/client/proc/toggle_hub,
 	/client/proc/mentor_memo, // YOGS - something stupid about "Mentor memos"
-	/client/proc/dump_memory_usage,
 	/client/proc/release_queue, // Yogs -- Adds some queue-manipulation verbs
-	/client/proc/toggle_cdn
+	/client/proc/toggle_cdn,
+	/client/proc/set_next_minetype
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVerbsDebug())
 GLOBAL_PROTECT(admin_verbs_debug)
@@ -173,6 +177,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/export_dynamic_json,
 	/client/proc/run_dynamic_simulations,
 	#endif
+	/client/proc/debug_plane_masters,
 	/client/proc/debug_spell_requirements,
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/release))
@@ -623,6 +628,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	if(robeless)
 		new_spell.spell_requirements &= ~SPELL_REQUIRES_WIZARD_GARB
+		new_spell.psi_cost = 0 //breaks balance, but allows non darkspawns to use darkspawn abilities
 
 	new_spell.Grant(spell_recipient)
 
@@ -757,6 +763,13 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	log_admin("[src] re-adminned themselves.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Readmin")
 
+/client/proc/show_rights()
+	set name = "Show Rights"
+	set category = "Admin"
+	set desc = "Shows access rights"
+
+	to_chat(src, span_interface("You have the following permissions:\n[rights2text(GLOB.permissions.get_rights_for_ckey(ckey), "\n")]"))
+
 /client/proc/populate_world(amount = 50 as num)
 	set name = "Populate World"
 	set category = "Misc.Server Debug"
@@ -802,7 +815,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	log_admin("[key_name(usr)] has [AI_Interact ? "activated" : "deactivated"] Admin AI Interact")
 	message_admins("[key_name_admin(usr)] has [AI_Interact ? "activated" : "deactivated"] their AI interaction")
-
+/*
 /client/proc/dump_memory_usage()
 	set name = "Dump Server Memory Usage"
 	set category = "Server"
@@ -831,6 +844,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		to_chat(usr, span_warning("File creation failed. Please check to see if the data/logs/memory folder actually exists."))
 	else
 		to_chat(usr, span_notice("Memory dump completed."))
+*/
 
 
 /client/proc/debugstatpanel()

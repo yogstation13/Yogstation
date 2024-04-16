@@ -39,7 +39,7 @@
 	move_to_delay = 5
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	mouse_opacity = MOUSE_OPACITY_ICON
-	internal_type = /obj/item/gps/internal/broodmother
+	gps_name = "Brooding Signal"
 	deathmessage = "explodes into gore!"
 	loot_drop = /obj/item/crusher_trophy/broodmother_tongue
 
@@ -161,10 +161,6 @@
 	gpstag = "Brooding Signal"
 	desc = "7.5/10 too many tentacles."
 	invisibility = 100
-
-/mob/living/simple_animal/hostile/asteroid/elite/broodmother/death()
-	QDEL_NULL(internal) // removes signal from a deceased elite.
-	. = ..()
 
 //The goliath's children.  Pretty weak, simple mobs which are able to put a single tentacle under their target when at range.
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother_child

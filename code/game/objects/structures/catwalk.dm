@@ -2,16 +2,21 @@
 	name = "catwalk"
 	desc = "A catwalk for easier EVA maneuvering and cable placement."
 	icon = 'icons/obj/smooth_structures/catwalk.dmi'
-	icon_state = "catwalk"
+	icon_state = "catwalk-0"
+	base_icon_state = "catwalk"
 	number_of_rods = 2
-	smooth = SMOOTH_TRUE
-	canSmoothWith = null
-	obj_flags = CAN_BE_HIT
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_CATWALK + SMOOTH_GROUP_LATTICE + SMOOTH_GROUP_OPEN_FLOOR
+	canSmoothWith = SMOOTH_GROUP_CATWALK
+	obj_flags = CAN_BE_HIT | BLOCK_Z_OUT_DOWN | BLOCK_Z_IN_UP
+
+/obj/structure/lattice/catwalk/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/footstep_override, footstep = FOOTSTEP_CATWALK)
 
 /obj/structure/lattice/catwalk/over
 	layer = CATWALK_LAYER
 	plane = GAME_PLANE
-
 
 /obj/structure/lattice/catwalk/deconstruction_hints(mob/user)
 	to_chat(user, span_notice("The supporting rods look like they could be <b>sliced</b>."))
@@ -46,12 +51,11 @@
 /obj/structure/lattice/catwalk/clockwork
 	name = "clockwork catwalk"
 	icon = 'icons/obj/smooth_structures/catwalk_clockwork.dmi'
-	canSmoothWith = list(/obj/structure/lattice,
-	/turf/open/floor,
-	/turf/open/indestructible/clock_spawn_room,
-	/turf/closed/wall,
-	/obj/structure/falsewall)
-	smooth = SMOOTH_MORE
+	icon_state = "catwalk_clockwork-0"
+	base_icon_state = "catwalk_clockwork"
+	smoothing_flags = NONE
+	smoothing_groups = SMOOTH_GROUP_CATWALK + SMOOTH_GROUP_LATTICE + SMOOTH_GROUP_OPEN_FLOOR
+	canSmoothWith = SMOOTH_GROUP_CATWALK
 
 /obj/structure/lattice/catwalk/clockwork/Initialize(mapload)
 	. = ..()

@@ -10,7 +10,7 @@
 #define ACCESS_MEDICAL 5
 /// Morgue access
 #define ACCESS_MORGUE 6
-/// R&D department, R&D console, burn chamber on some maps
+/// R&D department, burn chamber on some maps
 #define ACCESS_TOX 7
 /// Toxins storage, burn chamber on some maps
 #define ACCESS_TOX_STORAGE 8
@@ -91,6 +91,8 @@
 #define ACCESS_ROBOTICS 75 // Access to robotics airlocks & buttons only, old ACCESS_ROBOTICS renamed to ACCESS_ROBO_CONTROL
 #define ACCESS_SECURE_TECH_STORAGE 76 // Creating this to cleanly fix door remote bug will be equivalent to ACCESS_AI_UPLOAD for Cap and RD
 #define ACCESS_PSYCH 77 // For the psych's back office area with the flashes/chem machines
+#define ACCESS_RND 78 //rnd console
+#define ACCESS_SERVHALL 79
 
 	//BEGIN CENTCOM ACCESS
 	/*Should leave plenty of room if we need to add more access levels.

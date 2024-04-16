@@ -27,6 +27,8 @@
 		/datum/action/cooldown/spell/touch/mend,
 		/datum/action/cooldown/spell/touch/torment,
 		/datum/action/cooldown/spell/conjure/cursed_item,
+		/datum/action/cooldown/spell/jaunt/ethereal_jaunt/sin,
+		/datum/action/cooldown/spell/jaunt/ethereal_jaunt/sin/wrath,
 		))
 
 	var/static/list/sinfuldemon_traits = list(
@@ -127,6 +129,9 @@
 			var/datum/action/cooldown/spell/shapeshift/demon/gluttony/fat_demon = new(owner.current)
 			fat_demon.Grant(owner.current)
 
+			var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/sin/jaunt = new(owner.current)
+			jaunt.Grant(owner.current)
+
 			ADD_TRAIT(owner.current, TRAIT_AGEUSIA, SINFULDEMON_TRAIT) // nothing disgusts you
 			ADD_TRAIT(owner.current, TRAIT_EAT_MORE, SINFULDEMON_TRAIT) // 3x hunger rate
 			ADD_TRAIT(owner.current, TRAIT_BOTTOMLESS_STOMACH, SINFULDEMON_TRAIT) // nutrition is capped for infinite eating
@@ -142,6 +147,9 @@
 			var/datum/action/cooldown/spell/conjure/cursed_item/immortal_temptation = new(owner.current)
 			immortal_temptation.Grant(owner.current)
 
+			var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/sin/jaunt = new(owner.current)
+			jaunt.Grant(owner.current)
+
 		if(SIN_WRATH)
 			var/datum/action/cooldown/spell/shapeshift/demon/wrath/wrath_demon = new(owner.current)
 			wrath_demon.Grant(owner.current)
@@ -151,6 +159,9 @@
 
 			var/datum/action/cooldown/spell/touch/torment/pain_hand = new(owner.current)
 			pain_hand.Grant(owner.current)
+
+			var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/sin/wrath/jaunt = new(owner.current)
+			jaunt.Grant(owner.current)
 
 		if(SIN_ENVY)
 			var/datum/action/cooldown/spell/shapeshift/demon/demon_form = new(owner.current)
@@ -162,6 +173,9 @@
 			var/datum/action/cooldown/spell/touch/torment/pain_hand = new(owner.current)
 			pain_hand.Grant(owner.current)
 
+			var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/sin/jaunt = new(owner.current)
+			jaunt.Grant(owner.current)
+
 		if(SIN_PRIDE)
 			var/datum/action/cooldown/spell/shapeshift/demon/demon_form = new(owner.current)
 			demon_form.Grant(owner.current)
@@ -172,12 +186,15 @@
 			var/datum/action/cooldown/spell/touch/mend/heal_hand = new(owner.current)
 			heal_hand.Grant(owner.current)
 
+			var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/sin/jaunt = new(owner.current)
+			jaunt.Grant(owner.current)
+
 	return ..()
 
 /datum/antagonist/sinfuldemon/on_removal()
 	owner.special_role = null
 	owner.current.faction -= "hell"
-	for(var/all_status_traits in owner.current.status_traits) //removes demon traits
+	for(var/all_status_traits in owner.current._status_traits) //removes demon traits
 		REMOVE_TRAIT(owner.current, all_status_traits, SINFULDEMON_TRAIT)
 	for(var/datum/action/cooldown/spell/spell in owner.current.actions)
 		if(spell.target == owner)

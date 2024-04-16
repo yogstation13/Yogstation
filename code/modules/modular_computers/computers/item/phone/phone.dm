@@ -6,7 +6,7 @@
 	icon_state_unpowered = "phone"
 	icon_state_powered = "phone"
 	hardware_flag = PROGRAM_PHONE
-	max_hardware_size = WEIGHT_CLASS_TINY
+	max_hardware_size = WEIGHT_CLASS_SMALL
 	w_class = WEIGHT_CLASS_SMALL
 	max_bays = 2
 	steel_sheet_cost = 1

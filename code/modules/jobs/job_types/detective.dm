@@ -9,7 +9,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of security"
-	selection_color = "#ffeeee"
 	minimal_player_age = 7
 	exp_requirements = 180
 	exp_type = EXP_TYPE_SECURITY
@@ -39,6 +38,8 @@
 		///obj/item/ammo_box/c38/match = 5,
 		///obj/item/storage/belt/holster/detective/full = 1
 	)
+	
+	minimal_lightup_areas = list(/area/medical/morgue, /area/security/detectives_office)
 
 	smells_like = "whisky-soaked despair"
 
@@ -61,7 +62,7 @@
 	name = "Detective"
 	jobtype = /datum/job/detective
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/security/detective
 
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/det

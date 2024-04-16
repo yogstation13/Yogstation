@@ -140,11 +140,11 @@ Credit where due:
 	antag_flag = ROLE_SERVANT_OF_RATVAR
 	false_report_weight = 10
 	required_players = 24
-	required_enemies = 4
-	recommended_enemies = 4
+	required_enemies = 3
+	recommended_enemies = 3
 	enemy_minimum_age = 14
 	protected_jobs = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Brig Physician") //Silicons can eventually be converted //Yogs: Added Brig Physician
-	restricted_jobs = list("Chaplain", "Captain")
+	restricted_jobs = list("Chaplain", "Captain", "Synthetic")
 	announce_span = "brass"
 	announce_text = "Servants of Ratvar are trying to summon the Justiciar!\n\
 	<span class='brass'>Servants</span>: Construct defenses to protect the Ark. Sabotage the station!\n\
@@ -161,13 +161,13 @@ Credit where due:
 		restricted_jobs += protected_jobs
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
-	var/starter_servants = 4 //Guaranteed four servants
+	var/starter_servants = required_enemies
 	var/number_players = num_players()
 	roundstart_player_count = number_players
-	if(number_players > 30) //plus one servant for every additional 10 players above 30
+	if(number_players > 30) //plus one servant for every additional 8 players above 30
 		number_players -= 30
-		starter_servants += round(number_players / 10)
-	starter_servants = min(starter_servants, 8) //max 8 servants (that sould only happen with a ton of players)
+		starter_servants += round(number_players / 8)
+	starter_servants = min(starter_servants, 8) //max 8 servants (that should only happen with a ton of players)
 	while(starter_servants)
 		var/datum/mind/servant = antag_pick(antag_candidates)
 		servants_to_serve += servant
@@ -274,8 +274,9 @@ Credit where due:
 	ears = /obj/item/radio/headset
 	gloves = /obj/item/clothing/gloves/color/yellow //Take them off if you want
 	belt = /obj/item/storage/belt/utility/servant //Take this off and pour it into a toolbox if you want
-	backpack_contents = list(/obj/item/storage/box/engineer = 1, \
-	/obj/item/clockwork/replica_fabricator = 1, /obj/item/stack/tile/brass/fifty = 1, /obj/item/paper/servant_primer = 1)
+	box = /obj/item/storage/box/survival/engineer
+	backpack_contents = list(/obj/item/clockwork/replica_fabricator = 1,\
+							 /obj/item/stack/tile/brass/fifty = 1, /obj/item/paper/servant_primer = 1)
 
 	var/obj/item/id_type = /obj/item/card/id
 	var/obj/item/modular_computer/pda_type = /obj/item/modular_computer/tablet/pda/preset/basic

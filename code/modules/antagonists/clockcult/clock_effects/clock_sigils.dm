@@ -12,7 +12,14 @@
 	var/sigil_name = "Sigil"
 	var/resist_string = "glows blinding white" //string for when a null rod blocks its effects, "glows [resist_string]"
 	var/check_antimagic = TRUE
-	var/check_holy = FALSE
+
+/obj/effect/clockwork/sigil/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 
 /obj/effect/clockwork/sigil/attackby(obj/item/I, mob/living/user, params)
 	if(I.force)
@@ -40,13 +47,12 @@
 	visible_message(span_warning("[src] scatters into thousands of particles."))
 	qdel(src)
 
-/obj/effect/clockwork/sigil/Crossed(atom/movable/AM)
-	..()
+/obj/effect/clockwork/sigil/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(L.stat <= stat_affected)
 			if((!is_servant_of_ratvar(L) || (affects_servants && is_servant_of_ratvar(L))) && (L.mind || L.has_status_effect(STATUS_EFFECT_SIGILMARK)) && !isdrone(L))
-				var/atom/I = L.anti_magic_check(check_antimagic, check_holy)
+				var/atom/I = L.can_block_magic((check_antimagic ? MAGIC_RESISTANCE : NONE))
 				if(I)
 					if(isitem(I))
 						L.visible_message(span_warning("[L]'s [I.name] [resist_string], protecting [L.p_them()] from [src]'s effects!"), \
@@ -64,7 +70,7 @@
 	icon = 'icons/effects/clockwork_effects.dmi'
 	clockwork_desc = "A sigil that will stun the next non-Servant to cross it."
 	icon_state = "sigildull"
-	layer = HIGH_SIGIL_LAYER
+	layer = SIGIL_LAYER
 	alpha = 75
 	color = "#FAE48C"
 	light_range = 1.4

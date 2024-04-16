@@ -1,23 +1,23 @@
 /obj/item/pda/network_admin
-	name = "telecomms PDA"
+	name = "\improper antique telecomms PDA"
 	default_cartridge = /obj/item/cartridge/signal
 	icon_state = "pda_tcomms"
 	light_color = LIGHT_COLOR_ORANGE
 
 /obj/item/pda/para
-	name = "paramedic PDA"
+	name = "\improper antique paramedic PDA"
 	default_cartridge = /obj/item/cartridge/paramedic
 	icon_state = "pda-medical"
 	light_color = LIGHT_COLOR_LIGHT_CYAN
 
 /obj/item/pda/miningmed
-	name = "mining medic PDA"
+	name = "\improper antique mining medic PDA"
 	default_cartridge = /obj/item/cartridge/medical
 	icon_state = "pda-miningmed"
 	light_color = LIGHT_COLOR_LIGHT_CYAN
 
 /obj/item/pda/physician
-	name = "brig physician PDA"
+	name = "\improper antique brig physician PDA"
 	default_cartridge = /obj/item/cartridge/medical
 	icon_state = "pda-physician"
 	light_color = LIGHT_COLOR_RED

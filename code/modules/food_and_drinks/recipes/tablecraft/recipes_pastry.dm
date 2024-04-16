@@ -51,6 +51,27 @@ datum/crafting_recipe/food/donut/meat
 	result = /obj/item/reagent_containers/food/snacks/donut/meat
 	category = CAT_PASTRY
 
+/datum/crafting_recipe/food/peanut_butter_cookie
+	name = "Peanut Butter Cookie"
+	reqs = list(
+		/datum/reagent/consumable/peanut_butter = 5,
+		/obj/item/reagent_containers/food/snacks/pastrybase = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/cookie/peanut_butter
+	category = CAT_PASTRY
+
+/datum/crafting_recipe/food/raw_brownie_batter
+	name = "Raw Brownie Batter"
+	reqs = list(
+		/datum/reagent/consumable/flour = 5,
+		/datum/reagent/consumable/sugar = 5,
+		/obj/item/reagent_containers/food/snacks/egg = 2,
+		/datum/reagent/consumable/coco = 5,
+		/obj/item/reagent_containers/food/snacks/butterslice = 4
+	)
+	result = /obj/item/reagent_containers/food/snacks/raw_brownie_batter
+	category = CAT_PASTRY
+
 /datum/crafting_recipe/food/slimejellydonut
 	name = "Slime Jelly Donut"
 	reqs = list(
@@ -67,6 +88,15 @@ datum/crafting_recipe/food/donut/meat
 		/obj/item/reagent_containers/food/snacks/donut = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/donut/laugh
+	category = CAT_PASTRY
+
+/datum/crafting_recipe/food/donut/vegan
+	name = "Vegan Donut"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/tofu = 1,
+		/obj/item/reagent_containers/food/snacks/donut = 1,
+	)
+	result = /obj/item/reagent_containers/food/snacks/donut/vegan
 	category = CAT_PASTRY
 
 /datum/crafting_recipe/food/donut/jelly/laugh
@@ -463,7 +493,7 @@ datum/crafting_recipe/food/donut/meat
 /datum/crafting_recipe/food/raw_croissant
 	name = "Raw Croissant"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
+		/obj/item/reagent_containers/food/snacks/rawpastrybase = 1,
 		/datum/reagent/consumable/sugar = 1,
 		/obj/item/reagent_containers/food/snacks/butterslice = 2
 	)

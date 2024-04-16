@@ -1,0 +1,1729 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aH" = (
+/turf/template_noop,
+/area/template_noop)
+"bw" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/indestructible/boss,
+/area/lavaland/surface/outdoors)
+"by" = (
+/obj/effect/decal/remains/robot,
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"bJ" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"bO" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/stone_tile/center,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"cc" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "panelscorched"
+	},
+/area/lavaland/surface/outdoors)
+"cw" = (
+/obj/effect/decal/remains/plasma,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"dS" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "platingdmg3"
+	},
+/area/lavaland/surface/outdoors)
+"eb" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "platingdmg3"
+	},
+/area/lavaland/surface/outdoors)
+"fg" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ge" = (
+/obj/structure/spawner/lavaland/goliath,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"gI" = (
+/obj/structure/stone_tile/block,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"iK" = (
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"jp" = (
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"jU" = (
+/obj/structure/fence/cut,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"kY" = (
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"lj" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"lA" = (
+/obj/structure/stone_tile/slab,
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"lW" = (
+/obj/structure/sign/warning/explosives,
+/turf/closed/wall/mineral/titanium/survival,
+/area/lavaland/surface/outdoors)
+"np" = (
+/turf/closed/mineral/gibtonite/volcanic/harder,
+/area/lavaland/surface/outdoors)
+"nL" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"nR" = (
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"nZ" = (
+/turf/closed/indestructible/riveted/boss,
+/area/lavaland/surface/outdoors)
+"ot" = (
+/obj/structure/stone_tile/slab,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ov" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "panelscorched"
+	},
+/area/lavaland/surface/outdoors)
+"ox" = (
+/obj/structure/fence/cut/medium{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"oE" = (
+/turf/closed/mineral/gem/volcanic/hard,
+/area/lavaland/surface/outdoors)
+"oQ" = (
+/obj/structure/sign/warning/explosives/alt,
+/turf/closed/wall/mineral/titanium/survival,
+/area/lavaland/surface/outdoors)
+"pF" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/indestructible/boss,
+/area/lavaland/surface/outdoors)
+"pJ" = (
+/obj/structure/stone_tile/block,
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"qh" = (
+/obj/structure/stone_tile/surrounding,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"qj" = (
+/obj/item/stack/ore/plasma,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"qm" = (
+/turf/closed/mineral/plasma/volcanic,
+/area/lavaland/surface/outdoors)
+"qs" = (
+/obj/effect/decal/remains/robot,
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"qA" = (
+/obj/structure/fence/door{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"qG" = (
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"rw" = (
+/obj/structure/marker_beacon,
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"rO" = (
+/obj/structure/fence/door{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"rP" = (
+/obj/structure/marker_beacon,
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/indestructible/boss,
+/area/lavaland/surface/outdoors)
+"tr" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"tv" = (
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"tH" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/indestructible/boss,
+/area/lavaland/surface/outdoors)
+"tO" = (
+/obj/effect/decal/remains/robot,
+/obj/structure/stone_tile/slab,
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"tW" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"uC" = (
+/turf/closed/mineral/gibtonite/volcanic,
+/area/lavaland/surface/outdoors)
+"uE" = (
+/turf/closed/mineral/random/volcanic/hard,
+/area/lavaland/surface/outdoors)
+"vo" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"vp" = (
+/obj/item/stack/ore/plasma,
+/obj/effect/decal/remains/plasma,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"vt" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"wH" = (
+/obj/item/stack/ore/plasma,
+/obj/structure/marker_beacon,
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"xv" = (
+/obj/item/stack/ore/plasma,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"xU" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/indestructible/boss,
+/area/lavaland/surface/outdoors)
+"yj" = (
+/obj/structure/fence/door,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"yD" = (
+/obj/effect/decal/remains/human,
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"zU" = (
+/obj/item/clothing/neck/cloak/herald_cloak,
+/mob/living/simple_animal/hostile/asteroid/elite/herald{
+	faction = list("mining")
+	},
+/obj/structure/closet/crate/necropolis/tendril{
+	anchored = 1
+	},
+/obj/structure/stone_tile/surrounding,
+/obj/structure/stone_tile/center,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"zV" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/center,
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"Ab" = (
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "platingdmg3"
+	},
+/area/lavaland/surface/outdoors)
+"Bb" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Bm" = (
+/obj/structure/fence/cut/medium,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Cq" = (
+/obj/structure/fence/post,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"CI" = (
+/turf/closed/mineral/diamond/volcanic/harder,
+/area/lavaland/surface/outdoors)
+"Di" = (
+/turf/closed/mineral/bananium/volcanic/harder,
+/area/lavaland/surface/outdoors)
+"EO" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/turf/open/indestructible/boss,
+/area/lavaland/surface/outdoors)
+"Fj" = (
+/turf/closed/wall/mineral/titanium/survival,
+/area/lavaland/surface/outdoors)
+"Fn" = (
+/obj/structure/marker_beacon,
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"GH" = (
+/obj/item/stack/ore/plasma,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Hm" = (
+/obj/structure/marker_beacon,
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "platingdmg3"
+	},
+/area/lavaland/surface/outdoors)
+"Hq" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"In" = (
+/turf/closed/mineral/bananium/volcanic/hard,
+/area/lavaland/surface/outdoors)
+"JE" = (
+/obj/item/stack/ore/plasma,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"Kc" = (
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/center,
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"KW" = (
+/obj/item/stack/ore/plasma,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Lf" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"Ly" = (
+/turf/closed/mineral/plasma/volcanic/hard,
+/area/lavaland/surface/outdoors)
+"LR" = (
+/turf/open/floor/pod/dark,
+/area/lavaland/surface/outdoors)
+"Mm" = (
+/turf/open/chasm,
+/area/lavaland/surface/outdoors)
+"Ne" = (
+/obj/structure/fence/cut/large{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Np" = (
+/obj/structure/sign/mining,
+/turf/closed/wall/mineral/titanium/survival,
+/area/lavaland/surface/outdoors)
+"NM" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"Oy" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"Pq" = (
+/obj/item/stack/ore/plasma,
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"QH" = (
+/obj/item/stack/ore/plasma,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"QN" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/block,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"QT" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/turf/open/indestructible/boss,
+/area/lavaland/surface/outdoors)
+"RM" = (
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"RN" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"Sa" = (
+/turf/template_noop,
+/area/lavaland/surface/outdoors)
+"Sg" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"Sp" = (
+/obj/structure/marker_beacon,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"SB" = (
+/turf/closed/mineral/diamond/volcanic/hard,
+/area/lavaland/surface/outdoors)
+"SE" = (
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/advanced,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"SH" = (
+/turf/open/floor/pod/light,
+/area/lavaland/surface/outdoors)
+"SN" = (
+/obj/structure/fence/cut{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"SX" = (
+/turf/closed/mineral/gem/volcanic/harder,
+/area/lavaland/surface/outdoors)
+"Tf" = (
+/obj/effect/decal/remains/xeno,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"TH" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"TP" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"Ui" = (
+/obj/structure/fence/cut/large,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Uy" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"UU" = (
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "panelscorched"
+	},
+/area/lavaland/surface/outdoors)
+"Vc" = (
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Wm" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"XF" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"XX" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"Yc" = (
+/turf/closed/mineral/gibtonite/volcanic/hard,
+/area/lavaland/surface/outdoors)
+"Yo" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/indestructible/necropolis,
+/area/lavaland/surface/outdoors)
+"YL" = (
+/obj/structure/marker_beacon,
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "panelscorched"
+	},
+/area/lavaland/surface/outdoors)
+"Zu" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Zw" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+
+(1,1,1) = {"
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+iK
+iK
+Fn
+iK
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+"}
+(2,1,1) = {"
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+uE
+uE
+aH
+aH
+aH
+aH
+iK
+iK
+iK
+iK
+uE
+aH
+aH
+aH
+uE
+uE
+uE
+aH
+aH
+aH
+aH
+aH
+"}
+(3,1,1) = {"
+aH
+aH
+aH
+aH
+uE
+uE
+uE
+uE
+uE
+uE
+uE
+aH
+aH
+iK
+Fn
+iK
+iK
+Sa
+uE
+uE
+uE
+uE
+uE
+aH
+aH
+aH
+aH
+aH
+aH
+"}
+(4,1,1) = {"
+aH
+aH
+aH
+uE
+uE
+uE
+uE
+uE
+uE
+uE
+Fn
+iK
+iK
+iK
+iK
+iK
+iK
+iK
+Sp
+uE
+uE
+uE
+uE
+uE
+aH
+aH
+aH
+aH
+aH
+"}
+(5,1,1) = {"
+aH
+aH
+uE
+uE
+uE
+uE
+Ly
+Ly
+Ly
+Ly
+Ly
+Bm
+qA
+Cq
+In
+SB
+jU
+Ui
+Ly
+Ly
+Ly
+Ly
+Ly
+uE
+uE
+aH
+aH
+aH
+aH
+"}
+(6,1,1) = {"
+aH
+aH
+uE
+uE
+uE
+Ly
+Ly
+jp
+jp
+jp
+Sa
+Sa
+fg
+In
+Yc
+Di
+CI
+fg
+jp
+jp
+jp
+jp
+Ly
+Ly
+uE
+uE
+aH
+aH
+aH
+"}
+(7,1,1) = {"
+aH
+aH
+uE
+uE
+Ly
+Ly
+Yc
+qm
+qm
+Sa
+Sa
+Sa
+fg
+fg
+Sa
+Sa
+fg
+fg
+jp
+jp
+qm
+qm
+Yc
+Ly
+Ly
+uE
+uE
+aH
+aH
+"}
+(8,1,1) = {"
+aH
+uE
+uE
+uE
+Ly
+jp
+qm
+qm
+qm
+Sa
+Sa
+Sa
+Sa
+Sp
+GH
+fg
+fg
+Sa
+Sa
+Sa
+qm
+qm
+qm
+jp
+Ly
+uE
+uE
+aH
+aH
+"}
+(9,1,1) = {"
+aH
+uE
+uE
+uE
+Ly
+jp
+qm
+qm
+Sa
+Sa
+fg
+xv
+Hq
+fg
+jp
+cw
+Hq
+JE
+Ab
+SH
+ov
+qm
+qm
+jp
+Ly
+uE
+uE
+aH
+aH
+"}
+(10,1,1) = {"
+aH
+aH
+uE
+uE
+Ly
+jp
+Sa
+Sa
+Sa
+fg
+fg
+fg
+Yo
+jp
+jp
+jp
+rw
+Sa
+eb
+Np
+YL
+fg
+fg
+jp
+Ly
+uE
+uE
+uE
+aH
+"}
+(11,1,1) = {"
+aH
+aH
+uE
+iK
+Ly
+Sa
+Sa
+qm
+jp
+fg
+fg
+TP
+lA
+Sa
+nZ
+vo
+tO
+tv
+UU
+YL
+dS
+qm
+fg
+fg
+Ly
+uE
+uE
+Sa
+uE
+"}
+(12,1,1) = {"
+aH
+aH
+aH
+iK
+SN
+fg
+Sa
+qm
+qm
+Sa
+np
+qG
+qG
+jp
+jp
+ot
+qG
+qG
+np
+Sa
+qm
+qm
+fg
+Sp
+oE
+uE
+uE
+uE
+uE
+"}
+(13,1,1) = {"
+uE
+aH
+Fn
+iK
+ox
+fg
+Mm
+Mm
+qm
+qG
+Hq
+jp
+qG
+Sg
+ot
+tv
+qG
+jp
+qG
+Hq
+qm
+ge
+fg
+fg
+jp
+uE
+uE
+uE
+uE
+"}
+(14,1,1) = {"
+uE
+uE
+iK
+iK
+SN
+fg
+Mm
+Mm
+qG
+jp
+bO
+jp
+jp
+yD
+qG
+wH
+jp
+jp
+jp
+qh
+pJ
+fg
+fg
+jp
+jp
+Sa
+uE
+aH
+uE
+"}
+(15,1,1) = {"
+uE
+uE
+iK
+iK
+SN
+fg
+TH
+Hq
+nL
+qG
+XX
+jp
+fg
+EO
+uC
+tH
+QT
+qh
+vt
+RN
+kY
+Hq
+nL
+jp
+Fj
+iK
+aH
+aH
+uE
+"}
+(16,1,1) = {"
+uE
+uE
+iK
+iK
+oQ
+fg
+fg
+ot
+nZ
+GH
+qG
+gI
+SE
+TH
+Oy
+nL
+fg
+Wm
+qG
+gI
+nZ
+ot
+cw
+fg
+ox
+iK
+iK
+aH
+aH
+"}
+(17,1,1) = {"
+aH
+uE
+iK
+iK
+SN
+fg
+Sp
+bO
+fg
+Sa
+bw
+qs
+qG
+zV
+Vc
+bJ
+qG
+KW
+bw
+RM
+fg
+bO
+Sa
+fg
+Ne
+iK
+Fn
+aH
+aH
+"}
+(18,1,1) = {"
+aH
+uE
+iK
+iK
+yj
+fg
+Sa
+QN
+fg
+jp
+rP
+SX
+qG
+nR
+zU
+Zw
+qG
+SX
+rP
+jp
+fg
+lj
+Sa
+fg
+yj
+iK
+iK
+uE
+aH
+"}
+(19,1,1) = {"
+aH
+aH
+Fn
+iK
+ox
+fg
+Sa
+bO
+fg
+Zu
+bw
+qj
+qG
+XF
+Bb
+Kc
+qG
+fg
+bw
+Sa
+fg
+bO
+Sp
+fg
+SN
+iK
+iK
+uE
+aH
+"}
+(20,1,1) = {"
+aH
+aH
+iK
+iK
+Ne
+fg
+Tf
+ot
+nZ
+Wm
+qG
+gI
+fg
+TP
+Lf
+tv
+SE
+cw
+qG
+vp
+nZ
+ot
+fg
+fg
+lW
+iK
+iK
+uE
+uE
+"}
+(21,1,1) = {"
+uE
+aH
+aH
+iK
+Fj
+jp
+TP
+XX
+kY
+NM
+tr
+qh
+pF
+xU
+uC
+xU
+fg
+jp
+Hq
+qG
+TP
+XX
+tv
+fg
+SN
+iK
+iK
+uE
+uE
+"}
+(22,1,1) = {"
+uE
+aH
+uE
+Sa
+jp
+jp
+fg
+fg
+Sg
+qh
+jp
+jp
+jp
+wH
+qG
+qG
+jp
+jp
+bO
+jp
+qG
+Mm
+Mm
+fg
+SN
+iK
+iK
+uE
+uE
+"}
+(23,1,1) = {"
+uE
+uE
+uE
+uE
+jp
+fg
+fg
+ge
+qm
+XX
+qG
+jp
+qG
+TH
+ot
+pJ
+qG
+jp
+XX
+qG
+qm
+Mm
+Mm
+fg
+Ne
+iK
+Fn
+aH
+uE
+"}
+(24,1,1) = {"
+uE
+uE
+uE
+uE
+oE
+Sp
+fg
+qm
+qm
+Sa
+np
+qG
+qG
+ot
+jp
+jp
+qG
+by
+np
+Sa
+qm
+qm
+Sa
+fg
+SN
+iK
+iK
+aH
+aH
+"}
+(25,1,1) = {"
+uE
+Sa
+uE
+uE
+Ly
+fg
+fg
+qm
+cc
+Hm
+UU
+TH
+lA
+tW
+nZ
+Sa
+lA
+nL
+fg
+fg
+jp
+qm
+Sa
+Sa
+Ly
+iK
+uE
+aH
+aH
+"}
+(26,1,1) = {"
+aH
+uE
+uE
+uE
+Ly
+jp
+fg
+fg
+YL
+Np
+eb
+Sa
+rw
+jp
+jp
+jp
+Yo
+fg
+fg
+fg
+Sa
+Sa
+Sa
+jp
+Ly
+uE
+uE
+aH
+aH
+"}
+(27,1,1) = {"
+aH
+aH
+uE
+uE
+Ly
+jp
+qm
+qm
+eb
+LR
+UU
+QH
+XX
+fg
+jp
+Uy
+XX
+Pq
+fg
+Sa
+Sa
+qm
+qm
+jp
+Ly
+uE
+uE
+uE
+aH
+"}
+(28,1,1) = {"
+aH
+aH
+uE
+uE
+Ly
+jp
+qm
+qm
+qm
+Sa
+Sa
+Sa
+fg
+fg
+GH
+Sp
+Sa
+Sa
+Sa
+Sa
+qm
+qm
+qm
+jp
+Ly
+uE
+uE
+uE
+aH
+"}
+(29,1,1) = {"
+aH
+aH
+uE
+uE
+Ly
+Ly
+Yc
+qm
+qm
+jp
+jp
+fg
+fg
+Sa
+Sa
+fg
+fg
+Sa
+Sa
+Sa
+qm
+qm
+Yc
+Ly
+Ly
+uE
+uE
+aH
+aH
+"}
+(30,1,1) = {"
+aH
+aH
+uE
+uE
+uE
+Ly
+Ly
+jp
+jp
+jp
+jp
+fg
+CI
+Di
+Yc
+In
+fg
+Sa
+Sa
+jp
+jp
+jp
+Ly
+Ly
+uE
+uE
+uE
+aH
+aH
+"}
+(31,1,1) = {"
+aH
+aH
+uE
+uE
+uE
+uE
+Ly
+Ly
+Ly
+Ly
+Ly
+jU
+jU
+SB
+In
+jU
+rO
+Bm
+Ly
+Ly
+Ly
+Ly
+Ly
+uE
+uE
+uE
+uE
+aH
+aH
+"}
+(32,1,1) = {"
+aH
+aH
+aH
+uE
+uE
+uE
+uE
+uE
+uE
+uE
+Fn
+iK
+iK
+iK
+iK
+iK
+iK
+iK
+Sp
+uE
+uE
+uE
+uE
+uE
+uE
+uE
+aH
+aH
+aH
+"}
+(33,1,1) = {"
+aH
+aH
+aH
+aH
+uE
+uE
+uE
+uE
+uE
+uE
+uE
+Sa
+iK
+Fn
+iK
+iK
+aH
+aH
+uE
+uE
+uE
+uE
+uE
+uE
+uE
+aH
+aH
+aH
+aH
+"}
+(34,1,1) = {"
+aH
+aH
+aH
+uE
+uE
+uE
+aH
+aH
+aH
+aH
+aH
+uE
+iK
+iK
+iK
+iK
+aH
+aH
+aH
+aH
+uE
+uE
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+"}
+(35,1,1) = {"
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+iK
+iK
+Fn
+iK
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+"}

@@ -50,7 +50,7 @@
 
 /obj/item/clothing/head/helmet/secconhelm
 	name = "constable's helmet"
-	desc = "A helmet to proudly show crooks that you mean buisness."
+	desc = "A helmet to proudly show crooks that you mean business."
 	icon_state = "secconhelm"
 	item_state = "secconhelm"
 

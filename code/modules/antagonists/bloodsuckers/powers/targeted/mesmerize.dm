@@ -91,7 +91,7 @@
 	var/mob/living/user = owner
 	to_chat(owner, span_notice("Attempting to hypnotically gaze [target]..."))
 	if(!power_activates_immediately)
-		if(!do_mob(user, target, mesmerizingtime, NONE, TRUE))
+		if(!do_after(user, mesmerizingtime, target))
 			return
 
 	power_activated_sucessfully() // PAY COST! BEGIN COOLDOWN!

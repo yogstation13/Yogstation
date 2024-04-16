@@ -252,15 +252,10 @@
 				surgery_text += ", [S.operated_bodypart]"
 		msg += "[surgery_text].\n"
 
-	switch(fire_stacks)
-		if(1 to INFINITY)
-			msg += "[t_He] [t_is] covered in something flammable.\n"
-		if(-5 to -1)
-			msg += "[t_He] look[p_s()] a little damp.\n"
-		if(-10 to -5)
-			msg += "[t_He] look[p_s()] a little soaked.\n"
-		if(-INFINITY to -10)
-			msg += "[t_He] look[p_s()] drenched.\n"
+	if(has_status_effect(/datum/status_effect/fire_handler/fire_stacks))
+		msg += "[t_He] [t_is] covered in something flammable.\n"
+	if(has_status_effect(/datum/status_effect/fire_handler/wet_stacks))
+		msg += "[t_He] look[p_s()] a little soaked.\n"
 
 	if(visible_tumors)
 		msg += "[t_He] [t_has] has growths all over [t_his] body...\n"
@@ -268,20 +263,21 @@
 	if(pulledby && pulledby.grab_state)
 		msg += "[t_He] [t_is] restrained by [pulledby]'s grip.\n"
 
-	if(nutrition < NUTRITION_LEVEL_STARVING - 50)
-		msg += "[t_He] [t_is] severely malnourished.\n"
-	else if(nutrition >= NUTRITION_LEVEL_FAT)
-		if(user.nutrition < NUTRITION_LEVEL_STARVING - 50)
-			msg += "[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
-		else
-			msg += "[t_He] [t_is] quite chubby.\n"
-	switch(disgust)
-		if(DISGUST_LEVEL_GROSS to DISGUST_LEVEL_VERYGROSS)
-			msg += "[t_He] look[p_s()] a bit grossed out.\n"
-		if(DISGUST_LEVEL_VERYGROSS to DISGUST_LEVEL_DISGUSTED)
-			msg += "[t_He] look[p_s()] really grossed out.\n"
-		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
-			msg += "[t_He] look[p_s()] extremely disgusted.\n"
+	if(!HAS_TRAIT(src, TRAIT_POWERHUNGRY)) //robots don't visibly show their hunger
+		if(nutrition < NUTRITION_LEVEL_STARVING - 50)
+			msg += "[t_He] [t_is] severely malnourished.\n"
+		else if(nutrition >= NUTRITION_LEVEL_FAT)
+			if(user.nutrition < NUTRITION_LEVEL_STARVING - 50)
+				msg += "[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
+			else
+				msg += "[t_He] [t_is] quite chubby.\n"
+		switch(disgust)
+			if(DISGUST_LEVEL_GROSS to DISGUST_LEVEL_VERYGROSS)
+				msg += "[t_He] look[p_s()] a bit grossed out.\n"
+			if(DISGUST_LEVEL_VERYGROSS to DISGUST_LEVEL_DISGUSTED)
+				msg += "[t_He] look[p_s()] really grossed out.\n"
+			if(DISGUST_LEVEL_DISGUSTED to INFINITY)
+				msg += "[t_He] look[p_s()] extremely disgusted.\n"
 
 
 	var/apparent_blood_volume = blood_volume
@@ -360,13 +356,7 @@
 			if(stun_absorption[i]["end_time"] > world.time && stun_absorption[i]["examine_message"])
 				msg += "[t_He] [t_is][stun_absorption[i]["examine_message"]]\n"
 
-	if(!glasses && mind && mind.has_antag_datum(ANTAG_DATUM_THRALL))
-		if(get_organ_slot(ORGAN_SLOT_EYES))
-			msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
-		else
-			msg += "The pair of holes where [t_His] eyes would be seem unnaturally dark and soulless.\n"
-
-	if((!glasses || !wear_suit) && mind?.has_antag_datum(ANTAG_DATUM_VEIL))
+	if((!wear_suit && !w_uniform) && mind?.has_antag_datum(ANTAG_DATUM_THRALL))
 		msg += "[t_His] whole body is covered in sigils!\n"
 
 	if(!appears_dead)
@@ -405,12 +395,20 @@
 				msg += "[t_He] [t_is] barely conscious.\n"
 		if(getorgan(/obj/item/organ/brain))
 			if(!key)
-				msg += "[span_deadsay("[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")]\n"
-			else if(!client)
-				msg += "[t_He] [t_has] a blank, absent-minded stare and appears completely unresponsive to anything. [t_He] may snap out of it soon.\n"
+				if(is_synth(src))
+					msg += "The unit is indicating that it is currently inactive. Place this unit inside a synthetic storage unit to allow the onboard synthetic intelligences to control it.\n"
+				else
+					msg += "[span_deadsay("[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")]\n"
+			else if(!client && !fake_client)
+				if(is_synth(src))
+					msg += "The unit is indicating that it is currently inactive. Place this unit inside a synthetic storage unit to allow the onboard synthetic intelligences to control it.\n"
+				else
+					msg += "[t_He] [t_has] a blank, absent-minded stare and appears completely unresponsive to anything. [t_He] may snap out of it soon.\n"
 
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
+
+	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE, user, .)
 
 	var/scar_severity = 0
 	for(var/i in all_scars)
@@ -451,7 +449,7 @@
 					var/cyberimp_detect
 					for(var/obj/item/organ/cyberimp/CI in internal_organs)
 						if(CI.status == ORGAN_ROBOTIC && !CI.syndicate_implant)
-							cyberimp_detect += "[name] is modified with a [CI.name]."
+							cyberimp_detect += "[name] is modified with a [CI.name].\n"
 					if(cyberimp_detect)
 						. += "Detected cybernetic modifications:"
 						. += cyberimp_detect
@@ -481,7 +479,7 @@
 							"<a href='?src=[REF(src)];hud=s;view_comment=1'>\[View comment log\]</a>",
 							"<a href='?src=[REF(src)];hud=s;add_comment=1'>\[Add comment\]</a>"), "")
 	else if(isobserver(user) && traitstring)
-		. += "<span class='info'><b>Traits:</b> [traitstring]</span><br>"
+		. += "<span class='info'><b>Quirks:</b> [traitstring]</span><br>"
 	. += "</span>"
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
@@ -613,10 +611,6 @@
 		msg += "[t_He] really keeps to the left.\n"
 	else if(l_limbs_missing >= 2 && r_limbs_missing >= 2)
 		msg += "[t_He] [p_do()]n't seem all there.\n"
-
-
-	if(!glasses && mind && mind.has_antag_datum(ANTAG_DATUM_THRALL))
-		msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
 
 	if (length(msg))
 		. += span_warning("[msg.Join("")]")

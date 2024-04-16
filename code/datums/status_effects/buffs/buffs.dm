@@ -374,10 +374,12 @@
 
 /datum/status_effect/exercised/on_creation(mob/living/new_owner, ...)
 	. = ..()
+	owner.faction |= "gym"
 	STOP_PROCESSING(SSfastprocess, src)
 	START_PROCESSING(SSprocessing, src) //this lasts 20 minutes, so SSfastprocess isn't needed.
 
 /datum/status_effect/exercised/Destroy()
+	owner.faction &= "gym"
 	. = ..()
 	STOP_PROCESSING(SSprocessing, src)
 
@@ -543,36 +545,6 @@
 	REMOVE_TRAIT(owner, TRAIT_ANTIMAGIC, MAGIC_TRAIT)
 	owner.visible_message(span_warning("[owner]'s dull aura fades away..."))
 
-/datum/status_effect/creep //allows darkspawn to move through lights without lightburn damage //yogs start: darkspawn
-	id = "creep"
-	duration = -1
-	alert_type = /atom/movable/screen/alert/status_effect/creep
-	examine_text = span_warning("SUBJECTPRONOUN is surrounded by velvety, gently-waving black shadows!")
-	var/datum/antagonist/darkspawn/darkspawn
-
-/datum/status_effect/creep/on_creation(mob/living/owner, datum/antagonist/darkspawn)
-	. = ..()
-	if(!.)
-		return
-	src.darkspawn = darkspawn
-
-/datum/status_effect/creep/tick()
-	if(!darkspawn)
-		qdel(src)
-		return
-	if(!darkspawn.has_psi(1)) //ticks 5 times per second, 5 Psi lost per second
-		to_chat(owner, span_warning("Without the Psi to maintain it, your protective aura vanishes!"))
-		qdel(src)
-		return
-	darkspawn.use_psi(1)
-
-/atom/movable/screen/alert/status_effect/creep
-	name = "Creep"
-	desc = "You are immune to lightburn. Drains 1 Psi per second."
-	icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	icon_state = "creep"
-
-
 /datum/status_effect/time_dilation //used by darkspawn; greatly increases action times etc
 	id = "time_dilation"
 	duration = 600
@@ -594,7 +566,7 @@
 	name = "Time Dilation"
 	desc = "Your actions are twice as fast, and the delay between them is halved. Additionally, you are immune to slowdown."
 	icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	icon_state = "time_dilation" 
+	icon_state = "time_dilation"
 
 /datum/status_effect/doubledown
 	id = "doubledown"
@@ -642,7 +614,7 @@
 //adrenaline rush from combat damage
 /atom/movable/screen/alert/status_effect/adrenaline
 	name = "Adrenaline rush"
-	desc = "The sudden injuries you've recieved have put your body into fight-or-flight mode! Now's the time to look for an exit!"
+	desc = "The sudden injuries you've received have put your body into fight-or-flight mode! Now's the time to look for an exit!"
 	icon_state = "default"
 
 /datum/status_effect/adrenaline
@@ -653,6 +625,7 @@
 /datum/status_effect/adrenaline/on_apply()
 	. = ..()
 	var/printout = "<b>Your feel your injuries fade as a rush of adrenaline pushes you forward!</b>"
+	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "adrenaline rush", /datum/mood_event/adrenaline)
 	if(isipc(owner))
 		printout = "<b>Chassis damage exceeded acceptable levels. Auxiliary leg actuator power supply activated.</b>"
 	to_chat(owner, span_notice(printout))
@@ -660,12 +633,13 @@
 
 /datum/status_effect/adrenaline/on_remove()
 	var/printout = "<b>Your adrenaline rush dies off, and the weight of your battered body becomes apparent again...</b>"
+	SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "adrenaline rush")
 	if(isipc(owner))
 		printout = "<b>Auxiliary leg actuator power supply depleted. Movement returning to nominal levels.</b>"
 	to_chat(owner, span_warning(printout))
 	REMOVE_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 	return ..()
-	
+
 /datum/status_effect/diamondskin
 	id = "diamondskin"
 	duration = 20 SECONDS
@@ -691,3 +665,60 @@
 		var/mob/living/carbon/human/H = owner
 		H.physiology.pressure_mod /= 0.5
 		H.physiology.heat_mod /= 0.5
+
+//holy light specific buffs
+
+/datum/status_effect/holylight_antimagic
+	id = "holy antimagic"
+	duration = 2 MINUTES
+	tick_interval = -1
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = /atom/movable/screen/alert/status_effect/holylight_antimagic
+
+/atom/movable/screen/alert/status_effect/holylight_antimagic
+	name = "Holy suffusion"
+	desc = "Your being is suffused with holy light that repels vile magics."
+	icon_state = "slime_rainbowshield" //i'm a coder, not a spriter
+
+/datum/status_effect/holylight_antimagic/on_apply()
+	. = ..()
+	if(.)
+		ADD_TRAIT(owner, TRAIT_ANTIMAGIC, type)
+		owner.add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
+
+/datum/status_effect/holylight_antimagic/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_ANTIMAGIC, type)
+	owner.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
+
+
+#define HEALBOOST_FILTER "holy_glow"
+/datum/status_effect/holylight_healboost
+	id = "holy healboost"
+	duration = 1 MINUTES
+	tick_interval = -1
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = /atom/movable/screen/alert/status_effect/holylight_healboost
+	examine_text = span_notice("They are glowing with an internal holy light.")
+
+/atom/movable/screen/alert/status_effect/holylight_healboost
+	name = "Blessing of light"
+	desc = "Your being is suffused with holy light that accelerates healing."
+	icon_state = "regenerative_core" //again, i'm a coder, not a spriter
+
+/datum/status_effect/holylight_healboost/on_apply()
+	. = ..()
+	if(.)
+		owner.AddComponent(/datum/component/heal_react/boost/holylight)
+		owner.add_filter(HEALBOOST_FILTER, 2, list("type" = "outline", "color" = "#60A2A8", "alpha" = 0, "size" = 1))
+		var/filter = owner.get_filter(HEALBOOST_FILTER)
+		animate(filter, alpha = 200, time = 2 SECONDS, loop = -1, easing = EASE_OUT | CUBIC_EASING)
+		animate(alpha = 0, time = 2 SECONDS, loop = -1, easing = EASE_OUT | CUBIC_EASING)
+
+/datum/status_effect/holylight_healboost/on_remove()
+	var/datum/component/heal_react/boost/holylight/healing = owner.GetComponent(/datum/component/heal_react/boost/holylight)
+	if(healing)
+		qdel(healing)
+	var/filter = owner.get_filter(HEALBOOST_FILTER)
+	if(filter)
+		animate(filter)
+		owner.remove_filter(HEALBOOST_FILTER)

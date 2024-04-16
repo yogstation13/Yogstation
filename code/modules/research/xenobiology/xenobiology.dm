@@ -279,7 +279,7 @@
 		if(SLIME_ACTIVATE_MAJOR)
 			user.visible_message(span_warning("[user]'s skin starts flashing intermittently..."), span_warning("Your skin starts flashing intermittently..."))
 			if(do_after(user, 2.5 SECONDS, user))
-				empulse(user, 1, 2)
+				empulse(user, EMP_HEAVY, 2)
 				user.visible_message(span_warning("[user]'s skin flashes!"), span_warning("Your skin flashes as you emit an electromagnetic pulse!"))
 				return 600
 
@@ -337,7 +337,7 @@
 		if(SLIME_ACTIVATE_MINOR)
 			to_chat(user, span_notice("You activate [src]. You start feeling colder!"))
 			user.extinguish_mob()
-			user.adjust_fire_stacks(-20)
+			user.adjust_wet_stacks(20)
 			user.reagents.add_reagent(/datum/reagent/consumable/frostoil,4)
 			user.reagents.add_reagent(/datum/reagent/medicine/cryoxadone,5)
 			return 100
@@ -953,7 +953,7 @@
 		return
 	if(user != L)
 		L.visible_message(span_notice("[user] tries to feed [src] to [L]..."), span_boldwarning("[user] tries to feed [src] to you!"))
-		if(!do_mob(user, L, 10 SECONDS))
+		if(!do_after(user, 10 SECONDS, L))
 			return
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L

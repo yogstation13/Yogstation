@@ -48,8 +48,7 @@
 	del_on_death = 1
 	dodging = TRUE
 	rapid_melee = 2
-
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_SHOE
 
 /mob/living/simple_animal/hostile/syndicate/sentience_act()
 	faction -= ROLE_SYNDICATE
@@ -134,7 +133,7 @@
 	QDEL_NULL(sord)
 	return ..()
 
-/mob/living/simple_animal/hostile/syndicate/melee/bullet_act(obj/item/projectile/Proj)
+/mob/living/simple_animal/hostile/syndicate/melee/bullet_act(obj/projectile/Proj)
 	if(prob(projectile_deflect_chance))
 		visible_message(span_danger("[src] blocks [Proj] with its shield!"))
 		return BULLET_ACT_BLOCK
@@ -313,7 +312,7 @@
 	movement_type = FLYING
 	limb_destroyer = 1
 	speak_emote = list("states")
-	bubble_icon = "syndibot"
+	bubble_icon = BUBBLE_SYNDIBOT
 	gold_core_spawnable = HOSTILE_SPAWN
 	del_on_death = 1
 	deathmessage = "is smashed into pieces!"

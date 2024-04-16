@@ -456,6 +456,14 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/ash_type = /obj/effect/decal/cleanable/ash
 
+/obj/item/toy/snappop/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
+
 /obj/item/toy/snappop/proc/pop_burst(n=3, c=1)
 	var/datum/effect_system/spark_spread/s = new()
 	s.set_up(n, c, src)
@@ -473,8 +481,7 @@
 	if(!..())
 		pop_burst()
 
-/obj/item/toy/snappop/Crossed(H as mob|obj)
-	. = ..()
+/obj/item/toy/snappop/proc/on_entered(datum/source, atom/movable/H, ...)
 	if(ishuman(H) || issilicon(H)) //i guess carp and shit shouldn't set them off
 		var/mob/living/carbon/M = H
 		if(issilicon(H) || M.m_intent == MOVE_INTENT_RUN)
@@ -1750,9 +1757,9 @@ obj/item/toy/turn_tracker
 	to_chat(user, span_warning("The [name] grumbles quietly. It is not yet ready to fire again!"))
 
 /obj/item/ammo_casing/magic/sickly_blade_toy
-	projectile_type = /obj/item/projectile/sickly_blade_toy
+	projectile_type = /obj/projectile/sickly_blade_toy
 	harmful = FALSE
-/obj/item/projectile/sickly_blade_toy
+/obj/projectile/sickly_blade_toy
 	name = "hook"
 	icon_state = "hook"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
@@ -1765,7 +1772,7 @@ obj/item/toy/turn_tracker
 	knockdown = 0
 	hitsound = 'sound/effects/gravhit.ogg'
 
-/obj/item/projectile/sickly_blade_toy/on_hit(atom/target, blocked)
+/obj/projectile/sickly_blade_toy/on_hit(atom/target, blocked)
 	. = ..()
 	if(ismovable(target) && blocked != 100)
 		var/atom/movable/A = target

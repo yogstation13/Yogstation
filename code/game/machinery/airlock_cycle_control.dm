@@ -113,12 +113,12 @@
 	qdel(wires)
 	wires = null
 	cut_links()
-	SSair.atmos_machinery -= src
+	SSair.stop_processing_machine(src)
 	return ..()
 
 /obj/machinery/advanced_airlock_controller/Initialize(mapload)
 	. = ..()
-	SSair.atmos_machinery += src
+	SSair.start_processing_machine(src)
 	scan_on_late_init = mapload
 	if(mapload && (. != INITIALIZE_HINT_QDEL))
 		return INITIALIZE_HINT_LATELOAD
@@ -135,16 +135,14 @@
 				airlock.bolt()
 
 /obj/machinery/advanced_airlock_controller/proc/update_cycle_icon(use_hash = FALSE)
-	var/turf/location = get_turf(src)
-	if(!location)
+	if(!isopenturf(get_turf(src)))
 		return
 	var/pressure = 0
-	if(location)
-		var/datum/gas_mixture/environment = location.return_air()
-		if(environment)
-			pressure = environment.return_pressure()
+	var/datum/gas_mixture/environment = return_air()
+	if(environment)
+		pressure = environment.return_pressure()
 	var/maxpressure = (exterior_pressure && (cyclestate == AIRLOCK_CYCLESTATE_OUTCLOSING || cyclestate == AIRLOCK_CYCLESTATE_OUTOPENING || cyclestate == AIRLOCK_CYCLESTATE_OUTOPEN)) ? exterior_pressure : interior_pressure
-	var/pressure_bars = round(pressure / maxpressure * 5 + 0.01)
+	var/pressure_bars = ROUND_UP(pressure / maxpressure * 5 + 0.01)
 
 	var/new_overlays_hash = "[pressure_bars]-[cyclestate]-[buildstage]-[panel_open]-[stat]-[shorted]-[locked]-\ref[vis_target]"
 	if(use_hash && new_overlays_hash == overlays_hash)
@@ -184,7 +182,7 @@
 		var/matrix/TR = new
 		TR.Translate(0, 16)
 		TR.Multiply(new /matrix(s_dx, f_dx, 0, s_dy, f_dy, 0))
-		var/mutable_appearance/M = mutable_appearance(icon, "hologram-line", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+		var/mutable_appearance/M = mutable_appearance(icon, "hologram-line", ABOVE_LIGHTING_PLANE)
 		M.transform = TR
 		add_overlay(M)
 
@@ -295,15 +293,13 @@
 		update_cycle_icon(TRUE)
 		return
 
-	var/turf/location = get_turf(src)
-	if(!location)
+	if(!isopenturf(get_turf(src)))
 		update_cycle_icon(TRUE)
 		return
 	var/pressure = 0
-	if(location)
-		var/datum/gas_mixture/environment = location.return_air()
-		if(environment)
-			pressure = environment.return_pressure()
+	var/datum/gas_mixture/environment = return_air()
+	if(environment)
+		pressure = environment.return_pressure()
 
 	update_error_status()
 	var/doors_valid = TRUE
@@ -540,7 +536,7 @@
 	for(var/I = 1; I <= turfs.len; I++)
 		var/turf/open/T = turfs[I]
 		if(assume_roles)
-			T.ImmediateCalculateAdjacentTurfs()
+			T.immediate_calculate_adjacent_turfs()
 		for(var/turf/open/T2 in T.atmos_adjacent_turfs)
 			if(get_dist(initial_turf, T2) > 5)
 				config_error_str = "Airlock too big"
@@ -596,10 +592,9 @@
 		ui.open()
 
 /obj/machinery/advanced_airlock_controller/ui_data(mob/user)
-	var/turf/T = get_turf(src)
 	var/pressure = 0
-	if(T)
-		var/datum/gas_mixture/environment = T.return_air()
+	if(isopenturf(get_turf(src)))
+		var/datum/gas_mixture/environment = return_air()
 		if(environment)
 			pressure = environment.return_pressure()
 
@@ -786,14 +781,15 @@
 	. = ..()
 	update_cycle_icon()
 
-/obj/machinery/advanced_airlock_controller/emag_act(mob/user)
+/obj/machinery/advanced_airlock_controller/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	visible_message(span_warning("Sparks fly out of [src]!"), span_notice("You emag [src], disabling its safeties."))
 	playsound(src, "sparks", 50, 1)
+	return TRUE
 
-/obj/machinery/advanced_airlock_controller/obj_break(damage_flag)
+/obj/machinery/advanced_airlock_controller/atom_break(damage_flag)
 	..()
 	update_cycle_icon()
 
@@ -802,7 +798,7 @@
 		new /obj/item/stack/sheet/metal(loc, 2)
 		var/obj/item/I = new /obj/item/electronics/advanced_airlock_controller(loc)
 		if(!disassembled)
-			I.obj_integrity = I.max_integrity * 0.5
+			I.update_integrity(I.max_integrity * 0.5)
 		new /obj/item/stack/cable_coil(loc, 3)
 	qdel(src)
 

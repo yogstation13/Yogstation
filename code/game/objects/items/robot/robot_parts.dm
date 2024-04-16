@@ -74,6 +74,10 @@
 				return 1
 	return 0
 
+/obj/item/robot_suit/examine(mob/user)
+	. = ..()
+	. += "If you insert an AI CPU when this endoskeleton is complete it will be constructed as a synthetic."
+
 /obj/item/robot_suit/wrench_act(mob/living/user, obj/item/I) //Deconstucts empty borg shell. Flashes remain unbroken because they haven't been used yet
 	var/turf/T = get_turf(src)
 	if(l_leg || r_leg || chest || l_arm || r_arm || head)
@@ -252,6 +256,27 @@
 		else
 			to_chat(user, span_warning("The endoskeleton must be assembled before debugging can begin!"))
 
+	else if(istype(W, /obj/item/ai_cpu))
+		if(check_completion())
+			var/response = tgui_alert(user, "Are you sure you want to turn this endoskeleton into a synthetic unit?", "Please Confirm", list("Yes", "No"))
+			if(response != "Yes")
+				return
+			
+			if(!user.temporarilyRemoveItemFromInventory(W))
+				return
+			var/mob/living/carbon/human/O = new /mob/living/carbon/human(get_turf(loc))
+			O.set_species(/datum/species/wy_synth)
+			O.invisibility = 0
+			O.job = "Synthetic"
+			var/datum/outfit/job/synthetic/SO = new()
+			SO.equip(O)
+			W.forceMove(O)
+			var/datum/species/wy_synth/S = O.dna.species
+			qdel(S.inbuilt_cpu)
+			S.inbuilt_cpu = null
+			S.inbuilt_cpu = W
+			qdel(src)
+
 	else if(istype(W, /obj/item/mmi))
 		var/obj/item/mmi/M = W
 		if(check_completion())
@@ -296,7 +321,7 @@
 			if(user.mind.assigned_role == "Roboticist") // RD gets nothing
 				SSachievements.unlock_achievement(/datum/achievement/roboborg, user.client)
 
-			if(M.laws && M.laws.id != DEFAULT_AI_LAWID && M.override_cyborg_laws)
+			if(M.laws && M.laws.modified && M.override_cyborg_laws)
 				aisync = FALSE
 				lawsync = FALSE
 				O.laws = M.laws
@@ -315,9 +340,15 @@
 					O.set_connected_ai(forced_ai)
 			if(!lawsync)
 				O.lawupdate = 0
-				if(M.laws.id == DEFAULT_AI_LAWID)
+				if(!M.laws.modified)
+					// Give the non-modified laws which is visible on the MMI.
+					O.laws = M.laws
+					M.laws.associate(O)
+				else if(!M.override_cyborg_laws) // MMI's laws were changed. Do not want to upload them if we say so.
+					// Give random default lawset.
 					O.make_laws()
-					to_chat(user,span_warning("Any laws uploaded to this MMI have not been transferred!"))
+					// Obvious warning that their modified laws didn't get passed on.
+					to_chat(user, span_warning("Any laws uploaded to this MMI have not been transferred!"))
 
 			SSticker.mode.remove_antag_for_borging(BM.mind)
 			if(!istype(M.laws, /datum/ai_laws/ratvar))
@@ -339,7 +370,12 @@
 
 			BM.mind.transfer_to(O)
 
-			if(O.mind && O.mind.special_role)
+			if(O.mmi.syndicate_mmi)
+				O.syndiemmi_override()
+				to_chat(O, span_warning("ALERT: Foreign hardware detected."))
+				to_chat(O, span_warning("ERRORERRORERROR"))
+				O.show_laws()
+			else if(O.mind && O.mind.special_role)
 				O.mind.store_memory("As a cyborg, you must obey your silicon laws and master AI above all else. Your objectives will consider you to be dead.")
 				to_chat(O, span_userdanger("You have been robotized!"))
 				to_chat(O, span_danger("You must obey your silicon laws and master AI above all else. Your objectives will consider you to be dead."))
@@ -350,9 +386,8 @@
 				O.lockcharge = TRUE
 				O.update_mobility()
 				to_chat(O, span_warning("Error: Servo motors unresponsive."))
-			
-			qdel(src)
 
+			qdel(src)
 		else
 			to_chat(user, span_warning("The MMI must go in after everything else!"))
 
@@ -388,7 +423,7 @@
 			if(!locomotion)
 				O.lockcharge = TRUE
 				O.update_mobility()
-			
+
 			qdel(src)
 
 	else if(istype(W, /obj/item/pen))

@@ -57,7 +57,7 @@
 	. = ..()
 	if(istype(I, /obj/item/reagent_containers/food/snacks/grown/banana))
 		var/obj/item/reagent_containers/food/snacks/grown/banana/banana = I
-		obj_integrity += min(banana.seed.potency, max_integrity-obj_integrity)
+		update_integrity(atom_integrity + min(banana.seed.potency, max_integrity-atom_integrity))
 		to_chat(user, span_danger("You use the [banana] to repair the [src]!"))
 		qdel(banana)
 
@@ -81,14 +81,15 @@
 		DumpMobs(TRUE)
 		log_combat(src, A, "crashed into", null, "dumping all passengers")
 
-/obj/vehicle/sealed/car/clowncar/emag_act(mob/user)
+/obj/vehicle/sealed/car/clowncar/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	to_chat(user, span_danger("You scramble the clowncar child safety lock and a panel with 6 colorful buttons appears!"))
 	initialize_controller_action_type(/datum/action/vehicle/sealed/RollTheDice, VEHICLE_CONTROL_DRIVE)
 	initialize_controller_action_type(/datum/action/vehicle/sealed/Cannon, VEHICLE_CONTROL_DRIVE)
-
+	return TRUE
+	
 /obj/vehicle/sealed/car/clowncar/Destroy()
   playsound(src, 'sound/vehicles/clowncar_fart.ogg', 100)
   return ..()

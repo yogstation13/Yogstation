@@ -128,8 +128,8 @@
 	else
 		..()
 
-/mob/living/simple_animal/bot/floorbot/emag_act(mob/user)
-	..()
+/mob/living/simple_animal/bot/floorbot/emag_act(mob/user, obj/item/card/emag/emag_card)
+	. = ..()
 	if(emagged == 2)
 		if(user)
 			to_chat(user, span_danger("[src] buzzes and beeps."))
@@ -242,12 +242,11 @@
 //				toggle_magnet()
 				mode = BOT_REPAIRING
 				if(isplatingturf(F))
-//					F.attempt_lattice_replacement()
-					repair(F)
+					F.attempt_lattice_replacement()
 				else
 					F.ScrapeAway(flags = CHANGETURF_INHERIT_AIR) //bed for scraping
 				audible_message(span_danger("[src] makes an excited booping sound."))
-//				addtimer(CALLBACK(src, PROC_REF(go_idle)), 0.5 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(go_idle)), 0.5 SECONDS)
 			path = list()
 			return
 		if(!length(path))
@@ -266,6 +265,15 @@
 			target = null
 			mode = BOT_IDLE
 			return
+
+
+
+	oldloc = loc
+
+/mob/living/simple_animal/bot/floorbot/proc/go_idle()
+	anchored = FALSE
+	mode = BOT_IDLE
+	target = null
 
 /mob/living/simple_animal/bot/floorbot/proc/is_hull_breach(turf/t) //Ignore space tiles not considered part of a structure, also ignores shuttle docking areas.
 	var/area/t_area = get_area(t)
@@ -324,9 +332,9 @@
 		sleep(5 SECONDS)
 		if(mode == BOT_REPAIRING && src.loc == target_turf)
 			if(autotile) //Build the floor and include a tile.
-				target_turf.PlaceOnTop(/turf/open/floor/plasteel, flags = CHANGETURF_INHERIT_AIR)
+				target_turf.place_on_top(/turf/open/floor/plasteel, flags = CHANGETURF_INHERIT_AIR)
 			else //Build a hull plating without a floor tile.
-				target_turf.PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+				target_turf.place_on_top(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 
 	else
 		var/turf/open/floor/F = target_turf
@@ -340,7 +348,7 @@
 			if(mode == BOT_REPAIRING && F && src.loc == F)
 				F.broken = FALSE
 				F.burnt = FALSE
-				F.PlaceOnTop(/turf/open/floor/plasteel, flags = CHANGETURF_INHERIT_AIR)
+				F.place_on_top(/turf/open/floor/plasteel, flags = CHANGETURF_INHERIT_AIR)
 
 		if(replacetiles && F.type != initial(tiletype.turf_type) && specialtiles && !isplatingturf(F))
 			anchored = TRUE
@@ -351,7 +359,7 @@
 			if(mode == BOT_REPAIRING && F && src.loc == F)
 				F.broken = FALSE
 				F.burnt = FALSE
-				F.PlaceOnTop(initial(tiletype.turf_type), flags = CHANGETURF_INHERIT_AIR)
+				F.place_on_top(initial(tiletype.turf_type), flags = CHANGETURF_INHERIT_AIR)
 				specialtiles -= 1
 				if(specialtiles == 0)
 					speak("Requesting refill of custom floortiles to continue replacing.")

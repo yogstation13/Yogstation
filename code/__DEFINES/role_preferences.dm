@@ -41,7 +41,6 @@
 #define ROLE_LAVALAND			"Lavaland"
 #define ROLE_INTERNAL_AFFAIRS	"Internal Affairs Agent"
 #define ROLE_FUGITIVE           "Fugitive"
-#define ROLE_SHADOWLING 		"Shadowling" // Yogs
 #define ROLE_VAMPIRE			"Vampire" // Yogs
 #define ROLE_GANG				"gangster" // Yogs
 #define ROLE_DARKSPAWN			"darkspawn" // Yogs
@@ -91,7 +90,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_OBSESSED = /datum/antagonist/obsessed,
 	ROLE_INTERNAL_AFFAIRS = /datum/antagonist/traitor/internal_affairs,
 	ROLE_FUGITIVE = /datum/antagonist/fugitive,
-	ROLE_SHADOWLING = /datum/antagonist/shadowling, // Yogs
 	ROLE_VAMPIRE = /datum/antagonist/vampire, // Yogs
 	ROLE_GANG = /datum/antagonist/gang, // Yogs
 	ROLE_DARKSPAWN = /datum/antagonist/darkspawn, // Yogs

@@ -68,15 +68,13 @@
 	regenerate_icons()
 	return src
 
-/mob/living/carbon/human/AIize(transfer_after = TRUE, client/preference_source)
-	if (notransform)
+/mob/living/carbon/human/AIize(client/preference_source, move = TRUE)
+	if(notransform)
 		return
-	for(var/t in bodyparts)
-		qdel(t)
 
 	return ..()
 
-/mob/living/carbon/AIize(transfer_after = TRUE, client/preference_source)
+/mob/living/carbon/AIize(client/preference_source, move = TRUE)
 	if (notransform)
 		return
 	notransform = TRUE
@@ -85,26 +83,23 @@
 		dropItemToGround(W)
 	regenerate_icons()
 	icon = null
-	invisibility = INVISIBILITY_MAXIMUM
+	SetInvisibility(INVISIBILITY_MAXIMUM)
 	return ..()
 
-/mob/proc/AIize(transfer_after = TRUE, client/preference_source)
-	var/valid_core = FALSE
+/mob/proc/AIize(client/preference_source, move = TRUE)
+	var/list/turf/core_loc = list()
 	for(var/obj/machinery/ai/data_core/core in GLOB.data_cores)
 		if(core.valid_data_core())
-			valid_core = TRUE
-			break
-	if(!valid_core)
+			core_loc |= core.loc
+	if(!length(core_loc))
 		message_admins("No valid data core for [src]. Yell at a mapper! The AI will die.")
 
 	if(client)
 		stop_sound_channel(CHANNEL_LOBBYMUSIC)
 
-	if(!transfer_after)
-		mind.active = FALSE
+	var/mob/living/silicon/ai/our_AI = new /mob/living/silicon/ai(pick(core_loc), null, src)
 
-	. = new /mob/living/silicon/ai(loc, null, src)
-
+	. = our_AI
 
 	if(preference_source)
 		apply_pref_name(/datum/preference/name/ai, preference_source)
@@ -233,8 +228,8 @@
 	. = new_slime
 	qdel(src)
 
-/mob/proc/become_overmind(starting_points = 60, pointmodifier = 1)
-	var/mob/camera/blob/B = new /mob/camera/blob(get_turf(src), starting_points, pointmodifier)
+/mob/proc/become_overmind(starting_points = 60, pointmodifier = 1, announcement_delay = 6000)
+	var/mob/camera/blob/B = new /mob/camera/blob(get_turf(src), starting_points, pointmodifier, announcement_delay)
 	B.key = key
 	. = B
 	qdel(src)

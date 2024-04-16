@@ -50,7 +50,7 @@
 	var/max_hardware_size = 0
 	/// Amount of steel sheets refunded when disassembling an empty frame of this computer.
 	var/steel_sheet_cost = 5
-	/// What set of icons should be used for program overlays.
+	/// What set of icons should be used for program overlays. curently unused
 	var/overlay_skin = null
 
 	integrity_failure = 50
@@ -99,7 +99,7 @@
 	idle_threads = list()
 	install_starting_components()
 	install_starting_files()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/item/modular_computer/Destroy()
 	kill_program(forced = TRUE)
@@ -156,7 +156,16 @@
 	if(user.canUseTopic(src, BE_CLOSE))
 		var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
 		var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
-		return (card_slot2?.try_eject(user) || card_slot?.try_eject(user)) //Try the secondary one first.
+		var/obj/item/computer_hardware/ai_slot/ai_slot = all_components[MC_AI]
+		if(ai_slot)
+			ai_slot.try_eject(user)
+		if(card_slot2)
+			var/obj/item/card/id/target_id_card = card_slot2.stored_card
+			if(!target_id_card)
+				return card_slot?.try_eject(user)
+			GLOB.data_core.manifest_modify(target_id_card.registered_name, target_id_card.assignment)
+			return card_slot2.try_eject(user)
+		return card_slot?.try_eject(user)
 
 
 // Gets IDs/access levels from card slot. Would be useful when/if PDAs would become modular PCs.
@@ -169,7 +178,10 @@
 /obj/item/modular_computer/RemoveID()
 	var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
 	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
-	return (card_slot2?.try_eject() || card_slot?.try_eject()) //Try the secondary one first.
+	if(card_slot2?.try_eject() || card_slot?.try_eject()) //Try the secondary one first.
+		update_appearance(UPDATE_ICON)
+		return TRUE
+	return FALSE
 
 /obj/item/modular_computer/InsertID(obj/item/inserting_item)
 	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
@@ -183,6 +195,7 @@
 		return FALSE
 
 	if((card_slot?.try_insert(inserting_id)) || (card_slot2?.try_insert(inserting_id)))
+		update_appearance(UPDATE_ICON)
 		return TRUE
 	//to_chat(user, "<span class='warning'>This computer doesn't have an open card slot.</span>")
 	return FALSE
@@ -235,7 +248,7 @@
 		if(response == "Yes")
 			turn_on(user)
 
-/obj/item/modular_computer/emag_act(mob/user)
+/obj/item/modular_computer/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!enabled)
 		to_chat(user, "<span class='warning'>You'd need to turn the [src] on first.</span>")
 		return FALSE
@@ -255,50 +268,47 @@
 
 /obj/item/modular_computer/examine(mob/user)
 	. = ..()
-	if(obj_integrity <= integrity_failure)
+	if(atom_integrity <= integrity_failure)
 		. += span_danger("It is heavily damaged!")
-	else if(obj_integrity < max_integrity)
+	else if(atom_integrity < max_integrity)
 		. += span_warning("It is damaged.")
 
 	. += get_modular_computer_parts_examine(user)
 
 /obj/item/modular_computer/update_icon(updates=ALL)
-	. = ..()
 	if(!physical)
 		return
+	return ..()
 
-	SSvis_overlays.remove_vis_overlay(physical, physical.managed_vis_overlays)
-	var/program_overlay = ""
-	var/is_broken = obj_integrity <= integrity_failure
-	if(overlay_skin)
-		program_overlay = "[overlay_skin]-"
-	if(!enabled)
-		if(use_power() && !isnull(icon_state_screensaver))
-			program_overlay += icon_state_screensaver
-		else
-			icon_state = icon_state_unpowered
-	else
-		icon_state = icon_state_powered
-		if(is_broken)
-			program_overlay += "bsod"
-		else
-			if(active_program)
-				program_overlay += active_program.program_icon_state ? "[active_program.program_icon_state]" : "[icon_state_menu]"
-			else
-				program_overlay += icon_state_menu
+/obj/item/modular_computer/update_icon_state()
+	if(!icon_state_powered || !icon_state_unpowered) //no valid icon, don't update.
+		return ..()
+	icon_state = enabled ? icon_state_powered : icon_state_unpowered
+	return ..()
 
-	SSvis_overlays.add_vis_overlay(physical, physical.icon, program_overlay, physical.layer, physical.plane, physical.dir)
-	SSvis_overlays.add_vis_overlay(physical, physical.icon, program_overlay, physical.layer, EMISSIVE_PLANE, physical.dir)
-	if(is_broken)
-		SSvis_overlays.add_vis_overlay(physical, physical.icon, "broken", physical.layer, physical.plane, physical.dir)
+/obj/item/modular_computer/update_overlays()
+	. = ..()
+	var/init_icon = initial(icon)
+	if(!init_icon)
+		return
+
+//	if(overlay_skin)
+//		program_overlay = "[overlay_skin]-"
+	if(!enabled && use_power() && !isnull(icon_state_screensaver))
+		. += mutable_appearance(init_icon, icon_state_screensaver)
+	if(enabled)
+		. += active_program ? mutable_appearance(init_icon, active_program.program_icon_state) : mutable_appearance(init_icon, icon_state_menu)
+	if(atom_integrity <= integrity_failure)
+		. += mutable_appearance(init_icon, "bsod")
+		. += mutable_appearance(init_icon, "broken")
 
 /obj/item/modular_computer/equipped()
 	. = ..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/item/modular_computer/dropped()
 	. = ..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 
 /obj/item/modular_computer/proc/update_label()
@@ -321,7 +331,7 @@
 
 /obj/item/modular_computer/proc/turn_on(mob/user)
 	var/issynth = issilicon(user) // Robots and AIs get different activation messages.
-	if(obj_integrity <= integrity_failure)
+	if(atom_integrity <= integrity_failure)
 		if(issynth)
 			to_chat(user, span_warning("You send an activation signal to \the [src], but it responds with an error code. It must be damaged."))
 		else
@@ -339,7 +349,7 @@
 		else
 			to_chat(user, span_notice("You press the power button and start up \the [src]."))
 		enabled = TRUE
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		play_computer_sound(startup_sound, get_clamped_volume(), FALSE)
 		ui_interact(user)
 	else // Unpowered
@@ -354,7 +364,7 @@
 		last_power_usage = 0
 		return FALSE
 
-	if(obj_integrity <= integrity_failure)
+	if(atom_integrity <= integrity_failure)
 		shutdown_computer()
 		return FALSE
 
@@ -481,7 +491,7 @@
 	var/mob/user = usr
 	if(user && istype(user))
 		ui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 // Returns 0 for No Signal, 1 for Low Signal and 2 for Good Signal. 3 is for wired connection (always-on)
 /obj/item/modular_computer/proc/get_ntnet_status(specific_action = 0)
@@ -497,7 +507,7 @@
 	var/obj/item/computer_hardware/network_card/network_card = all_components[MC_NET]
 	return SSnetworks.station_network.add_log(text, network_card)
 
-/obj/item/modular_computer/proc/shutdown_computer(loud = 1)
+/obj/item/modular_computer/proc/shutdown_computer(loud = TRUE)
 	kill_program(forced = TRUE)
 	for(var/datum/computer_file/program/P in idle_threads)
 		P.kill_program(forced = TRUE)
@@ -505,8 +515,8 @@
 	if(loud)
 		physical.visible_message(span_notice("\The [src] shuts down."))
 	enabled = FALSE
-	update_appearance(UPDATE_ICON)
 	play_computer_sound(shutdown_sound, get_clamped_volume(), FALSE)
+	update_appearance()
 
 /**
   * Toggles the computer's flashlight, if it has one.
@@ -518,7 +528,7 @@
 	if(!has_light)
 		return FALSE
 	set_light_on(!light_on)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	return TRUE
 
 /**
@@ -585,7 +595,7 @@
 		return
 
 	if(W.tool_behaviour == TOOL_WELDER)
-		if(obj_integrity == max_integrity)
+		if(atom_integrity == max_integrity)
 			to_chat(user, span_warning("\The [src] does not require repairs."))
 			return
 
@@ -594,11 +604,11 @@
 
 		to_chat(user, span_notice("You begin repairing damage to \the [src]..."))
 		if(W.use_tool(src, user, 20, volume=50, amount=1))
-			obj_integrity = max_integrity
+			update_integrity(max_integrity)
 			to_chat(user, span_notice("You repair \the [src]."))
 		return
 
-	..()
+	return ..()
 
 // Used by processor to relay qdel() to machinery type.
 /obj/item/modular_computer/proc/relay_qdel()
@@ -619,24 +629,24 @@
 		if(istype(new_part, /obj/item/computer_hardware))
 			var/result = install_component(new_part)
 			if(result == FALSE)
-				CRASH("[src] failed to install starting component for an unknown reason")
+				CRASH("[src] failed to install starting component for an unknown reason.")
 		else if(istype(new_part, /obj/item/stock_parts/cell/computer))
 			var/new_cell = new /obj/item/computer_hardware/battery(src, part)
 			qdel(new_part)
 			var/result = install_component(new_cell)
 			if(result == FALSE)
-				CRASH("[src] failed to install starting cell for an unknown reason")
+				CRASH("[src] failed to install starting cell for an unknown reason.")
 
 /obj/item/modular_computer/proc/install_starting_files()
 	var/obj/item/computer_hardware/hard_drive/hard_drive = all_components[MC_HDD]
 	if(!istype(hard_drive) || starting_files.len < 1)
 		if(!starting_files.len < 1)
-			CRASH("[src] failed to install files due to not having a hard drive even though it has starting files")
+			CRASH("[src] failed to install files due to not having a hard drive even though it has starting files.")
 		return
 	for(var/datum/computer_file/file in starting_files)
 		var/result = hard_drive.store_file(file)
 		if(result == FALSE)
-			CRASH("[src] failed to install starting files for an unknown reason")
+			CRASH("[src] failed to install starting files for an unknown reason.")
 		if(istype(result, initial_program) && istype(result, /datum/computer_file/program))
 			var/datum/computer_file/program/program = result
 			if(program.requires_ntnet && program.network_destination)
@@ -646,6 +656,17 @@
 			program.alert_pending = FALSE
 			enabled = TRUE
 
+/obj/item/modular_computer/pickup(mob/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(parent_moved))
+
+/obj/item/modular_computer/dropped(mob/user)
+	. = ..()
+	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+
+/obj/item/modular_computer/proc/parent_moved()
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED)
+
 /// Sets visible messages to also send to holder because coders didn't know it didn't do this
 /obj/item/modular_computer/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags)
 	. = ..()
@@ -654,3 +675,4 @@
 
 /obj/item/modular_computer/proc/uplink_check(mob/living/M, code)
 	return SEND_SIGNAL(src, COMSIG_NTOS_CHANGE_RINGTONE, M, code) & COMPONENT_STOP_RINGTONE_CHANGE
+

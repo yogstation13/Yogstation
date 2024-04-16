@@ -8,14 +8,13 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of personnel"
-	selection_color = "#dddddd"
 
 	outfit = /datum/outfit/job/curator
 
 	alt_titles = list("Librarian", "Journalist", "Archivist", "Cartographer", "Space Archaeologist")
 
 	added_access = list()
-	base_access = list(ACCESS_LIBRARY, ACCESS_CONSTRUCTION, ACCESS_MINING_STATION)
+	base_access = list(ACCESS_LIBRARY, ACCESS_CONSTRUCTION, ACCESS_MINING_STATION, ACCESS_SERVHALL)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CIV
 	mind_traits = list(TRAIT_BLOODSUCKER_HUNTER)
@@ -36,6 +35,11 @@
 	departments_list = list(
 		/datum/job_department/service,
 	)
+	
+	minimal_lightup_areas = list(
+		/area/library,
+		/area/construction/mining/aux_base
+	)
 
 	smells_like = "musty paper"
 
@@ -43,7 +47,7 @@
 	name = "Curator"
 	jobtype = /datum/job/curator
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/fountainpen
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/fountainpen/curator
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/curator

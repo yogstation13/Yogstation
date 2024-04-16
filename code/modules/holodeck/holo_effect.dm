@@ -61,7 +61,7 @@
 		var/datum/effect_system/spark_spread/s = new
 		s.set_up(3, 1, T)
 		s.start()
-		T.temperature = 5000
+		T.set_temperature(5000)
 		T.hotspot_expose(50000,50000,1)
 
 
@@ -78,6 +78,7 @@
 	// these vars are not really standardized but all would theoretically create stuff on death
 	for(var/v in list("butcher_results","corpse","weapon1","weapon2","blood_volume") & mob.vars)
 		mob.vars[v] = null
+	mob.flags_1 |= HOLOGRAM_1
 	return mob
 
 /obj/effect/holodeck_effect/mobspawner/deactivate(obj/machinery/computer/holodeck/HC)

@@ -93,7 +93,7 @@ Slimecrossing Items
 		brute_loss = M.bruteloss
 	else if(isobj(parent))
 		var/obj/O = parent
-		integrity = O.obj_integrity
+		integrity = O.get_integrity()
 	addtimer(CALLBACK(src, PROC_REF(rewind)), DEJAVU_REWIND_INTERVAL)
 
 /datum/component/dejavu/proc/rewind()
@@ -116,7 +116,7 @@ Slimecrossing Items
 		M.updatehealth()
 	else if(isobj(parent))
 		var/obj/O = parent
-		O.obj_integrity = integrity
+		O.update_integrity(integrity)
 
 	//comes after healing so new limbs comically drop to the floor
 	if(!isnull(x) && istype(parent, /atom/movable))
@@ -207,7 +207,7 @@ Slimecrossing Items
 	desc = "A mass of solidified slime gel - completely impenetrable, but it's melting away!"
 	icon = 'icons/obj/slimecrossing.dmi'
 	icon_state = "slimebarrier_thick"
-	CanAtmosPass = ATMOS_PASS_NO
+	can_atmos_pass = ATMOS_PASS_NO
 	opacity = TRUE
 	initial_duration = 10 SECONDS
 

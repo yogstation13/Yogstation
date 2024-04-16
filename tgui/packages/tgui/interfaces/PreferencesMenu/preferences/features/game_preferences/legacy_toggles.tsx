@@ -133,8 +133,8 @@ export const sound_midi: FeatureToggle = {
   component: CheckboxInput,
 };
 
-export const sound_prayers: FeatureToggle = {
-  name: "Enable prayer sound",
+export const sound_prayer_fax: FeatureToggle = {
+  name: "Enable prayer/fax sound",
   category: "ADMIN",
   component: CheckboxInput,
 };

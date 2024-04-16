@@ -83,7 +83,7 @@
 	else if(get_ammo())
 		drawing = TRUE
 		update_slowdown()
-		if (!do_after(user, draw_time, src, TRUE, stayStill = !move_drawing))
+		if(!do_after(user, draw_time, src, timed_action_flags = (move_drawing ? IGNORE_USER_LOC_CHANGE|IGNORE_HELD_ITEM : IGNORE_HELD_ITEM)))
 			drawing = FALSE
 			update_slowdown()
 			return TRUE
@@ -399,7 +399,7 @@
 		return
 
 	var/mob/holder = loc
-	if(istype(holder) && holder.anti_magic_check(TRUE, FALSE, FALSE, 0))
+	if(istype(holder) && holder.can_cast_magic())
 		to_chat(holder, span_notice("You feel [src] tugging on you."))
 		return
 

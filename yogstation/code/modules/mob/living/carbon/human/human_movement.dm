@@ -1,12 +1,17 @@
-/mob/living/carbon/human/onTransitZ(old_z,new_z)
+/mob/living/carbon/human/on_changed_z_level(old_z,new_z)
 	.=..()
 	if(is_mining_level(new_z) || is_mining_level(old_z))
 		update_move_intent_slowdown()
 		update_movespeed()
 
 /mob/living/carbon/human/update_move_intent_slowdown()
-	var/turf/T = get_turf(src)
-	if(!T || !is_mining_level(T.z)) // If we can't get the turf, assume it's not on mining.
+	var/turf/player_turf = get_turf(src)
+
+	if(!player_turf || ! is_mining_level(player_turf.z)) // If we can't get the turf, assume it's not on mining.
+		return ..()
+
+	var/area/player_area = get_area(src)
+	if(!player_area.mining_speed)
 		return ..()
 
 	var/mod = 0

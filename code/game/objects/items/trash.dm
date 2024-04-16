@@ -46,7 +46,7 @@
 
 /obj/item/trash/plate
 	name = "plate"
-	desc = "a relic from a forgotten time...  I miss eating off of plates..."
+	desc = "A relic from a forgotten time... I miss eating off of plates..."
 	icon_state = "plate"
 	resistance_flags = NONE
 
@@ -97,3 +97,8 @@
 	name = "top kakes"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "topkakesded"
+
+/obj/item/trash/vermin
+	name = "vermin bites"
+	icon = 'icons/obj/janitor.dmi'
+	icon_state = "verminded"

@@ -117,8 +117,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-
-	damage += 50/severity
+	applyOrganDamage(5 * severity)
 
 /obj/item/organ/liver/cybernetic/upgraded/ipc
 	name = "substance processor"
@@ -129,10 +128,10 @@
 	toxTolerance = -1
 	toxLethality = 0
 	status = ORGAN_ROBOTIC
-	process_flags = SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /obj/item/organ/liver/cybernetic/upgraded/ipc/emp_act(severity)
 	if(prob(10))
 		return
 	to_chat(owner, "<span class='warning'>Alert: Your Substance Processor has been damaged. An internal chemical leak is affecting performance.</span>")
-	owner.adjustToxLoss(10/severity)
+	owner.adjustToxLoss(severity)

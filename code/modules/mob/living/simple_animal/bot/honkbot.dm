@@ -45,6 +45,11 @@
 	access_card.access += J.get_access()
 	prev_access = access_card.access
 
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /mob/living/simple_animal/bot/honkbot/proc/spam_flag_false() //used for addtimer
 	spam_flag = FALSE
 
@@ -125,8 +130,8 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 		addtimer(CALLBACK(src, PROC_REF(react_buzz)), 5)
 	..()
 
-/mob/living/simple_animal/bot/honkbot/emag_act(mob/user)
-	..()
+/mob/living/simple_animal/bot/honkbot/emag_act(mob/user, obj/item/card/emag/emag_card)
+	. = ..()
 	if(emagged == 2)
 		if(user)
 			user << span_danger("You short out [src]'s sound control system. It gives out an evil laugh!!")
@@ -135,8 +140,8 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 		playsound(src, 'sound/machines/honkbot_evil_laugh.ogg', 75, 1, -1) // evil laughter
 		update_appearance(UPDATE_ICON)
 
-/mob/living/simple_animal/bot/honkbot/bullet_act(obj/item/projectile/Proj)
-	if((istype(Proj,/obj/item/projectile/beam)) || (istype(Proj,/obj/item/projectile/bullet) && (Proj.damage_type == BURN))||(Proj.damage_type == BRUTE) && (!Proj.nodamage && Proj.damage < health && ishuman(Proj.firer)))
+/mob/living/simple_animal/bot/honkbot/bullet_act(obj/projectile/Proj)
+	if((istype(Proj,/obj/projectile/beam)) || (istype(Proj,/obj/projectile/bullet) && (Proj.damage_type == BURN))||(Proj.damage_type == BRUTE) && (!Proj.nodamage && Proj.damage < health && ishuman(Proj.firer)))
 		retaliate(Proj.firer)
 	return ..()
 
@@ -343,7 +348,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 		target = user
 		mode = BOT_HUNT
 
-/mob/living/simple_animal/bot/honkbot/Crossed(atom/movable/AM)
+/mob/living/simple_animal/bot/honkbot/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(ismob(AM) && (on)) //only if its online
 		if(prob(30)) //you're far more likely to trip on a honkbot
 			var/mob/living/carbon/C = AM
@@ -362,7 +367,6 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 				speak("Honk!")
 			sensor_blink()
 			return
-	..()
 
 /obj/machinery/bot_core/honkbot
 	req_one_access = list(ACCESS_THEATRE, ACCESS_ROBO_CONTROL)

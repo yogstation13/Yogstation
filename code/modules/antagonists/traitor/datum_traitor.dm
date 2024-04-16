@@ -17,6 +17,7 @@
 	var/traitor_kind = TRAITOR_HUMAN //Set on initial assignment
 	var/malf = FALSE //whether or not the AI is malf (in case it's a traitor)
 	var/datum/contractor_hub/contractor_hub
+	var/obj/item/uplink_holder
 	can_hijack = HIJACK_HIJACKER
 
 /datum/antagonist/traitor/on_gain()
@@ -61,6 +62,9 @@
 	if(traitor_kind == TRAITOR_AI && owner.current && isAI(owner.current))
 		var/mob/living/silicon/ai/A = owner.current
 		A.set_zeroth_law("")
+		for(var/datum/action/innate/ai/ranged/cameragun/ai_action in A.actions)
+			if(ai_action.from_traitor)
+				ai_action.Remove(A)
 		if(malf)
 			remove_verb(A, /mob/living/silicon/ai/proc/choose_modules)
 			A.malf_picker.remove_malf_verbs(A)
@@ -69,7 +73,7 @@
 	if(uplink_holder)
 		var/datum/component/uplink/uplink = uplink_holder.GetComponent(/datum/component/uplink)
 		if(uplink)//remove uplink so they can't keep using it if admin abuse happens
-			uplink.RemoveComponent()
+			qdel(uplink)
 	UnregisterSignal(owner.current, COMSIG_MOVABLE_HEAR)
 	SSticker.mode.traitors -= owner
 	if(!silent && owner.current)
@@ -114,6 +118,8 @@
 	for(var/i = objective_count, i < toa, i++)
 		forge_single_human_objective()
 
+	forge_single_human_optional()
+
 	if(is_hijacker && objective_count <= toa) //Don't assign hijack if it would exceed the number of objectives set in config.traitor_objectives_amount
 		//Start of Yogstation change: adds /datum/objective/sole_survivor
 		if(!(locate(/datum/objective/hijack) in objectives) && !(locate(/datum/objective/hijack/sole_survivor) in objectives))
@@ -156,10 +162,12 @@
 			if(minorObjective)
 				add_objective(minorObjective)
 		if(!(locate(/datum/objective/escape) in objectives))
-			var/datum/objective/escape/escape_objective = new
-			escape_objective.owner = owner
-			add_objective(escape_objective)
-			return
+			if(prob(70)) //doesn't always need to escape
+				var/datum/objective/escape/escape_objective = new
+				escape_objective.owner = owner
+				add_objective(escape_objective)
+			else
+				forge_single_human_objective()
 
 /datum/antagonist/traitor/proc/forge_ai_objectives()
 	var/objective_count = 0
@@ -177,6 +185,12 @@
 	exist_objective.owner = owner
 	add_objective(exist_objective)
 
+/datum/antagonist/traitor/proc/forge_single_human_optional() //adds this for if/when soft-tracked objectives are added, so they can be a 50/50
+	var/datum/objective/gimmick/gimmick_objective = new
+	gimmick_objective.owner = owner
+	gimmick_objective.find_target()
+	add_objective(gimmick_objective) //Does not count towards the number of objectives, to allow hijacking as well
+
 /datum/antagonist/traitor/proc/forge_single_human_objective() //Returns how many objectives are added
 	.=1
 	if(prob(50))
@@ -186,24 +200,14 @@
 			destroy_objective.owner = owner
 			destroy_objective.find_target()
 			add_objective(destroy_objective)
-		else if(prob(30))
-			var/datum/objective/maroon/maroon_objective = new
-			maroon_objective.owner = owner
-			maroon_objective.find_target()
-			add_objective(maroon_objective)
 		else
-			var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
-			var/datum/objective/assassinate/kill_objective = new N
+			var/N = pick(/datum/objective/assassinate/cloned, /datum/objective/assassinate/once, /datum/objective/assassinate, /datum/objective/maroon, /datum/objective/maroon_organ)
+			var/datum/objective/kill_objective = new N
 			kill_objective.owner = owner
 			kill_objective.find_target()
 			add_objective(kill_objective)
 	else
-		if(prob(15) && !(locate(/datum/objective/download) in objectives) && !(owner.assigned_role in list("Research Director", "Scientist", "Roboticist")))
-			var/datum/objective/download/download_objective = new
-			download_objective.owner = owner
-			download_objective.gen_amount_goal()
-			add_objective(download_objective)
-		else if(prob(50))
+		if(prob(50))
 			var/datum/objective/steal/steal_objective = new
 			steal_objective.owner = owner
 			steal_objective.find_target()
@@ -257,6 +261,16 @@
 			add_law_zero()
 			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/malf.ogg', 100, FALSE, pressure_affected = FALSE)
 			owner.current.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MALF)
+
+			var/has_action = FALSE
+			for(var/datum/action/innate/ai/ranged/cameragun/ai_action in owner.current.actions)
+				has_action = TRUE
+				break
+			if(!has_action)
+				var/datum/action/innate/ai/ranged/cameragun/ability = new
+				ability.from_traitor = TRUE
+				ability.Grant(owner.current)
+
 		if(TRAITOR_HUMAN)
 			if(should_equip)
 				equip(silent)
@@ -357,7 +371,9 @@
 	if(objectives.len)//If the traitor had no objectives, don't need to process this.
 		var/count = 1
 		for(var/datum/objective/objective in objectives)
-			if(objective.check_completion())
+			if(objective.optional)
+				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [span_greentext("Optional.")]"
+			else if(objective.check_completion())
 				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [span_greentext("Success!")]"
 			else
 				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [span_redtext("Fail.")]"

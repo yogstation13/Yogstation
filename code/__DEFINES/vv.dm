@@ -65,11 +65,14 @@
 #define VV_HK_CALLPROC "proc_call"
 #define VV_HK_MARK "mark"
 #define VV_HK_ADDCOMPONENT "addcomponent"
+#define VV_HK_REMOVECOMPONENT "removecomponent"
+#define VV_HK_MASS_REMOVECOMPONENT "massremovecomponent"
 #define VV_HK_MODIFY_TRAITS "modtraits"
 #define VV_HK_VIEW_REFERENCES "viewreferences"
 #define VV_HK_WEAKREF_RESOLVE "weakref_resolve"
 // /atom
 #define VV_HK_MODIFY_TRANSFORM "atom_transform"
+#define VV_HK_MODIFY_GREYSCALE "modify_greyscale"
 #define VV_HK_ADD_REAGENT "addreagent"
 #define VV_HK_TRIGGER_EMP "empulse"
 #define VV_HK_TRIGGER_EXPLOSION "explode"
@@ -80,6 +83,13 @@
 #define VV_HK_EDIT_PARTICLES "edit_particles"
 #define VV_HK_ADD_EMITTER "add_emitter"
 #define VV_HK_REMOVE_EMITTER "remove_emitter"
+
+// /datum/gas_mixture
+#define VV_HK_SET_MOLES "set_moles"
+#define VV_HK_EMPTY "empty"
+#define VV_HK_SET_TEMPERATURE "set_temp"
+#define VV_HK_PARSE_GASSTRING "parse_gasstring"
+#define VV_HK_SET_VOLUME "set_volume"
 
 // /obj
 #define VV_HK_OSAY "osay"
@@ -112,6 +122,7 @@
 
 // misc
 #define VV_HK_SPACEVINE_PURGE "spacevine_purge"
+#define VV_HK_SPAWN_ITEM_INSIDE "spawn_item_inside"
 
 // /mob/living/carbon
 #define VV_HK_MAKE_AI "aiify"

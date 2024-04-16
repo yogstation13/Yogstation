@@ -48,7 +48,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	health = 750
 	maxHealth = 750 //""""low-ish"""" HP because it's a passive boss, and the swarm itself is the real foe
 	mob_biotypes = MOB_ROBOTIC
-	internal_type = /obj/item/gps/internal/swarmer_beacon
+	gps_name = "Hungry Signal"
 	faction = list("mining", "boss", "swarmer")
 	weather_immunities = list(WEATHER_LAVA, WEATHER_ASH)
 	stop_automated_movement = TRUE
@@ -253,7 +253,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 /mob/living/simple_animal/hostile/swarmer/ai/ranged_combat
 	icon_state = "swarmer_ranged"
 	icon_living = "swarmer_ranged"
-	projectiletype = /obj/item/projectile/beam/laser
+	projectiletype = /obj/projectile/beam/laser
 	projectilesound = 'sound/weapons/laser.ogg'
 	check_friendly_fire = TRUE //you're supposed to protect the resource swarmers, you poop
 	retreat_distance = 3
@@ -285,7 +285,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 		else
 			var/mob/living/L = target
 			L.attack_animal(src)
-			L.electrocute_act(10, src, safety = TRUE) //safety = TRUE means we don't check gloves... Ok?
+			L.electrocute_act(10, src, zone = null) //zone=null means we don't only check gloves... Ok?
 		return TRUE
 	else
 		return ..()

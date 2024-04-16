@@ -18,6 +18,10 @@
 #define HOLODECK_CD 25
 #define HOLODECK_DMG_CD 500
 
+/// typecache for turfs that should be considered ok during floorchecks.
+/// A linked turf being anything not in this typecache will cause the holodeck to perform an emergency shutdown.
+GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf/open/floor/holofloor, /turf/closed)))
+
 /obj/machinery/computer/holodeck
 	name = "holodeck control console"
 	desc = "A computer used to control a nearby holodeck."
@@ -163,19 +167,20 @@
 
 	active_power_usage = 50 + spawned.len * 3 + effects.len * 5
 
-/obj/machinery/computer/holodeck/emag_act(mob/user)
+/obj/machinery/computer/holodeck/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	if(!LAZYLEN(emag_programs))
 		to_chat(user, "[src] does not seem to have a card swipe port. It must be an inferior model.")
-		return
+		return FALSE
 	playsound(src, "sparks", 75, 1)
 	obj_flags |= EMAGGED
 	to_chat(user, span_warning("You vastly increase projector power and override the safety and security protocols."))
 	say("Warning. Automatic shutoff and derezzing protocols have been corrupted. Please call Nanotrasen maintenance and do not use the simulator.")
 	log_game("[key_name(user)] emagged the Holodeck Control Console")
 	nerf(!(obj_flags & EMAGGED))
-
+	return TRUE
+	
 /obj/machinery/computer/holodeck/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
@@ -223,7 +228,7 @@
 
 /obj/machinery/computer/holodeck/proc/floorcheck()
 	for(var/turf/T in linked)
-		if(!T.intact || isspaceturf(T))
+		if(T.underfloor_accessibility >= UNDERFLOOR_INTERACTABLE || isspaceturf(T))
 			return FALSE
 	return TRUE
 
@@ -238,7 +243,7 @@
 	if(!is_operational())
 		A = offline_program
 		force = TRUE
-	if(A.minimum_sec_level > GLOB.security_level && !force && !(obj_flags & EMAGGED))
+	if(A.minimum_sec_level > SSsecurity_level.get_current_level_as_number() && !force && !(obj_flags & EMAGGED))
 		say("ERROR. Program currently unavailiable, the security level is not high enough.")
 		return
 	if(program == A)

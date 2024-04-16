@@ -138,12 +138,12 @@
 			target.adjustBruteLoss(25)
 		return
 	playsound(usr.loc, "sound/weapons/slice.ogg", 50, TRUE)
-	if(!do_mob(usr, target, 2.5 SECONDS))
+	if(!do_after(usr, 2.5 SECONDS, target))
 		return
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		for(var/obj/item/bodypart/bodypart in H.bodyparts)
-			if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)
+			if(bodypart.body_part & (HEAD|CHEST))
 				if(bodypart.dismemberable)
 					bodypart.dismember()
 					qdel(bodypart)
@@ -154,7 +154,7 @@
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		for(var/obj/item/bodypart/bodypart in C.bodyparts)
-			if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)
+			if(!(bodypart.body_part & (HEAD|CHEST)))
 				if(bodypart.dismemberable)
 					bodypart.dismember()
 					qdel(bodypart)

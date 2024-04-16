@@ -58,7 +58,8 @@ field_generator power level display
 	. = ..()
 	fields = list()
 	connected_gens = list()
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
+	ADD_TRAIT(src, TRAIT_EMPPROOF_SELF, "innate_empproof")
+	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
 
 /obj/machinery/field/generator/process()
 	if(active == FG_ONLINE)
@@ -154,8 +155,8 @@ field_generator power level display
 	else
 		..()
 
-/obj/machinery/field/generator/bullet_act(obj/item/projectile/Proj)
-	if(Proj.flag != BULLET)
+/obj/machinery/field/generator/bullet_act(obj/projectile/Proj)
+	if(Proj.armor_flag != BULLET)
 		power = min(power + Proj.damage, field_generator_max_power)
 		check_power_level()
 	. = ..()

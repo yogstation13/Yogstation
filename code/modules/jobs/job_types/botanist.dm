@@ -7,14 +7,13 @@
 	total_positions = 3
 	spawn_positions = 2
 	supervisors = "the head of personnel"
-	selection_color = "#bbe291"
 
 	outfit = /datum/outfit/job/botanist
 
 	alt_titles = list("Ecologist", "Agriculturist", "Botany Greenhorn", "Hydroponicist", "Gardener")
 
 	added_access = list(ACCESS_BAR, ACCESS_KITCHEN)
-	base_access = list(ACCESS_HYDROPONICS, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
+	base_access = list(ACCESS_HYDROPONICS, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM, ACCESS_SERVHALL)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_BOTANIST
@@ -33,13 +32,15 @@
 		/obj/item/reagent_containers/food/snacks/monkeycube/bee = 2
 	)
 
+	minimal_lightup_areas = list(/area/hydroponics, /area/medical/morgue)
+	
 	smells_like = "fertilizer"
 
 /datum/outfit/job/botanist
 	name = "Botanist"
 	jobtype = /datum/job/hydro
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/botanist
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/hydroponics

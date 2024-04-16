@@ -18,6 +18,7 @@ Bonus
 /datum/symptom/visionloss
 
 	name = "Hyphema"
+	icon = "hyphema"
 	desc = "The virus causes inflammation of the retina, leading to eye damage and eventually blindness."
 	stealth = -1
 	resistance = -4
@@ -56,10 +57,10 @@ Bonus
 					to_chat(M, span_warning("Your eyes itch."))
 			if(3, 4)
 				to_chat(M, span_warning("<b>Your eyes burn!</b>"))
-				M.blur_eyes(10)
+				M.adjust_eye_blur(10)
 				eyes.applyOrganDamage(1)
 			else
-				M.blur_eyes(20)
+				M.adjust_eye_blur(20)
 				eyes.applyOrganDamage(5)
 				if(eyes.damage >= 10)
 					M.become_nearsighted(EYE_DAMAGE)

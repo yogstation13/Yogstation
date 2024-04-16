@@ -124,8 +124,8 @@
 	l_pocket = /obj/item/pinpointer/nuke/syndicate
 	id = /obj/item/card/id/syndicate
 	belt = /obj/item/gun/ballistic/automatic/pistol
-	backpack_contents = list(/obj/item/storage/box/syndie=1,\
-		/obj/item/kitchen/knife/combat/survival)
+	box = /obj/item/storage/box/survival/syndie
+	backpack_contents = list(/obj/item/kitchen/knife/combat/survival)
 
 	var/tc = 25
 	var/command_radio = FALSE
@@ -155,6 +155,8 @@
 		var/obj/item/U = new uplink_type(H, H.key, tc)
 		H.equip_to_slot_or_del(U, ITEM_SLOT_BACKPACK)
 
+	var/obj/item/implant/biosig_gorlex/B = new/obj/item/implant/biosig_gorlex(H) // Biosignaller won't trigger if it's put below the explosive implant.
+	B.implant(H)
 	var/obj/item/implant/weapons_auth/W = new/obj/item/implant/weapons_auth(H)
 	W.implant(H)
 	var/obj/item/implant/explosive/E = new/obj/item/implant/explosive(H)
@@ -172,8 +174,7 @@
 	internals_slot = ITEM_SLOT_RPOCKET
 	belt = /obj/item/storage/belt/military
 	r_hand = /obj/item/gun/ballistic/shotgun/bulldog
-	backpack_contents = list(/obj/item/storage/box/syndie=1,\
-		/obj/item/tank/jetpack/oxygen/harness=1,\
+	backpack_contents = list(/obj/item/tank/jetpack/oxygen/harness=1,\
 		/obj/item/gun/ballistic/automatic/pistol=1,\
 		/obj/item/kitchen/knife/combat/survival)
 

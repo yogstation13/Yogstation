@@ -18,21 +18,3 @@
 			return FALSE
 
 	return ..()
-
-/*
-	Adjacency (to anything else):
-	* Must be on a turf
-*/
-/atom/movable/Adjacent(atom/neighbor)
-	if(neighbor == loc)
-		return TRUE
-	var/turf/T = loc
-	if(!istype(T))
-		return FALSE
-	if((islist(locs) && locs.len > 1) && (bound_width != world.icon_size || bound_height != world.icon_size))
-		for(var/turf/place in locs) //this is to handle multi tile objects
-			if(place.Adjacent(neighbor, src, src))
-				return TRUE
-	else if(T.Adjacent(neighbor,target = neighbor, mover = src))
-		return TRUE
-	return FALSE

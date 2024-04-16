@@ -60,7 +60,7 @@
 	color = "#8228A0"
 	toxpwr = 3
 	accelerant_quality = 10
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/toxin/plasma/on_mob_life(mob/living/carbon/C)
 	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
@@ -74,12 +74,6 @@
 	else
 		toxpwr = initial(toxpwr)
 	return ..()
-
-/datum/reagent/toxin/plasma/reaction_obj(obj/O, reac_volume)
-	if((!O) || (!reac_volume))
-		return 0
-	var/temp = holder ? holder.chem_temp : T20C
-	O.atmos_spawn_air("plasma=[reac_volume];TEMP=[temp]")
 
 /datum/reagent/toxin/plasma/reaction_turf(turf/open/T, reac_volume)
 	if(istype(T))
@@ -269,6 +263,9 @@
 		SV.on_chem_effect(src)
 
 /datum/reagent/toxin/plantbgone/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+	if(istype(M, /mob/living/simple_animal/hostile/venus_human_trap))
+		var/mob/living/simple_animal/hostile/venus_human_trap/planty = M
+		planty.weedkiller(reac_volume * 2)
 	if(methods & VAPOR)
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
@@ -302,7 +299,7 @@
 /datum/reagent/toxin/spore/on_mob_life(mob/living/carbon/C)
 	C.damageoverlaytemp = 60
 	C.update_damage_hud()
-	C.blur_eyes(3)
+	C.adjust_eye_blur(3)
 	return ..()
 
 /datum/reagent/toxin/spore_burning
@@ -412,6 +409,13 @@
 	glass_desc = "A drink that is guaranteed to knock you silly."
 	var/list/paralyzeparts = list(TRAIT_PARALYSIS_L_ARM, TRAIT_PARALYSIS_R_ARM, TRAIT_PARALYSIS_R_LEG, TRAIT_PARALYSIS_L_LEG)
 
+/datum/reagent/toxin/staminatoxin/neurotoxin_alien/reaction_mob(mob/living/M, methods, reac_volume, show_message, permeability)
+	. = ..()
+	var/amount = round(max(reac_volume * clamp(permeability, 0, 1), 0.1))
+	if(amount >= 0.5 && !isalien(M))
+		M.reagents.add_reagent(type, amount)
+		M.apply_damage(reac_volume / 2, TOX, null, (1 - permeability) * 100)
+
 /datum/reagent/toxin/staminatoxin/neurotoxin_alien/proc/pickparalyze()
 	var/selected = pick(paralyzeparts)
 	paralyzeparts -= selected
@@ -445,7 +449,7 @@
 	color = "#787878"
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
 	toxpwr = 0
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 	var/radpower = 40
 
 /datum/reagent/toxin/polonium/on_mob_life(mob/living/carbon/M)
@@ -467,7 +471,7 @@
 		switch(pick(1, 2, 3, 4))
 			if(1)
 				to_chat(M, span_danger("You can barely see!"))
-				M.blur_eyes(3)
+				M.adjust_eye_blur(3)
 			if(2)
 				M.emote("cough")
 			if(3)
@@ -797,7 +801,7 @@
 	metabolization_rate = 1.2 * REAGENTS_METABOLISM
 	toxpwr = 0.5
 	taste_description = "spinning"
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/toxin/rotatium/on_mob_life(mob/living/carbon/M)
 	return ..() //dont forget to reenable this
@@ -848,7 +852,7 @@
 	var/acidpwr = 10 //the amount of protection removed from the armour
 	taste_description = "acid"
 	self_consuming = TRUE
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/toxin/acid/reaction_mob(mob/living/carbon/C, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(!istype(C))
@@ -1009,3 +1013,26 @@
 	color = "#67423A" // rgb: 127, 132, 0
 	toxpwr = 0.1
 	taste_description = "mushrooms"
+
+/datum/reagent/toxin/ambusher_toxin
+	name = "Carpenter Toxin"
+	description = "A toxin from an unknown source that attacks the legs' muscles, slowing the victim. Its effects can, however, be nullified by Epinephrine"
+	color = "#2d4816"
+	toxpwr = 0
+	metabolization_rate = 5 * REAGENTS_METABOLISM
+	var/textShown = FALSE //So bubble alert doesn't show repeatedly
+
+/datum/reagent/toxin/ambusher_toxin/on_mob_life(mob/living/L)
+	..()
+	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
+		L.remove_movespeed_modifier(type) //Remove slowdown from toxin if there is any
+		textShown = FALSE
+	else
+		L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=1.5) //Slow them down
+		if(textShown == FALSE)
+			L.balloon_alert(L, "Your legs feel weak!")
+			textShown = TRUE
+
+/datum/reagent/toxin/ambusher_toxin/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	textShown = FALSE

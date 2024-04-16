@@ -10,7 +10,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the captain"
-	selection_color = "#ffeeaa"
 	req_admin_notify = 1
 	minimal_player_age = 7
 	exp_requirements = 1500 //25 hours
@@ -44,6 +43,8 @@
 		/obj/effect/spawner/lootdrop/engineering_tool_alien = 1
 	)
 
+	minimal_lightup_areas = list(/area/crew_quarters/heads/chief, /area/engine/atmos)
+
 	smells_like = "industry leadership"
 
 /datum/outfit/job/ce
@@ -67,7 +68,7 @@
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
-	box = /obj/item/storage/box/engineer
+	box = /obj/item/storage/box/survival/engineer
 	chameleon_extras = /obj/item/stamp/ce
 
 	pda_slot = ITEM_SLOT_LPOCKET

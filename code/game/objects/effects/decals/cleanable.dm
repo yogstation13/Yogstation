@@ -34,6 +34,10 @@
 				diseases_to_add += D
 		if(LAZYLEN(diseases_to_add))
 			AddComponent(/datum/component/infective, diseases_to_add)
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/effect/decal/cleanable/proc/replace_decal(obj/effect/decal/cleanable/C) // Returns true if we should give up in favor of the pre-existing decal
 	if(mergeable_decal)
@@ -52,13 +56,12 @@
 			to_chat(user, span_notice("You start scooping up [src] into [W]..."))
 			var/scoop_time
 			scoop_time = min((W.reagents.maximum_volume - W.reagents.total_volume), src.reagents.total_volume) //1 second per 10 units scooped
-			if(do_mob(user, user, scoop_time))
-				if(src)
-					to_chat(user, span_notice("You scoop up [src] into [W]!"))
-					reagents.trans_to(W, reagents.total_volume, transfered_by = user)
-					if(!reagents.total_volume) //scooped up all of it
-						qdel(src)
-						return
+			if(do_after(user, scoop_time))
+				to_chat(user, span_notice("You scoop up [src] into [W]!"))
+				reagents.trans_to(W, reagents.total_volume, transfered_by = user)
+				if(!reagents.total_volume) //scooped up all of it
+					qdel(src)
+					return
 
 	if(W.is_hot()) //todo: make heating a reagent holder proc
 		if(istype(W, /obj/item/clothing/mask/cigarette))
@@ -84,25 +87,11 @@
 
 //Add "bloodiness" of this blood's type, to the human's shoes
 //This is on /cleanable because fuck this ancient mess
-/obj/effect/decal/cleanable/Crossed(atom/movable/O)
-	..()
-	if(ishuman(O))
-		var/mob/living/carbon/human/H = O
-		if(H.shoes && blood_state && bloodiness && !HAS_TRAIT(H, TRAIT_LIGHT_STEP))
-			var/obj/item/clothing/shoes/S = H.shoes
-			if(!istype(S) || !S.can_be_bloody)
-				return
-			var/add_blood = 0
-			if(bloodiness >= BLOOD_GAIN_PER_STEP)
-				add_blood = BLOOD_GAIN_PER_STEP
-			else
-				add_blood = bloodiness
-			bloodiness -= add_blood
-			S.bloody_shoes[blood_state] = min(MAX_SHOE_BLOODINESS,S.bloody_shoes[blood_state]+add_blood)
-			S.add_blood_DNA(return_blood_DNA())
-			S.blood_state = blood_state
-			update_appearance(UPDATE_ICON)
-			H.update_inv_shoes()
+/obj/effect/decal/cleanable/proc/on_entered(datum/source, atom/movable/AM)
+	SIGNAL_HANDLER
+	if(iscarbon(AM) && blood_state && bloodiness > 40 && !HAS_TRAIT(AM, TRAIT_LIGHT_STEP))
+		SEND_SIGNAL(AM, COMSIG_STEP_ON_BLOOD, src)
+		update_icon()
 
 
 /**

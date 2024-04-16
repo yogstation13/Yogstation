@@ -11,6 +11,7 @@
 	desc = "A relic sledgehammer with charge packs wired to two blast pads on its head. \
 			While wielded in two hands, the user can charge a massive blow that will shatter construction and hurl bodies."
 	force = 4 //It's heavy as hell
+	demolition_mod = 3 // it's a big hammer, what do you expect
 	armour_penetration = 50 //Designed for shattering walls in a single blow, I don't think it cares much about armor
 	throwforce = 18
 	attack_verb = list("attacked", "hit", "struck", "bludgeoned", "bashed", "smashed")
@@ -42,9 +43,13 @@
 	spark_system.attach(src)
 	set_light_on(FALSE)
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = force, \
 		force_wielded = force_wielded, \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
+	)
+	AddComponent(/datum/component/cleave_attack, \
+		arc_size=180, \
+		requires_wielded=TRUE, \
+		cleave_end_callback=CALLBACK(src, PROC_REF(end_swing)), \
 	)
 
 /obj/item/melee/vxtvulhammer/Destroy() //Even though the hammer won't probably be destroyed, Ever™
@@ -69,6 +74,10 @@
 		to_chat(user, span_notice("You flip the switch off as you adjust your grip."))
 		user.visible_message(span_warning("[user] flicks the hammer off!"))
 		charging = FALSE
+
+/obj/item/melee/vxtvulhammer/proc/end_swing(obj/item/weapon, mob/user)
+	if(supercharged)
+		supercharge()
 
 /obj/item/melee/vxtvulhammer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK || !HAS_TRAIT(src, TRAIT_WIELDED)) //Doesn't work against ranged or if it's not wielded
@@ -109,7 +118,7 @@
 		to_chat(user, span_notice("You begin charging the weapon, concentration flowing into it..."))
 		user.visible_message(span_warning("[user] flicks the hammer on, tilting [user.p_their()] head down as if in thought."))
 		spark_system.start() //Generates sparks when you charge
-		if(!do_mob(user, user, ispreternis(user)? 5 SECONDS : 6 SECONDS))
+		if(!do_after(user, ispreternis(user)? 5 SECONDS : 6 SECONDS))
 			if(!charging) //So no duplicate messages
 				return
 			to_chat(user, span_notice("You flip the switch off as you lose your focus."))
@@ -143,46 +152,38 @@
 		K.color = color
 		playsound(loc, 'sound/effects/powerhammerhit.ogg', 80, FALSE) //Mainly this sound
 		playsound(loc, 'sound/effects/explosion3.ogg', 20, TRUE) //Bit of a reverb
-		supercharge() //At start so it doesn't give an unintentional message if you hit yourself
+		if(!HAS_TRAIT(src, TRAIT_CLEAVING)) // wait for the swing to end
+			supercharge() //At start so it doesn't give an unintentional message if you hit yourself
 
-		if(ismachinery(target) && !toy)
-			var/obj/machinery/machine = target
-			machine.take_damage(machine.max_integrity * 2) //Should destroy machines in one hit
-			if(istype(target, /obj/machinery/door))
+		if(ismecha(target) && !toy)
+			user.visible_message(span_danger("The hammer thunders against [target], caving in part of its outer plating!"))
+			target.take_damage(target.max_integrity/3, damtype, MELEE, FALSE, null, armour_penetration)
+
+		else if(target.uses_integrity && !toy)
+			user.visible_message(span_danger("The hammer thunders against [target], demolishing it!"), blind_message=span_hear("You hear thunder."))
+			target.atom_destruction(damtype)
+			if(ismachinery(target))
 				for(var/obj/structure/door_assembly/door in target_turf) //Will destroy airlock assembly left behind, but drop the parts
 					door.take_damage(door.max_integrity * 2)
-			else
 				for(var/obj/structure/frame/base in target_turf) //Will destroy machine or computer frame left behind, but drop the parts
 					base.take_damage(base.max_integrity * 2)
 				for(var/obj/structure/light_construct/light in target_turf) //Also light frames because why not
 					light.take_damage(light.max_integrity * 2)
-			user.visible_message(span_danger("The hammer thunders against the [target.name], demolishing it!"))
-
-		else if(isstructure(target) && !toy)
-			var/obj/structure/struct = target
-			struct.take_damage(struct.max_integrity * 2) //Destroy structures in one hit too
 			if(istype(target, /obj/structure/table))
 				for(var/obj/structure/table_frame/platform in target_turf)
 					platform.take_damage(platform.max_integrity * 2) //Destroys table frames left behind
-			user.visible_message(span_danger("The hammer thunders against the [target.name], destroying it!"))
-
-		else if(iswallturf(target) && !toy)
-			var/turf/closed/wall/fort = target
-			fort.dismantle_wall(1) //Deletes the wall but drop the materials, just like destroying a machine above
-			user.visible_message(span_danger("The hammer thunders against the [target.name], shattering it!"))
-			playsound(loc, 'sound/effects/meteorimpact.ogg', 50, TRUE) //Otherwise there's no sound for hitting the wall, since it's just dismantled
-
-		else if(ismecha(target) && !toy)
-			var/obj/mecha/mech = target
-			mech.take_damage(mech.max_integrity/3) //A third of its max health is dealt as an untyped damage, in addition to the normal damage of the weapon (which has high AP)
-			user.visible_message(span_danger("The hammer thunders as it massively dents the plating of the [target.name]!"))
 
 		else if(isliving(target))
 			var/atom/throw_target = get_edge_target_turf(target, user.dir)
 			var/mob/living/victim = target
 			if(toy)
-				ADD_TRAIT(victim, TRAIT_IMPACTIMMUNE, "Toy Hammer")
-				victim.safe_throw_at(throw_target, rand(1,2), 3, callback = CALLBACK(src, PROC_REF(afterimpact), victim))
+				if(user == target)
+					victim.Paralyze(2 SECONDS)
+					victim.emote("scream")
+					to_chat(victim, span_userdanger("That was stupid."))
+				else
+					ADD_TRAIT(victim, TRAIT_IMPACTIMMUNE, "Toy Hammer")
+					victim.safe_throw_at(throw_target, rand(1,2), 3, callback = CALLBACK(src, PROC_REF(afterimpact), victim))
 			else
 				victim.throw_at(throw_target, 15, 5) //Same distance as maxed out power fist with three extra force
 				victim.Paralyze(2 SECONDS)

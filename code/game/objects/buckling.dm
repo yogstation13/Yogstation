@@ -67,6 +67,13 @@
 		M.buckling = null
 		return FALSE
 
+	// This signal will check if the mob is mounting this atom to ride it. There are 3 possibilities for how this goes
+	// 1. This movable doesn't have a ridable element and can't be ridden, so nothing gets returned, so continue on
+	// 2. There's a ridable element but we failed to mount it for whatever reason (maybe it has no seats left, for example), so we cancel the buckling
+	// 3. There's a ridable element and we were successfully able to mount, so keep it going and continue on with buckling
+	// if(SEND_SIGNAL(src, COMSIG_MOVABLE_PREBUCKLE, M, force, buckle_mob_flags) & COMPONENT_BLOCK_BUCKLE)
+	// 	return FALSE
+
 	if(M.pulledby)
 		if(buckle_prevents_pull)
 			M.pulledby.stop_pulling()
@@ -96,18 +103,32 @@
 			M.adjust_fire_stacks(1)
 			M.ignite_mob()
 
-/atom/movable/proc/unbuckle_mob(mob/living/buckled_mob, force=FALSE)
-	if(istype(buckled_mob) && buckled_mob.buckled == src && (buckled_mob.can_unbuckle() || force))
-		. = buckled_mob
-		buckled_mob.buckled = null
-		buckled_mob.anchored = initial(buckled_mob.anchored)
-		buckled_mob.update_mobility()
-		buckled_mob.clear_alert("buckled")
-		buckled_mob.set_glide_size(DELAY_TO_GLIDE_SIZE(buckled_mob.total_multiplicative_slowdown()))
-		buckled_mobs -= buckled_mob
-		SEND_SIGNAL(src, COMSIG_MOVABLE_UNBUCKLE, buckled_mob, force)
+/atom/movable/proc/unbuckle_mob(mob/living/buckled_mob, force = FALSE, can_fall = TRUE)
+	if(!isliving(buckled_mob))
+		CRASH("Non-living [buckled_mob] thing called unbuckle_mob() for source.")
+	if(buckled_mob.buckled != src)
+		CRASH("[buckled_mob] called unbuckle_mob() for source while having buckled as [buckled_mob.buckled].")
+	if(!force && !buckled_mob.can_unbuckle())
+		return
+	. = buckled_mob
+	buckled_mob.buckled = null
+	buckled_mob.anchored = initial(buckled_mob.anchored)
+	buckled_mob.update_mobility()
+	buckled_mob.clear_alert("buckled")
+	buckled_mob.set_glide_size(DELAY_TO_GLIDE_SIZE(buckled_mob.total_multiplicative_slowdown()))
+	buckled_mobs -= buckled_mob
+	SEND_SIGNAL(src, COMSIG_MOVABLE_UNBUCKLE, buckled_mob, force)
 
-		post_unbuckle_mob(.)
+	if(can_fall)
+		var/turf/location = buckled_mob.loc
+		if(istype(location) && !buckled_mob.currently_z_moving)
+			location.zFall(buckled_mob)
+	
+	post_unbuckle_mob(.)
+
+	if(!QDELETED(buckled_mob) && !buckled_mob.currently_z_moving && isturf(buckled_mob.loc)) // In the case they unbuckled to a flying movable midflight.
+		var/turf/pitfall = buckled_mob.loc
+		pitfall?.zFall(buckled_mob)
 
 /atom/movable/proc/unbuckle_all_mobs(force=FALSE)
 	if(!has_buckled_mobs())

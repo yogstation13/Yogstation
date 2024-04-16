@@ -5,7 +5,7 @@
 	desc = "An 10-round 10mm magazine designed for the Stechkin pistol."
 	icon_state = "9x19p"
 	ammo_type = /obj/item/ammo_casing/c10mm
-	caliber = "10mm"
+	caliber = CALIBER_10MM
 	max_ammo = 10
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
@@ -62,7 +62,7 @@
 	desc = "An 8-round .45 ACP magazine designed for the M1911 pistol."
 	icon_state = "45-8"
 	ammo_type = /obj/item/ammo_casing/c45
-	caliber = ".45"
+	caliber = CALIBER_45ACP
 	max_ammo = 8
 
 /obj/item/ammo_box/magazine/m45/update_icon_state()
@@ -79,7 +79,7 @@
 	desc = "A 15-round 9mm magazine designed for the Stechkin APS Pistol."
 	icon_state = "9x19p-10"
 	ammo_type = /obj/item/ammo_casing/c9mm
-	caliber = "9mm"
+	caliber = CALIBER_9X19
 	max_ammo = 15
 
 /obj/item/ammo_box/magazine/pistolm9mm/update_icon_state()
@@ -93,7 +93,7 @@
 	desc = "A 7-round .50 AE magazine designed for the Desert Eagle."
 	icon_state = "50ae-7"
 	ammo_type = /obj/item/ammo_casing/a50AE
-	caliber = ".50ae"
+	caliber = CALIBER_50AE
 	max_ammo = 7
 
 /obj/item/ammo_box/magazine/m50/update_icon_state()
@@ -110,7 +110,7 @@
 	desc = "A 8-round .38 special magazine designed for the Vatra M38 pistol."
 	icon_state = "v38-8"
 	ammo_type = /obj/item/ammo_casing/c38
-	caliber = "38"
+	caliber = CALIBER_38
 	max_ammo = 8
 
 /obj/item/ammo_box/magazine/v38/update_icon_state()

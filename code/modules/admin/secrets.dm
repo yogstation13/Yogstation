@@ -89,7 +89,7 @@
 			log_admin("[key_name(mob_user)] reset the thunderdome to default with delete_mobs==[delete_mobs].", 1)
 			message_admins(span_adminnotice("[key_name_admin(mob_user)] reset the thunderdome to default with delete_mobs=[delete_mobs]."))
 
-			var/area/thunderdome = GLOB.areas_by_type[/area/tdome/arena]
+			var/area/thunderdome = GLOB.areas_by_type[/area/centcom/tdome/arena]
 			if(delete_mobs == "Yes")
 				for(var/mob/living/mob in thunderdome)
 					qdel(mob) //Clear mobs
@@ -97,7 +97,7 @@
 				if(!istype(obj, /obj/machinery/camera) && !istype(obj, /obj/effect/abstract/proximity_checker))
 					qdel(obj) //Clear objects
 
-			var/area/template = GLOB.areas_by_type[/area/tdome/arena_source]
+			var/area/template = GLOB.areas_by_type[/area/centcom/tdome/arena_source]
 			template.copy_contents_to(thunderdome)
 
 		if("clear_virus")
@@ -237,7 +237,7 @@
 			dat += "<table cellspacing=5><tr><th>Name</th><th>DNA</th><th>Blood Type</th></tr>"
 			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 				if(H.ckey)
-					dat += "<tr><td>[H]</td><td>[H.dna.unique_enzymes]</td><td>[H.dna.blood_type]</td></tr>"
+					dat += "<tr><td>[H]</td><td>[H.dna.unique_enzymes]</td><td>[H.dna.blood_type.name]</td></tr>"
 			dat += "</table>"
 			dat += "</BODY></HTML>"
 			mob_user << browse(dat, "window=DNA;size=440x410")
@@ -312,6 +312,7 @@
 			var/objective = stripped_input(mob_user, "Enter an objective")
 			if(!objective)
 				return
+			var/tc_amount = input(mob_user, "How much TC should they all get?") as null|num
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Traitor All", "[objective]"))
 			for(var/mob/living/H in GLOB.player_list)
 				if(!(ishuman(H)||istype(H, /mob/living/silicon/)))
@@ -327,6 +328,11 @@
 				new_objective.explanation_text = objective
 				T.add_objective(new_objective)
 				H.mind.add_antag_datum(T)
+				if(tc_amount && tc_amount != TELECRYSTALS_DEFAULT)//if the admin chose a different starting TC amount
+					if(T.uplink_holder)
+						var/datum/component/uplink/uplink = T.uplink_holder.GetComponent(/datum/component/uplink)
+						if(uplink)
+							uplink.telecrystals = tc_amount
 			message_admins(span_adminnotice("[key_name_admin(mob_user)] used everyone is a traitor secret. Objective is [objective]"))
 			log_admin("[key_name(mob_user)] used everyone is a traitor secret. Objective is [objective]")
 
@@ -363,14 +369,6 @@
 
 			message_admins(span_boldannounce("[key_name_admin(mob_user)] changed the bomb cap to [GLOB.MAX_EX_DEVESTATION_RANGE], [GLOB.MAX_EX_HEAVY_RANGE], [GLOB.MAX_EX_LIGHT_RANGE]"))
 			log_admin("[key_name(mob_user)] changed the bomb cap to [GLOB.MAX_EX_DEVESTATION_RANGE], [GLOB.MAX_EX_HEAVY_RANGE], [GLOB.MAX_EX_LIGHT_RANGE]")
-
-		if("blackout")
-			if(!check_rights_for(rights, R_FUN))
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Break All Lights"))
-			message_admins("[key_name_admin(mob_user)] broke all lights")
-			for(var/obj/machinery/light/L in GLOB.machines)
-				L.break_light_tube()
 
 		if("anime")
 			if(!check_rights_for(rights, R_FUN))
@@ -414,6 +412,14 @@
 					if(droptype == "Yes")
 						ADD_TRAIT(I, TRAIT_NODROP, ADMIN_TRAIT)
 
+		if("blackout")
+			if(!check_rights_for(rights, R_FUN))
+				return
+			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Break All Lights"))
+			message_admins("[key_name_admin(mob_user)] broke all lights")
+			for(var/obj/machinery/light/L in GLOB.machines)
+				L.break_light_tube()
+
 		if("whiteout")
 			if(!check_rights_for(rights, R_FUN))
 				return
@@ -421,6 +427,13 @@
 			message_admins("[key_name_admin(mob_user)] fixed all lights")
 			for(var/obj/machinery/light/L in GLOB.machines)
 				L.fix()
+
+		if("flickerout")
+			if(!check_rights_for(rights, R_FUN))
+				return
+			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Flicker All Lights"))
+			message_admins("[key_name_admin(mob_user)] flickered the lights")
+			flicker_all_lights()
 
 		if("floorlava")
 			SSweather.run_weather(/datum/weather/floor_is_lava)
@@ -457,7 +470,7 @@
 				if(is_station_level(W.z) && !istype(get_area(W), /area/bridge) && !istype(get_area(W), /area/crew_quarters) && !istype(get_area(W), /area/security/prison))
 					W.req_access = list()
 			message_admins("[key_name_admin(mob_user)] activated Egalitarian Station mode (All doors are open access)")
-			priority_announce("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.", null, RANDOM_REPORT_SOUND)
+			priority_announce("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.", null, SSstation.announcer.get_rand_report_sound())
 
 		if("ancap")
 			if(!check_rights_for(rights, R_FUN))
@@ -466,9 +479,9 @@
 			SSeconomy.full_ancap = !SSeconomy.full_ancap
 			message_admins("[key_name_admin(mob_user)] toggled Anarcho-capitalist mode")
 			if(SSeconomy.full_ancap)
-				priority_announce("The NAP is now in full effect.", null, RANDOM_REPORT_SOUND)
+				priority_announce("The NAP is now in full effect.", null, SSstation.announcer.get_rand_report_sound())
 			else
-				priority_announce("The NAP has been revoked.", null, RANDOM_REPORT_SOUND)
+				priority_announce("The NAP has been revoked.", null, SSstation.announcer.get_rand_report_sound())
 
 		if("dorf")
 			if(!check_rights_for(rights, R_FUN))

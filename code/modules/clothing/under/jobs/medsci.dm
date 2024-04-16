@@ -115,6 +115,12 @@
 	random_sensor = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
+/obj/item/clothing/under/rank/chief_medical_officer/turtleneck
+	desc = "It's a jumpsuit worn by those with the experience, and the style, to be \"Chief Medical Officer\". It provides minor biological protection."
+	name = "chief medical officer's turtleneck jumpsuit"
+	icon_state = "cmoturtle"
+	item_state = "w_suit"
+
 /obj/item/clothing/under/rank/chief_medical_officer/skirt
 	name = "chief medical officer's jumpskirt"
 	desc = "It's a jumpskirt worn by those with the experience to be \"Chief Medical Officer\". It provides minor biological protection."
@@ -125,6 +131,12 @@
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/rank/chief_medical_officer/skirt/turtleneck
+	name = "chief medical officer's skirtleneck"
+	desc = "It's a jumpskirt worn by those with the experience, and the style, to be \"Chief Medical Officer\". It provides minor biological protection."
+	icon_state = "cmoturtle_skirt"
+	item_state = "w_suit"
 
 /obj/item/clothing/under/rank/geneticist
 	desc = "It's made of a special fiber that gives special protection against biohazards. It has a genetics rank stripe on it."

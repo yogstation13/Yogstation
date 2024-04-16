@@ -7,7 +7,6 @@
 	total_positions = 2
 	spawn_positions = 1
 	supervisors = "the head of personnel"
-	selection_color = "#bbe291"
 	var/cooks = 0 //Counts cooks amount
 
 	outfit = /datum/outfit/job/cook
@@ -15,7 +14,7 @@
 	alt_titles = list("Chef", "Hash Slinger", "Sous-chef", "Culinary Artist", "Culinarian")
 
 	added_access = list(ACCESS_HYDROPONICS, ACCESS_BAR)
-	base_access = list(ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
+	base_access = list(ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM, ACCESS_SERVHALL)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 
@@ -37,6 +36,9 @@
 		/obj/item/taster = 2,
 		/obj/item/sharpener = 1
 	)
+	
+	minimal_lightup_areas = list(/area/crew_quarters/kitchen, /area/medical/morgue)
+	lightup_areas = list(/area/hydroponics)
 
 	smells_like = "delicious food"
 
@@ -44,7 +46,7 @@
 	name = "Cook"
 	jobtype = /datum/job/cook
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/cook
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/chef
@@ -52,7 +54,10 @@
 	suit = /obj/item/clothing/suit/toggle/chef
 	head = /obj/item/clothing/head/chefhat
 	mask = /obj/item/clothing/mask/fakemoustache/italian
-	backpack_contents = list(/obj/item/sharpener = 1)
+	backpack_contents = list(
+		/obj/item/sharpener = 1,
+		/obj/item/book/granter/crafting_recipe/cooking_sweets_101 = 1,
+		)
 
 /datum/outfit/job/cook/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()

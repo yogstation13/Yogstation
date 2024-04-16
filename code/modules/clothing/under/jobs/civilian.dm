@@ -53,6 +53,12 @@
 	item_state = "lb_suit"
 	mutantrace_variation = MUTANTRACE_VARIATION
 
+/obj/item/clothing/under/rank/cargo/turtleneck
+	name = "quartermaster's turtleneck jumpsuit"
+	desc = "It's a fashionable turtleneck worn by the quartermaster. It's specially designed to prevent back injuries caused by pushing paper."
+	icon_state = "turtleneck_qm"
+	item_state = "lb_suit"
+
 /obj/item/clothing/under/rank/cargo/skirt
 	name = "quartermaster's jumpskirt"
 	desc = "It's a jumpskirt worn by the quartermaster. It's specially designed to prevent back injuries caused by pushing paper."
@@ -64,6 +70,12 @@
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
+/obj/item/clothing/under/rank/cargo/skirt/turtleneck
+	name = "quartermaster's skirtleneck"
+	desc = "It's a stylish skirtleneck worn by the quartermaster. It's specially designed to prevent back injuries caused by pushing paper."
+	icon_state = "skirtleneckQM"
+	item_state = "lb_suit"
+
 /obj/item/clothing/under/rank/cargotech
 	name = "cargo technician's jumpsuit"
 	desc = "Shooooorts! They're comfy and easy to wear!"
@@ -73,6 +85,12 @@
 	mutantrace_variation = MUTANTRACE_VARIATION
 	alt_covers_chest = TRUE
 	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/rank/cargotech/turtleneck
+	name = "cargo technician's turtleneck jumpsuit"
+	desc = "Perfect for pushing crates and looking good while doing it! Shorts not included."
+	icon_state = "turtleneck_cargo"
+	item_state = "lb_suit"
 
 /obj/item/clothing/under/rank/cargotech/skirt
 	name = "cargo technician's jumpskirt"
@@ -84,6 +102,12 @@
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/rank/cargotech/skirt/turtleneck
+	name = "cargo technician's skirtleneck"
+	desc = "Skiiiiirtlenecks! Even comfier and easier to wear!"
+	icon_state = "skirtleneck"
+	item_state = "lb_suit"
 
 /obj/item/clothing/under/rank/chaplain
 	desc = "It's a black jumpsuit, often worn by religious folk."
@@ -186,14 +210,21 @@
 	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
 
 /obj/item/clothing/under/rank/head_of_personnel
-	desc = "It's a jumpsuit worn by someone who works in the position of \"Head of Personnel\"."
 	name = "head of personnel's jumpsuit"
+	desc = "It's a jumpsuit worn by someone who works in the position of \"Head of Personnel\"."
 	icon_state = "hop"
 	item_state = "b_suit"
 	can_adjust = FALSE
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/rank/head_of_personnel/turtleneck
+	name = "head of personnel's turtleneck jumpsuit"
+	desc = "It's a comfy turtleneck jumpsuit worn by someone who works in the position of \"Head of Personnel\"."
+	icon_state = "hopturtle"
+	item_state = "b_suit"
+	can_adjust = TRUE
 
 /obj/item/clothing/under/rank/head_of_personnel/skirt
 	name = "head of personnel's jumpskirt"
@@ -205,6 +236,13 @@
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/rank/head_of_personnel/skirt/turtleneck
+	name = "head of personnel's skirtleneck"
+	desc = "It's a fashionable skirtleneck worn by someone who works in the position of \"Head of Personnel\"."
+	icon_state = "hopturtle_skirt"
+	item_state = "b_suit"
+	can_adjust = TRUE
 
 /obj/item/clothing/under/rank/hydroponics
 	desc = "It's a jumpsuit designed to protect against minor plant-related hazards."

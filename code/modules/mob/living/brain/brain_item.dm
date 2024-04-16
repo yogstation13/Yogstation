@@ -105,10 +105,11 @@
 		if(!brainmob.stored_dna)
 			brainmob.stored_dna = new /datum/dna/stored(brainmob)
 		C.dna.copy_dna(brainmob.stored_dna)
-		if(HAS_TRAIT(L, TRAIT_BADDNA))
-			brainmob.status_traits[TRAIT_BADDNA] = L.status_traits[TRAIT_BADDNA]
-		if(HAS_TRAIT(L, TRAIT_NOCLONE)) // YOU CAN'T ESCAPE
-			brainmob.status_traits[TRAIT_NOCLONE] = L.status_traits[TRAIT_NOCLONE]
+		// Hack, fucked dna needs to follow the brain to prevent memes, so we need to copy over the trait sources and shit
+		for(var/source in GET_TRAIT_SOURCES(L, TRAIT_BADDNA))
+			ADD_TRAIT(brainmob, TRAIT_BADDNA, source)
+		for(var/source in GET_TRAIT_SOURCES(L, TRAIT_NOCLONE))
+			ADD_TRAIT(brainmob, TRAIT_NOCLONE, source)
 		var/obj/item/organ/zombie_infection/ZI = L.get_organ_slot(ORGAN_SLOT_ZOMBIE)
 		if(ZI)
 			brainmob.set_species(ZI.old_species)	//For if the brain is cloned
@@ -181,36 +182,41 @@
 
 	add_fingerprint(user)
 
-	if(user.zone_selected != BODY_ZONE_HEAD)
+	if(user.zone_selected != zone)
 		return ..()
 
 	var/target_has_brain = C.getorgan(/obj/item/organ/brain)
 
-	if(!target_has_brain && C.is_eyes_covered())
+	if(target_has_brain)
+		to_chat(user, span_warning("This being already has a brain!"))
+		return
+
+	// This should be a better check but this covers 99.9% of cases
+	if(!(compatible_biotypes & C.mob_biotypes))
+		to_chat(user, span_warner("This brain is incompatiable with this beings biology!"))
+		return
+
+	if(!target_has_brain && C.is_eyes_covered() && user.zone_selected == BODY_ZONE_HEAD)
 		to_chat(user, span_warning("You're going to need to remove [C.p_their()] head cover first!"))
 		return
 
 //since these people will be dead M != usr
 
-	if(!target_has_brain)
-		if(!C.get_bodypart(BODY_ZONE_HEAD) || !user.temporarilyRemoveItemFromInventory(src))
-			return
-		var/msg = "[C] has [src] inserted into [C.p_their()] head by [user]."
-		if(C == user)
-			msg = "[user] inserts [src] into [user.p_their()] head!"
+	if(!C.get_bodypart(zone) || !user.temporarilyRemoveItemFromInventory(src))
+		return
+	var/msg = "[C] has [src] inserted into [C.p_them()] by [user]."
+	if(C == user)
+		msg = "[user] inserts [src] into [user.p_them()]!"
 
-		C.visible_message(span_danger("[msg]"),
-						span_userdanger("[msg]"))
+	C.visible_message(span_danger(msg), span_userdanger(msg))
 
-		if(C != user)
-			to_chat(C, span_notice("[user] inserts [src] into your head."))
-			to_chat(user, span_notice("You insert [src] into [C]'s head."))
-		else
-			to_chat(user, span_notice("You insert [src] into your head.")	)
-
-		Insert(C)
+	if(C != user)
+		to_chat(C, span_notice("[user] inserts [src] into you."))
+		to_chat(user, span_notice("You insert [src] into [C]."))
 	else
-		..()
+		to_chat(user, span_notice("You insert [src] into yourself."))
+
+	Insert(C)
 
 /obj/item/organ/brain/Destroy() //copypasted from MMIs.
 	if(brainmob)
@@ -267,13 +273,13 @@
 /obj/item/organ/brain/positron
 	name = "positronic brain"
 	slot = "brain"
-	zone = "chest"
+	zone = BODY_ZONE_CHEST
 	status = ORGAN_ROBOTIC
 	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves. It has an IPC serial number engraved on the top. In order for this posibrain to be used as a newly built Positronic Brain, it must be coupled with an MMI."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "posibrain-ipc"
 	organ_flags = ORGAN_SYNTHETIC
-	process_flags = SYNTHETIC
+	compatible_biotypes = MOB_ROBOTIC
 
 /obj/item/organ/brain/positron/emp_act(severity)
 	if(prob(25))
@@ -283,14 +289,16 @@
 	if(hat && istype(hat, /obj/item/clothing/head/foilhat))
 		return
 
-	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, (50/severity) * (maxHealth - damage) / maxHealth)
-	owner.adjust_drugginess(40/severity)
-	switch(severity)
-		if(1)
-			to_chat(owner, span_warning("Alert: Posibrain heavily damaged."))
-		if(2)
-			to_chat(owner, span_warning("Alert: Posibrain damaged."))
+	to_chat(owner, span_warning("Alert: Posibrain [severity > EMP_LIGHT ? "severely " : ""]damaged."))
+	owner.adjust_drugginess(5 * severity)
+	if(severity > EMP_LIGHT)
+		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, (2 * (severity - EMP_LIGHT)) * (maxHealth - damage) / maxHealth) // don't give traumas from weak EMPs
 
+/obj/item/organ/brain/positron/synth
+	zone = BODY_ZONE_HEAD
+
+/obj/item/organ/brain/positron/synth/can_extract()
+	return FALSE
 
 ////////////////////////////////////TRAUMAS////////////////////////////////////////
 

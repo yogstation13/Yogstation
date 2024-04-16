@@ -170,6 +170,12 @@
 /obj/machinery/power/port_gen/pacman/proc/overheat()
 	explosion(src.loc, 2, 5, 2, -1)
 
+/obj/machinery/power/port_gen/pacman/MouseDrop_T(atom/dropping, mob/user)
+	if(istype(dropping, sheet_path) && Adjacent(user))
+		attackby(dropping, user)
+	else
+		..()
+
 /obj/machinery/power/port_gen/pacman/attackby(obj/item/O, mob/user, params)
 	if(istype(O, sheet_path))
 		var/obj/item/stack/addstack = O
@@ -206,9 +212,9 @@
 			return
 	return ..()
 
-/obj/machinery/power/port_gen/pacman/emag_act(mob/user)
+/obj/machinery/power/port_gen/pacman/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	emp_act(EMP_HEAVY)
 

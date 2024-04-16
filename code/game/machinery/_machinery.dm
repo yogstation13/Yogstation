@@ -96,9 +96,11 @@ Class Procs:
 
 	anchored = TRUE
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_UI_INTERACT
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
 	var/stat = 0
 	var/use_power = IDLE_POWER_USE
+	var/datum/powernet/powernet = null
 		//0 = dont run the auto
 		//1 = run auto, use idle
 		//2 = run auto, use active
@@ -132,14 +134,19 @@ Class Procs:
 
 	/// For storing and overriding ui id
 	var/tgui_id // ID of TGUI interface
-	var/climb_time = 20
-	var/climb_stun = 20
-	var/mob/living/machineclimber
+	/// world.time of last use by [/mob/living]
+	var/last_used_time = 0
+	/// Mobtype of last user. Typecast to [/mob/living] for initial() usage
+	var/mob/living/last_user_mobtype
+
+	///Boolean on whether this machines interact with atmos
+	var/atmos_processing = FALSE
 
 /obj/machinery/Initialize(mapload)
 	if(!armor)
 		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
 	. = ..()
+	SSmachines.register_machine(src)
 	GLOB.machines += src
 
 	if(ispath(circuit, /obj/item/circuitboard))
@@ -153,6 +160,8 @@ Class Procs:
 
 	if (occupant_typecache)
 		occupant_typecache = typecacheof(occupant_typecache)
+	
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NEW_MACHINE, src)
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -161,7 +170,9 @@ Class Procs:
 	power_change()
 	RegisterSignal(src, COMSIG_ENTER_AREA, PROC_REF(power_change))
 
-/obj/machinery/Destroy()
+/obj/machinery/Destroy(force=FALSE)
+	disconnect_from_network()
+	SSmachines.unregister_machine(src)
 	GLOB.machines.Remove(src)
 	if(!speed_process)
 		STOP_PROCESSING(SSmachines, src)
@@ -186,17 +197,28 @@ Class Procs:
 /obj/machinery/emp_act(severity)
 	. = ..()
 	if(use_power && !stat && !(. & EMP_PROTECT_SELF))
-		use_power(7500/severity)
+		use_power(750 * severity)
 		new /obj/effect/temp_visual/emp(loc)
 
-/obj/machinery/proc/open_machine(drop = TRUE)
+/**
+ * Opens the machine.
+ *
+ * Will update the machine icon and any user interfaces currently open.
+ * Arguments:
+ * * drop - Boolean. Whether to drop any stored items in the machine. Does not include components.
+ * * density - Boolean. Whether to make the object dense when it's open.
+ */
+/obj/machinery/proc/open_machine(drop = TRUE, density_to_set = FALSE)
 	state_open = TRUE
-	density = FALSE
+	set_density(density_to_set)
 	if(drop)
 		dropContents()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	updateUsrDialog()
 
+/**
+ * Drop every movable atom in the machine's contents list, including any components and circuit.
+ */
 /obj/machinery/proc/dropContents(list/subset = null)
 	var/turf/T = get_turf(src)
 	for(var/atom/movable/A in contents)
@@ -206,7 +228,7 @@ Class Procs:
 		if(isliving(A))
 			var/mob/living/L = A
 			L.update_mobility()
-	occupant = null
+	set_occupant(null)
 
 /obj/machinery/proc/can_be_occupant(atom/movable/am)
 	return occupant_typecache ? is_type_in_typecache(am, occupant_typecache) : isliving(am)
@@ -229,10 +251,10 @@ Class Procs:
 
 	var/mob/living/mobtarget = target
 	if(target && !target.has_buckled_mobs() && (!isliving(target) || !mobtarget.buckled))
-		occupant = target
+		set_occupant(target)
 		target.forceMove(src)
 	updateUsrDialog()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/machinery/proc/auto_use_power()
 	if(!powered(power_channel))
@@ -293,13 +315,14 @@ Class Procs:
 	if(is_species(L, /datum/species/lizard/ashwalker))
 		return FALSE // ashwalkers cant use modern machines
 
+	//YOGS EDIT BEGIN
+	if(is_species(L, /datum/species/pod/ivymen))
+		return FALSE // same as ivymen
+	//YOGS EDIT END
+
 	var/mob/living/carbon/H = user
 	if(istype(H) && H.has_dna())
-		if (H.dna.check_mutation(ACTIVE_HULK))
-			to_chat(H, span_warning("HULK NOT NERD. HULK SMASH!!!"))
-			return FALSE // hulks cant use machines
-
-		else if(!Adjacent(user) && !H.dna.check_mutation(TK))
+		if(!Adjacent(user) && !H.dna.check_mutation(TK))
 			return FALSE // need to be close or have telekinesis
 
 	return TRUE
@@ -388,6 +411,14 @@ Class Procs:
 		return	
 	return ..()
 
+/obj/machinery/tool_act(mob/living/user, obj/item/tool, tool_type, is_right_clicking)
+	if(SEND_SIGNAL(user, COMSIG_TRY_USE_MACHINE, src) & COMPONENT_CANT_USE_MACHINE_TOOLS)
+		return TOOL_ACT_MELEE_CHAIN_BLOCKING
+	. = ..()
+	if(. & TOOL_ACT_SIGNAL_BLOCKING)
+		return
+	update_last_used(user)
+
 /obj/machinery/CheckParts(list/parts_list)
 	..()
 	RefreshParts()
@@ -438,14 +469,15 @@ Class Procs:
 	. = new_frame
 	new_frame.setAnchored(anchored)
 	if(!disassembled)
-		new_frame.obj_integrity = (new_frame.max_integrity * 0.5) //the frame is already half broken
+		new_frame.update_integrity(new_frame.max_integrity * 0.5) //the frame is already half broken
 	transfer_fingerprints_to(new_frame)
 
-/obj/machinery/obj_break(damage_flag)
+/obj/machinery/atom_break(damage_flag)
+	. = ..()
 	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		stat |= BROKEN
 		SEND_SIGNAL(src, COMSIG_MACHINERY_BROKEN, damage_flag)
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		return TRUE
 	return FALSE
 
@@ -455,8 +487,8 @@ Class Procs:
 
 /obj/machinery/handle_atom_del(atom/A)
 	if(A == occupant)
-		occupant = null
-		update_appearance(UPDATE_ICON)
+		set_occupant(null)
+		update_appearance()
 		updateUsrDialog()
 
 /obj/machinery/proc/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/I)
@@ -478,8 +510,8 @@ Class Procs:
 		I.play_tool_sound(src, 50)
 		setDir(turn(dir,-90))
 		to_chat(user, span_notice("You rotate [src]."))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/proc/can_be_unfasten_wrench(mob/user, silent) //if we can unwrench this object; returns SUCCESSFUL_UNFASTEN and FAILED_UNFASTEN, which are both TRUE, or CANT_UNFASTEN, which isn't.
 	if(!(isfloorturf(loc) || istype(loc, /turf/open/indestructible)) && !anchored)
@@ -583,17 +615,6 @@ Class Procs:
 	. = ..()
 	if(stat & BROKEN)
 		. += span_notice("It looks broken and non-functional.")
-	if(!(resistance_flags & INDESTRUCTIBLE))
-		if(resistance_flags & ON_FIRE)
-			. += span_warning("It's on fire!")
-		var/healthpercent = (obj_integrity/max_integrity) * 100
-		switch(healthpercent)
-			if(50 to 99)
-				. += "It looks slightly damaged."
-			if(25 to 50)
-				. += "It appears heavily damaged."
-			if(0 to 25)
-				. += span_warning("It's falling apart!")
 	if(user.research_scanner && component_parts)
 		. += display_parts(user, TRUE)
 
@@ -608,7 +629,7 @@ Class Procs:
 /obj/machinery/proc/can_be_overridden()
 	. = 1
 
-/obj/machinery/tesla_act(power, tesla_flags, shocked_objects)
+/obj/machinery/tesla_act(power, tesla_flags, shocked_objects, zap_gib = FALSE)
 	..()
 	if((tesla_flags & TESLA_MACHINE_EXPLOSIVE) && !(resistance_flags & INDESTRUCTIBLE))
 		if(prob(60))
@@ -620,10 +641,11 @@ Class Procs:
 		if(prob(40))
 			emp_act(EMP_LIGHT)
 
-/obj/machinery/Exited(atom/movable/AM, atom/newloc)
+/obj/machinery/Exited(atom/movable/gone, atom/newloc)
 	. = ..()
-	if (AM == occupant)
-		occupant = null
+	if (gone == occupant)
+		set_occupant(null)
+		update_appearance()
 
 /obj/machinery/proc/adjust_item_drop_location(atom/movable/AM)	// Adjust item drop location to a 3x3 grid inside the tile, returns slot id from 0 to 8
 	var/md5 = md5(AM.name)										// Oh, and it's deterministic too. A specific item will always drop from the same slot.
@@ -653,3 +675,50 @@ Class Procs:
 
 /obj/machinery/rust_heretic_act()
 	take_damage(500, BRUTE, MELEE, 1)
+
+/obj/machinery/proc/update_last_used(mob/user)
+	if(isliving(user))
+		last_used_time = world.time
+		last_user_mobtype = user.type
+
+/**
+ * Puts passed object in to user's hand
+ *
+ * Puts the passed object in to the users hand if they are adjacent.
+ * If the user is not adjacent then place the object on top of the machine.
+ *
+ * Vars:
+ * * object (obj) The object to be moved in to the users hand.
+ * * user (mob/living) The user to recive the object
+ */
+/obj/machinery/proc/try_put_in_hand(obj/object, mob/living/user)
+	if(!issilicon(user) && in_range(src, user))
+		user.put_in_hands(object)
+	else
+		object.forceMove(drop_location())
+
+/obj/machinery/proc/set_occupant(atom/movable/new_occupant)
+	SHOULD_CALL_PARENT(TRUE)
+
+	SEND_SIGNAL(src, COMSIG_MACHINERY_SET_OCCUPANT, new_occupant)
+	occupant = new_occupant
+
+///Get a valid powered area to reference for power use, mainly for wall-mounted machinery that isn't always mapped directly in a powered location.
+/obj/machinery/proc/get_room_area()
+	var/area/machine_area = get_area(src)
+	if(isnull(machine_area))
+		return null // ??
+
+	// check our own loc first to see if its a powered area
+	if(!machine_area.always_unpowered)
+		return machine_area
+
+	// loc area wasn't good, checking adjacent wall for a good area to use
+	var/turf/mounted_wall = get_step(src, dir)
+	if(isclosedturf(mounted_wall))
+		var/area/wall_area = get_area(mounted_wall)
+		if(!wall_area.always_unpowered)
+			return wall_area
+
+	// couldn't find a proper powered area on loc or adjacent wall, defaulting back to loc and blaming mappers
+	return machine_area

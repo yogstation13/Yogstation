@@ -16,6 +16,7 @@
 	throw_speed = 4
 	light_range = 5
 	light_power = 1
+	light_system = MOVABLE_LIGHT
 	armour_penetration = 10
 	materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -27,7 +28,7 @@
 	var/charge_time = 15
 	var/detonation_damage = 50
 	var/backstab_bonus = 30
-	var/projectile_type = /obj/item/projectile/destabilizer
+	var/projectile_type = /obj/projectile/destabilizer
 
 /obj/item/kinetic_crusher/update_icon_state()
 	. = ..()
@@ -36,7 +37,7 @@
 /obj/item/kinetic_crusher/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 60, 110) //technically it's huge and bulky, but this provides an incentive to use it
-	AddComponent(/datum/component/two_handed, force_unwielded=0, force_wielded=20)
+	AddComponent(/datum/component/two_handed, force_wielded=20)
 
 /obj/item/kinetic_crusher/Destroy()
 	QDEL_LIST(trophies)
@@ -88,7 +89,7 @@
 		var/turf/proj_turf = user.loc
 		if(!isturf(proj_turf))
 			return
-		var/obj/item/projectile/destabilizer/D = new projectile_type(proj_turf)
+		var/obj/projectile/destabilizer/D = new projectile_type(proj_turf)
 		for(var/obj/item/crusher_trophy/T as anything in trophies)
 			T.on_projectile_fire(D, user)
 		D.preparePixelProjectile(target, user, clickparams)
@@ -127,6 +128,11 @@
 				if(!QDELETED(C))
 					C.total_damage += detonation_damage
 				L.apply_damage(detonation_damage, BRUTE, blocked = def_check)
+			//YOGS EDIT BEGIN
+			for(var/t in trophies)
+				var/obj/item/crusher_trophy/T = t 
+				T.after_mark_detonation(target,user,src,target_health-L.health)
+			//YOGS EDIT END
 
 /obj/item/kinetic_crusher/proc/recharge(magmite = FALSE)
 	if(!charged)
@@ -134,23 +140,24 @@
 		icon_state = "[base_icon_state]0"
 		playsound(src.loc, 'sound/weapons/kenetic_reload.ogg', 60, 1)
 
+
 //destablizing force
-/obj/item/projectile/destabilizer
+/obj/projectile/destabilizer
 	name = "destabilizing force"
 	icon_state = "pulse1"
 	nodamage = TRUE
 	damage = 0 //We're just here to mark people. This is still a melee weapon.
 	damage_type = BRUTE
-	flag = BOMB
+	armor_flag = BOMB
 	range = 6
 	log_override = TRUE
 	var/obj/item/kinetic_crusher/hammer_synced
 
-/obj/item/projectile/destabilizer/Destroy()
+/obj/projectile/destabilizer/Destroy()
 	hammer_synced = null
 	return ..()
 
-/obj/item/projectile/destabilizer/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/destabilizer/on_hit(atom/target, blocked = FALSE)
 	if(isliving(target))
 		var/mob/living/L = target
 		var/had_effect = (L.has_status_effect(STATUS_EFFECT_CRUSHERMARK)) //used as a boolean
@@ -158,7 +165,9 @@
 		if(hammer_synced)
 			for(var/t in hammer_synced.trophies)
 				var/obj/item/crusher_trophy/T = t
-				T.on_mark_application(target, CM, had_effect)
+				T.on_mark_application(target, CM, had_effect, hammer_synced)
+	else 
+		SEND_SIGNAL(hammer_synced,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK,firer,hammer_synced)
 	var/target_turf = get_turf(target)
 	if(ismineralturf(target_turf))
 		var/turf/closed/mineral/M = target_turf
@@ -166,11 +175,11 @@
 		M.attempt_drill(firer)
 	return ..()
 
-/obj/item/projectile/destabilizer/mega
+/obj/projectile/destabilizer/mega
 	icon_state = "pulse0"
 	var/mine_range = 4
 
-/obj/item/projectile/destabilizer/mega/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/destabilizer/mega/on_hit(atom/target, blocked = FALSE)
 	var/target_turf = get_turf(target)
 	if(ismineralturf(target_turf))
 		var/turf/closed/mineral/M = target_turf
@@ -183,6 +192,10 @@
 	return ..()
 
 
+/obj/projectile/destabilizer/on_range()
+	SEND_SIGNAL(hammer_synced,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE,firer,hammer_synced)
+	..()
+	
 //trophies
 /obj/item/crusher_trophy
 	name = "tail spike"
@@ -222,10 +235,13 @@
 	return TRUE
 
 /obj/item/crusher_trophy/proc/on_melee_hit(mob/living/target, mob/living/user) //the target and the user
-/obj/item/crusher_trophy/proc/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user) //the projectile fired and the user
-/obj/item/crusher_trophy/proc/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark) //the target, the mark applied, and if the target had a mark before
-/obj/item/crusher_trophy/proc/on_mark_detonation(mob/living/target, mob/living/user) //the target and the user
+/obj/item/crusher_trophy/proc/on_projectile_fire(obj/projectile/destabilizer/marker, mob/living/user) //the projectile fired and the user
+//obj/item/crusher_trophy/proc/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark) //the target, the mark applied, and if the target had a mark before
+//obj/item/crusher_trophy/proc/on_mark_detonation(mob/living/target, mob/living/user) //the target and the user
 
+/obj/item/crusher_trophy/proc/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark,obj/item/kinetic_crusher/hammer_synced) //YOGS EDIT
+/obj/item/crusher_trophy/proc/on_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/hammer_synced) //YOGS EDIT
+/obj/item/crusher_trophy/proc/after_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/hammer_synced, damage_dealt) //YOGS EDIT
 //goliath
 /obj/item/crusher_trophy/goliath_tentacle
 	name = "goliath tentacle"
@@ -277,7 +293,7 @@
 /obj/item/crusher_trophy/blaster_tubes/magma_wing/effect_desc()
 	return "mark detonation to make the next destabilizer shot deal <b>[bonus_value]</b> damage"
 
-/obj/item/crusher_trophy/blaster_tubes/magma_wing/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
+/obj/item/crusher_trophy/blaster_tubes/magma_wing/on_projectile_fire(obj/projectile/destabilizer/marker, mob/living/user)
 	if(deadly_shot)
 		marker.name = "heated [marker.name]"
 		marker.icon_state = "lava"
@@ -431,7 +447,7 @@
 /obj/item/crusher_trophy/blaster_tubes/effect_desc()
 	return "mark detonation to make the next destabilizer shot deal <b>[bonus_value]</b> damage but move slower"
 
-/obj/item/crusher_trophy/blaster_tubes/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
+/obj/item/crusher_trophy/blaster_tubes/on_projectile_fire(obj/projectile/destabilizer/marker, mob/living/user)
 	if(deadly_shot)
 		marker.name = "deadly [marker.name]"
 		marker.icon_state = "chronobolt"
@@ -493,4 +509,4 @@
 	desc = "An early design of the proto-kinetic accelerator, it is now a combination of various mining tools infused with magmite, forming a high-tech club, increasing its capacity as a mining tool. \
 		It does little to aid any but the most skilled and/or suicidal miners against local fauna."
 
-	projectile_type = /obj/item/projectile/destabilizer/mega
+	projectile_type = /obj/projectile/destabilizer/mega

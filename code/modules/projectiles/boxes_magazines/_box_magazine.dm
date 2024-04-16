@@ -138,7 +138,7 @@
 		if(!silent)
 			to_chat(user, span_notice("You load [num_loaded] round\s into \the [src]!"))
 			playsound(src, 'sound/weapons/bulletinsert.ogg', 60, TRUE)
-		A.update_appearance(UPDATE_ICON)
+		A.update_appearance(UPDATE_ICON|UPDATE_DESC)
 		update_appearance(UPDATE_ICON|UPDATE_DESC)
 	return num_loaded
 

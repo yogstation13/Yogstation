@@ -1,7 +1,7 @@
 #define PENANCE_LIFE "Lose your life (10 marbles)"
 #define PENANCE_SOUL "Lose your soul (14 marbles)"
-#define PENANCE_LIMB "Lose a limb (5 marbles)"
-#define PENANCE_SKELETON "Lose your flesh (1 marbles)"
+#define PENANCE_LIMB "Lose a limb (7 marbles)"
+#define PENANCE_SKELETON "Lose your flesh (3 marbles)"
 #define PENANCE_TRAUMA_ADV "Lose your mind (5 marbles)"
 #define PENANCE_TRAUMA_BASIC "Lose a smaller, but still important part of your mind (1 marbles)"
 #define TRAUMA_ADV_CAP 1
@@ -57,7 +57,7 @@
 			continue
 		if(istype(atom_in_range,/mob/living))
 			var/mob/living/living_in_range = atom_in_range
-			if(living_in_range.stat != DEAD || living_in_range == user) // we only accept corpses, no living beings allowed.
+			if(!living_in_range.stat || living_in_range == user) // we only accept people in crit, no healthy beings allowed.
 				continue
 		atoms_in_range += atom_in_range
 	for(var/X in transmutations)
@@ -205,6 +205,7 @@
 	icon_state = "pierced_illusion"
 	anchored = TRUE
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	mouse_opacity = MOUSE_OPACITY_OPAQUE
 
 /obj/effect/broken_illusion/attack_hand(mob/living/user)
 	if(!ishuman(user))
@@ -334,7 +335,7 @@
 	var/list/unspooked_limbs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
 
 /atom/movable/screen/alert/status_effect/brazil_penance
-	name = "Otherworldly Tarrif"
+	name = "Otherworldly Tariff"
 	desc = "The things of this place want something from you. You won't be able to leave until enough has been taken."
 	icon_state = "shadow_mend"
 
@@ -377,8 +378,8 @@
 					var/obj/item/bodypart/BP
 					while(!BP)
 						if(!LAZYLEN(unspooked_limbs))
-							message_admins(span_notice("Someone managed to break brazil limb sacrificing stuff tell theos"))
-							break
+							to_chat(C, span_warning("Something you did managed to break brazil limb sacrificing stuff, make a bug report!"))
+							return
 						var/target_zone = pick_n_take(unspooked_limbs)
 						BP = C.get_bodypart(target_zone)
 					C.visible_message(span_warning("[owner]'s [BP] suddenly disintegrates!"), span_warning("In a flash, your [BP] is torn from your body and disintegrates!"))
@@ -387,8 +388,8 @@
 					var/obj/item/bodypart/BP
 					while(!BP || BP.species_id == "skeleton")
 						if(!LAZYLEN(unspooked_limbs))
-							message_admins(span_notice("Someone managed to break brazil limb sacrificing stuff tell theos"))
-							break
+							to_chat(C, span_warning("Something you did managed to break brazil limb sacrificing stuff, make a bug report!"))
+							return
 						var/target_zone = pick_n_take(unspooked_limbs)
 						BP = C.get_bodypart(target_zone)
 					var/obj/item/bodypart/replacement_part = new BP.type
@@ -418,7 +419,7 @@
 
 /obj/effect/penance_giver
 	name = "code ing"
-	desc = "it takes your soul, and other stuff"
+	desc = "It takes your soul, and other stuff."
 	icon = 'icons/mob/triangle.dmi'
 	icon_state = "triangle"
 	light_power = 2
@@ -471,7 +472,7 @@
 	icon_state = "shell_narsie_active"
 	pixel_x = -16
 	pixel_y = -17
-	penance_given = list(PENANCE_LIFE = 10, PENANCE_LIMB = 5)
+	penance_given = list(PENANCE_LIFE = 10, PENANCE_LIMB = 7)
 
 /obj/effect/penance_giver/mind
 	name = "Headache"
@@ -487,7 +488,7 @@
 	icon = 'icons/mob/evilpope.dmi' //fun fact the pope's mask is off center on his north sprite and now you have to see it too
 	icon_state = "EvilPope"
 	light_color = COLOR_SILVER
-	penance_given = list(PENANCE_SOUL = 14, PENANCE_SKELETON = 1)
+	penance_given = list(PENANCE_SOUL = 14, PENANCE_SKELETON = 3)
 
 #undef PENANCE_LIFE
 #undef PENANCE_SOUL
@@ -497,3 +498,54 @@
 #undef PENANCE_TRAUMA_BASIC
 #undef TRAUMA_ADV_CAP
 #undef TRAUMA_BASIC_CAP
+
+/obj/effect/cosmic_diamond
+	name = "Cosmic Diamond"
+	icon = 'icons/effects/eldritch.dmi'
+	icon_state = "cosmic_diamond"
+	anchored = TRUE
+
+/obj/effect/temp_visual/cosmic_cloud
+	name = "Cosmic Cloud"
+	icon = 'icons/effects/eldritch.dmi'
+	icon_state = "cosmic_cloud"
+	anchored = TRUE
+	duration = 8
+
+/obj/effect/temp_visual/cosmic_explosion
+	name = "Cosmic Explosion"
+	icon = 'icons/effects/64x64.dmi'
+	icon_state = "cosmic_explosion"
+	anchored = TRUE
+	duration = 5
+	pixel_x = -16
+	pixel_y = -16
+
+/obj/effect/temp_visual/space_explosion
+	name = "Space Explosion"
+	icon = 'icons/effects/64x64.dmi'
+	icon_state = "space_explosion"
+	anchored = TRUE
+	duration = 5
+	pixel_x = -16
+	pixel_y = -16
+
+/obj/effect/temp_visual/cosmic_domain
+	name = "Cosmic Domain"
+	icon = 'icons/effects/160x160.dmi'
+	icon_state = "cosmic_domain"
+	anchored = TRUE
+	duration = 6
+	pixel_x = -64
+	pixel_y = -64
+
+/obj/effect/temp_visual/cosmic_gem
+	name = "cosmic gem"
+	icon = 'icons/effects/eldritch.dmi'
+	icon_state = "cosmic_gem"
+	duration = 12
+
+/obj/effect/temp_visual/cosmic_gem/Initialize(mapload)
+	. = ..()
+	pixel_x = rand(-12, 12)
+	pixel_y = rand(-9, 0)

@@ -38,7 +38,7 @@
 				if(open)
 					GM.visible_message(span_danger("[user] starts to give [GM] a swirlie!"), span_userdanger("[user] starts to give you a swirlie..."))
 					swirlie = GM
-					if(do_after(user, 3 SECONDS, src, FALSE))
+					if(do_after(user, 3 SECONDS, src, timed_action_flags = IGNORE_HELD_ITEM))
 						GM.visible_message(span_danger("[user] gives [GM] a swirlie!"), span_userdanger("[user] gives you a swirlie!"), span_italics("You hear a toilet flushing."))
 						if(iscarbon(GM))
 							var/mob/living/carbon/C = GM
@@ -200,7 +200,7 @@
 	icon_state = "urinalcake"
 	item_state = "urinalcake"
 	w_class = WEIGHT_CLASS_TINY
-	list_reagents = list(/datum/reagent/chlorine = 3, /datum/reagent/ammonia = 1)
+	list_reagents = list(/datum/reagent/chlorine = 10, /datum/reagent/ammonia = 5)
 	foodtype = TOXIC | GROSS
 
 /obj/item/reagent_containers/food/snacks/urinalcake/attack_self(mob/living/user)
@@ -274,15 +274,19 @@
 		to_chat(user, span_warning("Someone's already washing here!"))
 		return
 
-	if(istype(O, /obj/item/reagent_containers))
-		var/obj/item/reagent_containers/RG = O
-		if(RG.is_refillable())
-			if(!RG.reagents.holder_full())
-				RG.reagents.add_reagent(dispensedreagent, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
-				to_chat(user, span_notice("You fill [RG] from [src]."))
-				return TRUE
-			to_chat(user, span_notice("\The [RG] is full."))
-			return FALSE
+	// If it's refillable, fill it up
+	if(O.is_refillable())
+		if(!O.reagents.holder_full())
+			var/transfer_amount = 10
+			if(istype(O, /obj/item/reagent_containers))
+				var/obj/item/reagent_containers/R = O
+				transfer_amount = R.amount_per_transfer_from_this
+			O.reagents.add_reagent(dispensedreagent, min(O.reagents.maximum_volume - O.reagents.total_volume, transfer_amount))
+			to_chat(user, span_notice("You fill [O] from [src]."))
+			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+			return TRUE
+		to_chat(user, span_notice("\The [O] is full."))
+		return FALSE
 
 	if(istype(O, /obj/item/melee/baton))
 		var/obj/item/melee/baton/B = O
@@ -297,12 +301,6 @@
 									span_userdanger("You unwisely attempt to wash [B] while it's still on."))
 				playsound(src, "sparks", 50, 1)
 				return
-
-	if(istype(O, /obj/item/mop))
-		O.reagents.add_reagent(dispensedreagent, 5)
-		to_chat(user, span_notice("You wet [O] in [src]."))
-		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
-		return
 
 	if(istype(O, /obj/item/stack/medical/gauze))
 		var/obj/item/stack/medical/gauze/G = O
@@ -386,29 +384,36 @@
 	alpha = 200 //Mappers can also just set this to 255 if they want curtains that can't be seen through
 	layer = SIGN_LAYER
 	anchored = TRUE
-	opacity = 0
+	opacity = FALSE
 	density = FALSE
 	var/open = TRUE
+	/// if it can be seen through when closed
+	var/opaque_closed = FALSE
+
+/obj/structure/curtain/Initialize(mapload)
+	// see-through curtains should let emissives shine through
+	if(!opaque_closed)
+		blocks_emissive = EMISSIVE_BLOCK_NONE
+	return ..()
 
 /obj/structure/curtain/proc/toggle()
 	open = !open
-	update_appearance(UPDATE_ICON)
+	if(open)
+		layer = SIGN_LAYER
+		SET_PLANE_IMPLICIT(src, GAME_PLANE)
+		set_density(FALSE)
+		set_opacity(FALSE)
+	else
+		layer = WALL_OBJ_LAYER
+		set_density(TRUE)
+		if(opaque_closed)
+			set_opacity(TRUE)
+
+	update_appearance()
 
 /obj/structure/curtain/update_icon_state()
-	. = ..()
-	if(!open)
-		icon_state = "closed"
-		layer = WALL_OBJ_LAYER
-		density = TRUE
-		open = FALSE
-		opacity = TRUE
-
-	else
-		icon_state = "open"
-		layer = SIGN_LAYER
-		density = FALSE
-		open = TRUE
-		opacity = FALSE
+	icon_state = "[open ? "open" : "closed"]"
+	return ..()
 
 /obj/structure/curtain/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/toy/crayon))

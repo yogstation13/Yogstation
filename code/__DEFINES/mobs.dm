@@ -78,6 +78,12 @@
 #define MOB_EPIC		(1<<7) //megafauna
 #define MOB_REPTILE		(1<<8)
 #define MOB_SPIRIT		(1<<9)
+#define MOB_SPECIAL		(1<<10) //eldritch biggums
+
+
+/// All the biotypes that matter
+#define ALL_NON_ROBOTIC (MOB_ORGANIC|MOB_INORGANIC|MOB_UNDEAD)
+#define ALL_BIOTYPES (MOB_ORGANIC|MOB_INORGANIC|MOB_ROBOTIC|MOB_UNDEAD)
 
 //Organ defines for carbon mobs
 #define ORGAN_ORGANIC   1
@@ -100,10 +106,6 @@
 #define LARVA_BODYPART "larva"
 #define DEVIL_BODYPART "devil"
 /*see __DEFINES/inventory.dm for bodypart bitflag defines*/
-
-// Processing flags, defines the types of mobs are compatible with certain reagents, organs, and symptoms
-#define ORGANIC (1<<0)
-#define SYNTHETIC (1<<1)
 
 // Health/damage defines for carbon mobs
 #define HUMAN_MAX_OXYLOSS 3
@@ -210,16 +212,6 @@
 //Used as an upper limit for species that continuously gain nutriment
 #define NUTRITION_LEVEL_ALMOST_FULL 535
 
-//Charge levels for Ethereals
-#define ETHEREAL_CHARGE_SCALING_MULTIPLIER 20
-#define ETHEREAL_CHARGE_NONE (0 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
-#define ETHEREAL_CHARGE_LOWPOWER (20 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
-#define ETHEREAL_CHARGE_NORMAL (50 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
-#define ETHEREAL_CHARGE_ALMOSTFULL (75 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
-#define ETHEREAL_CHARGE_FULL (100 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
-#define ETHEREAL_CHARGE_OVERLOAD (125 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
-#define ETHEREAL_CHARGE_DANGEROUS (150 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
-
 //Slime evolution threshold. Controls how fast slimes can split/grow
 #define SLIME_EVOLUTION_THRESHOLD 10
 
@@ -257,11 +249,20 @@
 #define ENVIRONMENT_SMASH_WALLS			(1<<1)  //walls
 #define ENVIRONMENT_SMASH_RWALLS		(1<<2)	//rwalls
 
-#define NO_SLIP_WHEN_WALKING	(1<<0)
-#define SLIDE					(1<<1)
-#define GALOSHES_DONT_HELP		(1<<2)
-#define SLIDE_ICE				(1<<3)
-#define SLIP_WHEN_CRAWLING		(1<<4) //clown planet ruin
+// Slip flags, also known as lube flags
+/// The mob will not slip if they're walking intent
+#define NO_SLIP_WHEN_WALKING (1<<0)
+/// Slipping on this will send them sliding a few tiles down
+#define SLIDE (1<<1)
+/// Ice slides only go one tile and don't knock you over, they're intended to cause a "slip chain"
+/// where you slip on ice until you reach a non-slippable tile (ice puzzles)
+#define SLIDE_ICE (1<<2)
+/// [TRAIT_NO_SLIP_WATER] does not work on this slip. ONLY [TRAIT_NO_SLIP_ALL] will
+#define GALOSHES_DONT_HELP (1<<3)
+/// Slip works even if you're already on the ground
+#define SLIP_WHEN_CRAWLING (1<<4)
+/// the mob won't slip if the turf has the TRAIT_TURF_IGNORE_SLIPPERY trait.
+#define SLIPPERY_TURF (1<<5)
 
 #define MAX_CHICKENS 50
 
@@ -280,7 +281,10 @@
 
 #define MEGAFAUNA_DEFAULT_RECOVERY_TIME 5
 
-#define SHADOW_SPECIES_LIGHT_THRESHOLD 0.2
+#define SHADOW_SPECIES_DIM_LIGHT 0.2 //light of this intensity suppresses healing and causes very slow burn damage
+#define SHADOW_SPECIES_BRIGHT_LIGHT 0.6 //light of this intensity causes rapid burn damage (high number because movable lights are weird)
+//so the problem is that movable lights ALWAYS have a luminosity of 0.5, regardless of power or distance, so even at the edge of the overlay they still do damage
+//at 0.6 being bright they'll still do damage and disable some abilities, but it won't be weaponized
 
 // Offsets defines
 
@@ -310,9 +314,15 @@
 #define DOOR_CRUSH_DAMAGE	15	//the amount of damage that airlocks deal when they crush you
 
 #define	HUNGER_FACTOR		0.1	//factor at which mob nutrition decreases
-#define	ETHEREAL_CHARGE_FACTOR	0.12 //factor at which ethereal's charge decreases
 #define	REAGENTS_METABOLISM 0.4	//How many units of reagent are consumed per tick, by default.
 #define REAGENTS_EFFECT_MULTIPLIER (REAGENTS_METABOLISM / 0.4)	// By defining the effect multiplier this way, it'll exactly adjust all effects according to how they originally were with the 0.4 metabolism
+
+// Eye protection
+#define FLASH_PROTECTION_HYPER_SENSITIVE -2
+#define FLASH_PROTECTION_SENSITIVE -1
+#define FLASH_PROTECTION_NONE 0
+#define FLASH_PROTECTION_FLASH 1
+#define FLASH_PROTECTION_WELDER 2
 
 // Roundstart trait system
 
@@ -368,10 +378,13 @@
 /// How far away you can be to make eye contact with someone while examining
 #define EYE_CONTACT_RANGE 5
 
-#define INTERACTING_WITH(X, Y) (Y in X.do_afters)
-
+//this should be in the ai defines, but out ai defines are actual ai, not simplemob ai
+#define IS_DEAD_OR_INCAP(source) (source.incapacitated() || source.stat)
 
 #define DOING_INTERACTION(user, interaction_key) (LAZYACCESS(user.do_afters, interaction_key))
+#define DOING_INTERACTION_LIMIT(user, interaction_key, max_interaction_count) ((LAZYACCESS(user.do_afters, interaction_key) || 0) >= max_interaction_count)
+#define DOING_INTERACTION_WITH_TARGET(user, target) (LAZYACCESS(user.do_afters, target))
+#define DOING_INTERACTION_WITH_TARGET_LIMIT(user, target, max_interaction_count) ((LAZYACCESS(user.do_afters, target) || 0) >= max_interaction_count)
 
 ///Define for spawning megafauna instead of a mob for cave gen
 #define SPAWN_MEGAFAUNA "bluh bluh huge boss"
@@ -380,3 +393,48 @@
 #define SWARMER_LIGHT_ON (1<<0)
 
 #define ACCENT_NONE "None"
+
+// Body position defines.
+/// Mob is standing up, usually associated with lying_angle value of 0.
+#define STANDING_UP 0
+/// Mob is lying down, usually associated with lying_angle values of 90 or 270.
+#define LYING_DOWN 1
+
+/// Possible value of [/atom/movable/buckle_lying]. If set to a different (positive-or-zero) value than this, the buckling thing will force a lying angle on the buckled.
+#define NO_BUCKLE_LYING -1
+
+/// Squashing will not occur if the mob is not lying down (bodyposition is LYING_DOWN)
+#define SQUASHED_SHOULD_BE_DOWN (1<<0)
+/// If present, outright gibs the squashed mob instead of just dealing damage
+#define SQUASHED_SHOULD_BE_GIBBED (1<<1)
+/// If squashing always passes if the mob is dead
+#define SQUASHED_ALWAYS_IF_DEAD (1<<2)
+/// Don't squash our mob if its not located in a turf
+#define SQUASHED_DONT_SQUASH_IN_CONTENTS (1<<3)
+
+// Bitflags for mob dismemberment and gibbing
+/// Mobs will drop a brain
+#define DROP_BRAIN (1<<0)
+/// Mobs will drop organs
+#define DROP_ORGANS (1<<1)
+/// Mobs will drop bodyparts (arms, legs, etc.)
+#define DROP_BODYPARTS (1<<2)
+/// Mobs will drop items
+#define DROP_ITEMS (1<<3)
+
+/// Mobs will drop everything
+#define DROP_ALL_REMAINS (DROP_BRAIN | DROP_ORGANS | DROP_BODYPARTS | DROP_ITEMS)
+
+// Sprites for photocopying butts
+#define BUTT_SPRITE_HUMAN_MALE "human_male"
+#define BUTT_SPRITE_HUMAN_FEMALE "human_female"
+#define BUTT_SPRITE_LIZARD "lizard"
+#define BUTT_SPRITE_QR_CODE "qr_code"
+#define BUTT_SPRITE_XENOMORPH "xeno"
+#define BUTT_SPRITE_DRONE "drone"
+#define BUTT_SPRITE_CAT "cat"
+#define BUTT_SPRITE_FLOWERPOT "flowerpot"
+#define BUTT_SPRITE_GREY "grey"
+#define BUTT_SPRITE_PLASMA "plasma"
+#define BUTT_SPRITE_FUZZY "fuzzy"
+#define BUTT_SPRITE_SLIME "slime"

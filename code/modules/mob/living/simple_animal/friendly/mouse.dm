@@ -29,7 +29,6 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	emote_see = list("runs in a circle.", "shakes.")
 	speak_chance = 1
 	turns_per_move = 5
-	see_in_dark = 8
 	maxHealth = 5
 	health = 5
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/mouse = 1)
@@ -41,17 +40,19 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	can_be_held = TRUE //mouse gaming
 	worn_slot_flags = ITEM_SLOT_HEAD
 	var/body_color //brown, gray and white, leave blank for random
 	gold_core_spawnable = FRIENDLY_SPAWN
 	move_force = MOVE_FORCE_EXTREMELY_WEAK
+	faction = list("neutral", "rat") //while they aren't rats, we don't want ai controlled rats killing these because rat king can convert them
 	var/chew_probability = 1
 	var/full = FALSE
 	var/eating = FALSE
 	var/cheesed = FALSE
 	var/cheese_time = 0
+	var/food_type = /obj/item/reagent_containers/food/snacks/deadmouse
 
 /mob/living/simple_animal/mouse/Initialize(mapload)
 	. = ..()
@@ -81,7 +82,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	if(!ckey)
 		..(1)
 		if(!gibbed)
-			var/obj/item/reagent_containers/food/snacks/deadmouse/M = new(loc)
+			var/obj/item/reagent_containers/food/snacks/deadmouse/M = new food_type(loc)
 			M.icon_state = icon_dead
 			M.name = name
 			if(toast)
@@ -102,7 +103,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 /mob/living/simple_animal/mouse/handle_automated_action()
 	if(prob(chew_probability))
 		var/turf/open/floor/F = get_turf(src)
-		if(istype(F) && !F.intact)
+		if(istype(F) && !F.underfloor_accessibility >= UNDERFLOOR_INTERACTABLE)
 			var/obj/structure/cable/C = locate() in F
 			if(C && prob(15))
 				if(C.avail())
@@ -113,6 +114,11 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 				else
 					C.deconstruct()
 					visible_message(span_warning("[src] chews through the [C]."))
+
+			var/obj/structure/ethernet_cable/E = locate() in F
+			if(E && prob(15))
+				E.deconstruct()
+				visible_message(span_warning("[src] chews through the [E]."))
 	for(var/obj/item/reagent_containers/food/snacks/cheesewedge/cheese in range(1, src))
 		if(prob(10))
 			be_fruitful()
@@ -203,7 +209,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	eating = TRUE
 	layer = MOB_LAYER
 	visible_message(span_danger("[src] starts eating away [A]..."),span_notice("You start eating the [A]..."))
-	if(do_after(src, 3 SECONDS, A, FALSE))
+	if(do_after(src, 3 SECONDS, A, timed_action_flags = IGNORE_HELD_ITEM))
 		if(QDELETED(A))
 			return
 		visible_message(span_danger("[src] finishes eating up [A]!"),span_notice("You finish up eating [A]."))
@@ -237,6 +243,9 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 
 /mob/living/simple_animal/mouse/proc/cheese_up()
 	regen_health(15)
+	if(cheesed)
+		cheese_time += 3 MINUTES
+		return
 	cheesed = TRUE
 	resize = 2
 	update_transform()
@@ -244,7 +253,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	maxHealth = 30
 	health = maxHealth
 	to_chat(src, span_userdanger("You ate cheese! You are now stronger, bigger and faster!"))
-	cheese_time = cheese_time + 3 MINUTES
+	cheese_time = world.time + 3 MINUTES
 	pixel_x = 26
 	pixel_y = 5
 
@@ -300,6 +309,17 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	response_harm   = "splats"
 	gold_core_spawnable = NO_SPAWN
 
+/mob/living/simple_animal/mouse/fat
+	name = "fat mouse"
+	desc = "This cute \"little\" guy seems to have been snacking on too much cheddar. Isn't he adorable?"
+	body_color = "fat" //what colour are you? FAT
+	icon_state = "mouse_fat"
+	turns_per_move = 10
+	maxHealth = 10
+	health = 10
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/mouse/fat = 1)
+	food_type = /obj/item/reagent_containers/food/snacks/deadmouse/fat
+
 /obj/item/reagent_containers/food/snacks/deadmouse
 	name = "dead mouse"
 	desc = "It looks like somebody dropped the bass on it. A Lizard's favorite meal."
@@ -310,11 +330,21 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	foodtype = MICE
 	grind_results = list(/datum/reagent/blood = 20, /datum/reagent/liquidgibs = 5)
+	var/meat_type = /obj/item/reagent_containers/food/snacks/meat/slab/mouse
+
+/obj/item/reagent_containers/food/snacks/deadmouse/fat
+	name = "dead fat mouse"
+	desc = "It looks like somebody dropped the bass on it. A Lizard's favorite meal."
+	icon_state = "mouse_fat_dead"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5) //same amount of food, but it's not healthy
+	junkiness = 25
+	foodtype = MICE | JUNKFOOD
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/slab/mouse/fat
 
 /obj/item/reagent_containers/food/snacks/deadmouse/attackby(obj/item/I, mob/user, params)
 	if(I.is_sharp() && user.a_intent == INTENT_HARM)
 		if(isturf(loc))
-			new /obj/item/reagent_containers/food/snacks/meat/slab/mouse(loc)
+			new meat_type(loc)
 			to_chat(user, span_notice("You butcher [src]."))
 			qdel(src)
 		else

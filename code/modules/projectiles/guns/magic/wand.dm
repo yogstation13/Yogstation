@@ -37,7 +37,7 @@
 	if(target == user)
 		if(no_den_usage)
 			var/area/A = get_area(user)
-			if(istype(A, /area/wizard_station))
+			if(istype(A, /area/centcom/wizard_station))
 				to_chat(user, span_warning("You know better than to violate the security of The Den, best wait until you leave to use [src]."))
 				return
 			else
@@ -100,7 +100,7 @@
 		return
 	..()
 	charges--
-	if(user.anti_magic_check())
+	if(user.can_block_magic())
 		user.visible_message(span_warning("[src] has no effect on [user]!"))
 		return
 	user.revive(full_heal = 1)

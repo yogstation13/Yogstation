@@ -45,3 +45,12 @@
 
 #undef WRATHFUL_FIRE_AMOUNT
 
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/sin/wrath
+	name = "Greater Demonic Jaunt"
+	desc = "Briefly turn to cinder and ash, allowing you to freely pass through objects. Lasts slightly shorter than normal, but is more easily used."
+
+	cooldown_time = 25 SECONDS
+
+	jaunt_duration = 2 SECONDS
+	jaunt_out_time = 0 SECONDS
+

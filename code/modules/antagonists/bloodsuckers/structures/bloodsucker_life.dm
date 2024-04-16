@@ -125,7 +125,7 @@
 		return
 	var/mob/living/carbon/user = owner.current
 	var/costMult = 1 // Coffin makes it cheaper
-	var/bruteheal = min(user.getBruteLoss_nonProsthetic(), actual_regen) // BRUTE: Always Heal
+	var/bruteheal = min(user.getBruteLoss(), actual_regen) // BRUTE: Always Heal
 	var/fireheal = 0 // BURN: Heal in Coffin while Fakedeath, or when damage above maxhealth (you can never fully heal fire)
 	/// Checks if you're in a coffin here, additionally checks for Torpor right below it.
 	var/amInCoffin = istype(user.loc, /obj/structure/closet/crate/coffin)
@@ -134,7 +134,7 @@
 			to_chat(user, span_alert("You do not heal while your Masquerade ability is active."))
 			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_MASQUERADE)
 			return
-		fireheal = min(user.getFireLoss_nonProsthetic(), actual_regen)
+		fireheal = min(user.getFireLoss(), actual_regen)
 		mult *= 8 // Increase multiplier if we're sleeping in a coffin.
 		costMult *= 0 // No cost if we're sleeping in a coffin.
 		user.extinguish_mob()
@@ -214,9 +214,9 @@
 	var/obj/item/organ/eyes/current_eyes = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_EYES)
 	if(current_eyes)
 		current_eyes.flash_protect = max(initial(current_eyes.flash_protect) - 1, - 1)
+		current_eyes.color_cutoffs = list(25, 8, 5)
 		current_eyes.sight_flags = SEE_MOBS
-		current_eyes.see_in_dark = 8
-		current_eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+
 		current_eyes.setOrganDamage(0) //making sure
 		if(my_clan?.get_clan() == CLAN_LASOMBRA && ishuman(bloodsuckeruser))
 			var/mob/living/carbon/human/bloodsucker = bloodsuckeruser
@@ -286,13 +286,52 @@
 		owner.current.adjust_jitter(3 SECONDS)
 	// BLOOD_VOLUME_SURVIVE: [122] - Blur Vision
 	if(bloodsucker_blood_volume < BLOOD_VOLUME_SURVIVE(owner.current))
-		owner.current.blur_eyes((8 - 8 * (bloodsucker_blood_volume / BLOOD_VOLUME_BAD(owner.current)))* 2 SECONDS)
+		owner.current.adjust_eye_blur((8 - 8 * (bloodsucker_blood_volume / BLOOD_VOLUME_BAD(owner.current)))* 2 SECONDS)
 
 	// The more blood, the better the Regeneration, get too low blood, and you enter Frenzy.
 	if(bloodsucker_blood_volume < (FRENZY_THRESHOLD_ENTER + humanity_lost * 10) && !frenzied)
 		if(!iscarbon(owner.current))
 			return
-		owner.current.apply_status_effect(/datum/status_effect/frenzy)
+		if(my_clan?.get_clan() == CLAN_GANGREL)
+			var/mob/living/carbon/user = owner.current
+			switch(frenzies)
+				if(0)
+					owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
+				if(1)
+					to_chat(owner, span_warning("You start feeling hungrier, you feel like a normal frenzy won't satiate it enough anymore."))
+					owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
+				if(2 to INFINITY)
+					if(do_after(user, 2 SECONDS, user, IGNORE_ALL))
+						playsound(user.loc, 'sound/weapons/slash.ogg', 25, 1)
+						to_chat(user, span_warning("<i><b>You skin rips and tears.</b></i>"))
+						if(do_after(user, 1 SECONDS, user, IGNORE_ALL))
+							playsound(user.loc, 'sound/weapons/slashmiss.ogg', 25, 1)
+							to_chat(user, span_warning("<i><b>You heart pumps blackened blood into your veins as your skin turns into fur.</b></i>"))
+							if(do_after(user, 1 SECONDS, user, IGNORE_ALL))
+								playsound(user.loc, 'sound/weapons/slice.ogg', 25, 1)
+								to_chat(user, span_boldnotice("<i><b><FONT size = 3>YOU HAVE AWOKEN.</b></i>"))
+								var/mob/living/simple_animal/hostile/bloodsucker/werewolf/ww
+								if(!ww || ww.stat == DEAD)
+									AddBloodVolume(560 - user.blood_volume) //so it doesn't happen multiple times and refills your blood when you get out again
+									ww = new /mob/living/simple_animal/hostile/bloodsucker/werewolf(user.loc)
+									user.forceMove(ww)
+									ww.bloodsucker = user
+									user.mind.transfer_to(ww)
+									var/list/wolf_powers = list(new /datum/action/cooldown/bloodsucker/targeted/feast,)
+									for(var/datum/action/cooldown/bloodsucker/power in powers)
+										if(istype(power, /datum/action/cooldown/bloodsucker/fortitude))
+											wolf_powers += new /datum/action/cooldown/bloodsucker/gangrel/wolfortitude
+										if(istype(power, /datum/action/cooldown/bloodsucker/targeted/lunge))
+											wolf_powers += new /datum/action/cooldown/bloodsucker/targeted/pounce
+										if(istype(power, /datum/action/cooldown/bloodsucker/cloak))
+											wolf_powers += new /datum/action/cooldown/bloodsucker/gangrel/howl
+										if(istype(power, /datum/action/cooldown/bloodsucker/targeted/trespass))
+											wolf_powers += new /datum/action/cooldown/bloodsucker/gangrel/rabidism
+									for(var/datum/action/cooldown/bloodsucker/power in wolf_powers) 
+										power.Grant(ww)
+								frenzies ++
+		else
+			owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
 	else if(bloodsucker_blood_volume < BLOOD_VOLUME_BAD(owner.current))
 		additional_regen = 0.1
 	else if(bloodsucker_blood_volume < BLOOD_VOLUME_OKAY(owner.current))
@@ -463,13 +502,12 @@
 		return
 	//If we're on Masquerade, we appear to have full blood, unless we are REALLY low, in which case we don't look as bad.
 	if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
-		switch(bloodsucker_blood_volume)
-			if(BLOOD_VOLUME_OKAY(owner.current) to INFINITY) // 336 and up, we are perfectly fine.
-				owner.current.blood_volume = initial(bloodsucker_blood_volume)
-			if(BLOOD_VOLUME_BAD(owner.current) to BLOOD_VOLUME_OKAY(owner.current)) // 224 to 336
-				owner.current.blood_volume = BLOOD_VOLUME_SAFE(owner.current)
-			else // 224 and below
-				owner.current.blood_volume = BLOOD_VOLUME_OKAY(owner.current)
+		if(bloodsucker_blood_volume >= BLOOD_VOLUME_OKAY(owner.current))
+			owner.current.blood_volume = initial(bloodsucker_blood_volume)
+		else if(bloodsucker_blood_volume >= BLOOD_VOLUME_BAD(owner.current))
+			owner.current.blood_volume = BLOOD_VOLUME_SAFE(owner.current)
+		else
+			owner.current.blood_volume = BLOOD_VOLUME_OKAY(owner.current)
 		return
 	owner.current.blood_volume = bloodsucker_blood_volume
 

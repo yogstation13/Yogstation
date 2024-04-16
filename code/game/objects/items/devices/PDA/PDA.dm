@@ -28,8 +28,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 
 /obj/item/pda
-	name = "\improper PDA"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
+	name = "\improper antique PDA"
+	desc = "An outdated, portable microcomputer developed by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pda"
 	item_state = "electronic"
@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		inserted_item = null
 
 /obj/item/pda/proc/update_label()
-	name = "PDA-[owner] ([ownjob])" //Name generalisation
+	name = "\improper antique PDA-[owner] ([ownjob])" //Name generalisation
 
 /obj/item/pda/GetAccess()
 	if(id)
@@ -410,14 +410,13 @@ GLOBAL_LIST_EMPTY(PDAs)
 			if (3)
 				dat += "<h4>[PDAIMG(atmos)] Atmospheric Readings</h4>"
 
-				var/turf/T = user.loc
-				if (isnull(T))
+				if (!isopenturf(get_turf(user)))
 					dat += "Unable to obtain a reading.<br>"
 				else
-					var/datum/gas_mixture/environment = T.return_air()
+					var/datum/gas_mixture/environment = user.return_air()
 
-					var/pressure = environment.return_pressure()
-					var/total_moles = environment.total_moles()
+					var/pressure = environment?.return_pressure()
+					var/total_moles = environment?.total_moles()
 
 					dat += "Air Pressure: [round(pressure,0.1)] kPa<br>"
 
@@ -425,7 +424,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 						for(var/id in environment.get_gases())
 							var/gas_level = environment.get_moles(id)/total_moles
 							if(gas_level > 0)
-								dat += "[GLOB.meta_gas_info[id][META_GAS_NAME]]: [round(gas_level*100, 0.01)]%<br>"
+								dat += "[GLOB.gas_data.names[id]]: [round(gas_level*100, 0.01)]%<br>"
 
 					dat += "Temperature: [round(environment.return_temperature()-T0C)]&deg;C<br>"
 				dat += "<br>"
@@ -1227,7 +1226,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 			A.emp_act(severity)
 	if (!(. & EMP_PROTECT_SELF))
 		emped += 1
-		spawn(200 * severity)
+		spawn(20 * severity)
 			emped -= 1
 
 /proc/get_viewable_pdas()

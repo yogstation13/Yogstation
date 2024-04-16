@@ -25,7 +25,7 @@
 	speed = 8
 	glide_size = 2
 	can_be_held = TRUE
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_SHOE
 
 	var/turtle_hide_max = 25 //The time spent hiding in its shell
 	var/turtle_hide_dur = 25 //Same as above, this is the var that physically counts down
@@ -62,7 +62,7 @@
 	return ..()
 
 //Bullets
-/mob/living/simple_animal/turtle/bullet_act(obj/item/projectile/Proj)
+/mob/living/simple_animal/turtle/bullet_act(obj/projectile/Proj)
 	if(!stat && !client)
 		if(icon_state == icon_hiding)
 			turtle_hide_dur = turtle_hide_max //Reset its hiding timer

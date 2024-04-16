@@ -46,7 +46,7 @@
 	M.adjustToxLoss(-5, 0, TRUE)
 	M.remove_status_effect(/datum/status_effect/hallucination)
 	REMOVE_TRAITS_NOT_IN(M, list(SPECIES_TRAIT, ROUNDSTART_TRAIT, ORGAN_TRAIT))
-	M.set_blurriness(0)
+	M.set_eye_blur(0)
 	M.set_blindness(0)
 	M.SetKnockdown(0, FALSE)
 	M.SetStun(0, FALSE)
@@ -396,6 +396,14 @@
 	reagent_state = LIQUID
 	color = "#FFEBEB"
 
+/datum/reagent/medicine/synthflesh/on_mob_add(mob/living/L)
+	if(ishuman(L))
+		var/mob/living/carbon/human/dude = L
+		if(dude?.dna?.species && istype(dude.dna.species, /datum/species/ipc/self/insurgent))
+			var/datum/species/ipc/self/insurgent/sneaky = dude.dna.species
+			sneaky.assume_disguise(dude)
+	. = ..()
+
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, methods=TOUCH, reac_volume,show_message = 1)
 	var/can_heal = FALSE
 	if(iscarbon(M))
@@ -442,10 +450,10 @@
 	reagent_state = LIQUID
 	color = "#F1C40F"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	process_flags = SYNTHETIC
+	compatible_biotypes = MOB_ROBOTIC
 
 /datum/reagent/medicine/system_cleaner/reaction_mob(mob/living/L, methods=TOUCH, reac_volume)
-	if(!(L.get_process_flags() & ORGANIC))
+	if(!(L.mob_biotypes & MOB_ORGANIC))
 		for(var/thing in L.diseases) // can clean viruses from fully synthetic hosts
 			var/datum/disease/D = thing
 			D.cure()
@@ -463,7 +471,7 @@
 	description = "Repairs brain damage in synthetics."
 	color = "#727272"
 	taste_description = "metallic"
-	process_flags = SYNTHETIC
+	compatible_biotypes = MOB_ROBOTIC
 
 /datum/reagent/medicine/liquid_solder/on_mob_life(mob/living/M)
 	var/obj/item/organ/O = M.get_organ_slot(ORGAN_SLOT_BRAIN)
@@ -486,7 +494,7 @@
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	var/healing = 0.5
 	overdose_threshold = 30
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/medicine/omnizine/on_mob_life(mob/living/carbon/M)
 	M.adjustToxLoss(-healing*REM, 0)
@@ -556,7 +564,7 @@
 	. = 1
 
 /datum/reagent/medicine/sal_acid
-	name = "Salicyclic Acid"
+	name = "Salicylic Acid"
 	description = "Stimulates the healing of severe bruises. Extremely rapidly heals severe bruising and slowly heals minor ones. Overdose will worsen existing bruising."
 	reagent_state = LIQUID
 	color = "#D2D2D2"
@@ -821,15 +829,15 @@
 			to_chat(M, span_warning("Your vision slowly returns..."))
 			M.cure_blind(EYE_DAMAGE)
 			M.cure_nearsighted(EYE_DAMAGE)
-			M.blur_eyes(35)
+			M.adjust_eye_blur(35)
 
 	else if(HAS_TRAIT_FROM(M, TRAIT_NEARSIGHT, EYE_DAMAGE))
 		to_chat(M, span_warning("The blackness in your peripheral vision fades."))
 		M.cure_nearsighted(EYE_DAMAGE)
-		M.blur_eyes(10)
+		M.adjust_eye_blur(10)
 	else if(M.eye_blind || M.eye_blurry)
 		M.set_blindness(0)
-		M.set_blurriness(0)
+		M.set_eye_blur(0)
 	..()
 
 /datum/reagent/medicine/atropine
@@ -1878,6 +1886,7 @@
 	name = "Resurrector Nanite Serum"
 	description = "A serum of nanites capable of restoring corpses to living people in a timely manner."
 	taste_description = "a bunch of tiny robots"
+	can_synth = FALSE
 
 /datum/reagent/medicine/resurrector_nanites/reaction_mob(mob/living/carbon/M)
 	..()
@@ -1894,7 +1903,7 @@
 	color = "#ff00d4"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "acidic oil"
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 	var/nanite_reduction = -50
 
 /datum/reagent/medicine/naniteremover/on_mob_life(mob/living/carbon/M)

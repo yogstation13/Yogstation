@@ -124,7 +124,7 @@
 	. = ..()
 	refreshBeam()
 
-/obj/item/assembly/infra/Moved()
+/obj/item/assembly/infra/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	var/t = dir
 	. = ..()
 	setDir(t)
@@ -220,8 +220,14 @@
 	pass_flags_self = LETPASSTHROW
 	var/obj/item/assembly/infra/master
 
-/obj/effect/beam/i_beam/Crossed(atom/movable/AM as mob|obj)
+/obj/effect/beam/i_beam/Initialize(mapload)
 	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
+/obj/effect/beam/i_beam/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(istype(AM, /obj/effect/beam))
 		return
 	if (isitem(AM))

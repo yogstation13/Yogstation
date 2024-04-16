@@ -9,7 +9,9 @@
 	maxHealth = 50
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	see_in_dark = 8
+	lighting_cutoff_red = 22
+	lighting_cutoff_green = 5
+	lighting_cutoff_blue = 5
 	stop_automated_movement = TRUE
 	attacktext = "bites"
 	speak_emote = list("gurgles")
@@ -72,6 +74,7 @@
 	add_ability(/datum/action/innate/horror/take_control)
 	add_ability(/datum/action/innate/horror/leave_body)
 	add_ability(/datum/action/innate/horror/make_chems)
+	add_ability(/datum/action/innate/horror/scan_host)
 	add_ability(/datum/action/innate/horror/give_back_control)
 	RefreshAbilities()
 
@@ -106,7 +109,7 @@
 
 		to_chat(src, span_warning("You slither your tentacles up [C] and begin probing at [C.p_their()] ear canal...")) // Yogs -- pronouns
 
-		if(!do_mob(src, C, 3 SECONDS))
+		if(!do_after(src, 3 SECONDS, C))
 			to_chat(src, span_warning("As [C] moves away, you are dislodged and fall to the ground."))
 			return
 
@@ -212,7 +215,7 @@
 		return
 
 	to_chat(src, "You begin consuming [victim.name]'s soul!")
-	if(do_after(src, 30 SECONDS, victim, stayStill = FALSE))
+	if(do_after(src, 30 SECONDS, victim, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE))
 		consume()
 
 /mob/living/simple_animal/horror/proc/consume()
@@ -432,6 +435,15 @@
 
 	usr << browse(html, "window=ViewHorror\ref[src]Chems;size=600x800")
 
+/mob/living/simple_animal/horror/proc/scan_host()
+	if(!can_use_ability())
+		return
+	if(!victim)
+		to_chat(src, span_warning("You are not inside a host body."))
+		return
+	healthscan(usr, victim)
+	chemscan(usr, victim)
+
 /mob/living/simple_animal/horror/proc/hide()
 	if(victim)
 		to_chat(src, span_warning("You cannot do this while you're inside a host."))
@@ -532,7 +544,7 @@
 		to_chat(victim, span_userdanger("An odd, uncomfortable pressure begins to build inside your skull, behind your ear..."))
 
 	leaving = TRUE
-	if(do_after(src, 10 SECONDS, victim, extra_checks = CALLBACK(src, PROC_REF(is_leaving)), stayStill = FALSE))
+	if(do_after(src, 10 SECONDS, victim, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(is_leaving))))
 		release_host()
 
 /mob/living/simple_animal/horror/proc/release_host()
@@ -724,7 +736,7 @@
 	var/delay = 20 SECONDS
 	if(has_upgrade("fast_control"))
 		delay -= 12 SECONDS
-	if(do_after(src, delay, victim, extra_checks = CALLBACK(src, PROC_REF(is_bonding)), stayStill = FALSE))
+	if(do_after(src, delay, victim, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(is_bonding))))
 		assume_control()
 
 /mob/living/simple_animal/horror/proc/assume_control()

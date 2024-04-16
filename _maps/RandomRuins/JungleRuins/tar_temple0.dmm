@@ -1,0 +1,653 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/obj/structure/stone_tile/slab,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"c" = (
+/obj/structure/stone_tile/slab,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"d" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/stone_tile/slab,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"f" = (
+/turf/closed/indestructible/riveted/boss,
+/area/ruin/unpowered/tar_temple)
+"g" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/mineral_door/wood,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"h" = (
+/obj/structure/stone_tile/slab/cracked{
+	dir = 6
+	},
+/turf/open/indestructible/necropolis/air,
+/area/ruin/unpowered/tar_temple)
+"i" = (
+/obj/structure/stone_tile/slab,
+/mob/living/simple_animal/hostile/tar/dryad,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"l" = (
+/obj/structure/stone_tile/slab/cracked,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"m" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/mineral_door/wood,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"o" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"t" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/stone_tile/slab,
+/obj/structure/bonfire/prelit,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"u" = (
+/obj/structure/stone_tile/slab/cracked,
+/mob/living/simple_animal/hostile/tar/dryad,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"v" = (
+/obj/structure/stone_tile/slab/cracked,
+/turf/open/indestructible/necropolis/air,
+/area/ruin/unpowered/tar_temple)
+"x" = (
+/obj/structure/stone_tile/slab/cracked,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"z" = (
+/obj/structure/stone_tile/slab,
+/obj/effect/gibspawner/human,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"A" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/fluff/tarstatue,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"B" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/tar/dryad,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"E" = (
+/obj/structure/stone_tile/slab/cracked,
+/obj/effect/gibspawner/human,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"F" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/bonfire/prelit,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"G" = (
+/obj/structure/stone_tile/slab/cracked,
+/mob/living/simple_animal/hostile/tar/shade,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"H" = (
+/obj/structure/stone_tile/slab,
+/mob/living/simple_animal/hostile/tar/amalgamation,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"I" = (
+/obj/structure/stone_tile/slab/cracked{
+	dir = 4;
+	icon_state = "cracked_slab1"
+	},
+/obj/structure/stone_tile/slab/cracked{
+	dir = 8
+	},
+/turf/open/indestructible/necropolis/air,
+/area/ruin/unpowered/tar_temple)
+"J" = (
+/obj/structure/stone_tile/slab,
+/turf/open/indestructible/necropolis/air,
+/area/ruin/unpowered/tar_temple)
+"M" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/fluff/divine/convertaltar,
+/obj/item/tar_crystal,
+/turf/open/indestructible/necropolis/air,
+/area/ruin/unpowered/tar_temple)
+"N" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"O" = (
+/obj/structure/stone_tile/slab/cracked,
+/obj/structure/bonfire/prelit,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"P" = (
+/obj/structure/stone_tile/slab/cracked{
+	dir = 5
+	},
+/turf/open/indestructible/necropolis/air,
+/area/ruin/unpowered/tar_temple)
+"R" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/stone_tile/slab,
+/mob/living/simple_animal/hostile/tar/amalgamation,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"S" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/mineral_door/wood,
+/obj/structure/barricade/wooden/crude,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"T" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/tar/amalgamation,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"X" = (
+/obj/structure/stone_tile/slab,
+/mob/living/simple_animal/hostile/tar/shade,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"Z" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/bonfire/prelit,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+
+(1,1,1) = {"
+f
+f
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+f
+f
+"}
+(2,1,1) = {"
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+"}
+(3,1,1) = {"
+a
+f
+c
+X
+c
+c
+c
+c
+c
+f
+l
+c
+c
+f
+c
+c
+c
+c
+l
+f
+a
+"}
+(4,1,1) = {"
+a
+f
+c
+l
+c
+N
+F
+c
+c
+f
+c
+c
+T
+f
+N
+X
+l
+T
+c
+f
+a
+"}
+(5,1,1) = {"
+a
+f
+c
+c
+f
+f
+N
+z
+c
+m
+N
+N
+d
+m
+d
+N
+t
+d
+d
+f
+a
+"}
+(6,1,1) = {"
+a
+f
+c
+c
+f
+f
+c
+l
+c
+f
+u
+N
+E
+f
+c
+E
+N
+l
+c
+f
+a
+"}
+(7,1,1) = {"
+a
+f
+c
+c
+c
+l
+d
+R
+c
+f
+c
+Z
+N
+f
+c
+c
+l
+c
+c
+f
+a
+"}
+(8,1,1) = {"
+a
+f
+c
+c
+B
+c
+l
+c
+f
+f
+f
+f
+f
+f
+f
+f
+g
+m
+f
+f
+a
+"}
+(9,1,1) = {"
+a
+f
+c
+l
+c
+Z
+G
+c
+f
+b
+o
+I
+J
+P
+f
+c
+l
+l
+c
+f
+a
+"}
+(10,1,1) = {"
+a
+f
+c
+l
+c
+A
+c
+l
+S
+x
+b
+J
+M
+v
+f
+c
+d
+d
+c
+S
+a
+"}
+(11,1,1) = {"
+a
+f
+c
+c
+c
+Z
+N
+c
+f
+b
+x
+v
+h
+J
+f
+c
+c
+d
+l
+f
+a
+"}
+(12,1,1) = {"
+a
+f
+l
+i
+E
+c
+c
+c
+f
+f
+f
+f
+f
+f
+f
+f
+g
+g
+f
+f
+a
+"}
+(13,1,1) = {"
+a
+f
+c
+c
+c
+c
+c
+c
+c
+f
+l
+F
+c
+f
+c
+c
+N
+N
+c
+f
+a
+"}
+(14,1,1) = {"
+a
+f
+c
+c
+f
+f
+c
+H
+l
+f
+X
+c
+c
+f
+c
+l
+H
+z
+l
+f
+a
+"}
+(15,1,1) = {"
+a
+f
+c
+X
+f
+f
+c
+N
+c
+m
+c
+l
+N
+m
+c
+c
+O
+c
+N
+f
+a
+"}
+(16,1,1) = {"
+a
+f
+N
+N
+c
+c
+O
+c
+c
+f
+c
+c
+E
+f
+N
+c
+c
+c
+c
+f
+a
+"}
+(17,1,1) = {"
+a
+f
+c
+c
+c
+c
+c
+c
+c
+f
+N
+X
+c
+f
+c
+c
+l
+c
+c
+f
+a
+"}
+(18,1,1) = {"
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+"}
+(19,1,1) = {"
+f
+f
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+f
+f
+"}

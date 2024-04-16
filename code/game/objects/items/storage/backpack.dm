@@ -315,25 +315,13 @@
 	desc = "A very slim satchel that can easily fit into tight spaces."
 	icon_state = "satchel-flat"
 	w_class = WEIGHT_CLASS_NORMAL //Can fit in backpacks itself.
-	level = 1
 
 /obj/item/storage/backpack/satchel/flat/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE, INVISIBILITY_OBSERVER, use_anchor = TRUE)
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 15
 	STR.set_holdable(null, list(/obj/item/storage/backpack/satchel/flat)) //muh recursive backpacks)
-
-/obj/item/storage/backpack/satchel/flat/hide(intact)
-	if(intact)
-		invisibility = INVISIBILITY_OBSERVER
-		anchored = TRUE //otherwise you can start pulling, cover it, and drag around an invisible backpack.
-		icon_state = "[initial(icon_state)]2"
-		ADD_TRAIT(src, TRAIT_T_RAY_VISIBLE, TRAIT_GENERIC)
-	else
-		invisibility = initial(invisibility)
-		anchored = FALSE
-		icon_state = initial(icon_state)
-		REMOVE_TRAIT(src, TRAIT_T_RAY_VISIBLE, TRAIT_GENERIC)
 
 /obj/item/storage/backpack/satchel/flat/PopulateContents()
 	var/datum/supply_pack/costumes_toys/randomised/contraband/C = new
@@ -514,7 +502,7 @@
 	new /obj/item/surgical_mat/syndicate(src)
 	new /obj/item/clothing/suit/straight_jacket(src)
 	new /obj/item/clothing/mask/muzzle(src)
-	new /obj/item/mmi/syndie(src)
+	new /obj/item/mmi(src)
 	new /obj/item/implantcase(src)
 	for(var/obj/item/I in contents)
 		I.toolspeed = 0.5
@@ -536,6 +524,23 @@
 	for(var/i in 7 to 8)
 		new /obj/item/ammo_box/magazine/m12g/flechette(src)
 
+/obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/random
+	desc = "A large duffel bag, packed to the brim with random Bulldog shotgun magazines."
+
+/obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/random/PopulateContents()
+	var/list/item_list = list(
+		/obj/item/ammo_box/magazine/m12g,
+		/obj/item/ammo_box/magazine/m12g/dragon,
+		/obj/item/ammo_box/magazine/m12g/frag,
+		/obj/item/ammo_box/magazine/m12g/meteor,
+		/obj/item/ammo_box/magazine/m12g/slug,
+		/obj/item/ammo_box/magazine/m12g/flechette
+	)
+
+	for(var/i in 1 to 10)
+		var/item = pick(item_list)
+		new item(src)
+
 /obj/item/storage/backpack/duffelbag/syndie/ammo/smg
 	desc = "A large duffel bag, packed to the brim with C-20r magazines."
 
@@ -546,6 +551,21 @@
 		new /obj/item/ammo_box/magazine/smgm45/ap(src)
 	for(var/i in 8 to 9)
 		new /obj/item/ammo_box/magazine/smgm45/hp(src)
+
+/obj/item/storage/backpack/duffelbag/syndie/ammo/smg/random
+	desc = "A large duffel bag, packed to the brim with random C-20r magazines."
+
+/obj/item/storage/backpack/duffelbag/syndie/ammo/smg/random/PopulateContents()
+	var/list/item_list = list(
+		/obj/item/ammo_box/magazine/smgm45,
+		/obj/item/ammo_box/magazine/smgm45/ap,
+		/obj/item/ammo_box/magazine/smgm45/hp,
+		/obj/item/ammo_box/magazine/smgm45/venom
+	)
+
+	for(var/i in 1 to 11)
+		var/item = pick(item_list)
+		new item(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/dark_gygax
 	desc = "A large duffel bag, packed to the brim with various exosuit ammo."
@@ -652,7 +672,7 @@
 	STR.silent = TRUE
 
 /obj/item/storage/backpack/duffelbag/clown/syndie/PopulateContents()
-	new /obj/item/pda/clown(src)
+	new /obj/item/modular_computer/tablet/pda/preset/clown/syndicate (src)
 	new /obj/item/clothing/under/rank/clown(src)
 	new /obj/item/clothing/shoes/clown_shoes(src)
 	new /obj/item/clothing/mask/gas/clown_hat(src)
@@ -681,6 +701,8 @@
 /obj/item/storage/backpack/duffelbag/clothing/hop/PopulateContents()
 	new /obj/item/clothing/under/rank/head_of_personnel(src)
 	new /obj/item/clothing/under/rank/head_of_personnel/skirt(src)
+	new /obj/item/clothing/under/rank/head_of_personnel/turtleneck(src)
+	new /obj/item/clothing/under/rank/head_of_personnel/skirt/turtleneck(src)
 	new /obj/item/clothing/head/hopcap(src)
 	new /obj/item/clothing/head/beret/hop(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
@@ -756,14 +778,14 @@
 	new /obj/item/clothing/suit/det_suit/tan(src)
 	new /obj/item/clothing/head/fedora/det_hat/grey(src)
 	new /obj/item/clothing/shoes/laceup(src)
-	new /obj/item/clothing/under/yogs/forensictech(src)
-	new /obj/item/clothing/under/yogs/bluedetective(src)
-	new /obj/item/clothing/under/yogs/golddetective(src)
-	new /obj/item/clothing/under/yogs/greydetective(src)
-	new /obj/item/clothing/under/yogs/blackdetective(src)
-	new /obj/item/clothing/suit/yogs/golddetective(src)
-	new /obj/item/clothing/suit/yogs/detectivecoat(src)
-	new /obj/item/clothing/suit/yogs/bluedetective(src)
+	new /obj/item/clothing/under/rank/det/yogs(src)
+	new /obj/item/clothing/under/rank/det/yogs/forensictech(src)
+	new /obj/item/clothing/under/rank/det/yogs/bluedetective(src)
+	new /obj/item/clothing/under/rank/det/yogs/golddetective(src)
+	new /obj/item/clothing/under/rank/det/yogs/greydetective(src)
+	new /obj/item/clothing/suit/det_suit/yogs(src)
+	new /obj/item/clothing/suit/det_suit/yogs/golddetective(src)
+	new /obj/item/clothing/suit/det_suit/yogs/bluedetective(src)
 
 /obj/item/storage/backpack/duffelbag/clothing/sec/warden
 	name = "Warden's clothing duffelbag"
@@ -818,6 +840,8 @@
 	new /obj/item/clothing/suit/toggle/labcoat/cmo(src)
 	new /obj/item/clothing/under/rank/chief_medical_officer(src)
 	new /obj/item/clothing/under/rank/chief_medical_officer/skirt(src)
+	new /obj/item/clothing/under/rank/chief_medical_officer/turtleneck(src)
+	new /obj/item/clothing/under/rank/chief_medical_officer/skirt/turtleneck(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 	new /obj/item/clothing/head/beret/cmo(src)

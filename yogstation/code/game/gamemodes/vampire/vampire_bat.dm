@@ -12,7 +12,7 @@
 	speak_chance = 0
 	maxHealth = 20
 	health = 20
-	see_in_dark = 10
+	speed = 0
 	harm_intent_damage = 7
 	melee_damage_lower = 5
 	melee_damage_upper = 7
@@ -27,9 +27,6 @@
 	mob_size = MOB_SIZE_TINY
 	movement_type = FLYING
 	speak_emote = list("squeaks")
-	var/max_co2 = 0 //to be removed once metastation map no longer use those for Sgt Araneus
-	var/min_oxy = 0
-	var/max_tox = 0
 
 	var/mob/living/controller
 

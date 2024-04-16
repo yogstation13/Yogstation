@@ -114,4 +114,4 @@
 		to_chat(M, span_danger("You are blinded by the powerful acid of [src]!"))
 		log_combat(user, M, "attacked", src)
 
-		M.adjust_blurriness(force/7)
+		M.adjust_eye_blur(force/7)

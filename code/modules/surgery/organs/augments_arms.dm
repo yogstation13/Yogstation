@@ -67,7 +67,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if(prob(15/severity) && owner)
+	if(prob(1.5 * severity) && owner)
 		to_chat(owner, span_warning("[src] is hit by EMP!"))
 		// give the owner an idea about why his implant is glitching
 		Retract()
@@ -162,7 +162,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if(prob(30/severity) && owner && (organ_flags & ORGAN_FAILING))
+	if(prob(3 * severity) && owner && (organ_flags & ORGAN_FAILING))
 		Retract()
 		owner.visible_message(span_danger("A loud bang comes from [owner]\'s [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm!"))
 		playsound(get_turf(owner), 'sound/weapons/flashbang.ogg', 100, 1)
@@ -214,7 +214,7 @@
 	UnregisterSignal(linkedhandler, COMSIG_ITEM_PREDROPPED)
 	. = ..()
 
-/obj/item/organ/cyberimp/arm/toolset/emag_act()
+/obj/item/organ/cyberimp/arm/toolset/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!(locate(/obj/item/kitchen/knife/combat/cyborg) in items_list))
 		to_chat(usr, span_notice("You unlock [src]'s integrated knife!"))
 		items_list += new /obj/item/kitchen/knife/combat/cyborg(src)
@@ -329,7 +329,7 @@
 	lefthand_file = active_tool.lefthand_file
 	righthand_file = active_tool.righthand_file
 	linkedarm.owner.update_inv_hands()
-	plane = 22
+	SET_PLANE_EXPLICIT(src, ABOVE_HUD_PLANE, linkedarm.owner)
 
 /obj/item/toolset_handler/attack_self(mob/user)
 	linkedarm.ui_action_click()
@@ -424,7 +424,7 @@
 	desc = "An internal power cord hooked up to a battery. Useful if you run on volts."
 	contents = newlist(/obj/item/apc_powercord)
 	slot = ORGAN_SLOT_STOMACH_AID //so ipcs don't get shafted for nothing
-	process_flags = SYNTHETIC
+	compatible_biotypes = MOB_ROBOTIC
 	zone = BODY_ZONE_CHEST
 
 /obj/item/organ/cyberimp/arm/power_cord/SetSlotFromZone() // don't swap the zone

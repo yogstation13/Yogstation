@@ -375,9 +375,17 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 
 /obj/item/clothing/mask/rmask
 	name = "dusty mask"
-	desc = "A face is nothing, it’s what’s inside that matters."
+	desc = "A face is nothing, it's what's inside that matters."
 	icon_state = "rmask"
 	item_state = "rmaks"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	clothing_flags = MASKINTERNALS
+	flags_cover = MASKCOVERSEYES
+
+/obj/item/clothing/mask/pocketcatmask
+	name = "peculiar cat mask"
+	desc = "This mask makes you a little uneasy."
+	icon_state = "pocketmask"
+	item_state = "pocketmask"
+	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	flags_cover = MASKCOVERSEYES

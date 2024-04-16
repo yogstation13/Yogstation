@@ -1,20 +1,20 @@
 // Honker
 
-/obj/item/projectile/bullet/honker
+/obj/projectile/bullet/honker
 	name = "banana"
 	damage = 0
-	movement_type = FLYING | UNSTOPPABLE
+	movement_type = FLYING | PHASING
 	nodamage = TRUE
 	hitsound = 'sound/items/bikehorn.ogg'
 	icon = 'icons/obj/hydroponics/harvest.dmi'
 	icon_state = "banana"
 	range = 200
 
-/obj/item/projectile/bullet/honker/Initialize(mapload)
+/obj/projectile/bullet/honker/Initialize(mapload)
 	. = ..()
 	SpinAnimation()
 
-/obj/item/projectile/bullet/honker/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/bullet/honker/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	var/mob/M = target
 	if(istype(M))
@@ -22,10 +22,10 @@
 
 // Mime
 
-/obj/item/projectile/bullet/mime
+/obj/projectile/bullet/mime
 	damage = 40
 
-/obj/item/projectile/bullet/mime/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/bullet/mime/on_hit(atom/target, blocked = FALSE)
 	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/M = target
 		M.silent = max(M.silent, 10)

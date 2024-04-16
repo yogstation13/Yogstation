@@ -29,8 +29,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	. = ..()
 	if(master_crystal)
 		invisibility = INVISIBILITY_MAXIMUM
-		max_integrity = 1000
-		obj_integrity = 1000
+		modify_max_integrity(1000, FALSE)
 
 /obj/structure/slime_crystal/Initialize(mapload)
 	. = ..()
@@ -145,7 +144,6 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 		return
 	var/datum/gas_mixture/gas = T.return_air()
 	gas.set_temperature(T0C + 200)
-	T.air_update_turf()
 
 /obj/structure/slime_crystal/purple
 	colour = "purple"
@@ -185,7 +183,6 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 			continue
 		var/datum/gas_mixture/gas = T.return_air()
 		gas.parse_gas_string(OPENTURF_DEFAULT_ATMOS)
-		T.air_update_turf()
 
 /obj/structure/slime_crystal/metal
 	colour = "metal"
@@ -232,8 +229,8 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 		return
 	var/turf/open/open_turf = T
 	var/datum/gas_mixture/air = open_turf.return_air()
-	if(air.get_moles(/datum/gas/plasma) > 15)
-		air.adjust_moles(/datum/gas/plasma, -15)
+	if(air.get_moles(GAS_PLASMA) > 15)
+		air.adjust_moles(GAS_PLASMA, -15)
 		new /obj/item/stack/sheet/mineral/plasma(open_turf)
 
 /obj/structure/slime_crystal/darkpurple/Destroy()
@@ -410,7 +407,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 				blood_amt = max_blood_amt
 				break
 			qdel(B)
-		else if (istype(B, /obj/effect/decal/cleanable/trail_holder))
+		else if (istype(B, /obj/effect/decal/cleanable/blood/trail_holder))
 			blood_amt += 3
 			if(blood_amt > max_blood_amt)
 				blood_amt = max_blood_amt
@@ -424,7 +421,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	blood_amt -= 50
 	to_chat(user, span_notice("You touch the crystal, and see blood transforming into an organ!"))
 	playsound(src, 'sound/magic/demon_consume.ogg', 50, 1)
-	var/type = pick(/obj/item/reagent_containers/food/snacks/meat/slab,/obj/item/organ/heart,/obj/item/organ/heart/freedom,/obj/item/organ/lungs,/obj/item/organ/lungs/plasmaman,/obj/item/organ/lungs/slime,/obj/item/organ/liver,/obj/item/organ/liver/plasmaman,/obj/item/organ/liver/alien,/obj/item/organ/eyes,/obj/item/organ/eyes/night_vision/alien,/obj/item/organ/eyes/night_vision,/obj/item/organ/eyes/night_vision/mushroom,/obj/item/organ/tongue,/obj/item/organ/stomach,/obj/item/organ/stomach/plasmaman,/obj/item/organ/stomach/ethereal,/obj/item/organ/ears,/obj/item/organ/ears/cat,/obj/item/organ/ears/penguin)
+	var/type = pick(/obj/item/reagent_containers/food/snacks/meat/slab,/obj/item/organ/heart,/obj/item/organ/heart/freedom,/obj/item/organ/lungs,/obj/item/organ/lungs/plasmaman,/obj/item/organ/lungs/ethereal,/obj/item/organ/lungs/slime,/obj/item/organ/liver,/obj/item/organ/liver/plasmaman,/obj/item/organ/liver/alien,/obj/item/organ/eyes,/obj/item/organ/eyes/alien,/obj/item/organ/eyes/night_vision,/obj/item/organ/eyes/night_vision/mushroom,/obj/item/organ/tongue,/obj/item/organ/stomach,/obj/item/organ/stomach/plasmaman,/obj/item/organ/stomach/cell/ethereal,/obj/item/organ/ears,/obj/item/organ/ears/cat,/obj/item/organ/ears/penguin)
 	new type(get_turf(src))
 
 /obj/structure/slime_crystal/red/attacked_by(obj/item/I, mob/living/user)

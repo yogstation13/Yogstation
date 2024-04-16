@@ -189,8 +189,8 @@
 	while(pixel_y < -16)
 		pixel_y += 32
 		new_y--
-	new_x = clamp(new_x, 0, world.maxx)
-	new_y = clamp(new_y, 0, world.maxy)
+	new_x = clamp(new_x, 1, world.maxx)
+	new_y = clamp(new_y, 1, world.maxy)
 	return locate(new_x, new_y, starting.z)
 
 // Returns a list where [1] is all x values and [2] is all y values that overlap between the given pair of rectangles
@@ -226,6 +226,23 @@
 
 /// Like DT_PROB_RATE but easier to use, simply put `if(DT_PROB(10, 5))`
 #define DT_PROB(prob_per_second_percent, delta_time) (prob(100*DT_PROB_RATE(prob_per_second_percent/100, delta_time)))
+// )
+
+/// Taxicab distance--gets you the **actual** time it takes to get from one turf to another due to how we calculate diagonal movement
+#define MANHATTAN_DISTANCE(a, b) (abs(a.x - b.x) + abs(a.y - b.y))
+// )
+
+/// A function that exponentially approaches a maximum value of L
+/// k is the rate at which is approaches L, x_0 is the point where the function = 0
+#define LOGISTIC_FUNCTION(L,k,x,x_0) (L/(1+(NUM_E**(-k*(x-x_0)))))
+
+// )
+/// Make sure something is a boolean TRUE/FALSE 1/0 value, since things like bitfield & bitflag doesn't always give 1s and 0s.
+#define FORCE_BOOLEAN(x) ((x)? TRUE : FALSE)
+
+// )
+/// Gives the number of pixels in an orthogonal line of tiles.
+#define TILES_TO_PIXELS(tiles)			(tiles * PIXELS)
 // )
 
 /// The number of cells in a taxicab circle (rasterized diamond) of radius X.

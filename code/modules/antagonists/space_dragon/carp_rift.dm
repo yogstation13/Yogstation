@@ -30,7 +30,7 @@
 		owner.balloon_alert(dragon, "needs stable ground!")
 		return
 	owner.balloon_alert(owner, "opening rift...")
-	if(!do_after(owner, 10 SECONDS, target = owner))
+	if(!do_after(owner, 10 SECONDS, owner))
 		return
 	if(locate(/obj/structure/carp_rift) in owner.loc)
 		return
@@ -172,7 +172,7 @@
 		charge_state = CHARGE_COMPLETED
 		var/area/A = get_area(src)
 		priority_announce("Spatial object has reached peak energy charge in [initial(A.name)], please stand-by.", "Central Command Wildlife Observations")
-		obj_integrity = INFINITY
+		update_integrity(INFINITY)
 		icon_state = "carp_rift_charged"
 		set_light_color(LIGHT_COLOR_YELLOW)
 		update_light()

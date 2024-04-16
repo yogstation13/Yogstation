@@ -92,10 +92,10 @@
 			new /obj/item/implanter/storage(src) //8 TC
 
 		if("hacker") //29 TC cost
-			new /obj/item/aiModule/syndicate(src) //4 TC
+			new /obj/item/aiModule/hacked(src) //4 TC
 			new /obj/item/card/emag(src) //6 TC
 			new /obj/item/encryptionkey/binary(src) //2 TC
-			new /obj/item/aiModule/toyAI(src) //Um, free...?
+			new /obj/item/aiModule/ion/toyAI(src) //Um, free...?
 			new /obj/item/multitool/ai_detect(src) //1 TC
 			new /obj/item/storage/toolbox/syndicate/real(src) //2 TC
 			new /obj/item/camera_bug(src) //1 TC
@@ -138,7 +138,7 @@
 			new /obj/item/card/emag(src) //6 TC
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
-	switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = CARP_CARP_CARP, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
+	switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = CARP_CARP_CARP, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1, "solo" = 1)))
 		if("v") //Big Boss. Total of ~26 TC.
 			new /obj/item/clothing/under/syndicate/camo(src) //Reskinned tactical turtleneck, free
 			new /obj/item/clothing/glasses/eyepatch/bigboss(src) //Gives flash protection and night vision, probably around 2-3 TC
@@ -160,7 +160,7 @@
 			new /obj/item/gun/ballistic/automatic/pistol/deagle/gold(src) //Gold deagle (golden gun). Since you can print off .357 boxes now I'd honestly say it's like 5 TC, even that's an overestimation
 			new /obj/item/ammo_box/magazine/m50(src) //Spare mag for your gun. 1 TC.
 			new /obj/item/grenade/syndieminibomb(src) //Hand grenade. 6 TC
-			new /obj/item/deployablemine(src) //I don't know if anyone remembers remote mines in Goldeneye because I certainly do. Hilariously less lethal than the 4 TC rubber ducky for clown ops, so I say 3
+			new /obj/item/deployablemine/explosive(src) //I don't know if anyone remembers remote mines in Goldeneye because I certainly do. Hilariously less lethal than the 4 TC rubber ducky for clown ops, so I say 3
 			new /obj/item/dnainjector/dwarf(src) //Gives you dwarfism (smaller hitbox, instantly climb tables), would argue 2-3 TC. The only other core item to this kit
 
 		if("ninja")
@@ -225,7 +225,7 @@
 			new /obj/item/reagent_containers/glass/bottle/beesease(src) // 10 tc?
 			new /obj/item/gun/magic/staff/spellblade/beesword(src) //priceless
 
-		if("mr_freeze") // ~17 tc
+		if("mr_freeze") // ~25 tc
 			new /obj/item/clothing/glasses/cold(src) // 0 tc
 			new /obj/item/clothing/gloves/color/black(src) // 0 tc
 			new /obj/item/clothing/mask/chameleon/syndicate(src) // 0 tc on its own
@@ -237,8 +237,9 @@
 			new /obj/item/grenade/gluon(src) //
 			new /obj/item/dnainjector/geladikinesis(src) // 0 tc
 			new /obj/item/dnainjector/cryokinesis(src) // 1 or 2 tc, kind of useful
-			new /obj/item/gun/energy/temperature/security(src) // the crutch of this kit, alongside esword, ~4 tc
+			new /obj/item/gun/energy/temperature/security(src) // ~4 tc
 			new /obj/item/melee/transforming/energy/sword/saber/blue(src) //see see it fits the theme bc its blue and ice is blue, 8 tc
+			new /obj/item/reagent_containers/spray/chemsprayer/freeze(src) // filled with frost oil and you can refill it with whatever, ~8 tc
 
 		if("neo")
 			new /obj/item/clothing/glasses/sunglasses(src)
@@ -270,7 +271,37 @@
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
 
+		if("solo") //14 + 6x3 + 1 = 3 tc = 31 tc. it was, in fact, busted
+			new /obj/item/autosurgeon/syndicate/spinalspeed(src) //12 tc
+			new /obj/item/clothing/suit/toggle/cyberpunk/solo(src) //dont know what this costs, vague guesstimate says 6tc
+			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
+			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
+			new /obj/item/autosurgeon/upgraded_cyberlungs(src) //this is to remain true to the source material ok
+			new /obj/item/storage/pill_bottle/synaptizine(src) //take your drugs david, this and the lungs make up 1 tc
+			
+
 #undef CARP_CARP_CARP
+
+/obj/item/storage/pill_bottle/synaptizine
+	name = "bottle of synaptizine pills"
+	desc = "Contains synaptizine pills to help with managing the psychological drawbacks of having numerous implants. Someone hastily wrote 'DOES NOT MITIGATE OVERCLOCKER OVERUSAGE' on it with sharpie."
+
+/obj/item/storage/pill_bottle/synaptizine/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/reagent_containers/pill/synaptizine(src)
+
+/obj/item/reagent_containers/pill/synaptizine
+	name = "synaptizine pill"
+	desc = "Helps with some of the side effects of having various implants."
+	icon_state = "pill19"
+	list_reagents = list(/datum/reagent/medicine/synaptizine = 10)
+	rename_with_volume = TRUE
+
+/obj/item/clothing/suit/toggle/cyberpunk/solo
+	name = "David's Jacket"
+	desc = "A jacket once owned by a legendary edgerunner, or so they say. Armored."
+	armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 15, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF //it's too stylish to be destroyed
 
 /obj/item/stand_arrow/boss
 	desc = "An arrow that can unleash <span class='holoparasite'>massive potential</span> from those stabbed by it. It has been laced with syndicate mindslave nanites that will be linked to whoever first uses it in their hand."
@@ -627,6 +658,24 @@
 	for(var/i in 1 to 2)
 		new /obj/item/ammo_box/magazine/m10mm(src)
 
+/obj/item/storage/box/syndie_kit/pistolammo/random
+	real_name = "random 10mm magazine box"
+
+/obj/item/storage/box/syndie_kit/pistolammo/random/PopulateContents()
+	var/list/item_list = list(
+		/obj/item/ammo_box/magazine/m10mm,
+		/obj/item/ammo_box/magazine/m10mm/cs,
+		/obj/item/ammo_box/magazine/m10mm/sp,
+		/obj/item/ammo_box/magazine/m10mm/ap,
+		/obj/item/ammo_box/magazine/m10mm/hp,
+		/obj/item/ammo_box/magazine/m10mm/fire,
+		/obj/item/ammo_box/magazine/m10mm/emp
+	)
+
+	for(var/i in 1 to 4)
+		var/item = pick(item_list)
+		new item(src)
+
 /obj/item/storage/box/syndie_kit/pistolcaselessammo
 	real_name = "10mm caseless magazine box"
 
@@ -647,6 +696,23 @@
 /obj/item/storage/box/syndie_kit/revolverammo/PopulateContents()
 	for(var/i in 1 to 2)
 		new /obj/item/ammo_box/a357(src)
+
+/obj/item/storage/box/syndie_kit/revolverammo/random
+	real_name = "random .357 speed loader box"
+
+/obj/item/storage/box/syndie_kit/revolverammo/random/PopulateContents()
+	var/list/item_list = list(
+		/obj/item/ammo_box/a357,
+		/obj/item/ammo_box/a357/ironfeather,
+		/obj/item/ammo_box/a357/nutcracker,
+		/obj/item/ammo_box/a357/metalshock,
+		/obj/item/ammo_box/a357/heartpiercer,
+		/obj/item/ammo_box/a357/wallstake
+	)
+
+	for(var/i in 1 to 4)
+		var/item = pick(item_list)
+		new item(src)
 
 /obj/item/storage/box/syndie_kit/revolvershotgunammo
 	real_name = ".357 Ironfeather speed loader box"
@@ -706,7 +772,6 @@
 	new /obj/item/storage/backpack/chameleon/syndicate(src)
 	new /obj/item/radio/headset/chameleon/syndicate(src)
 	new /obj/item/stamp/chameleon/syndicate(src)
-	new /obj/item/pda/chameleon/syndicate(src)
 
 /obj/item/storage/box/syndie_kit/chameleon/plasmaman
 	real_name = "chameleon kit"
@@ -722,7 +787,6 @@
 	new /obj/item/storage/backpack/chameleon/syndicate(src)
 	new /obj/item/radio/headset/chameleon/syndicate(src)
 	new /obj/item/stamp/chameleon/syndicate(src)
-	new /obj/item/pda/chameleon/syndicate(src)
 
 //5*(2*4) = 5*8 = 45, 45 damage if you hit one person with all 5 stars.
 //Not counting the damage it will do while embedded (2*4 = 8, at 15% chance)
@@ -775,7 +839,7 @@
 	new /obj/item/radio/headset/headset_cent/empty(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/storage/backpack/satchel(src)
-	new /obj/item/pda/heads(src)
+	new /obj/item/modular_computer/tablet/pda/preset/bureaucrat(src)
 	new /obj/item/clipboard(src)
 	new /obj/item/implanter/mindshield(src)
 
@@ -790,7 +854,6 @@
 	new /obj/item/storage/backpack/chameleon/broken(src)
 	new /obj/item/radio/headset/chameleon/broken(src)
 	new /obj/item/stamp/chameleon/broken(src)
-	new /obj/item/pda/chameleon/broken(src)
 	// No chameleon laser, they can't randomise for //REASONS//
 
 /obj/item/storage/box/syndie_kit/bee_grenades

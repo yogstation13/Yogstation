@@ -19,7 +19,7 @@ It can charge at its target, and also heavily damaging anything directly hit in 
 If at half health it will start to charge from all sides with clones.
 
 When Bubblegum dies, it leaves behind a H.E.C.K. mining suit as well as one of the following: 
- 1.A set of knuckles that can trap victims where they stand
+ 1.A book that allows the user to parry incoming attacks and squeeze ores out of victims
  2.A pair of cuffs allowing the wearer to devour creatures to heal
 
 Difficulty: Hard
@@ -60,7 +60,7 @@ Difficulty: Hard
 	var/enrage_till = 0
 	var/enrage_time = 70
 	var/revving_charge = FALSE
-	internal_type = /obj/item/gps/internal/bubblegum
+	gps_name = "Bloody Signal"
 	deathmessage = "sinks into a pool of blood, fleeing the battle. You've won, for now... "
 	deathsound = 'sound/magic/enter_blood.ogg'
 	attack_action_types = list(/datum/action/innate/megafauna_attack/triple_charge,
@@ -70,14 +70,6 @@ Difficulty: Hard
 	small_sprite_type = /datum/action/small_sprite/megafauna/bubblegum
 	music_component = /datum/component/music_player/battle
 	music_path = /datum/music/sourced/battle/bubblegum
-
-/mob/living/simple_animal/hostile/megafauna/bubblegum/Initialize(mapload)
-	. = ..()
-	if(true_spawn)
-		for(var/mob/living/simple_animal/hostile/megafauna/bubblegum/B in GLOB.mob_living_list)
-			if(B != src)
-				return INITIALIZE_HINT_QDEL //There can be only one
-
 /datum/action/innate/megafauna_attack/triple_charge
 	name = "Triple Charge"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
@@ -419,7 +411,7 @@ Difficulty: Hard
 /obj/effect/decal/cleanable/blood/gibs/bubblegum/can_bloodcrawl_in()
 	return TRUE
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/do_attack_animation(atom/A, visual_effect_icon)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
 	if(!charging)
 		..()
 
@@ -429,7 +421,7 @@ Difficulty: Hard
 		if(.)
 			recovery_time = world.time + 20 // can only attack melee once every 2 seconds but rapid_melee gives higher priority
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/bullet_act(obj/item/projectile/P)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/bullet_act(obj/projectile/P)
 	if(BUBBLEGUM_IS_ENRAGED)
 		visible_message(span_danger("[src] deflects the projectile; [p_they()] can't be hit with ranged weapons while enraged!"), span_userdanger("You deflect the projectile!"))
 		playsound(src, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 300, 1)
@@ -464,11 +456,8 @@ Difficulty: Hard
 		DestroySurroundings()
 	..()
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/Moved(atom/OldLoc, Dir, Forced = FALSE)
-	var/turf/current_turf = get_turf(src) //do not directly insert the get_turf proc into the helpers
-	if(Dir)
-		if(!isturf(current_turf) || isclosedturf(current_turf) || isgroundlessturf(current_turf)) //do not spawn blood where it shouldn't be
-			return
+/mob/living/simple_animal/hostile/megafauna/bubblegum/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
+	if(movement_dir)
 		new /obj/effect/decal/cleanable/blood/bubblegum(src.loc)
 	if(charging)
 		DestroySurroundings()

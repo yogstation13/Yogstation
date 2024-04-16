@@ -1,5 +1,5 @@
 /datum/ai_dashboard
-	var/mob/living/silicon/ai/owner
+	var/mob/living/owner
 
 	var/available_projects
 
@@ -11,12 +11,8 @@
 	var/completed_projects
 
 	var/running_projects
-	///Should we be contributing spare CPU to generate research points?
-	var/contribute_spare_cpu = TRUE
-	///Are we using 50% of our spare CPU to mine bitcoin?
-	var/crypto_mining = FALSE
 
-/datum/ai_dashboard/New(mob/living/silicon/ai/new_owner)
+/datum/ai_dashboard/New(mob/living/new_owner)
 	if(!istype(new_owner))
 		qdel(src)
 	owner = new_owner
@@ -27,7 +23,9 @@
 	ram_usage = list()
 
 	for(var/path in subtypesof(/datum/ai_project))
-		available_projects += new path(owner, src)
+		var/datum/ai_project/P = path
+		if(!initial(P.for_synths))
+			available_projects += new path(owner, src)
 
 
 /datum/ai_dashboard/proc/is_interactable(mob/user)
@@ -35,9 +33,11 @@
 		return TRUE
 	if(user != owner || owner.incapacitated())
 		return FALSE
-	if(owner.control_disabled)
-		to_chat(user, span_warning("Wireless control is disabled."))
-		return FALSE
+	if(isAI(owner))
+		var/mob/living/silicon/ai/AI = owner
+		if(AI.control_disabled)
+			to_chat(user, span_warning("Wireless control is disabled."))
+			return FALSE
 	return TRUE
 
 /datum/ai_dashboard/ui_status(mob/user)
@@ -57,8 +57,19 @@
 /datum/ai_dashboard/ui_data(mob/user)
 	var/list/data = list()
 
-	data["current_cpu"] = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.cpu_assigned[owner] : 0
-	data["current_ram"] = GLOB.ai_os.ram_assigned[owner] ? GLOB.ai_os.ram_assigned[owner] : 0
+	if(isAI(owner))
+		data["current_cpu"] = owner.ai_network.resources.cpu_assigned[owner] ? owner.ai_network.resources.cpu_assigned[owner] : 0
+		data["current_ram"] = owner.ai_network.resources.ram_assigned[owner] ? owner.ai_network.resources.ram_assigned[owner] : 0
+	else
+		var/synth_count = owner.ai_network.synth_list.len
+		data["current_cpu"] = owner.ai_network.local_cpu_usage[SYNTH_RESEARCH] ? (owner.ai_network.resources.cpu_sources[owner.ai_network] * owner.ai_network.local_cpu_usage[SYNTH_RESEARCH]) / synth_count : 0
+
+	if(!isAI(owner))
+		var/mob/living/carbon/human/H = owner
+		var/datum/species/wy_synth/S = H.dna.species
+		if(S.inbuilt_cpu)
+			data["current_cpu"] += S.inbuilt_cpu.speed
+	
 	data["current_ram"] += free_ram
 
 	var/total_cpu_used = 0
@@ -69,13 +80,28 @@
 	for(var/I in ram_usage)
 		total_ram_used += ram_usage[I]
 
-	data["contribute_spare_cpu"] = contribute_spare_cpu
 
 	data["used_cpu"] = total_cpu_used
 	data["used_ram"] = total_ram_used
 
-	data["max_cpu"] = GLOB.ai_os.total_cpu
-	data["max_ram"] = GLOB.ai_os.total_ram
+	data["total_cpu_used"] = owner.ai_network.resources.total_cpu_assigned()
+	if(isAI(owner))
+		data["max_cpu"] = owner.ai_network.resources.total_cpu()
+		data["max_ram"] = owner.ai_network.resources.total_ram()
+	else
+		data["max_cpu"] = owner.ai_network.resources.cpu_sources[owner.ai_network]
+
+	data["human_lock"] = owner.ai_network.resources.human_lock
+
+	data["is_ai"] = isAI(owner)
+
+	//Add inbuilt synth CPU to the mix
+	if(!isAI(owner))
+		var/mob/living/carbon/human/H = owner
+		var/datum/species/wy_synth/S = H.dna.species
+		if(S.inbuilt_cpu)
+			data["max_cpu"] += S.inbuilt_cpu.speed
+
 
 	data["categories"] = GLOB.ai_project_categories
 	data["available_projects"] = list()
@@ -87,8 +113,10 @@
 	data["location_name"] = get_area(current_turf)
 
 	data["location_coords"] = "[current_turf.x], [current_turf.y], [current_turf.z]"
-	var/datum/gas_mixture/env = current_turf.return_air()
-	data["temperature"] = env.return_temperature()
+	
+	if(isAI(owner))
+		var/obj/machinery/ai/current_machine = owner.loc
+		data["temperature"] = current_machine.core_temp ? current_machine.core_temp : 0
 
 	for(var/datum/ai_project/AP as anything in available_projects)
 		data["available_projects"] += list(list("name" = AP.name, "description" = AP.description, "ram_required" = AP.ram_required, "available" = AP.canResearch(), "research_cost" = AP.research_cost, "research_progress" = AP.research_progress, 
@@ -164,9 +192,50 @@
 			if(!set_project_cpu(project, amount_to_add))
 				to_chat(owner, span_warning("Unable to add CPU to [params["project_name"]]. Either not enough free CPU or project is unavailable."))
 			. = TRUE
-		if("toggle_contribute_cpu")
-			contribute_spare_cpu = !contribute_spare_cpu
-			to_chat(owner, span_notice("You now[contribute_spare_cpu ? "" : " DO NOT"] contribute spare CPU to generating research points."))
+		if("clear_ai_resources")
+			if(owner.ai_network.resources.human_lock)
+				return
+			owner.ai_network.resources.clear_ai_resources(src)
+			. = TRUE
+
+		if("set_cpu")
+			if(owner.ai_network.resources.human_lock)
+				return
+			var/amount = params["amount_cpu"]
+
+			if(amount > 1 || amount < 0)
+				return
+
+			var/used_cpu = owner.ai_network.resources.total_cpu_assigned() - owner.ai_network.resources.cpu_assigned[owner]
+			if(amount > (1 - used_cpu))
+				amount = (1 - used_cpu)
+
+			owner.ai_network.resources.set_cpu(owner, amount)
+			. = TRUE
+		if("max_cpu_assign")
+			if(owner.ai_network.resources.human_lock)
+				return
+			var/amount = (1 - owner.ai_network.resources.total_cpu_assigned()) + owner.ai_network.resources.cpu_assigned[owner]
+
+			owner.ai_network.resources.set_cpu(owner, amount)
+			. = TRUE
+		if("add_ram")
+			if(owner.ai_network.resources.human_lock)
+				return
+			if(owner.ai_network.resources.total_ram_assigned() >= owner.ai_network.resources.total_ram())
+				return
+			owner.ai_network.resources.add_ram(owner, 1)
+			. = TRUE
+
+		if("remove_ram")
+			if(owner.ai_network.resources.human_lock)
+				return
+			var/current_ram = owner.ai_network.resources.ram_assigned[owner]
+
+			if(current_ram <= 0)
+				return
+			owner.ai_network.resources.remove_ram(owner, 1)
+			. = TRUE
 			
 /datum/ai_dashboard/proc/get_project_by_name(project_name, only_available = FALSE)
 	for(var/datum/ai_project/AP as anything in available_projects)
@@ -210,7 +279,7 @@
 
 
 /datum/ai_dashboard/proc/run_project(datum/ai_project/project)
-	var/current_ram = GLOB.ai_os.ram_assigned[owner] ? GLOB.ai_os.ram_assigned[owner] : 0
+	var/current_ram = owner.ai_network.resources.ram_assigned[owner] ? owner.ai_network.resources.ram_assigned[owner] : 0
 	current_ram += free_ram
 
 	var/total_ram_used = 0
@@ -225,6 +294,8 @@
 
 /datum/ai_dashboard/proc/stop_project(datum/ai_project/project)
 	project.stop()
+	if(!project.ram_required)
+		return FALSE
 	if(ram_usage[project.name])
 		ram_usage[project.name] -= project.ram_required
 		return project.ram_required
@@ -268,10 +339,23 @@
 
 //Stuff is handled in here per tick :)
 /datum/ai_dashboard/proc/tick(seconds)
-	var/current_cpu = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.total_cpu * GLOB.ai_os.cpu_assigned[owner] : 0
-	var/current_ram = GLOB.ai_os.ram_assigned[owner] ? GLOB.ai_os.ram_assigned[owner] : 0
+	if(!owner.ai_network) //Irrelevant with no AI network (we're in an APC)
+		return
+	var/current_cpu = 0
+	var/current_ram = owner.ai_network.resources.ram_assigned[owner] ? owner.ai_network.resources.ram_assigned[owner] : 0
 	current_ram += free_ram
 
+	if(isAI(owner))
+		current_cpu = owner.ai_network.resources.cpu_assigned[owner] ? owner.ai_network.resources.total_cpu() * owner.ai_network.resources.cpu_assigned[owner] : 0
+	else
+		var/synth_count = owner.ai_network.synth_list.len
+		current_cpu = owner.ai_network.local_cpu_usage[SYNTH_RESEARCH] ? (owner.ai_network.resources.cpu_sources[owner.ai_network] * owner.ai_network.local_cpu_usage[SYNTH_RESEARCH]) / synth_count : 0
+
+	if(!isAI(owner))
+		var/mob/living/carbon/human/H = owner
+		var/datum/species/wy_synth/S = H.dna.species
+		if(S.inbuilt_cpu)
+			current_cpu += S.inbuilt_cpu.speed
 
 	var/total_ram_used = 0
 	for(var/I in ram_usage)
@@ -282,7 +366,11 @@
 
 	if(total_ram_used > current_ram)
 		for(var/I in ram_usage)
+			if(!ram_usage[I]) //We only stop the program if it actually has any RAM usage
+				continue
 			var/datum/ai_project/project = get_project_by_name(I)
+			if(!ram_usage[I]) //We only stop the program if it actually has any RAM usage
+				continue
 			total_ram_used -= stop_project(project)
 			reduction_of_resources = TRUE
 			if(total_ram_used <= current_ram)
@@ -297,21 +385,10 @@
 	for(var/I in cpu_usage)
 		remaining_cpu -= cpu_usage[I]
 
-	if(remaining_cpu > 0 && contribute_spare_cpu)
-		var/points = max(round(AI_RESEARCH_PER_CPU * (remaining_cpu * current_cpu) * owner.research_point_booster), 0)
-
-		if(crypto_mining)
-			points *= 0.5
-			var/bitcoin_mined = points * (1-0.05*sqrt(points))	
-			bitcoin_mined = clamp(bitcoin_mined, 0, MAX_AI_BITCOIN_MINED_PER_TICK)
-			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
-			if(D)
-				D.adjust_money(bitcoin_mined * AI_BITCOIN_PRICE)
-
+	if(remaining_cpu > 0)
+		var/points = max(round(AI_RESEARCH_PER_CPU * (remaining_cpu * current_cpu)), 0)
 		SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_AI = points))
 		
-
-
 	for(var/project_being_researched in cpu_usage)
 		if(!cpu_usage[project_being_researched])
 			continue

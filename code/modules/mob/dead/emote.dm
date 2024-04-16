@@ -12,7 +12,7 @@
 
 /datum/emote/dead/dab/run_emote(mob/user, params)
 	. = ..()
-	var/mob/dead/observer/H = user
+	var/mob/dead/observer/dabber = user
 	var/light_dab_angle = rand(35,55)
 	var/light_dab_speed = rand(3,7)
-	H.DabAnimation(angle = light_dab_angle , speed = light_dab_speed)
+	INVOKE_ASYNC(dabber, TYPE_PROC_REF(/atom, DabAnimation), light_dab_speed, 0, 0, 0, light_dab_angle)

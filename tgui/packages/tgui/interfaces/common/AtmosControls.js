@@ -1,7 +1,6 @@
 import { decodeHtmlEntities } from 'common/string';
 import { useBackend } from '../../backend';
 import { Button, LabeledList, NumberInput, Section } from '../../components';
-import { getGasLabel } from '../../constants';
 
 export const Vent = (props, context) => {
   const { vent } = props;
@@ -161,7 +160,7 @@ export const Scrubber = (props, context) => {
             && filter_types.map(filter => (
               <Button key={filter.gas_id}
                 icon={filter.enabled ? 'check-square-o' : 'square-o'}
-                content={getGasLabel(filter.gas_id, filter.gas_name)}
+                content={filter.gas_name}
                 title={filter.gas_name}
                 selected={filter.enabled}
                 onClick={() => act('toggle_filter', {
@@ -174,4 +173,34 @@ export const Scrubber = (props, context) => {
       </LabeledList>
     </Section>
   );
+};
+
+// Returns gas color based on gasId
+export const getGasColor = (gasId, gases) => {
+  if (!gasId) return 'white';
+
+  const gasSearchString = gasId.toLowerCase();
+
+  for (let idx = 0; idx < gases.length; idx++) {
+    if (gases[idx].id === gasSearchString) {
+      return gases[idx].ui_color;
+    }
+  }
+
+  return 'white';
+};
+
+// Returns gas label based on gasId
+export const getGasLabel = (gasId, gases) => {
+  if (!gasId) return "";
+
+  const gasSearchString = gasId.toLowerCase();
+
+  for (let idx = 0; idx < gases.length; idx++) {
+    if (gases[idx].id === gasSearchString) {
+      return gases[idx].label;
+    }
+  }
+
+  return gasId;
 };

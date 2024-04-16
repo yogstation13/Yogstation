@@ -1,7 +1,7 @@
 /datum/eldritch_transmutation/flesh_blade
 	name = "Flesh Blade"
 	required_atoms = list(/obj/item/kitchen/knife,/obj/effect/decal/cleanable/blood)
-	result_atoms = list(/obj/item/gun/magic/hook/sickly_blade/flesh)
+	result_atoms = list(/obj/item/melee/sickly_blade/flesh)
 	required_shit_list = "A pool of blood and a knife."
 
 /datum/eldritch_transmutation/voiceless_dead
@@ -76,6 +76,12 @@
 	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/ash_spirit
 	required_shit_list = "A pile of ash, a head, and a book."
 
+/datum/eldritch_transmutation/summon/fire_shark
+	name = "Summon Fire Shark"
+	required_atoms = list(/obj/item/organ/eyes,/obj/effect/decal/cleanable/ash,/obj/item/stack/sheet/mineral/plasma)
+	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/fire_shark
+	required_shit_list = "A pile of ash, a pair of eyes, and a stack of plasma."
+
 /datum/eldritch_transmutation/summon/rusty
 	name = "Summon Rustwalker"
 	required_atoms = list(/obj/effect/decal/cleanable/vomit,,/obj/item/book)
@@ -110,7 +116,7 @@
 			ghoul2.max_amt *= 3
 			var/mob/dead/observer/ghost_candidate = pick(candidates)
 			priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report two entitites of immeasurable power, one of which is of a considerable volume of organic mass. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
-			set_security_level(SEC_LEVEL_GAMMA)
+
 			log_game("[key_name_admin(ghost_candidate)] has taken control of ([key_name_admin(summoned)]).")
 			summoned.ghostize(FALSE)
 			summoned.key = ghost_candidate.key
@@ -128,7 +134,14 @@
 					spells.Remove(user)
 					qdel(spells)
 			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the dark, for King of Arms has ascended! Our Lord of the Night has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
-			set_security_level(SEC_LEVEL_GAMMA)
+			SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
+			var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
+
+			shockwave.transform = matrix().Scale(0.5)
+			shockwave.pixel_x = -240
+			shockwave.pixel_y = -240
+			animate(shockwave, alpha = 0, transform = matrix().Scale(20), time = 10 SECONDS, easing = QUAD_EASING)
+			QDEL_IN(shockwave, 10.5 SECONDS)
 			log_game("[user.real_name] ascended as [summoned.real_name].")
 			var/mob/living/carbon/carbon_user = user
 			var/datum/antagonist/heretic/ascension = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)

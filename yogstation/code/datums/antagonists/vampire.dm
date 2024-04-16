@@ -9,6 +9,8 @@
 	job_rank = ROLE_VAMPIRE
 	antag_hud_name = "vampire"
 
+	ui_name = "AntagInfoVampire"
+
 	var/usable_blood = 0
 	var/total_blood = 0
 	var/converted = 0
@@ -24,24 +26,28 @@
 	var/obj/item/clothing/suit/draculacoat/coat
 
 	var/list/upgrade_tiers = list(
-		/datum/action/cooldown/spell/vampire_help = 0,
 		/datum/action/cooldown/spell/rejuvenate = 0,
 		/datum/action/cooldown/spell/pointed/gaze = 0,
 		/datum/action/cooldown/spell/pointed/hypno = 0,
 		/datum/vampire_passive/vision = 75,
-		/datum/action/cooldown/spell/appearanceshift = 75,
-		/datum/vampire_passive/nostealth = 100,
 		/datum/action/cooldown/spell/cloak = 100,
 		/datum/action/cooldown/spell/revive = 100,
-		/datum/action/cooldown/spell/pointed/disease = 200,
-		/datum/action/cooldown/spell/shapeshift/vampire = 200,
-		/datum/action/cooldown/spell/aoe/screech = 215,
+		/datum/vampire_passive/nostealth = 150, //only lose the ability to stealth once you get a proper way to escape
+		/datum/action/cooldown/spell/shapeshift/vampire = 150,
+		/datum/action/cooldown/spell/aoe/screech = 200,
 		/datum/action/cooldown/spell/bats = 250,
-		/datum/vampire_passive/regen = 255,
+		/datum/vampire_passive/regen = 250,
 		/datum/action/cooldown/spell/jaunt/ethereal_jaunt/mistform = 300,
-		/datum/vampire_passive/full = 420,
-		/datum/action/cooldown/spell/summon_coat = 420,
+		/datum/action/cooldown/spell/summon_coat = 400,
+		/datum/vampire_passive/full = 400,
 		/datum/action/cooldown/spell/pointed/vampirize = 450)
+
+/datum/antagonist/vampire/ui_static_data(mob/user)
+	var/list/data = list()
+	data["antag_name"] = name
+	data["objectives"] = get_objectives()
+	data["loud"] = get_ability(/datum/vampire_passive/nostealth)
+	return data
 
 /datum/antagonist/vampire/new_blood
 	full_vampire = FALSE
@@ -73,9 +79,10 @@
 	check_vampire_upgrade()
 	owner.special_role = "vampire"
 	owner.current.faction += "vampire"
-	var/mob/living/carbon/human/C = owner.current
-	if(istype(C))
-		var/obj/item/organ/brain/B = C.get_organ_slot(ORGAN_SLOT_BRAIN)
+	if(ishuman(owner.current))
+		var/mob/living/carbon/human/H = owner.current
+		RegisterSignal(H, COMSIG_HUMAN_BURNING, PROC_REF(handle_fire))
+		var/obj/item/organ/brain/B = H.get_organ_slot(ORGAN_SLOT_BRAIN)
 		if(B)
 			B.organ_flags &= ~ORGAN_VITAL
 			B.decoy_override = TRUE
@@ -88,6 +95,7 @@
 	owner.special_role = null
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/H = owner.current
+		UnregisterSignal(H, COMSIG_HUMAN_BURNING)
 		if(owner && H.hud_used && H.hud_used.vamp_blood_display)
 			H.hud_used.vamp_blood_display.invisibility = INVISIBILITY_ABSTRACT
 	for(var/O in objectives_given)
@@ -201,6 +209,11 @@
 		L.ignite_mob()
 	return
 
+/datum/antagonist/vampire/proc/handle_fire()
+	var/mob/living/carbon/human/dude = owner.current
+	if(dude.on_fire && dude.stat == DEAD && !get_ability(/datum/vampire_passive/full))
+		dude.dust()
+
 /datum/antagonist/vampire/proc/check_sun()
 	var/mob/living/carbon/C = owner.current
 	if(!C)
@@ -239,10 +252,14 @@
 		C.hud_used.vamp_blood_display.invisibility = FALSE
 		C.hud_used.vamp_blood_display.maptext = ANTAG_MAPTEXT(usable_blood, COLOR_CHANGELING_CHEMICALS)
 	handle_vampire_cloak()
+	if(get_ability(/datum/vampire_passive/regen))
+		C.heal_overall_damage(1, 1, 0, BODYPART_ANY) //advanced vampire powers give regen to even robotic limbs
+		C.adjustToxLoss(-1, TRUE, TRUE)
+		C.adjustOxyLoss(-2.5)
+
 	if(istype(C.loc, /obj/structure/closet/crate/coffin))
-		C.adjustBruteLoss(-4)
-		C.adjustFireLoss(-4)
-		C.adjustToxLoss(-4)
+		C.heal_overall_damage(4, 4, 0, BODYPART_ORGANIC) //sleepy in coffin doesn't
+		C.adjustToxLoss(-4, TRUE, TRUE)
 		C.adjustOxyLoss(-4)
 		C.adjustCloneLoss(-4)
 		return
@@ -278,7 +295,7 @@
 		H.LAssailant = null
 	else
 		H.LAssailant = WEAKREF(O)
-	while(do_mob(O, H, 50))
+	while(do_after(O, 5 SECONDS, H))
 		if(!is_vampire(O))
 			to_chat(O, span_warning("Your fangs have disappeared!"))
 			return
@@ -370,7 +387,7 @@
 				to_chat(owner.current, span_notice("[power.gain_desc]"))
 			else if(istype(p, /datum/vampire_passive))
 				var/datum/vampire_passive/power = p
-				to_chat(owner, span_notice("[power.gain_desc]"))
+				to_chat(owner, power.gain_desc)
 
 /datum/antagonist/vampire/proc/handle_vampire_cloak()
 	if(!ishuman(owner.current))

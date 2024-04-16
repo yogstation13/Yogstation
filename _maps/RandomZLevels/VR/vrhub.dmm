@@ -1497,7 +1497,7 @@
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
 "sT" = (
-/obj/structure/sign/barsign,
+/obj/machinery/barsign,
 /turf/closed/indestructible/iron,
 /area/awaymission/vr/hub)
 "sX" = (

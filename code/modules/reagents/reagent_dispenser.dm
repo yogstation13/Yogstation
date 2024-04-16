@@ -12,7 +12,7 @@
 
 /obj/structure/reagent_dispensers/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
-	if(. && obj_integrity > 0)
+	if(. && atom_integrity > 0)
 		if(tank_volume && (damage_flag == BULLET || damage_flag == LASER))
 			boom()
 
@@ -77,11 +77,11 @@
 /obj/structure/reagent_dispensers/fueltank/fire_act(exposed_temperature, exposed_volume)
 	boom()
 
-/obj/structure/reagent_dispensers/fueltank/tesla_act()
+/obj/structure/reagent_dispensers/fueltank/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	..() //extend the zap
 	boom()
 
-/obj/structure/reagent_dispensers/fueltank/bullet_act(obj/item/projectile/P)
+/obj/structure/reagent_dispensers/fueltank/bullet_act(obj/projectile/P)
 	. = ..()
 	if(!QDELETED(src)) //wasn't deleted by the projectile's effects.
 		if(!P.nodamage && ((P.damage_type == BURN) || (P.damage_type == BRUTE)))

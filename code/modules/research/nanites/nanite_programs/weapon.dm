@@ -134,7 +134,7 @@
 /datum/nanite_program/triggered/emp/trigger()
 	if(!..())
 		return
-	empulse(host_mob, 1, 2)
+	empulse(host_mob, EMP_HEAVY, 2)
 
 /datum/nanite_program/pyro/active_effect()
 	host_mob.adjust_fire_stacks(1)

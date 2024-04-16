@@ -115,7 +115,7 @@
 	update_appearance(UPDATE_ICON)
 	return
 
-/mob/living/simple_animal/bot/mulebot/emag_act(mob/user)
+/mob/living/simple_animal/bot/mulebot/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(emagged < 1)
 		emagged = TRUE
 	if(!open)
@@ -151,7 +151,7 @@
 			wires.cut_random()
 	return
 
-/mob/living/simple_animal/bot/mulebot/bullet_act(obj/item/projectile/Proj)
+/mob/living/simple_animal/bot/mulebot/bullet_act(obj/projectile/Proj)
 	. = ..()
 	if(.)
 		if(prob(50) && !isnull(load))
@@ -426,7 +426,7 @@
 		load.forceMove(loc)
 		load.pixel_y = initial(load.pixel_y)
 		load.layer = initial(load.layer)
-		load.plane = initial(load.plane)
+		SET_PLANE_IMPLICIT(load, initial(load.plane))
 		if(dirn)
 			var/turf/T = loc
 			var/turf/newT = get_step(T,dirn)
@@ -644,7 +644,7 @@
 					L.Knockdown(8 SECONDS)
 	return ..()
 
-// called from mob/living/carbon/human/Crossed()
+// called from mob/living/carbon/human/proc/on_entered()
 // when mulebot is in the same loc
 /mob/living/simple_animal/bot/mulebot/proc/RunOver(mob/living/carbon/human/H)
 	log_combat(src, H, "run over", null, "(DAMTYPE: [uppertext(BRUTE)])")
@@ -725,6 +725,11 @@
 		return loc.remove_air(amount)
 	else
 		return null
+
+/mob/living/simple_animal/bot/mulebot/remove_air_ratio(ratio)
+	if(loc)
+		return loc.remove_air_ratio(ratio)
+	return null
 
 /mob/living/simple_animal/bot/mulebot/resist()
 	..()

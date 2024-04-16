@@ -4,6 +4,7 @@
 	desc = "A vending machine for clothing."
 	icon_state = "clothes"
 	icon_deny = "clothes-deny"
+	panel_type = "panel15"
 	product_slogans = "Dress for success!;Prepare to look swagalicious!;Look at all this swag!;Why leave style up to fate? Use the ClothesMate!"
 	vend_reply = "Thank you for using the ClothesMate!"
 	products = list(/obj/item/clothing/head/beanie = 3,
@@ -42,6 +43,7 @@
 		            /obj/item/clothing/neck/tie/red = 3,
 		            /obj/item/clothing/neck/tie/black = 3,
 		            /obj/item/clothing/neck/tie/horrible = 3,
+					/obj/item/clothing/accessory/pride = 15,
 		            /obj/item/storage/belt/fannypack = 3,
 		            /obj/item/storage/belt/fannypack/blue = 3,
 		            /obj/item/storage/belt/fannypack/red = 3,
@@ -185,7 +187,10 @@
 		            /obj/item/clothing/shoes/singery = 1,
 		            /obj/item/clothing/shoes/singerb = 1,
 		            /obj/item/clothing/shoes/yogs/trainers = 1,
-		            /obj/item/clothing/shoes/yogs/fuzzy_slippers = 3) //yogs clothes for clothesmate end here
+		            /obj/item/clothing/shoes/yogs/fuzzy_slippers = 3,
+					/obj/item/clothing/suit/jacket/pride = 3,
+					/obj/item/clothing/suit/jacket/pride/mlm = 2,
+					/obj/item/clothing/suit/jacket/pride/lesbian = 2) //yogs clothes for clothesmate end here
 	contraband = list(/obj/item/clothing/under/syndicate/tacticool = 1,
 		              /obj/item/clothing/mask/balaclava = 1,
 		              /obj/item/clothing/head/ushanka = 1,
@@ -208,11 +213,13 @@
 		           /obj/item/clothing/suit/yogs/trainman = 1,
 		           /obj/item/clothing/head/yogs/trainman = 1,
 		           /obj/item/clothing/suit/yogs/infsuit = 1,
-		           /obj/item/clothing/under/yogs/persskinsuit = 3) //yogs end
+		           /obj/item/clothing/under/yogs/persskinsuit = 3,
+				   /obj/item/clothing/suit/toggle/cyberpunk = 1) //yogs end
 	refill_canister = /obj/item/vending_refill/clothing
 	default_price = 50
 	extra_price = 75
 	payment_department = NO_FREEBIES
+	light_mask = "wardrobe-light-mask"
 
 /obj/machinery/vending/clothing/canLoadItem(obj/item/I,mob/user)
 	return (I.type in products)

@@ -228,7 +228,7 @@
 		return
 	var/static/items_inside = list(
 		/obj/item/reagent_containers/pill/patch/styptic = 2,
-		/obj/item/reagent_containers/pill/salicyclic = 2,
+		/obj/item/reagent_containers/pill/salicylic = 2,
 		/obj/item/reagent_containers/medspray/styptic = 1,
 		/obj/item/stack/medical/gauze = 2,
 		/obj/item/healthanalyzer = 1)

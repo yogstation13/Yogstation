@@ -54,8 +54,6 @@
 
 #define STATUS_EFFECT_ANTIMAGIC /datum/status_effect/antimagic //grants antimagic (and reapplies if lost) for the duration
 
-#define STATUS_EFFECT_CREEP /datum/status_effect/creep //Provides immunity to lightburn for darkspawn, does nothing to anyone else //Yogs
-
 #define STATUS_EFFECT_TIME_DILATION /datum/status_effect/time_dilation //Provides immunity to slowdown and halves click-delay/action times //Yogs
 
 #define STATUS_EFFECT_DETERMINED /datum/status_effect/determined //currently in a combat high from being seriously wounded
@@ -68,6 +66,12 @@
 
 #define STATUS_EFFECT_DIAMONDSKIN /datum/status_effect/diamondskin //Increases heat and pressure resistance
 
+#define STATUS_EFFECT_HOLYLIGHT_ANTIMAGIC /datum/status_effect/holylight_antimagic //long-term temporary antimagic that makes you blue
+
+#define STATUS_EFFECT_HOLYLIGHT_HEALBOOST /datum/status_effect/holylight_healboost //short-term heal boost that grants the chaplain favor
+
+#define STATUS_EFFECT_SPEEDBOOST /datum/status_effect/speedboost //applies a speed boost
+
 /////////////
 // DEBUFFS //
 /////////////
@@ -79,6 +83,8 @@
 #define STATUS_EFFECT_IMMOBILIZED /datum/status_effect/incapacitating/immobilized //the affected is unable to move
 
 #define STATUS_EFFECT_PARALYZED /datum/status_effect/incapacitating/paralyzed //the affected is unable to move, use items, or stand up.
+
+#define STATUS_EFFECT_DAZED /datum/status_effect/incapacitating/dazed //the affected is unable use items but can otherwise do everything else
 
 #define STATUS_EFFECT_UNCONSCIOUS /datum/status_effect/incapacitating/unconscious //the affected is unconscious
 
@@ -112,6 +118,8 @@
 
 #define STATUS_EFFECT_EXPOSED /datum/status_effect/exposed //increases incoming damage
 
+#define STATUS_EFFECT_EXPOSED_HARPOONED /datum/status_effect/exposed/harpooned //increases incoming damage when hit by a gasharpoon
+
 #define STATUS_EFFECT_TAMING /datum/status_effect/taming //tames the target after enough tame stacks
 
 #define STATUS_EFFECT_NECROPOLIS_CURSE /datum/status_effect/necropolis_curse
@@ -135,7 +143,9 @@
 
 #define STATUS_EFFECT_STASIS /datum/status_effect/incapacitating/stasis //Halts biological functions like bleeding, chemical processing, blood regeneration, walking, etc
 
-#define STATUS_EFFECT_BROKEN_WILL /datum/status_effect/broken_will //A 30-second sleep effect reduced by 1 second for every point of damage the target takes. //Yogs
+#define STATUS_EFFECT_BROKEN_WILL /datum/status_effect/broken_will //A 30-second sleep effect, ends instantly upon taking enough damage in a single hit. //Yogs
+
+#define STATUS_EFFECT_DEVOURED_WILL /datum/status_effect/devoured_will //A 3 minute long status effect that prevents using devour will on the owner
 
 #define STATUS_EFFECT_AMOK /datum/status_effect/amok //Makes the target automatically strike out at adjecent non-heretics.
 
@@ -148,6 +158,10 @@
 #define STATUS_EFFECT_EXHUMED /datum/status_effect/exhumed //controls the rate of aides reviving
 
 #define STATUS_EFFECT_CATCHUP /datum/status_effect/catchup //momentarily slows the victim
+
+#define STATUS_EFFECT_VOID_CHILL /datum/status_effect/void_chill
+
+#define STATUS_EFFECT_TAUNT /datum/status_effect/taunt //forced movement towards the person applying
 
 /////////////
 // NEUTRAL //
@@ -179,7 +193,7 @@
 
 #define STATUS_EFFECT_PROGENITORCURSE /datum/status_effect/progenitor_curse
 
-#define STATUS_EFFECT_MASQUERADE /datum/status_effect/masquerade 
+#define STATUS_EFFECT_MASQUERADE /datum/status_effect/masquerade
 
 /////////////
 //  SLIME  //
@@ -290,3 +304,11 @@
 #define adjust_temp_blindness_up_to(duration, up_to) adjust_timed_status_effect(duration, /datum/status_effect/temporary_blindness, up_to)
 #define set_temp_blindness(duration) set_timed_status_effect(duration, /datum/status_effect/temporary_blindness)
 #define set_temp_blindness_if_lower(duration) set_timed_status_effect(duration, /datum/status_effect/temporary_blindness, TRUE)
+
+//Incapacitated status effect flags
+/// If the incapacitated status effect will ignore a mob in restraints (handcuffs)
+#define IGNORE_RESTRAINTS (1<<0)
+/// If the incapacitated status effect will ignore a mob in stasis (stasis beds)
+#define IGNORE_STASIS (1<<1)
+/// If the incapacitated status effect will ignore a mob being agressively grabbed
+#define IGNORE_GRAB (1<<2)

@@ -60,5 +60,5 @@
 	internal_tank = new /obj/machinery/portable_atmospherics/canister/air(src)
 	velocity_x = rand(-3, 3)
 	velocity_y = rand(-3, 3)
-	obj_integrity = rand(100, max_integrity)
+	update_integrity(rand(100, max_integrity))
 	brakes = FALSE

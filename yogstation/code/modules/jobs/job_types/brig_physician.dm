@@ -7,7 +7,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the chief medical officer"
-	selection_color = "#d4ebf2"
 	minimal_player_age = 5 //seriously stop griefing
 	exp_requirements = 100
 	exp_type = EXP_TYPE_CREW
@@ -23,7 +22,7 @@
 		/datum/job_department/security,
 	)
 
-	added_access = list(ACCESS_SURGERY)
+	added_access = list(ACCESS_SURGERY, ACCESS_CLONING, ACCESS_EXTERNAL_AIRLOCKS)
 	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_BRIG, ACCESS_SEC_DOORS, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MECH_MEDICAL, ACCESS_BRIG_PHYS)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
@@ -31,6 +30,8 @@
 
 	smells_like = "crimson guardianship"
 
+	minimal_lightup_areas = list(/area/medical/morgue)
+	
 	mail_goodies = list(
 		/obj/item/storage/firstaid/regular = 20,
 		/obj/item/reagent_containers/autoinjector/medipen/atropine = 10,
@@ -45,7 +46,7 @@
 	name = "Brig Physician"
 	jobtype = /datum/job/brigphysician
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/paramed
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/medical/paramed
 
 	backpack_contents = list(/obj/item/roller = 1)
 	belt = /obj/item/storage/belt/medical
@@ -53,7 +54,7 @@
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
 	shoes = /obj/item/clothing/shoes/jackboots
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/jackboots
-	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
+	uniform = /obj/item/clothing/under/yogs/rank/physician/white
 	uniform_skirt = /obj/item/clothing/under/yogs/rank/physician/white/skirt
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt/physician
 	l_hand = /obj/item/storage/firstaid/regular
@@ -63,6 +64,5 @@
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
-	box = /obj/item/storage/box/survival
 
 	implants = list(/obj/item/implant/mindshield)

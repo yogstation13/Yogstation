@@ -240,7 +240,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 1)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 3, "oranges" = 1)
-	foodtype = JUNKFOOD | SUGAR | CHOCOLATE
+	foodtype = JUNKFOOD | SUGAR | CHOCOLATE | FRUIT
 
 /obj/item/reagent_containers/food/snacks/eggplantparm
 	name = "eggplant parmigiana"
@@ -269,8 +269,8 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
 	filling_color = "#FFEFD5"
-	tastes = list("torilla" = 2, "meat" = 3)
-	foodtype = GRAIN | MEAT
+	tastes = list("torilla" = 2, "soy beans" = 3)
+	foodtype = GRAIN | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/fivelayerburrito
 	name = "five layer burrito"
@@ -279,8 +279,8 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 12)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5)
 	filling_color = "#FFEFD5"
-	tastes = list("torilla" = 2, "meat" = 3)
-	foodtype = GRAIN | MEAT
+	tastes = list("torilla" = 2, "soy beans" = 3)
+	foodtype = GRAIN | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/cheesyburrito
 	name = "cheesy burrito"
@@ -309,8 +309,8 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 3)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/capsaicin = 5, /datum/reagent/consumable/nutriment/vitamin = 3)
 	filling_color = "#FF2000"
-	tastes = list("torilla" = 2, "meat" = 3, "hot peppers" = 1)
-	foodtype = GRAIN | MEAT
+	tastes = list("torilla" = 2, "soy beans" = 3, "hot peppers" = 1)
+	foodtype = GRAIN | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/yakiimo
 	name = "yaki imo"
@@ -383,6 +383,14 @@
 	tastes = list("grain alcohol" = 1, "fruit" = 1)
 	foodtype = FRUIT | ALCOHOL
 
+/obj/item/reagent_containers/food/snacks/granola_bar
+	name = "granola bar"
+	desc = "A dried mixture of oats, nuts, fruits, and chocolate condensed into a chewy bar."
+	icon_state = "granola_bar"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/protein = 4)
+	tastes = list("granola" = 1, "nuts" = 1, "chocolate" = 1, "raisin" = 1)
+	foodtype = GRAIN | SUGAR | NUTS | FRUIT | CHOCOLATE
+
 /obj/item/reagent_containers/food/snacks/honeybar
 	name = "honey nut bar"
 	desc = "Oats and nuts compressed together into a bar, held together with a honey glaze."
@@ -391,7 +399,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/honey = 5)
 	filling_color = "#F2CE91"
 	tastes = list("oats" = 3, "nuts" = 2, "honey" = 1)
-	foodtype = FRUIT | SUGAR
+	foodtype = GRAIN | SUGAR | NUTS
 
 /obj/item/reagent_containers/food/snacks/stuffedlegion
 	name = "stuffed legion"
@@ -515,6 +523,15 @@
 	tastes = list("bran" = 4, "raisins" = 3, "salt" = 1)
 	foodtype = GRAIN | FRUIT | BREAKFAST
 
+/obj/item/reagent_containers/food/snacks/onigiri
+	name = "Onigiri"
+	desc = "A ball of cooked rice surrounding a filling formed into a triangular shape and wrapped in seaweed. Other fillings can be added!"
+	icon_state = "onigiri"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("rice" = 1, "dried seaweed" = 1)
+	foodtype = VEGETABLES
+	custom_food_type = /obj/item/reagent_containers/food/snacks/customizable/onigiri
+
 /obj/item/reagent_containers/food/snacks/butter
 	name = "stick of butter"
 	desc = "A stick of delicious, golden, fatty goodness."
@@ -550,9 +567,42 @@
 	desc = "A sliced piece of juicy pineapple."
 	icon_state = "pineapple_slice"
 	filling_color = "#F6CB0B"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	juice_results = list(/datum/reagent/consumable/pineapplejuice = 3)
 	tastes = list("pineapple" = 1)
 	foodtype = FRUIT | PINEAPPLE
+
+/obj/item/reagent_containers/food/snacks/pineappleslice/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/pineappleslice/grilled, rand(10 SECONDS, 15 SECONDS), TRUE)
+	
+/obj/item/reagent_containers/food/snacks/pineappleslice/grilled
+	name = "grilled pineapple slice"
+	desc = "A grilled piece of juicy pineapple. Complete with tantilizing grill marks."
+	icon_state = "grilled_pineapple"
+	filling_color = "#F6CB0B"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
+	juice_results = list(/datum/reagent/consumable/pineapplejuice = 3)
+	tastes = list("pineapple" = 1)
+	foodtype = FRUIT | PINEAPPLE
+
+/obj/item/reagent_containers/food/snacks/pineappleslice/grilled/MakeGrillable() //so it burns after it grills
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/badrecipe, rand(20 SECONDS, 30 SECONDS), FALSE)
+
+/obj/item/reagent_containers/food/snacks/pineapple_rice
+	name = "hawaiian pineapple rice"
+	desc = "A simple hawaiian rice dish served directly out of a pineapple."
+	icon_state = "pineapple_rice"
+	filling_color = "#F6CB0B"
+	tastes = list("pineapple" = 3, "rice" = 2)
+	foodtype = FRUIT | PINEAPPLE | GRAIN
+
+/obj/item/reagent_containers/food/snacks/pineapple_friedrice
+	name = "hawaiian pineapple fried rice"
+	desc = "You're telling me a hawaiian pineapple fried this rice?"
+	icon_state = "pineapple_friedrice"
+	filling_color = "#F6CB0B"
+	tastes = list("pineapple" = 3, "rice" = 2, "citrus" = 1, "chili" = 1)
+	foodtype = FRUIT | PINEAPPLE | GRAIN
 
 /obj/item/reagent_containers/food/snacks/tinychocolate
 	name = "chocolate"
@@ -580,3 +630,12 @@
 	desc = "A can of peaches, perhaps stashed here long ago to hide them from the wizards."
 	icon_state = "peachcanmaint"
 	tastes = list("peaches" = 1, "tin" = 7)
+
+/obj/item/reagent_containers/food/snacks/pickle
+	name = "pickle"
+	desc = "Slightly shriveled darkish cucumber. Smelling something sour, but incredibly inviting."
+	icon_state = "pickle"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
+	filling_color = "#ffdf26"
+	tastes = list("pickle" = 1, "spices" = 1, "salt water" = 2)
+	foodtype = VEGETABLES

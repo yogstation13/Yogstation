@@ -601,7 +601,7 @@
 	return 0
 
 /datum/reagents/proc/reaction_check(mob/living/M, datum/reagent/R)
-	return (R.process_flags & M.get_process_flags())
+	return (R.compatible_biotypes & M.mob_biotypes)
 
 /**
   * Applies the relevant reaction_ proc for every reagent in this holder
@@ -730,7 +730,7 @@
 		//yogs start - snowflake synth check
 		if(!istype(R, /datum/reagent/medicine/synthflesh) && ishuman(my_atom)) 
 			var/mob/living/carbon/human/H = my_atom
-			if(istype(H.dna.species, /datum/species/synth))
+			if(H?.dna?.species && istype(H.dna.species, /datum/species/ipc/self/insurgent))
 				return
 		R.on_mob_add(my_atom) //Must occur befor it could posibly run on_mob_delete
 		//yogs end

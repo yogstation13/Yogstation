@@ -49,3 +49,4 @@
 #define WIRE_ZAP1 "High Voltage Circuit 1"
 #define WIRE_ZAP2 "High Voltage Circuit 2"
 #define WIRE_AGELIMIT "Age Limit"
+#define WIRE_LAUNCH "Launch"

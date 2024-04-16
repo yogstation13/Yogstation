@@ -46,7 +46,7 @@
 	if(A == attached_light)
 		set_attached_light(null)
 		update_helmlight()
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		QDEL_NULL(alight)
 		qdel(A)
 	return ..()
@@ -93,6 +93,8 @@
 /obj/item/clothing/head/helmet/sec/occupying
 	name = "occupying force helmet"
 	desc = "Standard deployment gear. Protects the head from impacts and has a built in mounted light."
+	icon_state = "occhelm"
+	item_state = "occhelm"
 
 /obj/item/clothing/head/helmet/sec/occupying/Initialize(mapload, mob/user)
 	attached_light = new /obj/item/flashlight/seclite(null)
@@ -372,7 +374,7 @@
 	. = ..()
 	var/state = "[initial(icon_state)]"
 	if(attached_light)
-		if(attached_light.on)
+		if(attached_light.light_on)
 			state += "-flight-on" //"helmet-flight-on" // "helmet-cam-flight-on"
 		else
 			state += "-flight" //etc.
@@ -397,7 +399,7 @@
 				return
 			to_chat(user, span_notice("You click [S] into place on [src]."))
 			set_attached_light(S)
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 			update_helmlight()
 			alight = new(src)
 			if(loc == user)
@@ -417,7 +419,7 @@
 		var/obj/item/flashlight/removed_light = set_attached_light(null)
 		update_helmlight()
 		removed_light.update_brightness(user)
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		user.update_inv_head()
 		QDEL_NULL(alight)
 		return TRUE
@@ -433,16 +435,16 @@
 	var/mob/user = usr
 	if(user.incapacitated())
 		return
-	attached_light.on = !attached_light.on
+	attached_light.light_on = !attached_light.light_on
 	attached_light.update_brightness()
-	to_chat(user, span_notice("You toggle the helmet-light [attached_light.on ? "on":"off"]."))
+	to_chat(user, span_notice("You toggle the helmet-light [attached_light.light_on ? "on":"off"]."))
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
 	update_helmlight()
 
 /obj/item/clothing/head/helmet/proc/update_helmlight()
 	if(attached_light)
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.build_all_button_icons()
@@ -475,6 +477,7 @@
 	icon_state = "h2helmet"
 	item_state = "h2helmet"
 	armor = list(MELEE = 35, BULLET = 30, LASER = 25, ENERGY = 30, BOMB = 20, BIO = 10, RAD = 50, FIRE = 65, ACID = 40, WOUND = 15)
+	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS //Can change color and add prefix
 	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE | HIDEHAIR
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	cold_protection = HEAD
@@ -541,3 +544,4 @@
 	w_class = WEIGHT_CLASS_BULKY
 	// Does not cover additional limbs like vest does
 	plating = K
+

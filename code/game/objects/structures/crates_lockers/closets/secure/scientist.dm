@@ -5,7 +5,6 @@
 
 /obj/structure/closet/secure_closet/RD/PopulateContents()
 	..()
-	new /obj/item/cartridge/rd(src)
 	new /obj/item/clothing/gloves/color/latex(src)
 	new /obj/item/radio/headset/heads/rd(src)
 	new /obj/item/tank/internals/air(src)

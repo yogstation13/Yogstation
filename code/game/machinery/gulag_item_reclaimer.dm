@@ -23,11 +23,12 @@
 		inserted_id = null
 	return ..()
 
-/obj/machinery/gulag_item_reclaimer/emag_act(mob/user)
-	if(obj_flags & EMAGGED) // emagging lets anyone reclaim all the items
-		return
-	req_access = list()
+/obj/machinery/gulag_item_reclaimer/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(obj_flags & EMAGGED)
+		return FALSE
 	obj_flags |= EMAGGED
+	req_access = list() // Emagging lets anyone reclaim all the items.
+	return TRUE
 
 /obj/machinery/gulag_item_reclaimer/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card/id/prisoner))

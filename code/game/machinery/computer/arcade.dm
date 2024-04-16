@@ -51,11 +51,13 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/clothing/gloves/rapid/hug = 2,
 		/obj/item/toy/eldritch_book = 2,
 		/obj/item/storage/box/heretic_box = 1,
-		/obj/item/toy/plush/mothplushie = 2))
+		/obj/item/toy/plush/mothplushie = 2,
+		/obj/item/toy/plush/abductor = 2,
+		/obj/item/toy/plush/abductor/agent = 1))
 
 /obj/machinery/computer/arcade
 	name = "random arcade"
-	desc = "random arcade machine"
+	desc = "A random arcade machine."
 	icon_state = "arcade"
 	icon_keyboard = null
 	icon_screen = "invaders"
@@ -118,12 +120,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		return
 
 	var/empprize = null
-	var/num_of_prizes = 0
-	switch(severity)
-		if(1)
-			num_of_prizes = rand(1,4)
-		if(2)
-			num_of_prizes = rand(0,2)
+	var/num_of_prizes = rand(0, severity / 2.5)
 	for(var/i = num_of_prizes; i > 0; i--)
 		if(override)
 			empprize = pickweight(prize_override)
@@ -330,9 +327,9 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	return
 
 
-/obj/machinery/computer/arcade/battle/emag_act(mob/user)
+/obj/machinery/computer/arcade/battle/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	to_chat(user, span_warning("A mesmerizing Rhumba beat starts playing from the arcade machine's speakers!"))
 	temp = "If you die in the game, you die for real!"
 	player_hp = 30
@@ -341,16 +338,11 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	enemy_mp = 20
 	gameover = FALSE
 	blocked = FALSE
-
 	obj_flags |= EMAGGED
-
 	enemy_name = "Cuban Pete"
 	name = "Outbomb Cuban Pete"
-
-
 	updateUsrDialog()
-
-
+	return TRUE
 
 // *** THE ORION TRAIL ** //
 
@@ -587,7 +579,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 								playsound(loc, 'sound/weapons/genhit.ogg', 100, 1)
 								var/turf/open/space/T
 								for(T in orange(1, src))
-									T.PlaceOnTop(/turf/open/floor/plating)
+									T.place_on_top(/turf/open/floor/plating)
 						else
 							say("Something slams into the floor around [src] - luckily, it didn't get through!")
 							playsound(loc, 'sound/effects/bang.ogg', 50, 1)
@@ -1084,14 +1076,15 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	name = "The Orion Trail"
 	desc = "Learn how our ancestors planned to colonize Orion, and have fun in the process!"
 
-/obj/machinery/computer/arcade/orion_trail/emag_act(mob/user)
+/obj/machinery/computer/arcade/orion_trail/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	to_chat(user, span_notice("You override the cheat code menu and skip to Cheat #[rand(1, 50)]: Realism Mode."))
 	name = "The Orion Trail: Realism Edition"
 	desc = "Learn how our ancestors planned to colonize Orion, and try not to die in the process!"
 	newgame()
 	obj_flags |= EMAGGED
+	return TRUE
 
 /mob/living/simple_animal/hostile/syndicate/ranged/smg/orion
 	name = "spaceport security"

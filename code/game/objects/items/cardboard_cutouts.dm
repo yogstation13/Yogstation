@@ -22,7 +22,6 @@
 		"Clockwork Cultist" = image(icon = src.icon, icon_state = "cutout_servant"),
 		"Revolutionary" = image(icon = src.icon, icon_state = "cutout_viva"),
 		"Wizard" = image(icon = src.icon, icon_state = "cutout_wizard"),
-		"Shadowling" = image(icon = src.icon, icon_state = "cutout_shadowling"),
 		"Xenomorph" = image(icon = src.icon, icon_state = "cutout_fukken_xeno"),
 		"Xenomorph Maid" = image(icon = src.icon, icon_state = "cutout_lusty"),
 		"Swarmer" = image(icon = src.icon, icon_state = "cutout_swarmer"),
@@ -83,8 +82,8 @@
 		if(prob(I.force))
 			push_over()
 
-/obj/item/cardboard_cutout/bullet_act(obj/item/projectile/P)
-	if(istype(P, /obj/item/projectile/bullet/reusable))
+/obj/item/cardboard_cutout/bullet_act(obj/projectile/P)
+	if(istype(P, /obj/projectile/bullet/reusable))
 		P.on_hit(src, 0)
 	visible_message(span_danger("[src] has been hit by [P]!"))
 	playsound(src, 'sound/weapons/slice.ogg', 50, 1)
@@ -104,7 +103,7 @@
 	var/new_appearance = show_radial_menu(user, src, possible_appearances, custom_check = CALLBACK(src, PROC_REF(check_menu), user, crayon), radius = 36, require_near = TRUE)
 	if(!new_appearance)
 		return FALSE
-	if(!do_after(user, 1 SECONDS, src, FALSE))
+	if(!do_after(user, 1 SECONDS, src, timed_action_flags = IGNORE_USER_LOC_CHANGE))
 		return FALSE
 	if(!check_menu(user, crayon))
 		return FALSE
@@ -152,10 +151,6 @@
 			name = "[pick(GLOB.wizard_first)], [pick(GLOB.wizard_second)]"
 			desc = "A cardboard cutout of a wizard."
 			icon_state = "cutout_wizard"
-		if("Shadowling")
-			name = "Unknown"
-			desc = "A cardboard cutout of a shadowling."
-			icon_state = "cutout_shadowling"
 		if("Xenomorph")
 			name = "alien hunter ([rand(1, 999)])"
 			desc = "A cardboard cutout of a xenomorph."
@@ -196,6 +191,10 @@
 			name = "Private Security Officer"
 			desc = "A cardboard cutout of a private security officer."
 			icon_state = "cutout_ntsec"
+		if("Shadowling")
+			name = "Unknown"
+			desc = "A cardboard cutout of a shadowling."
+			icon_state = "cutout_shadowling"
 		else
 			return FALSE
 	return TRUE

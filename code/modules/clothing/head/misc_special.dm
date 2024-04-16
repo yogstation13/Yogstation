@@ -229,16 +229,17 @@
 	M.color = hair_color
 	. += M
 
-/obj/item/clothing/head/wig/worn_overlays(isinhands = FALSE, file2use)
-	. = list()
-	if(!isinhands)
-		var/datum/sprite_accessory/S = GLOB.hair_styles_list[hair_style]
-		if(!S)
-			return
-		var/mutable_appearance/M = mutable_appearance(S.icon, S.icon_state,layer = -HAIR_LAYER)
-		M.appearance_flags |= RESET_COLOR
-		M.color = hair_color
-		. += M
+/obj/item/clothing/head/wig/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
+	. = ..()
+	if(isinhands)
+		return
+	var/datum/sprite_accessory/S = GLOB.hair_styles_list[hair_style]
+	if(!S)
+		return
+	var/mutable_appearance/M = mutable_appearance(S.icon, S.icon_state,layer = -HAIR_LAYER)
+	M.appearance_flags |= RESET_COLOR
+	M.color = hair_color
+	. += M
 
 /obj/item/clothing/head/wig/attack_self(mob/user)
 	var/new_style = input(user, "Select a hair style", "Wig Styling")  as null|anything in (GLOB.hair_styles_list - "Bald")
@@ -296,10 +297,17 @@
 
 /obj/item/clothing/head/foilhat/Initialize(mapload)
 	. = ..()
-	if(!warped)
-		AddComponent(/datum/component/anti_magic, FALSE, FALSE, TRUE, ITEM_SLOT_HEAD,  6, TRUE, null, CALLBACK(src, PROC_REF(warp_up)))
-	else
+	if(warped)
 		warp_up()
+		return
+	AddComponent(
+		/datum/component/anti_magic, \
+		antimagic_flags = MAGIC_RESISTANCE_MIND, \
+		inventory_flags = ITEM_SLOT_HEAD, \
+		charges = 6, \
+		drain_antimagic = CALLBACK(src, PROC_REF(drain_antimagic)), \
+		expiration = CALLBACK(src, PROC_REF(warp_up)) \
+	)
 
 /obj/item/clothing/head/foilhat/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
@@ -327,6 +335,10 @@
 	. = ..()
 	if(paranoia)
 		QDEL_NULL(paranoia)
+
+/// When the foilhat is drained an anti-magic charge.
+/obj/item/clothing/head/foilhat/proc/drain_antimagic(mob/user)
+	to_chat(user, span_warning("[src] crumples slightly. Something is trying to get inside your mind!"))
 
 /obj/item/clothing/head/foilhat/proc/warp_up()
 	name = "scorched tinfoil hat"
@@ -356,7 +368,7 @@
 
 /obj/item/clothing/head/franks_hat
 	name = "Frank's Hat"
-	desc = "You feel ashamed about what you had to do to get this hat"
+	desc = "You feel ashamed about what you had to do to get this hat."
 	icon_state = "cowboy"
 	item_state = "cowboy"
 
@@ -382,12 +394,12 @@
 
 /obj/item/clothing/head/Floralwizhat
 	name = "Druid hat"
-	desc = "A black wizard hat with an exotic looking purple flower on it"
+	desc = "A black wizard hat with an exotic looking purple flower on it."
 	icon_state = "flowerwizhat"
 	item_state = "flowerwizhat"
 
 /obj/item/clothing/head/fedora/gtrim_fedora
 	name = "Gold trimmed Fedora"
-	desc = "A Unique variation of the classic fedora. Now with 'Waterproofing' for when buisness gets messy."
+	desc = "A unique variation of the classic fedora. Now with 'waterproofing' for when business gets messy."
 	icon_state = "gtrim_fedora"
 	item_state = "gtrim_fedora"

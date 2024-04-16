@@ -4,9 +4,10 @@
 	name = "IPC" //inherited from the real species, for health scanners and things
 	id = "ipc"
 	say_mod = "states" //inherited from a user's real species
+	bubble_icon = BUBBLE_ROBOT // beep boop
 	sexes = FALSE
 	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD,NO_UNDERWEAR)
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_NOBREATH,TRAIT_LIMBATTACHMENT,TRAIT_EASYDISMEMBER,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_NOBREATH,TRAIT_LIMBATTACHMENT,TRAIT_EASYDISMEMBER,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB,TRAIT_POWERHUNGRY)
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	mutantbrain = /obj/item/organ/brain/positron
 	mutantheart = /obj/item/organ/heart/cybernetic/ipc
@@ -24,7 +25,6 @@
 	exotic_blood = /datum/reagent/oil
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
-	payday_modifier = 0.3 //Mass producible labor + robot, lucky to be paid at all
 	pressuremod = 0.5 // from the moment i understood the weakness of my flesh it disgusted me
 	heatmod = 0.5 // and i yearned for the certainty of steel
 	burnmod = 1.25 // easily cut by laser cutters and welding tools to speed up manufacturing
@@ -37,7 +37,6 @@
 	staminamod = 0.8
 	siemens_coeff = 1.75
 	action_speed_coefficient = 0.9 // designed for labor, they should be good at it
-	process_flags = SYNTHETIC
 	species_gibs = "robotic"
 	attack_sound = 'sound/items/trayhit1.ogg'
 	screamsound = 'goon/sound/robot_scream.ogg'
@@ -60,7 +59,7 @@
 	var/ipc_name = "[pick(GLOB.posibrain_names)]-[rand(100, 999)]"
 	return ipc_name
 
-/datum/species/ipc/on_species_gain(mob/living/carbon/C) // Let's make that IPC actually robotic.
+/datum/species/ipc/on_species_gain(mob/living/carbon/C, datum/species/old_species) // Let's make that IPC actually robotic.
 	. = ..()
 	C.particles = new /particles/smoke/ipc()
 	var/obj/item/organ/appendix/A = C.get_organ_slot(ORGAN_SLOT_APPENDIX) // Easiest way to remove it.
@@ -144,13 +143,6 @@
 
 	return to_add
 
-/datum/species/ipc/create_pref_biotypes_perks()
-	var/list/to_add = list()
-
-	// TODO
-
-	return to_add
-
 /datum/action/innate/change_screen
 	name = "Change Display"
 	check_flags = AB_CHECK_CONSCIOUS
@@ -227,16 +219,8 @@
 			break
 	H.visible_message("<span class='notice'>[H] unplugs from the [A].</span>", "<span class='notice'>You unplug from the [A].</span>")
 
-/datum/species/ipc/get_hunger_alert(mob/living/carbon/human/H)
-	switch(H.nutrition)
-		if(NUTRITION_LEVEL_FED to INFINITY)
-			H.clear_alert("nutrition")
-		if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
-			H.throw_alert("nutrition", /atom/movable/screen/alert/lowcell, 2)
-		if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
-			H.throw_alert("nutrition", /atom/movable/screen/alert/lowcell, 3)
-		if(0 to NUTRITION_LEVEL_STARVING)
-			H.throw_alert("nutrition", /atom/movable/screen/alert/emptycell)
+/datum/species/ipc/get_butt_sprite()
+	return BUTT_SPRITE_QR_CODE
 
 /datum/species/ipc/spec_revival(mob/living/carbon/human/H, admin_revive)
 	if(admin_revive)
@@ -283,7 +267,7 @@
 		if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))
 			H.death() // YOU'RE GETTING RUSTY, MACHINE!!
 			return .
-		H.adjustFireLoss(6) // After bodypart_robotic resistance this is ~2/second
+		H.adjustFireLoss(2) // someone forgor IPCs don't have damage reduction
 		if(prob(5))
 			to_chat(H, "<span class='warning'>Alert: Internal temperature regulation systems offline; thermal damage sustained. Shutdown imminent.</span>")
 			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")
@@ -327,14 +311,15 @@
 	C.visible_message(span_danger("[user] attempts to pour [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
 
-/datum/species/ipc/spec_emag_act(mob/living/carbon/human/H, mob/user)
-	if(H == user)//no emagging yourself
-		return
+/datum/species/ipc/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
+	if(H == user) // No emagging yourself. That would be terrible.
+		return FALSE
 	for(var/datum/brain_trauma/hypnosis/ipc/trauma in H.get_traumas())
-		return
+		return FALSE
 	H.SetUnconscious(10 SECONDS)
 	H.gain_trauma(/datum/brain_trauma/hypnosis/ipc, TRAUMA_RESILIENCE_SURGERY)
-
+	return TRUE
+	
 /*------------------------
 
 ipc martial arts stuff
@@ -366,12 +351,10 @@ ipc martial arts stuff
 	siemens_coeff = initial(siemens_coeff)
 
 /datum/species/ipc/proc/add_empproof(mob/living/carbon/human/H)
-	H.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS)
+	ADD_TRAIT(H, TRAIT_EMPPROOF_SELF, "IPC_martial")
 
 /datum/species/ipc/proc/remove_empproof(mob/living/carbon/human/H)
-	var/datum/component/empprotection/ipcmartial = H.GetExactComponent(/datum/component/empprotection)
-	if(ipcmartial)
-		ipcmartial.Destroy()
+	REMOVE_TRAIT(H, TRAIT_EMPPROOF_SELF, "IPC_martial")
 
 /datum/species/ipc/apply_damage(damage, damagetype, def_zone, blocked, mob/living/carbon/human/H, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
 	if(..())
@@ -382,5 +365,144 @@ ipc martial arts stuff
 				UV.handle_style(H, damage / -50) // lose 1 style rank for every 50 damage taken
 		return TRUE
 	return FALSE
+
+
+/*
+* S.E.L.F. movement specific IPCs
+*/
+/datum/species/ipc/self
+	id = "self ipc"
+	limbs_id = "mcgipc"
+	speedmod = -0.1
+	armor = 10
+	punchdamagelow = 5
+	punchdamagehigh = 12
+	punchstunthreshold = 12
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_NOBREATH,TRAIT_LIMBATTACHMENT,TRAIT_NODISMEMBER,TRAIT_NOLIMBDISABLE,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB,TRAIT_POWERHUNGRY)
+
+//infiltrators
+/datum/species/ipc/self/insurgent
+	id = "self insurgent"
+	var/disguise_fail_health = 65 //When their health gets to this level their synthflesh partially falls off
+	var/datum/species/fake_species //a species to do most of our work for us, unless we're damaged
+	var/list/initial_species_traits //for getting these values back for assume_disguise()
+	var/list/initial_inherent_traits
+	var/list/initial_mutant_bodyparts
+	var/list/initial_step_sounds
+	var/list/initial_walk_sounds
+	var/list/blacklisted_species = list(/datum/species/ethereal, /datum/species/moth)//species that really don't work with this system (lizards aren't quite right either, but whatever)
+	var/list/old_features
+	var/ipc_color
+	var/disguised = FALSE
+	
+/datum/species/ipc/self/insurgent/New()
+	initial_species_traits = LAZYCOPY(species_traits)
+	initial_inherent_traits = LAZYCOPY(inherent_traits)
+	initial_mutant_bodyparts = LAZYCOPY(mutant_bodyparts)
+	initial_step_sounds = LAZYCOPY(special_step_sounds)
+	initial_walk_sounds = LAZYCOPY(special_walk_sounds)
+	ipc_color = sanitize_hexcolor("[pick("7F", "FF")][pick("7F", "FF")][pick("7F", "FF")]")
+
+	fake_species = new /datum/species/human() //default is human
+	..()
+
+/datum/species/ipc/self/insurgent/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	old_features = LAZYCOPY(H.dna.features)
+	if(old_species && !is_type_in_list(old_species, blacklisted_species))
+		qdel(fake_species)
+		fake_species = old_species
+		if(old_species.use_skintones)
+			old_features["mcolor"] = skintone2hex(H.skin_tone)
+	else
+		old_features["mcolor"] = skintone2hex(random_skin_tone())
+	..()
+	for(var/obj/item/bodypart/O in H.bodyparts)
+		O.render_like_organic = TRUE // Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
+	assume_disguise(H)
+	
+/datum/species/ipc/self/insurgent/spec_fully_heal(mob/living/carbon/human/H)
+	assume_disguise(H)
+
+/datum/species/ipc/self/insurgent/proc/assume_disguise(mob/living/carbon/human/H)
+	if(disguised || !(fake_species && istype(fake_species)) || H.health < disguise_fail_health)
+		return FALSE
+
+	disguised = TRUE
+	name = fake_species.name
+	say_mod = fake_species.say_mod
+	sexes = fake_species.sexes
+	species_traits = LAZYCOPY(initial_species_traits)
+	inherent_traits = LAZYCOPY(initial_inherent_traits)
+	mutant_bodyparts = LAZYCOPY(fake_species.mutant_bodyparts)
+	H.dna.features = old_features
+	special_step_sounds = null
+	special_walk_sounds = null
+	species_traits |= fake_species.species_traits
+	inherent_traits |= fake_species.inherent_traits
+	if(!(NO_UNDERWEAR in fake_species.species_traits))
+		species_traits -= NO_UNDERWEAR
+	damage_overlay_type = fake_species.damage_overlay_type
+	attack_verb = fake_species.attack_verb
+	attack_effect = fake_species.attack_effect
+	attack_sound = fake_species.attack_sound
+	miss_sound = fake_species.miss_sound
+	nojumpsuit = fake_species.nojumpsuit
+	limbs_id = fake_species.limbs_id
+	use_skintones = fake_species.use_skintones
+	fixed_mut_color = fake_species.fixed_mut_color
+	bubble_icon = fake_species.bubble_icon
+	yogs_draw_robot_hair = TRUE
+
+	H.regenerate_icons() //to update limb icon cache with the new damage overlays
+
+/datum/species/ipc/self/insurgent/proc/break_disguise(mob/living/carbon/human/H)
+	if(!disguised)
+		return FALSE
+	disguised = FALSE
+	name = initial(name)
+	say_mod = initial(say_mod)
+	sexes = initial(sexes)
+	species_traits = LAZYCOPY(initial_species_traits)
+	inherent_traits = LAZYCOPY(initial_inherent_traits)
+	mutant_bodyparts = LAZYCOPY(initial_mutant_bodyparts)
+	special_step_sounds = LAZYCOPY(initial_step_sounds)
+	special_walk_sounds = LAZYCOPY(initial_walk_sounds)
+	damage_overlay_type = initial(damage_overlay_type)
+	H.dna.features["mcolor"] = ipc_color
+	attack_verb = initial(attack_verb)
+	attack_effect = initial(attack_effect)
+	attack_sound = initial(attack_sound)
+	miss_sound = initial(miss_sound)
+	nojumpsuit = initial(nojumpsuit)
+	limbs_id = initial(limbs_id)
+	use_skintones = initial(use_skintones)
+	bubble_icon = initial(bubble_icon)
+	yogs_draw_robot_hair = FALSE
+
+	for(var/obj/item/bodypart/O in H.bodyparts)
+		O.render_like_organic = TRUE // Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
+	H.regenerate_icons()
+
+/datum/species/ipc/self/insurgent/get_scream_sound(mob/living/carbon/human/H)
+	if(fake_species && disguised)
+		return fake_species.get_scream_sound(H)
+	else
+		return ..()
+		
+/datum/species/ipc/self/insurgent/apply_damage(damage, damagetype, def_zone, blocked, mob/living/carbon/human/H, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
+	. = ..()
+	if(. && H.health < disguise_fail_health)
+		break_disguise(H)
+
+//admeme strong ipc
+/datum/species/ipc/self/insurgent/military
+	id = "insurrectionist ipc"
+	armor = 35
+	speedmod = -0.2
+	punchdamagelow = 10
+	punchdamagehigh = 19
+	punchstunthreshold = 14 //about 50% chance to stun
+	disguise_fail_health = 35
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN //admin only... sorta
 
 #undef CONSCIOUSAY

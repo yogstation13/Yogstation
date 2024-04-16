@@ -83,20 +83,18 @@
 	owner.remove_traits(list(TRAIT_INCAPACITATED, TRAIT_IMMOBILIZED, TRAIT_FLOORED, TRAIT_HANDS_BLOCKED), TRAIT_STATUS_EFFECT(id))
 	return ..()
 
-//INCAPACITATED
+//DAZED
 /// This status effect represents anything that leaves a character unable to perform basic tasks (interrupting do-afters, for example), but doesn't incapacitate them further than that (no stuns etc..)
-/datum/status_effect/incapacitating/incapacitated
-	id = "incapacitated"
+/datum/status_effect/incapacitating/dazed
+	id = "dazed"
 
-// What happens when you get the incapacitated status. You get TRAIT_INCAPACITATED added to you for the duration of the status effect.
-/datum/status_effect/incapacitating/incapacitated/on_apply()
+/datum/status_effect/incapacitating/dazed/on_apply()
 	. = ..()
 	if(!.)
 		return
 	ADD_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
 
-// When the status effect runs out, your TRAIT_INCAPACITATED is removed.
-/datum/status_effect/incapacitating/incapacitated/on_remove()
+/datum/status_effect/incapacitating/dazed/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
@@ -378,7 +376,7 @@
 
 /datum/status_effect/belligerent/proc/do_movement_toggle(force_damage)
 	var/number_legs = owner.get_num_legs(FALSE)
-	if(iscarbon(owner) && !is_servant_of_ratvar(owner) && !owner.anti_magic_check(chargecost = 0) && number_legs)
+	if(iscarbon(owner) && !is_servant_of_ratvar(owner) && !owner.can_block_magic(charge_cost = 0) && number_legs)
 		if(force_damage || owner.m_intent != MOVE_INTENT_WALK)
 			if(GLOB.ratvar_awakens)
 				owner.Paralyze(20)
@@ -467,7 +465,7 @@
 		owner.remove_status_effect(/datum/status_effect/drowsiness)
 		owner.remove_status_effect(/datum/status_effect/confusion)
 		severity = 0
-	else if(!owner.anti_magic_check(chargecost = 0) && owner.stat != DEAD && severity)
+	else if(!owner.can_block_magic(charge_cost = 0) && owner.stat != DEAD && severity)
 		var/static/hum = get_sfx('sound/effects/screech.ogg') //same sound for every proc call
 		if(owner.getToxLoss() > MANIA_DAMAGE_TO_CONVERT)
 			if(is_eligible_servant(owner))
@@ -493,7 +491,6 @@
 
 /datum/status_effect/cultghost/on_apply()
 	owner.see_invisible = SEE_INVISIBLE_OBSERVER
-	owner.see_in_dark = 2
 
 /datum/status_effect/cultghost/tick()
 	if(owner.reagents)
@@ -730,7 +727,7 @@
 	set waitfor = FALSE
 	new/obj/effect/temp_visual/dir_setting/curse/grasp_portal(spawn_turf, owner.dir)
 	playsound(spawn_turf, 'sound/effects/curse2.ogg', 80, 1, -1)
-	var/obj/item/projectile/curse_hand/C = new (spawn_turf)
+	var/obj/projectile/curse_hand/C = new (spawn_turf)
 	C.preparePixelProjectile(owner, spawn_turf)
 	C.fire()
 
@@ -742,8 +739,8 @@
 	deltimer(timerid)
 
 /datum/status_effect/progenitor_curse
-	duration = 200
-	tick_interval = 5
+	tick_interval = 1.5 SECONDS //how often a hand is shot
+	duration = 30 SECONDS
 
 /datum/status_effect/progenitor_curse/tick()
 	if(owner.stat == DEAD)
@@ -756,8 +753,8 @@
 /datum/status_effect/progenitor_curse/proc/grasp(turf/spawn_turf)
 	set waitfor = FALSE
 	new/obj/effect/temp_visual/dir_setting/curse/grasp_portal(spawn_turf, owner.dir)
-	playsound(spawn_turf, 'sound/effects/curse2.ogg', 80, 1, -1)
-	var/obj/item/projectile/curse_hand/progenitor/C = new (spawn_turf)
+	playsound(spawn_turf, pick('sound/effects/curse1.ogg','sound/effects/curse2.ogg','sound/effects/curse3.ogg'), 80, 1, -1)
+	var/obj/projectile/curse_hand/progenitor/C = new (spawn_turf)
 	C.preparePixelProjectile(owner, spawn_turf)
 	C.fire()
 
@@ -1041,34 +1038,62 @@
 
 	msg_stage++
 
-//Broken Will: Applied by Devour Will, and functions similarly to Kindle. Induces sleep for 30 seconds, going down by 1 second for every point of damage the target takes. //yogs start: darkspawn
+//Broken Will: Applied by Devour Will, and functions similarly to Kindle. Induces sleep for 30 seconds, broken instantly by taking more than a certain amount of damage. //yogs start: darkspawn
 /datum/status_effect/broken_will
 	id = "broken_will"
 	status_type = STATUS_EFFECT_UNIQUE
 	tick_interval = 5
-	duration = 300
+	duration = 30 SECONDS
 	examine_text = span_deadsay("SUBJECTPRONOUN is in a deep, deathlike sleep, with no signs of awareness to anything around them.")
 	alert_type = /atom/movable/screen/alert/status_effect/broken_will
-	var/old_health
+	///how much damage taken in one hit will wake the holder
+	var/wake_threshold = 5
+
+/datum/status_effect/broken_will/on_apply()
+	if(owner)
+		RegisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(on_take_damage))
+		ADD_TRAIT(owner, TRAIT_NOCRITDAMAGE, type)
+	return ..()
+
+/datum/status_effect/broken_will/on_remove()
+	if(owner)
+		UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE)
+		REMOVE_TRAIT(owner, TRAIT_NOCRITDAMAGE, type)
+		owner.SetUnconscious(0) //wake them up
+	return ..()
 
 /datum/status_effect/broken_will/tick()
-	owner.Unconscious(15)
-	if(!old_health)
-		old_health = owner.health
-	var/health_difference = old_health - owner.health
-	if(!health_difference)
+	if(is_darkspawn_or_thrall(owner) || owner.stat == DEAD)
+		qdel(src)
 		return
-	owner.visible_message(span_warning("[owner] jerks in their sleep as they're harmed!"))
-	to_chat(owner, span_boldannounce("Something hits you, pulling you towards wakefulness!"))
-	health_difference *= 10 //1 point of damage = 1 second = 10 deciseconds
-	duration -= health_difference
-	old_health = owner.health
+	owner.Unconscious(15)
+	if(owner.health <= HEALTH_THRESHOLD_CRIT)
+		owner.heal_ordered_damage(3, list(BURN, BRUTE), BODYPART_ANY) //so if they're left to bleed out, they'll survive, probably?
+		if(prob(10))
+			to_chat(owner, span_velvet("sleep... bliss...")) //give a notice that they're probably healing because of the sleep
+
+/datum/status_effect/broken_will/proc/on_take_damage(datum/source, damage, damagetype)
+	if(damage < wake_threshold)
+		return
+	owner.visible_message(span_warning("[owner] is jolted awake by the impact!") , span_boldannounce("Something hits you, pulling you towards wakefulness!"))
+	ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, type)
+	addtimer(TRAIT_CALLBACK_REMOVE(owner, TRAIT_NOSOFTCRIT, type), 20 SECONDS)	
+	ADD_TRAIT(owner, TRAIT_RESISTDAMAGESLOWDOWN, type)
+	addtimer(TRAIT_CALLBACK_REMOVE(owner, TRAIT_RESISTDAMAGESLOWDOWN, type), 20 SECONDS)
+	qdel(src)
 
 /atom/movable/screen/alert/status_effect/broken_will
 	name = "Broken Will"
 	desc = "..."
 	icon_state = "broken_will"
-	alerttooltipstyle = "alien" //yogs end
+	alerttooltipstyle = "alien" 
+
+//used to prevent the use of devour will on the target
+/datum/status_effect/devoured_will
+	id = "devoured_will"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 3 MINUTES
+	alert_type = null
 
 /datum/status_effect/eldritch
 	duration = 15 SECONDS
@@ -1192,6 +1217,15 @@
 			H.adjustOrganLoss(ORGAN_SLOT_TONGUE,10)
 		if(100)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN,20)
+	
+/datum/status_effect/eldritch/void
+	id = "void mark"
+	effect_sprite = "emark4"
+
+/datum/status_effect/eldritch/void/on_effect()
+	owner.apply_status_effect(/datum/status_effect/void_chill/major)
+	owner.adjust_silence(10 SECONDS)
+	return ..()
 
 /datum/status_effect/amok
 	id = "amok"
@@ -1279,6 +1313,45 @@
 				S.damage_coeff[i] *= power
 
 /datum/status_effect/exposed/on_remove()
+	owner.remove_filter("exposed")
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.brute_mod /= power
+		H.physiology.burn_mod /= power
+		H.physiology.tox_mod /= power
+		H.physiology.oxy_mod /= power
+		H.physiology.clone_mod /= power
+		H.physiology.stamina_mod /= power
+	else if(isanimal(owner))
+		var/mob/living/simple_animal/S = owner
+		for(var/i in S.damage_coeff)
+			S.damage_coeff[i] /= power
+
+/datum/status_effect/exposed/harpooned
+	id = "harpooned"
+	duration = 2 SECONDS
+	///damage multiplier
+	power = 1.3
+
+/datum/status_effect/exposed/harpooned/on_apply()
+	. = ..()
+	if(.)
+		owner.add_filter("exposed", 2, list("type" = "outline", "color" = COLOR_RED, "size" = 1))
+
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			H.physiology.brute_mod *= power
+			H.physiology.burn_mod *= power
+			H.physiology.tox_mod *= power
+			H.physiology.oxy_mod *= power
+			H.physiology.clone_mod *= power
+			H.physiology.stamina_mod *= power
+		else if(isanimal(owner))
+			var/mob/living/simple_animal/S = owner
+			for(var/i in S.damage_coeff)
+				S.damage_coeff[i] *= power
+
+/datum/status_effect/exposed/harpooned/on_remove()
 	owner.remove_filter("exposed")
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
@@ -1384,3 +1457,288 @@
 /datum/status_effect/catchup/on_remove()
 	owner.remove_movespeed_modifier("catchup")
 	owner.remove_atom_colour(FIXED_COLOUR_PRIORITY)
+
+/datum/status_effect/void_chill
+	id = "void_chill"
+	alert_type = /atom/movable/screen/alert/status_effect/void_chill
+	duration = 8 SECONDS
+	status_type = STATUS_EFFECT_REPLACE
+	tick_interval = 0.5 SECONDS
+	/// The amount the victim's body temperature changes each tick() in kelvin. Multiplied by TEMPERATURE_DAMAGE_COEFFICIENT.
+	var/cooling_per_tick = -14
+
+/atom/movable/screen/alert/status_effect/void_chill
+	name = "Void Chill"
+	desc = "There's something freezing you from within and without. You've never felt cold this oppressive before..."
+	icon_state = "void_chill"
+
+/datum/status_effect/void_chill/on_apply()
+	owner.add_atom_colour(COLOR_BLUE_LIGHT, TEMPORARY_COLOUR_PRIORITY)
+	return TRUE
+
+/datum/status_effect/void_chill/on_remove()
+	owner.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_BLUE_LIGHT)
+
+/datum/status_effect/void_chill/tick(seconds_between_ticks)
+	owner.adjust_bodytemperature(cooling_per_tick * TEMPERATURE_DAMAGE_COEFFICIENT)
+
+/datum/status_effect/void_chill/major
+	duration = 10 SECONDS
+	cooling_per_tick = -20
+
+/datum/status_effect/void_chill/lasting
+	id = "lasting_void_chill"
+	duration = -1
+
+/datum/status_effect/protective_blades
+	id = "Silver Knives"
+	alert_type = null
+	status_type = STATUS_EFFECT_MULTIPLE
+	tick_interval = -1
+	/// The number of blades we summon up to.
+	var/max_num_blades = 4
+	/// The radius of the blade's orbit.
+	var/blade_orbit_radius = 20
+	/// The time between spawning blades.
+	var/time_between_initial_blades = 0.25 SECONDS
+	/// If TRUE, we self-delete our status effect after all the blades are deleted.
+	var/delete_on_blades_gone = TRUE
+	/// A list of blade effects orbiting / protecting our owner
+	var/list/obj/effect/floating_blade/blades = list()
+
+/datum/status_effect/protective_blades/on_creation(
+	mob/living/new_owner,
+	new_duration = -1,
+	max_num_blades = 4,
+	blade_orbit_radius = 20,
+	time_between_initial_blades = 0.25 SECONDS,
+)
+
+	src.duration = new_duration
+	src.max_num_blades = max_num_blades
+	src.blade_orbit_radius = blade_orbit_radius
+	src.time_between_initial_blades = time_between_initial_blades
+	return ..()
+
+/datum/status_effect/protective_blades/on_apply()
+	RegisterSignal(owner, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(on_shield_reaction))
+	for(var/blade_num in 1 to max_num_blades)
+		var/time_until_created = (blade_num - 1) * time_between_initial_blades
+		if(time_until_created <= 0)
+			create_blade()
+		else
+			addtimer(CALLBACK(src, PROC_REF(create_blade)), time_until_created)
+
+	return TRUE
+
+/datum/status_effect/protective_blades/on_remove()
+	UnregisterSignal(owner, COMSIG_HUMAN_CHECK_SHIELDS)
+	QDEL_LIST(blades)
+
+	return ..()
+
+/// Creates a floating blade, adds it to our blade list, and makes it orbit our owner.
+/datum/status_effect/protective_blades/proc/create_blade()
+	if(QDELETED(src) || QDELETED(owner))
+		return
+
+	var/obj/effect/floating_blade/blade = new(get_turf(owner))
+	blades += blade
+	blade.orbit(owner, blade_orbit_radius)
+	RegisterSignal(blade, COMSIG_QDELETING, PROC_REF(remove_blade))
+	playsound(get_turf(owner), 'sound/items/unsheath.ogg', 33, TRUE)
+
+/// Signal proc for [COMSIG_HUMAN_CHECK_SHIELDS].
+/// If we have a blade in our list, consume it and block the incoming attack (shield it)
+/datum/status_effect/protective_blades/proc/on_shield_reaction(
+	mob/living/carbon/human/source,
+	atom/movable/hitby,
+	damage = 0,
+	attack_text = "the attack",
+	attack_type = MELEE_ATTACK,
+	armour_penetration = 0,
+	damage_type = BRUTE,
+)
+	SIGNAL_HANDLER
+
+	if(!length(blades))
+		return
+
+	if(HAS_TRAIT(source, TRAIT_BEING_BLADE_SHIELDED))
+		return
+
+	ADD_TRAIT(source, TRAIT_BEING_BLADE_SHIELDED, type)
+
+	var/obj/effect/floating_blade/to_remove = blades[1]
+
+	playsound(get_turf(source), 'sound/weapons/parry.ogg', 100, TRUE)
+	source.visible_message(
+		span_warning("[to_remove] orbiting [source] snaps in front of [attack_text], blocking it before vanishing!"),
+		span_warning("[to_remove] orbiting you snaps in front of [attack_text], blocking it before vanishing!"),
+		span_hear("You hear a clink."),
+	)
+
+	qdel(to_remove)
+
+	addtimer(TRAIT_CALLBACK_REMOVE(source, TRAIT_BEING_BLADE_SHIELDED, type), 1)
+
+	return SHIELD_BLOCK
+
+/// Remove deleted blades from our blades list properly.
+/datum/status_effect/protective_blades/proc/remove_blade(obj/effect/floating_blade/to_remove)
+	SIGNAL_HANDLER
+
+	if(!(to_remove in blades))
+		CRASH("[type] called remove_blade() with a blade that was not in its blades list.")
+
+	to_remove.stop_orbit(owner.orbiters)
+	blades -= to_remove
+
+	if(!length(blades) && !QDELETED(src) && delete_on_blades_gone)
+		qdel(src)
+
+	return TRUE
+
+/// A subtype that doesn't self-delete / disappear when all blades are gone
+/// It instead regenerates over time back to the max after blades are consumed
+/datum/status_effect/protective_blades/recharging
+	delete_on_blades_gone = FALSE
+	/// The amount of time it takes for a blade to recharge
+	var/blade_recharge_time = 1 MINUTES
+
+/datum/status_effect/protective_blades/recharging/on_creation(
+	mob/living/new_owner,
+	new_duration = -1,
+	max_num_blades = 4,
+	blade_orbit_radius = 20,
+	time_between_initial_blades = 0.25 SECONDS,
+	blade_recharge_time = 1 MINUTES,
+)
+
+	src.blade_recharge_time = blade_recharge_time
+	return ..()
+
+/datum/status_effect/protective_blades/recharging/remove_blade(obj/effect/floating_blade/to_remove)
+	. = ..()
+	if(!.)
+		return
+
+	addtimer(CALLBACK(src, PROC_REF(create_blade)), blade_recharge_time)
+
+/datum/status_effect/star_mark
+	id = "star_mark"
+	alert_type = /atom/movable/screen/alert/status_effect/star_mark
+	duration = 30 SECONDS
+	status_type = STATUS_EFFECT_REPLACE
+	///overlay used to indicate that someone is marked
+	var/mutable_appearance/cosmic_overlay
+	/// icon file for the overlay
+	var/effect_icon = 'icons/effects/eldritch.dmi'
+	/// icon state for the overlay
+	var/effect_icon_state = "cosmic_ring"
+	/// Storage for the spell caster
+	var/datum/weakref/spell_caster
+
+/atom/movable/screen/alert/status_effect/star_mark
+	name = "Star Mark"
+	desc = "A ring above your head prevents you from entering cosmic fields or teleporting through cosmic runes..."
+	icon_state = "star_mark"
+
+/datum/status_effect/star_mark/on_creation(mob/living/new_owner, mob/living/new_spell_caster)
+	cosmic_overlay = mutable_appearance(effect_icon, effect_icon_state, BELOW_MOB_LAYER)
+	if(new_spell_caster)
+		spell_caster = WEAKREF(new_spell_caster)
+	return ..()
+
+/datum/status_effect/star_mark/Destroy()
+	QDEL_NULL(cosmic_overlay)
+	return ..()
+
+/datum/status_effect/star_mark/on_apply()
+	if(istype(owner, /mob/living/simple_animal/hostile/eldritch/star_gazer))
+		return FALSE
+	RegisterSignal(owner, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
+	owner.update_appearance(UPDATE_OVERLAYS)
+	return TRUE
+
+/// Updates the overlay of the owner
+/datum/status_effect/star_mark/proc/update_owner_overlay(atom/source, list/overlays)
+	SIGNAL_HANDLER
+
+	overlays += cosmic_overlay
+
+/datum/status_effect/star_mark/on_remove()
+	UnregisterSignal(owner, COMSIG_ATOM_UPDATE_OVERLAYS)
+	owner.update_appearance(UPDATE_OVERLAYS)
+	return ..()
+
+/datum/status_effect/star_mark/extended
+	duration = 3 MINUTES
+
+/datum/status_effect/eldritch/cosmic
+	id = "cosmic_mark"
+	effect_sprite = "emark6"
+	/// For storing the location when the mark got applied.
+	var/obj/effect/cosmic_diamond/cosmic_diamond
+	/// Effect when triggering mark.
+	var/obj/effect/teleport_effect = /obj/effect/temp_visual/cosmic_cloud
+
+/datum/status_effect/eldritch/cosmic/on_creation(mob/living/new_owner)
+	. = ..()
+	cosmic_diamond = new(get_turf(owner))
+
+/datum/status_effect/eldritch/cosmic/Destroy()
+	QDEL_NULL(cosmic_diamond)
+	return ..()
+
+/datum/status_effect/eldritch/cosmic/on_effect()
+	new teleport_effect(get_turf(owner))
+	new /obj/effect/forcefield/cosmic_field(get_turf(owner))
+	do_teleport(
+		owner,
+		get_turf(cosmic_diamond),
+		no_effects = TRUE,
+		channel = TELEPORT_CHANNEL_MAGIC,
+	)
+	new teleport_effect(get_turf(owner))
+	owner.Paralyze(2 SECONDS)
+	return ..()
+
+/datum/status_effect/eldritch/knock
+	id = "knock_mark"
+	effect_sprite = "emark7"
+	duration = 10 SECONDS
+
+/datum/status_effect/eldritch/knock/on_apply()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_ALWAYS_NO_ACCESS, STATUS_EFFECT_TRAIT)
+
+/datum/status_effect/eldritch/knock/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_ALWAYS_NO_ACCESS, STATUS_EFFECT_TRAIT)
+	return ..()
+
+/datum/status_effect/taunt
+	id = "taunt"
+	alert_type = /atom/movable/screen/alert/status_effect/star_mark
+	duration = 5 SECONDS
+	tick_interval = CLICK_CD_MELEE
+	var/mob/living/taunter
+
+/datum/status_effect/taunt/on_creation(mob/living/new_owner, mob/living/taunter)
+	src.taunter = taunter
+	return ..()
+	
+/datum/status_effect/taunt/on_apply()
+	. = ..()
+	if(HAS_TRAIT(owner, TRAIT_STUNIMMUNE))
+		return FALSE
+	if(!taunter)
+		return FALSE
+	owner.SetImmobilized(5 SECONDS)
+
+/datum/status_effect/taunt/tick(delta_time, times_fired)
+	step_towards(owner, taunter)
+	owner.SetImmobilized(5 SECONDS)
+
+/datum/status_effect/taunt/on_remove()
+	owner.SetImmobilized(0)

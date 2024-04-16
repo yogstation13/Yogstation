@@ -108,7 +108,7 @@
 /datum/crafting_recipe/food/chocoorange
 	name = "Chocolate Orange"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/grown/citrus/orange = 1,
+		/datum/reagent/consumable/orangejuice = 2,
 		/obj/item/reagent_containers/food/snacks/chocolatebar = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/chocoorange
@@ -163,6 +163,18 @@
 	result = /obj/item/reagent_containers/food/snacks/fuegoburrito
 	category = CAT_MISCFOOD
 
+/datum/crafting_recipe/food/granola_bar
+	name ="Granola Bar"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/grown/oat = 1,
+		/obj/item/reagent_containers/food/snacks/grown/peanut = 1,
+		/obj/item/reagent_containers/food/snacks/chocolatebar = 1,
+		/obj/item/reagent_containers/food/snacks/no_raisin = 1,
+		/datum/reagent/consumable/sugar = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/granola_bar
+	category = CAT_MISCFOOD
+
 /datum/crafting_recipe/food/honeybar
 	name = "Honey Nut Bar"
 	reqs = list(
@@ -212,6 +224,25 @@
 		/obj/item/reagent_containers/food/snacks/tortilla = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/nachos
+	category = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/onigiri
+	name ="Onigiri"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/seaweedsheet = 1,
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/onigiri
+	category = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/pickle
+	name ="Pickle"
+	reqs = list(
+		/datum/reagent/water = 5,
+		/datum/reagent/consumable/sodiumchloride = 2,
+		/obj/item/reagent_containers/food/snacks/grown/cucumber = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/pickle
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/tacoplain
@@ -302,4 +333,27 @@
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/chipsandsalsa
+	category = CAT_MISCFOOD
+	
+/datum/crafting_recipe/food/pineapple_rice
+	name = "Hawaiian Pineapple Rice"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/grown/pineapple = 1,
+		/datum/reagent/consumable/rice = 5
+	)
+	result = /obj/item/reagent_containers/food/snacks/pineapple_rice
+	category = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/pineapple_friedrice
+	name = "Hawaiian Pineapple Fried Rice"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/grown/pineapple = 1,
+		/datum/reagent/consumable/rice = 5,
+		/obj/item/reagent_containers/food/snacks/pineappleslice/grilled = 1,
+		/obj/item/reagent_containers/food/snacks/grown/chili = 1,
+		/obj/item/reagent_containers/food/snacks/grown/carrot = 1,
+		/datum/reagent/consumable/lemonjuice = 1,
+		/datum/reagent/consumable/limejuice = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/pineapple_friedrice
 	category = CAT_MISCFOOD

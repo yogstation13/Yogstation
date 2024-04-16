@@ -135,10 +135,9 @@
 	qdel(scanner_wand)
 	return ..()
 
-/obj/machinery/medical_kiosk/emag_act(mob/user)
-	..()
+/obj/machinery/medical_kiosk/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	if(user)
 		user.visible_message("<span class='warning'>[user] waves a suspicious card by the [src]'s biometric scanner!</span>",
 	"<span class='notice'>You overload the sensory electronics, the diagnostic readouts start jittering across the screen..</span>")
@@ -146,6 +145,7 @@
 	var/obj/item/circuitboard/computer/cargo/board = circuit
 	board.obj_flags |= EMAGGED //Mirrors emag status onto the board as well.
 	pandemonium = TRUE
+	return TRUE
 
 /obj/machinery/medical_kiosk/examine(mob/user)
 	. = ..()
@@ -197,7 +197,7 @@
 	var/bleed_status = "Patient is not currently bleeding."
 	var/blood_status = " Patient either has no blood, or does not require it to function."
 	var/blood_percent =  round((altPatient.blood_volume / BLOOD_VOLUME_NORMAL(altPatient))*100)
-	var/blood_type = altPatient.dna.blood_type
+	var/blood_type = altPatient.dna.blood_type.name
 	var/blood_warning = " "
 
 	for(var/thing in altPatient.diseases) //Disease Information

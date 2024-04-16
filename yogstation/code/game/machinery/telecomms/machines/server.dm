@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(tcomms_servers)
+
 /obj/item/radio/server
 
 /obj/item/radio/server/can_receive(frequency,levels)
@@ -21,6 +23,11 @@
 	Compiler = new()
 	Compiler.Holder = src
 	server_radio = new()
+	GLOB.tcomms_servers += src
+	. = ..()
+
+/obj/machinery/telecomms/server/Destroy()
+	GLOB.tcomms_servers -= src
 	. = ..()
 
 /obj/machinery/telecomms/server/proc/update_logs()
@@ -77,11 +84,11 @@
 			var/datum/signal/subspace/vocal/signal = new(src, freq, speaker, /datum/language/common, "test", list(), )
 			signal.data["server"] = src
 			Compiler.Run(signal)
-			if(signal.data["reject"] == 1)
+			if(signal.data["reject"] == TRUE)
 				signal.data["name"] = ""
-				signal.data["reject"] = 0
+				signal.data["reject"] = FALSE
 				Compiler.Run(signal)
-				if(signal.data["reject"] == 0)
+				if(!signal.data["reject"] == FALSE)
 					SSachievements.unlock_achievement(/datum/achievement/engineering/Poly_silent, user.client)
 			else
 				for(var/sample in signal.data["spans"])

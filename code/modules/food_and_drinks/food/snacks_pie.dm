@@ -25,7 +25,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("pie" = 1, "bananas" = 1)
-	foodtype = GRAIN | DAIRY | SUGAR
+	foodtype = GRAIN | DAIRY | SUGAR | FRUIT
 	var/stunning = TRUE
 
 /obj/item/reagent_containers/food/snacks/pie/cream/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
@@ -51,7 +51,7 @@
 			creamoverlay.icon_state = "creampie_human"
 		if(stunning)
 			H.Paralyze(20) //splat!
-		H.adjust_blurriness(1)
+		H.adjust_eye_blur(1)
 		H.visible_message(span_warning("[H] is creamed by [src]!"), span_userdanger("You've been creamed by [src]!"))
 		playsound(H, "desceration", 50, TRUE)
 		if(!H.creamed) // one layer at a time
@@ -82,7 +82,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 3)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("pie" = 1, "meat" = 1, "salmon" = 1)
-	foodtype = GRAIN | SUGAR
+	foodtype = GRAIN | SUGAR | MEAT | FRUIT
 
 /obj/item/reagent_containers/food/snacks/pie/meatpie
 	name = "meat pie"
@@ -98,7 +98,7 @@
 	icon_state = "meatpie"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("pie" = 1, "tofu" = 1)
-	foodtype = GRAIN
+	foodtype = GRAIN | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/pie/amanita_pie
 	name = "amanita pie"
@@ -218,7 +218,7 @@
 	slices_num = 5
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 8)
 	tastes = list("jelly" = 1, "sweet potato" = 1)
-	foodtype = GRAIN | VEGETABLES | SUGAR
+	foodtype = VEGETABLES | SUGAR
 
 /obj/item/reagent_containers/food/snacks/dulcedebatataslice
 	name = "dulce de batata slice"
@@ -228,7 +228,7 @@
 	filling_color = "#8B4513"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("jelly" = 1, "sweet potato" = 1)
-	foodtype = GRAIN | VEGETABLES | SUGAR
+	foodtype = VEGETABLES | SUGAR
 
 /obj/item/reagent_containers/food/snacks/pie/frostypie
 	name = "frosty pie"
@@ -247,6 +247,7 @@
 	foodtype = GRAIN | DAIRY | SUGAR
 	slice_path = /obj/item/reagent_containers/food/snacks/frenchsilk
 	slices_num = 5
+	foodtype = GRAIN | DAIRY | SUGAR | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/frenchsilk
 	name = "French silk pie slice"
@@ -255,7 +256,7 @@
 	icon_state = "frenchsilkpieslice"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("pie" = 1, "smooth chocolate" = 1, "whipped cream" = 1)
-	foodtype = GRAIN | DAIRY | SUGAR
+	foodtype = GRAIN | DAIRY | SUGAR | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/pie/buttcinnpie
 	name = "butterscotch cinnamon pie"
@@ -266,6 +267,7 @@
 	slices_num = 5
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/cinnamon = 1)
 	tastes = list("pie" = 1, "cinnamon" = 1, "determination" = 1)
+	foodtype = GRAIN | DAIRY | SUGAR
 
 /obj/item/reagent_containers/food/snacks/buttcinnpieslice
 	name = "butterscotch cinnamon pie slice"
@@ -275,3 +277,30 @@
 	filling_color = "#D2691E"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("pie" = 1, "cinnamon" = 1, "determination" = 1)
+	foodtype = GRAIN | DAIRY | SUGAR
+
+/obj/item/reagent_containers/food/snacks/pie/mimetart
+	name = "mime tart"
+	desc = "..."
+	icon_state = "mimetart"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/nothing = 10)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 5)
+	tastes = list("nothing" = 3)
+
+/obj/item/reagent_containers/food/snacks/pie/berrytart
+	name = "berry tart"
+	desc = "A tasty dessert of many different small berries on a thin pie crust."
+	icon_state = "berrytart"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 5)
+	tastes = list("pie" = 1, "berries" = 2)
+	foodtype = GRAIN | FRUIT
+
+/obj/item/reagent_containers/food/snacks/pie/cocolavatart
+	name = "chocolate lava tart"
+	desc = "A tasty dessert made of chocolate, with a liquid core."
+	icon_state = "cocolavatart"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
+	tastes = list("pie" = 1, "dark chocolate" = 3)
+	foodtype = GRAIN | SUGAR | CHOCOLATE

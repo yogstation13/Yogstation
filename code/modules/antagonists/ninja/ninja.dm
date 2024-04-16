@@ -54,10 +54,9 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	while(objectives.len < quantity)
 		switch(pick_n_take(possible_objectives))
 			if(1)	//research
-				var/datum/objective/download/O = new /datum/objective/download()
-				O.owner = owner
-				O.gen_amount_goal()
-				objectives += O
+				// Break into science and mess up their research.
+				var/datum/objective/research_secrets/sabotage_research = new /datum/objective/research_secrets()
+				objectives += sabotage_research
 
 			if(2)	//steal
 				var/datum/objective/steal/special/O = new /datum/objective/steal/special()

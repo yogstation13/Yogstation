@@ -38,15 +38,16 @@
 	maxbodytemp = INFINITY
 	faction = list("hell")
 	attacktext = "wildly tears into"
-	maxHealth = 160
-	health = 160
+	maxHealth = 200
+	health = 200
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	obj_damage = 40
 	melee_damage_lower = 20
 	melee_damage_upper = 20
 	wound_bonus = -15
-	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	lighting_cutoff_red = 22
+	lighting_cutoff_green = 5
+	lighting_cutoff_blue = 5
 	loot = (/obj/effect/decal/cleanable/blood)
 	del_on_death = TRUE
 
@@ -57,9 +58,9 @@
 						span_cult("As \the [W] hits you, you feel holy power blast through your form, tearing it apart!"))
 		adjustBruteLoss(22) //22 extra damage from the nullrod while in your true form. On average this means 40 damage is taken now.
 
-/mob/living/simple_animal/lesserdemon/UnarmedAttack(mob/living/L, proximity)//8 hp healed from landing a hit.
+/mob/living/simple_animal/lesserdemon/UnarmedAttack(mob/living/L, proximity)//10 hp healed from landing a hit.
 	if(isliving(L))
-		if(L.stat != DEAD && !L.anti_magic_check(TRUE, TRUE)) //demons do not gain succor from the dead or holy 
+		if(L.stat != DEAD && !L.can_block_magic(MAGIC_RESISTANCE_HOLY|MAGIC_RESISTANCE_MIND)) //demons do not gain succor from the dead or holy 
 			adjustHealth(-maxHealth * 0.05)
 	return ..()
 
@@ -102,13 +103,13 @@
 	item_state = "hivemind"
 
 /datum/action/cooldown/spell/touch/torment/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/victim, mob/living/carbon/caster)
-	if(victim.anti_magic_check())
+	if(victim.can_block_magic())
 		to_chat(caster, span_warning("[victim] resists your torment!"))
 		to_chat(victim, span_warning("A hideous feeling of agony dances around your mind before being suddenly dispelled."))
 		..()
 		return TRUE
 	playsound(caster, 'sound/magic/demon_attack1.ogg', 75, TRUE)
-	victim.blur_eyes(15) //huge array of relatively minor effects.
+	victim.adjust_eye_blur(15) //huge array of relatively minor effects.
 	victim.adjust_jitter(5 SECONDS)
 	victim.set_confusion_if_lower(5 SECONDS)
 	victim.adjust_disgust(40)
@@ -120,3 +121,18 @@
 	victim.emote("scream")
 	to_chat(victim, span_warning("You feel an explosion of pain erupt in your mind!"))
 	return TRUE
+
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/sin
+	name = "Demonic Jaunt"
+	desc = "Briefly turn to cinder and ash, allowing you to freely pass through objects."
+	background_icon_state = "bg_demon"
+	overlay_icon_state = "bg_demon_border"
+	sound = 'sound/magic/fireball.ogg'
+	spell_requirements = NONE
+
+	cooldown_time = 50 SECONDS
+
+	jaunt_duration = 3 SECONDS
+	jaunt_out_time = 0.5 SECONDS
+	jaunt_in_type = /obj/effect/temp_visual/dir_setting/ash_shift
+	jaunt_out_type = /obj/effect/temp_visual/dir_setting/ash_shift/out

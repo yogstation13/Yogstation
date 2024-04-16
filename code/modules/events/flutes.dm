@@ -57,23 +57,23 @@
 
 /datum/round_event/flutes/proc/flute_vis_flicker(mob/living/carbon/M)
 	to_chat(M, span_warning("<b>Your vision flickers.</b>"))
-	M.blur_eyes(15)
+	M.adjust_eye_blur(15)
 
 /datum/round_event/flutes/proc/flute_headache(mob/living/carbon/M)
 	to_chat(M, span_warning("<b>You get an intense headache!</b>"))
-	M.blur_eyes(15)
+	M.adjust_eye_blur(15)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15, 20, 30)
 	M.adjustStaminaLoss(15)
 
 /datum/round_event/flutes/proc/flute_tremble(mob/living/carbon/M)
 	to_chat(M, span_warning("<b>Something trembles along the edge of your vision, your eyes water, with the familiar beat of blood racing through your head.</b>"))
-	M.blur_eyes(30)
+	M.adjust_eye_blur(30)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 30, 35)
 	M.adjustStaminaLoss(30)
 
 /datum/round_event/flutes/proc/flute_chanting(mob/living/carbon/M)
 	to_chat(M, "<span class ='cultlarge'><b>You hear faint chanting.. You feel a heavy weight upon your shoulders, as something shifts it's gaze towards you..</b></span>")
-	M.blur_eyes(30)
+	M.adjust_eye_blur(30)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50, 60)
 	M.adjustStaminaLoss(50)
 	ADD_TRAIT(M, TRAIT_UNSTABLE, M)
@@ -82,7 +82,7 @@
 /datum/round_event/flutes/proc/flute_starlight(mob/living/carbon/M)
 	to_chat(M, span_warning("<b>As the nearest stars light your skin and your station, you can make out the faint whispers being spoken in turn with the monotone flutes playing beyond you. You feel so tired, as the struts of metal piping, the walls, the floor twist in unnatural ways, as the lights dim.</b>"))
 	sleep(30 SECONDS)
-	M.blur_eyes(40)
+	M.adjust_eye_blur(40)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 65, 70, 80)
 	ADD_TRAIT(M, TRAIT_UNSTABLE, M)
 	//sanity = 50
@@ -108,7 +108,7 @@
 		to_chat(M, span_suicide("<b>Your flesh undulates, and boils off your bones. You were blind, yet now you've seen a glimpse behind the cosmic curtain.</b>"))
 		//sanity = 25
 		REMOVE_TRAIT(M, TRAIT_UNSTABLE, M)
-		M.blur_eyes(5)
+		M.adjust_eye_blur(5)
 		M.adjustStaminaLoss(90)
 		M.adjustBruteLoss(60, 70, 75, 80, 85)
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 65, 70, 75, 80, 90)
@@ -120,7 +120,7 @@
 		ADD_TRAIT(M, TRAIT_UNSTABLE, M)
 		//sanity = 1
 		M.SetSleeping(30)
-		M.blur_eyes(40)
+		M.adjust_eye_blur(40)
 		M.adjustStaminaLoss(99)
 		to_chat(M, span_narsie("<b>Y'HAH HT'HU THRZHZU. UA'KLL GHRT AWN ZUU!</b>"))
 		M.adjustBruteLoss(60, 70, 75, 80, 85)

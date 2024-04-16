@@ -17,8 +17,10 @@
 /obj/machinery/computer/slot_machine
 	name = "slot machine"
 	desc = "Gambling for the antisocial."
-	icon = 'icons/obj/economy.dmi'
-	icon_state = "slots1"
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "slots"
+	icon_keyboard = null
+	icon_screen = "slots_screen"
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 50
@@ -33,6 +35,7 @@
 	var/list/coinvalues = list()
 	var/list/reels = list(list("", "", "") = 0, list("", "", "") = 0, list("", "", "") = 0, list("", "", "") = 0, list("", "", "") = 0)
 	var/list/symbols = list(SEVEN = 1, "<font color='orange'>&</font>" = 2, "<font color='yellow'>@</font>" = 2, "<font color='green'>$</font>" = 2, "<font color='blue'>?</font>" = 2, "<font color='grey'>#</font>" = 2, "<font color='white'>!</font>" = 2, "<font color='fuchsia'>%</font>" = 2) //if people are winning too much, multiply every number in this list by 2 and see if they are still winning too much.
+	var/static/list/ray_filter = list(type = "rays", y = 16, size = 40, density = 4, color = COLOR_RED_LIGHT, factor = 15, flags = FILTER_OVERLAY)
 
 	light_color = LIGHT_COLOR_BROWN
 
@@ -41,13 +44,13 @@
 	jackpots = rand(1, 4) //false hope
 	plays = rand(75, 200)
 
-	toggle_reel_spin(1) //The reels won't spin unless we activate them
+	INVOKE_ASYNC(src, PROC_REF(toggle_reel_spin), TRUE)//The reels won't spin unless we activate them
 
 	var/list/reel = reels[1]
 	for(var/i = 0, i < reel.len, i++) //Populate the reels.
 		randomize_reels()
 
-	toggle_reel_spin(0)
+	INVOKE_ASYNC(src, PROC_REF(toggle_reel_spin), FALSE)
 
 	for(cointype in typesof(/obj/item/coin))
 		var/obj/item/coin/C = cointype
@@ -58,23 +61,26 @@
 		give_payout(balance)
 	return ..()
 
-/obj/machinery/computer/slot_machine/process(delta_time)
+/obj/machinery/computer/slot_machine/process(seconds_per_tick)
 	. = ..() //Sanity checks.
 	if(!.)
 		return .
 
-	money += round(delta_time / 2) //SPESSH MAJICKS
+	money += round(seconds_per_tick / 2) //SPESSH MAJICKS
 
 /obj/machinery/computer/slot_machine/update_icon_state()
-	. = ..()
-	if(stat & NOPOWER)
-		icon_state = "slots0"
-	else if(stat & BROKEN)
-		icon_state = "slotsb"
-	else if(working)
-		icon_state = "slots2"
+	if(stat & BROKEN)
+		icon_state = "slots_broken"
 	else
-		icon_state = "slots1"
+		icon_state = "slots"
+	return ..()
+
+/obj/machinery/computer/slot_machine/update_overlays()
+	if(working)
+		icon_screen = "slots_screen_working"
+	else
+		icon_screen = "slots_screen"
+	return ..()
 
 /obj/machinery/computer/slot_machine/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/coin))
@@ -119,14 +125,15 @@
 	else
 		return ..()
 
-/obj/machinery/computer/slot_machine/emag_act()
+/obj/machinery/computer/slot_machine/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(4, 0, src.loc)
 	spark_system.start()
 	playsound(src, "sparks", 50, 1)
+	return TRUE
 
 /obj/machinery/computer/slot_machine/ui_interact(mob/living/user)
 	. = ..()
@@ -180,7 +187,7 @@
 		return
 	if(prob(1)) // :^)
 		obj_flags |= EMAGGED
-	var/severity_ascending = 4 - severity
+	var/severity_ascending = 2 + (severity / 5)
 	money = max(rand(money - (200 * severity_ascending), money + (200 * severity_ascending)), 0)
 	balance = max(rand(balance - (50 * severity_ascending), balance + (50 * severity_ascending)), 0)
 	money -= max(0, give_payout(min(rand(-50, 100 * severity_ascending)), money)) //This starts at -50 because it shouldn't always dispense coins yo
@@ -203,7 +210,7 @@
 	working = 1
 
 	toggle_reel_spin(1)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	updateDialog()
 
 	spawn(0)
@@ -216,7 +223,7 @@
 		toggle_reel_spin(0, REEL_DEACTIVATE_DELAY)
 		working = 0
 		give_prizes(the_name, user)
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		updateDialog()
 
 /obj/machinery/computer/slot_machine/proc/can_spin(mob/user)
@@ -234,6 +241,8 @@
 
 /obj/machinery/computer/slot_machine/proc/toggle_reel_spin(value, delay = 0) //value is 1 or 0 aka on or off
 	for(var/list/reel in reels)
+		if(!value)
+			playsound(src, 'sound/machines/ding_short.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		reels[reel] = value
 		sleep(delay)
 
@@ -247,6 +256,7 @@
 
 /obj/machinery/computer/slot_machine/proc/give_prizes(usrname, mob/user)
 	var/linelength = get_lines()
+	var/did_player_win = TRUE
 
 	if(reels[1][2] + reels[2][2] + reels[3][2] + reels[4][2] + reels[5][2] == "[SEVEN][SEVEN][SEVEN][SEVEN][SEVEN]")
 		visible_message("<b>[src]</b> says, 'JACKPOT! You win [money] credits!'")
@@ -261,6 +271,8 @@
 				cointype = pick(subtypesof(/obj/item/coin))
 				var/obj/item/coin/C = new cointype(loc)
 				random_step(C, 2, 50)
+				playsound(src, pick(list('sound/machines/coindrop.ogg', 'sound/machines/coindrop2.ogg')), 50, TRUE)
+				sleep(REEL_DEACTIVATE_DELAY)
 
 	else if(linelength == 5)
 		visible_message("<b>[src]</b> says, 'Big Winner! You win a thousand credits!'")
@@ -277,6 +289,13 @@
 
 	else
 		to_chat(user, span_warning("No luck!"))
+		did_player_win = FALSE
+
+	if(did_player_win)
+		add_filter("jackpot_rays", 3, ray_filter)
+		animate(get_filter("jackpot_rays"), offset = 10, time = 3 SECONDS, loop = -1)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, remove_filter), "jackpot_rays"), 3 SECONDS)
+		playsound(src, 'sound/machines/roulettejackpot.ogg', 50, TRUE)
 
 /obj/machinery/computer/slot_machine/proc/get_lines()
 	var/amountthesame
@@ -334,6 +353,7 @@
 			if(throwit && target)
 				C.throw_at(target, 3, 10)
 			else
+				playsound(src, pick(list('sound/machines/coindrop.ogg', 'sound/machines/coindrop2.ogg')), 50, TRUE)
 				random_step(C, 2, 40)
 
 	return amount

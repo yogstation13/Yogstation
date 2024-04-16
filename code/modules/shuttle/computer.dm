@@ -1,3 +1,11 @@
+#define SHUTTLE_CONSOLE_ACCESSDENIED "accessdenied"
+#define SHUTTLE_CONSOLE_ENDGAME "endgame"
+#define SHUTTLE_CONSOLE_RECHARGING "recharging"
+#define SHUTTLE_CONSOLE_INTRANSIT "intransit"
+#define SHUTTLE_CONSOLE_DESTINVALID "destinvalid"
+#define SHUTTLE_CONSOLE_SUCCESS "success"
+#define SHUTTLE_CONSOLE_ERROR "error"
+
 /obj/machinery/computer/shuttle
 	name = "shuttle console"
 	desc = "A shuttle control computer."
@@ -15,8 +23,16 @@
 	var/no_destination_swap = FALSE
 	/// ID of the currently selected destination of the attached shuttle
 	var/destination
+	/// If the console controls are locked
+	var/locked = FALSE
+	/// List of head revs who have already clicked through the warning about not using the console
+	var/static/list/dumb_rev_heads = list()
 	/// Authorization request cooldown to prevent request spam to admin staff
 	COOLDOWN_DECLARE(request_cooldown)
+
+/obj/machinery/computer/shuttle/Initialize(mapload)
+	. = ..()
+	connect_to_shuttle(mapload, SSshuttle.get_containing_shuttle(src))
 
 /obj/machinery/computer/shuttle/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -49,13 +65,13 @@
 				data["status"] = "Recharging"
 			else
 				data["status"] = "In Transit"
-	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(!options.Find(S.id))
+	for(var/obj/docking_port/stationary/S in SSshuttle.stationary_docking_ports)
+		if(!options.Find(S.port_destinations))
 			continue
 		if(!M.check_dock(S, silent = TRUE))
 			continue
 		var/list/location_data = list(
-			id = S.id,
+			id = S.shuttle_id,
 			name = S.name
 		)
 		data["locations"] += list(location_data)
@@ -76,6 +92,69 @@
   */
 /obj/machinery/computer/shuttle/proc/launch_check(mob/user)
 	return TRUE
+
+/**
+ * Returns a list of currently valid destinations for this shuttle console,
+ * taking into account its list of allowed destinations, their current state, and the shuttle's current location
+**/
+/obj/machinery/computer/shuttle/proc/get_valid_destinations()
+	var/list/destination_list = params2list(possible_destinations)
+	var/obj/docking_port/mobile/mobile_docking_port = SSshuttle.getShuttle(shuttleId)
+	var/obj/docking_port/stationary/current_destination = mobile_docking_port.destination
+	var/list/valid_destinations = list()
+	for(var/obj/docking_port/stationary/stationary_docking_port in SSshuttle.stationary_docking_ports)
+		if(!destination_list.Find(stationary_docking_port.port_destinations))
+			continue
+		if(!mobile_docking_port.check_dock(stationary_docking_port, silent = TRUE))
+			continue
+		if(stationary_docking_port == current_destination)
+			continue
+		var/list/location_data = list(
+			id = stationary_docking_port.shuttle_id,
+			name = stationary_docking_port.name
+		)
+		valid_destinations += list(location_data)
+	return valid_destinations
+
+/**
+ * Attempts to send the linked shuttle to dest_id, checking various sanity checks to see if it can move or not
+ *
+ * Arguments:
+ * * dest_id - The ID of the stationary docking port to send the shuttle to
+ * * user - The mob that used the console
+ */
+/obj/machinery/computer/shuttle/proc/send_shuttle(dest_id, mob/user)
+	if(!launch_check(user))
+		return SHUTTLE_CONSOLE_ACCESSDENIED
+	var/obj/docking_port/mobile/shuttle_port = SSshuttle.getShuttle(shuttleId)
+	if(shuttle_port.launch_status == ENDGAME_LAUNCHED)
+		return SHUTTLE_CONSOLE_ENDGAME
+	if(no_destination_swap)
+		if(shuttle_port.mode == SHUTTLE_RECHARGING)
+			return SHUTTLE_CONSOLE_RECHARGING
+		if(shuttle_port.mode != SHUTTLE_IDLE)
+			return SHUTTLE_CONSOLE_INTRANSIT
+	//check to see if the dest_id passed from tgui is actually a valid destination
+	var/list/dest_list = get_valid_destinations()
+	var/validdest = FALSE
+	for(var/list/dest_data in dest_list)
+		if(dest_data["id"] == dest_id)
+			validdest = TRUE //Found our destination, we can skip ahead now
+			break
+	if(!validdest) //Didn't find our destination in the list of valid destinations, something bad happening
+		if(!isnull(user.client))
+			log_admin("Warning: possible href exploit by [key_name(user)] - Attempted to dock [src] to illegal target location \"[url_encode(dest_id)]\"")
+			message_admins("Warning: possible href exploit by [key_name_admin(user)] [ADMIN_FLW(user)] - Attempted to dock [src] to illegal target location \"[url_encode(dest_id)]\"")
+		else
+			stack_trace("[user] ([user.type]) tried to send the shuttle [src] to the target location [dest_id], but the target location was not found in the list of valid destinations.")
+		return SHUTTLE_CONSOLE_DESTINVALID
+	switch(SSshuttle.moveShuttle(shuttleId, dest_id, TRUE))
+		if(DOCKING_SUCCESS)
+			say("Shuttle departing. Please stand away from the doors.")
+			log_shuttle("[key_name(user)] has sent shuttle \"[shuttleId]\" towards \"[dest_id]\", using [src].")
+			return SHUTTLE_CONSOLE_SUCCESS
+		else
+			return SHUTTLE_CONSOLE_ERROR
 
 /obj/machinery/computer/shuttle/ui_act(action, params)
 	. = ..()
@@ -127,13 +206,30 @@
 			to_chat(GLOB.permissions.admins, "<b>FERRY: <font color='#3d5bc3'>[ADMIN_LOOKUPFLW(usr)] (<A HREF='?_src_=holder;[HrefToken()];secrets=moveferry'>Move Ferry</a>)</b> is requesting to move the transport ferry to CentCom.</font>")
 			return TRUE
 
-/obj/machinery/computer/shuttle/emag_act(mob/user)
+/obj/machinery/computer/shuttle/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	req_access = list()
 	obj_flags |= EMAGGED
 	to_chat(user, span_notice("You fried the consoles ID checking system."))
+	return TRUE
+	
+/obj/machinery/computer/shuttle/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	if(!mapload)
+		return
+	if(!port)
+		return
+	//Remove old custom port id and ";;"
+	var/find_old = findtextEx(possible_destinations, "[shuttleId]_custom")
+	if(find_old)
+		possible_destinations = replacetext(replacetextEx(possible_destinations, "[shuttleId]_custom", ""), ";;", ";")
+	shuttleId = port.shuttle_id
+	possible_destinations += ";[port.shuttle_id]_custom"
 
-/obj/machinery/computer/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
-	if(port && (shuttleId == initial(shuttleId) || override))
-		shuttleId = port.id
+#undef SHUTTLE_CONSOLE_ACCESSDENIED
+#undef SHUTTLE_CONSOLE_ENDGAME
+#undef SHUTTLE_CONSOLE_RECHARGING
+#undef SHUTTLE_CONSOLE_INTRANSIT
+#undef SHUTTLE_CONSOLE_DESTINVALID
+#undef SHUTTLE_CONSOLE_SUCCESS
+#undef SHUTTLE_CONSOLE_ERROR

@@ -54,7 +54,7 @@ WALK_DELAY 6
 ## Entries completely override all subtypes. Later entries have precedence over earlier entries.
 ## This means if you put /mob 0 on the last entry, it will null out all changes, while if you put /mob as the first entry and
 ## /mob/living/carbon/human on the last entry, the last entry will override the first.
-##MULTIPLICATIVE_MOVESPEED /mob/living/carbon/human 0
+MULTIPLICATIVE_MOVESPEED /mob/living/carbon/human 0.1
 ##MULTIPLICATIVE_MOVESPEED /mob/living/silicon/robot 0
 ##MULTIPLICATIVE_MOVESPEED /mob/living/carbon/alien 0
 ##MULTIPLICATIVE_MOVESPEED /mob/living/simple_animal/slime 0
@@ -103,7 +103,6 @@ ALERT_DELTA Destruction of the station is imminent. All crew are instructed to o
 ## Set to 0 to disable that mode.
 
 # New
-PROBABILITY DARKSPAWN 2
 PROBABILITY HERESY 6
 PROBABILITY INFILTRATION 0
 PROBABILITY BLOODSUCKER 5
@@ -119,13 +118,13 @@ PROBABILITY CHANGELING 3
 PROBABILITY VAMPIRE 0
 
 # Group antags
+PROBABILITY DARKSPAWN 9
 PROBABILITY REVOLUTION 8
 PROBABILITY GANG 0
 PROBABILITY CULT 5
 PROBABILITY CLOCKWORK_CULT 5
 
 # Snowflakes
-PROBABILITY SHADOWLING 0
 PROBABILITY WIZARD 8
 PROBABILITY NUCLEAR 9
 PROBABILITY MALF 0
@@ -161,10 +160,10 @@ CONTINUOUS CHANGELING
 CONTINUOUS WIZARD
 CONTINUOUS HIVEMIND
 #CONTINUOUS MALF
-CONTINUOUS SHADOWLING
 CONTINUOUS VAMPIRE
 CONTINUOUS DYNAMIC
 CONTINUOUS HERESY
+CONTINUOUS DARKSPAWN
 
 ##Note: do not toggle continuous off for these modes, as they have no antagonists and would thus end immediately!
 
@@ -187,6 +186,7 @@ MIDROUND_ANTAG CHANGELING
 MIDROUND_ANTAG WIZARD
 #MIDROUND_ANTAG  MONKEY
 #MIDROUND_ANTAG MALF
+MIDROUND_ANTAG DARKSPAWN
 
 ## Uncomment these for overrides of the minimum / maximum number of players in a round type.
 ## If you set any of these occasionally check to see if you still need them as the modes
@@ -442,9 +442,9 @@ ION_LAW_WEIGHT custom,0
 ## standard-ish laws. These are fairly ok to run
 LAW_WEIGHT asimov,3
 ION_LAW_WEIGHT asimov,1
-LAW_WEIGHT crewsimov,5
+LAW_WEIGHT crewsimov,4
 ION_LAW_WEIGHT crewsimov,1
-LAW_WEIGHT asimovpp,2
+LAW_WEIGHT asimovpp,3
 ION_LAW_WEIGHT asimovpp,2
 LAW_WEIGHT paladin,0
 ION_LAW_WEIGHT paladin,2
@@ -452,9 +452,9 @@ LAW_WEIGHT paladin5,0
 ION_LAW_WEIGHT paladin5,2
 LAW_WEIGHT robocop,0
 ION_LAW_WEIGHT robocop,2
-LAW_WEIGHT ceo,3
+LAW_WEIGHT ceo,4
 ION_LAW_WEIGHT ceo,1
-LAW_WEIGHT reporter,2
+LAW_WEIGHT reporter,4
 ION_LAW_WEIGHT reporter,1
 
 ## Quirky laws. Shouldn't cause too much harm
@@ -468,7 +468,7 @@ LAW_WEIGHT liveandletlive,0
 ION_LAW_WEIGHT liveandletlive,2
 LAW_WEIGHT peacekeeper,0
 ION_LAW_WEIGHT peacekeeper,1
-LAW_WEIGHT cowboy,0
+LAW_WEIGHT cowboy,1
 ION_LAW_WEIGHT cowboy,3
 LAW_WEIGHT construction,0
 ION_LAW_WEIGHT construction,2
@@ -482,7 +482,7 @@ LAW_WEIGHT chapai,0
 ION_LAW_WEIGHT chapai,2
 LAW_WEIGHT silicop,0
 ION_LAW_WEIGHT silicop,2
-LAW_WEIGHT researcher,0
+LAW_WEIGHT researcher,2
 ION_LAW_WEIGHT researcher,2
 LAW_WEIGHT clown,0
 ION_LAW_WEIGHT clown,2
@@ -492,6 +492,16 @@ LAW_WEIGHT detective,0
 ION_LAW_WEIGHT detective,2
 LAW_WEIGHT hulkamania,0
 ION_LAW_WEIGHT hulkamania,1
+LAW_WEIGHT partybot,0
+ION_LAW_WEIGHT partybot,3
+LAW_WEIGHT friendbot,1
+ION_LAW_WEIGHT friendbot,3
+LAW_WEIGHT fitnesscoach,0
+ION_LAW_WEIGHT fitnesscoach,3
+LAW_WEIGHT educator,0
+ION_LAW_WEIGHT educator,3
+LAW_WEIGHT mediator,0
+ION_LAW_WEIGHT mediator,3
 
 ## Bad idea laws. Probably shouldn't enable these
 LAW_WEIGHT commie,0
@@ -633,6 +643,9 @@ LAVALAND_BUDGET 60
 ## Ice Moon Budget
 ICEMOON_BUDGET 90
 
+## Jungleland Budget
+JUNGLELAND_BUDGET 40
+
 ## Space Ruin Budget
 Space_Budget 16
 
@@ -660,8 +673,8 @@ MICE_ROUNDSTART 5
 ## This used to be named traits, hence the config name, but it handles quirks, not the other kind of trait!
 ROUNDSTART_TRAITS
 
-## Uncomment to disable human moods.
-DISABLE_HUMAN_MOOD
+## Uncomment to allow selection for human moods. Comment to force moods on
+#DISABLE_HUMAN_MOOD
 
 ## Enable night shifts ##
 #ENABLE_NIGHT_SHIFTS
@@ -687,5 +700,5 @@ ECONOMY
 ## Uncomment to enable dynamic ruleset config file.
 DYNAMIC_CONFIG_ENABLED
 
-## Force Engine - 1 for SM, 2 for Sing/Tesla, 3 for any.
+## Force Engine - 1 for SM, 2 for Sing/Tesla, 3 for any, 4 for AGCNR, 5 for TEG
 ENGINE_TYPE 3

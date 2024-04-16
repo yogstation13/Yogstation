@@ -22,7 +22,7 @@
 /obj/machinery/door/poddoor/preopen
 	icon_state = "open"
 	density = FALSE
-	opacity = 0
+	opacity = FALSE
 
 /obj/machinery/door/poddoor/ert
 	name = "ERT Armory door"
@@ -127,9 +127,8 @@
 
 			if(!multitool_check_buffer(user, W))
 				return
-				
-			var/obj/item/multitool/P = W	
-			id = P.buffer
+	
+			id = multitool_get_buffer(user, W)
 			to_chat(user, span_notice("You link the button to the [src]."))
 			return
 
@@ -188,3 +187,5 @@
 	if(panel_open)
 		. += "<span class='[span_notice("The maintenance panel is [panel_open ? "opened" : "closed"].")]"
 		
+/obj/machinery/door/poddoor/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	id = "[id]"

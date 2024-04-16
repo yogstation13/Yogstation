@@ -51,14 +51,14 @@
 	return S
 
 /obj/item/organ/appendix/get_availability(datum/species/species)
-	return !(TRAIT_NOHUNGER in species.inherent_traits)
+	return !((TRAIT_NOHUNGER in species.inherent_traits) || (TRAIT_POWERHUNGRY in species.inherent_traits))
 
 /obj/item/organ/appendix/cybernetic
 	name = "cybernetic appendix"
 	desc = "One of the most advanced cybernetic organs ever created."
 	icon_state = "implant-filter"
 	organ_flags = ORGAN_SYNTHETIC
-	process_flags = ORGANIC | SYNTHETIC // THE GREATEST INVENTION IN THE HISTORY OF CYBERNETICS
+	compatible_biotypes = ALL_BIOTYPES // THE GREATEST INVENTION IN THE HISTORY OF CYBERNETICS
 	now_failing = span_warning("NOT AGAIN!")
 	now_fixed = span_info("Thank god that's over.")
 
@@ -83,4 +83,5 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	damage += 100/severity
+	if(severity > EMP_LIGHT)
+		damage += 20 * (severity - EMP_HEAVY)

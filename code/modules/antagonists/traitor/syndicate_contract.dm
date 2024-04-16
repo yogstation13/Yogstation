@@ -163,7 +163,7 @@
 
 		M.flash_act()
 		M.adjust_confusion(10 SECONDS)
-		M.blur_eyes(0.5 SECONDS)
+		M.adjust_eye_blur(0.5 SECONDS)
 		to_chat(M, span_warning("You feel strange..."))
 		sleep(6 SECONDS)
 		to_chat(M, span_warning("That pod did something to you..."))
@@ -172,7 +172,7 @@
 		to_chat(M, span_warning("Your head pounds... It feels like it's going to burst out your skull!"))
 		M.flash_act()
 		M.adjust_confusion(20 SECONDS)
-		M.blur_eyes(3)
+		M.adjust_eye_blur(3)
 		sleep(3 SECONDS)
 		to_chat(M, span_warning("Your head pounds..."))
 		sleep(10 SECONDS)
@@ -181,7 +181,7 @@
 		to_chat(M, "<span class='reallybig hypnophrase'>A million voices echo in your head... <i>\"Your mind held many valuable secrets - \
 					we thank you for providing them. Your value is expended, and you will be ransomed back to your station. We always get paid, \
 					so it's only a matter of time before we ship you back...\"</i></span>")
-		M.blur_eyes(1 SECONDS)
+		M.adjust_eye_blur(1 SECONDS)
 		M.adjust_dizzy(1.5 SECONDS)
 		M.adjust_confusion(20 SECONDS)
 
@@ -220,7 +220,7 @@
 		M.forceMove(return_pod)
 
 		M.flash_act()
-		M.blur_eyes(30)
+		M.adjust_eye_blur(30)
 		M.adjust_dizzy(35 SECONDS)
 		M.adjust_confusion(20 SECONDS)
 

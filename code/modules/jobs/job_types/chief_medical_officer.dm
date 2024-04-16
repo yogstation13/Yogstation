@@ -10,7 +10,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the captain"
-	selection_color = "#c1e1ec"
 	req_admin_notify = 1
 	minimal_player_age = 7
 	exp_requirements = 1500 //25 hours
@@ -41,6 +40,15 @@
 		/obj/effect/spawner/lootdrop/surgery_tool_advanced = 4,
 		/obj/item/statuebust/hippocratic = 2,
 		/obj/effect/spawner/lootdrop/surgery_tool_alien = 1
+	)
+
+	minimal_lightup_areas = list(
+		/area/crew_quarters/heads/cmo,
+		/area/medical/chemistry,
+		/area/medical/genetics,
+		/area/medical/morgue,
+		/area/medical/surgery,
+		/area/storage/eva
 	)
 
 	smells_like = "blood-soaked stress"

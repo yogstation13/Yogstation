@@ -33,7 +33,7 @@
 	var/locked = FALSE
 	var/allow_switch_interact = TRUE
 
-	var/projectile_type = /obj/item/projectile/beam/emitter
+	var/projectile_type = /obj/projectile/beam/emitter
 	var/projectile_sound = 'sound/weapons/emitter.ogg'
 	var/datum/effect_system/spark_spread/sparks
 
@@ -52,6 +52,7 @@
 
 /obj/machinery/power/emitter/anchored
 	anchored = TRUE
+	state = EMITTER_WRENCHED
 
 /obj/machinery/power/emitter/ctf
 	name = "Energy Cannon"
@@ -73,8 +74,13 @@
 	sparks = new
 	sparks.attach(src)
 	sparks.set_up(5, TRUE, src)
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
+	ADD_TRAIT(src, TRAIT_EMPPROOF_SELF, "innate_empproof")
+	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
 	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS, null, CALLBACK(src, PROC_REF(can_be_rotated)))
+
+/obj/machinery/power/emitter/on_construction()
+	if(anchored && state == EMITTER_UNWRENCHED)
+		state = EMITTER_WRENCHED
 
 /obj/machinery/power/emitter/RefreshParts()
 	var/max_reload = initial(maximum_reload_time) + 20
@@ -214,7 +220,7 @@
 	var/obj/item/K = new projectile_type(get_turf(src))
 
 	/// If it isn't a projectile, throw it
-	if(!istype(K, /obj/item/projectile))
+	if(!istype(K, /obj/projectile))
 		if(istype(K, /obj/item/grenade))
 			var/obj/item/grenade/I = K
 			I.preprime()
@@ -224,7 +230,7 @@
 			sparks.start()
 		return K
 
-	var/obj/item/projectile/P = K
+	var/obj/projectile/P = K
 	playsound(get_turf(src), projectile_sound, 50, TRUE)
 	if(prob(35))
 		sparks.start()
@@ -377,9 +383,9 @@
 	projectile_type = initial(projectile_type)
 	projectile_sound = initial(projectile_sound)
 
-/obj/machinery/power/emitter/emag_act(mob/user)
+/obj/machinery/power/emitter/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	locked = FALSE
 	obj_flags |= EMAGGED
 	sparks.start()
@@ -389,10 +395,9 @@
 		to_chat(user, span_warning("[src] ejects [gun] as you disable the power limiter."))
 		remove_gun(user)
 	active_power_usage *= 5
-	projectile_type = /obj/item/projectile/beam/emitter/pulse
+	projectile_type = /obj/projectile/beam/emitter/pulse
 	projectile_sound = 'sound/weapons/pulse.ogg'
 	return TRUE
-
 
 /obj/machinery/power/emitter/prototype
 	name = "Prototype Emitter"
@@ -411,7 +416,7 @@
 	icon_state = "sci-emitter"
 	icon_state_on = "sci-emitter_+a"
 	icon_state_underpowered = "sci-emitter_+u"
-	projectile_type = /obj/item/projectile/energy/nuclear_particle
+	projectile_type = /obj/projectile/energy/nuclear_particle
 	idle_power_usage = 0 // powered by tritium gas (and scientists don't have insulated gloves for wiring things)
 	active_power_usage = 0
 	var/obj/item/tank/tank
@@ -437,10 +442,10 @@
 	if(!tank || !tank.air_contents)
 		return
 	var/datum/gas_mixture/fuel = tank.air_contents
-	if(fuel.get_moles(/datum/gas/tritium) < fuel_consumption)
+	if(fuel.get_moles(GAS_TRITIUM) < fuel_consumption)
 		return
-	fuel.adjust_moles(/datum/gas/tritium, -fuel_consumption)
-	fuel.adjust_moles(/datum/gas/hydrogen, fuel_consumption)
+	fuel.adjust_moles(GAS_TRITIUM, -fuel_consumption)
+	fuel.adjust_moles(GAS_H2, fuel_consumption)
 	if(obj_flags & EMAGGED) // radioactive if emagged
 		radiation_pulse(get_turf(src), fuel_consumption * FIRE_HYDROGEN_ENERGY_RELEASED / TRITIUM_BURN_RADIOACTIVITY_FACTOR)
 	return ..()
@@ -456,12 +461,12 @@
 
 /obj/machinery/power/emitter/particle/emag_act(mob/user)
 	if(..()) // stronger particles
-		projectile_type = /obj/item/projectile/energy/nuclear_particle/strong
+		projectile_type = /obj/projectile/energy/nuclear_particle/strong
 
 /obj/machinery/power/emitter/particle/update_icon_state()
 	. = ..()
 	if(active)
-		icon_state = (tank?.air_contents?.get_moles(/datum/gas/tritium) >= fuel_consumption) ? icon_state_on : icon_state_underpowered
+		icon_state = (tank?.air_contents?.get_moles(GAS_TRITIUM) >= fuel_consumption) ? icon_state_on : icon_state_underpowered
 	else
 		icon_state = initial(icon_state)
 
@@ -472,7 +477,7 @@
 
 //BUCKLE HOOKS
 
-/obj/machinery/power/emitter/prototype/unbuckle_mob(mob/living/buckled_mob,force = 0)
+/obj/machinery/power/emitter/prototype/unbuckle_mob(mob/living/buckled_mob, force = FALSE, can_fall = TRUE)
 	playsound(src,'sound/mecha/mechmove01.ogg', 50, TRUE)
 	manual = FALSE
 	for(var/obj/item/I in buckled_mob.held_items)

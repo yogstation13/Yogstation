@@ -21,7 +21,6 @@
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 5, \
 		force_wielded = 15, \
 		icon_wielded = "[base_icon_state]1", \
 	)
@@ -98,10 +97,10 @@
 /obj/item/mjolnir/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 5, \
 		force_wielded = 20, \
 		icon_wielded = "[base_icon_state]1", \
 	)
+	AddComponent(/datum/component/cleave_attack, arc_size=180, requires_wielded=TRUE)
 
 /obj/item/mjolnir/update_icon_state()
 	. = ..()
@@ -129,7 +128,7 @@
 	. = ..()
 	if(isliving(hit_atom))
 		var/mob/M = hit_atom
-		var/atom/A = M.anti_magic_check()
+		var/atom/A = M.can_block_magic()
 		if(A)
 			if(isitem(A))
 				M.visible_message(span_warning("[M]'s [A] glows brightly as it disrupts the Mjolnir's power!"))

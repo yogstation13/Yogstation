@@ -2,7 +2,8 @@
 	desc = "A flimsy framework of metal rods."
 	name = "grille"
 	icon = 'icons/obj/smooth_structures/grille.dmi'
-	icon_state = "grille"
+	icon_state = "grille-0"
+	base_icon_state = "grille"
 	density = TRUE
 	anchored = TRUE
 	pass_flags_self = PASSGRILLE
@@ -12,9 +13,10 @@
 	max_integrity = 50
 	integrity_failure = 20
 	appearance_flags = KEEP_TOGETHER
-	smooth = SMOOTH_TRUE
 	can_be_unanchored = TRUE
-	canSmoothWith = list(/obj/structure/grille, /obj/structure/grille/broken)
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_GRILLE
+	canSmoothWith = SMOOTH_GROUP_GRILLE
 	var/holes = 0 //bitflag
 	var/rods_type = /obj/item/stack/rods
 	var/rods_amount = 2
@@ -27,7 +29,7 @@
 
 /obj/structure/grille/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
-	var/ratio = obj_integrity / max_integrity
+	var/ratio = atom_integrity / max_integrity
 	ratio = CEILING(ratio*4, 1) * 25
 
 	if(ratio>75)
@@ -35,12 +37,20 @@
 
 	if(broken)
 		holes = (holes | 16) //16 is the biggest hole
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		return
 
 	holes = (holes | (1 << rand(0,3))) //add random holes between 1 and 8
 
-	update_appearance(UPDATE_ICON)
+	update_appearance()
+
+/obj/structure/grille/update_appearance(updates)
+	if(QDELETED(src))
+		return
+
+	. = ..()
+	if((updates & UPDATE_SMOOTHING) && (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)))
+		QUEUE_SMOOTH(src)
 
 /obj/structure/grille/update_icon(updates=ALL)
 	. = ..()
@@ -59,7 +69,7 @@
 		. += span_notice("The anchoring screws are <i>unscrewed</i>. The rods look like they could be <b>cut</b> through.")
 
 /obj/structure/grille/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
-	switch(the_rcd.mode)
+	switch(the_rcd.construction_mode)
 		if(RCD_DECONSTRUCT)
 			return list("mode" = RCD_DECONSTRUCT, "delay" = 20, "cost" = 5)
 		if(RCD_WINDOWGRILLE)
@@ -139,7 +149,7 @@
 	. = ..()
 	if(mover.pass_flags & PASSGRILLE)
 		return TRUE
-	else if(!. && istype(mover, /obj/item/projectile))
+	else if(!. && istype(mover, /obj/projectile))
 		return prob(30)
 
 /obj/structure/grille/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller, no_id = FALSE)
@@ -148,6 +158,9 @@
 		. = . || (caller.pass_flags & PASSGRILLE)
 
 /obj/structure/grille/attackby(obj/item/W, mob/user, params)
+	var/obj/structure/window/window = locate() in loc
+	if(window && window.fulltile && window.anchored)
+		return TRUE // don't attack grilles through windows, that's weird and causes too many problems
 	user.changeNext_move(CLICK_CD_MELEE)
 	add_fingerprint(user)
 	if(W.tool_behaviour == TOOL_WIRECUTTER)
@@ -160,8 +173,6 @@
 			setAnchored(!anchored)
 			user.visible_message(span_notice("[user] [anchored ? "fastens" : "unfastens"] [src]."), \
 								 span_notice("You [anchored ? "fasten [src] to" : "unfasten [src] from"] the floor."))
-			queue_smooth(src)
-			queue_smooth_neighbors(src)
 			return
 	else if(istype(W, /obj/item/stack/rods) && broken)
 		var/obj/item/stack/rods/R = W
@@ -237,7 +248,8 @@
 		transfer_fingerprints_to(R)
 		..()
 
-/obj/structure/grille/obj_break()
+/obj/structure/grille/atom_break()
+	. = ..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		density = FALSE
 		broken = TRUE
@@ -258,6 +270,8 @@
 	if(!in_range(src, user))//To prevent TK and mech users from getting shocked
 		return FALSE
 	var/turf/T = get_turf(src)
+	if(T.overfloor_placed)//cant be a floor in the way!
+		return FALSE
 	var/obj/structure/cable/C = T.get_cable_node()
 	if(C)
 		if(electrocute_mob(user, C, src, 1, TRUE))
@@ -281,6 +295,8 @@
 			var/obj/O = AM
 			if(O.throwforce != 0)//don't want to let people spam tesla bolts, this way it will break after time
 				var/turf/T = get_turf(src)
+				if(T.overfloor_placed)
+					return FALSE
 				var/obj/structure/cable/C = T.get_cable_node()
 				if(C)
 					playsound(src, 'sound/magic/lightningshock.ogg', 100, 1, extrarange = 5)
@@ -294,7 +310,6 @@
 /obj/structure/grille/broken // Pre-broken grilles for map placement
 	icon_state = "grille_broken"
 	density = FALSE
-	obj_integrity = 20
 	broken = TRUE
 	rods_amount = 1
 	rods_broken = FALSE
@@ -304,7 +319,8 @@
 /obj/structure/grille/broken/Initialize(mapload)
 	. = ..()
 	holes = (holes | 16)
-	update_appearance(UPDATE_ICON)
+	update_integrity(20)
+	update_appearance()
 
 /obj/structure/grille/ratvar
 	icon = 'icons/obj/structures.dmi'
@@ -312,7 +328,12 @@
 	name = "cog grille"
 	desc = "A strangely-shaped grille."
 	broken_type = /obj/structure/grille/ratvar/broken
-	smooth = SMOOTH_FALSE
+
+	// These ones are too cool to smooth
+	base_icon_state = null
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null
 
 /obj/structure/grille/ratvar/Initialize(mapload)
 	. = ..()
@@ -336,9 +357,12 @@
 /obj/structure/grille/ratvar/broken
 	icon_state = "brokenratvargrille"
 	density = FALSE
-	obj_integrity = 20
 	broken = TRUE
 	rods_amount = 1
 	rods_broken = FALSE
 	grille_type = /obj/structure/grille/ratvar
 	broken_type = null
+
+/obj/structure/grille/ratvar/broken/Initialize(mapload)
+	. = ..()
+	update_integrity(20)

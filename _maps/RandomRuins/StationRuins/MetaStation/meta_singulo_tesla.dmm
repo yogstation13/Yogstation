@@ -361,6 +361,8 @@
 /obj/item/clothing/glasses/meson/engine,
 /obj/item/clothing/glasses/meson/engine,
 /obj/item/clothing/glasses/meson/engine,
+/obj/item/melee/sledgehammer,
+/obj/item/melee/sledgehammer,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "sm" = (
@@ -415,15 +417,6 @@
 	},
 /obj/machinery/light{
 	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
-"uC" = (
-/obj/effect/turf_decal/stripes{
-	dir = 1
-	},
-/obj/structure/sign/warning/securearea{
-	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -1078,7 +1071,7 @@ SN
 SN
 "}
 (5,1,1) = {"
-uC
+Lv
 SN
 Xa
 BD

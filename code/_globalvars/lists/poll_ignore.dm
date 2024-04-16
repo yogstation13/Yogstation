@@ -21,6 +21,8 @@
 #define POLL_IGNORE_SPLITPERSONALITY "split_personality"
 #define POLL_IGNORE_CONTRACTOR_SUPPORT "contractor_support"
 #define POLL_IGNORE_RAGINMAGES "raging_mages"
+#define POLL_IGNORE_HERETIC_MONSTER "heretic_monsters"
+#define POLL_IGNORE_DARKSPAWN_PSYCHE "darkspawn_psyche"
 
 
 GLOBAL_LIST_INIT(poll_ignore_desc, list(

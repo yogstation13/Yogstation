@@ -5,6 +5,13 @@
 	spell_type = /datum/action/cooldown/spell/pointed/projectile/fireball
 	category = "Offensive"
 
+/datum/spellbook_entry/cast_iron
+	name = "Cast Iron"
+	desc = "Fires a blunt force projectile."
+	spell_type = /datum/action/cooldown/spell/pointed/projectile/cast_iron
+	category = "Offensive"
+	cost = 1
+
 /datum/spellbook_entry/spell_cards
 	name = "Spell Cards"
 	desc = "Blazing hot rapid-fire homing cards. Send your foes to the shadow realm with their mystical power!"
@@ -15,6 +22,12 @@
 	name = "Rod Form"
 	desc = "Take on the form of an immovable rod, destroying all in your path. Purchasing this spell multiple times will also increase the rod's damage and travel range."
 	spell_type = /datum/action/cooldown/spell/rod_form
+	category = "Offensive"
+
+/datum/spellbook_entry/scrunch
+	name = "Scrunch"
+	desc = "Scrunches a target."
+	spell_type = /datum/action/cooldown/spell/pointed/scrunch
 	category = "Offensive"
 
 /datum/spellbook_entry/disintegrate
@@ -30,6 +43,13 @@
 	category = "Offensive"
 	cost = 1
 
+/datum/spellbook_entry/appendicitis
+	name = "Bestow Appendicitis"
+	desc = "Give someone appendicitis."
+	spell_type = /datum/action/cooldown/spell/pointed/appendicitis
+	category = "Offensive"
+	cost = 1
+	
 /datum/spellbook_entry/mutate
 	name = "Mutate"
 	desc = "Causes you to turn into a hulk and gain laser vision for a short while."

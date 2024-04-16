@@ -399,21 +399,20 @@ GLOBAL_VAR_INIT(clones, 0)
 	if(W.tool_behaviour == TOOL_MULTITOOL)
 		if(!multitool_check_buffer(user, W))
 			return
-		var/obj/item/multitool/P = W
-
-		if(istype(P.buffer, /obj/machinery/computer/cloning))
-			if(get_area(P.buffer) != get_area(src))
+		var/atom/buffer_atom = multitool_get_buffer(user, W)
+		if(istype(buffer_atom, /obj/machinery/computer/cloning))
+			if(get_area(buffer_atom) != get_area(src))
 				to_chat(user, "<font color = #666633>-% Cannot link machines across power zones. Buffer cleared %-</font color>")
-				P.buffer = null
+				multitool_set_buffer(user, W, null)
 				return
-			to_chat(user, "<font color = #666633>-% Successfully linked [P.buffer] with [src] %-</font color>")
-			var/obj/machinery/computer/cloning/comp = P.buffer
+			to_chat(user, "<font color = #666633>-% Successfully linked [buffer_atom] with [src] %-</font color>")
+			var/obj/machinery/computer/cloning/comp = buffer_atom
 			if(connected)
 				connected.DetachCloner(src)
 			comp.AttachCloner(src)
 		else
-			P.buffer = src
-			to_chat(user, "<font color = #666633>-% Successfully stored [REF(P.buffer)] [P.buffer.name] in buffer %-</font color>")
+			multitool_set_buffer(user, W, src)
+			to_chat(user, "<font color = #666633>-% Successfully stored [REF(buffer_atom)] [buffer_atom.name] in buffer %-</font color>")
 		return
 
 	var/mob/living/mob_occupant = occupant
@@ -435,14 +434,15 @@ GLOBAL_VAR_INIT(clones, 0)
 	else
 		return ..()
 
-/obj/machinery/clonepod/emag_act(mob/user)
+/obj/machinery/clonepod/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!occupant)
-		return
+		return FALSE
 	to_chat(user, span_warning("You corrupt the genetic compiler."))
 	malfunction()
 	add_fingerprint(user)
 	log_cloning("[key_name(user)] emagged [src] at [AREACOORD(src)], causing it to malfunction.")
 	log_combat(user, src, "emagged", null, occupant ? "[occupant] inside, killing them via malfunction." : null)
+	return TRUE
 
 //Put messages in the connected computer's temp var for display.
 /obj/machinery/clonepod/proc/connected_message(message)
@@ -487,7 +487,7 @@ GLOBAL_VAR_INIT(clones, 0)
 		mob_occupant.grab_ghost()
 		to_chat(occupant, span_notice("<b>There is a bright flash!</b><br><i>You feel like a new being.</i>"))
 		to_chat(occupant, span_userdanger("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.")) //yogs
-		log_combat(occupant, "was cloned with memory loss")
+		occupant.log_message("was cloned with memory loss", LOG_ATTACK, color="green")
 		mob_occupant.flash_act()
 		GLOB.clones++
 
@@ -531,7 +531,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	. = ..()
 	if (!(. & EMP_PROTECT_SELF))
 		var/mob/living/mob_occupant = occupant
-		if(mob_occupant && prob(100/(severity*efficiency)))
+		if(mob_occupant && prob(10 * severity / efficiency))
 			log_cloning("[key_name(mob_occupant)] ejected from [src] at [AREACOORD(src)] due to EMP pulse.")
 			connected_message(Gibberish("EMP-caused Accidental Ejection", 0))
 			SPEAK(Gibberish("Exposure to electromagnetic fields has caused the ejection of [mob_occupant.real_name] prematurely." ,0))

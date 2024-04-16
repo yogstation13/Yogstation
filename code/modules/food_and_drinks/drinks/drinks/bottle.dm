@@ -13,6 +13,7 @@
 	volume = 100
 	force = 15 //Smashing bottles over someone's head hurts.
 	throwforce = 15
+	demolition_mod = 0.25
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
@@ -21,6 +22,11 @@
 	isGlass = TRUE
 	foodtype = ALCOHOL
 	age_restricted = TRUE
+	/// The optional custom name for the reagent fill icon_state prefix
+	/// If not set, uses the current icon state.
+	var/fill_icon_state = null
+	/// The icon file to take fill icon appearances from
+	var/fill_icon = 'icons/obj/reagentfillings.dmi'
 
 /obj/item/reagent_containers/food/drinks/bottle/on_reagent_change(changetype)
 	update_appearance(UPDATE_ICON)
@@ -94,6 +100,9 @@
 	if(user.a_intent != INTENT_HARM || !isGlass)
 		return ..()
 
+	if(!synth_check(user, SYNTH_ORGANIC_HARM))
+		return
+
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("You don't want to harm [target]!"))
 		return
@@ -166,6 +175,7 @@
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
+	demolition_mod = 0.25
 	w_class = WEIGHT_CLASS_TINY
 	item_state = "beer"
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -523,10 +533,10 @@
 			var/turf/center_turf = get_turf(hit_atom)
 			if(isclosedturf(center_turf) && isopenturf(get_turf(src)))
 				center_turf = get_turf(src) // if it hits a wall, light the floor in front of the wall on fire, not the wall itself
-			center_turf.IgniteTurf(fire_power)
+			center_turf.ignite_turf(fire_power)
 			for(var/turf/T in center_turf.GetAtmosAdjacentTurfs(TRUE))
 				if(prob(fire_power))
-					T.IgniteTurf(fire_power)
+					T.ignite_turf(fire_power)
 	return ..()
 
 /obj/item/reagent_containers/food/drinks/bottle/molotov/attackby(obj/item/I, mob/user, params)

@@ -33,6 +33,17 @@
 	var/preload_cell_type
 	///used for passive discharge
 	var/cell_last_used = 0
+	light_range = 1.5
+	light_system = MOVABLE_LIGHT
+	light_on = FALSE
+	light_color = LIGHT_COLOR_ORANGE
+	light_power = 0.5
+
+/// Toggles the stun baton's light
+/obj/item/melee/baton/proc/toggle_light(mob/user)
+	set_light_on(!light_on)
+	return
+
 
 /obj/item/melee/baton/get_cell()
 	return cell
@@ -76,6 +87,7 @@
 		if(status && cell.charge < hitcost)
 			//we're below minimum, turn off
 			status = FALSE
+			set_light_on(FALSE)
 			update_appearance(UPDATE_ICON)
 			playsound(loc, "sparks", 75, 1, -1)
 			STOP_PROCESSING(SSobj, src) // no more charge? stop checking for discharge
@@ -135,6 +147,8 @@
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
 		playsound(loc, "sparks", 75, 1, -1)
+		toggle_light(user)
+		do_sparks(1, TRUE, src)
 		cell_last_used = 0
 		if(status)
 			START_PROCESSING(SSobj, src)
@@ -156,16 +170,15 @@
 		user.Paralyze(stunforce*3)
 		deductcharge(hitcost)
 		return
+	if(!synth_check(user, SYNTH_RESTRICTED_WEAPON))
+		return
 	if(HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
 		to_chat(user, span_warning("You can't seem to remember how this works!"))
 		return
 	//yogs edit begin ---------------------------------
-	if(status && ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/stomach/ethereal/stomach = H.get_organ_slot(ORGAN_SLOT_STOMACH)
-		if(istype(stomach))
-			stomach.adjust_charge(10 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
-			to_chat(M,span_notice("You get charged by [src]."))
+	if(status && isethereal(M))
+		M.adjust_nutrition(40)
+		to_chat(M,span_notice("You get charged by [src]."))
 	//yogs edit end  ----------------------------------
 	if(iscyborg(M))
 		..()
@@ -224,11 +237,9 @@
 		else
 			L.Paralyze(stunforce)
 		L.adjust_jitter(20 SECONDS)
-		L.adjust_confusion(8 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage > 70)
 		L.adjust_jitter(10 SECONDS)
-		L.adjust_confusion(8 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage >= 20)
 		L.adjust_jitter(5 SECONDS)
@@ -262,7 +273,7 @@
 /obj/item/melee/baton/emp_act(severity)
 	. = ..()
 	if (!(. & EMP_PROTECT_SELF))
-		deductcharge(1000 / severity)
+		deductcharge(100 * severity)
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/melee/baton/cattleprod
@@ -293,11 +304,23 @@
 /obj/item/melee/baton/cattleprod/tactical
 	name = "tactical stunprod"
 	desc = "A cost-effective, mass-produced, tactical stun prod."
+	icon_state = "tacprod"
+	item_state = "tacprod"
 	preload_cell_type = /obj/item/stock_parts/cell/high/plus // comes with a cell
-	color = "#aeb08c" // super tactical
+
+/obj/item/melee/baton/cattleprod/tactical/update_icon_state()
+	. = ..()
+	if(status)
+		item_state = "[initial(item_state)]_active"
+	else if(!cell)
+		item_state = "[initial(item_state)]_nocell"
+	else
+		item_state = "[initial(item_state)]"
 
 /obj/item/batonupgrade
 	name = "baton power upgrade"
 	desc = "A new power management circuit which enables stun batons to instantly stun, at the cost of double power usage."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade3"
+
+

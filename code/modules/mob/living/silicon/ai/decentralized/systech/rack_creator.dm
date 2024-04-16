@@ -1,8 +1,8 @@
 /obj/machinery/rack_creator
 	name = "rack creator"
 	desc = "Combines RAM modules and CPUs to create a stand-alone rack for usage in artificial intelligence systems."
-	icon = 'icons/obj/machines/research.dmi'
-	icon_state = "circuit_imprinter"
+	icon = 'icons/obj/machines/lithography.dmi'
+	icon_state = "lithography"
 	layer = BELOW_OBJ_LAYER
 
 	density = TRUE
@@ -180,7 +180,7 @@
 			to_chat(user, span_warning("This socket has not been researched!"))
 			return ..()
 		
-	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]_t", initial(icon_state), I))
+	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]_o", initial(icon_state), I))
 		return
 	if(default_deconstruction_crowbar(I))
 		return

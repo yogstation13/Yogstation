@@ -16,9 +16,10 @@
 /obj/item/reagent_containers/food/snacks/burger/plain/Initialize(mapload)
 	. = ..()
 	if(prob(1))
-		new/obj/effect/particle_effect/fluid/smoke(get_turf(src))
-		playsound(src, 'sound/effects/smoke.ogg', 50, TRUE)
-		visible_message(span_warning("Oh, ye gods! [src] is ruined! But what if...?"))
+		if(!mapload)
+			new/obj/effect/particle_effect/fluid/smoke(get_turf(src))
+			playsound(src, 'sound/effects/smoke.ogg', 50, TRUE)
+			visible_message(span_warning("Oh, ye gods! [src] is ruined! But what if...?"))
 		name = "steamed ham"
 		desc = pick("Ahh, Head of Personnel, welcome. I hope you're prepared for an unforgettable luncheon!",
 		"And you call these steamed hams despite the fact that they are obviously microwaved?",
@@ -225,7 +226,7 @@
 	icon_state = "spellburger"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 10)
 	tastes = list("bun" = 4, "magic" = 2)
-	foodtype = GRAIN | MEAT
+	foodtype = GRAIN
 
 /obj/item/reagent_containers/food/snacks/burger/bigbite
 	name = "big bite burger"
@@ -257,13 +258,13 @@
 	name = "super bite burger"
 	desc = "This is a mountain of a burger. FOOD!"
 	icon_state = "superbiteburger"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 10)
-	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 40, /datum/reagent/consumable/nutriment/vitamin = 5)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 12)
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 40, /datum/reagent/consumable/nutriment/vitamin = 10)
 	w_class = WEIGHT_CLASS_NORMAL
 	bitesize = 7
 	volume = 100
 	tastes = list("bun" = 4, "type two diabetes" = 10)
-	foodtype = GRAIN | MEAT
+	foodtype = GRAIN | MEAT | DAIRY | EGG | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/burger/fivealarm
 	name = "five alarm burger"
@@ -271,7 +272,7 @@
 	icon_state = "fivealarmburger"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/nutriment/vitamin = 5)
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/capsaicin = 5, /datum/reagent/consumable/condensedcapsaicin = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
-	foodtype = GRAIN | MEAT
+	foodtype = GRAIN | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/burger/rat
 	name = "rat burger"

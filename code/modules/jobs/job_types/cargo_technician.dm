@@ -9,7 +9,6 @@
 	total_positions = 2
 	spawn_positions = 1
 	supervisors = "the quartermaster and the head of personnel"
-	selection_color = "#dcba97"
 
 	outfit = /datum/outfit/job/cargo_tech
 
@@ -34,6 +33,8 @@
 		/obj/item/stack/sheet/mineral/diamond = 3,
 		/obj/item/gun/ballistic/rifle/boltaction = 1
 	)
+	
+	lightup_areas = list(/area/quartermaster/qm)
 
 	smells_like = "cardboard"
 
@@ -48,3 +49,7 @@
 	uniform_skirt = /obj/item/clothing/under/rank/cargotech/skirt
 	l_hand = /obj/item/export_scanner
 
+/datum/outfit/job/cargo_tech/no_pda
+	name = "Cargo Technician (No PDA)"
+
+	pda_type = null

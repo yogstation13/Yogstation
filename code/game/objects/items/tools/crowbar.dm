@@ -10,6 +10,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	force = 5
 	throwforce = 7
+	demolition_mod = 2 // the right tool in the wrong place can make all the difference
 	w_class = WEIGHT_CLASS_SMALL
 	materials = list(/datum/material/iron=50)
 	drop_sound = 'sound/items/handling/crowbar_drop.ogg'
@@ -60,6 +61,10 @@
 	icon_state = "crowbar_large"
 	item_state = "crowbar"
 	toolspeed = 0.7
+
+/obj/item/crowbar/large/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack, no_multi_hit=TRUE) // it's big
 
 /obj/item/crowbar/cyborg
 	name = "hydraulic crowbar"

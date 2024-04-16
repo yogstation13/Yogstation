@@ -22,7 +22,7 @@
 	icon_state = "cpu"
 	w_class = WEIGHT_CLASS_TINY
 	power_usage = 25
-	max_idle_programs = 1
+	max_idle_programs = 2
 
 /obj/item/computer_hardware/processor_unit/photonic
 	name = "photonic processor board"
@@ -38,7 +38,7 @@
 	icon_state = "cpu_super"
 	w_class = WEIGHT_CLASS_TINY
 	power_usage = 75
-	max_idle_programs = 2
+	max_idle_programs = 3
 
 /obj/item/computer_hardware/processor_unit/pda
 	name = "cheep microprocessor"
@@ -46,7 +46,7 @@
 	icon_state = "cpu"
 	w_class = WEIGHT_CLASS_TINY
 	power_usage = 25
-	max_idle_programs = 2
+	max_idle_programs = 1
 
 /obj/item/computer_hardware/processor_unit/pda/can_install(obj/item/modular_computer/M, mob/living/user)
 	if(!istype(M, /obj/item/modular_computer/tablet))

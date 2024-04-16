@@ -70,10 +70,7 @@
 /obj/machinery/door/firedoor/Destroy()
 	remove_from_areas()
 	affecting_areas.Cut()
-	var/turf/T = get_turf(src)
-	spawn(0)
-		if(T)
-			T.ImmediateCalculateAdjacentTurfs()
+	air_update_turf()
 	return ..()
 
 /obj/machinery/door/firedoor/Bumped(atom/movable/AM)
@@ -157,7 +154,7 @@
 	if(W.use_tool(src, user, 40, volume=50))
 		welded = !welded
 		to_chat(user, span_danger("[user] [welded?"welds":"unwelds"] [src]."), span_notice("You [welded ? "weld" : "unweld"] [src]."))
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 
 /obj/machinery/door/firedoor/try_to_crowbar(obj/item/I, mob/user)
 	if(welded || operating)
@@ -222,6 +219,7 @@
 	else
 		icon_state = "door_open"
 	SSdemo.mark_dirty(src)
+	air_update_turf()
 
 /obj/machinery/door/firedoor/update_overlays()
 	. = ..()
@@ -240,17 +238,15 @@
 	. = ..()
 	latetoggle()
 
-/obj/machinery/door/firedoor/proc/whack_a_mole(reconsider_immediately = FALSE)
-	set waitfor = 0
+/obj/machinery/door/firedoor/proc/whack_a_mole()
 	for(var/cdir in GLOB.cardinals)
 		if((flags_1 & ON_BORDER_1) && cdir != dir)
 			continue
-		whack_a_mole_part(get_step(src, cdir), reconsider_immediately)
+		whack_a_mole_part(get_step(src, cdir))
 	if(flags_1 & ON_BORDER_1)
-		whack_a_mole_part(get_turf(src), reconsider_immediately)
+		whack_a_mole_part(get_turf(src))
 
-/obj/machinery/door/firedoor/proc/whack_a_mole_part(turf/start_point, reconsider_immediately)
-	set waitfor = 0
+/obj/machinery/door/firedoor/proc/whack_a_mole_part(turf/start_point)
 	var/list/doors_to_close = list()
 	var/list/turfs = list()
 	turfs[start_point] = 1
@@ -283,17 +279,24 @@
 		return // too big, don't bother
 	for(var/obj/machinery/door/firedoor/FD in doors_to_close)
 		FD.emergency_pressure_stop(FALSE)
-		if(reconsider_immediately)
-			var/turf/open/T = FD.loc
-			if(istype(T))
-				T.ImmediateCalculateAdjacentTurfs()
 
 /obj/machinery/door/firedoor/proc/emergency_pressure_stop(consider_timer = TRUE)
-	set waitfor = 0
 	if(density || operating || welded)
 		return
 	if(world.time >= emergency_close_timer || !consider_timer)
-		close()
+		emergency_pressure_close()
+
+//this is here to prevent sleeps from messing with decomp, by closing firedoors instantly
+/obj/machinery/door/firedoor/proc/emergency_pressure_close()
+	density = TRUE
+	air_update_turf()
+	layer = closingLayer
+	update_icon()
+	if(visible && !glass)
+		set_opacity(1)
+	update_freelook_sight()
+	if(!(flags_1 & ON_BORDER_1))
+		crush()
 
 /obj/machinery/door/firedoor/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1) && disassembled)
@@ -317,7 +320,7 @@
 /obj/machinery/door/firedoor/border_only
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	flags_1 = ON_BORDER_1
-	CanAtmosPass = ATMOS_PASS_PROC
+	can_atmos_pass = ATMOS_PASS_PROC
 	assemblytype = /obj/structure/firelock_frame/border
 
 /obj/machinery/door/firedoor/border_only/closed
@@ -325,11 +328,27 @@
 	opacity = TRUE
 	density = TRUE
 
+/obj/machinery/door/firedoor/border_only/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_EXIT = PROC_REF(on_exit),
+	)
+
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/machinery/door/firedoor/border_only/close()
 	if(density)
 		return TRUE
 	if(operating || welded)
 		return
+	check_pulls()
+	. = ..()
+
+/obj/machinery/door/firedoor/border_only/emergency_pressure_close()
+	check_pulls()
+	. = ..()
+
+/obj/machinery/door/firedoor/border_only/proc/check_pulls()
 	var/turf/T1 = get_turf(src)
 	var/turf/T2 = get_step(T1, dir)
 	for(var/mob/living/M in T1)
@@ -347,7 +366,6 @@
 				to_chat(M, span_notice("You pull [M.pulling] through [src] right as it closes"))
 				M.pulling.forceMove(T2)
 				M.start_pulling(M2)
-	. = ..()
 
 /obj/machinery/door/firedoor/border_only/allow_hand_open(mob/user)
 	var/area/A = get_area(src)
@@ -385,21 +403,27 @@
 	if(!(get_dir(loc, target) == dir)) //Make sure looking at appropriate border
 		return TRUE
 
-/obj/machinery/door/firedoor/border_only/CheckExit(atom/movable/mover as mob|obj, turf/target)
-	if(istype(mover) && (mover.pass_flags & PASSDOOR)) // I mean it's a door
-		return TRUE
-	if(istype(mover) && (mover.pass_flags & PASSGLASS))
-		return TRUE
-	if(get_dir(loc, target) == dir)
+/obj/machinery/door/firedoor/border_only/can_atmos_pass(turf/target_turf, vertical = FALSE)
+	if(get_dir(loc, target_turf) == dir)
 		return !density
 	else
 		return TRUE
 
-/obj/machinery/door/firedoor/border_only/CanAtmosPass(turf/T)
-	if(get_dir(loc, T) == dir)
-		return !density
-	else
-		return TRUE
+/obj/machinery/door/firedoor/border_only/BlockThermalConductivity(opp_dir)
+	if(opp_dir == dir)
+		return density
+	return FALSE
+
+/obj/machinery/door/firedoor/border_only/proc/on_exit(datum/source, atom/movable/leaving, direction)
+	SIGNAL_HANDLER
+	if(leaving.movement_type & PHASING)
+		return
+	if(leaving == src)
+		return // Let's not block ourselves.
+
+	if(direction == dir && density)
+		leaving.Bump(src)
+		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/machinery/door/firedoor/border_only/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller, no_id = FALSE)
 	return !density || (dir != to_dir)
@@ -485,7 +509,7 @@
 	icon_state = "frame[constructionStep]"
 
 /obj/structure/firelock_frame/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
-	if(the_rcd.mode == RCD_DECONSTRUCT)
+	if(the_rcd.construction_mode == RCD_DECONSTRUCT)
 		return list("mode" = RCD_DECONSTRUCT, "delay" = 50, "cost" = 16)
 	return FALSE
 

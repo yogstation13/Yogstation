@@ -105,49 +105,48 @@
 	var/turf/targturf = get_turf(target)
 	message_admins("Blast wave fired from [ADMIN_VERBOSEJMP(starting)] at [ADMIN_VERBOSEJMP(targturf)] ([target.name]) by [ADMIN_LOOKUPFLW(user)] with power [heavy]/[medium]/[light].")
 	log_game("Blast wave fired from [AREACOORD(starting)] at [AREACOORD(targturf)] ([target.name]) by [key_name(user)] with power [heavy]/[medium]/[light].")
-	var/obj/item/projectile/blastwave/BW = new(loc, heavy, medium, light)
+	var/obj/projectile/blastwave/BW = new(loc, heavy, medium, light)
 	BW.hugbox = hugbox
 	BW.preparePixelProjectile(target, get_turf(src), params, 0)
 	BW.fire()
 
-/obj/item/projectile/blastwave
+/obj/projectile/blastwave
 	name = "blast wave"
 	icon_state = "blastwave"
 	damage = 0
 	nodamage = FALSE
-	movement_type = FLYING | UNSTOPPABLE
+	movement_type = FLYING | PHASING
 	var/heavyr = 0
 	var/mediumr = 0
 	var/lightr = 0
 	var/hugbox = TRUE
 	range = 150
 
-/obj/item/projectile/blastwave/Initialize(mapload, _h, _m, _l)
+/obj/projectile/blastwave/Initialize(mapload, _h, _m, _l)
 	heavyr = _h
 	mediumr = _m
 	lightr = _l
 	return ..()
 
-/obj/item/projectile/blastwave/Range()
+/obj/projectile/blastwave/Range()
 	..()
 	var/amount_destruction = EXPLODE_NONE
-	var/wallbreak_chance = 0
+	var/wall_damage = 0
 	if(heavyr)
 		amount_destruction = EXPLODE_DEVASTATE
-		wallbreak_chance = 99
+		wall_damage = INFINITY
 	else if(mediumr)
 		amount_destruction = EXPLODE_HEAVY
-		wallbreak_chance = 66
+		wall_damage = 500
 	else if(lightr)
 		amount_destruction = EXPLODE_LIGHT
-		wallbreak_chance = 33
+		wall_damage = 150
 	if(amount_destruction)
 		if(hugbox)
 			loc.contents_explosion(EXPLODE_HEAVY, loc)
 			if(istype(loc, /turf/closed/wall))
 				var/turf/closed/wall/W = loc
-				if(prob(wallbreak_chance))
-					W.dismantle_wall(TRUE, TRUE)
+				W.take_damage(wall_damage, BRUTE, BOMB) 
 		else
 			switch(amount_destruction)
 				if(EXPLODE_DEVASTATE)
@@ -163,5 +162,5 @@
 	mediumr = max(mediumr - 1, 0)
 	lightr = max(lightr - 1, 0)
 
-/obj/item/projectile/blastwave/ex_act()
+/obj/projectile/blastwave/ex_act()
 	return

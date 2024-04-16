@@ -3,7 +3,6 @@
 	desc = "An arcade machine that generates grids. It seems that the machine sparks and screeches when a grid is generated, as if it cannot cope with the intensity of generating the grid."
 	icon_state = "arcade"
 	circuit = /obj/item/circuitboard/computer/arcade/minesweeper
-	
 	var/datum/minesweeper/board
 
 /obj/machinery/computer/arcade/minesweeper/Initialize(mapload)
@@ -12,10 +11,21 @@
 	board.emaggable = TRUE
 	board.host = src
 
+/obj/machinery/computer/arcade/minesweeper/screwdriver_act(mob/living/user, obj/item/I)
+	if(obj_flags & EMAGGED)
+		explosion(get_turf(src), 0, 1, 5, flame_range = 5)
+	else
+		. = ..()
+		return
+
 /obj/machinery/computer/arcade/minesweeper/Destroy(force)
-	board.host = null
-	QDEL_NULL(board)
+	if(obj_flags & EMAGGED)
+		explosion(get_turf(src), 0, 1, 5, flame_range = 5)
+	else
+		board.host = null
+		QDEL_NULL(board)
 	. = ..()
+
 
 /obj/machinery/computer/arcade/minesweeper/interact(mob/user, special_state)
 	. = ..()
@@ -93,8 +103,7 @@
 			if(!diff)
 				return
 			board.play_snd('yogstation/sound/arcade/minesweeper_boardpress.ogg')
-			board.difficulty = diff
-			return TRUE
+			return board.change_difficulty(diff)
 
 		if("PRG_height")
 			var/cin = params["height"]
@@ -146,9 +155,9 @@
 				to_chat(user, span_notice("You don't have any stored tickets!"))
 			return TRUE
 
-/obj/machinery/computer/arcade/minesweeper/emag_act(mob/user)
+/obj/machinery/computer/arcade/minesweeper/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	desc = "An arcade machine that generates grids. It's clunking and sparking everywhere, almost as if threatening to explode at any moment!"
 	do_sparks(5, 1, src)
 	obj_flags |= EMAGGED
@@ -159,3 +168,4 @@
 		to_chat(user, span_warning("The machine buzzes and sparks... the game has been reset!"))
 		playsound(user, 'sound/machines/buzz-sigh.ogg', 100, 0, extrarange = 3, falloff_exponent = 10)	//Loud buzz
 		board.game_status = MINESWEEPER_IDLE
+	return TRUE

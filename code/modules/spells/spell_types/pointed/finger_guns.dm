@@ -5,7 +5,7 @@
 	background_icon_state = "bg_mime"
 	overlay_icon_state = "bg_mime_border"
 	button_icon = 'icons/mob/actions/actions_mime.dmi'
-	button_icon_state = "finger_guns0"
+	button_icon_state = "finger_guns"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED|AB_CHECK_INCAPACITATED
 	panel = "Mime"
 	sound = null
@@ -25,7 +25,7 @@
 	active_msg = "You draw your fingers!"
 	deactive_msg = "You put your fingers at ease. Another time."
 	cast_range = 20
-	projectile_type = /obj/item/projectile/bullet/mime
+	projectile_type = /obj/projectile/bullet/mime
 	projectile_amount = 3
 
 /datum/action/cooldown/spell/pointed/projectile/finger_guns/can_cast_spell(feedback = TRUE)
@@ -47,4 +47,4 @@
 
 /datum/action/cooldown/spell/pointed/projectile/finger_guns/before_cast(atom/cast_on)
 	. = ..()
-	invocation = span_notice("<b>[cast_on]</b> fires [cast_on.p_their()] finger gun!")
+	invocation = span_notice("<b>[owner]</b> fires [owner.p_their()] finger gun at [cast_on]!")

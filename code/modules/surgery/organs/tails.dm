@@ -7,7 +7,7 @@
 	visual = TRUE
 	zone = BODY_ZONE_PRECISE_GROIN
 	slot = ORGAN_SLOT_TAIL
-	process_flags = ORGANIC | SYNTHETIC // pretty much entirely cosmetic, if someone wants to make crimes against nature then sure
+	compatible_biotypes = ALL_BIOTYPES // pretty much entirely cosmetic, if someone wants to make crimes against nature then sure
 	/// The sprite accessory this tail gives to the human it's attached to. If null, it will inherit its value from the human's DNA once attached.
 	var/tail_type = "None"
 
@@ -18,6 +18,9 @@
 
 /obj/item/organ/tail/get_availability(datum/species/species)
 	return (HAS_TAIL in species.species_traits)
+
+/obj/item/organ/tail/proc/get_butt_sprite()
+	return null
 
 /obj/item/organ/tail/cat
 	name = "cat tail"
@@ -42,6 +45,9 @@
 		H.dna.species.mutant_bodyparts -= "tail_human"
 		color = H.hair_color
 		H.update_body()
+
+/obj/item/organ/tail/cat/get_butt_sprite()
+	return BUTT_SPRITE_CAT
 
 /obj/item/organ/tail/lizard
 	name = "lizard tail"
@@ -103,6 +109,8 @@
 			else
 				H.dna.species.mutant_bodyparts["tail_polysmorph"] = H.dna.features["tail_polysmorph"]
 		H.update_body()
+		if(H.physiology)
+			H.physiology.crawl_speed += 0.5
 
 /obj/item/organ/tail/polysmorph/Remove(mob/living/carbon/human/H,  special = 0)
 	..()
@@ -110,6 +118,8 @@
 		H.dna.species.mutant_bodyparts -= "tail_polysmorph"
 		tail_type = H.dna.features["tail_polysmorph"]
 		H.update_body()
+		if(H.physiology)
+			H.physiology.crawl_speed -= 0.5
 
 /obj/item/organ/tail/monkey
 	name = "monkey tail"

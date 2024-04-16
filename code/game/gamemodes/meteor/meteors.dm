@@ -89,6 +89,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	density = TRUE
 	anchored = TRUE
 	pass_flags = PASSTABLE
+	
 	///The resilience of our meteor
 	var/hits = 4
 	///Level of ex_act to be called on hit.
@@ -142,7 +143,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 
 /obj/effect/meteor/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
 	return TRUE //Keeps us from drifting for no reason
-
+>>>>>>>>>>>>>>>>
 /obj/effect/meteor/Bump(atom/A)
 	. = ..() //What could go wrong
 	if(A)

@@ -104,6 +104,7 @@ Maintainers can revert your changes if they feel they are not worth maintaining 
 
 - [Embedding TGUI Components in Chat](../../tgui/docs/chat-embedded-components.md)
 - [Hard Deletes](./guides/HARDDELETES.md)
+- [Quickly setting up a development database with ezdb](./guides/EZDB.md)
 - [MC Tab Guide](./guides/MC_tab.md)
 - [Tick system](./guides/TICK_ORDER.md)
 - [UI Development](../tgui/README.md)
@@ -118,6 +119,8 @@ There is no strict process when it comes to merging pull requests. Pull requests
 
 * We ask that you use the changelog system to document your player facing changes, which prevents our players from being caught unaware by said changes - you can find more information about this [on this wiki page](http://tgstation13.org/wiki/Guide_to_Changelogs).
 
+* If you are fixing a game-breaking bug, it's advised to use the [s] tag to not bring unwanted attention to your pull request. Very rarely is it acceptable to use this label outside of these situations, due to it hiding information from many sources.
+
 * If you are proposing multiple changes, which change many different aspects of the code, you are expected to section them off into different pull requests in order to make it easier to review them and to deny/accept the changes that are deemed acceptable.
 
 * If your pull request is accepted, the code you add no longer belongs exclusively to you but to everyone; everyone is free to work on it, but you are also free to support or object to any changes being made, which will likely hold more weight, as you're the one who added the feature. It is a shame this has to be explicitly said, but there have been cases where this would've saved some trouble.
@@ -127,6 +130,8 @@ There is no strict process when it comes to merging pull requests. Pull requests
 * If your pull request is not finished make sure it is at least testable in a live environment. Pull requests that do not at least meet this requirement will be closed. You may request a maintainer reopen the pull request when you're ready, or make a new one.
 
 * While we have no issue helping contributors (and especially new contributors) bring reasonably sized contributions up to standards via the pull request review process, larger contributions are expected to pass a higher bar of completeness and code quality *before* you open a pull request. Maintainers may close such pull requests that are deemed to be substantially flawed. You should take some time to discuss with maintainers or other contributors on how to improve the changes.
+
+* Any PR submitted after February 13th, 2024 must be accompanied by giving visual evidence (images, gifs, videos) of testing if the changes in the PR have any visual indication of changes. Omitting or filling out the testing part of the template with "I tested it" does not show these changes. Maintainers may hold your PR until testing is provided at the discretion of the Head Developers.
 
 ## Porting features/sprites/sounds/tools from other codebases
 

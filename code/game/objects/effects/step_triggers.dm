@@ -7,11 +7,17 @@
 	invisibility = INVISIBILITY_ABSTRACT // nope cant see this shit
 	anchored = TRUE
 
+/obj/effect/step_trigger/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/effect/step_trigger/proc/Trigger(atom/movable/A)
 	return 0
 
-/obj/effect/step_trigger/Crossed(H as mob|obj)
-	..()
+/obj/effect/step_trigger/proc/on_entered(datum/source, atom/movable/H, ...)
 	if(!H)
 		return
 	if(isobserver(H) && !affect_ghosts)

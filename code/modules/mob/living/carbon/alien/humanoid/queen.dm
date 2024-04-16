@@ -5,7 +5,7 @@
 	ventcrawler = VENTCRAWLER_NONE //pull over that ass too fat
 	unique_name = 0
 	pixel_x = -16
-	bubble_icon = "alienroyal"
+	bubble_icon = BUBBLE_ALIENROYAL
 	mob_size = MOB_SIZE_LARGE
 	layer = LARGE_MOB_LAYER //above most mobs, but below speechbubbles
 	pressure_resistance = 200 //Because big, stompy xenos should not be blown around like paper.

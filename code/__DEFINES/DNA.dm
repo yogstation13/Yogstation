@@ -4,8 +4,6 @@
 
 //Defines copying names of mutations in all cases, make sure to change this if you change mutation's type
 #define HULK		/datum/mutation/human/hulk
-#define ACTIVE_HULK /datum/mutation/human/active_hulk
-#define GENETICS_HULK	/datum/mutation/human/genetics_hulk
 #define XRAY		/datum/mutation/human/thermal/x_ray
 #define SPACEMUT	/datum/mutation/human/space_adaptation
 #define HEATMUT		/datum/mutation/human/heat_adaptation
@@ -34,7 +32,9 @@
 #define CHAV		/datum/mutation/human/chav
 #define ELVIS		/datum/mutation/human/elvis
 #define RADIOACTIVE	/datum/mutation/human/radioactive
+#define RAVENOUS	/datum/mutation/human/ravenous
 #define RADPROOF	/datum/mutation/human/radproof
+#define SAPBLOOD	/datum/mutation/human/sapblood
 #define GLOWY		/datum/mutation/human/glow
 #define ANTIGLOWY	/datum/mutation/human/glow/anti
 #define TELEPATHY	/datum/mutation/human/telepathy
@@ -45,7 +45,6 @@
 #define THERMAL		/datum/mutation/human/thermal
 #define ANTENNA		/datum/mutation/human/antenna
 #define PARANOIA	/datum/mutation/human/paranoia
-#define MINDREAD	/datum/mutation/human/mindreader
 #define INSULATED	/datum/mutation/human/insulated
 #define SHOCKTOUCH	/datum/mutation/human/shock
 #define SHOCKTOUCHFAR		/datum/mutation/human/shock/far
@@ -56,7 +55,11 @@
 #define EXTRASTUN	/datum/mutation/human/extrastun
 #define GELADIKINESIS		/datum/mutation/human/geladikinesis
 #define CRYOKINESIS /datum/mutation/human/cryokinesis
+#define ACIDSPIT	/datum/mutation/human/acidspit
 #define CEREBRAL	/datum/mutation/human/cerebral
+#define THICKSKIN	/datum/mutation/human/thickskin
+#define DENSEBONES	/datum/mutation/human/densebones
+#define RADIANTBURST	/datum/mutation/human/radiantburst
 
 
 #define UI_CHANGED "ui changed"
@@ -95,7 +98,7 @@
 #define DNA_HAIR_STYLE_BLOCK		7
 
 /// This number needs to equal the total number of DNA blocks
-#define DNA_FEATURE_BLOCKS 19
+#define DNA_FEATURE_BLOCKS 22
 
 #define DNA_MUTANT_COLOR_BLOCK 1
 #define DNA_ETHEREAL_COLOR_BLOCK 2
@@ -117,6 +120,9 @@
 #define DNA_POLY_DOME_BLOCK 17
 #define DNA_POLY_DORSAL_BLOCK 18
 #define DNA_ETHEREAL_MARK_BLOCK 19
+#define DNA_PRETERNIS_WEATHERING_BLOCK 20
+#define DNA_PRETERNIS_ANTENNA_BLOCK 21
+#define DNA_PRETERNIS_EYE_BLOCK 22
 
 #define DNA_SEQUENCE_LENGTH			4
 #define DNA_MUTATION_BLOCKS			8
@@ -180,6 +186,7 @@
 #define ORGAN_SLOT_LUNGS "lungs"
 #define ORGAN_SLOT_HEART "heart"
 #define ORGAN_SLOT_ZOMBIE "zombie_infection"
+#define ORGAN_SLOT_BRAIN_TUMOR "brain_tumor"
 #define ORGAN_SLOT_LIVER "liver"
 #define ORGAN_SLOT_TONGUE "tongue"
 #define ORGAN_SLOT_VOICE "vocal_cords"

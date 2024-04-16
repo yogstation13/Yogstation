@@ -10,10 +10,10 @@
 	var/list/values = list()
 
 	for (var/helmet_name as anything in GLOB.plasmaman_helmet_list)
-		var/icon/helmet_icon = icon('icons/obj/clothing/hats.dmi', "purple_envirohelm")
+		var/icon/helmet_icon = icon('icons/obj/clothing/hats/hats.dmi', "purple_envirohelm")
 		var/icon/overlay_to_blend
 		if (helmet_name != "None")
-			overlay_to_blend = icon('icons/obj/clothing/hats.dmi', "enviro[GLOB.plasmaman_helmet_list[helmet_name]]")
+			overlay_to_blend = icon('icons/obj/clothing/hats/hats.dmi', "enviro[GLOB.plasmaman_helmet_list[helmet_name]]")
 		if(overlay_to_blend)
 			helmet_icon.Blend(overlay_to_blend, ICON_OVERLAY)
 		

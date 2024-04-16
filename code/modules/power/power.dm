@@ -11,12 +11,15 @@
 	icon = 'icons/obj/power.dmi'
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
-	var/datum/powernet/powernet = null
 	use_power = NO_POWER_USE
 	idle_power_usage = 0
 	active_power_usage = 0
 
+	var/image/wire_vision_img //specifically for wirecrawling
+
 /obj/machinery/power/Destroy()
+	if(wire_vision_img)
+		qdel(wire_vision_img)
 	disconnect_from_network()
 	return ..()
 
@@ -29,46 +32,46 @@
 // Machines should use add_load(), surplus(), avail()
 // Non-machines should use add_delayedload(), delayed_surplus(), newavail()
 
-/obj/machinery/power/proc/add_avail(amount)
+/obj/machinery/proc/add_avail(amount)
 	if(powernet)
 		powernet.newavail += amount
 		return TRUE
 	else
 		return FALSE
 
-/obj/machinery/power/proc/add_load(amount)
+/obj/machinery/proc/add_load(amount)
 	if(powernet)
 		powernet.load += amount
 
-/obj/machinery/power/proc/surplus()
+/obj/machinery/proc/surplus()
 	if(powernet)
 		return clamp(powernet.avail-powernet.load, 0, powernet.avail)
 	else
 		return 0
 
-/obj/machinery/power/proc/avail()
+/obj/machinery/proc/avail()
 	if(powernet)
 		return powernet.avail
 	else
 		return 0
 
-/obj/machinery/power/proc/add_delayedload(amount)
+/obj/machinery/proc/add_delayedload(amount)
 	if(powernet)
 		powernet.delayedload += amount
 
-/obj/machinery/power/proc/delayed_surplus()
+/obj/machinery/proc/delayed_surplus()
 	if(powernet)
 		return clamp(powernet.newavail - powernet.delayedload, 0, powernet.newavail)
 	else
 		return 0
 
-/obj/machinery/power/proc/newavail()
+/obj/machinery/proc/newavail()
 	if(powernet)
 		return powernet.newavail
 	else
 		return 0
 
-/obj/machinery/power/proc/disconnect_terminal() // machines without a terminal will just return, no harm no fowl.
+/obj/machinery/proc/disconnect_terminal() // machines without a terminal will just return, no harm no fowl.
 	return
 
 // returns true if the area has power on given channel (or doesn't require power).
@@ -112,8 +115,9 @@
   * Returns TRUE if the NOPOWER flag was toggled
   */
 /obj/machinery/proc/power_change()
+	//SIGNAL_HANDLER
 	if(stat & BROKEN)
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		return
 	if(powered(power_channel))
 		if(stat & NOPOWER)
@@ -125,10 +129,10 @@
 			SEND_SIGNAL(src, COMSIG_MACHINERY_POWER_LOST)
 			. = TRUE
 		stat |= NOPOWER
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 // connect the machine to a powernet if a node cable is present on the turf
-/obj/machinery/power/proc/connect_to_network()
+/obj/machinery/proc/connect_to_network()
 	var/turf/T = src.loc
 	if(!T || !istype(T))
 		return FALSE
@@ -141,7 +145,7 @@
 	return TRUE
 
 // remove and disconnect the machine from its current powernet
-/obj/machinery/power/proc/disconnect_from_network()
+/obj/machinery/proc/disconnect_from_network()
 	if(!powernet)
 		return FALSE
 	powernet.remove_machine(src)
@@ -153,7 +157,7 @@
 	if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = W
 		var/turf/T = user.loc
-		if(T.intact || !isfloorturf(T))
+		if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE || !isfloorturf(T))
 			return
 		if(get_dist(src, user) > 1)
 			return
@@ -168,7 +172,7 @@
 
 //returns all the cables WITHOUT a powernet in neighbors turfs,
 //pointing towards the turf the machine is located at
-/obj/machinery/power/proc/get_connections()
+/obj/machinery/proc/get_connections()
 
 	. = list()
 
@@ -188,7 +192,7 @@
 
 //returns all the cables in neighbors turfs,
 //pointing towards the turf the machine is located at
-/obj/machinery/power/proc/get_marked_connections()
+/obj/machinery/proc/get_marked_connections()
 
 	. = list()
 
@@ -205,7 +209,7 @@
 	return .
 
 //returns all the NODES (O-X) cables WITHOUT a powernet in the turf the machine is located at
-/obj/machinery/power/proc/get_indirect_connections()
+/obj/machinery/proc/get_indirect_connections()
 	. = list()
 	for(var/obj/structure/cable/C in loc)
 		if(C.powernet)
@@ -229,8 +233,8 @@
 		if(AM == source)
 			continue			//we don't want to return source
 
-		if(!cable_only && istype(AM, /obj/machinery/power))
-			var/obj/machinery/power/P = AM
+		if(!cable_only && istype(AM, /obj/machinery))
+			var/obj/machinery/P = AM
 			if(P.powernet == 0)
 				continue		// exclude APCs which have powernet=0
 
@@ -268,15 +272,15 @@
 				PN.add_cable(C)
 			worklist |= C.get_connections() //get adjacents power objects, with or without a powernet
 
-		else if(P.anchored && istype(P, /obj/machinery/power))
-			var/obj/machinery/power/M = P
+		else if(P.anchored && istype(P, /obj/machinery))
+			var/obj/machinery/M = P
 			found_machines |= M //we wait until the powernet is fully propagates to connect the machines
 
 		else
 			continue
 
 	//now that the powernet is set, connect found machines to it
-	for(var/obj/machinery/power/PM in found_machines)
+	for(var/obj/machinery/PM in found_machines)
 		if(!PM.connect_to_network()) //couldn't find a node on its turf...
 			PM.disconnect_from_network() //... so disconnect if already on a powernet
 
@@ -299,7 +303,7 @@
 	for(var/obj/structure/cable/Cable in net2.cables) //merge cables
 		net1.add_cable(Cable)
 
-	for(var/obj/machinery/power/Node in net2.nodes) //merge power machines
+	for(var/obj/machinery/Node in net2.nodes) //merge power machines
 		if(!Node.connect_to_network())
 			Node.disconnect_from_network() //if somehow we can't connect the machine to the new powernet, disconnect it from the old nonetheless
 
@@ -340,8 +344,9 @@
 //source is an object caused electrocuting (airlock, grille, etc)
 //siemens_coeff - layman's terms, conductivity
 //dist_check - set to only shock mobs within 1 of source (vendors, airlocks, etc.)
+//zone_override - allows checking a specific body part for shock protection instead of the hands
 //No animations will be performed by this proc.
-/proc/electrocute_mob(mob/living/carbon/victim, power_source, obj/source, siemens_coeff = 1, dist_check = FALSE)
+/proc/electrocute_mob(mob/living/carbon/victim, power_source, obj/source, siemens_coeff = 1, dist_check = FALSE, zone = HANDS)
 	if(!istype(victim) || ismecha(victim.loc))
 		return FALSE //feckin mechs are dumb
 
@@ -349,12 +354,8 @@
 		if(!in_range(source, victim))
 			return FALSE
 
-	if(victim.wearing_shock_proof_gloves())
+	if(victim.getarmor(zone, ELECTRIC) >= 100)
 		SEND_SIGNAL(victim, COMSIG_LIVING_SHOCK_PREVENTED, power_source, source, siemens_coeff, dist_check)
-		var/obj/item/clothing/gloves/G = victim.gloves
-		if(istype(G, /obj/item/clothing/gloves/color/fyellow))
-			var/obj/item/clothing/gloves/color/fyellow/greytide = G
-			greytide.get_shocked()
 		return FALSE //to avoid spamming with insulated glvoes on
 
 	var/list/powernet_info = get_powernet_info_from_source(power_source)
@@ -403,6 +404,14 @@
 	if(!can_have_cabling())
 		return null
 	for(var/obj/structure/cable/C in src)
+		if(C.d1 == 0)
+			return C
+	return null
+
+/turf/proc/get_ai_cable_node()
+	if(!can_have_cabling())
+		return null
+	for(var/obj/structure/ethernet_cable/C in src)
 		if(C.d1 == 0)
 			return C
 	return null

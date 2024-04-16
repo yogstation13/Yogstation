@@ -6,17 +6,17 @@
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/toolbox_righthand.dmi'
 	flags_1 = CONDUCT_1
-	force = 12
-	throwforce = 12
+	force = 15
+	throwforce = 15
 	throw_speed = 2
 	throw_range = 7
 	w_class = WEIGHT_CLASS_BULKY
-	materials = list(/datum/material/iron = 500)
+	custom_materials = list(/datum/material/iron = 500) //Toolboxes by default use iron as their core, custom material.
 	attack_verb = list("robusted")
 	hitsound = 'sound/weapons/smash.ogg'
 	drop_sound = 'sound/items/handling/toolbox_drop.ogg'
 	pickup_sound =  'sound/items/handling/toolbox_pickup.ogg'
-	custom_materials = list(/datum/material/iron = 500) //Toolboxes by default use iron as their core, custom material.
+	material_flags = MATERIAL_EFFECTS
 	var/latches = "single_latch"
 	var/has_latches = TRUE
 	wound_bonus = 5
@@ -44,7 +44,6 @@
 	name = "emergency toolbox"
 	icon_state = "red"
 	item_state = "toolbox_red"
-	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/storage/toolbox/emergency/PopulateContents()
 	new /obj/item/crowbar/red(src)
@@ -67,13 +66,11 @@
 	name = "rusty red toolbox"
 	icon_state = "toolbox_red_old"
 	has_latches = FALSE
-	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/storage/toolbox/mechanical
 	name = "mechanical toolbox"
 	icon_state = "blue"
 	item_state = "toolbox_blue"
-	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/storage/toolbox/mechanical/PopulateContents()
 	new /obj/item/screwdriver(src)
@@ -87,12 +84,11 @@
 	name = "rusty blue toolbox"
 	icon_state = "toolbox_blue_old"
 	has_latches = FALSE
-	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/storage/toolbox/mechanical/old/heirloom
 	name = "toolbox" //this will be named "X family toolbox"
 	desc = "It's seen better days."
-	force = 5
+	force = 8
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/toolbox/mechanical/old/heirloom/PopulateContents()
@@ -104,15 +100,15 @@
 	icon_state = "oldtoolboxclean"
 	item_state = "toolbox_blue"
 	has_latches = FALSE
-	force = 19
-	throwforce = 22
+	force = 22
+	throwforce = 25
 
 /obj/item/storage/toolbox/mechanical/old/clean/proc/calc_damage()
 	var/power = 0
 	for (var/obj/item/stack/telecrystal/TC in get_all_contents())
 		power += TC.amount
-	force = 19 + power
-	throwforce = 22 + power
+	force = initial(force) + power
+	throwforce = initial(throwforce) + power
 
 /obj/item/storage/toolbox/mechanical/old/clean/attack(mob/target, mob/living/user)
 	calc_damage()
@@ -135,7 +131,6 @@
 	name = "electrical toolbox"
 	icon_state = "yellow"
 	item_state = "toolbox_yellow"
-	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/storage/toolbox/electrical/PopulateContents()
 	var/pickedcolor = pick(GLOB.cable_colors)
@@ -154,10 +149,9 @@
 	name = "suspicious looking toolbox"
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
-	force = 15
-	throwforce = 18
+	force = 18
+	throwforce = 21
 	w_class = WEIGHT_CLASS_NORMAL
-	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/storage/toolbox/syndicate/Initialize(mapload)
 	. = ..()
@@ -186,7 +180,6 @@
 	name = "mechanical toolbox"
 	icon_state = "blue"
 	item_state = "toolbox_blue"
-	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/storage/toolbox/drone/PopulateContents()
 	var/pickedcolor = pick("red","yellow","green","blue","pink","orange","cyan","white")
@@ -208,7 +201,6 @@
 	w_class = WEIGHT_CLASS_HUGE
 	attack_verb = list("robusted", "crushed", "smashed")
 	var/fabricator_type = /obj/item/clockwork/replica_fabricator/scarab
-	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/storage/toolbox/brass/Initialize(mapload)
 	. = ..()

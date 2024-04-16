@@ -34,112 +34,12 @@
 
 /proc/Get_Pixel_Angle(y, x)//for getting the angle when animating something's pixel_x and pixel_y
 	if(!y)
-		return (x>=0)?90:270
-	.=arctan(x/y)
-	if(y<0)
-		.+=180
-	else if(x<0)
-		.+=360
-
-//Returns location. Returns null if no location was found.
-/proc/get_teleport_loc(turf/location,mob/target,distance = 1, density = FALSE, errorx = 0, errory = 0, eoffsetx = 0, eoffsety = 0)
-/*
-Location where the teleport begins, target that will teleport, distance to go, density checking 0/1(yes/no).
-Random error in tile placement x, error in tile placement y, and block offset.
-Block offset tells the proc how to place the box. Behind teleport location, relative to starting location, forward, etc.
-Negative values for offset are accepted, think of it in relation to North, -x is west, -y is south. Error defaults to positive.
-Turf and target are separate in case you want to teleport some distance from a turf the target is not standing on or something.
-*/
-
-	var/dirx = 0//Generic location finding variable.
-	var/diry = 0
-
-	var/xoffset = 0//Generic counter for offset location.
-	var/yoffset = 0
-
-	var/b1xerror = 0//Generic placing for point A in box. The lower left.
-	var/b1yerror = 0
-	var/b2xerror = 0//Generic placing for point B in box. The upper right.
-	var/b2yerror = 0
-
-	errorx = abs(errorx)//Error should never be negative.
-	errory = abs(errory)
-
-	switch(target.dir)//This can be done through equations but switch is the simpler method. And works fast to boot.
-	//Directs on what values need modifying.
-		if(1)//North
-			diry+=distance
-			yoffset+=eoffsety
-			xoffset+=eoffsetx
-			b1xerror-=errorx
-			b1yerror-=errory
-			b2xerror+=errorx
-			b2yerror+=errory
-		if(2)//South
-			diry-=distance
-			yoffset-=eoffsety
-			xoffset+=eoffsetx
-			b1xerror-=errorx
-			b1yerror-=errory
-			b2xerror+=errorx
-			b2yerror+=errory
-		if(4)//East
-			dirx+=distance
-			yoffset+=eoffsetx//Flipped.
-			xoffset+=eoffsety
-			b1xerror-=errory//Flipped.
-			b1yerror-=errorx
-			b2xerror+=errory
-			b2yerror+=errorx
-		if(8)//West
-			dirx-=distance
-			yoffset-=eoffsetx//Flipped.
-			xoffset+=eoffsety
-			b1xerror-=errory//Flipped.
-			b1yerror-=errorx
-			b2xerror+=errory
-			b2yerror+=errorx
-
-	var/turf/destination=locate(location.x+dirx,location.y+diry,location.z)
-
-	if(destination)//If there is a destination.
-		if(errorx||errory)//If errorx or y were specified.
-			var/destination_list[] = list()//To add turfs to list.
-			//destination_list = new()
-			/*This will draw a block around the target turf, given what the error is.
-			Specifying the values above will basically draw a different sort of block.
-			If the values are the same, it will be a square. If they are different, it will be a rectengle.
-			In either case, it will center based on offset. Offset is position from center.
-			Offset always calculates in relation to direction faced. In other words, depending on the direction of the teleport,
-			the offset should remain positioned in relation to destination.*/
-
-			var/turf/center = locate((destination.x+xoffset),(destination.y+yoffset),location.z)//So now, find the new center.
-
-			//Now to find a box from center location and make that our destination.
-			for(var/turf/T in block(locate(center.x+b1xerror,center.y+b1yerror,location.z), locate(center.x+b2xerror,center.y+b2yerror,location.z) ))
-				if(density&&T.density)
-					continue//If density was specified.
-				if(T.x>world.maxx || T.x<1)
-					continue//Don't want them to teleport off the map.
-				if(T.y>world.maxy || T.y<1)
-					continue
-				destination_list += T
-			if(destination_list.len)
-				destination = pick(destination_list)
-			else
-				return
-
-		else//Same deal here.
-			if(density&&destination.density)
-				return
-			if(destination.x>world.maxx || destination.x<1)
-				return
-			if(destination.y>world.maxy || destination.y<1)
-				return
-	else
-		return
-
-	return destination
+		return (x >= 0) ? 90 : 270
+	. = arctan(x / y)
+	if(y < 0)
+		. += 180
+	else if(x < 0)
+		. += 360
 
 /proc/getline(atom/M,atom/N)//Ultra-Fast Bresenham Line-Drawing Algorithm
 	var/px=M.x		//starting x
@@ -372,68 +272,6 @@ Turf and target are separate in case you want to teleport some distance from a t
 		if(M.ckey == key)
 			return M
 
-//Returns the atom sitting on the turf.
-//For example, using this on a disk, which is in a bag, on a mob, will return the mob because it's on the turf.
-//Optional arg 'type' to stop once it reaches a specific type instead of a turf.
-/proc/get_atom_on_turf(atom/movable/M, stop_type)
-	var/atom/loc = M
-	while(loc && loc.loc && !isturf(loc.loc))
-		loc = loc.loc
-		if(stop_type && istype(loc, stop_type))
-			break
-	return loc
-
-// returns the turf located at the map edge in the specified direction relative to A
-// used for mass driver
-/proc/get_edge_target_turf(atom/A, direction)
-	var/turf/target = locate(A.x, A.y, A.z)
-	if(!A || !target)
-		return 0
-		//since NORTHEAST == NORTH|EAST, etc, doing it this way allows for diagonal mass drivers in the future
-		//and isn't really any more complicated
-
-	var/x = A.x
-	var/y = A.y
-	if(direction & NORTH)
-		y = world.maxy
-	else if(direction & SOUTH) //you should not have both NORTH and SOUTH in the provided direction
-		y = 1
-	if(direction & EAST)
-		x = world.maxx
-	else if(direction & WEST)
-		x = 1
-	if(direction in GLOB.diagonals) //let's make sure it's accurately-placed for diagonals
-		var/lowest_distance_to_map_edge = min(abs(x - A.x), abs(y - A.y))
-		return get_ranged_target_turf(A, direction, lowest_distance_to_map_edge)
-	return locate(x,y,A.z)
-
-// returns turf relative to A in given direction at set range
-// result is bounded to map size
-// note range is non-pythagorean
-// used for disposal system
-/proc/get_ranged_target_turf(atom/A, direction, range)
-
-	var/x = A.x
-	var/y = A.y
-	if(direction & NORTH)
-		y = min(world.maxy, y + range)
-	else if(direction & SOUTH)
-		y = max(1, y - range)
-	if(direction & EAST)
-		x = min(world.maxx, x + range)
-	else if(direction & WEST) //if you have both EAST and WEST in the provided direction, then you're gonna have issues
-		x = max(1, x - range)
-
-	return locate(x,y,A.z)
-
-
-// returns turf relative to A offset in dx and dy tiles
-// bound to map limits
-/proc/get_offset_target_turf(atom/A, dx, dy)
-	var/x = min(world.maxx, max(1, A.x + dx))
-	var/y = min(world.maxy, max(1, A.y + dy))
-	return locate(x,y,A.z)
-
 /*
 	Gets all contents of contents and returns them all in a list.
 */
@@ -481,6 +319,17 @@ Turf and target are separate in case you want to teleport some distance from a t
 		if(istype(checked_atom, type))
 			. += checked_atom
 
+///Returns a list of all locations (except the area) the movable is within.
+/proc/get_nested_locs(atom/movable/atom_on_location, include_turf = FALSE)
+	. = list()
+	var/atom/location = atom_on_location.loc
+	var/turf/our_turf = get_turf(atom_on_location)
+	while(location && location != our_turf)
+		. += location
+		location = location.loc
+	if(our_turf && include_turf) //At this point, only the turf is left, provided it exists.
+		. += our_turf
+
 //Step-towards method of determining whether one atom can see another. Similar to viewers()
 /proc/can_see(atom/source, atom/target, length=5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
 	var/turf/current = get_turf(source)
@@ -490,17 +339,13 @@ Turf and target are separate in case you want to teleport some distance from a t
 		current = get_step_towards(current, target_turf)
 		while(current != target_turf)
 			if(steps > length)
-				return 0
-			if(current.opacity)
-				return 0
-			for(var/thing in current)
-				var/atom/A = thing
-				if(A.opacity)
-					return 0
+				return FALSE
+			if(IS_OPAQUE_TURF(current))
+				return FALSE
 			current = get_step_towards(current, target_turf)
 			steps++
 
-	return 1
+	return TRUE
 
 /proc/is_anchored_dense_turf(turf/T) //like the older version of the above, fails only if also anchored
 	if(T.density)
@@ -603,53 +448,6 @@ Turf and target are separate in case you want to teleport some distance from a t
 		return "right foot"
 	else
 		return zone
-
-/*
-
- Gets the turf this atom's *ICON* appears to inhabit
- It takes into account:
- * Pixel_x/y
- * Matrix x/y
-
- NOTE: if your atom has non-standard bounds then this proc
- will handle it, but:
- * if the bounds are even, then there are an even amount of "middle" turfs, the one to the EAST, NORTH, or BOTH is picked
- (this may seem bad, but you're atleast as close to the center of the atom as possible, better than byond's default loc being all the way off)
- * if the bounds are odd, the true middle turf of the atom is returned
-
-*/
-
-/proc/get_turf_pixel(atom/AM)
-	if(!istype(AM))
-		return
-
-	//Find AM's matrix so we can use it's X/Y pixel shifts
-	var/matrix/M = matrix(AM.transform)
-
-	var/pixel_x_offset = AM.pixel_x + M.get_x_shift()
-	var/pixel_y_offset = AM.pixel_y + M.get_y_shift()
-
-	//Irregular objects
-	var/icon/AMicon = icon(AM.icon, AM.icon_state)
-	var/AMiconheight = AMicon.Height()
-	var/AMiconwidth = AMicon.Width()
-	if(AMiconheight != world.icon_size || AMiconwidth != world.icon_size)
-		pixel_x_offset += ((AMiconwidth/world.icon_size)-1)*(world.icon_size*0.5)
-		pixel_y_offset += ((AMiconheight/world.icon_size)-1)*(world.icon_size*0.5)
-
-	//DY and DX
-	var/rough_x = round(round(pixel_x_offset,world.icon_size)/world.icon_size)
-	var/rough_y = round(round(pixel_y_offset,world.icon_size)/world.icon_size)
-
-	//Find coordinates
-	var/turf/T = get_turf(AM) //use AM's turfs, as it's coords are the same as AM's AND AM's coords are lost if it is inside another atom
-	if(!T)
-		return null
-	var/final_x = T.x + rough_x
-	var/final_y = T.y + rough_y
-
-	if(final_x || final_y)
-		return locate(final_x, final_y, T.z)
 
 //Finds the distance between two atoms, in pixels
 //centered = FALSE counts from turf edge to edge
@@ -966,60 +764,6 @@ B --><-- A
 
 	return L
 
-//similar function to RANGE_TURFS(), but will search spiralling outwards from the center (like the above, but only turfs)
-/proc/spiral_range_turfs(dist=0, center=usr, orange=0, list/outlist = list(), tick_checked)
-	outlist.Cut()
-	if(!dist)
-		outlist += center
-		return outlist
-
-	var/turf/t_center = get_turf(center)
-	if(!t_center)
-		return outlist
-
-	var/list/L = outlist
-	var/turf/T
-	var/y
-	var/x
-	var/c_dist = 1
-
-	if(!orange)
-		L += t_center
-
-	while( c_dist <= dist )
-		y = t_center.y + c_dist
-		x = t_center.x - c_dist + 1
-		for(x in x to t_center.x+c_dist)
-			T = locate(x,y,t_center.z)
-			if(T)
-				L += T
-
-		y = t_center.y + c_dist - 1
-		x = t_center.x + c_dist
-		for(y in t_center.y-c_dist to y)
-			T = locate(x,y,t_center.z)
-			if(T)
-				L += T
-
-		y = t_center.y - c_dist
-		x = t_center.x + c_dist - 1
-		for(x in t_center.x-c_dist to x)
-			T = locate(x,y,t_center.z)
-			if(T)
-				L += T
-
-		y = t_center.y - c_dist + 1
-		x = t_center.x - c_dist
-		for(y in y to t_center.y+c_dist)
-			T = locate(x,y,t_center.z)
-			if(T)
-				L += T
-		c_dist++
-		if(tick_checked)
-			CHECK_TICK
-
-	return L
-
 /atom/proc/contains(atom/A)
 	if(!A)
 		return 0
@@ -1034,30 +778,6 @@ B --><-- A
 	A.add_overlay(O)
 	sleep(duration)
 	A.cut_overlay(O)
-
-/proc/get_random_station_turf()
-	return safepick(get_area_turfs(pick(GLOB.the_station_areas)))
-
-/proc/get_safe_random_station_turf(list/areas_to_pick_from = GLOB.the_station_areas) //excludes dense turfs (like walls) and areas that have valid_territory set to FALSE
-	for (var/i in 1 to 5)
-		var/list/L = get_area_turfs(pick(areas_to_pick_from))
-		var/turf/target
-		while (L.len && !target)
-			var/I = rand(1, L.len)
-			var/turf/T = L[I]
-			var/area/X = get_area(T)
-			if(!T.density && X.valid_territory)
-				var/clear = TRUE
-				for(var/obj/O in T)
-					if(O.density)
-						clear = FALSE
-						break
-				if(clear)
-					target = T
-			if (!target)
-				L.Cut(I,I+1)
-		if (target)
-			return target
 
 /proc/get_closest_atom(type, list, source)
 	var/list/closest_atoms = list()
@@ -1127,15 +847,23 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		return 1
 	if (!initial_delay)
 		initial_delay = world.tick_lag
+// Unit tests are not the normal environemnt. The mc can get absolutely thigh crushed, and sleeping procs running for ages is much more common
+// We don't want spurious hard deletes off this, so let's only sleep for the requested period of time here yeah?
+#ifdef UNIT_TESTS
+	sleep(initial_delay)
+	return CEILING(DS2TICKS(initial_delay), 1)
+#else
 	. = 0
 	var/i = DS2TICKS(initial_delay)
 	do
 		. += CEILING(i * DELTA_CALC, 1)
-		sleep(i*world.tick_lag*DELTA_CALC)
+		sleep(i * world.tick_lag * DELTA_CALC)
 		i *= 2
 	while (TICK_USAGE > min(TICK_LIMIT_TO_RUN, Master.current_ticklimit))
+#endif
 
 #undef DELTA_CALC
+
 
 /proc/flash_color(mob_or_client, flash_color="#960000", flash_time=2 SECONDS)
 	var/client/C
@@ -1208,7 +936,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	name = "INTERNAL DVIEW MOB"
 	invisibility = 101
 	density = FALSE
-	see_in_dark = 1e6
 	move_resist = INFINITY
 	var/ready_to_die = FALSE
 
@@ -1286,49 +1013,13 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	temp = ((temp + (temp>>3))&29127) % 63	//070707
 	return temp
 
-//same as do_mob except for movables and it allows both to drift and doesn't draw progressbar
-/proc/do_atom(atom/movable/user , atom/movable/target, time = 30, uninterruptible = 0,datum/callback/extra_checks = null)
-	if(!user || !target)
-		return TRUE
-	var/user_loc = user.loc
-
-	var/drifting = FALSE
-	if(SSmove_manager.processing_on(user, SSspacedrift))
-		drifting = TRUE
-
-	var/target_drifting = FALSE
-	if(SSmove_manager.processing_on(target, SSspacedrift))
-		target_drifting = TRUE
-
-	var/target_loc = target.loc
-
-	var/endtime = world.time+time
-	. = TRUE
-	while (world.time < endtime)
-		stoplag(1)
-		if(QDELETED(user) || QDELETED(target))
-			. = 0
-			break
-		if(uninterruptible)
-			continue
-
-		if(drifting && !SSmove_manager.processing_on(user, SSspacedrift))
-			drifting = FALSE
-			user_loc = user.loc
-
-		if(target_drifting && !SSmove_manager.processing_on(target, SSspacedrift))
-			target_drifting = FALSE
-			target_loc = target.loc
-
-		if((!drifting && user.loc != user_loc) || (!target_drifting && target.loc != target_loc) || (extra_checks && !extra_checks.Invoke()))
-			. = FALSE
-			break
-
-// \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
-// If it ever becomes necesary to get a more performant REF(), this lies here in wait
-// #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
+/**
+ * \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
+ * If it ever becomes necesary to get a more performant REF(), this lies here in wait
+ * #define REF(thing) (thing && isdatum(thing) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : text_ref(thing))
+**/
 /proc/REF(input)
-	if(istype(input, /datum))
+	if(isdatum(input))
 		var/datum/thing = input
 		if(thing.datum_flags & DF_USE_TAG)
 			if(!thing.tag)
@@ -1336,7 +1027,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 				thing.datum_flags &= ~DF_USE_TAG
 			else
 				return "\[[url_encode(thing.tag)]\]"
-	return "\ref[input]"
+	return text_ref(input)
 
 //returns a GUID like identifier (using a mostly made up record format)
 //guids are not on their own suitable for access or security tokens, as most of their bits are predictable.
@@ -1374,9 +1065,9 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		if(is_servant_of_ratvar(V) || isobserver(V))
 			. += V
 
-#define VARSET_LIST_CALLBACK(target, var_name, var_value) CALLBACK(GLOBAL_PROC, /proc/___callbackvarset, ##target, ##var_name, ##var_value)
+#define VARSET_LIST_CALLBACK(target, var_name, var_value) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___callbackvarset), ##target, ##var_name, ##var_value)
 //dupe code because dm can't handle 3 level deep macros
-#define VARSET_CALLBACK(datum, var, var_value) CALLBACK(GLOBAL_PROC, /proc/___callbackvarset, ##datum, NAMEOF(##datum, ##var), ##var_value)
+#define VARSET_CALLBACK(datum, var, var_value) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___callbackvarset), ##datum, NAMEOF(##datum, ##var), ##var_value)
 
 /proc/___callbackvarset(list_or_datum, var_name, var_value)
 	if(length(list_or_datum))
@@ -1425,6 +1116,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	var/list/blocked = list(/mob/living/simple_animal/hostile/retaliate/goat/huge,
 		/mob/living/simple_animal/hostile/retaliate/goat/clown,
 		/mob/living/simple_animal/hostile/retaliate/goat/stack,
+		/mob/living/simple_animal/hostile/retaliate/goat/radioactive,
 		/mob/living/simple_animal/hostile/retaliate/goat/blue,
 		/mob/living/simple_animal/hostile/retaliate/goat/brown,
 		/mob/living/simple_animal/hostile/retaliate/goat/chocolate,
@@ -1450,6 +1142,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	var/list/blocked = list(/mob/living/simple_animal/hostile/retaliate/goat/huge,
 		/mob/living/simple_animal/hostile/retaliate/goat/clown,
 		/mob/living/simple_animal/hostile/retaliate/goat/stack,
+		/mob/living/simple_animal/hostile/retaliate/goat/radioactive,
 		/mob/living/simple_animal/hostile/retaliate/goat/ras,
 		/mob/living/simple_animal/hostile/retaliate/goat/christmas,
 		/mob/living/simple_animal/hostile/retaliate/goat/confetti,
@@ -1519,4 +1212,75 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
 
-#define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))
+/proc/tgui_login_data(mob/user, obj/machine, silicon_access = TRUE, admin_ghost_access = TRUE, access_requirement)
+	var/list/data = list()
+	if(!user || (!machine && !access_requirement))
+		return data
+
+	if(issilicon(user) && silicon_access)
+		var/mob/living/silicon/borg = user
+		data["username"] = borg.name
+		data["has_access"] = TRUE
+
+	if(IsAdminGhost(user) && admin_ghost_access)
+		data["username"] = user.client.holder.admin_signature
+		data["has_access"] = TRUE
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/username = H.get_authentification_name("Unknown")
+		data["username"] = H.get_authentification_name("Unknown")
+		if(username != "Unknown")
+			var/datum/data/record/record
+			for(var/RP in GLOB.data_core.general)
+				var/datum/data/record/R = RP
+				if(!istype(R))
+					continue
+				if(R.fields["name"] == username)
+					record = R
+					break
+			if(record)
+				if(istype(record.fields["photo_front"], /obj/item/photo))
+					var/obj/item/photo/P1 = record.fields["photo_front"]
+					var/icon/picture = icon(P1.picture.picture_image)
+					picture.Crop(10, 32, 22, 22)
+					var/md5 = md5(fcopy_rsc(picture))
+
+					if(!SSassets.cache["photo_[md5]_cropped.png"])
+						SSassets.transport.register_asset("photo_[md5]_cropped.png", picture)
+					SSassets.transport.send_assets(user, list("photo_[md5]_cropped.png" = picture))
+
+					data["user_image"] = SSassets.transport.get_asset_url("photo_[md5]_cropped.png")
+		if(machine)
+			data["has_access"] = machine.check_access(user.get_idcard())
+		else
+			var/obj/item/id_giver = user.get_idcard()
+			var/access_list = id_giver.GetAccess()
+			data["has_access"] = (access_requirement in access_list)
+	
+	return data
+
+/proc/tgui_login_act(mob/user, obj/machine, silicon_access = TRUE, admin_ghost_access = TRUE, access_requirement)
+	if(!user || (!machine && !access_requirement))
+		return FALSE
+
+	if(issilicon(user) && silicon_access)
+		return TRUE
+
+	if(IsAdminGhost(user) && admin_ghost_access)
+		return TRUE
+
+	var/mob/living/carbon/human/H = user
+	if(!istype(H))
+		return FALSE
+
+	if(machine)
+		if(machine.check_access(H.get_idcard()))
+			return TRUE
+	else
+		var/obj/item/id_giver = H.get_idcard()
+		var/access_list = id_giver.GetAccess()
+		if(access_requirement in access_list)
+			return TRUE
+
+	return FALSE

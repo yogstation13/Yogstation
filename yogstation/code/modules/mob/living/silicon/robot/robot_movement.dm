@@ -1,14 +1,24 @@
-/mob/living/silicon/robot/onTransitZ(old_z,new_z)
-	.=..()
-	if(is_mining_level(new_z) || is_mining_level(old_z))
+/mob/living/silicon/robot/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
+	if(same_z_layer)
+		return ..()
+	if(is_mining_level(old_turf.z) || is_mining_level(new_turf.z))
 		update_move_intent_slowdown()
 		update_movespeed()
+	cut_overlay(eye_lights)
+	SET_PLANE_EXPLICIT(eye_lights, PLANE_TO_TRUE(eye_lights.plane), src)
+	add_overlay(eye_lights)
+	return ..()
 
 /mob/living/silicon/robot/update_move_intent_slowdown()
-	var/turf/T = get_turf(src)
-	if(!T || !is_mining_level(T.z)) // If we can't get the turf, assume it's not on mining.
+	var/turf/player_turf = get_turf(src)
+
+	if(!player_turf || ! is_mining_level(player_turf.z)) // If we can't get the turf, assume it's not on mining.
 		return ..()
 
+	var/area/player_area = get_area(src)
+	if(!player_area.mining_speed)
+		return ..()
+		
 	var/mod = 0
 	if(m_intent == MOVE_INTENT_WALK)
 		mod = CONFIG_GET(number/movedelay/walk_delay) / 1.5 // 4

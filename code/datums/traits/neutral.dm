@@ -26,10 +26,10 @@
 			species.disliked_food &= ~MEAT
 
 /datum/quirk/vegetarian/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/disallowed_trait = (NOMOUTH in species.species_traits) // Cant eat
+	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) // Cant eat
 	qdel(species)
 
 	if(disallowed_trait)
@@ -57,11 +57,8 @@
 		species.liked_food &= ~PINEAPPLE
 
 /datum/quirk/pineapple_liker/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = (NOMOUTH in species.species_traits) // Cant eat
-	qdel(species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) // Cant eat
 
 	if(disallowed_trait)
 		return "You don't have the ability to eat!"
@@ -88,11 +85,8 @@
 		species.disliked_food &= ~PINEAPPLE
 
 /datum/quirk/pineapple_hater/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = (NOMOUTH in species.species_traits) // Cant eat
-	qdel(species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) // Cant eat
 
 	if(disallowed_trait)
 		return "You don't have the ability to eat!"
@@ -122,11 +116,8 @@
 		species.disliked_food = initial(species.disliked_food)
 
 /datum/quirk/deviant_tastes/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = (NOMOUTH in species.species_traits) // Cant eat
-	qdel(species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) // Cant eat
 
 	if(disallowed_trait)
 		return "You don't have the ability to eat!"
@@ -182,11 +173,8 @@
 	to_chat(quirk_holder, span_boldnotice("Your bottle of hair dye spray is [where]."))
 
 /datum/quirk/colorist/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = (HAIR in species.species_traits) // No Hair
-	qdel(species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = (HAIR in initial(species_type.species_traits)) // No Hair
 
 	if(!disallowed_trait)
 		return "You don't have hair!"
@@ -197,7 +185,7 @@
 	desc = "You are the current owner of an heirloom, passed down for generations. You have to keep it safe!"
 	icon = "toolbox"
 	value = 0
-	mood_quirk = FALSE
+	mood_quirk = TRUE
 	var/obj/item/heirloom
 	var/where
 	medical_record_text = "Patient demonstrates an unnatural attachment to a family heirloom."
@@ -375,3 +363,26 @@
 
 /datum/quirk/bald/proc/unequip_hat(mob/user, obj/item/hat)
 	SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "bad_hair_day", /datum/mood_event/bald)
+
+/datum/quirk/sheltered
+	name = "Sheltered"
+	desc = "You never learned to speak galactic common."
+	icon = "comment-dots"
+	value = 0
+	mob_trait = TRAIT_SHELTERED
+	gain_text = span_danger("You do not speak galactic common.")
+	lose_text = span_notice("You start to put together how to speak galactic common.")
+	medical_record_text = "Patient looks perplexed when questioned in galactic common."
+	job_blacklist = list("Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Head of Security", "Security Officer", "Warden")
+
+/datum/quirk/sheltered/on_clone(data)
+	var/mob/living/carbon/human/H = quirk_holder
+	H.remove_language(/datum/language/common, FALSE, TRUE)
+	if(!H.get_selected_language())
+		H.grant_language(/datum/language/japanese)
+
+/datum/quirk/sheltered/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.remove_language(/datum/language/common, FALSE, TRUE)
+	if(!H.get_selected_language())
+		H.grant_language(/datum/language/japanese)

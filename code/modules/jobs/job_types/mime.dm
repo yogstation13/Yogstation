@@ -7,14 +7,13 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of personnel"
-	selection_color = "#dddddd"
 
 	outfit = /datum/outfit/job/mime
 
 	alt_titles = list("Mute Entertainer", "Silent Jokester", "Pantomimist")
 
 	added_access = list()
-	base_access = list(ACCESS_THEATRE)
+	base_access = list(ACCESS_THEATRE, ACCESS_SERVHALL)
 	paycheck = PAYCHECK_MINIMAL
 	paycheck_department = ACCOUNT_SRV
 
@@ -27,10 +26,12 @@
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/baguette = 15,
-		/obj/item/reagent_containers/food/snacks/store/cheesewheel = 10,
+		/obj/item/reagent_containers/food/snacks/store/cheesewheel/brie = 10,
 		/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing = 10,
 		/obj/item/book/mimery = 1,
 	)
+
+	minimal_lightup_areas = list(/area/crew_quarters/theatre)
 
 	smells_like = "complete nothingness"
 
@@ -42,7 +43,7 @@
 	name = "Mime"
 	jobtype = /datum/job/mime
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/mime
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/mime
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/mime
@@ -55,7 +56,7 @@
 	/obj/item/book/mimery=1,
 	/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing=1,
 	/obj/item/stamp/mime = 1)
-
+	box = /obj/item/storage/box/survival/hug/black
 	backpack = /obj/item/storage/backpack/mime
 	satchel = /obj/item/storage/backpack/mime
 
@@ -87,7 +88,8 @@
 	var/list/spell_icons = list(
 		"Invisible Wall" = image(icon = 'icons/mob/actions/actions_mime.dmi', icon_state = "invisible_wall"),
 		"Invisible Chair" = image(icon = 'icons/mob/actions/actions_mime.dmi', icon_state = "invisible_chair"),
-		"Invisible Box" = image(icon = 'icons/mob/actions/actions_mime.dmi', icon_state = "invisible_box")
+		"Invisible Box" = image(icon = 'icons/mob/actions/actions_mime.dmi', icon_state = "invisible_box"),
+		"Invisible Touch" = image(icon = 'icons/mob/actions/actions_mime.dmi', icon_state = "invisible_touch")
 		)
 	var/picked_spell = show_radial_menu(user, src, spell_icons, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
 	var/datum/action/cooldown/spell/picked_spell_type
@@ -100,6 +102,9 @@
 
 		if("Invisible Box")
 			picked_spell_type = /datum/action/cooldown/spell/conjure_item/invisible_box
+
+		if("Invisible Touch")
+			picked_spell_type = /datum/action/cooldown/spell/touch/invisible_touch
 
 	if(ispath(picked_spell_type))
 		// Gives the user a vow ability too, if they don't already have one

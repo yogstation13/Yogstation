@@ -5,9 +5,9 @@
 		pipe_color = Color;				\
 		color = Color;					\
 	}									\
-	##Fulltype/visible {				\
-		level = PIPE_VISIBLE_LEVEL;		\
-		layer = GAS_PIPE_VISIBLE_LAYER;	\
+	##Fulltype/visible { \
+		hide = FALSE; \
+		layer = GAS_PIPE_VISIBLE_LAYER; \
 		FASTDMM_PROP(pipe_group = "atmos-[piping_layer]-"+Type+"-visible");\
 	}									\
 	##Fulltype/visible/layer2 {			\
@@ -19,7 +19,7 @@
 		icon_state = Iconbase + "-4";	\
 	}									\
 	##Fulltype/hidden {					\
-		level = PIPE_HIDDEN_LEVEL;		\
+		hide = TRUE;		\
 		FASTDMM_PROP(pipe_group = "atmos-[piping_layer]-"+Type+"-hidden");\
 	}									\
 	##Fulltype/hidden/layer2 {			\

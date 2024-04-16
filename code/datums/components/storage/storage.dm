@@ -86,7 +86,7 @@
 
 	RegisterSignal(parent, COMSIG_TOPIC, PROC_REF(topic_handle))
 
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(attackby))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(attackby))
 
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(on_attack_hand))
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_PAW, PROC_REF(on_attack_hand))
@@ -232,14 +232,12 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(!len)
 		to_chat(M, span_notice("You failed to pick up anything with [parent]."))
 		return
-	var/datum/progressbar/progress = new(M, len, I.loc)
 	var/list/rejections = list()
-	while(do_after(M, 1 SECONDS, parent, TRUE, FALSE, CALLBACK(src, PROC_REF(handle_mass_pickup), things, I.loc, rejections, progress)))
+	while(do_after(M, 1 SECONDS, parent, TRUE, FALSE, CALLBACK(src, PROC_REF(handle_mass_pickup), things, I.loc, rejections)))
 		stoplag(1)
-	qdel(progress)
 	to_chat(M, span_notice("You put everything you could [insert_preposition] [parent]."))
 
-/datum/component/storage/proc/handle_mass_item_insertion(list/things, datum/component/storage/src_object, mob/user, datum/progressbar/progress)
+/datum/component/storage/proc/handle_mass_item_insertion(list/things, datum/component/storage/src_object, mob/user)
 	var/atom/source_real_location = src_object.real_location()
 	for(var/obj/item/I in things)
 		things -= I
@@ -251,13 +249,11 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		if(can_be_inserted(I,FALSE,user))
 			handle_item_insertion(I, TRUE, user)
 		if (TICK_CHECK)
-			progress.update(progress.goal - things.len)
 			return TRUE
 
-	progress.update(progress.goal - things.len)
 	return FALSE
 
-/datum/component/storage/proc/handle_mass_pickup(list/things, atom/thing_loc, list/rejections, datum/progressbar/progress)
+/datum/component/storage/proc/handle_mass_pickup(list/things, atom/thing_loc, list/rejections)
 	var/atom/real_location = real_location()
 	for(var/obj/item/I in things)
 		things -= I
@@ -274,10 +270,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		handle_item_insertion(I, TRUE)	//The TRUE stops the "You put the [parent] into [S]" insertion message from being displayed.
 
 		if (TICK_CHECK)
-			progress.update(progress.goal - things.len)
 			return TRUE
 
-	progress.update(progress.goal - things.len)
 	return FALSE
 
 /datum/component/storage/proc/quick_empty(mob/M)
@@ -291,12 +285,10 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	to_chat(M, span_notice("You start dumping out [parent]."))
 	var/turf/T = get_turf(A)
 	var/list/things = contents()
-	var/datum/progressbar/progress = new(M, length(things), T)
-	while (do_after(M, 1 SECONDS, T, TRUE, FALSE, CALLBACK(src, PROC_REF(mass_remove_from_storage), T, things, progress)))
+	while (do_after(M, 1 SECONDS, T, TRUE, FALSE, CALLBACK(src, PROC_REF(mass_remove_from_storage), T, things)))
 		stoplag(1)
-	qdel(progress)
 
-/datum/component/storage/proc/mass_remove_from_storage(atom/target, list/things, datum/progressbar/progress, trigger_on_found = TRUE)
+/datum/component/storage/proc/mass_remove_from_storage(atom/target, list/things, trigger_on_found = TRUE)
 	var/atom/real_location = real_location()
 	for(var/obj/item/I in things)
 		things -= I
@@ -306,9 +298,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		if(trigger_on_found && I.on_found())
 			return FALSE
 		if(TICK_CHECK)
-			progress.update(progress.goal - length(things))
 			return TRUE
-	progress.update(progress.goal - length(things))
 	return FALSE
 
 /datum/component/storage/proc/do_quick_empty(atom/_target)
@@ -367,7 +357,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			ND.sample_object.mouse_opacity = MOUSE_OPACITY_OPAQUE
 			ND.sample_object.screen_loc = "[cx]:[screen_pixel_x],[cy]:[screen_pixel_y]"
 			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
-			ND.sample_object.layer = ABOVE_HUD_LAYER
 			ND.sample_object.plane = ABOVE_HUD_PLANE
 			cx++
 			if(cx - screen_start_x >= cols)
@@ -383,7 +372,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			O.mouse_opacity = MOUSE_OPACITY_OPAQUE //This is here so storage items that spawn with contents correctly have the "click around item to equip"
 			O.screen_loc = "[cx]:[screen_pixel_x],[cy]:[screen_pixel_y]"
 			O.maptext = ""
-			O.layer = ABOVE_HUD_LAYER
 			O.plane = ABOVE_HUD_PLANE
 			cx++
 			if(cx - screen_start_x >= cols)
@@ -449,7 +437,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		if(QDELETED(O))
 			continue
 		O.screen_loc = "[cx],[cy]"
-		O.layer = ABOVE_HUD_LAYER
 		O.plane = ABOVE_HUD_PLANE
 		cx++
 		if(cx > mx)

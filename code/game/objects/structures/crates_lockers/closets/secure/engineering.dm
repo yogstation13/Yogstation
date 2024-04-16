@@ -6,7 +6,6 @@
 /obj/structure/closet/secure_closet/engineering_chief/PopulateContents()
 	..()
 	new /obj/item/tank/jetpack/suit(src)
-	new /obj/item/cartridge/ce(src)
 	new /obj/item/radio/headset/heads/ce(src)
 	new /obj/item/storage/toolbox/mechanical(src)
 	new /obj/item/megaphone/command(src)

@@ -140,19 +140,20 @@
 	else
 		return ..()
 
-/obj/item/defibrillator/emag_act(mob/user)
+/obj/item/defibrillator/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(safety)
 		safety = FALSE
 		to_chat(user, span_warning("You silently disable [src]'s safety protocols with the cryptographic sequencer."))
 	else
 		safety = TRUE
 		to_chat(user, span_notice("You silently enable [src]'s safety protocols with the cryptographic sequencer."))
+	return TRUE
 
 /obj/item/defibrillator/emp_act(severity)
 	. = ..()
 
 	if(cell && !(. & EMP_PROTECT_CONTENTS))
-		deductcharge(5000 / severity)
+		deductcharge(500 * severity)
 
 	if (. & EMP_PROTECT_SELF)
 		return
@@ -307,7 +308,6 @@
 /obj/item/shockpaddles/Initialize(mapload, obj/item/defibrillator/spawned_in)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 8, \
 		force_wielded = 12, \
 		icon_wielded = "[base_icon_state]1", \
 	)
@@ -327,7 +327,7 @@
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(check_range))
 	listeningTo = user
 
-/obj/item/shockpaddles/Moved()
+/obj/item/shockpaddles/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	. = ..()
 	check_range()
 
@@ -461,12 +461,14 @@
 		return
 	if(!req_defib && !combat)
 		return
-	busy = TRUE
 	M.visible_message(span_danger("[user] has touched [M] with [src]!"), \
 			span_userdanger("[user] has touched [M] with [src]!"))
-	M.adjustStaminaLoss(50)
-	M.Knockdown(100)
-	M.updatehealth() //forces health update before next life tick //isn't this done by adjustStaminaLoss anyway?
+	var/hit_percent = (100 - M.getarmor(user.zone_selected, ELECTRIC)) / 100
+	if(!hit_percent)
+		return
+	busy = TRUE
+	M.adjustStaminaLoss(50 * hit_percent)
+	M.Knockdown((10 * hit_percent) SECONDS)
 	playsound(src,  'sound/machines/defib_zap.ogg', 50, 1, -1)
 	M.emote("gasp")
 	log_combat(user, M, "stunned", src)

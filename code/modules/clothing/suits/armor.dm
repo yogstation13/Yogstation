@@ -92,6 +92,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	heat_protection = CHEST|GROIN|LEGS|ARMS
+	mutantrace_variation = MUTANTRACE_VARIATION
 	dog_fashion = null
 
 /obj/item/clothing/suit/armor/vest/capcarapace
@@ -131,7 +132,7 @@
 	name = "riot suit"
 	desc = "A suit of semi-flexible polycarbonate body armor with heavy padding to protect against melee attacks. Helps the wearer resist shoving in close quarters."
 	icon_state = "riot"
-	item_state = "swat_suit"
+	item_state = "riot"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -140,6 +141,7 @@
 	strip_delay = 80
 	equip_delay_other = 60
 	slowdown = 0.33
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/suit/armor/bone
 	name = "bone armor"
@@ -287,6 +289,7 @@
 	desc = "A classic suit of plate armour, highly effective at stopping melee attacks."
 	icon_state = "knight_green"
 	item_state = "knight_green"
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/suit/armor/riot/knight/yellow
 	icon_state = "knight_yellow"
@@ -536,3 +539,4 @@
 	slowdown_set = 0.4 // Very slow
 	armor = list(MELEE = 55, BULLET = 60, LASER = 60, ENERGY = 40, BOMB = 40, BIO = 0, RAD = 0, FIRE = 65, ACID = 75, WOUND = 50)	//Walking tank
 	partial_coverage = LEGS|ARMS
+

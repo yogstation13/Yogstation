@@ -133,6 +133,7 @@
 	r_pocket = /obj/item/gun/ballistic/automatic/pistol
 	id = /obj/item/card/id/syndicate/anyone
 	implants = list(/obj/item/implant/weapons_auth)
+	box = /obj/item/storage/box/survival/syndie
 
 /datum/outfit/lavaland_syndicate/post_equip(mob/living/carbon/human/H)
 	H.faction |= ROLE_SYNDICATE
@@ -145,21 +146,58 @@
 	outfit = /datum/outfit/lavaland_syndicate/comms
 
 /obj/effect/mob_spawn/human/lavaland_syndicate/comms/space
+	name = "Syndicate Space Comms Agent"
 	short_desc = "You are a syndicate agent, assigned to a small listening post station situated near your hated enemy's top secret research facility: Space Station 13."
-	flavour_text = "Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Collaborate with your partner to disrupt Nanotrasen operations and do not let the base fall into enemy hands!"
+	flavour_text = "Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Collaborate with your partner to disrupt Nanotrasen operations and do not let the base fall into enemy hands! In addition, you are subordinate to your lieutenant should any issues arise."
 	important_info = "DO NOT abandon the base, let it fall into enemy hands, or share your supplies with non-Syndicate personnel."
+	outfit = /datum/outfit/lavaland_syndicate/comms/subordinate
 
+/obj/effect/mob_spawn/human/lavaland_syndicate/comms/space/lieutenant
+	name = "Syndicate Lieutenant Space Comms Agent"
+	short_desc = "You are a syndicate agent, assigned to a small listening post station situated near your hated enemy's top secret research facility: Space Station 13."
+	flavour_text = "Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Collaborate with your partner to disrupt Nanotrasen operations and do not let the base fall into enemy hands! Should any issues arise within the base, you have the final say."
+	important_info = "DO NOT abandon the base, let it fall into enemy hands, or share your supplies with non-Syndicate personnel."
+	outfit = /datum/outfit/lavaland_syndicate/comms/lieutenant
 
 /datum/outfit/lavaland_syndicate/comms
 	name = "Lavaland Syndicate Comms Agent"
 	r_hand = /obj/item/melee/transforming/energy/sword/saber
 	mask = /obj/item/clothing/mask/chameleon/gps
 	suit = /obj/item/clothing/suit/armor/vest
-	backpack_contents = list(/obj/item/modular_computer/tablet/preset/syndicate=1)
+	back = /obj/item/storage/backpack
+	backpack_contents = list(
+		/obj/item/modular_computer/tablet/preset/syndicate=1
+		)
+	implants = list(
+	/obj/item/implant/teleporter/syndicate_lavaland,
+	/obj/item/implant/weapons_auth)
+
+/datum/outfit/lavaland_syndicate/comms/subordinate
+	name = "Space Syndicate Comms Agent"
+	r_hand = /obj/item/kitchen/knife/combat
+	back = /obj/item/storage/backpack
+	backpack_contents = null
+	implants = list(
+	/obj/item/implant/teleporter/syndicate_listening_post,
+	/obj/item/implant/weapons_auth)
+
+/datum/outfit/lavaland_syndicate/comms/lieutenant
+	name = "Space Syndicate Comms Agent Lieutenant"
+	r_hand = /obj/item/melee/transforming/energy/sword/saber
+	head = /obj/item/clothing/head/HoS/syndicate
+	r_pocket = null
+	back = /obj/item/storage/backpack
+	backpack_contents = list(
+		/obj/item/modular_computer/tablet/preset/syndicate=1,
+		/obj/item/gun/ballistic/revolver/ultrasecure=1
+		)
+	implants = list(
+	/obj/item/implant/teleporter/syndicate_listening_post,
+	/obj/item/implant/weapons_auth)
 
 /obj/item/clothing/mask/chameleon/gps/Initialize(mapload)
 	. = ..()
-	new /obj/item/gps/internal/lavaland_syndicate_base(src)
+	AddComponent(/datum/component/gps, "Encrypted Signal")
 
 /obj/item/gps/internal/lavaland_syndicate_base
 	gpstag = "Encrypted Signal"

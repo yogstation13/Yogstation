@@ -18,6 +18,7 @@ BONUS
 /datum/symptom/cough
 
 	name = "Cough"
+	icon = "coughing"
 	desc = "The virus irritates the throat of the host, causing occasional coughing."
 	stealth = -1
 	resistance = 3

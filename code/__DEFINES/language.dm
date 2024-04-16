@@ -24,4 +24,5 @@
 #define LANGUAGE_VOICECHANGE	"voicechange"
 #define LANGUAGE_REVOLUTIONARY	"revolutionary"
 #define LANGUAGE_CATEARS		"cat"
+#define LANGUAGE_SYNTH			"synth"
 #define LANGUAGE_MULTILINGUAL	"multilingual"

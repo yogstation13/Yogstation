@@ -30,6 +30,13 @@
 
 	var/attached = 0
 
+/obj/item/clothing/mask/facehugger/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/item/clothing/mask/facehugger/lamarr
 	name = "Lamarr"
 	sterile = 1
@@ -46,11 +53,11 @@
 
 /obj/item/clothing/mask/facehugger/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	..()
-	if(obj_integrity < 90)
+	if(atom_integrity < 90)
 		Die()
 
 /obj/item/clothing/mask/facehugger/attackby(obj/item/O, mob/user, params)
-	return O.attack_obj(src, user)
+	return O.attack_atom(src, user)
 
 /obj/item/clothing/mask/facehugger/attack_alien(mob/user) //can be picked up by aliens
 	return attack_hand(user)
@@ -60,6 +67,9 @@
 	if((stat == CONSCIOUS && !sterile) && !isalien(user))
 		if(Leap(user))
 			return
+	if(!sterile && stat == CONSCIOUS && !do_after(user, 2 SECONDS, src))
+		to_chat(user, "You fail to pry [src] off your face.")
+		return
 	. = ..()
 
 /obj/item/clothing/mask/facehugger/attack(mob/living/M, mob/user)
@@ -88,8 +98,7 @@
 	. = ..()
 	Attach(M)
 
-/obj/item/clothing/mask/facehugger/Crossed(atom/target)
-	. = ..()
+/obj/item/clothing/mask/facehugger/proc/on_entered(datum/source, atom/movable/target, ...)
 	HasProximity(target)
 
 /obj/item/clothing/mask/facehugger/on_found(mob/finder)
@@ -184,7 +193,7 @@
 
 	if(!sterile)
 		M.take_bodypart_damage(strength,0) //done here so that humans in helmets take damage
-		M.Unconscious(MAX_IMPREGNATION_TIME/0.3) //something like 25 ticks = 20 seconds with the default settings
+		M.Unconscious(MAX_IMPREGNATION_TIME) //knock them out for the longest time needed to finish the deed
 
 	GoIdle() //so it doesn't jump the people that tear it off
 

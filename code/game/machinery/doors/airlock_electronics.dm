@@ -3,9 +3,14 @@
 	req_access = list(ACCESS_MAINT_TUNNELS)
 	custom_price = 5
 
+	/// A list of all granded accesses
 	var/list/accesses = list()
+	/// If the airlock should require ALL or only ONE of the listed accesses
 	var/one_access = 0
-	var/unres_sides = 0 //unrestricted sides, or sides of the airlock that will open regardless of access
+	/// Unrestricted sides, or sides of the airlock that will open regardless of access
+	var/unres_sides = 0
+	/// A holder of the electronics, in case of them working as an integrated part
+	var/holder
 
 /obj/item/electronics/airlock/examine(mob/user)
 	. = ..()
@@ -49,40 +54,45 @@
 
 	return data
 
-/obj/item/electronics/airlock/ui_act(action, params)
-	if(..())
-		return
+/// Shared by RCD and airlock electronics
+/obj/item/electronics/airlock/proc/do_action(action, params)
 	switch(action)
 		if("clear_all")
 			accesses = list()
 			one_access = 0
-			. = TRUE
 		if("grant_all")
 			accesses = get_all_accesses()
-			. = TRUE
 		if("one_access")
 			one_access = !one_access
-			. = TRUE
 		if("set")
 			var/access = text2num(params["access"])
 			if (!(access in accesses))
 				accesses += access
 			else
 				accesses -= access
-			. = TRUE
 		if("direc_set")
 			var/unres_direction = text2num(params["unres_direction"])
 			unres_sides ^= unres_direction //XOR, toggles only the bit that was clicked
-			. = TRUE
 		if("grant_region")
 			var/region = text2num(params["region"])
 			if(isnull(region))
 				return
 			accesses |= get_region_accesses(region)
-			. = TRUE
 		if("deny_region")
 			var/region = text2num(params["region"])
 			if(isnull(region))
 				return
 			accesses -= get_region_accesses(region)
-			. = TRUE
+
+/obj/item/electronics/airlock/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+
+	do_action(action, params)
+	return TRUE
+
+/obj/item/electronics/airlock/ui_host()
+	if(holder)
+		return holder
+	return src

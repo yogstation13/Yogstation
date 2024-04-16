@@ -8,7 +8,6 @@
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the chief medical officer"
-	selection_color = "#d4ebf2"
 	exp_type = EXP_TYPE_CREW
 	exp_requirements = 120
 	exp_type_department = EXP_TYPE_MEDICAL
@@ -37,13 +36,23 @@
 		/obj/item/paper/secretrecipe = 1
 	)
 
+	lightup_areas = list(
+		/area/medical/surgery,
+		/area/medical/virology,
+		/area/medical/genetics
+	)
+	minimal_lightup_areas = list(
+		/area/medical/morgue,
+		/area/medical/chemistry
+	)
+
 	smells_like = "chemicals"
 
 /datum/outfit/job/chemist
 	name = "Chemist"
 	jobtype = /datum/job/chemist
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/chem
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/medical/chem
 
 	glasses = /obj/item/clothing/glasses/science
 	ears = /obj/item/radio/headset/headset_med

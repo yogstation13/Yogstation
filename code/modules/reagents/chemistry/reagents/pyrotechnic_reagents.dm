@@ -5,7 +5,7 @@
 	reagent_state = SOLID
 	color = "#550000"
 	taste_description = "sweet tasting metal"
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/thermite/reaction_turf(turf/T, reac_volume)
 	if(reac_volume >= 1)
@@ -37,7 +37,7 @@
 	metabolization_rate = 4
 	taste_description = "burning"
 	accelerant_quality = 20
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/clf3/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(2)
@@ -139,7 +139,7 @@
 	taste_description = "burning"
 	self_consuming = TRUE
 	accelerant_quality = 20
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/phlogiston/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	M.adjust_fire_stacks(1)
@@ -163,7 +163,7 @@
 	taste_description = "burning"
 	self_consuming = TRUE
 	accelerant_quality = 20
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/napalm/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(1)
@@ -181,7 +181,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "bitterness"
 	self_consuming = TRUE
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 
 /datum/reagent/cryostylane/on_mob_life(mob/living/carbon/M) //TODO: code freezing into an ice cube
@@ -217,31 +217,47 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "charged metal"
 	self_consuming = TRUE
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 	var/shock_timer = 0
-	var/empremoval = FALSE
+	var/teslium_trip = FALSE
 
 /datum/reagent/teslium/on_mob_metabolize(mob/living/L)
 	. = ..()
-	var/datum/component/empprotection/empproof = L.GetExactComponent(/datum/component/empprotection)
-	if(!empproof)//only grant and remove emp protection if they didn't have it when drinking it
-		L.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
-		empremoval = TRUE
+	ADD_TRAIT(L, TRAIT_EMPPROOF_SELF, "teslium")
+	if(ispreternis(L)) //no clue why preterni function this way, but why not (makes more sense for ethereals honestly)
+		L.add_movespeed_modifier(type, TRUE, priority=101, multiplicative_slowdown=-3, blacklisted_movetypes=(FLYING|FLOATING))
+		teslium_trip = TRUE
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			H.physiology.burn_mod *= 10
 	
 /datum/reagent/teslium/on_mob_life(mob/living/carbon/M)
 	shock_timer++
 	if(shock_timer >= rand(5,30)) //Random shocks are wildly unpredictable
 		shock_timer = 0
-		M.electrocute_act(rand(5,20), "Teslium in their body", 1, 1) //Override because it's caused from INSIDE of you
+		var/shock_damage = rand(5,20)
+		M.electrocute_act(shock_damage, "Teslium in their body", 1, zone=null, override=TRUE) //Override because it's caused from INSIDE of you
 		playsound(M, "sparks", 50, 1)
+
+	if(HAS_TRAIT(M, TRAIT_POWERHUNGRY)) //twice as effective as liquid electricity
+		M.adjust_nutrition(10 * REAGENTS_METABOLISM)
+
+	if(teslium_trip)
+		M.adjustOxyLoss(-2 * REAGENTS_EFFECT_MULTIPLIER)
+		M.adjustBruteLoss(-2 * REAGENTS_EFFECT_MULTIPLIER, TRUE, FALSE, BODYPART_ANY)
+		M.adjustFireLoss(-2 * REAGENTS_EFFECT_MULTIPLIER, TRUE, FALSE, BODYPART_ANY)
+		M.AdjustAllImmobility(-3)
+		M.adjustStaminaLoss(-5 * REAGENTS_EFFECT_MULTIPLIER)
 	..()
 
 /datum/reagent/teslium/on_mob_end_metabolize(mob/living/L)
 	. = ..()
-	if(empremoval)
-		var/datum/component/empprotection/empproof = L.GetExactComponent(/datum/component/empprotection)
-		if(empproof)
-			empproof.Destroy()	
+	REMOVE_TRAIT(L, TRAIT_EMPPROOF_SELF, "teslium")
+	if(teslium_trip)
+		L.remove_movespeed_modifier(type, TRUE)
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			H.physiology.burn_mod /= 10
 
 /datum/reagent/teslium/energized_jelly
 	name = "Energized Jelly"
@@ -281,24 +297,14 @@
 			foam.lifetime = initial(foam.lifetime) //reduce object churn a little bit when using smoke by keeping existing foam alive a bit longer
 
 	// If there's a hotspot or turf fire, get rid of them and make the air colder
-	var/obj/effect/hotspot/hotspot = exposed_turf.active_hotspot
-	var/obj/effect/abstract/turf_fire/turf_fire = exposed_turf.turf_fire
-	if((hotspot || turf_fire) && !isspaceturf(exposed_turf) && exposed_turf.air)
-		var/datum/gas_mixture/air = exposed_turf.air
-		if(air.return_temperature() > T20C)
-			air.set_temperature(max(air.return_temperature()/2, T20C))
-		air.react(src)
-		if(hotspot)
-			qdel(hotspot)
-		if(turf_fire)
-			qdel(turf_fire)
+	exposed_turf.extinguish_turf()
 
 /datum/reagent/firefighting_foam/reaction_obj(obj/O, reac_volume)
 	O.extinguish()
 
 /datum/reagent/firefighting_foam/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	if(methods & (VAPOR|TOUCH))
-		M.adjust_fire_stacks(-reac_volume)
+		M.adjust_wet_stacks(reac_volume)
 		M.extinguish_mob()
 	..()
 
@@ -309,7 +315,7 @@ datum/reagent/frigorific_mixture
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "bitterness"
 	self_consuming = TRUE
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 
 /datum/reagent/frigorific_mixture/on_mob_life(mob/living/carbon/M) //TODO: code freezing into an ice cube

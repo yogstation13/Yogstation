@@ -118,11 +118,12 @@
 	if(is_operational() && occupant)
 		open_machine()
 
-/obj/machinery/sleeper/emag_act(mob/user)
+/obj/machinery/sleeper/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	to_chat(user, span_danger("You disable the chemical injection inhibitors on the sleeper..."))
 	obj_flags |= EMAGGED
+	return TRUE
 
 /obj/machinery/sleeper/MouseDrop_T(mob/target, mob/user)
 	if(user.stat || !Adjacent(user) || !user.Adjacent(target) || !iscarbon(target) || !user.IsAdvancedToolUser())
@@ -205,7 +206,7 @@
 			C.reagents.add_reagent(/datum/reagent/toxin/amanitin, max(0, 1.5 - existing)) //this should be enough that you immediately eat shit on exiting but not before
 		switch(active_treatment)
 			if(SLEEPER_TEND)
-				C.heal_bodypart_damage(SLEEPER_HEAL_RATE,SLEEPER_HEAL_RATE) //this is slow as hell, use the rest of medbay you chumps
+				C.heal_bodypart_damage(SLEEPER_HEAL_RATE + efficiency, SLEEPER_HEAL_RATE + efficiency)
 			if(SLEEPER_ORGANS)
 				var/heal_reps = efficiency * 2
 				var/list/organs = list(ORGAN_SLOT_EARS,ORGAN_SLOT_EYES,ORGAN_SLOT_LIVER,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_HEART)
@@ -221,7 +222,7 @@
 						if(healed)
 							break
 			if(SLEEPER_CHEMPURGE)
-				C.adjustToxLoss(-SLEEPER_HEAL_RATE)
+				C.adjustToxLoss(-(SLEEPER_HEAL_RATE + efficiency))
 				if(obj_flags & EMAGGED)
 					return
 				var/purge_rate = 0.5 * efficiency

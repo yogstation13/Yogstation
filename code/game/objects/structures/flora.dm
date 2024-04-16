@@ -3,6 +3,14 @@
 	max_integrity = 150
 	anchored = TRUE
 
+//yogs edit
+/obj/structure/flora/ex_act(severity, target)
+	. = ..()
+	if(severity == 1 || severity == 2)
+		qdel(src)
+//yogs end
+
+
 //trees
 /obj/structure/flora/tree
 	name = "tree"
@@ -18,7 +26,7 @@
 			if(W.hitsound)
 				playsound(get_turf(src), W.hitsound, 100, 0, 0)
 			user.visible_message(span_notice("[user] begins to cut down [src] with [W]."),span_notice("You begin to cut down [src] with [W]."), "You hear the sound of sawing.")
-			if(do_after(user, 1000/W.force, src)) //5 seconds with 20 force, 8 seconds with a hatchet, 20 seconds with a shard.
+			if(do_after(user, (1000 / W.force), src)) //5 seconds with 20 force, 8 seconds with a hatchet, 20 seconds with a shard.
 				user.visible_message(span_notice("[user] fells [src] with the [W]."),span_notice("You fell [src] with the [W]."), "You hear the sound of a tree falling.")
 				playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 100 , 0, 0)
 				for(var/i=1 to log_amount)
@@ -35,7 +43,7 @@
 /obj/structure/flora/stump
 	name = "stump"
 	desc = "This represents our promise to the crew, and the station itself, to cut down as many trees as possible." //running naked through the trees
-	icon = 'icons/obj/flora/pinetrees.dmi'
+	icon = 'icons/obj/flora/deadtrees.dmi' //yog
 	icon_state = "tree_stump"
 	density = FALSE
 	pixel_x = -16
@@ -394,7 +402,7 @@
 /obj/structure/flora/rock/pile
 	icon_state = "lavarocks"
 	desc = "A pile of rocks."
-
+	density = FALSE //yogs
 //Jungle grass
 
 /obj/structure/flora/grass/jungle

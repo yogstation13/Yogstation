@@ -13,9 +13,9 @@
 	var/broken = FALSE
 	var/initialized_at
 
-/datum/tgui_panel/New(client/client)
+/datum/tgui_panel/New(client/client, id)
 	src.client = client
-	window = new(client, "browseroutput")
+	window = new(client, id)
 	window.subscribe(src, PROC_REF(on_message))
 
 /datum/tgui_panel/Del()
@@ -39,7 +39,7 @@
 /datum/tgui_panel/proc/Initialize(force = FALSE)
 	set waitfor = FALSE
 	// Minimal sleep to defer initialization to after client constructor
-	sleep(1)
+	sleep(1 TICKS)
 	initialized_at = world.time
 	// Perform a clean initialization
 	window.Initialize(assets = list(

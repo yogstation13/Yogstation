@@ -385,7 +385,7 @@
 	var/obj/item/toy/plush/narplush/clash_target
 	gender = MALE	//he's a boy, right?
 
-/obj/item/toy/plush/plushvar/Moved()
+/obj/item/toy/plush/plushvar/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	. = ..()
 	if(clash_target)
 		return
@@ -471,7 +471,7 @@
 	var/clashing
 	gender = FEMALE	//it's canon if the toy is
 
-/obj/item/toy/plush/narplush/Moved()
+/obj/item/toy/plush/narplush/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	. = ..()
 	var/obj/item/toy/plush/plushvar/P = locate() in range(1, src)
 	if(P && istype(P.loc, /turf/open) && !P.clash_target && !clashing)
@@ -599,3 +599,13 @@
 	gender = FEMALE
 	icon_state = "plush_cdragon"
 	item_state = "plush_cdragon"
+
+/obj/item/toy/plush/catslug
+	name = "catslug plushie"
+	desc = "What even is this thing?"
+	lefthand_file = 'icons/mob/inhands/plushes_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/plushes_righthand.dmi'
+	gender = MALE
+	icon_state = "slugcat"
+	item_state = "slugcat"
+

@@ -179,7 +179,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	charge -= max((charge * 0.1), 500) / severity
+	charge -= max((charge * severity / 100), 50 * severity)
 	if (charge < 0)
 		charge = 0
 
@@ -369,7 +369,7 @@
 
 /obj/item/stock_parts/cell/emproof/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
+	ADD_TRAIT(src, TRAIT_EMPPROOF_SELF, "innate_empproof")
 
 /obj/item/stock_parts/cell/emproof/empty/Initialize(mapload)
 	. = ..()
@@ -392,7 +392,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	charge = clamp((charge-(10000/severity)),0,maxcharge)
+	charge = clamp((charge-(1000 * severity)),0,maxcharge)
 
 /obj/item/stock_parts/cell/emergency_light
 	name = "miniature power cell"

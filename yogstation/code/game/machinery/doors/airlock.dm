@@ -42,7 +42,7 @@
 	if(dir & WEST)
 		return WEST
 
-/obj/machinery/door/airlock/Moved()
+/obj/machinery/door/airlock/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	if(brace)
 		brace.remove()
 	return ..()

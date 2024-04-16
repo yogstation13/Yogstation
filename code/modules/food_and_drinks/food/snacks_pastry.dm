@@ -150,6 +150,12 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/ketchup = 2)
 	tastes = list("spaghetti"= 3, "carbs" = 2, "ketchup" = 1)
 
+/obj/item/reagent_containers/food/snacks/donut/vegan
+	name = "Vegan Donut"
+	desc = "Adding tofu to a donut makes it vegan, who knew?!"
+	tastes = list("donut" = 1)
+	foodtype = VEGETABLES
+
 ////////////////////////////////////////////MUFFINS////////////////////////////////////////////
 
 /obj/item/reagent_containers/food/snacks/muffin
@@ -185,7 +191,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	filling_color = "#FFE4E1"
 	tastes = list("custard" = 1, "egg" = 1)
-	foodtype = GRAIN | MEAT | VEGETABLES
+	foodtype = GRAIN | VEGETABLES | EGG
 
 ////////////////////////////////////////////WAFFLES////////////////////////////////////////////
 
@@ -427,6 +433,13 @@
 	foodtype = GRAIN | MEAT
 
 ////////////////////////////////////////////OTHER////////////////////////////////////////////
+/obj/item/reagent_containers/food/snacks/cookie/peanut_butter
+	name = "peanut butter cookie"
+	desc = "A tasty, chewy peanut butter cookie."
+	icon_state = "peanut_butter_cookie"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/peanut_butter = 5)
+	tastes = list("peanut butter" = 2, "cookie" = 1)
+	foodtype = GRAIN | SUGAR | NUTS
 
 /obj/item/reagent_containers/food/snacks/cookie/bacon
 	name = "strip of bacon"
@@ -522,7 +535,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 2)
 	filling_color = "#FFFF4D"
 	tastes = list("bread" = 1, "egg" = 1, "cheese" = 1)
-	foodtype = GRAIN | MEAT | DAIRY
+	foodtype = GRAIN | EGG | DAIRY
 
 /obj/item/reagent_containers/food/snacks/sugarcookie
 	name = "sugar cookie"
@@ -608,17 +621,47 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/honey = 5)
 	filling_color = "#F2CE91"
 	tastes = list("pastry" = 1, "sweetness" = 1)
-	foodtype = GRAIN
+	foodtype = GRAIN | SUGAR
 
 /obj/item/reagent_containers/food/snacks/jaffacake
-	name = "jaffacake"
-	desc = "A moreish jaffacke. Is it a cake or is it a biscuit? Who knows."
+	name = "jaffa cake"
+	desc = "A moreish jaffa cake. Is it a cake or is it a biscuit? Who knows."
 	icon_state = "jaffacake"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/coco = 1)
 	filling_color = "#D9833E"
 	tastes = list("orange" = 1, "cake" = 1)
-	foodtype = GRAIN | SUGAR | FRUIT
+	foodtype = GRAIN | SUGAR | FRUIT | CHOCOLATE
+
+/obj/item/reagent_containers/food/snacks/raw_brownie_batter
+	name = "raw brownie batter"
+	desc = "A sticky mixture of raw brownie batter, cook it in the oven!"
+	icon_state = "raw_brownie_batter"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
+	tastes = list("raw brownie batter" = 1)
+	foodtype = GRAIN | SUGAR | JUNKFOOD | CHOCOLATE | RAW
+
+/obj/item/reagent_containers/food/snacks/raw_brownie_batter/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/brownie_sheet, rand(20 SECONDS, 30 SECONDS), TRUE, TRUE)
+
+/obj/item/reagent_containers/food/snacks/brownie_sheet
+	name = "brownie sheet"
+	desc = "A sheet of cooked brownie, use a knife to cut it!"
+	icon_state = "brownie_sheet"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/sugar = 12)
+	tastes = list("brownie" = 1, "chocolatey goodness" = 1)
+	foodtype = GRAIN | SUGAR | JUNKFOOD | CHOCOLATE
+	burns_in_oven = TRUE
+	slices_num = 4
+	slice_path = /obj/item/reagent_containers/food/snacks/brownie
+
+/obj/item/reagent_containers/food/snacks/brownie
+	name = "brownie"
+	desc = "A square slice of delicious, chewy brownie."
+	icon_state = "brownie"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/sugar = 3)
+	tastes = list("brownie" = 1, "chocolatey goodness" = 1)
+	foodtype = GRAIN | SUGAR | JUNKFOOD | CHOCOLATE
 
 #define PANCAKE_MAX_STACK 10
 
@@ -641,6 +684,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("pancakes" = 1, "blueberries" = 1)
+	foodtype = GRAIN | SUGAR | BREAKFAST | FRUIT
 
 /obj/item/reagent_containers/food/snacks/pancakes/chocolatechip
 	name = "chocolate chip pancake"
@@ -670,6 +714,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/cinnamon = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
 	tastes = list("purity" = 1, "cinnamon" = 1)
+	foodtype = GRAIN | SUGAR
 
 /obj/item/reagent_containers/food/snacks/churro
 	name = "churro"
@@ -679,6 +724,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/cinnamon = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
 	tastes = list("lost dreams" = 1, "cinnamon" = 1)
+	foodtype = GRAIN | SUGAR
 
 /obj/item/reagent_containers/food/snacks/raw_croissant
 	name = "raw croissant"
@@ -746,31 +792,39 @@
 		. += "It contains [contents.len?"[ingredients_listed]":"no ingredient, "]on top of a [initial(name)]."
 	bitecount = originalBites
 
-/obj/item/reagent_containers/food/snacks/pancakes/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/reagent_containers/food/snacks/pancakes))
-		var/obj/item/reagent_containers/food/snacks/pancakes/P = I
-		if((contents.len >= PANCAKE_MAX_STACK) || ((P.contents.len + contents.len) > PANCAKE_MAX_STACK) || (reagents.total_volume >= volume))
+/obj/item/reagent_containers/food/snacks/pancakes/attackby(obj/item/item, mob/living/user, params)
+	if(istype(item, /obj/item/reagent_containers/food/snacks/pancakes))
+		var/obj/item/reagent_containers/food/snacks/pancakes/pancake = item
+		if((contents.len >= PANCAKE_MAX_STACK) || ((pancake.contents.len + contents.len) > PANCAKE_MAX_STACK) || (reagents.total_volume >= volume))
 			to_chat(user, span_warning("You can't add that many pancakes to [src]!"))
 		else
-			if(!user.transferItemToLoc(I, src))
+			if(!user.transferItemToLoc(item, src))
 				return
-			to_chat(user, span_notice("You add the [I] to the [name]."))
-			P.name = initial(P.name)
-			contents += P
-			update_overlays(P)
-			if (P.contents.len)
-				for(var/V in P.contents)
-					P = V
-					P.name = initial(P.name)
-					contents += P
-					update_overlays(P)
-			P = I
-			LAZYCLEARLIST(P.contents)
+			to_chat(user, span_notice("You add the [item] to the [name]."))
+			pancake.name = initial(pancake.name)
+			contents += pancake
+			update_snack_overlays(pancake)
+			if (pancake.contents.len)
+				for(var/V in pancake.contents)
+					pancake = V
+					pancake.name = initial(pancake.name)
+					contents += pancake
+					update_snack_overlays(pancake)
+			pancake = item
+			LAZYCLEARLIST(pancake.contents)
 		return
 	else if(contents.len)
 		var/obj/O = contents[contents.len]
-		return O.attackby(I, user, params)
-	..()
+		return O.attackby(item, user, params)
+	return ..()
+
+/obj/item/reagent_containers/food/snacks/pancakes/update_snack_overlays(obj/item/reagent_containers/food/snacks/pancakes/pancake)
+	var/mutable_appearance/pancake_visual = mutable_appearance(icon, "[pancake.item_state]_[rand(1, 3)]")
+	pancake_visual.pixel_x = rand(-1, 1)
+	pancake_visual.pixel_y = 3 * contents.len - 1
+	pancake_visual.layer = layer + (contents.len * 0.01)
+	add_overlay(pancake_visual)
+	update_appearance()
 
 /obj/item/reagent_containers/food/snacks/pancakes/attack(mob/M, mob/user, def_zone, stacked = TRUE)
 	if(user.a_intent == INTENT_HARM || !contents.len || !stacked)

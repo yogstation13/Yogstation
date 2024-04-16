@@ -102,7 +102,7 @@
 	. = ..()
 	if(!(. & EMP_PROTECT_CONTENTS))
 		var/bullet_count = ammo_count()
-		var/bullets_to_remove = round(bullet_count / (severity*2))
+		var/bullets_to_remove = round(bullet_count * (0.5**(severity/EMP_HEAVY)))
 		for(var/i = 0; i < bullets_to_remove, i++)
 			qdel(get_round())
 		update_appearance(UPDATE_ICON)
@@ -111,19 +111,19 @@
 			if(!G.magazine == src)
 				return
 			G.semicd = TRUE
-			// 5-10 seconds depending on severity, then give or take 0.2 seconds to prevent piercing ears
-			var/unjam_time = ((10/severity) + (rand(-20,20)*0.01)) SECONDS
+			// up to 10 seconds depending on severity, then give or take 0.2 seconds to prevent piercing ears
+			var/unjam_time = (min(severity, EMP_HEAVY) + (rand(-20,20)*0.01)) SECONDS
 			addtimer(CALLBACK(G, TYPE_PROC_REF(/obj/item/gun, reset_semicd)), unjam_time)
 
 /obj/item/ammo_casing/caseless/c22hl
 	caliber = ENERGY
 	harmful = FALSE
-	projectile_type = /obj/item/projectile/bullet/c22hl
+	projectile_type = /obj/projectile/bullet/c22hl
 
-/obj/item/projectile/bullet/c22hl //.22 HL
+/obj/projectile/bullet/c22hl //.22 HL
 	name = "hardlight beam"
 	icon_state = "disabler_bullet"
-	flag = ENERGY
+	armor_flag = ENERGY
 	damage = 0 // maybe don't do actual damage so pacifists can use it and silicons won't be mad
 	damage_type = BURN
 	stamina = 25
@@ -151,12 +151,12 @@
 /obj/item/ammo_casing/caseless/c22ls
 	caliber = LASER
 	harmful = TRUE
-	projectile_type = /obj/item/projectile/bullet/c22ls
+	projectile_type = /obj/projectile/bullet/c22ls
 
-/obj/item/projectile/bullet/c22ls //.22 LS
+/obj/projectile/bullet/c22ls //.22 LS
 	name = "laser beam"
 	icon_state = "disabler_bullet"
-	flag = LASER
+	armor_flag = LASER
 	damage = 18
 	damage_type = BURN
 	color = "#ff0000"

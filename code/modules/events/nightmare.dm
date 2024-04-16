@@ -3,7 +3,6 @@
 	typepath = /datum/round_event/ghost_role/nightmare
 	max_occurrences = 1
 	min_players = 30
-	weight = 0 // Disabled in favor of darkspawn
 	earliest_start = 45 MINUTES
 	dynamic_should_hijack = TRUE
 
@@ -26,7 +25,7 @@
 	for(var/X in GLOB.xeno_spawn)
 		var/turf/T = X
 		var/light_amount = T.get_lumcount()
-		if(light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD)
+		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
 			spawn_locs += T
 
 	if(!spawn_locs.len)

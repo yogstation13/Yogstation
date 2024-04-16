@@ -21,7 +21,7 @@
 
 /obj/structure/blob/shield/update_appearance(updates=ALL)
 	. = ..()
-	if(obj_integrity < max_integrity * 0.5)
+	if(atom_integrity < max_integrity * 0.5)
 		icon_state = "[initial(icon_state)]_damaged"
 		name = "weakened [initial(name)]"
 		desc = "[damaged_desc]"
@@ -31,7 +31,7 @@
 		name = initial(name)
 		desc = initial(desc)
 		atmosblock = TRUE
-	air_update_turf(1)
+	air_update_turf()
 
 /obj/structure/blob/shield/reflective
 	name = "reflective blob"
@@ -44,7 +44,7 @@
 	brute_resist = 0.5
 	explosion_block = 2
 
-/obj/structure/blob/shield/reflective/handle_ricochet(obj/item/projectile/P)
+/obj/structure/blob/shield/reflective/handle_ricochet(obj/projectile/P)
 	var/turf/p_turf = get_turf(P)
 	var/face_direction = get_dir(src, p_turf)
 	var/face_angle = dir2angle(face_direction)

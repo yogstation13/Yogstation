@@ -15,6 +15,8 @@
 
 #define isnan(x) ( isnum((x)) && ((x) != (x)) )
 
+//#define isinternalorgan(A) (istype(A, /obj/item/organ/internal)) uncomment if we port tg organ code
+
 //Turfs
 //#define isturf(A) (istype(A, /turf)) This is actually a byond built-in. Added here for completeness sake.
 
@@ -22,7 +24,9 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 	/turf/open/space,
 	/turf/open/chasm,
 	/turf/open/lava,
-	/turf/open/water
+	/turf/open/water,
+	/turf/open/openspace,
+	/turf/open/space/openspace
 	)))
 
 #define isgroundlessturf(A) (is_type_in_typecache(A, GLOB.turfs_without_ground))
@@ -86,8 +90,11 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define ispreternis(A) (is_species(A,/datum/species/preternis))
 #define isszlachta(A) (is_species(A, /datum/species/szlachta))
 #define isipc(A) (is_species(A, /datum/species/ipc))
+#define isinsurgent(A) (is_species(A, /datum/species/ipc/self/insurgent))
 #define issnail(A) (is_species(A, /datum/species/snail))
 #define isandroid(A) (is_species(A, /datum/species/android))
+#define isshadowperson(A) (is_species(A, /datum/species/shadow))
+#define is_synth(A) (is_species(A,/datum/species/wy_synth))
 #define isdummy(A) (istype(A, /mob/living/carbon/human/dummy))
 #define ismonkey(A) (is_species(A, /datum/species/monkey))
 
@@ -161,47 +168,6 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define issupplypod(A) (istype(A, /obj/structure/closet/supplypod))
 
-GLOBAL_LIST_INIT(shoefootmob, typecacheof(list(
-	/mob/living/carbon/human/,
-	/mob/living/simple_animal/cow,
-	/mob/living/simple_animal/hostile/cat_butcherer,
-	/mob/living/simple_animal/hostile/faithless,
-	/mob/living/simple_animal/hostile/nanotrasen,
-	/mob/living/simple_animal/hostile/pirate,
-	/mob/living/simple_animal/hostile/russian,
-	/mob/living/simple_animal/hostile/syndicate,
-	/mob/living/simple_animal/hostile/wizard,
-	/mob/living/simple_animal/hostile/zombie,
-	/mob/living/simple_animal/hostile/retaliate/clown,
-	/mob/living/simple_animal/hostile/retaliate/spaceman,
-	/mob/living/simple_animal/hostile/retaliate/nanotrasenpeace,
-	/mob/living/simple_animal/hostile/retaliate/goat,
-	/mob/living/carbon/true_devil,
-	)))
-
-GLOBAL_LIST_INIT(clawfootmob, typecacheof(list(
-	/mob/living/carbon/alien/humanoid,
-	/mob/living/simple_animal/hostile/alien,
-	/mob/living/simple_animal/pet/cat,
-	/mob/living/simple_animal/pet/dog,
-	/mob/living/simple_animal/pet/fox,
-	/mob/living/simple_animal/chicken,
-	/mob/living/simple_animal/hostile/bear,
-	/mob/living/simple_animal/hostile/jungle/mega_arachnid
-	)))
-
-GLOBAL_LIST_INIT(barefootmob, typecacheof(list(
-	/mob/living/carbon/human/species/monkey,
-	/mob/living/simple_animal/pet/penguin,
-	/mob/living/simple_animal/hostile/gorilla,
-	/mob/living/simple_animal/hostile/jungle/mook
-	)))
-
-GLOBAL_LIST_INIT(heavyfootmob, typecacheof(list(
-	/mob/living/simple_animal/hostile/megafauna,
-	/mob/living/simple_animal/hostile/jungle/leaper
-	)))
-
 //Misc mobs
 #define isobserver(A) (istype(A, /mob/dead/observer))
 
@@ -213,18 +179,9 @@ GLOBAL_LIST_INIT(heavyfootmob, typecacheof(list(
 
 #define iscameramob(A) (istype(A, /mob/camera))
 
-#define isaicamera(A) (istype(A, /mob/camera/aiEye))
+#define isaicamera(A) (istype(A, /mob/camera/ai_eye))
 
 #define iseminence(A) (istype(A, /mob/camera/eminence))
-
-//Footstep helpers
-#define isshoefoot(A) (is_type_in_typecache(A, GLOB.shoefootmob))
-
-#define isclawfoot(A) (is_type_in_typecache(A, GLOB.clawfootmob))
-
-#define isbarefoot(A) (is_type_in_typecache(A, GLOB.barefootmob))
-
-#define isheavyfoot(A) (is_type_in_typecache(A, GLOB.heavyfootmob))
 
 //Objects
 #define isobj(A) istype(A, /obj) //override the byond proc because it returns true on children of /atom/movable that aren't objs
@@ -241,7 +198,7 @@ GLOBAL_LIST_INIT(heavyfootmob, typecacheof(list(
 
 #define ismecha(A) (istype(A, /obj/mecha))
 
-#define ismopable(A) (A.loc.layer <= HIGH_SIGIL_LAYER) //If something can be cleaned by floor-cleaning devices such as mops or clean bots
+#define ismopable(A) (A && (A.layer <= FLOOR_CLEAN_LAYER)) //If something can be cleaned by floor-cleaning devices such as mops or clean bots
 
 #define isorgan(A) (istype(A, /obj/item/organ))
 
@@ -251,7 +208,7 @@ GLOBAL_LIST_INIT(heavyfootmob, typecacheof(list(
 
 #define isbodypart(A) (istype(A, /obj/item/bodypart))
 
-#define isprojectile(A) (istype(A, /obj/item/projectile))
+#define isprojectile(A) (istype(A, /obj/projectile))
 
 #define isgun(A) (istype(A, /obj/item/gun))
 
@@ -280,9 +237,34 @@ GLOBAL_LIST_INIT(glass_sheet_types, typecacheof(list(
 
 #define isblobmonster(O) (istype(O, /mob/living/simple_animal/hostile/blob))
 
-#define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))
+#define isshuttleturf(T) (!isnull(T.depth_to_find_baseturf(/turf/baseturf_skipover/shuttle)))
 
 //Fugitive
 #define isfugitive(M) (istype(M) && M.mind?.has_antag_datum(/datum/antagonist/fugitive))
 
 #define isProbablyWallMounted(O) (O.pixel_x > 20 || O.pixel_x < -20 || O.pixel_y > 20 || O.pixel_y < -20)
+
+GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
+	/turf/open/openspace,
+	/turf/open/space/openspace
+	)))
+
+#define istransparentturf(A) (HAS_TRAIT(A, TURF_Z_TRANSPARENT_TRAIT))
+
+#define isopenspaceturf(A) (is_type_in_typecache(A, GLOB.turfs_openspace))
+
+// Jobs
+#define is_job(job_type)  (istype(job_type, /datum/job))
+#define is_assistant_job(job_type) (istype(job_type, /datum/job/assistant))
+#define is_bartender_job(job_type) (istype(job_type, /datum/job/bartender))
+#define is_captain_job(job_type) (istype(job_type, /datum/job/captain))
+#define is_chaplain_job(job_type) (istype(job_type, /datum/job/chaplain))
+#define is_clown_job(job_type) (istype(job_type, /datum/job/clown))
+#define is_detective_job(job_type) (istype(job_type, /datum/job/detective))
+#define is_scientist_job(job_type) (istype(job_type, /datum/job/scientist))
+#define is_security_officer_job(job_type) (istype(job_type, /datum/job/security_officer))
+#define is_research_director_job(job_type) (istype(job_type, /datum/job/research_director))
+#define is_unassigned_job(job_type) (istype(job_type, /datum/job/unassigned))
+
+#define isprojectilespell(thing) (istype(thing, /datum/action/cooldown/spell/pointed/projectile))
+#define is_multi_tile_object(atom) (atom.bound_width > world.icon_size || atom.bound_height > world.icon_size)

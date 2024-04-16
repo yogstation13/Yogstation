@@ -28,6 +28,12 @@ SUBSYSTEM_DEF(ambience)
 /datum/controller/subsystem/ambience/proc/process_ambience_client(client/to_process)
 	var/mob/current_mob = to_process.mob
 	var/area/current_area = get_area(current_mob)
+
+	if(isAI(current_mob))
+		var/mob/living/silicon/ai/ai_current_mob = current_mob
+		if(ai_current_mob.eyeobj)
+			current_area = get_area(ai_current_mob.eyeobj)
+
 	if(!current_area) //Something's gone horribly wrong
 		stack_trace("[key_name(to_process)] has somehow ended up in nullspace. WTF did you do -xoxo ambience subsystem")
 		ambience_listening_clients -= to_process

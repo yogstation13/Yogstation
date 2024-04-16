@@ -33,28 +33,25 @@ GLOBAL_LIST_EMPTY(bluespace_pipe_networks)
 		for(var/p in GLOB.bluespace_pipe_networks[bluespace_network_name])
 			var/obj/machinery/atmospherics/pipe/bluespace/P = p
 			QDEL_NULL(P.parent)
-			P.build_network()
+			SSair.add_to_rebuild_queue(P)
 	return ..()
 
 /obj/machinery/atmospherics/pipe/bluespace/examine(user)
 	. = ..()
 	. += span_notice("This one is connected to the \"[html_encode(bluespace_network_name)]\" network.")
 
-/obj/machinery/atmospherics/pipe/bluespace/SetInitDirections()
+/obj/machinery/atmospherics/pipe/bluespace/set_init_directions()
 	initialize_directions = dir
 
 /obj/machinery/atmospherics/pipe/bluespace/pipeline_expansion()
 	return ..() + GLOB.bluespace_pipe_networks[bluespace_network_name] - src
-
-/obj/machinery/atmospherics/pipe/bluespace/hide()
-	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/pipe/bluespace/update_icon(updates=ALL)
 	. = ..()
 	underlays.Cut()
 
 	var/turf/T = loc
-	if(level != 2 && !!T.intact)
+	if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
 		plane = FLOOR_PLANE
 		return //no need to update the pipes if they aren't showing
 	plane = GAME_PLANE
@@ -77,6 +74,6 @@ GLOBAL_LIST_EMPTY(bluespace_pipe_networks)
 
 /obj/machinery/atmospherics/pipe/bluespace/proc/get_pipe_underlay(state, dir, color = null)
 	if(color)
-		. = getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', state, dir, color)
+		. = get_pipe_image('icons/obj/atmospherics/components/binary_devices.dmi', state, dir, color)
 	else
-		. = getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', state, dir)
+		. = get_pipe_image('icons/obj/atmospherics/components/binary_devices.dmi', state, dir)

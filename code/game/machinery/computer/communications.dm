@@ -50,15 +50,20 @@
 /obj/machinery/computer/communications/Initialize(mapload)
 	. = ..()
 	GLOB.shuttle_caller_list += src
+	AddComponent(/datum/component/gps, "Secured Communications Signal")
 
 /// Are we NOT a silicon, AND we're logged in as the captain?
 /obj/machinery/computer/communications/proc/authenticated_as_non_silicon_captain(mob/user)
+	if(is_synth(user))
+		return FALSE
 	if (issilicon(user))
 		return FALSE
 	return ACCESS_CAPTAIN in authorize_access
 
 /// Are we a silicon, OR we're logged in as the captain?
 /obj/machinery/computer/communications/proc/authenticated_as_silicon_or_captain(mob/user)
+	if(is_synth(user))
+		return FALSE
 	if (issilicon(user))
 		return TRUE
 	return ACCESS_CAPTAIN in authorize_access
@@ -81,14 +86,15 @@
 	else
 		return ..()
 
-/obj/machinery/computer/communications/emag_act(mob/user)
-	if (obj_flags & EMAGGED)
-		return
+/obj/machinery/computer/communications/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(obj_flags & EMAGGED)
+		return FALSE
 	obj_flags |= EMAGGED
 	if (authenticated)
 		authorize_access = get_all_accesses()
 	to_chat(user, span_danger("You scramble the communication routing circuits!"))
 	playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
+	return TRUE
 
 /obj/machinery/computer/communications/ui_act(action, list/params)
 	var/static/list/approved_states = list(STATE_BUYING_SHUTTLE, STATE_CHANGING_STATUS, STATE_MAIN, STATE_MESSAGES)
@@ -153,13 +159,13 @@
 					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 					return
 
-			var/new_sec_level = seclevel2num(params["newSecurityLevel"])
+			var/new_sec_level = SSsecurity_level.text_level_to_number(params["newSecurityLevel"])
 			if (new_sec_level != SEC_LEVEL_GREEN && new_sec_level != SEC_LEVEL_BLUE)
 				return
-			if (GLOB.security_level == new_sec_level)
+			if (SSsecurity_level.get_current_level_as_number() == new_sec_level)
 				return
 
-			set_security_level(new_sec_level)
+			SSsecurity_level.set_level(new_sec_level)
 
 			to_chat(usr, span_notice("Authorization confirmed. Modifying security level."))
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
@@ -217,11 +223,11 @@
 			var/datum/map_template/shuttle/shuttle = locate(params["shuttle"]) in shuttles
 			if (!istype(shuttle))
 				return
+			if (!can_purchase_this_shuttle(shuttle))
+				return
 			if (!shuttle.prerequisites_met())
 				to_chat(usr, span_alert("You have not met the requirements for purchasing this shuttle."))
 				return
-			if(shuttle.emag_buy && !(obj_flags & EMAGGED))
-				return //return silently, only way this could happen is an attempted href exploit
 			var/datum/bank_account/bank_account = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			if (bank_account.account_balance < shuttle.credit_cost)
 				return
@@ -231,7 +237,7 @@
 			SSshuttle.unload_preview()
 			SSshuttle.existing_shuttle = SSshuttle.emergency
 			SSshuttle.emergency.name = shuttle.name
-			SSshuttle.action_load(shuttle)
+			SSshuttle.action_load(shuttle, replace = TRUE)
 			bank_account.adjust_money(-shuttle.credit_cost)
 			minor_announce("[authorize_name] has purchased [shuttle.name] for [shuttle.credit_cost] credits.[shuttle.extra_desc ? " [shuttle.extra_desc]" : ""]" , "Shuttle Purchase")
 			message_admins("[ADMIN_LOOKUPFLW(usr)] purchased [shuttle.name].")
@@ -251,7 +257,7 @@
 			nuke_request(reason, usr)
 			to_chat(usr, span_notice("Request sent."))
 			usr.log_message("has requested the nuclear codes from CentCom with reason \"[reason]\"", LOG_SAY)
-			priority_announce("The codes for the on-station nuclear self-destruct have been requested by [authorize_name]. Confirmation or denial of this request will be sent shortly.", "Nuclear Self-Destruct Codes Requested", RANDOM_REPORT_SOUND)
+			priority_announce("The codes for the on-station nuclear self-destruct have been requested by [authorize_name]. Confirmation or denial of this request will be sent shortly.", "Nuclear Self-Destruct Codes Requested", SSstation.announcer.get_rand_report_sound())
 			playsound(src, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
 			COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 		if ("restoreBackupRoutingData")
@@ -363,17 +369,8 @@
 				playsound(loc, 'sound/items/poster_being_created.ogg', 100, 1)
 				new /obj/item/card/id/captains_spare/temporary(loc)
 				COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
-				priority_announce("The emergency spare ID has been printed by [authorize_name].", "Emergency Spare ID Warning System", RANDOM_REPORT_SOUND)
-		if("printAIControlCode")
-			if(authenticated_as_non_silicon_head(usr))
-				if(!COOLDOWN_FINISHED(src, important_action_cooldown))
-					return
-				playsound(loc, 'sound/items/poster_being_created.ogg', 100, 1)
-				GLOB.ai_control_code = random_nukecode(6)
-				new /obj/item/paper/ai_control_code(loc)
-				COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
-				priority_announce("The AI Control Code been printed by [authorize_name]. All previous codes have been invalidated.", "Central Tech Support", RANDOM_REPORT_SOUND)
-
+				priority_announce("The emergency spare ID has been printed by [authorize_name].", "Emergency Spare ID Warning System", SSstation.announcer.get_rand_report_sound())
+				
 
 /obj/machinery/computer/communications/ui_data(mob/user)
 	var/list/data = list(
@@ -405,9 +402,10 @@
 				data["importantActionReady"] = COOLDOWN_FINISHED(src, important_action_cooldown)
 				data["shuttleCalled"] = FALSE
 				data["shuttleLastCalled"] = FALSE
+				data["aprilFools"] = check_holidays(APRIL_FOOLS)
 				data["canPrintIdAndCode"] = FALSE
 
-				data["alertLevel"] = get_security_level()
+				data["alertLevel"] = SSsecurity_level.get_current_level_as_text()
 				data["authorizeName"] = authorize_name
 				data["canLogOut"] = !issilicon(user)
 				data["shuttleCanEvacOrFailReason"] = SSshuttle.canEvac(user)
@@ -447,8 +445,8 @@
 
 				if (SSshuttle.emergencyCallAmount)
 					data["shuttleCalledPreviously"] = TRUE
-					if (SSshuttle.emergencyLastCallLoc)
-						data["shuttleLastCalled"] = format_text(SSshuttle.emergencyLastCallLoc.name)
+					if (SSshuttle.emergency_last_call_loc)
+						data["shuttleLastCalled"] = format_text(SSshuttle.emergency_last_call_loc.name)
 			if (STATE_MESSAGES)
 				data["messages"] = list()
 
@@ -467,15 +465,20 @@
 
 				for (var/shuttle_id in SSmapping.shuttle_templates)
 					var/datum/map_template/shuttle/shuttle_template = SSmapping.shuttle_templates[shuttle_id]
+					
 					if (shuttle_template.credit_cost == INFINITY)
 						continue
-					if(shuttle_template.emag_buy)
-						if(!(obj_flags & EMAGGED))
-							continue
+					
+					if (!can_purchase_this_shuttle(shuttle_template))
+						continue
+					
 					shuttles += list(list(
 						"name" = shuttle_template.name,
 						"description" = shuttle_template.description,
+						"occupancy_limit" = shuttle_template.occupancy_limit,
 						"creditCost" = shuttle_template.credit_cost,
+						"initial_cost" = initial(shuttle_template.credit_cost),
+						"emagOnly" = shuttle_template.emag_only,
 						"prerequisites" = shuttle_template.prerequisites,
 						"ref" = REF(shuttle_template),
 					))
@@ -513,15 +516,41 @@
 /obj/machinery/computer/communications/proc/can_buy_shuttles(mob/user)
 	if (!SSmapping.config.allow_custom_shuttles)
 		return FALSE
-	if (!authenticated_as_non_silicon_captain(user))
+	if (issilicon(user))
 		return FALSE
+	
+	var/has_access = FALSE
+
+	for (var/access in SSshuttle.has_purchase_shuttle_access)
+		if (access in authorize_access)
+			has_access = TRUE
+			break
+
+	if (!has_access)
+		return FALSE
+
 	if (SSshuttle.emergency.mode != SHUTTLE_RECALL && SSshuttle.emergency.mode != SHUTTLE_IDLE)
 		return "The shuttle is already in transit."
-	if (SSshuttle.shuttle_purchased == SHUTTLEPURCHASE_PURCHASED  && (SSshuttle.emag_shuttle_purchased || !(obj_flags & EMAGGED)))
+	if (SSshuttle.shuttle_purchased == SHUTTLEPURCHASE_PURCHASED)
 		return "A replacement shuttle has already been purchased."
 	if (SSshuttle.shuttle_purchased == SHUTTLEPURCHASE_FORCED)
 		return "Due to unforseen circumstances, shuttle purchasing is no longer available."
 	return TRUE
+
+/// Returns whether we are authorized to buy this specific shuttle.
+/// Does not handle prerequisite checks, as those should still *show*.
+/obj/machinery/computer/communications/proc/can_purchase_this_shuttle(datum/map_template/shuttle/shuttle_template)
+	if (isnull(shuttle_template.who_can_purchase))
+		return FALSE
+
+	if (shuttle_template.emag_only)
+		return !!(obj_flags & EMAGGED)
+
+	for (var/access in authorize_access)
+		if (access in shuttle_template.who_can_purchase)
+			return TRUE
+
+	return FALSE
 
 /obj/machinery/computer/communications/proc/can_send_messages_to_other_sectors(mob/user)
 	if (!authenticated_as_non_silicon_captain(user))

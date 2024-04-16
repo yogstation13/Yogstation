@@ -12,6 +12,8 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	if(flags_1 & INITIALIZED_1)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_1 |= INITIALIZED_1
+	// Initial is non standard here, but ghosts move before they get here so it's needed. this is a cold path too so it's ok
+	SET_PLANE_IMPLICIT(src, initial(plane))
 	tag = "mob_[next_mob_id++]"
 	add_to_mob_list()
 
@@ -28,8 +30,10 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 /mob/dead/forceMove(atom/destination)
 	var/turf/old_turf = get_turf(src)
 	var/turf/new_turf = get_turf(destination)
+	if(is_secret_level(new_turf?.z) && (!client?.holder))
+		return
 	if (old_turf?.z != new_turf?.z)
-		onTransitZ(old_turf?.z, new_turf?.z)
+		on_changed_z_level(old_turf, new_turf)
 	var/oldloc = loc
 	loc = destination
 	Moved(oldloc, NONE, TRUE)
@@ -53,6 +57,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	. += "Players: [SSticker.totalPlayers]"
 	if(client.holder)
 		. += "Players Ready: [SSticker.totalPlayersReady]"
+		GLOB.event_role_manager.admin_status_panel(.)
 
 /mob/dead/proc/server_hop()
 	set category = "OOC"
@@ -81,7 +86,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 
 	var/client/C = client
 	to_chat(C, span_notice("Sending you to [pick]."))
-	new /atom/movable/screen/splash(C)
+	new /atom/movable/screen/splash(null, C)
 
 	notransform = TRUE
 	sleep(2.9 SECONDS)	//let the animation play
@@ -107,6 +112,8 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 
 /mob/dead/Login()
 	. = ..()
+	if(!. || !client)
+		return FALSE
 	var/turf/T = get_turf(src)
 	if (isturf(T))
 		update_z(T.z)
@@ -118,6 +125,6 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	update_z(null)
 	return ..()
 
-/mob/dead/onTransitZ(old_z,new_z)
+/mob/dead/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
 	..()
-	update_z(new_z)
+	update_z(new_turf?.z)

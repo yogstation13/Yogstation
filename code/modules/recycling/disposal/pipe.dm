@@ -7,11 +7,11 @@
 	anchored = TRUE
 	density = FALSE
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
-	level = 1			// underfloor only
 	dir = NONE			// dir will contain dominant direction for junction pipes
 	max_integrity = 200
 	armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 90, ACID = 30)
-	layer = DISPOSAL_PIPE_LAYER			// slightly lower than wires and other pipes
+	plane = FLOOR_PLANE
+	layer = DISPOSAL_PIPE_LAYER // slightly lower than wires and other pipes
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	var/dpdir = NONE					// bitmask of pipe directions
 	var/initialize_dirs = NONE			// bitflags of pipe directions added on init, see \code\_DEFINES\pipe_construction.dm
@@ -34,22 +34,22 @@
 
 	if(initialize_dirs != DISP_DIR_NONE)
 		dpdir = dir
-
 		if(initialize_dirs & DISP_DIR_LEFT)
 			dpdir |= turn(dir, 90)
 		if(initialize_dirs & DISP_DIR_RIGHT)
 			dpdir |= turn(dir, -90)
 		if(initialize_dirs & DISP_DIR_FLIP)
 			dpdir |= turn(dir, 180)
-	update()
+
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 
 // pipe is deleted
 // ensure if holder is present, it is expelled
 /obj/structure/disposalpipe/Destroy()
-	var/obj/structure/disposalholder/H = locate() in src
-	if(H)
-		H.active = FALSE
-		expel(H, get_turf(src), 0)
+	for(var/obj/structure/disposalholder/H as anything in src)
+		if(istype(H))
+			H.active = FALSE
+			expel(H, get_turf(src), 0)
 	QDEL_NULL(stored)
 	return ..()
 
@@ -80,16 +80,6 @@
 		H.forceMove(get_turf(src))
 		return null
 
-// update the icon_state to reflect hidden status
-/obj/structure/disposalpipe/proc/update()
-	var/turf/T = get_turf(src)
-	hide(T.intact && !isspaceturf(T))	// space never hides pipes
-
-// hide called by levelupdate if turf intact status changes
-// change visibility status and force update of icon
-/obj/structure/disposalpipe/hide(intact)
-	invisibility = intact ? INVISIBILITY_MAXIMUM: 0	// hide if floor is intact
-
 // expel the held objects into a turf
 // called when there is a break in the pipe
 /obj/structure/disposalpipe/proc/expel(obj/structure/disposalholder/H, turf/T, direction)
@@ -97,7 +87,7 @@
 	var/eject_range = 5
 	var/turf/open/floor/floorturf
 
-	if(isfloorturf(T)) //intact floor, pop the tile
+	if(isfloorturf(T) && T.overfloor_placed) // pop the tile if present
 		floorturf = T
 		floorturf.remove_tile()
 
@@ -145,7 +135,7 @@
 		H.contents_explosion(severity, target)
 
 
-/obj/structure/disposalpipe/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
+/obj/structure/disposalpipe/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
 	if(damage_flag == MELEE && damage_amount < 10)
 		return 0
 	return ..()

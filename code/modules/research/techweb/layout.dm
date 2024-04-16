@@ -151,13 +151,37 @@
 	ui_x = 32
 	ui_y = -320
 
-/datum/techweb_node/cyborg_upg_util
+/datum/techweb_node/cyborg_upgrades_utility
 	ui_x = -96
 	ui_y = 160
 
-/datum/techweb_node/adv_cyborg_upg_util
+/datum/techweb_node/cyborg_upgrades_engineering
 	ui_x = -32
 	ui_y = 160
+
+/datum/techweb_node/cyborg_upgrades_engineering_adv
+	ui_x = 32
+	ui_y = 160
+
+/datum/techweb_node/cyborg_upgrades_nvg
+	ui_x = 96
+	ui_y = 160
+
+/datum/techweb_node/cyborg_upgrades_medical
+	ui_x = -32
+	ui_y = 224
+
+/datum/techweb_node/cyborg_upgrades_medical_adv
+	ui_x = 32
+	ui_y = 224
+
+/datum/techweb_node/cyborg_upgrades_mining
+	ui_x = -32
+	ui_y = 288
+
+/datum/techweb_node/cyborg_upgrades_service
+	ui_x = -32
+	ui_y = 352
 
 /datum/techweb_node/basic_mining
 	ui_x = 96
@@ -230,10 +254,6 @@
 /datum/techweb_node/xenoorgan_biotech
 	ui_x = 256
 	ui_y = -64
-
-/datum/techweb_node/cyborg_upg_med
-	ui_x = 352
-	ui_y = -160
 
 /datum/techweb_node/cyber_organs
 	ui_x = 352
@@ -458,10 +478,6 @@
 /datum/techweb_node/shuttle_route_upgrade_hyper
 	ui_x = -224
 	ui_y = -736
-
-/datum/techweb_node/cyborg_upg_surgkit
-	ui_x = 416
-	ui_y = -160
 
 /datum/techweb_node/cyber_organs_upgraded
 	ui_x = 416

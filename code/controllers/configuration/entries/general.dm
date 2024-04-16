@@ -159,11 +159,6 @@
 
 /datum/config_entry/flag/allow_holidays
 
-/datum/config_entry/number/tick_limit_mc_init	//SSinitialization throttling
-	config_entry_value = TICK_LIMIT_MC_INIT_DEFAULT
-	min_val = 0 //oranges warned us
-	integer = FALSE
-
 /datum/config_entry/flag/protect_legacy_admins	//Stops any admins loaded by the legacy system from having their rank edited by the permissions panel
 	protection = CONFIG_ENTRY_LOCKED
 
@@ -302,11 +297,15 @@
 
 /datum/config_entry/flag/maprotation
 
-/datum/config_entry/number/maprotatechancedelta
+/datum/config_entry/number/maprotationchancedelta
 	config_entry_value = 0.75
 	min_val = 0
 	max_val = 1
 	integer = FALSE
+
+/datum/config_entry/number/auto_lag_switch_pop //Number of clients at which drastic lag mitigation measures kick in
+	config_entry_value = null
+	min_val = 0
 
 /datum/config_entry/number/soft_popcap
 	config_entry_value = null
@@ -454,17 +453,17 @@
 
 /datum/config_entry/number/mc_tick_rate/base_mc_tick_rate
 	integer = FALSE
-	config_entry_value = 1
+	default = 1
 
 /datum/config_entry/number/mc_tick_rate/high_pop_mc_tick_rate
 	integer = FALSE
-	config_entry_value = 1.1
+	default = 1.1
 
 /datum/config_entry/number/mc_tick_rate/high_pop_mc_mode_amount
-	config_entry_value = 65
+	default = 65
 
 /datum/config_entry/number/mc_tick_rate/disable_high_pop_mc_mode_amount
-	config_entry_value = 60
+	default = 60
 
 /datum/config_entry/number/mc_tick_rate
 	abstract_type = /datum/config_entry/number/mc_tick_rate
@@ -478,7 +477,7 @@
 
 /datum/config_entry/flag/resume_after_initializations/ValidateAndSet(str_val)
 	. = ..()
-	if(. && Master.current_runlevel)
+	if(. && MC_RUNNING())
 		world.sleep_offline = !config_entry_value
 
 /datum/config_entry/number/rounds_until_hard_restart
@@ -508,6 +507,13 @@
 /datum/config_entry/flag/protect_AI_from_traitor
 
 /datum/config_entry/flag/everyone_is_donator
+
+/datum/config_entry/flag/auto_profile
+/datum/config_entry/number/drift_dump_threshold
+	default = 4 SECONDS
+
+/datum/config_entry/number/drift_profile_delay
+	default = 15 SECONDS
 
 /datum/config_entry/string/centcom_ban_db	// URL for the CentCom Galactic Ban DB API
 
@@ -547,3 +553,5 @@
 
 /// Whether demos are written, if not set demo SS never initializes
 /datum/config_entry/flag/demos_enabled
+
+/datum/config_entry/flag/toast_notification_on_init

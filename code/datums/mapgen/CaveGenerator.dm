@@ -97,8 +97,8 @@
 		// The old tile hasn't got the chance to init yet
 		new_turf = new new_turf(gen_turf)
 
-		if(gen_turf.flags_1 & NO_RUINS_1)
-			new_turf.flags_1 |= NO_RUINS_1
+		if(gen_turf.turf_flags & NO_RUINS)
+			new_turf.turf_flags |= NO_RUINS
 
 		if(closed) //Open turfs have some special behavior related to spawning flora and mobs.
 			CHECK_TICK

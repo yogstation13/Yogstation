@@ -1,6 +1,6 @@
 /obj/item/stack/license_plates
 	name = "invalid plate"
-	desc = "someone fucked up"
+	desc = "Someone fucked up."
 	icon = 'icons/obj/machines/prison.dmi'
 	icon_state = "empty_plate"
 	novariants = FALSE

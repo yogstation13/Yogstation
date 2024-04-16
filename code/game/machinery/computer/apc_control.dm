@@ -181,12 +181,13 @@
 			var/setTo = target.operating ? "On" : "Off"
 			log_activity("Turned APC [target.area.name]'s breaker [setTo]")
 
-/obj/machinery/computer/apc_control/emag_act(mob/user)
+/obj/machinery/computer/apc_control/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	log_game("[key_name(user)] emagged [src] at [AREACOORD(src)]")
 	playsound(src, "sparks", 50, TRUE)
+	return TRUE
 
 /obj/machinery/computer/apc_control/proc/log_activity(log_text)
 	if(!should_log)

@@ -4,7 +4,7 @@
 	name = "chief engineer's jumpsuit"
 	icon_state = "chiefengineer"
 	item_state = "gy_suit"
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 10, FIRE = 80, ACID = 40)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 10, FIRE = 80, ACID = 40, ELECTRIC = 10)
 	resistance_flags = NONE
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
@@ -26,7 +26,7 @@
 	name = "atmospheric technician's jumpsuit"
 	icon_state = "atmos"
 	item_state = "atmos_suit"
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 0)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 0, ELECTRIC = 0)
 	resistance_flags = NONE
 	mutantrace_variation = MUTANTRACE_VARIATION
 

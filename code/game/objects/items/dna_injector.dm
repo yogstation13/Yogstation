@@ -66,7 +66,7 @@
 	if(target != user)
 		target.visible_message(span_danger("[user] is trying to inject [target] with [src]!"), \
 			span_userdanger("[user] is trying to inject you with [src]!"))
-		if(!do_mob(user, target) || used)
+		if(!do_after(user, 3 SECONDS, target) || used)
 			return
 		target.visible_message("<span class='danger'>[user] injects [target] with the syringe with [src]!", \
 						span_userdanger("[user] injects you with the syringe with [src]!"))
@@ -88,12 +88,7 @@
 /obj/item/dnainjector/antihulk
 	name = "\improper DNA injector (Anti-Hulk)"
 	desc = "Cures green skin."
-	remove_mutations = list(HULK, ACTIVE_HULK, GENETICS_HULK)
-
-/obj/item/dnainjector/hulkmut/genetics_hulk
-	name = "\improper DNA injector (Genetics Hulk)"
-	desc = "This will make you big and strong if you get hurt, but give you a bad skin condition."
-	add_mutations = list(GENETICS_HULK)
+	remove_mutations = list(HULK)
 
 /obj/item/dnainjector/hulkmut
 	name = "\improper DNA injector (Hulk)"
@@ -104,6 +99,16 @@
 	name = "\improper DNA injector (Fire Breath)"
 	desc = "Restores the dragon ancestry."
 	add_mutations = list(FIREBREATH)
+
+/obj/item/dnainjector/acidspit
+	name = "\improper DNA injector (Acid Spit)"
+	desc = "Lets you spit acid."
+	add_mutations = list(ACIDSPIT)
+
+/obj/item/dnainjector/antispit
+	name ="\improper DNA injector (Anti-Acid Spit)"
+	desc = "Cures your corrosive saliva."
+	remove_mutations = list(ACIDSPIT)
 
 /obj/item/dnainjector/xraymut
 	name = "\improper DNA injector (X-ray)"
@@ -156,6 +161,16 @@
 	desc = "It's a small world after all."
 	add_mutations = list(DWARFISM)
 
+/obj/item/dnainjector/antiravenous
+	name = "\improper DNA injector (Anti-Ravenous)"
+	desc = "Cures ravenous."
+	remove_mutations = list(RAVENOUS)
+
+/obj/item/dnainjector/ravenous
+	name = "\improper DNA injector (Ravenous)"
+	desc = "Gives you ravenous."
+	add_mutations = list(RAVENOUS)
+
 /obj/item/dnainjector/clumsymut
 	name = "\improper DNA injector (Clumsy)"
 	desc = "Makes clown minions."
@@ -195,6 +210,16 @@
 	name = "\improper DNA injector (Space Adaptation)"
 	desc = "Gives you space adaptation."
 	add_mutations = list(SPACEMUT)
+
+/obj/item/dnainjector/antiradiant
+	name = "\improper DNA injector (Anti-Radiant Burst)"
+	desc = "Cures radiant burst."
+	remove_mutations = list(RADIANTBURST)
+
+/obj/item/dnainjector/radiantburst
+	name = "\improper DNA injector (Radiant Burst)"
+	desc = "Gives you radiant burst."
+	add_mutations = list(RADIANTBURST)
 
 /obj/item/dnainjector/antiheat
 	name = "\improper DNA injector (Anti-Heat Adaptation)"
@@ -346,14 +371,6 @@
 	name = "\improper DNA injector (Anti-Paranoia)"
 	remove_mutations = list(PARANOIA)
 
-/obj/item/dnainjector/mindread
-	name = "\improper DNA injector (Mindread)"
-	add_mutations = list(MINDREAD)
-
-/obj/item/dnainjector/antimindread
-	name = "\improper DNA injector (Anti-Mindread)"
-	remove_mutations = list(MINDREAD)
-
 /obj/item/dnainjector/radioactive
 	name = "\improper DNA injector (Radioactive)"
 	add_mutations = list(RADIOACTIVE)
@@ -473,6 +490,22 @@
 /obj/item/dnainjector/removeantiglow
 	name = "\improper DNA injector (Anti-Antiglowy)"
 	remove_mutations = list(ANTIGLOWY)
+
+/obj/item/dnainjector/fierysweat
+	name = "\improper DNA injector (Fiery Sweat)"
+	add_mutations = list(FIRESWEAT)
+
+/obj/item/dnainjector/strong
+	name = "\improper DNA injector (Strength)"
+	add_mutations = list(STRONG)
+
+/obj/item/dnainjector/thickskin
+	name = "\improper DNA injector (Thick Skin)"
+	add_mutations = list(THICKSKIN)
+
+/obj/item/dnainjector/densebones
+	name = "\improper DNA injector (Bone Densification)"
+	add_mutations = list(DENSEBONES)
 
 /obj/item/dnainjector/timed
 	var/duration = 600

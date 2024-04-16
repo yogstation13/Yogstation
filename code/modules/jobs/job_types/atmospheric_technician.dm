@@ -7,7 +7,6 @@
 	total_positions = 3
 	spawn_positions = 2
 	supervisors = "the chief engineer"
-	selection_color = "#fff5cc"
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
 	alt_titles = list("Life-support Technician", "Fire Suppression Specialist", "Atmospherics Trainee", "Environmental Maintainer", "Fusion Specialist")
@@ -33,6 +32,8 @@
 		/obj/item/grenade/gas_crystal/nitrous_oxide_crystal = 5,
 		/obj/item/clothing/suit/space/hardsuit/engine/atmos = 1,
 	)
+	
+	minimal_lightup_areas = list(/area/engine/atmos)
 
 	smells_like = "a gas leak"
 
@@ -40,7 +41,7 @@
 	name = "Atmospheric Technician"
 	jobtype = /datum/job/atmos
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/atmos
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/atmos
 
 	belt = /obj/item/storage/belt/utility/atmostech
 	ears = /obj/item/radio/headset/headset_eng
@@ -52,7 +53,7 @@
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
-	box = /obj/item/storage/box/engineer
+	box = /obj/item/storage/box/survival/engineer
 
 	pda_slot = ITEM_SLOT_LPOCKET
 

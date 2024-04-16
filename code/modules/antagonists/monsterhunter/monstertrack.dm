@@ -18,7 +18,7 @@
 	. = ..()
 	/// Return text indicating direction
 	to_chat(owner, span_notice("You look around, scanning your environment and discerning signs of any filthy, wretched affronts to the natural order..."))
-	if(!do_mob(owner, owner, 6 SECONDS))
+	if(!do_after(owner, 6 SECONDS))
 		to_chat(owner,span_warning("You were interrupted and lost the tracks!"))
 		DeactivatePower()
 		return

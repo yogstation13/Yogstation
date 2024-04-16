@@ -35,7 +35,7 @@
 	key = "dap"
 	key_third_person = "daps"
 	message = "sadly can't find anybody to give daps to, and daps themself. Shameful."
-	message_param = "give daps to %t."
+	message_param = "gives daps to %t."
 	hands_use_check = TRUE
 
 /datum/emote/living/carbon/human/eyebrow
@@ -146,8 +146,8 @@
 	emote_type = EMOTE_AUDIBLE
 	sound = 'sound/voice/rattled.ogg'
 
-/datum/emote/living/carbon/rattle/can_run_emote(mob/living/user, status_check = TRUE, intentional)
-	return isskeleton(user) && ..()
+/datum/emote/living/carbon/human/rattle/can_run_emote(mob/living/user, status_check = TRUE, intentional)
+	return (isskeleton(user) || isplasmaman(user)) && ..()
 
 /datum/emote/living/carbon/human/pale
 	key = "pale"
@@ -170,6 +170,28 @@
 	key = "shrug"
 	key_third_person = "shrugs"
 	message = "shrugs."
+
+// Tail thump! Lizard-tail exclusive emote.
+/datum/emote/living/carbon/human/tailthump
+	key = "thump"
+	key_third_person = "thumps their tail"
+	message = "thumps their tail!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+
+/datum/emote/living/carbon/human/tailthump/get_sound(mob/living/user)
+	return 'sound/voice/lizard/tailthump.ogg' // Source: https://freesound.org/people/TylerAM/sounds/389665/
+
+/datum/emote/living/carbon/human/tailthump/can_run_emote(mob/user, status_check = TRUE, intentional)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/mob/living/carbon/human/H = user
+	if(!istype(H) || !H.dna || !H.dna.species)
+		return FALSE
+	if(H.IsParalyzed() || H.IsStun()) // No thumping allowed. Taken from can_wag_tail().
+		return FALSE
+	return ("tail_lizard" in H.dna.species.mutant_bodyparts) || ("waggingtail_lizard" in H.dna.species.mutant_bodyparts)
 
 /datum/emote/living/carbon/human/wag
 	key = "wag"
@@ -204,6 +226,40 @@
 		return
 	if(H.dna.species.is_wagging_tail())
 		. = null
+
+/datum/emote/living/carbon/human/flap
+	key = "flap"
+	key_third_person = "flaps"
+	message = "flaps their wings."
+	hands_use_check = TRUE
+	var/wing_time = 20
+
+/datum/emote/living/carbon/human/flap/can_run_emote(mob/user, status_check, intentional)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.dna.features["wings"] == "None")
+			return FALSE
+	return ..()
+
+/datum/emote/living/carbon/human/flap/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(. && ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/open = FALSE
+		if(H.dna.features["wings"] != "None")
+			if("wingsopen" in H.dna.species.mutant_bodyparts)
+				open = TRUE
+				H.CloseWings()
+			else
+				H.OpenWings()
+			addtimer(CALLBACK(H, open ? TYPE_PROC_REF(/mob/living/carbon/human, OpenWings) : TYPE_PROC_REF(/mob/living/carbon/human, CloseWings)), wing_time)
+
+/datum/emote/living/carbon/human/flap/aflap
+	key = "aflap"
+	key_third_person = "aflaps"
+	message = "flaps their wings ANGRILY!"
+	hands_use_check = TRUE
+	wing_time = 10
 
 /datum/emote/living/carbon/human/wing
 	key = "wing"

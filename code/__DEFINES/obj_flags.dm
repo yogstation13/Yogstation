@@ -4,13 +4,21 @@
 #define EMAGGED					(1<<0)
 #define IN_USE					(1<<1) // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 #define CAN_BE_HIT				(1<<2) //can this be bludgeoned by items?
-#define BEING_SHOCKED			(1<<3) // Whether this thing is currently (already) being shocked by a tesla
-#define DANGEROUS_POSSESSION	(1<<4) //Admin possession yes/no
-#define ON_BLUEPRINTS			(1<<5)  //Are we visible on the station blueprints at roundstart?
-#define UNIQUE_RENAME			(1<<6) // can you customize the name of the thing?
-#define USES_TGUI				(1<<7)	//put on things that use tgui on ui_interact instead of custom/old UI.
-#define FROZEN					(1<<8)
-#define UNIQUE_REDESC			(1<<9) // can you customize the description of the thing?
+#define DANGEROUS_POSSESSION	(1<<3) //Admin possession yes/no
+#define BEING_SHOCKED			(1<<4) // Whether this thing is currently (already) being shocked by a tesla
+#define BLOCK_Z_OUT_DOWN 		(1<<5)  // Should this object block z falling from loc?
+#define BLOCK_Z_OUT_UP 			(1<<6) // Should this object block z uprise from loc?
+#define BLOCK_Z_IN_DOWN 		(1<<7) // Should this object block z falling from above?
+#define BLOCK_Z_IN_UP 			(1<<8) // Should this object block z uprise from below?
+#define BLOCKS_CONSTRUCTION 	(1<<9) //! Does this object prevent things from being built on it?
+#define BLOCKS_CONSTRUCTION_DIR (1<<10) //! Does this object prevent same-direction things from being built on it?
+#define IGNORE_DENSITY 			(1<<11) //! Can we ignore density when building on this object? (for example, directional windows and grilles)
+#define ON_BLUEPRINTS			(1<<12)  //Are we visible on the station blueprints at roundstart?
+#define UNIQUE_RENAME			(1<<13) // can you customize the name of the thing?
+#define USES_TGUI				(1<<14)	//put on things that use tgui on ui_interact instead of custom/old UI.
+#define FROZEN					(1<<15)
+#define UNIQUE_REDESC			(1<<16) // can you customize the description of the thing?
+#define CMAGGED					(1<<17)
 
 // If you add new ones, be sure to add them to /obj/Initialize as well for complete mapping support
 
@@ -43,20 +51,39 @@
 
 // Flags for the clothing_flags var on /obj/item/clothing
 
+/// SUIT and HEAD items which stop lava from hurting the wearer
 #define LAVAPROTECT (1<<0)
-#define STOPSPRESSUREDAMAGE		(1<<1)	//SUIT and HEAD items which stop pressure damage. To stop you taking all pressure damage you must have both a suit and head item with this flag.
-#define BLOCK_GAS_SMOKE_EFFECT	(1<<2)	// blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY!
-#define MASKINTERNALS				    (1<<3)		// mask allows internals
-#define NOSLIP                  (1<<4)   //prevents from slipping on wet floors, in space etc
-#define NOSLIP_ICE				(1<<5)	 //prevents from slipping on frozen floors
-#define THICKMATERIAL				(1<<6)	//prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
-#define VOICEBOX_TOGGLABLE (1<<7) // The voicebox in this clothing can be toggled.
-#define VOICEBOX_DISABLED (1<<8) // The voicebox is currently turned off.
-#define SHOWEROKAY				(1<<9)	//prevents you from being stupid if you shower in them
-#define SCAN_REAGENTS (1<<10) // Allows helmets and glasses to scan reagents.
-#define MASKEXTENDRANGE			(1<<12) //! For masks, allows you to breathe from internals on adjecent tiles
+/// SUIT and HEAD items which stop pressure damage.
+/// To stop you taking all pressure damage you must have both a suit and head item with these flags. First one is high pressure (fires), second one is low (space).
+#define STOPSHIGHPRESSURE (1<<1) 
+#define STOPSLOWPRESSURE (1<<2)
+/// Blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY!
+#define BLOCK_GAS_SMOKE_EFFECT (1<<3)
+/// Mask allows internals
+#define MASKINTERNALS (1<<4)
+/// Prevents from slipping on wet floors, in space etc
+#define NOSLIP (1<<5) 
+/// Prevents from slipping on frozen floors
+#define NOSLIP_ICE (1<<6)
+/// Prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag.
+/// Example: space suits, biosuit, bombsuits, thick suits that cover your body.
+#define THICKMATERIAL (1<<7)
+/// The voicebox in this clothing can be toggled.
+#define VOICEBOX_TOGGLABLE (1<<8)
+/// The voicebox is currently turned off.
+#define VOICEBOX_DISABLED (1<<9) 
+/// Prevents you from feeling sad if you shower in them
+#define SHOWEROKAY (1<<10)
+/// Allows helmets and glasses to scan reagents.
+#define SCAN_REAGENTS (1<<11)
+//! For masks, allows you to breathe from internals on adjecent tiles
+#define MASKEXTENDRANGE	(1<<12)
 /// Headgear/helmet allows internals
 #define HEADINTERNALS (1<<13)
+/// Clothes that use large icons, for applying the proper overlays like blood
+#define LARGE_WORN_ICON (1<<14)
+
+#define STOPSPRESSUREDAMAGE 	(STOPSHIGHPRESSURE | STOPSLOWPRESSURE) //covers both high and low pressure
 
 /// Flags for the organ_flags var on /obj/item/organ
 
@@ -82,3 +109,4 @@
 #define ADD_CLOTHING_TRAIT(mob, trait) ADD_TRAIT(mob, trait, "[CLOTHING_TRAIT]_[REF(src)]")
 /// Wrapper for removing clothing based traits
 #define REMOVE_CLOTHING_TRAIT(mob, trait) REMOVE_TRAIT(mob, trait, "[CLOTHING_TRAIT]_[REF(src)]")
+

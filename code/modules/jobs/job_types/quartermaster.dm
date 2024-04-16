@@ -8,7 +8,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of personnel"
-	selection_color = "#d7b088"
 	outfit = /datum/outfit/job/quartermaster
 	alt_titles = list("Stock Controller", "Cargo Coordinator", "Shipping Overseer", "Postmaster General")
 	added_access = list()
@@ -31,6 +30,10 @@
 		/obj/item/circuitboard/machine/vending/donksofttoyvendor = 1
 	)
 
+	minimal_lightup_areas = list(
+		/area/quartermaster/qm
+	)
+
 	smells_like = "capitalism"
 
 	exp_requirements = 120
@@ -41,7 +44,7 @@
 	name = "Quartermaster"
 	jobtype = /datum/job/qm
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/cargo
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/cargo/quartermaster
 
 	ears = /obj/item/radio/headset/headset_cargo
 	uniform = /obj/item/clothing/under/rank/cargo

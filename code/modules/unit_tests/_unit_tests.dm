@@ -58,35 +58,26 @@
 #define TEST_DEFAULT 1
 /// After most test steps, used for tests that run long so shorter issues can be noticed faster
 #define TEST_LONGER 10
-/// This must be the last test to run due to the inherent nature of the test iterating every single tangible atom in the game and qdeleting all of them (while taking long sleeps to make sure the garbage collector fires properly) taking a large amount of time.
-#define TEST_CREATE_AND_DESTROY INFINITY
+/// This must be the one of last tests to run due to the inherent nature of the test iterating every single tangible atom in the game and qdeleting all of them (while taking long sleeps to make sure the garbage collector fires properly) taking a large amount of time.
+#define TEST_CREATE_AND_DESTROY 9001
+/**
+ * For tests that rely on create and destroy having iterated through every (tangible) atom so they don't have to do something similar.
+ * Keep in mind tho that create and destroy will absolutely break the test platform, anything that relies on its shape cannot come after it.
+ */
+#define TEST_AFTER_CREATE_AND_DESTROY INFINITY
 
-/// Change color to red on ANSI terminal output, if enabled with -DANSICOLORS.
-#ifdef ANSICOLORS
-#define TEST_OUTPUT_RED(text) "\x1B\x5B1;31m[text]\x1B\x5B0m"
-#else
-#define TEST_OUTPUT_RED(text) (text)
-#endif
-/// Change color to green on ANSI terminal output, if enabled with -DANSICOLORS.
-#ifdef ANSICOLORS
-#define TEST_OUTPUT_GREEN(text) "\x1B\x5B1;32m[text]\x1B\x5B0m"
-#else
-#define TEST_OUTPUT_GREEN(text) (text)
-#endif
-/// Change color to yellow on ANSI terminal output, if enabled with -DANSICOLORS.
-#ifdef ANSICOLORS
-#define TEST_OUTPUT_YELLOW(text) "\x1B\x5B1;33m[text]\x1B\x5B0m"
-#else
-#define TEST_OUTPUT_YELLOW(text) (text)
-#endif
 /// A trait source when adding traits through unit tests
 #define TRAIT_SOURCE_UNIT_TESTS "unit_tests"
 
 #include "anchored_mobs.dm"
+#include "atmos_tests.dm"
+#include "baseturfs.dm"
 #include "component_tests.dm"
+#include "dcs_check_list_arguments.dm"
 #include "dragon_expiration.dm"
 #include "dynamic_ruleset_sanity.dm"
 #include "focus_only_tests.dm"
+#include "greyscale_config.dm"
 #include "map_landmarks.dm"
 #include "mapping.dm"
 #include "monkey_business.dm"
@@ -96,6 +87,7 @@
 #include "species_whitelists.dm"
 #include "subsystem_init.dm"
 #include "timer_sanity.dm"
+#include "trait_addition_and_removal.dm"
 #include "unit_test.dm"
 
 #undef TEST_ASSERT

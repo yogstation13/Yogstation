@@ -83,11 +83,16 @@
 	item_flags = SURGICAL_TOOL
 	tool_behaviour = TOOL_CAUTERY
 	w_class = WEIGHT_CLASS_TINY
+	force = 3
+	damtype = BURN
 	attack_verb = list("burnt")
 
 /obj/item/cautery/attack(mob/living/M, mob/user)
 	if(!attempt_initiate_surgery(src, M, user))
 		..()
+
+/obj/item/cautery/ignition_effect(atom/A, mob/living/user)
+	. = span_danger("[user] carefully lights their [A.name] with [src].")
 
 /obj/item/cautery/augment
 	name = "cautery"
@@ -97,7 +102,6 @@
 	materials = list(/datum/material/iron=2500, /datum/material/glass=750)
 	w_class = WEIGHT_CLASS_TINY
 	toolspeed = 0.5
-	attack_verb = list("burnt")
 
 
 /obj/item/cautery/bone
@@ -168,6 +172,7 @@
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
+	demolition_mod = 0.25
 	materials = list(/datum/material/iron=4000, /datum/material/glass=1000)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -236,6 +241,7 @@
 
 /obj/item/circular_saw/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/cleave_attack)
 	AddComponent(/datum/component/butchering, 40 * toolspeed, 100, 5, 'sound/weapons/circsawhit.ogg') //saws are very accurate and fast at butchering
 
 /obj/item/circular_saw/attack(mob/living/M, mob/user)
@@ -398,8 +404,12 @@
 	light_range = 1
 	light_color = LIGHT_COLOR_GREEN
 	light_power = 0.2	//Barely glows on low power
+	demolition_mod = 1.5 // lasers are good at cutting metal
 	sharpness = SHARP_EDGED
 
+/obj/item/scalpel/advanced/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack) // woe, angry medbay be upon ye
 
 /obj/item/scalpel/advanced/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/machines/click.ogg', 50, TRUE)
@@ -459,11 +469,15 @@
 		playsound(get_turf(user),'sound/items/welderdeactivate.ogg',50,1)
 		to_chat(user, span_notice("You focus the lensess, it is now set to drilling mode."))
 		tool_behaviour = TOOL_DRILL
+		sharpness = SHARP_POINTY
+		force += 1
 		icon_state = "surgicaldrill_a"
 	else
 		playsound(get_turf(user),'sound/weapons/tap.ogg',50,1)
 		to_chat(user, span_notice("You dilate the lenses, setting it to mending mode."))
 		tool_behaviour = TOOL_CAUTERY
+		sharpness = SHARP_NONE
+		force -= 1
 		icon_state = "cautery_a"
 
 /obj/item/cautery/advanced/examine()

@@ -123,7 +123,7 @@
 		return 0
 	if(!M.has_charge(required_mecha_charge))
 		return 0
-	if(M.obj_integrity < M.max_integrity*0.5)
+	if(M.get_integrity() < M.max_integrity*0.5)
 		return 0
 	return 1
 
@@ -183,7 +183,7 @@
 
 		if(mecha.melee_can_hit)
 			mecha_face_target(target)
-			target.mech_melee_attack(mecha, TRUE)
+			target.mech_melee_attack(mecha, mecha.force, TRUE)
 	else
 		if(ismecha(target))
 			var/obj/mecha/M = target
@@ -217,7 +217,7 @@
 				return
 
 			//Too Much Damage - Eject
-			if(mecha.obj_integrity < mecha.max_integrity*0.1)
+			if(mecha.get_integrity() < mecha.max_integrity*0.1)
 				exit_mecha(mecha)
 				return
 
@@ -227,7 +227,7 @@
 					mecha.smoke_action.Activate()
 
 			//Heavy damage - defence Power or Retreat
-			if(mecha.obj_integrity < mecha.max_integrity*0.25)
+			if(mecha.get_integrity() < mecha.max_integrity*0.25)
 				if(prob(defence_mode_chance))
 					if(mecha.defence_action && mecha.defence_action.owner && !mecha.defence_mode)
 						mecha.leg_overload_mode = 0

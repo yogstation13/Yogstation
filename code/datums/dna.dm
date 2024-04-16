@@ -52,7 +52,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	var/unique_enzymes
 	///Stores the hashed values of traits such as skin tones, hair style, and gender
 	var/unique_identity
-	var/blood_type
+	var/datum/blood_type/blood_type
 	///The type of mutant race the player is if applicable (i.e. potato-man)
 	var/datum/species/species = new /datum/species/human
 	///first value is mutant color
@@ -190,8 +190,6 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 
 	if(features["mcolor"])
 		L[DNA_MUTANT_COLOR_BLOCK] = sanitize_hexcolor(features["mcolor"], include_crunch = FALSE)
-	if(features["ethcolor"])
-		L[DNA_ETHEREAL_COLOR_BLOCK] = sanitize_hexcolor(features["ethcolor"], include_crunch = FALSE)
 	if(features["body_markings"])
 		L[DNA_LIZARD_MARKINGS_BLOCK] = construct_block(GLOB.body_markings_list.Find(features["body_markings"]), GLOB.body_markings_list.len)
 	if(features["tail_lizard"])
@@ -222,6 +220,12 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		L[DNA_POLY_DORSAL_BLOCK] = construct_block(GLOB.dorsal_tubes_list.Find(features["dorsal_tubes"]), GLOB.dorsal_tubes_list.len)
 	if(features["ethereal_mark"])
 		L[DNA_ETHEREAL_MARK_BLOCK] = construct_block(GLOB.ethereal_mark_list.Find(features["ethereal_mark"]), GLOB.ethereal_mark_list.len)
+	if(features["preternis_weathering"])
+		L[DNA_PRETERNIS_WEATHERING_BLOCK] = construct_block(GLOB.preternis_weathering_list.Find(features["preternis_weathering"]), GLOB.preternis_weathering_list.len)
+	if(features["preternis_antenna"])
+		L[DNA_PRETERNIS_ANTENNA_BLOCK] = construct_block(GLOB.preternis_antenna_list.Find(features["preternis_antenna"]), GLOB.preternis_antenna_list.len)
+	if(features["preternis_eye"])
+		L[DNA_PRETERNIS_EYE_BLOCK] = construct_block(GLOB.preternis_eye_list.Find(features["preternis_eye"]), GLOB.preternis_eye_list.len)
 	if(features["pod_hair"])
 		L[DNA_POD_HAIR_BLOCK] = construct_block(GLOB.pod_hair_list.Find(features["pod_hair"]), GLOB.pod_hair_list.len)
 	if(features["pod_flower"])
@@ -337,8 +341,6 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	switch(blocknumber)
 		if(DNA_MUTANT_COLOR_BLOCK)
 			set_uni_feature_block(blocknumber, sanitize_hexcolor(features["mcolor"], include_crunch = FALSE))
-		if(DNA_ETHEREAL_COLOR_BLOCK)
-			set_uni_feature_block(blocknumber, sanitize_hexcolor(features["ethcolor"], include_crunch = FALSE))
 		if(DNA_LIZARD_MARKINGS_BLOCK)
 			set_uni_feature_block(blocknumber, construct_block(GLOB.body_markings_list.Find(features["body_markings"]), GLOB.body_markings_list.len))
 		if(DNA_LIZARD_TAIL_BLOCK)
@@ -369,6 +371,12 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 			set_uni_feature_block(blocknumber, construct_block(GLOB.dorsal_tubes_list.Find(features["dorsal_tubes"]), GLOB.dorsal_tubes_list.len))
 		if(DNA_ETHEREAL_MARK_BLOCK)
 			set_uni_feature_block(blocknumber, construct_block(GLOB.ethereal_mark_list.Find(features["ethereal_mark"]), GLOB.ethereal_mark_list.len))
+		if(DNA_PRETERNIS_WEATHERING_BLOCK)
+			set_uni_feature_block(blocknumber, construct_block(GLOB.preternis_weathering_list.Find(features["preternis_weathering"]), GLOB.preternis_weathering_list.len))
+		if(DNA_PRETERNIS_ANTENNA_BLOCK)
+			set_uni_feature_block(blocknumber, construct_block(GLOB.preternis_antenna_list.Find(features["preternis_antenna"]), GLOB.preternis_antenna_list.len))
+		if(DNA_PRETERNIS_EYE_BLOCK)
+			set_uni_feature_block(blocknumber, construct_block(GLOB.preternis_eye_list.Find(features["preternis_eye"]), GLOB.preternis_eye_list.len))
 		if(DNA_POD_HAIR_BLOCK)
 			set_uni_feature_block(blocknumber, construct_block(GLOB.pod_hair_list.Find(features["pod_hair"]), GLOB.pod_hair_list.len))
 		if(DNA_POD_FLOWER_BLOCK)
@@ -472,6 +480,8 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 
 
 /mob/living/carbon/set_species(datum/species/mrace, icon_update = TRUE, pref_load = FALSE)
+	if(HAS_TRAIT(src, TRAIT_SPECIESLOCK))//can't swap species
+		return
 	if(mrace && has_dna())
 		var/datum/species/new_race
 		if(ispath(mrace))
@@ -583,8 +593,6 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	var/features = dna.unique_features
 	if(dna.features["mcolor"])
 		dna.features["mcolor"] = sanitize_hexcolor(get_uni_feature_block(features, DNA_MUTANT_COLOR_BLOCK))
-	if(dna.features["ethcolor"])
-		dna.features["ethcolor"] = sanitize_hexcolor(get_uni_feature_block(features, DNA_ETHEREAL_COLOR_BLOCK))
 	if(dna.features["body_markings"])
 		dna.features["body_markings"] = GLOB.body_markings_list[deconstruct_block(get_uni_feature_block(features, DNA_LIZARD_MARKINGS_BLOCK), GLOB.body_markings_list.len)]
 	if(dna.features["tail_lizard"])
@@ -618,6 +626,12 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		dna.features["dorsal_tubes"] = GLOB.dorsal_tubes_list[deconstruct_block(get_uni_feature_block(features, DNA_POLY_DORSAL_BLOCK), GLOB.dorsal_tubes_list.len)]
 	if(dna.features["ethereal_mark"])
 		dna.features["ethereal_mark"] = GLOB.ethereal_mark_list[deconstruct_block(get_uni_feature_block(features, DNA_ETHEREAL_MARK_BLOCK), GLOB.ethereal_mark_list.len)]
+	if(dna.features["preternis_weathering"])
+		dna.features["preternis_weathering"] = GLOB.preternis_weathering_list[deconstruct_block(get_uni_feature_block(features, DNA_PRETERNIS_WEATHERING_BLOCK), GLOB.preternis_weathering_list.len)]
+	if(dna.features["preternis_antenna"])
+		dna.features["preternis_antenna"] = GLOB.preternis_antenna_list[deconstruct_block(get_uni_feature_block(features, DNA_PRETERNIS_ANTENNA_BLOCK), GLOB.preternis_antenna_list.len)]
+	if(dna.features["preternis_eye"])
+		dna.features["preternis_eye"] = GLOB.preternis_eye_list[deconstruct_block(get_uni_feature_block(features, DNA_PRETERNIS_EYE_BLOCK), GLOB.preternis_eye_list.len)]
 	if(dna.features["pod_hair"])
 		dna.features["pod_hair"] = GLOB.pod_hair_list[deconstruct_block(get_uni_feature_block(features, DNA_POD_HAIR_BLOCK), GLOB.pod_hair_list.len)]
 	if(dna.features["pod_flower"])

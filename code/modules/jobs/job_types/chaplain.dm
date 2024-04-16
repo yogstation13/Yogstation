@@ -8,14 +8,13 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of personnel"
-	selection_color = "#dddddd"
 
 	outfit = /datum/outfit/job/chaplain
 
 	alt_titles = list("Priest", "Preacher", "Cleric", "Exorcist", "Vicar")
 
 	added_access = list()
-	base_access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_THEATRE)
+	base_access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_THEATRE, ACCESS_SERVHALL)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CIV
 
@@ -34,6 +33,12 @@
 		/obj/item/toy/plush/narplush = 2,
 		/obj/item/toy/plush/plushvar = 1,
 		/obj/item/grenade/chem_grenade/holy = 1 //holy hand grenade
+	)
+	
+	minimal_lightup_areas = list(
+		/area/chapel,
+		/area/medical/morgue,
+		/area/crew_quarters/theatre
 	)
 
 	smells_like = "zealous fervor"
@@ -170,7 +175,7 @@
 	name = "Chaplain"
 	jobtype = /datum/job/chaplain
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/chaplain
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/chaplain

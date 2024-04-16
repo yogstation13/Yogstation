@@ -42,7 +42,7 @@
 	target.visible_message(span_danger("[target] starts to glow faintly!"), span_userdanger("You start to faintly glow, and you feel strangely weightless!"))
 	guardian.do_attack_animation(target)
 
-	if(!do_mob(guardian, target, 5 SECONDS)) //now start the channel
+	if(!do_after(guardian, 5 SECONDS, target)) //now start the channel
 		to_chat(guardian, span_bolddanger("You need to hold still!"))
 		return
 

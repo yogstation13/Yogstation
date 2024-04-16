@@ -3,23 +3,14 @@
 /obj/machinery/computer/upload
 	var/mob/living/silicon/current = null //The target of future law uploads
 	icon_screen = "command"
-	var/obj/item/gps/internal/ai_upload/embedded_gps
-	var/obj/item/gps/internal/ai_upload/embedded_gps_type = /obj/item/gps/internal/ai_upload
-	time_to_scewdrive = 60
-
-/obj/item/gps/internal/ai_upload
-	icon_state = null
-	gpstag = "Encrypted Upload Signal"
-	desc = "Signal used to connect remotely with silicons."
-	invisibility = 100
+	time_to_unscrew = 6 SECONDS
 
 /obj/machinery/computer/upload/Initialize(mapload)
-	embedded_gps = new embedded_gps_type(src)
-	return ..()
-
-/obj/machinery/computer/upload/Destroy()
-	QDEL_NULL(embedded_gps)
-	return ..()
+	. = ..()
+	AddComponent(/datum/component/gps, "Encrypted Upload")
+	if(!mapload)
+		//log_silicon("\A [name] was created at [loc_name(src)].")
+		message_admins("\A [name] was created at [ADMIN_VERBOSEJMP(src)].")
 
 /obj/machinery/computer/upload/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/aiModule))
@@ -57,7 +48,7 @@
 		user.visible_message(span_warning("[user] begins typing on [src]."))
 		to_chat(user, span_warning("You begin to alter the laws of [current] to enable it to assist you in your goals. This will take 30 seconds."))
 		var/obj/item/aiModule/core/full/revolutionary/M = new
-		if(do_after(user, 300, src))
+		if(do_after(user, 30 SECONDS, src))
 			if(upload_check(user))
 				M.install(current.laws, user)
 			else

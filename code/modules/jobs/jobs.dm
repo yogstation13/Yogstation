@@ -6,11 +6,32 @@ GLOBAL_LIST_INIT(original_command_positions, list(
 	"Research Director",
 	"Chief Medical Officer"))
 
+GLOBAL_LIST_INIT(command_lightup_areas, typecacheof(list(
+	/area/bridge,
+	/area/gateway,
+	/area/security/brig,
+	/area/teleporter
+)))
+
 GLOBAL_LIST_INIT(original_engineering_positions, list(
 	"Chief Engineer",
 	"Station Engineer",
 	"Atmospheric Technician",
 	"Network Admin"))
+
+GLOBAL_LIST_INIT(engineering_lightup_areas,		\
+	typecacheof(list(							\
+		/area/construction,						\
+		/area/engine,							\
+		/area/security/checkpoint/engineering,	\
+		/area/solar,							\
+		/area/tcommsat,							\
+		/area/vacant_room						\
+	)) - typecacheof(list(						\
+		/area/engine/atmos,						\
+		/area/engine/gravity_generator			\
+	))											\
+)
 
 GLOBAL_LIST_INIT(original_medical_positions, list(
 	"Chief Medical Officer",
@@ -23,16 +44,55 @@ GLOBAL_LIST_INIT(original_medical_positions, list(
 	"Mining Medic",
 	"Brig Physician"))
 
+GLOBAL_LIST_INIT(medical_lightup_areas, 	\
+	typecacheof(list(						\
+		/area/medical,						\
+		/area/security/checkpoint/medical	\
+	)) - typecacheof(list(					\
+		/area/medical/abandoned,			\
+		/area/medical/chemistry,			\
+		/area/medical/genetics,				\
+		/area/medical/morgue,				\
+		/area/medical/surgery,				\
+		/area/medical/virology				\
+	))										\
+)
+
 GLOBAL_LIST_INIT(original_science_positions, list(
 	"Research Director",
 	"Scientist",
 	"Roboticist"))
+
+GLOBAL_LIST_INIT(science_lightup_areas, 		\
+	typecacheof(list(							\
+		/area/science,							\
+		/area/security/checkpoint/science		\
+	)) - typecacheof(list(						\
+		/area/science/explab,					\
+		/area/science/misc_lab,					\
+		/area/science/mixing,					\
+		/area/science/nanite,					\
+		/area/science/robotics,					\
+		/area/science/server,					\
+		/area/science/storage,					\
+		/area/science/xenobiology				\
+	))											\
+)
 
 GLOBAL_LIST_INIT(original_supply_positions, list(
 	"Head of Personnel",
 	"Quartermaster",
 	"Cargo Technician",
 	"Shaft Miner"))
+
+GLOBAL_LIST_INIT(supply_lightup_areas,			\
+	typecacheof(list(							\
+		/area/quartermaster,					\
+		/area/security/checkpoint/supply		\
+	)) - typecacheof(list(						\
+		/area/quartermaster/qm					\
+	))											\
+)
 
 GLOBAL_LIST_INIT(original_civilian_positions, list(
 	"Bartender",
@@ -54,6 +114,16 @@ GLOBAL_LIST_INIT(original_security_positions, list(
 	"Warden",
 	"Detective",
 	"Security Officer"))
+
+GLOBAL_LIST_INIT(security_lightup_areas,	\
+	typecacheof(list(						\
+		/area/security						\
+	)) - typecacheof(list(					\
+		/area/security/detectives_office,	\
+		/area/security/nuke_storage,		\
+		/area/security/warden				\
+	))										\
+)
 
 GLOBAL_LIST_INIT(original_nonhuman_positions, list(
 	"AI",
@@ -84,12 +154,12 @@ GLOBAL_LIST_INIT(alt_medical_positions, list(
 	"EMT", "Paramedic Trainee", "Rapid Response Medic", "Space Search & Rescue",
 	"Counsellor", "Therapist", "Mentalist",
 	"Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer", "Land Search & Rescue",
-	"Security Medic", "Security Medical Support", "Penitentiary Medical Care Unit", "Junior Brig Physician", "Detention Center Health Officer",))
+	"Security Medic", "Security Medical Support", "Penitentiary Medical Care Unit", "Junior Brig Physician", "Detention Center Health Officer"))
 
 GLOBAL_LIST_INIT(alt_science_positions, list(
 	"Chief Science Officer", "Head of Research", "Chief Technology Officer",
 	"Researcher", "Toxins Specialist", "Physicist", "Test Associate", "Anomalist", "Quantum Physicist", "Theoretical Physicist", "Xenobiologist", "Explosives Technician", "Hypothetical Physicist",
-	"Augmentation Theorist", "Cyborg Maintainer", "Robotics Intern", "Biomechanical Engineer", "Mechatronic Engineer", "Machinist"))
+	"Augmentation Theorist", "Cyborg Maintainer", "Robotics Intern", "Biomechanical Engineer", "Mechatronic Engineer", "Machinist", "Chrome Shaman", "Ripperdoc"))
 
 GLOBAL_LIST_INIT(alt_supply_positions, list(
 	"Chief of Staff", "Head of Internal Affairs",
@@ -134,8 +204,10 @@ GLOBAL_LIST_INIT(security_positions, original_security_positions | alt_security_
 GLOBAL_LIST_INIT(nonhuman_positions, original_nonhuman_positions | alt_nonhuman_positions)
 GLOBAL_LIST_INIT(civilian_positions, original_civilian_positions | alt_civilian_positions)
 
+GLOBAL_LIST_INIT(crew_positions, command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | civilian_positions | nonhuman_positions)
+
 GLOBAL_LIST_INIT(exp_jobsmap, list(
-	EXP_TYPE_CREW = list("titles" = command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | civilian_positions | nonhuman_positions), // crew positions
+	EXP_TYPE_CREW = list("titles" = crew_positions),
 	EXP_TYPE_COMMAND = list("titles" = command_positions),
 	EXP_TYPE_ENGINEERING = list("titles" = engineering_positions),
 	EXP_TYPE_MEDICAL = list("titles" = medical_positions),

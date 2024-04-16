@@ -112,7 +112,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	user.visible_message(null, \
 		span_notice("You lean on the back of [src] and start pushing the tray open... (this will take about [DisplayTimeText(breakout_time)].)"), \
 		span_italics("You hear a metallic creaking from [src]."))
-	if(do_after(user, (breakout_time), src))
+	if(do_after(user, breakout_time, src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src )
 			return
 		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
@@ -232,6 +232,9 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	RemoveElement(/datum/element/update_icon_blocker)
 	connected = new /obj/structure/tray/c_tray(src)
 	connected.connected = src
+	if(mapload && prob(1))
+		new /obj/structure/bodycontainer/crematorium/creamatorium(get_turf(src))
+		qdel(src)
 
 /obj/structure/bodycontainer/crematorium/update_icon_state()
 	. = ..()
@@ -249,6 +252,8 @@ GLOBAL_LIST_EMPTY(crematoriums)
 /obj/structure/bodycontainer/crematorium/proc/cremate(mob/user)
 	if(locked)
 		return //don't let you cremate something twice or w/e
+	if(is_synth(user))
+		return
 	// Make sure we don't delete the actual morgue and its tray
 	var/list/conts = get_all_contents() - src - connected
 
@@ -333,7 +338,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	name = "crematorium"
 	desc = "A human incinerator. Works well during ice cream socials."
 
-/obj/structure/bodycontainer/crematorium/creamatorium/cremate(mob/user)
+/obj/structure/bodycontainer/crematorium/creamatorium/finish_cremate(mob/user)
 	var/list/icecreams = new()
 	for(var/i_scream in get_all_contents(/mob/living))
 		var/obj/item/reagent_containers/food/snacks/icecream/IC = new()

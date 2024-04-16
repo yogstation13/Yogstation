@@ -1,6 +1,9 @@
 
 /obj/item/proc/melee_attack_chain(mob/user, atom/target, params)
-	if(!tool_attack_chain(user, target) && pre_attack(target, user, params))
+	if(tool_behaviour && (target.tool_act(user, src, tool_behaviour) & TOOL_ACT_MELEE_CHAIN_BLOCKING))
+		return TRUE
+
+	if(pre_attack(target, user, params))
 		// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
 		var/resolved = target.attackby(src, user, params)
 		if(!resolved && target && !QDELETED(src))
@@ -10,14 +13,6 @@
 		SSdemo.mark_turf(target)
 	else
 		SSdemo.mark_dirty(target)
-
-//Checks if the item can work as a tool, calling the appropriate tool behavior on the target
-/obj/item/proc/tool_attack_chain(mob/user, atom/target)
-	if(!tool_behaviour)
-		return FALSE
-
-	return target.tool_act(user, src, tool_behaviour)
-
 
 // Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
 /obj/item/proc/attack_self(mob/user)
@@ -35,13 +30,13 @@
 	return TRUE //return FALSE to avoid calling attackby after this proc does stuff
 
 // No comment
-/atom/proc/attackby(obj/item/W, mob/user, params)
-	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, W, user, params) & COMPONENT_NO_AFTERATTACK)
+/atom/proc/attackby(obj/item/attacking_item, mob/user, params)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY, attacking_item, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
 	return FALSE
 
 /obj/attackby(obj/item/I, mob/living/user, params)
-	return ..() || ((obj_flags & CAN_BE_HIT) && I.attack_obj(src, user))
+	return ..() || ((obj_flags & CAN_BE_HIT) && I.attack_atom(src, user))
 
 /mob/living/attackby(obj/item/I, mob/living/user, params)
 	for(var/datum/surgery/S in surgeries)
@@ -59,7 +54,7 @@
 		if(butchering && butchering.butchering_enabled)
 			to_chat(user, span_notice("You begin to butcher [src]..."))
 			playsound(loc, butchering.butcher_sound, 50, TRUE, -1)
-			if(do_mob(user, src, butchering.speed) && Adjacent(I))
+			if(do_after(user, butchering.speed, src) && Adjacent(I))
 				butchering.Butcher(user, src)
 			return TRUE
 		else if(I.is_sharp() && !butchering) //give sharp objects butchering functionality, for consistency
@@ -75,6 +70,8 @@
 	if(item_flags & NOBLUDGEON)
 		return
 
+	if(force && !synth_check(user, SYNTH_ORGANIC_HARM))
+		return
 	if(force && HAS_TRAIT(user, TRAIT_PACIFISM) && (damtype != STAMINA))
 		to_chat(user, span_warning("You don't want to harm other living beings!"))
 		return TRUE
@@ -105,31 +102,55 @@
 
 	log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 	add_fingerprint(user)
+	var/force_multiplier = 1
+	if(is_synth(user))
+		var/mob/living/carbon/human/H = user
+		var/datum/species/wy_synth/S = H.dna.species
+		force_multiplier = S.force_multiplier
+	
+	take_damage(rand(weapon_stats[DAMAGE_LOW] * force_multiplier, weapon_stats[DAMAGE_HIGH] * force_multiplier), sound_effect = FALSE)
 
-	take_damage(rand(weapon_stats[DAMAGE_LOW], weapon_stats[DAMAGE_HIGH]), sound_effect = FALSE)
-
-//the equivalent of the standard version of attack() but for object targets.
-/obj/item/proc/attack_obj(obj/O, mob/living/user)
-	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, O, user) & COMPONENT_NO_ATTACK_OBJ)
+//the equivalent of the standard version of attack() but for non-mob targets.
+/obj/item/proc/attack_atom(atom/attacked_atom, mob/living/user)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, attacked_atom, user) & COMPONENT_NO_ATTACK_OBJ)
 		return
 	if(item_flags & NOBLUDGEON)
 		return
-	var/dist = get_dist(O,user)
+	var/dist = get_dist(attacked_atom,user)
+	if(!synth_check(user, SYNTH_OBJ_DAMAGE))
+		return
 	user.changeNext_move(CLICK_CD_MELEE * weapon_stats[SWING_SPEED] * (range_cooldown_mod ? (dist > 0 ? min(dist, weapon_stats[REACH]) * range_cooldown_mod : range_cooldown_mod) : 1)) //range increases attack cooldown by swing speed
-	user.do_attack_animation(O)
-	O.attacked_by(src, user)
+	user.do_attack_animation(attacked_atom)
+	attacked_atom.attacked_by(src, user)
 	user.weapon_slow(src)
-	take_damage(rand(weapon_stats[DAMAGE_LOW], weapon_stats[DAMAGE_HIGH]), sound_effect = FALSE)
+	var/force_multiplier = 1
+	if(is_synth(user))
+		var/mob/living/carbon/human/H = user
+		var/datum/species/wy_synth/S = H.dna.species
+		force_multiplier = S.force_multiplier
+	if(!QDELETED(src))
+		take_damage(rand(weapon_stats[DAMAGE_LOW] * force_multiplier, weapon_stats[DAMAGE_HIGH] * force_multiplier), sound_effect = FALSE)
 
-/atom/movable/proc/attacked_by()
-	return
+/atom/proc/attacked_by(obj/item/attacking_item, mob/living/user)
+	if(!uses_integrity)
+		CRASH("attacked_by() was called on [type], which doesn't use integrity!")
 
-/obj/attacked_by(obj/item/I, mob/living/user)
-	if(I.force)
-		visible_message(span_danger("[user] has hit [src] with [I]!"), null, null, COMBAT_MESSAGE_RANGE)
-		//only witnesses close by and the victim see a hit message.
-		log_combat(user, src, "attacked", I)
-	take_damage(I.force, I.damtype, MELEE, 1)
+	if(!attacking_item.force)
+		return
+	
+	var/damage = take_damage(attacking_item.force * attacking_item.demolition_mod, attacking_item.damtype, MELEE, 1, armour_penetration = attacking_item.armour_penetration)
+	var/damage_verb = "hit"
+	if(attacking_item.demolition_mod > 1 && damage)
+		damage_verb = "pulverized"
+	if(attacking_item.demolition_mod < 1)
+		damage_verb = "ineffectively pierced"
+
+	visible_message(span_danger("[user] [damage_verb] [src] with [attacking_item][damage ? "" : ", without leaving a mark"]!"), null, null, COMBAT_MESSAGE_RANGE)
+	//only witnesses close by and the victim see a hit message.
+	log_combat(user, src, "attacked", attacking_item)
+
+/area/attacked_by(obj/item/attacking_item, mob/living/user)
+	CRASH("areas are NOT supposed to have attacked_by() called on them!")
 
 /mob/living/attacked_by(obj/item/I, mob/living/user)
 	send_item_attack_message(I, user)

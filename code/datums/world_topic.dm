@@ -132,7 +132,7 @@
 	for(var/mob/dead/observer/O in GLOB.player_list)
 		if(O.key == expected_key)
 			if(O.client)
-				new /atom/movable/screen/splash(O.client, TRUE)
+				new /atom/movable/screen/splash(null, O.client, TRUE)
 			break
 
 /datum/world_topic/adminmsg
@@ -241,7 +241,7 @@
 			.["real_mode"] = SSticker.mode.name
 			// Key-authed callers may know the truth behind the "secret"
 
-	.["security_level"] = get_security_level()
+	.["security_level"] = SSsecurity_level.get_current_level_as_text()
 	.["round_duration"] = SSticker ? round((world.time-SSticker.round_start_time)/10) : 0
 	// Amount of world's ticks in seconds, useful for calculating round duration
 

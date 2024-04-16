@@ -112,7 +112,8 @@
 			BP.drop_organs()
 		else
 			for(var/obj/item/organ/O in BP.dismember())
-				O.forceMove(target) //Some organs, like chest ones, are different so we need to manually move them
+				if(O.can_extract())
+					O.forceMove(target) //Some organs, like chest ones, are different so we need to manually move them
 		operation_order.Remove(BP)
 		break
 	use_power(5000)
@@ -156,12 +157,13 @@
 		visible_message(span_notice("[usr] pries open \the [src]."), span_notice("You pry open [src]."))
 		open_machine()
 
-/obj/machinery/harvester/emag_act(mob/user)
+/obj/machinery/harvester/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	allow_living = TRUE
 	to_chat(user, span_warning("You overload [src]'s lifesign scanners."))
+	return TRUE
 
 /obj/machinery/harvester/container_resist(mob/living/user)
 	if(!harvesting)

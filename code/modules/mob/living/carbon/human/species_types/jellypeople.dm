@@ -5,6 +5,7 @@
 	id = "jelly"
 	default_color = "00FF90"
 	say_mod = "chirps"
+	bubble_icon = BUBBLE_SLIME
 	species_traits = list(MUTCOLORS, EYECOLOR, NOBLOOD, HAIR)
 	inherent_traits = list(TRAIT_TOXINLOVER)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/slime
@@ -17,7 +18,6 @@
 	coldmod = 6
 	heatmod = 0.5
 	burnmod = 0.5 // = 1/2x generic burn damage
-	payday_modifier = 0.6 //literally a pile of toxic ooze walking around, definitely a health hazard
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/jelly
 	swimming_component = /datum/component/swimming/dissolve
@@ -83,6 +83,9 @@
 	return list(
 		""//"TODO: RIP in peace Skrem"
 	)
+
+/datum/species/jelly/get_butt_sprite()
+	return BUTT_SPRITE_SLIME
 
 /datum/species/jelly/create_pref_unique_perks()
 	var/list/to_add = list()
@@ -442,19 +445,25 @@
 	id = "lum"
 	say_mod = "says"
 	var/glow_intensity = LUMINESCENT_DEFAULT_GLOW
-	var/obj/effect/dummy/luminescent_glow/glow
 	var/obj/item/slime_extract/current_extract
 	var/datum/action/innate/integrate_extract/integrate_extract
 	var/datum/action/innate/use_extract/extract_minor
 	var/datum/action/innate/use_extract/major/extract_major
 	var/extract_cooldown = 0
 
+	/// Internal dummy used to glow (very cool)
+	var/obj/effect/dummy/lighting_obj/moblight/species/glow
+
+/datum/species/jelly/luminescent/Destroy(force, ...)
+	. = ..()
+	QDEL_NULL(glow)
+
 /datum/species/jelly/luminescent/on_species_loss(mob/living/carbon/C)
 	..()
 	if(current_extract)
 		current_extract.forceMove(C.drop_location())
 		current_extract = null
-	qdel(glow)
+	QDEL_NULL(glow)
 	if(integrate_extract)
 		integrate_extract.Remove(C)
 	if(extract_minor)
@@ -464,7 +473,7 @@
 
 /datum/species/jelly/luminescent/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
-	glow = new(C)
+	glow = C.mob_light(light_type = /obj/effect/dummy/lighting_obj/moblight/species)
 	update_glow(C)
 	integrate_extract = new(src)
 	integrate_extract.Grant(C)
@@ -483,20 +492,6 @@
 	if(intensity)
 		glow_intensity = intensity
 	glow.set_light_range_power_color(glow_intensity, glow_intensity, C.dna.features["mcolor"])
-
-/obj/effect/dummy/luminescent_glow
-	name = "luminescent glow"
-	desc = "Tell a coder if you're seeing this."
-	icon_state = "nothing"
-	light_color = "#FFFFFF"
-	light_range = LUMINESCENT_DEFAULT_GLOW
-	light_system = MOVABLE_LIGHT
-	light_power = 2.5
-
-/obj/effect/dummy/luminescent_glow/Initialize(mapload)
-	. = ..()
-	if(!isliving(loc))
-		return INITIALIZE_HINT_QDEL
 
 /datum/action/innate/integrate_extract
 	name = "Integrate Extract"
@@ -597,7 +592,7 @@
 
 /datum/action/innate/use_extract/Activate()
 	var/mob/living/carbon/human/H = owner
-	if(!is_species(H, /datum/species/jelly/luminescent) || !species)
+	if(!is_species(H, /datum/species/jelly/luminescent) || !species || H.incapacitated())
 		return
 	CHECK_DNA_AND_SPECIES(H)
 
@@ -655,7 +650,7 @@
 		return FALSE
 	if(HAS_TRAIT(M, TRAIT_MINDSHIELD)) //mindshield implant, no dice
 		return FALSE
-	if(M.anti_magic_check(FALSE, FALSE, TRUE, 0))
+	if(M.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
 		return FALSE
 	if(M in linked_mobs)
 		return FALSE
@@ -743,12 +738,12 @@
 	var/mob/living/M = input("Select who to send your message to:","Send thought to?",null) as null|mob in options
 	if(!M)
 		return
-	if(M.anti_magic_check(FALSE, FALSE, TRUE, 0))
+	if(M.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
 		to_chat(H, span_notice("As you try to communicate with [M], you're suddenly stopped by a vision of a massive tinfoil wall that streches beyond visible range. It seems you've been foiled."))
 		return
 	var/msg = sanitize(input("Message:", "Telepathy") as text|null)
 	if(msg)
-		if(M.anti_magic_check(FALSE, FALSE, TRUE, 0))
+		if(M.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
 			to_chat(H, span_notice("As you try to communicate with [M], you're suddenly stopped by a vision of a massive tinfoil wall that streches beyond visible range. It seems you've been foiled."))
 			return
 		log_directed_talk(H, M, msg, LOG_SAY, "slime telepathy")

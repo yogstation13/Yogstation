@@ -36,13 +36,13 @@
 	for(var/direction in GLOB.cardinals)
 		if(!(direction & initialize_directions))
 			continue
-		var/obj/machinery/atmospherics/node = findConnecting(direction)
+		var/obj/machinery/atmospherics/node = find_connecting(direction)
 
 		var/image/cap
 		if(node)
-			cap = getpipeimage(icon, "cap", direction, node.pipe_color, piping_layer = piping_layer, trinary = TRUE)
+			cap = get_pipe_image(icon, "cap", direction, node.pipe_color, piping_layer = piping_layer, trinary = TRUE)
 		else
-			cap = getpipeimage(icon, "cap", direction, piping_layer = piping_layer, trinary = TRUE)
+			cap = get_pipe_image(icon, "cap", direction, piping_layer = piping_layer, trinary = TRUE)
 
 		. += cap
 
@@ -57,7 +57,6 @@
 	airs[3] = air3
 
 /obj/machinery/atmospherics/components/trinary/mixer/process_atmos()
-	..()
 	if(!on || !(nodes[1] && nodes[2] && nodes[3]) && !is_operational())
 		return
 
@@ -109,19 +108,17 @@
 	//Actually transfer the gas
 
 	if(transfer_moles1)
-		var/datum/gas_mixture/removed1 = air1.remove(transfer_moles1)
-		air3.merge(removed1)
+		air1.transfer_to(air3, transfer_moles1)
 		var/datum/pipeline/parent1 = parents[1]
-		parent1.update = TRUE
+		parent1.update = PIPENET_UPDATE_STATUS_RECONCILE_NEEDED
 
 	if(transfer_moles2)
-		var/datum/gas_mixture/removed2 = air2.remove(transfer_moles2)
-		air3.merge(removed2)
+		air2.transfer_to(air3, transfer_moles2)
 		var/datum/pipeline/parent2 = parents[2]
-		parent2.update = TRUE
+		parent2.update = PIPENET_UPDATE_STATUS_RECONCILE_NEEDED
 
 	var/datum/pipeline/parent3 = parents[3]
-	parent3.update = TRUE
+	parent3.update = PIPENET_UPDATE_STATUS_RECONCILE_NEEDED
 
 /obj/machinery/atmospherics/components/trinary/mixer/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -255,7 +252,7 @@
 	on = TRUE
 	icon_state = "t_mixer_on-0"
 
-/obj/machinery/atmospherics/components/trinary/mixer/t_mixer/SetInitDirections()
+/obj/machinery/atmospherics/components/trinary/mixer/t_mixer/set_init_directions()
 	switch(dir)
 		if(NORTH)
 			initialize_directions = EAST|NORTH|WEST
@@ -266,7 +263,7 @@
 		if(WEST)
 			initialize_directions = WEST|NORTH|SOUTH
 
-/obj/machinery/atmospherics/components/trinary/mixer/t_mixer/getNodeConnects()
+/obj/machinery/atmospherics/components/trinary/mixer/t_mixer/get_node_connects()
 	var/node1_connect = turn(dir, -90)
 	var/node2_connect = turn(dir, 90)
 	var/node3_connect = dir

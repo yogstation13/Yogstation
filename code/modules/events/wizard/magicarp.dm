@@ -25,26 +25,24 @@
 /mob/living/simple_animal/hostile/carp/ranged
 	name = "magicarp"
 	desc = "50% magic, 50% carp, 100% horrible."
-	icon_state = "magicarp"
-	icon_living = "magicarp"
-	icon_dead = "magicarp_dead"
 	icon_gib = "magicarp_gib"
 	ranged = 1
 	retreat_distance = 2
 	minimum_distance = 0 //Between shots they can and will close in to nash
-	projectiletype = /obj/item/projectile/magic
+	projectiletype = /obj/projectile/magic
 	projectilesound = 'sound/weapons/emitter.ogg'
 	maxHealth = 50
 	health = 50
-	gold_core_spawnable = NO_SPAWN //yogs - fuck this shit
+	gold_core_spawnable = NO_SPAWN
+	greyscale_config = /datum/greyscale_config/carp_magic
 	random_color = FALSE
-	var/allowed_projectile_types = list(/obj/item/projectile/magic/animate, /obj/item/projectile/magic/resurrection,
-	/obj/item/projectile/magic/death, /obj/item/projectile/magic/teleport, /obj/item/projectile/magic/door, /obj/item/projectile/magic/fireball,
-	/obj/item/projectile/magic/spellblade, /obj/item/projectile/magic/arcane_barrage)
+	var/allowed_projectile_types = list(/obj/projectile/magic/animate, /obj/projectile/magic/resurrection,
+	/obj/projectile/magic/death, /obj/projectile/magic/teleport, /obj/projectile/magic/door, /obj/projectile/magic/fireball,
+	/obj/projectile/magic/spellblade, /obj/projectile/magic/arcane_barrage)
 
 /mob/living/simple_animal/hostile/carp/ranged/Initialize(mapload)
 	projectiletype = pick(allowed_projectile_types)
-	. = ..()
+	return ..()
 
 /mob/living/simple_animal/hostile/carp/ranged/wizard
 	faction = list("wizard")

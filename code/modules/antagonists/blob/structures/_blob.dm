@@ -4,12 +4,13 @@
 	icon = 'icons/mob/blob.dmi'
 	light_range = 2
 	desc = "A thick wall of writhing tendrils."
-	density = FALSE //this being false causes two bugs, being able to attack blob tiles behind other blobs and being unable to move on blob tiles in no gravity, but turning it to 1 causes the blob mobs to be unable to path through blobs, which is probably worse.
-	opacity = 0
+	density = TRUE
+	opacity = FALSE
 	anchored = TRUE
 	layer = BELOW_MOB_LAYER
 	pass_flags_self = PASSBLOB
-	CanAtmosPass = ATMOS_PASS_PROC
+	can_atmos_pass = ATMOS_PASS_PROC
+	obj_flags = CAN_BE_HIT|BLOCK_Z_OUT_DOWN // stops blob mobs from falling on multiz.
 	var/point_return = 0 //How many points the blob gets back when it removes a blob of that type. If less than 0, blob cannot be removed.
 	max_integrity = 30
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 70)
@@ -32,7 +33,7 @@
 	setDir(pick(GLOB.cardinals))
 	update_appearance(UPDATE_ICON)
 	if(atmosblock)
-		air_update_turf(1)
+		air_update_turf()
 	ConsumeTile()
 
 /obj/structure/blob/proc/creation_action() //When it's created by the overmind, do this.
@@ -41,7 +42,7 @@
 /obj/structure/blob/Destroy()
 	if(atmosblock)
 		atmosblock = FALSE
-		air_update_turf(1)
+		air_update_turf()
 	if(overmind)
 		overmind.blobs_legit -= src  //if it was in the legit blobs list, it isn't now
 	GLOB.blobs -= src //it's no longer in the all blobs list either
@@ -65,7 +66,7 @@
 						result++
 		. -= result - 1
 
-/obj/structure/blob/BlockSuperconductivity()
+/obj/structure/blob/BlockThermalConductivity()
 	return atmosblock
 
 /obj/structure/blob/CanAllowThrough(atom/movable/mover, turf/target)
@@ -74,7 +75,7 @@
 		return TRUE
 	return FALSE
 
-/obj/structure/blob/CanAtmosPass(turf/T)
+/obj/structure/blob/can_atmos_pass(turf/target_turf, vertical = FALSE)
 	return !atmosblock
 
 /obj/structure/blob/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller, no_id = FALSE)
@@ -127,7 +128,7 @@
 	if(pulse_timestamp <= world.time)
 		ConsumeTile()
 		if(heal_timestamp <= world.time)
-			obj_integrity = min(max_integrity, obj_integrity+health_regen)
+			update_integrity(min(max_integrity, atom_integrity + health_regen))
 			heal_timestamp = world.time + 20
 		update_appearance(UPDATE_ICON)
 		pulse_timestamp = world.time + 10
@@ -207,10 +208,10 @@
 	if(severity > 0)
 		if(overmind)
 			overmind.blobstrain.emp_reaction(src, severity)
-		if(prob(100 - severity * 30))
+		if(prob(40 + (severity * 6)))
 			new /obj/effect/temp_visual/emp(get_turf(src))
 
-/obj/structure/blob/tesla_act(power)
+/obj/structure/blob/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	..()
 	if(overmind)
 		if(overmind.blobstrain.tesla_reaction(src, power))
@@ -253,7 +254,7 @@
 /obj/structure/blob/proc/typereport(mob/user)
 	RETURN_TYPE(/list)
 	return list("<b>Blob Type:</b> [span_notice("[uppertext(initial(name))]")]",
-							"<b>Health:</b> [span_notice("[obj_integrity]/[max_integrity]")]",
+							"<b>Health:</b> [span_notice("[atom_integrity]/[max_integrity]")]",
 							"<b>Effects:</b> [span_notice("[scannerreport()]")]")
 
 /obj/structure/blob/attack_animal(mob/living/simple_animal/M)
@@ -271,7 +272,7 @@
 		if(BURN)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 
-/obj/structure/blob/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
+/obj/structure/blob/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
 	switch(damage_type)
 		if(BRUTE)
 			damage_amount *= brute_resist
@@ -290,10 +291,10 @@
 
 /obj/structure/blob/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
-	if(. && obj_integrity > 0)
+	if(. && atom_integrity > 0)
 		update_appearance(UPDATE_ICON)
 
-/obj/structure/blob/obj_destruction(damage_flag)
+/obj/structure/blob/atom_destruction(damage_flag)
 	if(overmind)
 		overmind.blobstrain.death_reaction(src, damage_flag)
 	..()
@@ -336,19 +337,22 @@
 	name = "normal blob"
 	icon_state = "blob"
 	light_range = 0
-	obj_integrity = 21 //doesn't start at full health
 	max_integrity = 25
 	health_regen = 1
 	brute_resist = 0.25
 
+/obj/structure/blob/normal/Initialize(mapload, owner_overmind)
+	. = ..()
+	update_integrity(21) //doesn't start at full health
+
 /obj/structure/blob/normal/scannerreport()
-	if(obj_integrity <= 15)
+	if(atom_integrity <= 15)
 		return "Currently weak to brute damage."
 	return "N/A"
 
 /obj/structure/blob/normal/update_appearance(updates=ALL)
 	. = ..()
-	if(obj_integrity <= 15)
+	if(atom_integrity <= 15)
 		icon_state = "blob_damaged"
 		name = "fragile blob"
 		desc = "A thin lattice of slightly twitching tendrils."

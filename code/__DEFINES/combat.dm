@@ -34,6 +34,8 @@
 #define BIO			"bio"
 /// Involves ionizing radiation.
 #define RAD			"rad"
+/// Involves electric shock.
+#define ELECTRIC	"electric"
 /// Involves fire or temperature extremes.
 #define FIRE		"fire"
 /// Involves corrosive substances.
@@ -197,6 +199,10 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 ///ammo box will have a different state for full and empty; <icon_state>-max_ammo and <icon_state>-0
 #define AMMO_BOX_FULL_EMPTY 2
 
+#define SUPPRESSED_NONE 0
+#define SUPPRESSED_QUIET 1 ///standard suppressed
+#define SUPPRESSED_VERY 2 /// no message
+
 //Projectile Reflect
 #define REFLECT_NORMAL 				(1<<0)
 #define REFLECT_FAKEPROJECTILE		(1<<1)
@@ -232,8 +238,8 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define EXPLODE_LIGHT 3
 #define EXPLODE_GIB_THRESHOLD 50	//ex_act() with EXPLODE_DEVASTATE severity will gib mobs with less than this much bomb armor
 
-#define EMP_HEAVY 1
-#define EMP_LIGHT 2
+#define EMP_LIGHT 5 // maximum severity level without severe effects like organ failure and paralysis
+#define EMP_HEAVY 10 // max severity from most sources so you can't use a 5 billion tile EMP to instakill people
 
 #define GRENADE_CLUMSY_FUMBLE 1
 #define GRENADE_NONCLUMSY_FUMBLE 2

@@ -10,7 +10,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the captain"
-	selection_color = "#ffdddd"
 	req_admin_notify = 1
 	minimal_player_age = 14
 	exp_requirements = 1500 //25 hours
@@ -48,6 +47,12 @@
 		/obj/item/kitchen/knife/combat = 2
 	)
 
+	minimal_lightup_areas = list(
+		/area/crew_quarters/heads/hos,
+		/area/security/detectives_office,
+		/area/security/warden
+	)
+	
 	smells_like = "deadly authority"
 
 /datum/job/hos/after_spawn(mob/living/carbon/human/H, mob/M)
@@ -90,7 +95,7 @@
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
 	duffelbag = /obj/item/storage/backpack/duffelbag/sec
-	box = /obj/item/storage/box/security
+	box = /obj/item/storage/box/survival/security
 
 	implants = list(/obj/item/implant/mindshield)
 

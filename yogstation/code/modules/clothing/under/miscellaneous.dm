@@ -220,32 +220,39 @@
 	item_state = "cowboy"
 	can_adjust = FALSE
 
-/obj/item/clothing/under/yogs/bluedetective
+/obj/item/clothing/under/rank/det/yogs
+	name = "black detective suit"
+	desc = "A suit often worn by those detective types. Now in black!"
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/uniform/uniform.dmi'
+	icon = 'yogstation/icons/obj/clothing/uniforms.dmi'
+	icon_state = "black_detective"
+	item_state = "black_detective"
+	can_adjust = FALSE
+
+/obj/item/clothing/under/rank/det/yogs/bluedetective
 	name = "blue detective suit"
 	desc = "A suit often worn by those detective types. Now in blue!"
 	icon_state = "blue_detective"
 	item_state = "blue_detective"
-	can_adjust = FALSE
 
-/obj/item/clothing/under/yogs/golddetective
+/obj/item/clothing/under/rank/det/yogs/golddetective
 	name = "gold detective suit"
 	desc = "A suit often worn by those detective types. Now in gold!"
 	icon_state = "gold_detective"
 	item_state = "gold_detective"
+	can_adjust = TRUE
 
-/obj/item/clothing/under/yogs/greydetective
+/obj/item/clothing/under/rank/det/yogs/greydetective
 	name = "grey detective suit"
 	desc = "A suit often worn by those detective types. Now in boring old grey!"
 	icon_state = "grey_detective"
 	item_state = "grey_detective"
-	can_adjust = FALSE
 
-/obj/item/clothing/under/yogs/blackdetective
-	name = "black detective suit"
-	desc = "A suit often worn by those detective types. Now in black!"
-	icon_state = "black_detective"
-	item_state = "black_detective"
-	can_adjust = FALSE
+/obj/item/clothing/under/rank/det/yogs/forensictech
+	name = "forensic technician suit"
+	desc = "Hmm, this bloody toolbox has insulated fibers on it..."
+	icon_state = "forensic_tech"
+	item_state = "forensic_tech"
 
 /obj/item/clothing/under/yogs/whitetuxedo
 	name = "white tuxedo"
@@ -390,13 +397,6 @@
 	desc = "Even the HoP has to take a break from giving all access to the crew sometimes."
 	icon_state = "hop_suit"
 	item_state = "hop_suit"
-	can_adjust = FALSE
-
-/obj/item/clothing/under/yogs/forensictech
-	name = "forensic technician suit"
-	desc = "Hmm, this bloody toolbox has insulated fibers on it..."
-	icon_state = "forensic_tech"
-	item_state = "forensic_tech"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/yogs/bluetunic
@@ -547,12 +547,6 @@
 	item_state = "victorianreddress"
 	can_adjust = FALSE
 
-/obj/item/clothing/under/yogs/shitcurity
-	name = "shitcurity uniform"
-	desc = "For the security members that want to show their true colors."
-	icon_state = "altsecurity"
-	item_state = "altsecurity"
-
 /obj/item/clothing/under/yogs/victoriouscaptainuniform
 	name = "very fancy captain uniform"
 	desc = "Ask not the sparrow how the eagle soars!"
@@ -571,4 +565,12 @@
 	desc = "Zip zap zoobity bap!"
 	icon_state = "cosby"
 	item_state = "cosby"
+	can_adjust = 0
+
+/obj/item/clothing/under/yogs/hawaiian_skirt
+	name = "hawaiian skirt"
+	desc = "A traditional hawaiian skirt, often called a pa'u."
+	icon_state = "hawaiian_skirt"
+	item_state = "hawaiian_skirt"
+	fitted = FEMALE_UNIFORM_TOP //no hole in the skirt
 	can_adjust = 0

@@ -16,7 +16,7 @@
 	verb_whisper = "imparts"
 	verb_yell = "harangues"
 	initial_language_holder = /datum/language_holder/clockmob
-	bubble_icon = "clock"
+	bubble_icon = BUBBLE_CLOCK
 	light_color = "#E42742"
 	deathsound = 'sound/magic/clockwork/anima_fragment_death.ogg'
 	speech_span = SPAN_ROBOT
@@ -37,7 +37,7 @@
 /mob/living/simple_animal/hostile/clockwork/ratvar_act()
 	fully_heal(TRUE)
 
-/mob/living/simple_animal/hostile/clockwork/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
+/mob/living/simple_animal/hostile/clockwork/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
 	return 0 //ouch, my metal-unlikely-to-be-damaged-by-electricity-body
 
 /mob/living/simple_animal/hostile/clockwork/examine(mob/user)

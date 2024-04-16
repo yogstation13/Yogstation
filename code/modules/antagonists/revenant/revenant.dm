@@ -3,7 +3,6 @@
 //Don't hear deadchat and are NOT normal ghosts
 //Admin-spawn or random event
 
-#define INVISIBILITY_REVENANT 50
 #define REVENANT_NAME_FILE "revenant_names.json"
 
 /mob/living/simple_animal/revenant
@@ -21,14 +20,16 @@
 	invisibility = INVISIBILITY_REVENANT
 	health = INFINITY //Revenants don't use health, they use essence instead
 	maxHealth = INFINITY
-	layer = GHOST_LAYER
+	plane = GHOST_PLANE
 	healable = FALSE
 	spacewalk = TRUE
 	sight = SEE_MOBS | SEE_OBJS | SEE_TURFS | SEE_SELF
 	throwforce = 0
 
-	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	// Going for faint purple spoopy ghost
+	lighting_cutoff_red = 20
+	lighting_cutoff_green = 15
+	lighting_cutoff_blue = 35
 	response_help   = "passes through"
 	response_disarm = "swings through"
 	response_harm   = "punches through"
@@ -71,10 +72,6 @@
 	. = ..()
 	flags_1 |= RAD_NO_CONTAMINATE_1
 	ADD_TRAIT(src, TRAIT_SIXTHSENSE, INNATE_TRAIT)
-
-	// Starting spells
-	var/datum/action/cooldown/spell/night_vision/revenant/vision = new(src)
-	vision.Grant(src)
 
 	var/datum/action/cooldown/spell/list_target/telepathy/revenant/telepathy = new(src)
 	telepathy.Grant(src)

@@ -38,7 +38,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	var/stage = STAGE_HAUNT
 	var/interest = 0
 	var/target_area
-	var/invalid_area_typecache = list(/area/space, /area/lavaland, /area/mine, /area/centcom, /area/reebe, /area/shuttle/syndicate)
+	var/invalid_area_typecache = list(/area/space, /area/lavaland, /area/mine, /area/centcom, /area/centcom/reebe, /area/shuttle/syndicate)
 	var/eating = FALSE
 	var/obj/effect/dummy/floorcluwne_orbit/poi
 	var/obj/effect/temp_visual/fcluwne_manifest/cluwnehole
@@ -151,7 +151,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	return
 
 
-/mob/living/simple_animal/hostile/floor_cluwne/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, tesla_shock = 0, illusion = 0, stun = TRUE)//prevents runtimes with machine fuckery
+/mob/living/simple_animal/hostile/floor_cluwne/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)//prevents runtimes with machine fuckery
 	return FALSE
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Found_You()
@@ -242,7 +242,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	switch(stage)
 		if(STAGE_HAUNT)
 			if(prob(5))
-				H.blur_eyes(1)
+				H.adjust_eye_blur(1)
 
 			if(prob(5))
 				H.playsound_local(src,'yogstation/sound/voice/cluwnelaugh2_reversed.ogg', 1)
@@ -356,7 +356,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				manifested = TRUE
 				Manifest()
 				if(!eating)
-					empulse(src, 6, 6)
+					empulse(src, EMP_HEAVY, 6)
 					addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_animal/hostile/floor_cluwne, Grab), H), 50, TIMER_OVERRIDE|TIMER_UNIQUE)
 					for(var/turf/open/O in range(src, 6))
 						O.MakeSlippery(TURF_WET_LUBE, 30)
@@ -421,7 +421,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 			H.invisibility = initial(H.invisibility)
 			H.density = initial(H.density)
 			H.anchored = initial(H.anchored)
-			H.blur_eyes(10)
+			H.adjust_eye_blur(10)
 			animate(H.client,color = old_color, time = 2 SECONDS)
 
 	eating = FALSE

@@ -155,14 +155,14 @@
 			[TIME_LEFT] seconds", system_error, alert=TRUE)
 		. = TRUE
 
-/obj/machinery/computer/emergency_shuttle/emag_act(mob/user)
+/obj/machinery/computer/emergency_shuttle/emag_act(mob/user, obj/item/card/emag/emag_card)
 	// How did you even get on the shuttle before it go to the station?
 	if(!IS_DOCKED)
-		return
+		return FALSE
 
 	if(CHECK_BITFIELD(obj_flags, EMAGGED) || ENGINES_STARTED)	//SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LAUNCH IN 10 SECONDS
 		to_chat(user, span_warning("The shuttle is already about to launch!"))
-		return
+		return FALSE
 
 	var/time = TIME_LEFT
 	message_admins("[ADMIN_LOOKUPFLW(user.client)] has emagged the emergency shuttle [time] seconds before launch.")
@@ -183,6 +183,7 @@
 		authorized += ID
 
 	process(SSMACHINES_DT)
+	return TRUE
 
 /obj/machinery/computer/emergency_shuttle/Destroy()
 	// Our fake IDs that the emag generated are just there for colour
@@ -198,14 +199,15 @@
 
 /obj/docking_port/mobile/emergency
 	name = "emergency shuttle"
-	id = "emergency"
-
-	dwidth = 9
-	width = 22
-	height = 11
+	shuttle_id = "emergency"
 	dir = EAST
 	port_direction = WEST
 	var/sound_played = 0 //If the launch sound has been sent to all players on the shuttle itself
+
+/obj/docking_port/mobile/emergency/Initialize(mapload)
+	. = ..()
+
+	//setup_shuttle_events()
 
 /obj/docking_port/mobile/emergency/canDock(obj/docking_port/stationary/S)
 	return SHUTTLE_CAN_DOCK //If the emergency shuttle can't move, the whole game breaks, so it will force itself to land even if it has to crush a few departments in the process
@@ -223,17 +225,12 @@
 
 	. = ..()
 
-/obj/docking_port/mobile/emergency/request(obj/docking_port/stationary/S, area/signalOrigin, reason, redAlert, set_coefficient=null)
+/obj/docking_port/mobile/emergency/request(obj/docking_port/stationary/S, area/signalOrigin, reason, set_coefficient=null)
 	if(!isnum(set_coefficient))
-		var/security_num = seclevel2num(get_security_level())
-		switch(security_num)
-			if(SEC_LEVEL_GREEN)
-				set_coefficient = 2
-			if(SEC_LEVEL_BLUE)
-				set_coefficient = 1
-			else
-				set_coefficient = 0.5
-	var/call_time = SSshuttle.emergencyCallTime * set_coefficient * engine_coeff
+		set_coefficient = SSsecurity_level.current_security_level.shuttle_call_time_mod
+	alert_coeff = set_coefficient
+
+	var/call_time = SSshuttle.emergency_call_time * set_coefficient * engine_coeff
 	switch(mode)
 		// The shuttle can not normally be called while "recalling", so
 		// if this proc is called, it's via admin fiat
@@ -246,26 +243,28 @@
 	SSshuttle.emergencyCallAmount++
 
 	if(prob(70))
-		SSshuttle.emergencyLastCallLoc = signalOrigin
+		SSshuttle.emergency_last_call_loc = signalOrigin
 	else
-		SSshuttle.emergencyLastCallLoc = null
+		SSshuttle.emergency_last_call_loc = null
 
-	priority_announce("The emergency shuttle has been called. [redAlert ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [timeLeft(600)] minutes.[reason][SSshuttle.emergencyLastCallLoc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "" ]", null, ANNOUNCER_SHUTTLECALLED, "Priority")
+	var/emergency_reason = "\nNature of emergency:\n\n[reason]"
+	priority_announce("The emergency shuttle has been called. [SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_RED ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [timeLeft(600)] minutes.[html_decode(emergency_reason)][SSshuttle.emergency_last_call_loc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "" ]", null, ANNOUNCER_SHUTTLECALLED, "Priority")
 
 /obj/docking_port/mobile/emergency/cancel(area/signalOrigin)
 	if(mode != SHUTTLE_CALL)
 		return
-	if(SSshuttle.emergencyNoRecall)
+	if(SSshuttle.emergency_no_recall)
 		return
 
 	invertTimer()
 	mode = SHUTTLE_RECALL
 
 	if(prob(70))
-		SSshuttle.emergencyLastCallLoc = signalOrigin
+		SSshuttle.emergency_last_call_loc = signalOrigin
 	else
-		SSshuttle.emergencyLastCallLoc = null
-	priority_announce("The emergency shuttle has been recalled.[SSshuttle.emergencyLastCallLoc ? " Recall signal traced. Results can be viewed on any communications console." : "" ]", null, ANNOUNCER_SHUTTLERECALLED, "Priority")
+		SSshuttle.emergency_last_call_loc = null
+
+	priority_announce("The emergency shuttle has been recalled.[SSshuttle.emergency_last_call_loc ? " Recall signal traced. Results can be viewed on any communications console." : "" ]", null, ANNOUNCER_SHUTTLERECALLED, "Priority")
 
 /obj/docking_port/mobile/emergency/proc/is_hijacked()
 	var/has_people = FALSE
@@ -357,7 +356,7 @@
 					setTimer(20)
 					return
 				mode = SHUTTLE_DOCKED
-				setTimer(SSshuttle.emergencyDockTime)
+				setTimer(SSshuttle.emergency_dock_time)
 				send2irc("Server", "The Emergency Shuttle ([name]) has docked with the station.") // yogs - make it say the name of the shuttle
 				priority_announce("[SSshuttle.emergency] has docked with the station. You have [timeLeft(600)] minutes to board the Emergency Shuttle.", null, ANNOUNCER_SHUTTLEDOCK, "Priority")
 				ShuttleDBStuff()
@@ -369,7 +368,7 @@
 				SSshuttle.checkHostileEnvironment()
 				if(mode == SHUTTLE_STRANDED)
 					return
-				for(var/A in SSshuttle.mobile)
+				for(var/A in SSshuttle.mobile_docking_ports)
 					var/obj/docking_port/mobile/M = A
 					if(M.launch_status == UNLAUNCHED) //Pods will not launch from the mine/planet, and other ships won't launch unless we tell them to.
 						M.check_transit_zone()
@@ -381,7 +380,7 @@
 				return
 
 			success &= (check_transit_zone() == TRANSIT_READY)
-			for(var/A in SSshuttle.mobile)
+			for(var/A in SSshuttle.mobile_docking_ports)
 				var/obj/docking_port/mobile/M = A
 				if(M.launch_status == UNLAUNCHED)
 					success &= (M.check_transit_zone() == TRANSIT_READY)
@@ -395,9 +394,9 @@
 					areas += E
 				hyperspace_sound(HYPERSPACE_WARMUP, areas)
 
-			if(time_left <= 0 && !SSshuttle.emergencyNoEscape)
+			if(time_left <= 0 && !SSshuttle.emergency_no_escape)
 				//move each escape pod (or applicable spaceship) to its corresponding transit dock
-				for(var/A in SSshuttle.mobile)
+				for(var/A in SSshuttle.mobile_docking_ports)
 					var/obj/docking_port/mobile/M = A
 					M.on_emergency_launch()
 
@@ -409,7 +408,7 @@
 				enterTransit()
 				mode = SHUTTLE_ESCAPE
 				launch_status = ENDGAME_LAUNCHED
-				setTimer(SSshuttle.emergencyEscapeTime * engine_coeff)
+				setTimer(SSshuttle.emergency_escape_time * engine_coeff)
 				priority_announce("The Emergency Shuttle has left the station. Estimate [timeLeft(600)] minutes until the shuttle docks at Central Command.", null, null, "Priority")
 
 		if(SHUTTLE_STRANDED)
@@ -430,7 +429,7 @@
 						break
 				if(area_parallax)
 					parallax_slowdown()
-					for(var/A in SSshuttle.mobile)
+					for(var/A in SSshuttle.mobile_docking_ports)
 						var/obj/docking_port/mobile/M = A
 						if(M.launch_status == ENDGAME_LAUNCHED)
 							if(istype(M, /obj/docking_port/mobile/pod))
@@ -438,7 +437,7 @@
 
 			if(time_left <= 0)
 				//move each escape pod to its corresponding escape dock
-				for(var/A in SSshuttle.mobile)
+				for(var/A in SSshuttle.mobile_docking_ports)
 					var/obj/docking_port/mobile/M = A
 					M.on_emergency_dock()
 
@@ -450,6 +449,7 @@
 					minor_announce("Corruption detected in \
 						shuttle navigation protocols. Please contact your \
 						supervisor.", "SYSTEM ERROR:", alert=TRUE)
+					sound_to_playing_players('sound/misc/announce2.ogg')
 
 				dock_id(destination_dock)
 				mode = SHUTTLE_ENDGAME
@@ -461,23 +461,20 @@
 
 	mode = SHUTTLE_ESCAPE
 	launch_status = ENDGAME_LAUNCHED
-	setTimer(SSshuttle.emergencyEscapeTime)
+	setTimer(SSshuttle.emergency_escape_time)
 	priority_announce("The Emergency Shuttle preparing for direct jump. Estimate [timeLeft(600)] minutes until the shuttle docks at Central Command.", null, null, "Priority")
 
 
 /obj/docking_port/mobile/pod
 	name = "escape pod"
-	id = "pod"
-	dwidth = 1
-	width = 3
-	height = 4
+	shuttle_id = "pod"
 	launch_status = UNLAUNCHED
 
 /obj/docking_port/mobile/pod/request(obj/docking_port/stationary/S)
-	var/obj/machinery/computer/shuttle/C = getControlConsole()
+	var/obj/machinery/computer/shuttle/C = get_control_console()
 	if(!istype(C, /obj/machinery/computer/shuttle/pod))
 		return ..()
-	if(GLOB.security_level >= SEC_LEVEL_RED || (C && (C.obj_flags & EMAGGED)))
+	if(SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_RED || (C && (C.obj_flags & EMAGGED)))
 		if(launch_status == UNLAUNCHED)
 			launch_status = EARLY_LAUNCHED
 			return ..()
@@ -490,7 +487,7 @@
 
 /obj/machinery/computer/shuttle/pod
 	name = "pod control computer"
-	admin_controlled = 1
+	admin_controlled = TRUE
 	possible_destinations = "pod_asteroid"
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "dorm_available"
@@ -502,37 +499,54 @@
 	AddElement(/datum/element/update_icon_blocker)
 	return ..()
 
-/obj/machinery/computer/shuttle/pod/emag_act(mob/user)
+/obj/machinery/computer/shuttle/pod/proc/update_security_level(_, datum/security_level/new_level)
+	admin_controlled = !new_level.pod_access
+
+/obj/machinery/computer/shuttle/pod/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	ENABLE_BITFIELD(obj_flags, EMAGGED)
 	to_chat(user, span_warning("You fry the pod's alert level checking system."))
 
-/obj/machinery/computer/shuttle/pod/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
+/obj/machinery/computer/shuttle/pod/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
 	. = ..()
-	if(possible_destinations == initial(possible_destinations) || override)
-		possible_destinations = "pod_lavaland[idnum]"
+	if(port)
+		//Checks if the computer has already added the shuttle destination with the initial id
+		//This has to be done because connect_to_shuttle is called again after its ID is updated
+		//due to conflicting id names
+		var/base_shuttle_destination = ";[initial(port.shuttle_id)]_lavaland"
+		var/shuttle_destination = ";[port.shuttle_id]_lavaland"
+
+		var/position = findtext(possible_destinations, base_shuttle_destination)
+		if(position)
+			if(base_shuttle_destination == shuttle_destination)
+				return
+			possible_destinations = splicetext(possible_destinations, position, position + length(base_shuttle_destination), shuttle_destination)
+			return
+
+		possible_destinations += shuttle_destination
 
 /obj/docking_port/stationary/random
 	name = "escape pod"
-	id = "pod"
-	dwidth = 1
-	width = 3
-	height = 4
-	var/areacheck = /area/lavaland/surface/outdoors
+	shuttle_id = "pod"
+	hidden = TRUE
+	override_can_dock_checks = TRUE
+	/// The area the pod tries to land at
+	var/target_area = /area/lavaland/surface/outdoors
+	/// Minimal distance from the map edge, setting this too low can result in shuttle landing on the edge and getting "sliced"
 	var/edge_distance = 16
-	// Minimal distance from the map edge, setting this too low can result in shuttle landing on the edge and getting "sliced"
-
-/obj/docking_port/stationary/random/icemoon
-	areacheck = /area/icemoon/surface/outdoors/unexplored/danger
 
 /obj/docking_port/stationary/random/Initialize(mapload)
 	. = ..()
 	if(!mapload)
 		return
 
-	var/list/turfs = get_area_turfs(areacheck)
+	var/list/turfs = get_area_turfs(target_area)
 	var/original_len = turfs.len
+	//YOGS EDIT
+	if(!original_len)
+		return INITIALIZE_HINT_QDEL // we clearly havent loaded lavaland, and there is no pretty way to do this with jungleland, temporary fix for now at least
+	//YOGS END
 	while(turfs.len)
 		var/turf/T = pick(turfs)
 		if(T.x<edge_distance || T.y<edge_distance || (world.maxx+1-T.x)<edge_distance || (world.maxy+1-T.y)<edge_distance)
@@ -542,9 +556,12 @@
 			return
 
 		// Fallback: couldn't find anything
-	WARNING("docking port '[id]' could not be randomly placed in [areacheck]: of [original_len] turfs, none were suitable")
+	WARNING("docking port '[shuttle_id]' could not be randomly placed in [target_area]: of [original_len] turfs, none were suitable")
 	return INITIALIZE_HINT_QDEL
 
+
+/obj/docking_port/stationary/random/icemoon
+	target_area = /area/icemoon/surface/outdoors/unexplored/danger
 //Pod suits/pickaxes
 
 
@@ -609,16 +626,13 @@
 /obj/item/storage/pod/can_interact(mob/user)
 	if(!..())
 		return FALSE
-	if(GLOB.security_level >= SEC_LEVEL_RED || unlocked)
+	if(SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_RED || unlocked)
 		return TRUE
 	to_chat(user, "The storage unit will only unlock during a Red or Delta security alert.")
 
 /obj/docking_port/mobile/emergency/backup
 	name = "backup shuttle"
-	id = "backup"
-	dwidth = 2
-	width = 8
-	height = 8
+	shuttle_id = "backup"
 	dir = EAST
 
 /obj/docking_port/mobile/emergency/backup/Initialize(mapload)
@@ -631,7 +645,12 @@
 	SSshuttle.emergency = current_emergency
 	SSshuttle.backup_shuttle = src
 
-/obj/docking_port/mobile/emergency/shuttle_build/register()
+/obj/docking_port/mobile/emergency/backup/Destroy(force)
+	if(SSshuttle.backup_shuttle == src)
+		SSshuttle.backup_shuttle = null
+	return ..()
+
+/obj/docking_port/mobile/emergency/shuttle_build/postregister()
 	. = ..()
 	initiate_docking(SSshuttle.getDock("emergency_home"))
 

@@ -47,7 +47,7 @@
 	var/obj/item/computer_hardware/card_slot/card_slot2 = get_modular_computer_part(MC_CARD2)
 	var/multiple_slots = istype(card_slot) && istype(card_slot2)
 	if(card_slot)
-		if(card_slot.stored_card || (istype(card_slot2) && card_slot2.stored_card))
+		if(card_slot.stored_card || (istype(card_slot2) && card_slot2?.stored_card))
 			var/obj/item/card/id/first_ID = card_slot.stored_card
 			var/obj/item/card/id/second_ID = card_slot2.stored_card
 			var/multiple_cards = istype(first_ID) && istype(second_ID)
@@ -63,4 +63,12 @@
 	if(printer_slot)
 		. += "It has a printer installed."
 		if(user_is_adjacent)
-			. += "The printer's paper levels are at: [printer_slot.stored_paper]/[printer_slot.max_paper].</span>]"
+			. += "The printer's paper levels are at: [printer_slot.stored_paper]/[printer_slot.max_paper].</span>"
+
+	var/obj/item/computer_hardware/ai_interface/ai_interface = get_modular_computer_part(MC_AI_NETWORK)
+	if(ai_interface)
+		if(ai_interface.connected_cable)
+			. += "It has an AI network interface. It is currently connected to an ethernet cable."
+		else
+			. += "It has an AI network interface."
+

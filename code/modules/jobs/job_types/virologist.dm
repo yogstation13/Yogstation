@@ -8,7 +8,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the chief medical officer"
-	selection_color = "#d4ebf2"
 	exp_type = EXP_TYPE_CREW
 	exp_requirements = 120
 	minimal_player_age = 7
@@ -43,13 +42,21 @@
 		/obj/item/reagent_containers/glass/bottle/anxiety = 3
 	)
 
+	lightup_areas = list(
+		/area/medical/morgue,
+		/area/medical/surgery,
+		/area/medical/genetics,
+		/area/medical/chemistry
+	)
+	minimal_lightup_areas = list(/area/medical/virology)
+	
 	smells_like = "germlessness"
 
 /datum/outfit/job/virologist
 	name = "Virologist"
 	jobtype = /datum/job/virologist
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/medical/viro
 
 	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/rank/virologist
