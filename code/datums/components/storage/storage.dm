@@ -731,8 +731,11 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		CHECK_TICK
 	return TRUE
 
-/datum/component/storage/proc/on_attack_hand(datum/source, mob/user)
+/datum/component/storage/proc/on_attack_hand(datum/source, mob/user, modifiers)
 	var/atom/A = parent
+	if(modifiers && modifiers[RIGHT_CLICK])
+		on_alt_click(source, user)
+		return COMPONENT_NO_ATTACK_HAND
 	if(!attack_hand_interact)
 		return
 	if(user.active_storage == src && A.loc == user) //if you're already looking inside the storage item

@@ -58,7 +58,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /mob/living/silicon/attack_hand(mob/living/carbon/human/M, modifiers)
 	. = FALSE
-	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, M) & COMPONENT_NO_ATTACK_HAND)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, M, modifiers) & COMPONENT_NO_ATTACK_HAND)
 		. = TRUE
 	if(modifiers && modifiers[RIGHT_CLICK])
 		M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
