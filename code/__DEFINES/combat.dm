@@ -66,6 +66,16 @@
 #define EFFECT_DROWSY		"drowsy"
 #define EFFECT_JITTER		"jitter"
 
+/// Alternate attack defines. Return these at the end of procs like afterattack_secondary.
+/// Calls the normal attack proc. For example, if returned in afterattack_secondary, will call afterattack.
+
+/// Will continue the chain depending on the return value of the non-alternate proc, like with normal attacks.
+#define SECONDARY_ATTACK_CALL_NORMAL 1
+/// Cancels the attack chain entirely.
+#define SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN 2
+/// Proceed with the attack chain, but don't call the normal methods.
+#define SECONDARY_ATTACK_CONTINUE_CHAIN 3
+
 //Bitflags defining which status effects could be or are inflicted on a mob
 #define CANSTUN			(1<<0)
 #define CANKNOCKDOWN	(1<<1)

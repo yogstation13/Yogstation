@@ -1,13 +1,44 @@
 
 /obj/item/proc/melee_attack_chain(mob/user, atom/target, params)
+	var/is_right_clicking = params2list(params)[RIGHT_CLICK]
+
 	if(tool_behaviour && (target.tool_act(user, src, tool_behaviour, params) & TOOL_ACT_MELEE_CHAIN_BLOCKING))
 		return TRUE
 
-	if(pre_attack(target, user, params))
-		// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
-		var/resolved = target.attackby(src, user, params)
-		if(!resolved && target && !QDELETED(src))
-			afterattack(target, user, 1, params) // 1: clicking something Adjacent
+	if(!pre_attack(target, user, params))
+		mark_target(target)
+		return TRUE
+
+	var/attackby_result
+	if(is_right_clicking)
+		switch(target.attackby_secondary(src, user, params))
+			if(SECONDARY_ATTACK_CALL_NORMAL)
+				attackby_result = target.attackby(src, user, params)
+			if(SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+				mark_target(target)
+				return TRUE
+			if(null)
+				mark_target(target)
+				CRASH("attackby_secondary must return an SECONDARY_ATTACK_* define, please consult code/__DEFINES/combat.dm")
+	else
+		attackby_result = target.attackby(src, user, params)
+
+	// attackby does not want afterattack to happen, or the target is gone, or the item is gone
+	if(attackby_result || QDELETED(src) || QDELETED(target))
+		mark_target(target)
+		return TRUE
+
+	if(is_right_clicking)
+		var/after_attack_secondary_result = afterattack_secondary(target, user, TRUE, params)
+		// There's no chain left to continue at this point, so CANCEL_ATTACK_CHAIN and CONTINUE_CHAIN are functionally the same.
+		if(after_attack_secondary_result == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN || after_attack_secondary_result == SECONDARY_ATTACK_CONTINUE_CHAIN)
+			mark_target(target)
+			return TRUE
+	
+	return afterattack(target, user, TRUE, params)
+
+/// Used to mark a target for the demo system during a melee attack chain, call this before return
+/obj/item/proc/mark_target(atom/target)
 	SSdemo.mark_dirty(src)
 	if(isturf(target))
 		SSdemo.mark_turf(target)
@@ -34,6 +65,9 @@
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY, attacking_item, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
 	return FALSE
+
+/atom/proc/attackby_secondary(obj/item/weapon, mob/user, params)
+	return SECONDARY_ATTACK_CALL_NORMAL
 
 /obj/attackby(obj/item/I, mob/living/user, params)
 	return ..() || ((obj_flags & CAN_BE_HIT) && I.attack_atom(src, user))
@@ -63,6 +97,15 @@
 			attackby(I, user, params) //call the attackby again to refresh and do the butchering check again
 			return
 	return I.attack(src, user, params)
+
+/mob/living/attackby_secondary(obj/item/weapon, mob/living/user, params)
+	var/result = weapon.attack_secondary(src, user, params)
+
+	// Normal attackby updates click cooldown, so we have to make up for it
+	if(result != SECONDARY_ATTACK_CALL_NORMAL)
+		user.changeNext_move(CLICK_CD_MELEE)
+	
+	return result
 
 /**
  * Called from [/mob/living/proc/attackby]
@@ -122,6 +165,10 @@
 		force_multiplier = S.force_multiplier
 	
 	take_damage(rand(weapon_stats[DAMAGE_LOW] * force_multiplier, weapon_stats[DAMAGE_HIGH] * force_multiplier), sound_effect = FALSE)
+
+/// The equivalent of [/obj/item/proc/attack] but for alternate attacks, AKA right clicking
+/obj/item/proc/attack_secondary(mob/living/victim, mob/living/user, params)
+	return SECONDARY_ATTACK_CALL_NORMAL
 
 //the equivalent of the standard version of attack() but for non-mob targets.
 /obj/item/proc/attack_atom(atom/attacked_atom, mob/living/user, params)
@@ -194,6 +241,17 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)
 
+/**
+ * Called at the end of the attack chain if the user right-clicked.
+ *
+ * Arguments:
+ * * atom/target - The thing that was hit
+ * * mob/user - The mob doing the hitting
+ * * proximity_flag - is 1 if this afterattack was called on something adjacent, in your square, or on your person.
+ * * click_parameters - is the params string from byond [/atom/proc/Click] code, see that documentation.
+ */
+/obj/item/proc/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
+	return SECONDARY_ATTACK_CALL_NORMAL
 
 /obj/item/proc/get_clamped_volume()
 	if(w_class)

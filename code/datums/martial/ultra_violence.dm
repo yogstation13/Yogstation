@@ -433,13 +433,16 @@
 	H.dna.species.punchdamagehigh += 4 //no fancy comboes, just punches
 	H.dna.species.punchstunthreshold += 50 //disables punch stuns
 	H.dna.species.staminamod = 0 //my god, why must you make me add all these additional things, stop trying to disable them, just kill them
-	ADD_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)
-	ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, IPCMARTIAL)
-	ADD_TRAIT(H, TRAIT_NOLIMBDISABLE, IPCMARTIAL)
-	ADD_TRAIT(H, TRAIT_NO_STUN_WEAPONS, IPCMARTIAL)
-	ADD_TRAIT(H, TRAIT_NODISMEMBER, IPCMARTIAL)
-	ADD_TRAIT(H, TRAIT_STUNIMMUNE, IPCMARTIAL)///mainly so emps don't end you instantly, they still do damage though
-	ADD_TRAIT(H, TRAIT_SLEEPIMMUNE, IPCMARTIAL) // what the fuck are you sleeping for? KEEP EM COMING!!
+	ADD_TRAIT(H, list( \
+		TRAIT_NOSOFTCRIT, \
+		TRAIT_IGNOREDAMAGESLOWDOWN, \
+		TRAIT_NOLIMBDISABLE, \
+		TRAIT_NO_STUN_WEAPONS, \
+		TRAIT_NODISMEMBER, \
+		TRAIT_STUNIMMUNE, \
+		TRAIT_SLEEPIMMUNE, \
+		TRAIT_NO_HOLDUP, \
+	), IPCMARTIAL)
 	RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(on_click)) // death to click_intercept
 	H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dashes+1)
 	H.dna.species.GiveSpeciesFlight(H)//because... c'mon
