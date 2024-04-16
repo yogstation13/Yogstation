@@ -35,10 +35,13 @@
 
 /datum/martial_art/lightning_flow/proc/on_click(mob/living/carbon/human/H, atom/target, params)
 	var/list/modifiers = params2list(params)
-	if(!can_use(H) || modifiers[SHIFT_CLICK] || modifiers[ALT_CLICK] || (modifiers[CTRL_CLICK] && H.CanReach(target))) // only intercept ranged grabs
+	if(!can_use(H) || !H.combat_mode || modifiers[SHIFT_CLICK] || modifiers[ALT_CLICK] || (modifiers[CTRL_CLICK] && H.CanReach(target))) // only intercept ranged grabs
 		return
 
 	if(H.Adjacent(target))//just do the regular action
+		return
+	
+	if(H.in_throw_mode) // so you can throw people properly
 		return
 
 	if(isitem(target))//don't attack if we're clicking on our inventory

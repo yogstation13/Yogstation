@@ -770,10 +770,13 @@
 
 /obj/machinery/power/apc/AltClick(mob/user)
 	. = ..()
+	if(!user.canUseTopic(src, !issilicon(user)) || !isturf(loc))
+		return
 	if(isethereal(user))
 		var/mob/living/glowbro = user
 		if(ethereal_act(glowbro))
 			return
+	togglelock(user)
 
 /obj/machinery/power/apc/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	if(the_rcd.upgrade & RCD_UPGRADE_SIMPLE_CIRCUITS)
