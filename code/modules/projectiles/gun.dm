@@ -229,11 +229,6 @@
 	if(firing_burst)
 		return
 	var/list/modifiers = params2list(params)
-	if(ishuman(user) && user.combat_mode)
-		var/mob/living/carbon/human/H = user
-		if(weapon_weight < WEAPON_MEDIUM && istype(H.held_items[H.get_inactive_hand_index()], /obj/item/gun) && can_trigger_gun(user))
-			
-
 	if(flag) //It's adjacent, is the user, or is on the user's person
 		if(target in user.contents) //can't shoot stuff inside us.
 			return
