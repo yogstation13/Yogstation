@@ -1,0 +1,4 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed vending machine maintenance panels not showing up"
