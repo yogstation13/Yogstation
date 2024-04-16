@@ -842,50 +842,6 @@
 
 //////////////////////////////////////////////
 //                                          //
-//               SHADOWLINGS                //
-//                                          //
-//////////////////////////////////////////////
-
-/datum/dynamic_ruleset/roundstart/shadowling
-	name = "Shadowling"
-	antag_flag = ROLE_SHADOWLING
-	antag_datum = /datum/antagonist/shadowling
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician")
-	restricted_roles = list("Cyborg", "AI", "Synthetic")
-	required_candidates = 3
-	weight = 3
-	cost = 30
-	requirements = list(90,80,80,70,60,40,30,30,20,10)
-	flags = HIGH_IMPACT_RULESET
-	minimum_players = 30
-	antag_cap = 3
-	minimum_players = 32
-
-/datum/dynamic_ruleset/roundstart/shadowling/ready(population, forced = FALSE)
-	required_candidates = get_antag_cap(population)
-	. = ..()
-
-/datum/dynamic_ruleset/roundstart/shadowling/pre_execute(population) /// DON'T BREAK PLEASE - Xoxeyos 3/13/2021
-	. = ..()
-	var/shadowlings = get_antag_cap(population)
-	for(var/shadowling_number = 1 to shadowlings)
-		if(candidates.len <= 0)
-			break
-		var/mob/M = pick_n_take(candidates)
-		assigned += M.mind
-		M.mind.special_role = ROLE_SHADOWLING
-		M.mind.restricted_roles = restricted_roles
-		log_game("[key_name(M)] has been selected as a Shadowling")
-	return TRUE
-
-/datum/dynamic_ruleset/roundstart/shadowling/proc/check_shadow_death()
-	return FALSE
-
-//Xoxeyos Here, I've added this Shadowling shit in, I have no idea what I'm doing, if there were mistakes made
-//feel free to make changes, if it crashes, or just doesn't give anyone roles.
-
-//////////////////////////////////////////////
-//                                          //
 //                VAMPIRE                   //
 //                                          //
 //////////////////////////////////////////////
@@ -995,24 +951,25 @@
 //                                          //
 //////////////////////////////////////////////
 
-/datum/dynamic_ruleset/roundstart/darkspawn
+/datum/dynamic_ruleset/roundstart/darkspawn //i don't entirely know how dynamic works, i hope i've set this up correctly
 	name = "Darkspawn"
 	antag_flag = ROLE_DARKSPAWN
-	antag_datum = /datum/antagonist/darkspawn/
-	minimum_required_age = 20
+	antag_datum = /datum/antagonist/darkspawn
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician")
 	restricted_roles = list("AI", "Cyborg", "Synthetic")
-	required_candidates = 3
-	weight = 3
+	minimum_players = 25
+	required_candidates = 2
+	minimum_required_age = 24 //reasonably complicated antag
+	antag_cap = 4
+	weight = 4
+	flags = HIGH_IMPACT_RULESET
 	cost = 20
-	scaling_cost = 20
-	antag_cap = 3
 	requirements = list(80,75,70,65,50,30,30,30,25,20)
-	minimum_players = 32
+	var/datum/team/darkspawn/team
 
 /datum/dynamic_ruleset/roundstart/darkspawn/pre_execute(population)
-	. = ..()
-	var/num_darkspawn = get_antag_cap(population) * (scaled_times + 1)
+	var/num_darkspawn = clamp(round((population+5)/15), required_enemies, get_antag_cap(population))
+
 	for (var/i = 1 to num_darkspawn)
 		if(candidates.len <= 0)
 			break
@@ -1020,7 +977,12 @@
 		assigned += M.mind
 		M.mind.special_role = ROLE_DARKSPAWN
 		M.mind.restricted_roles = restricted_roles
-		log_game("[key_name(M)] has been selected as a Darkspawn")
+		log_game("[key_name(M)] (ckey) has been selected as a Darkspawn")
+
+	team = new
+	team.update_objectives()
+	GLOB.thrallnet.name = "Thrall net"
+
 	return TRUE
 
 //////////////////////////////////////////////

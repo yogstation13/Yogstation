@@ -281,7 +281,10 @@
 
 #define MEGAFAUNA_DEFAULT_RECOVERY_TIME 5
 
-#define SHADOW_SPECIES_LIGHT_THRESHOLD 0.2
+#define SHADOW_SPECIES_DIM_LIGHT 0.2 //light of this intensity suppresses healing and causes very slow burn damage
+#define SHADOW_SPECIES_BRIGHT_LIGHT 0.6 //light of this intensity causes rapid burn damage (high number because movable lights are weird)
+//so the problem is that movable lights ALWAYS have a luminosity of 0.5, regardless of power or distance, so even at the edge of the overlay they still do damage
+//at 0.6 being bright they'll still do damage and disable some abilities, but it won't be weaponized
 
 // Offsets defines
 

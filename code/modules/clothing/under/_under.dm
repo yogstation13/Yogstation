@@ -23,7 +23,7 @@
 	var/freshly_laundered = FALSE
 	tearable = TRUE //all jumpsuits can be torn down and used for cloth in an emergency | yogs
 
-/obj/item/clothing/under/worn_overlays(isinhands = FALSE)
+/obj/item/clothing/under/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(!isinhands)
 		if(damaged_clothes)

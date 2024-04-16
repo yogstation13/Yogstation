@@ -82,8 +82,8 @@ GLOBAL_LIST_EMPTY(synth_pods)
 		close_machine(target)
 		stored = target
 		update_icon()
-
-		switch_body(target)
+		if(target.client)
+			switch_body(target)
 
 /obj/machinery/synth_pod/proc/switch_body(mob/living/carbon/human/user)
 	var/datum/species/wy_synth/S = user.dna.species
@@ -98,6 +98,12 @@ GLOBAL_LIST_EMPTY(synth_pods)
 			continue
 		if(!pod.stored)
 			continue
+		else
+			var/mob/living/carbon/human/target_synth = pod.stored
+			if(!istype(target_synth))
+				continue
+			if(target_synth.stat == DEAD)
+				continue
 		options["[get_area(pod)] ([pod.x], [pod.y])"] = pod
 
 	var/response = tgui_input_list(user, "Which synthetic unit would you like to transfer into?", "Synthetic Personality Transfer", options)

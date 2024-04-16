@@ -94,7 +94,6 @@ h1.alert, h2.alert		{color: #000000;}
 .suicide				{color: #ff5050;	font-style: italic;}
 .green					{color: #03ff39;}
 .nicegreen					{color: #14a833;}
-.shadowling				{color: #3b2769;}
 .velvet					{color: #21007F;}
 .cult					{color: #973e3b;}
 .cultlarge				{color: #973e3b; font-weight: bold; font-size: 3;}
