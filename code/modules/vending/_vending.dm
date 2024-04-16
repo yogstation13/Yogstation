@@ -447,7 +447,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		default_deconstruction_screwdriver(user, icon_state, icon_state, I)
 		cut_overlays()
 		if(panel_open)
-			add_overlay("[initial(icon_state)]-panel")
+			update_appearance(UPDATE_ICON)
 		updateUsrDialog()
 	else
 		to_chat(user, span_warning("You must first secure [src]."))

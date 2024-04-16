@@ -1,5 +1,5 @@
 /obj/item/clothing/gloves/gasharpoon
-	name = "gasharpoon"
+	name = "gas-harpoon"
 	desc = "A metal gauntlet with a harpoon attatched, powered by gasoline and traditionally used by space-whalers."
 	///reminder to channge all this -- I changed it :)
 	icon = 'icons/obj/traitor.dmi'
@@ -7,7 +7,7 @@
 	item_state = "gasharpoon"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	attack_verb = list("harpooned", "gouged", "pierced")
+	attack_verb = list("harpooned", "hooked", "gouged", "pierced")
 	force = 10
 	throwforce = 10
 	throw_range = 7

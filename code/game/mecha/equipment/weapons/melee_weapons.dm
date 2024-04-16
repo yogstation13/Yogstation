@@ -671,6 +671,7 @@
 		/mob/living/simple_animal/hostile/poison/bees,
 		/mob/living/simple_animal/butterfly,
 		/mob/living/simple_animal/cockroach,
+		/mob/living/simple_animal/hostile/glockroach,
 		/obj/item/queen_bee
 	))
 
