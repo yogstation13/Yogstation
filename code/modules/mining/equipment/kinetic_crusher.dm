@@ -16,6 +16,7 @@
 	throw_speed = 4
 	light_range = 5
 	light_power = 1
+	light_system = MOVABLE_LIGHT
 	armour_penetration = 10
 	materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
 	hitsound = 'sound/weapons/bladeslice.ogg'

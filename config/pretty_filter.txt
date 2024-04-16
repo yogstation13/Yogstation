@@ -43,5 +43,8 @@ n[i1!\\\/]+g(?:g|l+[e3]+t)=BAN ME ADMINS!
 One day while Andy was masturbating=BAN ME ADMINS!
 XEzwgBD=BAN ME ADMINS!
 
+#Regex for tyranny without the y
+tra+n+y+=BAN ME ADMINS!
+
 \b(?:https?:\/\/)?(?:www|i)?\.?(?!yogstation\.net|github\.com)\w{4,128}\.\w{2}\.?\w{0,2}\b\S*=[Link Removed]
 [^ -ÿ]+=​

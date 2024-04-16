@@ -46,37 +46,59 @@
 ///
 
 ///Crowbar act
-/atom/proc/crowbar_act(mob/living/user, obj/item/I)
-	return
+/atom/proc/crowbar_act(mob/living/user, obj/item/tool)
+	SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(TOOL_CROWBAR), user, tool)
 
 ///Multitool act
-/atom/proc/multitool_act(mob/living/user, obj/item/I)
-	return
+/atom/proc/multitool_act(mob/living/user, obj/item/tool)
+	SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL), user, tool)
 
 ///Check if the multitool has an item in it's data buffer
-/atom/proc/multitool_check_buffer(user, obj/item/I, silent = FALSE)
-	if(!istype(I, /obj/item/multitool))
-		if(user && !silent)
-			to_chat(user, span_warning("[I] has no data buffer!"))
-		return FALSE
-	return TRUE
+/atom/proc/multitool_check_buffer(user, obj/item/tool, silent = FALSE)
+	if(istype(tool, /obj/item/multitool))
+		return TRUE
+	if(istype(tool, /obj/item/holotool))
+		return TRUE
+	if(user && !silent)
+		to_chat(user, span_warning("[tool] has no data buffer!"))
+	return FALSE
+
+/atom/proc/multitool_get_buffer(user, obj/item/tool, silent = FALSE)
+	if(istype(tool, /obj/item/multitool))
+		var/obj/item/multitool/multi = tool
+		return multi.buffer
+	if(istype(tool, /obj/item/holotool))
+		var/obj/item/holotool/holo = tool
+		return holo.buffer
+	CRASH("called multitool_get_buffer on [tool] which has no data buffer!")
+
+/atom/proc/multitool_set_buffer(user, obj/item/tool, buffer_value, silent = FALSE)
+	if(istype(tool, /obj/item/multitool))
+		var/obj/item/multitool/multi = tool
+		multi.buffer = buffer_value
+		return TRUE
+	if(istype(tool, /obj/item/holotool))
+		var/obj/item/holotool/holo = tool
+		holo.buffer = buffer_value
+		return TRUE
+	CRASH("called multitool_set_buffer on [tool] which has no data buffer!")
 
 ///Screwdriver act
-/atom/proc/screwdriver_act(mob/living/user, obj/item/I)
-	SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(TOOL_SCREWDRIVER), user, I)
+/atom/proc/screwdriver_act(mob/living/user, obj/item/tool)
+	SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(TOOL_SCREWDRIVER), user, tool)
 
 ///Wrench act
-/atom/proc/wrench_act(mob/living/user, obj/item/I)
-	return
+/atom/proc/wrench_act(mob/living/user, obj/item/tool)
+	SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(TOOL_WRENCH), user, tool)
 
 ///Wirecutter act
-/atom/proc/wirecutter_act(mob/living/user, obj/item/I)
-	return
+/atom/proc/wirecutter_act(mob/living/user, obj/item/tool)
+	SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(TOOL_WIRECUTTER), user, tool)
 
 ///Welder act
-/atom/proc/welder_act(mob/living/user, obj/item/I)
-	return
+/atom/proc/welder_act(mob/living/user, obj/item/tool)
+	SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(TOOL_WELDER), user, tool)
 
 ///Analyzer act
-/atom/proc/analyzer_act(mob/living/user, obj/item/I)
-	return
+/atom/proc/analyzer_act(mob/living/user, obj/item/tool)
+	SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(TOOL_ANALYZER), user, tool)

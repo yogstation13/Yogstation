@@ -133,7 +133,7 @@
 	desc = "A weapon favored by many overactive children. Ages 8 and up. This one feels noticably less fun..."
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/toy/crossbow/hugbox
 
-obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted/hugbox
+/obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted/hugbox
 	desc = "A heavily modified toy light machine gun, designated 'L6 SAW'. Ages 8 and up. This one feels noticably less fun..."
 	mag_type = /obj/item/ammo_box/magazine/toy/m762/hugbox
 

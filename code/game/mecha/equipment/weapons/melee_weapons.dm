@@ -631,6 +631,8 @@
 			playsound(moved_atom, 'sound/effects/gib_step.ogg', 50, 1)
 			qdel(moved_atom)
 			continue
+		if(isobserver(moved_atom))
+			continue // what the fuck?
 		if(moved_atom.wash(CLEAN_SCRUB))
 			cleaned = TRUE
 		if(moved_atom.anchored)
@@ -669,6 +671,7 @@
 		/mob/living/simple_animal/hostile/poison/bees,
 		/mob/living/simple_animal/butterfly,
 		/mob/living/simple_animal/cockroach,
+		/mob/living/simple_animal/hostile/glockroach,
 		/obj/item/queen_bee
 	))
 

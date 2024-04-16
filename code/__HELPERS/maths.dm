@@ -1,5 +1,5 @@
-///Calculate the angle between two movables and the west|east coordinate
-/proc/get_angle(atom/movable/start, atom/movable/end)//For beams.
+///Calculate the angle between two atoms and the west|east coordinate
+/proc/get_angle(atom/start, atom/end)//For beams.
 	if(!start || !end)
 		return 0
 	var/dy =(32 * end.y + end.pixel_y) - (32 * start.y + start.pixel_y)

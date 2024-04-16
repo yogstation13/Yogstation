@@ -356,13 +356,7 @@
 			if(stun_absorption[i]["end_time"] > world.time && stun_absorption[i]["examine_message"])
 				msg += "[t_He] [t_is][stun_absorption[i]["examine_message"]]\n"
 
-	if(!glasses && mind && mind.has_antag_datum(ANTAG_DATUM_THRALL))
-		if(getorganslot(ORGAN_SLOT_EYES))
-			msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
-		else
-			msg += "The pair of holes where [t_His] eyes would be seem unnaturally dark and soulless.\n"
-
-	if((!glasses || !wear_suit) && mind?.has_antag_datum(ANTAG_DATUM_VEIL))
+	if((!wear_suit && !w_uniform) && mind?.has_antag_datum(ANTAG_DATUM_THRALL))
 		msg += "[t_His] whole body is covered in sigils!\n"
 
 	if(!appears_dead)
@@ -617,10 +611,6 @@
 		msg += "[t_He] really keeps to the left.\n"
 	else if(l_limbs_missing >= 2 && r_limbs_missing >= 2)
 		msg += "[t_He] [p_do()]n't seem all there.\n"
-
-
-	if(!glasses && mind && mind.has_antag_datum(ANTAG_DATUM_THRALL))
-		msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
 
 	if (length(msg))
 		. += span_warning("[msg.Join("")]")

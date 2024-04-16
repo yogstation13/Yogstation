@@ -66,8 +66,7 @@
 	else if(I.tool_behaviour == TOOL_MULTITOOL && !parent_turret.locked)
 		if(!multitool_check_buffer(user, I))
 			return
-		var/obj/item/multitool/M = I
-		M.buffer = parent_turret
+		multitool_set_buffer(user, I, parent_turret)
 		to_chat(user, span_notice("You add [parent_turret] to multitool buffer."))
 	else
 		return ..()

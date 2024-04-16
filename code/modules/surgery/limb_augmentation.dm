@@ -66,6 +66,9 @@
 	if(isgolem(target)) // no armor stacking
 		to_chat(user, span_warning("[target]'s exterior is too strong already!"))
 		return FALSE
+	else if(isshadowperson(target)) // no augmenting the species made of shadows
+		to_chat(user, span_warning("[target]'s body refuses to be augmented!"))
+		return FALSE
 	else
 		return TRUE
 
