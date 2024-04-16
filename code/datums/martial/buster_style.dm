@@ -510,14 +510,12 @@
 	..()
 	var/datum/species/S = H.dna?.species
 	ADD_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
-	ADD_TRAIT(H, TRAIT_NO_CARRY_SLOWDOWN, type)
 	S.add_no_equip_slot(H, ITEM_SLOT_GLOVES, src)
 	RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(on_click))
 
 /datum/martial_art/buster_style/on_remove(mob/living/carbon/human/H)
 	var/datum/species/S = H.dna?.species
 	REMOVE_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
-	REMOVE_TRAIT(H, TRAIT_NO_CARRY_SLOWDOWN, type)
 	S.remove_no_equip_slot(H, ITEM_SLOT_GLOVES, src)
 	UnregisterSignal(H, COMSIG_MOB_CLICKON)
 	..()

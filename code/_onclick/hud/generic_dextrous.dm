@@ -28,8 +28,7 @@
 	using.screen_loc = ui_swaphand_position(owner,2)
 	static_inventory += using
 
-	action_intent = new /atom/movable/screen/combattoggle/flashy()
-	action_intent.hud = src
+	action_intent = new /atom/movable/screen/combattoggle/flashy(src)
 	action_intent.icon = ui_style
 	action_intent.screen_loc = ui_combat_toggle
 	static_inventory += action_intent
