@@ -279,4 +279,4 @@
 		return
 	return TRUE
 
-#undef SUICIDE_MESSAGES
+#undef SUICIDE_MESSAGE
