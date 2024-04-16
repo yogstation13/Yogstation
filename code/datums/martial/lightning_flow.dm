@@ -8,7 +8,6 @@
 	id = MARTIALART_LIGHTNINGFLOW
 	no_guns = TRUE
 	help_verb = /mob/living/carbon/human/proc/lightning_flow_help
-	var/recalibration = /mob/living/carbon/human/proc/lightning_flow_recalibration
 	var/dashing = FALSE
 	COOLDOWN_DECLARE(action_cooldown)
 	var/list/action_modifiers = list()
@@ -123,28 +122,17 @@
 	var/list/combined_msg = list()
 	combined_msg +=  "<b><i>You focus your mind.</i></b>"
 
-	combined_msg += span_warning("Every intent now dashes first.")
-	combined_msg += span_notice("<b>If you collide with someone during a disarm dash, you'll instead dropkick them.</b>")
+	combined_msg += span_warning("Punches, shoves, and grabs now dash first.")
+	combined_msg += span_notice("<b>If you collide with someone during a shove dash, you'll instead dropkick them.</b>")
 	combined_msg += span_notice("<b>Your grabs are aggressive.</b>")
-	combined_msg += span_notice("<b>Your harm intent does more damage and shocks.</b>")
+	combined_msg += span_notice("<b>Your punch does more damage and shocks.</b>")
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
-
-/mob/living/carbon/human/proc/lightning_flow_recalibration()
-	set name = "Flicker"
-	set desc = "Fix click intercepts."
-	set category = "Lightning Flow"
-	var/list/combined_msg = list()
-	combined_msg +=  "<b><i>You straighten yourself out, ready for more.</i></b>"
-	to_chat(usr, examine_block(combined_msg.Join("\n")))
-
-	usr.click_intercept = usr.mind.martial_art
 
 
 /datum/martial_art/lightning_flow/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
 	RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(on_click))
-	add_verb(H, recalibration)
 	if(ishuman(H))//it's already a human, but it won't let me access physiology for some reason
 		var/mob/living/carbon/human/user = H
 		user.physiology.punchdamagelow_bonus += 5
@@ -154,7 +142,6 @@
 
 /datum/martial_art/lightning_flow/on_remove(mob/living/carbon/human/H)
 	UnregisterSignal(H, COMSIG_MOB_CLICKON)
-	remove_verb(H, recalibration)
 	if(ishuman(H))//it's already a human, but it won't let me access physiology for some reason
 		var/mob/living/carbon/human/user = H
 		user.physiology.punchdamagelow_bonus -= 5

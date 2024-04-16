@@ -27,7 +27,6 @@
 	id = MARTIALART_WORLDBREAKER
 	no_guns = TRUE
 	help_verb = /mob/living/carbon/human/proc/worldbreaker_help
-	var/recalibration = /mob/living/carbon/human/proc/worldbreaker_recalibration
 	var/list/thrown = list()
 	COOLDOWN_DECLARE(next_leap)
 	COOLDOWN_DECLARE(next_grab)
@@ -60,6 +59,7 @@
 		if(thing in H.get_all_contents())
 			return NONE
 
+	H.face_atom(target)
 	if(modifiers[RIGHT_CLICK])
 		if(H == target)
 			return rip_plate(H) // right click yourself to take off a plate
@@ -243,6 +243,8 @@
 	start of leap section
 ---------------------------------------------------------------*/
 /datum/martial_art/worldbreaker/proc/leap(mob/living/user, atom/target)
+	if(!user.combat_mode && get_dist(user, target) <= 1) // so you can still do right-click stuff
+		return
 	if(!COOLDOWN_FINISHED(src, next_leap))
 		if(COOLDOWN_FINISHED(src, next_balloon))
 			COOLDOWN_START(src, next_balloon, BALLOON_COOLDOWN)
@@ -457,16 +459,18 @@
 	start of pummel section
 ---------------------------------------------------------------*/
 /datum/martial_art/worldbreaker/proc/pummel(mob/living/user, atom/target)
-	if(user == target)
+	if(user == target || !user.combat_mode)
 		return
 	if(user.get_active_held_item()) //most abilities need an empty hand
+		return
+	if(isitem(target)) // so you can still pick up items
 		return
 	if(!COOLDOWN_FINISHED(src, next_pummel))
 		return COMSIG_MOB_CANCEL_CLICKON
 	COOLDOWN_START(src, next_pummel, COOLDOWN_PUMMEL)
 	user.changeNext_move(COOLDOWN_PUMMEL + 1)//so things don't work weirdly when spamming on windows or whatever
 
-	var/center = get_step_towards(user, target)
+	var/turf/center = get_step_towards(user, target)
 
 	user.do_attack_animation(center, ATTACK_EFFECT_SMASH)
 	playsound(get_turf(center), 'sound/effects/gravhit.ogg', 20, TRUE, -1)
@@ -479,29 +483,22 @@
 	animate(shockwave, alpha = 0, transform = matrix().Scale(0.24), time = 3)//the scale of this is VERY finely tuned to range
 	QDEL_IN(shockwave, 4)
 
-	for(var/mob/living/L in range(1, get_turf(center)))
-		if(L == user)
+	for(var/atom/hit_atom in range(1, center))
+		if(hit_atom == user)
 			continue
 		var/damage = 5
-		if(get_turf(L) == get_turf(center))
-			damage *= 4 //anyone in the center takes more
-
-		if(L.anchored)
-			L.anchored = FALSE
-		push_away(user, L)
-		hurt(user, L, damage)
-	for(var/obj/obstruction in range(1, get_turf(center)))
-		if(isitem(obstruction))
-			push_away(user, obstruction)
-			continue
-		if(!isstructure(obstruction) && !ismachinery(obstruction) && !ismecha(obstruction))
-			continue
-		var/damage = 10
-		if(isstructure(obstruction) || ismecha(obstruction))
-			damage += 5
-		if(get_turf(obstruction) == get_turf(center))
-			damage *= 3
-		obstruction.take_damage(damage, sound_effect = FALSE) //reduced sound from hitting LOTS of things
+		if(isitem(hit_atom))
+			push_away(user, hit_atom)
+		else if(isliving(hit_atom))
+			if(get_turf(hit_atom) == center)
+				damage *= 4 //anyone in the center takes more
+			push_away(user, hit_atom)
+			hurt(user, hit_atom, damage)
+		else if(hit_atom.uses_integrity)
+			damage += (isstructure(hit_atom) || ismecha(hit_atom) || isturf(hit_atom)) ? 10 : 5
+			if(get_turf(hit_atom) == center)
+				damage *= 3 //anything in the center takes more
+			hit_atom.take_damage(damage, sound_effect = FALSE)
 	return COMSIG_MOB_CANCEL_CLICKON
 
 /*---------------------------------------------------------------
@@ -644,16 +641,6 @@
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
-/mob/living/carbon/human/proc/worldbreaker_recalibration()
-	set name = "Flush Circuits"
-	set desc = "Flush 'clogged' circuits in order to regain lost strength."
-	set category = "Worldbreaker"
-	var/list/combined_msg = list()
-	combined_msg +=  "<b><i>You flush your circuits with excess power to reduce built up strain on your limbs.</i></b>"
-	to_chat(usr, examine_block(combined_msg.Join("\n")))
-
-	usr.click_intercept = usr.mind.martial_art
-
 /datum/martial_art/worldbreaker/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
 	H.physiology.hunger_mod *= 10 //burn bright my friend
@@ -661,7 +648,6 @@
 	if(istype(S))
 		S.add_no_equip_slot(H, ITEM_SLOT_OCLOTHING, src)
 	RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(on_click))
-	add_verb(H, recalibration)
 	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
 	update_platespeed(H)
 	ADD_TRAIT(H, TRAIT_RESISTHEAT, type) //walk through that fire all you like, hope you don't care about your clothes
@@ -681,7 +667,6 @@
 	if(istype(S))
 		S.remove_no_equip_slot(H, ITEM_SLOT_OCLOTHING, src)
 	UnregisterSignal(H, COMSIG_MOB_CLICKON)
-	remove_verb(H, recalibration)
 	deltimer(plate_timer)
 	plates = 0
 	update_platespeed(H)

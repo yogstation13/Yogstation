@@ -19,7 +19,6 @@
 	gun_exceptions = list(/obj/item/gun/ballistic/revolver/ipcmartial)
 	no_gun_message = "This gun is not compliant with Ultra Violence standards."
 	///used to keep track of the dash stuff
-	var/recalibration = /mob/living/carbon/human/proc/violence_recalibration
 	var/dashing = FALSE
 	var/dashes = 3
 	var/dash_timer = null
@@ -427,16 +426,6 @@
 	to_chat(usr, span_notice("Avoiding damage and using a variety of techniques will increase your style, which gives a speed boost and makes hard damage decay faster.")) // if you want to go fast you need to earn it
 	to_chat(usr, span_notice("Should your dash cease functioning, use the 'Reinitialize Module' function."))
 
-/mob/living/carbon/human/proc/violence_recalibration()
-	set name = "Reinitialize Module"
-	set desc = "Turn your Ultra Violence module off and on again to fix problems."
-	set category = "Ultra Violence"
-	var/list/combined_msg = list()
-	combined_msg +=  "<b><i>You reboot your Ultra Violence module to remove any runtime errors.</i></b>"
-	to_chat(usr, examine_block(combined_msg.Join("\n")))
-
-	usr.click_intercept = usr.mind.martial_art
-
 /datum/martial_art/ultra_violence/teach(mob/living/carbon/human/H, make_temporary=0)//brace your eyes for this mess of buffs
 	..()
 	H.dna.species.attack_sound = 'sound/weapons/shotgunshot.ogg'
@@ -453,7 +442,6 @@
 	ADD_TRAIT(H, TRAIT_SLEEPIMMUNE, IPCMARTIAL) // what the fuck are you sleeping for? KEEP EM COMING!!
 	RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(on_click)) // death to click_intercept
 	H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dashes+1)
-	add_verb(H, recalibration)
 	H.dna.species.GiveSpeciesFlight(H)//because... c'mon
 
 /datum/martial_art/ultra_violence/on_remove(mob/living/carbon/human/H)
@@ -473,7 +461,6 @@
 	UnregisterSignal(H, COMSIG_MOB_CLICKON)
 	deltimer(dash_timer)
 	H.clear_alert("dash_charge")
-	remove_verb(H, recalibration)
 	//not likely they'll lose the martial art i guess, so i guess they can keep the wings since i don't know how to remove them
 
 #undef GUN_HAND

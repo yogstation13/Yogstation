@@ -14,7 +14,6 @@
 	COOLDOWN_DECLARE(next_mop)
 	COOLDOWN_DECLARE(next_grapple)
 	COOLDOWN_DECLARE(next_slam)
-	var/recalibration = /mob/living/carbon/human/proc/buster_recalibration
 	var/old_density //so people grappling something arent pushed by it until it's thrown
 
 //proc the moves will use for damage dealing
@@ -325,6 +324,8 @@
 		for(var/obj/object in T.contents) // If we're about to hit a table or something that isn't destroyed, stop
 			if(object.density == TRUE)
 				return COMSIG_MOB_CANCEL_CLICKON
+		if(thrown.len > 0) // do this or mopping while holding someone will break everything
+			lob(user, T)
 		if(T)
 			sleep(0.01 SECONDS)
 			user.forceMove(T) // Move us forward
@@ -487,7 +488,7 @@
 
 	combined_msg +=  "[span_notice("Grapple")]: Right-clicking an enemy allows you to take a target object or being into your hand for up to 10 seconds and throw them at a \
 	target destination with left-click. Throwing them into unanchored people and objects will knock them back and deal additional damage to existing thrown \
-	targets. Mechs and vending machines can be tossed as well. If the target's limb is at its limit, tear it off. Has a 3 second cooldown"
+	targets. Mechs and vending machines can be tossed as well. If the target's limb is at its limit, tear it off. Has a 3 second cooldown."
 
 	combined_msg +=  "[span_notice("Slam")]: Your punch has been replaced with a slam attack that places enemies behind you and smashes them against \
 	whatever person, wall, or object is there for bonus damage. Has a 0.8 second cooldown."
@@ -505,28 +506,18 @@
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
-/mob/living/carbon/human/proc/buster_recalibration()
-	set name = "Recalibrate Arm"
-	set desc = "You recalibrate the arm to restore missing functionality."
-	set category = "Buster Style"
-	var/list/combined_msg = list()
-	combined_msg +=  "<b><i>You recalibrate your arm in an attempt to restore its functionality.</i></b>"
-	to_chat(usr, examine_block(combined_msg.Join("\n")))
-
-	usr.click_intercept = usr.mind.martial_art
-
 /datum/martial_art/buster_style/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
 	var/datum/species/S = H.dna?.species
 	ADD_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
+	ADD_TRAIT(H, TRAIT_NO_CARRY_SLOWDOWN, type)
 	S.add_no_equip_slot(H, ITEM_SLOT_GLOVES, src)
-	add_verb(H, recalibration)
 	RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(on_click))
 
 /datum/martial_art/buster_style/on_remove(mob/living/carbon/human/H)
 	var/datum/species/S = H.dna?.species
 	REMOVE_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
+	REMOVE_TRAIT(H, TRAIT_NO_CARRY_SLOWDOWN, type)
 	S.remove_no_equip_slot(H, ITEM_SLOT_GLOVES, src)
-	remove_verb(H, recalibration)
 	UnregisterSignal(H, COMSIG_MOB_CLICKON)
 	..()
