@@ -7582,6 +7582,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"bbv" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "bbx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -12872,6 +12878,12 @@
 "bQS" = (
 /turf/open/floor/plasteel/dark,
 /area/security/interrogation)
+"bQX" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "bQZ" = (
 /turf/closed/wall/r_wall,
 /area/science/misc_lab)
@@ -16977,6 +16989,12 @@
 /obj/structure/marker_beacon,
 /turf/open/space,
 /area/space/nearstation)
+"cQu" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "cQB" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -18248,6 +18266,13 @@
 	icon_state = "wood-broken5"
 	},
 /area/maintenance/aft)
+"doa" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/item/stack/rods,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "dof" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -21091,6 +21116,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
+"enU" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "eoh" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/vomit/old,
@@ -26674,6 +26705,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/closed/wall/r_wall,
 /area/engine/atmos/distro)
+"gaM" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "gaP" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -30489,6 +30526,12 @@
 	},
 /turf/open/space,
 /area/solar/port/aft)
+"hrx" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "hrF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -33454,6 +33497,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"ima" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "imb" = (
 /obj/machinery/gravity_generator/main/station,
 /obj/effect/turf_decal/bot_white,
@@ -41912,6 +41961,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"lol" = (
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "lon" = (
 /obj/machinery/light{
 	dir = 1
@@ -42617,6 +42670,23 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/interrogation)
+"lDf" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/camera{
+	active_power_usage = 0;
+	c_tag = "Bomb Test Site";
+	desc = "A specially-reinforced camera with a long lasting battery, used to monitor the bomb testing site.";
+	dir = 8;
+	invuln = 1;
+	name = "Hardened Bomb-Test Camera";
+	network = list("toxins");
+	use_power = 0
+	},
+/obj/item/tank/internals/plasma/empty,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "lDh" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -48306,6 +48376,10 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
+"nyr" = (
+/obj/item/beacon,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "nyu" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -49019,6 +49093,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"nLo" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "nLy" = (
 /obj/structure/table,
 /obj/machinery/camera{
@@ -49183,7 +49263,12 @@
 /turf/open/floor/plasteel/dark,
 /area/medical/sleeper)
 "nQl" = (
-/turf/template_noop,
+/obj/item/target,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
 /area/science/test_area)
 "nQC" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -50870,9 +50955,8 @@
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "ouI" = (
-/obj/effect/landmark/stationroom/box/testingsite,
-/turf/open/space/basic,
-/area/space)
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "ouY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -52529,6 +52613,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"pbe" = (
+/obj/structure/sign/warning/securearea{
+	desc = "A warning sign which reads 'BOMB RANGE";
+	name = "BOMB RANGE"
+	},
+/turf/closed/wall,
+/area/science/test_area)
 "pbi" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
@@ -53987,6 +54078,10 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"pzu" = (
+/obj/item/transfer_valve,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "pzv" = (
 /obj/effect/turf_decal/bot{
 	dir = 1
@@ -59767,6 +59862,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
+"rwk" = (
+/turf/closed/indestructible{
+	desc = "A wall impregnated with Fixium, able to withstand massive explosions with ease";
+	icon_state = "riveted";
+	name = "hyper-reinforced wall"
+	},
+/area/science/test_area)
 "rwm" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/disposalpipe/segment{
@@ -62117,6 +62219,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
+"shj" = (
+/obj/item/target,
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "shq" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /obj/machinery/atmospherics/pipe/simple/brown/visible,
@@ -65603,6 +65713,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
+"tuk" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "tut" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 25
@@ -68087,6 +68201,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/engine/atmos/mix)
+"unU" = (
+/obj/item/target/alien,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "uoh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -73224,6 +73346,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"vUF" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "vUJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -74820,6 +74946,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/science/nanite)
+"wvY" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/item/tank/internals/oxygen/empty,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "wwp" = (
 /obj/machinery/door/airlock/wood{
 	name = "Psychiatrists office";
@@ -77590,6 +77723,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"xwC" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/item/shard,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "xwE" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -78812,6 +78952,9 @@
 /obj/machinery/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"xTa" = (
+/turf/closed/wall,
+/area/science/test_area)
 "xTe" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -139093,12 +139236,12 @@ aaa
 aaa
 gXs
 gXs
-nQl
-nQl
-nQl
+xTa
+enU
+xTa
 gXs
 gXs
-ouI
+aaa
 aaa
 aaa
 aaa
@@ -139349,11 +139492,11 @@ aaa
 aaa
 gXs
 gXs
-nQl
-nQl
-nQl
-nQl
-nQl
+pbe
+xTa
+bbv
+xTa
+pbe
 gXs
 gXs
 aaa
@@ -139605,13 +139748,13 @@ aaa
 aaa
 aaf
 gXs
-nQl
-nQl
-nQl
-nQl
-nQl
-nQl
-nQl
+xTa
+xTa
+bQX
+enU
+ima
+xTa
+xTa
 gXs
 aaf
 aaa
@@ -139861,15 +140004,15 @@ aaa
 aaa
 aaa
 aaf
-nQl
-nQl
-nQl
-nQl
-nQl
-nQl
-nQl
-nQl
-nQl
+xTa
+xTa
+wvY
+cQu
+ouI
+nLo
+ima
+xTa
+xTa
 aaf
 aaa
 aaa
@@ -140118,15 +140261,15 @@ aaa
 aaf
 aaf
 aaf
+vUF
+shj
+hrx
+ouI
+nyr
+ouI
+tuk
 nQl
-nQl
-nQl
-nQl
-nQl
-nQl
-nQl
-nQl
-nQl
+vUF
 aaf
 aaf
 aaf
@@ -140375,15 +140518,15 @@ aaa
 aaa
 aaa
 aaf
-nQl
-nQl
-nQl
-nQl
-nQl
-nQl
-nQl
-nQl
-nQl
+xTa
+xTa
+gaM
+doa
+pzu
+lol
+xwC
+xTa
+xTa
 aaf
 aaa
 aaa
@@ -140633,13 +140776,13 @@ aaa
 aaa
 aaf
 gXs
-nQl
-nQl
-nQl
-nQl
-nQl
-nQl
-nQl
+xTa
+xTa
+gaM
+bbv
+lDf
+xTa
+xTa
 gXs
 aaf
 aaa
@@ -140891,11 +141034,11 @@ aaa
 aaa
 gXs
 gXs
-nQl
-nQl
-nQl
-nQl
-nQl
+pbe
+xTa
+unU
+xTa
+pbe
 gXs
 gXs
 aaa
@@ -141149,9 +141292,9 @@ aaa
 aaa
 gXs
 gXs
-nQl
-nQl
-nQl
+xTa
+rwk
+xTa
 gXs
 gXs
 aaa
