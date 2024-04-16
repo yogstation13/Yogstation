@@ -122,7 +122,7 @@
 	var/list/combined_msg = list()
 	combined_msg +=  "<b><i>You focus your mind.</i></b>"
 
-	combined_msg += span_warning("Punches, shoves, and grabs now dash first.")
+	combined_msg += span_warning("Punches, shoves, and grabs now dash first while combat mode is enabled.")
 	combined_msg += span_notice("<b>If you collide with someone during a shove dash, you'll instead dropkick them.</b>")
 	combined_msg += span_notice("<b>Your grabs are aggressive.</b>")
 	combined_msg += span_notice("<b>Your punch does more damage and shocks.</b>")
