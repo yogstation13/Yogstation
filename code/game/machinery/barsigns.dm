@@ -495,5 +495,3 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign/all_access, 32)
 /obj/item/wallframe/barsign/all_access
 	desc = "Used to help draw the rabble into your bar. Some assembly required. This one doesn't have an access lock."
 	result_path = /obj/machinery/barsign/all_access
-
-
