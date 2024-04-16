@@ -1,5 +1,5 @@
 /obj/item/clothing/gloves/gasharpoon
-	name = "GasHarpoon"
+	name = "gasharpoon"
 	desc = "A metal gauntlet with a harpoon attatched, powered by gasoline and traditionally used by space-whalers."
 	///reminder to channge all this -- I changed it :)
 	icon = 'icons/obj/traitor.dmi'
