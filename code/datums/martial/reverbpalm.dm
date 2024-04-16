@@ -82,16 +82,15 @@
 	if(!(can_use(H)) || (modifiers["shift"] || modifiers["alt"]))
 		return
 	H.face_atom(target)
-	if(H==target)
-		if(H.a_intent == INTENT_HELP)
-			supercharge(H)
-		return
-	if(H.a_intent == INTENT_DISARM)
-		rush(H)
-	if(H.a_intent == INTENT_HARM && isliving(target) && (get_dist(H, target) <= 1))
-		suplex(H,target)
-	if(H.a_intent == INTENT_GRAB)
-		lariat(H)
+	if(modifiers[RIGHT_CLICK])
+		if(H == target)
+			return supercharge(H) // right-clicking yourself activates supercharge
+		else if(get_dist(H, target) <= 1)
+			return lariat(H) // right-click in melee for lariat
+		else
+			return rush(H) // right-click at range for rush
+	else if(H.CanReach(target) && isliving(target))
+		suplex(H,target) // left-click in melee for suplex
 
 /datum/martial_art/reverberating_palm/harm_act(mob/living/carbon/human/A, mob/living/D)
 	if(normalharm)
@@ -113,6 +112,7 @@
 			if(user.active_hand_index % 2 == 1)
 				user.swap_hand(0)
 		//do cooldown
+	return TRUE
 
 
 /datum/martial_art/reverberating_palm/proc/rush(mob/living/user)
@@ -163,7 +163,7 @@
 	to_chat(target, span_userdanger("[user] crushes you against [Q]!"))
 	playsound(target, 'sound/effects/meteorimpact.ogg', 60, 1)
 	playsound(user, 'sound/effects/gravhit.ogg', 20, 1)
-
+	return TRUE
 
 /datum/martial_art/reverberating_palm/proc/lariat(mob/living/user)
 	var/jumpdistance = 4
@@ -172,6 +172,7 @@
 		return
 	COOLDOWN_START(src, next_lariat, COOLDOWN_LARIAT)
 	dashattack(user, user.dir, jumpdistance, 1) 
+	return TRUE
 
 /datum/martial_art/reverberating_palm/proc/dashattack(mob/living/user, dir, distance = 0, type = 0, list/rushed)
 	var/turf/Q = get_step(get_turf(user), dir)

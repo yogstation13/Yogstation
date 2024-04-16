@@ -97,7 +97,7 @@
 		var/mob/living/M = target
 		if(M.stat == DEAD)
 			return
-		if(chassis.occupant.a_intent == INTENT_HARM)
+		if(chassis.occupant.combat_mode)
 			M.take_overall_damage(dam_force)
 			if(!M)
 				return
@@ -106,7 +106,7 @@
 			target.visible_message(span_danger("[chassis] squeezes [target]."), \
 								span_userdanger("[chassis] squeezes [target]."),\
 								span_italics("You hear something crack."))
-			log_combat(chassis.occupant, M, "attacked", "[name]", "(INTENT: [uppertext(chassis.occupant.a_intent)]) (DAMTYE: [uppertext(damtype)])")
+			log_combat(chassis.occupant, M, "attacked", "[name]", "(COMBAT MODE: [user.combat_mode ? "ON" : "OFF"]) (DAMTYE: [uppertext(damtype)])")
 		else
 			step_away(M,chassis)
 			occupant_message("You push [target] out of the way.")
@@ -129,7 +129,7 @@
 	dam_force = 20
 	real_clamp = TRUE
 
-/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill/action(atom/target)
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill/action(atom/target, mob/living/user, params)
 	if(!action_checks(target))
 		return
 	if(!cargo_holder)
@@ -157,20 +157,9 @@
 		var/mob/living/M = target
 		if(M.stat == DEAD)
 			return
-		if(chassis.occupant.a_intent == INTENT_HARM)
-			if(real_clamp)
-				M.take_overall_damage(dam_force)
-				if(!M)
-					return
-				M.adjustOxyLoss(round(dam_force/2))
-				M.updatehealth()
-				target.visible_message(span_danger("[chassis] destroys [target] in an unholy fury."), \
-									span_userdanger("[chassis] destroys [target] in an unholy fury."))
-				log_combat(chassis.occupant, M, "attacked", "[name]", "(INTENT: [uppertext(chassis.occupant.a_intent)]) (DAMTYE: [uppertext(damtype)])")
-			else
-				target.visible_message(span_danger("[chassis] destroys [target] in an unholy fury."), \
-									span_userdanger("[chassis] destroys [target] in an unholy fury."))
-		else if(chassis.occupant.a_intent == INTENT_DISARM)
+		
+		var/list/modifiers = params2list(params)
+		if(modifiers && modifiers[RIGHT_CLICK])
 			if(real_clamp)
 				var/mob/living/carbon/C = target
 				var/play_sound = FALSE
@@ -189,10 +178,23 @@
 					playsound(src, get_dismember_sound(), 80, TRUE)
 					target.visible_message(span_danger("[chassis] rips [target]'s arms off."), \
 								   span_userdanger("[chassis] rips [target]'s arms off."))
-					log_combat(chassis.occupant, M, "dismembered of[limbs_gone],", "[name]", "(INTENT: [uppertext(chassis.occupant.a_intent)]) (DAMTYE: [uppertext(damtype)])")
+					log_combat(chassis.occupant, M, "dismembered of[limbs_gone],", "[name]", "(COMBAT MODE: [user.combat_mode ? "ON" : "OFF"]) (DAMTYE: [uppertext(damtype)])")
 			else
 				target.visible_message(span_danger("[chassis] rips [target]'s arms off."), \
 								   span_userdanger("[chassis] rips [target]'s arms off."))
+		else if(chassis.occupant.combat_mode)
+			if(real_clamp)
+				M.take_overall_damage(dam_force)
+				if(!M)
+					return
+				M.adjustOxyLoss(round(dam_force/2))
+				M.updatehealth()
+				target.visible_message(span_danger("[chassis] destroys [target] in an unholy fury."), \
+									span_userdanger("[chassis] destroys [target] in an unholy fury."))
+				log_combat(chassis.occupant, M, "attacked", "[name]", "(COMBAT MODE: [user.combat_mode ? "ON" : "OFF"]) (DAMTYE: [uppertext(damtype)])")
+			else
+				target.visible_message(span_danger("[chassis] destroys [target] in an unholy fury."), \
+									span_userdanger("[chassis] destroys [target] in an unholy fury."))
 		else
 			step_away(M,chassis)
 			target.visible_message("[chassis] tosses [target] like a piece of paper.")

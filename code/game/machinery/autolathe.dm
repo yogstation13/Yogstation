@@ -183,12 +183,10 @@
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	materials.retrieve_all()
 
-/obj/machinery/autolathe/attackby(obj/item/O, mob/user, params)
-	if(user.a_intent == INTENT_DISARM && default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", O))
-		return TRUE
-	
-	// They do not have INTENT_DISARM.
-	if((issilicon(user) || isdrone(user)) && user.a_intent == INTENT_HELP && default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", O))
+/obj/machinery/autolathe/attackby(obj/item/O, mob/living/user, params)
+	var/list/modifiers = params2list(params)
+	// right click to open the panel
+	if(modifiers && modifiers[RIGHT_CLICK] && default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", O))
 		return TRUE
 
 	if(default_deconstruction_crowbar(O))

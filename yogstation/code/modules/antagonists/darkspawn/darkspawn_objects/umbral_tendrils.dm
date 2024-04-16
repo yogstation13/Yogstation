@@ -53,8 +53,8 @@
 	. = ..()
 	if(isobserver(user) || isdarkspawn(user))
 		. += span_velvet("<b>Functions:</b>")
-		. += span_velvet("<b>Disarm intent:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)")
-		. += span_velvet("<b>Grab intent:</b> Consume 30 psi to a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck.")
+		. += span_velvet("<b>Airlock Forcing:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)")
+		. += span_velvet("<b>Tendril Swing:</b> Right click to consume 30 psi to a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck.")
 		. += span_velvet("The tendrils will devour any lights hit.")
 		. += span_velvet("Also functions to pry open depowered airlocks on any intent other than harm.")
 
@@ -65,15 +65,15 @@
 	if(twin && twinned_attack && user.Adjacent(target))
 		twin.attack(target, user, FALSE)
 
-/obj/item/umbral_tendrils/afterattack(atom/target, mob/living/user, proximity)
+/obj/item/umbral_tendrils/afterattack(atom/target, mob/living/user, proximity, params)
 	. = ..()
 	if(!darkspawn)
 		return
 	if(twin && proximity && !QDELETED(target) && (isstructure(target) || ismachinery(target)) && user.get_active_held_item() == src)
 		target.attackby(twin, user)
-	switch(user.a_intent) //Note that airlock interactions can be found in airlock.dm.
-		if(INTENT_GRAB)
-			tendril_swing(user, target)
+	var/list/modifiers = params2list(params)
+	if(modifiers && modifiers[RIGHT_CLICK]) //Note that airlock interactions can be found in airlock.dm.
+		tendril_swing(user, target)
 
 /obj/item/umbral_tendrils/proc/tendril_swing(mob/living/user, mob/living/target) //swing the tendrils to knock someone down
 	if(!COOLDOWN_FINISHED(src, grab_cooldown))

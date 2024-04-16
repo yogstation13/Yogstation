@@ -50,41 +50,29 @@
 /datum/martial_art/worldbreaker/harm_act(mob/living/carbon/human/A, mob/living/D)
 	return TRUE //no punch, just pummel
 
-/datum/martial_art/worldbreaker/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
+/datum/martial_art/worldbreaker/proc/on_click(mob/living/carbon/human/H, atom/target, params)
 	var/list/modifiers = params2list(params)
-	if(!can_use(H) || (modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"]))
-		return
+	if(!can_use(H) || modifiers[SHIFT_CLICK] || modifiers[ALT_CLICK] || modifiers[CTRL_CLICK])
+		return NONE
 
 	if(isitem(target))//don't attack if we're clicking on our inventory
 		var/obj/item/thing = target
 		if(thing in H.get_all_contents())
-			return
+			return NONE
 
-	if(H.a_intent == INTENT_DISARM)
-		leap(H, target)
+	if(modifiers[RIGHT_CLICK])
+		if(H == target)
+			return rip_plate(H) // right click yourself to take off a plate
+		else if(get_dist(H, target) <= 1 && isliving(target))
+			return grapple(H,target) // right click in melee to grab
+		else
+			return leap(H, target) // right click at range to leap
+	else
+		if(thrown.len > 0)
+			return throw_start(H, target) // left click to throw if holding someone
+		else
+			return pummel(H, target) // left click to pummel if not holding someone
 
-	if(H.get_active_held_item()) //most abilities need an empty hand
-		return
-
-	if(H.a_intent == INTENT_HELP && (H==target))
-		rip_plate(H)
-	if(thrown.len > 0 && H.a_intent == INTENT_GRAB)
-		if(get_turf(target) != get_turf(H))
-			throw_start(H, target)
-
-	if(H.a_intent == INTENT_HARM)//technically can punch yourself, but with how it works, you won't actually hurt yourself
-		pummel(H,target)
-
-	if(!H.Adjacent(target))
-		return
-
-	if(H == target)
-		return
-
-	if(H.a_intent == INTENT_GRAB && isliving(target))
-		grapple(H,target)
-
-	
 /*-------------------------------------------------------------
 	start of helpers section
 ---------------------------------------------------------*/
@@ -135,9 +123,11 @@
 	update_platespeed(user)
 
 /datum/martial_art/worldbreaker/proc/rip_plate(mob/living/carbon/human/user)
+	if(user.get_active_held_item()) //most abilities need an empty hand
+		return COMSIG_MOB_CANCEL_CLICKON // don't hit yourself when trying to tear off a piece
 	if(plates <= 0)
 		to_chat(user, span_warning("Your plates are too thin to tear off a piece!"))
-		return
+		return NONE
 	user.balloon_alert(user, span_notice("you tear off a loose plate!"))
 
 	currentplate = 0
@@ -148,6 +138,7 @@
 	user.put_in_active_hand(plate)
 	user.changeNext_move(0.1)//entirely to prevent hitting yourself instantly
 	user.throw_mode_on()
+	return COMSIG_MOB_CANCEL_CLICKON
 
 /datum/martial_art/worldbreaker/proc/lose_plate(mob/living/carbon/human/user, damage, damagetype, def_zone)
 	if(plates <= 0)//no plate to lose
@@ -279,6 +270,7 @@
 	addtimer(CALLBACK(src, PROC_REF(reset_pixel), user), 1.5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)//in case something happens, we don't permanently float
 	playsound(user, 'sound/effects/gravhit.ogg', 15)
 	playsound(user, 'sound/effects/dodge.ogg', 15, TRUE)
+	return COMSIG_MOB_CANCEL_CLICKON
 
 /datum/martial_art/worldbreaker/proc/leap_end(mob/living/carbon/human/user)
 	if(!COOLDOWN_FINISHED(src, next_leap))
@@ -338,6 +330,9 @@
 		thrown.Remove(thing)
 
 /datum/martial_art/worldbreaker/proc/grapple(mob/living/user, atom/target) //proc for picking something up to toss
+	if(user.get_active_held_item()) //most abilities need an empty hand
+		return
+
 	var/turf/Z = get_turf(user)
 	target.add_fingerprint(user, FALSE)
 
@@ -360,11 +355,14 @@
 		walk_towards(F, user, 0, 0)
 		if(get_dist(victim, user) > 1)
 			victim.density = initial(victim.density)
-			return
+			return COMSIG_MOB_CANCEL_CLICKON
 		thrown |= victim // Marks the mob to throw
-		return
+		return COMSIG_MOB_CANCEL_CLICKON
 
 /datum/martial_art/worldbreaker/proc/throw_start(mob/living/user, atom/target)//proc for throwing something you picked up with grapple
+	if(user.get_active_held_item()) //most abilities need an empty hand
+		return
+
 	var/target_dist = get_dist(user, target)
 	var/turf/D = get_turf(target)	
 	var/atom/tossed = thrown[1]
@@ -384,6 +382,7 @@
 	user.visible_message(span_warning("[user] throws [tossed]!"))
 
 	throw_process(user, target_dist, 1, tossed, D, THROW_OBJDMG)
+	return COMSIG_MOB_CANCEL_CLICKON
 
 /datum/martial_art/worldbreaker/proc/throw_process(mob/living/user, target_dist, current_dist, atom/tossed, turf/target, remaining_damage)//each call of the throw loop
 	if(!target_dist || !current_dist || !tossed || current_dist > target_dist)
@@ -460,8 +459,10 @@
 /datum/martial_art/worldbreaker/proc/pummel(mob/living/user, atom/target)
 	if(user == target)
 		return
-	if(!COOLDOWN_FINISHED(src, next_pummel))
+	if(user.get_active_held_item()) //most abilities need an empty hand
 		return
+	if(!COOLDOWN_FINISHED(src, next_pummel))
+		return COMSIG_MOB_CANCEL_CLICKON
 	COOLDOWN_START(src, next_pummel, COOLDOWN_PUMMEL)
 	user.changeNext_move(COOLDOWN_PUMMEL + 1)//so things don't work weirdly when spamming on windows or whatever
 
@@ -501,6 +502,7 @@
 		if(get_turf(obstruction) == get_turf(center))
 			damage *= 3
 		obstruction.take_damage(damage, sound_effect = FALSE) //reduced sound from hitting LOTS of things
+	return COMSIG_MOB_CANCEL_CLICKON
 
 /*---------------------------------------------------------------
 	end of pummel section
@@ -619,17 +621,17 @@
 	While at maximum armour you are considered \"heavy\" and most of your attacks will be slower, but do more damage in a larger area. \
 	Taking brute or burn damage will wear away at your plates until they fall off on their own."
 
-	combined_msg +=  "[span_notice("Rip Plate")]: Help intent yourself to rip off a plate. The plate can be thrown at people to stagger them and knock them back. \
+	combined_msg +=  "[span_notice("Rip Plate")]: Right-click yourself to rip off a plate. The plate can be thrown at people to stagger them and knock them back. \
 	The plate is heavy enough that others will find it difficult to throw."
 
 	combined_msg +=  "[span_notice("Leap")]: \
-	Your disarm is instead a leap that deals damage, staggers, and knocks everything back within a radius. \
+	Right-click away from you to leap, which deals damage, staggers, and knocks everything back within a radius. \
 	Landing on someone will do extra damage. The cooldown is longer if heavy and only starts when you land."
 	
 	combined_msg +=  "[span_notice("Clasp")]: Your grab is far stronger. \
-	Instead of grabbing someone, you will pick them up and be able to throw them."
+	Right-click pick someone up and be able to throw them with left-click."
 
-	combined_msg +=  "[span_notice("Pummel")]: Your harm intent pummels a small area dealing damage, knocking back, and staggering. \
+	combined_msg +=  "[span_notice("Pummel")]: Your punches pummel a small area dealing damage, knocking back, and staggering. \
 	The targets in the middle take notably more damage."
 
 	combined_msg +=  "[span_notice("Worldstomp")]: After a delay, create a giant shockwave that deals damage to all mobs within a radius. \
@@ -658,7 +660,7 @@
 	var/datum/species/preternis/S = H.dna.species
 	if(istype(S))
 		S.add_no_equip_slot(H, ITEM_SLOT_OCLOTHING, src)
-	usr.click_intercept = src 
+	RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(on_click))
 	add_verb(H, recalibration)
 	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
 	update_platespeed(H)
@@ -678,7 +680,7 @@
 	var/datum/species/preternis/S = H.dna.species
 	if(istype(S))
 		S.remove_no_equip_slot(H, ITEM_SLOT_OCLOTHING, src)
-	usr.click_intercept = null 
+	UnregisterSignal(H, COMSIG_MOB_CLICKON)
 	remove_verb(H, recalibration)
 	deltimer(plate_timer)
 	plates = 0

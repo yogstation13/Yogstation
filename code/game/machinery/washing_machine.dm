@@ -274,7 +274,7 @@ GLOBAL_LIST_INIT(dye_registry, list(
 	if(panel_open)
 		. += "wm_panel"
 
-/obj/machinery/washing_machine/attackby(obj/item/W, mob/user, params)
+/obj/machinery/washing_machine/attackby(obj/item/W, mob/living/user, params)
 	if(panel_open && !busy && default_unfasten_wrench(user, W))
 		return
 
@@ -282,7 +282,7 @@ GLOBAL_LIST_INIT(dye_registry, list(
 		update_appearance(UPDATE_ICON)
 		return
 
-	else if(user.a_intent != INTENT_HARM)
+	else if(!user.combat_mode)
 
 		if (!state_open)
 			to_chat(user, span_warning("Open the door first!"))
@@ -307,7 +307,7 @@ GLOBAL_LIST_INIT(dye_registry, list(
 	else
 		return ..()
 
-/obj/machinery/washing_machine/attack_hand(mob/user)
+/obj/machinery/washing_machine/attack_hand(mob/living/user, modifiers)
 	. = ..()
 	if(.)
 		return
@@ -315,20 +315,20 @@ GLOBAL_LIST_INIT(dye_registry, list(
 		to_chat(user, span_warning("[src] is busy."))
 		return
 
-	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
-		var/mob/living/L = user.pulling
-		if(L.buckled || L.has_buckled_mobs())
-			return
-		if(state_open)
-			if(iscorgi(L))
-				L.forceMove(src)
-				update_appearance(UPDATE_ICON)
-		return
-
 	if(!state_open)
 		open_machine()
 	else
 		state_open = FALSE //close the door
+		update_appearance(UPDATE_ICON)
+
+/obj/machinery/washing_machine/MouseDrop_T(mob/living/dropped, mob/living/user)
+	. = ..()
+	if(!isliving(dropped))
+		return
+	if(dropped.buckled || dropped.has_buckled_mobs())
+		return
+	if(state_open && iscorgi(dropped))
+		dropped.forceMove(src)
 		update_appearance(UPDATE_ICON)
 
 /obj/machinery/washing_machine/deconstruct(disassembled = TRUE)

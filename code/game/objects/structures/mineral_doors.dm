@@ -123,10 +123,10 @@
 	. = ..()
 	icon_state = "[initial(icon_state)][door_opened ? "open":""]"
 
-/obj/structure/mineral_door/attackby(obj/item/I, mob/user)
+/obj/structure/mineral_door/attackby(obj/item/I, mob/living/user, params)
 	if(pickaxe_door(user, I))
 		return
-	else if(user.a_intent != INTENT_HARM)
+	else if(!user.combat_mode)
 		return attack_hand(user)
 	else
 		return ..()
@@ -326,12 +326,12 @@
 /obj/structure/mineral_door/paperframe/crowbar_act(mob/living/user, obj/item/I)
 	return crowbar_door(user, I)
 
-/obj/structure/mineral_door/paperframe/attackby(obj/item/I, mob/living/user)
+/obj/structure/mineral_door/paperframe/attackby(obj/item/I, mob/living/user, params)
 	if(I.is_hot()) //BURN IT ALL DOWN JIM
 		fire_act(I.is_hot())
 		return
 
-	if((user.a_intent != INTENT_HARM) && istype(I, /obj/item/paper) && (atom_integrity < max_integrity))
+	if(!user.combat_mode && istype(I, /obj/item/paper) && (atom_integrity < max_integrity))
 		user.visible_message("[user] starts to patch the holes in [src].", span_notice("You start patching some of the holes in [src]!"))
 		if(do_after(user, 2 SECONDS, src))
 			update_integrity(min(atom_integrity + 4, max_integrity))

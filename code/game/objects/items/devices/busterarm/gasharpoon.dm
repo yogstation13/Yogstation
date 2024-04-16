@@ -38,7 +38,7 @@
 
 
 /obj/item/clothing/gloves/gasharpoon/proc/power_harpoon(mob/living/user, atom/movable/target)
-	if(!user || user.a_intent!=INTENT_HARM || (!isliving(target) && !isobj(target)) || isitem(target))
+	if(!user || !user.combat_mode || (!isliving(target) && !isobj(target)) || isitem(target))
 		return
 	do_attack(user, target, force * 2)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1)

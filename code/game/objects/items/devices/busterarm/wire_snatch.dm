@@ -74,7 +74,8 @@
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	fire_sound = 'sound/weapons/batonextend.ogg'
 	max_charges = 3
-	item_flags = NEEDS_PERMIT | DROPDEL
+	item_flags = NEEDS_PERMIT | DROPDEL | NOBLUDGEON
+	weapon_weight = WEAPON_MEDIUM // to prevent dual-wield from messing with things
 	force = 0
 	can_charge = FALSE
 

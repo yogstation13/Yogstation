@@ -183,7 +183,7 @@
 		return TRUE
 	if(target.attackby(src, chassis.occupant, params))
 		return TRUE
-	if(user.a_intent == INTENT_HARM) // hurt things
+	if(user.combat_mode) // hurt things
 		chassis.default_melee_attack(target)
 	return TRUE
 

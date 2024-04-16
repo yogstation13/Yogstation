@@ -19,7 +19,7 @@
 	health_doll_icon = "tar_king"
 	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	light_color = "#dd35d5"
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	melee_damage_lower = 25
 	melee_damage_upper = 50
 	movement_type = GROUND

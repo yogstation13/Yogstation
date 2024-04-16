@@ -294,7 +294,7 @@
 	if(integration_cog && is_servant_of_ratvar(user))
 		. += span_brass("There is an integration cog installed!")
 
-	. += span_notice("Alt-Click the APC to [ locked ? "unlock" : "lock"] the interface.")
+	. += span_notice("Right-Click the APC to [ locked ? "unlock" : "lock"] the interface.")
 
 	if(issilicon(user))
 		. += span_notice("Ctrl-Click the APC to switch the breaker [ operating ? "off" : "on"].")
@@ -769,12 +769,11 @@
 		return ..()
 
 /obj/machinery/power/apc/AltClick(mob/user)
-	..()
-	if(!user.canUseTopic(src, !issilicon(user)) || !isturf(loc))
-		return
-	else
-		togglelock(user)
-
+	. = ..()
+	if(isethereal(user))
+		var/mob/living/glowbro = user
+		if(ethereal_act(glowbro))
+			return
 
 /obj/machinery/power/apc/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	if(the_rcd.upgrade & RCD_UPGRADE_SIMPLE_CIRCUITS)
@@ -903,13 +902,12 @@
 
 // attack with hand - remove cell (if cover open) or interact with the APC
 
-/obj/machinery/power/apc/attack_hand(mob/user)	
-	if(isethereal(user) && user.a_intent == INTENT_GRAB)
-		var/mob/living/glowbro = user
-		if(ethereal_act(glowbro))
-			return
+/obj/machinery/power/apc/attack_hand(mob/living/user, modifiers)
 	. = ..()
 	if(.)
+		return
+	if(modifiers && modifiers[RIGHT_CLICK])
+		togglelock(user)
 		return
 	if(opened && (!issilicon(user)))
 		if(cell)

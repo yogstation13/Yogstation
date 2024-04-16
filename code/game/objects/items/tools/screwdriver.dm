@@ -54,8 +54,9 @@
 	if(prob(75))
 		pixel_y = rand(0, 16)
 
-/obj/item/screwdriver/attack(mob/living/carbon/M, mob/living/carbon/user)
-	if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
+/obj/item/screwdriver/attack(mob/living/carbon/M, mob/living/carbon/user, params)
+	var/list/modifiers = params2list(params)
+	if(!user.combat_mode && attempt_initiate_surgery(src, M, user, modifiers))
 		return
 	if(!istype(M))
 		return ..()

@@ -112,7 +112,7 @@
 
 	if(!target)
 		return
-	if(user.a_intent != INTENT_HARM || affecting != BODY_ZONE_HEAD)
+	if(!user.combat_mode || affecting != BODY_ZONE_HEAD)
 		return ..()
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("You don't want to harm [target]!"))

@@ -20,9 +20,9 @@
 //proc the moves will use for damage dealing
 
 /datum/martial_art/buster_style/proc/grab(mob/living/user, mob/living/target, damage)
-		var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
-		var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 15)
-		target.apply_damage(damage, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
+	var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
+	var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 15)
+	target.apply_damage(damage, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 
 //animation procs
 
@@ -78,24 +78,24 @@
 	return ..()
 
 
-/datum/martial_art/buster_style/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
+/datum/martial_art/buster_style/proc/on_click(mob/living/carbon/human/H, atom/target, params)
 	var/list/modifiers = params2list(params)
-	if(!(can_use(H)) || (modifiers["shift"] || modifiers["alt"]))
-		return
+	if(!can_use(H) || modifiers[SHIFT_CLICK] || modifiers[ALT_CLICK] || modifiers[CTRL_CLICK])
+		return NONE
+
 	H.face_atom(target) //for the sake of moves that care about user orientation like mop and slam
-	if(H.a_intent == INTENT_DISARM)
-		mop(H)
-	if(H.a_intent == INTENT_HELP && (H==target))
-		arm_wire(H)
-	if(thrown.len > 0 && H.a_intent == INTENT_GRAB)
-		if(get_turf(target) != get_turf(H))
-			lob(H,target)
-	if(!H.Adjacent(target) || H==target)
-		return
-	if(H.a_intent == INTENT_HARM && isliving(target))
-		slam(H,target)
-	if(H.a_intent == INTENT_GRAB)
-		grapple(H,target)
+	if(modifiers[RIGHT_CLICK])
+		if(H == target)
+			return arm_wire(H) // right click yourself for arm wire
+		if(get_dist(H, target) <= 1)
+			return grapple(H, target) // right click in melee to grapple
+		else
+			return mop(H) // right click at range to mop
+	else
+		if(thrown.len > 0)
+			return lob(H, target) // left click to throw
+		else if(get_dist(H, target) <= 1)
+			return slam(H, target) // left click in melee to slam
 
 /datum/martial_art/buster_style/harm_act(mob/living/carbon/human/A, mob/living/D)
 	return TRUE // no punching plus slamming please
@@ -116,6 +116,7 @@
 	COOLDOWN_START(src, next_wire, COOLDOWN_WIRE)
 	var/obj/item/gun/magic/wire/gun = new /obj/item/gun/magic/wire (user)
 	user.put_in_hands(gun)
+	return TRUE
 
 /*---------------------------------------------------------------
 	end of wire section
@@ -127,11 +128,13 @@
 /datum/martial_art/buster_style/proc/grapple(mob/living/user, atom/target) //proc for picking something up to toss
 	var/turf/Z = get_turf(user)
 	target.add_fingerprint(user, FALSE)
-	if(!COOLDOWN_FINISHED(src, next_grapple))
-		to_chat(user, span_warning("You can't do that yet!"))
-		return
 	if((target == user) || (isopenturf(target)) || (iswallturf(target)) || (isitem(target)) || (iseffect(target)))
 		return
+	if(!user.combat_mode)
+		return
+	if(!COOLDOWN_FINISHED(src, next_grapple))
+		to_chat(user, span_warning("You can't do that yet!"))
+		return COMSIG_MOB_CANCEL_CLICKON
 	playsound(user, 'sound/effects/servostep.ogg', 60, FALSE, -1)
 	if(isstructure(target) || ismachinery(target) || ismecha(target))
 		var/obj/I = target
@@ -160,6 +163,7 @@
 		thrown |= I // Mark the item for throwing
 		if(ismecha(I))
 			I.anchored = TRUE
+		return COMSIG_MOB_CANCEL_CLICKON
 	if(isliving(target))
 		var/mob/living/L = target
 		var/obj/structure/bed/grip/F = new(Z, user) // Buckles them to an invisible bed
@@ -177,10 +181,12 @@
 			L.density = old_density
 			return
 		thrown |= L // Marks the mob to throw
-		return
+		return COMSIG_MOB_CANCEL_CLICKON
 
 
 /datum/martial_art/buster_style/proc/lob(mob/living/user, atom/target) //proc for throwing something you picked up with grapple
+	if(!user.combat_mode)
+		return
 	var/slamdam = 7
 	var/objdam = 50
 	var/throwdam = 15
@@ -202,7 +208,7 @@
 		var/mob/living/carbon/tossedliving = thrown[1]
 		var/obj/item/bodypart/limb_to_hit = tossedliving.get_bodypart(user.zone_selected)
 		if(!tossedliving.buckled)
-			return
+			return COMSIG_MOB_CANCEL_CLICKON
 		grab(user, tossedliving, throwdam) // Apply damage
 		for(var/obj/structure/bed/grip/F in view(2, user))
 			F.Destroy()
@@ -238,7 +244,7 @@
 				O.take_damage(objdam) 
 				target.visible_message(span_warning("[O] collides with [T]!"))
 			drop()
-			return
+			return COMSIG_MOB_CANCEL_CLICKON
 		for(var/obj/Z in T.contents) // crash into something solid and damage it along with thrown objects that hit it
 			for(var/obj/O in thrown) 
 				if(Z.density == TRUE) 
@@ -261,11 +267,11 @@
 						Z.visible_message(span_warning("[S] is thrown down the trash chute!"))
 						dumpster.do_flush()
 						drop()
-						return
+						return COMSIG_MOB_CANCEL_CLICKON
 				Z.take_damage(objdam)
 				if(Z.density == TRUE && Z.anchored == TRUE)
 					drop()
-					return // if the solid thing we hit doesnt break then the thrown thing is stopped
+					return COMSIG_MOB_CANCEL_CLICKON // if the solid thing we hit doesnt break then the thrown thing is stopped
 		for(var/mob/living/M in T.contents) // if the thrown mass hits a person then they get tossed and hurt too along with people in the thrown mass
 			if(user != M)
 				grab(user, M, slamdam) 
@@ -289,7 +295,7 @@
 					K.throw_at(throw_target, 6, 4, user, 3)
 					thrown.Remove(K)
 	drop()
-	return
+	return COMSIG_MOB_CANCEL_CLICKON
 
 /*---------------------------------------------------------------
 	end of grapple section
@@ -315,10 +321,10 @@
 	user.Immobilize(0.1 SECONDS) //so they dont skip through the target
 	for(var/i = 1 to jumpdistance)
 		if(T.density) // If we're about to hit a wall, stop
-			return
+			return COMSIG_MOB_CANCEL_CLICKON
 		for(var/obj/object in T.contents) // If we're about to hit a table or something that isn't destroyed, stop
 			if(object.density == TRUE)
-				return
+				return COMSIG_MOB_CANCEL_CLICKON
 		if(T)
 			sleep(0.01 SECONDS)
 			user.forceMove(T) // Move us forward
@@ -344,7 +350,7 @@
 						to_chat(mophead, span_userdanger("[user] rams you into [Q]!"))
 						mophead.Knockdown(1 SECONDS)
 						mophead.Immobilize(1.5 SECONDS)
-						return // Then stop here
+						return COMSIG_MOB_CANCEL_CLICKON // Then stop here
 					for(var/obj/object in Q.contents) // If we're about to hit a dense object like a table or window
 						wakeup(mophead)
 						if(object.density == TRUE)
@@ -355,7 +361,7 @@
 							mophead.Knockdown(1 SECONDS)
 							mophead.Immobilize(1 SECONDS)
 							if(object.density == TRUE) // If it wasn't destroyed, stop here
-								return
+								return COMSIG_MOB_CANCEL_CLICKON
 					user.forceMove(get_turf(mophead)) // Move buster arm user (forward) on top of the mopped mob
 					to_chat(mophead, span_userdanger("[user] catches you with [user.p_their()] hand and drags you down!"))
 					user.visible_message(span_warning("[user] hits [mophead] and drags them through the dirt!"))
@@ -366,6 +372,7 @@
 			T = get_step(user, user.dir) // Move our goalpost forward one
 	for(var/mob/living/C in mopped) // Return everyone to standing if they should be
 		wakeup(C)
+	return COMSIG_MOB_CANCEL_CLICKON
 
 /*---------------------------------------------------------------
 	end of mop section
@@ -376,6 +383,8 @@
 ---------------------------------------------------------------*/
 
 /datum/martial_art/buster_style/proc/slam(mob/living/user, mob/living/target)
+	if(!isliving(target) || !user.combat_mode || user == target)
+		return
 	var/supdam = 20
 	var/crashdam = 10
 	var/walldam = 20
@@ -403,7 +412,7 @@
 		else		
 			grab(user, target, walldam) 
 			target.forceMove(Z) // If we couldn't smash the wall, put them under our tile
-			return // Stop here, don't apply any more damage or checks
+			return COMSIG_MOB_CANCEL_CLICKON // Stop here, don't apply any more damage or checks
 	for(var/obj/D in Q.contents) // If there's dense objects behind us, apply damage to the mob for each one they are slammed into
 		if(D.density == TRUE) // If it's a dense object like a window or table, otherwise skip
 			if(istype(D, /obj/machinery/disposal/bin)) // Flush them down disposals
@@ -412,7 +421,7 @@
 				dumpster.do_flush()
 				to_chat(target, span_userdanger("[user] throws you down disposals!"))
 				user.visible_message(span_warning("[target] is thrown down the trash chute!"))
-				return // Stop here
+				return COMSIG_MOB_CANCEL_CLICKON // Stop here
 			user.visible_message(span_warning("[user] turns around and slams [target] against [D]!"))
 			D.take_damage(400) // Heavily damage and hopefully break the object
 			grab(user, target, crashdam) 
@@ -440,7 +449,7 @@
 		var/atom/throw_target = get_edge_target_turf(target, user.dir)
 		target.throw_at(throw_target, 2, 4, user, 3)
 		user.visible_message(span_warning("[user] throws [target] behind [user.p_them()]!"))
-		return
+		return COMSIG_MOB_CANCEL_CLICKON
 	playsound(target,'sound/effects/meteorimpact.ogg', 60, 1)
 	playsound(user, 'sound/effects/gravhit.ogg', 20, 1)
 	to_chat(target, span_userdanger("[user] catches you with [user.p_their()] hand and crushes you on the ground!"))
@@ -453,6 +462,7 @@
 		target.gib()
 	sleep(0.2 SECONDS)
 	wakeup(target)
+	return COMSIG_MOB_CANCEL_CLICKON
 
 /*---------------------------------------------------------------
 	end of slam section
@@ -469,18 +479,18 @@
 	var/list/combined_msg = list()
 	combined_msg +=  "<b><i>You think about what stunts you can pull with the power of a buster arm.</i></b>"
 
-	combined_msg += "[span_notice("Wire Snatch")]:By targetting yourself with help intent, you equip a grappling wire which can be used to move yourself or other objects. Landing a \
+	combined_msg += "[span_notice("Wire Snatch")]:By right-clicking yourself, you equip a grappling wire which can be used to move yourself or other objects. Landing a \
 	shot on a person will immobilize them for 2 seconds. Facing an immediate solid object will slam them into it, damaging both of them. Extending the wire has a 5 second cooldown."
 
-	combined_msg +=  "[span_notice("Mop the Floor")]: Your disarm has been replaced with a move that sends you flying forward, damaging enemies in front of you by dragging them \
+	combined_msg +=  "[span_notice("Mop the Floor")]: Right-clicking away from you in a direction sends you flying forward, damaging enemies in front of you by dragging them \
 	along the ground. Ramming victims into something solid does damage to them and the object. Has a 4 second cooldown."
 
-	combined_msg +=  "[span_notice("Slam")]: Your harm has been replaced with a slam attack that places enemies behind you and smashes them against \
-	whatever person, wall, or object is there for bonus damage. Has a 0.8 second cooldown."
-	
-	combined_msg +=  "[span_notice("Grapple")]: Your grab has been amplified, allowing you to take a target object or being into your hand for up to 10 seconds and throw them at a \
-	target destination by clicking again with grab intent. Throwing them into unanchored people and objects will knock them back and deal additional damage to existing thrown \
+	combined_msg +=  "[span_notice("Grapple")]: Right-clicking an enemy allows you to take a target object or being into your hand for up to 10 seconds and throw them at a \
+	target destination with left-click. Throwing them into unanchored people and objects will knock them back and deal additional damage to existing thrown \
 	targets. Mechs and vending machines can be tossed as well. If the target's limb is at its limit, tear it off. Has a 3 second cooldown"
+
+	combined_msg +=  "[span_notice("Slam")]: Your punch has been replaced with a slam attack that places enemies behind you and smashes them against \
+	whatever person, wall, or object is there for bonus damage. Has a 0.8 second cooldown."
 
 	combined_msg +=  "[span_notice("Megabuster")]: Charge up your buster arm to put a powerful attack in the corresponding hand. The energy only lasts 5 seconds \
 	but does hefty damage to its target, even breaking walls down when hitting things into them or connecting the attack directly. Landing the attack on a reinforced wall \
@@ -511,12 +521,12 @@
 	ADD_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
 	S.add_no_equip_slot(H, ITEM_SLOT_GLOVES, src)
 	add_verb(H, recalibration)
-	usr.click_intercept = src 
+	RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(on_click))
 
 /datum/martial_art/buster_style/on_remove(mob/living/carbon/human/H)
 	var/datum/species/S = H.dna?.species
 	REMOVE_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
 	S.remove_no_equip_slot(H, ITEM_SLOT_GLOVES, src)
 	remove_verb(H, recalibration)
-	usr.click_intercept = null 
+	UnregisterSignal(H, COMSIG_MOB_CLICKON)
 	..()

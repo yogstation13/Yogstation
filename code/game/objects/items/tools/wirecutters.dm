@@ -45,7 +45,8 @@
 	if(random_color) //random colors!
 		set_greyscale(colors = list(pick(wirecutter_colors)))
 
-/obj/item/wirecutters/attack(mob/living/carbon/C, mob/user)
+/obj/item/wirecutters/attack(mob/living/carbon/C, mob/living/user, params)
+	var/list/modifiers = params2list(params)
 	if(istype(C) && C.handcuffed && istype(C.handcuffed, /obj/item/restraints/handcuffs/cable))
 		user.visible_message(span_notice("[user] cuts [C]'s restraints with [src]!"))
 		qdel(C.handcuffed)
@@ -59,8 +60,8 @@
 		user.visible_message(span_notice("[user] cuts [C]'s restraints with [src]!"))
 		qdel(C.legcuffed)
 		C.legcuffed = null
-		return	
-	else if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, C, user))
+		return
+	else if(!user.combat_mode && attempt_initiate_surgery(src, C, user, modifiers))
 		return
 	else
 		..()

@@ -21,8 +21,9 @@
 	toolspeed = 1
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 30)
 
-/obj/item/wrench/attack(mob/living/M, mob/user)
-	if(!attempt_initiate_surgery(src, M, user))
+/obj/item/wrench/attack(mob/living/M, mob/user, params)
+	var/list/modifiers = params2list(params)
+	if(!attempt_initiate_surgery(src, M, user, modifiers))
 		..()
 
 /obj/item/wrench/suicide_act(mob/user)

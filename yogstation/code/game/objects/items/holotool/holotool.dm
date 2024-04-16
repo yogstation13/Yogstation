@@ -27,11 +27,12 @@
 	. += span_notice("It is currently set to [current_tool ? current_tool.name : "'off'"] mode.")
 	. += span_notice("Ctrl+Click it to open the radial menu!")
 
-/obj/item/holotool/attack(mob/living/M, mob/living/user)
-	if((tool_behaviour == TOOL_SCREWDRIVER) && !(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
+/obj/item/holotool/attack(mob/living/M, mob/living/user, params)
+	var/list/modifiers = params2list(params)
+	if((tool_behaviour == TOOL_SCREWDRIVER) && !user.combat_mode && attempt_initiate_surgery(src, M, user, modifiers))
 		return
 
-	if(tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && ishuman(M))
+	if(tool_behaviour == TOOL_WELDER && !user.combat_mode && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
 		if(affecting?.status == BODYPART_ROBOTIC)

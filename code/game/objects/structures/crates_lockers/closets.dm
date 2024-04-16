@@ -324,7 +324,7 @@ GLOBAL_LIST_EMPTY(lockers)
 /obj/structure/closet/attackby(obj/item/attacking_item, mob/user, params)
 	if(user in src)
 		return
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return ..()
 	if(attacking_item.GetID())
 		togglelock(user)
@@ -332,8 +332,8 @@ GLOBAL_LIST_EMPTY(lockers)
 	if(user.transferItemToLoc(attacking_item, drop_location()))
 		return TRUE
 
-/obj/structure/closet/welder_act(mob/living/user, obj/item/tool)
-	if(user.a_intent == INTENT_HARM)
+/obj/structure/closet/welder_act(mob/living/user, obj/item/tool, modifiers)
+	if(user.combat_mode && !(modifiers && modifiers[RIGHT_CLICK]))
 		return FALSE
 	if(!tool.tool_start_check(user, amount=0))
 		return FALSE
@@ -364,8 +364,8 @@ GLOBAL_LIST_EMPTY(lockers)
 		return TRUE
 	return FALSE
 
-/obj/structure/closet/wirecutter_act(mob/living/user, obj/item/tool)
-	if(user.a_intent == INTENT_HARM || (flags_1 & NODECONSTRUCT_1))
+/obj/structure/closet/wirecutter_act(mob/living/user, obj/item/tool, modifiers)
+	if(user.combat_mode && !(modifiers && modifiers[RIGHT_CLICK]))
 		return FALSE
 	if(tool.tool_behaviour != cutting_tool)
 		return FALSE
@@ -374,7 +374,9 @@ GLOBAL_LIST_EMPTY(lockers)
 	deconstruct(TRUE)
 	return TRUE
 
-/obj/structure/closet/wrench_act(mob/living/user, obj/item/tool)
+/obj/structure/closet/wrench_act(mob/living/user, obj/item/tool, modifiers)
+	if(user.combat_mode && !(modifiers && modifiers[RIGHT_CLICK]))
+		return FALSE
 	if(!anchorable)
 		return FALSE
 	if(isinspace() && !anchored)
@@ -440,13 +442,13 @@ GLOBAL_LIST_EMPTY(lockers)
 		return
 	container_resist(user)
 
-/obj/structure/closet/attack_hand(mob/living/user)
+/obj/structure/closet/attack_hand(mob/living/user, modifiers)
 	. = ..()
 	if(.)
 		return
 	if(!(user.mobility_flags & MOBILITY_STAND) && get_dist(src, user) > 0)
 		return
-	if((user.mind?.has_martialart(MARTIALART_BUSTERSTYLE)) && (user.a_intent == INTENT_GRAB))
+	if((user.mind?.has_martialart(MARTIALART_BUSTERSTYLE)) && modifiers && modifiers[RIGHT_CLICK])
 		return //buster arm shit since trying to pick up an open locker just stuffs you in it
 	if(!toggle(user))
 		togglelock(user)

@@ -867,12 +867,11 @@
 	if(do_after(AI, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
 		return ..()
 
-/obj/machinery/airalarm/AltClick(mob/user)
-	..()
-	if(!user.canUseTopic(src, !issilicon(user)) || !isturf(loc))
-		return
-	else
+/obj/machinery/airalarm/attack_hand(mob/living/user, modifiers)
+	if(modifiers && modifiers[RIGHT_CLICK])
 		togglelock(user)
+		return
+	return ..()
 
 /obj/machinery/airalarm/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	if((buildstage == 0) && (the_rcd.upgrade & RCD_UPGRADE_SIMPLE_CIRCUITS))

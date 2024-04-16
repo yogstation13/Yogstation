@@ -456,7 +456,7 @@
 		for(var/mob/living/M in view(src,1))
 			if(M.stat == DEAD && GLOB.aide_list.len <= 2 && (!M.has_status_effect(STATUS_EFFECT_EXHUMED))) //max of 3 bloodmen to minimize shitshows
 				L = new(M.loc)
-				L.faction = src.faction
+				L.faction = faction.Copy()
 				L.stored_mob = M
 				M.forceMove(L)
 				M.apply_status_effect(/datum/status_effect/exhumed)

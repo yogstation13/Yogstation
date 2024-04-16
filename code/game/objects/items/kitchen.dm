@@ -106,8 +106,9 @@
 	. = ..()
 	AddComponent(/datum/component/butchering, 80 - force, 100, force - 10) //bonus chance increases depending on force
 
-/obj/item/kitchen/knife/attack(mob/living/carbon/M, mob/living/carbon/user)
-	if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
+/obj/item/kitchen/knife/attack(mob/living/carbon/M, mob/living/carbon/user, params)
+	var/list/modifiers = params2list(params)
+	if(!user.combat_mode && attempt_initiate_surgery(src, M, user, modifiers))
 		return
 	else if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))

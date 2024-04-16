@@ -133,9 +133,10 @@
 	return FALSE
 
 /turf/open/floor/crowbar_act(mob/living/user, obj/item/I)
+	if(user.combat_mode)
+		return FALSE
 	if(istype(I, /obj/item/jawsoflife/jimmy) || istype(I, /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp))
-		to_chat(user,"[I] cannot pry tiles.")
-		return
+		return FALSE
 	if(overfloor_placed && pry_tile(I, user))
 		return TRUE
 

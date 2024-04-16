@@ -474,7 +474,7 @@
 		var/contained = container.reagents.log_list()
 		user.log_message("applied [src] to  [C == user ? "themselves" : C ] ([contained]).", INDIVIDUAL_ATTACK_LOG)
 		if(C != user)
-			log_attack("[user.name] ([user.ckey]) applied [src] to [C.name] ([C.ckey]), which had [contained] (INTENT: [uppertext(user.a_intent)]) (MODE: [mode])")
+			log_attack("[user.name] ([user.ckey]) applied [src] to [C.name] ([C.ckey]), which had [contained] (COMBAT MODE: [user.combat_mode ? "ON" : "OFF"]) (MODE: [mode])")
 	else
 		if(!target.is_injectable(user))
 			to_chat(user, span_warning("You cannot directly fill [target]!"))
@@ -521,7 +521,7 @@
 		var/contained = container.reagents.log_list()
 		user.log_message("applied [src] to  [C == user ? "themselves" : C ] ([contained]).", INDIVIDUAL_ATTACK_LOG)
 		if(C != user)
-			log_attack("[user.name] ([user.ckey]) applied [src] to [C.name] ([C.ckey]), which had [contained] (INTENT: [uppertext(user.a_intent)]) (MODE: [mode])")
+			log_attack("[user.name] ([user.ckey]) applied [src] to [C.name] ([C.ckey]), which had [contained] (COMBAT MODE: [user.combat_mode ? "ON" : "OFF"]) (MODE: [mode])")
 	else
 		if(!target.is_injectable(user))
 			to_chat(user, span_warning("You cannot directly fill [target]!"))

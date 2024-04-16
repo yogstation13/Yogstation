@@ -345,9 +345,10 @@
 		return
 	. = ..()
 
-/obj/item/toolset_handler/attack(mob/living/M, mob/user)
+/obj/item/toolset_handler/attack(mob/living/M, mob/living/user, params)
 	if(active_tool)
-		if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
+		var/list/modifiers = params2list(params)
+		if(!user.combat_mode && attempt_initiate_surgery(src, M, user, modifiers))
 			return
 	..()
 

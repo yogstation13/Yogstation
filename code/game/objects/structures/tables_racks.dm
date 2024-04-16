@@ -104,20 +104,22 @@
 /obj/structure/table/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/structure/table/attack_hand(mob/living/user)
+/obj/structure/table/attack_hand(mob/living/user, modifiers)
 	if(Adjacent(user) && user.pulling)
 		if(isliving(user.pulling))
 			var/mob/living/pushed_mob = user.pulling
 			if(pushed_mob.buckled)
 				to_chat(user, span_warning("[pushed_mob] is buckled to [pushed_mob.buckled]!"))
 				return
-			if(user.a_intent == INTENT_GRAB)
-				if(user.grab_state < GRAB_AGGRESSIVE)
-					to_chat(user, span_warning("You need a better grip to do that!"))
-					return
-				if(do_after(user, 3.5 SECONDS, pushed_mob))
-					tablepush(user, pushed_mob)
-			if(user.a_intent == INTENT_HELP)
+			if(user.combat_mode)
+				switch(user.grab_state)
+					if(GRAB_PASSIVE)
+						to_chat(user, span_warning("You need a better grip to do that!"))
+						return
+					if(GRAB_AGGRESSIVE to GRAB_KILL)
+						if(do_after(user, 3.5 SECONDS, pushed_mob))
+							tablepush(user, pushed_mob)
+			else
 				pushed_mob.visible_message(span_notice("[user] begins to place [pushed_mob] onto [src]..."), \
 									span_userdanger("[user] begins to place [pushed_mob] onto [src]..."))
 				if(do_after(user, 3.5 SECONDS,pushed_mob))
@@ -189,7 +191,8 @@
 /obj/structure/table/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/rsf)) // Stops RSF from placing itself instead of glasses
 		return
-	if(!(flags_1 & NODECONSTRUCT_1) && deconstruction_ready && ((user.a_intent != INTENT_HELP || HAS_TRAIT(I, TRAIT_NODROP)) && (user.a_intent != INTENT_HARM || (I.item_flags & NOBLUDGEON)) || !(INTENT_DISARM in user.possible_a_intents)))
+	var/list/modifiers = params2list(params)
+	if(!(flags_1 & NODECONSTRUCT_1) && deconstruction_ready && modifiers && modifiers[RIGHT_CLICK]) // right click to deconstruct
 		if(I.tool_behaviour == TOOL_SCREWDRIVER)
 			to_chat(user, span_notice("You start disassembling [src]..."))
 			if(I.use_tool(src, user, 20, volume=50))
@@ -211,7 +214,7 @@
 			return
 		// If the tray IS empty, continue on (tray will be placed on the table like other items)
 
-	if((user.a_intent != INTENT_HARM && !HAS_TRAIT(I, TRAIT_NODROP)) && !(I.item_flags & ABSTRACT)) // if you can't drop it, you can't place it on the table
+	if(!user.combat_mode && !HAS_TRAIT(I, TRAIT_NODROP) && !(I.item_flags & ABSTRACT)) // if you can't drop it, you can't place it on the table
 		if(user.transferItemToLoc(I, drop_location()))
 			var/list/click_params = params2list(params)
 			//Center the icon where the user clicked.
@@ -604,15 +607,16 @@
 	if(O.loc != src.loc)
 		step(O, get_dir(O, src))
 
-/obj/structure/rack/attackby(obj/item/W, mob/user, params)
-	if (W.tool_behaviour == TOOL_WRENCH && !(flags_1&NODECONSTRUCT_1) && (user.a_intent != INTENT_HELP && user.a_intent != INTENT_HARM || !(INTENT_DISARM in user.possible_a_intents)))
+/obj/structure/rack/attackby(obj/item/W, mob/living/user, params)
+	var/list/modifiers = params2list(params)
+	if (W.tool_behaviour == TOOL_WRENCH && !(flags_1&NODECONSTRUCT_1) && modifiers && modifiers[RIGHT_CLICK])
 		W.play_tool_sound(src)
 		deconstruct(TRUE)
 		return
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return ..()
 	if(user.transferItemToLoc(W, drop_location()))
-		return 1
+		return TRUE
 
 /obj/structure/rack/attack_paw(mob/living/user)
 	attack_hand(user)

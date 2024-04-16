@@ -287,7 +287,7 @@
 
 	M.log_message("became [new_mob.real_name]", LOG_ATTACK, color="orange")
 
-	new_mob.a_intent = INTENT_HARM
+	new_mob.set_combat_mode(TRUE)
 
 	M.wabbajack_act(new_mob)
 
@@ -332,7 +332,7 @@
 	B.name = "[M.name] Parmesan"
 	B.real_name = "[M.name] Parmesan"
 	B.set_stat(CONSCIOUS)
-	B.a_intent = INTENT_HARM
+	B.set_combat_mode(TRUE)
 	if(M.mind)
 		M.mind.transfer_to(B)
 	else
