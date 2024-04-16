@@ -90,7 +90,7 @@ Class Procs:
 	verb_say = "beeps"
 	verb_yell = "blares"
 	pressure_resistance = 15
-	pass_flags_self = PASSMACHINE
+	pass_flags_self = PASSMACHINES
 	max_integrity = 200
 	layer = BELOW_OBJ_LAYER //keeps shit coming out of the machine from ending up underneath it.
 
@@ -657,7 +657,7 @@ Class Procs:
 
 /obj/machinery/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(istype(mover) && (mover.pass_flags & PASSMACHINE))
+	if(istype(mover) && (mover.pass_flags & PASSMACHINES))
 		return TRUE
 
 /obj/machinery/proc/end_processing()

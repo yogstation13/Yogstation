@@ -124,6 +124,7 @@
 	flags_1 |= INITIALIZED_1
 
 	SET_PLANE_IMPLICIT(src, plane)
+
 	if(greyscale_config && greyscale_colors) //we'll check again at item/init for inhand/belt/worn configs.
 		update_greyscale()
 
@@ -152,6 +153,9 @@
 		else if(!istype(armor, /datum/armor))
 			stack_trace("Invalid type [armor.type] found in .armor during [type] Initialize()")
 		atom_integrity = max_integrity
+
+	if(ispath(ai_controller))
+		ai_controller = new ai_controller(src)
 
 	return INITIALIZE_HINT_NORMAL
 

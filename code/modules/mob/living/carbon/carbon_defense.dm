@@ -445,7 +445,7 @@
 
 	if(undergoing_cardiac_arrest() && !illusion)
 		if(shock_damage * siemens_coeff >= 1 && prob(25))
-			var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
+			var/obj/item/organ/heart/heart = get_organ_slot(ORGAN_SLOT_HEART)
 			heart.beating = TRUE
 			if(stat == CONSCIOUS)
 				to_chat(src, span_notice("You feel your heart beating again!"))

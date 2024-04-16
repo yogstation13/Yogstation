@@ -592,8 +592,9 @@
 
 //	if(active_thrusters?.thrust(movement_dir))
 //		step_silent = TRUE
-	if(thrusters_active && movement_dir && use_power(step_energy_drain))
-		return TRUE
+	for(var/obj/item/mecha_parts/mecha_equipment/thrusters/jetpack in equipment)
+		if(jetpack.thrusters_active && movement_dir && use_power(step_energy_drain))
+			return TRUE
 	return FALSE
 
 /obj/mecha/relaymove(mob/user,direction)

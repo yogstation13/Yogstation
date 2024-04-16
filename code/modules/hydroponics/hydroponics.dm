@@ -3,7 +3,7 @@
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "hydrotray"
 	density = TRUE
-	pass_flags_self = PASSMACHINE | LETPASSTHROW
+	pass_flags_self = PASSMACHINES | LETPASSTHROW
 	pixel_z = 8
 	obj_flags = CAN_BE_HIT | UNIQUE_RENAME | UNIQUE_REDESC
 	circuit = /obj/item/circuitboard/machine/hydroponics

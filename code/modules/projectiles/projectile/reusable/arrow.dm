@@ -272,7 +272,7 @@
 	wound_bonus = -30
 	irradiate = 500
 	range = 20
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOOR
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINES | PASSSTRUCTURE | PASSDOOR
 	embed_type = /obj/item/ammo_casing/reusable/arrow/energy/xray
 
 /obj/projectile/energy/arrow/shock //Hardlight projectile. Replicable tasers are fair and balanced.

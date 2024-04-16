@@ -21,7 +21,7 @@
 	if(H.reagents.has_reagent("teslium"))
 		siemens_coefficient *= 1.5
 
-	if(!istype(H.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
+	if(!istype(H.get_organ_slot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
 		to_chat(H, span_info("CONSUME protocol failed - missing internal power supply."))
 		draining = FALSE
 		return

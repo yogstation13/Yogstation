@@ -72,7 +72,7 @@
 	if(!istype(turf))
 		return
 
-	if(source.buckled || source.throwing || source.movement_type & (VENTCRAWLING | FLYING) || HAS_TRAIT(source, TRAIT_IMMOBILIZED))
+	if(source.buckled || source.throwing || source.movement_type & (VENTCRAWLING | FLYING) || HAS_TRAIT(source, TRAIT_IMMOBILIZED) || CHECK_MOVE_LOOP_FLAGS(source, MOVEMENT_LOOP_OUTSIDE_CONTROL))
 		return
 
 	if(source.body_position == LYING_DOWN) //play crawling sound if we're lying
@@ -188,6 +188,9 @@
 
 	var/turf/open/source_loc = get_turf(source)
 	if(!istype(source_loc))
+		return
+
+	if(CHECK_MOVE_LOOP_FLAGS(source, MOVEMENT_LOOP_OUTSIDE_CONTROL))
 		return
 
 	playsound(source_loc, footstep_sounds, 50, falloff_distance = 1, vary = sound_vary)

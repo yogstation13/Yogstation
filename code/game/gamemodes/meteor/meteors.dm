@@ -143,7 +143,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 
 /obj/effect/meteor/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
 	return TRUE //Keeps us from drifting for no reason
->>>>>>>>>>>>>>>>
+
 /obj/effect/meteor/Bump(atom/A)
 	. = ..() //What could go wrong
 	if(A)
@@ -158,7 +158,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	if(!new_loop)
 		return
 
-	RegisterSignal(new_loop, COMSIG_PARENT_QDELETING, PROC_REF(handle_stopping))
+	RegisterSignal(new_loop, COMSIG_QDELETING, PROC_REF(handle_stopping))
 
 /obj/effect/meteor/proc/handle_stopping()
 	SIGNAL_HANDLER

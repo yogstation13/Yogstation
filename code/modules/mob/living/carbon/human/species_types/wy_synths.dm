@@ -75,7 +75,7 @@
 	laws = new /datum/ai_laws/steward
 
 
-	var/obj/item/organ/appendix/A = C.getorganslot(ORGAN_SLOT_APPENDIX) // Easiest way to remove it.
+	var/obj/item/organ/appendix/A = C.get_organ_slot(ORGAN_SLOT_APPENDIX) // Easiest way to remove it.
 	if(A)
 		A.Remove(C)
 		QDEL_NULL(A)

@@ -22,5 +22,6 @@
 	},
 	"[scss]": {
 		"editor.rulers": [80]
-	}
+	},
+	"dotnet.defaultSolution": "disable"
 }

@@ -179,7 +179,7 @@
 		target_types += list(
 			/obj/effect/decal/cleanable/xenoblood,
 			/obj/effect/decal/cleanable/blood,
-			/obj/effect/decal/cleanable/trail_holder,
+			/obj/effect/decal/cleanable/blood/trail_holder,
 		)
 
 //	if(janitor_mode_flags & CLEANBOT_CLEAN_PESTS)

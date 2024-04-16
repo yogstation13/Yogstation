@@ -23,17 +23,18 @@
 	///Used primarially as a hint to be reasoned about by our [controller], and as the id of our bucket
 	///Should not be modified directly outside of [start_loop]
 	var/timer = 0
-	///Is this loop running or not
-	var/running = FALSE
-	///Track if we're currently paused
-	var/paused = FALSE
+	///The time we are CURRENTLY queued for processing
+	///Do not modify this directly
+	var/queued_time = -1
+	/// Status bitfield for what state the move loop is currently in
+	var/status = NONE
 
 /datum/move_loop/New(datum/movement_packet/owner, datum/controller/subsystem/movement/controller, atom/moving, priority, flags, datum/extra_info)
 	src.owner = owner
 	src.controller = controller
 	src.extra_info = extra_info
 	if(extra_info)
-		RegisterSignal(extra_info, COMSIG_PARENT_QDELETING, PROC_REF(info_deleted))
+		RegisterSignal(extra_info, COMSIG_QDELETING, PROC_REF(info_deleted))
 	src.moving = moving
 	src.priority = priority
 	src.flags = flags
@@ -57,7 +58,7 @@
 /datum/move_loop/proc/loop_started()
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_MOVELOOP_START)
-	running = TRUE
+	status |= MOVELOOP_STATUS_RUNNING
 	//If this is our first time starting to move with this loop
 	//And we're meant to start instantly
 	if(!timer && flags & MOVEMENT_LOOP_START_FAST)
@@ -68,7 +69,7 @@
 ///Called when a loop is stopped, doesn't stop the loop itself
 /datum/move_loop/proc/loop_stopped()
 	SHOULD_CALL_PARENT(TRUE)
-	running = FALSE
+	status &= ~MOVELOOP_STATUS_RUNNING
 	SEND_SIGNAL(src, COMSIG_MOVELOOP_STOP)
 
 /datum/move_loop/proc/info_deleted(datum/source)
@@ -91,7 +92,7 @@
 ///Pauses the move loop for some passed in period
 ///This functionally means shifting its timer up, and clearing it from its current bucket
 /datum/move_loop/proc/pause_for(time)
-	if(!controller || !running) //No controller or not running? go away
+	if(!controller || !(status & MOVELOOP_STATUS_RUNNING)) //No controller or not running? go away
 		return
 	//Dequeue us from our current bucket
 	controller.dequeue_loop(src)
@@ -101,6 +102,10 @@
 	controller.queue_loop(src)
 
 /datum/move_loop/process()
+	if(isnull(controller))
+		qdel(src)
+		return
+
 	var/old_delay = delay //The signal can sometimes change delay
 
 	if(SEND_SIGNAL(src, COMSIG_MOVELOOP_PREPROCESS_CHECK) & MOVELOOP_SKIP_STEP) //Chance for the object to react
@@ -113,7 +118,15 @@
 		return
 
 	var/visual_delay = controller.visual_delay
+	var/old_dir = moving.dir
+	var/old_loc = moving.loc
+
+	owner?.processing_move_loop_flags = flags
 	var/result = move() //Result is an enum value. Enums defined in __DEFINES/movement.dm
+	if(moving)
+		var/direction = get_dir(old_loc, moving.loc)
+		SEND_SIGNAL(moving, COMSIG_MOVABLE_MOVED_FROM_LOOP, src, old_dir, direction)
+	owner?.processing_move_loop_flags = NONE
 
 	SEND_SIGNAL(src, COMSIG_MOVELOOP_POSTPROCESS, result, delay * visual_delay)
 
@@ -133,21 +146,21 @@
 
 ///Pause our loop untill restarted with resume_loop()
 /datum/move_loop/proc/pause_loop()
-	if(!controller || !running || paused) //we dead
+	if(!controller || !(status & MOVELOOP_STATUS_RUNNING) || (status & MOVELOOP_STATUS_PAUSED)) //we dead
 		return
 
 	//Dequeue us from our current bucket
 	controller.dequeue_loop(src)
-	paused = TRUE
+	status |= MOVELOOP_STATUS_PAUSED
 
 ///Resume our loop after being paused by pause_loop()
 /datum/move_loop/proc/resume_loop()
-	if(!controller || !running || !paused)
+	if(!controller || (status & MOVELOOP_STATUS_RUNNING|MOVELOOP_STATUS_PAUSED) != (MOVELOOP_STATUS_RUNNING|MOVELOOP_STATUS_PAUSED))
 		return
 
-	controller.queue_loop(src)
 	timer = world.time
-	paused = FALSE
+	controller.queue_loop(src)
+	status &= ~MOVELOOP_STATUS_PAUSED
 
 ///Removes the atom from some movement subsystem. Defaults to SSmovement
 /datum/controller/subsystem/move_manager/proc/stop_looping(atom/movable/moving, datum/controller/subsystem/movement/subsystem = SSmovement)
@@ -263,7 +276,7 @@
 	target = chasing
 
 	if(!isturf(target))
-		RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(handle_no_target)) //Don't do this for turfs, because we don't care
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(handle_no_target)) //Don't do this for turfs, because we don't care
 
 /datum/move_loop/has_target/compare_loops(datum/move_loop/loop_type, priority, flags, extra_info, delay, timeout, atom/chasing)
 	if(..() && chasing == target)
@@ -403,7 +416,7 @@
 	src.skip_first = skip_first
 	movement_path = initial_path.Copy()
 	if(isidcard(id))
-		RegisterSignal(id, COMSIG_PARENT_QDELETING, PROC_REF(handle_no_id)) //I prefer erroring to harddels. If this breaks anything consider making id info into a datum or something
+		RegisterSignal(id, COMSIG_QDELETING, PROC_REF(handle_no_id)) //I prefer erroring to harddels. If this breaks anything consider making id info into a datum or something
 
 /datum/move_loop/has_target/jps/compare_loops(datum/move_loop/loop_type, priority, flags, extra_info, delay, timeout, atom/chasing, repath_delay, max_path_length, minimum_distance, obj/item/card/id/id, simulated_only, turf/avoid, skip_first, initial_path)
 	if(..() && repath_delay == src.repath_delay && max_path_length == src.max_path_length && minimum_distance == src.minimum_distance && id == src.id && simulated_only == src.simulated_only && avoid == src.avoid)

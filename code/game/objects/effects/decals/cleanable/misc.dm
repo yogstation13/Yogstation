@@ -9,7 +9,6 @@
 	desc = "Ashes to ashes, dust to dust, and into space."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "ash"
-	turf_loc_check = FALSE //yog - king goat arena
 	mergeable_decal = FALSE
 
 /obj/effect/decal/cleanable/ash/Initialize(mapload)
@@ -18,9 +17,8 @@
 	pixel_x = rand(-5, 5)
 	pixel_y = rand(-5, 5)
 
-/obj/effect/decal/cleanable/ash/crematorium
-//crematoriums need their own ash cause default ash deletes itself if created in an obj
-	turf_loc_check = FALSE
+/obj/effect/decal/cleanable/ash/NeverShouldHaveComeHere(turf/here_turf)
+	return !istype(here_turf, /obj/structure/bodycontainer/crematorium) && ..()
 
 /obj/effect/decal/cleanable/ash/large
 	name = "large pile of ashes"

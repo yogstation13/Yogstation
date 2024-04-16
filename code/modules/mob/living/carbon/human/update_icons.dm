@@ -159,6 +159,8 @@ There are several things that need to be remembered:
 		var/icon_file
 		var/target_overlay = RESOLVE_ICON_STATE(uniform) //Selects proper icon from the vars the clothing has (Search define for more.)
 
+		if(dna?.species.limbs_id == "monkey" && (uniform.supports_variations_flags & CLOTHING_MONKEY_VARIATION))
+			icon_file = 'icons/mob/clothing/monkey/uniform.dmi'
 		//Checks for GAGS, if it uses it, use another system, so we can use a single config for both. Both statements below are Yogs changes.
 		if(uniform.greyscale_config && uniform.greyscale_colors)
 			if(uniform.adjusted == ALT_STYLE)
@@ -191,11 +193,6 @@ There are several things that need to be remembered:
 					override_file = handled_by_bodytype ? icon_file : null,
 				)
 
-		if(!uniform_overlay)
-			var/icon_file = 'icons/mob/clothing/uniform/uniform.dmi'
-			if(dna?.species.limbs_id == "monkey" && (U.supports_variations_flags & CLOTHING_MONKEY_VARIATION))
-				icon_file = 'icons/mob/clothing/monkey/uniform.dmi'
-
 			uniform_overlay = uniform.build_worn_icon(
 				default_layer = UNIFORM_LAYER, 
 				default_icon_file = icon_file, 
@@ -206,8 +203,8 @@ There are several things that need to be remembered:
 
 
 		if(OFFSET_UNIFORM in dna.species.offset_features)
-			uniform_overlay.pixel_x += dna.species.offset_features[OFFSET_UNIFORM][1]
-			uniform_overlay.pixel_y += dna.species.offset_features[OFFSET_UNIFORM][2]
+			uniform_overlay?.pixel_x += dna.species.offset_features[OFFSET_UNIFORM][1]
+			uniform_overlay?.pixel_y += dna.species.offset_features[OFFSET_UNIFORM][2]
 		overlays_standing[UNIFORM_LAYER] = uniform_overlay
 		apply_overlay(UNIFORM_LAYER)
 

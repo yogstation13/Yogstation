@@ -108,7 +108,7 @@
 		return FALSE // they're already activated
 	if(!is_synth(target))
 		return FALSE
-	var/obj/item/organ/brain/B = target.getorganslot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/brain/B = target.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!B) // you can't reactivate a brain that DOESN'T EXIST
 		return FALSE
-	return istype(target.getorganslot(ORGAN_SLOT_BRAIN), /obj/item/organ/brain/positron)
+	return istype(target.get_organ_slot(ORGAN_SLOT_BRAIN), /obj/item/organ/brain/positron)

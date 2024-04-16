@@ -73,7 +73,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "aC" = (
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	faction = list("neutral","Syndicate")
 	},
 /turf/open/floor/grass,
@@ -3411,7 +3411,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/syndicate_lava_base/bar)
 "Fw" = (
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	faction = list("neutral","Syndicate")
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -4170,7 +4170,7 @@
 /area/ruin/powered/syndicate_lava_base/virology)
 "Mt" = (
 /obj/structure/bed,
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	faction = list("neutral","Syndicate")
 	},
 /turf/open/floor/plasteel/white,
@@ -4467,7 +4467,7 @@
 /turf/open/floor/engine/air,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "Pb" = (
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	faction = list("neutral","Syndicate")
 	},
 /obj/machinery/light{

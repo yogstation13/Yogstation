@@ -32,7 +32,7 @@
 	var/obj/item/organ/eyes/eyes
 
 /datum/psi_web/xray/on_gain()
-	eyes = shadowhuman.getorganslot(ORGAN_SLOT_EYES)
+	eyes = shadowhuman.get_organ_slot(ORGAN_SLOT_EYES)
 	if(eyes && istype(eyes))
 		eyes.sight_flags |= SEE_OBJS | SEE_TURFS
 		shadowhuman.update_sight()

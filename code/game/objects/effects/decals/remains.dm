@@ -13,10 +13,15 @@
 	desc = "They look like human remains. They have a strange aura about them."
 	icon_state = "remains"
 
+/obj/effect/decal/remains/human/NeverShouldHaveComeHere(turf/here_turf)
+	return !istype(here_turf, /obj/structure/fluff/grave) && ..()
+
 /obj/effect/decal/remains/plasma
 	desc = "They look like the remains of something flammable. They have a strange aura about them."
 	icon_state = "remainsplasma"
-	turf_loc_check = FALSE
+
+/obj/effect/decal/remains/plasma/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)
 
 /obj/effect/decal/remains/xeno
 	desc = "They look like the remains of something... alien. They have a strange aura about them."

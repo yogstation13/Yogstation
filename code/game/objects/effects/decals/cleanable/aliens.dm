@@ -35,7 +35,7 @@
 	if(mapload)
 		for (var/i = 1, i < range, i++)
 			var/turf/turf_sending = get_step(src, direction)
-			if(isclosedturf(turf_sending) || (isgroundlessturf(turf_sending) && !SSmapping.get_turf_below(turf_sending)))
+			if(isclosedturf(turf_sending) || (isgroundlessturf(turf_sending) && !GET_TURF_BELOW(turf_sending)))
 				continue
 			new /obj/effect/decal/cleanable/xenoblood/xsplatter(loc)
 			if (!step_to(src, turf_sending, 0))
@@ -48,6 +48,8 @@
 
 /obj/effect/decal/cleanable/xenoblood/xgibs/proc/spread_movement_effects(datum/move_loop/has_target/source)
 	SIGNAL_HANDLER
+	if(NeverShouldHaveComeHere(loc))
+		return
 	new /obj/effect/decal/cleanable/xenoblood/xsplatter(loc)
 
 /obj/effect/decal/cleanable/xenoblood/xgibs/ex_act()

@@ -293,7 +293,7 @@
 	spread_flags = DISEASE_SPREAD_BLOOD
 	needs_all_cures = FALSE	
 	cures = list(/datum/reagent/quinine, /datum/reagent/medicine/synaptizine,/datum/reagent/consumable/tonic)
-	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
+	viable_mobtypes = list(/mob/living/carbon/human)
 	
 	var/next_stage_time = 0
 	var/time_per_stage = 2 MINUTES //around 16 minutes till this reaches lethality

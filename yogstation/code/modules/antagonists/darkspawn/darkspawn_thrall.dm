@@ -70,7 +70,7 @@
 		new_spell.Grant(current_mob)
 
 	if(isliving(current_mob))
-		var/obj/item/organ/shadowtumor/ST = current_mob.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
+		var/obj/item/organ/shadowtumor/ST = current_mob.get_organ_slot(ORGAN_SLOT_BRAIN_TUMOR)
 		if(!ST || !istype(ST))
 			ST = new
 			ST.Insert(current_mob, FALSE, FALSE)
@@ -94,7 +94,7 @@
 		if(spells.type in abilities)//no keeping your abilities
 			spells.Remove(current_mob)
 			qdel(spells)
-	var/obj/item/organ/tumor = current_mob.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
+	var/obj/item/organ/tumor = current_mob.get_organ_slot(ORGAN_SLOT_BRAIN_TUMOR)
 	if(tumor && istype(tumor, /obj/item/organ/shadowtumor))
 		qdel(tumor)
 	current_mob.update_sight()
@@ -137,7 +137,7 @@
 /datum/antagonist/thrall/proc/thrall_life(mob/living/source, seconds_per_tick, times_fired)
 	if(!source || source.stat == DEAD)
 		return
-	var/obj/item/organ/tumor = source.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
+	var/obj/item/organ/tumor = source.get_organ_slot(ORGAN_SLOT_BRAIN_TUMOR)
 	if(!tumor || !istype(tumor, /obj/item/organ/shadowtumor)) //if they somehow lose their tumor in an unusual way
 		source.remove_thrall()
 		return

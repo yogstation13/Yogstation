@@ -180,19 +180,16 @@
 		
 		var/access_card = new /obj/item/card/id/captains_spare
 		
-		//We have to rawdog the Astar pathfinding and skip the wrapper proc because that's made specifically for mobs
-		var/list/cable_path = AStar(
+		//We have to rawdog the Astar pathfinding and skip the wrapper proc because that's made specifically for mobs // i'm going to raw dog you.
+		var/list/cable_path = get_path_to(
 			caller = our_apc,
-			_end = closest_apc,
-			dist = /turf/proc/Distance_cardinal,
-			maxnodes = 0,
-			maxnodedepth = 0,
+			end = closest_apc,
+			max_distance = 30,
 			mintargetdist = 0,
-			adjacent = /turf/proc/wiringTurfTest, 
 			id = access_card, 
-			exclude = null, 
 			simulated_only = FALSE, 
-			get_best_attempt = TRUE)
+			exclude = null, 
+			)
 		
 		if(!cable_path || cable_path.len <= 1)
 			//log_world("Cable path for [our_apc] either null or only 1 tile")

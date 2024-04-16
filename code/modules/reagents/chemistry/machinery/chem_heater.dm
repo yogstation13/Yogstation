@@ -1,7 +1,7 @@
 /obj/machinery/chem_heater
 	name = "chemical heater"
 	density = TRUE
-	pass_flags_self = PASSMACHINE | LETPASSTHROW
+	pass_flags_self = PASSMACHINES | LETPASSTHROW
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0b"
 	use_power = IDLE_POWER_USE

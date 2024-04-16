@@ -64,7 +64,7 @@
 	stunning = FALSE
 
 /obj/item/reagent_containers/food/snacks/pie/cream/admin
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSBLOB | PASSCLOSEDTURF | LETPASSTHROW | PASSDOOR | PASSMACHINE | PASSCOMPUTER
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSBLOB | PASSCLOSEDTURF | LETPASSTHROW | PASSDOOR | PASSMACHINES | PASSCOMPUTER
 
 /obj/item/reagent_containers/food/snacks/pie/berryclafoutis
 	name = "berry clafoutis"

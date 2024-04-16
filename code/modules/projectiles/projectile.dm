@@ -443,7 +443,7 @@
 	var/turf/ending = return_predicted_turf_after_moves(moves, forced_angle)
 	return getline(current, ending)
 
-/obj/item/projectile/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
+/obj/projectile/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
 	return TRUE	//Bullets don't drift in space
 
 /obj/projectile/process()
@@ -805,7 +805,7 @@
  * This is NOT used for pacifist checks, that's handled by [/obj/item/ammo_casing/var/harmful]
  * This is used in places such as (mob) AI responses to determine if they're being threatened or not (among other places)
  */
-/obj/item/projectile/proc/is_hostile_projectile()
+/obj/projectile/proc/is_hostile_projectile()
 	if(damage > 0 || stamina > 0)
 		return TRUE
 

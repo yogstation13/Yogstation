@@ -36,7 +36,7 @@
 	if(!(target.mind || target.ckey))
 		to_chat(owner, "This mind is too feeble to even be worthy of thralling.")
 		return
-	if(!target.getorganslot(ORGAN_SLOT_BRAIN))
+	if(!target.get_organ_slot(ORGAN_SLOT_BRAIN))
 		to_chat(owner, span_danger("[target]'s brain is missing, you lack the conduit to control them."))
 		return FALSE
 	if(isdarkspawn(target))
@@ -437,7 +437,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/toggle/nightvision/Enable()
-	var/obj/item/organ/eyes/eyes = owner.getorganslot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 	if(eyes && istype(eyes))
 		eyes.color_cutoffs = list(12, 0, 50)
 		eyes.lighting_cutoff = LIGHTING_CUTOFF_HIGH
@@ -446,7 +446,7 @@
 		owner.lighting_cutoff = LIGHTING_CUTOFF_HIGH
 
 /datum/action/cooldown/spell/toggle/nightvision/Disable()
-	var/obj/item/organ/eyes/eyes = owner.getorganslot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 	if(eyes && istype(eyes))
 		eyes.color_cutoffs = list(0, 0, 0)
 		eyes.lighting_cutoff = 0

@@ -165,21 +165,6 @@
 	if(GLOB.use_preloader && (src.type == GLOB._preloader_path))//in case the instanciated atom is creating other atoms in New()
 		world.preloader_load(src)
 
-	///any atom that uses integrity and can be damaged must set this to true, otherwise the integrity procs will throw an error
-	var/uses_integrity = FALSE
-	///Armor datum used by the atom
-	var/datum/armor/armor
-	///Current integrity, defaults to max_integrity on init
-	VAR_PRIVATE/atom_integrity
-	///Maximum integrity
-	var/max_integrity = 500
-	///Integrity level when this atom will "break" (whatever that means) 0 if we have no special broken behavior, otherwise is a percentage of at what point the atom breaks. 0.5 being 50%
-	var/integrity_failure = 0
-	///Damage under this value will be completely ignored
-	var/damage_deflection = 0
-
-	var/resistance_flags = NONE // INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ON_FIRE | UNACIDABLE | ACID_PROOF
-
 /**
   * Top level of the destroy chain for most atoms
   *
@@ -957,33 +942,33 @@
 	pixel_y = clamp(new_y, -16, 16)
 
 ///Handle melee attack by a mech
-/atom/proc/mech_melee_attack(obj/mecha/mecha_attacker, equip_allowed = TRUE)
+/atom/proc/mech_melee_attack(obj/mecha/mecha_attacker, punch_force, equip_allowed = TRUE)
 	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_MECH, mecha_attacker)
 	if(!uses_integrity)
 		return
-	M.do_attack_animation(src)
+	mecha_attacker.do_attack_animation(src)
 	var/play_soundeffect = 0
-	var/mech_damtype = M.damtype
-	punch_force *= M.demolition_mod
-	if(M.selected)
-		mech_damtype = M.selected.damtype
+	var/mech_damtype = mecha_attacker.damtype
+	punch_force *= mecha_attacker.demolition_mod
+	if(mecha_attacker.selected)
+		mech_damtype = mecha_attacker.selected.damtype
 		play_soundeffect = 1
 	else
-		switch(M.damtype)
+		switch(mecha_attacker.damtype)
 			if(BRUTE)
-				if(M.meleesound)
-					playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
+				if(mecha_attacker.meleesound)
+					playsound(src, 'sound/weapons/punch4.ogg', 50, TRUE)
 			if(BURN)
-				if(M.meleesound)
-					playsound(src, 'sound/items/welder.ogg', 50, 1)
+				if(mecha_attacker.meleesound)
+					playsound(src, 'sound/items/welder.ogg', 50, TRUE)
 			if(TOX)
-				if(M.meleesound)
-					playsound(src, 'sound/effects/spray2.ogg', 50, 1)
+				if(mecha_attacker.meleesound)
+					playsound(src, 'sound/effects/spray2.ogg', 50, TRUE)
 				return 0
 			else
 				return 0
-	visible_message(span_danger("[M.name] has hit [src]."), null, null, COMBAT_MESSAGE_RANGE)
-	return take_damage(punch_force, mech_damtype, MELEE, play_soundeffect, get_dir(src, M)) // multiplied by 3 so we can hit objs hard but not be overpowered against mobs.
+	visible_message(span_danger("[mecha_attacker.name] has hit [src]."), null, null, COMBAT_MESSAGE_RANGE)
+	return take_damage(punch_force, mech_damtype, MELEE, play_soundeffect, get_dir(src, mecha_attacker)) // multiplied by 3 so we can hit objs hard but not be overpowered against mobs.
 
 /**
   * Called when the atom log's in or out

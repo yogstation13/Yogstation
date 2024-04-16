@@ -151,9 +151,9 @@
 	if(mapload)
 		for (var/i = 1, i < range, i++)
 			var/turf/turf_sending = get_step(src, direction)
-			if(isclosedturf(turf_sending) || (isgroundlessturf(turf_sending) && !SSmapping.get_turf_below(turf_sending)))
+			if(isclosedturf(turf_sending) || (isgroundlessturf(turf_sending) && !GET_TURF_BELOW(turf_sending)))
 				continue
-			var/obj/effect/decal/cleanable/blood/splatter/splat = new /obj/effect/decal/cleanable/blood/splatter(loc, diseases)
+			var/obj/effect/decal/cleanable/blood/splatter/splat = new /obj/effect/decal/cleanable/blood/splatter(loc, streak_diseases)
 			if(!QDELETED(splat) && HAS_BLOOD_DNA(src))
 				splat.add_blood_DNA(src.return_blood_DNA())
 			if (!step_to(src, turf_sending, 0))
@@ -366,7 +366,7 @@
 	var/datum/move_loop/loop = SSmove_manager.move_towards(src, target_turf, delay, timeout = delay * range, priority = MOVEMENT_ABOVE_SPACE_PRIORITY, flags = MOVEMENT_LOOP_START_FAST)
 	RegisterSignal(loop, COMSIG_MOVELOOP_PREPROCESS_CHECK, PROC_REF(pre_move))
 	RegisterSignal(loop, COMSIG_MOVELOOP_POSTPROCESS, PROC_REF(post_move))
-	RegisterSignal(loop, COMSIG_PARENT_QDELETING, PROC_REF(loop_done))
+	RegisterSignal(loop, COMSIG_QDELETING, PROC_REF(loop_done))
 
 /obj/effect/decal/cleanable/blood/hitsplatter/proc/pre_move(datum/move_loop/source)
 	SIGNAL_HANDLER

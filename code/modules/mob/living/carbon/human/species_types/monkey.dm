@@ -44,7 +44,6 @@
 //	fire_overlay = "monkey"
 	species_gibs = "monkey"
 
-	payday_modifier = 1.5
 	ai_controlled_species = TRUE
 
 /datum/species/monkey/random_name(gender,unique,lastname)

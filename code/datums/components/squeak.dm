@@ -57,7 +57,12 @@
 		else
 			playsound(parent, pickweight(override_squeak_sounds), volume, 1, -1)
 
-/datum/component/squeak/proc/step_squeak()
+/datum/component/squeak/proc/step_squeak(obj/item/clothing/shoes/source)
+//	SIGNAL_HANDLER
+
+	var/mob/living/carbon/human/owner = source.loc
+	if(CHECK_MOVE_LOOP_FLAGS(owner, MOVEMENT_LOOP_OUTSIDE_CONTROL))
+		return
 	if(steps > step_delay)
 		play_squeak()
 		steps = 0

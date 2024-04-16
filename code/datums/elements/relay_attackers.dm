@@ -46,7 +46,7 @@
 	if(attacker.melee_damage_upper > 0)
 		relay_attacker(target, attacker)
 
-/datum/element/relay_attackers/proc/on_bullet_act(atom/target, obj/item/projectile/hit_projectile)
+/datum/element/relay_attackers/proc/on_bullet_act(atom/target, obj/projectile/hit_projectile)
 	SIGNAL_HANDLER
 	if(!hit_projectile.is_hostile_projectile())
 		return

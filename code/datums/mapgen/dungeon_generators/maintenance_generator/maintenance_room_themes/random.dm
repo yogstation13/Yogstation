@@ -233,7 +233,7 @@
 		)
 	
 	weighted_mob_spawn_list = list(
-		/mob/living/carbon/monkey = 2,
+		/mob/living/carbon/human/species/monkey = 2,
 		)
 	
 /datum/dungeon_room_theme/maintenance/xenobio/pre_initialize()
