@@ -878,6 +878,7 @@
 	to_chat(AI, AI.can_dominate_mechs ? span_announce("Takeover of [name] complete! You are now loaded onto the onboard computer. Do not attempt to leave the station sector!") :\
 		span_notice("You have been uploaded to a mech's onboard computer."))
 	to_chat(AI, "<span class='reallybig boldnotice'>Use Middle-Mouse to activate mech functions and equipment. Click normally for AI interactions.</span>")
+	register_occupant(AI)
 	if(interaction == AI_TRANS_FROM_CARD)
 		GrantActions(AI, FALSE) //No eject/return to core action for AI uploaded by card
 	else
@@ -893,6 +894,7 @@
 		occupant = pilot_mob
 		pilot_mob.mecha = src
 		pilot_mob.forceMove(src)
+		register_occupant(pilot_mob)
 		GrantActions(pilot_mob)//needed for checks, and incase a badmin puts somebody in the mob
 
 /obj/mecha/proc/aimob_exit_mech(mob/living/simple_animal/hostile/syndicate/mecha_pilot/pilot_mob)
@@ -902,6 +904,7 @@
 		pilot_mob.mecha = null
 	icon_state = "[initial(icon_state)]-open"
 	pilot_mob.forceMove(get_turf(src))
+	register_occupant(pilot_mob)
 	RemoveActions(pilot_mob)
 
 
@@ -1124,9 +1127,11 @@
 	if(ishuman(occupant))
 		mob_container = occupant
 		RemoveActions(occupant, human_occupant=1)
+		unregister_occupant(occupant)
 	else if(isbrain(occupant))
 		var/mob/living/brain/brain = occupant
 		RemoveActions(brain)
+		unregister_occupant(occupant)
 		mob_container = brain.container
 	else if(isAI(occupant))
 		var/mob/living/silicon/ai/AI = occupant
@@ -1142,6 +1147,7 @@
 			AI.controlled_mech = null
 			AI.remote_control = null
 			RemoveActions(occupant, 1)
+			unregister_occupant(occupant)
 			mob_container = AI
 			newloc = null
 			if(GLOB.primary_data_core)
