@@ -340,7 +340,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 
 /datum/uplink_item/dangerous/gasharpoon
-	name = "Gasharpoon"
+	name = "GasHarpoon"
 	desc = "A repurposed space-whaling tool attatched to a glove, can be used as a sturdy weapon in both hands, or worn as a glove to allow access to it's harpoon."
 	item = /obj/item/clothing/gloves/gasharpoon
 	cost = 10
