@@ -120,7 +120,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 		 "<span class='notice'>You start to lower [dropping] down into [src].</span>")
 	else
 		to_chat(user, "<span class='notice'>You start climbing down into [src]...")
-	if(do_after(user, 4 SECONDS, src))
+	if(do_after(user, 4 SECONDS, dropping))
 		splash(dropping)
 
 /datum/mood_event/poolparty
