@@ -323,8 +323,8 @@
 
 	// all roads lead to COMSIG_MOB_CANCEL_CLICKON so do the normal punch on the enemy in front of you
 	var/list/punch_targets = list()
-	for(var/mob/living/possible_target in viewers(2, ))
-		if(H != possible_target)
+	for(var/mob/living/possible_target in range(1, center_turf))
+		if(H != possible_target && H.CanReach(possible_target))
 			punch_targets |= possible_target
 	if(punch_targets.len > 0)
 		var/mob/living/living_target = get_closest_atom(/mob/living, punch_targets, center_turf)
