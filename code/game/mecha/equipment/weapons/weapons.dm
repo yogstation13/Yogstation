@@ -179,7 +179,7 @@
 	if(!chassis.Adjacent(target))
 		return ..()
 	// Again, two ways using tools can be handled, so check both
-	if(target.tool_act(chassis.occupant, src, TOOL_WELDER) & TOOL_ACT_MELEE_CHAIN_BLOCKING)
+	if(target.tool_act(chassis.occupant, src, TOOL_WELDER, params) & TOOL_ACT_MELEE_CHAIN_BLOCKING)
 		return TRUE
 	if(target.attackby(src, chassis.occupant, params))
 		return TRUE

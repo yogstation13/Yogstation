@@ -54,7 +54,7 @@
 		return
 	
 	// There are two ways things handle being pried, and I'm too lazy to make every single thing use the same one
-	if(target.tool_act(user, src, tool_behaviour) & TOOL_ACT_MELEE_CHAIN_BLOCKING)
+	if(target.tool_act(user, src, tool_behaviour, params) & TOOL_ACT_MELEE_CHAIN_BLOCKING)
 		return TRUE
 	if(target.attackby(src, user, params))
 		return TRUE
