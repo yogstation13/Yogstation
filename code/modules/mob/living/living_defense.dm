@@ -95,8 +95,10 @@
 		else
 				return 0
 
-/mob/living/proc/set_combat_mode(new_mode, silent = TRUE)
+/mob/living/proc/set_combat_mode(new_mode, silent = TRUE, forced = TRUE)
 	if(combat_mode == new_mode)
+		return
+	if(!(forced || can_toggle_combat))
 		return
 	. = combat_mode
 	combat_mode = new_mode

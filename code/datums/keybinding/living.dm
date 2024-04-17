@@ -53,7 +53,7 @@
 	if(.)
 		return
 	var/mob/living/user_mob = user.mob
-	user_mob.set_combat_mode(!user_mob.combat_mode, FALSE)
+	user_mob.set_combat_mode(!user_mob.combat_mode, FALSE, FALSE)
 
 /datum/keybinding/living/enable_combat_mode
 	hotkey_keys = list("4")
@@ -66,7 +66,7 @@
 	if(.)
 		return
 	var/mob/living/user_mob = user.mob
-	user_mob.set_combat_mode(TRUE, silent = FALSE)
+	user_mob.set_combat_mode(TRUE, FALSE, FALSE)
 
 /datum/keybinding/living/disable_combat_mode
 	hotkey_keys = list("1")
@@ -79,4 +79,4 @@
 	if(.)
 		return
 	var/mob/living/user_mob = user.mob
-	user_mob.set_combat_mode(FALSE, silent = FALSE)
+	user_mob.set_combat_mode(FALSE, FALSE, FALSE)

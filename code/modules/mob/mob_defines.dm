@@ -121,6 +121,8 @@
 
 	///Whether combat mode is enabled
 	var/combat_mode = FALSE
+	///Whether combat mode can be toggled
+	var/can_toggle_combat = TRUE
 
 	/// The movement intent of the mob (run/wal)
 	var/m_intent = MOVE_INTENT_RUN//Living

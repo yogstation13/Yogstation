@@ -50,7 +50,7 @@
 	. = ..()
 	set_combat_mode(FALSE)
 
-/mob/living/simple_animal/hostile/hivebot/set_combat_mode(mode, silent)
+/mob/living/simple_animal/hostile/hivebot/set_combat_mode(mode, silent, forced)
 	. = ..()
 	update_appearance()
 

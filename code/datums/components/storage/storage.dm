@@ -204,12 +204,15 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		if(!L.CanReach(A))
 			hide_from(L)
 
-/datum/component/storage/proc/attack_self(datum/source, mob/M)
-	if(locked)
-		to_chat(M, span_warning("[parent] seems to be locked!"))
+/datum/component/storage/proc/attack_self(datum/source, mob/user, modifiers)
+	if(modifiers?[RIGHT_CLICK])
+		on_alt_click(source, user)
 		return FALSE
-	if((M.get_active_held_item() == parent) && allow_quick_empty)
-		quick_empty(M)
+	if(locked)
+		to_chat(user, span_warning("[parent] seems to be locked!"))
+		return FALSE
+	if((user.get_active_held_item() == parent) && allow_quick_empty)
+		quick_empty(user)
 
 /datum/component/storage/proc/preattack_intercept(datum/source, obj/O, mob/M, params)
 	if(!isitem(O) || !click_gather || SEND_SIGNAL(O, COMSIG_CONTAINS_STORAGE))

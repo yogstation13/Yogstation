@@ -46,11 +46,11 @@
 		SSdemo.mark_dirty(target)
 
 // Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
-/obj/item/proc/attack_self(mob/user)
+/obj/item/proc/attack_self(mob/user, modifiers)
 	if(HAS_TRAIT(user, TRAIT_NOINTERACT)) //sorry no using grenades
 		to_chat(user, span_notice("You can't use things!"))
 		return
-	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user, modifiers) & COMPONENT_NO_INTERACT)
 		return
 	interact(user)
 	SSdemo.mark_dirty(src)
