@@ -63,7 +63,7 @@
 	if(modifiers[RIGHT_CLICK])
 		if(H == target)
 			return rip_plate(H) // right click yourself to take off a plate
-		else if(get_dist(H, target) <= 1 && isliving(target))
+		else if(get_dist(H, target) <= 1)
 			return grapple(H,target) // right click in melee to grab
 		else
 			return leap(H, target) // right click at range to leap
@@ -333,6 +333,8 @@
 
 /datum/martial_art/worldbreaker/proc/grapple(mob/living/user, atom/target) //proc for picking something up to toss
 	if(user.get_active_held_item()) //most abilities need an empty hand
+		return
+	if(!isliving(target)) // what are you trying to grab
 		return
 
 	var/turf/Z = get_turf(user)
