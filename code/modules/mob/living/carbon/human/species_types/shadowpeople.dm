@@ -1,12 +1,18 @@
 #define HEART_RESPAWN_THRESHHOLD 40
 #define HEART_SPECIAL_SHADOWIFY 2
+///cooldown between charges of the projectile absorb 
+#define DARKSPAWN_REFLECT_COOLDOWN 15 SECONDS
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------Basic shadow person species---------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/species/shadow
 	// Humans cursed to stay in the darkness, lest their life forces drain. They regain health in shadow and die in light.
 	name = "???"
 	plural_form = "???"
 	id = "shadow"
 	sexes = FALSE
+	bubble_icon = BUBBLE_DARKSPAWN
 	ignored_by = list(/mob/living/simple_animal/hostile/faithless)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/shadow
 	species_traits = list(NOBLOOD,NOEYESPRITES,NOFLASH, AGENDER)
@@ -14,17 +20,61 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 
 	mutanteyes = /obj/item/organ/eyes/shadow
+	species_language_holder = /datum/language_holder/darkspawn
+	///If the darkness healing heals all damage types, not just brute and burn
+	var/powerful_heal = FALSE
+	///How much damage is healed each life tick
+	var/dark_healing = 1
+	///How much burn damage is taken each life tick, reduced to 20% for dim light
+	var/light_burning = 1
+	///How many charges their projectile protection has
+	var/shadow_charges = 0
 
+/datum/species/shadow/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
+	var/turf/T = get_turf(H)
+	if(istype(T))
+		var/light_amount = T.get_lumcount()
+		if(light_amount < SHADOW_SPECIES_DIM_LIGHT && shadow_charges > 0)
+			H.visible_message(span_danger("The shadows around [H] ripple as they absorb \the [P]!"))
+			playsound(H, "bullet_miss", 75, 1)
+			shadow_charges = min(shadow_charges - 1, 0)
+			addtimer(CALLBACK(src, PROC_REF(regen_shadow)), DARKSPAWN_REFLECT_COOLDOWN)//so they regen on different timers
+			return BULLET_ACT_BLOCK
+	return ..()
+
+/datum/species/shadow/proc/regen_shadow()
+	shadow_charges = min(shadow_charges++, initial(shadow_charges))
 
 /datum/species/shadow/spec_life(mob/living/carbon/human/H)
 	var/turf/T = H.loc
 	if(istype(T))
 		var/light_amount = T.get_lumcount()
-
-		if(light_amount > SHADOW_SPECIES_LIGHT_THRESHOLD) //if there's enough light, start dying
-			H.take_overall_damage(1,1, 0, BODYPART_ORGANIC)
-		else if (light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD) //heal in the dark
-			H.heal_overall_damage(1,1, 0, BODYPART_ORGANIC)
+		switch(light_amount)
+			if(0 to SHADOW_SPECIES_DIM_LIGHT)
+				var/list/healing_types = list(CLONE, BURN, BRUTE)
+				if(powerful_heal)
+					healing_types |= list(STAMINA, TOX, OXY, BRAIN) //heal additional damage types
+					H.AdjustAllImmobility(-dark_healing * 40)
+					H.SetSleeping(0)
+				H.heal_ordered_damage(dark_healing, healing_types, BODYPART_ANY)
+			if(SHADOW_SPECIES_DIM_LIGHT to SHADOW_SPECIES_BRIGHT_LIGHT) //not bright, but still dim
+				var/datum/antagonist/darkspawn/dude = isdarkspawn(H)
+				if(dude)
+					if(HAS_TRAIT(dude, TRAIT_DARKSPAWN_LIGHTRES))
+						return
+					if(HAS_TRAIT(dude, TRAIT_DARKSPAWN_CREEP))
+						return
+				to_chat(H, span_userdanger("The light singes you!"))
+				H.playsound_local(H, 'sound/weapons/sear.ogg', max(30, 40 * light_amount), TRUE)
+				H.adjustCloneLoss(light_burning * 0.2)
+			if(SHADOW_SPECIES_BRIGHT_LIGHT to INFINITY) //but quick death in the light
+				var/datum/antagonist/darkspawn/dude = isdarkspawn(H)
+				if(dude)
+					if(HAS_TRAIT(dude, TRAIT_DARKSPAWN_CREEP))
+						return
+				to_chat(H, span_userdanger("The light burns you!"))
+				H.playsound_local(H, 'sound/weapons/sear.ogg', max(40, 65 * light_amount), TRUE)
+				H.adjustCloneLoss(light_burning)
 
 /datum/species/shadow/check_roundstart_eligible()
 	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
@@ -32,24 +82,13 @@
 	return ..()
 
 /datum/species/shadow/get_species_description()
-	return "Victims of a long extinct space alien. Their flesh is a sickly \
-		seethrough filament, their tangled insides in clear view. Their form \
-		is a mockery of life, leaving them mostly unable to work with others under \
-		normal circumstances."
+	return "Their flesh is a sickly seethrough filament,\
+		their tangled insides in clear view. Their form is a mockery of life, \
+		leaving them mostly unable to work with others under normal circumstances."
 
 /datum/species/shadow/get_species_lore()
 	return list(
-		"Long ago, the Spinward Sector used to be inhabited by terrifying aliens aptly named \"Shadowlings\" \
-		after their control over darkness, and tendancy to kidnap victims into the dark maintenance shafts. \
-		Around 2558, the long campaign Nanotrasen waged against the space terrors ended with the full extinction of the Shadowlings.",
-
-		"Victims of their kidnappings would become brainless thralls, and via surgery they could be freed from the Shadowling's control. \
-		Those more unlucky would have their entire body transformed by the Shadowlings to better serve in kidnappings. \
-		Unlike the brain tumors of lesser control, these greater thralls could not be reverted.",
-
-		"With Shadowlings long gone, their will is their own again. But their bodies have not reverted, burning in exposure to light. \
-		Nanotrasen has assured the victims that they are searching for a cure. No further information has been given, even years later. \
-		Most shadowpeople now assume Nanotrasen has long since shelfed the project.",
+		"WIP.",
 	)
 
 /datum/species/shadow/create_pref_unique_perks()
@@ -80,6 +119,9 @@
 
 	return to_add
 
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------Midround antag exclusive species------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/species/shadow/nightmare
 	name = "Nightmare"
 	plural_form = null
@@ -92,7 +134,8 @@
 	mutanteyes = /obj/item/organ/eyes/shadow
 	mutant_organs = list(/obj/item/organ/heart/nightmare)
 	mutantbrain = /obj/item/organ/brain/nightmare
-	
+	shadow_charges = 1
+
 	var/info_text = "You are a <span class='danger'>Nightmare</span>. The ability <span class='warning'>shadow walk</span> allows unlimited, unrestricted movement in the dark while activated. \
 					Your <span class='warning'>light eater</span> will destroy any light producing objects you attack, as well as destroy any lights a living creature may be holding. You will automatically dodge gunfire and melee attacks when on a dark tile. If killed, you will eventually revive if left in darkness."
 
@@ -100,23 +143,108 @@
 	. = ..()
 	to_chat(C, "[info_text]")
 
-	C.fully_replace_character_name("[C.real_name]","[pick(GLOB.nightmare_names)]") // Yogs -- fixes nightmares not having special spooky names. this proc takes the old name first, and *THEN* the new name!
-
-/datum/species/shadow/nightmare/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
-	var/turf/T = H.loc
-	if(istype(T))
-		var/light_amount = T.get_lumcount()
-		if(light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD)
-			H.visible_message(span_danger("[H] dances in the shadows, evading [P]!"))
-			playsound(T, "bullet_miss", 75, 1)
-			return BULLET_ACT_FORCE_PIERCE
-	return ..()
+	C.fully_replace_character_name("[C.real_name]", nightmare_name())
 
 /datum/species/shadow/nightmare/check_roundstart_eligible()
 	return FALSE
 
-//Organs
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------Roundstart antag exclusive species------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/species/shadow/darkspawn
+	name = "Darkspawn"
+	id = "darkspawn"
+	limbs_id = "darkspawn"
+	sexes = FALSE
+	nojumpsuit = TRUE
+	changesource_flags = MIRROR_BADMIN //never put this in the pride pool because they look super valid and can never be changed off of
+	siemens_coeff = 0
+	armor = 10
+	burnmod = 1.2
+	heatmod = 1.5
+	no_equip = list(
+		ITEM_SLOT_MASK,
+		ITEM_SLOT_OCLOTHING,
+		ITEM_SLOT_GLOVES,
+		ITEM_SLOT_FEET,
+		ITEM_SLOT_ICLOTHING,
+		ITEM_SLOT_SUITSTORE,
+		ITEM_SLOT_HEAD,
+		ITEM_SLOT_EYES
+		)
+	species_traits = list(
+		NOBLOOD,
+		NO_UNDERWEAR,
+		NO_DNA_COPY,
+		NOTRANSSTING,
+		NOEYESPRITES,
+		NOHUSK
+		)
+	inherent_traits = list(
+		TRAIT_NOGUNS, 
+		TRAIT_RESISTCOLD, 
+		TRAIT_RESISTHIGHPRESSURE,
+		TRAIT_RESISTLOWPRESSURE, 
+		TRAIT_NOBREATH, 
+		TRAIT_RADIMMUNE, 
+		TRAIT_VIRUSIMMUNE, 
+		TRAIT_PIERCEIMMUNE, 
+		TRAIT_NODISMEMBER, 
+		TRAIT_NOHUNGER, 
+		TRAIT_NOSLIPICE, 
+		TRAIT_GENELESS, 
+		TRAIT_NOCRITDAMAGE,
+		TRAIT_NOGUNS,
+		TRAIT_SPECIESLOCK //never let them swap off darkspawn, it can cause issues
+		)
+	mutanteyes = /obj/item/organ/eyes/darkspawn
+	mutantears = /obj/item/organ/ears/darkspawn
 
+	powerful_heal = TRUE
+	shadow_charges = 3
+
+/datum/species/shadow/darkspawn/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+	. = ..()
+	C.fully_replace_character_name("[C.real_name]", darkspawn_name())
+
+/datum/species/shadow/darkspawn/spec_updatehealth(mob/living/carbon/human/H)
+	var/datum/antagonist/darkspawn/antag = isdarkspawn(H)
+	if(antag)
+		dark_healing = antag.dark_healing
+		light_burning = antag.light_burning
+		if(H.physiology)
+			H.physiology.brute_mod = antag.brute_mod
+			H.physiology.burn_mod = antag.burn_mod
+			H.physiology.stamina_mod = antag.stam_mod
+
+/datum/species/shadow/darkspawn/spec_death(gibbed, mob/living/carbon/human/H)
+	playsound(H, 'yogstation/sound/creatures/darkspawn_death.ogg', 50, FALSE)
+
+/datum/species/shadow/darkspawn/check_roundstart_eligible()
+	return FALSE
+
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Darkspawn organs----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/obj/item/organ/eyes/darkspawn //special eyes that innately have night vision without having a toggle that adds action clutter
+	name = "darkspawn eyes"
+	desc = "It turned out they had them after all!"
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD //far more durable eyes than most
+	healing_factor = 2 * STANDARD_ORGAN_HEALING
+	lighting_cutoff = LIGHTING_CUTOFF_HIGH
+	color_cutoffs = list(12, 0, 50)
+	sight_flags = SEE_MOBS
+
+/obj/item/organ/ears/darkspawn //special ears that are a bit tankier and have innate sound protection
+	name = "darkspawn ears"
+	desc = "It turned out they had them after all!"
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD //far more durable ears than most
+	healing_factor = 2 * STANDARD_ORGAN_HEALING
+	bang_protect = 1
+
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Nightmare organs----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /obj/item/organ/brain/nightmare
 	name = "tumorous mass"
 	desc = "A fleshy growth that was dug out of the skull of a Nightmare."
@@ -168,6 +296,8 @@
 	..()
 	if(special != HEART_SPECIAL_SHADOWIFY)
 		blade = new/obj/item/light_eater
+		blade.force = 25
+		blade.armour_penetration = 35
 		M.put_in_hands(blade)
 	START_PROCESSING(SSobj, src)
 
@@ -190,12 +320,12 @@
 
 	if(istype(T))
 		var/light_amount = T.get_lumcount()
-		if(light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD)
+		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
 			respawn_progress++
 			playsound(owner,'sound/effects/singlebeat.ogg',40,1)
 	if(respawn_progress >= HEART_RESPAWN_THRESHHOLD)
 		owner.revive(full_heal = TRUE)
-		if(!(owner.dna.species.id == "shadow" || owner.dna.species.id == "nightmare"))
+		if(!(isshadowperson(owner)))
 			var/mob/living/carbon/old_owner = owner
 			Remove(owner, HEART_SPECIAL_SHADOWIFY)
 			old_owner.set_species(/datum/species/shadow)
@@ -207,66 +337,32 @@
 		respawn_progress = 0
 
 //Weapon
-
 /obj/item/light_eater
 	name = "light eater" //as opposed to heavy eater
-	icon = 'icons/obj/changeling.dmi'
-	icon_state = "arm_blade"
-	item_state = "arm_blade"
-	force = 25
-	armour_penetration = 35
-	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
-	item_flags = ABSTRACT | DROPDEL
-	tool_behaviour = TOOL_MINING
+	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
+	icon_state = "light_eater"
+	item_state = "light_eater"
+	force = 18
+	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	item_flags = ABSTRACT
 	w_class = WEIGHT_CLASS_HUGE
 	sharpness = SHARP_EDGED
-	wound_bonus = -30
-	bare_wound_bonus = 20
+	wound_bonus = -40
 	resistance_flags = ACID_PROOF
 
 /obj/item/light_eater/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 80, 70)
+	AddComponent(/datum/component/light_eater)
 
-/obj/item/light_eater/afterattack(atom/movable/AM, mob/user, proximity)
+/obj/item/light_eater/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //this doesn't work and i have no clue why
 	. = ..()
-	if(!proximity)
-		return
-	if(isopenturf(AM)) //So you can actually melee with it
-		return
-	if(isliving(AM))
-		var/mob/living/L = AM
-		if(isethereal(AM))
-			AM.emp_act(EMP_LIGHT)
+	if(isinhands)
+		. += emissive_appearance(icon, "[item_state]_emissive", src)
 
-		else if(iscyborg(AM))
-			var/mob/living/silicon/robot/borg = AM
-			if(borg.lamp_enabled)
-				borg.smash_headlamp()
-		else if(ishuman(AM))
-			for(var/obj/item/O in AM.get_all_contents())
-				if(O.light_range && O.light_power)
-					disintegrate(O)
-		if(L.pulling && L.pulling.light_range && isitem(L.pulling))
-			disintegrate(L.pulling)
-	else if(isitem(AM))
-		var/obj/item/I = AM
-		if(I.light_range && I.light_power)
-			disintegrate(I)
-
-/obj/item/light_eater/proc/disintegrate(obj/item/O)
-	if(istype(O, /obj/item/pda))
-		var/obj/item/pda/PDA = O
-		PDA.set_light_on(FALSE)
-		PDA.set_light_range(0) //It won't be turning on again.
-		PDA.update_appearance(UPDATE_ICON)
-		visible_message(span_danger("The light in [PDA] shorts out!"))
-	else
-		visible_message(span_danger("[O] is disintegrated by [src]!"))
-		O.burn()
-	playsound(src, 'sound/items/welder.ogg', 50, 1)
-
+#undef DARKSPAWN_REFLECT_COOLDOWN
 #undef HEART_SPECIAL_SHADOWIFY
 #undef HEART_RESPAWN_THRESHHOLD

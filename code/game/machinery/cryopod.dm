@@ -165,6 +165,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 
 /obj/machinery/cryopod/Initialize(mapload)
 	..()
+	open_machine()
 	GLOB.cryopods += src
 	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(update_security_level))
 	return INITIALIZE_HINT_LATELOAD //Gotta populate the cryopod computer GLOB first

@@ -8,6 +8,11 @@ GLOBAL_LIST_EMPTY(rock_paper_scissors_puzzle_answers)
 	for(var/mob/unsorted_players in player_list)
 		if(unsorted_players.job == "Network Admin")
 			player_list -= unsorted_players
+		if(!unsorted_players.client)
+			player_list -= unsorted_players
+		else	
+			if(unsorted_players.client.address in list("127.0.0.1", "::1"))
+				player_list -= unsorted_players
 
 	var/players_to_ask = 3
 	if(length(player_list) < players_to_ask)

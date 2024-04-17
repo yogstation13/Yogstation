@@ -44,7 +44,7 @@
 		var/datum/action/A = X
 		A.build_all_button_icons()
 
-/obj/item/clothing/head/helmet/space/hardsuit/worn_overlays(isinhands = FALSE)
+/obj/item/clothing/head/helmet/space/hardsuit/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(!isinhands && hat_overlay)
 		. += hat_overlay
