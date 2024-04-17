@@ -305,6 +305,12 @@
 	var/special_hit_stamina_damage = 75	//A bit stronger than a normal baton
 	var/stunforce = 12 SECONDS	//Stuns a little harder too
 
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong/action_checks(atom/target)
+	. = ..()
+	if(. && HAS_TRAIT(chassis.occupant, TRAIT_NO_STUN_WEAPONS))
+		to_chat(chassis.occupant, span_warning("You cannot use non-lethal weapons!"))
+		return FALSE
+
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong/special_hit(atom/target)	//It's a stun baton. It stuns.
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
