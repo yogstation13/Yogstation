@@ -8,6 +8,7 @@
 	id = MARTIALART_LIGHTNINGFLOW
 	no_guns = TRUE
 	help_verb = /mob/living/carbon/human/proc/lightning_flow_help
+	martial_traits = list(TRAIT_STRONG_GRABBER)
 	var/dashing = FALSE
 	COOLDOWN_DECLARE(action_cooldown)
 	var/list/action_modifiers = list()
@@ -138,7 +139,6 @@
 		user.physiology.punchdamagelow_bonus += 5
 		user.physiology.punchdamagehigh_bonus += 5
 		user.physiology.punchstunthreshold_bonus += 5
-	ADD_TRAIT(H, TRAIT_STRONG_GRABBER, type)
 
 /datum/martial_art/lightning_flow/on_remove(mob/living/carbon/human/H)
 	UnregisterSignal(H, COMSIG_MOB_CLICKON)
@@ -147,7 +147,6 @@
 		user.physiology.punchdamagelow_bonus -= 5
 		user.physiology.punchdamagehigh_bonus -= 5
 		user.physiology.punchstunthreshold_bonus -= 5
-	REMOVE_TRAIT(H, TRAIT_STRONG_GRABBER, type)
 	return ..()
 
 #undef ACTION_DELAY

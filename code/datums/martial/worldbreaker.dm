@@ -27,6 +27,9 @@
 	id = MARTIALART_WORLDBREAKER
 	no_guns = TRUE
 	help_verb = /mob/living/carbon/human/proc/worldbreaker_help
+	martial_traits = list(TRAIT_RESISTHEAT, TRAIT_NOSOFTCRIT, TRAIT_STUNIMMUNE, TRAIT_NOVEHICLE, TRAIT_BOTTOMLESS_STOMACH)
+	///traits applied when the user has enough plates to trigger heavy mode
+	var/list/heavy_traits = list(TRAIT_BOMBIMMUNE, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE)
 	var/list/thrown = list()
 	COOLDOWN_DECLARE(next_leap)
 	COOLDOWN_DECLARE(next_grab)
@@ -58,6 +61,9 @@
 		var/obj/item/thing = target
 		if(thing in H.get_all_contents())
 			return NONE
+
+	if(!H.combat_mode)
+		return NONE
 
 	H.face_atom(target)
 	if(modifiers[RIGHT_CLICK])
@@ -176,17 +182,11 @@
 		if(heavy)//sort of a sound indicator that you're in "heavy mode"
 			S.special_step_sounds = list('sound/effects/gravhit.ogg')//heavy boy get stompy footsteps
 			S.special_step_volume = 9 //prevent it from blowing out ears
-			ADD_TRAIT(user, TRAIT_BOMBIMMUNE, type)//maxcap suicide bombers can go fuck themselves
-			ADD_TRAIT(user, TRAIT_RESISTCOLD, type)
-			ADD_TRAIT(user, TRAIT_RESISTHIGHPRESSURE, type)
-			ADD_TRAIT(user, TRAIT_RESISTLOWPRESSURE, type)
+			user.add_traits(heavy_traits, id)
 		else
 			S.special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
-			S.special_step_volume = 50
-			REMOVE_TRAIT(user, TRAIT_BOMBIMMUNE, type)
-			REMOVE_TRAIT(user, TRAIT_RESISTCOLD, type)
-			REMOVE_TRAIT(user, TRAIT_RESISTHIGHPRESSURE, type)
-			REMOVE_TRAIT(user, TRAIT_RESISTLOWPRESSURE, type)
+			S.special_step_volume = initial(S.special_step_volume)
+			user.remove_traits(heavy_traits, id)
 
 /datum/martial_art/worldbreaker/proc/adjust_plates(mob/living/carbon/human/user, amount = 0)
 	if(amount == 0)
@@ -243,8 +243,6 @@
 	start of leap section
 ---------------------------------------------------------------*/
 /datum/martial_art/worldbreaker/proc/leap(mob/living/user, atom/target)
-	if(!user.combat_mode && get_dist(user, target) <= 1) // so you can still do right-click stuff
-		return
 	if(!COOLDOWN_FINISHED(src, next_leap))
 		if(COOLDOWN_FINISHED(src, next_balloon))
 			COOLDOWN_START(src, next_balloon, BALLOON_COOLDOWN)
@@ -461,8 +459,6 @@
 	start of pummel section
 ---------------------------------------------------------------*/
 /datum/martial_art/worldbreaker/proc/pummel(mob/living/user, atom/target)
-	if(user == target || !user.combat_mode)
-		return
 	if(user.get_active_held_item()) //most abilities need an empty hand
 		return
 	if(isitem(target)) // so you can still pick up items
@@ -472,7 +468,9 @@
 	COOLDOWN_START(src, next_pummel, COOLDOWN_PUMMEL)
 	user.changeNext_move(COOLDOWN_PUMMEL + 1)//so things don't work weirdly when spamming on windows or whatever
 
-	var/turf/center = get_step_towards(user, target)
+	var/turf/center = get_turf_in_angle(get_angle(user, target), user)
+	if(get_turf(user) == get_turf(target)) //let them click on themselves
+		center = get_turf(user)
 
 	user.do_attack_animation(center, ATTACK_EFFECT_SMASH)
 	playsound(get_turf(center), 'sound/effects/gravhit.ogg', 20, TRUE, -1)
@@ -481,7 +479,7 @@
 	shockwave.transform *= 0.1 //basically invisible
 	shockwave.pixel_x = -240
 	shockwave.pixel_y = -240
-	shockwave.alpha = 100 //slightly weaker looking
+	shockwave.alpha = 150 //slightly weaker looking
 	animate(shockwave, alpha = 0, transform = matrix().Scale(0.24), time = 3)//the scale of this is VERY finely tuned to range
 	QDEL_IN(shockwave, 4)
 
@@ -652,11 +650,6 @@
 	RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(on_click))
 	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
 	update_platespeed(H)
-	ADD_TRAIT(H, TRAIT_RESISTHEAT, type) //walk through that fire all you like, hope you don't care about your clothes
-	ADD_TRAIT(H, TRAIT_NOSOFTCRIT, type)
-	ADD_TRAIT(H, TRAIT_STUNIMMUNE, type)
-	ADD_TRAIT(H, TRAIT_NOVEHICLE, type)
-	ADD_TRAIT(H, TRAIT_BOTTOMLESS_STOMACH, type) //they hongry
 	RegisterSignal(H, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(lose_plate))
 	if(!linked_stomp)
 		linked_stomp = new
@@ -672,11 +665,6 @@
 	deltimer(plate_timer)
 	plates = 0
 	update_platespeed(H)
-	REMOVE_TRAIT(H, TRAIT_RESISTHEAT, type)
-	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, type)
-	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, type)
-	REMOVE_TRAIT(H, TRAIT_NOVEHICLE, type)
-	REMOVE_TRAIT(H, TRAIT_BOTTOMLESS_STOMACH, type)
 	UnregisterSignal(H, COMSIG_MOB_APPLY_DAMAGE)
 	if(linked_stomp)
 		linked_stomp.Remove(H)

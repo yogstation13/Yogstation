@@ -8,6 +8,7 @@
 	id = MARTIALART_FLYINGFANG
 	no_guns = TRUE
 	help_verb = /mob/living/carbon/human/proc/flyingfang_help
+	martial_traits = list(TRAIT_NOSOFTCRIT, TRAIT_REDUCED_DAMAGE_SLOWDOWN, TRAIT_NO_STUN_WEAPONS)
 	///used to keep track of the pounce ability
 	var/leaping = FALSE
 	COOLDOWN_DECLARE(next_leap)
@@ -290,9 +291,6 @@
 		linked_leap = new
 		linked_leap.linked_martial = src
 	linked_leap.Grant(H)
-	ADD_TRAIT(H, TRAIT_NOSOFTCRIT, "martial")
-	ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, "martial")
-	ADD_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "martial")
 	H.physiology.stamina_mod *= 0.66
 	H.physiology.stun_mod *= 0.66
 	H.physiology.crawl_speed -= 2 // "funny lizard skitter around on the floor" - mqiib
@@ -300,9 +298,6 @@
 /datum/martial_art/flyingfang/on_remove(mob/living/carbon/human/H)
 	..()
 	linked_leap.Remove(H)
-	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, "martial")
-	REMOVE_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, "martial")
-	REMOVE_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "martial")
 	H.physiology.stamina_mod /= 0.66
 	H.physiology.stun_mod /= 0.66
 	H.physiology.crawl_speed += 2
