@@ -65,6 +65,9 @@
 	if(!H.combat_mode)
 		return NONE
 
+	if(H.in_throw_mode) //so they can throw people they've grabbed using regular grabs
+		return NONE
+
 	H.face_atom(target)
 	if(modifiers[RIGHT_CLICK])
 		if(H == target)
@@ -243,6 +246,8 @@
 	start of leap section
 ---------------------------------------------------------------*/
 /datum/martial_art/worldbreaker/proc/leap(mob/living/user, atom/target)
+	if(!(user.mobility_flags & MOBILITY_STAND))//require standing to leap
+		return
 	if(!COOLDOWN_FINISHED(src, next_leap))
 		if(COOLDOWN_FINISHED(src, next_balloon))
 			COOLDOWN_START(src, next_balloon, BALLOON_COOLDOWN)
@@ -251,6 +256,9 @@
 	if(!target)
 		return
 	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP * 3)//should last longer than the leap, but just in case
+
+	user.setMovetype(user.movement_type | FLYING) //so they can jump over things that care about this
+	user.pass_flags |= PASSTABLE
 
 	//telegraph ripped entirely from bubblegum charge
 	if(heavy)
@@ -267,7 +275,6 @@
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(user.loc,user)
 	animate(D, alpha = 0, color = "#000000", transform = matrix()*2, time = 0.3 SECONDS)
 	animate(user, time = (heavy ? 0.4 : 0.2)SECONDS, pixel_y = 20)//we up in the air
-	addtimer(CALLBACK(src, PROC_REF(reset_pixel), user), 1.5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)//in case something happens, we don't permanently float
 	playsound(user, 'sound/effects/gravhit.ogg', 15)
 	playsound(user, 'sound/effects/dodge.ogg', 15, TRUE)
 	return COMSIG_MOB_CANCEL_CLICKON
@@ -275,7 +282,11 @@
 /datum/martial_art/worldbreaker/proc/leap_end(mob/living/carbon/human/user)
 	if(!COOLDOWN_FINISHED(src, next_leap))
 		COOLDOWN_START(src, next_leap, COOLDOWN_LEAP + (heavy ? 1 SECONDS : 0))
+
 	user.SetImmobilized(0 SECONDS, ignore_canstun = TRUE)
+	user.setMovetype(user.movement_type & ~FLYING)
+	user.pass_flags &= ~PASSTABLE
+
 	var/range = LEAP_RADIUS
 	if(heavy)//heavy gets doubled range
 		range *= 2
@@ -305,6 +316,7 @@
 		obstruction.take_damage(damage, sound_effect = FALSE) //reduced sound from hitting LOTS of things
 
 	animate(user, time = 0.1 SECONDS, pixel_y = 0)
+	addtimer(CALLBACK(src, PROC_REF(reset_pixel), user), 0.3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)//in case something happens, we don't permanently float
 	playsound(user, 'sound/effects/gravhit.ogg', 20, TRUE)
 	playsound(user, 'sound/effects/explosion_distant.ogg', 200, FALSE, WARNING_RANGE)
 	var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
@@ -398,7 +410,7 @@
 
 	var/dir_to_target = get_dir(get_turf(tossed), target) //vars that let the thing be thrown while moving similar to things thrown normally
 	var/turf/T = get_step(get_turf(tossed), dir_to_target)
-	if(T?.density) // crash into a wall and damage everything flying towards it before stopping 
+	if(T?.density && !T.CanAllowThrough(thrown[1])) // crash into a wall and damage everything flying towards it before stopping 
 		for(var/mob/living/victim in thrown)
 			hurt(user, victim, THROW_MOBDMG) 
 			victim.Knockdown(1 SECONDS)
@@ -466,11 +478,14 @@
 	if(!COOLDOWN_FINISHED(src, next_pummel))
 		return COMSIG_MOB_CANCEL_CLICKON
 	COOLDOWN_START(src, next_pummel, COOLDOWN_PUMMEL)
-	user.changeNext_move(COOLDOWN_PUMMEL + 1)//so things don't work weirdly when spamming on windows or whatever
 
-	var/turf/center = get_turf_in_angle(get_angle(user, target), user)
+	var/turf/center
+	if(user.client) //try to get the precise angle to the user's mouse rather than just the tile clicked on
+		center = get_turf_in_angle(mouse_angle_from_client(user.client), user)
 	if(get_turf(user) == get_turf(target)) //let them click on themselves
 		center = get_turf(user)
+	if(!center) //if no fancy targeting has happened, default to something alright
+		center = get_turf_in_angle(get_angle(user, target), user)
 
 	user.do_attack_animation(center, ATTACK_EFFECT_SMASH)
 	playsound(get_turf(center), 'sound/effects/gravhit.ogg', 20, TRUE, -1)
