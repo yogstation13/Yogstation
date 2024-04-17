@@ -21,7 +21,6 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	desc = "A fun place where you go to swim! <b>Drag and drop yourself onto it to climb in...</b>"
 	icon = 'icons/obj/pool.dmi'
 	icon_state = "pool"
-	sound = 'sound/effects/splash.ogg'
 	flags_1 = RAD_CONTAIN_CONTENTS // contains most of the rads on the tile within that tile
 	var/id = null //Set me if you don't want the pool and the pump to be in the same area, or you have multiple pools per area.
 	var/obj/effect/water_overlay = null
@@ -61,8 +60,11 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 /turf/open/indestructible/sound/pool/Entered(atom/movable/AM)
 	. = ..()
 	if(AM.throwing) //they haven't fallen in the pool until they stop being thrown
+		if(!AM._listen_lookup?[COMSIG_MOVABLE_THROW_LANDED]) //if they don't already have a throw_landed signal, add one
+			RegisterSignal(AM, COMSIG_MOVABLE_THROW_LANDED, PROC_REF(land_in_pool))
 		return
 	SEND_SIGNAL(AM, COMSIG_COMPONENT_CLEAN_ACT, 2)
+	playsound(src,'sound/effects/splash.ogg',50,TRUE)
 	if(isliving(AM))
 		var/datum/component/swimming/S = AM.GetComponent(/datum/component/swimming) //You can't get in the pool unless you're swimming.
 		if(!S)
@@ -78,6 +80,19 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 		var/datum/component/swimming/S = Obj.GetComponent(/datum/component/swimming) //Handling admin TPs here.
 		if(S)
 			qdel(S)
+
+/turf/open/indestructible/sound/pool/proc/land_in_pool(atom/movable/thrown)
+	UnregisterSignal(thrown, COMSIG_MOVABLE_THROW_LANDED)
+	var/turf/open/indestructible/sound/pool/end = get_turf(thrown) //if the place they've ended is a pool, splash them in the pool
+	if(end && istype(end) && isliving(thrown))
+		var/datum/component/swimming/S = thrown.GetComponent(/datum/component/swimming) //You can't get in the pool unless you're swimming.
+		if(!S)
+			var/mob/living/carbon/C = thrown
+			var/component_type = /datum/component/swimming
+			if(istype(C) && C?.dna?.species)
+				component_type = C.dna.species.swimming_component
+			thrown.AddComponent(component_type)
+		end.splash(thrown)
 
 /turf/open/MouseDrop_T(atom/dropping, mob/user)
 	. = ..()
@@ -127,22 +142,12 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 /turf/open/indestructible/sound/pool/proc/calculate_zap(mob/user)
 	var/zap = 0
 	if(issilicon(user)) //Do not throw brick in a pool. Brick begs.
-		zap = 1 //Sorry borgs! Swimming will come at a cost.
+		zap = 10 //Sorry borgs! Swimming will come at a cost.
 	if(ishuman(user))
 		var/mob/living/carbon/human/F = user
 		var/datum/species/SS = F.dna.species
-		if(MOB_ROBOTIC in SS.inherent_biotypes)  //ZAP goes preternis and IPC
-			zap = 2 //You can protect yourself from water damage with thick clothing.
-		if(F.head && istype(F.head, /obj/item/clothing))
-			var/obj/item/clothing/CH = F.head
-			if (CH.clothing_flags & THICKMATERIAL) //thick suits should suffice! But preternis are robots and probably not water-sealed.
-				zap --
-		if(F.wear_suit && istype(F.wear_suit, /obj/item/clothing))
-			var/obj/item/clothing/CS = F.wear_suit
-			if (CS.clothing_flags & THICKMATERIAL)
-				zap --
-		if(zap > 0)
-			zap = 3 - zap // 1 is higher severity emp than 2
+		if(SS.inherent_biotypes & MOB_ROBOTIC)  //ZAP goes preternis and IPC
+			zap = 10 * F.get_permeability(null, TRUE) //You can protect yourself from water damage with low permeability clothing
 	return zap
 
 /turf/open/indestructible/sound/pool/proc/splash(mob/user)
