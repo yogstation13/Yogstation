@@ -1,4 +1,0 @@
-author: "13spacemen"
-delete-after: true 
-changes: 
-  - bugfix: "Species should properly receive essential survival gear in VR"
