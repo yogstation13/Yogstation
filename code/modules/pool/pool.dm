@@ -60,6 +60,8 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 
 /turf/open/indestructible/sound/pool/Entered(atom/movable/AM)
 	. = ..()
+	if(AM.throwing) //they haven't fallen in the pool until they stop being thrown
+		return
 	SEND_SIGNAL(AM, COMSIG_COMPONENT_CLEAN_ACT, 2)
 	if(isliving(AM))
 		var/datum/component/swimming/S = AM.GetComponent(/datum/component/swimming) //You can't get in the pool unless you're swimming.
