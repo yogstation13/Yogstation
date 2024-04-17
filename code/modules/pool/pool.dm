@@ -85,6 +85,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	UnregisterSignal(thrown, COMSIG_MOVABLE_THROW_LANDED)
 	var/turf/open/indestructible/sound/pool/end = get_turf(thrown) //if the place they've ended is a pool, splash them in the pool
 	if(end && istype(end) && isliving(thrown))
+		end.splash(thrown)
 		var/datum/component/swimming/S = thrown.GetComponent(/datum/component/swimming) //You can't get in the pool unless you're swimming.
 		if(!S)
 			var/mob/living/carbon/C = thrown
@@ -92,7 +93,6 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 			if(istype(C) && C?.dna?.species)
 				component_type = C.dna.species.swimming_component
 			thrown.AddComponent(component_type)
-		end.splash(thrown)
 
 /turf/open/MouseDrop_T(atom/dropping, mob/user)
 	. = ..()
