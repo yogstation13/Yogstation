@@ -191,20 +191,6 @@
 /obj/structure/table/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/rsf)) // Stops RSF from placing itself instead of glasses
 		return
-	var/list/modifiers = params2list(params)
-	if(!(flags_1 & NODECONSTRUCT_1) && deconstruction_ready && modifiers && modifiers[RIGHT_CLICK]) // right click to deconstruct
-		if(I.tool_behaviour == TOOL_SCREWDRIVER)
-			to_chat(user, span_notice("You start disassembling [src]..."))
-			if(I.use_tool(src, user, 20, volume=50))
-				deconstruct(TRUE)
-			return
-
-		if(I.tool_behaviour == TOOL_WRENCH)
-			to_chat(user, span_notice("You start deconstructing [src]..."))
-			if(I.use_tool(src, user, 40, volume=50))
-				playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
-				deconstruct(TRUE, 1)
-			return
 
 	if(istype(I, /obj/item/storage/bag/tray))
 		var/obj/item/storage/bag/tray/T = I
@@ -224,6 +210,8 @@
 			I.pixel_x = clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
 			I.pixel_y = clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 			return 1
+	else if(!user.combat_mode) // can't drop the item but not in combat mode, try deconstructing instead
+		return attackby_secondary(I, user, params)
 	else
 		return ..()
 
