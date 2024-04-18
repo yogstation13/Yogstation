@@ -326,10 +326,12 @@ GLOBAL_LIST_EMPTY(lockers)
 		return
 	if(user.combat_mode)
 		return ..()
-	if(attacking_item.GetID())
+	if(attacking_item.GetID()) //if you're hitting with an id item, toggle the lock
 		togglelock(user)
 		return TRUE
-	if(user.transferItemToLoc(attacking_item, drop_location()))
+	if(!opened) //if it's closed, just hit it
+		return ..()
+	if(user.transferItemToLoc(attacking_item, drop_location())) //try to transfer the held item to it
 		return TRUE
 
 /obj/structure/closet/welder_act(mob/living/user, obj/item/tool, modifiers)
