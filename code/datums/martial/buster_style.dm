@@ -245,16 +245,18 @@
 			drop()
 			return COMSIG_MOB_CANCEL_CLICKON
 		for(var/obj/Z in T.contents) // crash into something solid and damage it along with thrown objects that hit it
-			for(var/obj/O in thrown) 
+			for(var/atom/movable/thrown_atom in thrown) 
 				if(Z.density == TRUE) 
-					O.take_damage(objdam) 
-					if(istype(O, /obj/mecha)) // mechs are probably heavy as hell so stop flying after making contact with resistance
-						thrown -= O
+					if(thrown_atom.uses_integrity)
+						thrown_atom.take_damage(objdam)
+					thrown_atom.Bump(Z)
+					if(istype(thrown_atom, /obj/mecha)) // mechs are probably heavy as hell so stop flying after making contact with resistance
+						thrown -= thrown_atom
 			if(Z.density == TRUE && Z.anchored == FALSE) // if the thing hit isn't anchored it starts flying too
 				thrown |= Z 
 				Z.take_damage(50) 
 			if(Z.density == TRUE && Z.anchored == TRUE) // If the thing is solid and anchored like a window or grille or table it hurts people thrown that crash into it too
-				for(var/mob/living/S in thrown) 
+				for(var/mob/living/S in thrown)
 					grab(user, S, slamdam) 
 					S.Knockdown(1.5 SECONDS)
 					S.Immobilize(1.5 SECONDS)
@@ -349,6 +351,7 @@
 						grab(user, mophead, crashdam) 
 						user.visible_message(span_warning("[user] rams [mophead] into [Q]!"))
 						to_chat(mophead, span_userdanger("[user] rams you into [Q]!"))
+						mophead.Bump(Q)
 						mophead.Knockdown(1 SECONDS)
 						mophead.Immobilize(1.5 SECONDS)
 						return COMSIG_MOB_CANCEL_CLICKON // Then stop here
@@ -359,6 +362,7 @@
 							user.visible_message(span_warning("[user] rams [mophead] into [object]!"))
 							to_chat(mophead, span_userdanger("[user] rams you into [object]!"))
 							object.take_damage(200) // Damage dense object
+							mophead.Bump(object)
 							mophead.Knockdown(1 SECONDS)
 							mophead.Immobilize(1 SECONDS)
 							if(object.density == TRUE) // If it wasn't destroyed, stop here
@@ -424,6 +428,7 @@
 				user.visible_message(span_warning("[target] is thrown down the trash chute!"))
 				return COMSIG_MOB_CANCEL_CLICKON // Stop here
 			user.visible_message(span_warning("[user] turns around and slams [target] against [D]!"))
+			target.Bump(D)
 			D.take_damage(400) // Heavily damage and hopefully break the object
 			grab(user, target, crashdam) 
 			footsies(target)

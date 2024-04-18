@@ -45,6 +45,12 @@
 	if(!attach_accessory(I, user))
 		return ..()
 
+/obj/item/clothing/under/attack_hand(mob/user, modifiers)
+	if(modifiers?[RIGHT_CLICK])
+		toggle()
+		return
+	return ..()
+
 /obj/item/clothing/under/update_clothes_damaged_state(damaged_state = CLOTHING_DAMAGED)
 	..()
 	if(ismob(loc))

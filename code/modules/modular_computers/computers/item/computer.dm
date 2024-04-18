@@ -227,8 +227,15 @@
 		return attack_self(M)
 	return ..()
 
+/obj/item/modular_computer/CtrlClick()
+	var/mob/M = usr
+	if(ishuman(usr) && usr.CanReach(src) && usr.canUseTopic(src))
+		return attack_self(M)
+	else
+		..()
+
 /obj/item/modular_computer/attack_hand(mob/living/user, modifiers)
-	if(modifiers && modifiers[RIGHT_CLICK])
+	if(modifiers?[RIGHT_CLICK])
 		attack_self(user)
 		return TRUE
 	return ..()
