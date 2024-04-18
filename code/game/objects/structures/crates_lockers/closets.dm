@@ -450,7 +450,7 @@ GLOBAL_LIST_EMPTY(lockers)
 		return
 	if(!(user.mobility_flags & MOBILITY_STAND) && get_dist(src, user) > 0)
 		return
-	if(!toggle(user))
+	if(modifiers?[RIGHT_CLICK] || !toggle(user))
 		togglelock(user)
 
 /obj/structure/closet/attack_paw(mob/user)
