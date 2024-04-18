@@ -1530,7 +1530,14 @@
 	L.SetUnconscious(1000)
 	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=0.5, blacklisted_movetypes=(FLYING|FLOATING)) // slowdown for if you're awake
 	ADD_TRAIT(L, TRAIT_SURGERY_PREPARED, "healium")
+
+/datum/reagent/healium/on_mob_add(mob/living/L)
+	. = ..()
 	ADD_TRAIT(L, TRAIT_PRESERVED_ORGANS, "healium")
+
+/datum/reagent/healium/on_mob_delete(mob/living/L)
+	REMOVE_TRAIT(L, TRAIT_PRESERVED_ORGANS, "healium")
+	return ..()
 
 /datum/reagent/healium/on_mob_life(mob/living/carbon/M)
 	M.SetSleeping(100)
@@ -1546,6 +1553,9 @@
 		for(var/i in M.all_wounds)
 			var/datum/wound/iter_wound = i
 			iter_wound.on_healium(power)
+
+		if(M.blood_volume < BLOOD_VOLUME_SAFE(M))
+			M.blood_volume = BLOOD_VOLUME_SAFE(M)
 
 	M.adjustOxyLoss(-10*heal_factor*REM)
 	M.adjustFireLoss(-7*heal_factor*REM)

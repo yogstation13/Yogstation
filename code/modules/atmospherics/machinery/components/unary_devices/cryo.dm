@@ -259,13 +259,12 @@
 		var/has_wound = FALSE
 		if(C && C.all_wounds)
 			if(air1.total_moles() && air1.get_moles(GAS_HEALIUM) > MINIMUM_MOLE_COUNT)
-				for(var/datum/wound/wound as anything in C.all_wounds)
+				if(C.all_wounds)
 					if(!treating_wounds) // if we have wounds and haven't already alerted the doctors we're only dealing with the wounds, let them know
 						playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
 						var/msg = "Patient vitals fully recovered, continuing automated wound treatment."
 						radio.talk_into(src, msg, radio_channel)
 					has_wound = TRUE
-					break
 			else
 				for(var/datum/wound/wound as anything in C.all_wounds)
 					if(wound.wound_flags & ACCEPTS_CRYO)
