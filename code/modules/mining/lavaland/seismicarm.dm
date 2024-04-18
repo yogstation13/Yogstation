@@ -6,21 +6,15 @@
 	icon_state = "seismic_r_arm"
 	max_damage = 60
 	var/datum/martial_art/reverberating_palm/reverberating_palm = new
-	var/datum/action/cooldown/seismic_recalibrate/recalibration = new/datum/action/cooldown/seismic_recalibrate()
-	var/datum/action/cooldown/seismic_deactivate/deactivation = new/datum/action/cooldown/seismic_deactivate()
 
 /obj/item/bodypart/r_arm/robot/seismic/attach_limb(mob/living/carbon/C, special)
 	. = ..()
 	reverberating_palm.teach(C)
-	recalibration.Grant(C)
-	deactivation.Grant(C)
 	to_chat(owner, span_boldannounce("You've gained the ability to use Reverberating Palm!"))
 
 /obj/item/bodypart/r_arm/robot/seismic/drop_limb(special)
 	reverberating_palm.remove(owner)
 	owner.click_intercept = null
-	recalibration.Remove(owner)
-	deactivation.Remove(owner)
 	to_chat(owner, "[span_boldannounce("You've lost the ability to use Reverberating Palm...")]")
 	..()
 
