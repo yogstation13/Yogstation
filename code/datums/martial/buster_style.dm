@@ -392,7 +392,7 @@
 	var/turf/Z = get_turf(user)
 	if(!COOLDOWN_FINISHED(src, next_slam))
 		to_chat(user, span_warning("You can't do that yet!"))
-		return
+		return COMSIG_MOB_CANCEL_CLICKON // don't do a normal punch
 	COOLDOWN_START(src, next_slam, COOLDOWN_SLAM)
 	user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
 	var/turf/Q = get_step(get_turf(user), turn(user.dir,180)) // Get the turf behind us
@@ -512,10 +512,12 @@
 	ADD_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
 	S.add_no_equip_slot(H, ITEM_SLOT_GLOVES, src)
 	RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(on_click))
+	to_chat(H, span_boldannounce("You've gained the ability to use Buster Style!"))
 
 /datum/martial_art/buster_style/on_remove(mob/living/carbon/human/H)
 	var/datum/species/S = H.dna?.species
 	REMOVE_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
 	S.remove_no_equip_slot(H, ITEM_SLOT_GLOVES, src)
 	UnregisterSignal(H, COMSIG_MOB_CLICKON)
+	to_chat(H, "[span_boldannounce("You've lost the ability to use Buster Style...")]")
 	..()

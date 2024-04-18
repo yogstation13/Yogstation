@@ -256,8 +256,10 @@
 
 /datum/martial_art/reverberating_palm/teach(mob/living/carbon/human/H, make_temporary=0)
 	. = ..()
+	to_chat(H, span_boldannounce("You've gained the ability to use Reverberating Palm!"))
 	RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(on_click))
 
 /datum/martial_art/reverberating_palm/on_remove(mob/living/carbon/human/H)
+	to_chat(H, "[span_boldannounce("You've lost the ability to use Reverberating Palm...")]")
 	UnregisterSignal(H, COMSIG_MOB_CLICKON)
 	return ..()
