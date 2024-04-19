@@ -456,7 +456,7 @@ GLOBAL_LIST_EMPTY(lockers)
 
 /obj/structure/closet/attack_hand_secondary(mob/user, modifiers)
 	if(!user.canUseTopic(src, BE_CLOSE) || !isturf(loc))
-		return
+		return ..()
 	if(!opened && secure)
 		togglelock(user)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
