@@ -15,13 +15,14 @@
 	var/convert_range = 8
 	layer = RIPPLE_LAYER
 	movement_type = PHASING
+	break_sound = 'sound/effects/splosh.ogg'
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
 
 /obj/structure/destructible/cheesegod/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	send_to_playing_players(span_clown("You feel a dairy-like presence.."))
-	sound_to_playing_players('sound/effects/splosh.ogg')
+	sound_to_playing_players('sound/effects/gouda_rises.ogg')
 	var/mutable_appearance/alert_overlay = mutable_appearance('icons/obj/food/cheese.dmi', "cheesewheel")
 	notify_ghosts("The cheese must be enjoyed! Touch Gouda at [get_area_name(src)] and become one with the cheese", null, source = src, alert_overlay = alert_overlay)
 
@@ -54,4 +55,4 @@
 		new type(get_turf(src))
 	var/dir_to_step_in = pick(GLOB.cardinals)
 	step(src, dir_to_step_in)
-	sound_to_playing_players('sound/misc/soggy.ogg')
+	sound_to_playing_players('sound/misc/soggy.ogg', 100, TRUE)
