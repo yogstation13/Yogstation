@@ -342,7 +342,7 @@
 /obj/item/toolset_handler/pre_attack(atom/target, mob/living/user, params)
 	if(istype(target, /obj/structure/reagent_dispensers) && active_tool?.tool_behaviour == TOOL_WELDER)
 		target.attackby(active_tool, user, params)
-		return
+		return TRUE
 	. = ..()
 
 /obj/item/toolset_handler/attack(mob/living/M, mob/living/user, params)

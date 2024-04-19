@@ -5,7 +5,21 @@
 	if(tool_behaviour && (target.tool_act(user, src, tool_behaviour, params) & TOOL_ACT_MELEE_CHAIN_BLOCKING))
 		return TRUE
 
-	if(!pre_attack(target, user, params))
+	var/pre_attack_result
+	if(is_right_clicking)
+		switch(pre_attack_secondary(target, user, params))
+			if(SECONDARY_ATTACK_CALL_NORMAL)
+				pre_attack_result = pre_attack(target, user, params)
+			if(SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+				mark_target(target)
+				return TRUE
+			if(null)
+				mark_target(target)
+				CRASH("attackby_secondary must return a SECONDARY_ATTACK_* define, please consult code/__DEFINES/combat.dm")
+	else
+		pre_attack_result = pre_attack(target, user, params)
+
+	if(pre_attack_result)
 		mark_target(target)
 		return TRUE
 
@@ -19,7 +33,7 @@
 				return TRUE
 			if(null)
 				mark_target(target)
-				CRASH("attackby_secondary must return an SECONDARY_ATTACK_* define, please consult code/__DEFINES/combat.dm")
+				CRASH("attackby_secondary must return a SECONDARY_ATTACK_* define, please consult code/__DEFINES/combat.dm")
 	else
 		attackby_result = target.attackby(src, user, params)
 
@@ -57,8 +71,21 @@
 
 /obj/item/proc/pre_attack(atom/A, mob/living/user, params) //do stuff before attackby!
 	if(SEND_SIGNAL(src, COMSIG_ITEM_PRE_ATTACK, A, user, params) & COMPONENT_NO_ATTACK)
-		return FALSE
-	return TRUE //return FALSE to avoid calling attackby after this proc does stuff
+		return TRUE
+	return FALSE //return TRUE to avoid calling attackby after this proc does stuff
+
+/**
+ * Called on the item before it hits something, when right clicking.
+ *
+ * Arguments:
+ * * atom/target - The atom about to be hit
+ * * mob/living/user - The mob doing the htting
+ * * params - click params such as alt/shift etc
+ *
+ * See: [/obj/item/proc/melee_attack_chain]
+ */
+/obj/item/proc/pre_attack_secondary(atom/target, mob/living/user, params)
+	return SECONDARY_ATTACK_CALL_NORMAL
 
 // No comment
 /atom/proc/attackby(obj/item/attacking_item, mob/user, params)
