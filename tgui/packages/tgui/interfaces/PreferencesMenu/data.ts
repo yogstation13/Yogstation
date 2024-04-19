@@ -1,6 +1,5 @@
 import { BooleanLike } from "common/react";
 import { sendAct } from "../../backend";
-import { Gender } from "./preferences/gender";
 
 export enum Food {
   Alcohol = "ALCOHOL",
@@ -141,7 +140,7 @@ export type PreferencesMenuData = {
     names: Record<string, string>;
 
     misc: {
-      gender: Gender;
+      gender: string;
       joblessrole: JoblessRole;
       species: string;
     };
