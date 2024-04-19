@@ -103,7 +103,7 @@
 	RegisterSignal(parent, COMSIG_MOVABLE_POST_THROW, PROC_REF(close_all))
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 
-	RegisterSignal(parent, list( \
+	RegisterSignals(parent, list( \
 		COMSIG_CLICK_ALT, \
 		COMSIG_ATOM_ATTACK_HAND_SECONDARY, \
 		COMSIG_ITEM_ATTACK_SELF_SECONDARY, \
@@ -240,7 +240,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		return
 	var/list/rejections = list()
 	while(do_after(M, 1 SECONDS, parent, TRUE, FALSE, CALLBACK(src, PROC_REF(handle_mass_pickup), things, I.loc, rejections)))
-		stoplag(1)
+		continue
 	to_chat(M, span_notice("You put everything you could [insert_preposition] [parent]."))
 
 /datum/component/storage/proc/handle_mass_item_insertion(list/things, datum/component/storage/src_object, mob/user)
@@ -292,7 +292,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	var/turf/T = get_turf(A)
 	var/list/things = contents()
 	while (do_after(M, 1 SECONDS, T, TRUE, FALSE, CALLBACK(src, PROC_REF(mass_remove_from_storage), T, things)))
-		stoplag(1)
+		continue
 
 /datum/component/storage/proc/mass_remove_from_storage(atom/target, list/things, trigger_on_found = TRUE)
 	var/atom/real_location = real_location()
