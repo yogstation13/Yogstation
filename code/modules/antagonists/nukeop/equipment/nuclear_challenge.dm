@@ -1,5 +1,5 @@
 /// The number of telecrystals per player
-#define CHALLENGE_TELECRYSTALS_PER_PLAYER 8
+#define CHALLENGE_TELECRYSTALS_PER_PLAYER 7
 /// How long the operatives have to declare war
 #define CHALLENGE_TIME_LIMIT (5 MINUTES)
 /// How long after declaring war before the operatives can show up
