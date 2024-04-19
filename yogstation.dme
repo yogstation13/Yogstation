@@ -985,6 +985,7 @@
 #include "code\game\gamemodes\dynamic\dynamic_simulations.dm"
 #include "code\game\gamemodes\dynamic\ruleset_picking.dm"
 #include "code\game\gamemodes\eldritch_cult\eldritch_cult.dm"
+#include "code\game\gamemodes\eldritch_cult\traitor_eldritch.dm"
 #include "code\game\gamemodes\extended\extended.dm"
 #include "code\game\gamemodes\hivemind\hivemind.dm"
 #include "code\game\gamemodes\hivemind\objectives.dm"

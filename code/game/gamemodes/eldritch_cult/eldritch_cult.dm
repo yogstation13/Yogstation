@@ -53,11 +53,9 @@
 	return TRUE
 
 /datum/game_mode/heretics/post_setup()
-	for(var/c in culties)
-		var/datum/mind/cultie = c
-		log_game("[key_name(cultie)] has been selected as a heretic!")
-		var/datum/antagonist/heretic/new_antag = new()
-		cultie.add_antag_datum(new_antag)
+	for(var/datum/mind/cultist as anything in culties)
+		log_game("[key_name(cultist)] has been selected as a heretic!")
+		cultist.add_antag_datum(/datum/antagonist/heretic)
 	return ..()
 
 /datum/game_mode/heretics/generate_report()
