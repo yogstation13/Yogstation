@@ -1,7 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Pools properly emp robotic species again"
-  - bugfix: "Fixes pools acting weirdly regarding throwing people"
-  - bugfix: "Getting dropped into a pool by someone else is cancelled by moving"
-  - tweak: "Pools now check for permeability"
