@@ -819,13 +819,13 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		return
 
 /datum/component/storage/proc/on_open_storage_click(datum/source, mob/user, list/modifiers)
-	SIGNAL_HANDLER
+	// SIGNAL_HANDLER uncomment at your own peril
 
 	if(open_storage(user))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /datum/component/storage/proc/on_open_storage_attackby(datum/source, obj/item/weapon, mob/user, params)
-	SIGNAL_HANDLER
+	// SIGNAL_HANDLER
 
 	if(open_storage(user))
 		return COMPONENT_SECONDARY_CANCEL_ATTACK_CHAIN
