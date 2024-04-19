@@ -60,7 +60,7 @@
 /obj/machinery/microwave/examine(mob/user)
 	. = ..()
 	if(!operating)
-		. += span_notice("Alt-click [src] to turn it on.")
+		. += span_notice("Right-click [src] to turn it on.")
 
 	if(!in_range(user, src) && !issilicon(user) && !isobserver(user))
 		. += span_warning("You're too far away to examine [src]'s contents and display!")
@@ -268,9 +268,11 @@
 
 	..()
 
-/obj/machinery/microwave/AltClick(mob/user)
-	if(user.canUseTopic(src, !issilicon(usr)))
+/obj/machinery/microwave/attack_hand_secondary(mob/user, list/modifiers)
+	if(user.canUseTopic(src, !issilicon(usr)) && ingredients.len)
 		cook()
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	return ..()
 
 /obj/machinery/microwave/ui_interact(mob/user)
 	. = ..()

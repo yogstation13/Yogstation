@@ -48,7 +48,7 @@
 	var/allow_big_nesting = FALSE					//allow storage objects of the same or greater size.
 
 	var/attack_hand_interact = TRUE					//interact on attack hand.
-	var/quickdraw = FALSE							//altclick interact
+	var/quickdraw = FALSE							//right click interact
 
 	var/datum/weakref/modeswitch_action_ref
 
@@ -103,7 +103,13 @@
 	RegisterSignal(parent, COMSIG_MOVABLE_POST_THROW, PROC_REF(close_all))
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 
-	RegisterSignal(parent, COMSIG_CLICK_ALT, PROC_REF(on_alt_click))
+	RegisterSignal(parent, list( \
+		COMSIG_CLICK_ALT, \
+		COMSIG_ATOM_ATTACK_HAND_SECONDARY, \
+		COMSIG_ITEM_ATTACK_SELF_SECONDARY, \
+	), PROC_REF(on_open_storage_click))
+
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY_SECONDARY, PROC_REF(on_open_storage_attackby))
 	RegisterSignal(parent, COMSIG_MOUSEDROP_ONTO, PROC_REF(mousedrop_onto))
 	RegisterSignal(parent, COMSIG_MOUSEDROPPED_ONTO, PROC_REF(mousedrop_receive))
 
@@ -205,9 +211,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			hide_from(L)
 
 /datum/component/storage/proc/attack_self(datum/source, mob/user, modifiers)
-	if(modifiers?[RIGHT_CLICK])
-		on_alt_click(source, user)
-		return FALSE
 	if(locked)
 		to_chat(user, span_warning("[parent] seems to be locked!"))
 		return FALSE
@@ -499,10 +502,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 //This proc is called when you want to place an item into the storage item.
 /datum/component/storage/proc/attackby(datum/source, obj/item/I, mob/M, params)
-	var/list/modifiers = params2list(params)
-	if(modifiers[RIGHT_CLICK]) // open the storage on right click
-		on_alt_click(source, M)
-		return TRUE
 	if(istype(I, /obj/item/hand_labeler))
 		var/obj/item/hand_labeler/labeler = I
 		if(labeler.mode)
@@ -740,9 +739,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 /datum/component/storage/proc/on_attack_hand(datum/source, mob/user, modifiers)
 	var/atom/A = parent
-	if(modifiers && modifiers[RIGHT_CLICK])
-		on_alt_click(source, user)
-		return COMPONENT_NO_ATTACK_HAND
 	if(!attack_hand_interact)
 		return
 	if(user.active_storage == src && A.loc == user) //if you're already looking inside the storage item
@@ -792,16 +788,17 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 /datum/component/storage/proc/signal_hide_attempt(datum/source, mob/target)
 	return hide_from(target)
 
-/datum/component/storage/proc/on_alt_click(datum/source, mob/user)
+/datum/component/storage/proc/open_storage(mob/user)
 	if(!isliving(user) || !user.CanReach(parent))
-		return
+		return FALSE
 
 	if(locked)
 		if(istype(parent, /obj/item/storage/lockbox))
-			return
+			return FALSE
 		to_chat(user, span_warning("[parent] seems to be locked!"))
-		return
+		return FALSE
 
+	. = TRUE
 	var/atom/A = parent
 	if(!quickdraw)
 		A.add_fingerprint(user)
@@ -820,6 +817,18 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			return
 		user.visible_message(span_warning("[user] draws [I] from [parent]!"), span_notice("You draw [I] from [parent]."))
 		return
+
+/datum/component/storage/proc/on_open_storage_click(datum/source, mob/user, list/modifiers)
+	SIGNAL_HANDLER
+
+	if(open_storage(user))
+		return COMPONENT_CANCEL_ATTACK_CHAIN
+
+/datum/component/storage/proc/on_open_storage_attackby(datum/source, obj/item/weapon, mob/user, params)
+	SIGNAL_HANDLER
+
+	if(open_storage(user))
+		return COMPONENT_SECONDARY_CANCEL_ATTACK_CHAIN
 
 /datum/component/storage/proc/action_trigger(datum/signal_source, datum/action/source)
 	gather_mode_switch(source.owner)

@@ -182,7 +182,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	if(opened)
 		. += span_notice("The parts are <b>welded</b> together.")
 	else if(secure && !opened)
-		. += span_notice("Alt-click to [locked ? "unlock" : "lock"].")
+		. += span_notice("Right-click to [locked ? "unlock" : "lock"].")
 	if(isliving(user))
 		var/mob/living/L = user
 		if(HAS_TRAIT(L, TRAIT_SKITTISH))
@@ -450,8 +450,17 @@ GLOBAL_LIST_EMPTY(lockers)
 		return
 	if(!(user.mobility_flags & MOBILITY_STAND) && get_dist(src, user) > 0)
 		return
-	if(modifiers?[RIGHT_CLICK] || !toggle(user))
+	if(!toggle(user))
 		togglelock(user)
+	return
+
+/obj/structure/closet/attack_hand_secondary(mob/user, modifiers)
+	if(!user.canUseTopic(src, BE_CLOSE) || !isturf(loc))
+		return
+	if(!opened && secure)
+		togglelock(user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
 
 /obj/structure/closet/attack_paw(mob/user)
 	return attack_hand(user)

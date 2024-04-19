@@ -128,7 +128,8 @@
 	var/obj/item/W = get_active_held_item()
 
 	if(W == A)
-		W.attack_self(src, modifiers)
+		if(!(LAZYACCESS(modifiers, RIGHT_CLICK) && W.attack_self_secondary(src, modifiers) != SECONDARY_ATTACK_CALL_NORMAL))
+			W.attack_self(src, modifiers)
 		update_inv_hands()
 		return
 

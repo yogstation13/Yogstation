@@ -45,11 +45,13 @@
 	if(!attach_accessory(I, user))
 		return ..()
 
-/obj/item/clothing/under/attack_hand(mob/user, modifiers)
-	if(modifiers?[RIGHT_CLICK])
-		toggle()
+/obj/item/clothing/under/attack_hand_secondary(mob/user, modifiers)
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
-	return ..()
+
+	toggle()
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/clothing/under/update_clothes_damaged_state(damaged_state = CLOTHING_DAMAGED)
 	..()
