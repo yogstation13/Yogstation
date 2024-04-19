@@ -17,5 +17,5 @@ export const GENDERS = {
   ["neuter"]: {
     icon: "neuter",
     text: "It/Its",
-  }
+  },
 };
