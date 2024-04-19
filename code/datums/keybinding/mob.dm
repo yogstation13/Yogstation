@@ -211,7 +211,7 @@
 
 
 /datum/keybinding/mob/pixel_shift
-	hotkey_keys = list("CtrlShift")
+	hotkey_keys = list("AltShift")
 	name = "pixel_shift"
 	full_name = "Pixel shift"
 	description = "Allows you to shift your characters by a few pixels"
