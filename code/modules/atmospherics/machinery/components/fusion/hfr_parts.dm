@@ -492,6 +492,9 @@
 	box_type = "core"
 	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/core
 
+/obj/item/hfr_box/core/syndicate
+	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/core/syndicate
+
 /obj/item/hfr_box/core/multitool_act(mob/living/user, obj/item/I)
 	. = ..()
 	var/list/parts = list()

@@ -169,6 +169,10 @@
 	///Flags used in the alert proc to select what messages to show when the HFR is delaminating (HYPERTORUS_FLAG_HIGH_POWER_DAMAGE | HYPERTORUS_FLAG_HIGH_FUEL_MIX_MOLE | HYPERTORUS_FLAG_IRON_CONTENT_DAMAGE | HYPERTORUS_FLAG_IRON_CONTENT_INCREASE | HYPERTORUS_FLAG_EMPED)
 	var/warning_damage_flags = NONE
 
+/obj/machinery/atmospherics/components/unary/hypertorus/core/syndicate
+	desc = "This is the Hypertorus Fusion Reactor core, an advanced piece of technology to finely tune the reaction inside of the machine. It has I/O for cooling gases. Syndicate engineers have copied the HFR core designs from NT and modified the communication channel to syndicate to experiment the HFR in secret."
+	radio_key = /obj/item/encryptionkey/syndicate
+
 /obj/machinery/atmospherics/components/unary/hypertorus/core/Initialize(mapload)
 	. = ..()
 	internal_fusion = new
@@ -182,6 +186,9 @@
 	radio = new(src)
 	radio.keyslot = new radio_key
 	radio.listening = FALSE
+	if(radio_key == /obj/item/encryptionkey/syndicate)
+		engineering_channel = "Syndicate"
+		common_channel = "Syndicate"
 	radio.recalculateChannels()
 	investigate_log("has been created.", INVESTIGATE_HYPERTORUS)
 
