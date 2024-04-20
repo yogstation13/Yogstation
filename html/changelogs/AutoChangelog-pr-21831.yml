@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "hardsuit shields are less buggy and more consistent"
-  - tweak: "energy based hardsuit shields now glow in the dark"
