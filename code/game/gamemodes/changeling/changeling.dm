@@ -82,7 +82,7 @@ GLOBAL_VAR(changeling_team_objective_type)
 	restricted_jobs = list("AI", "Cyborg", "Synthetic")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician") //YOGS - added hop and brig physician
 	required_players = 15
-	required_enemies = 2
+	required_enemies = 1
 	recommended_enemies = 4
 	reroll_friendly = 1
 

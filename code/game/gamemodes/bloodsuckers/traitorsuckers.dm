@@ -11,7 +11,7 @@
 		"Warden", "Security Officer", "Detective", "Brig Physician"
 	)
 	required_players = 20
-	required_enemies = 2 // How many of each type are required
+	required_enemies = 1 // How many of each type are required
 	recommended_enemies = 4
 	reroll_friendly = 1
 	announce_span = "Traitors and Bloodsuckers"
