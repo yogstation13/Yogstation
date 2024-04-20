@@ -40,7 +40,7 @@
 	var/next_flicker = 0 //Light flicker timer
 	var/base_power_modifier = REACTOR_POWER_FLAVOURISER
 	var/slagged = FALSE //Is this reactor even usable any more?
-	var/explosion_power = 7
+	var/explosion_power = 7 //The explosion strength 
 	//Console statistics.
 	var/last_coolant_temperature = 0
 	var/last_output_temperature = 0
