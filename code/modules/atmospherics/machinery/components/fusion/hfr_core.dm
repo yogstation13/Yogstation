@@ -189,13 +189,6 @@
 	if(radio_key == /obj/item/encryptionkey/syndicate)
 		engineering_channel = "Syndicate"
 		common_channel = "Syndicate"
-		color = "#320101"
-		linked_input.color = "#320101"
-		linked_interface.color = "#320101"
-		linked_moderator.color = "#320101"
-		linked_output.color = "#320101"
-		for(var/obj/machinery/hypertorus/corner/corner in corners)
-			corner.color = "#320101"
 	radio.recalculateChannels()
 	investigate_log("has been created.", INVESTIGATE_HYPERTORUS)
 

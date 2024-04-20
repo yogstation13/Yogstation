@@ -25,6 +25,8 @@
 	var/fusion_started = FALSE
 	///Check if the machine is cracked open
 	var/cracked = FALSE
+	///Used for linking right syndicate parts
+	var/syndicate_machine = FALSE
 
 /obj/machinery/atmospherics/components/unary/hypertorus/Initialize(mapload)
 	. = ..()
@@ -102,6 +104,11 @@
 	icon_state_active = "fuel_input_active"
 	circuit = /obj/item/circuitboard/machine/HFR_fuel_input
 
+/obj/machinery/atmospherics/components/unary/hypertorus/fuel_input/syndicate
+	color = "#320101"
+	circuit = /obj/item/circuitboard/machine/HFR_fuel_input
+	syndicate_machine = TRUE
+
 /obj/machinery/atmospherics/components/unary/hypertorus/waste_output
 	name = "HFR waste output port"
 	desc = "Waste port for the Hypertorus Fusion Reactor, designed to output the hot waste gases coming from the core of the machine."
@@ -111,6 +118,11 @@
 	icon_state_active = "waste_output_active"
 	circuit = /obj/item/circuitboard/machine/HFR_waste_output
 
+/obj/machinery/atmospherics/components/unary/hypertorus/waste_output/syndicate
+	color = "#320101"
+	circuit = /obj/item/circuitboard/machine/HFR_waste_input
+	syndicate_machine = TRUE
+
 /obj/machinery/atmospherics/components/unary/hypertorus/moderator_input
 	name = "HFR moderator input port"
 	desc = "Moderator port for the Hypertorus Fusion Reactor, designed to move gases inside the machine to cool and control the flow of the reaction."
@@ -119,6 +131,11 @@
 	icon_state_off = "moderator_input_off"
 	icon_state_active = "moderator_input_active"
 	circuit = /obj/item/circuitboard/machine/HFR_moderator_input
+
+/obj/machinery/atmospherics/components/unary/hypertorus/moderator_input/syndicate
+	color = "#320101"
+	circuit = /obj/item/circuitboard/machine/HFR_moderator_input
+	syndicate_machine = TRUE
 
 /*
 * Interface and corners
@@ -139,6 +156,7 @@
 	var/icon_state_off
 	var/icon_state_active
 	var/fusion_started = FALSE
+	var/syndicate_machine = FALSE
 
 /obj/machinery/hypertorus/examine(mob/user)
 	. = ..()
@@ -172,6 +190,11 @@
 	icon_state_off = "interface_off"
 	icon_state_open = "interface_open"
 	icon_state_active = "interface_active"
+
+/obj/machinery/hypertorus/interface/syndicate
+	color = "#320101"
+	circuit = /obj/item/circuitboard/machine/HFR_interface/syndicate
+	syndicate_machine = TRUE
 
 /obj/machinery/hypertorus/interface/Destroy()
 	if(connected_core)
@@ -418,6 +441,11 @@
 	icon_state_open = "corner_open"
 	icon_state_active = "corner_active"
 
+/obj/machinery/hypertorus/corner/syndicate
+	circuit = /obj/item/circuitboard/machine/HFR_corner/syndicate
+	color = "#320101"
+	syndicate_machine = TRUE
+
 /obj/item/paper/guides/jobs/atmos/hypertorus
 	name = "paper- 'Quick guide to safe handling of the HFR'"
 	info = "<B>How to safely(TM) operate the Hypertorus</B><BR>\
@@ -452,6 +480,8 @@
 	var/box_type = "impossible"
 	///What's the path of the machine we making
 	var/part_path
+	///Check for syndicate type
+	var/syndicate_type = FALSE
 
 /obj/item/hfr_box/corner
 	name = "HFR box corner"
@@ -459,6 +489,11 @@
 	icon_state = "box_corner"
 	box_type = "corner"
 	part_path = /obj/machinery/hypertorus/corner
+
+/obj/item/hfr_box/corner/syndicate
+	color = "#320101"
+	part_path = /obj/machinery/hypertorus/corner/syndicate
+	syndicate_type = TRUE
 
 /obj/item/hfr_box/body
 	name = "HFR box body"
@@ -471,19 +506,35 @@
 	icon_state = "box_fuel"
 	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/fuel_input
 
+/obj/item/hfr_box/body/fuel_input/syndicate
+	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/fuel_input/syndicate
+	syndicate_type = TRUE
+
 /obj/item/hfr_box/body/moderator_input
 	name = "HFR box moderator input"
 	icon_state = "box_moderator"
 	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/moderator_input
+
+/obj/item/hfr_box/body/moderator_input/syndicate
+	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/moderator_input/syndicate
+	syndicate_type = TRUE
 
 /obj/item/hfr_box/body/waste_output
 	name = "HFR box waste output"
 	icon_state = "box_waste"
 	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/waste_output
 
+/obj/item/hfr_box/body/waste_output/syndicate
+	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/waste_output/syndicate
+	syndicate_type = TRUE
+
 /obj/item/hfr_box/body/interface
 	name = "HFR box interface"
 	part_path = /obj/machinery/hypertorus/interface
+
+/obj/item/hfr_box/body/interface/syndicate
+	part_path = /obj/machinery/hypertorus/interface/syndicate
+	syndicate_type = TRUE
 
 /obj/item/hfr_box/core
 	name = "HFR box core"
@@ -494,11 +545,15 @@
 
 /obj/item/hfr_box/core/syndicate
 	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/core/syndicate
+	syndicate_type = TRUE
 
 /obj/item/hfr_box/core/multitool_act(mob/living/user, obj/item/I)
 	. = ..()
 	var/list/parts = list()
 	for(var/obj/item/hfr_box/box in orange(1,src))
+		if((syndicate_type && !box.syndicate_type) || (!syndicate_type && box.syndicate))
+			to_chat(user, "These parts aren't compatible.")
+			return
 		var/direction = get_dir(src, box)
 		if(box.box_type == "corner")
 			if(ISDIAGONALDIR(direction))
