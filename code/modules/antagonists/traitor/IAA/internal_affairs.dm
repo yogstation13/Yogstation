@@ -261,6 +261,7 @@
 	var/datum/objective/escape_objective = new objtype
 	escape_objective.owner = owner
 	add_objective(escape_objective)
+	setup_backstories()
 
 /datum/antagonist/traitor/internal_affairs/proc/greet_iaa()
 	to_chat(owner.current, span_userdanger("You are the [special_role]."))
