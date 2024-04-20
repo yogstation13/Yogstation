@@ -64,8 +64,8 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 			RegisterSignal(AM, COMSIG_MOVABLE_THROW_LANDED, PROC_REF(land_in_pool))
 		return
 	SEND_SIGNAL(AM, COMSIG_COMPONENT_CLEAN_ACT, 2)
-	playsound(src,'sound/effects/splash.ogg',50,TRUE)
 	if(isliving(AM))
+		playsound(src,'sound/effects/splash.ogg',50,TRUE)
 		var/datum/component/swimming/S = AM.GetComponent(/datum/component/swimming) //You can't get in the pool unless you're swimming.
 		if(!S)
 			var/mob/living/carbon/C = AM
