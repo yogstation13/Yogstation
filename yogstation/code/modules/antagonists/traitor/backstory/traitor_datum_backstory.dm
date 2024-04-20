@@ -1,6 +1,15 @@
 /datum/antagonist/traitor
 	/// A list of factions the traitor can pick from freely.
-	var/list/allowed_factions = list(TRAITOR_FACTION_SYNDICATE, TRAITOR_FACTION_BLACK_MARKET, TRAITOR_FACTION_INDEPENDENT)
+	var/list/allowed_factions = list(
+		TRAITOR_FACTION_SYNDICATE, 
+		TRAITOR_FACTION_BLACK_MARKET, 
+		TRAITOR_FACTION_INDEPENDENT,
+		TRAITOR_FACTION_DONK,
+		TRAITOR_FACTION_WAFFLE,
+		TRAITOR_FACTION_CYBERSUN,
+		TRAITOR_FACTION_VAHLEN,
+		TRAITOR_FACTION_GORLEX,
+		TRAITOR_FACTION_SELF)
 	/// A list of factions the traitor can pick from freely.
 	var/list/recommended_factions = list()
 	/// A list of backstories that are allowed for this traitor.

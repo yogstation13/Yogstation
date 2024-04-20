@@ -1,6 +1,12 @@
 #define TRAITOR_FACTION_BLACK_MARKET "black_market"
 #define TRAITOR_FACTION_SYNDICATE "syndicate"
 #define TRAITOR_FACTION_INDEPENDENT "independent"
+#define TRAITOR_FACTION_DONK "donk_co"
+#define TRAITOR_FACTION_WAFFLE "waffle_co"
+#define TRAITOR_FACTION_CYBERSUN "cybersun_industries"
+#define TRAITOR_FACTION_VAHLEN "vahlen_pharmaceuticals"
+#define TRAITOR_FACTION_GORLEX "gorlex marauders"
+#define TRAITOR_FACTION_SELF "self"
 
 /// If this backstory involves being forced into the job
 #define TRAITOR_MOTIVATION_FORCED "Forced Into It"

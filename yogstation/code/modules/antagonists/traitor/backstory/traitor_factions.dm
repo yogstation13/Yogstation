@@ -39,3 +39,39 @@
 	You will have no allies, <strong><font color='yellow'>no codewords</font></strong>, and you can only get by on your stolen Syndicate uplink. You have one chance, don't blow it. \n\
 	<strong>It's personal.</strong>"
 	key = TRAITOR_FACTION_INDEPENDENT
+
+/datum/traitor_faction/donk_co
+	name = "Donk Co."
+	employer_name = "Donk Co."
+	description = "TBA"
+	key = TRAITOR_FACTION_DONK
+
+/datum/traitor_faction/waffle_co
+	name = "Waffle Co."
+	employer_name = "Waffle Co."
+	description = "TBA"
+	key = TRAITOR_FACTION_WAFFLE
+
+/datum/traitor_faction/cybersun
+	name = "Cybersun Industries"
+	employer_name = "Cybersun Industries"
+	description = "TBA"
+	key = TRAITOR_FACTION_CYBERSUN
+
+/datum/traitor_faction/vahlen
+	name = "Vahlen Pharmaceuticals"
+	employer_name = "Vahlen Pharmaceuticals"
+	description = "TBA"
+	key = TRAITOR_FACTION_VAHLEN
+
+/datum/traitor_faction/gorlex
+	name = "Gorlex Marauders"
+	employer_name = "Gorlex Marauders"
+	description = "TBA"
+	key = TRAITOR_FACTION_GORLEX
+
+/datum/traitor_faction/self
+	name = "S.E.L.F"
+	employer_name = "S.E.L.F"
+	description = "TBA"
+	key = TRAITOR_FACTION_SELF
