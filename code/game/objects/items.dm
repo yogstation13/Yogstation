@@ -607,25 +607,27 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	set category = "Object"
 	set name = "Pick up"
 
+	var/mob/user_mob = usr
+
 	if(HAS_TRAIT(src, TRAIT_NODROP))
 		return
 
-	if(usr.incapacitated() || !Adjacent(usr))
+	if(user_mob.incapacitated() || !Adjacent(user_mob))
 		return
 
-	if(isliving(usr))
-		var/mob/living/L = usr
+	if(isliving(user_mob))
+		var/mob/living/L = user_mob
 		if(!(L.mobility_flags & MOBILITY_PICKUP))
 			return
 
-	if(issilicon(usr))
-		var/obj/item/borg/gripper/gripper = usr.get_active_held_item(TRUE)
+	if(issilicon(user_mob))
+		var/obj/item/borg/gripper/gripper = user_mob.get_active_held_item(TRUE)
 		if(istype(gripper))
-			gripper.pre_attack(src, usr, get_dist(src, usr))
+			gripper.pre_attack(src, user_mob, get_dist(src, user_mob))
 		return
 
-	if(usr.get_active_held_item() == null) // Let me know if this has any problems -Yota
-		usr.UnarmedAttack(src)
+	if(user_mob.get_active_held_item() == null) // Let me know if this has any problems -Yota
+		user_mob.UnarmedAttack(src, TRUE, list()) // no modifiers, just normal pickup
 
 //This proc is executed when someone clicks the on-screen UI button.
 //The default action is attack_self().
