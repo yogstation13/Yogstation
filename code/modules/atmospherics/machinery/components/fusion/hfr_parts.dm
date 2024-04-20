@@ -541,5 +541,5 @@
 			qdel(box)
 			continue
 
-	new/obj/machinery/atmospherics/components/unary/hypertorus/core(loc, TRUE)
+	var/obj/machinery/atmospherics/components/unary/hypertorus/core/core = new part_path(loc, TRUE)
 	qdel(src)
