@@ -791,7 +791,7 @@
 	greyscale_config_inhand_right = /datum/greyscale_config/jumpsuit_inhand_right
 	greyscale_config_worn = /datum/greyscale_config/jumpsuit_worn
 	can_adjust = FALSE
-	armor = list(MELEE = 10, LASER = 10, FIRE = 40, ACID = 10, BOMB = 5)
+	armor = list(MELEE = 10, BULLET = 0, LASER = 10, ENERGY = 0, BOMB = 5, BIO = 0, RAD = 0, FIRE = 40, ACID = 10, WOUND= 5)
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/mech_suit
@@ -821,6 +821,14 @@
 	desc = "A blue mech pilot's suit. For the more reluctant mech pilots."
 	icon_state = "blue_mech_suit"
 	item_state = "blue_mech_suit"
+	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/mech_suit/cybersun
+	name = "Cybersun mech pilot's suit"
+	desc = "An armored mech pilot suit, used exclusively by Cybersun mech agents."
+	icon_state = "black_mech_suit"
+	item_state = "black_mech_suit"
+	armor = list(MELEE = 15, BULLET = 15, LASER = 10, ENERGY = 10, BOMB = 50, BIO = 50, RAD = 20, FIRE = 50, ACID = 50, WOUND = 5)
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/lampskirt
