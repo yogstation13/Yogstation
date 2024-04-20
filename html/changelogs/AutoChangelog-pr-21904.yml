@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "heart variants no longer gain the appewrance of a normal heart if eaten"
