@@ -672,7 +672,7 @@
 
 /obj/item/demon_core
 	name = "demon core"
-	desc = "It glows with a faint light. You can feel the energy radiating from it"
+	desc = "It glows with a faint light. You can feel the energy radiating from it."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "demon_core"
 
