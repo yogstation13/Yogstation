@@ -61,11 +61,10 @@
 	name = "old terminal"
 	desc = "An extremely old terminal used to monitor the cryogenic stasis systems of the outpost. Automatically provides a copy of certain reports to crew where necessary."
 	upperinfo = "NANOTRASEN SYSTEMS CRYOGENICS TERMINAL 3.11"
-	content = list("ntOS 1.2 <br><br> \
-	Date of Last Check: 3rd of June, 2557 <br><br> Status as of Last Check: 5 crew in stasis <br><br> \
-	Artificial Program Alerts: ALPHA WING DISCONNECTED. BETA WING REPORTS HULL DAMAGE. CHARLIE WING REPORTS REACTOR DAMAGE. DELTA WING REPORTS UNKNOWN LIFEFORMS. <br><br> \
-	Security Level: UNKNOWN <br><br> \
-	Distress Beacon: DAMAGED or OFFLINE <br><br> \
+	content = list("Date of Last Check: 3rd of June, 2557. Status as of Last Check: 5 crew in stasis. \
+	Artificial Program Alerts: ALPHA WING DISCONNECTED. BETA WING REPORTS HULL DAMAGE. CHARLIE WING REPORTS REACTOR DAMAGE. DELTA WING REPORTS UNKNOWN LIFEFORMS. \
+	Security Level: UNKNOWN. \
+	Distress Beacon: DAMAGED or OFFLINE. \
 	Automated Advisory: Seek the Control Terminal on the Bridge for a detailed situation report.")
 
 /obj/machinery/computer/terminal/oldstation/central
@@ -76,7 +75,7 @@
 	light_color = LIGHT_COLOR_BLUE
 	tguitheme = "nanotrasen"
 	upperinfo = "NANOTRASEN CENTRAL CONTROL UNIT TYPE 1 - Status Report"
-	content = list("ALERT! ALERT! \
+	content = list("Automatically-Generated Status Report: \
 	Hull integrity of Alpha wing compromised! Hull integrity of Beta wing compromised! \
 	Artificial Program integrity report: Compromised! \
 	Reactor integrity report: Cooling system damaged! \
@@ -94,9 +93,9 @@
 	desc = "A terminal used to keep logs about the prototypes in storage."
 	upperinfo = "ntOS 1.1 / Prototype Logs / manifest.txt"
 	content = list("Delta Wing Prototype Storage Manifest \
-	x1 NT-K-14 / NT-E1 Experimental Energy Gun - inform Head of Security before removing \
-	x1 NT-K-9 / NT-H1 Health Analyzer - inform Chief Medical Officer before removing \
-	x1 NT-K-12 B01 RIG Hardsuit - inform Chief Engineer before removing \
+	x1 NT-K-14 / NT-E1 Experimental Energy Gun - inform Head of Security before removing - \
+	x1 NT-K-9 / NT-H1 Health Analyzer - inform Chief Medical Officer before removing - \
+	x1 NT-K-12 B01 RIG Hardsuit - inform Chief Engineer before removing - \
 	x1 NT-K-13 'Singularity Generator' - alert all crew when moving due to volatility \
 	You <b>MUST</b> have permission of the Captain and Research Director to move any prototypes! \
 	Please be advised that your non-disclosure agreement means this manifest is not for public distribution under any circumstances. Don't reveal our hard work!")
@@ -127,3 +126,4 @@
 
 //terminal formatting is really weird and its just copypasted /tg/ code so idk how to fix it lmao
 //advice for anyone else who deals with it: either fix it to use whatever paper uses or **DO NOT** TRY TO FORMAT IT!
+//PLEASE I FUCKING BEG YOU EITHER FIX IT OR DONT TRY TO OR ITLL BE FUCKING HELL ON EARTH
