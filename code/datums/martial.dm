@@ -197,6 +197,7 @@
 	if(!istype(H) || !H.mind || H.mind.martial_art != src)
 		return
 	on_remove(H)
+	H.mind.martial_art = null
 	if(base)
 		base.teach(H)
 	else

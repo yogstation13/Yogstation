@@ -389,7 +389,7 @@
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
 		add_overlay(filling)
 
-/obj/item/reagent_containers/chemtank/worn_overlays(isinhands = FALSE) //apply chemcolor and level
+/obj/item/reagent_containers/chemtank/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file) //apply chemcolor and level
 	. = ..()
 	//inhands + reagent_filling
 	if(!isinhands && reagents.total_volume)

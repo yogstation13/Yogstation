@@ -241,16 +241,16 @@
 /datum/action/changeling/sting/LSD
 	name = "Hallucination Sting"
 	desc = "We cause mass terror to our victim. Costs 10 chemicals."
-	helptext = "We evolve the ability to sting a target with a powerful hallucinogenic chemical. The target does not notice they have been stung, and the effect occurs after 30 to 60 seconds."
+	helptext = "We evolve the ability to sting a target with a powerful hallucinogenic and liver killing chemical. The target does not notice they have been stung, and the effect occurs after 20 to 30 seconds."
 	button_icon_state = "sting_lsd"
 	sting_icon = "sting_lsd"
-	chemical_cost = 10
-	dna_cost = 1
+	chemical_cost = 25
+	dna_cost = 2
 
 /datum/action/changeling/sting/LSD/sting_action(mob/user, mob/living/carbon/target)
 	log_combat(user, target, "stung", "LSD sting")
 	if(target.reagents)
-		target.reagents.add_reagent(/datum/reagent/toxin/mindbreaker, 30)
+		target.reagents.add_reagent(/datum/reagent/toxin/mindbreaker/changeling, 30)
 	return TRUE
 
 /datum/action/changeling/sting/cryo
