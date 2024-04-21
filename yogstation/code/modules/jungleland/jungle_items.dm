@@ -684,7 +684,7 @@
 /obj/item/demon_core/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!proximity_flag)
 		return ..()
-	if(istype(target,/obj/item/clothing))
+	if(istype(target,/obj/item/clothing/suit))
 		target.AddComponent(/datum/component/shielded,'yogstation/icons/effects/effects.dmi',"tar_shield", 30 SECONDS, ITEM_SLOT_OCLOTHING)
 		visible_message("[user] inserts [src] into [target]")
 		qdel(src)
