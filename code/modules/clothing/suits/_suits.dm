@@ -17,7 +17,6 @@
 	limb_integrity = 0 // disabled for most exo-suits
 	var/obj/item/badge/attached_badge
 	var/mutable_appearance/badge_overlay
-	sprite_sheets = list(SPECIES_VOX = VOX_SUIT_FILE)
 
 /obj/item/clothing/suit/Destroy()
 	if(attached_badge)

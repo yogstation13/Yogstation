@@ -9,7 +9,7 @@
 
 	body_parts_covered = FEET
 	slot_flags = ITEM_SLOT_FEET
-	sprite_sheets = list(SPECIES_VOX = VOX_SHOES_FILE)
+
 	slowdown = SHOES_SLOWDOWN
 	var/footprint_sprite = FOOTPRINT_SPRITE_SHOES
 	var/offset = 0

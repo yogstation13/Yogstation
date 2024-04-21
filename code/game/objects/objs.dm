@@ -10,7 +10,7 @@
 	/// Icon to use as a 32x32 preview in crafting menus and such
 	var/icon_preview
 	var/icon_state_preview
-	var/custom_fire_overlay // Update_fire_overlay will check if a different icon state should be used
+
 	var/damtype = BRUTE
 	var/force = 0
 

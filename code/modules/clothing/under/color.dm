@@ -13,7 +13,6 @@
 	worn_icon_state = "jumpsuit"
 	worn_icon = 'icons/mob/clothing/uniform/color.dmi'
 	mutantrace_variation = DIGITIGRADE_VARIATION
-	sprite_sheets = list("GAGS_sprite" = list(SPECIES_VOX))
 
 /obj/item/clothing/under/skirt/color
 	dying_key = DYE_REGISTRY_JUMPSKIRT
@@ -30,7 +29,6 @@
 	item_state = "jumpsuit"
 	worn_icon_state = "jumpskirt"
 	worn_icon = 'icons/mob/clothing/uniform/color.dmi'
-	sprite_sheets = list("GAGS_sprite" = list(SPECIES_VOX))
 
 /obj/item/clothing/under/color/random
 	icon_state = "random_jumpsuit"

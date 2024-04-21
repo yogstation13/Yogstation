@@ -96,11 +96,10 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 	/// If the selected species has this in its /datum/species/mutant_bodyparts,
 	/// will show the feature as selectable.
 	var/relevant_mutant_bodypart = null
-	var/list/blacklisted_species = list()
+
 	/// If the selected species has this in its /datum/species/species_traits,
 	/// will show the feature as selectable.
 	var/relevant_species_trait = null
-
 
 	/// If the target should be checked upon applying the preference
 	/// For example, this is used for for podperson hair_color since it overwrites human hair_color

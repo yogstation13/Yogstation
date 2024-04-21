@@ -11,7 +11,6 @@
 	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
 	limb_integrity = 30
 	tearable = TRUE //all jumpsuits can be torn down and used for cloth in an emergency | yogs
-	sprite_sheets = list(SPECIES_VOX = VOX_UNIFORM_FILE)
 	var/fitted = FEMALE_UNIFORM_FULL // For use in alternate clothing styles for women
 	var/has_sensor = HAS_SENSORS // For the crew computer
 	var/random_sensor = TRUE

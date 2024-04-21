@@ -228,11 +228,11 @@ world
 /icon/proc/Greyify()
 	MapColors(0.75,0.3,0.3, 0.6,0.75,0.6, 0.10,0.10,0.50, 0,0,0)
 
-/icon/proc/ColorTone(tone, grayscale = FALSE)
-	if(grayscale)
-		GrayScale()
-	else
+/icon/proc/ColorTone(tone, greyify = FALSE)
+	if(greyify)
 		Greyify()
+	else
+		GrayScale()
 
 	var/list/TONE = rgb2num(tone)
 	var/gray = round(TONE[1]*0.3 + TONE[2]*0.59 + TONE[3]*0.11, 1)
@@ -925,7 +925,7 @@ world
 
 /proc/getHologramIcon(icon/A, safety=1)//If safety is on, a new icon is not created.
 	var/icon/flat_icon = safety ? A : new(A)//Has to be a new icon to not constantly change the same icon.
-	flat_icon.ColorTone(rgb(125,180,225))//Let's make it bluish.
+	flat_icon.ColorTone(rgb(125,180,225), greyify = TRUE)//Let's make it bluish.
 	flat_icon.ChangeOpacity(0.5)//Make it half transparent.
 	var/icon/alpha_mask = new('icons/effects/effects.dmi', "scanline")//Scanline effect.
 	flat_icon.AddAlphaMask(alpha_mask)//Finally, let's mix in a distortion effect.

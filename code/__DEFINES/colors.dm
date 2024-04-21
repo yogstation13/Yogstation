@@ -353,7 +353,6 @@
 
 /// Color used for default blood
 #define COLOR_BLOOD "#CC0000"
-#define COLOR_BLOOD_VOX "#2299FC"
 
 GLOBAL_LIST_INIT(cable_colors, list(
 	CABLE_COLOR_BLUE = CABLE_HEX_COLOR_BLUE,
@@ -371,14 +370,6 @@ GLOBAL_LIST_INIT(cable_colors, list(
 
 #define COLOR_INPUT_DISABLED "#F0F0F0"
 #define COLOR_INPUT_ENABLED "#D3B5B5"
-
-//Color blending modes
-#define COLOR_BLEND_MULTIPLY "multiply"
-#define COLOR_BLEND_ADD "add"
-
-//Color matrix
-#define COLOR_MATRIX_ADD(color) list(COLOR_RED, COLOR_VIBRANT_LIME, COLOR_BLUE, color)
-#define COLOR_MATRIX_OVERLAY(color) list(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK, color)
 
 /// Change color to red on ANSI terminal output, if enabled with -DANSICOLORS.
 #ifdef ANSICOLORS

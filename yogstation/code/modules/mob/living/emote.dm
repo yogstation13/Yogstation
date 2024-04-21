@@ -90,3 +90,17 @@
 		var/light_dab_speed = rand(3,7)
 		INVOKE_ASYNC(dabber, TYPE_PROC_REF(/atom, DabAnimation), light_dab_speed, 0, 0, 0, light_dab_angle)
 		SSachievements.unlock_achievement(/datum/achievement/dab, dabber.client)
+
+/datum/emote/living/cough/get_sound(mob/living/user)
+	if(!ishuman(user))
+		return sound
+	var/mob/living/carbon/human/human_user = user
+	if(human_user.dna?.species)
+		return human_user.dna.species.cough_sound
+
+/datum/emote/living/sneeze/get_sound(mob/living/user)
+	if(!ishuman(user))
+		return sound
+	var/mob/living/carbon/human/human_user = user
+	if(human_user.dna?.species)
+		return human_user.dna.species.sneeze_sound

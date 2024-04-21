@@ -9,7 +9,6 @@
 	equip_delay_other = 25
 	resistance_flags = NONE
 	materials = list(/datum/material/glass = 250)
-	sprite_sheets = list(SPECIES_VOX = VOX_EYES_FILE)
 	var/vision_flags = 0
 	var/invis_view = SEE_INVISIBLE_LIVING	//admin only for now
 	/// Override to allow glasses to set higher than normal see_invis

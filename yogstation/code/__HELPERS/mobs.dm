@@ -5,6 +5,25 @@
 		if(!findname(.))
 			break
 
+/proc/random_unique_vox_name(attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(vox_name())
+
+		if(!findname(.))
+			break
+
+GLOBAL_LIST_INIT(vox_skin_tones, sortList(list(
+	"lime",
+	"crimson",
+	"nebula",
+	"azure",
+	"emerald",
+	"brown",
+	"plum",
+	"grey",
+	"mossy"
+	)))
+
 /proc/is_admin(user)
 	if(ismob(user))
 		var/mob/temp = user

@@ -126,9 +126,6 @@
 /obj/item/reagent_containers/blood/lizard
 	blood_type = "L"
 
-/obj/item/reagent_containers/blood/vox
-	blood_type = "V"
-
 /obj/item/reagent_containers/blood/ethereal
 	blood_type = "E"
 	unique_blood = /datum/reagent/consumable/liquidelectricity

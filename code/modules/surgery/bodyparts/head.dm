@@ -23,7 +23,6 @@
 	var/obj/item/organ/ears/ears
 	var/obj/item/organ/tongue/tongue
 	var/eyes_icon = 'icons/mob/human_face.dmi'
-	var/eyes_static
 	//Limb appearance info:
 	var/real_name = "" //Replacement name
 	//Hair colour and style

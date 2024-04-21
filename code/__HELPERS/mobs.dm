@@ -207,13 +207,6 @@
 		if(!findname(.))
 			break
 
-/proc/random_unique_vox_name(attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
-		. = capitalize(vox_name())
-
-		if(!findname(.))
-			break
-
 /proc/random_unique_ethereal_name(attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)
 		. = capitalize(ethereal_name())
@@ -282,18 +275,6 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 	"mixed3" = "Coffee",
 	"mixed4" = "Macadamia",
 ))
-
-GLOBAL_LIST_INIT(vox_skin_tones, sortList(list(
-	"lime",
-	"crimson",
-	"nebula",
-	"azure",
-	"emerald",
-	"brown",
-	"plum",
-	"grey",
-	"mossy"
-	)))
 
 GLOBAL_LIST_EMPTY(species_list)
 

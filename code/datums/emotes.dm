@@ -22,7 +22,6 @@
 	var/message_monkey = ""
 	/// Message to display if the user is an IPC
 	var/message_ipc = ""
-	var/message_vox = "" // Message to display if the user is a vox
 	/// Message to display if the user is a simple_animal or basic mob.
 	var/message_simple = ""
 	/// Message with %t at the end to allow adding params to the message, like for mobs doing an emote relatively to something else.

@@ -17,7 +17,6 @@
 
 	dog_fashion = /datum/dog_fashion/head/helmet
 
-	sprite_sheets = list(SPECIES_VOX = VOX_HELMET_FILE)
 	var/can_flashlight = FALSE //if a flashlight can be mounted. if it has a flashlight and this is false, it is permanently attached.
 	var/obj/item/flashlight/seclite/attached_light
 	var/datum/action/item_action/toggle_helmet_flashlight/alight

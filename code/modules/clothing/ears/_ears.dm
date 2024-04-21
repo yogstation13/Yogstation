@@ -6,7 +6,6 @@
 	throwforce = 0
 	slot_flags = ITEM_SLOT_EARS
 	resistance_flags = NONE
-	sprite_sheets = list(SPECIES_VOX = VOX_EARS_FILE)
 
 /obj/item/clothing/ears/earmuffs
 	name = "earmuffs"

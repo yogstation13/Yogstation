@@ -647,7 +647,6 @@
 	var/list/worn_icon_list = list()
 	/// Assoc list of item slot to string - stores the worn icon state of the item in that slot
 	var/list/worn_icon_state_list = list()
-	var/list/sprite_sheets_list = list()
 
 	var/underwear
 	var/undershirt

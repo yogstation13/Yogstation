@@ -10,7 +10,6 @@
 	strip_delay = 20
 	equip_delay_other = 40
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 50)
-	sprite_sheets = list(SPECIES_VOX = VOX_GLOVES_FILE)
 
 /obj/item/clothing/gloves/wash(clean_types)
 	. = ..()

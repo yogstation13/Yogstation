@@ -52,10 +52,7 @@
 	var/skin_tone = ""
 	var/body_gender = ""
 	var/species_id = ""
-	var/has_static_sprite_part = FALSE
 	var/is_husked = FALSE
-	var/limb_icon_variant
-	var/limb_icon_file
 	var/should_draw_gender = FALSE
 	var/should_draw_greyscale = FALSE
 	var/species_color = ""
@@ -1029,7 +1026,7 @@
 /proc/huskify_image(image/thing_to_husk, mob/living/carbon/husked_guy, draw_blood = TRUE, datum/species/passed_species)
 	var/husk_color_mod = rgb(96, 88, 80)
 	var/icon/husk_icon = new(thing_to_husk.icon)
-	husk_icon.ColorTone(husk_color_mod, grayscale = TRUE)
+	husk_icon.ColorTone(husk_color_mod)
 	thing_to_husk.icon = husk_icon
 	var/icon_of_husk = husked_guy?.dna?.species?.icon_husk || passed_species?.icon_husk
 	if(draw_blood)

@@ -5,7 +5,6 @@
 	slot_flags = ITEM_SLOT_MASK
 	strip_delay = 40
 	equip_delay_other = 40
-	sprite_sheets = list(SPECIES_VOX = VOX_MASK_FILE)
 	var/modifies_speech = FALSE
 	var/mask_adjusted = 0
 	var/adjusted_flags = null

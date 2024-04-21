@@ -126,14 +126,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	//The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
 	var/list/slot_equipment_priority = null // for default list, see /mob/proc/equip_to_appropriate_slot()
 
-	/* Species-specific sprites, concept from Bay.
-	ex:
-	sprite_sheets = list(
-		SPECIES_VOX = 'icons/mob/species/vox/head.dmi'
-		)
-	*/
-	var/list/sprite_sheets = null
-	var/species_fitted = null
 	// Needs to be in /obj/item because corgis can wear a lot of
 	// non-clothing items
 	var/datum/dog_fashion/dog_fashion = null

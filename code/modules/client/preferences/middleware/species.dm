@@ -22,7 +22,7 @@
 		dummy.equipOutfit(/datum/outfit/job/assistant/consistent, visualsOnly = TRUE)
 		dummy.dna.species.prepare_human_for_preview(dummy)
 		var/icon/dummy_icon = getFlatIcon(dummy)
-		var/list/lazy_icons_species = list(SPECIES_MOTH, SPECIES_VOX)//no idea why it fails to render properly the normal way
+		var/list/lazy_icons_species = list("moth", SPECIES_VOX)//no idea why it fails to render properly the normal way
 		if(dummy.dna.species.id in lazy_icons_species)
 			dummy_icon = null
 			dummy_icon = icon('icons/mob/human.dmi', "[dummy.dna.species.id]")

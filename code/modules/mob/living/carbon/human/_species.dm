@@ -30,14 +30,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/grad_style
 	///The gradient color used to color the gradient.
 	var/grad_color
-	var/generate_husk_icon = FALSE
 	/// does it use skintones or not? (spoiler alert this is only used by humans)
 	var/use_skintones = FALSE
-	var/limb_icon_file
 	var/icon_husk
-	var/list/parts_to_husk = list()
-	var/eyes_icon = 'icons/mob/human_face.dmi'
-	var/list/static_part_body_zones = list()
 	var/forced_skintone
 
 	/// What genders can this race be?
@@ -67,7 +62,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	/// Weighted list. NOTE: Picks one of the list component and then does a prob() on it, since we can't do a proper weighted pick, since we need to take into account the regular say_mod.
 	//TL;DR "meows" = 75 and "rawr" = 25 isn't actually 75% and 25%. It's 75% * 50% = 37.5% and 25% * 50% = 12.5%. Chance is divided by number of elements
 	var/list/rare_say_mod = list()
-	var/list/suicide_messages = list()
 	///Used if you want to give your species thier own language
 	var/species_language_holder = /datum/language_holder
 	/// Default mutant bodyparts for this species. Don't forget to set one for every mutant bodypart you allow this species to have.
@@ -141,7 +135,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	///yogs - audio of a species' scream
 	var/screamsound  //yogs - grabs scream from screamsound list or string
 	var/husk_color = "#A6A6A6"
-	var/list/survival_box_replacements = list(/*items_to_delete= list(), new_items= list()*/)
 	var/creampie_id = "creampie_human"
 	/// The visual effect of the attack.
 	var/attack_effect = ATTACK_EFFECT_PUNCH
@@ -1260,44 +1253,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	H.apply_overlay(BODY_BEHIND_LAYER)
 	H.apply_overlay(BODY_ADJ_LAYER)
 	H.apply_overlay(BODY_FRONT_LAYER)
-
-/datum/species/proc/return_accessory_layer(layer, datum/sprite_accessory/added_accessory, mob/living/carbon/human/host, passed_color)
-	var/list/return_list = list()
-	var/layertext = mutant_bodyparts_layertext(layer)
-	var/g = (host.gender == FEMALE) ? "f" : "m"
-	for(var/list_item in added_accessory.external_slots)
-		var/can_hidden_render = return_external_render_state(list_item, host)
-		if(!can_hidden_render)
-			continue // we failed the render check just dont bother
-		if(!host.getorganslot(list_item))
-			continue
-		var/mutable_appearance/new_overlay = mutable_appearance(added_accessory.icon, layer = -layer)
-		if(added_accessory.gender_specific)
-			new_overlay.icon_state = "[g]_[list_item]_[added_accessory.icon_state]_[layertext]"
-		else
-			new_overlay.icon_state = "m_[list_item]_[added_accessory.icon_state]_[layertext]"
-		new_overlay.color = passed_color
-		return_list += new_overlay
-
-	for(var/list_item in added_accessory.body_slots)
-		if(!host.get_bodypart(list_item))
-			continue
-		var/mutable_appearance/new_overlay = mutable_appearance(added_accessory.icon, layer = -layer)
-		if(added_accessory.gender_specific)
-			new_overlay.icon_state = "[g]_[list_item]_[added_accessory.icon_state]_[layertext]"
-		else
-			new_overlay.icon_state = "m_[list_item]_[added_accessory.icon_state]_[layertext]"
-		new_overlay.color = passed_color
-		return_list += new_overlay
-	
-	return return_list
-
-/proc/return_external_render_state(external_slot, mob/living/carbon/human/human)
-	switch(external_slot)
-		if(ORGAN_SLOT_TAIL)
-			if(human.wear_suit && (human.wear_suit.flags_inv & HIDEJUMPSUIT))
-				return FALSE
-			return TRUE
 
 //This exists so sprite accessories can still be per-layer without having to include that layer's
 //number in their sprite name, which causes issues when those numbers change.
@@ -2515,25 +2470,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(HAS_BONE in species_traits)
 		. |= BIO_JUST_BONE
 
-/datum/species/proc/get_icon_variant(mob/living/carbon/person_to_check)
-	return
-
-/datum/species/proc/get_eyes_static(mob/living/carbon/person_to_check)
-	return
-
-/datum/species/proc/get_special_statics(mob/living/carbon/person_to_check)
-	return list()
-
 /datum/species/proc/get_footprint_sprite()
 	return null
-
-/datum/species/proc/survival_box_replacement(mob/living/carbon/human/box_holder, obj/item/storage/box/survival_box, list/soon_deleted_items, list/soon_added_items)
-	for(var/item as anything in soon_deleted_items)
-		var/obj/item/item_to_delete = (locate(item) in survival_box)
-		if(item_to_delete)
-			qdel(item_to_delete)
-	for(var/item as anything in soon_added_items)
-		new item(survival_box)
 
 /datum/species/proc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
 	. = TRUE
