@@ -5,7 +5,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "ab" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -21,7 +21,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "aj" = (
 /obj/structure/closet/emcloset/anchored,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -32,7 +32,7 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "al" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
@@ -41,7 +41,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "an" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -57,7 +57,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "ar" = (
 /obj/structure/closet/crate,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -71,13 +71,13 @@
 /obj/item/reagent_containers/glass/bottle/welding_fuel,
 /obj/item/reagent_containers/glass/bottle/welding_fuel,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "aC" = (
 /mob/living/carbon/monkey{
 	faction = list("neutral","Syndicate")
 	},
 /turf/open/floor/grass,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "aI" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/purple{
@@ -86,7 +86,7 @@
 /obj/item/paper_bin,
 /obj/item/pen,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "aQ" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 5
@@ -104,14 +104,14 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "aU" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /obj/machinery/atmospherics/pipe/layer_manifold/visible{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "aV" = (
 /obj/effect/turf_decal/siding/green,
 /obj/machinery/light,
@@ -119,12 +119,12 @@
 	pixel_y = -24
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "aW" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /obj/machinery/atmospherics/pipe/layer_manifold/visible,
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "be" = (
 /obj/structure/safe/floor,
 /obj/item/card/id/syndicate/anyone,
@@ -134,7 +134,7 @@
 	pixel_y = -24
 	},
 /turf/open/floor/circuit/red/anim,
-/area/ruin/powered/syndicate_lava_base/vault)
+/area/ruin/powered/syndicate_jungle_base/vault)
 "bg" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
@@ -146,11 +146,11 @@
 	pixel_x = -27
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "br" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "by" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 1
@@ -166,7 +166,7 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "bG" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/bowl,
@@ -178,13 +178,13 @@
 	layer = 5
 	},
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "bI" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "bK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -196,7 +196,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "bV" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 6
@@ -205,13 +205,13 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "cd" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "cg" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /obj/machinery/door/poddoor/preopen{
@@ -219,7 +219,7 @@
 	name = "Syndicate Research Experimentation Shutters"
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "ck" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -231,14 +231,14 @@
 	dir = 5
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "cn" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/effect/turf_decal/siding/brown/corner{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "cp" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -250,7 +250,7 @@
 	pixel_x = 24
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "cw" = (
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -265,14 +265,14 @@
 /obj/item/reagent_containers/dropper,
 /obj/item/reagent_containers/syringe/antiviral,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "cB" = (
 /turf/open/floor/plating/dirt/jungleland/quarry,
 /area/jungleland/toxic_pit)
 "cD" = (
 /obj/machinery/atmospherics/components/trinary/filter/atmos/plasma,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "cM" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding/white{
@@ -282,14 +282,14 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "cN" = (
 /obj/machinery/photocopier,
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "cO" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 6
@@ -304,14 +304,14 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "cV" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /obj/machinery/atmospherics/pipe/layer_manifold/visible{
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "cW" = (
 /obj/structure/ore_box,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
@@ -330,7 +330,7 @@
 /area/jungleland/toxic_pit)
 "dn" = (
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "do" = (
 /obj/structure/disposalpipe/junction/yjunction,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -343,7 +343,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "dq" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/siding/wood{
@@ -359,20 +359,20 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "dw" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "dG" = (
 /obj/machinery/light,
 /turf/open/floor/engine,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "dI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "dK" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Central Pod"
@@ -387,7 +387,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "dN" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/railing{
@@ -407,7 +407,7 @@
 	dir = 2
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "dX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -416,7 +416,7 @@
 	dir = 9
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "dY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -427,7 +427,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "ea" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 10
@@ -442,7 +442,7 @@
 	pixel_y = -28
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "ef" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Central Pod"
@@ -457,7 +457,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "ej" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -475,7 +475,7 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "em" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 10
@@ -484,15 +484,15 @@
 	dir = 5
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "eq" = (
 /obj/machinery/microwave,
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "eA" = (
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "eE" = (
 /obj/item/kirbyplants/random,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -502,18 +502,18 @@
 	pixel_y = -28
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "eI" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
 	dir = 2
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "eU" = (
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "eX" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -528,7 +528,7 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "eY" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
@@ -537,21 +537,21 @@
 /obj/item/clothing/head/beret/chem,
 /obj/item/clothing/head/beret/chem,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "fa" = (
 /obj/machinery/igniter/incinerator_syndicatelava,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/open/floor/engine/vacuum,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "fb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "fh" = (
 /turf/open/floor/plating,
 /area/jungleland/toxic_pit)
@@ -563,7 +563,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "fn" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 1
@@ -575,7 +575,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "fs" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -592,7 +592,7 @@
 	pixel_y = -32
 	},
 /turf/open/floor/engine/vacuum,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "fw" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /obj/machinery/door/firedoor/window{
@@ -602,7 +602,7 @@
 	id = "lavalandsyndi_centralwindows"
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "fG" = (
 /obj/structure/table/reinforced,
 /obj/item/healthanalyzer{
@@ -612,7 +612,7 @@
 /obj/item/clothing/gloves/color/latex,
 /obj/item/clothing/glasses/hud/health,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "fK" = (
 /obj/effect/turf_decal/siding/blue,
 /obj/machinery/sleeper/syndie/fullupgrade{
@@ -622,7 +622,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "fM" = (
 /obj/structure/window/reinforced/spawner/west{
 	dir = 2
@@ -631,13 +631,13 @@
 	id = "syndielavaland_disposals"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "fS" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "fU" = (
 /obj/machinery/door/window/brigdoor/westleft{
 	dir = 2;
@@ -645,14 +645,14 @@
 	req_access_txt = "150"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "gb" = (
 /obj/structure/chair/comfy/black,
 /obj/effect/turf_decal/siding/white{
 	dir = 9
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "gw" = (
 /obj/structure/chair{
 	dir = 4
@@ -672,7 +672,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "gJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -681,7 +681,7 @@
 	dir = 10
 	},
 /turf/open/floor/grass,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "gT" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 9
@@ -691,7 +691,7 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "hc" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 8
@@ -704,7 +704,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "hd" = (
 /obj/effect/turf_decal/siding/green/corner,
 /obj/effect/turf_decal/siding/green{
@@ -715,7 +715,7 @@
 	pixel_y = 24
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "hf" = (
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -742,7 +742,7 @@
 	desc = "A quite wonderful device that can access all Nanotrasen radio frequencies with up-to-date encryption keys. Its components are quite fragile, and moving it will damage them severely."
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "hl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -760,7 +760,7 @@
 	icon_state = "0-2"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "hs" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 5
@@ -775,7 +775,7 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "ht" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -787,7 +787,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "hJ" = (
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /obj/structure/sign/warning/fire{
@@ -800,18 +800,18 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "hM" = (
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "hU" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "il" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/siding/wood{
@@ -824,7 +824,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "io" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -833,17 +833,17 @@
 /obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks/fullupgrade,
 /turf/open/floor/plasteel,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "iq" = (
 /obj/structure/chair/comfy/black,
 /obj/effect/turf_decal/siding/white{
 	dir = 5
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "ir" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "iJ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 8;
@@ -853,7 +853,7 @@
 /turf/open/floor/circuit/red/anim{
 	initial_gas_mix = "n2=100;TEMP=80"
 	},
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "iK" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 8
@@ -868,17 +868,17 @@
 	pixel_x = 27
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "iL" = (
 /obj/machinery/griddle,
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "iS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "iX" = (
 /turf/open/water/toxic_pit,
 /area/jungleland/toxic_pit)
@@ -897,7 +897,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "ja" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/closet/crate/secure/weapon{
@@ -924,7 +924,7 @@
 	pixel_y = -4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "jd" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 4
@@ -933,7 +933,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "jg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -948,7 +948,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "jh" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 1
@@ -961,7 +961,7 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "ji" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 8;
@@ -970,7 +970,7 @@
 	name = "oxygen out"
 	},
 /turf/open/floor/engine/o2,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "jo" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
@@ -982,7 +982,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "jt" = (
 /obj/structure/closet/crate/radiation,
 /obj/item/clothing/suit/radiation,
@@ -999,17 +999,17 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "ju" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 8
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "jv" = (
 /obj/machinery/porta_turret/syndicate,
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/vault)
+/area/ruin/powered/syndicate_jungle_base/vault)
 "jw" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/purple{
@@ -1020,7 +1020,7 @@
 	},
 /obj/item/storage/box/monkeycubes/syndicate,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "jA" = (
 /obj/machinery/computer/pandemic,
 /obj/effect/turf_decal/siding/green{
@@ -1030,24 +1030,24 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "jC" = (
 /obj/machinery/chem_master,
 /obj/effect/turf_decal/siding/purple{
 	dir = 6
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "jD" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/vault)
+/area/ruin/powered/syndicate_jungle_base/vault)
 "jE" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /obj/machinery/door/poddoor/preopen{
 	id = "lavalandsyndi_telecomms"
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "jG" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -1059,19 +1059,19 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "jI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "jQ" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/plating/rust,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "jU" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -1083,7 +1083,7 @@
 	pixel_x = -25
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "ka" = (
 /obj/structure/table/reinforced,
 /obj/structure/disposalpipe/segment{
@@ -1096,13 +1096,13 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "kc" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
 	},
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "ke" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/machinery/light,
@@ -1116,11 +1116,11 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "kj" = (
 /obj/machinery/icecream_vat,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "kn" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Convincing Room";
@@ -1133,11 +1133,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "ko" = (
 /obj/machinery/atmospherics/miner/toxins,
 /turf/open/floor/engine/plasma,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "ku" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
@@ -1150,7 +1150,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "kx" = (
 /obj/machinery/computer/message_monitor{
 	dir = 8
@@ -1159,10 +1159,10 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "kH" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "kK" = (
 /obj/structure/bed,
 /obj/effect/mob_spawn/human/lavaland_syndicate/jungle/lieutenant{
@@ -1170,7 +1170,7 @@
 	},
 /obj/item/bedsheet/syndie,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "kM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -1180,7 +1180,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "kY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -1198,7 +1198,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "lm" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
@@ -1211,11 +1211,11 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "ln" = (
 /obj/machinery/vending/boozeomat/syndicate_access,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "lt" = (
 /obj/structure/flora/stump,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
@@ -1226,7 +1226,7 @@
 	dir = 6
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "lH" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 8
@@ -1238,7 +1238,7 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "lJ" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -1254,7 +1254,7 @@
 	pixel_x = -26
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "lL" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/disposaloutlet,
@@ -1266,14 +1266,14 @@
 "lX" = (
 /obj/structure/flora/junglebush/b,
 /turf/open/floor/grass,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "mb" = (
 /obj/structure/table/wood,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "me" = (
 /obj/effect/turf_decal/siding/blue,
 /obj/structure/rack,
@@ -1291,7 +1291,7 @@
 	dir = 5
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "mm" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -1301,14 +1301,14 @@
 	luminosity = 2
 	},
 /turf/open/floor/engine/vacuum,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "mx" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 1
 	},
 /obj/machinery/smartfridge/chemistry/virology/preloaded,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "mz" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 4
@@ -1320,7 +1320,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "mB" = (
 /obj/machinery/door/airlock/mining/glass{
 	name = "Cargo Bay";
@@ -1336,7 +1336,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "mF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -1348,7 +1348,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "mI" = (
 /obj/structure/closet/crate,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -1366,11 +1366,11 @@
 /obj/item/soap/syndie,
 /obj/item/soap/syndie,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "mL" = (
 /obj/machinery/turretid{
 	ailock = 1;
-	control_area = "/area/ruin/powered/syndicate_lava_base/vault";
+	control_area = "/area/ruin/powered/syndicate_jungle_base/vault";
 	dir = 1;
 	icon_state = "control_kill";
 	lethal = 1;
@@ -1392,7 +1392,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/circuit/red/anim,
-/area/ruin/powered/syndicate_lava_base/vault)
+/area/ruin/powered/syndicate_jungle_base/vault)
 "mO" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 6
@@ -1408,13 +1408,13 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "mZ" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
 /turf/open/floor/engine/o2,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "nc" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -1424,14 +1424,14 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "ng" = (
 /obj/machinery/vending/syndichem,
 /obj/effect/turf_decal/siding/purple{
 	dir = 6
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "nm" = (
 /obj/effect/turf_decal/siding/purple,
 /obj/structure/disposalpipe/segment{
@@ -1450,7 +1450,7 @@
 	pixel_y = -23
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "nx" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/blue{
@@ -1464,13 +1464,13 @@
 	pixel_y = 24
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "nz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
 /turf/open/floor/grass,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "nC" = (
 /obj/effect/turf_decal/siding/blue,
 /obj/structure/table/reinforced,
@@ -1488,7 +1488,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "nE" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
@@ -1499,7 +1499,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "nF" = (
 /obj/effect/turf_decal/siding/red/corner{
 	dir = 4
@@ -1514,7 +1514,7 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "nL" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 8
@@ -1523,7 +1523,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "nR" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Engineering";
@@ -1545,7 +1545,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "nY" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
@@ -1554,7 +1554,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "oe" = (
 /obj/machinery/computer/camera_advanced/syndie{
 	dir = 4
@@ -1563,7 +1563,7 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "oj" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/brown{
@@ -1571,7 +1571,7 @@
 	},
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "ol" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
@@ -1581,13 +1581,13 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "oo" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "op" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 1
@@ -1600,13 +1600,13 @@
 	name = "Shower"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "ov" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
 /turf/open/floor/plating/rust,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "oB" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -1619,7 +1619,7 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "oN" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 9
@@ -1634,7 +1634,7 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "pf" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -1652,13 +1652,13 @@
 	req_access_txt = "150"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "pj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "pk" = (
 /obj/machinery/sleeper/syndie/fullupgrade{
 	dir = 4
@@ -1667,11 +1667,11 @@
 	dir = 9
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "pu" = (
 /obj/machinery/atmospherics/pipe/layer_manifold/visible,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "pw" = (
 /turf/open/water/safe/jungle,
 /area/jungleland/toxic_pit)
@@ -1689,14 +1689,14 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "pW" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "pX" = (
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "pZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -1706,7 +1706,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "qa" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -1718,20 +1718,20 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "qc" = (
 /obj/machinery/door/window/eastright{
 	name = "Kitchen";
 	req_access_txt = "150"
 	},
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "qg" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "qj" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -1743,7 +1743,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "qk" = (
 /obj/machinery/door/airlock{
 	name = "Cabin 1"
@@ -1761,7 +1761,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "qr" = (
 /obj/effect/turf_decal/siding/red/corner{
 	dir = 1
@@ -1776,7 +1776,7 @@
 	dir = 9
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "qt" = (
 /obj/machinery/door/airlock/medical/glass{
 	name = "Medical Pod"
@@ -1800,7 +1800,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "qv" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/siding/wood{
@@ -1810,13 +1810,13 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "qy" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "qF" = (
 /turf/open/floor/plating/rust,
 /area/jungleland/toxic_pit)
@@ -1824,7 +1824,7 @@
 /obj/machinery/chem_heater,
 /obj/effect/turf_decal/siding/purple,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "qW" = (
 /obj/machinery/door/airlock/glass/incinerator/syndicatelava_exterior,
 /obj/machinery/door/firedoor/border_only{
@@ -1838,7 +1838,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/engine,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "qX" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 5
@@ -1852,7 +1852,7 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "qY" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
@@ -1862,11 +1862,11 @@
 	dir = 2
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "rd" = (
 /obj/effect/turf_decal/siding/green,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "rj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2
@@ -1876,7 +1876,7 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "rl" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
@@ -1894,7 +1894,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "rm" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
@@ -1906,7 +1906,7 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "rq" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -1929,7 +1929,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "rr" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 6
@@ -1938,7 +1938,7 @@
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "rH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -1953,7 +1953,7 @@
 	pixel_y = 0
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "rI" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -1966,7 +1966,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "rK" = (
 /obj/effect/turf_decal/siding/purple,
 /obj/structure/disposalpipe/segment{
@@ -1985,12 +1985,12 @@
 	pixel_y = -24
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "rL" = (
 /obj/machinery/chem_dispenser/fullupgrade,
 /obj/effect/turf_decal/siding/purple,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "rR" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/structure/table,
@@ -2004,7 +2004,7 @@
 	},
 /obj/item/hand_labeler,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "rT" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -2014,7 +2014,7 @@
 	pixel_y = 24
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "rW" = (
 /obj/structure/flytrap,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
@@ -2022,7 +2022,7 @@
 "sa" = (
 /obj/structure/dresser,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "sb" = (
 /obj/machinery/door/airlock/mining/glass{
 	name = "Warehouse";
@@ -2035,12 +2035,12 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "sk" = (
 /obj/machinery/vending/cola/random,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "sl" = (
 /obj/machinery/suit_storage_unit/syndicate{
 	helmet_type = /obj/item/clothing/head/helmet/space/syndicate/black/engie;
@@ -2053,18 +2053,18 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "sp" = (
 /obj/structure/table/optable,
 /obj/effect/turf_decal/siding/blue{
 	dir = 10
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "sz" = (
 /obj/item/storage/box/monkeycubes/syndicate,
 /turf/open/floor/grass,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "sC" = (
 /obj/effect/mob_spawn/human/lavaland_syndicate/jungle/technician{
 	dir = 8
@@ -2075,7 +2075,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "sH" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding/white{
@@ -2089,7 +2089,7 @@
 	pixel_x = 27
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "sI" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 8
@@ -2101,7 +2101,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "sK" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -2116,7 +2116,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "sM" = (
 /obj/effect/turf_decal/siding/blue,
 /obj/structure/bed/roller,
@@ -2134,7 +2134,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "sR" = (
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
@@ -2145,7 +2145,7 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "sW" = (
 /obj/effect/mob_spawn/human/lavaland_syndicate/jungle/scientist{
 	dir = 4
@@ -2156,18 +2156,18 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "sY" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "ta" = (
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "td" = (
 /obj/machinery/door/airlock/vault{
 	id_tag = "syndie_lavaland_vault";
@@ -2188,11 +2188,11 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/vault)
+/area/ruin/powered/syndicate_jungle_base/vault)
 "tf" = (
 /obj/structure/flora/junglebush/c,
 /turf/open/floor/grass,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "tg" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding/white{
@@ -2203,17 +2203,17 @@
 	},
 /obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "tn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "to" = (
 /obj/structure/flora/junglebush,
 /turf/open/floor/grass,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "tE" = (
 /turf/closed/mineral/ash_rock/jungle/swamp,
 /area/jungleland/toxic_pit)
@@ -2232,7 +2232,7 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "tV" = (
 /obj/effect/turf_decal/siding/green/corner{
 	dir = 1
@@ -2241,7 +2241,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "tW" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 10
@@ -2254,11 +2254,11 @@
 	pixel_x = -32
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "tZ" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "ue" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/tile/bar,
@@ -2274,7 +2274,7 @@
 	pixel_y = -2
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "uk" = (
 /obj/structure/closet/syndicate,
 /obj/item/clothing/under/syndicate/camo,
@@ -2289,14 +2289,14 @@
 /obj/item/kitchen/knife/combat/survival,
 /obj/item/ammo_box/magazine/m10mm,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "uv" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "uy" = (
 /obj/structure/sign/warning/fire,
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "uD" = (
 /obj/machinery/vending/cigarette,
 /obj/effect/turf_decal/siding/white{
@@ -2304,14 +2304,14 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "uW" = (
 /obj/machinery/vending/medical/syndicate_access,
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "vf" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -2324,7 +2324,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "vi" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 6
@@ -2338,13 +2338,13 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "vx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "vB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -2359,7 +2359,7 @@
 	dir = 5
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "vI" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/railing{
@@ -2373,7 +2373,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "vM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -2382,7 +2382,7 @@
 	dir = 5
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "vP" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -2391,7 +2391,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "vW" = (
 /obj/effect/turf_decal/siding/red/corner{
 	dir = 8
@@ -2400,14 +2400,14 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "vX" = (
 /obj/machinery/vending/modularpc,
 /obj/effect/turf_decal/siding/red{
 	dir = 9
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "wc" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 6
@@ -2417,35 +2417,35 @@
 	},
 /obj/machinery/autolathe/hacked,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "wk" = (
 /obj/machinery/porta_turret/syndicate,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/vault)
+/area/ruin/powered/syndicate_jungle_base/vault)
 "wF" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/mineral/ore_redemption,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "wI" = (
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/siding/white{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "wJ" = (
 /obj/machinery/jukebox,
 /obj/item/wrench,
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "wP" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /obj/machinery/light/small,
 /turf/open/floor/circuit/red/anim{
 	initial_gas_mix = "n2=100;TEMP=80"
 	},
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "wT" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 4
@@ -2456,12 +2456,12 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "wU" = (
 /obj/machinery/chem_dispenser/fullupgrade,
 /obj/effect/turf_decal/siding/purple/corner,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "wV" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 10
@@ -2481,7 +2481,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "wW" = (
 /obj/structure/chair/comfy/black{
 	dir = 1
@@ -2490,19 +2490,19 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "wY" = (
 /obj/machinery/chem_master/condimaster{
 	name = "HoochMaster 2000"
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "xa" = (
 /obj/effect/turf_decal/siding/white,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "xw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -2512,7 +2512,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "xz" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/siding/purple,
@@ -2520,19 +2520,19 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "xK" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 8
 	},
 /turf/open/floor/engine/o2,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "xL" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 9
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "xN" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
@@ -2542,7 +2542,7 @@
 	id = "syndie_lavaland_exitdoors"
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "xS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
@@ -2552,14 +2552,14 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "xU" = (
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "xV" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "yh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -2571,7 +2571,7 @@
 	pixel_x = 26
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "yj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2
@@ -2581,7 +2581,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "yl" = (
 /obj/machinery/button/door{
 	id = "lavalandsyndi_cargo";
@@ -2596,20 +2596,20 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "yo" = (
 /obj/structure/closet/l3closet/virology,
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "yp" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "yq" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 9
@@ -2629,11 +2629,11 @@
 	amount = 10
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "yL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "yV" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
@@ -2645,7 +2645,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "yY" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -2663,14 +2663,14 @@
 	pixel_y = 24
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "zj" = (
 /obj/machinery/computer/arcade/battle,
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "zo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -2679,7 +2679,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "zt" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -2694,7 +2694,7 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "zB" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 8
@@ -2712,7 +2712,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "zH" = (
 /obj/structure/flora/junglebush,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
@@ -2725,7 +2725,7 @@
 /obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks/beer/fullupgrade,
 /turf/open/floor/plasteel,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "zY" = (
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/incinerator_syndicatelava{
 	dir = 1
@@ -2734,7 +2734,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/engine,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "Af" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -2752,17 +2752,17 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "Ai" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Av" = (
 /obj/effect/turf_decal/siding/red,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "Az" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding/white{
@@ -2774,7 +2774,7 @@
 /obj/item/clothing/mask/cigarette/cigar/cohiba,
 /obj/item/lighter,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "AI" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
@@ -2786,7 +2786,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "AJ" = (
 /obj/machinery/door/airlock/mining/glass{
 	name = "Cargo Office";
@@ -2801,7 +2801,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "AQ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -2809,7 +2809,7 @@
 	},
 /obj/item/storage/toolbox/syndicate,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "AR" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 10
@@ -2818,14 +2818,14 @@
 	dir = 5
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "AT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "AX" = (
 /obj/structure/table/wood,
 /obj/item/storage/pill_bottle/dice,
@@ -2834,7 +2834,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "AZ" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 8
@@ -2846,7 +2846,7 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "Ba" = (
 /obj/machinery/computer/operating{
 	dir = 4
@@ -2855,7 +2855,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "Bc" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
@@ -2865,7 +2865,7 @@
 	radio_key = /obj/item/encryptionkey/syndicate
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "Bg" = (
 /obj/machinery/shower,
 /obj/effect/turf_decal/siding/yellow{
@@ -2881,7 +2881,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "Bj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -2890,7 +2890,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "Bm" = (
 /obj/structure/closet/syndicate,
 /obj/item/gun/ballistic/shotgun/doublebarrel,
@@ -2907,7 +2907,7 @@
 /obj/item/clothing/head/that,
 /obj/item/clothing/glasses/sunglasses/reagent,
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "Bw" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -2925,13 +2925,13 @@
 	pixel_y = 23
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Bx" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "BC" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
@@ -2949,7 +2949,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "BE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -2958,7 +2958,7 @@
 	dir = 9
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "BK" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 10
@@ -2974,7 +2974,7 @@
 /obj/item/storage/box/syringes,
 /obj/item/stack/sheet/mineral/plasma/fifty,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "BL" = (
 /obj/machinery/vending/toyliberationstation{
 	req_access_txt = "150"
@@ -2984,7 +2984,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "BV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 4;
@@ -2993,14 +2993,14 @@
 	name = "toxin out"
 	},
 /turf/open/floor/engine/plasma,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "BW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "BZ" = (
 /obj/machinery/door/airlock{
 	name = "Cabin 3"
@@ -3018,7 +3018,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "Ce" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/closet/crate/internals,
@@ -3034,7 +3034,7 @@
 /obj/item/tank/internals/emergency_oxygen/double,
 /obj/item/tank/internals/emergency_oxygen/double,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Ci" = (
 /obj/machinery/door/airlock/research{
 	name = "Experimentation Lab";
@@ -3049,14 +3049,14 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "Cl" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 5
 	},
 /obj/machinery/vending/assist,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Cn" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Telecommunications";
@@ -3081,7 +3081,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "CD" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/structure/disposalpipe/segment{
@@ -3092,7 +3092,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "CE" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -3108,15 +3108,15 @@
 	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "CO" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "CQ" = (
 /obj/structure/kitchenspike,
 /obj/item/storage/box/monkeycubes/syndicate,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "CV" = (
 /obj/structure/chair/comfy/black{
 	dir = 1
@@ -3125,19 +3125,19 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "Df" = (
 /obj/effect/turf_decal/siding/blue,
 /obj/machinery/smartfridge/organ,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "Di" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
 	},
 /obj/machinery/autolathe/hacked,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Dj" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding/white{
@@ -3151,7 +3151,7 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "Dq" = (
 /obj/item/kirbyplants/random,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
@@ -3165,7 +3165,7 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "Dr" = (
 /obj/effect/mob_spawn/human/lavaland_syndicate/jungle/technician{
 	dir = 8
@@ -3174,7 +3174,7 @@
 /obj/item/bedsheet/syndie,
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "Dw" = (
 /obj/machinery/button/door{
 	id = "syndie_lavaland_exitdoors";
@@ -3192,7 +3192,7 @@
 	pixel_x = 26
 	},
 /turf/open/floor/circuit/red/anim,
-/area/ruin/powered/syndicate_lava_base/vault)
+/area/ruin/powered/syndicate_jungle_base/vault)
 "DH" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/siding/white{
@@ -3202,7 +3202,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "DM" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 9
@@ -3220,7 +3220,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "DX" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 9
@@ -3234,7 +3234,7 @@
 	pixel_x = -27
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "DY" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -3247,10 +3247,10 @@
 	pixel_x = -26
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "El" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Ew" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/machinery/conveyor{
@@ -3258,7 +3258,7 @@
 	id = "syndielavaland_disposals"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Ey" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
@@ -3268,7 +3268,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "EA" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 6
@@ -3280,7 +3280,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "EI" = (
 /obj/effect/turf_decal/siding/red/corner,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -3293,7 +3293,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "EL" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
@@ -3312,7 +3312,7 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "EN" = (
 /obj/structure/rack,
 /obj/item/surgicaldrill,
@@ -3323,7 +3323,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "EX" = (
 /obj/effect/turf_decal/siding/yellow/corner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -3333,7 +3333,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "Fa" = (
 /obj/machinery/door/airlock{
 	name = "Cabin 2"
@@ -3351,13 +3351,13 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "Fd" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/engine/plasma,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "Fi" = (
 /turf/open/water/deep_toxic_pit,
 /area/jungleland/toxic_pit)
@@ -3373,7 +3373,7 @@
 	dir = 2
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Fo" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/condiment/saltshaker,
@@ -3387,14 +3387,14 @@
 	pixel_x = -6
 	},
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "Fs" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
 	dir = 2
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "Ft" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
 	req_access = list(150)
@@ -3409,7 +3409,7 @@
 /obj/item/plate,
 /obj/item/plate,
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "Fw" = (
 /mob/living/carbon/monkey{
 	faction = list("neutral","Syndicate")
@@ -3418,46 +3418,46 @@
 	dir = 8
 	},
 /turf/open/floor/grass,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "FA" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
 /turf/open/floor/engine/n2,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "FC" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "FI" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "FN" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
 	},
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "FW" = (
 /obj/machinery/chem_heater,
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "FX" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "FY" = (
 /obj/structure/closet/crate/engineering,
 /obj/item/pipe_dispenser,
@@ -3477,7 +3477,7 @@
 	pixel_y = 28
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "Gq" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 4
@@ -3489,7 +3489,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "Gs" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/closet/crate/secure/gear{
@@ -3517,7 +3517,7 @@
 /obj/item/clothing/glasses/night,
 /obj/item/clothing/glasses/night,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Gw" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Dormitories Pod"
@@ -3534,11 +3534,11 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "GD" = (
 /obj/machinery/chem_master,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "GE" = (
 /obj/machinery/button/door{
 	id = "lavalandsyndi";
@@ -3547,7 +3547,7 @@
 	req_access_txt = "150"
 	},
 /turf/open/floor/engine,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "GF" = (
 /obj/machinery/door/airlock{
 	name = "Cabin 5"
@@ -3559,7 +3559,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "GN" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 9
@@ -3571,7 +3571,7 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "GR" = (
 /obj/structure/flora/junglebush/c,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
@@ -3590,7 +3590,7 @@
 	pixel_x = 2
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Hd" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -3600,7 +3600,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "Hg" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
@@ -3613,7 +3613,7 @@
 	pixel_x = 24
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "Hh" = (
 /obj/machinery/door/airlock/virology/glass{
 	name = "Virology"
@@ -3630,7 +3630,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "Hi" = (
 /obj/machinery/reagentgrinder/kitchen,
 /obj/structure/table/reinforced,
@@ -3640,7 +3640,7 @@
 	},
 /obj/machinery/light,
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "Hn" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -3662,7 +3662,7 @@
 	pixel_x = 26
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "Hv" = (
 /obj/machinery/door/airlock/virology/glass{
 	name = "Monkey Pen";
@@ -3672,7 +3672,7 @@
 	dir = 4
 	},
 /turf/open/floor/grass,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "Hw" = (
 /obj/machinery/door/airlock/mining/glass{
 	name = "Warehouse";
@@ -3685,7 +3685,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Hy" = (
 /obj/effect/turf_decal/siding/wood/corner,
 /obj/effect/turf_decal/siding/wood/corner{
@@ -3702,7 +3702,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "HA" = (
 /obj/structure/lattice/catwalk,
 /turf/open/water/toxic_pit,
@@ -3721,7 +3721,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "HY" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -3735,7 +3735,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "Ib" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -3751,7 +3751,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "Ic" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -3766,7 +3766,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "Ig" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -3779,7 +3779,7 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "Ih" = (
 /obj/structure/closet/crate,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -3788,7 +3788,7 @@
 /obj/item/vending_refill/cola,
 /obj/item/vending_refill/cola,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Ik" = (
 /obj/docking_port/stationary{
 	dir = 4;
@@ -3809,7 +3809,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "Iq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/structure/closet/syndicate,
@@ -3819,7 +3819,7 @@
 /obj/item/kitchen/knife/combat/survival,
 /obj/item/ammo_box/magazine/m10mm,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "Iy" = (
 /obj/structure/toilet{
 	dir = 8
@@ -3831,7 +3831,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "IB" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -3848,7 +3848,7 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "IE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 8;
@@ -3857,7 +3857,7 @@
 	name = "nitrogen out"
 	},
 /turf/open/floor/engine/n2,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "IG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -3866,7 +3866,7 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "IH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3878,10 +3878,10 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "IJ" = (
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "IL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -3890,7 +3890,7 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "IP" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 10
@@ -3908,17 +3908,17 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "Ja" = (
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Jc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{
 	dir = 4
 	},
 /turf/open/floor/plating/rust,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "Je" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -3928,7 +3928,7 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "Jk" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/rust,
@@ -3936,11 +3936,11 @@
 "Jm" = (
 /obj/structure/sign/warning/biohazard,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "Jo" = (
 /obj/machinery/oven,
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "Jr" = (
 /obj/machinery/door/airlock{
 	name = "Cabin 4"
@@ -3958,7 +3958,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "Jv" = (
 /obj/structure/closet/l3closet/virology,
 /obj/effect/decal/cleanable/dirt,
@@ -3966,7 +3966,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "JD" = (
 /obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
@@ -3982,20 +3982,20 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "JL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "JP" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos{
 	dir = 4;
 	id = "syndie_lavaland_inc_in"
 	},
 /turf/open/floor/engine/vacuum,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "JS" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/brown{
@@ -4004,10 +4004,10 @@
 /obj/item/paper_bin,
 /obj/item/pen,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "JU" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "Kd" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
@@ -4019,7 +4019,7 @@
 	pixel_y = 24
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "Kp" = (
 /turf/template_noop,
 /area/template_noop)
@@ -4032,7 +4032,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Ku" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/structure/disposalpipe/segment{
@@ -4045,7 +4045,7 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "KF" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
@@ -4066,7 +4066,7 @@
 	pixel_y = 24
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "KG" = (
 /obj/structure/sink{
 	pixel_y = 20
@@ -4079,13 +4079,13 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "KK" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "KL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -4096,22 +4096,22 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "KS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "KZ" = (
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "Li" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "Lj" = (
 /obj/structure/flora/junglebush/b,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
@@ -4133,13 +4133,13 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "LJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "LO" = (
 /obj/effect/turf_decal/siding/brown/corner,
 /obj/structure/disposalpipe/segment{
@@ -4154,27 +4154,27 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "Mg" = (
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "Ms" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "Mt" = (
 /obj/structure/bed,
 /mob/living/carbon/monkey{
 	faction = list("neutral","Syndicate")
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "MB" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -4183,7 +4183,7 @@
 	dir = 2
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "MH" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
@@ -4195,7 +4195,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "ML" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 4
@@ -4213,7 +4213,7 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "MN" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Bar Backroom"
@@ -4231,18 +4231,18 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "MR" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "MS" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "Nf" = (
 /obj/machinery/door/airlock/glass/incinerator/syndicatelava_interior,
 /obj/machinery/door/firedoor/border_only{
@@ -4256,7 +4256,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/engine,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "Np" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Central Pod"
@@ -4273,7 +4273,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "Nr" = (
 /obj/item/kirbyplants/random,
 /obj/effect/decal/cleanable/dirt,
@@ -4281,11 +4281,11 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "Ns" = (
 /obj/machinery/door/poddoor/incinerator_syndicatelava_main,
 /turf/open/floor/plating/burnt,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "Nu" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
@@ -4303,7 +4303,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "Nw" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 6
@@ -4312,7 +4312,7 @@
 	dir = 6
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "Ny" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -4323,10 +4323,10 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "Nz" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "NB" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 8
@@ -4335,11 +4335,11 @@
 	dir = 6
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "ND" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "NI" = (
 /obj/machinery/disposal/bin,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -4349,23 +4349,23 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "NN" = (
 /obj/machinery/door/poddoor/incinerator_syndicatelava_aux,
 /turf/open/floor/plating/airless,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "NO" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 8
 	},
 /turf/open/floor/plating/rust,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "NR" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 4
 	},
 /turf/open/floor/engine/plasma,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "NV" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 8
@@ -4374,7 +4374,7 @@
 	dir = 2
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "NZ" = (
 /obj/structure/flora/grass/jungle/b,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
@@ -4390,7 +4390,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "Oe" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
@@ -4402,33 +4402,33 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "Og" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Op" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 9
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "Oy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Oz" = (
 /obj/machinery/light/small,
 /turf/open/floor/engine/air,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "OC" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "OD" = (
 /obj/machinery/door/airlock{
 	name = "Kitchen cold room";
@@ -4450,7 +4450,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "OL" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -4462,10 +4462,10 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Pa" = (
 /turf/open/floor/engine/air,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "Pb" = (
 /mob/living/carbon/monkey{
 	faction = list("neutral","Syndicate")
@@ -4474,7 +4474,7 @@
 	dir = 4
 	},
 /turf/open/floor/grass,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "Pi" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -4485,7 +4485,7 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "Pj" = (
 /obj/structure/disposalpipe/junction/flip{
 	dir = 2
@@ -4498,7 +4498,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "Pk" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
 	req_access = list(150)
@@ -4513,12 +4513,12 @@
 /obj/item/storage/box/ingredients/wildcard,
 /obj/item/storage/box/ingredients/wildcard,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "PN" = (
 /obj/effect/turf_decal/siding/blue,
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "PP" = (
 /obj/structure/rack,
 /obj/machinery/light/small{
@@ -4544,11 +4544,11 @@
 /obj/item/kitchen/knife/combat,
 /obj/item/kitchen/knife/combat,
 /turf/open/floor/circuit/red/anim,
-/area/ruin/powered/syndicate_lava_base/vault)
+/area/ruin/powered/syndicate_jungle_base/vault)
 "PU" = (
 /obj/machinery/atmospherics/miner/nitrogen,
 /turf/open/floor/engine/n2,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "PW" = (
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/jungleland/toxic_pit)
@@ -4563,7 +4563,7 @@
 /obj/item/kitchen/knife/combat/survival,
 /obj/item/ammo_box/magazine/m10mm,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "Qf" = (
 /obj/structure/chair/comfy/black{
 	dir = 1
@@ -4575,7 +4575,7 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "Qh" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Amenities Pod"
@@ -4601,7 +4601,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "Qk" = (
 /obj/effect/turf_decal/siding/green/end{
 	dir = 4
@@ -4614,7 +4614,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "Qp" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -4625,7 +4625,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "QA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -4637,39 +4637,39 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/circuit/red/anim,
-/area/ruin/powered/syndicate_lava_base/vault)
+/area/ruin/powered/syndicate_jungle_base/vault)
 "QM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "QR" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /obj/machinery/door/poddoor/preopen{
 	id = "lavalandsyndi_centralwindows"
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "Rd" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "Rj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Rk" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Rl" = (
 /obj/structure/chair/office/dark,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "Rp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1;
@@ -4677,7 +4677,7 @@
 	name = "airmix out"
 	},
 /turf/open/floor/engine/air,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "Ry" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -4689,7 +4689,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "RC" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -4701,7 +4701,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "RH" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -4719,7 +4719,7 @@
 	dir = 5
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "RK" = (
 /obj/structure/closet/crate,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -4741,14 +4741,14 @@
 /obj/item/storage/part_replacer/bluespace/tier4,
 /obj/item/circuitboard/machine/ore_redemption,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "RN" = (
 /obj/machinery/smoke_machine,
 /turf/open/floor/engine,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "RQ" = (
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "RS" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 4
@@ -4766,7 +4766,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "RY" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
@@ -4780,7 +4780,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "Sb" = (
 /obj/machinery/door/window/brigdoor{
 	dir = 1;
@@ -4788,10 +4788,10 @@
 	req_access_txt = "150"
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "Sd" = (
 /turf/open/floor/engine,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "Sj" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Telecommunications";
@@ -4810,7 +4810,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "Sm" = (
 /obj/machinery/button/door{
 	id = "lavalandsyndi";
@@ -4822,7 +4822,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "Sn" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
@@ -4837,7 +4837,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "Sr" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
@@ -4846,7 +4846,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "St" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 8
@@ -4864,16 +4864,16 @@
 /obj/item/storage/box/handcuffs,
 /obj/item/storage/box/syringes,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "Su" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "Sx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "SG" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
@@ -4890,7 +4890,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "SI" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 4
@@ -4903,7 +4903,7 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "SJ" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 8
@@ -4921,7 +4921,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "SP" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/tile/bar,
@@ -4935,7 +4935,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "ST" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
@@ -4943,14 +4943,14 @@
 /obj/structure/fans/tiny,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "SU" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "SV" = (
 /obj/machinery/computer/terminal{
 	desc = "Occasionally used to call in a resupply shuttle if one is in range.";
@@ -4963,7 +4963,7 @@
 	light_color = "#FA8282"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "SW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -4971,7 +4971,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "Ta" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 10
@@ -4980,14 +4980,14 @@
 	dir = 9
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "Tf" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/brown/corner,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Tj" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -4998,7 +4998,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "Tl" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -5010,14 +5010,14 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Tm" = (
 /obj/effect/turf_decal/siding/blue/corner{
 	dir = 8
 	},
 /obj/structure/closet/emcloset/anchored,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "Tq" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 10
@@ -5026,7 +5026,7 @@
 	pixel_x = -27
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "Tz" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/structure/disposalpipe/segment{
@@ -5039,7 +5039,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "TG" = (
 /obj/structure/table/reinforced,
 /obj/machinery/reagentgrinder{
@@ -5052,7 +5052,7 @@
 	pixel_x = -3
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "TR" = (
 /obj/machinery/telecomms/relay/preset/ruskie{
 	use_power = 0
@@ -5063,7 +5063,7 @@
 /turf/open/floor/circuit/red/anim{
 	initial_gas_mix = "n2=100;TEMP=80"
 	},
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "TW" = (
 /obj/effect/mob_spawn/human/lavaland_syndicate/jungle/scientist{
 	dir = 4
@@ -5072,14 +5072,14 @@
 /obj/item/bedsheet/syndie,
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "TY" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "Uc" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 6
@@ -5093,7 +5093,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "Up" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -5105,13 +5105,13 @@
 	dir = 9
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "UG" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "UK" = (
 /obj/machinery/door/airlock/research{
 	name = "Science Pod";
@@ -5136,7 +5136,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "UX" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/structure/disposalpipe/segment{
@@ -5146,7 +5146,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Vg" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Engineering Pod";
@@ -5168,7 +5168,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "VG" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 4
@@ -5184,7 +5184,7 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/area/ruin/powered/syndicate_jungle_base/dormitories)
 "VK" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -5199,12 +5199,12 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "VL" = (
 /obj/structure/table/wood,
 /obj/item/toy/cards/deck/uno,
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "VR" = (
 /obj/structure/flora/junglebush/large,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
@@ -5216,14 +5216,14 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /obj/machinery/light/small,
 /turf/open/floor/engine,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "Wn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "Wp" = (
 /obj/structure/filingcabinet,
 /obj/item/paper/monitorkey,
@@ -5235,16 +5235,16 @@
 	pixel_y = 24
 	},
 /turf/open/floor/circuit/red/anim,
-/area/ruin/powered/syndicate_lava_base/vault)
+/area/ruin/powered/syndicate_jungle_base/vault)
 "Wz" = (
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "WA" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 10
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "WD" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
@@ -5257,7 +5257,7 @@
 	pixel_x = 26
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "WH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -5266,7 +5266,7 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "WK" = (
 /obj/machinery/door/airlock/mining/glass{
 	name = "Cargo Pod";
@@ -5291,7 +5291,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "WL" = (
 /obj/structure/closet/secure_closet/medical1{
 	req_access = null;
@@ -5307,7 +5307,7 @@
 	req_access = list(150)
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "WR" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "lavalandsyndi_bar"
@@ -5317,7 +5317,7 @@
 	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/bar)
+/area/ruin/powered/syndicate_jungle_base/bar)
 "Xn" = (
 /obj/machinery/light{
 	dir = 1
@@ -5335,7 +5335,7 @@
 	pixel_y = 24
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "Xp" = (
 /obj/structure/closet/l3closet/virology,
 /obj/effect/turf_decal/siding/purple{
@@ -5345,7 +5345,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "Xw" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 5
@@ -5355,7 +5355,7 @@
 	pixel_x = 26
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/chemistry)
+/area/ruin/powered/syndicate_jungle_base/chemistry)
 "XB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -5365,20 +5365,20 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/area/ruin/powered/syndicate_jungle_base/virology)
 "XF" = (
 /turf/open/floor/engine/vacuum,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "XG" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "XH" = (
 /obj/machinery/atmospherics/miner/oxygen,
 /turf/open/floor/engine/o2,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "XJ" = (
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2{
 	dir = 1
@@ -5387,27 +5387,27 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "XM" = (
 /obj/effect/turf_decal/siding/yellow/corner,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "XN" = (
 /obj/effect/turf_decal/siding/brown/corner{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "XT" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
 /obj/structure/table/reinforced,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "XV" = (
 /obj/item/chair,
 /obj/effect/decal/cleanable/blood/old,
@@ -5417,7 +5417,7 @@
 	req_access_txt = "150"
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "XY" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/backpack/duffelbag/syndie/surgery,
@@ -5431,7 +5431,7 @@
 	pixel_y = -23
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 "XZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -5440,7 +5440,7 @@
 	pixel_y = 24
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "Yc" = (
 /obj/machinery/light{
 	dir = 1
@@ -5458,13 +5458,13 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "Yd" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 4
 	},
 /turf/open/floor/engine/air,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "Yg" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/closet/crate,
@@ -5499,13 +5499,13 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Yw" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 8
 	},
 /turf/open/floor/engine/n2,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "Yx" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/red{
@@ -5521,7 +5521,7 @@
 /obj/item/stamp/syndiround,
 /obj/item/pen,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/area/ruin/powered/syndicate_jungle_base/telecomms)
 "YC" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -5530,7 +5530,7 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "YF" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -5539,7 +5539,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "YI" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -5563,7 +5563,7 @@
 	pixel_y = 24
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "YX" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
@@ -5575,7 +5575,7 @@
 	id = "syndie_lavaland_incineratorturbine"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "YZ" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -5596,7 +5596,7 @@
 /obj/item/clothing/head/beret/eng,
 /obj/item/clothing/head/beret/atmos,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/area/ruin/powered/syndicate_jungle_base/engineering)
 "Zi" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
@@ -5609,7 +5609,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/main)
+/area/ruin/powered/syndicate_jungle_base/main)
 "Zo" = (
 /obj/machinery/door/poddoor{
 	id = "lavalandsyndi_cargo"
@@ -5619,7 +5619,7 @@
 	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "Zt" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light/small{
@@ -5628,7 +5628,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
+/area/ruin/powered/syndicate_jungle_base/cargo)
 "ZW" = (
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/water/deep_toxic_pit,
@@ -5639,7 +5639,7 @@
 	},
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
+/area/ruin/powered/syndicate_jungle_base/medbay)
 
 (1,1,1) = {"
 Kp

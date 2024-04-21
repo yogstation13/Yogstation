@@ -949,6 +949,7 @@
 #include "code\game\area\areas\procedurally_generated_areas\maintenance.dm"
 #include "code\game\area\areas\ruins\_ruins.dm"
 #include "code\game\area\areas\ruins\icemoon.dm"
+#include "code\game\area\areas\ruins\jungleland.dm"
 #include "code\game\area\areas\ruins\lavaland.dm"
 #include "code\game\area\areas\ruins\space.dm"
 #include "code\game\area\areas\ruins\templates.dm"

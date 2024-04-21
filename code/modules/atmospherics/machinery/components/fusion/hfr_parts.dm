@@ -491,9 +491,9 @@
 	part_path = /obj/machinery/hypertorus/corner
 
 /obj/item/hfr_box/corner/syndicate
-	color = "#320101"
 	part_path = /obj/machinery/hypertorus/corner/syndicate
 	syndicate_type = TRUE
+	icon_state = "box_corner_syndi"
 
 /obj/item/hfr_box/body
 	name = "HFR box body"
@@ -508,6 +508,7 @@
 
 /obj/item/hfr_box/body/fuel_input/syndicate
 	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/fuel_input/syndicate
+	icon_state = "box_fuel_syndi"
 	syndicate_type = TRUE
 
 /obj/item/hfr_box/body/moderator_input
@@ -517,6 +518,7 @@
 
 /obj/item/hfr_box/body/moderator_input/syndicate
 	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/moderator_input/syndicate
+	icon_state = "box_moderator_syndi"
 	syndicate_type = TRUE
 
 /obj/item/hfr_box/body/waste_output
@@ -526,6 +528,7 @@
 
 /obj/item/hfr_box/body/waste_output/syndicate
 	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/waste_output/syndicate
+	icon_state = "box_waste_syndi"
 	syndicate_type = TRUE
 
 /obj/item/hfr_box/body/interface
@@ -534,6 +537,7 @@
 
 /obj/item/hfr_box/body/interface/syndicate
 	part_path = /obj/machinery/hypertorus/interface/syndicate
+	icon_state = "box_body_syndi"
 	syndicate_type = TRUE
 
 /obj/item/hfr_box/core
@@ -545,6 +549,7 @@
 
 /obj/item/hfr_box/core/syndicate
 	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/core/syndicate
+	icon_state = "box_core_syndi"
 	syndicate_type = TRUE
 
 /obj/item/hfr_box/core/multitool_act(mob/living/user, obj/item/I)
