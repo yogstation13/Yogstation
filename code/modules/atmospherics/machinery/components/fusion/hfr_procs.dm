@@ -15,6 +15,12 @@
 		if(. == FALSE)
 			break
 
+		if(syndicate_machine && !object.syndicate_machine)
+			. = FALSE
+
+		if(!syndicate_machine && object.syndicate_machine)
+			. = FALSE
+
 		if(object.panel_open)
 			. = FALSE
 
@@ -49,6 +55,12 @@
 	for(var/obj/machinery/atmospherics/components/unary/hypertorus/object in orange(1,src))
 		if(. == FALSE)
 			break
+
+		if(syndicate_machine && !object.syndicate_machine)
+			. = FALSE
+
+		if(!syndicate_machine && object.syndicate_machine)
+			. = FALSE
 
 		if(object.panel_open)
 			. = FALSE

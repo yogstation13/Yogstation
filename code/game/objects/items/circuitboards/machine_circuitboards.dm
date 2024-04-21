@@ -401,6 +401,9 @@
 	req_components = list(
 		/obj/item/stack/sheet/plasteel = 5)
 
+/obj/item/circuitboard/machine/HFR_fuel_input/syndicate
+	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/fuel_input/syndicate
+
 /obj/item/circuitboard/machine/HFR_waste_output
 	name = "HFR Waste Output (Machine Board)"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
@@ -408,12 +411,18 @@
 	req_components = list(
 		/obj/item/stack/sheet/plasteel = 5)
 
+/obj/item/circuitboard/machine/HFR_waste_input/syndicate
+	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/waste_output/syndicate
+
 /obj/item/circuitboard/machine/HFR_moderator_input
 	name = "HFR Moderator Input (Machine Board)"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/moderator_input
 	req_components = list(
 		/obj/item/stack/sheet/plasteel = 5)
+
+/obj/item/circuitboard/machine/HFR_moderator_input/syndicate
+	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/moderator_input/syndicate
 
 /obj/item/circuitboard/machine/HFR_core
 	name = "HFR core (Machine Board)"
@@ -424,12 +433,18 @@
 		/obj/item/stack/sheet/glass = 10,
 		/obj/item/stack/sheet/plasteel = 10)
 
+/obj/item/circuitboard/machine/HFR_core/syndicate
+	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/core/syndicate
+
 /obj/item/circuitboard/machine/HFR_corner
 	name = "HFR Corner (Machine Board)"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/hypertorus/corner
 	req_components = list(
 		/obj/item/stack/sheet/plasteel = 5)
+
+/obj/item/circuitboard/machine/HFR_corner/syndicate
+	build_path = /obj/machinery/hypertorus/corner/syndicate
 
 /obj/item/circuitboard/machine/HFR_interface
 	name = "HFR Interface (Machine Board)"
@@ -439,6 +454,9 @@
 		/obj/item/stack/cable_coil = 10,
 		/obj/item/stack/sheet/glass = 10,
 		/obj/item/stack/sheet/plasteel = 5)
+
+/obj/item/circuitboard/machine/HFR_interface/syndicate
+	build_path = /obj/machinery/hypertorus/interface/syndicate
 
 //Generic
 
