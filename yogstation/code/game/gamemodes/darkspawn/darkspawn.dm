@@ -1,124 +1,86 @@
-/datum/game_mode
-	var/list/datum/mind/darkspawn = list()
-	var/list/datum/mind/veils = list()
-	var/required_succs = 20 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
-	var/succ_ratio = 1
-	var/sacrament_done = FALSE //If at least one darkspawn has finished the Sacrament
+GLOBAL_VAR_INIT(sacrament_done, FALSE)
 
 /datum/game_mode/darkspawn
 	name = "darkspawn"
 	config_tag = "darkspawn"
 	antag_flag = ROLE_DARKSPAWN
-	required_players = 38
-	required_enemies = 3
-	recommended_enemies = 3
-	enemy_minimum_age = 15
+	required_players = 25
+	required_enemies = 2
+	recommended_enemies = 1
+	enemy_minimum_age = 24 //reasonably complicated antag
 	restricted_jobs = list("AI", "Cyborg", "Synthetic")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician") //Added Brig Physician
-	title_icon = "ss13"
+	title_icon = "darkspawn"
+	round_ends_with_antag_death = TRUE
+	var/list/datum/mind/darkspawns = list()
+	var/datum/team/darkspawn/team
 
-/datum/game_mode/darkspawn/announce()
-	to_chat(world, "<b>The current game mode is - Darkspawn!</b>")
-	to_chat(world, "<b>There are alien [span_velvet("darkspawn")] on the station. Crew: Kill the darkspawn before they can complete the Sacrament. Darkspawn: Consume enough lucidity to complete the Sacrament and become the ultimate lifeform.</b>")
-
+////////////////////////////////////////////////////////////////////////////////////
+//-------------------------------Gamemode Setup-----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/darkspawn/pre_setup()
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
-	var/darkbois = max(required_enemies, round(num_players()/14))
-	while(darkbois)
+
+ 	//scaling number of darkspawns, at least 2, at most 4 (they get exponentially stronger per person)
+	// 25 players = 2 darkspawns
+	// 40 players = 3 darkspawns
+	// 55 players = 4 darkspawns
+	var/num_darkspawn = clamp(round((num_players()+5)/15), required_enemies, 4)
+	for (var/i = 1 to num_darkspawn)
+		if(LAZYLEN(antag_candidates) <= 0)
+			break
 		var/datum/mind/darkboi = antag_pick(antag_candidates)
-		darkspawn += darkboi
 		antag_candidates -= darkboi
-		darkboi.special_role = "Darkspawn"
+		darkspawns += darkboi
+		darkboi.special_role = ROLE_DARKSPAWN
 		darkboi.restricted_roles = restricted_jobs
-		darkbois--
-	var/succ_scaling = round(num_players() / 3)
-	required_succs = clamp(succ_scaling, 15, 30)
-	succ_ratio = required_succs / 15
+		log_game("[key_name(darkboi)] (ckey) has been selected as a darkspawn.")
+
+	team = new
+	team.update_objectives()
+	GLOB.thrallnet.name = "Thrall net"
+
+	if(!team || !LAZYLEN(darkspawns))
+		setup_error = "Error setting up darkspawns"
+		return FALSE
 	return TRUE
+
+/datum/game_mode/darkspawn/post_setup()
+	for(var/datum/mind/darkboi as anything in darkspawns)
+		darkboi.add_antag_datum(/datum/antagonist/darkspawn)
+	. = ..()
+
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------Non-Secret mode stuff-------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/game_mode/darkspawn/announce()
+	to_chat(world, "<b>The current game mode is - Darkspawn!</b>")
+	to_chat(world, "<b>There are [span_velvet("darkspawn")] on the station. Crew: Kill the darkspawn before they can complete the Sacrament. Darkspawn: Consume enough lucidity to complete the Sacrament and ascend once again.</b>")
 
 /datum/game_mode/darkspawn/generate_report()
 	return "Sightings of strange alien creatures have been observed in your area. These aliens appear to be searching for specific patterns of brain activity, with their method for doing so causing victims to lapse into a short coma. \
 	Be wary of dark areas and ensure all lights are kept well-maintained. Investigate all reports of odd or suspicious sightings in maintenance, and be on the lookout for anyone sympathizing with these aliens, as they may be compromised"
 
-/datum/game_mode/darkspawn/post_setup()
-	for(var/T in darkspawn)
-		var/datum/mind/darkboi = T
-		log_game("[darkboi.key] (ckey) has been selected as a darkspawn.")
-		darkboi.current.add_darkspawn()
-	. = ..()
-	return
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------Game end checks---------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/game_mode/darkspawn/are_special_antags_dead()
+	if(team)
+		return team.check_darkspawn_death()
+	return ..()
 
-/datum/game_mode/darkspawn/proc/check_darkspawn_victory()
-	return sacrament_done
-
-/datum/game_mode/darkspawn/proc/check_darkspawn_death()
-	for(var/DM in get_antag_minds(/datum/antagonist/darkspawn))
-		var/datum/mind/dark_mind = DM
-		if(istype(dark_mind))
-			if((dark_mind) && (dark_mind.current.stat != DEAD) && !issilicon(dark_mind))
-				return FALSE
-	return TRUE
-
-/datum/game_mode/darkspawn/check_finished()
-	. = ..()
-	if(check_darkspawn_death())
-		return TRUE
-
-/datum/game_mode/proc/auto_declare_completion_darkspawn()
-	var/text = ""
-	if(darkspawn.len)
-		text += "<br><span class='big'><b>The darkspawn were:</b></span>"
-		for(var/D in darkspawn)
-			var/datum/mind/darkboi = D
-			text += printplayer(darkboi)
-		text += "<br>"
-		if(veils.len)
-			text += "<br><span class='big'><b>The veils were:</b></span>"
-			for(var/V in veils)
-				var/datum/mind/veil = V
-				text += printplayer(veil)
-	text += "<br>"
-	to_chat(world, text)
-
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------After game end stuff--------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/darkspawn/set_round_result()
 	..()
-	if(check_darkspawn_victory())
-		SSticker.mode_result = "win - the darkspawn have completed the Sacrament"
+	if(GLOB.sacrament_done)
+		SSticker.mode_result = "win - the darkspawn have completed the sacrament"
 	else
 		SSticker.mode_result = "loss - staff stopped the darkspawn"
-
-/mob/living/proc/add_darkspawn()
-	if(!istype(mind))
-		return FALSE
-	return mind.add_antag_datum(/datum/antagonist/darkspawn)
-
-/mob/living/proc/remove_darkspawn()
-	if(!istype(mind))
-		return FALSE
-	return mind.remove_antag_datum(/datum/antagonist/darkspawn)
-
-/mob/living/proc/add_veil()
-	if(!istype(mind))
-		return FALSE
-	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
-		src.visible_message(span_warning("[src] seems to resist an unseen force!"))
-		to_chat(src, "<b>Your mind goes numb. Your thoughts go blank. You feel utterly empty. \n\
-		A mind brushes against your own. You dream.\n\
-		Of a vast, empty Void in the deep of space.\n\
-		Something lies in the Void. Ancient. Unknowable. It watches you with hungry eyes. \n\
-		Eyes filled with stars.</b>\n\
-		[span_boldwarning("The creature's gaze swallows the universe into blackness.")])\n\
-		[span_boldwarning("It cannot be permitted to succeed.")]")
-		return FALSE
-	return mind.add_antag_datum(/datum/antagonist/veil)
-
-/mob/living/proc/remove_veil()
-	if(!istype(mind))
-		return FALSE
-	return mind.remove_antag_datum(/datum/antagonist/veil)
 
 /datum/game_mode/darkspawn/generate_credit_text()
 	var/list/round_credits = list()
@@ -126,11 +88,35 @@
 
 	round_credits += "<center><h1>The Darkspawn:</h1>"
 	len_before_addition = round_credits.len
-	for(var/datum/mind/darkboi in darkspawn)
-		round_credits += "<center><h2>[darkboi.name] as a Darkspawn</h2>"
+	if(team)
+		for(var/datum/mind/current in team.members)
+			round_credits += "<center><h2>[current.name] as the [current.assigned_role]</h2>"
 	if(len_before_addition == round_credits.len)
 		round_credits += list("<center><h2>The Darkspawn have moved to the shadows!</h2>", "<center><h2>We couldn't locate them!</h2>")
 	round_credits += "<br>"
 
 	round_credits += ..()
 	return round_credits
+
+////////////////////////////////////////////////////////////////////////////////////
+//-------------------------------Mob assign procs---------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/mob/living/proc/add_darkspawn()
+	if(!istype(mind))
+		return FALSE		
+	return mind.add_antag_datum(/datum/antagonist/darkspawn)
+
+/mob/living/proc/remove_darkspawn()
+	if(!istype(mind))
+		return FALSE
+	return mind.remove_antag_datum(/datum/antagonist/darkspawn)
+
+/mob/living/proc/add_thrall()
+	if(!istype(mind))
+		return FALSE
+	return mind.add_antag_datum(/datum/antagonist/thrall)
+
+/mob/living/proc/remove_thrall()
+	if(!istype(mind))
+		return FALSE
+	return mind.remove_antag_datum(/datum/antagonist/thrall)

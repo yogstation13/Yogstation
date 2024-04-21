@@ -27,13 +27,12 @@
 /obj/item/assembly/control/attackby(obj/item/W, mob/user, params)
 	. = ..()
 	if(W.tool_behaviour == TOOL_MULTITOOL)
-		var/obj/item/multitool/P = W
 		if(!id) // Generate New ID if none exists
 			id = getnewid()
 			to_chat(user, span_notice("No ID found. Generating New ID"))
 			return
-		P.buffer = id
-		to_chat(user, span_notice("You link the [src] to the [P]."))
+		multitool_set_buffer(user, W, id)
+		to_chat(user, span_notice("You link the [src] to [W]."))
 
 /obj/item/assembly/control/airlock
 	name = "airlock controller"

@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes kinetic crusher light not following players"

@@ -33,6 +33,7 @@
 
 /obj/item/organ/eyes/robotic/preternis/ui_action_click()
 	if(damage > low_threshold || (powered && owner.nutrition <= NUTRITION_LEVEL_HUNGRY))
+		to_chat(owner, span_warning("Your [src] flash warnings that they've disabled night vision to save power!"))
 		//no nightvision if your eyes are low on power, whether internal or external
 		return
 	if (night_vision)
@@ -79,10 +80,12 @@
 		if(night_vision)
 			owner.adjust_nutrition(-1) //consumes power to stay charged
 			if(owner.nutrition <= NUTRITION_LEVEL_HUNGRY)
+				to_chat(owner, span_boldwarning("Your [src] flash warnings that they've disabled night vision to save power!"))
 				nv_off() //if low on power, turn off
 	else if(night_vision)
 		owner.adjustOrganLoss(ORGAN_SLOT_EYES,0.5) //to simulate running out of power, they take damage
 		if(damage > low_threshold)
+			to_chat(owner, span_boldwarning("Your [src] flash warnings that they've disabled night vision to save power!"))
 			nv_off() //if low on power, turn off
 	
 /obj/item/organ/eyes/robotic/preternis/examine(mob/user)

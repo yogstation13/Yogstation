@@ -661,7 +661,7 @@ update_label("John Doe", "Clowny")
 
 			var/newAge = input(user, "Choose the ID's age:\n([AGE_MIN]-[AGE_MAX])", "Agent card age") as num|null
 			if(newAge)
-				registered_age = max(round(text2num(newAge)), 0)
+				registered_age = clamp(round(text2num(newAge)), AGE_MIN, AGE_MAX)
 
 			registered_name = input_name
 			assignment = target_occupation

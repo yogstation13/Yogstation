@@ -1,0 +1,4 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - experiment: "Updated the petty filter, please make a bug report if you get a 0.1 rule reminder in your chat for saying something normal"

@@ -271,8 +271,7 @@
 	else if(I.tool_behaviour == TOOL_MULTITOOL && !locked)
 		if(!multitool_check_buffer(user, I))
 			return
-		var/obj/item/multitool/M = I
-		M.buffer = src
+		multitool_set_buffer(user, I, src)
 		to_chat(user, span_notice("You add [src] to multitool buffer."))
 	else
 		return ..()
@@ -847,10 +846,10 @@
 	if(I.tool_behaviour == TOOL_MULTITOOL)
 		if(!multitool_check_buffer(user, I))
 			return
-		var/obj/item/multitool/M = I
-		if(M.buffer && istype(M.buffer, /obj/machinery/porta_turret))
-			turrets |= M.buffer
-			to_chat(user, "You link \the [M.buffer] with \the [src]")
+		var/atom/buffer_atom = multitool_get_buffer(user, I)
+		if(buffer_atom && istype(buffer_atom, /obj/machinery/porta_turret))
+			turrets |= buffer_atom
+			to_chat(user, "You link \the [buffer_atom] with \the [src]")
 			return
 
 	if (issilicon(user))
