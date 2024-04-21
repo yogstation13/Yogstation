@@ -48,8 +48,9 @@
 		if(after_attack_secondary_result == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN || after_attack_secondary_result == SECONDARY_ATTACK_CONTINUE_CHAIN)
 			mark_target(target)
 			return TRUE
-	
-	return afterattack(target, user, TRUE, params)
+
+	. = afterattack(target, user, TRUE, params)
+	mark_target(target)
 
 /// Used to mark a target for the demo system during a melee attack chain, call this before return
 /obj/item/proc/mark_target(atom/target)
@@ -176,7 +177,7 @@
 		return
 
 	if(force && !synth_check(user, SYNTH_ORGANIC_HARM))
-		return
+		return TRUE
 	if(force && HAS_TRAIT(user, TRAIT_PACIFISM) && (damtype != STAMINA))
 		to_chat(user, span_warning("You don't want to harm other living beings!"))
 		return TRUE

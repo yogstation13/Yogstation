@@ -158,7 +158,8 @@
 			UnarmedAttack(A, TRUE, modifiers)
 	else
 		if(W)
-			W.afterattack(A,src,0,params)
+			if(!(LAZYACCESS(modifiers, RIGHT_CLICK) && W.afterattack_secondary(A, src, FALSE, params) != SECONDARY_ATTACK_CALL_NORMAL))
+				W.afterattack(A, src, FALSE, params)
 		else
 			RangedAttack(A,params)
 
