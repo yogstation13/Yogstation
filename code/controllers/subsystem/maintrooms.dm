@@ -61,3 +61,15 @@ SUBSYSTEM_DEF(maintrooms)
 		var/obj/structure/closet/end = locate() in get_turf(M)
 		if(end)
 			M.forceMove(end) //get in the locker, nerd
+
+/obj/effect/portal/permanent/backrooms
+	icon_state = "wooden_tv"
+	
+/obj/effect/spawner/backrooms_portal
+	name = "backrooms two way portal spawner"
+
+/obj/effect/spawner/backrooms_portal/Initialize(mapload)
+	var/backrooms_level = SSmapping.levels_by_trait(ZTRAIT_PROCEDURAL_MAINTS)
+	if(LAZYLEN(backrooms_level))
+		var/turf/way_out = find_safe_turf(zlevels = backrooms_level, dense_atoms = FALSE)
+		create_portal_pair(get_turf(src), way_out, _lifespan = null, newtype = /obj/effect/portal/permanent/backrooms)
