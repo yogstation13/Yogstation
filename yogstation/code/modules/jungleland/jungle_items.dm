@@ -672,19 +672,19 @@
 
 /obj/item/demon_core
 	name = "demon core"
-	desc = "It glows with a faint light, you can feel the energy buzzing off of it"
+	desc = "It glows with a faint light. You can feel the energy radiating from it"
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "demon_core"
 
 /obj/item/demon_core/examine(mob/user)
 	. = ..()
-	. += "You can insert it into any hardsuit to give it a rechargeable shield."
-	. += "You can insert it into the super-matter engine, to double it's rad production."
+	. += "You can insert it into any outerwear to give it a rechargeable shield."
+	. += "You can insert it into a super-matter engine to double it's rad production."
 
 /obj/item/demon_core/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!proximity_flag)
 		return ..()
-	if(istype(target,/obj/item/clothing/suit/space/hardsuit))
+	if(istype(target,/obj/item/clothing))
 		target.AddComponent(/datum/component/shielded,'yogstation/icons/effects/effects.dmi',"tar_shield", 30 SECONDS, ITEM_SLOT_OCLOTHING)
 		visible_message("[user] inserts [src] into [target]")
 		qdel(src)
