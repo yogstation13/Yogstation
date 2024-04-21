@@ -354,6 +354,16 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"lX" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/turf/open/floor/noslip,
+/area/engine/engineering)
 "md" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/engine,
@@ -394,17 +404,6 @@
 	pump_direction = 0
 	},
 /turf/open/floor/engine/o2,
-/area/engine/engineering)
-"nL" = (
-/obj/machinery/light/small,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_y = -28
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/turf/open/floor/noslip,
 /area/engine/engineering)
 "nP" = (
 /obj/machinery/shower{
@@ -749,16 +748,6 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/engine/engineering)
-"wr" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_y = -28
-	},
-/turf/open/floor/noslip,
 /area/engine/engineering)
 "ws" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
@@ -1344,6 +1333,17 @@
 /obj/machinery/atmospherics/pipe/manifold/brown/visible,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"On" = (
+/obj/machinery/light/small,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/noslip,
+/area/engine/engineering)
 "Oq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 2;
@@ -1491,12 +1491,6 @@
 "Sr" = (
 /turf/template_noop,
 /area/template_noop)
-"Ss" = (
-/obj/machinery/light_switch{
-	pixel_x = -23
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "Sz" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -1994,7 +1988,7 @@ ri
 ws
 is
 Qk
-wr
+lX
 dH
 ME
 Oq
@@ -2358,7 +2352,7 @@ Sr
 dH
 Yp
 oF
-nL
+On
 dH
 xN
 CI
@@ -2442,7 +2436,7 @@ Sr
 Sr
 uu
 kM
-Ss
+Ue
 dH
 qH
 Xk

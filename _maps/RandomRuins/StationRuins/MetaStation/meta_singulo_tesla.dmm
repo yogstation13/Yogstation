@@ -512,12 +512,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"zC" = (
-/obj/machinery/light_switch{
-	pixel_y = -23
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "zG" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -1178,7 +1172,7 @@ Pj
 oj
 cS
 oj
-zC
+oj
 vP
 JC
 JC

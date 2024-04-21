@@ -1659,23 +1659,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"wt" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/table/reinforced,
-/obj/item/tank/internals/emergency_oxygen/engi{
-	pixel_x = 5
-	},
-/obj/item/clothing/gloves/color/black,
-/obj/item/clothing/glasses/meson/engine,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/item/pipe_dispenser,
-/obj/item/pipe_dispenser,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "wv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -1709,12 +1692,23 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"zd" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
+"BK" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
+/obj/structure/table/reinforced,
+/obj/item/tank/internals/emergency_oxygen/engi{
+	pixel_x = 5
+	},
+/obj/item/clothing/gloves/color/black,
+/obj/item/clothing/glasses/meson/engine,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/item/pipe_dispenser,
+/obj/item/pipe_dispenser,
 /obj/machinery/light_switch{
-	pixel_x = -23
+	pixel_y = 25
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1918,15 +1912,6 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"Lx" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/machinery/light_switch{
-	pixel_x = 23
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "LS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/effect/mapping_helpers/teleport_anchor,
@@ -2021,13 +2006,6 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/engine,
-/area/engine/engineering)
-"Qd" = (
-/obj/effect/mapping_helpers/teleport_anchor,
-/obj/machinery/light_switch{
-	pixel_x = 23
-	},
-/turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "RS" = (
 /obj/effect/turf_decal/stripes/line{
@@ -2416,7 +2394,7 @@ ac
 ah
 CI
 aJ
-zd
+aJ
 aJ
 qr
 bT
@@ -2553,7 +2531,7 @@ aa
 "}
 (16,1,1) = {"
 ad
-wt
+BK
 cA
 aO
 bg
@@ -2792,7 +2770,7 @@ yN
 dL
 ad
 ea
-Qd
+po
 en
 bN
 ex
@@ -2809,7 +2787,7 @@ ac
 RS
 aW
 bp
-Lx
+bz
 bM
 ch
 bz

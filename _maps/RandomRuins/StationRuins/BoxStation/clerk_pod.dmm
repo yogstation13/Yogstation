@@ -222,6 +222,15 @@
 	},
 /turf/open/floor/pod/dark,
 /area/clerk)
+"z" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/structure/chair/americandiner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/clerk)
 "A" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -296,30 +305,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/clerk)
-"G" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/obj/structure/chair/americandiner{
-	dir = 4
-	},
-/obj/machinery/light_switch{
-	pixel_x = -23
-	},
-/turf/open/floor/plasteel/dark,
-/area/clerk)
-"I" = (
-/obj/structure/rack,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 1
-	},
-/obj/effect/spawner/lootdrop/plushies,
-/turf/open/floor/pod/dark,
-/area/clerk)
-"J" = (
+"H" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
 	},
@@ -330,6 +316,20 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower,
+/obj/machinery/light_switch{
+	pixel_y = 25
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"I" = (
+/obj/structure/rack,
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/spawner/lootdrop/plushies,
 /turf/open/floor/pod/dark,
 /area/clerk)
 "K" = (
@@ -550,7 +550,7 @@ o
 (5,1,1) = {"
 Y
 a
-J
+H
 Z
 d
 t
@@ -573,7 +573,7 @@ T
 a
 c
 p
-G
+z
 a
 E
 x

@@ -28,6 +28,12 @@
 	},
 /turf/open/floor/wood,
 /area/clerk)
+"f" = (
+/obj/machinery/light_switch{
+	pixel_y = 25
+	},
+/turf/open/floor/wood,
+/area/clerk)
 "g" = (
 /obj/structure/table/wood/poker,
 /obj/machinery/door/poddoor/shutters{
@@ -221,22 +227,6 @@
 	},
 /turf/open/floor/wood,
 /area/clerk)
-"M" = (
-/obj/structure/table/wood,
-/obj/item/coinstack,
-/obj/item/coin/gold,
-/obj/item/coin/gold,
-/obj/item/coin/gold,
-/obj/item/coin/plasma,
-/obj/item/coin/uranium,
-/obj/item/coin/diamond,
-/obj/item/coin/iron,
-/obj/item/coin/iron,
-/obj/machinery/light_switch{
-	pixel_x = 23
-	},
-/turf/open/floor/carpet/black,
-/area/clerk)
 "N" = (
 /obj/structure/table/wood,
 /obj/machinery/paystand/register{
@@ -322,6 +312,19 @@
 "V" = (
 /turf/open/floor/carpet/black,
 /area/clerk)
+"W" = (
+/obj/structure/table/wood,
+/obj/item/coinstack,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/plasma,
+/obj/item/coin/uranium,
+/obj/item/coin/diamond,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/turf/open/floor/carpet/black,
+/area/clerk)
 "X" = (
 /obj/structure/chair/stool,
 /obj/machinery/light{
@@ -377,7 +380,7 @@ G
 (3,1,1) = {"
 j
 G
-H
+f
 Z
 G
 e
@@ -444,7 +447,7 @@ G
 G
 F
 u
-M
+W
 G
 w
 A
