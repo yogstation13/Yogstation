@@ -1,7 +1,0 @@
-author: "Aquizit"
-delete-after: true 
-changes: 
-  - mapping: "You get a light switch!"
-  - mapping: "YOU get a light switch!!"
-  - mapping: "We ALL get light switches!"
-  - experiment: "Please report if I've missed anything."
