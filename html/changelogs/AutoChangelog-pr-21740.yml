@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes regular cybernetic organ quirks telling the player they got upgraded organs"
