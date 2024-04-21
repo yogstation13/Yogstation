@@ -76,30 +76,30 @@
 	light_color = LIGHT_COLOR_BLUE
 	tguitheme = "nanotrasen"
 	upperinfo = "NANOTRASEN CENTRAL CONTROL UNIT TYPE 1 - Status Report"
-	content = list("ALERT! ALERT! <br><br> \
-	<b>Hull integrity of Alpha wing compromised! Hull integrity of Beta wing compromised!</b> <br><br> \
-	Artificial Program integrity report: <b>Compromised!</b> <br><br> \
-	Reactor integrity report: <b>Cooling system damaged!</b> <br><br> \
-	<b>Incidents of Note:</b> <br><br> \
-	1: Primary Radiation Detector deactivated after 112 years due to power failure. Auxilliary detector reported no radiation. <br> \
-	2: Data burst recieved from unidentified station in the region, callsign NTSS-13. Successfully decoded into research data. <br> \
-	3: An unidentified biotic force has intruded upon Delta wing. <br><br> \
-	<b>Cryogenic System Report:</b> \
-	Crew entered stasis on: 10/03/2445 <br> \
-	Awakening process started on: 03/06/2557 <br> \
+	content = list("ALERT! ALERT! \
+	Hull integrity of Alpha wing compromised! Hull integrity of Beta wing compromised! \
+	Artificial Program integrity report: Compromised! \
+	Reactor integrity report: Cooling system damaged! \
+	Incidents of Note: \
+	1: Primary Radiation Detector deactivated after 112 years due to power failure. Auxilliary detector reported no radiation. \
+	2: Data burst recieved from unidentified station in the region, callsign NTSS-13. Successfully decoded into research data. \
+	3: An unidentified biotic force has intruded upon Delta wing. \
+	Cryogenic System Report: \
+	Crew entered stasis on: 10/03/2445 \
+	Awakening process started on: 03/06/2557 \
 	Crew in stasis as of report generation: Five personnel")
 
 /obj/machinery/computer/terminal/oldstation/research
 	name = "prototype console"
 	desc = "A terminal used to keep logs about the prototypes in storage."
 	upperinfo = "ntOS 1.1 / Prototype Logs / manifest.txt"
-	content = list("<b>Delta Wing Prototype Storage Manifest</b> <br><br> \
-	x1 NT-K-14 / NT-E1 Experimental Energy Gun - inform Head of Security before removing <br> \
-	x1 NT-K-9 / NT-H1 Health Analyzer - inform Chief Medical Officer before removing <br> \
-	x1 NT-K-12 B01 RIG Hardsuit - inform Chief Engineer before removing <br> \
-	x1 NT-K-13 'Singularity Generator' - alert all crew when moving due to volatility <br><br> \
-	You <b>MUST</b> have permission of the Captain and Research Director to move any prototypes! <br> \
-	<i>Please be advised that your non-disclosure agreement means this manifest is not for public distribution under any circumstances. Don't reveal our hard work!</i>")
+	content = list("Delta Wing Prototype Storage Manifest \
+	x1 NT-K-14 / NT-E1 Experimental Energy Gun - inform Head of Security before removing \
+	x1 NT-K-9 / NT-H1 Health Analyzer - inform Chief Medical Officer before removing \
+	x1 NT-K-12 B01 RIG Hardsuit - inform Chief Engineer before removing \
+	x1 NT-K-13 'Singularity Generator' - alert all crew when moving due to volatility \
+	You <b>MUST</b> have permission of the Captain and Research Director to move any prototypes! \
+	Please be advised that your non-disclosure agreement means this manifest is not for public distribution under any circumstances. Don't reveal our hard work!")
 
 /obj/machinery/computer/terminal/oldstation/security
 	name = "security terminal"
@@ -108,19 +108,22 @@
 	icon_keyboard = "security_key"
 	light_color = LIGHT_COLOR_RED
 	upperinfo = "SECURITY WARNING - LOCKDOWN INITIATED"
-	content = list("<b>WARNING:</b> A secure area, Delta Wing, has been compromised by an unknown force. <br><br> \
-	An automated full lockdown has been issued of all systems to prevent capture of proprietary information. <br><br> \
+	content = list("WARNING: A secure area, Delta Wing, has been compromised by an unknown force. \
+	An automated full lockdown has been issued of all systems to prevent capture of proprietary information. \
 	To override the lockdown, please utilise the Central Control Terminal.")
 
 /obj/machinery/computer/terminal/oldstation/artificialprogram
 	name = "artificial program control terminal"
 	desc = "A control terminal used to directly interface and give orders to the station's Artificial Program."
 	upperinfo = "INTEGRITY REPORT - WARNING"
-	content = list("<b>Alert!</b> The Artificial Program has been disconnected. <br><br> \
-	<b>Last logs are as follows:</b> <br><br> \
-	ALERT: CORE DAMAGE DETECTED! CORE DAMAGE DETECTED! <br> \
-	ALERT: Unidentified lifeforms have entered core chamber <br> \
-	ALERT: Unidentified lifeforms have entered Delta Station <br> \
-	WARNING: Crew casualty detected (Research Director) <br> \
-	NOTICE: One crewmember (Research Director) has left stasis. <br> \
+	content = list("Alert! The Artificial Program has been disconnected. \
+	Last logs are as follows: \
+	ALERT: CORE DAMAGE DETECTED! CORE DAMAGE DETECTED! \
+	ALERT: Unidentified lifeforms have entered core chamber \
+	ALERT: Unidentified lifeforms have entered Delta Station \
+	WARNING: Crew casualty detected (Research Director) \
+	NOTICE: One crewmember (Research Director) has left stasis. \
 	NOTICE: Cryogenic stasis procedures initiated. 6 personnel frozen.")
+
+//terminal formatting is really weird and its just copypasted /tg/ code so idk how to fix it lmao
+//advice for anyone else who deals with it: either fix it to use whatever paper uses or **DO NOT** TRY TO FORMAT IT!
