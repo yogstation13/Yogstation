@@ -1,0 +1,5 @@
+author: "cowbot92"
+delete-after: true 
+changes: 
+  - rscadd: "Adds new chemical for changelings to inject to people"
+  - tweak: "adjusts cost of hallucination sting"

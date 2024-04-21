@@ -4952,15 +4952,15 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "SV" = (
-/obj/machinery/computer/shuttle{
+/obj/machinery/computer/terminal{
 	desc = "Occasionally used to call in a resupply shuttle if one is in range.";
+	name = "syndicate resupply shuttle console";
 	icon_keyboard = "syndie_key";
 	icon_screen = "syndishuttle";
-	light_color = "#FA8282";
-	name = "syndicate cargo shuttle terminal";
-	possible_destinations = "syndielavaland_cargo";
-	req_access_txt = "150";
-	shuttleId = "syndie_cargo"
+	upperinfo = "Syndicate Resupply Terminal - Jungleland Research Outpost";
+	content = list("This terminal is currently locked due to no supply shuttles being in range. For resupply, please contact Syndicate Command via your onboard red phone.");
+	tguitheme = "syndicate";
+	light_color = "#FA8282"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
