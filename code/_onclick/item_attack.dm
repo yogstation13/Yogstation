@@ -192,7 +192,7 @@
 				var/datum/wound/W = i
 				if(W.try_treating(src, user))
 					return TRUE
-		to_chat(user, span_warning("You can't perform any surgeries on [M]'s [parse_zone(user.selected_zone)]!")) //yells at you
+		to_chat(user, span_warning("You can't perform any surgeries on [M]'s [parse_zone(user.zone_selected)]!")) //yells at you
 		return TRUE
 
 	if(!force)
