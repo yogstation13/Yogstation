@@ -27,6 +27,7 @@
 			create_typing_indicator()
 			bar_typing = TRUE
 		else if(length(temp) > 3 && findtext(temp, "Me ", 1, 5))
+			return
 			//set_typing_indicator(1)
 		else
 			bar_typing = FALSE

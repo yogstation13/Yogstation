@@ -94,7 +94,6 @@
 			return "northwest"
 		if(10)
 			return "southwest"
-		else
 	return NONE
 
 //Turns text into proper directions
@@ -116,7 +115,6 @@
 			return 6
 		if("SOUTHWEST")
 			return 10
-		else
 	return NONE
 
 //Converts an angle (degrees) into an ss13 direction
