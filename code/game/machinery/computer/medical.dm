@@ -483,8 +483,6 @@
 				for(var/datum/data/record/R in GLOB.data_core.medical)
 					if((lowertext(R.fields["name"]) == t1 || t1 == lowertext(R.fields["id"]) || t1 == lowertext(R.fields["b_dna"])))
 						src.active2 = R
-					else
-						//Foreach continue //goto(3229)
 				if(!( src.active2 ))
 					src.temp = text("Could not locate record [].", sanitize(t1))
 				else
