@@ -356,7 +356,7 @@
 	for(var/mob/M in GLOB.player_list)
 		if (M.z == z && M.client)
 			if (get_dist(M,src)<=20)
-				M.playsound_local(src, get_sfx("explosion"), 50, 1)
+				M.playsound_local(src, get_sfx(SFX_EXPLOSION), 50, 1)
 				shake_camera(M, 4, 1)
 			else
 				M.playsound_local(src, 'sound/effects/explosionfar.ogg', 50, 1)
@@ -368,7 +368,7 @@
 		for(var/mob/M in GLOB.player_list)
 			if (M.z == z && M.client)
 				if (get_dist(M,src)<=20)
-					M.playsound_local(src, get_sfx("explosion"), 50, 1)
+					M.playsound_local(src, get_sfx(SFX_EXPLOSION), 50, 1)
 					shake_camera(M, 4, 1)
 				else
 					M.playsound_local(src, 'sound/effects/explosionfar.ogg', 50, 1)
@@ -386,7 +386,7 @@
 		for(var/mob/M in GLOB.player_list)
 			if (M.z == z && M.client)
 				if (get_dist(M,src)<=20)
-					M.playsound_local(src, get_sfx("explosion"), 50, 1)
+					M.playsound_local(src, get_sfx(SFX_EXPLOSION), 50, 1)
 					shake_camera(M, 4, 1)
 				else
 					M.playsound_local(src, 'sound/effects/explosionfar.ogg', 50, 1)
