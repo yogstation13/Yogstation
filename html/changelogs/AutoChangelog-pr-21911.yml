@@ -1,0 +1,5 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - tweak: "supermatter tesla ball zap range reduced to 7"
+  - tweak: "supermatter tesla ball zap now only gip you if ur crit or dead"
