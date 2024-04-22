@@ -182,14 +182,17 @@
 		to_chat(user, span_warning("You don't want to harm other living beings!"))
 		return TRUE
 
-	if((item_flags & SURGICAL_TOOL) && !user.combat_mode) // checks for combat mode with surgery tool
+	if(tool_behaviour && !user.combat_mode) // checks for combat mode with surgery tool
+		var/list/modifiers = params2list(params)
+		if(attempt_initiate_surgery(src, M, user, modifiers))
+			return TRUE
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
 			for(var/i in C.all_wounds)
 				var/datum/wound/W = i
 				if(W.try_treating(src, user))
 					return TRUE
-		to_chat(user, span_warning("You aren't doing surgery!")) //yells at you
+		to_chat(user, span_warning("You can't perform any surgeries on [M]'s [parse_zone(user.selected_zone)]!")) //yells at you
 		return TRUE
 
 	if(!force)

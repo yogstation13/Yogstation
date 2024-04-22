@@ -30,7 +30,7 @@ LINEN BINS
 /obj/item/bedsheet/attack(mob/living/M, mob/user, params)
 	var/list/modifiers = params2list(params)
 	if(!attempt_initiate_surgery(src, M, user, modifiers))
-		..()
+		return ..()
 
 /obj/item/bedsheet/attack_self(mob/user)
 	if(newbedpath)

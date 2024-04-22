@@ -347,10 +347,8 @@
 
 /obj/item/toolset_handler/attack(mob/living/M, mob/living/user, params)
 	if(active_tool)
-		var/list/modifiers = params2list(params)
-		if(!user.combat_mode && attempt_initiate_surgery(src, M, user, modifiers))
-			return
-	..()
+		return active_tool.attack(M, user, params)
+	return ..()
 
 //we still USE the tools because while we are pretending to use them we are actually pretending to pretend to use them
 /obj/item/toolset_handler/tool_start_check(mob/living/user, amount)

@@ -53,8 +53,7 @@
 					break
 
 		if(!available_surgeries.len)
-			to_chat(user, span_warning("You can't perform any surgeries on [M]'s [parse_zone(selected_zone)]!"))
-			return TRUE
+			return FALSE
 		
 		var/P = show_radial_menu(user, M, radial_list, radius = 40, require_near = TRUE, tooltips = TRUE)
 		if(P && user && user.Adjacent(M) && (I in user))

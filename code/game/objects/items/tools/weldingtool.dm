@@ -135,9 +135,7 @@
 			user.visible_message(span_notice("[user] fixes some of the dents on [M]'s [affecting.name]."), span_notice("You fix some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
 			return TRUE
 
-	var/list/modifiers = params2list(params)
-	if(!isOn() || user.combat_mode || !attempt_initiate_surgery(src, M, user, modifiers))
-		return ..()
+	return ..()
 
 /obj/item/weldingtool/afterattack(atom/O, mob/user, proximity)
 	. = ..()
