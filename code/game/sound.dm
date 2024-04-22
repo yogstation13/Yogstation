@@ -255,7 +255,7 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 				soundin = pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg')
 			if(SFX_HISS)
 				soundin = pick('sound/voice/hiss1.ogg','sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg')
-			if(SFX_PAGETURN)
+			if(SFX_PAGE_TURN)
 				soundin = pick('sound/effects/pageturn1.ogg', 'sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg')
 			if(SFX_RICOCHET)
 				soundin = pick(

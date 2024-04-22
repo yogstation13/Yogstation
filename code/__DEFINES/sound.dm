@@ -153,7 +153,7 @@ GLOBAL_LIST_INIT(announcer_keys, list(
 #define SFX_SUITSTEP "suitstep"
 #define SFX_SWING_HIT "swing_hit"
 #define SFX_HISS "hiss"
-#define SFX_PAGETURN "pageturn"
+#define SFX_PAGE_TURN "pageturn"
 #define SFX_RICOCHET "ricochet"
 #define SFX_TERMINAL_TYPE "terminal_type"
 #define SFX_DESCERATION "desceration"
