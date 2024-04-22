@@ -147,9 +147,12 @@
 		else
 			K.forceMove(get_turf(target))
 		K.setDir(get_dir(K, target))
-	var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
-	var/armor = target.run_armor_check(MELEE, armour_penetration = 10)
-	target.apply_damage(hurtamount, BRUTE, blocked=armor, wound_bonus=CANT_WOUND)
+	var/armor = target.run_armor_check(armour_penetration = 10)
+	target.apply_damage(
+		damage = hurtamount,
+		blocked = armor,
+		wound_bonus = CANT_WOUND,
+	)
 	jab(target)
 	limit++
 	addtimer(CALLBACK(src, PROC_REF(blenderinstall), mirage, user, target, hurtamount, jumpangle, limit), 0.2 SECONDS)
