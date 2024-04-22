@@ -457,6 +457,16 @@
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
+/obj/item/clothing/under/twosexytwomime
+	name = "REALLY sexy mime outfit"
+	desc = "Yes the skirt is a very important fundamental part of advanced mimery Vol. 6."
+	icon_state = "mimeskirt"
+	item_state = "mimeskirt"
+	body_parts_covered = CHEST|GROIN|LEGS
+	fitted = FEMALE_UNIFORM_TOP
+	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
+
 /obj/item/clothing/under/gladiator
 	name = "gladiator uniform"
 	desc = "Are you not entertained? Is that not why you are here?"
