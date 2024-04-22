@@ -132,11 +132,11 @@
 	for(var/b = 1 to 3) 
 		var/obj/effect/temp_visual/decoy/fading/onesecond/F = new(get_turf(user), user)
 		mirage |= F
-	blenderinstall(mirage, user, target, hurtamount)
+	blenderinstall(mirage, target, hurtamount)
 	rushdowncd = COOLDOWN_FLURRYATTACK
 	COOLDOWN_START(src, last_attack, rushdowncd)
 
-/obj/item/mirage_drive/proc/blenderinstall(list/mirage, mob/living/user, mob/living/target, hurtamount, jumpangle, limit)
+/obj/item/mirage_drive/proc/blenderinstall(list/mirage, mob/living/target, hurtamount, jumpangle, limit)
 	if(limit > 2)
 		return
 	for(var/atom/movable/K in mirage)
@@ -155,7 +155,7 @@
 	)
 	jab(target)
 	limit++
-	addtimer(CALLBACK(src, PROC_REF(blenderinstall), mirage, user, target, hurtamount, jumpangle, limit), 0.2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(blenderinstall), mirage, target, hurtamount, jumpangle, limit), 0.2 SECONDS)
 
 /obj/item/mirage_drive/proc/jab(mob/living/target, limit)
 	if(limit > 3)
