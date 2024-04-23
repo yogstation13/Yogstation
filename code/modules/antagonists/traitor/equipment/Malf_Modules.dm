@@ -789,7 +789,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 
 /// AI Laser Gun: Upgrades the ability to shoot lasers from cameras. If they do not have it, gives the non-upgraded ability.
 /datum/AI_Module/upgrade/camera_laser_gun
-	name = "Camera Laser Gun"
+	name = "Upgrade Camera Laser Gun"
 	description = "Upgrades your ability to shoot lasers from any camera at targets. \
 	Should you already not have the ability, grants the non-upgraded ability. Upgrade is done immediately upon purchase."
 	cost = 30
