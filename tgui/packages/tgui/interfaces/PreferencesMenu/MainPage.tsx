@@ -22,7 +22,6 @@ const CLOTHING_SELECTION_MULTIPLIER = 5.2;
 const CharacterControls = (props: {
   handleRotate: () => void,
   handleOpenSpecies: () => void,
-  handleOpenBackground: () => void,
   handleCycleBackground: () => void,
   gender: Gender,
   setGender: (gender: Gender) => void,
@@ -56,16 +55,6 @@ const CharacterControls = (props: {
           fontSize="22px"
           icon="paw"
           tooltip="Species"
-          tooltipPosition="top"
-        />
-      </Stack.Item>
-
-      <Stack.Item>
-        <Button
-          onClick={props.handleOpenBackground}
-          fontSize="22px"
-          icon="address-card"
-          tooltip="Personal Background"
           tooltipPosition="top"
         />
       </Stack.Item>
@@ -416,7 +405,6 @@ const PreferenceList = (props: {
 
 export const MainPage = (props: {
   openSpecies: () => void,
-  openBackground: () => void,
 }, context) => {
   const { act, data } = useBackend<PreferencesMenuData>(context);
   const [currentClothingMenu, setCurrentClothingMenu]
@@ -519,7 +507,6 @@ export const MainPage = (props: {
                   <CharacterControls
                     gender={data.character_preferences.misc.gender}
                     handleOpenSpecies={props.openSpecies}
-                    handleOpenBackground={props.openBackground}
                     handleRotate={() => {
                       act("rotate");
                     }}
