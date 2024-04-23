@@ -382,7 +382,7 @@
 			else
 				to_chat(src, span_warning("You are not Superman."))
 		return FALSE
-	if(pass_flags && PASSFLOOR) //ghosts bypass turf z checks
+	if(pass_flags & PASSFLOOR) //ghosts bypass turf z checks
 		return destination
 	if((!(z_move_flags & ZMOVE_IGNORE_OBSTACLES) && !(start.zPassOut(direction) && destination.zPassIn(direction))) || (!(z_move_flags & ZMOVE_ALLOW_ANCHORED) && anchored))
 		if(z_move_flags & ZMOVE_FEEDBACK)
