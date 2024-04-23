@@ -2462,6 +2462,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/waffleco
 	restricted_roles = list("Research Director", "Scientist")
 
+/datum/uplink_item/role_restricted/armoredmechsuit
+	name = "Cybersun Mech Pilot's Suit"
+	desc = "A black and red stylishly armored mech pilot's suit used by Cybersun's elite mecha pilots. Provides potent protection both inside and outside a mech."
+	item = /obj/item/clothing/under/mech_suit/cybersun
+	cost = 4
+	manufacturer = /datum/corporation/traitor/cybersun
+	restricted_roles = list("Research Director", "Scientist", "Roboticist")
+
 /datum/uplink_item/role_restricted/gorillacubes
 	name = "Box of Gorilla Cubes"
 	desc = "A box with three Waffle Co. brand gorilla cubes. Eat big to get big. \
