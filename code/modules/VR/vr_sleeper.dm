@@ -180,6 +180,8 @@
 		if(outfit)
 			var/datum/outfit/O = new outfit()
 			O.equip(vr_human)
+		var/datum/job/vr_job = vr_human.mind.assigned_role
+		vr_human.dna.species.after_equip_job(vr_job, vr_human)
 		if(transfer && H.mind)
 			SStgui.close_user_uis(H, src)
 			vr_human.ckey = H.ckey

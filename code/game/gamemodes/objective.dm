@@ -209,7 +209,6 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/assassinate
 	name = "assassinate"
 	var/target_role_type=FALSE
-	martyr_compatible = 1
 
 /datum/objective/assassinate/find_target_by_role(role, role_type=FALSE,invert=FALSE)
 	if(!invert)
@@ -472,7 +471,6 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/purge
 	name = "no mutants on shuttle"
 	explanation_text = "Ensure no mutant humanoids or nonhuman species are present aboard the escape shuttle. Felinids/Catpeople do NOT count as nonhuman."
-	martyr_compatible = 1
 
 /datum/objective/purge/check_completion()
 	if(..())
@@ -986,7 +984,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/destroy
 	name = "destroy AI"
-	martyr_compatible = 1
 
 /datum/objective/destroy/find_target(dupe_search_range, blacklist)
 	var/list/possible_targets = active_ais(1)

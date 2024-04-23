@@ -563,3 +563,9 @@
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/computer/shuttle/mining
 
+
+//Miscellaneous/ruin exclusive
+
+/obj/item/circuitboard/computer/terminal
+	name = "Data Terminal (Computer Board)"
+	build_path = /obj/machinery/computer/terminal

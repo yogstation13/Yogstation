@@ -609,6 +609,9 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	outfit = /datum/outfit/syndicate_empty/icemoon_base
 	assignedrole = "Icemoon Syndicate"
 
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/special(mob/living/new_spawn) //oops!
+	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
+
 /datum/outfit/syndicate_empty/icemoon_base
 	name = "Generic Syndicate Icemoon Outpost Agent"
 	uniform = /obj/item/clothing/under/syndicate/coldres

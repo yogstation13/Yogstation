@@ -102,6 +102,12 @@
 	projectile = /obj/projectile/beam/disabler
 	fire_sound = 'sound/weapons/taser2.ogg'
 
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/disabler/action_checks(atom/target)
+	. = ..()
+	if(. && HAS_TRAIT(chassis.occupant, TRAIT_NO_STUN_WEAPONS))
+		to_chat(chassis.occupant, span_warning("You cannot use non-lethal weapons!"))
+		return FALSE
+
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
 	equip_cooldown = 15
 	name = "\improper CH-LC \"Solaris\" laser cannon"
