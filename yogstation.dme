@@ -228,6 +228,7 @@
 #include "code\__DEFINES\{yogs_defines}\darkspawn.dm"
 #include "code\__DEFINES\{yogs_defines}\DNA.dm"
 #include "code\__DEFINES\{yogs_defines}\flavor_misc.dm"
+#include "code\__DEFINES\{yogs_defines}\flavor_text.dm"
 #include "code\__DEFINES\{yogs_defines}\is_helpers.dm"
 #include "code\__DEFINES\{yogs_defines}\jungle.dm"
 #include "code\__DEFINES\{yogs_defines}\layers.dm"
