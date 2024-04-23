@@ -129,8 +129,18 @@
 	trigger_delay = 10
 	protected = TRUE
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | LAVA_PROOF
+	undertile_pressureplate = FALSE
 	var/reward = /obj/item/reagent_containers/food/snacks/cookie
 	var/claimed = FALSE
+
+/obj/item/pressure_plate/hologrid/Initialize(mapload)
+	. = ..()
+	if(undertile_pressureplate)
+		AddElement(/datum/element/undertile, tile_overlay = tile_overlay, use_anchor = FALSE) //we remove use_anchor here, so it ALWAYS stays anchored
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/item/pressure_plate/hologrid/examine(mob/user)
 	. = ..()
@@ -142,8 +152,7 @@
 	flick("lasergrid_a",src)
 	icon_state = "lasergrid_full"
 
-/obj/item/pressure_plate/hologrid/Crossed(atom/movable/AM)
-	. = ..()
+/obj/item/pressure_plate/hologrid/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(trigger_item && istype(AM, specific_item) && !claimed)
 		claimed = TRUE
 		flick("laserbox_burn", AM)

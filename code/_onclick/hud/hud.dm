@@ -22,10 +22,10 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 /datum/hud
 	var/mob/mymob
 
-	var/hud_shown = TRUE			//Used for the HUD toggle (F12)
-	var/hud_version = HUD_STYLE_STANDARD	//Current displayed version of the HUD
-	var/inventory_shown = FALSE		//Equipped item inventory
-	var/hotkey_ui_hidden = FALSE	//This is to hide the buttons that can be used via hotkeys. (hotkeybuttons list of buttons)
+	var/hud_shown = TRUE //Used for the HUD toggle (F12)
+	var/hud_version = HUD_STYLE_STANDARD //Current displayed version of the HUD
+	var/inventory_shown = FALSE //Equipped item inventory
+	var/hotkey_ui_hidden = FALSE //This is to hide the buttons that can be used via hotkeys. (hotkeybuttons list of buttons)
 
 	var/atom/movable/screen/blobpwrdisplay
 
@@ -47,10 +47,40 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/list/infodisplay = list() //the screen objects that display mob info (health, alien plasma, etc...)
 	/// Screen objects that never exit view.
 	var/list/always_visible_inventory = list()
-	var/list/screenoverlays = list() //the screen objects used as whole screen overlays (flash, damageoverlay, etc...)
 	var/list/inv_slots[SLOTS_AMT] // /atom/movable/screen/inventory objects, ordered by their slot ID.
 	var/list/hand_slots // /atom/movable/screen/inventory/hand objects, assoc list of "[held_index]" = object
-	var/list/atom/movable/screen/plane_master/plane_masters = list() // see "appearance_flags" in the ref, assoc list of "[plane]" = object
+
+	/// Assoc list of key => "plane master groups"
+	/// This is normally just the main window, but it'll occasionally contain things like spyglasses windows
+	var/list/datum/plane_master_group/master_groups = list()
+	///Assoc list of controller groups, associated with key string group name with value of the plane master controller ref
+	var/list/atom/movable/plane_master_controller/plane_master_controllers = list()
+
+	/// Think of multiz as a stack of z levels. Each index in that stack has its own group of plane masters
+	/// This variable is the plane offset our mob/client is currently "on"
+	/// We use it to track what we should show/not show
+	/// Goes from 0 to the max (z level stack size - 1)
+	var/current_plane_offset = 0
+
+	///UI for screentips that appear when you mouse over things
+	var/atom/movable/screen/screentip/screentip_text
+
+	/// Whether or not screentips are enabled.
+	/// This is updated by the preference for cheaper reads than would be
+	/// had with a proc call, especially on one of the hottest procs in the
+	/// game (MouseEntered).
+	var/screentips_enabled = SCREENTIP_PREFERENCE_ENABLED
+	/// Whether to use text or images for click hints.
+	/// Same behavior as `screentips_enabled`--very hot, updated when the preference is updated.
+	var/screentip_images = TRUE
+	/// If this client is being shown atmos debug overlays or not
+	var/atmos_debug_overlays = FALSE
+
+	/// The color to use for the screentips.
+	/// This is updated by the preference for cheaper reads than would be
+	/// had with a proc call, especially on one of the hottest procs in the
+	/// game (MouseEntered).
+	var/screentip_color
 
 	var/atom/movable/screen/button_palette/toggle_palette
 	var/atom/movable/screen/palette_scroll/down/palette_down
@@ -61,11 +91,16 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/list/floating_actions
 
 	var/atom/movable/screen/healths
-	var/atom/movable/screen/healthdoll
 	var/atom/movable/screen/stamina
-
+	var/atom/movable/screen/healthdoll
+	var/atom/movable/screen/spacesuit
 	// subtypes can override this to force a specific UI style
 	var/ui_style
+
+	// List of weakrefs to objects that we add to our screen that we don't expect to DO anything
+	// They typically use * in their render target. They exist solely so we can reuse them,
+	// and avoid needing to make changes to all idk 300 consumers if we want to change the appearance
+	var/list/asset_refs_for_reuse = list()
 
 /datum/hud/New(mob/owner)
 	mymob = owner
@@ -83,10 +118,94 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 	hand_slots = list()
 
-	for(var/mytype in subtypesof(/atom/movable/screen/plane_master))
-		var/atom/movable/screen/plane_master/instance = new mytype()
-		plane_masters["[instance.plane]"] = instance
-		instance.backdrop(mymob)
+	var/datum/plane_master_group/main/main_group = new(PLANE_GROUP_MAIN)
+	main_group.attach_to(src)
+
+	// var/datum/preferences/preferences = owner?.client?.prefs
+	// screentip_color = preferences?.read_preference(/datum/preference/color/screentip_color)
+	// screentips_enabled = preferences?.read_preference(/datum/preference/choiced/enable_screentips)
+	// screentip_images = preferences?.read_preference(/datum/preference/toggle/screentip_images)
+	// screentip_text = new(null, src)
+	// static_inventory += screentip_text
+
+	for(var/mytype in subtypesof(/atom/movable/plane_master_controller))
+		var/atom/movable/plane_master_controller/controller_instance = new mytype(null,src)
+		plane_master_controllers[controller_instance.name] = controller_instance
+
+	owner.overlay_fullscreen("see_through_darkness", /atom/movable/screen/fullscreen/see_through_darkness)
+
+	// Register onto the global spacelight appearances
+	// So they can be render targeted by anything in the world
+	for(var/obj/starlight_appearance/starlight as anything in GLOB.starlight_objects)
+		register_reuse(starlight)
+
+	RegisterSignal(SSmapping, COMSIG_PLANE_OFFSET_INCREASE, PROC_REF(on_plane_increase))
+	RegisterSignal(mymob, COMSIG_MOB_LOGIN, PROC_REF(client_refresh))
+	RegisterSignal(mymob, COMSIG_MOB_LOGOUT, PROC_REF(clear_client))
+	RegisterSignal(mymob, COMSIG_MOB_SIGHT_CHANGE, PROC_REF(update_sightflags))
+	RegisterSignal(mymob, COMSIG_VIEWDATA_UPDATE, PROC_REF(on_viewdata_update))
+	update_sightflags(mymob, mymob.sight, NONE)
+
+/datum/hud/proc/client_refresh(datum/source)
+	SIGNAL_HANDLER
+	RegisterSignal(mymob.canon_client, COMSIG_CLIENT_SET_EYE, PROC_REF(on_eye_change))
+	on_eye_change(null, null, mymob.canon_client.eye)
+
+/datum/hud/proc/clear_client(datum/source)
+	SIGNAL_HANDLER
+	if(mymob.canon_client)
+		UnregisterSignal(mymob.canon_client, COMSIG_CLIENT_SET_EYE)
+
+/datum/hud/proc/on_viewdata_update(datum/source, view)
+	SIGNAL_HANDLER
+
+	view_audit_buttons()
+
+/datum/hud/proc/on_eye_change(datum/source, atom/old_eye, atom/new_eye)
+	SIGNAL_HANDLER
+	SEND_SIGNAL(src, COMSIG_HUD_EYE_CHANGED, old_eye, new_eye)
+
+	if(old_eye)
+		UnregisterSignal(old_eye, COMSIG_MOVABLE_Z_CHANGED)
+	if(new_eye)
+		// By the time logout runs, the client's eye has already changed
+		// There's just no log of the old eye, so we need to override
+		// :sadkirby:
+		RegisterSignal(new_eye, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(eye_z_changed), override = TRUE)
+	eye_z_changed(new_eye)
+
+/datum/hud/proc/update_sightflags(datum/source, new_sight, old_sight)
+	SIGNAL_HANDLER
+	// If neither the old and new flags can see turfs but not objects, don't transform the turfs
+	// This is to ensure parallax works when you can't see holder objects
+	if(should_sight_scale(new_sight) == should_sight_scale(old_sight))
+		return
+
+	for(var/group_key as anything in master_groups)
+		var/datum/plane_master_group/group = master_groups[group_key]
+		group.transform_lower_turfs(src, current_plane_offset)
+
+/datum/hud/proc/should_use_scale()
+	return should_sight_scale(mymob.sight)
+
+/datum/hud/proc/should_sight_scale(sight_flags)
+	return (sight_flags & (SEE_TURFS | SEE_OBJS)) != SEE_TURFS
+
+/datum/hud/proc/eye_z_changed(atom/eye)
+	SIGNAL_HANDLER
+	update_parallax_pref() // If your eye changes z level, so should your parallax prefs
+	var/turf/eye_turf = get_turf(eye)
+	var/new_offset = GET_TURF_PLANE_OFFSET(eye_turf)
+	if(current_plane_offset == new_offset)
+		return
+	var/old_offset = current_plane_offset
+	current_plane_offset = new_offset
+
+	SEND_SIGNAL(src, COMSIG_HUD_OFFSET_CHANGED, old_offset, new_offset)
+	if(should_use_scale())
+		for(var/group_key as anything in master_groups)
+			var/datum/plane_master_group/group = master_groups[group_key]
+			group.transform_lower_turfs(src, new_offset)
 
 /datum/hud/Destroy()
 	if(mymob.hud_used == src)
@@ -102,10 +221,13 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	QDEL_NULL(module_store_icon)
 	QDEL_LIST(static_inventory)
 
+	// all already deleted by static inventory clear
 	inv_slots.Cut()
 	action_intent = null
 	zone_select = null
 	pull_icon = null
+	rest_icon = null
+	hand_slots.Cut()
 
 	QDEL_LIST(toggleable_inventory)
 	QDEL_LIST(hotkeybuttons)
@@ -115,17 +237,53 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	healths = null
 	stamina = null
 	healthdoll = null
-	devilsouldisplay = null
+	spacesuit = null
 	blobpwrdisplay = null
 	alien_plasma_display = null
 	alien_queen_finder = null
 
-	QDEL_LIST_ASSOC_VAL(plane_masters)
-	QDEL_LIST(screenoverlays)
+	QDEL_LIST_ASSOC_VAL(master_groups)
+	QDEL_LIST_ASSOC_VAL(plane_master_controllers)
 	QDEL_LIST(always_visible_inventory)
 	mymob = null
 
+	//QDEL_NULL(screentip_text)
+
 	return ..()
+
+/datum/hud/proc/on_plane_increase(datum/source, old_max_offset, new_max_offset)
+	SIGNAL_HANDLER
+	for(var/i in old_max_offset + 1 to new_max_offset)
+		register_reuse(GLOB.starlight_objects[i + 1])
+	build_plane_groups(old_max_offset + 1, new_max_offset)
+
+/// Creates the required plane masters to fill out new z layers (because each "level" of multiz gets its own plane master set)
+/datum/hud/proc/build_plane_groups(starting_offset, ending_offset)
+	for(var/group_key in master_groups)
+		var/datum/plane_master_group/group = master_groups[group_key]
+		group.build_plane_masters(starting_offset, ending_offset)
+
+/// Returns the plane master that matches the input plane from the passed in group
+/datum/hud/proc/get_plane_master(plane, group_key = PLANE_GROUP_MAIN)
+	var/plane_key = "[plane]"
+	var/datum/plane_master_group/group = master_groups[group_key]
+	return group.plane_masters[plane_key]
+
+/// Returns a list of all plane masters that match the input true plane, drawn from the passed in group (ignores z layer offsets)
+/datum/hud/proc/get_true_plane_masters(true_plane, group_key = PLANE_GROUP_MAIN)
+	var/list/atom/movable/screen/plane_master/masters = list()
+	for(var/plane in TRUE_PLANE_TO_OFFSETS(true_plane))
+		masters += get_plane_master(plane, group_key)
+	return masters
+
+/// Returns all the planes belonging to the passed in group key
+/datum/hud/proc/get_planes_from(group_key)
+	var/datum/plane_master_group/group = master_groups[group_key]
+	return group.plane_masters
+
+/// Returns the corresponding plane group datum if one exists
+/datum/hud/proc/get_plane_group(key)
+	return master_groups[key]
 
 /mob/proc/create_mob_hud()
 	if(!client || hud_used)
@@ -154,7 +312,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 	// This code is the absolute fucking worst, I want it to go die in a fire
 	// Seriously, why
-	screenmob.client.screen = list()
+	screenmob.client.clear_screen()
 	screenmob.client.apply_clickcatcher()
 
 	var/display_hud_version = version
@@ -225,6 +383,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	reorganize_alerts(screenmob)
 	screenmob.reload_fullscreen()
 	update_parallax_pref(screenmob)
+	update_reuse(screenmob)
 
 	// ensure observers get an accurate and up-to-date view
 	if (!viewmob)
@@ -239,11 +398,16 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	return TRUE
 
 /datum/hud/proc/plane_masters_update()
-	// Plane masters are always shown to OUR mob, never to observers
-	for(var/thing in plane_masters)
-		var/atom/movable/screen/plane_master/PM = plane_masters[thing]
-		PM.backdrop(mymob)
-		mymob.client.screen += PM
+	for(var/group_key in master_groups)
+		var/datum/plane_master_group/group = master_groups[group_key]
+		// Plane masters are always shown to OUR mob, never to observers
+		group.refresh_hud()
+
+/datum/hud/proc/plane_masters_rebuild()
+	for(var/group_key in master_groups)
+		var/datum/plane_master_group/group = master_groups[group_key]
+		// Plane masters are always shown to OUR mob, never to observers
+		group.rebuild_hud()
 
 /datum/hud/human/show_hud(version = 0,mob/viewmob)
 	. = ..()
@@ -270,12 +434,28 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	if (initial(ui_style) || ui_style == new_ui_style)
 		return
 
-	for(var/atom/item in static_inventory + toggleable_inventory + hotkeybuttons + infodisplay + screenoverlays + always_visible_inventory + inv_slots)
+	for(var/atom/item in static_inventory + toggleable_inventory + hotkeybuttons + infodisplay + always_visible_inventory + inv_slots)
 		if (item.icon == ui_style)
 			item.icon = new_ui_style
 
 	ui_style = new_ui_style
 	build_hand_slots()
+
+/datum/hud/proc/register_reuse(atom/movable/screen/reuse)
+	asset_refs_for_reuse += WEAKREF(reuse)
+	mymob?.client?.screen += reuse
+
+/datum/hud/proc/unregister_reuse(atom/movable/screen/reuse)
+	asset_refs_for_reuse -= WEAKREF(reuse)
+	mymob?.client?.screen -= reuse
+
+/datum/hud/proc/update_reuse(mob/show_to)
+	for(var/datum/weakref/screen_ref as anything in asset_refs_for_reuse)
+		var/atom/movable/screen/reuse = screen_ref.resolve()
+		if(isnull(reuse))
+			asset_refs_for_reuse -= screen_ref
+			continue
+		show_to.client?.screen += reuse
 
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)
 /mob/verb/button_pressed_F12()
@@ -284,9 +464,9 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 	if(hud_used && client)
 		hud_used.show_hud() //Shows the next hud preset
-		to_chat(usr, "<span class ='info'>Switched HUD mode. Press F12 to toggle.</span>")
+		to_chat(usr, span_info("Switched HUD mode. Press F12 to toggle."))
 	else
-		to_chat(usr, "<span class ='warning'>This mob type does not use a HUD.</span>")
+		to_chat(usr, span_warning("This mob type does not use a HUD."))
 
 
 //(re)builds the hand ui slots, throwing away old ones
@@ -308,7 +488,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 		hand_box.held_index = i
 		hand_slots["[i]"] = hand_box
 		static_inventory += hand_box
-		hand_box.update_appearance(UPDATE_ICON)
+		hand_box.update_appearance()
 
 	var/i = 1
 	for(var/atom/movable/screen/swap_hand/SH in static_inventory)
@@ -322,7 +502,6 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 /datum/hud/proc/update_locked_slots()
 	return
-
 
 /datum/hud/proc/position_action(atom/movable/screen/movable/action_button/button, position)
 	// This is kinda a hack, I'm sorry.
@@ -361,7 +540,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 			palette_actions.insert_action(button, palette_actions.index_of(relative_to))
 		if(SCRN_OBJ_FLOATING) // If we don't have it as a define, this is a screen_loc, and we should be floating
 			floating_actions += button
-			var/client/our_client = mymob.client
+			var/client/our_client = mymob.canon_client
 			if(!our_client)
 				position_action(button, button.linked_action.default_button_position)
 				return
@@ -402,7 +581,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 /// Ensures all of our buttons are properly within the bounds of our client's view, moves them if they're not
 /datum/hud/proc/view_audit_buttons()
-	var/our_view = mymob?.client?.view
+	var/our_view = mymob?.canon_client?.view
 	if(!our_view)
 		return
 	listed_actions.check_against_view()
@@ -518,7 +697,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	return "WEST[coord_col]:[coord_col_offset],NORTH[coord_row]:-[pixel_north_offset]"
 
 /datum/action_group/proc/check_against_view()
-	var/owner_view = owner?.mymob?.client?.view
+	var/owner_view = owner?.mymob?.canon_client?.view
 	if(!owner_view)
 		return
 	// Unlikey as it is, we may have been changed. Want to start from our target position and fail down

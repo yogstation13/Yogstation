@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/food/snacks/bait
 	name = "development bait"
-	desc = "if you see this, get help"
+	desc = "If you see this, get help."
 	icon = 'yogstation/icons/obj/fishing/fishing.dmi'
 	icon_state = "bait_worm"
 	tastes = list("sour, rotten water" = 1)

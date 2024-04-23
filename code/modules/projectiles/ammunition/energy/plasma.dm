@@ -5,6 +5,12 @@
 	delay = 15
 	e_cost = 25
 
+/obj/item/ammo_casing/energy/plasma/ready_proj(atom/target, mob/living/user, quiet, zone_override = "")
+	..()
+	if(loc && istype(loc, /obj/item/gun/energy/plasmacutter))
+		var/obj/item/gun/energy/plasmacutter/PC = loc
+		PC.modify_projectile(BB)
+
 /obj/item/ammo_casing/energy/plasma/weak
 	projectile_type = /obj/projectile/plasma/weak
 	select_name = "weak plasma burst"

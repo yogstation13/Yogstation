@@ -23,7 +23,7 @@
 
 /obj/item/kinetic_javelin
 	name = "kinetic javelin"
-	desc = "powerful thrown weapon best suited to exotic environments. It has a small piece of bluespace lodged inside of it's shaft, hitting a living being while in an exotic environment teleports it straight back to you."
+	desc = "Powerful thrown weapon best suited to exotic environments. It has a small piece of bluespace lodged inside of it's shaft, hitting a living being while in an exotic environment teleports it straight back to you."
 	icon = 'yogstation/icons/obj/kinetic_javelin.dmi'
 	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'

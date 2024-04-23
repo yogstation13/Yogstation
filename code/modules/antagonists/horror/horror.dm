@@ -9,8 +9,9 @@
 	maxHealth = 50
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	lighting_cutoff_red = 22
+	lighting_cutoff_green = 5
+	lighting_cutoff_blue = 5
 	stop_automated_movement = TRUE
 	attacktext = "bites"
 	speak_emote = list("gurgles")

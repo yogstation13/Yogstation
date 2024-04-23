@@ -327,7 +327,7 @@
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(check_range))
 	listeningTo = user
 
-/obj/item/shockpaddles/Moved()
+/obj/item/shockpaddles/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	. = ..()
 	check_range()
 

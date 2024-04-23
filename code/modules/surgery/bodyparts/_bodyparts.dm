@@ -19,7 +19,7 @@
 	var/body_zone //BODY_ZONE_CHEST, BODY_ZONE_L_ARM, etc , used for def_zone
 	var/aux_zone // used for hands
 	var/aux_layer
-	var/body_part = null //bitflag used to check which clothes cover this bodypart
+	var/body_part = NONE //bitflag used to check which clothes cover this bodypart
 	var/use_digitigrade = NOT_DIGITIGRADE //Used for alternate legs, useless elsewhere
 	var/list/embedded_objects = list()
 	var/held_index = 0 //are we a hand? if so, which one!
@@ -460,7 +460,7 @@
 	// quick re-check to see if bare_wound_bonus applies, for the benefit of log_wound(), see about getting the check from check_wounding_mods() somehow
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_wearer = owner
-		var/list/clothing = human_wearer.clothingonpart(src)
+		var/list/clothing = human_wearer.clothingonpart(body_part)
 		for(var/i in clothing)
 			var/obj/item/clothing/clothes_check = i
 			// unlike normal armor checks, we tabluate these piece-by-piece manually so we can also pass on appropriate damage the clothing's limbs if necessary
@@ -524,7 +524,7 @@
 		if(H?.physiology?.armor?.wound)//if there is any innate wound armor (poly or genetics)
 			armor_ablation += H.physiology.armor.getRating(WOUND)
 
-		var/list/clothing = H.clothingonpart(src)
+		var/list/clothing = H.clothingonpart(body_part)
 		for(var/c in clothing)
 			var/obj/item/clothing/C = c
 			// unlike normal armor checks, we tabluate these piece-by-piece manually so we can also pass on appropriate damage the clothing's limbs if necessary
@@ -636,7 +636,7 @@
 		if(!HAS_TRAIT(owner, TRAIT_STUNIMMUNE) && stamina_dam >= max_damage)
 			if(!last_maxed)
 				if(owner.stat < UNCONSCIOUS)
-					owner.emote("scream")
+					INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "scream")
 				last_maxed = TRUE
 			set_disabled(TRUE)
 			return
@@ -654,7 +654,7 @@
 	if(total_damage >= max_damage * disable_threshold)
 		if(!last_maxed)
 			if(owner.stat < UNCONSCIOUS)
-				owner.emote("scream")
+				INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "scream")
 			last_maxed = TRUE
 		set_disabled(TRUE)
 		return
@@ -849,10 +849,14 @@
 		species_flags_list = S.species_traits
 
 		if(S.use_skintones)
-			skin_tone = H.skin_tone
+			if(S.forced_skintone)
+				skin_tone = S.forced_skintone
+			else
+				skin_tone = H.skin_tone
 			should_draw_greyscale = TRUE
 		else
 			skin_tone = ""
+
 
 		body_gender = H.gender
 		should_draw_gender = S.sexes
@@ -954,12 +958,6 @@
 				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 			else
 				limb.icon_state = "[species_id]_[body_zone]"
-		if(should_draw_yogs) //yogs start
-			limb.icon = 'yogstation/icons/mob/mutant_bodyparts.dmi'
-			if(should_draw_gender)
-				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
-			else
-				limb.icon_state = "[species_id]_[body_zone]" //yogs end
 		if(aux_zone)
 			aux = image(limb.icon, "[species_id]_[aux_zone]", -aux_layer, image_dir)
 			. += aux

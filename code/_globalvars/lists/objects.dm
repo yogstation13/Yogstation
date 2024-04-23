@@ -1,15 +1,15 @@
 GLOBAL_LIST_EMPTY(cable_list)					    //Index for all cables, so that powernets don't have to look through the entire world all the time
+GLOBAL_LIST_EMPTY(ethernet_cable_list)				//Index for all ethernet cables, so that ainets don't have to look through the entire world all the time
 GLOBAL_LIST_EMPTY(portals)					        //list of all /obj/effect/portal
 GLOBAL_LIST_EMPTY(airlocks)					        //list of all airlocks
 GLOBAL_LIST_EMPTY(mechas_list)				        //list of all mechs. Used by hostile mobs target tracking.
 GLOBAL_LIST_EMPTY(shuttle_caller_list)  		    //list of all communication consoles and AIs, for automatic shuttle calls when there are none.
 GLOBAL_LIST_EMPTY(machines)					        //NOTE: this is a list of ALL machines now. The processing machines list is SSmachine.processing !
 GLOBAL_LIST_EMPTY(lights)							//list of all light bulbs
-GLOBAL_LIST_EMPTY(navigation_computers)				//list of all /obj/machinery/computer/camera_advanced/shuttle_docker
 GLOBAL_LIST_EMPTY(syndicate_shuttle_boards)	        //important to keep track of for managing nukeops war declarations.
 GLOBAL_LIST_EMPTY(navbeacons)					    //list of all bot nagivation beacons, used for patrolling.
 GLOBAL_LIST_EMPTY(teleportbeacons)			        //list of all tracking beacons used by teleporters
-GLOBAL_LIST_EMPTY(deliverybeacons)			        //list of all MULEbot delivery beacons.
+GLOBAL_LIST_EMPTY(deliverybeacons)			        //lisAt of all MULEbot delivery beacons.
 GLOBAL_LIST_EMPTY(deliverybeacontags)			    //list of all tags associated with delivery beacons.
 GLOBAL_LIST_EMPTY(nuke_list)
 GLOBAL_LIST_EMPTY(alarmdisplay)				        //list of all machines or programs that can display station alerts
@@ -34,6 +34,7 @@ GLOBAL_LIST_EMPTY(zombie_infection_list) 		// A list of all zombie_infection org
 GLOBAL_LIST_EMPTY(meteor_list)				// List of all meteors.
 GLOBAL_LIST_EMPTY(active_jammers)             // List of active radio jammers
 GLOBAL_LIST_EMPTY(ladders)
+GLOBAL_LIST_EMPTY(stairs)
 GLOBAL_LIST_EMPTY(trophy_cases)
 
 GLOBAL_LIST_EMPTY(wire_color_directory)

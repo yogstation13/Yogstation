@@ -27,6 +27,7 @@
 
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "volumepump"
+	vent_movement = NONE
 
 /obj/machinery/atmospherics/components/binary/volume_pump/CtrlClick(mob/user)
 	if(can_interact(user))

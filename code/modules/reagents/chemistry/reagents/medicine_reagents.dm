@@ -46,7 +46,7 @@
 	M.adjustToxLoss(-5, 0, TRUE)
 	M.remove_status_effect(/datum/status_effect/hallucination)
 	REMOVE_TRAITS_NOT_IN(M, list(SPECIES_TRAIT, ROUNDSTART_TRAIT, ORGAN_TRAIT))
-	M.set_blurriness(0)
+	M.set_eye_blur(0)
 	M.set_blindness(0)
 	M.SetKnockdown(0, FALSE)
 	M.SetStun(0, FALSE)
@@ -395,6 +395,14 @@
 	description = "Has a 100% chance of instantly healing brute and burn damage on corpses. The chemical will heal up to 120 points of damage at 60 units applied. Touch application only."
 	reagent_state = LIQUID
 	color = "#FFEBEB"
+
+/datum/reagent/medicine/synthflesh/on_mob_add(mob/living/L)
+	if(ishuman(L))
+		var/mob/living/carbon/human/dude = L
+		if(dude?.dna?.species && istype(dude.dna.species, /datum/species/ipc/self/insurgent))
+			var/datum/species/ipc/self/insurgent/sneaky = dude.dna.species
+			sneaky.assume_disguise(dude)
+	. = ..()
 
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, methods=TOUCH, reac_volume,show_message = 1)
 	var/can_heal = FALSE
@@ -821,15 +829,15 @@
 			to_chat(M, span_warning("Your vision slowly returns..."))
 			M.cure_blind(EYE_DAMAGE)
 			M.cure_nearsighted(EYE_DAMAGE)
-			M.blur_eyes(35)
+			M.adjust_eye_blur(35)
 
 	else if(HAS_TRAIT_FROM(M, TRAIT_NEARSIGHT, EYE_DAMAGE))
 		to_chat(M, span_warning("The blackness in your peripheral vision fades."))
 		M.cure_nearsighted(EYE_DAMAGE)
-		M.blur_eyes(10)
+		M.adjust_eye_blur(10)
 	else if(M.eye_blind || M.eye_blurry)
 		M.set_blindness(0)
-		M.set_blurriness(0)
+		M.set_eye_blur(0)
 	..()
 
 /datum/reagent/medicine/atropine

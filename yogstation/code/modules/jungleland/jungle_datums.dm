@@ -11,7 +11,6 @@
 	screen_loc = "CENTER-9,CENTER-7"
 	appearance_flags = TILE_BOUND
 	layer = ABOVE_OPEN_TURF_LAYER
-	plane = BLACKNESS_PLANE
 	alpha = 0 //we animate it ourselves
 
 //wall trip
@@ -21,7 +20,6 @@
 	screen_loc = "CENTER-9,CENTER-7"
 	appearance_flags = TILE_BOUND
 	layer = BELOW_MOB_LAYER
-	plane = BLACKNESS_PLANE 
 	alpha = 0 //we animate it ourselves
 
 // reagents
@@ -89,7 +87,7 @@
 	taste_description = "colours"
 	metabolization_rate = REAGENTS_METABOLISM / 2
 
-	var/offset = 0;
+	var/offset = 0
 	var/atom/movable/screen/fullscreen/trip/cached_screen
 	var/atom/movable/screen/fullscreen/ftrip/cached_screen_floor
 	var/atom/movable/screen/fullscreen/gtrip/cached_screen_game
@@ -107,19 +105,20 @@
 	. = ..()
 
 // I seperated these functions from the ones right above this comment for clarity, and because i wanted to seperate visual stuff from effects stuff, makes it easier to understand.
-/datum/reagent/jungle/polybycin/proc/add_filters(mob/living/L)
-	if(!L.hud_used || !L.client)
+/datum/reagent/jungle/polybycin/proc/add_filters(mob/living/psychonaut)
+	if(!psychonaut.hud_used || !psychonaut.client)
 		return
 
-	var/atom/movable/screen/plane_master/game_world/game_plane =  L.hud_used.plane_masters["[GAME_PLANE]"]
-	var/atom/movable/screen/plane_master/floor/floor_plane  = L.hud_used.plane_masters["[FLOOR_PLANE]"]
+	// var/atom/movable/screen/plane_master/game_world/game_plane =  psychonaut.hud_used.plane_masters["[GAME_PLANE]"]
+	//var/atom/movable/screen/plane_master/floor/floor_plane  = psychonaut.hud_used.plane_masters["[FLOOR_PLANE]"]
+	var/atom/movable/plane_master_controller/game_plane_master_controller = psychonaut.hud_used.plane_master_controllers[PLANE_MASTERS_GAME]
 
-	cached_screen = L.overlay_fullscreen("polycybin_trip",/atom/movable/screen/fullscreen/trip)
-	cached_screen_floor = L.overlay_fullscreen("polycybin_ftrip",/atom/movable/screen/fullscreen/ftrip)
-	cached_screen_game = L.overlay_fullscreen("polycybin_gtrip",/atom/movable/screen/fullscreen/gtrip)
+	cached_screen = psychonaut.overlay_fullscreen("polycybin_trip",/atom/movable/screen/fullscreen/trip)
+	cached_screen_floor = psychonaut.overlay_fullscreen("polycybin_ftrip",/atom/movable/screen/fullscreen/ftrip)
+	cached_screen_game = psychonaut.overlay_fullscreen("polycybin_gtrip",/atom/movable/screen/fullscreen/gtrip)
 
-	cached_screen_floor.add_filter("polycybin_ftrip",1,list("type"="alpha","render_source"=floor_plane.get_render_target()))
-	cached_screen_game.add_filter("polycybin_gtrip",1,list("type"="alpha","render_source"=game_plane.get_render_target()))
+	game_plane_master_controller.add_filter("polycybin_ftrip", 1, alpha_mask_filter(render_source = FLOOR_PLANE))
+	game_plane_master_controller.add_filter("polycybin_gtrip", 1 , alpha_mask_filter())
 
 /datum/reagent/jungle/polybycin/proc/remove_filters(mob/living/L)
 	if(!L.client)
@@ -134,10 +133,10 @@
 	L.clear_fullscreen("polycybin_gtrip")
 	
 
-/datum/reagent/jungle/polybycin/proc/update_filters(mob/living/L)
+/datum/reagent/jungle/polybycin/update_filters(mob/living/L)
 	if(!L.client)
 		return
-
+	. = ..()
 	if(cached_screen)	
 		animate(cached_screen, alpha = min(min(current_cycle,volume)/25,1)*255, time = 2 SECONDS)
 	if(cached_screen_floor)
@@ -243,7 +242,7 @@
 /datum/reagent/toxin/meduracha/on_mob_life(mob/living/carbon/M)
 	M.damageoverlaytemp = 60
 	M.update_damage_hud()
-	M.blur_eyes(3)
+	M.adjust_eye_blur(3)
 	return ..()
 
 /datum/reagent/quinine 

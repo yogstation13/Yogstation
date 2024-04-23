@@ -112,7 +112,8 @@
 			BP.drop_organs()
 		else
 			for(var/obj/item/organ/O in BP.dismember())
-				O.forceMove(target) //Some organs, like chest ones, are different so we need to manually move them
+				if(O.can_extract())
+					O.forceMove(target) //Some organs, like chest ones, are different so we need to manually move them
 		operation_order.Remove(BP)
 		break
 	use_power(5000)

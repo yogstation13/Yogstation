@@ -9,8 +9,8 @@
 	armor = list(melee = 35, bullet = 50, laser = 45, energy = 30, bomb = 50, bio = 50, rad = 40)
 
 /obj/item/clothing/gloves/yogs/army
-	desc = "Gloves often seen used by military folk. These gloves are fire-resistant."
 	name = "military gloves"
+	desc = "Gloves often seen used by military folk. These gloves are fire-resistant."
 	icon_state = "armygloves"
 	item_state = "armygloves"
 	cold_protection = HANDS
@@ -20,8 +20,8 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/gloves/yogs/namgloves
-	desc = "nam gloves to help show people just exactly what war is good for."
 	name = "nam gloves"
+	desc = "Nam gloves to help show people just exactly what war is good for."
 	icon_state = "namgloves"
 	item_state = "namgloves"
 	cold_protection = HANDS

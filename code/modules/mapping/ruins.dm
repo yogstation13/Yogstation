@@ -1,20 +1,21 @@
 /datum/map_template/ruin/proc/try_to_place(z, list/allowed_areas_typecache, turf/forced_turf, clear_below)
 	var/sanity = forced_turf ? 1 : PLACEMENT_TRIES
+	if(SSmapping.level_trait(z,ZTRAIT_ISOLATED_RUINS))
+		return place_on_isolated_level(z)
 	while(sanity > 0)
 		sanity--
 		var/width_border = TRANSITIONEDGE + SPACERUIN_MAP_EDGE_PAD + round(width / 2)
 		var/height_border = TRANSITIONEDGE + SPACERUIN_MAP_EDGE_PAD + round(height / 2)
-		var/turf/central_turf = locate(rand(width_border, world.maxx - width_border), rand(height_border, world.maxy - height_border), z)
+		var/turf/central_turf = forced_turf ? forced_turf : locate(rand(width_border, world.maxx - width_border), rand(height_border, world.maxy - height_border), z)
 		var/valid = TRUE
 		var/list/affected_turfs = get_affected_turfs(central_turf,1)
 		var/list/affected_areas = list()
 
 		for(var/turf/check in affected_turfs)
 			// Use assoc lists to move this out, it's easier that way
-			if(check.flags_1 & NO_RUINS_1)
+			if(check.turf_flags & NO_RUINS)
 				valid = FALSE
 				break
-			
 			var/area/new_area = get_area(check)
 			affected_areas[new_area] = TRUE
 
@@ -45,12 +46,32 @@
 		loaded++
 
 		for(var/turf/T in affected_turfs)
-			T.flags_1 |= NO_RUINS_1
+			T.turf_flags |= NO_RUINS
 
 		new /obj/effect/landmark/ruin(central_turf, src)
 		return central_turf
 
+/datum/map_template/ruin/proc/place_on_isolated_level(z)
+	var/datum/turf_reservation/reservation = SSmapping.request_turf_block_reservation(width, height, 1, z) //Make the new level creation work with different traits.
+	if(!reservation)
+		return
+	var/turf/placement = reservation.bottom_left_turfs[1]
+	load(placement)
+	loaded++
+	for(var/turf/T in get_affected_turfs(placement))
+		T.turf_flags |= NO_RUINS
+	var/turf/center = locate(placement.x + round(width/2),placement.y + round(height/2),placement.z)
+	new /obj/effect/landmark/ruin(center, src)
+	return center
 
+/**
+ * Loads the ruins for a given z level.
+ * @param z_levels The z levels to load ruins on.
+ * @param budget The budget to spend on ruins. Compare against the cost of the ruins in /datum/map_template/ruin.
+ * @param whitelist A list of areas to allow ruins to be placed in.
+ * @param potentialRuins A list of ruins to choose from.
+ * @param clear_below Whether to clear the area below the ruin. Used for multiz ruins.
+ */
 /proc/seedRuins(list/z_levels = null, budget = 0, whitelist = list(/area/space), list/potentialRuins, clear_below = FALSE)
 	if(!z_levels || !z_levels.len)
 		WARNING("No Z levels provided - Not generating ruins")
@@ -122,7 +143,7 @@
 					for(var/v in current_pick.always_spawn_with)
 						if(current_pick.always_spawn_with[v] == PLACE_BELOW)
 							var/turf/T = locate(1,1,target_z)
-							if(!SSmapping.get_turf_below(T))
+							if(!GET_TURF_BELOW(T))
 								if(forced_z)
 									continue outer
 								else
@@ -182,7 +203,7 @@
 								if(PLACE_DEFAULT)
 									forced_ruins[linked] = -1
 								if(PLACE_BELOW)
-									forced_ruins[linked] = SSmapping.get_turf_below(placed_turf)
+									forced_ruins[linked] = GET_TURF_BELOW(placed_turf)
 		forced_z = 0
 
 		//Update the availible list

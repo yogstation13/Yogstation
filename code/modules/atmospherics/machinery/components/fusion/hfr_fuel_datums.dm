@@ -125,6 +125,20 @@ GLOBAL_LIST_INIT(hfr_fuels_list, hfr_fuels_create_list())
 	secondary_products = list(GAS_ANTINOB, GAS_HEALIUM, GAS_PLUONIUM, GAS_ZAUKER, GAS_NITRIUM, GAS_MIASMA)
 	meltdown_flags = HYPERTORUS_FLAG_DEVASTATING_EXPLOSION | HYPERTORUS_FLAG_RADIATION_PULSE | HYPERTORUS_FLAG_EMP | HYPERTORUS_FLAG_BIG_SPREAD
 
+/datum/hfr_fuel/pluox_antinob_fuel
+	id = "pluox_antinob_fuel"
+	name = "Pluoxium + Antinoblium fuel"
+	negative_temperature_multiplier = 0.1
+	positive_temperature_multiplier = 2.7
+	energy_concentration_multiplier = 1.5
+	fuel_consumption_multiplier = 0.05
+	gas_production_multiplier = 2
+	temperature_change_multiplier = 0.97
+	requirements = list(GAS_PLUOXIUM, GAS_ANTINOB)
+	primary_products = list(GAS_HYPERNOB, GAS_MIASMA)
+	secondary_products = list(GAS_HALON, GAS_HEXANE, GAS_BZ, GAS_NITRIUM, GAS_HEALIUM, GAS_ZAUKER)
+	meltdown_flags = HYPERTORUS_FLAG_DEVASTATING_EXPLOSION | HYPERTORUS_FLAG_RADIATION_PULSE | HYPERTORUS_FLAG_EMP | HYPERTORUS_FLAG_MASSIVE_SPREAD
+
 /datum/hfr_fuel/hypernob_antinob_fuel
 	id = "hypernob_antinob_fuel"
 	name = "Hypernoblium + Antinoblium fuel"

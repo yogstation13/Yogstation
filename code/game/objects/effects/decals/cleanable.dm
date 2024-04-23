@@ -34,6 +34,10 @@
 				diseases_to_add += D
 		if(LAZYLEN(diseases_to_add))
 			AddComponent(/datum/component/infective, diseases_to_add)
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/effect/decal/cleanable/proc/replace_decal(obj/effect/decal/cleanable/C) // Returns true if we should give up in favor of the pre-existing decal
 	if(mergeable_decal)
@@ -85,7 +89,7 @@
 //This is on /cleanable because fuck this ancient mess
 /obj/effect/decal/cleanable/proc/on_entered(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER
-	if(iscarbon(AM) && blood_state && bloodiness > 40)
+	if(iscarbon(AM) && blood_state && bloodiness > 40 && !HAS_TRAIT(AM, TRAIT_LIGHT_STEP))
 		SEND_SIGNAL(AM, COMSIG_STEP_ON_BLOOD, src)
 		update_icon()
 

@@ -3,6 +3,8 @@
 	desc = "Tools for tools."
 	icon_state = "tool"
 	icon_deny = "tool-deny"
+	panel_type = "panel11"
+	light_mask = "tool-light-mask"
 	products = list(/obj/item/stack/cable_coil/random = 10,
 		            /obj/item/crowbar = 5,
 		            /obj/item/weldingtool = 3,

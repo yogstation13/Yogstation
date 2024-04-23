@@ -10,6 +10,7 @@ SUBSYSTEM_DEF(air)
 	var/cached_cost = 0
 
 	var/cost_turfs = 0
+	var/cost_adjacent = 0
 	var/cost_groups = 0
 	var/cost_highpressure = 0
 	var/cost_hotspots = 0
@@ -32,10 +33,14 @@ SUBSYSTEM_DEF(air)
 	var/gas_mixes_count = 0
 	var/gas_mixes_allocated = 0
 
+	var/list/excited_groups = list()
+	var/list/active_turfs = list()
 	var/list/hotspots = list()
 	var/list/networks = list()
 	var/list/rebuild_queue = list()
 	var/list/expansion_queue = list()
+	/// List of turfs to recalculate adjacent turfs on before processing
+	var/list/adjacent_rebuild = list()
 	var/list/pipe_init_dirs_cache = list()
 	var/list/obj/machinery/atmos_machinery = list()
 
@@ -45,11 +50,12 @@ SUBSYSTEM_DEF(air)
 	//Special functions lists
 	var/list/turf/open/high_pressure_delta = list()
 
-
+	/// A cache of objects that perisists between processing runs when resumed == TRUE. Dangerous, qdel'd objects not cleared from this may cause runtimes on processing.
 	var/list/currentrun = list()
 	var/currentpart = SSAIR_PIPENETS
 
 	var/map_loading = TRUE
+	var/list/queued_for_activation
 
 	var/lasttick = 0
 
@@ -420,11 +426,10 @@ SUBSYSTEM_DEF(air)
 	// Clear active turfs - faster than removing every single turf in the world
 	// one-by-one, and Initalize_Atmos only ever adds `src` back in.
 
-	for(var/thing in ALL_TURFS())
-		var/turf/T = thing
-		if (T.blocks_air)
+	for(var/turf/setup in ALL_TURFS())
+		if (setup.blocks_air)
 			continue
-		T.Initalize_Atmos(times_fired)
+		setup.Initalize_Atmos(times_fired)
 		CHECK_TICK
 
 /datum/controller/subsystem/air/proc/setup_atmos_machinery()

@@ -67,7 +67,7 @@
 /area/template_noop)
 "A" = (
 /obj/structure/window/paperframe{
-	CanAtmosPass = 0
+	can_atmos_pass = 0
 	},
 /turf/open/floor/wood/jungle,
 /area/template_noop)

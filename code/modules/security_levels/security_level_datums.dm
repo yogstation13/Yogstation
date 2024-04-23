@@ -29,6 +29,20 @@
 	var/lowering_to_configuration_key
 	/// Our configuration key for elevating to text, if set, will override the default elevating to announcement.
 	var/elevating_to_configuration_key
+	/// Custom title to use for announcement messages
+	var/custom_title
+	/// If the alert level should disable night mode
+	var/disable_night_mode = FALSE
+	/// If the emergency lights should be activiated
+	var/area_alarm = FALSE
+	/// If pods should be available for player launch
+	var/pod_access = FALSE
+	/// If red alert access doors should be unlocked
+	var/emergency_doors = FALSE
+	/// Are players allowed to cryo
+	var/allow_cryo = TRUE
+	/// Require providing a reason for a shuttle call at this alert level
+	var/require_call_reason = TRUE
 
 /datum/security_level/New()
 	. = ..()
@@ -36,6 +50,8 @@
 		lowering_to_announcement = global.config.Get(lowering_to_configuration_key)
 	if(elevating_to_configuration_key)
 		elevating_to_announcement = global.config.Get(elevating_to_configuration_key)
+
+/datum/security_level/proc/on_activate(previous_level)
 
 /**
  * GREEN
@@ -49,6 +65,7 @@
 	number_level = SEC_LEVEL_GREEN
 	lowering_to_configuration_key = /datum/config_entry/string/alert_green
 	shuttle_call_time_mod = ALERT_COEFF_GREEN
+	require_call_reason = FALSE
 
 /**
  * BLUE
@@ -77,6 +94,49 @@
 	lowering_to_configuration_key = /datum/config_entry/string/alert_red_downto
 	elevating_to_configuration_key = /datum/config_entry/string/alert_red_upto
 	shuttle_call_time_mod = ALERT_COEFF_RED
+	disable_night_mode = TRUE
+	pod_access = TRUE
+	emergency_doors = TRUE
+
+/**
+ * GAMMA
+ *
+ * Station is under severe threat, but not threat of immediate destruction
+ */
+/datum/security_level/gamma
+	name = "gamma"
+	announcement_color = "orange"
+	sound = 'sound/misc/gamma_alert.ogg'
+	number_level = SEC_LEVEL_GAMMA
+	elevating_to_configuration_key = /datum/config_entry/string/alert_gamma
+	lowering_to_configuration_key = /datum/config_entry/string/alert_gamma
+	shuttle_call_time_mod = ALERT_COEFF_DELTA
+	disable_night_mode = TRUE
+	pod_access = TRUE
+	emergency_doors = TRUE
+	allow_cryo = FALSE
+
+/**
+ * EPSILON
+ *
+ * Death squad alert
+ */
+/datum/security_level/epsilon
+	name = "epsilon"
+	announcement_color = "grey"
+	sound = 'sound/misc/epsilon_alert.ogg'
+	number_level = SEC_LEVEL_EPSILON
+	elevating_to_configuration_key = /datum/config_entry/string/alert_epsilon
+	lowering_to_configuration_key = /datum/config_entry/string/alert_epsilon
+	custom_title = "Epsilon Protocol Activated"
+	shuttle_call_time_mod = ALERT_COEFF_EPSILON
+	disable_night_mode = TRUE
+	pod_access = TRUE
+	emergency_doors = TRUE
+	allow_cryo = FALSE
+
+/datum/security_level/epsilon/on_activate(previous_level)
+	send_to_playing_players(span_notice("You get a bad feeling as you hear the Epsilon alert siren."))
 
 /**
  * DELTA
@@ -86,36 +146,12 @@
 /datum/security_level/delta
 	name = "delta"
 	announcement_color = "purple"
-	sound = 'sound/misc/delta_alert.ogg' // Air alarm to signify importance
+	sound = 'sound/misc/delta_alert.ogg'
 	number_level = SEC_LEVEL_DELTA
 	elevating_to_configuration_key = /datum/config_entry/string/alert_delta
 	shuttle_call_time_mod = ALERT_COEFF_DELTA
-
-
-/**
- * GAMMA
- *
- * Station is not having a very good fun time
- */
-/datum/security_level/gamma
-	name = "gamma"
-	announcement_color = "orange"
-	sound = 'sound/misc/gamma_alert.ogg'// Air alarm to signify importance
-	number_level = SEC_LEVEL_GAMMA
-	elevating_to_configuration_key = /datum/config_entry/string/alert_gamma
-	shuttle_call_time_mod = ALERT_COEFF_GAMMA
-
-
-
-/**
- * EPSILON
- *
- * Station destruction is here, and you probably caused it, you monster.
- */
-/datum/security_level/epsilon
-	name = "epsilon"
-	announcement_color = "black"
-	sound = 'sound/misc/epsilon_alert.ogg'// Air alarm to signify importance
-	number_level = SEC_LEVEL_EPSILON
-	elevating_to_configuration_key = /datum/config_entry/string/alert_epsilon
-	shuttle_call_time_mod = ALERT_COEFF_EPSILON
+	disable_night_mode = TRUE
+	area_alarm = TRUE
+	pod_access = TRUE
+	emergency_doors = TRUE
+	allow_cryo = FALSE

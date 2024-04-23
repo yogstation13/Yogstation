@@ -8,7 +8,7 @@
 	layer = TABLE_LAYER
 	pass_flags = LETPASSTHROW
 	can_buckle = TRUE
-	smooth = SMOOTH_FALSE
+	smoothing_flags = null
 	canSmoothWith = null
 	flags_1 = NODECONSTRUCT_1 // no, don't
 	buckle_lying = 90 //we turn to you!
@@ -25,7 +25,7 @@
 	AddComponent(/datum/component/religious_tool, ALL, FALSE, CALLBACK(src, PROC_REF(reflect_sect_in_icons)))
 
 /obj/structure/table/altar_of_gods/attackby(obj/item/I, mob/user, params)
-	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, I, user, params) & COMPONENT_NO_AFTERATTACK)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY, I, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE // this signal needs to be sent early so the bible can actually be used on it
 	return ..()
 

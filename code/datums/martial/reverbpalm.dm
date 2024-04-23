@@ -48,9 +48,7 @@
 //animation procs
 
 //knocking them down
-/datum/martial_art/reverberating_palm/proc/footsies(mob/living/target, var/suplex = FALSE)
-	if(suplex)
-		animate(target, transform = matrix(180, MATRIX_ROTATE), time = 0 SECONDS, loop = 0)
+/datum/martial_art/reverberating_palm/proc/footsies(mob/living/target)
 	if(target.mobility_flags & MOBILITY_STAND)
 		animate(target, transform = matrix(90, MATRIX_ROTATE), time = 0 SECONDS, loop = 0)
 		return
@@ -68,6 +66,8 @@
 
 /datum/martial_art/reverberating_palm/can_use(mob/living/carbon/human/H)
 	var/obj/item/bodypart/r_arm/robot/seismic/R = H.get_bodypart(BODY_ZONE_R_ARM)
+	if(!isturf(H.loc))
+		return FALSE
 	if(R)
 		if(!istype(R, /obj/item/bodypart/r_arm/robot/seismic))
 			return FALSE
@@ -88,7 +88,7 @@
 		return
 	if(H.a_intent == INTENT_DISARM)
 		rush(H)
-	if(H.a_intent == INTENT_HARM && isliving(target))
+	if(H.a_intent == INTENT_HARM && isliving(target) && (get_dist(H, target) <= 1))
 		suplex(H,target)
 	if(H.a_intent == INTENT_GRAB)
 		lariat(H)
@@ -103,14 +103,14 @@
 		return
 	COOLDOWN_START(src, next_palm, COOLDOWN_RPALM)
 	var/obj/item/melee/overcharged_emitter/B = new()
-	user.visible_message(span_userdanger("[user]'s left arm begins crackling loudly!"))
+	user.visible_message(span_userdanger("[user]'s right arm begins crackling loudly!"))
 	playsound(user,'sound/effects/beepskyspinsabre.ogg', 60, 1)
 	if(do_after(user, 2 SECONDS, user, timed_action_flags = IGNORE_USER_LOC_CHANGE))
-		if(!user.put_in_l_hand(B))
-			to_chat(user, span_warning("You can't do this with your left hand full!"))
+		if(!user.put_in_r_hand(B))
+			to_chat(user, span_warning("You can't do this with your right hand full!"))
 		else
 			user.visible_message(span_danger("[user]'s arm begins shaking violently!"))
-			if(user.active_hand_index % 2 == 0)
+			if(user.active_hand_index % 2 == 1)
 				user.swap_hand(0)
 		//do cooldown
 
@@ -137,9 +137,8 @@
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
 	COOLDOWN_START(src, next_suplex, COOLDOWN_SUPLEX)
-	footsies(target, TRUE)
+	footsies(target)
 	var/turf/Q = get_step(get_turf(user), turn(user.dir,180))
-	user.visible_message(span_warning("[user] outstretches [user.p_their()] arm and goes for a grab!"))
 	wakeup(target)
 	for(var/mob/living/L in Q.contents)
 		damagefilter(user, L, simpledam, persondam, borgdam)
@@ -147,10 +146,19 @@
 		target.forceMove(Z)
 	damagefilter(user, target, simpledam, persondam, borgdam)
 	if(isanimal(target))
+		if(istype(target, /mob/living/simple_animal/hostile/megafauna/bubblegum))
+			var/mob/living/simple_animal/hostile/megafauna/bubblegum/B = target
+			var/turf/D = get_step(Q, turn(user.dir,180))
+			if(B.charging)
+				B.adjustBruteLoss(50)
+				B.forceMove(D)
+				B.visible_message(span_warning("[B] is caught and thrown behind [user]!"))
+				playsound(target, 'sound/effects/explosion1.ogg', 60, 1)
+				shake_camera(user, 1, 2)
+				return
 		if(target.stat == DEAD)
 			target.visible_message(span_warning("[target] crashes and explodes!"))
 			target.gib()
-	wakeup(target)
 	to_chat(user, span_warning("[user] suplexes [target] against [Q]!"))
 	to_chat(target, span_userdanger("[user] crushes you against [Q]!"))
 	playsound(target, 'sound/effects/meteorimpact.ogg', 60, 1)

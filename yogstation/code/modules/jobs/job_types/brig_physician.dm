@@ -7,7 +7,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the chief medical officer"
-	selection_color = "#d4ebf2"
 	minimal_player_age = 5 //seriously stop griefing
 	exp_requirements = 100
 	exp_type = EXP_TYPE_CREW
@@ -47,7 +46,7 @@
 	name = "Brig Physician"
 	jobtype = /datum/job/brigphysician
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/paramed
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/medical/paramed
 
 	backpack_contents = list(/obj/item/roller = 1)
 	belt = /obj/item/storage/belt/medical
@@ -55,7 +54,7 @@
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
 	shoes = /obj/item/clothing/shoes/jackboots
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/jackboots
-	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
+	uniform = /obj/item/clothing/under/yogs/rank/physician/white
 	uniform_skirt = /obj/item/clothing/under/yogs/rank/physician/white/skirt
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt/physician
 	l_hand = /obj/item/storage/firstaid/regular
@@ -65,6 +64,5 @@
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
-	box = /obj/item/storage/box/survival
 
 	implants = list(/obj/item/implant/mindshield)

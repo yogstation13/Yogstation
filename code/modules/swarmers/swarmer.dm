@@ -368,7 +368,7 @@
 		return
 	var/mob/newswarmer = Fabricate(createtype, 20)
 	LAZYADD(dronelist, newswarmer)
-	RegisterSignal(newswarmer, COMSIG_PARENT_QDELETING, PROC_REF(remove_drone), newswarmer)
+	RegisterSignal(newswarmer, COMSIG_QDELETING, PROC_REF(remove_drone), newswarmer)
 	playsound(loc,'sound/items/poster_being_created.ogg', 20, TRUE, -1)
 
 /**

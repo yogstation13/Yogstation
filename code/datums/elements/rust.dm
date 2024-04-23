@@ -16,7 +16,7 @@
 		rust_overlay = image(rust_icon, rust_icon_state, -0.9)//above -1 so it draws over smoothing overlays
 	ADD_TRAIT(target, TRAIT_RUSTY, ELEMENT_TRAIT(type))
 	RegisterSignal(target, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(apply_rust_overlay))
-	RegisterSignal(target, COMSIG_PARENT_EXAMINE, PROC_REF(handle_examine))
+	RegisterSignal(target, COMSIG_ATOM_EXAMINE, PROC_REF(handle_examine))
 	RegisterSignals(target, COMSIG_ATOM_SECONDARY_TOOL_ACT(TOOL_WELDER), PROC_REF(secondary_tool_act))
 	// Unfortunately registering with parent sometimes doesn't cause an overlay update
 	target.update_appearance()
@@ -24,7 +24,7 @@
 /datum/element/rust/Detach(atom/source)
 	. = ..()
 	UnregisterSignal(source, COMSIG_ATOM_UPDATE_OVERLAYS)
-	UnregisterSignal(source, COMSIG_PARENT_EXAMINE)
+	UnregisterSignal(source, COMSIG_ATOM_EXAMINE)
 	UnregisterSignal(source, COMSIG_ATOM_SECONDARY_TOOL_ACT(TOOL_WELDER))
 	REMOVE_TRAIT(source, TRAIT_RUSTY, ELEMENT_TRAIT(type))
 	source.update_appearance()

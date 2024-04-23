@@ -98,16 +98,16 @@
 					to_chat(M, span_notice("Your vision slowly returns..."))
 					M.cure_blind(EYE_DAMAGE)
 					M.cure_nearsighted(EYE_DAMAGE)
-					M.blur_eyes(35)
+					M.adjust_eye_blur(35)
 
 				else if(HAS_TRAIT_FROM(M, TRAIT_NEARSIGHT, EYE_DAMAGE))
 					to_chat(M, span_notice("You can finally focus your eyes on distant objects."))
 					M.cure_nearsighted(EYE_DAMAGE)
-					M.blur_eyes(10)
+					M.adjust_eye_blur(10)
 
 				else if(M.eye_blind || M.eye_blurry)
 					M.set_blindness(0)
-					M.set_blurriness(0)
+					M.set_eye_blur(0)
 				else if(eyes.damage > 0)
 					eyes.applyOrganDamage(-1)
 		else

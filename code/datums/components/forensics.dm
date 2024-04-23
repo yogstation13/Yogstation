@@ -48,7 +48,6 @@
 
 /datum/component/forensics/proc/wipe_blood_DNA()
 	blood_DNA = null
-
 	return TRUE
 
 /datum/component/forensics/proc/is_bloody(datum/source, clean_types)
@@ -88,7 +87,7 @@
 		if(!iscameramob(M))
 			return
 		if(isaicamera(M))
-			var/mob/camera/aiEye/ai_camera = M
+			var/mob/camera/ai_eye/ai_camera = M
 			if(!ai_camera.ai)
 				return
 			M = ai_camera.ai
@@ -161,7 +160,7 @@
 		if(!iscameramob(M))
 			return
 		if(isaicamera(M))
-			var/mob/camera/aiEye/ai_camera = M
+			var/mob/camera/ai_eye/ai_camera = M
 			if(!ai_camera.ai)
 				return
 			M = ai_camera.ai

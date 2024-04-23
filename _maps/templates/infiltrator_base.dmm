@@ -1619,7 +1619,7 @@
 	dir = 2;
 	dwidth = 14;
 	height = 13;
-	id = "syndicatecutter_home";
+	shuttle_id = "syndicatecutter_home";
 	name = "Syndicate Home Outpost";
 	roundstart_template = /datum/map_template/shuttle/infiltrator/cutter;
 	width = 22

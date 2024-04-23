@@ -178,8 +178,8 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "hits"
-	maxHealth = 320
-	health = 320
+	maxHealth = 285
+	health = 285
 	spacewalk = TRUE
 	melee_damage_lower = 30
 	melee_damage_upper = 55 // ouch

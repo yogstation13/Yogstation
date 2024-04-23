@@ -64,9 +64,9 @@
 /obj/item/plate/proc/AddToPlate(obj/item/item_to_plate)
 	vis_contents += item_to_plate
 	item_to_plate.vis_flags |= VIS_INHERIT_PLANE
-	item_to_plate.layer = ABOVE_HUD_LAYER
+	item_to_plate.plane = ABOVE_HUD_PLANE
 	RegisterSignal(item_to_plate, COMSIG_MOVABLE_MOVED, PROC_REF(ItemMoved))
-	RegisterSignal(item_to_plate, COMSIG_PARENT_QDELETING, PROC_REF(ItemMoved))
+	RegisterSignal(item_to_plate, COMSIG_QDELETING, PROC_REF(ItemMoved))
 
 ///This proc cleans up any signals on the item when it is removed from a plate, and ensures it has the correct state again.
 /obj/item/plate/proc/ItemRemovedFromPlate(obj/item/removed_item)
@@ -75,7 +75,7 @@
 	removed_item.vis_flags &= ~VIS_INHERIT_PLANE
 	removed_item.layer = OBJ_LAYER
 
-	UnregisterSignal(removed_item, list(COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING))
+	UnregisterSignal(removed_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING))
 
 ///This proc is called by signals that remove the food from the plate.
 /obj/item/plate/proc/ItemMoved(obj/item/moved_item, forced)
@@ -186,6 +186,6 @@
 
 /obj/item/plate_shard/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/caltrop, force)
+	AddComponent(/datum/component/caltrop, min_damage = force)
 
 #undef PLATE_SHARD_PIECES

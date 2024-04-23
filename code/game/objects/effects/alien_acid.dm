@@ -23,6 +23,11 @@
 	pixel_x = target.pixel_x + rand(-4,4)
 	pixel_y = target.pixel_y + rand(-4,4)
 
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 	START_PROCESSING(SSobj, src)
 
 
@@ -52,8 +57,8 @@
 		qdel(src)
 		return 0
 
-/obj/effect/acid/Crossed(AM as mob|obj)
-	. = ..()
+/obj/effect/acid/proc/on_entered(datum/source, atom/movable/AM, ...)
+
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(L.movement_type & FLYING)

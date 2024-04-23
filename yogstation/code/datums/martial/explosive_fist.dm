@@ -55,7 +55,7 @@
 	
 	if(isopenturf(get_turf(D)))
 		var/turf/open/flashy = get_turf(D)
-		flashy.IgniteTurf(rand(5, 10)) //for the flashy
+		flashy.ignite_turf(rand(5, 10)) //for the flashy
 
 	D.ignite_mob()
 	D.apply_damage(A.get_punchdamagehigh() + 3, BRUTE, selected_zone, brute_block) 	//10 brute
@@ -360,13 +360,13 @@
 			target.adjustFireLoss(30)
 			target.ignite_mob() 	
 		for(var/turf/open/flashy in view_or_range(2, A, "range"))
-			flashy.IgniteTurf(15)
+			flashy.ignite_turf(15)
 
 		var/obj/item/bodypart/hed = D.get_bodypart(BODY_ZONE_HEAD)
 		var/armor_block = D.run_armor_check(hed, BOMB)
 		D.apply_damage(A.get_punchdamagehigh() + 3, BURN, BODY_ZONE_HEAD, armor_block) 		//10 burn (vs bomb armor)
 		D.emote("scream")
-		D.blur_eyes(4)
+		D.adjust_eye_blur(4)
 
 		A.apply_damage(10, BURN, BODY_ZONE_CHEST, 0) 	//Take some unblockable damage since you're using your inner flame or something
 

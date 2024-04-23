@@ -89,7 +89,7 @@
 			log_admin("[key_name(mob_user)] reset the thunderdome to default with delete_mobs==[delete_mobs].", 1)
 			message_admins(span_adminnotice("[key_name_admin(mob_user)] reset the thunderdome to default with delete_mobs=[delete_mobs]."))
 
-			var/area/thunderdome = GLOB.areas_by_type[/area/tdome/arena]
+			var/area/thunderdome = GLOB.areas_by_type[/area/centcom/tdome/arena]
 			if(delete_mobs == "Yes")
 				for(var/mob/living/mob in thunderdome)
 					qdel(mob) //Clear mobs
@@ -97,7 +97,7 @@
 				if(!istype(obj, /obj/machinery/camera) && !istype(obj, /obj/effect/abstract/proximity_checker))
 					qdel(obj) //Clear objects
 
-			var/area/template = GLOB.areas_by_type[/area/tdome/arena_source]
+			var/area/template = GLOB.areas_by_type[/area/centcom/tdome/arena_source]
 			template.copy_contents_to(thunderdome)
 
 		if("clear_virus")

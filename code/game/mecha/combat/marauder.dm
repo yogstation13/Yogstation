@@ -15,19 +15,17 @@
 	add_req_access = 0
 	internal_damage_threshold = 25
 	force = 40
-	max_equip = 4
+	max_equip = 5
 	bumpsmash = 1
 
 /obj/mecha/combat/marauder/GrantActions(mob/living/user, human_occupant = 0)
 	..()
 	smoke_action.Grant(user, src)
-	thrusters_action.Grant(user, src)
 	zoom_action.Grant(user, src)
 
 /obj/mecha/combat/marauder/RemoveActions(mob/living/user, human_occupant = 0)
 	..()
 	smoke_action.Remove(user)
-	thrusters_action.Remove(user)
 	zoom_action.Remove(user)
 
 /obj/mecha/combat/marauder/loaded/Initialize(mapload)
@@ -39,6 +37,8 @@
 	ME = new /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay(src)
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster(src)
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/thrusters/ion(src)
 	ME.attach(src)
 	max_ammo()
 
@@ -53,7 +53,7 @@
 	wreckage = /obj/structure/mecha_wreckage/seraph
 	internal_damage_threshold = 20
 	force = 50
-	max_equip = 5
+	max_equip = 6
 
 /obj/mecha/combat/marauder/seraph/unloaded
 
@@ -71,6 +71,8 @@
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster(src)
 	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/thrusters/ion(src)
+	ME.attach(src)
 	max_ammo()
 
 /obj/mecha/combat/marauder/mauler
@@ -80,7 +82,7 @@
 	operation_req_access = list(ACCESS_SYNDICATE)
 	internals_req_access = list(ACCESS_SYNDICATE)
 	wreckage = /obj/structure/mecha_wreckage/mauler
-	max_equip = 7
+	max_equip = 8
 	destruction_sleep_duration = 20
 	ejection_distance = 8
 
@@ -99,6 +101,8 @@
 	ME = new /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe(src)		//NOT BECAUSE IT'S USEFUL, BUT BECAUSE IT'S AWESOME
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/emergency_eject(src) // YEET
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/thrusters/ion(src)
 	ME.attach(src)
 	max_ammo()
 

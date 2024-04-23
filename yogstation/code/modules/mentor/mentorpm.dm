@@ -27,7 +27,7 @@
 	if(M.client)
 		cmd_mentor_pm(M, null)
 	if(isaicamera(M))
-		var/mob/camera/aiEye/aiEye = M
+		var/mob/camera/ai_eye/aiEye = M
 		if(aiEye.ai.client)
 			cmd_mentor_pm(aiEye.ai, null)
 

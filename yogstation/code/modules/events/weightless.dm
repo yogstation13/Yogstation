@@ -18,13 +18,13 @@
 /datum/round_event/weightless/start()
 	for(var/obj/machinery/gravity_generator/main/station/A in GLOB.machines)
 		if(A)
-			A.set_state(0)
+			A.disable()
 
 /datum/round_event/weightless/end()
 	for(var/obj/machinery/gravity_generator/main/station/A in GLOB.machines)
 		if(A)
 			if(control && A.on)
 				control.weight *= 2	
-			A.set_state(1)	
+			A.enable()
 	if(announceWhen >= 0)
 		priority_announce("Artificial gravity arrays are now functioning within normal parameters. Please report any irregularities to your respective head of staff.")

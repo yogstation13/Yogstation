@@ -9,7 +9,7 @@
 	. = ..()
 	var/state = "[initial_state]"
 	if(attached_light)
-		if(attached_light.on)
+		if(attached_light.light_on)
 			state += "-flight-on" //"helmet-flight-on" // "helmet-cam-flight-on"
 		else
 			state += "-flight" //etc.

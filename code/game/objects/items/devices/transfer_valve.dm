@@ -14,6 +14,13 @@
 	var/valve_open = FALSE
 	var/toggle = TRUE
 
+/obj/item/transfer_valve/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/item/transfer_valve/Destroy()
 	attached_device = null
 	return ..()
@@ -70,8 +77,7 @@
 	if(attached_device)
 		attached_device.on_found(finder)
 
-/obj/item/transfer_valve/Crossed(atom/movable/AM as mob|obj)
-	. = ..()
+/obj/item/transfer_valve/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(attached_device)
 		attached_device.Crossed(AM)
 

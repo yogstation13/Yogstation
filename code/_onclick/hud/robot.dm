@@ -224,8 +224,7 @@
 				A.screen_loc = "CENTER[x]:16,SOUTH+[y]:7"
 			else
 				A.screen_loc = "CENTER+[x]:16,SOUTH+[y]:7"
-			A.layer = ABOVE_HUD_LAYER
-			A.plane = ABOVE_HUD_PLANE
+			SET_PLANE_IMPLICIT(A, ABOVE_HUD_PLANE)
 
 			x++
 			if(x == 4)

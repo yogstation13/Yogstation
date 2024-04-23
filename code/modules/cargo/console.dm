@@ -12,8 +12,8 @@
 	var/can_approve_requests = TRUE
 	var/contraband = FALSE
 	var/safety_warning = "For safety reasons, the automated supply shuttle \
-		cannot transport live organisms, human remains, classified nuclear weaponry \
-		or homing beacons. Additionally, remove any privately ordered crates from the shuttle."
+		cannot transport live organisms, human remains, classified nuclear weaponry, \
+		homing beacons or pneumatic disposal segments. Additionally, remove any privately ordered crates from the shuttle."
 	var/blockade_warning = "Bluespace instability detected. Shuttle movement impossible."
 	var/self_paid = FALSE
 
@@ -80,11 +80,11 @@
 	var/message = "Remember to stamp and send back the supply manifests."
 	if(SSshuttle.centcom_message)
 		message = SSshuttle.centcom_message
-	if(SSshuttle.supplyBlocked)
+	if(SSshuttle.supply_blocked)
 		message = blockade_warning
 	data["message"] = message
 	data["cart"] = list()
-	for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
+	for(var/datum/supply_order/SO in SSshuttle.shopping_list)
 		data["cart"] += list(list(
 			"object" = SO.pack.name,
 			"cost" = SO.pack.get_cost(),
@@ -95,7 +95,7 @@
 		))
 
 	data["requests"] = list()
-	for(var/datum/supply_order/SO in SSshuttle.requestlist)
+	for(var/datum/supply_order/SO in SSshuttle.request_list)
 		data["requests"] += list(list(
 			"object" = SO.pack.name,
 			"cost" = SO.pack.get_cost(),
@@ -138,7 +138,7 @@
 			if(!SSshuttle.supply.canMove())
 				say(safety_warning)
 				return
-			if(SSshuttle.supplyBlocked)
+			if(SSshuttle.supply_blocked)
 				say(blockade_warning)
 				return
 			if(SSshuttle.supply.getDockedId() == "supply_home")
@@ -148,13 +148,20 @@
 				investigate_log("[key_name(usr)] sent the supply shuttle away.", INVESTIGATE_CARGO)
 			else
 				investigate_log("[key_name(usr)] called the supply shuttle.", INVESTIGATE_CARGO)
-				say("The supply shuttle has been called and will arrive in [SSshuttle.supply.timeLeft(600)] minutes.")
+				var/call_time = SSshuttle.supply.timeLeft(10) //how many seconds
+				var/unit = "seconds"
+				if(call_time >= 60) //if more than 60 seconds,
+					call_time = SSshuttle.supply.timeLeft(600) //go to minutes instead
+					unit = "minute"
+					if(call_time > 1) //handles more than 1 minute
+						unit = "minutes"
+				say("The supply shuttle has been called and will arrive in [call_time] [unit].")
 				SSshuttle.moveShuttle("supply", "supply_home", TRUE)
 			. = TRUE
 		if("loan")
 			if(!SSshuttle.shuttle_loan)
 				return
-			if(SSshuttle.supplyBlocked)
+			if(SSshuttle.supply_blocked)
 				say(blockade_warning)
 				return
 			else if(SSshuttle.supply.mode != SHUTTLE_IDLE)
@@ -207,39 +214,39 @@
 			var/datum/supply_order/SO = new(pack, name, rank, ckey, reason, account)
 			SO.generateRequisition(T)
 			if(requestonly && !self_paid)
-				SSshuttle.requestlist += SO
+				SSshuttle.request_list += SO
 			else
-				SSshuttle.shoppinglist += SO
+				SSshuttle.shopping_list += SO
 				if(self_paid)
 					say("Order processed. The price will be charged to [account.account_holder]'s bank account on delivery.")
 			. = TRUE
 		if("remove")
 			var/id = text2num(params["id"])
-			for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
+			for(var/datum/supply_order/SO in SSshuttle.shopping_list)
 				if(SO.id == id)
-					SSshuttle.shoppinglist -= SO
+					SSshuttle.shopping_list -= SO
 					. = TRUE
 					break
 		if("clear")
-			SSshuttle.shoppinglist.Cut()
+			SSshuttle.shopping_list.Cut()
 			. = TRUE
 		if("approve")
 			var/id = text2num(params["id"])
-			for(var/datum/supply_order/SO in SSshuttle.requestlist)
+			for(var/datum/supply_order/SO in SSshuttle.request_list)
 				if(SO.id == id)
-					SSshuttle.requestlist -= SO
-					SSshuttle.shoppinglist += SO
+					SSshuttle.request_list -= SO
+					SSshuttle.shopping_list += SO
 					. = TRUE
 					break
 		if("deny")
 			var/id = text2num(params["id"])
-			for(var/datum/supply_order/SO in SSshuttle.requestlist)
+			for(var/datum/supply_order/SO in SSshuttle.request_list)
 				if(SO.id == id)
-					SSshuttle.requestlist -= SO
+					SSshuttle.request_list -= SO
 					. = TRUE
 					break
 		if("denyall")
-			SSshuttle.requestlist.Cut()
+			SSshuttle.request_list.Cut()
 			. = TRUE
 		if("toggleprivate")
 			self_paid = !self_paid

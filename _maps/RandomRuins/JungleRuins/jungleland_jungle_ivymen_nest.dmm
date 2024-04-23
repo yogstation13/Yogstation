@@ -38,7 +38,7 @@
 /area/jungleland/explored)
 "ai" = (
 /obj/item/flashlight/lantern{
-	on = 1
+	light_on = 1
 	},
 /turf/open/indestructible/grass,
 /area/ruin/unpowered/ivymen)
@@ -50,7 +50,7 @@
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/ruin/unpowered/ivymen)
 "al" = (
-/turf/closed/indestructible/rock/wood,
+/turf/closed/indestructible/wood,
 /area/ruin/unpowered/ivymen)
 "am" = (
 /obj/machinery/iv_drip,
@@ -214,7 +214,7 @@
 /area/ruin/unpowered/ivymen)
 "uo" = (
 /obj/item/flashlight/lantern{
-	on = 1
+	light_on = 1
 	},
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/jungleland/explored)

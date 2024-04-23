@@ -134,7 +134,7 @@
 	playsound(D, 'sound/weapons/genhit1.ogg', 50, TRUE, -1)
 	D.apply_damage(disarm_damage, STAMINA, BODY_ZONE_HEAD, armor_block)
 	D.apply_damage(disarm_damage, A.dna.species.attack_type, BODY_ZONE_HEAD, armor_block)
-	D.blur_eyes(4)
+	D.adjust_eye_blur(4)
 	if(!istype(D.head, /obj/item/clothing/head/helmet))
 		D.dna.species.aiminginaccuracy += 25
 		addtimer(CALLBACK(src, PROC_REF(remove_bonk), D), 10 SECONDS)

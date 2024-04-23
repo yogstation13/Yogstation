@@ -86,12 +86,13 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
  */
 /mob/living/proc/move_into_vent(obj/machinery/atmospherics/components/ventcrawl_target)
 	forceMove(ventcrawl_target)
+	ADD_TRAIT(src, TRAIT_MOVE_VENTCRAWLING, VENTCRAWLING_TRAIT)
 	update_pipe_vision()
 
 
 
 /mob/living/proc/add_ventcrawl(obj/machinery/atmospherics/starting_machine)
-	if(!istype(starting_machine) || !starting_machine.can_see_pipes())
+	if(!istype(starting_machine) || !starting_machine.can_see_pipes() || isnull(client))
 		return
 	var/list/totalMembers = list()
 
@@ -102,26 +103,48 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	if(!totalMembers.len)
 		return
 
-	if(client)
-		for(var/X in totalMembers)
-			var/obj/machinery/atmospherics/A = X //all elements in totalMembers are necessarily of this type.
-			if(in_view_range(client.mob, A))
-				if(!A.pipe_vision_img)
-					A.pipe_vision_img = image(A, A.loc, layer = ABOVE_HUD_LAYER, dir = A.dir)
-					A.pipe_vision_img.plane = ABOVE_HUD_PLANE
-				client.images += A.pipe_vision_img
-				pipes_shown += A.pipe_vision_img
+	set_sight(SEE_TURFS|BLIND)
+
+	// We're gonna color the lighting plane to make it darker while ventcrawling, so things look nicer
+	// This is a bit hacky but it makes the background darker, which has a nice effect
+	for(var/atom/movable/screen/plane_master/lighting as anything in hud_used.get_true_plane_masters(LIGHTING_PLANE))
+		lighting.add_atom_colour("#4d4d4d", TEMPORARY_COLOUR_PRIORITY)
+
+	for(var/atom/movable/screen/plane_master/pipecrawl as anything in hud_used.get_true_plane_masters(PIPECRAWL_IMAGES_PLANE))
+		pipecrawl.unhide_plane(src)
+	
+	var/obj/machinery/atmospherics/current_location = loc
+	var/list/our_pipenets = current_location.return_pipenets()
+
+	for(var/obj/machinery/atmospherics/pipenet_part as anything in totalMembers)
+		// If the machinery is not in view or is not meant to be seen, continue
+		// If the machinery is not part of our net or is not meant to be seen, continue
+		var/list/thier_pipenets = pipenet_part.return_pipenets()
+		if(!length(thier_pipenets & our_pipenets))
+			continue
+		if(!in_view_range(client.mob, pipenet_part))
+			continue
+		if(!pipenet_part.pipe_vision_img)
+			var/turf/their_turf = get_turf(pipenet_part)
+			pipenet_part.pipe_vision_img = image(pipenet_part, pipenet_part.loc, dir = pipenet_part.dir)
+			SET_PLANE(pipenet_part.pipe_vision_img, PIPECRAWL_IMAGES_PLANE, their_turf)
+		client.images += pipenet_part.pipe_vision_img
+		pipes_shown += pipenet_part.pipe_vision_img
 	setMovetype(movement_type | VENTCRAWLING)
 
 
 /mob/living/proc/remove_ventcrawl()
-	if(client)
+	// Take away all the pipe images if we're not doing anything with em
+	if(isnull(client) || !HAS_TRAIT(src, TRAIT_MOVE_VENTCRAWLING) || !istype(loc, /obj/machinery/atmospherics) || !(movement_type & VENTCRAWLING))
 		for(var/image/current_image in pipes_shown)
 			client.images -= current_image
-	pipes_shown.len = 0
-	setMovetype(movement_type & ~VENTCRAWLING)
-
-
+		pipes_shown.len = 0
+		for(var/atom/movable/screen/plane_master/lighting as anything in hud_used.get_true_plane_masters(LIGHTING_PLANE))
+			lighting.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, "#4d4d4d")
+		for(var/atom/movable/screen/plane_master/pipecrawl as anything in hud_used.get_true_plane_masters(PIPECRAWL_IMAGES_PLANE))
+			pipecrawl.hide_plane(src)
+		setMovetype(movement_type & ~VENTCRAWLING)
+		update_sight()
 
 
 //OOP

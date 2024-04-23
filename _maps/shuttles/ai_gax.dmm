@@ -84,7 +84,7 @@
 	dir = 2;
 	dwidth = 2;
 	height = 6;
-	id = "ai_ship";
+	shuttle_id = "ai_ship";
 	name = "ai ship shuttle";
 	port_direction = 4;
 	width = 5

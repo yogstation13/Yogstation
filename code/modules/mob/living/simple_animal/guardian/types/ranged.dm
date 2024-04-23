@@ -63,23 +63,32 @@
 		if(namedatum)
 			P.color = namedatum.color
 
-/mob/living/simple_animal/hostile/guardian/ranged/ToggleLight()
+/mob/living/simple_animal/hostile/guardian/ranged/toggle_light()
 	var/msg
-	switch(lighting_alpha)
-		if (LIGHTING_PLANE_ALPHA_VISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	switch(lighting_cutoff)
+		if (LIGHTING_CUTOFF_VISIBLE)
+			lighting_cutoff_red = 10
+			lighting_cutoff_green = 10
+			lighting_cutoff_blue = 15
 			msg = "You activate your night vision."
-		if (LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+		if (LIGHTING_CUTOFF_MEDIUM)
+			lighting_cutoff_red = 25
+			lighting_cutoff_green = 25
+			lighting_cutoff_blue = 35
 			msg = "You increase your night vision."
-		if (LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+		if (LIGHTING_CUTOFF_HIGH)
+			lighting_cutoff_red = 35
+			lighting_cutoff_green = 35
+			lighting_cutoff_blue = 50
 			msg = "You maximize your night vision."
 		else
-			lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
+			lighting_cutoff_red = 0
+			lighting_cutoff_green = 0
+			lighting_cutoff_blue = 0
 			msg = "You deactivate your night vision."
+	sync_lighting_plane_cutoff()
+	to_chat(src, span_notice(msg))
 
-	to_chat(src, span_notice("[msg]"))
 
 
 /mob/living/simple_animal/hostile/guardian/ranged/verb/Snare()

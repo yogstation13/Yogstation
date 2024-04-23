@@ -12,6 +12,7 @@
 	circuit = /obj/item/circuitboard/machine/thermomachine
 
 	pipe_flags = PIPING_ONE_PER_TURF
+	vent_movement = NONE
 
 	var/icon_state_off = "freezer"
 	var/icon_state_on = "freezer_1"
@@ -95,6 +96,9 @@
 		target_temperature = max_temperature
 		investigate_log("was set to [target_temperature] K by [key_name(user)]", INVESTIGATE_ATMOS)
 		balloon_alert(user, "You maximize the target temperature on [src] to [target_temperature] K.d")
+
+/obj/machinery/atmospherics/components/unary/thermomachine/update_layer()
+	return
 
 /obj/machinery/atmospherics/components/unary/thermomachine/update_icon_nopipes()
 	cut_overlays()

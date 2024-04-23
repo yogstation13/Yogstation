@@ -37,10 +37,11 @@
 		return "r"
 	return "l"
 
-/mob/proc/held_index_to_body_zone(i)
+/// Returns HAND_LEFT or HAND_RIGHT based on whether the left or right hand is selected
+/mob/proc/held_index_to_hand(i)
 	if(!(i % 2))
-		return BODY_ZONE_R_ARM
-	return BODY_ZONE_L_ARM
+		return HAND_RIGHT
+	return HAND_LEFT
 
 //Check we have an organ for this hand slot (Dismemberment), Only relevant for humans
 /mob/proc/has_hand_for_held_index(i)
@@ -135,12 +136,6 @@
 		if(I.tool_behaviour == quality && I.toolspeed < best_quality)
 			best_item = I
 			best_quality = I.toolspeed
-//yogs start -- fucking stupid but modular holotool patch
-	if(quality == TOOL_MULTITOOL)
-		if(istype(best_item,/obj/item/holotool))
-			var/obj/item/holotool/H = best_item
-			return H.internal_multitool
-//yogs end
 	return best_item
 
 
@@ -189,8 +184,7 @@
 			dropItemToGround(get_item_for_held_index(hand_index), force = TRUE)
 		I.forceMove(src)
 		held_items[hand_index] = I
-		I.layer = ABOVE_HUD_LAYER
-		I.plane = ABOVE_HUD_PLANE
+		SET_PLANE_EXPLICIT(I, ABOVE_HUD_PLANE, src)
 		I.equipped(src, ITEM_SLOT_HANDS, no_sound)
 		if(I.pulledby)
 			I.pulledby.stop_pulling()
@@ -239,7 +233,7 @@
 		var/obj/item/stack/I_stack = I
 		var/obj/item/stack/active_stack = get_active_held_item()
 
-		if (I_stack.zero_amount())
+		if (I_stack.is_zero_amount(delete_if_zero = TRUE))
 			return FALSE
 
 		if (merge_stacks)
@@ -268,7 +262,7 @@
 		return FALSE
 	I.forceMove(drop_location())
 	I.layer = initial(I.layer)
-	I.plane = initial(I.plane)
+	SET_PLANE_IMPLICIT(I, initial(I.plane))
 	I.dropped(src)
 	return FALSE
 
@@ -327,7 +321,7 @@
 //DO NOT CALL THIS PROC
 //use one of the above 3 helper procs
 //you may override it, but do not modify the args
-/mob/proc/doUnEquip(obj/item/I, force, newloc, no_move, invdrop = TRUE, silent = FALSE) //Force overrides TRAIT_NODROP for things like wizarditis and admin undress.
+/mob/proc/doUnEquip(obj/item/I, force, atom/newloc, no_move, invdrop = TRUE, silent = FALSE) //Force overrides TRAIT_NODROP for things like wizarditis and admin undress.
 													//Use no_move if the item is just gonna be immediately moved afterward
 													//Invdrop is used to prevent stuff in pockets dropping. only set to false if it's going to immediately be replaced
 	PROTECTED_PROC(TRUE)
@@ -335,6 +329,9 @@
 		return TRUE
 
 	if(HAS_TRAIT(I, TRAIT_NODROP) && !force)
+		return FALSE
+	
+	if((SEND_SIGNAL(I, COMSIG_ITEM_PRE_UNEQUIP, force, newloc, no_move, invdrop, silent) & COMPONENT_ITEM_BLOCK_UNEQUIP) && !force)
 		return FALSE
 
 	var/hand_index = get_held_index_of_item(I)
@@ -345,7 +342,7 @@
 		if(client)
 			client.screen -= I
 		I.layer = initial(I.layer)
-		I.plane = initial(I.plane)
+		SET_PLANE_EXPLICIT(I, initial(I.plane), newloc)
 		I.appearance_flags &= ~NO_CLIENT_COLOR
 		if(!no_move && !(I.item_flags & DROPDEL))	//item may be moved/qdel'd immedietely, don't bother moving it
 			if (isnull(newloc))

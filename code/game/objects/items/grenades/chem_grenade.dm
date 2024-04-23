@@ -342,7 +342,7 @@
 
 /obj/item/grenade/chem_grenade/radiation
 	name = "Rad Bomb"
-	desc = "the best grenade to irridiate the fuck out of someone"
+	desc = "The best grenade to irradiate the fuck out of someone."
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/radiation/Initialize(mapload)

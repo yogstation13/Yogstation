@@ -113,7 +113,7 @@
 
 /datum/action/cooldown/spell/pointed/drakeling
 	name = "ULTRA DRAGON ATTACK"
-	desc = "if you can see this something has probably gone very wrong and you should make a bug report."
+	desc = "If you can see this something has probably gone very wrong and you should make a bug report."
 	background_icon_state = "bg_demon"
 	panel = "Dragon"
 

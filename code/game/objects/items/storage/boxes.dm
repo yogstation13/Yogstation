@@ -90,8 +90,8 @@
 	if(user.mind.miming)
 		alpha = 255
 
-/obj/item/storage/box/mime/Moved(oldLoc, dir)
-	if (iscarbon(oldLoc))
+/obj/item/storage/box/mime/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
+	if (iscarbon(old_loc))
 		alpha = 0
 	..()
 
@@ -123,10 +123,18 @@
 		new /obj/item/disk/nanite_program(src)
 
 // Ordinary survival box
+/obj/item/storage/box/survival
+	var/mask_type = /obj/item/clothing/mask/breath
+	var/internal_type = /obj/item/tank/internals/emergency_oxygen
+	var/medipen_type = /obj/item/reagent_containers/autoinjector/medipen
+
 /obj/item/storage/box/survival/PopulateContents()
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/tank/internals/emergency_oxygen(src)
-	new /obj/item/reagent_containers/autoinjector/medipen(src)
+	if(!isnull(mask_type))
+		new mask_type(src)
+	if(!isnull(internal_type))
+		new internal_type(src)
+	if(!isnull(medipen_type))
+		new medipen_type(src)
 
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_PREMIUM_INTERNALS))
 		new /obj/item/flashlight/flare(src)
@@ -145,51 +153,62 @@
 	qdel(mask) // Get rid of the items that shouldn't be
 	qdel(internals)
 
-/obj/item/storage/box/survival_mining/PopulateContents()
-	new /obj/item/clothing/mask/gas/explorer(src)
-	new /obj/item/tank/internals/emergency_oxygen(src)
+/obj/item/storage/box/survival/mining
+	mask_type = /obj/item/clothing/mask/gas/explorer
+
+/obj/item/storage/box/survival/mining/PopulateContents()
+	..()
 	new /obj/item/crowbar/red(src)
 	new /obj/item/gps/mining(src)
-	new /obj/item/reagent_containers/autoinjector/medipen(src)
 
 // Engineer survival box
-/obj/item/storage/box/engineer/PopulateContents()
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/tank/internals/emergency_oxygen/engi(src)
-	new /obj/item/reagent_containers/autoinjector/medipen(src)
+/obj/item/storage/box/survival/engineer
+	internal_type = /obj/item/tank/internals/emergency_oxygen/engi
 
-/obj/item/storage/box/engineer/radio/PopulateContents()
+/obj/item/storage/box/survival/engineer/radio/PopulateContents()
 	..() // we want the regular items too.
 	new /obj/item/radio/off(src)
 
 // Syndie survival box
-/obj/item/storage/box/syndie/PopulateContents()
-	new /obj/item/clothing/mask/gas/syndicate(src)
-	new /obj/item/tank/internals/emergency_oxygen/engi(src)
+/obj/item/storage/box/survival/syndie
+	mask_type = /obj/item/clothing/mask/gas/syndicate
+	internal_type = /obj/item/tank/internals/emergency_oxygen/engi
+
+/obj/item/storage/box/survival/syndie/PopulateContents()
+	..()
 	new /obj/item/extinguisher/mini(src)
 
 // Security survival box
-/obj/item/storage/box/security/PopulateContents()
-	new /obj/item/clothing/mask/gas/sechailer(src)
-	new /obj/item/tank/internals/emergency_oxygen(src)
-	new /obj/item/reagent_containers/autoinjector/medipen(src)
+/obj/item/storage/box/survival/security
+	mask_type = /obj/item/clothing/mask/gas/sechailer
 
-/obj/item/storage/box/security/radio/PopulateContents()
+/obj/item/storage/box/survival/security/radio/PopulateContents()
 	..() // we want the regular stuff too
 	new /obj/item/radio/off(src)
 
-// Plasmaman survival box
-/obj/item/storage/box/plasmaman/PopulateContents()
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/tank/internals/plasmaman/belt/full(src)
-	new /obj/item/reagent_containers/autoinjector/medipen(src)
+//Clown survival box
+/obj/item/storage/box/survival/hug
+	name = "box of hugs"
+	desc = "A special box for sensitive people."
+	icon_state = "hugbox"
+	illustration = "heart"
+	mask_type = null
+	foldable = null
 
-/obj/item/storage/box/plasmaman/miner/PopulateContents() //mining box for plasmemes
-	new /obj/item/clothing/mask/gas/explorer(src)
-	new /obj/item/tank/internals/plasmaman/belt/full(src)
-	new /obj/item/crowbar/red(src)
-	new /obj/item/gps/mining(src)
-	new /obj/item/reagent_containers/autoinjector/medipen(src)
+/obj/item/storage/box/survival/hug/suicide_act(mob/user)
+	user.visible_message(span_suicide("[user] clamps the box of hugs on [user.p_their()] jugular! Guess it wasn't such a hugbox after all.."))
+	return (BRUTELOSS)
+
+/obj/item/storage/box/survival/hug/attack_self(mob/user)
+	..()
+	user.changeNext_move(CLICK_CD_MELEE)
+	playsound(loc, "rustle", 50, vary = TRUE, extrarange = -5)
+	user.visible_message(span_notice("[user] hugs [src]."), span_notice("You hug [src]."))
+
+//Mime survival box
+/obj/item/storage/box/survival/hug/black
+	icon_state = "hugbox_black"
+	illustration = "heart_black"
 
 /obj/item/storage/box/gloves
 	name = "box of latex gloves"
@@ -624,16 +643,6 @@
 	new /obj/item/card/id/prisoner/six(src)
 	new /obj/item/card/id/prisoner/seven(src)
 
-/obj/item/storage/box/seccarts
-	name = "box of PDA security cartridges"
-	desc = "A box full of PDA cartridges used by Security."
-	illustration = "pda"
-
-/obj/item/storage/box/seccarts/PopulateContents()
-	new /obj/item/cartridge/detective(src)
-	for(var/i in 1 to 6)
-		new /obj/item/cartridge/security(src)
-
 /obj/item/storage/box/firingpins
 	name = "box of standard firing pins"
 	desc = "A box full of standard firing pins, to allow newly-developed firearms to operate."
@@ -851,6 +860,10 @@
 	playsound(loc, "rustle", 50, 1, -5)
 	user.visible_message(span_notice("[user] hugs \the [src]."),span_notice("You hug \the [src]."))
 
+/obj/item/storage/box/hug/black
+	icon_state = "hugbox_black"
+	illustration = "heart_black"
+
 /////clown box & honkbot assembly
 /obj/item/storage/box/clown
 	name = "clown box"
@@ -877,15 +890,6 @@
 	new /obj/item/stack/medical/bruise_pack(src)
 	new /obj/item/stack/medical/ointment(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
-
-/obj/item/storage/box/hug/survival/PopulateContents()
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/tank/internals/emergency_oxygen(src)
-	new /obj/item/reagent_containers/autoinjector/medipen(src)
-
-	if(HAS_TRAIT(SSstation, STATION_TRAIT_PREMIUM_INTERNALS))
-		new /obj/item/flashlight/flare(src)
-		new /obj/item/radio/off(src)
 
 /obj/item/storage/box/rubbershot
 	name = "box of rubber shots"
@@ -1083,7 +1087,7 @@
 /obj/item/storage/box/ingredients/italian/PopulateContents()
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/food/snacks/grown/tomato(src)
-		new /obj/item/reagent_containers/food/snacks/meatball(src) //YOGS - bigotry rule
+		new /obj/item/reagent_containers/food/snacks/raw_meatball(src) //YOGS - bigotry rule
 	new /obj/item/reagent_containers/food/drinks/bottle/wine(src)
 
 /obj/item/storage/box/ingredients/vegetarian
@@ -1106,7 +1110,7 @@
 		new /obj/item/reagent_containers/food/snacks/grown/potato(src)
 		new /obj/item/reagent_containers/food/snacks/grown/tomato(src)
 		new /obj/item/reagent_containers/food/snacks/grown/corn(src)
-	new /obj/item/reagent_containers/food/snacks/meatball(src) //YOGS - bigotry rule
+	new /obj/item/reagent_containers/food/snacks/raw_meatball(src) //YOGS - bigotry rule
 
 /obj/item/storage/box/ingredients/fruity
 	theme_name = "fruity"
@@ -1162,7 +1166,7 @@
 	new /obj/item/reagent_containers/food/snacks/carpmeat(src)
 	new /obj/item/reagent_containers/food/snacks/meat/slab/xeno(src)
 	new /obj/item/reagent_containers/food/snacks/meat/slab/corgi(src)
-	new /obj/item/reagent_containers/food/snacks/meatball(src) //YOGS - bigotry rule
+	new /obj/item/reagent_containers/food/snacks/raw_meatball(src) //YOGS - bigotry rule
 
 /obj/item/storage/box/ingredients/exotic
 	theme_name = "exotic"
@@ -1331,7 +1335,7 @@
 	icon = 'icons/obj/food/containers.dmi'
 	var/beantype = /obj/item/reagent_containers/food/snacks/grown/coffee
 
-/obj/item/storage/box/cofeepack/Initialize(mapload)
+/obj/item/storage/box/coffeepack/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 5
@@ -1339,8 +1343,8 @@
 
 /obj/item/storage/box/coffeepack/PopulateContents()
 	var/static/items_inside = list(
-		/obj/item/reagent_containers/food/snacks/grown/coffee = 5,
-		/obj/item/reagent_containers/food/snacks/grown/coffee/robusta = 5)
+		beantype = 5
+		)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/coffeepack/robusta

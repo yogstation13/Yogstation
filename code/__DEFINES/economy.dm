@@ -8,6 +8,9 @@
 /// Probability of using letters of envelope sprites on all letters.
 #define FULL_CRATE_LETTER_ODDS 70
 
+//Current Paycheck values. Altering these changes both the cost of items meant for each paygrade, as well as the passive/starting income of each job.
+///Default paygrade for the Unassigned Job/Unpaid job assignments.
+#define PAYCHECK_ZERO 0
 #define PAYCHECK_ASSISTANT 5
 #define PAYCHECK_MINIMAL 5
 #define PAYCHECK_EASY 20

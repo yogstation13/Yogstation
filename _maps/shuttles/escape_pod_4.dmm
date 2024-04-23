@@ -6,7 +6,7 @@
 /obj/docking_port/mobile/pod{
 	dwidth = 1;
 	height = 4;
-	id = "pod4";
+	shuttle_id = "pod4";
 	port_direction = 2;
 	width = 3
 	},

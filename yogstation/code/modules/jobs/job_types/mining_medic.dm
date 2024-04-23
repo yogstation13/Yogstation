@@ -7,7 +7,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the chief medical officer and the quartermaster"
-	selection_color = "#d4ebf2"
 	minimal_player_age = 4
 	exp_requirements = 120
 	exp_type = EXP_TYPE_CREW
@@ -22,6 +21,10 @@
 	departments_list = list(
 		/datum/job_department/medical,
 		/datum/job_department/cargo,
+	)
+	
+	minimal_lightup_areas = list(
+		/area/construction/mining/aux_base
 	)
 
 	//if it's skeleton there's probably no paramedic to save spaced miners that jaunted away from danger
@@ -43,7 +46,7 @@
 	name = "Mining Medic"
 	jobtype = /datum/job/miningmedic
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/paramed
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/medical/paramed
 
 	backpack_contents = list(/obj/item/roller = 1,\
 		/obj/item/kitchen/knife/combat/survival = 1,\
@@ -64,5 +67,5 @@
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
-	box = /obj/item/storage/box/survival_mining
+	box = /obj/item/storage/box/survival/mining
 	pda_slot = ITEM_SLOT_LPOCKET

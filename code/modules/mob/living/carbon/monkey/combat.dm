@@ -20,6 +20,13 @@
 	var/next_battle_screech = 0
 	var/battle_screech_cooldown = 5 SECONDS
 
+/mob/living/carbon/monkey/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /mob/living/carbon/monkey/proc/IsStandingStill()
 	return resisting || pickpocketing || disposing_body
 
@@ -412,14 +419,13 @@
 			retaliate(H)
 	..()
 
-/mob/living/carbon/monkey/Crossed(atom/movable/AM)
+/mob/living/carbon/monkey/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(!IsDeadOrIncap() && ismob(AM) && target)
 		var/mob/living/carbon/monkey/M = AM
 		if(!istype(M) || !M)
 			return
 		knock_over(M)
 		return
-	..()
 
 /mob/living/carbon/monkey/proc/monkeyDrop(obj/item/A)
 	if(A)

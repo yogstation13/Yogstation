@@ -6,6 +6,9 @@
 	extra_price = 75
 	payment_department = NO_FREEBIES
 	input_display_header = "Returned Clothing"
+	panel_type = "panel19"
+	light_mask = "wardrobe-light-mask"
+
 
 /obj/machinery/vending/wardrobe/canLoadItem(obj/item/I,mob/user)
 	if(I.type in products)
@@ -55,12 +58,15 @@
 					/obj/item/clothing/head/helmet/secconhelm = 3,
 					/obj/item/clothing/suit/armor/secconcoat = 3,
 					/obj/item/clothing/head/beret/sec/secconhat = 3,
-					/obj/item/clothing/suit/armor/secconvest = 3)
+					/obj/item/clothing/suit/armor/secconvest = 3,
+					/obj/item/clothing/under/plasmaman/security = 3,
+					/obj/item/clothing/head/helmet/space/plasmaman/security = 3)
 	premium = list(/obj/item/clothing/under/rank/security/navyblue = 3,
 					/obj/item/clothing/suit/armor/officerjacket = 3,
 					/obj/item/clothing/head/beret/sec/navyofficer = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/sec_wardrobe
 	payment_department = ACCOUNT_SEC
+	light_color = COLOR_MOSTLY_PURE_RED
 
 /obj/item/vending_refill/wardrobe/sec_wardrobe
 	machine_name = "SecDrobe"
@@ -96,6 +102,7 @@
 					/obj/item/clothing/accessory/armband/medblue = 2)
 	refill_canister = /obj/item/vending_refill/wardrobe/medi_wardrobe
 	payment_department = ACCOUNT_MED
+
 /obj/item/vending_refill/wardrobe/medi_wardrobe
 	machine_name = "MediDrobe"
 
@@ -124,6 +131,7 @@
 					/obj/item/clothing/head/hardhat/weldhat = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/engi_wardrobe
 	payment_department = ACCOUNT_ENG
+	light_color = COLOR_VIVID_YELLOW
 /obj/item/vending_refill/wardrobe/engi_wardrobe
 	machine_name = "EngiDrobe"
 
@@ -144,13 +152,17 @@
 					/obj/item/clothing/shoes/sneakers/black = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/atmos_wardrobe
 	payment_department = ACCOUNT_ENG
+	light_color = COLOR_VIVID_YELLOW
+
 /obj/item/vending_refill/wardrobe/atmos_wardrobe
 	machine_name = "AtmosDrobe"
 
 /obj/machinery/vending/wardrobe/sig_wardrobe
 	name = "NetDrobe"
 	desc = "A rarely used vending machine that provides clothing for Network Admins."
+	icon = 'yogstation/icons/obj/vending.dmi'
 	icon_state = "sigdrobe"
+	panel_type = "panel-sigdrobe"
 	product_ads = "Dress to impress yourself!;The drones will love you!;Get your clothing here!"
 	vend_reply = "Thank you for using the NetDrobe!"
 	products = list(/obj/item/storage/backpack/duffelbag/engineering = 1,
@@ -257,6 +269,8 @@
 					/obj/item/clothing/accessory/armband/hydro = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/hydro_wardrobe
 	payment_department = ACCOUNT_SRV
+	light_color = LIGHT_COLOR_ELECTRIC_GREEN
+
 /obj/item/vending_refill/wardrobe/hydro_wardrobe
 	machine_name = "HyDrobe"
 
@@ -356,7 +370,6 @@
 					/obj/item/clothing/under/yogs/casualjanitorsuit = 2,
 					/obj/item/clothing/suit/yogs/janitorcoat = 2,
 					/obj/item/clothing/suit/hooded/wintercoat/janitor = 2,
-					/obj/item/cartridge/janitor = 2,
 					/obj/item/clothing/under/rank/janitor/skirt = 2,
 					/obj/item/clothing/under/janimaid = 2,
 					/obj/item/clothing/gloves/color/black = 2,
@@ -377,6 +390,8 @@
 					/obj/item/reagent_containers/spray/cleaner = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/jani_wardrobe
 	payment_department = ACCOUNT_SRV
+	light_color = COLOR_STRONG_MAGENTA
+
 /obj/item/vending_refill/wardrobe/jani_wardrobe
 	machine_name = "JaniDrobe"
 

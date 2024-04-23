@@ -14,6 +14,9 @@
 	if (client && screen.should_show_to(src))
 		screen.update_for_view(client.view)
 		client.screen += screen
+	
+	if(screen.needs_offsetting)
+		SET_PLANE_EXPLICIT(screen, PLANE_TO_TRUE(screen.plane), src)
 
 	return screen
 
@@ -57,6 +60,19 @@
 			else
 				client.screen -= screen
 
+/mob/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
+	. = ..()
+	if(!same_z_layer)
+		relayer_fullscreens()
+
+/mob/proc/relayer_fullscreens()
+	var/turf/our_lad = get_turf(src)
+	var/offset = GET_TURF_PLANE_OFFSET(our_lad)
+	for(var/category in screens)
+		var/atom/movable/screen/fullscreen/screen = screens[category]
+		if(screen.needs_offsetting)
+			screen.plane = GET_NEW_PLANE(initial(screen.plane), offset)
+
 /atom/movable/screen/fullscreen
 	icon = 'icons/mob/screen_full.dmi'
 	icon_state = "default"
@@ -67,6 +83,7 @@
 	var/view = 7
 	var/severity = 0
 	var/show_when_dead = FALSE
+	var/needs_offsetting = TRUE
 
 /atom/movable/screen/fullscreen/proc/update_for_view(client_view)
 	if (screen_loc == "CENTER-7,CENTER-7" && view != client_view)
@@ -173,28 +190,29 @@
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "flash"
 	plane = SPLASHSCREEN_PLANE
-	layer = SPLASHSCREEN_LAYER - 1
+	layer = CINEMATIC_LAYER
 	color = "#000000"
 	show_when_dead = TRUE
 
 /atom/movable/screen/fullscreen/cinematic_backdrop/Initialize(mapload)
 	. = ..()
-	layer = SPLASHSCREEN_LAYER - 1
+	layer = CINEMATIC_LAYER
 
 /atom/movable/screen/fullscreen/lighting_backdrop
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "flash"
-	transform = matrix(200, 0, 0, 0, 200, 0)
+	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	plane = LIGHTING_PLANE
+	layer = LIGHTING_ABOVE_ALL
 	blend_mode = BLEND_OVERLAY
 	show_when_dead = TRUE
+	needs_offsetting = FALSE
 
 //Provides darkness to the back of the lighting plane
 /atom/movable/screen/fullscreen/lighting_backdrop/lit
 	invisibility = INVISIBILITY_LIGHTING
 	layer = BACKGROUND_LAYER+21
 	color = "#000"
-	show_when_dead = TRUE
 
 //Provides whiteness in case you don't see lights so everything is still visible
 /atom/movable/screen/fullscreen/lighting_backdrop/unlit
@@ -204,7 +222,7 @@
 /atom/movable/screen/fullscreen/see_through_darkness
 	icon_state = "nightvision"
 	plane = LIGHTING_PLANE
-	layer = LIGHTING_LAYER
+	layer = LIGHTING_ABOVE_ALL
 	blend_mode = BLEND_ADD
 	show_when_dead = TRUE
 

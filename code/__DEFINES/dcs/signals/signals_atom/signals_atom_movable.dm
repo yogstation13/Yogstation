@@ -2,10 +2,10 @@
 // When the signal is called: (signal arguments)
 // All signals send the source datum of the signal as the first argument
 
-///from base of atom/movable/Moved(): (/atom)
+///from base of atom/movable/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change): (/atom)
 #define COMSIG_MOVABLE_PRE_MOVE "movable_pre_move"
 	#define COMPONENT_MOVABLE_BLOCK_PRE_MOVE (1<<0)
-///from base of atom/movable/Moved(): (atom/old_loc, dir, forced, list/old_locs)
+///from base of atom/movable/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change): (atom/old_loc, dir, forced, list/old_locs)
 #define COMSIG_MOVABLE_MOVED "movable_moved"
 ///from base of atom/movable/Cross(): (/atom/movable)
 #define COMSIG_MOVABLE_CROSS "movable_cross"
@@ -94,6 +94,7 @@
 /// from base of atom/movable/Process_Spacemove(): (movement_dir, continuous_move)
 #define COMSIG_MOVABLE_SPACEMOVE "spacemove"
 	#define COMSIG_MOVABLE_STOP_SPACEMOVE (1<<0)
+	#define COMSIG_MOVABLE_ALLOW_SPACEMOVE (1<<1)
 
 /// Sent from /obj/item/radio/talk_into(): (obj/item/radio/used_radio)
 #define COMSIG_MOVABLE_USING_RADIO "movable_radio"

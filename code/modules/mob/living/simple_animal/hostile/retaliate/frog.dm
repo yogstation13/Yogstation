@@ -36,9 +36,13 @@
 		icon_living = "rare_frog"
 		icon_dead = "rare_frog_dead"
 		butcher_results = list(/obj/item/reagent_containers/food/snacks/nugget = 5)
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
-/mob/living/simple_animal/hostile/retaliate/frog/Crossed(AM as mob|obj)
-	. = ..()
+
+/mob/living/simple_animal/hostile/retaliate/frog/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(!stat && isliving(AM))
 		var/mob/living/L = AM
 		if(L.mob_size > MOB_SIZE_TINY)

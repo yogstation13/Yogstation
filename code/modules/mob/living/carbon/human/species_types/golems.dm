@@ -222,6 +222,7 @@
 	meat = /obj/item/stack/ore/iron
 	info_text = "As a <span class='danger'>Plasteel Golem</span>, you are slower, but harder to stun, and hit very hard when punching. You also magnetically attach to surfaces and so don't float without gravity and cannot have positions swapped with other beings."
 	attack_verb = "smash"
+	attack_effect = ATTACK_EFFECT_SMASH
 	attack_sound = 'sound/effects/meteorimpact.ogg' //hits pretty hard
 	prefix = "Plasteel"
 	special_names = null
@@ -733,6 +734,7 @@
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH)
 	armor = 20 //Reinforced, but much less so to allow for fast movement
 	attack_verb = "smash"
+	attack_effect = ATTACK_EFFECT_SMASH
 	attack_sound = 'sound/magic/clockwork/anima_fragment_attack.ogg'
 	sexes = FALSE
 	speedmod = 0
@@ -1387,6 +1389,7 @@
 	active_msg = span_notice("You start channeling your telecrystal core....")
 	deactive_msg = span_notice("You stop channeling your telecrystal core.")
 	spell_requirements = NONE
+	var/beam_icon = "tentacle"
 
 /datum/action/cooldown/spell/pointed/phase_jump/InterceptClickOn(mob/living/user, params, atom/target)
 	. = ..()
@@ -1398,7 +1401,7 @@
 	var/obj/spot1 = new phaseout(get_turf(user), user.dir)
 	owner.forceMove(target_turf)
 	var/obj/spot2 = new phasein(get_turf(user), user.dir)
-	spot1.Beam(spot2, "tentacle", time=2 SECONDS)
+	spot1.Beam(spot2, beam_icon, time=2 SECONDS)
 	user.visible_message(span_danger("[user] phase shifts away!"), span_warning("You shift around the space around you."))
 	return TRUE
 

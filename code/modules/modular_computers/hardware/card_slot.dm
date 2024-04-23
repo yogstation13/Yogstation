@@ -78,6 +78,7 @@
 		var/mob/living/carbon/human/H = user
 		H.sec_hud_set_ID()
 
+	holder.update_appearance(UPDATE_ICON)
 	return TRUE
 
 
@@ -93,6 +94,7 @@
 
 	to_chat(user, "<span class='notice'>You remove the card from \the [src].</span>")
 	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
+	holder?.update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/item/computer_hardware/card_slot/attackby(obj/item/I, mob/living/user)

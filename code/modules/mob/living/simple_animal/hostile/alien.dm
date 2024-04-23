@@ -31,8 +31,10 @@
 	faction = list(ROLE_ALIEN)
 	status_flags = CANPUSH
 	minbodytemp = 0
-	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	// Going for a dark purple here
+	lighting_cutoff_red = 30
+	lighting_cutoff_green = 15
+	lighting_cutoff_blue = 50
 	unique_name = 1
 	gold_core_spawnable = NO_SPAWN
 	deathsound = 'sound/voice/hiss6.ogg'
@@ -110,6 +112,9 @@
 		if(!sterile && prob(10) && egg_cooldown<=0)
 			egg_cooldown = initial(egg_cooldown)
 			LayEggs()
+
+/mob/living/simple_animal/hostile/alien/get_butt_sprite()
+	return BUTT_SPRITE_XENOMORPH
 
 /mob/living/simple_animal/hostile/alien/proc/SpreadPlants()
 	if(!isturf(loc) || isspaceturf(loc))

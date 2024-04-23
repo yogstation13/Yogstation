@@ -1,6 +1,7 @@
 /turf
 	//conductivity is divided by 10 when interacting with air for balance purposes
 	var/thermal_conductivity = 0.05
+	///Amount of heat necessary to activate some atmos processes (there is a weird usage of this var because is compared directly to the temperature instead of heat energy)
 	var/heat_capacity = 1
 
 	//list of open turfs adjacent to us
@@ -8,24 +9,38 @@
 	///bitfield of dirs in which we thermal conductivity is blocked
 	var/conductivity_blocked_directions = NONE
 
-	//used for mapping and for breathing while in walls (because that's a thing that needs to be accounted for...)
-	//string parsed by /datum/gas/proc/copy_from_turf
+	/**
+	 * used for mapping and for breathing while in walls (because that's a thing that needs to be accounted for...)
+	 * string parsed by /datum/gas/proc/copy_from_turf
+	 * approximation of MOLES_O2STANDARD and MOLES_N2STANDARD pending byond allowing constant expressions to be embedded in constant strings
+	 * If someone will place 0 of some gas there, SHIT WILL BREAK. Do not do that.
+	**/
 	var/initial_gas_mix = OPENTURF_DEFAULT_ATMOS
-	//approximation of MOLES_O2STANDARD and MOLES_N2STANDARD pending byond allowing constant expressions to be embedded in constant strings
-	// If someone will place 0 of some gas there, SHIT WILL BREAK. Do not do that.
 
 /turf/open
 	//used for spacewind
+	///Pressure difference between two turfs
 	var/pressure_difference = 0
+	///Where the difference come from (from higher pressure to lower pressure)
 	var/pressure_direction = 0
-	var/turf/pressure_specific_target
 
+	///Our gas mix
 	var/datum/gas_mixture/turf/air
 
+	///If there is an active hotspot on us store a reference to it here
 	var/obj/effect/hotspot/active_hotspot
-	var/planetary_atmos = FALSE //air will revert to initial_gas_mix over time
+	/// air will slowly revert to initial_gas_mix
+	var/planetary_atmos = FALSE
+	/// once our paired turfs are finished with all other shares, do one 100% share
+	/// exists so things like space can ask to take 100% of a tile's gas
+	var/run_later = FALSE
 
-	var/list/atmos_overlay_types //gas IDs of current active gas overlays
+	///gas IDs of current active gas overlays
+	var/list/atmos_overlay_types
+	/// How much fuel this open turf provides to turf fires, and how easily they can be ignited in the first place. Can be negative to make fires die out faster.
+	var/flammability = 0.3
+	var/obj/effect/abstract/turf_fire/turf_fire
+	var/turf/pressure_specific_target
 
 /turf/proc/should_conduct_to_space()
 	return get_z_base_turf() == /turf/open/space

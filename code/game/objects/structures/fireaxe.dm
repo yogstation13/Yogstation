@@ -39,12 +39,12 @@
 		return
 	if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && !broken)
 		//Repairing light damage with a welder
-		if(obj_integrity < max_integrity)
+		if(atom_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=2))
 				return
 			to_chat(user, span_notice("You begin repairing [src]."))
 			if(I.use_tool(src, user, 40, volume=50, amount=2))
-				obj_integrity = max_integrity
+				update_integrity(max_integrity)
 				update_appearance(UPDATE_ICON)
 				to_chat(user, span_notice("You repair [src]."))
 		else
@@ -59,7 +59,7 @@
 		to_chat(user, span_notice("You start fixing [src]..."))
 		if(do_after(user, 2 SECONDS, src) && G.use(2))
 			broken = 0
-			obj_integrity = max_integrity
+			update_integrity(max_integrity)
 			update_appearance(UPDATE_ICON)
 	//yogs start - warn user if they use the wrong type of glass to repair
 	else if(istype(I, /obj/item/stack/sheet/glass) && broken)
@@ -134,7 +134,8 @@
 	if(.)
 		update_appearance(UPDATE_ICON)
 
-/obj/structure/fireaxecabinet/obj_break(damage_flag)
+/obj/structure/fireaxecabinet/atom_break(damage_flag)
+	. = ..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		update_appearance(UPDATE_ICON)
 		broken = TRUE
@@ -212,7 +213,7 @@
 	if(open)
 		. += "glass_raised"
 		return
-	var/hp_percent = obj_integrity/max_integrity * 100
+	var/hp_percent = atom_integrity/max_integrity * 100
 	if(broken)
 		. += "glass4"
 	else
@@ -265,7 +266,7 @@
 		playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
 
 /obj/structure/fireaxecabinet/bridge/spare
-	name = "spare id cabinet"
+	name = "spare ID cabinet"
 	desc = "There is a small label that reads \"For Emergency use only\". <BR>There are bolts under it's glass cover for easy disassembly using a wrench."
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "spareid"

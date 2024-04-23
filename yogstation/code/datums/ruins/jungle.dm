@@ -4,7 +4,7 @@
 	cost = 5
 
 /datum/map_template/ruin/jungle/all
-	place_on_top = FALSE
+	should_place_on_top = FALSE
 
 /datum/map_template/ruin/jungle/dying/crashed_ship
 	name = "Crashed Ship"
@@ -59,6 +59,12 @@
 	id = "jungle-seedvault"
 	description = "A seedvault launched from far away. Thousands of exact copies litter planets across the entire universe, so finding one here isn't too much of a surprise."
 	suffix = "jungleland_jungle_seed_vault.dmm"	
+
+/datum/map_template/ruin/jungle/proper/sinden
+	name = "Den of Sin"
+	id = "jungle-sinden"
+	description = "A vile den of sin, run by a demon contracted to make as much profit as possible off everyone planetside."
+	suffix = "jungleland_jungle_sinden.dmm"	
 
 /datum/map_template/ruin/jungle/swamp/cave
 	name = "Cave"
@@ -116,13 +122,14 @@
 	always_place = TRUE
 	cost = 0
 
-/datum/map_template/ruin/jungle/all/tar_temple1
-	name = "Tar temple 1"
-	id = "jungle-dying-tar-temple"
-	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
-	suffix = "jungleland_dead_tartemple.dmm"
+/datum/map_template/ruin/jungle/all/tar_king_phylactery
+	name = "Tar King's Phylactery"
+	id = "jungle-tar-king"
+	description = "In this place lies the core of this world's cancer. \
+		Resting deep within the obsidian, sealed under an altar untouched by time, it awaits the day it will finally take form."
+	suffix = "jungleland_tar_king.dmm"
 	always_place = TRUE
-	cost = 0	
+	cost = 0
 
 /datum/map_template/ruin/jungle/all/tar_temple2
 	name = "Tar temple 2"

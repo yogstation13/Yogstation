@@ -14,7 +14,8 @@
 	var/oreAmount = 5
 	var/material_drop_type = /obj/item/stack/sheet/metal
 	var/impressiveness = 15
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
 /obj/structure/statue/Initialize(mapload)
 	. = ..()
@@ -314,13 +315,13 @@
 	icon_state = "cheesus1"
 
 /obj/structure/statue/cheese/cheesus/attackby(obj/item/W, mob/user, params)
-	if(obj_integrity <= 20)
+	if(atom_integrity <= 20)
 		icon_state = "cheesus4"
 		return ..()
-	if(obj_integrity <= 40)
+	if(atom_integrity <= 40)
 		icon_state = "cheesus3"
 		return ..()
-	if(obj_integrity <= 60)
+	if(atom_integrity <= 60)
 		icon_state = "cheesus2"
 		return ..()
 	return ..()
@@ -342,9 +343,8 @@
 
 /obj/structure/statue/elder_atmosian
 	name = "Elder Atmosian"
-	desc = "A statue of an Elder Atmosian, capable of bending the laws of thermodynamics to their will."
+	desc = "A statue of Colton Oppenheimer, an Elder Atmosian who was capable of bending the laws of thermodynamics to his will."
 	icon_state = "atmos"
 	custom_materials = list(/datum/material/metalhydrogen = MINERAL_MATERIAL_AMOUNT*10, /datum/material/zaukerite = MINERAL_MATERIAL_AMOUNT*15)
 	max_integrity = 1000
-	obj_integrity = 1000
 	impressiveness = 100

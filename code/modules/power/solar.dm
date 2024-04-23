@@ -65,7 +65,7 @@
 
 	multiplier = S.multiplier
 	max_integrity *= S.integmultiplier
-	obj_integrity = max_integrity
+	update_integrity(max_integrity)
 	panelcolor = S.panelcolor
 	glass_type = S.glass_type
 
@@ -89,7 +89,7 @@
 			playsound(loc, 'sound/items/welder.ogg', 100, 1)
 
 
-/obj/machinery/power/solar/obj_break(damage_flag)
+/obj/machinery/power/solar/atom_break(damage_flag)
 	. = ..()
 	if(.)
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, TRUE)
@@ -214,6 +214,7 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY // Pretty big!
 	anchored = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	var/tracker = 0
 	var/glass_type = null
 	var/multiplier = 1
@@ -483,7 +484,7 @@
 		if(BURN)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 
-/obj/machinery/power/solar_control/obj_break(damage_flag)
+/obj/machinery/power/solar_control/atom_break(damage_flag)
 	. = ..()
 	if(.)
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, TRUE)

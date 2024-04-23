@@ -114,7 +114,7 @@
 /datum/antagonist/bloodsucker/apply_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/current_mob = mob_override || owner.current
-	RegisterSignal(current_mob, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(current_mob, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
 	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 	handle_clown_mutation(current_mob, mob_override ? null : "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
@@ -139,7 +139,7 @@
 /datum/antagonist/bloodsucker/remove_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/current_mob = mob_override || owner.current
-	UnregisterSignal(current_mob, list(COMSIG_LIVING_LIFE, COMSIG_PARENT_EXAMINE, COMSIG_LIVING_DEATH))
+	UnregisterSignal(current_mob, list(COMSIG_LIVING_LIFE, COMSIG_ATOM_EXAMINE, COMSIG_LIVING_DEATH))
 
 	if(current_mob.hud_used)
 		var/datum/hud/hud_used = current_mob.hud_used
@@ -178,6 +178,33 @@
 		.["Fix Masquerade"] = CALLBACK(src, PROC_REF(fix_masquerade))
 	else
 		.["Break Masquerade"] = CALLBACK(src, PROC_REF(break_masquerade))
+
+	if(!my_clan)
+		.["Force Clan"] = CALLBACK(src, PROC_REF(force_clan))
+
+/datum/antagonist/bloodsucker/proc/force_clan(mob/admin)
+	if(my_clan)	
+		return
+
+	var/list/clans = list()
+	for(var/datum/bloodsucker_clan/all_clans as anything in typesof(/datum/bloodsucker_clan))
+		if(initial(all_clans.joinable_clan))
+			clans |= all_clans
+	clans |= "vvv Not regularly joinable vvv"
+	clans |= typesof(/datum/bloodsucker_clan)
+		
+	var/chosen = tgui_input_list(admin, "Select which clan to force on the target.", "Select Clan", clans)
+	if(!chosen || !ispath(chosen, /datum/bloodsucker_clan))
+		return
+	
+	if(QDELETED(src) || QDELETED(owner.current))
+		return
+	if(my_clan)
+		to_chat(admin, span_warning("error, clan already picked"))
+		return
+
+	my_clan = new chosen(src)
+	owner.announce_objectives()
 
 ///Called when you get the antag datum, called only ONCE per antagonist.
 /datum/antagonist/bloodsucker/on_gain()
@@ -564,8 +591,7 @@
 	if(user_eyes)
 		user_eyes.flash_protect = initial(user_eyes.flash_protect)
 		user_eyes.sight_flags = initial(user_eyes.sight_flags)
-		user_eyes.see_in_dark = initial(user_eyes.see_in_dark)
-		user_eyes.lighting_alpha = initial(user_eyes.lighting_alpha)
+		user_eyes.color_cutoffs = initial(user_eyes.color_cutoffs)
 	user.update_sight()
 
 /datum/antagonist/bloodsucker/proc/give_masquerade_infraction()

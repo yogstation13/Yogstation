@@ -6,14 +6,14 @@
 	density = 1
 	anchored = 1
 	var/id = 1.0
-	CanAtmosPass = ATMOS_PASS_NO
+	can_atmos_pass = ATMOS_PASS_NO
 
 /obj/structure/spacepoddoor/Initialize(mapload)
 	air_update_turf()
 	return ..()
 
 /obj/structure/spacepoddoor/Destroy()
-	CanAtmosPass = ATMOS_PASS_YES
+	can_atmos_pass = ATMOS_PASS_YES
 	air_update_turf()
 	return ..()
 

@@ -69,7 +69,8 @@
 			trigger_alarm()
 	qdel(src)
 
-/obj/structure/displaycase/obj_break(damage_flag)
+/obj/structure/displaycase/atom_break(damage_flag)
+	. = ..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		density = FALSE
 		broken = 1
@@ -108,13 +109,13 @@
 		else
 			to_chat(user,  span_alert("Access denied."))
 	else if(W.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && !broken)
-		if(obj_integrity < max_integrity)
+		if(atom_integrity < max_integrity)
 			if(!W.tool_start_check(user, amount=5))
 				return
 
 			to_chat(user, span_notice("You begin repairing [src]..."))
 			if(W.use_tool(src, user, 40, amount=5, volume=50))
-				obj_integrity = max_integrity
+				update_integrity(max_integrity)
 				update_appearance(UPDATE_ICON)
 				to_chat(user, span_notice("You repair [src]."))
 		else
@@ -149,7 +150,7 @@
 		if(do_after(user, 2 SECONDS, src))
 			G.use(2)
 			broken = 0
-			obj_integrity = max_integrity
+			update_integrity(max_integrity)
 			update_appearance(UPDATE_ICON)
 	else
 		return ..()
@@ -238,7 +239,7 @@
 /obj/structure/displaycase/captain/attackby(obj/item/W, mob/user, params) // Unless shit has really hit the fan.
 	if(!istype(W, /obj/item/card/id))
 		return ..()
-	if(seclevel2num(get_security_level()) >= SEC_LEVEL_GAMMA) // Everything higher than red.
+	if(SSsecurity_level.get_current_level_as_number()>= SEC_LEVEL_GAMMA) // Everything higher than red.
 		req_access = list(ACCESS_CAPTAIN)
 	else
 		to_chat(user, span_warning("The display case's access locks can only be lifted above red alert!"))

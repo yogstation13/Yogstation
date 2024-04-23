@@ -242,7 +242,7 @@
 /area/icemoon/underground/explored)
 "ut" = (
 /obj/item/flashlight/lantern{
-	on = 1
+	light_on = 1
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,

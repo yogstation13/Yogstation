@@ -69,7 +69,7 @@
 
 
 /obj/mecha/proc/get_stats_part()
-	var/integrity = obj_integrity/max_integrity*100
+	var/integrity = atom_integrity/max_integrity*100
 	var/cell_charge = get_charge()
 	var/datum/gas_mixture/int_tank_air = 0
 	var/tank_pressure = 0
@@ -100,7 +100,6 @@
 						<b>Environment pressure: </b>[environment_pressure>WARNING_HIGH_PRESSURE ? span_danger("[environment_pressure]"): environment_pressure]kPa<br>
 						<b>Environment temperature: </b> [environment_temperature]&deg;K|[environment_temperature - T0C]&deg;C<br>
 						[dna_lock?"<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[dna_lock]</span> \[<a href='?src=[REF(src)];reset_dna=1'>Reset</a>\]<br>":""]<br>
-						[thrusters_action.owner ? "<b>Thrusters: </b> [thrusters_active ? "Enabled" : "Disabled"]<br>" : ""]
 						[defence_action.owner ? "<b>Defence Mode: </b> [defence_mode ? "Enabled" : "Disabled"]<br>" : ""]
 						[overload_action.owner ? "<b>Leg Actuators Overload: </b> [leg_overload_mode ? "Enabled" : "Disabled"]<br>" : ""]
 						[smoke_action.owner ? "<b>Smoke: </b> [smoke]<br>" : ""]

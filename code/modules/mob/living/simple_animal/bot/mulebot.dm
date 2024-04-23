@@ -426,7 +426,7 @@
 		load.forceMove(loc)
 		load.pixel_y = initial(load.pixel_y)
 		load.layer = initial(load.layer)
-		load.plane = initial(load.plane)
+		SET_PLANE_IMPLICIT(load, initial(load.plane))
 		if(dirn)
 			var/turf/T = loc
 			var/turf/newT = get_step(T,dirn)
@@ -644,7 +644,7 @@
 					L.Knockdown(8 SECONDS)
 	return ..()
 
-// called from mob/living/carbon/human/Crossed()
+// called from mob/living/carbon/human/proc/on_entered()
 // when mulebot is in the same loc
 /mob/living/simple_animal/bot/mulebot/proc/RunOver(mob/living/carbon/human/H)
 	log_combat(src, H, "run over", null, "(DAMTYPE: [uppertext(BRUTE)])")

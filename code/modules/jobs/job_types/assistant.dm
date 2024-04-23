@@ -9,7 +9,6 @@ Assistant
 	total_positions = 5
 	spawn_positions = 5
 	supervisors = "absolutely everyone"
-	selection_color = "#dddddd"
 	added_access = list()			//See /datum/job/assistant/get_access()
 	base_access = list()	//See /datum/job/assistant/get_access()
 	outfit = /datum/outfit/job/assistant
@@ -63,5 +62,5 @@ Assistant
 
 	// This outfit is used by the assets SS, which is ran before the atoms SS
 	if (SSatoms.initialized == INITIALIZATION_INSSATOMS)
-	//	H.w_uniform?.update_greyscale()
+		H.w_uniform?.update_greyscale()
 		H.update_inv_w_uniform()

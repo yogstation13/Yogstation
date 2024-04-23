@@ -46,15 +46,12 @@ GLOBAL_LIST_EMPTY(bluespace_pipe_networks)
 /obj/machinery/atmospherics/pipe/bluespace/pipeline_expansion()
 	return ..() + GLOB.bluespace_pipe_networks[bluespace_network_name] - src
 
-/obj/machinery/atmospherics/pipe/bluespace/hide()
-	update_appearance(UPDATE_ICON)
-
 /obj/machinery/atmospherics/pipe/bluespace/update_icon(updates=ALL)
 	. = ..()
 	underlays.Cut()
 
 	var/turf/T = loc
-	if(level != 2 && !!T.intact)
+	if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
 		plane = FLOOR_PLANE
 		return //no need to update the pipes if they aren't showing
 	plane = GAME_PLANE

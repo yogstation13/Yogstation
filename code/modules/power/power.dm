@@ -115,8 +115,9 @@
   * Returns TRUE if the NOPOWER flag was toggled
   */
 /obj/machinery/proc/power_change()
+	//SIGNAL_HANDLER
 	if(stat & BROKEN)
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		return
 	if(powered(power_channel))
 		if(stat & NOPOWER)
@@ -128,7 +129,7 @@
 			SEND_SIGNAL(src, COMSIG_MACHINERY_POWER_LOST)
 			. = TRUE
 		stat |= NOPOWER
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 // connect the machine to a powernet if a node cable is present on the turf
 /obj/machinery/proc/connect_to_network()
@@ -156,7 +157,7 @@
 	if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = W
 		var/turf/T = user.loc
-		if(T.intact || !isfloorturf(T))
+		if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE || !isfloorturf(T))
 			return
 		if(get_dist(src, user) > 1)
 			return
@@ -345,7 +346,7 @@
 //dist_check - set to only shock mobs within 1 of source (vendors, airlocks, etc.)
 //zone_override - allows checking a specific body part for shock protection instead of the hands
 //No animations will be performed by this proc.
-/proc/electrocute_mob(mob/living/carbon/victim, power_source, obj/source, siemens_coeff = 1, dist_check = FALSE, zone = BODY_ZONE_R_ARM)
+/proc/electrocute_mob(mob/living/carbon/victim, power_source, obj/source, siemens_coeff = 1, dist_check = FALSE, zone = HANDS)
 	if(!istype(victim) || ismecha(victim.loc))
 		return FALSE //feckin mechs are dumb
 
@@ -403,6 +404,14 @@
 	if(!can_have_cabling())
 		return null
 	for(var/obj/structure/cable/C in src)
+		if(C.d1 == 0)
+			return C
+	return null
+
+/turf/proc/get_ai_cable_node()
+	if(!can_have_cabling())
+		return null
+	for(var/obj/structure/ethernet_cable/C in src)
 		if(C.d1 == 0)
 			return C
 	return null

@@ -84,6 +84,9 @@
 		""//"TODO: RIP in peace Skrem"
 	)
 
+/datum/species/jelly/get_butt_sprite()
+	return BUTT_SPRITE_SLIME
+
 /datum/species/jelly/create_pref_unique_perks()
 	var/list/to_add = list()
 

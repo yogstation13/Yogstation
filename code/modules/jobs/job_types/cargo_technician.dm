@@ -9,7 +9,6 @@
 	total_positions = 2
 	spawn_positions = 1
 	supervisors = "the quartermaster and the head of personnel"
-	selection_color = "#dcba97"
 
 	outfit = /datum/outfit/job/cargo_tech
 
@@ -50,3 +49,7 @@
 	uniform_skirt = /obj/item/clothing/under/rank/cargotech/skirt
 	l_hand = /obj/item/export_scanner
 
+/datum/outfit/job/cargo_tech/no_pda
+	name = "Cargo Technician (No PDA)"
+
+	pda_type = null

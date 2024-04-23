@@ -772,7 +772,6 @@
 	new /obj/item/storage/backpack/chameleon/syndicate(src)
 	new /obj/item/radio/headset/chameleon/syndicate(src)
 	new /obj/item/stamp/chameleon/syndicate(src)
-	new /obj/item/pda/chameleon/syndicate(src)
 
 /obj/item/storage/box/syndie_kit/chameleon/plasmaman
 	real_name = "chameleon kit"
@@ -788,7 +787,6 @@
 	new /obj/item/storage/backpack/chameleon/syndicate(src)
 	new /obj/item/radio/headset/chameleon/syndicate(src)
 	new /obj/item/stamp/chameleon/syndicate(src)
-	new /obj/item/pda/chameleon/syndicate(src)
 
 //5*(2*4) = 5*8 = 45, 45 damage if you hit one person with all 5 stars.
 //Not counting the damage it will do while embedded (2*4 = 8, at 15% chance)
@@ -841,7 +839,7 @@
 	new /obj/item/radio/headset/headset_cent/empty(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/storage/backpack/satchel(src)
-	new /obj/item/pda/heads(src)
+	new /obj/item/modular_computer/tablet/pda/preset/bureaucrat(src)
 	new /obj/item/clipboard(src)
 	new /obj/item/implanter/mindshield(src)
 
@@ -856,7 +854,6 @@
 	new /obj/item/storage/backpack/chameleon/broken(src)
 	new /obj/item/radio/headset/chameleon/broken(src)
 	new /obj/item/stamp/chameleon/broken(src)
-	new /obj/item/pda/chameleon/broken(src)
 	// No chameleon laser, they can't randomise for //REASONS//
 
 /obj/item/storage/box/syndie_kit/bee_grenades

@@ -4,7 +4,6 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "pointer"
 	item_state = "pen"
-	var/pointer_icon_state
 	flags_1 = CONDUCT_1
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
@@ -14,6 +13,8 @@
 	var/charges = 5
 	var/max_charges = 5
 	var/effectchance = 33
+	///Icon for the laser, affects both the laser dot and the laser pointer itself, as it shines a laser on the item itself
+	var/pointer_icon_state = null
 	///The diode is what determines the effectiveness and recharge rate of the laser pointer. Higher tier part means stronger pointer
 	var/obj/item/stock_parts/micro_laser/diode 
 	var/diode_type = /obj/item/stock_parts/micro_laser
@@ -174,16 +175,17 @@
 
 	//laser pointer image
 	icon_state = "pointer_[pointer_icon_state]"
-	var/image/I = image('icons/obj/projectiles.dmi',targloc,pointer_icon_state,10)
-	var/list/click_params = params2list(params)
-	if(click_params)
-		if(click_params["icon-x"])
-			I.pixel_x = (text2num(click_params["icon-x"]) - 16)
-		if(click_params["icon-y"])
-			I.pixel_y = (text2num(click_params["icon-y"]) - 16)
+	//setup pointer blip
+	var/mutable_appearance/laser = mutable_appearance('icons/obj/projectiles.dmi', pointer_icon_state)
+	var/list/modifiers = params2list(params)
+	if(modifiers)
+		if(LAZYACCESS(modifiers, ICON_X))
+			laser.pixel_x = (text2num(LAZYACCESS(modifiers, ICON_X)) - 16)
+		if(LAZYACCESS(modifiers, ICON_Y))
+			laser.pixel_y = (text2num(LAZYACCESS(modifiers, ICON_Y)) - 16)
 	else
-		I.pixel_x = target.pixel_x + rand(-5,5)
-		I.pixel_y = target.pixel_y + rand(-5,5)
+		laser.pixel_x = target.pixel_x + rand(-5,5)
+		laser.pixel_y = target.pixel_y + rand(-5,5)
 
 	if(outmsg)
 		to_chat(user, outmsg)
@@ -198,7 +200,9 @@
 	if(charges <= max_charges)
 		START_PROCESSING(SSobj, src)
 
-	flick_overlay_view(I, targloc, 10)
+	//flash a pointer blip at the target
+	target.flick_overlay_view(laser, 1 SECONDS)
+	//reset pointer sprite
 	icon_state = "pointer"
 
 /obj/item/laser_pointer/process(delta_time)

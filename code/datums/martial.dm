@@ -105,19 +105,11 @@
 	var/damage = rand(A.get_punchdamagelow(), A.get_punchdamagehigh())
 
 	var/atk_verb = A.dna.species.attack_verb
+	var/atk_effect = A.dna.species.attack_effect
 	if(!(D.mobility_flags & MOBILITY_STAND))
 		atk_verb = "kick"
-
-	switch(atk_verb)
-		if("kick")
-			A.do_attack_animation(D, ATTACK_EFFECT_KICK)
-		if("slash")
-			A.do_attack_animation(D, ATTACK_EFFECT_CLAW)
-		if("smash")
-			A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
-		else
-			A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
-
+		atk_effect = ATTACK_EFFECT_KICK
+	A.do_attack_animation(D, atk_effect)
 	if(!damage)
 		playsound(D.loc, A.dna.species.miss_sound, 25, 1, -1)
 		D.visible_message(span_warning("[A] has attempted to [atk_verb] [D]!"), \
@@ -205,6 +197,7 @@
 	if(!istype(H) || !H.mind || H.mind.martial_art != src)
 		return
 	on_remove(H)
+	H.mind.martial_art = null
 	if(base)
 		base.teach(H)
 	else

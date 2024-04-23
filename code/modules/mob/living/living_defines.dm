@@ -1,7 +1,6 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
 	sight = 0
-	see_in_dark = 2
 	hud_possible = list(HEALTH_HUD,STATUS_HUD,ANTAG_HUD,NANITE_HUD,DIAG_NANITE_FULL_HUD)
 	pressure_resistance = 10
 	infra_luminosity = 10
@@ -134,6 +133,8 @@
 	//Last projectile that damaged this mob, not including surgery
 	var/last_damage = ""
 
+	//Due to the fact that silicon and carbons can both be connected to a network we share at this level of inheritance
+	var/datum/ai_network/ai_network
 	/// Variable to track the body position of a mob, regardgless of the actual angle of rotation (usually matching it, but not necessarily).
 	var/body_position = STANDING_UP
 	///The x amount a mob's sprite should be offset due to the current position they're in
@@ -147,3 +148,5 @@
 	var/num_hands = 2
 	///How many usable hands does this mob currently have. Should only be changed through set_usable_hands()
 	var/usable_hands = 2
+	/// What our current gravity state is. Used to avoid duplicate animates and such
+	var/gravity_state = null

@@ -948,6 +948,23 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	usr << browse("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>" + replacetext(SSatoms.InitLog(), "\n", "<br>") + "</BODY></HTML>", "window=initlog")
 
+/client/proc/debug_plane_masters()
+	set category = "Debug"
+	set name = "Edit/Debug Planes"
+	set desc = "Edit and visualize plane masters and their connections (relays)"
+
+	edit_plane_masters()
+
+/client/proc/edit_plane_masters(mob/debug_on)
+	if(!holder)
+		return
+	if(debug_on)
+		holder.plane_debug.set_mirroring(TRUE)
+		holder.plane_debug.set_target(debug_on)
+	else
+		holder.plane_debug.set_mirroring(FALSE)
+	holder.plane_debug.ui_interact(mob)
+
 /client/proc/debug_huds(i as num)
 	set category = "Misc.Server Debug"
 	set name = "Debug HUDs"
@@ -1122,3 +1139,11 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		return
 	if(tgui_alert(usr, "Are you absolutely sure you want to reload the configuration from the default path on the disk, wiping any in-round modificatoins?", "Really reset?", list("No", "Yes")) == "Yes")
 		config.admin_reload()
+
+/client/proc/debug_ai_networks()
+	set category = "Misc.Server Debug"
+	set name = "Debug AI Networks"
+	set desc = "Displays a list of all AI networks to ALL admins"
+	if(!check_rights(R_DEBUG))
+		return
+	_debug_ai_networks()

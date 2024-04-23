@@ -21,10 +21,13 @@
 	circuit = /obj/item/circuitboard/computer/telecomms/comm_traffic
 
 	req_access = list(ACCESS_TCOM_ADMIN)
+	var/unlimited_range = FALSE
 
 /obj/machinery/computer/telecomms/traffic/Initialize(mapload)
 	. = ..()
 	GLOB.traffic_comps += src
+	if(mapload)
+		unlimited_range = TRUE
 
 /obj/machinery/computer/telecomms/traffic/Destroy()
 	GLOB.traffic_comps -= src
@@ -223,9 +226,14 @@
 					temp = "<font color = #D70B00>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font color>"
 
 				else
-					for(var/obj/machinery/telecomms/server/T in range(25, src))
-						if(T.network == network)
-							servers.Add(T)
+					if(unlimited_range)
+						for(var/obj/machinery/telecomms/server/T as anything in GLOB.tcomms_servers)
+							if(T.network == network)
+								servers.Add(T)
+					else
+						for(var/obj/machinery/telecomms/server/T in range(25, src))
+							if(T.network == network)
+								servers.Add(T)
 
 					if(!servers.len)
 						temp = "<font color = #D70B00>- FAILED: UNABLE TO LOCATE SERVERS IN \[[network]\] -</font color>"

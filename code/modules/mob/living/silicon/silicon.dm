@@ -6,7 +6,6 @@
 	verb_exclaim = "declares"
 	verb_yell = "alarms"
 	initial_language_holder = /datum/language_holder/synthetic
-	see_in_dark = 8
 	infra_luminosity = 0
 	bubble_icon = BUBBLE_MACHINE
 	weather_immunities = list("ash")
@@ -15,9 +14,6 @@
 	deathsound = 'sound/voice/borg_deathsound.ogg'
 	speech_span = SPAN_ROBOT
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1 | HEAR_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
-
-	/// Set during initialization. If initially a list, then the resulting armor will gain the listed armor values.
-	var/datum/armor/armor
 
 	var/datum/ai_laws/laws = null//Now... THEY ALL CAN ALL HAVE LAWS
 	var/last_lawchange_announce = 0
@@ -61,12 +57,6 @@
 	diag_hud_set_status()
 	diag_hud_set_health()
 	ADD_TRAIT(src, TRAIT_FORCED_STANDING, "cyborg") // not CYBORG_ITEM_TRAIT because not an item
-	if (islist(armor))
-		armor = getArmor(arglist(armor))
-	else if (!armor)
-		armor = getArmor()
-	else if (!istype(armor, /datum/armor))
-		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize(mapload)")
 
 /mob/living/silicon/med_hud_set_health()
 	return //we use a different hud
@@ -331,6 +321,9 @@
 /mob/living/silicon/handle_high_gravity(gravity)
 	return
 
+/mob/living/silicon/get_butt_sprite()
+	return BUTT_SPRITE_QR_CODE
+
 /mob/living/silicon/get_status_tab_items()
 	.=..()
 	.+= ""
@@ -386,7 +379,7 @@
 	if(!modularInterface)
 		modularInterface = new /obj/item/modular_computer/tablet/integrated(src)
 	modularInterface.layer = ABOVE_HUD_PLANE
-	modularInterface.plane = ABOVE_HUD_PLANE
+	SET_PLANE_EXPLICIT(modularInterface, ABOVE_HUD_PLANE, src)
 
 /mob/living/silicon/replace_identification_name(oldname,newname)
 	if(modularInterface)

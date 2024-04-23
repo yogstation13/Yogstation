@@ -36,6 +36,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	/// does it use skintones or not? (spoiler alert this is only used by humans)
 	var/use_skintones = FALSE
 
+	var/forced_skintone
+
 	/// If your race wants to bleed something other than bog standard blood, change this to reagent id.
 	var/datum/reagent/exotic_blood
 	///If your race uses a non standard bloodtype (A+, O-, AB-, etc)
@@ -121,6 +123,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/inert_mutation 	= DWARFISM
 	///used to set the mobs deathsound on species change
 	var/deathsound
+	///Barefoot step sound
+	var/barefoot_step_sound = FOOTSTEP_MOB_BAREFOOT
 	///Sounds to override barefeet walking
 	var/list/special_step_sounds
 	///How loud to play the step override
@@ -131,6 +135,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/grab_sound
 	///yogs - audio of a species' scream
 	var/screamsound
+	/// The visual effect of the attack.
+	var/attack_effect = ATTACK_EFFECT_PUNCH
 	///is a flying species, just a check for some things
 	var/flying_species = FALSE
 	///the actual flying ability given to flying species
@@ -207,8 +213,15 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	//Should we preload this species's organs?
 	var/preload = TRUE
 
+	var/inherent_slowdown = 0
+
+	//for preternis + synths
+	var/draining = FALSE
 	///Does our species have colors for its' damage overlays?
 	var/use_damage_color = TRUE
+
+	/// Do we try to prevent reset_perspective() from working? Useful for Dullahans to stop perspective changes when they're looking through their head.
+	var/prevent_perspective_change = FALSE
 
 ///////////
 // PROCS //
@@ -314,6 +327,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 /datum/species/proc/has_toes()
 	return FALSE
+
+/// Sprite to show for photocopying mob butts
+/datum/species/proc/get_butt_sprite(mob/living/carbon/human/human)
+	return human.gender == FEMALE ? BUTT_SPRITE_HUMAN_FEMALE : BUTT_SPRITE_HUMAN_MALE
 
 /**
  * Corrects organs in a carbon, removing ones it doesn't need and adding ones it does.
@@ -913,6 +930,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || (H.head && (H.head.flags_inv & HIDEEYES)) || !HD)
 			bodyparts_to_add -= "preternis_eye"
 
+	if("preternis_core" in mutant_bodyparts)
+		if(!get_location_accessible(H, BODY_ZONE_CHEST))
+			bodyparts_to_add -= "preternis_core"
+
 	if("pod_hair" in mutant_bodyparts)
 		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || (H.head && (H.head.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "pod_hair"
@@ -1078,6 +1099,42 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				else
 					accessory_overlay.color = forced_colour
 			standing += accessory_overlay
+
+			if(S.emissive && !(HAS_TRAIT(H, TRAIT_HUSK)) && !istype(H, /mob/living/carbon/human/dummy))//don't put emissives on dummy mobs as they're used for the preference menu, which doesn't draw emissives properly
+				var/mutable_appearance/emissive_accessory_overlay = emissive_appearance(S.icon, "placeholder", H)
+
+				//A little rename so we don't have to use tail_lizard or tail_human when naming the sprites.
+				if(S.gender_specific)
+					emissive_accessory_overlay.icon_state = "[g]_[bodypart]_[S.icon_state]_[layertext]"
+				else
+					emissive_accessory_overlay.icon_state = "m_[bodypart]_[S.icon_state]_[layertext]"
+
+				if(S.center)
+					emissive_accessory_overlay = center_image(emissive_accessory_overlay, S.dimension_x, S.dimension_y)
+
+				if(!forced_colour)
+					switch(S.color_src)
+						if(MUTCOLORS)
+							if(H.dna.check_mutation(HULK))			//HULK GO FIRST
+								emissive_accessory_overlay.color = "#00aa00"
+							else if(fixed_mut_color)													//Then fixed color if applicable
+								emissive_accessory_overlay.color = fixed_mut_color
+							else																		//Then snowflake color
+								emissive_accessory_overlay.color = H.dna.features["mcolor"]
+						if(HAIR)
+							if(hair_color == "mutcolor")
+								emissive_accessory_overlay.color = H.dna.features["mcolor"]
+							else if(hair_color == "fixedmutcolor")
+								emissive_accessory_overlay.color = fixed_mut_color
+							else
+								emissive_accessory_overlay.color = H.hair_color
+						if(FACEHAIR)
+							emissive_accessory_overlay.color = H.facial_hair_color
+						if(EYECOLOR)
+							emissive_accessory_overlay.color = H.eye_color
+				else
+					emissive_accessory_overlay.color = forced_colour
+				standing += emissive_accessory_overlay
 
 			if(S.hasinner)
 				var/mutable_appearance/inner_accessory_overlay = mutable_appearance(S.icon, layer = -layer)
@@ -1536,6 +1593,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					. += hungry / 50
 
 		//Moving in high gravity is very slow (Flying too)
+		. += inherent_slowdown
+
 		if(gravity > STANDARD_GRAVITY)
 			var/grav_force = min(gravity - STANDARD_GRAVITY,3)
 			. += 1 + grav_force
@@ -1596,6 +1655,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(!attacker_style?.nonlethal && HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("You don't want to harm [target]!"))
 		return FALSE
+	if(!synth_check(user, SYNTH_ORGANIC_HARM))
+		to_chat(user, span_warning("You don't want to harm [target]!"))
+		return
 	var/datum/martial_art/M = target.check_block()
 	if(M)
 		M.handle_counter(target, user)
@@ -1605,26 +1667,18 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	else
 
 		var/atk_verb = user.dna.species.attack_verb
+		var/atk_effect = user.dna.species.attack_effect
 		if(!(target.mobility_flags & MOBILITY_STAND))
-			atk_verb = ATTACK_EFFECT_KICK
-
-		switch(atk_verb)//this code is really stupid but some genius apparently made "claw" and "slash" two attack types but also the same one so it's needed i guess
-			if(ATTACK_EFFECT_KICK)
-				user.do_attack_animation(target, ATTACK_EFFECT_KICK)
-			if(ATTACK_EFFECT_SLASH, ATTACK_EFFECT_CLAW)//smh
-				user.do_attack_animation(target, ATTACK_EFFECT_CLAW)
-			if(ATTACK_EFFECT_SMASH)
-				user.do_attack_animation(target, ATTACK_EFFECT_SMASH)
-			else
-				user.do_attack_animation(target, ATTACK_EFFECT_PUNCH)
-
+			atk_verb = "kick"
+			atk_effect = ATTACK_EFFECT_KICK
+		user.do_attack_animation(target, atk_effect)
 		var/damage = rand(user.get_punchdamagelow(), user.get_punchdamagehigh())
 
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
 
 		var/miss_chance = 100//calculate the odds that a punch misses entirely. considers stamina and brute damage of the puncher. punches miss by default to prevent weird cases
 		if(user.get_punchdamagelow())
-			if(atk_verb == ATTACK_EFFECT_KICK) //kicks never miss (provided your species deals more than 0 damage)
+			if(atk_effect == ATTACK_EFFECT_KICK) //kicks never miss (provided your species deals more than 0 damage)
 				miss_chance = 0
 			else
 				miss_chance = min((user.get_punchdamagelow()/user.get_punchdamagehigh()) + user.getStaminaLoss() + (user.getBruteLoss()*0.5), 100) //old base chance for a miss + various damage. capped at 100 to prevent weirdness in prob()
@@ -1651,7 +1705,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			target.dismembering_strike(user, affecting.body_zone)
 
 		var/attack_direction = get_dir(user, target)
-		if(atk_verb == ATTACK_EFFECT_KICK)//kicks deal 1.5x raw damage
+		if(atk_effect == ATTACK_EFFECT_KICK)//kicks deal 1.5x raw damage
 			target.apply_damage(damage*1.5, user.dna.species.attack_type, affecting, armor_block, attack_direction = attack_direction)
 			log_combat(user, target, "kicked")
 		else//other attacks deal full raw damage + 1.5x in stamina damage
@@ -1881,7 +1935,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 							H.visible_message(span_danger("[H] has been knocked senseless!"), \
 											span_userdanger("[H] has been knocked senseless!"))
 							H.set_confusion_if_lower(20 SECONDS)
-							H.adjust_blurriness(10)
+							H.adjust_eye_blur(10)
 						if(prob(10))
 							H.gain_trauma(/datum/brain_trauma/mild/concussion)
 					else

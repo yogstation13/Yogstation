@@ -755,7 +755,7 @@
 	name = "\proper night vision meson vision"
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "nvgmeson"
-	sight_mode = BORGMESON_NIGHTVISION
+	sight_mode = BORGMESON
 	
 /obj/item/borg/sight/material
 	name = "\proper material vision"

@@ -2,8 +2,9 @@ SUBSYSTEM_DEF(demo)
 	name = "Demo"
 	wait = 1
 	flags = SS_TICKER | SS_BACKGROUND
-	init_order = INIT_ORDER_DEMO
+	///Adding Lobby to the runlevel because we want it to start writing before the game starts since there's a of atoms queued to be written during init
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
+	init_order = INIT_ORDER_DEMO
 
 	loading_points = 12.6 SECONDS // Yogs -- loading times
 
@@ -189,7 +190,7 @@ SUBSYSTEM_DEF(demo)
 		marked_dirty.len--
 		if(M.gc_destroyed || !M)
 			continue
-		if(M.loc == M.demo_last_loc)
+		if(M.loc == M.demo_last_loc && M.appearance == M.demo_last_appearance)
 			continue
 		var/loc_string = "="
 		if(M.loc != M.demo_last_loc)
@@ -204,7 +205,7 @@ SUBSYSTEM_DEF(demo)
 			appearance_string = encode_appearance(M.appearance, target = M)
 			M.demo_last_appearance = M.appearance
 		else if(M.appearance != M.demo_last_appearance)
-			appearance_string = encode_appearance(M.appearance, M.demo_last_appearance, target = M)
+			appearance_string = encode_appearance(M.appearance, M.demo_last_appearance, TRUE, M)
 			M.demo_last_appearance = M.appearance
 		dirty_updates += "\ref[M] [loc_string] [appearance_string]"
 		if(MC_TICK_CHECK)
@@ -330,7 +331,6 @@ SUBSYSTEM_DEF(demo)
 	var/tmp_dir = appearance.dir
 	
 	if(target)
-		//message_admins("demo target is [target] \nappearance dir: [appearance.dir] and target dir: [target.dir]")
 		tmp_dir = target.dir
 	
 	var/list/appearance_list = list(
@@ -339,7 +339,7 @@ SUBSYSTEM_DEF(demo)
 		json_encode(cached_name),
 		appearance.appearance_flags,
 		appearance.layer,
-		appearance.plane == -32767 ? "" : appearance.plane,
+		appearance.plane == -32767 ? "" : PLANE_TO_TRUE(appearance.plane),
 		tmp_dir == 2 ? "" : tmp_dir,
 		appearance.color ? color_string : "",
 		appearance.alpha == 255 ? "" : appearance.alpha,
@@ -394,7 +394,7 @@ SUBSYSTEM_DEF(demo)
 			json_encode(cached_name),
 			appearance.appearance_flags == diff_appearance.appearance_flags ? "" : appearance.appearance_flags,
 			appearance.layer == diff_appearance.layer ? "" : appearance.layer,
-			appearance.plane == diff_appearance.plane ? "" : appearance.plane,
+			PLANE_TO_TRUE(appearance.plane) == PLANE_TO_TRUE(diff_appearance.plane) ? "" : PLANE_TO_TRUE(appearance.plane),
 			appearance.dir == diff_appearance.dir ? "" : appearance.dir,
 			appearance.color == diff_appearance.color ? "" : color_string,
 			appearance.alpha == diff_appearance.alpha ? "" : appearance.alpha,
@@ -442,9 +442,9 @@ SUBSYSTEM_DEF(demo)
 /datum/controller/subsystem/demo/proc/mark_new(atom/movable/M)
 	if(!can_fire)
 		return
-	if(!isobj(M) && !ismob(M))
+	if(!ismovable(M))
 		return
-	if(M.gc_destroyed)
+	if(M.gc_destroyed || QDELETED(M))
 		return
 	marked_new[M] = TRUE
 	if(marked_dirty[M])
@@ -454,17 +454,21 @@ SUBSYSTEM_DEF(demo)
 /datum/controller/subsystem/demo/proc/mark_dirty(atom/movable/M)
 	if(!can_fire)
 		return
-	if(!isobj(M) && !ismob(M))
+	if(!ismovable(M))
 		return
-	if(M.gc_destroyed)
+	if(M.gc_destroyed || QDELETED(M))
 		return
-	if(!marked_new[M])
-		marked_dirty[M] = TRUE
+	if(isturf(M))
+		mark_turf(M)
+		return
+	if(marked_new[M])
+		return
+	marked_dirty[M] = TRUE
 
 /datum/controller/subsystem/demo/proc/mark_destroyed(atom/movable/M)
 	if(!can_fire)
 		return
-	if(!isobj(M) && !ismob(M))
+	if(!ismovable(M))
 		return
 	if(marked_new[M])
 		marked_new -= M

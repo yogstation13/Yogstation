@@ -10,6 +10,8 @@
 	var/time_between_triggers = 1 MINUTES //takes a minute to recharge
 	var/charges = INFINITY
 	var/antimagic_flags = MAGIC_RESISTANCE
+	var/sparks = TRUE
+	var/can_reveal = TRUE
 
 	var/list/static/ignore_typecache
 	var/list/mob/immune_minds = list()
@@ -27,6 +29,11 @@
 			/obj/effect,
 			/mob/dead))
 
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_trap_entered)
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/structure/trap/Destroy()
 	qdel(spark_system)
 	spark_system = null
@@ -38,7 +45,7 @@
 		return
 	if(user.mind && (user.mind in immune_minds))
 		return
-	if(get_dist(user, src) <= 1)
+	if(can_reveal && get_dist(user, src) <= 1)
 		. += span_notice("You reveal [src]!")
 		flare()
 
@@ -46,7 +53,8 @@
 	// Makes the trap visible, and starts the cooldown until it's
 	// able to be triggered again.
 	visible_message(span_warning("[src] flares brightly!"))
-	spark_system.start()
+	if(sparks)
+		spark_system.start()
 	alpha = 200
 	last_trigger = world.time
 	charges--
@@ -56,8 +64,8 @@
 	else
 		animate(src, alpha = initial(alpha), time = time_between_triggers)
 
-/obj/structure/trap/Crossed(atom/movable/AM)
-	. = ..()
+/obj/structure/trap/proc/on_trap_entered(datum/source, atom/movable/AM, ...)
+	SIGNAL_HANDLER
 	if(last_trigger + time_between_triggers > world.time)
 		return
 	// Don't want the traps triggered by sparks, ghosts or projectiles.
@@ -67,7 +75,7 @@
 		var/mob/M = AM
 		if(M.mind in immune_minds)
 			return
-		if(M.can_block_magic())
+		if(M.can_block_magic(antimagic_flags))
 			flare()
 			return
 	if(charges <= 0)
@@ -141,23 +149,3 @@
 /obj/structure/trap/ward/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, time_between_triggers)
-
-/obj/structure/trap/proc/on_entered(datum/source, atom/movable/victim)
-	SIGNAL_HANDLER
-	if(last_trigger + time_between_triggers > world.time)
-		return
-	// Don't want the traps triggered by sparks, ghosts or projectiles.
-	if(is_type_in_typecache(victim, ignore_typecache))
-		return
-	if(ismob(victim))
-		var/mob/mob_victim = victim
-		if(mob_victim.mind in immune_minds)
-			return
-		if(mob_victim.can_block_magic(antimagic_flags))
-			flare()
-			return
-	if(charges <= 0)
-		return
-	flare()
-	if(isliving(victim))
-		trap_effect(victim)

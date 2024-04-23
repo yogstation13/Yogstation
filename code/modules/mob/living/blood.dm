@@ -68,7 +68,7 @@
 			if(BLOOD_BAD)
 				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL(src) - blood_volume) * 0.02, 1))
 				if(prob(5))
-					blur_eyes(6)
+					adjust_eye_blur(6)
 					to_chat(src, span_warning("You feel very [word]."))
 			if(BLOOD_SURVIVE)
 				adjustOxyLoss(5)
@@ -339,6 +339,8 @@
 
 //to add a splatter of blood or other mob liquid.
 /mob/living/proc/add_splatter_floor(turf/T, small_drip)
+	if(get_blood_id() != /datum/reagent/blood)
+		return
 	if(!T)
 		T = get_turf(src)
 	var/list/temp_blood_DNA

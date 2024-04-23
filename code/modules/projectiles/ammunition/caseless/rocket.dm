@@ -30,7 +30,7 @@
 
 /obj/item/ammo_casing/caseless/bolts
 	name = "bolts"
-	desc = "rods, cut in half and ready to be shot"
+	desc = "Rods, cut in half and ready to be shot."
 	caliber = null
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "bolt"

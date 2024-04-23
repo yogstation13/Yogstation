@@ -1,7 +1,7 @@
 /datum/component/magnetic_catch/Initialize()
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(examine))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(examine))
 	if(ismovable(parent))
 		RegisterSignal(parent, COMSIG_MOVABLE_CROSSED, PROC_REF(crossed_react))
 		RegisterSignal(parent, COMSIG_MOVABLE_UNCROSSED, PROC_REF(uncrossed_react))

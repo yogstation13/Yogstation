@@ -1,8 +1,10 @@
 /mob/living/proc/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	set waitfor = FALSE
-	set invisibility = 0
 
-	SEND_SIGNAL(src, COMSIG_LIVING_LIFE, seconds_per_tick, times_fired)
+	var/signal_result = SEND_SIGNAL(src, COMSIG_LIVING_LIFE, seconds_per_tick, times_fired)
+
+	if(signal_result & COMPONENT_LIVING_CANCEL_LIFE_PROCESSING) // mmm less work
+		return
 
 	if(digitalinvis)
 		handle_diginvis() //AI becomes unable to see mob
@@ -32,9 +34,7 @@
 		log_game("Z-TRACKING: [src] of type [src.type] has a Z-registration despite not having a client.")
 		update_z(null)
 
-	if (notransform)
-		return
-	if(!loc)
+	if(isnull(loc) || notransform)
 		return
 
 	if(SHOULD_LIFETICK(src, times_fired))
@@ -121,9 +121,7 @@
 			eye_blind = max(eye_blind-1,1)
 	if(eye_blurry)			//blurry eyes heal slowly
 		eye_blurry = max(eye_blurry-1, 0)
-		if(client)
-			update_eye_blur()
-
+	
 /mob/living/proc/update_damage_hud()
 	return
 

@@ -7,6 +7,8 @@
 #define COMSIG_MOB_LOGIN "mob_login"
 ///from base of /mob/Logout(): ()
 #define COMSIG_MOB_LOGOUT "mob_logout"
+///from base of /mob/mind_initialize
+#define COMSIG_MOB_MIND_INITIALIZED "mob_mind_inited"
 ///from base of mob/set_stat(): (new_stat, old_stat)
 #define COMSIG_MOB_STATCHANGE "mob_statchange"
 ///from base of mob/clickon(): (atom/A, params)
@@ -80,9 +82,6 @@
 #define COMSIG_MOB_SIGHT_CHANGE "mob_sight_changed"
 ///from base of mob/set_invis_see(): (new_invis, old_invis)
 #define COMSIG_MOB_SEE_INVIS_CHANGE "mob_see_invis_change"
-///from base of mob/set_see_in_dark(): (new_range, old_range)
-#define COMSIG_MOB_SEE_IN_DARK_CHANGE "mob_see_in_dark_change"
-
 
 ///from base of /mob/living/proc/apply_damage(): (damage, damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
 #define COMSIG_MOB_APPLY_DAMAGE "mob_apply_damage"

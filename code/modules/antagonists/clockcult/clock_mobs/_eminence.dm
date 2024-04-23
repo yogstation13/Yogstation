@@ -11,11 +11,13 @@
 	icon_state = "eminence"
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	move_on_shuttle = TRUE
-	see_in_dark = 8
 	invisibility = INVISIBILITY_OBSERVER
 	layer = FLY_LAYER
 	faction = list("ratvar")
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	// VERY red, to fit the eyes
+	lighting_cutoff_red = 22
+	lighting_cutoff_green = 5
+	lighting_cutoff_blue = 5
 	var/turf/last_failed_turf
 	var/static/superheated_walls = 0
 	var/lastWarning = 0
@@ -137,7 +139,7 @@
 			var/obj/structure/destructible/clockwork/powered/P = A
 			if(!can_access_clockwork_power(P))
 				commands += "Power This Structure"
-			if(P.obj_integrity < P.max_integrity)
+			if(P.get_integrity() < P.max_integrity)
 				commands += "Repair This Structure"
 	var/roma_invicta = input(src, "Choose a command to issue to your cult!", "Issue Commands") as null|anything in commands
 	if(!roma_invicta)
@@ -280,6 +282,6 @@
 /datum/action/innate/eminence/mass_recall/Activate()
 	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
 	if(G && !G.recalling && G.recalls_remaining)
-		if(alert(owner, "Initiate mass recall?", "Mass Recall", "Yes", "No") != "Yes" || QDELETED(owner) || QDELETED(G) || !G.obj_integrity)
+		if(alert(owner, "Initiate mass recall?", "Mass Recall", "Yes", "No") != "Yes" || QDELETED(owner) || QDELETED(G) || !G.get_integrity())
 			return
 		G.initiate_mass_recall()

@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
 /obj/item/stack/sheet/rglass/cyborg/get_amount()
 	return min(round(source.energy / metcost), round(glasource.energy / glacost))
 
-/obj/item/stack/sheet/rglass/cyborg/use(used, transfer = FALSE) // Requires special checks, because it uses two storages
+/obj/item/stack/sheet/rglass/cyborg/use(used, transfer = FALSE, check = TRUE) // Requires special checks, because it uses two storages
 	if(source.use_charge(used * metcost) && glasource.use_charge(used * glacost))
 		return TRUE
 	return FALSE
@@ -280,8 +280,11 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 
 /obj/item/shard/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/caltrop, force)
-	AddComponent(/datum/component/butchering, 150, 65)
+	AddComponent(/datum/component/caltrop, min_damage = force)
+	AddComponent(/datum/component/butchering, \
+	_speed = 15 SECONDS, \
+	_effectiveness = 65, \
+	)
 	icon_state = pick("large", "medium", "small")
 	switch(icon_state)
 		if("small")
@@ -298,6 +301,10 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	var/matrix/M = matrix(transform)
 	M.Turn(rand(-170, 170))
 	transform = M
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/item/shard/afterattack(atom/A as mob|obj, mob/user, proximity)
 	. = ..()
@@ -334,15 +341,12 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 		qdel(src)
 		return
 
-/obj/item/shard/Crossed(atom/movable/AM)
+/obj/item/shard/proc/on_entered(datum/source, atom/movable/AM)
+	SIGNAL_HANDLER
 	if(isliving(AM))
 		var/mob/living/L = AM
-		if(!(L.is_flying() || L.buckled))
-			if(HAS_TRAIT(L, TRAIT_LIGHT_STEP))
-				playsound(loc, 'sound/effects/glass_step.ogg', 30, TRUE)
-			else
-				playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
-	return ..()
+		if(!(L.movement_type & MOVETYPES_NOT_TOUCHING_GROUND) || L.buckled)
+			playsound(src, 'sound/effects/glass_step.ogg', HAS_TRAIT(L, TRAIT_LIGHT_STEP) ? 30 : 50, TRUE)
 
 /obj/item/shard/plasma
 	name = "purple shard"

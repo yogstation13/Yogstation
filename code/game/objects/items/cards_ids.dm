@@ -561,6 +561,10 @@ update_label("John Doe", "Clowny")
 
 	name = "[(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment])"]"
 
+//a card that can't register a bank account IC
+/obj/item/card/id/no_bank/AltClick(mob/living/user)
+	return FALSE
+
 /obj/item/card/id/silver
 	name = "silver identification card"
 	desc = "A silver card which shows honour and dedication."
@@ -583,6 +587,27 @@ update_label("John Doe", "Clowny")
 	item_state = "gold_id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+
+/obj/item/card/id/synthetic
+	name = "synthetic identification card"
+	desc = "An integrated card that allows synthetic units access across the station."
+	icon_state = "id_silver"
+	item_state = "silver_id"
+	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+	item_flags = DROPDEL
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
+/obj/item/card/id/synthetic/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, SYNTHETIC_TRAIT)
+
+/obj/item/card/id/synthetic/GetAccess()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		if(H.mind)
+			return GLOB.synthetic_base_access + GLOB.synthetic_added_access
+	return list()
 
 /obj/item/card/id/syndicate
 	name = "agent card"
@@ -636,7 +661,7 @@ update_label("John Doe", "Clowny")
 
 			var/newAge = input(user, "Choose the ID's age:\n([AGE_MIN]-[AGE_MAX])", "Agent card age") as num|null
 			if(newAge)
-				registered_age = max(round(text2num(newAge)), 0)
+				registered_age = clamp(round(text2num(newAge)), AGE_MIN, AGE_MAX)
 
 			registered_name = input_name
 			assignment = target_occupation
@@ -796,8 +821,8 @@ update_label("John Doe", "Clowny")
 		var/obj/structure/fireaxecabinet/bridge/spare/holder = loc
 		forceMove(holder.loc)
 		holder.spareid = null
-		if(holder.obj_integrity > holder.integrity_failure) //we dont want to heal it by accident
-			holder.take_damage(holder.obj_integrity - holder.integrity_failure, BURN, armour_penetration = 100) //we do a bit of trolling for being naughty
+		if(holder.get_integrity() > holder.integrity_failure) //we dont want to heal it by accident
+			holder.take_damage(holder.get_integrity() - holder.integrity_failure, BURN, armour_penetration = 100) //we do a bit of trolling for being naughty
 		else
 			holder.update_appearance(UPDATE_ICON) //update the icon anyway so it pops out
 		visible_message(span_danger("The heat of the temporary spare shatters the glass!"));
@@ -1118,7 +1143,7 @@ update_label("John Doe", "Clowny")
 	. = ..()
 	if(target)
 		our_airlock = target
-		RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(delete_on_door_delete))
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(delete_on_door_delete))
 		
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
@@ -1227,7 +1252,7 @@ update_label("John Doe", "Clowny")
 	portal_one = new(get_turf(door2), door2)
 	portal_two = new(get_turf(door1), door1)
 	portal_one.destination = portal_two
-	RegisterSignal(portal_one, COMSIG_PARENT_QDELETING, PROC_REF(clear_portal_refs))  //we only really need to register one because they already qdel both portals if one is destroyed
+	RegisterSignal(portal_one, COMSIG_QDELETING, PROC_REF(clear_portal_refs))  //we only really need to register one because they already qdel both portals if one is destroyed
 	portal_two.destination = portal_one
 	balloon_alert(user, "[message]")
 

@@ -58,7 +58,7 @@
 					break dir_loop
 
 	if(!terminal)
-		obj_break()
+		atom_break()
 		return
 	terminal.master = src
 	update_appearance(UPDATE_ICON)
@@ -116,7 +116,7 @@
 			return
 
 		var/turf/T = get_turf(user)
-		if (T.intact) //is the floor plating removed ?
+		if (T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE) //can we get to the underfloor?
 			to_chat(user, span_warning("You must first remove the floor plating!"))
 			return
 
@@ -202,7 +202,7 @@
 	if(terminal)
 		terminal.master = null
 		terminal = null
-		obj_break()
+		atom_break()
 
 
 /obj/machinery/power/smes/update_overlays()

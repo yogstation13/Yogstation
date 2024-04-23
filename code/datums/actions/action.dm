@@ -52,7 +52,7 @@
 /// Links the passed target to our action, registering any relevant signals
 /datum/action/proc/link_to(Target)
 	target = Target
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clear_ref), override = TRUE)
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(clear_ref), override = TRUE)
 
 	if(isatom(target))
 		RegisterSignal(target, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_target_icon_update))
@@ -89,7 +89,7 @@
 		Remove(previous_owner)
 	SEND_SIGNAL(src, COMSIG_ACTION_GRANTED, owner)
 	SEND_SIGNAL(owner, COMSIG_MOB_GRANTED_ACTION, src)
-	RegisterSignal(owner, COMSIG_PARENT_QDELETING, PROC_REF(clear_ref), override = TRUE)
+	RegisterSignal(owner, COMSIG_QDELETING, PROC_REF(clear_ref), override = TRUE)
 
 	// Register some signals based on our check_flags
 	// so that our button icon updates when relevant
@@ -122,7 +122,7 @@
 		return
 	SEND_SIGNAL(src, COMSIG_ACTION_REMOVED, owner)
 	SEND_SIGNAL(owner, COMSIG_MOB_REMOVED_ACTION, src)
-	UnregisterSignal(owner, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(owner, COMSIG_QDELETING)
 
 	// Clean up our check_flag signals
 	UnregisterSignal(owner, list(
@@ -134,7 +134,7 @@
 	))
 
 	if(target == owner)
-		RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clear_ref))
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(clear_ref))
 	if(owner == remove_from)
 		owner = null
 

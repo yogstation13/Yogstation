@@ -19,6 +19,9 @@
 /obj/item/organ/tail/get_availability(datum/species/species)
 	return (HAS_TAIL in species.species_traits)
 
+/obj/item/organ/tail/proc/get_butt_sprite()
+	return null
+
 /obj/item/organ/tail/cat
 	name = "cat tail"
 	desc = "A severed cat tail. Who's wagging now?"
@@ -42,6 +45,9 @@
 		H.dna.species.mutant_bodyparts -= "tail_human"
 		color = H.hair_color
 		H.update_body()
+
+/obj/item/organ/tail/cat/get_butt_sprite()
+	return BUTT_SPRITE_CAT
 
 /obj/item/organ/tail/lizard
 	name = "lizard tail"
@@ -103,7 +109,8 @@
 			else
 				H.dna.species.mutant_bodyparts["tail_polysmorph"] = H.dna.features["tail_polysmorph"]
 		H.update_body()
-		H.physiology.crawl_speed += 0.5
+		if(H.physiology)
+			H.physiology.crawl_speed += 0.5
 
 /obj/item/organ/tail/polysmorph/Remove(mob/living/carbon/human/H,  special = 0)
 	..()
@@ -111,4 +118,5 @@
 		H.dna.species.mutant_bodyparts -= "tail_polysmorph"
 		tail_type = H.dna.features["tail_polysmorph"]
 		H.update_body()
-		H.physiology.crawl_speed -= 0.5
+		if(H.physiology)
+			H.physiology.crawl_speed -= 0.5

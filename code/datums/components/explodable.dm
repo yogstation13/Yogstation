@@ -10,7 +10,7 @@
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(explodable_attack))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(explodable_attack))
 	RegisterSignal(parent, COMSIG_TRY_STORAGE_INSERT, PROC_REF(explodable_insert_item))
 	RegisterSignal(parent, COMSIG_ATOM_EX_ACT, PROC_REF(detonate))
 	if(ismovable(parent))

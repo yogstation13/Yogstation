@@ -2,17 +2,24 @@
 // On top of that, now people can add component-speciic procs/vars if they want!
 
 /obj/machinery/atmospherics/components
-	var/welded = FALSE //Used on pumps and scrubbers
+	hide = FALSE
+	layer = GAS_PUMP_LAYER
+	///Is the component welded?
+	var/welded = FALSE
+	///Should the component should show the pipe underneath it?
 	var/showpipe = TRUE
-	var/shift_underlay_only = TRUE //Layering only shifts underlay?
-
-	var/update_parents_after_rebuild = FALSE
-
+	///When the component is on a non default layer should we shift everything? Or just the underlay pipe
+	var/shift_underlay_only = TRUE
+	///Stores the parent pipeline, used in components
 	var/list/datum/pipeline/parents
+	///If this is queued for a rebuild this var signifies whether parents should be updated after it's done
+	var/update_parents_after_rebuild = FALSE
+	///Stores the gasmix for each node, used in components
 	var/list/datum/gas_mixture/airs
-	var/startingvolume = 200
-
+	///Handles whether the custom reconcilation handling should be used
 	var/custom_reconcilation = FALSE
+
+	var/startingvolume = 200
 
 /obj/machinery/atmospherics/components/New()
 	parents = new(device_type)
@@ -27,10 +34,31 @@
 		component_mixture.set_volume(startingvolume)
 		airs[i] = component_mixture
 
+/obj/machinery/atmospherics/components/Initialize(mapload)
+	. = ..()
+
+	if(hide)
+		RegisterSignal(src, COMSIG_OBJ_HIDE, PROC_REF(hide_pipe))
+
 // Iconnery
 
+/**
+ * Called by update_icon(), used individually by each component to determine the icon state without the pipe in consideration
+ */
 /obj/machinery/atmospherics/components/proc/update_icon_nopipes()
 	return
+
+/**
+ * Called in Initialize(), set the showpipe var to true or false depending on the situation, calls update_icon()
+ */
+/obj/machinery/atmospherics/components/proc/hide_pipe(datum/source, underfloor_accessibility)
+	SIGNAL_HANDLER
+	showpipe = !!underfloor_accessibility
+	if(showpipe)
+		REMOVE_TRAIT(src, TRAIT_UNDERFLOOR, REF(src))
+	else
+		ADD_TRAIT(src, TRAIT_UNDERFLOOR, REF(src))
+	update_appearance()
 
 /obj/machinery/atmospherics/components/update_icon(updates=ALL)
 	. = ..()
@@ -38,7 +66,7 @@
 
 	underlays.Cut()
 
-	plane = showpipe ? GAME_PLANE : FLOOR_PLANE
+	SET_PLANE_IMPLICIT(src, showpipe ? GAME_PLANE : FLOOR_PLANE)
 
 	if(!showpipe)
 		return
@@ -91,6 +119,11 @@
 		to_return += parents[i]
 	return to_return
 
+/**
+ * Called by nullify_node(), used to remove the pipeline the component is attached to
+ * Arguments:
+ * * -reference: the pipeline the component is attached to
+ */
 /obj/machinery/atmospherics/components/proc/nullify_pipenet(datum/pipeline/reference)
 	if(!reference)
 		CRASH("nullify_pipenet(null) called by [type] on [COORD(src)]")
@@ -157,6 +190,10 @@
 
 // Helpers
 
+/**
+ * Called in most atmos processes and gas handling situations, update the parents pipelines of the devices connected to the source component
+ * This way gases won't get stuck
+ */
 /obj/machinery/atmospherics/components/proc/update_parents()
 	if(!SSair.initialized)
 		return
@@ -219,3 +256,6 @@
 
 /obj/machinery/atmospherics/components/return_analyzable_air()
 	return airs
+
+/obj/machinery/atmospherics/components/update_layer()
+	layer = initial(layer) + (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE + (GLOB.pipe_colors_ordered[pipe_color] * 0.001)

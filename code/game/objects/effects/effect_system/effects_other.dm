@@ -11,7 +11,7 @@
 	var/active = FALSE
 	var/allow_overlap = FALSE
 	var/auto_process = TRUE
-	var/qdel_in_time = 10
+	var/qdel_in_time = 1 SECONDS
 	var/fadetype = "ion_fade"
 	var/fade = TRUE
 	var/nograv_required = FALSE
@@ -65,6 +65,16 @@
 /datum/effect_system/trail_follow/steam
 	effect_type = /obj/effect/particle_effect/steam
 
+/datum/effect_system/trail_follow/sparks
+	effect_type = /obj/effect/particle_effect/sparks
+	nograv_required = TRUE
+	fade = FALSE
+
+/datum/effect_system/trail_follow/smoke
+	effect_type = /obj/effect/particle_effect/fluid/smoke/trail
+	nograv_required = TRUE
+	fade = FALSE
+
 /obj/effect/particle_effect/ion_trails
 	name = "ion trails"
 	icon_state = "ion_trails"
@@ -76,7 +86,7 @@
 /datum/effect_system/trail_follow/ion
 	effect_type = /obj/effect/particle_effect/ion_trails
 	nograv_required = TRUE
-	qdel_in_time = 20
+	qdel_in_time = 2 SECONDS
 
 /datum/effect_system/trail_follow/proc/set_dir(obj/effect/particle_effect/ion_trails/I)
 	I.setDir(holder.dir)

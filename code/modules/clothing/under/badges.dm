@@ -31,7 +31,7 @@
 	pixel_x -= 8
 	pixel_y += 8
 	layer = initial(layer)
-	plane = initial(plane)
+	SET_PLANE_IMPLICIT(src, initial(plane))
 	suit_target.cut_overlays()
 	suit_target.attached_badge = null
 	suit_target.badge_overlay = null

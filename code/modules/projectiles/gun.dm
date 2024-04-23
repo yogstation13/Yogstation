@@ -120,7 +120,7 @@
 		pin = null
 	if(A == chambered)
 		chambered = null
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 	if(A == bayonet)
 		clear_bayonet()
 	if(A == gun_light)
@@ -325,6 +325,9 @@
 			firing_burst = FALSE
 			return FALSE
 	if(chambered && chambered.BB)
+		if(!synth_check(user, SYNTH_RESTRICTED_WEAPON))
+			return
+		
 		if(HAS_TRAIT(user, TRAIT_PACIFISM)) // If the user has the pacifist trait, then they won't be able to fire [src] if the round chambered inside of [src] is lethal.
 			if(chambered.harmful) // Is the bullet chambered harmful?
 				to_chat(user, span_notice(" [src] is lethally chambered! You don't want to risk harming anyone..."))
@@ -386,6 +389,8 @@
 			addtimer(CALLBACK(src, PROC_REF(process_burst), user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, i), fire_delay * (i - 1))
 	else
 		if(chambered)
+			if(!synth_check(user, SYNTH_RESTRICTED_WEAPON))
+				return
 			if(HAS_TRAIT(user, TRAIT_PACIFISM)) // If the user has the pacifist trait, then they won't be able to fire [src] if the round chambered inside of [src] is lethal.
 				if(chambered.harmful) // Is the bullet chambered harmful?
 					to_chat(user, span_notice(" [src] is lethally chambered! You don't want to risk harming anyone..."))
@@ -430,7 +435,7 @@
 			return ..()
 	return
 
-/obj/item/gun/attack_obj(obj/O, mob/user)
+/obj/item/gun/attack_atom(obj/O, mob/user)
 	if(user.a_intent == INTENT_HARM)
 		if(bayonet)
 			O.attackby(bayonet, user)
@@ -493,7 +498,7 @@
 			return
 		to_chat(user, span_notice("You attach [K] to [src]'s bayonet lug."))
 		bayonet = K
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 	else
 		return ..()
 
@@ -582,7 +587,7 @@
 			old_gun_light.forceMove(get_turf(src))
 		remove_item_action(gunlight_toggle)
 		gunlight_toggle = null
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/item/gun/ui_action_click(mob/user, actiontype)
 	if(istype(actiontype, gunlight_toggle))
@@ -595,17 +600,16 @@
 		return
 
 	var/mob/living/carbon/human/user = usr
-	gun_light.on = !gun_light.on
-	gun_light.update_brightness()
-	to_chat(user, span_notice("You toggle the gunlight [gun_light.on ? "on":"off"]."))
+	gun_light.toggle_light(user)
+	to_chat(user, span_notice("You toggle the gunlight [gun_light.light_on ? "on":"off"]."))
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/item/gun/update_overlays()
 	. = ..()
 	if(gun_light)
-		var/mutable_appearance/flashlight_overlay = mutable_appearance('icons/obj/guns/flashlights.dmi', "[gunlight_state][gun_light.on? "_on":""]")
+		var/mutable_appearance/flashlight_overlay = mutable_appearance('icons/obj/guns/flashlights.dmi', "[gunlight_state][gun_light.light_on? "_on":""]")
 		flashlight_overlay.pixel_x = flight_x_offset
 		flashlight_overlay.pixel_y = flight_y_offset
 		. += flashlight_overlay

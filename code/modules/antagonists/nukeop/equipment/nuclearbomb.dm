@@ -40,7 +40,7 @@
 	STOP_PROCESSING(SSobj, core)
 	update_appearance(UPDATE_ICON)
 	GLOB.poi_list |= src
-	previous_level = get_security_level()
+	previous_level = SSsecurity_level.get_current_level_as_text()
 
 /obj/machinery/nuclearbomb/Destroy()
 	safety = FALSE
@@ -387,7 +387,7 @@
 	safety = !safety
 	if(safety)
 		if(timing)
-			set_security_level(previous_level)
+			SSsecurity_level.set_level(previous_level)
 			for(var/obj/item/pinpointer/nuke/syndicate/S in GLOB.pinpointer_list)
 				S.switch_mode_to(initial(S.mode))
 				S.alert = FALSE
@@ -402,15 +402,15 @@
 		return
 	timing = !timing
 	if(timing)
-		previous_level = get_security_level()
+		previous_level = SSsecurity_level.get_current_level_as_text()
 		detonation_timer = world.time + (timer_set * 10)
 		for(var/obj/item/pinpointer/nuke/syndicate/S in GLOB.pinpointer_list)
 			S.switch_mode_to(TRACK_INFILTRATOR)
 		countdown.start()
-		set_security_level("delta")
+		SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 	else
 		detonation_timer = null
-		set_security_level(previous_level)
+		SSsecurity_level.set_level(previous_level)
 		for(var/obj/item/pinpointer/nuke/syndicate/S in GLOB.pinpointer_list)
 			S.switch_mode_to(initial(S.mode))
 			S.alert = FALSE
@@ -459,8 +459,8 @@
 	var/off_station = 0
 	var/turf/bomb_location = get_turf(src)
 	var/area/A = get_area(bomb_location)
-	if(istype(A, /area/fabric_of_reality))
-		var/area/fabric_of_reality/fabric = A
+	if(istype(A, /area/centcom/fabric_of_reality))
+		var/area/centcom/fabric_of_reality/fabric = A
 		new /obj/singularity(fabric.origin, 2000) // Stage five singulo back on the station, as a gift
 	else if(bomb_location && is_station_level(bomb_location.z))
 		if(istype(A, /area/space) || istype(A, /area/shuttle/syndicate))
@@ -484,8 +484,8 @@
 /obj/machinery/nuclearbomb/proc/really_actually_explode(off_station)
 	Cinematic(get_cinematic_type(off_station),world,CALLBACK(SSticker,/datum/controller/subsystem/ticker/proc/station_explosion_detonation,src))
 	var/area/A = get_area(src)
-	if(istype(A, /area/fabric_of_reality))
-		var/area/fabric_of_reality/fabric = A
+	if(istype(A, /area/centcom/fabric_of_reality))
+		var/area/centcom/fabric_of_reality/fabric = A
 		var/turf/T = fabric.origin
 		INVOKE_ASYNC(GLOBAL_PROC, PROC_REF(KillEveryoneOnZLevel), T.z)
 	else
@@ -544,7 +544,7 @@
 	detonation_timer = null
 	exploding = FALSE
 	exploded = TRUE
-	set_security_level(previous_level)
+	SSsecurity_level.set_level(previous_level)
 	for(var/obj/item/pinpointer/nuke/syndicate/S in GLOB.pinpointer_list)
 		S.switch_mode_to(initial(S.mode))
 		S.alert = FALSE

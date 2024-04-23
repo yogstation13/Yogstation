@@ -37,15 +37,13 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	var/list/template_names = list()
 	/// Whether or not we can choose templates that have already been chosen
 	var/unique = FALSE
-	layer = BULLET_HOLE_LAYER
 
-/obj/effect/landmark/stationroom/New()
-	..()
+/obj/effect/landmark/stationroom/Initialize(mapload)
+	. = ..()
 	GLOB.stationroom_landmarks += src
 
 /obj/effect/landmark/stationroom/Destroy()
-	if(src in GLOB.stationroom_landmarks)
-		GLOB.stationroom_landmarks -= src
+	GLOB.stationroom_landmarks -= src
 	return ..()
 
 /obj/effect/landmark/stationroom/proc/load(template_name)
@@ -95,7 +93,10 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	return chosen_template
 
 /obj/effect/landmark/stationroom/box/bar
-	template_names = list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", "Bar Clock", "Bar Arcade")
+	template_names = list(
+		"Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", 
+		"Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", 
+		"Bar Clock", "Bar Arcade")
 
 /obj/effect/landmark/stationroom/box/bar/load(template_name)
 	GLOB.stationroom_landmarks -= src
@@ -150,7 +151,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	return TRUE
 
 /obj/effect/landmark/stationroom/meta/engine
-	template_names = list("Meta SM" = 25, "Meta Nuclear Reactor" = 45, "Meta TEG" = 25) // tesla is loud as fuck and singulo doesn't make sense, so SM/reactor only
+	template_names = list("Meta SM" = 45, "Meta Nuclear Reactor" = 30, "Meta TEG" = 25) // tesla is loud as fuck and singulo doesn't make sense, so SM/reactor only
 
 /obj/effect/landmark/stationroom/meta/engine/choose()
 	. = ..()

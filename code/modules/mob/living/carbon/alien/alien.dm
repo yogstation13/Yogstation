@@ -6,11 +6,11 @@
 	faction = list(ROLE_ALIEN)
 	ventcrawler = VENTCRAWLER_ALWAYS
 	sight = SEE_MOBS
-	see_in_dark = 4
 	verb_say = "hisses"
 	initial_language_holder = /datum/language_holder/alien
 	bubble_icon = BUBBLE_ALIEN
 	type_of_meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
 	var/obj/item/card/id/wear_id = null // Fix for station bounced radios -- Skie
 	var/has_fine_manipulation = 0
@@ -44,7 +44,7 @@
 	internal_organs += new /obj/item/organ/brain/alien
 	internal_organs += new /obj/item/organ/alien/hivenode
 	internal_organs += new /obj/item/organ/tongue/alien
-	internal_organs += new /obj/item/organ/eyes/night_vision/alien
+	internal_organs += new /obj/item/organ/eyes/alien
 	internal_organs += new /obj/item/organ/liver/alien
 	internal_organs += new /obj/item/organ/ears
 	..()

@@ -11,7 +11,7 @@
 	construction_time = 75
 	build_path = /obj/item/mmi
 	category = list("Control Interfaces", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/posibrain
 	name = "Positronic Brain"
@@ -22,7 +22,7 @@
 	construction_time = 75
 	build_path = /obj/item/mmi/posibrain
 	category = list("Control Interfaces", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/bluespacebeaker
 	name = "Bluespace Beaker"
@@ -708,7 +708,7 @@
 /////////////////////
 /datum/design/surgery
 	name = "Surgery Design"
-	desc = "what"
+	desc = "What."
 	id = "surgery_parent"
 	research_icon = 'icons/misc/surgery_icons.dmi'
 	research_icon_state = "surgery_any"

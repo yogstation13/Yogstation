@@ -107,18 +107,18 @@ RUST PATH SPELLS GO HERE
 	range = 15
 	speed = 1
 
-/obj/projectile/magic/aoe/rust_wave/Moved(atom/OldLoc, Dir)
+/obj/projectile/magic/aoe/rust_wave/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	playsound(src, 'sound/items/welder.ogg', 75, TRUE)
 	var/list/turflist = list()
 	var/turf/T1
 	turflist += get_turf(src)
-	T1 = get_step(src,turn(dir,90))
+	T1 = get_step(src,turn(movement_dir,90))
 	turflist += T1
-	turflist += get_step(T1,turn(dir,90))
-	T1 = get_step(src,turn(dir,-90))
+	turflist += get_step(T1,turn(movement_dir,90))
+	T1 = get_step(src,turn(movement_dir,-90))
 	turflist += T1
-	turflist += get_step(T1,turn(dir,-90))
+	turflist += get_step(T1,turn(movement_dir,-90))
 	for(var/X in turflist)
 		if(!X || prob(25))
 			continue
@@ -226,7 +226,7 @@ RUST PATH SPELLS GO HERE
 /datum/action/cooldown/spell/pointed/rust_construction/cast(turf/open/cast_on)
 	. = ..()
 	var/rises_message = "rises out of [cast_on]"
-	var/turf/closed/wall/new_wall = cast_on.PlaceOnTop(/turf/closed/wall)
+	var/turf/closed/wall/new_wall = cast_on.place_on_top(/turf/closed/wall)
 	if(!istype(new_wall))
 		return
 

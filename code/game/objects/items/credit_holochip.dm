@@ -12,7 +12,7 @@
 	. = ..()
 	if(amount)
 		credits = amount
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/item/holochip/examine(mob/user)
 	. = ..()

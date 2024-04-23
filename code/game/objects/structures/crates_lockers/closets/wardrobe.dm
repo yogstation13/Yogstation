@@ -68,7 +68,7 @@
 	return
 
 
-/obj/structure/closet/wardrobe/orange
+/obj/structure/closet/wardrobe/orange // Apparently this is unused
 	name = "prison wardrobe"
 	desc = "It's a storage unit for Nanotrasen-regulation prisoner attire."
 	icon_door = "orange"
@@ -78,6 +78,7 @@
 		new /obj/item/clothing/under/rank/prisoner(src)
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/under/rank/prisoner/skirt(src)
+	new /obj/item/clothing/under/plasmaman/prisoner(src)		
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/shoes/sneakers/orange(src)
 	return

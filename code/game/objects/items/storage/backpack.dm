@@ -315,25 +315,13 @@
 	desc = "A very slim satchel that can easily fit into tight spaces."
 	icon_state = "satchel-flat"
 	w_class = WEIGHT_CLASS_NORMAL //Can fit in backpacks itself.
-	level = 1
 
 /obj/item/storage/backpack/satchel/flat/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE, INVISIBILITY_OBSERVER, use_anchor = TRUE)
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 15
 	STR.set_holdable(null, list(/obj/item/storage/backpack/satchel/flat)) //muh recursive backpacks)
-
-/obj/item/storage/backpack/satchel/flat/hide(intact)
-	if(intact)
-		invisibility = INVISIBILITY_OBSERVER
-		anchored = TRUE //otherwise you can start pulling, cover it, and drag around an invisible backpack.
-		icon_state = "[initial(icon_state)]2"
-		ADD_TRAIT(src, TRAIT_T_RAY_VISIBLE, TRAIT_GENERIC)
-	else
-		invisibility = initial(invisibility)
-		anchored = FALSE
-		icon_state = initial(icon_state)
-		REMOVE_TRAIT(src, TRAIT_T_RAY_VISIBLE, TRAIT_GENERIC)
 
 /obj/item/storage/backpack/satchel/flat/PopulateContents()
 	var/datum/supply_pack/costumes_toys/randomised/contraband/C = new
@@ -684,7 +672,7 @@
 	STR.silent = TRUE
 
 /obj/item/storage/backpack/duffelbag/clown/syndie/PopulateContents()
-	new /obj/item/pda/clown(src)
+	new /obj/item/modular_computer/tablet/pda/preset/clown/syndicate (src)
 	new /obj/item/clothing/under/rank/clown(src)
 	new /obj/item/clothing/shoes/clown_shoes(src)
 	new /obj/item/clothing/mask/gas/clown_hat(src)

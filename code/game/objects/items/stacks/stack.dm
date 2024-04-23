@@ -12,28 +12,33 @@
 	icon = 'yogstation/icons/obj/stack_objects.dmi' // yogs -- use yog icons instead of tg
 	gender = PLURAL
 	max_integrity = 100
-	/// List of recipes
+	/// A list to all recipies this stack item can create.
 	var/list/datum/stack_recipe/recipes
-	/// The name without the s
+	/// What's the name of just 1 of this stack. You have a stack of leather, but one piece of leather
 	var/singular_name
-	/// Amount in the stack
+	/// How much is in this stack?
 	var/amount = 1
-	/// Max amount in the stack | stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
+	/// How much is allowed in this stack?
+	// Also see stack recipes initialisation. "max_res_amount" must be equal to this max_amount
 	var/max_amount = 50
-	/// If its a module item for a cyborg
-	var/is_cyborg = 0
-	/// Used for "recharging" of the material
+	/// If TRUE, this stack is a module used by a cyborg (doesn't run out like normal / etc)
+	var/is_cyborg = FALSE
+	/// Related to above. If present, the energy we draw from when using stack items, for cyborgs
 	var/datum/robot_energy_storage/source
-	/// How much energy does it cost
+	/// Related to above. How much energy it costs from storage to use stack items
 	var/cost = 1
 	/// This path and its children should merge with this stack, defaults to src.type
 	var/merge_type = null
-	/// Does it merge strictly only with its type
-	var/strict = FALSE
-	/// The weight class the stack should have at amount > 2/3rds max_amount
+	/// The weight class the stack has at amount > 2/3rds max_amount
 	var/full_w_class = WEIGHT_CLASS_NORMAL
 	/// Determines whether the item should update it's sprites based on amount.
 	var/novariants = TRUE
+	/// List that tells you how much is in a single unit.
+	var/list/mats_per_unit
+	/// Datum material type that this stack is made of
+	var/material_type
+	/// Does it merge strictly only with its type
+	var/strict = FALSE
 	//NOTE: When adding grind_results, the amounts should be for an INDIVIDUAL ITEM - these amounts will be multiplied by the stack size in on_grind()
 	var/obj/structure/table/tableVariant // we tables now (stores table variant to be built from this stack)
 	var/mats_per_stack = 0
@@ -50,8 +55,7 @@
 		return
 	return TRUE
 
-/obj/item/stack/Initialize(mapload, new_amount, merge = TRUE)
-	. = ..()
+/obj/item/stack/Initialize(mapload, new_amount, merge = TRUE, list/mat_override=null, mat_amt=1)
 	if(new_amount != null)
 		amount = new_amount
 	while(amount > max_amount)
@@ -59,12 +63,61 @@
 		new type(loc, max_amount, FALSE)
 	if(!merge_type)
 		merge_type = type
+
+	// if(LAZYLEN(mat_override))
+	// 	set_mats_per_unit(mat_override, mat_amt)
+	// else if(LAZYLEN(mats_per_unit))
+	// 	set_mats_per_unit(mats_per_unit, 1)
+	// else if(LAZYLEN(custom_materials))
+	// 	set_mats_per_unit(custom_materials, amount ? 1/amount : 1)
+	
+	. = ..()
 	if(merge)
-		for(var/obj/item/stack/S in loc)
-			if(S.merge_type == merge_type)
-				merge(S)
+		for(var/obj/item/stack/item_stack in loc)
+			if(item_stack == src)
+				continue
+			if(can_merge(item_stack))
+				INVOKE_ASYNC(src, PROC_REF(merge_without_del), item_stack)
+				if(is_zero_amount(delete_if_zero = FALSE))
+					return INITIALIZE_HINT_QDEL
+	
+	// recipes = get_main_recipes().Copy()
+	// if(material_type)
+	// 	var/datum/material/what_are_we_made_of = GET_MATERIAL_REF(material_type) //First/main material
+	// 	for(var/category in what_are_we_made_of.categories)
+	// 		switch(category)
+	// 			if(MAT_CATEGORY_BASE_RECIPES)
+	// 				recipes |= SSmaterials.base_stack_recipes.Copy()
+	// 			if(MAT_CATEGORY_RIGID)
+	// 				recipes |= SSmaterials.rigid_stack_recipes.Copy()
+
 	update_weight()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_movable_entered_occupied_turf),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
+/** Sets the amount of materials per unit for this stack.
+ *
+ * Arguments:
+ * - [mats][/list]: The value to set the mats per unit to.
+ * - multiplier: The amount to multiply the mats per unit by. Defaults to 1.
+ */
+/obj/item/stack/proc/set_mats_per_unit(list/mats, multiplier=1)
+	//mats_per_unit = SSmaterials.FindOrCreateMaterialCombo(mats, multiplier)
+	update_custom_materials()
+
+/** Updates the custom materials list of this stack.
+ */
+/obj/item/stack/proc/update_custom_materials()
+	set_custom_materials(mats_per_unit, amount, is_update=TRUE)
+
+/**
+ * Override to make things like metalgen accurately set custom materials
+ */
+/obj/item/stack/set_custom_materials(list/materials, multiplier=1, is_update=FALSE)
+	return is_update ? ..() : set_mats_per_unit(materials, multiplier/(amount || 1))
 
 /obj/item/stack/proc/update_weight()
 	if(amount <= (max_amount * (1/3)))
@@ -217,7 +270,7 @@
 				var/turf/T = usr.drop_location()
 				if(!isturf(T))
 					return
-				T.PlaceOnTop(R.result_type, flags = CHANGETURF_INHERIT_AIR)
+				T.place_on_top(R.result_type, flags = CHANGETURF_INHERIT_AIR)
 			else
 				O = new R.result_type(usr.drop_location())
 			if(O)
@@ -303,16 +356,18 @@
 	return TRUE
 
 /obj/item/stack/use(used, transfer = FALSE, check = TRUE) // return 0 = borked; return 1 = had enough
-	if(check && zero_amount())
+	if(check && is_zero_amount(delete_if_zero = TRUE))
 		return FALSE
 	if (is_cyborg)
 		return source.use_charge(used * cost)
 	if (amount < used)
 		return FALSE
 	amount -= used
-	if(check)
-		zero_amount()
-	update_appearance(UPDATE_ICON)
+	if(check && is_zero_amount(delete_if_zero = TRUE))
+		return TRUE
+	if(length(mats_per_unit))
+		update_custom_materials()
+	update_appearance()
 	update_weight()
 	return TRUE
 
@@ -330,55 +385,124 @@
 
 	return TRUE
 
-/obj/item/stack/proc/zero_amount()
+/**
+ * Returns TRUE if the item stack is the equivalent of a 0 amount item.
+ *
+ * Also deletes the item if delete_if_zero is TRUE and the stack does not have
+ * is_cyborg set to true.
+ */
+/obj/item/stack/proc/is_zero_amount(delete_if_zero = TRUE)
 	if(is_cyborg)
 		return source.energy < cost
 	if(amount < 1)
-		qdel(src)
-		return 1
-	return 0
+		if(delete_if_zero)
+			qdel(src)
+		return TRUE
+	return FALSE
 
-/obj/item/stack/proc/add(amount)
-	if (is_cyborg)
-		source.add_charge(amount * cost)
+/** Adds some number of units to this stack.
+ *
+ * Arguments:
+ * - _amount: The number of units to add to this stack.
+ */
+/obj/item/stack/proc/add(_amount)
+	if(is_cyborg)
+		source.add_charge(_amount * cost)
 	else
-		src.amount += amount
-	update_appearance(UPDATE_ICON)
+		amount += _amount
+	if(length(mats_per_unit))
+		update_custom_materials()
+	update_appearance()
 	update_weight()
 
-/obj/item/stack/proc/merge(obj/item/stack/S) //Merge src into S, as much as possible
-	if(QDELETED(S) || QDELETED(src) || S == src) //amusingly this can cause a stack to consume itself, let's not allow that.
-		return
+/** Checks whether this stack can merge itself into another stack.
+ *
+ * Arguments:
+ * - [check][/obj/item/stack]: The stack to check for mergeability.
+ * - [inhand][boolean]: Whether or not the stack to check should act like it's in a mob's hand.
+ */
+/obj/item/stack/proc/can_merge(obj/item/stack/check, inhand = FALSE)
+	// We don't only use istype here, since that will match subtypes, and stack things that shouldn't stack
+	if(!istype(check, merge_type) || check.merge_type != merge_type)
+		return FALSE
+	if(mats_per_unit ~! check.mats_per_unit) // ~! in case of lists this operator checks only keys, but not values
+		return FALSE
+	if(is_cyborg) // No merging cyborg stacks into other stacks
+		return FALSE
+	if(ismob(loc) && !inhand) // no merging with items that are on the mob
+		return FALSE
+	if(istype(loc, /obj/machinery)) // no merging items in machines that aren't both in componentparts
+		var/obj/machinery/machine = loc
+		if(!(src in machine.component_parts) || !(check in machine.component_parts))
+			return FALSE
+	if(SEND_SIGNAL(src, COMSIG_STACK_CAN_MERGE, check, inhand) & CANCEL_STACK_MERGE)
+		return FALSE
+	return TRUE
+
+
+/**
+ * Merges as much of src into target_stack as possible. If present, the limit arg overrides target_stack.max_amount for transfer.
+ *
+ * This calls use() without check = FALSE, preventing the item from qdeling itself if it reaches 0 stack size.
+ *
+ * As a result, this proc can leave behind a 0 amount stack.
+ */
+/obj/item/stack/proc/merge_without_del(obj/item/stack/target_stack, limit)
+	// Cover edge cases where multiple stacks are being merged together and haven't been deleted properly.
+	// Also cover edge case where a stack is being merged into itself, which is supposedly possible.
+	if(QDELETED(target_stack))
+		CRASH("Stack merge attempted on qdeleted target stack.")
+	if(QDELETED(src))
+		CRASH("Stack merge attempted on qdeleted source stack.")
+	if(target_stack == src)
+		CRASH("Stack attempted to merge into itself.")
+
 	var/transfer = get_amount()
-	if(S.is_cyborg)
-		transfer = min(transfer, round((S.source.max_energy - S.source.energy) / S.cost))
+	if(target_stack.is_cyborg)
+		transfer = min(transfer, round((target_stack.source.max_energy - target_stack.source.energy) / target_stack.cost))
 	else
-		transfer = min(transfer, S.max_amount - S.amount)
+		transfer = min(transfer, (limit ? limit : target_stack.max_amount) - target_stack.amount)
 	if(pulledby)
-		pulledby.start_pulling(S)
-	S.copy_evidences(src)
-	use(transfer, TRUE)
-	S.add(transfer)
+		pulledby.start_pulling(target_stack)
+	target_stack.copy_evidences(src)
+	use(transfer, transfer = TRUE, check = FALSE)
+	target_stack.add(transfer)
+	if(target_stack.mats_per_unit != mats_per_unit) // We get the average value of mats_per_unit between two stacks getting merged
+		var/list/temp_mats_list = list() // mats_per_unit is passed by ref into this coil, and that same ref is used in other places. If we didn't make a new list here we'd end up contaminating those other places, which leads to batshit behavior
+		for(var/mat_type in target_stack.mats_per_unit)
+			temp_mats_list[mat_type] = (target_stack.mats_per_unit[mat_type] * (target_stack.amount - transfer) + mats_per_unit[mat_type] * transfer) / target_stack.amount
+		target_stack.mats_per_unit = temp_mats_list
 	return transfer
 
-/obj/item/stack/Crossed(atom/movable/AM)
-	if(strict && AM.type == merge_type)
-		merge(AM)
-	else if(!strict && istype(AM, merge_type) && !AM.throwing)
-		merge(AM)
-	. = ..()
+/**
+ * Merges as much of src into target_stack as possible. If present, the limit arg overrides target_stack.max_amount for transfer.
+ *
+ * This proc deletes src if the remaining amount after the transfer is 0.
+ */
+/obj/item/stack/proc/merge(obj/item/stack/target_stack, limit)
+	. = merge_without_del(target_stack, limit)
+	is_zero_amount(delete_if_zero = TRUE)
 
-/obj/item/stack/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
-	if(strict && AM.type == merge_type)
-		merge(AM)
-	else if(!strict && istype(AM, merge_type) && !AM.throwing)
-		merge(AM)
+// Signal handler for connect_loc element. Called when a movable enters the turf we're currently occupying. Merges if possible.
+/obj/item/stack/proc/on_movable_entered_occupied_turf(datum/source, atom/movable/arrived)
+	SIGNAL_HANDLER
+
+	// Edge case. This signal will also be sent when src has entered the turf. Don't want to merge with ourselves.
+	if(arrived == src)
+		return
+
+	if(!arrived.throwing && can_merge(arrived))
+		INVOKE_ASYNC(src, PROC_REF(merge), arrived)
+
+/obj/item/stack/hitby(atom/movable/hitting, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
+	if(can_merge(hitting, inhand = TRUE))
+		merge(hitting)
 	. = ..()
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/stack/attack_hand(mob/user)
 	if(user.get_inactive_held_item() == src)
-		if(zero_amount())
+		if(is_zero_amount(delete_if_zero = TRUE))
 			return
 		return change_stack(user,1)
 	else
@@ -393,7 +517,7 @@
 	if(is_cyborg)
 		return
 	else
-		if(zero_amount())
+		if(is_zero_amount(delete_if_zero = TRUE))
 			return
 		//get amount from user
 		var/max = get_amount()
@@ -417,7 +541,7 @@
 			F.forceMove(user.drop_location())
 		add_fingerprint(user)
 		F.add_fingerprint(user)
-	zero_amount()
+	is_zero_amount(delete_if_zero = TRUE)
 
 /obj/item/stack/attackby(obj/item/W, mob/user, params)
 	if(strict && W.type == merge_type)

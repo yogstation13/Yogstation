@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(title)
 
 /datum/controller/subsystem/title/Initialize()
 	if(file_path && icon)
-		return SS_INIT_NO_NEED
+		return SS_INIT_SUCCESS
 
 	if(fexists("data/previous_title.dat"))
 		var/previous_path = file2text("data/previous_title.dat")
@@ -19,18 +19,33 @@ SUBSYSTEM_DEF(title)
 			previous_icon = new(previous_icon)
 	fdel("data/previous_title.dat")
 
-	var/list/provisional_title_screens = flist("[global.config.directory]/title_screens/images/")
+	var/list/normal_provisional_title_screens = flist("[global.config.directory]/title_screens/images/normal/")
+	var/list/joke_provisional_title_screens = flist("[global.config.directory]/title_screens/images/joke/")
+	var/list/rare_provisional_title_screens = flist("[global.config.directory]/title_screens/images/rare/")
 	var/list/title_screens = list()
-	var/use_rare_screens = prob(1)
+	var/use_rare_screens = prob(1)		// 1% Chance for Rare Screens in /rare
+	var/use_joke_screens = prob(10) 	// 10% Chance for Joke Screens in /joke
 
-	SSmapping.HACK_LoadMapConfig()
-	for(var/S in provisional_title_screens)
-		var/list/L = splittext(S,"+")
-		if((L.len == 1 && L[1] != "blank.png")|| (L.len > 1 && ((use_rare_screens && lowertext(L[1]) == "rare") || (lowertext(L[1]) == lowertext(SSmapping.config.map_name)))))
+	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
+		use_joke_screens = TRUE
+
+	if(use_rare_screens)
+		for(var/S in rare_provisional_title_screens)
 			title_screens += S
+		if(length(title_screens))
+			file_path = "[global.config.directory]/title_screens/images/rare/[pick(title_screens)]"
+	
+	else if(use_joke_screens)
+		for(var/S in joke_provisional_title_screens)
+			title_screens += S
+		if(length(title_screens))
+			file_path = "[global.config.directory]/title_screens/images/joke/[pick(title_screens)]"
 
-	if(length(title_screens))
-		file_path = "[global.config.directory]/title_screens/images/[pick(title_screens)]"
+	else
+		for(var/S in normal_provisional_title_screens)
+			title_screens += S
+		if(length(title_screens))
+			file_path = "[global.config.directory]/title_screens/images/normal/[pick(title_screens)]"
 
 	if(!file_path)
 		file_path = "icons/default_title.dmi"
@@ -48,7 +63,7 @@ SUBSYSTEM_DEF(title)
 	. = ..()
 	if(.)
 		switch(var_name)
-			if("icon")
+			if(NAMEOF(src, icon))
 				if(splash_turf)
 					splash_turf.icon = icon
 
@@ -56,7 +71,7 @@ SUBSYSTEM_DEF(title)
 	for(var/thing in GLOB.clients)
 		if(!thing)
 			continue
-		var/atom/movable/screen/splash/S = new(thing, FALSE)
+		var/atom/movable/screen/splash/S = new(null, thing, FALSE)
 		S.Fade(FALSE,FALSE)
 
 /datum/controller/subsystem/title/Shutdown()

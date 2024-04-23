@@ -31,7 +31,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 1
 	},
 /area/ruin/powered)
@@ -40,7 +40,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/molten_object,
 /obj/item/restraints/handcuffs,
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 1
 	},
 /area/ruin/powered)
@@ -49,14 +49,14 @@
 	name = "Crumpled Note"
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 1
 	},
 /area/ruin/powered)
 "i" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/machinery/computer,
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 1
 	},
 /area/ruin/powered)
@@ -175,7 +175,7 @@
 	products = list(/obj/item/reagent_containers/food/snacks/spacetwinkie = 0, /obj/item/reagent_containers/food/snacks/cheesiehonkers = 0, /obj/item/reagent_containers/food/snacks/candy = 0, /obj/item/reagent_containers/food/snacks/chips = 0, /obj/item/reagent_containers/food/snacks/sosjerky = 0, /obj/item/reagent_containers/food/snacks/no_raisin = 0, /obj/item/reagent_containers/food/drinks/dry_ramen = 0, /obj/item/reagent_containers/food/snacks/energybar = 0);
 	slogan_delay = 1000
 	},
-/turf/open/floor/plasteel/yellowsiding,
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "x" = (
 /obj/item/trash/candy,
@@ -187,18 +187,14 @@
 /obj/item/trash/sosjerky,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/yellowsiding,
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "y" = (
 /obj/item/storage/box/hug/medical,
 /obj/item/storage/box/hug/medical,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/robot_debris,
-/turf/open/floor/plasteel/yellowsiding,
-/area/ruin/powered)
-"z" = (
-/obj/machinery/computer,
-/turf/open/floor/plasteel/yellowsiding,
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 
 (1,1,1) = {"
@@ -280,7 +276,7 @@ b
 i
 o
 u
-z
+v
 b
 a
 a

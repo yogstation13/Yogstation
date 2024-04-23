@@ -28,8 +28,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 
 /obj/item/pda
-	name = "\improper PDA"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
+	name = "\improper antique PDA"
+	desc = "An outdated, portable microcomputer developed by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pda"
 	item_state = "electronic"
@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		inserted_item = null
 
 /obj/item/pda/proc/update_label()
-	name = "PDA-[owner] ([ownjob])" //Name generalisation
+	name = "\improper antique PDA-[owner] ([ownjob])" //Name generalisation
 
 /obj/item/pda/GetAccess()
 	if(id)

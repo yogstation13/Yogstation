@@ -10,11 +10,12 @@
 	power_channel = AREA_USAGE_ENVIRON
 	max_integrity = 350
 	armor = list(MELEE = 30, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 100, RAD = 100, FIRE = 80, ACID = 70)
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	flags_1 = PREVENT_CLICK_UNDER_1
 	damage_deflection = 10
 
 	interaction_flags_atom = INTERACT_ATOM_UI_INTERACT
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
 	/// TRUE means density will be set as soon as the door begins to close
 	var/air_tight = FALSE
@@ -62,10 +63,10 @@
 /obj/machinery/door/examine(mob/user)
 	. = ..()
 	if(red_alert_access)
-		if(GLOB.security_level >= SEC_LEVEL_RED)
+		if(SSsecurity_level.current_security_level.emergency_doors)
 			. += span_notice("Due to a security threat, its access requirements have been lifted!")
 		else
-			. += span_notice("In the event of a red alert, its access requirements will automatically lift.")
+			. += span_notice("In the event of an emegerency alert, its access requirements will automatically lift.")
 	if(!poddoor)
 		. += span_notice("Its maintenance panel is <b>screwed</b> in place.")
 	if(!isdead(user))
@@ -75,7 +76,7 @@
 		. += span_notice("It leads into [areaName].")
 
 /obj/machinery/door/check_access_list(list/access_list)
-	if(red_alert_access && GLOB.security_level >= SEC_LEVEL_RED)
+	if(red_alert_access && SSsecurity_level.current_security_level.emergency_doors)
 		return TRUE
 	return ..()
 
@@ -96,6 +97,13 @@
 		COMSIG_ATOM_MAGICALLY_UNLOCKED = PROC_REF(on_magic_unlock),
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
+	if(red_alert_access)
+		RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(update_security_level))
+
+/obj/machinery/door/proc/update_security_level(_, datum/security_level/new_level)
+	if(red_alert_access && new_level.emergency_doors)
+		visible_message(span_notice("[src] whirrs as it automatically lifts access requirements!"))
+		playsound(src, 'sound/machines/boltsup.ogg', 50, TRUE)
 
 /obj/machinery/door/proc/set_init_door_layer()
 	if(density)
@@ -109,6 +117,7 @@
 	if(spark_system)
 		qdel(spark_system)
 		spark_system = null
+	air_update_turf()
 	return ..()
 
 /obj/machinery/door/Bumped(atom/movable/AM)
@@ -263,7 +272,7 @@
 	var/max_moles = min_moles
 	// okay this is a bit hacky. First, we set density to 0 and recalculate our adjacent turfs
 	density = FALSE
-	var/list/adj_turfs = T.get_adjacent_atmos_turfs()
+	var/list/adj_turfs = TURF_SHARES(T)
 	// then we use those adjacent turfs to figure out what the difference between the lowest and highest pressures we'd be holding is
 	for(var/turf/open/T2 in adj_turfs)
 		if((flags_1 & ON_BORDER_1) && get_dir(src, T2) != dir)
@@ -295,7 +304,7 @@
 
 /obj/machinery/door/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
-	if(. && obj_integrity > 0)
+	if(. && atom_integrity > 0)
 		if(damage_amount >= 10 && prob(30))
 			spark_system.start()
 
@@ -362,7 +371,7 @@
 	density = FALSE
 	sleep(open_speed)
 	layer = initial(layer)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	set_opacity(0)
 	operating = FALSE
 	air_update_turf()
@@ -393,7 +402,7 @@
 	sleep(open_speed)
 	density = TRUE
 	sleep(open_speed)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	if(visible && !glass)
 		set_opacity(1)
 	operating = FALSE
@@ -452,6 +461,8 @@
 /obj/machinery/door/proc/update_freelook_sight()
 	if(!glass && GLOB.cameranet)
 		GLOB.cameranet.updateVisibility(src, 0)
+	if(!glass && GLOB.thrallnet)
+		GLOB.thrallnet.updateVisibility(src, 0)
 
 /obj/machinery/door/BlockThermalConductivity() // All non-glass airlocks block heat, this is intended.
 	if(heat_proof && density)

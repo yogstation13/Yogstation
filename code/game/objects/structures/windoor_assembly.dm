@@ -18,6 +18,7 @@
 	anchored = FALSE
 	density = FALSE
 	dir = NORTH
+	obj_flags = CAN_BE_HIT | BLOCKS_CONSTRUCTION_DIR
 
 	var/ini_dir
 	var/obj/item/electronics/airlock/electronics = null
@@ -27,7 +28,7 @@
 	var/facing = "l"	//Does the windoor open to the left or right?
 	var/secure = FALSE		//Whether or not this creates a secure windoor
 	var/state = "01"	//How far the door assembly has progressed
-	CanAtmosPass = ATMOS_PASS_PROC
+	can_atmos_pass = ATMOS_PASS_PROC
 
 /obj/structure/windoor_assembly/New(loc, set_dir)
 	..()
@@ -68,11 +69,11 @@
 	else if(istype(mover, /obj/machinery/door/window) && !valid_window_location(loc, mover.dir))
 		return FALSE
 
-/obj/structure/windoor_assembly/CanAtmosPass(turf/T)
-	if(get_dir(loc, T) == dir)
+/obj/structure/windoor_assembly/can_atmos_pass(turf/target_turf, vertical = FALSE)
+	if(get_dir(loc, target_turf) == dir)
 		return !density
 	else
-		return 1
+		return TRUE
 
 /obj/structure/windoor_assembly/CheckExit(atom/movable/mover as mob|obj, turf/target)
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))

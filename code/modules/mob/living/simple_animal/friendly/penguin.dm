@@ -10,7 +10,6 @@
 	emote_see = list("shakes its beak.", "flaps it's wings.","preens itself.")
 	faction = list("penguin")
 	minbodytemp = 0
-	see_in_dark = 5
 	speak_chance = 1
 	turns_per_move = 10
 	icon = 'icons/mob/penguins.dmi'

@@ -8,8 +8,9 @@
 	name = "portable air pump"
 	icon_state = "psiphon:0"
 	density = TRUE
-
+	///Is the machine on?
 	var/on = FALSE
+	///What direction is the machine pumping (into pump/port or out to the tank/area)?
 	var/direction = PUMP_OUT
 	var/obj/machinery/atmospherics/components/binary/pump/pump
 
@@ -67,7 +68,7 @@
 		if(prob(10 * severity))
 			direction = PUMP_OUT
 		pump.target_pressure = rand(0, 100 * ONE_ATMOSPHERE)
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 
 /obj/machinery/portable_atmospherics/pump/replace_tank(mob/living/user, close_valve)
 	. = ..()
@@ -75,7 +76,7 @@
 		if(close_valve)
 			if(on)
 				on = FALSE
-				update_appearance(UPDATE_ICON)
+				update_appearance()
 		else if(on && holding && direction == PUMP_OUT)
 			investigate_log("[key_name(user)] started a transfer into [holding].<br>", INVESTIGATE_ATMOS)
 
@@ -153,10 +154,10 @@
 			if(holding)
 				replace_tank(usr, FALSE)
 				. = TRUE
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/machinery/portable_atmospherics/pump/CtrlShiftClick(mob/user)
 	if(!user.canUseTopic(src, BE_CLOSE))
 		return
 	on = !on
-	update_appearance(UPDATE_ICON)
+	update_appearance()

@@ -48,8 +48,10 @@
 	faction = list("neutral","silicon","turret")
 	dextrous = TRUE
 	dextrous_hud_type = /datum/hud/dextrous/drone
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	see_in_dark = 7
+	// Going for a sort of pale green here
+	lighting_cutoff_red = 30
+	lighting_cutoff_green = 35
+	lighting_cutoff_blue = 25
 	can_be_held = TRUE
 	held_items = list(null, null)
 	ignores_capitalism = TRUE // Yogs -- Lets drones buy a damned smoke for christ's sake
@@ -163,6 +165,9 @@
 
 /mob/living/simple_animal/drone/gib()
 	dust()
+
+/mob/living/simple_animal/drone/get_butt_sprite()
+	return BUTT_SPRITE_DRONE
 
 /mob/living/simple_animal/drone/ratvar_act()
 	if(status_flags & GODMODE)

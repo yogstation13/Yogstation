@@ -9,7 +9,7 @@
  * * buttons - The options that can be chosen by the user, each string is assigned a button on the UI.
  * * timeout - The timeout of the input box, after which the input box will close and qdel itself. Set to zero for no timeout.
  */
-/proc/tgui_input_list(mob/user, message, title, list/buttons, timeout = 0)
+/proc/tgui_input_list(mob/user, message, title = "Select", list/buttons, default, timeout = 0)
 	if (!user)
 		user = usr
 	if(!length(buttons))
@@ -19,8 +19,18 @@
 			var/client/client = user
 			user = client.mob
 		else
-			return
-	var/datum/tgui_list_input/input = new(user, message, title, buttons, timeout)
+			return null
+
+	if(isnull(user.client))
+		return null
+
+	/// Client does NOT have tgui_input on: Returns regular input
+	if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
+		return input(user, message, title, default) as null|anything in buttons
+	var/datum/tgui_list_input/input = new(user, message, title, buttons, default, timeout)
+	if(input.invalid)
+		qdel(input)
+		return
 	input.ui_interact(user)
 	input.wait()
 	if (input)
@@ -70,38 +80,46 @@
 	var/list/buttons_map
 	/// The button that the user has pressed, null if no selection has been made
 	var/choice
+	/// The default button to be selected
+	var/default
 	/// The time at which the tgui_list_input was created, for displaying timeout progress.
 	var/start_time
 	/// The lifespan of the tgui_list_input, after which the window will close and delete itself.
 	var/timeout
 	/// Boolean field describing if the tgui_list_input was closed by the user.
 	var/closed
+	/// Whether the tgui list input is invalid or not (i.e. due to all list entries being null)
+	var/invalid = FALSE
 
-/datum/tgui_list_input/New(mob/user, message, title, list/buttons, timeout)
+/datum/tgui_list_input/New(mob/user, message, title, list/buttons, default, timeout)
 	src.title = title
 	src.message = message
 	src.buttons = list()
 	src.buttons_map = list()
+	src.default = default
 
 	// Gets rid of illegal characters
 	var/static/regex/whitelistedWords = regex(@{"([^\u0020-\u8000]+)"})
 
 	for(var/i in buttons)
+		if(!i)
+			continue
 		var/string_key = whitelistedWords.Replace("[i]", "")
 
 		src.buttons += string_key
 		src.buttons_map[string_key] = i
-
-
+	
+	if(length(src.buttons) == 0)
+		invalid = TRUE
 	if (timeout)
 		src.timeout = timeout
 		start_time = world.time
 		QDEL_IN(src, timeout)
 
-/datum/tgui_list_input/Destroy(force, ...)
+/datum/tgui_list_input/Destroy(force)
 	SStgui.close_uis(src)
 	QDEL_NULL(buttons)
-	. = ..()
+	return ..()
 
 /**
  * Waits for a user's response to the tgui_list_input's prompt before returning. Returns early if
@@ -125,16 +143,20 @@
 	return GLOB.always_state
 
 /datum/tgui_list_input/ui_static_data(mob/user)
-	. = list(
-		"title" = title,
-		"message" = message,
-		"buttons" = buttons
-	)
+	var/list/data = list()
+	data["init_value"] = default || buttons[1]
+	data["buttons"] = buttons
+	data["large_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_large)
+	data["message"] = message
+	data["swapped_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_swapped)
+	data["title"] = title
+	return data
 
 /datum/tgui_list_input/ui_data(mob/user)
-	. = list()
+	var/list/data = list()
 	if(timeout)
-		.["timeout"] = clamp((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS), 0, 1)
+		data["timeout"] = clamp((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS), 0, 1)
+	return data
 
 /datum/tgui_list_input/ui_act(action, list/params)
 	. = ..()
@@ -144,13 +166,17 @@
 		if("choose")
 			if (!(params["choice"] in buttons))
 				return
-			choice = buttons_map[params["choice"]]
+			set_choice(buttons_map[params["choice"]])
+			closed = TRUE
 			SStgui.close_uis(src)
 			return TRUE
 		if("cancel")
 			SStgui.close_uis(src)
 			closed = TRUE
 			return TRUE
+
+/datum/tgui_list_input/proc/set_choice(choice)
+	src.choice = choice
 
 /**
  * # async tgui_list_input

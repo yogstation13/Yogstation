@@ -6,13 +6,17 @@
 	density = FALSE
 	anchored = TRUE
 	flags_1 = CONDUCT_1
-	layer = UNDER_CATWALK
+	layer = CATWALK_LAYER
 	var/messiness = 0 // How bad the splicing was, determines the chance of shock
 
 /obj/structure/wire_splicing/Initialize(mapload)
 	. = ..()
 	messiness = rand (1,10)
 	icon_state = "wire_splicing[messiness]"
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 
 	//At messiness of 2 or below, triggering when walking on a catwalk is impossible
@@ -77,8 +81,7 @@
 		. += span_warning("or you could add more wires..!")
 	. += "It has [messiness] wire[messiness > 1?"s":""] dangling around."
 
-/obj/structure/wire_splicing/Crossed(AM as mob|obj)
-	. = ..()
+/obj/structure/wire_splicing/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(isliving(AM))
 		var/mob/living/L = AM
 		//var/turf/T = get_turf(src)

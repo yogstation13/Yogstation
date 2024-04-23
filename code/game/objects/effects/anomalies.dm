@@ -109,6 +109,13 @@
 	density = FALSE
 	var/boing = 0
 
+/obj/effect/anomaly/grav/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/effect/anomaly/grav/anomalyEffect()
 	..()
 	boing = 1
@@ -126,8 +133,7 @@
 			if(target && !target.stat)
 				O.throw_at(target, 5, 10)
 
-/obj/effect/anomaly/grav/Crossed(atom/movable/AM)
-	. = ..()
+/obj/effect/anomaly/grav/proc/on_entered(datum/source, atom/movable/AM, ...)
 	gravShock(AM)
 
 /obj/effect/anomaly/grav/Bump(atom/A)
@@ -171,6 +177,13 @@
 /obj/effect/anomaly/flux/explosion
 	explosive = ANOMALY_FLUX_EXPLOSION
 
+/obj/effect/anomaly/flux/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/effect/anomaly/flux/anomalyEffect(delta_time)
 	..()
 	canshock = 1
@@ -179,8 +192,7 @@
 	if(prob(delta_time * 2)) // shocks everyone nearby
 		tesla_zap(src, 5, shockdamage*500, TESLA_MOB_DAMAGE)
 
-/obj/effect/anomaly/flux/Crossed(atom/movable/AM)
-	. = ..()
+/obj/effect/anomaly/flux/proc/on_entered(datum/source, atom/movable/AM, ...)
 	mobShock(AM)
 
 /obj/effect/anomaly/flux/Bump(atom/A)
@@ -289,10 +301,10 @@
 /obj/effect/anomaly/pyro/anomalyEffect(delta_time)
 	..()
 	var/turf/center = get_turf(src)
-	center.IgniteTurf(delta_time * fire_power)
+	center.ignite_turf(delta_time * fire_power)
 	for(var/turf/open/T in center.GetAtmosAdjacentTurfs())
 		if(prob(5 * delta_time))
-			T.IgniteTurf(delta_time)
+			T.ignite_turf(delta_time)
 
 /obj/effect/anomaly/pyro/detonate()
 	INVOKE_ASYNC(src, PROC_REF(makepyroslime))
@@ -302,7 +314,7 @@
 	for(var/turf/open/T in spiral_range_turfs(5, center))
 		if(prob(get_dist(center, T) * 15))
 			continue
-		T.IgniteTurf(fire_power * 10) //Make it hot and burny for the new slime
+		T.ignite_turf(fire_power * 10) //Make it hot and burny for the new slime
 	var/new_colour = pick("red", "orange")
 	var/mob/living/simple_animal/slime/S = new(center, new_colour)
 	S.rabid = TRUE

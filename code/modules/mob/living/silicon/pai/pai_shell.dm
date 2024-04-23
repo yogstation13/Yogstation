@@ -33,7 +33,7 @@
 	card.forceMove(src)
 	if(client)
 		client.perspective = EYE_PERSPECTIVE
-		client.eye = src
+		client.set_eye(src)
 	icon_state = "[chassis]"
 	held_state = "[chassis]"
 	visible_message(span_boldnotice("[src] folds out its holochassis emitter and forms a holoshell around itself!"))
@@ -56,7 +56,7 @@
 	stop_pulling()
 	if(client)
 		client.perspective = EYE_PERSPECTIVE
-		client.eye = card
+		client.set_eye(card)
 	var/turf/T = drop_location()
 	card.forceMove(T)
 	forceMove(card)

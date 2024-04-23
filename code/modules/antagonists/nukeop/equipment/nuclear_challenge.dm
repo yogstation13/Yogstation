@@ -51,7 +51,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 		return
 
 	priority_announce(war_declaration, title = "Declaration of War", sound = 'sound/machines/alarm.ogg', has_important_message = TRUE)
-	set_security_level(SEC_LEVEL_GAMMA)
+	SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
 
 	to_chat(user, "You've attracted the attention of powerful forces within the syndicate. A bonus bundle of telecrystals has been granted to your team. Great things await you if you complete the mission.")
 

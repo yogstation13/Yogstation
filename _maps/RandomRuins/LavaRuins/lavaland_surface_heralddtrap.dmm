@@ -95,7 +95,7 @@
 /turf/closed/wall/mineral/titanium/survival,
 /area/lavaland/surface/outdoors)
 "np" = (
-/turf/closed/mineral/gibtonite/volcanic/hard/harder,
+/turf/closed/mineral/gibtonite/volcanic/harder,
 /area/lavaland/surface/outdoors)
 "nL" = (
 /obj/structure/stone_tile/surrounding_tile{
@@ -354,10 +354,10 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "CI" = (
-/turf/closed/mineral/diamond/volcanic/hard/harder,
+/turf/closed/mineral/diamond/volcanic/harder,
 /area/lavaland/surface/outdoors)
 "Di" = (
-/turf/closed/mineral/bananium/volcanic/hard/harder,
+/turf/closed/mineral/bananium/volcanic/harder,
 /area/lavaland/surface/outdoors)
 "EO" = (
 /obj/structure/stone_tile,
@@ -540,7 +540,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "SX" = (
-/turf/closed/mineral/gem/volcanic/hard/harder,
+/turf/closed/mineral/gem/volcanic/harder,
 /area/lavaland/surface/outdoors)
 "Tf" = (
 /obj/effect/decal/remains/xeno,

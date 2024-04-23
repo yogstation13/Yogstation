@@ -4,7 +4,7 @@
 #define SINGULARITY_INTEREST_NONSPACE 2
 
 /atom/movable/gravity_lens
-	plane = SINGULARITY_EFFECT_PLANE
+	plane = GRAVITY_PULSE_PLANE
 	//plane = GHOST_LAYER
 	appearance_flags = PIXEL_SCALE | RESET_TRANSFORM
 	icon = 'icons/effects/512x512.dmi'
@@ -19,7 +19,7 @@
 	anchored = TRUE
 	density = TRUE
 	move_resist = INFINITY
-	layer = MASSIVE_OBJ_LAYER
+	plane = MASSIVE_OBJ_PLANE
 	light_range = 6
 	appearance_flags = LONG_GLIDE
 	var/current_size = 1

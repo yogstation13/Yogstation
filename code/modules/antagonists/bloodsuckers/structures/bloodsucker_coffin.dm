@@ -6,7 +6,7 @@
 		else
 			to_chat(owner, "This [claimed.name] has already been claimed by another.")
 		return FALSE
-	if(!LAZYFIND(GLOB.the_station_areas, current_area))
+	if(!LAZYFIND(GLOB.the_station_areas, current_area.type))
 		claimed.balloon_alert(owner.current, "not part of station!")
 		return
 	// This is my Lair
@@ -196,30 +196,37 @@
 	return TRUE
 
 /// You cannot weld or deconstruct an owned coffin. Only the owner can destroy their own coffin.
-/obj/structure/closet/crate/coffin/attackby(obj/item/item, mob/user, params)
-	if(!resident)
-		return ..()
-	if(user != resident)
-		if(istype(item, cutting_tool))
-			to_chat(user, span_notice("This is a much more complex mechanical structure than you thought. You don't know where to begin cutting [src]."))
-			return
-	if(anchored && (item.tool_behaviour == TOOL_WRENCH))
-		to_chat(user, span_danger("The coffin won't come unanchored from the floor.[user == resident ? " You can Alt-Click to unclaim and unwrench your Coffin." : ""]"))
-		return
+/obj/structure/closet/crate/coffin/welder_act(mob/living/user, obj/item/tool)
+	if(user.a_intent != INTENT_HARM && resident && resident != user)
+		to_chat(user, span_notice("This is a much more complex mechanical structure than you thought. You don't know where to begin cutting [src]."))
+		return TRUE
+	return ..()
 
-	if(locked && (item.tool_behaviour == TOOL_CROWBAR))
-		var/pry_time = pry_lid_timer * item.toolspeed // Pry speed must be affected by the speed of the tool.
+/obj/structure/closet/crate/coffin/wirecutter_act(mob/living/user, obj/item/tool)
+	if(user.a_intent != INTENT_HARM && resident && resident != user && tool.tool_behaviour == cutting_tool)
+		to_chat(user, span_notice("This is a much more complex mechanical structure than you thought. You don't know where to begin cutting [src]."))
+		return TRUE
+	return ..()
+
+/obj/structure/closet/crate/coffin/crowbar_act(mob/living/user, obj/item/tool)
+	if(locked && resident)
 		user.visible_message(
-			span_notice("[user] tries to pry the lid off of [src] with [item]."),
-			span_notice("You begin prying the lid off of [src] with [item]. This should take about [DisplayTimeText(pry_time)]."))
-		if(!do_after(user, pry_time, src))
-			return
+			span_notice("[user] tries to pry the lid off of [src] with [tool]."),
+			span_notice("You begin prying the lid off of [src] with [tool]. This should take about [DisplayTimeText(pry_lid_timer)]."))
+		if(!tool.use_tool(src, user, pry_lid_timer)) // Pry speed must be affected by the speed of the tool.
+			return TRUE
 		bust_open()
 		user.visible_message(
 			span_notice("[user] snaps the door of [src] wide open."),
 			span_notice("The door of [src] snaps open."))
-		return
-	. = ..()
+		return TRUE
+	return FALSE
+
+/obj/structure/closet/crate/coffin/wrench_act(mob/living/user, obj/item/tool)
+	if(anchored && resident)
+		to_chat(user, span_danger("The coffin won't come unanchored from the floor.[user == resident ? " You can Alt-Click to unclaim and unwrench your Coffin." : ""]"))
+		return TRUE
+	return ..()
 
 /// Distance Check (Inside Of)
 /obj/structure/closet/crate/coffin/AltClick(mob/user)

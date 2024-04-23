@@ -1,6 +1,6 @@
 /obj/machinery/paystand
 	name = "unregistered pay stand"
-	desc = "an unregistered pay stand"
+	desc = "An unregistered pay stand, ready to be linked to an account."
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "card_scanner"
 	anchored = TRUE

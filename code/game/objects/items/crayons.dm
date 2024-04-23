@@ -672,7 +672,7 @@
 		to_chat(target, span_userdanger("[user] sprays [src] into your face!"))
 
 		if(C.client)
-			C.blur_eyes(3)
+			C.adjust_eye_blur(3)
 			C.blind_eyes(1)
 		if(C.get_eye_protection() <= 0) // no eye protection? ARGH IT BURNS.
 			C.adjust_confusion(3)

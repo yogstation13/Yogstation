@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /obj/item/reagent_containers/food/drinks
 	name = "drink"
-	desc = "yummy"
+	desc = "Yummy."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "pineapplejuice" // Shouldn't see this anyways.
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'

@@ -1,6 +1,9 @@
+/// Bomb simulator mode
 #define ATMOS_SIM_MODE_BOMB 1
+/// Tank reaction mode
 #define ATMOS_SIM_MODE_TANK 2
-#define ATMOS_SIM_MODE_COUNT 2
+/// Maximum number of times the simulator will react
+#define ATMOS_SIM_MAX_REACTIONS 10
 
 /obj/machinery/computer/atmos_sim
 	name = "atmospherics simulator"
@@ -8,7 +11,7 @@
 	icon_screen = "tank"
 	icon_keyboard = "atmos_key"
 	circuit = /obj/item/circuitboard/computer/atmos_sim
-	var/mode = 2
+	var/mode = ATMOS_SIM_MODE_BOMB
 	var/datum/gas_mixture/tank_mix
 	var/datum/gas_mixture/bomb_1
 	var/datum/gas_mixture/bomb_2
@@ -16,16 +19,14 @@
 	var/list/bomb_explosion_size = null
 
 /obj/machinery/computer/atmos_sim/Initialize(mapload)
-	tank_mix = new
-	bomb_1 = new
-	bomb_2 = new
-	bomb_result = new
+	tank_mix = new(CELL_VOLUME)
 	tank_mix.set_temperature(T20C)
-	tank_mix.set_volume(CELL_VOLUME)
-	bomb_1.set_temperature(70)
-	bomb_1.set_volume(CELL_VOLUME)
-	bomb_2.set_temperature(70)
-	bomb_2.set_volume(CELL_VOLUME)
+	bomb_1 = new(70)
+	bomb_1.set_temperature(T20C)
+	bomb_2 = new(70)
+	bomb_2.set_temperature(T20C)
+	bomb_result = new(70)
+	bomb_result.set_temperature(T20C)
 	return ..()
 
 /obj/machinery/computer/atmos_sim/proc/simulate_bomb()
@@ -34,7 +35,7 @@
 	bomb_result.set_volume(bomb_1.return_volume() + bomb_2.return_volume())
 	bomb_result.merge(bomb_1)
 	bomb_result.merge(bomb_2)
-	for(var/I in 1 to 10)
+	for(var/I in 1 to ATMOS_SIM_MAX_REACTIONS)
 		bomb_result.react()
 		if(bomb_result.return_pressure() >= TANK_FRAGMENT_PRESSURE)
 			// Explosion!
@@ -45,134 +46,160 @@
 			bomb_explosion_size = list(round(range*0.25), round(range*0.5), round(range))
 			break
 
-/obj/machinery/computer/atmos_sim/ui_interact(mob/living/user)
-	. = ..()
-	var/dat
-	dat += "<b>Mode:</b>"
-	for(var/i in 1 to ATMOS_SIM_MODE_COUNT)
-		var/mode_name = null
-		switch(i)
-			if(1)
-				mode_name = "TTV Bomb"
-			if(2)
-				mode_name = "Gas Reactions"
-		dat += "<a href='?src=[REF(src)];mode=[i]' class='[mode == i ? "linkOn" : ""]'>[mode_name]</a>"
-	dat += "<br>"
+/obj/machinery/computer/atmos_sim/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!is_operational())
+		return
+	if(!ui)
+		ui = new(user, src, "AtmosSimulator", name)
+		ui.open()
+
+/obj/machinery/computer/atmos_sim/ui_data(mob/user)
+	var/list/data = list()
+
 	switch(mode)
-		if(ATMOS_SIM_MODE_BOMB)
-			dat += "<table><tr><td>"
-			dat += gas_html(bomb_1, "Left Tank", "bomb_1")
-			dat += "</td><td>"
-			dat += gas_html(bomb_2, "Right Tank", "bomb_2")
-			dat += "</td></tr></table>"
-			if(bomb_explosion_size)
-				dat += "<div>Theoretical Explosion Size: ([bomb_explosion_size[1]]/[bomb_explosion_size[2]]/[bomb_explosion_size[3]])</div>"
-			dat += gas_html(bomb_result, "Result")
+		// Tank Reaction mode
 		if(ATMOS_SIM_MODE_TANK)
-			dat += gas_html(tank_mix, "Tank Contents", "tank_mix")
-			dat += "<div><a href='?src=[REF(src)];react_tank=1'>Run Reaction Tick</a></div>"
+			data["tank_mix"] = REF(tank_mix)
 
-	var/datum/browser/popup = new(user, "atmos_sim", name, 700, 550)
-	popup.set_content(dat)
-	popup.open()
+			var/tank_mix_pressure = tank_mix.return_pressure()
+			var/tank_mix_moles = tank_mix.total_moles()
+			var/list/tank_mix_gases = list()
+			for(var/gas_id in tank_mix.get_gases())
+				tank_mix_gases.Add(list(list(
+					"id" = gas_id,
+					"moles" = tank_mix.get_moles(gas_id),
+					"pressure" = tank_mix_moles ? (tank_mix.get_moles(gas_id) / tank_mix_moles) * tank_mix_pressure : 0,
+				)))
+			data["tank_mix_gases"] = tank_mix_gases
+			data["tank_mix_pressure"] = tank_mix_pressure
+			data["tank_mix_moles"] = tank_mix_moles
+			data["tank_mix_volume"] = tank_mix.return_volume()
+			data["tank_mix_temperature"] = tank_mix.return_temperature()
+		// Bomb Simulator mode
+		if(ATMOS_SIM_MODE_BOMB)
+			data["bomb_1"] = REF(bomb_1)
+			data["bomb_2"] = REF(bomb_2)
 
-/obj/machinery/computer/atmos_sim/proc/gas_html(datum/gas_mixture/mix, name, mix_id)
-	var/dat = "<table border=1>"
-	dat += "<tr><td colspan=4 style='text-align:center'><b>[name]</b></td></tr>"
-	if(mix_id)
-		dat += "<tr><td colspan=2><a href='?src=[REF(src)];mix=[mix_id];change_volume=1'>Volume: [mix.return_volume()] L</a></td><td colspan=2><a href='?src=[REF(src)];mix=[mix_id];change_temperature=1'>Temp: [mix.return_temperature()] K</a></td></tr>"
-	else
-		dat += "<tr><td colspan=1>Volume: [mix.return_volume()] L</td><td colspan=2>Temp: [mix.return_temperature()] K</td></tr>"
-	for(var/id in (mix_id ? GLOB.gas_data.ids : mix.get_gases()))
-		var/list/moles = mix.get_moles(id)
-		dat += "<tr>"
-		if(mix_id)
-			dat += "<td><a href='?src=[REF(src)];mix=[mix_id];delete_gas=[id]'>X</a></td>"
-			dat += "<td>[GLOB.gas_data.names[id]]</td>"
-			dat += "<td><a href='?src=[REF(src)];mix=[mix_id];change_moles=[id]'>[moles] moles</a></td>"
-			dat += "<td><a href='?src=[REF(src)];mix=[mix_id];change_pressure=[id]'>[moles * R_IDEAL_GAS_EQUATION * mix.return_temperature() / mix.return_volume()] kPa</a></td>"
-		else
-			dat += "<td>[GLOB.gas_data.names[id]]</td>"
-			dat += "<td>[moles] moles</td>"
-			dat += "<td>[moles * R_IDEAL_GAS_EQUATION * mix.return_temperature() / mix.return_volume()] kPa</td>"
-		dat += "</tr>"
-	dat += "<tr><td colspan=[mix_id?2:1]>TOTAL</td><td>[mix.total_moles()] moles</td><td>[mix.return_pressure()] kPa</td></tr>"
-	dat += "</table>"
-	return dat
+			var/bomb_1_pressure = bomb_1.return_pressure()
+			var/bomb_1_moles = bomb_1.total_moles()
+			var/list/bomb_1_gases = list()
+			for(var/gas_id in bomb_1.get_gases())
+				bomb_1_gases.Add(list(list(
+					"id" = gas_id,
+					"moles" = bomb_1.get_moles(gas_id),
+					"pressure" = bomb_1_moles ? (bomb_1.get_moles(gas_id) / bomb_1_moles) * bomb_1_pressure : 0,
+				)))
+			data["bomb_1_gases"] = bomb_1_gases
+			data["bomb_1_pressure"] = bomb_1_pressure
+			data["bomb_1_moles"] = bomb_1_moles
+			data["bomb_1_volume"] = bomb_1.return_volume()
+			data["bomb_1_temperature"] = bomb_1.return_temperature()
 
-/obj/machinery/computer/atmos_sim/proc/gas_topic(datum/gas_mixture/mix, href_list)
-	if(href_list["delete_gas"])
-		var/id = href_list["delete_gas"]
-		if(id in GLOB.gas_data.ids)
-			mix.set_moles(id, href_list["delete_gas"])
-	if(href_list["change_moles"])
-		var/id = href_list["change_moles"]
-		if(id in GLOB.gas_data.ids)
-			var/new_moles = input(usr, "Enter a new mole count for [GLOB.gas_data.names[id]]", name) as null|num
-			if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || new_moles == null)
-				return
-			mix.set_moles(id, new_moles)
-	if(href_list["change_pressure"])
-		var/id = href_list["change_pressure"]
-		if(id in GLOB.gas_data.ids)
-			var/new_pressure = input(usr, "Enter a new pressure for [GLOB.gas_data.names[id]]", name) as null|num
-			if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || new_pressure == null)
-				return
-			mix.set_moles(id, new_pressure / R_IDEAL_GAS_EQUATION / mix.return_temperature() * mix.return_volume())
-	if(href_list["change_volume"])
-		var/volume_type = input(usr, "Select a container type", name) as null|anything in list("Custom", "Floor Tile", "Canister", "Portable Tank")
-		if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || volume_type == null)
-			return
-		var/desired_volume
-		switch(volume_type)
-			if("Custom")
-				desired_volume = input(usr, "Enter a new volume", name) as null|num
-				if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || desired_volume == null)
-					return
-			if("Floor Tile")
-				desired_volume = CELL_VOLUME
-			if("Canister")
-				desired_volume = 1000
-			if("Portable Tank")
-				desired_volume = 70
-		mix.set_volume(desired_volume)
-	if(href_list["change_temperature"])
-		var/new_temp = input(usr, "Enter a new temperature (0 degrees C = [T0C] K)", name) as null|num
-		if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || new_temp == null)
-			return
-		new_temp = max(TCMB, new_temp)
-		var/temp_ratio = mix.return_temperature() / new_temp
-		mix.multiply(temp_ratio) // Preserve the pressure
-		mix.set_temperature(new_temp)
+			var/bomb_2_pressure = bomb_2.return_pressure()
+			var/bomb_2_moles = bomb_2.total_moles()
+			var/list/bomb_2_gases = list()
+			for(var/gas_id in bomb_2.get_gases())
+				bomb_2_gases.Add(list(list(
+					"id" = gas_id,
+					"moles" = bomb_2.get_moles(gas_id),
+					"pressure" = bomb_2_moles ? (bomb_2.get_moles(gas_id) / bomb_2_moles) * bomb_2_pressure : 0,
+				)))
+			data["bomb_2_gases"] = bomb_2_gases
+			data["bomb_2_pressure"] = bomb_2_pressure
+			data["bomb_2_moles"] = bomb_2_moles
+			data["bomb_2_volume"] = bomb_2.return_volume()
+			data["bomb_2_temperature"] = bomb_2.return_temperature()
 
-/obj/machinery/computer/atmos_sim/Topic(href, href_list)
+			var/bomb_result_pressure = bomb_result.return_pressure()
+			var/bomb_result_moles = bomb_result.total_moles()
+			var/list/bomb_result_gases = list()
+			for(var/gas_id in bomb_result.get_gases())
+				bomb_result_gases.Add(list(list(
+					"id" = gas_id,
+					"moles" = bomb_result.get_moles(gas_id),
+					"pressure" = bomb_result_moles ? (bomb_result.get_moles(gas_id) / bomb_result_moles) * bomb_result_pressure : 0,
+				)))
+			data["bomb_result_gases"] = bomb_result_gases
+			data["bomb_result_pressure"] = bomb_result_pressure
+			data["bomb_result_moles"] = bomb_result_moles
+			data["bomb_result_volume"] = bomb_result.return_volume()
+			data["bomb_result_temperature"] = bomb_result.return_temperature()
+
+			data["bomb_explosion_size"] = bomb_explosion_size?.Copy()
+
+	data["mode"] = mode
+	return data
+
+/obj/machinery/computer/atmos_sim/ui_static_data(mob/user)
+	var/list/data = list()
+	data["gas_data"] = list()
+	for(var/gas_id in GLOB.gas_data.ids)
+		data["gas_data"] += list(list(
+			"id" = gas_id,
+			"label" = GLOB.gas_data.labels[gas_id],
+			"ui_color" = GLOB.gas_data.ui_colors[gas_id],
+		))
+	return data
+
+/obj/machinery/computer/atmos_sim/ui_act(action, list/params)
 	if(..())
-		return
-	if(!usr || !usr.canUseTopic(src) || stat || QDELETED(src))
-		return
-	if(href_list["mode"])
-		mode = text2num(href_list["mode"])
-	if(href_list["mix"])
-		var/mix_id = href_list["mix"]
-		var/datum/gas_mixture/mix
-		var/do_simulate_bomb = FALSE
-		switch(mix_id)
-			if("tank_mix")
-				mix = tank_mix
-			if("bomb_1")
-				mix = bomb_1
-				do_simulate_bomb = TRUE
-			if("bomb_2")
-				mix = bomb_2
-				do_simulate_bomb = TRUE
-		if(mix)
-			gas_topic(mix, href_list)
-		if(do_simulate_bomb)
-			simulate_bomb()
-	if(href_list["react_tank"])
-		tank_mix.react()
-	ui_interact(usr)
+		return TRUE
+	switch(action)
+		if("set_mode")
+			mode = params["mode"]
+			if(mode == ATMOS_SIM_MODE_BOMB)
+				simulate_bomb()
+			return TRUE
+		if("set_volume")
+			var/datum/gas_mixture/tank = locate(params["tank"])
+			tank.set_volume(params["volume"])
+			if(mode == ATMOS_SIM_MODE_BOMB)
+				simulate_bomb()
+			return TRUE
+		if("set_temperature")
+			var/datum/gas_mixture/tank = locate(params["tank"])
+			tank.set_temperature(params["temperature"])
+			if(mode == ATMOS_SIM_MODE_BOMB)
+				simulate_bomb()
+			return TRUE
+		if("set_moles")
+			var/datum/gas_mixture/tank = locate(params["tank"])
+			tank.set_moles(params["gas"], params["moles"])
+			if(mode == ATMOS_SIM_MODE_BOMB)
+				simulate_bomb()
+			return TRUE
+		if("set_pressure")
+			var/datum/gas_mixture/tank = locate(params["tank"])
+			tank.set_moles(params["gas"], params["pressure"] * tank.return_volume() / (tank.return_temperature() * R_IDEAL_GAS_EQUATION))
+			if(mode == ATMOS_SIM_MODE_BOMB)
+				simulate_bomb()
+			return TRUE
+		if("remove_gas")
+			var/datum/gas_mixture/tank = locate(params["tank"])
+			tank.set_moles(params["gas"], 0)
+			if(mode == ATMOS_SIM_MODE_BOMB)
+				simulate_bomb()
+			return TRUE
+		if("add_gas")
+			var/datum/gas_mixture/tank = locate(params["tank"])
+			var/new_gas = tgui_input_list(usr, "Add new gas", "Atmospheric Simulator", GLOB.gas_data.ids)
+			if(!new_gas)
+				return
+			tank.set_moles(new_gas, round(ONE_ATMOSPHERE) * tank.return_volume() / (tank.return_temperature() * R_IDEAL_GAS_EQUATION))
+			if(mode == ATMOS_SIM_MODE_BOMB)
+				simulate_bomb()
+			return TRUE
+		if("react")
+			tank_mix.react()
+			return TRUE
+		if("clear")
+			var/datum/gas_mixture/tank = locate(params["tank"])
+			tank.clear()
+			if(mode == ATMOS_SIM_MODE_BOMB)
+				simulate_bomb()
+			return TRUE
 
 #undef ATMOS_SIM_MODE_BOMB
 #undef ATMOS_SIM_MODE_TANK
-#undef ATMOS_SIM_MODE_COUNT
+#undef ATMOS_SIM_MAX_REACTIONS

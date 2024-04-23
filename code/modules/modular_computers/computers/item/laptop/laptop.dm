@@ -40,9 +40,13 @@
 	. = ..()
 	if(screen_on)
 		return
-	SSvis_overlays.remove_vis_overlay(physical, physical.managed_vis_overlays)
 	icon_state = icon_state_closed
 	item_state = icon_state_closed
+
+/obj/item/modular_computer/laptop/update_overlays()
+	if(!screen_on)
+		return
+	return ..()
 
 /obj/item/modular_computer/laptop/attack_self(mob/user)
 	if(!screen_on)

@@ -291,11 +291,11 @@
 
 /obj/item/spacepod_equipment/lock/on_install(obj/spacepod/SP)
 	..()
-	RegisterSignal(SP, COMSIG_PARENT_ATTACKBY, PROC_REF(spacepod_attackby))
+	RegisterSignal(SP, COMSIG_ATOM_ATTACKBY, PROC_REF(spacepod_attackby))
 	SP.lock = src
 
 /obj/item/spacepod_equipment/lock/on_uninstall()
-	UnregisterSignal(spacepod, COMSIG_PARENT_ATTACKBY)
+	UnregisterSignal(spacepod, COMSIG_ATOM_ATTACKBY)
 	if(spacepod.lock == src)
 		spacepod.lock = null
 	spacepod.locked = FALSE

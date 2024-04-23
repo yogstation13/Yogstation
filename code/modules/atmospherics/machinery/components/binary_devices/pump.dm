@@ -26,11 +26,12 @@
 
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "pump"
+	vent_movement = NONE
 
 /obj/machinery/atmospherics/components/binary/pump/CtrlClick(mob/user)
 	if(can_interact(user))
 		on = !on
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/pump/AltClick(mob/user)
@@ -40,7 +41,7 @@
 		investigate_log(msg, INVESTIGATE_ATMOS)
 		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - makes supermatter invest useful
 		balloon_alert(user, "pressure output set to [target_pressure] kPa")
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/pump/Destroy()

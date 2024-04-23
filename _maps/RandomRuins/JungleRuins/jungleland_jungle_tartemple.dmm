@@ -82,7 +82,7 @@
 "t" = (
 /obj/structure/stone_tile/slab,
 /obj/item/flashlight/lantern{
-	on = 1
+	light_on = 1
 	},
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)

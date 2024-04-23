@@ -2407,7 +2407,7 @@
 /obj/docking_port/stationary{
 	dwidth = 6;
 	height = 7;
-	id = "listeningpost";
+	shuttle_id = "listeningpost";
 	name = "Listening Post Dock";
 	width = 15
 	},

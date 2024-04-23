@@ -8,6 +8,16 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	name = "item"
 	icon = 'icons/obj/misc.dmi'
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+
+	/* !!!!!!!!!!!!!!! IMPORTANT !!!!!!!!!!!!!!
+
+		IF YOU ADD MORE ICON CRAP TO THIS
+		ENSURE YOU ALSO ADD THE NEW VARS TO CHAMELEON ITEM_ACTION'S update_item() PROC (/datum/action/item_action/chameleon/change/proc/update_item())
+		WASHING MASHINE'S dye_item() PROC (/obj/item/proc/dye_item())
+		AND ALSO TO THE CHANGELING PROFILE DISGUISE SYSTEMS (/datum/changeling_profile / /datum/antagonist/changeling/proc/create_profile() / /proc/changeling_transform())
+
+		!!!!!!!!!!!!!!! IMPORTANT !!!!!!!!!!!!!! */
+
 	///icon state name for inhand overlays
 	var/item_state = null
 	///Icon file for left hand inhand overlays
@@ -16,10 +26,21 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 
 	///Icon file for mob worn overlays.
-	///no var for state because it should *always* be the same as icon_state
 	var/icon/mob_overlay_icon
-	//Forced mob worn layer instead of the standard preferred ssize.
+	///Icon state for mob worn overlays, if null the normal icon_state will be used.
+	var/worn_icon_state
+	///Icon state for the belt overlay, if null the normal icon_state will be used.
+	var/belt_icon_state
+	//Forced mob worn layer instead of the standard preferred size.
 	var/alternate_worn_layer
+	///The config type to use for greyscaled worn sprites. Both this and greyscale_colors must be assigned to work.
+	var/greyscale_config_worn
+	///The config type to use for greyscaled left inhand sprites. Both this and greyscale_colors must be assigned to work.
+	var/greyscale_config_inhand_left
+	///The config type to use for greyscaled right inhand sprites. Both this and greyscale_colors must be assigned to work.
+	var/greyscale_config_inhand_right
+	///The config type to use for greyscaled belt overlays. Both this and greyscale_colors must be assigned to work.
+	var/greyscale_config_belt
 
 	//Dimensions of the icon file used when this item is worn, eg: hats.dmi
 	//eg: 32x32 sprite, 64x64 sprite, etc.
@@ -162,6 +183,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if (attack_verb)
 		attack_verb = typelist("attack_verb", attack_verb)
 
+	if(!greyscale_config && greyscale_colors && (greyscale_config_worn || greyscale_config_belt || greyscale_config_inhand_right || greyscale_config_inhand_left))
+		update_greyscale()
+
 	. = ..()
 
 	// Handle adding item associated actions
@@ -228,7 +252,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		CRASH("item add_item_action got a type or instance of something that wasn't an action.")
 
 	LAZYADD(actions, action)
-	RegisterSignal(action, COMSIG_PARENT_QDELETING, PROC_REF(on_action_deleted))
+	RegisterSignal(action, COMSIG_QDELETING, PROC_REF(on_action_deleted))
 	if(ismob(loc))
 		// We're being held or are equipped by someone while adding an action?
 		// Then they should also probably be granted the action, given it's in a correct slot
@@ -242,7 +266,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(!action)
 		return
 
-	UnregisterSignal(action, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(action, COMSIG_QDELETING)
 	LAZYREMOVE(actions, action)
 	qdel(action)
 
@@ -266,6 +290,27 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 //Output a creative message and then return the damagetype done
 /obj/item/proc/suicide_act(mob/user)
 	return
+
+/obj/item/set_greyscale(list/colors, new_config, new_worn_config, new_inhand_left, new_inhand_right)
+	if(new_worn_config)
+		greyscale_config_worn = new_worn_config
+	if(new_inhand_left)
+		greyscale_config_inhand_left = new_inhand_left
+	if(new_inhand_right)
+		greyscale_config_inhand_right = new_inhand_right
+	return ..()
+
+/// Checks if this atom uses the GAGS system and if so updates the worn and inhand icons
+/obj/item/update_greyscale()
+	. = ..()
+	if(!greyscale_colors)
+		return
+	if(greyscale_config_worn)
+		/*worn_icon*/mob_overlay_icon = SSgreyscale.GetColoredIconByType(greyscale_config_worn, greyscale_colors)
+	if(greyscale_config_inhand_left)
+		lefthand_file = SSgreyscale.GetColoredIconByType(greyscale_config_inhand_left, greyscale_colors)
+	if(greyscale_config_inhand_right)
+		righthand_file = SSgreyscale.GetColoredIconByType(greyscale_config_inhand_right, greyscale_colors)
 
 /obj/item/proc/get_sharpness()
 	return sharpness
@@ -641,10 +686,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/obj/item/organ/eyes/eyes = M.getorganslot(ORGAN_SLOT_EYES)
 	if (!eyes)
 		return
-	M.adjust_blurriness(3)
+	M.adjust_eye_blur(3)
 	eyes.applyOrganDamage(rand(2,4))
 	if(eyes.damage >= 10)
-		M.adjust_blurriness(15)
+		M.adjust_eye_blur(15)
 		if(M.stat != DEAD)
 			to_chat(M, span_danger("Your eyes start to bleed profusely!"))
 		if(!(HAS_TRAIT(M, TRAIT_BLIND) || HAS_TRAIT(M, TRAIT_NEARSIGHT)))
@@ -654,7 +699,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			if(M.stat != DEAD)
 				if(M.drop_all_held_items())
 					to_chat(M, span_danger("You drop what you're holding and clutch at your eyes!"))
-			M.adjust_blurriness(10)
+			M.adjust_eye_blur(10)
 			M.Unconscious(20)
 			M.Paralyze(40)
 		if (prob(eyes.damage - 10 + 1))
@@ -724,7 +769,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	return FALSE
 
 /obj/item/proc/get_belt_overlay() //Returns the icon used for overlaying the object on a belt
-	return mutable_appearance('icons/obj/clothing/belt_overlays.dmi', icon_state)
+	var/icon_state_to_use = belt_icon_state || icon_state
+	if(greyscale_config_belt && greyscale_colors)
+		return mutable_appearance(SSgreyscale.GetColoredIconByType(greyscale_config_belt, greyscale_colors), icon_state_to_use)
+	return mutable_appearance('icons/obj/clothing/belt_overlays.dmi', icon_state_to_use)
 
 /obj/item/proc/update_slot_icon()
 	if(!ismob(loc))
@@ -797,7 +845,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		return ..()
 	return 0
 
-/obj/item/mech_melee_attack(obj/mecha/M, equip_allowed)
+/obj/item/mech_melee_attack(obj/mecha/M, punch_force, equip_allowed = TRUE)
 	return 0
 
 /obj/item/deconstruct(disassembled = TRUE)
@@ -996,7 +1044,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			if(M.client)
 				M.client.screen -= src
 			layer = initial(layer)
-			plane = initial(plane)
+			SET_PLANE_IMPLICIT(src, initial(plane))
 			appearance_flags &= ~NO_CLIENT_COLOR
 			dropped(M, FALSE)
 	return ..()
@@ -1020,11 +1068,13 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		var/mob/mob_loc = loc
 		mob_loc.regenerate_icons()
 
-/obj/item/proc/do_pickup_animation(atom/target)
-	if(!istype(loc, /turf))
-		return
+/obj/item/proc/do_pickup_animation(atom/target, turf/source)
+	if(!source)
+		if(!istype(loc, /turf))
+			return
+		source = loc
 	var/image/pickup_animation = image(icon = src, loc = loc, layer = layer + 0.1)
-	pickup_animation.plane = GAME_PLANE
+	SET_PLANE(pickup_animation, GAME_PLANE, source)
 	pickup_animation.transform.Scale(0.75)
 
 	var/turf/current_turf = get_turf(src)
@@ -1044,7 +1094,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		to_y += 10
 		pickup_animation.pixel_x += 6 * (prob(50) ? 1 : -1) //6 to the right or left, helps break up the straight upward move
 
-	flick_overlay(pickup_animation, GLOB.clients, 4)
+	flick_overlay_global(pickup_animation, GLOB.clients, 4)
 	var/matrix/animation_matrix = new
 	animation_matrix.Turn(pick(-30, 30))
 	animation_matrix.Scale(0.65)
@@ -1119,7 +1169,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(!attack_image)
 		return
 
-	flick_overlay(attack_image, GLOB.clients, 10)
+	flick_overlay_global(attack_image, GLOB.clients, 10)
 	// And animate the attack!
 	var/t_color = "#ffffff" //yogs start
 	if(ismob(src) &&  ismob(attacked_atom) && (!used_item))
@@ -1141,3 +1191,14 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(item_heal_robotic(H, user, brute_heal, burn_heal))
 			return heal_robo_limb(I, H, user, brute_heal, burn_heal, amount, volume)
 		return TRUE
+
+/**
+ * Updates all action buttons associated with this item
+ *
+ * Arguments:
+ * * update_flags - Which flags of the action should we update
+ * * force - Force buttons update even if the given button icon state has not changed
+ */
+/obj/item/proc/update_item_action_buttons(update_flags = ALL, force = FALSE)
+	for(var/datum/action/current_action as anything in actions)
+		current_action.build_all_button_icons(update_flags, force)

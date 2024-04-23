@@ -7,7 +7,6 @@
 	total_positions = 5
 	spawn_positions = 3
 	supervisors = "the research director"
-	selection_color = "#ffeeff"
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
 	alt_titles = list("Researcher", "Toxins Specialist", "Physicist", "Test Associate", "Anomalist", "Quantum Physicist", "Theoretical Physicist", "Xenobiologist", "Explosives Technician", "Hypothetical Physicist")
@@ -52,7 +51,7 @@
 	name = "Scientist"
 	jobtype = /datum/job/scientist
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/scientist
 
 	ears = /obj/item/radio/headset/headset_sci
 	uniform = /obj/item/clothing/under/rank/scientist

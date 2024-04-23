@@ -99,7 +99,7 @@
 			if(!HAS_TRAIT(src, TRAIT_RADIMMUNE)&& !(status_flags & GODMODE))
 				radiation += max(effect * hit_percent, 0)
 		if(EFFECT_EYE_BLUR)
-			blur_eyes(effect * hit_percent)
+			adjust_eye_blur(effect * hit_percent)
 		if(EFFECT_PARALYZE)
 			Paralyze(effect * hit_percent)
 		if(EFFECT_IMMOBILIZE)
@@ -222,6 +222,8 @@
 
 /mob/living/proc/adjustCloneLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && (status_flags & GODMODE))
+		return FALSE
+	if(is_synth(src))
 		return FALSE
 	if(amount < 0)
 		SEND_SIGNAL(src, COMSIG_MOB_APPLY_HEALING, min(amount, cloneloss), CLONE)

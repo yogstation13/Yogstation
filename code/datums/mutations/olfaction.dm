@@ -60,8 +60,7 @@
 		trail.Flip(dir)
 		trail.Turn(180)
 		
-	img = image(trail, loc = src, layer = HUD_LAYER)
-	img.layer = HUD_LAYER
+	img = image(trail, loc = src)
 	img.plane = HUD_PLANE
 	img.appearance_flags = NO_CLIENT_COLOR
 	img.alpha = 0

@@ -26,7 +26,7 @@
 	bodcam.network = list("ss13")
 	bodcam.internal_light = FALSE
 	bodcam.status = FALSE
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/item/clothing/neck/bodycam/attack_self(mob/user)
 	if(!setup)
@@ -126,6 +126,7 @@
 		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 	listeningTo = to_hook
 	RegisterSignal(listeningTo, COMSIG_MOVABLE_MOVED, PROC_REF(trigger))
+	GLOB.cameranet.updatePortableCamera(bodcam)
 
 /obj/item/clothing/neck/bodycam/proc/trigger(mob/user)
 	if(!bodcam.status)//this is a safety in case of some fucky wucky shit. This SHOULD not ever be true but sometimes it is anyway :(

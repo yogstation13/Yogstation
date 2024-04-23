@@ -134,8 +134,6 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	updateUsrDialog()
 	return
 
-GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
-
 //Cryopods themselves.
 /obj/machinery/cryopod
 	name = "cryogenic freezer"
@@ -167,7 +165,9 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 /obj/machinery/cryopod/Initialize(mapload)
 	..()
+	open_machine()
 	GLOB.cryopods += src
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(update_security_level))
 	return INITIALIZE_HINT_LATELOAD //Gotta populate the cryopod computer GLOB first
 
 /obj/machinery/cryopod/Destroy()
@@ -177,6 +177,12 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 /obj/machinery/cryopod/LateInitialize()
 	update_appearance(UPDATE_ICON)
 	find_control_computer()
+
+/obj/machinery/cryopod/proc/update_security_level(_, datum/security_level/new_level)
+	if(new_level.allow_cryo)
+		PowerOn()
+	else
+		PowerOff()
 
 /obj/machinery/cryopod/proc/PowerOn()
 	if(!occupant)
@@ -232,7 +238,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 /obj/machinery/cryopod/open_machine()
 	..()
-	icon_state = GLOB.cryopods_enabled ? "cryopod-open" : "cryopod-off"
+	icon_state = SSsecurity_level.current_security_level.allow_cryo ? "cryopod-open" : "cryopod-off"
 	if(open_sound)
 		playsound(src, open_sound, 40)
 	density = TRUE
@@ -303,6 +309,12 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 /obj/machinery/cryopod/proc/despawn_occupant()
 	var/mob/living/mob_occupant = occupant
 	if(mob_occupant.mind && mob_occupant.mind.assigned_role)
+		// Removes from team antag teams to avoid influencing gameplay
+		for(var/datum/antagonist/antag as anything in mob_occupant.mind.antag_datums)
+			if(antag && istype(antag))
+				var/datum/team/antag_team = antag.get_team()
+				if(antag_team)
+					antag_team.remove_member(mob_occupant.mind)
 		//Handle job slot/tater cleanup.
 		var/job = mob_occupant.mind.assigned_role
 		SSjob.FreeRole(job)
@@ -378,7 +390,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	if(!istype(target) || user.incapacitated() || !target.Adjacent(user) || !Adjacent(user) || !ismob(target) || (!ishuman(user) && !iscyborg(user)) || !istype(user.loc, /turf) || target.buckled)
 		return
 
-	if(!GLOB.cryopods_enabled)
+	if(!SSsecurity_level.current_security_level.allow_cryo)
 		to_chat(user, span_boldnotice("Nanotrasen does not allow abandoning your crew during a crisis. Cryo systems disabled until the current crisis is resolved."))
 		return
 
@@ -440,21 +452,19 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 /obj/machinery/cryopod/JoinPlayerHere(mob/M, buckle)
 	. = ..()
-	close_machine(M, TRUE) // put the mob inside instead of on the turf
-	playsound(src, join_sound, 30)
+	open_machine()
 	if(iscarbon(M))
 		apply_effects_to_mob(M)
-	addtimer(CALLBACK(src, PROC_REF(open_machine)), JOIN_SLEEP_DURATION)
 
 /obj/machinery/cryopod/proc/apply_effects_to_mob(mob/living/carbon/sleepyhead)
 	to_chat(sleepyhead, span_boldnotice("You begin to wake from cryosleep..."))
-	sleepyhead.set_nutrition(200) //works for IPCs and stuff too
-	sleepyhead.SetSleeping(JOIN_SLEEP_DURATION)
+	sleepyhead.set_nutrition(200)
+	sleepyhead.SetSleeping(60) //if you read this comment and feel like shitting together something to adjust IPC charge on wakeup, be my guest.
 	//but it can be worse.
 	if(prob(90))
 		sleepyhead.adjust_drowsiness(rand(3 SECONDS, 10 SECONDS))
 	if(prob(75))
-		sleepyhead.blur_eyes(rand(3, 6))
+		sleepyhead.adjust_eye_blur(rand(3, 6))
 	//so much worse
 	if(prob(66))
 		sleepyhead.adjust_disgust(rand(25,35))

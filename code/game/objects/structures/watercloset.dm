@@ -387,26 +387,33 @@
 	opacity = FALSE
 	density = FALSE
 	var/open = TRUE
+	/// if it can be seen through when closed
+	var/opaque_closed = FALSE
+
+/obj/structure/curtain/Initialize(mapload)
+	// see-through curtains should let emissives shine through
+	if(!opaque_closed)
+		blocks_emissive = EMISSIVE_BLOCK_NONE
+	return ..()
 
 /obj/structure/curtain/proc/toggle()
 	open = !open
-	update_appearance(UPDATE_ICON)
+	if(open)
+		layer = SIGN_LAYER
+		SET_PLANE_IMPLICIT(src, GAME_PLANE)
+		set_density(FALSE)
+		set_opacity(FALSE)
+	else
+		layer = WALL_OBJ_LAYER
+		set_density(TRUE)
+		if(opaque_closed)
+			set_opacity(TRUE)
+
+	update_appearance()
 
 /obj/structure/curtain/update_icon_state()
-	. = ..()
-	if(!open)
-		icon_state = "closed"
-		layer = WALL_OBJ_LAYER
-		density = TRUE
-		open = FALSE
-		set_opacity(TRUE)
-
-	else
-		icon_state = "open"
-		layer = SIGN_LAYER
-		density = FALSE
-		open = TRUE
-		set_opacity(FALSE)
+	icon_state = "[open ? "open" : "closed"]"
+	return ..()
 
 /obj/structure/curtain/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/toy/crayon))

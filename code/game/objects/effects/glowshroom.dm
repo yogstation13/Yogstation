@@ -108,9 +108,11 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/glowshroom/Destroy()
-	. = ..()
+	if(isatom(myseed))
+		QDEL_NULL(myseed)
 	GLOB.glowshrooms--
 	STOP_PROCESSING(SSobj, src)
+	return ..()
 
 /**
  * Causes glowshroom spreading across the floor/walls.
@@ -223,7 +225,9 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 /obj/structure/glowshroom/proc/Decay(amount)
 	myseed.adjust_endurance(-amount * endurance_decay_rate)
 	take_damage(amount)
-	if (myseed.endurance <= 10) // Plant is gone
+	// take_damage could qdel our shroom, so check beforehand
+	// if our endurance dropped before the min plant endurance, then delete our shroom anyways
+	if (!QDELETED(src) && myseed.endurance <= 10)
 		qdel(src)
 
 /obj/structure/glowshroom/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)

@@ -26,9 +26,11 @@
 	power_channel = AREA_USAGE_ENVIRON
 	resistance_flags = FIRE_PROOF
 
-	light_power = 0
-	light_range = 7
+	light_power = 1
+	light_range = 1.6
 	light_color = "#ff3232"
+	//Trick to get the glowing overlay visible from a distance
+	luminosity = 1
 
 	/// 1 = will auto detect fire, 0 = no auto
 	var/detecting = 1
@@ -54,7 +56,7 @@
 		panel_open = TRUE
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	myarea = get_area(src)
 	LAZYADD(myarea.firealarms, src)
 	radio = new(src)
@@ -63,6 +65,8 @@
 	radio.canhear_range = 0
 	radio.recalculateChannels()
 	STOP_PROCESSING(SSmachines, src) // I will do this
+
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(update_security_level))
 
 /obj/machinery/firealarm/Destroy()
 	myarea.firereset(src, TRUE)
@@ -80,38 +84,47 @@
 		return
 	icon_state = "fire0"
 
+/obj/machinery/firealarm/proc/update_security_level()
+	if(is_station_level(z))
+		update_appearance(UPDATE_OVERLAYS)
+
 /obj/machinery/firealarm/update_overlays()
 	. = ..()
-	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 	if(stat & (NOPOWER|BROKEN))
 		return
 
-	. += "fire_overlay"
-
 	if(is_station_level(z))
-		. += "fire_[GLOB.security_level]"
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_[GLOB.security_level]", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_[GLOB.security_level]", layer, EMISSIVE_PLANE, dir)
+		var/current_level = SSsecurity_level.get_current_level_as_number()
+		. += mutable_appearance(icon, "fire_[current_level]")
+		. += emissive_appearance(icon, "fire_[current_level]", src)
+		switch(current_level)
+			if(SEC_LEVEL_GREEN)
+				set_light(l_color = LIGHT_COLOR_BLUEGREEN)
+			if(SEC_LEVEL_BLUE)
+				set_light(l_color = LIGHT_COLOR_ELECTRIC_CYAN)
+			if(SEC_LEVEL_RED)
+				set_light(l_color = LIGHT_COLOR_FLARE)
+			if(SEC_LEVEL_DELTA)
+				set_light(l_color = LIGHT_COLOR_INTENSE_RED)
 	else
-		. += "fire_[SEC_LEVEL_GREEN]"
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_[SEC_LEVEL_GREEN]", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_[SEC_LEVEL_GREEN]", layer, EMISSIVE_PLANE, dir)
+		. += mutable_appearance(icon, "fire_[SEC_LEVEL_GREEN]")
+		. += emissive_appearance(icon, "fire_[SEC_LEVEL_GREEN]", src)
+		set_light(l_color = LIGHT_COLOR_BLUE)
 
 	var/area/A = src.loc
 	A = A.loc
 
 	if(!A.fire && !A.delta_light)
-		. += "fire_off"
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_off", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_off", layer, EMISSIVE_PLANE, dir)
+		. += mutable_appearance(icon, "fire_off")
+		. += emissive_appearance(icon, "fire_off", src)
 	else if(obj_flags & EMAGGED)
-		. += "fire_emagged"
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_emagged", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_emagged", layer, EMISSIVE_PLANE, dir)
+		. += mutable_appearance(icon, "fire_emagged")
+		. += emissive_appearance(icon, "fire_emagged", src)
+		set_light(l_color = LIGHT_COLOR_RED)
 	else
-		. += "fire_on"
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_on", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_on", layer, EMISSIVE_PLANE, dir)
+		. += mutable_appearance(icon, "fire_on")
+		. += emissive_appearance(icon, "fire_on", src)
+		set_light(l_color = LIGHT_COLOR_RED)
 
 /obj/machinery/firealarm/emp_act(severity)
 	. = ..()
@@ -126,7 +139,7 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	if(user)
 		user.visible_message(span_warning("Sparks fly out of [src]!"),
 							span_notice("You emag [src], disabling its thermal sensors."))
@@ -205,19 +218,19 @@
 		W.play_tool_sound(src)
 		panel_open = !panel_open
 		to_chat(user, span_notice("The wires have been [panel_open ? "exposed" : "unexposed"]."))
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		return
 
 	if(panel_open)
 
 		if(W.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP)
-			if(obj_integrity < max_integrity)
+			if(atom_integrity < max_integrity)
 				if(!W.tool_start_check(user, amount=0))
 					return
 
 				to_chat(user, span_notice("You begin repairing [src]..."))
 				if(W.use_tool(src, user, 40, volume=50))
-					obj_integrity = max_integrity
+					update_integrity(max_integrity)
 					to_chat(user, span_notice("You repair [src]."))
 			else
 				to_chat(user, span_warning("[src] is already in good condition!"))
@@ -238,7 +251,7 @@
 					W.play_tool_sound(src)
 					new /obj/item/stack/cable_coil(user.loc, 5)
 					to_chat(user, span_notice("You cut the wires from \the [src]."))
-					update_appearance(UPDATE_ICON)
+					update_appearance()
 					return
 
 				else if(W.force) //hit and turn it on
@@ -256,7 +269,7 @@
 						coil.use(5)
 						buildstage = 2
 						to_chat(user, span_notice("You wire \the [src]."))
-						update_appearance(UPDATE_ICON)
+						update_appearance()
 					return
 
 				else if(W.tool_behaviour == TOOL_CROWBAR)
@@ -271,14 +284,14 @@
 								to_chat(user, span_notice("You pry out the circuit."))
 								new /obj/item/electronics/firealarm(user.loc)
 							buildstage = 0
-							update_appearance(UPDATE_ICON)
+							update_appearance()
 					return
 			if(0)
 				if(istype(W, /obj/item/electronics/firealarm))
 					to_chat(user, span_notice("You insert the circuit."))
 					qdel(W)
 					buildstage = 1
-					update_appearance(UPDATE_ICON)
+					update_appearance()
 					return
 
 				else if(istype(W, /obj/item/electroadaptive_pseudocircuit))
@@ -288,7 +301,7 @@
 					user.visible_message(span_notice("[user] fabricates a circuit and places it into [src]."), \
 					span_notice("You adapt a fire alarm circuit and slot it into the assembly."))
 					buildstage = 1
-					update_appearance(UPDATE_ICON)
+					update_appearance()
 					return
 
 				else if(W.tool_behaviour == TOOL_WRENCH)
@@ -314,14 +327,14 @@
 			user.visible_message(span_notice("[user] fabricates a circuit and places it into [src]."), \
 			span_notice("You adapt a fire alarm circuit and slot it into the assembly."))
 			buildstage = 1
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 			return TRUE
 	return FALSE
 
 /obj/machinery/firealarm/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(.) //damage received
-		if(obj_integrity > 0 && !(stat & BROKEN) && buildstage != 0)
+		if(atom_integrity > 0 && !(stat & BROKEN) && buildstage != 0)
 			if(prob(33))
 				alarm()
 
@@ -330,7 +343,7 @@
 		deconstruct()
 	..()
 
-/obj/machinery/firealarm/obj_break(damage_flag)
+/obj/machinery/firealarm/atom_break(damage_flag)
 	if(buildstage == 0) //can't break the electronics if there isn't any inside.
 		return
 
@@ -345,7 +358,7 @@
 		if(!(stat & BROKEN))
 			var/obj/item/I = new /obj/item/electronics/firealarm(loc)
 			if(!disassembled)
-				I.obj_integrity = I.max_integrity * 0.5
+				I.update_integrity(I.max_integrity * 0.5)
 		new /obj/item/stack/cable_coil(loc, 3)
 	qdel(src)
 
@@ -353,11 +366,11 @@
 	if(fire == !!light_power)
 		return  // do nothing if we're already active
 	if(fire)
-		set_light(l_power = 0.8)
-		update_appearance(UPDATE_ICON)
+		set_light(l_power = 3)
+		update_appearance()
 	else
-		set_light(l_power = 0)
-		update_appearance(UPDATE_ICON)
+		set_light(l_power = 1)
+		update_appearance()
 
 /*
  * Return of the Return of the Party button

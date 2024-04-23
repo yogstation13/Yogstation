@@ -339,6 +339,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
 
+/datum/uplink_item/dangerous/gasharpoon
+	name = "Gas-Harpoon"
+	desc = "A repurposed space-whaling tool attached to a glove. \
+		It can be used as a sturdy weapon in both hands, or worn as a glove to activate its deadly harpoon, capable of reeling in even the biggest catches."
+	item = /obj/item/clothing/gloves/gasharpoon
+	cost = 10
+	surplus = 0
+
 /datum/uplink_item/dangerous/rawketlawnchair
 	name = "84mm Rocket Propelled Grenade Launcher"
 	desc = "A reusable rocket propelled grenade launcher preloaded with a low-yield 84mm HE round. \
@@ -707,6 +715,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			deflecting all ranged weapon fire when throwmode is enabled, but you also refuse to use dishonorable ranged weaponry."
 	item = /obj/item/book/granter/martial/carp
 	cost = 14
+	player_minimum = 20
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
@@ -1434,6 +1443,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/mecha/combat/marauder/mauler/loaded
 	cant_discount = TRUE
 	cost = 105 //Yogs change
+
+/datum/uplink_item/support/mamba
+	name = "Black Mamba Exosuit"
+	desc = "A stealthy, quick, and deadly combat exosuit, this modified sidewinder chassis is capable of suddenly striking and retreating while \
+			the effects of its venomous weapons take hold. Comes with a venom carbine, dual daggers, and an anti-projectile armor booster."
+	item = /obj/mecha/combat/sidewinder/mamba/loaded
+	cant_discount = TRUE
+	cost = 75
 
 // Stealth Items
 /datum/uplink_item/stealthy_tools

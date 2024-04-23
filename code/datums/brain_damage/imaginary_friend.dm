@@ -58,8 +58,6 @@
 	real_name = "imaginary friend"
 	move_on_shuttle = TRUE
 	desc = "A wonderful yet fake friend."
-	see_in_dark = 0
-	lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 	sight = NONE
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	see_invisible = SEE_INVISIBLE_LIVING
@@ -167,15 +165,20 @@
 
 	//speech bubble
 	if(owner.client)
-		var/mutable_appearance/MA = mutable_appearance('icons/mob/talk.dmi', src, "default[say_test(message)]", FLY_LAYER)
-		MA.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-		INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay, MA, list(owner.client), 30)
+		var/mutable_appearance/bubble = mutable_appearance('icons/mob/talk.dmi', src, "default[say_test(message)]", FLY_LAYER)
+		bubble.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+		SET_PLANE_EXPLICIT(bubble, ABOVE_GAME_PLANE, src)
+		INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay_global, bubble, list(owner.client), 30)
+		LAZYADD(update_on_z, bubble)
 
 	for(var/mob/dead/observer/M in GLOB.dead_mob_list)
 		if(M.client)
 			if(M.client.prefs.chat_toggles & CHAT_GHOSTEARS)
 				var/link = FOLLOW_LINK(M, owner)
 				to_chat(M, "[link] [dead_rendered]")
+
+/mob/camera/imaginary_friend/proc/clear_saypopup(image/say_popup)
+	LAZYREMOVE(update_on_z, say_popup)
 
 /mob/camera/imaginary_friend/Move(NewLoc, Dir = 0)
 	if(world.time < move_delay)

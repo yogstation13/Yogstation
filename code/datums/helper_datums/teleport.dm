@@ -73,13 +73,14 @@
 	if(!destturf || !curturf || destturf.is_transition_turf())
 		return FALSE
 
-	var/area/A = get_area(curturf)
-	var/area/B = get_area(destturf)
-	if(!forced && (HAS_TRAIT(teleatom, TRAIT_NO_TELEPORT) || A.noteleport || B.noteleport))
-		return FALSE
+	if(!forced)
+		if(!check_teleport_valid(teleatom, destination, channel))
+			teleatom.balloon_alert(teleatom, "something holds you back!")
+			return FALSE
 
-	if(SEND_SIGNAL(destturf, COMSIG_ATOM_INTERCEPT_TELEPORT, channel, curturf, destturf))
-		return FALSE
+	if(isobserver(teleatom))
+		teleatom.abstract_move(destturf)
+		return TRUE
 
 	tele_play_specials(teleatom, curturf, effectin, asoundin)
 	var/success = forceMove ? teleatom.forceMove(destturf) : teleatom.Move(destturf)
@@ -92,6 +93,8 @@
 	if(ismob(teleatom))
 		var/mob/M = teleatom
 		M.cancel_camera()
+
+	SEND_SIGNAL(teleatom, COMSIG_MOVABLE_POST_TELEPORT)
 
 	return TRUE
 
@@ -222,10 +225,10 @@
 	if(SEND_SIGNAL(teleported_atom, COMSIG_MOVABLE_TELEPORTING, destination, channel) & COMPONENT_BLOCK_TELEPORT)
 		return FALSE
 
-	if(SEND_SIGNAL(destination_turf, COMSIG_ATOM_INTERCEPT_TELEPORT, channel, origin_turf, destination_turf) & COMPONENT_BLOCK_TELEPORT)
+	if(SEND_SIGNAL(destination_turf, COMSIG_ATOM_INTERCEPT_TELEPORTING, channel, origin_turf, destination_turf) & COMPONENT_BLOCK_TELEPORT)
 		return FALSE
 
 	SEND_SIGNAL(teleported_atom, COMSIG_MOVABLE_TELEPORTED, destination, channel)
-	SEND_SIGNAL(destination_turf, COMSIG_ATOM_INTERCEPT_TELEPORT, channel, origin_turf, destination_turf)
+	SEND_SIGNAL(destination_turf, COMSIG_ATOM_INTERCEPT_TELEPORTED, channel, origin_turf, destination_turf)
 
 	return TRUE

@@ -145,15 +145,6 @@ SUBSYSTEM_DEF(ticker)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/ticker/fire()
-	if(seclevel2num(get_security_level()) < SEC_LEVEL_GAMMA && !GLOB.cryopods_enabled)
-		GLOB.cryopods_enabled = TRUE
-		for(var/obj/machinery/cryopod/pod as anything in GLOB.cryopods)
-			pod.PowerOn()
-	else if(seclevel2num(get_security_level()) >= SEC_LEVEL_GAMMA && GLOB.cryopods_enabled)
-		GLOB.cryopods_enabled = FALSE
-		for(var/obj/machinery/cryopod/pod as anything in GLOB.cryopods)
-			pod.PowerOff()
-
 	switch(current_state)
 		if(GAME_STATE_STARTUP)
 			if(Master.initializations_finished_with_no_players_logged_in)
@@ -202,11 +193,11 @@ SUBSYSTEM_DEF(ticker)
 				start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 				timeLeft = null
 				Master.SetRunLevel(RUNLEVEL_LOBBY)
+				SEND_SIGNAL(src, COMSIG_TICKER_ERROR_SETTING_UP)
 
 		if(GAME_STATE_PLAYING)
 			mode.process(wait * 0.1)
 			check_queue()
-			check_maprotate()
 
 			if(!roundend_check_paused && mode.check_finished(force_ending) || force_ending)
 				current_state = GAME_STATE_FINISHED
@@ -214,6 +205,7 @@ SUBSYSTEM_DEF(ticker)
 				toggle_dooc(TRUE)
 				toggle_looc(TRUE) // yogs - turn LOOC on at roundend
 				declare_completion(force_ending)
+				check_maprotate()
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 
@@ -221,6 +213,7 @@ SUBSYSTEM_DEF(ticker)
 	to_chat(world, span_boldannounce("Starting game..."))
 	var/init_start = world.timeofday
 		//Create and announce mode
+
 	var/list/datum/game_mode/runnable_modes
 	if(GLOB.master_mode == "random" || GLOB.master_mode == "secret")
 		runnable_modes = config.get_runnable_modes()
@@ -329,7 +322,8 @@ SUBSYSTEM_DEF(ticker)
 
 	PostSetup()
 
-	// Toggle lightswitches on in occupied departments
+
+	// Toggle lightswitches off in unoccupied departments
 	var/list/lightup_area_typecache = list()
 	var/minimal_access = CONFIG_GET(flag/jobs_have_minimal_access)
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
@@ -340,11 +334,17 @@ SUBSYSTEM_DEF(ticker)
 		if(!job)
 			continue
 		lightup_area_typecache |= job.areas_to_light_up(minimal_access)
-	for(var/area in lightup_area_typecache)
-		var/area/place = locate(area) in GLOB.areas
-		if(!place || place.lights_always_start_on)
+
+	for(var/area/place as anything in GLOB.areas)
+		if(!istype(place))
 			continue
-		place.lightswitch = TRUE
+		if(place.lights_always_start_on)
+			continue
+		if(!is_station_level(place.z))
+			continue
+		if(is_type_in_typecache(place, lightup_area_typecache))
+			continue
+		place.lightswitch = FALSE
 		place.update_appearance()
 
 		for(var/obj/machinery/light_switch/lswitch in place)
@@ -352,6 +352,8 @@ SUBSYSTEM_DEF(ticker)
 
 		place.power_change()
 
+
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(rock_paper_scissors_puzzle))
 	return TRUE
 
 /datum/controller/subsystem/ticker/proc/PostSetup()
@@ -461,7 +463,7 @@ SUBSYSTEM_DEF(ticker)
 	if(no_clerk)
 		SSjob.random_clerk_init()
 	if(no_chaplain)
-		SSjob.random_chapel_init()
+		SSjob.random_chapel_init()	
 
 /datum/controller/subsystem/ticker/proc/transfer_characters()
 	var/list/livings = list()
@@ -471,9 +473,11 @@ SUBSYSTEM_DEF(ticker)
 			qdel(player)
 			living.notransform = TRUE
 			if(living.client)
-				var/atom/movable/screen/splash/S = new(living.client, TRUE)
+				var/datum/job/player_assigned_role = SSjob.GetJob(living.mind.assigned_role)
+				var/atom/movable/screen/splash/S = new(null, living.client, TRUE)
 				S.Fade(TRUE)
 				living.client.init_verbs()
+				player_assigned_role.after_roundstart_spawn(living, living.client)
 			livings += living
 	if(livings.len)
 		addtimer(CALLBACK(src, PROC_REF(release_characters), livings), 30, TIMER_CLIENT_TIME)
@@ -539,17 +543,10 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/check_maprotate()
 	if (!CONFIG_GET(flag/maprotation))
 		return
-	if (SSshuttle.emergency && SSshuttle.emergency.mode != SHUTTLE_ESCAPE || SSshuttle.canRecall())
-		return
-	if (maprotatechecked)
-		return
-
-	maprotatechecked = 1
-
 	//map rotate chance defaults to 75% of the length of the round (in minutes)
-	if (!prob((world.time/600)*CONFIG_GET(number/maprotatechancedelta)))
+	if (!prob((world.time/600)*CONFIG_GET(number/maprotationchancedelta)))
 		return
-	INVOKE_ASYNC(SSmapping, TYPE_PROC_REF(/datum/controller/subsystem/mapping, maprotate))
+	INVOKE_ASYNC(SSmapping, TYPE_PROC_REF(/datum/controller/subsystem/mapping/, maprotate))
 
 /datum/controller/subsystem/ticker/proc/HasRoundStarted()
 	return current_state >= GAME_STATE_PLAYING

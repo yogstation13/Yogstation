@@ -8,8 +8,8 @@
 	set category = "Admin.Round Interaction"
 	var/static/datum/admin_delay/delay = new
 	
-	if(SSshuttle.hostileEnvironments.len)
-		if(delay in SSshuttle.hostileEnvironments)
+	if(SSshuttle.hostile_environments.len)
+		if(delay in SSshuttle.hostile_environments)
 			if(alert("Would you like to disable the admin-induced shuttle delay?","Shuttle Delay","Yes","No") == "Yes")
 				SSshuttle.clearHostileEnvironment(delay)
 				log_admin("[key_name(usr)] has removed the admin-induced delay on the shuttle launching.")

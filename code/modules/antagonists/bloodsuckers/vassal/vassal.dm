@@ -66,7 +66,7 @@
 	examine_text += vassal_examine
 
 /datum/antagonist/vassal/on_gain()
-	RegisterSignal(owner.current, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(owner.current, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN, PROC_REF(give_warning))
 	if(owner.current && HAS_TRAIT(owner.current, TRAIT_MINDSHIELD))
 		for(var/obj/item/implant/mindshield/L in owner.current)
@@ -94,7 +94,7 @@
 	. = ..()
 
 /datum/antagonist/vassal/on_removal()
-	UnregisterSignal(owner.current, COMSIG_PARENT_EXAMINE)
+	UnregisterSignal(owner.current, COMSIG_ATOM_EXAMINE)
 	UnregisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN)
 	//Free them from their Master
 	if(master && master.owner)
@@ -102,7 +102,7 @@
 			master.special_vassals[special_type] -= src
 		master.vassals -= src
 		owner.enslaved_to = null
-	for(var/all_status_traits in owner.current.status_traits)
+	for(var/all_status_traits in owner.current._status_traits)
 		REMOVE_TRAIT(owner.current, all_status_traits, BLOODSUCKER_TRAIT)
 	//Remove Recuperate Power
 	while(powers.len)
@@ -285,7 +285,7 @@
 
 /datum/antagonist/ex_vassal/on_gain()
 	. = ..()
-	RegisterSignal(owner.current, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(owner.current, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 
 /datum/antagonist/ex_vassal/on_removal()
 	if(revenge_vassal)

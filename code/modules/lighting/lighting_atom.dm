@@ -1,5 +1,5 @@
 // The proc you should always use to set the light of this atom.
-/atom/proc/set_light(l_range, l_power, l_color = NONSENSICAL_VALUE, l_angle, l_dir, l_on)
+/atom/proc/set_light(l_range, l_power, l_color = NONSENSICAL_VALUE, l_angle, l_dir, l_height, l_on)
 	// We null everything but l_dir, because we don't want to allow for modifications while frozen
 	if(light_flags & LIGHT_FROZEN)
 		l_range = null
@@ -7,6 +7,7 @@
 		l_color = null
 		l_on = null
 		l_angle = null
+		l_height = null
 
 	if(l_range > 0 && l_range < MINIMUM_USEFUL_LIGHT_RANGE)
 		l_range = MINIMUM_USEFUL_LIGHT_RANGE //Brings the range up to 1.4, which is just barely brighter than the soft lighting that surrounds players.
@@ -31,6 +32,9 @@
 
 	if(!isnull(l_on))
 		set_light_on(l_on)
+	
+	if(!isnull(l_height))
+		set_light_height(l_height)
 
 	update_light()
 
@@ -174,6 +178,17 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_LIGHT_ON, .)
 	return .
 
+/// Setter for the height of our light
+/atom/proc/set_light_height(new_value)
+	if(new_value == light_height || light_flags & LIGHT_FROZEN)
+		return
+	if(SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_HEIGHT, new_value) & COMPONENT_BLOCK_LIGHT_UPDATE)
+		return
+	. = light_height
+	light_height = new_value
+	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_LIGHT_HEIGHT, .)
+	return .
+
 /// Setter for the light flags of this atom.
 /atom/proc/set_light_flags(new_value)
 	if(new_value == light_flags || (light_flags & LIGHT_FROZEN && new_value & LIGHT_FROZEN))
@@ -185,3 +200,20 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_LIGHT_FLAGS, .)
 	return .
 
+/atom/proc/get_light_offset()
+	return list(0, 0)
+
+/// Returns a list of x and y offsets to apply to our visual lighting position
+/proc/calculate_light_offset(atom/get_offset)
+	var/list/hand_back
+	if(!(get_offset.light_flags & LIGHT_IGNORE_OFFSET))
+		hand_back = get_visual_offset(get_offset)
+		hand_back[1] = -hand_back[1] / world.icon_size
+		hand_back[2] = -hand_back[2] / world.icon_size
+	else
+		hand_back = list(0, 0)
+
+	var/list/atoms_opinion = get_offset.get_light_offset()
+	hand_back[1] += atoms_opinion[1]
+	hand_back[2] += atoms_opinion[2]
+	return hand_back

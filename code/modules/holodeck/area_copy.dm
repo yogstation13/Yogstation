@@ -77,6 +77,6 @@
 
 	if(toupdate.len)
 		for(var/turf/T1 in toupdate)
-			T1.ImmediateCalculateAdjacentTurfs()
+			T1.immediate_calculate_adjacent_turfs()
 
 	return copiedobjs

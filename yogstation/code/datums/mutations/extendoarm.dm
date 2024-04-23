@@ -53,25 +53,25 @@
 
 	return TRUE
 
-/datum/action/cooldown/spell/pointed/projectile/extendoarm/ready_projectile(obj/projectile/bullet/arm/P, atom/target, mob/user, iteration)
+/datum/action/cooldown/spell/pointed/projectile/extendoarm/ready_projectile(obj/projectile/bullet/arm/firing_arm, atom/target, mob/user, iteration)
 	. = ..()
-	var/mob/living/carbon/C = user
+	var/mob/living/carbon/carbon_user = user
 	var/new_color
-	if(C.dna && !C.dna.species.use_skintones)
-		new_color = C.dna.features["mcolor"]
-		P.add_atom_colour(new_color, FIXED_COLOUR_PRIORITY)
+	if(carbon_user.dna && !carbon_user.dna.species.use_skintones)
+		new_color = carbon_user.dna.features["mcolor"]
+		firing_arm.add_atom_colour(new_color, FIXED_COLOUR_PRIORITY)
 
-	P.homing = target
-	P.beam = new(C, P, time=200, beam_icon_state="2-full", maxdistance=150, beam_sleep_time=1, beam_color = new_color)
-	P.beam.Start()
+	
+	firing_arm.set_homing_target(target)
+	firing_arm.beam = firing_arm.Beam(carbon_user, icon_state = "2-full", time = 20 SECONDS, maxdistance = 150, beam_color = new_color)
 
-	var/obj/item/I = C.get_active_held_item()
-	if(I && C.dropItemToGround(I, FALSE))
-		var/obj/projectile/bullet/arm/ARM = P
+	var/obj/item/I = carbon_user.get_active_held_item()
+	if(I && carbon_user.dropItemToGround(I, FALSE))
+		var/obj/projectile/bullet/arm/ARM = firing_arm
 		ARM.grab(I)
-	P.arm = C.hand_bodyparts[C.active_hand_index]
-	P.arm.drop_limb()
-	P.arm.forceMove(P)
+	firing_arm.arm = carbon_user.hand_bodyparts[carbon_user.active_hand_index]
+	firing_arm.arm.drop_limb()
+	firing_arm.arm.forceMove(firing_arm)
 
 /obj/projectile/bullet/arm
 	name = "arm"

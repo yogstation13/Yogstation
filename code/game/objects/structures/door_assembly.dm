@@ -319,7 +319,7 @@
 	qdel(src)
 
 /obj/structure/door_assembly/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
-	if(the_rcd.mode == RCD_DECONSTRUCT)
+	if(the_rcd.construction_mode == RCD_DECONSTRUCT)
 		return list("mode" = RCD_DECONSTRUCT, "delay" = 50, "cost" = 16)
 	return FALSE
 

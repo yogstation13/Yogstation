@@ -50,8 +50,8 @@
 		dat += "Fuel Consumption: [calculated_consumption]units per distance<br>"
 		dat += "Engine Cooldown: [calculated_cooldown]s<hr>"
 		var/destination_found
-		for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-			if(!options.Find(S.id))
+		for(var/obj/docking_port/stationary/S in SSshuttle.stationary_docking_ports)
+			if(!options.Find(S.port_destinations))
 				continue
 			if(!M.check_dock(S, silent=TRUE))
 				continue
@@ -59,7 +59,7 @@
 				break
 			destination_found = TRUE
 			var/dist = round(calculateDistance(S))
-			dat += "<A href='?src=[REF(src)];setloc=[S.id]'>Target [S.name] (Dist: [dist] | Fuel Cost: [round(dist * calculated_consumption)] | Time: [round(dist / calculated_speed)])</A><br>"
+			dat += "<A href='?src=[REF(src)];setloc=[S.shuttle_id]'>Target [S.name] (Dist: [dist] | Fuel Cost: [round(dist * calculated_consumption)] | Time: [round(dist / calculated_speed)])</A><br>"
 		if(!destination_found)
 			dat += "<B>No valid destinations</B><br>"
 		dat += "<hr>[targetLocation ? "Target Location : [targetLocation]" : "No Target Location"]"
@@ -218,9 +218,17 @@
 			to_chat(usr, "<span class='notice'>Unable to comply.</span>")
 	return
 
-/obj/machinery/computer/custom_shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
-	if(port && (shuttleId == initial(shuttleId) || override))
-		linkShuttle(port.id)
+/obj/machinery/computer/custom_shuttle/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
+	if(!mapload)
+		return
+	if(!port)
+		return
+	//Remove old custom port id and ";;"
+	var/find_old = findtextEx(possible_destinations, "[shuttleId]_custom")
+	if(find_old)
+		possible_destinations = replacetext(replacetextEx(possible_destinations, "[shuttleId]_custom", ""), ";;", ";")
+	shuttleId = port.shuttle_id
+	possible_destinations += ";[port.shuttle_id]_custom"
 
 //Custom shuttle docker locations
 /obj/machinery/computer/camera_advanced/shuttle_docker/custom
@@ -233,7 +241,7 @@
 		/turf/open/floor/plating/ashplanet,
 		/turf/open/floor/plating/asteroid,
 		/turf/open/floor/plating/lavaland_baseturf)
-	jumpto_ports = list("whiteship_home" = 1)
+	jump_to_ports = list("whiteship_home" = 1)
 	view_range = 12
 	designate_time = 100
 	circuit = /obj/item/circuitboard/computer/shuttle/docker

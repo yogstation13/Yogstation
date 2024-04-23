@@ -34,7 +34,11 @@
 			to_summon_in -= spawn_place
 
 		if(ispath(summoned_object_type, /turf))
-			spawn_place.ChangeTurf(summoned_object_type, flags = CHANGETURF_INHERIT_AIR)
+			if (spawn_place.overfloor_placed)
+				spawn_place.ChangeTurf(summoned_object_type, flags = CHANGETURF_INHERIT_AIR)
+			else
+				spawn_place.place_on_top(summoned_object_type, flags = CHANGETURF_INHERIT_AIR)
+			return
 
 		else
 			var/atom/summoned_object = new summoned_object_type(spawn_place)

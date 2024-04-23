@@ -18,8 +18,9 @@ Buildable meters
 	icon_state = "simple"
 	item_state = "buildpipe"
 	w_class = WEIGHT_CLASS_NORMAL
-	level = 2
+	///Piping layer that we are going to be on
 	var/piping_layer = PIPING_LAYER_DEFAULT
+	///Type of pipe-object made, selected from the RPD
 	var/RPD_type
 	var/disposable = TRUE // yogs
 

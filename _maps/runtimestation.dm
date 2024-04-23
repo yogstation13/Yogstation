@@ -1,1 +1,1 @@
-#define FORCE_MAP "_maps/runtimestation.json"
+#define FORCE_MAP "runtimestation"

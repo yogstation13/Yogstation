@@ -88,8 +88,7 @@
 		if(object == src)
 			continue
 		if(isturf(object.loc))
-			var/turf/turf = object.loc
-			if(turf.intact && object.level == 1) //hidden under the floor
+			if(location.underfloor_accessibility < UNDERFLOOR_INTERACTABLE && HAS_TRAIT(object, TRAIT_T_RAY_VISIBLE))
 				continue
 		reagents.reaction(object, TOUCH|VAPOR, fraction)
 
@@ -238,6 +237,17 @@
 		affecting_turf = T
 		affecting_turf.flammability = -10 // set the turf to be non-flammable while the foam is covering it
 	//Remove_element(/datum/element/atmos_sensitive)
+	var/static/list/loc_connections = list(
+		COMSIG_TURF_HOTSPOT_EXPOSE = PROC_REF(on_hotspot_expose),
+		COMSIG_TURF_IGNITED = PROC_REF(on_turf_ignite),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
+/obj/effect/particle_effect/fluid/foam/firefighting/proc/on_hotspot_expose()
+	return SUPPRESS_FIRE
+
+/obj/effect/particle_effect/fluid/foam/firefighting/proc/on_turf_ignite()
+	return SUPPRESS_FIRE
 
 /obj/effect/particle_effect/fluid/foam/firefighting/Destroy()
 	if(affecting_turf && !QDELETED(affecting_turf))
@@ -245,29 +255,18 @@
 	return ..()
 
 /obj/effect/particle_effect/fluid/foam/firefighting/process()
-	..()
+	. = ..()
 
 	var/turf/open/location = loc
 	if(!istype(location))
 		return
-
-	var/obj/effect/hotspot/hotspot = location.active_hotspot
-	var/obj/effect/abstract/turf_fire/turf_fire = location.turf_fire
-	if(!((hotspot||turf_fire) && location.air))
-		return
-
-	if(hotspot)
-		QDEL_NULL(hotspot)
-	if(turf_fire)
-		QDEL_NULL(turf_fire)
 
 	var/datum/gas_mixture/air = location.air
 	var/scrub_amt = min(30, air.get_moles(GAS_PLASMA)) //Absorb some plasma
 	air.adjust_moles(GAS_PLASMA, -scrub_amt)
 	absorbed_plasma += scrub_amt
 
-	if (air.return_temperature() > T20C)
-		air.set_temperature(max(air.return_temperature() / 2, T20C))
+	location.extinguish_turf()
 
 /obj/effect/particle_effect/fluid/foam/firefighting/make_result()
 	if(!absorbed_plasma) // don't bother if it didn't scrub any plasma
@@ -314,7 +313,8 @@
 	desc = "A lightweight foamed metal wall that can be used as base to construct a wall."
 	gender = PLURAL
 	max_integrity = 20
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
+	obj_flags = CAN_BE_HIT | BLOCK_Z_IN_DOWN | BLOCK_Z_IN_UP
 	///Var used to prevent spamming of the construction sound
 	var/next_beep = 0
 
@@ -367,7 +367,7 @@
 /obj/effect/particle_effect/fluid/foam/metal/smart/make_result() //Smart foam adheres to area borders for walls
 	var/turf/open/location = loc
 	if(isspaceturf(location))
-		location.PlaceOnTop(/turf/open/floor/plating/foam)
+		location.place_on_top(/turf/open/floor/plating/foam)
 
 	for(var/cardinal in GLOB.cardinals)
 		var/turf/cardinal_turf = get_step(location, cardinal)
@@ -386,8 +386,10 @@
 /// Atmos Backpack Resin, transparent, prevents atmos and filters the air
 /obj/structure/foamedmetal/resin
 	name = "\improper ATMOS Resin"
-	desc = "A lightweight, transparent resin used to suffocate fires, scrub the air of toxins, and restore the air to a safe temperature. It can be used as base to construct a wall."
+	desc = "A lightweight, transparent and passable resin used to suffocate fires, scrub the air of toxins, and restore the air to a safe temperature. It can be used as base to construct a wall."
 	opacity = FALSE
+	density = FALSE
+	can_atmos_pass = ATMOS_PASS_NO
 	icon_state = "atmos_resin"
 	alpha = 120
 	max_integrity = 10
@@ -395,6 +397,11 @@
 /obj/structure/foamedmetal/resin/Initialize(mapload)
 	. = ..()
 	var/turf/open/location = loc
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 	if(!istype(location))
 		return
 
@@ -422,3 +429,29 @@
 		potential_tinder.extinguish_mob()
 	for(var/obj/item/potential_tinder in location)
 		potential_tinder.extinguish()
+
+/obj/structure/foamedmetal/resin/proc/on_entered(datum/source, atom/movable/arrived)
+	SIGNAL_HANDLER
+
+	if(isliving(arrived)) //I guess living subtype is fine
+		var/mob/living/living = arrived
+		living.add_movespeed_modifier(MOVESPEED_ID_RESIN_FOAM, multiplicative_slowdown = 0.4)
+
+/obj/structure/foamedmetal/resin/proc/on_exited(datum/source, atom/movable/gone, direction)
+	if(isliving(gone))
+		var/mob/living/living = gone
+		var/turf/T = get_turf(src)
+		var/turf/them = get_step(T, direction)
+
+		for(var/obj/structure/foamedmetal/resin/S in them)
+			if(S.loc == living.loc) //No removing speed if has same loc
+				return
+
+		living.remove_movespeed_modifier(MOVESPEED_ID_RESIN_FOAM)
+
+/obj/structure/foamedmetal/resin/Destroy() //Make sure to remove the speed if the resin is destroyed while the mob is in it
+	var/turf/T = get_turf(src)
+	for(var/mob/living/living in T)
+		living.remove_movespeed_modifier(MOVESPEED_ID_RESIN_FOAM)
+	
+	return ..()

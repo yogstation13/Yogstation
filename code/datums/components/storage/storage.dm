@@ -86,7 +86,7 @@
 
 	RegisterSignal(parent, COMSIG_TOPIC, PROC_REF(topic_handle))
 
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(attackby))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(attackby))
 
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(on_attack_hand))
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_PAW, PROC_REF(on_attack_hand))
@@ -357,7 +357,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			ND.sample_object.mouse_opacity = MOUSE_OPACITY_OPAQUE
 			ND.sample_object.screen_loc = "[cx]:[screen_pixel_x],[cy]:[screen_pixel_y]"
 			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
-			ND.sample_object.layer = ABOVE_HUD_LAYER
 			ND.sample_object.plane = ABOVE_HUD_PLANE
 			cx++
 			if(cx - screen_start_x >= cols)
@@ -373,7 +372,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			O.mouse_opacity = MOUSE_OPACITY_OPAQUE //This is here so storage items that spawn with contents correctly have the "click around item to equip"
 			O.screen_loc = "[cx]:[screen_pixel_x],[cy]:[screen_pixel_y]"
 			O.maptext = ""
-			O.layer = ABOVE_HUD_LAYER
 			O.plane = ABOVE_HUD_PLANE
 			cx++
 			if(cx - screen_start_x >= cols)
@@ -439,7 +437,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		if(QDELETED(O))
 			continue
 		O.screen_loc = "[cx],[cy]"
-		O.layer = ABOVE_HUD_LAYER
 		O.plane = ABOVE_HUD_PLANE
 		cx++
 		if(cx > mx)

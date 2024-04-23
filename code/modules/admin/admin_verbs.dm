@@ -177,6 +177,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/export_dynamic_json,
 	/client/proc/run_dynamic_simulations,
 	#endif
+	/client/proc/debug_plane_masters,
 	/client/proc/debug_spell_requirements,
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/release))
@@ -627,6 +628,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	if(robeless)
 		new_spell.spell_requirements &= ~SPELL_REQUIRES_WIZARD_GARB
+		new_spell.psi_cost = 0 //breaks balance, but allows non darkspawns to use darkspawn abilities
 
 	new_spell.Grant(spell_recipient)
 

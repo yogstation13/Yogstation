@@ -17,16 +17,25 @@
 		var/mob/living/carbon/human/H = loc
 		H.update_hair()
 
-/obj/item/clothing/head/worn_overlays(isinhands = FALSE)
+/obj/item/clothing/head/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
-	if(!isinhands)
-		if(damaged_clothes)
-			. += mutable_appearance('icons/effects/item_damage.dmi', "damagedhelmet")
-		if(HAS_BLOOD_DNA(src))
-			var/mutable_appearance/bloody_helmet = mutable_appearance('icons/effects/blood.dmi', "helmetblood")
-			bloody_helmet.color = get_blood_dna_color(return_blood_DNA())
-			. += bloody_helmet
-			
+	if(isinhands)
+		return
+
+	if(damaged_clothes)
+		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedhelmet")
+
+	if(!HAS_BLOOD_DNA(src))
+		return
+
+	var/mutable_appearance/bloody_helmet
+	if(clothing_flags & LARGE_WORN_ICON)
+		bloody_helmet = mutable_appearance('icons/effects/64x64.dmi', "helmetblood_large")
+	else
+		bloody_helmet = mutable_appearance('icons/effects/blood.dmi', "helmetblood")
+	bloody_helmet.color = get_blood_dna_color(return_blood_DNA())
+	. += bloody_helmet
+
 /obj/item/clothing/head/update_clothes_damaged_state()
 	..()
 	if(ismob(loc))

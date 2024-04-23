@@ -41,7 +41,7 @@
 	if(istype(C) && C?.dna?.species)
 		component_type = C.dna.species.swimming_component
 	var/mob/M = parent
-	RemoveComponent()
+	qdel(src)
 	M.AddComponent(component_type)
 
 /datum/component/swimming/proc/try_leave_pool(datum/source, turf/clicked_turf)
@@ -56,7 +56,7 @@
 	if(do_after(parent, 1 SECONDS, clicked_turf))
 		L.forceMove(clicked_turf)
 		L.visible_message("<span class='notice'>[parent] climbs out of the pool.</span>")
-		RemoveComponent()
+		qdel(src)
 
 /datum/component/swimming/UnregisterFromParent()
 	exit_pool()
@@ -92,7 +92,7 @@
 	else if(drowning)
 		stop_drowning(L)
 		drowning = FALSE
-	L.adjust_wet_stacks(3)
+	L.adjust_wet_stacks(3 * L.get_permeability(null, TRUE))
 
 /datum/component/swimming/proc/is_drowning(mob/living/victim)
 	var/obj/item/pool/helditem = victim.get_active_held_item()

@@ -194,7 +194,7 @@
 /datum/antagonist/sinfuldemon/on_removal()
 	owner.special_role = null
 	owner.current.faction -= "hell"
-	for(var/all_status_traits in owner.current.status_traits) //removes demon traits
+	for(var/all_status_traits in owner.current._status_traits) //removes demon traits
 		REMOVE_TRAIT(owner.current, all_status_traits, SINFULDEMON_TRAIT)
 	for(var/datum/action/cooldown/spell/spell in owner.current.actions)
 		if(spell.target == owner)

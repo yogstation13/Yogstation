@@ -4,22 +4,21 @@
 /area/shuttle
 	name = "Shuttle"
 	requires_power = FALSE
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	static_lighting = TRUE
+	lights_always_start_on = TRUE
 	has_gravity = STANDARD_GRAVITY
 	always_unpowered = FALSE
 	valid_territory = FALSE
 	icon_state = "shuttle"
 	// Loading the same shuttle map at a different time will produce distinct area instances.
 	unique = FALSE
-	///list of miners & their mining points from gems to be given once all exports are processed, used by supply shuttles
-	var/list/gem_payout = list()
+	flags_1 = CAN_BE_DIRTY_1
+	area_limited_icon_smoothing = /area/shuttle
 	lighting_colour_tube = "#fff0dd"
 	lighting_colour_bulb = "#ffe1c1"
 
-/area/shuttle/Initialize(mapload)
-	if(!canSmoothWithAreas)
-		canSmoothWithAreas = type
-	. = ..()
+	///list of miners & their mining points from gems to be given once all exports are processed, used by supply shuttles
+	var/list/gem_payout = list()
 
 /area/shuttle/PlaceOnTopReact(list/new_baseturfs, turf/fake_turf_type, flags)
 	. = ..()
@@ -36,7 +35,7 @@
 	name = "Syndicate Infiltrator"
 	blob_allowed = FALSE
 	ambience_index = AMBIENCE_DANGER
-	canSmoothWithAreas = /area/shuttle/syndicate
+	area_limited_icon_smoothing = /area/shuttle/syndicate
 
 /area/shuttle/syndicate/bridge
 	name = "Syndicate Infiltrator Control"
@@ -61,15 +60,12 @@
 	name = "Pirate Shuttle"
 	blob_allowed = FALSE
 	requires_power = TRUE
-	canSmoothWithAreas = /area/shuttle/pirate
 
 ////////////////////////////Bounty Hunter Shuttles////////////////////////////
 
 /area/shuttle/hunter
 	name = "Hunter Shuttle"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	blob_allowed = FALSE
-	canSmoothWithAreas = /area/shuttle/hunter
 
 ////////////////////////////White Ship////////////////////////////
 
@@ -77,7 +73,7 @@
 	name = "Abandoned Ship"
 	blob_allowed = FALSE
 	requires_power = TRUE
-	canSmoothWithAreas = /area/shuttle/abandoned
+	area_limited_icon_smoothing = /area/shuttle/abandoned
 
 /area/shuttle/abandoned/bridge
 	name = "Abandoned Ship Bridge"
@@ -103,9 +99,10 @@
 ////////////////////////////Single-area shuttles////////////////////////////
 
 /area/shuttle/transit
-	name = "Hyperspace"
+	name = "Bluespace"
 	desc = "Weeeeee"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = FALSE
+	base_lighting_alpha = 255
 
 /area/shuttle/custom
 	name = "Custom player shuttle"
@@ -118,17 +115,28 @@
 	name = "Arrival Shuttle"
 	unique = TRUE  // SSjob refers to this area for latejoiners
 
+/area/shuttle/arrival/on_joining_game(mob/living/boarder)
+	if(SSshuttle.arrivals?.mode == SHUTTLE_CALL)
+		var/atom/movable/screen/splash/Spl = new(null, boarder.client, TRUE)
+		Spl.Fade(TRUE)
+		boarder.playsound_local(get_turf(boarder), 'sound/voice/ApproachingTG.ogg', 25)
+	boarder.update_parallax_teleport()
+
 /area/shuttle/pod_1
 	name = "Escape Pod One"
+	area_flags = NONE
 
 /area/shuttle/pod_2
 	name = "Escape Pod Two"
+	area_flags = NONE
 
 /area/shuttle/pod_3
 	name = "Escape Pod Three"
+	area_flags = NONE
 
 /area/shuttle/pod_4
 	name = "Escape Pod Four"
+	area_flags = NONE
 
 /area/shuttle/mining
 	name = "Mining Shuttle"
@@ -149,6 +157,8 @@
 
 /area/shuttle/escape
 	name = "Emergency Shuttle"
+	area_limited_icon_smoothing = /area/shuttle/escape
+	flags_1 = CAN_BE_DIRTY_1
 
 /area/shuttle/escape/backup
 	name = "Backup Emergency Shuttle"

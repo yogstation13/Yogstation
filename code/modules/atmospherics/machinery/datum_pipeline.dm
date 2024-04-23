@@ -49,8 +49,10 @@
 			considered_pipe.air_temporary = null
 	else
 		add_machinery_member(base)
+	
 	if(!air)
 		air = new
+	
 	air.set_volume(volume)
 	SSair.add_to_expansion(src, base)
 
@@ -106,6 +108,14 @@
 
 	air.set_volume(volume)
 
+/**
+ *  For a machine to properly "connect" to a pipeline and share gases,
+ *  the pipeline needs to acknowledge a gas mixture as it's member.
+ *  This is currently handled by the other_airs list in the pipeline datum.
+ *
+ *	Other_airs itself is populated by gas mixtures through the parents list that each machineries have.
+ *	This parents list is populated when a machinery calls update_parents and is then added into the queue by the controller.
+ */
 /datum/pipeline/proc/add_machinery_member(obj/machinery/atmospherics/components/considered_component)
 	other_atmos_machines |= considered_component
 	var/list/returned_airs = considered_component.return_pipenet_airs(src)

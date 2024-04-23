@@ -6,7 +6,6 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	selection_color = "#ccffcc"
 	supervisors = "your laws"
 	req_admin_notify = TRUE
 	minimal_player_age = 30
@@ -25,23 +24,22 @@
 	//this should never be seen because of the way olfaction works but just in case
 	smells_like = "chained intellect"
 
-/datum/job/ai/equip(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source = null)
+/datum/job/ai/equip(mob/living/equipping, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source = null)
 	if(visualsOnly)
 		CRASH("dynamic preview is unsupported")
-	. = H.AIize(latejoin,preference_source)
+	. = equipping.AIize(preference_source)
 
-/datum/job/ai/after_spawn(mob/H, mob/M, latejoin)
+/datum/job/ai/after_spawn(mob/living/spawned, mob/M, latejoin)
 	. = ..()
-			
-	var/mob/living/silicon/ai/AI = H
+	var/mob/living/silicon/ai/AI = spawned
 
-	AI.relocate(TRUE)
+	AI.relocate(TRUE, TRUE)
+	
+	var/total_available_cpu = 1 - AI.ai_network.resources.total_cpu_assigned()
+	var/total_available_ram = AI.ai_network.resources.total_ram() - AI.ai_network.resources.total_ram_assigned()
 
-	var/total_available_cpu = 1 - GLOB.ai_os.total_cpu_assigned()
-	var/total_available_ram = GLOB.ai_os.total_ram - GLOB.ai_os.total_ram_assigned()
-
-	GLOB.ai_os.set_cpu(AI, total_available_cpu)
-	GLOB.ai_os.add_ram(AI, total_available_ram)
+	AI.ai_network.resources.set_cpu(AI, total_available_cpu)
+	AI.ai_network.resources.add_ram(AI, total_available_ram) 
 
 	AI.apply_pref_name(/datum/preference/name/ai, M.client)			//If this runtimes oh well jobcode is fucked.
 	AI.set_core_display_icon(null, M.client)
