@@ -116,6 +116,11 @@
 	else
 		return ..()
 
+/obj/structure/fireaxecabinet/AltClick(mob/user)
+	. = ..()
+	if(!broken && user.canUseTopic(src))
+		toggle_lock()
+
 /obj/structure/fireaxecabinet/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
 		if(BRUTE)
