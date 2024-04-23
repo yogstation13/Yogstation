@@ -791,7 +791,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 /datum/AI_Module/upgrade/camera_laser_gun
 	name = "Upgrade Camera Laser Gun"
 	description = "Upgrades your ability to shoot lasers from any camera at targets. \
-	Should you already not have the ability, grants the non-upgraded ability. Upgrade is done immediately upon purchase."
+	Should you not already have the ability, grants the non-upgraded ability. Upgrade is done immediately upon purchase."
 	cost = 30
 	upgrade = TRUE
 	unlock_text = span_notice("You remove the safety controls on your camera light program.")
