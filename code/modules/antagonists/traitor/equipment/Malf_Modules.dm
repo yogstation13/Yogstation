@@ -802,7 +802,6 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	for(var/datum/action/innate/ai/ranged/cameragun/listed_action in AI.actions)
 		ai_action = listed_action
 		ai_action.proj_type = /obj/projectile/beam/laser/heavylaser
-		break
 
 	if(ai_action)
 		unlock_text = span_notice("Optimization detected in camera light program... Changes applied.")
