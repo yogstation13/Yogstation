@@ -801,6 +801,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	var/datum/action/innate/ai/ranged/cameragun/ai_action
 	for(var/datum/action/innate/ai/ranged/cameragun/listed_action in AI.actions)
 		ai_action = listed_action
+		// Benefits: 2x damage, more wound, and setting people on fire.
 		ai_action.proj_type = /obj/projectile/beam/laser/heavylaser
 
 	if(ai_action)
