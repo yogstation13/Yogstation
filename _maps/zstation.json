@@ -1,0 +1,11 @@
+{
+    "map_name": "ZStation",
+    "map_path": "map_files/ZStation",
+    "map_file": "ZStation.dmm",
+    "shuttles": {
+	    "cargo": "cargo_box",
+	    "ferry": "ferry_fancy",
+	    "emergency": "emergency_box"
+    },
+	"traits": [{"Up": true}, {"Up": true, "Down": true}, {"Up": true, "Down": true}, {"Up": true, "Down": true}, {"Down": true}]
+}
