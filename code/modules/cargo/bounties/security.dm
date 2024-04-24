@@ -24,7 +24,7 @@
 	description = "Our riot officers are complaining about lugging their heavy shields around all the time. Ship some lightweight foldable ones to help them out."
 	reward = 5000
 	required_count = 3
-	wanted_types = list(/datum/design/tele_shield)
+	wanted_types = list(/obj/item/shield/riot/tele)
 
 /datum/bounty/item/security/revolverspeedloaders
 	name = ".38 Speedloaders"

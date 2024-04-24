@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes the overlays of the tar assistant spawner"
-  - spellcheck: "fixed a typo in the tar assistant's jaunt description"

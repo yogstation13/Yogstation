@@ -231,6 +231,10 @@
 		M.adjust_hallucinations(20 SECONDS)
 	return ..()
 
+/datum/reagent/toxin/mindbreaker/changeling
+	name = "Mind Destroyer Toxin"
+	description = "An even more powerful hallucinogen only created by changeling toxin sacs. Not a thing to be messed with."
+
 /datum/reagent/toxin/relaxant
 	name = "Muscle Relaxant"
 	description = "A potent paralytic chemical that causes the patient to move and act slower."
@@ -976,7 +980,7 @@
 		if(M.dna.species.type != /datum/species/skeleton && M.dna.species.type != /datum/species/plasmaman) //We're so sorry skeletons, you're so misunderstood
 			if(bp)
 				bp.receive_damage(20, 0, 200, wound_bonus = rand(30, 130))
-				playsound(M, get_sfx("desceration"), 50, TRUE, -1)
+				playsound(M, get_sfx(SFX_DESCERATION), 50, TRUE, -1)
 				M.visible_message(span_warning("[M]'s bones hurt too much!!"), span_danger("Your bones hurt too much!!"))
 				M.say("OOF!!", forced = /datum/reagent/toxin/bonehurtingjuice)
 			else //SUCH A LUST FOR REVENGE!!!
@@ -984,7 +988,7 @@
 				M.say("Why are we still here, just to suffer?", forced = /datum/reagent/toxin/bonehurtingjuice)
 		else //you just want to socialize
 			if(bp)
-				playsound(M, get_sfx("desceration"), 50, TRUE, -1)
+				playsound(M, get_sfx(SFX_DESCERATION), 50, TRUE, -1)
 				M.visible_message(span_warning("[M] rattles loudly and flails around!!"), span_danger("Your bones hurt so much that your missing muscles spasm!!"))
 				M.say("OOF!!", forced=/datum/reagent/toxin/bonehurtingjuice)
 				bp.receive_damage(200, 0, 0) //But I don't think we should

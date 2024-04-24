@@ -519,9 +519,6 @@
 			if(HAS_TRAIT(L, TRAIT_PACIFISM) && selected.harmful)
 				to_chat(user, span_warning("You don't want to harm other living beings!"))
 				return
-			if(HAS_TRAIT(L, TRAIT_NO_STUN_WEAPONS) && !selected.harmful)
-				to_chat(user, span_warning("You cannot use non-lethal weapons!"))
-				return
 			if(selected.action(target, user, params))
 				selected.start_cooldown()
 	else if(selected && selected.is_melee())
