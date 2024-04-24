@@ -63,7 +63,7 @@
 
 /datum/ai_project/cyborg_management_reset
 	name = "Cyborg Management - Reset"
-	description = "With a specially tailored program, tricks a connected cyborg's module connection into believing it was disconnected briefly which trigger a module reset." // Weak flavor.
+	description = "With a specially tailored program, tricks a connected cyborg's module connection into believing it was briefly disconnected which trigger a module reset." // Weak flavor.
 	research_cost = 2500
 	research_requirements_text = "Cyborg Management Basics"
 	research_requirements = list(/datum/ai_project/cyborg_management_basic)
