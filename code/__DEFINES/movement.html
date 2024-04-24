@@ -14,7 +14,7 @@
  &mdash; <a href="code/__DEFINES/movement.html#define">Define Details</a></header>
 <main>
 <h1>code/__DEFINES/movement.dm 
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm"/></a></h1>
 
 <table class="summary" cellspacing="0">
@@ -47,25 +47,25 @@ Stops the movable from falling further and crashing on the ground. Example: stai
         <tr><th><a href="code/__DEFINES/movement.html#define/ZMOVE_STAIRS_FLAGS">ZMOVE_STAIRS_FLAGS</a></th><td>Used when walking upstairs</td></tr>
         <tr><th><a href="code/__DEFINES/movement.html#define/ZMOVE_FALL_FLAGS">ZMOVE_FALL_FLAGS</a></th><td>Used for falling down open space.</td></tr></table><h2 id="define">Define Details</h2>
 <h3 id="define/CURRENTLY_Z_ASCENDING"><aside class="declaration">#define </aside>CURRENTLY_Z_ASCENDING
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L29">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L29">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 29"/></a>
     </h3>
     <p>This one is for going upstairs.</p><h3 id="define/CURRENTLY_Z_FALLING"><aside class="declaration">#define </aside>CURRENTLY_Z_FALLING
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L23">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L23">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 23"/></a>
     </h3>
     <p>currently_z_moving defines. Higher numbers mean higher priority.
 This one is for falling down open space from stuff such as deleted tile, pit grate...</p><h3 id="define/CURRENTLY_Z_FALLING_FROM_MOVE"><aside class="declaration">#define </aside>CURRENTLY_Z_FALLING_FROM_MOVE
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L27">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L27">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 27"/></a>
     </h3>
     <p>This one is for falling down open space from movement.</p><h3 id="define/CURRENTLY_Z_MOVING_GENERIC"><aside class="declaration">#define </aside>CURRENTLY_Z_MOVING_GENERIC
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L25">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L25">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 25"/></a>
     </h3>
     <p>currently_z_moving is set to this in zMove() if 0.</p><h3 id="define/DELAY_TO_GLIDE_SIZE"><aside class="declaration">#define </aside>DELAY_TO_GLIDE_SIZE
             <aside>(delay)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L16">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L16">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 16"/></a>
     </h3>
     <p>Broken down, here's what this does:
@@ -74,74 +74,74 @@ The division result is given a min value of 1 to prevent obscenely slow glide si
 Then that's multiplied by the global glide size multiplier. 1.25 by default feels pretty close to spot on. This is just to try to get byond to behave.
 The whole result is then clamped to within the range above.
 Not very readable but it works</p><h3 id="define/FALL_INTERCEPTED"><aside class="declaration">#define </aside>FALL_INTERCEPTED
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L33">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L33">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 33"/></a>
     </h3>
     <p>possible bitflag return values of [atom/proc/intercept_zImpact] calls
 Stops the movable from falling further and crashing on the ground. Example: stairs.</p><h3 id="define/FALL_NO_MESSAGE"><aside class="declaration">#define </aside>FALL_NO_MESSAGE
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L35">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L35">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 35"/></a>
     </h3>
     <p>Suppresses the &quot;[movable] falls through [old_turf]&quot; message because it'd make little sense in certain contexts like climbing stairs.</p><h3 id="define/FALL_RETAIN_PULL"><aside class="declaration">#define </aside>FALL_RETAIN_PULL
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L39">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L39">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 39"/></a>
     </h3>
     <p>Used when the grip on a pulled object shouldn't be broken.</p><h3 id="define/FALL_STOP_INTERCEPTING"><aside class="declaration">#define </aside>FALL_STOP_INTERCEPTING
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L37">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L37">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 37"/></a>
     </h3>
     <p>Used when the whole intercept_zImpact forvar loop should be stopped. For example: when someone falls into the supermatter and becomes dust.</p><h3 id="define/ZMOVE_ALLOW_ANCHORED"><aside class="declaration">#define </aside>ZMOVE_ALLOW_ANCHORED
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L60">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L60">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 60"/></a>
     </h3>
     <p>Skips check for whether the moving atom is anchored or not.</p><h3 id="define/ZMOVE_ALLOW_BUCKLED"><aside class="declaration">#define </aside>ZMOVE_ALLOW_BUCKLED
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L54">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L54">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 54"/></a>
     </h3>
     <p>Whether we check the movable (if it exists) the living mob is buckled on or not.</p><h3 id="define/ZMOVE_CHECK_PULLEDBY"><aside class="declaration">#define </aside>ZMOVE_CHECK_PULLEDBY
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L44">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L44">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 44"/></a>
     </h3>
     <p>Checks if pulledby is nearby. if not, stop being pulled.</p><h3 id="define/ZMOVE_CHECK_PULLING"><aside class="declaration">#define </aside>ZMOVE_CHECK_PULLING
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L42">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L42">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 42"/></a>
     </h3>
     <p>Runs check_pulling() by the end of [/atom/movable/proc/zMove] for every movable that's pulling something. Should be kept enabled unless you know what you are doing.</p><h3 id="define/ZMOVE_FALL_CHECKS"><aside class="declaration">#define </aside>ZMOVE_FALL_CHECKS
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L46">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L46">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 46"/></a>
     </h3>
     <p>flags for different checks done in <a href="atom/movable.html#proc/can_z_move" title="/atom/movable">/atom/movable/proc/can_z_move</a>. Should be self-explainatory.</p><h3 id="define/ZMOVE_FALL_FLAGS"><aside class="declaration">#define </aside>ZMOVE_FALL_FLAGS
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L69">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L69">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 69"/></a>
     </h3>
     <p>Used for falling down open space.</p><h3 id="define/ZMOVE_FEEDBACK"><aside class="declaration">#define </aside>ZMOVE_FEEDBACK
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L52">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L52">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 52"/></a>
     </h3>
     <p>Gives players chat feedbacks if they're unable to move through z levels.</p><h3 id="define/ZMOVE_FLIGHT_FLAGS"><aside class="declaration">#define </aside>ZMOVE_FLIGHT_FLAGS
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L65">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L65">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 65"/></a>
     </h3>
     <p>Flags used in &quot;Move Upwards&quot; and &quot;Move Downwards&quot; verbs.</p><h3 id="define/ZMOVE_IGNORE_OBSTACLES"><aside class="declaration">#define </aside>ZMOVE_IGNORE_OBSTACLES
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L50">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L50">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 50"/></a>
     </h3>
     <p>Doesn't call zPassIn() and zPassOut()</p><h3 id="define/ZMOVE_INCLUDE_PULLED"><aside class="declaration">#define </aside>ZMOVE_INCLUDE_PULLED
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L58">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L58">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 58"/></a>
     </h3>
     <p>Includes movables that're either pulled by the source or mobs buckled to it in the list of moving movables.</p><h3 id="define/ZMOVE_STAIRS_FLAGS"><aside class="declaration">#define </aside>ZMOVE_STAIRS_FLAGS
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L67">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L67">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 67"/></a>
     </h3>
     <p>Used when walking upstairs</p><h3 id="define/ZMOVE_VENTCRAWLING"><aside class="declaration">#define </aside>ZMOVE_VENTCRAWLING
-            <a href="https://github.com/yogstation13/Yogstation/blob/054e2a44e183405f4a1b9f2548cd2e49a17ddb13/code/__DEFINES/movement.dm#L56">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ccdccc662bd9c560c989d0b64730c2a762ee93a7/code/__DEFINES/movement.dm#L56">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 56"/></a>
     </h3>
     <p>If the movable is actually ventcrawling vertically.</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/054e2a44e183405f4a1b9f2548cd2e49a17ddb13">054e2a4</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/ccdccc662bd9c560c989d0b64730c2a762ee93a7">ccdccc6</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
