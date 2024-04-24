@@ -37,7 +37,6 @@
 		return FALSE
 	if(!isAI(caller))
 		CRASH("Non-AI has /remote_unlock ability!")
-		return FALSE
 
 	var/mob/living/silicon/robot/cyborg = clicked_on
 	var/mob/living/silicon/ai/ai = caller
@@ -91,7 +90,6 @@
 		return FALSE
 	if(!isAI(caller))
 		CRASH("Non-AI has /remote_reset ability!")
-		return FALSE
 
 	var/mob/living/silicon/robot/cyborg = clicked_on
 	var/mob/living/silicon/ai/ai = caller
