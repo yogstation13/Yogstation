@@ -267,6 +267,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/clerk)
+"H" = (
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/machinery/light_switch{
+	pixel_x = 23
+	},
+/turf/open/floor/plasteel/dark,
+/area/clerk)
 "I" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
@@ -471,7 +478,7 @@ o
 U
 a
 X
-g
+H
 q
 t
 Z

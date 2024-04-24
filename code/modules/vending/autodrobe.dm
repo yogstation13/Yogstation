@@ -83,6 +83,7 @@
 					/obj/item/clothing/under/rank/clown/sexy = 1,
 					/obj/item/clothing/mask/gas/sexymime = 1,
 					/obj/item/clothing/under/sexymime = 1,
+					/obj/item/clothing/under/twosexytwomime = 1,
 					/obj/item/clothing/under/rank/mime/skirt = 1,
 					/obj/item/clothing/mask/rat/bat = 1,
 					/obj/item/clothing/mask/rat/bee = 1,
