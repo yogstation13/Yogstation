@@ -2064,9 +2064,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 		qdel(src)
 
 /obj/item/minihead/attack_hand(mob/user)
-	. = ..()
 	if(isturf(src.loc) && usedup)
 		return
+	. = ..()
 
 /obj/item/claycanister/proc/follow(atom/target, phase = 1, icon_state, var/obj/damocles, var/obj/silhouette, var/turf/landingzone)
 	switch(phase)
