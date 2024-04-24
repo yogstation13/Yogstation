@@ -2011,7 +2011,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/next_craft = 0
-	var/smashdam = 20
+	var/smashdam = 25 
 	var/animaldam = 50
 	var/objdam = 25
 
