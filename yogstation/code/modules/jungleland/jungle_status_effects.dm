@@ -94,7 +94,7 @@
 	UnregisterSignal(owner,COMSIG_MOB_CHECK_SHIELDS)
 	. = ..()
 	
-/datum/status_effect/tar_shield/proc/react_to_attack(datum/source ,atom/AM, var/damage, attack_text, attack_type, armour_penetration)
+/datum/status_effect/tar_shield/proc/react_to_attack(datum/source, atom/AM, damage, attack_text, attack_type, armour_penetration)
 	new /obj/effect/better_animated_temp_visual/tar_shield_pop(get_turf(owner))
 	owner.visible_message(span_danger("[owner]'s shields absorbs [attack_text]!"))
 	qdel(src)

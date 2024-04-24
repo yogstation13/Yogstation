@@ -27,7 +27,7 @@
 	if(issilicon(L))
 		L.apply_damage(borgdam, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 
-/datum/martial_art/reverberating_palm/proc/crash(atom/movable/ram, var/turf/Q)
+/datum/martial_art/reverberating_palm/proc/crash(atom/movable/ram, turf/Q)
 	if(Q.density || (!(Q.reachableTurftestdensity(T = Q))))
 		if(isliving(ram))
 			var/mob/living/target = ram

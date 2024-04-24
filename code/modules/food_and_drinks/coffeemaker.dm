@@ -133,7 +133,7 @@
 		. += "coffeemaker_cartidge"
 	return .
 
-/obj/machinery/coffeemaker/proc/replace_pot(mob/living/user, var/obj/item/reagent_containers/food/drinks/bottle/coffeepot/new_coffeepot)
+/obj/machinery/coffeemaker/proc/replace_pot(mob/living/user, obj/item/reagent_containers/food/drinks/bottle/coffeepot/new_coffeepot)
 	if(!user)
 		return FALSE
 	if(coffeepot)

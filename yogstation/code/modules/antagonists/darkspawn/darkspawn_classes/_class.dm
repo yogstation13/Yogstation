@@ -107,7 +107,7 @@
 		available_abilities += ability
 	return available_abilities
 
-/datum/component/darkspawn_class/proc/gain_power(atom/source, var/datum/psi_web/power_typepath, silent = FALSE)
+/datum/component/darkspawn_class/proc/gain_power(atom/source, datum/psi_web/power_typepath, silent = FALSE)
 	if(!ispath(power_typepath))
 		CRASH("[owner] tried to gain [power_typepath] which is not a valid darkspawn ability")
 	if(!(initial(power_typepath.shadow_flags) & specialization_flag))
