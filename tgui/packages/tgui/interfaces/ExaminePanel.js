@@ -39,20 +39,6 @@ export const ExaminePanel = (props, context) => {
                   {flavor_text}
                 </Section>
               </Stack.Item>
-              <Stack.Item grow>
-                <Stack fill>
-                  <Stack.Item grow basis={0}>
-                    <Section scrollable fill title="OOC Notes">
-                      {ooc_notes}
-                    </Section>
-                  </Stack.Item>
-                  <Stack.Item grow basis={0}>
-                    <Section scrollable fill title={(custom_species ? "Species: " + custom_species : "No Custom Species!")}>
-                      {(custom_species ? custom_species_lore : "Just a normal space dweller.")}
-                    </Section>
-                  </Stack.Item>
-                </Stack>
-              </Stack.Item>
             </Stack>
           </Stack.Item>
         </Stack>
