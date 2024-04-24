@@ -9,7 +9,7 @@
 
 /datum/ai_project/cyborg_management_unlock
 	name = "Cyborg Management - Unlock"
-	description = "Mimicking a robotics console, generates and sends an one-time use signal that can unlock an active connected cyborg."
+	description = "Mimicking a robotics console, generates and sends a one-time use signal that can unlock an active connected cyborg."
 	research_cost = 2500
 	research_requirements_text = "Cyborg Management Basics"
 	research_requirements = list(/datum/ai_project/cyborg_management_basic)
