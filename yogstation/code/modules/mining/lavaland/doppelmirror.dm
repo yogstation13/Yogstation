@@ -122,6 +122,7 @@
 	maxHealth = 20
 	health = 20
 	speed = -1
+	density = FALSE
 	projectiletype = /obj/projectile/doppshot
 	projectilesound = 'sound/weapons/pierce.ogg'
 	ranged = TRUE
