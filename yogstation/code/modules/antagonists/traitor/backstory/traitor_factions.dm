@@ -29,6 +29,7 @@
 	Whatever your objectives are, they’re just another stepping stone on your path to the top, another page for your résumé. Hop to it, the C-Suite is waiting. "
 	key = TRAITOR_FACTION_DONK
 	faction_theme = PDA_THEME_TERMINAL
+
 /datum/traitor_faction/waffle_co
 	name = "Waffle Co."
 	employer_name = "Waffle Co."
@@ -36,6 +37,7 @@
 	This station has significant business with our rival, Donk Co., and needs to be undermined."
 	key = TRAITOR_FACTION_WAFFLE
 	faction_theme = PDA_THEME_TERMINAL
+
 /datum/traitor_faction/cybersun
 	name = "Cybersun Industries"
 	employer_name = "Your handler"
@@ -43,6 +45,7 @@
    	Apart from any personal vendettas or debt you might owe, you may have been enticed with the promise of augments, enhancements, or life extending medical procedures.\n\ That is, if you succeed..."
 	key = TRAITOR_FACTION_CYBERSUN
 	faction_theme = PDA_THEME_TERMINAL
+
 /datum/traitor_faction/vahlen
 	name = "Vahlen Pharmaceuticals"
 	employer_name = "Vahlen Pharmaceuticals"
@@ -50,6 +53,7 @@
 	Your next grant has been greenlit, with the condition that you collect samples, be that biological products, equipment, or cadavers."
 	key = TRAITOR_FACTION_VAHLEN
 	faction_theme = PDA_THEME_TERMINAL
+	
 /datum/traitor_faction/gorlex
 	name = "Gorlex Marauders"
 	employer_name = "Gorlex Marauders"
