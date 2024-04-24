@@ -1084,7 +1084,6 @@
 /obj/item/borg/cyborg_omnitool/medical
 	name = "surgical omni-toolset"
 	desc = "A set of surgical tools used by cyborgs to operate on various surgical operations."
-	item_flags = SURGICAL_TOOL
 
 /obj/item/borg/cyborg_omnitool/medical/Initialize(mapload)
 	. = ..()
@@ -1104,6 +1103,7 @@
 	var/datum/component/butchering/butchering = src.GetComponent(/datum/component/butchering)
 	butchering.butchering_enabled = (tool_behaviour == TOOL_SCALPEL || tool_behaviour == TOOL_SAW)
 	can_initiate_surgery = TRUE // Given that all of listed items here can initiate surgery by themselves, it makes sense to do the same here.
+	item_flags = SURGICAL_TOOL
 	switch(tool_behaviour)
 		if(TOOL_SCALPEL)
 			reference = /obj/item/scalpel
