@@ -4,30 +4,28 @@
 	desc = "What do you see looking back at you?"
 	icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "mirrornormal"
-	actions_types = list(/datum/action/item_action/mirrorrecall)
-	var/possessed = FALSE
-	var/list/reflection = list()
+	actions_types = list(/datum/action/item_action/mirrorrecall, /datum/action/item_action/rerollmirror)
 	var/next_recall = 0
 	var/mob/living/carbon/original = null
+	var/mob/living/simple_animal/hostile/double/reflected = null
 
 /obj/item/dopmirror/pickup(mob/user)
 	..()
 	original = user
 
 /obj/item/dopmirror/attack_self(mob/living/user)
-	if(possessed)
+	if(reflected)
 		return
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE))
 		to_chat(user, span_notice("Anomalous otherworldly energies keep the mirror from reflecting anything!"))
 		return
 
 	to_chat(user, "You peer into the mirror...")
-	possessed = TRUE
 	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the living reflection in service of [user.real_name]?", ROLE_PAI, null, FALSE, 100, POLL_IGNORE_POSSESSED_BLADE)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		var/mob/living/simple_animal/hostile/double/S = new(src)
-		reflection |= S
+		reflected = S
 		S.ckey = C.ckey
 		S.fully_replace_character_name(null, "living reflection")
 		S.copy_languages(user, LANGUAGE_MASTER)	
@@ -46,36 +44,50 @@
 		src.update_icon()
 	else
 		to_chat(user, "... and your reflection stares back at you. Try again later.")
-		possessed = FALSE
 
 /obj/item/dopmirror/Destroy()
-	for(var/mob/living/simple_animal/hostile/double/S in reflection)
-		to_chat(S, "You were destroyed along with the mirror!")
-		qdel(S)
+	to_chat(reflected, span_userdanger("Your world shatters."))
+	qdel(reflected)
 	return ..()
-
 
 /obj/item/dopmirror/ui_action_click(mob/living/user, action)
 	if(istype(action, /datum/action/item_action/mirrorrecall))
 		if(next_recall > world.time)
 			to_chat(user, span_warning("You can't do that yet!"))
 			return
-		if(reflection.len < 1)
+		if(!reflected)
 			to_chat(user, span_notice("You don't have anything to call back!"))
 			return
 		playsound(src, 'sound/effects/glassknock.ogg', 75)
 		to_chat(user, span_notice("You knock on the mirror and call your reflection back into focus."))
-		for(var/mob/living/simple_animal/hostile/double/doppelganger in reflection)
-			doppelganger.forceMove(src)
+		reflected.forceMove(src)
 		update_icon(inhabited = TRUE)
 		next_recall = world.time + COOLDOWN_RECALL
+	if(istype(action, /datum/action/item_action/rerollmirror))
+		if(!reflected)
+			to_chat(user, span_notice("The mirror is dormant."))
+			return
+		if(tgui_alert(user, "Are you sure? This will likely replace the current reflection with someone else!",,list("Yes","No")) != "Yes")
+			return
+		to_chat(user, span_notice("You shake the mirror violently."))
+		var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the living reflection in service of [user.real_name]?", ROLE_PAI, null, FALSE, 100, POLL_IGNORE_POSSESSED_BLADE)
+		if (!LAZYLEN(candidates))
+			to_chat(src, span_notice("There were no other residents willing to work with you. Looks like you're stuck with this one for now."))
+			return
+		var/mob/dead/observer/C = pick(candidates)
+		to_chat(reflected, span_notice("Your host shook you off, and you were replaced by one of your neighbors. Looks like they weren't happy with your performance."))
+		to_chat(user, span_notice(span_bold("The reflection in the mirror looks back at you differently now.")))
+		log_game("[key_name(user)] has reset their reflection, it is now [key_name(reflected)] (initiated by [user])")
+		reflected.key = C.key
 
 /obj/item/dopmirror/update_icon(inhabited = FALSE)
+	. = ..()
 	if(inhabited == TRUE)
 		icon_state = "mirrornormal"
 		return
 	icon_state = "mirrorcrack"
 	return
+
 
 /obj/item/dopmirror/dropped(mob/user, silent)
 	. = ..()
@@ -89,6 +101,12 @@
 	desc = "Bring the reflection back into the mirror."
 	button_icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
 	button_icon_state = "mirrornormal"
+
+/datum/action/item_action/rerollmirror
+	name = "Shake Mirror"
+	desc = "Attempt to have a different mirror resident replace the current one."
+	button_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon_state = "mindswap"
 
 //doppelganger code
 
@@ -219,6 +237,7 @@
 	if(doppelganger.mirror.original == null) //for the sake of avoiding setting up play dates with megafauna
 		to_chat(doppelganger, span_warning("You can't leave the mirror without an original to copy!"))
 		return
+	doppelganger.hibernating = FALSE	
 	doppelganger.mirror.update_icon()
 	if(died == TRUE)
 		next_appearance = world.time + RESET_TIME
