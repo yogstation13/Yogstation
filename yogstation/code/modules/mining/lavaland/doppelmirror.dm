@@ -1,4 +1,4 @@
-#define COOLDOWN_RECALL 50
+#define COOLDOWN_RECALL 5 SECONDS
 /obj/item/dopmirror
 	name = "ominous mirror"
 	desc = "What do you see looking back at you?"
@@ -194,7 +194,7 @@
 /mob/living/simple_animal/hostile/double/AttackingTarget()
 	..()
 	var/mob/living/simple_animal/M = target
-	if(ismegafauna(M) || istype(M, /mob/living/simple_animal/hostile/asteroid))
+	if(ismegafauna(M) || istype(M, /mob/living/simple_animal/hostile/asteroid) || istype(M, /mob/living/simple_animal/hostile/yog_jungle))
 		M.apply_damage(melee_fauna_bonus, BRUTE)
 
 
@@ -221,7 +221,7 @@
 	playsound(doppelganger, 'sound/effects/glassknock.ogg', 75)
 
 
-#define RESET_TIME 200
+#define RESET_TIME 20 SECONDS
 /datum/action/innate/appear
 	name = "Exit Mirror"
 	button_icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
@@ -234,8 +234,13 @@
 	if(next_appearance > world.time)
 		to_chat(doppelganger, span_warning("You can't leave the mirror yet!"))
 		return
-	if(doppelganger.mirror.original == null) //for the sake of avoiding setting up play dates with megafauna
-		to_chat(doppelganger, span_warning("You can't leave the mirror without an original to copy!"))
+	if(doppelganger.mirror.original == null) 
+		if(!(doppelganger.hibernating))
+			return
+		if(doppelganger.mirror.original.stat != CONSCIOUS)
+			to_chat(doppelganger, span_warning("You wouldn't be able to do anything as they are now!"))
+			return
+		to_chat(doppelganger, span_warning("You can't leave the mirror without a host to copy!"))
 		return
 	doppelganger.hibernating = FALSE	
 	doppelganger.mirror.update_icon()
@@ -247,7 +252,7 @@
 	doppelganger.alpha = 130
 
 
-#define SWAP_TIME 150
+#define SWAP_TIME 15 SECONDS
 /datum/action/innate/swap
 	name = "Swap"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
@@ -289,5 +294,5 @@
 /obj/projectile/doppshot/on_hit(atom/target, blocked = FALSE)
 	var/mob/living/M = target
 	M.apply_damage(actual_damage, BRUTE)
-	if(ismegafauna(M) || istype(M, /mob/living/simple_animal/hostile/asteroid))
+	if(ismegafauna(M) || istype(M, /mob/living/simple_animal/hostile/asteroid) || istype(M, /mob/living/simple_animal/hostile/yog_jungle))
 		M.apply_damage(ranged_fauna_bonus, BRUTE)
