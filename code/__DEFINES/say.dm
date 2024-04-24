@@ -128,3 +128,6 @@
 #define BUBBLE_DARKSPAWN "darkspawn"
 #define BUBBLE_GUARDIAN "guardian"
 #define BUBBLE_BLOB "blob"
+
+
+#define MAX_FLAVOR_LEN 4096		//double the maximum message length.
