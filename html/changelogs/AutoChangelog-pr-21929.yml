@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - bugfix: "Non-edible grown items (e.g. cotton/durathread) properly inherit seed stats/traits."
