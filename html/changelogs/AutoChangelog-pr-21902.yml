@@ -1,0 +1,4 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - tweak: "area's contained turfs is now a list of z-levels with the corresponding turfs in hopes of reducing strain on the server"
