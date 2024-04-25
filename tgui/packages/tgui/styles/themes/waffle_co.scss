@@ -28,7 +28,7 @@ $scrollbar-color-multiplier: 0.5;
 );
 
 @use '../base.scss' with (
-  $color-bg: rgb(255, 238, 1),
+  $color-bg: rgba(194, 184, 46, 0.555),
   $color-bg-grad-spread: 12%,
   //$border-radius: 0,
 );
@@ -45,13 +45,13 @@ $scrollbar-color-multiplier: 0.5;
     'color-transparent-text': rgba(227, 240, 255, 0.75),
     'color-disabled': #363636,
     'color-selected': #465899,
-    'color-caution': #ffe600,
+    'color-caution': rgba(194, 184, 46, 0.555),
   ));
   @include meta.load-css('../components/ProgressBar.scss', $with: (
     'color-default-fill': rgb(255, 132, 153, 0.75),
   ));
   @include meta.load-css('../components/Section.scss', $with: (
-    'background-color': rgba(255, 132, 153, 0.75),
+    'background-color': rgba(255, 132, 153, 0.74),
   ));
   @include meta.load-css('../components/Tooltip.scss', $with: (
     'background-color': rgba(255, 251, 0, 0.75),
@@ -93,13 +93,13 @@ $scrollbar-color-multiplier: 0.5;
       $lightness: 10% * $scrollbar-color-multiplier);
 
     scrollbar-3dlight-color: color.scale(
-      rgb(255, 238, 0),
+      rgba(194, 184, 46, 0.555),
       $lightness: 0% * $scrollbar-color-multiplier);
     scrollbar-highlight-color: color.scale(
-      rgb(255, 251, 0),
+      rgba(194, 184, 46, 0.555),
       $lightness: 0% * $scrollbar-color-multiplier);
     scrollbar-track-color: color.scale(
-      #fffb00,
+      rgba(194, 184, 46, 0.555),
       $lightness: -25% * $scrollbar-color-multiplier);
       scrollbar-arrow-color: color.scale(
       pink,
@@ -132,6 +132,11 @@ $scrollbar-color-multiplier: 0.5;
   .Flex {
     color: white;
     background-color: rgba(0, 0, 0, 0.0);
+  }
+  .BlockQuote {
+    color: white;
+
+
   }
 
 }

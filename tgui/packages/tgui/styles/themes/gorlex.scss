@@ -22,7 +22,7 @@ $scrollbar-color-multiplier: 0.5;
   $label: #78866b,
   $good: #78866b,
 
-  $bad: red,
+  $bad: #494e49,
   // $fg-map-keys: (),
   // $bg-map-keys: (),
 );
@@ -45,13 +45,13 @@ $scrollbar-color-multiplier: 0.5;
     'color-transparent-text': rgba(227, 240, 255, 0.75),
     'color-disabled': #363636,
     'color-selected': #465899,
-    'color-caution': #be6209,
+    'color-caution': #494e49,
   ));
   @include meta.load-css('../components/ProgressBar.scss', $with: (
     'color-default-fill': #78866b,
   ));
   @include meta.load-css('../components/Section.scss', $with: (
-    'background-color': rgba(173, 29, 29, 0.75),
+    'background-color': #494e49,
   ));
   @include meta.load-css('../components/Tooltip.scss', $with: (
     'background-color': #78866b,
@@ -66,10 +66,10 @@ $scrollbar-color-multiplier: 0.5;
 
   .Section {
     color: black;
-    outline: base.em(2px) inset rgb(255, 132, 153);
+    outline: base.em(2px) inset #494e49;
   }
   .Button {
-    color: rgb(214, 26, 57);
+    color: white;
     background-color: #78866b;
   }
 
@@ -109,11 +109,11 @@ $scrollbar-color-multiplier: 0.5;
       $lightness: 10% * $scrollbar-color-multiplier);
   }
   .Tab {
-    color: rgb(173, 8, 8);
+    color: white;
     background-color: #78866b;
   }
   .Tab--selected {
-    color: black;
+    color: yellow;
     background-color: #78866b;
   }
   .Box {
