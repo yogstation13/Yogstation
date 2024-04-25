@@ -1,0 +1,5 @@
+author: "Addust"
+delete-after: true 
+changes: 
+  - rscadd: "lore terminals have been added to the ancient space station (which you plebians call charlie station even though that's just the module with cryogenic stasis)"
+  - rscadd: "the code also now takes up a bit less space because somethingsomething wizard magic on the spawners that you cant see but coders can see"
