@@ -1,4 +1,0 @@
-author: "JohnFulpWillard"
-delete-after: true 
-changes: 
-  - bugfix: "Mirage drive now deals damage, and properly takes armor into account (even if it's really not worth jack)."

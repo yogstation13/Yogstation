@@ -193,11 +193,8 @@
 	for(var/turf/room_turf in (interior + exterior))
 		var/area/old_area = get_area(room_turf)
 		if(area_ref != old_area && !generator_ref.areas_included.Find(old_area))
-			area_ref.contents += room_turf
-			area_ref.contained_turfs += room_turf
-			old_area.turfs_to_uncontain += room_turf
 			room_turf.change_area(old_area, area_ref)
-	
+
 	return TRUE
 
 ///For each tile in the exterior, build a wall to keep the assistants out. Or a window if the room theme calls for it

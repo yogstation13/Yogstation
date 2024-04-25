@@ -736,7 +736,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	r_pocket = /obj/item/flashlight/glowstick
 
 //Ancient cryogenic sleepers. Players become NT crewmen from a hundred year old space station, now on the verge of collapse.
-/obj/effect/mob_spawn/human/oldsec
+/obj/effect/mob_spawn/human/oldstation
 	name = "old cryogenics pod"
 	desc = "A humming cryo pod. You can barely recognise a security uniform underneath the built up ice. The machine is attempting to wake up its occupant."
 	mob_name = "a security officer"
@@ -758,20 +758,13 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	l_pocket = /obj/item/assembly/flash/handheld
 	assignedrole = "Ancient Crew"
 
-/obj/effect/mob_spawn/human/oldsec/Destroy()
+/obj/effect/mob_spawn/human/oldstation/Destroy()
 	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
 	return ..()
 
-/obj/effect/mob_spawn/human/oldeng
-	name = "old cryogenics pod"
+/obj/effect/mob_spawn/human/oldstation/eng
 	desc = "A humming cryo pod. You can barely recognise an engineering uniform underneath the built up ice. The machine is attempting to wake up its occupant."
 	mob_name = "an engineer"
-	icon = 'icons/obj/machines/sleeper.dmi'
-	icon_state = "sleeper"
-	roundstart = FALSE
-	death = FALSE
-	random = TRUE
-	mob_species = /datum/species/human
 	short_desc = "You are an engineer working for Nanotrasen, stationed onboard a state of the art research station."
 	flavour_text = "You vaguely recall rushing into a cryogenics pod due to an oncoming radiation storm. The last thing \
 	you remember is the station's Artificial Program telling you that you would only be asleep for eight hours. As you open \
@@ -784,20 +777,9 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	l_pocket = /obj/item/tank/internals/emergency_oxygen
 	assignedrole = "Ancient Crew"
 
-/obj/effect/mob_spawn/human/oldeng/Destroy()
-	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
-	return ..()
-
-/obj/effect/mob_spawn/human/oldsci
-	name = "old cryogenics pod"
+/obj/effect/mob_spawn/human/oldstation/science
 	desc = "A humming cryo pod. You can barely recognise a science uniform underneath the built up ice. The machine is attempting to wake up its occupant."
 	mob_name = "a scientist"
-	icon = 'icons/obj/machines/sleeper.dmi'
-	icon_state = "sleeper"
-	roundstart = FALSE
-	death = FALSE
-	random = TRUE
-	mob_species = /datum/species/human
 	short_desc = "You are a scientist working for Nanotrasen, stationed onboard a state of the art research station."
 	flavour_text = "You vaguely recall rushing into a cryogenics pod due to an oncoming radiation storm. \
 	The last thing you remember is the station's Artificial Program telling you that you would only be asleep for eight hours. As you open \
@@ -808,10 +790,6 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	id = /obj/item/card/id/away/old/sci
 	l_pocket = /obj/item/stack/medical/bruise_pack
 	assignedrole = "Ancient Crew"
-
-/obj/effect/mob_spawn/human/oldsci/Destroy()
-	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
-	return ..()
 
 /obj/effect/mob_spawn/human/pirate
 	name = "space pirate sleeper"
