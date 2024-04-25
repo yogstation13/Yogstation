@@ -105,6 +105,7 @@
 #define DB_FLAG_EXEMPT 1
 
 #define DEFAULT_CYBORG_NAME "Default Cyborg Name"
+#define DEFAULT_SYNTHETIC_NAME "Default Synthetic Name"
 
 
 //Job preferences levels

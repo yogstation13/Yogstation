@@ -39,21 +39,24 @@ GLOBAL_LIST_EMPTY(synthetic_added_access)
 
 /datum/job/synthetic/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
 	. = ..()
-
-	addtimer(CALLBACK(src, PROC_REF(synth_name_choose), H, M), 1 SECONDS)
 	H.remove_all_quirks()
+	setname()
 
-/datum/job/synthetic/proc/synth_name_choose(mob/living/H, mob/M)
-	var/newname = sanitize_name(reject_bad_text(stripped_input(M, "Please input your name.", "Name change", H.real_name, MAX_NAME_LEN)))
+/datum/job/synthetic/proc/setname(client/C)
+	var/new_name = ""
+	var/custom_name = ""
+	if(!C)
+		C = client
+	if(custom_name)
+		new_name = custom_name
+	if(new_name == "" && C && C.prefs.read_preference(/datum/preference/name/synthetic) != DEFAULT_SYNTHETIC_NAME)
+		apply_pref_name(/datum/preference/name/synthetic, C)
+		return
+	if(!new_name)
+		new_name = get_standard_name()
 
-	H.fully_replace_character_name(H.real_name, newname)
-	if(iscarbon(H)) //doing these two JUST to be sure you dont have edge cases of your DNA and mind not matching your new name, somehow
-		var/mob/living/carbon/C = H
-		if(C?.dna)
-			C?.dna?.real_name = newname
-	if(H?.mind)
-		H?.mind?.name = newname
-
+	real_name = new_name
+	name = real_name
 
 /datum/job/synthetic/get_access()
 	return GLOB.synthetic_base_access
@@ -81,9 +84,6 @@ GLOBAL_LIST_EMPTY(synthetic_added_access)
 	if(core)
 		core.network.add_synth(H)
 
-	
-
-	
 
 /datum/outfit/job/synthetic/naked
 	name = "Synthetic (Naked)"
@@ -99,7 +99,6 @@ GLOBAL_LIST_EMPTY(synthetic_added_access)
 	backpack = null
 	satchel  = null
 	duffelbag = null
-
 
 /datum/outfit/job/synthetic/naked/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	return
