@@ -151,11 +151,9 @@
 	savefile_key = "synthetic_name"
 
 	allow_numbers = TRUE
-	can_randomize = FALSE
-
 	explanation = "Synthetic name"
 	group = "silicons"
 	relevant_job = /datum/job/synthetic
 
 /datum/preference/name/synthetic/create_default_value()
-	return DEFAULT_SYNTHETIC_NAME
+	return pick(GLOB.synthetic_names)
