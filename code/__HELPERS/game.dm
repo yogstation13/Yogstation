@@ -1,4 +1,8 @@
-#define CULT_POLL_WAIT 2400
+///Time before being allowed to select a new cult leader again
+#define CULT_POLL_WAIT (240 SECONDS)
+
+/// Returns either the error landmark or the location of the room. Needless to say, if this is used, it means things have gone awry.
+#define GET_ERROR_ROOM ((locate(/obj/effect/landmark/error) in GLOB.landmarks_list) || locate(4,4,1))
 
 /proc/get_area_name(atom/X, format_text = FALSE, is_sensor = FALSE)
 	var/area/A = isarea(X) ? X : get_area(X)

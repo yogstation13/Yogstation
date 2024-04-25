@@ -35,6 +35,8 @@ SUBSYSTEM_DEF(mapping)
 
 	var/list/shuttle_templates = list()
 	var/list/shelter_templates = list()
+
+	///List of all holodeck map templates.
 	var/list/holodeck_templates = list()
 
 	var/list/station_minimaps = list()
@@ -229,7 +231,7 @@ SUBSYSTEM_DEF(mapping)
 	// Cache for sonic speed
 	var/list/unused_turfs = src.unused_turfs
 	var/list/world_contents = GLOB.areas_by_type[world.area].contents
-	var/list/world_turf_contents = GLOB.areas_by_type[world.area].contained_turfs
+	var/list/world_turf_contents_by_z = GLOB.areas_by_type[world.area].turfs_by_zlevel
 	var/list/lists_to_reserve = src.lists_to_reserve
 	var/index = 0
 	while(index < length(lists_to_reserve))
@@ -245,10 +247,12 @@ SUBSYSTEM_DEF(mapping)
 			LAZYINITLIST(unused_turfs["[T.z]"])
 			unused_turfs["[T.z]"] |= T
 			var/area/old_area = T.loc
-			old_area.turfs_to_uncontain += T
+			LISTASSERTLEN(old_area.turfs_to_uncontain_by_zlevel, T.z, list())
+			old_area.turfs_to_uncontain_by_zlevel[T.z] += T
 			T.turf_flags = UNUSED_RESERVATION_TURF
 			world_contents += T
-			world_turf_contents += T
+			LISTASSERTLEN(world_turf_contents_by_z, T.z, list())
+			world_turf_contents_by_z[T.z] += T
 			packet.len--
 			packetlen = length(packet)
 
@@ -359,6 +363,7 @@ SUBSYSTEM_DEF(mapping)
 	unused_turfs = SSmapping.unused_turfs
 	turf_reservations = SSmapping.turf_reservations
 	used_turfs = SSmapping.used_turfs
+	holodeck_templates = SSmapping.holodeck_templates
 
 	config = SSmapping.config
 	next_map_config = SSmapping.next_map_config
@@ -593,6 +598,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	preloadRuinTemplates()
 	preloadShuttleTemplates()
 	preloadShelterTemplates()
+	preloadHolodeckTemplates()
 
 /datum/controller/subsystem/mapping/proc/preloadRuinTemplates()
 	// Still supporting bans by filename
@@ -663,6 +669,15 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 		shelter_templates[S.shelter_id] = S
 		map_templates[S.shelter_id] = S
+
+/datum/controller/subsystem/mapping/proc/preloadHolodeckTemplates()
+	for(var/datum/map_template/holodeck/holodeck_type as anything in subtypesof(/datum/map_template/holodeck))
+		if(!(initial(holodeck_type.mappath)))
+			continue
+		var/datum/map_template/holodeck/holo_template = new holodeck_type()
+
+		holodeck_templates[holo_template.template_id] = holo_template
+		map_templates[holo_template.template_id] = holo_template
 
 //Manual loading of away missions.
 /client/proc/admin_away()
@@ -861,12 +876,14 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	// Faster
 	if(space_guaranteed)
 		var/area/global_area = GLOB.areas_by_type[world.area]
-		global_area.contained_turfs += Z_TURFS(z_level)
+		LISTASSERTLEN(global_area.turfs_by_zlevel, z_level, list())
+		global_area.turfs_by_zlevel[z_level] = Z_TURFS(z_level)
 		return
 
 	for(var/turf/to_contain as anything in Z_TURFS(z_level))
 		var/area/our_area = to_contain.loc
-		our_area.contained_turfs += to_contain
+		LISTASSERTLEN(our_area.turfs_by_zlevel, z_level, list())
+		our_area.turfs_by_zlevel[z_level] += to_contain
 
 /datum/controller/subsystem/mapping/proc/update_plane_tracking(datum/space_level/update_with)
 	// We're essentially going to walk down the stack of connected z levels, and set their plane offset as we go
@@ -1006,9 +1023,12 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		qdel(query_previous_maps)
 	return previous_maps
 
-/client/proc/DebugMapWeights()
+/client/proc/debug_map_weights()
 	set name = "See Map Weights"
 	set category = "Misc.Server Debug"
 	var/weights = SSmapping.get_map_weights()
+	if(!length(weights))
+		to_chat(src, "Map Weights list is empty.")
+		return
 	for(var/key in weights)
-		to_chat(src, "[key]: weights[key]")
+		to_chat(src, "[key]: [weights[key]]")

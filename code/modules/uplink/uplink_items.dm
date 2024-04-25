@@ -340,8 +340,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 
 /datum/uplink_item/dangerous/gasharpoon
-	name = "Gasharpoon"
-	desc = "A repurposed space-whaling tool attatched to a glove, can be used as a sturdy weapon in both hands, or worn as a glove to allow access to it's harpoon."
+	name = "Gas-Harpoon"
+	desc = "A repurposed space-whaling tool attached to a glove. \
+		It can be used as a sturdy weapon in both hands, or worn as a glove to activate its deadly harpoon, capable of reeling in even the biggest catches."
 	item = /obj/item/clothing/gloves/gasharpoon
 	cost = 10
 	surplus = 0
@@ -1865,10 +1866,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/device_tools/mdrive
 	name = "Mirage Drive"
-	desc = "An experimental device created as a byproduct of research into faster than light travel. Utilizing magnetic coils, the mirage drive is able to generate \
-	kinetic energy and use it in a way that moves the user to their destination at a speed comparable to teleportation, so long as an unobstructed path between the\
-	 user and the target exists."
-	item = /obj/item/mdrive
+	desc = "An experimental device created as a byproduct of research into faster than light travel. \
+		Utilizing magnetic coils, the mirage drive is able to generate kinetic energy and use it in a \
+		way that moves the user to their destination at a speed comparable to teleportation, so long \
+		as an unobstructed path between the user and the target exists."
+	item = /obj/item/mirage_drive
 	cost = 7
 	manufacturer = /datum/corporation/traitor/waffleco
 
@@ -2460,6 +2462,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 14							//High cost because of the potential for extreme damage in the hands of a skilled scientist.
 	manufacturer = /datum/corporation/traitor/waffleco
 	restricted_roles = list("Research Director", "Scientist")
+
+/datum/uplink_item/role_restricted/armoredmechsuit
+	name = "Cybersun Mech Pilot's Suit"
+	desc = "A black and red stylishly armored mech pilot's suit used by Cybersun's elite mecha pilots. Provides potent protection both inside and outside a mech."
+	item = /obj/item/clothing/under/mech_suit/cybersun
+	cost = 4
+	manufacturer = /datum/corporation/traitor/cybersun
+	restricted_roles = list("Research Director", "Scientist", "Roboticist")
 
 /datum/uplink_item/role_restricted/gorillacubes
 	name = "Box of Gorilla Cubes"
