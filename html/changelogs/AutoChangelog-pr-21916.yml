@@ -1,5 +1,0 @@
-author: "cowbot92"
-delete-after: true 
-changes: 
-  - rscadd: "Adds a new traitor item: Cybersun mech pilot's suit"
-  - bugfix: "fixes durathread jumpsuits not getting full wound protection."

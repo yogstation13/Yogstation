@@ -466,7 +466,7 @@
 		owner.remove_status_effect(/datum/status_effect/confusion)
 		severity = 0
 	else if(!owner.can_block_magic(charge_cost = 0) && owner.stat != DEAD && severity)
-		var/static/hum = get_sfx('sound/effects/screech.ogg') //same sound for every proc call
+		var/static/hum = 'sound/effects/screech.ogg' //same sound for every proc call
 		if(owner.getToxLoss() > MANIA_DAMAGE_TO_CONVERT)
 			if(is_eligible_servant(owner))
 				to_chat(owner, "<span class='sevtug[span_part]'>\"[text2ratvar("You are mine and his, now.")]\"</span>")

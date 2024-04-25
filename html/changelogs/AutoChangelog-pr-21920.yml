@@ -1,4 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - bugfix: "Fix pda mesaages being sent twice"

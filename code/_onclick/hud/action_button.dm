@@ -63,7 +63,7 @@
 //	if(LAZYACCESS(modifiers, RIGHT_CLICK)) FUCK COMBAT MODE!!!!
 //		trigger_flags |= TRIGGER_SECONDARY_ACTION
 	linked_action.Trigger()
-	SEND_SOUND(usr, get_sfx("terminal_type"))
+	SEND_SOUND(usr, get_sfx(SFX_TERMINAL_TYPE))
 	transform = turn(matrix() * 0.9, pick(-8, 8))
 	alpha = 200
 	animate(src, transform = matrix(), time=0.4 SECONDS, alpha=255)

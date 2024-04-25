@@ -468,7 +468,7 @@
 		total_fuel_power += rod.fuel_power
 	return total_fuel_power
 
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/relay(var/sound, var/message=null, loop = FALSE, channel = null) //Sends a sound + text message to the crew of a ship
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/relay(sound, message=null, loop = FALSE, channel = null) //Sends a sound + text message to the crew of a ship
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z)
 			if(!isinspace(M))

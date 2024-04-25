@@ -521,7 +521,7 @@
 	var/area/current_area = get_area(src)
 	if(current_area == bloodsuckerdatum.bloodsucker_lair_area)
 		return
-	bloodsuckerdatum.bloodsucker_lair_area.contained_turfs += current_area.contained_turfs
+	bloodsuckerdatum.bloodsucker_lair_area.turfs_by_zlevel[z] += current_area.turfs_by_zlevel[z]
 
 /obj/structure/bloodsucker/bloodstatue/command/unbolt()
 	. = ..()
@@ -529,7 +529,7 @@
 	var/area/current_area = get_area(src)
 	if(current_area == bloodsuckerdatum.bloodsucker_lair_area)
 		return
-	bloodsuckerdatum.bloodsucker_lair_area.turfs_to_uncontain += current_area.contained_turfs
+	bloodsuckerdatum.bloodsucker_lair_area.turfs_to_uncontain_by_zlevel[z] += current_area.turfs_by_zlevel[z]
 
 /obj/structure/bloodsucker/bloodstatue/greytide
 	name = "greytider bust"
