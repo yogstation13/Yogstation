@@ -198,6 +198,10 @@
 	if(ismegafauna(M) || istype(M, /mob/living/simple_animal/hostile/asteroid) || istype(M, /mob/living/simple_animal/hostile/yog_jungle))
 		M.apply_damage(melee_fauna_bonus, BRUTE)
 
+/mob/living/simple_animal/hostile/double/bullet_act(obj/projectile/P)
+	src.adjustBruteLoss(0.25* P.damage)
+	return BULLET_ACT_FORCE_PIERCE	
+
 
 /mob/living/simple_animal/hostile/double/dust(just_ash, drop_items, force)
 	death()
