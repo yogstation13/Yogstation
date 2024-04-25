@@ -1,5 +1,14 @@
-GLOBAL_LIST_INIT(synthetic_base_access, list(ACCESS_MAINT_TUNNELS, ACCESS_KITCHEN, ACCESS_CREMATORIUM, ACCESS_JANITOR, ACCESS_BAR, ACCESS_CHAPEL_OFFICE, ACCESS_LIBRARY, ACCESS_NETWORK, ACCESS_MINISAT, ACCESS_TCOMSAT, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_EVA, ACCESS_CREMATORIUM, ACCESS_HYDROPONICS, ACCESS_MANUFACTURING, ACCESS_THEATRE, ACCESS_TCOM_ADMIN))
+GLOBAL_LIST_INIT(synthetic_base_access, list(
+	ACCESS_MAINT_TUNNELS, ACCESS_KITCHEN, ACCESS_CREMATORIUM,
+	ACCESS_JANITOR, ACCESS_BAR, ACCESS_CHAPEL_OFFICE,
+	ACCESS_LIBRARY, ACCESS_NETWORK, ACCESS_MINISAT,
+	ACCESS_TCOMSAT, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_EVA,
+	ACCESS_CREMATORIUM, ACCESS_HYDROPONICS, ACCESS_MANUFACTURING,
+	ACCESS_THEATRE, ACCESS_TCOM_ADMIN, ACCESS_AI_UPLOAD))
+
 GLOBAL_LIST_EMPTY(synthetic_added_access)
+
+
 /datum/job/synthetic
 	title = "Synthetic"
 	description = "Watch over the crew, carry out mundane tasks that nobody else want to. Do no harm."
@@ -39,24 +48,8 @@ GLOBAL_LIST_EMPTY(synthetic_added_access)
 
 /datum/job/synthetic/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
 	. = ..()
+	H.apply_pref_name(/datum/preference/name/synthetic, M.client)
 	H.remove_all_quirks()
-	setname()
-
-/datum/job/synthetic/proc/setname(client/C)
-	var/new_name = ""
-	var/custom_name = ""
-	if(!C)
-		C = client
-	if(custom_name)
-		new_name = custom_name
-	if(new_name == "" && C && C.prefs.read_preference(/datum/preference/name/synthetic) != DEFAULT_SYNTHETIC_NAME)
-		apply_pref_name(/datum/preference/name/synthetic, C)
-		return
-	if(!new_name)
-		new_name = get_standard_name()
-
-	real_name = new_name
-	name = real_name
 
 /datum/job/synthetic/get_access()
 	return GLOB.synthetic_base_access
@@ -64,14 +57,12 @@ GLOBAL_LIST_EMPTY(synthetic_added_access)
 
 /datum/outfit/job/synthetic
 	name = "Synthetic"
-
 	jobtype = /datum/job/synthetic
+
+	id_type = /obj/item/card/id/silver/synthetic
 	ears = /obj/item/radio/headset/headset_synthetic
-
 	suit = /obj/item/clothing/suit/space/hardsuit/synth
-
 	pda_type = null
-	id_type = /obj/item/card/id/synthetic
 
 /datum/outfit/job/synthetic/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()

@@ -25616,6 +25616,7 @@
 /obj/machinery/light_switch{
 	pixel_y = -23
 	},
+/obj/effect/landmark/start/cyborg,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "gmQ" = (
@@ -27911,7 +27912,6 @@
 /turf/open/space/basic,
 /area/space)
 "heh" = (
-/obj/effect/landmark/start/cyborg,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/cable{
@@ -28001,6 +28001,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 6
 	},
+/obj/effect/landmark/start/synthetic,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "hfy" = (
@@ -36532,6 +36533,7 @@
 	dir = 4;
 	pixel_x = -24
 	},
+/obj/effect/landmark/start/synthetic,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "kfW" = (
