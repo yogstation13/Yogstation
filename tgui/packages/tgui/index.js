@@ -30,6 +30,7 @@ import './styles/themes/waffle_co.scss';
 import './styles/themes/cyber_sun.scss';
 import './styles/themes/vahlen.scss';
 import './styles/themes/gorlex.scss';
+import './styles/themes/bosyn.scss';
 
 import { perf } from 'common/perf';
 import { setupHotReloading } from 'tgui-dev-server/link/client.cjs';

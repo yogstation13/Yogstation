@@ -10,7 +10,9 @@
 		TRAITOR_FACTION_WAFFLE,
 		TRAITOR_FACTION_CYBERSUN,
 		TRAITOR_FACTION_VAHLEN,
-		TRAITOR_FACTION_GORLEX
+		TRAITOR_FACTION_GORLEX,
+		TRAITOR_FACTION_SELF,
+		TRAITOR_FACTION_BOSYN
 	)
 	/// A list of motivation types for this backstory, used for filtering and searching
 	var/list/motivations = list()

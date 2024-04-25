@@ -76,4 +76,4 @@
 	description = "You're employed by a long forgotten company with brave ideas and experimental technology. \n\
 	Eclipsed by the organizations we've helped form, you must revitalize our legacy. Make sure to remember: Actions speak louder than words."
 	key = TRAITOR_FACTION_BOSYN
-	faction_theme = PDA_THEME_SYNDICATE
+	faction_theme = PDA_THEME_BOSYN
