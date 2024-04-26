@@ -1083,7 +1083,7 @@
 
 /obj/item/borg/cyborg_omnitool/medical
 	name = "surgical omni-toolset"
-	desc = "A set of surgical tools used by cyborgs to operate on various surgical operations."
+	desc = "A set of surgical tools used by cyborgs to perform various surgical operations."
 
 /obj/item/borg/cyborg_omnitool/medical/Initialize(mapload)
 	. = ..()
