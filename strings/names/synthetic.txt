@@ -1,4 +1,5 @@
 Alpha
+Beta
 Bravo
 Ceti
 Delta
@@ -19,5 +20,6 @@ Sigma
 Tau
 Theta
 Upsilon
+Xata
 Ypsilon
 Zeta
