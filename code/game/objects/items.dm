@@ -216,8 +216,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	else if (!istype(embedding, /datum/embedding_behavior))
 		stack_trace("Invalid type [embedding.type] found in .embedding during /obj/item Initialize(mapload)")
 
-/obj/item/Destroy()
-	item_flags &= ~DROPDEL	//prevent reqdels
+/obj/item/Destroy(force=FALSE)
+	item_flags &= ~DROPDEL //prevent reqdels
 	if(ismob(loc))
 		var/mob/m = loc
 		m.temporarilyRemoveItemFromInventory(src, TRUE)
