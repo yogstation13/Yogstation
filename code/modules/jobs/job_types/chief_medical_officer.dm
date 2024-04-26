@@ -52,6 +52,8 @@
 	)
 
 	smells_like = "blood-soaked stress"
+	
+	bounty_types = CIV_JOB_MED
 
 /datum/outfit/job/cmo
 	name = "Chief Medical Officer"

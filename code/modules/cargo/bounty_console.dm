@@ -6,38 +6,25 @@
 	icon_screen = "bounty"
 	circuit = /obj/item/circuitboard/computer/bounty
 	light_color = "#E2853D"//orange
-	var/printer_ready = 0 //cooldown var
-	var/static/datum/bank_account/cargocash
+	var/obj/machinery/bounty_packager/linked_packager
 
 /obj/machinery/computer/bounty/Initialize(mapload)
 	. = ..()
-	printer_ready = world.time + PRINTER_TIMEOUT
-	cargocash = SSeconomy.get_dep_account(ACCOUNT_CAR)
+	if(mapload)
+		addtimer(CALLBACK(src, .proc/linkPackager))
 
-/obj/machinery/computer/bounty/proc/print_paper()
-	new /obj/item/paper/bounty_printout(loc)
-
-/obj/item/paper/bounty_printout
-	name = "paper - Bounties"
-
-/obj/item/paper/bounty_printout/Initialize(mapload)
-	. = ..()
-	info = "<h2>Nanotrasen Cargo Bounties</h2></br>"
-	update_appearance(UPDATE_ICON)
-	for(var/datum/bounty/B in GLOB.bounties_list)
-		if(B.claimed)
-			continue
-		info += {"<h3>[B.name]</h3>
-		<ul><li>Reward: [B.reward_string()]</li>
-		<li>Completed: [B.completion_string()]</li></ul>"}
+/obj/machinery/computer/bounty/proc/linkPackager()
+	if(GLOB.bounty_packager && !GLOB.bounty_packager.linked_console)
+		linked_packager = GLOB.bounty_packager
+		linked_packager.linked_console = src
 
 /obj/machinery/computer/bounty/proc/get_list_to_use()
 	return GLOB.bounties_list
 
 /obj/machinery/computer/bounty/ui_interact(mob/user, datum/tgui/ui)
-	var/list/list_to_use = get_list_to_use()
-	if(!list_to_use.len)
-		setup_bounties()
+	var/obj/item/card/id/id = user.get_idcard()
+	if(id && id.registered_account && !id.registered_account.bounties)
+		id.registered_account.generate_bounties()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "CargoBountyConsole", name)
@@ -46,23 +33,45 @@
 /obj/machinery/computer/bounty/ui_data(mob/user)
 	var/list/data = list()
 	var/list/bountyinfo = list()
-	for(var/datum/bounty/B in get_list_to_use())
-		bountyinfo += list(list("name" = B.name, "description" = B.description, "reward_string" = B.reward_string(), "completion_string" = B.completion_string() , "claimed" = B.claimed, "can_claim" = B.can_claim(), "priority" = B.high_priority, "bounty_ref" = REF(B)))
-	data["stored_cash"] = cargocash.account_balance
+	var/obj/item/card/id/id = user.get_idcard()
+	for(var/datum/bounty/B in id?.registered_account?.bounties)
+		bountyinfo += list(list("name" = B.name, "description" = B.description, "reward_string" = B.reward_string(), "completion_string" = B.completion_string() , "claimed" = B.claimed, "selected" = (B == linked_packager?.selected_bounty), "priority" = B.high_priority, "bounty_ref" = REF(B)))
 	data["bountydata"] = bountyinfo
+	data["is_packager"] = !!linked_packager
+	data["has_id"] = !!id
+	data["orig_job"] = id?.originalassignment
+	data["job"] = id?.assignment
+	data["name"] = id?.registered_name
 	return data
 
 /obj/machinery/computer/bounty/ui_act(action,params)
 	if(..())
 		return
+	var/obj/item/card/id/id = usr.get_idcard()
 	switch(action)
-		if("ClaimBounty")
-			var/datum/bounty/cashmoney = locate(params["bounty"]) in get_list_to_use()
-			if(cashmoney)
-				cashmoney.claim(usr)
+		if("SelectBounty")
+			if(!linked_packager || !id?.registered_account?.bounties)
+				return FALSE
+			linked_packager.selected_bounty = locate(params["bounty"]) in id.registered_account.bounties
 			return TRUE
-		if("Print")
-			if(printer_ready < world.time)
-				printer_ready = world.time + PRINTER_TIMEOUT
-				print_paper()
-				return
+		if("ReloadBounties")
+			if(!id?.registered_account)
+				return FALSE
+			var/result = id.registered_account.generate_bounties()
+			if(result != TRUE)
+				say(result)
+				return FALSE
+			return TRUE
+
+/obj/machinery/computer/bounty/multitool_act(mob/living/user, obj/item/I)
+	var/obj/item/multitool/multitool = I
+	if(!istype(multitool)) return FALSE
+	if(!istype(multitool.buffer, /obj/machinery/bounty_packager))
+		multitool.buffer = src
+		to_chat(user, span_notice("[src] stored in [I]"))
+		return TRUE
+
+	linked_packager = multitool.buffer
+	linked_packager.linked_console = src
+	to_chat(user, span_notice("[src] has been linked to [linked_packager]"))
+	return TRUE

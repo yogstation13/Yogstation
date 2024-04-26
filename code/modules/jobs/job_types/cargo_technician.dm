@@ -38,6 +38,8 @@
 
 	smells_like = "cardboard"
 
+	bounty_types = CIV_JOB_RANDOM
+
 /datum/outfit/job/cargo_tech
 	name = "Cargo Technician"
 	jobtype = /datum/job/cargo_tech

@@ -44,3 +44,19 @@
 #define MEGAFAUNA_CASH_SCALE 2
 
 #define NO_FREEBIES "commies go home"
+
+//Defines that set what kind of civilian bounties should be applied mid-round.
+#define CIV_JOB_BASIC 1
+#define CIV_JOB_ROBO 2
+#define CIV_JOB_CHEF 3
+#define CIV_JOB_SEC 4
+#define CIV_JOB_DRINK 5
+#define CIV_JOB_CHEM 6
+#define CIV_JOB_VIRO 7
+#define CIV_JOB_SCI 8
+#define CIV_JOB_XENO 9
+#define CIV_JOB_MINE 10
+#define CIV_JOB_MED 11
+#define CIV_JOB_GROW 12
+#define CIV_JOB_ATMOS 13
+#define CIV_JOB_RANDOM 14 // Must be the last index

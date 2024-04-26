@@ -1,11 +1,13 @@
-GLOBAL_LIST_EMPTY(bounties_list)
-
 /datum/bounty
 	var/name
 	var/description
 	var/reward = 1000 // In credits.
 	var/claimed = FALSE
 	var/high_priority = FALSE
+	var/datum/bank_account/account
+
+/datum/bounty/New(datum/bank_account/account)
+	src.account = account
 
 //SYNDICATE BOUNTY
 /datum/bounty/syndicate
@@ -22,15 +24,17 @@ GLOBAL_LIST_EMPTY(bounties_list)
 /datum/bounty/proc/can_claim()
 	return !claimed
 
-// Called when the claim button is clicked. Override to provide fancy rewards.
-/datum/bounty/proc/claim(mob/user)
+// Called when the bounty cube is created
+/datum/bounty/proc/claim()
 	if(can_claim())
-		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
-		if(D)
-			D.adjust_money(reward * SSeconomy.bounty_modifier)
-			D.bounties_claimed += 1
-			if(D.bounties_claimed == 10)
-				SSachievements.unlock_achievement(/datum/achievement/cargo/bounties, user.client)
+		account.bounties_claimed += 1
+		if(account.bounties_claimed == 10)
+			//So we currently only know what is *supposed* to be the real_name of the client's mob. If we can find them, we can get them this achievement.
+			for(var/x in GLOB.player_list)
+				var/mob/M = x
+				if(M.real_name == account.account_holder)
+					SSachievements.unlock_achievement(/datum/achievement/cargo/bounties, M.client)
+					//break would result in the possibility of this being given to changeling who has duplicated the shipper, and not to the actual shipper.
 		claimed = TRUE
 
 // If an item sent in the cargo shuttle can satisfy the bounty.
@@ -52,159 +56,59 @@ GLOBAL_LIST_EMPTY(bounties_list)
 	high_priority = TRUE
 	reward = round(reward * scale_reward)
 
-// This proc is called when the shuttle docks at CentCom.
-// It handles items shipped for bounties.
-/proc/bounty_ship_item_and_contents(atom/movable/AM, dry_run=FALSE)
-	if(!GLOB.bounties_list.len)
-		setup_bounties()
-
-	var/list/matched_one = FALSE
-	for(var/thing in reverse_range(AM.get_all_contents()))
-		var/matched_this = FALSE
-		for(var/datum/bounty/B as anything in GLOB.bounties_list)
-			if(B.applies_to(thing))
-				matched_one = TRUE
-				matched_this = TRUE
-				if(!dry_run)
-					B.ship(thing)
-		if(!dry_run && matched_this)
-			qdel(thing)
-	return matched_one
-
-// Returns FALSE if the bounty is incompatible with the current bounties.
-/proc/try_add_bounty(datum/bounty/new_bounty)
-	if(!new_bounty || !new_bounty.name || !new_bounty.description)
-		return FALSE
-	for(var/i in GLOB.bounties_list)
-		var/datum/bounty/B = i
-		if(!B.compatible_with(new_bounty) || !new_bounty.compatible_with(B))
-			return FALSE
-	GLOB.bounties_list += new_bounty
-	return TRUE
-
 // Returns a new bounty of random type, but does not add it to GLOB.bounties_list.
-/proc/random_bounty()
-	switch(rand(1, 15))
-		if(1)
-			var/subtype = pick(subtypesof(/datum/bounty/item/assistant))
-			return new subtype
-		if(2)
-			var/subtype = pick(subtypesof(/datum/bounty/item/mech))
-			return new subtype
-		if(3)
-			var/subtype = pick(subtypesof(/datum/bounty/item/chef))
-			return new subtype
-		if(4)
-			var/subtype = pick(subtypesof(/datum/bounty/item/security))
-			return new subtype
-		if(5)
-			if(rand(2) == 1)
-				return new /datum/bounty/reagent/simple_drink
-			return new /datum/bounty/reagent/complex_drink
-		if(6)
-			if(rand(2) == 1)
-				return new /datum/bounty/reagent/chemical_simple
-			return new /datum/bounty/reagent/chemical_complex
-		if(7)
-			var/subtype = pick(subtypesof(/datum/bounty/virus))
-			return new subtype
-		if(8)
-			var/subtype = pick(subtypesof(/datum/bounty/item/science))
-			return new subtype
-		if(9)
-			var/subtype = pick(subtypesof(/datum/bounty/item/slime))
-			return new subtype
-		if(10)
-			var/subtype = pick(subtypesof(/datum/bounty/item/mining))
-			return new subtype
-		if(11)
-			var/subtype = pick(subtypesof(/datum/bounty/item/medical))
-			return new subtype
-		if(12)
-			var/subtype = pick(subtypesof(/datum/bounty/item/botany))
-			return new subtype
-		if(13)
-			var/subtype
-			if(rand(2) == 1)
-				subtype = pick(subtypesof(/datum/bounty/item/atmos/simple))
+/proc/random_bounty(guided, datum/bank_account/account)
+	var/bounty_type
+	if(!guided || guided == CIV_JOB_RANDOM)
+		bounty_type = rand(1, CIV_JOB_RANDOM - 1)
+	else if(islist(guided))
+		bounty_type = pick(guided)
+	else
+		bounty_type = guided
+
+	var/subtype
+	switch(bounty_type)
+		if(CIV_JOB_BASIC)
+			subtype = pick(subtypesof(/datum/bounty/item/assistant))
+		if(CIV_JOB_ROBO)
+			subtype = pick(subtypesof(/datum/bounty/item/mech))
+		if(CIV_JOB_CHEF)
+			subtype = pick(subtypesof(/datum/bounty/item/chef))
+		if(CIV_JOB_SEC)
+			subtype = pick(subtypesof(/datum/bounty/item/security))
+		if(CIV_JOB_DRINK)
+			if(rand(1) == 1)
+				subtype = /datum/bounty/reagent/simple_drink
 			else
-				subtype = pick(subtypesof(/datum/bounty/item/atmos/complex))
-			return new subtype
-		if(14)
-			var/subtype = pick(subtypesof(/datum/bounty/item/h2metal))
-			return new subtype
-		if(15)
-			var/subtype = pick(subtypesof(/datum/bounty/item/gems))
-			return new subtype
+				subtype = /datum/bounty/reagent/complex_drink
+		if(CIV_JOB_CHEM)
+			if(rand(1) == 1)
+				subtype = /datum/bounty/reagent/chemical_simple
+			else
+				subtype = /datum/bounty/reagent/chemical_complex
+		if(CIV_JOB_VIRO)
+			subtype = pick(subtypesof(/datum/bounty/virus))
+		if(CIV_JOB_SCI)
+			subtype = pick(subtypesof(/datum/bounty/item/science))
+		if(CIV_JOB_XENO)
+			subtype = pick(subtypesof(/datum/bounty/item/slime))
+		if(CIV_JOB_MINE)
+			if(rand(1) == 1)
+				subtype = pick(subtypesof(/datum/bounty/item/mining))
+			else
+				subtype = pick(subtypesof(/datum/bounty/item/gems))
+		if(CIV_JOB_MED)
+			subtype = pick(subtypesof(/datum/bounty/item/medical))
+		if(CIV_JOB_GROW)
+			subtype = pick(subtypesof(/datum/bounty/item/botany))
+		if(CIV_JOB_ATMOS)
+			switch(rand(2))
+				if(0)
+					subtype = pick(subtypesof(/datum/bounty/item/atmos/simple))
+				if(1)
+					subtype = pick(subtypesof(/datum/bounty/item/atmos/complex))
+				if(2)
+					subtype = pick(subtypesof(/datum/bounty/item/h2metal))
 
-// Called lazily at startup to populate GLOB.bounties_list with random bounties.
-/proc/setup_bounties()
-
-	var/pick // instead of creating it a bunch let's go ahead and toss it here, we know we're going to use it for dynamics and subtypes!
-
-	/********************************Subtype Gens********************************/
-	var/list/easy_add_list_subtypes = list(/datum/bounty/item/assistant = 3,
-											/datum/bounty/item/mech = 1,
-											/datum/bounty/item/chef = 3,
-											/datum/bounty/item/security = 1,
-											/datum/bounty/virus = 1,
-											/datum/bounty/item/mining = 3,
-											/datum/bounty/item/medical = 2,
-											/datum/bounty/item/botany = 3,
-											/datum/bounty/item/h2metal = 3,
-											/datum/bounty/item/atmos/complex = 1,
-											/datum/bounty/item/atmos/simple = 4,
-											/datum/bounty/item/gems = 4)
-
-	for(var/the_type in easy_add_list_subtypes)
-		for(var/i in 1 to easy_add_list_subtypes[the_type])
-			pick = pick(subtypesof(the_type))
-			try_add_bounty(new pick)
-
-	/********************************Strict Type Gens********************************/
-	var/list/easy_add_list_strict_types = list(/datum/bounty/reagent/simple_drink = 2,
-											/datum/bounty/reagent/complex_drink = 1,
-											/datum/bounty/reagent/chemical_simple = 2,
-											/datum/bounty/reagent/chemical_complex = 1)
-
-	for(var/the_strict_type in easy_add_list_strict_types)
-		for(var/i in 1 to easy_add_list_strict_types[the_strict_type])
-			try_add_bounty(new the_strict_type)
-
-	/********************************Dynamic Gens********************************/
-
-	for(var/i in 0 to 1)
-		if(prob(50))
-			pick = pick(subtypesof(/datum/bounty/item/slime))
-		else
-			pick = pick(subtypesof(/datum/bounty/item/science))
-		try_add_bounty(new pick)
-
-	/********************************Cutoff for Non-Low Priority Bounties********************************/
-	var/datum/bounty/B = pick(GLOB.bounties_list)
-	B.mark_high_priority()
-
-	/********************************Progression Gens********************************/
-	var/list/progression_type_list = typesof(/datum/bounty/item/progression)
-
-	for(var/progression_bounty in progression_type_list)
-		try_add_bounty(new progression_bounty)
-
-	/********************************Low Priority Gens********************************/
-	var/list/low_priority_strict_type_list = list(  /datum/bounty/item/alien_organs,
-													/datum/bounty/item/syndicate_documents,
-													/datum/bounty/item/adamantine,
-													/datum/bounty/item/supermatter_silver,
-													/datum/bounty/more_bounties)
-
-	for(var/low_priority_bounty in low_priority_strict_type_list)
-		try_add_bounty(new low_priority_bounty)
-
-/proc/completed_bounty_count()
-	var/count = 0
-	for(var/i in GLOB.bounties_list)
-		var/datum/bounty/B = i
-		if(B.claimed)
-			++count
-	return count
+	return new subtype(account)
 

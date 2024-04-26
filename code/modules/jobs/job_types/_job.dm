@@ -95,6 +95,9 @@
 
 	/// Icons to be displayed in the orbit ui. Source: FontAwesome v5.
 	var/orbit_icon
+	
+	/// Which bounty type should this job get
+	var/bounty_types = CIV_JOB_BASIC
 
 	var/datum/species/forced_species
 		/**

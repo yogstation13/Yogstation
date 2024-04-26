@@ -48,6 +48,8 @@
 
 	smells_like = "chemicals"
 
+	bounty_types = CIV_JOB_CHEM
+
 /datum/outfit/job/chemist
 	name = "Chemist"
 	jobtype = /datum/job/chemist

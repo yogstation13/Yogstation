@@ -43,6 +43,8 @@
 
 	smells_like = "donuts"
 
+	bounty_types = CIV_JOB_SEC
+
 /datum/job/officer/get_access()
 	var/list/L = list()
 	L |= ..() | check_config_for_sec_maint()

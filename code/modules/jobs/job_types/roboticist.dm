@@ -43,6 +43,8 @@
 	
 	smells_like = "burnt solder"
 
+	bounty_types = list(CIV_JOB_ROBO, CIV_JOB_SCI)
+
 /datum/outfit/job/roboticist
 	name = "Roboticist"
 	jobtype = /datum/job/roboticist

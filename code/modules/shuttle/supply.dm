@@ -201,8 +201,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 					var/obj/item/paper/manifest = C.manifest
 					if(!manifest.stamped) // Unstamped papers on crates // Futureproofing
 						continue
-			if(bounty_ship_item_and_contents(AM, dry_run = FALSE))
-				matched_bounty = TRUE
 			if(!AM.anchored || istype(AM, /obj/mecha))
 				export_item_and_contents(AM, export_categories , dry_run = FALSE, external_report = ex)
 

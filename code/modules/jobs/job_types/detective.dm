@@ -42,6 +42,8 @@
 	minimal_lightup_areas = list(/area/medical/morgue, /area/security/detectives_office)
 
 	smells_like = "whisky-soaked despair"
+	
+	bounty_types = CIV_JOB_SEC
 
 /datum/job/detective/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()

@@ -39,6 +39,8 @@
 	)
 	
 	smells_like = "alcohol"
+	
+	bounty_types = CIV_JOB_DRINK
 
 /datum/outfit/job/bartender
 	name = "Bartender"

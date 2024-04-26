@@ -46,6 +46,8 @@
 	
 	smells_like = "gunpowdery justice"
 
+	bounty_types = CIV_JOB_SEC
+
 /datum/job/warden/get_access()
 	var/list/L = list()
 	L = ..() | check_config_for_sec_maint()

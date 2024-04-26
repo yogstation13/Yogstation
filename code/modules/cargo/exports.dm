@@ -46,10 +46,12 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 		if(QDELETED(thing))
 			continue
 		if(!(istype(thingy) && thingy.item_flags & AUTOLATHED))
-			for(var/datum/export/E in GLOB.exports_list)
-				if(!E)
+			for(var/datum/export/E as anything in GLOB.exports_list)
+				if(!E || !istype(E))
 					continue
 				if(E.applies_to(thing, allowed_categories, apply_limit))
+					if(!dry_run && (SEND_SIGNAL(thing, COMSIG_ITEM_PRE_EXPORT) & COMPONENT_STOP_EXPORT))
+						break
 					sold = E.sell_object(thing, report, dry_run, allowed_categories , apply_limit)
 					report.exported_atoms += " [thing.name]"
 					break
@@ -118,12 +120,16 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 	if(amount <=0 || the_cost <=0  || export_limit <=0)
 		return FALSE
 
-	report.total_value[src] += the_cost
-
-	if(istype(src, /datum/export/material))
-		report.total_amount[src] += amount*MINERAL_MATERIAL_AMOUNT
-	else
-		report.total_amount[src] += amount
+	var/export_result
+	if(!dry_run)
+		export_result = SEND_SIGNAL(O, COMSIG_ITEM_EXPORTED, src, report, the_cost)
+	
+	if(!(export_result & COMPONENT_STOP_EXPORT_REPORT))
+		report.total_value[src] += the_cost
+		if(istype(src, /datum/export/material))
+			report.total_amount[src] += amount*MINERAL_MATERIAL_AMOUNT
+		else
+			report.total_amount[src] += amount
 
 	if(!dry_run)
 		if(apply_limit && export_limit != NO_LIMIT)

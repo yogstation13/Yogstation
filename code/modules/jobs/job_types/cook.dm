@@ -41,6 +41,8 @@
 	lightup_areas = list(/area/hydroponics)
 
 	smells_like = "delicious food"
+	
+	bounty_types = CIV_JOB_CHEF
 
 /datum/outfit/job/cook
 	name = "Cook"

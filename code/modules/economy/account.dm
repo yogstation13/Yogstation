@@ -12,6 +12,8 @@
 	var/is_bourgeois = FALSE // Marks whether we've tried giving them the achievement already, this round.
 	var/bounties_claimed = 0 // Marks how many bounties this person has successfully claimed
 	var/sec_weapon_claimed = FALSE // If this account has claimed a weapon \code\modules\vending\security_armaments.dm
+	var/list/datum/bounty/bounties
+	COOLDOWN_DECLARE(bounty_timer)
 
 /datum/bank_account/New(newname, job)
 	var/limiter = 0
@@ -110,6 +112,21 @@
 				M.playsound_local(get_turf(M), 'sound/machines/twobeep_high.ogg', 50, TRUE)
 				if(M.can_hear())
 					to_chat(M, "[icon2html(A, M)] *[message]*")
+
+/// Generates bounties for account, returns error string if failed
+/datum/bank_account/proc/generate_bounties()
+	if(bounties && !COOLDOWN_FINISHED(src, bounty_timer))
+		return "Unable to issue new bounties, try again in [time2text(COOLDOWN_TIMELEFT(src, bounty_timer),"mm:ss")]"
+	if(!account_job)
+		return "Account has no associated job"
+	if(!account_job.bounty_types)
+		return "Job not eligible for bounties"
+
+	bounties = list(random_bounty(account_job.bounty_types, src), // Two from your job
+					random_bounty(account_job.bounty_types, src),
+					random_bounty(CIV_JOB_BASIC, src))            // One from assistant
+	COOLDOWN_START(src, bounty_timer, 5 MINUTES)
+	return TRUE
 
 /datum/bank_account/department
 	account_holder = "Guild Credit Agency"

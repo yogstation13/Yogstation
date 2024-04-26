@@ -39,6 +39,8 @@
 	exp_requirements = 120
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SUPPLY
+	
+	bounty_types = CIV_JOB_RANDOM
 
 /datum/outfit/job/quartermaster
 	name = "Quartermaster"

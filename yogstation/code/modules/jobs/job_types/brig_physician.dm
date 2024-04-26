@@ -41,6 +41,7 @@
 		/obj/item/stack/medical/mesh/advanced = 5,
 		/obj/item/reagent_containers/spray/pepper = 4
 	)
+	bounty_types = list(CIV_JOB_SEC, CIV_JOB_MED)
 
 /datum/outfit/job/brigphysician
 	name = "Brig Physician"

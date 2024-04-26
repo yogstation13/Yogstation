@@ -36,6 +36,8 @@
 		/datum/job_department/command,
 	)
 
+	bounty_types = CIV_JOB_SEC
+
 	changed_maps = list("YogsPubby")
 
 	mail_goodies = list(
