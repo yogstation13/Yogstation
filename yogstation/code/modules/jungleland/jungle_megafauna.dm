@@ -3,7 +3,6 @@
 #define RUNE_ATTACK "rune"
 #define TAR_ATTACK "tar"
 #define TELEPORT_ATTACK "teleport"
-#define SPAWN_ATTACK "spawn"
 
 #define DIRECTION_MATRIX list("NORTH" = 0 , "EAST" = 0, "SOUTH" = 0, "WEST" = 0, "NORTHEAST" = 0 , "SOUTHEAST" = 0 , "SOUTHWEST" = 0, "NORTHWEST" = 0)
 #define ATTACK_MATRIX list(SLASH_ATTACK = DIRECTION_MATRIX, RUNE_ATTACK = DIRECTION_MATRIX, IMPALE_ATTACK = DIRECTION_MATRIX)
@@ -188,7 +187,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/proc/forge_combo()
 	var/list/combo = list()
-	var/list/possible_moves = list(SLASH_ATTACK,IMPALE_ATTACK,RUNE_ATTACK,TELEPORT_ATTACK,SPAWN_ATTACK)
+	var/list/possible_moves = list(SLASH_ATTACK,IMPALE_ATTACK,RUNE_ATTACK,TELEPORT_ATTACK)
 	for(var/i = 0 ; i < 3; i++)
 		combo += pick_n_take(possible_moves)
 	return combo
@@ -412,6 +411,7 @@
 		. = pick(cardinal_copy)
 
 /obj/effect/temp_visual/tar_king_chaser/proc/seek_target()
+
 	if(!currently_seeking)
 		currently_seeking = TRUE
 		targetturf = get_turf(target)
