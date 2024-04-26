@@ -163,6 +163,7 @@
 #define INIT_ORDER_AIR				-1
 #define INIT_ORDER_PERSISTENCE 		-2
 #define INIT_ORDER_PERSISTENT_PAINTINGS -3 // Assets relies on this
+#define INIT_ORDER_ICON_SMOOTHING	-5
 #define INIT_ORDER_ASSETS			-4
 #define INIT_ORDER_OVERLAY			-6
 #define INIT_ORDER_XKEYSCORE		-10
@@ -171,7 +172,6 @@
 #define INIT_ORDER_LIGHTING			-20
 #define INIT_ORDER_SHUTTLE			-21
 #define INIT_ORDER_BACKROOMS		-30 // relies on basically everything to be initialized first
-#define INIT_ORDER_ICON_SMOOTHING	-35 // needs to be after backrooms or the rapid spawning and deletion of the backrooms walls causes smoothing to freak out
 #define INIT_ORDER_MINOR_MAPPING	-40
 #define INIT_ORDER_BLUESPACE_LOCKER -45
 #define INIT_ORDER_DISCORD			-60
