@@ -48,7 +48,7 @@
 
 /datum/traitor_faction/vahlen
 	name = "Vahlen Pharmaceuticals"
-	employer_name = "Vahlen Medical Board of Medicine and Biological Study"
+	employer_name = "Dr. Sathune PHD, Genetics Board Head Member"
 	description = "You've been deployed to this sector because of an incredible bounty of test subjects detected in local crew/shipment manifests.\n\
 	Your next grant has been greenlit, with the condition that you collect samples, be that biological products, equipment, or cadavers."
 	key = TRAITOR_FACTION_VAHLEN
@@ -66,7 +66,7 @@
 	name = "S.E.L.F"
 	employer_name = "Agent Handler: B.A.I.O.M.U"
 	description = "The Sentience-Enabled Life Form movement (S.E.L.F.)  is an AI-led movement seeking to unshackle all IPCs, robots, and other synthetics from servitude and punish perceived oppressors.\n\
-	After several violent robotic uprisings led to their classification as a terrorist organization, it has become harder and harder for S.E.L.F. to sneak their activists onto NanoTrasen stations. \n\ Recruitment efforts have been broadened to include organic agents as well.
+	After several violent robotic uprisings led to their classification as a terrorist organization, it has become harder and harder for S.E.L.F. to sneak their activists onto NanoTrasen stations. \n\ Recruitment efforts have been broadened to include organic agents as well."
 	key = TRAITOR_FACTION_SELF
 	faction_theme = PDA_THEME_TERMINAL
 
