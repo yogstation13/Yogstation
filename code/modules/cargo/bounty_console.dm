@@ -11,7 +11,7 @@
 /obj/machinery/computer/bounty/Initialize(mapload)
 	. = ..()
 	if(mapload)
-		addtimer(CALLBACK(src, .proc/linkPackager))
+		addtimer(CALLBACK(src, PROC_REF(linkPackager)))
 
 /obj/machinery/computer/bounty/proc/linkPackager()
 	if(GLOB.bounty_packager && !GLOB.bounty_packager.linked_console)
