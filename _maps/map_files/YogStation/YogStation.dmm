@@ -16930,10 +16930,6 @@
 	},
 /turf/open/floor/engine/n2,
 /area/engine/atmos/distro)
-"dls" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower,
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "dlt" = (
 /obj/machinery/door/airlock{
 	name = "Law Office";
@@ -26896,6 +26892,15 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
+"gNs" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower,
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "bounty"
+	},
+/obj/machinery/bounty_packager,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "gNM" = (
 /obj/structure/closet/radiation,
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
@@ -40378,6 +40383,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"lEi" = (
+/obj/machinery/light,
+/obj/structure/sign/departments/minsky/security/security{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 6
+	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "bounty"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "lEr" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -49304,6 +49323,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"oSn" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower,
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "bounty"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "oSq" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -56122,15 +56149,6 @@
 "rpB" = (
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
-"rpC" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "rqi" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 1
@@ -62118,6 +62136,15 @@
 /obj/item/stack/packageWrap,
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"tAs" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 4
+	},
+/obj/machinery/conveyor_switch{
+	id = "bounty"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "tAu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/cable{
@@ -69225,19 +69252,6 @@
 "wec" = (
 /turf/template_noop,
 /area/medical/morgue)
-"wem" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/machinery/light,
-/obj/structure/sign/departments/minsky/security/security{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "wen" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
@@ -99094,7 +99108,7 @@ cPP
 stm
 aWM
 bnx
-dls
+oSn
 bzy
 diJ
 bvI
@@ -99351,7 +99365,7 @@ bbR
 bpA
 blp
 bbR
-dls
+gNs
 bzy
 yaO
 kSb
@@ -99607,8 +99621,8 @@ fKl
 uEI
 vpX
 ilc
-rpC
-wem
+tAs
+lEi
 bwe
 cdM
 bRh
