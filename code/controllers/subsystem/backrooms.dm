@@ -1,9 +1,9 @@
-SUBSYSTEM_DEF(maintrooms)
+SUBSYSTEM_DEF(backrooms)
 	name = "Procedural Generation"
-	init_order = INIT_ORDER_MAINTROOMS
+	init_order = INIT_ORDER_BACKROOMS
 	flags = SS_NO_FIRE
 
-/datum/controller/subsystem/maintrooms/Initialize(timeofday)
+/datum/controller/subsystem/backrooms/Initialize(timeofday)
 #ifdef LOWMEMORYMODE
 	return SS_INIT_NO_NEED
 #endif
@@ -11,16 +11,16 @@ SUBSYSTEM_DEF(maintrooms)
 	return SS_INIT_NO_NEED
 #endif
 
-	generate_maintrooms()
+	generate_backrooms()
 	return SS_INIT_SUCCESS
 
 
-/datum/controller/subsystem/maintrooms/proc/generate_maintrooms()
+/datum/controller/subsystem/backrooms/proc/generate_backrooms()
 	var/list/errorList = list()
-	SSmapping.LoadGroup(errorList, "Maintrooms", "map_files/generic", "MaintStation.dmm", default_traits = ZTRAITS_BACKROOM_MAINTS, silent = TRUE)
-	if(errorList.len)	// maintrooms failed to load
-		message_admins("Maintrooms failed to load!")
-		log_game("Maintrooms failed to load!")
+	SSmapping.LoadGroup(errorList, "Backrooms", "map_files/generic", "MaintStation.dmm", default_traits = ZTRAITS_BACKROOM_MAINTS, silent = TRUE)
+	if(errorList.len)	// failed to load
+		message_admins("Backrooms failed to load!")
+		log_game("Backrooms failed to load!")
 
 	for(var/area/A as anything in GLOB.areas)
 		if(istype(A, /area/procedurally_generated/maintenance/the_backrooms))
@@ -28,7 +28,7 @@ SUBSYSTEM_DEF(maintrooms)
 
 	addtimer(CALLBACK(src, PROC_REF(generate_exit)), 1 MINUTES)
 
-/datum/controller/subsystem/maintrooms/proc/generate_exit()
+/datum/controller/subsystem/backrooms/proc/generate_exit()
 	var/backrooms_level = SSmapping.levels_by_trait(ZTRAIT_PROCEDURAL_MAINTS)
 	if(LAZYLEN(backrooms_level))
 		var/turf/way_out = find_safe_turf(zlevels = backrooms_level, dense_atoms = FALSE)
@@ -64,7 +64,7 @@ SUBSYSTEM_DEF(maintrooms)
 
 /obj/effect/portal/permanent/backrooms
 	icon_state = "wooden_tv"
-	
+
 /obj/effect/spawner/backrooms_portal
 	name = "backrooms two way portal spawner"
 
@@ -72,4 +72,5 @@ SUBSYSTEM_DEF(maintrooms)
 	var/backrooms_level = SSmapping.levels_by_trait(ZTRAIT_PROCEDURAL_MAINTS)
 	if(LAZYLEN(backrooms_level))
 		var/turf/way_out = find_safe_turf(zlevels = backrooms_level, dense_atoms = FALSE)
-		create_portal_pair(get_turf(src), way_out, _lifespan = null, newtype = /obj/effect/portal/permanent/backrooms)
+		create_portal_pair(get_turf(src), way_out, _lifespan = -1, newtype = /obj/effect/portal/permanent/backrooms)
+	qdel(src)
