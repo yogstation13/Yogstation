@@ -18,9 +18,6 @@
 		linked_packager = GLOB.bounty_packager
 		linked_packager.linked_console = src
 
-/obj/machinery/computer/bounty/proc/get_list_to_use()
-	return GLOB.bounties_list
-
 /obj/machinery/computer/bounty/ui_interact(mob/user, datum/tgui/ui)
 	var/obj/item/card/id/id = user.get_idcard()
 	if(id && id.registered_account && !id.registered_account.bounties)
