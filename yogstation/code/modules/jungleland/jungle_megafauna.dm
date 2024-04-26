@@ -20,8 +20,8 @@
 	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	light_color = "#dd35d5"
 	a_intent = INTENT_HARM
-	melee_damage_lower = 25
-	melee_damage_upper = 50
+	melee_damage_lower = 40
+	melee_damage_upper = 40
 	movement_type = GROUND
 	ranged = TRUE 
 	faction = list("tar", "boss")
@@ -35,7 +35,7 @@
 	deathsound = "bodyfall"
 	do_footstep = TRUE
 	ranged_cooldown_time = 10 SECONDS
-	armour_penetration = 50
+	armour_penetration = 40
 	dodge_prob = 0
 	loot = list(/obj/item/clothing/head/yogs/tar_king_crown = 1, /obj/item/gem/tarstone = 1, /obj/item/demon_core = 1)
 	crusher_loot = list(/obj/item/crusher_trophy/jungleland/aspect_of_tar = 1,/obj/item/clothing/head/yogs/tar_king_crown = 1, /obj/item/gem/tarstone = 1, /obj/item/demon_core = 1)
@@ -50,6 +50,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/Initialize()
 	. = ..()
+	src.AddComponent(/datum/component/shielded,'yogstation/icons/effects/effects.dmi',"tar_shield", 1, 30 SECONDS)
 	START_PROCESSING(SSfastprocess,src)
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/Life(seconds_per_tick, times_fired)
@@ -133,8 +134,6 @@
 				rune_attack_chain()
 			if(TELEPORT_ATTACK)
 				teleport_attack_chain()
-			if(SPAWN_ATTACK)
-				spawn_attack_chain()
 		attack_stack -= move
 		Goto(target,move_to_delay,minimum_distance)
 		SLEEP_CHECK_DEATH(1 SECONDS)
@@ -261,7 +260,7 @@
 	SLEEP_CHECK_DEATH(8)
 	for(var/mob/living/carbon/C in (range(2,src) - range(1,src)))
 		var/limb_to_hit = C.get_bodypart(pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
-		C.apply_damage(45, BURN, limb_to_hit, C.run_armor_check(limb_to_hit, MAGIC, null, null, armour_penetration), wound_bonus = CANT_WOUND)
+		C.apply_damage(25, BURN, limb_to_hit, C.run_armor_check(limb_to_hit, MAGIC, null, null, armour_penetration), wound_bonus = CANT_WOUND)
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/proc/teleport_attack_chain()
 	new /obj/effect/tar_king/orb_in(get_turf(src),src,dir)
@@ -288,21 +287,6 @@
 	visible_message(span_colossus("Atyr!"))	
 	throw_at(target,get_dist(target,src),4, spin = FALSE)		
 
-/mob/living/simple_animal/hostile/megafauna/tar_king/proc/spawn_attack_chain()
-	if(!GLOB.tar_pits.len)
-		return
-	visible_message(span_colossus("At-Karan!"))
-	var/list/spawnable = list(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/tar)
-	for(var/TP in GLOB.tar_pits)
-		if(prob(50))
-			continue
-		var/obj/structure/tar_pit/pit = TP 
-		var/picked = pick(spawnable)
-		var/mob/living/simple_animal/hostile/H = new picked(pit.loc)
-		H.GiveTarget(target)
-		H.friends = friends
-		H.faction = faction.Copy()
-
 /mob/living/simple_animal/hostile/megafauna/tar_king/proc/process_orbitals()
 	var/orbitals_shown = 3
 	switch(maxHealth - health)
@@ -321,13 +305,14 @@
 		var/ycoord = loc.y + orbital_range * sin(orbitals[i])
 		var/turf/located = locate(xcoord,ycoord,loc.z)
 		var/obj/effect/better_animated_temp_visual/tar_king_chaser_impale/T = new(located, src)
-		T.damage = 25
+		T.damage = 10
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/proc/sword_hit(list/turfs)
 	for(var/turf/T as anything in turfs)
 		for(var/mob/living/carbon/C in T.contents)
 			var/limb_to_hit = C.get_bodypart(pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
-			C.apply_damage(35, BRUTE, limb_to_hit, C.run_armor_check(limb_to_hit, MELEE, null, null, armour_penetration), wound_bonus = CANT_WOUND)
+			C.apply_damage(15, BRUTE, limb_to_hit, C.run_armor_check(limb_to_hit, MELEE, null, null, armour_penetration), wound_bonus = CANT_WOUND)
+			
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/proc/stage_transition()
 	walk(src,0)
@@ -383,7 +368,7 @@
 		to_chat(L, span_userdanger("You're struck by a [name]!"))
 		var/limb_to_hit = L.get_bodypart(pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
 		var/armor = L.run_armor_check(limb_to_hit, MELEE, "Your armor absorbs [src]!", "Your armor blocks part of [src]!", 50, "Your armor was penetrated by [src]!")
-		L.apply_damage(damage, BRUTE, limb_to_hit, armor)
+		L.apply_damage(damage, BRUTE, limb_to_hit, armor, wound_bonus = CANT_WOUND)
 		if(caster)
 			log_combat(caster, L, "struck with a [name]")
 

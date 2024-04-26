@@ -85,9 +85,10 @@
 
 /datum/status_effect/tar_shield/on_apply()
 	. = ..()
-	cached_image = mutable_appearance('yogstation/icons/effects/effects.dmi',"tar_shield")
-	owner.add_overlay(cached_image)
-	RegisterSignal(owner,COMSIG_MOB_CHECK_SHIELDS,PROC_REF(react_to_attack))
+	if(.)
+		cached_image = mutable_appearance('yogstation/icons/effects/effects.dmi',"tar_shield")
+		owner.add_overlay(cached_image)
+		RegisterSignal(owner,COMSIG_MOB_CHECK_SHIELDS,PROC_REF(react_to_attack))
 
 /datum/status_effect/tar_shield/on_remove()
 	owner.cut_overlay(cached_image)
