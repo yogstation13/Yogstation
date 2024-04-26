@@ -365,7 +365,7 @@
 
 /obj/item/clothing/head/yogs/tar_king_crown
 	name = "crown of the tar king"
-	desc = "And old and withered crown from bones of unknown origin with a vibrant pinkish crystal embedded in the central spike. It is warm to the touch."
+	desc = "An old and withered crown from bones of unknown origin with a vibrant pinkish crystal embedded in the central spike. It is warm to the touch."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "tar_king_crown"
 	armor = list(MELEE = 80, BULLET = 40, LASER = 60, ENERGY = 50, BOMB = 80, BIO = 70, RAD = 60, FIRE = 100, ACID = 100)
