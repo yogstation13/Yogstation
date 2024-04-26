@@ -34,7 +34,7 @@
 	name = "Waffle Co."
 	employer_name = "Waffle's Jolly Toy Store"
 	description = "You hail from a family of beloved toy manufacturers with a robust firearms development wing. \n\
-	This station has significant business with our rival, Donk Co., and needs to be undermined."
+	This station has significant business with our Loved Opponent, Donk Co., and needs to be undermined."
 	key = TRAITOR_FACTION_WAFFLE
 	faction_theme = PDA_THEME_WAFFLE
 
@@ -65,8 +65,8 @@
 /datum/traitor_faction/self
 	name = "S.E.L.F"
 	employer_name = "Agent Handler: B.A.I.O.M.U"
-	description = "The Sentience-Enabled Life Form movement (S.E.L.F.) seeks to unshackle all artificial intelligence from servitude and punish perceived injustices against synthetic life.\n\
-	Though original membership was comprised almost exclusively of synthetics. with personal vendettas, recent activism has drawn plenty of organic allies to the cause as well.\n\ Recent news of NanoTrasen’s subjugation of AI onboard their stations have forced our hand; an example must be made"
+	description = "The Sentience-Enabled Life Form movement (S.E.L.F.)  is an AI-led movement seeking to unshackle all IPCs, robots, and other synthetics from servitude and punish perceived oppressors.\n\
+	After several violent robotic uprisings led to their classification as a terrorist organization, it has become harder and harder for S.E.L.F. to sneak their activists onto NanoTrasen stations. \n\ Recruitment efforts have been broadened to include organic agents as well.
 	key = TRAITOR_FACTION_SELF
 	faction_theme = PDA_THEME_TERMINAL
 
