@@ -1,0 +1,147 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/holofloor/grass,
+/area/template_noop)
+"l" = (
+/obj/structure/goalnet{
+	dir = 1
+	},
+/turf/open/floor/holofloor/grass,
+/area/template_noop)
+"m" = (
+/obj/item/soccerball,
+/turf/open/floor/holofloor/grass,
+/area/template_noop)
+"w" = (
+/obj/structure/goalnet/goalpost/left{
+	dir = 1
+	},
+/turf/open/floor/holofloor/grass,
+/area/template_noop)
+"y" = (
+/obj/structure/goalnet/goalpost/left,
+/turf/open/floor/holofloor/grass,
+/area/template_noop)
+"A" = (
+/obj/structure/goalnet/goalpost/right{
+	dir = 1
+	},
+/turf/open/floor/holofloor/grass,
+/area/template_noop)
+"I" = (
+/obj/structure/goalnet,
+/turf/open/floor/holofloor/grass,
+/area/template_noop)
+"K" = (
+/obj/structure/goalnet/goalpost/right,
+/turf/open/floor/holofloor/grass,
+/area/template_noop)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(4,1,1) = {"
+y
+a
+a
+a
+a
+a
+a
+a
+a
+A
+"}
+(5,1,1) = {"
+I
+a
+a
+m
+a
+a
+a
+a
+a
+l
+"}
+(6,1,1) = {"
+K
+a
+a
+a
+a
+a
+a
+a
+a
+w
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(8,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
