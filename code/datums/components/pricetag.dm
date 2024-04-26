@@ -20,7 +20,7 @@
 	payees[pay_to_account] = profit_ratio
 
 /datum/component/pricetag/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_ITEM_EXPORTED, .proc/on_parent_sold)
+	RegisterSignal(parent, COMSIG_ITEM_EXPORTED, PROC_REF(on_parent_sold))
 
 /datum/component/pricetag/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_ITEM_EXPORTED)

@@ -1,7 +1,7 @@
 GLOBAL_DATUM(bounty_packager, /obj/machinery/bounty_packager)
 
 /obj/machinery/bounty_packager
-	name = "\improper NanoTrasen Bounty Encapsulation Device"
+	name = "\improper Nanotrasen Bounty Encapsulation Device"
 	desc = "A large metallic machine with an entrance and an exit. A sign on \
 		the side reads, 'bounty go in, cube come out'."
 	icon = 'icons/obj/recycling.dmi'
@@ -89,13 +89,13 @@ GLOBAL_DATUM(bounty_packager, /obj/machinery/bounty_packager)
 	///The key our internal radio uses.
 	var/radio_key = /obj/item/encryptionkey/headset_cargo
 
-/obj/item/bounty_cube/Initialize()
+/obj/item/bounty_cube/Initialize(mapload)
 	. = ..()
 	radio = new(src)
 	radio.keyslot = new radio_key
 	radio.listening = FALSE
 	radio.recalculateChannels()
-	RegisterSignal(radio, COMSIG_ITEM_PRE_EXPORT, .proc/on_export)
+	RegisterSignal(radio, COMSIG_ITEM_PRE_EXPORT, PROC_REF(on_export))
 
 /obj/item/bounty_cube/Destroy()
 	UnregisterSignal(radio, COMSIG_ITEM_PRE_EXPORT)
