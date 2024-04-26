@@ -23,6 +23,7 @@
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	movement_type = GROUND
+	gps_name = "Murky Signal"
 	ranged = TRUE 
 	faction = list("tar", "boss")
 	speak_emote = list("roars")
@@ -50,7 +51,6 @@
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/Initialize()
 	. = ..()
-	src.AddComponent(/datum/component/shielded,'yogstation/icons/effects/effects.dmi',"tar_shield", 1, 30 SECONDS)
 	START_PROCESSING(SSfastprocess,src)
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/Life(seconds_per_tick, times_fired)
@@ -443,3 +443,8 @@
 	var/obj/effect/better_animated_temp_visual/tar_king_chaser_impale/T = new(loc, caster)
 	T.damage = damage
 
+/obj/item/gps/internal/tar_king
+	icon_state = null
+	gpstag = "Murky Signal"
+	desc = "There's something flickering in the dark."
+	invisibility = 100
