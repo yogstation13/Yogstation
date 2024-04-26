@@ -9,7 +9,7 @@
 #define ATTACK_MATRIX list(SLASH_ATTACK = DIRECTION_MATRIX, RUNE_ATTACK = DIRECTION_MATRIX, IMPALE_ATTACK = DIRECTION_MATRIX)
 
 /mob/living/simple_animal/hostile/megafauna/tar_king 
-	name = "king of tar"
+	name = "King of Tar"
 	desc = "A hunking mass of tar resembling a human, a shining gem glows from within. It yearns for the end of its agony..."
 	health = 2000
 	maxHealth = 2000
