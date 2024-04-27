@@ -1,0 +1,6 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - tweak: "Reactor blowout explosion and plutonium sludge range now scales with pressure"
+  - tweak: "Reactor fallout now lasts longer and deals more rads, better GET IN MAINT"
+  - tweak: "Reactor explosion now gives pulsewave effect"
