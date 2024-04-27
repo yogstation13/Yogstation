@@ -1479,7 +1479,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "hp" = (
-/obj/structure/closet/l3closet/virology,
+/obj/machinery/vending/modularpc,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/main)
 "hq" = (
@@ -2388,6 +2388,8 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/item/paper_bin,
+/obj/item/pen,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/main)
 "jL" = (
@@ -3963,13 +3965,16 @@
 /turf/open/floor/plasteel,
 /area/ruin/powered/syndicate_lava_base/bar)
 "oK" = (
-/obj/machinery/vending/modularpc,
 /obj/effect/turf_decal/siding/red{
 	dir = 4
 	},
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/filingcabinet/security{
+	pixel_x = 10
+	},
+/obj/structure/filingcabinet/medical,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "oP" = (
@@ -5210,6 +5215,10 @@
 	req_access_txt = "150";
 	name = "Atmospherics Research"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/atmospherics_research)
 "Hn" = (
@@ -6439,6 +6448,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
+"Zt" = (
+/obj/machinery/door/airlock/atmos/glass{
+	req_access_txt = "150";
+	name = "Atmospherics Research"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/powered/syndicate_lava_base/atmospherics_research)
 "Zw" = (
 /obj/structure/closet/crate/internals,
 /obj/item/tank/internals/oxygen/yellow,
@@ -8245,7 +8267,7 @@ ie
 iG
 iG
 iG
-Hi
+Zt
 iG
 iG
 iG
