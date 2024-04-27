@@ -94,7 +94,7 @@
 				team_antag.name = member_name
 				M.add_antag_datum(team_antag,src)
 			antag_path = team_antag.type
-	else
+	else if(!antag_path)
 		custom_antag_name = stripped_input(user, "Custom team antagonist name:", "Custom antag", "Antagonist")
 		if(!custom_antag_name)
 			custom_antag_name = member_name
