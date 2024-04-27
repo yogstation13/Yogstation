@@ -165,7 +165,7 @@
 			if(minorObjective)
 				add_objective(minorObjective)
 		if(!(locate(/datum/objective/escape) in objectives))
-			if(prob(70)) //doesn't always need to escape
+			if(prob(50)) //doesn't always need to escape
 				var/datum/objective/escape/escape_objective = new
 				escape_objective.owner = owner
 				add_objective(escape_objective)
