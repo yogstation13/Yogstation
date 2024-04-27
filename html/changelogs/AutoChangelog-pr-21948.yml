@@ -1,4 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - mapping: "Fixed a door not having firelocks on icemeta"

@@ -1,5 +1,0 @@
-author: "cowbot92"
-delete-after: true 
-changes: 
-  - imageadd: "adds new camera sprites"
-  - imagedel: "deletes old camera sprites"

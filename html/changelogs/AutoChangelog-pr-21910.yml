@@ -1,5 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - tweak: "IPCs can now choose to be referred to as an object"
-  - experiment: "Refactored how species gender is handled, report any gender-related bugs you find"

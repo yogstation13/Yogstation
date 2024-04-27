@@ -1,4 +1,0 @@
-author: "cowbot92"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes traitor AIs not being able to access backstories"

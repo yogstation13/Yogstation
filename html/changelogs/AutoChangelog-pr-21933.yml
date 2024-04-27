@@ -1,6 +1,0 @@
-author: " Mqiib & Molti"
-delete-after: true 
-changes: 
-  - rscadd: "Some other gimmick objectives"
-  - rscdel: "Removed budget card gimmick objective"
-  - bugfix: "lets admins select the target of targeted gimmick objectives"

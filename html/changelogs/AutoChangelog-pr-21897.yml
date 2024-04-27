@@ -1,8 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - tweak: "Healium can now heal cloneloss"
-  - tweak: "Healium can now treat all type of wounds (Only work during unconscious and below 0C)"
-  - tweak: "Healium now remove trait_disfigured"
-  - tweak: "Healium can now preserve organ if metabolizing"
-  - tweak: "Healium can now restore blood (Only work during unconscious and below 0C)"

@@ -1,8 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - rscadd: "Surgical omni-toolset. Can swap between six medical/surgery tools with a radical menu."
-  - rscadd: "Medical cyborg surgical omni-tool upgrade. Boosts the tool speed of a cyborg's omni-toolset to 0.7."
-  - rscdel: "Medical cyborg advanced surgical kit upgrade."
-  - tweak: "The cyborg medical module has their six medical/surgery tools replaced with a surgical omni-toolset."
-  - imageadd: "Omni-toolset sprites."

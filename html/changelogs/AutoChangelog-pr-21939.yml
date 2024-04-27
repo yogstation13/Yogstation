@@ -1,5 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "fixed crystallizer not using the proper names of gases"
-  - spellcheck: "fixed nitrium being incorrectly labeled"
