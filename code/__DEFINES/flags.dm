@@ -133,6 +133,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define PASSSTRUCTURE (1<<9)
 #define PASSDOOR (1<<10)
 #define PASSMECH (1<<11)
+#define PASSFLOOR (1<<12) //used for z movement
 
 //Movement Types
 #define GROUND			(1<<0)

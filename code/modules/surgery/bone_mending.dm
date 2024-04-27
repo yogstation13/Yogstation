@@ -43,7 +43,7 @@
 ///// Repair Hairline Fracture (Severe)
 /datum/surgery_step/repair_bone_hairline
 	name = "repair hairline fracture (bonesetter/bone gel/tape)"
-	implements = list(/obj/item/bonesetter = 100, /obj/item/stack/medical/bone_gel = 100, /obj/item/stack/tape = 30)
+	implements = list(TOOL_BONESET = 100, /obj/item/stack/medical/bone_gel = 100, /obj/item/stack/tape = 30)
 	preop_sound = list(
 		/obj/item/stack/medical/bone_gel = 'sound/effects/ointment.ogg',
 		/obj/item/stack/tape = 'sound/effects/tape.ogg',
@@ -89,7 +89,7 @@
 ///// Reset Compound Fracture (Crticial)
 /datum/surgery_step/reset_compound_fracture
 	name = "reset bone"
-	implements = list(/obj/item/bonesetter = 100, /obj/item/stack/tape = 20)
+	implements = list(TOOL_BONESET = 100, /obj/item/stack/tape = 20)
 	preop_sound = list(
 		/obj/item/stack/tape = 'sound/effects/tape.ogg',
 		/obj/item = 'sound/surgery/bone1.ogg'

@@ -5,31 +5,23 @@
 	priority = PREFERENCE_PRIORITY_GENDER
 
 /datum/preference/choiced/gender/init_possible_values()
-	return list(MALE, FEMALE, PLURAL)
+	return list(MALE, FEMALE, PLURAL, NEUTER)
 
 /datum/preference/choiced/gender/create_informed_default_value(datum/preferences/preferences)
 
 	var/datum/species/species_type = preferences.read_preference(/datum/preference/choiced/species)
-	
-	if(!initial(species_type.sexes) || (AGENDER in initial(species_type.species_traits)))
-		return PLURAL
-	else if(FGENDER in initial(species_type.species_traits))
-		return FEMALE
-	else if(MGENDER in initial(species_type.species_traits))
-		return MALE
 
-	return pick(list(MALE, FEMALE, PLURAL))
+	var/list/possible_genders = initial(species_type.possible_genders)
+	if(possible_genders.len < 1)
+		stack_trace("[species_type.type] has no possible genders!")
+		return list(PLURAL)
+
+	return pick(possible_genders)
 
 /datum/preference/choiced/gender/apply_to_human(mob/living/carbon/human/target, value)
 	var/datum/species/S = target.dna.species
 
-	if(!S.sexes || (AGENDER in S.species_traits))
-		value = PLURAL //disregard gender preferences on this species
-
-	if(S)
-		if(FGENDER in S.species_traits)
-			value = FEMALE
-		else if(MGENDER in S.species_traits)
-			value = MALE
-			
-	target.gender = value
+	if(!(value in S.possible_genders))
+		target.gender = pick(S.possible_genders)
+	else
+		target.gender = value
