@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(880 modules,
-    3105/10971 macros, 28.3%)</aside></h3>
+<aside>(881 modules,
+    3105/10974 macros, 28.3%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -196,6 +196,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/wounds.html" title="code&#x2F;__DEFINES&#x2F;wounds">wounds</a></li>
     <li class="has-children"><span title="code&#x2F;__DEFINES&#x2F;{yogs_defines}">{yogs_defines}</span><ul class="index-tree">
     <li><a href="code/__DEFINES/{yogs_defines}/darkspawn.html" title="code&#x2F;__DEFINES&#x2F;{yogs_defines}&#x2F;darkspawn">darkspawn</a></li>
+    <li><a href="code/__DEFINES/{yogs_defines}/flavor_text.html" title="code&#x2F;__DEFINES&#x2F;{yogs_defines}&#x2F;flavor_text">flavor_text</a></li>
     <li><a href="code/__DEFINES/{yogs_defines}/mapping.html" title="code&#x2F;__DEFINES&#x2F;{yogs_defines}&#x2F;mapping">mapping</a></li>
     <li><a href="code/__DEFINES/{yogs_defines}/reactions.html" title="code&#x2F;__DEFINES&#x2F;{yogs_defines}&#x2F;reactions">reactions</a></li>
     <li><a href="code/__DEFINES/{yogs_defines}/telecomms.html" title="code&#x2F;__DEFINES&#x2F;{yogs_defines}&#x2F;telecomms">telecomms</a></li>
@@ -1268,7 +1269,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1260 detailed/2128 documented/30032 total, 7.1%)</aside></h3>
+<aside>(1263 detailed/2131 documented/30038 total, 7.1%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1973,7 +1974,7 @@ for scheduling different subsystems for different stages of the round</li>
     <li><a href="datum/design/borg_upgrade_medigripper.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_medigripper">Cyborg Upgrade (Medical Gripper)</a></li>
     <li><a href="datum/design/borg_upgrade_nv_mesons.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_nv_mesons">Cyborg Upgrade (Night Vision Mesons)</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_rename">Cyborg Upgrade (Rename Board)</span> - Borg Upgrades</li>
-    <li><a href="datum/design/borg_upgrade_surgerykit.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_surgerykit">Cyborg Upgrade (Advanced Surgical Kit)</a></li>
+    <li><a href="datum/design/borg_upgrade_surgicalomnitool.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_surgicalomnitool">Cyborg Upgrade (Advanced Surgical Omnitool)</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;c38_sec">Speed Loader (.38 rubber)</span> - Weapons</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;cargo_express">Computer Design (Express Supply Console)</span> - Mining</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;cyberimp_welding">Welding Shield Eyes</span> - Cybernetic Implants</li>
@@ -2131,6 +2132,7 @@ The overlay can be specified in new as the first paramter; if not set it default
     <li><a href="datum/element/update_icon_updates_onmob.html" title="&#x2F;datum&#x2F;element&#x2F;update_icon_updates_onmob">update_icon_updates_onmob</a></li>
     </ul></li>
     <li><a href="datum/emote.html" title="&#x2F;datum&#x2F;emote">emote</a></li>
+    <li><a href="datum/examine_panel.html" title="&#x2F;datum&#x2F;examine_panel">examine_panel</a></li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;fantasy_affix">fantasy_affix</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;fantasy_affix&#x2F;bane">bane</span> - Good suffixes</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;fantasy_affix&#x2F;fool">fool</span> - Bad suffixes</li>
@@ -2515,6 +2517,7 @@ Will give the value as 6 hex digits, without a hash.<ul class="index-tree">
     <li class="has-children"><a href="datum/preference/numeric.html" title="&#x2F;datum&#x2F;preference&#x2F;numeric">numeric</a> - A numeric preference with a minimum and maximum value<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;preference&#x2F;numeric&#x2F;multiz_performance">multiz_performance</span> - Boundary for how many z levels down to render properly before we start going cheapo mode</li>
     </ul></li>
+    <li><a href="datum/preference/text.html" title="&#x2F;datum&#x2F;preference&#x2F;text">text</a> - A string-based preference accepting arbitrary string values entered by the user, with a maximum length.</li>
     <li class="has-children"><a href="datum/preference/toggle.html" title="&#x2F;datum&#x2F;preference&#x2F;toggle">toggle</a> - A prefernece whose value is always TRUE or FALSE<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;preference&#x2F;toggle&#x2F;ambient_occlusion">ambient_occlusion</span> - Whether or not to toggle ambient occlusion, the shadows around people</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;preference&#x2F;toggle&#x2F;disable_alternative_announcers">disable_alternative_announcers</span> - Backdrop for the game world plane.</li>
@@ -3304,6 +3307,7 @@ Attacking any human mob (typically yourself) will cause their arm to instantly b
     <li><a href="obj/item/book/mimery.html" title="&#x2F;obj&#x2F;item&#x2F;book&#x2F;mimery">Guide to Dank Mimery</a></li>
     </ul></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;borg">borg</span> - Cyborg Spec Items<ul class="index-tree">
+    <li><a href="obj/item/borg/cyborg_omnitool.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;cyborg_omnitool">cyborg omni-toolset</a></li>
     <li><a href="obj/item/borg/gripper.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;gripper">cyborg gripper</a> - Grippers</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;sight">sight</span> - HUD/SIGHT things</li>
     <li class="has-children"><a href="obj/item/borg/upgrade.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade">borg upgrade module.</a><ul class="index-tree">
@@ -3377,7 +3381,7 @@ Attacking any human mob (typically yourself) will cause their arm to instantly b
     <li><span class="no-substance">accessory&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;accessory&#x2F;dogtags">Dogtags</span> - Dog Tags</li>
     <li><a href="obj/item/clothing/glasses.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;glasses">glasses</a></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;gloves">gloves</span><ul class="index-tree">
-    <li><a href="obj/item/clothing/gloves/gasharpoon.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;gloves&#x2F;gasharpoon">gas-harpoon</a></li>
+    <li><a href="obj/item/clothing/gloves/gasharpoon.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;gloves&#x2F;gasharpoon">gasharpoon</a></li>
     <li><a href="obj/item/clothing/gloves/sec_maga.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;gloves&#x2F;sec_maga">krav maga gloves</a></li>
     </ul></li>
     <li class="has-children"><a href="obj/item/clothing/head.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;head">head</a><ul class="index-tree">
@@ -4211,7 +4215,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/1675a298c5497149cb00fbf1ca691dc9ecb69204">1675a29</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/07a0383ad24443ef7c67672e8bf417c4d8238640">07a0383</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
