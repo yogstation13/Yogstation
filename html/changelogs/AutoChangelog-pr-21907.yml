@@ -1,0 +1,11 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Changed gamemode pop requirements"
+  - tweak: "traitor/bloodsucker 25 -> 20"
+  - tweak: "traitor/bloodbrother 20 -> 15"
+  - tweak: "traitor/changeling 20 -> 15"
+  - tweak: "bloodsucker 25 -> 20"
+  - tweak: "changeling 20 -> 15"
+  - tweak: "heretic 25 -> 15"
+  - tweak: "all gamemodes that are traitor/something spawn less traitors to account for the other antags"
