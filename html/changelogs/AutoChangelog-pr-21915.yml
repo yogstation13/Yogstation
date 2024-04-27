@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Mimes can use the darkspawn mindlink without needing to break their oath"
