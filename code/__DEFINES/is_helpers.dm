@@ -237,6 +237,8 @@ GLOBAL_LIST_INIT(glass_sheet_types, typecacheof(list(
 
 #define iseffect(O) (istype(O, /obj/effect))
 
+#define isholoeffect(O) (istype(O, /obj/effect/holodeck_effect))
+
 #define isblobmonster(O) (istype(O, /mob/living/simple_animal/hostile/blob))
 
 #define isshuttleturf(T) (!isnull(T.depth_to_find_baseturf(/turf/baseturf_skipover/shuttle)))

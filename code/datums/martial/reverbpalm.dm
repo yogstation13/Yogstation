@@ -27,7 +27,7 @@
 	if(issilicon(L))
 		L.apply_damage(borgdam, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 
-/datum/martial_art/reverberating_palm/proc/crash(atom/movable/ram, var/turf/Q)
+/datum/martial_art/reverberating_palm/proc/crash(atom/movable/ram, turf/Q)
 	if(Q.density || (!(Q.reachableTurftestdensity(T = Q))))
 		if(isliving(ram))
 			var/mob/living/target = ram
@@ -66,6 +66,8 @@
 
 /datum/martial_art/reverberating_palm/can_use(mob/living/carbon/human/H)
 	var/obj/item/bodypart/r_arm/robot/seismic/R = H.get_bodypart(BODY_ZONE_R_ARM)
+	if(!isturf(H.loc))
+		return FALSE
 	if(R)
 		if(!istype(R, /obj/item/bodypart/r_arm/robot/seismic))
 			return FALSE

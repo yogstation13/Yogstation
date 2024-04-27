@@ -871,7 +871,7 @@
 			var/mob/living/carbon/human/C = loc
 			C.regenerate_icons()
 
-/obj/item/nullrod/staff/worn_overlays(isinhands)
+/obj/item/nullrod/staff/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(isinhands)
 		. += mutable_appearance('icons/effects/effects.dmi', shield_icon, MOB_LAYER + 0.01)
@@ -1320,7 +1320,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 		splash_charges--
 
 		playsound(src.loc, 'sound/effects/wounds/splatter.ogg', 50, 1, 3)
-		playsound(src.loc, get_sfx("collarbell"), 50, 1, 3)
+		playsound(src.loc, get_sfx(SFX_COLLARBELL), 50, 1, 3)
 
 		var/direction = get_dir(src,target)
 

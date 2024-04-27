@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/tar_pool
 	name = "Return to tar"
-	desc = "Temporarily dissolve into a pool of tar, in this form you are involnurable to damage."
+	desc = "Temporarily dissolve into a pool of tar, in this form you are invulnerable to damage."
 	button_icon = 'yogstation/icons/mob/actions/actions.dmi'
 	button_icon_state = "tarshift"
 	background_icon = 'yogstation/icons/mob/actions/backgrounds.dmi'

@@ -1,6 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed a bunch of vending machines being discolored"
-  - imageadd: "Replaced awful vending machines with our nice old ones!"
-  - imagedel: "Sent the new vending machine sprites straight to the boiler room of hell where they belong"

@@ -242,13 +242,14 @@ GLOBAL_VAR_INIT(clones, 0)
 			var/mob/M = H.easy_random_mutate(NEGATIVE+MINOR_NEGATIVE)
 			if(ismob(M))
 				H = M
-	if((AGENDER || MGENDER || FGENDER) in H.dna.species.species_traits)
-		if((FGENDER in H.dna.species.species_traits) && (H.gender != FEMALE))
-			H.gender = FEMALE
-		if((MGENDER in H.dna.species.species_traits) && (H.gender != MALE))
-			H.gender = MALE
-		if((AGENDER in H.dna.species.species_traits) && (H.gender != PLURAL))
-			H.gender = PLURAL
+	
+	var/list/possible_genders = H.dna.species.possible_genders
+	if(!possible_genders || possible_genders.len < 1)
+		stack_trace("[H.dna.species.type] has no possible genders!")
+		H.gender = PLURAL // uh oh
+	else if(possible_genders.len == 1)
+		H.gender = possible_genders[1] // some species only have one gender
+
 	if(!H.GetComponent(/datum/component/mood) && mood)
 		H.AddComponent(/datum/component/mood)
 

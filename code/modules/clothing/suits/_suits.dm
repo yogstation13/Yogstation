@@ -23,7 +23,7 @@
 		QDEL_NULL(attached_badge)
 	return ..()
 
-/obj/item/clothing/suit/worn_overlays(isinhands = FALSE)
+/obj/item/clothing/suit/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(!isinhands)
 		if(damaged_clothes)
