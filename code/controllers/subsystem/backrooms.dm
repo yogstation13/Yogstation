@@ -3,6 +3,8 @@ SUBSYSTEM_DEF(backrooms)
 	init_order = INIT_ORDER_BACKROOMS
 	flags = SS_NO_FIRE
 
+	var/datum/map_generator/dungeon_generator/backrooms_generator
+
 /datum/controller/subsystem/backrooms/Initialize(timeofday)
 #ifdef LOWMEMORYMODE
 	return SS_INIT_NO_NEED
@@ -25,11 +27,25 @@ SUBSYSTEM_DEF(backrooms)
 	for(var/area/A as anything in GLOB.areas)
 		if(istype(A, /area/procedurally_generated/maintenance/the_backrooms))
 			A.RunGeneration()
+			backrooms_generator = A.map_generator
+			break
+
+	if(backrooms_generator && istype(backrooms_generator))
+		var/min_x = backrooms_generator.min_x
+		var/max_x = backrooms_generator.max_x
+		var/min_y = backrooms_generator.min_y
+		var/max_y = backrooms_generator.max_y
+		var/z_level = backrooms_generator.z_level
+
+		for(var/turf/current_turf in block(locate(min_x,min_y,z_level),locate(max_x,max_y,z_level)))
+			if(current_turf.x == min_x || current_turf.x == max_x || current_turf.y == min_y || current_turf.y == max_y)
+				current_turf.empty(null, flags = CHANGETURF_DEFER_CHANGE | CHANGETURF_IGNORE_AIR)
+				current_turf.place_on_top(/turf/closed/indestructible/backrooms, flags = CHANGETURF_DEFER_CHANGE | CHANGETURF_IGNORE_AIR)
 
 	addtimer(CALLBACK(src, PROC_REF(generate_exit)), 1 MINUTES)
 
 /datum/controller/subsystem/backrooms/proc/generate_exit()
-	var/backrooms_level = SSmapping.levels_by_trait(ZTRAIT_PROCEDURAL_MAINTS)
+	var/list/backrooms_level = SSmapping.levels_by_trait(ZTRAIT_PROCEDURAL_MAINTS)
 	if(LAZYLEN(backrooms_level))
 		var/turf/way_out = find_safe_turf(zlevels = backrooms_level, dense_atoms = FALSE)
 		new /obj/effect/portal/permanent/one_way/backrooms(way_out)
