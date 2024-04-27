@@ -752,6 +752,10 @@
 	item_state = "flashdark"
 	light_power = -1
 
+/obj/item/flashlight/flashdark/Initialize(mapload)
+	. = ..()
+	set_light_color(COLOR_VELVET)
+
 /obj/item/flashlight/eyelight
 	name = "eyelight"
 	desc = "This shouldn't exist outside of someone's head, how are you seeing this?"
