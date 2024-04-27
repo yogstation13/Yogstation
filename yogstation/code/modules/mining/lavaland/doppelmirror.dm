@@ -1,4 +1,6 @@
 #define COOLDOWN_RECALL 5 SECONDS
+#define COOLDOWN_MIRRORSEARCH 10 SECONDS
+
 /obj/item/dopmirror
 	name = "ominous mirror"
 	desc = "What do you see looking back at you?"
@@ -6,6 +8,7 @@
 	icon_state = "mirrornormal"
 	actions_types = list(/datum/action/item_action/mirrorrecall, /datum/action/item_action/rerollmirror)
 	var/next_recall = 0
+	var/next_search = 0
 	var/mob/living/carbon/original = null
 	var/mob/living/simple_animal/hostile/double/reflected = null
 
@@ -19,8 +22,11 @@
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE))
 		to_chat(user, span_notice("Anomalous otherworldly energies keep the mirror from reflecting anything!"))
 		return
+	if(next_search > world.time)
+		return
 
 	to_chat(user, "You peer into the mirror...")
+	next_search = world.time + COOLDOWN_MIRRORSEARCH
 	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the living reflection in service of [user.real_name]?", ROLE_PAI, null, FALSE, 100, POLL_IGNORE_POSSESSED_BLADE)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
