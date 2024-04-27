@@ -7,8 +7,8 @@
 	icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "mirrornormal"
 	actions_types = list(/datum/action/item_action/mirrorrecall, /datum/action/item_action/rerollmirror)
-	var/next_recall = 0
-	var/next_search = 0
+	COOLDOWN_DECLARE(next_search)
+	COOLDOWN_DECLARE(next_recall)
 	var/mob/living/carbon/original = null
 	var/mob/living/simple_animal/hostile/double/reflected = null
 
@@ -22,11 +22,11 @@
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE))
 		to_chat(user, span_notice("Anomalous otherworldly energies keep the mirror from reflecting anything!"))
 		return
-	if(next_search > world.time)
+	if(!COOLDOWN_FINISHED(src, next_search))
 		return
+	COOLDOWN_START(src, next_search, COOLDOWN_MIRRORSEARCH)
 
 	to_chat(user, "You peer into the mirror...")
-	next_search = world.time + COOLDOWN_MIRRORSEARCH
 	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the living reflection in service of [user.real_name]?", ROLE_PAI, null, FALSE, 100, POLL_IGNORE_POSSESSED_BLADE)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
@@ -58,7 +58,7 @@
 
 /obj/item/dopmirror/ui_action_click(mob/living/user, action)
 	if(istype(action, /datum/action/item_action/mirrorrecall))
-		if(next_recall > world.time)
+		if(!COOLDOWN_FINISHED(src, next_recall))
 			to_chat(user, span_warning("You can't do that yet!"))
 			return
 		if(!reflected)
@@ -68,7 +68,7 @@
 		to_chat(user, span_notice("You knock on the mirror and call your reflection back into focus."))
 		reflected.forceMove(src)
 		update_icon(inhabited = TRUE)
-		next_recall = world.time + COOLDOWN_RECALL
+		COOLDOWN_START(src, next_search, COOLDOWN_RECALL)
 	if(istype(action, /datum/action/item_action/rerollmirror))
 		if(!reflected)
 			to_chat(user, span_notice("The mirror is dormant."))
@@ -232,17 +232,17 @@
 	playsound(doppelganger, 'sound/effects/glassknock.ogg', 75)
 
 
-#define RESET_TIME 20 SECONDS
+#define COOLDOWN_REAPPEAR 20 SECONDS
 /datum/action/innate/appear
 	name = "Exit Mirror"
 	button_icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
 	button_icon_state = "mirrorcrack"
-	var/next_appearance = 0
+	COOLDOWN_DECLARE(next_appearance)
 
 /datum/action/innate/appear/Activate(died = FALSE)
 	var/mob/living/simple_animal/hostile/double/doppelganger = owner
 	var/turf/M = get_turf(doppelganger.mirror)
-	if(next_appearance > world.time)
+	if(!COOLDOWN_FINISHED(src, next_appearance))
 		to_chat(doppelganger, span_warning("You can't leave the mirror yet!"))
 		return
 	if(doppelganger.mirror.original == null) 
@@ -256,25 +256,25 @@
 	doppelganger.hibernating = FALSE	
 	doppelganger.mirror.update_icon()
 	if(died == TRUE)
-		next_appearance = world.time + RESET_TIME
+		COOLDOWN_START(src, next_appearance, COOLDOWN_REAPPEAR)
 		return
 	doppelganger.forceMove(M)
 	doppelganger.appearance = doppelganger.mirror.original.appearance
 	doppelganger.alpha = 130
 
 
-#define SWAP_TIME 15 SECONDS
+#define COOLDOWN_SPOTSWAP 15 SECONDS
 /datum/action/innate/swap
 	name = "Swap"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "separate"
-	var/next_swap = 0
+	COOLDOWN_DECLARE(next_swap)
 
 /datum/action/innate/swap/Activate(died = FALSE)
 	var/mob/living/simple_animal/hostile/double/doppelganger = owner
 	var/turf/going = get_turf(doppelganger.mirror)
 	var/turf/doppspot = get_turf(doppelganger)
-	if(next_swap > world.time)
+	if(!COOLDOWN_FINISHED(src, next_swap))
 		to_chat(doppelganger, span_warning("You can't exchange locations yet!"))
 		return
 	if(!isturf(doppelganger.loc)) //so it's not used from inside the mirror 
@@ -285,7 +285,7 @@
 	if(istype(doppspot, /turf/open/lava)) 
 		to_chat(doppelganger, span_warning("You probably shouldn't risk the mirror falling into lava."))
 		return
-	next_swap = world.time + SWAP_TIME
+	COOLDOWN_START(src, next_swap, COOLDOWN_SPOTSWAP)
 	doppelganger.forceMove(going)
 	doppelganger.mirror.original.forceMove(doppspot)
 	playsound(going, 'sound/effects/bamf.ogg', 50)
