@@ -186,8 +186,8 @@
 			icon_state = "[icon_living]_rest"
 			collar_type = "[initial(collar_type)]_rest"
 	else
-		icon_state = "[icon_living]"
-		collar_type = "[initial(collar_type)]"
+		icon_state = icon_living
+		collar_type = initial(collar_type)
 
 /mob/living/simple_animal/pet/cat/mob_pickup(mob/living/L)
 	set_resting(FALSE) // resting cats don't show up properly when held
