@@ -1062,9 +1062,10 @@
 
 /datum/dynamic_ruleset/roundstart/malf_ai/ready(population, forced)
 	var/datum/job/ai_job = SSjob.GetJobType(/datum/job/ai)
+	var/ai_count = ai_job.total_positions - ai_job.current_positions
 
-	// If we're not forced, we're going to make sure we can actually have an AI in this shift.
-	if(!forced && min(ai_job.total_positions - ai_job.current_positions, ai_job.spawn_positions) <= 0)
+	// Unless forced, only allow this ruleset if the map permits an AI.
+	if(!forced && ai_count <= 0)
 		return FALSE
 
 	return ..()
@@ -1072,15 +1073,15 @@
 /datum/dynamic_ruleset/roundstart/malf_ai/pre_execute(population)
 	. = ..()
 	var/datum/job/ai_job = SSjob.GetJobType(/datum/job/ai)
-	// Maybe a bit too pedantic, but there should never be more malf AIs than there are available positions, spawn positions or antag cap allocations.
-	var/num_malf = min(get_antag_cap(population), min(ai_job.total_positions - ai_job.current_positions, ai_job.spawn_positions))
-	for (var/i in 1 to num_malf)
+	var/ai_count = ai_job.total_positions - ai_job.current_positions
+	var/malf_ai_count = min(get_antag_cap(population), ai_count)
+	for (var/i in 1 to malf_ai_count)
 		if(candidates.len <= 0)
 			break
 		var/mob/new_malf = pick_n_take(candidates)
 		assigned += new_malf.mind
 		new_malf.mind.restricted_roles = restricted_roles
 		new_malf.mind.special_role = ROLE_MALF
-		// We need an AI for the malf roundstart ruleset to execute. This means that players who get selected as malf AI get priority, because antag selection comes before role selection.
+		// Force this person to become an AI.
 		LAZYADDASSOC(SSjob.dynamic_forced_occupations, new_malf, "AI")
 	return TRUE
