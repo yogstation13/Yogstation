@@ -108,7 +108,7 @@
 				investigate_log("[user.real_name] ([user.ckey]) attempted to inject [living_target.real_name] ([living_target.ckey]) with [viruslist]", INVESTIGATE_VIROLOGY)
 				log_game("[user.real_name] ([user.ckey]) injected [living_target.real_name] ([living_target.ckey]) with [viruslist]") // yogs end
 			log_combat(user, living_target, "injected", src, addition="which had [contained]")
-	reagents.reaction(target, methods = INJECT, min(amount_per_transfer_from_this / reagents.total_volume, 1))
+	reagents.reaction(target, INJECT, min(amount_per_transfer_from_this / reagents.total_volume, 1))
 	reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
 	to_chat(user, "<span class='notice'>You inject [amount_per_transfer_from_this] units of the solution. The syringe now contains [reagents.total_volume] units.</span>")
 
