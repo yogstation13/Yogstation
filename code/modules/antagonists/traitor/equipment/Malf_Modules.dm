@@ -131,6 +131,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	category = "Upgrade Modules"
 
 /// Doomsday Device: Starts the self-destruct timer. It can only be stopped by killing the AI completely.
+/*
 /datum/AI_Module/destructive/nuke_station
 	name = "Doomsday Device"
 	description = "Activate a weapon that will disintegrate all organic life on the station after a 450 second delay. Can only be used while on the station, will fail if your core is moved off station or destroyed."
@@ -141,7 +142,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 
 /datum/AI_Module/destructive/nuke_station/can_use(mob/living/silicon/ai/AI)
 	return !AI.mind.has_antag_datum(/datum/antagonist/hijacked_ai)
-
+*/
 /datum/action/innate/ai/nuke_station
 	name = "Doomsday Device"
 	desc = "Activates the doomsday device. This is not reversible and you must be in your core to start the process."
