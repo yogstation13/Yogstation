@@ -11,7 +11,7 @@
 	flags_inv = HIDEGLOVES|HIDESHOES
 	flags_prot = HIDEJUMPSUIT
 	hoodtype = /obj/item/clothing/head/hooded/miningmedic
-	armor = list(MELEE = 25, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 50, WOUND = 10)
+	armor = list(MELEE = 40, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 50, WOUND = 10)
 
 	resistance_flags = FIRE_PROOF
 	mutantrace_variation = MUTANTRACE_VARIATION
@@ -30,5 +30,5 @@
 	flags_prot = HIDEHAIR
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
-	armor = list(MELEE = 25, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 50, WOUND = 10)
+	armor = list(MELEE = 40, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 50, WOUND = 10)
 	resistance_flags = FIRE_PROOF
