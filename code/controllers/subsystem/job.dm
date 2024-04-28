@@ -22,6 +22,9 @@ SUBSYSTEM_DEF(job)
 	var/list/prioritized_jobs = list()
 	var/list/latejoin_trackers = list()	//Don't read this list, use GetLateJoinTurfs() instead
 
+	/// Lazylist of mob:occupation_string pairs.
+	var/list/dynamic_forced_occupations
+
 	var/overflow_role = "Assistant"
 
 	var/list/level_order = list(JP_HIGH,JP_MEDIUM,JP_LOW)
@@ -388,6 +391,10 @@ SUBSYSTEM_DEF(job)
 	unassigned = shuffle(unassigned)
 
 	HandleFeedbackGathering()
+
+	// Dynamic has picked a ruleset that requires enforcing some jobs before others.
+	JobDebug("DO, Assigning Priority Positions: [length(dynamic_forced_occupations)]")
+	assign_priority_positions()
 
 	//People who wants to be the overflow role, sure, go on.
 	JobDebug("DO, Running Overflow Check 1")
@@ -1009,3 +1016,9 @@ SUBSYSTEM_DEF(job)
 
 /datum/controller/subsystem/job/proc/JobDebug(message)
 	log_job_debug(message)
+
+/// Blindly assigns the required roles to every player in the dynamic_forced_occupations list.
+/datum/controller/subsystem/job/proc/assign_priority_positions()
+	for(var/mob/new_player in dynamic_forced_occupations)
+		AssignRole(new_player, dynamic_forced_occupations[new_player])
+		

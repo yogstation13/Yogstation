@@ -15,6 +15,7 @@
 		return ..()
 
 	owner.special_role = job_rank
+	SSticker.mode.malf_ais += owner
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/malf.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 
 	if(owner.current && isAI(owner.current))
@@ -31,6 +32,7 @@
 		remove_abilities(malf_ai)
 		remove_law_zero(malf_ai)
 
+	SSticker.mode.malf_ais -= owner
 	owner.special_role = null
 	return ..()
 
