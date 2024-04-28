@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "walking orthogonally with instant mining tools is no longer slower than walking diagonally"
+  - tweak: "if a mining tool is instant, it will now only print one chat message"
