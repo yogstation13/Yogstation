@@ -1,0 +1,6 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - rscadd: "Positive station trait, Cybernetic Revolution."
+  - rscadd: "Negative mood quirk, Body Purist."
+  - bugfix: "Limping is properly given/removed when attaching/detaching limbs."
