@@ -28,11 +28,6 @@ export const CargoBountyConsole = (props, context) => {
               <Flex.Item grow={1} textAlign="center" >
                 {!is_packager && " ERROR: NO LINK TO PACKAGER" || ""}
               </Flex.Item>
-              <Flex.Item>
-                <Button onClick={() => act("Eject")}>
-                  Eject ID
-                </Button>
-              </Flex.Item>
             </Flex>
           ) || ""}
           {!has_id && is_packager && (
