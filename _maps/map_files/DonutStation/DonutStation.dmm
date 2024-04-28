@@ -16411,20 +16411,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"gKN" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/requests_console{
-	department = "Cargo Bay";
-	departmentType = 2;
-	pixel_x = -30
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "gKP" = (
 /obj/machinery/computer/security,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
@@ -47019,6 +47005,23 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"tQD" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/requests_console{
+	department = "Cargo Bay";
+	departmentType = 2;
+	pixel_x = -30
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/modular_computer/console/preset/cargo/qm{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "tQS" = (
 /turf/closed/wall/r_wall,
 /area/science/mixing)
@@ -94655,7 +94658,7 @@ mdj
 mHy
 lwl
 nyW
-gKN
+tQD
 qwB
 saU
 lwl
