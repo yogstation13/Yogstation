@@ -29,7 +29,7 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(881 modules,
+<aside>(882 modules,
     3105/10974 macros, 28.3%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
@@ -1195,6 +1195,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/modules/unit_tests/greyscale_config.html" title="code&#x2F;modules&#x2F;unit_tests&#x2F;greyscale_config">greyscale_config</a></li>
     <li><a href="code/modules/unit_tests/map_landmarks.html" title="code&#x2F;modules&#x2F;unit_tests&#x2F;map_landmarks">map_landmarks</a></li>
     <li><a href="code/modules/unit_tests/mapping.html" title="code&#x2F;modules&#x2F;unit_tests&#x2F;mapping">mapping</a></li>
+    <li><a href="code/modules/unit_tests/station_trait_tests.html" title="code&#x2F;modules&#x2F;unit_tests&#x2F;station_trait_tests">station_trait_tests</a></li>
     <li><a href="code/modules/unit_tests/trait_addition_and_removal.html" title="code&#x2F;modules&#x2F;unit_tests&#x2F;trait_addition_and_removal">trait_addition_and_removal</a></li>
     </ul></li>
     <li><span class="no-substance">uplink&#x2F;</span><a href="code/modules/uplink/uplink_items.html" title="code&#x2F;modules&#x2F;uplink&#x2F;uplink_items">uplink_items</a></li>
@@ -1269,7 +1270,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1263 detailed/2131 documented/30038 total, 7.1%)</aside></h3>
+<aside>(1264 detailed/2133 documented/30037 total, 7.1%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -2683,6 +2684,7 @@ Can detect if a given code stack has exited, used by the mc for stack overflow d
 All of this is passed to the Request Console UI in order to present in organized way.</li>
     <li class="has-children"><a href="datum/station_trait.html" title="&#x2F;datum&#x2F;station_trait">unnamed station trait</a> - Base class of station traits. These are used to influence rounds in one way or the other by influencing the levers of the station.<ul class="index-tree">
     <li><a href="datum/station_trait/bot_languages.html" title="&#x2F;datum&#x2F;station_trait&#x2F;bot_languages">Bot Language Matrix Malfunction</a></li>
+    <li><a href="datum/station_trait/cybernetic_revolution.html" title="&#x2F;datum&#x2F;station_trait&#x2F;cybernetic_revolution">Cybernetic Revolution</a></li>
     <li><a href="datum/station_trait/random_event_weight_modifier.html" title="&#x2F;datum&#x2F;station_trait&#x2F;random_event_weight_modifier">Random Event Modifier</a> - The bot's language holder - so we can randomize and change their language</li>
     </ul></li>
     <li class="has-children"><a href="datum/status_effect.html" title="&#x2F;datum&#x2F;status_effect">status_effect</a> - Status effects are used to apply temporary or permanent effects to mobs.
@@ -2910,6 +2912,7 @@ Checks that every overlay passed into build_appearance_list exists in the icon</
     <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;job_roundstart_spawnpoints">job_roundstart_spawnpoints</span> - Tests that <a href="datum/job.html#proc/get_default_roundstart_spawn_point" title="/datum/job">/datum/job/proc/get_default_roundstart_spawn_point</a> returns a landmark from all joinable jobs.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;log_mapping">log_mapping</span> - Conveys all log_mapping messages as unit test failures, as they all indicate mapping problems.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;space_dragon_expiration">space_dragon_expiration</span> - Unit tests that the space dragon - when its rift expires and it gets qdel'd - doesn't delete all the mobs it has eaten</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;station_traits">station_traits</span> - This test spawns various station traits and looks through them to see if there's any errors.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;trait_addition_and_removal">trait_addition_and_removal</span> - Simple Unit Test to ensure multiple methods of adding/removing a trait work as intended.</li>
     </ul></li>
     <li class="has-children"><a href="datum/uplink_item.html" title="&#x2F;datum&#x2F;uplink_item">item name</a> - Uplink Items<ul class="index-tree">
@@ -4215,7 +4218,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/07a0383ad24443ef7c67672e8bf417c4d8238640">07a0383</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/7848ddaa662aad47d6c13e054bd776713b87b009">7848dda</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
