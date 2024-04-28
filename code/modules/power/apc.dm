@@ -772,10 +772,8 @@
 	. = ..()
 	if(!user.canUseTopic(src, !issilicon(user)) || !isturf(loc))
 		return
-	if(isethereal(user))
-		var/mob/living/glowbro = user
-		if(ethereal_act(glowbro))
-			return
+	if(ethereal_act(user))
+		return
 	togglelock(user)
 
 /obj/machinery/power/apc/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
@@ -909,9 +907,6 @@
 	. = ..()
 	if(.)
 		return
-	if(modifiers && modifiers[RIGHT_CLICK])
-		togglelock(user)
-		return
 	if(opened && (!issilicon(user)))
 		if(cell)
 			user.visible_message("[user] removes \the [cell] from [src]!",span_notice("You remove \the [cell]."))
@@ -923,6 +918,10 @@
 		return
 	if((stat & MAINT) && !opened) //no board; no interface
 		return
+
+/obj/machinery/power/apc/attack_hand_secondary(mob/living/user, modifiers)
+	togglelock(user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/power/apc/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

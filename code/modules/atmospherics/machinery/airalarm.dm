@@ -873,10 +873,9 @@
 		return
 	togglelock(user)
 
-/obj/machinery/airalarm/attack_hand(mob/living/user, modifiers)
-	if(modifiers && modifiers[RIGHT_CLICK])
-		togglelock(user)
-	return ..()
+/obj/machinery/airalarm/attack_hand_secondary(mob/user, modifiers)
+	togglelock(user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/airalarm/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	if((buildstage == 0) && (the_rcd.upgrade & RCD_UPGRADE_SIMPLE_CIRCUITS))

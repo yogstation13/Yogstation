@@ -76,8 +76,8 @@
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	return SECONDARY_ATTACK_CALL_NORMAL
 
-/obj/item/proc/pre_attack(atom/A, mob/living/user, params) //do stuff before attackby!
-	if(SEND_SIGNAL(src, COMSIG_ITEM_PRE_ATTACK, A, user, params) & COMPONENT_NO_ATTACK)
+/obj/item/proc/pre_attack(atom/target, mob/living/user, params) //do stuff before attackby!
+	if(SEND_SIGNAL(src, COMSIG_ITEM_PRE_ATTACK, target, user, params) & COMPONENT_NO_ATTACK)
 		return TRUE
 	return FALSE //return TRUE to avoid calling attackby after this proc does stuff
 

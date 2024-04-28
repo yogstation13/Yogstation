@@ -200,6 +200,8 @@
 		take_damage(5, BURN, 0, 1)
 
 /obj/mecha/attackby(obj/item/W, mob/living/user, params)
+	if(user.combat_mode)
+		return ..()
 
 	if(istype(W, /obj/item/mmi))
 		if(mmi_move_inside(W,user))
