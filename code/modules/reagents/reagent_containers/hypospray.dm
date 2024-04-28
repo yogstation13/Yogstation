@@ -417,6 +417,13 @@
 		return
 	return ..()
 
+/obj/item/hypospray/attack_hand_secondary(mob/user, modifiers)
+	if(!can_remove_container)
+		return SECONDARY_ATTACK_CALL_NORMAL
+	unload_hypo(user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+
 /obj/item/hypospray/CtrlClick(mob/user)
 	if(can_remove_container && loc == user && user.is_holding(src) && container)
 		unload_hypo(user)
