@@ -73,7 +73,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_WIZARD = /datum/antagonist/wizard,
 	ROLE_RAGINMAGES	= /datum/antagonist/wizard,
 	ROLE_BULLSHITMAGES = /datum/antagonist/wizard,
-	ROLE_MALF = /datum/antagonist/traitor/malf,
+	ROLE_MALF = /datum/antagonist/malf_ai,
 	ROLE_REV_HEAD = /datum/antagonist/rev/head,
 	ROLE_ALIEN = /datum/antagonist/xeno,
 	ROLE_CULTIST = /datum/antagonist/cult,
