@@ -79,10 +79,10 @@ GLOBAL_LIST_EMPTY(PDABombCodes)
 					target_computer = target.holder.loc
 				
 				var/obj/item/card/id/targetid
+				var/obj/item/card/id/computer_id_slot
 				if(target_computer) // Find ID
-					var/card_slot = target_computer.all_components[MC_CARD]
-					if(card_slot)
-						targetid = card_slot.GetID()
+					if(computer_id_slot)
+						targetid = computer_id_slot.GetID()
 					
 				if(targetid) // Adjust difficulty based on target's access
 					difficulty += BitCount(text2num(targetid.access_txt) & (ACCESS_MEDICAL | ACCESS_SECURITY | ACCESS_ENGINE | ACCESS_THEATRE | ACCESS_JANITOR | ACCESS_HEADS))

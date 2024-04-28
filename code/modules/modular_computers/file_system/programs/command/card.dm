@@ -59,15 +59,15 @@
 		)
 	)
 
-/datum/computer_file/program/card_mod/proc/authenticate(mob/user, obj/item/card/id/id_card)
-	if(!id_card)
+/datum/computer_file/program/card_mod/proc/authenticate(mob/user, obj/item/card/id/inserted_id)
+	if(!inserted_id)
 		return
 
-	if(istype(id_card, /obj/item/card/id/captains_spare/temporary))
-		to_chat(user, span_warning("ERROR: [id_card] is not compatable with this program"))
+	if(istype(inserted_id, /obj/item/card/id/captains_spare/temporary))
+		to_chat(user, span_warning("ERROR: [inserted_id] is not compatable with this program"))
 		return
 	region_access = list()
-	if(!target_dept && (ACCESS_CHANGE_IDS in id_card.access))
+	if(!target_dept && (ACCESS_CHANGE_IDS in inserted_id.access))
 		minor = FALSE
 		authenticated = TRUE
 		region_access = list(CARDCON_DEPARTMENT_SERVICE, CARDCON_DEPARTMENT_COMMAND, CARDCON_DEPARTMENT_SECURITY, CARDCON_DEPARTMENT_MEDICAL, CARDCON_DEPARTMENT_SCIENCE, CARDCON_DEPARTMENT_ENGINEERING)
@@ -78,7 +78,7 @@
 	for(var/access_text in sub_managers)
 		var/list/info = sub_managers[access_text]
 		var/access = text2num(access_text)
-		if((access in id_card.access) && ((info["region"] in target_dept) || !length(target_dept)))
+		if((access in inserted_id.access) && ((info["region"] in target_dept) || !length(target_dept)))
 			region_access += info["region"]
 			//I don't even know what I'm doing anymore
 			head_types += info["head"]
@@ -104,22 +104,17 @@
 		return TRUE
 
 	var/obj/item/computer_hardware/printer/printer
-	if(computer)
-		printer = computer.all_components[MC_PRINT]
-		if(!card_slot || !card_slot2)
-			return
+
 
 	var/mob/user = usr
-	var/obj/item/card/id/user_id_card = card_slot.stored_card
-
-	var/obj/item/card/id/target_id_card = card_slot2.stored_card
+	var/obj/item/card/id/inserted_auth_card = computer.computer_id_slot
 
 	switch(action)
 		if("PRG_authenticate")
-			if(!computer || !user_id_card)
+			if(!computer || !inserted_auth_card)
 				playsound(computer, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 				return
-			if(authenticate(user, user_id_card))
+			if(authenticate(user, inserted_auth_card))
 				playsound(computer, 'sound/machines/terminal_on.ogg', 50, FALSE)
 				return TRUE
 		if("PRG_logout")
@@ -132,15 +127,15 @@
 			if(!authenticated)
 				return
 			var/contents = {"<h4>Access Report</h4>
-						<u>Prepared By:</u> [user_id_card && user_id_card.registered_name ? user_id_card.registered_name : "Unknown"]<br>
-						<u>For:</u> [target_id_card.registered_name ? target_id_card.registered_name : "Unregistered"]<br>
+						<u>Prepared By:</u> [inserted_auth_card && inserted_auth_card.registered_name ? inserted_auth_card.registered_name : "Unknown"]<br>
+						<u>For:</u> [inserted_auth_card.registered_name ? inserted_auth_card.registered_name : "Unregistered"]<br>
 						<hr>
-						<u>Assignment:</u> [target_id_card.assignment]<br>
+						<u>Assignment:</u> [inserted_auth_card.assignment]<br>
 						<u>Access:</u><br>
 						"}
 
 			var/known_access_rights = get_all_accesses()
-			for(var/A in target_id_card.access)
+			for(var/A in inserted_auth_card.access)
 				if(A in known_access_rights)
 					contents += "  [get_access_desc(A)]"
 
@@ -152,41 +147,49 @@
 				computer.visible_message(span_notice("\The [computer] prints out a paper."))
 			return TRUE
 		if("PRG_eject")
-			if(!computer || !card_slot2)
-				return
-			if(target_id_card)
-				GLOB.data_core.manifest_modify(target_id_card.registered_name, target_id_card.assignment)
-				return card_slot2.try_eject(user)
+			if(inserted_auth_card)
+				return computer.RemoveID(usr)
 			else
 				var/obj/item/I = user.get_active_held_item()
 				if(istype(I, /obj/item/card/id))
-					return card_slot2.try_insert(I)
+					return computer.InsertID(I)
 			return FALSE
+		// Eject the ID being modified.
+		if("PRG_ejectmodid")
+			if(inserted_auth_card)
+				GLOB.data_core.manifest_modify(inserted_auth_card.registered_name, inserted_auth_card.assignment)
+				return computer.RemoveID(usr)
+			else
+				var/obj/item/I = user.get_active_held_item()
+				if(isidcard(I))
+					return computer.InsertID(I, user)
+			return TRUE
+
 		if("PRG_terminate")
 			if(!computer || !authenticated)
 				return
 			if(minor)
-				if(!(target_id_card.assignment in head_subordinates) && target_id_card.assignment != "Assistant")
+				if(!(inserted_auth_card.assignment in head_subordinates) && inserted_auth_card.assignment != "Assistant")
 					return
 
-			target_id_card.access -= get_all_centcom_access() + get_all_accesses()
-			target_id_card.assignment = "Unassigned"
-			target_id_card.originalassignment = null
-			target_id_card.update_label()
+			inserted_auth_card.access -= get_all_centcom_access() + get_all_accesses()
+			inserted_auth_card.assignment = "Unassigned"
+			inserted_auth_card.originalassignment = null
+			inserted_auth_card.update_label()
 			playsound(computer, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 			return TRUE
 		if("PRG_edit")
-			if(!computer || !authenticated || !target_id_card)
+			if(!computer || !authenticated || !inserted_auth_card)
 				return
 			var/new_name = params["name"]
 			if(!new_name)
 				return
-			target_id_card.registered_name = new_name
-			target_id_card.update_label()
+			inserted_auth_card.registered_name = new_name
+			inserted_auth_card.update_label()
 			playsound(computer, "terminal_type", 50, FALSE)
 			return TRUE
 		if("PRG_assign")
-			if(!computer || !authenticated || !target_id_card)
+			if(!computer || !authenticated || !inserted_auth_card)
 				return
 			var/target = params["assign_target"]
 			if(!target)
@@ -195,8 +198,8 @@
 			if(target == "Custom")
 				var/custom_name = params["custom_name"]
 				if(custom_name)
-					target_id_card.assignment = custom_name
-					target_id_card.update_label()
+					inserted_auth_card.assignment = custom_name
+					inserted_auth_card.update_label()
 			else
 				if(minor && !(target in head_subordinates))
 					return
@@ -209,14 +212,14 @@
 						to_chat(user, span_warning("No class exists for this job: [target]"))
 						return
 					new_access = job.get_access()
-					if(target_id_card.registered_account)
-						target_id_card.registered_account.account_job = job
+					if(inserted_auth_card.registered_account)
+						inserted_auth_card.registered_account.account_job = job
 
-				target_id_card.access = list()
-				target_id_card.access |= new_access
-				target_id_card.originalassignment = target
-				target_id_card.assignment = target
-				target_id_card.update_label()
+				inserted_auth_card.access = list()
+				inserted_auth_card.access |= new_access
+				inserted_auth_card.originalassignment = target
+				inserted_auth_card.assignment = target
+				inserted_auth_card.update_label()
 
 			playsound(computer, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 			return TRUE
@@ -225,22 +228,22 @@
 				return
 			var/access_type = text2num(params["access_target"])
 			if(access_type in (is_centcom ? get_all_centcom_access() : get_all_accesses()))
-				if(access_type in target_id_card.access)
-					target_id_card.access -= access_type
+				if(access_type in inserted_auth_card.access)
+					inserted_auth_card.access -= access_type
 				else
-					target_id_card.access |= access_type
+					inserted_auth_card.access |= access_type
 				playsound(computer, "terminal_type", 50, FALSE)
 				return TRUE
 		if("PRG_grantall")
 			if(!computer || !authenticated || minor)
 				return
-			target_id_card.access |= (is_centcom ? get_all_centcom_access() : get_all_accesses())
+			inserted_auth_card.access |= (is_centcom ? get_all_centcom_access() : get_all_accesses())
 			playsound(computer, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 			return TRUE
 		if("PRG_denyall")
 			if(!computer || !authenticated || minor)
 				return
-			target_id_card.access.Cut()
+			inserted_auth_card.access.Cut()
 			playsound(computer, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 			return TRUE
 		if("PRG_grantregion")
@@ -249,7 +252,7 @@
 			var/region = text2num(params["region"])
 			if(isnull(region) || (!(region in region_access) && minor))
 				return
-			target_id_card.access |= get_region_accesses(region)
+			inserted_auth_card.access |= get_region_accesses(region)
 			playsound(computer, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 			return TRUE
 		if("PRG_denyregion")
@@ -258,7 +261,7 @@
 			var/region = text2num(params["region"])
 			if(isnull(region) || (!(region in region_access) && minor))
 				return
-			target_id_card.access -= get_region_accesses(region)
+			inserted_auth_card.access -= get_region_accesses(region)
 			playsound(computer, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 			return TRUE
 
@@ -341,14 +344,14 @@
 	data["authenticated"] = authenticated
 
 	if(computer)
-		var/obj/item/card/id/id_card = card_slot2.stored_card
-		data["has_id"] = !!id_card
-		data["id_name"] = id_card ? id_card.name : "-----"
-		if(id_card)
-			data["id_rank"] = id_card.assignment ? id_card.assignment : "Unassigned"
-			data["id_owner"] = id_card.registered_name ? id_card.registered_name : "-----"
-			data["access_on_card"] = id_card.access
-			data["id_age"] = id_card.registered_age
+		var/obj/item/card/id/inserted_id = computer.computer_id_slot
+		data["has_id"] = !!inserted_id
+		data["id_name"] = inserted_id ? inserted_id.name : "-----"
+		if(inserted_id)
+			data["id_rank"] = inserted_id.assignment ? inserted_id.assignment : "Unassigned"
+			data["id_owner"] = inserted_id.registered_name ? inserted_id.registered_name : "-----"
+			data["access_on_card"] = inserted_id.access
+			data["id_age"] = inserted_id.registered_age
 
 	return data
 

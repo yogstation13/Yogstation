@@ -53,7 +53,7 @@
 /datum/computer_file/program/robocontrol/ui_act(action, list/params)
 	if(..())
 		return TRUE
-	var/obj/item/card/id/id_card = computer?.computer_id_slot
+	var/obj/item/card/id/inserted_id = computer?.computer_id_slot
 
 	var/list/standard_actions = list("patroloff", "patrolon", "ejectpai")
 	var/list/MULE_actions = list("stop", "go", "home", "destination", "setid", "sethome", "unload", "autoret", "autopick", "report", "ejectpai")
@@ -69,12 +69,12 @@
 			else
 				Bot.turn_on()
 		if("summon")
-			Bot.bot_control(action, current_user, id_card ? id_card.access : current_access)
+			Bot.bot_control(action, current_user, inserted_id ? inserted_id.access : current_access)
 		if("ejectcard")
 			if(!computer || !computer.computer_id_slot)
 				return
-			if(id_card)
-				GLOB.data_core.manifest_modify(id_card.registered_name, id_card.assignment)
+			if(inserted_id)
+				GLOB.data_core.manifest_modify(inserted_id.registered_name, inserted_id.assignment)
 				computer.RemoveID(usr)
 			else
 				playsound(get_turf(ui_host()) , 'sound/machines/buzz-sigh.ogg', 25, FALSE)

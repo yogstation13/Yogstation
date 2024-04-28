@@ -1228,8 +1228,6 @@
 				ID.registered_name = newname
 				ID.update_label()
 				if(istype(ID.loc, ))
-					var/CS = ID.loc
-					CS.holder?.update_label()
 				if(ID.registered_account?.account_holder == oldname)
 					ID.registered_account.account_holder = newname
 				if(!search_pda)

@@ -385,26 +385,7 @@
 		id_copy.originalassignment = id_instance.originalassignment
 
 	// Update ID + HUD but if it's in a PDA
-	if(istype(item_instance, /obj/item/modular_computer/tablet))
-		var/obj/item/modular_computer/tablet/tablet_copy = item_copy
-		var/obj/item/modular_computer/tablet/tablet_instance = item_instance
-		tablet_copy.finish_color = tablet_instance.finish_color
-		var/card_slot = tablet_instance.all_components[MC_CARD]
-		if(card_slot?.stored_card)
-			var/obj/item/card/id/id_copy = new card_slot.stored_card.type
-			var/obj/item/card/id/id_instance = card_slot.stored_card
-			id_copy.registered_name = id_instance.registered_name
-			id_copy.assignment = id_instance.assignment
-			id_copy.originalassignment = id_instance.originalassignment
-			var/card_slot_copy = tablet_copy.all_components[MC_CARD]
-			if(!card_slot_copy)
-				card_slot_copy = new
-				tablet_copy.install_component(card_slot_copy)
-			id_copy.forceMove(card_slot_copy)
-			card_slot_copy.stored_card = id_copy
-
-			tablet_copy.update_label()
-
+	
 
 	// Update damaged clothing
 	if(isclothing(item_instance))

@@ -34,7 +34,7 @@
 		return ..()
 
 	if(user.canUseTopic(src, BE_CLOSE))
-		if()
+		if(RemoveID())
 			update_appearance(UPDATE_ICON)
 			return ..()
 		remove_pen()
