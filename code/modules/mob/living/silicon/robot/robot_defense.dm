@@ -110,7 +110,7 @@
 		log_game("[key_name(user)] attempted to emag cyborg [key_name(src)], but they serve only Ratvar.")
 		return TRUE // Technically a failure, but they got information out of it so... success!
 
-	if(connected_ai && connected_ai.mind && connected_ai.mind.has_antag_datum(/datum/antagonist/traitor))
+	if(connected_ai && connected_ai.mind && IS_MALF_AI(connected_ai))
 		to_chat(src, span_danger("ALERT: Foreign software execution prevented."))
 		logevent("ALERT: Foreign software execution prevented.")
 		to_chat(connected_ai, span_danger("ALERT: Cyborg unit \[[src]] successfully defended against subversion."))
