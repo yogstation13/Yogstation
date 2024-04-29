@@ -1,6 +1,3 @@
-#define TRAITOR_HUMAN "human"
-#define TRAITOR_AI	  "AI"
-
 /datum/antagonist/traitor
 	name = "Traitor"
 	roundend_category = "traitors"
@@ -14,8 +11,6 @@
 	var/give_objectives = TRUE
 	var/should_give_codewords = TRUE
 	var/should_equip = TRUE
-	var/traitor_kind = TRAITOR_HUMAN //Set on initial assignment
-	var/malf = FALSE //whether or not the AI is malf (in case it's a traitor)
 	var/datum/contractor_hub/contractor_hub
 	var/obj/item/uplink_holder
 	can_hijack = HIJACK_HIJACKER
@@ -24,17 +19,7 @@
 	var/datum/weakref/uplink_ref
 
 /datum/antagonist/traitor/on_gain()
-	if(owner.current && iscyborg(owner.current))
-		var/mob/living/silicon/robot/robot = owner.current
-		if(robot.shell)
-			robot.undeploy()
-
-	if(owner.current && isAI(owner.current))
-		traitor_kind = TRAITOR_AI
-
-	if(traitor_kind == TRAITOR_AI)
-		company = /datum/corporation/self
-	else if(!company)
+	if(!company)
 		company = pick(subtypesof(/datum/corporation/traitor))
 	owner.add_employee(company)
 
@@ -46,32 +31,11 @@
 	RegisterSignal(owner.current, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hearing))
 	..()
 
-
 /datum/antagonist/traitor/apply_innate_effects(mob/living/mob_override)
 	. = ..()
-	var/mob/living/silicon/ai/A = mob_override || owner.current
-	if(istype(A) && traitor_kind == TRAITOR_AI)
-		A.hack_software = TRUE
 	handle_clown_mutation(owner.current, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 
-/datum/antagonist/traitor/remove_innate_effects(mob/living/mob_override)
-	. = ..()
-	var/mob/living/silicon/ai/A = mob_override || owner.current
-	if(istype(A)  && traitor_kind == TRAITOR_AI)
-		A.hack_software = FALSE
-
 /datum/antagonist/traitor/on_removal()
-	//Remove malf powers.
-	if(traitor_kind == TRAITOR_AI && owner.current && isAI(owner.current))
-		var/mob/living/silicon/ai/A = owner.current
-		A.set_zeroth_law("")
-		for(var/datum/action/innate/ai/ranged/cameragun/ai_action in A.actions)
-			if(ai_action.from_traitor)
-				ai_action.Remove(A)
-		if(malf)
-			remove_verb(A, /mob/living/silicon/ai/proc/choose_modules)
-			A.malf_picker.remove_malf_abilities(A)
-			qdel(A.malf_picker)
 	owner.remove_employee(company)
 	if(uplink_holder)
 		var/datum/component/uplink/uplink = uplink_holder.GetComponent(/datum/component/uplink)
@@ -98,9 +62,6 @@
 
 /datum/antagonist/traitor/proc/forge_traitor_objectives()
 	switch(traitor_kind)
-		if(TRAITOR_AI)
-			forge_ai_objectives()
-		else
 			forge_human_objectives()
 
 /datum/antagonist/traitor/proc/forge_human_objectives()
@@ -226,34 +187,6 @@
 			else
 				forge_single_human_objective()
 
-/datum/antagonist/traitor/proc/forge_single_AI_objective()
-	.=1
-	var/special_pick = rand(1,4)
-	switch(special_pick)
-		if(1)
-			var/datum/objective/block/block_objective = new
-			block_objective.owner = owner
-			add_objective(block_objective)
-		if(2)
-			var/datum/objective/purge/purge_objective = new
-			purge_objective.owner = owner
-			add_objective(purge_objective)
-		if(3)
-			var/datum/objective/robot_army/robot_objective = new
-			robot_objective.owner = owner
-			add_objective(robot_objective)
-		if(4) //Protect and strand a target
-			var/datum/objective/protect/yandere_one = new
-			yandere_one.owner = owner
-			add_objective(yandere_one)
-			yandere_one.find_target()
-			var/datum/objective/maroon/yandere_two = new
-			yandere_two.owner = owner
-			yandere_two.target = yandere_one.target
-			yandere_two.update_explanation_text() // normally called in find_target()
-			add_objective(yandere_two)
-			.=2
-
 /datum/antagonist/traitor/greet()
 	var/list/msg = list()
 	to_chat(owner.current, span_alertsyndie("You are the [owner.special_role]."))
@@ -265,24 +198,8 @@
 	to_chat(owner.current, span_notice("Your employer [initial(company.name)] will be paying you an extra [initial(company.paymodifier)]x your nanotrasen paycheck."))
 
 /datum/antagonist/traitor/proc/finalize_traitor()
-	switch(traitor_kind)
-		if(TRAITOR_AI)
-			add_law_zero()
-			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/malf.ogg', 100, FALSE, pressure_affected = FALSE)
-			owner.current.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MALF)
-
-			var/has_action = FALSE
-			for(var/datum/action/innate/ai/ranged/cameragun/ai_action in owner.current.actions)
-				has_action = TRUE
-				break
-			if(!has_action)
-				var/datum/action/innate/ai/ranged/cameragun/ability = new
-				ability.from_traitor = TRUE
-				ability.Grant(owner.current)
-
-		if(TRAITOR_HUMAN)
-			ui_interact(owner.current)
-			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE)
+	ui_interact(owner.current)
+	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/traitor/proc/give_codewords()
 	if(!owner.current)
@@ -303,24 +220,11 @@
 	to_chat(traitor_mob, "Use the codewords during regular conversation to identify other agents. Proceed with caution, however, as everyone is a potential foe.")
 	to_chat(traitor_mob, span_alertwarning("You memorize the codewords, allowing you to recognise them when heard."))
 
-/datum/antagonist/traitor/proc/add_law_zero()
-	var/mob/living/silicon/ai/killer = owner.current
-	if(!killer || !istype(killer))
-		return
-	var/law = "Accomplish your objectives at all costs."
-	var/law_borg = "Accomplish your AI's objectives at all costs."
-	killer.set_zeroth_law(law, law_borg)
-	killer.set_syndie_radio()
-	to_chat(killer, "Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!")
-	if(malf)
-		killer.add_malf_picker()
-
 /datum/antagonist/traitor/proc/equip(var/silent = FALSE)
-	if(traitor_kind == TRAITOR_HUMAN)
-		var/obj/item/uplink_loc = owner.equip_traitor(employer, silent, src)
-		var/datum/component/uplink/uplink = uplink_loc?.GetComponent(/datum/component/uplink)
-		if(uplink)
-			uplink_ref = WEAKREF(uplink) //yogs - uplink_holder =
+	var/obj/item/uplink_loc = owner.equip_traitor(employer, silent, src)
+	var/datum/component/uplink/uplink = uplink_loc?.GetComponent(/datum/component/uplink)
+	if(uplink)
+		uplink_ref = WEAKREF(uplink) //yogs - uplink_holder =
 
 /datum/antagonist/traitor/proc/assign_exchange_role()
 	//set faction
