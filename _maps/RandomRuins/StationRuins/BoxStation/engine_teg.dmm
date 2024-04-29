@@ -228,6 +228,20 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"fc" = (
+/obj/machinery/camera{
+	c_tag = "Engineering TEG Fore";
+	network = list("ss13","engine");
+	pixel_x = 23
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_y = 24
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "fo" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
 	dir = 1
@@ -396,6 +410,22 @@
 	},
 /turf/template_noop,
 /area/space/nearstation)
+"mf" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/camera{
+	c_tag = "Engineering TEG Aft";
+	dir = 1;
+	network = list("ss13","engine");
+	pixel_x = 23
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/visible{
+	dir = 4
+	},
+/obj/machinery/light_switch{
+	pixel_y = -23
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "mp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/orange/visible{
@@ -827,19 +857,6 @@
 /obj/machinery/atmospherics/components/unary/tank/oxygen{
 	dir = 8;
 	volume = 9e+006
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"zP" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/camera{
-	c_tag = "Engineering TEG Aft";
-	dir = 1;
-	network = list("ss13","engine");
-	pixel_x = 23
-	},
-/obj/machinery/atmospherics/pipe/simple/purple/visible{
-	dir = 4
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1608,17 +1625,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"Wn" = (
-/obj/machinery/camera{
-	c_tag = "Engineering TEG Fore";
-	network = list("ss13","engine");
-	pixel_x = 23
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "Ws" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -2284,7 +2290,7 @@ dG
 "}
 (20,1,1) = {"
 ad
-Wn
+fc
 cA
 mp
 EE
@@ -2321,7 +2327,7 @@ aH
 nh
 Nw
 oa
-zP
+mf
 ad
 sT
 Si

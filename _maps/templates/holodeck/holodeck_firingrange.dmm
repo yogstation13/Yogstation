@@ -1,0 +1,353 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/item/target,
+/obj/item/target/clown,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green,
+/turf/open/floor/holofloor,
+/area/template_noop)
+"d" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red,
+/turf/open/floor/holofloor,
+/area/template_noop)
+"g" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/holofloor,
+/area/template_noop)
+"h" = (
+/turf/open/floor/holofloor,
+/area/template_noop)
+"k" = (
+/obj/item/target,
+/obj/item/target/syndicate,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green,
+/turf/open/floor/holofloor,
+/area/template_noop)
+"l" = (
+/obj/structure/target_stake,
+/obj/machinery/magnetic_module,
+/turf/open/floor/holofloor{
+	icon_state = "white"
+	},
+/area/template_noop)
+"u" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green,
+/turf/open/floor/holofloor,
+/area/template_noop)
+"v" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/holofloor{
+	icon_state = "white"
+	},
+/area/template_noop)
+"z" = (
+/turf/open/floor/holofloor{
+	icon_state = "white"
+	},
+/area/template_noop)
+"B" = (
+/obj/item/paper/guides/jobs/security/range,
+/turf/open/floor/holofloor,
+/area/template_noop)
+"C" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/turf/open/floor/holofloor,
+/area/template_noop)
+"D" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/holofloor,
+/area/template_noop)
+"E" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green,
+/turf/open/floor/holofloor,
+/area/template_noop)
+"F" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/holofloor{
+	dir = 8;
+	icon_state = "white"
+	},
+/area/template_noop)
+"G" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/holofloor{
+	dir = 10;
+	icon_state = "white"
+	},
+/area/template_noop)
+"I" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green,
+/turf/open/floor/holofloor,
+/area/template_noop)
+"J" = (
+/obj/structure/rack,
+/obj/item/gun/energy/laser/practice,
+/obj/item/clothing/ears/earmuffs,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green,
+/turf/open/floor/holofloor,
+/area/template_noop)
+"L" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/holofloor{
+	icon_state = "white"
+	},
+/area/template_noop)
+"P" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/turf/open/floor/holofloor,
+/area/template_noop)
+"Q" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/holofloor{
+	icon_state = "white"
+	},
+/area/template_noop)
+"S" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/holofloor,
+/area/template_noop)
+"T" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/holofloor,
+/area/template_noop)
+"V" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/turf/open/floor/holofloor,
+/area/template_noop)
+"W" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green,
+/turf/open/floor/holofloor,
+/area/template_noop)
+"X" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/holofloor{
+	icon_state = "white"
+	},
+/area/template_noop)
+"Y" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/item/storage/toolbox{
+	pixel_y = 4
+	},
+/obj/item/storage/toolbox,
+/obj/machinery/magnetic_controller{
+	autolink = 1
+	},
+/turf/open/floor/holofloor,
+/area/template_noop)
+"Z" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/holofloor,
+/area/template_noop)
+
+(1,1,1) = {"
+C
+C
+C
+C
+C
+C
+C
+C
+C
+W
+"}
+(2,1,1) = {"
+h
+h
+h
+h
+h
+h
+h
+h
+h
+E
+"}
+(3,1,1) = {"
+d
+d
+d
+d
+d
+d
+d
+d
+S
+a
+"}
+(4,1,1) = {"
+Q
+F
+G
+T
+T
+T
+T
+g
+P
+J
+"}
+(5,1,1) = {"
+v
+l
+z
+h
+h
+h
+h
+B
+P
+J
+"}
+(6,1,1) = {"
+L
+X
+X
+D
+D
+D
+D
+Y
+P
+J
+"}
+(7,1,1) = {"
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+V
+k
+"}
+(8,1,1) = {"
+h
+h
+h
+h
+h
+h
+h
+h
+h
+E
+"}
+(9,1,1) = {"
+I
+I
+I
+I
+I
+I
+I
+I
+I
+u
+"}

@@ -93,7 +93,7 @@
 			tag_overlay.pixel_y = boxes.len * 3
 			. += tag_overlay
 
-/obj/item/pizzabox/worn_overlays(isinhands, icon_file)
+/obj/item/pizzabox/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	var/current_offset = 2
 	if(isinhands)

@@ -117,6 +117,16 @@
 	usewhitelist = TRUE
 	retrievalmessage = "Agent retrieval complete."
 
+/obj/item/implant/teleporter/syndicate_lavaland
+	pointofreturn = /area/ruin/powered/syndicate_lava_base
+	usewhitelist = TRUE
+	retrievalmessage = "Agent retrieval complete."
+
+/obj/item/implant/teleporter/syndicate_listening_post
+	pointofreturn = /area/ruin/space/has_grav/listeningstation
+	usewhitelist = TRUE
+	retrievalmessage = "Agent retrieval complete."
+
 /obj/item/implant/teleporter/demon
 	pointofreturn = /area/ruin/powered/sinden
 	usewhitelist = TRUE

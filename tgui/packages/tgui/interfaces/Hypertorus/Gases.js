@@ -3,7 +3,8 @@ import { flow } from 'common/fp';
 import { toFixed } from 'common/math';
 import { useBackend } from '../../backend';
 import { Box, Button, LabeledList, NumberInput, ProgressBar, Section } from '../../components';
-import { HelpDummy, HoverHelp, getGasLabel, getGasColor } from './helpers';
+import { HelpDummy, HoverHelp } from './helpers';
+import { getGasColor, getGasLabel } from '../common/AtmosControls';
 
 /*
  * Displays contents of gas mixtures, along with help text for gases with
@@ -26,7 +27,7 @@ const moderator_gases_help = {
     'Saps most forms of energy expression. Slows the rate of temperature change.',
 };
 
-const moderator_gases_sticky_order = ['plasma', 'bz', 'pluonium', 'o2', 'healium', 'antinoblium', 'freon'];
+const moderator_gases_sticky_order = ['plasma', 'bz', 'pluonium', 'o2', 'healium', 'antinob', 'freon'];
 
 const ensure_gases = (gas_array, gasids) => {
   const gases_by_id = {};

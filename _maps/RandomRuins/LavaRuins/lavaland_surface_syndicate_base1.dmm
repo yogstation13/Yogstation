@@ -1368,19 +1368,19 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
 "gV" = (
-/obj/machinery/computer/shuttle{
-	desc = "Occasionally used to call in a resupply shuttle if one is in range.";
-	icon_keyboard = "syndie_key";
-	icon_screen = "syndishuttle";
-	light_color = "#FA8282";
-	name = "syndicate cargo shuttle terminal";
-	possible_destinations = "syndielavaland_cargo";
-	req_access_txt = "150";
-	shuttleId = "syndie_cargo"
-	},
 /obj/machinery/airalarm/syndicate{
 	dir = 8;
 	pixel_x = 24
+	},
+/obj/machinery/computer/terminal{
+	desc = "Occasionally used to call in a resupply shuttle if one is in range.";
+	name = "syndicate resupply shuttle console";
+	icon_keyboard = "syndie_key";
+	icon_screen = "syndishuttle";
+	upperinfo = "Syndicate Resupply Terminal - Lavaland Research Outpost";
+	content = list("This terminal is currently locked due to no supply shuttles being in range. For resupply, please contact Syndicate Command via your onboard red phone.");
+	tguitheme = "syndicate";
+	light_color = "#FA8282"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/cargo)

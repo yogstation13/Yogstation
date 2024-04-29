@@ -167,10 +167,14 @@
 /// Starts a cooldown time for this ability only
 /// Will use default cooldown time if an override is not specified
 /datum/action/cooldown/proc/StartCooldownSelf(override_cooldown_time)
+	var/cooldown_amount = cooldown_time
+
 	if(isnum(override_cooldown_time))
-		next_use_time = world.time + override_cooldown_time
-	else
-		next_use_time = world.time + cooldown_time
+		cooldown_amount = override_cooldown_time
+	if(owner && HAS_TRAIT(owner, TRAIT_FAST_COOLDOWNS))
+		cooldown_amount *= 0.66
+	
+	next_use_time = world.time + cooldown_amount
 	build_all_button_icons(UPDATE_BUTTON_STATUS)
 	START_PROCESSING(SSfastprocess, src)
 

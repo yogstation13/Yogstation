@@ -54,7 +54,8 @@ GLOBAL_LIST_INIT(plasmaman_helmet_list, list(
 	"Halo" = "halo",
 	"Wizard" = "wizard",
 	"Plate" = "plate",
-	"Low" = "low")) //for icon making -> use "enviro" before this
+	"Low" = "low",
+)) //for icon making -> use "enviro" before this
 
 GLOBAL_LIST_EMPTY(ethereal_mark_list) //ethereal face marks
 

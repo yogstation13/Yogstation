@@ -18,8 +18,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/plural_form
 	/// if alien colors are disabled, this is the color that will be used by that race
 	var/default_color = "#FFF"
-	/// whether or not the race has sexual characteristics. at the moment this is only FALSE for skeletons and shadows
-	var/sexes = TRUE
 
 	///A list that contains pixel offsets for various clothing features, if your species is a different shape
 	var/list/offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
@@ -38,6 +36,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	var/forced_skintone
 
+	/// What genders can this race be?
+	var/list/possible_genders = list(MALE, PLURAL, FEMALE)
 	/// If your race wants to bleed something other than bog standard blood, change this to reagent id.
 	var/datum/reagent/exotic_blood
 	///If your race uses a non standard bloodtype (A+, O-, AB-, etc)
@@ -432,13 +432,15 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			replacement.Insert(C, TRUE, FALSE)
 
 /datum/species/proc/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
+	// Change the gender to fit with the new species
+	if(!possible_genders || possible_genders.len < 1)
+		stack_trace("[type] has no possible genders!")
+		C.gender = PLURAL // uh oh
+	else if(possible_genders.len == 1)
+		C.gender = possible_genders[1] // some species only have one gender
+	else if(!(C.gender in possible_genders))
+		C.gender = pick(possible_genders) // randomized gender
 	// Drop the items the new species can't wear
-	if((AGENDER in species_traits))
-		C.gender = PLURAL
-	if((FGENDER in species_traits))
-		C.gender = FEMALE
-	if((MGENDER in species_traits))
-		C.gender = MALE
 	extra_no_equip = old_species.extra_no_equip.Copy()
 	for(var/slot_id in no_equip)
 		var/obj/item/thing = C.get_item_by_slot(slot_id)
@@ -801,7 +803,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(undershirt)
 				if(HAS_TRAIT(H, TRAIT_SKINNY)) //Check for skinny first
 					standing += wear_skinny_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
-				else if(H.dna.species.sexes && H.gender == FEMALE)
+				else if(H.gender == FEMALE && (FEMALE in possible_genders))
 					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
 				else
 					standing += mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)

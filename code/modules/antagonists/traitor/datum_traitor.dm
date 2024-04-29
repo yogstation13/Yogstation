@@ -19,6 +19,9 @@
 	var/datum/contractor_hub/contractor_hub
 	var/obj/item/uplink_holder
 	can_hijack = HIJACK_HIJACKER
+	/// If this specific traitor has been assigned codewords. This is not always true, because it varies by faction.
+	var/has_codewords = FALSE
+	var/datum/weakref/uplink_ref
 
 /datum/antagonist/traitor/on_gain()
 	if(owner.current && iscyborg(owner.current))
@@ -162,12 +165,14 @@
 			if(minorObjective)
 				add_objective(minorObjective)
 		if(!(locate(/datum/objective/escape) in objectives))
-			if(prob(70)) //doesn't always need to escape
+			if(prob(50)) //doesn't always need to escape
 				var/datum/objective/escape/escape_objective = new
 				escape_objective.owner = owner
 				add_objective(escape_objective)
 			else
 				forge_single_human_objective()
+			// Finally, set up our traitor's backstory!
+	setup_backstories(!is_hijacker && martyr_compatibility, is_hijacker)
 
 /datum/antagonist/traitor/proc/forge_ai_objectives()
 	var/objective_count = 0
@@ -184,6 +189,7 @@
 	var/datum/objective/survive/exist/exist_objective = new
 	exist_objective.owner = owner
 	add_objective(exist_objective)
+	setup_backstories()
 
 /datum/antagonist/traitor/proc/forge_single_human_optional() //adds this for if/when soft-tracked objectives are added, so they can be a 50/50
 	var/datum/objective/gimmick/gimmick_objective = new
@@ -249,7 +255,10 @@
 			.=2
 
 /datum/antagonist/traitor/greet()
+	var/list/msg = list()
 	to_chat(owner.current, span_alertsyndie("You are the [owner.special_role]."))
+	msg += "<span class='alertsyndie'>Use the 'Traitor Info and Backstory' action at the top left in order to select a backstory and review your objectives, uplink location, and codewords!</span>"
+	to_chat(owner.current, EXAMINE_BLOCK(msg.Join("\n")))
 	owner.announce_objectives()
 	if(should_give_codewords)
 		give_codewords()
@@ -272,13 +281,13 @@
 				ability.Grant(owner.current)
 
 		if(TRAITOR_HUMAN)
-			if(should_equip)
-				equip(silent)
+			ui_interact(owner.current)
 			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/traitor/proc/give_codewords()
 	if(!owner.current)
 		return
+	has_codewords = TRUE
 	var/mob/traitor_mob=owner.current
 
 	var/phrases = jointext(GLOB.syndicate_code_phrase, ", ")
@@ -306,9 +315,12 @@
 	if(malf)
 		killer.add_malf_picker()
 
-/datum/antagonist/traitor/proc/equip(silent = FALSE)
+/datum/antagonist/traitor/proc/equip(var/silent = FALSE)
 	if(traitor_kind == TRAITOR_HUMAN)
-		uplink_holder = owner.equip_traitor(employer, silent, src) //yogs - uplink_holder =
+		var/obj/item/uplink_loc = owner.equip_traitor(employer, silent, src)
+		var/datum/component/uplink/uplink = uplink_loc?.GetComponent(/datum/component/uplink)
+		if(uplink)
+			uplink_ref = WEAKREF(uplink) //yogs - uplink_holder =
 
 /datum/antagonist/traitor/proc/assign_exchange_role()
 	//set faction
@@ -390,6 +402,15 @@
 
 	result += objectives_text
 
+	var/backstory_text = "<br>"
+	if(istype(faction))
+		backstory_text += "<b>Faction:</b> <span class='tooltip_container' style=\"font-size: 12px\">\[ [faction.name]<span class='tooltip_hover' style=\"width: 320px; padding: 5px;\">[faction.description]</span> \]</span><br>"
+	if(istype(backstory))
+		backstory_text += "<b>Backstory:</b> <span class='tooltip_container' style=\"font-size: 12px\">\[ [backstory.name]<span class='tooltip_hover' style=\"width: 320px; padding: 5px;\">[backstory.description]</span> \]</span><br>"
+	else
+		backstory_text += "<span class='redtext'>No backstory was selected!</span><br>"
+	result += backstory_text
+
 	var/special_role_text = lowertext(name)
 
 	if (contractor_hub)
@@ -464,3 +485,17 @@
 /datum/outfit/traitor/post_equip(mob/living/carbon/human/H, visualsOnly)
 	var/obj/item/melee/transforming/energy/sword/sword = locate() in H.held_items
 	sword.transform_weapon(H)
+
+
+/datum/antagonist/traitor/antag_panel_data()
+	// Traitor Backstory
+	var/backstory_text = "<b>Traitor Backstory:</b><br>"
+	if(istype(faction))
+		backstory_text += "<b>Faction:</b> <span class='tooltip' style=\"font-size: 12px\">\[ [faction.name]<span class='tooltiptext' style=\"width: 320px; padding: 5px;\">[faction.description]</span> \]</span><br>"
+	else
+		backstory_text += "<font color='red'>No faction selected!</font><br>"
+	if(istype(backstory))
+		backstory_text += "<b>Backstory:</b> <span class='tooltip' style=\"font-size: 12px\">\[ [backstory.name]<span class='tooltiptext' style=\"width: 320px; padding: 5px;\">[backstory.description]</span> \]</span><br>"
+	else
+		backstory_text += "<font color='red'>No backstory selected!</font><br>"
+	return backstory_text

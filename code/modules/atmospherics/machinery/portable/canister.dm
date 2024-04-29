@@ -96,21 +96,21 @@
 	name = "Plasma canister"
 	desc = "Plasma gas. The reason YOU are here. Highly toxic."
 	greyscale_config = /datum/greyscale_config/canister/hazard
-	greyscale_colors = "#f62800#000000"
+	greyscale_colors = "#f63400#000000"
 	gas_type = GAS_PLASMA
 
 /obj/machinery/portable_atmospherics/canister/bz
 	name = "\improper BZ canister"
 	desc = "BZ, a powerful hallucinogenic nerve agent."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
-	greyscale_colors = "#f62800#d0d2a0"
+	greyscale_colors = "#f63800#ffffff"
 	gas_type = GAS_BZ
 
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide
 	name = "Nitrous oxide canister"
 	desc = "Nitrous oxide gas. Known to cause drowsiness."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
-	greyscale_colors = "#1b6d1b#f7d5d3"
+	greyscale_colors = "#1b6d1b#ffffff"
 	gas_type = GAS_NITROUS
 
 /obj/machinery/portable_atmospherics/canister/air
@@ -151,7 +151,7 @@
 	name = "Water vapor canister"
 	desc = "Water vapor. We get it, you vape."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
-	greyscale_colors = "#2ee5e9#f7d5d3"
+	greyscale_colors = "#17c3c7#ffffff"
 	gas_type = GAS_H2O
 	filled = 1
 
