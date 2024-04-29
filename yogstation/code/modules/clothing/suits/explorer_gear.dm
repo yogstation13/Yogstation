@@ -36,6 +36,7 @@
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
 	armor = list(MELEE = 40, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 50, WOUND = 10)
 	resistance_flags = FIRE_PROOF
+	var/adjusted = NORMAL_STYLE
 
 //don't want this to be a subtype of the explorer suit or it'll inherit the armor plating
 /obj/item/clothing/head/hooded/miningmedic/verb/hood_adjust()
