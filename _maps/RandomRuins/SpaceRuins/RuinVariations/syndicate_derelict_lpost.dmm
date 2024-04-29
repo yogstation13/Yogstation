@@ -414,11 +414,6 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/centcom{
-	name = "Telecommunications";
-	opacity = 1;
-	req_access_txt = "150"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
@@ -427,6 +422,10 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/machinery/door/airlock/grunge{
+	req_access_txt = "150";
+	name = "Telecommunications"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndiederelict/comms)
@@ -1210,6 +1209,13 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/item/radio/intercom{
+	pixel_y = -30;
+	freerange = 1;
+	name = "syndicate intercom";
+	desc = "An outdated version of the infamous Syndicate espionage intercom, used to monitor and speak over Nanotrasen radio channels."
+	},
+/obj/structure/chair/office/dark,
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/syndiederelict/comms)
 "do" = (
@@ -1827,11 +1833,6 @@
 "iE" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
-"iI" = (
-/obj/item/stack/rods,
-/obj/item/stack/ore/iron,
-/turf/open/floor/plating/asteroid/airless,
-/area/ruin/space/has_grav/syndiederelict/asteroid)
 "iK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -1893,11 +1894,18 @@
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/syndiederelict/vault)
 "ls" = (
-/obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/dark_red/anticorner/contrasted{
 	dir = 8
 	},
+/obj/structure/rack,
+/obj/item/radio/headset/syndicate/alt/empty{
+	pixel_x = 6
+	},
+/obj/item/radio/headset/syndicate/alt/empty{
+	pixel_x = -6
+	},
+/obj/item/multitool,
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/syndiederelict/comms)
 "lU" = (
@@ -1989,6 +1997,11 @@
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "nL" = (
 /obj/item/stack/cable_coil/cut/red,
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/space/has_grav/syndiederelict/asteroid)
+"nO" = (
+/obj/item/stack/rods,
+/obj/item/stack/ore/iron,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/space/has_grav/syndiederelict/asteroid)
 "nQ" = (
@@ -2377,9 +2390,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/closed/wall,
 /area/ruin/space/has_grav/syndiederelict/engineering)
-"yv" = (
-/turf/closed/wall,
-/area/ruin/space/has_grav/syndiederelict/comms)
 "yA" = (
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 8
@@ -2897,9 +2907,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "NT" = (
-/obj/structure/chair/office/dark{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/dark_red{
 	dir = 8
 	},
@@ -2945,11 +2952,6 @@
 /turf/closed/wall/rust,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "Pg" = (
-/obj/machinery/door/airlock/centcom{
-	name = "Telecommunications";
-	opacity = 1;
-	req_access_txt = "150"
-	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -2961,6 +2963,10 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/machinery/door/airlock/grunge{
+	req_access_txt = "150";
+	name = "Telecommunications"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndiederelict/comms)
@@ -3297,6 +3303,9 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
+"Yv" = (
+/turf/closed/wall,
+/area/ruin/space/has_grav/syndiederelict/comms)
 "YI" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = 0;
@@ -3721,7 +3730,7 @@ Ue
 Ap
 Ih
 aa
-iI
+nO
 ac
 Ba
 db
@@ -3761,10 +3770,10 @@ db
 db
 db
 Kk
-yv
+Yv
 aX
-yv
-yv
+Yv
+Yv
 zR
 ac
 aa
