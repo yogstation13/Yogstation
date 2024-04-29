@@ -70,7 +70,7 @@
 				ai_action.Remove(A)
 		if(malf)
 			remove_verb(A, /mob/living/silicon/ai/proc/choose_modules)
-			A.malf_picker.remove_malf_verbs(A)
+			A.malf_picker.remove_malf_abilities(A)
 			qdel(A.malf_picker)
 	owner.remove_employee(company)
 	if(uplink_holder)

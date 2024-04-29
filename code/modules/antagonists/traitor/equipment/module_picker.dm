@@ -10,11 +10,18 @@
 	possible_modules = get_malf_modules()
 
 /// Removes all malfunction-related abilities from the target AI.
-/datum/module_picker/proc/remove_malf_verbs(mob/living/silicon/ai/AI)
-	for(var/datum/ai_module/AM in possible_modules)
-		for(var/datum/action/A in AI.actions)
-			if(istype(A, initial(AM.power_type)))
-				qdel(A)
+/datum/module_picker/proc/remove_malf_abilities(mob/living/silicon/ai/AI)
+	var/list/all_malfunction_modules = list()
+	for(var/category in possible_modules)
+		for(var/module in possible_modules[category])
+			var/datum/ai_module/malfunction_module = possible_modules[category][module]
+			all_malfunction_modules += malfunction_module
+
+	for(var/datum/ai_module/malfunction_module in all_malfunction_modules)
+		var/datum/action/power_type = malfunction_module.power_type
+		for(var/datum/action/action_type in AI.actions)
+			if(istype(action_type, power_type))
+				qdel(action_type)
 
 /proc/cmp_malfmodules_priority(datum/ai_module/A, datum/ai_module/B)
 	return B.cost - A.cost

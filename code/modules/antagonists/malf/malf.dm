@@ -246,8 +246,9 @@
 
 /datum/antagonist/malf_ai/proc/remove_malf_picker(mob/living/silicon/ai/malf_ai)
 	remove_verb(malf_ai, list(/mob/living/silicon/ai/proc/choose_modules, /mob/living/silicon/ai/proc/toggle_download))
-	malf_ai.malf_picker.remove_malf_verbs(malf_ai)
+	malf_ai.malf_picker.remove_malf_abilities(malf_ai)
 	qdel(malf_ai.malf_picker)
+	malf_ai.malf_picker = null
 	return TRUE
 
 // Codewords
