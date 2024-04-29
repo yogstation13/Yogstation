@@ -4,10 +4,10 @@ GLOBAL_LIST_INIT(synthetic_base_access, list(
 	ACCESS_LIBRARY, ACCESS_NETWORK, ACCESS_MINISAT,
 	ACCESS_TCOMSAT, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_EVA,
 	ACCESS_CREMATORIUM, ACCESS_HYDROPONICS, ACCESS_MANUFACTURING,
-	ACCESS_THEATRE, ACCESS_TCOM_ADMIN, ACCESS_AI_UPLOAD))
+	ACCESS_THEATRE, ACCESS_TCOM_ADMIN, ACCESS_SERVHALL,
+	ACCESS_AI_UPLOAD))
 
 GLOBAL_LIST_EMPTY(synthetic_added_access)
-
 
 /datum/job/synthetic
 	title = "Synthetic"
@@ -25,6 +25,8 @@ GLOBAL_LIST_EMPTY(synthetic_added_access)
 	exp_type_department = EXP_TYPE_COMMAND
 
 	outfit = /datum/outfit/job/synthetic
+
+	alt_titles = list("Android")
 
 	added_access = list()
 	base_access = list()
