@@ -64,27 +64,6 @@
 
 	return data
 
-/*
-/datum/module_picker/ui_static_data(mob/user)
-	var/list/data = list()
-
-	data["categories"] = list()
-	for(var/category in possible_modules)
-		var/list/cat = list(
-			"name" = category,
-			"items" = (category == selected_cat ? list() : null))
-		for(var/module in possible_modules[category])
-			var/datum/AI_Module/AM = possible_modules[category][module]
-			cat["items"] += list(list(
-				"name" = AM.name,
-				"cost" = AM.cost,
-				"desc" = AM.description,
-			))
-		data["categories"] += list(cat)
-
-	return data
-*/
-
 /datum/module_picker/ui_act(action, list/params)
 	if(..())
 		return
