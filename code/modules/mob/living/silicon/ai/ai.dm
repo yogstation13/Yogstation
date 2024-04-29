@@ -52,7 +52,7 @@
 
 	//MALFUNCTION
 	var/datum/module_picker/malf_picker
-	var/list/datum/AI_Module/current_modules = list()
+	var/list/datum/ai_module/current_modules = list()
 	var/can_dominate_mechs = FALSE
 	var/shunted = FALSE	//1 if the AI is currently shunted. Used to differentiate between shunted and ghosted/braindead
 
