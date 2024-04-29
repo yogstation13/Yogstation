@@ -24,7 +24,7 @@ export const classes = (classNames: (string | BooleanLike)[]) => {
  */
 export const normalizeChildren = <T>(children: T | T[]) => {
   if (Array.isArray(children)) {
-    return children.flat().filter((value) => value) as T[];
+    return children.flat().filter(value => value) as T[];
   }
   if (typeof children === 'object') {
     return [children];
@@ -52,10 +52,10 @@ export const shallowDiffers = (a: object, b: object) => {
 };
 
 export const pureComponentHooks = {
-    onComponentShouldUpdate: (lastProps, nextProps) => {
-      return shallowDiffers(lastProps, nextProps);
-    },
-  };
+  onComponentShouldUpdate: (lastProps, nextProps) => {
+    return shallowDiffers(lastProps, nextProps);
+  },
+};
 
 /**
  * A helper to determine whether the object is renderable by React.
