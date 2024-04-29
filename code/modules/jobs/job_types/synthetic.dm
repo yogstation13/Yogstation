@@ -12,7 +12,7 @@ GLOBAL_LIST_EMPTY(synthetic_added_access)
 /datum/job/synthetic
 	title = "Synthetic"
 	description = "Watch over the crew, carry out mundane tasks that nobody else want to. Do no harm."
-	orbit_icon = "eye"
+	orbit_icon = "microchip"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON|DEADMIN_POSITION_CRITICAL
 	department_head = list("AI")
 	faction = "Station"
