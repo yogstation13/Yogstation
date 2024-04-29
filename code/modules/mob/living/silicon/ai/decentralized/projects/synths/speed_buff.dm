@@ -7,7 +7,7 @@
 
 /datum/ai_project/synth_project/speed/run_project(force_run = FALSE)
 	. = ..()
-	synth.add_movespeed_modifier(type, TRUE, 100, override=TRUE, multiplicative_slowdown=-0.25, movetypes=(~FLYING))
+	synth.add_movespeed_modifier(type, TRUE, 100, override=TRUE, multiplicative_slowdown=-0.25, blacklisted_movetypes=(FLYING|FLOATING))
 
 /datum/ai_project/synth_project/speed/stop()
 	. = ..()

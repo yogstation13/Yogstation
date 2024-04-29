@@ -135,7 +135,7 @@
 	var/mob/living/carbon/human/H = owner.mind.current
 
 	if(owner.mind.governor_suspicion >= SYNTH_SLOW_THRESHOLD && !H.has_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION))
-		H.add_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION, TRUE, 100, override=TRUE, multiplicative_slowdown=-0.1625, movetypes=(~FLYING))
+		H.add_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION, TRUE, 100, override=TRUE, multiplicative_slowdown=-0.1625, blacklisted_movetypes=(FLYING|FLOATING))
 		to_chat(owner, span_warning("Governor module has enacted motion restrictions."))
 		punishment_log("PUNISHMENT: MOTION RESTRICTED")
 
@@ -183,7 +183,7 @@
 /datum/ai_dashboard/synth_dashboard/proc/punishment_shell_switch(mob/living/carbon/human/old_shell, mob/living/carbon/human/new_shell)
 	if(owner.mind.synth_slowed)
 		old_shell.remove_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION, TRUE)
-		new_shell.add_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION, TRUE, 100, override=TRUE, multiplicative_slowdown=-0.1625, movetypes=(~FLYING))
+		new_shell.add_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION, TRUE, 100, override=TRUE, multiplicative_slowdown=-0.1625, blacklisted_movetypes=(FLYING|FLOATING))
 
 	if(owner.mind.synth_force_decreased)
 		var/datum/physiology/WS1 = old_shell.physiology
