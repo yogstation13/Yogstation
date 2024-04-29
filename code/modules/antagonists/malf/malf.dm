@@ -237,6 +237,10 @@
 
 // Malfunction Modules
 /datum/antagonist/malf_ai/proc/give_malf_picker(mob/living/silicon/ai/malf_ai)
+	if(malf_ai.malf_picker)
+		malf_ai.malf_picker.processing_time += 50
+		return TRUE
+	
 	malf_ai.add_malf_picker() // Since this already exists, just go there instead.
 	return TRUE
 
@@ -254,3 +258,8 @@
 	hearing_args[HEARING_MESSAGE] = message
 
 #undef PROB_MALF_AI_SPECIAL_OBJECTIVES
+
+// bugs(?) to fix:
+/*
+	1. malf actions/powers aren't removed when de-antagging
+*/
