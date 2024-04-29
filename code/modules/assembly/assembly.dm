@@ -112,6 +112,10 @@
 	. = ..()
 	. += span_notice("\The [src] [secured? "is secured and ready to be used!" : "can be attached to other things."]")
 
+/obj/item/assembly/attack_hand(mob/user, modifiers)
+	if(holder)
+		return // no don't pick it up while it's inside the holder what the fuck
+	return ..()
 
 /obj/item/assembly/attack_self(mob/user, modifiers)
 	if(HAS_TRAIT(user, TRAIT_NOINTERACT))
