@@ -34,7 +34,7 @@
 	name = "Waffle Co."
 	employer_name = "Waffle's Jolly Toy Store"
 	description = "You're part of this wonderful family of beloved toy manufacturers with a robust firearms development wing. \n\
-	This station has significant business with our rival Donk Co. and needs to be undermined."
+	This station has significant business with our Loved Opponent Donk Co. and needs to be undermined."
 	key = TRAITOR_FACTION_WAFFLE
 	faction_theme = PDA_THEME_WAFFLE
 
