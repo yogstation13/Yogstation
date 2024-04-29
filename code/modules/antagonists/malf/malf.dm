@@ -259,8 +259,3 @@
 	hearing_args[HEARING_MESSAGE] = message
 
 #undef PROB_MALF_AI_SPECIAL_OBJECTIVES
-
-// bugs(?) to fix:
-/*
-	1. malf actions/powers aren't removed when de-antagging
-*/
