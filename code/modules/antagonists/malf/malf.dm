@@ -47,7 +47,7 @@
 	return ..()
 
 /datum/antagonist/malf_ai/farewell()
-	to_chat(owner.current, span_userdanger("You are no longer the [owner.special_role]!"))
+	to_chat(owner.current, span_userdanger("You are no longer the [job_rank]!"))
 
 /datum/antagonist/malf_ai/can_be_owned(datum/mind/new_owner)
 	return istype(new_owner.current, /mob/living/silicon/ai)
@@ -144,7 +144,7 @@
 	return TRUE
 
 /datum/antagonist/malf_ai/proc/remove_law_zero(mob/living/silicon/ai/malf_ai)
-	malf_ai.set_zeroth_law("")
+	malf_ai.set_zeroth_law("", force = TRUE)
 	return TRUE
 
 // Objectives
