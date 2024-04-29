@@ -1,0 +1,5 @@
+author: "cowbot92"
+delete-after: true 
+changes: 
+  - rscadd: "Adds new syndicate factions to select for your backstory"
+  - rscdel: "Removed some syndicate factions for your backstory"
