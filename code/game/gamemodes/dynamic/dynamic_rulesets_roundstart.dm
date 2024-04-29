@@ -1052,6 +1052,7 @@
 	antag_flag = ROLE_MALF
 	antag_datum = /datum/antagonist/malf_ai
 	minimum_required_age = 7
+	exclusive_roles = list("AI")
 	required_candidates = 1
 	minimum_players = 25
 	weight = 5
