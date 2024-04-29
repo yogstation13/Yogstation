@@ -1899,12 +1899,6 @@
 	dir = 8
 	},
 /obj/structure/rack,
-/obj/item/radio/headset/syndicate/alt/empty{
-	pixel_x = 6
-	},
-/obj/item/radio/headset/syndicate/alt/empty{
-	pixel_x = -6
-	},
 /obj/item/multitool,
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/syndiederelict/comms)

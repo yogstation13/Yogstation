@@ -56,12 +56,15 @@
 	. = ..()
 	make_syndie()
 
-/obj/item/radio/headset/syndicate/alt/empty //empty
+/obj/item/radio/headset/syndicate_empty //empty
+	name = "syndicate headset"
 	desc = "A syndicate headset that can be used to hear all radio frequencies. Protects ears from flashbangs. This one is worse for wear, and its original encryption key has broken down. Still provides protection though."
+	icon_state = "syndie_headset"
+	item_state = "syndie_headset"
 
-/obj/item/radio/headset/syndicate/alt/empty/Initialize(mapload) //specified here so it doesnt try to spawn with a key
+/obj/item/radio/headset/syndicate_empty/Initialize(mapload) //specified here so it doesnt try to spawn with a key
 	. = ..()
-	recalculateChannels()
+	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
 /obj/item/radio/headset/binary
 /obj/item/radio/headset/binary/Initialize(mapload)
