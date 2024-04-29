@@ -26,4 +26,4 @@
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
 	upperinfo = "syndOS - Communications Terminal"
-	content = list("PRIORITY: HIGH | ASSIGNMENT TO ENGINEERING PERSONNEL","You have been assigned to refit this deactivated listening station into an orbital research outpost. A cargo vessel has dropped off necessary supplies, although some have been moved into the Vault.")
+	content = list("PRIORITY: HIGH | ASSIGNMENT TO ENGINEERING PERSONNEL","You have been assigned to refit this deactivated listening station into an orbital research outpost. We have successfully teleported several supply crates into the onboard Vault. Use them to establish a functional base.")

@@ -2926,6 +2926,13 @@
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
+"WZ" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/effect/turf_decal/stripes/asteroid/corner{
+	dir = 1
+	},
+/turf/closed/mineral/random/low_chance,
+/area/ruin/space/has_grav/syndiederelict/asteroid)
 "Xl" = (
 /obj/machinery/atmospherics/pipe/simple/purple/hidden/layer4{
 	dir = 10
@@ -3558,7 +3565,7 @@ ba
 hr
 hr
 Ba
-ac
+db
 cu
 cw
 cM
@@ -4353,7 +4360,7 @@ Oa
 ac
 hl
 pm
-ac
+db
 ab
 ab
 ab
@@ -4441,10 +4448,10 @@ cd
 cd
 cd
 cd
-zJ
+WZ
 pm
 aa
-ac
+db
 db
 ab
 db

@@ -547,3 +547,6 @@
 
 /area/ruin/space/has_grav/syndiederelict/asteroid
 	name = "Forgotten Asteroid"
+
+/area/ruin/space/has_grav/syndiederelict/cargo
+	name = "Syndicate Derelict Cargo Bay"
