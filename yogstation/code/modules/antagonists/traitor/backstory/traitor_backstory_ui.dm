@@ -36,6 +36,7 @@
 	if(istype(faction))
 		data["faction"] = faction.key
 		data["employer"] = employer
+		data["faction_theme"] = faction.faction_theme
 
 	var/datum/component/uplink/uplink = uplink_ref?.resolve()
 	data["antag_name"] = name
