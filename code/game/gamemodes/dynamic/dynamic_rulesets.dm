@@ -229,9 +229,9 @@
 		if(length(exclusive_roles))
 			var/exclusive_candidate = FALSE
 			for(var/role in exclusive_roles)
-				var/datum/job/job = SSjob.GetJob(role)
-
-				if((role in P.client.prefs.job_preferences) && P.IsJobUnavailable(job) == JOB_AVAILABLE)
+				var/job_available = (P.IsJobUnavailable(role) == JOB_AVAILABLE)
+				var/job_in_pref = (role in P.client.prefs.job_preferences)
+				if(job_in_pref && job_available)
 					exclusive_candidate = TRUE
 					break
 
