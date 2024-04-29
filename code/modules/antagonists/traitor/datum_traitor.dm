@@ -61,10 +61,6 @@
 	objectives -= O
 
 /datum/antagonist/traitor/proc/forge_traitor_objectives()
-	switch(traitor_kind)
-			forge_human_objectives()
-
-/datum/antagonist/traitor/proc/forge_human_objectives()
 	var/is_hijacker = FALSE
 	if (GLOB.joined_player_list.len >= 30) // Less murderboning on lowpop thanks
 		is_hijacker = prob(10)
@@ -134,23 +130,6 @@
 				forge_single_human_objective()
 			// Finally, set up our traitor's backstory!
 	setup_backstories(!is_hijacker && martyr_compatibility, is_hijacker)
-
-/datum/antagonist/traitor/proc/forge_ai_objectives()
-	var/objective_count = 0
-
-	if(prob(30))
-		objective_count += forge_single_AI_objective()
-
-	for(var/i = objective_count, i < CONFIG_GET(number/traitor_objectives_amount), i++)
-		var/datum/objective/assassinate/kill_objective = new
-		kill_objective.owner = owner
-		kill_objective.find_target()
-		add_objective(kill_objective)
-
-	var/datum/objective/survive/exist/exist_objective = new
-	exist_objective.owner = owner
-	add_objective(exist_objective)
-	setup_backstories()
 
 /datum/antagonist/traitor/proc/forge_single_human_optional() //adds this for if/when soft-tracked objectives are added, so they can be a 50/50
 	var/datum/objective/gimmick/gimmick_objective = new
