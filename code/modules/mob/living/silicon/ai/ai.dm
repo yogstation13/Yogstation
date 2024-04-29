@@ -997,10 +997,9 @@
 	to_chat(src, "You are also capable of hacking APCs, which grants you more points to spend on your Malfunction powers. The drawback is that a hacked APC will give you away if spotted by the crew. Hacking an APC takes 30 seconds.")
 	to_chat(src, span_userdanger("In addition you are able to disallow downloading of your memory banks by using the 'Toggle Download' verb in the malfunction tab. This has a visual tell so do not do it without reason."))
 
-	view_core() //A BYOND bug requires you to be viewing your core before your verbs update
+	view_core() // A BYOND bug requires you to be viewing your core before your verbs update.
 	add_verb_ai(list(/mob/living/silicon/ai/proc/choose_modules, /mob/living/silicon/ai/proc/toggle_download))
 	malf_picker = new /datum/module_picker
-
 
 /mob/living/silicon/ai/reset_perspective(atom/new_eye)
 	SHOULD_CALL_PARENT(FALSE) // I hate you all

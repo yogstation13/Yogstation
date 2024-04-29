@@ -241,8 +241,7 @@
 	return TRUE
 
 /datum/antagonist/malf_ai/proc/remove_malf_picker(mob/living/silicon/ai/malf_ai)
-	malf_ai.verbs -= /mob/living/silicon/ai/proc/choose_modules
-	malf_ai.verbs -= /mob/living/silicon/ai/proc/toggle_download
+	remove_verb(malf_ai, list(/mob/living/silicon/ai/proc/choose_modules, /mob/living/silicon/ai/proc/toggle_download))
 	malf_ai.malf_picker.remove_malf_verbs(malf_ai)
 	qdel(malf_ai.malf_picker)
 	return TRUE
