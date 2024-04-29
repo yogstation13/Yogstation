@@ -456,10 +456,10 @@
 			//Because a servant of medicines stops at nothing to help others, lets keep them on their toes and give them an additional boost.
 			if(itemUser.health < itemUser.maxHealth)
 				new /obj/effect/temp_visual/heal(get_turf(itemUser), "#375637")
-			itemUser.heal_ordered_damage(3 * efficiency, list(BRUTE, BURN, TOX, OXY, STAMINA, BRAIN, CLONE), forced = TRUE)
+			itemUser.heal_ordered_damage(2 * efficiency, list(BRUTE, BURN, TOX, OXY, STAMINA, BRAIN, CLONE), forced = TRUE)
 		//Heal all those around you, unbiased
 		for(var/mob/living/L in view(7, owner))
-			var/total_healing = 7 * efficiency
+			var/total_healing = 5 * efficiency
 			if(L.health < L.maxHealth)
 				new /obj/effect/temp_visual/heal(get_turf(L), "#375637")
 			var/residual_healing = max(L.heal_ordered_damage(total_healing, list(BRUTE, BURN, TOX, OXY, STAMINA, BRAIN, CLONE), forced = TRUE), 0)
