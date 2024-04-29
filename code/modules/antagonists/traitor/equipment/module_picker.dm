@@ -48,6 +48,11 @@
 	var/list/data = list()
 	data["processingTime"] = processing_time
 	data["compactMode"] = compact_mode
+	return data
+
+/datum/module_picker/ui_static_data(mob/user)
+	var/list/data = list()
+
 	data["categories"] = list()
 	for(var/category in possible_modules)
 		var/list/cat = list(
