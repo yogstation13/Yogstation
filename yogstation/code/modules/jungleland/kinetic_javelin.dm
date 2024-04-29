@@ -101,7 +101,7 @@
 /obj/item/kinetic_javelin/proc/loyalty()
 	UnregisterSignal(src, COMSIG_MOVABLE_THROW_LANDED)
 	if(returner)
-		returner.put_in_active_hand(src)
+		returner.put_in_hands(src)
 		returner = null
 
 /obj/item/kinetic_javelin/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
