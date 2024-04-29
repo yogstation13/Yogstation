@@ -27,3 +27,15 @@
 	icon_keyboard = "syndie_key"
 	upperinfo = "syndOS - Communications Terminal"
 	content = list("PRIORITY: HIGH | ASSIGNMENT TO ENGINEERING PERSONNEL","You have been assigned to refit this deactivated listening station into an orbital research outpost. We have successfully teleported several supply crates into the onboard Vault. Use them to establish a functional base.")
+
+/obj/machinery/computer/terminal/syndicate_derelict/command
+	name = "syndicate central command terminal"
+	desc = "An outdated terminal originally used by the Syndicate to provide automated central control for their outposts. Doesn't seem to do much now."
+	upperinfo = "Syndicate Integrated Command Terminal"
+	content = list("STATION INTEGRITY ALERT!","Atmospheric integrity failure detected in: COMMUNICATIONS. ARRIVALS. MEDICAL. CANTEEN. ENGINEERING.","Hull integrity failure detected in: COMMUNICATIONS. ARRIVALS. MEDICAL. CANTEEN. ENGINEERING.","Unauthorised biotic lifeforms detected in proximity.","Unauthorised robotic systems detected in: VAULT","Outpost security level: RED.")
+
+/obj/machinery/computer/terminal/syndicate_derelict/docking
+	name = "syndicate docking console"
+	desc = "A unique terminal used by the Syndicate to combine the functions of a cargo, IFF, and hailing system into one. Examples of these are quite rare nowadays."
+	upperinfo = "Syndicate Docking Terminal"
+	content = list("CODE RED: Terminal lockout engaged.","Unable to connect to regional Syndicate logistics hubs.","IFF beacon in STEALTH mode. Unable to alter - insufficient access.","No vessels on Syndicate hailing frequencies detected.")

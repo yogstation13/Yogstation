@@ -81,13 +81,6 @@
 	anchored = 1;
 	desc = "A closet containing syndicate equipment."
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Syndicate Asteroid Armory APC";
-	pixel_x = 0;
-	pixel_y = 24;
-	req_access = 150
-	},
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -98,6 +91,12 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/machinery/power/apc/syndicate{
+	dir = 1;
+	name = "Syndicate Derelict Vault APC";
+	pixel_y = 23;
+	start_charge = 0
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndiederelict/vault)
@@ -305,38 +304,35 @@
 /turf/closed/wall/rust,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "aK" = (
-/obj/machinery/computer/telecomms/monitor{
-	network = "tcommsat"
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/dark_red/half/contrasted,
+/obj/structure/cable{
+	icon_state = "1-4"
 	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/item/stack/cable_coil/cut/red,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/syndiederelict/comms)
+"aL" = (
 /obj/effect/turf_decal/tile/dark_red/anticorner/contrasted{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/syndiederelict/comms)
-"aL" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/newscaster{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/tile/dark_red/half/contrasted{
-	dir = 1
-	},
-/obj/structure/frame/computer,
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndiederelict/comms)
 "aM" = (
-/obj/machinery/computer/telecomms/server{
-	network = "tcommsat"
-	},
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 0;
-	pixel_y = 30
-	},
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/dark_red/anticorner/contrasted{
 	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/tank/nitrogen,
+/obj/machinery/airalarm/syndicate{
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndiederelict/comms)
@@ -405,46 +401,54 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "aW" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/dark_red/anticorner/contrasted{
-	dir = 1
+/obj/effect/turf_decal/tile/dark_red/half/contrasted{
+	dir = 4
 	},
-/obj/machinery/airalarm/syndicate{
-	dir = 4;
-	pixel_x = -24
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
-/turf/open/floor/plasteel/dark,
+/obj/item/stack/cable_coil/cut/red,
+/turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/syndiederelict/comms)
 "aX" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/dark_red{
-	dir = 1
-	},
-/obj/item/shard,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/syndiederelict/comms)
-"aY" = (
-/obj/structure/chair/office/dark{
-	dir = 1
-	},
-/obj/item/stack/sheet/metal,
 /obj/structure/cable{
-	icon_state = "2-4"
+	icon_state = "4-8"
 	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/syndiederelict/comms)
-"ba" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Telecommunications";
 	opacity = 1;
 	req_access_txt = "150"
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndiederelict/comms)
+"aY" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/tile/dark_red/anticorner/contrasted{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/syndiederelict/comms)
+"ba" = (
+/obj/item/stack/sheet/plasteel,
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/space/has_grav/syndiederelict/asteroid)
 "bc" = (
 /obj/structure/cable{
-	icon_state = "1-4";
-	tag = ""
+	icon_state = "1-4"
 	},
 /obj/effect/turf_decal/tile/dark_red/half/contrasted{
 	dir = 1
@@ -501,8 +505,7 @@
 /area/ruin/space/has_grav/syndiederelict/comms)
 "bg" = (
 /obj/structure/cable{
-	icon_state = "1-4";
-	tag = ""
+	icon_state = "1-4"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -510,6 +513,9 @@
 	},
 /obj/effect/turf_decal/tile/dark_red/half/contrasted{
 	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/syndiederelict/comms)
@@ -547,31 +553,40 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "bm" = (
-/obj/structure/table,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/dark_red/half/contrasted,
-/obj/structure/cable{
-	icon_state = "1-4";
-	tag = ""
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
+/obj/structure/frame/machine,
+/obj/item/circuitboard/machine/telecomms/relay,
 /obj/item/stack/cable_coil/cut/red,
-/turf/open/floor/plasteel/dark,
+/obj/item/stock_parts/subspace/amplifier,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/open/floor/circuit/red/anim{
+	initial_gas_mix = "TEMP=2.7"
+	},
 /area/ruin/space/has_grav/syndiederelict/comms)
 "bn" = (
-/obj/structure/chair/office/dark{
+/obj/machinery/light/small{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/dark_red{
+/obj/machinery/button/door{
+	id = "syndiecommsshutters";
+	name = "Outpost Window Shutters";
+	pixel_x = -26;
+	pixel_y = 8;
+	req_access_txt = "150"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/camera_advanced{
+	networks = list("SS13","syndiderelict");
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/dark_red/anticorner/contrasted{
 	dir = 8
 	},
-/obj/item/stack/cable_coil/cut/red,
-/turf/open/floor/plasteel/dark,
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/syndiederelict/comms)
 "bo" = (
 /turf/open/floor/plasteel/dark,
@@ -582,6 +597,9 @@
 	},
 /obj/effect/turf_decal/tile/dark_red/half/contrasted{
 	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/syndiederelict/comms)
@@ -607,7 +625,10 @@
 	req_access = list(150)
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plating/airless,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "bz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
@@ -640,29 +661,13 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "bD" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/machinery/button/door{
-	id = "syndiecommsshutters";
-	name = "Outpost Window Shutters";
-	pixel_x = -26;
-	pixel_y = 8;
-	req_access_txt = "150"
-	},
+/obj/effect/turf_decal/tile/dark_red/half/contrasted,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/computer/camera_advanced{
-	networks = list("SS13","syndiderelict");
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/dark_red/anticorner/contrasted{
-	dir = 8
-	},
 /obj/structure/cable{
-	icon_state = "2-4"
+	icon_state = "4-8"
 	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/syndiederelict/comms)
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hallway)
 "bE" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only/closed{
@@ -674,16 +679,13 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/syndiederelict/crew)
 "bF" = (
-/obj/machinery/light/small{
-	dir = 4
+/obj/item/stack/cable_coil/cut/red,
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 1
 	},
-/obj/structure/table_frame,
-/obj/effect/turf_decal/tile/dark_red/anticorner/contrasted,
-/obj/structure/cable{
-	icon_state = "2-8"
+/turf/open/floor/circuit/red/anim{
+	initial_gas_mix = "TEMP=2.7"
 	},
-/obj/item/shard,
-/turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndiederelict/comms)
 "bG" = (
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
@@ -704,6 +706,9 @@
 	},
 /obj/effect/turf_decal/tile/dark_red/half/contrasted{
 	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/syndiederelict/crew)
@@ -727,6 +732,9 @@
 	dir = 8
 	},
 /obj/item/bedsheet/syndie,
+/obj/machinery/light_switch{
+	pixel_y = 24
+	},
 /turf/open/floor/carpet/black,
 /area/ruin/space/has_grav/syndiederelict/crew)
 "bP" = (
@@ -746,6 +754,14 @@
 /area/ruin/space/has_grav/syndiederelict/crew)
 "bU" = (
 /obj/structure/closet/syndicate,
+/obj/item/t_scanner,
+/obj/item/clothing/under/syndicate/camo,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate/combat,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/head/HoS/beret/syndicate,
+/obj/item/clothing/head/HoS/syndicate,
+/obj/item/clothing/suit/armor/vest,
 /turf/open/floor/carpet/black,
 /area/ruin/space/has_grav/syndiederelict/crew)
 "bX" = (
@@ -835,6 +851,9 @@
 /obj/effect/turf_decal/tile/dark_red/half/contrasted{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/syndiederelict/crew)
 "cj" = (
@@ -873,7 +892,7 @@
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "cr" = (
 /obj/structure/reagent_dispensers/watertank,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "cs" = (
 /obj/machinery/light/small{
@@ -951,7 +970,7 @@
 /area/ruin/space/has_grav/syndiederelict/crew)
 "cC" = (
 /obj/machinery/space_heater,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "cD" = (
 /obj/structure/table,
@@ -1036,6 +1055,9 @@
 /obj/effect/turf_decal/tile/dark_red/half/contrasted{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/syndiederelict/crew)
 "cR" = (
@@ -1081,6 +1103,15 @@
 	dir = 8;
 	pixel_x = 24
 	},
+/obj/machinery/power/apc/syndicate{
+	dir = 1;
+	name = "Syndicate Derelict Arrivals APC";
+	pixel_y = 23;
+	start_charge = 0
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/syndiederelict/arrivals)
 "da" = (
@@ -1103,6 +1134,9 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/syndiederelict/arrivals)
 "db" = (
@@ -1127,6 +1161,9 @@
 "de" = (
 /obj/effect/turf_decal/tile/dark_red/half/contrasted{
 	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/syndiederelict/crew)
@@ -1163,11 +1200,24 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
+"dm" = (
+/mob/living/simple_animal/hostile/hivebot/rapid,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/syndiederelict/comms)
 "do" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /obj/item/shard,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "dp" = (
@@ -1229,6 +1279,12 @@
 "dE" = (
 /obj/machinery/light/small,
 /obj/effect/turf_decal/tile/dark_red/half/contrasted,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "dK" = (
@@ -1300,10 +1356,10 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "dX" = (
-/obj/machinery/computer/terminal/syndicate_derelict{
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/terminal/syndicate_derelict/docking{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/syndiederelict/arrivals)
 "dY" = (
@@ -1356,6 +1412,12 @@
 "ei" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/bar/opposingcorners,
+/obj/machinery/power/apc/syndicate{
+	name = "Syndicate Derelict Canteen APC";
+	pixel_y = -23;
+	start_charge = 0
+	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "ek" = (
@@ -1438,6 +1500,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel/airless/white,
 /area/ruin/space/has_grav/syndiederelict/medbay)
 "eu" = (
@@ -1472,6 +1537,13 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc/syndicate{
+	dir = 8;
+	name = "Syndicate Derelict Arrivals APC";
+	pixel_x = -25;
+	start_charge = 0
+	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "eA" = (
@@ -1479,6 +1551,12 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "eB" = (
@@ -1492,6 +1570,9 @@
 /obj/item/stack/rods,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
 /turf/open/floor/plasteel/airless/white,
 /area/ruin/space/has_grav/syndiederelict/medbay)
 "eD" = (
@@ -1611,6 +1692,9 @@
 /area/ruin/space/has_grav/syndiederelict/arrivals)
 "fP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "fZ" = (
@@ -1688,13 +1772,13 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "hD" = (
-/obj/effect/turf_decal/tile/dark_red/half/contrasted{
-	dir = 4
-	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/item/stack/cable_coil/cut/red,
+/obj/effect/turf_decal/tile/dark_red/anticorner/contrasted,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 9
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndiederelict/comms)
 "hF" = (
@@ -1743,6 +1827,11 @@
 "iE" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
+"iI" = (
+/obj/item/stack/rods,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/space/has_grav/syndiederelict/asteroid)
 "iK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -1780,6 +1869,9 @@
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "kk" = (
 /obj/effect/turf_decal/tile/dark_red/anticorner/contrasted,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "ku" = (
@@ -1800,6 +1892,14 @@
 /obj/effect/baseturf_helper/asteroid/airless,
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/syndiederelict/vault)
+"ls" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/dark_red/anticorner/contrasted{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/syndiederelict/comms)
 "lU" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 4
@@ -1819,9 +1919,31 @@
 /mob/living/simple_animal/hostile/carp,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
+"mN" = (
+/obj/effect/turf_decal/tile/dark_red/half/contrasted{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/syndiederelict/crew)
+"mS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hallway)
 "mU" = (
 /obj/effect/turf_decal/tile/dark_red/half/contrasted{
 	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
@@ -1876,6 +1998,15 @@
 /obj/structure/closet/crate/engineering,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
+	},
+/obj/machinery/power/apc/syndicate{
+	dir = 8;
+	name = "Syndicate Derelict Engineering APC";
+	pixel_x = -25;
+	start_charge = 0
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
@@ -1938,6 +2069,17 @@
 	},
 /turf/open/floor/plasteel/airless/broken/two,
 /area/ruin/space/has_grav/syndiederelict/engineering)
+"oP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/dark_red{
+	dir = 1
+	},
+/obj/item/shard,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/syndiederelict/comms)
 "pl" = (
 /obj/item/stack/sheet/plasteel,
 /obj/item/stack/ore/iron,
@@ -1973,8 +2115,7 @@
 	},
 /obj/item/stack/tile/plasteel,
 /obj/structure/cable{
-	icon_state = "1-4";
-	tag = ""
+	icon_state = "1-4"
 	},
 /turf/open/floor/plasteel/airless/broken/three,
 /area/ruin/space/has_grav/syndiederelict/engineering)
@@ -2007,10 +2148,14 @@
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/space/has_grav/syndiederelict/asteroid)
 "qH" = (
-/obj/effect/turf_decal/tile/dark_red/half/contrasted{
-	dir = 4
+/obj/machinery/door/airlock/external/glass{
+	name = "Server Room"
 	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/fans/tiny,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 10
+	},
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/syndiederelict/comms)
 "qO" = (
 /obj/structure/frame/computer,
@@ -2046,6 +2191,9 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/syndiederelict/arrivals)
 "rW" = (
@@ -2074,11 +2222,11 @@
 /turf/open/floor/engine/vacuum,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "tj" = (
-/mob/living/simple_animal/hostile/hivebot/rapid,
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
+	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/syndiederelict/comms)
 "to" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
@@ -2092,6 +2240,18 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/visible,
 /turf/closed/wall,
 /area/ruin/space/has_grav/syndiederelict/engineering)
+"ua" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/cable_coil/cut/red,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"uR" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/comms)
 "uX" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/decal/cleanable/dirt,
@@ -2199,6 +2359,13 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndiederelict/engineering)
+"xr" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/effect/turf_decal/stripes/asteroid/corner{
+	dir = 1
+	},
+/turf/closed/mineral/random/low_chance,
+/area/ruin/space/has_grav/syndiederelict/asteroid)
 "yn" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "syndie_derelict_turbine_ohfuck"
@@ -2210,12 +2377,24 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/closed/wall,
 /area/ruin/space/has_grav/syndiederelict/engineering)
+"yv" = (
+/turf/closed/wall,
+/area/ruin/space/has_grav/syndiederelict/comms)
 "yA" = (
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 8
 	},
 /obj/effect/turf_decal/sand,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc/syndicate{
+	dir = 8;
+	name = "Syndicate Derelict Medical APC";
+	pixel_x = -25;
+	start_charge = 0
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
 /turf/open/floor/plasteel/airless/white,
 /area/ruin/space/has_grav/syndiederelict/medbay)
 "yO" = (
@@ -2233,6 +2412,26 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/medbay)
+"yU" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/dark_red/anticorner/contrasted{
+	dir = 1
+	},
+/obj/machinery/airalarm/syndicate{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/syndicate{
+	dir = 1;
+	name = "Syndicate Derelict Communications APC";
+	pixel_y = 23;
+	start_charge = 0
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/syndiederelict/comms)
 "yX" = (
 /obj/effect/turf_decal/tile/dark_red/half/contrasted{
 	dir = 8
@@ -2288,6 +2487,18 @@
 "zR" = (
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/syndiederelict/comms)
+"Ap" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/table_frame,
+/obj/effect/turf_decal/tile/dark_red/anticorner/contrasted,
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/item/shard,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/syndiederelict/comms)
 "AA" = (
 /obj/machinery/atmospherics/pipe/layer_manifold/visible{
 	dir = 4
@@ -2303,6 +2514,9 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "Ba" = (
@@ -2317,6 +2531,9 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel/airless/white,
 /area/ruin/space/has_grav/syndiederelict/medbay)
 "Ct" = (
@@ -2326,6 +2543,13 @@
 /mob/living/simple_animal/hostile/hivebot/rapid,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/syndiederelict/vault)
+"Ds" = (
+/obj/effect/turf_decal/tile/bar/opposingcorners,
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
 "DE" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor/plasteel/airless,
@@ -2364,6 +2588,9 @@
 /obj/effect/turf_decal/tile/dark_red/anticorner/contrasted{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "Fb" = (
@@ -2376,6 +2603,12 @@
 "FO" = (
 /obj/effect/turf_decal/tile/dark_red,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "Gq" = (
@@ -2404,6 +2637,9 @@
 /obj/machinery/door/airlock/engineering{
 	name = "Engineering";
 	req_access = list(150)
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
@@ -2458,6 +2694,9 @@
 /area/ruin/space/has_grav/syndiederelict/comms)
 "HP" = (
 /obj/effect/turf_decal/tile/dark_red/half/contrasted,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "HR" = (
@@ -2489,6 +2728,12 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "IU" = (
@@ -2503,6 +2748,9 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "Jv" = (
@@ -2510,12 +2758,18 @@
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/tile/dark_red/half/contrasted,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "JB" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/syndiederelict/engineering)
+/obj/effect/turf_decal/tile/dark_red/anticorner/contrasted{
+	dir = 1
+	},
+/obj/machinery/computer/terminal/syndicate_derelict,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/syndiederelict/comms)
 "JU" = (
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/closed/wall,
@@ -2565,6 +2819,19 @@
 "LY" = (
 /turf/closed/wall/rust,
 /area/ruin/space/has_grav/syndiederelict/arrivals)
+"Ma" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/obj/item/stack/sheet/metal,
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/syndiederelict/comms)
 "Mh" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/decal/cleanable/dirt,
@@ -2629,6 +2896,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
+"NT" = (
+/obj/structure/chair/office/dark{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/dark_red{
+	dir = 8
+	},
+/obj/item/stack/cable_coil/cut/red,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/syndiederelict/comms)
 "Oa" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/turf_decal/stripes/asteroid/line{
@@ -2653,6 +2930,9 @@
 /obj/effect/turf_decal/tile/dark_red{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "OZ" = (
@@ -2672,6 +2952,15 @@
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndiederelict/comms)
@@ -2696,7 +2985,10 @@
 	req_access = list(150)
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plating/airless,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "QR" = (
 /obj/item/stack/sheet/metal/fifty,
@@ -2772,6 +3064,13 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
+"Sa" = (
+/obj/effect/turf_decal/tile/bar/opposingcorners,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
 "SF" = (
 /obj/structure/closet/crate/secure/gear{
 	req_access = list(150);
@@ -2796,10 +3095,38 @@
 /obj/effect/turf_decal/tile/dark_red/half/contrasted,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/syndiederelict/comms)
+"Te" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/tile/dark_red/half/contrasted{
+	dir = 1
+	},
+/obj/machinery/computer/terminal/syndicate_derelict/command,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/syndiederelict/comms)
 "Tf" = (
 /obj/item/stack/rods,
 /turf/template_noop,
 /area/template_noop)
+"TS" = (
+/obj/effect/turf_decal/tile/dark_red/half/contrasted{
+	dir = 8
+	},
+/obj/machinery/power/apc/syndicate{
+	dir = 8;
+	name = "Syndicate Derelict Crew Quarters APC";
+	pixel_x = -25;
+	start_charge = 0
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/syndiederelict/crew)
 "TV" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -2813,12 +3140,10 @@
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/syndiederelict/arrivals)
 "Ue" = (
-/obj/structure/table,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/dark_red/anticorner/contrasted{
-	dir = 8
+/obj/effect/turf_decal/tile/dark_red/half/contrasted{
+	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/syndiederelict/comms)
 "Uh" = (
 /obj/structure/table,
@@ -2852,6 +3177,16 @@
 /obj/item/shard,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
+"Vf" = (
+/obj/effect/turf_decal/tile/dark_red/half/contrasted,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hallway)
 "Vm" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/structure/frame/machine,
@@ -2926,13 +3261,6 @@
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
-"WZ" = (
-/obj/effect/turf_decal/sand/plating,
-/obj/effect/turf_decal/stripes/asteroid/corner{
-	dir = 1
-	},
-/turf/closed/mineral/random/low_chance,
-/area/ruin/space/has_grav/syndiederelict/asteroid)
 "Xl" = (
 /obj/machinery/atmospherics/pipe/simple/purple/hidden/layer4{
 	dir = 10
@@ -2969,6 +3297,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
+"YI" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = 0;
+	pixel_y = 30
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/dark_red/anticorner/contrasted{
+	dir = 4
+	},
+/obj/structure/frame/computer,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/syndiederelict/comms)
 "Zb" = (
 /obj/item/circuitboard/machine/power_turbine,
 /turf/open/floor/plating/asteroid/airless,
@@ -3097,11 +3437,11 @@ ds
 ds
 ds
 ds
-ds
-ds
-ds
-ds
-ds
+db
+db
+db
+db
+db
 ds
 ds
 ds
@@ -3142,14 +3482,14 @@ ds
 ds
 ds
 ds
-ds
-ds
-ds
-ds
-ds
-ds
-ds
-ds
+db
+db
+db
+db
+db
+db
+db
+db
 ds
 ds
 ds
@@ -3191,13 +3531,13 @@ db
 db
 db
 db
+zR
+zR
+hr
+hr
 db
 db
-ac
 db
-ds
-ds
-ds
 ds
 ds
 ds
@@ -3236,15 +3576,15 @@ db
 db
 db
 db
-db
-db
-db
+zR
+zR
+yU
+ls
+hr
+hr
 ac
 db
-db
-db
-db
-db
+ac
 ds
 ds
 ds
@@ -3282,15 +3622,15 @@ db
 db
 db
 db
-db
-db
-db
+zR
+JB
+oP
+NT
+bn
+bM
 ac
 ac
 ac
-ac
-ac
-db
 db
 ds
 ds
@@ -3328,15 +3668,15 @@ db
 db
 db
 db
-db
 zR
-zR
-hr
-hr
-db
-db
+Te
+Ma
+dm
+aK
+bM
 ac
-db
+ac
+ac
 db
 db
 ds
@@ -3375,15 +3715,15 @@ db
 db
 db
 zR
-zR
+YI
 aW
 Ue
-hr
-hr
+Ap
+Ih
+aa
+iI
 ac
-pm
-cN
-ac
+Ba
 db
 cu
 dv
@@ -3421,14 +3761,14 @@ db
 db
 db
 Kk
-aK
+yv
 aX
-bn
-bD
-bM
+yv
+yv
+zR
 ac
 aa
-ac
+ba
 ac
 ac
 cu
@@ -3471,7 +3811,7 @@ aL
 aY
 tj
 bm
-bM
+uR
 ac
 ac
 cu
@@ -3517,8 +3857,8 @@ aM
 hD
 qH
 bF
-Ih
-aa
+zR
+ac
 ac
 cu
 cv
@@ -3561,10 +3901,10 @@ aA
 aO
 aO
 Pg
-ba
+zR
+zR
 hr
-hr
-Ba
+ac
 db
 cu
 cw
@@ -3793,14 +4133,14 @@ aR
 bf
 Uy
 bE
-yX
+TS
 yX
 ch
 co
 yX
 cO
 Ia
-Ui
+mS
 Ui
 vi
 eq
@@ -3839,7 +4179,7 @@ aS
 bg
 bv
 bH
-de
+mN
 de
 ci
 de
@@ -3892,7 +4232,7 @@ bP
 cA
 bP
 df
-vi
+bD
 ed
 ed
 aD
@@ -3988,7 +4328,7 @@ Jv
 ed
 Zh
 Rm
-eB
+ua
 uX
 eM
 ZP
@@ -4025,12 +4365,12 @@ ys
 nQ
 WS
 bJ
-cj
+MX
 MX
 MX
 bP
 ec
-HP
+Vf
 dS
 BE
 es
@@ -4072,8 +4412,8 @@ Ix
 AM
 fP
 Qx
-JB
-JB
+fP
+fP
 by
 mU
 dE
@@ -4214,7 +4554,7 @@ cs
 cD
 cR
 UE
-UE
+Sa
 dT
 LX
 eu
@@ -4260,7 +4600,7 @@ bo
 cE
 cS
 UE
-UE
+Ds
 do
 ei
 cd
@@ -4448,7 +4788,7 @@ cd
 cd
 cd
 cd
-WZ
+xr
 pm
 aa
 db
