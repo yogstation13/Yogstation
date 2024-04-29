@@ -25,16 +25,16 @@
 /datum/traitor_faction/donk_co
 	name = "Donk Co."
 	employer_name = "The Board"
-	description = "Every Donk Co board member has been where you are now.\n\
-	Whatever your objectives are, they’re just another stepping stone on your path to the top, another page for your résumé. Hop to it, the C-Suite is waiting. "
+	description = "You've been given this task by Donk Co., a covert weapons designer and manufacturer. \n\
+	A company for those with ambitions. Perhaps one day you'll have an opportunity to hit the big time too."
 	key = TRAITOR_FACTION_DONK
 	faction_theme = PDA_THEME_DONK
 
 /datum/traitor_faction/waffle_co
 	name = "Waffle Co."
 	employer_name = "Waffle's Jolly Toy Store"
-	description = "You hail from a family of beloved toy manufacturers with a robust firearms development wing. \n\
-	This station has significant business with our Loved Opponent, Donk Co., and needs to be undermined."
+	description = "You're part of this wonderful family of beloved toy manufacturers with a robust firearms development wing. \n\
+	This station has significant business with our rival Donk Co. and needs to be undermined."
 	key = TRAITOR_FACTION_WAFFLE
 	faction_theme = PDA_THEME_WAFFLE
 
@@ -49,8 +49,8 @@
 /datum/traitor_faction/vahlen
 	name = "Vahlen Pharmaceuticals"
 	employer_name = "Dr. Sathune PHD, Genetics Board Head Member"
-	description = "You've been deployed to this sector because of an incredible bounty of test subjects detected in local crew/shipment manifests.\n\
-	Your next grant has been greenlit, with the condition that you collect samples, be that biological products, equipment, or cadavers."
+	description = "You're working for Vahlen Pharmaceuticals, a medical research and development company seeking to further scientific progress regardless of ethical boundaries.\n\
+	You've been deployed to this sector because an incredible bounty of test subjects have been detected in local crew and shipment manifests."
 	key = TRAITOR_FACTION_VAHLEN
 	faction_theme = PDA_THEME_VAHLEN
 	
