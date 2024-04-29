@@ -529,3 +529,21 @@
 /area/ruin/space/has_grav/syndiederelict/virology
 	name = "Syndicate Derelict Virology"
 	icon_state = "virology"
+
+/area/ruin/space/has_grav/syndiederelict/vault
+	name = "Syndicate Derelict Vault"
+	icon_state = "red"
+
+/area/ruin/space/has_grav/syndiederelict/comms
+	name = "Syndicate Derelict Communications"
+	icon_state = "tcomsatcham"
+
+/area/ruin/space/has_grav/syndiederelict/arrivals
+	name = "Syndicate Derelict Arrivals"
+	icon_state = "green"
+
+/area/ruin/space/has_grav/syndiederelict/crew
+	name = "Syndicate Derelict Dormitories"
+
+/area/ruin/space/has_grav/syndiederelict/asteroid
+	name = "Forgotten Asteroid"

@@ -226,6 +226,11 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 /obj/effect/landmark/stationroom/limited_spawn/gax/ai_whale
 	template_names = list("AI Whale")
 
+/obj/effect/landmark/stationroom/ruin //ruin variation
+
+/obj/effect/landmark/stationroom/ruin/syndicatederelict
+	template_names = list("Syndicate Derelict Research Station", "Syndicate Derelict Listening Post", "Syndicate Derelict Warehouse")
+
 /obj/effect/landmark/start/infiltrator
 	name = "infiltrator"
 	icon = 'icons/effects/landmarks_static.dmi'

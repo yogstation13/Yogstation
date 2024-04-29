@@ -17,3 +17,13 @@
 /obj/item/paper/crumpled/ruins/syndicate_derelict_station/important_note
 	name = "Important note"
 	info = "word has been spread that pirates are raiding around us, keep this gun with you just in case they come around"
+
+/obj/machinery/computer/terminal/syndicate_derelict
+	name = "syndicate communications console"
+	desc = "A console used to recieve important communications from Syndicate Command."
+	tguitheme = "syndicate"
+	light_color = "#FA8282"
+	icon_screen = "syndishuttle"
+	icon_keyboard = "syndie_key"
+	upperinfo = "syndOS - Communications Terminal"
+	content = list("PRIORITY: HIGH | ASSIGNMENT TO ENGINEERING PERSONNEL","You have been assigned to refit this deactivated listening station into an orbital research outpost. A cargo vessel has dropped off necessary supplies, although some have been moved into the Vault.")
