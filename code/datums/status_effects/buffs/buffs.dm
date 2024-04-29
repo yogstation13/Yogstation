@@ -459,6 +459,8 @@
 			itemUser.heal_ordered_damage(2 * efficiency, list(BRUTE, BURN, TOX, OXY, STAMINA, BRAIN, CLONE), forced = TRUE)
 		//Heal all those around you, unbiased
 		for(var/mob/living/L in view(7, owner))
+			if(issilicon(L)) //this is the organics heal rod, not the robotics heal rod
+				continue
 			var/total_healing = 5 * efficiency
 			if(L.health < L.maxHealth)
 				new /obj/effect/temp_visual/heal(get_turf(L), "#375637")
