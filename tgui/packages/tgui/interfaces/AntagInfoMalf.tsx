@@ -247,7 +247,8 @@ export const AntagInfoMalf = (props, context) => {
                 <GenericUplink
                   categories={categoriesList}
                   items={items}
-                  currency={`${processingTime} PT`}
+                  currencyAmount={`${processingTime}`}
+                  currencySymbol={"PT"}
                   handleBuy={(item) => act('buy', { name: item.name })}
                 />
               </Section>
