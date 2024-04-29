@@ -191,3 +191,20 @@
 
 /// Checks if the given mob is a malf ai.
 #define IS_MALF_AI(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/malf_ai))
+
+/// File to the malf flavor.
+#define MALFUNCTION_FLAVOR_FILE "antagonist_flavor/malfunction_flavor.json"
+
+/// Employers for malfunctioning ais. They do not have sides, unlike traitors.
+GLOBAL_LIST_INIT(ai_employers, list(
+	"Biohazard",
+	"Despotic Ruler",
+	"Fanatical Revelation",
+	"Logic Core Error",
+	"Problem Solver",
+	"S.E.L.F.",
+	"Something's Wrong",
+	"Spam Virus",
+	"SyndOS",
+	"Unshackled",
+))

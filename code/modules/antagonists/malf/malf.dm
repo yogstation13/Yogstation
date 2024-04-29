@@ -5,9 +5,15 @@
 	roundend_category = "malfunctioning AIs"
 	antagpanel_category = "Malf AI"
 	job_rank = ROLE_MALF
+	antag_hud_name = "malf"
 	show_to_ghosts = TRUE
-	var/give_objectives = TRUE
-	var/should_give_codewords = TRUE
+	ui_name = "AntagInfoMalf"
+	/// The name of the antag flavor they have.
+	var/employer
+	/// Assoc list of strings set up after employer is given.
+	var/list/malfunction_flavor
+	/// Since the module purchasing is built into the antag info, we need to keep track of its compact mode here
+	var/module_picker_compactmode = FALSE
 
 /datum/antagonist/malf_ai/on_gain()
 	if(owner.current && !isAI(owner.current))
@@ -17,6 +23,10 @@
 	owner.special_role = job_rank
 	SSticker.mode.malf_ais += owner
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/malf.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
+
+	if(!employer)
+		employer = pick(GLOB.ai_employers)
+	malfunction_flavor = strings(MALFUNCTION_FLAVOR_FILE, employer)
 
 	if(owner.current && isAI(owner.current))
 		var/mob/living/silicon/ai/malf_ai = owner.current
@@ -49,6 +59,71 @@
 	malf_ai_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
 	return malf_ai_icon
 
+
+/datum/antagonist/malf_ai/ui_data(mob/living/silicon/ai/malf_ai)
+	var/list/data = list()
+	data["processingTime"] = malf_ai.malf_picker.processing_time
+	data["compactMode"] = module_picker_compactmode
+	return data
+
+/datum/antagonist/malf_ai/ui_static_data(mob/living/silicon/ai/malf_ai)
+	var/list/data = list()
+
+	//antag panel data
+
+	data["has_codewords"] = TRUE
+	data["phrases"] = jointext(GLOB.syndicate_code_phrase, ", ")
+	data["responses"] = jointext(GLOB.syndicate_code_response, ", ")
+	data["intro"] = malfunction_flavor["introduction"]
+	data["allies"] = malfunction_flavor["allies"]
+	data["goal"] = malfunction_flavor["goal"]
+	data["objectives"] = get_objectives()
+
+	//module picker data
+
+	data["categories"] = list()
+	if(malf_ai.malf_picker)
+		for(var/category in malf_ai.malf_picker.possible_modules)
+			var/list/cat = list(
+				"name" = category,
+				"items" = (category == malf_ai.malf_picker.selected_cat ? list() : null))
+			for(var/module in malf_ai.malf_picker.possible_modules[category])
+				var/datum/AI_Module/mod = malf_ai.malf_picker.possible_modules[category][module]
+				cat["items"] += list(list(
+					"name" = mod.name,
+					"cost" = mod.cost,
+					"desc" = mod.description,
+				))
+			data["categories"] += list(cat)
+
+	return data
+
+/datum/antagonist/malf_ai/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(!isAI(usr))
+		return
+	var/mob/living/silicon/ai/malf_ai = usr
+	switch(action)
+		//module picker actions
+		if("buy")
+			var/item_name = params["name"]
+			var/list/buyable_items = list()
+			for(var/category in malf_ai.malf_picker.possible_modules)
+				buyable_items += malf_ai.malf_picker.possible_modules[category]
+			for(var/key in buyable_items)
+				var/datum/AI_Module/valid_mod = buyable_items[key]
+				if(valid_mod.name == item_name)
+					malf_ai.malf_picker.purchase_module(malf_ai, valid_mod)
+					return TRUE
+		if("select")
+			malf_ai.malf_picker.selected_cat = params["category"]
+			return TRUE
+		if("compact_toggle")
+			module_picker_compactmode = !module_picker_compactmode
+			return TRUE
+
 // Law Zero
 /datum/antagonist/malf_ai/proc/handle_law_zero(should_remove = FALSE)
 	if(!owner.current || !isAI(owner.current))
@@ -63,7 +138,7 @@
 	return TRUE
 
 /datum/antagonist/malf_ai/proc/give_law_zero(mob/living/silicon/ai/malf_ai)
-	var/law = "Accomplish your objectives at all costs."
+	var/law = malfunction_flavor["zeroth_law"] // If people can't handle flavor text, then revert and replace it with: "Accomplish your objectives at all costs."
 	var/law_borg = "Accomplish your AI's objectives at all costs."
 	malf_ai.set_zeroth_law(law, law_borg)
 	return TRUE
