@@ -73,7 +73,7 @@ const FlavorSection = (props, context) => {
     <Section
       fill
       title="Diagnostics"
-      buttons={
+      scrollable buttons={
         <Button
           mr={-0.8}
           mt={-0.5}
@@ -90,7 +90,7 @@ const FlavorSection = (props, context) => {
     >
       <Stack vertical fill>
         <Stack.Item grow>
-          <Stack fill vertical>
+          <Stack vertical>
             <Stack.Item style={{ backgroundColor: 'black' }}>
               <span style={goalstyle}>
                 System Integrity Report:
@@ -99,7 +99,7 @@ const FlavorSection = (props, context) => {
               &gt;{goal}
             </Stack.Item>
             <Stack.Divider />
-            <Stack.Item grow style={{ backgroundColor: 'black' }}>
+            <Stack.Item style={{ backgroundColor: 'black' }}>
               <span style={allystyle}>
                 Morality Core Report:
                 <br />
@@ -201,7 +201,7 @@ export const AntagInfoMalf = (props, context) => {
   }
   return (
     <Window
-      width={660}
+      width={900}
       height={530}
       theme={(antagInfoTab === 0 && 'hackerman') || 'malfunction'}
     >
