@@ -18,7 +18,7 @@
 	traitors_possible = 10 //hard limit on traitors if scaling is turned off
 	num_modifier = 4 // Four additional traitors
 	antag_datum = /datum/antagonist/traitor/internal_affairs
-	restricted_jobs = list("AI", "Cyborg")//Yogs -- Silicons can no longer be IAA
+	restricted_jobs = list("AI", "Cyborg", "Synthetic")//Yogs -- Silicons can no longer be IAA
 
 	announce_text = "There are Syndicate Internal Affairs Agents trying to kill each other!\n\
 	<span class='danger'>IAA</span>: Eliminate your targets and protect yourself!\n\
