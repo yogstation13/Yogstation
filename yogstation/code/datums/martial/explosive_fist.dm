@@ -60,9 +60,10 @@
 	D.ignite_mob()
 	D.apply_damage(A.get_punchdamagehigh() + 3, BRUTE, selected_zone, brute_block) 	//10 brute
 	D.apply_damage(A.get_punchdamagehigh() + 3, BURN, selected_zone, burn_block) 	//10 burn (vs bomb armor)
-	D.visible_message(span_danger("[A] [A.dna.species.attack_verb]s [D]!"), \
-					  span_userdanger("[A] [A.dna.species.attack_verb]s you!"))
-	log_combat(A, D, "[A.dna.species.attack_verb]s(Explosive Fist)")
+	var/atk_verb = pick(A.dna.species.attack_verbs)
+	D.visible_message(span_danger("[A] [atk_verb]s [D]!"), \
+					  span_userdanger("[A] [atk_verb]s you!"))
+	log_combat(A, D, "[atk_verb]s(Explosive Fist)")
 
 /datum/martial_art/explosive_fist/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
