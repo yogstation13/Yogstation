@@ -180,8 +180,8 @@
 	. += list(RACE = list("select a new race", choosable_races))
 	. += list(GENDER = list("Select a new gender", list()))
 	var/datum/species/S = H.dna.species
-	if(!(AGENDER in S.species_traits) || !(FGENDER in S.species_traits) || !(MGENDER in S.species_traits))
-		.[GENDER][2] = list(MALE, FEMALE)
+	if(S.possible_genders.len > 1)
+		.[GENDER][2] = S.possible_genders
 	if(!(NOEYESPRITES in S.species_traits))
 		. += list(EYE_COLOR)
 	if(S.use_skintones)
@@ -249,12 +249,8 @@
 		if(RACE)
 			var/newrace = GLOB.species_list[selection]
 			H.set_species(newrace, icon_update=0)
-			if(FGENDER in S.species_traits)
-				H.gender = FEMALE
-			if(MGENDER in S.species_traits)
-				H.gender = MALE
-			if(AGENDER in S.species_traits)
-				H.gender = PLURAL
+			if(S.possible_genders.len < 2)
+				H.gender = S.possible_genders[1]
 			return TRUE
 		if(SKIN_COLOR)
 			H.skin_tone = selection

@@ -169,24 +169,20 @@
 #define NOFLASH			17
 /// Use this if you want to change the race's color without the player being able to pick their own color. AKA special color shifting
 #define DYNCOLORS		18
-/// Forced genders
-#define AGENDER			19
-#define FGENDER         20
-#define MGENDER	        21
 /// Do not draw eyes or eyeless overlay
-#define NOEYESPRITES	22
+#define NOEYESPRITES	19
 /// Used for determining which wounds are applicable to this species.
 /// if we have flesh (can suffer slash/piercing/burn wounds, requires they don't have NOBLOOD)
-#define HAS_FLESH	23
+#define HAS_FLESH	20
 /// if we have bones (can suffer bone wounds)
-#define HAS_BONE	24
+#define HAS_BONE	21
 /// Can't be husked.
-#define NOHUSK			25
+#define NOHUSK			22
 /// have no mouth to ingest/eat with
-#define NOMOUTH			26
+#define NOMOUTH			23
 /// has a tail
-#define HAS_TAIL		27
-#define NONANITES		28
+#define HAS_TAIL		24
+#define NONANITES		25
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
@@ -228,9 +224,11 @@
 #define CHROMOSOME_NONE 1
 #define CHROMOSOME_USED 2
 
+#define GENDERS 4
 #define G_MALE 1
 #define G_FEMALE 2
 #define G_PLURAL 3
+#define G_NEUTER 4
 
 // Defines for used in creating "perks" for the species preference pages.
 /// A key that designates UI icon displayed on the perk.

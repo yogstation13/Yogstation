@@ -1681,7 +1681,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 	var/selected_gimmick = pick(gimmick_list)
 	selected_gimmick = replacetext(selected_gimmick, "%DEPARTMENT", selected_department)
-	if(target?.current)
+	if(target?.current) //it's possible to use both %DEPARTMENT and %TARGET in an objective, just make sure to put it in target_gimmick_objectives.txt
 		selected_gimmick = replacetext(selected_gimmick, "%TARGET", target.name)
 
 	explanation_text = "[selected_gimmick]"
@@ -1690,6 +1690,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	return TRUE
 	
 /datum/objective/gimmick/admin_edit(mob/admin)
+	admin_simple_target_pick(admin)
 	update_explanation_text()
 
 ///////////////////////////////////////////////////////////////////////

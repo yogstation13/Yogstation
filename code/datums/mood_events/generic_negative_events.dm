@@ -238,3 +238,9 @@
 /datum/mood_event/surgery
 	description = "<span class='boldwarning'>HE'S CUTTING ME OPEN!!</span>\n"
 	mood_change = -8
+
+/datum/mood_event/body_purist
+	description = span_warning("I feel cybernetics attached to me, and I HATE IT!")
+
+/datum/mood_event/body_purist/add_effects(power)
+	mood_change = power

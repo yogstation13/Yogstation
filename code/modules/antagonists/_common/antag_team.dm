@@ -7,6 +7,8 @@ GLOBAL_LIST_EMPTY(antagonist_teams)
 	var/member_name = "member"
 	var/list/objectives = list() //common objectives, these won't be added or removed automatically, subtypes handle this, this is here for bookkeeping purposes.
 	var/show_roundend_report = TRUE
+	///used for keeping track of antag datum type paths for admin editing of teams
+	var/antag_path
 
 /datum/team/New(starting_members)
 	. = ..()

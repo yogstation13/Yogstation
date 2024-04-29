@@ -1,6 +1,7 @@
 /datum/saymode
 	var/key
 	var/mode
+	var/bypass_mute = FALSE
 
 //Return FALSE if you have handled the message. Otherwise, return TRUE and saycode will continue doing saycode things.
 //user = whoever said the message
@@ -143,6 +144,7 @@
 /datum/saymode/darkspawn //yogs: darkspawn
 	key = MODE_KEY_DARKSPAWN
 	mode = MODE_DARKSPAWN
+	bypass_mute = TRUE //it's mentally talking, not physically
 
 /datum/saymode/darkspawn/handle_message(mob/living/user, message, datum/language/language)
 	var/datum/mind = user.mind
