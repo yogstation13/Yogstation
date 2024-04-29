@@ -55,25 +55,20 @@
 			return FALSE
 	return TRUE
 
-#define MODE_RESULT_MALF_AI_DOOMSDAY 				"win - AI doomsday"
-#define MODE_RESULT_MALF_AI_OBJECTIVES_COMPLETED 	"win - AI achieved their objectives"
-#define MODE_RESULT_MALF_AI_EVAC_SURVIVE 			"halfwin - evacuation - AI survived"
-#define MODE_RESULT_MALF_AI_EVAC_DEAD 				"loss - evacuation - AI killed"
-
 /datum/game_mode/malf/set_round_result()
 	..()
 
 	if(station_was_nuked)
-		SSticker.mode_result = MODE_RESULT_MALF_AI_DOOMSDAY
+		SSticker.mode_result = "win - AI doomsday"
 		return
 	if(didAntagsWin(malf_ais, /datum/antagonist/malf_ai))
-		SSticker.mode_result = MODE_RESULT_MALF_AI_OBJECTIVES_COMPLETED
+		SSticker.mode_result = "win - AI achieved their objectives"
 		return
 	if(!are_special_antags_dead())
-		SSticker.mode_result = MODE_RESULT_MALF_AI_EVAC_SURVIVE
+		SSticker.mode_result = "halfwin - evacuation - AI survived"
 		return
 
-	SSticker.mode_result = MODE_RESULT_MALF_AI_EVAC_DEAD
+	SSticker.mode_result = "loss - evacuation - AI killed"
 
 /datum/game_mode/malf/generate_report()
 	var/list/possible_flavor = list("huge electrical storm", "photon emitter", "meson generator", "blue swirly thing")
