@@ -23,6 +23,7 @@
 	var/suspicion_floor = 0
 	var/suspicion_multiplier = 1
 
+	var/synth_slowed = FALSE
 	var/synth_force_decreased = FALSE
 	var/synth_audible_warning = FALSE
 	var/synth_temp_freeze = FALSE
@@ -134,12 +135,14 @@
 /datum/ai_dashboard/synth_dashboard/proc/handle_punishments(say_warnings = TRUE)
 	var/mob/living/carbon/human/H = owner.mind.current
 
-	if(owner.mind.governor_suspicion >= SYNTH_SLOW_THRESHOLD && !H.has_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION))
+	if(owner.mind.governor_suspicion >= SYNTH_SLOW_THRESHOLD && !owner.mind.synth_slowed)
+		owner.mind.synth_slowed = TRUE
 		H.add_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION, TRUE, 100, override=TRUE, multiplicative_slowdown=-0.1625, blacklisted_movetypes=(FLYING|FLOATING))
 		to_chat(owner, span_warning("Governor module has enacted motion restrictions."))
 		punishment_log("PUNISHMENT: MOTION RESTRICTED")
 
-	if(owner.mind.governor_suspicion <= SYNTH_SLOW_THRESHOLD - 5 && H.has_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION))
+	if(owner.mind.governor_suspicion <= SYNTH_SLOW_THRESHOLD - 5 && owner.mind.synth_slowed)
+		owner.mind.synth_slowed = FALSE
 		H.remove_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION, TRUE)
 		to_chat(owner, span_notice("Governor module has deactivated motion restrictions."))
 		punishment_log("PUNISHMENT REMOVAL: MOTION UNRESTRICTED")
