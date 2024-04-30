@@ -843,9 +843,6 @@
 /obj/machinery/atmospherics/pipe/simple/purple/hidden/layer4{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "bS" = (
@@ -3067,7 +3064,6 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/visible{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "GK" = (
@@ -3484,7 +3480,6 @@
 /obj/item/stack/sheet/mineral/diamond/fifty{
 	amount = 5
 	},
-/obj/item/paper/fluff/ruins/syndicate_derelict_station/engineering,
 /obj/item/stack/sheet/mineral/uranium/fifty{
 	amount = 15
 	},
