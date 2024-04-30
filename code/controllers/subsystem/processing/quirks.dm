@@ -17,13 +17,18 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		list("Ageusia","Vegetarian","Deviant Tastes"),
 		list("Ananas Affinity","Ananas Aversion"),
 		list("Alcohol Tolerance","Light Drinker"),
-		list("Prosthetic Limb (Left Arm)","Prosthetic Limb"),
-		list("Prosthetic Limb (Right Arm)","Prosthetic Limb"),
-		list("Prosthetic Limb (Left Leg)","Prosthetic Limb"),
-		list("Prosthetic Limb (Right Leg)","Prosthetic Limb"),
-		list("Prosthetic Limb (Left Leg)","Paraplegic"),
-		list("Prosthetic Limb (Right Leg)","Paraplegic"),
-		list("Prosthetic Limb","Paraplegic")
+		list("Prosthetic Limb (Left Arm)","Prosthetic Limb", "Body Purist"),
+		list("Prosthetic Limb (Right Arm)","Prosthetic Limb", "Body Purist"),
+		list("Prosthetic Limb (Left Leg)","Prosthetic Limb", "Body Purist"),
+		list("Prosthetic Limb (Right Leg)","Prosthetic Limb", "Body Purist"),
+		list("Prosthetic Limb (Left Leg)","Paraplegic", "Body Purist"),
+		list("Prosthetic Limb (Right Leg)","Paraplegic", "Body Purist"),
+		list("Prosthetic Limb", "Paraplegic"),
+		list("Prosthetic Limb", "Body Purist"),
+		list("Cybernetic Organ (Lungs)", "Body Purist"),
+		list("Cybernetic Organ (Heart)", "Body Purist"),
+		list("Cybernetic Organ (Liver)", "Body Purist"),
+		list("Upgraded Cybernetic Organ", "Body Purist")
 	) 
 
 /datum/controller/subsystem/processing/quirks/Initialize(timeofday)

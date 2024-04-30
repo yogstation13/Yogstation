@@ -775,6 +775,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	id = /obj/item/card/id/away/old/eng
 	gloves = /obj/item/clothing/gloves/color/fyellow/old
 	l_pocket = /obj/item/tank/internals/emergency_oxygen
+	r_pocket = null
 	assignedrole = "Ancient Crew"
 
 /obj/effect/mob_spawn/human/oldstation/science
@@ -789,6 +790,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	shoes = /obj/item/clothing/shoes/laceup
 	id = /obj/item/card/id/away/old/sci
 	l_pocket = /obj/item/stack/medical/bruise_pack
+	r_pocket = null
 	assignedrole = "Ancient Crew"
 
 /obj/effect/mob_spawn/human/pirate

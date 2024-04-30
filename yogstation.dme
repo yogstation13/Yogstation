@@ -1881,7 +1881,6 @@
 #include "code\modules\antagonists\clockcult\clock_effects\city_of_cogs_rift.dm"
 #include "code\modules\antagonists\clockcult\clock_effects\clock_overlay.dm"
 #include "code\modules\antagonists\clockcult\clock_effects\clock_sigils.dm"
-#include "code\modules\antagonists\clockcult\clock_effects\general_markers.dm"
 #include "code\modules\antagonists\clockcult\clock_effects\servant_blocker.dm"
 #include "code\modules\antagonists\clockcult\clock_effects\spatial_gateway.dm"
 #include "code\modules\antagonists\clockcult\clock_helpers\clock_powerdrain.dm"
