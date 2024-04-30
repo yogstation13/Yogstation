@@ -363,4 +363,4 @@
 	id = "syndicatederelictstation"
 	suffix = "syndicate_derelict_station.dmm"
 	name = "Syndicate Derelict Station"
-	description = "A remote station once used to be a syndicate research wing. Due to an unknown issue, it has been since abandoned as a bunch of floating debris."
+	description = "A derelict Syndicate facility of some repute. Nobody can pin down its particular purpose, at least from afar."

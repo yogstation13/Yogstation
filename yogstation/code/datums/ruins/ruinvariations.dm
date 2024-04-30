@@ -1,9 +1,6 @@
 /datum/map_template/ruin/variation //BASE TYPE DO NOT FUCKING USE OR ILL SHANK YOU
-	prefix = "_maps/RandomRuins/"
+	prefix = "_maps/RandomRuins/RuinVariations"
 	cost = 0
-
-/datum/map_template/ruin/variation/space
-	prefix = "_maps/RandomRuins/SpaceRuins/RuinVariations"
 
 /datum/map_template/ruin/variation/space/syndiederelict
 	id = "syndicate_derelict_research"
