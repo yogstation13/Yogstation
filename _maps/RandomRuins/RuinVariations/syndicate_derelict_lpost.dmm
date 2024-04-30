@@ -398,6 +398,10 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "aU" = (
@@ -867,6 +871,10 @@
 "bX" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
 	req_access = list(150)
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -28
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
@@ -1506,6 +1514,10 @@
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_animal/hostile/carp,
 /obj/effect/turf_decal/stripes/corner,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/syndiederelict/arrivals)
 "dQ" = (
@@ -1593,6 +1605,9 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/dark_red/half/contrasted{
 	dir = 1
+	},
+/obj/machinery/firealarm{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
@@ -2028,6 +2043,10 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -28
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "iu" = (
@@ -2998,6 +3017,15 @@
 	},
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/syndiederelict/vault)
+"Fg" = (
+/obj/effect/turf_decal/tile/yellow/half/contrasted,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
 "Fj" = (
 /turf/closed/wall/r_wall/rust,
 /area/ruin/space/has_grav/syndiederelict/arrivals)
@@ -3665,6 +3693,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/syndiederelict/comms)
 "Uh" = (
@@ -3703,6 +3735,10 @@
 /area/ruin/space/has_grav/syndiederelict/comms)
 "UE" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -28
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "UM" = (
@@ -3805,6 +3841,10 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/syndiederelict/crew)
@@ -4948,7 +4988,7 @@ bk
 ys
 nQ
 WS
-bJ
+Fg
 MX
 MX
 MX
