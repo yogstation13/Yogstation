@@ -53,6 +53,9 @@
 
 /obj/item/dopmirror/Destroy()
 	to_chat(reflected, span_userdanger("Your world shatters."))
+	reflected.jumpback.Remove(reflected)
+	reflected.appear.Remove(reflected)
+	reflected.swap.Remove(reflected)	
 	qdel(reflected)
 	return ..()
 
