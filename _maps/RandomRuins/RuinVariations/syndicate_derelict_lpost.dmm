@@ -1438,6 +1438,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/item/stack/tile/plasteel,
 /obj/item/stack/cable_coil/cut/red,
+/mob/living/simple_animal/hostile/carp,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "ds" = (
@@ -2096,6 +2097,15 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
+"jt" = (
+/obj/effect/turf_decal/tile/yellow/half/contrasted,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
 "jz" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/turf_decal/stripes/asteroid/line{
@@ -3017,15 +3027,6 @@
 	},
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/syndiederelict/vault)
-"Fg" = (
-/obj/effect/turf_decal/tile/yellow/half/contrasted,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
-/turf/open/floor/plasteel/airless,
-/area/ruin/space/has_grav/syndiederelict/engineering)
 "Fj" = (
 /turf/closed/wall/r_wall/rust,
 /area/ruin/space/has_grav/syndiederelict/arrivals)
@@ -4988,7 +4989,7 @@ bk
 ys
 nQ
 WS
-Fg
+jt
 MX
 MX
 MX
