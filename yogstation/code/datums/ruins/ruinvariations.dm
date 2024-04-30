@@ -7,7 +7,7 @@
 
 /datum/map_template/ruin/variation/space/syndiederelict
 	id = "syndicate_derelict_research"
-	suffix = "syndicate_derelict_research.dmm"
+	suffix = "syndicate_derelict_research.dmm" //if this fucking explodes i swear to god
 	name = "Syndicate Derelict Research Station"
 	description = "An abandoned Syndicate research station, now crawling with pirates and designated for reactivation."
 
