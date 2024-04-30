@@ -466,8 +466,8 @@
 	var/obj/item/nullrod/handedsword/swordright
 	var/obj/item/nullrod/handedsword/other/swordleft
 
-/obj/item/nullrod/dualsword/AltClick(mob/user)
-	. = ..()
+/obj/item/nullrod/dualsword/attack_hand_secondary(mob/user, modifiers)
+	. = SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(loc != user)
 		user.balloon_alert(user, span_notice("you struggle to pull the blades out of the sheathe..."))
 		return
@@ -549,18 +549,17 @@
 	icon_state = "dualleft"
 	item_state = "dualleft"
 
-/obj/item/nullrod/handedsword/attack(mob/living/M, mob/living/user, secondattack = FALSE)
+/obj/item/nullrod/handedsword/attack(mob/living/M, mob/living/user, params, secondattack = FALSE)
 	. = ..()
 	var/obj/item/nullrod/handedsword/secondsword = user.get_inactive_held_item()
 	if(istype(secondsword, /obj/item/nullrod/handedsword) && !secondattack)
-		addtimer(CALLBACK(src, PROC_REF(secondattack), M, user, secondsword), 2, TIMER_UNIQUE | TIMER_OVERRIDE)
-	return
+		addtimer(CALLBACK(src, PROC_REF(secondattack), M, user, params, secondsword), 2, TIMER_UNIQUE | TIMER_OVERRIDE)
 
-/obj/item/nullrod/handedsword/proc/secondattack(mob/living/M, mob/living/user, obj/item/nullrod/handedsword/secondsword)
+/obj/item/nullrod/handedsword/proc/secondattack(mob/living/M, mob/living/user, params, obj/item/nullrod/handedsword/secondsword)
 	if(QDELETED(secondsword) || QDELETED(src))
 		return
 	user.swap_hand()
-	secondsword.attack(M, user, TRUE)
+	secondsword.attack(M, user, params, TRUE)
 	user.changeNext_move(CLICK_CD_MELEE * 1.4)
 
 /obj/item/nullrod/handedsword/dropped(mob/user, silent = TRUE)
@@ -571,11 +570,10 @@
 		if(sheath.swordleft)
 			sheath.swordleft.forceMove(sheath)
 		if(!sheath.swords)
+			sheath.swords = TRUE
 			user.balloon_alert(user, "you sheathe \the [sheath].")
 			sheath.update_appearance(UPDATE_ICON)
 			playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
-		sheath.swords = TRUE
-
 
 /*---------------------------------------------------------------------------
 |
