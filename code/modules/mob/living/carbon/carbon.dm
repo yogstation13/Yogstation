@@ -90,9 +90,9 @@
 /mob/living/carbon/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(mind?.martial_art.handle_throw(hit_atom, src, throwingdatum))
 		return
+	. = ..()
 	if(HAS_TRAIT(src, TRAIT_IMPACTIMMUNE))
 		return
-	. = ..()
 	var/hurt = TRUE
 	var/extra_speed = 0
 	if(throwingdatum.thrower != src)
@@ -573,6 +573,7 @@
 		return
 
 	var/new_sight = initial(sight)
+	see_infrared = initial(see_infrared)
 	lighting_cutoff = initial(lighting_cutoff)
 	lighting_color_cutoffs = list(lighting_cutoff_red, lighting_cutoff_green, lighting_cutoff_blue)
 
@@ -588,6 +589,11 @@
 			client.view_size.resetToDefault(getScreenSize(client.prefs.read_preference(/datum/preference/toggle/widescreen)))
 			client.view_size.addTo("2x2")
 
+	for(var/image/I in infra_images)
+		if(client)
+			client.images.Remove(I)
+	infra_images = list()
+	remove_client_colour(/datum/client_colour/monochrome_infra)
 
 	if(client.eye && client.eye != src)
 		var/atom/A = client.eye
@@ -605,6 +611,22 @@
 		if(length(glasses.color_cutoffs))
 			lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, glasses.color_cutoffs)
 
+	if(HAS_TRAIT(src, TRAIT_INFRARED_VISION))
+		add_client_colour(/datum/client_colour/monochrome_infra)
+		var/image/A = null
+		see_infrared = TRUE
+		lighting_cutoff = max(lighting_cutoff, 10)
+
+		if(client)
+			for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+				if(H == src)
+					continue
+				A = image('icons/mob/simple_human.dmi', H, "fullwhite")
+				A.add_overlay(emissive_appearance('icons/mob/simple_human.dmi', "fullwhite", H))
+				A.name = "white haze"
+				A.override = 1
+				infra_images |= A
+				client.images |= A
 
 	if(HAS_TRAIT(src, TRAIT_TRUE_NIGHT_VISION))
 		lighting_cutoff = max(lighting_cutoff, LIGHTING_CUTOFF_HIGH)

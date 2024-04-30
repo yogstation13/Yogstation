@@ -1221,12 +1221,10 @@
 					if(T.twin)
 						if(!do_after(user, rand(4, 6), src))
 							T.darkspawn.use_psi(30)
-							qdel(T)
 							return
 					else
 						if(!do_after(user, rand(8, 10), src))
 							T.darkspawn.use_psi(30)
-							qdel(T)
 							return
 					playsound(src, 'yogstation/sound/magic/pass_smash_door.ogg', 50, TRUE)
 					take_damage(max_integrity / rand(8, 15))
@@ -1234,7 +1232,8 @@
 				ex_act(EXPLODE_DEVASTATE)
 				user.visible_message(span_boldwarning("[user] slams down [src]!"), "<span class='velvet bold'>KLAJ.</span>")
 				T.darkspawn.use_psi(30)
-				qdel(T)
+		else
+			return ..()
 	else
 		return ..()
 

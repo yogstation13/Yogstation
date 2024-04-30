@@ -859,7 +859,7 @@
 
 
 		body_gender = H.gender
-		should_draw_gender = S.sexes
+		should_draw_gender = (FEMALE in S.possible_genders)
 		use_damage_color = S.use_damage_color
 
 		if((MUTCOLORS in S.species_traits) || (DYNCOLORS in S.species_traits))
@@ -958,12 +958,6 @@
 				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 			else
 				limb.icon_state = "[species_id]_[body_zone]"
-		if(should_draw_yogs) //yogs start
-			limb.icon = 'yogstation/icons/mob/mutant_bodyparts.dmi'
-			if(should_draw_gender)
-				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
-			else
-				limb.icon_state = "[species_id]_[body_zone]" //yogs end
 		if(aux_zone)
 			aux = image(limb.icon, "[species_id]_[aux_zone]", -aux_layer, image_dir)
 			. += aux

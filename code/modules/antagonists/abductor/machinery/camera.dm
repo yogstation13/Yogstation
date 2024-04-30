@@ -22,7 +22,7 @@
 	eyeobj.visible_icon = TRUE
 	eyeobj.icon = 'icons/mob/cameramob.dmi'
 	eyeobj.icon_state = "abductor_camera"
-	eyeobj.invisibility = INVISIBILITY_OBSERVER
+	eyeobj.SetInvisibility(INVISIBILITY_OBSERVER)
 
 /obj/machinery/computer/camera_advanced/abductor/GrantActions(mob/living/carbon/user)
 	..()

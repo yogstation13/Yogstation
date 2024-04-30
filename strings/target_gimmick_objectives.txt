@@ -8,3 +8,6 @@ Pin the blame on %TARGET for any and all crimes you commit, and try to convince 
 Attempt to kidnap %TARGET to take with you alive on an escape pod or shuttle, for questioning at Syndicate HQ.
 Frame %TARGET for murdering you.
 %TARGET knows corporate secrets. Interrogate them. Use force if they pretend to not know.
+Trick %TARGET into thinking someone else is out to get them.
+Make %TARGET think you are going to kill them without directly telling them.
+Make all of %DEPARTMENT hate %TARGET for one reason or another.

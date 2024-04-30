@@ -16,6 +16,7 @@
 	var/static_visibility_range = 16
 	var/ai_detector_visible = TRUE
 	var/ai_detector_color = COLOR_RED
+	var/list/networks = list("ss13", "mine")
 
 /mob/camera/ai_eye/Initialize(mapload)
 	. = ..()
@@ -24,6 +25,11 @@
 	update_appearance()
 	update_ai_detect_hud()
 	setLoc(loc, TRUE)
+	
+	//Yog: make all remote camera eyes visible to ghosts
+	//"It's probably fine." 
+	//-Cowbot93
+	SetInvisibility(INVISIBILITY_OBSERVER)
 
 /mob/camera/ai_eye/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
 	. = ..()

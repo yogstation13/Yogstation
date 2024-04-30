@@ -171,7 +171,16 @@
 	diag_hud_set_mechhealth()
 	diag_hud_set_mechcell()
 	diag_hud_set_mechstat()
+	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
 
+/// Special light eater handling
+/obj/mecha/proc/on_light_eater(obj/vehicle/sealed/source, datum/light_eater)
+	SIGNAL_HANDLER
+	visible_message(span_danger("[src]'s lights burn out!"))
+	set_light_on(FALSE)
+	lights_action.Remove(occupant)
+	return COMPONENT_BLOCK_LIGHT_EATER
+	
 /obj/mecha/update_icon_state()
 	. = ..()
 	if (silicon_pilot && silicon_icon_state)
@@ -509,9 +518,6 @@
 		if(selected && selected.is_ranged())
 			if(HAS_TRAIT(L, TRAIT_PACIFISM) && selected.harmful)
 				to_chat(user, span_warning("You don't want to harm other living beings!"))
-				return
-			if(HAS_TRAIT(L, TRAIT_NO_STUN_WEAPONS) && !selected.harmful)
-				to_chat(user, span_warning("You cannot use non-lethal weapons!"))
 				return
 			if(selected.action(target, user, params))
 				selected.start_cooldown()

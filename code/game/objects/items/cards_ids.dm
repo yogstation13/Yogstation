@@ -611,7 +611,7 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/syndicate
 	name = "agent card"
-	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE, ACCESS_MINERAL_STOREROOM)
 	var/anyone = FALSE //Can anyone forge the ID or just syndicate?
 	var/forged = FALSE //have we set a custom name and job assignment, or will we use what we're given when we chameleon change?
 
@@ -661,7 +661,7 @@ update_label("John Doe", "Clowny")
 
 			var/newAge = input(user, "Choose the ID's age:\n([AGE_MIN]-[AGE_MAX])", "Agent card age") as num|null
 			if(newAge)
-				registered_age = max(round(text2num(newAge)), 0)
+				registered_age = clamp(round(text2num(newAge)), AGE_MIN, AGE_MAX)
 
 			registered_name = input_name
 			assignment = target_occupation

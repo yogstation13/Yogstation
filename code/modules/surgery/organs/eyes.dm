@@ -493,8 +493,22 @@
 
 /obj/item/organ/eyes/polysmorph
 	name = "polysmorph eyes"
-	desc = "Eyes from a polysmorph, capable of retaining slightly more vision in low light environments"
-	lighting_cutoff = LIGHTING_CUTOFF_REAL_LOW
+	desc = "Eyes from a polysmorph, better capable of sensing heat than other eyes."
+	actions_types = list(/datum/action/item_action/organ_action/use)
+	var/infrared = FALSE
+
+/obj/item/organ/eyes/polysmorph/Remove(mob/living/carbon/M, special)
+	REMOVE_TRAIT(owner, TRAIT_INFRARED_VISION, type)
+	owner.update_sight()
+	. = ..()
+	
+/obj/item/organ/eyes/polysmorph/ui_action_click()
+	if(infrared)
+		REMOVE_TRAIT(owner, TRAIT_INFRARED_VISION, type)
+	else
+		ADD_TRAIT(owner, TRAIT_INFRARED_VISION, type)
+	owner.update_sight()
+	infrared = !infrared
 
 /obj/item/organ/eyes/ethereal
 	name = "fractal eyes"

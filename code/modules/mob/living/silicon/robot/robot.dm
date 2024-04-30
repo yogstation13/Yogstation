@@ -123,6 +123,7 @@
 	wires = new /datum/wires/robot(src)
 	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
 
+	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
 	RegisterSignal(src, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge))
 
 	robot_modules_background = new()
@@ -342,6 +343,14 @@
 		ion_trail.stop()
 	if(thruster_button)
 		thruster_button.icon_state = "ionpulse[ionpulse_on]"
+
+/// Special handling for getting hit with a light eater
+/mob/living/silicon/robot/proc/on_light_eater(mob/living/silicon/robot/source, datum/light_eater)
+	SIGNAL_HANDLER
+	if(lamp_enabled)
+		smash_headlamp()
+	return COMPONENT_BLOCK_LIGHT_EATER
+
 
 /mob/living/silicon/robot/get_status_tab_items()
 	. = ..()

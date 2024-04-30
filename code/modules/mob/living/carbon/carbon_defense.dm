@@ -434,7 +434,7 @@
 			adjust_jitter(10 SECONDS)
 			adjustOrganLoss(ORGAN_SLOT_BRAIN, 100, 199)
 
-	if(gib && siemens_coeff > 0)
+	if(gib && siemens_coeff > 0 && stat >= SOFT_CRIT)
 		visible_message(
 			span_danger("[src] body is emitting a loud noise!"), \
 			span_userdanger("You feel like you are about to explode!"), \

@@ -179,7 +179,7 @@ There are several things that need to be remembered:
 
 		var/mutable_appearance/uniform_overlay
 
-		if(dna && dna.species.sexes)
+		if(dna && (FEMALE in dna.species.possible_genders))
 			var/G = (gender == FEMALE) ? "f" : "m"
 			if(G == "f" && uniform.fitted != NO_FEMALE_UNIFORM)
 				uniform_overlay = uniform.build_worn_icon(
