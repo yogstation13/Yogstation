@@ -64,13 +64,10 @@
 
 /datum/surgery/augmentation/can_start(mob/user, mob/living/carbon/target)
 	if(isgolem(target)) // no armor stacking
-		to_chat(user, span_warning("[target]'s exterior is too strong already!"))
 		return FALSE
-	else if(isshadowperson(target)) // no augmenting the species made of shadows
-		to_chat(user, span_warning("[target]'s body refuses to be augmented!"))
+	if(isshadowperson(target)) // no augmenting the species made of shadows
 		return FALSE
-	else
-		return TRUE
+	return TRUE
 
 /datum/surgery/augmentation/mechanic
 	steps = list(/datum/surgery_step/mechanic_open,

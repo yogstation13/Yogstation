@@ -114,7 +114,7 @@
 				camera_ref = WEAKREF(selected_camera)
 			else
 				camera_ref = null
-			playsound(src, get_sfx("terminal_type"), 25, FALSE)
+			playsound(src, get_sfx(SFX_TERMINAL_TYPE), 25, FALSE)
 			if(isnull(camera_ref))
 				return TRUE
 

@@ -10,6 +10,8 @@
 	var/mob/living/carbon/fake_corpse
 	COOLDOWN_DECLARE(fake_death_timer)
 	var/fake_death_cooldown = 30 SECONDS
+	///traits applied to the user when they're faking death
+	var/list/pseudocider_traits = list(TRAIT_NOINTERACT, TRAIT_HIGHRESISTDAMAGESLOWDOWN, TRAIT_SILENT_FOOTSTEPS)
 
 /obj/item/pseudocider/update_icon_state()
 	icon_state = "[base_icon_state][active ? "-open" : "-closed"]"
@@ -98,10 +100,8 @@
 	fake_corpse.forceMove(copy_location)
 	// and vanish the user
 	copied_mob.alpha = 0
-	ADD_TRAIT(copied_mob, TRAIT_NOINTERACT, "[type]")
-	ADD_TRAIT(copied_mob, TRAIT_HIGHRESISTDAMAGESLOWDOWN, "[type]")
 	// also make their footsteps silent
-	ADD_TRAIT(copied_mob, TRAIT_SILENT_FOOTSTEPS, PSEUDOCIDER_TRAIT)
+	copied_mob.add_traits(pseudocider_traits, PSEUDOCIDER_TRAIT)
 
 	if(damagetype == STAMINA)
 		fake_corpse.Paralyze(100 SECONDS)
@@ -116,10 +116,8 @@
 	COOLDOWN_START(src, fake_death_timer, fake_death_cooldown)
 
 	if(!QDELETED(copied_mob) && istype(copied_mob))
-		REMOVE_TRAIT(copied_mob, TRAIT_SILENT_FOOTSTEPS, PSEUDOCIDER_TRAIT)
 		animate(copied_mob, 0.5 SECONDS, alpha = 255)
-		REMOVE_TRAIT(copied_mob, TRAIT_NOINTERACT, "[type]")
-		REMOVE_TRAIT(copied_mob, TRAIT_RESISTDAMAGESLOWDOWN, "[type]")
+		copied_mob.remove_traits(pseudocider_traits, PSEUDOCIDER_TRAIT)
 
 	if(!QDELETED(fake_corpse) && istype(fake_corpse))
 		fake_corpse.visible_message(span_notice("The body vanishes! It was a fake!"))

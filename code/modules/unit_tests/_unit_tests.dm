@@ -84,6 +84,7 @@
 #include "reagent_recipe_collisions.dm"
 #include "spawn_humans.dm"
 #include "species_whitelists.dm"
+#include "station_trait_tests.dm"
 #include "subsystem_init.dm"
 #include "timer_sanity.dm"
 #include "trait_addition_and_removal.dm"

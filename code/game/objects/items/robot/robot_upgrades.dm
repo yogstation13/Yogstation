@@ -840,100 +840,35 @@
 		R.module.basic_modules += healthanalyzer
 		R.module.add_module(healthanalyzer, FALSE, TRUE)
 
-/obj/item/borg/upgrade/surgerykit
-	name = "medical cyborg advanced surgical kit"
-	desc = "An upgrade for medical cyborgs which replaces their normal surgical tools with the advanced versions of them."
-	icon_state = "cyborg_upgrade5"
+/obj/item/borg/upgrade/surgery_omnitool
+	name = "medical cyborg surgical omni-tool upgrade"
+	desc = "An upgrade for medical cyborgs which upgrading their built-in \
+		surgical omnitool to be on par with advanced surgical tools."
+	icon_state = "cyborg_upgrade3"
 	require_module = TRUE
-	module_types = list(/obj/item/robot_module/medical)
+	module_types = list(/obj/item/robot_module/medical,  /obj/item/robot_module/syndicate_medical)
 	module_flags = BORG_MODULE_MEDICAL
 
-// Replaces the cyborg's surgery tools with the advanced verison of those tools.
-/obj/item/borg/upgrade/surgerykit/action(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/surgery_omnitool/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(!.)
 		return FALSE
 
-	for(var/obj/item/retractor/RT in R.module.modules)
-		R.module.remove_module(RT, TRUE)
+	for(var/obj/item/borg/cyborg_omnitool/medical/omnitool_upgrade in R.module.modules)
+		if(omnitool_upgrade.upgraded)
+			to_chat(user, span_warning("This unit is already equipped with an omnitool upgrade!"))
+			return FALSE
 
-	for(var/obj/item/hemostat/HS in R.module.modules)
-		R.module.remove_module(HS, TRUE)
+	for(var/obj/item/borg/cyborg_omnitool/medical/omnitool in R.module.modules)
+		omnitool.upgrade_omnitool()
 
-	for(var/obj/item/cautery/CT in R.module.modules)
-		R.module.remove_module(CT, TRUE)
-
-	for(var/obj/item/surgicaldrill/SD in R.module.modules)
-		R.module.remove_module(SD, TRUE)
-
-	for(var/obj/item/scalpel/SL in R.module.modules)
-		R.module.remove_module(SL, TRUE)
-
-	for(var/obj/item/circular_saw/CS in R.module.modules)
-		R.module.remove_module(CS, TRUE)
-
-	var/obj/item/scalpel/advanced/LS = locate() in R.module.modules
-	var/obj/item/retractor/advanced/MP = locate() in R.module.modules
-	var/obj/item/cautery/advanced/ST = locate() in R.module.modules
-	if(LS || MP || ST)
-		to_chat(user, span_warning("This cyborg is already equipped with an advanced surgical kit."))
-		return FALSE
-
-	LS = new(R.module)
-	R.module.basic_modules += LS
-	R.module.add_module(LS, FALSE, TRUE)
-
-	MP = new(R.module)
-	R.module.basic_modules += MP
-	R.module.add_module(MP, FALSE, TRUE)
-
-	ST = new(R.module)
-	R.module.basic_modules += ST
-	R.module.add_module(ST, FALSE, TRUE)
-
-/obj/item/borg/upgrade/surgerykit/deactivate(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/surgery_omnitool/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(!.)
 		return FALSE
-	
-	for(var/obj/item/scalpel/advanced/SE in R.module.modules)
-		R.module.remove_module(SE, TRUE)
 
-	for(var/obj/item/retractor/advanced/RE in R.module.modules)
-		R.module.remove_module(RE, TRUE)
-
-	for(var/obj/item/cautery/advanced/CE in R.module.modules)
-		R.module.remove_module(CE, TRUE)
-
-	var/obj/item/retractor/RT = locate() in R.module.modules
-	RT = new(R.module)
-	R.module.basic_modules += RT
-	R.module.add_module(RT, FALSE, TRUE)
-
-	var/obj/item/hemostat/HS = locate() in R.module.modules
-	HS = new(R.module)
-	R.module.basic_modules += HS
-	R.module.add_module(HS, FALSE, TRUE)
-
-	var/obj/item/cautery/CT = locate() in R.module.modules
-	CT = new(R.module)
-	R.module.basic_modules += CT
-	R.module.add_module(CT, FALSE, TRUE)
-
-	var/obj/item/surgicaldrill/SD = locate() in R.module.modules
-	SD = new(R.module)
-	R.module.basic_modules += SD
-	R.module.add_module(SD, FALSE, TRUE)
-
-	var/obj/item/scalpel/SL = locate() in R.module.modules
-	SL = new(R.module)
-	R.module.basic_modules += SL
-	R.module.add_module(SL, FALSE, TRUE)
-
-	var/obj/item/circular_saw/CS = locate() in R.module.modules
-	CS = new(R.module)
-	R.module.basic_modules += CS
-	R.module.add_module(CS, FALSE, TRUE)
+	for(var/obj/item/borg/cyborg_omnitool/omnitool in R.module.modules)
+		omnitool.downgrade_omnitool()
 
 /obj/item/borg/upgrade/ai
 	name = "B.O.R.I.S. module"

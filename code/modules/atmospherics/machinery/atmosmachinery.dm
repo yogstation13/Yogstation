@@ -345,8 +345,6 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		add_atom_colour(obj_color, FIXED_COLOUR_PRIORITY)
 		pipe_color = obj_color
 	set_piping_layer(set_layer)
-	//var/turf/T = get_turf(src)
-	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 	atmos_init()
 	var/list/nodes = pipeline_expansion()
 	for(var/obj/machinery/atmospherics/A in nodes)
