@@ -414,6 +414,8 @@
 
 
 /mob/living/carbon/human/ex_act(severity, target, origin)
+	if(status_flags & GODMODE)
+		return
 	if(HAS_TRAIT(src, TRAIT_BOMBIMMUNE))
 		return
 	if(origin && istype(origin, /datum/spacevine_mutation) && isvineimmune(src))

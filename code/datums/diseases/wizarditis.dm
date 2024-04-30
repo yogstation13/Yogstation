@@ -91,27 +91,27 @@ STI KALY - blind
 	if(!theareas||!theareas.len)
 		return
 
-	var/area/thearea = pick(theareas)
+	var/area/last_chosen_area_name = pick(theareas)
 
 	var/list/L = list()
-	for(var/turf/T in get_area_turfs(thearea.type))
-		if(T.z != affected_mob.z)
+	for(var/turf/possible_destination as anything in get_area_turfs(GLOB.teleportlocs[last_chosen_area_name]))
+		if(possible_destination.z != affected_mob.z)
 			continue
-		if(T.name == "space")
+		if(isspaceturf(possible_destination))
 			continue
-		if(!T.density)
+		if(!possible_destination.density)
 			var/clear = 1
-			for(var/obj/O in T)
+			for(var/obj/O in possible_destination)
 				if(O.density)
 					clear = 0
 					break
 			if(clear)
-				L+=T
+				L += possible_destination
 
 	if(!L)
 		return
 
-	affected_mob.say("SCYAR NILA [uppertext(thearea.name)]!", forced = "wizarditis teleport")
+	affected_mob.say("SCYAR NILA [uppertext(last_chosen_area_name.name)]!", forced = "wizarditis teleport")
 	affected_mob.forceMove(pick(L))
 
 	return

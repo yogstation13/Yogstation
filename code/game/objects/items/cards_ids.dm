@@ -611,7 +611,7 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/syndicate
 	name = "agent card"
-	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE, ACCESS_MINERAL_STOREROOM)
 	var/anyone = FALSE //Can anyone forge the ID or just syndicate?
 	var/forged = FALSE //have we set a custom name and job assignment, or will we use what we're given when we chameleon change?
 

@@ -1,5 +1,5 @@
 /datum/action/cooldown/buster/megabuster/megaharpoon
-	name = "gasharpoon"
+	name = "GasHarpoon"
 	desc = "Charge up your harpoon and ready it to be fired, if it makes contact with a person it will drag them to you and immobilize them."
 	cooldown_time = 10 SECONDS
 	button_icon_state = "harpoonhead"

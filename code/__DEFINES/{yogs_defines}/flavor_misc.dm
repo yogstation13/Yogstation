@@ -8,6 +8,12 @@
 #define PDA_THEME_SPOOKY "ntos_spooky"
 #define PDA_THEME_TERMINAL "ntos_terminal"
 #define PDA_THEME_SYNDICATE "syndicate"
+#define PDA_THEME_DONK "donk_co"
+#define PDA_THEME_WAFFLE "waffle_co"
+#define PDA_THEME_CYBER "cyber_sun"
+#define PDA_THEME_VAHLEN "vahlen"
+#define PDA_THEME_GORLEX "gorlex"
+#define PDA_THEME_BOSYN "bosyn"
 
 #define PDA_THEME_TITLE_NTOS "ntOS"
 #define PDA_THEME_TITLE_DARK_MODE "Dark Mode"
@@ -18,6 +24,12 @@
 #define PDA_THEME_TITLE_SPOOKY "Eldritch"
 #define PDA_THEME_TITLE_TERMINAL "Terminal"
 #define PDA_THEME_TITLE_SYNDICATE "Syndicate"
+#define PDA_THEME_TITLE_DONK "Donk Co."
+#define PDA_THEME_TITLE_WAFFLE "Waffle Co."
+#define PDA_THEME_TITLE_CYBER "Cyber Sun"
+#define PDA_THEME_TITLE_VAHLEN "Vahlen"
+#define PDA_THEME_TITLE_GORLEX "Gorlex"
+#define PDA_THEME_TITLE_BOSYN "Bosyn"
 
 GLOBAL_LIST_INIT(pda_themes, list(
 	PDA_THEME_TITLE_NTOS = PDA_THEME_NTOS, 

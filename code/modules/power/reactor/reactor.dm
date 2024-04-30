@@ -40,6 +40,7 @@
 	var/next_flicker = 0 //Light flicker timer
 	var/base_power_modifier = REACTOR_POWER_FLAVOURISER
 	var/slagged = FALSE //Is this reactor even usable any more?
+	var/explosion_power = 7 //The explosion strength 
 	//Console statistics.
 	var/last_coolant_temperature = 0
 	var/last_output_temperature = 0
@@ -468,7 +469,7 @@
 		total_fuel_power += rod.fuel_power
 	return total_fuel_power
 
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/relay(var/sound, var/message=null, loop = FALSE, channel = null) //Sends a sound + text message to the crew of a ship
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/relay(sound, message=null, loop = FALSE, channel = null) //Sends a sound + text message to the crew of a ship
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z)
 			if(!isinspace(M))
@@ -601,11 +602,14 @@
 		var/turf/lowest_turf = GET_TURF_BELOW(lower_turf)
 		if(lowest_turf) // WE NEED TO GO DEEPER
 			new /obj/structure/reactor_corium(lower_turf)
-	explosion(get_turf(src), 0, 5, 10, 20, TRUE, TRUE)
+	explosion(get_turf(src), GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
+	radiation_pulse(src, (K+1)*temperature*get_fuel_power()*has_fuel()/(REACTOR_MAX_CRITICALITY*REACTOR_MAX_FUEL_RODS))
+	shockwave()
 
 //Failure condition 2: Blowout. Achieved by reactor going over-pressured. This is a round-ender because it requires more fuckery to achieve.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/blowout()
-	explosion(get_turf(src), GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
+	var/explosion_mod = clamp(log(10, pressure), 1, 10)
+	explosion(get_turf(src), explosion_power * explosion_mod  * 0.5, explosion_power * explosion_mod + 2, explosion_power * explosion_mod + 4, explosion_power * explosion_mod + 6, 1, 1)
 	meltdown() //Double kill.
 	relay('sound/effects/reactor/explode.ogg')
 	SSweather.run_weather("nuclear fallout", src.z)
@@ -613,8 +617,16 @@
 		if(istype(X, /obj/effect/landmark/nuclear_waste_spawner))
 			var/obj/effect/landmark/nuclear_waste_spawner/WS = X
 			if(is_station_level(WS.z)) //Begin the SLUDGING
-				WS.range *= 3
+				WS.range *= log(temperature)+K
 				WS.fire()
+
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/shockwave()
+	var/atom/movable/gravity_lens/shockwave = new(src)
+	shockwave.transform = matrix().Scale(0.5)
+	shockwave.pixel_x = -240
+	shockwave.pixel_y = -240
+	animate(shockwave, alpha = 0, transform = matrix().Scale(20), time = 10 SECONDS, easing = QUAD_EASING)
+	QDEL_IN(shockwave, 10.5 SECONDS)
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/update_icon(updates=ALL)
 	. = ..()
@@ -962,7 +974,7 @@
 	weather_color = "green"
 	telegraph_sound = null
 	weather_sound = 'sound/effects/reactor/falloutwind.ogg'
-	end_duration = 100
+	end_duration = 200
 	area_type = /area
 	protected_areas = list(/area/maintenance, /area/ai_monitored/turret_protected/ai_upload, /area/ai_monitored/turret_protected/ai_upload_foyer,
 	/area/ai_monitored/turret_protected/ai, /area/shuttle)
@@ -970,7 +982,7 @@
 	immunity_type = "rad"
 
 /datum/weather/nuclear_fallout/weather_act(mob/living/L)
-	L.rad_act(100)
+	L.rad_act(2000)
 
 /datum/weather/nuclear_fallout/telegraph()
 	..()
