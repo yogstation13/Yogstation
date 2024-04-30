@@ -1,0 +1,6 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "Cats are no longer incapable of attacking mice while sitting or lying down."
+  - bugfix: "Cats are no longer invisible when held sometimes"
+  - tweak: "Cats can now meow and understand the felinid language"
