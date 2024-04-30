@@ -1,0 +1,7 @@
+author: "LazennG"
+delete-after: true 
+changes: 
+  - rscdel: "Removed instaloss move from tar king"
+  - bugfix: "fixed tar king wounding when it shouldnt"
+  - tweak: "tweaked tar king damage and AP down"
+  - spellcheck: "cut down descriptions on some tar king loot"
