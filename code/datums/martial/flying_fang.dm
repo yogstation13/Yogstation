@@ -224,6 +224,7 @@
 
 			if(!blocked)
 				COOLDOWN_RESET(src, next_leap) // landing the leap resets the cooldown
+				COOLDOWN_START(src, next_leap, 0.2 SECONDS) // but wait another 2 ticks so you don't accidentally do it again if you clicked twice
 			sleep(0.2 SECONDS)//Runtime prevention (infinite bump() calls on hulks)
 			step_towards(src,victim)
 		else if(hit_atom.density && !hit_atom.CanPass(lizard))

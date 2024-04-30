@@ -112,11 +112,12 @@
 	range = 8
 	hitsound = 'sound/effects/splat.ogg'
 	knockdown = 0
+	var/wire_icon_state = "chain"
 	var/wire
 
 /obj/projectile/wire/fire(setAngle)
 	if(firer)
-		wire = firer.Beam(src, icon_state = "chain", time = INFINITY, maxdistance = INFINITY)
+		wire = firer.Beam(src, icon_state = wire_icon_state, time = INFINITY, maxdistance = INFINITY)
 	..()
 
 /// Helper proc exclusively used for pulling the buster arm USER towards something anchored
