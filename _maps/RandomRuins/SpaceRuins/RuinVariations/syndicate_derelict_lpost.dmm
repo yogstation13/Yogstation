@@ -170,6 +170,12 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndiederelict/vault)
+"ao" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/space/has_grav/syndiederelict/vault)
 "ap" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -285,16 +291,15 @@
 /turf/closed/wall/explosive,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "aF" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
 	},
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/syndiederelict/vault)
 "aI" = (
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
-/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/syndiederelict/vault)
 "aJ" = (
@@ -345,7 +350,6 @@
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/syndiederelict/vault)
 "aP" = (
-/obj/machinery/door/firedoor,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -354,6 +358,10 @@
 	id_tag = "SyndieArmory";
 	name = "Vault";
 	req_access_txt = "150"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/syndiederelict/vault)
@@ -589,6 +597,9 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "bi" = (
@@ -701,6 +712,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "bz" = (
@@ -723,16 +737,15 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/closet/secure_closet/freezer{
-	locked = 0;
-	name = "fridge"
+/obj/structure/closet/secure_closet/freezer/kitchen{
+	req_access = list(150)
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "bC" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "bD" = (
 /obj/effect/turf_decal/tile/dark_red/half/contrasted,
@@ -830,6 +843,9 @@
 /obj/machinery/atmospherics/pipe/simple/purple/hidden/layer4{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "bS" = (
@@ -852,8 +868,10 @@
 /turf/open/floor/carpet/black,
 /area/ruin/space/has_grav/syndiederelict/crew)
 "bX" = (
-/obj/structure/closet/crate,
-/turf/open/floor/plasteel/dark,
+/obj/structure/closet/secure_closet/freezer/fridge{
+	req_access = list(150)
+	},
+/turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "bY" = (
 /obj/machinery/light/small{
@@ -928,8 +946,16 @@
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "cf" = (
+/obj/structure/closet/crate/hydroponics{
+	desc = "All you need to make the station clean.";
+	name = "janitorial crate"
+	},
+/obj/item/mop,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/soap/syndie,
+/obj/item/reagent_containers/glass/bucket,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/rust,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/syndiederelict/crew)
 "cg" = (
 /obj/machinery/door/airlock{
@@ -938,7 +964,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel/dark,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "ch" = (
 /obj/machinery/light/small{
@@ -1225,6 +1255,8 @@
 /obj/structure/chair/stool/bar,
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /obj/item/stack/rods,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "cU" = (
@@ -1357,6 +1389,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
@@ -1502,6 +1537,8 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/bar/opposingcorners,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "dV" = (
@@ -1673,6 +1710,8 @@
 	name = "Unisex Restrooms";
 	req_access_txt = "0"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "ew" = (
@@ -1761,6 +1800,9 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "eF" = (
@@ -1774,6 +1816,12 @@
 	pixel_x = 28
 	},
 /obj/machinery/light/small,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "eH" = (
@@ -1863,12 +1911,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 8
-	},
+/obj/effect/turf_decal/tile/yellow/half/contrasted,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
@@ -1909,7 +1953,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "gR" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -1918,21 +1962,6 @@
 /obj/item/stack/tile/plasteel,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
-"gZ" = (
-/obj/effect/turf_decal/tile/dark_red/half/contrasted{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/syndiederelict/crew)
 "hg" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/decal/cleanable/dirt,
@@ -1955,20 +1984,6 @@
 /obj/item/stack/ore/iron,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/space/has_grav/syndiederelict/asteroid)
-"ht" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/airless,
-/area/ruin/space/has_grav/syndiederelict/engineering)
 "hB" = (
 /obj/structure/closet/toolcloset,
 /obj/item/storage/toolbox/syndicate,
@@ -2065,19 +2080,14 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
-"jD" = (
-/obj/machinery/atmospherics/pipe/layer_manifold/visible{
-	dir = 4
-	},
-/obj/structure/window/plasma/reinforced/spawner/west,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
+"jz" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 1
 	},
-/turf/open/floor/plasteel/airless,
-/area/ruin/space/has_grav/syndiederelict/engineering)
+/obj/item/stack/tile/plasteel,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/asteroid)
 "jE" = (
 /mob/living/simple_animal/hostile/carp,
 /turf/template_noop,
@@ -2102,6 +2112,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
@@ -2155,6 +2168,9 @@
 "mv" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /mob/living/simple_animal/hostile/carp,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "mN" = (
@@ -2326,6 +2342,13 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
+"oL" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/mob/living/simple_animal/hostile/hivebot/rapid,
+/turf/open/floor/pod/dark,
+/area/ruin/space/has_grav/syndiederelict/vault)
 "oO" = (
 /obj/machinery/atmospherics/components/trinary/mixer/layer2,
 /obj/machinery/atmospherics/pipe/simple/purple/hidden/layer4{
@@ -2482,6 +2505,20 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/ruin/space/has_grav/syndiederelict/engineering)
+"sy" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
 "sA" = (
 /turf/closed/wall/r_wall/rust,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
@@ -2520,12 +2557,6 @@
 /obj/item/shard/plasma,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
-"tE" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/turf/open/floor/pod/dark,
-/area/ruin/space/has_grav/syndiederelict/vault)
 "tG" = (
 /obj/machinery/atmospherics/pipe/layer_manifold/visible,
 /turf/closed/wall,
@@ -2536,9 +2567,12 @@
 /obj/item/stack/cable_coil/cut/red,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/medbay)
-"uo" = (
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/syndiederelict/kitchen)
+"ue" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/space/has_grav/syndiederelict/vault)
 "uR" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/decal/cleanable/dirt,
@@ -2626,6 +2660,12 @@
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
+"wA" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
 "wI" = (
 /obj/item/stack/tile/plasteel,
 /turf/open/floor/plating/asteroid/airless,
@@ -2656,6 +2696,9 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "xr" = (
@@ -2764,7 +2807,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
-	dir = 8
+	dir = 1
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
@@ -2785,14 +2828,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/airless/white,
 /area/ruin/space/has_grav/syndiederelict/medbay)
-"zD" = (
-/obj/effect/turf_decal/sand/plating,
-/obj/effect/turf_decal/stripes/asteroid/line{
-	dir = 1
-	},
-/obj/item/stack/tile/plasteel,
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/syndiederelict/asteroid)
 "zJ" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/turf_decal/stripes/asteroid/corner{
@@ -2800,6 +2835,16 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/asteroid)
+"zL" = (
+/obj/effect/turf_decal/tile/bar/opposingcorners,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
 "zR" = (
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/syndiederelict/comms)
@@ -2868,6 +2913,12 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "DE" = (
@@ -2891,8 +2942,25 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/closet/secure_closet/freezer/meat{
+	req_access = list(150)
+	},
+/turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
+"Ei" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
 "Et" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 1
@@ -2927,6 +2995,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
+"Fe" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/space/has_grav/syndiederelict/vault)
 "Fj" = (
 /turf/closed/wall/r_wall/rust,
 /area/ruin/space/has_grav/syndiederelict/arrivals)
@@ -2954,12 +3028,19 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance_hatch{
-	req_access = list(150)
+	req_access = list(150);
+	name = "Canteen Maintenance Access"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"Gs" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "Gt" = (
 /obj/machinery/door/firedoor/border_only{
@@ -2986,6 +3067,7 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/visible{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "GK" = (
@@ -3032,22 +3114,6 @@
 /mob/living/simple_animal/hostile/hivebot/strong,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/syndiederelict/comms)
-"HJ" = (
-/obj/effect/turf_decal/tile/dark_red/half/contrasted{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/syndiederelict/crew)
 "HP" = (
 /obj/effect/turf_decal/tile/dark_red/half/contrasted,
 /obj/structure/cable{
@@ -3063,10 +3129,6 @@
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "HR" = (
 /turf/closed/wall/r_wall/rust,
-/area/ruin/space/has_grav/syndiederelict/engineering)
-"HS" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/closed/wall/rust,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "Ia" = (
 /obj/effect/turf_decal/tile/dark_red{
@@ -3127,6 +3189,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
+"Ju" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
 "Jv" = (
 /obj/structure/sign/departments/medbay/alt{
 	pixel_y = -32
@@ -3168,6 +3235,16 @@
 /obj/effect/baseturf_helper/asteroid/airless,
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/syndiederelict/comms)
+"Kl" = (
+/obj/effect/turf_decal/tile/bar/opposingcorners,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
 "Kp" = (
 /obj/structure/grille/broken,
 /obj/effect/decal/cleanable/glass,
@@ -3189,9 +3266,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
+"Lc" = (
+/mob/living/simple_animal/hostile/carp,
+/obj/item/stack/tile/plasteel,
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/space/has_grav/syndiederelict/asteroid)
 "LX" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /obj/item/stack/rods,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "LY" = (
@@ -3259,7 +3343,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "Nh" = (
 /obj/effect/baseturf_helper/asteroid/airless,
@@ -3278,7 +3362,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "NT" = (
 /obj/effect/turf_decal/tile/dark_red{
@@ -3355,12 +3439,10 @@
 "Pp" = (
 /turf/closed/mineral/plasma,
 /area/ruin/space/has_grav/syndiederelict/asteroid)
-"Pq" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/pod/dark,
-/area/ruin/space/has_grav/syndiederelict/vault)
+"Px" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/closed/wall/rust,
+/area/ruin/space/has_grav/syndiederelict/engineering)
 "Qn" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/decal/cleanable/dirt,
@@ -3384,6 +3466,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "QR" = (
@@ -3443,6 +3526,19 @@
 	},
 /turf/open/floor/plasteel/airless/white,
 /area/ruin/space/has_grav/syndiederelict/medbay)
+"Rr" = (
+/obj/machinery/atmospherics/pipe/layer_manifold/visible{
+	dir = 4
+	},
+/obj/structure/window/plasma/reinforced/spawner/west,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
 "Rv" = (
 /obj/effect/baseturf_helper/asteroid/airless,
 /obj/machinery/vending/tool,
@@ -3472,7 +3568,18 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
 /turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"Sn" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "SF" = (
 /obj/structure/closet/crate/secure/gear{
@@ -3499,6 +3606,9 @@
 "SV" = (
 /mob/living/simple_animal/hostile/hivebot/rapid,
 /obj/effect/turf_decal/tile/dark_red/half/contrasted,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/syndiederelict/comms)
 "Te" = (
@@ -3518,6 +3628,13 @@
 /obj/item/stack/rods,
 /turf/template_noop,
 /area/template_noop)
+"TC" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/pod/dark,
+/area/ruin/space/has_grav/syndiederelict/vault)
 "TS" = (
 /obj/effect/turf_decal/tile/dark_red/half/contrasted{
 	dir = 8
@@ -3550,6 +3667,9 @@
 /obj/effect/turf_decal/tile/dark_red/half/contrasted{
 	dir = 4
 	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/syndiederelict/comms)
 "Uh" = (
@@ -3559,6 +3679,8 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "Ui" = (
@@ -3588,46 +3710,12 @@
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
-"UI" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/tile/yellow/half/contrasted,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/airless,
-/area/ruin/space/has_grav/syndiederelict/engineering)
 "UM" = (
 /obj/structure/chair/stool/bar,
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /obj/item/shard,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
-"UT" = (
-/obj/structure/closet/crate/hydroponics{
-	desc = "All you need to make the station clean.";
-	name = "janitorial crate"
-	},
-/obj/item/mop,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/soap/syndie,
-/obj/item/reagent_containers/glass/bucket,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/syndiederelict/crew)
-"UX" = (
-/mob/living/simple_animal/hostile/carp,
-/obj/item/stack/tile/plasteel,
-/turf/open/floor/plating/asteroid/airless,
-/area/ruin/space/has_grav/syndiederelict/asteroid)
-"Vd" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/mob/living/simple_animal/hostile/hivebot/rapid,
-/turf/open/floor/pod/dark,
-/area/ruin/space/has_grav/syndiederelict/vault)
 "Vf" = (
 /obj/effect/turf_decal/tile/dark_red/half/contrasted,
 /obj/structure/cable{
@@ -3710,6 +3798,21 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
+"WB" = (
+/obj/effect/turf_decal/tile/dark_red/half/contrasted{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/syndiederelict/crew)
 "WK" = (
 /turf/closed/mineral/bscrystal,
 /area/ruin/space/has_grav/syndiederelict/asteroid)
@@ -3735,18 +3838,6 @@
 	},
 /turf/closed/wall,
 /area/ruin/space/has_grav/syndiederelict/engineering)
-"Xv" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/pod/dark,
-/area/ruin/space/has_grav/syndiederelict/vault)
-"XA" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/turf/open/floor/pod/dark,
-/area/ruin/space/has_grav/syndiederelict/vault)
 "XC" = (
 /obj/effect/turf_decal/tile/dark_red/half/contrasted{
 	dir = 1
@@ -3775,6 +3866,10 @@
 "Yv" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/syndiederelict/comms)
+"Yw" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/syndiederelict/crew)
 "YI" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = 0;
@@ -3799,6 +3894,22 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/airless/white,
 /area/ruin/space/has_grav/syndiederelict/medbay)
+"Zi" = (
+/obj/effect/turf_decal/tile/dark_red/half/contrasted{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/syndiederelict/crew)
 "ZN" = (
 /obj/item/stack/ore/titanium,
 /turf/open/floor/plating/asteroid/airless,
@@ -4418,9 +4529,9 @@ db
 ae
 XF
 ak
-XA
-Xv
-tE
+ue
+aI
+aF
 Ne
 QR
 aO
@@ -4468,7 +4579,7 @@ Ct
 ap
 Im
 ap
-aI
+TC
 aP
 bc
 SV
@@ -4510,11 +4621,11 @@ db
 ae
 aO
 am
-aF
-Pq
-Pq
+ao
+Fe
+Fe
 qy
-Vd
+oL
 XF
 bd
 HB
@@ -4658,10 +4769,10 @@ bg
 bv
 bH
 mN
-gZ
+WB
 ci
 de
-HJ
+Zi
 cP
 OJ
 FO
@@ -4753,7 +4864,7 @@ DE
 Rv
 Nh
 Vx
-cf
+Yw
 bP
 dg
 HP
@@ -4788,18 +4899,18 @@ db
 HR
 Mh
 HR
-jD
 zu
+Rr
 aJ
 aJ
 xh
 cj
-HS
+Px
 iK
 bJ
 MX
 bS
-UT
+cf
 bP
 XC
 Jv
@@ -4888,10 +4999,10 @@ IW
 Gt
 Ix
 AM
-UI
-Qx
 fP
-ht
+Qx
+Ei
+sy
 by
 mU
 dE
@@ -5077,7 +5188,7 @@ Fb
 bo
 cE
 cS
-uo
+Gs
 Ds
 do
 ei
@@ -5117,14 +5228,14 @@ HR
 sA
 bC
 NQ
-Os
+Ju
 cg
 Os
-bo
+Sn
 Uh
 cT
-UE
-UE
+Kl
+zL
 dV
 cF
 jo
@@ -5170,11 +5281,11 @@ bo
 ek
 UM
 mv
-uo
+wA
 hF
 yO
 jo
-zD
+jz
 ac
 hl
 pm
@@ -5223,7 +5334,7 @@ ew
 Oa
 ac
 ac
-UX
+Lc
 db
 ab
 ds
