@@ -271,21 +271,80 @@
 	desc = "A pneumatic waste disposal unit."
 	icon_state = "disposal"
 	base_icon_state = "disposal"
+	/// Reference to the mounted destination tagger for disposal bins with one mounted.
+	var/obj/item/destTagger/mounted_tagger
 
 // attack by item places it in to disposal
-/obj/machinery/disposal/bin/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/storage/bag/trash))	//Not doing component overrides because this is a specific type.
-		var/obj/item/storage/bag/trash/T = I
-		var/datum/component/storage/STR = T.GetComponent(/datum/component/storage)
+/obj/machinery/disposal/bin/attackby(obj/item/weapon, mob/user, params)
+	if(istype(weapon, /obj/item/storage/bag/trash)) //Not doing component overrides because this is a specific type.
+		var/obj/item/storage/bag/trash/b = weapon
+		var/datum/component/storage/STR = b.GetComponent(/datum/component/storage)
 		to_chat(user, span_warning("You empty the bag."))
-		for(var/obj/item/O in T.contents)
+		for(var/obj/item/O in b.contents)
 			STR.remove_from_storage(O,src)
-		T.update_appearance()
+		b.update_appearance()
 		update_appearance()
+	if(istype(weapon,	/obj/item/destTagger))
 	else
 		return ..()
 
 // handle machine interaction
+
+///obj/machinery/disposal/bin/attackby_secondary(obj/item/weapon, mob/user, params)
+//	if(istype(weapon, /obj/item/destTagger))
+//		var/obj/item/destTagger/new_tagger = weapon
+//		if(mounted_tagger)
+//			balloon_alert(user, "already has a tagger!")
+//			return
+//		if(HAS_TRAIT(new_tagger, TRAIT_NODROP) || !user.transferItemToLoc(new_tagger, src))
+//			balloon_alert(user, "stuck to your hand!")
+//			return
+//		new_tagger.moveToNullspace()
+//		user.visible_message(span_notice("[user] snaps \the [new_tagger] onto [src]!"))
+//		balloon_alert(user, "tagger returned")
+//		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
+//		mounted_tagger = new_tagger
+//		update_appearance()
+//		return
+//	else
+//		return ..()
+
+///obj/machinery/disposal/bin/attack_hand_secondary(mob/user, list/modifiers)
+//	. = ..()
+//	if(!mounted_tagger)
+//		balloon_alert(user, "no destination tagger!")
+//		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+//	if(!user.put_in_hands(mounted_tagger))
+//		balloon_alert(user, "destination tagger falls!")
+//		mounted_tagger = null
+//		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+//	user.visible_message(span_notice("[user] unhooks the [mounted_tagger] from [src]."))
+//	balloon_alert(user, "tagger pulled")
+//	playsound(src, 'sound/machines/click.ogg', 60, TRUE)
+//	mounted_tagger = null
+//	update_appearance(UPDATE_OVERLAYS)
+//	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+//uncomment above once combat mode is implemented
+
+
+/obj/machinery/disposal/bin/examine(mob/user)
+	. = ..()
+	if(isnull(mounted_tagger))
+		. += span_notice("The destination tagger mount is empty.")
+	else
+		. += span_notice("\The [mounted_tagger] is hanging on the side. Right Click to remove.")
+
+/obj/machinery/disposal/bin/Destroy()
+	if(!isnull(mounted_tagger))
+		QDEL_NULL(mounted_tagger)
+	return ..()
+
+/obj/machinery/disposal/bin/on_deconstruction(disassembled)
+	. = ..()
+	if(!isnull(mounted_tagger))
+		mounted_tagger.forceMove(drop_location())
+		mounted_tagger = null
 
 /obj/machinery/disposal/bin/AltClick(mob/user)
 	. = ..()
@@ -377,6 +436,9 @@
 	if(flush)
 		. += "[base_icon_state]-handle"
 
+	if(mounted_tagger)
+		. += "tagger_mount"
+
 	//only handle is shown if no power
 	if(stat & NOPOWER || panel_open)
 		return
@@ -397,6 +459,10 @@
 /obj/machinery/disposal/bin/proc/do_flush()
 	set waitfor = FALSE
 	flush()
+
+/obj/machinery/disposal/bin/tagger/Initialize(mapload, obj/structure/disposalconstruct/make_from)
+	mounted_tagger = new /obj/item/destTagger(null)
+	return ..()
 
 //timed process
 //charge the gas reservoir and perform flush if ready
