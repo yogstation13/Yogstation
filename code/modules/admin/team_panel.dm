@@ -78,28 +78,33 @@
 
 	var/custom_antag_name
 
-	for(var/datum/mind/M in members)
-		var/datum/antagonist/team_antag
-		for(var/datum/antagonist/A in M.antag_datums)
-			if(A.get_team() == src)
-				team_antag = A
-		if(!team_antag)
-			team_antag = new /datum/antagonist/custom
-			if(!custom_antag_name)
-				custom_antag_name = stripped_input(user, "Custom team antagonist name:", "Custom antag", "Antagonist")
+	if(LAZYLEN(members))
+		for(var/datum/mind/M in members)
+			var/datum/antagonist/team_antag
+			for(var/datum/antagonist/A in M.antag_datums)
+				if(A.get_team() == src)
+					team_antag = A
+			if(!team_antag)
+				team_antag = new /datum/antagonist/custom
 				if(!custom_antag_name)
-					custom_antag_name = "Team Member"
-			team_antag.name = custom_antag_name
-			M.add_antag_datum(team_antag,src)
-		team_antag.objectives |= O
+					custom_antag_name = stripped_input(user, "Custom team antagonist name:", "Custom antag", "Antagonist")
+					if(!custom_antag_name)
+						custom_antag_name = member_name
+				member_name = custom_antag_name
+				team_antag.name = member_name
+				M.add_antag_datum(team_antag,src)
+			antag_path = team_antag.type
+	else if(!antag_path)
+		custom_antag_name = stripped_input(user, "Custom team antagonist name:", "Custom antag", "Antagonist")
+		if(!custom_antag_name)
+			custom_antag_name = member_name
+		member_name = custom_antag_name
+		antag_path = /datum/antagonist/custom
 
 	message_admins("[key_name_admin(usr)] added objective \"[O.explanation_text]\" to [name]")
 	log_admin("[key_name(usr)] added objective \"[O.explanation_text]\" to [name]")
 
 /datum/team/proc/admin_remove_objective(mob/user,datum/objective/O)
-	for(var/datum/mind/M in members)
-		for(var/datum/antagonist/A in M.antag_datums)
-			A.objectives -= O
 	objectives -= O
 
 	message_admins("[key_name_admin(usr)] removed objective \"[O.explanation_text]\" from [name]")
@@ -118,11 +123,18 @@
 	message_admins("[key_name_admin(usr)] added [key_name_admin(value)] as a member of [name] team")
 	log_admin("[key_name(usr)] added [key_name(value)] as a member of [name] team")
 
-	add_member(value)
+	if(antag_path)
+		var/datum/antagonist/team_antag = new antag_path
+		team_antag.name = member_name
+		value.add_antag_datum(team_antag, src)
+	else
+		add_member(value)
 
 /datum/team/proc/admin_remove_member(mob/user,datum/mind/M)
 	message_admins("[key_name_admin(usr)] removed [key_name_admin(M)] from [name] team")
 	log_admin("[key_name(usr)] removed [key_name(M)] from [name] team")
+	if(antag_path)
+		M.remove_antag_datum(antag_path)
 	remove_member(M)
 
 //After a bit of consideration i block team deletion if there's any members left until unified objective handling is in.

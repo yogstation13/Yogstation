@@ -5,12 +5,12 @@ import { AntagInfoTraitorContent } from './AntagInfoTraitor';
 
 export const TraitorBackstoryMenu = (_, context) => {
   const { data } = useBackend(context);
-  const { all_backstories = {}, all_factions = {}, backstory, faction } = data;
+  const { all_backstories = {}, all_factions = {}, backstory, faction, faction_theme } = data;
   let has_backstory = all_backstories[backstory];
   let has_faction = all_factions[faction];
   let [ui_phase, set_ui_phase] = useLocalState(context, 'traitor_ui_phase', has_faction ? 2 : 0);
   let [tabIndex, setTabIndex] = useLocalState(context, 'traitor_selected_tab', 1);
-  let [selected_faction, set_selected_faction_backend] = useLocalState(context, 'traitor_selected_faction', 'syndicate');
+  let [selected_faction, set_selected_faction_backend] = useLocalState(context, 'traitor_selected_faction', 'independent');
   let [selected_backstory, set_selected_backstory] = useLocalState(context, 'traitor_selected_backstory', null);
   const set_selected_faction = (faction) => {
     set_selected_faction_backend(faction);
@@ -33,7 +33,7 @@ export const TraitorBackstoryMenu = (_, context) => {
   let info_ui = ui_phase === 2 && has_faction;
   return (
     <Window
-      theme={faction === 'syndicate' ? 'syndicate' : 'neutral'}
+      theme={faction_theme}
       width={650}
       height={info_ui ? 650 : 500}
       title={windowTitle}>
