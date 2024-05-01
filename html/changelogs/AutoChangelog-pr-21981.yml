@@ -1,0 +1,4 @@
+author: "wonderinghost"
+delete-after: true 
+changes: 
+  - tweak: "gives qm request console announcements"
