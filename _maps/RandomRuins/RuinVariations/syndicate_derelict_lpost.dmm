@@ -2411,7 +2411,6 @@
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/space/has_grav/syndiederelict/asteroid)
 "ps" = (
-/obj/effect/turf_decal/sand/plating,
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/syndiederelict/engineering)
