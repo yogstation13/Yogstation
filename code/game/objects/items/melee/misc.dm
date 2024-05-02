@@ -373,8 +373,8 @@
 /obj/item/melee/classic_baton/donkbat
 	name = "toy baseball bat"
 	desc = "A colorful foam baseball bat. The label on the handle reads Donksoft. Feels...heavy."
-	icon = 'icons/obj/toy.dmi'
-	icon_state = "baseballbat_donk"
+	icon = 'icons/obj/weapons/bat.dmi'
+	icon_state = "baseball_bat_donk"
 	item_state = "baseball_bat_donk"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
