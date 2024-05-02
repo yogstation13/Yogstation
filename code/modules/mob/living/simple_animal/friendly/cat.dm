@@ -22,11 +22,14 @@
 	animal_species = /mob/living/simple_animal/pet/cat
 	childtype = list(/mob/living/simple_animal/pet/cat/kitten)
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2, /obj/item/organ/ears/cat = 1, /obj/item/organ/tail/cat = 1)
+	initial_language_holder = /datum/language_holder/felinid
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 	var/turns_since_scan = 0
+	///Whether to draw the sitting sprite instead of the lying down sprite.
+	var/sitting = FALSE
 	var/mob/living/simple_animal/mouse/movement_target
 	gold_core_spawnable = FRIENDLY_SPAWN
 	collar_type = "cat"
@@ -42,14 +45,9 @@
 
 /mob/living/simple_animal/pet/cat/update_mobility()
 	..()
-	if(client && stat != DEAD)
-		if (resting)
-			icon_state = "[icon_living]_rest"
-			collar_type = "[initial(collar_type)]_rest"
-		else
-			icon_state = "[icon_living]"
-			collar_type = "[initial(collar_type)]"
-	regenerate_icons()
+	if(client && stat != DEAD && sitting)
+		sitting = FALSE
+	update_appearance(UPDATE_ICON_STATE)
 
 /mob/living/simple_animal/pet/cat/space
 	name = "space cat"
@@ -176,30 +174,51 @@
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
 
+/mob/living/simple_animal/pet/cat/update_icon_state()
+	. = ..()
+	if(stat == DEAD)
+		return
+	if(resting)
+		if(sitting)
+			icon_state = "[icon_living]_sit"
+			collar_type = "[initial(collar_type)]_sit"
+		else
+			icon_state = "[icon_living]_rest"
+			collar_type = "[initial(collar_type)]_rest"
+	else
+		icon_state = icon_living
+		collar_type = initial(collar_type)
+
+/mob/living/simple_animal/pet/cat/mob_pickup(mob/living/L)
+	set_resting(FALSE) // resting cats don't show up properly when held
+	update_appearance(UPDATE_ICON_STATE)
+	return ..()
+
 /mob/living/simple_animal/pet/cat/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(!stat && !buckled && !client)
 		if(prob(1))
-			emote("me", 1, pick("stretches out for a belly rub.", "wags its tail.", "lies down."), TRUE)
-			icon_state = "[icon_living]_rest"
-			collar_type = "[initial(collar_type)]_rest"
+			emote("me", EMOTE_VISIBLE, pick("stretches out for a belly rub.", "wags its tail.", "lies down."), TRUE)
+			sitting = FALSE
 			set_resting(TRUE)
+			update_appearance(UPDATE_ICON_STATE)
 		else if (prob(1))
-			emote("me", 1, pick("sits down.", "crouches on its hind legs.", "looks alert."), TRUE)
-			icon_state = "[icon_living]_sit"
-			collar_type = "[initial(collar_type)]_sit"
+			emote("me", EMOTE_VISIBLE, pick("sits down.", "crouches on its hind legs.", "looks alert."), TRUE)
+			sitting = TRUE
 			set_resting(TRUE)
+			update_appearance(UPDATE_ICON_STATE)
 		else if (prob(1))
 			if (resting)
-				emote("me", 1, pick("gets up and meows.", "walks around.", "stops resting."), TRUE)
-				icon_state = "[icon_living]"
-				collar_type = "[initial(collar_type)]"
+				emote("me", EMOTE_VISIBLE, pick("gets up and meows.", "walks around.", "stops resting."), TRUE)
 				set_resting(FALSE)
+				update_appearance(UPDATE_ICON_STATE)
 			else
-				emote("me", 1, pick("grooms its fur.", "twitches its whiskers.", "shakes out its coat."), TRUE)
+				emote("me", EMOTE_VISIBLE, pick("grooms its fur.", "twitches its whiskers.", "shakes out its coat."), TRUE)
+		else if(prob(5))
+			emote("meow", EMOTE_AUDIBLE, intentional = TRUE)
 
 	//MICE!
 	if((src.loc) && isturf(src.loc))
-		if(!stat && !resting && !buckled)
+		if(!stat && !buckled)
 			for(var/mob/living/simple_animal/mouse/M in view(1,src))
 				if(!M.stat && Adjacent(M))
 					emote("me", 1, "splats \the [M]!", TRUE)
@@ -216,7 +235,7 @@
 
 	make_babies()
 
-	if(!stat && !resting && !buckled)
+	if(!stat && !buckled)
 		turns_since_scan++
 		if(turns_since_scan > 5)
 			walk_to(src,0)
@@ -228,6 +247,13 @@
 				movement_target = null
 				stop_automated_movement = 0
 				for(var/mob/living/simple_animal/mouse/snack in oview(src,3))
+					if(snack.stat == DEAD)
+						continue // already dead
+					if(resting)
+						emote("me", EMOTE_VISIBLE, pick("twitches its whiskers.", "crouches on its hind legs.", "looks alert."), TRUE)
+						set_resting(FALSE) // get up and eat the mouse!
+						update_appearance(UPDATE_ICON_STATE)
+						break
 					if(isturf(snack.loc) && !snack.stat)
 						movement_target = snack
 						break
