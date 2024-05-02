@@ -291,7 +291,7 @@
 /obj/item/nullrod/glowing
 	name = "force weapon"
 	desc = "The blade glows with the power of faith. Or possibly a battery."
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "swordon"
 	item_state = "swordon"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'

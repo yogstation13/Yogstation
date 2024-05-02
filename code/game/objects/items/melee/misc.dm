@@ -639,7 +639,7 @@
 /obj/item/melee/singularity_sword
 	name = "singularity sword"
 	desc = "Spins so hard that it turns any struck foe into mincemeat instantaneously. Make sure not to stick around when you swing it at someone."
-	icon = 'icons/obj/weapons/longword.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "singularity_sword"
 	item_state = "singularity_sword"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
