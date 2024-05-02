@@ -620,7 +620,7 @@
 	N.dna_lock = M.dna_lock
 	N.maint_access = M.maint_access
 	N.strafe = M.strafe
-	N.update_integrity(M.get_integrity()) //This is not a repair tool
+	N.update_integrity(N.max_integrity * M.get_integrity() / M.max_integrity) //This is not a repair tool
 	if (M.name != "\improper APLU MK-I \"Ripley\"")
 		N.name = M.name
 	M.wreckage = 0
