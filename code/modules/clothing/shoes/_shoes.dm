@@ -1,6 +1,8 @@
 /obj/item/clothing/shoes
 	name = "shoes"
 	icon = 'icons/obj/clothing/shoes.dmi'
+	lefthand_file = 'icons/mob/inhands/clothing/shoes_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/clothing/shoes_righthand.dmi'
 	desc = "Comfortable-looking shoes."
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	var/chained = 0
@@ -36,16 +38,24 @@
 			playsound(user, 'sound/weapons/genhit2.ogg', 50, 1)
 		return(BRUTELOSS)
 
-/obj/item/clothing/shoes/worn_overlays(isinhands = FALSE)
-	. = list()
-	if(!isinhands)
-		if(damaged_clothes)
-			. += mutable_appearance('icons/effects/item_damage.dmi', "damagedshoe")
-		if(HAS_BLOOD_DNA(src))
-			var/mutable_appearance/bloody_shoes
-			bloody_shoes = mutable_appearance('icons/effects/blood.dmi', "shoeblood")
-			bloody_shoes.color = get_blood_dna_color(return_blood_DNA())
-			. += bloody_shoes
+/obj/item/clothing/shoes/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
+	. = ..()
+	if(isinhands)
+		return
+
+	if(damaged_clothes)
+		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedshoe")
+
+	if(!HAS_BLOOD_DNA(src))
+		return
+
+	var/mutable_appearance/bloody_shoes
+	if(clothing_flags & LARGE_WORN_ICON)
+		bloody_shoes = mutable_appearance('icons/effects/64x64.dmi', "shoeblood_large")
+	else
+		bloody_shoes = mutable_appearance('icons/effects/blood.dmi', "shoeblood")
+	bloody_shoes.color = get_blood_dna_color(return_blood_DNA())
+	. += bloody_shoes
 
 /obj/item/clothing/shoes/equipped(mob/user, slot)
 	if(adjusted)

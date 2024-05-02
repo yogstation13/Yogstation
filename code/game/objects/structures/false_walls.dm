@@ -26,6 +26,7 @@
 	var/walltype = /turf/closed/wall
 	var/girder_type = /obj/structure/girder/displaced
 	var/opening = FALSE
+	var/fake_examine_message = span_notice("The outer plating is <b>welded</b> firmly in place.")
 
 
 /obj/structure/falsewall/Initialize(mapload)
@@ -155,8 +156,9 @@
 /obj/structure/falsewall/get_dumping_location(obj/item/storage/source,mob/user)
 	return null
 
-/obj/structure/falsewall/examine_status(mob/user) //So you can't detect falsewalls by examine.
-	return span_notice("The outer plating is <b>welded</b> firmly in place.")
+/obj/structure/falsewall/examine(mob/user) //So you can't detect falsewalls by examine.
+	. = ..()
+	. += fake_examine_message
 
 /obj/structure/falsewall/CanAStarPass(ID, dir, caller)
 	. = ..()
@@ -179,9 +181,7 @@
 	walltype = /turf/closed/wall/r_wall
 	mineral = /obj/item/stack/sheet/plasteel
 	smoothing_flags = SMOOTH_BITMASK
-
-/obj/structure/falsewall/reinforced/examine_status(mob/user)
-	return span_notice("The outer <b>grille</b> is fully intact.")
+	fake_examine_message = span_notice("The outer <b>grille</b> is fully intact.")
 
 /obj/structure/falsewall/reinforced/attackby(obj/item/tool, mob/user)
 	..()
@@ -429,7 +429,7 @@
 
 /obj/structure/falsewall/brass/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		obj_integrity = max_integrity
+		update_integrity(max_integrity)
 
 /obj/structure/falsewall/material
 	name = "wall"

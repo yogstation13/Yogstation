@@ -97,7 +97,7 @@
 	inturf = get_step(src, dir)
 	locate_machinery()
 	if(!turbine)
-		obj_break()
+		atom_break()
 
 
 #define COMPFRICTION 5e5
@@ -111,7 +111,7 @@
 		turbine.locate_machinery()
 
 /obj/machinery/power/compressor/multitool_act(mob/living/user, obj/item/multitool/tool)
-	tool.buffer = src
+	multitool_set_buffer(user, tool, src)
 	user.balloon_alert(user, "saved to buffer")
 	return TRUE
 
@@ -139,7 +139,7 @@
 			stat &= ~BROKEN
 		else
 			to_chat(user, span_alert("Turbine not connected."))
-			obj_break()
+			atom_break()
 		return
 
 	default_deconstruction_crowbar(I)
@@ -199,7 +199,7 @@
 	outturf = get_step(src, dir)
 	locate_machinery()
 	if(!compressor)
-		obj_break()
+		atom_break()
 	connect_to_network()
 
 /obj/machinery/power/turbine/RefreshParts()
@@ -224,7 +224,7 @@
 	if(!compressor)
 		user.balloon_alert(user, "no compressor!")
 		return TRUE
-	tool.buffer = compressor
+	multitool_set_buffer(user, tool, compressor)
 	user.balloon_alert(user, "saved to buffer")
 	return TRUE
 
@@ -287,7 +287,7 @@
 			stat &= ~BROKEN
 		else
 			to_chat(user, span_alert("Compressor not connected."))
-			obj_break()
+			atom_break()
 		return
 
 	default_deconstruction_crowbar(I)
@@ -359,8 +359,9 @@
 		compressor = locate(/obj/machinery/power/compressor) in range(7, src)
 
 /obj/machinery/computer/turbine_computer/multitool_act(mob/living/user, obj/item/multitool/tool)
-	if(istype(tool.buffer, /obj/machinery/power/compressor))
-		var/obj/machinery/power/compressor/new_link = tool.buffer
+	var/atom/buffer_atom = multitool_get_buffer(user, tool)
+	if(istype(buffer_atom, /obj/machinery/power/compressor))
+		var/obj/machinery/power/compressor/new_link = buffer_atom
 		if(!new_link.comp_id)
 			new_link.comp_id = getnewid()
 		id = new_link.comp_id

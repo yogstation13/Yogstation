@@ -6,7 +6,7 @@ import { CharacterPreview } from "./CharacterPreview";
 import { RandomizationButton } from "./RandomizationButton";
 import { ServerPreferencesFetcher } from "./ServerPreferencesFetcher";
 import { MultiNameInput, NameInput } from "./names";
-import { Gender, GENDERS } from "./preferences/gender";
+import { GENDERS } from "./preferences/gender";
 import features from "./preferences/features";
 import { FeatureChoicedServerData, FeatureValueInput } from "./preferences/features/base";
 import { filterMap, sortBy } from "common/collections";
@@ -23,8 +23,9 @@ const CharacterControls = (props: {
   handleRotate: () => void,
   handleOpenSpecies: () => void,
   handleCycleBackground: () => void,
-  gender: Gender,
-  setGender: (gender: Gender) => void,
+  gender: string,
+  genderList: string[],
+  setGender: (gender: string) => void,
   showGender: boolean,
 }) => {
   return (
@@ -63,6 +64,7 @@ const CharacterControls = (props: {
         <Stack.Item>
           <GenderButton
             gender={props.gender}
+            genderList={props.genderList}
             handleSetGender={props.setGender}
           />
         </Stack.Item>
@@ -180,8 +182,9 @@ const ChoicedSelection = (props: {
 };
 
 const GenderButton = (props: {
-  handleSetGender: (gender: Gender) => void,
-  gender: Gender,
+  handleSetGender: (gender: string) => void,
+  gender: string,
+  genderList: string[],
 }, context) => {
   const [genderMenuOpen, setGenderMenuOpen] = useLocalState(context, "genderMenuOpen", false);
 
@@ -192,7 +195,7 @@ const GenderButton = (props: {
       genderMenuOpen
         && (
           <Stack backgroundColor="white" ml={0.5} p={0.3}>
-            {[Gender.Male, Gender.Female, Gender.Other].map(gender => {
+            {props.genderList.map(gender => {
               return (
                 <Stack.Item key={gender}>
                   <Button
@@ -506,6 +509,7 @@ export const MainPage = (props: {
                 <Stack.Item>
                   <CharacterControls
                     gender={data.character_preferences.misc.gender}
+                    genderList={currentSpeciesData ? (currentSpeciesData.possible_genders) : ["male", "female", "plural", "neuter"]}
                     handleOpenSpecies={props.openSpecies}
                     handleRotate={() => {
                       act("rotate");
@@ -515,7 +519,7 @@ export const MainPage = (props: {
                     }}
                     setGender={createSetPreference(act, "gender")}
                     showGender={
-                      currentSpeciesData ? !!currentSpeciesData.sexes : true
+                      currentSpeciesData ? (currentSpeciesData.possible_genders.length > 1) : true
                     }
                   />
                 </Stack.Item>

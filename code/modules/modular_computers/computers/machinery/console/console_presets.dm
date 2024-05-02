@@ -219,3 +219,18 @@
 		qdel(frame)
 		return FALSE
 	return ..()
+
+
+// ===== NETWORK ADMIN CONSOLE =====
+/obj/machinery/modular_computer/console/preset/netmin
+	console_department = "Engineering"
+	name = "ai network console"
+	desc = "A stationary computer. This one comes preloaded with ai network administration software"
+	starting_files = list(	new /datum/computer_file/program/ai/ai_network_interface, new /datum/computer_file/program/aidiag)
+	initial_program = /datum/computer_file/program/ai/ai_network_interface
+	starting_components = list(	/obj/item/computer_hardware/network_card/wired,
+							/obj/item/computer_hardware/recharger/APC,
+							/obj/item/computer_hardware/hard_drive/super,
+							/obj/item/computer_hardware/processor_unit,
+							/obj/item/computer_hardware/ai_slot,
+							/obj/item/computer_hardware/card_slot)

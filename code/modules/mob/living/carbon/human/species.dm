@@ -18,8 +18,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/plural_form
 	/// if alien colors are disabled, this is the color that will be used by that race
 	var/default_color = "#FFF"
-	/// whether or not the race has sexual characteristics. at the moment this is only FALSE for skeletons and shadows
-	var/sexes = TRUE
 
 	///A list that contains pixel offsets for various clothing features, if your species is a different shape
 	var/list/offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
@@ -36,6 +34,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	/// does it use skintones or not? (spoiler alert this is only used by humans)
 	var/use_skintones = FALSE
 
+	var/forced_skintone
+
+	/// What genders can this race be?
+	var/list/possible_genders = list(MALE, PLURAL, FEMALE)
 	/// If your race wants to bleed something other than bog standard blood, change this to reagent id.
 	var/datum/reagent/exotic_blood
 	///If your race uses a non standard bloodtype (A+, O-, AB-, etc)
@@ -121,6 +123,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/inert_mutation 	= DWARFISM
 	///used to set the mobs deathsound on species change
 	var/deathsound
+	///Barefoot step sound
+	var/barefoot_step_sound = FOOTSTEP_MOB_BAREFOOT
 	///Sounds to override barefeet walking
 	var/list/special_step_sounds
 	///How loud to play the step override
@@ -131,6 +135,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/grab_sound
 	///yogs - audio of a species' scream
 	var/screamsound
+	/// The visual effect of the attack.
+	var/attack_effect = ATTACK_EFFECT_PUNCH
 	///is a flying species, just a check for some things
 	var/flying_species = FALSE
 	///the actual flying ability given to flying species
@@ -207,6 +213,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	//Should we preload this species's organs?
 	var/preload = TRUE
 
+	var/inherent_slowdown = 0
+
+	//for preternis + synths
+	var/draining = FALSE
 	///Does our species have colors for its' damage overlays?
 	var/use_damage_color = TRUE
 
@@ -318,6 +328,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/has_toes()
 	return FALSE
 
+/// Sprite to show for photocopying mob butts
+/datum/species/proc/get_butt_sprite(mob/living/carbon/human/human)
+	return human.gender == FEMALE ? BUTT_SPRITE_HUMAN_FEMALE : BUTT_SPRITE_HUMAN_MALE
+
 /**
  * Corrects organs in a carbon, removing ones it doesn't need and adding ones it does.
  *
@@ -418,13 +432,15 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			replacement.Insert(C, TRUE, FALSE)
 
 /datum/species/proc/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
+	// Change the gender to fit with the new species
+	if(!possible_genders || possible_genders.len < 1)
+		stack_trace("[type] has no possible genders!")
+		C.gender = PLURAL // uh oh
+	else if(possible_genders.len == 1)
+		C.gender = possible_genders[1] // some species only have one gender
+	else if(!(C.gender in possible_genders))
+		C.gender = pick(possible_genders) // randomized gender
 	// Drop the items the new species can't wear
-	if((AGENDER in species_traits))
-		C.gender = PLURAL
-	if((FGENDER in species_traits))
-		C.gender = FEMALE
-	if((MGENDER in species_traits))
-		C.gender = MALE
 	extra_no_equip = old_species.extra_no_equip.Copy()
 	for(var/slot_id in no_equip)
 		var/obj/item/thing = C.get_item_by_slot(slot_id)
@@ -787,7 +803,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(undershirt)
 				if(HAS_TRAIT(H, TRAIT_SKINNY)) //Check for skinny first
 					standing += wear_skinny_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
-				else if(H.dna.species.sexes && H.gender == FEMALE)
+				else if(H.gender == FEMALE && (FEMALE in possible_genders))
 					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
 				else
 					standing += mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)
@@ -917,7 +933,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			bodyparts_to_add -= "preternis_eye"
 
 	if("preternis_core" in mutant_bodyparts)
-		if(H.w_uniform || H.wear_suit)
+		if(!get_location_accessible(H, BODY_ZONE_CHEST))
 			bodyparts_to_add -= "preternis_core"
 
 	if("pod_hair" in mutant_bodyparts)
@@ -1579,6 +1595,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					. += hungry / 50
 
 		//Moving in high gravity is very slow (Flying too)
+		. += inherent_slowdown
+
 		if(gravity > STANDARD_GRAVITY)
 			var/grav_force = min(gravity - STANDARD_GRAVITY,3)
 			. += 1 + grav_force
@@ -1639,6 +1657,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(!attacker_style?.nonlethal && HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("You don't want to harm [target]!"))
 		return FALSE
+	if(!synth_check(user, SYNTH_ORGANIC_HARM))
+		to_chat(user, span_warning("You don't want to harm [target]!"))
+		return
 	var/datum/martial_art/M = target.check_block()
 	if(M)
 		M.handle_counter(target, user)
@@ -1648,26 +1669,18 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	else
 
 		var/atk_verb = user.dna.species.attack_verb
+		var/atk_effect = user.dna.species.attack_effect
 		if(!(target.mobility_flags & MOBILITY_STAND))
-			atk_verb = ATTACK_EFFECT_KICK
-
-		switch(atk_verb)//this code is really stupid but some genius apparently made "claw" and "slash" two attack types but also the same one so it's needed i guess
-			if(ATTACK_EFFECT_KICK)
-				user.do_attack_animation(target, ATTACK_EFFECT_KICK)
-			if(ATTACK_EFFECT_SLASH, ATTACK_EFFECT_CLAW)//smh
-				user.do_attack_animation(target, ATTACK_EFFECT_CLAW)
-			if(ATTACK_EFFECT_SMASH)
-				user.do_attack_animation(target, ATTACK_EFFECT_SMASH)
-			else
-				user.do_attack_animation(target, ATTACK_EFFECT_PUNCH)
-
+			atk_verb = "kick"
+			atk_effect = ATTACK_EFFECT_KICK
+		user.do_attack_animation(target, atk_effect)
 		var/damage = rand(user.get_punchdamagelow(), user.get_punchdamagehigh())
 
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
 
 		var/miss_chance = 100//calculate the odds that a punch misses entirely. considers stamina and brute damage of the puncher. punches miss by default to prevent weird cases
 		if(user.get_punchdamagelow())
-			if(atk_verb == ATTACK_EFFECT_KICK) //kicks never miss (provided your species deals more than 0 damage)
+			if(atk_effect == ATTACK_EFFECT_KICK) //kicks never miss (provided your species deals more than 0 damage)
 				miss_chance = 0
 			else
 				miss_chance = min((user.get_punchdamagelow()/user.get_punchdamagehigh()) + user.getStaminaLoss() + (user.getBruteLoss()*0.5), 100) //old base chance for a miss + various damage. capped at 100 to prevent weirdness in prob()
@@ -1694,7 +1707,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			target.dismembering_strike(user, affecting.body_zone)
 
 		var/attack_direction = get_dir(user, target)
-		if(atk_verb == ATTACK_EFFECT_KICK)//kicks deal 1.5x raw damage
+		if(atk_effect == ATTACK_EFFECT_KICK)//kicks deal 1.5x raw damage
 			target.apply_damage(damage*1.5, user.dna.species.attack_type, affecting, armor_block, attack_direction = attack_direction)
 			log_combat(user, target, "kicked")
 		else//other attacks deal full raw damage + 1.5x in stamina damage

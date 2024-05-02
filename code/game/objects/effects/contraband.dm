@@ -670,6 +670,32 @@
 	desc = "This poster reminds employees to not panic in the unlikely event of an emergency."
 	icon_state = "poster37_legit" //36 is taken
 
+/obj/structure/sign/poster/official/nvs_gax
+	name = "NVS Gax 5th Anniversary"
+	desc = "This poster commemorates the 5th year of operation for the NVS Gax."
+	icon_state = "poster38_legit"
+
+/obj/structure/sign/poster/official/nvs_gax/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/toy/crayon/spraycan))
+		var/obj/item/toy/crayon/spraycan/spraycan = I
+		if(spraycan.is_capped)
+			to_chat(user, span_warning("Take the cap off first!"))
+			return ..()
+
+		if(spraycan.check_empty(user))
+			return ..()
+
+		name = "Smoke Gas"
+		desc = "A defaced poster recommending you to smoke some good weed."
+		icon_state = "smoke_gas"
+		
+
+		if(spraycan.pre_noise || spraycan.post_noise)
+			playsound(user.loc, 'sound/effects/spray.ogg', 5, 1, 5)
+		user.visible_message("[user] livens up [src] with spray paint!", span_notice("You liven up [src] with spray paint."))
+		return
+	else ..()
+
 /obj/item/wantedposterposter
 	name = "Wanted Poster Poster"
 	desc = "This piece of high-tech machinery prints out a poster on walls that it's used on."

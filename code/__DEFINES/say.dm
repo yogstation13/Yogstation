@@ -81,6 +81,7 @@
 #define SPAN_SINGING "singing"
 #define SPAN_CULTLARGE "cultlarge"
 #define SPAN_HELIUM "small"
+#define SPAN_PROGENITOR "progenitor"
 
 //bitflag #defines for return value of the radio() proc.
 #define ITALICS			(1<<0)
@@ -127,3 +128,6 @@
 #define BUBBLE_DARKSPAWN "darkspawn"
 #define BUBBLE_GUARDIAN "guardian"
 #define BUBBLE_BLOB "blob"
+
+
+#define MAX_FLAVOR_LEN 4096		//double the maximum message length.

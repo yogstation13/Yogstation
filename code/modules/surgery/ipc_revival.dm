@@ -88,3 +88,27 @@
 	-After reactivation, use a screwdriver to screw the panel back into place.<BR>\
 	-If the unit breaks down shortly after reactivation, replace any missing internal components and reboot again if necessary.<BR>\
 	Nanotrasen is not liable for any damages caused during the repair process."
+
+/datum/surgery/synth_revival
+	name = "Synthetic Reactivation"
+	desc = "This procedure reactivates a positronic brain inside a synthetic body, restoring it to a functional state."
+	icon_state = "revival_posi"
+	possible_locs = list(BODY_ZONE_HEAD)
+	ignore_clothes = TRUE
+	requires_bodypart_type = BODYPART_ROBOTIC
+	steps = list(
+		/datum/surgery_step/mechanic_open,
+		/datum/surgery_step/open_hatch,
+		/datum/surgery_step/revive_ipc,
+		/datum/surgery_step/mechanic_close
+	)
+
+/datum/surgery/synth_revival/can_start(mob/user, mob/living/target)
+	if(target.stat != DEAD)
+		return FALSE // they're already activated
+	if(!is_synth(target))
+		return FALSE
+	var/obj/item/organ/brain/B = target.getorganslot(ORGAN_SLOT_BRAIN)
+	if(!B) // you can't reactivate a brain that DOESN'T EXIST
+		return FALSE
+	return istype(target.getorganslot(ORGAN_SLOT_BRAIN), /obj/item/organ/brain/positron)

@@ -977,3 +977,147 @@
 		/obj/item/kitchen/knife/ritual
 	)
 
+#define NO_TOOL "deactivated"
+
+// Bare minimum omni-toolset for modularity.
+/obj/item/borg/cyborg_omnitool
+	name = "cyborg omni-toolset"
+	desc = "You shouldn't see this in-game normally."
+	icon = 'icons/mob/robot_items.dmi'
+	icon_state = "toolkit_medborg"
+	toolspeed = 1
+	/// Items that can be selected.
+	var/list/radial_menu_options = list()
+	/// Currently selected item.
+	var/obj/item/reference
+	/// Is the toolset upgraded or not?
+	var/upgraded = FALSE
+	/// Can it initiate surgeries?
+	var/can_initiate_surgery = FALSE
+
+/obj/item/borg/cyborg_omnitool/Initialize(mapload)
+	. = ..()
+	radial_menu_options = list(
+		NO_TOOL = image(icon = 'icons/mob/robot_items.dmi', icon_state = initial(icon_state)),
+		TOOL_SCALPEL = image(icon = 'icons/obj/surgery.dmi', icon_state = "[TOOL_SCALPEL]"),
+	)
+
+/obj/item/borg/cyborg_omnitool/attack(mob/living/M, mob/user)
+	if(!can_initiate_surgery || !attempt_initiate_surgery(src, M, user))
+		..()
+
+/obj/item/borg/cyborg_omnitool/attack_self(mob/user)
+	var/new_tool_behaviour = show_radial_menu(user, src, radial_menu_options, require_near = TRUE, tooltips = TRUE)
+
+	if(isnull(new_tool_behaviour) || new_tool_behaviour == tool_behaviour)
+		return
+	if(new_tool_behaviour == NO_TOOL)
+		tool_behaviour = null
+	else
+		tool_behaviour = new_tool_behaviour
+
+	reference_item_for_parameters()
+	update_tool_parameters(reference)
+	update_appearance(UPDATE_ICON_STATE)
+	playsound(src, 'sound/items/change_jaws.ogg', 50, TRUE)
+
+/// Used to get reference item for the tools
+/obj/item/borg/cyborg_omnitool/proc/reference_item_for_parameters()
+	switch(tool_behaviour)
+		if(TOOL_SCALPEL)
+			reference = /obj/item/scalpel
+
+/// Used to update sounds and tool parameters during switching
+/obj/item/borg/cyborg_omnitool/proc/update_tool_parameters(/obj/item/reference)
+	if(isnull(reference))
+		sharpness = NONE
+		force = initial(force)
+		wound_bonus = initial(wound_bonus)
+		bare_wound_bonus = initial(bare_wound_bonus)
+		demolition_mod = initial(demolition_mod)
+		hitsound = initial(hitsound)
+		usesound = initial(usesound)
+	else
+		force = initial(reference.force)
+		sharpness = initial(reference.sharpness)
+		wound_bonus = initial(reference.wound_bonus)
+		bare_wound_bonus = initial(reference.bare_wound_bonus)
+		demolition_mod = initial(reference.demolition_mod)
+		hitsound = initial(reference.hitsound)
+		usesound = initial(reference.usesound)
+
+/obj/item/borg/cyborg_omnitool/update_icon_state()
+	icon_state = initial(icon_state)
+
+	if(tool_behaviour)
+		icon_state += "_[sanitize_css_class_name(tool_behaviour)]"
+
+	if(tool_behaviour)
+		item_state = initial(item_state) + "_deactivated"
+	else
+		item_state = initial(item_state)
+
+	return ..()
+
+/obj/item/borg/cyborg_omnitool/proc/upgrade_omnitool()
+	name = "advanced [name]"
+	desc += "\nIt seems that this one has been upgraded to perform tasks faster."
+	toolspeed = 0.7
+	upgraded = TRUE
+	tool_behaviour = null
+	reference_item_for_parameters()
+	update_tool_parameters(reference)
+	update_appearance(UPDATE_ICON_STATE)
+	playsound(src, 'sound/items/change_jaws.ogg', 50, TRUE)
+
+/obj/item/borg/cyborg_omnitool/proc/downgrade_omnitool()
+	name = initial(name)
+	desc = initial(desc)
+	toolspeed = initial(toolspeed)
+	upgraded = FALSE
+	tool_behaviour = null
+	reference_item_for_parameters()
+	update_tool_parameters(reference)
+	update_appearance(UPDATE_ICON_STATE)
+	playsound(src, 'sound/items/change_jaws.ogg', 50, TRUE)
+
+/obj/item/borg/cyborg_omnitool/medical
+	name = "surgical omni-toolset"
+	desc = "A set of surgical tools used by cyborgs to perform various surgical operations."
+
+/obj/item/borg/cyborg_omnitool/medical/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/butchering, 80 * toolspeed, 100, 0)
+
+	radial_menu_options = list(
+		TOOL_SCALPEL = image(icon = 'icons/obj/surgery.dmi', icon_state = "[TOOL_SCALPEL]"),
+		TOOL_HEMOSTAT = image(icon = 'icons/obj/surgery.dmi', icon_state = "[TOOL_HEMOSTAT]"),
+		TOOL_RETRACTOR = image(icon = 'icons/obj/surgery.dmi', icon_state = "[TOOL_RETRACTOR]"),
+		TOOL_SAW = image(icon = 'icons/obj/surgery.dmi', icon_state = "[TOOL_SAW]"),
+		TOOL_DRILL = image(icon = 'icons/obj/surgery.dmi', icon_state = "[TOOL_DRILL]"),
+		TOOL_CAUTERY = image(icon = 'icons/obj/surgery.dmi', icon_state = "[TOOL_CAUTERY]"),
+		TOOL_BONESET = image(icon = 'icons/obj/surgery.dmi', icon_state = "[TOOL_BONESET]")
+	)
+
+/obj/item/borg/cyborg_omnitool/medical/reference_item_for_parameters()
+	var/datum/component/butchering/butchering = src.GetComponent(/datum/component/butchering)
+	butchering.butchering_enabled = (tool_behaviour == TOOL_SCALPEL || tool_behaviour == TOOL_SAW)
+	can_initiate_surgery = TRUE // Given that all of listed items here can initiate surgery by themselves, it makes sense to do the same here.
+	item_flags = SURGICAL_TOOL
+	switch(tool_behaviour)
+		if(TOOL_SCALPEL)
+			reference = /obj/item/scalpel
+		if(TOOL_DRILL)
+			reference = /obj/item/surgicaldrill
+		if(TOOL_HEMOSTAT)
+			reference = /obj/item/hemostat
+		if(TOOL_RETRACTOR)
+			reference = /obj/item/retractor
+		if(TOOL_CAUTERY)
+			reference = /obj/item/cautery
+		if(TOOL_SAW)
+			reference = /obj/item/circular_saw
+		if(TOOL_BONESET)
+			reference = /obj/item/bonesetter
+
+#undef NO_TOOL

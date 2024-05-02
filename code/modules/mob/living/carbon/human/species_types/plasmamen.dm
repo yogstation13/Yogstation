@@ -3,9 +3,9 @@
 	plural_form = "Plasmamen"
 	id = "plasmaman"
 	say_mod = "rattles"
-	sexes = FALSE
+	possible_genders = list(PLURAL)
 	meat = /obj/item/stack/sheet/mineral/plasma
-	species_traits = list(NOBLOOD,NOTRANSSTING, HAS_BONE, AGENDER, NOHUSK)
+	species_traits = list(NOBLOOD,NOTRANSSTING, HAS_BONE, NOHUSK)
 	// plasmemes get hard to wound since they only need a severe bone wound to dismember, but unlike skellies, they can't pop their bones back into place.
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_NOHUNGER,TRAIT_CALCIUM_HEALER,TRAIT_ALWAYS_CLEAN,TRAIT_HARDLY_WOUNDED)
 	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
@@ -15,6 +15,7 @@
 	mutanttongue = /obj/item/organ/tongue/bone/plasmaman
 	mutantliver = /obj/item/organ/liver/plasmaman
 	mutantstomach = /obj/item/organ/stomach/plasmaman
+	barefoot_step_sound = FOOTSTEP_MOB_CLAW
 	brutemod = 1.3 //Rattle me bones, but less because plasma bones are very hard
 	burnmod = 0.9 //Plasma is a surprisingly good insulator if not around oxygen
 	heatmod = 1.5 //Don't let the plasma actually heat up though
@@ -71,6 +72,8 @@
 	. = ..()
 
 /datum/species/plasmaman/before_equip_job(datum/job/J, mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(!J)
+		return
 	var/current_job = J.title
 	var/datum/outfit/plasmaman/O = new /datum/outfit/plasmaman
 	switch(current_job)
@@ -198,6 +201,9 @@
 		randname += " [lastname]"
 
 	return randname
+
+/datum/species/plasmaman/get_butt_sprite()
+	return BUTT_SPRITE_PLASMA
 
 /datum/species/plasmaman/get_species_description()
 	return "Reanimated skeletons of those who died in plasma fires, plasmamen are the first alien sapient beings to be \

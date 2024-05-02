@@ -12,7 +12,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	stat = DEAD
 	density = FALSE
 	see_invisible = SEE_INVISIBLE_OBSERVER
-	lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
 	invisibility = INVISIBILITY_OBSERVER
 	hud_type = /datum/hud/ghost
 	movement_type = GROUND | FLYING
@@ -20,6 +19,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	light_range = 1
 	light_power = 2
 	light_on = FALSE
+	lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
+	pass_flags = PASSFLOOR
 	var/can_reenter_corpse
 	var/bootime = 0
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
@@ -465,6 +466,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if (!istype(target) || (is_secret_level(target.z) && !client?.holder))
 		return
 
+	//shitcode override so that if you try to follow the AI, you'll get redirected to the AI eye where they're actually looking
+	if(isAI(target))
+		var/mob/living/silicon/ai/ai_target = target
+		if(ai_target.eyeobj)
+			target = ai_target.eyeobj
+	
 	var/icon/I = icon(target.icon,target.icon_state,target.dir)
 
 	var/orbitsize = (I.Width()+I.Height())*0.5
@@ -559,12 +566,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/verb/toggle_darkness()
 	set name = "Toggle Darkness"
 	set category = "Ghost"
+
 	switch(lighting_cutoff)
 		if (LIGHTING_CUTOFF_VISIBLE)
 			lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
 		if (LIGHTING_CUTOFF_MEDIUM)
-			lighting_cutoff = LIGHTING_CUTOFF_HIGH
-		if (LIGHTING_CUTOFF_HIGH)
+			lighting_cutoff = 50
+		if (50)
 			lighting_cutoff = LIGHTING_CUTOFF_FULLBRIGHT
 		else
 			lighting_cutoff = LIGHTING_CUTOFF_VISIBLE
@@ -576,9 +584,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		ghost_others = client.prefs.read_preference(/datum/preference/choiced/ghost_others) //A quick update just in case this setting was changed right before calling the proc
 
 	if (!ghostvision)
-		see_invisible = SEE_INVISIBLE_LIVING
+		set_invis_see(SEE_INVISIBLE_LIVING)
 	else
-		see_invisible = SEE_INVISIBLE_OBSERVER
+		set_invis_see(SEE_INVISIBLE_OBSERVER)
 
 
 	updateghostimages()

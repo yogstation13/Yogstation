@@ -92,7 +92,7 @@
 	else if(drowning)
 		stop_drowning(L)
 		drowning = FALSE
-	L.adjust_wet_stacks(3)
+	L.adjust_wet_stacks(3 * L.get_permeability(null, TRUE))
 
 /datum/component/swimming/proc/is_drowning(mob/living/victim)
 	var/obj/item/pool/helditem = victim.get_active_held_item()

@@ -51,11 +51,11 @@
 	var/brute_block = D.run_armor_check(affecting, MELEE, 0)
 	var/burn_block = D.run_armor_check(affecting, BOMB, 0)
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
-	playsound(get_turf(D), get_sfx("explosion"), 50, TRUE, -1)
+	playsound(get_turf(D), get_sfx(SFX_EXPLOSION), 50, TRUE, -1)
 	
 	if(isopenturf(get_turf(D)))
 		var/turf/open/flashy = get_turf(D)
-		flashy.IgniteTurf(rand(5, 10)) //for the flashy
+		flashy.ignite_turf(rand(5, 10)) //for the flashy
 
 	D.ignite_mob()
 	D.apply_damage(A.get_punchdamagehigh() + 3, BRUTE, selected_zone, brute_block) 	//10 brute
@@ -123,7 +123,7 @@
 	var/armor_block = D.run_armor_check(affecting, BOMB, 0)
 	D.apply_damage(A.get_punchdamagehigh() * 2 + 4, BURN, selected_zone, armor_block)	//18 burn (vs bomb armor)
 	D.Knockdown((A.get_punchdamagehigh() * 4/10 + 0.2) SECONDS)	//3 seconds (baseline (7*4)/10 + 0.2 seconds)
-	playsound(D, get_sfx("explosion"), 50, TRUE, -1)
+	playsound(D, get_sfx(SFX_EXPLOSION), 50, TRUE, -1)
 	A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
 	log_combat(A, D, "blasts(Explosive Fist)")
 	D.visible_message(span_danger("[A] blasts [D]!"), \
@@ -145,7 +145,7 @@
 	var/brute_block = D.run_armor_check(affecting, MELEE, 0)
 	var/burn_block = D.run_armor_check(affecting, BOMB, 0)
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
-	playsound(D, get_sfx("explosion"), 50, TRUE, -1)
+	playsound(D, get_sfx(SFX_EXPLOSION), 50, TRUE, -1)
 	D.apply_damage(A.get_punchdamagehigh() + 5, BRUTE, selected_zone, brute_block) 	//12 brute
 	D.apply_damage(A.get_punchdamagehigh() + 5, BURN, selected_zone, burn_block) 	//12 burn (vs bomb armor)
 	D.adjust_fire_stacks(2)
@@ -180,7 +180,7 @@
 				span_userdanger("[A] detonates you!"))
 	explosion(get_turf(D), -1, 0, 2, flame_range = 3)
 	D.ignite_mob()
-	playsound(D, get_sfx("explosion"), 50, TRUE, -1)
+	playsound(D, get_sfx(SFX_EXPLOSION), 50, TRUE, -1)
 	
 	var/obj/item/bodypart/affecting = D.get_bodypart(BODY_ZONE_CHEST)
 	var/armor_block = D.run_armor_check(affecting, BOMB)
@@ -344,7 +344,7 @@
 	D.visible_message(span_danger("[A] primes [D]!"), \
 				span_userdanger("[A] primes you!"))
 	log_combat(A, D, "primes(Explosive Fist)")	
-	playsound(get_turf(D), get_sfx("explosion"), 50, TRUE, -1)
+	playsound(get_turf(D), get_sfx(SFX_EXPLOSION), 50, TRUE, -1)
 
 /datum/martial_art/explosive_fist/proc/immolate(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
@@ -360,7 +360,7 @@
 			target.adjustFireLoss(30)
 			target.ignite_mob() 	
 		for(var/turf/open/flashy in view_or_range(2, A, "range"))
-			flashy.IgniteTurf(15)
+			flashy.ignite_turf(15)
 
 		var/obj/item/bodypart/hed = D.get_bodypart(BODY_ZONE_HEAD)
 		var/armor_block = D.run_armor_check(hed, BOMB)

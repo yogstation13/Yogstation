@@ -23,7 +23,7 @@
 	UnregisterSignal(parent, COMSIG_TRY_STORAGE_HIDE_ALL)
 	UnregisterSignal(parent, COMSIG_TRY_STORAGE_RETURN_INVENTORY)
 
-	UnregisterSignal(parent, COMSIG_PARENT_ATTACKBY)
+	UnregisterSignal(parent, COMSIG_ATOM_ATTACKBY)
 
 	UnregisterSignal(parent, COMSIG_ATOM_ATTACK_HAND)
 	UnregisterSignal(parent, COMSIG_ATOM_ATTACK_PAW)

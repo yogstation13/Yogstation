@@ -27,7 +27,7 @@
 	if(issilicon(L))
 		L.apply_damage(borgdam, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 
-/datum/martial_art/reverberating_palm/proc/crash(atom/movable/ram, var/turf/Q)
+/datum/martial_art/reverberating_palm/proc/crash(atom/movable/ram, turf/Q)
 	if(Q.density || (!(Q.reachableTurftestdensity(T = Q))))
 		if(isliving(ram))
 			var/mob/living/target = ram
@@ -66,6 +66,8 @@
 
 /datum/martial_art/reverberating_palm/can_use(mob/living/carbon/human/H)
 	var/obj/item/bodypart/r_arm/robot/seismic/R = H.get_bodypart(BODY_ZONE_R_ARM)
+	if(!isturf(H.loc))
+		return FALSE
 	if(R)
 		if(!istype(R, /obj/item/bodypart/r_arm/robot/seismic))
 			return FALSE
@@ -86,7 +88,7 @@
 		return
 	if(H.a_intent == INTENT_DISARM)
 		rush(H)
-	if(H.a_intent == INTENT_HARM && isliving(target))
+	if(H.a_intent == INTENT_HARM && isliving(target) && (get_dist(H, target) <= 1))
 		suplex(H,target)
 	if(H.a_intent == INTENT_GRAB)
 		lariat(H)
@@ -137,7 +139,6 @@
 	COOLDOWN_START(src, next_suplex, COOLDOWN_SUPLEX)
 	footsies(target)
 	var/turf/Q = get_step(get_turf(user), turn(user.dir,180))
-	user.visible_message(span_warning("[user] outstretches [user.p_their()] arm and goes for a grab!"))
 	wakeup(target)
 	for(var/mob/living/L in Q.contents)
 		damagefilter(user, L, simpledam, persondam, borgdam)
@@ -145,6 +146,16 @@
 		target.forceMove(Z)
 	damagefilter(user, target, simpledam, persondam, borgdam)
 	if(isanimal(target))
+		if(istype(target, /mob/living/simple_animal/hostile/megafauna/bubblegum))
+			var/mob/living/simple_animal/hostile/megafauna/bubblegum/B = target
+			var/turf/D = get_step(Q, turn(user.dir,180))
+			if(B.charging)
+				B.adjustBruteLoss(50)
+				B.forceMove(D)
+				B.visible_message(span_warning("[B] is caught and thrown behind [user]!"))
+				playsound(target, 'sound/effects/explosion1.ogg', 60, 1)
+				shake_camera(user, 1, 2)
+				return
 		if(target.stat == DEAD)
 			target.visible_message(span_warning("[target] crashes and explodes!"))
 			target.gib()

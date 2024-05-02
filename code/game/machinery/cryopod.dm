@@ -165,6 +165,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 
 /obj/machinery/cryopod/Initialize(mapload)
 	..()
+	open_machine()
 	GLOB.cryopods += src
 	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(update_security_level))
 	return INITIALIZE_HINT_LATELOAD //Gotta populate the cryopod computer GLOB first
@@ -308,6 +309,12 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 /obj/machinery/cryopod/proc/despawn_occupant()
 	var/mob/living/mob_occupant = occupant
 	if(mob_occupant.mind && mob_occupant.mind.assigned_role)
+		// Removes from team antag teams to avoid influencing gameplay
+		for(var/datum/antagonist/antag as anything in mob_occupant.mind.antag_datums)
+			if(antag && istype(antag))
+				var/datum/team/antag_team = antag.get_team()
+				if(antag_team)
+					antag_team.remove_member(mob_occupant.mind)
 		//Handle job slot/tater cleanup.
 		var/job = mob_occupant.mind.assigned_role
 		SSjob.FreeRole(job)
@@ -442,12 +449,6 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	log_admin(span_notice("[key_name(target)] entered a stasis pod."))
 	message_admins("[key_name_admin(target)] entered a stasis pod. (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 	add_fingerprint(target)
-
-/obj/machinery/cryopod/JoinPlayerHere(mob/M, buckle)
-	. = ..()
-	open_machine()
-	if(iscarbon(M))
-		apply_effects_to_mob(M)
 
 /obj/machinery/cryopod/proc/apply_effects_to_mob(mob/living/carbon/sleepyhead)
 	to_chat(sleepyhead, span_boldnotice("You begin to wake from cryosleep..."))

@@ -105,6 +105,8 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/atmos_init()
 	normalize_cardinal_directions()
 	findAllConnections()
+	//var/turf/T = loc			// hide if turf is not intact
+	//hide(T.underfloor_accessibility < UNDERFLOOR_VISIBLE)
 
 /obj/machinery/atmospherics/pipe/layer_manifold/set_piping_layer()
 	piping_layer = PIPING_LAYER_DEFAULT

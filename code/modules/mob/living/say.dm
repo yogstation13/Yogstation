@@ -147,7 +147,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	if(!language)
 		language = get_selected_language()
 
-	if(!can_speak_vocal(message))
+	if(!(can_speak_vocal(message) || (saymode && saymode.bypass_mute))) //yogs change - mindlink is mental, not vocal
 		to_chat(src, span_warning("You find yourself unable to speak!"))
 		return
 
@@ -157,7 +157,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 
 	var/fullcrit = InFullCritical()
 	if((InCritical() && !fullcrit) || message_mods[WHISPER_MODE] == MODE_WHISPER)
-		if(fullcrit)
+		if(fullcrit && !forced)
 			var/alertresult = alert(src, "You will be immediately killed by this action. Proceed?",,"Accept", "Decline")
 			if(alertresult == "Decline" || QDELETED(src))
 				return FALSE

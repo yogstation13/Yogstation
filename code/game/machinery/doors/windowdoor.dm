@@ -61,7 +61,7 @@
 /obj/machinery/door/window/Destroy()
 	density = FALSE
 	QDEL_LIST(debris)
-	if(obj_integrity == 0)
+	if(atom_integrity == 0)
 		playsound(src, "shatter", 70, 1)
 	electronics = null
 	return ..()
@@ -457,7 +457,7 @@
 
 /obj/machinery/door/window/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		obj_integrity = max_integrity
+		update_integrity(max_integrity)
 
 /obj/machinery/door/window/clockwork/hasPower()
 	return TRUE //yup that's power all right

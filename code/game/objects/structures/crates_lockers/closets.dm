@@ -316,19 +316,22 @@ GLOBAL_LIST_EMPTY(lockers)
 		new material_drop(loc, material_drop_amount)
 	qdel(src)
 
-/obj/structure/closet/obj_break(damage_flag)
+/obj/structure/closet/atom_break(damage_flag)
+	. = ..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		bust_open()
 
 /obj/structure/closet/attackby(obj/item/attacking_item, mob/user, params)
 	if(user in src)
 		return
-	if(user.a_intent == INTENT_HARM)
+	if(user.a_intent == INTENT_HARM) //if you're on harm intent, just hit it
 		return ..()
-	if(attacking_item.GetID())
+	if(attacking_item.GetID()) //if you're hitting with an id item, toggle the lock
 		togglelock(user)
 		return TRUE
-	if(user.transferItemToLoc(attacking_item, drop_location()))
+	if(!opened) //if it's closed, just hit it
+		return ..()
+	if(user.transferItemToLoc(attacking_item, drop_location())) //try to transfer the held item to it
 		return TRUE
 
 /obj/structure/closet/welder_act(mob/living/user, obj/item/tool)
@@ -674,9 +677,15 @@ GLOBAL_LIST_EMPTY(lockers)
 	return ..()
 
 /obj/structure/closet/CanAStarPass(ID, dir, caller)
-	if(can_open(caller) || allowed(caller))
-		return TRUE
+	//The parent function just checks if it's not dense, and if a closet is open then it's not dense 
 	. = ..()
+	if(!.)
+		if(ismob(caller))
+			//i'm hilarious, but fr only mobs should be passed to allowed()
+			var/mob/mobchamp = caller
+			return can_open(mobchamp) && allowed(mobchamp)
+		else
+			return can_open(caller) && check_access(ID)
 	
 	/// Signal proc for [COMSIG_ATOM_MAGICALLY_UNLOCKED]. Unlock and open up when we get knock casted.
 /obj/structure/closet/proc/on_magic_unlock(datum/source, datum/action/cooldown/spell/aoe/knock/spell, mob/living/caster)

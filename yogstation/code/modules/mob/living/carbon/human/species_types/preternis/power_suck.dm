@@ -1,5 +1,5 @@
 
-/datum/species/preternis/proc/drain_power_from(mob/living/carbon/human/H, atom/A)
+/datum/species/proc/drain_power_from(mob/living/carbon/human/H, atom/A)
 	if(!istype(H) || !A)
 		return
 

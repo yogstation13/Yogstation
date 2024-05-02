@@ -600,13 +600,17 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch
 
 //Icemoon Syndicate. Players become research agents working under a Syndicate research station.
-/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate //generic version
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate //generic version - shouldnt be spawned
 	name = "Syndicate Outpost Agent"
+	desc = "A reinforced, Syndicate-made cryogenic sleeper used to store their agents for long periods of time, with hundreds of layers of redundancy."
 	short_desc = "You are an agent at the Syndicate icemoon outpost."
 	flavour_text = "You are meant to work within the outpost and may take any role within the base you see fit."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base
 	assignedrole = "Icemoon Syndicate"
+
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/special(mob/living/new_spawn) //oops!
+	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
 
 /datum/outfit/syndicate_empty/icemoon_base
 	name = "Generic Syndicate Icemoon Outpost Agent"
@@ -617,11 +621,12 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	mask = /obj/item/clothing/mask/gas/syndicate
 	id = /obj/item/card/id/syndicate/anyone
 	back = /obj/item/storage/backpack
+	implants = list(/obj/item/implant/weapons_auth, /obj/item/implant/teleporter/syndicate_icemoon) //stay in the FUCKING BASE you LITTLE SHIT
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/security
 	name = "Syndicate Outpost Security Officer"
 	short_desc = "You are a security officer at the Syndicate icemoon outpost."
-	flavour_text = "Protect the outpost at all costs and prevent its destruction by any means necessary."
+	flavour_text = "Protect the outpost at all costs and prevent its destruction by any means necessary. Repel intruders with your submachinegun."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/security
 
@@ -637,7 +642,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/sci
 	name = "Syndicate Outpost Researcher"
 	short_desc = "You are a researcher at the Syndicate icemoon outpost."
-	flavour_text = "Perform research for the sake of the Syndicate and advance technology."
+	flavour_text = "Perform research for the sake of the Syndicate and advance technology. Do xenobiological or chemical research."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/scientist
 
@@ -652,17 +657,17 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/engineer
 	name = "Syndicate Outpost Engineer"
 	short_desc = "You are an engineer at the Syndicate icemoon outpost."
-	flavour_text = "Maintain and upgrade the base's systems and equipment."
+	flavour_text = "Maintain and upgrade the base's systems and equipment. Operate the nuclear reactor and absolutely do not let it melt down."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/engineer
 
 /datum/outfit/syndicate_empty/icemoon_base/engineer
 	name = "Syndicate Icemoon Outpost Engineer"
-	belt = /obj/item/storage/belt/utility/chief/full //mainly based off the fact that the syndie station ruin that's TM'd at the time of the ruin gives its engis this
+	belt = /obj/item/storage/belt/utility/chief/full //gamer tools
 	suit = /obj/item/clothing/suit/hazardvest
 	head = /obj/item/clothing/head/hardhat
 	accessory = /obj/item/clothing/accessory/armband/engine
-	glasses = /obj/item/clothing/glasses/meson/sunglasses/ce
+	glasses = /obj/item/clothing/glasses/meson/sunglasses/ce //why not
 	back = /obj/item/storage/backpack
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/medic
@@ -682,6 +687,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/commander
 	name = "Syndicate Outpost Commander"
+	desc = "A Syndicate-made high-security cryogenic sleeper for senior officers. Looks fancy, and has even more layers of redundancy."
 	short_desc = "You are the commander of the Syndicate icemoon outpost."
 	flavour_text = "Direct the agents working under your command to operate the base, and keep it secure. If the situation gets dire, activate the emergency self-destruct located in the control room."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
@@ -698,7 +704,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	mask = /obj/item/clothing/mask/chameleon/gps //best one to give a GPS is this guy because he has a fast-firing 2-shot kill to defend his home with
 	head = /obj/item/clothing/head/HoS/beret/syndicate
 	back = /obj/item/storage/backpack/satchel/leather //LUXURY AT ITS FINEST
-	suit_store = /obj/item/gun/ballistic/revolver
+	suit_store = /obj/item/gun/ballistic/revolver/ultrasecure //No
 	belt = /obj/item/storage/belt/sabre //ceremonial shamnk
 	backpack_contents = list(
 		/obj/item/modular_computer/tablet/preset/syndicate=1,
@@ -730,7 +736,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	r_pocket = /obj/item/flashlight/glowstick
 
 //Ancient cryogenic sleepers. Players become NT crewmen from a hundred year old space station, now on the verge of collapse.
-/obj/effect/mob_spawn/human/oldsec
+/obj/effect/mob_spawn/human/oldstation
 	name = "old cryogenics pod"
 	desc = "A humming cryo pod. You can barely recognise a security uniform underneath the built up ice. The machine is attempting to wake up its occupant."
 	mob_name = "a security officer"
@@ -752,20 +758,13 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	l_pocket = /obj/item/assembly/flash/handheld
 	assignedrole = "Ancient Crew"
 
-/obj/effect/mob_spawn/human/oldsec/Destroy()
+/obj/effect/mob_spawn/human/oldstation/Destroy()
 	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
 	return ..()
 
-/obj/effect/mob_spawn/human/oldeng
-	name = "old cryogenics pod"
+/obj/effect/mob_spawn/human/oldstation/eng
 	desc = "A humming cryo pod. You can barely recognise an engineering uniform underneath the built up ice. The machine is attempting to wake up its occupant."
 	mob_name = "an engineer"
-	icon = 'icons/obj/machines/sleeper.dmi'
-	icon_state = "sleeper"
-	roundstart = FALSE
-	death = FALSE
-	random = TRUE
-	mob_species = /datum/species/human
 	short_desc = "You are an engineer working for Nanotrasen, stationed onboard a state of the art research station."
 	flavour_text = "You vaguely recall rushing into a cryogenics pod due to an oncoming radiation storm. The last thing \
 	you remember is the station's Artificial Program telling you that you would only be asleep for eight hours. As you open \
@@ -776,22 +775,12 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	id = /obj/item/card/id/away/old/eng
 	gloves = /obj/item/clothing/gloves/color/fyellow/old
 	l_pocket = /obj/item/tank/internals/emergency_oxygen
+	r_pocket = null
 	assignedrole = "Ancient Crew"
 
-/obj/effect/mob_spawn/human/oldeng/Destroy()
-	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
-	return ..()
-
-/obj/effect/mob_spawn/human/oldsci
-	name = "old cryogenics pod"
+/obj/effect/mob_spawn/human/oldstation/science
 	desc = "A humming cryo pod. You can barely recognise a science uniform underneath the built up ice. The machine is attempting to wake up its occupant."
 	mob_name = "a scientist"
-	icon = 'icons/obj/machines/sleeper.dmi'
-	icon_state = "sleeper"
-	roundstart = FALSE
-	death = FALSE
-	random = TRUE
-	mob_species = /datum/species/human
 	short_desc = "You are a scientist working for Nanotrasen, stationed onboard a state of the art research station."
 	flavour_text = "You vaguely recall rushing into a cryogenics pod due to an oncoming radiation storm. \
 	The last thing you remember is the station's Artificial Program telling you that you would only be asleep for eight hours. As you open \
@@ -801,11 +790,8 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	shoes = /obj/item/clothing/shoes/laceup
 	id = /obj/item/card/id/away/old/sci
 	l_pocket = /obj/item/stack/medical/bruise_pack
+	r_pocket = null
 	assignedrole = "Ancient Crew"
-
-/obj/effect/mob_spawn/human/oldsci/Destroy()
-	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
-	return ..()
 
 /obj/effect/mob_spawn/human/pirate
 	name = "space pirate sleeper"
@@ -908,7 +894,9 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	id = /obj/item/card/id/syndicate
 	l_pocket = /obj/item/flashlight
 	r_pocket = /obj/item/kitchen/knife/combat/survival
-	implants = list(/obj/item/implant/weapons_auth)
+	implants = list(
+		/obj/item/implant/weapons_auth,
+		/obj/item/implant/teleporter/syndicate_engineer)
 	box = /obj/item/storage/box/survival/syndie
 
 /datum/outfit/syndicate_derelict_engi/post_equip(mob/living/carbon/human/H)

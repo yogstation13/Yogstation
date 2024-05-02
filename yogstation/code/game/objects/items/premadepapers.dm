@@ -516,45 +516,6 @@
 	written += new/datum/langtext("Step 3: While holding a forensic scanner in your off-hand, perform the autopsy using the scalpel again.<br>",/datum/language/common)
 	update_appearance(UPDATE_ICON)
 
-//academy ruin papers
-
-/**
-  *
-  * 
-  * Papers that add flavor to the Wizard Academy
-  *
-  * These are flavor papers for spicing up the Wizard Academy Ruin
-  *
-  */
-/obj/item/paper/yog/ruins/academy
-	name = "Debug Paper"
-	desc = "Official Wizard Academy Mail"
-
-//in regards to trey being a lizard
-
-/**
-  *
-  * 
-  * A demonstration paper. See [Wizard Academy Ruins Papers.][/obj/item/paper/yog/ruins/academy]
-  *
-  * I wrote this paper as a way to try and add some more flavor to the wizard academy. See PR # 9229.
-  *
-  */
-/obj/item/paper/yog/ruins/academy/trey_wizard_lizard
-	name = "RE: Trey of the Shattered Voice"
-
-/obj/item/paper/yog/ruins/academy/trey_wizard_lizard/Initialize(mapload)
-	. = ..()
-	written = list()
-	written += new/datum/langtext("<center><h3>Wizard Academy Official Mail</h3></center><hr>",/datum/language/common)
-	written += new/datum/langtext("<b>From: Archmage Daniel the Great</b><br>",/datum/language/common)
-	written += new/datum/langtext("<b>To: Recruiter Billy the Lame</b><hr>",/datum/language/common)
-	written += new/datum/langtext("Bill, where the heck did you find this guy? Are you sure he's wizard material..? He st--te-s a-lot. He's a -tink-ng l-zard--<br>",/datum/language/common)
-	written += new/datum/langtext("<i><b>The rest of the paper is charred...</i></b>",/datum/language/common)
-	update_appearance(UPDATE_ICON)
-
-
-
 //clipboards
 
 /**

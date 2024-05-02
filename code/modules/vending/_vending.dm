@@ -303,7 +303,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	if(light_mask && !(stat & BROKEN) && powered())
 		. += emissive_appearance(icon, light_mask, src)
 
-/obj/machinery/vending/obj_break(damage_flag)
+/obj/machinery/vending/atom_break(damage_flag)
 	. = ..()
 	if(!.)
 		return
@@ -447,7 +447,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		default_deconstruction_screwdriver(user, icon_state, icon_state, I)
 		cut_overlays()
 		if(panel_open)
-			add_overlay("[initial(icon_state)]-panel")
+			update_appearance(UPDATE_ICON)
 		updateUsrDialog()
 	else
 		to_chat(user, span_warning("You must first secure [src]."))

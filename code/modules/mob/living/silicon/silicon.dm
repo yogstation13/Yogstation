@@ -15,9 +15,6 @@
 	speech_span = SPAN_ROBOT
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1 | HEAR_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 
-	/// Set during initialization. If initially a list, then the resulting armor will gain the listed armor values.
-	var/datum/armor/armor
-
 	var/datum/ai_laws/laws = null//Now... THEY ALL CAN ALL HAVE LAWS
 	var/last_lawchange_announce = 0
 	var/list/alarms_to_show = list()
@@ -60,12 +57,6 @@
 	diag_hud_set_status()
 	diag_hud_set_health()
 	ADD_TRAIT(src, TRAIT_FORCED_STANDING, "cyborg") // not CYBORG_ITEM_TRAIT because not an item
-	if (islist(armor))
-		armor = getArmor(arglist(armor))
-	else if (!armor)
-		armor = getArmor()
-	else if (!istype(armor, /datum/armor))
-		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize(mapload)")
 
 /mob/living/silicon/med_hud_set_health()
 	return //we use a different hud
@@ -329,6 +320,9 @@
 
 /mob/living/silicon/handle_high_gravity(gravity)
 	return
+
+/mob/living/silicon/get_butt_sprite()
+	return BUTT_SPRITE_QR_CODE
 
 /mob/living/silicon/get_status_tab_items()
 	.=..()

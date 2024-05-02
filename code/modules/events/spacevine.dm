@@ -14,7 +14,7 @@
 	var/obj/structure/spacevine/SV = new()
 
 	for(var/area/maintenance/A in GLOB.areas)
-		for(var/turf/F as anything in A.get_contained_turfs())
+		for(var/turf/F in A.get_turfs_from_all_zlevels())
 			if(F.Enter(SV))
 				turfs += F
 
@@ -242,7 +242,7 @@
 	if(holder.energy)
 		holder.density = TRUE
 	holder.max_integrity = 100
-	holder.obj_integrity = holder.max_integrity
+	holder.update_integrity(holder.max_integrity)
 
 /datum/spacevine_mutation/woodening/on_hit(obj/structure/spacevine/holder, mob/living/hitter, obj/item/I, expected_damage)
 	if(I.is_sharp())
@@ -288,6 +288,10 @@
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
+	RegisterSignal(src, COMSIG_ATOM_CLEAVE_ATTACK, PROC_REF(on_cleave_attack))
+
+/obj/structure/spacevine/proc/on_cleave_attack()
+	return ATOM_ALLOW_CLEAVE_ATTACK // vines don't have density but should still be cleavable
 
 /obj/structure/spacevine/examine(mob/user)
 	. = ..()

@@ -21,6 +21,7 @@
 /obj/item/melee/baseball_bat/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
+	AddComponent(/datum/component/cleave_attack, arc_size=90, requires_wielded=TRUE, no_multi_hit=TRUE)
 
 /obj/item/melee/baseball_bat/homerun
 	name = "home run bat"

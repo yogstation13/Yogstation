@@ -11,7 +11,7 @@
 	icon = 'icons/mob/alien.dmi'
 	max_integrity = 100
 
-/obj/structure/alien/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
+/obj/structure/alien/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
 	if(damage_flag == MELEE)
 		switch(damage_type)
 			if(BRUTE)
@@ -115,7 +115,7 @@
 	desc = "A thick resin surface covers the floor."
 	anchored = TRUE
 	density = FALSE
-	layer = TURF_LAYER
+	layer = CULT_OVERLAY_LAYER
 	plane = FLOOR_PLANE
 	icon_state = "weeds"
 	max_integrity = 15
@@ -256,7 +256,7 @@
 		addtimer(CALLBACK(src, PROC_REF(Grow)), rand(MIN_GROWTH_TIME, MAX_GROWTH_TIME))
 	proximity_monitor = new(src, status == GROWN ? 1 : 0)
 	if(status == BURST)
-		obj_integrity = integrity_failure
+		update_integrity(integrity_failure)
 
 /obj/structure/alien/egg/update_icon_state()
 	. = ..()
@@ -324,7 +324,8 @@
 						child.Leap(M)
 						break
 
-/obj/structure/alien/egg/obj_break(damage_flag)
+/obj/structure/alien/egg/atom_break(damage_flag)
+	. = ..()
 	if(!(flags_1 & NODECONSTRUCT_1))
 		if(status != BURST)
 			Burst(kill=TRUE)

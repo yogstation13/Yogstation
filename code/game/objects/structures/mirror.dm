@@ -23,7 +23,7 @@
 /obj/structure/mirror/Initialize(mapload)
 	. = ..()
 	if(icon_state == "mirror_broke" && !broken)
-		obj_break(null, mapload)
+		atom_break(null, mapload)
 
 /obj/structure/mirror/proc/get_choices(mob/living/carbon/human/H)
 	. = list()
@@ -78,6 +78,10 @@
 	if(broken || !Adjacent(user))
 		return
 
+	if(is_synth(user))
+		to_chat(user, span_warning("You may not change your appearance."))
+		return
+
 	if(user && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/choices = get_choices(H) // Get the choices you can change
@@ -94,12 +98,8 @@
 			return
 		. = apply_choices(selection, newstyle, H) // Now apply the style
 
-/obj/structure/mirror/examine_status(mob/user)
-	if(broken)
-		return list()// no message spam
-	return ..()
-
-/obj/structure/mirror/obj_break(damage_flag, mapload)
+/obj/structure/mirror/atom_break(damage_flag, mapload)
+	. = ..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		icon_state = "mirror_broke"
 		if(!mapload)
@@ -180,8 +180,8 @@
 	. += list(RACE = list("select a new race", choosable_races))
 	. += list(GENDER = list("Select a new gender", list()))
 	var/datum/species/S = H.dna.species
-	if(!(AGENDER in S.species_traits) || !(FGENDER in S.species_traits) || !(MGENDER in S.species_traits))
-		.[GENDER][2] = list(MALE, FEMALE)
+	if(S.possible_genders.len > 1)
+		.[GENDER][2] = S.possible_genders
 	if(!(NOEYESPRITES in S.species_traits))
 		. += list(EYE_COLOR)
 	if(S.use_skintones)
@@ -249,12 +249,8 @@
 		if(RACE)
 			var/newrace = GLOB.species_list[selection]
 			H.set_species(newrace, icon_update=0)
-			if(FGENDER in S.species_traits)
-				H.gender = FEMALE
-			if(MGENDER in S.species_traits)
-				H.gender = MALE
-			if(AGENDER in S.species_traits)
-				H.gender = PLURAL
+			if(S.possible_genders.len < 2)
+				H.gender = S.possible_genders[1]
 			return TRUE
 		if(SKIN_COLOR)
 			H.skin_tone = selection

@@ -147,6 +147,10 @@
 	menutab = MENU_WEAPON
 	additional_desc = "An exceptionally large sword, capable of occasionally deflecting blows."
 
+/obj/item/nullrod/claymore/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack)
+
 /obj/item/nullrod/claymore/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK)
 		final_block_chance = 0 //Don't bring a sword to a gunfight
@@ -304,6 +308,15 @@
 	menutab = MENU_WEAPON
 	additional_desc = "An exceptionally large sword, glows brightly from an unknown power within."
 
+/obj/item/nullrod/glowing/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
+
+/obj/item/nullrod/glowing/proc/on_light_eater(atom/source, datum/light_eater)
+	SIGNAL_HANDLER 
+	visible_message("The undying glow of \the [src] refuses to fade.")
+	return COMPONENT_BLOCK_LIGHT_EATER
+
 /obj/item/nullrod/Hypertool
 	name = "hypertool"
 	desc = "A tool so powerful even you cannot perfectly use it."
@@ -358,6 +371,10 @@
 	sharpness = SHARP_NONE
 	menutab = MENU_WEAPON
 	additional_desc = "The weapon of choice for a devout monk. Block incoming blows while striking weak points until your opponent is too exhausted to continue."
+
+/obj/item/nullrod/bostaff/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack, arc_size=180)
 
 /obj/item/nullrod/bostaff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK)
@@ -610,6 +627,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 30, 100, 0, hitsound)
+	AddComponent(/datum/component/cleave_attack)
 
 /obj/item/nullrod/armblade
 	name = "dark blessing"
@@ -633,6 +651,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 80, 70)
+	AddComponent(/datum/component/cleave_attack)
 
 /obj/item/nullrod/armblade/tentacle
 	name = "unholy blessing"
@@ -677,13 +696,14 @@
 
 
 /obj/item/nullrod/pitchfork
+	name = "unholy pitchfork"
+	desc = "Holding this makes you look absolutely devilish."
 	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "pitchfork0"
+	item_state = "pitchfork0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
-	name = "unholy pitchfork"
 	w_class = WEIGHT_CLASS_NORMAL
-	desc = "Holding this makes you look absolutely devilish."
 	attack_verb = list("poked", "impaled", "pierced", "jabbed")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_POINTY
@@ -851,8 +871,8 @@
 			var/mob/living/carbon/human/C = loc
 			C.regenerate_icons()
 
-/obj/item/nullrod/staff/worn_overlays(isinhands)
-	. = list()
+/obj/item/nullrod/staff/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
+	. = ..()
 	if(isinhands)
 		. += mutable_appearance('icons/effects/effects.dmi', shield_icon, MOB_LAYER + 0.01)
 
@@ -940,7 +960,7 @@
 			// Everyone else still takes damage but less real damage
 			// Average DPS is 5|15 or 10|10 if unholy (burn|stam)
 			// Should be incredibly difficult to metacheck with this due to RNG and fast processing
-			if(iscultist(L) || is_clockcult(L) || iswizard(L) || isvampire(L) || IS_BLOODSUCKER(L) || IS_VASSAL(L) || IS_HERETIC(L) || IS_HERETIC_MONSTER(L))
+			if(iscultist(L) || is_clockcult(L) || iswizard(L) || isvampire(L) || IS_BLOODSUCKER(L) || IS_VASSAL(L) || IS_HERETIC(L) || IS_HERETIC_MONSTER(L) || isshadowperson(L))
 				if(damage)
 					L.adjustFireLoss(rand(3,5) * 0.5) // 1.5-2.5 AVG 2.0
 				if(L.getStaminaLoss() < 65)
@@ -1033,13 +1053,16 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	var/possessed = FALSE
-	var/walking = FALSE //check to tell if they're flying around or not
 	var/mob/living/simple_animal/shade/soul //when they're just a blade (stored inside the blade at all times)
 	var/mob/living/simple_animal/nullrod/blade //when they're flying around (blade stored inside them (soul is inside that blade))
 	var/mob/living/owner //the person with the recall spell
 	var/datum/action/cooldown/spell/recall_nullrod/summon //the recall spell in question
 	menutab = MENU_MISC
 	additional_desc = "You feel an unwoken presence in this one."
+
+/obj/item/nullrod/talking/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack)
 
 /obj/item/nullrod/talking/relaymove(mob/user)
 	return //stops buckled message spam for the ghost.
@@ -1101,12 +1124,13 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 				visible_message("[src] smacks [owner] in the face as [owner.p_they()] try to catch it with [owner.p_their()] hands full!")
 	else if(possessed && soul)
 		transform = initial(transform)//to reset rotation for when it drops to the ground
-		blade = new /mob/living/simple_animal/nullrod(get_turf(src))
-		blade.sword = src
-		blade.fully_replace_character_name(null, soul.name)
+		if(!blade)
+			blade = new(get_turf(src))
+			blade.sword = src
+			blade.fully_replace_character_name(null, soul.name)
 		forceMove(blade)//just hide it in here for now
-		soul.mind.transfer_to(blade)
-		walking = TRUE
+		if(soul?.mind)
+			soul.mind.transfer_to(blade)
 	else
 		. = ..()
 
@@ -1132,18 +1156,22 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	return ..()
 
 /datum/action/cooldown/spell/recall_nullrod/cast(mob/living/carbon/user)
-	if(sword)
-		if(sword.walking)
-			sword.blade.throw_at(user, 20, 3) //remember, sword is the item, blade is the mob
-		else
-			if(ismob(sword.loc))
-				var/mob/holder = sword.loc //rip it out of the thief's hands first
-				if(holder != user)
-					to_chat(holder, "you feel [sword] ripped out of your hands by an unseen force.")
-					holder.dropItemToGround(sword)
-			sword.throw_at(user, 20, 3)
 	. = ..()
+	if(!sword)
+		return
 
+	if(sword.blade)
+		sword.blade.throw_at(user, 20, 3) //remember, sword is the item, blade is the mob
+		return
+
+	if(ismob(sword.loc))
+		var/mob/holder = sword.loc //rip it out of the thief's hands first
+		if(holder != user)
+			to_chat(holder, "you feel [sword] ripped out of your hands by an unseen force.")
+			holder.dropItemToGround(sword)
+	sword.throw_at(user, 20, 3)
+
+//the mob
 /mob/living/simple_animal/nullrod
 	name = "Shade"
 	real_name = "Shade"
@@ -1187,9 +1215,9 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 /mob/living/simple_animal/nullrod/death()
 	if(sword)
 		visible_message("[src] lowers to the ground as it's power wanes!")
-		mind.transfer_to(sword.soul)
+		if(mind)
+			mind.transfer_to(sword.soul)
 		sword.forceMove(get_turf(src))
-		sword.walking = FALSE
 	qdel(src)
 
 /mob/living/simple_animal/nullrod/canSuicide()
@@ -1199,8 +1227,8 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	if(!sword.owner || M != sword.owner)//let the chaplain pick it up in one hit
 		return ..()
 	sword.owner.put_in_active_hand(sword)
-	mind.transfer_to(sword.soul)
-	sword.walking = FALSE
+	if(mind)
+		mind.transfer_to(sword.soul)
 	visible_message("[sword.owner] grabs [src] by the hilt.")
 	qdel(src)
 
@@ -1210,8 +1238,8 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	var/mob/living/target = hit_atom
 	if(sword?.owner && target == sword.owner)
 		var/caught = sword.owner.put_in_hands(sword)
-		mind.transfer_to(sword.soul)
-		sword.walking = FALSE
+		if(mind)
+			mind.transfer_to(sword.soul)
 		qdel(src)
 		if(caught)
 			visible_message("[sword.owner] catches the flying blade out of the air!")
@@ -1292,7 +1320,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 		splash_charges--
 
 		playsound(src.loc, 'sound/effects/wounds/splatter.ogg', 50, 1, 3)
-		playsound(src.loc, get_sfx("collarbell"), 50, 1, 3)
+		playsound(src.loc, get_sfx(SFX_COLLARBELL), 50, 1, 3)
 
 		var/direction = get_dir(src,target)
 
@@ -1335,6 +1363,10 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	menutab = MENU_MISC //banish it from being associated with proper weapons
 	additional_desc = "Hey, God here. Asking you to pick literally anything else as your implement of justice."
+
+/obj/item/nullrod/sord/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack) // i guess???
 
 //NOT CHAPLAIN SPAWNABLE
 /obj/item/nullrod/talking/chainsword

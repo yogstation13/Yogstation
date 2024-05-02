@@ -230,6 +230,11 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	if(!can_unwrench(user))
 		return ..()
 
+	//var/turf/T = get_turf(src)
+	/*if (level==1 && isturf(T) && T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
+		to_chat(user, span_warning("You must remove the plating first!"))
+		return TRUE*/
+
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	add_fingerprint(user)
@@ -302,7 +307,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 			var/obj/item/pipe/stored = new construction_type(loc, null, dir, src)
 			stored.set_piping_layer(piping_layer)
 			if(!disassembled)
-				stored.obj_integrity = stored.max_integrity * 0.5
+				stored.update_integrity(stored.max_integrity * 0.5)
 			transfer_fingerprints_to(stored)
 	..()
 

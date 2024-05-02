@@ -4,8 +4,8 @@
 	report_type = "traitorchan"
 	false_report_weight = 10
 	traitors_possible = 3 //hard limit on traitors if scaling is turned off
-	restricted_jobs = list("AI", "Cyborg")
-	required_players = 20
+	restricted_jobs = list("AI", "Cyborg", "Synthetic")
+	required_players = 15
 	required_enemies = 1	// how many of each type are required
 	recommended_enemies = 3
 	reroll_friendly = 1
@@ -13,6 +13,7 @@
 	announce_text = "There are alien creatures on the station along with some syndicate operatives out for their own gain! Do not let the changelings or the traitors succeed!"
 	title_icon = "traitorchan"
 
+	num_modifier = -1 //less traitors to account for the changeling
 	var/list/possible_changelings = list()
 	var/list/changelings = list()
 	var/const/changeling_amount = 1 //hard limit on changelings if scaling is turned off

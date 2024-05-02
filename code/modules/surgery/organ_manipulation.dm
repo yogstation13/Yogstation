@@ -129,8 +129,10 @@
 		else
 			var/list/radial_menu = list()
 			for(var/obj/item/organ/O in organs)
+				
 				O.on_find(user)
-				radial_menu[O] = image(O)
+				if(O.can_extract())
+					radial_menu[O] = image(O)
 			I = show_radial_menu(user, target, radial_menu, tooltips = TRUE)
 			if(I && user && target && user.Adjacent(target) && user.get_active_held_item() == tool)
 				display_results(user, target, span_notice("You begin to extract [I] from [target]'s [parse_zone(target_zone)]..."),
@@ -168,6 +170,10 @@
 			H.leave_victim()
 			return FALSE
 		if(I && I.owner == target)
+			if(istype(I, /obj/item/organ/shadowtumor))//Thralls resist deconversion
+				var/obj/item/organ/shadowtumor/tumor = I
+				if(tumor.resist(target))
+					return FALSE
 			display_results(user, target, span_notice("You successfully extract [I] from [target]'s [parse_zone(target_zone)]."),
 				"[user] successfully extracts [I] from [target]'s [parse_zone(target_zone)]!",
 				"[user] successfully extracts something from [target]'s [parse_zone(target_zone)]!")
