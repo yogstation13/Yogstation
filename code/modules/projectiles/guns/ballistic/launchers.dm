@@ -163,10 +163,13 @@
 	internal_magazine = TRUE
 	empty_indicator = FALSE
 	can_bayonet = TRUE
+	knife_x_offset = 27
+	knife_y_offset = 13
 	can_suppress = FALSE
-	force = 10
+	force = 5
 	cartridge_wording = "cartridge"
 	fire_sound = 'sound/weapons/musketShot.ogg'
+	load_sound = 'sound/weapons/musketCock.ogg'
 	pin = /obj/item/firing_pin
 	var/reloading_active = FALSE
 
@@ -176,8 +179,11 @@
 
 /obj/item/gun/ballistic/maintMusket/attackby(obj/item/A, mob/user, params)
 	
-	if(istype(A, /obj/item/ammo_casing/caseless/cartridge))
-		if(reloading_active == TRUE)
+	if(istype(A, /obj/item/ammo_casing/caseless/cartridge) || istype(A, /obj/item/kitchen/knife))
+		if(istype(A, /obj/item/kitchen/knife)) //Attach bayonet
+			..()
+			return
+		else if(reloading_active == TRUE)
 			to_chat(user, span_warning("You're already reloading it!"))
 			return
 		to_chat(user, span_notice("You start reloading the [src]."))
@@ -189,7 +195,4 @@
 			return
 		..()
 		chamber_round()
-		playsound(get_turf(src), 'sound/weapons/musketCock.ogg', 30, TRUE, -1)
 		reloading_active = FALSE
-	else
-		user.balloon_alert(user, "Wrong ammo type!")
