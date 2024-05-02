@@ -39,10 +39,15 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/ammo_casing/caseless/cartridge
-	name = "cartridge"
-	desc = "A musket cartridge crafted by hand. This one uses welder fuel as its propellant."
-	caliber = null
-	icon = 'icons/obj/ammo.dmi'
+	name = "welding fuel cartridge"
+	desc = "A musket cartridge crafted by hand. This one uses welding fuel as its propellant."
+	caliber = CALIBER_MUSKET
 	icon_state = "cartridge"
 	projectile_type = /obj/projectile/bullet/cartridge
 	firing_effect_type = /obj/effect/particle_effect/fluid/smoke
+
+/obj/item/ammo_casing/caseless/cartridge/blackPowder
+	name = "black powder cartridge"
+	desc = "A musket cartridge crafted by hand. This one uses black powder as its propellant."
+	icon_state = "cartridgeBP"
+	projectile_type = /obj/projectile/bullet/cartridge/blackPowder

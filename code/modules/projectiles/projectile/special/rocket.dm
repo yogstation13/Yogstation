@@ -98,5 +98,9 @@
 	name = "cartridge"
 	desc = "A small metal ball fired from a musket."
 	damage = 25
-	armour_penetration = -40 //Cheap ammo means poor AP
+	armour_penetration = -30 //Cheap ammo means poor AP
 	spread = 40
+
+/obj/projectile/bullet/cartridge/blackPowder
+	damage = 30
+	spread = 20
