@@ -16,7 +16,7 @@
 <h1>crack in reality <aside>/<a href="obj.html">obj</a>/<a href="obj/effect/knock_portal.html">effect/knock_portal</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/559ddd07ae436534af4bbd880a2d20c2d799b0d4/code/game/objects/items/cards_ids.dm#L1124">
+            <a href="https://github.com/yogstation13/Yogstation/blob/028d1bac592928213d63bd6dabeda8a7f3c26000/code/game/objects/items/cards_ids.dm#L1124">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cards_ids.dm 1124"/></a></h1>
 
 <p>HERETIC ID SECTION (SORRY)</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
@@ -31,48 +31,48 @@
             <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/knock_portal.html">effect/knock_portal</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/559ddd07ae436534af4bbd880a2d20c2d799b0d4/code/game/objects/items/cards_ids.dm#L1138">
+            <a href="https://github.com/yogstation13/Yogstation/blob/028d1bac592928213d63bd6dabeda8a7f3c26000/code/game/objects/items/cards_ids.dm#L1138">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cards_ids.dm 1138"/></a></h3>
         <p>The knock portal we teleport to</p><h3 id="var/our_airlock"><aside class="declaration">var </aside>our_airlock
             <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/door.html">door</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/559ddd07ae436534af4bbd880a2d20c2d799b0d4/code/game/objects/items/cards_ids.dm#L1142">
+            <a href="https://github.com/yogstation13/Yogstation/blob/028d1bac592928213d63bd6dabeda8a7f3c26000/code/game/objects/items/cards_ids.dm#L1142">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cards_ids.dm 1142"/></a></h3>
         <p>The airlock we are linked to, we delete if it is destroyed</p><h2 id="proc">Proc Details</h2><h3 id="proc/async_opendoor"><aside class="declaration">proc </aside>async_opendoor<aside>(/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/door.html">door</a>/door) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/559ddd07ae436534af4bbd880a2d20c2d799b0d4/code/game/objects/items/cards_ids.dm#L1198">
+            <a href="https://github.com/yogstation13/Yogstation/blob/028d1bac592928213d63bd6dabeda8a7f3c26000/code/game/objects/items/cards_ids.dm#L1198">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cards_ids.dm 1198"/></a></aside>
         </h3>
         <p>Asynchronous proc to unbolt, then open the passed door</p><h3 id="proc/delete_on_door_delete"><aside class="declaration">proc </aside>delete_on_door_delete<aside>(/<a href="datum.html">datum</a>/source) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/559ddd07ae436534af4bbd880a2d20c2d799b0d4/code/game/objects/items/cards_ids.dm#L1154">
+            <a href="https://github.com/yogstation13/Yogstation/blob/028d1bac592928213d63bd6dabeda8a7f3c26000/code/game/objects/items/cards_ids.dm#L1154">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cards_ids.dm 1154"/></a></aside>
         </h3>
         <p>Deletes us and our destination portal if our_airlock is destroyed</p><h3 id="proc/find_random_airlock"><aside class="declaration">proc </aside>find_random_airlock<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/559ddd07ae436534af4bbd880a2d20c2d799b0d4/code/game/objects/items/cards_ids.dm#L1187">
+            <a href="https://github.com/yogstation13/Yogstation/blob/028d1bac592928213d63bd6dabeda8a7f3c26000/code/game/objects/items/cards_ids.dm#L1187">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cards_ids.dm 1187"/></a></aside>
         </h3>
         <p>Returns a random airlock on the same Z level as our portal, that isnt our airlock</p><h3 id="proc/on_entered"><aside class="declaration">proc </aside>on_entered<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/loser, /<a href="atom.html">atom</a>/old_loc) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/559ddd07ae436534af4bbd880a2d20c2d799b0d4/code/game/objects/items/cards_ids.dm#L1159">
+            <a href="https://github.com/yogstation13/Yogstation/blob/028d1bac592928213d63bd6dabeda8a7f3c26000/code/game/objects/items/cards_ids.dm#L1159">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cards_ids.dm 1159"/></a></aside>
         </h3>
         <p>Signal handler for when our location is entered, calls teleport on the victim, if their old_loc didnt contain a portal already (to prevent loops)</p><h3 id="proc/teleport"><aside class="declaration">proc </aside>teleport<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/teleportee) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/559ddd07ae436534af4bbd880a2d20c2d799b0d4/code/game/objects/items/cards_ids.dm#L1170">
+            <a href="https://github.com/yogstation13/Yogstation/blob/028d1bac592928213d63bd6dabeda8a7f3c26000/code/game/objects/items/cards_ids.dm#L1170">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cards_ids.dm 1170"/></a></aside>
         </h3>
         <p>Teleports the teleportee, to a random airlock if the teleportee isnt a heretic, or the other portal if they are one</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/559ddd07ae436534af4bbd880a2d20c2d799b0d4">559ddd0</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/028d1bac592928213d63bd6dabeda8a7f3c26000">028d1ba</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
