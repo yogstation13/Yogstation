@@ -1,7 +1,7 @@
 /obj/item/raisedhands
 	name = "raised hands"
 	desc = "What are you, French?"
-	icon = 'icons/obj/toy.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "latexballon"
 	item_state = "nothing"
 	force = 0

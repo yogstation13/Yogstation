@@ -4,7 +4,7 @@
 /obj/item/melee/chainofcommand
 	name = "chain of command"
 	desc = "A tool used by great men to placate the frothing masses."
-	icon = 'icons/obj/weapons/misc.dmi'
+	icon = 'icons/obj/weapons/whip.dmi'
 	icon_state = "chain"
 	item_state = "chain"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -44,7 +44,7 @@
 /obj/item/melee/sabre
 	name = "officer's sabre"
 	desc = "An elegant weapon, its monomolecular edge is capable of cutting through flesh and bone with ease."
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "sabre"
 	item_state = "sabre"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -65,7 +65,7 @@
 /obj/item/melee/cutlass
 	name = "cutlass"
 	desc = "YAAAAAR! A fine weapon for a pirate, fit for slicing land-lubbers." //All pirate weapons must have pirate quips from now on it is non-negotiable
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "metalcutlass"
 	item_state = "metalcutlass"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -150,7 +150,7 @@
 /obj/item/melee/beesword
 	name = "The Stinger"
 	desc = "Taken from a giant bee and folded over one thousand times in pure honey. Can sting through anything."
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "beesword"
 	item_state = "stinger"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -542,7 +542,7 @@
 /obj/item/melee/supermatter_sword
 	name = "supermatter sword"
 	desc = "In a station full of bad ideas, this might just be the worst."
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "supermatter_sword"
 	item_state = "supermatter_sword"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -639,7 +639,7 @@
 /obj/item/melee/singularity_sword
 	name = "singularity sword"
 	desc = "Spins so hard that it turns any struck foe into mincemeat instantaneously. Make sure not to stick around when you swing it at someone."
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longword.dmi'
 	icon_state = "singularity_sword"
 	item_state = "singularity_sword"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -669,7 +669,7 @@
 /obj/item/melee/curator_whip
 	name = "curator's whip"
 	desc = "Somewhat eccentric and outdated, it still stings like hell to be hit by."
-	icon = 'icons/obj/weapons/misc.dmi'
+	icon = 'icons/obj/weapons/whip.dmi'
 	icon_state = "whip"
 	item_state = "chain"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'

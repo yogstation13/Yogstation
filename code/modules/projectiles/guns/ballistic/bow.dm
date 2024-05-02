@@ -329,7 +329,7 @@
 	desc = "One of two blades used to form a break bow. Can attack with both blades at the same time or combine them into a bow."
 	icon_state = "brakebow_blade"
 	item_state = "brakebow_blade"
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/shortsword.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'

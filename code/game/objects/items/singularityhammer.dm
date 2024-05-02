@@ -3,7 +3,7 @@
 	desc = "The pinnacle of close combat technology, the hammer harnesses the power of a miniaturized singularity to deal crushing blows."
 	icon_state = "singhammer0"
 	base_icon_state = "singhammer"
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/weapons/hammer.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
 	flags_1 = CONDUCT_1
@@ -83,7 +83,7 @@
 	desc = "A weapon worthy of a god, able to strike with the force of a lightning bolt. It crackles with barely contained energy."
 	icon_state = "mjollnir0"
 	base_icon_state = "mjollnir"
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/weapons/hammer.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
 	flags_1 = CONDUCT_1

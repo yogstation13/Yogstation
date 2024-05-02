@@ -1,6 +1,6 @@
 /obj/item/shield
 	name = "shield"
-	icon = 'icons/obj/shields.dmi'
+	icon = 'icons/obj/shield.dmi'
 	slowdown = 0.2
 	item_flags = SLOWS_WHILE_IN_HAND
 	block_chance = 50
