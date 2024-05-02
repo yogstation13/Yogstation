@@ -1,0 +1,6 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - bugfix: "Mech extraction pack correctly gives back density and anchor values to the mecha."
+  - bugfix: "Hydraulic clamp no longer acts like a crowbar for non-mecha users."
+  - bugfix: "Mechas can pass through luxury shuttle ticket field if the pilot has already paid."
