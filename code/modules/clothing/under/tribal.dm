@@ -19,7 +19,7 @@
 	armor = list(MELEE = 5, FIRE = 5)
 	mutantrace_variation = DIGITIGRADE_VARIATION
 
-/obj/item/clothing/under/tribal/tribal
+/obj/item/clothing/under/tribal/plated
 	name = "metal plated rags"
 	desc = "Thin metal bolted over poorly tanned leather."
 	icon_state = "tribal"

@@ -141,7 +141,7 @@
 
 /datum/crafting_recipe/tribal_wraps
 	name = "Metal Plated Rags"
-	result = /obj/item/clothing/under/tribal
+	result = /obj/item/clothing/under/tribal/plated
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/metal = 1,
 				/obj/item/stack/sheet/leather = 2)

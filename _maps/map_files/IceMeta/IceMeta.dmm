@@ -26244,7 +26244,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "hIZ" = (
-/obj/item/clothing/under/maid,
+/obj/item/clothing/under/costume/maid,
 /obj/item/clothing/shoes/sneakers/black,
 /obj/item/clothing/neck/petcollar,
 /obj/item/clothing/head/kitty,
