@@ -100,6 +100,7 @@
 	desc = "A jumpsuit made from durathread, its resilient fibres provide some protection to the wearer."
 	icon = 'icons/obj/clothing/under/color.dmi'
 	icon_state = "jumpsuit"
+	item_state = "jumpsuit"
 	worn_icon = 'icons/mob/clothing/uniform/color.dmi'
 	greyscale_colors = "#8291a1"
 	greyscale_config = /datum/greyscale_config/jumpsuit
