@@ -15,8 +15,8 @@
 	info = "##### -- DO NOT G-###-_ SIDE__###"
 
 /obj/item/paper/crumpled/ruins/syndicate_derelict_station/important_note
-	name = "Important note"
-	info = "word has been spread that pirates are raiding around us, keep this gun with you just in case they come around"
+	name = "important note"
+	info = "Word has spread that pirates are raiding around us, keep this gun with you just in case they come around"
 
 /obj/machinery/computer/terminal/syndicate_derelict
 	name = "syndicate communications console"
@@ -39,3 +39,13 @@
 	desc = "A unique terminal used by the Syndicate to combine the functions of a cargo, IFF, and hailing system into one. Examples of these are quite rare nowadays."
 	upperinfo = "Syndicate Docking Terminal"
 	content = list("CODE RED: Terminal lockout engaged.","Unable to connect to regional Syndicate logistics hubs.","IFF beacon in STEALTH mode. Unable to alter - insufficient access.","No vessels on Syndicate hailing frequencies detected.")
+
+/obj/machinery/computer/terminal/syndicate_derelict/cargo
+	upperinfo = "Syndicate Command Uplink"
+	content = list("PRIORITY: HIGH | ASSIGNMENT TO SALVAGE PERSONNEL","You have been assigned to reactivate this cargo relay station for Syndicate use, and to upgrade it to perform additional functions. You should have necessary supplies in the onboard vault.")
+
+/obj/machinery/computer/terminal/syndicate_derelict/cargo/manifest
+	name = "syndicate logistics terminal"
+	desc = "A terminal used by certain Syndicate outposts to track cargo."
+	upperinfo = "Syndicate Freight Terminal - Property of Cybersun Industries (c) 2542"
+	content = list("ALERT!","Security breach detected. Manifest check required.")
