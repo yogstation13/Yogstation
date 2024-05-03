@@ -103,4 +103,5 @@
 
 /obj/projectile/bullet/cartridge/blackPowder
 	damage = 30
+	armour_penetration = 0
 	spread = 20
