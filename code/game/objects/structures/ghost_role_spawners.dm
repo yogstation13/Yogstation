@@ -869,8 +869,8 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	name = "syndicate engineer sleeper"
 	desc = "A rugged, portable cryogenic sleeper utilised by the Syndicate to deploy salvage agents. Looks heavy."
 	short_desc = "You're a salvage technician working for the Syndicate."
-	flavour_text = "During your briefing, you were told that your assignment was to salvage a derelict station and return it to operation - although you weren't told much more past that. There should be a communications terminal on-site to tell you what the Syndicate needs of you."
-	important_info = "Do not abandon the derelict or interfere with active Nanotrasen stations under any circumstances."
+	flavour_text = "During your briefing, you were told that your assignment was to salvage a derelict station and return it to operation - although you weren't told much more past that. There should be a communications terminal or note on-site to tell you what the Syndicate needs of you."
+	important_info = "Do not abandon the derelict or interfere with the main station under any circumstances."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	outfit = /datum/outfit/syndicate_derelict_engi
