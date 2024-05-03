@@ -69,8 +69,8 @@
 	glasses = /obj/item/clothing/glasses/hud/personnel
 	ears = /obj/item/radio/headset/heads/captain/alt
 	gloves = /obj/item/clothing/gloves/color/captain
-	uniform =  /obj/item/clothing/under/rank/captain
-	uniform_skirt = /obj/item/clothing/under/rank/captain/skirt
+	uniform =  /obj/item/clothing/under/rank/command/captain
+	uniform_skirt = /obj/item/clothing/under/rank/command/captain/skirt
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command

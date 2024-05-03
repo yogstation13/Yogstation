@@ -1,6 +1,6 @@
 /datum/outfit/vr
 	name = "Basic VR"
-	uniform = /obj/item/clothing/under/rank/cargotech
+	uniform = /obj/item/clothing/under/rank/cargo/tech
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	id = /obj/item/card/id/no_bank
 
