@@ -242,7 +242,7 @@
 	pixel_x = -2;
 	pixel_y = 4
 	},
-/obj/item/clothing/under/suit_jacket/navy{
+/obj/item/clothing/under/suit/navy{
 	pixel_x = 8;
 	pixel_y = -4
 	},

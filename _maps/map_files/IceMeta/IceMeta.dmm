@@ -12480,7 +12480,7 @@
 /obj/machinery/airalarm{
 	pixel_y = 24
 	},
-/obj/item/clothing/under/suit_jacket/navy,
+/obj/item/clothing/under/suit/navy,
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
 "dIH" = (
@@ -24958,7 +24958,7 @@
 	},
 /obj/structure/table/wood,
 /obj/item/clothing/shoes/laceup,
-/obj/item/clothing/under/suit_jacket/really_black,
+/obj/item/clothing/under/suit/really_black,
 /obj/machinery/camera{
 	c_tag = "Corporate Showroom"
 	},
@@ -29850,7 +29850,7 @@
 /obj/machinery/newscaster{
 	pixel_x = -30
 	},
-/obj/item/clothing/under/suit_jacket/red,
+/obj/item/clothing/under/suit/red,
 /obj/item/book/codex_gigas,
 /turf/open/floor/engine/cult,
 /area/library)
@@ -67842,7 +67842,7 @@
 /obj/machinery/airalarm{
 	pixel_y = 24
 	},
-/obj/item/clothing/under/suit_jacket/tan,
+/obj/item/clothing/under/suit/tan,
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
 "tzi" = (
@@ -68394,7 +68394,7 @@
 /obj/machinery/airalarm{
 	pixel_y = 24
 	},
-/obj/item/clothing/under/suit_jacket/burgundy,
+/obj/item/clothing/under/suit/burgundy,
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
 "tIm" = (
@@ -76755,11 +76755,11 @@
 /area/mine/living_quarters)
 "vYy" = (
 /obj/structure/table,
-/obj/item/clothing/under/suit_jacket/female{
+/obj/item/clothing/under/suit/female{
 	pixel_x = 3;
 	pixel_y = 1
 	},
-/obj/item/clothing/under/suit_jacket/really_black{
+/obj/item/clothing/under/suit/really_black{
 	pixel_x = -2
 	},
 /obj/machinery/light/small{
@@ -76770,7 +76770,7 @@
 	},
 /obj/item/clothing/accessory/waistcoat,
 /obj/item/clothing/suit/toggle/lawyer/black,
-/obj/item/clothing/under/suit_jacket/red,
+/obj/item/clothing/under/suit/red,
 /obj/item/clothing/neck/tie/black,
 /obj/item/clothing/under/lawyer/blacksuit,
 /turf/open/floor/plasteel/cafeteria,
