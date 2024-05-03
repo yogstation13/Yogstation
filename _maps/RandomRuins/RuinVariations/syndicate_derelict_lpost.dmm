@@ -105,7 +105,7 @@
 	dir = 1
 	},
 /obj/machinery/camera{
-	c_tag = "Syndicate Armory";
+	c_tag = "Syndicate Vault";
 	dir = 2;
 	network = list("syndiderelict")
 	},
@@ -179,6 +179,10 @@
 "ap" = (
 /obj/structure/cable{
 	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
 	},
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/syndiederelict/vault)
@@ -366,6 +370,8 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/syndiederelict/vault)
 "aR" = (
@@ -526,10 +532,6 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/syndiederelict/comms)
 "be" = (
-/obj/structure/sign/poster{
-	pixel_y = 32;
-	serial_number = 26
-	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -633,6 +635,10 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/airalarm/syndicate{
+	dir = 1;
+	pixel_y = -24
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "bm" = (
@@ -797,6 +803,9 @@
 	req_access = list(150)
 	},
 /obj/item/clothing/neck/stethoscope,
+/obj/machinery/airalarm/syndicate{
+	pixel_y = 24
+	},
 /turf/open/floor/plasteel/airless/white,
 /area/ruin/space/has_grav/syndiederelict/medbay)
 "bH" = (
@@ -817,6 +826,9 @@
 "bJ" = (
 /obj/effect/turf_decal/tile/yellow/half/contrasted,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/poster/contraband/tools{
+	pixel_y = -32
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "bL" = (
@@ -1049,6 +1061,10 @@
 /obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
 	dir = 4
 	},
+/obj/machinery/camera{
+	c_tag = "Syndicate Outpost Engineering Storage";
+	network = list("syndiderelict")
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "cr" = (
@@ -1074,10 +1090,6 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/structure/sign/poster{
-	pixel_x = 32;
-	pixel_y = 0
-	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
@@ -1090,14 +1102,14 @@
 /turf/open/floor/mineral/plastitanium/red/airless,
 /area/ruin/space/has_grav/syndiederelict/arrivals)
 "cw" = (
-/obj/structure/sign/poster{
-	pixel_y = 32;
-	serial_number = 10
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/rack,
-/turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/has_grav/syndiederelict/arrivals)
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/space/has_grav/syndiederelict/vault)
 "cx" = (
 /obj/machinery/door/airlock{
 	name = "Dorm 1";
@@ -1357,6 +1369,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/airalarm/syndicate{
+	dir = 8;
+	pixel_x = 24
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/syndiederelict/crew)
 "df" = (
@@ -1369,12 +1385,11 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "dg" = (
-/obj/structure/sign/poster{
-	pixel_y = 32;
-	serial_number = 24
-	},
 /obj/effect/turf_decal/tile/dark_red/half/contrasted{
 	dir = 1
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
@@ -1500,11 +1515,10 @@
 	pixel_x = 0;
 	pixel_y = 0
 	},
-/obj/structure/sign/poster{
-	pixel_x = 32;
-	pixel_y = 0
-	},
 /obj/effect/turf_decal/tile/bar/opposingcorners,
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = 32
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "dN" = (
@@ -1542,6 +1556,9 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/syndiederelict/medbay)
 "dT" = (
@@ -1673,6 +1690,11 @@
 /obj/machinery/light/small,
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera{
+	c_tag = "Syndicate Dock";
+	network = list("syndiderelict");
+	dir = 1
+	},
 /turf/open/floor/mineral/plastitanium/red/airless,
 /area/ruin/space/has_grav/syndiederelict/arrivals)
 "eo" = (
@@ -1942,9 +1964,6 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/door/firedoor/border_only/closed{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only/closed{
 	dir = 8
 	},
 /obj/machinery/door/window/northright{
@@ -1968,6 +1987,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
+	},
+/obj/machinery/airalarm/syndicate{
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
@@ -2276,11 +2298,11 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "nt" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos{
-	dir = 8
-	},
 /obj/structure/window/plasma/reinforced/spawner/west,
 /obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 8
 	},
 /turf/open/floor/engine/plasma,
@@ -2317,6 +2339,9 @@
 /obj/item/stack/sheet/metal/twenty,
 /obj/item/stack/sheet/glass{
 	amount = 15
+	},
+/obj/machinery/airalarm/syndicate{
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
@@ -2650,7 +2675,7 @@
 "vI" = (
 /obj/structure/window/plasma/reinforced/spawner/east,
 /obj/structure/window/plasma/reinforced/spawner/north,
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos{
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -2691,6 +2716,10 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/port_gen/pacman,
+/obj/machinery/camera{
+	c_tag = "Syndicate Outpost Engineering";
+	network = list("syndiderelict")
+	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "wA" = (
@@ -2822,7 +2851,7 @@
 "za" = (
 /obj/structure/window/plasma/reinforced/spawner/east,
 /obj/structure/window/plasma/reinforced/spawner,
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos{
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only,
@@ -3026,6 +3055,10 @@
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "Fb" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera{
+	c_tag = "Syndicate Outpost Canteen";
+	network = list("syndiderelict")
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "Fe" = (
@@ -3116,6 +3149,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/machinery/computer/security/telescreen{
+	pixel_y = 32;
+	network = list("syndiderelict");
+	name = "syndicate base telescreen";
+	desc = "A telescreen with access to the facility's security camera network."
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/syndiederelict/comms)
 "GN" = (
@@ -3157,6 +3196,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/machinery/camera{
+	c_tag = "Syndicate Secondary Hall";
+	network = list("syndiderelict");
+	dir = 1
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "HR" = (
@@ -3182,6 +3226,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/droneDispenser/hivebot,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/syndiederelict/vault)
 "Ix" = (
@@ -3202,6 +3247,9 @@
 "IU" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "IW" = (
@@ -3366,6 +3414,9 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/syndiederelict/vault)
 "Ng" = (
@@ -3472,9 +3523,14 @@
 /turf/closed/mineral/plasma,
 /area/ruin/space/has_grav/syndiederelict/asteroid)
 "Px" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/closed/wall/rust,
-/area/ruin/space/has_grav/syndiederelict/engineering)
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/space/has_grav/syndiederelict/vault)
 "Qn" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/decal/cleanable/dirt,
@@ -3664,6 +3720,8 @@
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/syndiederelict/vault)
 "TS" = (
@@ -3924,6 +3982,14 @@
 	dir = 4
 	},
 /obj/structure/frame/computer,
+/obj/machinery/camera{
+	c_tag = "Syndicate Communications Office";
+	network = list("syndiderelict")
+	},
+/obj/machinery/airalarm/syndicate{
+	dir = 8;
+	pixel_x = 24
+	},
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/syndiederelict/comms)
 "Zb" = (
@@ -4540,7 +4606,7 @@ hr
 ac
 db
 cu
-cw
+cv
 cM
 eI
 Ml
@@ -4620,7 +4686,7 @@ ae
 aO
 al
 Ct
-ap
+Px
 Im
 ap
 TC
@@ -4666,7 +4732,7 @@ ae
 aO
 am
 ao
-Fe
+cw
 Fe
 qy
 oL
@@ -4949,7 +5015,7 @@ aJ
 aJ
 xh
 cj
-Px
+cj
 iK
 bJ
 MX
