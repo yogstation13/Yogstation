@@ -8912,10 +8912,10 @@
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "bpU" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /obj/machinery/aug_manipulator,
+/obj/effect/turf_decal/trimline/purple/filled/corner/lower{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "bpX" = (
@@ -12291,9 +12291,6 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bTv" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /obj/machinery/mecha_part_fabricator,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
@@ -15304,16 +15301,7 @@
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "cHW" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /obj/machinery/holopad,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
-"cHX" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "cIb" = (
@@ -34408,9 +34396,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "jna" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /obj/effect/landmark/start/roboticist,
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel,
@@ -73016,15 +73001,6 @@
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"xCw" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "xCE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -74538,9 +74514,6 @@
 /area/ai_monitored/security/armory)
 "yhy" = (
 /obj/structure/reagent_dispensers/fueltank,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /obj/machinery/power/apc{
 	areastring = "/area/science/robotics/lab";
 	dir = 8;
@@ -74548,6 +74521,9 @@
 	pixel_x = -25
 	},
 /obj/structure/cable,
+/obj/effect/turf_decal/trimline/purple/filled/corner/lower{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "yhB" = (
@@ -119136,7 +119112,7 @@ bhM
 biO
 blA
 sHM
-cHX
+buj
 bsQ
 cAR
 bfV
@@ -119393,7 +119369,7 @@ cHN
 biE
 xSl
 xwW
-cHX
+buj
 buj
 mZk
 bfV
@@ -119650,7 +119626,7 @@ bhM
 btw
 blA
 iEY
-cHX
+buj
 cId
 dSZ
 box
@@ -121192,7 +121168,7 @@ vDW
 bfV
 veK
 qgQ
-xCw
+buj
 buj
 sQJ
 box
@@ -121449,7 +121425,7 @@ ruh
 eVz
 piy
 jIi
-cHX
+buj
 buj
 buj
 lEQ
@@ -121706,7 +121682,7 @@ bou
 bou
 awn
 xUp
-cHX
+buj
 buj
 buj
 usD
