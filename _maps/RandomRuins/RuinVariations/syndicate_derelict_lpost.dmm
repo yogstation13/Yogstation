@@ -224,6 +224,7 @@
 	dir = 4
 	},
 /obj/structure/filingcabinet,
+/obj/item/folder/syndicate/red,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndiederelict/vault)
 "aw" = (
@@ -282,6 +283,8 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/item/paper_bin,
+/obj/item/pen,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndiederelict/vault)
 "aD" = (
@@ -3908,6 +3911,7 @@
 /area/ruin/space/has_grav/syndiederelict/comms)
 "Yw" = (
 /obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/pet/cat/space,
 /turf/open/floor/plating/rust,
 /area/ruin/space/has_grav/syndiederelict/crew)
 "YI" = (
