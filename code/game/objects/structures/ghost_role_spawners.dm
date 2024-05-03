@@ -895,7 +895,9 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	id = /obj/item/card/id/syndicate
 	l_pocket = /obj/item/flashlight
 	r_pocket = /obj/item/kitchen/knife/combat/survival
-	implants = list(/obj/item/implant/weapons_auth)
+	implants = list(
+		/obj/item/implant/weapons_auth,
+		/obj/item/implant/teleporter/syndicate_engineer)
 	box = /obj/item/storage/box/survival/syndie
 
 /datum/outfit/syndicate_derelict_engi/post_equip(mob/living/carbon/human/H)
