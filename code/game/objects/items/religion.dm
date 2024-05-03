@@ -92,7 +92,7 @@
 	result = /obj/item/banner/security/mundane
 	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
-				/obj/item/clothing/under/rank/security = 1)
+				/obj/item/clothing/under/rank/security/officer = 1)
 	category = CAT_MISC
 
 /obj/item/banner/medical
@@ -116,7 +116,7 @@
 	result = /obj/item/banner/medical/mundane
 	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
-				/obj/item/clothing/under/rank/medical = 1)
+				/obj/item/clothing/under/rank/medical/doctor = 1)
 	category = CAT_MISC
 
 /obj/item/banner/medical/special_inspiration(mob/living/carbon/human/H)
