@@ -149,6 +149,7 @@
 		            /obj/item/clothing/under/yogs/pinstripe = 2,
 		            /obj/item/clothing/under/yogs/oliveoutfit = 2,
 		            /obj/item/clothing/under/yogs/plaidoutfit = 2,
+					/obj/item/clothing/under/yogs/hawaiian_skirt = 2,
 		            /obj/item/clothing/under/yogs/moutfit = 2,
 		            /obj/item/clothing/under/yogs/cosby = 2,
 		            /obj/item/clothing/under/yogs/luna = 2,

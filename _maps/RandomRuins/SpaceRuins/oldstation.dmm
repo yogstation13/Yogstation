@@ -186,14 +186,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/ancientstation/deltaai)
 "aK" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/effect/mob_spawn/human/oldsec,
-/turf/open/floor/plasteel,
+/obj/effect/mob_spawn/human/oldstation,
+/obj/effect/turf_decal/stripes/box,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "aM" = (
 /obj/effect/spawner/structure/window/hollow/reinforced/middle{
@@ -527,11 +522,6 @@
 /turf/closed/wall,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "bF" = (
-/obj/machinery/computer{
-	desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages.";
-	dir = 4;
-	name = "Broken Computer"
-	},
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -540,6 +530,9 @@
 	dir = 8
 	},
 /obj/machinery/door/window/brigdoor/eastright,
+/obj/machinery/computer/terminal/oldstation/artificialprogram{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/ancientstation/deltaai)
 "bG" = (
@@ -870,7 +863,6 @@
 "cJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
-/obj/item/paper/fluff/ruins/oldstation/protoinv,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/proto)
 "cK" = (
@@ -1060,6 +1052,14 @@
 /obj/machinery/door/airlock/medical/glass,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/rnd)
+"dt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer{
+	desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages.";
+	name = "Broken Computer"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/comm)
 "dv" = (
 /turf/closed/wall/rust,
 /area/ruin/space/has_grav/ancientstation/sec)
@@ -1417,11 +1417,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/betacorridor)
-"eV" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/xtracks,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/ancientstation/rnd)
 "eW" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -1850,15 +1845,10 @@
 /turf/template_noop,
 /area/space/nearstation)
 "gQ" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/mob_spawn/human/oldeng,
-/turf/open/floor/plasteel,
+/obj/effect/mob_spawn/human/oldstation/eng,
+/obj/effect/turf_decal/stripes/box,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "gU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -2386,15 +2376,6 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betastorage)
-"jF" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/computer{
-	desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages.";
-	name = "Broken Computer"
-	},
-/obj/item/paper/fluff/ruins/oldstation/report,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/ancientstation/comm)
 "jG" = (
 /obj/machinery/atmospherics/pipe/simple/brown/visible{
 	dir = 8
@@ -2898,10 +2879,8 @@
 /area/ruin/space/has_grav/ancientstation)
 "lb" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/computer{
-	desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages.";
-	dir = 1;
-	name = "Broken Computer"
+/obj/machinery/computer/terminal/oldstation/research{
+	dir = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/proto)
@@ -3232,13 +3211,6 @@
 /obj/structure/closet/radiation,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betastorage)
-"mp" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/xtracks{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/ancientstation)
 "mq" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/glass,
@@ -5273,14 +5245,9 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/rnd)
 "te" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/effect/mob_spawn/human/oldeng,
-/turf/open/floor/plasteel,
+/obj/effect/mob_spawn/human/oldstation/eng,
+/obj/effect/turf_decal/stripes/box,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "th" = (
 /obj/effect/decal/cleanable/dirt,
@@ -5519,7 +5486,6 @@
 /obj/machinery/door/airlock/highsecurity,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/structure/alien/weeds,
-/obj/effect/decal/cleanable/blood/xtracks,
 /obj/effect/decal/cleanable/blood/tracks,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -5661,15 +5627,10 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "wp" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/mob_spawn/human/oldsci,
-/turf/open/floor/plasteel,
+/obj/effect/mob_spawn/human/oldstation/science,
+/obj/effect/turf_decal/stripes/box,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "wu" = (
 /obj/structure/alien/resin/wall,
@@ -5939,10 +5900,6 @@
 /obj/item/storage/box/lights/mixed,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
-"xv" = (
-/obj/effect/decal/cleanable/blood/xtracks,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/ancientstation/rnd)
 "xw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor/border_only/closed,
@@ -5980,16 +5937,11 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/rnd)
 "xJ" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/showcase/machinery/oldpod,
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/stripes/box,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "xP" = (
 /obj/structure/table,
@@ -6032,9 +5984,6 @@
 	dir = 4
 	},
 /obj/structure/barricade/wooden,
-/obj/effect/decal/cleanable/blood/xtracks{
-	dir = 4
-	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "yc" = (
@@ -6405,16 +6354,6 @@
 /obj/structure/closet/secure_closet/freezer/meat/open,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/ancientstation/kitchen)
-"Bd" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/xtracks{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/ancientstation)
 "Be" = (
 /obj/machinery/door/airlock/command{
 	name = "Charlie Station Access"
@@ -7344,10 +7283,8 @@
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "Hv" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/computer{
-	desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages.";
-	dir = 8;
-	name = "Broken Computer"
+/obj/machinery/computer/terminal/oldstation{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
@@ -7619,10 +7556,8 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/computer{
-	desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages.";
-	dir = 4;
-	name = "Broken Computer"
+/obj/machinery/computer/terminal/oldstation/security{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
@@ -7662,11 +7597,7 @@
 /area/ruin/space/has_grav/ancientstation)
 "Kb" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/computer{
-	desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages.";
-	name = "Broken Computer"
-	},
-/obj/item/paper/fluff/ruins/oldstation/damagereport,
+/obj/machinery/computer/terminal/oldstation/central,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/comm)
 "Kc" = (
@@ -8411,7 +8342,6 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/rnd)
 "Pf" = (
@@ -8596,14 +8526,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/hydroponics)
-"Qo" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/computer{
-	desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages.";
-	name = "Broken Computer"
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/ancientstation/comm)
 "Qp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/window/westright,
@@ -9200,16 +9122,11 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Uv" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/showcase/machinery/oldpod,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/stripes/box,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "Ux" = (
 /obj/effect/decal/cleanable/dirt,
@@ -9275,15 +9192,10 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/ancientstation/kitchen)
 "UP" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/showcase/machinery/oldpod,
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/stripes/box,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "UQ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -9498,7 +9410,6 @@
 /area/ruin/space/has_grav/ancientstation/engi)
 "Wg" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/xtracks,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
@@ -12875,7 +12786,7 @@ aa
 aa
 gK
 am
-Qo
+dt
 Rj
 jv
 Ne
@@ -12999,7 +12910,7 @@ aa
 aa
 gK
 am
-jF
+dt
 xP
 yX
 yX
@@ -13380,8 +13291,8 @@ Qp
 Ym
 aG
 Kc
-mp
-Bd
+cq
+Ww
 Qm
 lI
 me
@@ -14819,8 +14730,8 @@ IH
 YX
 zC
 Wg
-eV
-xv
+hC
+fo
 Pd
 vF
 xe

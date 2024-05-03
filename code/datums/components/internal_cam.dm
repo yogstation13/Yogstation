@@ -46,4 +46,3 @@
 /datum/component/internal_cam/proc/update_cam()
 	bodcam.camnet.updatePortableCamera(bodcam, INTERNAL_CAMERA_BUFFER)
 
-

@@ -80234,6 +80234,10 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science/research)
 "wWf" = (

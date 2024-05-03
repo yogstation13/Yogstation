@@ -20,6 +20,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	light_power = 2
 	light_on = FALSE
 	lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
+	pass_flags = PASSFLOOR
 	var/can_reenter_corpse
 	var/bootime = 0
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.

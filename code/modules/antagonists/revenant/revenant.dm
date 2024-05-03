@@ -91,6 +91,8 @@
 
 	random_revenant_name()
 	LoadComponent(/datum/component/walk/jaunt) //yogs
+	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED] //yogs medhud
+	H.show_to(src)
 
 /mob/living/simple_animal/revenant/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
 	return FALSE
