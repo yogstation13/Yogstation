@@ -76772,7 +76772,7 @@
 /obj/item/clothing/suit/toggle/lawyer/black,
 /obj/item/clothing/under/suit/red,
 /obj/item/clothing/neck/tie/black,
-/obj/item/clothing/under/lawyer/blacksuit,
+/obj/item/clothing/under/rank/civilian/lawyer/blacksuit,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/dorms)
 "vYE" = (
