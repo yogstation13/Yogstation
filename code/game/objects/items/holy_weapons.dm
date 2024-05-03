@@ -632,7 +632,7 @@
 /obj/item/nullrod/armblade
 	name = "dark blessing"
 	desc = "Particularly twisted deities grant gifts of dubious value."
-	icon = 'icons/obj/changeling.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "arm_blade"
 	item_state = "arm_blade"
 	tool_behaviour = TOOL_MINING
@@ -707,17 +707,6 @@
 	attack_verb = list("poked", "impaled", "pierced", "jabbed")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_POINTY
-
-/obj/item/nullrod/egyptian
-	name = "egyptian staff"
-	desc = "A tutorial in mummification is carved into the staff. You could probably craft the wraps if you had some cloth."
-	icon = 'icons/obj/guns/magic.dmi'
-	icon_state = "pharoah_sceptre"
-	item_state = "pharoah_sceptre"
-	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
-	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("bashes", "smacks", "whacks")
 
 /obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
 	..()
@@ -1016,7 +1005,7 @@
 /obj/item/nullrod/egyptian
 	name = "egyptian staff"
 	desc = "A tutorial in mummification is carved into the staff. You could probably craft the wraps if you had some cloth."
-	icon = 'icons/obj/guns/magic.dmi'
+	icon = 'icons/obj/weapons/staff.dmi'
 	icon_state = "pharoah_sceptre"
 	item_state = "pharoah_sceptre"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
