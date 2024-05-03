@@ -50,7 +50,7 @@
 					/obj/item/clothing/suit/armor/vest/redcoatcoat = 5,
 					/obj/item/clothing/head/yogs/tricornhat = 5,
 					/obj/item/clothing/under/rank/security/officer/skirt = 3,
-					/obj/item/clothing/under/rank/security/grey = 3,
+					/obj/item/clothing/under/rank/security/officer/grey = 3,
 					/obj/item/clothing/under/rank/security/officer/shitcurity = 3,
 					/obj/item/clothing/under/pants/khaki = 3,
 					/obj/item/clothing/under/rank/security/blueshirt = 3,

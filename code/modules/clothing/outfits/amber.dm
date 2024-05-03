@@ -1,5 +1,5 @@
 // amber task force clothing
-/obj/item/clothing/under/rank/security/grey/amber
+/obj/item/clothing/under/rank/security/officer/grey/amber
 	name = "amber task force jumpsuit"
 
 /obj/item/clothing/head/beret/sec/amber_medic
@@ -52,7 +52,7 @@
 /datum/outfit/amber
 	name = "Amber Soldier"
 
-	uniform = /obj/item/clothing/under/rank/security/grey/amber
+	uniform = /obj/item/clothing/under/rank/security/officer/grey/amber
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	shoes = /obj/item/clothing/shoes/combat/combat_knife
 	gloves = /obj/item/clothing/gloves/combat

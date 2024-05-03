@@ -1801,8 +1801,8 @@
 /obj/item/clothing/under/rank/security/navyblue,
 /obj/item/clothing/under/rank/security/navyblue,
 /obj/item/clothing/under/rank/security/navyblue,
-/obj/item/clothing/under/rank/warden/navyblue,
-/obj/item/clothing/under/rank/head_of_security/navyblue,
+/obj/item/clothing/under/rank/security/warden/navyblue,
+/obj/item/clothing/under/rank/security/head_of_security/navyblue,
 /obj/item/clothing/head/beret/sec/navyofficer,
 /obj/item/clothing/head/beret/sec/navyofficer,
 /obj/item/clothing/head/beret/sec/navyofficer,
@@ -5501,7 +5501,7 @@
 /area/crew_quarters/toilet/restrooms)
 "bFK" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/rank/civilian/assistantformal,
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
 "bFO" = (
@@ -43358,7 +43358,7 @@
 /area/hallway/primary/starboard)
 "mCk" = (
 /obj/structure/closet/secure_closet/personal,
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/rank/civilian/assistantformal,
 /obj/structure/sign/map/right{
 	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
 	icon_state = "map-right-MS";
@@ -51828,7 +51828,7 @@
 /area/tcommsat/server)
 "oWc" = (
 /obj/structure/closet/secure_closet/personal,
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/rank/civilian/assistantformal,
 /obj/item/clothing/suit/hooded/wintercoat,
 /obj/item/clothing/shoes/winterboots,
 /turf/open/floor/plasteel/dark,
@@ -57247,7 +57247,7 @@
 /obj/machinery/airalarm{
 	pixel_y = 24
 	},
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/rank/civilian/assistantformal,
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
 "qAP" = (
@@ -68001,7 +68001,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/rank/civilian/assistantformal,
 /obj/structure/sign/map/left{
 	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
 	icon_state = "map-left-MS";
@@ -72293,12 +72293,12 @@
 	pixel_y = 25
 	},
 /obj/structure/table/wood,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = -26
@@ -83767,7 +83767,7 @@
 /area/hydroponics)
 "xPL" = (
 /obj/structure/closet/secure_closet/personal,
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/rank/civilian/assistantformal,
 /obj/item/clothing/suit/hooded/wintercoat,
 /obj/item/clothing/shoes/winterboots,
 /obj/effect/turf_decal/trimline/yellow/filled/corner/lower{
