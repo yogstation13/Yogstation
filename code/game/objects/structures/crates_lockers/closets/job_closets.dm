@@ -246,7 +246,7 @@
 		/obj/item/storage/backpack/genetics = 2,
 		/obj/item/storage/backpack/satchel/gen = 2,
 		/obj/item/sequence_scanner = 2,
-		/obj/item/stack/cable_coul/white,
+		/obj/item/stack/cable_coil/white,
 		/obj/item/reagent_containers/glass/bottle/morphine,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/radio/headset/headset_medsci)
