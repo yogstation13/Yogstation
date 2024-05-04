@@ -1958,6 +1958,16 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"aVX" = (
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 6
+	},
+/obj/structure/closet/wardrobe/genetics_white,
+/obj/item/sequence_scanner,
+/obj/item/sequence_scanner,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "aWq" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -11087,14 +11097,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/department/science)
-"fhS" = (
-/obj/structure/window/reinforced,
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 6
-	},
-/obj/structure/closet/wardrobe/genetics_white,
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "fih" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -83394,7 +83396,7 @@ ftr
 wpP
 kWr
 jZd
-fhS
+aVX
 wHj
 xBM
 ftr
