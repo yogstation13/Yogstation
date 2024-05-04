@@ -16,7 +16,7 @@
 	exp_requirements = 900 //15 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_COMMAND
-	alt_titles = list("Station Commander", "Facility Director", "Chief Executive Officer")
+	alt_titles = list("Station Commander", "Facility Director", "Chief Executive Officer", "Big Boss")
 
 	outfit = /datum/outfit/job/captain
 
