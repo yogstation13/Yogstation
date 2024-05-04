@@ -220,7 +220,7 @@
 		RegisterSignal(user, COMSIG_MOB_RESTRICT_MAGIC, PROC_REF(restrict_casting_magic))
 		inmate_name = user.name
 		return
-	
+
 /obj/item/clothing/neck/anti_magic_collar/dropped(mob/user)
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOB_RESTRICT_MAGIC)
@@ -295,7 +295,7 @@
 
 /obj/item/clothing/neck/pauldron/colonel
 	name = "colonel's pauldrons"
-	desc = "Gold alloy reinforced pauldrons signifying the rank of Colonel; offers slightly more protection than the Commander's pauldron to the wearer."
+	desc = "Gold alloy reinforced pauldrons signifying the rank of Colonel; offers slightly more protection than the Commodore's pauldron to the wearer."
 	icon_state = "colonel"
 	item_state = "colonel"
 	armor = list(MELEE = 35, BULLET = 30, LASER = 35, ENERGY = 35, BOMB = 5, BIO = 20, RAD = 0, FIRE = 0, ACID = 90)
@@ -309,9 +309,9 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDESUITSTORAGE
 
-/obj/item/clothing/neck/cape/grand
-	name = "grand admiral's cape"
-	desc = "A sizable white cape with gold connects."
+/obj/item/clothing/neck/cape/executive
+	name = "executive admiral's cape"
+	desc = "My conquest is the sea of stars."
 	icon_state = "grandadmiral"
 	item_state = "grand_admiral"
 
