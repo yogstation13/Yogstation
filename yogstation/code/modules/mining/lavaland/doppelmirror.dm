@@ -53,9 +53,6 @@
 
 /obj/item/dopmirror/Destroy()
 	to_chat(reflected, span_userdanger("Your world shatters."))
-	reflected.jumpback.Remove(reflected)
-	reflected.appear.Remove(reflected)
-	reflected.swap.Remove(reflected)	
 	qdel(reflected)
 	return ..()
 
@@ -186,6 +183,16 @@
 	for(var/datum/action/innate/appear/appear in src.actions)
 		appear.Activate(died = TRUE)
 	return FALSE // want the way to kill it being linked directly to the mirror
+
+/mob/living/simple_animal/hostile/double/Destroy()
+	jumpback.Remove(src)
+	appear.Remove(src)
+	swap.Remove(src)	
+	qdel(jumpback)
+	qdel(appear)
+	qdel(swap)
+	. = ..()
+	
 
 
 /mob/living/simple_animal/hostile/double/Life()
