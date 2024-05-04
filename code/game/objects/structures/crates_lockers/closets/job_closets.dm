@@ -246,10 +246,10 @@
 		/obj/item/storage/backpack/genetics = 2,
 		/obj/item/storage/backpack/satchel/gen = 2,
 		/obj/item/sequence_scanner = 2,
-		/obj/item/stack/cable_coil/white,
-		/obj/item/reagent_containers/glass/bottle/morphine,
-		/obj/item/reagent_containers/syringe,
-		/obj/item/radio/headset/headset_medsci)
+		/obj/item/stack/cable_coil/white = 1,
+		/obj/item/reagent_containers/glass/bottle/morphine = 1,
+		/obj/item/reagent_containers/syringe = 1,
+		/obj/item/radio/headset/headset_medsci = 1)
 	generate_items_inside(items_inside,src)
 	return
 
