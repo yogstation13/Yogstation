@@ -23,11 +23,8 @@
 
 #define MODE_ROBOT "robot"
 
-#define MODE_R_HAND "right hand"
-#define MODE_KEY_R_HAND "r"
-
-#define MODE_L_HAND "left hand"
-#define MODE_KEY_L_HAND "l"
+#define MODE_RADIO "radio"
+#define MODE_KEY_RADIO "r"
 
 #define MODE_INTERCOM "intercom"
 #define MODE_KEY_INTERCOM "i"
