@@ -1,0 +1,4 @@
+author: "13spacemen"
+delete-after: true 
+changes: 
+  - rscadd: "Punching people now supports showing multiple attack verbs instead of just one. Added additional verbs to lizards, ethereals, podmen"
