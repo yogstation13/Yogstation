@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed radio messages redirecting through intercomms or radios when trying to use a headset."
