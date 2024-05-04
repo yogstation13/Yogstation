@@ -244,7 +244,12 @@
 		/obj/item/clothing/shoes/sneakers/white = 2,
 		/obj/item/clothing/suit/toggle/labcoat/genetics = 2,
 		/obj/item/storage/backpack/genetics = 2,
-		/obj/item/storage/backpack/satchel/gen = 2)
+		/obj/item/storage/backpack/satchel/gen = 2,
+		/obj/item/sequence_scanner = 2,
+		/obj/item/stack/cable_coul/white,
+		/obj/item/reagent_containers/glass/bottle/morphine,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/radio/headset/headset_medsci)
 	generate_items_inside(items_inside,src)
 	return
 

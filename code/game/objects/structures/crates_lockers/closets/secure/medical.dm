@@ -69,7 +69,7 @@
 	new /obj/item/clipboard/yog/paperwork/cmo(src)
 	new /obj/item/storage/backpack/duffelbag/clothing/med/chief(src)
 	new /obj/item/storage/lockbox/medal/med(src)
-
+	new /obj/item/sequence_scanner(src)
 
 /obj/structure/closet/secure_closet/paramedic
 	name = "paramedical closet"
