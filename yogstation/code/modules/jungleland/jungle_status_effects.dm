@@ -98,6 +98,7 @@
 	new /obj/effect/better_animated_temp_visual/tar_shield_pop(get_turf(owner))
 	owner.visible_message(span_danger("[owner]'s shields absorbs [attack_text]!"))
 	qdel(src)
+	return SHIELD_BLOCK
 
 /datum/status_effect/bounty_of_the_forest
 	id = "bounty_of_the_forest"
