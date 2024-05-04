@@ -11087,14 +11087,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/department/science)
-"fhS" = (
-/obj/structure/window/reinforced,
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 6
-	},
-/obj/structure/closet/wardrobe/genetics_white,
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "fih" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -27787,6 +27779,15 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"nvS" = (
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 6
+	},
+/obj/structure/closet/wardrobe/genetics_white,
+/obj/item/storage/box/disks,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "nvT" = (
 /obj/machinery/computer/shuttle/mining,
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
@@ -83394,7 +83395,7 @@ ftr
 wpP
 kWr
 jZd
-fhS
+nvS
 wHj
 xBM
 ftr
