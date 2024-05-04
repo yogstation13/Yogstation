@@ -292,11 +292,8 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndiederelict/vault)
 "aD" = (
-/turf/closed/wall,
+/turf/closed/wall/rust,
 /area/ruin/space/has_grav/syndiederelict/medbay)
-"aE" = (
-/turf/closed/wall/explosive,
-/area/ruin/space/has_grav/syndiederelict/hallway)
 "aF" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -1973,7 +1970,7 @@
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "gE" = (
 /obj/effect/baseturf_helper/asteroid/airless,
-/turf/closed/wall,
+/turf/closed/wall/rust,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "gJ" = (
 /obj/structure/cable{
@@ -2457,7 +2454,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/closed/wall,
+/turf/closed/wall/rust,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "pR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -3168,14 +3165,8 @@
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "Hp" = (
 /obj/effect/baseturf_helper/asteroid/airless,
-/turf/closed/wall,
+/turf/closed/wall/rust,
 /area/ruin/space/has_grav/syndiederelict/medbay)
-"Hq" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 8
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/syndiederelict/engineering)
 "HB" = (
 /obj/effect/turf_decal/tile/dark_red/half/contrasted,
 /obj/machinery/airalarm/syndicate{
@@ -3937,7 +3928,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 5
 	},
-/turf/closed/wall,
+/turf/closed/wall/rust,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "XC" = (
 /obj/effect/turf_decal/tile/dark_red/half/contrasted{
@@ -4888,7 +4879,7 @@ OJ
 FO
 wc
 vW
-aE
+jg
 Wp
 Lb
 bL
@@ -4916,7 +4907,7 @@ db
 aU
 WK
 WK
-HR
+fZ
 Wj
 Vn
 Xs
@@ -4962,10 +4953,10 @@ ac
 ac
 Qn
 Ed
-HR
+fZ
 za
 vI
-Hq
+aJ
 aT
 bi
 bw
@@ -5163,8 +5154,8 @@ VI
 rx
 kk
 gE
-iE
-iE
+bA
+bA
 iE
 cd
 ZP
@@ -5208,7 +5199,7 @@ bA
 bA
 iE
 dl
-iE
+bA
 eh
 iE
 eE

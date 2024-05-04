@@ -22,6 +22,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/item/stack/cable_coil/cut/red,
+/obj/item/stack/sheet/mineral/uranium,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"g" = (
+/obj/item/stack/cable_coil/cut/red,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "h" = (
@@ -53,6 +62,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/item/circuitboard/machine/rtg,
+/obj/item/stack/cable_coil/cut/red,
+/obj/item/stock_parts/capacitor,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "o" = (
@@ -62,6 +74,9 @@
 	},
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "p" = (
@@ -71,6 +86,28 @@
 "q" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/item/circuitboard/machine/rtg,
+/obj/item/stack/cable_coil/cut/red,
+/obj/item/stock_parts/capacitor,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"r" = (
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/rtg,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "x" = (
@@ -81,9 +118,24 @@
 "y" = (
 /turf/template_noop,
 /area/ruin/space/has_grav/syndiederelict/arrivals)
-"B" = (
+"A" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/structure/frame/machine,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndiederelict/engineering)
+"B" = (
+/obj/machinery/power/smes/empty,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"D" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/template_noop,
+/area/template_noop)
 "E" = (
 /turf/template_noop,
 /area/ruin/space/has_grav/syndiederelict/hydroponics)
@@ -93,6 +145,22 @@
 	name = "Solar Array Access"
 	},
 /obj/machinery/atmospherics/pipe/layer_manifold/visible,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"H" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/structure/frame/machine,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "J" = (
@@ -105,6 +173,18 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"L" = (
+/obj/machinery/power/solar_control{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "M" = (
@@ -1781,7 +1861,7 @@ a
 a
 a
 S
-B
+A
 m
 B
 W
@@ -1827,14 +1907,14 @@ a
 a
 a
 S
-B
+H
 f
 q
 K
 o
 F
-j
-j
+D
+D
 j
 j
 j
@@ -1873,9 +1953,9 @@ a
 a
 a
 S
-B
-B
-B
+r
+g
+L
 W
 W
 W
