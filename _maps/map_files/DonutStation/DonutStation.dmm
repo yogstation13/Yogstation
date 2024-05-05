@@ -26137,7 +26137,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "lav" = (
-/obj/structure/table,
+/obj/machinery/chem_dispenser/mutagensaltpeter,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "laQ" = (

@@ -62740,6 +62740,7 @@
 /obj/machinery/light_switch{
 	pixel_y = -24
 	},
+/obj/machinery/chem_dispenser/mutagensaltpeter,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "sCT" = (

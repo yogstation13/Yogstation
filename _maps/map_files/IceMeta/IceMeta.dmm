@@ -81893,6 +81893,7 @@
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 6
 	},
+/obj/machinery/chem_dispenser/mutagensaltpeter,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "xui" = (
