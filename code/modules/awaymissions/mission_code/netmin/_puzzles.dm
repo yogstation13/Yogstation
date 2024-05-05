@@ -10,13 +10,10 @@ GLOBAL_LIST_EMPTY(rock_paper_scissors_puzzle_answers)
 			player_list -= unsorted_players
 		if(!unsorted_players.client)
 			player_list -= unsorted_players
-		else	
-			if(unsorted_players.client.address in list("127.0.0.1", "::1"))
-				player_list -= unsorted_players
 
 	var/players_to_ask = 3
 	if(length(player_list) < players_to_ask)
-		players_to_ask = length(player_list)
+		return //if not enough players, don't bother asking, it's either so lowpop that it means nothing, or it's localhost
 
 	while(players_to_ask > 0)
 		var/mob/player = pick_n_take(player_list)
