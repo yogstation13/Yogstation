@@ -11,11 +11,11 @@
 	energy_drain = 10
 	toolspeed = 0.5
 	usesound = 'sound/mecha/hydraulic.ogg'
-	tool_behaviour = TOOL_CROWBAR
 	equip_actions = list(/datum/action/innate/mecha/equipment/clamp_mode)
 	/// How much damage does it apply when used
 	var/dam_force = 20
 	var/obj/mecha/working/ripley/cargo_holder
+	var/previous_tool_behavior = TOOL_CROWBAR
 	harmful = FALSE
 
 /datum/action/innate/mecha/equipment/clamp_mode
@@ -41,11 +41,14 @@
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/attach(obj/mecha/M as obj)
 	..()
 	cargo_holder = M
+	tool_behaviour = previous_tool_behavior
 	return
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/detach(atom/moveto = null)
 	..()
 	cargo_holder = null
+	previous_tool_behavior = tool_behaviour
+	tool_behaviour = 0
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/action(atom/target, mob/living/user, params)
 	if(!action_checks(target))
@@ -620,7 +623,7 @@
 	N.dna_lock = M.dna_lock
 	N.maint_access = M.maint_access
 	N.strafe = M.strafe
-	N.update_integrity(M.get_integrity()) //This is not a repair tool
+	N.update_integrity(N.max_integrity * M.get_integrity() / M.max_integrity) //This is not a repair tool
 	if (M.name != "\improper APLU MK-I \"Ripley\"")
 		N.name = M.name
 	M.wreckage = 0

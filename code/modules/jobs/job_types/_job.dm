@@ -380,6 +380,9 @@
 		for(var/obj/item/gps/G in H.get_all_contents())
 			G.gpstag = H.real_name
 			G.name = "global positioning system ([G.gpstag])"
+			var/datum/component/gps/tracker = G.GetComponent(/datum/component/gps)
+			if(tracker)
+				tracker.gpstag = G.gpstag
 			continue
 
 /datum/outfit/job/get_chameleon_disguise_info()

@@ -10,6 +10,8 @@
 	drop_sound = 'sound/items/handling/cloth_drop.ogg'
 	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
 	limb_integrity = 30
+	tearable = TRUE //all jumpsuits can be torn down and used for cloth in an emergency | yogs
+
 	var/fitted = FEMALE_UNIFORM_FULL // For use in alternate clothing styles for women
 	var/has_sensor = HAS_SENSORS // For the crew computer
 	var/random_sensor = TRUE
@@ -17,23 +19,24 @@
 	var/can_adjust = TRUE
 	var/adjusted = NORMAL_STYLE
 	var/alt_covers_chest = FALSE // for adjusted/rolled-down jumpsuits, FALSE = exposes chest and arms, TRUE = exposes arms only
-	var/obj/item/clothing/accessory/attached_accessory
-	var/mutable_appearance/accessory_overlay
 	var/mutantrace_variation = NONE //Are there special sprites for specific situations? Don't use this unless you need to.
 	var/freshly_laundered = FALSE
-	tearable = TRUE //all jumpsuits can be torn down and used for cloth in an emergency | yogs
+
+	var/obj/item/clothing/accessory/attached_accessory
+	var/mutable_appearance/accessory_overlay
 
 /obj/item/clothing/under/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
-	if(!isinhands)
-		if(damaged_clothes)
-			. += mutable_appearance('icons/effects/item_damage.dmi', "damageduniform")
-		if(HAS_BLOOD_DNA(src))
-			var/mutable_appearance/bloody_uniform = mutable_appearance('icons/effects/blood.dmi', "uniformblood")
-			bloody_uniform.color = get_blood_dna_color(return_blood_DNA())
-			. += bloody_uniform
-		if(accessory_overlay)
-			. += accessory_overlay
+	if(isinhands)
+		return
+	if(damaged_clothes)
+		. += mutable_appearance('icons/effects/item_damage.dmi', "damageduniform")
+	if(HAS_BLOOD_DNA(src))
+		var/mutable_appearance/bloody_uniform = mutable_appearance('icons/effects/blood.dmi', "uniformblood")
+		bloody_uniform.color = get_blood_dna_color(return_blood_DNA())
+		. += bloody_uniform
+	if(accessory_overlay)
+		. += accessory_overlay
 
 /obj/item/clothing/under/attackby(obj/item/I, mob/user, params)
 	if((has_sensor == BROKEN_SENSORS) && istype(I, /obj/item/stack/cable_coil))

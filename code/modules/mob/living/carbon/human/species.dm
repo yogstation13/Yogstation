@@ -155,8 +155,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/list/inherent_traits = list()
 	///biotypes, used for viruses and the like
 	var/list/inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
-	/// punch-specific attack verb
-	var/attack_verb = "punch"
+	/// punch-specific attack verbs
+	var/list/attack_verbs = list("punch")
 	///the melee attack sound
 	var/sound/attack_sound = 'sound/weapons/punch1.ogg'
 	///the swing and miss sound
@@ -1668,7 +1668,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		return TRUE
 	else
 
-		var/atk_verb = user.dna.species.attack_verb
+		var/atk_verb = pick(user.dna.species.attack_verbs)
 		var/atk_effect = user.dna.species.attack_effect
 		if(!(target.mobility_flags & MOBILITY_STAND))
 			atk_verb = "kick"
