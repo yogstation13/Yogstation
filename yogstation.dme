@@ -4013,6 +4013,7 @@
 #include "yogstation\code\datums\components\crawl.dm"
 #include "yogstation\code\datums\components\fishable.dm"
 #include "yogstation\code\datums\components\fishingbonus.dm"
+#include "yogstation\code\datums\components\pinnable_accessory.dm"
 #include "yogstation\code\datums\components\radioactive.dm"
 #include "yogstation\code\datums\components\randomcrits.dm"
 #include "yogstation\code\datums\components\shielded.dm"
