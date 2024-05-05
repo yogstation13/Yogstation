@@ -832,7 +832,7 @@
 	new /obj/item/book/granter/action/spell/mime/mimery_guns(src)
 
 /obj/item/storage/box/syndie_kit/centcom_costume/PopulateContents()
-	new /obj/item/clothing/under/rank/centcom_officer(src)
+	new /obj/item/clothing/under/rank/centcom/officer(src)
 	new /obj/item/clothing/head/beret/sec/centcom(src)
 	new /obj/item/clothing/shoes/sneakers/black(src)
 	new /obj/item/clothing/gloves/color/black(src)

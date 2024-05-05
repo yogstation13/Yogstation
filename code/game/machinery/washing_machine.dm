@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(dye_registry, list(
 		DYE_CMO = /obj/item/clothing/under/rank/medical/chief_medical_officer,
 		DYE_REDCOAT = /obj/item/clothing/under/costume/redcoat,
 		DYE_SYNDI = /obj/item/clothing/under/syndicate/tacticool,
-		DYE_CENT = /obj/item/clothing/under/rank/centcom_officer,
+		DYE_CENT = /obj/item/clothing/under/rank/centcom/officer,
 		DYE_QM = /obj/item/clothing/under/rank/cargo/qm
 	),
 	DYE_REGISTRY_JUMPSKIRT = list(
