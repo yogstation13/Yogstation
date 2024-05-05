@@ -400,12 +400,9 @@
 	open = !open
 	if(open)
 		layer = SIGN_LAYER
-		SET_PLANE_IMPLICIT(src, GAME_PLANE)
-		set_density(FALSE)
 		set_opacity(FALSE)
 	else
 		layer = WALL_OBJ_LAYER
-		set_density(TRUE)
 		if(opaque_closed)
 			set_opacity(TRUE)
 

@@ -3,7 +3,7 @@
 	name = "Felinid Human"
 	id = "felinid"
 	limbs_id = "human"
-	attack_verb = "slash"
+	attack_verbs = list("slash")
 	attack_effect = ATTACK_EFFECT_CLAW
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'

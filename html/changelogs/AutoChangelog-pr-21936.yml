@@ -1,0 +1,6 @@
+author: " @thegoldencat413 @Chubbygummibear @LazennG"
+delete-after: true 
+changes: 
+  - rscadd: "Added ominous mirror"
+  - rscdel: "Removed book of babel from tendril loot pool"
+  - imageadd: "added ominous mirror sprites"
