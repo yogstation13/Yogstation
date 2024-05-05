@@ -137,6 +137,11 @@
 	AddElement(/datum/element/life_draining, damage_overtime = 5, check_damage_callback = CALLBACK(src, PROC_REF(kudzu_need)))
 	remove_verb(src, /mob/living/verb/pulled) //no dragging the poor sap into the depths of the vines never to be seen again
 
+/mob/living/simple_animal/hostile/venus_human_trap/mob_negates_gravity()
+	if(kudzu_need(FALSE))
+		return TRUE
+	return ..()
+
 /mob/living/simple_animal/hostile/venus_human_trap/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	pull_vines()
