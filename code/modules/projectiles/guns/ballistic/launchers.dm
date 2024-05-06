@@ -181,8 +181,7 @@
 	
 	if(istype(A, /obj/item/ammo_casing/caseless/cartridge) || istype(A, /obj/item/kitchen/knife))
 		if(istype(A, /obj/item/kitchen/knife)) //Attach bayonet
-			..()
-			return
+			return ..()
 		else if(reloading_active == TRUE)
 			to_chat(user, span_warning("You're already reloading it!"))
 			return
