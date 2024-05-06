@@ -1186,7 +1186,7 @@
 				return
 			open(2)
 		var/obj/item/umbral_tendrils/T = C
-		if(!T.darkspawn)
+		if(!isdarkspawn(user))
 			return ..()
 		else if(user.a_intent == INTENT_DISARM && density)
 			// we dont want Duality double-hitting the airlock when we're trying to pry it open
@@ -1196,9 +1196,9 @@
 				if(!hasPower()) // a crowbar can do this and you're telling me tentacles struggle?
 					open(2)
 					return
-				if(!T.darkspawn.has_psi(15))
+				if(!(user.mind && SEND_SIGNAL(user.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, 15)))
 					to_chat(user, span_warning("You need at least 15 Psi to force open an airlock!"))
-					return
+					return 
 				user.visible_message(span_warning("[user] starts forcing open [src]!"), span_velvet("<b>ueahz</b><br>You begin forcing open [src]..."))
 				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE)
 				if(!T.twin)
@@ -1210,28 +1210,28 @@
 				open(2)
 				if(density && !open(2))
 					to_chat(user, span_warning("Despite your attempts, [src] refuses to open!"))
-				T.darkspawn.use_psi(15)
+				SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 15))
 			else
-				if(!T.darkspawn.has_psi(30))
+				if(!(user.mind && SEND_SIGNAL(user.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, 30)))
 					to_chat(user, span_warning("You need at least 30 Psi to smash down an airlock!"))
-					return
+					return 
 				user.visible_message(span_boldwarning("[user] starts slamming [T] into [src]!"), \
 				"<span class='velvet italics'>You loudly begin smashing down [src].</span>")
 				while(atom_integrity > max_integrity * 0.25)
 					if(T.twin)
 						if(!do_after(user, rand(4, 6), src))
-							T.darkspawn.use_psi(30)
+							SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 30))
 							return
 					else
 						if(!do_after(user, rand(8, 10), src))
-							T.darkspawn.use_psi(30)
+							SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 30))
 							return
 					playsound(src, 'yogstation/sound/magic/pass_smash_door.ogg', 50, TRUE)
 					take_damage(max_integrity / rand(8, 15))
 					to_chat(user, "<span class='velvet bold'>klaj.</span>")
 				ex_act(EXPLODE_DEVASTATE)
 				user.visible_message(span_boldwarning("[user] slams down [src]!"), "<span class='velvet bold'>KLAJ.</span>")
-				T.darkspawn.use_psi(30)
+				SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 30))
 		else
 			return ..()
 	else

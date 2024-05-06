@@ -191,3 +191,7 @@
 
 /// Checks if the given mob is a malf ai.
 #define IS_MALF_AI(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/malf_ai))
+
+// Antag resource defines
+#define ANTAG_RESOURCE_DARKSPAWN "Psi"
+#define ANTAG_RESOURCE_VAMPIRE "Blood"

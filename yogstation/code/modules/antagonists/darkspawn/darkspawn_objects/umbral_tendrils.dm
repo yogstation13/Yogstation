@@ -15,16 +15,14 @@
 	block_chance = 25
 	wound_bonus = -60 //no wounding
 	bare_wound_bonus = 20
-	var/datum/antagonist/darkspawn/darkspawn
 	var/obj/item/umbral_tendrils/twin
 	COOLDOWN_DECLARE(grab_cooldown)
 	var/cooldown_length = 1 SECONDS //just to prevent accidentally wasting all your psi
 
-/obj/item/umbral_tendrils/Initialize(mapload, new_darkspawn)
+/obj/item/umbral_tendrils/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	AddComponent(/datum/component/light_eater)
-	darkspawn = new_darkspawn
 	for(var/obj/item/umbral_tendrils/U in loc)
 		if(U != src)
 			twin = U
@@ -67,8 +65,6 @@
 
 /obj/item/umbral_tendrils/afterattack(atom/target, mob/living/user, proximity)
 	. = ..()
-	if(!darkspawn)
-		return
 	if(twin && proximity && !QDELETED(target) && (isstructure(target) || ismachinery(target)) && user.get_active_held_item() == src)
 		target.attackby(twin, user)
 	switch(user.a_intent) //Note that airlock interactions can be found in airlock.dm.
@@ -78,12 +74,12 @@
 /obj/item/umbral_tendrils/proc/tendril_swing(mob/living/user, mob/living/target) //swing the tendrils to knock someone down
 	if(!COOLDOWN_FINISHED(src, grab_cooldown))
 		return
-	if(darkspawn && !darkspawn.has_psi(30))
+	if(!(user.mind && SEND_SIGNAL(user.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, 30)))
 		return
 	if(isliving(target) && target.lying)
 		to_chat(user, span_warning("[target] is already knocked down!"))
 		return
-	darkspawn.use_psi(30)
+	SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 30))
 	COOLDOWN_START(src, grab_cooldown, cooldown_length)
 	user.visible_message(span_warning("[user] draws back [src] and swings them towards [target]!"), \
 	span_velvet("<b>opehhjaoo</b><br>You swing your tendrils towards [target]!"))
