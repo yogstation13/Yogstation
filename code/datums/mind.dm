@@ -94,6 +94,7 @@
 	var/afk_verb_used = FALSE
 	/// The timer for the afk verb
 	var/afk_verb_timer
+	var/list/spell_list = list() // Wizard mode & "Give Spell" badmin button.
 
 /datum/mind/New(_key)
 	key = _key

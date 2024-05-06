@@ -254,3 +254,46 @@
 
 	var/fake_client = FALSE // Currently only used for examines
 
+	/**
+	  * construct spells and mime spells.
+	  *
+	  * Spells that do not transfer from one mob to another and can not be lost in mindswap.
+	  * obviously do not live in the mind
+	  */
+	var/list/mob_spell_list = list()
+
+/*
+ * Gets the stat tab contents for the status tab
+ */
+/mob/proc/get_stat_tab_status()
+	var/list/tab_data = list()
+	tab_data["Map"] = GENERATE_STAT_TEXT("[SSmapping.config?.map_name || "Loading..."]")
+	var/datum/map_config/cached = SSmapping.next_map_config
+	if(cached)
+		tab_data["Next Map"] = GENERATE_STAT_TEXT(cached.map_name)
+	tab_data["Round ID"] = GENERATE_STAT_TEXT("[GLOB.round_id ? GLOB.round_id : "Null"]")
+	tab_data["Server Time"] = GENERATE_STAT_TEXT(time2text(world.timeofday,"YYYY-MM-DD hh:mm:ss"))
+	tab_data["Station Time"] = GENERATE_STAT_TEXT(station_time_timestamp())
+	tab_data["divider_1"] = GENERATE_STAT_BLANK
+
+	tab_data["Time Dilation"] = GENERATE_STAT_TEXT("[round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
+	if (SSticker.round_start_time)
+		tab_data["Internal Round Timer"] = GENERATE_STAT_TEXT(time2text(world.time - SSticker.round_start_time, "hh:mm:ss", 0))
+		tab_data["Actual Round Timer"] = GENERATE_STAT_TEXT(time2text(world.timeofday - SSticker.round_start_timeofday, "hh:mm:ss", 0))
+	else
+		tab_data["Lobby Timer"] = GENERATE_STAT_TEXT(worldtime2text())
+	tab_data["divider_2"] = GENERATE_STAT_BLANK
+
+	if(!SSticker.HasRoundStarted())
+		tab_data["Players Ready/Connected"] = GENERATE_STAT_TEXT("[SSticker.totalPlayersReady]/[GLOB.clients.len]")
+	else
+		tab_data["Players Playing/Connected"] = GENERATE_STAT_TEXT("[get_active_player_count()]/[GLOB.clients.len]")
+	if(SSticker.round_start_time)
+		tab_data["Security Level"] = GENERATE_STAT_TEXT("[capitalize(get_security_level())]")
+
+	tab_data["divider_3"] = GENERATE_STAT_DIVIDER
+	if(SSshuttle.emergency)
+		var/ETA = SSshuttle.emergency.getModeStr()
+		if(ETA)
+			tab_data[ETA] = GENERATE_STAT_TEXT(SSshuttle.emergency.getTimerStr())
+	return tab_data

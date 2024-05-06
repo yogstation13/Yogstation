@@ -616,4 +616,13 @@
 /mob/living/simple_animal/proc/return_standard_turns_per_move()
 	turns_per_move = initial(turns_per_move)
 
+
+/mob/living/simple_animal/get_stat_tab_status()
+	if(do_not_show_health_on_stat_panel)
+		return ..()
+
+	var/list/tab_data = ..()
+	tab_data["Health"] = GENERATE_STAT_TEXT("[round((health / maxHealth) * 100)]%")
+	return tab_data
+
 //YOGS END

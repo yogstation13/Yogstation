@@ -3,6 +3,9 @@
 /mob/living
 	var/list/ownedSoullinks //soullinks we are the owner of
 	var/list/sharedSoullinks //soullinks we are a/the sharer of
+	//LETTING SIMPLE ANIMALS ATTACK? WHAT COULD GO WRONG. Defaults to zero so Ian can still be cuddly
+	var/melee_damage = 0
+	var/mobchatspan = "unknown"	//The span to use when this mob talks in chat for the name tag
 
 /mob/living/Destroy()
 	for(var/s in ownedSoullinks)

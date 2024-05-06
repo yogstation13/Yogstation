@@ -41,9 +41,7 @@ GLOBAL_LIST_EMPTY_TYPED(holoparasites, /mob/living/simple_animal/hostile/holopar
 	chat_color = "#ffffff"
 	mobchatspan = "holoparasite"
 	faction = list()
-	discovery_points = 10000
 	see_in_dark = 10
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	/**
 	 * The name of the holoparasite, formatted with the [accent_color] in a <font> tag.
 	 * Automatically set by [set_name()].
@@ -125,7 +123,6 @@ GLOBAL_LIST_EMPTY_TYPED(holoparasites, /mob/living/simple_animal/hostile/holopar
 		key = _key
 	RegisterSignal(src, COMSIG_LIVING_PRE_WABBAJACKED, PROC_REF(on_pre_wabbajacked))
 	tracking_beacon = LoadComponent(/datum/component/tracking_beacon, REF(parent_holder), null, parent_holder.get_monitor(), FALSE, accent_color, TRUE, TRUE)
-	ADD_LUM_SOURCE(src, LUM_SOURCE_INNATE)
 
 /mob/living/simple_animal/hostile/holoparasite/Destroy()
 	GLOB.holoparasites -= src

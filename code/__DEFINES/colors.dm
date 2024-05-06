@@ -366,6 +366,16 @@ GLOBAL_LIST_INIT(cable_colors, list(
 	CABLE_COLOR_BROWN = CABLE_HEX_COLOR_BROWN
 ))
 
+// Do not use this as a font color. try cfc color formats.
+GLOBAL_LIST_INIT(color_list_rainbow, list(
+	"#FF5050",\
+	"#FF902A",\
+	"#D6B20C",\
+	"#88d818",\
+	"#42c9eb",\
+	"#422ED8",\
+	"#D977FD"))
+
 // Yog Colors
 
 #define COLOR_INPUT_DISABLED "#F0F0F0"

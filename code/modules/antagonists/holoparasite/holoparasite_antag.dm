@@ -8,7 +8,6 @@
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
 	ui_name = "AntagInfoHoloparasite"
-	banning_key = ROLE_HOLOPARASITE
 	var/datum/team/holoparasites/team
 	var/datum/holoparasite_holder/holder
 	var/datum/holoparasite_stats/stats
@@ -151,11 +150,6 @@
 	. = ..()
 	UnregisterSignal(owner, list(COMSIG_HOLOPARA_SET_SUMMONER, COMSIG_HOLOPARA_SET_ACCENT_COLOR, COMSIG_HOLOPARA_SET_THEME))
 	UnregisterSignal(stats, list(COMSIG_HOLOPARA_STATS_SET_MAJOR_ABILITY, COMSIG_HOLOPARA_STATS_ADD_LESSER_ABILITY, COMSIG_HOLOPARA_STATS_TAKE_LESSER_ABILITY, COMSIG_HOLOPARA_STATS_SET_WEAPON))
-
-/datum/antagonist/holoparasite/hijack_speed()
-	. = ..()
-	for(var/datum/antagonist/summoner_antag in holder.owner.antag_datums)
-		. = max(., summoner_antag.hijack_speed())
 
 /datum/antagonist/holoparasite/make_info_button()
 	return // Holoparasite HUD has its own info button
