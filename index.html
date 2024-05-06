@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(882 modules,
-    3106/10991 macros, 28.3%)</aside></h3>
+<aside>(883 modules,
+    3106/10995 macros, 28.2%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -1208,7 +1208,10 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="yogstation/changes.html" title="yogstation&#x2F;changes">Differences with &#x2F;TG&#x2F;Station</a> - The best practice to have while coding is to keep everything modularized, or the most possible. Sometimes it's not possible and you're required to put a &quot;hook&quot; proc call in a TG file. This file is intended to have a list of those hooks, so their locations and purposes can be easily found.</li>
     <li class="has-children"><span title="yogstation&#x2F;code">code</span><ul class="index-tree">
     <li class="has-children"><span title="yogstation&#x2F;code&#x2F;datums">datums</span><ul class="index-tree">
-    <li><span class="no-substance">components&#x2F;</span><a href="yogstation/code/datums/components/crawl.html" title="yogstation&#x2F;code&#x2F;datums&#x2F;components&#x2F;crawl">crawl</a></li>
+    <li class="has-children"><span title="yogstation&#x2F;code&#x2F;datums&#x2F;components">components</span><ul class="index-tree">
+    <li><a href="yogstation/code/datums/components/crawl.html" title="yogstation&#x2F;code&#x2F;datums&#x2F;components&#x2F;crawl">crawl</a></li>
+    <li><a href="yogstation/code/datums/components/pinnable_accessory.html" title="yogstation&#x2F;code&#x2F;datums&#x2F;components&#x2F;pinnable_accessory">pinnable_accessory</a></li>
+    </ul></li>
     <li><span class="no-substance">martial&#x2F;</span><a href="yogstation/code/datums/martial/stealth.html" title="yogstation&#x2F;code&#x2F;datums&#x2F;martial&#x2F;stealth">stealth</a></li>
     <li><span class="no-substance">ruins&#x2F;</span><a href="yogstation/code/datums/ruins/station.html" title="yogstation&#x2F;code&#x2F;datums&#x2F;ruins&#x2F;station">station</a></li>
     </ul></li>
@@ -1270,7 +1273,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1265 detailed/2134 documented/30044 total, 7.1%)</aside></h3>
+<aside>(1268 detailed/2137 documented/30053 total, 7.1%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1794,6 +1797,7 @@ Like telepathy but for multiple people at once!</li>
     <li><a href="datum/component/music_player.html" title="&#x2F;datum&#x2F;component&#x2F;music_player">music_player</a></li>
     <li><a href="datum/component/overlay_lighting.html" title="&#x2F;datum&#x2F;component&#x2F;overlay_lighting">overlay_lighting</a> - Movable atom overlay-based lighting component.</li>
     <li><a href="datum/component/phylactery.html" title="&#x2F;datum&#x2F;component&#x2F;phylactery">phylactery</a></li>
+    <li><a href="datum/component/pinnable_accessory.html" title="&#x2F;datum&#x2F;component&#x2F;pinnable_accessory">pinnable_accessory</a> - This accessory can be pinned onto someone else</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;plane_hide_highest_offset">plane_hide_highest_offset</span> - Component that takes a plane master, and will hide it if it's the highest offset of its kind
 This allows us to not show PMs to clients if they're not actively doing anything</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;refundable">refundable</span> - A very basic component saying that this item is TC-refundable in an uplink.
@@ -3383,7 +3387,10 @@ Attacking any human mob (typically yourself) will cause their arm to instantly b
     </ul></li>
     <li><span class="no-substance">clockwork&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;clockwork&#x2F;construct_chassis">construct chassis</span> - shitcode</li>
     <li class="has-children"><a href="obj/item/clothing.html" title="&#x2F;obj&#x2F;item&#x2F;clothing">clothing</a><ul class="index-tree">
-    <li><span class="no-substance">accessory&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;accessory&#x2F;dogtags">Dogtags</span> - Dog Tags</li>
+    <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;accessory">accessory</span><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;accessory&#x2F;dogtags">Dogtags</span> - Dog Tags</li>
+    <li><a href="obj/item/clothing/accessory/medal.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;accessory&#x2F;medal">bronze medal</a></li>
+    </ul></li>
     <li><a href="obj/item/clothing/glasses.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;glasses">glasses</a></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;gloves">gloves</span><ul class="index-tree">
     <li><a href="obj/item/clothing/gloves/gasharpoon.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;gloves&#x2F;gasharpoon">gasharpoon</a></li>
@@ -3537,6 +3544,7 @@ You can only use one type at a time, you have to clear them to swap to the other
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;kevlar_plating">debug plating</span> - ARMOR PLATES</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;kinetic_crusher">proto-kinetic crusher</span> - Mining Hammer</li>
+    <li><a href="obj/item/kinetic_javelin.html" title="&#x2F;obj&#x2F;item&#x2F;kinetic_javelin">kinetic javelin</a></li>
     <li><span class="no-substance">kitchen&#x2F;</span><a href="obj/item/kitchen/fork.html" title="&#x2F;obj&#x2F;item&#x2F;kitchen&#x2F;fork">fork</a></li>
     <li><a href="obj/item/laser_pointer.html" title="&#x2F;obj&#x2F;item&#x2F;laser_pointer">laser pointer</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;lazarus_injector">lazarus injector</span> - Lazarus Injector</li>
@@ -4219,7 +4227,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/44901b88b4d13626dc63be61689ed7313e71ca8c">44901b8</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/26d29b1dff1d7958add53aada6609a61c276fc5d">26d29b1</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
