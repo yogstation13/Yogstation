@@ -191,7 +191,7 @@
 		reloading_active = TRUE
 		if(!do_after(user, 5 SECONDS, user))
 			reloading_active = FALSE
-			user.balloon_alert(user, "You were interupted!")
+			user.balloon_alert(user, "You were interrupted!")
 			return
 		..()
 		chamber_round()
