@@ -79,6 +79,8 @@
 	check_vampire_upgrade()
 	owner.special_role = "vampire"
 	owner.current.faction += "vampire"
+	RegisterSignal(owner, COMSIG_MIND_CHECK_ANTAG_RESOURCE, PROC_REF(has_blood))
+	RegisterSignal(owner, COMSIG_MIND_SPEND_ANTAG_RESOURCE, PROC_REF(use_blood))
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/H = owner.current
 		RegisterSignal(H, COMSIG_HUMAN_BURNING, PROC_REF(handle_fire))
@@ -86,13 +88,15 @@
 		if(B)
 			B.organ_flags &= ~ORGAN_VITAL
 			B.decoy_override = TRUE
-	..()
+	return ..()
 
 /datum/antagonist/vampire/on_removal()
 	remove_vampire_powers()
 	owner.current.faction -= "vampire"
 	SSticker.mode.vampires -= owner
 	owner.special_role = null
+	UnregisterSignal(owner, COMSIG_MIND_CHECK_ANTAG_RESOURCE)
+	UnregisterSignal(owner, COMSIG_MIND_SPEND_ANTAG_RESOURCE)
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/H = owner.current
 		UnregisterSignal(H, COMSIG_HUMAN_BURNING)
@@ -110,7 +114,7 @@
 		if(B && (B.decoy_override != initial(B.decoy_override)))
 			B.organ_flags |= ORGAN_VITAL
 			B.decoy_override = FALSE
-	..()
+	return ..()
 
 /datum/antagonist/vampire/greet()
 	to_chat(owner, span_userdanger("You are a Vampire!"))
@@ -186,6 +190,22 @@
 		steal_objective.owner = owner
 		steal_objective.find_target()
 		add_objective(steal_objective)
+
+/datum/antagonist/vampire/proc/has_blood(datum/mind, flag = ANTAG_RESOURCE_VAMPIRE, amt)
+	SIGNAL_HANDLER
+	if(flag != ANTAG_RESOURCE_VAMPIRE)
+		return FALSE
+	return usable_blood >= amt
+
+/datum/antagonist/vampire/proc/use_blood(datum/mind, list/resource_costs)
+	SIGNAL_HANDLER
+	var/amount = resource_costs[ANTAG_RESOURCE_VAMPIRE]
+	if(!amount)
+		return
+	if(!has_blood(amt = amount))
+		return
+	usable_blood -= amount
+	to_chat(owner.current, span_notice("<b>You have [usable_blood] left to use.</b>"))
 
 /datum/antagonist/vampire/proc/vamp_burn(severe_burn = FALSE)
 	var/mob/living/L = owner.current

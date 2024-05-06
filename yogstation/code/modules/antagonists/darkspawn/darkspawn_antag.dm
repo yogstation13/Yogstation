@@ -324,7 +324,7 @@
 		return
 	if(!has_psi(amt = amount))
 		return
-	if(psi_regen_delay)
+	if(amount > 0 && psi_regen_delay)
 		COOLDOWN_START(src, psi_cooldown, psi_regen_delay)
 	psi -= amount
 	psi = round(psi, 0.1)
