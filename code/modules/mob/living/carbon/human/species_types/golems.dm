@@ -221,7 +221,7 @@
 	speedmod = 4 //pretty fucking slow
 	meat = /obj/item/stack/ore/iron
 	info_text = "As a <span class='danger'>Plasteel Golem</span>, you are slower, but harder to stun, and hit very hard when punching. You also magnetically attach to surfaces and so don't float without gravity and cannot have positions swapped with other beings."
-	attack_verb = "smash"
+	attack_verbs = list("smash")
 	attack_effect = ATTACK_EFFECT_SMASH
 	attack_sound = 'sound/effects/meteorimpact.ogg' //hits pretty hard
 	prefix = "Plasteel"
@@ -370,7 +370,7 @@
 	fixed_mut_color = "#77ff00"
 	meat = /obj/item/stack/ore/uranium
 	info_text = "As an <span class='danger'>Uranium Golem</span>, your very touch burns and irradiates organic lifeforms."
-	attack_verb = "burn"
+	attack_verbs = list("burn")
 	attack_sound = 'sound/weapons/sear.ogg'
 	attack_type = BURN
 	prefix = "Uranium"
@@ -489,7 +489,7 @@
 	fixed_mut_color = "#3333ff"
 	meat = /obj/item/stack/ore/bluespace_crystal
 	info_text = "As a <span class='danger'>Bluespace Golem</span>, you are spatially unstable: You will teleport when hit, and you can teleport manually at a long distance."
-	attack_verb = "bluespace punch"
+	attack_verbs = list("bluespace punch")
 	attack_sound = 'sound/effects/phasein.ogg'
 	prefix = "Bluespace"
 	special_names = list("Crystal", "Polycrystal")
@@ -586,7 +586,7 @@
 	punchstunthreshold = 2 //Harmless and can't stun
 	meat = /obj/item/stack/ore/bananium
 	info_text = "As a <span class='danger'>Bananium Golem</span>, you are made for pranking. Your body emits natural honks, and you can barely even hurt people when punching them. Your skin also bleeds banana peels when damaged."
-	attack_verb = "honk"
+	attack_verbs = list("honk")
 	attack_sound = 'sound/items/airhorn2.ogg'
 	prefix = "Bananium"
 	special_names = null
@@ -733,7 +733,7 @@
 	info_text = "<span class='bold alloy'>As a </span><span class='bold brass'>Clockwork Golem</span><span class='bold alloy'>, you are faster than other types of golems. On death, you will break down into scrap.</span>"
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH)
 	armor = 20 //Reinforced, but much less so to allow for fast movement
-	attack_verb = "smash"
+	attack_verbs = list("smash")
 	attack_effect = ATTACK_EFFECT_SMASH
 	attack_sound = 'sound/magic/clockwork/anima_fragment_attack.ogg'
 	possible_genders = list(PLURAL)
@@ -1040,7 +1040,7 @@
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH)
 	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
 	limbs_id = "c_golem" //special sprites
-	attack_verb = "whips"
+	attack_verbs = list("whips")
 	attack_sound = 'sound/weapons/whip.ogg'
 	miss_sound = 'sound/weapons/etherealmiss.ogg'
 	fixed_mut_color = null
@@ -1177,7 +1177,7 @@
 	name = "Capitalist Golem"
 	id = "capitalist golem"
 	prefix = "Capitalist"
-	attack_verb = "monopoliz"
+	attack_verbs = list("monopoliz")
 	limbs_id = "ca_golem"
 	special_names = list("John D. Rockefeller","Rich Uncle Pennybags","Commodore Vanderbilt","Entrepreneur","Mr. Moneybags", "Adam Smith")
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH)
@@ -1228,7 +1228,7 @@
 	name = "Churchgoing Capitalist Golem"
 	id = "church_capitalist golem"
 	prefix = "Religio-Capitalist"
-	attack_verb = "monopoliz"
+	attack_verbs = list("monopoliz")
 	limbs_id = "ca_golem"
 	special_names = list("John D. Rockefeller","Rich Uncle Pennybags","Commodore Vanderbilt","Entrepreneur","Mr. Moneybags", "Adam Smith")
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES)
@@ -1252,7 +1252,7 @@
 	name = "Soviet Golem"
 	id = "soviet golem"
 	prefix = "Comrade"
-	attack_verb = "nationaliz"
+	attack_verbs = list("nationaliz")
 	limbs_id = "s_golem"
 	special_names = list("Stalin","Lenin","Trotsky","Marx","Comrade") //comrade comrade
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH)
@@ -1542,7 +1542,7 @@
 	changesource_flags = MIRROR_BADMIN 
 	random_eligible = FALSE // Hell no
 	info_text = "As a <span class='danger'>Supermatter Golem</span>, you dust almost any physical object that interacts with you, while taking half as much brute damage and three times more burn damage. You also explode on death."
-	attack_verb = "dusting punch"
+	attack_verbs = list("dusting punch")
 	attack_sound = 'sound/effects/supermatter.ogg'
 	fixed_mut_color = "ff0"
 	brutemod = 1.5

@@ -115,11 +115,11 @@
 	rename_team = "CentCom Admirals"
 	polldesc = "a CentCom Admiral"
 
-/datum/ert/official/grand_admiral
-	leader_role = /datum/antagonist/centcom/grand_admiral
-	roles = list(/datum/antagonist/centcom/grand_admiral)
-	rename_team = "CentCom Grand Admirals"
-	polldesc = "a CentCom Grand Admiral"
+/datum/ert/official/executive_admiral
+	leader_role = /datum/antagonist/centcom/executive_admiral
+	roles = list(/datum/antagonist/centcom/executive_admiral)
+	rename_team = "CentCom Executive Admirals"
+	polldesc = "a CentCom Executive Admiral"
 
 /datum/ert/uplinked
 	leader_role = /datum/antagonist/ert/common/leader
