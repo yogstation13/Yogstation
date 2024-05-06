@@ -179,11 +179,12 @@
 
 /obj/item/gun/ballistic/maintMusket/attackby(obj/item/A, mob/user, params)
 	
-	if(istype(A, /obj/item/ammo_casing/caseless/cartridge) || istype(A, /obj/item/kitchen/knife))
-		if(istype(A, /obj/item/kitchen/knife)) //Attach bayonet
-			return ..()
-		else if(reloading_active == TRUE)
+	if(istype(A, /obj/item/ammo_casing/caseless/cartridge))
+		if(reloading_active == TRUE)
 			to_chat(user, span_warning("You're already reloading it!"))
+			return
+		if(magazine.stored_ammo.len > 0)
+			user.balloon_alert(user, "Already loaded!")
 			return
 		to_chat(user, span_notice("You start reloading the [src]."))
 		user.visible_message(span_warning("[user] starts reloading the [src]!"))
@@ -192,6 +193,5 @@
 			reloading_active = FALSE
 			user.balloon_alert(user, "You were interrupted!")
 			return
-		..()
-		chamber_round()
 		reloading_active = FALSE
+	return ..()
