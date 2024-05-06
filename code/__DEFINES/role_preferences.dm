@@ -93,7 +93,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_VAMPIRE = /datum/antagonist/vampire, // Yogs
 	ROLE_GANG = /datum/antagonist/gang, // Yogs
 	ROLE_DARKSPAWN = /datum/antagonist/darkspawn, // Yogs
-	ROLE_HOLOPARASITE = /datum/antagonist/guardian, // Yogs
+	ROLE_HOLOPARASITE = /datum/antagonist/holoparasite, // Yogs
 	ROLE_HORROR = /datum/antagonist/horror, // Yogs
 	ROLE_INFILTRATOR = /datum/antagonist/infiltrator, // Yogs
 	ROLE_ZOMBIE	= /datum/antagonist/zombie,

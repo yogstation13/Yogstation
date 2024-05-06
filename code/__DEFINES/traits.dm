@@ -285,3 +285,8 @@
 
 ///reduces the cooldown of all used /datum/action/cooldown by 25%
 #define TRAIT_FAST_COOLDOWNS "short_spell_cooldowns" 
+
+//holoparasite stuff ported from bee
+#define HOLOPARASITE_CLOAK_TRAIT	"holopara_cloak_trait"
+#define HOLOPARASITE_SCOUT_TRAIT	"holopara_scout_trait"
+#define HOLOPARASITE_STAT_TRAIT		"holopara_stat_trait"

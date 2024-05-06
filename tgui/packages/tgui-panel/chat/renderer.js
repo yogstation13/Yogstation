@@ -11,7 +11,7 @@ import { COMBINE_MAX_MESSAGES, COMBINE_MAX_TIME_WINDOW, IMAGE_RETRY_DELAY, IMAGE
 import { render } from 'inferno';
 import { canPageAcceptType, createMessage, isSameMessage } from './model';
 import { highlightNode, linkifyNode } from './replaceInTextNode';
-import { Tooltip } from "../../tgui/components";
+import { Tooltip, RadarChart } from '../../tgui/components';
 
 const logger = createLogger('chatRenderer');
 
@@ -22,13 +22,20 @@ const SCROLL_TRACKING_TOLERANCE = 24;
 // List of injectable component names to the actual type
 export const TGUI_CHAT_COMPONENTS = {
   Tooltip,
+  RadarChart,
 };
 
 // List of injectable attibute names mapped to their proper prop
 // We need this because attibutes don't support lowercase names
 export const TGUI_CHAT_ATTRIBUTES_TO_PROPS = {
-  "position": "position",
-  "content": "content",
+  'position': 'position',
+  'content': 'content',
+  'width': 'width',
+  'height': 'height',
+  'area-color': 'areaColor',
+  'axes': 'axes',
+  'stages': 'stages',
+  'values': 'values',
 };
 
 const findNearestScrollableParent = startingNode => {

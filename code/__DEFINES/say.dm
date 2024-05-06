@@ -69,6 +69,9 @@
 #define MODE_KEY_DARKSPAWN  "w"
 #define MODE_TOKEN_DARKSPAWN  ":w"
 
+#define MODE_HOLOPARASITE		"holoparasite"
+#define MODE_KEY_HOLOPARASITE	"p"
+
 //Spans. Robot speech, italics, etc. Applied in compose_message().
 #define SPAN_ROBOT "robot"
 #define SPAN_YELL "yell"

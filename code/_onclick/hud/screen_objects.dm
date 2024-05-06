@@ -313,6 +313,11 @@
 /atom/movable/screen/drop/Click()
 	if(usr.stat == CONSCIOUS)
 		usr.dropItemToGround(usr.get_active_held_item())
+		update_icon()
+
+/atom/movable/screen/drop/disappearing/update_icon_state()
+	icon_state = usr.get_active_held_item() ? "act_drop" : null
+	return ..()
 
 /atom/movable/screen/act_intent
 	name = "intent"
@@ -611,13 +616,6 @@
 	icon = 'icons/mob/blob.dmi'
 	screen_loc = ui_blobbernaut_overmind_health
 	icon_state = "corehealth"
-
-/atom/movable/screen/healths/guardian
-	name = "summoner health"
-	icon = 'icons/mob/guardian.dmi'
-	icon_state = "base"
-	screen_loc = ui_health
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /atom/movable/screen/healths/clock
 	icon = 'icons/mob/actions.dmi'

@@ -31,7 +31,7 @@
 /datum/export/lavaland/major //valuable chest/ruin loot and staff of storms
 	cost = 20000
 	unit_name = "lava planet artifact"
-	export_types = list(/obj/item/guardiancreator,
+	export_types = list(/obj/item/holoparasite_creator,
 						/obj/item/rod_of_asclepius,
 						/obj/item/clothing/suit/space/hardsuit/powerarmor_advanced,
 						/obj/item/prisoncube,

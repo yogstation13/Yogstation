@@ -176,7 +176,6 @@
 			H.AddComponent(/datum/component/mood)
 		// Yogs End
 	transfer_martial_arts(new_character)
-	transfer_parasites()
 	RegisterSignal(new_character, COMSIG_GLOB_MOB_DEATH, PROC_REF(set_death_time))
 	if(accent_name)
 		RegisterSignal(new_character, COMSIG_MOB_SAY, PROC_REF(handle_speech))
@@ -836,3 +835,9 @@
 	..()
 	mind.assigned_role = ROLE_PAI
 	mind.special_role = ""
+
+
+/datum/mind/proc/holoparasite_holder()
+	if(!holoparasite_holder)
+		holoparasite_holder = new(src)
+	return holoparasite_holder

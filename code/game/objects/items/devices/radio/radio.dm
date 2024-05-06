@@ -513,3 +513,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "radio_makeshift"
 	subspace_switchable = TRUE  // Made with a headset, so it can transmit over subspace I guess
 	freqlock = TRUE
+
+
+/obj/item/radio/proc/get_specific_hearers()
+	if(istype(loc, /obj/item/implant))
+		var/obj/item/implant/radio_implant = loc
+		return radio_implant.imp_in

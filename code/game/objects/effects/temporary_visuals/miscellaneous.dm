@@ -223,14 +223,14 @@
 	icon_state = "blspell"
 	duration = 0.5 SECONDS
 
-/obj/effect/temp_visual/guardian
+/obj/effect/temp_visual/holoparasite
 	randomdir = 0
 
-/obj/effect/temp_visual/guardian/phase
+/obj/effect/temp_visual/holoparasite/phase
 	duration = 0.5 SECONDS
 	icon_state = "phasein"
 
-/obj/effect/temp_visual/guardian/phase/out
+/obj/effect/temp_visual/holoparasite/phase/out
 	icon_state = "phaseout"
 
 /obj/effect/temp_visual/decoy

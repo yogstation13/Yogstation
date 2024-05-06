@@ -394,9 +394,17 @@ GLOBAL_LIST_EMPTY(antagonists)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, ui_name, name)
+		ui.set_autoupdate(TRUE)
 		ui.open()
 
+/datum/antagonist/ui_host(mob/user)
+	if(owner?.current)
+		return owner.current
+	return ..()
+
 /datum/antagonist/ui_state(mob/user)
+	if(owner?.current)
+		return GLOB.self_state
 	return GLOB.always_state
 
 ///generic helper to send objectives as data through tgui.

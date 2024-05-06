@@ -82,3 +82,4 @@ Color.lookup = (value, colors = []) => {
   const index = scaled | 0;
   return Color.lerp(colors[index], colors[index + 1], ratio);
 };
+
