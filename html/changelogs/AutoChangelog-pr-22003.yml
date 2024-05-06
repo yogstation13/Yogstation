@@ -1,5 +1,0 @@
-author: "cowbot92"
-delete-after: true 
-changes: 
-  - imageadd: "adds new changeling ability sprites"
-  - imagedel: "deletes soul from changeling ability sprites"
