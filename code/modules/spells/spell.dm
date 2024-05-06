@@ -86,7 +86,7 @@
 	var/smoke_amt = 0
 
 	/// An associative list of all resource costs
-	var/list/resource_costs = list()
+	var/list/resource_costs
 	/// Boolean, if true, resource costs will be ignored
 	var/bypass_cost = FALSE
 

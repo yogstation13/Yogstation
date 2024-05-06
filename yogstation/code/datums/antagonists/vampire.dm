@@ -199,6 +199,8 @@
 
 /datum/antagonist/vampire/proc/use_blood(datum/mind, list/resource_costs)
 	SIGNAL_HANDLER
+	if(!LAZYLEN(resource_costs))
+		return
 	var/amount = resource_costs[ANTAG_RESOURCE_VAMPIRE]
 	if(!amount)
 		return

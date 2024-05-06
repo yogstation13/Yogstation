@@ -319,6 +319,8 @@
 
 /datum/antagonist/darkspawn/proc/use_psi(datum/mind, list/resource_costs)
 	SIGNAL_HANDLER
+	if(!LAZYLEN(resource_costs))
+		return
 	var/amount = resource_costs[ANTAG_RESOURCE_DARKSPAWN]
 	if(!amount)
 		return
