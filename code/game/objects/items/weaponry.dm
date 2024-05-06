@@ -551,7 +551,22 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	
 /obj/item/staff/darkspawn/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/two_handed)
+	AddComponent(/datum/component/two_handed, \
+		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
+		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
+	)
+
+/obj/item/staff/darkspawn/proc/on_wield()
+	item_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
+	if(ishuman(loc))
+		var/mob/living/carbon/human/C = loc
+		C.update_inv_hands()
+
+/obj/item/staff/darkspawn/proc/on_unwield()
+	item_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
+	if(ishuman(loc))
+		var/mob/living/carbon/human/C = loc
+		C.update_inv_hands()
 
 /obj/item/staff/stick
 	name = "stick"
