@@ -76,8 +76,8 @@
 
 	ears = /obj/item/radio/headset/heads/rd
 	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses/rd
-	uniform = /obj/item/clothing/under/rank/research_director
-	uniform_skirt = /obj/item/clothing/under/rank/research_director/skirt
+	uniform = /obj/item/clothing/under/rank/rnd/research_director
+	uniform_skirt = /obj/item/clothing/under/rank/rnd/research_director/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
 	suit = /obj/item/clothing/suit/toggle/labcoat

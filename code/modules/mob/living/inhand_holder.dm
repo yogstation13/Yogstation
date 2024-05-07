@@ -18,7 +18,7 @@
 	if(clothing_layer)
 		alternate_worn_layer = clothing_layer
 	if(held_icon)
-		mob_overlay_icon = held_icon
+		worn_icon = held_icon
 	if(worn_state)
 		item_state = worn_state
 	if(lh_icon)

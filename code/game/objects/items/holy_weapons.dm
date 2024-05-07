@@ -1272,7 +1272,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	icon = 'icons/obj/misc.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	mob_overlay_icon = 'icons/mob/clothing/belt.dmi'
+	worn_icon = 'icons/mob/clothing/belt.dmi'
 	icon_state = "aspergillum0"
 	item_state = "aspergillum0"
 	base_icon_state = "aspergillum"

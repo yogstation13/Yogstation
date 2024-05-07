@@ -176,7 +176,7 @@
 "E" = (
 /obj/structure/table,
 /obj/item/grenade/chem_grenade/cleaner,
-/obj/item/clothing/under/maid,
+/obj/item/clothing/under/costume/maid,
 /turf/open/floor/plating,
 /area/template_noop)
 "F" = (

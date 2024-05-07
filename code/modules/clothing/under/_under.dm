@@ -19,7 +19,7 @@
 	var/can_adjust = TRUE
 	var/adjusted = NORMAL_STYLE
 	var/alt_covers_chest = FALSE // for adjusted/rolled-down jumpsuits, FALSE = exposes chest and arms, TRUE = exposes arms only
-	var/mutantrace_variation = NO_MUTANTRACE_VARIATION //Are there special sprites for specific situations? Don't use this unless you need to.
+	var/mutantrace_variation = NONE //Are there special sprites for specific situations? Don't use this unless you need to.
 	var/freshly_laundered = FALSE
 
 	var/obj/item/clothing/accessory/attached_accessory
@@ -93,7 +93,7 @@
 		return
 	var/mob/living/carbon/human/H = user
 	
-	if(mutantrace_variation == MUTANTRACE_VARIATION)
+	if(mutantrace_variation & DIGITIGRADE_VARIATION)
 		var/is_digi = FALSE
 		if(DIGITIGRADE in H.dna.species.species_traits)
 			is_digi = TRUE
@@ -146,7 +146,7 @@
 				to_chat(user, span_notice("You attach [I] to [src]."))
 
 			var/accessory_color = attached_accessory.icon_state
-			accessory_overlay = mutable_appearance(attached_accessory.mob_overlay_icon, "[accessory_color]")
+			accessory_overlay = mutable_appearance(attached_accessory.worn_icon, "[accessory_color]")
 			accessory_overlay.alpha = attached_accessory.alpha
 			accessory_overlay.color = attached_accessory.color
 
