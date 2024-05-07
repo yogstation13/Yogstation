@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - experiment: "Split the uniform sprite file into smaller files, report any suits missing a sprite"
+  - bugfix: "Fixed female versions of most jumpsuits not using the digitigrade variants when they're supposed to"
