@@ -2,30 +2,27 @@ GLOBAL_VAR_INIT(decrypted_puzzle_disks, 0)
 GLOBAL_LIST_EMPTY(button_puzzles)
 GLOBAL_LIST_EMPTY(rock_paper_scissors_puzzle_answers)
 
-/proc/rock_paper_scissors_puzzle()
-	var/player_list = GLOB.player_list.Copy()
+// /proc/rock_paper_scissors_puzzle()
+// 	var/player_list = GLOB.player_list.Copy()
 
-	for(var/mob/unsorted_players in player_list)
-		if(unsorted_players.job == "Network Admin")
-			player_list -= unsorted_players
-		if(!unsorted_players.client)
-			player_list -= unsorted_players
-		else	
-			if(unsorted_players.client.address in list("127.0.0.1", "::1"))
-				player_list -= unsorted_players
+// 	for(var/mob/unsorted_players in player_list)
+// 		if(unsorted_players.job == "Network Admin")
+// 			player_list -= unsorted_players
+// 		if(!unsorted_players.client)
+// 			player_list -= unsorted_players
 
-	var/players_to_ask = 3
-	if(length(player_list) < players_to_ask)
-		players_to_ask = length(player_list)
+// 	var/players_to_ask = 3
+// 	if(length(player_list) < players_to_ask)
+// 		return //if not enough players, don't bother asking, it's either so lowpop that it means nothing, or it's localhost
 
-	while(players_to_ask > 0)
-		var/mob/player = pick_n_take(player_list)
-		var/answer = tgui_input_list(player, "You've been selected for a quick game of rock-paper-scissors. Unfortunately we cannot tell you if you win.", "Rock Paper Scissors", list("Rock", "Paper", "Scissors"))
-		if(!answer)
-			GLOB.rock_paper_scissors_puzzle_answers += pick("Rock", "Paper", "Scissors")
-		else
-			GLOB.rock_paper_scissors_puzzle_answers += answer
-		players_to_ask--
+// 	while(players_to_ask > 0)
+// 		var/mob/player = pick_n_take(player_list)
+// 		var/answer = tgui_input_list(player, "You've been selected for a quick game of rock-paper-scissors. Unfortunately we cannot tell you if you win.", "Rock Paper Scissors", list("Rock", "Paper", "Scissors"))
+// 		if(!answer)
+// 			GLOB.rock_paper_scissors_puzzle_answers += pick("Rock", "Paper", "Scissors")
+// 		else
+// 			GLOB.rock_paper_scissors_puzzle_answers += answer
+// 		players_to_ask--
 
 /obj/item/disk/puzzle
 	name = "encrypted floppy drive"
