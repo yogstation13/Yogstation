@@ -16,7 +16,4 @@
 
 /mob/living/update_sight()
 	. = ..()
-	for(var/mob/living/simple_animal/hostile/guardian/holopara as anything in hasparasites())
-		holopara.lighting_cutoff  = lighting_cutoff
-		holopara.update_sight()
 	update_wire_vision()

@@ -75,7 +75,7 @@
 	owner.alpha = 15
 	assassin = TRUE
 	update_stealth_alert()
-	owner.balloon_alert(owner, "entered assassin mode", show_in_chat = FALSE)
+	owner.balloon_alert(owner, "entered assassin mode")
 
 /**
  * Exits assassin mode, restoring the holoparasite's stats, visibility, and such to normal.
@@ -95,7 +95,7 @@
 		if(owner.hud_used)
 			var/atom/movable/screen/holoparasite/manifest_recall/mr_hud = locate() in owner.hud_used.static_inventory
 			mr_hud?.begin_timer(4 SECONDS)
-		owner.balloon_alert(owner, "exited assassin mode", show_in_chat = FALSE)
+		owner.balloon_alert(owner, "exited assassin mode")
 	update_stealth_alert()
 	assassin = FALSE
 

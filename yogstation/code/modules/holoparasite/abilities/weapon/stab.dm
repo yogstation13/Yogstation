@@ -41,10 +41,5 @@
 	owner.response_harm = initial(owner.response_harm)
 	owner.attacktext = initial(owner.attacktext)
 
-/datum/holoparasite_ability/weapon/blade/attack_effect(atom/movable/target, successful)
-	. = ..()
-	if(successful && ishuman(target))
-		var/mob/living/carbon/human/human_target = target
-		if(human_target.bleed_rate < 15)
-			var/randomized_bleed_rate = rand(round(premultiplied_bleed_rate * 0.5), premultiplied_bleed_rate) * 0.1
-			human_target.bleed_rate = clamp(human_target.bleed_rate + randomized_bleed_rate, 0, 15)
+// /datum/holoparasite_ability/weapon/blade/attack_effect(atom/movable/target, successful)
+// 	. = ..()

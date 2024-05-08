@@ -40,7 +40,7 @@
 /**
  * Sets the new name of the holoparasite.
  */
-/mob/living/simple_animal/hostile/holoparasite/proc/set_name(new_name, silent = FALSE, internal = FALSE)
+/mob/living/simple_animal/hostile/holoparasite/set_name(new_name, silent = FALSE, internal = FALSE)
 	. = TRUE
 	if(!istext(new_name))
 		return FALSE
@@ -105,15 +105,11 @@
 	if(!length(new_battlecry))
 		SSblackbox.record_feedback("tally", "holoparasite_battlecry", 1, "(none)")
 		battlecry = null
-		balloon_alert(src, "battlecry unset", show_in_chat = FALSE)
+		balloon_alert(src, "battlecry unset")
 		return
 	new_battlecry = trim(new_battlecry, HOLOPARA_MAX_BATTLECRY_LENGTH)
-	if(CHAT_FILTER_CHECK(new_battlecry))
-		if(!silent)
-			to_chat(src, "<span class='warning'>Your battlecry contains forbidden words.</span>")
-		return FALSE
 	battlecry = new_battlecry
 	if(!silent)
 		to_chat(src, "<span class='notice'>You set your battlecry to '<b>[battlecry]</b>'.</span>")
 	SSblackbox.record_feedback("tally", "holoparasite_battlecry", 1, battlecry)
-	balloon_alert(src, "battlecry set", show_in_chat = FALSE)
+	balloon_alert(src, "battlecry set")

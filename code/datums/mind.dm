@@ -95,6 +95,8 @@
 	/// The timer for the afk verb
 	var/afk_verb_timer
 	var/list/spell_list = list() // Wizard mode & "Give Spell" badmin button.
+	/// A holder datum used to handle holoparasites and their shared behavior.
+	var/datum/holoparasite_holder/holoparasite_holder
 
 /datum/mind/New(_key)
 	key = _key

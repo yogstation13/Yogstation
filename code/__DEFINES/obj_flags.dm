@@ -40,7 +40,7 @@
 #define MEDRESIST				(1<<14) // This item will block medical sprays when worn
 #define HAND_ITEM 				(1<<15) // If an item is just your hand (circled hand, slapper) and shouldn't block things like riding
 #define AUTOLATHED				(1<<16) // Autolathed item innit
-
+#define EXAMINE_SKIP			(1<<17) //! Examine will not read out this item
 
 // Flags for the open_flags var on /obj/structure/closet
 

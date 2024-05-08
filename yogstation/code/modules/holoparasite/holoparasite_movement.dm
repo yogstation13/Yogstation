@@ -15,7 +15,7 @@
 	// You can't move out of your range yourself.
 	if(is_in_range() && !is_in_range(new_loc))
 		if(COOLDOWN_FINISHED(src, range_balloon_cooldown))
-			balloon_alert(src, "can't move out of range", show_in_chat = FALSE)
+			balloon_alert(src, "can't move out of range")
 			COOLDOWN_START(src, range_balloon_cooldown, 1 SECONDS)
 		return FALSE
 	if(attached_to_summoner)
@@ -94,7 +94,7 @@
 		new /obj/effect/temp_visual/holoparasite/phase(loc)
 		SEND_SIGNAL(src, COMSIG_HOLOPARA_SNAPBACK, old_loc)
 		if(COOLDOWN_FINISHED(src, range_balloon_cooldown))
-			balloon_alert(src, "left range", show_in_chat = FALSE)
+			balloon_alert(src, "left range")
 			COOLDOWN_START(src, range_balloon_cooldown, 1 SECONDS)
 
 /**

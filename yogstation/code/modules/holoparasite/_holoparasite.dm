@@ -204,7 +204,7 @@ GLOBAL_LIST_EMPTY_TYPED(holoparasites, /mob/living/simple_animal/hostile/holopar
 /mob/living/simple_animal/hostile/holoparasite/can_use_guns(obj/item/gun)
 	if(SEND_SIGNAL(src, COMSIG_HOLOPARA_CAN_FIRE_GUN, gun) & HOLOPARA_CAN_FIRE_GUN)
 		return TRUE
-	balloon_alert(src, "cannot fire [gun]", show_in_chat = FALSE)
+	balloon_alert(src, "cannot fire [gun]")
 	to_chat(src, "<span class='warning'>You can't fire \the [gun]!</span>")
 	return FALSE // No... just... no.
 
@@ -273,17 +273,17 @@ GLOBAL_LIST_EMPTY_TYPED(holoparasites, /mob/living/simple_animal/hostile/holopar
 			set_light_range(initial(light_range))
 			set_light_power(initial(light_power))
 			to_chat(src, "<span class='notice'>You activate your light.</span>")
-			balloon_alert(src, "light activated", show_in_chat = FALSE)
+			balloon_alert(src, "light activated")
 		else
 			set_light_range(0)
 			set_light_power(0.1)
 			to_chat(src, "<span class='notice'>You deactivate your light.</span>")
-			balloon_alert(src, "light deactivated", show_in_chat = FALSE)
+			balloon_alert(src, "light deactivated")
 	else
 		set_light_on(!light_on)
 		var/prefix = light_on ? "" : "de"
 		to_chat(src, "<span class='notice'>You [prefix]activate your light.</span>")
-		balloon_alert(src, "light [prefix]activated", show_in_chat = FALSE)
+		balloon_alert(src, "light [prefix]activated")
 
 /**
  * Recreates the holoparasite's HUD.

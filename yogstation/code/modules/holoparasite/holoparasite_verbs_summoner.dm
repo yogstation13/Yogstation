@@ -25,7 +25,7 @@
 
 	for(var/mob/living/simple_animal/hostile/holoparasite/holopara as() in holoparasites())
 		to_chat(holopara, "<span class='danger holoparasite'>Your summoner has forcefully recalled you!</span>")
-		holopara.balloon_alert(holopara, "force recalled", show_in_chat = FALSE)
+		holopara.balloon_alert(holopara, "force recalled")
 		holopara.recall(forced = TRUE)
 
 /**
@@ -105,17 +105,17 @@
 	var/t_s = length(holder.holoparasites) > 1 ? "s" : ""
 	if(holder.locked)
 		to_chat(src, "<span class='notice holoparasite'>You <b>lock</b> your holoparasite[t_s], preventing them from manifesting.</span>")
-		balloon_alert(src, "locked holoparasite[t_s]", show_in_chat = FALSE)
+		balloon_alert(src, "locked holoparasite[t_s]")
 		for(var/mob/living/simple_animal/hostile/holoparasite/holopara as() in holder.holoparasites)
 			to_chat(holopara, "<span class='warning holoparasite'>Your summoner has <b>locked</b> you, preventing you from manifesting!</span>")
 			holopara.recall(forced = TRUE)
-			holopara.balloon_alert(holopara, "locked", show_in_chat = FALSE)
+			holopara.balloon_alert(holopara, "locked")
 	else
 		to_chat(src, "<span class='notice holoparasite'>You <b>unlock</b> your holoparasite[t_s], allowing them to freely manifest once more.</span>")
-		balloon_alert(src, "unlocked holoparasite[t_s]", show_in_chat = FALSE)
+		balloon_alert(src, "unlocked holoparasite[t_s]")
 		for(var/mob/living/simple_animal/hostile/holoparasite/holopara as() in holder.holoparasites)
 			to_chat(holopara, "<span class='notice holoparasite'>Your summoner has <b>unlocked</b> you, allowing you to manifest freely again.</span>")
-			holopara.balloon_alert(holopara, "unlocked", show_in_chat = FALSE)
+			holopara.balloon_alert(holopara, "unlocked")
 			if(holopara.hud_used)
 				var/atom/movable/screen/holoparasite/manifest_recall/mr_hud = locate() in holopara.hud_used.static_inventory
 				mr_hud?.update_appearance()

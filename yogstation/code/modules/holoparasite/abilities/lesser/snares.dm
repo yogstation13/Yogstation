@@ -117,17 +117,17 @@
 /datum/holoparasite_ability/lesser/snare/proc/arm_snare(custom_name)
 	if(length(snares) >= HOLOPARA_MAX_SNARES)
 		to_chat(owner, "<span class='danger'>You have too many snares deployed! You may only have up to <b>[HOLOPARA_MAX_SNARES]</b> active snares at once!</span>")
-		owner.balloon_alert(owner, "too many snares", show_in_chat = FALSE)
+		owner.balloon_alert(owner, "too many snares")
 		return
 	if(!owner.is_manifested())
 		to_chat(owner, "<span class='danger'>You must be manifested to deploy a snare!</span>")
-		owner.balloon_alert(owner, "must be manifested to deploy snare", show_in_chat = FALSE)
+		owner.balloon_alert(owner, "must be manifested to deploy snare")
 		return
 	var/turf/snare_turf = get_turf(owner)
 	var/area/snare_area = get_area(snare_turf)
 	if(locate(/obj/effect/snare) in snare_turf)
 		to_chat(owner, "<span class='danger'>There is already a snare at this location!</span>")
-		owner.balloon_alert(owner, "snare already here", show_in_chat = FALSE)
+		owner.balloon_alert(owner, "snare already here")
 		return
 	var/snare_name = name_snare(custom_name, snare_area)
 	if(!length(snare_name))
@@ -135,7 +135,7 @@
 	owner.visible_message("<span class='warning holoparasite'>[owner.color_name] begins to rig some sort of elaborate device...</span>", "<span class='notice holoparasite'>You begin to set up a snare...</span>")
 	if(!do_after(owner, 2.5 SECONDS, snare_turf))
 		to_chat(owner, "<span class='danger holoparasite'>You were interrupted while setting up the snare!</span>")
-		owner.balloon_alert(owner, "snare deployment interrupted", show_in_chat = FALSE)
+		owner.balloon_alert(owner, "snare deployment interrupted")
 		return
 	var/obj/effect/snare/snare = new(snare_turf, src)
 	owner.give_accent_border(snare)
@@ -145,7 +145,7 @@
 		snare.become_hearing_sensitive()
 		RegisterSignal(snare, COMSIG_MOVABLE_HEAR, PROC_REF(snare_on_hear))
 	to_chat(owner, "<span class='danger bold'>Surveillance snare deployed!</span>")
-	snare.balloon_alert(owner, "snare armed", show_in_chat = FALSE)
+	snare.balloon_alert(owner, "snare armed")
 	update_both_huds()
 	var/datum/space_level/snare_z_level = SSmapping.get_level(snare_turf.z)
 	SSblackbox.record_feedback("associative", "holoparasite_snares", 1, list(
@@ -171,7 +171,7 @@
 			snare_to_disarm = tgui_input_list(owner, "Select a snare to disarm.", "Disarm Snare", snares)
 	if(!istype(snare_to_disarm))
 		return
-	owner.balloon_alert(owner, "snare disarmed", show_in_chat = FALSE)
+	owner.balloon_alert(owner, "snare disarmed")
 	destroy_snare(snare_to_disarm, intentional = TRUE)
 	qdel(snare_to_disarm)
 

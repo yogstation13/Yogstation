@@ -297,8 +297,6 @@
 		return "too long"
 	if(!reject_bad_name(holopara_name))
 		return "invalid"
-	if(CHAT_FILTER_CHECK(holopara_name))
-		return "filtered"
 
 /**
  * Checks the validity of the custom notes of the holoparasite, returning the reason if it's invalid, or "valid" if it is in fact valid.
@@ -310,9 +308,7 @@
 		return
 	if(notes_length > MAX_PAPER_LENGTH)
 		return "too long"
-	if(OOC_FILTER_CHECK(notes))
-		return "filtered"
-
+		
 /datum/holoparasite_builder/proc/calc_points()
 	points = max_points - max(saved_stats.damage - 1, 0) - max(saved_stats.defense - 1, 0) - max(saved_stats.speed - 1, 0) - max(saved_stats.potential - 1, 0) - max(saved_stats.range - 1, 0) - saved_stats.weapon.cost
 	if(saved_stats.ability)
@@ -327,37 +323,29 @@
 		return FALSE
 	if(waiting)
 		to_chat(user, "<span class='warning'>You're already trying to summon a [theme.name]! Be patient!<span>")
-		user.balloon_alert(user, "failed, already trying to summon", show_in_chat = FALSE)
+		user.balloon_alert(user, "failed, already trying to summon")
 		return FALSE
 	if(uses <= 0)
 		to_chat(user, "<span class='warning'>You've already used up this builder!<span>")
-		user.balloon_alert(user, "failed, builder used up", show_in_chat = FALSE)
+		user.balloon_alert(user, "failed, builder used up")
 		return FALSE
 	holopara_name = reject_bad_name(holopara_name, allow_numbers = TRUE)
 	if(!length(holopara_name))
 		to_chat(user, "<span class='warning'>Your [theme.name] must have a name!<span>")
-		user.balloon_alert(user, "failed, empty name", show_in_chat = FALSE)
-		return FALSE
-	if(CHAT_FILTER_CHECK(holopara_name))
-		to_chat(src, "<span class='warning'>The chosen [theme.name] name contains forbidden words.</span>")
-		user.balloon_alert(user, "failed, filtered name", show_in_chat = FALSE)
-		return FALSE
-	if(OOC_FILTER_CHECK(notes))
-		to_chat(src, "<span class='warning'>The provided notes contain forbidden words.</span>")
-		user.balloon_alert(user, "failed, filtered notes", show_in_chat = FALSE)
+		user.balloon_alert(user, "failed, empty name")
 		return FALSE
 	if(is_color_dark_with_saturation(accent_color, HOLOPARA_MAX_ACCENT_LIGHTNESS))
 		to_chat(src, "<span class='warning'>The provided accent color ([accent_color]) is too dark (lightness of [rgb2num(accent_color, COLORSPACE_HSL)[3]], must be below [HOLOPARA_MAX_ACCENT_LIGHTNESS]).</span>")
-		user.balloon_alert(user, "failed, accent color too dark", show_in_chat = FALSE)
+		user.balloon_alert(user, "failed, accent color too dark")
 		return FALSE
 	calc_points()
 	if(points < 0)
 		to_chat("<span class='danger'>You don't have enough points for a [theme.name] like that!</span>")
-		user.balloon_alert(user, "failed, not enough points", show_in_chat = FALSE)
+		user.balloon_alert(user, "failed, not enough points")
 		return FALSE
 	waiting = TRUE
 	theme.display_message(user, HOLOPARA_MESSAGE_USE)
-	user.balloon_alert(user, "attempting to summon [lowertext(theme.name)]", show_in_chat = FALSE)
+	user.balloon_alert(user, "attempting to summon [lowertext(theme.name)]")
 	var/tldr_stats = saved_stats.tldr()
 	user.log_message("is attempting to summon a holoparasite ([theme.name]), with the following stats: [tldr_stats]", LOG_GAME)
 	message_admins("[ADMIN_LOOKUPFLW(user)] is attempting to summon a holoparasite ([theme.name]), with the following stats: [tldr_stats]")
@@ -366,7 +354,7 @@
 	if(debug_mode)
 		candidates = list(user)
 	else
-		candidates = poll_ghost_candidates(
+		candidates = pollCandidatesForMob(
 			"Do you want to play as [holopara_name], [user.mind.name]'s [theme.name]?",
 			jobban_type = ROLE_HOLOPARASITE,
 			poll_time = 30 SECONDS
@@ -374,7 +362,7 @@
 	waiting = FALSE
 	if(!length(candidates))
 		theme.display_message(user, HOLOPARA_MESSAGE_FAILED)
-		user.balloon_alert(user, "failed to summon [lowertext(theme.name)]", show_in_chat = FALSE)
+		user.balloon_alert(user, "failed to summon [lowertext(theme.name)]")
 		return FALSE
 	uses--
 	var/mob/dead/observer/candidate = pick(candidates)
@@ -385,7 +373,7 @@
 	user.log_message("summoned [key_name(holoparasite)], a holoparasite ([theme.name]), with the following stats: [tldr_stats]", LOG_GAME)
 	message_admins("[ADMIN_LOOKUPFLW(user)] has summoned [ADMIN_LOOKUPFLW(holoparasite)], a holoparasite ([theme.name]), with the following stats: [tldr_stats]")
 	theme.display_message(user, HOLOPARA_MESSAGE_SUCCESS, holoparasite)
-	user.balloon_alert(user, "successfully summoned [lowertext(theme.name)]", show_in_chat = FALSE)
+	user.balloon_alert(user, "successfully summoned [lowertext(theme.name)]")
 	record_to_blackbox()
 
 /**

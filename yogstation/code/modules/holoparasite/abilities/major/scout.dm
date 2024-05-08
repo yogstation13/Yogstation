@@ -252,7 +252,7 @@
 	owner.med_hud_set_health()
 	owner.med_hud_set_status()
 	ADD_TRAIT(owner, TRAIT_SHOCKIMMUNE, HOLOPARASITE_SCOUT_TRAIT)
-	owner.balloon_alert(owner, "entered scout mode", show_in_chat = FALSE)
+	owner.balloon_alert(owner, "entered scout mode")
 	to_chat(owner, "<span class='notice bold'>You enter scout mode, you may no longer attack or use most abilities, however you can freely move around the station through obstacles at great speeds.</span>")
 
 /**
@@ -277,7 +277,7 @@
 	REMOVE_TRAITS_IN(owner, HOLOPARASITE_SCOUT_TRAIT)
 	owner.update_sight()
 	if(!forced)
-		owner.balloon_alert(owner, "exited scout mode", show_in_chat = FALSE)
+		owner.balloon_alert(owner, "exited scout mode")
 		to_chat(owner, "<span class='notice bold'>You exit scout mode, you may attack and use abilities normally again.</span>")
 
 /**
@@ -309,7 +309,7 @@
 	ADD_TRAIT(owner, TRAIT_MUTE, HOLOPARASITE_CLOAK_TRAIT)
 	ADD_TRAIT(owner, TRAIT_EMOTEMUTE, HOLOPARASITE_CLOAK_TRAIT)
 	to_chat(owner, "<span class='notice bold'>You begin to cloak, you are now completely invisible to almost everyone, however you can no longer speak nor emote.</span>")
-	owner.balloon_alert(owner, "started cloaking", show_in_chat = FALSE)
+	owner.balloon_alert(owner, "started cloaking")
 
 /**
  * Uncloaks the holoparasite, allowing the holoparasite to be seen by everyone again, and stop stalking.
@@ -334,7 +334,7 @@
 	if(!forced)
 		if(manifested_with_cloak)
 			COOLDOWN_START(src, cloak_cooldown, HOLOPARA_SCOUT_CLOAK_COOLDOWN)
-		owner.balloon_alert(owner, "stopped cloaking", show_in_chat = FALSE)
+		owner.balloon_alert(owner, "stopped cloaking")
 	manifested_with_cloak = FALSE
 
 /**

@@ -67,7 +67,7 @@
 	var/mob/living/summoner = owner.summoner.current
 	summoner.add_movespeed_modifier(/datum/movespeed_modifier/holopara_frenzy/major)
 	to_chat(summoner, "<span class='notice holoparasite'>You feel much faster, as if you could outrun <i>anything!</i></span>")
-	summoner.balloon_alert(summoner, "frenzy speed boost applied", show_in_chat = FALSE)
+	summoner.balloon_alert(summoner, "frenzy speed boost applied")
 
 /**
  * Remove the movespeed modifier whenever the holoparasite manifests.
@@ -77,7 +77,7 @@
 	var/mob/living/summoner = owner.summoner.current
 	summoner.remove_movespeed_modifier(/datum/movespeed_modifier/holopara_frenzy)
 	to_chat(summoner, "<span class='notice holoparasite'>You feel the incredible energy within you fade away, leaving you to move at a normal speed once more...</span>")
-	summoner.balloon_alert(summoner, "frenzy speed boost lost", show_in_chat = FALSE)
+	summoner.balloon_alert(summoner, "frenzy speed boost lost")
 
 /datum/holoparasite_ability/major/frenzy/proc/on_ranged_attack(datum/_source, mob/living/target, params)
 	SIGNAL_HANDLER

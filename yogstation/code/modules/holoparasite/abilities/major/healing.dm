@@ -84,7 +84,7 @@
 	if(owner.a_intent == INTENT_HELP)
 		if(owner.has_matching_summoner(target, include_summoner = FALSE))
 			to_chat(owner, "<span class='danger bold'>You can't heal yourself!</span>")
-			owner.balloon_alert(owner, "cannot heal self", show_in_chat = FALSE)
+			owner.balloon_alert(owner, "cannot heal self")
 			return
 		if(heal(target))
 			owner.changeNext_move(CLICK_CD_MELEE)

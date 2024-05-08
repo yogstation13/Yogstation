@@ -280,6 +280,14 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 //for obj explosion block calculation
 #define EXPLOSION_BLOCK_PROC -1
 
+/// A wrapper for [/atom/proc/ex_act] to ensure that the explosion propagation and attendant signal are always handled.
+#define EX_ACT(target, args...)\
+	if(!(target.flags_1 & PREVENT_CONTENTS_EXPLOSION_1)) { \
+		target.contents_explosion(##args);\
+	};\
+	SEND_SIGNAL(target, COMSIG_ATOM_EX_ACT, ##args);\
+	target.ex_act(##args);
+
 //for determining which type of heartbeat sound is playing
 #define BEAT_FAST 1
 #define BEAT_SLOW 2

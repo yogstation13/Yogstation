@@ -56,7 +56,7 @@
 		for(var/obj/effect/ebeam/beam_part in beam.elements)
 			beam_part.add_atom_colour(owner.accent_color, FIXED_COLOUR_PRIORITY)
 		owner.visible_message("<span class='danger'>[owner.color_name] compresses space, bringing the objects on [target_turf] directly to it!</span>")
-		owner.balloon_alert(owner, "pulled [things_pulled] things", show_in_chat = FALSE)
+		owner.balloon_alert(owner, "pulled [things_pulled] things")
 		COOLDOWN_START(src, spatial_rending_cooldown, cooldown_length)
 		SSblackbox.record_feedback("amount", "holoparasite_spatial_things_pulled", things_pulled)
 

@@ -163,7 +163,6 @@
 				to_chat(summoner.current, "<span class='userdanger'>You violently cough up blood, barely surviving as an explosion nearly tears apart [color_name], causing you to collapse in incredible, agonizing pain!</span>")
 				summoner.current.visible_message("<span class='warning'>[summoner.current] violently coughs up blood, collapsing to the ground in incredible pain!</span>")
 				summoner.current.AdjustParalyzed(45 SECONDS, ignore_canstun = TRUE)
-				summoner.current.jitteriness = min(summoner.current.jitteriness + 180, 180)
 				SSblackbox.record_feedback("tally", "holoparasite_exploded", 1, "devastate (survived)")
 			else
 				// RIP.
@@ -181,11 +180,9 @@
 				gib()
 		if(EXPLODE_HEAVY)
 			summoner.current.take_overall_damage(brute = summoner.current.maxHealth * 0.6, stamina = summoner.current.maxHealth * 0.6)
-			summoner.current.jitteriness = min(summoner.current.jitteriness + 90, 90)
 			SSblackbox.record_feedback("tally", "holoparasite_exploded", 1, "heavy")
 		if(EXPLODE_LIGHT)
 			summoner.current.take_overall_damage(brute = summoner.current.maxHealth * 0.3, stamina = summoner.current.maxHealth * 0.45)
-			summoner.current.jitteriness = min(summoner.current.jitteriness + 45, 45)
 			SSblackbox.record_feedback("tally", "holoparasite_exploded", 1, "light")
 
 /mob/living/simple_animal/hostile/holoparasite/gib()

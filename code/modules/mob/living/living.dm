@@ -1,8 +1,6 @@
 /mob/living/Initialize(mapload)
 	. = ..()
 	register_init_signals()
-	if(unique_name)
-		set_name()
 	var/datum/atom_hud/data/human/medical/advanced/medhud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medhud.add_atom_to_hud(src)
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
@@ -569,7 +567,6 @@
 		update_sight()
 		clear_alert("not_enough_oxy")
 		reload_fullscreen()
-		revive_guardian()
 		. = 1
 		var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
 		if(B)
@@ -1103,12 +1100,6 @@
 	else
 		new_mob.key = key
 
-	for(var/para in hasparasites())
-		var/mob/living/simple_animal/hostile/guardian/G = para
-		G.summoner = new_mob
-		G.Recall()
-		to_chat(G, span_holoparasite("Your summoner has changed form!"))
-
 /mob/living/rad_act(amount, collectable_radiation)
 	. = ..()
 
@@ -1479,10 +1470,6 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	L.visible_message(span_warning("[L] scoops up [src]!"))
 	L.put_in_hands(holder)
 
-/mob/living/proc/set_name()
-	name = "[name] ([rand(1, 1000)])"
-	real_name = name
-
 /mob/living/proc/mob_try_pickup(mob/living/user)
 	if(!ishuman(user))
 		return
@@ -1708,3 +1695,8 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		var/ERROR_ERROR_LANDMARK_ERROR = "ERROR-ERROR: ERROR landmark missing!"
 		log_mapping(ERROR_ERROR_LANDMARK_ERROR)
 		CRASH(ERROR_ERROR_LANDMARK_ERROR)
+
+
+/mob/living/proc/set_name()
+	name = "[name] ([rand(1, 1000)])"
+	real_name = name

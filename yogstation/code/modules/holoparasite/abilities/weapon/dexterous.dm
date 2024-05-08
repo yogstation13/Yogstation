@@ -78,7 +78,6 @@
 			/obj/item/gun/ballistic/automatic/wt550,
 			/obj/item/gun/ballistic/rocketlauncher,
 			/obj/item/gun/ballistic/shotgun,
-			/obj/item/gun/ballistic/sniper_rifle,
 			/obj/item/gun/blastcannon,
 			/obj/item/gun/energy/beam_rifle,
 			/obj/item/gun/energy/gravity_gun,
@@ -117,8 +116,6 @@
 	owner.dextrous = FALSE
 	owner.a_intent = initial(owner.a_intent)
 	owner.possible_a_intents = null
-	var/datum/component/personal_crafting/crafting = owner.GetComponent(/datum/component/personal_crafting)
-	crafting?.RemoveComponent()
 	owner.melee_damage = initial(owner.melee_damage)
 	owner.obj_damage = initial(owner.obj_damage)
 	owner.armour_penetration = initial(owner.armour_penetration)
@@ -137,11 +134,11 @@
 	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 	RegisterSignal(owner, COMSIG_TWOHANDED_WIELD, PROC_REF(on_wield))
 	RegisterSignal(owner, COMSIG_HOLOPARA_CAN_FIRE_GUN, PROC_REF(can_fire_gun))
-	RegisterSignal(owner, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(owner, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 
 /datum/holoparasite_ability/weapon/dextrous/unregister_signals()
 	..()
-	UnregisterSignal(owner, list(COMSIG_HOLOPARA_SETUP_HUD, COMSIG_HOLOPARA_PRE_SNAPBACK, COMSIG_HOLOPARA_PRE_RECALL, COMSIG_LIVING_DEATH, COMSIG_TWOHANDED_WIELD, COMSIG_HOLOPARA_CAN_FIRE_GUN, COMSIG_PARENT_EXAMINE))
+	UnregisterSignal(owner, list(COMSIG_HOLOPARA_SETUP_HUD, COMSIG_HOLOPARA_PRE_SNAPBACK, COMSIG_HOLOPARA_PRE_RECALL, COMSIG_LIVING_DEATH, COMSIG_TWOHANDED_WIELD, COMSIG_HOLOPARA_CAN_FIRE_GUN, COMSIG_ATOM_EXAMINE))
 
 /datum/holoparasite_ability/weapon/dextrous/proc/on_hud_setup(datum/_source, datum/hud/holoparasite/hud, list/huds_to_add)
 	SIGNAL_HANDLER
