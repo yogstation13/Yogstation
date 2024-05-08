@@ -1,0 +1,6 @@
+author: "Aquizit"
+delete-after: true 
+changes: 
+  - tweak: "Gene Scanner into CMO locker"
+  - tweak: "Took things mapped directly and instead put them in the job_closets.dm code for easier mapping"
+  - tweak: "Gene Scanners fit in Medical Belts"
