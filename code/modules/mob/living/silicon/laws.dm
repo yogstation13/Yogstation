@@ -18,6 +18,11 @@
 		addtimer(CALLBACK(src, PROC_REF(show_laws)), 0)
 		last_lawchange_announce = world.time
 
+/mob/living/silicon/ai/post_lawchange(announce = TRUE)
+	if(deployed_shell) // AI might be in a shell, send the announcement there instead
+		return deployed_shell.post_lawchange(announce)
+	return ..()
+
 //
 // Devil Laws
 // 
