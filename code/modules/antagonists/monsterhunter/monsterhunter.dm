@@ -157,7 +157,7 @@
 	name = "Monster Hunter"
 
 	head = /obj/item/clothing/head/helmet/chaplain/witchunter_hat
-	uniform = /obj/item/clothing/under/rank/chaplain
+	uniform = /obj/item/clothing/under/rank/civilian/chaplain
 	suit = /obj/item/clothing/suit/armor/riot/chaplain/witchhunter
 	l_hand = /obj/item/stake
 	r_hand = /obj/item/stake/hardened/silver

@@ -4942,7 +4942,7 @@
 "apN" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/item/clothing/under/rank/curator/treasure_hunter,
-/obj/item/clothing/under/skirt/black,
+/obj/item/clothing/under/dress/skirt/black,
 /obj/item/clothing/under/shorts/black,
 /obj/item/clothing/under/pants/track,
 /obj/item/clothing/accessory/armband/deputy,
@@ -16973,11 +16973,11 @@
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "aOU" = (
-/obj/item/clothing/under/jabroni,
-/obj/item/clothing/under/geisha,
-/obj/item/clothing/under/kilt,
+/obj/item/clothing/under/costume/jabroni,
+/obj/item/clothing/under/costume/geisha,
+/obj/item/clothing/under/costume/kilt,
 /obj/structure/closet,
-/obj/item/clothing/under/roman,
+/obj/item/clothing/under/costume/roman,
 /turf/open/floor/wood,
 /area/centcom/holding)
 "aOV" = (

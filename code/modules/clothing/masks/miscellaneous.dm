@@ -37,7 +37,7 @@
 	visor_flags_inv = HIDEFACE
 	visor_flags_cover = MASKCOVERSMOUTH
 	gas_transfer_coefficient = 0.9
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 0, ACID = 0)
 	actions_types = list(/datum/action/item_action/adjust)
 
@@ -260,7 +260,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	slot_flags = ITEM_SLOT_MASK
 	adjusted_flags = ITEM_SLOT_HEAD
 	icon_state = "bandbotany"
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/mask/bandana/attack_self(mob/user)
 	adjustmask(user)
@@ -279,7 +279,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 			var/obj/item/clothing/neck/neckerchief/nk = new(src)
 			nk.name = "[name] neckerchief"
 			nk.desc = "[desc] It's tied up like a neckerchief."
-			nk.mob_overlay_icon = 'icons/blank.dmi'
+			nk.worn_icon = 'icons/blank.dmi'
 			nk.icon_state = icon_state
 			nk.sourceBandanaType = src.type
 			var/currentHandIndex = user.get_held_index_of_item(src)
@@ -294,43 +294,43 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	name = "red bandana"
 	desc = "A fine red bandana with nanotech lining."
 	icon_state = "bandred"
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/mask/bandana/blue
 	name = "blue bandana"
 	desc = "A fine blue bandana with nanotech lining."
 	icon_state = "bandblue"
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/mask/bandana/green
 	name = "green bandana"
 	desc = "A fine green bandana with nanotech lining."
 	icon_state = "bandgreen"
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/mask/bandana/gold
 	name = "gold bandana"
 	desc = "A fine gold bandana with nanotech lining."
 	icon_state = "bandgold"
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/mask/bandana/black
 	name = "black bandana"
 	desc = "A fine black bandana with nanotech lining."
 	icon_state = "bandblack"
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/mask/bandana/skull
 	name = "skull bandana"
 	desc = "A fine black bandana with nanotech lining and a skull emblem."
 	icon_state = "bandskull"
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/mask/bandana/durathread
 	name = "durathread bandana"
 	desc =  "A bandana made from durathread, you wish it would provide some protection to its wearer, but it's far too thin..."
 	icon_state = "banddurathread"
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/mask/bandana/durathread/tied/Initialize(mapload)
 	. = ..()

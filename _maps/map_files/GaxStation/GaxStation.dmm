@@ -11087,14 +11087,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/department/science)
-"fhS" = (
-/obj/structure/window/reinforced,
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 6
-	},
-/obj/structure/closet/wardrobe/genetics_white,
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "fih" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -21379,11 +21371,11 @@
 /area/quartermaster/miningdock)
 "kkY" = (
 /obj/structure/table/wood,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "kkZ" = (
@@ -26659,11 +26651,11 @@
 /area/science/robotics/lab)
 "mRq" = (
 /obj/structure/closet,
-/obj/item/clothing/under/suit_jacket/female{
+/obj/item/clothing/under/suit/female{
 	pixel_x = 3;
 	pixel_y = 1
 	},
-/obj/item/clothing/under/suit_jacket/really_black{
+/obj/item/clothing/under/suit/really_black{
 	pixel_x = -2
 	},
 /obj/machinery/light,
@@ -27787,6 +27779,15 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"nvS" = (
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 6
+	},
+/obj/structure/closet/wardrobe/genetics_white,
+/obj/item/storage/box/disks,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "nvT" = (
 /obj/machinery/computer/shuttle/mining,
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
@@ -83394,7 +83395,7 @@ ftr
 wpP
 kWr
 jZd
-fhS
+nvS
 wHj
 xBM
 ftr

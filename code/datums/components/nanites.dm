@@ -198,7 +198,7 @@
 	addtimer(VARSET_CALLBACK(src, cloud_id, cloud_id), NANITE_SYNC_DELAY, TIMER_UNIQUE)//return it to normal, intentionally missing the next sync timer
 	cloud_id = 0 //temporarily disable resyncing so rogue programs actually have a chance to do something
 
-/datum/component/nanites/proc/on_shock(datum/source, shock_damage, obj/source, siemens_coeff, zone, tesla_shock)
+/datum/component/nanites/proc/on_shock(datum/source, shock_damage, obj/source_object, siemens_coeff, zone, tesla_shock)
 	nanite_volume *= 1 - (rand(0.10, 0.35)**siemens_coeff)		//Lose 10-35% of nanites
 	adjust_nanites(null, -(rand(5, 50)**siemens_coeff))			//Lose 5-50 flat nanite volume
 	for(var/X in programs)

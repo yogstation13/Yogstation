@@ -190,6 +190,7 @@
 		if(BOT_NO_ROUTE)
 			data["modeStatus"] = "bad"
 		else
+			data["modeStatus"] = "unknown"
 	data["load"] = load ? load.name : null
 	data["destination"] = destination ? destination : null
 	data["home"] = home_destination

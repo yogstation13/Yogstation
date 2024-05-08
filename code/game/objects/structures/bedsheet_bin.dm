@@ -10,7 +10,7 @@ LINEN BINS
 	icon = 'icons/obj/bedsheets.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/bedsheet_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/bedsheet_righthand.dmi'
-	mob_overlay_icon = 'icons/mob/clothing/neck/sheets.dmi'
+	worn_icon = 'icons/mob/clothing/neck/sheets.dmi'
 	icon_state = "sheetwhite"
 	item_state = "sheetwhite"
 	slot_flags = ITEM_SLOT_NECK

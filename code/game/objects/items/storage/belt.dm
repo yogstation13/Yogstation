@@ -286,7 +286,8 @@
 		/obj/item/pinpointer/crew,
 		/obj/item/stack/medical/bone_gel,
 		/obj/item/holosign_creator/medical,
-		/obj/item/holosign_creator/firstaid
+		/obj/item/holosign_creator/firstaid,
+		/obj/item/sequence_scanner
 		))
 
 /obj/item/storage/belt/medical/chief

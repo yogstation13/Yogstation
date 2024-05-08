@@ -1005,8 +1005,7 @@
 	additional_desc = "Hugging this plush proves your love and devotion to all fishkind. Even space carps will respect this reverence."
 
 /obj/item/nullrod/carp/attack_self(mob/living/user)
-	if(used_blessing)
-	else if(user.mind && (user.mind.holy_role))
+	if(!used_blessing && user.mind && (user.mind.holy_role))
 		to_chat(user, "You are blessed by Carp-Sie. Wild space carp will no longer attack you.")
 		user.faction |= "carp"
 		used_blessing = TRUE
@@ -1270,7 +1269,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	icon = 'icons/obj/misc.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	mob_overlay_icon = 'icons/mob/clothing/belt.dmi'
+	worn_icon = 'icons/mob/clothing/belt.dmi'
 	icon_state = "aspergillum0"
 	item_state = "aspergillum0"
 	base_icon_state = "aspergillum"

@@ -437,8 +437,8 @@
 		balloon_alert(artist, "not enough metal!")
 		return
 	var/list/possible_statues = list()
-	for(var/statues_available as anything in subtypesof(/obj/structure/bloodsucker/bloodstatue))
-		possible_statues[initial(statues_available)] = statues_available
+	for(var/obj/structure/bloodsucker/bloodstatue/statues_available as anything in subtypesof(/obj/structure/bloodsucker/bloodstatue))
+		possible_statues[statues_available::name] = statues_available
 	var/obj/structure/bloodsucker/bloodstatue/what_type = tgui_input_list(artist, "What kind of statue would you like to make?", "Artist Manual", possible_statues)
 	if(!do_after(artist, 10 SECONDS, src))
 		artist.balloon_alert(artist, "ruined!")

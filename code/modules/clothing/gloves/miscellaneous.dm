@@ -216,7 +216,7 @@
 	desc = "Ancient gauntlets lost to the necropolis, fabled to bestow the wearer the power to shatter stone with but a simple punch."
 	icon_state = "concussive_gauntlets"
 	item_state = "concussive_gauntlets"
-	mob_overlay_icon = 'icons/mob/clothing/hands/hands.dmi'
+	worn_icon = 'icons/mob/clothing/hands/hands.dmi'
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	toolspeed = 0
 	strip_delay = 40

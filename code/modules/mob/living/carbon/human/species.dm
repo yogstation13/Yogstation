@@ -869,7 +869,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			bodyparts_to_add -= "waggingspines"
 
 	if("snout" in mutant_bodyparts) //Take a closer look at that snout!
-		if((H.wear_mask && H.wear_mask.mutantrace_variation == NO_MUTANTRACE_VARIATION && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)) || !HD || HD.status == BODYPART_ROBOTIC)
+		if((H.wear_mask && !(H.wear_mask.mutantrace_variation & DIGITIGRADE_VARIATION) && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "snout"
 
 	if("frills" in mutant_bodyparts)
@@ -959,15 +959,15 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		var/should_be_squished = FALSE
 		if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) || (H.wear_suit.body_parts_covered & LEGS))) //Check for snowflake suit
 			var/obj/item/clothing/suit/A = H.wear_suit
-			if(A.mutantrace_variation != MUTANTRACE_VARIATION)
+			if(!(A.mutantrace_variation & DIGITIGRADE_VARIATION))
 				should_be_squished = TRUE
 		if(H.w_uniform && (H.w_uniform.body_parts_covered & LEGS)) //Check for snowflake jumpsuit
 			var/obj/item/clothing/under/U = H.w_uniform
-			if(U.mutantrace_variation != MUTANTRACE_VARIATION)
+			if(!(U.mutantrace_variation & DIGITIGRADE_VARIATION))
 				should_be_squished = TRUE
 		if(H.shoes)
 			var/obj/item/clothing/shoes/S = H.shoes
-			if(S.mutantrace_variation != MUTANTRACE_VARIATION)
+			if(!(S.mutantrace_variation & DIGITIGRADE_VARIATION))
 				should_be_squished = TRUE
 			if(should_be_squished)
 				S.adjusted = NORMAL_STYLE

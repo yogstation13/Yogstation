@@ -178,8 +178,8 @@
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/chaplain
 
 	ears = /obj/item/radio/headset/headset_srv
-	uniform = /obj/item/clothing/under/rank/chaplain
-	uniform_skirt = /obj/item/clothing/under/rank/chaplain/skirt
+	uniform = /obj/item/clothing/under/rank/civilian/chaplain
+	uniform_skirt = /obj/item/clothing/under/rank/civilian/chaplain/skirt
 	backpack_contents = list(/obj/item/camera/spooky = 1)
 	backpack = /obj/item/storage/backpack/cultpack
 	satchel = /obj/item/storage/backpack/cultpack
