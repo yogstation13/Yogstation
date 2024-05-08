@@ -1,0 +1,7 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - rscadd: "New AI project category called \"Cyborg Management\"."
+  - rscadd: "Two/three AI projects that can be researched to unlock and/or reset an connected cyborg."
+  - bugfix: "Charge Cyborg/APC ability automatically detoggles after use; no longer allows negative/infinite usages."
+  - tweak: "AI's Processing Dashboard tgui starts out more wider."
