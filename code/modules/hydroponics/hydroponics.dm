@@ -113,6 +113,7 @@
 		adjustWeeds(-0.5 * delta_time)
 		adjustPests(-0.5 * delta_time)
 		adjustToxic(-2)
+		update_appearance(UPDATE_ICON)
 
 	if(world.time > (lastcycle + cycledelay))
 		lastcycle = world.time
