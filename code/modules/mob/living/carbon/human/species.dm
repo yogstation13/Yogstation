@@ -213,8 +213,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	//Should we preload this species's organs?
 	var/preload = TRUE
 
-	var/inherent_slowdown = 0
-
 	//for preternis + synths
 	var/draining = FALSE
 	///Does our species have colors for its' damage overlays?
@@ -1593,9 +1591,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
 				if((hungry >= 70) && !flight) //Being hungry will still allow you to use a flightsuit/wings.
 					. += hungry / 50
-
-		//Moving in high gravity is very slow (Flying too)
-		. += inherent_slowdown
 
 		if(gravity > STANDARD_GRAVITY)
 			var/grav_force = min(gravity - STANDARD_GRAVITY,3)
