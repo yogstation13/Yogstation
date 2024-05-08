@@ -437,7 +437,7 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 /datum/disease_ability/symptom/powerful/flesh_eating
 	symptoms = list(/datum/symptom/flesh_eating)
 
-/datum/disease_ability/symptom/powerful/inorganic_adaptation
+/datum/disease_ability/symptom/mild/inorganic_adaptation
 	symptoms = list(/datum/symptom/inorganic_adaptation)
 
 //yogs start
