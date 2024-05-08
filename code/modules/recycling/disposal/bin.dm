@@ -19,6 +19,9 @@
 	var/pressure_charging = TRUE
 	// True if flush handle is pulled
 	var/flush = FALSE
+	// True if meets a weight requirement
+	var/flush_emergency = FALSE
+
 	/// The attached pipe trunk
 	var/obj/structure/disposalpipe/trunk/trunk = null
 	/// True if flushing in progress
@@ -581,3 +584,9 @@
 
 /obj/machinery/disposal/deliveryChute/newHolderDestination(obj/structure/disposalholder/H)
 	H.destinationTag = 1
+
+/obj/machinery/disposal/bin/MouseDrop_T(atom/dropping, mob/user)
+	if((istype, /obj/structure/closet))
+		attackby(dropping, user)
+	else
+		..()
