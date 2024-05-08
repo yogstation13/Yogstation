@@ -586,7 +586,7 @@
 	H.destinationTag = 1
 
 /obj/machinery/disposal/bin/MouseDrop_T(atom/dropping, mob/user)
-	if((istype, /obj/structure/closet))
+	if(istype(dropping, /obj/structure/closet))
 		attackby(dropping, user)
 	else
 		..()
