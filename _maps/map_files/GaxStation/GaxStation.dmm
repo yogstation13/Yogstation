@@ -9322,6 +9322,7 @@
 	pixel_x = 27;
 	pixel_y = -26
 	},
+/obj/effect/landmark/start/synthetic,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "etC" = (
@@ -9686,6 +9687,7 @@
 	network = list("aiupload");
 	pixel_x = -27
 	},
+/obj/effect/landmark/start/cyborg,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "eBt" = (
@@ -13722,7 +13724,6 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/effect/landmark/start/cyborg,
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload_foyer)

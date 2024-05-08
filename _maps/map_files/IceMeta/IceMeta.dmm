@@ -5117,10 +5117,13 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/trimline/yellow/warning/lower,
 /obj/structure/ethernet_cable{
 	icon_state = "1-2"
 	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/engiyellow/warning/lower,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "bzI" = (
@@ -13895,13 +13898,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"eeG" = (
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -26
-	},
-/turf/closed/wall/r_wall,
-/area/ai_monitored/turret_protected/aisat/foyer)
 "eeH" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -14526,7 +14522,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/trimline/yellow/warning/lower{
+/obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -21683,8 +21679,8 @@
 /obj/structure/sign/warning/securearea{
 	pixel_y = 31
 	},
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 1
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 9
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -24440,6 +24436,9 @@
 "hgm" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -33078,13 +33077,13 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/effect/turf_decal/trimline/blue/filled/corner/lower{
+/mob/living/simple_animal/bot/secbot/pingsky,
+/obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
-/obj/effect/turf_decal/trimline/yellow/filled/corner/lower{
+/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower{
 	dir = 8
 	},
-/mob/living/simple_animal/bot/secbot/pingsky,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "jGH" = (
@@ -33113,12 +33112,15 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/trimline/blue/warning/lower{
-	dir = 8
-	},
 /obj/machinery/light_switch{
 	pixel_x = -26;
 	pixel_y = 26
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -36385,6 +36387,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
 	dir = 1
 	},
+/obj/effect/landmark/start/synthetic,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/foyer)
 "kDc" = (
@@ -37850,6 +37853,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -48558,10 +48564,10 @@
 	dir = 4;
 	network = list("minisat","ss13")
 	},
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+/obj/item/kirbyplants/random,
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 9
 	},
-/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "nWG" = (
@@ -53335,7 +53341,10 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/trimline/yellow/filled/line/lower,
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "prJ" = (
@@ -55388,6 +55397,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "pYN" = (
@@ -56175,6 +56187,9 @@
 	},
 /obj/machinery/light,
 /obj/machinery/space_heater,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "qlG" = (
@@ -56440,6 +56455,9 @@
 /obj/machinery/light_switch{
 	pixel_x = -24;
 	pixel_y = -23
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
@@ -57557,8 +57575,8 @@
 	pixel_x = 9;
 	pixel_y = 32
 	},
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 1
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 5
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -59047,6 +59065,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "rbg" = (
@@ -62408,6 +62429,7 @@
 /area/mine/laborcamp)
 "rYS" = (
 /obj/machinery/power/port_gen/pacman,
+/obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "rZh" = (
@@ -69192,10 +69214,11 @@
 	pixel_x = 28;
 	pixel_y = 11
 	},
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 5
-	},
 /obj/item/kirbyplants/random,
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "tTP" = (
@@ -71719,6 +71742,9 @@
 	network = list("minisat","ss13")
 	},
 /obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "uFb" = (
@@ -73368,11 +73394,11 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/trimline/blue/filled/corner/lower{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/corner/lower,
 /mob/living/simple_animal/bot/cleanbot,
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "vaY" = (
@@ -76543,7 +76569,6 @@
 /turf/open/floor/grass,
 /area/medical/sleeper)
 "vVz" = (
-/obj/effect/landmark/start/cyborg,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -76560,6 +76585,7 @@
 /obj/machinery/light_switch{
 	pixel_x = 25
 	},
+/obj/effect/landmark/start/synthetic,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "vWo" = (
@@ -80128,10 +80154,6 @@
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 5
-	},
-/obj/machinery/light_switch{
-	pixel_x = 23;
-	pixel_y = 23
 	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
@@ -84259,7 +84281,10 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/trimline/yellow/filled/line/lower,
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "xXk" = (
@@ -269698,7 +269723,7 @@ jYF
 tRh
 tRh
 tRh
-eeG
+imJ
 wuI
 kCT
 diS

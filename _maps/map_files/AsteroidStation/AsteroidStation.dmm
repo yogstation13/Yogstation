@@ -16504,6 +16504,7 @@
 	dir = 4;
 	network = list("ss13","minisat")
 	},
+/obj/effect/landmark/start/synthetic,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "esi" = (
@@ -43128,6 +43129,7 @@
 	pixel_y = -24
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
+/obj/effect/landmark/start/synthetic,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "mJh" = (

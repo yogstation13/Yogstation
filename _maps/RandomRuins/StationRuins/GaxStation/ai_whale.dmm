@@ -278,6 +278,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 8
 	},
+/obj/effect/landmark/start/synthetic,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "fq" = (

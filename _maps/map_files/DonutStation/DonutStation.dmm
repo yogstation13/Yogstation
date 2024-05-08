@@ -57283,6 +57283,7 @@
 	dir = 4;
 	pixel_x = -24
 	},
+/obj/effect/landmark/start/synthetic,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "ybY" = (
