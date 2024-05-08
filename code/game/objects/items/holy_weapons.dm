@@ -1007,8 +1007,7 @@
 	additional_desc = "Hugging this plush proves your love and devotion to all fishkind. Even space carps will respect this reverence."
 
 /obj/item/nullrod/carp/attack_self(mob/living/user)
-	if(used_blessing)
-	else if(user.mind && (user.mind.holy_role))
+	if(!used_blessing && user.mind && (user.mind.holy_role))
 		to_chat(user, "You are blessed by Carp-Sie. Wild space carp will no longer attack you.")
 		user.faction |= "carp"
 		used_blessing = TRUE
