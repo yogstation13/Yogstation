@@ -1,0 +1,8 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - rscadd: "Synthetics now have name prefs you can set in your menu!"
+  - rscdel: "Synthetics no longer get a popup to change their name on spawn"
+  - bugfix: "Synthetics now properly have a cool silver ID card"
+  - tweak: "Synthetics now have AI upload access"
+  - mapping: "Added actual spawn points for Synthetics; one in AI upload, one in AI sat"
