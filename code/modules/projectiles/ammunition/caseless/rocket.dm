@@ -46,8 +46,8 @@
 	projectile_type = /obj/projectile/bullet/cartridge
 	firing_effect_type = /obj/effect/particle_effect/fluid/smoke
 
-/obj/item/ammo_casing/caseless/cartridge/blackPowder
+/obj/item/ammo_casing/caseless/cartridge/black_powder
 	name = "black powder cartridge"
 	desc = "A musket cartridge crafted by hand. This one uses black powder as its propellant."
-	icon_state = "cartridgeBP"
-	projectile_type = /obj/projectile/bullet/cartridge/blackPowder
+	icon_state = "cartridge_BP"
+	projectile_type = /obj/projectile/bullet/cartridge/black_powder

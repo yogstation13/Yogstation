@@ -188,14 +188,14 @@
 	time = 12
 	category = CAT_WEAPON_RANGED
 
-/datum/crafting_recipe/maintMusket
+/datum/crafting_recipe/maint_musket
 	name = "Maintenance Musket"
 	reqs = list(/obj/item/pipe = 1,
 				/obj/item/stack/sheet/metal = 1,
 				/obj/item/weaponcrafting/stock = 1,
 				/obj/item/stack/packageWrap = 5)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WELDER, TOOL_WRENCH)
-	result = /obj/item/gun/ballistic/maintMusket
+	result = /obj/item/gun/ballistic/maint_musket
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
 
@@ -464,7 +464,7 @@
 	time = 0.5 SECONDS
 	category = CAT_WEAPON_AMMO
 
-/datum/crafting_recipe/cartridgeWelder
+/datum/crafting_recipe/cartridge_welder
 	name = "Cartridge Welding Fuel" //Reversed so that they're together in the menu
 	result = /obj/item/ammo_casing/caseless/cartridge
 	reqs = list(/obj/item/stack/sheet/cloth = 1,
@@ -473,9 +473,9 @@
 	time = 2 SECONDS
 	category = CAT_WEAPON_AMMO
 
-/datum/crafting_recipe/cartridgeBP
+/datum/crafting_recipe/cartridge_BP
 	name = "Cartridge Black Powder"
-	result = /obj/item/ammo_casing/caseless/cartridge/blackPowder
+	result = /obj/item/ammo_casing/caseless/cartridge/black_powder
 	reqs = list(/obj/item/stack/sheet/cloth = 1,
 				/datum/reagent/blackpowder = 10)
 	tool_behaviors = list(TOOL_SCREWDRIVER)

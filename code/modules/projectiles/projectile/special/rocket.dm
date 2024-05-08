@@ -101,7 +101,7 @@
 	armour_penetration = -30 //Cheap ammo means poor AP
 	spread = 40
 
-/obj/projectile/bullet/cartridge/blackPowder
+/obj/projectile/bullet/cartridge/black_powder
 	damage = 30
 	armour_penetration = 0
 	spread = 20
