@@ -77,7 +77,7 @@
 		set_waypoint(A)
 		return
 
-	A.attack_ai(src)
+	A.attack_ai(src, modifiers)
 
 /*
 	AI has no need for the UnarmedAttack() and RangedAttack() procs,
