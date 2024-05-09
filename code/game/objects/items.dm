@@ -403,7 +403,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	add_fingerprint(usr)
 	return ..()
 
-/obj/item/attack_hand(mob/user)
+/obj/item/attack_hand(mob/user, modifiers)
 	. = ..()
 	if(.)
 		return
@@ -607,25 +607,27 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	set category = "Object"
 	set name = "Pick up"
 
+	var/mob/user_mob = usr
+
 	if(HAS_TRAIT(src, TRAIT_NODROP))
 		return
 
-	if(usr.incapacitated() || !Adjacent(usr))
+	if(user_mob.incapacitated() || !Adjacent(user_mob))
 		return
 
-	if(isliving(usr))
-		var/mob/living/L = usr
+	if(isliving(user_mob))
+		var/mob/living/L = user_mob
 		if(!(L.mobility_flags & MOBILITY_PICKUP))
 			return
 
-	if(issilicon(usr))
-		var/obj/item/borg/gripper/gripper = usr.get_active_held_item(TRUE)
+	if(issilicon(user_mob))
+		var/obj/item/borg/gripper/gripper = user_mob.get_active_held_item(TRUE)
 		if(istype(gripper))
-			gripper.pre_attack(src, usr, get_dist(src, usr))
+			gripper.pre_attack(src, user_mob, get_dist(src, user_mob))
 		return
 
-	if(usr.get_active_held_item() == null) // Let me know if this has any problems -Yota
-		usr.UnarmedAttack(src)
+	if(user_mob.get_active_held_item() == null) // Let me know if this has any problems -Yota
+		user_mob.UnarmedAttack(src, TRUE, list()) // no modifiers, just normal pickup
 
 //This proc is executed when someone clicks the on-screen UI button.
 //The default action is attack_self().
@@ -681,7 +683,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "eye_stab", /datum/mood_event/eye_stab)
 
-	log_combat(user, M, "attacked", "[src.name]", "(INTENT: [uppertext(user.a_intent)])")
+	log_combat(user, M, "attacked", "[src.name]", "(COMBAT_MODE: [user.combat_mode ? "ON" : "OFF"])")
 
 	var/obj/item/organ/eyes/eyes = M.getorganslot(ORGAN_SLOT_EYES)
 	if (!eyes)
@@ -1173,8 +1175,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	// And animate the attack!
 	var/t_color = "#ffffff" //yogs start
 	if(ismob(src) &&  ismob(attacked_atom) && (!used_item))
-		var/mob/M = src
-		t_color = M.a_intent == INTENT_HARM ? "#ff0000" : "#ffffff"
+		var/mob/living/M = src
+		t_color = M.combat_mode ? "#ff0000" : "#ffffff"
 	animate(attack_image, alpha = 175, transform = matrix() * 0.75, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3, color = t_color)
 	animate(time = 1)
 	animate(alpha = 0, time = 3, easing = CIRCULAR_EASING|EASE_OUT) //yogs end

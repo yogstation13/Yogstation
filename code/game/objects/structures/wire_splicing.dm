@@ -109,7 +109,7 @@
 
 		
 
-/obj/structure/wire_splicing/attackby(obj/item/I, mob/user, params)
+/obj/structure/wire_splicing/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_WIRECUTTER)
 		if(I.use_tool(src, user, 2 SECONDS, volume = 50))
 			if (shock(user, 50))
@@ -122,7 +122,7 @@
 			new /obj/item/stack/cable_coil(T, messiness, new_color)
 			qdel(src)
 
-	if(istype(I, /obj/item/stack/cable_coil) && user.a_intent == INTENT_HARM)
+	if(istype(I, /obj/item/stack/cable_coil) && user.combat_mode)
 		var/obj/item/stack/cable_coil/coil = I
 		if(coil.get_amount() >= 1)
 			reinforce(user, coil)

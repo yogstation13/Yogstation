@@ -163,9 +163,10 @@ GLOBAL_LIST_EMPTY(rock_paper_scissors_puzzle_answers)
 			icon_state = skin
 
 
-/obj/machinery/button_puzzle/attackby(obj/item/W, mob/user, params)
-	if(user.a_intent != INTENT_HARM && !(W.item_flags & NOBLUDGEON))
-		return attack_hand(user)
+/obj/machinery/button_puzzle/attackby(obj/item/W, mob/living/user, params)
+	if(!user.combat_mode && !(W.item_flags & NOBLUDGEON))
+		var/list/modifiers = params2list(params)
+		return attack_hand(user, modifiers)
 	else
 		return ..()
 

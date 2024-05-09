@@ -87,7 +87,7 @@
 	if(isobj(A) && ismachinery(A))
 		if(istype(A, /obj/machinery/deepfryer))
 			to_chat(user, span_warning("You wouldn't deepfry [name]....."))
-		return
+		return TRUE
 	. = ..()
 
 /obj/item/clothing/mob_holder/drone/deposit(mob/living/L)

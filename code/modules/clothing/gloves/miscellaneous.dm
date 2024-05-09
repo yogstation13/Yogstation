@@ -97,7 +97,7 @@
 /obj/item/clothing/gloves/rapid/Touch(mob/living/target,proximity = TRUE)
 	var/mob/living/M = loc
 
-	if(M.a_intent == INTENT_HARM)
+	if(M.combat_mode)
 		M.changeNext_move(CLICK_CD_RAPID)
 		if(warcry)
 			M.say("[warcry]", ignore_spam = TRUE, forced = "north star warcry")
@@ -113,15 +113,15 @@
 	name = "Gloves of Hugging"
 	desc = "Just looking at these fills you with an urge to hug the shit out of people."
 
-/obj/item/clothing/gloves/rapid/hug/Touch(mob/living/target,proximity = TRUE)
+/obj/item/clothing/gloves/rapid/hug/Touch(mob/living/target, proximity = TRUE, modifiers)
 	var/mob/living/M = loc
 
-	if(M.a_intent == INTENT_HELP)
+	if(!M.combat_mode && !(modifiers && modifiers[RIGHT_CLICK]))
 		M.changeNext_move(CLICK_CD_RAPID)
-	else
+	else if(M.combat_mode)
 		to_chat(M, span_warning("You don't want to hurt anyone, just give them hugs!"))
-		M.a_intent = INTENT_HELP
-	.= FALSE
+		M.set_combat_mode(FALSE)
+	. = FALSE
 
 /obj/item/clothing/gloves/bracer/cuffs
 	name = "rabid cuffs"

@@ -27,9 +27,10 @@ LINEN BINS
 	dog_fashion = /datum/dog_fashion/head/ghost
 	var/list/dream_messages = list("white")
 
-/obj/item/bedsheet/attack(mob/living/M, mob/user)
-	if(!attempt_initiate_surgery(src, M, user))
-		..()
+/obj/item/bedsheet/attack(mob/living/M, mob/user, params)
+	var/list/modifiers = params2list(params)
+	if(!attempt_initiate_surgery(src, M, user, modifiers))
+		return ..()
 
 /obj/item/bedsheet/attack_self(mob/user)
 	if(newbedpath)

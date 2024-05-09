@@ -1165,6 +1165,7 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 1
+	STR.quickdraw = TRUE
 	STR.rustle_sound = FALSE
 	STR.max_w_class = WEIGHT_CLASS_BULKY
 	STR.set_holdable(list(
@@ -1174,18 +1175,7 @@
 /obj/item/storage/belt/sabre/examine(mob/user)
 	. = ..()
 	if(length(contents))
-		. += span_notice("Alt-click it to quickly draw the blade.")
-
-/obj/item/storage/belt/sabre/AltClick(mob/user)
-	if(!iscarbon(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
-		return
-	if(length(contents))
-		var/obj/item/I = contents[1]
-		user.visible_message("[user] takes [I] out of [src].", span_notice("You take [I] out of [src]."))
-		user.put_in_hands(I)
-		update_appearance(UPDATE_ICON)
-	else
-		to_chat(user, "[src] is empty.")
+		. += span_notice("Right-click it to quickly draw the blade.")
 
 /obj/item/storage/belt/sabre/update_icon(updates=ALL)
 	. = ..()

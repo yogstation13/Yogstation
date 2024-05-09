@@ -197,13 +197,13 @@
 
 /// You cannot weld or deconstruct an owned coffin. Only the owner can destroy their own coffin.
 /obj/structure/closet/crate/coffin/welder_act(mob/living/user, obj/item/tool)
-	if(user.a_intent != INTENT_HARM && resident && resident != user)
+	if(!user.combat_mode && resident && resident != user)
 		to_chat(user, span_notice("This is a much more complex mechanical structure than you thought. You don't know where to begin cutting [src]."))
 		return TRUE
 	return ..()
 
 /obj/structure/closet/crate/coffin/wirecutter_act(mob/living/user, obj/item/tool)
-	if(user.a_intent != INTENT_HARM && resident && resident != user && tool.tool_behaviour == cutting_tool)
+	if(!user.combat_mode && resident && resident != user && tool.tool_behaviour == cutting_tool)
 		to_chat(user, span_notice("This is a much more complex mechanical structure than you thought. You don't know where to begin cutting [src]."))
 		return TRUE
 	return ..()

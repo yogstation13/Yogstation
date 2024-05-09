@@ -339,8 +339,8 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	foodtype = MICE | JUNKFOOD
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/slab/mouse/fat
 
-/obj/item/reagent_containers/food/snacks/deadmouse/attackby(obj/item/I, mob/user, params)
-	if(I.is_sharp() && user.a_intent == INTENT_HARM)
+/obj/item/reagent_containers/food/snacks/deadmouse/attackby(obj/item/I, mob/living/user, params)
+	if(I.is_sharp() && user.combat_mode)
 		if(isturf(loc))
 			new meat_type(loc)
 			to_chat(user, span_notice("You butcher [src]."))

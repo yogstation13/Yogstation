@@ -15,19 +15,19 @@
 	return psycho_attack(A,D)
 
 /datum/martial_art/psychotic_brawling/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	return psycho_attack(A,D)
+	return psycho_attack(A,D, TRUE)
 
 /datum/martial_art/psychotic_brawling/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	return psycho_attack(A,D)
 
-/datum/martial_art/psychotic_brawling/proc/psycho_attack(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/psychotic_brawling/proc/psycho_attack(mob/living/carbon/human/A, mob/living/carbon/human/D, grab_attack = FALSE)
 	var/atk_verb
 	var/stun_mult = A.reagents.has_reagent(/datum/reagent/drug/bath_salts) ? 10 : 1	//Multiply all the stun values by 10 if we get this from bath salts
 	var/armor_block = 0
 	switch(rand(1,8))
 		if(1)
 			D.help_shake_act(A)
-			atk_verb = "helped"
+			atk_verb = "helped"	
 		if(2)
 			A.emote("cry")
 			A.Stun(20 * stun_mult)
@@ -40,7 +40,7 @@
 				if(A.pulling)
 					D.drop_all_held_items()
 					D.stop_pulling()
-					if(A.a_intent == INTENT_GRAB)
+					if(grab_attack)
 						log_combat(A, D, "grabbed", addition="aggressively")
 						D.visible_message(span_warning("[A] violently grabs [D]!"), \
 						  span_userdanger("[A] violently grabs you!"))

@@ -752,7 +752,7 @@
 	update_appearance(UPDATE_ICON)
 	return TRUE
 
-/obj/structure/bloodsucker/vassalrack/attack_hand(mob/user, list/modifiers)
+/obj/structure/bloodsucker/vassalrack/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -761,7 +761,7 @@
 		return FALSE
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	var/mob/living/carbon/buckled_carbons = pick(buckled_mobs)
-	if(user.a_intent == INTENT_HELP)
+	if(!user.combat_mode)
 		if(istype(bloodsuckerdatum))
 			unbuckle_mob(buckled_carbons)
 			return FALSE
@@ -1241,7 +1241,7 @@
 	// Checks: They're Buckled & Alive.
 	if(IS_BLOODSUCKER(user) && has_buckled_mobs())
 		var/mob/living/carbon/target = pick(buckled_mobs)
-		if(target.stat >= DEAD || user.a_intent == INTENT_HELP)
+		if(target.stat >= DEAD || !user.combat_mode)
 			unbuckle_mob(target)
 			return
 		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))

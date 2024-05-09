@@ -26,7 +26,7 @@
 	gender = NEUTER
 	maxHealth = 320
 	health = 320
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	speed = 0
 	attacktext = "chomps"
 	attack_sound = 'sound/magic/demon_attack1.ogg'

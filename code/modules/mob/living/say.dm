@@ -318,7 +318,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		if(M.client)
 			speech_bubble_recipients.Add(M.client)
 	var/image/say_popup = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
-	if(a_intent == INTENT_HARM) // ANGRY!!!!
+	if(combat_mode) // ANGRY!!!!
 		var/mutable_appearance/angerlay = mutable_appearance('icons/mob/talk.dmi', "angry")
 		say_popup.add_overlay(angerlay)
 	SET_PLANE_EXPLICIT(say_popup, ABOVE_GAME_PLANE, src)

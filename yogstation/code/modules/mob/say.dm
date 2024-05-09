@@ -52,7 +52,7 @@
 	bubble = bubble_icon
 	SEND_SIGNAL(src, COMSIG_MOB_CREATE_TYPING_INDICATOR, args)
 	typing_overlay = image('yogstation/icons/mob/talk.dmi', src, "[bubble]_talking", FLY_LAYER)
-	if(a_intent == INTENT_HARM) // ANGRY!!!!
+	if(combat_mode) // ANGRY!!!!
 		typing_overlay.add_overlay("angry")
 	typing_overlay.appearance_flags = APPEARANCE_UI
 	typing_overlay.invisibility = invisibility
