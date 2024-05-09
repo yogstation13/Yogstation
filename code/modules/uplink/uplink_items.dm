@@ -2508,7 +2508,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/role_restricted/armoredmechsuit
 	name = "Cybersun Mech Pilot's Suit"
 	desc = "A black and red stylishly armored mech pilot's suit used by Cybersun's elite mecha pilots. Provides potent protection both inside and outside a mech."
-	item = /obj/item/clothing/under/mech_suit/cybersun
+	item = /obj/item/clothing/under/costume/mech_suit/cybersun
 	cost = 4
 	manufacturer = /datum/corporation/traitor/cybersun
 	restricted_roles = list("Research Director", "Scientist", "Roboticist")

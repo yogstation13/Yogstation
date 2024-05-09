@@ -117,8 +117,8 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 		target = H
 		mode = BOT_HUNT
 
-/mob/living/simple_animal/bot/honkbot/attack_hand(mob/living/carbon/human/H)
-	if(H.a_intent == INTENT_HARM)
+/mob/living/simple_animal/bot/honkbot/attack_hand(mob/living/carbon/human/H, modifiers)
+	if(H.combat_mode)
 		retaliate(H)
 		addtimer(CALLBACK(src, PROC_REF(react_buzz)), 5)
 	return ..()

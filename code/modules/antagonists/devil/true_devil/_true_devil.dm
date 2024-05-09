@@ -157,35 +157,34 @@
 /mob/living/carbon/true_devil/resist_fire()
 	//They're immune to fire.
 
-/mob/living/carbon/true_devil/attack_hand(mob/living/carbon/human/M)
+/mob/living/carbon/true_devil/attack_hand(mob/living/carbon/human/M, modifiers)
 	. = ..()
 	if(.)
-		switch(M.a_intent)
-			if (INTENT_HARM)
-				var/damage = rand(1, 5)
-				playsound(loc, "punch", 25, 1, -1)
-				visible_message(span_danger("[M] has punched [src]!"), \
-						span_userdanger("[M] has punched [src]!"))
-				adjustBruteLoss(damage)
-				log_combat(M, src, "attacked")
-				updatehealth()
-			if (INTENT_DISARM)
-				if (!(mobility_flags & MOBILITY_STAND) && !ascended) //No stealing the arch devil's pitchfork.
-					if (prob(5))
-						Unconscious(40)
+		if(modifiers && modifiers[RIGHT_CLICK])
+			if (!(mobility_flags & MOBILITY_STAND) && !ascended) //No stealing the arch devil's pitchfork.
+				if (prob(5))
+					Unconscious(40)
+					playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+					log_combat(M, src, "pushed")
+					visible_message(span_danger("[M] has pushed down [src]!"), \
+						span_userdanger("[M] has pushed down [src]!"))
+				else
+					if (prob(25))
+						dropItemToGround(get_active_held_item())
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-						log_combat(M, src, "pushed")
-						visible_message(span_danger("[M] has pushed down [src]!"), \
-							span_userdanger("[M] has pushed down [src]!"))
+						visible_message(span_danger("[M] has disarmed [src]!"), \
+						span_userdanger("[M] has disarmed [src]!"))
 					else
-						if (prob(25))
-							dropItemToGround(get_active_held_item())
-							playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-							visible_message(span_danger("[M] has disarmed [src]!"), \
-							span_userdanger("[M] has disarmed [src]!"))
-						else
-							playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-							visible_message(span_danger("[M] has attempted to disarm [src]!"))
+						playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+						visible_message(span_danger("[M] has attempted to disarm [src]!"))
+		else if(M.combat_mode)
+			var/damage = rand(1, 5)
+			playsound(loc, "punch", 25, 1, -1)
+			visible_message(span_danger("[M] has punched [src]!"), \
+					span_userdanger("[M] has punched [src]!"))
+			adjustBruteLoss(damage)
+			log_combat(M, src, "attacked")
+			updatehealth()
 
 /mob/living/carbon/true_devil/handle_breathing()
 	// devils do not need to breathe

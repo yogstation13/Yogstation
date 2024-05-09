@@ -28,7 +28,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	icon_living = "magicOrange"
 	icon_dead = "magicOrange"
 	speed = -1
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	stop_automated_movement = TRUE
 	movement_type = FLYING // Immunity to chasms and landmines, etc.
 	attack_sound = 'sound/weapons/punch1.ogg'

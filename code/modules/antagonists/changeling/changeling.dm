@@ -343,7 +343,7 @@
 			prof.inhand_icon_state_list[slot] = I.item_state
 			prof.lefthand_file_list[slot] = I.lefthand_file
 			prof.righthand_file_list[slot] = I.righthand_file
-			prof.worn_icon_list[slot] = I.mob_overlay_icon
+			prof.worn_icon_list[slot] = I.worn_icon
 			prof.worn_icon_state_list[slot] = I.worn_icon_state
 			prof.exists_list[slot] = 1
 		else

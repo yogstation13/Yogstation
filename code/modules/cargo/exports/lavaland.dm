@@ -36,7 +36,7 @@
 						/obj/item/clothing/suit/space/hardsuit/powerarmor_advanced,
 						/obj/item/prisoncube,
 						/obj/item/staff/storm,
-						/obj/item/clothing/under/drip, //Drip is very valuable to many investors in high fashion
+						/obj/item/clothing/under/costume/drip, //Drip is very valuable to many investors in high fashion
 						/obj/item/clothing/shoes/drip,
 						/obj/item/gun/energy/plasmacutter/adv/robocutter,
 						/obj/item/melee/spear/bonespear/stalwartpike)

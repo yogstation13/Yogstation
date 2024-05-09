@@ -85,7 +85,7 @@ God bless America.
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>The status display reads: Frying at <b>[fry_speed*100]%</b> speed.<br>Using <b>[oil_use]</b> units of oil per second.<span>"
 
-/obj/machinery/deepfryer/attackby(obj/item/I, mob/user)
+/obj/machinery/deepfryer/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/reagent_containers/pill))
 		if(!reagents.total_volume)
 			to_chat(user, span_warning("There's nothing to dissolve [I] in!"))
@@ -126,7 +126,7 @@ God bless America.
 	else if(default_deconstruction_screwdriver(user, "fryer_off", "fryer_off" ,I))	//where's the open maint panel icon?!
 		return
 	else
-		if(user.a_intent != INTENT_HELP)
+		if(user.combat_mode)
 			return ..()
 		if((!superfry && !I.fryable) || HAS_TRAIT(I, TRAIT_NODROP) || (I.item_flags & (ABSTRACT | DROPDEL)))
 			to_chat(user, span_warning("Your cooking skills do not allow you to fry [I]..."))
@@ -161,7 +161,7 @@ God bless America.
 /obj/machinery/deepfryer/attack_ai(mob/user)
 	return
 
-/obj/machinery/deepfryer/attack_hand(mob/user)
+/obj/machinery/deepfryer/attack_hand(mob/living/user, modifiers)
 	if(frying)
 		if(frying.loc == src)
 			to_chat(user, span_notice("You eject [frying] from [src]."))
@@ -178,7 +178,7 @@ God bless America.
 			frying_burnt = FALSE
 			fry_loop.stop()
 			return
-	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
+	if(user.pulling && user.combat_mode && isliving(user.pulling))
 		if(superfry)
 			var/mob/living/H = user.pulling
 			if(H.stat == DEAD)
@@ -194,7 +194,7 @@ God bless America.
 				qdel(H)
 				fry_loop.start()
 				return
-	if(user.pulling && user.a_intent == INTENT_GRAB && ishuman(user.pulling))
+	if(user.pulling && user.combat_mode && ishuman(user.pulling))
 		var/mob/living/carbon/human/the_guy = user.pulling
 		var/list/missing_limbs = the_guy.get_missing_limbs()
 		if(missing_limbs.len >= 4)
@@ -211,8 +211,8 @@ God bless America.
 				the_guy.mind.transfer_to(the_nugget.nugget_man)
 			qdel(the_guy)
 			return
-				
-	if(user.pulling && user.a_intent == INTENT_GRAB && iscarbon(user.pulling) && reagents.total_volume && isliving(user.pulling))
+
+	if(user.pulling && user.combat_mode && iscarbon(user.pulling) && reagents.total_volume && isliving(user.pulling))
 		var/mob/living/carbon/C = user.pulling
 		if(user.grab_state < GRAB_AGGRESSIVE)
 			to_chat(user, span_warning("You need a better grip to do that!"))

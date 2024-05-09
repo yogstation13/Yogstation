@@ -25971,10 +25971,10 @@
 	name = "Surplus Genetics Supplies"
 	},
 /obj/item/storage/pill_bottle/mutadone,
-/obj/item/clothing/under/pj/blue,
-/obj/item/clothing/under/pj/blue,
-/obj/item/clothing/under/pj/red,
-/obj/item/clothing/under/pj/red,
+/obj/item/clothing/under/rank/medical/pj/blue,
+/obj/item/clothing/under/rank/medical/pj/blue,
+/obj/item/clothing/under/rank/medical/pj/red,
+/obj/item/clothing/under/rank/medical/pj/red,
 /obj/item/clothing/shoes/sneakers/white,
 /obj/item/clothing/shoes/sneakers/white,
 /obj/item/clothing/shoes/sneakers/white,
@@ -29704,6 +29704,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"mBz" = (
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 10
+	},
+/obj/machinery/light_switch{
+	pixel_x = -24
+	},
+/obj/structure/closet/wardrobe/genetics_white,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "mBA" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
@@ -56222,15 +56232,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/lab)
-"xHt" = (
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 10
-	},
-/obj/machinery/light_switch{
-	pixel_x = -24
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "xHI" = (
 /obj/structure/table/wood,
 /obj/machinery/light,
@@ -57282,6 +57283,7 @@
 	dir = 4;
 	pixel_x = -24
 	},
+/obj/effect/landmark/start/synthetic,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "ybY" = (
@@ -83883,7 +83885,7 @@ tEL
 ehj
 ody
 uIp
-xHt
+mBz
 mVq
 fUX
 gJH

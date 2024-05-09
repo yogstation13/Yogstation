@@ -27,7 +27,6 @@
 	faction = list("robots")
 	check_friendly_fire = TRUE
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	possible_a_intents = list(INTENT_HELP, INTENT_GRAB, INTENT_DISARM, INTENT_HARM)
 	minbodytemp = 0
 	verb_say = "states"
 	verb_ask = "queries"
@@ -49,13 +48,13 @@
 
 /mob/living/simple_animal/hostile/robot/Aggro()
 	. = ..()
-	a_intent_change(INTENT_HARM)
+	set_combat_mode(TRUE)
 	if(prob(5))
 		say(pick("INTRUDER DETECTED!", "CODE 7-34.", "101010!!"), forced = type)
 
 /mob/living/simple_animal/hostile/robot/LoseAggro()
 	. = ..()
-	a_intent_change(INTENT_HELP)
+	set_combat_mode(FALSE)
 
 /mob/living/simple_animal/hostile/robot/death(gibbed)
 	do_sparks(3, TRUE, src)

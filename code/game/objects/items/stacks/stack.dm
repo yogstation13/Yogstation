@@ -509,7 +509,12 @@
 		. = ..()
 
 /obj/item/stack/AltClick(mob/living/user)
+	attack_hand_secondary(user)
+
+/obj/item/stack/attack_hand_secondary(mob/user, modifiers)
 	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
 	if(isturf(loc)) // to prevent people that are alt clicking a tile to see its content from getting undesidered pop ups
 		return
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
@@ -519,6 +524,7 @@
 	else
 		if(is_zero_amount(delete_if_zero = TRUE))
 			return
+		. = SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 		//get amount from user
 		var/max = get_amount()
 		var/stackmaterial = round(input(user,"How many sheets do you wish to take out of this stack? (Maximum  [max])") as null|num)

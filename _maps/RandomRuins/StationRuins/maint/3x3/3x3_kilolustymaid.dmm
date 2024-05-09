@@ -51,7 +51,7 @@
 	pixel_x = -4;
 	pixel_y = -4
 	},
-/obj/item/clothing/under/maid,
+/obj/item/clothing/under/costume/maid,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 "J" = (

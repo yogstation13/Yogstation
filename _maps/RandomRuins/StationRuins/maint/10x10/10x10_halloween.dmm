@@ -199,7 +199,7 @@
 /obj/item/clothing/suit/yogs/tailcoat{
 	pixel_x = -4
 	},
-/obj/item/clothing/under/lawyer/black,
+/obj/item/clothing/under/rank/civilian/lawyer/black,
 /obj/effect/decal/cleanable/glitter/pink,
 /obj/item/reagent_containers/food/snacks/candy_corn,
 /turf/open/floor/light/colour_cycle/dancefloor_a,
@@ -242,7 +242,7 @@
 	pixel_x = -2;
 	pixel_y = 4
 	},
-/obj/item/clothing/under/suit_jacket/navy{
+/obj/item/clothing/under/suit/navy{
 	pixel_x = 8;
 	pixel_y = -4
 	},

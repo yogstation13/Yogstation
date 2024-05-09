@@ -246,10 +246,12 @@
 		to_chat(src, span_notice("Gained [B.point_return] resources from removing \the [B]."))
 	qdel(B)
 
+#define BLOB_SPREAD_COST 4 //this must also be used in the name and desc, which cannot use defines.
+
 /mob/camera/blob/verb/expand_blob_power()
 	set category = "Blob"
-	set name = "Expand/Attack Blob ([BLOB_SPREAD_COST])"
-	set desc = "Attempts to create a new blob in this tile. If the tile isn't clear, instead attacks it, damaging mobs and objects and refunding [BLOB_ATTACK_REFUND] points."
+	set name = "Expand/Attack Blob (4)"
+	set desc = "Attempts to create a new blob in this tile. If the tile isn't clear, instead attacks it, damaging mobs and objects and refunding 4 points."
 	var/turf/T = get_turf(src)
 	expand_blob(T)
 
@@ -304,6 +306,8 @@
 			last_attack = world.time + CLICK_CD_MELEE
 		else
 			last_attack = world.time + CLICK_CD_RAPID
+
+#undef BLOB_SPREAD_COST
 
 /mob/camera/blob/verb/rally_spores_power()
 	set category = "Blob"
