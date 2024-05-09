@@ -293,42 +293,42 @@
 
 // handle machine interaction
 
-///obj/machinery/disposal/bin/attackby_secondary(obj/item/weapon, mob/user, params)
-//	if(istype(weapon, /obj/item/destTagger))
-//		var/obj/item/destTagger/new_tagger = weapon
-//		if(mounted_tagger)
-//			balloon_alert(user, "already has a tagger!")
-//			return
-//		if(HAS_TRAIT(new_tagger, TRAIT_NODROP) || !user.transferItemToLoc(new_tagger, src))
-//			balloon_alert(user, "stuck to your hand!")
-//			return
-//		new_tagger.moveToNullspace()
-//		user.visible_message(span_notice("[user] snaps \the [new_tagger] onto [src]!"))
-//		balloon_alert(user, "tagger returned")
-//		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
-//		mounted_tagger = new_tagger
-//		update_appearance()
-//		return
-//	else
-//		return ..()
+/obj/machinery/disposal/bin/attackby_secondary(obj/item/weapon, mob/user, params)
+	if(istype(weapon, /obj/item/destTagger))
+		var/obj/item/destTagger/new_tagger = weapon
+		if(mounted_tagger)
+			balloon_alert(user, "already has a tagger!")
+			return
+		if(HAS_TRAIT(new_tagger, TRAIT_NODROP) || !user.transferItemToLoc(new_tagger, src))
+			balloon_alert(user, "stuck to your hand!")
+			return
+		new_tagger.moveToNullspace()
+		user.visible_message(span_notice("[user] snaps \the [new_tagger] onto [src]!"))
+		balloon_alert(user, "tagger returned")
+		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
+		mounted_tagger = new_tagger
+		update_appearance()
+		return
+	else
+		return ..()
 
-///obj/machinery/disposal/bin/attack_hand_secondary(mob/user, list/modifiers)
-//	. = ..()
-//	if(!mounted_tagger)
-//		balloon_alert(user, "no destination tagger!")
-//		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-//	if(!user.put_in_hands(mounted_tagger))
-//		balloon_alert(user, "destination tagger falls!")
-//		mounted_tagger = null
-//		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-//	user.visible_message(span_notice("[user] unhooks the [mounted_tagger] from [src]."))
-//	balloon_alert(user, "tagger pulled")
-//	playsound(src, 'sound/machines/click.ogg', 60, TRUE)
-//	mounted_tagger = null
-//	update_appearance(UPDATE_OVERLAYS)
-//	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+/obj/machinery/disposal/bin/attack_hand_secondary(mob/user, list/modifiers)
+	. = ..()
+	if(!mounted_tagger)
+		balloon_alert(user, "no destination tagger!")
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	if(!user.put_in_hands(mounted_tagger))
+		balloon_alert(user, "destination tagger falls!")
+		mounted_tagger = null
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	user.visible_message(span_notice("[user] unhooks the [mounted_tagger] from [src]."))
+	balloon_alert(user, "tagger pulled")
+	playsound(src, 'sound/machines/click.ogg', 60, TRUE)
+	mounted_tagger = null
+	update_appearance(UPDATE_OVERLAYS)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-//uncomment above once combat mode is implemented
+
 
 
 /obj/machinery/disposal/bin/examine(mob/user)
