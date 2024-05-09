@@ -83,6 +83,7 @@
 	owner.playsound_local(owner, "sparks", 50, 0)
 
 	if(charge_borg_or_apc(clicked_on))
+		unset_ranged_ability(owner)
 		adjust_uses(-1)
 		do_sparks(3, FALSE,clicked_on)
 		to_chat(owner, span_notice("You charge [clicked_on]."))

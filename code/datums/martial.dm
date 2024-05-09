@@ -104,7 +104,7 @@
 
 	var/damage = rand(A.get_punchdamagelow(), A.get_punchdamagehigh())
 
-	var/atk_verb = A.dna.species.attack_verb
+	var/atk_verb = pick(A.dna.species.attack_verbs)
 	var/atk_effect = A.dna.species.attack_effect
 	if(!(D.mobility_flags & MOBILITY_STAND))
 		atk_verb = "kick"
@@ -197,6 +197,7 @@
 	if(!istype(H) || !H.mind || H.mind.martial_art != src)
 		return
 	on_remove(H)
+	H.mind.martial_art = null
 	if(base)
 		base.teach(H)
 	else

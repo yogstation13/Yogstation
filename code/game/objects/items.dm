@@ -26,7 +26,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 
 	///Icon file for mob worn overlays.
-	var/icon/mob_overlay_icon
+	var/icon/worn_icon
 	///Icon state for mob worn overlays, if null the normal icon_state will be used.
 	var/worn_icon_state
 	///Icon state for the belt overlay, if null the normal icon_state will be used.
@@ -216,8 +216,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	else if (!istype(embedding, /datum/embedding_behavior))
 		stack_trace("Invalid type [embedding.type] found in .embedding during /obj/item Initialize(mapload)")
 
-/obj/item/Destroy()
-	item_flags &= ~DROPDEL	//prevent reqdels
+/obj/item/Destroy(force=FALSE)
+	item_flags &= ~DROPDEL //prevent reqdels
 	if(ismob(loc))
 		var/mob/m = loc
 		m.temporarilyRemoveItemFromInventory(src, TRUE)
@@ -306,7 +306,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(!greyscale_colors)
 		return
 	if(greyscale_config_worn)
-		/*worn_icon*/mob_overlay_icon = SSgreyscale.GetColoredIconByType(greyscale_config_worn, greyscale_colors)
+		worn_icon = SSgreyscale.GetColoredIconByType(greyscale_config_worn, greyscale_colors)
 	if(greyscale_config_inhand_left)
 		lefthand_file = SSgreyscale.GetColoredIconByType(greyscale_config_inhand_left, greyscale_colors)
 	if(greyscale_config_inhand_right)

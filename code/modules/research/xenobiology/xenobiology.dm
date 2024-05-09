@@ -957,13 +957,22 @@
 			return
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		if(C.dna && !(MGENDER in C.dna.species.species_traits) && !(FGENDER in C.dna.species.species_traits) && !(AGENDER in C.dna.species.species_traits))
-			if(C.gender == MALE)
+		if(C.dna && C.dna.species.possible_genders.len > 1)
+			if(C.gender == MALE && (FEMALE in C.dna.species.possible_genders))
 				C.gender = FEMALE
-				C.visible_message(span_boldnotice("[C] suddenly looks more feminine!"), span_boldwarning("You suddenly feel more feminine!"))
-			else
+			else if(C.gender == FEMALE && (MALE in C.dna.species.possible_genders))
 				C.gender = MALE
-				C.visible_message(span_boldnotice("[C] suddenly looks more masculine!"), span_boldwarning("You suddenly feel more masculine!"))
+			else
+				var/list/temp_genders = C.dna.species.possible_genders
+				temp_genders.Remove(C.gender)
+				C.gender = pick(temp_genders)
+			var/gender_adjective = "different"
+			switch(C.gender)
+				if(MALE)
+					gender_adjective = "more masculine"
+				if(FEMALE)
+					gender_adjective = "more feminine"
+			C.visible_message(span_boldnotice("[C] suddenly looks [gender_adjective]!"), span_boldwarning("You suddenly feel [gender_adjective]!"))
 			C.regenerate_icons()
 		else
 			C.visible_message(span_boldnotice("[C]'s physiology fails to change!"), span_boldwarning("The potion fails to meaningfully effect you!"))
@@ -1075,9 +1084,10 @@
 
 /obj/item/areaeditor/blueprints/slime/edit_area()
 	..()
-	var/area/A = get_area(src)
-	for(var/turf/T in A)
-		T.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-		T.add_atom_colour("#2956B2", FIXED_COLOUR_PRIORITY)
-	A.xenobiology_compatible = TRUE
+	var/area/area = get_area(src)
+	for (var/list/zlevel_turfs as anything in area.get_zlevel_turf_lists())
+		for(var/turf/area_turf as anything in zlevel_turfs)
+			area_turf.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+			area_turf.add_atom_colour("#2956B2", FIXED_COLOUR_PRIORITY)
+	area.xenobiology_compatible = TRUE
 	qdel(src)

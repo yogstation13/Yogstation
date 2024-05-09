@@ -81,8 +81,8 @@ GLOBAL_VAR(changeling_team_objective_type)
 	false_report_weight = 10
 	restricted_jobs = list("AI", "Cyborg", "Synthetic")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician") //YOGS - added hop and brig physician
-	required_players = 20
-	required_enemies = 2
+	required_players = 15
+	required_enemies = 1
 	recommended_enemies = 4
 	reroll_friendly = 1
 
@@ -217,7 +217,7 @@ GLOBAL_VAR(changeling_team_objective_type)
 		new_flesh_item.lefthand_file = chosen_prof.lefthand_file_list[slot]
 		new_flesh_item.righthand_file = chosen_prof.righthand_file_list[slot]
 		new_flesh_item.item_state = chosen_prof.inhand_icon_state_list[slot]
-		new_flesh_item.mob_overlay_icon = chosen_prof.worn_icon_list[slot]
+		new_flesh_item.worn_icon = chosen_prof.worn_icon_list[slot]
 		new_flesh_item.worn_icon_state = chosen_prof.worn_icon_state_list[slot]
 
 		if(equip)

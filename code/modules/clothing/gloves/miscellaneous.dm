@@ -216,7 +216,7 @@
 	desc = "Ancient gauntlets lost to the necropolis, fabled to bestow the wearer the power to shatter stone with but a simple punch."
 	icon_state = "concussive_gauntlets"
 	item_state = "concussive_gauntlets"
-	mob_overlay_icon = 'icons/mob/clothing/hands/hands.dmi'
+	worn_icon = 'icons/mob/clothing/hands/hands.dmi'
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	toolspeed = 0
 	strip_delay = 40
@@ -234,7 +234,7 @@
 	if(slot == ITEM_SLOT_GLOVES)
 		tool_behaviour = TOOL_MINING
 		RegisterSignal(user, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, PROC_REF(rocksmash))
-		RegisterSignal(user, COMSIG_MOVABLE_BUMP, PROC_REF(rocksmash))
+		RegisterSignal(user, COMSIG_MOVABLE_PRE_ENTER, PROC_REF(walksmash))
 	else
 		stopmining(user)
 
@@ -245,7 +245,16 @@
 /obj/item/clothing/gloves/gauntlets/proc/stopmining(mob/user)
 	tool_behaviour = initial(tool_behaviour)
 	UnregisterSignal(user, COMSIG_HUMAN_EARLY_UNARMED_ATTACK)
-	UnregisterSignal(user, COMSIG_MOVABLE_BUMP)
+	UnregisterSignal(user, COMSIG_MOVABLE_PRE_ENTER)
+
+/obj/item/clothing/gloves/gauntlets/proc/walksmash(mob/user, atom/A)
+	var/turf/target = get_turf(A)
+	if(istype(target, /turf/closed/mineral))
+		target.attackby(src, user)
+		return
+	for(var/atom/thing as anything in target.contents)
+		if(istype(thing, /turf/closed/mineral))
+			thing.attackby(src, user)
 
 /obj/item/clothing/gloves/gauntlets/proc/rocksmash(mob/user, atom/A, proximity)
 	if(!istype(A, /turf/closed/mineral))

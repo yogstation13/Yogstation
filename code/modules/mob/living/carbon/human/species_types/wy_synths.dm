@@ -47,7 +47,7 @@
 	///For transferring back and forth to an AI body when it's the AI deploying
 	var/mob/living/silicon/ai/mainframe
 
-	inherent_slowdown = 0.65
+	speedmod = 0.65
 	var/datum/action/innate/synth_os/os_button = new
 	var/datum/action/innate/synth_laws/show_laws = new
 
@@ -60,7 +60,6 @@
 	punchdamagehigh = 12
 	punchdamagelow = 5
 	punchstunthreshold = 11
-	var/force_multiplier = 1.25 //We hit 25% harder with all weapons
 
 	var/last_warned
 
@@ -74,11 +73,8 @@
 	RegisterSignal(C, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	laws = new /datum/ai_laws/steward
 
+	C.physiology.force_multiplier *= 1.25 //We hit 25% harder with all weapons
 
-	var/obj/item/organ/appendix/A = C.getorganslot(ORGAN_SLOT_APPENDIX) // Easiest way to remove it.
-	if(A)
-		A.Remove(C)
-		QDEL_NULL(A)
 	original_numbers = rand(1, 999)
 	C.real_name = "Synthetic Unit #[original_numbers]"
 	C.name = C.real_name
@@ -106,6 +102,7 @@
 	os_button.Remove(C)
 	inbuilt_cpu.forceMove(get_turf(C))
 	inbuilt_cpu = null
+	C.physiology.force_multiplier /= 1.25
 
 /datum/species/wy_synth/proc/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT

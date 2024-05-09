@@ -103,10 +103,9 @@
 	log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 	add_fingerprint(user)
 	var/force_multiplier = 1
-	if(is_synth(user))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/datum/species/wy_synth/S = H.dna.species
-		force_multiplier = S.force_multiplier
+		force_multiplier = H.physiology.force_multiplier
 	
 	take_damage(rand(weapon_stats[DAMAGE_LOW] * force_multiplier, weapon_stats[DAMAGE_HIGH] * force_multiplier), sound_effect = FALSE)
 
@@ -124,10 +123,9 @@
 	attacked_atom.attacked_by(src, user)
 	user.weapon_slow(src)
 	var/force_multiplier = 1
-	if(is_synth(user))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/datum/species/wy_synth/S = H.dna.species
-		force_multiplier = S.force_multiplier
+		force_multiplier = H.physiology.force_multiplier
 	if(!QDELETED(src))
 		take_damage(rand(weapon_stats[DAMAGE_LOW] * force_multiplier, weapon_stats[DAMAGE_HIGH] * force_multiplier), sound_effect = FALSE)
 

@@ -11,12 +11,12 @@
 	name = "???"
 	plural_form = "???"
 	id = "shadow"
-	sexes = FALSE
+	possible_genders = list(PLURAL)
 	bubble_icon = BUBBLE_DARKSPAWN
 	ignored_by = list(/mob/living/simple_animal/hostile/faithless)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/shadow
-	species_traits = list(NOBLOOD,NOEYESPRITES,NOFLASH, AGENDER)
-	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH,TRAIT_GENELESS,TRAIT_NOHUNGER)
+	species_traits = list(NOBLOOD,NOEYESPRITES, NOFLASH)
+	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH,TRAIT_GENELESS,TRAIT_NOHUNGER,TRAIT_NODISMEMBER)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 
 	mutanteyes = /obj/item/organ/eyes/shadow
@@ -155,7 +155,7 @@
 	name = "Darkspawn"
 	id = "darkspawn"
 	limbs_id = "darkspawn"
-	sexes = FALSE
+	possible_genders = list(PLURAL)
 	nojumpsuit = TRUE
 	changesource_flags = MIRROR_BADMIN //never put this in the pride pool because they look super valid and can never be changed off of
 	siemens_coeff = 0

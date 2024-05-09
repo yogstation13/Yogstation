@@ -437,8 +437,8 @@
 		balloon_alert(artist, "not enough metal!")
 		return
 	var/list/possible_statues = list()
-	for(var/statues_available as anything in subtypesof(/obj/structure/bloodsucker/bloodstatue))
-		possible_statues[initial(statues_available)] = statues_available
+	for(var/obj/structure/bloodsucker/bloodstatue/statues_available as anything in subtypesof(/obj/structure/bloodsucker/bloodstatue))
+		possible_statues[statues_available::name] = statues_available
 	var/obj/structure/bloodsucker/bloodstatue/what_type = tgui_input_list(artist, "What kind of statue would you like to make?", "Artist Manual", possible_statues)
 	if(!do_after(artist, 10 SECONDS, src))
 		artist.balloon_alert(artist, "ruined!")
@@ -521,7 +521,7 @@
 	var/area/current_area = get_area(src)
 	if(current_area == bloodsuckerdatum.bloodsucker_lair_area)
 		return
-	bloodsuckerdatum.bloodsucker_lair_area.contained_turfs += current_area.contained_turfs
+	bloodsuckerdatum.bloodsucker_lair_area.turfs_by_zlevel[z] += current_area.turfs_by_zlevel[z]
 
 /obj/structure/bloodsucker/bloodstatue/command/unbolt()
 	. = ..()
@@ -529,7 +529,7 @@
 	var/area/current_area = get_area(src)
 	if(current_area == bloodsuckerdatum.bloodsucker_lair_area)
 		return
-	bloodsuckerdatum.bloodsucker_lair_area.turfs_to_uncontain += current_area.contained_turfs
+	bloodsuckerdatum.bloodsucker_lair_area.turfs_to_uncontain_by_zlevel[z] += current_area.turfs_by_zlevel[z]
 
 /obj/structure/bloodsucker/bloodstatue/greytide
 	name = "greytider bust"

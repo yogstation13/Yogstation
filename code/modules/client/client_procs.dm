@@ -485,6 +485,49 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 //////////////
 
 /client/Del()
+	log_access("Logout: [key_name(src)]")
+	if(holder)
+		adminGreet(1)
+		holder.owner = null
+		GLOB.permissions.admins -= src
+		if (!GLOB.permissions.admins.len && SSticker.IsRoundInProgress()) //Only report this stuff if we are currently playing.
+			var/cheesy_message = pick(
+				"I have no admins online!",\
+				"I'm all alone :(",\
+				"I'm feeling lonely :(",\
+				"I'm so lonely :(",\
+				"Why does nobody love me? :(",\
+				"I want a man :(",\
+				"Where has everyone gone?",\
+				"I need a hug :(",\
+				"Someone come hold me :(",\
+				"I need someone on me :(",\
+				"What happened? Where has everyone gone?",\
+				"Forever alone :("\
+			)
+
+			send2irc("Server", "[cheesy_message] (No admins online)")
+		qdel(holder)
+	if(ckey in GLOB.permissions.deadmins)
+		qdel(GLOB.permissions.deadmins[ckey])
+
+	GLOB.ahelp_tickets.ClientLogout(src)
+	GLOB.directory -= ckey
+	GLOB.clients -= src
+
+	SSambience.remove_ambience_client(src)
+
+	var/datum/connection_log/CL = GLOB.connection_logs[ckey]
+	if(CL)
+		CL.logout(mob)
+
+	QDEL_LIST_ASSOC_VAL(char_render_holders)
+	if(movingmob != null)
+		movingmob.client_mobs_in_contents -= mob
+		UNSETEMPTY(movingmob.client_mobs_in_contents)
+	seen_messages = null
+	Master.UpdateTickRate()
+	world.sync_logout_with_db(connection_number) // yogs - logout logging
 	if(!gc_destroyed)
 		gc_destroyed = world.time
 		if (!QDELING(src))

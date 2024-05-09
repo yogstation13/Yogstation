@@ -4,14 +4,14 @@
 	icon_state = "tourist"
 	item_state = "gy_suit"
 	can_adjust = FALSE
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 /obj/item/clothing/under/yogs/rank/clerk
 	desc = "Oh, look it comes with its own vest."
 	name = "clerk's uniform"
 	icon_state = "clerk"
 	item_state = "clerk"
 	can_adjust = FALSE
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/yogs/rank/clerk/skirt
 	desc = "Oh, look it comes with its own vest."
@@ -20,7 +20,7 @@
 	item_state = "clerk_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
-	mutantrace_variation = NO_MUTANTRACE_VARIATION
+	mutantrace_variation = NONE
 
 /obj/item/clothing/under/yogs/rank/miner/medic
 	desc = "A verstile blue and white uniform honored to hard working recovery medics in hazardous environments. It has minor protection against biohazards."
@@ -31,4 +31,4 @@
 	sensor_mode = 3
 	random_sensor = FALSE
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 15, RAD = 0, FIRE = 80, ACID = 0, WOUND = 10)
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
