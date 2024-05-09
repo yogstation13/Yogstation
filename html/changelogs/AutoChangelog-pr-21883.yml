@@ -1,0 +1,6 @@
+author: " Qustinnus, SapphicOverload, Molti"
+delete-after: true 
+changes: 
+  - experiment: "Replaced intents with combat mode"
+  - imageadd: "Adds combat mode buttons to the UI, replacing intents"
+  - bugfix: "Fixes some of the martial arts not working sometimes"
