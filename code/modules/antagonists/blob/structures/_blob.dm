@@ -4,7 +4,7 @@
 	icon = 'icons/mob/blob.dmi'
 	light_range = 2
 	desc = "A thick wall of writhing tendrils."
-	density = FALSE //this being false causes two bugs, being able to attack blob tiles behind other blobs and being unable to move on blob tiles in no gravity, but turning it to 1 causes the blob mobs to be unable to path through blobs, which is probably worse.
+	density = TRUE
 	opacity = FALSE
 	anchored = TRUE
 	layer = BELOW_MOB_LAYER
@@ -278,6 +278,7 @@
 		if(BURN)
 			damage_amount *= fire_resist
 		if(CLONE)
+			damage_amount = damage_amount //no change
 		else
 			return 0
 	var/armor_protection = 0

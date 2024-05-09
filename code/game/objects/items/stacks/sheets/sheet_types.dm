@@ -52,7 +52,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("crate shelf parts", /obj/item/rack_parts/shelf), \
 		)), \
 	null, \
-	new/datum/stack_recipe("canister", /obj/machinery/portable_atmospherics/canister/generic, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("canister", /obj/machinery/portable_atmospherics/canister, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("portable pump", /obj/machinery/portable_atmospherics/pump, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	null, \
 	new/datum/stack_recipe("floor tile", /obj/item/stack/tile/plasteel, 1, 4, 20), \
@@ -308,6 +308,8 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	if(!wood_stack && replace)
 		user.put_in_hands(new_item)
 
+/obj/item/stack/sheet/mineral/wood/ten
+	amount = 10
 /obj/item/stack/sheet/mineral/wood/fifty
 	amount = 50
 

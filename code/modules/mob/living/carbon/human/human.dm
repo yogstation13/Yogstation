@@ -70,7 +70,7 @@
 
 /mob/living/carbon/human/get_status_tab_items()
 	. = ..()
-	. += "Intent: [a_intent]"
+	. += "Combat mode: [combat_mode ? "On" : "Off"]"
 	. += "Move Mode: [m_intent]"
 	var/obj/item/tank/target_tank = internal || external
 	if(target_tank)
@@ -293,6 +293,12 @@
 			if(!has_embedded_objects())
 				clear_alert("embeddedobject")
 				SEND_SIGNAL(usr, COMSIG_CLEAR_MOOD_EVENT, "embedded")
+		return
+	if(href_list["lookup_info"])
+		switch(href_list["lookup_info"])
+			if("open_examine_panel")
+				tgui.holder = src
+				tgui.ui_interact(usr) //datum has a tgui component, here we open the window
 		return
 
 	if(href_list["item"]) //canUseTopic check for this is handled by mob/Topic()
@@ -729,7 +735,7 @@
 
 /mob/living/carbon/human/cuff_resist(obj/item/I)
 	if(dna && (dna.check_mutation(HULK)))
-		say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
+		say(pick("RAAAAAAAARGH!", "HNNNNNNNNNGGGGGGH!", "GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", "AAAAAAARRRGH!" ), forced = "hulk")
 		if(..(I, cuff_break = FAST_CUFFBREAK))
 			dropItemToGround(I)
 	else
@@ -1025,14 +1031,14 @@
 			piggyback(target)
 			return
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
-		else if(user != target && user.a_intent == INTENT_GRAB && can_be_firemanned(target))
+		else if(user != target && can_be_firemanned(target))
 			fireman_carry(target)
 			return
-	. = ..()
+	return ..()
 
 //src is the user that will be carrying, target is the mob to be carried
 /mob/living/carbon/human/proc/can_piggyback(mob/living/carbon/target)
-	if (istype(target) && target.stat == CONSCIOUS && src.a_intent == INTENT_HELP)
+	if (istype(target) && target.stat == CONSCIOUS && !combat_mode)
 		return TRUE
 	return FALSE
 

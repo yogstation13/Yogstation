@@ -48,7 +48,7 @@
 /obj/machinery/button/update_icon_state()
 	. = ..()
 	if(panel_open)
-		icon_state = "button-open"
+		icon_state = "doorctrl-open"
 	else
 		if(stat & (NOPOWER|BROKEN))
 			icon_state = "[skin]-p"
@@ -72,10 +72,10 @@
 	if(board)
 		. += "button-board"
 
-/obj/machinery/button/attackby(obj/item/W, mob/user, params)
+/obj/machinery/button/attackby(obj/item/W, mob/living/user, params)
 	if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(panel_open || allowed(user))
-			default_deconstruction_screwdriver(user, "button-open", "[skin]",W)
+			default_deconstruction_screwdriver(user, "doorctrl-open", "[skin]",W)
 			update_appearance()
 		else
 			to_chat(user, span_danger("Maintenance Access Denied"))
@@ -120,7 +120,7 @@
 					id = getnewid()
 					to_chat(user, span_notice("No ID found. Generating New ID"))
 
-				P.buffer = id
+				multitool_set_buffer(user, W, id)
 				to_chat(user, span_notice("You link the button to the [P]."))
 				setup_device() // Has to be done. It sets the signaller up
 			else
@@ -136,8 +136,9 @@
 		update_appearance()
 		return
 
-	if(user.a_intent != INTENT_HARM && !(W.item_flags & NOBLUDGEON))
-		return attack_hand(user)
+	if(!user.combat_mode && !(W.item_flags & NOBLUDGEON))
+		var/list/modifiers = params2list(params)
+		return attack_hand(user, modifiers)
 	else if(istype(W, /obj/item/airlock_scanner))		//yogs start
 		var/obj/item/airlock_scanner/S = W
 		S.show_access(src, user)					//yogs end
@@ -168,10 +169,10 @@
 
 /obj/machinery/button/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
 	if(id)
-		id = "[port.shuttle_id]_[id]"
+		id = "[id]"
 		setup_device()
 
-/obj/machinery/button/attack_hand(mob/user)
+/obj/machinery/button/attack_hand(mob/user, modifiers)
 	. = ..()
 	if(.)
 		return
@@ -335,6 +336,6 @@
 /obj/item/wallframe/button
 	name = "button frame"
 	desc = "Used for building buttons."
-	icon_state = "button"
+	icon_state = "doorctrl"
 	result_path = /obj/machinery/button
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)

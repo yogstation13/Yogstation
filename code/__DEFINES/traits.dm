@@ -146,7 +146,8 @@
 #define TRAIT_NOINTERACT		"no_interact" //Not allowed to touch anything (even with TK) or use things in hand
 
 #define TRAIT_POWERHUNGRY		"power_hungry" // uses electricity instead of food
-
+///Prevent species from changing while they have the trait
+#define TRAIT_SPECIESLOCK "species_lock"
 #define TRAIT_NOSLIPICE			"noslip_ice"
 #define TRAIT_NOSLIPWATER		"noslip_water"
 #define TRAIT_NOSLIPALL			"noslip_all"
@@ -186,6 +187,7 @@
 #define TRAIT_BADMAIL			"badmail"	//Your mail is going to be worse than average
 #define TRAIT_SHORT_TELOMERES	"short_telomeres" //You cannot be CLOONED
 #define TRAIT_LONG_TELOMERES	"long_telomeres" //You get CLOONED faster!!!
+#define TRAIT_NO_GRENADES		"no_nades"
 ///You become a Marine that can eat crayons!!!
 #define TRAIT_MARINE  "marine"
 
@@ -259,6 +261,7 @@
 #define SINFULDEMON_TRAIT "sinfuldemon"
 #define CHANGESTING_TRAIT "changesting"
 #define POSIBRAIN_TRAIT "positrait"
+#define SYNTHETIC_TRAIT "synthetictrait"
 #define WRIST_STRAP_TRAIT "wrist_strap"
 #define GRIMOIRE_TRAIT "grimoire_trait"
 
@@ -266,4 +269,19 @@
 
 #define STATION_TRAIT_MOONSCORCH "station_trait_moonscorch"
 
+///Darkspawn traits
+///lets darkspawns walk through weak light
+#define TRAIT_DARKSPAWN_LIGHTRES "darkspawn_lightres" 
+///lets darkspawns walk through any light
+#define TRAIT_DARKSPAWN_CREEP "darkspawn_creep" 
+///permanently reduces the lucidity gained from future succs
+#define TRAIT_DARKSPAWN_DEVOURED "darkspawn_devoured"
+///disable psi regeneration (make sure to remove it after some time)
+#define TRAIT_DARKSPAWN_PSIBLOCK "darkspawn_psiblock" 
+///make aoe ally buff abilities also affect allied darkspawns
+#define TRAIT_DARKSPAWN_BUFFALLIES "darkspawn_allybuff" 
+///revives the darkspawn if they're dead and in the dark
+#define TRAIT_DARKSPAWN_UNDYING "darkspawn_undying" 
 
+///reduces the cooldown of all used /datum/action/cooldown by 25%
+#define TRAIT_FAST_COOLDOWNS "short_spell_cooldowns" 

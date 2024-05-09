@@ -62,11 +62,11 @@
 	name = "Detective"
 	jobtype = /datum/job/detective
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/security/detective
 
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/det
-	uniform_skirt = /obj/item/clothing/under/rank/det/skirt
+	uniform_skirt = /obj/item/clothing/under/rank/security/detective/skirt
 	neck = /obj/item/clothing/neck/tie/detective
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/jackboots

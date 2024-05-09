@@ -66,7 +66,7 @@
 			qdel(src)
 
 /obj/item/stack/ore/attack(mob/living/M, mob/living/user)
-	if(user.a_intent == INTENT_HARM || M != user || !ishuman(user))
+	if(!user.combat_mode || M != user || !ishuman(user))
 		return ..()
 
 	var/mob/living/carbon/human/H = user
@@ -407,6 +407,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	force = 1
 	throwforce = 2
 	w_class = WEIGHT_CLASS_TINY
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 	var/string_attached
 	var/list/sideslist = list("heads","tails")
 	var/cmineral = null

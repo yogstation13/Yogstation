@@ -71,11 +71,16 @@
 
 		if(DOING_INTERACTION(user, src))//prevents message spam
 			return
-		to_chat(user, span_notice("You start picking..."))
+		
+		if(I.toolspeed > 0)
+			to_chat(user, span_notice("You start picking..."))
 
 		if(I.use_tool(src, user, 40, volume=50))
 			if(ismineralturf(src))
-				to_chat(user, span_notice("You finish cutting into the rock."))
+				if(I.toolspeed > 0)
+					to_chat(user, span_notice("You finish cutting into the rock."))
+				else
+					to_chat(user, span_notice("You quickly carve away the rock."))
 				attempt_drill(user)
 				SSblackbox.record_feedback("tally", "pick_used_mining", 1, I.type)
 	else
@@ -129,21 +134,20 @@
 		to_chat(M, span_notice("You tunnel into the rock."))
 		attempt_drill(M)
 
-/turf/closed/mineral/Bumped(atom/movable/AM)
-	..()
-	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
+/turf/closed/mineral/Enter(atom/movable/mover, no_side_effects) //in enter rather than bump so something with instant mining speed isn't stopped by walking into something
+	if(ishuman(mover))
+		var/mob/living/carbon/human/H = mover
 		var/obj/item/I = H.is_holding_tool_quality(TOOL_MINING)
 		if(I)
-			attackby(I, H)
-		return
-	else if(iscyborg(AM))
-		var/mob/living/silicon/robot/R = AM
+			INVOKE_ASYNC(src, PROC_REF(try_mine), I, H)
+	else if(iscyborg(mover))
+		var/mob/living/silicon/robot/R = mover
 		if(R.module_active && R.module_active.tool_behaviour == TOOL_MINING)
-			attackby(R.module_active, R)
-			return
-	else
-		return
+			INVOKE_ASYNC(src, PROC_REF(try_mine), R.module, R)
+	return ..()
+
+/turf/closed/mineral/proc/try_mine(obj/item/I, mob/user) //had to make a new proc so it could be called invoke_async, because it didn't like called attackby directly
+	attackby(I, user)
 
 /turf/closed/mineral/acid_melt()
 	ScrapeAway()

@@ -115,6 +115,10 @@
 	var/base_pixel_x = 0
 	///Default pixel y shifting for the atom's icon.
 	var/base_pixel_y = 0
+	///The config type to use for greyscaled sprites. Both this and greyscale_colors must be assigned to work.
+	var/greyscale_config
+	///A string of hex format colors to be used by greyscale sprites, ex: "#0054aa#badcff"
+	var/greyscale_colors
 	///the base icon state used for anything that changes their icon state.
 	var/base_icon_state
 	///Mobs that are currently do_after'ing this atom, to be cleared from on Destroy()
@@ -543,6 +547,31 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE_MORE, user, .)
 	if(!LAZYLEN(.)) // lol ..length
 		return FALSE
+
+/// Handles updates to greyscale value updates.
+/// The colors argument can be either a list or the full color string.
+/// Child procs should call parent last so the update happens after all changes.
+/atom/proc/set_greyscale(list/colors, new_config)
+	SHOULD_CALL_PARENT(TRUE)
+	if(istype(colors))
+		colors = colors.Join("")
+	if(!isnull(colors) && greyscale_colors != colors) // If you want to disable greyscale stuff then give a blank string
+		greyscale_colors = colors
+
+	if(!isnull(new_config) && greyscale_config != new_config)
+		greyscale_config = new_config
+
+	update_greyscale()
+
+/// Checks if this atom uses the GAGS system and if so updates the icon
+/atom/proc/update_greyscale()
+	SHOULD_CALL_PARENT(TRUE)
+	if(greyscale_colors && greyscale_config)
+		icon = SSgreyscale.GetColoredIconByType(greyscale_config, greyscale_colors)
+	if(!smoothing_flags) // This is a bitfield but we're just checking that some sort of smoothing is happening
+		return
+	update_atom_colour()
+	QUEUE_SMOOTH(src)
 
 /**
  * An atom we are buckled or is contained within us has tried to move
@@ -1070,6 +1099,8 @@
 	VV_DROPDOWN_OPTION(VV_HK_TRIGGER_EMP, "EMP Pulse")
 	VV_DROPDOWN_OPTION(VV_HK_TRIGGER_EXPLOSION, "Explosion")
 	VV_DROPDOWN_OPTION(VV_HK_RADIATE, "Radiate")
+	if(greyscale_colors)
+		VV_DROPDOWN_OPTION(VV_HK_MODIFY_GREYSCALE, "Modify greyscale colors")
 
 /atom/vv_do_topic(list/href_list)
 	. = ..()

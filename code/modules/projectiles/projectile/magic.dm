@@ -159,7 +159,7 @@
 	qdel(src)
 
 /proc/wabbajack(mob/living/M, randomize)
-	if(!istype(M) || M.stat == DEAD || M.notransform || (GODMODE & M.status_flags))
+	if(!istype(M) || M.stat == DEAD || M.notransform || (GODMODE & M.status_flags) || HAS_TRAIT(M, TRAIT_SPECIESLOCK))
 		return
 
 	M.notransform = TRUE
@@ -287,7 +287,7 @@
 
 	M.log_message("became [new_mob.real_name]", LOG_ATTACK, color="orange")
 
-	new_mob.a_intent = INTENT_HARM
+	new_mob.set_combat_mode(TRUE)
 
 	M.wabbajack_act(new_mob)
 
@@ -332,7 +332,7 @@
 	B.name = "[M.name] Parmesan"
 	B.real_name = "[M.name] Parmesan"
 	B.set_stat(CONSCIOUS)
-	B.a_intent = INTENT_HARM
+	B.set_combat_mode(TRUE)
 	if(M.mind)
 		M.mind.transfer_to(B)
 	else

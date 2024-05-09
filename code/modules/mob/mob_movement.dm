@@ -110,7 +110,7 @@
 		return mob.remote_control.relaymove(mob, direct)
 
 	if(isAI(mob))
-		return AIMove(n,direct,mob)
+		return AIMove(direct,mob)
 
 	if(Process_Grab()) //are we restrained by someone's grip?
 		return
@@ -521,7 +521,7 @@
 
 	if(can_z_move(DOWN, above_turf, current_turf, ZMOVE_FALL_FLAGS|ventcrawling_flag)) //Will we fall down if we go up?
 		if(buckled)
-			to_chat(src, span_warning("[buckled] is is not capable of flight."))
+			to_chat(src, span_warning("[buckled] is not capable of flight."))
 		else
 			to_chat(src, span_warning("You are not Superman."))
 		return

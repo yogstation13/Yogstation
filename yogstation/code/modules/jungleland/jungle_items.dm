@@ -364,8 +364,8 @@
 	icon_state = "slime_sling_0"
 
 /obj/item/clothing/head/yogs/tar_king_crown
-	name = "Crown of the Tar King"
-	desc = "And old and withered crown made out of bone of unknown origin, there is a vibrant pinkish crystal embedded in it, it is warm to the touch..."
+	name = "crown of the tar king"
+	desc = "An old and withered crown from bones of unknown origin with a vibrant pinkish crystal embedded in the central spike. It is warm to the touch."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "tar_king_crown"
 	armor = list(MELEE = 80, BULLET = 40, LASER = 60, ENERGY = 50, BOMB = 80, BIO = 70, RAD = 60, FIRE = 100, ACID = 100)
@@ -574,7 +574,8 @@
 	var/damage_bonus = 0
 	var/cooldown_bonus = 0
 	var/current_state = 0
-	var/timer = 0
+	COOLDOWN_DECLARE(bonus_timer)
+	var/bonus_cooldown = 5 SECONDS
 
 /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/effect_desc()
 	return "Gives a stacking (up to 5 times) decreases your shot delay and increases detonation damage when you detonate a mark. Lasts 5 seconds, extending on successful mark detonation. Missing resets the stacks."
@@ -593,8 +594,7 @@
 	STOP_PROCESSING(SSprocessing,src)
 
 /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/on_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/hammer_synced)
-	. = ..()
-	timer = 5 SECONDS
+	COOLDOWN_START(src, bonus_timer, bonus_cooldown)
 	var/previous_state = current_state
 	current_state = min(current_state + 1, 5)
 	cooldown_bonus = 2 * current_state
@@ -609,17 +609,15 @@
 		hammer_synced = loc
 		user = hammer_synced.loc
 	hammer_synced.detonation_damage -= damage_bonus
-	hammer_synced.charge_time -= cooldown_bonus
+	hammer_synced.charge_time += cooldown_bonus
 	current_state = 0
 	cooldown_bonus = 0
 	damage_bonus = 0
 	user.clear_alert("glory_of_victory")
 
 /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/process(delta_time)
-	if(timer > 0)
-		timer -= delta_time
-		if(timer <= 0)
-			remove_bonuses()
+	if(COOLDOWN_FINISHED(src, bonus_timer))
+		remove_bonuses()
 
 /obj/item/crusher_trophy/jungleland/mosquito_sack
 	name = "Mosquito's bloodsack"
@@ -664,7 +662,7 @@
 
 /obj/item/gem/tarstone
 	name = "primal tarstone"
-	desc = "An incredibly dense and tough chunk of ancient tar. Millions of microscopic runes subtly line the surface, and probably make this artifact worth thousands."
+	desc = "A dense, tough chunk of ancient tar. Millions of microscopic runes subtly line the surface."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "targem"
 	point_value = 3000
@@ -674,20 +672,20 @@
 
 /obj/item/demon_core
 	name = "demon core"
-	desc = "It glows with a faint light, you can feel the energy buzzing off of it"
+	desc = "It glows with a faint light. You can feel the energy radiating from it."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "demon_core"
 
 /obj/item/demon_core/examine(mob/user)
 	. = ..()
-	. += "You can insert it into any hardsuit to give it a rechargeable shield."
-	. += "You can insert it into the super-matter engine, to double it's rad production."
+	. += "You can insert it into any outerwear to give it a rechargeable shield."
+	. += "You can insert it into a supermatter engine to double its rad production."
 
 /obj/item/demon_core/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!proximity_flag)
 		return ..()
-	if(istype(target,/obj/item/clothing/suit/space/hardsuit))
-		target.AddComponent(/datum/component/shielded,'yogstation/icons/effects/effects.dmi',"tar_shield", 30 SECONDS, ITEM_SLOT_OCLOTHING)
+	if(istype(target,/obj/item/clothing/suit))
+		target.AddComponent(/datum/component/shielded,'yogstation/icons/effects/effects.dmi',"tar_shield", 1, 30 SECONDS, ITEM_SLOT_OCLOTHING)
 		visible_message("[user] inserts [src] into [target]")
 		qdel(src)
 		return

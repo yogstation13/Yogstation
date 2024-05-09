@@ -120,21 +120,19 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 
 /obj/item/hilbertshotel/proc/sendToNewRoom(roomNumber, mob/user)
 	var/datum/turf_reservation/roomReservation = SSmapping.request_turf_block_reservation(hotelRoomTemp.width, hotelRoomTemp.height)
-	if(ruinSpawned)
-		mysteryRoom = GLOB.hhmysteryRoomNumber
-		if(roomNumber == mysteryRoom)
-			hotelRoomTempLore.load(locate(roomReservation.bottom_left_turfs[1], roomReservation.bottom_left_turfs[2], roomReservation.bottom_left_turfs[3]))
-		else
-			hotelRoomTemp.load(locate(roomReservation.bottom_left_turfs[1], roomReservation.bottom_left_turfs[2], roomReservation.bottom_left_turfs[3]))
+	var/turf/bottomLeft = roomReservation.bottom_left_turfs[1]
+	if(ruinSpawned && (roomNumber == GLOB.hhmysteryRoomNumber))
+		hotelRoomTempLore.load(bottomLeft)
 	else
-		hotelRoomTemp.load(locate(roomReservation.bottom_left_turfs[1], roomReservation.bottom_left_turfs[2], roomReservation.bottom_left_turfs[3]))
+		hotelRoomTemp.load(bottomLeft)
 	activeRooms["[roomNumber]"] = roomReservation
 	linkTurfs(roomReservation, roomNumber)
 	do_sparks(3, FALSE, get_turf(user))
-	user.forceMove(locate(roomReservation.bottom_left_turfs[1] + hotelRoomTemp.landingZoneRelativeX, roomReservation.bottom_left_turfs[2] + hotelRoomTemp.landingZoneRelativeY, roomReservation.bottom_left_turfs[3]))
+	user.forceMove(locate(bottomLeft.x + hotelRoomTemp.landingZoneRelativeX, bottomLeft.y + hotelRoomTemp.landingZoneRelativeY, bottomLeft.z))
 
 /obj/item/hilbertshotel/proc/linkTurfs(datum/turf_reservation/currentReservation, currentRoomnumber)
-	var/area/hilbertshotel/currentArea = get_area(locate(currentReservation.bottom_left_turfs[1], currentReservation.bottom_left_turfs[2], currentReservation.bottom_left_turfs[3]))
+	var/turf/bottomLeft = currentReservation.bottom_left_turfs[1]
+	var/area/hilbertshotel/currentArea = get_area(bottomLeft)
 	currentArea.name = "Hilbert's Hotel Room [currentRoomnumber]"
 	currentArea.parentSphere = src
 	currentArea.storageTurf = storageTurf
@@ -150,9 +148,10 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 	if(activeRooms.len)
 		for(var/x in activeRooms)
 			var/datum/turf_reservation/room = activeRooms[x]
+			var/turf/bottomLeft = room.bottom_left_turfs[1]
 			for(var/i=0, i<hotelRoomTemp.width, i++)
 				for(var/j=0, j<hotelRoomTemp.height, j++)
-					for(var/atom/movable/A in locate(room.bottom_left_turfs[1] + i, room.bottom_left_turfs[2] + j, room.bottom_left_turfs[3]))
+					for(var/atom/movable/A in locate(bottomLeft.x + i, bottomLeft.y + j, bottomLeft.z))
 						if(ismob(A))
 							var/mob/M = A
 							if(M.mind)
@@ -374,17 +373,18 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 				storeRoom()
 
 /area/hilbertshotel/proc/storeRoom()
-	var/roomSize = (reservation.top_right_turfs[1]-reservation.bottom_left_turfs[1]+1)*(reservation.top_right_turfs[2]-reservation.bottom_left_turfs[2]+1)
+	var/roomSize = reservation.width*reservation.height
 	var/storage[roomSize]
 	var/turfNumber = 1
 	var/obj/item/abstracthotelstorage/storageObj = new(storageTurf)
 	storageObj.roomNumber = roomnumber
 	storageObj.parentSphere = parentSphere
 	storageObj.name = "Room [roomnumber] Storage"
+	var/turf/bottomLeft = reservation.bottom_left_turfs[1]
 	for(var/i=0, i<parentSphere.hotelRoomTemp.width, i++)
 		for(var/j=0, j<parentSphere.hotelRoomTemp.height, j++)
 			var/list/turfContents = list()
-			for(var/atom/movable/A in locate(reservation.bottom_left_turfs[1] + i, reservation.bottom_left_turfs[2] + j, reservation.bottom_left_turfs[3]))
+			for(var/atom/movable/A in locate(bottomLeft.x + i, bottomLeft.y + j, bottomLeft.z))
 				if(ismob(A) && !isliving(A))
 					continue //Don't want to store ghosts
 				turfContents += A
@@ -465,7 +465,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 	id_access_list = list(ACCESS_AWAY_GENERIC3, ACCESS_RESEARCH)
 	instant = TRUE
 	id = /obj/item/card/id/silver
-	uniform = /obj/item/clothing/under/rank/research_director
+	uniform = /obj/item/clothing/under/rank/rnd/research_director
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	back = /obj/item/storage/backpack/satchel/leather
 	suit = /obj/item/clothing/suit/toggle/labcoat

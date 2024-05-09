@@ -5,7 +5,7 @@
 	name = "sledgehammer"
 	desc = "An archaic tool used to drive nails and break down hollow walls."
 	icon = 'icons/obj/weapons/misc.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/back.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/back.dmi'
 	icon_state = "sledgehammer"
 	item_state = "sledgehammer"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
@@ -33,6 +33,11 @@
 		require_twohands = TRUE, \
 		wielded_stats = list(SWING_SPEED = 1.5, ENCUMBRANCE = 0.5, ENCUMBRANCE_TIME = 1 SECONDS, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0), \
 	)
+	AddComponent(/datum/component/cleave_attack, \
+		arc_size=180, \
+		requires_wielded=TRUE, \
+		no_multi_hit=TRUE, \
+	) // big and heavy hammer makes wide arc
 
 /obj/item/melee/sledgehammer/proc/on_wield(atom/source, mob/living/user)
 	hitsound = "swing_hit"

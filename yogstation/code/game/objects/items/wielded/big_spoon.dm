@@ -2,7 +2,7 @@
 	name = "comically large spoon"
 	desc = "For when you're only allowed one spoonful of something."
 	icon = 'icons/obj/kitchen.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/back.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/back.dmi'
 	icon_state = "bigspoon"
 	item_state = "bigspoon0"
 	base_icon_state = "bigspoon"
@@ -28,6 +28,7 @@
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
+	AddComponent(/datum/component/cleave_attack, requires_wielded=TRUE, no_multi_hit=TRUE)
 
 /obj/item/bigspoon/proc/on_wield(atom/source, mob/living/user)
 	hitsound = 'yogstation/sound/weapons/bat_hit.ogg'

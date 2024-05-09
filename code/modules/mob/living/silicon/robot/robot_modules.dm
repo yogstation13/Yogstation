@@ -121,6 +121,10 @@
 			S.cost = 1
 			S.source = get_or_create_estorage(/datum/robot_energy_storage/wire)
 
+		else if(istype(S, /obj/item/stack/ethernet_coil))
+			S.cost = 1
+			S.source = get_or_create_estorage(/datum/robot_energy_storage/ethernet)
+
 		else if(istype(S, /obj/item/stack/marker_beacon))
 			S.cost = 1
 			S.source = get_or_create_estorage(/datum/robot_energy_storage/beacon)
@@ -328,13 +332,7 @@
 		/obj/item/reagent_containers/glass/beaker/large,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/syringe,
-		/obj/item/retractor,
-		/obj/item/hemostat,
-		/obj/item/cautery,
-		/obj/item/surgicaldrill,
-		/obj/item/scalpel,
-		/obj/item/circular_saw,
-		/obj/item/bonesetter,
+		/obj/item/borg/cyborg_omnitool/medical,
 		/obj/item/extinguisher/mini,
 		/obj/item/roller/robo,
 		/obj/item/borg/cyborghug/medical,
@@ -379,6 +377,7 @@
 		/obj/item/stack/rods/cyborg,
 		/obj/item/stack/tile/plasteel/cyborg,
 		/obj/item/stack/cable_coil/cyborg,
+		/obj/item/stack/ethernet_coil/cyborg,
 		/obj/item/barrier_taperoll/engineering)
 	radio_channels = list(RADIO_CHANNEL_ENGINEERING)
 	emag_modules = list(/obj/item/gun/energy/printer/flamethrower)
@@ -866,12 +865,7 @@
 		/obj/item/reagent_containers/borghypo/syndicate,
 		/obj/item/shockpaddles/syndicate,
 		/obj/item/healthanalyzer,
-		/obj/item/retractor,
-		/obj/item/hemostat,
-		/obj/item/cautery,
-		/obj/item/surgicaldrill,
-		/obj/item/scalpel,
-		/obj/item/bonesetter,
+		/obj/item/borg/cyborg_omnitool/medical,
 		/obj/item/melee/transforming/energy/sword/cyborg/saw,
 		/obj/item/roller/robo,
 		/obj/item/restraints/handcuffs/cable/zipties,
@@ -912,6 +906,7 @@
 		/obj/item/stack/tile/plasteel/cyborg,
 		/obj/item/destTagger/borg,
 		/obj/item/stack/cable_coil/cyborg,
+		/obj/item/stack/ethernet_coil/cyborg,
 		/obj/item/pinpointer/syndicate_cyborg,
 		/obj/item/borg_chameleon,
 		)
@@ -960,6 +955,11 @@
 	max_energy = 50
 	recharge_rate = 2
 	name = "Wire Synthesizer"
+
+/datum/robot_energy_storage/ethernet
+	max_energy = 50
+	recharge_rate = 2
+	name = "Ethernet Cable Synthesizer"
 
 /datum/robot_energy_storage/medical
 	max_energy = 2500

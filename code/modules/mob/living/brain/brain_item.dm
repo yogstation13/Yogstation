@@ -288,10 +288,17 @@
 	var/obj/item/clothing/head/hat = owner.get_item_by_slot(ITEM_SLOT_HEAD)
 	if(hat && istype(hat, /obj/item/clothing/head/foilhat))
 		return
+
 	to_chat(owner, span_warning("Alert: Posibrain [severity > EMP_LIGHT ? "severely " : ""]damaged."))
 	owner.adjust_drugginess(5 * severity)
 	if(severity > EMP_LIGHT)
 		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, (2 * (severity - EMP_LIGHT)) * (maxHealth - damage) / maxHealth) // don't give traumas from weak EMPs
+
+/obj/item/organ/brain/positron/synth
+	zone = BODY_ZONE_HEAD
+
+/obj/item/organ/brain/positron/synth/can_extract()
+	return FALSE
 
 ////////////////////////////////////TRAUMAS////////////////////////////////////////
 

@@ -175,7 +175,6 @@
 	flash_protect = 1
 	// Dark green
 	color_cutoffs = list(10, 30, 10)
-	
 
 /obj/item/clothing/glasses/monocle
 	name = "monocle"
@@ -358,8 +357,8 @@
 		colored_before = TRUE
 	return ..()
 
-/obj/item/clothing/glasses/blindfold/white/worn_overlays(isinhands = FALSE, file2use)
-	. = list()
+/obj/item/clothing/glasses/blindfold/white/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
+	. = ..()
 	if(!isinhands && ishuman(loc) && !colored_before)
 		var/mob/living/carbon/human/H = loc
 		var/mutable_appearance/M = mutable_appearance('icons/mob/clothing/eyes/eyes.dmi', "blindfoldwhite")

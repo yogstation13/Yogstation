@@ -56,11 +56,11 @@
 	name = "Virologist"
 	jobtype = /datum/job/virologist
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/medical/viro
 
 	ears = /obj/item/radio/headset/headset_med
-	uniform = /obj/item/clothing/under/rank/virologist
-	uniform_skirt = /obj/item/clothing/under/rank/virologist/skirt
+	uniform = /obj/item/clothing/under/rank/medical/virologist
+	uniform_skirt = /obj/item/clothing/under/rank/medical/virologist/skirt
 	mask = /obj/item/clothing/mask/surgical
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit =  /obj/item/clothing/suit/toggle/labcoat/virologist

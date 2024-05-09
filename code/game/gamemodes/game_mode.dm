@@ -140,6 +140,16 @@
 		replacementmode.make_antag_chance(character)
 	return
 
+//replace someone that's job banned
+/datum/game_mode/proc/replace_jobbaned_player(mob/living/M, role_type, pref)
+	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [role_type]?", "[role_type]", null, pref, 50, M)
+	var/mob/dead/observer/theghost = null
+	to_chat(M, "You have been expelled from your body! Appeal your job ban if you want to avoid this in the future!")
+	M.ghostize(0)
+	if(candidates.len)
+		theghost = pick(candidates)
+		message_admins("[key_name_admin(theghost)] has taken control of ([key_name_admin(M)]) to replace a jobbaned player.")
+		M.key = theghost.key
 
 /// Allows rounds to basically be "rerolled" should the initial premise fall through. Also known as mulligan antags.
 /datum/game_mode/proc/convert_roundtype()
@@ -147,8 +157,9 @@
 	var/list/living_crew = list()
 
 	for(var/mob/Player in GLOB.mob_list)
-		if(Player.mind && Player.stat != DEAD && !isnewplayer(Player) && !isbrain(Player) && Player.client)
+		if(Player.mind && Player.stat != DEAD && !isnewplayer(Player) && !isbrain(Player) && Player.client && (Player.mind.assigned_role in GLOB.crew_positions))
 			living_crew += Player
+
 	var/malc = CONFIG_GET(number/midround_antag_life_check)
 	if(living_crew.len / GLOB.joined_player_list.len <= malc) //If a lot of the player base died, we start fresh
 		message_admins("Convert_roundtype failed due to too many dead people. Limit is [malc * 100]% living crew")

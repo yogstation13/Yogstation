@@ -49,6 +49,9 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	var/pipe_state //icon_state as a pipe item
 	var/on = FALSE
 
+	///Can this be quick-toggled on and off using right click or ctrl-click?
+	var/quick_toggle = FALSE
+
 	///The bitflag that's being checked on ventcrawling. Default is to allow ventcrawling and seeing pipes.
 	var/vent_movement = VENTCRAWL_ALLOWED | VENTCRAWL_CAN_SEE
 
@@ -93,6 +96,30 @@ GLOBAL_LIST_EMPTY(pipeimages)
 
 	return ..()
 	//return QDEL_HINT_FINDREFERENCE
+
+/obj/machinery/atmospherics/proc/toggle_on(mob/user)
+	on = !on
+	var/msg = "was turned [on ? "on" : "off"] by [user ? key_name(user) : "a remote signal"]"
+	investigate_log(msg, INVESTIGATE_ATMOS)
+	investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
+	update_appearance(UPDATE_ICON)
+
+/obj/machinery/atmospherics/attack_hand_secondary(mob/user, modifiers)
+	if(!quick_toggle)
+		return ..()
+	toggle_on(user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+/obj/machinery/atmospherics/attack_ai(mob/user, modifiers)
+	if(quick_toggle && modifiers[RIGHT_CLICK])
+		toggle_on(user)
+		return
+	return ..()
+
+/obj/machinery/atmospherics/CtrlClick(mob/user)
+	if(quick_toggle && can_interact(user))
+		toggle_on(user)
+	return ..()
 
 /obj/machinery/atmospherics/proc/destroy_network()
 	return
@@ -229,6 +256,11 @@ GLOBAL_LIST_EMPTY(pipeimages)
 /obj/machinery/atmospherics/wrench_act(mob/living/user, obj/item/I)
 	if(!can_unwrench(user))
 		return ..()
+
+	//var/turf/T = get_turf(src)
+	/*if (level==1 && isturf(T) && T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
+		to_chat(user, span_warning("You must remove the plating first!"))
+		return TRUE*/
 
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()

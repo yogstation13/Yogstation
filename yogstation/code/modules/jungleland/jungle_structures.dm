@@ -453,7 +453,7 @@ GLOBAL_LIST_INIT(nests, list())
 
 /obj/structure/tar_assistant_spawner/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_OVERLAYS)
 
 /obj/structure/tar_assistant_spawner/examine(mob/user)
 	. = ..()
@@ -463,11 +463,11 @@ GLOBAL_LIST_INIT(nests, list())
 	else 
 		. += "There is a humanoid shaped hole carved into the pillar..."
 
-/obj/structure/tar_assistant_spawner/update_icon()
-	. = ..()	
-	cut_overlays()
-	if(!used)
-		add_overlay(image(icon=src.icon,icon_state="tar_assistant"))
+/obj/structure/tar_assistant_spawner/update_overlays()
+	. = ..()
+	if(used)
+		return
+	. += mutable_appearance(icon, "tar_assistant")
 
 /obj/structure/tar_assistant_spawner/attack_hand(mob/user)
 	if(used)
@@ -504,7 +504,7 @@ GLOBAL_LIST_INIT(nests, list())
 	to_chat(user,span_boldnotice("A wave of unusual energy washes over you as you realize you are now the master of [H]."))
 	used = TRUE 
 	in_use = FALSE
-	update_icon()
+	update_appearance(UPDATE_OVERLAYS)
 
 /obj/effect/dummy/phased_mob/spell_jaunt/tar_pool
 	name = "pool of tar"

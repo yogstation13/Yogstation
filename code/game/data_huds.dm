@@ -282,7 +282,7 @@ Diagnostic HUDs!
 	holder.pixel_y = I.Height() - world.icon_size
 	holder.icon_state = null
 	set_hud_image_inactive(NANITE_HUD)
-	if(src in SSnanites.nanite_monitored_mobs)
+	if(HAS_TRAIT_FROM(src, TRAIT_SUITLESS_SENSORS, NANITE_TRAIT))
 		holder.icon_state = "nanite_ping"
 		set_hud_image_active(NANITE_HUD)
 

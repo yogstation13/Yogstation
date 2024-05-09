@@ -22,12 +22,16 @@
 	var/status = TRUE
 	var/start_active = FALSE //If it ignores the random chance to start broken on round start
 	var/invuln = null
+	///Boolean, if this camera uses special icon states rather than the default
+	var/special_camera = FALSE
 	var/obj/item/camera_bug/bug = null
 	var/obj/item/radio/alertradio = null
 	var/obj/structure/camera_assembly/assembly = null
 	var/area/myarea = null
 
 	//OTHER
+
+	var/datum/cameranet/camnet
 
 	var/view_range = 7
 	var/short_range = 2
@@ -78,8 +82,9 @@
 	else
 		assembly = new(src)
 		assembly.state = 4 //STATE_FINISHED
-	GLOB.cameranet.cameras += src
-	GLOB.cameranet.addCamera(src)
+	camnet = GLOB.cameranet
+	camnet.cameras += src
+	camnet.addCamera(src)
 	if (isturf(loc))
 		myarea = get_area(src)
 		LAZYADD(myarea.cameras, src)
@@ -102,10 +107,19 @@
 		network -= i
 		network += "[port.shuttle_id]_[i]"
 
+/obj/machinery/camera/proc/change_camnet(datum/cameranet/newnet)
+	if(newnet && istype(newnet))
+		camnet.cameras -= src
+		camnet.removeCamera(src)
+		camnet = newnet
+		camnet.cameras += src
+		camnet.addCamera(src)
+
 /obj/machinery/camera/Destroy()
 	if(can_use())
 		toggle_cam(null, 0) //kick anyone viewing out and remove from the camera chunks
-	GLOB.cameranet.cameras -= src
+	camnet.cameras -= src
+	camnet = null
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)
 	
@@ -153,7 +167,7 @@
 			update_appearance()
 			var/list/previous_network = network
 			network = list()
-			GLOB.cameranet.removeCamera(src)
+			camnet.removeCamera(src)
 			stat |= EMPED
 			set_light(0)
 			emped = emped+1  //Increase the number of consecutive EMP's
@@ -167,7 +181,7 @@
 						stat &= ~EMPED
 						update_appearance()
 						if(can_use())
-							GLOB.cameranet.addCamera(src)
+							camnet.addCamera(src)
 						emped = 0 //Resets the consecutive EMP count
 						addtimer(CALLBACK(src, PROC_REF(cancelCameraAlarm)), severity SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 			for(var/i in GLOB.player_list)
@@ -184,7 +198,7 @@
 
 /obj/machinery/camera/proc/setViewRange(num = 7)
 	src.view_range = num
-	GLOB.cameranet.updateVisibility(src, 0)
+	camnet.updateVisibility(src, 0)
 
 /obj/machinery/camera/proc/shock(mob/living/user)
 	if(!istype(user))
@@ -359,6 +373,8 @@
 
 /obj/machinery/camera/update_icon_state() //TO-DO: Make panel open states, xray camera, and indicator lights overlays instead.
 	. = ..()
+	if(special_camera)
+		return
 	var/xray_module
 	if(isXRay(TRUE))
 		xray_module = "xray"
@@ -372,7 +388,7 @@
 /obj/machinery/camera/proc/toggle_cam(mob/user, displaymessage = TRUE)
 	status = !status
 	if(can_use())
-		GLOB.cameranet.addCamera(src)
+		camnet.addCamera(src)
 		if (isturf(loc))
 			myarea = get_area(src)
 			LAZYADD(myarea.cameras, src)
@@ -380,12 +396,12 @@
 			myarea = null
 	else
 		set_light(0)
-		GLOB.cameranet.removeCamera(src)
+		camnet.removeCamera(src)
 		if (isarea(myarea))
 			LAZYREMOVE(myarea.cameras, src)
 	// We are not guarenteed that the camera will be on a turf. account for that
 	var/turf/our_turf = get_turf(src)
-	GLOB.cameranet.updateChunk(our_turf.x, our_turf.y, our_turf.z)
+	camnet.updateChunk(our_turf.x, our_turf.y, our_turf.z)
 	var/change_msg = "deactivates"
 	if(status)
 		change_msg = "reactivates"

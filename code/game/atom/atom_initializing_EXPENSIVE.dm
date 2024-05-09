@@ -24,7 +24,7 @@
 
 	switch(result)
 		if (INITIALIZE_HINT_NORMAL)
-			// pass
+			EMPTY_BLOCK_GUARD // Pass
 		if(INITIALIZE_HINT_LATELOAD)
 			if(arguments[1]) //mapload
 				late_loaders += A
@@ -124,9 +124,8 @@
 	flags_1 |= INITIALIZED_1
 
 	SET_PLANE_IMPLICIT(src, plane)
-	//Yog Code: Someday we'll have GAGs
-	// if(greyscale_config && greyscale_colors) //we'll check again at item/init for inhand/belt/worn configs.
-	// 	update_greyscale()
+	if(greyscale_config && greyscale_colors) //we'll check again at item/init for inhand/belt/worn configs.
+		update_greyscale()
 
 	//atom color stuff
 	if(color)

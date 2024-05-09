@@ -6,7 +6,7 @@
 	default_color = "336600" //vomit green
 	species_traits = list(MUTCOLORS, NO_UNDERWEAR, HAS_FLESH, HAS_BONE)
 	inherent_traits = list(TRAIT_ALWAYS_CLEAN)
-	attack_verb = "slap"
+	attack_verbs = list("slap")
 	attack_effect = ATTACK_EFFECT_DISARM
 	say_mod = "slurs"
 	coldmod = 0.5 //snails only come out when its cold and wet
@@ -15,7 +15,7 @@
 	punchdamagehigh = 0.5 //snails are soft and squishy
 	siemens_coeff = 2 //snails are mostly water
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT
-	sexes = FALSE //snails are hermaphrodites
+	possible_genders = list(PLURAL) //snails are hermaphrodites
 	var/shell_type = /obj/item/storage/backpack/snail/species
 
 	mutanteyes = /obj/item/organ/eyes/snail

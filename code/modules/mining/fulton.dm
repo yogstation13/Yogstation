@@ -257,6 +257,13 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	chosen_mecha.forceMove(pod)
 	stored_mecha -= chosen_mecha
 	new /obj/effect/DPtarget(get_teleport_turf(get_turf(user), 1), pod)
+	finalize_mech(chosen_mecha)
+
+/obj/item/extraction_pack/mech_drop/proc/finalize_mech(obj/mecha/mecha)
+	// Reverts the anchor & density given by the extraction pack which would of been done through uses_beacon (but didn't because it was set to FALSE).
+	mecha.anchored = FALSE
+	mecha.density = initial(mecha.density)
+	return FALSE
 
 /obj/item/extraction_pack/mech_drop/examine()
 	. = ..()

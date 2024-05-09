@@ -857,6 +857,12 @@
 		to_chat(user, span_warning("Unable to interface. Airlock control panel damaged."))
 		return
 
+	var/mob/living/silicon/ai/AI = user
+	if(istype(AI) && !AI.has_subcontroller_connection(get_area(src)))
+		to_chat(AI, span_warning("No connection to subcontroller detected. Priming servos..."))
+		if(!do_after(AI, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
+			return
+
 	ui_interact(user)
 
 /obj/machinery/door/airlock/proc/hack(mob/user)
@@ -980,7 +986,7 @@
 		updateDialog()
 
 
-/obj/machinery/door/airlock/attackby(obj/item/C, mob/user, params)
+/obj/machinery/door/airlock/attackby(obj/item/C, mob/living/user, params)
 	if(!issilicon(user) && !IsAdminGhost(user))
 		if(isElectrified() && !user.incapacitated())
 			if(shock(user, 75))
@@ -1172,7 +1178,7 @@
 	else if(istype(C, /obj/item/brace)) //yogs
 		apply_brace(C, user) //yogs
 	else if(istype(C, /obj/item/umbral_tendrils))
-		if(user.a_intent == INTENT_HELP && !hasPower())
+		if(!user.combat_mode && !hasPower())
 			if(!density)
 				return
 			if(locked || welded)
@@ -1180,9 +1186,10 @@
 				return
 			open(2)
 		var/obj/item/umbral_tendrils/T = C
+		var/list/modifiers = params2list(params)
 		if(!T.darkspawn)
 			return ..()
-		else if(user.a_intent == INTENT_DISARM && density)
+		else if((!user.combat_mode || (modifiers && modifiers[RIGHT_CLICK])) && density)
 			// we dont want Duality double-hitting the airlock when we're trying to pry it open
 			if(user.get_active_held_item() != C)
 				return
@@ -1215,12 +1222,10 @@
 					if(T.twin)
 						if(!do_after(user, rand(4, 6), src))
 							T.darkspawn.use_psi(30)
-							qdel(T)
 							return
 					else
 						if(!do_after(user, rand(8, 10), src))
 							T.darkspawn.use_psi(30)
-							qdel(T)
 							return
 					playsound(src, 'yogstation/sound/magic/pass_smash_door.ogg', 50, TRUE)
 					take_damage(max_integrity / rand(8, 15))
@@ -1228,14 +1233,15 @@
 				ex_act(EXPLODE_DEVASTATE)
 				user.visible_message(span_boldwarning("[user] slams down [src]!"), "<span class='velvet bold'>KLAJ.</span>")
 				T.darkspawn.use_psi(30)
-				qdel(T)
+		else
+			return ..()
 	else
 		return ..()
 
 
-/obj/machinery/door/airlock/try_to_weld(obj/item/weldingtool/W, mob/user)
+/obj/machinery/door/airlock/try_to_weld(obj/item/weldingtool/W, mob/living/user, list/modifiers)
 	if(!operating && density)
-		if(user.a_intent != INTENT_HELP)
+		if(user.combat_mode || (modifiers && modifiers[RIGHT_CLICK]))
 			if(!W.tool_start_check(user, amount=0))
 				return
 			user.visible_message("[user] is [welded ? "unwelding":"welding"] the airlock.", \
@@ -1570,6 +1576,14 @@
 		if(density && !open(2)) //The airlock is still closed, but something prevented it opening. (Another player noticed and bolted/welded the airlock in time!)
 			to_chat(user, span_warning("Despite your efforts, [src] managed to resist your attempts to open it!"))
 
+
+/obj/machinery/door/airlock/proc/safe_lockdown()
+	// Must be powered and have working AI wire.
+	if(canAIControl(src) && !stat)
+		locked = FALSE //For airlocks that were bolted open.
+		close()
+		bolt() //Bolt it!
+
 /obj/machinery/door/airlock/hostile_lockdown(mob/origin)
 	// Must be powered and have working AI wire.
 	if(canAIControl(src) && !stat)
@@ -1589,6 +1603,13 @@
 		set_electrified(MACHINE_NOT_ELECTRIFIED)
 		open()
 		safe = TRUE
+
+/obj/machinery/door/airlock/proc/disable_safe_lockdown()
+	// Must be powered and have working AI wire.
+	if(canAIControl(src) && !stat)
+		unbolt()
+		open()
+
 
 /obj/machinery/door/airlock/proc/set_electrified(seconds, mob/user)
 	secondsElectrified = seconds

@@ -52,13 +52,18 @@
 	bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/restingplace)
 
 /datum/bloodsucker_clan/lasombra/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
-	vassaldatum.BuyPower(new /datum/action/cooldown/spell/pointed/lesser_glare)
+	vassaldatum.BuyPower(new /datum/action/cooldown/spell/pointed/seize/lesser)
 	vassaldatum.BuyPower(new /datum/action/cooldown/spell/jaunt/shadow_walk)
 	if(ishuman(vassaldatum.owner.current))
 		var/mob/living/carbon/human/vassal = vassaldatum.owner.current
 		vassal.eye_color = BLOODCULT_EYE
 		vassal.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
 		ADD_TRAIT(vassal, CULT_EYES, BLOODSUCKER_TRAIT)	
+		var/obj/item/organ/eyes/current_eyes = vassal.getorganslot(ORGAN_SLOT_EYES)
+		if(current_eyes)
+			current_eyes.color_cutoffs = list(25, 8, 5)
+			current_eyes.lighting_cutoff = LIGHTING_CUTOFF_REAL_LOW
+
 		vassal.update_body()
 		vassal.update_sight()
 		vassal.update_appearance()

@@ -2,7 +2,7 @@
 
 /obj/effect/mob_spawn/human/travelling_bard
 	name = "Travelling Bard"
-	uniform = /obj/item/clothing/under/jester
+	uniform = /obj/item/clothing/under/costume/jester
 	shoes = /obj/item/clothing/shoes/sneakers/green
 	gloves = /obj/item/clothing/gloves/color/green
 	back = /obj/item/storage/backpack/clown

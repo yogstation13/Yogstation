@@ -92,13 +92,16 @@
 	qdel(src)
 	target.Bumped(B)
 
-/obj/item/reagent_containers/food/drinks/bottle/attack(mob/living/target, mob/living/user)
+/obj/item/reagent_containers/food/drinks/bottle/attack(mob/living/target, mob/living/user, modifiers)
 
 	if(!target)
 		return
 
-	if(user.a_intent != INTENT_HARM || !isGlass)
+	if(!user.combat_mode || !isGlass)
 		return ..()
+
+	if(!synth_check(user, SYNTH_ORGANIC_HARM))
+		return
 
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("You don't want to harm [target]!"))
@@ -530,10 +533,10 @@
 			var/turf/center_turf = get_turf(hit_atom)
 			if(isclosedturf(center_turf) && isopenturf(get_turf(src)))
 				center_turf = get_turf(src) // if it hits a wall, light the floor in front of the wall on fire, not the wall itself
-			center_turf.IgniteTurf(fire_power)
+			center_turf.ignite_turf(fire_power)
 			for(var/turf/T in center_turf.reachableAdjacentAtmosTurfs())
 				if(prob(fire_power))
-					T.IgniteTurf(fire_power)
+					T.ignite_turf(fire_power)
 	return ..()
 
 /obj/item/reagent_containers/food/drinks/bottle/molotov/attackby(obj/item/I, mob/user, params)

@@ -62,8 +62,6 @@
 	M.adjust_eye_blur(-1)
 	M.adjust_blindness(-1)
 	switch(current_cycle)
-		if(1 to 20)
-			//nothing
 		if(21 to INFINITY)
 			if(prob(current_cycle-10))
 				M.cure_nearsighted(list(EYE_DAMAGE))
@@ -199,6 +197,13 @@
 	glass_name = "glass of milk"
 	glass_desc = "White and nutritious goodness!"
 	default_container = /obj/item/reagent_containers/food/condiment/milk
+
+/datum/reagent/consumable/milk/coconut
+	name = "Coconut Milk"
+	description = "An opaque white liquid produced by the mammary glands of a coconut... wait what?"
+	taste_description = "coconut"
+	glass_icon_state = "coconut_milk" //disregard it spawning the coconut shell out of nowhere
+	glass_name = "glass of coconut milk"
 
 /datum/reagent/consumable/cilk
 	name = "Cilk"

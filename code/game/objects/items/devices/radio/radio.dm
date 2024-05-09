@@ -302,7 +302,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	// Okay, the signal was never processed, send a mundane broadcast.
 	signal.data["compression"] = 0
 	signal.transmission_method = TRANSMISSION_RADIO
-	signal.levels = list(T.z)
+	signal.levels = SSmapping.get_connected_levels(T)
 	signal.broadcast()
 
 /obj/item/radio/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
@@ -310,14 +310,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(radio_freq || !broadcasting || get_dist(src, speaker) > canhear_range)
 		return
 
-	if(message_mods[RADIO_EXTENSION] == MODE_L_HAND || message_mods[RADIO_EXTENSION] == MODE_R_HAND || message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT || message_mods[RADIO_EXTENSION] == MODE_HEADSET)
-		// try to avoid being heard double
-		if (loc == speaker && ismob(speaker))
-			var/mob/M = speaker
-			var/idx = M.get_held_index_of_item(src)
-			// left hands are odd slots
-			if (idx && (idx % 2) == (message_mods[RADIO_EXTENSION] == MODE_L_HAND))
-				return
+	// try to avoid being heard double
+	if(loc == speaker && ismob(speaker))
+		var/mob/M = speaker
+		if(M.is_holding(src) && message_mods[RADIO_EXTENSION] == MODE_RADIO)
+			return
 
 	talk_into(speaker, raw_message, , spans, language=message_language)
 

@@ -69,7 +69,7 @@
 	new /obj/item/clipboard/yog/paperwork/cmo(src)
 	new /obj/item/storage/backpack/duffelbag/clothing/med/chief(src)
 	new /obj/item/storage/lockbox/medal/med(src)
-
+	new /obj/item/sequence_scanner(src)
 
 /obj/structure/closet/secure_closet/paramedic
 	name = "paramedical closet"
@@ -88,18 +88,18 @@
 	new /obj/item/clothing/shoes/sneakers/white(src)
 	switch(pick("blue", "green", "purple"))
 		if ("blue")
-			new /obj/item/clothing/under/rank/medical/blue(src)
+			new /obj/item/clothing/under/rank/medical/doctor/blue(src)
 		if ("green")
-			new /obj/item/clothing/under/rank/medical/green(src)
+			new /obj/item/clothing/under/rank/medical/doctor/green(src)
 		if ("purple")
-			new /obj/item/clothing/under/rank/medical/purple(src)
+			new /obj/item/clothing/under/rank/medical/doctor/purple(src)
 	switch(pick("blue", "green", "purple"))
 		if ("blue")
-			new /obj/item/clothing/under/rank/medical/blue(src)
+			new /obj/item/clothing/under/rank/medical/doctor/blue(src)
 		if ("green")
-			new /obj/item/clothing/under/rank/medical/green(src)
+			new /obj/item/clothing/under/rank/medical/doctor/green(src)
 		if ("purple")
-			new /obj/item/clothing/under/rank/medical/purple(src)
+			new /obj/item/clothing/under/rank/medical/doctor/purple(src)
 	new /obj/item/clothing/under/rank/medical(src)
 	new /obj/item/clothing/suit/toggle/labcoat/emt(src)
 	new /obj/item/clothing/head/beret/emt/green(src)

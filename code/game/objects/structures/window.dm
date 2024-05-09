@@ -24,8 +24,10 @@
 	var/glass_type = /obj/item/stack/sheet/glass
 	var/glass_amount = 1
 	var/real_explosion_block	//ignore this, just use explosion_block
-	var/breaksound = "shatter"
-	var/hitsound = 'sound/effects/Glasshit.ogg'	
+	var/break_sound = SFX_SHATTER
+	var/knock_sound = 'sound/effects/glassknock.ogg'
+	var/bash_sound = 'sound/effects/glassbash.ogg'
+	var/hit_sound = 'sound/effects/glasshit.ogg'	
 	/// If some inconsiderate jerk has had their blood spilled on this window, thus making it cleanable
 	var/bloodied = FALSE
 
@@ -163,31 +165,37 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.visible_message(span_notice("Something knocks on [src]."))
 	add_fingerprint(user)
-	playsound(src, 'sound/effects/Glassknock.ogg', 50, 1)
+	playsound(src, knock_sound, 50, TRUE)
 
 /obj/structure/window/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
 	if(!can_be_reached(user))
 		return 1
 	. = ..()
 
-/obj/structure/window/attack_hand(mob/user)
+/obj/structure/window/attack_hand(mob/living/user, modifiers)
 	. = ..()
 	if(.)
 		return
 	if(!can_be_reached(user))
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.visible_message("[user] knocks on [src].")
-	add_fingerprint(user)
-	playsound(src, 'sound/effects/Glassknock.ogg', 50, 1)
+	
+	if(!user.combat_mode)
+		user.visible_message(span_notice("[user] knocks on [src]."), \
+			span_notice("You knock on [src]."))
+		playsound(src, knock_sound, 50, TRUE)
+	else
+		user.visible_message(span_warning("[user] bashes [src]!"), \
+			span_warning("You bash [src]!"))
+		playsound(src, bash_sound, 100, TRUE)
 
-/obj/structure/window/attack_paw(mob/user)
-	return attack_hand(user)
+/obj/structure/window/attack_paw(mob/user, modifiers)
+	return attack_hand(user, modifiers)
 
 /obj/structure/window/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)	//used by attack_alien, attack_animal, and attack_slime
 	if(!can_be_reached(user))
 		return
-	..()
+	return ..()
 
 /obj/structure/window/attackby(obj/item/I, mob/living/user, params)
 	if(!can_be_reached(user))
@@ -195,7 +203,7 @@
 
 	add_fingerprint(user)
 
-	if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP)
+	if(I.tool_behaviour == TOOL_WELDER && !user.combat_mode)
 		if(atom_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=0))
 				return
@@ -276,7 +284,7 @@
 	switch(damage_type)
 		if(BRUTE)
 			if(damage_amount)
-				playsound(src, hitsound, 75, 1)
+				playsound(src, hit_sound, 75, 1)
 			else
 				playsound(src, 'sound/weapons/tap.ogg', 50, 1)
 		if(BURN)
@@ -287,7 +295,7 @@
 	if(QDELETED(src))
 		return
 	if(!disassembled)
-		playsound(src, breaksound, 70, 1)
+		playsound(src, break_sound, 70, 1)
 		if(!(flags_1 & NODECONSTRUCT_1))
 			for(var/obj/item/shard/debris in spawnDebris(drop_location()))
 				transfer_fingerprints_to(debris) // transfer fingerprints to shards only
@@ -421,10 +429,13 @@
 
 //this is shitcode but all of construction is shitcode and needs a refactor, it works for now
 //If you find this like 4 years later and construction still hasn't been refactored, I'm so sorry for this
+
+//Found this 4 years later, still hasn't been refactored -S
 /obj/structure/window/reinforced/attackby(obj/item/I, mob/living/user, params)
+	var/list/modifiers = params2list(params)
 	switch(state)
 		if(RWINDOW_SECURE)
-			if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HARM)
+			if(I.tool_behaviour == TOOL_WELDER && modifiers && modifiers[RIGHT_CLICK])
 				user.visible_message(span_notice("[user] holds \the [I] to the security screws on \the [src]..."),
 										span_notice("You begin heating the security screws on \the [src]..."))
 				if(I.use_tool(src, user, 8 SECONDS, volume = 100))
@@ -559,9 +570,10 @@
 //entirely copypasted code
 //take this out when construction is made a component or otherwise modularized in some way
 /obj/structure/window/plasma/reinforced/attackby(obj/item/I, mob/living/user, params)
+	var/list/modifiers = params2list(params)
 	switch(state)
 		if(RWINDOW_SECURE)
-			if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HARM)
+			if(I.tool_behaviour == TOOL_WELDER && modifiers && modifiers[RIGHT_CLICK])
 				user.visible_message(span_notice("[user] holds \the [I] to the security screws on \the [src]..."),
 										span_notice("You begin heating the security screws on \the [src]..."))
 				if(I.use_tool(src, user, 180, volume = 100))
@@ -886,8 +898,8 @@
 	name = "paper frame"
 	desc = "A fragile separator made of thin wood and paper."
 	icon = 'icons/obj/smooth_structures/paperframes.dmi'
-	icon_state = "frame-0"
-	base_icon_state = "frame"
+	icon_state = "paperframes-0"
+	base_icon_state = "paperframes"
 	dir = FULLTILE_WINDOW_DIR
 	opacity = TRUE
 	max_integrity = 15
@@ -903,10 +915,12 @@
 	can_atmos_pass = ATMOS_PASS_YES
 	resistance_flags = FLAMMABLE
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
-	breaksound = 'sound/items/poster_ripped.ogg'
-	hitsound = 'sound/weapons/slashmiss.ogg'
-	var/static/mutable_appearance/torn = mutable_appearance('icons/obj/smooth_structures/paperframes.dmi',icon_state = "torn", layer = ABOVE_OBJ_LAYER - 0.1)
-	var/static/mutable_appearance/paper = mutable_appearance('icons/obj/smooth_structures/paperframes.dmi',icon_state = "paper", layer = ABOVE_OBJ_LAYER - 0.1)
+	knock_sound = SFX_PAGE_TURN
+	bash_sound = 'sound/weapons/slashmiss.ogg'
+	break_sound = 'sound/items/poster_ripped.ogg'
+	hit_sound = 'sound/weapons/slashmiss.ogg'
+	var/static/mutable_appearance/torn = mutable_appearance('icons/obj/smooth_structures/structure_variations.dmi',icon_state = "paper-torn", layer = ABOVE_OBJ_LAYER - 0.1)
+	var/static/mutable_appearance/paper = mutable_appearance('icons/obj/smooth_structures/structure_variations.dmi',icon_state = "paper-whole", layer = ABOVE_OBJ_LAYER - 0.1)
 
 /obj/structure/window/paperframe/Initialize(mapload)
 	. = ..()
@@ -922,21 +936,16 @@
 	for (var/i in 1 to rand(1,4))
 		. += new /obj/item/paper/natural(location)
 
-/obj/structure/window/paperframe/attack_hand(mob/user)
+/obj/structure/window/paperframe/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	add_fingerprint(user)
-	if(user.a_intent != INTENT_HARM)
-		user.changeNext_move(CLICK_CD_MELEE)
-		user.visible_message("[user] knocks on [src].")
-		playsound(src, "pageturn", 50, 1)
-	else
+	if(user.combat_mode)
 		take_damage(4,BRUTE,MELEE, 0)
-		playsound(src, hitsound, 50, 1)
 		if(!QDELETED(src))
 			user.visible_message(span_danger("[user] tears a hole in [src]."))
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 
 /obj/structure/window/paperframe/update_appearance(updates)
 	. = ..()
@@ -951,11 +960,11 @@
 	. = ..()
 	. += (atom_integrity < max_integrity) ? torn : paper
 
-/obj/structure/window/paperframe/attackby(obj/item/W, mob/user)
+/obj/structure/window/paperframe/attackby(obj/item/W, mob/living/user)
 	if(W.is_hot())
 		fire_act(W.is_hot())
 		return
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return ..()
 	if(istype(W, /obj/item/paper) && atom_integrity < max_integrity)
 		user.visible_message("[user] starts to patch the holes in \the [src].")
@@ -964,14 +973,10 @@
 			qdel(W)
 			user.visible_message("[user] patches some of the holes in \the [src].")
 			if(atom_integrity == max_integrity)
-				update_appearance(UPDATE_ICON)
+				update_appearance()
 			return
 	..()
 	update_appearance()
-
-
-
-
 
 /obj/structure/cloth_curtain
 	name = "curtain"

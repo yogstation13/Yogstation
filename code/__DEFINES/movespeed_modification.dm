@@ -81,3 +81,5 @@
 #define MOVESPEED_ID_SPACE_DRAGON_RAGE					"SPACE_DRAGON_RAGE"
 
 #define MOVESPEED_ID_RESIN_FOAM                         "RESIN_FOAM"
+
+#define MOVESPEED_ID_SYNTH_SUSPICION                    "SYNTH_SUSPICION"

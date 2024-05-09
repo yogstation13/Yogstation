@@ -285,7 +285,7 @@
 	if(flag) //It's adjacent, is the user, or is on the user's person
 		if(target in user.contents) //can't shoot stuff inside us.
 			return
-		if(!ismob(target) || user.a_intent == INTENT_HARM) //melee attack
+		if(!ismob(target) || user.combat_mode) //melee attack
 			return
 		if(target == user && user.zone_selected != BODY_ZONE_PRECISE_MOUTH) //so we can't shoot ourselves (unless mouth selected)
 			return
@@ -376,7 +376,7 @@
 	. = ..()
 	if(prob(tracer_fire_chance))
 		var/turf/new_turf = newloc
-		new_turf.IgniteTurf(rand(16, 22), fire_color) // FIRE IN THE HOLE!!!!
+		new_turf.ignite_turf(rand(16, 22), fire_color) // FIRE IN THE HOLE!!!!
 
 /obj/projectile/beam/beam_rifle/proc/do_area_damage(turf/epicenter)
 	set waitfor = FALSE
@@ -386,7 +386,7 @@
 	for(var/turf/T in spiral_range_turfs(aoe_range, epicenter))
 		var/modified_damage = damage / max(get_dist(epicenter, T), 1) // damage decreases with range
 		if(prob(aoe_fire_chance))
-			T.IgniteTurf(rand(16, 22), fire_color)
+			T.ignite_turf(rand(16, 22), fire_color)
 		for(var/mob/living/L in T) //handle aoe mob damage
 			L.apply_damage(modified_damage, BURN, null, L.getarmor(null, BOMB))
 			to_chat(L, span_userdanger("\The [src] sears you!"))
@@ -399,7 +399,7 @@
 	playsound(target_turf, 'sound/effects/explosion3.ogg', 100, 1)
 	if(isclosedturf(target)) // if hitting a wall
 		SSexplosions.lowturf += target
-	target_turf.IgniteTurf(rand(16, 22), fire_color)
+	target_turf.ignite_turf(rand(16, 22), fire_color)
 	if(aoe_range)
 		do_area_damage(target_turf)
 

@@ -41,13 +41,13 @@
 	name = "Atmospheric Technician"
 	jobtype = /datum/job/atmos
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/atmos
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/atmos
 
 	belt = /obj/item/storage/belt/utility/atmostech
 	ears = /obj/item/radio/headset/headset_eng
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/engineering
-	uniform = /obj/item/clothing/under/rank/atmospheric_technician
-	uniform_skirt = /obj/item/clothing/under/rank/atmospheric_technician/skirt
+	uniform = /obj/item/clothing/under/rank/engineering/atmospheric_technician
+	uniform_skirt = /obj/item/clothing/under/rank/engineering/atmospheric_technician/skirt
 	r_pocket = /obj/item/analyzer
 
 	backpack = /obj/item/storage/backpack/industrial

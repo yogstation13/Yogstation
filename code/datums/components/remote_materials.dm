@@ -88,9 +88,9 @@ handles linking back and forth.
 	if(I.tool_behaviour == TOOL_MULTITOOL)
 		if(!I.multitool_check_buffer(user, I))
 			return COMPONENT_NO_AFTERATTACK
-		var/obj/item/multitool/M = I
-		if (!QDELETED(M.buffer) && istype(M.buffer, /obj/machinery/ore_silo))
-			if (silo == M.buffer)
+		var/atom/buffer_atom = I.multitool_get_buffer(user, I)
+		if(istype(buffer_atom, /obj/machinery/ore_silo) && !QDELETED(buffer_atom))
+			if (silo == buffer_atom)
 				to_chat(user, span_notice("[parent] is already connected to [silo]."))
 				return COMPONENT_NO_AFTERATTACK
 			if (silo)
@@ -99,7 +99,7 @@ handles linking back and forth.
 			else if (mat_container)
 				mat_container.retrieve_all()
 				qdel(mat_container)
-			silo = M.buffer
+			silo = buffer_atom
 			silo.connected += src
 			silo.updateUsrDialog()
 			mat_container = silo.GetComponent(/datum/component/material_container)

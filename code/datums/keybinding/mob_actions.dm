@@ -14,7 +14,7 @@
 		return //cheeky
 	if (linked_action)
 		linked_action.Trigger()
-		SEND_SOUND(usr, get_sfx("terminal_type"))
+		SEND_SOUND(usr, get_sfx(SFX_TERMINAL_TYPE))
 	else
 		to_chat(user, span_warning("You don't have an action to use in that slot"))
 	return TRUE

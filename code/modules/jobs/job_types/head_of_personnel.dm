@@ -26,7 +26,7 @@
 			            ACCESS_CREMATORIUM, ACCESS_KITCHEN, ACCESS_CARGO, ACCESS_MAILSORTING, ACCESS_QM, ACCESS_HYDROPONICS, ACCESS_LAWYER,
 						ACCESS_MECH_MINING, ACCESS_MECH_ENGINE, ACCESS_MECH_SCIENCE, ACCESS_MECH_SECURITY, ACCESS_MECH_MEDICAL,
 			            ACCESS_THEATRE, ACCESS_CHAPEL_OFFICE, ACCESS_LIBRARY, ACCESS_RESEARCH, ACCESS_MINING, ACCESS_VAULT, ACCESS_MINING_STATION,
-			            ACCESS_HOP, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_GATEWAY, ACCESS_MINERAL_STOREROOM, ACCESS_MANUFACTURING) //yogs - added ACCESS_MANUFACTURING as it's the clerk's
+			            ACCESS_HOP, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_GATEWAY, ACCESS_MINERAL_STOREROOM, ACCESS_MANUFACTURING, ACCESS_SERVHALL) //yogs - added ACCESS_MANUFACTURING as it's the clerk's
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_SRV
 
@@ -75,8 +75,8 @@
 
 	glasses = /obj/item/clothing/glasses/hud/personnel
 	ears = /obj/item/radio/headset/heads/hop
-	uniform = /obj/item/clothing/under/rank/head_of_personnel
-	uniform_skirt = /obj/item/clothing/under/rank/head_of_personnel/skirt
+	uniform = /obj/item/clothing/under/rank/command/head_of_personnel
+	uniform_skirt = /obj/item/clothing/under/rank/command/head_of_personnel/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
 	head = /obj/item/clothing/head/hopcap

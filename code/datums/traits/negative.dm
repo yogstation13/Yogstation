@@ -27,11 +27,8 @@
 	medical_record_text = "Patient requires regular treatment for blood loss due to low production of blood."
 
 /datum/quirk/blooddeficiency/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = (NOBLOOD in species.species_traits) //can't lose blood if your species doesn't have any
-	qdel(species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = (NOBLOOD in initial(species_type.species_traits)) //can't lose blood if your species doesn't have any
 
 	if(disallowed_trait)
 		return "You don't have blood!"
@@ -156,11 +153,8 @@
 	medical_record_text = "Patient demonstrates a low tolerance for alcohol. (Wimp)"
 
 /datum/quirk/light_drinker/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = (NOMOUTH in species.species_traits) || !(species.inherent_biotypes & MOB_ORGANIC)// Cant drink or process alcohol
-	qdel(species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) || !(initial(species_type.inherent_biotypes) & MOB_ORGANIC)// Cant drink or process alcohol
 
 	if(disallowed_trait)
 		return "You don't have the ability to consume alcohol!"
@@ -194,7 +188,7 @@
 
 /datum/quirk/nyctophobia/on_process()
 	var/mob/living/carbon/human/H = quirk_holder
-	if((H.dna.species.id in list("shadow", "nightmare", "darkspawn")) || (H.mind && (H.mind.has_antag_datum(ANTAG_DATUM_THRALL) || H.mind.has_antag_datum(ANTAG_DATUM_SLING) || H.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN) || H.mind.has_antag_datum(ANTAG_DATUM_VEIL)))) //yogs - thrall & sling check
+	if((H.dna.species.id in list("shadow", "nightmare", "darkspawn")) || is_darkspawn_or_thrall(H))
 		return //we're tied with the dark, so we don't get scared of it; don't cleanse outright to avoid cheese
 	var/turf/T = get_turf(quirk_holder)
 	var/lums = T.get_lumcount()
@@ -353,6 +347,14 @@
 	lose_text = null
 	var/where
 	medical_record_text = "Patient suffers from acute Reality Dissociation Syndrome and experiences vivid hallucinations."
+
+/datum/quirk/insanity/check_quirk(datum/preferences/prefs)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = !(initial(species_type.inherent_biotypes) & ALL_NON_ROBOTIC)
+
+	if(disallowed_trait)
+		return "You are not illogical."
+	return ..()
 
 /datum/quirk/insanity/add()
 	var/datum/brain_trauma/mild/reality_dissociation/T = new()
@@ -574,11 +576,8 @@
 	H.reagents.addiction_list.Add(reagent_instance)
 
 /datum/quirk/junkie/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = !(species.inherent_biotypes & MOB_ORGANIC) //if you can't process organic chems you couldn't get addicted in the first place
-	qdel(species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = !(initial(species_type.inherent_biotypes) & MOB_ORGANIC) //if you can't process organic chems you couldn't get addicted in the first place
 
 	if(disallowed_trait)
 		return "You don't process normal chemicals!"
@@ -643,11 +642,8 @@
 
 	
 /datum/quirk/junkie/drunkard/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = !(species.inherent_biotypes & MOB_ORGANIC)
-	qdel(species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = !(initial(species_type.inherent_biotypes) & MOB_ORGANIC) //if you can't process organic chems you couldn't get addicted in the first place
 
 	if(disallowed_trait)
 		return "You don't process normal chemicals!"
@@ -688,11 +684,8 @@
 	var/cooldown = FALSE
 
 /datum/quirk/allergic/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = (TRAIT_MEDICALIGNORE in species.inherent_traits)
-	qdel(species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = !(TRAIT_MEDICALIGNORE in initial(species_type.inherent_traits))
 
 	if(disallowed_trait)
 		return "You don't benefit from the use of medicine."
@@ -714,11 +707,8 @@
 		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), cooldown_time)
 
 /datum/quirk/allergic/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = !(species.inherent_biotypes & MOB_ORGANIC) // why would robots be allergic to things
-	qdel(species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = !(initial(species_type.inherent_biotypes) & MOB_ORGANIC)
 
 	if(disallowed_trait)
 		return "You don't process normal chemicals!"
@@ -775,11 +765,8 @@
 	medical_record_text = "Patient appears unable to naturally form blood clots."
 
 /datum/quirk/hemophilia/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = (NOBLOOD in species.species_traits)
-	qdel(species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = (NOBLOOD in initial(species_type.species_traits))
 
 	if(disallowed_trait)
 		return "You can't bleed."
@@ -840,12 +827,77 @@
 	medical_record_text = "DNA analysis indicates that the patient's DNA telomeres are artificially shortened from previous cloner usage."
 
 /datum/quirk/telomeres_short/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = (NO_DNA_COPY in species.species_traits) //Can't pick if you have no DNA bruv.
-	qdel(species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = (NO_DNA_COPY in initial(species_type.species_traits)) //Can't pick if you have no DNA bruv.
 
 	if(disallowed_trait)
 		return "You have no DNA!"
 	return FALSE
+
+/datum/quirk/body_purist
+	name = "Body Purist"
+	desc = "You believe your body is a temple and its natural form is an embodiment of perfection. Accordingly, you despise the idea of ever augmenting it with unnatural parts, cybernetic, prosthetic, or anything like it."
+	icon = "person-rays"
+	value = -2
+	mood_quirk = TRUE
+	gain_text = span_danger("You now begin to hate the idea of having cybernetic implants.")
+	lose_text = span_notice("Maybe cybernetics aren't so bad. You now feel okay with augmentations and prosthetics.")
+	medical_record_text = "This patient has disclosed an extreme hatred for unnatural bodyparts and augmentations."
+	var/cybernetics_level = 0
+
+/datum/quirk/body_purist/add()
+	check_cybernetics()
+	RegisterSignal(quirk_holder, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(on_organ_gain))
+	RegisterSignal(quirk_holder, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(on_organ_lose))
+	RegisterSignal(quirk_holder, COMSIG_CARBON_ATTACH_LIMB, PROC_REF(on_limb_gain))
+	RegisterSignal(quirk_holder, COMSIG_CARBON_REMOVE_LIMB, PROC_REF(on_limb_lose))
+
+/datum/quirk/body_purist/remove()
+	UnregisterSignal(quirk_holder, list(
+		COMSIG_CARBON_GAIN_ORGAN,
+		COMSIG_CARBON_LOSE_ORGAN,
+		COMSIG_CARBON_ATTACH_LIMB,
+		COMSIG_CARBON_REMOVE_LIMB,
+	))
+	SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "body_purist")
+
+/datum/quirk/body_purist/proc/check_cybernetics()
+	var/mob/living/carbon/owner = quirk_holder
+	if(!istype(owner))
+		return
+	for(var/obj/item/bodypart/limb as anything in owner.bodyparts)
+		if(!limb.is_organic_limb())
+			cybernetics_level++
+	for(var/obj/item/organ/organ as anything in owner.internal_organs)
+		if(organ.organ_flags & ORGAN_SYNTHETIC || organ.status == ORGAN_ROBOTIC)
+			cybernetics_level++
+	update_mood()
+
+/datum/quirk/body_purist/proc/update_mood()
+	SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "body_purist")
+	if(cybernetics_level)
+		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "body_purist", /datum/mood_event/body_purist, -cybernetics_level * 10)
+
+/datum/quirk/body_purist/proc/on_organ_gain(datum/source, obj/item/organ/new_organ, special)
+	SIGNAL_HANDLER
+	if(new_organ.organ_flags & ORGAN_SYNTHETIC || new_organ.status == ORGAN_ROBOTIC)
+		cybernetics_level++
+		update_mood()
+
+/datum/quirk/body_purist/proc/on_organ_lose(datum/source, obj/item/organ/old_organ, special)
+	SIGNAL_HANDLER
+	if(old_organ.organ_flags & ORGAN_SYNTHETIC || old_organ.status == ORGAN_ROBOTIC)
+		cybernetics_level--
+		update_mood()
+
+/datum/quirk/body_purist/proc/on_limb_gain(datum/source, obj/item/bodypart/new_limb, special)
+	SIGNAL_HANDLER
+	if(!new_limb.is_organic_limb())
+		cybernetics_level++
+		update_mood()
+
+/datum/quirk/body_purist/proc/on_limb_lose(datum/source, obj/item/bodypart/old_limb, special)
+	SIGNAL_HANDLER
+	if(!old_limb.is_organic_limb())
+		cybernetics_level--
+		update_mood()

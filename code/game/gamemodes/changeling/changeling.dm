@@ -79,10 +79,10 @@ GLOBAL_VAR(changeling_team_objective_type)
 	report_type = "changeling"
 	antag_flag = ROLE_CHANGELING
 	false_report_weight = 10
-	restricted_jobs = list("AI", "Cyborg")
+	restricted_jobs = list("AI", "Cyborg", "Synthetic")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician") //YOGS - added hop and brig physician
-	required_players = 20
-	required_enemies = 2
+	required_players = 15
+	required_enemies = 1
 	recommended_enemies = 4
 	reroll_friendly = 1
 
@@ -201,22 +201,27 @@ GLOBAL_VAR(changeling_team_objective_type)
 		if((user.vars[slot] && !istype(user.vars[slot], GLOB.slot2type[slot])) || !(chosen_prof.exists_list[slot]))
 			continue
 
-		var/obj/item/C
+		var/obj/item/new_flesh_item
 		var/equip = 0
 		if(!user.vars[slot])
 			var/thetype = GLOB.slot2type[slot]
 			equip = 1
-			C = new thetype(user)
+			new_flesh_item = new thetype(user)
 
 		else if(istype(user.vars[slot], GLOB.slot2type[slot]))
-			C = user.vars[slot]
+			new_flesh_item = user.vars[slot]
 
-		C.appearance = chosen_prof.appearance_list[slot]
-		C.name = chosen_prof.name_list[slot]
-		C.flags_cover = chosen_prof.flags_cover_list[slot]
-		C.item_state = chosen_prof.item_state_list[slot]
+		new_flesh_item.appearance = chosen_prof.appearance_list[slot]
+		new_flesh_item.name = chosen_prof.name_list[slot]
+		new_flesh_item.flags_cover = chosen_prof.flags_cover_list[slot]
+		new_flesh_item.lefthand_file = chosen_prof.lefthand_file_list[slot]
+		new_flesh_item.righthand_file = chosen_prof.righthand_file_list[slot]
+		new_flesh_item.item_state = chosen_prof.inhand_icon_state_list[slot]
+		new_flesh_item.worn_icon = chosen_prof.worn_icon_list[slot]
+		new_flesh_item.worn_icon_state = chosen_prof.worn_icon_state_list[slot]
+
 		if(equip)
-			user.equip_to_slot_or_del(C, GLOB.slot2slot[slot])
+			user.equip_to_slot_or_del(new_flesh_item, GLOB.slot2slot[slot])
 	for(var/stored_scar_line in chosen_prof.stored_scars)
 		var/datum/scar/attempted_fake_scar = user.load_scar(stored_scar_line)
 		if(attempted_fake_scar)

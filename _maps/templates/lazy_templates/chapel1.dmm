@@ -70,12 +70,12 @@
 "dG" = (
 /obj/structure/table/wood,
 /obj/item/toy/figure/chaplain,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "fv" = (

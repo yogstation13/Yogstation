@@ -25,7 +25,6 @@
 	var/sprite_name = "fire_extinguisher"
 	var/power = 5 //Maximum distance launched water will travel
 	var/precision = FALSE //By default, turfs picked from a spray are random, set to 1 to make it always have at least one water effect per row
-	var/cooling_power = 2 //Sets the cooling_temperature of the water reagent datum inside of the extinguisher when it is refilled
 
 /obj/item/extinguisher/mini
 	name = "pocket fire extinguisher"
@@ -83,8 +82,8 @@
 	to_chat(user, "The safety is [safety ? "on" : "off"].")
 	return
 
-/obj/item/extinguisher/attack(mob/M, mob/user)
-	if(user.a_intent == INTENT_HELP && !safety) //If we're on help intent and going to spray people, don't bash them.
+/obj/item/extinguisher/attack(mob/M, mob/living/user, params)
+	if(!user.combat_mode && !safety) //If we're on help intent and going to spray people, don't bash them.
 		return FALSE
 	else
 		return ..()
@@ -116,8 +115,6 @@
 		if(transferred > 0)
 			to_chat(user, span_notice("\The [src] has been refilled by [transferred] units."))
 			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
-			for(var/datum/reagent/water/R in reagents.reagent_list)
-				R.cooling_temperature = cooling_power
 		else
 			to_chat(user, span_warning("\The [W] is empty!"))
 		safety = safety_save
