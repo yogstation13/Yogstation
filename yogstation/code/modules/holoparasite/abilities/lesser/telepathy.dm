@@ -134,10 +134,6 @@
 		return
 	if(sanitize)
 		message = sanitize(message)
-	message = owner.treat_message_min(message)
-	if(CHAT_FILTER_CHECK(message))
-		to_chat(usr, "<span class='warning'>You cannot send a telepathic message that contains prohibited words.</span>")
-		return
 	var/response_href = ""
 	if(can_respond(target, check_time = FALSE, silent = TRUE))
 		can_respond_until[target] = world.time + HOLOPARA_TELEPATHY_RESPONSE_TIME
@@ -162,15 +158,12 @@
 	var/message = tgui_input_text(usr, "What would you like to respond to the telepathic message with?", "Telepathic Response", timeout = can_respond_until[usr] - world.time)
 	if(!message || !length(message) || !can_respond(usr))
 		return
-	message = usr.treat_message_min(message)
-	if(CHAT_FILTER_CHECK(message))
 		to_chat(usr, "<span class='warning'>You cannot send a telepathic response that contains prohibited words.</span>")
 		return
 	SSblackbox.record_feedback("amount", "holoparasite_telepathy_responses", 1)
 	to_chat(usr, "<span class='holoparasite'>You telepathically respond to the message with \"<span class='message'>[message]</span>\".</span>", type = MESSAGE_TYPE_RADIO, avoid_highlighting = TRUE)
 	to_chat(owner, "<span class='holoparasite'>Telepathic response from <span class='name'>[usr]</span>: <span class='message'>[message]</span></span>", type = MESSAGE_TYPE_RADIO)
 	log_directed_talk(usr, owner, message, LOG_SAY, "holoparasite telepathy response")
-	create_chat_message(usr, /datum/language/metalanguage, list(owner), raw_message = message, spans = list("holoparasite"))
 	for(var/mob/dead/observer/gost in GLOB.dead_mob_list)
 		var/follow_link_user = FOLLOW_LINK(gost, usr)
 		var/follow_link_owner = FOLLOW_LINK(gost, owner)
@@ -199,9 +192,6 @@
 		if(iscarbon(responder))
 			var/mob/living/carbon/carbon_responder = responder
 			if(carbon_responder.has_dna())
-				// Stargazers can always telepathically respond.
-				if(isstargazer(carbon_responder))
-					return TRUE
 				// As can anyone with the telepathy mutation.
 				if(carbon_responder.dna.check_mutation(TELEPATHY))
 					return TRUE

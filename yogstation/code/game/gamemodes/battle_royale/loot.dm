@@ -373,7 +373,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/book/granter/action/spell/summonitem = -2,
 		/obj/item/nullrod/unrestricted = -2,
 		/obj/effect/spawner/lootdrop/ammobox = -2,
-		/obj/item/stand_arrow = -2, //possibly OP but it's 50/50 to get dusted
 
 		/obj/item/storage/box/syndie_kit/augmentation = -3,
 		/obj/item/storage/backpack/duffelbag/syndie/c4 = -3, //C4 Is kind of useless when you have AA
@@ -388,10 +387,10 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/battleroyale/extraarm = -3,
 		/obj/item/clothing/head/yogs/tar_king_crown = -3,
 
-		/obj/item/guardiancreator/tech/random = -4,
+		/obj/item/holoparasite_creator/tech = -4,
 		/obj/item/storage/belt/military/shadowcloak = -4, // Very strong for short bursts
 		/obj/item/implanter/empshield = -4, //EMP Shields are fairly useful, especially with the now wealth of xray / thermal eyes, among others
-		/obj/item/guardiancreator/carp/random = -4,
+		/obj/item/holoparasite_creator/carp = -4,
 		/obj/item/battleroyale/martial/ipc = -4,
 		/obj/item/necromantic_stone = -4,
 		/obj/item/slimecross/stabilized/sepia = -4,
@@ -400,7 +399,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/grenade/spawnergrenade/manhacks = -5,
 		/obj/item/slimecross/stabilized/bluespace = -5,
 		/obj/machinery/syndicatebomb = -5,
-		/obj/item/stand_arrow/safe = -5,
 		/obj/item/mirage_drive = -5, //get out of jail free card
 		/obj/item/book/granter/martial/carp = -5,
 		/obj/item/battleroyale/martial/worldbreaker = -5, // Shaking the ground of Moria

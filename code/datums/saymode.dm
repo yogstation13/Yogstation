@@ -165,7 +165,6 @@
 /datum/saymode/holoparasite
 	key = MODE_KEY_HOLOPARASITE
 	mode = MODE_HOLOPARASITE
-	early = TRUE
 
 /datum/saymode/holoparasite/handle_message(mob/living/user, message, datum/language/_language)
 	. = FALSE

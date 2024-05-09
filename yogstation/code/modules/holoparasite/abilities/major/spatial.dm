@@ -51,7 +51,7 @@
 		things_pulled++
 	owner.face_atom(hand_turf)
 	if(things_pulled)
-		playsound(owner, 'sound/effects/spatialpull.ogg', vol = 80, vary = TRUE) // blink lol
+		playsound(owner, 'yogstation/sound/effects/zahando.ogg', vol = 80, vary = TRUE) // blink lol
 		var/datum/beam/beam = target_turf.Beam(hand_turf, "bsa_beam_greyscale", time = 1.5 SECONDS)
 		for(var/obj/effect/ebeam/beam_part in beam.elements)
 			beam_part.add_atom_colour(owner.accent_color, FIXED_COLOUR_PRIORITY)

@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/holoparasite/Shoot(atom/targeted_atom)
-	var/atom/target_from = GET_TARGETS_FROM(src)
+	var/atom/target_from = targets_from
 	if(QDELETED(targeted_atom) || targeted_atom == target_from.loc || targeted_atom == target_from)
 		return
 	var/turf/start_loc = get_turf(target_from)
@@ -55,6 +55,6 @@
 	. = target.attack_animal(src)
 	if(. && isliving(target))
 		if(length(battlecry))
-			say("[battlecry]!!", language = /datum/language/metalanguage, ignore_spam = TRUE, forced = "holoparasite battlecry")
+			say("[battlecry]!!", language = /datum/language/common, ignore_spam = TRUE, forced = "holoparasite battlecry")
 		playsound(src, attack_sound, vol = 45, vary = TRUE, extrarange = 1)
 	stats.weapon.attack_effect(target, .)

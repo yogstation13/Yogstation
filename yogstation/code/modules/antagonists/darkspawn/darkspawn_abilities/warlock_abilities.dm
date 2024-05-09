@@ -442,7 +442,6 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	psi_cost = 80
 	cooldown_time = 60 SECONDS
-	length = 5 SECONDS
 
 /datum/action/cooldown/spell/erase_time/darkspawn/cast(mob/living/user)
 	. = ..()

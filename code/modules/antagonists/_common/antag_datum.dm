@@ -471,3 +471,14 @@ GLOBAL_LIST_EMPTY(antagonists)
 	info_button_ref = WEAKREF(info_button)
 	return info_button
 
+
+/// gets antag name for orbit category. Reasoning is described in each subtype
+/datum/antagonist/proc/get_antag_name()
+	return name
+
+/// gets team name for orbit category. Reasoning is described in each subtype
+/datum/team/proc/get_team_name()
+	if(name == "team")
+		stack_trace("[type] has no team name")
+		return "Unnamed team"
+	return name

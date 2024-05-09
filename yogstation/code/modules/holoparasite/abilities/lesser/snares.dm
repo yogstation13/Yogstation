@@ -59,8 +59,6 @@
 		return
 	var/message = hear_args[HEARING_RAW_MESSAGE]
 	var/atom/movable/speaker = hear_args[HEARING_SPEAKER]
-	var/spans = hear_args[HEARING_SPANS]
-	var/list/message_mods = hear_args[HEARING_MESSAGE_MODE]
 	var/mob/living/summoner = owner.summoner.current
 	if(QDELETED(summoner))
 		return
@@ -79,12 +77,6 @@
 	var/message_prefix = "<span class='holoparasite italics robot'>\[[COLOR_TEXT(owner.accent_color, snare.name)]\] [speaker.GetVoice()]"
 	// Get the say message quote thingy
 	var/message_part
-	if(message_mods[MODE_CUSTOM_SAY_ERASE_INPUT])
-		message_part = message_mods[MODE_CUSTOM_SAY_EMOTE]
-	else
-		var/atom/movable/source = speaker.GetSource() || speaker
-		message_part = source.say_quote(message, spans, message_mods)
-	message_part = "<span class='message'>[summoner.say_emphasis(message_part)]</span></span>"
 	// And now, we put the final message together and show it to the summoner.
 	var/final_message = "[message_prefix] [message_part]"
 	to_chat(owner.list_summoner_and_or_holoparasites(), final_message)
@@ -142,7 +134,6 @@
 	snare.name = snare_name
 	snares |= snare
 	if(audio_relay)
-		snare.become_hearing_sensitive()
 		RegisterSignal(snare, COMSIG_MOVABLE_HEAR, PROC_REF(snare_on_hear))
 	to_chat(owner, "<span class='danger bold'>Surveillance snare deployed!</span>")
 	snare.balloon_alert(owner, "snare armed")
@@ -180,9 +171,6 @@
 		custom_name = "Surveillance Snare"
 	else
 		custom_name = trim(custom_name, MAX_NAME_LEN)
-		if(CHAT_FILTER_CHECK(custom_name))
-			to_chat(owner, "<span class='warning'>That custom name contains forbidden words!</span>")
-			return
 	return avoid_assoc_duplicate_keys("[custom_name] @ [snare_area.name]", snare_names)
 
 /datum/holoparasite_ability/lesser/snare/proc/get_snare_by_name(name_to_find)

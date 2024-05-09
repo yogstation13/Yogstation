@@ -133,14 +133,6 @@
 	target.adjustOxyLoss(-actual_heal_amt, updating_health = FALSE)
 	target.adjustToxLoss(-actual_heal_amt, updating_health = FALSE, forced = TRUE)
 
-	if(iscarbon(target))
-		var/mob/living/carbon/carbon_target = target
-		if((!carbon_target.dna?.species || !(NOBLOOD in carbon_target.dna.species.species_traits)) && carbon_target.blood_volume < HOLOPARA_MAX_BLOOD_VOLUME_HEAL)
-			carbon_target.blood_volume = min(carbon_target.blood_volume + actual_heal_amt, HOLOPARA_MAX_BLOOD_VOLUME_HEAL)
-		if(ishuman(carbon_target))
-			var/mob/living/carbon/human/human_target = carbon_target
-			human_target.bleed_rate = max(human_target.bleed_rate - actual_heal_amt, 0)
-
 	if(purge_toxins)
 		var/list/reagents_purged = list()
 		for(var/datum/reagent/reagent in target.reagents.reagent_list)
@@ -164,11 +156,8 @@
 		if(istype(eyes))
 			eyes.applyOrganDamage(-actual_heal_amt)
 		target.adjust_blindness(-actual_effect_heal_amt)
-		target.adjust_blurriness(-actual_effect_heal_amt)
+		target.adjust_eye_blur(-actual_effect_heal_amt)
 		target.adjust_disgust(-actual_effect_heal_amt)
-		target.dizziness = max(target.dizziness - actual_effect_heal_amt, 0)
-		target.confused = max(target.confused - actual_effect_heal_amt, 0)
-		target.hallucination = max(target.hallucination - actual_effect_heal_amt, 0)
 	if(heal_clone)
 		target.adjustCloneLoss(-max(CEILING(actual_heal_amt * 0.75, 0.5), 1), updating_health = FALSE)
 	target.updatehealth()
@@ -188,12 +177,12 @@
  * Heals an object.
  */
 /datum/holoparasite_ability/major/healing/proc/heal_obj(obj/target)
-	var/old_integrity = target.obj_integrity
-	target.obj_integrity = min(target.obj_integrity + (target.max_integrity * 0.1), target.max_integrity)
-	if(old_integrity > target.obj_integrity)
+	var/old_integrity = target.atom_integrity
+	target.atom_integrity = min(target.atom_integrity + (target.max_integrity * 0.1), target.max_integrity)
+	if(old_integrity > target.atom_integrity)
 		SSblackbox.record_feedback("associative", "holoparasite_obj_damage_healed", 1, list(
 			"target" = replacetext("[target.type]", "/obj/", ""),
-			"amount" = max(old_integrity - target.obj_integrity, 0)
+			"amount" = max(old_integrity - target.atom_integrity, 0)
 		))
 
 /**

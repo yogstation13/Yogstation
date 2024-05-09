@@ -127,10 +127,6 @@
 /datum/holoparasite_ability/lesser/teleport/proc/warp(atom/movable/target, obj/structure/receiving_pad/beacon)
 	var/turf/target_turf = get_turf(target)
 	var/turf/beacon_turf = get_turf(beacon)
-	// If our range isn't maxed out, then ensure that the beacon is on the same virtual Z-level as the target.
-	if(!cross_z_warping && beacon_turf.get_virtual_z_level() != target_turf.get_virtual_z_level())
-		to_chat(owner, "<span class='danger bold'>The beacon is too far away to warp to!</span>")
-		return
 
 	to_chat(owner, "<span class='danger bold'>You begin to warp [target]...</span>")
 	target.visible_message("<span class='danger'>[target] starts to [COLOR_TEXT(owner.accent_color, "glow faintly")]!</span>", \
@@ -149,7 +145,7 @@
 			QDEL_IN(bs_tear, HOLOPARA_TELEPORT_BLUESPACE_TEAR_TIME)
 			animate(bs_tear, alpha = 255, time = 1 MINUTES)
 	log_game("[key_name(owner)] teleported [isliving(target) ? key_name(target) : "[target] ([target.type])"] from [AREACOORD(target_turf)] to the bluespace beacon at [AREACOORD(beacon_turf)]")
-	do_teleport(target, beacon_turf, precision = 0, asoundin = 'sound/effects/telepad.ogg', asoundout = 'sound/effects/telepad.ogg', channel = TELEPORT_CHANNEL_FREE)
+	do_teleport(target, beacon_turf, precision = 0, asoundin = 'sound/weapons/flash.ogg', asoundout = 'sound/weapons/flash.ogg', channel = TELEPORT_CHANNEL_FREE)
 	new /obj/effect/temp_visual/holoparasite/phase(beacon_turf)
 
 	// pulling this outta my ass
@@ -172,7 +168,7 @@
 	if(QDELETED(beacon) || !owner.can_use_abilities)
 		return FALSE
 	var/turf/beacon_turf = get_turf(beacon)
-	if(!beacon_turf || !isanyfloor(beacon_turf))
+	if(!beacon_turf)
 		return FALSE
 
 /datum/holoparasite_ability/lesser/teleport/proc/try_place_beacon()
@@ -196,11 +192,11 @@
 		return FALSE
 	var/turf/target_turf = get_turf(owner)
 	var/area/target_area = get_area(owner)
-	if(!target_turf || !target_area || !isanyfloor(target_turf))
+	if(!target_turf || !target_area)
 		to_chat(owner, "<span class='warning'>You cannot place a beacon here!</span>")
 		owner.balloon_alert(owner, "cannot place beacon")
 		return FALSE
-	if(istype(target_area, /area/shuttle/supply) || is_centcom_level(target_turf.z) || is_away_level(target_turf.z) || target_area.teleport_restriction != TELEPORT_ALLOW_ALL)
+	if(istype(target_area, /area/shuttle/supply) || is_centcom_level(target_turf.z) || is_away_level(target_turf.z))
 		to_chat(owner, "<span class='warning'>Something is interfering with your ability to place a beacon here! Try placing one somewhere else!</span>")
 		owner.balloon_alert(owner, "cannot place beacon")
 		return FALSE

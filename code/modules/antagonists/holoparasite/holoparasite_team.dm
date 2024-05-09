@@ -14,9 +14,6 @@
 	holder.team = src
 	objectives += new /datum/objective/holoparasite(holder.owner, src)
 
-/datum/team/holoparasites/get_team_name()
-	return "Holoparasites of [holder.owner.name]"
-
 /datum/team/holoparasites/roundend_report()
 	record_to_blackbox() // bleh I don't like doing this here, but there's no other place to do it without adding new signals, and I've added WAY too many signals already...
 	return {"
@@ -66,7 +63,7 @@
 			"complete" = 0
 		)
 	)
-	var/list/datum/objective/owner_objectives = holder.owner.get_all_antag_objectives()
+	var/list/datum/objective/owner_objectives = holder.owner.get_all_objectives()
 	if(length(owner_objectives))
 		for(var/datum/objective/objective in owner_objectives)
 			info["objectives"]["total"]++

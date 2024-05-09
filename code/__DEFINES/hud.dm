@@ -239,6 +239,10 @@
 /// A secondary group, used when a client views a generic window
 #define PLANE_GROUP_POPUP_WINDOW(screen) "popup-[REF(screen)]"
 
+//Team finder
+
+#define ui_team_finder "CENTER,CENTER"
+
 
 // Holoparasites
 #define ui_holopara_l_hand			"CENTER:8,SOUTH+1:4"

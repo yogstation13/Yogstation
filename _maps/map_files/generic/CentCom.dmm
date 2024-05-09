@@ -15026,7 +15026,6 @@
 /obj/item/storage/box/syndie_kit/chemical,
 /obj/item/storage/box/syndie_kit/emp,
 /obj/item/storage/box/syndie_kit/ez_clean,
-/obj/item/guardiancreator/tech/rare,
 /obj/item/storage/box/syndie_kit/imp_adrenal,
 /obj/item/storage/box/syndie_kit/imp_freedom,
 /obj/item/storage/box/syndie_kit/imp_macrobomb,
@@ -17565,13 +17564,6 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
-/obj/item/guardiancreator/rare,
-/obj/item/guardiancreator/rare{
-	pixel_y = 3
-	},
-/obj/item/guardiancreator/rare{
-	pixel_y = 6
-	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aQE" = (
@@ -20773,7 +20765,6 @@
 	},
 /obj/machinery/food_cart,
 /obj/item/reagent_containers/food/snacks/pizza/arnold,
-/obj/item/guardiancreator/carp/rare,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "aYA" = (

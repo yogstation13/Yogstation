@@ -266,7 +266,7 @@
 			new /obj/item/clothing/under/jabroni(src) //fishnet suit
 			new /obj/item/clothing/suit/yogs/pinksweater(src) //close enough
 			new /obj/item/holoparasite_creator/tech(src) //15 TC
-			new /obj/item/stand_arrow/boss(src) //priceless, but if it had to get a price it'd be ~45 for 3 holoparasite injectors and ~21 3 mindslave implants. although its difficult to conceal and the holoparasites are random.
+			// new /obj/item/stand_arrow/boss(src) //priceless, but if it had to get a price it'd be ~45 for 3 holoparasite injectors and ~21 3 mindslave implants. although its difficult to conceal and the holoparasites are random.
 			new /obj/item/storage/fancy/donut_box(src) //d o n u t s
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
@@ -303,31 +303,31 @@
 	armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 15, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF //it's too stylish to be destroyed
 
-/obj/item/stand_arrow/boss
-	desc = "An arrow that can unleash <span class='holoparasite'>massive potential</span> from those stabbed by it. It has been laced with syndicate mindslave nanites that will be linked to whoever first uses it in their hand."
-	kill_chance = 0
-	arrowtype = "tech"
-	var/datum/mind/owner
-	can_requiem = FALSE
+// /obj/item/stand_arrow/boss
+// 	desc = "An arrow that can unleash <span class='holoparasite'>massive potential</span> from those stabbed by it. It has been laced with syndicate mindslave nanites that will be linked to whoever first uses it in their hand."
+// 	kill_chance = 0
+// 	arrowtype = "tech"
+// 	var/datum/mind/owner
+// 	can_requiem = FALSE
 
-/obj/item/stand_arrow/boss/attack_self(mob/user)
-	if(owner || !user.mind)
-		return
-	to_chat(user, span_notice("You prick your finger on the arrow, linking the mindslave nanites to you!"))
-	owner = user.mind
+// /obj/item/stand_arrow/boss/attack_self(mob/user)
+// 	if(owner || !user.mind)
+// 		return
+// 	to_chat(user, span_notice("You prick your finger on the arrow, linking the mindslave nanites to you!"))
+// 	owner = user.mind
 
-/obj/item/stand_arrow/boss/attack(mob/living/M, mob/living/user)
-	if(owner && owner.current == M && user == M) //you have a holoparasite injector for this exact purpose
-		to_chat(M, span_warning("Implanting yourself with mindslave nanites is probably a bad idea..."))
-		return
-	. = ..()
+// /obj/item/stand_arrow/boss/attack(mob/living/M, mob/living/user)
+// 	if(owner && owner.current == M && user == M) //you have a holoparasite injector for this exact purpose
+// 		to_chat(M, span_warning("Implanting yourself with mindslave nanites is probably a bad idea..."))
+// 		return
+// 	. = ..()
 
-/obj/item/stand_arrow/boss/generate_stand(mob/living/carbon/human/H)
-	if(owner?.current && H != owner.current)//lol
-		var/obj/item/implant/mindslave/M = new /obj/item/implant/mindslave() //if someone injects themself with a gangster arrow it's entirely their fault for using contraband
-		if(!M.implant(H, owner.current))
-			qdel(M)
-	. = ..() //sure ok you stole the arrow
+// /obj/item/stand_arrow/boss/generate_stand(mob/living/carbon/human/H)
+// 	if(owner?.current && H != owner.current)//lol
+// 		var/obj/item/implant/mindslave/M = new /obj/item/implant/mindslave() //if someone injects themself with a gangster arrow it's entirely their fault for using contraband
+// 		if(!M.implant(H, owner.current))
+// 			qdel(M)
+// 	. = ..() //sure ok you stole the arrow
 
 /obj/item/carpcaller
 	name = "Carp signal"

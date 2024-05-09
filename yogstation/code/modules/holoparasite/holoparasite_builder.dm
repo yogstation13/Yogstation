@@ -356,7 +356,6 @@
 	else
 		candidates = pollCandidatesForMob(
 			"Do you want to play as [holopara_name], [user.mind.name]'s [theme.name]?",
-			jobban_type = ROLE_HOLOPARASITE,
 			poll_time = 30 SECONDS
 		)
 	waiting = FALSE

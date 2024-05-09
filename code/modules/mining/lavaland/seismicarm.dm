@@ -64,7 +64,7 @@
 		if(iscarbon(L))
 			L.adjustBruteLoss(carbondam)
 		if(isanimal(L))
-			if(istype(L, /mob/living/simple_animal/hostile/guardian))
+			if(istype(L, /mob/living/simple_animal/hostile/holoparasite))
 				L.adjustBruteLoss(40)
 			else
 				L.adjustBruteLoss(animaldam)

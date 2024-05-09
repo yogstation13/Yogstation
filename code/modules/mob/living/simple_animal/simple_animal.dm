@@ -111,7 +111,8 @@
 	var/music_component = null
 	var/music_path = null
 
-	
+	///set it TRUE if "health" is not relable to this simple mob.
+	var/do_not_show_health_on_stat_panel
 
 /mob/living/simple_animal/Initialize(mapload)
 	. = ..()

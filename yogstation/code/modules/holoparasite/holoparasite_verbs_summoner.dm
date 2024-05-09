@@ -83,11 +83,8 @@
 	var/list/holoparas_to_set = target_holopara == "(All)" ? holoparas : list(target_holopara)
 	if(!length(holoparas_to_set))
 		return
-	var/new_notes = tgui_input_text(src, "What notes do you write for your holoparasites?", "Holoparasite Notes", max_length = MAX_PAPER_LENGTH, multiline = TRUE, encode = FALSE)
+	var/new_notes = tgui_input_text(src, "What notes do you write for your holoparasites?", "Holoparasite Notes", max_length = MAX_PAPER_LENGTH, multiline = TRUE)
 	if(!new_notes)
-		return
-	if(OOC_FILTER_CHECK(new_notes))
-		to_chat(src, "<span class='warning'>The provided notes contain forbidden words.</span>")
 		return
 	for(var/mob/living/simple_animal/hostile/holoparasite/holopara as() in holoparas_to_set)
 		to_chat(holopara, EXAMINE_BLOCK("<span class='holoparasite'><span class='big bold'>Your summoner has changed your notes:</span><br>[sanitize(new_notes)]</span>"))

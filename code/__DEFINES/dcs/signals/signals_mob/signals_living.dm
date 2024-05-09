@@ -151,3 +151,6 @@
 #define COMSIG_MOB_CREATE_TYPING_INDICATOR "create_typing_indicator"
 	///Icon used for the typing indicator
 	#define BUBBLE_ICON_STATE 1
+
+/// from base of mob/living/updatehealth(): ()
+#define COMSIG_LIVING_UPDATE_HEALTH "living_update_health"

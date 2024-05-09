@@ -33,8 +33,9 @@
 
 /datum/antagonist/holoparasite/greet()
 	. = ..()
-	owner.current.client?.tgui_panel?.give_antagonist_popup(theme.name,
-		"Protect your summoner and follow [holder.owner.current.p_their()] commands. Your existence is bound to their life, and you will die if [holder.owner.current.p_they()] die[holder.owner.current.p_s()].")
+	to_chat(owner.current, span_notice("You are the [owner.special_role]!"))
+	to_chat(owner.current, span_notice("Listen to your master, if you die, they die and vice versa!"))
+	owner.announce_objectives()
 
 /datum/antagonist/holoparasite/can_be_owned(datum/mind/new_owner)
 	. = ..()
@@ -82,7 +83,7 @@
 	var/objective_count = 1
 	var/list/objectives
 	var/list/antag_info
-	for(var/datum/objective/objective as() in holder.owner.get_all_antag_objectives())
+	for(var/datum/objective/objective as() in holder.owner.get_all_objectives())
 		var/objective_info = list(
 			"count" = objective_count,
 			"name" = objective.name,

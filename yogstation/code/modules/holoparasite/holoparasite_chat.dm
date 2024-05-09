@@ -8,18 +8,13 @@
 	msg = trim(msg, max_length = MAX_MESSAGE_LEN)
 	if(!length(msg))
 		return FALSE
-	if(CHAT_FILTER_CHECK(msg))
-		to_chat(src, "<span class='warning'>Your message contains forbidden words.</span>")
-		return FALSE
 	if(sanitize)
 		msg = sanitize(msg)
-	msg = treat_message_min(msg)
 	var/preliminary_message = "<span class='srt_radio holoparasite bold message'>[msg]</span>" // Apply basic color and bolding.
 	var/my_message = "<span class='srt_radio holoparasite bold'><span class='name italics'>[src]</span>: [preliminary_message]</span>" // Add source, and color said source with the default grey.
 
 	to_chat(src, my_message, type = MESSAGE_TYPE_RADIO, avoid_highlighting = TRUE)
 	to_chat(holoparas, "<span class='bold italics'><span class='name'>[src]</span>:</span> [preliminary_message]", type = MESSAGE_TYPE_RADIO)
-	create_chat_message(src, /datum/language/metalanguage, holoparas + src, raw_message = msg, spans = list("holoparasite"))
 	for(var/ghost in GLOB.dead_mob_list)
 		var/link = FOLLOW_LINK(ghost, src)
 		to_chat(ghost, "[link] [my_message]", type = MESSAGE_TYPE_RADIO)
@@ -33,12 +28,8 @@
 	msg = trim(msg, max_length = MAX_MESSAGE_LEN)
 	if(!length(msg))
 		return FALSE
-	if(CHAT_FILTER_CHECK(msg))
-		to_chat(src, "<span class='warning'>Your message contains forbidden words.</span>")
-		return FALSE
 	if(sanitize)
 		msg = sanitize(msg)
-	msg = treat_message_min(msg)
 	var/preliminary_message = "<span class='srt_radio holoparasite bold message'>[msg]</span>" // Apply basic color and bolding.
 	var/my_message = "<span class='srt_radio bold italics'>[color_name]:</span> [preliminary_message]" // Add source, and color said source with the holoparasite's color.
 	var/ghost_message = "<span class='srt_radio bold italics'>[color_name] -> <span class='name'>[summoner.name]</span>:</span> [preliminary_message]"
@@ -47,7 +38,6 @@
 	to_chat(src, my_message, type = MESSAGE_TYPE_RADIO, avoid_highlighting = TRUE)
 	to_chat(recipients - src, my_message, type = MESSAGE_TYPE_RADIO)
 
-	create_chat_message(src, /datum/language/metalanguage, recipients, raw_message = msg, spans = list("holoparasite"))
 	for(var/ghost in GLOB.dead_mob_list)
 		var/link = FOLLOW_LINK(ghost, src)
 		to_chat(ghost, "[link] [ghost_message]", type = MESSAGE_TYPE_RADIO)

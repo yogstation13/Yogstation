@@ -379,7 +379,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	hits = 3
 	heavy = TRUE
 	meteorsound = 'sound/effects/bamf.ogg'
-	meteordrop = list(/obj/item/stand_arrow)
+	// meteordrop = list(/obj/item/stand_arrow)
 	dropamt = 1
 	threat = 100
 

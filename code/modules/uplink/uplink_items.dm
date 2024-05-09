@@ -482,23 +482,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Holoparasites"
 	desc = "Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, they require an \
 			organic host as a home base and source of fuel. Holoparasites come in various types and share damage with their host."
-	item = /obj/item/guardiancreator/tech
+	item = /obj/item/holoparasite_creator/tech
 	cost = 15
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration, /datum/game_mode/traitor/internal_affairs)
 	player_minimum = 25
 	restricted = TRUE
-	refundable = TRUE
-
-/**
- * Only allow holoparasites to be refunded if the injector is unused.
- */
-/datum/uplink_item/dangerous/holoparasite/can_be_refunded(obj/item/item, datum/component/uplink/uplink)
-	if(!istype(item, /obj/item/holoparasite_creator/tech))
-		return FALSE
-	var/obj/item/holoparasite_creator/tech/holopara_creator = item
-	return (holopara_creator.builder.uses == initial(holopara_creator.uses)) && !holopara_creator.builder.waiting
+	refundable = FALSE
 
 // nukies don't get the 3 TC discount
 /datum/uplink_item/dangerous/holoparasite/nuclear

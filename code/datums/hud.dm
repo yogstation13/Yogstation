@@ -51,6 +51,7 @@ GLOBAL_LIST_INIT(huds, list(
 	///some subtypes cant work like this since theyre supposed to "belong" to
 	///one target atom each. it will still go in the other global hud lists.
 	var/uses_global_hud_category = TRUE
+	
 
 /datum/atom_hud/New()
 	GLOB.all_huds += src
@@ -437,3 +438,61 @@ GLOBAL_LIST_INIT(huds, list(
 
 /mob/dead/new_player/add_click_catcher()
 	return
+
+/datum/atom_hud/proc/add_hud_to(mob/M)
+	if(!M)
+		return
+	if(!hud_users[M])
+		hud_users[M] = 1
+		RegisterSignal(M, COMSIG_QDELETING, PROC_REF(unregister_mob))
+		if(next_time_allowed[M] > world.time)
+			if(!queued_to_see[M])
+				addtimer(CALLBACK(src, PROC_REF(show_hud_images_after_cooldown), M), next_time_allowed[M] - world.time)
+				queued_to_see[M] = TRUE
+		else
+			next_time_allowed[M] = world.time + ADD_HUD_TO_COOLDOWN
+			for(var/atom/A in hud_atoms)
+				add_to_single_hud(M, A)
+	else
+		hud_users[M]++
+
+/datum/atom_hud/proc/add_to_single_hud(mob/M, atom/A) //unsafe, no sanity apart from client
+	if(!M || !M.client || !A)
+		return
+	for(var/i in hud_icons)
+		if(A.hud_list[i] && (!hud_exceptions[M] || !(A in hud_exceptions[M])))
+			M.client.images |= A.hud_list[i]
+
+/datum/atom_hud/proc/unregister_mob(datum/source, force)
+	SIGNAL_HANDLER
+
+	remove_hud_from(source, TRUE)
+
+
+/datum/atom_hud/proc/remove_hud_from(mob/M, absolute = FALSE)
+	if(!M || !hud_users[M])
+		return
+	if (absolute || !--hud_users[M])
+		UnregisterSignal(M, COMSIG_QDELETING)
+		hud_users -= M
+		if(next_time_allowed[M])
+			next_time_allowed -= M
+		if(queued_to_see[M])
+			queued_to_see -= M
+		else
+			for(var/atom/A in hud_atoms)
+				remove_from_single_hud(M, A)
+
+/datum/atom_hud/proc/remove_from_hud(atom/A)
+	if(!A)
+		return FALSE
+	for(var/mob/M in hud_users)
+		remove_from_single_hud(M, A)
+	hud_atoms -= A
+	return TRUE
+
+/datum/atom_hud/proc/remove_from_single_hud(mob/M, atom/A) //unsafe, no sanity apart from client
+	if(!M || !M.client || !length(A?.hud_list))
+		return
+	for(var/i in hud_icons)
+		M.client.images -= A.hud_list[i]

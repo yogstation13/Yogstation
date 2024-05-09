@@ -835,7 +835,6 @@
 	STR.set_holdable(list(
 		/obj/item/ammo_casing/caseless/bolts,
 		/obj/item/ammo_casing/reusable/arrow,
-		/obj/item/stand_arrow,
 		/obj/item/throwing_star/magspear
 		))
 

@@ -164,9 +164,7 @@ GLOBAL_LIST_EMPTY(tracker_beacons)
 	var/atom/movable/screen/arrow/screen = tracking[beacon]
 	var/turf/target_turf = get_turf(beacon.parent)
 	var/turf/parent_turf = get_turf(parent)
-	var/share_z = target_turf.get_virtual_z_level() == parent_turf.get_virtual_z_level()
-	var/share_zgroup = SSorbits.assoc_z_levels["[target_turf.get_virtual_z_level()]"] == SSorbits.assoc_z_levels["[parent_turf.get_virtual_z_level()]"]
-	if((!share_z && (!multiz || !share_zgroup)) || target_turf == parent_turf)
+	if(((!multiz )) || target_turf == parent_turf)
 		if(screen)
 			//Remove the screen
 			updating.hud_used.team_finder_arrows -= screen
@@ -179,7 +177,7 @@ GLOBAL_LIST_EMPTY(tracker_beacons)
 		//Create the screen
 		screen = new
 		screen.alpha = 240
-		if(multiz && !share_z && screen.color != beacon.z_diff_colour)
+		if(multiz && screen.color != beacon.z_diff_colour)
 			screen.color = beacon.z_diff_colour
 		else if(screen.color != beacon.colour)
 			screen.color = beacon.colour
@@ -188,7 +186,7 @@ GLOBAL_LIST_EMPTY(tracker_beacons)
 		tracking[beacon] = screen
 		//Update their hud
 		updating.hud_used.show_hud(updating.hud_used.hud_version, updating)
-	if(multiz && !share_z && screen.color != beacon.z_diff_colour)
+	if(multiz && screen.color != beacon.z_diff_colour)
 		screen.color = beacon.z_diff_colour
 	else if(screen.color != beacon.colour)
 		screen.color = beacon.colour
@@ -219,12 +217,6 @@ GLOBAL_LIST_EMPTY(tracker_beacons)
 			continue
 		var/atom/movable/screen/arrow/arrow = new
 		arrow.alpha = 240
-		var/turf/target_turf = get_turf(key.parent)
-		var/turf/parent_turf = get_turf(parent)
-		if(multiz && target_turf.get_virtual_z_level() != parent_turf.get_virtual_z_level() && arrow.color != key.z_diff_colour)
-			arrow.color = key.z_diff_colour
-		else if(arrow.color != key.colour)
-			arrow.color = key.colour
 		arrow.hud = target.hud_used
 		target.hud_used.team_finder_arrows += arrow
 		tracking[key] = arrow
@@ -313,12 +305,6 @@ GLOBAL_LIST_EMPTY(tracker_beacons)
 		if(updating?.hud_used)
 			var/atom/movable/screen/arrow/arrow = new
 			arrow.alpha = 240
-			var/turf/target_turf = get_turf(beacon.parent)
-			var/turf/parent_turf = get_turf(parent)
-			if(multiz && target_turf.get_virtual_z_level() != parent_turf.get_virtual_z_level() && arrow.color != beacon.z_diff_colour)
-				arrow.color = beacon.z_diff_colour
-			else if(arrow.color != beacon.colour)
-				arrow.color = beacon.colour
 			arrow.hud = updating.hud_used
 			updating.hud_used.team_finder_arrows += arrow
 			tracking[beacon] = arrow

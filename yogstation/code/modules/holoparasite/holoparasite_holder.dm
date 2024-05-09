@@ -48,29 +48,24 @@
 	stop_delayed_death()
 	if(!QDELETED(team_monitor))
 		team_monitor.hide_hud(owner.current)
-		team_monitor.RemoveComponent()
 		QDEL_NULL(team_monitor)
 	if(!QDELETED(monitor_holder))
 		QDEL_NULL(monitor_holder)
 	return ..()
 
 /datum/holoparasite_holder/proc/register_mind_signals()
-	RegisterSignal(owner, COMSIG_MIND_TRANSFER_TO, PROC_REF(on_mind_transfer))
-	RegisterSignal(owner, COMSIG_MIND_JOIN_ANTAG_HUD, PROC_REF(on_join_antag_hud))
-	RegisterSignal(owner, COMSIG_MIND_LEAVE_ANTAG_HUD, PROC_REF(on_leave_antag_hud))
+	RegisterSignal(owner, COMSIG_MIND_TRANSFERRED, PROC_REF(on_mind_transfer))
 
 /datum/holoparasite_holder/proc/register_body_signals(mob/living/body)
 	RegisterSignal(body, COMSIG_MOB_LOGIN, PROC_REF(on_login))
 	RegisterSignal(body, COMSIG_LIVING_DEATH, PROC_REF(on_body_death))
 	RegisterSignal(body, COMSIG_LIVING_REVIVE, PROC_REF(on_body_revive))
-	RegisterSignal(body, COMSIG_LIVING_ENTER_STASIS, PROC_REF(on_enter_stasis))
-	RegisterSignal(body, COMSIG_LIVING_EXIT_STASIS, PROC_REF(on_exit_stasis))
 
 /datum/holoparasite_holder/proc/unregister_mind_signals()
-	UnregisterSignal(owner, list(COMSIG_MIND_TRANSFER_TO, COMSIG_MIND_JOIN_ANTAG_HUD, COMSIG_MIND_LEAVE_ANTAG_HUD))
+	UnregisterSignal(owner, list(COMSIG_MIND_TRANSFERRED))
 
 /datum/holoparasite_holder/proc/unregister_body_signals(mob/living/body)
-	UnregisterSignal(body, list(COMSIG_MOB_LOGIN, COMSIG_LIVING_DEATH, COMSIG_LIVING_REVIVE, COMSIG_LIVING_ENTER_STASIS, COMSIG_LIVING_EXIT_STASIS))
+	UnregisterSignal(body, list(COMSIG_MOB_LOGIN, COMSIG_LIVING_DEATH, COMSIG_LIVING_REVIVE))
 
 /**
  * Returns the holoparasite team for this summoner.
@@ -95,10 +90,6 @@
 		CRASH("Attempted to add a holoparasite ([key_name(new_holopara)]) with an existing holder ([key_name(new_holopara.parent_holder.owner)]) to the holder of [key_name(owner)]")
 	holoparasites += new_holopara
 	new_holopara.parent_holder = src
-	if(current_antag_hud)
-		current_antag_hud.join_hud(new_holopara)
-	if(current_antag_hud_icon_state)
-		set_antag_hud(new_holopara, current_antag_hud_icon_state)
 	var/datum/component/team_monitor/team_monitor = get_monitor(owner.current)
 	if(team_monitor)
 		team_monitor.get_matching_beacons()
@@ -116,10 +107,6 @@
 		CRASH("Attempted to remove the wrong holder [key_name(owner)] from a holoparasite ([key_name(holopara_to_remove)])!")
 	holoparasites -= holopara_to_remove
 	holopara_to_remove.parent_holder = null
-	if(current_antag_hud)
-		current_antag_hud.leave_hud(holopara_to_remove)
-	if(holopara_to_remove.mind.antag_hud_icon_state == current_antag_hud_icon_state)
-		set_antag_hud(holopara_to_remove, null)
 
 /**
  * Returns TRUE if the holoparasite holder is active (there are actual holoparasites in the holder), FALSE otherwise.
@@ -153,7 +140,7 @@
  * * new_body: The body that the mind is transferring to.
  */
 /datum/holoparasite_holder/proc/on_mind_transfer(datum/mind/source, mob/living/old_body, mob/living/new_body)
-	SIGNAL_HANDLER
+	// SIGNAL_HANDLER
 	remove_all_tracking_huds()
 	if(old_body)
 		unregister_body_signals(old_body)
@@ -173,63 +160,7 @@
 		new_body.update_holoparasite_verbs()
 		team_monitor.show_hud(new_body)
 		team_monitor.get_matching_beacons()
-		handle_slime_cheese(old_body, new_body)
 		toggle_monitor_hud(TRUE, new_body)
-
-/**
- * Handles slimepeople transferring their mind to a new body on death.
- * This, in short, punishes them for their cheese, and renders their new body highly vulnerable for quite a bit,
- * while still allowing them to escape straight-up round-removal.
- *
- * Arguments
- * * old_body: The slimeperson's old body.
- * * new_body: The slimeperson's new body.
- */
-/datum/holoparasite_holder/proc/handle_slime_cheese(mob/living/carbon/human/old_body, mob/living/carbon/human/new_body)
-	if(!isslimeperson(old_body) || !isslimeperson(new_body) || (old_body.stat != DEAD && !old_body.InCritical()))
-		return
-	var/datum/species/oozeling/slime/old_slime = old_body.dna.species
-	var/datum/species/oozeling/slime/new_slime = new_body.dna.species
-	if(!(old_body in new_slime.bodies) || !(new_body in old_slime.bodies))
-		return
-	stop_delayed_death()
-	// Nope, you still don't get to keep that body.
-	playsound(old_body, 'sound/effects/curseattack.ogg', vol = 75, vary = TRUE, frequency = 0.5)
-	old_body.dust(drop_items = TRUE)
-	// Anyways, you don't escape such a death unpunished...
-	if(HAS_TRAIT(new_body, TRAIT_NOCLONELOSS))
-		new_body.adjustToxLoss(rand(40, 55), updating_health = FALSE, forced = TRUE)
-	else
-		new_body.adjustCloneLoss(rand(40, 55), updating_health = FALSE)
-	var/obj/item/organ/brain/brain = new_body.getorganslot(ORGAN_SLOT_BRAIN)
-	if(!istype(brain) || brain.decoy_override)
-		var/obj/item/organ/heart = new_body.getorganslot(ORGAN_SLOT_HEART)
-		if(!heart)
-			// damn you, heartless bastard!!
-			for(var/obj/item/organ/organ in new_body.internal_organs)
-				organ.applyOrganDamage(rand(20, 40), organ.maxHealth - 1)
-		else
-			heart.applyOrganDamage(rand(20, 40), heart.maxHealth - 1)
-	else
-		brain.applyOrganDamage(rand(20, 40), HOLOPARA_MAX_BRAIN_DAMAGE)
-	// straight to stamcrit with you!!
-	new_body.take_overall_damage(stamina = rand(new_body.maxHealth * 1.1, new_body.maxHealth * 1.5), updating_health = TRUE)
-	if(new_body.confused < 120)
-		new_body.confused = 120
-	to_chat(owner, "<span class='userdanger'>The process of moving your mind and its manifestations to a new body greatly strains both your mind and body!</span>")
-
-/**
- * Handles the mind joining an antag HUD, adding their antag HUD to all of their holoparasites.
- */
-/datum/holoparasite_holder/proc/on_join_antag_hud()
-	SIGNAL_HANDLER
-	if(!owner.antag_hud?.self_visible)
-		return
-	current_antag_hud = owner.antag_hud
-	current_antag_hud_icon_state = owner.antag_hud_icon_state
-	for(var/mob/living/simple_animal/hostile/holoparasite/holopara as() in holoparasites)
-		current_antag_hud.join_hud(holopara)
-		set_antag_hud(holopara, current_antag_hud_icon_state)
 
 /**
  * Handles the mind leaving an antag HUD, removing their antag HUD from all of their holoparasites.
@@ -239,8 +170,6 @@
 	if(hud != current_antag_hud)
 		return
 	for(var/mob/living/simple_animal/hostile/holoparasite/holopara as() in holoparasites)
-		hud.leave_hud(holopara)
-		set_antag_hud(holopara, null)
 	current_antag_hud = null
 	current_antag_hud_icon_state = null
 
@@ -264,7 +193,7 @@
  * * already_dead: TRUE if the owner's body was already dead, FALSE otherwise.
  */
 /datum/holoparasite_holder/proc/on_body_death(mob/living/source, gibbed, already_dead)
-	SIGNAL_HANDLER
+	// SIGNAL_HANDLER
 	if(!death_two_electric_boogaloo || !is_active() || HAS_TRAIT(source, TRAIT_NODEATH))
 		return
 	if(IS_IN_STASIS(source))
@@ -318,7 +247,7 @@
  * Handles the owner's body being revived, which will prevent a delayed death from occuring.
  */
 /datum/holoparasite_holder/proc/on_body_revive(mob/living/body)
-	SIGNAL_HANDLER
+	// SIGNAL_HANDLER
 	stop_delayed_death()
 	dying = FALSE
 	var/datum/component/team_monitor/team_monitor = get_monitor(body)
@@ -394,7 +323,6 @@
 	remove_all_tracking_huds()
 	if(!QDELETED(team_monitor))
 		team_monitor.hide_hud(body)
-		team_monitor.RemoveComponent()
 		QDEL_NULL(team_monitor)
 	if(!QDELETED(monitor_holder))
 		QDEL_NULL(monitor_holder)
@@ -408,9 +336,8 @@
 		body.visible_message("<span class='danger'><span class='name'>[body]</span> lets out a pained, agonizing wail, [body.p_their()] expression consumed with fear, as [body.p_their()] body rapidly crumbles to dust!</span>", blind_message = "<i>You hear a pained, agonizing wail...</i>")
 		var/traumatized = 0
 		for(var/mob/living/viewer in viewers(world.view, body))
-			if(viewer == body || (viewer in holoparasites) || viewer.is_blind())
+			if(viewer == body || (viewer in holoparasites))
 				continue
-			SEND_SIGNAL(viewer, COMSIG_ADD_MOOD_EVENT, "saw_holopara_death", /datum/mood_event/saw_holopara_death, body.real_name || body.name)
 			traumatized++
 		SSblackbox.record_feedback("tally", "holoparasite_traumatized_count", 1, traumatized)
 	playsound(body, 'sound/effects/curseattack.ogg', vol = 75, vary = TRUE, frequency = 0.5)

@@ -203,10 +203,6 @@ GLOBAL_LIST_EMPTY(aide_list)
 	return ..()
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/memento(mob/living/carbon/human/user)
-	var/list/hasholos = user.hasparasites()
-	if(hasholos.len)
-		to_chat(user, span_warning("The pendant refuses to work with a guardian spirit..."))
-		return
 	if(IS_BLOODSUCKER(user))
 		to_chat(user, span_warning("The Memento notices your undead soul, and refuses to react.."))
 		return

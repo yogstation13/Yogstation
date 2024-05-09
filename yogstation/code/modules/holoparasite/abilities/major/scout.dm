@@ -93,7 +93,7 @@
  * Handles healing a target whenever attacking them.
  */
 /datum/holoparasite_ability/major/scout/proc/on_click(datum/_source, atom/target)
-	SIGNAL_HANDLER
+	// SIGNAL_HANDLER
 	if(!owner.is_manifested())
 		return
 	if(scouting && isobj(target) && owner.Adjacent(target))
@@ -104,9 +104,6 @@
 		return
 	if(owner.has_matching_summoner(target))
 		to_chat(owner, "<span class='warning'>There's no need to stalk <span class='name'>[target]</span>...</span>")
-		return
-	if(!isturf(target.loc) || target.get_virtual_z_level() != owner.get_virtual_z_level() || !in_view_range(owner, target))
-		to_chat(owner, "<span class='warning'><span class='name'>[target]</span> is too far away to begin stalking!</span>")
 		return
 	begin_stalking(target)
 	return COMSIG_MOB_CANCEL_CLICKON
@@ -139,7 +136,6 @@
 /datum/holoparasite_ability/major/scout/proc/on_post_manifest()
 	SIGNAL_HANDLER
 	if(scouting)
-		owner.set_anchored(TRUE)
 		owner.incorporeal_move = INCORPOREAL_MOVE_BASIC
 		owner.move_resist = INFINITY
 		owner.set_density(FALSE)
@@ -156,7 +152,6 @@
 /datum/holoparasite_ability/major/scout/proc/on_recall()
 	SIGNAL_HANDLER
 	owner.incorporeal_move = FALSE
-	owner.set_anchored(FALSE)
 	owner.move_resist = initial(owner.move_resist)
 	owner.set_density(initial(owner.density))
 	owner.attack_sound = owner.theme.mob_info[HOLOPARA_THEME_ATTACK_SOUND] || initial(owner.attack_sound)
@@ -192,8 +187,6 @@
 		return
 	var/message = hear_args[HEARING_RAW_MESSAGE]
 	var/atom/movable/speaker = hear_args[HEARING_SPEAKER]
-	var/spans = hear_args[HEARING_SPANS]
-	var/list/message_mods = hear_args[HEARING_MESSAGE_MODE]
 	var/mob/living/summoner = owner.summoner.current
 	if(!summoner)
 		return
@@ -209,7 +202,7 @@
 	var/dist = get_dist(owner, speaker)
 	var/star_factor = (dist > falloff_range) ? min((dist - falloff_range) * 10, 55) : 0
 	// If the summoner is 'psychically attuned' (they're more used to psychic bullshit than an average person), we'll reduce the star factor for them.
-	if(isstargazer(summoner) || isabductor(summoner))
+	if(isabductor(summoner))
 		star_factor *= HOLOPARA_SCOUT_SPY_ATTUNED_MULTIPLIER
 	var/scrambled_message = stars(message, star_factor)
 	// Bit of a nasty hardcoded hack, but eh, it works!
@@ -217,19 +210,6 @@
 	if(summoner_traitor?.has_codewords)
 		scrambled_message = GLOB.syndicate_code_phrase_regex.Replace(scrambled_message, "<span class='blue'>$1</span>")
 		scrambled_message = GLOB.syndicate_code_response_regex.Replace(scrambled_message, "<span class='red'>$1</span>")
-	// Assemble the message prefix
-	var/message_prefix = "<span class='holoparasite italics robot'>\[[owner.color_name] Sensory Link\] [speaker.GetVoice()]"
-	// Get the say message quote thingy
-	var/message_part
-	if(message_mods[MODE_CUSTOM_SAY_ERASE_INPUT])
-		message_part = message_mods[MODE_CUSTOM_SAY_EMOTE]
-	else
-		var/atom/movable/source = speaker.GetSource() || speaker
-		message_part = source.say_quote(scrambled_message, spans, message_mods)
-	message_part = "<span class='message'>[summoner.say_emphasis(message_part)]</span></span>"
-	// And now, we put the final message together and show it to the summoner.
-	var/final_message = "[message_prefix] [message_part]"
-	to_chat(owner.list_summoner_and_or_holoparasites(include_self = FALSE), final_message)
 
 /**
  * Enters scout mode, which disables all forms of damage and abilities,
@@ -352,7 +332,7 @@
 	stalking = target
 	to_chat(owner, "<span class='notice'>You begin to stalk <span class='name'>[target]</span>, following [target.p_their()] every move from behind your cloak.</span>")
 	RegisterSignals(target, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), PROC_REF(on_stalked_moved))
-	RegisterSignal(target, COMSIG_PARENT_PREQDELETED, PROC_REF(on_stalked_pre_qdel))
+	RegisterSignal(target, COMSIG_PREQDELETED, PROC_REF(on_stalked_pre_qdel))
 	on_stalked_moved(target)
 	deadchat_broadcast("<span class='ghostalert'><span class='name'>[owner.real_name]</span> has begun to stalk <span class='name'>[target.real_name]</span>!</span>", follow_target = owner, turf_target = get_turf(owner))
 	COOLDOWN_START(src, stalk_cooldown, 15 SECONDS)
@@ -372,8 +352,7 @@
 		to_chat(stalking, "<span class='holoparasite italics'>You feel relief as the strange feeling of being watched fades away...</span>")
 	var/out_and_about = scouting && owner.is_manifested()
 	owner.incorporeal_move = out_and_about ? INCORPOREAL_MOVE_BASIC : FALSE
-	owner.set_anchored(out_and_about)
-	UnregisterSignal(stalking, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE, COMSIG_PARENT_PREQDELETED))
+	UnregisterSignal(stalking, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE, COMSIG_PREQDELETED))
 	stalking = null
 	stalkee_was_notified = FALSE
 	owner.pixel_x = initial(owner.pixel_x)
