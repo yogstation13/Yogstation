@@ -278,24 +278,24 @@
 	var/obj/item/destTagger/mounted_tagger
 
 // attack by item places it in to disposal
-/obj/machinery/disposal/bin/attackby(obj/item/weapon, mob/user, params)
-	if(istype(weapon, /obj/item/storage/bag/trash)) //Not doing component overrides because this is a specific type.
-		var/obj/item/storage/bag/trash/b = weapon
+/obj/machinery/disposal/bin/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/storage/bag/trash)) //Not doing component overrides because this is a specific type.
+		var/obj/item/storage/bag/trash/b = I
 		var/datum/component/storage/STR = b.GetComponent(/datum/component/storage)
 		to_chat(user, span_warning("You empty the bag."))
 		for(var/obj/item/O in b.contents)
 			STR.remove_from_storage(O,src)
 		b.update_appearance()
 		update_appearance()
-	if(istype(weapon,	/obj/item/destTagger))
+	if(istype(I,	/obj/item/destTagger))
 	else
 		return ..()
 
 // handle machine interaction
 
-/obj/machinery/disposal/bin/attackby_secondary(obj/item/weapon, mob/user, params)
-	if(istype(weapon, /obj/item/destTagger))
-		var/obj/item/destTagger/new_tagger = weapon
+/obj/machinery/disposal/bin/attackby_secondary(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/destTagger))
+		var/obj/item/destTagger/new_tagger = I
 		if(mounted_tagger)
 			balloon_alert(user, "already has a tagger!")
 			return
@@ -327,8 +327,6 @@
 	mounted_tagger = null
 	update_appearance(UPDATE_OVERLAYS)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-
-
 
 
 /obj/machinery/disposal/bin/examine(mob/user)
