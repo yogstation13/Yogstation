@@ -437,8 +437,8 @@
 		balloon_alert(artist, "not enough metal!")
 		return
 	var/list/possible_statues = list()
-	for(var/statues_available as anything in subtypesof(/obj/structure/bloodsucker/bloodstatue))
-		possible_statues[initial(statues_available)] = statues_available
+	for(var/obj/structure/bloodsucker/bloodstatue/statues_available as anything in subtypesof(/obj/structure/bloodsucker/bloodstatue))
+		possible_statues[statues_available::name] = statues_available
 	var/obj/structure/bloodsucker/bloodstatue/what_type = tgui_input_list(artist, "What kind of statue would you like to make?", "Artist Manual", possible_statues)
 	if(!do_after(artist, 10 SECONDS, src))
 		artist.balloon_alert(artist, "ruined!")
@@ -521,7 +521,7 @@
 	var/area/current_area = get_area(src)
 	if(current_area == bloodsuckerdatum.bloodsucker_lair_area)
 		return
-	bloodsuckerdatum.bloodsucker_lair_area.contained_turfs += current_area.contained_turfs
+	bloodsuckerdatum.bloodsucker_lair_area.turfs_by_zlevel[z] += current_area.turfs_by_zlevel[z]
 
 /obj/structure/bloodsucker/bloodstatue/command/unbolt()
 	. = ..()
@@ -529,7 +529,7 @@
 	var/area/current_area = get_area(src)
 	if(current_area == bloodsuckerdatum.bloodsucker_lair_area)
 		return
-	bloodsuckerdatum.bloodsucker_lair_area.turfs_to_uncontain += current_area.contained_turfs
+	bloodsuckerdatum.bloodsucker_lair_area.turfs_to_uncontain_by_zlevel[z] += current_area.turfs_by_zlevel[z]
 
 /obj/structure/bloodsucker/bloodstatue/greytide
 	name = "greytider bust"
@@ -752,7 +752,7 @@
 	update_appearance(UPDATE_ICON)
 	return TRUE
 
-/obj/structure/bloodsucker/vassalrack/attack_hand(mob/user, list/modifiers)
+/obj/structure/bloodsucker/vassalrack/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -761,7 +761,7 @@
 		return FALSE
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	var/mob/living/carbon/buckled_carbons = pick(buckled_mobs)
-	if(user.a_intent == INTENT_HELP)
+	if(!user.combat_mode)
 		if(istype(bloodsuckerdatum))
 			unbuckle_mob(buckled_carbons)
 			return FALSE
@@ -1241,7 +1241,7 @@
 	// Checks: They're Buckled & Alive.
 	if(IS_BLOODSUCKER(user) && has_buckled_mobs())
 		var/mob/living/carbon/target = pick(buckled_mobs)
-		if(target.stat >= DEAD || user.a_intent == INTENT_HELP)
+		if(target.stat >= DEAD || !user.combat_mode)
 			unbuckle_mob(target)
 			return
 		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))

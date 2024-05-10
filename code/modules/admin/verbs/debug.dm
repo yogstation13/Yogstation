@@ -949,7 +949,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	usr << browse("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>" + replacetext(SSatoms.InitLog(), "\n", "<br>") + "</BODY></HTML>", "window=initlog")
 
 /client/proc/debug_plane_masters()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Edit/Debug Planes"
 	set desc = "Edit and visualize plane masters and their connections (relays)"
 

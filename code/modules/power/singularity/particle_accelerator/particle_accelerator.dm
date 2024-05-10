@@ -58,8 +58,8 @@
 		master = null
 	return ..()
 
-/obj/structure/particle_accelerator/attackby(obj/item/W, mob/user, params)
-	if(user.a_intent == INTENT_HARM)
+/obj/structure/particle_accelerator/attackby(obj/item/W, mob/living/user, params)
+	if(user.combat_mode)
 		return ..()
 	switch(construction_state)
 		if(PA_CONSTRUCTION_UNSECURED)

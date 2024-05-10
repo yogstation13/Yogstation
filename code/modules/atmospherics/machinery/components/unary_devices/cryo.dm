@@ -253,19 +253,28 @@
 		for(var/obj/item/bodypart/limb in C.get_damaged_bodyparts(TRUE, TRUE, FALSE, BODYPART_ROBOTIC))
 			robotic_limb_damage += limb.get_damage(stamina=FALSE)
 
-	if(mob_occupant.health >= mob_occupant.getMaxHealth() - robotic_limb_damage) // Don't bother with fully healed people. Now takes robotic limbs into account.
-		var/has_cryo_wound = FALSE
-		if(C && C.all_wounds)
-			for(var/datum/wound/wound as anything in C.all_wounds)
-				if(wound.wound_flags & ACCEPTS_CRYO)
-					if(!treating_wounds) // if we have wounds and haven't already alerted the doctors we're only dealing with the wounds, let them know
-						playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
-						var/msg = "Patient vitals fully recovered, continuing automated burn treatment."
-						radio.talk_into(src, msg, radio_channel)
-					has_cryo_wound = TRUE
-					break
+	var/datum/gas_mixture/air1 = airs[1]
 
-		treating_wounds = has_cryo_wound
+	if(mob_occupant.health >= mob_occupant.getMaxHealth() - robotic_limb_damage) // Don't bother with fully healed people. Now takes robotic limbs into account.
+		var/has_wound = FALSE
+		if(C && C.all_wounds)
+			if(air1.total_moles() && air1.get_moles(GAS_HEALIUM) > MINIMUM_MOLE_COUNT)
+				if(!treating_wounds) // if we have wounds and haven't already alerted the doctors we're only dealing with the wounds, let them know
+					playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
+					var/msg = "Patient vitals fully recovered, continuing automated wound treatment."
+					radio.talk_into(src, msg, radio_channel)
+				has_wound = TRUE
+			else
+				for(var/datum/wound/wound as anything in C.all_wounds)
+					if(wound.wound_flags & ACCEPTS_CRYO)
+						if(!treating_wounds) // if we have wounds and haven't already alerted the doctors we're only dealing with the wounds, let them know
+							playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
+							var/msg = "Patient vitals fully recovered, continuing automated burn treatment."
+							radio.talk_into(src, msg, radio_channel)
+						has_wound = TRUE
+						break
+
+		treating_wounds = has_wound
 		if(!treating_wounds)
 			set_on(FALSE)
 			playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
@@ -275,8 +284,6 @@
 				open_machine()
 			radio.talk_into(src, msg, radio_channel)
 			return
-
-	var/datum/gas_mixture/air1 = airs[1]
 
 	if(air1.total_moles())
 		if(mob_occupant.bodytemperature < T0C) // Sleepytime. Why? More cryo magic.

@@ -179,7 +179,7 @@
 	name = "snail shell"
 	desc = "You wonder who this came from."
 	icon = 'yogstation/icons/obj/storage.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/back.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/back.dmi'
 	item_state = "snail_green"
 	icon_state = "snail_green"
 	slowdown = 1
@@ -195,7 +195,7 @@
 	name = "green shell backpack"
 	desc = "An emerald-green snail shell converted into a backpack. Still smells of salt."
 	icon = 'yogstation/icons/obj/storage.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/back.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/back.dmi'
 	item_state = "snail_green"
 	icon_state = "snail_green"
 
@@ -203,7 +203,7 @@
 	name = "banana backpack"
 	desc = "Is it a backpack made of bananas or a backpack with a banana texture? The world may never know."
 	icon = 'yogstation/icons/obj/storage.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/back.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/back.dmi'
 	icon_state = "bananabackpack"
 	item_state = "bananabackpack"
 
@@ -211,7 +211,7 @@
 	name = "clown face backpack"
 	desc = "Sometimes there are some things better left off not existing, this is one of them."
 	icon = 'yogstation/icons/obj/storage.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/back.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/back.dmi'
 	icon_state = "clownfacebackpack"
 	item_state = "clownfacebackpack"
 
@@ -224,7 +224,7 @@
 	new /obj/item/clothing/under/yogs/rank/physician(src)
 	new /obj/item/clothing/suit/toggle/labcoat/emt/physician(src)
 	new /obj/item/clothing/head/soft/emt/phys(src)
-	new /obj/item/clothing/under/rank/medical/purple(src)
+	new /obj/item/clothing/under/rank/medical/doctor/purple(src)
 	new /obj/item/clothing/under/yogs/rank/physician/white(src)
 	new /obj/item/clothing/under/yogs/rank/physician/white/skirt(src)
 	new /obj/item/clothing/suit/toggle/labcoat/physician(src)

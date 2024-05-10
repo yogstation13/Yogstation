@@ -28,15 +28,7 @@
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "volumepump"
 	vent_movement = NONE
-
-/obj/machinery/atmospherics/components/binary/volume_pump/CtrlClick(mob/user)
-	if(can_interact(user))
-		on = !on
-		var/msg = "was turned [on ? "on" : "off"] by [key_name(usr)]"
-		investigate_log(msg, INVESTIGATE_ATMOS)
-		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
-		update_appearance(UPDATE_ICON)
-	return ..()
+	quick_toggle = TRUE
 
 /obj/machinery/atmospherics/components/binary/volume_pump/AltClick(mob/user)
 	if(can_interact(user))
@@ -132,11 +124,8 @@
 		return
 	switch(action)
 		if("power")
-			on = !on
-			var/msg = "was turned [on ? "on" : "off"] by [key_name(usr)]"
-			investigate_log(msg, INVESTIGATE_ATMOS)
-			investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
-			. = TRUE
+			toggle_on(usr)
+			return TRUE
 		if("rate")
 			var/rate = params["rate"]
 			if(rate == "max")
@@ -154,7 +143,7 @@
 				var/msg = "was set to [transfer_rate] L/s by [key_name(usr)]"
 				investigate_log(msg, INVESTIGATE_ATMOS)
 				investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
-	update_appearance(UPDATE_ICON)
+				update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/components/binary/volume_pump/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))

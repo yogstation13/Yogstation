@@ -17,7 +17,7 @@
 		var/mob/living/carbon/human/H = loc
 		H.update_hair()
 
-/obj/item/clothing/head/worn_overlays(isinhands = FALSE)
+/obj/item/clothing/head/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(isinhands)
 		return
@@ -46,7 +46,7 @@
 	. = ..()
 	if(!hattable)
 		return
-	if(throwingdatum?.thrower?.zone_selected != BODY_ZONE_HEAD && throwingdatum?.thrower?.a_intent != INTENT_HELP)
+	if(throwingdatum?.thrower?.zone_selected != BODY_ZONE_HEAD)
 		return
 	if(ishuman(hit_atom))
 		var/mob/living/carbon/human/H = hit_atom

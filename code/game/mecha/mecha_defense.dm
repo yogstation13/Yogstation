@@ -199,7 +199,9 @@
 		log_message("Exposed to dangerous temperature.", LOG_MECHA, color="red")
 		take_damage(5, BURN, 0, 1)
 
-/obj/mecha/attackby(obj/item/W as obj, mob/user as mob, params)
+/obj/mecha/attackby(obj/item/W, mob/living/user, params)
+	if(user.combat_mode)
+		return ..()
 
 	if(istype(W, /obj/item/mmi))
 		if(mmi_move_inside(W,user))
@@ -296,7 +298,7 @@
 				to_chat(user, span_notice("There's already a capacitor installed."))
 		return
 
-	else if(W.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM)
+	else if(W.tool_behaviour == TOOL_WELDER && !user.combat_mode)
 		user.changeNext_move(CLICK_CD_MELEE)
 		if(atom_integrity < max_integrity)
 			if(W.use_tool(src, user, 0, volume=50, amount=1))
@@ -350,7 +352,7 @@
 
 
 /obj/mecha/mech_melee_attack(obj/mecha/M, punch_force, equip_allowed = TRUE)
-	log_combat(M.occupant, src, "attacked", M, "(INTENT: [uppertext(M.occupant.a_intent)]) (DAMTYPE: [uppertext(M.damtype)])")
+	log_combat(M.occupant, src, "attacked", M, "(COMBAT MODE: [M.occupant.combat_mode ? "ON" : "OFF"]) (DAMTYPE: [uppertext(M.damtype)])")
 	return ..(M, punch_force / 2, equip_allowed)
 
 /obj/mecha/proc/full_repair(charge_cell)

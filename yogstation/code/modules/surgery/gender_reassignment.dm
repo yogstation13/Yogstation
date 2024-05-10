@@ -26,7 +26,12 @@
 	success_sound = 'sound/surgery/scalpel2.ogg'
 
 /datum/surgery/gender_reassignment/can_start(mob/user, mob/living/carbon/target)
-	if(target.dna && ((AGENDER in target.dna.species.species_traits) || (MGENDER in target.dna.species.species_traits) || (FGENDER in target.dna.species.species_traits)))
+	if(!target.dna)
+		return FALSE
+	var/list/possible_genders = target.dna.species.possible_genders
+	if(possible_genders.len < 2) // there is only one gender
+		return FALSE
+	if(!(FEMALE in possible_genders) || !(MALE in possible_genders)) // YOU NEED. MORE. GENDERS.
 		return FALSE
 	return TRUE
 
@@ -52,6 +57,6 @@
 	var/mob/living/carbon/human/H = target
 	H.gender_ambiguous = 1
 	user.visible_message(span_warning("[user] accidentally mutilates [target]'s genitals beyond the point of recognition!"), span_warning("You accidentally mutilate [target]'s genitals beyond the point of recognition!"))
-	target.gender = pick(MALE, FEMALE)
+	target.gender = pick(target.dna.species.possible_genders)
 	target.regenerate_icons()
 	return 1

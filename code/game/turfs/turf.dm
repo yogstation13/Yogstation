@@ -231,14 +231,17 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		return
 	user.Move_Pulled(src)
 
+/// Call to move a turf from its current area to a new one
 /turf/proc/change_area(area/old_area, area/new_area)
 	//dont waste our time
 	if(old_area == new_area)
 		return
 
 	//move the turf
-	old_area.turfs_to_uncontain += src
-	new_area.contained_turfs += src
+	LISTASSERTLEN(old_area.turfs_to_uncontain_by_zlevel, z, list())
+	LISTASSERTLEN(new_area.turfs_by_zlevel, z, list())
+	old_area.turfs_to_uncontain_by_zlevel[z] += src
+	new_area.turfs_by_zlevel[z] += src
 	new_area.contents += src
 
 	//changes to make after turf has moved

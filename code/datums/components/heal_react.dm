@@ -25,7 +25,7 @@
 	///internal check for if we are being healed by ourselves, no double dipping
 	var/idiotcooldown = FALSE
 
-/datum/component/heal_react/boost/Initialize(boost_set, var/list/damtype_set)
+/datum/component/heal_react/boost/Initialize(boost_set, list/damtype_set)
 	if(boost_set)
 		boost_amount = boost_set
 	if(damtype_set)

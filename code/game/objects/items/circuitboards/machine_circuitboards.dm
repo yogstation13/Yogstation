@@ -498,9 +498,9 @@
 	var/cash_register = FALSE
 	req_components = list()
 
-/obj/item/circuitboard/machine/paystand/attackby(obj/item/held_item, mob/user, params)
+/obj/item/circuitboard/machine/paystand/attackby(obj/item/held_item, mob/living/user, params)
 	if(held_item.tool_behaviour)
-		if(held_item.tool_behaviour == TOOL_SCREWDRIVER && user.a_intent == INTENT_HELP)
+		if(held_item.tool_behaviour == TOOL_SCREWDRIVER && !user.combat_mode)
 			if(cash_register)
 				to_chat(user,span_info("You change the holo-emitter selector to it's default setting."))
 				build_path = /obj/machinery/paystand
@@ -909,7 +909,7 @@
 
 /obj/item/circuitboard/machine/mindmachine_hub
 	name = "Mind Machine Hub (Machine Board)"
-	icon_state = "medical"
+	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/mindmachine_hub
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 2,
@@ -919,7 +919,7 @@
 
 /obj/item/circuitboard/machine/mindmachine_pod
 	name = "Mind Machine Pod (Machine Board)"
-	icon_state = "medical"
+	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/mindmachine_pod
 	req_components = list(
 		/obj/item/stock_parts/scanning_module = 2,
@@ -1086,7 +1086,7 @@
 
 /obj/item/circuitboard/machine/networking_machine
 	name = "Networking Machine (Machine Board)"
-	icon_state = "science"
+	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/ai/networking
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 4,
@@ -1097,7 +1097,7 @@
 
 /obj/item/circuitboard/machine/subcontroller
 	name = "Subcontroller (Machine Board)"
-	icon_state = "science"
+	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/ai/master_subcontroller
 	req_components = list(
 		/obj/item/stock_parts/capacitor = 4,

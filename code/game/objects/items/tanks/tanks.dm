@@ -381,11 +381,11 @@
 	if(tank_assembly)
 		tank_assembly.on_found(finder)
 
-/obj/item/tank/attack_hand() //also for mousetraps
+/obj/item/tank/attack_hand(mob/user, modifiers) //also for mousetraps
 	if(..())
 		return
 	if(tank_assembly)
-		tank_assembly.attack_hand()
+		tank_assembly.attack_hand(user, modifiers)
 
 /obj/item/tank/Move()
 	..()

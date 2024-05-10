@@ -63,7 +63,7 @@
 
 /datum/outfit/freeminer
 	name = "Free Miner"
-	uniform = /obj/item/clothing/under/rank/miner
+	uniform = /obj/item/clothing/under/rank/cargo/miner
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	gloves = /obj/item/clothing/gloves/color/black
 	back = /obj/item/storage/backpack/industrial
@@ -88,7 +88,7 @@
 	prompt_name = "a free miner engineer"
 
 /datum/outfit/freeminer/engi
-	uniform = /obj/item/clothing/under/overalls
+	uniform = /obj/item/clothing/under/rank/cargo/overalls
 	l_pocket = null
 	r_pocket = null
 	gloves = /obj/item/clothing/gloves/color/yellow
@@ -108,7 +108,7 @@
 	return TRUE
 
 /datum/outfit/freeminer/captain
-	uniform = /obj/item/clothing/under/rank/vice
+	uniform = /obj/item/clothing/under/suit/vice
 	back = /obj/item/storage/backpack
 	l_pocket = /obj/item/melee/classic_baton/telescopic
 	r_pocket = null

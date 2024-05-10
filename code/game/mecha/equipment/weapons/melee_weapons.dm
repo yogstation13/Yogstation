@@ -72,7 +72,7 @@
 		return 0
 	if (targloc == curloc)
 		return 0
-	if(target == targloc && !(chassis.occupant.a_intent == INTENT_HELP) && cleave)	//If we are targetting a location, not an object or mob, and we're not in a passive stance
+	if(target == targloc && chassis.occupant.combat_mode && cleave)	//If we are targetting a location, not an object or mob, and we're not in a passive stance
 		cleave_attack()
 	else if(precise_attacks && (get_dist(src,target) <= (1 + extended_range)) && can_stab_at(chassis, target) && !istype(target, /obj/item) && !istype(target, /obj/effect))	//If we are targetting something stabbable and they're within reach
 		if(istype(target, /turf/open) && !can_stab_turfs)
@@ -304,6 +304,12 @@
 	attack_sound = 'sound/weapons/egloves.ogg'
 	var/special_hit_stamina_damage = 75	//A bit stronger than a normal baton
 	var/stunforce = 12 SECONDS	//Stuns a little harder too
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong/action_checks(atom/target)
+	. = ..()
+	if(. && HAS_TRAIT(chassis.occupant, TRAIT_NO_STUN_WEAPONS))
+		to_chat(chassis.occupant, span_warning("You cannot use non-lethal weapons!"))
+		return FALSE
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong/special_hit(atom/target)	//It's a stun baton. It stuns.
 	if(ishuman(target))
@@ -631,6 +637,8 @@
 			playsound(moved_atom, 'sound/effects/gib_step.ogg', 50, 1)
 			qdel(moved_atom)
 			continue
+		if(isobserver(moved_atom))
+			continue // what the fuck?
 		if(moved_atom.wash(CLEAN_SCRUB))
 			cleaned = TRUE
 		if(moved_atom.anchored)
@@ -669,6 +677,7 @@
 		/mob/living/simple_animal/hostile/poison/bees,
 		/mob/living/simple_animal/butterfly,
 		/mob/living/simple_animal/cockroach,
+		/mob/living/simple_animal/hostile/glockroach,
 		/obj/item/queen_bee
 	))
 
