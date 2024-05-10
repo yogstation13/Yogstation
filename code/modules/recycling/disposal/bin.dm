@@ -437,7 +437,7 @@
 		. += "[base_icon_state]-handle"
 
 	if(mounted_tagger)
-		. += "tagger_mount"
+		. += "[base_icon_state]-tagger_mount"
 
 	//only handle is shown if no power
 	if(stat & NOPOWER || panel_open)
