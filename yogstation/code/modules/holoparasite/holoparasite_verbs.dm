@@ -6,7 +6,7 @@
 	set category = "Holoparasite"
 	set desc = "Choose the phrase (or lack thereof) to shout whenever you attack."
 
-	var/new_battlecry = tgui_input_text(src, "What do you want your battlecry to be? Max length of [HOLOPARA_MAX_BATTLECRY_LENGTH] characters. Leave blank if you do not want a battlecry.", default = battlecry, max_length = HOLOPARA_MAX_BATTLECRY_LENGTH, encode = FALSE)
+	var/new_battlecry = tgui_input_text(src, "What do you want your battlecry to be? Max length of [HOLOPARA_MAX_BATTLECRY_LENGTH] characters. Leave blank if you do not want a battlecry.", default = battlecry, max_length = HOLOPARA_MAX_BATTLECRY_LENGTH)
 	set_battlecry(new_battlecry)
 
 /**

@@ -157,7 +157,6 @@
 		return
 	var/message = tgui_input_text(usr, "What would you like to respond to the telepathic message with?", "Telepathic Response", timeout = can_respond_until[usr] - world.time)
 	if(!message || !length(message) || !can_respond(usr))
-		return
 		to_chat(usr, "<span class='warning'>You cannot send a telepathic response that contains prohibited words.</span>")
 		return
 	SSblackbox.record_feedback("amount", "holoparasite_telepathy_responses", 1)
