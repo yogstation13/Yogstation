@@ -19,9 +19,7 @@
 	var/pressure_charging = TRUE
 	// True if flush handle is pulled
 	var/flush = FALSE
-	// True if meets a weight requirement
-	var/flush_emergency = FALSE
-
+	
 	/// The attached pipe trunk
 	var/obj/structure/disposalpipe/trunk/trunk = null
 	/// True if flushing in progress
@@ -113,7 +111,7 @@
 			return
 		place_item_in_disposal(I, user)
 		update_appearance()
-		return 1 //no afterattack
+		return TRUE //no afterattack
 	else
 		return ..()
 
@@ -287,7 +285,8 @@
 			STR.remove_from_storage(O,src)
 		b.update_appearance()
 		update_appearance()
-	if(istype(I,	/obj/item/destTagger))
+	if(istype(I, /obj/item/destTagger))
+		return
 	else
 		return ..()
 
@@ -308,7 +307,7 @@
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 		mounted_tagger = new_tagger
 		update_appearance()
-		return
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	else
 		return ..()
 
@@ -583,8 +582,3 @@
 /obj/machinery/disposal/deliveryChute/newHolderDestination(obj/structure/disposalholder/H)
 	H.destinationTag = 1
 
-/obj/machinery/disposal/bin/MouseDrop_T(atom/dropping, mob/user)
-	if(istype(dropping, /obj/structure/closet))
-		attackby(dropping, user)
-	else
-		..()
