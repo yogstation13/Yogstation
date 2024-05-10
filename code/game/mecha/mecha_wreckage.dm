@@ -73,7 +73,7 @@
 	if(AI)
 		. += span_notice("The AI recovery beacon is active.")
 
-/obj/structure/mecha_wreckage/attackby(obj/item/I, mob/user, params)
+/obj/structure/mecha_wreckage/attackby(obj/item/I, mob/living/user, params)
 	if(!can_be_reconstructed)
 		return ..()
 	if(!repair_efficiency)
@@ -81,7 +81,7 @@
 	
 	switch(state)
 		if(MECHA_WRECK_CUT)
-			if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP)
+			if(I.tool_behaviour == TOOL_WELDER && !user.combat_mode)
 				user.visible_message(span_notice("[user] begins to weld together \the [src]'s broken parts..."),
 										span_notice("You begin welding together \the [src]'s broken parts..."))
 				if(I.use_tool(src, user, 200/repair_efficiency, amount = 5, volume = 100, robo_check = TRUE))
@@ -90,7 +90,7 @@
 					to_chat(user, span_notice("The parts are loosely reattached, but are dented wildly out of place."))
 				return
 		if(MECHA_WRECK_DENTED)
-			if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP)
+			if(I.tool_behaviour == TOOL_WELDER && !user.combat_mode)
 				user.visible_message(span_notice("[user] welds out the many, many dents in \the [src]'s chassis..."),
 										span_notice("You weld out the many, many dents in \the [src]'s chassis..."))
 				if(I.use_tool(src, user, 200/repair_efficiency, amount = 5, volume = 100, robo_check = TRUE))

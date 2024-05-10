@@ -79,6 +79,12 @@
 		return 
 	return ..()
 
+/obj/item/kinetic_javelin/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
+	if(user.get_active_held_item() != src)
+		return SECONDARY_ATTACK_CALL_NORMAL
+	user.throw_item(target)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
 /obj/item/kinetic_javelin/examine(mob/user)
 	. = ..()
 	. += "Successfully striking an enemy with a thrown kinetic javelin increases it's charge. Missing resets charges to 0."

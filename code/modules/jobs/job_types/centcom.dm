@@ -6,7 +6,7 @@
 	name = "CentCom Official"
 	var/pdaequip = TRUE
 
-	uniform = /obj/item/clothing/under/rank/centcom_officer
+	uniform = /obj/item/clothing/under/rank/centcom/officer
 	suit = null
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	gloves = /obj/item/clothing/gloves/color/black
@@ -50,7 +50,7 @@
 /datum/outfit/centcom/captain //CentCom Captain. Essentially a station captain.
 	name = "CentCom Captain"
 
-	uniform = /obj/item/clothing/under/rank/centcom_commander
+	uniform = /obj/item/clothing/under/rank/centcom/commander
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/centcom
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	gloves = /obj/item/clothing/gloves/color/captain/centcom
@@ -83,7 +83,7 @@
 /datum/outfit/centcom/major //CentCom Major.
 	name = "CentCom Major"
 
-	uniform = /obj/item/clothing/under/rank/centcom_commander
+	uniform = /obj/item/clothing/under/rank/centcom/commander
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/centcom
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	gloves = /obj/item/clothing/gloves/color/captain/centcom
@@ -117,7 +117,7 @@
 /datum/outfit/centcom/commander //CentCom Commander.
 	name = "CentCom Commodore"
 
-	uniform = /obj/item/clothing/under/rank/centcom_commander
+	uniform = /obj/item/clothing/under/rank/centcom/commander
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/centcom
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	gloves = /obj/item/clothing/gloves/color/captain/centcom
@@ -152,7 +152,7 @@
 /datum/outfit/centcom/colonel //CentCom Commander.
 	name = "CentCom Colonel"
 
-	uniform = /obj/item/clothing/under/rank/centcom_commander
+	uniform = /obj/item/clothing/under/rank/centcom/commander
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/centcom
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	gloves = /obj/item/clothing/gloves/color/captain/centcom
@@ -187,7 +187,7 @@
 /datum/outfit/centcom/rear_admiral //CentCom Rear-Admiral. Low-tier admiral.
 	name = "CentCom Rear-Admiral"
 
-	uniform = /obj/item/clothing/under/rank/centcom_admiral
+	uniform = /obj/item/clothing/under/rank/centcom/admiral
 	suit = null
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	gloves = /obj/item/clothing/gloves/color/captain/centcom
@@ -222,7 +222,7 @@
 /datum/outfit/centcom/admiral //CentCom Admiral.
 	name = "CentCom Admiral"
 
-	uniform = /obj/item/clothing/under/rank/centcom_admiral
+	uniform = /obj/item/clothing/under/rank/centcom/admiral
 	suit = null
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	gloves = /obj/item/clothing/gloves/color/captain/centcom
@@ -257,7 +257,7 @@
 /datum/outfit/centcom/executive_admiral //CentCom Executive Admiral. The final boss.
 	name = "CentCom Executive Admiral"
 
-	uniform = /obj/item/clothing/under/rank/centcom_admiral/executive
+	uniform = /obj/item/clothing/under/rank/centcom/admiral/executive
 	suit = null
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/color/captain/centcom/admiral

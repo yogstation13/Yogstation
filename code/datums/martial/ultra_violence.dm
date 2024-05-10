@@ -1,6 +1,5 @@
 #define IPCMARTIAL "ipcmartialtrait"
 #define GUN_HAND "HG"
-#define POCKET_PISTOL "GG"
 #define BLOOD_BURST "HH"
 #define MAX_DASH_DIST 4
 #define DASH_SPEED 2
@@ -19,8 +18,8 @@
 	help_verb = /mob/living/carbon/human/proc/ultra_violence_help
 	gun_exceptions = list(/obj/item/gun/ballistic/revolver/ipcmartial)
 	no_gun_message = "This gun is not compliant with Ultra Violence standards."
+	martial_traits = list(TRAIT_NOSOFTCRIT, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_NOLIMBDISABLE, TRAIT_NO_STUN_WEAPONS, TRAIT_NODISMEMBER, TRAIT_STUNIMMUNE, TRAIT_SLEEPIMMUNE, TRAIT_NO_HOLDUP)
 	///used to keep track of the dash stuff
-	var/recalibration = /mob/living/carbon/human/proc/violence_recalibration
 	var/dashing = FALSE
 	var/dashes = 3
 	var/dash_timer = null
@@ -38,12 +37,7 @@
 	if(!can_use(A) || D.stat == DEAD)//stop hitting a corpse
 		return FALSE
 
-	if(findtext(streak, POCKET_PISTOL))
-		streak = ""
-		pocket_pistol(A,D)
-		return TRUE
-
-	if(A == D) //you can pull your gun out by "grabbing" yourself
+	if(A == D)
 		return FALSE
 
 	if(findtext(streak, BLOOD_BURST))
@@ -73,19 +67,28 @@
 		handle_style(A, 0.1, STYLE_PUNCH)
 	return FALSE
 
-/datum/martial_art/ultra_violence/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/A) //moved this here because it's not just for dashing anymore
-	if(!(H.a_intent in list(INTENT_DISARM, INTENT_GRAB)) || !can_use(H) || get_turf(H) == get_turf(A))
-		return FALSE
+/datum/martial_art/ultra_violence/proc/on_click(mob/living/carbon/human/H, atom/target, params) //moved this here because it's not just for dashing anymore
+	var/list/modifiers = params2list(params)
+	if(!can_use(H) || modifiers[SHIFT_CLICK] || modifiers[CTRL_CLICK] || modifiers[ALT_CLICK])
+		return NONE
 
-	H.face_atom(A)
-	if(H.a_intent == INTENT_DISARM)
-		dash(H, A)
-		return TRUE
-	else if(H.a_intent == INTENT_GRAB && !H.get_active_held_item() && !((ishuman(A) || isitem(A)) && H.Adjacent(A)) && COOLDOWN_FINISHED(src, next_parry))
-		parry(H, A)
-		return TRUE
-	else
-		return FALSE
+	H.face_atom(target)
+	if(modifiers[RIGHT_CLICK])
+		if(H == target)
+			pocket_pistol(H, target) // right click yourself to pull out your gun
+			return COMSIG_MOB_CANCEL_CLICKON
+		else if(get_dist(H, target) <= 1 && ishuman(target))
+			if(H.next_move <= world.time)
+				grab_act(H, target) // right click in melee to complete gun hand combo
+				check_streak(H, target)
+				return COMSIG_MOB_CANCEL_CLICKON
+		else
+			dash(H, target) // right click at range for dash
+			return COMSIG_MOB_CANCEL_CLICKON
+	else if(H.combat_mode && get_turf(H) != get_turf(target) && !H.get_active_held_item())
+		parry(H, target) // left click for parry
+		return COMSIG_MOB_CANCEL_CLICKON
+	return NONE
 
 /*---------------------------------------------------------------
 
@@ -128,6 +131,7 @@
 ---------------------------------------------------------------*/
 /datum/martial_art/ultra_violence/proc/pocket_pistol(mob/living/carbon/human/A)
 	var/obj/item/gun/ballistic/revolver/ipcmartial/gun = locate() in A // check if they already had one
+	playsound(A, 'sound/items/change_jaws.ogg', 20, FALSE)//changed to be distinct from new IPC walk sound
 	if(gun)
 		to_chat(A, span_notice("You reload your revolver."))
 		gun.magazine.top_off()
@@ -308,17 +312,27 @@
 ---------------------------------------------------------------*/
 
 // really hard to pull off but it's cool as hell when you do
-/datum/martial_art/ultra_violence/proc/parry(mob/living/carbon/human/H, atom/A)
+/datum/martial_art/ultra_violence/proc/parry(mob/living/carbon/human/H, atom/target)
 	if(!COOLDOWN_FINISHED(src, next_parry))
 		return
-	COOLDOWN_START(src, next_parry, CLICK_CD_MELEE * H.next_move_modifier)
-	var/parry_angle = round(get_angle(H, A), 45)
+	var/parry_angle = round(get_angle(H, target), 45)
 	var/turf/starting_turf = get_turf(H)
-	var/turf/parried_tiles = list(starting_turf, get_turf_in_angle(parry_angle, starting_turf), get_turf_in_angle(parry_angle + 45, starting_turf), get_turf_in_angle(parry_angle - 45, starting_turf))
+	var/turf/center_turf = get_step(starting_turf, angle2dir(parry_angle))
+	var/list/parried_tiles = spiral_range_turfs(1, center_turf)
 	var/successful_parry = FALSE
+
+	// all roads lead to COMSIG_MOB_CANCEL_CLICKON so do the normal punch on the enemy in front of you
+	var/list/punch_targets = list()
+	for(var/mob/living/possible_target in range(1, center_turf))
+		if(H != possible_target && H.CanReach(possible_target))
+			punch_targets |= possible_target
+	if(punch_targets.len > 0)
+		var/mob/living/living_target = get_closest_atom(/mob/living, punch_targets, center_turf)
+		if(living_target)
+			H.UnarmedAttack(living_target, TRUE)
+
+	// parry time
 	for(var/turf/parried_tile in parried_tiles)
-		if(!istype(parried_tile))
-			continue
 		for(var/thing in parried_tile.contents)
 			if(isprojectile(thing))
 				var/obj/projectile/P = thing
@@ -326,15 +340,21 @@
 				P.damage *= 1.5
 				P.speed *= 0.5
 				P.impacted = list()
-				P.fire(get_angle(H, A)) // parry the projectile towards wherever you clicked
+				P.fire(get_angle(H, target)) // parry the projectile towards wherever you clicked
 				successful_parry = TRUE
+	
+	// style bonus for successful parry
 	if(successful_parry)
 		H.visible_message(span_danger("[H] parries the projectile!"))
 		H.balloon_alert(H, "+PARRY")
 		handle_style(H, 0.5)
 		playsound(H, 'sound/weapons/ricochet.ogg', 75, 1)
+		COOLDOWN_START(src, next_parry, CLICK_CD_MELEE * H.next_move_modifier * 0.5)
 	else
 		playsound(H, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+		COOLDOWN_START(src, next_parry, CLICK_CD_MELEE * H.next_move_modifier)
+	H.do_attack_animation(center_turf)
+	new /obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack(get_turf(H), angle2dir(parry_angle))
 
 /*---------------------------------------------------------------
 
@@ -397,25 +417,15 @@
 	to_chat(usr, span_notice("You are immune to stuns and cannot be slowed by damage."))
 	to_chat(usr, span_notice("You will deflect emps while throwmode is enabled, releases the energy into anyone nearby."))
 	to_chat(usr, span_warning("Your disarm has been replaced with a charged-based dash system."))
-	to_chat(usr, span_warning("Your grab has been replaced with the ability to parry projectiles in the direction of your click.")) //seriously, no pushing or clinching, that's boring, just kill
+	to_chat(usr, span_warning("Your punch now has the ability to parry projectiles in the direction of your click.")) //seriously, no pushing or clinching, that's boring, just kill
 	to_chat(usr, span_notice("<b>Getting covered in blood will heal you, but taking too much damage will build up \"hard damage\" which cannot be healed and decays over time.</b>"))
 
-	to_chat(usr, "[span_notice("Disarm Intent")]: Dash in a direction granting brief invulnerability.")
-	to_chat(usr, "[span_notice("Pocket Revolver")]: Grab Grab. Puts a loaded revolver in your hand for three shots. Target must be living, but can be yourself.")
-	to_chat(usr, "[span_notice("Gun Hand")]: Harm Grab. Shoots the target with the shotgun in your hand.")
-	to_chat(usr, "[span_notice("Blood Burst")]: Harm Harm. Explodes blood from the target, covering you in blood and healing for a bit. Executes people in hardcrit exploding more blood everywhere and giving a style bonus.")
+	to_chat(usr, "[span_notice("Dash")]: Right click away from you to dash in a direction granting brief invulnerability.")
+	to_chat(usr, "[span_notice("Pocket Revolver")]: Right-click yourself. Puts a loaded revolver in your hand for three shots. Target must be living, but can be yourself.")
+	to_chat(usr, "[span_notice("Gun Hand")]: Punch, then shove. Shoots the target with the shotgun in your hand.")
+	to_chat(usr, "[span_notice("Blood Burst")]: Punch twice. Explodes blood from the target, covering you in blood and healing for a bit. Executes people in hardcrit exploding more blood everywhere and giving a style bonus.")
 	to_chat(usr, span_notice("Avoiding damage and using a variety of techniques will increase your style, which gives a speed boost and makes hard damage decay faster.")) // if you want to go fast you need to earn it
 	to_chat(usr, span_notice("Should your dash cease functioning, use the 'Reinitialize Module' function."))
-
-/mob/living/carbon/human/proc/violence_recalibration()
-	set name = "Reinitialize Module"
-	set desc = "Turn your Ultra Violence module off and on again to fix problems."
-	set category = "Ultra Violence"
-	var/list/combined_msg = list()
-	combined_msg +=  "<b><i>You reboot your Ultra Violence module to remove any runtime errors.</i></b>"
-	to_chat(usr, examine_block(combined_msg.Join("\n")))
-
-	usr.click_intercept = usr.mind.martial_art
 
 /datum/martial_art/ultra_violence/teach(mob/living/carbon/human/H, make_temporary=0)//brace your eyes for this mess of buffs
 	..()
@@ -424,16 +434,8 @@
 	H.dna.species.punchdamagehigh += 4 //no fancy comboes, just punches
 	H.dna.species.punchstunthreshold += 50 //disables punch stuns
 	H.dna.species.staminamod = 0 //my god, why must you make me add all these additional things, stop trying to disable them, just kill them
-	ADD_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)
-	ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, IPCMARTIAL)
-	ADD_TRAIT(H, TRAIT_NOLIMBDISABLE, IPCMARTIAL)
-	ADD_TRAIT(H, TRAIT_NO_STUN_WEAPONS, IPCMARTIAL)
-	ADD_TRAIT(H, TRAIT_NODISMEMBER, IPCMARTIAL)
-	ADD_TRAIT(H, TRAIT_STUNIMMUNE, IPCMARTIAL)///mainly so emps don't end you instantly, they still do damage though
-	ADD_TRAIT(H, TRAIT_SLEEPIMMUNE, IPCMARTIAL) // what the fuck are you sleeping for? KEEP EM COMING!!
+	RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(on_click)) // death to click_intercept
 	H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dashes+1)
-	add_verb(H, recalibration)
-	usr.click_intercept = src //probably breaks something, don't know what though
 	H.dna.species.GiveSpeciesFlight(H)//because... c'mon
 
 /datum/martial_art/ultra_violence/on_remove(mob/living/carbon/human/H)
@@ -443,21 +445,12 @@
 	H.dna.species.punchdamagehigh -= 4
 	H.dna.species.punchstunthreshold -= 50
 	H.dna.species.staminamod = initial(H.dna.species.staminamod)
-	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)
-	REMOVE_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, IPCMARTIAL)
-	REMOVE_TRAIT(H, TRAIT_NOLIMBDISABLE, IPCMARTIAL)
-	REMOVE_TRAIT(H, TRAIT_NO_STUN_WEAPONS, IPCMARTIAL)
-	REMOVE_TRAIT(H, TRAIT_NODISMEMBER, IPCMARTIAL)
-	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, IPCMARTIAL)
-	REMOVE_TRAIT(H, TRAIT_SLEEPIMMUNE, IPCMARTIAL)
+	UnregisterSignal(H, COMSIG_MOB_CLICKON)
 	deltimer(dash_timer)
 	H.clear_alert("dash_charge")
-	remove_verb(H, recalibration)
-	usr.click_intercept = null //un-breaks the thing that i don't know is broken
 	//not likely they'll lose the martial art i guess, so i guess they can keep the wings since i don't know how to remove them
 
 #undef GUN_HAND
-#undef POCKET_PISTOL
 #undef BLOOD_BURST
 #undef MAX_DASH_DIST
 #undef DASH_SPEED

@@ -78,5 +78,5 @@
 	limb_req = BODY_ZONE_HEAD
 
 /datum/mutation/human/laser_eyes/on_ranged_attack(atom/target, mouseparams)
-	if(owner.a_intent == INTENT_HARM)
+	if(owner.combat_mode)
 		owner.LaserEyes(target, mouseparams)

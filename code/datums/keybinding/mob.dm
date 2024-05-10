@@ -19,30 +19,6 @@
 	return TRUE
 
 
-/datum/keybinding/mob/cycle_intent_right
-	hotkey_keys = list("Northwest") // HOME
-	name = "cycle_intent_right"
-	full_name = "Cycle intent right"
-	description = ""
-
-/datum/keybinding/mob/cycle_intent_right/down(client/user)
-	var/mob/M = user.mob
-	M.a_intent_change(INTENT_HOTKEY_RIGHT)
-	return TRUE
-
-
-/datum/keybinding/mob/cycle_intent_left
-	hotkey_keys = list("Insert")
-	name = "cycle_intent_left"
-	full_name = "Cycle intent left"
-	description = ""
-
-/datum/keybinding/mob/cycle_intent_left/down(client/user)
-	var/mob/M = user.mob
-	M.a_intent_change(INTENT_HOTKEY_LEFT)
-	return TRUE
-
-
 /datum/keybinding/mob/swap_hands
 	hotkey_keys = list("X")
 	classic_keys = list("Northeast") // PAGEUP
@@ -221,7 +197,7 @@
 
 
 /datum/keybinding/mob/prevent_movement
-	hotkey_keys = list("Ctrl")
+	hotkey_keys = list("Alt")
 	name = "block_movement"
 	full_name = "Block movement"
 	description = "Prevents you from moving"
@@ -235,7 +211,7 @@
 
 
 /datum/keybinding/mob/pixel_shift
-	hotkey_keys = list("CtrlShift")
+	hotkey_keys = list("AltShift")
 	name = "pixel_shift"
 	full_name = "Pixel shift"
 	description = "Allows you to shift your characters by a few pixels"

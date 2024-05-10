@@ -47,6 +47,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		A.add_overlay(overlay_state)
 	A.name = "[initial(A.name)] ([gpstag])"
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(interact))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_SECONDARY, PROC_REF(interact))
 	if(!emp_proof)
 		RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, PROC_REF(on_emp_act))
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
@@ -58,6 +59,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 
 	if(user)
 		INVOKE_ASYNC(src, PROC_REF(ui_interact), user)
+	return COMPONENT_NO_INTERACT
 
 ///Called on COMSIG_ATOM_EXAMINE
 /datum/component/gps/item/proc/on_examine(datum/source, mob/user, list/examine_list)

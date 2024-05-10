@@ -4,7 +4,7 @@
 
 	Otherwise pretty standard.
 */
-/mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
+/mob/living/carbon/human/UnarmedAttack(atom/A, proximity, modifiers)
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		if(src == A)
 			check_self_for_injuries()
@@ -25,31 +25,47 @@
 	// If the gloves do anything, have them return 1 to stop
 	// normal attack_hand() here.
 	var/obj/item/clothing/gloves/G = gloves // not typecast specifically enough in defines
-	if(proximity && istype(G) && G.Touch(A,1))
+	if(proximity && istype(G) && G.Touch(A, 1, modifiers))
+		return
+
+	if(SEND_SIGNAL(src, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, A, modifiers) & COMPONENT_NO_ATTACK_HAND)
 		return
 
 	var/override = 0
-	override = SEND_SIGNAL(src, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, A) & COMPONENT_NO_ATTACK_HAND
 	for(var/datum/mutation/human/HM in dna.mutations)
-		override += HM.on_attack_hand(A, proximity)
+		override = HM.on_attack_hand(A, proximity)
 	if(override)
 		return
 
 	SEND_SIGNAL(src, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, A)
-	A.attack_hand(src)
+	if(modifiers[RIGHT_CLICK])
+		var/secondary_result = A.attack_hand_secondary(src, modifiers)
+		if(secondary_result == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN || secondary_result == SECONDARY_ATTACK_CONTINUE_CHAIN)
+			return
+		else if(secondary_result != SECONDARY_ATTACK_CALL_NORMAL)
+			CRASH("attack_hand_secondary did not return a SECONDARY_ATTACK_* define.")
+
+	A.attack_hand(src, modifiers)
 
 //Return TRUE to cancel other attack hand effects that respect it.
-/atom/proc/attack_hand(mob/user)
+/atom/proc/attack_hand(mob/user, modifiers)
 	. = FALSE
 	if(!(interaction_flags_atom & INTERACT_ATOM_NO_FINGERPRINT_ATTACK_HAND))
 		add_fingerprint(user)
-	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user) & COMPONENT_NO_ATTACK_HAND)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user, modifiers) & COMPONENT_NO_ATTACK_HAND)
 		. = TRUE
 	if(interaction_flags_atom & INTERACT_ATOM_ATTACK_HAND)
-		. = _try_interact(user)
+		. = _try_interact(user, modifiers)
+
+/// When the user uses their hand on an item while holding right-click
+/// Returns a SECONDARY_ATTACK_* value.
+/atom/proc/attack_hand_secondary(mob/user, modifiers)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND_SECONDARY, user, modifiers) & COMPONENT_CANCEL_ATTACK_CHAIN)
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	return SECONDARY_ATTACK_CALL_NORMAL
 
 //Return a non FALSE value to cancel whatever called this from propagating, if it respects it.
-/atom/proc/_try_interact(mob/user)
+/atom/proc/_try_interact(mob/user, modifiers)
 	if(IsAdminGhost(user))		//admin abuse
 		return interact(user)
 	if(can_interact(user))
@@ -95,7 +111,8 @@
 	. = ..()
 	if(gloves)
 		var/obj/item/clothing/gloves/G = gloves
-		if(istype(G) && G.Touch(A,0)) // for magic gloves
+		var/list/modifiers = params2list(mouseparams)
+		if(istype(G) && G.Touch(A, 0, modifiers)) // for magic gloves
 			return
 
 	for(var/datum/mutation/human/HM in dna.mutations)
@@ -108,10 +125,10 @@
 /*
 	Animals & All Unspecified
 */
-/mob/living/UnarmedAttack(atom/A)
-	A.attack_animal(src)
+/mob/living/UnarmedAttack(atom/A, proximity, modifiers)
+	A.attack_animal(src, modifiers)
 
-/atom/proc/attack_animal(mob/user)
+/atom/proc/attack_animal(mob/user, modifiers)
 	return
 
 /mob/living/RestrainedClickOn(atom/A)
@@ -120,10 +137,10 @@
 /*
 	Monkeys
 */
-/mob/living/carbon/monkey/UnarmedAttack(atom/A)
-	A.attack_paw(src)
+/mob/living/carbon/monkey/UnarmedAttack(atom/A, proximity, modifiers)
+	A.attack_paw(src, modifiers)
 
-/atom/proc/attack_paw(mob/user)
+/atom/proc/attack_paw(mob/user, modifiers)
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_PAW, user) & COMPONENT_NO_ATTACK_HAND)
 		return TRUE
 	return FALSE
@@ -138,7 +155,7 @@
 /mob/living/carbon/monkey/RestrainedClickOn(atom/A)
 	if(..())
 		return
-	if(a_intent != INTENT_HARM || !ismob(A))
+	if(!combat_mode || !ismob(A))
 		return
 	if(is_muzzled())
 		return
@@ -166,17 +183,18 @@
 	Aliens
 	Defaults to same as monkey in most places
 */
-/mob/living/carbon/alien/UnarmedAttack(atom/A)
-	A.attack_alien(src)
+/mob/living/carbon/alien/UnarmedAttack(atom/A, proximity, modifiers)
+	A.attack_alien(src, modifiers)
 
-/atom/proc/attack_alien(mob/living/carbon/alien/user)
-	attack_paw(user)
+/atom/proc/attack_alien(mob/living/carbon/alien/user, modifiers)
+	attack_paw(user, modifiers)
 	return
 
 // Babby aliens
-/mob/living/carbon/alien/larva/UnarmedAttack(atom/A)
-	A.attack_larva(src)
-/atom/proc/attack_larva(mob/user)
+/mob/living/carbon/alien/larva/UnarmedAttack(atom/A, proximity, modifiers)
+	A.attack_larva(src, modifiers)
+
+/atom/proc/attack_larva(mob/user, modifiers)
 	return
 
 
@@ -184,36 +202,36 @@
 	Slimes
 	Nothing happening here
 */
-/mob/living/simple_animal/slime/UnarmedAttack(atom/A)
+/mob/living/simple_animal/slime/UnarmedAttack(atom/A, proximity, modifiers)
 	if(isturf(A))
 		return ..()
-	A.attack_slime(src)
+	A.attack_slime(src, proximity, modifiers)
 
-/atom/proc/attack_slime(mob/user)
+/atom/proc/attack_slime(mob/user, proximity, modifiers)
 	return
 
 
 /*
 	Drones
 */
-/mob/living/simple_animal/drone/UnarmedAttack(atom/A)
-	A.attack_drone(src)
+/mob/living/simple_animal/drone/UnarmedAttack(atom/A, proximity, modifiers)
+	A.attack_drone(src, modifiers)
 
-/atom/proc/attack_drone(mob/living/simple_animal/drone/user)
-	attack_hand(user) //defaults to attack_hand. Override it when you don't want drones to do same stuff as humans.
+/atom/proc/attack_drone(mob/living/simple_animal/drone/user, proximity, modifiers)
+	attack_hand(user, modifiers) //defaults to attack_hand. Override it when you don't want drones to do same stuff as humans.
 
 /*
 	True Devil
 */
 
-/mob/living/carbon/true_devil/UnarmedAttack(atom/A, proximity)
-	A.attack_hand(src)
+/mob/living/carbon/true_devil/UnarmedAttack(atom/A, proximity, modifiers)
+	A.attack_hand(src, modifiers)
 
 /*
 	Brain
 */
 
-/mob/living/brain/UnarmedAttack(atom/A)//Stops runtimes due to attack_animal being the default
+/mob/living/brain/UnarmedAttack(atom/A, proximity, modifiers)//Stops runtimes due to attack_animal being the default
 	return
 
 
@@ -221,7 +239,7 @@
 	pAI
 */
 
-/mob/living/silicon/pai/UnarmedAttack(atom/A)//Stops runtimes due to attack_animal being the default
+/mob/living/silicon/pai/UnarmedAttack(atom/A, proximity, modifiers)//Stops runtimes due to attack_animal being the default
 	return
 
 
@@ -229,11 +247,11 @@
 	Simple animals
 */
 
-/mob/living/simple_animal/UnarmedAttack(atom/A, proximity)
+/mob/living/simple_animal/UnarmedAttack(atom/A, proximity, modifiers)
 	if(!dextrous)
 		return ..()
 	if(!ismob(A))
-		A.attack_hand(src)
+		A.attack_hand(src, modifiers)
 		update_inv_hands()
 
 
@@ -241,10 +259,10 @@
 	Hostile animals
 */
 
-/mob/living/simple_animal/hostile/UnarmedAttack(atom/A)
+/mob/living/simple_animal/hostile/UnarmedAttack(atom/A, proximity, modifiers)
 	target = A
 	if(dextrous && !ismob(A))
-		..()
+		return ..()
 	else
 		AttackingTarget()
 

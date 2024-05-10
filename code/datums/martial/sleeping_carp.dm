@@ -110,7 +110,7 @@
 	return basic_hit(A,D)
 
 /datum/martial_art/the_sleeping_carp/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(A.a_intent == INTENT_GRAB && A!=D) // A!=D prevents grabbing yourself
+	if(A!=D) // A!=D prevents grabbing yourself
 		add_to_streak("G",D)
 		if(check_streak(A,D)) //if a combo is made no grab upgrade is done
 			return TRUE
@@ -192,7 +192,7 @@
 	. = ..()
 	icon_state = "[base_icon_state]0"
 
-/obj/item/melee/bostaff/attack(mob/target, mob/living/user)
+/obj/item/melee/bostaff/attack(mob/target, mob/living/user, params)
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
 		to_chat(user, "<span class ='warning'>You club yourself over the head with [src].</span>")
@@ -211,9 +211,8 @@
 	if(C.stat)
 		to_chat(user, span_warning("It would be dishonorable to attack a foe while they cannot retaliate."))
 		return
-	if(user.a_intent == INTENT_DISARM)
-		if(!HAS_TRAIT(src, TRAIT_WIELDED))
-			return ..()
+	var/list/modifiers = params2list(params)
+	if(HAS_TRAIT(src, TRAIT_WIELDED) && !(modifiers && modifiers[RIGHT_CLICK])) // right click to harm
 		if(!ishuman(target))
 			return ..()
 		var/mob/living/carbon/human/H = target

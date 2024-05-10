@@ -5,7 +5,7 @@
 	icon = 'icons/obj/clothing/badges.dmi'
 	icon_state = "sec1"
 	item_state = ""
-	mob_overlay_icon = 'icons/mob/clothing/badges.dmi'
+	worn_icon = 'icons/mob/clothing/badges.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	/// State of worn icon
 	var/accessory_state = "worn_chest_gold"

@@ -199,11 +199,11 @@
 	SSblackbox.record_feedback("tally", "zone_targeted", 1, target_area)
 
 	// the attacked_by code varies among species
-	return dna.species.spec_attacked_by(I, user, affecting, a_intent, src)
+	return dna.species.spec_attacked_by(I, user, affecting, src)
 
 
 /mob/living/carbon/human/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		var/hulk_verb = pick("smash","pummel")
 		if(check_shields(user, 15, "the [hulk_verb]ing"))
 			return
@@ -215,27 +215,24 @@
 		apply_damage(15, BRUTE, wound_bonus=10)
 		return 1
 
-/mob/living/carbon/human/attack_hand(mob/user)
+/mob/living/carbon/human/attack_hand(mob/living/user, modifiers)
 	if(..())	//to allow surgery to return properly.
 		return
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.a_intent == INTENT_HARM && handle_vamp_biting(H)) // yogs start -- vampire biting
+		if(H.combat_mode && handle_vamp_biting(H)) // yogs start -- vampire biting
 			return // yogs end
-		if(H.a_intent == INTENT_HARM)
+		if(H.combat_mode)
 			last_damage = "fist"
-		dna.species.spec_attack_hand(H, src)
+		dna.species.spec_attack_hand(H, src, user.mind?.martial_art, modifiers)
 
-/mob/living/carbon/human/attack_paw(mob/living/carbon/monkey/M)
+/mob/living/carbon/human/attack_paw(mob/living/carbon/monkey/M, modifiers)
 	var/dam_zone = pick(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	var/obj/item/bodypart/affecting = get_bodypart(ran_zone(dam_zone))
 	if(!affecting)
 		affecting = get_bodypart(BODY_ZONE_CHEST)
-	if(M.a_intent == INTENT_HELP)
-		..() //shaking
-		return 0
 
-	if(M.a_intent == INTENT_DISARM) //Always drop item in hand, if no item, get stunned instead.
+	if(modifiers && modifiers[RIGHT_CLICK]) //Always drop item in hand, if no item, get stunned instead.
 		var/obj/item/I = get_active_held_item()
 		if(I && dropItemToGround(I))
 			playsound(loc, 'sound/weapons/slash.ogg', 25, 1, -1)
@@ -253,6 +250,11 @@
 				log_combat(M, src, "tackled")
 				visible_message(span_danger("[M] has tackled down [src]!"), \
 					span_userdanger("[M] has tackled down [src]!"))
+		return
+	
+	if(!M.combat_mode)
+		..() //shaking
+		return 0
 
 	if(M.limb_destroyer)
 		dismembering_strike(M, affecting.body_zone)
@@ -266,35 +268,13 @@
 				apply_damage(damage, BRUTE, affecting, run_armor_check(affecting, MELEE))
 		return 1
 
-/mob/living/carbon/human/attack_alien(mob/living/carbon/alien/humanoid/M)
+/mob/living/carbon/human/attack_alien(mob/living/carbon/alien/humanoid/M, modifiers)
 	if(check_shields(M, 0, "the [M.name]"))
 		visible_message(span_danger("[M] attempted to touch [src]!"))
 		return 0
 
 	if(..())
-		if(M.a_intent == INTENT_HARM)
-			if (w_uniform)
-				w_uniform.add_fingerprint(M)
-			var/damage = prob(90) ? 20 : 0
-			if(!damage)
-				playsound(loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
-				visible_message(span_danger("[M] has lunged at [src]!"), \
-					span_userdanger("[M] has lunged at [src]!"))
-				return 0
-			var/obj/item/bodypart/affecting = get_bodypart(ran_zone(M.zone_selected))
-			if(!affecting)
-				affecting = get_bodypart(BODY_ZONE_CHEST)
-			var/armor_block = run_armor_check(affecting, MELEE,"","",10)
-
-			playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
-			visible_message(span_danger("[M] has slashed at [src]!"), \
-				span_userdanger("[M] has slashed at [src]!"))
-			log_combat(M, src, "attacked")
-			if(!dismembering_strike(M, M.zone_selected)) //Dismemberment successful
-				return 1
-			apply_damage(damage, BRUTE, affecting, armor_block)
-
-		if(M.a_intent == INTENT_DISARM) //Always drop item in hand, if no item, get stun instead.
+		if(modifiers && modifiers[RIGHT_CLICK]) //Always drop item in hand, if no item, get stun instead.
 			var/obj/item/I = get_active_held_item()
 			if(I && dropItemToGround(I))
 				playsound(loc, 'sound/weapons/slash.ogg', 25, 1, -1)
@@ -318,9 +298,30 @@
 				log_combat(M, src, "tackled")
 				visible_message(span_danger("[M] has tackled down [src]!"), \
 					span_userdanger("[M] has tackled down [src]!"))
+		else if(M.combat_mode)
+			if (w_uniform)
+				w_uniform.add_fingerprint(M)
+			var/damage = prob(90) ? 20 : 0
+			if(!damage)
+				playsound(loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
+				visible_message(span_danger("[M] has lunged at [src]!"), \
+					span_userdanger("[M] has lunged at [src]!"))
+				return 0
+			var/obj/item/bodypart/affecting = get_bodypart(ran_zone(M.zone_selected))
+			if(!affecting)
+				affecting = get_bodypart(BODY_ZONE_CHEST)
+			var/armor_block = run_armor_check(affecting, MELEE,"","",10)
+
+			playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
+			visible_message(span_danger("[M] has slashed at [src]!"), \
+				span_userdanger("[M] has slashed at [src]!"))
+			log_combat(M, src, "attacked")
+			if(!dismembering_strike(M, M.zone_selected)) //Dismemberment successful
+				return 1
+			apply_damage(damage, BRUTE, affecting, armor_block)		
 
 
-/mob/living/carbon/human/attack_larva(mob/living/carbon/alien/larva/L)
+/mob/living/carbon/human/attack_larva(mob/living/carbon/alien/larva/L, modifiers)
 
 	if(..()) //successful larva bite.
 		var/damage = rand(1, 3)
@@ -376,7 +377,7 @@
 /mob/living/carbon/human/mech_melee_attack(obj/mecha/M, punch_force, equip_allowed = TRUE)
 	if(M.selected?.melee_override && equip_allowed)
 		M.selected.action(src)
-	else if(M.occupant.a_intent == INTENT_HARM)
+	else if(M.occupant.combat_mode)
 		M.do_attack_animation(src)
 		if(M.damtype == BRUTE)
 			step_away(src,M,15)
@@ -407,7 +408,7 @@
 
 		visible_message(span_danger("[M.name] has hit [src]!"), \
 								span_userdanger("[M.name] has hit [src]!"), null, COMBAT_MESSAGE_RANGE)
-		log_combat(M.occupant, src, "attacked", M, "(INTENT: [uppertext(M.occupant.a_intent)]) (DAMTYPE: [uppertext(M.damtype)])")
+		log_combat(M.occupant, src, "attacked", M, "(COMBAT MODE: [M.occupant.combat_mode]) (DAMTYPE: [uppertext(M.damtype)])")
 
 	else
 		..()
