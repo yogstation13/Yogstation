@@ -51,7 +51,7 @@
 		cleave_end_callback=CALLBACK(src, PROC_REF(end_swing)), \
 	)
 	if(!toy)
-		AddComponent(/datum/component/blocking, block_force = 20, block_flags = WEAPON_BLOCK_FLAGS|WIELDING_BLOCK)
+		AddComponent(/datum/component/blocking, block_force = 20, block_flags = WEAPON_BLOCK_FLAGS|WIELD_TO_BLOCK)
 
 /obj/item/melee/vxtvulhammer/Destroy() //Even though the hammer won't probably be destroyed, Ever™
 	QDEL_NULL(spark_system)

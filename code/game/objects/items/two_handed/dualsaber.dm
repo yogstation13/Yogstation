@@ -61,7 +61,7 @@
 	if(!toy)
 		AddComponent(/datum/component/blocking, \
 			block_force = 30, \
-			block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|REFLECTIVE_BLOCK|OMNIDIRECTIONAL_BLOCK|WIELDING_BLOCK, \
+			block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|REFLECTIVE_BLOCK|OMNIDIRECTIONAL_BLOCK|WIELD_TO_BLOCK, \
 		)
 
 /obj/item/melee/dualsaber/equipped(mob/user, slot, initial)

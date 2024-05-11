@@ -138,7 +138,7 @@
 ///Takes damage when blocking.
 #define DAMAGE_ON_BLOCK (1<<9)
 ///Requires wielding to block.
-#define WIELDING_BLOCK (1<<10)
+#define WIELD_TO_BLOCK (1<<10)
 ///Will always block, even when not trying to.
 #define ALWAYS_BLOCK (1<<11)
 

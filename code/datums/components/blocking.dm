@@ -83,7 +83,7 @@
 		return FALSE
 	if((block_flags & PARRYING_BLOCK) && HAS_TRAIT(incoming, TRAIT_UNPARRIABLE)) // parry this you filthy casual
 		return FALSE
-	if((block_flags & WIELDING_BLOCK) && !HAS_TRAIT(parent, TRAIT_WIELDED))
+	if((block_flags & WIELD_TO_BLOCK) && !HAS_TRAIT(parent, TRAIT_WIELDED))
 		return FALSE
 	return TRUE
 
@@ -133,7 +133,6 @@
 	ADD_TRAIT(defender, TRAIT_NO_BLOCKING, BLOCK_COOLDOWN) // prevents blocking the same thing more than once
 	SEND_SIGNAL(parent, COMSIG_ITEM_POST_BLOCK, defender, incoming, damage, attack_type)
 	
-
 	var/is_parrying = HAS_TRAIT(used_item, TRAIT_PARRYING)
 	if(is_parrying)
 		used_item.balloon_alert_to_viewers("parried!")
@@ -144,7 +143,8 @@
 	if(damage_type == STAMINA)
 		effective_damage *= 0.5 // stamina weapons are easier to block to compensate for being far stronger
 	if(HAS_TRAIT(defender, TRAIT_STUNIMMUNE)) // in case of nitrium users (me)
-		defender.apply_damage(effective_damage * 0.25, OXY, null) // halved because it takes 50 to down instead of 100
+		if(damage_type != STAMINA) // no don't kill people with stun weapons what the hell
+			defender.apply_damage(effective_damage * 0.25, OXY, null) // reduced because it takes a lot less to down and goes away much slower
 	else
 		defender.apply_damage(effective_damage, STAMINA, null)
 		if(defender.getStaminaLoss() >= STAGGER_THRESHOLD)
@@ -210,7 +210,7 @@
 		return
 	if(HAS_TRAIT(source.mob, TRAIT_NO_BLOCKING))
 		return
-	if((block_flags & WIELDING_BLOCK) && !HAS_TRAIT(parent, TRAIT_WIELDED))
+	if((block_flags & WIELD_TO_BLOCK) && !HAS_TRAIT(parent, TRAIT_WIELDED))
 		if(source.mob.get_active_held_item() == parent) // only show a warning if you're holding it
 			source.mob.balloon_alert(source.mob, "wield it first!")
 		return

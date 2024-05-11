@@ -30,7 +30,7 @@
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
-	AddComponent(/datum/component/blocking, block_force = 20, WEAPON_BLOCK_FLAGS|WIELDING_BLOCK)
+	AddComponent(/datum/component/blocking, block_force = 20, WEAPON_BLOCK_FLAGS|WIELD_TO_BLOCK)
 
 /obj/item/gun/magic/darkspawn/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //this doesn't work and i have no clue why
 	. = ..()

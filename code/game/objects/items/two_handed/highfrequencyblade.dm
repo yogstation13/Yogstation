@@ -24,7 +24,7 @@
 	)
 	AddComponent(/datum/component/cleave_attack, requires_wielded=TRUE)
 	AddComponent(/datum/component/butchering, 20, 105)
-	AddComponent(/datum/component/blocking, block_force = 30, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|REFLECTIVE_BLOCK|WIELDING_BLOCK)
+	AddComponent(/datum/component/blocking, block_force = 30, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|REFLECTIVE_BLOCK|WIELD_TO_BLOCK)
 
 /obj/item/vibro_weapon/update_icon_state()
 	. = ..()

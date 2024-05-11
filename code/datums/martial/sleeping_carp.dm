@@ -186,7 +186,7 @@
 		force_wielded = 14, \
 	)
 	AddComponent(/datum/component/cleave_attack, arc_size=180, requires_wielded=TRUE)
-	AddComponent(/datum/component/blocking, block_force = 25, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|OMNIDIRECTIONAL_BLOCK|WIELDING_BLOCK)
+	AddComponent(/datum/component/blocking, block_force = 25, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|OMNIDIRECTIONAL_BLOCK|WIELD_TO_BLOCK)
 
 /obj/item/melee/bostaff/update_icon_state()
 	. = ..()

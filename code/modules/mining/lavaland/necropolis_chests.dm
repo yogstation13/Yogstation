@@ -1779,7 +1779,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
-	AddComponent(/datum/component/blocking, block_force = 10, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|WIELDING_BLOCK)
+	AddComponent(/datum/component/blocking, block_force = 10, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|WIELD_TO_BLOCK)
 
 /obj/item/melee/spear/bonespear/stalwartpike/update_icon_state()
 	. = ..()
