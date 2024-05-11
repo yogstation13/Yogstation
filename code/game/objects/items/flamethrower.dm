@@ -337,15 +337,6 @@
 /obj/item/flamethrower/full/tank
 	create_with_tank = TRUE
 
-/obj/item/flamethrower/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	var/obj/projectile/P = hitby
-	if(damage && attack_type == PROJECTILE_ATTACK && P.damage_type != STAMINA && prob(5))
-		owner.visible_message(span_danger("\The [attack_text] hits the fueltank on [owner]'s [name], rupturing it! What a shot!"))
-		var/turf/target_turf = get_turf(owner)
-		burn_atoms_on_turf(target_turf, process_fuel(target_turf))
-		return TRUE //It hit the flamethrower, not them
-	return ..()
-
 ///////////////////// Flamethrower as an energy weapon /////////////////////
 // Currently used exclusively in /obj/item/gun/energy/printer/flamethrower
 /obj/item/ammo_casing/energy/flamethrower

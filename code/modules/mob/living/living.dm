@@ -170,9 +170,11 @@
 		return TRUE
 	//anti-riot equipment is also anti-push
 	for(var/obj/item/I in M.held_items)
-		if(!istype(M, /obj/item/clothing))
-			if(prob(I.block_chance*2))
-				return
+		var/datum/component/blocking/block_component = I.GetComponent(/datum/component/blocking)
+		if(!block_component) // can't use signals for this or it'll trip stuff like reactive armor
+			continue
+		if(block_component.blocking && block_component.can_block(M, src, 0, UNARMED_ATTACK))
+			return TRUE
 
 /mob/living/get_photo_description(obj/item/camera/camera)
 	var/list/mob_details = list()

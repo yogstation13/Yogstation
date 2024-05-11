@@ -18,7 +18,7 @@
 	help_verb = /mob/living/carbon/human/proc/ultra_violence_help
 	gun_exceptions = list(/obj/item/gun/ballistic/revolver/ipcmartial)
 	no_gun_message = "This gun is not compliant with Ultra Violence standards."
-	martial_traits = list(TRAIT_NOSOFTCRIT, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_NOLIMBDISABLE, TRAIT_NO_STUN_WEAPONS, TRAIT_NODISMEMBER, TRAIT_STUNIMMUNE, TRAIT_SLEEPIMMUNE, TRAIT_NO_HOLDUP)
+	martial_traits = list(TRAIT_NOSOFTCRIT, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_NOLIMBDISABLE, TRAIT_NO_STUN_WEAPONS, TRAIT_NO_BLOCKING, TRAIT_NODISMEMBER, TRAIT_STUNIMMUNE, TRAIT_SLEEPIMMUNE, TRAIT_NO_HOLDUP)
 	///used to keep track of the dash stuff
 	var/dashing = FALSE
 	var/dashes = 3
