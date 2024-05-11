@@ -434,10 +434,10 @@
 
 	//flush handle
 	if(flush)
-		. += "[base_icon_state]-handle"
+		. += "[base_icon_state]-dispover-handle"
 
 	if(mounted_tagger)
-		. += "[base_icon_state]-tagger_mount"
+		. += "tagger_mount"
 
 	//only handle is shown if no power
 	if(stat & NOPOWER || panel_open)
@@ -445,16 +445,16 @@
 
 	//check for items in disposal - occupied light
 	if(contents.len > 0)
-		. += "[base_icon_state]-full"
-		. += emissive_appearance(icon, "[base_icon_state]-full", src, alpha = src.alpha)
+		. += "[base_icon_state]-dispover-full"
+		. += emissive_appearance(icon, "[base_icon_state]-dispover-full", src, alpha = src.alpha)
 
 	//charging and ready light
 	if(pressure_charging)
-		. += "[base_icon_state]-charge"
-		. += emissive_appearance(icon, "[base_icon_state]-charge-glow", src, alpha = src.alpha)
+		. += "[base_icon_state]-dispover-charge"
+		. += emissive_appearance(icon, "[base_icon_state]-dispover-charge-glow", src, alpha = src.alpha)
 	else if(full_pressure)
-		. += "[base_icon_state]-ready"
-		. += emissive_appearance(icon, "[base_icon_state]-ready-glow", src, alpha = src.alpha)
+		. += "[base_icon_state]-dispover-ready"
+		. += emissive_appearance(icon, "[base_icon_state]-dispover-ready-glow", src, alpha = src.alpha)
 
 /obj/machinery/disposal/bin/proc/do_flush()
 	set waitfor = FALSE
