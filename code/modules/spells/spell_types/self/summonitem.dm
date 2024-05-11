@@ -138,7 +138,7 @@
 			var/obj/item/organ/organ = item_to_retrieve
 			if(organ.owner)
 				// If this code ever runs I will be happy
-				log_combat(caster, organ.owner, "magically removed [organ.name] from", addition = "INTENT: [uppertext(caster.a_intent)]")
+				log_combat(caster, organ.owner, "magically removed [organ.name] from", addition = "COMBAT MODE: [caster.combat_mode ? "ON" : "OFF"]")
 				organ.Remove(organ.owner)
 
 	if(!item_to_retrieve)

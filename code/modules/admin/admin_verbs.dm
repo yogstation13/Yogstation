@@ -628,6 +628,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	if(robeless)
 		new_spell.spell_requirements &= ~SPELL_REQUIRES_WIZARD_GARB
+		new_spell.psi_cost = 0 //breaks balance, but allows non darkspawns to use darkspawn abilities
 
 	new_spell.Grant(spell_recipient)
 
@@ -855,7 +856,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 /// Debug verb for seeing at a glance what all spells have as set requirements
 /client/proc/debug_spell_requirements()
 	set name = "Show Spell Requirements"
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 
 	var/header = "<tr><th>Name</th> <th>Requirements</th>"
 	var/all_requirements = list()

@@ -155,6 +155,10 @@
 	. = ..()
 	blood_flow -= 0.03 * power // i think it's like a minimum of 3 power, so .09 blood_flow reduction per tick is pretty good for 0 effort
 
+/datum/wound/slash/on_healium(power)
+	. = ..()
+	blood_flow -= 0.08 * power 
+
 /datum/wound/slash/on_synthflesh(power)
 	. = ..()
 	blood_flow -= 0.075 * power // 20u * 0.075 = -1.5 blood flow, pretty good for how little effort it is

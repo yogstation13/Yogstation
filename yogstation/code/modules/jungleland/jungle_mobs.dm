@@ -498,7 +498,7 @@
 /mob/living/simple_animal/hostile/yog_jungle/yellowjacket/Aggro()
 	vision_range = aggro_vision_range
 
-/mob/living/simple_animal/hostile/yog_jungle/yellowjacket/proc/charge(var/atom/chargeat = target, var/delay = 5)
+/mob/living/simple_animal/hostile/yog_jungle/yellowjacket/proc/charge(atom/chargeat = target, delay = 5)
 	if(!chargeat)
 		return
 	var/chargeturf = get_turf(chargeat)

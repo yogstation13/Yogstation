@@ -43,7 +43,7 @@
 	..(amount)
 
 //can't equip anything
-/mob/living/carbon/alien/larva/attack_ui(slot_id)
+/mob/living/carbon/alien/larva/attack_ui(slot_id, params)
 	return
 
 /mob/living/carbon/alien/larva/restrained(ignore_grab)

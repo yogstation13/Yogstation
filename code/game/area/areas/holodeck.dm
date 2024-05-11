@@ -5,17 +5,14 @@
 	
 	base_lighting_alpha = 255
 	flags_1 = NONE
-	hidden = TRUE
 
+	///The holodeck computer that the area is being hosted by, which we use for power and such.
 	var/obj/machinery/computer/holodeck/linked
-	var/restricted = FALSE // if true, program goes on emag list
-	var/minimum_sec_level = SEC_LEVEL_GREEN //override this var if you want the program to be locked to a different alert-level (eg. SEC_LEVEL_BLUE, SEC_LEVEL_RED, SEC_LEVEL_DELTA)
 
 /*
 	Power tracking: Use the holodeck computer's power grid
 	Asserts are to avoid the inevitable infinite loops
 */
-
 /area/holodeck/powered(chan)
 	if(!requires_power)
 		return TRUE
@@ -57,83 +54,5 @@
 /area/holodeck/rec_center
 	name = "\improper Recreational Holodeck"
 
-/area/holodeck/rec_center/offline
-	name = "Holodeck - Offline"
-
-/area/holodeck/rec_center/court
-	name = "Holodeck - Empty Court"
-
-/area/holodeck/rec_center/dodgeball
-	name = "Holodeck - Dodgeball Court"
-
-/area/holodeck/rec_center/basketball
-	name = "Holodeck - Basketball Court"
-
-/area/holodeck/rec_center/thunderdome
-	name = "Holodeck - Thunderdome Arena"
-
-/area/holodeck/rec_center/beach
-	name = "Holodeck - Beach"
-
-/area/holodeck/rec_center/lounge
-	name = "Holodeck - Lounge"
-
-/area/holodeck/rec_center/medical
-	name = "Holodeck - Emergency Medical"
-	minimum_sec_level = SEC_LEVEL_RED
-
-/area/holodeck/rec_center/pet_lounge
-	name = "Holodeck - Pet Park"
-
-/area/holodeck/rec_center/firingrange
-	name = "Holodeck - Firing Range"
-
-/area/holodeck/rec_center/school
-	name = "Holodeck - Anime School"
-
-/area/holodeck/rec_center/chapelcourt
-	name = "Holodeck - Chapel Courtroom"
-
-/area/holodeck/rec_center/spacechess
-	name = "Holodeck - Space Chess"
-
-/area/holodeck/rec_center/kobayashi
-	name = "Holodeck - Kobayashi Maru"
-
-/area/holodeck/rec_center/winterwonderland
-	name = "Holodeck - Winter Wonderland"
-
-/area/holodeck/rec_center/photobooth
-	name = "Holodeck - Photobooth"
-
-/area/holodeck/rec_center/gym
-	name = "Holodeck - Gym"
-
-/area/holodeck/rec_center/soccer
-	name = "Holodeck - Soccer Field"
-
-// Bad programs
-
-/area/holodeck/rec_center/burn
-	name = "Holodeck - Incinerator"
-	restricted = 1
-
-/area/holodeck/rec_center/wildlife
-	name = "Holodeck - Wildlife Simulation"
-	restricted = 1
-
-/area/holodeck/rec_center/bunker
-	name = "Holodeck - Holdout Bunker"
-	restricted = 1
-
-/area/holodeck/rec_center/anthophila
-	name = "Holodeck - Anthophila"
-	restricted = 1
-
-/area/holodeck/rec_center/refuel
-	name = "Holodeck - Refueling Station"
-	restricted = 1
-
-/area/holodeck/rec_center/thunderdome1218
-	name = "Holodeck - 1218 AD"
-	restricted = 1
+/area/holodeck/rec_center/offstation_one
+	name = "\improper Recreational Holodeck"

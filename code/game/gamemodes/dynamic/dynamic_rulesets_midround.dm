@@ -201,8 +201,8 @@
 		if(is_centcom_level(player.z))
 			living_players -= player // We don't autotator people in CentCom
 			continue
-		if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0))
-			living_players -= player // We don't autotator people with roles already
+		if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0 || !(player.mind.assigned_role in GLOB.crew_positions)))
+			living_players -= player // We don't autotator people with roles already or non crewmembers
 			continue
 		if(!(ROLE_TRAITOR in player.client.prefs.be_special))
 			living_players -= player
@@ -252,7 +252,7 @@
 		if(is_centcom_level(player.z))
 			candidates -= player
 			continue
-		if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0))
+		if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0 || !(player.mind.assigned_role in GLOB.crew_positions)))
 			candidates -= player
 			continue
 		if(!(ROLE_MALF in player.client.prefs.be_special))
@@ -483,7 +483,7 @@
 	for(var/X in GLOB.xeno_spawn)
 		var/turf/T = X
 		var/light_amount = T.get_lumcount()
-		if(light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD)
+		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
 			spawn_locs += T
 	if(!spawn_locs.len)
 		return FALSE
@@ -588,7 +588,7 @@
 		if(is_centcom_level(player.z))
 			living_players -= player // We don't autotator people in CentCom
 			continue
-		if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0))
+		if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0 || !(player.mind.assigned_role in GLOB.crew_positions)))
 			living_players -= player // We don't autovamp people with roles already
 			continue
 		if(!(ROLE_VAMPIRE in player.client.prefs.be_special))
@@ -640,7 +640,7 @@
 	for(var/X in GLOB.xeno_spawn)
 		var/turf/T = X
 		var/light_amount = T.get_lumcount()
-		if(light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD)
+		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
 			spawn_locs += T
 
 	if(!spawn_locs.len)
@@ -733,7 +733,7 @@
 			living_players -= player
 		else if(is_centcom_level(player.z))
 			living_players -= player // We don't allow people in CentCom
-		else if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0))
+		else if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0 || !(player.mind.assigned_role in GLOB.crew_positions)))
 			living_players -= player // We don't allow people with roles already
 
 /datum/dynamic_ruleset/midround/bloodsucker/execute()
@@ -845,6 +845,7 @@
 			|| !(ROLE_OBSESSED in candidate.client?.prefs?.be_special) \
 			|| !SSjob.GetJob(candidate.mind.assigned_role) \
 			|| (candidate.mind.assigned_role in GLOB.nonhuman_positions) \
+			|| !(candidate.mind.assigned_role in GLOB.crew_positions) \
 		)
 			candidates -= candidate
 

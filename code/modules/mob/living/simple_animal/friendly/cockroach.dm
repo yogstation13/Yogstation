@@ -58,6 +58,9 @@
 	verb_yell = "honks loudly"
 	speak_emote = list("honks")
 
+/mob/living/simple_animal/cockroach/clownbug/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/slippery, 40)
 
 /mob/living/simple_animal/cockroach/clownbug/death(gibbed)
 	var/turf/T = get_turf(src)

@@ -38,7 +38,7 @@
 
 /datum/outfit/ivymen
 	name = "Ivyman"
-	uniform = /obj/item/clothing/under/ash_robe/hunter/jungle
+	uniform = /obj/item/clothing/under/tribal/ash_robe/hunter/jungle
 
 /datum/outfit/ivymen/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	H.underwear = "Nude"
@@ -127,7 +127,7 @@
 
 /datum/outfit/greedydemon
 	name = "Greedy Demon"
-	uniform = /obj/item/clothing/under/suit_jacket/really_black
+	uniform = /obj/item/clothing/under/suit/really_black
 	head = /obj/item/clothing/head/that
 	back = /obj/item/storage/backpack
 	suit = /obj/item/clothing/suit/armor/vest

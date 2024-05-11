@@ -60,7 +60,7 @@
 /obj/machinery/gibber/relaymove(mob/living/user)
 	go_out()
 
-/obj/machinery/gibber/attack_hand(mob/user)
+/obj/machinery/gibber/attack_hand(mob/living/user, modifiers)
 	. = ..()
 	if(.)
 		return
@@ -78,7 +78,7 @@
 		to_chat(user, span_warning("You don't want to use this!"))
 		return
 
-	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
+	if(user.pulling && user.combat_mode && isliving(user.pulling))
 		var/mob/living/L = user.pulling
 		if(!iscarbon(L))
 			to_chat(user, span_danger("This item is not suitable for the gibber!"))

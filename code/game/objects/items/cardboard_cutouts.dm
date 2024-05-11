@@ -22,7 +22,6 @@
 		"Clockwork Cultist" = image(icon = src.icon, icon_state = "cutout_servant"),
 		"Revolutionary" = image(icon = src.icon, icon_state = "cutout_viva"),
 		"Wizard" = image(icon = src.icon, icon_state = "cutout_wizard"),
-		"Shadowling" = image(icon = src.icon, icon_state = "cutout_shadowling"),
 		"Xenomorph" = image(icon = src.icon, icon_state = "cutout_fukken_xeno"),
 		"Xenomorph Maid" = image(icon = src.icon, icon_state = "cutout_lusty"),
 		"Swarmer" = image(icon = src.icon, icon_state = "cutout_swarmer"),
@@ -35,8 +34,8 @@
 	))
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/item/cardboard_cutout/attack_hand(mob/living/user)
-	if(user.a_intent == INTENT_HELP || pushed_over)
+/obj/item/cardboard_cutout/attack_hand(mob/living/user, modifiers)
+	if(!user.combat_mode || pushed_over)
 		return ..()
 	user.visible_message(span_warning("[user] pushes over [src]!"), span_danger("You push over [src]!"))
 	playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
@@ -152,10 +151,6 @@
 			name = "[pick(GLOB.wizard_first)], [pick(GLOB.wizard_second)]"
 			desc = "A cardboard cutout of a wizard."
 			icon_state = "cutout_wizard"
-		if("Shadowling")
-			name = "Unknown"
-			desc = "A cardboard cutout of a shadowling."
-			icon_state = "cutout_shadowling"
 		if("Xenomorph")
 			name = "alien hunter ([rand(1, 999)])"
 			desc = "A cardboard cutout of a xenomorph."
@@ -196,6 +191,10 @@
 			name = "Private Security Officer"
 			desc = "A cardboard cutout of a private security officer."
 			icon_state = "cutout_ntsec"
+		if("Shadowling")
+			name = "Unknown"
+			desc = "A cardboard cutout of a shadowling."
+			icon_state = "cutout_shadowling"
 		else
 			return FALSE
 	return TRUE

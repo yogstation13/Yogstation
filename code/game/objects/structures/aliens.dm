@@ -115,7 +115,7 @@
 	desc = "A thick resin surface covers the floor."
 	anchored = TRUE
 	density = FALSE
-	layer = TURF_LAYER
+	layer = CULT_OVERLAY_LAYER
 	plane = FLOOR_PLANE
 	icon_state = "weeds"
 	max_integrity = 15
@@ -163,7 +163,7 @@
 	if(T)
 		if(istype(A, /mob/living/carbon))
 			var/mob/living/carbon/C = A
-			if(C.a_intent == INTENT_HELP)
+			if(!C.combat_mode)
 				T.Click(A)
 	. = ..()
 

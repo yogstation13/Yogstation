@@ -3,7 +3,7 @@
 
 	id = /obj/item/card/id/ert
 	back = /obj/item/storage/backpack
-	uniform = /obj/item/clothing/under/rank/centcom_officer
+	uniform = /obj/item/clothing/under/rank/centcom/officer
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset/headset_cent/alt
@@ -308,7 +308,7 @@
 	belt = /obj/item/storage/belt/mining
 	mask = /obj/item/clothing/mask/gas/explorer
 	shoes = /obj/item/clothing/shoes/bhop
-	uniform = /obj/item/clothing/under/rank/miner/lavaland
+	uniform = /obj/item/clothing/under/rank/cargo/miner/lavaland
 	box = /obj/item/storage/box/survival/mining
 	backpack_contents = list(
 		/obj/item/crusher_trophy/demon_claws=1,
@@ -335,7 +335,7 @@
 	id = /obj/item/card/id/centcom
 	belt = /obj/item/modular_computer/tablet/pda/preset/clown
 	ears = /obj/item/radio/headset/headset_cent
-	uniform = /obj/item/clothing/under/rank/clown
+	uniform = /obj/item/clothing/under/rank/civilian/clown
 	back = /obj/item/storage/backpack/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
 	mask = /obj/item/clothing/mask/gas/clown_hat

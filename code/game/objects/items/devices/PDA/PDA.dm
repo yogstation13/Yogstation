@@ -485,8 +485,6 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 //BASIC FUNCTIONS===================================
 
-			if("Refresh")//Refresh, goes to the end of the proc.
-
 			if ("Toggle_Font")
 				//CODE REVISION 2
 				font_index = (font_index + 1) % 4
@@ -710,7 +708,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 //LINK FUNCTIONS===================================
 
-			else//Cartridge menu linking
+			else //Cartridge menu linking
 				mode = max(text2num(href_list["choice"]), 0)
 
 	else//If not in range, can't interact or not using the pda.

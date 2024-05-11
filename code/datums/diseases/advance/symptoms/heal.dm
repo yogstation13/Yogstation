@@ -209,7 +209,7 @@
 	if(isturf(M.loc)) //else, there's considered to be no light
 		var/turf/T = M.loc
 		light_amount = min(1,T.get_lumcount()) - 0.5
-		if(light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD)
+		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
 			return power
 
 /datum/symptom/heal/darkness/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)

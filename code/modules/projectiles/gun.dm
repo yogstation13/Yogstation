@@ -231,15 +231,9 @@
 	if(flag) //It's adjacent, is the user, or is on the user's person
 		if(target in user.contents) //can't shoot stuff inside us.
 			return
-		if(!ismob(target) || user.a_intent == INTENT_HARM) //melee attack
+		if(!ismob(target) || user.combat_mode) //melee attack
 			return
 		if(target == user && user.zone_selected != BODY_ZONE_PRECISE_MOUTH) //so we can't shoot ourselves (unless mouth selected)
-			return
-		if(ismob(target) && user.a_intent == INTENT_GRAB && !istype(user.mind.martial_art, /datum/martial_art/ultra_violence))//remove gunpoint from ipc martial art, it's slow
-			for(var/datum/component/gunpoint/G in user.GetComponents(/datum/component/gunpoint))
-				if(G && G.weapon == src) //spam check
-					return
-			user.AddComponent(/datum/component/gunpoint, target, src)
 			return
 		if(iscarbon(target))
 			var/mob/living/carbon/C = target
@@ -276,7 +270,7 @@
 	if(chambered?.click_cooldown_override)
 		cd_mod = chambered.click_cooldown_override
 	
-	if(ishuman(user) && user.a_intent == INTENT_HARM)
+	if(ishuman(user) && user.combat_mode)
 		var/mob/living/carbon/human/H = user
 		if(weapon_weight < WEAPON_MEDIUM && istype(H.held_items[H.get_inactive_hand_index()], /obj/item/gun) && can_trigger_gun(user))
 			bonus_spread += 18 * weapon_weight
@@ -426,8 +420,8 @@
 /obj/item/gun/proc/reset_semicd()
 	semicd = FALSE
 
-/obj/item/gun/attack(mob/M as mob, mob/user)
-	if(user.a_intent == INTENT_HARM) //Flogging
+/obj/item/gun/attack(mob/M, mob/living/user, params)
+	if(user.combat_mode) //Flogging
 		if(bayonet)
 			M.attackby(bayonet, user)
 			return
@@ -435,15 +429,29 @@
 			return ..()
 	return
 
-/obj/item/gun/attack_atom(obj/O, mob/user)
-	if(user.a_intent == INTENT_HARM)
+/obj/item/gun/attack_secondary(mob/living/victim, mob/living/user, params)
+	if(HAS_TRAIT(user, TRAIT_NO_HOLDUP))
+		return SECONDARY_ATTACK_CALL_NORMAL
+
+	if(user.GetComponent(/datum/component/gunpoint))
+		to_chat(user, span_warning("You are already holding someone up!"))
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	
+	for(var/datum/component/gunpoint/G in user.GetComponents(/datum/component/gunpoint))
+		if(G && G.weapon == src) //spam check
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	user.AddComponent(/datum/component/gunpoint, victim, src)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+/obj/item/gun/attack_atom(obj/O, mob/living/user)
+	if(user.combat_mode)
 		if(bayonet)
 			O.attackby(bayonet, user)
 			return
 	return ..()
 
-/obj/item/gun/attackby(obj/item/I, mob/user, params)
-	if(user.a_intent == INTENT_HARM)
+/obj/item/gun/attackby(obj/item/I, mob/living/user, params)
+	if(user.combat_mode)
 		return ..()
 	else if (istype(I, /obj/item/attachment))
 		var/support = FALSE

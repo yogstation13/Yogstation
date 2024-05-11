@@ -1273,7 +1273,7 @@
 	},
 /obj/structure/closet/crate,
 /obj/item/clothing/head/centhat/admiral,
-/obj/item/clothing/under/rank/centcom_admiral,
+/obj/item/clothing/under/rank/centcom/admiral,
 /obj/item/clothing/gloves/color/captain/centcom/admiral,
 /obj/item/paper/fluff/ruins/caravanambush/admiral,
 /turf/open/floor/plasteel/airless/dark,

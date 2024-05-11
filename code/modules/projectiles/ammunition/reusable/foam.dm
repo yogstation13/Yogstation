@@ -60,7 +60,6 @@
 
 /obj/item/ammo_casing/reusable/foam_dart/riot
 	name = "riot foam dart"
-	caliber = CALIBER_FOAM_RIOT
 	desc = "Whose smart idea was it to use toys as crowd control? Ages 18 and up."
 	projectile_type = /obj/projectile/bullet/reusable/foam_dart/riot
 	icon_state = "foamdart_riot"

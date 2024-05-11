@@ -77,7 +77,7 @@
 		set_waypoint(A)
 		return
 
-	A.attack_ai(src)
+	A.attack_ai(src, modifiers)
 
 /*
 	AI has no need for the UnarmedAttack() and RangedAttack() procs,
@@ -85,12 +85,12 @@
 	The below is only really for safety, or you can alter the way
 	it functions and re-insert it above.
 */
-/mob/living/silicon/ai/UnarmedAttack(atom/A)
-	A.attack_ai(src)
-/mob/living/silicon/ai/RangedAttack(atom/A)
-	A.attack_ai(src)
+/mob/living/silicon/ai/UnarmedAttack(atom/A, proximity, modifiers)
+	A.attack_ai(src, modifiers)
+/mob/living/silicon/ai/RangedAttack(atom/A, proximity, modifiers)
+	A.attack_ai(src, modifiers)
 
-/atom/proc/attack_ai(mob/user)
+/atom/proc/attack_ai(mob/user, modifiers)
 	return
 
 /*

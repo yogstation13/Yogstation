@@ -23,7 +23,7 @@
 	. = ..()
 	if(.)
 		return
-	if(!user.a_intent == INTENT_HARM && user.stat == CONSCIOUS)
+	if(!user.combat_mode && user.stat == CONSCIOUS)
 		ui_interact(user)
 		return .
 	return
@@ -104,12 +104,12 @@
 		return
 	return ..()
 
-/obj/machinery/paystand/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/paystand/ui_interact(mob/living/user, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return FALSE
 	var/mob/living/interactor = user
-	if(isliving(interactor) && !interactor.a_intent == INTENT_HELP)
+	if(isliving(interactor) && interactor.combat_mode)
 		return FALSE
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)

@@ -132,8 +132,10 @@
 	back = /obj/item/storage/backpack
 	r_pocket = /obj/item/gun/ballistic/automatic/pistol
 	id = /obj/item/card/id/syndicate/anyone
-	implants = list(/obj/item/implant/weapons_auth)
 	box = /obj/item/storage/box/survival/syndie
+	implants = list(
+	/obj/item/implant/teleporter/syndicate_lavaland, // Affects jungleland guys too, so change this when we de-shit the jungle base code
+	/obj/item/implant/weapons_auth)
 
 /datum/outfit/lavaland_syndicate/post_equip(mob/living/carbon/human/H)
 	H.faction |= ROLE_SYNDICATE
@@ -174,6 +176,9 @@
 	r_hand = /obj/item/kitchen/knife/combat
 	back = /obj/item/storage/backpack
 	backpack_contents = null
+	implants = list(
+	/obj/item/implant/teleporter/syndicate_listening_post,
+	/obj/item/implant/weapons_auth)
 
 /datum/outfit/lavaland_syndicate/comms/lieutenant
 	name = "Space Syndicate Comms Agent Lieutenant"
@@ -185,6 +190,9 @@
 		/obj/item/modular_computer/tablet/preset/syndicate=1,
 		/obj/item/gun/ballistic/revolver/ultrasecure=1
 		)
+	implants = list(
+	/obj/item/implant/teleporter/syndicate_listening_post,
+	/obj/item/implant/weapons_auth)
 
 /obj/item/clothing/mask/chameleon/gps/Initialize(mapload)
 	. = ..()

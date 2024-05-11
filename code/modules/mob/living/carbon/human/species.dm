@@ -18,8 +18,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/plural_form
 	/// if alien colors are disabled, this is the color that will be used by that race
 	var/default_color = "#FFF"
-	/// whether or not the race has sexual characteristics. at the moment this is only FALSE for skeletons and shadows
-	var/sexes = TRUE
 
 	///A list that contains pixel offsets for various clothing features, if your species is a different shape
 	var/list/offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
@@ -38,6 +36,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	var/forced_skintone
 
+	/// What genders can this race be?
+	var/list/possible_genders = list(MALE, PLURAL, FEMALE)
 	/// If your race wants to bleed something other than bog standard blood, change this to reagent id.
 	var/datum/reagent/exotic_blood
 	///If your race uses a non standard bloodtype (A+, O-, AB-, etc)
@@ -155,8 +155,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/list/inherent_traits = list()
 	///biotypes, used for viruses and the like
 	var/list/inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
-	/// punch-specific attack verb
-	var/attack_verb = "punch"
+	/// punch-specific attack verbs
+	var/list/attack_verbs = list("punch")
 	///the melee attack sound
 	var/sound/attack_sound = 'sound/weapons/punch1.ogg'
 	///the swing and miss sound
@@ -212,8 +212,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	//Should we preload this species's organs?
 	var/preload = TRUE
-
-	var/inherent_slowdown = 0
 
 	//for preternis + synths
 	var/draining = FALSE
@@ -432,13 +430,15 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			replacement.Insert(C, TRUE, FALSE)
 
 /datum/species/proc/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
+	// Change the gender to fit with the new species
+	if(!possible_genders || possible_genders.len < 1)
+		stack_trace("[type] has no possible genders!")
+		C.gender = PLURAL // uh oh
+	else if(possible_genders.len == 1)
+		C.gender = possible_genders[1] // some species only have one gender
+	else if(!(C.gender in possible_genders))
+		C.gender = pick(possible_genders) // randomized gender
 	// Drop the items the new species can't wear
-	if((AGENDER in species_traits))
-		C.gender = PLURAL
-	if((FGENDER in species_traits))
-		C.gender = FEMALE
-	if((MGENDER in species_traits))
-		C.gender = MALE
 	extra_no_equip = old_species.extra_no_equip.Copy()
 	for(var/slot_id in no_equip)
 		var/obj/item/thing = C.get_item_by_slot(slot_id)
@@ -801,7 +801,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(undershirt)
 				if(HAS_TRAIT(H, TRAIT_SKINNY)) //Check for skinny first
 					standing += wear_skinny_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
-				else if(H.dna.species.sexes && H.gender == FEMALE)
+				else if(H.gender == FEMALE && (FEMALE in possible_genders))
 					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
 				else
 					standing += mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)
@@ -867,7 +867,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			bodyparts_to_add -= "waggingspines"
 
 	if("snout" in mutant_bodyparts) //Take a closer look at that snout!
-		if((H.wear_mask && H.wear_mask.mutantrace_variation == NO_MUTANTRACE_VARIATION && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)) || !HD || HD.status == BODYPART_ROBOTIC)
+		if((H.wear_mask && !(H.wear_mask.mutantrace_variation & DIGITIGRADE_VARIATION) && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "snout"
 
 	if("frills" in mutant_bodyparts)
@@ -957,15 +957,15 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		var/should_be_squished = FALSE
 		if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) || (H.wear_suit.body_parts_covered & LEGS))) //Check for snowflake suit
 			var/obj/item/clothing/suit/A = H.wear_suit
-			if(A.mutantrace_variation != MUTANTRACE_VARIATION)
+			if(!(A.mutantrace_variation & DIGITIGRADE_VARIATION))
 				should_be_squished = TRUE
 		if(H.w_uniform && (H.w_uniform.body_parts_covered & LEGS)) //Check for snowflake jumpsuit
 			var/obj/item/clothing/under/U = H.w_uniform
-			if(U.mutantrace_variation != MUTANTRACE_VARIATION)
+			if(!(U.mutantrace_variation & DIGITIGRADE_VARIATION))
 				should_be_squished = TRUE
 		if(H.shoes)
 			var/obj/item/clothing/shoes/S = H.shoes
-			if(S.mutantrace_variation != MUTANTRACE_VARIATION)
+			if(!(S.mutantrace_variation & DIGITIGRADE_VARIATION))
 				should_be_squished = TRUE
 			if(should_be_squished)
 				S.adjusted = NORMAL_STYLE
@@ -1592,9 +1592,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if((hungry >= 70) && !flight) //Being hungry will still allow you to use a flightsuit/wings.
 					. += hungry / 50
 
-		//Moving in high gravity is very slow (Flying too)
-		. += inherent_slowdown
-
 		if(gravity > STANDARD_GRAVITY)
 			var/grav_force = min(gravity - STANDARD_GRAVITY,3)
 			. += 1 + grav_force
@@ -1666,7 +1663,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		return TRUE
 	else
 
-		var/atk_verb = user.dna.species.attack_verb
+		var/atk_verb = pick(user.dna.species.attack_verbs)
 		var/atk_effect = user.dna.species.attack_effect
 		if(!(target.mobility_flags & MOBILITY_STAND))
 			atk_verb = "kick"
@@ -1723,7 +1720,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		else if(!(target.mobility_flags & MOBILITY_STAND))
 			target.forcesay(GLOB.hit_appends)
 
-/datum/species/proc/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target)
+/datum/species/proc/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target, modifiers)
 	return
 
 /datum/species/proc/disarm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
@@ -1838,7 +1835,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)
 	return
 
-/datum/species/proc/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
+/datum/species/proc/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style, modifiers)
 	if(!istype(M))
 		return
 	CHECK_DNA_AND_SPECIES(M)
@@ -1848,8 +1845,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		return
 	if(M.mind)
 		attacker_style = M.mind.martial_art
-	if((M != H) && M.a_intent != INTENT_HELP && H.check_shields(M, 0, M.name, attack_type = UNARMED_ATTACK))
-		if(M.dna.check_mutation(HULK) && M.a_intent == "disarm")
+	var/disarming = (modifiers && modifiers[RIGHT_CLICK])
+	if((M != H) && (M.combat_mode || disarming) && H.check_shields(M, 0, M.name, attack_type = UNARMED_ATTACK))
+		if(M.dna.check_mutation(HULK) && disarming)
 			H.check_shields(0, M.name) // We check their shields twice since we are a hulk. Also triggers hitreactions for HULK_ATTACK
 			M.visible_message(span_danger("[M]'s punch knocks the shield out of [H]'s hand."), \
 							span_userdanger("[M]'s punch knocks the shield out of [H]'s hand."))
@@ -1859,26 +1857,20 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				playsound(H.loc, 'sound/weapons/punch1.ogg', 25, 1, -1)
 			log_combat(M, H, "hulk punched a shield held by")
 			return FALSE
-		if(istype(attacker_style, /datum/martial_art/flyingfang) && M.a_intent == INTENT_DISARM)
+		if(istype(attacker_style, /datum/martial_art/flyingfang) && disarming)
 			disarm(M, H, attacker_style)
 		log_combat(M, H, "attempted to touch")
 		H.visible_message(span_warning("[M] attempted to touch [H]!"))
 		return 0
-	SEND_SIGNAL(M, COMSIG_MOB_ATTACK_HAND, M, H, attacker_style)
-	switch(M.a_intent)
-		if(INTENT_HELP)
-			help(M, H, attacker_style)
+	SEND_SIGNAL(M, COMSIG_MOB_ATTACK_HAND, M, H, attacker_style, modifiers)
+	if(disarming)
+		disarm(M, H, attacker_style)
+	else if(M.combat_mode)
+		harm(M, H, attacker_style)
+	else
+		help(M, H, attacker_style)
 
-		if(INTENT_GRAB)
-			grab(M, H, attacker_style)
-
-		if(INTENT_HARM)
-			harm(M, H, attacker_style)
-
-		if(INTENT_DISARM)
-			disarm(M, H, attacker_style)
-
-/datum/species/proc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
+/datum/species/proc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, mob/living/carbon/human/H)
 	// Allows you to put in item-specific reactions based on species
 	if(user != H)
 		if(H.check_shields(I, I.force, "the [I.name]", MELEE_ATTACK, I.armour_penetration))
@@ -1900,8 +1892,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/Iforce = I.force //to avoid runtimes on the forcesay checks at the bottom. Some items might delete themselves if you drop them. (stunning yourself, ninja swords)
 	var/Iwound_bonus = I.wound_bonus
 
-	// this way, you can't wound with a surgical tool on help intent if they have a surgery active and are laying down, so a misclick with a circular saw on the wrong limb doesn't bleed them dry (they still get hit tho)
-	if((I.item_flags & SURGICAL_TOOL) && user.a_intent == INTENT_HELP && (H.mobility_flags & ~MOBILITY_STAND) && (LAZYLEN(H.surgeries) > 0))
+	// this way, you can't wound with a surgical tool without combat mode if they have a surgery active and are laying down, so a misclick with a circular saw on the wrong limb doesn't bleed them dry (they still get hit tho)
+	if((I.item_flags & SURGICAL_TOOL) && !user.combat_mode && (H.mobility_flags & ~MOBILITY_STAND) && (LAZYLEN(H.surgeries) > 0))
 		Iwound_bonus = CANT_WOUND
 
 	var/weakness = H.check_weakness(I, user)

@@ -61,7 +61,7 @@
 /area/template_noop)
 "U" = (
 /mob/living/simple_animal/cockroach,
-/obj/item/clothing/under/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
 /obj/structure/table/wood,
 /turf/open/floor/plating,
 /area/template_noop)

@@ -2250,7 +2250,7 @@
 /area/awaymission/centcomAway/hangar)
 "mQ" = (
 /obj/structure/safe/floor,
-/obj/item/clothing/under/rank/centcom_officer,
+/obj/item/clothing/under/rank/centcom/officer,
 /obj/item/clothing/suit/det_suit,
 /obj/item/gun/ballistic/revolver/mateba,
 /turf/open/indestructible,

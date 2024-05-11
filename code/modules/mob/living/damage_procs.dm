@@ -8,7 +8,7 @@
 	Returns
 	standard 0 if fail
 */
-/mob/living/proc/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, attack_direction = null)
+/mob/living/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, attack_direction = null)
 	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone)
 	var/hit_percent = (100-blocked)/100
 	if(!damage || (hit_percent <= 0))
@@ -26,22 +26,26 @@
 			adjustCloneLoss(damage * hit_percent)
 		if(STAMINA)
 			adjustStaminaLoss(damage * hit_percent)
+		if(BRAIN)
+			adjustOrganLoss(ORGAN_SLOT_BRAIN, damage * hit_percent)
 	return 1
 
-/mob/living/proc/apply_damage_type(damage = 0, damagetype = BRUTE, required_status) //like apply damage except it always uses the damage procs
+/mob/living/proc/apply_damage_type(damage = 0, damagetype = BRUTE, required_status, forced) //like apply damage except it always uses the damage procs
 	switch(damagetype)
 		if(BRUTE)
-			return adjustBruteLoss(damage, TRUE, FALSE, required_status)
+			return adjustBruteLoss(damage, TRUE, forced, required_status)
 		if(BURN)
-			return adjustFireLoss(damage, TRUE, FALSE, required_status)
+			return adjustFireLoss(damage, TRUE, forced, required_status)
 		if(TOX)
-			return adjustToxLoss(damage)
+			return adjustToxLoss(damage, TRUE, forced)
 		if(OXY)
-			return adjustOxyLoss(damage)
+			return adjustOxyLoss(damage, TRUE, forced)
 		if(CLONE)
-			return adjustCloneLoss(damage)
+			return adjustCloneLoss(damage, TRUE, forced)
 		if(STAMINA)
-			return adjustStaminaLoss(damage)
+			return adjustStaminaLoss(damage, TRUE, forced)
+		if(BRAIN)
+			return adjustOrganLoss(ORGAN_SLOT_BRAIN, damage)
 
 /mob/living/proc/get_damage_amount(damagetype = BRUTE)
 	switch(damagetype)
@@ -57,6 +61,8 @@
 			return getCloneLoss()
 		if(STAMINA)
 			return getStaminaLoss()
+		if(BRAIN)
+			return getOrganLoss(ORGAN_SLOT_BRAIN)
 
 
 /mob/living/proc/apply_damages(brute = 0, burn = 0, tox = 0, oxy = 0, clone = 0, def_zone = null, blocked = FALSE, stamina = 0, brain = 0)
@@ -298,12 +304,12 @@
 		update_stamina()
 
 //heal up to amount damage, in a given order
-/mob/living/proc/heal_ordered_damage(amount, list/damage_types, required_status)
+/mob/living/proc/heal_ordered_damage(amount, list/damage_types, required_status, forced)
 	. = amount //we'll return the amount of damage healed
 	for(var/i in damage_types)
 		var/amount_to_heal = min(amount, get_damage_amount(i)) //heal only up to the amount of damage we have
 		if(amount_to_heal)
-			apply_damage_type(-amount_to_heal, i, required_status)
+			apply_damage_type(-amount_to_heal, i, required_status, forced)
 			amount -= amount_to_heal //remove what we healed from our current amount
 		if(!amount)
 			break
