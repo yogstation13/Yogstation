@@ -109,7 +109,7 @@
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
-	AddComponent(/datum/component/blocking, block_force = 25, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|REFLECTIVE_BLOCK|WIELDING_BLOCK)
+	AddComponent(/datum/component/blocking, block_force = 15, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|REFLECTIVE_BLOCK|WIELDING_BLOCK)
 
 /obj/item/fireaxe/energy/proc/on_wield(obj/item/source, mob/living/carbon/user)
 	w_class = w_class_on

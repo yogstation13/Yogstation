@@ -144,7 +144,7 @@
 	if(damage_type == STAMINA)
 		effective_damage *= 0.5 // stamina weapons are easier to block to compensate for being far stronger
 	if(HAS_TRAIT(defender, TRAIT_STUNIMMUNE)) // in case of nitrium users (me)
-		defender.apply_damage(effective_damage * 0.5, OXY, null) // halved because it takes 50 to down instead of 100
+		defender.apply_damage(effective_damage * 0.25, OXY, null) // halved because it takes 50 to down instead of 100
 	else
 		defender.apply_damage(effective_damage, STAMINA, null)
 		if(defender.getStaminaLoss() >= STAGGER_THRESHOLD)

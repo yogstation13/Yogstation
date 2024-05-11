@@ -1068,7 +1068,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/datum/component/blocking/block_component = GetComponent(/datum/component/blocking)
 	if(!block_component)
 		CRASH("[type] is missing its blocking component!")
-	block_component.block_force = clamp(ghost_counter * 3, 0, 45)
+	block_component.block_force = clamp(ghost_counter * 2, 0, 30)
 	return NONE
 
 /obj/item/melee/ghost_sword/proc/post_block(obj/item/source, mob/living/carbon/human/defender)

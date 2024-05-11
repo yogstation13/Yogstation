@@ -1843,7 +1843,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			mighty_shield = theshield
 			var/datum/component/blocking/block_component = mighty_shield.GetComponent(/datum/component/blocking)
 			if(!block_component)
-				return
+				stack_trace("[theshield.type] is missing its blocking component!")
+				return ..()
 			block_component.block_force += 5
 			to_chat(thehuman, span_notice("[theshield] appears polished, although you don't recall polishing it."))
 	return ..()
@@ -1857,7 +1858,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(mighty_shield)
 		var/datum/component/blocking/block_component = mighty_shield.GetComponent(/datum/component/blocking)
 		if(!block_component)
-			return
+			stack_trace("[mighty_shield.type] is missing its blocking component!")
+			return ..()
 		block_component.block_force -= 5
 		to_chat(L,span_notice("You notice [mighty_shield] looks worn again. Weird."))
 	..()

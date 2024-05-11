@@ -103,7 +103,7 @@
 	embedding = list("embed_chance" = 75, "embedded_impact_pain_multiplier" = 10)
 	armour_penetration = 35
 	saber_color = "green"
-	var/block_force = 20
+	var/block_force = 15
 
 /obj/item/melee/transforming/energy/sword/Initialize(mapload)
 	. = ..()
