@@ -1,0 +1,26 @@
+"a" = (/turf/open/floor/plating,/area/template_noop)
+"d" = (/turf/open/floor/mineral/titanium,/area/template_noop)
+"p" = (/obj/structure/shuttle/engine/propulsion,/turf/open/floor/plating,/area/template_noop)
+"r" = (/obj/machinery/door/airlock/external/glass,/turf/open/floor/plating,/area/template_noop)
+"u" = (/turf/open/floor/mineral/titanium/airless/broken/five,/area/template_noop)
+"w" = (/turf/closed/wall/mineral/titanium,/area/template_noop)
+"C" = (/obj/effect/spawner/structure/window/plastitanium,/turf/open/floor/plating,/area/template_noop)
+"F" = (/obj/structure/shuttle/engine/heater,/turf/open/floor/plating,/area/template_noop)
+"K" = (/obj/structure/window,/turf/open/floor/mineral/titanium/blue/airless,/area/template_noop)
+"Q" = (/obj/structure/window,/turf/open/floor/plating,/area/template_noop)
+"Y" = (/turf/open/floor/mineral/titanium/blue/airless,/area/template_noop)
+
+(1,1,1) = {"
+wwCCCCww
+wdddaaaw
+wddddaaw
+wddddaaw
+waaaaaaw
+waaYauaw
+raaYYYar
+wauaYYaw
+waYYYaaw
+wKKKKKQw
+wFFFFFFw
+wppppppw
+"}
