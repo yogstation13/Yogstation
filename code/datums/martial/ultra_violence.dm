@@ -85,7 +85,7 @@
 		else
 			dash(H, target) // right click at range for dash
 			return COMSIG_MOB_CANCEL_CLICKON
-	else if(H.combat_mode && get_turf(H) != get_turf(target) && !H.get_active_held_item())
+	else if(H.combat_mode && get_turf(H) != get_turf(target) && !H.get_active_held_item() && !isitem(target))
 		parry(H, target) // left click for parry
 		return COMSIG_MOB_CANCEL_CLICKON
 	return NONE
