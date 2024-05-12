@@ -55,3 +55,5 @@
 	for(var/turf/t in linked)
 		if(isfloorturf(t))
 			t.ScrapeAway()
+
+
