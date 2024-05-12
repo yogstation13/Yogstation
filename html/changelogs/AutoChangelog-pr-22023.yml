@@ -1,4 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "fixed hydroponics trays not updating appearance sometimes"
