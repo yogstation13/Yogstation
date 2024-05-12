@@ -172,6 +172,7 @@
 	diag_hud_set_mechcell()
 	diag_hud_set_mechstat()
 	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
+	ADD_TRAIT(src, TRAIT_SHIELDBUSTER, INNATE_TRAIT) // previously it didn't even check shields at all, now it still doesn't but does some fun stuff in the process
 
 /// Special light eater handling
 /obj/mecha/proc/on_light_eater(obj/vehicle/sealed/source, datum/light_eater)

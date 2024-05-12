@@ -353,8 +353,8 @@
 		M.selected.action(src)
 	else if(M.occupant.combat_mode)
 		M.do_attack_animation(src)
-		if(check_shields(M, punch_force * 2, "[M]", MELEE_ATTACK, damage_type = M.damtype)) // multiply by 2 because it's a giant goddamn mech
-			return // what in the goddamn
+		if(check_shields(M, punch_force, "[M]", MELEE_ATTACK, damage_type = M.damtype)) // you sure can try
+			return
 		if(M.damtype == BRUTE)
 			step_away(src,M,15)
 		var/obj/item/bodypart/temp = get_bodypart(pick(BODY_ZONE_CHEST, BODY_ZONE_CHEST, BODY_ZONE_CHEST, BODY_ZONE_HEAD))
