@@ -50,3 +50,8 @@
 			return
 	
 	spawn_area_clear = TRUE
+
+/obj/machinery/computer/shipbreaker/proc/clear_floor_plating()
+	for(var/turf/t in linked)
+		if(isfloorturf(t))
+			t.ScrapeAway()
