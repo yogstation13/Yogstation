@@ -144,9 +144,9 @@
 		effective_damage *= 0.5 // stamina weapons are easier to block to compensate for being far stronger
 	if(HAS_TRAIT(defender, TRAIT_STUNIMMUNE)) // in case of nitrium users (me)
 		if(damage_type != STAMINA) // no don't kill people with stun weapons what the hell
-			defender.apply_damage(effective_damage * 0.25, OXY, null) // reduced because it takes a lot less to down and goes away much slower
+			defender.adjustOxyLoss(effective_damage * 0.25, TRUE) // reduced because it takes a lot less to down and goes away much slower
 	else
-		defender.apply_damage(effective_damage, STAMINA, null)
+		defender.adjustStaminaLoss(effective_damage, TRUE)
 		if(defender.getStaminaLoss() >= STAGGER_THRESHOLD)
 			defender.Knockdown(3 SECONDS, TRUE)
 
@@ -206,6 +206,7 @@
 		location = params2turf(modifiers[SCREEN_LOC], get_turf(source.eye), source)
 		if(!location) // you clicked the void, but we couldn't figure out a turf to face towards
 			return
+		target = location
 	if(!source.mob.is_holding(parent)) // not holding it
 		return
 	if(HAS_TRAIT(source.mob, TRAIT_NO_BLOCKING))
