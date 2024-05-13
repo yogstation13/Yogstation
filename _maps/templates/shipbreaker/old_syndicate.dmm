@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/red/airless,
 /area/template_noop)
 "b" = (
 /obj/structure/shuttle/engine/heater,
@@ -9,14 +9,10 @@
 /area/template_noop)
 "c" = (
 /obj/machinery/door/airlock/external/glass,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red/airless,
 /area/template_noop)
 "h" = (
 /obj/effect/spawner/structure/window/plastitanium,
-/turf/open/floor/plating,
-/area/template_noop)
-"m" = (
-/obj/machinery/door/airlock/external/glass,
 /turf/open/floor/plating,
 /area/template_noop)
 "o" = (
@@ -28,44 +24,44 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "u" = (
-/turf/open/space/basic,
+/turf/template_noop,
 /area/template_noop)
 "x" = (
 /obj/machinery/computer/shuttle/syndicate,
-/turf/open/floor/mineral/plastitanium/broken,
+/turf/open/floor/mineral/plastitanium/airless/broken,
 /area/template_noop)
 "E" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/template_noop)
 "F" = (
 /obj/item/bodybag/environmental/prisoner/syndicate,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/airless/broken,
 /area/template_noop)
 "H" = (
 /obj/structure/chair/comfy/shuttle,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/airless/broken,
 /area/template_noop)
 "L" = (
 /turf/open/floor/mineral/plastitanium/red,
 /area/template_noop)
 "M" = (
 /obj/machinery/shieldwallgen,
-/turf/open/floor/plating,
+/turf/open/floor/mineral/plastitanium/airless/broken,
 /area/template_noop)
 "P" = (
 /obj/structure/chair/comfy/shuttle,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red/airless,
 /area/template_noop)
 "Q" = (
-/turf/open/floor/plating,
+/turf/open/floor/mineral/plastitanium/airless/broken,
 /area/template_noop)
 "U" = (
 /obj/machinery/shieldwallgen,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red/airless,
 /area/template_noop)
 "V" = (
 /obj/item/bodybag/environmental/prisoner/syndicate,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red/airless,
 /area/template_noop)
 
 (1,1,1) = {"
@@ -74,7 +70,7 @@ E
 E
 E
 E
-m
+c
 E
 E
 E
@@ -84,29 +80,29 @@ u
 "}
 (2,1,1) = {"
 E
-a
-a
-a
+Q
+Q
+Q
 E
-L
+a
 E
 U
-L
-L
+a
+a
 b
 t
 "}
 (3,1,1) = {"
 E
-a
-a
-a
+Q
+Q
+Q
 E
 c
 E
 V
-L
-L
+a
+a
 b
 t
 "}
@@ -114,13 +110,13 @@ t
 h
 x
 H
+Q
+Q
+a
+L
 a
 a
-L
-L
-L
-L
-L
+a
 b
 t
 "}
@@ -128,41 +124,41 @@ t
 h
 o
 P
-L
+a
+Q
 a
 L
-L
+Q
+Q
 a
-a
-L
 b
 t
 "}
 (6,1,1) = {"
-h
-L
-L
-L
+E
+a
+a
+a
 E
 c
 E
-a
+Q
 F
-a
+Q
 b
 t
 "}
 (7,1,1) = {"
 E
-L
-L
+a
+a
 V
 E
-L
+a
 E
 M
 Q
-a
+Q
 b
 t
 "}

@@ -7,7 +7,7 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "d" = (
-/turf/open/space/basic,
+/turf/template_noop,
 /area/template_noop)
 "e" = (
 /obj/machinery/door/airlock/titanium,
@@ -25,7 +25,7 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "p" = (
-/turf/open/floor/mineral/titanium/white,
+/turf/open/floor/mineral/titanium/white/airless,
 /area/template_noop)
 "u" = (
 /obj/machinery/sleeper,
@@ -56,7 +56,7 @@
 /area/template_noop)
 "L" = (
 /obj/item/clothing/accessory/armband/medblue,
-/turf/open/floor/mineral/titanium/white,
+/turf/open/floor/mineral/titanium/white/airless,
 /area/template_noop)
 "M" = (
 /obj/structure/table/reinforced,
