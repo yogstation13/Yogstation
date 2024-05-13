@@ -213,7 +213,7 @@
 	e_cost = 50
 
 /obj/projectile/flamethrower
-	name = "fire"
+	name = "\proper fire"
 	desc = "Yep, that's fire."
 	icon_state = null // the actual fire will handle it
 	armor_flag = FIRE
