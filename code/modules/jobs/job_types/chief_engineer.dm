@@ -56,8 +56,8 @@
 
 	belt = /obj/item/storage/belt/utility/chief/full
 	ears = /obj/item/radio/headset/heads/ce
-	uniform = /obj/item/clothing/under/rank/chief_engineer
-	uniform_skirt = /obj/item/clothing/under/rank/chief_engineer/skirt
+	uniform = /obj/item/clothing/under/rank/engineering/chief_engineer
+	uniform_skirt = /obj/item/clothing/under/rank/engineering/chief_engineer/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
 	head = /obj/item/clothing/head/hardhat/white

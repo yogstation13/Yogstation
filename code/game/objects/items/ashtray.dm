@@ -12,8 +12,8 @@
 	else if(contents.len >= max_butts * 0.5)
 		. += image('icons/obj/objects.dmi', "ashtray_half")
 
-/obj/item/ashtray/attackby(obj/item/W, mob/user)
-	if (user.a_intent == INTENT_HARM)
+/obj/item/ashtray/attackby(obj/item/W, mob/living/user)
+	if (user.combat_mode)
 		..()
 		return
 

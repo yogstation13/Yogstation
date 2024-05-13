@@ -20,7 +20,7 @@
 	sensor_mode = 3
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/yogs/rank/physician/white
 	name = "white brig physician's jumpsuit"
@@ -41,4 +41,4 @@
 	fitted = FEMALE_UNIFORM_TOP
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
-	mutantrace_variation = NO_MUTANTRACE_VARIATION
+	mutantrace_variation = NONE

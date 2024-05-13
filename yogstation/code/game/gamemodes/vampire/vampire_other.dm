@@ -7,7 +7,7 @@
 /obj/item/clothing/suit/draculacoat
 	name = "Vampire Coat"
 	desc = "What is a man? A miserable little pile of secrets."
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'icons/obj/clothing/suits/suits.dmi'
 	icon_state = "draculacoat"
 	item_state = "draculacoat"

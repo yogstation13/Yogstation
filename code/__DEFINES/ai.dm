@@ -28,7 +28,9 @@
 #define AI_PROJECT_SURVEILLANCE "Surveillance"
 #define AI_PROJECT_EFFICIENCY "Efficiency"
 #define AI_PROJECT_CROWD_CONTROL "Crowd Control"
+#define AI_PROJECT_CYBORG "Cyborg Management"
 #define AI_PROJECT_MISC "Misc."
+
 //Update this list if you add any new ones, else the category won't show up in the UIs
 GLOBAL_LIST_INIT(ai_project_categories, list(
 	AI_PROJECT_HUDS,
@@ -37,6 +39,7 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 	AI_PROJECT_INDUCTION,
 	AI_PROJECT_EFFICIENCY,
 	AI_PROJECT_CROWD_CONTROL,
+	AI_PROJECT_CYBORG,
 	AI_PROJECT_MISC
 ))
 

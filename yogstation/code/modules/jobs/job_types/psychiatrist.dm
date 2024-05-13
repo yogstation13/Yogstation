@@ -46,7 +46,7 @@
 	jobtype = /datum/job/psych
 
 	shoes = /obj/item/clothing/shoes/sneakers/brown
-	uniform = /obj/item/clothing/under/suit_jacket/burgundy
+	uniform = /obj/item/clothing/under/suit/burgundy
 	l_hand = /obj/item/storage/briefcase
 	glasses = /obj/item/clothing/glasses/regular
 	ears = /obj/item/radio/headset/headset_med

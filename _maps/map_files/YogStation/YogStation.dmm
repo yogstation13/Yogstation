@@ -5939,7 +5939,7 @@
 /area/library)
 "aQs" = (
 /obj/structure/destructible/cult/tome,
-/obj/item/clothing/under/suit_jacket/red,
+/obj/item/clothing/under/suit/red,
 /obj/item/book/codex_gigas,
 /turf/open/floor/plasteel/cult,
 /area/library)
@@ -10635,11 +10635,11 @@
 /area/maintenance/port/fore)
 "bEb" = (
 /obj/structure/closet,
-/obj/item/clothing/under/suit_jacket/female{
+/obj/item/clothing/under/suit/female{
 	pixel_x = 3;
 	pixel_y = 1
 	},
-/obj/item/clothing/under/suit_jacket/really_black{
+/obj/item/clothing/under/suit/really_black{
 	pixel_x = -2
 	},
 /obj/structure/window{
@@ -18969,6 +18969,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"dXb" = (
+/obj/structure/closet/wardrobe/genetics_white,
+/obj/effect/turf_decal/trimline/purple/filled/corner/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "dXi" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner/lower{
 	dir = 1
@@ -25616,6 +25624,7 @@
 /obj/machinery/light_switch{
 	pixel_y = -23
 	},
+/obj/effect/landmark/start/cyborg,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "gmQ" = (
@@ -27911,7 +27920,6 @@
 /turf/open/space/basic,
 /area/space)
 "heh" = (
-/obj/effect/landmark/start/cyborg,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/cable{
@@ -28001,6 +28009,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 6
 	},
+/obj/effect/landmark/start/synthetic,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "hfy" = (
@@ -36532,6 +36541,7 @@
 	dir = 4;
 	pixel_x = -24
 	},
+/obj/effect/landmark/start/synthetic,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "kfW" = (
@@ -40829,19 +40839,6 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/starboard/aft)
-"lOk" = (
-/obj/structure/closet/wardrobe/genetics_white,
-/obj/item/stack/cable_coil/white,
-/obj/item/sequence_scanner,
-/obj/item/sequence_scanner,
-/obj/item/reagent_containers/glass/bottle/morphine,
-/obj/item/reagent_containers/syringe,
-/obj/effect/turf_decal/trimline/purple/filled/corner/lower{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/corner,
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "lOq" = (
 /obj/machinery/door/airlock/research{
 	name = "Experimentation Lab";
@@ -56539,6 +56536,21 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"rxO" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 1
+	},
+/obj/item/storage/box/rxglasses,
+/obj/item/storage/box/disks{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "rxR" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
@@ -66189,22 +66201,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"vbV" = (
-/obj/structure/table/glass,
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 1
-	},
-/obj/item/storage/box/rxglasses,
-/obj/item/storage/box/disks{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/radio/headset/headset_medsci,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "vca" = (
 /obj/machinery/computer/aifixer,
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
@@ -116580,7 +116576,7 @@ wBd
 hof
 rYQ
 wBd
-lOk
+dXb
 vGx
 uEc
 ufj
@@ -116832,7 +116828,7 @@ cpr
 uvN
 htQ
 kYK
-vbV
+rxO
 wBd
 oJT
 iqX
@@ -117926,7 +117922,7 @@ mFE
 kcr
 cva
 cva
-jXD
+cva
 pEf
 gXs
 gXs
@@ -118695,7 +118691,7 @@ tjY
 dTU
 cva
 cva
-jXD
+cva
 wGq
 pEf
 gXs

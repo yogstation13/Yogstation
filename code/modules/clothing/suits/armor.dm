@@ -55,7 +55,7 @@
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	strip_delay = 80
 	clothing_flags = THICKMATERIAL
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/hosarmor
 
 /obj/item/clothing/suit/armor/hos/trenchcoat
@@ -82,7 +82,7 @@
 	name = "warden's armored jacket"
 	desc = "A red jacket with silver rank pips and body armor strapped on top."
 	icon_state = "warden_jacket"
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/suit/armor/vest/leather
 	name = "security overcoat"
@@ -92,7 +92,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	heat_protection = CHEST|GROIN|LEGS|ARMS
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 	dog_fashion = null
 
 /obj/item/clothing/suit/armor/vest/capcarapace
@@ -141,7 +141,7 @@
 	strip_delay = 80
 	equip_delay_other = 60
 	slowdown = 0.33
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/suit/armor/bone
 	name = "bone armor"
@@ -186,7 +186,7 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/suit/armor/pathfinder/Initialize(mapload)
 	. = ..()
@@ -289,7 +289,7 @@
 	desc = "A classic suit of plate armour, highly effective at stopping melee attacks."
 	icon_state = "knight_green"
 	item_state = "knight_green"
-	mutantrace_variation = NO_MUTANTRACE_VARIATION
+	mutantrace_variation = NONE
 
 /obj/item/clothing/suit/armor/riot/knight/yellow
 	icon_state = "knight_yellow"
@@ -412,7 +412,7 @@
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	clothing_flags = THICKMATERIAL
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 //////////////// PLATED ARMOR ////////////////
 // Helmet type in code/modules/clothing/head/helmet.dm

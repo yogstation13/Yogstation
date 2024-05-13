@@ -324,14 +324,17 @@
 /obj/item/melee/classic_baton/proc/additional_effects_silicon(mob/living/target, mob/living/user)
 	return
 
-/obj/item/melee/classic_baton/attack(mob/living/target, mob/living/user)
-	if(!on)
+/obj/item/melee/classic_baton/attack(mob/living/target, mob/living/user, params)
+	var/list/modifiers = params2list(params)
+	if(!on || (user.combat_mode && modifiers && modifiers[RIGHT_CLICK])) // right click to harm, so you can keep combat mode on to prevent walking through people
+		return ..()
+	if(!isliving(target))
 		return ..()
 	if(!synth_check(user, SYNTH_RESTRICTED_WEAPON))
-		return
+		return TRUE
 	if(HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
 		to_chat(user, span_warning("You can't seem to remember how this works!"))
-		return
+		return TRUE
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
 		to_chat(user, "<span class ='danger'>You hit yourself over the head.</span>")
@@ -344,31 +347,20 @@
 			H.apply_damage(2*force, BRUTE, BODY_ZONE_HEAD)
 		else
 			user.take_bodypart_damage(2*force)
-		return
+		return TRUE
+
 	if(iscyborg(target))
-		// We don't stun if we're on harm.
-		if (user.a_intent != INTENT_HARM)
-			if (affect_silicon)
-				stun_silicon(target, user)
-			else
-				..()
-		else
-			..()
-		return
-	if(!isliving(target))
-		return
-	if (user.a_intent == INTENT_HARM)
-		if(!..())
-			return
-		if(!iscyborg(target))
-			return
+		if(affect_silicon)
+			stun_silicon(target, user)
+			return TRUE
+		return ..()
+
+	if(cooldown_check <= world.time)
+		stun(target, user)
 	else
-		if(cooldown_check <= world.time)
-			stun(target, user)
-		else
-			var/wait_desc = get_wait_description()
-			if (wait_desc)
-				to_chat(user, wait_desc)
+		var/wait_desc = get_wait_description()
+		if (wait_desc)
+			to_chat(user, wait_desc)
 
 /obj/item/melee/classic_baton/donkbat
 	name = "toy baseball bat"

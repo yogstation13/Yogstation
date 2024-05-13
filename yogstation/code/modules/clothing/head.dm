@@ -44,7 +44,7 @@
 	name = "nam helmet"
 	desc = "An ancient war helmet that is perfect for protecting your noggin from greytide clobberin'!"
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "namhelm"
 	item_state = "namhelm"
 
@@ -130,7 +130,7 @@
 	name = "war helmet"
 	desc = "Get ready boys, we are going to war!"
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "kr_helm"
 	item_state = "kr_helm"
 
@@ -156,7 +156,7 @@
 	name = "corporate warden beret"
 	desc = "A special black beret with a warden's insignia in the middle. This one is commonly worn by wardens of the corporation."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_corporate_warden"
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 25, bio = 0, rad = 0, fire = 30, acid = 60)
 	strip_delay = 60
@@ -165,7 +165,7 @@
 	name = "corporate security beret"
 	desc = "A special black beret for the mundane life of a corporate security officer."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_corporate_officer"
 	armor = list(melee = 40, bullet = 30, laser = 30,energy = 10, bomb = 25, bio = 0, rad = 0, fire = 20, acid = 50)
 	strip_delay = 60
@@ -174,7 +174,7 @@
 	name = "engineering beret"
 	desc = "A beret with the engineering insignia emblazoned on it. For engineers that are more inclined towards style than safety."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_engineering"
 	armor = list(rad = 10, fire = 10)
 	strip_delay = 60
@@ -183,7 +183,7 @@
 	name = "atmospherics beret"
 	desc = "A beret for those who have shown immaculate proficiency in piping. Or plumbing."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_atmospherics"
 	armor = list(rad = 10, fire = 80)
 	strip_delay = 60
@@ -192,7 +192,7 @@
 	name = "chief engineer beret"
 	desc = "A white beret with the engineering insignia emblazoned on it. Its owner knows what they're doing. Probably."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_ce"
 	armor = list(rad = 20, fire = 80)
 	strip_delay = 60
@@ -201,7 +201,7 @@
 	name = "science beret"
 	desc = "A purple beret with the science insignia emblazoned on it. It has that authentic burning plasma smell."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_sci"
 	armor = list(bomb = 5, bio = 5, fire = 5, acid = 10)
 	strip_delay = 60
@@ -210,7 +210,7 @@
 	name = "research director beret"
 	desc = "A purple beret with a golden science insignia emblazoned on it. It has that authentic burning plasma smell, with a hint of tritium."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_rd"
 	armor = list(bomb = 15, bio = 10, fire = 10, acid = 15)
 	strip_delay = 60
@@ -219,7 +219,7 @@
 	name = "medical beret"
 	desc = "A white beret with a blue cross finely threaded into it. It has that sterile smell about it."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_med"
 	armor = list(bio = 20)
 	strip_delay = 60
@@ -228,7 +228,7 @@
 	name = "chemistry beret"
 	desc = "A white beret with an orange cross finely threaded into it. It smells like hazardous chemicals."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_chem"
 	armor = list(fire = 10, acid = 30)
 	strip_delay = 60
@@ -237,7 +237,7 @@
 	name = "chief medical officer beret"
 	desc = "A baby blue beret with the insignia of Medistan. It smells very sterile."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_cmo"
 	armor = list(bio = 30, acid = 20)
 	strip_delay = 60
@@ -246,7 +246,7 @@
 	name = "head of personnel beret"
 	desc = "A lovely blue beret with a red nanotrasen logo emblazoned on it. It seems to have a bit of dog hair in it."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_hop"
 	armor = list(melee = 25, bullet = 15, laser = 25, energy = 10, bomb = 25, bio = 0, rad = 0, fire = 50, acid = 50)
 	strip_delay = 90
@@ -255,7 +255,7 @@
 	name = "captain beret"
 	desc = "A lovely blue Captain beret with a gold and white insignia."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_captain"
 	armor = list(melee = 50, bullet = 30, laser = 20, energy = 10, bomb = 15, bio = 10, rad = 10, fire = 10, acid = 60)
 	strip_delay = 90
@@ -266,7 +266,7 @@
 	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "demonwelding"
 	item_state = "demonwelding"
 
@@ -276,7 +276,7 @@
 	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "knightwelding"
 	item_state = "welding"
 
@@ -286,7 +286,7 @@
 	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "fancywelding"
 	item_state = "fancywelding"
 
@@ -296,7 +296,7 @@
 	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "engiewelding"
 	item_state = "engiewelding"
 
@@ -306,14 +306,14 @@
 	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "carpwelding"
 	item_state = "carpwelding"
 
 /obj/item/clothing/head/milliondollarhat
 	name = "millionaires hat"
 	desc = "On a small label at the bottom of the hat it reads.'My name is Doug Dimmadome, owner of the Dimmsdale Dimmadome and thank you for buying one of my top quality dimmahats!' On an even smaller label hidden in the small label it reads 'No refunds'."
-	mob_overlay_icon = 'yogstation/icons/mob/large-worn-icons/1024x1024/head.dmi'
+	worn_icon = 'yogstation/icons/mob/large-worn-icons/1024x1024/head.dmi'
 	icon = 'yogstation/icons/obj/clothing/1024x1024/hats.dmi'
 	icon_state = "milliondollarhat"
 	item_state = "milliondollarhat"

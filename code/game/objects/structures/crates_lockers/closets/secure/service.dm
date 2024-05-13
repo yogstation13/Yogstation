@@ -9,8 +9,8 @@
 	var/static/items_inside = list(
 		/obj/item/clothing/head/that = 2,
 		/obj/item/radio/headset/headset_srv = 2,
-		/obj/item/clothing/under/sl_suit = 2,
-		/obj/item/clothing/under/rank/bartender = 2,
+		/obj/item/clothing/under/suit/sl_suit = 2,
+		/obj/item/clothing/under/rank/civilian/bartender = 2,
 		/obj/item/clothing/accessory/waistcoat = 2,
 		/obj/item/clothing/head/soft/black = 2,
 		/obj/item/clothing/shoes/sneakers/black = 2,

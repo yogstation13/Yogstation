@@ -19,13 +19,7 @@
 
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "pvalve"
-
-/obj/machinery/atmospherics/components/binary/pressure_valve/CtrlClick(mob/user)
-	if(can_interact(user))
-		on = !on
-		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
-		update_appearance(UPDATE_ICON)
-	return ..()
+	quick_toggle = TRUE
 
 /obj/machinery/atmospherics/components/binary/pressure_valve/AltClick(mob/user)
 	if(can_interact(user))

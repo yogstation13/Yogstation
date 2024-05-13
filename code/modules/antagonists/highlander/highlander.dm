@@ -46,7 +46,7 @@
 	for(var/obj/item/I in H.held_items)
 		qdel(I)
 	if(!isplasmaman(H)) //no killing plasmies
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/kilt/highlander(H), ITEM_SLOT_ICLOTHING)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/costume/kilt/highlander(H), ITEM_SLOT_ICLOTHING)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/highlander(H), ITEM_SLOT_HEAD)
 	else
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/plasmaman(H), ITEM_SLOT_ICLOTHING)

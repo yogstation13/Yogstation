@@ -194,45 +194,57 @@
 /obj/item/horrortentacle/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+
 /obj/item/horrortentacle/examine(mob/user)
 	. = ..()
 	to_chat(user, span_velvet(span_bold("Functions:")))
 	to_chat(user, span_velvet("<b>All attacks work up to 2 tiles away.</b>"))
-	to_chat(user, span_velvet("<b>Help intent:</b> Usual help function of an arm."))
-	to_chat(user, span_velvet("<b>Disarm intent:</b> Whips the tentacle, disarming your opponent."))
-	to_chat(user, span_velvet("<b>Grab intent:</b> Instant aggressive grab on an opponent. Can also throw them!"))
-	to_chat(user, span_velvet("<b>Harm intent:</b> Whips the tentacle, damaging your opponent."))
+	to_chat(user, span_velvet("<b>Disarm:</b> Whips the tentacle, disarming your opponent."))
+	to_chat(user, span_velvet("<b>Grab:</b> Instant aggressive grab on an opponent. Can also throw them!"))
+	to_chat(user, span_velvet("<b>Punch:</b> Whips the tentacle, damaging your opponent."))
 	to_chat(user, span_velvet("Also functions to pry open unbolted airlocks."))
-/obj/item/horrortentacle/attack(atom/target, mob/living/user)
+
+/obj/item/horrortentacle/equipped(mob/user, slot, initial)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_PULL, PROC_REF(on_pull))
+
+/obj/item/horrortentacle/dropped(mob/user, silent)
+	UnregisterSignal(user, COMSIG_MOB_PULL)
+	return ..()
+
+/obj/item/horrortentacle/proc/on_pull(mob/living/user, mob/living/target)
+	if(!isliving(target) || !user.combat_mode)
+		return
+	target.grabbedby(user)
+	target.grippedby(user, instant=TRUE)
+	target.Knockdown(3 SECONDS)
+	return COMPONENT_BLOCK_PULL // already did the pull
+
+/obj/item/horrortentacle/attack(atom/target, mob/living/user, params)
 	if(isliving(target))
 		user.Beam(target,"purpletentacle",time=5)
 		var/mob/living/L = target
-		switch(user.a_intent)
-			if(INTENT_HELP)
-				L.attack_hand(user)
-				return
-			if(INTENT_GRAB)
-				if(L != user)
-					L.grabbedby(user)
-					L.grippedby(user, instant = TRUE)
-					L.Knockdown(30)
-				return
-			if(INTENT_DISARM)
-				if(iscarbon(L))
-					var/mob/living/carbon/C = L
-					var/obj/item/I = C.get_active_held_item()
-					if(I)
-						if(C.dropItemToGround(I))
-							playsound(loc, "sound/weapons/whipgrab.ogg", 30)
-							target.visible_message(span_danger("[I] is whipped out of [C]'s hand by [user]!"),span_userdanger("A tentacle whips [I] out of your hand!"))
-							return
-						else
-							to_chat(user, span_danger("You can't seem to pry [I] off [C]'s hands!"))
-							return
-					else
-						C.attack_hand(user)
+		var/list/modifiers = params2list(params)
+		if(!user.combat_mode)
+			L.attack_hand(user, modifiers)
+			return
+		else if(modifiers && modifiers[RIGHT_CLICK])
+			if(iscarbon(L))
+				var/mob/living/carbon/C = L
+				var/obj/item/I = C.get_active_held_item()
+				if(I)
+					if(C.dropItemToGround(I))
+						playsound(loc, "sound/weapons/whipgrab.ogg", 30)
+						target.visible_message(span_danger("[I] is whipped out of [C]'s hand by [user]!"),span_userdanger("A tentacle whips [I] out of your hand!"))
 						return
-	. = ..()
+					else
+						to_chat(user, span_danger("You can't seem to pry [I] off [C]'s hands!"))
+						return
+				else
+					C.attack_hand(user, modifiers)
+					return
+	return ..()
+
 /obj/item/horrortentacle/afterattack(atom/target, mob/user, proximity)
 	if(isliving(user.pulling) && user.pulling != target)
 		var/mob/living/H = user.pulling

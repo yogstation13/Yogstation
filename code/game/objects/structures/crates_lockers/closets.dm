@@ -182,7 +182,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	if(opened)
 		. += span_notice("The parts are <b>welded</b> together.")
 	else if(secure && !opened)
-		. += span_notice("Alt-click to [locked ? "unlock" : "lock"].")
+		. += span_notice("Right-click to [locked ? "unlock" : "lock"].")
 	if(isliving(user))
 		var/mob/living/L = user
 		if(HAS_TRAIT(L, TRAIT_SKITTISH))
@@ -324,7 +324,7 @@ GLOBAL_LIST_EMPTY(lockers)
 /obj/structure/closet/attackby(obj/item/attacking_item, mob/user, params)
 	if(user in src)
 		return
-	if(user.a_intent == INTENT_HARM) //if you're on harm intent, just hit it
+	if(user.combat_mode)
 		return ..()
 	if(attacking_item.GetID()) //if you're hitting with an id item, toggle the lock
 		togglelock(user)
@@ -334,8 +334,8 @@ GLOBAL_LIST_EMPTY(lockers)
 	if(user.transferItemToLoc(attacking_item, drop_location())) //try to transfer the held item to it
 		return TRUE
 
-/obj/structure/closet/welder_act(mob/living/user, obj/item/tool)
-	if(user.a_intent == INTENT_HARM)
+/obj/structure/closet/welder_act(mob/living/user, obj/item/tool, modifiers)
+	if(user.combat_mode && !(modifiers && modifiers[RIGHT_CLICK]))
 		return FALSE
 	if(!tool.tool_start_check(user, amount=0))
 		return FALSE
@@ -366,8 +366,8 @@ GLOBAL_LIST_EMPTY(lockers)
 		return TRUE
 	return FALSE
 
-/obj/structure/closet/wirecutter_act(mob/living/user, obj/item/tool)
-	if(user.a_intent == INTENT_HARM || (flags_1 & NODECONSTRUCT_1))
+/obj/structure/closet/wirecutter_act(mob/living/user, obj/item/tool, modifiers)
+	if(user.combat_mode && !(modifiers && modifiers[RIGHT_CLICK]))
 		return FALSE
 	if(tool.tool_behaviour != cutting_tool)
 		return FALSE
@@ -376,7 +376,9 @@ GLOBAL_LIST_EMPTY(lockers)
 	deconstruct(TRUE)
 	return TRUE
 
-/obj/structure/closet/wrench_act(mob/living/user, obj/item/tool)
+/obj/structure/closet/wrench_act(mob/living/user, obj/item/tool, modifiers)
+	if(user.combat_mode && !(modifiers && modifiers[RIGHT_CLICK]))
+		return FALSE
 	if(!anchorable)
 		return FALSE
 	if(isinspace() && !anchored)
@@ -442,16 +444,23 @@ GLOBAL_LIST_EMPTY(lockers)
 		return
 	container_resist(user)
 
-/obj/structure/closet/attack_hand(mob/living/user)
+/obj/structure/closet/attack_hand(mob/living/user, modifiers)
 	. = ..()
 	if(.)
 		return
 	if(!(user.mobility_flags & MOBILITY_STAND) && get_dist(src, user) > 0)
 		return
-	if((user.mind?.has_martialart(MARTIALART_BUSTERSTYLE)) && (user.a_intent == INTENT_GRAB))
-		return //buster arm shit since trying to pick up an open locker just stuffs you in it
 	if(!toggle(user))
 		togglelock(user)
+	return
+
+/obj/structure/closet/attack_hand_secondary(mob/user, modifiers)
+	if(!user.canUseTopic(src, BE_CLOSE) || !isturf(loc))
+		return ..()
+	if(!opened && secure)
+		togglelock(user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
 
 /obj/structure/closet/attack_paw(mob/user)
 	return attack_hand(user)
