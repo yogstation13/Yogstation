@@ -466,7 +466,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Flamethrower"
 	desc = "A flamethrower, fueled by a portion of highly flammable biotoxins stolen previously from Nanotrasen \
 			stations. Make a statement by roasting the filth in their own greed. Use with caution."
-	item = /obj/item/flamethrower/full/tank
+	item = /obj/item/gun/flamethrower/full
 	cost = 4
 	surplus = 40
 	include_modes = list(/datum/game_mode/nuclear)
