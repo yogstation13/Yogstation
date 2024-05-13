@@ -219,6 +219,7 @@
 	armor_flag = FIRE
 	damage_type = BURN
 	sharpness = SHARP_NONE
+	hitsound = null
 	range = 6
 	damage = 16
 	demolition_mod = 2 // bonus damage against blobs and vines, most other structures have very high fire armor
