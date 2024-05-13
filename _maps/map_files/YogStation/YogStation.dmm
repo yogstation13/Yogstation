@@ -2709,7 +2709,6 @@
 /obj/structure/rack,
 /obj/item/clothing/mask/gas,
 /obj/item/tank/internals/oxygen,
-/obj/item/gun/energy/plasmacutter,
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/engine,
 /area/escapepodbay)
@@ -37882,7 +37881,9 @@
 	dir = 4;
 	id = "garbage"
 	},
-/obj/machinery/recycler,
+/obj/machinery/recycler{
+	can_be_unanchored = 1
+	},
 /obj/structure/sign/warning/securearea{
 	name = "\improper STAY CLEAR HEAVY MACHINERY";
 	pixel_y = 32
@@ -57106,7 +57107,6 @@
 /obj/structure/rack,
 /obj/item/clothing/mask/gas,
 /obj/item/tank/internals/oxygen,
-/obj/item/gun/energy/plasmacutter,
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/engine/airless,
 /area/escapepodbay)
@@ -72954,6 +72954,7 @@
 	dir = 1;
 	light_color = "#c1caff"
 	},
+/obj/machinery/recycler,
 /turf/open/floor/engine,
 /area/escapepodbay)
 "xBK" = (
