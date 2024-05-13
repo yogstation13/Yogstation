@@ -1,5 +1,5 @@
 /datum/map_template/shipbreaker
-	should_place_on_top = FALSE
+	should_place_on_top = TRUE
 	returns_created_atoms = TRUE
 	keep_cached_map = TRUE
 

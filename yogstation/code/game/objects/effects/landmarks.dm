@@ -246,10 +246,4 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	GLOB.infiltrator_objective_items += loc
 	return INITIALIZE_HINT_QDEL 
 
-
-/obj/effect/landmark/shipbreak
-	name = "shipbreak spawnpoint"
-	icon_state = "Tourist"
-
-
 #undef EMPTY_SPAWN
