@@ -1,202 +1,202 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/closed/wall/mineral/titanium/interior,
+/turf/open/floor/mineral/titanium/blue/airless,
 /area/template_noop)
-"f" = (
-/obj/structure/window/plastitanium,
-/turf/open/floor/plating,
-/area/template_noop)
-"h" = (
+"c" = (
 /obj/item/banner/medical,
 /turf/open/floor/plating,
 /area/template_noop)
+"d" = (
+/turf/open/space/basic,
+/area/template_noop)
+"e" = (
+/obj/machinery/door/airlock/titanium,
+/turf/open/floor/plating,
+/area/template_noop)
 "j" = (
+/obj/structure/statue/gold/cmo,
+/turf/open/floor/mineral/titanium/airless,
+/area/template_noop)
+"k" = (
+/turf/closed/wall/mineral/titanium,
+/area/template_noop)
+"l" = (
+/obj/structure/chair/comfy/shuttle,
+/turf/open/floor/plating,
+/area/template_noop)
+"p" = (
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"u" = (
+/obj/machinery/sleeper,
+/turf/open/floor/mineral/titanium/blue/airless,
+/area/template_noop)
+"A" = (
+/turf/open/floor/mineral/titanium/airless,
+/area/template_noop)
+"D" = (
+/obj/machinery/computer/shuttle,
+/turf/open/floor/plating,
+/area/template_noop)
+"G" = (
+/obj/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/template_noop)
+"I" = (
+/turf/closed/wall/mineral/titanium/interior,
+/area/template_noop)
+"J" = (
+/obj/item/clothing/accessory/armband/medblue,
+/turf/open/floor/plating,
+/area/template_noop)
+"K" = (
 /obj/structure/shuttle/engine/heater,
 /obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/plating,
 /area/template_noop)
-"m" = (
+"L" = (
 /obj/item/clothing/accessory/armband/medblue,
-/turf/open/floor/plating,
+/turf/open/floor/mineral/titanium/white,
 /area/template_noop)
-"o" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/open/floor/plating,
-/area/template_noop)
-"r" = (
+"M" = (
 /obj/structure/table/reinforced,
 /obj/item/pen/fountain/captain,
 /obj/item/clothing/accessory/armband/medblue,
 /turf/open/floor/plating,
 /area/template_noop)
-"s" = (
-/turf/open/floor/plating,
-/area/template_noop)
-"t" = (
-/turf/closed/wall/mineral/titanium,
-/area/template_noop)
-"x" = (
-/turf/open/floor/mineral/titanium/airless,
-/area/template_noop)
-"y" = (
-/obj/machinery/computer/shuttle,
-/turf/open/floor/plating,
-/area/template_noop)
-"z" = (
-/obj/structure/statue/gold/cmo,
-/turf/open/floor/mineral/titanium/airless,
-/area/template_noop)
-"B" = (
-/obj/machinery/suit_storage_unit/cmo,
-/turf/open/floor/mineral/titanium/blue/airless,
-/area/template_noop)
-"C" = (
-/obj/machinery/sleeper,
-/turf/open/floor/mineral/titanium/blue/airless,
-/area/template_noop)
-"D" = (
-/turf/open/floor/mineral/titanium/blue/airless,
-/area/template_noop)
-"F" = (
-/obj/machinery/door/airlock/titanium,
-/turf/open/floor/plating,
-/area/template_noop)
-"G" = (
-/turf/open/space/basic,
-/area/template_noop)
-"M" = (
-/turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"Q" = (
-/obj/structure/statue/gold/cmo,
-/turf/open/floor/mineral/titanium/blue/airless,
-/area/template_noop)
-"S" = (
-/obj/item/clothing/accessory/armband/medblue,
-/turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"T" = (
-/mob/living/simple_animal/bot/medbot,
-/turf/open/floor/mineral/titanium/blue/airless,
-/area/template_noop)
-"W" = (
-/obj/structure/chair/comfy/shuttle,
-/turf/open/floor/plating,
-/area/template_noop)
-"Y" = (
+"N" = (
 /obj/structure/sign/departments/minsky/medical/medical2,
 /turf/closed/wall/mineral/titanium/interior,
 /area/template_noop)
+"P" = (
+/obj/machinery/suit_storage_unit/cmo,
+/turf/open/floor/mineral/titanium/blue/airless,
+/area/template_noop)
+"Q" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/open/floor/plating,
+/area/template_noop)
+"S" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"W" = (
+/obj/structure/statue/gold/cmo,
+/turf/open/floor/mineral/titanium/blue/airless,
+/area/template_noop)
+"Y" = (
+/mob/living/simple_animal/bot/medbot,
+/turf/open/floor/mineral/titanium/blue/airless,
+/area/template_noop)
 
 (1,1,1) = {"
-G
-t
-t
-F
-t
-t
-t
-F
-t
-t
-t
-G
+d
+k
+k
+e
+k
+k
+k
+e
+k
+k
+k
+d
 "}
 (2,1,1) = {"
-t
-z
-x
-s
-m
-s
-M
-M
-S
-M
+k
 j
-o
+A
+S
+J
+S
+p
+p
+L
+p
+K
+Q
 "}
 (3,1,1) = {"
-t
-x
-x
-s
-s
-M
-s
-M
-s
-s
-j
-o
+k
+A
+A
+S
+S
+p
+S
+p
+S
+S
+K
+Q
 "}
 (4,1,1) = {"
-f
-y
-W
-x
-s
-s
-h
-M
-s
-h
-j
-o
+G
+D
+l
+A
+S
+S
+c
+p
+S
+c
+K
+Q
 "}
 (5,1,1) = {"
-f
-r
-W
-s
-s
-D
+G
+M
+l
+S
+S
 a
-Y
-F
-a
-j
-o
+I
+N
+e
+I
+K
+Q
 "}
 (6,1,1) = {"
-t
-D
-D
-D
-D
-D
+k
 a
-D
-T
-D
-j
-o
+a
+a
+a
+a
+I
+a
+Y
+a
+K
+Q
 "}
 (7,1,1) = {"
-t
-Q
-D
-D
-D
-D
+k
+W
 a
-B
-C
-C
-j
-o
+a
+a
+a
+I
+P
+u
+u
+K
+Q
 "}
 (8,1,1) = {"
-G
-t
-t
-t
-t
-t
-t
-t
-t
-t
-t
-G
+d
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+d
 "}

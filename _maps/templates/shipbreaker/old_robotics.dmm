@@ -2,105 +2,105 @@
 "a" = (
 /turf/open/space/basic,
 /area/template_noop)
-"e" = (
-/turf/open/floor/engine/airless,
+"c" = (
+/obj/structure/window/plastitanium,
+/obj/structure/window/plastitanium,
+/turf/open/floor/plating,
 /area/template_noop)
-"j" = (
-/turf/closed/wall/mineral/titanium,
-/area/template_noop)
-"k" = (
+"m" = (
 /obj/machinery/door/poddoor/shutters/window,
 /turf/open/floor/plating,
 /area/template_noop)
 "n" = (
-/obj/machinery/computer/rdconsole/robotics,
+/obj/machinery/shuttle/engine/void,
+/turf/open/floor/plating,
+/area/template_noop)
+"o" = (
 /turf/open/floor/engine/airless,
 /area/template_noop)
 "r" = (
 /obj/structure/window/plastitanium,
 /turf/open/floor/plating,
 /area/template_noop)
-"t" = (
-/obj/structure/chair/comfy/shuttle,
-/turf/open/floor/engine/airless,
-/area/template_noop)
-"u" = (
-/obj/structure/shuttle/engine/heater,
-/obj/structure/window/reinforced/spawner/north,
+"s" = (
+/obj/machinery/door/airlock/external/glass,
 /turf/open/floor/plating,
 /area/template_noop)
-"y" = (
-/obj/structure/bed/surgical_mat,
+"t" = (
+/obj/item/organ/cyberimp/chest/spinalspeed/toy,
 /turf/open/floor/engine/airless,
 /area/template_noop)
-"F" = (
+"w" = (
+/obj/structure/chair,
+/turf/open/floor/engine/airless,
+/area/template_noop)
+"x" = (
+/turf/closed/wall/mineral/titanium,
+/area/template_noop)
+"D" = (
 /obj/machinery/mecha_part_fabricator,
+/turf/open/floor/engine/airless,
+/area/template_noop)
+"E" = (
+/obj/machinery/computer/rdconsole/robotics,
+/turf/open/floor/engine/airless,
+/area/template_noop)
+"G" = (
+/obj/structure/bed/surgical_mat,
 /turf/open/floor/engine/airless,
 /area/template_noop)
 "H" = (
 /obj/item/circular_saw,
 /turf/open/floor/engine/airless,
 /area/template_noop)
-"M" = (
-/obj/machinery/door/airlock/external/glass,
-/turf/open/floor/plating,
-/area/template_noop)
-"N" = (
-/obj/item/organ/cyberimp/chest/spinalspeed/toy,
+"I" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/mineral/gold,
+/obj/item/stack/sheet/mineral/gold,
+/obj/item/stack/sheet/mineral/gold,
+/obj/item/stack/sheet/mineral/gold,
+/obj/item/stack/sheet/mineral/gold,
+/obj/item/stack/sheet/mineral/gold,
+/obj/item/stack/sheet/mineral/gold,
+/obj/item/stack/sheet/mineral/gold,
+/obj/item/stack/sheet/mineral/gold,
+/obj/item/stack/sheet/mineral/gold,
+/obj/item/stack/sheet/mineral/gold,
+/obj/item/stack/sheet/mineral/gold,
+/obj/item/stack/sheet/mineral/gold,
+/obj/item/stack/sheet/mineral/gold,
 /turf/open/floor/engine/airless,
 /area/template_noop)
-"O" = (
-/obj/machinery/shuttle/engine/void,
+"K" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/mineral/silver,
+/obj/item/stack/sheet/mineral/silver,
+/obj/item/stack/sheet/mineral/silver,
+/obj/item/stack/sheet/mineral/silver,
+/obj/item/stack/sheet/mineral/silver,
+/obj/item/stack/sheet/mineral/silver,
+/obj/item/stack/sheet/mineral/silver,
+/obj/item/stack/sheet/mineral/silver,
+/obj/item/stack/sheet/mineral/silver,
+/obj/item/stack/sheet/mineral/silver,
+/obj/item/stack/sheet/mineral/silver,
+/obj/item/stack/sheet/mineral/silver,
+/obj/item/stack/sheet/mineral/silver,
+/obj/item/stack/sheet/mineral/silver,
+/obj/item/stack/sheet/mineral/silver,
+/turf/open/floor/engine/airless,
+/area/template_noop)
+"L" = (
+/obj/structure/shuttle/engine/heater,
+/obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/plating,
 /area/template_noop)
-"Q" = (
+"X" = (
 /obj/item/storage/fancy/cigarettes/cigpack_robustgold,
 /turf/open/floor/engine/airless,
 /area/template_noop)
-"S" = (
-/obj/structure/table/reinforced,
-/obj/item/stack/sheet/mineral/silver,
-/obj/item/stack/sheet/mineral/silver,
-/obj/item/stack/sheet/mineral/silver,
-/obj/item/stack/sheet/mineral/silver,
-/obj/item/stack/sheet/mineral/silver,
-/obj/item/stack/sheet/mineral/silver,
-/obj/item/stack/sheet/mineral/silver,
-/obj/item/stack/sheet/mineral/silver,
-/obj/item/stack/sheet/mineral/silver,
-/obj/item/stack/sheet/mineral/silver,
-/obj/item/stack/sheet/mineral/silver,
-/obj/item/stack/sheet/mineral/silver,
-/obj/item/stack/sheet/mineral/silver,
-/obj/item/stack/sheet/mineral/silver,
-/obj/item/stack/sheet/mineral/silver,
-/turf/open/floor/engine/airless,
-/area/template_noop)
-"U" = (
-/obj/structure/window/plastitanium,
-/obj/structure/window/plastitanium,
-/turf/open/floor/plating,
-/area/template_noop)
 "Y" = (
-/obj/structure/chair,
-/turf/open/floor/engine/airless,
-/area/template_noop)
-"Z" = (
-/obj/structure/table/reinforced,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/gold,
+/obj/structure/chair/comfy/shuttle,
 /turf/open/floor/engine/airless,
 /area/template_noop)
 
@@ -122,84 +122,84 @@ a
 a
 a
 a
-j
-j
-k
-k
-k
-j
-j
-j
+x
+x
+m
+m
+m
+x
+x
+x
 a
 "}
 (3,1,1) = {"
-j
-j
-j
-j
-e
-e
-e
-e
-S
-Z
-j
+x
+x
+x
+x
+o
+o
+o
+o
+K
+I
+x
 a
 "}
 (4,1,1) = {"
 r
+E
+Y
+o
+o
+o
+o
+o
+o
+o
+L
 n
-t
-e
-e
-e
-e
-e
-e
-e
-u
-O
 "}
 (5,1,1) = {"
-U
-n
-t
-e
+c
+E
+Y
+o
 H
-e
-e
-e
-F
-e
-u
-O
+o
+o
+o
+D
+o
+L
+n
 "}
 (6,1,1) = {"
-j
-j
-j
-j
-y
-N
-e
-e
-Y
-Q
-j
+x
+x
+x
+x
+G
+t
+o
+o
+w
+X
+x
 a
 "}
 (7,1,1) = {"
 a
 a
 a
-j
-j
-j
-M
-j
-j
-j
-j
+x
+x
+x
+s
+x
+x
+x
+x
 a
 "}
 (8,1,1) = {"
