@@ -8,9 +8,8 @@
 	var/datum/parsed_map/lastparsed
 
 
-
-/datum/map_template/shipbreaker/nt_old
-	name = "Old NT Ship"
-	template_id = "old_nt"
+/datum/map_template/shipbreaker/syndicate_old
+	name = "Old Syndicate Ship"
+	template_id = "old_syndicate"
 	description = "mapshaker"
-	mappath = "_maps/templates/shipbreaker/old_nt.dmm"
+	mappath = "_maps/templates/shipbreaker/old_syndicate.dmm"

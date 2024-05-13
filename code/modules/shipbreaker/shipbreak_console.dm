@@ -57,3 +57,23 @@
 			t.ScrapeAway()
 
 
+/obj/machinery/computer/shipbreaker/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ShipbreakerConsole", name)
+		ui.open()
+
+
+/obj/machinery/computer/shipbreaker/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+	. = TRUE
+
+	switch(action)
+		if("spawn_ship")
+			spawn_ship()
+			return
+		if("clear_floor_plating")
+			clear_floor_plating()
+			return
