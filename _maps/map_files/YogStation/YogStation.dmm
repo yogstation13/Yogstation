@@ -15947,6 +15947,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
+"cQR" = (
+/turf/open/floor/wood/large,
+/area/crew_quarters/heads/captain)
 "cRb" = (
 /obj/structure/table,
 /obj/item/stock_parts/subspace/amplifier,
@@ -21871,6 +21874,21 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/science/xenobiology)
+"eWk" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "eWE" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plasteel,
@@ -22865,8 +22883,16 @@
 /obj/structure/disposalpipe/sorting/mail{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/mail_sorting/medbay/general,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"fnj" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "fnr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -39796,21 +39822,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"lsh" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "lsn" = (
 /obj/machinery/light,
 /turf/open/floor/engine,
@@ -43143,6 +43154,15 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
+"mEH" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "mEI" = (
 /obj/structure/rack,
 /obj/item/pickaxe{
@@ -51754,22 +51774,6 @@
 	},
 /turf/open/floor/engine,
 /area/escapepodbay)
-"pMW" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "pNc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
@@ -55571,9 +55575,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/security/prison/hallway)
-"rfr" = (
-/turf/open/floor/wood/large,
-/area/crew_quarters/heads/captain)
 "rfy" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -65528,6 +65529,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/interrogation)
+"uPx" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "uPH" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -65661,26 +65678,6 @@
 /obj/structure/sign/departments/minsky/engineering/engineering{
 	pixel_x = 32
 	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
-"uSA" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "uTe" = (
@@ -68104,6 +68101,26 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"vIM" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "vIP" = (
 /obj/machinery/computer/arcade/orion_trail,
 /turf/open/floor/plasteel,
@@ -70139,13 +70156,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"wwv" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "wwA" = (
 /obj/structure/sign/painting{
 	persistence_id = "public";
@@ -72709,15 +72719,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"xxB" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "xxK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -100344,7 +100345,7 @@ aJq
 aJq
 tPj
 aJq
-lsh
+eWk
 aJq
 bqK
 aJq
@@ -100601,7 +100602,7 @@ wwt
 wwt
 wwt
 knK
-lsh
+eWk
 sUD
 iFn
 wwt
@@ -100858,7 +100859,7 @@ bOS
 bOS
 bOS
 inP
-lsh
+eWk
 dLQ
 aZM
 aZM
@@ -106517,7 +106518,7 @@ lmd
 aZV
 wKM
 wgP
-rfr
+cQR
 oaq
 fiz
 hQo
@@ -107823,9 +107824,9 @@ aJq
 gSj
 tRp
 rmD
-xxB
-xxB
-xxB
+mEH
+mEH
+mEH
 sYd
 tpg
 nBp
@@ -117551,7 +117552,7 @@ syq
 syq
 alP
 aoq
-uSA
+vIM
 alP
 alP
 alP
@@ -117808,7 +117809,7 @@ vTK
 alP
 alP
 aoQ
-pMW
+uPx
 oRG
 alP
 bai
@@ -118324,7 +118325,7 @@ uaL
 aty
 anf
 anf
-wwv
+fnj
 aty
 anf
 rdi
