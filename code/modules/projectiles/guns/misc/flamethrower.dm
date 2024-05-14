@@ -101,7 +101,7 @@
 		weldtool = null
 	if(igniter)
 		igniter.forceMove(drop_turf)
-		weldtool = null
+		igniter = null
 	if(fuel_tank)
 		fuel_tank.forceMove(drop_turf)
 		fuel_tank = null
@@ -230,15 +230,18 @@
 	var/obj/item/tank/fuel_tank
 	///Temperature of the flamethrower's igniter.
 	var/igniter_temp = 1000
+	///Temperature of the fuel's most recent burn reaction, used for damaging mobs/mechs
+	var/last_burn_temp = 1000
 
 /obj/projectile/flamethrower/weak
-	nodamage = TRUE // recharges for free
+	nodamage = TRUE
 
 /obj/projectile/flamethrower/fire(angle, atom/direct_target)
 	if(istype(fired_from, /obj/item/gun/flamethrower))
 		var/obj/item/gun/flamethrower/flamer = fired_from
 		fuel_tank = flamer.fuel_tank
 		igniter_temp = flamer.igniter.heat
+		last_burn_temp = igniter_temp
 	return ..()
 
 /obj/projectile/flamethrower/Move(atom/newloc, dir)
@@ -248,7 +251,6 @@
 	var/turf/target_turf = get_turf(newloc)
 	target_turf.ignite_turf(rand(damage, damage * 4))
 	new /obj/effect/hotspot(target_turf, CELL_VOLUME, igniter_temp)
-	
 
 /obj/projectile/flamethrower/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	. = ..()
@@ -256,6 +258,15 @@
 	var/turf/old_turf = get_turf(old_loc)
 	if(!TURFS_CAN_SHARE(new_turf, old_turf))
 		qdel(src)
+
+/obj/projectile/flamethrower/prehit(atom/target) // humans use a different heat protection system
+	if(nodamage)
+		return FALSE // don't do direct damage, just make fire
+	if(ishuman(target))
+		var/mob/living/carbon/human/joshua_graham = target
+		joshua_graham.apply_damage(damage, BURN, null, joshua_graham.get_heat_protection(last_burn_temp) * 100)
+		return FALSE // already did the damage
+	return TRUE
 
 /obj/projectile/flamethrower/proc/process_fuel(atom/target, release_all = FALSE)
 	if(!fuel_tank)
@@ -280,6 +291,7 @@
 
 	// damage is based on the positive or negative energy of the reaction, capped at its original value
 	damage = min(abs(fuel_mix.thermal_energy() - old_thermal_energy) / JOULES_PER_DAMAGE, initial(damage))
+	last_burn_temp = fuel_mix.return_temperature()
 
 	// If there's not enough fuel and/or oxygen to do more than 1 damage, shut itself off
 	if(damage < 1)
