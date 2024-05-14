@@ -612,7 +612,7 @@
 	explosion(get_turf(src), explosion_power * explosion_mod  * 0.5, explosion_power * explosion_mod + 2, explosion_power * explosion_mod + 4, explosion_power * explosion_mod + 6, 1, 1)
 	meltdown() //Double kill.
 	relay('sound/effects/reactor/explode.ogg')
-	priority_announce("Level 10 radiation hazard alert! Clouds of nuclear ash are forming near the reactor and expanding rapidly. Maintenance is the best shield against the ash storm.", "Radiation Alert", 'sound/misc/notice1.ogg', color_override="yellow")
+	priority_announce("Level 10 radiation hazard alert! Clouds of nuclear ash are forming near the reactor and expanding rapidly. Maintenance is the best shield against the ash storm.", "Radiation Alert", 'sound/misc/airraid.ogg', color_override="yellow")
 	SSweather.run_weather("nuclear fallout", src.z)
 	for(var/X in GLOB.landmarks_list)
 		if(istype(X, /obj/effect/landmark/nuclear_waste_spawner))
