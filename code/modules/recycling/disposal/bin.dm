@@ -576,9 +576,5 @@
 /obj/mecha/CanEnterDisposals()
 	return
 
-/obj/machinery/disposal/bin/newHolderDestination(obj/structure/disposalholder/H)
-	H.destinationTag = 1
 
-/obj/machinery/disposal/deliveryChute/newHolderDestination(obj/structure/disposalholder/H)
-	H.destinationTag = 1
 
