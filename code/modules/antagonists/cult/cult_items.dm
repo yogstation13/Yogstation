@@ -935,6 +935,8 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	throwforce = 15
 	throw_speed = 1
 	throw_range = 4
+	block_force = 30
+	block_flags = PROJECTILE_ATTACK|REFLECTIVE_BLOCK
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("bumped", "prodded")
 	hitsound = 'sound/weapons/smash.ogg'
@@ -942,17 +944,9 @@ GLOBAL_VAR_INIT(curselimit, 0)
 
 /obj/item/shield/mirror/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/blocking, block_force = 30, block_flags = PROJECTILE_ATTACK|REFLECTIVE_BLOCK)
+	RegisterSignal(src, COMSIG_ITEM_POST_BLOCK, PROC_REF(after_block))
 
-/obj/item/shield/mirror/equipped(mob/user, slot, initial)
-	. = ..()
-	RegisterSignal(user, COMSIG_HUMAN_AFTER_BLOCK, PROC_REF(after_block))
-
-/obj/item/shield/mirror/dropped(mob/user, silent)
-	UnregisterSignal(user, COMSIG_HUMAN_AFTER_BLOCK)
-	return ..()
-
-/obj/item/shield/mirror/block_check(obj/item/source, mob/living/defender, atom/movable/incoming, damage, attack_type)
+/obj/item/shield/mirror/block_check(obj/item/source, mob/living/defender, atom/movable/incoming, damage, attack_type, armour_penetration, damage_type)
 	if(!iscultist(defender))
 		var/mob/living/simple_animal/hostile/illusion/H = new /mob/living/simple_animal/hostile/illusion(defender.loc)
 		H.Copy_Parent(defender, 100, 20, 5)
@@ -961,7 +955,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		H.move_to_delay = defender.movement_delay()
 		to_chat(defender, span_danger("<b>[src] betrays you!</b>"))
 		return COMPONENT_CANCEL_BLOCK
-	if(damage >= 30)
+	if(damage >= 30 && damage_type != STAMINA)
 		var/turf/T = get_turf(defender)
 		defender.visible_message(
 			span_warning("The sheer force from [incoming] shatters the mirror shield!"),
@@ -969,31 +963,29 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		)
 		new /obj/effect/temp_visual/cult/sparks(T)
 		playsound(T, 'sound/effects/glassbr3.ogg', 100)
-		defender.Paralyze(25)
+		defender.Paralyze(2.5 SECONDS)
 		qdel(src)
 		return COMPONENT_CANCEL_BLOCK
 	return NONE
 
-/obj/item/shield/mirror/proc/after_block(mob/living/carbon/human/owner, block_result)
-	if(!block_result)
-		return
+/obj/item/shield/mirror/proc/after_block(obj/item/source, mob/living/defender, atom/movable/incoming, damage, attack_type, armour_penetration, damage_type)
 	if(illusions > 0)
 		playsound(src, 'sound/weapons/parry.ogg', 100, 1)
 		illusions--
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/shield/mirror, readd)), 450)
 		if(illusions >= 0)//should make sure shotgun doesn't spawn 90 bajillion illusions in a single shot
 			if(prob(60))
-				var/mob/living/simple_animal/hostile/illusion/M = new /mob/living/simple_animal/hostile/illusion(owner.loc)
+				var/mob/living/simple_animal/hostile/illusion/M = new /mob/living/simple_animal/hostile/illusion(defender.loc)
 				M.faction = list("cult")
-				M.Copy_Parent(owner, 70, 1)
-				M.move_to_delay = owner.movement_delay()
+				M.Copy_Parent(defender, 70, 1)
+				M.move_to_delay = defender.movement_delay()
 			else
-				var/mob/living/simple_animal/hostile/illusion/escape/E = new /mob/living/simple_animal/hostile/illusion/escape(owner.loc)
-				E.Copy_Parent(owner, 70, 1)
-				E.GiveTarget(owner)
-				E.Goto(owner, owner.movement_delay(), E.minimum_distance)
+				var/mob/living/simple_animal/hostile/illusion/escape/E = new /mob/living/simple_animal/hostile/illusion/escape(defender.loc)
+				E.Copy_Parent(defender, 70, 1)
+				E.GiveTarget(defender)
+				E.Goto(defender, defender.movement_delay(), E.minimum_distance)
 	else
-		var/turf/T = get_turf(owner)
+		var/turf/T = get_turf(defender)
 		T.visible_message(span_warning("[src] shatters from the impact!"))
 		new /obj/effect/temp_visual/cult/sparks(T)
 		qdel(src)

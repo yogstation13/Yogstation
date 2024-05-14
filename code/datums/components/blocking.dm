@@ -1,11 +1,13 @@
 ///Minimum stamina damage where trying to block results in you being knocked down.
 #define STAGGER_THRESHOLD 75
-///Multiplier for block force when parrying
+///Multiplier for block force when parrying.
 #define PARRY_BONUS 2
-///How much to reduce block force by for each armor penetration
+///How much to reduce block force by for each armor penetration.
 #define AP_TO_FORCE 0.2
 ///Used to prevent blocking an attack multiple times.
 #define BLOCK_COOLDOWN "block_cooldown"
+///How long right click needs to be held for mouse up to be overridden.
+#define MOUSEUP_OVERRIDE_TIME 0.25 SECONDS
 
 /datum/component/blocking
 	///The client attached to the mob that is currently holding the item.
@@ -22,6 +24,12 @@
 	var/active_slowdown
 	///Whether blocking is currently active.
 	var/blocking = FALSE
+	///The last time the mouse was held down.
+	var/last_mousedown = 0
+	///The last time this item has blocked or attempted to block.
+	var/last_block = 0
+	// Parry cooldown.
+	COOLDOWN_DECLARE(parry_cd)
 
 /datum/component/blocking/Initialize(block_force = 10, block_flags = WEAPON_BLOCK_FLAGS, active_slowdown = 0.5, ...)
 	if(!isitem(parent))
@@ -30,16 +38,37 @@
 	src.block_flags = block_flags
 	src.active_slowdown = active_slowdown
 
+/datum/component/blocking/InheritComponent(datum/component/C, i_am_original, block_force, block_flags, active_slowdown)
+	if(!i_am_original)
+		return
+	if(block_force)
+		src.block_force = block_force
+	if(block_flags)
+		src.block_flags = block_flags
+	if(active_slowdown)
+		src.active_slowdown = active_slowdown
+
 /datum/component/blocking/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(on_equip))
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignals(parent, list(COMSIG_PREQDELETED, COMSIG_ITEM_DROPPED), PROC_REF(on_drop))
 
 /datum/component/blocking/UnregisterFromParent()
+	if(active_mob)
+		UnregisterSignal(active_mob, list(COMSIG_MOB_LOGOUT, COMSIG_MOB_LOGIN, COMSIG_HUMAN_CHECK_SHIELDS, COMSIG_HUMAN_AFTER_BLOCK, COMSIG_ATOM_PRE_DIR_CHANGE))
+		REMOVE_TRAIT(active_mob, TRAIT_NO_BLOCKING, BLOCK_COOLDOWN)
+	if(active_client)
+		UnregisterSignal(active_client, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEDRAG, COMSIG_CLIENT_MOUSEUP))
 	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ATOM_EXAMINE, COMSIG_PREQDELETED, COMSIG_ITEM_DROPPED))
 
+/datum/component/blocking/Destroy(force, silent)
+	set_blocking(FALSE)
+	if(active_mob)
+		REMOVE_TRAIT(active_mob, TRAIT_NO_BLOCKING, BLOCK_COOLDOWN)
+	REMOVE_TRAIT(parent, TRAIT_PARRYING, BLOCK_COOLDOWN)
+
 /datum/component/blocking/proc/on_examine(obj/item/source, mob/user, list/examine_list)
-	examine_list += "Hold right click to block incoming attacks."
+	examine_list += span_notice("<b>Hold right click with combat mode ON to block incoming attacks.</b>")
 
 /datum/component/blocking/proc/on_equip(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
@@ -92,6 +121,7 @@
 	if(!blocking && !(block_flags & ALWAYS_BLOCK)) // not even trying
 		return NONE
 	
+	last_block = world.time
 	if(HAS_TRAIT(parent, TRAIT_PARRYING)) // timing it just right reduces incoming damage
 		damage *= 0.5
 
@@ -136,7 +166,8 @@
 	var/is_parrying = HAS_TRAIT(used_item, TRAIT_PARRYING)
 	if(is_parrying)
 		used_item.balloon_alert_to_viewers("parried!")
-		playsound(defender, "ricochet", 75, TRUE) // +PARRY
+		playsound(defender, 'sound/weapons/ricochet.ogg', 75, TRUE) // +PARRY
+		COOLDOWN_RESET(src, parry_cd)
 	defender.visible_message(span_danger("[defender] [is_parrying ? "parries" : "blocks"] [attack_text] with [used_item]!"))
 
 	var/effective_damage = max(damage - effective_block_force, 0)
@@ -157,7 +188,7 @@
 		if(is_parrying || ((block_flags & REFLECTIVE_BLOCK) && (reflected.reflectable & REFLECT_NORMAL))) // perfect parry can reflect ANY projectile
 			playsound(defender, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 50, 1)
 			return SHIELD_REFLECT
-		playsound(defender, "ricochet", 50, TRUE)
+		playsound(defender, 'sound/weapons/ricochet.ogg', 50, TRUE)
 	if(attack_type & MELEE_ATTACK) // melee attacks get a cool sound
 		playsound(defender, 'sound/weapons/parry.ogg', 50, TRUE)
 	if(attack_type & (UNARMED_ATTACK|THROWN_PROJECTILE_ATTACK|LEAP_ATTACK))
@@ -217,6 +248,7 @@
 		return
 	mouse_params = params
 	source.mob.face_atom(target, forced = TRUE)
+	last_mousedown = world.time
 	set_blocking(TRUE)
 
 /datum/component/blocking/proc/on_mousedrag(client/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
@@ -235,10 +267,14 @@
 /datum/component/blocking/proc/on_mouseup(client/source, atom/target, turf/location, control, params)
 	SIGNAL_HANDLER
 	if(!blocking) // not blocking, don't intercept
-		return
-	mouse_params = params
-	. = COMPONENT_CLIENT_MOUSEUP_INTERCEPT
+		return NONE
 	set_blocking(FALSE)
+	mouse_params = params
+	if((world.time < (last_mousedown + MOUSEUP_OVERRIDE_TIME)) && (last_block < last_mousedown)) // you clicked too fast and didn't block anything, ignore
+		return NONE
+	if(!source.mob.get_active_held_item()) // you're probably trying to right click on something with your hand
+		return NONE
+	return COMPONENT_CLIENT_MOUSEUP_INTERCEPT
 
 /datum/component/blocking/proc/set_blocking(enabled)
 	if(blocking == enabled)
@@ -248,8 +284,8 @@
 		return
 	if(enabled)
 		active_mob.add_movespeed_modifier("blocking", update = TRUE, priority = 100, multiplicative_slowdown = active_slowdown)
-		if((block_flags & PARRYING_BLOCK) && active_mob.next_move <= world.time)
-			active_mob.changeNext_move(CLICK_CD_MELEE)
+		if((block_flags & PARRYING_BLOCK) && COOLDOWN_FINISHED(src, parry_cd))
+			COOLDOWN_START(src, parry_cd, CLICK_CD_MELEE)
 			ADD_TRAIT(parent, TRAIT_PARRYING, BLOCK_COOLDOWN)
 			addtimer(CALLBACK(src, PROC_REF(remove_parry)), 0.4 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	else
