@@ -66,6 +66,7 @@
 	if(active_mob)
 		REMOVE_TRAIT(active_mob, TRAIT_NO_BLOCKING, BLOCK_COOLDOWN)
 	REMOVE_TRAIT(parent, TRAIT_PARRYING, BLOCK_COOLDOWN)
+	return ..()
 
 /datum/component/blocking/proc/on_examine(obj/item/source, mob/user, list/examine_list)
 	examine_list += span_notice("<b>Hold right click with combat mode ON to block incoming attacks.</b>")
