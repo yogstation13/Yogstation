@@ -490,7 +490,9 @@
 	var/face_obscured = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
 	if(HAS_TRAIT(src, TRAIT_HUSK))
-		flavor_text_link = span_notice("They've been husked, there's no way to tell their flavor text...")
+		flavor_text_link = span_notice("This person has been husked, and is unrecognizable!")
+	else if (if(HAS_TRAIT(src, TRAIT_DISFIGURED)))
+		flavor_text_link = span_notice("This person has been horribly disfigured, and is unrecognizable!")
 	else if (!(face_obscured))
 		flavor_text_link = span_notice("[preview_text]... <a href='?src=[REF(src)];lookup_info=open_examine_panel'>\[Look closer?\]</a>")
 	else
