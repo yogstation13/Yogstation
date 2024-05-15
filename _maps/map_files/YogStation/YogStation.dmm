@@ -33124,6 +33124,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"iOc" = (
+/obj/machinery/recycler,
+/turf/open/floor/catwalk_floor,
+/area/escapepodbay)
 "iOB" = (
 /obj/machinery/power/apc{
 	areastring = "/area/medical/chemistry";
@@ -46863,6 +46867,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"nXe" = (
+/obj/structure/lattice,
+/turf/open/floor/catwalk_floor,
+/area/space/nearstation)
 "nXj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -56410,6 +56418,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
+"ruv" = (
+/obj/structure/lattice,
+/obj/structure/lattice,
+/turf/open/floor/catwalk_floor,
+/area/space/nearstation)
 "rvc" = (
 /obj/machinery/light,
 /obj/item/radio/intercom{
@@ -72965,7 +72978,6 @@
 	dir = 1;
 	light_color = "#c1caff"
 	},
-/obj/machinery/recycler,
 /turf/open/floor/engine,
 /area/escapepodbay)
 "xBK" = (
@@ -125274,23 +125286,23 @@ aaa
 aaa
 aaa
 aaa
-tgE
-gXs
-gXs
-gXs
-gXs
-tgE
-gXs
-gXs
-aaf
-aaf
-aaf
-gXs
-gXs
-tgE
+ruv
+nXe
+nXe
+nXe
+nXe
+ruv
+nXe
+nXe
+nXe
+nXe
+nXe
+nXe
+nXe
+ruv
+rkA
+rkA
 aaa
-aaa
-aoV
 aaa
 xJr
 iEt
@@ -125531,7 +125543,7 @@ aaa
 aaa
 aaa
 aaa
-gXs
+nXe
 qcN
 qcN
 qcN
@@ -125544,10 +125556,10 @@ xiq
 xiq
 qcN
 xiq
-rav
-aoV
+ruv
 aaa
-aaa
+rkA
+rkA
 aaa
 xJr
 hwn
@@ -125788,7 +125800,7 @@ aaa
 aaa
 aaa
 aaa
-gXs
+nXe
 qcN
 qcN
 qcN
@@ -125801,10 +125813,10 @@ xiq
 xiq
 qcN
 xiq
-aaf
-aoV
+nXe
 aaa
-aaa
+iOc
+rkA
 aaa
 xJr
 iEt
@@ -126045,7 +126057,7 @@ aaa
 aaa
 aaa
 aaa
-gXs
+nXe
 qcN
 qcN
 qcN
@@ -126058,10 +126070,10 @@ xiq
 xiq
 qcN
 xiq
-aaf
+nXe
 aoV
-aoV
-aaa
+rkA
+rkA
 aaa
 ptH
 fxr
@@ -126302,7 +126314,7 @@ aaa
 aaa
 aaa
 aaa
-gXs
+nXe
 qcN
 qcN
 qcN
@@ -126315,10 +126327,10 @@ xiq
 xiq
 qcN
 xiq
-aaf
+nXe
 aoV
-aoV
-aaa
+rkA
+rkA
 aaa
 ptH
 xBH
@@ -126559,7 +126571,7 @@ aaa
 aaa
 aaa
 aaa
-gXs
+nXe
 qcN
 qcN
 qcN
@@ -126572,10 +126584,10 @@ xiq
 xiq
 qcN
 qcN
-gXs
+nXe
 aaa
-aoV
-aaa
+rkA
+rkA
 aaa
 ptH
 aNZ
@@ -126816,7 +126828,7 @@ aaa
 aaa
 aaa
 aaa
-gXs
+nXe
 qcN
 qcN
 qcN
@@ -126829,7 +126841,7 @@ xiq
 xiq
 xiq
 xiq
-aaf
+nXe
 kkr
 rkA
 rkA
@@ -127073,7 +127085,7 @@ aaa
 aaa
 aaa
 aaa
-gXs
+nXe
 qcN
 qcN
 qcN
@@ -127086,11 +127098,11 @@ xiq
 xiq
 qcN
 xiq
-aaf
-uBx
+nXe
+aaa
 rkA
 rkA
-uBx
+aaa
 pMy
 sHo
 sHo
@@ -127330,7 +127342,7 @@ aaa
 aaa
 aaa
 aaa
-gXs
+nXe
 qcN
 qcN
 qcN
@@ -127343,7 +127355,7 @@ qcN
 qcN
 qcN
 qcN
-gXs
+nXe
 kkr
 rkA
 rkA
@@ -127587,20 +127599,20 @@ aaa
 aaa
 aaa
 aaa
-tgE
-gXs
-gXs
-gXs
-gXs
-gXs
-gXs
-gXs
-gXs
-tgE
-gXs
-gXs
-gXs
-tgE
+ruv
+nXe
+nXe
+nXe
+nXe
+nXe
+nXe
+nXe
+nXe
+ruv
+nXe
+nXe
+nXe
+ruv
 aaa
 aaa
 aaa
