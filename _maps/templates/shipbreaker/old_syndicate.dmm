@@ -11,13 +11,21 @@
 /obj/machinery/door/airlock/external/glass,
 /turf/open/floor/mineral/plastitanium/red/airless,
 /area/template_noop)
+"g" = (
+/obj/structure/closet/syndicate,
+/turf/open/floor/mineral/plastitanium/red/airless,
+/area/template_noop)
 "h" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
 /area/template_noop)
 "o" = (
-/obj/machinery/computer/shuttle/syndicate,
+/obj/machinery/modular_computer,
 /turf/open/floor/mineral/plastitanium,
+/area/template_noop)
+"p" = (
+/obj/item/restraints/handcuffs/cable/zipties/used,
+/turf/open/floor/mineral/plastitanium/airless/broken,
 /area/template_noop)
 "t" = (
 /obj/structure/shuttle/engine/propulsion,
@@ -26,8 +34,16 @@
 "u" = (
 /turf/template_noop,
 /area/template_noop)
+"w" = (
+/obj/item/restraints/handcuffs/cable/zipties/used,
+/turf/open/floor/mineral/plastitanium/red/airless,
+/area/template_noop)
 "x" = (
-/obj/machinery/computer/shuttle/syndicate,
+/obj/machinery/modular_computer,
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/template_noop)
+"B" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
 /turf/open/floor/mineral/plastitanium/airless/broken,
 /area/template_noop)
 "E" = (
@@ -40,6 +56,10 @@
 "H" = (
 /obj/structure/chair/comfy/shuttle,
 /turf/open/floor/mineral/plastitanium/airless/broken,
+/area/template_noop)
+"J" = (
+/obj/item/storage/box/zipties,
+/turf/open/floor/mineral/plastitanium/red/airless,
 /area/template_noop)
 "L" = (
 /turf/open/floor/mineral/plastitanium/red,
@@ -88,7 +108,7 @@ a
 E
 U
 a
-a
+J
 b
 t
 "}
@@ -101,7 +121,7 @@ E
 c
 E
 V
-a
+w
 a
 b
 t
@@ -128,7 +148,7 @@ a
 Q
 a
 L
-Q
+B
 Q
 a
 b
@@ -144,13 +164,13 @@ c
 E
 Q
 F
-Q
+p
 b
 t
 "}
 (7,1,1) = {"
 E
-a
+g
 a
 V
 E

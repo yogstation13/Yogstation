@@ -7,6 +7,10 @@
 /obj/structure/window/plastitanium,
 /turf/open/floor/plating,
 /area/template_noop)
+"i" = (
+/obj/effect/decal/cleanable/robot_debris,
+/turf/open/floor/engine/airless,
+/area/template_noop)
 "m" = (
 /obj/machinery/door/poddoor/shutters/window,
 /turf/open/floor/plating,
@@ -30,6 +34,10 @@
 /obj/item/organ/cyberimp/chest/spinalspeed/toy,
 /turf/open/floor/engine/airless,
 /area/template_noop)
+"v" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/engine/airless,
+/area/template_noop)
 "w" = (
 /obj/structure/chair,
 /turf/open/floor/engine/airless,
@@ -43,6 +51,10 @@
 /area/template_noop)
 "E" = (
 /obj/machinery/computer/rdconsole/robotics,
+/turf/open/floor/engine/airless,
+/area/template_noop)
+"F" = (
+/obj/structure/mecha_wreckage/durand,
 /turf/open/floor/engine/airless,
 /area/template_noop)
 "G" = (
@@ -69,6 +81,7 @@
 /obj/item/stack/sheet/mineral/gold,
 /obj/item/stack/sheet/mineral/gold,
 /obj/item/stack/sheet/mineral/gold,
+/obj/item/bodypart/r_leg/ipc/sgmipc,
 /turf/open/floor/engine/airless,
 /area/template_noop)
 "K" = (
@@ -88,6 +101,7 @@
 /obj/item/stack/sheet/mineral/silver,
 /obj/item/stack/sheet/mineral/silver,
 /obj/item/stack/sheet/mineral/silver,
+/obj/item/bodypart/head/ipc/zhpipc,
 /turf/open/floor/engine/airless,
 /area/template_noop)
 "L" = (
@@ -101,6 +115,10 @@
 /area/template_noop)
 "Y" = (
 /obj/structure/chair/comfy/shuttle,
+/turf/open/floor/engine/airless,
+/area/template_noop)
+"Z" = (
+/mob/living/simple_animal/hostile/hivebot,
 /turf/open/floor/engine/airless,
 /area/template_noop)
 
@@ -137,9 +155,9 @@ x
 x
 x
 x
+Z
 o
-o
-o
+v
 o
 K
 I
@@ -150,12 +168,12 @@ a
 r
 E
 Y
+i
 o
 o
+v
 o
-o
-o
-o
+i
 o
 L
 n
@@ -164,13 +182,13 @@ n
 c
 E
 Y
-o
+v
 H
 o
 o
-o
+v
 D
-o
+F
 L
 n
 "}

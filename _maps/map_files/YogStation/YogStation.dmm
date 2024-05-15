@@ -2710,6 +2710,10 @@
 /obj/item/clothing/mask/gas,
 /obj/item/tank/internals/oxygen,
 /obj/item/storage/toolbox/mechanical,
+/obj/item/storage/bag/sheetsnatcher,
+/obj/item/melee/sledgehammer,
+/obj/item/storage/bag/trash,
+/obj/item/broom,
 /turf/open/floor/engine,
 /area/escapepodbay)
 "atU" = (
@@ -36895,6 +36899,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"kkr" = (
+/obj/structure/marker_beacon,
+/turf/open/floor/catwalk_floor,
+/area/space/nearstation)
 "kkv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -55902,6 +55910,9 @@
 	},
 /turf/open/floor/plating,
 /area/storage/tech)
+"rkA" = (
+/turf/open/floor/catwalk_floor,
+/area/space/nearstation)
 "rkM" = (
 /obj/structure/closet,
 /turf/open/floor/plating,
@@ -57104,6 +57115,10 @@
 /obj/item/clothing/mask/gas,
 /obj/item/tank/internals/oxygen,
 /obj/item/storage/toolbox/mechanical,
+/obj/item/storage/bag/sheetsnatcher,
+/obj/item/melee/sledgehammer,
+/obj/item/storage/bag/trash,
+/obj/item/broom,
 /turf/open/floor/engine/airless,
 /area/escapepodbay)
 "rIo" = (
@@ -126815,10 +126830,10 @@ xiq
 xiq
 xiq
 aaf
-aoV
-aoV
-aaa
-aaa
+kkr
+rkA
+rkA
+kkr
 pMy
 sHo
 sHo
@@ -127072,10 +127087,10 @@ xiq
 qcN
 xiq
 aaf
-aoV
-aoV
-aaa
-aaa
+uBx
+rkA
+rkA
+uBx
 pMy
 sHo
 sHo
@@ -127329,10 +127344,10 @@ qcN
 qcN
 qcN
 gXs
-aaa
-aaa
-aaa
-aaa
+kkr
+rkA
+rkA
+kkr
 xnF
 sHo
 iOa
