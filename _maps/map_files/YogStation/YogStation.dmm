@@ -74621,6 +74621,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"yip" = (
+/obj/structure/lattice,
+/obj/structure/lattice,
+/obj/structure/marker_beacon,
+/turf/open/floor/catwalk_floor,
+/area/space/nearstation)
 "yiM" = (
 /obj/machinery/door/airlock/research{
 	name = "Xenobiology Lab";
@@ -125286,7 +125292,7 @@ aaa
 aaa
 aaa
 aaa
-ruv
+yip
 nXe
 nXe
 nXe
@@ -125299,7 +125305,7 @@ nXe
 nXe
 nXe
 nXe
-ruv
+yip
 rkA
 rkA
 aaa
@@ -127599,7 +127605,7 @@ aaa
 aaa
 aaa
 aaa
-ruv
+yip
 nXe
 nXe
 nXe
@@ -127612,7 +127618,7 @@ ruv
 nXe
 nXe
 nXe
-ruv
+yip
 aaa
 aaa
 aaa
