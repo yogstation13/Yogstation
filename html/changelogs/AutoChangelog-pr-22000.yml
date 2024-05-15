@@ -1,0 +1,5 @@
+author: "Addust"
+delete-after: true 
+changes: 
+  - bugfix: "fixed syndie icemoon needing money for one of their two tool vendors"
+  - rscadd: "also gives them biobags"
