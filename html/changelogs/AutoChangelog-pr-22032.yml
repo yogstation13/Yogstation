@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed ultra violence users being unable to punch"
