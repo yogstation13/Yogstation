@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed radiation collectors not generating power when hit by nuclear particles"
+  - spellcheck: "Radiation collectors now display stored power in joules instead of watts"
