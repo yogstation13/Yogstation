@@ -3,8 +3,7 @@
 /turf/template_noop,
 /area/template_noop)
 "c" = (
-/obj/structure/window/plastitanium,
-/obj/structure/window/plastitanium,
+/obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/template_noop)
 "i" = (
@@ -16,23 +15,23 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "n" = (
-/obj/machinery/shuttle/engine/void,
+/obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating,
 /area/template_noop)
 "o" = (
 /turf/open/floor/engine/airless,
 /area/template_noop)
 "r" = (
-/obj/structure/window/plastitanium,
-/turf/open/floor/plating,
+/obj/effect/decal/cleanable/oil,
+/obj/item/organ/cyberimp/chest/spinalspeed/toy,
+/turf/open/floor/engine/airless,
 /area/template_noop)
 "s" = (
-/obj/machinery/door/airlock/external/glass,
+/obj/structure/shuttle/engine/propulsion/left,
 /turf/open/floor/plating,
 /area/template_noop)
 "t" = (
-/obj/item/organ/cyberimp/chest/spinalspeed/toy,
-/turf/open/floor/engine/airless,
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/template_noop)
 "v" = (
 /obj/effect/decal/cleanable/oil,
@@ -44,6 +43,10 @@
 /area/template_noop)
 "x" = (
 /turf/closed/wall/mineral/titanium,
+/area/template_noop)
+"A" = (
+/obj/structure/shuttle/engine/propulsion/right,
+/turf/open/floor/plating,
 /area/template_noop)
 "D" = (
 /obj/machinery/mecha_part_fabricator,
@@ -109,6 +112,10 @@
 /obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/plating,
 /area/template_noop)
+"N" = (
+/obj/machinery/door/airlock/external/glass,
+/turf/open/floor/engine/airless,
+/area/template_noop)
 "X" = (
 /obj/item/storage/fancy/cigarettes/cigpack_robustgold,
 /turf/open/floor/engine/airless,
@@ -141,31 +148,31 @@ a
 a
 a
 x
-x
+t
 m
 m
 m
-x
-x
+t
+t
 x
 a
 "}
 (3,1,1) = {"
 x
-x
-x
-x
+t
+t
+t
 Z
 o
-v
+r
 o
 K
 I
-x
-a
+L
+s
 "}
 (4,1,1) = {"
-r
+c
 E
 Y
 i
@@ -194,29 +201,29 @@ n
 "}
 (6,1,1) = {"
 x
-x
-x
-x
+t
+t
+t
 G
 t
-o
-o
+N
+t
 w
 X
-x
-a
+L
+A
 "}
 (7,1,1) = {"
 a
 a
 a
 x
-x
-x
-s
-x
-x
-x
+t
+t
+o
+t
+t
+t
 x
 a
 "}
@@ -226,9 +233,9 @@ a
 a
 a
 a
-a
-a
-a
+x
+N
+x
 a
 a
 a
