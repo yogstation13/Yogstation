@@ -45,7 +45,11 @@
 
 /obj/machinery/computer/shipbreaker/proc/area_clear_check()
 	for(var/turf/t in linked)
-		if(!isspaceturf(t) || isstructure(t))
+		if(!isspaceturf(t))
+			spawn_area_clear = FALSE
+			return
+	for(var/obj/s in linked)
+		if(isstructure(s) || ismachinery(s))
 			spawn_area_clear = FALSE
 			return
 	
