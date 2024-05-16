@@ -100,6 +100,7 @@
 	damage = 25
 	armour_penetration = -30 //Cheap ammo means poor AP
 	spread = 40
+	demolition_mod = 0.25
 
 /obj/projectile/bullet/cartridge/black_powder
 	damage = 30
