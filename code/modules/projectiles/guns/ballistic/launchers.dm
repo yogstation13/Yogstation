@@ -180,7 +180,7 @@
 /obj/item/gun/ballistic/maint_musket/attackby(obj/item/A, mob/user, params)
 	
 	if(istype(A, /obj/item/ammo_casing/caseless/cartridge))
-		if(reloading_active == TRUE)
+		if(reloading_active)
 			to_chat(user, span_warning("You're already reloading it!"))
 			return
 		if(magazine.stored_ammo.len > 0)
