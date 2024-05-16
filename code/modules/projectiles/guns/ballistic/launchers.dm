@@ -173,8 +173,7 @@
 	pin = /obj/item/firing_pin
 	var/reloading_active = FALSE
 
-/obj/item/gun/ballistic/maint_musket/afterattack()
-	. = ..()
+/obj/item/gun/ballistic/maint_musket/process_chamber()
 	magazine.get_round(FALSE)
 
 /obj/item/gun/ballistic/maint_musket/attackby(obj/item/A, mob/user, params)
