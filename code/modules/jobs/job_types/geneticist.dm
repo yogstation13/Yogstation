@@ -48,8 +48,8 @@
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/geneticist
 
 	ears = /obj/item/radio/headset/headset_medsci
-	uniform = /obj/item/clothing/under/rank/geneticist
-	uniform_skirt = /obj/item/clothing/under/rank/geneticist/skirt
+	uniform = /obj/item/clothing/under/rank/rnd/geneticist
+	uniform_skirt = /obj/item/clothing/under/rank/rnd/geneticist/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit =  /obj/item/clothing/suit/toggle/labcoat/genetics
 	suit_store =  /obj/item/flashlight/pen

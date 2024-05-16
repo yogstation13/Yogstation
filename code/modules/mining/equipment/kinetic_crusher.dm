@@ -38,6 +38,7 @@
 	. = ..()
 	AddComponent(/datum/component/butchering, 60, 110) //technically it's huge and bulky, but this provides an incentive to use it
 	AddComponent(/datum/component/two_handed, force_wielded=20)
+	AddComponent(/datum/component/cleave_attack, swing_speed_mod=1, requires_wielded=TRUE)
 
 /obj/item/kinetic_crusher/Destroy()
 	QDEL_LIST(trophies)
@@ -45,7 +46,7 @@
 
 /obj/item/kinetic_crusher/examine(mob/living/user)
 	. = ..()
-	. += span_notice("Mark a large creature with the destabilizing force, then hit them in melee to do <b>[force + detonation_damage]</b> damage.")
+	. += span_notice("<b>Right click</b> to mark a large creature with the destabilizing force, then hit them in melee to do <b>[force + detonation_damage]</b> damage.")
 	. += span_notice("Does <b>[force + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[force + detonation_damage]</b>.")
 	for(var/obj/item/crusher_trophy/T as anything in trophies)
 		. += span_notice("It has \a [T] attached, which causes [T.effect_desc()].")
@@ -68,71 +69,76 @@
 /obj/item/kinetic_crusher/attack(mob/living/target, mob/living/carbon/user)
 	if(!HAS_TRAIT(src, TRAIT_WIELDED))
 		to_chat(user, span_warning("[src] is too heavy to use with one hand!"))
-		return
-	var/datum/status_effect/crusher_damage/C = target.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
-	if(!C)
-		C = target.apply_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+		return TRUE
+	var/datum/status_effect/crusher_damage/crusher_damage_effect = target.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
 	var/target_health = target.health
-	..()
+	. = ..()
+	if(.) // pacifism check
+		return
+	if(!crusher_damage_effect)
+		crusher_damage_effect = target.apply_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
 	for(var/obj/item/crusher_trophy/T as anything in trophies)
 		if(!QDELETED(target))
 			T.on_melee_hit(target, user)
-	if(!QDELETED(C) && !QDELETED(target))
-		C.total_damage += target_health - target.health //we did some damage, but let's not assume how much we did
+	if(!QDELETED(crusher_damage_effect) && !QDELETED(target))
+		crusher_damage_effect.total_damage += target_health - target.health //we did some damage, but let's not assume how much we did
 
-/obj/item/kinetic_crusher/afterattack(atom/target, mob/living/user, proximity_flag, clickparams, magmite = FALSE)
+/obj/item/kinetic_crusher/afterattack(mob/living/target, mob/living/user, proximity_flag, clickparams, magmite = FALSE)
 	. = ..()
+	if(!proximity_flag || !isliving(target))
+		return
+	var/datum/status_effect/crusher_mark/CM = target.has_status_effect(STATUS_EFFECT_CRUSHERMARK)
+	if(!CM || CM.hammer_synced != src || !target.remove_status_effect(STATUS_EFFECT_CRUSHERMARK))
+		return
+	var/datum/status_effect/crusher_damage/crusher_damage_effect = target.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+	if(!crusher_damage_effect)
+		crusher_damage_effect = target.apply_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+	var/target_health = target.health
+	for(var/obj/item/crusher_trophy/crusher_trophy in trophies)
+		crusher_trophy.on_mark_detonation(target, user, src) //we pass in the kinetic crusher so that on_mark_detonation can use the properties of the crusher to reapply marks: see malformed_bone
+	if(!QDELETED(target))
+		if(!QDELETED(crusher_damage_effect))
+			crusher_damage_effect.total_damage += target_health - target.health //we did some damage, but let's not assume how much we did
+		new /obj/effect/temp_visual/kinetic_blast(get_turf(target))
+		var/backstab_dir = get_dir(user, target)
+		var/def_check = target.getarmor(type = BOMB)
+		if((user.dir & backstab_dir) && (target.dir & backstab_dir))
+			if(!QDELETED(crusher_damage_effect))
+				crusher_damage_effect.total_damage += detonation_damage + backstab_bonus //cheat a little and add the total before killing it, so certain mobs don't have much lower chances of giving an item
+			target.apply_damage(detonation_damage + backstab_bonus, BRUTE, blocked = def_check)
+			playsound(user, 'sound/weapons/kenetic_accel.ogg', 100, 1) //Seriously who spelled it wrong
+		else
+			if(!QDELETED(crusher_damage_effect))
+				crusher_damage_effect.total_damage += detonation_damage
+			target.apply_damage(detonation_damage, BRUTE, blocked = def_check)
+		//YOGS EDIT BEGIN
+		for(var/obj/item/crusher_trophy/crusher_trophy as anything in trophies)
+			crusher_trophy.after_mark_detonation(target,user,src,target_health-target.health)
+		//YOGS EDIT END
+
+//Mark a target, or mine a tile.
+/obj/item/kinetic_crusher/afterattack_secondary(atom/target, mob/user, proximity_flag, clickparams, magmite = FALSE)
+	. = SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!HAS_TRAIT(src, TRAIT_WIELDED))
 		to_chat(user, span_warning("[src] is too heavy to use with one hand!"))
-		return FALSE
-	if(!proximity_flag && charged)//Mark a target, or mine a tile.
-		var/turf/proj_turf = user.loc
-		if(!isturf(proj_turf))
-			return
-		var/obj/projectile/destabilizer/D = new projectile_type(proj_turf)
-		for(var/obj/item/crusher_trophy/T as anything in trophies)
-			T.on_projectile_fire(D, user)
-		D.preparePixelProjectile(target, user, clickparams)
-		D.firer = user
-		D.hammer_synced = src
-		playsound(user, 'sound/weapons/plasma_cutter.ogg', 100, 1)
-		D.fire()
-		charged = FALSE
-		icon_state = "[base_icon_state]_uncharged"
-		addtimer(CALLBACK(src, PROC_REF(recharge)), charge_time)
 		return
-	if(proximity_flag && isliving(target))
-		var/mob/living/L = target
-		var/datum/status_effect/crusher_mark/CM = L.has_status_effect(STATUS_EFFECT_CRUSHERMARK)
-		if(!CM || CM.hammer_synced != src || !L.remove_status_effect(STATUS_EFFECT_CRUSHERMARK))
-			return
-		var/datum/status_effect/crusher_damage/C = L.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
-		if(!C)
-			C = L.apply_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
-		var/target_health = L.health
-		for(var/t in trophies)
-			var/obj/item/crusher_trophy/T = t
-			T.on_mark_detonation(target, user, src) //we pass in the kinetic crusher so that on_mark_detonation can use the properties of the crusher to reapply marks: see malformed_bone
-		if(!QDELETED(L))
-			if(!QDELETED(C))
-				C.total_damage += target_health - L.health //we did some damage, but let's not assume how much we did
-			new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
-			var/backstab_dir = get_dir(user, L)
-			var/def_check = L.getarmor(type = BOMB)
-			if((user.dir & backstab_dir) && (L.dir & backstab_dir))
-				if(!QDELETED(C))
-					C.total_damage += detonation_damage + backstab_bonus //cheat a little and add the total before killing it, so certain mobs don't have much lower chances of giving an item
-				L.apply_damage(detonation_damage + backstab_bonus, BRUTE, blocked = def_check)
-				playsound(user, 'sound/weapons/kenetic_accel.ogg', 100, 1) //Seriously who spelled it wrong
-			else
-				if(!QDELETED(C))
-					C.total_damage += detonation_damage
-				L.apply_damage(detonation_damage, BRUTE, blocked = def_check)
-			//YOGS EDIT BEGIN
-			for(var/t in trophies)
-				var/obj/item/crusher_trophy/T = t 
-				T.after_mark_detonation(target,user,src,target_health-L.health)
-			//YOGS EDIT END
+	if(!charged)
+		return
+	var/turf/proj_turf = user.loc
+	if(!isturf(proj_turf))
+		return
+	var/obj/projectile/destabilizer/D = new projectile_type(proj_turf)
+	for(var/obj/item/crusher_trophy/crusher_trophy as anything in trophies)
+		crusher_trophy.on_projectile_fire(D, user)
+	D.preparePixelProjectile(target, user, clickparams)
+	D.firer = user
+	D.hammer_synced = src
+	playsound(user, 'sound/weapons/plasma_cutter.ogg', 100, 1)
+	D.fire()
+	charged = FALSE
+	icon_state = "[base_icon_state]_uncharged"
+	addtimer(CALLBACK(src, PROC_REF(recharge)), charge_time)
+	return
 
 /obj/item/kinetic_crusher/proc/recharge(magmite = FALSE)
 	if(!charged)

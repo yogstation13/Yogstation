@@ -92,12 +92,12 @@
 	qdel(src)
 	target.Bumped(B)
 
-/obj/item/reagent_containers/food/drinks/bottle/attack(mob/living/target, mob/living/user)
+/obj/item/reagent_containers/food/drinks/bottle/attack(mob/living/target, mob/living/user, modifiers)
 
 	if(!target)
 		return
 
-	if(user.a_intent != INTENT_HARM || !isGlass)
+	if(!user.combat_mode || !isGlass)
 		return ..()
 
 	if(!synth_check(user, SYNTH_ORGANIC_HARM))

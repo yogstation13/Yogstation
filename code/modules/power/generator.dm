@@ -213,7 +213,7 @@
 	return circs.len
 
 /obj/machinery/power/generator/wrench_act(mob/living/user, obj/item/I)
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return
 
 	if(!panel_open) //connect/disconnect circulators
@@ -254,10 +254,10 @@
 	update_appearance(UPDATE_ICON)
 	return TRUE
 
-/obj/machinery/power/generator/screwdriver_act(mob/user, obj/item/I)
+/obj/machinery/power/generator/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return
 
 	if(hot_circ && cold_circ)
@@ -269,8 +269,8 @@
 	update_appearance(UPDATE_ICON)
 	return TRUE
 
-/obj/machinery/power/generator/crowbar_act(mob/user, obj/item/I)
-	if(user.a_intent == INTENT_HARM)
+/obj/machinery/power/generator/crowbar_act(mob/living/user, obj/item/I)
+	if(user.combat_mode)
 		return
 
 	if(anchored)

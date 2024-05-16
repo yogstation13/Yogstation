@@ -104,9 +104,9 @@
 	dyn_explosion(T, plasmaAmount/5)//20 plasma in a standard welder has a 4 power explosion. no breaches, but enough to kill/dismember holder
 	qdel(src)
 
-/obj/item/weldingtool/attack(mob/living/M, mob/user)
+/obj/item/weldingtool/attack(mob/living/M, mob/living/user, params)
 	var/obj/item/clothing/mask/cigarette/cig = help_light_cig(M)
-	if(isOn() && user.a_intent == INTENT_HELP && cig && user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
+	if(isOn() && !user.combat_mode && cig && user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
 		if(cig.lit)
 			to_chat(user, span_notice("The [cig.name] is already lit."))
 			return FALSE
@@ -118,7 +118,7 @@
 			playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
 			return TRUE
 
-	if(user.a_intent == INTENT_HELP && ishuman(M))
+	if(!user.combat_mode && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
 		if(affecting?.status == BODYPART_ROBOTIC)
@@ -135,8 +135,7 @@
 			user.visible_message(span_notice("[user] fixes some of the dents on [M]'s [affecting.name]."), span_notice("You fix some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
 			return TRUE
 
-	if(!isOn() || user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
-		..()
+	return ..()
 
 /obj/item/weldingtool/afterattack(atom/O, mob/user, proximity)
 	. = ..()

@@ -3,7 +3,8 @@
 
 /obj/item/clothing/under/trek
 	can_adjust = FALSE
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
+	worn_icon = 'icons/mob/clothing/uniform/trek.dmi'
 
 
 //TOS

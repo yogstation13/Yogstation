@@ -185,11 +185,11 @@
 	if(!chassis.Adjacent(target))
 		return ..()
 	// Again, two ways using tools can be handled, so check both
-	if(target.tool_act(chassis.occupant, src, TOOL_WELDER) & TOOL_ACT_MELEE_CHAIN_BLOCKING)
+	if(target.tool_act(chassis.occupant, src, TOOL_WELDER, params) & TOOL_ACT_MELEE_CHAIN_BLOCKING)
 		return TRUE
 	if(target.attackby(src, chassis.occupant, params))
 		return TRUE
-	if(user.a_intent == INTENT_HARM) // hurt things
+	if(user.combat_mode) // hurt things
 		chassis.default_melee_attack(target)
 	return TRUE
 

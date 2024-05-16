@@ -81,7 +81,7 @@
 	role = "Admiral"
 	outfit = /datum/outfit/centcom/admiral
 
-/datum/antagonist/centcom/grand_admiral
-	name = "CentCom Grand Admiral"
-	role = "Grand Admiral"
-	outfit = /datum/outfit/centcom/grand_admiral
+/datum/antagonist/centcom/executive_admiral
+	name = "CentCom Executive Admiral"
+	role = "Executive Admiral"
+	outfit = /datum/outfit/centcom/executive_admiral

@@ -9,7 +9,6 @@
 	infra_luminosity = 0
 	bubble_icon = BUBBLE_MACHINE
 	weather_immunities = list("ash")
-	possible_a_intents = list(INTENT_HELP, INTENT_HARM)
 	mob_biotypes = MOB_ROBOTIC
 	deathsound = 'sound/voice/borg_deathsound.ogg'
 	speech_span = SPAN_ROBOT

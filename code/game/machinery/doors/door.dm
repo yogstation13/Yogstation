@@ -255,7 +255,7 @@
 /obj/machinery/door/proc/unrestricted_side(mob/M) //Allows for specific side of airlocks to be unrestrected (IE, can exit maint freely, but need access to enter)
 	return get_dir(src, M) & unres_sides
 
-/obj/machinery/door/proc/try_to_weld(obj/item/weldingtool/W, mob/user)
+/obj/machinery/door/proc/try_to_weld(obj/item/weldingtool/W, mob/living/user, list/modifiers)
 	return
 
 /obj/machinery/door/proc/try_to_crowbar(obj/item/I, mob/user)
@@ -285,21 +285,22 @@
 	density = TRUE
 	return max_moles - min_moles > 20
 
-/obj/machinery/door/attackby(obj/item/I, mob/user, params)
+/obj/machinery/door/attackby(obj/item/I, mob/living/user, params)
 	add_fingerprint(user)
 
-	if(user.a_intent != INTENT_HARM && (I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/fireaxe)))
+	var/list/modifiers = params2list(params)
+	if((!user.combat_mode || (modifiers && modifiers[RIGHT_CLICK])) && (I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/fireaxe))) // right click always opens
 		try_to_crowbar(I, user)
-		return 1
+		return TRUE
 	else if(istype(I, /obj/item/zombie_hand/gamemode))
 		try_to_crowbar(I, user)
 		return TRUE
 	else if(I.tool_behaviour == TOOL_WELDER)
-		try_to_weld(I, user)
-		return 1
-	else if(!(I.item_flags & NOBLUDGEON) && user.a_intent != INTENT_HARM)
+		try_to_weld(I, user, modifiers)
+		return TRUE
+	else if(!(I.item_flags & NOBLUDGEON) && !user.combat_mode)
 		try_to_activate_door(user)
-		return 1
+		return TRUE
 	return ..()
 
 /obj/machinery/door/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)

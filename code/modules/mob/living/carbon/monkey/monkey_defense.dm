@@ -27,56 +27,69 @@
 				affecting = get_bodypart(BODY_ZONE_CHEST)
 			apply_damage(damage, BRUTE, affecting)
 
-/mob/living/carbon/monkey/attack_hand(mob/living/carbon/human/M)
+/mob/living/carbon/monkey/attack_hand(mob/living/carbon/human/M, modifiers)
 	if(..())	//To allow surgery to return properly.
 		return
 
-	switch(M.a_intent)
-		if(INTENT_HELP)
-			help_shake_act(M)
-		if(INTENT_GRAB)
-			grabbedby(M)
-		if(INTENT_HARM)
-			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
-			if (prob(75))
-				last_damage = "fist"
-				visible_message(span_danger("[M] has punched [name]!"), \
-						span_userdanger("[M] has punched [name]!"), null, COMBAT_MESSAGE_RANGE)
+	if(modifiers && modifiers[RIGHT_CLICK])
+		if(!IsUnconscious())
+			M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
+			if (prob(25))
+				Paralyze(40)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				log_combat(M, src, "pushed")
+				visible_message(span_danger("[M] has pushed down [src]!"), \
+					span_userdanger("[M] has pushed down [src]!"), null, COMBAT_MESSAGE_RANGE)
+			else if(dropItemToGround(get_active_held_item()))
+				playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				visible_message(span_danger("[M] has disarmed [src]!"), span_userdanger("[M] has disarmed [src]!"), null, COMBAT_MESSAGE_RANGE)
+	else if(M.combat_mode)
+		M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+		if (prob(75))
+			last_damage = "fist"
+			visible_message(span_danger("[M] has punched [name]!"), \
+					span_userdanger("[M] has punched [name]!"), null, COMBAT_MESSAGE_RANGE)
 
-				playsound(loc, "punch", 25, 1, -1)
-				var/damage = rand(5, 10)
-				if(prob(40))
-					damage = rand(10, 15)
-					if(AmountUnconscious() < 100 && health > 0)
-						Unconscious(rand(200, 300))
-						visible_message(span_danger("[M] has knocked out [name]!"), \
-									span_userdanger("[M] has knocked out [name]!"), null, 5)
-				var/obj/item/bodypart/affecting = get_bodypart(ran_zone(M.zone_selected))
-				if(!affecting)
-					affecting = get_bodypart(BODY_ZONE_CHEST)
-				apply_damage(damage, BRUTE, affecting)
-				log_combat(M, src, "attacked")
+			playsound(loc, "punch", 25, 1, -1)
+			var/damage = rand(5, 10)
+			if(prob(40))
+				damage = rand(10, 15)
+				if(AmountUnconscious() < 100 && health > 0)
+					Unconscious(rand(200, 300))
+					visible_message(span_danger("[M] has knocked out [name]!"), \
+								span_userdanger("[M] has knocked out [name]!"), null, 5)
+			var/obj/item/bodypart/affecting = get_bodypart(ran_zone(M.zone_selected))
+			if(!affecting)
+				affecting = get_bodypart(BODY_ZONE_CHEST)
+			apply_damage(damage, BRUTE, affecting)
+			log_combat(M, src, "attacked")
 
+		else
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+			visible_message(span_danger("[M] has attempted to punch [name]!"), \
+				span_userdanger("[M] has attempted to punch [name]!"), null, COMBAT_MESSAGE_RANGE)
+	else
+		help_shake_act(M)
+
+/mob/living/carbon/monkey/attack_alien(mob/living/carbon/alien/humanoid/M, modifiers)
+	. = ..()
+	if(.) //if harm or disarm intent.
+		if(modifiers && modifiers[RIGHT_CLICK])
+			var/obj/item/I = null
+			playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
+			if(prob(95))
+				Paralyze(20)
+				visible_message(span_danger("[M] has tackled down [name]!"), \
+						span_userdanger("[M] has tackled down [name]!"), null, COMBAT_MESSAGE_RANGE)
 			else
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-				visible_message(span_danger("[M] has attempted to punch [name]!"), \
-					span_userdanger("[M] has attempted to punch [name]!"), null, COMBAT_MESSAGE_RANGE)
-		if(INTENT_DISARM)
-			if(!IsUnconscious())
-				M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
-				if (prob(25))
-					Paralyze(40)
-					playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-					log_combat(M, src, "pushed")
-					visible_message(span_danger("[M] has pushed down [src]!"), \
-						span_userdanger("[M] has pushed down [src]!"), null, COMBAT_MESSAGE_RANGE)
-				else if(dropItemToGround(get_active_held_item()))
-					playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-					visible_message(span_danger("[M] has disarmed [src]!"), span_userdanger("[M] has disarmed [src]!"), null, COMBAT_MESSAGE_RANGE)
-
-/mob/living/carbon/monkey/attack_alien(mob/living/carbon/alien/humanoid/M)
-	if(..()) //if harm or disarm intent.
-		if (M.a_intent == INTENT_HARM)
+				I = get_active_held_item()
+				if(dropItemToGround(I))
+					visible_message(span_danger("[M] has disarmed [name]!"), span_userdanger("[M] has disarmed [name]!"), null, COMBAT_MESSAGE_RANGE)
+				else
+					I = null
+			log_combat(M, src, "disarmed", "[I ? " removing \the [I]" : ""]")
+			updatehealth()
+		else if(M.combat_mode)
 			if ((prob(95) && health > 0))
 				playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 				var/damage = rand(15, 30)
@@ -103,24 +116,7 @@
 				visible_message(span_danger("[M] has attempted to lunge at [name]!"), \
 						span_userdanger("[M] has attempted to lunge at [name]!"), null, COMBAT_MESSAGE_RANGE)
 
-		if (M.a_intent == INTENT_DISARM)
-			var/obj/item/I = null
-			playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
-			if(prob(95))
-				Paralyze(20)
-				visible_message(span_danger("[M] has tackled down [name]!"), \
-						span_userdanger("[M] has tackled down [name]!"), null, COMBAT_MESSAGE_RANGE)
-			else
-				I = get_active_held_item()
-				if(dropItemToGround(I))
-					visible_message(span_danger("[M] has disarmed [name]!"), span_userdanger("[M] has disarmed [name]!"), null, COMBAT_MESSAGE_RANGE)
-				else
-					I = null
-			log_combat(M, src, "disarmed", "[I ? " removing \the [I]" : ""]")
-			updatehealth()
-
-
-/mob/living/carbon/monkey/attack_animal(mob/living/simple_animal/M)
+/mob/living/carbon/monkey/attack_animal(mob/living/simple_animal/M, modifiers)
 	. = ..()
 	if(.)
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)

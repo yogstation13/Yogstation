@@ -74,7 +74,8 @@
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	fire_sound = 'sound/weapons/batonextend.ogg'
 	max_charges = 3
-	item_flags = NEEDS_PERMIT | DROPDEL
+	item_flags = NEEDS_PERMIT | DROPDEL | NOBLUDGEON
+	weapon_weight = WEAPON_MEDIUM // to prevent dual-wield from messing with things
 	force = 0
 	can_charge = FALSE
 
@@ -111,11 +112,12 @@
 	range = 8
 	hitsound = 'sound/effects/splat.ogg'
 	knockdown = 0
+	var/wire_icon_state = "chain"
 	var/wire
 
 /obj/projectile/wire/fire(setAngle)
 	if(firer)
-		wire = firer.Beam(src, icon_state = "chain", time = INFINITY, maxdistance = INFINITY)
+		wire = firer.Beam(src, icon_state = wire_icon_state, time = INFINITY, maxdistance = INFINITY)
 	..()
 
 /// Helper proc exclusively used for pulling the buster arm USER towards something anchored

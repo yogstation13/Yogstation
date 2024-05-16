@@ -4309,6 +4309,7 @@
 /obj/item/reagent_containers/dropper,
 /obj/item/reagent_containers/dropper,
 /obj/effect/turf_decal/tile/purple/fourcorners,
+/obj/item/storage/bag/bio,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "zW" = (
@@ -6767,6 +6768,7 @@
 /obj/item/reagent_containers/dropper,
 /obj/item/reagent_containers/dropper,
 /obj/effect/turf_decal/tile/purple/fourcorners,
+/obj/item/storage/bag/bio,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "Oj" = (
@@ -8135,7 +8137,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/vending/tool,
+/obj/machinery/vending/tool{
+	onstation = 0
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "XE" = (
