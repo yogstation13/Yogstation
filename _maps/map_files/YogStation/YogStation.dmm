@@ -37893,9 +37893,7 @@
 	dir = 4;
 	id = "garbage"
 	},
-/obj/machinery/recycler{
-	can_be_unanchored = 1
-	},
+/obj/machinery/recycler,
 /obj/structure/sign/warning/securearea{
 	name = "\improper STAY CLEAR HEAVY MACHINERY";
 	pixel_y = 32
