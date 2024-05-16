@@ -71,8 +71,8 @@
 	name = "Syndicate Research Outpost Xenobiology"
 	xenobiology_compatible = TRUE
 
-/area/ruin/syndicate_icemoon/hydroponics
-	name = "Syndicate Icemoon Hydroponics"
+/area/ruin/syndicate_icemoon/maintenance
+	name = "Syndicate Research Outpost Maintenance"
 
 //Hermit
 /area/ruin/powered/icemoon_hermit
