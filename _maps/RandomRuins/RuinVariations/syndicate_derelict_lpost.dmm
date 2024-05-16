@@ -216,6 +216,7 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/item/clothing/mask/chameleon,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndiederelict/vault)
 "av" = (

@@ -67,6 +67,10 @@
 /obj/item/stock_parts/capacitor,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndiederelict/engineering)
+"n" = (
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/floor/plasteel/airless/solarpanel,
+/area/template_noop)
 "o" = (
 /obj/machinery/advanced_airlock_controller{
 	req_access = list(150);
@@ -110,6 +114,51 @@
 /obj/machinery/power/rtg,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndiederelict/engineering)
+"s" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/template_noop,
+/area/template_noop)
+"t" = (
+/obj/effect/spawner/structure/solars/solar_96,
+/obj/structure/cable,
+/turf/open/floor/plasteel/airless/solarpanel,
+/area/template_noop)
+"u" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/template_noop,
+/area/template_noop)
+"v" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/template_noop,
+/area/template_noop)
+"w" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/template_noop,
+/area/template_noop)
 "x" = (
 /obj/structure/lattice,
 /obj/structure/window/reinforced/spawner,
@@ -118,6 +167,13 @@
 "y" = (
 /turf/template_noop,
 /area/ruin/space/has_grav/syndiederelict/arrivals)
+"z" = (
+/obj/effect/spawner/structure/solars/solar_96,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/airless/solarpanel,
+/area/template_noop)
 "A" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -129,6 +185,19 @@
 /obj/machinery/power/smes/empty,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndiederelict/engineering)
+"C" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/template_noop,
+/area/template_noop)
 "D" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -150,6 +219,19 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndiederelict/engineering)
+"G" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/template_noop,
+/area/template_noop)
 "H" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -230,6 +312,10 @@
 	},
 /turf/open/floor/plating/airless,
 /area/template_noop)
+"U" = (
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/floor/plating/airless,
+/area/template_noop)
 "V" = (
 /turf/template_noop,
 /area/ruin/space/has_grav/syndiederelict/vault)
@@ -238,6 +324,19 @@
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "X" = (
 /obj/item/solar_assembly,
+/turf/template_noop,
+/area/template_noop)
+"Y" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
 /turf/template_noop,
 /area/template_noop)
 "Z" = (
@@ -1776,13 +1875,13 @@ a
 a
 a
 a
-Q
-j
-Q
+t
+w
+z
 a
-Q
+n
 j
-Q
+n
 a
 a
 a
@@ -1822,13 +1921,13 @@ W
 a
 a
 a
-Q
-j
-Q
+t
+v
+z
 a
-Q
-j
-Q
+n
+s
+n
 X
 O
 a
@@ -1869,11 +1968,11 @@ W
 W
 a
 a
-j
+s
 a
 a
 a
-j
+s
 a
 a
 a
@@ -1915,12 +2014,12 @@ o
 F
 D
 D
-j
-j
-j
-j
-j
-j
+G
+D
+D
+D
+Y
+D
 O
 a
 a
@@ -1961,11 +2060,11 @@ W
 W
 a
 a
-j
+s
 a
 a
 a
-j
+s
 a
 a
 a
@@ -2006,13 +2105,13 @@ W
 a
 a
 a
-Q
-j
-Q
+z
+C
+t
 a
-Q
-j
-Q
+n
+s
+n
 a
 a
 a
@@ -2052,13 +2151,13 @@ a
 a
 a
 a
-Q
-j
-Q
+z
+u
+t
 a
-Q
+n
 j
-d
+U
 a
 j
 a
