@@ -795,6 +795,9 @@
 /area/ruin/syndicate_icemoon/hallway)
 "ej" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/chair/americandiner{
+	dir = 8
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
 "ew" = (
@@ -1117,6 +1120,9 @@
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 1
 	},
+/obj/machinery/light_switch{
+	pixel_x = 20
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "gw" = (
@@ -1314,6 +1320,10 @@
 /obj/structure/window/reinforced/spawner/east,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
+"hw" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
 "hN" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -1517,9 +1527,6 @@
 	dir = 4
 	},
 /obj/structure/closet/crate,
-/obj/item/stack/ore/bluespace_crystal{
-	amount = 25
-	},
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/metal/fifty,
@@ -1542,9 +1549,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stack/sheet/mineral/silver/fifty,
-/obj/item/stack/ore/dilithium_crystal{
-	amount = 25
-	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
 "jD" = (
@@ -1636,7 +1640,6 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
-/obj/machinery/light,
 /obj/effect/turf_decal/siding/blue,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/white,
@@ -1708,9 +1711,6 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 10
 	},
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/machinery/vending/medical/syndicate_access{
 	onstation = 0
 	},
@@ -1736,6 +1736,16 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
+"kW" = (
+/obj/structure/table/reinforced,
+/obj/item/toy/cards/deck/cas{
+	pixel_x = -4
+	},
+/obj/item/toy/cards/deck/cas/black{
+	pixel_x = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
 "kY" = (
 /obj/structure/closet/crate/radiation,
 /obj/item/clothing/suit/radiation,
@@ -1804,6 +1814,7 @@
 	},
 /obj/effect/turf_decal/siding/blue,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
 "lk" = (
@@ -2040,6 +2051,11 @@
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/engine)
+"mb" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/hallway)
 "mc" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
 	req_access = list(150)
@@ -2201,6 +2217,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
+"mw" = (
+/obj/machinery/inspector_booth{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/security)
 "mJ" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -2364,6 +2390,14 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/surface/outdoors)
+"nS" = (
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -7;
+	pixel_y = -3
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
 "nV" = (
 /obj/machinery/processor,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
@@ -2708,6 +2742,9 @@
 /obj/item/storage/firstaid/brute,
 /obj/structure/window/reinforced{
 	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
@@ -3460,6 +3497,10 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
+"uL" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/hallway)
 "uS" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -3540,9 +3581,6 @@
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 9
-	},
-/obj/machinery/light_switch{
-	pixel_y = 28
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
@@ -3630,6 +3668,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
 "vY" = (
@@ -5058,6 +5097,9 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 8
 	},
+/obj/machinery/light_switch{
+	pixel_x = -20
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "Do" = (
@@ -5705,7 +5747,8 @@
 /area/ruin/syndicate_icemoon/research)
 "GS" = (
 /obj/structure/table/wood,
-/obj/structure/bedsheetbin,
+/obj/item/paper_bin,
+/obj/item/pen,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "GU" = (
@@ -5899,6 +5942,14 @@
 	desc = "Used to send black pages to Nanotrasen stations.";
 	name = "Syndicate Fax Machine";
 	req_one_access = list(150)
+	},
+/obj/item/stamp/chameleon{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/obj/item/stamp/syndiround{
+	pixel_x = 6;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
@@ -6260,7 +6311,7 @@
 /area/ruin/syndicate_icemoon/engine)
 "Kv" = (
 /obj/structure/disposalpipe/segment,
-/turf/closed/mineral/snowmountain/icemoon,
+/turf/closed/mineral/random/snow,
 /area/icemoon/surface/outdoors)
 "Ky" = (
 /obj/machinery/button/holosign{
@@ -6418,7 +6469,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
 "LC" = (
-/turf/closed/mineral/snowmountain/icemoon,
+/turf/closed/mineral/random/snow,
 /area/icemoon/surface/outdoors)
 "LG" = (
 /obj/structure/cable{
@@ -6873,6 +6924,8 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
+/obj/structure/bedsheetbin,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
 "Oe" = (
@@ -7406,7 +7459,6 @@
 /area/ruin/syndicate_icemoon/hallway)
 "RQ" = (
 /obj/structure/table/reinforced,
-/obj/item/stamp/chameleon,
 /obj/item/paper_bin,
 /obj/item/pen,
 /turf/open/floor/plasteel/dark,
@@ -7505,6 +7557,12 @@
 "St" = (
 /obj/structure/table/reinforced,
 /obj/item/toy/cards/deck/uno,
+/obj/item/toy/cards/deck/syndicate{
+	pixel_x = 8
+	},
+/obj/item/toy/cards/deck/wizoff{
+	pixel_x = -6
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
 "Sv" = (
@@ -9506,12 +9564,12 @@ qK
 qK
 qK
 qK
-GU
-GU
-GU
-GU
-GU
-GU
+qK
+qK
+qK
+qK
+qK
+qK
 GU
 GU
 GU
@@ -9583,12 +9641,12 @@ qK
 qK
 qK
 qK
-GU
-GU
-GU
-GU
-GU
-GU
+qK
+qK
+qK
+qK
+qK
+qK
 GU
 GU
 GU
@@ -9660,11 +9718,11 @@ qK
 qK
 qK
 qK
-GU
-GU
-GU
-GU
-GU
+qK
+qK
+qK
+qK
+qK
 GU
 GU
 GU
@@ -9736,10 +9794,10 @@ qK
 qK
 qK
 qK
-GU
-GU
-GU
-GU
+qK
+qK
+qK
+qK
 GU
 GU
 GU
@@ -9811,10 +9869,10 @@ qK
 qK
 qK
 qK
-GU
-GU
-GU
-GU
+qK
+qK
+qK
+qK
 GU
 GU
 GU
@@ -9887,8 +9945,8 @@ qK
 qK
 qK
 qK
-GU
-GU
+qK
+qK
 GU
 GU
 GU
@@ -9962,8 +10020,8 @@ qK
 qK
 qK
 qK
-GU
-GU
+qK
+qK
 GU
 GU
 GU
@@ -10036,8 +10094,8 @@ qK
 qK
 qK
 qK
-GU
-GU
+qK
+qK
 GU
 GU
 GU
@@ -10076,7 +10134,7 @@ eM
 eM
 eM
 eM
-eP
+eM
 eM
 eM
 Ok
@@ -10111,8 +10169,8 @@ qK
 qK
 qK
 qK
-GU
-GU
+qK
+qK
 GU
 GU
 GU
@@ -10186,7 +10244,7 @@ qK
 qK
 qK
 qK
-GU
+qK
 GU
 GU
 GU
@@ -10260,7 +10318,7 @@ qK
 qK
 qK
 qK
-GU
+qK
 GU
 GU
 GU
@@ -10334,7 +10392,7 @@ qK
 qK
 qK
 qK
-GU
+qK
 GU
 GU
 GU
@@ -10371,9 +10429,9 @@ eM
 eM
 nH
 Ok
-EV
+nS
 iy
-EV
+cD
 Ra
 bd
 Ok
@@ -10408,7 +10466,7 @@ eM
 qK
 qK
 qK
-GU
+qK
 GU
 GU
 GU
@@ -10447,7 +10505,7 @@ eM
 Ok
 bs
 EV
-EV
+lP
 Dw
 uG
 Ok
@@ -10482,7 +10540,7 @@ eM
 eM
 qK
 qK
-GU
+qK
 GU
 GU
 GU
@@ -10520,8 +10578,8 @@ kP
 kP
 kP
 ab
-EV
 OB
+hw
 cz
 gK
 SS
@@ -10557,7 +10615,7 @@ eM
 qK
 qK
 qK
-GU
+qK
 GU
 GU
 "}
@@ -10631,7 +10689,7 @@ eM
 qK
 qK
 qK
-GU
+qK
 GU
 GU
 "}
@@ -10669,7 +10727,7 @@ lS
 kP
 pE
 pE
-EV
+pE
 Sm
 ld
 wc
@@ -10705,7 +10763,7 @@ eM
 qK
 qK
 qK
-GU
+qK
 GU
 GU
 "}
@@ -10741,9 +10799,9 @@ kP
 kP
 kP
 kP
-cD
+kW
 St
-EV
+lP
 CS
 hR
 TG
@@ -10779,7 +10837,7 @@ eM
 qK
 qK
 qK
-GU
+qK
 GU
 GU
 "}
@@ -10853,7 +10911,7 @@ qK
 qK
 qK
 qK
-GU
+qK
 GU
 GU
 "}
@@ -10927,7 +10985,7 @@ qK
 qK
 qK
 qK
-GU
+qK
 GU
 GU
 "}
@@ -11001,7 +11059,7 @@ qK
 qK
 qK
 qK
-GU
+qK
 GU
 GU
 "}
@@ -11075,7 +11133,7 @@ qK
 qK
 qK
 qK
-GU
+qK
 GU
 GU
 "}
@@ -11149,7 +11207,7 @@ qK
 qK
 qK
 qK
-GU
+qK
 GU
 GU
 "}
@@ -11914,7 +11972,7 @@ PQ
 ZO
 VO
 Jg
-Il
+uL
 Iw
 Il
 eJ
@@ -12149,7 +12207,7 @@ Js
 Il
 XR
 wV
-ED
+mw
 xw
 qN
 xW
@@ -12295,8 +12353,8 @@ Nz
 Vy
 Il
 jM
-Il
-wV
+uL
+mb
 ED
 ED
 ED
