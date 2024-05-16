@@ -2093,6 +2093,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/item/crowbar/red,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "iE" = (
