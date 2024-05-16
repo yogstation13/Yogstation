@@ -34,7 +34,6 @@
 		"https://www.youtube.com/watch?v=YGulLVWu-s0",						// God Hand "Rock a Bay"
 		"https://www.youtube.com/watch?v=IhEqUKBTffU",						// Streets Of Rogue - 5-1
 		"https://www.youtube.com/watch?v=fXvxnDmwB_I",						// Rain World THS - Action Scene
-		"https://www.youtube.com/watch?v=cklpO4kYZKs",						// The Kinks - Apeman
 		"https://www.youtube.com/watch?v=MPPCNM85eRY",						// The Kinks - Super Sonic Ship
 		"https://www.youtube.com/watch?v=tRcPA7Fzebw",						// David Bowie - Starman
 		"https://www.youtube.com/watch?v=zquJ6AqvVNw",						// Dungeons of Dredmor - Diggle Hell
