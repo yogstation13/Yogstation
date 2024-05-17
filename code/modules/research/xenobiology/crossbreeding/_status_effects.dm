@@ -703,6 +703,7 @@ datum/status_effect/stabilized/blue/on_remove()
 		var/mob/living/carbon/human/H = owner
 		H.physiology.brute_mod *= 1.5
 		H.physiology.burn_mod *= 1.5
+		H.physiology.stamina_mod *= 1.5
 	return ..()
 
 /datum/status_effect/stabilized/sepia/tick()
@@ -721,6 +722,7 @@ datum/status_effect/stabilized/blue/on_remove()
 		var/mob/living/carbon/human/H = owner
 		H.physiology.brute_mod /= 1.5
 		H.physiology.burn_mod /= 1.5
+		H.physiology.stamina_mod /= 1.5
 	return ..()
 
 /datum/status_effect/stabilized/cerulean
@@ -790,6 +792,7 @@ datum/status_effect/stabilized/blue/on_remove()
 		var/mob/living/carbon/human/H = owner
 		H.physiology.brute_mod *= 1.5
 		H.physiology.burn_mod *= 1.5
+		H.physiology.stamina_mod *= 1.5
 	return ..()
 
 /datum/status_effect/stabilized/red/on_remove()
@@ -798,6 +801,7 @@ datum/status_effect/stabilized/blue/on_remove()
 		var/mob/living/carbon/human/H = owner
 		H.physiology.brute_mod /= 1.5
 		H.physiology.burn_mod /= 1.5
+		H.physiology.stamina_mod /= 1.5
 	return ..()
 
 /datum/status_effect/stabilized/green
