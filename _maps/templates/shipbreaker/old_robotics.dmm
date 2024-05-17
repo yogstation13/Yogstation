@@ -14,10 +14,6 @@
 /obj/machinery/door/poddoor/shutters/window,
 /turf/open/floor/plating,
 /area/template_noop)
-"n" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/open/floor/plating,
-/area/template_noop)
 "o" = (
 /turf/open/floor/engine/airless,
 /area/template_noop)
@@ -27,7 +23,9 @@
 /turf/open/floor/engine/airless,
 /area/template_noop)
 "s" = (
-/obj/structure/shuttle/engine/propulsion/left,
+/obj/machinery/shuttle/engine{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/template_noop)
 "t" = (
@@ -43,10 +41,6 @@
 /area/template_noop)
 "x" = (
 /turf/closed/wall/mineral/titanium,
-/area/template_noop)
-"A" = (
-/obj/structure/shuttle/engine/propulsion/right,
-/turf/open/floor/plating,
 /area/template_noop)
 "D" = (
 /obj/machinery/mecha_part_fabricator,
@@ -108,8 +102,10 @@
 /turf/open/floor/engine/airless,
 /area/template_noop)
 "L" = (
-/obj/structure/shuttle/engine/heater,
 /obj/structure/window/reinforced/spawner/north,
+/obj/machinery/power/engine_capacitor_bank{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/template_noop)
 "N" = (
@@ -183,7 +179,7 @@ o
 i
 o
 L
-n
+s
 "}
 (5,1,1) = {"
 c
@@ -197,7 +193,7 @@ v
 D
 F
 L
-n
+s
 "}
 (6,1,1) = {"
 x
@@ -211,7 +207,7 @@ t
 w
 X
 L
-A
+s
 "}
 (7,1,1) = {"
 a

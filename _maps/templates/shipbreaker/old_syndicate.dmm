@@ -3,8 +3,10 @@
 /turf/open/floor/mineral/plastitanium/red/airless,
 /area/template_noop)
 "b" = (
-/obj/structure/shuttle/engine/heater,
 /obj/structure/window/reinforced/spawner/north,
+/obj/machinery/power/engine_capacitor_bank{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/template_noop)
 "c" = (
@@ -39,14 +41,6 @@
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
 /area/template_noop)
-"i" = (
-/obj/structure/shuttle/engine/propulsion/right,
-/turf/open/floor/plating,
-/area/template_noop)
-"l" = (
-/obj/structure/shuttle/engine/propulsion/left,
-/turf/open/floor/plating,
-/area/template_noop)
 "m" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -69,7 +63,9 @@
 /turf/open/floor/mineral/plastitanium/airless/broken,
 /area/template_noop)
 "t" = (
-/obj/structure/shuttle/engine/propulsion,
+/obj/machinery/shuttle/engine{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/template_noop)
 "u" = (
@@ -210,7 +206,7 @@ a
 a
 J
 b
-l
+t
 "}
 (3,1,1) = {"
 h
@@ -280,7 +276,7 @@ Q
 P
 n
 b
-i
+t
 "}
 (8,1,1) = {"
 u
