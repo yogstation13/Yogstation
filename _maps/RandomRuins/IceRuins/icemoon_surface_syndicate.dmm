@@ -1631,6 +1631,9 @@
 /area/icemoon/surface/outdoors)
 "iK" = (
 /obj/structure/railing,
+/obj/effect/turf_decal/trimline/white/arrow_ccw{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
 "iN" = (
@@ -2651,7 +2654,10 @@
 	req_one_access = list(151);
 	dir = 4
 	},
-/obj/structure/railing,
+/obj/effect/turf_decal/trimline/white/arrow_ccw{
+	dir = 1
+	},
+/obj/structure/railing/corner,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
 "nR" = (
@@ -3130,6 +3136,10 @@
 	dir = 4;
 	network = list("synd_icemoon_xenobio")
 	},
+/obj/machinery/airalarm/syndicate{
+	dir = 4;
+	pixel_x = -24
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "qK" = (
@@ -3554,6 +3564,12 @@
 /obj/item/storage/fancy/donut_box,
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
+"sW" = (
+/obj/effect/turf_decal/trimline/white/arrow_ccw{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/hallway)
 "sZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -4052,6 +4068,9 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/effect/turf_decal/trimline/white/arrow_ccw{
+	dir = 9
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
 "vY" = (
@@ -4604,6 +4623,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
+"yo" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/chair/office/dark,
+/turf/open/floor/wood,
+/area/ruin/syndicate_icemoon/command)
 "yx" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -6191,7 +6215,12 @@
 	req_one_access = list(151);
 	dir = 4
 	},
-/obj/structure/railing,
+/obj/effect/turf_decal/trimline/white/arrow_ccw{
+	dir = 1
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
 "FY" = (
@@ -9197,10 +9226,6 @@
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 6
 	},
-/obj/machinery/airalarm/syndicate{
-	dir = 1;
-	pixel_y = -24
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
@@ -9229,7 +9254,6 @@
 /obj/item/grenade/chem_grenade/cleaner,
 /obj/item/grenade/chem_grenade/cleaner,
 /obj/item/grenade/chem_grenade/cleaner,
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/syndicate_icemoon/maintenance)
 "Xq" = (
@@ -12805,7 +12829,7 @@ qK
 qK
 "}
 (43,1,1) = {"
-GU
+qK
 qK
 qK
 qK
@@ -12823,7 +12847,7 @@ Jg
 rH
 Ke
 qm
-pI
+yo
 ml
 iK
 Iw
@@ -12879,7 +12903,7 @@ qK
 qK
 "}
 (44,1,1) = {"
-GU
+qK
 qK
 qK
 qK
@@ -12953,7 +12977,7 @@ qK
 qK
 "}
 (45,1,1) = {"
-GU
+qK
 qK
 qK
 qK
@@ -13027,7 +13051,7 @@ qK
 qK
 "}
 (46,1,1) = {"
-GU
+qK
 qK
 qK
 qK
@@ -13047,7 +13071,7 @@ Jg
 Jg
 Jg
 Jg
-Il
+sW
 Iw
 Il
 eJ
@@ -13078,7 +13102,7 @@ dt
 dt
 cE
 Xc
-DM
+bK
 qK
 qK
 qK
@@ -13101,7 +13125,7 @@ qK
 qK
 "}
 (47,1,1) = {"
-GU
+qK
 qK
 qK
 qK
@@ -13175,7 +13199,7 @@ qK
 qK
 "}
 (48,1,1) = {"
-GU
+qK
 qK
 qK
 qK
@@ -13249,7 +13273,7 @@ qK
 qK
 "}
 (49,1,1) = {"
-GU
+qK
 qK
 qK
 qK
@@ -13323,7 +13347,7 @@ qK
 qK
 "}
 (50,1,1) = {"
-GU
+qK
 qK
 qK
 qK
@@ -13346,7 +13370,7 @@ Xj
 kn
 kn
 kn
-Zp
+kn
 kn
 Ig
 kn
@@ -13472,7 +13496,7 @@ qK
 "}
 (52,1,1) = {"
 GU
-GU
+qK
 qK
 qK
 qK
@@ -13546,7 +13570,7 @@ qK
 "}
 (53,1,1) = {"
 GU
-GU
+qK
 qK
 qK
 qK
@@ -13620,7 +13644,7 @@ qK
 "}
 (54,1,1) = {"
 GU
-GU
+qK
 qK
 qK
 qK
