@@ -698,6 +698,13 @@ datum/status_effect/stabilized/blue/on_remove()
 	colour = "sepia"
 	var/mod = 0
 
+/datum/status_effect/stabilized/sepia/on_apply()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.brute_mod *= 1.5
+		H.physiology.burn_mod *= 1.5
+	return ..()
+
 /datum/status_effect/stabilized/sepia/tick()
 	if(prob(50) && mod > -1)
 		mod--
@@ -710,6 +717,11 @@ datum/status_effect/stabilized/blue/on_remove()
 
 /datum/status_effect/stabilized/sepia/on_remove()
 	owner.remove_movespeed_modifier(MOVESPEED_ID_SEPIA)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.brute_mod /= 1.5
+		H.physiology.burn_mod /= 1.5
+	return ..()
 
 /datum/status_effect/stabilized/cerulean
 	id = "stabilizedcerulean"
@@ -774,10 +786,19 @@ datum/status_effect/stabilized/blue/on_remove()
 
 /datum/status_effect/stabilized/red/on_apply()
 	owner.add_movespeed_modifier("stabilized_red_speed", update=TRUE, priority=100, multiplicative_slowdown=-0.4, blacklisted_movetypes=(FLYING|FLOATING))
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.brute_mod *= 1.5
+		H.physiology.burn_mod *= 1.5
 	return ..()
 
 /datum/status_effect/stabilized/red/on_remove()
 	owner.remove_movespeed_modifier("stabilized_red_speed")
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.brute_mod /= 1.5
+		H.physiology.burn_mod /= 1.5
+	return ..()
 
 /datum/status_effect/stabilized/green
 	id = "stabilizedgreen"
