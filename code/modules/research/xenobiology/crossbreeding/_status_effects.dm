@@ -701,15 +701,12 @@ datum/status_effect/stabilized/blue/on_remove()
 /datum/status_effect/stabilized/sepia/tick()
 	if(prob(50) && mod > -1)
 		mod--
-		owner.add_movespeed_modifier(MOVESPEED_ID_SEPIA, override = TRUE, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+		owner.add_atom_colour("#ffffff", ADMIN_COLOUR_PRIORITY)
 	else if(mod < 1)
 		mod++
 		// yeah a value of 0 does nothing but replacing the trait in place is cheaper than removing and adding repeatedly
-		owner.add_movespeed_modifier(MOVESPEED_ID_SEPIA, override = TRUE, update=TRUE, priority=100, multiplicative_slowdown=0, blacklisted_movetypes=(FLYING|FLOATING))
+		owner.add_atom_colour("#000000", ADMIN_COLOUR_PRIORITY)
 	return ..()
-
-/datum/status_effect/stabilized/sepia/on_remove()
-	owner.remove_movespeed_modifier(MOVESPEED_ID_SEPIA)
 
 /datum/status_effect/stabilized/cerulean
 	id = "stabilizedcerulean"
@@ -772,12 +769,10 @@ datum/status_effect/stabilized/blue/on_remove()
 	id = "stabilizedred"
 	colour = "red"
 
-/datum/status_effect/stabilized/red/on_apply()
-	owner.add_movespeed_modifier("stabilized_red_speed", update=TRUE, priority=100, multiplicative_slowdown=-0.4, blacklisted_movetypes=(FLYING|FLOATING))
+/datum/status_effect/stabilized/red/tick()
+	if(owner.blood_volume < BLOOD_VOLUME_MAXIMUM(owner)) // we dont want to explode from casting
+		owner.blood_volume += 20
 	return ..()
-
-/datum/status_effect/stabilized/red/on_remove()
-	owner.remove_movespeed_modifier("stabilized_red_speed")
 
 /datum/status_effect/stabilized/green
 	id = "stabilizedgreen"
