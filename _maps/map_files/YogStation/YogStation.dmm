@@ -33108,7 +33108,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel/stairs/goon/wood_stairs_middle,
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_middle{
+	dir = 1
+	},
 /area/library)
 "iOa" = (
 /turf/open/floor/engine/airless,
@@ -56996,7 +56998,9 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide,
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide{
+	dir = 1
+	},
 /area/library)
 "rFS" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -68478,7 +68482,9 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide2,
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide2{
+	dir = 1
+	},
 /area/library)
 "vOX" = (
 /obj/structure/sign/warning/securearea,
