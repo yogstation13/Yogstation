@@ -146,9 +146,6 @@
 	if(time_to_next_roar <= world.time)
 		roar()
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
-	return TRUE
-
 /mob/living/simple_animal/hostile/darkspawn_progenitor/proc/roar()
 	playsound(src, 'yogstation/sound/creatures/progenitor_roar.ogg', 70, TRUE)
 	for(var/mob/M in GLOB.player_list)
@@ -168,7 +165,7 @@
 //////////////////////////////////////////////////////////////////////////
 //--------------------------Ignoring physics----------------------------//
 //////////////////////////////////////////////////////////////////////////
-/mob/living/simple_animal/hostile/darkspawn_progenitor/Process_Spacemove()
+/mob/living/simple_animal/hostile/darkspawn_progenitor/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
 	return TRUE
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/narsie_act()

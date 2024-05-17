@@ -31,7 +31,7 @@
 
 /obj/item/clothing/suit/draculacoat/equipped(mob/user, slot)
 	. = ..()
-	if(slot == ITEM_SLOT_OCLOTHING)
+	if(slot & ITEM_SLOT_OCLOTHING)
 		RegisterSignal(user, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_projectile_hit))
 
 /obj/item/clothing/suit/draculacoat/dropped(mob/user)

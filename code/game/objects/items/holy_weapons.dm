@@ -721,7 +721,7 @@
 
 /obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
 	..()
-	if(hud_type && slot == ITEM_SLOT_EYES)
+	if(hud_type && slot & ITEM_SLOT_EYES)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
 		H.show_to(user)
 
@@ -749,7 +749,7 @@
 
 /obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
 	..()
-	if(hud_type && slot == ITEM_SLOT_NECK)
+	if(hud_type && slot & ITEM_SLOT_NECK)
 		to_chat(user, "Sensory augmentation initiated")
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
 		H.show_to(user)
@@ -787,7 +787,7 @@
 
 /obj/item/nullrod/hermes/equipped(mob/user, slot, initial)
 	. = ..()
-	if(slot == ITEM_SLOT_FEET)
+	if(slot & ITEM_SLOT_FEET)
 		RegisterSignal(user, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(move_react))
 
 /obj/item/nullrod/hermes/dropped(mob/user, silent)

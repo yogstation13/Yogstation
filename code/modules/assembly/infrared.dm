@@ -124,7 +124,7 @@
 	. = ..()
 	refreshBeam()
 
-/obj/item/assembly/infra/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
+/obj/item/assembly/infra/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	var/t = dir
 	. = ..()
 	setDir(t)

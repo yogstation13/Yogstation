@@ -15,7 +15,7 @@
 /obj/item/spacepod_equipment/proc/can_install(obj/spacepod/SP, mob/user)
 	var/room = SP.equipment_slot_limits[slot] || 0
 	for(var/obj/item/spacepod_equipment/EQ in SP.equipment)
-		if(EQ.slot == slot)
+		if(EQ.slot & slot)
 			room -= EQ.slot_space
 	if(room < slot_space)
 		to_chat(user, span_warning("There's no room for another [slot] system!"))

@@ -652,7 +652,7 @@
 		return
 	if(!IS_BLOODSUCKER(user))
 		return
-	if(slot == ITEM_SLOT_GLOVES)
+	if(slot & ITEM_SLOT_GLOVES)
 		var/mob/living/carbon/human/H = user
 		tearaction.Grant(H)
 

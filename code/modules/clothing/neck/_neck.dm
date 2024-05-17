@@ -214,7 +214,7 @@
 
 /obj/item/clothing/neck/anti_magic_collar/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
-	if((slot & slot_flags))
+	if(slot & slot_flags)
 		to_chat(user, span_danger("You hear the collar click as it locks around your neck!"))
 		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 		RegisterSignal(user, COMSIG_MOB_RESTRICT_MAGIC, PROC_REF(restrict_casting_magic))

@@ -428,7 +428,7 @@
 	rubble.setStyle(rubble_type, src)
 	update_appearance(UPDATE_ICON)
 
-/obj/structure/closet/supplypod/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
+/obj/structure/closet/supplypod/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	deleteRubble()
 	return ..()
 

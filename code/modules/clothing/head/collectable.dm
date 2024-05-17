@@ -104,7 +104,7 @@
 	dog_fashion = /datum/dog_fashion/head/kitty
 
 /obj/item/clothing/head/collectable/kitty/equipped(mob/living/carbon/human/user, slot)
-	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
+	if(ishuman(user) && slot & ITEM_SLOT_HEAD)
 		update_appearance(UPDATE_ICON)
 		user.update_inv_head() //Color might have been changed by update_icon.
 	..()

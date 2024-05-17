@@ -162,7 +162,7 @@
 	return TRUE
 
 
-/obj/structure/closet/bluespace/external/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
+/obj/structure/closet/bluespace/external/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	var/obj/structure/closet/bluespace/internal/C = get_other_locker()
 	if(C)
 		C.update_mirage()

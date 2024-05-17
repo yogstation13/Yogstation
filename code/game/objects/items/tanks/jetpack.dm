@@ -15,22 +15,36 @@
 	var/full_speed = TRUE // If the jetpack will have a speedboost in space/nograv or not
 	var/classic = TRUE // If the jetpack uses the classic two-tank sprite. False if it has its own special sprite (syndicate jetpack, or void jetpack)
 	var/jetspeed = -0.3 // Negative increases speed
-	var/datum/callback/get_mover
-	var/datum/callback/check_on_move
+	var/datum/callback/thrust_callback
 
 /obj/item/tank/jetpack/Initialize(mapload)
 	. = ..()
-	get_mover = CALLBACK(src, PROC_REF(get_user))
-	check_on_move = CALLBACK(src, PROC_REF(allow_thrust), 0.01)
-	refresh_jetpack()
+	thrust_callback = CALLBACK(src, PROC_REF(allow_thrust), 0.01)
+	configure_jetpack(stabilizers)
 
 /obj/item/tank/jetpack/Destroy()
-	get_mover = null
-	check_on_move = null
+	thrust_callback = null
 	return ..()
 
-/obj/item/tank/jetpack/proc/refresh_jetpack()
-	AddComponent(/datum/component/jetpack, stabilizers, COMSIG_JETPACK_ACTIVATED, COMSIG_JETPACK_DEACTIVATED, JETPACK_ACTIVATION_FAILED, get_mover, check_on_move, /datum/effect_system/trail_follow/ion)
+/**
+ * configures/re-configures the jetpack component
+ *
+ * Arguments
+ * stabilize - Should this jetpack be stabalized
+ */
+
+/obj/item/tank/jetpack/proc/configure_jetpack(stabilize)
+	stabilizers = stabilize
+
+	AddComponent( \
+		/datum/component/jetpack, \
+		stabilizers, \
+		COMSIG_JETPACK_ACTIVATED, \
+		COMSIG_JETPACK_DEACTIVATED, \
+		JETPACK_ACTIVATION_FAILED, \
+		thrust_callback, \
+		/datum/effect_system/trail_follow/ion \
+	)
 
 /obj/item/tank/jetpack/item_action_slot_check(slot)
 	if(slot & slot_flags)
@@ -55,7 +69,7 @@
 		cycle(user)
 	else if(istype(action, /datum/action/item_action/jetpack_stabilization))
 		if(on)
-			set_stabilizers(!stabilizers)
+			configure_jetpack(!stabilizers)
 			to_chat(user, span_notice("You turn the jetpack stabilization [stabilizers ? "on" : "off"]."))
 	else
 		toggle_internals(user)
@@ -65,23 +79,19 @@
 		return
 
 	if(!on)
-		turn_on(user)
-		to_chat(user, span_notice("You turn the jetpack on."))
+		if(turn_on(user))
+			to_chat(user, span_notice("You turn the jetpack on."))
+		else
+			to_chat(user, span_notice("You fail to turn the jetpack on."))
+			return
 	else
 		turn_off(user)
 		to_chat(user, span_notice("You turn the jetpack off."))
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.build_all_button_icons()
 
-/obj/item/tank/jetpack/proc/set_stabilizers(new_stabilizers)
-	if(new_stabilizers == stabilizers)
-		return
-	stabilizers = new_stabilizers
-	refresh_jetpack()
+	update_item_action_buttons()
 
 /obj/item/tank/jetpack/proc/turn_on(mob/user)
-	if(SEND_SIGNAL(src, COMSIG_JETPACK_ACTIVATED) & JETPACK_ACTIVATION_FAILED)
+	if(SEND_SIGNAL(src, COMSIG_JETPACK_ACTIVATED, user) & JETPACK_ACTIVATION_FAILED)
 		return FALSE
 	on = TRUE
 	update_appearance(UPDATE_ICON)
@@ -102,26 +112,32 @@
 		. += "on_overlay"
 
 /obj/item/tank/jetpack/proc/turn_off(mob/user)
-	SEND_SIGNAL(src, COMSIG_JETPACK_DEACTIVATED)
+	SEND_SIGNAL(src, COMSIG_JETPACK_DEACTIVATED, user)
 	on = FALSE
-	set_stabilizers(FALSE)
 	update_appearance(UPDATE_ICON)
 	user?.remove_movespeed_modifier(MOVESPEED_ID_JETPACK)
 
 /obj/item/tank/jetpack/proc/allow_thrust(num, use_fuel = TRUE)
+	if(!ismob(loc))
+		return FALSE
+	var/mob/user = loc
+
 	if((num < 0.005 || air_contents.total_moles() < num))
-		turn_off(get_user())
+		turn_off(user)
 		return FALSE
 
-	assume_air_moles(air_contents, num)
+	// We've got the gas, it's chill
+	if(!use_fuel)
+		return TRUE
 
+	var/datum/gas_mixture/removed = remove_air(num)
+	if(removed.total_moles() < 0.005)
+		turn_off(user)
+		return FALSE
+
+	var/turf/T = get_turf(src)
+	T.assume_air(removed)
 	return TRUE
-
-// Gives the jetpack component the user it expects
-/obj/item/tank/jetpack/proc/get_user()
-	if(!ismob(loc))
-		return null
-	return loc
 
 /obj/item/tank/jetpack/suicide_act(mob/user)
 	if (!istype(user, /mob/living/carbon/human))
@@ -141,17 +157,15 @@
 	full_speed = FALSE //moves at hardsuit jetpack speeds
 
 /obj/item/tank/jetpack/improvised/allow_thrust(num)
-	var/mob/user = get_user()
-	if(!user)
+	if(!ismob(loc))
 		return FALSE
+
+	var/mob/user = loc
 	if(rand(0,250) == 0)
 		to_chat(user, span_notice("You feel your jetpack's engines cut out."))
 		turn_off(user)
 		return
-
-	assume_air_moles(air_contents, num)
-
-	return TRUE
+	return ..()
 
 /obj/item/tank/jetpack/void
 	name = "void jetpack (oxygen)"

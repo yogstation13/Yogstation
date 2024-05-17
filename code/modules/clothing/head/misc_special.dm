@@ -133,7 +133,7 @@
 	dog_fashion = /datum/dog_fashion/head/kitty
 
 /obj/item/clothing/head/kitty/equipped(mob/living/carbon/human/user, slot)
-	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
+	if(ishuman(user) && slot & ITEM_SLOT_HEAD)
 		update_appearance(UPDATE_ICON)
 		user.update_inv_head() //Color might have been changed by update_icon.
 		var/datum/language_holder/LH = user.get_language_holder()
@@ -185,7 +185,7 @@
 
 /obj/item/clothing/head/cardborg/equipped(mob/living/user, slot)
 	..()
-	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
+	if(ishuman(user) && slot & ITEM_SLOT_HEAD)
 		var/mob/living/carbon/human/H = user
 		if(istype(H.wear_suit, /obj/item/clothing/suit/cardborg))
 			var/obj/item/clothing/suit/cardborg/CB = H.wear_suit
@@ -271,7 +271,7 @@
 
 /obj/item/clothing/head/wig/natural/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
-	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
+	if(ishuman(user) && slot & ITEM_SLOT_HEAD)
 		hair_color = user.hair_color
 		update_appearance(UPDATE_ICON)
 		user.update_inv_head()

@@ -9,7 +9,7 @@
 	quit_action.Grant(src)
 	check_area()
 
-/mob/living/carbon/human/virtual_reality/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
+/mob/living/carbon/human/virtual_reality/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	check_area()
 

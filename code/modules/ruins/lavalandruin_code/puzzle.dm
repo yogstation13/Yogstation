@@ -240,7 +240,7 @@
 		animate(src, pixel_x=rand(-5,5), pixel_y=rand(-2,2), time=0.1 SECONDS)
 	QDEL_IN(src,COLLAPSE_DURATION)
 
-/obj/structure/puzzle_element/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
+/obj/structure/puzzle_element/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	source.validate()
 

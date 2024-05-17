@@ -40,7 +40,7 @@
 		master.item_flags &= ~ITEM_SLOT_POCKETS
 
 /datum/component/spill/proc/equip_react(obj/item/source, mob/equipper, slot)
-	if(slot == ITEM_SLOT_LPOCKET || slot == ITEM_SLOT_RPOCKET)
+	if(slot & ITEM_SLOT_LPOCKET || slot & ITEM_SLOT_RPOCKET)
 		RegisterSignal(equipper, COMSIG_LIVING_STATUS_KNOCKDOWN, PROC_REF(knockdown_react), TRUE)
 	else
 		UnregisterSignal(equipper, COMSIG_LIVING_STATUS_KNOCKDOWN)

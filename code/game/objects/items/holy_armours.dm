@@ -261,7 +261,7 @@
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/equipped(mob/M, slot)
 	. = ..()
-	if(slot == ITEM_SLOT_OCLOTHING && iscarbon(M)) //Signals for sensing damage, healing, wounds, and movement
+	if(slot & ITEM_SLOT_OCLOTHING && iscarbon(M)) //Signals for sensing damage, healing, wounds, and movement
 		RegisterSignal(M, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(handle_damage))
 		RegisterSignal(M, COMSIG_MOB_APPLY_HEALING, PROC_REF(on_heal))
 		RegisterSignal(M, COMSIG_CARBON_GAIN_WOUND, PROC_REF(handle_wound_add))

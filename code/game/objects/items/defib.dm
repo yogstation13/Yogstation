@@ -89,13 +89,13 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/defibrillator/attack_hand(mob/user)
 	if(loc == user)
-		if(slot_flags == ITEM_SLOT_BACK)
+		if(slot_flags & ITEM_SLOT_BACK)
 			if(user.get_item_by_slot(ITEM_SLOT_BACK) == src)
 				ui_action_click()
 			else
 				to_chat(user, span_warning("Put the defibrillator on your back first!"))
 
-		else if(slot_flags == ITEM_SLOT_BELT)
+		else if(slot_flags & ITEM_SLOT_BELT)
 			if(user.get_item_by_slot(ITEM_SLOT_BELT) == src)
 				ui_action_click()
 			else
@@ -194,12 +194,12 @@
 
 /obj/item/defibrillator/equipped(mob/user, slot)
 	..()
-	if((slot_flags == ITEM_SLOT_BACK && slot != ITEM_SLOT_BACK) || (slot_flags == ITEM_SLOT_BELT && slot != ITEM_SLOT_BELT))
+	if((slot_flags & ITEM_SLOT_BACK && slot != ITEM_SLOT_BACK) || (slot_flags & ITEM_SLOT_BELT && slot != ITEM_SLOT_BELT))
 		remove_paddles(user)
 		update_appearance(UPDATE_ICON)
 
 /obj/item/defibrillator/item_action_slot_check(slot, mob/user)
-	if(slot == user.getBackSlot())
+	if(slot & user.getBackSlot())
 		return 1
 
 /obj/item/defibrillator/proc/remove_paddles(mob/user) //this fox the bug with the paddles when other player stole you the defib when you have the paddles equiped
@@ -251,7 +251,7 @@
 	cryo_preserve = TRUE
 
 /obj/item/defibrillator/compact/item_action_slot_check(slot, mob/user)
-	if(slot == user.getBeltSlot())
+	if(slot & user.getBeltSlot())
 		return TRUE
 
 /obj/item/defibrillator/compact/loaded/Initialize(mapload)
@@ -327,7 +327,7 @@
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(check_range))
 	listeningTo = user
 
-/obj/item/shockpaddles/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
+/obj/item/shockpaddles/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	check_range()
 

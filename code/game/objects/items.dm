@@ -69,7 +69,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/drop_sound
 
 	var/w_class = WEIGHT_CLASS_NORMAL
-	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
+	var/slot_flags = NONE		//This is used to determine on which slots an item can fit.
 	pass_flags = PASSTABLE
 	pressure_resistance = 4
 	var/obj/item/master = null
@@ -585,9 +585,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	item_flags |= IN_INVENTORY
 	if(!initial)
-		if(equip_sound && !initial &&(slot_flags & slot))
+		if(equip_sound && (slot_flags & slot))
 			playsound(src, equip_sound, EQUIP_SOUND_VOLUME, TRUE, ignore_walls = FALSE)
-		else if(slot == ITEM_SLOT_HANDS)
+		else if(slot & ITEM_SLOT_HANDS)
 			playsound(src, pickup_sound, PICKUP_SOUND_VOLUME, ignore_walls = FALSE)
 
 /// Gives one of our item actions to a mob, when equipped to a certain slot
@@ -604,7 +604,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 /// Sometimes we only want to grant the item's action if it's equipped in a specific slot.
 /obj/item/proc/item_action_slot_check(slot, mob/user)
-	if(slot == ITEM_SLOT_BACKPACK || slot == ITEM_SLOT_LEGCUFFED) //these aren't true slots, so avoid granting actions there
+	if(slot & ITEM_SLOT_BACKPACK || slot & ITEM_SLOT_LEGCUFFED) //these aren't true slots, so avoid granting actions there
 		return FALSE
 	return TRUE
 

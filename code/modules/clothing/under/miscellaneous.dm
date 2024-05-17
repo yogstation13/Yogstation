@@ -955,7 +955,7 @@
 
 /obj/item/clothing/under/drip/equipped(mob/user, slot)
 	. = ..()
-	if(slot == ITEM_SLOT_ICLOTHING)
+	if(slot & ITEM_SLOT_ICLOTHING)
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drippy", /datum/mood_event/drippy)
 		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "dripless", /datum/mood_event/drippy)
 		if(user && ishuman(user) && !user.GetComponent(/datum/component/mood))

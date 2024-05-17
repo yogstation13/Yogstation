@@ -145,7 +145,7 @@
 	var/mob/gun_owner
 	spread = 0
 	semi_auto_spread = 0
-	slot_flags = 0 // so it doesn't get stuck on your belt
+	slot_flags = NONE // so it doesn't get stuck on your belt
 
 /obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
 	name = "\improper Piercer cylinder"

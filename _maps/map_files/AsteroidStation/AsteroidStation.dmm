@@ -44973,21 +44973,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/security/courtroom)
-"nlu" = (
-/mob/living/carbon/human/species/monkey,
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/obj/machinery/camera{
-	c_tag = "Prison Cell 2";
-	dir = 1;
-	network = list("ss13","prison")
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "nlv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -113953,7 +113938,6 @@ wKe
 qEj
 ajQ
 wKe
-nlo
 ajQ
 wKe
 yif
