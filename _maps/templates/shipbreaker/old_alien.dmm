@@ -8,7 +8,6 @@
 /area/template_noop)
 "f" = (
 /obj/structure/table/abductor,
-/obj/item/surgicaldrill/alien,
 /turf/open/floor/plating/abductor,
 /area/template_noop)
 "g" = (
