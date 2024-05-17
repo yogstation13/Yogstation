@@ -1,0 +1,45 @@
+{
+	"map_name": "Undergruv",
+	"map_path": "map_files/undergruvstation",
+	"map_file": "UndergruvStation.dmm",
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"planetary": 1,
+	"shuttles": {
+		"cargo": "cargo_box",
+		"ferry": "ferry_fancy",
+		"emergency": "emergency_meta"
+	},
+	"traits": [
+		{
+			"Up": true,
+			"Linkage": null,
+			"Weather_Snowstorm": true,
+			"Mining": true,
+			"Gravity": true,
+			"Ice Ruins Underground": true,
+			"Bombcap Multiplier": 2.5,
+			"Baseturf": "/turf/open/lava/plasma/ice_moon",
+			"No Parallax": true
+		},
+		{
+			"Down": true,
+			"Up": true,	
+			"Linkage": null,
+			"Weather_Snowstorm": true,
+			"Mining": true,
+			"Gravity": true,
+			"Bombcap Multiplier": 2.5,
+			"Ice Ruins": true,
+			"Baseturf": "/turf/open/openspace/icemoon/keep_below",
+			"No Parallax": true
+		},
+		{
+			"Linkage": "Self",
+			"Gravity": true,
+			"Baseturf": "/turf/open/water/toxic_pit",
+			"No Parallax": true
+		}
+	],
+	"minetype": "none"
+}
