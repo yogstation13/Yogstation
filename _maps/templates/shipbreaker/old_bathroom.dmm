@@ -27,10 +27,6 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"q" = (
-/obj/structure/curtain,
-/turf/open/floor/plasteel/freezer/airless,
-/area/template_noop)
 "s" = (
 /obj/structure/toilet{
 	dir = 8
@@ -39,6 +35,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/curtain,
 /turf/open/floor/plasteel/freezer/airless,
 /area/template_noop)
 "x" = (
@@ -173,10 +170,10 @@ a
 (5,1,1) = {"
 a
 c
-q
-q
-q
-q
+h
+h
+h
+h
 A
 A
 A
