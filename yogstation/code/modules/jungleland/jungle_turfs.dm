@@ -199,6 +199,9 @@ Temperature: 126.85 °C (400 K)
 	. = ..()
 	if(!ishuman(AM))
 		return
+	
+	if(is_safe())
+		return
 		
 	var/mob/living/carbon/human/humie = AM
 	var/chance = (100 - humie.getarmor(null,BIO)) * 0.33
@@ -220,6 +223,14 @@ Temperature: 126.85 °C (400 K)
 	if(prob((chance * 0.15 ) + 10 ))
 		humie.acid_act(5,7.5)
 
+/turf/open/water/toxic_pit/proc/is_safe() // Stolen from lava
+	var/static/list/sulphurwater_safeties_typecache = typecacheof(list(/obj/structure/lattice/catwalk, /obj/structure/stone_tile))
+	var/list/found_safeties = typecache_filter_list(contents, sulphurwater_safeties_typecache)
+	for(var/obj/structure/stone_tile/S in found_safeties)
+		if(S.fallen)
+			LAZYREMOVE(found_safeties, S)
+	return LAZYLEN(found_safeties)
+
 /turf/open/water/safe/jungle
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 
@@ -235,6 +246,9 @@ Temperature: 126.85 °C (400 K)
 /turf/open/water/deep_toxic_pit/Entered(atom/movable/AM)
 	. = ..()
 	if(!ishuman(AM))
+		return
+
+	if(is_safe())
 		return
 
 	var/mob/living/carbon/human/humie = AM
@@ -253,6 +267,14 @@ Temperature: 126.85 °C (400 K)
 	humie.reagents.add_reagent(/datum/reagent/toxic_metabolities,15)
 	humie.adjustFireLoss(33)
 	humie.acid_act(15,15)
+
+/turf/open/water/deep_toxic_pit/proc/is_safe() // Needs refactoring but it sure as hell won't be here
+	var/static/list/dsulphurwater_safeties_typecache = typecacheof(list(/obj/structure/lattice/catwalk, /obj/structure/stone_tile))
+	var/list/found_safeties = typecache_filter_list(contents, dsulphurwater_safeties_typecache)
+	for(var/obj/structure/stone_tile/S in found_safeties)
+		if(S.fallen)
+			LAZYREMOVE(found_safeties, S)
+	return LAZYLEN(found_safeties)
 
 /turf/open/floor/wood/jungle
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS

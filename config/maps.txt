@@ -40,6 +40,11 @@ map donutstation
 	votable
 endmap
 
+map undergruvstation
+	minplayers 9
+	votable
+endmap
+
 # Debug-only maps.
 
 map multiz_debug
