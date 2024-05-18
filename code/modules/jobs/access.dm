@@ -419,7 +419,7 @@
 
 /// Gets all centcom jobs
 /proc/get_all_centcom_jobs()
-	return list("VIP Guest","Custodian","Thunderdome Overseer","CentCom Official","Medical Officer","Research Officer","Special Ops Officer","Admiral","CentCom Commander","Emergency Response Team Commander","Security Response Officer","Engineer Response Officer", "Medical Response Officer","CentCom Bartender", "Janitorial Response Officer", "Religious Response Officer", "CentCom Captain", "CentCom Major", "CentCom Commodore", "CentCom Colonel", "CentCom Rear-Admiral", "CentCom Admiral", "CentCom Grand Admiral", "Comedy Response Officer", "HONK Squad Trooper")
+	return list("VIP Guest","Custodian","Thunderdome Overseer","CentCom Official","Medical Officer","Research Officer","Special Ops Officer","Admiral","CentCom Commander","Emergency Response Team Commander","Security Response Officer","Engineer Response Officer", "Medical Response Officer","CentCom Bartender", "Janitorial Response Officer", "Religious Response Officer", "CentCom Captain", "CentCom Major", "CentCom Commodore", "CentCom Colonel", "CentCom Rear-Admiral", "CentCom Admiral", "CentCom Executive Admiral", "Comedy Response Officer", "HONK Squad Trooper")
 
 /// Gets all task for jobs
 /proc/get_all_task_force_jobs()

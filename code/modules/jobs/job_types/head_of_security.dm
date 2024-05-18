@@ -82,8 +82,8 @@
 
 	belt = /obj/item/storage/belt/security/chief/full
 	ears = /obj/item/radio/headset/heads/hos/alt
-	uniform = /obj/item/clothing/under/rank/head_of_security
-	uniform_skirt = /obj/item/clothing/under/rank/head_of_security/skirt
+	uniform = /obj/item/clothing/under/rank/security/head_of_security
+	uniform_skirt = /obj/item/clothing/under/rank/security/head_of_security/skirt
 	shoes = /obj/item/clothing/shoes/jackboots
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/jackboots
 	suit = /obj/item/clothing/suit/armor/hos/trenchcoat

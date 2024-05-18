@@ -1531,6 +1531,14 @@
 	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=0.5, blacklisted_movetypes=(FLYING|FLOATING)) // slowdown for if you're awake
 	ADD_TRAIT(L, TRAIT_SURGERY_PREPARED, "healium")
 
+/datum/reagent/healium/on_mob_add(mob/living/L)
+	. = ..()
+	ADD_TRAIT(L, TRAIT_PRESERVED_ORGANS, "healium")
+
+/datum/reagent/healium/on_mob_delete(mob/living/L)
+	REMOVE_TRAIT(L, TRAIT_PRESERVED_ORGANS, "healium")
+	return ..()
+
 /datum/reagent/healium/on_mob_life(mob/living/carbon/M)
 	M.SetSleeping(100)
 	M.SetUnconscious(100)
@@ -1540,11 +1548,21 @@
 		M.adjust_disgust((40 - M.disgust) / 10) // makes you sick
 		M.adjust_jitter_up_to(2, 10)
 	else if(M.bodytemperature < T0C)
+		var/power = -0.00009 * (M.bodytemperature ** 2) + 9
 		heal_factor *= (100 + max(T0C - M.bodytemperature, 200)) / 100 // if you're asleep, you get healed faster when you're cold (up to 3x at 73 kelvin)
+		for(var/i in M.all_wounds)
+			var/datum/wound/iter_wound = i
+			iter_wound.on_healium(power)
+
+		if(M.blood_volume < BLOOD_VOLUME_SAFE(M))
+			M.blood_volume = BLOOD_VOLUME_SAFE(M)
+
 	M.adjustOxyLoss(-10*heal_factor*REM)
 	M.adjustFireLoss(-7*heal_factor*REM)
 	M.adjustToxLoss(-5*heal_factor*REM)
 	M.adjustBruteLoss(-5*heal_factor*REM)
+	M.adjustCloneLoss(-5*heal_factor*REM)
+	REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 	..()
 
 /datum/reagent/healium/on_mob_end_metabolize(mob/living/L)

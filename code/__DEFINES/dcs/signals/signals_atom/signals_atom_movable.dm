@@ -3,6 +3,8 @@
 // All signals send the source datum of the signal as the first argument
 
 ///from base of atom/movable/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change): (/atom)
+#define COMSIG_MOVABLE_PRE_ENTER "movable_pre_enter"
+///from base of atom/movable/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change): (/atom)
 #define COMSIG_MOVABLE_PRE_MOVE "movable_pre_move"
 	#define COMPONENT_MOVABLE_BLOCK_PRE_MOVE (1<<0)
 ///from base of atom/movable/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change): (atom/old_loc, dir, forced, list/old_locs)

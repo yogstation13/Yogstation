@@ -8,7 +8,7 @@
 		via surplus medical technology found in the abandoned part of maintenance no one seems to want to talk about. \
 		Unfortunately the research department couldn't design a helmet before the third quarter so this is definitely not spaceproof. \
 		One size fits most."
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "nerd"
 	item_state = "nerd"

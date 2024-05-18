@@ -986,7 +986,7 @@
 		updateDialog()
 
 
-/obj/machinery/door/airlock/attackby(obj/item/C, mob/user, params)
+/obj/machinery/door/airlock/attackby(obj/item/C, mob/living/user, params)
 	if(!issilicon(user) && !IsAdminGhost(user))
 		if(isElectrified() && !user.incapacitated())
 			if(shock(user, 75))
@@ -1178,7 +1178,7 @@
 	else if(istype(C, /obj/item/brace)) //yogs
 		apply_brace(C, user) //yogs
 	else if(istype(C, /obj/item/umbral_tendrils))
-		if(user.a_intent == INTENT_HELP && !hasPower())
+		if(!user.combat_mode && !hasPower())
 			if(!density)
 				return
 			if(locked || welded)
@@ -1186,9 +1186,10 @@
 				return
 			open(2)
 		var/obj/item/umbral_tendrils/T = C
+		var/list/modifiers = params2list(params)
 		if(!T.darkspawn)
 			return ..()
-		else if(user.a_intent == INTENT_DISARM && density)
+		else if((!user.combat_mode || (modifiers && modifiers[RIGHT_CLICK])) && density)
 			// we dont want Duality double-hitting the airlock when we're trying to pry it open
 			if(user.get_active_held_item() != C)
 				return
@@ -1238,9 +1239,9 @@
 		return ..()
 
 
-/obj/machinery/door/airlock/try_to_weld(obj/item/weldingtool/W, mob/user)
+/obj/machinery/door/airlock/try_to_weld(obj/item/weldingtool/W, mob/living/user, list/modifiers)
 	if(!operating && density)
-		if(user.a_intent != INTENT_HELP)
+		if(user.combat_mode || (modifiers && modifiers[RIGHT_CLICK]))
 			if(!W.tool_start_check(user, amount=0))
 				return
 			user.visible_message("[user] is [welded ? "unwelding":"welding"] the airlock.", \

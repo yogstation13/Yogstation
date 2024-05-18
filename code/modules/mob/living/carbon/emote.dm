@@ -71,6 +71,7 @@
 	key = "meow"
 	key_third_person = "meows"
 	message = "meows."
+	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/simple_animal/pet/cat)
 	emote_type = EMOTE_AUDIBLE
 	cooldown = 10 SECONDS
 
@@ -78,7 +79,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	return iscatperson(user)
+	return iscatperson(user) || iscat(user)
 
 /datum/emote/living/carbon/moan
 	key = "moan"

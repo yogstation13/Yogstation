@@ -419,8 +419,8 @@
 		return FALSE
 	return ISINRANGE(T1.x, T0.x - interaction_range, T0.x + interaction_range) && ISINRANGE(T1.y, T0.y - interaction_range, T0.y + interaction_range)
 
-/mob/living/silicon/robot/attackby(obj/item/W, mob/user, params)
-	if(W.tool_behaviour == TOOL_WELDER && (user.a_intent != INTENT_HARM || user == src))
+/mob/living/silicon/robot/attackby(obj/item/W, mob/living/user, params)
+	if(W.tool_behaviour == TOOL_WELDER && (!user.combat_mode || user == src))
 		user.changeNext_move(CLICK_CD_MELEE)
 		if (!getBruteLoss())
 			to_chat(user, span_warning("[src] is already in good condition!"))
@@ -461,7 +461,7 @@
 		else
 			to_chat(user, "The wires seem fine, there's no need to fix them.")
 
-	else if(W.tool_behaviour == TOOL_CROWBAR && (user.a_intent != INTENT_HARM || user == src))	// crowbar means open or close the cover
+	else if(W.tool_behaviour == TOOL_CROWBAR && (!user.combat_mode || user == src))	// crowbar means open or close the cover
 		if(opened)
 			to_chat(user, span_notice("You close the cover."))
 			opened = 0
@@ -547,7 +547,7 @@
 		else
 			to_chat(user, span_warning("Unable to locate a radio!"))
 
-	else if(W.GetID() && user.a_intent == INTENT_HELP)			// trying to unlock the interface with an ID card only on help intent.
+	else if(W.GetID() && !user.combat_mode)			// trying to unlock the interface with an ID card unless combat mode is on.
 		togglelock(user)
 
 	else if(istype(W, /obj/item/borg/upgrade/))
@@ -957,7 +957,7 @@
 	playstyle_string = "<span class='big bold'>You are a Syndicate medical cyborg!</span><br>\
 						<b>You are armed with powerful medical tools to aid you in your mission: help the operatives secure the nuclear authentication disk. \
 						Your hypospray will produce Restorative Nanites, a wonder-drug that will heal most types of bodily damages, including clone and brain damage. It also produces morphine for offense. \
-						Your defibrillator paddles can revive operatives through their hardsuits, or can be used on harm intent to shock enemies! \
+						Your defibrillator paddles can revive operatives through their hardsuits, or can be used with combat mode on to shock enemies! \
 						Your energy saw functions as a circular saw, but can be activated to deal more damage, and your operative pinpointer will find and locate fellow nuclear operatives. \
 						<i>Help the operatives secure the disk at all costs!</i></b>"
 	set_module = /obj/item/robot_module/syndicate_medical

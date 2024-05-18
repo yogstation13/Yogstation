@@ -368,7 +368,7 @@
 /obj/item/break_blade/pre_attack(atom/A, mob/living/user, params)
 	if(istype(A, /obj/item/break_blade))
 		form_bow(user, A)
-		return FALSE
+		return TRUE
 	. = ..()
 
 /obj/item/break_blade/attack(mob/living/M, mob/living/user, secondattack = FALSE)

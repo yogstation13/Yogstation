@@ -31,7 +31,7 @@
 			. += new /mutable_appearance(gun_overlay)
 	. += "[icon_state]_[open ? "open" : "door"]"
 
-/obj/structure/guncase/attackby(obj/item/I, mob/user, params)
+/obj/structure/guncase/attackby(obj/item/I, mob/living/user, params)
 	if(iscyborg(user) || isalien(user))
 		return
 	if(istype(I, gun_category) && open)
@@ -44,7 +44,7 @@
 			to_chat(user, span_warning("[src] is full."))
 		return
 
-	else if(user.a_intent != INTENT_HARM)
+	else if(!user.combat_mode)
 		open = !open
 		update_appearance(UPDATE_ICON)
 	else

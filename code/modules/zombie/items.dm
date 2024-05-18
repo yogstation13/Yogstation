@@ -57,7 +57,7 @@
 	user.do_attack_animation(M)
 	var/notBlocked = M.attacked_by(src, user)
 
-	log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+	log_combat(user, M, "attacked", src.name, "(COMBAT MODE: [user.combat_mode ? "ON" : "OFF"])")
 	add_fingerprint(user)
 
 	take_damage(rand(weapon_stats[DAMAGE_LOW], weapon_stats[DAMAGE_HIGH]), sound_effect = FALSE)

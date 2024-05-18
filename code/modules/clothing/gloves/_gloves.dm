@@ -43,5 +43,5 @@
 		M.update_inv_gloves()
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
-/obj/item/clothing/gloves/proc/Touch(atom/A, proximity)
+/obj/item/clothing/gloves/proc/Touch(atom/A, proximity, modifiers)
 	return 0 // return 1 to cancel attack_hand()

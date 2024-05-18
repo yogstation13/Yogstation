@@ -501,13 +501,13 @@
 
 	StartCooldown()
 	var/location = get_turf(crown.current_tar_shrines[name])
-	animate(owner,2.5 SECONDS,owner.color = "#280025")
-	if(!do_after(owner,2.5 SECONDS,owner))
-		animate(owner,0.5 SECONDS,owner.color = initial(owner.color))
+	animate(owner, time = 2.5 SECONDS, color = "#280025")
+	if(!do_after(owner, 2.5 SECONDS, owner))
+		animate(owner, time = 0.5 SECONDS, color = initial(owner.color))
 		return
 	new /obj/effect/tar_king/orb_in(get_turf(owner),owner,NORTH)
 	do_teleport(owner,location)
-	animate(owner,0.5 SECONDS,owner.color = initial(owner.color))
+	animate(owner, time = 0.5 SECONDS, color = initial(owner.color))
 
 /// jungle recipes---
 /datum/chemical_reaction/poultice/alt2

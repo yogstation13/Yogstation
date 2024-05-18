@@ -27,7 +27,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 
 	///Icon file for mob worn overlays.
-	var/icon/mob_overlay_icon
+	var/icon/worn_icon
 	///Icon state for mob worn overlays, if null the normal icon_state will be used.
 	var/worn_icon_state
 	///Icon state for the belt overlay, if null the normal icon_state will be used.
@@ -219,8 +219,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	else if (!istype(embedding, /datum/embedding_behavior))
 		stack_trace("Invalid type [embedding.type] found in .embedding during /obj/item Initialize(mapload)")
 
-/obj/item/Destroy()
-	item_flags &= ~DROPDEL	//prevent reqdels
+/obj/item/Destroy(force=FALSE)
+	item_flags &= ~DROPDEL //prevent reqdels
 	if(ismob(loc))
 		var/mob/m = loc
 		m.temporarilyRemoveItemFromInventory(src, TRUE)
@@ -309,7 +309,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(!greyscale_colors)
 		return
 	if(greyscale_config_worn)
-		/*worn_icon*/mob_overlay_icon = SSgreyscale.GetColoredIconByType(greyscale_config_worn, greyscale_colors)
+		worn_icon = SSgreyscale.GetColoredIconByType(greyscale_config_worn, greyscale_colors)
 	if(greyscale_config_inhand_left)
 		lefthand_file = SSgreyscale.GetColoredIconByType(greyscale_config_inhand_left, greyscale_colors)
 	if(greyscale_config_inhand_right)
@@ -406,7 +406,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	add_fingerprint(usr)
 	return ..()
 
-/obj/item/attack_hand(mob/user)
+/obj/item/attack_hand(mob/user, modifiers)
 	. = ..()
 	if(.)
 		return
@@ -623,25 +623,27 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	set category = "Object"
 	set name = "Pick up"
 
+	var/mob/user_mob = usr
+
 	if(HAS_TRAIT(src, TRAIT_NODROP))
 		return
 
-	if(usr.incapacitated() || !Adjacent(usr))
+	if(user_mob.incapacitated() || !Adjacent(user_mob))
 		return
 
-	if(isliving(usr))
-		var/mob/living/L = usr
+	if(isliving(user_mob))
+		var/mob/living/L = user_mob
 		if(!(L.mobility_flags & MOBILITY_PICKUP))
 			return
 
-	if(issilicon(usr))
-		var/obj/item/borg/gripper/gripper = usr.get_active_held_item(TRUE)
+	if(issilicon(user_mob))
+		var/obj/item/borg/gripper/gripper = user_mob.get_active_held_item(TRUE)
 		if(istype(gripper))
-			gripper.pre_attack(src, usr, get_dist(src, usr))
+			gripper.pre_attack(src, user_mob, get_dist(src, user_mob))
 		return
 
-	if(usr.get_active_held_item() == null) // Let me know if this has any problems -Yota
-		usr.UnarmedAttack(src)
+	if(user_mob.get_active_held_item() == null) // Let me know if this has any problems -Yota
+		user_mob.UnarmedAttack(src, TRUE, list()) // no modifiers, just normal pickup
 
 //This proc is executed when someone clicks the on-screen UI button.
 //The default action is attack_self().
@@ -697,7 +699,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "eye_stab", /datum/mood_event/eye_stab)
 
-	log_combat(user, M, "attacked", "[src.name]", "(INTENT: [uppertext(user.a_intent)])")
+	log_combat(user, M, "attacked", "[src.name]", "(COMBAT_MODE: [user.combat_mode ? "ON" : "OFF"])")
 
 	var/obj/item/organ/eyes/eyes = M.get_organ_slot(ORGAN_SLOT_EYES)
 	if (!eyes)
@@ -772,10 +774,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		. = callback.Invoke()
 	item_flags &= ~IN_INVENTORY
 	var/matrix/M = matrix(transform)
-	M.Turn(rand(-170, 170))
+	M.Turn(pick(-90, 0, 90, 180))
 	transform = M
-	pixel_x = rand(-12, 12)
-	pixel_y = rand(-12, 12)
+	pixel_x = initial(pixel_x) + rand(-12, 12)
+	pixel_y = initial(pixel_y) + rand(-12, 12)
 
 /obj/item/proc/remove_item_from_storage(atom/newLoc) //please use this if you're going to snowflake an item out of a obj/item/storage
 	if(!newLoc)
@@ -1189,8 +1191,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	// And animate the attack!
 	var/t_color = "#ffffff" //yogs start
 	if(ismob(src) &&  ismob(attacked_atom) && (!used_item))
-		var/mob/M = src
-		t_color = M.a_intent == INTENT_HARM ? "#ff0000" : "#ffffff"
+		var/mob/living/M = src
+		t_color = M.combat_mode ? "#ff0000" : "#ffffff"
 	animate(attack_image, alpha = 175, transform = matrix() * 0.75, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3, color = t_color)
 	animate(time = 1)
 	animate(alpha = 0, time = 3, easing = CIRCULAR_EASING|EASE_OUT) //yogs end

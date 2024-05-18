@@ -5,8 +5,8 @@
 	id = "ipc"
 	say_mod = "states" //inherited from a user's real species
 	bubble_icon = BUBBLE_ROBOT // beep boop
-	sexes = FALSE
-	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD,NO_UNDERWEAR)
+	possible_genders = list(PLURAL, NEUTER) // A MERE OBJECT
+	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,NOZOMBIE,MUTCOLORS,NOHUSK,NOBLOOD,NO_UNDERWEAR)
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_NOBREATH,TRAIT_LIMBATTACHMENT,TRAIT_EASYDISMEMBER,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB,TRAIT_POWERHUNGRY)
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	mutantbrain = /obj/item/organ/brain/positron
@@ -390,8 +390,10 @@ ipc martial arts stuff
 	var/list/initial_mutant_bodyparts
 	var/list/initial_step_sounds
 	var/list/initial_walk_sounds
+	var/list/initial_genders
 	var/list/blacklisted_species = list(/datum/species/ethereal, /datum/species/moth)//species that really don't work with this system (lizards aren't quite right either, but whatever)
 	var/list/old_features
+	var/old_gender
 	var/ipc_color
 	var/disguised = FALSE
 	
@@ -401,6 +403,7 @@ ipc martial arts stuff
 	initial_mutant_bodyparts = LAZYCOPY(mutant_bodyparts)
 	initial_step_sounds = LAZYCOPY(special_step_sounds)
 	initial_walk_sounds = LAZYCOPY(special_walk_sounds)
+	initial_genders	= LAZYCOPY(possible_genders)
 	ipc_color = sanitize_hexcolor("[pick("7F", "FF")][pick("7F", "FF")][pick("7F", "FF")]")
 
 	fake_species = new /datum/species/human() //default is human
@@ -430,7 +433,10 @@ ipc martial arts stuff
 	disguised = TRUE
 	name = fake_species.name
 	say_mod = fake_species.say_mod
-	sexes = fake_species.sexes
+	old_gender = H.gender
+	possible_genders = fake_species.possible_genders
+	if(!(H.gender in fake_species.possible_genders))
+		H.gender = pick(fake_species.possible_genders)
 	species_traits = LAZYCOPY(initial_species_traits)
 	inherent_traits = LAZYCOPY(initial_inherent_traits)
 	mutant_bodyparts = LAZYCOPY(fake_species.mutant_bodyparts)
@@ -442,7 +448,7 @@ ipc martial arts stuff
 	if(!(NO_UNDERWEAR in fake_species.species_traits))
 		species_traits -= NO_UNDERWEAR
 	damage_overlay_type = fake_species.damage_overlay_type
-	attack_verb = fake_species.attack_verb
+	attack_verbs = fake_species.attack_verbs
 	attack_effect = fake_species.attack_effect
 	attack_sound = fake_species.attack_sound
 	miss_sound = fake_species.miss_sound
@@ -461,7 +467,8 @@ ipc martial arts stuff
 	disguised = FALSE
 	name = initial(name)
 	say_mod = initial(say_mod)
-	sexes = initial(sexes)
+	H.gender = old_gender
+	possible_genders = LAZYCOPY(initial_genders)
 	species_traits = LAZYCOPY(initial_species_traits)
 	inherent_traits = LAZYCOPY(initial_inherent_traits)
 	mutant_bodyparts = LAZYCOPY(initial_mutant_bodyparts)
@@ -469,7 +476,7 @@ ipc martial arts stuff
 	special_walk_sounds = LAZYCOPY(initial_walk_sounds)
 	damage_overlay_type = initial(damage_overlay_type)
 	H.dna.features["mcolor"] = ipc_color
-	attack_verb = initial(attack_verb)
+	attack_verbs = initial(attack_verbs)
 	attack_effect = initial(attack_effect)
 	attack_sound = initial(attack_sound)
 	miss_sound = initial(miss_sound)

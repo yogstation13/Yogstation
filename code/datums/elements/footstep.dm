@@ -159,7 +159,7 @@
 	else
 		var/barefoot_type = prepared_steps[source.dna.species.barefoot_step_sound]
 		if(source.dna.species.special_step_sounds)
-			playsound(source.loc, pick(source.dna.species.special_step_sounds), 50, TRUE, falloff_distance = 1, vary = sound_vary)
+			playsound(source.loc, pick(source.dna.species.special_step_sounds), source.dna.species.special_step_volume, TRUE, falloff_distance = 1, vary = sound_vary)
 		else
 			switch(source.dna.species.barefoot_step_sound)
 				if(FOOTSTEP_MOB_BAREFOOT)

@@ -893,7 +893,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		return
 
 	if(!user.is_mouth_covered())
-		if(user.a_intent == INTENT_HARM)
+		if(user.combat_mode)
 			dust_mob(user,
 				"<span class='danger'>As [user] tries to take a bite out of [src] everything goes silent before [user.p_their()] body starts to glow and burst into flames before flashing to ash.</span>",
 				"<span class='userdanger'>You try to take a bite out of [src], but find [p_them()] far too hard to get anywhere before everything starts burning and your ears fill with ringing!</span>",
@@ -957,7 +957,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			Consume(dust_arm)
 			qdel(W)
 			return
-		if(cig.lit || user.a_intent != INTENT_HELP)
+		if(cig.lit || user.combat_mode)
 			user.visible_message(span_danger("A hideous sound echoes as [W] is ashed out on contact with \the [src]. That didn't seem like a good idea..."))
 			Consume(W)
 			radiation_pulse(src, 150, 4)

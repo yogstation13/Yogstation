@@ -15,6 +15,11 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	var/list/datum/mind/darkspawns = list()
 	var/datum/team/darkspawn/team
 
+	announce_span = "danger"
+	announce_text = "There are <span class='velvet'>Darkspawn</span> on the station!\n\
+	<span class='velvet'>Darkspawn</span>: Consume enough lucidity to complete the Sacrament and ascend once again.\n\
+	<span class='notice'>Crew</span>: Kill the darkspawn before they can complete the Sacrament."
+
 ////////////////////////////////////////////////////////////////////////////////////
 //-------------------------------Gamemode Setup-----------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
@@ -56,10 +61,6 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------Non-Secret mode stuff-------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/game_mode/darkspawn/announce()
-	to_chat(world, "<b>The current game mode is - Darkspawn!</b>")
-	to_chat(world, "<b>There are [span_velvet("darkspawn")] on the station. Crew: Kill the darkspawn before they can complete the Sacrament. Darkspawn: Consume enough lucidity to complete the Sacrament and ascend once again.</b>")
-
 /datum/game_mode/darkspawn/generate_report()
 	return "Sightings of strange alien creatures have been observed in your area. These aliens appear to be searching for specific patterns of brain activity, with their method for doing so causing victims to lapse into a short coma. \
 	Be wary of dark areas and ensure all lights are kept well-maintained. Investigate all reports of odd or suspicious sightings in maintenance, and be on the lookout for anyone sympathizing with these aliens, as they may be compromised"

@@ -63,7 +63,7 @@
 	text_dehack = "[name]'s software has been reset!"
 	text_dehack_fail = "[name] does not seem to respond to your repair code!"
 
-/mob/living/simple_animal/bot/cleanbot/attackby(obj/item/W, mob/user, params)
+/mob/living/simple_animal/bot/cleanbot/attackby(obj/item/W, mob/living/user, params)
 	if(W.GetID())
 		if(bot_core.allowed(user) && !open && !emagged)
 			locked = !locked

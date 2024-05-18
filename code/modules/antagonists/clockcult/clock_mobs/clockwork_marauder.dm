@@ -18,7 +18,7 @@
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	weather_immunities = list("lava")
 	movement_type = FLYING
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	loot = list(/obj/item/clockwork/component/geis_capacitor/fallen_armor)
 	light_range = 2
 	light_power = 1.1

@@ -13,7 +13,6 @@
 	COOLDOWN_DECLARE(next_rush)
 	COOLDOWN_DECLARE(next_suplex)
 	COOLDOWN_DECLARE(next_palm)
-	var/normalharm = TRUE
 
 //proc the moves will use for damage dealing
 
@@ -68,6 +67,8 @@
 	var/obj/item/bodypart/r_arm/robot/seismic/R = H.get_bodypart(BODY_ZONE_R_ARM)
 	if(!isturf(H.loc))
 		return FALSE
+	if(!H.combat_mode)
+		return FALSE
 	if(R)
 		if(!istype(R, /obj/item/bodypart/r_arm/robot/seismic))
 			return FALSE
@@ -77,30 +78,26 @@
 		return FALSE
 	return ..()
 
-/datum/martial_art/reverberating_palm/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
+/datum/martial_art/reverberating_palm/proc/on_click(mob/living/carbon/human/H, atom/target, params)
 	var/list/modifiers = params2list(params)
-	if(!(can_use(H)) || (modifiers["shift"] || modifiers["alt"]))
-		return
+	if(!(can_use(H)) || (modifiers[SHIFT_CLICK] || modifiers[ALT_CLICK] || modifiers[CTRL_CLICK]))
+		return NONE
 	H.face_atom(target)
-	if(H==target)
-		if(H.a_intent == INTENT_HELP)
-			supercharge(H)
-		return
-	if(H.a_intent == INTENT_DISARM)
-		rush(H)
-	if(H.a_intent == INTENT_HARM && isliving(target) && (get_dist(H, target) <= 1))
-		suplex(H,target)
-	if(H.a_intent == INTENT_GRAB)
-		lariat(H)
-
-/datum/martial_art/reverberating_palm/harm_act(mob/living/carbon/human/A, mob/living/D)
-	if(normalharm)
-		return TRUE // no punching plus slamming please
+	if(modifiers[RIGHT_CLICK])
+		if(H == target)
+			return supercharge(H) // right-clicking yourself activates supercharge
+		else if(get_dist(H, target) <= 1)
+			return lariat(H) // right-click in melee for lariat
+		else
+			return rush(H) // right-click at range for rush
+	else if(H.CanReach(target) && isliving(target))
+		return suplex(H,target) // left-click in melee for suplex
+	return NONE
 
 /datum/martial_art/reverberating_palm/proc/supercharge(mob/living/user)
 	if(!COOLDOWN_FINISHED(src, next_palm))
 		to_chat(user, span_warning("You can't do that yet!"))
-		return
+		return COMSIG_MOB_CANCEL_CLICKON
 	COOLDOWN_START(src, next_palm, COOLDOWN_RPALM)
 	var/obj/item/melee/overcharged_emitter/B = new()
 	user.visible_message(span_userdanger("[user]'s right arm begins crackling loudly!"))
@@ -113,6 +110,7 @@
 			if(user.active_hand_index % 2 == 1)
 				user.swap_hand(0)
 		//do cooldown
+	return COMSIG_MOB_CANCEL_CLICKON
 
 
 /datum/martial_art/reverberating_palm/proc/rush(mob/living/user)
@@ -120,13 +118,14 @@
 	var/turf/T = get_step(get_turf(user), user.dir)
 	if(!COOLDOWN_FINISHED(src, next_rush))
 		to_chat(user, span_warning("You can't do that yet!"))
-		return
+		return COMSIG_MOB_CANCEL_CLICKON
 	COOLDOWN_START(src, next_rush, COOLDOWN_RUSH)
 	for(var/mob/living/L in T.contents)
 		if(L)
 			dashattack(user, user.dir, jumpdistance, 2, L)
-			return
+			return COMSIG_MOB_CANCEL_CLICKON
 	dashattack(user, user.dir, jumpdistance, 2)
+	return COMSIG_MOB_CANCEL_CLICKON
 
 /datum/martial_art/reverberating_palm/proc/suplex(mob/living/user, mob/living/target)
 	var/simpledam = 20
@@ -135,7 +134,7 @@
 	var/turf/Z = get_turf(user)
 	if(!COOLDOWN_FINISHED(src, next_suplex))
 		to_chat(user, span_warning("You can't do that yet!"))
-		return
+		return COMSIG_MOB_CANCEL_CLICKON
 	COOLDOWN_START(src, next_suplex, COOLDOWN_SUPLEX)
 	footsies(target)
 	var/turf/Q = get_step(get_turf(user), turn(user.dir,180))
@@ -152,6 +151,7 @@
 			if(B.charging)
 				B.adjustBruteLoss(50)
 				B.forceMove(D)
+				user.face_atom(B)
 				B.visible_message(span_warning("[B] is caught and thrown behind [user]!"))
 				playsound(target, 'sound/effects/explosion1.ogg', 60, 1)
 				shake_camera(user, 1, 2)
@@ -159,19 +159,21 @@
 		if(target.stat == DEAD)
 			target.visible_message(span_warning("[target] crashes and explodes!"))
 			target.gib()
+	user.face_atom(target)
 	to_chat(user, span_warning("[user] suplexes [target] against [Q]!"))
 	to_chat(target, span_userdanger("[user] crushes you against [Q]!"))
 	playsound(target, 'sound/effects/meteorimpact.ogg', 60, 1)
 	playsound(user, 'sound/effects/gravhit.ogg', 20, 1)
-
+	return COMSIG_MOB_CANCEL_CLICKON // no punching plus slamming please
 
 /datum/martial_art/reverberating_palm/proc/lariat(mob/living/user)
 	var/jumpdistance = 4
 	if(!COOLDOWN_FINISHED(src, next_lariat))
 		to_chat(user, span_warning("You can't do that yet!"))
-		return
+		return COMSIG_MOB_CANCEL_CLICKON
 	COOLDOWN_START(src, next_lariat, COOLDOWN_LARIAT)
 	dashattack(user, user.dir, jumpdistance, 1) 
+	return COMSIG_MOB_CANCEL_CLICKON
 
 /datum/martial_art/reverberating_palm/proc/dashattack(mob/living/user, dir, distance = 0, type = 0, list/rushed)
 	var/turf/Q = get_step(get_turf(user), dir)
@@ -223,10 +225,10 @@
 	switch(type)
 		if(1)
 			addtimer(CALLBACK(src, PROC_REF(dashattack), user, dir, distance-1, type), 0.2 SECONDS)
-			return
+			return COMSIG_MOB_CANCEL_CLICKON
 		if(2)
 			addtimer(CALLBACK(src, PROC_REF(dashattack), user, dir, distance-1, type, pirated), 0.1 SECONDS)
-			return
+			return COMSIG_MOB_CANCEL_CLICKON
 
 /*---------------------------------------------------------------
 	training related section
@@ -237,60 +239,27 @@
 	set category = "Reverberating Palm"
 	var/list/combined_msg = list()
 
-	combined_msg +=  "[span_notice("Rush")]: Your disarm has been replaced with a move that sends you flying forward, damaging enemies in front of you by dragging them \
+	combined_msg +=  "[span_notice("Rush")]: Right-click away from you to perform a move that sends you flying forward, damaging enemies in front of you by dragging them \
 	along the ground. Ramming victims into something solid does damage to them and the object and attacking animals makes you momentarily tougher. Has a 7 second cooldown."
 
-	combined_msg +=  "[span_notice("Suplex")]: Your harm has been replaced with a slam attack that places enemies behind you and smashes them against \
+	combined_msg +=  "[span_notice("Suplex")]: Your punch has been replaced with a slam attack that places enemies behind you and smashes them against \
 	whatever person, wall, or object is there for bonus damage. Has a 1 second cooldown."
 	
-	combined_msg +=  "[span_notice("Lariat")]: Your grab has been replaced with a lunge forward, clotheslining enemies in your way. Has a 7 second cooldown."
+	combined_msg +=  "[span_notice("Lariat")]: Right-click an enemy in melee to lunge forward, clotheslining any other enemies in your way. Has a 7 second cooldown."
 
-	combined_msg +=  "[span_notice("Rippling Palm")]: Charge up your seismic arm to put a powerful attack in your right hand. The energy only lasts 5 seconds \
+	combined_msg +=  "[span_notice("Rippling Palm")]: Right-clicking yourself charges up your seismic arm to put a powerful attack in your right hand. The energy only lasts 5 seconds \
 	but does hefty damage to its target, sending it flying and taking unanchored obstacles with it. However, your arm is disabled for 15 seconds afterwards."
 
 	combined_msg +=  span_warning("You can't perform any of the moves if you have an occupied hand or limp arm.")
 
-	combined_msg +=  span_warning("Should your moves cease to function altogether, utilize the 'Recalibrate Arm' function.")
-
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
-
-
-
-/datum/action/cooldown/seismic_recalibrate
-	name = "Recalibrate Arm"
-	desc = "You recalibrate the arm to restore missing functionality."
-	button_icon = 'icons/obj/implants.dmi'
-	button_icon_state = "lighting_bolt"
-
-/datum/action/cooldown/seismic_recalibrate/Activate()
-	var/list/combined_msg = list()
-	var/datum/martial_art/reverberating_palm/rpalm = usr.mind.martial_art
-	combined_msg +=  "<b><i>You fidget with the arm in an attempt to get it working.</i></b>"
-	to_chat(usr, examine_block(combined_msg.Join("\n")))
-	rpalm.normalharm = TRUE
-	usr.click_intercept = usr.mind.martial_art
-
-
-/datum/action/cooldown/seismic_deactivate
-	name = "Deactivate Arm"
-	desc = "Wind down the arm temporarily, restoring your normal capabilities."
-	button_icon = 'icons/obj/implants.dmi'
-	button_icon_state = "emp"
-
-/datum/action/cooldown/seismic_deactivate/Activate()
-	var/list/combined_msg = list()
-	var/datum/martial_art/reverberating_palm/rpalm = usr.mind.martial_art
-	combined_msg +=  "<b><i>You temporarily power off the arm.</i></b>"
-	to_chat(usr, examine_block(combined_msg.Join("\n")))
-	rpalm.normalharm = FALSE
-	usr.click_intercept = null
-
-
 
 /datum/martial_art/reverberating_palm/teach(mob/living/carbon/human/H, make_temporary=0)
-	..()
-	usr.click_intercept = src 
+	. = ..()
+	to_chat(H, span_boldannounce("You've gained the ability to use Reverberating Palm!"))
+	RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(on_click))
 
 /datum/martial_art/reverberating_palm/on_remove(mob/living/carbon/human/H)
-	usr?.click_intercept = null 
-	..()
+	to_chat(H, "[span_boldannounce("You've lost the ability to use Reverberating Palm...")]")
+	UnregisterSignal(H, COMSIG_MOB_CLICKON)
+	return ..()

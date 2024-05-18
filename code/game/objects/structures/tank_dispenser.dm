@@ -42,7 +42,7 @@
 	. = ..()
 	return ui_interact(user)
 
-/obj/structure/tank_dispenser/attackby(obj/item/I, mob/user, params)
+/obj/structure/tank_dispenser/attackby(obj/item/I, mob/living/user, params)
 	var/full
 	if(istype(I, /obj/item/tank/internals/plasma))
 		if(plasmatanks < TANK_DISPENSER_CAPACITY)
@@ -57,7 +57,7 @@
 	else if(I.tool_behaviour == TOOL_WRENCH)
 		default_unfasten_wrench(user, I, time = 20)
 		return
-	else if(user.a_intent != INTENT_HARM)
+	else if(!user.combat_mode)
 		to_chat(user, span_notice("[I] does not fit into [src]."))
 		return
 	else

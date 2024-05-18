@@ -85,11 +85,11 @@
 	tastes = list("dust" = 1, "lint" = 1)
 	foodtype = CLOTH
 
-/obj/item/clothing/attack(mob/M, mob/user, def_zone)
-	if(user.a_intent != INTENT_HARM && ismoth(M))
+/obj/item/clothing/attack(mob/M, mob/living/user, params)
+	if(!user.combat_mode && ismoth(M))
 		var/obj/item/reagent_containers/food/snacks/clothing/clothing_as_food = new
 		clothing_as_food.name = name
-		if(clothing_as_food.attack(M, user, def_zone))
+		if(clothing_as_food.attack(M, user, params))
 			take_damage(15, sound_effect=FALSE)
 		qdel(clothing_as_food)
 	else
@@ -355,46 +355,56 @@ BLIND     // can't see anything
 	set name = "Adjust Suit Sensors"
 	set category = "Object"
 	set src in usr
-	var/mob/M = usr
-	if (istype(M, /mob/dead/))
+	var/mob/user_mob = usr
+	if(!can_toggle_sensors(user_mob))
 		return
-	if (!can_use(M))
-		return
-	if(is_synth(M))
-		to_chat(usr, "You're unable to use suit sensors as a synthetic!")
-		return
-	if(src.has_sensor == LOCKED_SENSORS)
-		to_chat(usr, "The controls are locked.")
-		return 0
-	if(src.has_sensor == BROKEN_SENSORS)
-		to_chat(usr, "The sensors have shorted out!")
-		return 0
-	if(src.has_sensor <= NO_SENSORS)
-		to_chat(usr, "This suit does not have any sensors.")
-		return 0
 
 	var/list/modes = list("Off", "Binary vitals", "Exact vitals", "Tracking beacon")
-	var/switchMode = input("Select a sensor mode:", "Suit Sensor Mode", modes[sensor_mode + 1]) in modes
-	if(get_dist(usr, src) > 1)
-		to_chat(usr, span_warning("You have moved too far away!"))
+	var/switchMode = tgui_input_list(user_mob, "Select a sensor mode", "Suit Sensors", modes, modes[sensor_mode + 1])
+	if(isnull(switchMode))
 		return
-	sensor_mode = modes.Find(switchMode) - 1
+	if(!can_toggle_sensors(user_mob))
+		return
 
-	if (src.loc == usr)
+	sensor_mode = modes.Find(switchMode) - 1
+	if (loc == user_mob)
 		switch(sensor_mode)
-			if(0)
+			if(SENSOR_OFF)
 				to_chat(usr, span_notice("You disable your suit's remote sensing equipment."))
-			if(1)
+			if(SENSOR_LIVING)
 				to_chat(usr, span_notice("Your suit will now only report whether you are alive or dead."))
-			if(2)
+			if(SENSOR_VITALS)
 				to_chat(usr, span_notice("Your suit will now only report your exact vital lifesigns."))
-			if(3)
+			if(SENSOR_COORDS)
 				to_chat(usr, span_notice("Your suit will now report your exact vital lifesigns as well as your coordinate position."))
 
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		if(H.w_uniform == src)
-			H.update_suit_sensors()
+		var/mob/living/carbon/human/human_wearer = loc
+		if(human_wearer.w_uniform == src)
+			human_wearer.update_suit_sensors()
+
+/obj/item/clothing/under/proc/can_toggle_sensors(mob/toggler)
+	if(!can_use(toggler) || toggler.stat == DEAD) //make sure they didn't hold the window open.
+		return FALSE
+	if(!toggler.CanReach(src))
+		balloon_alert(toggler, "can't reach!")
+		return FALSE
+	if(is_synth(toggler))
+		to_chat(usr, "You're unable to use suit sensors as a synthetic!")
+		return
+
+	switch(has_sensor)
+		if(LOCKED_SENSORS)
+			balloon_alert(toggler, "sensor controls locked!")
+			return FALSE
+		if(BROKEN_SENSORS)
+			balloon_alert(toggler, "sensors shorted!")
+			return FALSE
+		if(NO_SENSORS)
+			balloon_alert(toggler, "no sensors to ajdust!")
+			return FALSE
+
+	return TRUE
 
 /obj/item/clothing/under/AltClick(mob/user)
 	if(..())

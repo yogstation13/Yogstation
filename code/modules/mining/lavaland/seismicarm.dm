@@ -6,25 +6,29 @@
 	icon_state = "seismic_r_arm"
 	max_damage = 60
 	var/datum/martial_art/reverberating_palm/reverberating_palm = new
-	var/datum/action/cooldown/seismic_recalibrate/recalibration = new/datum/action/cooldown/seismic_recalibrate()
-	var/datum/action/cooldown/seismic_deactivate/deactivation = new/datum/action/cooldown/seismic_deactivate()
 
-/obj/item/bodypart/r_arm/robot/seismic/attach_limb(mob/living/carbon/C, special)
+/obj/item/bodypart/r_arm/robot/seismic/attach_limb(mob/living/carbon/new_owner, special)
 	. = ..()
-	reverberating_palm.teach(C)
-	recalibration.Grant(C)
-	deactivation.Grant(C)
-	to_chat(owner, span_boldannounce("You've gained the ability to use Reverberating Palm!"))
+	if(new_owner.mind)
+		reverberating_palm.teach(new_owner)
+		RegisterSignal(new_owner.mind, COMSIG_MIND_TRANSFERRED, PROC_REF(on_mind_transfer_from))
+	RegisterSignal(new_owner, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(on_mind_transfer_to))
+		
 
 /obj/item/bodypart/r_arm/robot/seismic/drop_limb(special)
-	reverberating_palm.remove(owner)
-	owner.click_intercept = null
-	recalibration.Remove(owner)
-	deactivation.Remove(owner)
-	to_chat(owner, "[span_boldannounce("You've lost the ability to use Reverberating Palm...")]")
-	..()
+	if(owner.mind)
+		reverberating_palm.remove(owner)
+		UnregisterSignal(owner.mind, COMSIG_MIND_TRANSFERRED)
+	UnregisterSignal(owner, COMSIG_MOB_MIND_TRANSFERRED_INTO)
+	return ..()
 
+/obj/item/bodypart/r_arm/robot/seismic/proc/on_mind_transfer_to(mob/living/new_mob)
+	reverberating_palm.teach(new_mob)
+	RegisterSignal(new_mob.mind, COMSIG_MIND_TRANSFERRED, PROC_REF(on_mind_transfer_from))
 
+/obj/item/bodypart/r_arm/robot/seismic/proc/on_mind_transfer_from(datum/mind/old_mind)
+	reverberating_palm.remove(old_mind.current)
+	UnregisterSignal(old_mind, COMSIG_MIND_TRANSFERRED)
 
 /obj/item/melee/overcharged_emitter
 	name = "supercharged emitter"

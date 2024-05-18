@@ -29,6 +29,9 @@
 		if(P.mind.quiet_round) //Does the candidate have quiet mode enabled?
 			candidates.Remove(P)
 			continue
+		if(P.mind && !(P.mind.assigned_role in GLOB.crew_positions)) //don't antag non crewmembers
+			candidates.Remove(P)
+			continue
 
 /datum/dynamic_ruleset/latejoin/ready(forced = 0)
 	if (!forced)

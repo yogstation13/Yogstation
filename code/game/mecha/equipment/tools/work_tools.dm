@@ -11,11 +11,11 @@
 	energy_drain = 10
 	toolspeed = 0.5
 	usesound = 'sound/mecha/hydraulic.ogg'
-	tool_behaviour = TOOL_CROWBAR
 	equip_actions = list(/datum/action/innate/mecha/equipment/clamp_mode)
 	/// How much damage does it apply when used
 	var/dam_force = 20
 	var/obj/mecha/working/ripley/cargo_holder
+	var/previous_tool_behavior = TOOL_CROWBAR
 	harmful = FALSE
 
 /datum/action/innate/mecha/equipment/clamp_mode
@@ -41,11 +41,14 @@
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/attach(obj/mecha/M as obj)
 	..()
 	cargo_holder = M
+	tool_behaviour = previous_tool_behavior
 	return
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/detach(atom/moveto = null)
 	..()
 	cargo_holder = null
+	previous_tool_behavior = tool_behaviour
+	tool_behaviour = 0
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/action(atom/target, mob/living/user, params)
 	if(!action_checks(target))
@@ -54,7 +57,7 @@
 		return
 	
 	// There are two ways things handle being pried, and I'm too lazy to make every single thing use the same one
-	if(target.tool_act(user, src, tool_behaviour) & TOOL_ACT_MELEE_CHAIN_BLOCKING)
+	if(target.tool_act(user, src, tool_behaviour, params) & TOOL_ACT_MELEE_CHAIN_BLOCKING)
 		return TRUE
 	if(target.attackby(src, user, params))
 		return TRUE
@@ -97,7 +100,7 @@
 		var/mob/living/M = target
 		if(M.stat == DEAD)
 			return
-		if(chassis.occupant.a_intent == INTENT_HARM)
+		if(chassis.occupant.combat_mode)
 			M.take_overall_damage(dam_force)
 			if(!M)
 				return
@@ -106,7 +109,7 @@
 			target.visible_message(span_danger("[chassis] squeezes [target]."), \
 								span_userdanger("[chassis] squeezes [target]."),\
 								span_italics("You hear something crack."))
-			log_combat(chassis.occupant, M, "attacked", "[name]", "(INTENT: [uppertext(chassis.occupant.a_intent)]) (DAMTYE: [uppertext(damtype)])")
+			log_combat(chassis.occupant, M, "attacked", "[name]", "(COMBAT MODE: [user.combat_mode ? "ON" : "OFF"]) (DAMTYE: [uppertext(damtype)])")
 		else
 			step_away(M,chassis)
 			occupant_message("You push [target] out of the way.")
@@ -129,7 +132,7 @@
 	dam_force = 20
 	real_clamp = TRUE
 
-/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill/action(atom/target)
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill/action(atom/target, mob/living/user, params)
 	if(!action_checks(target))
 		return
 	if(!cargo_holder)
@@ -157,20 +160,9 @@
 		var/mob/living/M = target
 		if(M.stat == DEAD)
 			return
-		if(chassis.occupant.a_intent == INTENT_HARM)
-			if(real_clamp)
-				M.take_overall_damage(dam_force)
-				if(!M)
-					return
-				M.adjustOxyLoss(round(dam_force/2))
-				M.updatehealth()
-				target.visible_message(span_danger("[chassis] destroys [target] in an unholy fury."), \
-									span_userdanger("[chassis] destroys [target] in an unholy fury."))
-				log_combat(chassis.occupant, M, "attacked", "[name]", "(INTENT: [uppertext(chassis.occupant.a_intent)]) (DAMTYE: [uppertext(damtype)])")
-			else
-				target.visible_message(span_danger("[chassis] destroys [target] in an unholy fury."), \
-									span_userdanger("[chassis] destroys [target] in an unholy fury."))
-		else if(chassis.occupant.a_intent == INTENT_DISARM)
+		
+		var/list/modifiers = params2list(params)
+		if(modifiers && modifiers[RIGHT_CLICK])
 			if(real_clamp)
 				var/mob/living/carbon/C = target
 				var/play_sound = FALSE
@@ -189,10 +181,23 @@
 					playsound(src, get_dismember_sound(), 80, TRUE)
 					target.visible_message(span_danger("[chassis] rips [target]'s arms off."), \
 								   span_userdanger("[chassis] rips [target]'s arms off."))
-					log_combat(chassis.occupant, M, "dismembered of[limbs_gone],", "[name]", "(INTENT: [uppertext(chassis.occupant.a_intent)]) (DAMTYE: [uppertext(damtype)])")
+					log_combat(chassis.occupant, M, "dismembered of[limbs_gone],", "[name]", "(COMBAT MODE: [user.combat_mode ? "ON" : "OFF"]) (DAMTYE: [uppertext(damtype)])")
 			else
 				target.visible_message(span_danger("[chassis] rips [target]'s arms off."), \
 								   span_userdanger("[chassis] rips [target]'s arms off."))
+		else if(chassis.occupant.combat_mode)
+			if(real_clamp)
+				M.take_overall_damage(dam_force)
+				if(!M)
+					return
+				M.adjustOxyLoss(round(dam_force/2))
+				M.updatehealth()
+				target.visible_message(span_danger("[chassis] destroys [target] in an unholy fury."), \
+									span_userdanger("[chassis] destroys [target] in an unholy fury."))
+				log_combat(chassis.occupant, M, "attacked", "[name]", "(COMBAT MODE: [user.combat_mode ? "ON" : "OFF"]) (DAMTYE: [uppertext(damtype)])")
+			else
+				target.visible_message(span_danger("[chassis] destroys [target] in an unholy fury."), \
+									span_userdanger("[chassis] destroys [target] in an unholy fury."))
 		else
 			step_away(M,chassis)
 			target.visible_message("[chassis] tosses [target] like a piece of paper.")
@@ -631,7 +636,7 @@
 	N.dna_lock = M.dna_lock
 	N.maint_access = M.maint_access
 	N.strafe = M.strafe
-	N.update_integrity(M.get_integrity()) //This is not a repair tool
+	N.update_integrity(N.max_integrity * M.get_integrity() / M.max_integrity) //This is not a repair tool
 	if (M.name != "\improper APLU MK-I \"Ripley\"")
 		N.name = M.name
 	M.wreckage = 0

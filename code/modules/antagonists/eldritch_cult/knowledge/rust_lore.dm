@@ -30,7 +30,7 @@
 		return COMPONENT_BLOCK_HAND_USE
 
 	if(isopenturf(target))//prevent use on tiles unless you use harm intent
-		if(source.a_intent == INTENT_HARM)
+		if(source.combat_mode)
 			target.rust_heretic_act()
 		else
 			return COMPONENT_BLOCK_HAND_USE

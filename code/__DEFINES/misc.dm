@@ -304,9 +304,6 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 
 #define MAX_PROC_DEPTH 195 // 200 proc calls deep and shit breaks, this is a bit lower to give some safety room
 
-#define SYRINGE_DRAW 0
-#define SYRINGE_INJECT 1
-
 //gold slime core spawning
 #define NO_SPAWN 0
 #define HOSTILE_SPAWN 1

@@ -73,8 +73,8 @@
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/security/warden
 
 	ears = /obj/item/radio/headset/headset_sec/alt
-	uniform = /obj/item/clothing/under/rank/warden
-	uniform_skirt = /obj/item/clothing/under/rank/warden/skirt
+	uniform = /obj/item/clothing/under/rank/security/warden
+	uniform_skirt = /obj/item/clothing/under/rank/security/warden/skirt
 	shoes = /obj/item/clothing/shoes/jackboots
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/jackboots
 	suit = /obj/item/clothing/suit/armor/vest/warden/alt

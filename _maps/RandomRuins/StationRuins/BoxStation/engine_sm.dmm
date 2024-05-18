@@ -1659,23 +1659,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"wt" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/table/reinforced,
-/obj/item/tank/internals/emergency_oxygen/engi{
-	pixel_x = 5
-	},
-/obj/item/clothing/gloves/color/black,
-/obj/item/clothing/glasses/meson/engine,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/item/pipe_dispenser,
-/obj/item/pipe_dispenser,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "wv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -1708,6 +1691,33 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/engine,
+/area/engine/engineering)
+"BK" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/table/reinforced,
+/obj/item/tank/internals/emergency_oxygen/engi{
+	pixel_x = 5
+	},
+/obj/item/clothing/gloves/color/black,
+/obj/item/clothing/glasses/meson/engine,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/item/pipe_dispenser,
+/obj/item/pipe_dispenser,
+/obj/machinery/light_switch{
+	pixel_y = 25
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"CH" = (
+/mob/living/simple_animal/opossum/poppy,
+/obj/machinery/light_switch{
+	pixel_x = -23
+	},
+/turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "CI" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1816,10 +1826,6 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plating,
-/area/engine/engineering)
-"Jj" = (
-/mob/living/simple_animal/opossum/poppy,
-/turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "JA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -2428,7 +2434,7 @@ EH
 dB
 ad
 dT
-Jj
+CH
 eg
 bN
 ev
@@ -2525,7 +2531,7 @@ aa
 "}
 (16,1,1) = {"
 ad
-wt
+BK
 cA
 aO
 bg

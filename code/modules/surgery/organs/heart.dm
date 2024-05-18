@@ -31,7 +31,7 @@
 	if(beating)
 		icon_state = "[icon_base]-on"
 	else
-		icon_state = "[icon_base]"
+		icon_state = icon_base
 
 /obj/item/organ/heart/Remove(mob/living/carbon/M, special = 0)
 	..()
@@ -62,7 +62,7 @@
 
 /obj/item/organ/heart/prepare_eat()
 	var/obj/S = ..()
-	S.icon_state = "heart-off"
+	S.icon_state = icon_base
 	return S
 
 /obj/item/organ/heart/on_life()

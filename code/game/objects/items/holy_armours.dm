@@ -78,7 +78,7 @@
 /obj/item/clothing/head/helmet/chaplain/cage
 	name = "insightful cage"
 	desc = "A cage that restrains the will of the self, allowing one to see the profane world for what it is. The user will be more vulnerable but move slightly faster."
-	mob_overlay_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
+	worn_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
 	icon_state = "cage"
 	item_state = "cage"
 	armor = list(MELEE = -15, BULLET = -10, LASER = -10, ENERGY = -5, BOMB = -5, BIO = -2, RAD = 0, FIRE = 0, ACID = 0)
@@ -127,7 +127,7 @@
 	armor = list(MELEE = 40, BULLET = 10, LASER = 10, ENERGY = 5, BOMB = 10, BIO = 0, RAD = 0, FIRE = 0, ACID = 40) //Basically faster Dark Templar but you lose out on a lot of the non-melee armor
 	slowdown = 0.1
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/head/helmet/chaplain/witchunter_hat
 	name = "witch hunter hat"
@@ -248,7 +248,7 @@
 	item_state = "flagelantes_chains"
 	armor = list(MELEE = -15, BULLET = -15, LASER = -15, ENERGY = -15, BOMB = -15, BIO = -15, RAD = 0, FIRE = 0, ACID = 0)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	mutantrace_variation = MUTANTRACE_VARIATION //No leg squishing
+	mutantrace_variation = DIGITIGRADE_VARIATION //No leg squishing
 	resistance_flags = FIRE_PROOF | ACID_PROOF //No turning to ash/mush in the quest for pain
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
 	hoodtype = /obj/item/clothing/head/hooded/flagelantes_chains_hood
@@ -432,7 +432,7 @@
 	name = "flagellant's hood"
 	desc = "A hood worn by flagellants to hide their face."
 	icon = 'icons/obj/clothing/hats/hats.dmi'
-	mob_overlay_icon = 'icons/mob/clothing/head/head.dmi'
+	worn_icon = 'icons/mob/clothing/head/head.dmi'
 	icon_state = "flagelantes_chains_hood"
 	item_state = "flagelantes_chains_hood"
 	armor = list(MELEE = -15, BULLET = -15, LASER = -15, ENERGY = -15, BOMB = -15, BIO = -15, RAD = 0, FIRE = 0, ACID = 0)

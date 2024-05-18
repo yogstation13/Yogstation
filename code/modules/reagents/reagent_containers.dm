@@ -48,9 +48,10 @@
 					span_notice("[src]'s transfer amount is now [amount_per_transfer_from_this] units."))
 				return
 
-/obj/item/reagent_containers/attack(mob/M, mob/user, def_zone)
-	if(user.a_intent == INTENT_HARM)
-		return ..()
+/obj/item/reagent_containers/attack(mob/living/M, mob/living/user, params)
+	if (!user.combat_mode)
+		return
+	return ..()
 
 /obj/item/reagent_containers/proc/canconsume(mob/eater, mob/user)
 	if(!iscarbon(eater))

@@ -24,7 +24,7 @@
 		           /obj/item/ammo_box/magazine/m75 = 2,
 				   /obj/item/reagent_containers/food/snacks/cheesyfries = 5,
 				   /obj/item/reagent_containers/food/snacks/burger/baconburger = 5) //Premium burgers for the premium section
-	contraband = list(/obj/item/clothing/under/patriotsuit = 3,
+	contraband = list(/obj/item/clothing/under/costume/patriotsuit = 3,
 		              /obj/item/bedsheet/patriot = 5,
 					  /obj/item/reagent_containers/food/snacks/burger/superbite = 3) //U S A
 	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)

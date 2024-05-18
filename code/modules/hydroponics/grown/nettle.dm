@@ -105,10 +105,10 @@
 			user.Paralyze(100)
 			to_chat(user, span_userdanger("You are stunned by the Deathnettle as you try picking it up!"))
 
-/obj/item/reagent_containers/food/snacks/grown/nettle/death/attack(mob/living/carbon/M, mob/user)
+/obj/item/reagent_containers/food/snacks/grown/nettle/death/attack(mob/living/carbon/M, mob/living/user)
 	if(..())
 		return
-	if(user.a_intent != INTENT_HARM)
+	if(!user.combat_mode)
 		return
 	if(isliving(M))
 		to_chat(M, span_danger("You are blinded by the powerful acid of [src]!"))

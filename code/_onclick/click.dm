@@ -118,7 +118,7 @@
 
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		changeNext_move(CLICK_CD_HANDCUFFED)   //Doing shit in cuffs shall be vey slow
-		UnarmedAttack(A, FALSE)
+		UnarmedAttack(A, FALSE, modifiers)
 		return
 
 	if(in_throw_mode)
@@ -128,7 +128,8 @@
 	var/obj/item/W = get_active_held_item()
 
 	if(W == A)
-		W.attack_self(src)
+		if(!(LAZYACCESS(modifiers, RIGHT_CLICK) && W.attack_self_secondary(src, modifiers) != SECONDARY_ATTACK_CALL_NORMAL))
+			W.attack_self(src, modifiers)
 		update_inv_hands()
 		return
 
@@ -140,7 +141,7 @@
 		else
 			if(ismob(A))
 				changeNext_move(CLICK_CD_MELEE)
-			UnarmedAttack(A)
+			UnarmedAttack(A, FALSE, modifiers)
 		return
 
 	//Can't reach anything else in lockers or other weirdness
@@ -154,10 +155,11 @@
 		else
 			if(ismob(A))
 				changeNext_move(CLICK_CD_MELEE)
-			UnarmedAttack(A,1)
+			UnarmedAttack(A, TRUE, modifiers)
 	else
 		if(W)
-			W.afterattack(A,src,0,params)
+			if(!(LAZYACCESS(modifiers, RIGHT_CLICK) && W.afterattack_secondary(A, src, FALSE, params) != SECONDARY_ATTACK_CALL_NORMAL))
+				W.afterattack(A, src, FALSE, params)
 		else
 			RangedAttack(A,params)
 
@@ -261,7 +263,7 @@
 	proximity_flag is not currently passed to attack_hand, and is instead used
 	in human click code to allow glove touches only at melee range.
 */
-/mob/proc/UnarmedAttack(atom/A, proximity_flag)
+/mob/proc/UnarmedAttack(atom/A, proximity_flag, modifiers)
 	if(ismob(A))
 		changeNext_move(CLICK_CD_MELEE)
 	return

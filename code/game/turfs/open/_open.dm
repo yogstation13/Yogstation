@@ -141,7 +141,7 @@
 
 /turf/open/indestructible/sound/Entered(atom/movable/AM)
 	..()
-	if(ismob(AM))
+	if(sound && ismob(AM))
 		playsound(src,sound,50,TRUE)
 
 /turf/open/indestructible/necropolis

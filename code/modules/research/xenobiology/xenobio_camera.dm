@@ -12,10 +12,17 @@
 
 /mob/camera/ai_eye/remote/xenobio/setLoc(turf/destination, force_update = FALSE)
 	var/area/new_area = get_area(destination)
+	
 	if(new_area && new_area.name == allowed_area || new_area && new_area.xenobiology_compatible)
 		return ..()
-	else
+
+/mob/camera/ai_eye/remote/xenobio/can_z_move(direction, turf/start, turf/destination, z_move_flags = NONE, mob/living/rider)
+	. = ..()
+	if(!.)
 		return
+	var/area/new_area = get_area(.)
+	if(new_area.name != allowed_area && !new_area.xenobiology_compatible)
+		return FALSE
 
 /obj/machinery/computer/camera_advanced/xenobio
 	name = "Slime management console"
@@ -67,6 +74,7 @@
 	return ..()
 
 /obj/machinery/computer/camera_advanced/xenobio/CreateEye()
+	. = ..()
 	eyeobj = new /mob/camera/ai_eye/remote/xenobio(get_turf(src))
 	eyeobj.origin = src
 	eyeobj.visible_icon = TRUE

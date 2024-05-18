@@ -15,7 +15,7 @@
 	heatmod = 1.1 // weak to being boiled
 	default_features = list()
 	changesource_flags = MIRROR_BADMIN | SLIME_EXTRACT | MIRROR_PRIDE | MIRROR_MAGIC
-	attack_verb = "slash"
+	attack_verbs = list("slash")
 	attack_effect = ATTACK_EFFECT_CLAW
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'

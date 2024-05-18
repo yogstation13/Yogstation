@@ -13,10 +13,10 @@
 	desc = "It's good to be a god."
 	item_state = "admiral"
 
-/obj/item/clothing/head/centhat/admiral/grand
-	name = "\improper CentCom grand admiral hat"
+/obj/item/clothing/head/centhat/admiral/executive
+	name = "\improper CentCom executive admiral hat"
 	icon_state = "grand_admiral"
-	desc = "It's good to be a Q."
+	desc = "It's good to be free."
 	item_state = "grand_admiral"
 
 /obj/item/clothing/head/powdered_wig

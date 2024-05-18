@@ -57,6 +57,7 @@
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.Grant(M)
+	SEND_SIGNAL(M, COMSIG_CARBON_GAIN_ORGAN, src, special)
 
 	SEND_SIGNAL(src, COMSIG_ORGAN_IMPLANTED, M)
 
@@ -74,6 +75,7 @@
 		A.Remove(M)
 
 	SEND_SIGNAL(src, COMSIG_ORGAN_REMOVED, M)
+	SEND_SIGNAL(M, COMSIG_CARBON_LOSE_ORGAN, src, special)
 
 /obj/item/organ/proc/on_find(mob/living/finder)
 	return

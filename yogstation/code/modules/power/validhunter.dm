@@ -61,7 +61,7 @@
 		to_chat(user, span_notice("[src] cannot be used unless bolted to the ground."))
 		return
 	
-	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
+	if(user.pulling && isliving(user.pulling))
 		var/mob/living/L = user.pulling
 		if(L.buckled ||L.has_buckled_mobs())
 			to_chat(user, span_warning("[L] is attached to something!"))

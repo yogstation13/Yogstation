@@ -19,7 +19,7 @@
 					span_userdanger("[M] has attempted to kick [src]!"), null, COMBAT_MESSAGE_RANGE)
 
 /mob/living/carbon/alien/larva/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		..(user, 1)
 		user.AddComponent(/datum/component/force_move, get_step_away(user,src, 30))
 		return 1

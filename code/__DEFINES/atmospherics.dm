@@ -475,7 +475,7 @@ DEFINE_BITFIELD(vent_movement, list(
 #define GAS_H2O "water_vapor"
 #define GAS_HYPERNOB "hypernob"
 #define GAS_NITROUS "n2o"
-#define GAS_NITRIUM "no2"
+#define GAS_NITRIUM "nitrium"
 #define GAS_TRITIUM "tritium"
 #define GAS_BZ "bz"
 #define GAS_PLUOXIUM "pluox"

@@ -5,13 +5,13 @@
 
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE, TRAIT_NO_BLOOD_REGEN)
-	species_traits = list(NOEYESPRITES, DYNCOLORS, EYECOLOR,  AGENDER, NOHUSK, NO_UNDERWEAR)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
+	species_traits = list(NOEYESPRITES, DYNCOLORS, EYECOLOR, NOHUSK, NO_UNDERWEAR)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
 	inherent_biotypes = MOB_ORGANIC|MOB_ROBOTIC|MOB_HUMANOID
-	sexes = FALSE //they're basically ken dolls, come straight out of a printer
+	possible_genders = list(PLURAL) //they're basically ken dolls, come straight out of a printer
 	no_equip = list(ITEM_SLOT_FEET)
 
 	say_mod = "intones"
-	attack_verb = "assault"
+	attack_verbs = list("assault")
 	toxic_food = NONE
 	liked_food = FRIED | SUGAR | JUNKFOOD
 	disliked_food = GROSS | VEGETABLES

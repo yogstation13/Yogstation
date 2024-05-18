@@ -53,12 +53,12 @@
 
 /obj/item/plate/pre_attack(atom/A, mob/living/user, params)
 	if(!iscarbon(A))
-		return TRUE
+		return FALSE
 	if(!contents.len)
-		return TRUE
+		return FALSE
 	var/obj/item/object_to_eat = pick(contents)
 	A.attackby(object_to_eat, user)
-	return FALSE //No normal attack
+	return TRUE //No normal attack
 
 ///This proc adds the food to viscontents and makes sure it can deregister if this changes.
 /obj/item/plate/proc/AddToPlate(obj/item/item_to_plate)
@@ -112,7 +112,7 @@
 
 	if(!target)
 		return
-	if(user.a_intent != INTENT_HARM || affecting != BODY_ZONE_HEAD)
+	if(!user.combat_mode || affecting != BODY_ZONE_HEAD)
 		return ..()
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("You don't want to harm [target]!"))

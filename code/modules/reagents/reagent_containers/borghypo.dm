@@ -184,8 +184,8 @@
 		to_chat(user, span_notice("Your hypospray is empty of [selected_reagent.name]!"))
 		return
 	if(injectee.can_inject(user, 1, user.zone_selected,bypass_protection))
-		// Prevents overdosing if they are on help intent.
-		if(user.a_intent == INTENT_HELP)
+		// Prevents overdosing unless combat mode is on.
+		if(!user.combat_mode)
 			for(var/datum/reagent/reagent as anything in stored_reagents.reagent_list)
 				if(reagent.type != selected_reagent.type)
 					continue

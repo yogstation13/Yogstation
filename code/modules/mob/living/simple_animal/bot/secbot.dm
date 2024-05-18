@@ -187,8 +187,8 @@ Auto Patrol: []"},
 /mob/living/simple_animal/bot/secbot/proc/special_retaliate_after_attack(mob/user) //allows special actions to take place after being attacked.
 	return
 
-/mob/living/simple_animal/bot/secbot/attack_hand(mob/living/carbon/human/H)
-	if((H.a_intent == INTENT_HARM) || (H.a_intent == INTENT_DISARM))
+/mob/living/simple_animal/bot/secbot/attack_hand(mob/living/carbon/human/H, modifiers)
+	if(H.combat_mode || (modifiers && modifiers[RIGHT_CLICK]))
 		retaliate(H)
 		if(special_retaliate_after_attack(H))
 			return
@@ -197,7 +197,7 @@ Auto Patrol: []"},
 
 /mob/living/simple_animal/bot/secbot/attackby(obj/item/W, mob/user, params)
 	..()
-	if(W.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM) // Any intent but harm will heal, so we shouldn't get angry.
+	if(W.tool_behaviour == TOOL_WELDER && !user.combat_mode) // Non-combat mode will heal, so we shouldn't get angry.
 		return
 	if(W.tool_behaviour != TOOL_SCREWDRIVER && (W.force) && (!target) && (W.damtype != STAMINA) ) // Added check for welding tool to fix #2432. Welding tool behavior is handled in superclass.
 		retaliate(user)

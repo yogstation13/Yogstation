@@ -859,7 +859,7 @@
 
 
 		body_gender = H.gender
-		should_draw_gender = S.sexes
+		should_draw_gender = (FEMALE in S.possible_genders)
 		use_damage_color = S.use_damage_color
 
 		if((MUTCOLORS in S.species_traits) || (DYNCOLORS in S.species_traits))
