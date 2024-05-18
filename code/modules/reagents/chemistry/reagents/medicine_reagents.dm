@@ -528,9 +528,9 @@
 /datum/reagent/medicine/calomel/on_mob_life(mob/living/carbon/M)
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
-			M.reagents.remove_reagent(R.type,2.5)
+			M.reagents.remove_reagent(R.type,5)
 	if(M.health > 20)
-		M.adjustToxLoss(0.5*REM, 0)
+		M.adjustToxLoss(2.5*REM, 0)
 		. = 1
 	..()
 
@@ -1301,8 +1301,8 @@
 	M.adjust_jitter(-3 SECONDS)
 	M.adjust_hallucinations(-5 SECONDS)
 	if(prob(20))
-		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.5*REM, 50)
-	M.adjustStaminaLoss(0.5*REM, 0)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1*REM, 50)
+	M.adjustStaminaLoss(2.5*REM, 0)
 	M.clear_stamina_regen()
 	..()
 	return TRUE
