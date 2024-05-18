@@ -437,6 +437,7 @@
 	taste_description = "ash"
 
 /datum/reagent/medicine/charcoal/on_mob_life(mob/living/carbon/M)
+	M.adjust_disgust(20)
 	M.adjustToxLoss(-2*REM, 0)
 	. = 1
 	for(var/datum/reagent/R in M.reagents.reagent_list)
