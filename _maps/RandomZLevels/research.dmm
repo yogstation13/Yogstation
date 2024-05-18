@@ -4719,8 +4719,7 @@
 	icon = 'icons/obj/smooth_structures/wood_table.dmi';
 	icon_state = "wood_table";
 	max_integrity = 55;
-	name = "flipped table";
-	obj_integrity = 55
+	name = "flipped table"
 	},
 /turf/open/floor/plasteel{
 	dir = 1
@@ -4898,8 +4897,7 @@
 	icon = 'icons/obj/smooth_structures/wood_table.dmi';
 	icon_state = "wood_table";
 	max_integrity = 55;
-	name = "flipped table";
-	obj_integrity = 55
+	name = "flipped table"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/research/interior/dorm)

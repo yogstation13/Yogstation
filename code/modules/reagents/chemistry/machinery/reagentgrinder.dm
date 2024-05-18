@@ -162,7 +162,7 @@
 		return TRUE
 
 	if(!I.grind_results && !I.juice_results)
-		if(user.a_intent == INTENT_HARM)
+		if(user.combat_mode)
 			return ..()
 		else
 			to_chat(user, span_warning("You cannot grind [I] into reagents!"))

@@ -88,7 +88,7 @@
 	id = /obj/item/card/id
 
 	head = /obj/item/clothing/head/that
-	uniform = /obj/item/clothing/under/assistantformal
+	uniform = /obj/item/clothing/under/rank/civilian/assistantformal
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	glasses = /obj/item/clothing/glasses/sunglasses
 	back = /obj/item/storage/backpack

@@ -361,6 +361,7 @@
 		force = on_damage
 		damtype = BURN
 		update_brightness()
+	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
 
 /obj/item/flashlight/flare/toggle_light()
 	if(light_on || !fuel)
@@ -444,6 +445,13 @@
 /obj/item/flashlight/flare/is_hot()
 	return light_on * heat
 
+//fire isn't one light source, it's several constantly appearing and disappearing... or something
+/obj/item/flashlight/flare/proc/on_light_eater(atom/source, datum/light_eater)
+	SIGNAL_HANDLER 
+	if(light_on)
+		visible_message("The enduring flickering of \the [src] refuses to fade.")
+	return COMPONENT_BLOCK_LIGHT_EATER
+	
 /obj/item/flashlight/flare/emergency
 	name = "safety flare"
 	desc = "A flare issued to Nanotrasen employees for emergencies. There are instructions on the side, it reads 'pull cord, make light, obey Nanotrasen'."
@@ -491,6 +499,13 @@
 	desc = "A mining lantern."
 	light_range = 6			// luminosity when on
 	light_system = MOVABLE_LIGHT
+
+/obj/item/flashlight/lantern/pinapolantern
+	name = "pinap-o'-lantern"
+	desc = "It's a pineapple."
+	icon = 'yogstation/icons/obj/items.dmi'
+	icon_state = "pinapolantern"
+	item_state = "pinapolantern"
 
 /obj/item/flashlight/lantern/heirloom_moth
 	name = "old lantern"
@@ -735,19 +750,12 @@
 	desc = "A strange device manufactured with mysterious elements that somehow emits darkness. Or maybe it just sucks in light? Nobody knows for sure."
 	icon_state = "flashdark"
 	item_state = "flashdark"
-	light_system = STATIC_LIGHT //The overlay light component is not yet ready to produce darkness.
-	light_range = 0
-	///Variable to preserve old lighting behavior in flashlights, to handle darkness.
-	var/dark_light_range = 2.5
-	///Variable to preserve old lighting behavior in flashlights, to handle darkness.
-	var/dark_light_power = -3
+	light_power = -2
+	light_range = 5
 
-/obj/item/flashlight/flashdark/update_brightness(mob/user)
+/obj/item/flashlight/flashdark/Initialize(mapload)
 	. = ..()
-	if(light_on)
-		set_light(dark_light_range, dark_light_power)
-	else
-		set_light(0)
+	set_light_color(COLOR_VELVET)
 
 /obj/item/flashlight/eyelight
 	name = "eyelight"

@@ -57,7 +57,7 @@
 	chosen_mob.update_mobility()
 
 /datum/eldritch_transmutation/madness_mask
-	name = "Mask of Mandess"
+	name = "Mask of Madness"
 	required_atoms = list(/obj/item/clothing/mask,/obj/item/organ/liver)
 	result_atoms = list(/obj/item/clothing/mask/madness_mask)
 	required_shit_list = "A mask of any kind, and a fresh liver."

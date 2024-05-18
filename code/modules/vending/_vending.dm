@@ -303,7 +303,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	if(light_mask && !(stat & BROKEN) && powered())
 		. += emissive_appearance(icon, light_mask, src)
 
-/obj/machinery/vending/obj_break(damage_flag)
+/obj/machinery/vending/atom_break(damage_flag)
 	. = ..()
 	if(!.)
 		return
@@ -447,13 +447,13 @@ GLOBAL_LIST_EMPTY(vending_products)
 		default_deconstruction_screwdriver(user, icon_state, icon_state, I)
 		cut_overlays()
 		if(panel_open)
-			add_overlay("[initial(icon_state)]-panel")
+			update_appearance(UPDATE_ICON)
 		updateUsrDialog()
 	else
 		to_chat(user, span_warning("You must first secure [src]."))
 	return TRUE
 
-/obj/machinery/vending/attackby(obj/item/I, mob/user, params)
+/obj/machinery/vending/attackby(obj/item/I, mob/living/user, params)
 	if(panel_open && is_wire_tool(I))
 		wires.interact(user)
 		return
@@ -475,7 +475,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				else
 					to_chat(user, span_notice("There's nothing to restock!"))
 			return
-	if(user.a_intent != INTENT_HARM && compartmentLoadAccessCheck(user))
+	if(!user.combat_mode && compartmentLoadAccessCheck(user))
 		if(canLoadItem(I))
 			loadingAttempt(I,user)
 			updateUsrDialog() //can't put this on the proc above because we spam it below

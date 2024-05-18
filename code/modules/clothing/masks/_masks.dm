@@ -8,8 +8,8 @@
 	var/modifies_speech = FALSE
 	var/mask_adjusted = 0
 	var/adjusted_flags = null
-	var/mutantrace_variation = NO_MUTANTRACE_VARIATION //Are there special sprites for specific situations? Don't use this unless you need to.
-	var/mutantrace_adjusted = NO_MUTANTRACE_VARIATION //Are there special sprites for specific situations? Don't use this unless you need to.
+	var/mutantrace_variation = NONE //Are there special sprites for specific situations? Don't use this unless you need to.
+	var/mutantrace_adjusted = NONE //Are there special sprites for specific situations? Don't use this unless you need to.
 
 /obj/item/clothing/mask/attack_self(mob/user)
 	if(CHECK_BITFIELD(clothing_flags, VOICEBOX_TOGGLABLE))
@@ -30,8 +30,8 @@
 
 /obj/item/clothing/mask/proc/handle_speech()
 
-/obj/item/clothing/mask/worn_overlays(isinhands = FALSE)
-	. = list()
+/obj/item/clothing/mask/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
+	. = ..()
 	if(!isinhands)
 		if(body_parts_covered & HEAD)
 			if(damaged_clothes)

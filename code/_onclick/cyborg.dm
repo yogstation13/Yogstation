@@ -59,7 +59,7 @@
 	var/obj/item/W = get_active_held_item(TRUE)
 
 	if(!W && get_dist(src,A) <= interaction_range)
-		A.attack_robot(src)
+		A.attack_robot(src, modifiers)
 		return
 
 	if(W)
@@ -76,7 +76,7 @@
 			return
 
 		if(W == A)
-			W.attack_self(src)
+			W.attack_self(src, modifiers)
 			return
 
 		// cyborgs are prohibited from using storage items so we can I think safely remove (A.loc in contents)

@@ -97,16 +97,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
-"g" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
-/obj/effect/turf_decal/tile/green/opposingcorners{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "h" = (
 /obj/machinery/light{
 	dir = 4
@@ -271,6 +261,19 @@
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
 /obj/effect/turf_decal/tile/green/opposingcorners{
 	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/clerk)
+"u" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_x = 23
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
@@ -689,7 +692,7 @@ l
 o
 Y
 j
-g
+u
 E
 z
 i

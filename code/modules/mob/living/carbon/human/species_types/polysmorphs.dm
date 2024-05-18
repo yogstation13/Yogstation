@@ -2,7 +2,8 @@
 	//Human xenopmorph hybrid
 	name = "Polysmorph"
 	id = "polysmorph"
-	species_traits = list(NOEYESPRITES, FGENDER, MUTCOLORS, NOCOLORCHANGE, DIGITIGRADE, HAS_FLESH, HAS_BONE ,HAS_TAIL)
+	species_traits = list(NOEYESPRITES, MUTCOLORS, NOCOLORCHANGE, DIGITIGRADE, HAS_FLESH, HAS_BONE, HAS_TAIL)
+	possible_genders = list(FEMALE)
 	inherent_traits = list(TRAIT_ACIDBLOOD, TRAIT_SKINNY)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	exotic_blood = /datum/reagent/toxin/acid //Hell yeah sulphuric acid blood
@@ -33,7 +34,9 @@
 	mutanttongue = /obj/item/organ/tongue/polysmorph
 	mutanttail = /obj/item/organ/tail/polysmorph
 	mutantlungs = /obj/item/organ/lungs/xeno
-	attack_verb = "slash"
+	attack_verbs = list("slash")
+	barefoot_step_sound = FOOTSTEP_MOB_CLAW
+	attack_effect = ATTACK_EFFECT_CLAW
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	fixed_mut_color = "#444466" //don't mess with this if you don't feel like manually adjusting the mutant bodypart sprites
@@ -61,6 +64,9 @@
 	.=..()
 	if(C.physiology)
 		C.physiology.armor.wound -= 5
+
+/datum/species/polysmorph/get_butt_sprite()
+	return BUTT_SPRITE_XENOMORPH
 
 /datum/species/polysmorph/get_species_description()
 	return ""//"TODO: This is polysmorph description"

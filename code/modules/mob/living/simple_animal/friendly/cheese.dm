@@ -37,33 +37,35 @@
 
 /mob/living/simple_animal/cheese/attack_hand(mob/living/L)
 	..()
-	if(L.a_intent == INTENT_HARM && L.reagents && !stat)
+	if(L.combat_mode && L.reagents && !stat)
 		L.reagents.add_reagent(/datum/reagent/consumable/nutriment, 0.4)
 		L.reagents.add_reagent(/datum/reagent/consumable/nutriment/vitamin, 0.4)
 		L.adjustBruteLoss(-0.1, 0)
 		L.adjustFireLoss(-0.1, 0)
 		L.adjustToxLoss(-0.1, 0)
 		L.adjustOxyLoss(-0.1, 0)
-	if(ishuman(L) && L.a_intent == INTENT_GRAB)
+
+/mob/living/simple_animal/cheese/grabbedby(mob/living/carbon/user, supress_message)
+	if(ishuman(user))
 		if(stat == DEAD || status_flags & GODMODE || !can_be_held)
-			..()
-			return
-		if(L.get_active_held_item())
-			to_chat(L, span_warning("Your hands are full!"))
-			return
-		visible_message(span_warning("[L] starts picking up [src]."), \
-						span_userdanger("[L] starts picking you up!"))
-		if(!do_after(L, 2 SECONDS, src))
-			return
-		visible_message(span_warning("[L] picks up [src]!"), \
-						span_userdanger("[L] picks you up!"))
+			return ..()
+		if(user.get_active_held_item())
+			to_chat(user, span_warning("Your hands are full!"))
+			return ..()
+		visible_message(span_warning("[user] starts picking up [src]."), \
+						span_userdanger("[user] starts picking you up!"))
+		if(!do_after(user, 2 SECONDS, src))
+			return ..()
+		visible_message(span_warning("[user] picks up [src]!"), \
+						span_userdanger("[user] picks you up!"))
 		if(buckled)
-			to_chat(L, span_warning("[src] is buckled to [buckled] and cannot be picked up!"))
-			return
-		to_chat(L, span_notice("You pick [src] up."))
+			to_chat(user, span_warning("[src] is buckled to [buckled] and cannot be picked up!"))
+			return ..()
+		to_chat(user, span_notice("You pick [src] up."))
 		drop_all_held_items()
 		var/obj/item/clothing/mob_holder/cheese/P = new(get_turf(src), src, null, null, null, ITEM_SLOT_HEAD, mob_size, null)
-		L.put_in_hands(P)
+		user.put_in_hands(P)
+	return ..()
 
 /mob/living/simple_animal/cheese/death(gibbed)
 	for(var/i = 0; i < 4; i++)

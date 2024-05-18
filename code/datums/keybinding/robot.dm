@@ -50,7 +50,7 @@
 
 /datum/keybinding/robot/intent_cycle/down(client/user)
 	var/mob/living/silicon/robot/R = user.mob
-	R.a_intent_change(INTENT_HOTKEY_LEFT)
+	R.set_combat_mode(!R.combat_mode)
 	return TRUE
 
 

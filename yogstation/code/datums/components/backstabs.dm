@@ -21,6 +21,8 @@
 	// No bypassing pacifism nerd
 	if(source.force > 0 && HAS_TRAIT(user, TRAIT_PACIFISM) && (source.damtype != STAMINA))
 		return FALSE
+	if(source.force > 0 && is_synth(user))
+		return FALSE
 	// Same calculation that kinetic crusher uses
 	var/backstab_dir = get_dir(user, living_target)
 	// No backstabbing people if they're already in crit
@@ -43,7 +45,7 @@
 	var/dmg = source.force * multi
 	if(dmg) // Truthy because backstabs can heal lol
 		target.apply_damage(dmg, source.damtype, BODY_ZONE_CHEST, 0, source.wound_bonus*multi, source.bare_wound_bonus*multi, source.sharpness*multi)
-		log_combat(user, target, "scored a backstab", source.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(source.damtype)])")
+		log_combat(user, target, "scored a backstab", source.name, "(COMBAT MODE: [user.combat_mode ? "ON" : "OFF"]) (DAMTYPE: [uppertext(source.damtype)])")
 		if(iscarbon(target))
 			// extra safe to ensure no sleeping
 			var/datum/emote/living/scream/scream_emote = new

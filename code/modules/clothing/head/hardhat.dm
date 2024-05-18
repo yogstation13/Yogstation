@@ -3,7 +3,7 @@
 	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight."
 	icon_state = "hardhat0_yellow"
 	item_state = "hardhat0_yellow"
-	mob_overlay_icon = 'icons/mob/clothing/head/head.dmi'
+	worn_icon = 'icons/mob/clothing/head/head.dmi'
 	armor = list(MELEE = 15, BULLET = 5, LASER = 20, ENERGY = 10, BOMB = 20, BIO = 10, RAD = 20, FIRE = 100, ACID = 50, WOUND = 10, ELECTRIC = 100) // now OSHA-compliant!
 	flags_inv = 0
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
@@ -149,12 +149,13 @@
 		playsound(src, 'sound/mecha/mechmove03.ogg', 50, 1) //Visors don't just come from nothing
 	update_appearance(UPDATE_ICON)
 
-/obj/item/clothing/head/hardhat/weldhat/worn_overlays(isinhands)
+/obj/item/clothing/head/hardhat/weldhat/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
-	if(!isinhands)
-		. += mutable_appearance(mob_overlay_icon, "weldhelmet")
-		if(!up)
-			. += mutable_appearance(mob_overlay_icon, "weldvisor")
+	if(isinhands)
+		return
+
+	if(!up)
+		. += mutable_appearance('icons/mob/clothing/head/head.dmi', "weldvisor")
 
 /obj/item/clothing/head/hardhat/weldhat/update_overlays()
 	. = ..()

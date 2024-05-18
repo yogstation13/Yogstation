@@ -12,20 +12,9 @@
 //If you update these values, update the message in the #error
 #define MAX_BYOND_MAJOR 515
 #define MAX_BYOND_MINOR 1640
-
-// You can define IGNORE_MAX_BYOND_VERSION to bypass the max version check.
-// Note: This will likely break the game, especially any extools/auxtools linkage. Only use if you know what you're doing!
-#ifdef OPENDREAM // Thanks, Altoids!
-#define IGNORE_MAX_BYOND_VERSION
-#endif
-
-#ifdef SPACEMAN_DMM // dm-langserver is now on 515 and we aren't
-#define IGNORE_MAX_BYOND_VERSION
-#endif
-
-#if ((DM_VERSION > MAX_BYOND_MAJOR) || (DM_BUILD > MAX_BYOND_MINOR)) && !defined(IGNORE_MAX_BYOND_VERSION)
-// Not updating until we fully move to 515
-#error Your version of BYOND is too new to compile this project. Download version 515.1640 at www.byond.com/download/build/515/515.1640_byond.exe
+#if ((DM_VERSION > MAX_BYOND_MAJOR) || (DM_BUILD > MAX_BYOND_MINOR)) && !defined(SPACEMAN_DMM)
+#error Your version of BYOND is too new to compile this project.
+#error Download version 515.1640 at www.byond.com/download/build/515/515.1640_byond.exe
 #endif
 
 // 515 split call for external libraries into call_ext

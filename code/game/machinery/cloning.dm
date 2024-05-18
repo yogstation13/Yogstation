@@ -242,13 +242,14 @@ GLOBAL_VAR_INIT(clones, 0)
 			var/mob/M = H.easy_random_mutate(NEGATIVE+MINOR_NEGATIVE)
 			if(ismob(M))
 				H = M
-	if((AGENDER || MGENDER || FGENDER) in H.dna.species.species_traits)
-		if((FGENDER in H.dna.species.species_traits) && (H.gender != FEMALE))
-			H.gender = FEMALE
-		if((MGENDER in H.dna.species.species_traits) && (H.gender != MALE))
-			H.gender = MALE
-		if((AGENDER in H.dna.species.species_traits) && (H.gender != PLURAL))
-			H.gender = PLURAL
+	
+	var/list/possible_genders = H.dna.species.possible_genders
+	if(!possible_genders || possible_genders.len < 1)
+		stack_trace("[H.dna.species.type] has no possible genders!")
+		H.gender = PLURAL // uh oh
+	else if(possible_genders.len == 1)
+		H.gender = possible_genders[1] // some species only have one gender
+
 	if(!H.GetComponent(/datum/component/mood) && mood)
 		H.AddComponent(/datum/component/mood)
 
@@ -399,21 +400,20 @@ GLOBAL_VAR_INIT(clones, 0)
 	if(W.tool_behaviour == TOOL_MULTITOOL)
 		if(!multitool_check_buffer(user, W))
 			return
-		var/obj/item/multitool/P = W
-
-		if(istype(P.buffer, /obj/machinery/computer/cloning))
-			if(get_area(P.buffer) != get_area(src))
+		var/atom/buffer_atom = multitool_get_buffer(user, W)
+		if(istype(buffer_atom, /obj/machinery/computer/cloning))
+			if(get_area(buffer_atom) != get_area(src))
 				to_chat(user, "<font color = #666633>-% Cannot link machines across power zones. Buffer cleared %-</font color>")
-				P.buffer = null
+				multitool_set_buffer(user, W, null)
 				return
-			to_chat(user, "<font color = #666633>-% Successfully linked [P.buffer] with [src] %-</font color>")
-			var/obj/machinery/computer/cloning/comp = P.buffer
+			to_chat(user, "<font color = #666633>-% Successfully linked [buffer_atom] with [src] %-</font color>")
+			var/obj/machinery/computer/cloning/comp = buffer_atom
 			if(connected)
 				connected.DetachCloner(src)
 			comp.AttachCloner(src)
 		else
-			P.buffer = src
-			to_chat(user, "<font color = #666633>-% Successfully stored [REF(P.buffer)] [P.buffer.name] in buffer %-</font color>")
+			multitool_set_buffer(user, W, src)
+			to_chat(user, "<font color = #666633>-% Successfully stored [REF(buffer_atom)] [buffer_atom.name] in buffer %-</font color>")
 		return
 
 	var/mob/living/mob_occupant = occupant

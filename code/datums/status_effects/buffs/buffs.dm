@@ -374,10 +374,12 @@
 
 /datum/status_effect/exercised/on_creation(mob/living/new_owner, ...)
 	. = ..()
+	owner.faction |= "gym"
 	STOP_PROCESSING(SSfastprocess, src)
 	START_PROCESSING(SSprocessing, src) //this lasts 20 minutes, so SSfastprocess isn't needed.
 
 /datum/status_effect/exercised/Destroy()
+	owner.faction &= "gym"
 	. = ..()
 	STOP_PROCESSING(SSprocessing, src)
 
@@ -454,36 +456,18 @@
 			//Because a servant of medicines stops at nothing to help others, lets keep them on their toes and give them an additional boost.
 			if(itemUser.health < itemUser.maxHealth)
 				new /obj/effect/temp_visual/heal(get_turf(itemUser), "#375637")
-			itemUser.adjustBruteLoss(-1.5 * efficiency)
-			itemUser.adjustFireLoss(-1.5 * efficiency)
-			itemUser.adjustToxLoss(-1.5 * efficiency, forced = TRUE) //Because Slime People are people too
-			itemUser.adjustOxyLoss(-1.5 * efficiency)
-			itemUser.adjustStaminaLoss(-1.5 * efficiency)
-			itemUser.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1.5 * efficiency)
-			itemUser.adjustCloneLoss(-0.5 * efficiency) //Becasue apparently clone damage is the bastion of all health
+			itemUser.heal_ordered_damage(2 * efficiency, list(BRUTE, BURN, TOX, OXY, STAMINA, BRAIN, CLONE), forced = TRUE)
 		//Heal all those around you, unbiased
 		for(var/mob/living/L in view(7, owner))
-			if(ispath(rod_type, /obj/item/rod_of_asclepius/white)) //Used for adjusting the Holy Light Sect Favor from white rod healing.
-				if(L.stat == DEAD)
-					continue
-				var/total_healing = (min(L.getBruteLoss(), 3.5*efficiency) + min(L.getFireLoss(), 3.5*efficiency) + min(L.getOxyLoss(), 3.5*efficiency) + min(L.getToxLoss(), 3.5 * efficiency))
-				GLOB.religious_sect.adjust_favor(total_healing * 0.2)
+			if(issilicon(L)) //this is the organics heal rod, not the robotics heal rod
+				continue
+			var/total_healing = 5 * efficiency
 			if(L.health < L.maxHealth)
 				new /obj/effect/temp_visual/heal(get_turf(L), "#375637")
-			if(iscarbon(L))
-				L.adjustBruteLoss(-3.5 * efficiency)
-				L.adjustFireLoss(-3.5 * efficiency)
-				L.adjustToxLoss(-3.5 * efficiency, forced = TRUE) //Because Slime People are people too
-				L.adjustOxyLoss(-3.5 * efficiency)
-				L.adjustStaminaLoss(-3.5 * efficiency)
-				L.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3.5 * efficiency)
-				L.adjustCloneLoss(-1 * efficiency) //Becasue apparently clone damage is the bastion of all health
-			else if(issilicon(L))
-				L.adjustBruteLoss(-3.5 * efficiency)
-				L.adjustFireLoss(-3.5 * efficiency)
-			else if(isanimal(L))
-				var/mob/living/simple_animal/SM = L
-				SM.adjustHealth(-3.5 * efficiency, forced = TRUE)
+			var/residual_healing = max(L.heal_ordered_damage(total_healing, list(BRUTE, BURN, TOX, OXY, STAMINA, BRAIN, CLONE), forced = TRUE), 0)
+			if(ispath(rod_type, /obj/item/rod_of_asclepius/white) && L.stat != DEAD) //Used for adjusting the Holy Light Sect Favor from white rod healing.
+				var/actual_healing = total_healing - residual_healing
+				GLOB.religious_sect.adjust_favor(actual_healing * 0.2)
 
 /datum/status_effect/good_music
 	id = "Good Music"
@@ -542,36 +526,6 @@
 /datum/status_effect/antimagic/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_ANTIMAGIC, MAGIC_TRAIT)
 	owner.visible_message(span_warning("[owner]'s dull aura fades away..."))
-
-/datum/status_effect/creep //allows darkspawn to move through lights without lightburn damage //yogs start: darkspawn
-	id = "creep"
-	duration = -1
-	alert_type = /atom/movable/screen/alert/status_effect/creep
-	examine_text = span_warning("SUBJECTPRONOUN is surrounded by velvety, gently-waving black shadows!")
-	var/datum/antagonist/darkspawn/darkspawn
-
-/datum/status_effect/creep/on_creation(mob/living/owner, datum/antagonist/darkspawn)
-	. = ..()
-	if(!.)
-		return
-	src.darkspawn = darkspawn
-
-/datum/status_effect/creep/tick()
-	if(!darkspawn)
-		qdel(src)
-		return
-	if(!darkspawn.has_psi(1)) //ticks 5 times per second, 5 Psi lost per second
-		to_chat(owner, span_warning("Without the Psi to maintain it, your protective aura vanishes!"))
-		qdel(src)
-		return
-	darkspawn.use_psi(1)
-
-/atom/movable/screen/alert/status_effect/creep
-	name = "Creep"
-	desc = "You are immune to lightburn. Drains 1 Psi per second."
-	icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	icon_state = "creep"
-
 
 /datum/status_effect/time_dilation //used by darkspawn; greatly increases action times etc
 	id = "time_dilation"

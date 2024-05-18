@@ -1,11 +1,11 @@
 //Defines for amount of material retrived from sheets & other items
-/// The amount of materials you get from a sheet of mineral like iron/diamond/glass etc. 100 Units.
-#define SHEET_MATERIAL_AMOUNT 100
-/// The amount of materials you get from half a sheet. Used in standard object quantities. 50 units.
+/// The amount of materials you get from a sheet of mineral like iron/diamond/glass etc. 2000 Units.
+#define SHEET_MATERIAL_AMOUNT 2000
+/// The amount of materials you get from half a sheet. Used in standard object quantities. 1000 units.
 #define HALF_SHEET_MATERIAL_AMOUNT (SHEET_MATERIAL_AMOUNT / 2)
-/// The amount of materials used in the smallest of objects, like pens and screwdrivers. 10 units.
+/// The amount of materials used in the smallest of objects, like pens and screwdrivers. 200 units.
 #define SMALL_MATERIAL_AMOUNT (HALF_SHEET_MATERIAL_AMOUNT / 5)
-/// The amount of material that goes into a coin, which determines the value of the coin.
+/// The amount of material that goes into a coin, which determines the value of the coin. 400 units.
 #define COIN_MATERIAL_AMOUNT (HALF_SHEET_MATERIAL_AMOUNT * 0.4)
 
 //Cable related values
@@ -39,17 +39,6 @@
 #define MATCONTAINER_ANY_INTENT (1<<2)
 ///If the user won't receive a warning when attacking the container with an unallowed item.
 #define MATCONTAINER_SILENT (1<<3)
-
-/// Whether a material's mechanical effects should apply to the atom. This is necessary for other flags to work.
-#define MATERIAL_EFFECTS (1<<0)
-/// Applies the material color to the atom's color. Deprecated, use MATERIAL_GREYSCALE instead
-#define MATERIAL_COLOR (1<<1)
-/// Whether a prefix describing the material should be added to the name
-#define MATERIAL_ADD_PREFIX (1<<2)
-/// Whether a material should affect the stats of the atom
-#define MATERIAL_AFFECT_STATISTICS (1<<3)
-/// Applies the material greyscale color to the atom's greyscale color.
-#define MATERIAL_GREYSCALE (1<<4)
 
 //Special return values of [/datum/component/material_container/insert_item]
 /// No material was found inside them item

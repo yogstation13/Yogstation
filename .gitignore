@@ -222,3 +222,6 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 # ezdb
 /db/
 /config/ezdb.txt
+
+# Running OpenDream locally
+tgstation.json

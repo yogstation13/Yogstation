@@ -38,39 +38,38 @@
 	if(do_after_cooldown(target))
 		set_ready_state(FALSE)
 		log_message("Started drilling [target]", LOG_MECHA)
-		if(isturf(target))
-			var/turf/T = target
-			T.drill_act(src)
-			set_ready_state(TRUE)
-			return
-		while(do_after_mecha(target, drill_delay))
+
+		var/drilling = FALSE
+		while(do_after_mecha(target, drilling ? drill_delay : 0))
+			drilling = TRUE
 			if(isliving(target))
 				drill_mob(target, chassis.occupant)
 				playsound(src,'sound/weapons/drill.ogg',40,1)
-			else if(isobj(target))
-				var/obj/O = target
-				O.take_damage(15, BRUTE, 0, FALSE, get_dir(chassis, target))
+			else if(isturf(target))
+				var/turf/T = target
+				playsound(src,'sound/weapons/drill.ogg',40,1)
+				if(!T.drill_act(src)) // finished drilling
+					break
+			else if(target.uses_integrity)
+				target.take_damage(15, BRUTE, 0, FALSE, get_dir(chassis, target))
 				playsound(src,'sound/weapons/drill.ogg',40,1)
 			else
-				set_ready_state(TRUE)
-				return
+				break
 		set_ready_state(TRUE)
 
 /turf/proc/drill_act(obj/item/mecha_parts/mecha_equipment/drill/drill)
 	return
 
 /turf/closed/wall/drill_act(obj/item/mecha_parts/mecha_equipment/drill/drill)
-	if(drill.do_after_mecha(src, 60 / drill.drill_level))
-		drill.log_message("Drilled through [src]", LOG_MECHA)
-		dismantle_wall(TRUE, FALSE)
+	drill.log_message("Drilled through [src]", LOG_MECHA)
+	take_damage(100, BRUTE, MELEE, sound_effect=FALSE)
+	return uses_integrity // keep drilling until it can't anymore
 
 /turf/closed/wall/r_wall/drill_act(obj/item/mecha_parts/mecha_equipment/drill/drill)
-	if(drill.drill_level >= DRILL_HARDENED)
-		if(drill.do_after_mecha(src, 120 / drill.drill_level))
-			drill.log_message("Drilled through [src]", LOG_MECHA)
-			dismantle_wall(TRUE, FALSE)
-	else
+	if(drill.drill_level < DRILL_HARDENED)
 		drill.occupant_message(span_danger("[src] is too durable to drill through."))
+		return
+	return ..()
 
 /turf/closed/mineral/drill_act(obj/item/mecha_parts/mecha_equipment/drill/drill)
 	for(var/turf/closed/mineral/M in range(drill.chassis,1))
@@ -108,10 +107,10 @@
 	var/datum/component/butchering/butchering = src.GetComponent(/datum/component/butchering)
 	butchering.butchering_enabled = FALSE
 
-/obj/item/mecha_parts/mecha_equipment/drill/proc/drill_mob(mob/living/target, mob/user)
+/obj/item/mecha_parts/mecha_equipment/drill/proc/drill_mob(mob/living/target, mob/living/user)
 	target.visible_message(span_danger("[chassis] is drilling [target] with [src]!"), \
 						span_userdanger("[chassis] is drilling you with [src]!"))
-	log_combat(user, target, "drilled", "[name]", "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+	log_combat(user, target, "drilled", "[name]", "(COMBAT MODE: [user.combat_mode ? "ON" : "OFF"]) (DAMTYPE: [uppertext(damtype)])")
 	if(target.stat == DEAD && target.getBruteLoss() >= 200)
 		log_combat(user, target, "gibbed", name)
 		if(LAZYLEN(target.butcher_results) || LAZYLEN(target.guaranteed_butcher_results))

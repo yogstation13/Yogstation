@@ -85,11 +85,11 @@
 	tastes = list("dust" = 1, "lint" = 1)
 	foodtype = CLOTH
 
-/obj/item/clothing/attack(mob/M, mob/user, def_zone)
-	if(user.a_intent != INTENT_HARM && ismoth(M))
+/obj/item/clothing/attack(mob/M, mob/living/user, params)
+	if(!user.combat_mode && ismoth(M))
 		var/obj/item/reagent_containers/food/snacks/clothing/clothing_as_food = new
 		clothing_as_food.name = name
-		if(clothing_as_food.attack(M, user, def_zone))
+		if(clothing_as_food.attack(M, user, params))
 			take_damage(15, sound_effect=FALSE)
 		qdel(clothing_as_food)
 	else
@@ -117,7 +117,7 @@
 /obj/item/clothing/proc/repair(mob/user, params)
 	damaged_clothes = CLOTHING_PRISTINE
 	update_clothes_damaged_state(FALSE)
-	obj_integrity = max_integrity
+	update_integrity(max_integrity)
 	name = initial(name) // remove "tattered" or "shredded" if there's a prefix
 	body_parts_covered = initial(body_parts_covered)
 	slot_flags = initial(slot_flags)
@@ -161,7 +161,7 @@
   *
   * Arguments:
   * * def_zone: The bodypart zone we're disabling
-  * * damage_type: Only really relevant for the verb for describing the breaking, and maybe obj_destruction()
+  * * damage_type: Only really relevant for the verb for describing the breaking, and maybe atom_destruction()
   */
 /obj/item/clothing/proc/disable_zone(def_zone, damage_type)
 	var/list/covered_limbs = cover_flags2body_zones(body_parts_covered)
@@ -181,7 +181,7 @@
 		body_parts_covered &= ~i
 
 	if(body_parts_covered == NONE) // if there are no more parts to break then the whole thing is kaput
-		obj_destruction((damage_type == BRUTE ? MELEE : LASER)) // melee/laser is good enough since this only procs from direct attacks anyway and not from fire/bombs
+		atom_destruction((damage_type == BRUTE ? MELEE : LASER)) // melee/laser is good enough since this only procs from direct attacks anyway and not from fire/bombs
 		return
 
 	damaged_clothes = CLOTHING_DAMAGED
@@ -301,7 +301,8 @@
 				additional_info += "\nIt will block [english_list(things_blocked)]."
 		to_chat(usr, "[armor.show_protection_classes(additional_info)]")
 
-/obj/item/clothing/obj_break(damage_flag)
+/obj/item/clothing/atom_break(damage_flag)
+	. = ..()
 	damaged_clothes = CLOTHING_DAMAGED
 	update_clothes_damaged_state()
 	if(ismob(loc)) //It's not important enough to warrant a message if nobody's wearing it
@@ -336,59 +337,74 @@ SEE_PIXELS// if an object is located on an unlit area, but some of its pixels ar
 BLIND     // can't see anything
 */
 
-/proc/generate_female_clothing(index,t_color,icon,type) //In a shellnut, blends the uniform sprite with a pre-made sprite in uniform.dmi that's mostly white pixels with a few empty ones to trim off the pixels in the empty spots
-	var/icon/female_clothing_icon	= icon(icon, t_color) // and make the uniform the "female" shape. female_s is either the top-only one (for jumpskirts and the like) or the full one (for jumpsuits)
-	var/icon/female_s				= icon('icons/effects/clothing.dmi', "[(type == FEMALE_UNIFORM_FULL) ? "female_full" : "female_top"]")
+/proc/generate_female_clothing(index, t_color, icon, type) //In a shellnut, blends the uniform sprite with a pre-made sprite in uniform.dmi that's mostly white pixels with a few empty ones to trim off the pixels in the empty spots
+	var/icon/female_clothing_icon = icon("icon" = icon, "icon_state" = t_color) // and make the uniform the "female" shape. female_s is either the top-only one (for jumpskirts and the like) or the full one (for jumpsuits)
+	var/icon/female_s = icon("icon" = 'icons/effects/clothing.dmi', "icon_state" = "[(type == FEMALE_UNIFORM_FULL) ? "female_full" : "female_top"]")
 	female_clothing_icon.Blend(female_s, ICON_MULTIPLY)
-	GLOB.female_clothing_icons[index] = fcopy_rsc(female_clothing_icon) //Then it saves the icon in a global list so it doesn't have to make it again
+	female_clothing_icon = fcopy_rsc(female_clothing_icon)
+	GLOB.female_clothing_icons[index] = female_clothing_icon //Then it saves the icon in a global list so it doesn't have to make it again
 
-/proc/generate_skinny_clothing(index,t_color,icon,type) //Works the exact same as above but for skinny people
-	var/icon/skinny_clothing_icon	= icon(icon, t_color)
-	var/icon/skinny_s				= icon('icons/effects/clothing.dmi', "[(type == FEMALE_UNIFORM_FULL) ? "skinny_full" : "skinny_top"]") //Hooks into same check to see if it's eligible
+/proc/generate_skinny_clothing(index, t_color, icon, type) //Works the exact same as above but for skinny people
+	var/icon/skinny_clothing_icon = icon(icon, t_color)
+	var/icon/skinny_s = icon("icon" = 'icons/effects/clothing.dmi', "icon_state" = "[(type == FEMALE_UNIFORM_FULL) ? "skinny_full" : "skinny_top"]") //Hooks into same check to see if it's eligible
 	skinny_clothing_icon.Blend(skinny_s, ICON_MULTIPLY)
-	GLOB.skinny_clothing_icons[index] = fcopy_rsc(skinny_clothing_icon)
+	skinny_clothing_icon = fcopy_rsc(skinny_clothing_icon)
+	GLOB.skinny_clothing_icons[index] = skinny_clothing_icon
 
 /obj/item/clothing/under/verb/toggle()
 	set name = "Adjust Suit Sensors"
 	set category = "Object"
 	set src in usr
-	var/mob/M = usr
-	if (istype(M, /mob/dead/))
+	var/mob/user_mob = usr
+	if(!can_toggle_sensors(user_mob))
 		return
-	if (!can_use(M))
-		return
-	if(src.has_sensor == LOCKED_SENSORS)
-		to_chat(usr, "The controls are locked.")
-		return 0
-	if(src.has_sensor == BROKEN_SENSORS)
-		to_chat(usr, "The sensors have shorted out!")
-		return 0
-	if(src.has_sensor <= NO_SENSORS)
-		to_chat(usr, "This suit does not have any sensors.")
-		return 0
 
 	var/list/modes = list("Off", "Binary vitals", "Exact vitals", "Tracking beacon")
-	var/switchMode = input("Select a sensor mode:", "Suit Sensor Mode", modes[sensor_mode + 1]) in modes
-	if(get_dist(usr, src) > 1)
-		to_chat(usr, span_warning("You have moved too far away!"))
+	var/switchMode = tgui_input_list(user_mob, "Select a sensor mode", "Suit Sensors", modes, modes[sensor_mode + 1])
+	if(isnull(switchMode))
 		return
-	sensor_mode = modes.Find(switchMode) - 1
+	if(!can_toggle_sensors(user_mob))
+		return
 
-	if (src.loc == usr)
+	sensor_mode = modes.Find(switchMode) - 1
+	if (loc == user_mob)
 		switch(sensor_mode)
-			if(0)
+			if(SENSOR_OFF)
 				to_chat(usr, span_notice("You disable your suit's remote sensing equipment."))
-			if(1)
+			if(SENSOR_LIVING)
 				to_chat(usr, span_notice("Your suit will now only report whether you are alive or dead."))
-			if(2)
+			if(SENSOR_VITALS)
 				to_chat(usr, span_notice("Your suit will now only report your exact vital lifesigns."))
-			if(3)
+			if(SENSOR_COORDS)
 				to_chat(usr, span_notice("Your suit will now report your exact vital lifesigns as well as your coordinate position."))
 
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		if(H.w_uniform == src)
-			H.update_suit_sensors()
+		var/mob/living/carbon/human/human_wearer = loc
+		if(human_wearer.w_uniform == src)
+			human_wearer.update_suit_sensors()
+
+/obj/item/clothing/under/proc/can_toggle_sensors(mob/toggler)
+	if(!can_use(toggler) || toggler.stat == DEAD) //make sure they didn't hold the window open.
+		return FALSE
+	if(!toggler.CanReach(src))
+		balloon_alert(toggler, "can't reach!")
+		return FALSE
+	if(is_synth(toggler))
+		to_chat(usr, "You're unable to use suit sensors as a synthetic!")
+		return
+
+	switch(has_sensor)
+		if(LOCKED_SENSORS)
+			balloon_alert(toggler, "sensor controls locked!")
+			return FALSE
+		if(BROKEN_SENSORS)
+			balloon_alert(toggler, "sensors shorted!")
+			return FALSE
+		if(NO_SENSORS)
+			balloon_alert(toggler, "no sensors to ajdust!")
+			return FALSE
+
+	return TRUE
 
 /obj/item/clothing/under/AltClick(mob/user)
 	if(..())
@@ -440,7 +456,7 @@ BLIND     // can't see anything
 			adjusted = DIGIALT_STYLE
 		if(DIGIALT_STYLE)
 			adjusted = DIGITIGRADE_STYLE
-	if(adjusted == NORMAL_STYLE || adjusted == DIGIALT_STYLE) //Yogs End
+	if(adjusted == ALT_STYLE || adjusted == DIGIALT_STYLE) //Yogs End
 		if(fitted != FEMALE_UNIFORM_TOP)
 			fitted = NO_FEMALE_UNIFORM
 		if(!alt_covers_chest) // for the special snowflake suits that expose the chest when adjusted (and also the arms, realistically)
@@ -492,7 +508,7 @@ BLIND     // can't see anything
 			return TRUE
 	return FALSE
 
-/obj/item/clothing/obj_destruction(damage_flag)
+/obj/item/clothing/atom_destruction(damage_flag, total_destruction=FALSE)
 	if(damage_flag == BOMB)
 		var/turf/T = get_turf(src)
 		spawn(1) //so the shred survives potential turf change from the explosion.

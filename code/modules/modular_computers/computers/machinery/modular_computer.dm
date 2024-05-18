@@ -61,7 +61,7 @@
 	if(cpu && !(cpu.resistance_flags & INDESTRUCTIBLE))
 		if(cpu.resistance_flags & ON_FIRE)
 			. += span_warning("The CPU is on fire!")
-		var/healthpercent = (cpu.obj_integrity/cpu.max_integrity) * 100
+		var/healthpercent = (cpu.get_integrity()/cpu.max_integrity) * 100
 		switch(healthpercent)
 			if(50 to 99)
 				. += "The CPU looks slightly damaged."
@@ -104,7 +104,7 @@
 	else if(!(stat & NOPOWER))
 		. += screen_icon_screensaver
 
-	if(cpu.obj_integrity <= cpu.integrity_failure)
+	if(cpu.get_integrity() <= cpu.integrity_failure)
 		. += "bsod"
 		. += "broken"
 	return .
@@ -156,7 +156,7 @@
 		return cpu.screwdriver_act(user, tool)
 
 /obj/machinery/modular_computer/attackby(obj/item/W as obj, mob/user)
-	if(user.a_intent == INTENT_HELP && cpu && !(flags_1 & NODECONSTRUCT_1))
+	if(!user.combat_mode && cpu && !(flags_1 & NODECONSTRUCT_1))
 		return cpu.attackby(W, user)
 	return ..()
 

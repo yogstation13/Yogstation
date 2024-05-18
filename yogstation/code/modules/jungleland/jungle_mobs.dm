@@ -178,8 +178,8 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "hits"
-	maxHealth = 320
-	health = 320
+	maxHealth = 285
+	health = 285
 	spacewalk = TRUE
 	melee_damage_lower = 30
 	melee_damage_upper = 55 // ouch
@@ -498,7 +498,7 @@
 /mob/living/simple_animal/hostile/yog_jungle/yellowjacket/Aggro()
 	vision_range = aggro_vision_range
 
-/mob/living/simple_animal/hostile/yog_jungle/yellowjacket/proc/charge(var/atom/chargeat = target, var/delay = 5)
+/mob/living/simple_animal/hostile/yog_jungle/yellowjacket/proc/charge(atom/chargeat = target, delay = 5)
 	if(!chargeat)
 		return
 	var/chargeturf = get_turf(chargeat)

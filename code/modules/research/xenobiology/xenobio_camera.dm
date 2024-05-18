@@ -12,10 +12,17 @@
 
 /mob/camera/ai_eye/remote/xenobio/setLoc(turf/destination, force_update = FALSE)
 	var/area/new_area = get_area(destination)
+	
 	if(new_area && new_area.name == allowed_area || new_area && new_area.xenobiology_compatible)
 		return ..()
-	else
+
+/mob/camera/ai_eye/remote/xenobio/can_z_move(direction, turf/start, turf/destination, z_move_flags = NONE, mob/living/rider)
+	. = ..()
+	if(!.)
 		return
+	var/area/new_area = get_area(.)
+	if(new_area.name != allowed_area && !new_area.xenobiology_compatible)
+		return FALSE
 
 /obj/machinery/computer/camera_advanced/xenobio
 	name = "Slime management console"
@@ -67,6 +74,7 @@
 	return ..()
 
 /obj/machinery/computer/camera_advanced/xenobio/CreateEye()
+	. = ..()
 	eyeobj = new /mob/camera/ai_eye/remote/xenobio(get_turf(src))
 	eyeobj.origin = src
 	eyeobj.visible_icon = TRUE
@@ -170,9 +178,10 @@
 	..()
 
 /obj/machinery/computer/camera_advanced/xenobio/multitool_act(mob/living/user, obj/item/multitool/I)
-	if (istype(I) && istype(I.buffer,/obj/machinery/monkey_recycler))
-		to_chat(user, span_notice("You link [src] with [I.buffer] in [I] buffer."))
-		connected_recycler = I.buffer
+	var/atom/buffer_atom = multitool_get_buffer(user, I)
+	if(istype(buffer_atom, /obj/machinery/monkey_recycler))
+		to_chat(user, span_notice("You link [src] with [buffer_atom] in [I] buffer."))
+		connected_recycler = buffer_atom
 		connected_recycler.connected += src
 		return TRUE
 

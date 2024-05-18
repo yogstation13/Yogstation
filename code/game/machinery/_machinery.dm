@@ -382,7 +382,7 @@ Class Procs:
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 /obj/machinery/attack_paw(mob/living/user)
-	if(user.a_intent != INTENT_HARM)
+	if(!user.combat_mode)
 		return attack_hand(user)
 	else
 		user.changeNext_move(CLICK_CD_MELEE)
@@ -390,24 +390,22 @@ Class Procs:
 		user.visible_message(span_danger("[user.name] smashes against \the [src.name] with its paws."), null, null, COMBAT_MESSAGE_RANGE)
 		take_damage(4, BRUTE, MELEE, 1)
 
-/obj/machinery/attack_robot(mob/user)
+/obj/machinery/attack_robot(mob/user, modifiers)
 	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !IsAdminGhost(user))
 		return FALSE
-	return _try_interact(user)
+	return _try_interact(user, modifiers)
 
-/obj/machinery/attack_ai(mob/user)
+/obj/machinery/attack_ai(mob/user, modifiers)
 	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !IsAdminGhost(user))
 		return FALSE
 	if(iscyborg(user))// For some reason attack_robot doesn't work
-		return attack_robot(user)
+		return attack_robot(user, modifiers)
 	else
-		return _try_interact(user)
+		return _try_interact(user, modifiers)
 
-/obj/machinery/_try_interact(mob/user)
+/obj/machinery/_try_interact(mob/user, modifiers)
 	if((interaction_flags_machine & INTERACT_MACHINE_WIRES_IF_OPEN) && panel_open && (attempt_wire_interaction(user) == WIRE_INTERACTION_BLOCK))
 		return TRUE
-	if((user.mind?.has_martialart(MARTIALART_BUSTERSTYLE)) && (user.a_intent == INTENT_GRAB)) //buster arm shit since it can throw vendors
-		return	
 	return ..()
 
 /obj/machinery/tool_act(mob/living/user, obj/item/tool, tool_type, is_right_clicking)
@@ -468,10 +466,11 @@ Class Procs:
 	. = new_frame
 	new_frame.setAnchored(anchored)
 	if(!disassembled)
-		new_frame.obj_integrity = (new_frame.max_integrity * 0.5) //the frame is already half broken
+		new_frame.update_integrity(new_frame.max_integrity * 0.5) //the frame is already half broken
 	transfer_fingerprints_to(new_frame)
 
-/obj/machinery/obj_break(damage_flag)
+/obj/machinery/atom_break(damage_flag)
+	. = ..()
 	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		stat |= BROKEN
 		SEND_SIGNAL(src, COMSIG_MACHINERY_BROKEN, damage_flag)
@@ -613,17 +612,6 @@ Class Procs:
 	. = ..()
 	if(stat & BROKEN)
 		. += span_notice("It looks broken and non-functional.")
-	if(!(resistance_flags & INDESTRUCTIBLE))
-		if(resistance_flags & ON_FIRE)
-			. += span_warning("It's on fire!")
-		var/healthpercent = (obj_integrity/max_integrity) * 100
-		switch(healthpercent)
-			if(50 to 99)
-				. += "It looks slightly damaged."
-			if(25 to 50)
-				. += "It appears heavily damaged."
-			if(0 to 25)
-				. += span_warning("It's falling apart!")
 	if(user.research_scanner && component_parts)
 		. += display_parts(user, TRUE)
 

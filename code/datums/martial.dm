@@ -37,7 +37,9 @@
 	///the message for when you try to use a gun you can't use
 	var/no_gun_message = "Use of ranged weaponry would bring dishonor to the clan."
 	///used to allow certain guns as exceptions
-	var/gun_exceptions = list()
+	var/list/gun_exceptions = list()
+	///list of traits given to the martial art user
+	var/list/martial_traits = list()
 
 /**
   * martial art specific disarm attacks
@@ -104,20 +106,12 @@
 
 	var/damage = rand(A.get_punchdamagelow(), A.get_punchdamagehigh())
 
-	var/atk_verb = A.dna.species.attack_verb
+	var/atk_verb = pick(A.dna.species.attack_verbs)
+	var/atk_effect = A.dna.species.attack_effect
 	if(!(D.mobility_flags & MOBILITY_STAND))
 		atk_verb = "kick"
-
-	switch(atk_verb)
-		if("kick")
-			A.do_attack_animation(D, ATTACK_EFFECT_KICK)
-		if("slash")
-			A.do_attack_animation(D, ATTACK_EFFECT_CLAW)
-		if("smash")
-			A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
-		else
-			A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
-
+		atk_effect = ATTACK_EFFECT_KICK
+	A.do_attack_animation(D, atk_effect)
 	if(!damage)
 		playsound(D.loc, A.dna.species.miss_sound, 25, 1, -1)
 		D.visible_message(span_warning("[A] has attempted to [atk_verb] [D]!"), \
@@ -176,6 +170,8 @@
 		base = H.mind.default_martial_art
 	if(help_verb)
 		add_verb(H, help_verb)
+	if(LAZYLEN(martial_traits))
+		H.add_traits(martial_traits, id)
 	H.mind.martial_art = src
 	if(no_guns)
 		for(var/mob/living/simple_animal/hostile/guardian/guardian in H.hasparasites())
@@ -205,6 +201,7 @@
 	if(!istype(H) || !H.mind || H.mind.martial_art != src)
 		return
 	on_remove(H)
+	H.mind.martial_art = null
 	if(base)
 		base.teach(H)
 	else
@@ -218,4 +215,6 @@
 /datum/martial_art/proc/on_remove(mob/living/carbon/human/H)
 	if(help_verb)
 		remove_verb(H, help_verb)
+	if(LAZYLEN(martial_traits))
+		H.remove_traits(martial_traits, id)
 	return

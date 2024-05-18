@@ -16,13 +16,20 @@
 	var/static_visibility_range = 16
 	var/ai_detector_visible = TRUE
 	var/ai_detector_color = COLOR_RED
+	var/list/networks = list("ss13", "mine")
 
 /mob/camera/ai_eye/Initialize(mapload)
 	. = ..()
 	GLOB.aiEyes += src
 	icon_state = "ai_camera[GLOB.ai_list.len % 3]" // Yogs -- multicoloured AI eyes
+	update_appearance()
 	update_ai_detect_hud()
 	setLoc(loc, TRUE)
+	
+	//Yog: make all remote camera eyes visible to ghosts
+	//"It's probably fine." 
+	//-Cowbot93
+	SetInvisibility(INVISIBILITY_OBSERVER)
 
 /mob/camera/ai_eye/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
 	. = ..()
@@ -153,25 +160,23 @@
 
 // This will move the AIEye. It will also cause lights near the eye to light up, if toggled.
 // This is handled in the proc below this one.
+/client/proc/AIMove(direction, mob/living/silicon/ai/user)
 
-/client/proc/AIMove(n, direct, mob/living/silicon/ai/user)
-
-	var/initial = initial(user.sprint)
-	var/max_sprint = 50
+	var/initial_sprint = initial(user.sprint)
 
 	if(user.cooldown && user.cooldown < world.timeofday) // 3 seconds
-		user.sprint = initial
+		user.sprint = initial_sprint
 
-	for(var/i = 0; i < max(user.sprint, initial); i += 20)
-		var/turf/step = get_turf(get_step(user.eyeobj, direct))
+	for(var/i = 0; i < max(user.sprint, initial_sprint); i += user.sprint)
+		var/turf/step = get_turf(get_step(user.eyeobj, direction))
 		if(step)
 			user.eyeobj.setLoc(step)
 
 	user.cooldown = world.timeofday + 5
 	if(user.acceleration)
-		user.sprint = min(user.sprint + 0.5, max_sprint)
+		user.sprint = min(user.sprint + 0.5, user.max_camera_sprint)
 	else
-		user.sprint = initial
+		user.sprint = initial_sprint
 
 	if(!user.tracking)
 		user.cameraFollow = null

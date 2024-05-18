@@ -117,14 +117,10 @@
 /obj/effect/mine/proc/mineEffect(mob/victim)
 	to_chat(victim, span_danger("*click*"))
 
-/obj/effect/mine/proc/checksmartmine(mob/target)
-	if(smartmine && target && !HAS_TRAIT(target, TRAIT_MINDSHIELD))
-		triggermine(target)
-	else if(!smartmine)
-		triggermine(target)
-
 /obj/effect/mine/proc/triggermine(mob/victim)
 	if(triggered)
+		return
+	if(smartmine && victim && HAS_TRAIT(victim, TRAIT_MINDSHIELD))
 		return
 	visible_message(span_danger("[victim] sets off [icon2html(src, viewers(src))] [src]!"))
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread

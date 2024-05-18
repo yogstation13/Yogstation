@@ -29,6 +29,7 @@
 		force_wielded = force_wielded, \
 		icon_wielded = "[base_icon_state]1", \
 	)
+	AddComponent(/datum/component/cleave_attack, arc_size=180, requires_wielded=TRUE) // YEAHHHHH
 	AddComponent(/datum/component/butchering, 100, 80, 0 , hitsound) //axes are not known for being precision butchering tools
 
 /obj/item/fireaxe/update_icon_state()
@@ -45,7 +46,7 @@
 		return
 	if(QDELETED(A))
 		return
-	if(HAS_TRAIT(src, TRAIT_WIELDED)) //destroys shit faster, generally in 1-2 hits.
+	if(HAS_TRAIT(src, TRAIT_WIELDED) && !HAS_TRAIT(src, TRAIT_CLEAVING)) //destroys shit faster, generally in 1-2 hits.
 		if(istype(A, /obj/structure/window))
 			var/obj/structure/window/W = A
 			W.take_damage(W.max_integrity*2, BRUTE, MELEE, FALSE, null, armour_penetration)

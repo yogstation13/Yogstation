@@ -63,7 +63,7 @@
 		storedpda = null
 		update_appearance(UPDATE_ICON)
 
-/obj/machinery/pdapainter/attackby(obj/item/O, mob/user, params)
+/obj/machinery/pdapainter/attackby(obj/item/O, mob/living/user, params)
 	if(default_unfasten_wrench(user, O))
 		power_change()
 		return
@@ -78,7 +78,7 @@
 		O.add_fingerprint(user)
 		update_appearance(UPDATE_ICON)
 
-	else if(O.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM)
+	else if(O.tool_behaviour == TOOL_WELDER && !user.combat_mode)
 		if(stat & BROKEN)
 			if(!O.tool_start_check(user, amount=0))
 				return
@@ -90,7 +90,7 @@
 					return
 				to_chat(user, span_notice("You repair [src]."))
 				stat &= ~BROKEN
-				obj_integrity = max_integrity
+				update_integrity(max_integrity)
 				update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_notice("[src] does not need repairs."))
@@ -98,7 +98,7 @@
 		return ..()
 
 /obj/machinery/pdapainter/deconstruct(disassembled = TRUE)
-	obj_break()
+	atom_break()
 
 /obj/machinery/pdapainter/attack_hand(mob/user)
 	. = ..()

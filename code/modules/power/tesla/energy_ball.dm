@@ -38,7 +38,7 @@
 	icon_state = "smenergy_ball"
 	energy = 10000
 	max_balls = 20
-	zap_range = 20
+	zap_range = 7
 	hypercharged = TRUE
 
 /obj/singularity/energy_ball/supermatter/small_crystals

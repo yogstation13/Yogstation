@@ -30,7 +30,7 @@
 
 /obj/structure/destructible/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens || GLOB.clockwork_gateway_activated)
-		obj_integrity = max_integrity
+		update_integrity(max_integrity)
 
 /obj/structure/destructible/clockwork/narsie_act()
 	if(take_damage(rand(25, 50), BRUTE) && src) //if we still exist
@@ -45,19 +45,11 @@
 		desc = clockwork_desc
 	. = ..()
 	desc = initial(desc)
+	if(is_servant_of_ratvar(user) || isobserver(user))
+		var/heavily_damaged = (atom_integrity < max_integrity * 0.5)
+		. += "<span class='[heavily_damaged ? "alloy":"brass"]'>[p_they(TRUE)] [p_are()] at <b>[atom_integrity]/[max_integrity]</b> integrity[heavily_damaged ? "!":"."]</span>"
 	if(unanchored_icon)
 		. += span_notice("[src] is [anchored ? "":"not "]secured to the floor.")
-
-/obj/structure/destructible/clockwork/examine_status(mob/user)
-	if(is_servant_of_ratvar(user) || isobserver(user))
-		var/t_It = p_they(TRUE)
-		var/t_is = p_are()
-		var/heavily_damaged = FALSE
-		var/healthpercent = (obj_integrity/max_integrity) * 100
-		if(healthpercent < 50)
-			heavily_damaged = TRUE
-		return "<span class='[heavily_damaged ? "alloy":"brass"]'>[t_It] [t_is] at <b>[obj_integrity]/[max_integrity]</b> integrity[heavily_damaged ? "!":"."]</span>"
-	return ..()
 
 /obj/structure/destructible/clockwork/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
 	if(is_servant_of_ratvar(user) && immune_to_servant_attacks)
@@ -72,7 +64,7 @@
 		return FALSE
 	return ..()
 
-/obj/structure/destructible/clockwork/mech_melee_attack(obj/mecha/M, equip_allowed)
+/obj/structure/destructible/clockwork/mech_melee_attack(obj/mecha/M, punch_force, equip_allowed = TRUE)
 	if(M.occupant && is_servant_of_ratvar(M.occupant) && immune_to_servant_attacks)
 		return FALSE
 	return ..()
@@ -80,7 +72,7 @@
 /obj/structure/destructible/clockwork/proc/get_efficiency_mod()
 	if(GLOB.ratvar_awakens)
 		return 2
-	. = max(sqrt(obj_integrity/max(max_integrity, 1)), 0.5)
+	. = max(sqrt(atom_integrity/max(max_integrity, 1)), 0.5)
 	. = round(., 0.01)
 
 /obj/structure/destructible/clockwork/attack_ai(mob/user)
@@ -122,7 +114,7 @@
 		return
 	if(anchored && unanchored_icon)
 		anchored = FALSE
-		update_anchored(null, obj_integrity > max_integrity * 0.25)
+		update_anchored(null, atom_integrity > max_integrity * 0.25)
 		new /obj/effect/temp_visual/emp(loc)
 
 

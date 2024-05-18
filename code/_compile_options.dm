@@ -21,10 +21,13 @@
 #endif
 
 // If this is uncommented, we do a single run though of the game setup and tear down process with unit tests in between
-// #define UNIT_TESTS
+//#define UNIT_TESTS
 
 // If defined, we will NOT defer asset generation till later in the game, and will instead do it all at once, during initiialize
 //#define DO_NOT_DEFER_ASSETS
+
+// Uncomment to run runtimestation (less time to compile)
+//#define LOWMEMORYMODE
 
 #ifndef PRELOAD_RSC				//set to:
 #define PRELOAD_RSC	2			//	0 to allow using external resources or on-demand behaviour;
@@ -45,7 +48,7 @@
 #define FIND_REF_NO_CHECK_TICK
 #endif
 
-#ifdef TRAVISBUILDING
+#if defined(CIBUILDING) && !defined(OPENDREAM)
 #define UNIT_TESTS
 #endif
 
@@ -60,7 +63,7 @@
 
 #define EXTOOLS (world.system_type == MS_WINDOWS ? "byond-extools.dll" : "libbyond-extools.so")
 
-#ifdef TRAVISBUILDING
+#ifdef CIBUILDING
 // Turdis is special :)
 #define CBT
 #endif
@@ -70,10 +73,17 @@
 #define CBT
 #endif
 
-#if !defined(CBT) && !defined(SPACEMAN_DMM)
-#warn Building with Dream Maker is no longer supported and may result in errors.
-#warn In order to build, run BUILD.bat in the root directory.
-#warn Consider switching to VSCode editor instead, where you can press Ctrl+Shift+B to build.
+#if defined(OPENDREAM)
+	#if !defined(CIBUILDING)
+		#warn You are building with OpenDream. Remember to build TGUI manually.
+		#warn You can do this by running tgui-build.cmd from the bin directory.
+	#endif
+#else
+	#if !defined(CBT) && !defined(SPACEMAN_DMM)
+		#warn Building with Dream Maker is no longer supported and will result in errors.
+		#warn In order to build, run BUILD.cmd in the root directory.
+		#warn Consider switching to VSCode editor instead, where you can press Ctrl+Shift+B to build.
+	#endif
 #endif
 
 // A reasonable number of maximum overlays an object needs

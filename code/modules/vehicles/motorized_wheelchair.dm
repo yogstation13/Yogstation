@@ -36,7 +36,7 @@
 			power_cell.update_appearance(UPDATE_ICON)
 	refresh_parts()
 
-/obj/vehicle/ridden/wheelchair/motorized/obj_destruction(damage_flag)
+/obj/vehicle/ridden/wheelchair/motorized/atom_destruction(damage_flag, total_destruction=FALSE)
 	drop_contents()
 	. = ..()
 

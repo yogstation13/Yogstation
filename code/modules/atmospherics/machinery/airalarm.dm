@@ -855,12 +855,27 @@
 
 	return ..()
 
+/obj/machinery/airalarm/attack_ai(mob/user)
+	if(!isAI(user))
+		return ..()
+	
+	var/mob/living/silicon/ai/AI = user
+	if(AI.has_subcontroller_connection(get_area(src)))
+		return ..()
+
+	to_chat(AI, span_warning("No connection to subcontroller detected. Polling APC..."))
+	if(do_after(AI, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
+		return ..()
+
 /obj/machinery/airalarm/AltClick(mob/user)
-	..()
+	. = ..()
 	if(!user.canUseTopic(src, !issilicon(user)) || !isturf(loc))
 		return
-	else
-		togglelock(user)
+	togglelock(user)
+
+/obj/machinery/airalarm/attack_hand_secondary(mob/user, modifiers)
+	togglelock(user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/airalarm/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	if((buildstage == 0) && (the_rcd.upgrade & RCD_UPGRADE_SIMPLE_CIRCUITS))
@@ -902,7 +917,7 @@
 		new /obj/item/stack/sheet/metal(loc, 2)
 		var/obj/item/I = new /obj/item/electronics/airalarm(loc)
 		if(!disassembled)
-			I.obj_integrity = I.max_integrity * 0.5
+			I.update_integrity(I.max_integrity * 0.5)
 		new /obj/item/stack/cable_coil(loc, 3)
 	qdel(src)
 

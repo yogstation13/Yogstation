@@ -33,7 +33,7 @@
 	. = ..()
 	AddComponent( \
 		/datum/component/squashable, \
-		squash_chance = 50, \
+		squash_chance = squish_chance, \
 		squash_damage = 1, \
 		squash_flags = SQUASHED_SHOULD_BE_GIBBED|SQUASHED_ALWAYS_IF_DEAD|SQUASHED_DONT_SQUASH_IN_CONTENTS, \
 	)
@@ -42,25 +42,6 @@
 	if(SSticker.mode && SSticker.mode.station_was_nuked) //If the nuke is going off, then cockroaches are invincible. Keeps the nuke from killing them, cause cockroaches are immune to nukes.
 		return
 	..()
-
-/mob/living/simple_animal/cockroach/Crossed(atom/movable/AM)
-	. = ..()
-	if(ismob(AM))
-		if(isliving(AM))
-			var/mob/living/A = AM
-			if(A.mob_size > MOB_SIZE_SMALL && !(A.movement_type & FLYING))
-				if(prob(squish_chance))
-					A.visible_message(span_notice("[A] squashed [src]."), span_notice("You squashed [src]."))
-					adjustBruteLoss(1) //kills a normal cockroach
-				else
-					visible_message(span_notice("[src] avoids getting crushed."))
-	else
-		if(isstructure(AM))
-			if(prob(squish_chance))
-				AM.visible_message(span_notice("[src] was crushed under [AM]."))
-				adjustBruteLoss(1)
-			else
-				visible_message(span_notice("[src] avoids getting crushed."))
 
 /mob/living/simple_animal/cockroach/ex_act() //Explosions are a terrible way to handle a cockroach.
 	return
@@ -77,6 +58,9 @@
 	verb_yell = "honks loudly"
 	speak_emote = list("honks")
 
+/mob/living/simple_animal/cockroach/clownbug/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/slippery, 40)
 
 /mob/living/simple_animal/cockroach/clownbug/death(gibbed)
 	var/turf/T = get_turf(src)

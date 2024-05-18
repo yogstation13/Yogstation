@@ -32,19 +32,20 @@
 		QDEL_NULL(fireaxe)
 	return ..()
 
-/obj/structure/fireaxecabinet/attackby(obj/item/I, mob/user, params)
+/obj/structure/fireaxecabinet/attackby(obj/item/I, mob/living/user, params)
+	var/list/modifiers = params2list(params)
 	check_deconstruct(I, user)//yogs - deconstructible cabinet
 	if(I.tool_behaviour == TOOL_MULTITOOL)
 		reset_lock(user) // Yogs - Adds reset option.
 		return
-	if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && !broken)
+	if(I.tool_behaviour == TOOL_WELDER && !user.combat_mode && !broken)
 		//Repairing light damage with a welder
-		if(obj_integrity < max_integrity)
+		if(atom_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=2))
 				return
 			to_chat(user, span_notice("You begin repairing [src]."))
 			if(I.use_tool(src, user, 40, volume=50, amount=2))
-				obj_integrity = max_integrity
+				update_integrity(max_integrity)
 				update_appearance(UPDATE_ICON)
 				to_chat(user, span_notice("You repair [src]."))
 		else
@@ -59,12 +60,14 @@
 		to_chat(user, span_notice("You start fixing [src]..."))
 		if(do_after(user, 2 SECONDS, src) && G.use(2))
 			broken = 0
-			obj_integrity = max_integrity
+			update_integrity(max_integrity)
 			update_appearance(UPDATE_ICON)
 	//yogs start - warn user if they use the wrong type of glass to repair
 	else if(istype(I, /obj/item/stack/sheet/glass) && broken)
 		to_chat(user, span_warning("You need reinforced glass sheets to fix [src]!"))
 	//yogs end
+	else if(!broken && modifiers && modifiers[RIGHT_CLICK]) // right click opens/closes the cabinet
+		toggle_open()
 	else if(open || broken)
 		//Fireaxe cabinet is open or broken, so we can access it's axe slot
 		if(istype(I, /obj/item/fireaxe) && !fireaxe && axe)
@@ -113,6 +116,11 @@
 	else
 		return ..()
 
+/obj/structure/fireaxecabinet/AltClick(mob/user)
+	. = ..()
+	if(!broken && user.canUseTopic(src))
+		toggle_lock()
+
 /obj/structure/fireaxecabinet/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
 		if(BRUTE)
@@ -134,7 +142,8 @@
 	if(.)
 		update_appearance(UPDATE_ICON)
 
-/obj/structure/fireaxecabinet/obj_break(damage_flag)
+/obj/structure/fireaxecabinet/atom_break(damage_flag)
+	. = ..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		update_appearance(UPDATE_ICON)
 		broken = TRUE
@@ -163,11 +172,11 @@
 		fireaxe = null
 	qdel(src)
 
-/obj/structure/fireaxecabinet/attack_hand(mob/user)
+/obj/structure/fireaxecabinet/attack_hand(mob/living/user, modifiers)
 	. = ..()
 	if(.)
 		return
-	if(open || broken)
+	if((open || broken) && !(modifiers && modifiers[RIGHT_CLICK])) // right click opens/closes the cabinet so you don't need to use your id
 		if(fireaxe || spareid || olreliable)
 			if(spareid)
 				fireaxe = spareid
@@ -191,8 +200,8 @@
 	toggle_lock(user)
 	return
 
-/obj/structure/fireaxecabinet/attack_robot(mob/living/silicon/user)
-	if(user.a_intent == INTENT_HARM) // In the case they still want to try to `reset_lock` instead of `toggle_lock`.
+/obj/structure/fireaxecabinet/attack_robot(mob/living/silicon/user, modifiers)
+	if(user.combat_mode || (modifiers && modifiers[RIGHT_CLICK])) // In the case they still want to try to `reset_lock` instead of `toggle_lock`.
 		reset_lock(user)
 		return
 	. = ..()
@@ -212,7 +221,7 @@
 	if(open)
 		. += "glass_raised"
 		return
-	var/hp_percent = obj_integrity/max_integrity * 100
+	var/hp_percent = atom_integrity/max_integrity * 100
 	if(broken)
 		. += "glass4"
 	else
@@ -265,7 +274,7 @@
 		playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
 
 /obj/structure/fireaxecabinet/bridge/spare
-	name = "spare id cabinet"
+	name = "spare ID cabinet"
 	desc = "There is a small label that reads \"For Emergency use only\". <BR>There are bolts under it's glass cover for easy disassembly using a wrench."
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "spareid"

@@ -130,3 +130,75 @@
 	weight = 4
 	trait_to_give = STATION_TRAIT_SHUTTLE_SALE
 	show_in_report = TRUE
+
+/datum/station_trait/cybernetic_revolution
+	name = "Cybernetic Revolution"
+	trait_type = STATION_TRAIT_POSITIVE
+	weight = 1
+	show_in_report = TRUE
+	report_message = "The new trends in cybernetics have come to the station! Everyone has some form of cybernetic implant."
+	trait_to_give = STATION_TRAIT_CYBERNETIC_REVOLUTION
+	/// List of all job types with the cybernetics they should receive.
+	// Should be themed around their job/department. If no theme is possible, a basic cybernetic organ is fine.
+	var/static/list/job_to_cybernetic = list(
+		/datum/job/assistant = /obj/item/organ/heart/cybernetic,
+		/datum/job/artist = /obj/item/organ/heart/cybernetic, 
+		/datum/job/atmos = /obj/item/organ/cyberimp/mouth/breathing_tube, // Inhaling gases.
+		/datum/job/bartender = /obj/item/organ/liver/cybernetic/upgraded, // Drinking their own drinks.
+		/datum/job/brigphysician = /obj/item/organ/cyberimp/eyes/hud/medical,
+		/datum/job/captain = /obj/item/organ/heart/cybernetic/upgraded,
+		/datum/job/cargo_tech = /obj/item/organ/stomach/cybernetic,
+		/datum/job/chaplain = /obj/item/organ/cyberimp/brain/anti_drop, // Preventing null rod loss.
+		/datum/job/chemist = /obj/item/organ/cyberimp/eyes/hud/science, // For seeing reagents.
+		/datum/job/chief_engineer = /obj/item/organ/cyberimp/chest/thrusters,
+		/datum/job/clerk = /obj/item/organ/stomach/cybernetic,
+		/datum/job/clown = /obj/item/organ/cyberimp/brain/anti_stun, // Funny.
+		/datum/job/cmo = /obj/item/organ/cyberimp/chest/reviver,
+		/datum/job/cook = /obj/item/organ/cyberimp/chest/nutriment/plus,
+		/datum/job/curator = /obj/item/organ/eyes/robotic/glow, // Spookie.
+		/datum/job/detective = /obj/item/organ/lungs/cybernetic/upgraded, // Smoker.
+		/datum/job/doctor = /obj/item/organ/cyberimp/arm/toolset/surgery,
+		/datum/job/engineer = /obj/item/organ/cyberimp/arm/toolset,
+		/datum/job/geneticist = /obj/item/organ/stomach/fly,
+		/datum/job/head_of_personnel = /obj/item/organ/eyes/robotic,
+		/datum/job/hos = /obj/item/organ/cyberimp/brain/anti_drop,
+		/datum/job/hydro = /obj/item/organ/cyberimp/chest/nutriment,
+		/datum/job/janitor = /obj/item/organ/heart/cybernetic, // ACTUAL x-ray eyes is likely "not balanced" and all alternatives suck. So boring heart.
+		/datum/job/lawyer = /obj/item/organ/heart/cybernetic/upgraded,
+		/datum/job/mime = /obj/item/organ/tongue/robot, // ...
+		/datum/job/mining = /obj/item/organ/cyberimp/chest/reviver, // Replace with a reusable mining-specific implant if one is added later.
+		/datum/job/miningmedic = /obj/item/organ/cyberimp/eyes/hud/medical,
+		/datum/job/network_admin = /obj/item/organ/cyberimp/arm/toolset,
+		/datum/job/officer = /obj/item/organ/cyberimp/arm/flash,
+		/datum/job/paramedic = /obj/item/organ/cyberimp/eyes/hud/medical,
+		/datum/job/psych = /obj/item/organ/ears/cybernetic,
+		/datum/job/qm = /obj/item/organ/stomach/cybernetic,
+		/datum/job/rd = /obj/item/organ/cyberimp/eyes/hud/diagnostic, // Replace with a very cool science implant if one is added later.
+		/datum/job/roboticist = /obj/item/organ/cyberimp/eyes/hud/diagnostic, // Robots and mechs.
+		/datum/job/scientist = /obj/item/organ/cyberimp/eyes/hud/science, // Science, duh.
+		/datum/job/tourist = /obj/item/organ/heart/cybernetic,
+		/datum/job/virologist = /obj/item/organ/lungs/cybernetic/upgraded,
+		/datum/job/warden = /obj/item/organ/cyberimp/eyes/hud/security,
+	)
+
+/datum/station_trait/cybernetic_revolution/New()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_JOB_AFTER_SPAWN, PROC_REF(on_job_after_spawn))
+
+/datum/station_trait/cybernetic_revolution/proc/on_job_after_spawn(datum/source, datum/job/job, mob/living/living_mob, mob/new_player_mob, joined_late)
+	// Having the Body Purist quirk prevents the effects of this station trait from being applied to you.
+	var/datum/quirk/body_purist/body_purist = /datum/quirk/body_purist
+	if(initial(body_purist.name) in new_player_mob.client.prefs.all_quirks)
+		return
+
+	var/cybernetic_type = job_to_cybernetic[job.type]
+	if(cybernetic_type)
+		var/obj/item/organ/cybernetic = new cybernetic_type()
+		// Timer is needed because doing it immediately doesn't REPLACE organs for some unknown reason, so got to do it next tick or whatever.
+		addtimer(CALLBACK(cybernetic, TYPE_PROC_REF(/obj/item/organ, Insert), living_mob), 1)
+		return
+
+	if(isAI(living_mob))
+		var/mob/living/silicon/ai/ai = living_mob
+		ai.eyeobj.relay_speech = TRUE
+		return

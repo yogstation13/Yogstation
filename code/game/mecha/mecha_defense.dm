@@ -8,7 +8,7 @@
 
 /obj/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
-	if(. && obj_integrity > 0)
+	if(. && atom_integrity > 0)
 		spark_system.start()
 		switch(damage_flag)
 			if(FIRE)
@@ -21,7 +21,7 @@
 			occupant_message(span_userdanger("Taking damage!"))
 		log_message("Took [damage_amount] points of damage. Damage type: [damage_type]", LOG_MECHA)
 
-/obj/mecha/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
+/obj/mecha/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
 	. = ..()
 	if(!damage_amount)
 		return 0
@@ -199,7 +199,9 @@
 		log_message("Exposed to dangerous temperature.", LOG_MECHA, color="red")
 		take_damage(5, BURN, 0, 1)
 
-/obj/mecha/attackby(obj/item/W as obj, mob/user as mob, params)
+/obj/mecha/attackby(obj/item/W, mob/living/user, params)
+	if(user.combat_mode)
+		return ..()
 
 	if(istype(W, /obj/item/mmi))
 		if(mmi_move_inside(W,user))
@@ -296,17 +298,17 @@
 				to_chat(user, span_notice("There's already a capacitor installed."))
 		return
 
-	else if(W.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM)
+	else if(W.tool_behaviour == TOOL_WELDER && !user.combat_mode)
 		user.changeNext_move(CLICK_CD_MELEE)
-		if(obj_integrity < max_integrity)
+		if(atom_integrity < max_integrity)
 			if(W.use_tool(src, user, 0, volume=50, amount=1))
 				if (internal_damage & MECHA_INT_TANK_BREACH)
 					clearInternalDamage(MECHA_INT_TANK_BREACH)
 					to_chat(user, span_notice("You repair the damaged gas tank."))
 				else
 					user.visible_message(span_notice("[user] repairs some damage to [name]."), span_notice("You repair some damage to [src]."))
-					obj_integrity += min(10, max_integrity-obj_integrity)
-					if(obj_integrity == max_integrity)
+					update_integrity(atom_integrity + min(10, max_integrity-atom_integrity))
+					if(atom_integrity == max_integrity)
 						to_chat(user, span_notice("It looks to be fully repaired now."))
 			return 1
 		else
@@ -349,16 +351,12 @@
 			target.reagents.add_reagent(/datum/reagent/toxin, force/2.5)
 
 
-/obj/mecha/mech_melee_attack(obj/mecha/M, equip_allowed)
-	if(!has_charge(melee_energy_drain))
-		return 0
-	use_power(melee_energy_drain)
-	if(M.damtype == BRUTE || M.damtype == BURN)
-		log_combat(M.occupant, src, "attacked", M, "(INTENT: [uppertext(M.occupant.a_intent)]) (DAMTYPE: [uppertext(M.damtype)])")
-		. = ..()
+/obj/mecha/mech_melee_attack(obj/mecha/M, punch_force, equip_allowed = TRUE)
+	log_combat(M.occupant, src, "attacked", M, "(COMBAT MODE: [M.occupant.combat_mode ? "ON" : "OFF"]) (DAMTYPE: [uppertext(M.damtype)])")
+	return ..(M, punch_force / 2, equip_allowed)
 
 /obj/mecha/proc/full_repair(charge_cell)
-	obj_integrity = max_integrity
+	update_integrity(max_integrity)
 	if(cell && charge_cell)
 		cell.charge = cell.maxcharge
 	if(internal_damage & MECHA_INT_FIRE)
@@ -397,7 +395,7 @@
 				visual_effect_icon = ATTACK_EFFECT_MECHTOXIN
 	..()
 
-/obj/mecha/obj_destruction()
+/obj/mecha/atom_destruction()
 	if(wreckage)
 		var/mob/living/silicon/ai/AI
 		if(isAI(occupant))

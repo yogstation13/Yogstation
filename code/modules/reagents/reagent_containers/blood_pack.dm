@@ -6,7 +6,7 @@
 	volume = 200
 	var/datum/blood_type/blood_type = null
 	var/unique_blood = null
-	var/labelled = 0
+	var/labelled = FALSE
 
 #define BLOODBAG_GULP_SIZE 10
 
@@ -79,15 +79,13 @@
 			blood_type = "E"
 		else
 			blood_type = null
-	update_pack_name()
-	update_appearance(UPDATE_ICON)
+	update_appearance(UPDATE_ICON | UPDATE_NAME)
 
-/obj/item/reagent_containers/blood/proc/update_pack_name()
-	if(!labelled)
-		if(blood_type)
-			name = "blood pack[blood_type ? " - [unique_blood ? blood_type : blood_type.name]" : null]"
-		else
-			name = "blood pack"
+/obj/item/reagent_containers/blood/update_name()
+	. = ..()
+	if(labelled)
+		return
+	name = "blood pack[blood_type ? " - [unique_blood ? blood_type : blood_type.name]" : ""]"
 
 /obj/item/reagent_containers/blood/update_overlays()
 	. = ..()
@@ -149,10 +147,10 @@
 		if(user.get_active_held_item() != I)
 			return
 		if(t)
-			labelled = 1
+			labelled = TRUE
 			name = "blood pack - [t]"
 		else
-			labelled = 0
-			update_pack_name()
+			labelled = FALSE
+			update_appearance(UPDATE_NAME)
 	else
 		return ..()

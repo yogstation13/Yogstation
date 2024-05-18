@@ -113,7 +113,7 @@
 	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = attached_to
 	if(!istype(G))
 		return
-	else if(G.obj_integrity && !G.purpose_fulfilled)
+	else if(G.get_integrity() && !G.purpose_fulfilled)
 		return "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'>[G.get_arrival_time(FALSE)]</div>"
 
 /obj/effect/countdown/supermatter

@@ -9,11 +9,11 @@
 	src.gas_amount = gas_amount
 	src.temp_amount = temp_amount
 
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(attackby_react))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(attackby_react))
 	RegisterSignal(parent, COMSIG_ATOM_FIRE_ACT, PROC_REF(flame_react))
 
 /datum/component/hot_ice/UnregisterFromParent()
-	UnregisterSignal(parent, COMSIG_PARENT_ATTACKBY)
+	UnregisterSignal(parent, COMSIG_ATOM_ATTACKBY)
 	UnregisterSignal(parent, COMSIG_ATOM_FIRE_ACT)
 
 /datum/component/hot_ice/proc/hot_ice_melt(mob/user)

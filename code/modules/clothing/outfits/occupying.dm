@@ -1,17 +1,17 @@
 // Peacekeeping force clothing
-/obj/item/clothing/under/rank/security/grey/amber/occupying
+/obj/item/clothing/under/rank/security/officer/grey/amber/occupying
 	name = "peacekeeping officer jumpsuit"
 	desc = "A Peacekeeper uniform with red marking denoting officers and heavies."
 	icon_state = "occuniformofficer"
 	item_state = "occuniformofficer"
 
-/obj/item/clothing/under/rank/security/grey/amber/occupying/commander
+/obj/item/clothing/under/rank/security/officer/grey/amber/occupying/commander
 	name = "peacekeeping commander jumpsuit"
 	desc = "A Peacekeeper uniform with blue markings denoting commanders"
 	icon_state = "occuniformcommander"
 	item_state = "occuniformcommander"
 
-/obj/item/clothing/under/rank/security/grey/amber/occupying/Initialize(mapload, mob/user)
+/obj/item/clothing/under/rank/security/officer/grey/amber/occupying/Initialize(mapload, mob/user)
 	. = ..()
 	if(prob(50)) // Adds variation to the uniform. 50% will be worn casually.
 		rolldown(TRUE)
@@ -34,7 +34,7 @@
 	desc = "A reinforced version of the standard Peacekeeper vest with extra padding to protect against melee attacks. Not as strong as riot suits typically issued to NT stations."
 	icon_state = "occriotsuit"
 	item_state = "occriotsuit"
-	mutantrace_variation = NO_MUTANTRACE_VARIATION
+	mutantrace_variation = NONE
 
 /obj/item/clothing/head/helmet/riot/raised/occupying
 	name = "peacekeeping force riot helmet"
@@ -85,7 +85,7 @@
 
 /datum/outfit/occupying
 	name = "Peacekeeping Officer"
-	uniform = /obj/item/clothing/under/rank/security/grey/amber/occupying
+	uniform = /obj/item/clothing/under/rank/security/officer/grey/amber/occupying
 	suit = /obj/item/clothing/suit/armor/vest/alt/occupying
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/color/black
@@ -124,7 +124,7 @@
 
 /datum/outfit/occupying/commander
 	name = "Peacekeeping force Commander"
-	uniform = /obj/item/clothing/under/rank/security/grey/amber/occupying/commander
+	uniform = /obj/item/clothing/under/rank/security/officer/grey/amber/occupying/commander
 	head = /obj/item/clothing/head/beret/sec/centcom/occupying
 	belt = /obj/item/storage/belt/military/occbelt/occupying_commander
 	l_pocket = /obj/item/pinpointer/nuke

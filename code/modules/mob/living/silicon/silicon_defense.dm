@@ -5,7 +5,7 @@
 /mob/living/silicon/get_ear_protection()//no ears
 	return 2
 
-/mob/living/silicon/attack_alien(mob/living/carbon/alien/humanoid/M)
+/mob/living/silicon/attack_alien(mob/living/carbon/alien/humanoid/M, modifiers)
 	if(..()) //if harm or disarm intent
 		var/damage = 20
 		if (prob(90))
@@ -38,15 +38,15 @@
 			if(BURN)
 				adjustFireLoss(damage)
 
-/mob/living/silicon/attack_paw(mob/living/user)
+/mob/living/silicon/attack_paw(mob/living/user, modifiers)
 	return attack_hand(user)
 
-/mob/living/silicon/attack_larva(mob/living/carbon/alien/larva/L)
-	if(L.a_intent == INTENT_HELP)
+/mob/living/silicon/attack_larva(mob/living/carbon/alien/larva/L, modifiers)
+	if(!L.combat_mode)
 		visible_message("[L.name] rubs its head against [src].")
 
 /mob/living/silicon/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		..(user, 1)
 		adjustBruteLoss(run_armor(rand(10, 15), BRUTE, MELEE))
 		playsound(loc, "punch", 25, 1, -1)
@@ -56,44 +56,41 @@
 	return 0
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/mob/living/silicon/attack_hand(mob/living/carbon/human/M)
+/mob/living/silicon/attack_hand(mob/living/carbon/human/M, modifiers)
 	. = FALSE
-	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, M) & COMPONENT_NO_ATTACK_HAND)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, M, modifiers) & COMPONENT_NO_ATTACK_HAND)
 		. = TRUE
-	switch(M.a_intent)
-		if(INTENT_HELP)
-			if(buckled_mobs && length(buckled_mobs))
-				for(var/mob/living/buckled_mob in buckled_mobs)
-					unbuckle_mob(buckled_mob)
-			else
-				M.visible_message("[M] pets [src].", \
-								span_notice("You pet [src]."))
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "pet_borg", /datum/mood_event/pet_borg)
-		if(INTENT_GRAB)
-			grabbedby(M)
-		if(INTENT_DISARM)
-			M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
-			playsound(src, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
-			var/shove_dir = get_dir(M, src)
-			if(!Move(get_step(src, shove_dir), shove_dir))
-				log_combat(M, src, "shoved", "failing to move it")
-				M.visible_message(span_danger("[M.name] shoves [src]!"),
-					span_danger("You shove [src]!"), span_hear("You hear aggressive shuffling!"), COMBAT_MESSAGE_RANGE, list(src))
-				to_chat(src, span_userdanger("You're shoved by [M.name]!"))
-				return TRUE
-			log_combat(M, src, "shoved", "pushing it")
-			M.visible_message(span_danger("[M.name] shoves [src], pushing [p_them()]!"),
-				span_danger("You shove [src], pushing [p_them()]!"), span_hear("You hear aggressive shuffling!"), COMBAT_MESSAGE_RANGE, list(src))
-			to_chat(src, span_userdanger("You're pushed by [name]!"))
+	if(modifiers && modifiers[RIGHT_CLICK])
+		M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
+		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
+		var/shove_dir = get_dir(M, src)
+		if(!Move(get_step(src, shove_dir), shove_dir))
+			log_combat(M, src, "shoved", "failing to move it")
+			M.visible_message(span_danger("[M.name] shoves [src]!"),
+				span_danger("You shove [src]!"), span_hear("You hear aggressive shuffling!"), COMBAT_MESSAGE_RANGE, list(src))
+			to_chat(src, span_userdanger("You're shoved by [M.name]!"))
+			return TRUE
+		log_combat(M, src, "shoved", "pushing it")
+		M.visible_message(span_danger("[M.name] shoves [src], pushing [p_them()]!"),
+			span_danger("You shove [src], pushing [p_them()]!"), span_hear("You hear aggressive shuffling!"), COMBAT_MESSAGE_RANGE, list(src))
+		to_chat(src, span_userdanger("You're pushed by [name]!"))
+	else if(M.combat_mode)
+		M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+		playsound(src.loc, 'sound/effects/bang.ogg', 10, 1)
+		visible_message(span_danger("[M] punches [src], but doesn't leave a dent."), \
+			span_warning("[M] punches [src], but doesn't leave a dent."), null, COMBAT_MESSAGE_RANGE)
+	else
+		if(buckled_mobs && length(buckled_mobs))
+			for(var/mob/living/buckled_mob in buckled_mobs)
+				unbuckle_mob(buckled_mob)
 		else
-			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
-			playsound(src.loc, 'sound/effects/bang.ogg', 10, 1)
-			visible_message(span_danger("[M] punches [src], but doesn't leave a dent."), \
-				span_warning("[M] punches [src], but doesn't leave a dent."), null, COMBAT_MESSAGE_RANGE)
+			M.visible_message("[M] pets [src].", \
+							span_notice("You pet [src]."))
+			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "pet_borg", /datum/mood_event/pet_borg)
 
-/mob/living/silicon/attack_drone(mob/living/simple_animal/drone/M)
-	if(M.a_intent == INTENT_HARM)
+/mob/living/silicon/attack_drone(mob/living/simple_animal/drone/M, modifiers)
+	if(M.combat_mode)
 		return
 	return ..()
 

@@ -260,7 +260,7 @@
 	. = ..()
 	if(active)
 		if(mode == POWER)
-			. += "<span class='notice'>[src]'s display states that it has stored <b>[DisplayPower(stored_power)]</b>, and processing <b>[DisplayPower(RAD_COLLECTOR_OUTPUT)]</b>.</span>"
+			. += "<span class='notice'>[src]'s display states that it has stored <b>[DisplayJoules(stored_power)]</b>, and processing <b>[DisplayPower(RAD_COLLECTOR_OUTPUT)]</b>.</span>"
 		else if(mode == SCIENCE)
 			. += "<span class='notice'>[src]'s display states that it has stored a total of <b>[stored_power*RAD_COLLECTOR_MINING_CONVERSION_RATE]</b>, and producing [last_output*60] research points per minute.</span>"
 		else if(mode == MONEY)
@@ -273,7 +273,7 @@
 		else if(mode == MONEY)
 			. += "<span class='notice'><b>[src]'s display displays the words:</b> \"Money production mode. Please insert <b>Plasma</b>. Use a multitool to change production modes.\"</span>"
 
-/obj/machinery/power/rad_collector/obj_break(damage_flag)
+/obj/machinery/power/rad_collector/atom_break(damage_flag)
 	. = ..()
 	if(.)
 		eject()
@@ -327,9 +327,9 @@
 
 /obj/machinery/power/rad_collector/bullet_act(obj/projectile/P)
 	if(istype(P, /obj/projectile/energy/nuclear_particle))
-		rad_act(P.irradiate * P.damage) // equivalent of a 2000 strength rad pulse for each particle
-		P.damage = 0
-	..()
+		rad_act(P.irradiate * P.damage, collectable_radiation = TRUE) // equivalent of a 2000 strength rad pulse for each particle
+		P.nodamage = TRUE
+	return ..()
 
 #undef RAD_COLLECTOR_EFFICIENCY
 #undef RAD_COLLECTOR_COEFFICIENT

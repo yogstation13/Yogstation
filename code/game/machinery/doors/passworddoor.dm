@@ -16,6 +16,55 @@
 /obj/machinery/door/password/voice
 	voice_activated = TRUE
 
+/obj/machinery/door/password/floppy_disk
+	desc = "This door only opens when provided with a decrypted floppy drive."
+	var/id
+
+/obj/machinery/door/password/floppy_disk/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/disk/puzzle))
+		var/obj/item/disk/puzzle/P = I
+		if(P.id == id)
+			if(P.decrypted)
+				open()
+				to_chat(user, span_notice("You insert [P]."))
+				qdel(P)
+			else
+				to_chat(user, span_warning("This disk doesn't seem to have been decrypted!"))
+		else
+			to_chat(user, span_warning("This disk doesn't belong to this door!"))
+
+/obj/machinery/door/password/floppy_disk/try_to_activate_door(mob/user)
+	add_fingerprint(user)
+	if(operating)
+		return
+	if(density)
+		do_animate("deny")
+
+/obj/machinery/door/password/button_puzzle
+	desc = "This door has no obvious way to be opened."
+	var/id
+
+/obj/machinery/door/password/button_puzzle/Initialize(mapload)
+	. = ..()
+	for(var/datum/button_puzzle_holder/H in GLOB.button_puzzles)
+		if(H.id == id)
+			H.doors += src
+	var/datum/button_puzzle_holder/H = new()
+	H.id = id
+	H.doors += src
+	GLOB.button_puzzles += H
+
+/obj/machinery/door/password/button_puzzle/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	to_chat(user, span_warning("You're not sure how to open this door! Maybe look around?"))
+
+/obj/machinery/door/password/button_puzzle/try_to_activate_door(mob/user)
+	add_fingerprint(user)
+	if(operating)
+		return
+	if(density)
+		do_animate("deny")
 
 /obj/machinery/door/password/Initialize(mapload)
 	. = ..()
@@ -25,6 +74,8 @@
 /obj/machinery/door/password/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
 	. = ..()
 	if(!density || !voice_activated || radio_freq)
+		return
+	if(!ishuman(speaker))
 		return
 	if(findtext(raw_message,password))
 		open()

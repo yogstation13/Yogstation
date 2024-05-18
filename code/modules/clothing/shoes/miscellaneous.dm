@@ -1,10 +1,6 @@
 /obj/item/clothing/shoes/proc/step_action() //this was made to rewrite clown shoes squeaking
 	SEND_SIGNAL(src, COMSIG_SHOES_STEP_ACTION)
 
-/obj/item/clothing/shoes/sneakers/mime
-	name = "mime shoes"
-	icon_state = "mime"
-
 /obj/item/clothing/shoes/combat //basic syndicate combat boots for nuke ops and mob corpses
 	name = "combat boots"
 	desc = "High speed, low drag combat boots."
@@ -280,41 +276,62 @@
 /obj/item/clothing/shoes/wheelys
 	name = "Wheely-Heels"
 	desc = "Uses patented retractable wheel technology. Never sacrifice speed for style - not that this provides much of either." //Thanks Fel
-	icon_state = "wheelys"
-	item_state = "wheelys"
+	item_state = "sneakers_back"
+	icon_state = "sneakers"
+	greyscale_colors = "#545454#ffffff"
+	greyscale_config = /datum/greyscale_config/sneakers_wheelys
+	greyscale_config_inhand_left = /datum/greyscale_config/sneakers_inhand_left
+	greyscale_config_inhand_right = /datum/greyscale_config/sneakers_inhand_right
+	worn_icon = 'icons/mob/large-worn-icons/64x64/feet.dmi'
+	worn_icon_state = "wheelys"
+	worn_x_dimension = 64
+	worn_y_dimension = 64
+	clothing_flags = LARGE_WORN_ICON
 	actions_types = list(/datum/action/item_action/wheelys)
-	var/wheelToggle = FALSE //False means wheels are not popped out
-	var/obj/vehicle/ridden/scooter/wheelys/W
+	///False means wheels are not popped out
+	var/wheelToggle = FALSE
+	///The vehicle associated with the shoes
+	var/obj/vehicle/ridden/scooter/wheelys/wheels = /obj/vehicle/ridden/scooter/wheelys
 
 /obj/item/clothing/shoes/wheelys/Initialize(mapload)
 	. = ..()
-	W = new /obj/vehicle/ridden/scooter/wheelys(null)
+	AddElement(/datum/element/update_icon_updates_onmob)
+	wheels = new wheels(null)
+	wheels.link_shoes(src)
 
 /obj/item/clothing/shoes/wheelys/ui_action_click(mob/user, action)
 	if(!isliving(user))
 		return
 	if(!istype(user.get_item_by_slot(ITEM_SLOT_FEET), /obj/item/clothing/shoes/wheelys))
-		to_chat(user, span_warning("You must be wearing the wheely-heels to use them!"))
+		balloon_alert(user, "must be worn!")
 		return
-	if(!(W.is_occupant(user)))
+	if(!(wheels.is_occupant(user)))
 		wheelToggle = FALSE
 	if(wheelToggle)
-		W.unbuckle_mob(user)
+		wheels.unbuckle_mob(user)
 		wheelToggle = FALSE
 		return
-	W.forceMove(get_turf(user))
-	W.buckle_mob(user)
+	wheels.forceMove(get_turf(user))
+	wheels.buckle_mob(user)
 	wheelToggle = TRUE
 
 /obj/item/clothing/shoes/wheelys/dropped(mob/user)
 	if(wheelToggle)
-		W.unbuckle_mob(user)
+		wheels.unbuckle_mob(user)
 		wheelToggle = FALSE
-	..()
+	return ..()
+
+/obj/item/clothing/shoes/wheelys/proc/toggle_wheels(status)
+	if (status)
+		worn_icon_state = "[initial(worn_icon_state)]-on"
+	else
+		worn_icon_state = "[initial(worn_icon_state)]"
+	playsound(src, 'sound/weapons/tap.ogg', 10, TRUE)
+	update_appearance()
 
 /obj/item/clothing/shoes/wheelys/Destroy()
-	QDEL_NULL(W)
-	. = ..()
+	QDEL_NULL(wheels)
+	return ..()
 
 /obj/item/clothing/shoes/kindleKicks
 	name = "Kindle Kicks"
@@ -455,7 +472,7 @@
 	icon_state = "footwraps"
 	item_state = "footwraps"
 	xenoshoe = EITHER_STYLE // This can be worn by digitigrade or straight legs, or a hybridization thereof (one prosthetic one digitigrade). Xenoshoe variable will default to NO_DIGIT, excluding digitigrade feet.
-	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
+	mutantrace_variation = DIGITIGRADE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
 
 /obj/item/clothing/shoes/xeno_wraps/jackboots // Footwraps woven with security-grade materials, still somewhat inferior to full jackboots.
 	name = "reinforced footwraps"
@@ -513,7 +530,7 @@
 	icon_state = "footwraps_e"
 	item_state = "footwraps_e"
 	xenoshoe = YES_DIGIT
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 100)
 
 /obj/item/clothing/shoes/xeno_wraps/science
@@ -522,7 +539,7 @@
 	icon_state = "footwraps_sc"
 	item_state = "footwraps_sc"
 	xenoshoe = YES_DIGIT
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/shoes/xeno_wraps/medical
 	name = "medical footwraps"
@@ -530,7 +547,7 @@
 	icon_state = "footwraps_m"
 	item_state = "footwraps_m"
 	xenoshoe = YES_DIGIT
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/shoes/xeno_wraps/cargo
 	name = "cargo footwraps"
@@ -538,7 +555,7 @@
 	icon_state = "footwraps_ca"
 	item_state = "footwraps_ca"
 	xenoshoe = YES_DIGIT
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /datum/action/item_action/dash
 	name = "Dash"
@@ -615,7 +632,7 @@
 	name = "fashionable shoes"
 	desc = "Expensive-looking designer sneakers. Loud, ostentatious, agressively attractive, you detest the idea of taking them off. The elaborate design on the sole could probably give you some decent traction."
 	icon = 'icons/obj/clothing/shoes.dmi'
-	mob_overlay_icon = 'icons/mob/clothing/feet/feet.dmi'
+	worn_icon = 'icons/mob/clothing/feet/feet.dmi'
 	icon_state = "dripshoes"
 	item_state = "dripshoes"
 	clothing_flags = NOSLIP_ICE | NOSLIP

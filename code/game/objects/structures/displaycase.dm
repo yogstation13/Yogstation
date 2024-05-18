@@ -69,7 +69,8 @@
 			trigger_alarm()
 	qdel(src)
 
-/obj/structure/displaycase/obj_break(damage_flag)
+/obj/structure/displaycase/atom_break(damage_flag)
+	. = ..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		density = FALSE
 		broken = 1
@@ -100,21 +101,21 @@
 		I.Blend(S,ICON_UNDERLAY,8,8)
 	icon = I
 
-/obj/structure/displaycase/attackby(obj/item/W, mob/user, params)
+/obj/structure/displaycase/attackby(obj/item/W, mob/living/user, params)
 	if(W.GetID() && !broken && openable)
 		if(allowed(user))
 			to_chat(user,  span_notice("You [open ? "close":"open"] [src]."))
 			toggle_lock(user)
 		else
 			to_chat(user,  span_alert("Access denied."))
-	else if(W.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && !broken)
-		if(obj_integrity < max_integrity)
+	else if(W.tool_behaviour == TOOL_WELDER && !user.combat_mode && !broken)
+		if(atom_integrity < max_integrity)
 			if(!W.tool_start_check(user, amount=5))
 				return
 
 			to_chat(user, span_notice("You begin repairing [src]..."))
 			if(W.use_tool(src, user, 40, amount=5, volume=50))
-				obj_integrity = max_integrity
+				update_integrity(max_integrity)
 				update_appearance(UPDATE_ICON)
 				to_chat(user, span_notice("You repair [src]."))
 		else
@@ -149,7 +150,7 @@
 		if(do_after(user, 2 SECONDS, src))
 			G.use(2)
 			broken = 0
-			obj_integrity = max_integrity
+			update_integrity(max_integrity)
 			update_appearance(UPDATE_ICON)
 	else
 		return ..()
@@ -161,7 +162,7 @@
 /obj/structure/displaycase/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/structure/displaycase/attack_hand(mob/user)
+/obj/structure/displaycase/attack_hand(mob/living/user, modifiers)
 	. = ..()
 	if(.)
 		return
@@ -177,7 +178,7 @@
 	    //prevents remote "kicks" with TK
 		if (!Adjacent(user))
 			return
-		if (user.a_intent == INTENT_HELP)
+		if (!user.combat_mode)
 			user.examinate(src)
 			return
 		user.visible_message(span_danger("[user] kicks the display case."), null, null, COMBAT_MESSAGE_RANGE)
@@ -276,11 +277,11 @@
 	GLOB.trophy_cases -= src
 	return ..()
 
-/obj/structure/displaycase/trophy/attackby(obj/item/W, mob/user, params)
+/obj/structure/displaycase/trophy/attackby(obj/item/W, mob/living/user, params)
 
 	if(!user.Adjacent(src)) //no TK museology
 		return
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return ..()
 
 	if(user.is_holding_item_of_type(/obj/item/key/displaycase))

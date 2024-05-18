@@ -223,7 +223,7 @@
 /obj/item/clothing/under/rank/det/yogs
 	name = "black detective suit"
 	desc = "A suit often worn by those detective types. Now in black!"
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/uniform/uniform.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/uniform/uniform.dmi'
 	icon = 'yogstation/icons/obj/clothing/uniforms.dmi'
 	icon_state = "black_detective"
 	item_state = "black_detective"
@@ -565,4 +565,12 @@
 	desc = "Zip zap zoobity bap!"
 	icon_state = "cosby"
 	item_state = "cosby"
+	can_adjust = 0
+
+/obj/item/clothing/under/yogs/hawaiian_skirt
+	name = "hawaiian skirt"
+	desc = "A traditional hawaiian skirt, often called a pa'u."
+	icon_state = "hawaiian_skirt"
+	item_state = "hawaiian_skirt"
+	fitted = FEMALE_UNIFORM_TOP //no hole in the skirt
 	can_adjust = 0

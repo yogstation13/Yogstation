@@ -65,7 +65,7 @@
 
 	multiplier = S.multiplier
 	max_integrity *= S.integmultiplier
-	obj_integrity = max_integrity
+	update_integrity(max_integrity)
 	panelcolor = S.panelcolor
 	glass_type = S.glass_type
 
@@ -89,7 +89,7 @@
 			playsound(loc, 'sound/items/welder.ogg', 100, 1)
 
 
-/obj/machinery/power/solar/obj_break(damage_flag)
+/obj/machinery/power/solar/atom_break(damage_flag)
 	. = ..()
 	if(.)
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, TRUE)
@@ -443,7 +443,7 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/power/solar_control/attackby(obj/item/I, mob/user, params)
+/obj/machinery/power/solar_control/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		if(I.use_tool(src, user, 20, volume=50))
 			if (src.stat & BROKEN)
@@ -469,7 +469,7 @@
 				A.icon_state = "4"
 				A.anchored = TRUE
 				qdel(src)
-	else if(user.a_intent != INTENT_HARM && !(I.item_flags & NOBLUDGEON))
+	else if(!user.combat_mode && !(I.item_flags & NOBLUDGEON))
 		attack_hand(user)
 	else
 		return ..()
@@ -484,7 +484,7 @@
 		if(BURN)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 
-/obj/machinery/power/solar_control/obj_break(damage_flag)
+/obj/machinery/power/solar_control/atom_break(damage_flag)
 	. = ..()
 	if(.)
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, TRUE)

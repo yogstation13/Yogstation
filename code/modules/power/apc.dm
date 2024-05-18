@@ -294,7 +294,7 @@
 	if(integration_cog && is_servant_of_ratvar(user))
 		. += span_brass("There is an integration cog installed!")
 
-	. += span_notice("Alt-Click the APC to [ locked ? "unlock" : "lock"] the interface.")
+	. += span_notice("Right-Click the APC to [ locked ? "unlock" : "lock"] the interface.")
 
 	if(issilicon(user))
 		. += span_notice("Ctrl-Click the APC to switch the breaker [ operating ? "off" : "on"].")
@@ -709,7 +709,7 @@
 			to_chat(user, span_warning("[src] has both electronics and a cell."))
 			return
 	else if (istype(W, /obj/item/wallframe/apc) && opened)
-		if (!(stat & BROKEN || opened==APC_COVER_REMOVED || obj_integrity < max_integrity)) // There is nothing to repair
+		if (!(stat & BROKEN || opened==APC_COVER_REMOVED || atom_integrity < max_integrity)) // There is nothing to repair
 			to_chat(user, span_warning("You found no reason for repairing this APC"))
 			return
 		if (!(stat & BROKEN) && opened==APC_COVER_REMOVED) // Cover is the only thing broken, we do not need to remove elctronicks to replace cover
@@ -730,7 +730,7 @@
 			to_chat(user, span_notice("You replace the damaged APC frame with a new one."))
 			qdel(W)
 			stat &= ~BROKEN
-			obj_integrity = max_integrity
+			update_integrity(max_integrity)
 			if (opened==APC_COVER_REMOVED)
 				opened = APC_COVER_OPENED
 			update_appearance()
@@ -769,12 +769,12 @@
 		return ..()
 
 /obj/machinery/power/apc/AltClick(mob/user)
-	..()
+	. = ..()
 	if(!user.canUseTopic(src, !issilicon(user)) || !isturf(loc))
 		return
-	else
-		togglelock(user)
-
+	if(ethereal_act(user))
+		return
+	togglelock(user)
 
 /obj/machinery/power/apc/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	if(the_rcd.upgrade & RCD_UPGRADE_SIMPLE_CIRCUITS)
@@ -860,13 +860,13 @@
 	last_light_switch = world.time
 	set_nightshift(!nightshift_lights)
 
-/obj/machinery/power/apc/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
+/obj/machinery/power/apc/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
 	if(damage_flag == MELEE && damage_amount < 10 && (!(stat & BROKEN) || malfai))
 		return 0
 	. = ..()
 
 
-/obj/machinery/power/apc/obj_break(damage_flag)
+/obj/machinery/power/apc/atom_break(damage_flag)
 	. = ..()
 	if(.)
 		set_broken()
@@ -903,11 +903,7 @@
 
 // attack with hand - remove cell (if cover open) or interact with the APC
 
-/obj/machinery/power/apc/attack_hand(mob/user)	
-	if(isethereal(user) && user.a_intent == INTENT_GRAB)
-		var/mob/living/glowbro = user
-		if(ethereal_act(glowbro))
-			return
+/obj/machinery/power/apc/attack_hand(mob/living/user, modifiers)
 	. = ..()
 	if(.)
 		return
@@ -922,6 +918,10 @@
 		return
 	if((stat & MAINT) && !opened) //no board; no interface
 		return
+
+/obj/machinery/power/apc/attack_hand_secondary(mob/living/user, modifiers)
+	togglelock(user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/power/apc/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -1127,6 +1127,18 @@
 	if(!integration_cog)
 		return FALSE
 	_try_interact(user)
+
+/obj/machinery/power/apc/attack_ai(mob/user)
+	if(!isAI(user))
+		return ..()
+	
+	var/mob/living/silicon/ai/AI = user
+	if(AI.has_subcontroller_connection(get_area(src)))
+		return ..()
+
+	to_chat(AI, span_warning("No connection to subcontroller detected. Polling APC..."))
+	if(do_after(AI, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
+		return ..()
 
 /obj/machinery/power/apc/proc/toggle_breaker(mob/user)
 	if(!is_operational() || failure_timer)
@@ -1486,7 +1498,7 @@
 	if(malfai && operating)
 		malfai.malf_picker.processing_time = clamp(malfai.malf_picker.processing_time - 10,0,1000)
 	operating = FALSE
-	obj_break()
+	atom_break()
 	if(occupier)
 		malfvacate(1)
 	update()

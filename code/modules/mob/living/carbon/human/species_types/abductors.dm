@@ -2,7 +2,7 @@
 	name = "Abductor"
 	id = "abductor"
 	say_mod = "gibbers"
-	sexes = FALSE
+	possible_genders = list(PLURAL)
 	species_traits = list(NOBLOOD,NOEYESPRITES)
 	inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NOGUNS,TRAIT_NOHUNGER,TRAIT_NOBREATH,TRAIT_RADIMMUNE,TRAIT_GENELESS)
 	mutanttongue = /obj/item/organ/tongue/abductor
@@ -17,3 +17,6 @@
 	. = ..()
 	var/datum/atom_hud/abductor_hud = GLOB.huds[DATA_HUD_ABDUCTOR]
 	abductor_hud.hide_from(C)
+
+/datum/species/abductor/get_butt_sprite()
+	return BUTT_SPRITE_GREY

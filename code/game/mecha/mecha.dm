@@ -28,6 +28,7 @@
 	light_range = 8
 	light_on = FALSE
 	flags_1 = HEAR_1
+	demolition_mod = 3 // mech punch go brr
 	var/ruin_mecha = FALSE //if the mecha starts on a ruin, don't automatically give it a tracking beacon to prevent metagaming.
 	var/can_move = 0 //time of next allowed movement
 	var/mob/living/carbon/occupant = null
@@ -170,7 +171,16 @@
 	diag_hud_set_mechhealth()
 	diag_hud_set_mechcell()
 	diag_hud_set_mechstat()
+	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
 
+/// Special light eater handling
+/obj/mecha/proc/on_light_eater(obj/vehicle/sealed/source, datum/light_eater)
+	SIGNAL_HANDLER
+	visible_message(span_danger("[src]'s lights burn out!"))
+	set_light_on(FALSE)
+	lights_action.Remove(occupant)
+	return COMPONENT_BLOCK_LIGHT_EATER
+	
 /obj/mecha/update_icon_state()
 	. = ..()
 	if (silicon_pilot && silicon_icon_state)
@@ -301,18 +311,6 @@
 
 /obj/mecha/examine(mob/user)
 	. = ..()
-	var/integrity = obj_integrity*100/max_integrity
-	switch(integrity)
-		if(85 to 100)
-			. += "It's fully intact."
-		if(65 to 85)
-			. += "It's slightly damaged."
-		if(45 to 65)
-			. += "It's badly damaged."
-		if(25 to 45)
-			. += "It's heavily damaged."
-		else
-			. += "It's falling apart."
 	var/hide_weapon = locate(/obj/item/mecha_parts/concealed_weapon_bay) in contents
 	var/hidden_weapon = hide_weapon ? (locate(/obj/item/mecha_parts/mecha_equipment/weapon) in equipment) : null
 	var/list/visible_equipment = equipment - hidden_weapon
@@ -413,7 +411,7 @@
 				else
 					occupant.throw_alert("charge", /atom/movable/screen/alert/emptycell)
 
-		var/integrity = obj_integrity/max_integrity*100
+		var/integrity = atom_integrity/max_integrity*100
 		switch(integrity)
 			if(30 to 45)
 				occupant.throw_alert("mech damage", /atom/movable/screen/alert/low_mech_integrity, 1)
@@ -515,16 +513,17 @@
 
 	var/mob/living/L = user
 	if(!Adjacent(target))
+		if(!synth_check(user, SYNTH_RESTRICTED_WEAPON))
+			return
 		if(selected && selected.is_ranged())
 			if(HAS_TRAIT(L, TRAIT_PACIFISM) && selected.harmful)
 				to_chat(user, span_warning("You don't want to harm other living beings!"))
 				return
-			if(HAS_TRAIT(L, TRAIT_NO_STUN_WEAPONS) && !selected.harmful)
-				to_chat(user, span_warning("You cannot use non-lethal weapons!"))
-				return
 			if(selected.action(target, user, params))
 				selected.start_cooldown()
 	else if(selected && selected.is_melee())
+		if(!synth_check(user, SYNTH_RESTRICTED_WEAPON))
+			return
 		if(isliving(target) && selected.harmful && HAS_TRAIT(L, TRAIT_PACIFISM))
 			to_chat(user, span_warning("You don't want to harm other living beings!"))
 			return
@@ -548,7 +547,7 @@
 		return
 	if(equipment_disabled)
 		return
-	target.mech_melee_attack(src, TRUE)
+	target.mech_melee_attack(src, force, TRUE)
 	melee_can_hit = FALSE
 	spawn(melee_cooldown)
 		melee_can_hit = TRUE
@@ -708,7 +707,7 @@
 		if(bumpsmash && occupant) //Need a pilot to push the PUNCH button.
 			if(!equipment_disabled)
 				if(nextsmash < world.time)
-					obstacle.mech_melee_attack(src, FALSE)	//Non-equipment melee attack
+					obstacle.mech_melee_attack(src, force, FALSE)	//Non-equipment melee attack
 					nextsmash = world.time + smashcooldown
 					if(!obstacle || obstacle.CanPass(src,newloc))
 						step(src,dir)
@@ -733,7 +732,7 @@
 	if(!islist(possible_int_damage) || !length(possible_int_damage))
 		return
 	if(prob(20))
-		if(ignore_threshold || obj_integrity*100/max_integrity < internal_damage_threshold)
+		if(ignore_threshold || atom_integrity*100/max_integrity < internal_damage_threshold)
 			for(var/T in possible_int_damage)
 				if(internal_damage & T)
 					possible_int_damage -= T
@@ -741,7 +740,7 @@
 			if(int_dam_flag)
 				setInternalDamage(int_dam_flag)
 	if(prob(5))
-		if(ignore_threshold || obj_integrity*100/max_integrity < internal_damage_threshold)
+		if(ignore_threshold || atom_integrity*100/max_integrity < internal_damage_threshold)
 			var/obj/item/mecha_parts/mecha_equipment/ME = pick(equipment)
 			if(ME)
 				qdel(ME)
@@ -876,6 +875,7 @@
 	to_chat(AI, AI.can_dominate_mechs ? span_announce("Takeover of [name] complete! You are now loaded onto the onboard computer. Do not attempt to leave the station sector!") :\
 		span_notice("You have been uploaded to a mech's onboard computer."))
 	to_chat(AI, "<span class='reallybig boldnotice'>Use Middle-Mouse to activate mech functions and equipment. Click normally for AI interactions.</span>")
+	register_occupant(AI)
 	if(interaction == AI_TRANS_FROM_CARD)
 		GrantActions(AI, FALSE) //No eject/return to core action for AI uploaded by card
 	else
@@ -891,6 +891,7 @@
 		occupant = pilot_mob
 		pilot_mob.mecha = src
 		pilot_mob.forceMove(src)
+		register_occupant(pilot_mob)
 		GrantActions(pilot_mob)//needed for checks, and incase a badmin puts somebody in the mob
 
 /obj/mecha/proc/aimob_exit_mech(mob/living/simple_animal/hostile/syndicate/mecha_pilot/pilot_mob)
@@ -900,6 +901,7 @@
 		pilot_mob.mecha = null
 	icon_state = "[initial(icon_state)]-open"
 	pilot_mob.forceMove(get_turf(src))
+	register_occupant(pilot_mob)
 	RemoveActions(pilot_mob)
 
 
@@ -973,7 +975,7 @@
 	visible_message("[user] starts to climb into [name].")
 
 	if(do_after(user, enter_delay, src))
-		if(obj_integrity <= 0)
+		if(atom_integrity <= 0)
 			to_chat(user, span_warning("You cannot get in the [name], it has been destroyed!"))
 		else if(occupant)
 			to_chat(user, span_danger("[occupant] was faster! Try better next time, loser."))
@@ -987,6 +989,16 @@
 		to_chat(user, span_warning("You stop entering the exosuit!"))
 	return
 
+/obj/mecha/proc/register_occupant(mob/living/new_occupant)
+	RegisterSignal(new_occupant, COMSIG_MOVABLE_KEYBIND_FACE_DIR, PROC_REF(on_turn), TRUE)
+
+/obj/mecha/proc/unregister_occupant(mob/living/new_occupant)
+	UnregisterSignal(new_occupant, COMSIG_MOVABLE_KEYBIND_FACE_DIR)
+
+/obj/mecha/proc/on_turn()
+	SIGNAL_HANDLER
+	return COMSIG_IGNORE_MOVEMENT_LOCK
+
 /obj/mecha/proc/moved_inside(mob/living/carbon/human/H)
 	if(H && H.client && (H in range(1)))
 		occupant = H
@@ -999,6 +1011,7 @@
 		icon_state = initial(icon_state)
 		setDir(dir_in)
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
+		register_occupant(H)
 		if(!internal_damage)
 			SEND_SOUND(occupant, sound('sound/mecha/nominal.ogg',volume=50))
 		return 1
@@ -1054,6 +1067,7 @@
 	icon_state = initial(icon_state)
 	update_appearance(UPDATE_ICON)
 	setDir(dir_in)
+	register_occupant(mmi_as_oc)
 	log_message("[mmi_as_oc] moved in as pilot.", LOG_MECHA)
 	if(istype(mmi_as_oc, /obj/item/mmi/posibrain))											//yogs start reminder to posibrain to not be shitlers
 		to_chat(brainmob, "<b>As a synthetic intelligence, you answer to all crewmembers and the AI.\n\
@@ -1110,14 +1124,17 @@
 	if(ishuman(occupant))
 		mob_container = occupant
 		RemoveActions(occupant, human_occupant=1)
+		unregister_occupant(occupant)
 	else if(isbrain(occupant))
 		var/mob/living/brain/brain = occupant
 		RemoveActions(brain)
+		unregister_occupant(occupant)
 		mob_container = brain.container
 	else if(isAI(occupant))
 		var/mob/living/silicon/ai/AI = occupant
 		if(forced)//This should only happen if there are multiple AIs in a round, and at least one is Malf.
 			RemoveActions(occupant)
+			unregister_occupant(occupant)
 			occupant.gib()  //If one Malf decides to steal a mech from another AI (even other Malfs!), they are destroyed, as they have nowhere to go when replaced.
 			occupant = null
 			silicon_pilot = FALSE
@@ -1127,6 +1144,7 @@
 			AI.controlled_mech = null
 			AI.remote_control = null
 			RemoveActions(occupant, 1)
+			unregister_occupant(occupant)
 			mob_container = AI
 			newloc = null
 			if(GLOB.primary_data_core)
