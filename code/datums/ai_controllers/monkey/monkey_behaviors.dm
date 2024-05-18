@@ -190,7 +190,7 @@
 
 	living_pawn.face_atom(target)
 
-	living_pawn.a_intent = INTENT_HARM
+	living_pawn.set_combat_mode(TRUE)
 
 	if(isnull(controller.blackboard[BB_MONKEY_GUN_WORKED]))
 		controller.blackboard[BB_MONKEY_GUN_WORKED] = TRUE

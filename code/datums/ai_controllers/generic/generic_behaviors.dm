@@ -103,7 +103,7 @@
 		finish_action(controller, FALSE)
 		return
 
-	pawn.a_intent = INTENT_HELP
+	pawn.set_combat_mode(FALSE)
 	if(held_item)
 		held_item.melee_attack_chain(pawn, target)
 	else

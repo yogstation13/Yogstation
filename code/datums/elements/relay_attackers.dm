@@ -38,7 +38,7 @@
 
 /datum/element/relay_attackers/proc/on_attack_generic(atom/target, mob/living/attacker, list/modifiers)
 	SIGNAL_HANDLER
-	if(attacker.a_intent == INTENT_HARM)
+	if(attacker.combat_mode)
 		relay_attacker(target, attacker)
 
 /datum/element/relay_attackers/proc/on_attack_npc(atom/target, mob/living/attacker)

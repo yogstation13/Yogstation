@@ -108,3 +108,4 @@
 	item_state = "waiter"
 	can_adjust = FALSE
 	mutantrace_variation = DIGITIGRADE_VARIATION
+	supports_variations_flags = CLOTHING_MONKEY_VARIATION

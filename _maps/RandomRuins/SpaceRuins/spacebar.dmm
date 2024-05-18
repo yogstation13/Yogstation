@@ -1096,10 +1096,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/spacebar)
-"NQ" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall,
-/area/ruin/space/has_grav/powered/spacebar)
 "Oo" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -2419,7 +2415,7 @@ FB
 FB
 Dz
 FB
-NQ
+FB
 ZN
 LN
 sM

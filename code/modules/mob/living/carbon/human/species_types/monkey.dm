@@ -30,7 +30,6 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | ERT_SPAWN | SLIME_EXTRACT
 	liked_food = MEAT | FRUIT
 	disliked_food = CLOTH
-	sexes = FALSE
 	species_language_holder = /datum/language_holder/monkey
 
 	bodypart_overrides = list(
@@ -131,7 +130,7 @@
 		return TRUE
 	return ..()
 
-/datum/species/monkey/get_scream_sound(mob/living/carbon/human/monkey)
+/datum/species/monkey/get_scream_sound(mob/living/carbon/human/species/monkey)
 	return pick(
 		'sound/creatures/monkey/monkey_screech_1.ogg',
 		'sound/creatures/monkey/monkey_screech_2.ogg',
@@ -244,7 +243,7 @@
 	if(IS_DEAD_OR_INCAP(owner) || !isliving(crossed))
 		return
 	var/mob/living/in_the_way_mob = crossed
-	if(iscarbon(in_the_way_mob) && !in_the_way_mob.a_intent == INTENT_HELP)
+	if(iscarbon(in_the_way_mob) && !in_the_way_mob.combat_mode)
 		return
 	if(in_the_way_mob.pass_flags & PASSTABLE)
 		return

@@ -703,10 +703,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
-"zc" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shuttle/abandoned)
 "zd" = (
 /obj/structure/tank_dispenser/oxygen{
 	layer = 2.7;
@@ -1819,7 +1815,7 @@ EI
 (15,1,1) = {"
 EI
 EI
-zc
+EI
 EI
 EI
 zR
