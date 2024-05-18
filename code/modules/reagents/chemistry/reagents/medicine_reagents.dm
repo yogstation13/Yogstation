@@ -444,6 +444,9 @@
 		if(R != src)
 			M.reagents.remove_reagent(R.type,1)
 	..()
+/datum/reagent/medicine/charcoal/reaction_mob(mob/living/M, methods=TOUCH)
+	if(methods & INGEST)
+		to_chat(M, span_notice("You feel a bit queasy, you shouldn't have too much of this"))
 
 /datum/reagent/medicine/system_cleaner
 	name = "System Cleaner"
