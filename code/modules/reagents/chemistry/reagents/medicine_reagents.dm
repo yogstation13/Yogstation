@@ -437,17 +437,11 @@
 	taste_description = "ash"
 
 /datum/reagent/medicine/charcoal/on_mob_life(mob/living/carbon/M)
-	M.adjust_disgust(20)
-	M.adjustToxLoss(-2*REM, 0)
+	M.adjustToxLoss(-3.5*REM, 0)
 	. = 1
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
-			M.reagents.remove_reagent(R.type,1)
-	..()
-/datum/reagent/medicine/charcoal/reaction_mob(mob/living/M, methods=TOUCH)
-	if(methods & INGEST)
-		to_chat(M, span_notice("You feel a bit queasy, you shouldn't have too much of this"))
-	return ..()
+			M.reagents.remove_reagent(R.type,0.5)
 
 /datum/reagent/medicine/system_cleaner
 	name = "System Cleaner"
@@ -536,7 +530,7 @@
 		if(R != src)
 			M.reagents.remove_reagent(R.type,2.5)
 	if(M.health > 20)
-		M.adjustToxLoss(2.5*REM, 0)
+		M.adjustToxLoss(0.5*REM, 0)
 		. = 1
 	..()
 
@@ -1307,8 +1301,8 @@
 	M.adjust_jitter(-3 SECONDS)
 	M.adjust_hallucinations(-5 SECONDS)
 	if(prob(20))
-		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1*REM, 50)
-	M.adjustStaminaLoss(2.5*REM, 0)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.5*REM, 50)
+	M.adjustStaminaLoss(0.5*REM, 0)
 	M.clear_stamina_regen()
 	..()
 	return TRUE
