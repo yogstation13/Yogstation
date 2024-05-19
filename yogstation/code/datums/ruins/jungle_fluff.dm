@@ -23,7 +23,7 @@ If any of you find this, I'm so sorry. I failed you all.<BR>
 			The building you're standing in currently is the station's heavy-duty surface \
 			bunker - the safe, and secure entrance to where you'll be spending your next few hours. \
 			From here you'll find your ride to the actual station level, located at a cool 5,430 meters below sea level, \
-			one of our several Deep Insertion and Vertical Excavation Rigs make travel to and from the surface a breeze!
+			our several Deep Insertion and Vertical Excavation Rigs make travel to and from the surface a breeze!
 			
 			
 			"}
