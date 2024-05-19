@@ -19,7 +19,7 @@
 			"Gravity": true,
 			"Lava Ruins": true,
 			"Bombcap Multiplier": 2.5,
-			"Baseturf": "/turf/open/lava/plasma/ice_moon",
+			"Baseturf": "/turf/open/lava/smooth/lava_land_surface",
 			"No Parallax": true
 		},
 		{
@@ -44,7 +44,6 @@
 			"Down": true,
 			"Linkage": null,
 			"Gravity": true,
-			"Bombcap Multiplier": 2.5,
 			"Baseturf": "/turf/open/openspace/icemoon/keep_below",
 			"No Parallax": true
 		},
