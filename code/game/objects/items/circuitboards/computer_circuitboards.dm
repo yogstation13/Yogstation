@@ -45,20 +45,20 @@
 	greyscale_colors = CIRCUIT_COLOR_COMMAND
 	build_path = /obj/machinery/computer/shuttle/ai_ship
 
-/obj/item/circuitboard/computer/deep_diver01
-	name = "D.I.V.E.R. 01 Control Console (Computer Board)"
+/obj/item/circuitboard/computer/divepod_a // Arrivals
+	name = "D.I.V.E.R. A Control Console (Computer Board)"
 	greyscale_colors = CIRCUIT_COLOR_COMMAND
-	build_path = /obj/machinery/computer/shuttle/deep_diver01
+	build_path = /obj/machinery/computer/shuttle/divepod_a
 
-/obj/item/circuitboard/computer/deep_diver02
-	name = "D.I.V.E.R. 02 Control Console (Computer Board)"
+/obj/item/circuitboard/computer/divepod_b // Biodome and E. Maintenance
+	name = "D.I.V.E.R. B Control Console (Computer Board)"
 	greyscale_colors = CIRCUIT_COLOR_COMMAND
-	build_path = /obj/machinery/computer/shuttle/deep_diver02
+	build_path = /obj/machinery/computer/shuttle/divepod_b
 
-/obj/item/circuitboard/computer/deep_diver03
-	name = "D.I.V.E.R. 03 Control Console (Computer Board)"
+/obj/item/circuitboard/computer/divepod_c // Mining
+	name = "D.I.V.E.R. C Control Console (Computer Board)"
 	greyscale_colors = CIRCUIT_COLOR_COMMAND
-	build_path = /obj/machinery/computer/shuttle/deep_diver03
+	build_path = /obj/machinery/computer/shuttle/divepod_c
 
 
 //obj/item/circuitboard/computer/shield

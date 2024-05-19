@@ -6,26 +6,26 @@
 	possible_destinations = "ai_station;ai_ship"
 	no_destination_swap = TRUE
 
-/obj/machinery/computer/shuttle/deep_diver01
-	name = "D.I.V.E.R. 01 control console"
+/obj/machinery/computer/shuttle/divepod_a // Arrivals
+	name = "D.I.V.E.R. A control console"
 	desc = "Used to send D.I.V.E.R. transport pods up and down."
-	circuit = /obj/item/circuitboard/computer/deep_diver01
+	circuit = /obj/item/circuitboard/computer/divepod_a
 	shuttleId = "doretta"
 	possible_destinations = "doretta_up;doretta_down"
 	no_destination_swap = TRUE
 
-/obj/machinery/computer/shuttle/deep_diver02
-	name = "D.I.V.E.R. 02 control console"
+/obj/machinery/computer/shuttle/divepod_b // Biodome and E. Maintenance
+	name = "D.I.V.E.R. B control console"
 	desc = "Used to send D.I.V.E.R. transport pods up and down."
-	circuit = /obj/item/circuitboard/computer/deep_diver02
+	circuit = /obj/item/circuitboard/computer/divepod_b
 	shuttleId = "molly"
 	possible_destinations = "molly_up;molly_down"
 	no_destination_swap = TRUE
 
-/obj/machinery/computer/shuttle/deep_diver03
-	name = "D.I.V.E.R. 03 control console"
+/obj/machinery/computer/shuttle/divepod_c // Mining
+	name = "D.I.V.E.R. C control console"
 	desc = "Used to send D.I.V.E.R. transport pods up and down."
-	circuit = /obj/item/circuitboard/computer/deep_diver03
+	circuit = /obj/item/circuitboard/computer/divepod_c
 	shuttleId = "betsy"
 	possible_destinations = "betsy_up;betsy_down"
 	no_destination_swap = TRUE

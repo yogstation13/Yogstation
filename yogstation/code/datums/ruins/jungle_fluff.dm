@@ -13,7 +13,7 @@ If any of you find this, I'm so sorry. I failed you all.<BR>
 	infolang = /datum/language/sylvan //90% sure this is broken anyways but whatevs
 
 /obj/item/paper/pamphlet/undergruv_intro
-	name = "Undergruv installation welcome brochure"
+	name = "Undergruv station welcome brochure"
 	icon_state = "pamphlet_cave"
 	info = {"<h1>Welcome to the Undergruv installation!</h1><br>\
 			<b>After 6 years of excavation and seismic surveying, Nanotrasen welcomes you \
