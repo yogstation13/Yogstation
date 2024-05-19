@@ -102,6 +102,8 @@
 // Chasms for Ice moon, with planetary atmos and glow
 /turf/open/chasm/icemoon
 	icon = 'icons/turf/floors/icechasms.dmi'
+	icon_state = "icechasms-255"
+	base_icon_state = "icechasms"
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/chasm/icemoon
@@ -112,6 +114,8 @@
 // Chasms for the jungle, with planetary atmos and a different icon
 /turf/open/chasm/jungle
 	icon = 'icons/turf/floors/junglechasm.dmi'
+	icon_state = "junglechasm-255"
+	base_icon_state = "junglechasm"
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/chasm/jungle
