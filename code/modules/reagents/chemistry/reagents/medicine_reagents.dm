@@ -529,7 +529,7 @@
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
 			M.reagents.remove_reagent(R.type,5)
-	if(M.reagents.remove_reagent == TRUE)
+	if(M.reagents.remove_reagent/R == TRUE)
 		M.adjustToxLoss(2.5*REM, 0)
 		. = 1
 	..()
