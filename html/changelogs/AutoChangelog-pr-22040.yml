@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Prevents admin only evac shuttles from getting discounts, making them appear on the console"
