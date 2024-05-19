@@ -1295,7 +1295,7 @@
 	color = "#27870a"
 	overdose_threshold = 20
 	metabolization_rate = 0.4 * REAGENTS_METABOLISM
-	var/list/purge_types = list(typecacheof(list(/datum/reagent/drug, /datum/reagent/toxin))) //add more to this list as needed
+	var/static/list/purge_types = list(typecacheof(list(/datum/reagent/drug, /datum/reagent/toxin))) //add more to this list as needed
 
 /datum/reagent/medicine/naloxone/on_mob_life(mob/living/carbon/M)
 	for(var/datum/reagent/R in M.reagents.reagent_list)
