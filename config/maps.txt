@@ -41,7 +41,6 @@ map donutstation
 endmap
 
 map undergruvstation
-	minplayers 9
 	votable
 endmap
 

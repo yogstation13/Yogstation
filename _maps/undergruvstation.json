@@ -12,29 +12,44 @@
 	},
 	"traits": [
 		{
-			"Up": true,
+			//Mine level
 			"Linkage": null,
-			"Weather_Snowstorm": true,
+			"Weather_Lavaflood": true,
 			"Mining": true,
 			"Gravity": true,
-			"Ice Ruins Underground": true,
+			"Lava Ruins": true,
 			"Bombcap Multiplier": 2.5,
 			"Baseturf": "/turf/open/lava/plasma/ice_moon",
 			"No Parallax": true
 		},
 		{
-			"Down": true,
+			//Deck III - Mostly rock
 			"Up": true,	
 			"Linkage": null,
-			"Weather_Snowstorm": true,
-			"Mining": true,
 			"Gravity": true,
-			"Bombcap Multiplier": 2.5,
-			"Ice Ruins": true,
 			"Baseturf": "/turf/open/openspace/icemoon/keep_below",
 			"No Parallax": true
 		},
 		{
+			//Deck II - Mostly stuff
+			"Down": true,
+			"Up": true,
+			"Linkage": null,
+			"Gravity": true,
+			"Baseturf": "/turf/open/lava/plasma/ice_moon",
+			"No Parallax": true
+		},
+		{
+			//Deck I - Main stuff
+			"Down": true,
+			"Linkage": null,
+			"Gravity": true,
+			"Bombcap Multiplier": 2.5,
+			"Baseturf": "/turf/open/openspace/icemoon/keep_below",
+			"No Parallax": true
+		},
+		{
+			//Surface
 			"Linkage": "Self",
 			"Gravity": true,
 			"Baseturf": "/turf/open/plating/beach/sand",
