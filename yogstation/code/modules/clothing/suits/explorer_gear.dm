@@ -3,7 +3,7 @@
 	desc = "A lightly armoured suit for search and rescue in harsh environments."
 	icon_state = "recovery"
 	item_state = "recovery"
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
@@ -28,7 +28,7 @@
 	desc = "A lightly armoured hood for search and rescue in harsh environments."
 	icon_state = "recovery"
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	body_parts_covered = HEAD
 	flags_inv = HIDEHAIR|HIDEEARS // hoods don't hide your face, silly
 	flags_prot = HIDEHAIR
