@@ -442,6 +442,7 @@
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
 			M.reagents.remove_reagent(R.type,0.5)
+	return ..()
 
 /datum/reagent/medicine/system_cleaner
 	name = "System Cleaner"
