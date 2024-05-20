@@ -14,7 +14,7 @@
 	hoodtype = /obj/item/clothing/head/hooded/explorer
 	armor = list(MELEE = 25, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 50, WOUND = 10)
 	resistance_flags = FIRE_PROOF
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/head/hooded/explorer
 	name = "explorer hood"
@@ -63,8 +63,8 @@
 	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	visor_flags_inv = HIDEFACIALHAIR
 	visor_flags_cover = MASKCOVERSMOUTH
-	mutantrace_adjusted = MUTANTRACE_VARIATION 
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_adjusted = DIGITIGRADE_VARIATION 
+	mutantrace_variation = DIGITIGRADE_VARIATION
 	actions_types = list(/datum/action/item_action/adjust)
 	armor = list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 0, BIO = 50, RAD = 0, FIRE = 20, ACID = 40, WOUND = 5)
 	resistance_flags = FIRE_PROOF
@@ -136,6 +136,6 @@
 	. = ..()
 	if(isinhands)
 		return
-	var/mutable_appearance/M = mutable_appearance(mob_overlay_icon, "hostile_env_glass")
+	var/mutable_appearance/M = mutable_appearance(worn_icon, "hostile_env_glass")
 	M.appearance_flags = RESET_COLOR
 	. += M

@@ -247,6 +247,12 @@
 		set_scanline("scanning", 10)
 		return TRUE
 
+	if(ismecha(mover))
+		var/obj/mecha/mech = mover
+		if(mech.occupant != null && (mech.occupant in approved_passengers))
+			set_scanline("scanning", 10)
+			return TRUE
+
 	if(!isliving(mover)) //No stowaways
 		return FALSE
 	return FALSE

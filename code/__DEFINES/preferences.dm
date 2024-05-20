@@ -11,7 +11,7 @@
 #define MIDROUND_ANTAG				(1<<6)
 #define SOUND_INSTRUMENTS			(1<<7)
 #define SOUND_SHIP_AMBIENCE			(1<<8)
-#define SOUND_PRAYER_N_FAX				(1<<9)
+#define SOUND_PRAYER_N_FAX			(1<<9)
 #define ANNOUNCE_LOGIN				(1<<10)
 #define SOUND_ANNOUNCEMENTS			(1<<11)
 #define DISABLE_DEATHRATTLE			(1<<12)

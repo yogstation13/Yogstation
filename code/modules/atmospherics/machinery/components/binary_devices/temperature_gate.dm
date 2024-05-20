@@ -7,6 +7,7 @@
 	shift_underlay_only = FALSE
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "tgate"
+	quick_toggle = TRUE
 
 	///If the temperature of the mix before the gate is lower than this, the gas will flow (if inverted, if the temperature of the mix before the gate is higher than this)
 	var/target_temperature = T0C
@@ -18,13 +19,6 @@
 	var/inverted = FALSE
 	///Check if the gas is moving from one pipenet to the other
 	var/is_gas_flowing = FALSE
-
-/obj/machinery/atmospherics/components/binary/temperature_gate/CtrlClick(mob/user)
-	if(can_interact(user))
-		on = !on
-		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
-		update_appearance(UPDATE_ICON)
-	return ..()
 
 /obj/machinery/atmospherics/components/binary/temperature_gate/AltClick(mob/user)
 	if(can_interact(user))
@@ -95,9 +89,8 @@
 		return
 	switch(action)
 		if("power")
-			on = !on
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
-			. = TRUE
+			toggle_on()
+			return TRUE
 		if("temperature")
 			var/temperature = params["temperature"]
 			if(temperature == "max")

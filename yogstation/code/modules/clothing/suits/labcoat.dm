@@ -8,7 +8,7 @@
 	name = "mining medic's labcoat"
 	desc = "A protective labcoat for medical emergencies on off-world planets."
 	armor = list(MELEE = 25, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 50, WOUND = 10)
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon_state = "labcoat_mining"
 	item_state = "labcoat_mining"
 

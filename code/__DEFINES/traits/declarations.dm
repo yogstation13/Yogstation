@@ -73,6 +73,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_IGNOREDAMAGESLOWDOWN "ignoredamageslowdown"
 /// Makes it so the mob can use guns regardless of tool user status
 #define TRAIT_GUN_NATURAL "gunnatural"
+/// Can't hold people up with guns, for whatever reason
+#define TRAIT_NO_HOLDUP "no_holdup"
 /// Causes death-like unconsciousness
 #define TRAIT_DEATHCOMA "deathcoma"
 /// The mob has the stasis effect.

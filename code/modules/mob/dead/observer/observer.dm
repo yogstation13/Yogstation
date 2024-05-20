@@ -19,6 +19,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	light_range = 1
 	light_power = 2
 	light_on = FALSE
+	shift_to_open_context_menu = FALSE
 	lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
 	pass_flags = PASSFLOOR
 	var/can_reenter_corpse

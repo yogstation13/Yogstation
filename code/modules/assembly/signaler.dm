@@ -293,11 +293,11 @@
 	icon_state = "radio"
 	item_state = "radio"
 
-/obj/item/assembly/signaler/button/attack_self(mob/user)
+/obj/item/assembly/signaler/button/attack_self(mob/user, modifiers)
 	if(HAS_TRAIT(user, TRAIT_NOINTERACT))
 		to_chat(user, span_notice("You can't use things!"))
 		return
-	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user, modifiers) & COMPONENT_NO_INTERACT)
 		return
 	if(!user)
 		return FALSE

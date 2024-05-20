@@ -47,7 +47,7 @@
 	return FALSE
 
 /datum/martial_art/gardern_warfare/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(A.a_intent == INTENT_GRAB && A!=D && (can_use(A))) 
+	if(A.combat_mode && A!=D && (can_use(A))) 
 		if(current_combo && current_combo !=  STRANGLE_COMBO)
 			current_combo = null
 			streak = ""

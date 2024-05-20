@@ -111,6 +111,7 @@
 
 /obj/item/melee/baton/examine(mob/user)
 	. = ..()
+	. += span_notice("Left click to stun, right click to harm.")
 	if(cell)
 		. += span_notice("\The [src] is [round(cell.percent())]% charged.")
 	else
@@ -163,7 +164,7 @@
 	update_appearance(UPDATE_ICON)
 	add_fingerprint(user)
 
-/obj/item/melee/baton/attack(mob/M, mob/living/carbon/human/user)
+/obj/item/melee/baton/attack(mob/M, mob/living/carbon/human/user, params)
 	if(status && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 		user.visible_message(span_danger("[user] accidentally hits [user.p_them()]self with [src]!"), \
 							span_userdanger("You accidentally hit yourself with [src]!"))
@@ -191,7 +192,13 @@
 			A.handle_counter(L, user)
 			return
 
-	if(user.a_intent != INTENT_HARM)
+	var/list/modifiers = params2list(params)
+	if(modifiers && modifiers[RIGHT_CLICK])
+		if(status)
+			if(cooldown_check <= world.time)
+				baton_stun(M, user)
+		return ..()
+	else
 		if(status)
 			if(cooldown_check <= world.time)
 				if(baton_stun(M, user))
@@ -202,14 +209,9 @@
 		else
 			M.visible_message(span_warning("[user] has prodded [M] with [src]. Luckily it was off."), \
 							span_warning("[user] has prodded you with [src]. Luckily it was off."))
-	else
-		if(status)
-			if(cooldown_check <= world.time)
-				baton_stun(M, user)
-		..()
 
 
-/obj/item/melee/baton/proc/baton_stun(mob/living/L, mob/user)
+/obj/item/melee/baton/proc/baton_stun(mob/living/L, mob/living/user)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK)) //No message; check_shields() handles that
@@ -257,7 +259,7 @@
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/mind/M = H.mind
-		if(M && (M.assigned_role == "Assistant" || M.assigned_role == "Clown") && user.a_intent == INTENT_HARM)
+		if(M && (M.assigned_role == "Assistant" || M.assigned_role == "Clown") && user.combat_mode)
 			var/amount_given = 1
 			if(M.assigned_role == "Clown")
 				amount_given = 5

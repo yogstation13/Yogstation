@@ -40,6 +40,8 @@
 	var/max_charges = 3
 	var/charged = FALSE
 	var/always_recall = FALSE
+	///The mob to return the spear to if thrown
+	var/mob/living/carbon/returner
 
 /obj/item/kinetic_javelin/Initialize()
 	. = ..()
@@ -77,6 +79,12 @@
 		return 
 	return ..()
 
+/obj/item/kinetic_javelin/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
+	if(user.get_active_held_item() != src)
+		return SECONDARY_ATTACK_CALL_NORMAL
+	user.throw_item(target)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
 /obj/item/kinetic_javelin/examine(mob/user)
 	. = ..()
 	. += "Successfully striking an enemy with a thrown kinetic javelin increases it's charge. Missing resets charges to 0."
@@ -89,6 +97,18 @@
 		. += core.get_effect_description()
 	else 
 		. += "You can insert a core by using it on the javelin."
+
+/obj/item/kinetic_javelin/throw_at(atom/target, range, speed, mob/thrower, spin, diagonals_first, datum/callback/callback, force, quickstart)
+	. = ..()
+	if(always_recall && thrower)
+		RegisterSignal(src, COMSIG_MOVABLE_THROW_LANDED, PROC_REF(loyalty))
+		returner = thrower
+
+/obj/item/kinetic_javelin/proc/loyalty()
+	UnregisterSignal(src, COMSIG_MOVABLE_THROW_LANDED)
+	if(returner)
+		returner.put_in_hands(src)
+		returner = null
 
 /obj/item/kinetic_javelin/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!core)
@@ -106,15 +126,11 @@
 		var/turf/open/floor/plating/dirt/jungleland/JG = hit_atom
 		JG.spawn_rock()
 		remove_charge()	
-		if(always_recall && user)
-			user.put_in_active_hand(src)
 		return ..()
 
 	if(istype(hit_atom,/obj/structure/flora))
 		qdel(hit_atom)
 		remove_charge()
-		if(always_recall && user)
-			user.put_in_active_hand(src)
 		return ..()
 
 	if(lavaland_equipment_pressure_check(get_turf(hit_atom)) && user)
@@ -130,9 +146,6 @@
 	else
 		remove_charge() 
 		throwforce = unmodified_throwforce
-
-	if(always_recall && user)
-		user.put_in_active_hand(src)
 		
 	return ..()
 

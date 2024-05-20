@@ -239,12 +239,10 @@
 					// if the target has a weapon, chance to disarm them
 					if(W && prob(MONKEY_ATTACK_DISARM_PROB))
 						pickupTarget = W
-						a_intent = INTENT_DISARM
-						monkey_attack(target)
+						monkey_attack(target, TRUE)
 
 					else
-						a_intent = INTENT_HARM
-						monkey_attack(target)
+						monkey_attack(target, FALSE)
 
 					return TRUE
 
@@ -285,7 +283,6 @@
 				INVOKE_ASYNC(src, PROC_REF(walk2derpless), target.loc)
 
 				if(Adjacent(target) && isturf(target.loc))
-					a_intent = INTENT_GRAB
 					target.grabbedby(src)
 				else
 					var/turf/olddist = get_dist(src, target)
@@ -341,19 +338,21 @@
 
 	mode = MONKEY_IDLE
 	target = null
-	a_intent = INTENT_HELP
 	frustration = 0
+	set_combat_mode(FALSE)
 	walk_to(src,0)
 
-// attack using a held weapon otherwise bite the enemy, then if we are angry there is a chance we might calm down a little
-/mob/living/carbon/monkey/proc/monkey_attack(mob/living/L)
+// attack using a held weapon otherwise bite/disarm the enemy, then if we are angry there is a chance we might calm down a little
+/mob/living/carbon/monkey/proc/monkey_attack(mob/living/L, disarm)
 	var/obj/item/Weapon = locate(/obj/item) in held_items
+
+	set_combat_mode(TRUE)
 
 	// attack with weapon if we have one
 	if(Weapon)
 		L.attackby(Weapon, src)
 	else
-		L.attack_paw(src)
+		L.attack_paw(src, disarm ? list(RIGHT_CLICK = TRUE) : null)
 
 	// no de-aggro
 	if(aggressive)
@@ -381,21 +380,17 @@
 	if(L != src)
 		enemies[L] += MONKEY_HATRED_AMOUNT
 
-	if(a_intent != INTENT_HARM)
+	if(!combat_mode)
 		battle_screech()
-		a_intent = INTENT_HARM
+		set_combat_mode(TRUE)
 
-/mob/living/carbon/monkey/attack_hand(mob/living/L)
-	if(L.a_intent == INTENT_HARM && prob(MONKEY_RETALIATE_HARM_PROB))
-		retaliate(L)
-	else if(L.a_intent == INTENT_DISARM && prob(MONKEY_RETALIATE_DISARM_PROB))
+/mob/living/carbon/monkey/attack_hand(mob/living/L, modifiers)
+	if(prob(MONKEY_RETALIATE_PROB))
 		retaliate(L)
 	return ..()
 
 /mob/living/carbon/monkey/attack_paw(mob/living/L)
-	if(L.a_intent == INTENT_HARM && prob(MONKEY_RETALIATE_HARM_PROB))
-		retaliate(L)
-	else if(L.a_intent == INTENT_DISARM && prob(MONKEY_RETALIATE_DISARM_PROB))
+	if(prob(MONKEY_RETALIATE_PROB))
 		retaliate(L)
 	return ..()
 
@@ -436,7 +431,6 @@
 	. = ..()
 	if(!IsDeadOrIncap() && pulledby && (mode != MONKEY_IDLE || prob(MONKEY_PULL_AGGRO_PROB))) // nuh uh you don't pull me!
 		if(Adjacent(pulledby))
-			a_intent = INTENT_DISARM
 			monkey_attack(pulledby)
 			retaliate(pulledby)
 			return TRUE

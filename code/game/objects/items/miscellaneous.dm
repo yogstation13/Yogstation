@@ -111,7 +111,7 @@
 	name = "Braveheart, the Scottish rebel - 1300's."
 
 /obj/item/storage/box/hero/scottish/PopulateContents()
-	new /obj/item/clothing/under/kilt(src)
+	new /obj/item/clothing/under/costume/kilt(src)
 	new /obj/item/claymore/weak/ceremonial(src)
 	new /obj/item/toy/crayon/spraycan(src)
 	new /obj/item/clothing/shoes/sandal(src)
