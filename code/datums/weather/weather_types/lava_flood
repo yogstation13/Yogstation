@@ -2,19 +2,19 @@
 //Similar to floor is lava except it floods anything that isn't sealed off from the outside + is designed for the caverns.
 /datum/weather/lava_flood
 	name = "lava flood"
-	desc = "A deluge of lava rises up from this cavern's porous ground, submerging any area that isn't closed off."
+	desc = "A deluge of lava rises up from this cavern's porous ground, submerging every space that isn't closed off from the outside."
 
-	telegraph_message = span_boldwarning("An eerie moan rises on the wind. Sheets of burning ash blacken the horizon. Seek shelter.")
-	telegraph_message = span_boldwarning("")
+	telegraph_message = span_boldwarning("The ground begins to break and blister. The air shimmers with heat as it rises from the cracks below. Hurry inside.")
 	telegraph_duration = //150 300
 	telegraph_overlay = //"light_ash"
 
-	weather_message = span_userdanger("<i>Smoldering clouds of scorching ash billow down around you! Get inside!</i>")
+	weather_message = span_userdanger("<i>Molten lava surges out from below and floods every inch of the cavern! Stay indoors!</i>")
 	weather_duration_lower = //300 600
 	weather_duration_upper = //600 1200
 	weather_overlay = "lava"
 
-	end_message = span_boldannounce("The shrieking wind whips away the last of the ash and falls to its usual murmur. It should be safe to go outside now.")
+	//end_message = span_boldannounce("The shrieking wind whips away the last of the ash and falls to its usual murmur. It should be safe to go outside now.")
+	end_message = span_boldannounce("The lava ")
 	end_duration = //0 300
 	end_overlay = //"light_ash"
 
