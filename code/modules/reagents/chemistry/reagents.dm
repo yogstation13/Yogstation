@@ -115,7 +115,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 /// Called when this reagent is first added to a mob
 /datum/reagent/proc/on_mob_add(mob/living/L)
-    SEND_SIGNAL(L, COMSIG_MOB_ADD_REAGENT, src.type)
+    SEND_SIGNAL(L, COMSIG_MOB_ADD_REAGENT, src)
     return
 
 /// Called when this reagent is removed while inside a mob
