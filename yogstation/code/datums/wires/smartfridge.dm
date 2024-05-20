@@ -28,9 +28,10 @@
 /datum/wires/smartfridge/on_pulse(wire)
 	var/obj/machinery/smartfridge/V = holder
 	switch(wire)
+		/* //We could disable power here temporarily similar to APC short wires, but for now, it does nothing on pulse. -Firewolf34 (https://github.com/yogstation13/Yogstation/pull/6532)
 		if(WIRE_POWER)
-			//V.stat |= NOPOWER
-			//We could disable power here temporarily similar to APC short wires, but for now, it does nothing on pulse.
+			V.stat |= NOPOWER
+		*/
 		if(WIRE_DISABLE)
 			V.dispenser_arm = !V.dispenser_arm
 		if(WIRE_SHOCK)

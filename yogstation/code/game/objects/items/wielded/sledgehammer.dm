@@ -5,7 +5,7 @@
 	name = "sledgehammer"
 	desc = "An archaic tool used to drive nails and break down hollow walls."
 	icon = 'icons/obj/weapons/misc.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/back.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/back.dmi'
 	icon_state = "sledgehammer"
 	item_state = "sledgehammer"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'

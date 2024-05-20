@@ -49,8 +49,8 @@
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/cook
 
 	ears = /obj/item/radio/headset/headset_srv
-	uniform = /obj/item/clothing/under/rank/chef
-	uniform_skirt = /obj/item/clothing/under/rank/chef/skirt
+	uniform = /obj/item/clothing/under/rank/civilian/chef
+	uniform_skirt = /obj/item/clothing/under/rank/civilian/chef/skirt
 	suit = /obj/item/clothing/suit/toggle/chef
 	head = /obj/item/clothing/head/chefhat
 	mask = /obj/item/clothing/mask/fakemoustache/italian

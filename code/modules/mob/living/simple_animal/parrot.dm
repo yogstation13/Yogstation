@@ -55,7 +55,7 @@
 	response_disarm = "gently moves aside"
 	response_harm   = "swats"
 	stop_automated_movement = 1
-	a_intent = INTENT_HARM //parrots now start "aggressive" since only player parrots will nuzzle.
+	combat_mode = TRUE //parrots now start "aggressive" since only player parrots will nuzzle.
 	attacktext = "chomps"
 	friendly = "grooms"
 	mob_size = MOB_SIZE_SMALL
@@ -142,7 +142,7 @@
 	. = ..()
 	. += ""
 	. += "Held Item: [held_item]"
-	. += "Mode: [a_intent]"
+	. += "Combat Mode: [combat_mode ? "On" : "Off"]"
 
 /mob/living/simple_animal/parrot/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, list/message_mods = list())
 	. = ..()
@@ -262,11 +262,11 @@
  * Attack responces
  */
 //Humans, monkeys, aliens
-/mob/living/simple_animal/parrot/attack_hand(mob/living/carbon/M)
+/mob/living/simple_animal/parrot/attack_hand(mob/living/carbon/M, modifiers)
 	..()
 	if(client)
 		return
-	if(!stat && M.a_intent == INTENT_HARM)
+	if(!stat && M.combat_mode)
 
 		icon_state = icon_living //It is going to be flying regardless of whether it flees or attacks
 
@@ -281,7 +281,7 @@
 		else
 			parrot_state |= PARROT_FLEE		//Otherwise, fly like a bat out of hell!
 			drop_held_item(0)
-	if(stat != DEAD && M.a_intent == INTENT_HELP)
+	if(stat != DEAD && !M.combat_mode)
 		handle_automated_speech(1) //assured speak/emote
 	return
 
@@ -552,7 +552,7 @@
 		var/mob/living/L = parrot_interest
 		if(melee_damage_upper == 0)
 			melee_damage_upper = parrot_damage_upper
-			a_intent = INTENT_HARM
+			set_combat_mode(TRUE)
 
 		//If the mob is close enough to interact with
 		if(Adjacent(parrot_interest))
@@ -848,13 +848,9 @@
 	if(stat || !client)
 		return
 
-	if(a_intent != INTENT_HELP)
-		melee_damage_upper = 0
-		a_intent = INTENT_HELP
-	else
-		melee_damage_upper = parrot_damage_upper
-		a_intent = INTENT_HARM
-	to_chat(src, "You will now [a_intent] others.")
+	set_combat_mode(!combat_mode)
+	melee_damage_upper = combat_mode ? parrot_damage_upper : 0
+	to_chat(src, "Combat mode [combat_mode ? "enabled" : "disabled"].")
 	return
 
 /*

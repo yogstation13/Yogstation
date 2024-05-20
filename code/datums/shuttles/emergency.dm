@@ -19,6 +19,8 @@
 	. = ..()
 	if(!occupancy_limit && who_can_purchase)
 		CRASH("The [name] needs an occupancy limit!")
+	if(credit_cost == INFINITY) //INFINITY cost shuttles aren't even supposed to show up, giving them a sale will technically let people buy them, which we don't want
+		return
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_SHUTTLE_SALE) && credit_cost > 0 && prob(15))
 		var/discount_amount = round(rand(25, 80), 5)
 		name += " ([discount_amount]% Discount!)"

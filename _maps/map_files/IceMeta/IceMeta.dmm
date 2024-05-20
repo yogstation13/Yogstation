@@ -1801,8 +1801,8 @@
 /obj/item/clothing/under/rank/security/navyblue,
 /obj/item/clothing/under/rank/security/navyblue,
 /obj/item/clothing/under/rank/security/navyblue,
-/obj/item/clothing/under/rank/warden/navyblue,
-/obj/item/clothing/under/rank/head_of_security/navyblue,
+/obj/item/clothing/under/rank/security/warden/navyblue,
+/obj/item/clothing/under/rank/security/head_of_security/navyblue,
 /obj/item/clothing/head/beret/sec/navyofficer,
 /obj/item/clothing/head/beret/sec/navyofficer,
 /obj/item/clothing/head/beret/sec/navyofficer,
@@ -3768,6 +3768,27 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"bex" = (
+/obj/machinery/requests_console{
+	department = "Genetics";
+	name = "Genetics Requests Console";
+	pixel_y = 30
+	},
+/obj/item/storage/box/monkeycubes,
+/obj/item/flashlight/pen{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/item/flashlight/pen{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/structure/table/glass,
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "beG" = (
 /obj/structure/closet/crate{
 	icon_state = "crateopen"
@@ -5096,10 +5117,13 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/trimline/yellow/warning/lower,
 /obj/structure/ethernet_cable{
 	icon_state = "1-2"
 	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/engiyellow/warning/lower,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "bzI" = (
@@ -5501,7 +5525,7 @@
 /area/crew_quarters/toilet/restrooms)
 "bFK" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/rank/civilian/assistantformal,
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
 "bFO" = (
@@ -12480,7 +12504,7 @@
 /obj/machinery/airalarm{
 	pixel_y = 24
 	},
-/obj/item/clothing/under/suit_jacket/navy,
+/obj/item/clothing/under/suit/navy,
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
 "dIH" = (
@@ -13874,13 +13898,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"eeG" = (
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -26
-	},
-/turf/closed/wall/r_wall,
-/area/ai_monitored/turret_protected/aisat/foyer)
 "eeH" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -14505,7 +14522,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/trimline/yellow/warning/lower{
+/obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -21662,8 +21679,8 @@
 /obj/structure/sign/warning/securearea{
 	pixel_y = 31
 	},
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 1
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 9
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -24421,6 +24438,9 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "hgt" = (
@@ -24958,7 +24978,7 @@
 	},
 /obj/structure/table/wood,
 /obj/item/clothing/shoes/laceup,
-/obj/item/clothing/under/suit_jacket/really_black,
+/obj/item/clothing/under/suit/really_black,
 /obj/machinery/camera{
 	c_tag = "Corporate Showroom"
 	},
@@ -26244,7 +26264,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "hIZ" = (
-/obj/item/clothing/under/maid,
+/obj/item/clothing/under/costume/maid,
 /obj/item/clothing/shoes/sneakers/black,
 /obj/item/clothing/neck/petcollar,
 /obj/item/clothing/head/kitty,
@@ -29850,7 +29870,7 @@
 /obj/machinery/newscaster{
 	pixel_x = -30
 	},
-/obj/item/clothing/under/suit_jacket/red,
+/obj/item/clothing/under/suit/red,
 /obj/item/book/codex_gigas,
 /turf/open/floor/engine/cult,
 /area/library)
@@ -33057,13 +33077,13 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/effect/turf_decal/trimline/blue/filled/corner/lower{
+/mob/living/simple_animal/bot/secbot/pingsky,
+/obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
-/obj/effect/turf_decal/trimline/yellow/filled/corner/lower{
+/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower{
 	dir = 8
 	},
-/mob/living/simple_animal/bot/secbot/pingsky,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "jGH" = (
@@ -33092,12 +33112,15 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/trimline/blue/warning/lower{
-	dir = 8
-	},
 /obj/machinery/light_switch{
 	pixel_x = -26;
 	pixel_y = 26
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -34314,25 +34337,6 @@
 /obj/item/paicard,
 /turf/open/floor/wood,
 /area/library)
-"jYY" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/closet/wardrobe/genetics_white,
-/obj/item/stack/cable_coil/white,
-/obj/item/sequence_scanner,
-/obj/item/sequence_scanner,
-/obj/item/reagent_containers/glass/bottle/morphine,
-/obj/item/reagent_containers/syringe,
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Genetics Lab";
-	network = list("ss13","medbay")
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "jZd" = (
 /turf/open/floor/plasteel/grimy,
 /area/security/interrogation)
@@ -36383,6 +36387,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
 	dir = 1
 	},
+/obj/effect/landmark/start/synthetic,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/foyer)
 "kDc" = (
@@ -37848,6 +37853,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -43358,7 +43366,7 @@
 /area/hallway/primary/starboard)
 "mCk" = (
 /obj/structure/closet/secure_closet/personal,
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/rank/civilian/assistantformal,
 /obj/structure/sign/map/right{
 	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
 	icon_state = "map-right-MS";
@@ -48556,10 +48564,10 @@
 	dir = 4;
 	network = list("minisat","ss13")
 	},
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+/obj/item/kirbyplants/random,
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 9
 	},
-/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "nWG" = (
@@ -51828,7 +51836,7 @@
 /area/tcommsat/server)
 "oWc" = (
 /obj/structure/closet/secure_closet/personal,
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/rank/civilian/assistantformal,
 /obj/item/clothing/suit/hooded/wintercoat,
 /obj/item/clothing/shoes/winterboots,
 /turf/open/floor/plasteel/dark,
@@ -53333,7 +53341,10 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/trimline/yellow/filled/line/lower,
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "prJ" = (
@@ -54302,6 +54313,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
+"pGU" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/closet/wardrobe/genetics_white,
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Genetics Lab";
+	network = list("ss13","medbay")
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "pHy" = (
 /obj/structure/closet/secure_closet/personal/patient,
 /obj/machinery/airalarm{
@@ -55372,6 +55397,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "pYN" = (
@@ -56159,6 +56187,9 @@
 	},
 /obj/machinery/light,
 /obj/machinery/space_heater,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "qlG" = (
@@ -56424,6 +56455,9 @@
 /obj/machinery/light_switch{
 	pixel_x = -24;
 	pixel_y = -23
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
@@ -57247,7 +57281,7 @@
 /obj/machinery/airalarm{
 	pixel_y = 24
 	},
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/rank/civilian/assistantformal,
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
 "qAP" = (
@@ -57541,8 +57575,8 @@
 	pixel_x = 9;
 	pixel_y = 32
 	},
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 1
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 5
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -59031,6 +59065,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "rbg" = (
@@ -62392,6 +62429,7 @@
 /area/mine/laborcamp)
 "rYS" = (
 /obj/machinery/power/port_gen/pacman,
+/obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "rZh" = (
@@ -67842,7 +67880,7 @@
 /obj/machinery/airalarm{
 	pixel_y = 24
 	},
-/obj/item/clothing/under/suit_jacket/tan,
+/obj/item/clothing/under/suit/tan,
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
 "tzi" = (
@@ -68001,7 +68039,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/rank/civilian/assistantformal,
 /obj/structure/sign/map/left{
 	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
 	icon_state = "map-left-MS";
@@ -68394,7 +68432,7 @@
 /obj/machinery/airalarm{
 	pixel_y = 24
 	},
-/obj/item/clothing/under/suit_jacket/burgundy,
+/obj/item/clothing/under/suit/burgundy,
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
 "tIm" = (
@@ -69176,10 +69214,11 @@
 	pixel_x = 28;
 	pixel_y = 11
 	},
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 5
-	},
 /obj/item/kirbyplants/random,
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "tTP" = (
@@ -71703,6 +71742,9 @@
 	network = list("minisat","ss13")
 	},
 /obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "uFb" = (
@@ -72293,12 +72335,12 @@
 	pixel_y = 25
 	},
 /obj/structure/table/wood,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = -26
@@ -73352,11 +73394,11 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/trimline/blue/filled/corner/lower{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/corner/lower,
 /mob/living/simple_animal/bot/cleanbot,
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "vaY" = (
@@ -76284,28 +76326,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
-"vSe" = (
-/obj/machinery/requests_console{
-	department = "Genetics";
-	name = "Genetics Requests Console";
-	pixel_y = 30
-	},
-/obj/item/storage/box/monkeycubes,
-/obj/item/radio/headset/headset_medsci,
-/obj/item/flashlight/pen{
-	pixel_x = 4;
-	pixel_y = 3
-	},
-/obj/item/flashlight/pen{
-	pixel_x = 4;
-	pixel_y = 3
-	},
-/obj/structure/table/glass,
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "vSj" = (
 /turf/open/floor/wood,
 /area/vacant_room/office)
@@ -76549,7 +76569,6 @@
 /turf/open/floor/grass,
 /area/medical/sleeper)
 "vVz" = (
-/obj/effect/landmark/start/cyborg,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -76566,6 +76585,7 @@
 /obj/machinery/light_switch{
 	pixel_x = 25
 	},
+/obj/effect/landmark/start/synthetic,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "vWo" = (
@@ -76755,11 +76775,11 @@
 /area/mine/living_quarters)
 "vYy" = (
 /obj/structure/table,
-/obj/item/clothing/under/suit_jacket/female{
+/obj/item/clothing/under/suit/female{
 	pixel_x = 3;
 	pixel_y = 1
 	},
-/obj/item/clothing/under/suit_jacket/really_black{
+/obj/item/clothing/under/suit/really_black{
 	pixel_x = -2
 	},
 /obj/machinery/light/small{
@@ -76770,9 +76790,9 @@
 	},
 /obj/item/clothing/accessory/waistcoat,
 /obj/item/clothing/suit/toggle/lawyer/black,
-/obj/item/clothing/under/suit_jacket/red,
+/obj/item/clothing/under/suit/red,
 /obj/item/clothing/neck/tie/black,
-/obj/item/clothing/under/lawyer/blacksuit,
+/obj/item/clothing/under/rank/civilian/lawyer/blacksuit,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/dorms)
 "vYE" = (
@@ -80135,10 +80155,6 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 5
 	},
-/obj/machinery/light_switch{
-	pixel_x = 23;
-	pixel_y = 23
-	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
 "wUZ" = (
@@ -80840,7 +80856,7 @@
 	dir = 8
 	},
 /obj/structure/table,
-/obj/item/clothing/under/sl_suit{
+/obj/item/clothing/under/suit/sl_suit{
 	desc = "Whoever wears this makes the rules.";
 	name = "referee suit"
 	},
@@ -83767,7 +83783,7 @@
 /area/hydroponics)
 "xPL" = (
 /obj/structure/closet/secure_closet/personal,
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/rank/civilian/assistantformal,
 /obj/item/clothing/suit/hooded/wintercoat,
 /obj/item/clothing/shoes/winterboots,
 /obj/effect/turf_decal/trimline/yellow/filled/corner/lower{
@@ -84265,7 +84281,10 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/trimline/yellow/filled/line/lower,
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "xXk" = (
@@ -241476,7 +241495,7 @@ opQ
 ptR
 fLo
 prw
-vSe
+bex
 jlE
 oSm
 grK
@@ -242250,7 +242269,7 @@ sfy
 sfy
 pVK
 sfy
-jYY
+pGU
 jlE
 aKb
 rXs
@@ -269704,7 +269723,7 @@ jYF
 tRh
 tRh
 tRh
-eeG
+imJ
 wuI
 kCT
 diS

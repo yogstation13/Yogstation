@@ -21,13 +21,13 @@
 	. = ..()
 	if(.)
 		return
-	if(swirlie && user.a_intent == INTENT_HARM)
+	if(swirlie && user.combat_mode)
 		user.changeNext_move(CLICK_CD_MELEE)
 		playsound(src.loc, "swing_hit", 25, 1)
 		swirlie.visible_message(span_danger("[user] slams the toilet seat onto [swirlie]'s head!"), span_userdanger("[user] slams the toilet seat onto your head!"), span_italics("You hear reverberating porcelain."))
 		swirlie.adjustBruteLoss(5)
 
-	else if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
+	else if(user.pulling && isliving(user.pulling) && user.combat_mode)
 		user.changeNext_move(CLICK_CD_MELEE)
 		var/mob/living/GM = user.pulling
 		if(user.grab_state >= GRAB_AGGRESSIVE)
@@ -83,21 +83,20 @@
 			cistern = !cistern
 			update_appearance(UPDATE_ICON)
 
-	else if(cistern)
-		if(user.a_intent != INTENT_HARM)
-			if(I.w_class > WEIGHT_CLASS_NORMAL)
-				to_chat(user, span_warning("[I] does not fit!"))
-				return
-			if(w_items + I.w_class > WEIGHT_CLASS_HUGE)
-				to_chat(user, span_warning("The cistern is full!"))
-				return
-			if(!user.transferItemToLoc(I, src))
-				to_chat(user, span_warning("\The [I] is stuck to your hand, you cannot put it in the cistern!"))
-				return
-			w_items += I.w_class
-			to_chat(user, span_notice("You carefully place [I] into the cistern."))
+	else if(cistern && !user.combat_mode)
+		if(I.w_class > WEIGHT_CLASS_NORMAL)
+			to_chat(user, span_warning("[I] does not fit!"))
+			return
+		if(w_items + I.w_class > WEIGHT_CLASS_HUGE)
+			to_chat(user, span_warning("The cistern is full!"))
+			return
+		if(!user.transferItemToLoc(I, src))
+			to_chat(user, span_warning("\The [I] is stuck to your hand, you cannot put it in the cistern!"))
+			return
+		w_items += I.w_class
+		to_chat(user, span_notice("You carefully place [I] into the cistern."))
 
-	else if(istype(I, /obj/item/reagent_containers))
+	else if(istype(I, /obj/item/reagent_containers) && !user.combat_mode)
 		if (!open)
 			return
 		var/obj/item/reagent_containers/RG = I
@@ -135,11 +134,11 @@
 	. = ..()
 	hiddenitem = new /obj/item/reagent_containers/food/snacks/urinalcake
 
-/obj/structure/urinal/attack_hand(mob/user)
+/obj/structure/urinal/attack_hand(mob/living/user, modifiers)
 	. = ..()
 	if(.)
 		return
-	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
+	if(user.pulling && isliving(user.pulling))
 		var/mob/living/GM = user.pulling
 		if(user.grab_state >= GRAB_AGGRESSIVE)
 			if(GM.loc != get_turf(src))
@@ -162,7 +161,7 @@
 			to_chat(user, span_notice("You fish [hiddenitem] out of the drain enclosure."))
 			hiddenitem = null
 	else
-		..()
+		return ..()
 
 /obj/structure/urinal/attackby(obj/item/I, mob/living/user, params)
 	if(exposed)
@@ -321,7 +320,7 @@
 	if(O.item_flags & ABSTRACT) //Abstract items like grabs won't wash. No-drop items will though because it's still technically an item in your hand.
 		return
 
-	if(user.a_intent != INTENT_HARM)
+	if(!user.combat_mode)
 		to_chat(user, span_notice("You start washing [O]..."))
 		busy = TRUE
 		if(!do_after(user, 4 SECONDS, src))

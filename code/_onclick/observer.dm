@@ -50,22 +50,22 @@
 		return
 	// You are responsible for checking config.ghost_interaction when you override this function
 	// Not all of them require checking, see below
-	A.attack_ghost(src)
+	A.attack_ghost(src, modifiers)
 
 // Oh by the way this didn't work with old click code which is why clicking shit didn't spam you
-/atom/proc/attack_ghost(mob/dead/observer/user)
+/atom/proc/attack_ghost(mob/dead/observer/user, list/modifiers)
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_GHOST, user) & COMPONENT_NO_ATTACK_HAND)
 		return TRUE
 	if(user.client)
 		if(user.scanmode & SCAN_GAS && atmosanalyzer_scan(user, src))
 			return TRUE
 		else if(IsAdminGhost(user))
-			attack_ai(user)
+			attack_ai(user, modifiers)
 		else if(user.client.prefs.read_preference(/datum/preference/toggle/inquisitive_ghost))
 			user.examinate(src)
 	return FALSE
 
-/mob/living/attack_ghost(mob/dead/observer/user)
+/mob/living/attack_ghost(mob/dead/observer/user, list/modifiers)
 	if(user?.client)
 		if(user.scanmode & SCAN_HEALTH)
 			healthscan(user, src, TRUE)

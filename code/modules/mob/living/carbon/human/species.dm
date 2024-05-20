@@ -213,8 +213,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	//Should we preload this species's organs?
 	var/preload = TRUE
 
-	var/inherent_slowdown = 0
-
 	//for preternis + synths
 	var/draining = FALSE
 	///Does our species have colors for its' damage overlays?
@@ -869,7 +867,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			bodyparts_to_add -= "waggingspines"
 
 	if("snout" in mutant_bodyparts) //Take a closer look at that snout!
-		if((H.wear_mask && H.wear_mask.mutantrace_variation == NO_MUTANTRACE_VARIATION && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)) || !HD || HD.status == BODYPART_ROBOTIC)
+		if((H.wear_mask && !(H.wear_mask.mutantrace_variation & DIGITIGRADE_VARIATION) && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "snout"
 
 	if("frills" in mutant_bodyparts)
@@ -959,15 +957,15 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		var/should_be_squished = FALSE
 		if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) || (H.wear_suit.body_parts_covered & LEGS))) //Check for snowflake suit
 			var/obj/item/clothing/suit/A = H.wear_suit
-			if(A.mutantrace_variation != MUTANTRACE_VARIATION)
+			if(!(A.mutantrace_variation & DIGITIGRADE_VARIATION))
 				should_be_squished = TRUE
 		if(H.w_uniform && (H.w_uniform.body_parts_covered & LEGS)) //Check for snowflake jumpsuit
 			var/obj/item/clothing/under/U = H.w_uniform
-			if(U.mutantrace_variation != MUTANTRACE_VARIATION)
+			if(!(U.mutantrace_variation & DIGITIGRADE_VARIATION))
 				should_be_squished = TRUE
 		if(H.shoes)
 			var/obj/item/clothing/shoes/S = H.shoes
-			if(S.mutantrace_variation != MUTANTRACE_VARIATION)
+			if(!(S.mutantrace_variation & DIGITIGRADE_VARIATION))
 				should_be_squished = TRUE
 			if(should_be_squished)
 				S.adjusted = NORMAL_STYLE
@@ -1594,9 +1592,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if((hungry >= 70) && !flight) //Being hungry will still allow you to use a flightsuit/wings.
 					. += hungry / 50
 
-		//Moving in high gravity is very slow (Flying too)
-		. += inherent_slowdown
-
 		if(gravity > STANDARD_GRAVITY)
 			var/grav_force = min(gravity - STANDARD_GRAVITY,3)
 			. += 1 + grav_force
@@ -1725,7 +1720,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		else if(!(target.mobility_flags & MOBILITY_STAND))
 			target.forcesay(GLOB.hit_appends)
 
-/datum/species/proc/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target)
+/datum/species/proc/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target, modifiers)
 	return
 
 /datum/species/proc/disarm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
@@ -1840,7 +1835,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)
 	return
 
-/datum/species/proc/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
+/datum/species/proc/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style, modifiers)
 	if(!istype(M))
 		return
 	CHECK_DNA_AND_SPECIES(M)
@@ -1850,8 +1845,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		return
 	if(M.mind)
 		attacker_style = M.mind.martial_art
-	if((M != H) && M.a_intent != INTENT_HELP && H.check_shields(M, 0, M.name, attack_type = UNARMED_ATTACK))
-		if(M.dna.check_mutation(HULK) && M.a_intent == "disarm")
+	var/disarming = (modifiers && modifiers[RIGHT_CLICK])
+	if((M != H) && (M.combat_mode || disarming) && H.check_shields(M, 0, M.name, attack_type = UNARMED_ATTACK))
+		if(M.dna.check_mutation(HULK) && disarming)
 			H.check_shields(0, M.name) // We check their shields twice since we are a hulk. Also triggers hitreactions for HULK_ATTACK
 			M.visible_message(span_danger("[M]'s punch knocks the shield out of [H]'s hand."), \
 							span_userdanger("[M]'s punch knocks the shield out of [H]'s hand."))
@@ -1861,26 +1857,20 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				playsound(H.loc, 'sound/weapons/punch1.ogg', 25, 1, -1)
 			log_combat(M, H, "hulk punched a shield held by")
 			return FALSE
-		if(istype(attacker_style, /datum/martial_art/flyingfang) && M.a_intent == INTENT_DISARM)
+		if(istype(attacker_style, /datum/martial_art/flyingfang) && disarming)
 			disarm(M, H, attacker_style)
 		log_combat(M, H, "attempted to touch")
 		H.visible_message(span_warning("[M] attempted to touch [H]!"))
 		return 0
-	SEND_SIGNAL(M, COMSIG_MOB_ATTACK_HAND, M, H, attacker_style)
-	switch(M.a_intent)
-		if(INTENT_HELP)
-			help(M, H, attacker_style)
+	SEND_SIGNAL(M, COMSIG_MOB_ATTACK_HAND, M, H, attacker_style, modifiers)
+	if(disarming)
+		disarm(M, H, attacker_style)
+	else if(M.combat_mode)
+		harm(M, H, attacker_style)
+	else
+		help(M, H, attacker_style)
 
-		if(INTENT_GRAB)
-			grab(M, H, attacker_style)
-
-		if(INTENT_HARM)
-			harm(M, H, attacker_style)
-
-		if(INTENT_DISARM)
-			disarm(M, H, attacker_style)
-
-/datum/species/proc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
+/datum/species/proc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, mob/living/carbon/human/H)
 	// Allows you to put in item-specific reactions based on species
 	if(user != H)
 		if(H.check_shields(I, I.force, "the [I.name]", MELEE_ATTACK, I.armour_penetration))
@@ -1902,8 +1892,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/Iforce = I.force //to avoid runtimes on the forcesay checks at the bottom. Some items might delete themselves if you drop them. (stunning yourself, ninja swords)
 	var/Iwound_bonus = I.wound_bonus
 
-	// this way, you can't wound with a surgical tool on help intent if they have a surgery active and are laying down, so a misclick with a circular saw on the wrong limb doesn't bleed them dry (they still get hit tho)
-	if((I.item_flags & SURGICAL_TOOL) && user.a_intent == INTENT_HELP && (H.mobility_flags & ~MOBILITY_STAND) && (LAZYLEN(H.surgeries) > 0))
+	// this way, you can't wound with a surgical tool without combat mode if they have a surgery active and are laying down, so a misclick with a circular saw on the wrong limb doesn't bleed them dry (they still get hit tho)
+	if((I.item_flags & SURGICAL_TOOL) && !user.combat_mode && (H.mobility_flags & ~MOBILITY_STAND) && (LAZYLEN(H.surgeries) > 0))
 		Iwound_bonus = CANT_WOUND
 
 	var/weakness = H.check_weakness(I, user)

@@ -158,9 +158,8 @@
 
 	switch(action)
 		if("power")
-			on = !on
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
-			. = TRUE
+			toggle_on(usr)
+			return TRUE
 		if("rate")
 			var/rate = params["rate"]
 			if(rate == "max")

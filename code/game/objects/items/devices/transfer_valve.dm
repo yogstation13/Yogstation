@@ -81,12 +81,12 @@
 	if(attached_device)
 		attached_device.Crossed(AM)
 
-/obj/item/transfer_valve/attack_hand()//Triggers mousetraps
+/obj/item/transfer_valve/attack_hand(mob/user, modifiers)//Triggers mousetraps
 	. = ..()
 	if(.)
 		return
 	if(attached_device)
-		attached_device.attack_hand()
+		attached_device.attack_hand(user, modifiers)
 
 //These keep attached devices synced up, for example a TTV with a mouse trap being found in a bag so it's triggered, or moving the TTV with an infrared beam sensor to update the beam's direction.
 

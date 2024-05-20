@@ -51,10 +51,10 @@
 	using.screen_loc = ui_swaphand_position(owner,2)
 	static_inventory += using
 
-	using = new /atom/movable/screen/act_intent/alien(src)
-	using.icon_state = mymob.a_intent
-	static_inventory += using
-	action_intent = using
+	action_intent = new /atom/movable/screen/combattoggle/flashy(src)
+	action_intent.icon = ui_style
+	action_intent.screen_loc = ui_combat_toggle
+	static_inventory += action_intent
 
 	if(isalienhunter(mymob))
 		var/mob/living/carbon/alien/humanoid/hunter/H = mymob

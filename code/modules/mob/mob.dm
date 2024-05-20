@@ -365,7 +365,7 @@
   * Mostly tries to put the item into the slot if possible, or call attack hand
   * on the item in the slot if the users active hand is empty
   */
-/mob/proc/attack_ui(slot)
+/mob/proc/attack_ui(slot, params)
 	var/obj/item/W = get_active_held_item()
 
 	if(istype(W))
@@ -376,7 +376,8 @@
 		// Activate the item
 		var/obj/item/I = get_item_by_slot(slot)
 		if(istype(I))
-			I.attack_hand(src)
+			var/list/modifiers = params2list(params)
+			I.attack_hand(src, modifiers)
 
 	return 0
 
@@ -592,11 +593,11 @@
 		return FALSE
 
 	//now we touch the thing we're examining
-	/// our current intent, so we can go back to it after touching
-	var/previous_intent = a_intent
-	a_intent = INTENT_HELP
+	/// temporarily turn off combat mode for reasons
+	var/previous_combat_mode = combat_mode
+	set_combat_mode(FALSE, TRUE)
 	examined_thing.attack_hand(src)
-	a_intent = previous_intent
+	set_combat_mode(previous_combat_mode, TRUE)
 
 	return TRUE
 

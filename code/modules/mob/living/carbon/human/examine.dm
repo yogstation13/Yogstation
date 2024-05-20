@@ -362,7 +362,7 @@
 	if(!appears_dead)
 		if(src != user)
 			if(HAS_TRAIT(user, TRAIT_EMPATH))
-				if (a_intent != INTENT_HELP)
+				if (combat_mode)
 					msg += "[t_He] seem[p_s()] to be on guard.\n"
 				if (getOxyLoss() >= 10)
 					msg += "[t_He] seem[p_s()] winded.\n"
@@ -489,7 +489,11 @@
 	// What examine_tgui.dm uses to determine if flavor text appears as "Obscured".
 	var/face_obscured = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
-	if (!(face_obscured))
+	if(HAS_TRAIT(src, TRAIT_HUSK))
+		flavor_text_link = span_notice("This person has been husked, and is unrecognizable!")
+	else if ((HAS_TRAIT(src, TRAIT_DISFIGURED)))
+		flavor_text_link = span_notice("This person has been horribly disfigured, and is unrecognizable!")
+	else if (!(face_obscured))
 		flavor_text_link = span_notice("[preview_text]... <a href='?src=[REF(src)];lookup_info=open_examine_panel'>\[Look closer?\]</a>")
 	else
 		flavor_text_link = span_notice("<a href='?src=[REF(src)];lookup_info=open_examine_panel'>\[Examine closely...\]</a>")
