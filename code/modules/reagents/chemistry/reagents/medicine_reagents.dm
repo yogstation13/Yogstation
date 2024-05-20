@@ -528,7 +528,7 @@
 /datum/reagent/medicine/calomel/on_mob_life(mob/living/carbon/M)
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
-			M.reagents.remove_reagent(R.type,5))
+			M.reagents.remove_reagent(R.type,5)
 		. = 1
 	..()
 
@@ -543,9 +543,9 @@
 /datum/reagent/medicine/calomel/proc/reagent_purged(datum/source, datum/reagent/purged_chem)
     // Source is the mob, so do this:
     var/mob/living/affected_mob = source
-    if(!istype)
-		source.adjustToxLoss(2.5*REM, 0)
-    return ..()
+    if(!istype(affected_mob))
+        return
+		affected_mob.adjustToxLoss(2.5*REM, 0)
     // Handle all the effects on purging here
 
 
