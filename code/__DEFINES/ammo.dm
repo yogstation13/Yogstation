@@ -27,6 +27,7 @@
 #define CALIBER_FOAM "foam_force"           // Foam darts (Toy Guns)
 #define CALIBER_GATLING "gatling"   	    // Gatling (Osprey Minigun) (Don't ask)
 #define CALIBER_SPEAR "speargun"            // Spear (Speargun)
+#define CALIBER_MUSKET "musket"				// Musket Cartridge (Maintenance Musket)
 
 /// Magic and other esoteric non-gun stuff
 #define CALIBER_ARROW "arrow"		        // Bows
