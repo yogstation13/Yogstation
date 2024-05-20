@@ -879,7 +879,7 @@ new /datum/stack_recipe("paper frame separator", /obj/structure/window/paperfram
 	desc = "A stack of cheese that seems sturdier than regular cheese."
 	icon_state = "sheet-cheese"
 	item_state = "sheet-cheese"
-	icon = 'icons/obj/stack_objects.dmi'
+	icon = 'yogstation/icons/obj/stack_objects.dmi'
 	singular_name = "reinforced cheese block"
 	sheettype = "cheese"
 	max_amount = 15
@@ -919,7 +919,7 @@ GLOBAL_LIST_INIT(ruinous_metal_recipes, list (
 	desc = "A solidified mass of sticky plant resin. Useful as an incredibly strong bonding agent."
 	icon_state = "sheet-resin"
 	item_state = "sheet-resin"
-	icon = 'icons/obj/stack_objects.dmi'
+	icon = 'yogstation/icons/obj/stack_objects.dmi'
 	sheettype = null
 	singular_name = "resin droplet"
 	max_amount = 10
