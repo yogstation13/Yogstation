@@ -545,8 +545,7 @@
     var/mob/living/affected_mob = source
     if(!istype(affected_mob))
 		return
-		affected_mob.adjustToxLoss(2.5) 
-	return ..()
+		affected.adjustToxLoss(2.5*REM, 0)
     // Handle all the effects on purging here
 
 
