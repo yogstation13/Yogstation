@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 /// Called when this reagent is removed while inside a mob
 /datum/reagent/proc/on_mob_delete(mob/living/L)
-    SEND_SIGNAL(L, COMSIG_MOB_REMOVE_REAGENT, src.type)
+    SEND_SIGNAL(L, COMSIG_MOB_REMOVE_REAGENT, src)
     return
 
 /// Called when this reagent first starts being metabolized by a liver
