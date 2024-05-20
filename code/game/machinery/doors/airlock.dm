@@ -1187,7 +1187,7 @@
 			open(2)
 		var/obj/item/umbral_tendrils/T = C
 		var/list/modifiers = params2list(params)
-		if(!isdarkspawn(user
+		if(!isdarkspawn(user))
 			return ..()
 		else if((!user.combat_mode || (modifiers && modifiers[RIGHT_CLICK])) && density)
 			// we dont want Duality double-hitting the airlock when we're trying to pry it open
