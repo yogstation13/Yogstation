@@ -65,7 +65,7 @@
 		/area/science/xenobiology
 	)
 
-	smells_like = "theorhetical education"
+	smells_like = "theoretical education"
 
 /datum/outfit/job/rd
 	name = "Research Director"
