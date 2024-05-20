@@ -1,6 +1,7 @@
 /obj/item/stack/hypernoblium_crystal
 	name = "hypernoblium crystal"
 	desc = "Crystalized bz, oxygen and hypernoblium stored in a bottle to environmental proof your clothes."
+	icon = 'yogstation/icons/obj/stack_objects.dmi'
 	icon_state = "hypernoblium_crystal"
 	resistance_flags = FIRE_PROOF | ACID_PROOF | FREEZE_PROOF | UNACIDABLE
 	grind_results = list(/datum/reagent/hypernoblium = 20)
@@ -35,6 +36,7 @@
 /obj/item/stack/antinoblium_crystal
 	name = "Antinoblium Crystal"
 	desc = "Crystalized antinoblium, bz, and plasma. An incredibly volatile material."
+	icon = 'yogstation/icons/obj/stack_objects.dmi'
 	icon_state = "antinoblium_crystal"
 	resistance_flags = FIRE_PROOF | ACID_PROOF | FREEZE_PROOF | UNACIDABLE
 	grind_results = list(/datum/reagent/antinoblium = 20)

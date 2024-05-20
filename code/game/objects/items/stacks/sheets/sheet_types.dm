@@ -258,7 +258,6 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 0)
 	resistance_flags = FLAMMABLE
 	merge_type = /obj/item/stack/sheet/mineral/wood
-	novariants = TRUE
 	grind_results = list(/datum/reagent/cellulose = 20) //no lignocellulose or lignin reagents yet,
 
 /obj/item/stack/sheet/mineral/wood/Initialize(mapload, new_amount, merge = TRUE)
@@ -568,7 +567,6 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 	force = 0
 	throwforce = 0
 	merge_type = /obj/item/stack/sheet/cardboard
-	novariants = TRUE
 	grind_results = list(/datum/reagent/cellulose = 10)
 	fryable = TRUE
 
@@ -630,7 +628,6 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list ( \
 	icon = 'icons/obj/stack_objects.dmi'
 	sheettype = "runed"
 	merge_type = /obj/item/stack/sheet/runed_metal
-	novariants = TRUE
 	grind_results = list(/datum/reagent/iron = 5, /datum/reagent/blood = 15)
 
 /obj/item/stack/sheet/runed_metal/ratvar_act()
@@ -866,12 +863,14 @@ new /datum/stack_recipe("paper frame separator", /obj/structure/window/paperfram
 /obj/item/stack/sheet/capitalisium
 	name = "capitalisium sheet"
 	desc = "A source of raw capitalism, capable of bringing forth the prophesized Capitalist Golem."
+	icon = 'yogstation/icons/obj/stack_objects.dmi'
 	icon_state = "sheet-capitalisium"
 	merge_type = /obj/item/stack/sheet/capitalisium
 
 /obj/item/stack/sheet/stalinium
 	name = "stalinium sheet"
 	desc = "A source of raw socialism, capable of bringing forth the prophesized Soviet Golem."
+	icon = 'yogstation/icons/obj/stack_objects.dmi'
 	icon_state = "sheet-stalinium"
 	merge_type = /obj/item/stack/sheet/stalinium
 
@@ -904,7 +903,6 @@ GLOBAL_LIST_INIT(cheese_recipes, list (
 	singular_name = "ruinous metal sheet"
 	sheettype = null
 	max_amount = 20
-	novariants = TRUE
 	grind_results = list(/datum/reagent/iron = 5, /datum/reagent/blood = 15)
 	merge_type = /obj/item/stack/sheet/ruinous_metal
 
