@@ -1,0 +1,5 @@
+author: "cowbot92"
+delete-after: true 
+changes: 
+  - rscadd: "Adds 5 new ships to break!"
+  - mapping: "Adds 5 new ships to break!"
