@@ -1,0 +1,5 @@
+author: " Cuackles & Molti"
+delete-after: true 
+changes: 
+  - tweak: "Gives mining medic an unupgradeable version of the explorer suit"
+  - imageadd: "Recovery suit sprites"
