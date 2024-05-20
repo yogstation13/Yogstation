@@ -16,7 +16,7 @@
 	armor = list(MELEE = 40, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 50, WOUND = 10)
 
 	resistance_flags = FIRE_PROOF
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/suit/hooded/miningmedic/Initialize(mapload) //can't be reinforced like regular explorer suits, but can also carry medical stuff in addition to mining stuff
 	. = ..()
