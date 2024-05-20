@@ -895,16 +895,6 @@
 	construction_time = 80
 	category = list("Cyborg Upgrade Modules")
 
-/datum/design/borg_upgrade_surgerykit
-	name = "Cyborg Upgrade (Advanced Surgical Kit)"
-	id = "borg_upgrade_surgerykit"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/surgerykit
-	/// Combined materials of all 3 advanced surgical tools
-	materials = list(/datum/material/iron = 22000, /datum/material/glass = 7500, /datum/material/plasma = 2000, /datum/material/uranium = 3000, /datum/material/silver = 6000, /datum/material/gold = 1500, /datum/material/diamond = 200, /datum/material/titanium = 12000)
-	construction_time = 140
-	category = list("Cyborg Upgrade Modules")
-
 /datum/design/borg_upgrade_analyzer
 	name = "Cyborg Upgrade (Advanced Analyzer)"
 	id = "borg_upgrade_analyzer"
@@ -913,6 +903,16 @@
 	/// Materials for advanced analyzer
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 2500, /datum/material/silver = 2000, /datum/material/gold = 1500, /datum/material/plastic = 1000)
 	construction_time = 140
+	category = list("Cyborg Upgrade Modules")
+
+/datum/design/borg_upgrade_surgicalomnitool
+	name = "Cyborg Upgrade (Advanced Surgical Omnitool)"
+	id = "borg_upgrade_surgicalomnitool"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/surgery_omnitool
+	/// Combined materials of all 3 advanced surgical tools
+	materials = list(/datum/material/iron = 22000, /datum/material/glass = 7500, /datum/material/plasma = 2000, /datum/material/uranium = 3000, /datum/material/silver = 6000, /datum/material/gold = 1500, /datum/material/diamond = 200, /datum/material/titanium = 12000)
+	construction_time = 14 SECONDS
 	category = list("Cyborg Upgrade Modules")
 
 /datum/design/borg_upgrade_trashofholding

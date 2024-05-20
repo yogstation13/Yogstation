@@ -3,10 +3,10 @@
 	box = /obj/item/storage/box/survival
 
 /datum/outfit/centcom/official //Generic centcom person. Whatever rank you want that is Lieutenant or lower.
-	name = "(CO-1)CentCom Official"
+	name = "CentCom Official"
 	var/pdaequip = TRUE
 
-	uniform = /obj/item/clothing/under/rank/centcom_officer
+	uniform = /obj/item/clothing/under/rank/centcom/officer
 	suit = null
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	gloves = /obj/item/clothing/gloves/color/black
@@ -48,9 +48,9 @@
 /datum/outfit/centcom/official/nopda
 	pdaequip = FALSE
 /datum/outfit/centcom/captain //CentCom Captain. Essentially a station captain.
-	name = "(CO-2)CentCom Captain"
+	name = "CentCom Captain"
 
-	uniform = /obj/item/clothing/under/rank/centcom_commander
+	uniform = /obj/item/clothing/under/rank/centcom/commander
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/centcom
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	gloves = /obj/item/clothing/gloves/color/captain/centcom
@@ -81,9 +81,9 @@
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/centcom/major //CentCom Major.
-	name = "(CO-3)CentCom Major"
+	name = "CentCom Major"
 
-	uniform = /obj/item/clothing/under/rank/centcom_commander
+	uniform = /obj/item/clothing/under/rank/centcom/commander
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/centcom
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	gloves = /obj/item/clothing/gloves/color/captain/centcom
@@ -115,9 +115,9 @@
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/centcom/commander //CentCom Commander.
-	name = "(CO-4)CentCom Commodore"
+	name = "CentCom Commodore"
 
-	uniform = /obj/item/clothing/under/rank/centcom_commander
+	uniform = /obj/item/clothing/under/rank/centcom/commander
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/centcom
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	gloves = /obj/item/clothing/gloves/color/captain/centcom
@@ -150,9 +150,9 @@
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/centcom/colonel //CentCom Commander.
-	name = "(CO-5)CentCom Colonel"
+	name = "CentCom Colonel"
 
-	uniform = /obj/item/clothing/under/rank/centcom_commander
+	uniform = /obj/item/clothing/under/rank/centcom/commander
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/centcom
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	gloves = /obj/item/clothing/gloves/color/captain/centcom
@@ -185,9 +185,9 @@
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/centcom/rear_admiral //CentCom Rear-Admiral. Low-tier admiral.
-	name = "(CO-6)CentCom Rear-Admiral"
+	name = "CentCom Rear-Admiral"
 
-	uniform = /obj/item/clothing/under/rank/centcom_admiral
+	uniform = /obj/item/clothing/under/rank/centcom/admiral
 	suit = null
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	gloves = /obj/item/clothing/gloves/color/captain/centcom
@@ -220,9 +220,9 @@
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/centcom/admiral //CentCom Admiral.
-	name = "(CO-7)CentCom Admiral"
+	name = "CentCom Admiral"
 
-	uniform = /obj/item/clothing/under/rank/centcom_admiral
+	uniform = /obj/item/clothing/under/rank/centcom/admiral
 	suit = null
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	gloves = /obj/item/clothing/gloves/color/captain/centcom
@@ -254,18 +254,18 @@
 
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
-/datum/outfit/centcom/grand_admiral //CentCom Grand Admiral. The final boss.
-	name = "(NO-8)CentCom Grand Admiral"
+/datum/outfit/centcom/executive_admiral //CentCom Executive Admiral. The final boss.
+	name = "CentCom Executive Admiral"
 
-	uniform = /obj/item/clothing/under/rank/centcom_admiral/grand
+	uniform = /obj/item/clothing/under/rank/centcom/admiral/executive
 	suit = null
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/color/captain/centcom/admiral
 	ears = /obj/item/radio/headset/headset_cent/commander
 	glasses = /obj/item/clothing/glasses/sunglasses
 	mask = /obj/item/clothing/mask/cigarette/cigar/havana
-	head = /obj/item/clothing/head/centhat/admiral/grand
-	neck = /obj/item/clothing/neck/cape/grand
+	head = /obj/item/clothing/head/centhat/admiral/executive
+	neck = /obj/item/clothing/neck/cape/executive
 	belt = /obj/item/gun/energy/pulse/pistol
 	r_pocket = /obj/item/lighter
 	l_pocket = /obj/item/melee/transforming/energy/sword/saber/green
@@ -273,7 +273,7 @@
 	id = /obj/item/card/id/centcom/gold
 	backpack_contents = list(/obj/item/restraints/handcuffs/cable/zipties=1)
 
-/datum/outfit/centcom/grand_admiral/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/centcom/executive_admiral/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
 
@@ -282,8 +282,8 @@
 	W.icon_state = "centcom_gold"
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("CentCom Commander")
-	W.assignment = "CentCom Grand Admiral"
-	W.originalassignment = "CentCom Grand Admiral"
+	W.assignment = "CentCom Executive Admiral"
+	W.originalassignment = "CentCom Executive Admiral"
 	W.registered_name = H.real_name
 	W.update_label()
 

@@ -50,7 +50,7 @@
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/cargo
 	gloves = /obj/item/clothing/gloves/color/black
-	uniform = /obj/item/clothing/under/rank/miner/lavaland
+	uniform = /obj/item/clothing/under/rank/cargo/miner/lavaland
 	neck = /obj/item/clothing/neck/bodycam/miner
 	l_pocket = /obj/item/wormhole_jaunter
 	r_pocket = /obj/item/flashlight/seclite

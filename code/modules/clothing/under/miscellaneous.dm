@@ -133,14 +133,14 @@
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
-/obj/item/clothing/under/rank/centcom_officer
+/obj/item/clothing/under/rank/centcom/officer
 	desc = "It's a jumpsuit worn by CentCom Officers."
 	name = "\improper CentCom officer's jumpsuit"
 	icon_state = "officer"
 	item_state = "g_suit"
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/centcom_commander
+/obj/item/clothing/under/rank/centcom/commander
 	desc = "It's a jumpsuit with gold markings worn by CentCom's highest-tier commanders."
 	name = "\improper CentCom officer's jumpsuit"
 	icon_state = "centcom"
@@ -149,16 +149,16 @@
 	mutantrace_variation = MUTANTRACE_VARIATION
 	can_adjust = TRUE //too important to look unimportant.
 
-/obj/item/clothing/under/rank/centcom_admiral
+/obj/item/clothing/under/rank/centcom/admiral
 	desc = "It's a jumpsuit with gold markings worn by CentCom High Command."
 	name = "\improper CentCom admiral's jumpsuit"
 	icon_state = "admiral"
 	item_state = "admiral"
 	can_adjust = FALSE //too important to look unimportant.
 
-/obj/item/clothing/under/rank/centcom_admiral/grand
+/obj/item/clothing/under/rank/centcom/admiral/executive
 	desc = "It's a jumpsuit with gold markings worn by CentCom's highest-ranking officer."
-	name = "\improper CentCom grand admiral's jumpsuit"
+	name = "\improper CentCom executive admiral's jumpsuit"
 	icon_state = "grandadmiral"
 	item_state = "grandadmiral"
 
@@ -452,6 +452,16 @@
 	desc = "The only time when you DON'T enjoy looking at someone's rack."
 	icon_state = "sexymime"
 	item_state = "sexymime"
+	body_parts_covered = CHEST|GROIN|LEGS
+	fitted = FEMALE_UNIFORM_TOP
+	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/twosexytwomime
+	name = "REALLY sexy mime outfit"
+	desc = "Yes the skirt is a very important fundamental part of advanced mimery Vol. 6."
+	icon_state = "mimeskirt"
+	item_state = "mimeskirt"
 	body_parts_covered = CHEST|GROIN|LEGS
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
@@ -791,7 +801,7 @@
 	greyscale_config_inhand_right = /datum/greyscale_config/jumpsuit_inhand_right
 	greyscale_config_worn = /datum/greyscale_config/jumpsuit_worn
 	can_adjust = FALSE
-	armor = list(MELEE = 10, LASER = 10, FIRE = 40, ACID = 10, BOMB = 5)
+	armor = list(MELEE = 10, BULLET = 0, LASER = 10, ENERGY = 0, BOMB = 5, BIO = 0, RAD = 0, FIRE = 40, ACID = 10, WOUND= 5)
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/mech_suit
@@ -821,6 +831,14 @@
 	desc = "A blue mech pilot's suit. For the more reluctant mech pilots."
 	icon_state = "blue_mech_suit"
 	item_state = "blue_mech_suit"
+	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/mech_suit/cybersun
+	name = "Cybersun mech pilot's suit"
+	desc = "An armored mech pilot suit, used exclusively by Cybersun mech agents."
+	icon_state = "black_mech_suit"
+	item_state = "black_mech_suit"
+	armor = list(MELEE = 15, BULLET = 15, LASER = 10, ENERGY = 10, BOMB = 50, BIO = 50, RAD = 20, FIRE = 50, ACID = 50, WOUND = 5)
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/lampskirt

@@ -6,20 +6,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/tcommsat/computer)
-"aA" = (
-/obj/machinery/computer/security/telescreen{
-	dir = 8;
-	name = "MiniSat Camera Monitor";
-	network = list("minisat","aicore");
-	pixel_x = 26
-	},
-/obj/machinery/camera{
-	c_tag = "MiniSat - Monitoring room";
-	dir = 8;
-	network = list("minisat","ss13")
-	},
-/turf/open/floor/plasteel/grimy,
-/area/ai_monitored/turret_protected/aisat_interior)
 "aE" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -156,20 +142,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
-"cH" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/camera/motion{
-	c_tag = "Telecomms Maintenance";
-	dir = 5;
-	network = list("ss13","tcomms")
-	},
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "cJ" = (
 /obj/machinery/space_heater,
 /obj/structure/window/reinforced{
@@ -222,6 +194,23 @@
 	},
 /turf/open/space/basic,
 /area/ai_monitored/turret_protected/ai)
+"ei" = (
+/obj/machinery/computer/security/telescreen{
+	dir = 8;
+	name = "MiniSat Camera Monitor";
+	network = list("minisat","aicore");
+	pixel_x = 26
+	},
+/obj/machinery/camera{
+	c_tag = "MiniSat - Monitoring room";
+	dir = 8;
+	network = list("minisat","ss13")
+	},
+/obj/machinery/light_switch{
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ai_monitored/turret_protected/aisat_interior)
 "ep" = (
 /obj/effect/spawner/structure/solars/solar_96,
 /obj/structure/cable{
@@ -265,13 +254,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"eW" = (
-/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/aisat_interior)
 "fa" = (
 /obj/machinery/computer/monitor{
 	dir = 1;
@@ -296,6 +278,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 8
 	},
+/obj/effect/landmark/start/synthetic,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "fq" = (
@@ -1506,18 +1489,6 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
-"Ab" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/turf/open/floor/plating,
-/area/ai_monitored/storage/satellite)
 "Aj" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -1644,6 +1615,16 @@
 /obj/machinery/telecomms/processor/preset_four,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
+"BS" = (
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
+/obj/machinery/light_switch{
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat_interior)
 "BY" = (
 /obj/machinery/ai/server_cabinet/prefilled,
 /obj/structure/ethernet_cable{
@@ -1651,6 +1632,30 @@
 	},
 /turf/open/floor/circuit/green/telecomms,
 /area/ai_monitored/turret_protected/ai)
+"Ch" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Station Intercom (Telecomms)";
+	pixel_x = 28;
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/line/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/corner/lower,
+/obj/machinery/light_switch{
+	pixel_x = 24;
+	pixel_y = -7
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
 "Co" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1739,25 +1744,6 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
-"El" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/item/radio/intercom{
-	freerange = 1;
-	name = "Station Intercom (Telecomms)";
-	pixel_x = 28
-	},
-/obj/effect/turf_decal/trimline/neutral/filled/line/lower{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/neutral/filled/corner/lower,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/tcommsat/server)
 "EH" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -1919,6 +1905,21 @@
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/port/aft)
+"IP" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/light_switch{
+	pixel_y = 24
+	},
+/turf/open/floor/plating,
+/area/ai_monitored/storage/satellite)
 "IV" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -2282,20 +2283,15 @@
 /obj/machinery/telecomms/hub/preset,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
-"Ph" = (
-/obj/effect/turf_decal/stripes/end,
-/obj/machinery/doorButtons/access_button{
-	idDoor = "ai_core_airlock_exterior";
-	idSelf = "ai_core_airlock_control";
-	pixel_x = -23;
-	pixel_y = 7
+"Pw" = (
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 9
 	},
-/obj/machinery/light,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
+/obj/machinery/light_switch{
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/ai)
+/area/ai_monitored/turret_protected/aisat_interior)
 "PD" = (
 /obj/machinery/telecomms/processor/preset_two,
 /obj/machinery/camera{
@@ -2309,6 +2305,23 @@
 "PH" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
+"PR" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/camera/motion{
+	c_tag = "Telecomms Maintenance";
+	dir = 5;
+	network = list("ss13","tcomms")
+	},
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "PZ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -2560,6 +2573,23 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"Ud" = (
+/obj/effect/turf_decal/stripes/end,
+/obj/machinery/doorButtons/access_button{
+	idDoor = "ai_core_airlock_exterior";
+	idSelf = "ai_core_airlock_control";
+	pixel_x = -23;
+	pixel_y = 7
+	},
+/obj/machinery/light,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai)
 "Um" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -3786,7 +3816,7 @@ kL
 Qp
 Ou
 bi
-El
+Ch
 tW
 Hd
 yl
@@ -3926,7 +3956,7 @@ Lt
 SX
 FW
 ME
-cH
+PR
 HK
 ZX
 HE
@@ -4136,7 +4166,7 @@ Qi
 WX
 FQ
 xy
-eW
+BS
 Qi
 Qi
 Qi
@@ -4244,7 +4274,7 @@ Jk
 fS
 iD
 rE
-oH
+Pw
 fg
 Eg
 Qi
@@ -4445,7 +4475,7 @@ Je
 jR
 OM
 OM
-Ab
+IP
 JQ
 lN
 fF
@@ -4490,7 +4520,7 @@ NK
 uZ
 rE
 br
-aA
+ei
 Qi
 jR
 jR
@@ -4556,7 +4586,7 @@ kY
 PH
 XB
 ja
-Ph
+Ud
 PH
 kY
 kY

@@ -126,6 +126,12 @@
 	pointofreturn = /area/ruin/space/has_grav/listeningstation
 	usewhitelist = TRUE
 	retrievalmessage = "Agent retrieval complete."
+
+/obj/item/implant/teleporter/syndicate_engineer
+	pointofreturn = /area/ruin/space/has_grav/syndiederelict
+	usewhitelist = TRUE
+	retrievalmessage = "Agent retrieval complete."
+
 /obj/item/implant/teleporter/demon
 	pointofreturn = /area/ruin/powered/sinden
 	usewhitelist = TRUE

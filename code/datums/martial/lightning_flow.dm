@@ -8,10 +8,10 @@
 	id = MARTIALART_LIGHTNINGFLOW
 	no_guns = TRUE
 	help_verb = /mob/living/carbon/human/proc/lightning_flow_help
-	var/recalibration = /mob/living/carbon/human/proc/lightning_flow_recalibration
+	martial_traits = list(TRAIT_STRONG_GRABBER)
 	var/dashing = FALSE
 	COOLDOWN_DECLARE(action_cooldown)
-	var/action_type = null	
+	var/list/action_modifiers = list()
 
 /datum/martial_art/lightning_flow/can_use(mob/living/carbon/human/H)
 	if(H.stat == DEAD || H.incapacitated() || HAS_TRAIT(H, TRAIT_PACIFISM))
@@ -33,12 +33,15 @@
 /datum/martial_art/lightning_flow/proc/damage(mob/living/target, mob/living/carbon/human/user, amount = 5, stun = FALSE, zone = null)
 	target.electrocute_act(amount, user, stun = stun, zone = zone)
 
-/datum/martial_art/lightning_flow/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
+/datum/martial_art/lightning_flow/proc/on_click(mob/living/carbon/human/H, atom/target, params)
 	var/list/modifiers = params2list(params)
-	if(!can_use(H) || (modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"]))
+	if(!can_use(H) || !H.combat_mode || modifiers[SHIFT_CLICK] || modifiers[ALT_CLICK] || (modifiers[CTRL_CLICK] && H.CanReach(target))) // only intercept ranged grabs
 		return
 
 	if(H.Adjacent(target))//just do the regular action
+		return
+	
+	if(H.in_throw_mode) // so you can throw people properly
 		return
 
 	if(isitem(target))//don't attack if we're clicking on our inventory
@@ -49,12 +52,6 @@
 	if(H.get_active_held_item()) //abilities need an empty hand
 		return
 
-	if(H.a_intent == INTENT_HELP)
-		return
-
-	if(H.pulling && H.a_intent == INTENT_GRAB) //don't do anything if you're currently grabbing someone
-		return
-
 	if(!(H.mobility_flags & MOBILITY_STAND))//require standing to dash
 		return
 
@@ -62,16 +59,19 @@
 		return
 
 	COOLDOWN_START(src, action_cooldown, ACTION_DELAY)
-	action_type = H.a_intent
-	dash(H, target)
+	action_modifiers = modifiers
+	dash(H, target, modifiers)
+	return COMSIG_MOB_CANCEL_CLICKON
 
 /////////////////////////////////////////////////////////////////
 //-------------------dash handling section---------------------//
 /////////////////////////////////////////////////////////////////
 /datum/martial_art/lightning_flow/proc/dash(mob/living/carbon/human/H, atom/target)
 	dashing = TRUE
-	if(action_type && action_type == INTENT_DISARM)
-		H.Knockdown(2 SECONDS, TRUE, TRUE)
+	if(H.pulling) //if you're currently grabbing someone, let go
+		H.stop_pulling()
+	if(action_modifiers[RIGHT_CLICK])
+		H.Knockdown(2 SECONDS, TRUE)
 	H.Immobilize(1 SECONDS, TRUE, TRUE) //to prevent canceling the dash
 	new /obj/effect/particle_effect/sparks/electricity/short/loud(get_turf(H))
 	H.throw_at(target, DASH_RANGE, DASH_SPEED, H, FALSE, callback = CALLBACK(src, PROC_REF(end_dash), H))
@@ -81,25 +81,23 @@
 	H.SetImmobilized(0, TRUE, TRUE) //remove the block on movement
 
 /datum/martial_art/lightning_flow/handle_throw(atom/hit_atom, mob/living/carbon/human/H, datum/thrownthing/throwingdatum)
-	if(!dashing || !action_type)
+	if(!dashing)
 		return FALSE
 	if(!hit_atom || !isliving(hit_atom))
 		return FALSE
 	var/mob/living/target = hit_atom
 	dashing = FALSE
-	switch(action_type)
-		if(INTENT_DISARM)
-			if(ishuman(target))
-				var/mob/living/carbon/human/victim = target
-				if(victim.check_shields(src, 0, "[H]", attack_type = LEAP_ATTACK))
-					return FALSE
-			H.SetKnockdown(0) //remove the self knockdown from the dropkick
-			dropkick(target, H, throwingdatum)
-		if(INTENT_GRAB)
-			target.grabbedby(H)
-		if(INTENT_HARM)
-			target.attack_hand(H)
-	action_type = null
+	if(action_modifiers[RIGHT_CLICK])
+		var/mob/living/carbon/human/victim = target
+		if(victim.check_shields(src, 0, "[H]", attack_type = LEAP_ATTACK))
+			return FALSE
+		H.SetKnockdown(0) //remove the self knockdown from the dropkick
+		dropkick(target, H, throwingdatum)
+	else if(action_modifiers[CTRL_CLICK])
+		target.grabbedby(H)
+	else
+		target.attack_hand(H)
+	action_modifiers = list()
 	return TRUE
 
 /////////////////////////////////////////////////////////////////
@@ -125,44 +123,30 @@
 	var/list/combined_msg = list()
 	combined_msg +=  "<b><i>You focus your mind.</i></b>"
 
-	combined_msg += span_warning("Every intent now dashes first.")
-	combined_msg += span_notice("<b>If you collide with someone during a disarm dash, you'll instead dropkick them.</b>")
+	combined_msg += span_warning("Punches, shoves, and grabs now dash first while combat mode is enabled.")
+	combined_msg += span_notice("<b>If you collide with someone during a shove dash, you'll instead dropkick them.</b>")
 	combined_msg += span_notice("<b>Your grabs are aggressive.</b>")
-	combined_msg += span_notice("<b>Your harm intent does more damage and shocks.</b>")
+	combined_msg += span_notice("<b>Your punch does more damage and shocks.</b>")
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
-
-/mob/living/carbon/human/proc/lightning_flow_recalibration()
-	set name = "Flicker"
-	set desc = "Fix click intercepts."
-	set category = "Lightning Flow"
-	var/list/combined_msg = list()
-	combined_msg +=  "<b><i>You straighten yourself out, ready for more.</i></b>"
-	to_chat(usr, examine_block(combined_msg.Join("\n")))
-
-	usr.click_intercept = usr.mind.martial_art
 
 
 /datum/martial_art/lightning_flow/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
-	usr.click_intercept = src 
-	add_verb(H, recalibration)
+	RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(on_click))
 	if(ishuman(H))//it's already a human, but it won't let me access physiology for some reason
 		var/mob/living/carbon/human/user = H
 		user.physiology.punchdamagelow_bonus += 5
 		user.physiology.punchdamagehigh_bonus += 5
 		user.physiology.punchstunthreshold_bonus += 5
-	ADD_TRAIT(H, TRAIT_STRONG_GRABBER, type)
 
 /datum/martial_art/lightning_flow/on_remove(mob/living/carbon/human/H)
-	usr.click_intercept = null 
-	remove_verb(H, recalibration)
+	UnregisterSignal(H, COMSIG_MOB_CLICKON)
 	if(ishuman(H))//it's already a human, but it won't let me access physiology for some reason
 		var/mob/living/carbon/human/user = H
 		user.physiology.punchdamagelow_bonus -= 5
 		user.physiology.punchdamagehigh_bonus -= 5
 		user.physiology.punchstunthreshold_bonus -= 5
-	REMOVE_TRAIT(H, TRAIT_STRONG_GRABBER, type)
 	return ..()
 
 #undef ACTION_DELAY

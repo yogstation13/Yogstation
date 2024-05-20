@@ -131,7 +131,7 @@ GLOBAL_LIST_INIT(original_nonhuman_positions, list(
 	"pAI"))
 
 GLOBAL_LIST_INIT(alt_command_positions, list(
-	"Station Commander", "Facility Director", "Chief Executive Officer",
+	"Station Commander", "Facility Director", "Chief Executive Officer","Big Boss",
 	"Chief of Staff", "Head of Internal Affairs", "First Officer",
 	"Security Commander", "Security Chief",
 	"Head of Engineering", "Engineering Director", "Senior Engineer",

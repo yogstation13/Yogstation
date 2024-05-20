@@ -1,0 +1,172 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/holofloor/beach,
+/area/template_noop)
+"c" = (
+/obj/effect/overlay/palmtree_l,
+/obj/effect/overlay/coconut,
+/turf/open/floor/holofloor/beach,
+/area/template_noop)
+"g" = (
+/mob/living/simple_animal/crab{
+	name = "Jon"
+	},
+/turf/open/floor/holofloor/beach/coast_t,
+/area/template_noop)
+"k" = (
+/obj/item/toy/beach_ball,
+/turf/open/floor/holofloor/beach,
+/area/template_noop)
+"m" = (
+/obj/item/reagent_containers/food/drinks/soda_cans/cola{
+	pixel_x = 8;
+	pixel_y = 1
+	},
+/turf/open/floor/holofloor/beach,
+/area/template_noop)
+"n" = (
+/turf/open/floor/holofloor/beach/coast_t,
+/area/template_noop)
+"t" = (
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/holofloor/beach/coast_t,
+/area/template_noop)
+"x" = (
+/obj/effect/holodeck_effect/mobspawner/monkey,
+/turf/open/floor/holofloor/beach,
+/area/template_noop)
+"y" = (
+/obj/item/shovel/spade,
+/turf/open/floor/holofloor/beach/coast_t,
+/area/template_noop)
+"G" = (
+/turf/open/floor/holofloor/carpet,
+/area/template_noop)
+"I" = (
+/obj/effect/overlay/palmtree_r,
+/turf/open/floor/holofloor/beach,
+/area/template_noop)
+"Q" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/holofloor/beach,
+/area/template_noop)
+"U" = (
+/obj/item/clothing/under/color/rainbow,
+/obj/item/clothing/glasses/sunglasses,
+/turf/open/floor/holofloor/beach,
+/area/template_noop)
+"W" = (
+/turf/open/floor/holofloor/beach/coast_b,
+/area/template_noop)
+"Z" = (
+/turf/open/floor/holofloor/beach/water,
+/area/template_noop)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+n
+W
+Z
+"}
+(2,1,1) = {"
+a
+a
+a
+I
+a
+m
+a
+g
+W
+Z
+"}
+(3,1,1) = {"
+I
+x
+a
+a
+a
+G
+G
+n
+W
+Z
+"}
+(4,1,1) = {"
+a
+a
+a
+a
+U
+m
+a
+n
+W
+Z
+"}
+(5,1,1) = {"
+a
+a
+Q
+a
+a
+G
+G
+n
+W
+Z
+"}
+(6,1,1) = {"
+a
+a
+a
+a
+I
+k
+a
+t
+W
+Z
+"}
+(7,1,1) = {"
+a
+c
+x
+a
+a
+a
+a
+y
+W
+Z
+"}
+(8,1,1) = {"
+Q
+a
+a
+a
+x
+a
+a
+n
+W
+Z
+"}
+(9,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+n
+W
+Z
+"}

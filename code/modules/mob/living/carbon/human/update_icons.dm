@@ -150,54 +150,35 @@ There are several things that need to be remembered:
 		if(wear_suit && (wear_suit.flags_inv & HIDEJUMPSUIT))
 			return
 		//This is how non-humanoid clothing works.
-		//handled_by_bodytype is used to track whether or not we successfully used an alternate sprite. It's set to TRUE to ease up on copy-paste.
 		//icon_file MUST be set to null by default, or it causes issues.
-		//handled_by_bodytype MUST be set to FALSE under the if(!icon_exists()) statement, or everything breaks.
 		//"override_file = handled_by_bodytype ? icon_file : null" MUST be added to the arguments of build_worn_icon()
 		//Friendly reminder that icon_exists(file, state, scream = TRUE) is your friend when debugging this code.
-		var/handled_by_bodytype = TRUE
 		var/icon_file
 		var/target_overlay = RESOLVE_ICON_STATE(uniform) //Selects proper icon from the vars the clothing has (Search define for more.)
 
-		//Checks for GAGS, if it uses it, use another system, so we can use a single config for both. Both statements below are Yogs changes.
-		if(uniform.greyscale_config && uniform.greyscale_colors)
-			if(uniform.adjusted == ALT_STYLE)
-				target_overlay = "[target_overlay]_d"
-			else if(uniform.adjusted == DIGITIGRADE_STYLE)
-				target_overlay = "[target_overlay]_l"
-			else if(uniform.adjusted == DIGIALT_STYLE)
-				target_overlay = "[target_overlay]_d_l" 
-		else //Using this system we can tidy up clothes sprite files so we don't have massive amounts of same type sprites in a single folder.
-			if(uniform.adjusted == ALT_STYLE || uniform.adjusted == DIGIALT_STYLE)
-				target_overlay = "[target_overlay]_d"
-			if(uniform.adjusted == DIGITIGRADE_STYLE || uniform.adjusted == DIGIALT_STYLE)
-				icon_file = 'icons/mob/clothing/uniform/digitigrade.dmi'
-
-		if(!icon_exists(icon_file, target_overlay)) //Sanity check.
-			icon_file = 'icons/mob/clothing/uniform/uniform.dmi'
-			handled_by_bodytype = FALSE
+		if(uniform.adjusted == ALT_STYLE)
+			target_overlay = "[target_overlay]_d"
+		else if(uniform.adjusted == DIGITIGRADE_STYLE) // yogs - digitigrade alt sprites
+			target_overlay = "[target_overlay]_l"
+		else if(uniform.adjusted == DIGIALT_STYLE)
+			target_overlay = "[target_overlay]_d_l" // yogs end
 
 		var/mutable_appearance/uniform_overlay
 
-		if(dna && dna.species.sexes)
-			var/G = (gender == FEMALE) ? "f" : "m"
-			if(G == "f" && uniform.fitted != NO_FEMALE_UNIFORM)
-				uniform_overlay = uniform.build_worn_icon(
-					default_layer = UNIFORM_LAYER, 
-					default_icon_file = icon_file, 
-					isinhands = FALSE,
-					femaleuniform = uniform.fitted, 
-					override_state = target_overlay,
-					override_file = handled_by_bodytype ? icon_file : null,
-				)
-
-		if(!uniform_overlay)
+		if(gender == FEMALE && uniform.fitted != NO_FEMALE_UNIFORM)
+			uniform_overlay = uniform.build_worn_icon(
+				default_layer = UNIFORM_LAYER, 
+				default_icon_file = icon_file, 
+				isinhands = FALSE,
+				femaleuniform = uniform.fitted, 
+				override_state = target_overlay,
+			)
+		else
 			uniform_overlay = uniform.build_worn_icon(
 				default_layer = UNIFORM_LAYER, 
 				default_icon_file = icon_file, 
 				isinhands = FALSE, 
 				override_state = target_overlay,
-				override_file = handled_by_bodytype ? icon_file : null,
 			)
 
 
@@ -500,9 +481,9 @@ There are several things that need to be remembered:
 	if(wear_mask)
 		var/target_overlay = RESOLVE_ICON_STATE(wear_mask)
 		if("snout" in dna.species.mutant_bodyparts) //checks for snout and uses lizard mask variant
-			if(wear_mask.mutantrace_variation == MUTANTRACE_VARIATION && !wear_mask.mask_adjusted)
+			if((wear_mask.mutantrace_variation & DIGITIGRADE_VARIATION) && !wear_mask.mask_adjusted) // i know digitigrade isn't the right word here but still
 				target_overlay = "[target_overlay]_l"
-			else if (wear_mask.mutantrace_adjusted == MUTANTRACE_VARIATION)
+			else if(wear_mask.mutantrace_adjusted & DIGITIGRADE_VARIATION)
 				target_overlay = "[target_overlay]_l"
 		update_hud_wear_mask(wear_mask)
 		if(!(head && (head.flags_inv & HIDEMASK)))
@@ -610,7 +591,7 @@ default_layer: The layer to draw this on if no other layer is specified
 
 default_icon_file: The icon file to draw states from if no other icon file is specified
 
-isinhands: If true then mob_overlay_icon is skipped so that default_icon_file is used,
+isinhands: If true then worn_icon is skipped so that default_icon_file is used,
 in this situation default_icon_file is expected to match either the lefthand_ or righthand_ file var
 
 femalueuniform: A value matching a uniform item's fitted var, if this is anything but NO_FEMALE_UNIFORM, we
@@ -624,7 +605,6 @@ generate/load female uniform sprites matching all previously decided variables
 	isinhands = FALSE, 
 	femaleuniform = NO_FEMALE_UNIFORM, 
 	override_state = null,
-	override_file = null,
 )
 
 	var/t_state
@@ -634,11 +614,7 @@ generate/load female uniform sprites matching all previously decided variables
 		t_state = !isinhands ? (worn_icon_state ? worn_icon_state : icon_state) : (item_state ? item_state : icon_state)
 
 	//Find a valid icon file from variables+arguments
-	var/file2use
-	if(override_file)
-		file2use = override_file
-	else
-		file2use = !isinhands ? (mob_overlay_icon ? mob_overlay_icon : default_icon_file) : default_icon_file
+	var/file2use = !isinhands ? (worn_icon ? worn_icon : default_icon_file) : default_icon_file
 
 	//Find a valid layer from variables+arguments
 	var/layer2use = alternate_worn_layer ? alternate_worn_layer : default_layer

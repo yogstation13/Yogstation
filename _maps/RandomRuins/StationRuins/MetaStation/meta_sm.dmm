@@ -1,4 +1,19 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable/orange{
+	icon_state = "4-8"
+	},
+/obj/machinery/light_switch{
+	pixel_y = 24
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "ag" = (
 /obj/effect/turf_decal/stripes{
 	dir = 5
@@ -34,18 +49,18 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"aW" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
-	filter_type = list("n2")
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "bi" = (
 /obj/structure/reflector/box/anchored{
 	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
+"bT" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 10
+	},
+/obj/machinery/light_switch{
+	pixel_x = 23
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
@@ -175,6 +190,18 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"gW" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
+	filter_type = list("n2")
+	},
+/obj/machinery/light_switch{
+	pixel_x = 23
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "hg" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -281,6 +308,12 @@
 /obj/structure/grille,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
+"kH" = (
+/obj/machinery/light_switch{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "le" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
@@ -469,12 +502,6 @@
 	pixel_x = 4
 	},
 /obj/item/flashlight/flare/signal,
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
-"oH" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 10
-	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "oM" = (
@@ -1076,6 +1103,12 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"Ev" = (
+/obj/machinery/light_switch{
+	pixel_y = -23
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "EG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -1116,13 +1149,6 @@
 /area/engine/engineering)
 "EQ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/turf/open/floor/engine,
-/area/engine/supermatter)
-"EW" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 4;
-	name = "Gas to Chamber"
-	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "Fk" = (
@@ -1390,6 +1416,16 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"Oa" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4;
+	name = "Gas to Chamber"
+	},
+/obj/machinery/light_switch{
+	pixel_y = 24
+	},
+/turf/open/floor/engine,
+/area/engine/supermatter)
 "Ov" = (
 /obj/machinery/door/airlock/engineering/glass/critical{
 	heat_proof = 1;
@@ -1563,18 +1599,6 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
-/area/engine/engineering)
-"RZ" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/structure/cable/orange{
-	icon_state = "4-8"
-	},
-/turf/open/floor/engine,
 /area/engine/engineering)
 "SM" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
@@ -1851,12 +1875,12 @@ OR
 jp
 SM
 jp
-RZ
+aa
 Rg
 tC
 tC
 LU
-EW
+Oa
 YF
 dU
 LU
@@ -1978,7 +2002,7 @@ OD
 (11,1,1) = {"
 oB
 lI
-oH
+bT
 vY
 RX
 zf
@@ -2042,7 +2066,7 @@ vv
 sf
 Aa
 BC
-aW
+gW
 UM
 Et
 fK
@@ -2085,7 +2109,7 @@ nA
 nA
 nA
 jp
-KF
+kH
 qV
 hL
 KF
@@ -2097,7 +2121,7 @@ KF
 KF
 hL
 Zz
-KF
+Ev
 jp
 Fp
 PK

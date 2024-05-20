@@ -54,8 +54,8 @@
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/scientist
 
 	ears = /obj/item/radio/headset/headset_sci
-	uniform = /obj/item/clothing/under/rank/scientist
-	uniform_skirt = /obj/item/clothing/under/rank/scientist/skirt
+	uniform = /obj/item/clothing/under/rank/rnd/scientist
+	uniform_skirt = /obj/item/clothing/under/rank/rnd/scientist/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit = /obj/item/clothing/suit/toggle/labcoat/science
 

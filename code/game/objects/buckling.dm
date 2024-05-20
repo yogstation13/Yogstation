@@ -20,7 +20,7 @@
 			if(user_unbuckle_mob(buckled_mobs[1], user))
 				return 1
 
-/atom/movable/attack_hand(mob/living/user)
+/atom/movable/attack_hand(mob/living/user, modifiers)
 	. = ..()
 	if(.)
 		return

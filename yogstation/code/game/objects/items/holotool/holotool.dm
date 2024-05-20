@@ -11,6 +11,8 @@
 	actions_types = list(/datum/action/item_action/change_tool, /datum/action/item_action/change_ht_color)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	light_system = MOVABLE_LIGHT
+	light_range = 3
+	light_on = FALSE
 
 	/// Buffer used by the multitool mode
 	var/buffer
@@ -27,11 +29,8 @@
 	. += span_notice("It is currently set to [current_tool ? current_tool.name : "'off'"] mode.")
 	. += span_notice("Ctrl+Click it to open the radial menu!")
 
-/obj/item/holotool/attack(mob/living/M, mob/living/user)
-	if((tool_behaviour == TOOL_SCREWDRIVER) && !(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
-		return
-
-	if(tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && ishuman(M))
+/obj/item/holotool/attack(mob/living/M, mob/living/user, params)
+	if(tool_behaviour == TOOL_WELDER && !user.combat_mode && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
 		if(affecting?.status == BODYPART_ROBOTIC)
@@ -45,7 +44,7 @@
 			heal_robo_limb(src, H, user, 10, 0, 0, 50)
 			user.visible_message(span_notice("[user] fixes some of the dents on [M]'s [affecting.name]."), span_notice("You fix some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
 			return TRUE
-	. = ..()
+	return ..()
 
 /obj/item/holotool/use(used)
 	return TRUE //it just always works, capiche!?
@@ -63,6 +62,7 @@
 		if(!C || QDELETED(src))
 			return
 		current_color = C
+		set_light_color(current_color)
 	update_appearance(UPDATE_ICON)
 	action.build_all_button_icons()
 	user.regenerate_icons()
@@ -105,13 +105,13 @@
 		item_state = current_tool.name
 		add_overlay(holo_item)
 		if(current_tool.name == "off")
-			set_light(0)
+			set_light_on(FALSE)
 		else
-			set_light(3, null, current_color)
+			set_light_on(TRUE)
 	else
 		item_state = "holotool"
 		icon_state = "holotool"
-		set_light(0)
+		set_light_on(FALSE)
 
 	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()

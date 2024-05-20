@@ -127,10 +127,10 @@
 	calculated_non_operational_thrusters = 0
 	//Calculate all the data
 	var/list/areas = M.shuttle_areas
-	for(var/shuttleArea in areas)
-		for(var/turf/T in shuttleArea)
+	for(var/area/shuttle_area in areas)
+		for(var/turf/T in shuttle_area.get_turfs_by_zlevel(z))
 			calculated_mass += 1
-		for(var/obj/machinery/shuttle/engine/E in shuttleArea)
+		for(var/obj/machinery/shuttle/engine/E in shuttle_area)
 			E.check_setup()
 			if(!E.thruster_active)	//Skipover thrusters with no valid heater
 				calculated_non_operational_thrusters ++

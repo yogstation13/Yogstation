@@ -362,7 +362,7 @@
 	if(!appears_dead)
 		if(src != user)
 			if(HAS_TRAIT(user, TRAIT_EMPATH))
-				if (a_intent != INTENT_HELP)
+				if (combat_mode)
 					msg += "[t_He] seem[p_s()] to be on guard.\n"
 				if (getOxyLoss() >= 10)
 					msg += "[t_He] seem[p_s()] winded.\n"
@@ -481,6 +481,24 @@
 	else if(isobserver(user) && traitstring)
 		. += "<span class='info'><b>Quirks:</b> [traitstring]</span><br>"
 	. += "</span>"
+
+
+	var/flavor_text_link
+	/// The first 1-FLAVOR_PREVIEW_LIMIT characters in the mob's "flavor_text" DNA feature. FLAVOR_PREVIEW_LIMIT is defined in flavor_defines.dm.
+	var/preview_text = copytext_char((dna.features["flavor_text"]), 1, FLAVOR_PREVIEW_LIMIT)
+	// What examine_tgui.dm uses to determine if flavor text appears as "Obscured".
+	var/face_obscured = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
+
+	if(HAS_TRAIT(src, TRAIT_HUSK))
+		flavor_text_link = span_notice("This person has been husked, and is unrecognizable!")
+	else if ((HAS_TRAIT(src, TRAIT_DISFIGURED)))
+		flavor_text_link = span_notice("This person has been horribly disfigured, and is unrecognizable!")
+	else if (!(face_obscured))
+		flavor_text_link = span_notice("[preview_text]... <a href='?src=[REF(src)];lookup_info=open_examine_panel'>\[Look closer?\]</a>")
+	else
+		flavor_text_link = span_notice("<a href='?src=[REF(src)];lookup_info=open_examine_panel'>\[Examine closely...\]</a>")
+	if (flavor_text_link)
+		. += flavor_text_link
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()

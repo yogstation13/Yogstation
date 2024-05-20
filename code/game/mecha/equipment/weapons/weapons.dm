@@ -102,13 +102,19 @@
 	projectile = /obj/projectile/beam/disabler
 	fire_sound = 'sound/weapons/taser2.ogg'
 
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/disabler/action_checks(atom/target)
+	. = ..()
+	if(. && HAS_TRAIT(chassis.occupant, TRAIT_NO_STUN_WEAPONS))
+		to_chat(chassis.occupant, span_warning("You cannot use non-lethal weapons!"))
+		return FALSE
+
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
 	equip_cooldown = 15
 	name = "\improper CH-LC \"Solaris\" laser cannon"
 	desc = "A weapon for combat exosuits. Shoots heavy lasers."
 	icon_state = "mecha_laser"
 	energy_drain = 60
-	projectile = /obj/projectile/beam/laser/heavylaser
+	projectile = /obj/projectile/beam/laser/heavylaser/no_fire
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/xray
@@ -179,11 +185,11 @@
 	if(!chassis.Adjacent(target))
 		return ..()
 	// Again, two ways using tools can be handled, so check both
-	if(target.tool_act(chassis.occupant, src, TOOL_WELDER) & TOOL_ACT_MELEE_CHAIN_BLOCKING)
+	if(target.tool_act(chassis.occupant, src, TOOL_WELDER, params) & TOOL_ACT_MELEE_CHAIN_BLOCKING)
 		return TRUE
 	if(target.attackby(src, chassis.occupant, params))
 		return TRUE
-	if(user.a_intent == INTENT_HARM) // hurt things
+	if(user.combat_mode) // hurt things
 		chassis.default_melee_attack(target)
 	return TRUE
 

@@ -616,13 +616,16 @@ SUBSYSTEM_DEF(shuttle)
 	if(!midpoint)
 		qdel(proposal)
 		return FALSE
+	
 	var/area/old_area = midpoint.loc
-	old_area.turfs_to_uncontain += proposal.reserved_turfs
+	LISTASSERTLEN(old_area.turfs_to_uncontain_by_zlevel, bottomleft.z, list())
+	old_area.turfs_to_uncontain_by_zlevel[bottomleft.z] += proposal.reserved_turfs
 	
 	var/area/shuttle/transit/new_area = new()
 	new_area.parallax_movedir = travel_dir
 	new_area.contents = proposal.reserved_turfs
-	new_area.contained_turfs = proposal.reserved_turfs
+	LISTASSERTLEN(new_area.turfs_by_zlevel, bottomleft.z, list())
+	new_area.turfs_by_zlevel[bottomleft.z] = proposal.reserved_turfs
 	
 	var/obj/docking_port/stationary/transit/new_transit_dock = new(midpoint)
 	new_transit_dock.reserved_area = proposal

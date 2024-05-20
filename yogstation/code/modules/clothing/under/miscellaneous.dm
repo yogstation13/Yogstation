@@ -223,7 +223,7 @@
 /obj/item/clothing/under/rank/det/yogs
 	name = "black detective suit"
 	desc = "A suit often worn by those detective types. Now in black!"
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/uniform/uniform.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/uniform/uniform.dmi'
 	icon = 'yogstation/icons/obj/clothing/uniforms.dmi'
 	icon_state = "black_detective"
 	item_state = "black_detective"

@@ -64,7 +64,7 @@
 	else
 		mode() // Activate held item
 
-/mob/living/carbon/attackby(obj/item/I, mob/user, params)
+/mob/living/carbon/attackby(obj/item/I, mob/living/user, params)
 	// Fun situation, needing surgery code to be at the /mob/living level but needing it to happen before wound code so you can actualy do the wound surgeries
 	for(var/datum/surgery/S in surgeries)
 		if(S.location != user.zone_selected)
@@ -73,11 +73,11 @@
 			continue
 		if(!S.self_operable && user == src)
 			continue
-		if(!(user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM))
+		if(user.combat_mode)
 			continue
 		return ..()
 
-	if(!all_wounds || !(user.a_intent == INTENT_HELP || user == src))
+	if(!all_wounds || user.combat_mode || user == src)
 		return ..()
 
 	for(var/i in shuffle(all_wounds))
@@ -485,9 +485,9 @@
 	if(locate(/obj/item/assembly/health) in src)
 		. += "Health: [health]"
 
-/mob/living/carbon/attack_ui(slot)
+/mob/living/carbon/attack_ui(slot, params)
 	if(!has_hand_for_held_index(active_hand_index))
-		return 0
+		return FALSE
 	return ..()
 
 /mob/living/carbon/has_mouth()

@@ -18,7 +18,7 @@
 	
 /datum/crafting_recipe/durathread_jumpsuit
 	name = "Durathread Jumpsuit"
-	result = /obj/item/clothing/under/durathread
+	result = /obj/item/clothing/under/rank/civilian/hydroponics/durathread
 	reqs = list(/obj/item/stack/sheet/cloth/durathread = 4)
 	time = 4 SECONDS
 	category = CAT_CLOTHING // Can be technically considered armor since it gives protection (similar-ish to security jumpsuit).
@@ -119,19 +119,19 @@
 
 /datum/crafting_recipe/mummy/body
 	name = "Mummification Bandages (Body)"
-	result = /obj/item/clothing/under/mummy
+	result = /obj/item/clothing/under/costume/mummy
 	reqs = list(/obj/item/stack/sheet/cloth = 5)
 
 /datum/crafting_recipe/chestwrap
 	name = "Loincloth and Chestwrap"
-	result = /obj/item/clothing/under/chestwrap
+	result = /obj/item/clothing/under/tribal/chestwrap
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/leather = 1)
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/raider_leather
 	name = "Scavenged Rags"
-	result = /obj/item/clothing/under/raider_leather
+	result = /obj/item/clothing/under/tribal/raider_leather
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/metal = 1,
 				/obj/item/stack/rods = 2, 
@@ -141,7 +141,7 @@
 
 /datum/crafting_recipe/tribal_wraps
 	name = "Metal Plated Rags"
-	result = /obj/item/clothing/under/tribal
+	result = /obj/item/clothing/under/tribal/plated
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/metal = 1,
 				/obj/item/stack/sheet/leather = 2)
@@ -150,7 +150,7 @@
 
 /datum/crafting_recipe/ash_robe
 	name = "Tribal Robes"
-	result = /obj/item/clothing/under/ash_robe
+	result = /obj/item/clothing/under/tribal/ash_robe
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/cloth = 2)
 	category = CAT_CLOTHING
@@ -158,29 +158,29 @@
 
 /datum/crafting_recipe/ash_robe/young
 	name = "Tribal Rags"
-	result = /obj/item/clothing/under/ash_robe/young
+	result = /obj/item/clothing/under/tribal/ash_robe/young
 
 /datum/crafting_recipe/ash_robe/hunter
 	name = "Hunter Tribal Rags"
-	result = /obj/item/clothing/under/ash_robe/hunter
+	result = /obj/item/clothing/under/tribal/ash_robe/hunter
 
 /datum/crafting_recipe/ash_robe/chief
 	name = "Chief Tribal Rags"
-	result = /obj/item/clothing/under/ash_robe/chief
+	result = /obj/item/clothing/under/tribal/ash_robe/chief
 
 /datum/crafting_recipe/ash_robe/shaman
 	name = "Shaman Tribal Rags"
-	result = /obj/item/clothing/under/ash_robe/shaman
+	result = /obj/item/clothing/under/tribal/ash_robe/shaman
 
 /datum/crafting_recipe/ash_robe/tunic
 	name = "Tribal Tunic"
-	result = /obj/item/clothing/under/ash_robe/tunic
+	result = /obj/item/clothing/under/tribal/ash_robe/tunic
 	reqs = list(/obj/item/stack/sheet/cloth = 2,
 				/obj/item/stack/sheet/leather = 1)
 
 /datum/crafting_recipe/ash_robe/dress
 	name = "Tribal Dress"
-	result = /obj/item/clothing/under/ash_robe/dress
+	result = /obj/item/clothing/under/tribal/ash_robe/dress
 	reqs = list(/obj/item/stack/sheet/cloth = 3)
 
 /datum/crafting_recipe/shamanash

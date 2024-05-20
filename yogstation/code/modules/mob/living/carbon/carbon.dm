@@ -36,7 +36,7 @@
 					span_userdanger("[src] is attempting to devour you!"))
 	if(!do_after(src, devour_time, C))
 		return
-	if(pulling && pulling == C && grab_state >= GRAB_AGGRESSIVE && a_intent == INTENT_GRAB)
+	if(pulling && pulling == C && grab_state >= GRAB_AGGRESSIVE && combat_mode)
 		C.visible_message(span_danger("[src] devours [C]!"), \
 						span_userdanger("[src] devours you!"))
 		C.forceMove(src)

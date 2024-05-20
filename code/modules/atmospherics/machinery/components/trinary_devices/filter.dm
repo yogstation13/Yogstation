@@ -14,15 +14,7 @@
 
 	construction_type = /obj/item/pipe/trinary/flippable
 	pipe_state = "filter"
-
-/obj/machinery/atmospherics/components/trinary/filter/CtrlClick(mob/user)
-	if(can_interact(user))
-		on = !on
-		var/msg = "was turned [on ? "on" : "off"] by [key_name(usr)]"
-		investigate_log(msg, INVESTIGATE_ATMOS)
-		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
-		update_appearance(UPDATE_ICON)
-	return ..()
+	quick_toggle = TRUE
 
 /obj/machinery/atmospherics/components/trinary/filter/AltClick(mob/user)
 	if(can_interact(user))
@@ -154,11 +146,8 @@
 		return
 	switch(action)
 		if("power")
-			on = !on
-			var/msg = "was turned [on ? "on" : "off"] by [key_name(usr)]"
-			investigate_log(msg, INVESTIGATE_ATMOS)
-			investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
-			. = TRUE
+			toggle_on(usr)
+			return TRUE
 		if("rate")
 			var/rate = params["rate"]
 			if(rate == "max")
