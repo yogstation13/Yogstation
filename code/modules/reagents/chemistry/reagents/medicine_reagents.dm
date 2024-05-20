@@ -522,7 +522,7 @@
 	description = "Quickly purges the body of all chemicals. Toxin damage is dealt if the patient is in good condition."
 	reagent_state = LIQUID
 	color = "#19C832"
-	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	metabolization_rate = 0.5 *	REAGENTS_METABOLISM
 	taste_description = "acid"
 
 /datum/reagent/medicine/calomel/on_mob_life(mob/living/carbon/M)
@@ -533,20 +533,20 @@
 	..()
 
 /datum/reagent/medicine/calomel/on_mob_add(mob/living/L)
-    RegisterSignal(L, COMSIG_MOB_REMOVE_REAGENT, PROC_REF(reagent_purged))
-    return ..()
+	RegisterSignal(L,	COMSIG_MOB_REMOVE_REAGENT,	PROC_REF(reagent_purged))
+	return	..()
 
 /datum/reagent/medicine/calomel/on_mob_remove(mob/living/L)
-    UnregisterSignal(L, COMSIG_MOB_REMOVE_REAGENT)
-    return ..()
+	UnregisterSignal(L,	COMSIG_MOB_REMOVE_REAGENT)
+	return	..()
 
 /datum/reagent/medicine/calomel/proc/reagent_purged(datum/source, datum/reagent/purged_chem)
-    // Source is the mob, so do this:
-    var/mob/living/affected_mob = source
-    if(!istype(affected_mob))
+	//	Source is the mob, so do this:
+	var/mob/living/affected_mob	= source
+	if(!istype(affected_mob))
 		return
-	affected.adjustToxLoss(2.5*REM, 0)
-    // Handle all the effects on purging here
+	affected.adjustToxLoss(2.5*REM,	0)
+	// Handle all the effects on purging here
 
 
 /datum/reagent/medicine/potass_iodide
