@@ -1,0 +1,190 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/space)
+"b" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/space)
+"f" = (
+/turf/template_noop,
+/area/space)
+"h" = (
+/obj/machinery/modular_computer,
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/space)
+"m" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/space)
+"n" = (
+/obj/item/cardboard_cutout/adaptive,
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/space)
+"o" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/space)
+"r" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/space)
+"w" = (
+/obj/machinery/door/poddoor/shutters,
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/space)
+"x" = (
+/obj/item/clothing/glasses/eyepatch,
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/space)
+"z" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/machinery/power/engine_capacitor_bank{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/space)
+"F" = (
+/obj/effect/mine/stun,
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/space)
+"H" = (
+/obj/item/clothing/under/syndicate/tacticool,
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/space)
+"L" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/space)
+"P" = (
+/obj/machinery/shuttle/engine{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/space)
+"S" = (
+/obj/structure/closet/cardboard/metal,
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/space)
+"Z" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/item/clothing/glasses/night,
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/space)
+
+(1,1,1) = {"
+f
+f
+f
+f
+f
+f
+b
+r
+w
+r
+b
+f
+"}
+(2,1,1) = {"
+f
+f
+f
+f
+f
+f
+r
+n
+a
+n
+z
+P
+"}
+(3,1,1) = {"
+b
+r
+r
+r
+r
+r
+b
+n
+a
+n
+z
+P
+"}
+(4,1,1) = {"
+m
+h
+Z
+a
+x
+a
+L
+a
+a
+b
+f
+f
+"}
+(5,1,1) = {"
+m
+h
+o
+a
+F
+a
+L
+a
+a
+b
+f
+f
+"}
+(6,1,1) = {"
+b
+r
+r
+r
+r
+r
+b
+a
+a
+a
+z
+P
+"}
+(7,1,1) = {"
+f
+f
+f
+f
+f
+f
+r
+S
+H
+a
+z
+P
+"}
+(8,1,1) = {"
+f
+f
+f
+f
+f
+f
+b
+r
+r
+r
+b
+f
+"}

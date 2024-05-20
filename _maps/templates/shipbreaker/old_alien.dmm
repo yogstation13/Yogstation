@@ -1,0 +1,207 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"c" = (
+/obj/structure/sign/poster/abductor/ayy_over_tizira,
+/turf/closed/wall/mineral/abductor,
+/area/template_noop)
+"f" = (
+/obj/structure/table/abductor,
+/turf/open/floor/plating/abductor,
+/area/template_noop)
+"g" = (
+/obj/effect/decal/cleanable/xenoblood/xgibs/down,
+/turf/open/floor/plating/abductor,
+/area/template_noop)
+"m" = (
+/obj/structure/table/optable/abductor,
+/obj/effect/decal/cleanable/xenoblood/xgibs/core,
+/turf/open/floor/plating/abductor,
+/area/template_noop)
+"r" = (
+/obj/structure/table/optable/abductor,
+/obj/effect/decal/cleanable/xenoblood/xgibs/larva/body,
+/turf/open/floor/plating/abductor,
+/area/template_noop)
+"s" = (
+/obj/structure/table/abductor,
+/obj/item/organ/heart/gland,
+/turf/open/floor/plating/abductor,
+/area/template_noop)
+"u" = (
+/obj/structure/sign/poster/abductor/ayy_no,
+/turf/closed/wall/mineral/abductor,
+/area/template_noop)
+"w" = (
+/obj/structure/sign/poster/abductor/ayylian,
+/turf/closed/wall/mineral/abductor,
+/area/template_noop)
+"y" = (
+/obj/item/toy/plush/abductor,
+/turf/open/floor/plating/abductor,
+/area/template_noop)
+"z" = (
+/obj/machinery/door/airlock/abductor,
+/turf/open/space/basic,
+/area/template_noop)
+"A" = (
+/obj/structure/table/optable/abductor,
+/obj/effect/decal/cleanable/xenoblood/xgibs/down,
+/turf/open/floor/plating/abductor,
+/area/template_noop)
+"C" = (
+/obj/structure/sign/poster/abductor/ayy,
+/turf/closed/wall/mineral/abductor,
+/area/template_noop)
+"G" = (
+/obj/structure/sign/poster/abductor/ayy_cops,
+/turf/closed/wall/mineral/abductor,
+/area/template_noop)
+"I" = (
+/obj/item/toy/plush/abductor/agent,
+/turf/open/floor/plating/abductor,
+/area/template_noop)
+"K" = (
+/turf/closed/wall/mineral/abductor,
+/area/template_noop)
+"O" = (
+/obj/structure/table/abductor,
+/obj/item/storage/box/alienhandcuffs,
+/turf/open/floor/plating/abductor,
+/area/template_noop)
+"R" = (
+/turf/open/floor/plating/abductor,
+/area/template_noop)
+"S" = (
+/obj/structure/sign/poster/abductor/ayy_recruitment,
+/turf/closed/wall/mineral/abductor,
+/area/template_noop)
+"T" = (
+/obj/structure/closet/abductor,
+/obj/item/organ/heart/gland,
+/obj/item/organ/heart/gland,
+/obj/item/organ/heart/gland,
+/turf/open/floor/plating/abductor,
+/area/template_noop)
+"Z" = (
+/obj/structure/closet/abductor,
+/obj/item/organ/heart/gland,
+/obj/item/organ/heart/gland,
+/obj/item/organ/heart/gland,
+/obj/effect/decal/cleanable/xenoblood/xgibs/down,
+/turf/open/floor/plating/abductor,
+/area/template_noop)
+
+(1,1,1) = {"
+a
+a
+a
+a
+K
+K
+c
+K
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+K
+O
+f
+s
+s
+K
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+K
+Z
+R
+R
+R
+g
+R
+K
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+C
+R
+R
+r
+m
+R
+y
+S
+a
+a
+"}
+(5,1,1) = {"
+a
+a
+G
+R
+R
+A
+A
+R
+I
+w
+a
+a
+"}
+(6,1,1) = {"
+a
+a
+K
+g
+R
+R
+R
+g
+R
+K
+a
+a
+"}
+(7,1,1) = {"
+a
+a
+a
+K
+T
+R
+R
+R
+K
+a
+a
+a
+"}
+(8,1,1) = {"
+a
+a
+a
+a
+K
+u
+z
+K
+a
+a
+a
+a
+"}

@@ -4303,6 +4303,7 @@
 #include "yogstation\code\modules\clothing\shoes\special_shoes.dm"
 #include "yogstation\code\modules\clothing\spacesuits\hardsuit.dm"
 #include "yogstation\code\modules\clothing\suits\armor.dm"
+#include "yogstation\code\modules\clothing\suits\explorer_gear.dm"
 #include "yogstation\code\modules\clothing\suits\labcoat.dm"
 #include "yogstation\code\modules\clothing\suits\miscellaneous.dm"
 #include "yogstation\code\modules\clothing\suits\nerd.dm"
