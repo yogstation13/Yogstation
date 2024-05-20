@@ -528,11 +528,26 @@
 /datum/reagent/medicine/calomel/on_mob_life(mob/living/carbon/M)
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
-			M.reagents.remove_reagent(R.type,5)
-	if(M.reagents.remove_reagent/R == TRUE)
-		M.adjustToxLoss(2.5*REM, 0)
+			M.reagents.remove_reagent(R.type,5))
 		. = 1
 	..()
+
+/datum/reagent/medicine/calomel/on_mob_add(mob/living/L)
+    RegisterSignal(L, COMSIG_MOB_REMOVE_REAGENT, PROC_REF(reagent_purged))
+    return ..()
+
+/datum/reagent/medicine/calomel/on_mob_remove(mob/living/L)
+    UnregisterSignal(L, COMSIG_MOB_REMOVE_REAGENT)
+    return ..()
+
+/datum/reagent/medicine/calomel/proc/reagent_purged(datum/source, datum/reagent/purged_chem)
+    // Source is the mob, so do this:
+    var/mob/living/affected_mob = source
+    if(!istype)
+		source.adjustToxLoss(2.5*REM, 0)
+    return ..()
+    // Handle all the effects on purging here
+
 
 /datum/reagent/medicine/potass_iodide
 	name = "Potassium Iodide"
