@@ -60,6 +60,9 @@
 			target_turf.ignite_turf(rand(8, 16))
 	return ..()
 
+/obj/projectile/beam/laser/heavylaser/no_fire	//For the heavy mech laser weapon
+	fire_hazard = FALSE
+
 /obj/projectile/beam/weak
 	damage = 15
 	armour_penetration = 50
