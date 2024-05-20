@@ -57,6 +57,7 @@
 		team.forge_brother_objectives()
 		for(var/datum/mind/M in team.members)
 			M.add_antag_datum(/datum/antagonist/brother, team)
+			equip_brother(M.current) // Yogs -- Readds BB Bundles, located in yogstation/code/game/gamemodes/brother
 		team.update_name()
 	brother_teams += pre_brother_teams
 	return ..()
