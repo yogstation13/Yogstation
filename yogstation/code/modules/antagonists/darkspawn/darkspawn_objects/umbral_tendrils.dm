@@ -67,8 +67,7 @@
 		target.attackby(twin, user)
 
 /obj/item/umbral_tendrils/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(!darkspawn)
+	if(!isdarkspawn(user))
 		return ..()
 	tendril_swing(user, target) //Note that airlock interactions can be found in airlock.dm.
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
