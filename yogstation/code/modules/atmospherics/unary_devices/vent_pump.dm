@@ -9,9 +9,9 @@
 		to_chat(user, span_notice("You pry [cover ? "off" : "in"] the vent cover."))
 	return TRUE
 
-/obj/machinery/atmospherics/components/unary/vent_pump/attackby(obj/item/W, mob/user, params)
+/obj/machinery/atmospherics/components/unary/vent_pump/attackby(obj/item/W, mob/living/user, params)
 	if(cover && !welded)
-		if(istype(W) && W.w_class == WEIGHT_CLASS_TINY && user.a_intent != INTENT_HARM)
+		if(istype(W) && W.w_class == WEIGHT_CLASS_TINY && !user.combat_mode)
 			if(contents.len>=max_n_of_items || !user.transferItemToLoc(W, src))
 				to_chat(user, span_warning("You can't seem to fit [W]."))
 				return

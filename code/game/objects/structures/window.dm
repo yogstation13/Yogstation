@@ -172,7 +172,7 @@
 		return 1
 	. = ..()
 
-/obj/structure/window/attack_hand(mob/user)
+/obj/structure/window/attack_hand(mob/living/user, modifiers)
 	. = ..()
 	if(.)
 		return
@@ -180,7 +180,7 @@
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	
-	if(user.a_intent != INTENT_HARM)
+	if(!user.combat_mode)
 		user.visible_message(span_notice("[user] knocks on [src]."), \
 			span_notice("You knock on [src]."))
 		playsound(src, knock_sound, 50, TRUE)
@@ -189,13 +189,13 @@
 			span_warning("You bash [src]!"))
 		playsound(src, bash_sound, 100, TRUE)
 
-/obj/structure/window/attack_paw(mob/user)
-	return attack_hand(user)
+/obj/structure/window/attack_paw(mob/user, modifiers)
+	return attack_hand(user, modifiers)
 
 /obj/structure/window/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)	//used by attack_alien, attack_animal, and attack_slime
 	if(!can_be_reached(user))
 		return
-	..()
+	return ..()
 
 /obj/structure/window/attackby(obj/item/I, mob/living/user, params)
 	if(!can_be_reached(user))
@@ -203,7 +203,7 @@
 
 	add_fingerprint(user)
 
-	if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP)
+	if(I.tool_behaviour == TOOL_WELDER && !user.combat_mode)
 		if(atom_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=0))
 				return
@@ -429,10 +429,13 @@
 
 //this is shitcode but all of construction is shitcode and needs a refactor, it works for now
 //If you find this like 4 years later and construction still hasn't been refactored, I'm so sorry for this
+
+//Found this 4 years later, still hasn't been refactored -S
 /obj/structure/window/reinforced/attackby(obj/item/I, mob/living/user, params)
+	var/list/modifiers = params2list(params)
 	switch(state)
 		if(RWINDOW_SECURE)
-			if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HARM)
+			if(I.tool_behaviour == TOOL_WELDER && modifiers && modifiers[RIGHT_CLICK])
 				user.visible_message(span_notice("[user] holds \the [I] to the security screws on \the [src]..."),
 										span_notice("You begin heating the security screws on \the [src]..."))
 				if(I.use_tool(src, user, 8 SECONDS, volume = 100))
@@ -567,9 +570,10 @@
 //entirely copypasted code
 //take this out when construction is made a component or otherwise modularized in some way
 /obj/structure/window/plasma/reinforced/attackby(obj/item/I, mob/living/user, params)
+	var/list/modifiers = params2list(params)
 	switch(state)
 		if(RWINDOW_SECURE)
-			if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HARM)
+			if(I.tool_behaviour == TOOL_WELDER && modifiers && modifiers[RIGHT_CLICK])
 				user.visible_message(span_notice("[user] holds \the [I] to the security screws on \the [src]..."),
 										span_notice("You begin heating the security screws on \the [src]..."))
 				if(I.use_tool(src, user, 180, volume = 100))
@@ -932,12 +936,12 @@
 	for (var/i in 1 to rand(1,4))
 		. += new /obj/item/paper/natural(location)
 
-/obj/structure/window/paperframe/attack_hand(mob/user)
+/obj/structure/window/paperframe/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	add_fingerprint(user)
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		take_damage(4,BRUTE,MELEE, 0)
 		if(!QDELETED(src))
 			user.visible_message(span_danger("[user] tears a hole in [src]."))
@@ -956,11 +960,11 @@
 	. = ..()
 	. += (atom_integrity < max_integrity) ? torn : paper
 
-/obj/structure/window/paperframe/attackby(obj/item/W, mob/user)
+/obj/structure/window/paperframe/attackby(obj/item/W, mob/living/user)
 	if(W.is_hot())
 		fire_act(W.is_hot())
 		return
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return ..()
 	if(istype(W, /obj/item/paper) && atom_integrity < max_integrity)
 		user.visible_message("[user] starts to patch the holes in \the [src].")

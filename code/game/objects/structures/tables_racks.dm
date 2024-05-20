@@ -104,20 +104,22 @@
 /obj/structure/table/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/structure/table/attack_hand(mob/living/user)
+/obj/structure/table/attack_hand(mob/living/user, modifiers)
 	if(Adjacent(user) && user.pulling)
 		if(isliving(user.pulling))
 			var/mob/living/pushed_mob = user.pulling
 			if(pushed_mob.buckled)
 				to_chat(user, span_warning("[pushed_mob] is buckled to [pushed_mob.buckled]!"))
 				return
-			if(user.a_intent == INTENT_GRAB)
-				if(user.grab_state < GRAB_AGGRESSIVE)
-					to_chat(user, span_warning("You need a better grip to do that!"))
-					return
-				if(do_after(user, 3.5 SECONDS, pushed_mob))
-					tablepush(user, pushed_mob)
-			if(user.a_intent == INTENT_HELP)
+			if(user.combat_mode)
+				switch(user.grab_state)
+					if(GRAB_PASSIVE)
+						to_chat(user, span_warning("You need a better grip to do that!"))
+						return
+					if(GRAB_AGGRESSIVE to GRAB_KILL)
+						if(do_after(user, 3.5 SECONDS, pushed_mob))
+							tablepush(user, pushed_mob)
+			else
 				pushed_mob.visible_message(span_notice("[user] begins to place [pushed_mob] onto [src]..."), \
 									span_userdanger("[user] begins to place [pushed_mob] onto [src]..."))
 				if(do_after(user, 3.5 SECONDS,pushed_mob))
@@ -189,19 +191,6 @@
 /obj/structure/table/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/rsf)) // Stops RSF from placing itself instead of glasses
 		return
-	if(!(flags_1 & NODECONSTRUCT_1) && deconstruction_ready && ((user.a_intent != INTENT_HELP || HAS_TRAIT(I, TRAIT_NODROP)) && (user.a_intent != INTENT_HARM || (I.item_flags & NOBLUDGEON)) || !(INTENT_DISARM in user.possible_a_intents)))
-		if(I.tool_behaviour == TOOL_SCREWDRIVER)
-			to_chat(user, span_notice("You start disassembling [src]..."))
-			if(I.use_tool(src, user, 20, volume=50))
-				deconstruct(TRUE)
-			return
-
-		if(I.tool_behaviour == TOOL_WRENCH)
-			to_chat(user, span_notice("You start deconstructing [src]..."))
-			if(I.use_tool(src, user, 40, volume=50))
-				playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
-				deconstruct(TRUE, 1)
-			return
 
 	if(istype(I, /obj/item/storage/bag/tray))
 		var/obj/item/storage/bag/tray/T = I
@@ -211,7 +200,7 @@
 			return
 		// If the tray IS empty, continue on (tray will be placed on the table like other items)
 
-	if((user.a_intent != INTENT_HARM && !HAS_TRAIT(I, TRAIT_NODROP)) && !(I.item_flags & ABSTRACT)) // if you can't drop it, you can't place it on the table
+	if(!user.combat_mode && !HAS_TRAIT(I, TRAIT_NODROP) && !(I.item_flags & ABSTRACT)) // if you can't drop it, you can't place it on the table
 		if(user.transferItemToLoc(I, drop_location()))
 			var/list/click_params = params2list(params)
 			//Center the icon where the user clicked.
@@ -221,9 +210,26 @@
 			I.pixel_x = clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
 			I.pixel_y = clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 			return 1
+	else if(!user.combat_mode) // can't drop the item but not in combat mode, try deconstructing instead
+		return attackby_secondary(I, user, params)
 	else
 		return ..()
 
+/obj/structure/table/attackby_secondary(obj/item/weapon, mob/user, params) // right click to deconstruct
+	if(!(flags_1 & NODECONSTRUCT_1) && deconstruction_ready)
+		if(weapon.tool_behaviour == TOOL_SCREWDRIVER)
+			to_chat(user, span_notice("You start disassembling [src]..."))
+			if(weapon.use_tool(src, user, 20, volume=50))
+				deconstruct(TRUE)
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+		if(weapon.tool_behaviour == TOOL_WRENCH)
+			to_chat(user, span_notice("You start deconstructing [src]..."))
+			if(weapon.use_tool(src, user, 40, volume=50))
+				playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
+				deconstruct(TRUE, 1)
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	return ..()
 
 /obj/structure/table/deconstruct(disassembled = TRUE, wrench_disassembly = 0)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -461,23 +467,23 @@
 	else
 		return span_notice("The top cover is firmly <b>welded</b> on.")
 
-/obj/structure/table/reinforced/attackby(obj/item/W, mob/user, params)
-	if(W.tool_behaviour == TOOL_WELDER)
-		if(!W.tool_start_check(user, amount=0))
-			return
+/obj/structure/table/reinforced/attackby_secondary(obj/item/weapon, mob/user, params)
+	if(weapon.tool_behaviour == TOOL_WELDER)
+		if(!weapon.tool_start_check(user, amount=0))
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 		if(deconstruction_ready)
 			to_chat(user, span_notice("You start strengthening the reinforced table..."))
-			if (W.use_tool(src, user, 50, volume=50))
+			if (weapon.use_tool(src, user, 50, volume=50))
 				to_chat(user, span_notice("You strengthen the table."))
 				deconstruction_ready = 0
 		else
 			to_chat(user, span_notice("You start weakening the reinforced table..."))
-			if (W.use_tool(src, user, 50, volume=50))
+			if (weapon.use_tool(src, user, 50, volume=50))
 				to_chat(user, span_notice("You weaken the table."))
 				deconstruction_ready = 1
-	else
-		. = ..()
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	return ..()
 
 /obj/structure/table/reinforced/brass
 	name = "brass table"
@@ -604,15 +610,18 @@
 	if(O.loc != src.loc)
 		step(O, get_dir(O, src))
 
-/obj/structure/rack/attackby(obj/item/W, mob/user, params)
-	if (W.tool_behaviour == TOOL_WRENCH && !(flags_1&NODECONSTRUCT_1) && (user.a_intent != INTENT_HELP && user.a_intent != INTENT_HARM || !(INTENT_DISARM in user.possible_a_intents)))
-		W.play_tool_sound(src)
-		deconstruct(TRUE)
-		return
-	if(user.a_intent == INTENT_HARM)
+/obj/structure/rack/attackby(obj/item/W, mob/living/user, params)
+	if(user.combat_mode)
 		return ..()
 	if(user.transferItemToLoc(W, drop_location()))
-		return 1
+		return TRUE
+
+/obj/structure/rack/attackby_secondary(obj/item/weapon, mob/user, params)
+	if(weapon.tool_behaviour == TOOL_WRENCH && !(flags_1 & NODECONSTRUCT_1))
+		weapon.play_tool_sound(src)
+		deconstruct(TRUE)
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	return ..()
 
 /obj/structure/rack/attack_paw(mob/living/user)
 	attack_hand(user)

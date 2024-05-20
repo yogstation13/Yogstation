@@ -6,8 +6,8 @@
 	icon_deny = "engi-deny"
 	panel_type = "panel10"
 	req_access = list(ACCESS_ENGINE_EQUIP)
-	products = list(/obj/item/clothing/under/rank/chief_engineer = 4,
-		            /obj/item/clothing/under/rank/engineer = 4,
+	products = list(/obj/item/clothing/under/rank/engineering/chief_engineer = 4,
+		            /obj/item/clothing/under/rank/engineering/engineer = 4,
 		            /obj/item/clothing/shoes/sneakers/orange = 4,
 		            /obj/item/clothing/head/hardhat = 4,
 					/obj/item/storage/belt/utility = 4,

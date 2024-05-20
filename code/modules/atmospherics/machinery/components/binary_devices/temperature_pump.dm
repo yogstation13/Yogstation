@@ -14,13 +14,7 @@
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "tpump"
 	vent_movement = NONE
-
-/obj/machinery/atmospherics/components/binary/temperature_pump/CtrlClick(mob/user)
-	if(can_interact(user))
-		on = !on
-		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
-		update_appearance(UPDATE_ICON)
-	return ..()
+	quick_toggle = TRUE
 
 /obj/machinery/atmospherics/components/binary/temperature_pump/AltClick(mob/user)
 	if(can_interact(user) && !(heat_transfer_rate == max_heat_transfer_rate))
@@ -80,9 +74,8 @@
 		return
 	switch(action)
 		if("power")
-			on = !on
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
-			. = TRUE
+			toggle_on()
+			return TRUE
 		if("rate")
 			var/rate = params["rate"]
 			if(rate == "max")

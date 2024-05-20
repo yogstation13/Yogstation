@@ -27,7 +27,9 @@
 	id = MARTIALART_WORLDBREAKER
 	no_guns = TRUE
 	help_verb = /mob/living/carbon/human/proc/worldbreaker_help
-	var/recalibration = /mob/living/carbon/human/proc/worldbreaker_recalibration
+	martial_traits = list(TRAIT_RESISTHEAT, TRAIT_NOSOFTCRIT, TRAIT_STUNIMMUNE, TRAIT_NOVEHICLE, TRAIT_BOTTOMLESS_STOMACH)
+	///traits applied when the user has enough plates to trigger heavy mode
+	var/list/heavy_traits = list(TRAIT_BOMBIMMUNE, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE)
 	var/list/thrown = list()
 	COOLDOWN_DECLARE(next_leap)
 	COOLDOWN_DECLARE(next_grab)
@@ -50,41 +52,36 @@
 /datum/martial_art/worldbreaker/harm_act(mob/living/carbon/human/A, mob/living/D)
 	return TRUE //no punch, just pummel
 
-/datum/martial_art/worldbreaker/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
+/datum/martial_art/worldbreaker/proc/on_click(mob/living/carbon/human/H, atom/target, params)
 	var/list/modifiers = params2list(params)
-	if(!can_use(H) || (modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"]))
-		return
+	if(!can_use(H) || modifiers[SHIFT_CLICK] || modifiers[ALT_CLICK] || modifiers[CTRL_CLICK])
+		return NONE
 
 	if(isitem(target))//don't attack if we're clicking on our inventory
 		var/obj/item/thing = target
 		if(thing in H.get_all_contents())
-			return
+			return NONE
 
-	if(H.a_intent == INTENT_DISARM)
-		leap(H, target)
+	if(!H.combat_mode)
+		return NONE
 
-	if(H.get_active_held_item()) //most abilities need an empty hand
-		return
+	if(H.in_throw_mode) //so they can throw people they've grabbed using regular grabs
+		return NONE
 
-	if(H.a_intent == INTENT_HELP && (H==target))
-		rip_plate(H)
-	if(thrown.len > 0 && H.a_intent == INTENT_GRAB)
-		if(get_turf(target) != get_turf(H))
-			throw_start(H, target)
+	H.face_atom(target)
+	if(modifiers[RIGHT_CLICK])
+		if(H == target)
+			return rip_plate(H) // right click yourself to take off a plate
+		else if(get_dist(H, target) <= 1)
+			return grapple(H,target) // right click in melee to grab
+		else
+			return leap(H, target) // right click at range to leap
+	else
+		if(thrown.len > 0)
+			return throw_start(H, target) // left click to throw if holding someone
+		else
+			return pummel(H, target) // left click to pummel if not holding someone
 
-	if(H.a_intent == INTENT_HARM)//technically can punch yourself, but with how it works, you won't actually hurt yourself
-		pummel(H,target)
-
-	if(!H.Adjacent(target))
-		return
-
-	if(H == target)
-		return
-
-	if(H.a_intent == INTENT_GRAB && isliving(target))
-		grapple(H,target)
-
-	
 /*-------------------------------------------------------------
 	start of helpers section
 ---------------------------------------------------------*/
@@ -135,9 +132,11 @@
 	update_platespeed(user)
 
 /datum/martial_art/worldbreaker/proc/rip_plate(mob/living/carbon/human/user)
+	if(user.get_active_held_item()) //most abilities need an empty hand
+		return COMSIG_MOB_CANCEL_CLICKON // don't hit yourself when trying to tear off a piece
 	if(plates <= 0)
 		to_chat(user, span_warning("Your plates are too thin to tear off a piece!"))
-		return
+		return NONE
 	user.balloon_alert(user, span_notice("you tear off a loose plate!"))
 
 	currentplate = 0
@@ -148,6 +147,7 @@
 	user.put_in_active_hand(plate)
 	user.changeNext_move(0.1)//entirely to prevent hitting yourself instantly
 	user.throw_mode_on()
+	return COMSIG_MOB_CANCEL_CLICKON
 
 /datum/martial_art/worldbreaker/proc/lose_plate(mob/living/carbon/human/user, damage, damagetype, def_zone)
 	if(plates <= 0)//no plate to lose
@@ -185,17 +185,11 @@
 		if(heavy)//sort of a sound indicator that you're in "heavy mode"
 			S.special_step_sounds = list('sound/effects/gravhit.ogg')//heavy boy get stompy footsteps
 			S.special_step_volume = 9 //prevent it from blowing out ears
-			ADD_TRAIT(user, TRAIT_BOMBIMMUNE, type)//maxcap suicide bombers can go fuck themselves
-			ADD_TRAIT(user, TRAIT_RESISTCOLD, type)
-			ADD_TRAIT(user, TRAIT_RESISTHIGHPRESSURE, type)
-			ADD_TRAIT(user, TRAIT_RESISTLOWPRESSURE, type)
+			user.add_traits(heavy_traits, id)
 		else
 			S.special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
-			S.special_step_volume = 50
-			REMOVE_TRAIT(user, TRAIT_BOMBIMMUNE, type)
-			REMOVE_TRAIT(user, TRAIT_RESISTCOLD, type)
-			REMOVE_TRAIT(user, TRAIT_RESISTHIGHPRESSURE, type)
-			REMOVE_TRAIT(user, TRAIT_RESISTLOWPRESSURE, type)
+			S.special_step_volume = initial(S.special_step_volume)
+			user.remove_traits(heavy_traits, id)
 
 /datum/martial_art/worldbreaker/proc/adjust_plates(mob/living/carbon/human/user, amount = 0)
 	if(amount == 0)
@@ -252,6 +246,8 @@
 	start of leap section
 ---------------------------------------------------------------*/
 /datum/martial_art/worldbreaker/proc/leap(mob/living/user, atom/target)
+	if(!(user.mobility_flags & MOBILITY_STAND))//require standing to leap
+		return
 	if(!COOLDOWN_FINISHED(src, next_leap))
 		if(COOLDOWN_FINISHED(src, next_balloon))
 			COOLDOWN_START(src, next_balloon, BALLOON_COOLDOWN)
@@ -260,6 +256,9 @@
 	if(!target)
 		return
 	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP * 3)//should last longer than the leap, but just in case
+
+	user.setMovetype(user.movement_type | FLYING) //so they can jump over things that care about this
+	user.pass_flags |= PASSTABLE
 
 	//telegraph ripped entirely from bubblegum charge
 	if(heavy)
@@ -276,14 +275,18 @@
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(user.loc,user)
 	animate(D, alpha = 0, color = "#000000", transform = matrix()*2, time = 0.3 SECONDS)
 	animate(user, time = (heavy ? 0.4 : 0.2)SECONDS, pixel_y = 20)//we up in the air
-	addtimer(CALLBACK(src, PROC_REF(reset_pixel), user), 1.5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)//in case something happens, we don't permanently float
 	playsound(user, 'sound/effects/gravhit.ogg', 15)
 	playsound(user, 'sound/effects/dodge.ogg', 15, TRUE)
+	return COMSIG_MOB_CANCEL_CLICKON
 
 /datum/martial_art/worldbreaker/proc/leap_end(mob/living/carbon/human/user)
 	if(!COOLDOWN_FINISHED(src, next_leap))
 		COOLDOWN_START(src, next_leap, COOLDOWN_LEAP + (heavy ? 1 SECONDS : 0))
+
 	user.SetImmobilized(0 SECONDS, ignore_canstun = TRUE)
+	user.setMovetype(user.movement_type & ~FLYING)
+	user.pass_flags &= ~PASSTABLE
+
 	var/range = LEAP_RADIUS
 	if(heavy)//heavy gets doubled range
 		range *= 2
@@ -313,6 +316,7 @@
 		obstruction.take_damage(damage, sound_effect = FALSE) //reduced sound from hitting LOTS of things
 
 	animate(user, time = 0.1 SECONDS, pixel_y = 0)
+	addtimer(CALLBACK(src, PROC_REF(reset_pixel), user), 0.3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)//in case something happens, we don't permanently float
 	playsound(user, 'sound/effects/gravhit.ogg', 20, TRUE)
 	playsound(user, 'sound/effects/explosion_distant.ogg', 200, FALSE, WARNING_RANGE)
 	var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
@@ -338,6 +342,11 @@
 		thrown.Remove(thing)
 
 /datum/martial_art/worldbreaker/proc/grapple(mob/living/user, atom/target) //proc for picking something up to toss
+	if(user.get_active_held_item()) //most abilities need an empty hand
+		return
+	if(!isliving(target)) // what are you trying to grab
+		return
+
 	var/turf/Z = get_turf(user)
 	target.add_fingerprint(user, FALSE)
 
@@ -360,11 +369,14 @@
 		walk_towards(F, user, 0, 0)
 		if(get_dist(victim, user) > 1)
 			victim.density = initial(victim.density)
-			return
+			return COMSIG_MOB_CANCEL_CLICKON
 		thrown |= victim // Marks the mob to throw
-		return
+		return COMSIG_MOB_CANCEL_CLICKON
 
 /datum/martial_art/worldbreaker/proc/throw_start(mob/living/user, atom/target)//proc for throwing something you picked up with grapple
+	if(user.get_active_held_item()) //most abilities need an empty hand
+		return
+
 	var/target_dist = get_dist(user, target)
 	var/turf/D = get_turf(target)	
 	var/atom/tossed = thrown[1]
@@ -384,6 +396,7 @@
 	user.visible_message(span_warning("[user] throws [tossed]!"))
 
 	throw_process(user, target_dist, 1, tossed, D, THROW_OBJDMG)
+	return COMSIG_MOB_CANCEL_CLICKON
 
 /datum/martial_art/worldbreaker/proc/throw_process(mob/living/user, target_dist, current_dist, atom/tossed, turf/target, remaining_damage)//each call of the throw loop
 	if(!target_dist || !current_dist || !tossed || current_dist > target_dist)
@@ -397,7 +410,7 @@
 
 	var/dir_to_target = get_dir(get_turf(tossed), target) //vars that let the thing be thrown while moving similar to things thrown normally
 	var/turf/T = get_step(get_turf(tossed), dir_to_target)
-	if(T?.density) // crash into a wall and damage everything flying towards it before stopping 
+	if(T?.density && !T.CanAllowThrough(thrown[1])) // crash into a wall and damage everything flying towards it before stopping 
 		for(var/mob/living/victim in thrown)
 			hurt(user, victim, THROW_MOBDMG) 
 			victim.Knockdown(1 SECONDS)
@@ -458,14 +471,21 @@
 	start of pummel section
 ---------------------------------------------------------------*/
 /datum/martial_art/worldbreaker/proc/pummel(mob/living/user, atom/target)
-	if(user == target)
+	if(user.get_active_held_item()) //most abilities need an empty hand
+		return
+	if(isitem(target)) // so you can still pick up items
 		return
 	if(!COOLDOWN_FINISHED(src, next_pummel))
-		return
+		return COMSIG_MOB_CANCEL_CLICKON
 	COOLDOWN_START(src, next_pummel, COOLDOWN_PUMMEL)
-	user.changeNext_move(COOLDOWN_PUMMEL + 1)//so things don't work weirdly when spamming on windows or whatever
 
-	var/center = get_step_towards(user, target)
+	var/turf/center
+	if(user.client) //try to get the precise angle to the user's mouse rather than just the tile clicked on
+		center = get_turf_in_angle(mouse_angle_from_client(user.client), user)
+	if(get_turf(user) == get_turf(target)) //let them click on themselves
+		center = get_turf(user)
+	if(!center) //if no fancy targeting has happened, default to something alright
+		center = get_turf_in_angle(get_angle(user, target), user)
 
 	user.do_attack_animation(center, ATTACK_EFFECT_SMASH)
 	playsound(get_turf(center), 'sound/effects/gravhit.ogg', 20, TRUE, -1)
@@ -474,33 +494,27 @@
 	shockwave.transform *= 0.1 //basically invisible
 	shockwave.pixel_x = -240
 	shockwave.pixel_y = -240
-	shockwave.alpha = 100 //slightly weaker looking
+	shockwave.alpha = 150 //slightly weaker looking
 	animate(shockwave, alpha = 0, transform = matrix().Scale(0.24), time = 3)//the scale of this is VERY finely tuned to range
 	QDEL_IN(shockwave, 4)
 
-	for(var/mob/living/L in range(1, get_turf(center)))
-		if(L == user)
+	for(var/atom/hit_atom in range(1, center))
+		if(hit_atom == user)
 			continue
 		var/damage = 5
-		if(get_turf(L) == get_turf(center))
-			damage *= 4 //anyone in the center takes more
-
-		if(L.anchored)
-			L.anchored = FALSE
-		push_away(user, L)
-		hurt(user, L, damage)
-	for(var/obj/obstruction in range(1, get_turf(center)))
-		if(isitem(obstruction))
-			push_away(user, obstruction)
-			continue
-		if(!isstructure(obstruction) && !ismachinery(obstruction) && !ismecha(obstruction))
-			continue
-		var/damage = 10
-		if(isstructure(obstruction) || ismecha(obstruction))
-			damage += 5
-		if(get_turf(obstruction) == get_turf(center))
-			damage *= 3
-		obstruction.take_damage(damage, sound_effect = FALSE) //reduced sound from hitting LOTS of things
+		if(isitem(hit_atom))
+			push_away(user, hit_atom)
+		else if(isliving(hit_atom))
+			if(get_turf(hit_atom) == center)
+				damage *= 4 //anyone in the center takes more
+			push_away(user, hit_atom)
+			hurt(user, hit_atom, damage)
+		else if(hit_atom.uses_integrity)
+			damage += (isstructure(hit_atom) || ismecha(hit_atom) || isturf(hit_atom)) ? 10 : 5
+			if(get_turf(hit_atom) == center)
+				damage *= 3 //anything in the center takes more
+			hit_atom.take_damage(damage, sound_effect = FALSE)
+	return COMSIG_MOB_CANCEL_CLICKON
 
 /*---------------------------------------------------------------
 	end of pummel section
@@ -619,17 +633,17 @@
 	While at maximum armour you are considered \"heavy\" and most of your attacks will be slower, but do more damage in a larger area. \
 	Taking brute or burn damage will wear away at your plates until they fall off on their own."
 
-	combined_msg +=  "[span_notice("Rip Plate")]: Help intent yourself to rip off a plate. The plate can be thrown at people to stagger them and knock them back. \
+	combined_msg +=  "[span_notice("Rip Plate")]: Right-click yourself to rip off a plate. The plate can be thrown at people to stagger them and knock them back. \
 	The plate is heavy enough that others will find it difficult to throw."
 
 	combined_msg +=  "[span_notice("Leap")]: \
-	Your disarm is instead a leap that deals damage, staggers, and knocks everything back within a radius. \
+	Right-click away from you to leap, which deals damage, staggers, and knocks everything back within a radius. \
 	Landing on someone will do extra damage. The cooldown is longer if heavy and only starts when you land."
 	
 	combined_msg +=  "[span_notice("Clasp")]: Your grab is far stronger. \
-	Instead of grabbing someone, you will pick them up and be able to throw them."
+	Right-click pick someone up and be able to throw them with left-click."
 
-	combined_msg +=  "[span_notice("Pummel")]: Your harm intent pummels a small area dealing damage, knocking back, and staggering. \
+	combined_msg +=  "[span_notice("Pummel")]: Your punches pummel a small area dealing damage, knocking back, and staggering. \
 	The targets in the middle take notably more damage."
 
 	combined_msg +=  "[span_notice("Worldstomp")]: After a delay, create a giant shockwave that deals damage to all mobs within a radius. \
@@ -642,31 +656,15 @@
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
-/mob/living/carbon/human/proc/worldbreaker_recalibration()
-	set name = "Flush Circuits"
-	set desc = "Flush 'clogged' circuits in order to regain lost strength."
-	set category = "Worldbreaker"
-	var/list/combined_msg = list()
-	combined_msg +=  "<b><i>You flush your circuits with excess power to reduce built up strain on your limbs.</i></b>"
-	to_chat(usr, examine_block(combined_msg.Join("\n")))
-
-	usr.click_intercept = usr.mind.martial_art
-
 /datum/martial_art/worldbreaker/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
 	H.physiology.hunger_mod *= 10 //burn bright my friend
 	var/datum/species/preternis/S = H.dna.species
 	if(istype(S))
 		S.add_no_equip_slot(H, ITEM_SLOT_OCLOTHING, src)
-	usr.click_intercept = src 
-	add_verb(H, recalibration)
+	RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(on_click))
 	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
 	update_platespeed(H)
-	ADD_TRAIT(H, TRAIT_RESISTHEAT, type) //walk through that fire all you like, hope you don't care about your clothes
-	ADD_TRAIT(H, TRAIT_NOSOFTCRIT, type)
-	ADD_TRAIT(H, TRAIT_STUNIMMUNE, type)
-	ADD_TRAIT(H, TRAIT_NOVEHICLE, type)
-	ADD_TRAIT(H, TRAIT_BOTTOMLESS_STOMACH, type) //they hongry
 	RegisterSignal(H, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(lose_plate))
 	if(!linked_stomp)
 		linked_stomp = new
@@ -678,16 +676,10 @@
 	var/datum/species/preternis/S = H.dna.species
 	if(istype(S))
 		S.remove_no_equip_slot(H, ITEM_SLOT_OCLOTHING, src)
-	usr.click_intercept = null 
-	remove_verb(H, recalibration)
+	UnregisterSignal(H, COMSIG_MOB_CLICKON)
 	deltimer(plate_timer)
 	plates = 0
 	update_platespeed(H)
-	REMOVE_TRAIT(H, TRAIT_RESISTHEAT, type)
-	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, type)
-	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, type)
-	REMOVE_TRAIT(H, TRAIT_NOVEHICLE, type)
-	REMOVE_TRAIT(H, TRAIT_BOTTOMLESS_STOMACH, type)
 	UnregisterSignal(H, COMSIG_MOB_APPLY_DAMAGE)
 	if(linked_stomp)
 		linked_stomp.Remove(H)

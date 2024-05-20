@@ -46,7 +46,7 @@
 /obj/item/resonator/pre_attack(atom/target, mob/user, params)
 	if(check_allowed_items(target, 1))
 		CreateResonance(target, user)
-	return TRUE
+	return FALSE
 
 //resonance field, crushes rock, damages mobs
 /obj/effect/temp_visual/resonance

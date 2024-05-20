@@ -382,7 +382,7 @@ Class Procs:
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 /obj/machinery/attack_paw(mob/living/user)
-	if(user.a_intent != INTENT_HARM)
+	if(!user.combat_mode)
 		return attack_hand(user)
 	else
 		user.changeNext_move(CLICK_CD_MELEE)
@@ -390,24 +390,22 @@ Class Procs:
 		user.visible_message(span_danger("[user.name] smashes against \the [src.name] with its paws."), null, null, COMBAT_MESSAGE_RANGE)
 		take_damage(4, BRUTE, MELEE, 1)
 
-/obj/machinery/attack_robot(mob/user)
+/obj/machinery/attack_robot(mob/user, modifiers)
 	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !IsAdminGhost(user))
 		return FALSE
-	return _try_interact(user)
+	return _try_interact(user, modifiers)
 
-/obj/machinery/attack_ai(mob/user)
+/obj/machinery/attack_ai(mob/user, modifiers)
 	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !IsAdminGhost(user))
 		return FALSE
 	if(iscyborg(user))// For some reason attack_robot doesn't work
-		return attack_robot(user)
+		return attack_robot(user, modifiers)
 	else
-		return _try_interact(user)
+		return _try_interact(user, modifiers)
 
-/obj/machinery/_try_interact(mob/user)
+/obj/machinery/_try_interact(mob/user, modifiers)
 	if((interaction_flags_machine & INTERACT_MACHINE_WIRES_IF_OPEN) && panel_open && (attempt_wire_interaction(user) == WIRE_INTERACTION_BLOCK))
 		return TRUE
-	if((user.mind?.has_martialart(MARTIALART_BUSTERSTYLE)) && (user.a_intent == INTENT_GRAB)) //buster arm shit since it can throw vendors
-		return	
 	return ..()
 
 /obj/machinery/tool_act(mob/living/user, obj/item/tool, tool_type, is_right_clicking)

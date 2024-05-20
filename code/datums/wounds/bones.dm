@@ -99,7 +99,7 @@
 
 /// If we're a human who's punching something with a broken arm, we might hurt ourselves doing so
 /datum/wound/blunt/proc/attack_with_hurt_hand(mob/M, atom/target, proximity)
-	if(victim.get_active_hand() != limb || victim.a_intent == INTENT_HELP || !ismob(target) || severity <= WOUND_SEVERITY_MODERATE)
+	if(victim.get_active_hand() != limb || !victim.combat_mode || !ismob(target) || severity <= WOUND_SEVERITY_MODERATE)
 		return
 
 	// With a severe or critical wound, you have a 15% or 30% chance to proc pain on hit
@@ -218,7 +218,7 @@
 		remove_wound()
 
 /datum/wound/blunt/moderate/try_handling(mob/living/carbon/human/user)
-	if(user.pulling != victim || user.zone_selected != limb.body_zone || user.a_intent == INTENT_GRAB)
+	if(user.pulling != victim || user.zone_selected != limb.body_zone)
 		return FALSE
 
 	if(user.grab_state == GRAB_PASSIVE)
@@ -228,7 +228,7 @@
 	if(user.grab_state >= GRAB_AGGRESSIVE)
 		user.visible_message(span_danger("[user] begins twisting and straining [victim]'s dislocated [limb.name]!"), span_notice("You begin twisting and straining [victim]'s dislocated [limb.name]..."), ignored_mobs=victim)
 		to_chat(victim, span_userdanger("[user] begins twisting and straining your dislocated [limb.name]!"))
-		if(user.a_intent == INTENT_HELP)
+		if(!user.combat_mode)
 			chiropractice(user)
 		else
 			malpractice(user)

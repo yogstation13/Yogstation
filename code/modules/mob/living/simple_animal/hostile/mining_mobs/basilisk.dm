@@ -26,7 +26,7 @@
 	melee_damage_upper = 12
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	attacktext = "bites into"
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	speak_emote = list("chitters")
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	vision_range = 2
@@ -75,7 +75,7 @@
 	melee_damage_upper = 15
 	attack_vis_effect = null // doesn't bite unlike the parent type.
 	attacktext = "impales"
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	speak_emote = list("telepathically cries")
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	stat_attack = UNCONSCIOUS

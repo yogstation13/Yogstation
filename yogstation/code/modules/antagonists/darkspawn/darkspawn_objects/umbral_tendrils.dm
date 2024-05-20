@@ -53,27 +53,29 @@
 	. = ..()
 	if(isobserver(user) || isdarkspawn(user))
 		. += span_velvet("<b>Functions:</b>")
-		. += span_velvet("<b>Disarm intent:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)")
-		. += span_velvet("<b>Grab intent:</b> Consume 30 psi to a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck.")
+		. += span_velvet("<b>Airlock Forcing:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)")
+		. += span_velvet("<b>Tendril Swing:</b> Right click to consume 30 psi to a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck.")
 		. += span_velvet("The tendrils will devour any lights hit.")
-		. += span_velvet("Also functions to pry open depowered airlocks on any intent other than harm.")
+		. += span_velvet("Also functions to pry open depowered airlocks using right click.")
 
 /obj/item/umbral_tendrils/attack(mob/living/target, mob/living/user, twinned_attack = TRUE)
-	set waitfor = FALSE
-	..()
-	sleep(0.2 SECONDS)
-	if(twin && twinned_attack && user.Adjacent(target))
-		twin.attack(target, user, FALSE)
+	. = ..()
+	if(!. && twin && twinned_attack && user.Adjacent(target))
+		addtimer(CALLBACK(twin, PROC_REF(attack), target, user, FALSE), 0.2 SECONDS)
 
-/obj/item/umbral_tendrils/afterattack(atom/target, mob/living/user, proximity)
+/obj/item/umbral_tendrils/afterattack(atom/target, mob/living/user, proximity, params)
 	. = ..()
 	if(!darkspawn)
 		return
 	if(twin && proximity && !QDELETED(target) && (isstructure(target) || ismachinery(target)) && user.get_active_held_item() == src)
 		target.attackby(twin, user)
-	switch(user.a_intent) //Note that airlock interactions can be found in airlock.dm.
-		if(INTENT_GRAB)
-			tendril_swing(user, target)
+
+/obj/item/umbral_tendrils/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(!darkspawn)
+		return ..()
+	tendril_swing(user, target) //Note that airlock interactions can be found in airlock.dm.
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/umbral_tendrils/proc/tendril_swing(mob/living/user, mob/living/target) //swing the tendrils to knock someone down
 	if(!COOLDOWN_FINISHED(src, grab_cooldown))

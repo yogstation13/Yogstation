@@ -143,7 +143,7 @@
 				SSvis_overlays.add_vis_overlay(src, icon, "circ-slow", ABOVE_LIGHTING_PLANE, dir)
 
 /obj/machinery/atmospherics/components/binary/circulator/wrench_act(mob/living/user, obj/item/I)
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return
 
 	if(!panel_open)
@@ -205,7 +205,7 @@
 	return FALSE
 
 /obj/machinery/atmospherics/components/binary/circulator/multitool_act(mob/living/user, obj/item/I)
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return
 	if(generator)
 		to_chat(user, span_warning("Disconnect [generator] first!"))
@@ -218,7 +218,7 @@
 /obj/machinery/atmospherics/components/binary/circulator/screwdriver_act(mob/user, obj/item/I)
 	if(..())
 		return TRUE
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return
 	if(generator)
 		to_chat(user, span_warning("Disconnect the generator first!"))
@@ -231,7 +231,7 @@
 	return TRUE
 
 /obj/machinery/atmospherics/components/binary/circulator/crowbar_act(mob/user, obj/item/I)
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return
 	if(anchored)
 		to_chat(user, span_warning("[src] is anchored!"))

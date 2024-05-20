@@ -1,12 +1,12 @@
 // amber task force clothing
-/obj/item/clothing/under/rank/security/grey/amber
+/obj/item/clothing/under/rank/security/officer/grey/amber
 	name = "amber task force jumpsuit"
 
 /obj/item/clothing/head/beret/sec/amber_medic
 	name = "amber medic beret"
 	desc = "A white beret for the mundane life of an amber task force medic."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_ce"
 
 
@@ -52,7 +52,7 @@
 /datum/outfit/amber
 	name = "Amber Soldier"
 
-	uniform = /obj/item/clothing/under/rank/security/grey/amber
+	uniform = /obj/item/clothing/under/rank/security/officer/grey/amber
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	shoes = /obj/item/clothing/shoes/combat/combat_knife
 	gloves = /obj/item/clothing/gloves/combat

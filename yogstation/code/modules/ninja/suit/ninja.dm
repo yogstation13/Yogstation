@@ -1,22 +1,22 @@
 /obj/item/clothing/head/helmet/space/space_ninja
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "s-ninja"
 
 /obj/item/clothing/mask/gas/space_ninja
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/mask/mask.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/mask/mask.dmi'
 	icon = 'yogstation/icons/obj/clothing/masks.dmi'
 	icon_state = "s-ninja"
 	var/lights_on = FALSE
 	var/lights_colour = "16be00"
 
 /obj/item/clothing/shoes/space_ninja
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/feet/feet.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/feet/feet.dmi'
 	icon_state = "s-ninja"
 	var/lights_on = FALSE
 	var/lights_colour = "16be00"
 
 /obj/item/clothing/suit/space/space_ninja
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "s-ninja"
 	var/lights_on = FALSE
@@ -30,14 +30,14 @@
 /obj/item/clothing/suit/space/space_ninja/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(!isinhands && lights_on)
-		var/mutable_appearance/M = mutable_appearance(mob_overlay_icon, "s-ninja-overlay")
+		var/mutable_appearance/M = mutable_appearance(worn_icon, "s-ninja-overlay")
 		M.color = lights_colour
 		. += M
 
 /obj/item/clothing/mask/gas/space_ninja/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(!isinhands && lights_on)
-		var/mutable_appearance/M = mutable_appearance(mob_overlay_icon, "s-ninja-overlay")
+		var/mutable_appearance/M = mutable_appearance(worn_icon, "s-ninja-overlay")
 		M.color = lights_colour
 		. += M
 
@@ -45,14 +45,14 @@
 /obj/item/clothing/shoes/space_ninja/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(!isinhands && lights_on)
-		var/mutable_appearance/M = mutable_appearance(mob_overlay_icon, "s-ninja-overlay")
+		var/mutable_appearance/M = mutable_appearance(worn_icon, "s-ninja-overlay")
 		M.color = lights_colour
 		. += M
 
 /obj/item/clothing/gloves/space_ninja/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(!isinhands && lights_on)
-		var/mutable_appearance/M = mutable_appearance(mob_overlay_icon, "s-ninja-overlay")
+		var/mutable_appearance/M = mutable_appearance(worn_icon, "s-ninja-overlay")
 		M.color = lights_colour
 		. += M
 

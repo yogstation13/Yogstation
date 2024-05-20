@@ -3,10 +3,11 @@
 	desc = "A non-descript and slightly suspicious looking turtleneck with digital camouflage cargo pants."
 	icon_state = "syndicate"
 	item_state = "bl_suit"
+	worn_icon = 'icons/mob/clothing/uniform/syndicate.dmi'
 	has_sensor = NO_SENSORS
 	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 40)
 	alt_covers_chest = TRUE
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/syndicate/tacticool
 	name = "tacticool turtleneck"
@@ -19,7 +20,7 @@
 /obj/item/clothing/under/syndicate/sniper
 	name = "tactical turtleneck suit"
 	desc = "A double seamed tactical turtleneck disguised as a civilian grade silk suit. Intended for the most formal operator. The collar is really sharp."
-	icon_state = "really_black_suit"
+	icon_state = "tactical_suit"
 	item_state = "bl_suit"
 	can_adjust = FALSE
 
@@ -51,4 +52,21 @@
 	can_adjust = FALSE
 	armor = list(MELEE = 5, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	resistance_flags = NONE
-	mutantrace_variation = NO_MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/syndicate/acj // yogs - removes miscellaneous.dm
+	name = "administrative cybernetic jumpsuit"
+	icon_state = "syndicate"
+	item_state = "bl_suit"
+	desc = "A cybernetically enhanced jumpsuit used for administrative duties."
+	gas_transfer_coefficient = 0.01
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	armor = list(MELEE = 100, BULLET = 100, LASER = 100,ENERGY = 100, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	cold_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
+	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
+	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
+	can_adjust = FALSE
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	mutantrace_variation = DIGITIGRADE_VARIATION
+

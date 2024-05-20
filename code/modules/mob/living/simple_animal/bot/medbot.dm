@@ -148,8 +148,8 @@
 	text_dehack = "You reset [name]'s reagent processor circuits."
 	text_dehack_fail = "[name] seems damaged and does not respond to reprogramming!"
 
-/mob/living/simple_animal/bot/medbot/attack_paw(mob/user)
-	return attack_hand(user)
+/mob/living/simple_animal/bot/medbot/attack_paw(mob/user, modifiers)
+	return attack_hand(user, modifiers)
 
 /mob/living/simple_animal/bot/medbot/get_controls(mob/user)
 	var/dat
@@ -531,8 +531,8 @@
 
 	return FALSE
 
-/mob/living/simple_animal/bot/medbot/attack_hand(mob/living/carbon/human/H)
-	if(H.a_intent == INTENT_DISARM && mode != BOT_TIPPED)
+/mob/living/simple_animal/bot/medbot/attack_hand(mob/living/carbon/human/H, modifiers)
+	if(modifiers && modifiers[RIGHT_CLICK] && mode != BOT_TIPPED)
 		H.visible_message(span_danger("[H] begins tipping over [src]."), span_warning("You begin tipping over [src]..."))
 
 		if(world.time > last_tipping_action_voice + 15 SECONDS)
@@ -545,7 +545,7 @@
 		if(do_after(H, 3 SECONDS, src))
 			tip_over(H)
 
-	else if(H.a_intent == INTENT_HELP && mode == BOT_TIPPED)
+	else if(!H.combat_mode && mode == BOT_TIPPED)
 		H.visible_message(span_notice("[H] begins righting [src]."), span_notice("You begin righting [src]..."))
 		if(do_after(H, 3 SECONDS, src))
 			set_right(H)

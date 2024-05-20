@@ -310,14 +310,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(radio_freq || !broadcasting || get_dist(src, speaker) > canhear_range)
 		return
 
-	if(message_mods[RADIO_EXTENSION] == MODE_L_HAND || message_mods[RADIO_EXTENSION] == MODE_R_HAND || message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT || message_mods[RADIO_EXTENSION] == MODE_HEADSET)
-		// try to avoid being heard double
-		if (loc == speaker && ismob(speaker))
-			var/mob/M = speaker
-			var/idx = M.get_held_index_of_item(src)
-			// left hands are odd slots
-			if (idx && (idx % 2) == (message_mods[RADIO_EXTENSION] == MODE_L_HAND))
-				return
+	// try to avoid being heard double
+	if(loc == speaker && ismob(speaker))
+		var/mob/M = speaker
+		if(M.is_holding(src) && message_mods[RADIO_EXTENSION] == MODE_RADIO)
+			return
 
 	talk_into(speaker, raw_message, , spans, language=message_language)
 

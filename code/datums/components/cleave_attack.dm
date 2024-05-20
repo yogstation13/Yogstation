@@ -90,8 +90,8 @@
 			arc_desc = "full circle"
 	examine_list += "It can swing in a [arc_desc]."
 
-/datum/component/cleave_attack/proc/on_afterattack(obj/item/item, atom/target, mob/user, proximity_flag, click_parameters)
-	if(proximity_flag || user.a_intent != INTENT_HARM)
+/datum/component/cleave_attack/proc/on_afterattack(obj/item/item, atom/target, mob/living/user, proximity_flag, click_parameters)
+	if(proximity_flag || !user.combat_mode)
 		return // don't sweep on precise hits or non-harmful intents
 	perform_sweep(item, target, user, click_parameters)
 

@@ -75,17 +75,14 @@
 /datum/antagonist/monkey/admin_remove(mob/admin)
 	var/mob/living/carbon/human/M = owner.current
 	if(ismonkey(M))
-		switch(tgui_alert(admin, "Humanize?", "Humanize", list("Yes", "No")))
-			if("Yes")
-				if(admin == M)
-					admin = M.humanize(TR_KEEPITEMS  |  TR_KEEPIMPLANTS  |  TR_KEEPORGANS  |  TR_KEEPDAMAGE  |  TR_KEEPVIRUS  | TR_KEEPSTUNS | TR_KEEPREAGENTS |  TR_DEFAULTMSG)
-				else
-					M.humanize(TR_KEEPITEMS  |  TR_KEEPIMPLANTS  |  TR_KEEPORGANS  |  TR_KEEPDAMAGE  |  TR_KEEPVIRUS  |  TR_KEEPSTUNS  |  TR_KEEPREAGENTS  |  TR_DEFAULTMSG)
-			if("No")
-				//nothing
-			else
-				return
-	. = ..()
+		var/admin_response = tgui_alert(admin, "Humanize?", "Humanize", list("Yes", "No"))
+		if(admin_response != "Yes")
+			return ..()
+		if(admin == M)
+			admin = M.humanize(TR_KEEPITEMS|TR_KEEPIMPLANTS|TR_KEEPORGANS|TR_KEEPDAMAGE|TR_KEEPVIRUS|TR_KEEPSTUNS|TR_KEEPREAGENTS|TR_DEFAULTMSG)
+		else
+			M.humanize(TR_KEEPITEMS|TR_KEEPIMPLANTS|TR_KEEPORGANS|TR_KEEPDAMAGE|TR_KEEPVIRUS|TR_KEEPSTUNS|TR_KEEPREAGENTS|TR_DEFAULTMSG)
+	return ..()
 
 /datum/antagonist/monkey/leader
 	name = "Monkey Leader"
@@ -94,19 +91,14 @@
 /datum/antagonist/monkey/leader/admin_add(datum/mind/new_owner,mob/admin)
 	var/mob/living/carbon/human/H = new_owner.current
 	if(istype(H))
-		switch(tgui_alert(admin, "Monkeyize?", "Monkeyize", list("Yes", "No")))
-			if("Yes")
-				if(admin == H)
-					admin = H.monkeyize()
-				else
-					H.monkeyize()
-			if("No")
-				//nothing
-			else
-				return
-	new_owner.add_antag_datum(src)
-	log_admin("[key_name(admin)] made [key_name(new_owner)] a monkey leader!")
-	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] a monkey leader!")
+		var/admin_response = tgui_alert(admin, "Monkeyize?", "Monkeyize", list("Yes", "No"))
+		if(admin_response != "Yes")
+			return ..()
+		if(admin == H)
+			admin = H.monkeyize()
+		else
+			H.monkeyize()
+	return ..()
 
 /datum/antagonist/monkey/leader/on_gain()
 	. = ..()

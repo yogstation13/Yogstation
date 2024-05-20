@@ -112,16 +112,17 @@
 			return FALSE
 	return TRUE
 
-/obj/machinery/rnd/experimentor/Insert_Item(obj/item/O, mob/user)
-	if(user.a_intent != INTENT_HARM)
-		. = 1
+/obj/machinery/rnd/experimentor/Insert_Item(obj/item/O, mob/living/user)
+	if(!user.combat_mode)
 		if(!is_insertion_ready(user))
-			return
+			return TRUE
 		if(!user.transferItemToLoc(O, src))
-			return
+			return TRUE
 		loaded_item = O
 		to_chat(user, span_notice("You add [O] to the machine."))
 		flick("h_lathe_load", src)
+		return TRUE
+	return FALSE
 
 /obj/machinery/rnd/experimentor/default_deconstruction_crowbar(obj/item/O)
 	ejectItem()

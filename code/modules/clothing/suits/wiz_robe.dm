@@ -69,7 +69,7 @@
 	strip_delay = 50
 	equip_delay_other = 50
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/suit/wizrobe/red
 	name = "red wizard robe"
@@ -101,7 +101,7 @@
 	icon_state = "magusblue"
 	item_state = "magusblue"
 	flags_inv = HIDEJUMPSUIT
-	mutantrace_variation = NO_MUTANTRACE_VARIATION
+	mutantrace_variation = NONE
 
 /obj/item/clothing/suit/wizrobe/magusred
 	name = "\improper Magus robe"
@@ -109,7 +109,7 @@
 	icon_state = "magusred"
 	item_state = "magusred"
 	flags_inv = HIDEJUMPSUIT
-	mutantrace_variation = NO_MUTANTRACE_VARIATION
+	mutantrace_variation = NONE
 
 
 /obj/item/clothing/suit/wizrobe/santa
@@ -118,7 +118,7 @@
 	icon_state = "santa"
 	item_state = "santa"
 	flags_inv = HIDEJUMPSUIT
-	mutantrace_variation = NO_MUTANTRACE_VARIATION
+	mutantrace_variation = NONE
 
 /obj/item/clothing/suit/wizrobe/fake
 	name = "wizard robe"
@@ -202,7 +202,7 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF | THICKMATERIAL
 	w_class = WEIGHT_CLASS_BULKY
 	flags_inv = HIDEJUMPSUIT
-	mutantrace_variation = NO_MUTANTRACE_VARIATION
+	mutantrace_variation = NONE
 	var/current_charges = 15
 	var/max_charges = 3
 	var/recharge_delay = 0

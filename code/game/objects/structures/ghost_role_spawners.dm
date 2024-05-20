@@ -76,7 +76,7 @@
 
 /datum/outfit/ashwalker
 	name = "Ashwalker"
-	uniform = /obj/item/clothing/under/chestwrap
+	uniform = /obj/item/clothing/under/tribal/chestwrap
 
 /datum/outfit/ashwalker/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	H.underwear = "Nude"
@@ -84,11 +84,11 @@
 
 /datum/outfit/ashwalker/tribesperson
 	name = "Ashwalker Tribesperson"
-	uniform = /obj/item/clothing/under/ash_robe
+	uniform = /obj/item/clothing/under/tribal/ash_robe
 
 /datum/outfit/ashwalker/hunter
 	name = "Ashwalker Hunter"
-	uniform = /obj/item/clothing/under/ash_robe/hunter
+	uniform = /obj/item/clothing/under/tribal/ash_robe/hunter
 	suit = /obj/item/clothing/suit/hooded/cloak/goliath/desert
 	back = /obj/item/gun/ballistic/bow/ashen
 	belt = /obj/item/storage/belt/quiver/weaver/ashwalker
@@ -108,7 +108,7 @@
 
 /datum/outfit/ashwalker/chief
 	name = "Ashwalker Chief"
-	uniform = /obj/item/clothing/under/ash_robe/chief
+	uniform = /obj/item/clothing/under/tribal/ash_robe/chief
 	head = /obj/item/clothing/head/crown/resin
 	suit = /obj/item/clothing/suit/armor/bone
 	back = /obj/item/melee/spear/bonespear/chitinspear
@@ -118,7 +118,7 @@
 
 /datum/outfit/ashwalker/shaman
 	name = "Ashwalker Shaman"
-	uniform = /obj/item/clothing/under/ash_robe/shaman
+	uniform = /obj/item/clothing/under/tribal/ash_robe/shaman
 	head = /obj/item/clothing/head/shamanash
 	suit = /obj/item/clothing/suit/leather_mantle
 	belt = /obj/item/storage/bag/medpouch
@@ -300,7 +300,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 			flavour_text += "you were a [pick("arms dealer", "shipwright", "docking manager")]'s assistant on a small trading station several sectors from here. Raiders attacked, and there was \
 			only one pod left when you got to the escape bay. You took it and launched it alone, and the crowd of terrified faces crowding at the airlock door as your pod's engines burst to \
 			life and sent you to this hell are forever branded into your memory."
-			outfit.uniform = /obj/item/clothing/under/assistantformal
+			outfit.uniform = /obj/item/clothing/under/rank/civilian/assistantformal
 		if(2)
 			flavour_text += "you're an exile from the Tiger Cooperative. Their technological fanaticism drove you to question the power and beliefs of the Exolitics, and they saw you as a \
 			heretic and subjected you to hours of horrible torture. You were hours away from execution when a high-ranking friend of yours in the Cooperative managed to secure you a pod, \
@@ -402,7 +402,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 
 /datum/outfit/hotelstaff
 	name = "Hotel Staff"
-	uniform = /obj/item/clothing/under/assistantformal
+	uniform = /obj/item/clothing/under/rank/civilian/assistantformal
 	shoes = /obj/item/clothing/shoes/laceup
 	r_pocket = /obj/item/radio/off
 	back = /obj/item/storage/backpack
@@ -474,7 +474,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 
 /datum/outfit/demonic_friend
 	name = "Demonic Friend"
-	uniform = /obj/item/clothing/under/assistantformal
+	uniform = /obj/item/clothing/under/rank/civilian/assistantformal
 	shoes = /obj/item/clothing/shoes/laceup
 	r_pocket = /obj/item/radio/off
 	back = /obj/item/storage/backpack
@@ -770,11 +770,12 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	you remember is the station's Artificial Program telling you that you would only be asleep for eight hours. As you open \
 	your eyes, everything seems rusted and broken, a dark feeling swells in your gut as you climb out of your pod."
 	important_info = "Work as a team with your fellow survivors and do not abandon them."
-	uniform = /obj/item/clothing/under/rank/engineer
+	uniform = /obj/item/clothing/under/rank/engineering/engineer
 	shoes = /obj/item/clothing/shoes/workboots
 	id = /obj/item/card/id/away/old/eng
 	gloves = /obj/item/clothing/gloves/color/fyellow/old
 	l_pocket = /obj/item/tank/internals/emergency_oxygen
+	r_pocket = null
 	assignedrole = "Ancient Crew"
 
 /obj/effect/mob_spawn/human/oldstation/science
@@ -785,10 +786,11 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	The last thing you remember is the station's Artificial Program telling you that you would only be asleep for eight hours. As you open \
 	your eyes, everything seems rusted and broken, a dark feeling swells in your gut as you climb out of your pod."
 	important_info = "Work as a team with your fellow survivors and do not abandon them."
-	uniform = /obj/item/clothing/under/rank/scientist
+	uniform = /obj/item/clothing/under/rank/rnd/scientist
 	shoes = /obj/item/clothing/shoes/laceup
 	id = /obj/item/card/id/away/old/sci
 	l_pocket = /obj/item/stack/medical/bruise_pack
+	r_pocket = null
 	assignedrole = "Ancient Crew"
 
 /obj/effect/mob_spawn/human/pirate
@@ -849,7 +851,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 
 /datum/outfit/innkeeper
 	name = "Innkeeper"
-	uniform = /obj/item/clothing/under/rank/bartender
+	uniform = /obj/item/clothing/under/rank/civilian/bartender
 	head = /obj/item/clothing/head/flatcap
 	back = /obj/item/storage/backpack
 	suit = /obj/item/clothing/suit/armor/vest
@@ -892,7 +894,9 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	id = /obj/item/card/id/syndicate
 	l_pocket = /obj/item/flashlight
 	r_pocket = /obj/item/kitchen/knife/combat/survival
-	implants = list(/obj/item/implant/weapons_auth)
+	implants = list(
+		/obj/item/implant/weapons_auth,
+		/obj/item/implant/teleporter/syndicate_engineer)
 	box = /obj/item/storage/box/survival/syndie
 
 /datum/outfit/syndicate_derelict_engi/post_equip(mob/living/carbon/human/H)
