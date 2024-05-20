@@ -21,13 +21,13 @@
 	. = ..()
 	if(.)
 		return
-	if(swirlie && user.a_intent == INTENT_HARM)
+	if(swirlie && user.combat_mode)
 		user.changeNext_move(CLICK_CD_MELEE)
 		playsound(src.loc, "swing_hit", 25, 1)
 		swirlie.visible_message(span_danger("[user] slams the toilet seat onto [swirlie]'s head!"), span_userdanger("[user] slams the toilet seat onto your head!"), span_italics("You hear reverberating porcelain."))
 		swirlie.adjustBruteLoss(5)
 
-	else if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
+	else if(user.pulling && isliving(user.pulling) && user.combat_mode)
 		user.changeNext_move(CLICK_CD_MELEE)
 		var/mob/living/GM = user.pulling
 		if(user.grab_state >= GRAB_AGGRESSIVE)
@@ -83,21 +83,20 @@
 			cistern = !cistern
 			update_appearance(UPDATE_ICON)
 
-	else if(cistern)
-		if(user.a_intent != INTENT_HARM)
-			if(I.w_class > WEIGHT_CLASS_NORMAL)
-				to_chat(user, span_warning("[I] does not fit!"))
-				return
-			if(w_items + I.w_class > WEIGHT_CLASS_HUGE)
-				to_chat(user, span_warning("The cistern is full!"))
-				return
-			if(!user.transferItemToLoc(I, src))
-				to_chat(user, span_warning("\The [I] is stuck to your hand, you cannot put it in the cistern!"))
-				return
-			w_items += I.w_class
-			to_chat(user, span_notice("You carefully place [I] into the cistern."))
+	else if(cistern && !user.combat_mode)
+		if(I.w_class > WEIGHT_CLASS_NORMAL)
+			to_chat(user, span_warning("[I] does not fit!"))
+			return
+		if(w_items + I.w_class > WEIGHT_CLASS_HUGE)
+			to_chat(user, span_warning("The cistern is full!"))
+			return
+		if(!user.transferItemToLoc(I, src))
+			to_chat(user, span_warning("\The [I] is stuck to your hand, you cannot put it in the cistern!"))
+			return
+		w_items += I.w_class
+		to_chat(user, span_notice("You carefully place [I] into the cistern."))
 
-	else if(istype(I, /obj/item/reagent_containers))
+	else if(istype(I, /obj/item/reagent_containers) && !user.combat_mode)
 		if (!open)
 			return
 		var/obj/item/reagent_containers/RG = I
@@ -135,11 +134,11 @@
 	. = ..()
 	hiddenitem = new /obj/item/reagent_containers/food/snacks/urinalcake
 
-/obj/structure/urinal/attack_hand(mob/user)
+/obj/structure/urinal/attack_hand(mob/living/user, modifiers)
 	. = ..()
 	if(.)
 		return
-	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
+	if(user.pulling && isliving(user.pulling))
 		var/mob/living/GM = user.pulling
 		if(user.grab_state >= GRAB_AGGRESSIVE)
 			if(GM.loc != get_turf(src))
@@ -162,7 +161,7 @@
 			to_chat(user, span_notice("You fish [hiddenitem] out of the drain enclosure."))
 			hiddenitem = null
 	else
-		..()
+		return ..()
 
 /obj/structure/urinal/attackby(obj/item/I, mob/living/user, params)
 	if(exposed)
@@ -274,15 +273,19 @@
 		to_chat(user, span_warning("Someone's already washing here!"))
 		return
 
-	if(istype(O, /obj/item/reagent_containers))
-		var/obj/item/reagent_containers/RG = O
-		if(RG.is_refillable())
-			if(!RG.reagents.holder_full())
-				RG.reagents.add_reagent(dispensedreagent, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
-				to_chat(user, span_notice("You fill [RG] from [src]."))
-				return TRUE
-			to_chat(user, span_notice("\The [RG] is full."))
-			return FALSE
+	// If it's refillable, fill it up
+	if(O.is_refillable())
+		if(!O.reagents.holder_full())
+			var/transfer_amount = 10
+			if(istype(O, /obj/item/reagent_containers))
+				var/obj/item/reagent_containers/R = O
+				transfer_amount = R.amount_per_transfer_from_this
+			O.reagents.add_reagent(dispensedreagent, min(O.reagents.maximum_volume - O.reagents.total_volume, transfer_amount))
+			to_chat(user, span_notice("You fill [O] from [src]."))
+			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+			return TRUE
+		to_chat(user, span_notice("\The [O] is full."))
+		return FALSE
 
 	if(istype(O, /obj/item/melee/baton))
 		var/obj/item/melee/baton/B = O
@@ -297,12 +300,6 @@
 									span_userdanger("You unwisely attempt to wash [B] while it's still on."))
 				playsound(src, "sparks", 50, 1)
 				return
-
-	if(istype(O, /obj/item/mop))
-		O.reagents.add_reagent(dispensedreagent, 5)
-		to_chat(user, span_notice("You wet [O] in [src]."))
-		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
-		return
 
 	if(istype(O, /obj/item/stack/medical/gauze))
 		var/obj/item/stack/medical/gauze/G = O
@@ -323,7 +320,7 @@
 	if(O.item_flags & ABSTRACT) //Abstract items like grabs won't wash. No-drop items will though because it's still technically an item in your hand.
 		return
 
-	if(user.a_intent != INTENT_HARM)
+	if(!user.combat_mode)
 		to_chat(user, span_notice("You start washing [O]..."))
 		busy = TRUE
 		if(!do_after(user, 4 SECONDS, src))
@@ -386,29 +383,33 @@
 	alpha = 200 //Mappers can also just set this to 255 if they want curtains that can't be seen through
 	layer = SIGN_LAYER
 	anchored = TRUE
-	opacity = 0
+	opacity = FALSE
 	density = FALSE
 	var/open = TRUE
+	/// if it can be seen through when closed
+	var/opaque_closed = FALSE
+
+/obj/structure/curtain/Initialize(mapload)
+	// see-through curtains should let emissives shine through
+	if(!opaque_closed)
+		blocks_emissive = EMISSIVE_BLOCK_NONE
+	return ..()
 
 /obj/structure/curtain/proc/toggle()
 	open = !open
-	update_appearance(UPDATE_ICON)
+	if(open)
+		layer = SIGN_LAYER
+		set_opacity(FALSE)
+	else
+		layer = WALL_OBJ_LAYER
+		if(opaque_closed)
+			set_opacity(TRUE)
+
+	update_appearance()
 
 /obj/structure/curtain/update_icon_state()
-	. = ..()
-	if(!open)
-		icon_state = "closed"
-		layer = WALL_OBJ_LAYER
-		density = TRUE
-		open = FALSE
-		opacity = TRUE
-
-	else
-		icon_state = "open"
-		layer = SIGN_LAYER
-		density = FALSE
-		open = TRUE
-		opacity = FALSE
+	icon_state = "[open ? "open" : "closed"]"
+	return ..()
 
 /obj/structure/curtain/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/toy/crayon))

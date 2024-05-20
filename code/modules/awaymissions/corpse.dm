@@ -312,7 +312,7 @@
 
 /obj/effect/mob_spawn/human/corpse/cargo_tech
 	name = "Cargo Tech"
-	outfit = /datum/outfit/job/cargo_tech
+	outfit = /datum/outfit/job/cargo_tech/no_pda
 
 /obj/effect/mob_spawn/human/cook
 	name = "Cook"
@@ -393,7 +393,7 @@
 
 /datum/outfit/spacebartender
 	name = "Space Bartender"
-	uniform = /obj/item/clothing/under/rank/bartender
+	uniform = /obj/item/clothing/under/rank/civilian/bartender
 	back = /obj/item/storage/backpack
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	suit = /obj/item/clothing/suit/armor/vest
@@ -403,7 +403,7 @@
 
 /obj/effect/mob_spawn/human/bartender/alive/space
 	name = "space bartender sleeper"
-	flavour_text = "You got this place from your old man, a bar in the middle of nowhere. Or at least, until NanoTrasen decided to move in. Time to mix drinks and change lives."
+	flavour_text = "You got this place from your old man, a bar in the middle of nowhere. Or at least, until Nanotrasen decided to move in. Time to mix drinks and change lives."
 	important_info = "Do not leave your post under any circumstances!"
 	outfit = /datum/outfit/spacebartender/space
 
@@ -454,6 +454,11 @@
 		return
 	H.dna.add_mutation(STONER)
 
+
+/obj/effect/mob_spawn/human/corpse/felinid
+	name = "Felinid"
+	mob_species = /datum/species/human/felinid
+
 /obj/effect/mob_spawn/human/fishing/alive
 	death = FALSE
 	roundstart = FALSE
@@ -481,6 +486,7 @@
 	shoes = /obj/item/clothing/shoes/fishing
 	id = /obj/item/card/id
 
+
 /////////////////Officers+Nanotrasen Security//////////////////////
 
 /obj/effect/mob_spawn/human/bridgeofficer
@@ -492,7 +498,7 @@
 /datum/outfit/nanotrasenbridgeofficercorpse
 	name = "Bridge Officer Corpse"
 	ears = /obj/item/radio/headset/heads/hop
-	uniform = /obj/item/clothing/under/rank/centcom_officer
+	uniform = /obj/item/clothing/under/rank/centcom/officer
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -507,7 +513,7 @@
 
 /datum/outfit/nanotrasencommandercorpse
 	name = "Nanotrasen Private Security Commander"
-	uniform = /obj/item/clothing/under/rank/centcom_commander
+	uniform = /obj/item/clothing/under/rank/centcom/commander
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	ears = /obj/item/radio/headset/heads/captain
 	glasses = /obj/item/clothing/glasses/eyepatch
@@ -621,7 +627,7 @@
 
 /datum/outfit/cryobartender
 	name = "Cryogenic Bartender"
-	uniform = /obj/item/clothing/under/rank/bartender
+	uniform = /obj/item/clothing/under/rank/civilian/bartender
 	back = /obj/item/storage/backpack
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	suit = /obj/item/clothing/suit/armor/vest

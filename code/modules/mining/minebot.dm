@@ -13,7 +13,7 @@
 	mouse_opacity = MOUSE_OPACITY_ICON
 	weather_immunities = list("ash")
 	faction = list("neutral")
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 0
 	minbodytemp = 0
@@ -122,7 +122,7 @@
 	. = ..()
 	if(.)
 		return
-	if(M.a_intent == INTENT_HELP)
+	if(!M.combat_mode)
 		toggle_mode()
 		switch(mode)
 			if(MINEDRONE_COLLECT)
@@ -205,12 +205,15 @@
 	var/mob/living/simple_animal/hostile/mining_drone/user = owner
 	if(user.sight & SEE_TURFS)
 		user.sight &= ~SEE_TURFS
-		user.lighting_alpha = initial(user.lighting_alpha)
+		user.lighting_cutoff_red += 5
+		user.lighting_cutoff_green += 15
+		user.lighting_cutoff_blue += 5
 	else
 		user.sight |= SEE_TURFS
-		user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-
-	user.sync_lighting_plane_alpha()
+		user.lighting_cutoff_red -= 5
+		user.lighting_cutoff_green -= 15
+		user.lighting_cutoff_blue -= 5
+	user.sync_lighting_plane_cutoff()
 
 	to_chat(user, span_notice("You toggle your meson vision [(user.sight & SEE_TURFS) ? "on" : "off"]."))
 

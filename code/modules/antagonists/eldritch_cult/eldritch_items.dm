@@ -107,6 +107,7 @@
 	force = 20
 	armour_penetration = 25
 	throwforce = 10
+	wound_bonus = -5
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
 	var/datum/action/innate/heretic_shatter/linked_action
@@ -189,7 +190,7 @@
 
 /obj/item/melee/sickly_blade/cosmic
 	name = "cosmic blade"
-	desc = "A piece of the cosmos, shaped like a weapon for you to wield"
+	desc = "A piece of the cosmos, shaped like a weapon for you to wield."
 	icon_state = "cosmic_blade"
 	item_state = "cosmic_blade"
 
@@ -201,6 +202,12 @@
 		secondsword.attack(M, user, TRUE)
 		user.changeNext_move(CLICK_CD_MELEE)
 	return
+
+/obj/item/melee/sickly_blade/knock
+	name = "key blade"
+	desc = "A blade in the shape of a key, what door will you unlock with it?"
+	icon_state = "knock_blade"
+	item_state = "knock_blade"
 
 /obj/item/clothing/neck/eldritch_amulet
 	name = "warm eldritch medallion"
@@ -296,7 +303,8 @@
 	desc = "Allows the user to swap between three hud types, science, medical, and diagnostic"
 	icon_state = "godeye"
 	item_state = "godeye"
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	// Blue, light blue
+	color_cutoffs = list(15, 30, 40)
 	hud_type = DATA_HUD_SECURITY_BASIC
 
 /obj/item/clothing/glasses/hud/toggle/eldritch_eye/equipped(mob/living/user, slot)
@@ -324,7 +332,7 @@
 		else
 			icon_state = "godeye"
 	user.update_inv_glasses()
-	
+
 /obj/item/clothing/suit/cultrobes/void
 	name = "ominous cloak"
 	desc = "A ragged, dusty cloak. Strange eyes line the inside."
@@ -333,9 +341,9 @@
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/melee/sickly_blade, /obj/item/forbidden_book)
-	armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //interesting? Maybe?
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 20, ACID = 20) //interesting? Maybe?
 	resistance_flags = FIRE_PROOF
-	
+
 	/// The mob currently wearing this
 	var/mob/current_user
 	/// How much the user is cloaked as a percentage, which effects the wearer's transparency and dodge chance (dont edit this)
@@ -480,7 +488,7 @@
 /obj/item/clothing/mask/madness_mask/process(seconds_per_tick)
 	if(!local_user)
 		return PROCESS_KILL
-		
+
 	for(var/mob/living/carbon/human/human_in_range in view(local_user))
 		if(IS_HERETIC_OR_MONSTER(human_in_range) || is_blind(human_in_range))
 			continue
@@ -500,7 +508,7 @@
 
 /obj/item/sharpener/eldritch
 	name = "Master's Whetstone"
-	icon = 'yogstation/icons/obj/kitchen.dmi'
+	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "cult_sharpener"
 	desc = "An ancient block of metal from the abyss."
 	force = 5

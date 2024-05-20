@@ -60,7 +60,7 @@ Difficulty: Hard
 	var/enrage_till = 0
 	var/enrage_time = 70
 	var/revving_charge = FALSE
-	internal_type = /obj/item/gps/internal/bubblegum
+	gps_name = "Bloody Signal"
 	deathmessage = "sinks into a pool of blood, fleeing the battle. You've won, for now... "
 	deathsound = 'sound/magic/enter_blood.ogg'
 	attack_action_types = list(/datum/action/innate/megafauna_attack/triple_charge,
@@ -412,7 +412,7 @@ Difficulty: Hard
 /obj/effect/decal/cleanable/blood/gibs/bubblegum/can_bloodcrawl_in()
 	return TRUE
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/do_attack_animation(atom/A, visual_effect_icon)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
 	if(!charging)
 		..()
 
@@ -457,8 +457,8 @@ Difficulty: Hard
 		DestroySurroundings()
 	..()
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/Moved(atom/OldLoc, Dir, Forced = FALSE)
-	if(Dir)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
+	if(movement_dir)
 		new /obj/effect/decal/cleanable/blood/bubblegum(src.loc)
 	if(charging)
 		DestroySurroundings()

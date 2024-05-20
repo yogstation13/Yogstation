@@ -13,13 +13,8 @@
 
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "tpump"
-
-/obj/machinery/atmospherics/components/binary/temperature_pump/CtrlClick(mob/user)
-	if(can_interact(user))
-		on = !on
-		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
-		update_appearance(UPDATE_ICON)
-	return ..()
+	vent_movement = NONE
+	quick_toggle = TRUE
 
 /obj/machinery/atmospherics/components/binary/temperature_pump/AltClick(mob/user)
 	if(can_interact(user) && !(heat_transfer_rate == max_heat_transfer_rate))
@@ -33,7 +28,7 @@
 	icon_state = "tpump_[on && is_operational() ? "on" : "off"]-[set_overlay_offset(piping_layer)]"
 
 /obj/machinery/atmospherics/components/binary/temperature_pump/process_atmos()
-	..()
+
 	if(!on || !is_operational())
 		return
 
@@ -42,7 +37,6 @@
 
 	if(!QUANTIZE(air_input.total_moles()) || !QUANTIZE(air_output.total_moles())) //Don't transfer if there's no gas
 		return
-
 	var/datum/gas_mixture/remove_input = air_input.remove_ratio(0.9)
 	var/datum/gas_mixture/remove_output = air_output.remove_ratio(0.9)
 
@@ -50,7 +44,7 @@
 
 	if(coolant_temperature_delta > 0)
 		var/input_capacity = remove_input.heat_capacity()
-		var/output_capacity = remove_output.heat_capacity()
+		var/output_capacity = air_output.heat_capacity()
 
 		var/cooling_heat_amount = (heat_transfer_rate * 0.01) * coolant_temperature_delta * (input_capacity * output_capacity / (input_capacity + output_capacity))
 		remove_input.set_temperature(max(remove_input.return_temperature() - (cooling_heat_amount / input_capacity), TCMB))
@@ -80,9 +74,8 @@
 		return
 	switch(action)
 		if("power")
-			on = !on
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
-			. = TRUE
+			toggle_on()
+			return TRUE
 		if("rate")
 			var/rate = params["rate"]
 			if(rate == "max")

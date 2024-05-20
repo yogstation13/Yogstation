@@ -2,8 +2,7 @@ GLOBAL_LIST_INIT(department_radio_prefixes, list(":", "."))
 
 GLOBAL_LIST_INIT(department_radio_keys, list(
 	// Location
-	MODE_KEY_R_HAND = MODE_R_HAND,
-	MODE_KEY_L_HAND = MODE_L_HAND,
+	MODE_KEY_RADIO = MODE_RADIO,
 	MODE_KEY_INTERCOM = MODE_INTERCOM,
 
 	// Department
@@ -32,8 +31,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	//kinda localization -- rastaf0
 	//same keys as above, but on russian keyboard layout. This file uses cp1251 as encoding.
 	// Location
-	"ê" = MODE_R_HAND,
-	"ä" = MODE_L_HAND,
+	"ê" = MODE_RADIO,
 	"ø" = MODE_INTERCOM,
 
 	// Department
@@ -147,7 +145,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	if(!language)
 		language = get_selected_language()
 
-	if(!can_speak_vocal(message))
+	if(!(can_speak_vocal(message) || (saymode && saymode.bypass_mute))) //yogs change - mindlink is mental, not vocal
 		to_chat(src, span_warning("You find yourself unable to speak!"))
 		return
 
@@ -157,7 +155,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 
 	var/fullcrit = InFullCritical()
 	if((InCritical() && !fullcrit) || message_mods[WHISPER_MODE] == MODE_WHISPER)
-		if(fullcrit)
+		if(fullcrit && !forced)
 			var/alertresult = alert(src, "You will be immediately killed by this action. Proceed?",,"Accept", "Decline")
 			if(alertresult == "Decline" || QDELETED(src))
 				return FALSE
@@ -319,9 +317,18 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	for(var/mob/M in listening)
 		if(M.client)
 			speech_bubble_recipients.Add(M.client)
-	var/image/I = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
-	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), I, speech_bubble_recipients, 30)
+	var/image/say_popup = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
+	if(combat_mode) // ANGRY!!!!
+		var/mutable_appearance/angerlay = mutable_appearance('icons/mob/talk.dmi', "angry")
+		say_popup.add_overlay(angerlay)
+	SET_PLANE_EXPLICIT(say_popup, ABOVE_GAME_PLANE, src)
+	say_popup.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay_global), say_popup, speech_bubble_recipients, 3 SECONDS)
+	LAZYADD(update_on_z, say_popup)
+	addtimer(CALLBACK(src, PROC_REF(clear_saypopup), say_popup), 3.5 SECONDS)
+
+/mob/living/proc/clear_saypopup(image/say_popup)
+	LAZYREMOVE(update_on_z, say_popup)
 
 /mob/proc/binarycheck()
 	return FALSE
@@ -366,44 +373,34 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	var/obj/item/implant/radio/imp = locate() in src
 	if(imp && imp.radio.on)
 		if(message_mods[MODE_HEADSET])
-			imp.radio.talk_into(src, message, , spans, language, message_mods)
+			imp.radio.talk_into(src, message, null, spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
 		if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT || (message_mods[RADIO_EXTENSION] in imp.radio.channels))
 			imp.radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
 
-	var/list/storage_item = list(get_active_held_item(), get_item_by_slot(ITEM_SLOT_BELT), get_item_by_slot(ITEM_SLOT_RPOCKET), get_item_by_slot(ITEM_SLOT_LPOCKET), get_item_by_slot(ITEM_SLOT_SUITSTORE))
-	for(var/obj/item/radio/hand in storage_item)
-		if(message_mods[MODE_HEADSET])
-			hand.talk_into(src, message, , spans, language, message_mods)
-			return ITALICS | REDUCE_RANGE
-		if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT || (message_mods[RADIO_EXTENSION] in hand.channels))
-			hand.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
-			return ITALICS | REDUCE_RANGE
-
-	for (var/obj/item/radio/intercom/I in view(1, null))
-		if(message_mods[MODE_HEADSET])
-			I.talk_into(src, message, , spans, language, message_mods)
-			return ITALICS | REDUCE_RANGE
-		if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT || (message_mods[RADIO_EXTENSION] in I.channels))
-			I.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
-			return ITALICS | REDUCE_RANGE
-			
 	switch(message_mods[RADIO_EXTENSION])
-		if(MODE_R_HAND)
-			for(var/obj/item/r_hand in get_held_items_for_side("r", all = TRUE))
-				if (r_hand)
-					return r_hand.talk_into(src, message, , spans, language, message_mods)
-				return ITALICS | REDUCE_RANGE
-		if(MODE_L_HAND)
-			for(var/obj/item/l_hand in get_held_items_for_side("l", all = TRUE))
-				if (l_hand)
-					return l_hand.talk_into(src, message, , spans, language, message_mods)
+		if(MODE_RADIO)
+			var/list/radio_slots = list(
+				get_active_held_item(),
+				get_inactive_held_item(),
+				get_item_by_slot(ITEM_SLOT_BELT),
+				get_item_by_slot(ITEM_SLOT_RPOCKET),
+				get_item_by_slot(ITEM_SLOT_LPOCKET),
+				get_item_by_slot(ITEM_SLOT_SUITSTORE)
+			)
+			for(var/held_item in radio_slots)
+				if(!held_item)
+					continue
+				if(!istype(held_item, /obj/item/radio))
+					continue
+				var/obj/item/radio/held_radio = held_item
+				held_radio.talk_into(src, message, null, spans, language, message_mods)
 				return ITALICS | REDUCE_RANGE
 
 		if(MODE_INTERCOM)
 			for (var/obj/item/radio/intercom/I in view(1, null))
-				I.talk_into(src, message, , spans, language, message_mods)
+				I.talk_into(src, message, null, spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
 
 		if(MODE_BINARY)

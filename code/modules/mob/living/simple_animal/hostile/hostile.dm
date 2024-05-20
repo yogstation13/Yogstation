@@ -51,6 +51,10 @@
 	var/lose_patience_timer_id //id for a timer to call LoseTarget(), used to stop mobs fixating on a target they can't reach
 	var/lose_patience_timeout = 300 //30 seconds by default, so there's no major changes to AI behaviour, beyond actually bailing if stuck forever
 
+	//YOGS EDIT
+	var/inverse_faction_check = FALSE
+	//YOGS END
+
 /mob/living/simple_animal/hostile/Initialize(mapload)
 	. = ..()
 
@@ -89,7 +93,7 @@
 	if(dodging && target && in_melee && isturf(loc) && isturf(target.loc))
 		var/datum/cb = CALLBACK(src, PROC_REF(sidestep))
 		if(sidestep_per_cycle > 1) //For more than one just spread them equally - this could changed to some sensible distribution later
-			var/sidestep_delay = SSnpcpool.wait / sidestep_per_cycle
+			var/sidestep_delay = round(SSnpcpool.wait / sidestep_per_cycle)
 			for(var/i in 1 to sidestep_per_cycle)
 				addtimer(cb, (i - 1)*sidestep_delay)
 		else //Otherwise randomize it to make the players guessing.
@@ -202,7 +206,10 @@
 	if(search_objects < 2)
 		if(isliving(the_target))
 			var/mob/living/L = the_target
-			var/faction_check = faction_check_mob(L)
+			//YOGS EDIT
+			//factions check returns a number so we have to coerce it into a range of 0-1 before xoring it with inverse_faction_check
+			var/faction_check = (faction_check_mob(L) > 0 ) ^ inverse_faction_check
+			//YOGS END
 			if(robust_searching)
 				if(faction_check && !attack_same)
 					return FALSE
@@ -254,7 +261,7 @@
 /mob/living/simple_animal/hostile/proc/MeleeAction(patience = TRUE)
 	if(rapid_melee > 1)
 		var/datum/callback/cb = CALLBACK(src, PROC_REF(CheckAndAttack))
-		var/delay = SSnpcpool.wait / rapid_melee
+		var/delay = round(SSnpcpool.wait / rapid_melee)
 		for(var/i in 1 to rapid_melee)
 			addtimer(cb, (i - 1)*delay)
 	else
@@ -385,7 +392,7 @@
 /mob/living/simple_animal/hostile/proc/OpenFire(atom/A)
 	if(CheckFriendlyFire(A))
 		return
-	visible_message(span_danger("<b>[src]</b> [ranged_message] at [A]!"))
+
 
 
 	if(rapid > 1)
@@ -447,7 +454,7 @@
 		if(CanSmashTurfs(T))
 			T.attack_animal(src)
 		for(var/obj/O in T)
-			if(O.density && environment_smash >= ENVIRONMENT_SMASH_STRUCTURES && !O.IsObscured())
+			if(O.density && !O.CanAllowThrough(src) && environment_smash >= ENVIRONMENT_SMASH_STRUCTURES && !O.IsObscured())
 				O.attack_animal(src)
 				return
 
@@ -532,7 +539,7 @@ mob/living/simple_animal/hostile/proc/DestroySurroundings() // for use with mega
 	deltimer(search_objects_timer_id)
 	search_objects_timer_id = addtimer(CALLBACK(src, PROC_REF(RegainSearchObjects)), search_objects_regain_time, TIMER_STOPPABLE)
 
-
+	
 /mob/living/simple_animal/hostile/proc/RegainSearchObjects(value)
 	if(!value)
 		value = initial(search_objects)

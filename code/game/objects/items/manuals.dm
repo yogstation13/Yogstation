@@ -10,7 +10,7 @@
 /obj/item/book/manual/ripley_build_and_repair
 	name = "APLU \"Ripley\" Construction and Operation Manual"
 	icon_state ="book"
-	author = "Weyland-Yutani Corp"
+	author = "Sano-Waltfield Industries"
 	title = "APLU \"Ripley\" Construction and Operation Manual"
 	dat = {"<html>
 				<head>
@@ -24,7 +24,7 @@
 				</head>
 				<body>
 				<center>
-				<b style='font-size: 12px;'>Weyland-Yutani - Building Better Worlds</b>
+				<b style='font-size: 12px;'>Sano-Waltfield - Forging Better Futures</b>
 				<h1>Autonomous Power Loader Unit \"Ripley\"</h1>
 				</center>
 				<h2>Specifications:</h2>

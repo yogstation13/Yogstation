@@ -9,8 +9,9 @@
 	maxHealth = 50
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	lighting_cutoff_red = 22
+	lighting_cutoff_green = 5
+	lighting_cutoff_blue = 5
 	stop_automated_movement = TRUE
 	attacktext = "bites"
 	speak_emote = list("gurgles")
@@ -73,6 +74,7 @@
 	add_ability(/datum/action/innate/horror/take_control)
 	add_ability(/datum/action/innate/horror/leave_body)
 	add_ability(/datum/action/innate/horror/make_chems)
+	add_ability(/datum/action/innate/horror/scan_host)
 	add_ability(/datum/action/innate/horror/give_back_control)
 	RefreshAbilities()
 
@@ -432,6 +434,15 @@
 	var/html = get_html_template(content)
 
 	usr << browse(html, "window=ViewHorror\ref[src]Chems;size=600x800")
+
+/mob/living/simple_animal/horror/proc/scan_host()
+	if(!can_use_ability())
+		return
+	if(!victim)
+		to_chat(src, span_warning("You are not inside a host body."))
+		return
+	healthscan(usr, victim)
+	chemscan(usr, victim)
 
 /mob/living/simple_animal/horror/proc/hide()
 	if(victim)

@@ -7,6 +7,7 @@
 	armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 30, BIO = 0, RAD = 0, FIRE = 60, ACID = 60)
 	density = TRUE
 	anchored = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	var/list/mob/occupants				//mob = bitflags of their control level.
 	var/max_occupants = 1
 	var/max_drivers = 1
@@ -31,19 +32,6 @@
 	autogrant_actions_controller = list()
 	occupant_actions = list()
 	generate_actions()
-
-/obj/vehicle/examine(mob/user)
-	. = ..()
-	if(resistance_flags & ON_FIRE)
-		. += span_warning("It's on fire!")
-	var/healthpercent = obj_integrity/max_integrity * 100
-	switch(healthpercent)
-		if(50 to 99)
-			. += "It looks slightly damaged."
-		if(25 to 50)
-			. += "It appears heavily damaged."
-		if(0 to 25)
-			. += span_warning("It's falling apart!")
 
 /obj/vehicle/proc/is_key(obj/item/I)
 	return I? (key_type_exact? (I.type == key_type) : istype(I, key_type)) : FALSE

@@ -343,7 +343,7 @@
 				saved_recipes += list(list("recipe_name" = name, "contents" = recipe))
 		yogs - removed chem recipes */
 
-/obj/machinery/chem_dispenser/attackby(obj/item/I, mob/user, params)
+/obj/machinery/chem_dispenser/attackby(obj/item/I, mob/living/user, params)
 	if(default_unfasten_wrench(user, I))
 		return
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, I))
@@ -351,7 +351,7 @@
 		return
 	if(default_deconstruction_crowbar(I))
 		return
-	if(panel_open && user.a_intent != INTENT_HARM)
+	if(panel_open && !user.combat_mode)
 		if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 			return // Feedback in proc
 		if(HAS_TRAIT(I, TRAIT_NODROP))
@@ -376,7 +376,7 @@
 		to_chat(user, span_notice("You add [B] to [src]."))
 		updateUsrDialog()
 		update_appearance(UPDATE_ICON)
-	else if(user.a_intent != INTENT_HARM && !istype(I, /obj/item/card/emag))
+	else if(!user.combat_mode && !istype(I, /obj/item/card/emag))
 		to_chat(user, span_warning("You can't load [I] into [src]!"))
 		return ..()
 	else

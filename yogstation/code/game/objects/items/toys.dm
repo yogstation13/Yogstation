@@ -50,18 +50,35 @@
 	force = 0
 	throw_speed = 0.5
 	throw_range = 10
+	var/mob/living/carbon/man_down_under
+	var/returning = FALSE
 
-/obj/item/toy/boomerang/throw_impact(atom/hit_atom,)
+/obj/item/toy/boomerang/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(iscarbon(src.loc)) //Did someone catch it?
 		return ..()
-	throw_at(thrownby, throw_range+3, throw_speed, null)
-	..()
+	if(man_down_under && hit_atom == man_down_under)
+		if(man_down_under.put_in_hands(src))
+			return
+		else
+			return ..()
+	. = ..()
+	if(man_down_under && returning)
+		returning = FALSE //only try to return once
+		if(get_turf(src) == get_turf(man_down_under))//don't try to return if the tile it hit is literally under the thrower
+			return
+		addtimer(CALLBACK(src, PROC_REF(comeback)), 1, TIMER_UNIQUE)//delay the return by such a small amount
+
+/obj/item/toy/boomerang/proc/comeback()
+	throw_at(man_down_under, throw_range+3, throw_speed)
 
 /obj/item/toy/boomerang/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force, quickstart = TRUE)
-	if(iscarbon(thrower))
-		var/mob/living/carbon/C = thrower
-		C.throw_mode_on()
-	..()
+	if(thrower && iscarbon(thrower))
+		man_down_under = thrower
+		returning = TRUE
+	. = ..()
+
+/obj/item/toy/boomerang/violent
+	throwforce = 10
 
 /obj/item/toy/frisbee
 	name = "frisbee"

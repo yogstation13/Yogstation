@@ -129,7 +129,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		if(O.late_joiner)
 			try_target_late_joiners = TRUE
 	for(var/datum/mind/possible_target in get_crewmember_minds())
-		if(is_valid_target(possible_target) && !(possible_target in owners) && ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
+		if(is_valid_target(possible_target) && !(possible_target in owners) && ishuman(possible_target.current) && !is_synth(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
 			//yogs start -- Quiet Rounds
 			var/mob/living/carbon/human/guy = possible_target.current
 			if(possible_target.antag_datums || !(guy.mind.quiet_round))
@@ -209,7 +209,6 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/assassinate
 	name = "assassinate"
 	var/target_role_type=FALSE
-	martyr_compatible = 1
 
 /datum/objective/assassinate/find_target_by_role(role, role_type=FALSE,invert=FALSE)
 	if(!invert)
@@ -472,7 +471,6 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/purge
 	name = "no mutants on shuttle"
 	explanation_text = "Ensure no mutant humanoids or nonhuman species are present aboard the escape shuttle. Felinids/Catpeople do NOT count as nonhuman."
-	martyr_compatible = 1
 
 /datum/objective/purge/check_completion()
 	if(..())
@@ -815,51 +813,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	explanation_text = "Do not give up or lose [targetinfo.name]."
 	steal_target = targetinfo.targetitem
 
-
-/datum/objective/download
-	name = "download"
-
-/datum/objective/download/proc/gen_amount_goal()
-	target_amount = rand(20,40)
-	update_explanation_text()
-	return target_amount
-
-/datum/objective/download/update_explanation_text()
-	..()
-	explanation_text = "Download [target_amount] research node\s."
-
-/datum/objective/download/check_completion()
-	if(..())
-		return TRUE
-	var/datum/techweb/checking = new
-	var/list/datum/mind/owners = get_owners()
-	for(var/datum/mind/owner in owners)
-		if(ismob(owner.current))
-			var/mob/M = owner.current			//Yeah if you get morphed and you eat a quantum tech disk with the RD's latest backup good on you soldier.
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				if(H && (H.stat != DEAD) && istype(H.wear_suit, /obj/item/clothing/suit/space/space_ninja))
-					var/obj/item/clothing/suit/space/space_ninja/S = H.wear_suit
-					S.stored_research.copy_research_to(checking)
-			var/list/otherwise = M.get_all_contents()
-			for(var/obj/item/disk/tech_disk/TD in otherwise)
-				TD.stored_research.copy_research_to(checking)
-	if (istype(team, /datum/team/infiltrator))
-		for (var/area/A in world)
-			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
-				for (var/obj/item/disk/tech_disk/TD in A.get_all_contents()) //Check for items
-					TD.stored_research.copy_research_to(checking)
-				CHECK_TICK
-			CHECK_TICK
-		CHECK_TICK
-	return checking.researched_nodes.len >= target_amount
-
-/datum/objective/download/admin_edit(mob/admin)
-	var/count = input(admin,"How many nodes ?","Nodes",target_amount) as num|null
-	if(count)
-		target_amount = count
-	update_explanation_text()
-
 /datum/objective/capture
 	name = "capture"
 
@@ -1031,7 +984,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/destroy
 	name = "destroy AI"
-	martyr_compatible = 1
 
 /datum/objective/destroy/find_target(dupe_search_range, blacklist)
 	var/list/possible_targets = active_ais(1)
@@ -1157,6 +1109,9 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 			if(!(wanted.organ_flags & ORGAN_FAILING) && !(wanted.organ_flags & ORGAN_SYNTHETIC))
 				stolen_count++
 	return stolen_count >= amount
+
+/datum/objective/research_secrets
+	explanation_text = "Use your gloves on a research & development server to sabotage research efforts.  Note that the AI will be alerted once you begin!"
 
 
 //Created by admin tools
@@ -1556,6 +1511,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/assassinate/cloned,
 		/datum/objective/assassinate/once,
 		/datum/objective/maroon,
+		/datum/objective/maroon_organ,
 		/datum/objective/debrain,
 		/datum/objective/protect,
 		/datum/objective/assist,
@@ -1570,7 +1526,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/survive,
 		/datum/objective/martyr,
 		/datum/objective/steal,
-		/datum/objective/download,
 		/datum/objective/nuclear,
 		/datum/objective/capture,
 		/datum/objective/absorb,
@@ -1604,21 +1559,17 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 	return (istype(user_area, dropoff) && istype(target_area, dropoff))
 
-/**
-  * Break shit - the objective
-  *
-  * Areas are stored, not references to the machines and not checking the machines globally
-  * This solves the following issues:
-  * * Problem 1 - Engineers rebuild and then the sabotage is immediately undone, the traitor having no reason to stop them
-  * * Problem 2 - Engineers build a random machine in maint where no one would look to fuck over the traitor
-  * The idea is that the traitor must commit to breaking the machines
-  */
+
+///////////////////////////////////////////////////////////////////////
+//----------------Break specific machines in an area once------------//
+///////////////////////////////////////////////////////////////////////
 /datum/objective/break_machinery
 	name = "Destroy some machines"
 	explanation_text = "Destroy all of something in the areas it spawns in."
 	var/obj/machinery/target_obj_type
 	var/list/potential_target_types
 	var/list/area/target_areas
+	var/list/machines_to_break = list()
 
 /datum/objective/break_machinery/finalize()
 	target_areas = list()
@@ -1629,8 +1580,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 			/obj/machinery/rnd/server,
 			// ENGINEERING
 			/obj/machinery/power/smes,
-			/obj/machinery/power/supermatter_crystal,
 			/obj/machinery/telecomms, // hard-mode
+			/obj/machinery/power/supermatter_crystal,
 			// MEDICAL
 			/obj/machinery/stasis,
 			/obj/machinery/sleeper,
@@ -1665,17 +1616,22 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 			continue
 		if(!istype(get_area(machine), /area))
 			continue
+		if(istype(get_area(machine), /area/shuttle))
+			continue //no whiteship machines
 		eligible_machines |= machine
 
 	eligible_machines = shuffle(eligible_machines)
 	// Store areas
 	for(var/obj/machinery/machine as anything in eligible_machines)
 		target_areas |= get_area(machine)
-		if(target_areas.len >= 4)
+		for(var/obj/machinery/specific as anything in get_area(machine))
+			if(istype(specific, target_obj_type))
+				machines_to_break |= specific
+		if(target_areas.len >= 2)
 			break
 
 	// Format explanation text
-	explanation_text = "Ensure no functioning [machine_name][machine_name[length(machine_name)] == "s" ? "es" : "s"] exist in "
+	explanation_text = "Destroy the original [machine_name][machine_name[length(machine_name)] == "s" ? "es" : "s"] in "
 	switch(target_areas.len)
 		if(0)
 			return FALSE
@@ -1683,14 +1639,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 			explanation_text += "[target_areas[1].name]."
 		if(2)
 			explanation_text += "[target_areas[1].name] and [target_areas[2].name]."
-		else
-			var/iteration = 1
-			for(var/area/target_area in target_areas)
-				if(iteration == target_areas.len)
-					explanation_text += "and [target_area.name]."
-					break
-				explanation_text += "[target_area.name], "
-				iteration++
 	return TRUE
 
 /datum/objective/break_machinery/check_completion()
@@ -1698,8 +1646,10 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		return TRUE
 	if(target_areas.len == 0)
 		return TRUE
-	for(var/area/target_area in target_areas)
-		if(locate(target_obj_type) in target_area)
+	if(machines_to_break.len == 0)
+		return TRUE
+	for(var/obj/machinery/thing as anything in machines_to_break)
+		if(thing && !QDELETED(thing) && istype(thing, target_obj_type))
 			return FALSE
 	return TRUE
 
@@ -1731,7 +1681,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 	var/selected_gimmick = pick(gimmick_list)
 	selected_gimmick = replacetext(selected_gimmick, "%DEPARTMENT", selected_department)
-	if(target?.current)
+	if(target?.current) //it's possible to use both %DEPARTMENT and %TARGET in an objective, just make sure to put it in target_gimmick_objectives.txt
 		selected_gimmick = replacetext(selected_gimmick, "%TARGET", target.name)
 
 	explanation_text = "[selected_gimmick]"
@@ -1740,4 +1690,64 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	return TRUE
 	
 /datum/objective/gimmick/admin_edit(mob/admin)
+	admin_simple_target_pick(admin)
 	update_explanation_text()
+
+///////////////////////////////////////////////////////////////////////
+//-----------------------Maroon a specific organ---------------------//
+///////////////////////////////////////////////////////////////////////
+/datum/objective/maroon_organ
+	name = "maroon organ"
+	var/obj/item/organ/original_organ
+
+/datum/objective/maroon_organ/is_valid_target(datum/mind/possible_target)
+	if(iscarbon(possible_target?.current))
+		var/mob/living/carbon/possible_carbon_target = possible_target.current
+		return LAZYLEN(possible_carbon_target.internal_organs)
+
+/datum/objective/maroon_organ/find_target(dupe_search_range, blacklist)
+	. = ..()
+	finalize()
+
+/datum/objective/maroon_organ/finalize()
+	if(!target)
+		return FALSE
+
+	// This will always be a carbon with organs, because of is_valid_target()
+	var/mob/living/carbon/carbon_target = target.current
+	var/list/eligible_organs = LAZYCOPY(carbon_target.internal_organs) //make a copy so we don't accidentally remove their brain
+	for(var/thing in eligible_organs)
+		if(istype(thing, /obj/item/organ/brain)) //make sure it doesn't pick the brain
+			eligible_organs -= thing
+	original_organ = pick(eligible_organs)
+	if(original_organ)
+		update_explanation_text()
+		return TRUE
+
+/datum/objective/maroon_organ/update_explanation_text()
+	if(target && original_organ)
+		var/mob/living/carbon/human/H = target.current
+		explanation_text = "Ensure that [target.name], the [isipc(H) ? H.dna.species.name : lowertext(H.dna.species.name)] [target.assigned_role] does not escape alive with their original [original_organ]."
+	else
+		explanation_text = "Free Objective"
+	. = ..()
+
+/datum/objective/maroon_organ/admin_edit(mob/admin)
+	admin_simple_target_pick(admin)
+	finalize()
+	update_explanation_text()
+	return
+
+/datum/objective/maroon_organ/check_completion()
+	if(..())
+		return TRUE
+
+	//if they're considered marooned
+	if(!target || !considered_alive(target) || (!target.current.onCentCom() && !target.current.onSyndieBase()))
+		return TRUE
+
+	var/mob/living/carbon/carbon_target = target.current
+	//if they don't have the original organ inside them
+	if(carbon_target && istype(carbon_target) && (original_organ in carbon_target.internal_organs))
+		return FALSE
+	return TRUE

@@ -287,16 +287,19 @@
 		seedify(O, 1)
 
 // -----------------------------
-//        Sheet Snatcher
+//        Stack Snatcher
 // -----------------------------
 // Because it stacks stacks, this doesn't operate normally.
 // However, making it a storage/bag allows us to reuse existing code in some places. -Sayu
 
 /obj/item/storage/bag/sheetsnatcher
-	name = "sheet snatcher"
-	desc = "A patented Nanotrasen storage system designed for any kind of mineral sheet."
+	name = "stack snatcher"
+	desc = "A patented Nanotrasen storage system designed for any kind of stacks. This is geared towards sheets, rods, and tiles."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sheetsnatcher"
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
+	var/spam_protection = FALSE //If this is TRUE, the holder won't receive any messages when they fail to pick up ore through crossing it
+	var/mob/listeningTo
 
 	var/capacity = 500; //the number of sheets it can carry.
 	w_class = WEIGHT_CLASS_NORMAL
@@ -306,15 +309,53 @@
 	. = ..()
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
 	STR.allow_quick_empty = TRUE
-	STR.set_holdable(list(/obj/item/stack/sheet), list(/obj/item/stack/sheet/mineral/sandstone, /obj/item/stack/sheet/mineral/wood))
+	STR.set_holdable(list(/obj/item/stack/sheet, /obj/item/stack/tile, /obj/item/stack/rods))
 	STR.max_items = 500
 
+/obj/item/storage/bag/sheetsnatcher/proc/pickup_sheets(mob/living/user)
+	var/show_message = FALSE
+	var/turf/tile = user.loc
+	if (!isturf(tile))
+		return
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	if(STR)
+		for(var/A in tile)
+			if (!is_type_in_typecache(A, STR.can_hold))
+				continue
+			else if(SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, A, user, TRUE))
+				show_message = TRUE
+			else
+				if(!spam_protection)
+					to_chat(user, span_warning("Your [name] is full and can't hold any more!"))
+					spam_protection = TRUE
+					continue
+	if(show_message)
+		playsound(user, "rustle", 50, TRUE)
+		user.visible_message(span_notice("[user] scoops up the sheets beneath [user.p_them()]."), \
+		span_notice("You scoop up the sheets beneath you with your [name]."))
+	spam_protection = FALSE
+
+/obj/item/storage/bag/sheetsnatcher/equipped(mob/user)
+	. = ..()
+	if(listeningTo == user)
+		return
+	if(listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(pickup_sheets))
+	listeningTo = user
+
+/obj/item/storage/bag/sheetsnatcher/dropped()
+	. = ..()
+	if(listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+		listeningTo = null
+
 // -----------------------------
-//    Sheet Snatcher (Cyborg)
+//    Stack Snatcher (Cyborg)
 // -----------------------------
 
 /obj/item/storage/bag/sheetsnatcher/borg
-	name = "sheet snatcher 9000"
+	name = "stack snatcher 9000"
 	desc = ""
 	capacity = 1000//Borgs get more because >specialization
 
@@ -467,7 +508,7 @@
 	STR.max_items = 40
 	STR.max_w_class = WEIGHT_CLASS_SMALL
 	STR.insert_preposition = "in"
-	STR.set_holdable(list(/obj/item/stack/ore/bluespace_crystal, /obj/item/assembly, /obj/item/stock_parts, /obj/item/reagent_containers/glass/beaker, /obj/item/stack/cable_coil, /obj/item/circuitboard, /obj/item/electronics, /obj/item/modular_computer))
+	STR.set_holdable(list(/obj/item/stack/ore/bluespace_crystal, /obj/item/assembly, /obj/item/stock_parts, /obj/item/reagent_containers/glass/beaker, /obj/item/stack/cable_coil, /obj/item/circuitboard, /obj/item/electronics, /obj/item/modular_computer, /obj/item/computer_hardware))
 
 
 /obj/item/storage/bag/construction/admin/full/Initialize(mapload)

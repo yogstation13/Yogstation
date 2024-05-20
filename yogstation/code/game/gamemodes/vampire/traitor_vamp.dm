@@ -3,12 +3,13 @@
 	config_tag = "traitorvamp"
 	false_report_weight = 10
 	traitors_possible = 3 //hard limit on traitors if scaling is turned off
-	restricted_jobs = list("AI", "Cyborg")
-	required_players = 25
+	restricted_jobs = list("AI", "Cyborg", "Synthetic")
+	required_players = 15
 	required_enemies = 1	// how many of each type are required
 	recommended_enemies = 3
 	reroll_friendly = 1
 
+	num_modifier = -2 //less traitors to account for the vamps
 	var/list/possible_vampires = list()
 	var/const/vampire_amt = 2 //hard limit on vampires if scaling is turned off
 	var/list/pre_vamps = list()

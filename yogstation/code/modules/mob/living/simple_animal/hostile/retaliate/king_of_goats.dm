@@ -41,7 +41,7 @@ Difficulty: Insanely Hard
 	response_harm   = "assaults"
 	attacktext = "brutalized"
 	health = 500
-	a_intent = INTENT_HARM
+	combat_mode
 	sentience_type = SENTIENCE_BOSS
 	stat_attack = DEAD
 	wander = FALSE
@@ -214,7 +214,7 @@ Difficulty: Insanely Hard
 		else if(prob(5)) //EMP blast
 			spellscast++
 			visible_message(span_cult("\The [src] disrupts nearby electrical equipment!"))
-			empulse(get_turf(src), 5, 2, 0)
+			empulse(get_turf(src), EMP_HEAVY)
 
 		else if(prob(5) && melee_damage_type == BRUTE && !special_attacks) //elemental attacks
 			spellscast++

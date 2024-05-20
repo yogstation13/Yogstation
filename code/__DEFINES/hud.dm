@@ -97,6 +97,7 @@
 #define ui_above_intent "EAST-3:24, SOUTH+1:7"
 #define ui_movi "EAST-2:26,SOUTH:5"
 #define ui_acti "EAST-3:24,SOUTH:5"
+#define ui_combat_toggle "EAST-3:24,SOUTH:5"
 #define ui_zonesel "EAST-1:28,SOUTH:5"
 #define ui_acti_alt "EAST-1:28,SOUTH:5"	//alternative intent switcher for when the interface is hidden (F12)
 #define ui_crafting	"EAST-4:22,SOUTH:5"
@@ -233,3 +234,8 @@
 #define SCRN_OBJ_INSERT_FIRST "first"
 /// The filter name for the hover outline
 #define HOVER_OUTLINE_FILTER "hover_outline"
+// Plane group keys, used to group swaths of plane masters that need to appear in subwindows
+/// The primary group, holds everything on the main window
+#define PLANE_GROUP_MAIN "main"
+/// A secondary group, used when a client views a generic window
+#define PLANE_GROUP_POPUP_WINDOW(screen) "popup-[REF(screen)]"

@@ -478,7 +478,7 @@
 
 /obj/item/organ/heart/gland/gas/activate() //Yogstation change: plasma -> gas
 	to_chat(owner, span_warning("You feel bloated."))
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), owner, span_userdanger("A massive stomachache overcomes you.")), 15 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), owner, span_userdanger("A massive stomachache overcomes you.")), 15 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(vomit_gas)), 20 SECONDS) //Yogstation change: plasma -> gas
 
 /obj/item/organ/heart/gland/gas/proc/vomit_gas() //Yogstation change: plasma -> gas

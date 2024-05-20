@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(1)
 			new /obj/item/shared_storage/red(src)
 		if(2)
-			new /obj/item/clothing/under/drip(src)
+			new /obj/item/clothing/under/costume/drip(src)
 			new /obj/item/clothing/shoes/drip(src)
 		if(3)
 			new /obj/item/bodypart/r_arm/robot/seismic(src)
@@ -56,7 +56,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(16)
 			new /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced(src)
 		if(17)
-			new /obj/item/book_of_babel(src)
+			new /obj/item/dopmirror(src)
 		if(18)
 			new /obj/item/borg/upgrade/modkit/lifesteal(src)
 			new /obj/item/bedsheet/cult(src)
@@ -188,9 +188,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(active_owner && user == active_owner)
 		var/safety = alert(user, "Doing this will instantly kill you, reducing you to nothing but dust.", "Take off [src]?", "Abort", "Proceed")
 		if(safety != "Proceed")
-			return 
+			return
 	. = ..()
-	
+
 /obj/item/clothing/neck/necklace/memento_mori/dropped(mob/user)
 	..()
 	if(active_owner)
@@ -299,7 +299,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	light_flags = LIGHT_ATTACHED
 	layer = ABOVE_ALL_MOB_LAYER
 	var/sight_flags = SEE_MOBS
-	var/lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	var/list/color_cutoffs = list(10, 25, 25)
 
 /obj/effect/wisp/orbit(atom/thing, radius, clockwise, rotation_speed, rotation_segments, pre_rotation, lockinorbit)
 	. = ..()
@@ -316,9 +316,10 @@ GLOBAL_LIST_EMPTY(aide_list)
 		to_chat(orbits.parent, span_notice("Your vision returns to normal."))
 
 /obj/effect/wisp/proc/update_user_sight(mob/user)
-	user.sight |= sight_flags
-	if(!isnull(lighting_alpha))
-		user.lighting_alpha = min(user.lighting_alpha, lighting_alpha)
+	SIGNAL_HANDLER
+	user.add_sight(sight_flags)
+	if(!isnull(color_cutoffs))
+		user.lighting_color_cutoffs = blend_cutoff_colors(user.lighting_color_cutoffs, color_cutoffs)
 
 //Red/Blue Cubes
 /obj/item/warp_cube
@@ -413,7 +414,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	name = "hook"
 	desc = "A hook."
 	projectile_type = /obj/projectile/hook
-	caliber = "hook"
+	caliber = CALIBER_HOOK
 	icon_state = "hook"
 
 /obj/projectile/hook
@@ -609,15 +610,15 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return
 	if(isliving(target))
 		var/mob/living/L = target
-		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid)) //no loot allowed from the little skulls
+		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid) || istype(L,/mob/living/simple_animal/hostile/yog_jungle)) //no loot allowed from the little skulls
 			if(!istype(L, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
-				RegisterSignal(target,COMSIG_GLOB_MOB_DEATH, PROC_REF(roll_loot), TRUE)
+				RegisterSignal(target, COMSIG_LIVING_DEATH, PROC_REF(roll_loot), TRUE)
 			//after quite a bit of grinding, you'll be doing a total of 120 damage to fauna per hit. A lot, but i feel like the grind justifies the payoff. also this doesn't effect crew. so. go nuts.
 			L.apply_damage(mobs_grinded*5,BRUTE)
 
 ///This proc handles rolling the loot on the loot table and "drops" the loot where the hostile fauna died
 /obj/item/rune_scimmy/proc/roll_loot(mob/living/target)
-	UnregisterSignal(target, COMSIG_GLOB_MOB_DEATH)
+	UnregisterSignal(target, COMSIG_LIVING_DEATH)
 	if(mobs_grinded<max_grind)
 		mobs_grinded++
 	var/spot = get_turf(target)
@@ -679,7 +680,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "syndi_potionflask"
 	desc = "An ornate red bottle, with an \"S\" embossed into the underside. Filled with an experimental flight potion. Mileage may vary."
-	
+
 /obj/item/reagent_containers/glass/bottle/potion/flight
 	name = "strange elixir"
 	desc = "A flask with an almost-holy aura emitting from it. The label on the bottle says: 'erqo'hyy tvi'rf lbh jv'atf'."
@@ -1376,7 +1377,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			if(target == user)
 				continue
 			for(var/obj/effect/decal/cleanable/decal in range(0, target))
-				if(istype(decal, /obj/effect/decal/cleanable/blood )|| istype(decal, /obj/effect/decal/cleanable/trail_holder))
+				if(istype(decal, /obj/effect/decal/cleanable/blood )|| istype(decal, /obj/effect/decal/cleanable/blood/trail_holder))
 					valid_reaching = TRUE
 					target.apply_status_effect(STATUS_EFFECT_KNUCKLED)
 		if(!valid_reaching)
@@ -1746,7 +1747,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	name = "ancient control rod"
 	//don't want your rare megafauna loot shattering easily
 	max_integrity = 2000
-	desc = "A mysterious crystaline rod of exceptional length, humming with ancient power. Too unweildy for use in one hand."
+	desc = "A mysterious crystaline rod of exceptional length, humming with ancient power. Too unwieldy for use in one hand."
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
 	force = 0
@@ -1858,7 +1859,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	actions_types = list(/datum/action/item_action/band)
 	var/limit = 3
-	var/telerange = 20 
+	var/telerange = 20
 	var/next_tap = 0
 	var/next_band = 0
 	var/next_teleport = 0
@@ -1972,7 +1973,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 						aide.forceMove(O)
 						playsound(aide, 'sound/magic/teleport_app.ogg', 20, 1)
 		next_band = world.time + COOLDOWN_BAND
-				
+
 
 /obj/item/cane/cursed/afterattack(mob/living/target , mob/living/carbon/user, proximity)
 	.=..()

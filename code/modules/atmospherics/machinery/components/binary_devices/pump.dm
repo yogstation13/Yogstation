@@ -26,12 +26,8 @@
 
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "pump"
-
-/obj/machinery/atmospherics/components/binary/pump/CtrlClick(mob/user)
-	if(can_interact(user))
-		on = !on
-		update_appearance(UPDATE_ICON)
-	return ..()
+	vent_movement = NONE
+	quick_toggle = TRUE
 
 /obj/machinery/atmospherics/components/binary/pump/AltClick(mob/user)
 	if(can_interact(user))
@@ -40,7 +36,7 @@
 		investigate_log(msg, INVESTIGATE_ATMOS)
 		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - makes supermatter invest useful
 		balloon_alert(user, "pressure output set to [target_pressure] kPa")
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/pump/Destroy()
@@ -53,27 +49,21 @@
 	icon_state = (on && is_operational()) ? "pump_on-[set_overlay_offset(piping_layer)]" : "pump_off-[set_overlay_offset(piping_layer)]"
 
 /obj/machinery/atmospherics/components/binary/pump/process_atmos()
-//	..()
 	if(!on || !is_operational())
 		return
 
 	var/datum/gas_mixture/air1 = airs[1]
 	var/datum/gas_mixture/air2 = airs[2]
-
 	var/output_starting_pressure = air2.return_pressure()
-
 	if((target_pressure - output_starting_pressure) < 0.01)
 		//No need to pump gas if target is already reached!
 		return
-
 	//Calculate necessary moles to transfer using PV=nRT
 	if((air1.total_moles() > 0) && (air1.return_temperature()>0))
 		var/pressure_delta = target_pressure - output_starting_pressure
 		var/transfer_moles = pressure_delta*air2.return_volume()/(air1.return_temperature() * R_IDEAL_GAS_EQUATION)
 
-		//Actually transfer the gas
-		var/datum/gas_mixture/removed = air1.remove(transfer_moles)
-		air2.merge(removed)
+		air1.transfer_to(air2,transfer_moles)
 
 		update_parents()
 
@@ -115,11 +105,8 @@
 		return
 	switch(action)
 		if("power")
-			on = !on
-			var/msg = "was turned [on ? "on" : "off"] by [key_name(usr)]"
-			investigate_log(msg, INVESTIGATE_ATMOS)
-			investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - makes supermatter invest useful
-			. = TRUE
+			toggle_on()
+			return TRUE
 		if("pressure")
 			var/pressure = params["pressure"]
 			if(pressure == "max")
@@ -139,7 +126,7 @@
 				investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - makes supermatter invest useful
 	update_appearance(UPDATE_ICON)
 
-/obj/machinery/atmospherics/components/binary/pump/atmosinit()
+/obj/machinery/atmospherics/components/binary/pump/atmos_init()
 	..()
 	if(frequency)
 		set_frequency(frequency)
@@ -148,20 +135,14 @@
 	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))
 		return
 
-	var/old_on = on //for logging
-
 	if("power" in signal.data)
 		on = text2num(signal.data["power"])
 
 	if("power_toggle" in signal.data)
-		on = !on
+		toggle_on()
 
 	if("set_output_pressure" in signal.data)
 		target_pressure = clamp(text2num(signal.data["set_output_pressure"]),0,ONE_ATMOSPHERE*50)
-
-	if(on != old_on)
-		investigate_log("was turned [on ? "on" : "off"] by a remote signal", INVESTIGATE_ATMOS)
-		investigate_log("was turned [on ? "on" : "off"] by a remote signal", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 
 	if("status" in signal.data)
 		broadcast_status()

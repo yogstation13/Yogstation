@@ -19,7 +19,7 @@
 	var/convert_range = 8
 	//She is above even fire
 	layer = RIPPLE_LAYER
-	movement_type = UNSTOPPABLE
+	movement_type = PHASING
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
 
 /obj/structure/destructible/honkmother/Initialize(mapload)

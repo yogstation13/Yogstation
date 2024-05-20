@@ -17,6 +17,7 @@
 	var/damage_resistance = 0 // %damage reduction from all sources
 
 	var/siemens_coeff = 1 	// resistance to shocks
+	var/emp_mod = 1			// resistance to EMPs
 
 	var/stun_mod = 1      	// % stun modifier
 	var/bleed_mod = 1     	// % bleeding modifier
@@ -25,6 +26,7 @@
 	var/hunger_mod = 1		//% of hunger rate taken per tick.
 
 	var/do_after_speed = 1 //Speed mod for do_after. Lower is better. If temporarily adjusting, please only modify using *= and /=, so you don't interrupt other calculations.
+	var/force_multiplier = 1 //multiplies how much damage is done with melee weapons
 
 	var/punchdamagehigh_bonus = 0		//Increased maximum punch damage 
 	var/punchdamagelow_bonus = 0		//Increased minimum punch damage

@@ -11,6 +11,8 @@
 	if(IsAdminGhost(M))
 		//Access can't stop the abuse
 		return TRUE
+	if(HAS_TRAIT(M, TRAIT_ALWAYS_NO_ACCESS))
+		return FALSE
 	else if(istype(M) && SEND_SIGNAL(M, COMSIG_MOB_ALLOWED, src))
 		return TRUE
 	else if(ishuman(M))
@@ -149,7 +151,7 @@
 	            ACCESS_THEATRE, ACCESS_RESEARCH, ACCESS_RND, ACCESS_MINING, ACCESS_MAILSORTING, ACCESS_WEAPONS,
 				ACCESS_MECH_MINING, ACCESS_MECH_ENGINE, ACCESS_MECH_SCIENCE, ACCESS_MECH_SECURITY, ACCESS_MECH_MEDICAL,
 	            ACCESS_VAULT, ACCESS_MINING_STATION, ACCESS_XENOBIOLOGY, ACCESS_CE, ACCESS_HOP, ACCESS_HOS, ACCESS_RC_ANNOUNCE,
-	            ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_GATEWAY, ACCESS_MINERAL_STOREROOM, ACCESS_MINISAT, ACCESS_NETWORK, ACCESS_CLONING, ACCESS_TCOM_ADMIN, ACCESS_PARAMEDIC, ACCESS_MANUFACTURING, ACCESS_BRIG_PHYS, ACCESS_PSYCH) //YOGS - yogs jobs
+	            ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_GATEWAY, ACCESS_MINERAL_STOREROOM, ACCESS_MINISAT, ACCESS_NETWORK, ACCESS_CLONING, ACCESS_TCOM_ADMIN, ACCESS_PARAMEDIC, ACCESS_MANUFACTURING, ACCESS_BRIG_PHYS, ACCESS_PSYCH, ACCESS_SERVHALL) //YOGS - yogs jobs
 
 /// Gets all centcom accesses
 /proc/get_all_centcom_access()
@@ -183,7 +185,7 @@
 		if(0)
 			return get_all_accesses()
 		if(1) //station general
-			return list(ACCESS_KITCHEN,ACCESS_BAR, ACCESS_HYDROPONICS, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_LIBRARY, ACCESS_THEATRE, ACCESS_LAWYER, ACCESS_MANUFACTURING)
+			return list(ACCESS_KITCHEN,ACCESS_BAR, ACCESS_HYDROPONICS, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_LIBRARY, ACCESS_THEATRE, ACCESS_LAWYER, ACCESS_MANUFACTURING, ACCESS_SERVHALL)
 		if(2) //security
 			return list(ACCESS_SEC_DOORS, ACCESS_WEAPONS, ACCESS_SECURITY, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS, ACCESS_COURT, ACCESS_MECH_SECURITY, ACCESS_HOS)
 		if(3) //medbay
@@ -375,6 +377,8 @@
 			return "Freeminer Engineer"
 		if(ACCESS_FREEMINER_CAPTAIN)
 			return "Freeminer Captain"
+		if(ACCESS_SERVHALL)
+			return "Service Hall"
 		// yogs end
 
 /// Get descriptions for centcom accesses
@@ -406,7 +410,7 @@
 				"Atmospheric Technician", "Chief Medical Officer", "Medical Doctor", "Chemist", "Geneticist", "Virologist",
 				// yogs start - Yog jobs
 				"Research Director", "Scientist", "Roboticist", "Head of Security", "Warden", "Detective", "Security Officer",
-				"Network Admin", "Mining Medic", "Paramedic", "Psychiatrist", "Clerk", "Tourist", "Space Bartender", "Artist", "Brig Physician")
+				"Network Admin", "Mining Medic", "Paramedic", "Psychiatrist", "Clerk", "Tourist", "Space Bartender", "Artist", "Brig Physician", "Synthetic")
 				// yogs end
 
 /// Gets all jobs with hud icons
@@ -415,7 +419,7 @@
 
 /// Gets all centcom jobs
 /proc/get_all_centcom_jobs()
-	return list("VIP Guest","Custodian","Thunderdome Overseer","CentCom Official","Medical Officer","Research Officer","Special Ops Officer","Admiral","CentCom Commander","Emergency Response Team Commander","Security Response Officer","Engineer Response Officer", "Medical Response Officer","CentCom Bartender", "Janitorial Response Officer", "Religious Response Officer", "CentCom Captain", "CentCom Major", "CentCom Commodore", "CentCom Colonel", "CentCom Rear-Admiral", "CentCom Admiral", "CentCom Grand Admiral", "Comedy Response Officer", "HONK Squad Trooper")
+	return list("VIP Guest","Custodian","Thunderdome Overseer","CentCom Official","Medical Officer","Research Officer","Special Ops Officer","Admiral","CentCom Commander","Emergency Response Team Commander","Security Response Officer","Engineer Response Officer", "Medical Response Officer","CentCom Bartender", "Janitorial Response Officer", "Religious Response Officer", "CentCom Captain", "CentCom Major", "CentCom Commodore", "CentCom Colonel", "CentCom Rear-Admiral", "CentCom Admiral", "CentCom Executive Admiral", "Comedy Response Officer", "HONK Squad Trooper")
 
 /// Gets all task for jobs
 /proc/get_all_task_force_jobs()

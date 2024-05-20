@@ -5,7 +5,7 @@
 	name = "sledgehammer"
 	desc = "An archaic tool used to drive nails and break down hollow walls."
 	icon = 'icons/obj/weapons/misc.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/back.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/back.dmi'
 	icon_state = "sledgehammer"
 	item_state = "sledgehammer"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
@@ -14,6 +14,7 @@
 	throwforce = 18
 	throw_range = 3 /// Doesn't throw very far
 	sharpness = SHARP_NONE
+	demolition_mod = 3 // BREAK THINGS
 	armour_penetration = -20
 	hitsound = 'sound/weapons/smash.ogg' /// Hitsound when thrown at someone
 	attack_verb = list("attacked", "hit", "struck", "bludgeoned", "bashed", "smashed")
@@ -26,13 +27,17 @@
 /obj/item/melee/sledgehammer/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 3, \
-		force_wielded = 18, \
+		force_wielded = 15, \
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 		require_twohands = TRUE, \
 		wielded_stats = list(SWING_SPEED = 1.5, ENCUMBRANCE = 0.5, ENCUMBRANCE_TIME = 1 SECONDS, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0), \
 	)
+	AddComponent(/datum/component/cleave_attack, \
+		arc_size=180, \
+		requires_wielded=TRUE, \
+		no_multi_hit=TRUE, \
+	) // big and heavy hammer makes wide arc
 
 /obj/item/melee/sledgehammer/proc/on_wield(atom/source, mob/living/user)
 	hitsound = "swing_hit"
@@ -50,13 +55,12 @@
 	if(!proximity_flag)
 		return
 
-	if(isstructure(target) || ismachinery(target))
+	if(target.uses_integrity)
 		if(!QDELETED(target))
-			var/obj/structure/S = target
-			if(istype(S, /obj/structure/window)) // Sledgehammer really good at smashing windows. 2-7 hits to kill a window
-				S.take_damage(S.max_integrity/2, BRUTE, MELEE, FALSE, null, armour_penetration)
-			else // Sledgehammer can kill airlocks in 17-23 hits, against most other things it's almost as good as a fireaxe
-				S.take_damage(force*2, BRUTE, MELEE, FALSE, null, armour_penetration)
+			if(istype(target, /obj/structure/window)) // Sledgehammer really good at smashing windows. 2-7 hits to kill a window
+				target.take_damage(target.max_integrity/2, BRUTE, MELEE, FALSE, null, armour_penetration)
+			if(iswallturf(target))
+				target.take_damage(force * demolition_mod, BRUTE, MELEE, FALSE, null, armour_penetration) // Sledgehammers are quite good at smashing walls
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
 
 /obj/item/melee/sledgehammer/throw_at(atom/target, range, speed, mob/thrower, spin, diagonals_first, datum/callback/callback, force, quickstart)

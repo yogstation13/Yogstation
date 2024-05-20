@@ -11,7 +11,6 @@
 	emote_see = list("shakes its head.", "stamps a foot.", "glares around.")
 	speak_chance = 1
 	turns_per_move = 5
-	see_in_dark = 6
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 4, /obj/item/clothing/head/yogs/goatpelt = 1)
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
@@ -31,7 +30,7 @@
 	blood_volume = BLOOD_VOLUME_GENERIC
 	var/obj/item/udder/goat/udder = null
 
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_SHOE
 
 /mob/living/simple_animal/hostile/retaliate/goat/Initialize(mapload)
 	udder = new()
@@ -127,7 +126,6 @@
 	emote_see = list("shakes its head.")
 	speak_chance = 1
 	turns_per_move = 5
-	see_in_dark = 6
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 6)
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
@@ -140,8 +138,7 @@
 	gold_core_spawnable = FRIENDLY_SPAWN
 	blood_volume = BLOOD_VOLUME_GENERIC
 	attack_vis_effect = ATTACK_EFFECT_KICK
-
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_SHOE
 
 /mob/living/simple_animal/cow/Initialize(mapload)
 	udder = new()
@@ -164,8 +161,8 @@
 	if(stat == CONSCIOUS)
 		udder.generateMilk()
 
-/mob/living/simple_animal/cow/attack_hand(mob/living/carbon/M)
-	if(!stat && M.a_intent == INTENT_DISARM && icon_state != icon_dead)
+/mob/living/simple_animal/cow/attack_hand(mob/living/carbon/M, modifiers)
+	if(!stat && modifiers && modifiers[RIGHT_CLICK] && icon_state != icon_dead)
 		M.visible_message(span_warning("[M] tips over [src]."),
 			span_notice("You tip over [src]."))
 		to_chat(src, span_userdanger("You are tipped over by [M]!"))
@@ -222,8 +219,7 @@
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
 	gold_core_spawnable = FRIENDLY_SPAWN
-
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 /mob/living/simple_animal/chick/Initialize(mapload)
 	. = ..()
@@ -281,8 +277,7 @@
 	var/list/validColors = list("brown","black","white")
 	gold_core_spawnable = FRIENDLY_SPAWN
 	var/static/chicken_count = 0
-
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 /mob/living/simple_animal/chicken/Initialize(mapload)
 	. = ..()
@@ -352,7 +347,6 @@
 	emote_see = list("nibbles at the ground.")
 	speak_chance = 1
 	turns_per_move = 5
-	see_in_dark = 6
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 4)
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
@@ -365,8 +359,7 @@
 	var/shaved = FALSE
 	gold_core_spawnable = FRIENDLY_SPAWN
 	blood_volume = BLOOD_VOLUME_GENERIC
-
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_SHOE
 
 /mob/living/simple_animal/sheep/Initialize(mapload)
 	udder = new()

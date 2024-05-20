@@ -5,7 +5,7 @@
 	desc = "A well-worn magazine fitted for the surplus carbine."
 	icon_state = "75-8"
 	ammo_type = /obj/item/ammo_casing/c45
-	caliber = ".45"
+	caliber = CALIBER_45ACP
 	max_ammo = 10
 
 /obj/item/ammo_box/magazine/m10mm/rifle/update_icon_state()
@@ -22,7 +22,7 @@
 	desc = "A 30-round toploading magazine filled with 5.56 rounds, designed for the M-90gl Rifle."
 	icon_state = "5.56m-30"
 	ammo_type = /obj/item/ammo_casing/a556
-	caliber = "a556"
+	caliber = CALIBER_556NATO
 	max_ammo = 30
 
 /obj/item/ammo_box/magazine/m556/update_icon_state()
@@ -52,7 +52,7 @@
 	desc = "A standard 30-round magazine for the NT ARG 'Boarder' Rifle. Filled with 5.56 rounds."
 	icon_state = "arg556"
 	ammo_type = /obj/item/ammo_casing/a556
-	caliber = "a556"
+	caliber = CALIBER_556NATO
 	max_ammo = 30
 
 /obj/item/ammo_box/magazine/r556/update_icon_state()
@@ -93,7 +93,7 @@
 	desc = "A standard 15-round magazine for the LWT-650 DMR. Filled with .308 rounds."
 	icon_state = "m308"
 	ammo_type = /obj/item/ammo_casing/m308
-	caliber = "m308"
+	caliber = CALIBER_308
 	max_ammo = 15
 
 /obj/item/ammo_box/magazine/m308/update_icon_state()
@@ -127,7 +127,7 @@
 	desc = "A standard 11-round magazine for the K-41s DMR. Filled with 7.62mm rounds."
 	icon_state = "ks762"
 	ammo_type = /obj/item/ammo_casing/a762
-	caliber = "a762"
+	caliber = CALIBER_762X54R
 	max_ammo = 11
 
 /obj/item/ammo_box/magazine/ks762/update_icon_state()

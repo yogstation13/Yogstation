@@ -1,3 +1,36 @@
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/cosmic
+	name = "Cosmic Passage"
+	desc = "A short range spell that allows you to pass unimpeded through walls."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "space_crawl"
+	sound = null
+
+	school = SCHOOL_FORBIDDEN
+	cooldown_time = 15 SECONDS
+
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
+
+	exit_jaunt_sound = null
+	jaunt_duration = 1.5 SECONDS
+	jaunt_in_time = 0.5 SECONDS
+	jaunt_out_time = 0.5 SECONDS
+	jaunt_in_type = /obj/effect/temp_visual/dir_setting/space_shift
+	jaunt_out_type = /obj/effect/temp_visual/dir_setting/space_shift/out
+
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/cosmic/do_steam_effects()
+	return
+
+/obj/effect/temp_visual/dir_setting/space_shift
+	name = "space_shift"
+	icon = 'icons/mob/mob.dmi'
+	icon_state = "space_explosion"
+	duration = 0.5 SECONDS
+
+/obj/effect/temp_visual/dir_setting/space_shift/out
+	icon_state = "space_explosion"
+
 /datum/action/cooldown/spell/cosmic_rune
 	name = "Cosmic Rune"
 	desc = "Creates a cosmic rune at your position, only two can exist at a time. Invoking one rune transports you to the other."
@@ -12,7 +45,7 @@
 
 	invocation = "ST'R R'N'"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	/// Storage for the first rune.
 	var/datum/weakref/first_rune
@@ -171,7 +204,7 @@
 
 	invocation = "R'T'T' ST'R!"
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	active_msg = "You prepare to cast your star blast!"
 	deactive_msg = "You stop swirling cosmic energies from the palm of your hand... for now."
@@ -215,7 +248,7 @@
 /datum/action/cooldown/spell/conjure/cosmic_expansion
 	name = "Cosmic Expansion"
 	desc = "This spell generates a 3x3 domain of cosmic fields. \
-		Creatures up to 7 tiles away will also recieve a star mark."
+		Creatures up to 7 tiles away will also receive a star mark."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -227,7 +260,7 @@
 
 	invocation = "C'SM'S 'XP'ND"
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	summon_amount = 9
 	summon_radius = 1
@@ -262,7 +295,7 @@
 
 	name = "Cosmic Domain"
 	desc = "This spell generates a domain of cosmic fields. \
-		Creatures up to 7 tiles away will also recieve a star mark."
+		Creatures up to 7 tiles away will also receive a star mark."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -274,7 +307,7 @@
 
 	invocation = "C'SM'S 'XP'ND"
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	summon_amount = 24
 	summon_radius = 2
@@ -296,7 +329,7 @@
 
 	invocation = "R'T'T' ST'R!"
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	active_msg = "You prepare to cast your celestial blast!"
 	deactive_msg = "You stop swirling cosmic energies from the palm of your hand... for now."

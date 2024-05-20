@@ -32,7 +32,7 @@
 	var/datum/bank_account/paying_account
 
 /datum/supply_order/New(datum/supply_pack/pack, orderer, orderer_rank, orderer_ckey, reason, paying_account, budget)
-	id = SSshuttle.ordernum++
+	id = SSshuttle.order_number++
 	src.pack = pack
 	src.orderer = orderer
 	src.orderer_rank = orderer_rank

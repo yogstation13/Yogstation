@@ -32,7 +32,7 @@
 	dir = 2;
 	dwidth = 11;
 	height = 22;
-	id = "whiteship_mining0";
+	shuttle_id = "whiteship_mining0";
 	name = "Free Miner Asteroid";
 	width = 35
 	},

@@ -6,14 +6,18 @@
 	strip_delay = 40
 	equip_delay_other = 40
 
-/obj/item/clothing/neck/worn_overlays(isinhands = FALSE)
-	. = list()
-	if(!isinhands)
-		if(body_parts_covered & HEAD)
-			if(damaged_clothes)
-				. += mutable_appearance('icons/effects/item_damage.dmi', "damagedmask")
-			if(HAS_BLOOD_DNA(src))
-				. += mutable_appearance('icons/effects/blood.dmi', "maskblood")
+/obj/item/clothing/neck/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
+	. = ..()
+	if(isinhands)
+		return
+	if(!(body_parts_covered & HEAD))
+		return
+	if(damaged_clothes)
+		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedmask")
+	if(HAS_BLOOD_DNA(src))
+		var/mutable_appearance/bloody_mask = mutable_appearance('icons/effects/blood.dmi', "maskblood")
+		bloody_mask.color = get_blood_dna_color(return_blood_DNA())
+		. += bloody_mask
 
 /obj/item/clothing/neck/tie
 	name = "tie"
@@ -57,7 +61,7 @@
 
 /obj/item/clothing/neck/stethoscope/attack(mob/living/carbon/human/M, mob/living/user)
 	if(ishuman(M) && isliving(user))
-		if(user.a_intent == INTENT_HELP)
+		if(!user.combat_mode)
 			var/body_part = parse_zone(user.zone_selected)
 
 			var/heart_strength = span_danger("no")
@@ -193,6 +197,44 @@
 	icon_state = "artist"
 	custom_price = 10
 
+/obj/item/clothing/neck/anti_magic_collar
+	name = "anti-magic collar"
+	desc = "A tight collar used on prisoners to restrict their use of magic, while leaving them vulnerable to it's effects"
+	icon_state = "antimagiccollar"
+	resistance_flags = FIRE_PROOF
+	var/inmate_name = "none"
+
+/obj/item/clothing/neck/anti_magic_collar/Initialize(mapload)
+	..()
+	GLOB.tracked_collars += src
+
+/obj/item/clothing/neck/anti_magic_collar/Destroy()
+	. = ..()
+	GLOB.tracked_collars -= src
+
+/obj/item/clothing/neck/anti_magic_collar/equipped(mob/user, slot, initial = FALSE)
+	. = ..()
+	if((slot & slot_flags))
+		to_chat(user, span_danger("You hear the collar click as it locks around your neck!"))
+		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
+		RegisterSignal(user, COMSIG_MOB_RESTRICT_MAGIC, PROC_REF(restrict_casting_magic))
+		inmate_name = user.name
+		return
+
+/obj/item/clothing/neck/anti_magic_collar/dropped(mob/user)
+	. = ..()
+	UnregisterSignal(user, COMSIG_MOB_RESTRICT_MAGIC)
+	inmate_name = "none"
+
+///Prevents any magic from being used by the user.
+/obj/item/clothing/neck/anti_magic_collar/proc/restrict_casting_magic(mob/user, magic_flags)
+	SIGNAL_HANDLER
+	return COMPONENT_MAGIC_BLOCKED
+
+/obj/item/clothing/neck/anti_magic_collar/proc/unlock()
+	audible_message(span_danger("You hear a click, the collar unlocks!"))
+	REMOVE_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
+
 //////////////
 //DOPE BLING//
 //////////////
@@ -208,12 +250,13 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/sourceBandanaType
 
-/obj/item/clothing/neck/neckerchief/worn_overlays(isinhands)
+/obj/item/clothing/neck/neckerchief/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
-	if(!isinhands)
-		var/mutable_appearance/realOverlay = mutable_appearance('icons/mob/clothing/mask/mask.dmi', icon_state)
-		realOverlay.pixel_y = -3
-		. += realOverlay
+	if(isinhands)
+		return
+	var/mutable_appearance/realOverlay = mutable_appearance('icons/mob/clothing/mask/mask.dmi', icon_state)
+	realOverlay.pixel_y = -3
+	. += realOverlay
 
 /obj/item/clothing/neck/neckerchief/AltClick(mob/user)
 	. = ..()
@@ -252,7 +295,7 @@
 
 /obj/item/clothing/neck/pauldron/colonel
 	name = "colonel's pauldrons"
-	desc = "Gold alloy reinforced pauldrons signifying the rank of Colonel; offers slightly more protection than the Commander's pauldron to the wearer."
+	desc = "Gold alloy reinforced pauldrons signifying the rank of Colonel; offers slightly more protection than the Commodore's pauldron to the wearer."
 	icon_state = "colonel"
 	item_state = "colonel"
 	armor = list(MELEE = 35, BULLET = 30, LASER = 35, ENERGY = 35, BOMB = 5, BIO = 20, RAD = 0, FIRE = 0, ACID = 90)
@@ -266,9 +309,9 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDESUITSTORAGE
 
-/obj/item/clothing/neck/cape/grand
-	name = "grand admiral's cape"
-	desc = "A sizable white cape with gold connects."
+/obj/item/clothing/neck/cape/executive
+	name = "executive admiral's cape"
+	desc = "My conquest is the sea of stars."
 	icon_state = "grandadmiral"
 	item_state = "grand_admiral"
 
@@ -477,17 +520,15 @@
 	cloak_charge_rate = 20
 	cloak_dodge_loss = 40
 	var/cloak_emp_disable_duration = 10 SECONDS
-	var/cloak_emp_loss = 25
+	var/cloak_emp_loss = 5
 
 /obj/item/clothing/neck/cloak/ranger/syndie/emp_act(severity)
 	. = ..()
 	if(CHECK_BITFIELD(., EMP_PROTECT_SELF))
 		return
-	if(severity == EMP_HEAVY)
-		set_cloak(0)
+	if(severity > EMP_LIGHT)
 		TIMER_COOLDOWN_START(src, "cloak_emp_disable", cloak_emp_disable_duration)
-	else
-		set_cloak(cloak - cloak_emp_loss)
+	set_cloak(max(cloak - (cloak_emp_loss * severity), 0))
 
 /obj/item/clothing/neck/cloak/ranger/syndie/process(delta_time)
 	if(TIMER_COOLDOWN_CHECK(src, "cloak_emp_disable"))

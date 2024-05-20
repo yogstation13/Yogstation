@@ -169,6 +169,8 @@ GLOBAL_LIST_INIT(uranium_recipes, list ( \
 	point_value = 25
 	merge_type = /obj/item/stack/sheet/mineral/plasma
 
+/obj/item/stack/sheet/mineral/plasma/ten
+	amount = 10
 /obj/item/stack/sheet/mineral/plasma/fifty
 	amount = 50
 
@@ -198,6 +200,18 @@ GLOBAL_LIST_INIT(plasma_recipes, list ( \
 /obj/item/stack/sheet/mineral/plasma/fire_act(exposed_temperature, exposed_volume)
 	atmos_spawn_air("plasma=[amount*10];TEMP=[exposed_temperature]")
 	qdel(src)
+
+/obj/item/stack/sheet/mineral/plasma/bullet_act(obj/projectile/P)
+	. = ..()
+	if(!QDELETED(src) && !P.nodamage && ((P.damage_type == BURN)))
+		var/turf/T = get_turf(src)
+		if(P.firer)
+			message_admins("Plasma stack ([amount]) ignited by [ADMIN_LOOKUPFLW(P.firer)] in [ADMIN_VERBOSEJMP(T)]")
+			log_game("Plasma stack ([amount]) ignited by [key_name(P.firer)] in [AREACOORD(T)]")
+		else
+			message_admins("Plasma stack ([amount]) ignited by [P]. No known firer, in [ADMIN_VERBOSEJMP(T)]")
+			log_game("Plasma stack ([amount]) ignited by [P] in [AREACOORD(T)]. No known firer.")
+		fire_act(2500)
 
 /*
  * Gold

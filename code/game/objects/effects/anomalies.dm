@@ -109,6 +109,13 @@
 	density = FALSE
 	var/boing = 0
 
+/obj/effect/anomaly/grav/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/effect/anomaly/grav/anomalyEffect()
 	..()
 	boing = 1
@@ -126,8 +133,7 @@
 			if(target && !target.stat)
 				O.throw_at(target, 5, 10)
 
-/obj/effect/anomaly/grav/Crossed(atom/movable/AM)
-	. = ..()
+/obj/effect/anomaly/grav/proc/on_entered(datum/source, atom/movable/AM, ...)
 	gravShock(AM)
 
 /obj/effect/anomaly/grav/Bump(atom/A)
@@ -171,6 +177,13 @@
 /obj/effect/anomaly/flux/explosion
 	explosive = ANOMALY_FLUX_EXPLOSION
 
+/obj/effect/anomaly/flux/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/effect/anomaly/flux/anomalyEffect(delta_time)
 	..()
 	canshock = 1
@@ -179,8 +192,7 @@
 	if(prob(delta_time * 2)) // shocks everyone nearby
 		tesla_zap(src, 5, shockdamage*500, TESLA_MOB_DAMAGE)
 
-/obj/effect/anomaly/flux/Crossed(atom/movable/AM)
-	. = ..()
+/obj/effect/anomaly/flux/proc/on_entered(datum/source, atom/movable/AM, ...)
 	mobShock(AM)
 
 /obj/effect/anomaly/flux/Bump(atom/A)
@@ -191,23 +203,9 @@
 
 /obj/effect/anomaly/flux/proc/mobShock(mob/living/M)
 	if(canshock && istype(M))
-		canshock = 0 //Just so you don't instakill yourself if you slam into the anomaly five times in a second.
-		if(iscarbon(M))
-			var/siemens_coeff = 1
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				if(H.gloves)
-					siemens_coeff *= (H.gloves.siemens_coefficient + 1) / 2 // protective gloves reduce damage by half
-				if(H.wear_suit)
-					siemens_coeff *= (H.wear_suit.siemens_coefficient + 1) / 2 // protective suit reduces damage by another half, minimum of 33%
-			var/should_stun = !M.IsParalyzed() // stunlock is boring
-			M.electrocute_act(shockdamage, "[name]", max(siemens_coeff, 0.33), safety = TRUE, stun = should_stun) // 15 damage with insuls, 10 damage with insuls and hardsuit
-			return
-		else
-			M.adjustFireLoss(shockdamage)
-			M.visible_message(span_danger("[M] was shocked by \the [name]!"), \
-		span_userdanger("You feel a powerful shock coursing through your body!"), \
-		span_italics("You hear a heavy electrical crack."))
+		var/should_stun = !M.IsParalyzed() // stunlock is boring
+		var/hit_percent = (100 - M.getarmor(null, ELECTRIC)) / 100
+		M.electrocute_act(shockdamage, "[name]", max(hit_percent, 0.33), zone = null, override=TRUE, stun = should_stun) // ignore armor because we're doing our own calculations
 
 /obj/effect/anomaly/flux/detonate()
 	switch(explosive)
@@ -303,10 +301,10 @@
 /obj/effect/anomaly/pyro/anomalyEffect(delta_time)
 	..()
 	var/turf/center = get_turf(src)
-	center.IgniteTurf(delta_time * fire_power)
+	center.ignite_turf(delta_time * fire_power)
 	for(var/turf/open/T in center.GetAtmosAdjacentTurfs())
 		if(prob(5 * delta_time))
-			T.IgniteTurf(delta_time)
+			T.ignite_turf(delta_time)
 
 /obj/effect/anomaly/pyro/detonate()
 	INVOKE_ASYNC(src, PROC_REF(makepyroslime))
@@ -316,7 +314,7 @@
 	for(var/turf/open/T in spiral_range_turfs(5, center))
 		if(prob(get_dist(center, T) * 15))
 			continue
-		T.IgniteTurf(fire_power * 10) //Make it hot and burny for the new slime
+		T.ignite_turf(fire_power * 10) //Make it hot and burny for the new slime
 	var/new_colour = pick("red", "orange")
 	var/mob/living/simple_animal/slime/S = new(center, new_colour)
 	S.rabid = TRUE
@@ -439,8 +437,21 @@
 	core_type = ANOMALY_HALLUCINATION
 	/// Time passed since the last effect, increased by delta_time of the SSobj
 	var/ticks = 0
-	/// How many seconds between each small hallucination pulses
+	/// How many seconds between each hallucination spanwed
 	var/release_delay = 5
+	/// flavor of hallucination mobs this spawns (cosmetic)
+	var/hallucination_set
+
+/obj/effect/anomaly/hallucination/Initialize(mapload, new_lifespan)
+	. = ..()
+	hallucination_set = pick("syndicate", "cult")
+	switch(hallucination_set)
+		if("syndicate")
+			icon = 'icons/mob/simple_human.dmi'
+			icon_state = "syndicate_stormtrooper_sword"
+		if("cult")
+			icon = 'icons/mob/nonhuman-player/cult.dmi'
+			icon_state = "cultist"
 
 /obj/effect/anomaly/hallucination/anomalyEffect(delta_time)
 	. = ..()
@@ -450,37 +461,82 @@
 	ticks -= release_delay
 	var/turf/open/our_turf = get_turf(src)
 	if(istype(our_turf))
-		hallucination_pulse(our_turf, 5)
+		var/mob/living/simple_animal/hostile/newhall = new /mob/living/simple_animal/hostile/hallucination(our_turf)
+		switch(hallucination_set)
+			if("syndicate")
+				newhall.name = "syndicate operative"
+				newhall.icon = 'icons/mob/simple_human.dmi'
+				newhall.icon_state = "syndicate_space_knife"
+				newhall.attacktext = "slashes"
+				newhall.attack_sound = 'sound/weapons/bladeslice.ogg'
+			if("cult")
+				newhall.name = "shade"
+				newhall.icon = 'icons/mob/nonhuman-player/cult.dmi'
+				newhall.icon_state = "shade_cult"
+				newhall.attacktext = "metaphysically strikes"
 
 /obj/effect/anomaly/hallucination/detonate()
-	var/turf/open/our_turf = get_turf(src)
-	if(istype(our_turf))
-		hallucination_pulse(our_turf, 10)
+	var/mob/living/simple_animal/hostile/hallucination/anomaly/bighall = new(get_turf(src))
+	bighall.icon = icon
+	bighall.icon_state = icon_state
+	switch(hallucination_set)
+		if("syndicate")
+			bighall.attacktext = "slashes"
+			bighall.attack_sound = 'sound/weapons/bladeslice.ogg'
+		if("cult")
+			bighall.attacktext = "slashes"
+			bighall.attack_sound = 'sound/weapons/blade1.ogg'
 
-/proc/hallucination_pulse(turf/location, range, strength = 50)
-	for(var/mob/living/carbon/human/near in view(location, range))
-		// If they are immune to hallucinations
-		if (HAS_TRAIT(near, TRAIT_MESONS) || (near.mind && HAS_TRAIT(near.mind, TRAIT_MESONS)))
-			continue
+// Hallucination anomaly spawned mob, attacks deal stamina damage, if it stamcrits someone, they start hallucinating themself dying.
+/mob/living/simple_animal/hostile/hallucination
+	name = "Unknown"
+	desc = "Whoever they are, they look angry, and hard to look at."
+	maxHealth = 25
+	health = 25
+	melee_damage_lower = 15
+	melee_damage_upper = 10
+	stat_attack = UNCONSCIOUS
+	robust_searching = TRUE
+	icon = 'icons/mob/simple_human.dmi'
+	icon_state = "faceless"
+	obj_damage = 0
+	digitalinvis = TRUE //silicons can't hallucinate, as they are robots. they also can't take stamina damage.
+	melee_damage_type = STAMINA
+	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 1, STAMINA = 0, OXY = 0)
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	minbodytemp = 0
+	maxbodytemp = INFINITY
+	del_on_death = TRUE
+	footstep_type = FOOTSTEP_MOB_SHOE
 
-		// Blind people don't get hallucinations
-		if (is_blind(near))
-			continue
+/mob/living/simple_animal/hostile/hallucination/anomaly
+	name = "hallucination anomaly"
+	desc = "A mysterious anomaly, seen commonly only in the region of space that the station orbits..."
+	maxHealth = 50
+	health = 50
+	melee_damage_lower = 30
+	melee_damage_upper = 30
 
-		// Everyone else
-		var/dist = sqrt(1 / max(1, get_dist(near, location)))
-		near.adjust_hallucinations(max(150, strength * dist))
-		near.adjust_jitter(10 SECONDS)
-		near.adjust_confusion(10 SECONDS)
-		near.adjust_dizzy(10 SECONDS)
-		near.adjust_drowsiness(10 SECONDS)
-		var/static/list/messages = list(
-			"You feel your conscious mind fall apart!",
-			"Reality warps around you!",
-			"Something's whispering around you!",
-			"You are going insane!",
-			"What was that?!"
-		)
-		to_chat(near, span_warning("[pick(messages)]"))
+/mob/living/simple_animal/hostile/hallucination/CanAttack(atom/the_target)
+	. = ..()
+	if(!iscarbon(the_target))
+		return FALSE
+
+/mob/living/simple_animal/hostile/hallucination/AttackingTarget()
+	. = ..()
+	if(. && isliving(target))
+		var/mob/living/carbon/C = target
+		C.clear_stamina_regen()
+		if(C.getStaminaLoss() >= 100) //congrats you have hallucinated being stabbed now you are hallucinating dying
+			if(!C.losebreath)
+				to_chat(C, span_notice("You feel your heart slow down..."))
+			C.losebreath = min(C.losebreath+2, 10)
+			C.silent = min(C.silent+2, 10)
+			if(C.getOxyLoss() >= 100) //let's skip the waiting and get to the fun part
+				if(C.can_heartattack())
+					C.playsound_local(C, 'sound/effects/singlebeat.ogg', 100, 0)
+					C.set_heartattack(TRUE)
+				else
+					C.adjustBruteLoss(10)
 
 #undef ANOMALY_MOVECHANCE

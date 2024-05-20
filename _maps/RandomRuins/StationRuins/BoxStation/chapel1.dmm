@@ -70,12 +70,12 @@
 "dG" = (
 /obj/structure/table/wood,
 /obj/item/toy/figure/chaplain,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "fv" = (
@@ -434,14 +434,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
-"xO" = (
-/obj/effect/landmark/start/assistant,
-/turf/open/floor/plasteel/chapel{
-	dir = 4
-	},
-/area/chapel/main)
 "Ar" = (
-/obj/effect/landmark/start/chaplain,
 /obj/structure/chair,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -572,14 +565,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
-"MC" = (
-/obj/effect/landmark/start/assistant,
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/carpet/purple,
-/area/chapel/main)
 "ML" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Crematorium Maintenance";
@@ -679,7 +664,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "Sa" = (
-/obj/structure/altar_of_gods,
+/obj/structure/table/altar_of_gods,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "Sf" = (
@@ -1073,7 +1058,7 @@ ZS
 Wy
 ZS
 PM
-xO
+ZS
 PM
 QT
 JH
@@ -1138,7 +1123,7 @@ Tv
 Tv
 rk
 Od
-MC
+Od
 Od
 Od
 Od

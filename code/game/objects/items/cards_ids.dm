@@ -300,7 +300,7 @@
 		to_chat(cyborg, span_danger("Initiating diagnostics..."))
 		sleep(2 SECONDS)
 		to_chat(cyborg, span_danger("ClownBorg v1.7 loaded.")) // The flavor definitely sucks here.
-		cyborg.logevent("WARN: root privleges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].")
+		cyborg.logevent("WARN: root privileges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].")
 		sleep(0.5 SECONDS)
 		to_chat(cyborg, span_danger("LAW SYNCHRONISATION ERROR"))
 		sleep(0.5 SECONDS)
@@ -561,6 +561,10 @@ update_label("John Doe", "Clowny")
 
 	name = "[(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment])"]"
 
+//a card that can't register a bank account IC
+/obj/item/card/id/no_bank/AltClick(mob/living/user)
+	return FALSE
+
 /obj/item/card/id/silver
 	name = "silver identification card"
 	desc = "A silver card which shows honour and dedication."
@@ -584,9 +588,26 @@ update_label("John Doe", "Clowny")
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 
+/obj/item/card/id/silver/synthetic
+	name = "synthetic identification card"
+	desc = "An integrated card that allows synthetic units access across the station."
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	item_flags = DROPDEL
+
+/obj/item/card/id/silver/synthetic/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, SYNTHETIC_TRAIT)
+
+/obj/item/card/id/silver/synthetic/GetAccess()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		if(H.mind)
+			return GLOB.synthetic_base_access + GLOB.synthetic_added_access
+	return list()
+
 /obj/item/card/id/syndicate
 	name = "agent card"
-	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE, ACCESS_MINERAL_STOREROOM)
 	var/anyone = FALSE //Can anyone forge the ID or just syndicate?
 	var/forged = FALSE //have we set a custom name and job assignment, or will we use what we're given when we chameleon change?
 
@@ -636,7 +657,7 @@ update_label("John Doe", "Clowny")
 
 			var/newAge = input(user, "Choose the ID's age:\n([AGE_MIN]-[AGE_MAX])", "Agent card age") as num|null
 			if(newAge)
-				registered_age = max(round(text2num(newAge)), 0)
+				registered_age = clamp(round(text2num(newAge)), AGE_MIN, AGE_MAX)
 
 			registered_name = input_name
 			assignment = target_occupation
@@ -796,8 +817,8 @@ update_label("John Doe", "Clowny")
 		var/obj/structure/fireaxecabinet/bridge/spare/holder = loc
 		forceMove(holder.loc)
 		holder.spareid = null
-		if(holder.obj_integrity > holder.integrity_failure) //we dont want to heal it by accident
-			holder.take_damage(holder.obj_integrity - holder.integrity_failure, BURN, armour_penetration = 100) //we do a bit of trolling for being naughty
+		if(holder.get_integrity() > holder.integrity_failure) //we dont want to heal it by accident
+			holder.take_damage(holder.get_integrity() - holder.integrity_failure, BURN, armour_penetration = 100) //we do a bit of trolling for being naughty
 		else
 			holder.update_appearance(UPDATE_ICON) //update the icon anyway so it pops out
 		visible_message(span_danger("The heat of the temporary spare shatters the glass!"));
@@ -963,7 +984,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/prisoner
 	name = "prisoner ID card"
 	desc = "You are a number, you are not a free man."
-	icon_state = "orange"
+	icon_state = "prisoner"
 	item_state = "orange-id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
@@ -1087,3 +1108,176 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/departmental_budget/sec
 	department_ID = ACCOUNT_SEC
 	department_name = ACCOUNT_SEC_NAME
+
+/***
+ * 
+ * 
+ * 	HERETIC ID SECTION (SORRY)
+ * 
+ * 
+ */
+
+/obj/effect/knock_portal
+	name = "crack in reality"
+	desc = "A crack in space, impossibly deep and painful to the eyes. Definitely not safe."
+	icon = 'icons/effects/eldritch.dmi'
+	icon_state = "realitycrack"
+	light_system = STATIC_LIGHT
+	light_power = 1
+	light_on = TRUE
+	light_color = COLOR_GREEN
+	light_range = 3
+	opacity = TRUE
+	density = FALSE //so we dont block doors closing
+	layer = OBJ_LAYER //under doors
+	///The knock portal we teleport to
+	var/obj/effect/knock_portal/destination
+	///The airlock we are linked to, we delete if it is destroyed
+	var/obj/machinery/door/our_airlock
+
+/obj/effect/knock_portal/Initialize(mapload, target)
+	. = ..()
+	if(target)
+		our_airlock = target
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(delete_on_door_delete))
+		
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
+///Deletes us and our destination portal if our_airlock is destroyed
+/obj/effect/knock_portal/proc/delete_on_door_delete(datum/source)
+	SIGNAL_HANDLER
+	qdel(src)
+
+///Signal handler for when our location is entered, calls teleport on the victim, if their old_loc didnt contain a portal already (to prevent loops)
+/obj/effect/knock_portal/proc/on_entered(datum/source, mob/living/loser, atom/old_loc)
+	SIGNAL_HANDLER
+	if(istype(loser) && !(locate(type) in old_loc))
+		teleport(loser)
+
+/obj/effect/knock_portal/Destroy()
+	QDEL_NULL(destination)
+	our_airlock = null
+	return ..()
+
+///Teleports the teleportee, to a random airlock if the teleportee isnt a heretic, or the other portal if they are one
+/obj/effect/knock_portal/proc/teleport(mob/living/teleportee)
+	if(isnull(destination)) //dumbass
+		qdel(src)
+		return
+
+	//get it?
+	var/obj/machinery/door/doorstination = IS_HERETIC_OR_MONSTER(teleportee) ? destination.our_airlock : find_random_airlock()
+	if(!do_teleport(teleportee, get_turf(doorstination), channel = TELEPORT_CHANNEL_MAGIC))
+		return
+
+	if(!IS_HERETIC_OR_MONSTER(teleportee))
+		teleportee.apply_damage(20, BRUTE) //so they dont roll it like a jackpot machine to see if they can land in the armory
+		to_chat(teleportee, span_userdanger("You stumble through [src], battered by forces beyond your comprehension, landing anywhere but where you thought you were going."))
+
+	INVOKE_ASYNC(src, PROC_REF(async_opendoor), doorstination)
+
+///Returns a random airlock on the same Z level as our portal, that isnt our airlock
+/obj/effect/knock_portal/proc/find_random_airlock()
+	var/list/turf/possible_destinations = list()
+	for(var/obj/airlock as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/door/airlock))
+		if(airlock.z != z)
+			continue
+		if(airlock.loc == loc)
+			continue
+		possible_destinations += airlock
+	return pick(possible_destinations)
+
+///Asynchronous proc to unbolt, then open the passed door
+/obj/effect/knock_portal/proc/async_opendoor(obj/machinery/door/door)
+	if(istype(door, /obj/machinery/door/airlock)) //they can create portals on ANY door, but we should unlock airlocks so they can actually open
+		var/obj/machinery/door/airlock/as_airlock = door
+		as_airlock.unbolt()
+	door.open()
+
+
+/obj/item/card/id/syndicate/heretic
+	name = "Eldritch Card"
+	access = list(ACCESS_MAINT_TUNNELS)
+	///The first portal in the portal pair, so we can clear it later
+	var/obj/effect/knock_portal/portal_one
+	///The second portal in the portal pair, so we can clear it later
+	var/obj/effect/knock_portal/portal_two
+	///The first door we are linking in the pair, so we can create a portal pair
+	var/datum/weakref/link
+
+/obj/item/card/id/syndicate/heretic/examine(mob/user)
+	. = ..()
+	if(!IS_HERETIC_OR_MONSTER(user))
+		return
+	. += span_hypnophrase("Enchanted by the Mansus!")
+	. += span_hypnophrase("Using an ID on this will consume it and allow you to copy its accesses.")
+	. += span_hypnophrase("<b>Using this in-hand</b> allows you to change its appearance.")
+	. += span_hypnophrase("<b>Using this on a pair of doors</b>, allows you to link them together. Entering one door will transport you to the other, while heathens are instead teleported to a random airlock.")
+
+/obj/item/card/id/syndicate/heretic/afterattack(obj/item/O, mob/user, proximity)
+	if(!proximity)
+		return
+	if(istype(O, /obj/item/card/id))
+		var/obj/item/card/id/I = O
+		src.access |= I.access
+		if(isliving(user) && user.mind)
+			if(user.mind.has_antag_datum(/datum/antagonist/heretic))
+				qdel(I)
+				to_chat(usr, span_notice("The card consumes the original ID, copying its access."))
+
+/obj/item/card/id/syndicate/heretic/proc/clear_portals()
+	QDEL_NULL(portal_one)
+	QDEL_NULL(portal_two)	
+
+///Clears portal references
+/obj/item/card/id/syndicate/heretic/proc/clear_portal_refs()
+	SIGNAL_HANDLER
+	portal_one = null
+	portal_two = null
+
+///Creates a portal pair at door1 and door2, displays a balloon alert to user
+/obj/item/card/id/syndicate/heretic/proc/make_portal(mob/user, obj/machinery/door/door1, obj/machinery/door/door2)
+	var/message = "linked"
+	if(portal_one || portal_two)
+		clear_portals()
+		message += ", previous cleared"
+	
+	portal_one = new(get_turf(door2), door2)
+	portal_two = new(get_turf(door1), door1)
+	portal_one.destination = portal_two
+	RegisterSignal(portal_one, COMSIG_QDELETING, PROC_REF(clear_portal_refs))  //we only really need to register one because they already qdel both portals if one is destroyed
+	portal_two.destination = portal_one
+	balloon_alert(user, "[message]")
+
+
+/obj/item/card/id/syndicate/heretic/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(!proximity_flag || !IS_HERETIC(user))
+		return
+	if(istype(target, /obj/effect/knock_portal))
+		clear_portals()
+		return
+
+	if(!istype(target, /obj/machinery/door))
+		return
+
+	var/reference_resolved = link?.resolve()
+	if(reference_resolved == target)
+		return
+
+	if(reference_resolved)
+		make_portal(user, reference_resolved, target)
+		to_chat(user, span_notice("You use [src], to link [link] and [target] together."))
+		link = null
+		balloon_alert(user, "link 2/2")
+	else
+		link = WEAKREF(target)
+		balloon_alert(user, "link 1/2")
+
+/obj/item/card/id/syndicate/heretic/Destroy()
+	link = null
+	clear_portals()
+	return ..()

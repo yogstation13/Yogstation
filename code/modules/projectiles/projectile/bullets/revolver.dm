@@ -22,6 +22,7 @@
 	wound_bonus = -30
 	wound_falloff_tile = -2.5
 	bare_wound_bonus = 15
+	can_ricoshot = TRUE
 
 /obj/projectile/bullet/c38/rubber
 	name = ".38 rubber bullet"
@@ -86,6 +87,7 @@
 	armour_penetration = 15
 	wound_bonus = -45
 	wound_falloff_tile = -2.5
+	can_ricoshot = TRUE
 
 /obj/projectile/bullet/pellet/a357_ironfeather
 	name = ".357 Ironfeather pellet"
@@ -119,8 +121,7 @@
 	name = ".357 Heartpiercer bullet"
 	damage = 35
 	armour_penetration = 45
-	penetrating = TRUE //Goes through a single mob before ending on the next target
-	penetrations = 1
+	penetrations = 1 //Goes through a single mob before ending on the next target
 
 /obj/projectile/bullet/a357/wallstake
 	name = ".357 Wallstake bullet"

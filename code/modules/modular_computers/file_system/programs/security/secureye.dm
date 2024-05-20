@@ -1,3 +1,4 @@
+
 #define DEFAULT_MAP_SIZE 15
 
 /datum/computer_file/program/secureye
@@ -9,54 +10,45 @@
 	extended_desc = "This program allows access to standard security camera networks."
 	requires_ntnet = TRUE
 	transfer_access = ACCESS_BRIG
-	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_INTEGRATED // Probably not a good idea to let borgs use this, though im curious how it will pan out
+	usage_flags = PROGRAM_LAPTOP |PROGRAM_STATIONARY| PROGRAM_INTEGRATED // Probably not a good idea to let borgs use this, though im curious how it will pan out
 	size = 10
 	tgui_id = "NtosSecurEye"
 	program_icon = "eye"
 
 	var/list/network = list("ss13")
-	var/obj/machinery/camera/active_camera
+	///List of weakrefs of all users watching the program.
+	var/list/concurrent_users = list()
+	
+	/// Weakref to the active camera
+	var/datum/weakref/camera_ref
 	/// The turf where the camera was last updated.
 	var/turf/last_camera_turf
-	var/list/concurrent_users = list()
 
 	// Stuff needed to render the map
-	var/map_name
 	var/atom/movable/screen/map_view/cam_screen
 	/// All the plane masters that need to be applied.
-	var/list/cam_plane_masters
 	var/atom/movable/screen/background/cam_background
 
 /datum/computer_file/program/secureye/New()
 	. = ..()
 	// Map name has to start and end with an A-Z character,
 	// and definitely NOT with a square bracket or even a number.
-	map_name = "camera_console_[REF(src)]_map"
+	var/map_name = "camera_console_[REF(src)]_map"
 	// Convert networks to lowercase
 	for(var/i in network)
 		network -= i
 		network += lowertext(i)
 	// Initialize map objects
 	cam_screen = new
-	cam_screen.name = "screen"
-	cam_screen.assigned_map = map_name
-	cam_screen.del_on_map_removal = FALSE
-	cam_screen.screen_loc = "[map_name]:1,1"
-	cam_plane_masters = list()
-	for(var/plane in subtypesof(/atom/movable/screen/plane_master))
-		var/atom/movable/screen/instance = new plane()
-		instance.assigned_map = map_name
-		instance.del_on_map_removal = FALSE
-		instance.screen_loc = "[map_name]:CENTER"
-		cam_plane_masters += instance
+	cam_screen.generate_view(map_name)
 	cam_background = new
 	cam_background.assigned_map = map_name
 	cam_background.del_on_map_removal = FALSE
 
 /datum/computer_file/program/secureye/Destroy()
-	qdel(cam_screen)
-	QDEL_LIST(cam_plane_masters)
-	qdel(cam_background)
+	QDEL_NULL(cam_screen)
+	QDEL_NULL(cam_background)
+	last_camera_turf = null
 	return ..()
 
 /datum/computer_file/program/secureye/ui_interact(mob/user, datum/tgui/ui)
@@ -74,32 +66,39 @@
 		if(is_living)
 			concurrent_users += user_ref
 		// Register map objects
-		user.client.register_map_obj(cam_screen)
-		for(var/plane in cam_plane_masters)
-			user.client.register_map_obj(plane)
+		cam_screen.display_to(user)
 		user.client.register_map_obj(cam_background)
 		return ..()
 
+/datum/computer_file/program/secureye/ui_status(mob/user)
+	. = ..()
+	if(. == UI_DISABLED)
+		return UI_CLOSE
+	return .
+
 /datum/computer_file/program/secureye/ui_data()
 	var/list/data = get_header_data()
-	data["network"] = network
 	data["activeCamera"] = null
+	var/obj/machinery/camera/active_camera = camera_ref?.resolve()
 	if(active_camera)
 		data["activeCamera"] = list(
 			name = active_camera.c_tag,
+			ref = REF(active_camera),
 			status = active_camera.status,
 		)
 	return data
 
 /datum/computer_file/program/secureye/ui_static_data()
 	var/list/data = list()
-	data["mapRef"] = map_name
-	var/list/cameras = get_available_cameras()
+	data["network"] = network
+	data["mapRef"] = cam_screen.assigned_map
+	var/list/cameras = get_camera_list(network)
 	data["cameras"] = list()
 	for(var/i in cameras)
 		var/obj/machinery/camera/C = cameras[i]
 		data["cameras"] += list(list(
 			name = C.c_tag,
+			ref = REF(C),
 		))
 
 	return data
@@ -108,20 +107,19 @@
 	. = ..()
 	if(.)
 		return
+	switch(action)
+		if("switch_camera")
+			var/obj/machinery/camera/selected_camera = locate(params["camera"]) in GLOB.cameranet.cameras
+			if(selected_camera)
+				camera_ref = WEAKREF(selected_camera)
+			else
+				camera_ref = null
+			playsound(src, get_sfx(SFX_TERMINAL_TYPE), 25, FALSE)
+			if(isnull(camera_ref))
+				return TRUE
 
-	if(action == "switch_camera")
-		var/c_tag = params["name"]
-		var/list/cameras = get_available_cameras()
-		var/obj/machinery/camera/selected_camera = cameras[c_tag]
-		active_camera = selected_camera
-		playsound(src, get_sfx("terminal_type"), 25, FALSE)
-
-		if(!selected_camera)
+			update_active_camera_screen()
 			return TRUE
-
-		update_active_camera_screen()
-
-		return TRUE
 
 /datum/computer_file/program/secureye/ui_close(mob/user)
 	. = ..()
@@ -130,28 +128,41 @@
 	// Living creature or not, we remove you anyway.
 	concurrent_users -= user_ref
 	// Unregister map objects
-	user.client.clear_map(map_name)
+	cam_screen.hide_from(user)
 	// Turn off the console
 	if(length(concurrent_users) == 0 && is_living)
-		active_camera = null
+		camera_ref = null
+		last_camera_turf = null
 		playsound(src, 'sound/machines/terminal_off.ogg', 25, FALSE)
 
 /datum/computer_file/program/secureye/proc/update_active_camera_screen()
+	var/obj/machinery/camera/active_camera = camera_ref?.resolve()
 	// Show static if can't use the camera
 	if(!active_camera?.can_use())
 		show_camera_static()
 		return
 
-	var/originator = active_camera
-	if(active_camera.built_in)
-		originator = get_turf(active_camera.built_in)
-
 	var/list/visible_turfs = list()
-	for(var/turf/T in (active_camera.isXRay() \
-			? range(active_camera.view_range, originator) \
-			: view(active_camera.view_range, originator)))
-		visible_turfs += T
 
+	// Get the camera's turf to correctly gather what's visible from it's turf, in case it's located in a moving object (borgs / mechs)
+	var/new_cam_turf = get_turf(active_camera)
+
+	// If we're not forcing an update for some reason and the cameras are in the same location,
+	// we don't need to update anything.
+	// Most security cameras will end here as they're not moving.
+	if(last_camera_turf == new_cam_turf)
+		return
+
+	// Cameras that get here are moving, and are likely attached to some moving atom such as cyborgs.
+	last_camera_turf = new_cam_turf
+
+	//Here we gather what's visible from the camera's POV based on its view_range and xray modifier if present
+	var/list/visible_things = active_camera.isXRay(ignore_malf_upgrades = TRUE) ? range(active_camera.view_range, new_cam_turf) : view(active_camera.view_range, new_cam_turf)
+
+	for(var/turf/visible_turf in visible_things)
+		visible_turfs += visible_turf
+
+	//Get coordinates for a rectangle area that contains the turfs we see so we can then clear away the static in the resulting rectangle area
 	var/list/bbox = get_bbox_of_atoms(visible_turfs)
 	var/size_x = bbox[3] - bbox[1] + 1
 	var/size_y = bbox[4] - bbox[2] + 1
@@ -160,30 +171,12 @@
 	cam_background.icon_state = "clear"
 	cam_background.fill_rect(1, 1, size_x, size_y)
 
+
 /datum/computer_file/program/secureye/proc/show_camera_static()
 	cam_screen.vis_contents.Cut()
 	cam_background.icon_state = "scanline2"
 	cam_background.fill_rect(1, 1, DEFAULT_MAP_SIZE, DEFAULT_MAP_SIZE)
 
-// Returns the list of cameras accessible from this computer
-/datum/computer_file/program/secureye/proc/get_available_cameras()
-	var/list/L = list()
-	for (var/obj/machinery/camera/cam in GLOB.cameranet.cameras)
-		if(!(is_station_level(cam.z) || is_mining_level(cam.z) || !isnull(cam.built_in)))//Only show station cameras.
-			continue
-		L.Add(cam)
-	var/list/camlist = list()
-	for(var/obj/machinery/camera/cam in L)
-		if(!cam.network)
-			stack_trace("Camera in a cameranet has no camera network")
-			continue
-		if(!(islist(cam.network)))
-			stack_trace("Camera in a cameranet has a non-list camera network")
-			continue
-		var/list/tempnetwork = cam.network & network
-		if(tempnetwork.len)
-			camlist["[cam.c_tag]"] = cam
-	return camlist
 
 //////////////////
 //Mining Cameras//
@@ -215,3 +208,5 @@
 	program_icon = "dungeon"
 
 	network = list("labor")
+
+#undef DEFAULT_MAP_SIZE

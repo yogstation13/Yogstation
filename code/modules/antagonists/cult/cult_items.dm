@@ -310,7 +310,7 @@
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 
 /obj/item/clothing/head/culthood/alt
@@ -445,8 +445,8 @@
 		holder.visible_message(span_danger("A runed shield surges from the robe, surrounding [holder]!"))
 		holder.update_inv_wear_suit()
 
-/obj/item/clothing/suit/hooded/cultrobes/cult_shield/worn_overlays(isinhands)
-	. = list()
+/obj/item/clothing/suit/hooded/cultrobes/cult_shield/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
+	. = ..()
 	if(!isinhands && shielded)
 		. += mutable_appearance('icons/effects/cult_effects.dmi', "shield-cult", MOB_LAYER + 0.01)
 
@@ -487,7 +487,7 @@
 			user.dropItemToGround(src, TRUE)
 
 /obj/item/clothing/glasses/hud/health/night/cultblind
-	desc = "may Nar'sie guide you through the darkness and shield you from the light."
+	desc = "May Nar'sie guide you through the darkness and shield you from the light."
 	name = "zealot's blindfold"
 	icon_state = "blindfold"
 	item_state = "blindfold"
@@ -534,7 +534,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	if(SSshuttle.emergency.mode == SHUTTLE_CALL)
 		var/cursetime = 1800
 		var/timer = SSshuttle.emergency.timeLeft(1) + cursetime
-		var/security_num = seclevel2num(get_security_level())
+		var/security_num = SSsecurity_level.get_current_level_as_number()
 		var/set_coefficient = 1
 		switch(security_num)
 			if(SEC_LEVEL_GREEN)
@@ -543,7 +543,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 				set_coefficient = 1
 			else
 				set_coefficient = 0.5
-		var/surplus = timer - (SSshuttle.emergencyCallTime * set_coefficient)
+		var/surplus = timer - (SSshuttle.emergency_call_time * set_coefficient)
 		SSshuttle.emergency.setTimer(timer)
 		if(surplus > 0)
 			SSshuttle.block_recall(surplus)
@@ -626,7 +626,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	color = "#ff0000"
 	on_damage = 15
 	slot_flags = null
-	on = TRUE
+	light_on = TRUE
 	var/charges = 5
 
 /obj/item/flashlight/flare/culttorch/afterattack(atom/movable/A, mob/user, proximity)
@@ -695,7 +695,6 @@ GLOBAL_VAR_INIT(curselimit, 0)
 /obj/item/cult_spear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 12, \
 		force_wielded = 16, \
 		icon_wielded = "[base_icon_state]1", \
 		wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 2, DAMAGE_HIGH = 5), \
@@ -926,8 +925,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 						L.adjustBruteLoss(45)
 						playsound(L, 'sound/hallucinations/wail.ogg', 50, 1)
 						L.emote("scream")
-		var/datum/beam/current_beam = new(user,temp_target,time=7,beam_icon_state="blood_beam",btype=/obj/effect/ebeam/blood)
-		INVOKE_ASYNC(current_beam, TYPE_PROC_REF(/datum/beam, Start))
+		user.Beam(temp_target, icon_state="blood_beam", time = 7, beam_type = /obj/effect/ebeam/blood)
 
 
 /obj/effect/ebeam/blood

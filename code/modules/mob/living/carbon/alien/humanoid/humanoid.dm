@@ -3,7 +3,6 @@
 	icon_state = "alien"
 	pass_flags = PASSTABLE
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/xeno = 5, /obj/item/stack/sheet/animalhide/xeno = 1)
-	possible_a_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB, INTENT_HARM)
 	limb_destroyer = 1
 	hud_type = /datum/hud/alien
 	var/obj/item/r_store = null
@@ -115,6 +114,9 @@
 	if(breath?.total_moles() > 0 && !HAS_TRAIT(src, TRAIT_ALIEN_SNEAK))
 		playsound(get_turf(src), pick('sound/voice/lowHiss2.ogg', 'sound/voice/lowHiss3.ogg', 'sound/voice/lowHiss4.ogg'), 50, 0, -5)
 	return ..()
+
+/mob/living/carbon/alien/humanoid/get_butt_sprite()
+	return BUTT_SPRITE_XENOMORPH
 
 /mob/living/carbon/alien/adult/proc/grab(mob/living/carbon/human/target)
 	if(target.check_block())

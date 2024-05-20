@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /obj/item/reagent_containers/food/drinks
 	name = "drink"
-	desc = "yummy"
+	desc = "Yummy."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "pineapplejuice" // Shouldn't see this anyways.
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
@@ -204,11 +204,25 @@
 /obj/item/reagent_containers/food/drinks/coffee
 	name = "robust coffee"
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
+	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "coffee"
 	list_reagents = list(/datum/reagent/consumable/coffee = 30)
 	resistance_flags = FREEZE_PROOF
 	isGlass = FALSE
 	foodtype = BREAKFAST
+	var/lid_open = 0
+
+/obj/item/reagent_containers/food/drinks/coffee/no_lid
+	icon_state = "coffee_empty"
+	list_reagents = null
+
+
+/obj/item/reagent_containers/food/drinks/coffee/update_icon_state()
+	if(lid_open)
+		icon_state = reagents.total_volume ? "[base_icon_state]_full" : "[base_icon_state]_empty"
+	else
+		icon_state = base_icon_state
+	return ..()
 
 /obj/item/reagent_containers/food/drinks/ice
 	name = "ice cup"
@@ -447,8 +461,8 @@
 	sleep(2 SECONDS) //dramatic pause
 	return TOXLOSS
 
-/obj/item/reagent_containers/food/drinks/soda_cans/attack(mob/M, mob/user)
-	if(M == user && !src.reagents.total_volume && user.a_intent == INTENT_HARM && user.zone_selected == BODY_ZONE_HEAD)
+/obj/item/reagent_containers/food/drinks/soda_cans/attack(mob/M, mob/living/user)
+	if(M == user && !src.reagents.total_volume && user.combat_mode && user.zone_selected == BODY_ZONE_HEAD)
 		user.visible_message(span_warning("[user] crushes the can of [src] on [user.p_their()] forehead!"), span_notice("You crush the can of [src] on your forehead."))
 		playsound(user.loc,'sound/weapons/pierce.ogg', rand(10,50), 1)
 		var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(user.loc)

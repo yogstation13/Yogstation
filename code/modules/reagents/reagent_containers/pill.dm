@@ -102,8 +102,10 @@
 	name = "adminordrazine pill"
 	desc = "It's magic. We don't have to explain it."
 	icon_state = "pill16"
-	volume = 50
-	list_reagents = list(/datum/reagent/medicine/adminordrazine = 50)
+	volume = 5
+	grind_results = null
+	dissolvable = FALSE
+	list_reagents = list(/datum/reagent/medicine/adminordrazine = 5)
 
 /obj/item/reagent_containers/pill/morphine
 	name = "morphine pill"
@@ -166,7 +168,7 @@
 /obj/item/reagent_containers/pill/mutadone/five
 	list_reagents = list(/datum/reagent/medicine/mutadone = 5)
 
-/obj/item/reagent_containers/pill/salicyclic
+/obj/item/reagent_containers/pill/salicylic
 	name = "salicylic acid pill"
 	desc = "Used to stimulate bruise healing."
 	icon_state = "pill9"

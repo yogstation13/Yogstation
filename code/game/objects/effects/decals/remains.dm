@@ -14,6 +14,7 @@
 	icon_state = "remains"
 
 /obj/effect/decal/remains/plasma
+	desc = "They look like the remains of something flammable. They have a strange aura about them."
 	icon_state = "remainsplasma"
 
 /obj/effect/decal/remains/xeno

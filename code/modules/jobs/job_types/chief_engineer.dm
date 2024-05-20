@@ -10,7 +10,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the captain"
-	selection_color = "#ffeeaa"
 	req_admin_notify = 1
 	minimal_player_age = 7
 	exp_requirements = 1500 //25 hours
@@ -57,8 +56,8 @@
 
 	belt = /obj/item/storage/belt/utility/chief/full
 	ears = /obj/item/radio/headset/heads/ce
-	uniform = /obj/item/clothing/under/rank/chief_engineer
-	uniform_skirt = /obj/item/clothing/under/rank/chief_engineer/skirt
+	uniform = /obj/item/clothing/under/rank/engineering/chief_engineer
+	uniform_skirt = /obj/item/clothing/under/rank/engineering/chief_engineer/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
 	head = /obj/item/clothing/head/hardhat/white
@@ -69,7 +68,7 @@
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
-	box = /obj/item/storage/box/engineer
+	box = /obj/item/storage/box/survival/engineer
 	chameleon_extras = /obj/item/stamp/ce
 
 	pda_slot = ITEM_SLOT_LPOCKET

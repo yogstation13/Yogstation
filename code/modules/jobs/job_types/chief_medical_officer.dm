@@ -10,7 +10,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the captain"
-	selection_color = "#c1e1ec"
 	req_admin_notify = 1
 	minimal_player_age = 7
 	exp_requirements = 1500 //25 hours
@@ -63,8 +62,8 @@
 
 	belt = /obj/item/storage/belt/medical/chief/full
 	ears = /obj/item/radio/headset/heads/cmo
-	uniform = /obj/item/clothing/under/rank/chief_medical_officer
-	uniform_skirt = /obj/item/clothing/under/rank/chief_medical_officer/skirt
+	uniform = /obj/item/clothing/under/rank/medical/chief_medical_officer
+	uniform_skirt = /obj/item/clothing/under/rank/medical/chief_medical_officer/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
 	suit = /obj/item/clothing/suit/toggle/labcoat/cmo

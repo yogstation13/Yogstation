@@ -52,7 +52,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	var/unique_enzymes
 	///Stores the hashed values of traits such as skin tones, hair style, and gender
 	var/unique_identity
-	var/blood_type
+	var/datum/blood_type/blood_type
 	///The type of mutant race the player is if applicable (i.e. potato-man)
 	var/datum/species/species = new /datum/species/human
 	///first value is mutant color
@@ -161,11 +161,13 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 
 	switch(holder.gender)
 		if(MALE)
-			L[DNA_GENDER_BLOCK] = construct_block(G_MALE, 3)
+			L[DNA_GENDER_BLOCK] = construct_block(G_MALE, GENDERS)
 		if(FEMALE)
-			L[DNA_GENDER_BLOCK] = construct_block(G_FEMALE, 3)
+			L[DNA_GENDER_BLOCK] = construct_block(G_FEMALE, GENDERS)
+		if(NEUTER)
+			L[DNA_GENDER_BLOCK] = construct_block(G_NEUTER, GENDERS)
 		else
-			L[DNA_GENDER_BLOCK] = construct_block(G_PLURAL, 3)
+			L[DNA_GENDER_BLOCK] = construct_block(G_PLURAL, GENDERS)
 	if(ishuman(holder))
 		var/mob/living/carbon/human/H = holder
 		if(!GLOB.hair_styles_list.len)
@@ -219,6 +221,12 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		L[DNA_POLY_DORSAL_BLOCK] = construct_block(GLOB.dorsal_tubes_list.Find(features["dorsal_tubes"]), GLOB.dorsal_tubes_list.len)
 	if(features["ethereal_mark"])
 		L[DNA_ETHEREAL_MARK_BLOCK] = construct_block(GLOB.ethereal_mark_list.Find(features["ethereal_mark"]), GLOB.ethereal_mark_list.len)
+	if(features["preternis_weathering"])
+		L[DNA_PRETERNIS_WEATHERING_BLOCK] = construct_block(GLOB.preternis_weathering_list.Find(features["preternis_weathering"]), GLOB.preternis_weathering_list.len)
+	if(features["preternis_antenna"])
+		L[DNA_PRETERNIS_ANTENNA_BLOCK] = construct_block(GLOB.preternis_antenna_list.Find(features["preternis_antenna"]), GLOB.preternis_antenna_list.len)
+	if(features["preternis_eye"])
+		L[DNA_PRETERNIS_EYE_BLOCK] = construct_block(GLOB.preternis_eye_list.Find(features["preternis_eye"]), GLOB.preternis_eye_list.len)
 	if(features["pod_hair"])
 		L[DNA_POD_HAIR_BLOCK] = construct_block(GLOB.pod_hair_list.Find(features["pod_hair"]), GLOB.pod_hair_list.len)
 	if(features["pod_flower"])
@@ -320,11 +328,13 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		if(DNA_GENDER_BLOCK)
 			switch(H.gender)
 				if(MALE)
-					set_uni_identity_block(blocknumber, construct_block(G_MALE, 3))
+					set_uni_identity_block(blocknumber, construct_block(G_MALE, GENDERS))
 				if(FEMALE)
-					set_uni_identity_block(blocknumber, construct_block(G_FEMALE, 3))
+					set_uni_identity_block(blocknumber, construct_block(G_FEMALE, GENDERS))
+				if(NEUTER)
+					set_uni_identity_block(blocknumber, construct_block(G_NEUTER, GENDERS))
 				else
-					set_uni_identity_block(blocknumber, construct_block(G_PLURAL, 3))
+					set_uni_identity_block(blocknumber, construct_block(G_PLURAL, GENDERS))
 		if(DNA_FACIAL_HAIR_STYLE_BLOCK)
 			set_uni_identity_block(blocknumber, construct_block(GLOB.facial_hair_styles_list.Find(H.facial_hair_style), GLOB.facial_hair_styles_list.len))
 		if(DNA_HAIR_STYLE_BLOCK)
@@ -368,6 +378,12 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 			set_uni_feature_block(blocknumber, construct_block(GLOB.dorsal_tubes_list.Find(features["dorsal_tubes"]), GLOB.dorsal_tubes_list.len))
 		if(DNA_ETHEREAL_MARK_BLOCK)
 			set_uni_feature_block(blocknumber, construct_block(GLOB.ethereal_mark_list.Find(features["ethereal_mark"]), GLOB.ethereal_mark_list.len))
+		if(DNA_PRETERNIS_WEATHERING_BLOCK)
+			set_uni_feature_block(blocknumber, construct_block(GLOB.preternis_weathering_list.Find(features["preternis_weathering"]), GLOB.preternis_weathering_list.len))
+		if(DNA_PRETERNIS_ANTENNA_BLOCK)
+			set_uni_feature_block(blocknumber, construct_block(GLOB.preternis_antenna_list.Find(features["preternis_antenna"]), GLOB.preternis_antenna_list.len))
+		if(DNA_PRETERNIS_EYE_BLOCK)
+			set_uni_feature_block(blocknumber, construct_block(GLOB.preternis_eye_list.Find(features["preternis_eye"]), GLOB.preternis_eye_list.len))
 		if(DNA_POD_HAIR_BLOCK)
 			set_uni_feature_block(blocknumber, construct_block(GLOB.pod_hair_list.Find(features["pod_hair"]), GLOB.pod_hair_list.len))
 		if(DNA_POD_FLOWER_BLOCK)
@@ -471,6 +487,8 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 
 
 /mob/living/carbon/set_species(datum/species/mrace, icon_update = TRUE, pref_load = FALSE)
+	if(HAS_TRAIT(src, TRAIT_SPECIESLOCK))//can't swap species
+		return
 	if(mrace && has_dna())
 		var/datum/species/new_race
 		if(ispath(mrace))
@@ -559,11 +577,13 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	if(!has_dna())
 		return
 
-	switch(deconstruct_block(get_uni_identity_block(dna.unique_identity, DNA_GENDER_BLOCK), 3))
+	switch(deconstruct_block(get_uni_identity_block(dna.unique_identity, DNA_GENDER_BLOCK), GENDERS))
 		if(G_MALE)
 			gender = MALE
 		if(G_FEMALE)
 			gender = FEMALE
+		if(G_NEUTER)
+			gender = NEUTER
 		else
 			gender = PLURAL
 
@@ -615,6 +635,12 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		dna.features["dorsal_tubes"] = GLOB.dorsal_tubes_list[deconstruct_block(get_uni_feature_block(features, DNA_POLY_DORSAL_BLOCK), GLOB.dorsal_tubes_list.len)]
 	if(dna.features["ethereal_mark"])
 		dna.features["ethereal_mark"] = GLOB.ethereal_mark_list[deconstruct_block(get_uni_feature_block(features, DNA_ETHEREAL_MARK_BLOCK), GLOB.ethereal_mark_list.len)]
+	if(dna.features["preternis_weathering"])
+		dna.features["preternis_weathering"] = GLOB.preternis_weathering_list[deconstruct_block(get_uni_feature_block(features, DNA_PRETERNIS_WEATHERING_BLOCK), GLOB.preternis_weathering_list.len)]
+	if(dna.features["preternis_antenna"])
+		dna.features["preternis_antenna"] = GLOB.preternis_antenna_list[deconstruct_block(get_uni_feature_block(features, DNA_PRETERNIS_ANTENNA_BLOCK), GLOB.preternis_antenna_list.len)]
+	if(dna.features["preternis_eye"])
+		dna.features["preternis_eye"] = GLOB.preternis_eye_list[deconstruct_block(get_uni_feature_block(features, DNA_PRETERNIS_EYE_BLOCK), GLOB.preternis_eye_list.len)]
 	if(dna.features["pod_hair"])
 		dna.features["pod_hair"] = GLOB.pod_hair_list[deconstruct_block(get_uni_feature_block(features, DNA_POD_HAIR_BLOCK), GLOB.pod_hair_list.len)]
 	if(dna.features["pod_flower"])

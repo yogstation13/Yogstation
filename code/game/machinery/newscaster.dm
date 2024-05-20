@@ -238,7 +238,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 
 /obj/machinery/newscaster/update_overlays()
 	. = ..()
-	var/hp_percent = obj_integrity * 100 /max_integrity
+	var/hp_percent = atom_integrity * 100 /max_integrity
 	switch(hp_percent)
 		if(75 to 100)
 			return
@@ -724,7 +724,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 				to_chat(user, span_notice("You [anchored ? "un" : ""]secure [name]."))
 				new /obj/item/wallframe/newscaster(loc)
 			qdel(src)
-	else if(I.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM)
+	else if(I.tool_behaviour == TOOL_WELDER && !user.combat_mode)
 		if(stat & BROKEN)
 			if(!I.tool_start_check(user, amount=0))
 				return
@@ -735,7 +735,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 				if(!(stat & BROKEN))
 					return
 				to_chat(user, span_notice("You repair [src]."))
-				obj_integrity = max_integrity
+				update_integrity(max_integrity)
 				stat &= ~BROKEN
 				update_appearance(UPDATE_ICON)
 		else
@@ -761,14 +761,14 @@ GLOBAL_LIST_EMPTY(allCasters)
 		new /obj/item/shard(loc)
 	qdel(src)
 
-/obj/machinery/newscaster/obj_break(damage_flag)
+/obj/machinery/newscaster/atom_break(damage_flag)
 	. = ..()
 	if(.)
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, TRUE)
 
 
 /obj/machinery/newscaster/attack_paw(mob/user)
-	if(user.a_intent != INTENT_HARM)
+	if(!user.combat_mode)
 		to_chat(user, span_warning("The newscaster controls are far too complicated for your tiny brain!"))
 	else
 		take_damage(5, BRUTE, MELEE)

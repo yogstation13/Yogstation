@@ -52,6 +52,7 @@
 
 /obj/machinery/power/emitter/anchored
 	anchored = TRUE
+	state = EMITTER_WRENCHED
 
 /obj/machinery/power/emitter/ctf
 	name = "Energy Cannon"
@@ -76,6 +77,10 @@
 	ADD_TRAIT(src, TRAIT_EMPPROOF_SELF, "innate_empproof")
 	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
 	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS, null, CALLBACK(src, PROC_REF(can_be_rotated)))
+
+/obj/machinery/power/emitter/on_construction()
+	if(anchored && state == EMITTER_UNWRENCHED)
+		state = EMITTER_WRENCHED
 
 /obj/machinery/power/emitter/RefreshParts()
 	var/max_reload = initial(maximum_reload_time) + 20
@@ -437,10 +442,10 @@
 	if(!tank || !tank.air_contents)
 		return
 	var/datum/gas_mixture/fuel = tank.air_contents
-	if(fuel.get_moles(/datum/gas/tritium) < fuel_consumption)
+	if(fuel.get_moles(GAS_TRITIUM) < fuel_consumption)
 		return
-	fuel.adjust_moles(/datum/gas/tritium, -fuel_consumption)
-	fuel.adjust_moles(/datum/gas/hydrogen, fuel_consumption)
+	fuel.adjust_moles(GAS_TRITIUM, -fuel_consumption)
+	fuel.adjust_moles(GAS_H2, fuel_consumption)
 	if(obj_flags & EMAGGED) // radioactive if emagged
 		radiation_pulse(get_turf(src), fuel_consumption * FIRE_HYDROGEN_ENERGY_RELEASED / TRITIUM_BURN_RADIOACTIVITY_FACTOR)
 	return ..()
@@ -461,7 +466,7 @@
 /obj/machinery/power/emitter/particle/update_icon_state()
 	. = ..()
 	if(active)
-		icon_state = (tank?.air_contents?.get_moles(/datum/gas/tritium) >= fuel_consumption) ? icon_state_on : icon_state_underpowered
+		icon_state = (tank?.air_contents?.get_moles(GAS_TRITIUM) >= fuel_consumption) ? icon_state_on : icon_state_underpowered
 	else
 		icon_state = initial(icon_state)
 
@@ -472,7 +477,7 @@
 
 //BUCKLE HOOKS
 
-/obj/machinery/power/emitter/prototype/unbuckle_mob(mob/living/buckled_mob,force = 0)
+/obj/machinery/power/emitter/prototype/unbuckle_mob(mob/living/buckled_mob, force = FALSE, can_fall = TRUE)
 	playsound(src,'sound/mecha/mechmove01.ogg', 50, TRUE)
 	manual = FALSE
 	for(var/obj/item/I in buckled_mob.held_items)

@@ -3,7 +3,7 @@
 /obj/item/ammo_casing/c46x30mm
 	name = "4.6x30mm bullet casing"
 	desc = "A 4.6x30mm bullet casing."
-	caliber = "4.6x30mm"
+	caliber = CALIBER_46X30
 	projectile_type = /obj/projectile/bullet/c46x30mm
 
 /obj/item/ammo_casing/c46x30mm/ap
@@ -35,7 +35,7 @@
 	name = "4.6x30mm airburst bullet casing"
 	desc = "A 4.6x30mm airburst bullet casing."
 	projectile_type = /obj/projectile/bullet/c46x30mm/airburst
-	
+
 /obj/item/ammo_casing/c46x30mm/airburst_pellet
 	name = "4.6x30mm airburst casing"
 	desc = "A 4.6x30mm airburst casing."
@@ -48,7 +48,7 @@
 /obj/item/ammo_casing/c45
 	name = ".45 ACP bullet casing"
 	desc = "A .45 ACP bullet casing."
-	caliber = ".45"
+	caliber = CALIBER_45ACP
 	projectile_type = /obj/projectile/bullet/c45
 
 /obj/item/ammo_casing/c45/ap

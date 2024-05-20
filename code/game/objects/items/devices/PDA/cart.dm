@@ -17,7 +17,7 @@
 
 /obj/item/cartridge
 	name = "generic cartridge"
-	desc = "A data cartridge for portable microcomputers."
+	desc = "A data cartridge for those old portable microcomputers."
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "cart"
 	item_state = "electronic"
@@ -435,13 +435,13 @@ Code:
 					else
 						menu += "station"
 			menu += "<BR>Current approved orders: <BR><ol>"
-			for(var/S in SSshuttle.shoppinglist)
+			for(var/S in SSshuttle.shopping_list)
 				var/datum/supply_order/SO = S
 				menu += "<li>#[SO.id] - [SO.pack.name] approved by [SO.orderer] [SO.reason ? "([SO.reason])":""]</li>"
 			menu += "</ol>"
 
 			menu += "Current requests: <BR><ol>"
-			for(var/S in SSshuttle.requestlist)
+			for(var/S in SSshuttle.request_list)
 				var/datum/supply_order/SO = S
 				menu += "<li>#[SO.id] - [SO.pack.name] requested by [SO.orderer]</li>"
 			menu += "</ol><font size=\"-3\">Upgrade NOW to Space Parts & Space Vendors PLUS for full remote order control and inventory management."

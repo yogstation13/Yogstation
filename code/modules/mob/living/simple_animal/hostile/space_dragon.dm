@@ -26,7 +26,7 @@
 	gender = NEUTER
 	maxHealth = 320
 	health = 320
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	speed = 0
 	attacktext = "chomps"
 	attack_sound = 'sound/magic/demon_attack1.ogg'
@@ -38,8 +38,6 @@
 	icon_dead = "spacedragon_dead"
 	health_doll_icon = "spacedragon"
 	obj_damage = 50
-	see_in_dark = 7 //yogs
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE //yogs
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	flags_1 = HEAR_1 | PREVENT_CONTENTS_EXPLOSION_1
 	mob_size = MOB_SIZE_LARGE
@@ -122,21 +120,9 @@
 		to_chat(src, span_warning("You almost bite yourself, but then decide against it."))
 		return
 	if(iswallturf(target))
-		if(tearing_wall)
-			return
-		tearing_wall = TRUE
-		var/turf/closed/wall/thewall = target
-		to_chat(src, span_warning("You begin tearing through the wall..."))
-		playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE)
-		var/timetotear = 4 SECONDS
-		if(istype(target, /turf/closed/wall/r_wall))
-			timetotear = 12 SECONDS
-		if(do_after(src, timetotear, target = thewall))
-			if(isopenturf(thewall))
-				return
-			thewall.dismantle_wall(1)
-			playsound(src, 'sound/effects/meteorimpact.ogg', 100, TRUE)
-		tearing_wall = FALSE
+		target.take_damage(180, BRUTE, MELEE, FALSE)
+		playsound(target, 'sound/effects/meteorimpact.ogg', 100, TRUE)
+		changeNext_move(CLICK_CD_MELEE)
 		return
 	if(isliving(target)) //Swallows corpses like a snake to regain health.
 		var/mob/living/L = target

@@ -10,7 +10,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the captain"
-	selection_color = "#ffdddd"
 	req_admin_notify = 1
 	minimal_player_age = 14
 	exp_requirements = 1500 //25 hours
@@ -83,8 +82,8 @@
 
 	belt = /obj/item/storage/belt/security/chief/full
 	ears = /obj/item/radio/headset/heads/hos/alt
-	uniform = /obj/item/clothing/under/rank/head_of_security
-	uniform_skirt = /obj/item/clothing/under/rank/head_of_security/skirt
+	uniform = /obj/item/clothing/under/rank/security/head_of_security
+	uniform_skirt = /obj/item/clothing/under/rank/security/head_of_security/skirt
 	shoes = /obj/item/clothing/shoes/jackboots
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/jackboots
 	suit = /obj/item/clothing/suit/armor/hos/trenchcoat
@@ -96,7 +95,7 @@
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
 	duffelbag = /obj/item/storage/backpack/duffelbag/sec
-	box = /obj/item/storage/box/security
+	box = /obj/item/storage/box/survival/security
 
 	implants = list(/obj/item/implant/mindshield)
 

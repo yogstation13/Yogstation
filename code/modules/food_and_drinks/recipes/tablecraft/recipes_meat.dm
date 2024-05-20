@@ -185,3 +185,13 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/fishfry
 	category = CAT_MEAT
+
+/datum/crafting_recipe/food/spam_musubi
+	name = "Spam Musubi"
+	reqs = list(
+		/datum/reagent/consumable/nutriment/protein = 1,
+		/datum/reagent/consumable/rice = 1,
+		/obj/item/reagent_containers/food/snacks/seaweedsheet = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/spam_musubi
+	category = CAT_MEAT

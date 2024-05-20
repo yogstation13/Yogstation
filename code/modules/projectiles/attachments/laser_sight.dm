@@ -68,7 +68,7 @@
 		return
 	aiming_lastangle = lastangle
 	var/obj/projectile/beam/beam_rifle/hitscan/aiming_beam/P = new
-	P.gun = attached_gun
+	P.fired_from = attached_gun
 	P.color = laser_color
 	var/turf/curloc = get_turf(src)
 	

@@ -131,7 +131,7 @@ GLOBAL_LIST_INIT(original_nonhuman_positions, list(
 	"pAI"))
 
 GLOBAL_LIST_INIT(alt_command_positions, list(
-	"Station Commander", "Facility Director", "Chief Executive Officer",
+	"Station Commander", "Facility Director", "Chief Executive Officer","Big Boss",
 	"Chief of Staff", "Head of Internal Affairs", "First Officer",
 	"Security Commander", "Security Chief",
 	"Head of Engineering", "Engineering Director", "Senior Engineer",
@@ -154,12 +154,12 @@ GLOBAL_LIST_INIT(alt_medical_positions, list(
 	"EMT", "Paramedic Trainee", "Rapid Response Medic", "Space Search & Rescue",
 	"Counsellor", "Therapist", "Mentalist",
 	"Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer", "Land Search & Rescue",
-	"Security Medic", "Security Medical Support", "Penitentiary Medical Care Unit", "Junior Brig Physician", "Detention Center Health Officer",))
+	"Security Medic", "Security Medical Support", "Penitentiary Medical Care Unit", "Junior Brig Physician", "Detention Center Health Officer"))
 
 GLOBAL_LIST_INIT(alt_science_positions, list(
 	"Chief Science Officer", "Head of Research", "Chief Technology Officer",
 	"Researcher", "Toxins Specialist", "Physicist", "Test Associate", "Anomalist", "Quantum Physicist", "Theoretical Physicist", "Xenobiologist", "Explosives Technician", "Hypothetical Physicist",
-	"Augmentation Theorist", "Cyborg Maintainer", "Robotics Intern", "Biomechanical Engineer", "Mechatronic Engineer", "Machinist"))
+	"Augmentation Theorist", "Cyborg Maintainer", "Robotics Intern", "Biomechanical Engineer", "Mechatronic Engineer", "Machinist", "Chrome Shaman", "Ripperdoc"))
 
 GLOBAL_LIST_INIT(alt_supply_positions, list(
 	"Chief of Staff", "Head of Internal Affairs",
@@ -204,8 +204,10 @@ GLOBAL_LIST_INIT(security_positions, original_security_positions | alt_security_
 GLOBAL_LIST_INIT(nonhuman_positions, original_nonhuman_positions | alt_nonhuman_positions)
 GLOBAL_LIST_INIT(civilian_positions, original_civilian_positions | alt_civilian_positions)
 
+GLOBAL_LIST_INIT(crew_positions, command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | civilian_positions | nonhuman_positions)
+
 GLOBAL_LIST_INIT(exp_jobsmap, list(
-	EXP_TYPE_CREW = list("titles" = command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | civilian_positions | nonhuman_positions), // crew positions
+	EXP_TYPE_CREW = list("titles" = crew_positions),
 	EXP_TYPE_COMMAND = list("titles" = command_positions),
 	EXP_TYPE_ENGINEERING = list("titles" = engineering_positions),
 	EXP_TYPE_MEDICAL = list("titles" = medical_positions),

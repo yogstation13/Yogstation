@@ -80,7 +80,6 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	var/antags_rolled = 0
 	/// CRATE DISCOUNT
 	var/discountedcrates = list(	/datum/supply_pack/security/laser,
-									/datum/supply_pack/security/helmets,
 									/datum/supply_pack/security/vending/security,
 									/datum/supply_pack/service/party)
 
@@ -306,8 +305,8 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	if(CONFIG_GET(flag/auto_blue_alert))
 		print_command_report(., "Central Command Status Summary", announce=FALSE)
 		priority_announce(desc, title, ANNOUNCER_INTERCEPT)
-		if(GLOB.security_level < SEC_LEVEL_BLUE)
-			set_security_level(SEC_LEVEL_BLUE)
+		if(SSsecurity_level.get_current_level_as_number() < SEC_LEVEL_BLUE)
+			SSsecurity_level.set_level(SEC_LEVEL_BLUE)
 	else
 		print_command_report(., "Central Command Status Summary")
 
@@ -471,6 +470,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 		rule.acceptable(roundstart_pop_ready, threat_level)	// Assigns some vars in the modes, running it here for consistency
 		rule.candidates = candidates.Copy()
 		rule.trim_candidates()
+		rule.load_templates()
 		if (rule.ready(roundstart_pop_ready, TRUE))
 			var/cost = rule.cost
 			var/scaled_times = 0
@@ -491,6 +491,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 		if (rule.acceptable(roundstart_pop_ready, threat_level) && round_start_budget >= rule.cost)	// If we got the population and threat required
 			rule.candidates = candidates.Copy()
 			rule.trim_candidates()
+			rule.load_templates()
 			if (rule.ready(roundstart_pop_ready) && rule.candidates.len > 0)
 				drafted_rules[rule] = rule.weight
 
@@ -596,6 +597,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	var/population = current_players[CURRENT_LIVING_PLAYERS].len
 	if((new_rule.acceptable(population, threat_level) && new_rule.cost <= mid_round_budget) || forced)
 		new_rule.trim_candidates()
+		new_rule.load_templates()
 		if (new_rule.ready(forced))
 			spend_midround_budget(new_rule.cost)
 			threat_log += "[worldtime2text()]: Forced rule [new_rule.name] spent [new_rule.cost]"
@@ -649,6 +651,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 						if(rule.ruletype == "Latejoin" && !(GLOB.ghost_role_flags & GHOSTROLE_MIDROUND_EVENT))
 							continue
 					rule.trim_candidates()
+					rule.load_templates()
 					if (rule.ready())
 						drafted_rules[rule] = rule.get_weight()
 			if (drafted_rules.len > 0)
@@ -751,6 +754,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 
 				rule.candidates = list(newPlayer)
 				rule.trim_candidates()
+				rule.load_templates()
 				if(!rule.candidates || !length(rule.candidates))
 					continue
 				if (rule.ready())

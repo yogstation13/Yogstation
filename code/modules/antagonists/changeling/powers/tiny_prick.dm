@@ -208,11 +208,11 @@
 
 /datum/action/changeling/sting/mute
 	name = "Mute Sting"
-	desc = "We silently sting a human, completely silencing them for a short time. Costs 20 chemicals."
+	desc = "We silently sting a human, completely silencing them for a short time. Costs 40 chemicals."
 	helptext = "Does not provide a warning to the victim that they have been stung, until they try to speak and cannot."
 	button_icon_state = "sting_mute"
 	sting_icon = "sting_mute"
-	chemical_cost = 20
+	chemical_cost = 40
 	dna_cost = 2
 
 /datum/action/changeling/sting/mute/sting_action(mob/user, mob/living/carbon/target)
@@ -223,11 +223,11 @@
 
 /datum/action/changeling/sting/blind
 	name = "Blind Sting"
-	desc = "We temporarily blind our victim. Costs 25 chemicals."
+	desc = "We temporarily blind our victim. Costs 40 chemicals."
 	helptext = "This sting completely blinds a target for a short time, and leaves them with blurred vision for a long time."
 	button_icon_state = "sting_blind"
 	sting_icon = "sting_blind"
-	chemical_cost = 25
+	chemical_cost = 40
 	dna_cost = 1
 
 /datum/action/changeling/sting/blind/sting_action(mob/user, mob/living/carbon/target)
@@ -235,31 +235,31 @@
 	to_chat(target, span_danger("Your eyes burn horrifically!"))
 	target.become_nearsighted(EYE_DAMAGE)
 	target.blind_eyes(20)
-	target.blur_eyes(40)
+	target.adjust_eye_blur(40)
 	return TRUE
 
 /datum/action/changeling/sting/LSD
 	name = "Hallucination Sting"
 	desc = "We cause mass terror to our victim. Costs 10 chemicals."
-	helptext = "We evolve the ability to sting a target with a powerful hallucinogenic chemical. The target does not notice they have been stung, and the effect occurs after 30 to 60 seconds."
+	helptext = "We evolve the ability to sting a target with a powerful hallucinogenic and liver killing chemical. The target does not notice they have been stung, and the effect occurs after 20 to 30 seconds."
 	button_icon_state = "sting_lsd"
 	sting_icon = "sting_lsd"
-	chemical_cost = 10
-	dna_cost = 1
+	chemical_cost = 25
+	dna_cost = 2
 
 /datum/action/changeling/sting/LSD/sting_action(mob/user, mob/living/carbon/target)
 	log_combat(user, target, "stung", "LSD sting")
 	if(target.reagents)
-		target.reagents.add_reagent(/datum/reagent/toxin/mindbreaker, 30)
+		target.reagents.add_reagent(/datum/reagent/toxin/mindbreaker/changeling, 30)
 	return TRUE
 
 /datum/action/changeling/sting/cryo
 	name = "Cryogenic Sting"
-	desc = "We silently sting our victim with a cocktail of chemicals that freezes them from the inside. Costs 15 chemicals."
+	desc = "We silently sting our victim with a cocktail of chemicals that freezes them from the inside. Costs 30 chemicals."
 	helptext = "Does not provide a warning to the victim, though they will likely realize they are suddenly freezing."
 	button_icon_state = "sting_cryo"
 	sting_icon = "sting_cryo"
-	chemical_cost = 15
+	chemical_cost = 30
 	dna_cost = 2
 	xenoling_available = FALSE
 

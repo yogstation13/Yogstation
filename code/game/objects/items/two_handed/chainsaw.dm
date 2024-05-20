@@ -14,6 +14,7 @@
 	throwforce = 13
 	throw_speed = 2
 	throw_range = 4
+	demolition_mod = 1.5
 	materials = list(/datum/material/iron=13000)
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = "swing_hit"
@@ -25,6 +26,7 @@
 
 /obj/item/melee/chainsaw/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/cleave_attack)
 	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
 	AddComponent(/datum/component/butchering, 30, 100, 0, 'sound/weapons/chainsawhit.ogg', TRUE)
 

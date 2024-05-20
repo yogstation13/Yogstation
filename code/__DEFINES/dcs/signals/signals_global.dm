@@ -51,6 +51,10 @@
 	#define LINKED_UP (1<<0)
 /// an obj/item is created! (obj/item/created_item)
 #define COMSIG_GLOB_NEW_ITEM "!new_item"
+/// called post /obj/item initialize (obj/item/created_item)
+#define COMSIG_GLOB_ATOM_AFTER_POST_INIT "!atom_after_post_init"
+/// an obj/machinery is created! (obj/machinery/created_machine)
+#define COMSIG_GLOB_NEW_MACHINE "!new_machine"
 /// a client (re)connected, after all /client/New() checks have passed : (client/connected_client)
 #define COMSIG_GLOB_CLIENT_CONNECT "!client_connect"
 /// a weather event of some kind occured
@@ -74,3 +78,9 @@
 #define COMSIG_GLOB_LIGHT_MECHANISM_COMPLETED "!light_mechanism_completed"
 /// Global Signal sent when the crew wins the revolution (No arguments).
 #define COMSIG_GLOB_REVOLUTION_VICTORY "!revolution_victory"
+/// Global signal sent when narsie summon count is updated: (new count)
+#define COMSIG_NARSIE_SUMMON_UPDATE "!narsie_summon_update"
+/// Global signal when starlight color is changed (old_star, new_star)
+#define COMSIG_STARLIGHT_COLOR_CHANGED "!starlight_color_changed"
+/// Global signal sent when darkspawns ascend: (No arguments)
+#define COMSIG_DARKSPAWN_ASCENSION "!darkspawn_ascension"

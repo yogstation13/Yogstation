@@ -86,7 +86,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 			var/obj/item/clothing/gloves/color/fyellow/insuls = new
 			insuls.name = "insuls"
 			insuls.desc = "A mere copy of the true insuls."
-			insuls.siemens_coefficient = 0.99999
+			insuls.armor.setRating(electric=0.001)
 			H.equip_to_slot(insuls, ITEM_SLOT_GLOVES)
 		GLOB.bible_icon_state = icon_state
 		GLOB.bible_item_state = item_state
@@ -282,7 +282,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 		desc += span_warning("The name [ownername] is written in blood inside the cover.")
 
 /obj/item/storage/book/bible/syndicate/attack(mob/living/M, mob/living/carbon/human/user, heal_mode = TRUE)
-	if (user.a_intent == INTENT_HELP)
+	if (!user.combat_mode)
 		return ..()
 	else
 		return ..(M,user,heal_mode = FALSE)

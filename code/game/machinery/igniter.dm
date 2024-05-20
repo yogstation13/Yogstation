@@ -76,6 +76,9 @@
 	else
 		icon_state = "igniter[on]"
 
+/obj/machinery/igniter/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	id = "[port.shuttle_id]_[id]"
+
 // Wall mounted remote-control igniter.
 
 /obj/machinery/sparker
@@ -97,6 +100,9 @@
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(2, 1, src)
 	spark_system.attach(src)
+
+/obj/machinery/sparker/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	id = "[port.shuttle_id]_[id]"
 
 /obj/machinery/sparker/Destroy()
 	QDEL_NULL(spark_system)

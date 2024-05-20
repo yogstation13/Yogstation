@@ -100,7 +100,7 @@
 
 	if(!report)
 		report = !CONFIG_GET(flag/no_intercept_report)
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(display_roundstart_logout_report)), ROUNDSTART_LOGOUT_REPORT_TIME)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(display_roundstart_logout_report)), ROUNDSTART_LOGOUT_REPORT_TIME)
 
 	if(CONFIG_GET(flag/reopen_roundstart_suicide_roles))
 		var/delay = CONFIG_GET(number/reopen_roundstart_suicide_roles_delay)
@@ -108,7 +108,7 @@
 			delay = (delay SECONDS)
 		else
 			delay = (4 MINUTES) //default to 4 minutes if the delay isn't defined.
-		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(reopen_roundstart_suicide_roles)), delay)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(reopen_roundstart_suicide_roles)), delay)
 
 	if(SSdbcore.Connect())
 		var/list/to_set  = list()
@@ -140,6 +140,16 @@
 		replacementmode.make_antag_chance(character)
 	return
 
+//replace someone that's job banned
+/datum/game_mode/proc/replace_jobbaned_player(mob/living/M, role_type, pref)
+	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [role_type]?", "[role_type]", null, pref, 50, M)
+	var/mob/dead/observer/theghost = null
+	to_chat(M, "You have been expelled from your body! Appeal your job ban if you want to avoid this in the future!")
+	M.ghostize(0)
+	if(candidates.len)
+		theghost = pick(candidates)
+		message_admins("[key_name_admin(theghost)] has taken control of ([key_name_admin(M)]) to replace a jobbaned player.")
+		M.key = theghost.key
 
 /// Allows rounds to basically be "rerolled" should the initial premise fall through. Also known as mulligan antags.
 /datum/game_mode/proc/convert_roundtype()
@@ -147,8 +157,9 @@
 	var/list/living_crew = list()
 
 	for(var/mob/Player in GLOB.mob_list)
-		if(Player.mind && Player.stat != DEAD && !isnewplayer(Player) && !isbrain(Player) && Player.client)
+		if(Player.mind && Player.stat != DEAD && !isnewplayer(Player) && !isbrain(Player) && Player.client && (Player.mind.assigned_role in GLOB.crew_positions))
 			living_crew += Player
+
 	var/malc = CONFIG_GET(number/midround_antag_life_check)
 	if(living_crew.len / GLOB.joined_player_list.len <= malc) //If a lot of the player base died, we start fresh
 		message_admins("Convert_roundtype failed due to too many dead people. Limit is [malc * 100]% living crew")
@@ -172,7 +183,7 @@
 		if(SHUTTLE_STRANDED, SHUTTLE_ESCAPE)
 			return TRUE
 		if(SHUTTLE_CALL)
-			if(SSshuttle.emergency.timeLeft(1) < initial(SSshuttle.emergencyCallTime)*0.5)
+			if(SSshuttle.emergency.timeLeft(1) < initial(SSshuttle.emergency_call_time)*0.5)
 				return TRUE
 
 	var/matc = CONFIG_GET(number/midround_antag_time_check)
@@ -313,8 +324,8 @@
 	if(CONFIG_GET(flag/auto_blue_alert))
 		print_command_report(intercepttext, "Central Command Status Summary", announce=FALSE)
 		priority_announce("A summary has been copied and printed to all communications consoles.\n\n[generate_station_trait_announcement()]", "Enemy communication intercepted. Security level elevated.", ANNOUNCER_INTERCEPT)
-		if(GLOB.security_level < SEC_LEVEL_BLUE)
-			set_security_level(SEC_LEVEL_BLUE)
+		if(SSsecurity_level.get_current_level_as_number() < SEC_LEVEL_BLUE)
+			SSsecurity_level.set_level(SEC_LEVEL_BLUE)
 	else
 		print_command_report(intercepttext, "Central Command Status Summary")
 		
@@ -363,7 +374,7 @@
 			var/mob/dead/new_player/player = M
 			if(player.ready == PLAYER_READY_TO_PLAY)
 				if(!is_banned_from(player.ckey, list(antag_flag, ROLE_SYNDICATE)) && !QDELETED(player))
-					addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(antag_token_used), C.ckey, C), 5 MINUTES + 10 SECONDS)
+					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(antag_token_used), C.ckey, C), 5 MINUTES + 10 SECONDS)
 					player.mind.token_picked = TRUE
 					return player.mind
 

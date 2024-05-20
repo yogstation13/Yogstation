@@ -28,6 +28,9 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	if(is_species(user, /datum/species/lizard/ashwalker))
 		to_chat(user, span_warning("You don't know how to use this!"))
 		return FALSE
+	if(is_species(user, /datum/species/pod/ivymen)) // yogs - ivymen
+		to_chat(user, span_warning("You don't know how to use this!"))
+		return FALSE
 	var/list/possible_beacons = list()
 	for(var/B in GLOB.total_extraction_beacons)
 		var/obj/structure/extraction_point/EP = B
@@ -197,7 +200,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 
 /obj/effect/extraction_holder
 	name = "extraction holder"
-	desc = "you shouldnt see this"
+	desc = "You shouldn't see this."
 	var/atom/movable/stored_obj
 
 /obj/item/extraction_pack/proc/check_for_living_mobs(atom/A)
@@ -254,6 +257,13 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	chosen_mecha.forceMove(pod)
 	stored_mecha -= chosen_mecha
 	new /obj/effect/DPtarget(get_teleport_turf(get_turf(user), 1), pod)
+	finalize_mech(chosen_mecha)
+
+/obj/item/extraction_pack/mech_drop/proc/finalize_mech(obj/mecha/mecha)
+	// Reverts the anchor & density given by the extraction pack which would of been done through uses_beacon (but didn't because it was set to FALSE).
+	mecha.anchored = FALSE
+	mecha.density = initial(mecha.density)
+	return FALSE
 
 /obj/item/extraction_pack/mech_drop/examine()
 	. = ..()

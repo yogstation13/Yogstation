@@ -81,7 +81,7 @@
 			S.equipOutfit(/datum/outfit/waldo)
 		if("synth")
 			S.equipOutfit(/datum/outfit/synthetic)
-			S.set_species(/datum/species/synth)
+			S.set_species(/datum/species/ipc/self)
 	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a Fugitive by an event.")
 	log_game("[key_name(S)] was spawned as a Fugitive by an event.")
 	spawned_mobs += S

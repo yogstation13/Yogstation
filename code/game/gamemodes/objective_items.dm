@@ -109,6 +109,16 @@
 	special_equipment += /obj/item/storage/box/syndie_kit/nuke
 	..()
 
+/datum/objective_item/steal/hdd_extraction
+	name = "the source code for Project Bee from the master R&D server mainframe."
+	targetitem = /obj/item/computer_hardware/hard_drive/cluster/hdd_theft
+	difficulty = 10
+	excludefromjob = list("Scientist", "Research Director") //Scientist isn't sus in that room but a gene or robo is. 
+
+/datum/objective_item/steal/hdd_extraction/New()
+	special_equipment += /obj/item/paper/guides/antag/hdd_extraction
+	return ..()
+
 /datum/objective_item/steal/supermatter
 	name = "a sliver of a supermatter crystal. Be sure to use the proper safety equipment when extracting the sliver!"
 	targetitem = /obj/item/nuke_core/supermatter_sliver
@@ -140,12 +150,12 @@
 			if(!istype(o, /obj/item/tank))
 				continue
 			var/obj/item/tank/T = o
-			found_amount += T.air_contents.get_moles(/datum/gas/plasma)
+			found_amount += T.air_contents.get_moles(GAS_PLASMA)
 	if (istype(objective.team, /datum/team/infiltrator))
 		for (var/area/A in world)
 			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
 				for (var/obj/item/tank/T in A.get_all_contents()) //Check for items
-					found_amount += T.air_contents.get_moles(/datum/gas/plasma)
+					found_amount += T.air_contents.get_moles(GAS_PLASMA)
 					CHECK_TICK
 			CHECK_TICK
 		CHECK_TICK

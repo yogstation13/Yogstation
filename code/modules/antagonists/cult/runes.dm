@@ -17,7 +17,7 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 	name = "rune"
 	var/cultist_name = "basic rune"
 	desc = "A rune vandalizing the station."
-	var/cultist_desc = "a basic rune with no function." //This is shown to cultists who examine the rune in order to determine its true purpose.
+	var/cultist_desc = "A basic rune with no function." //This is shown to cultists who examine the rune in order to determine its true purpose.
 	anchored = TRUE
 	icon = 'icons/obj/rune.dmi'
 	icon_state = "1"
@@ -193,7 +193,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 //Malformed Rune: This forms if a rune is not drawn correctly. Invoking it does nothing but hurt the user.
 /obj/effect/rune/malformed
 	cultist_name = "malformed rune"
-	cultist_desc = "a senseless rune written in gibberish. No good can come from invoking this."
+	cultist_desc = "A senseless rune written in gibberish. No good can come from invoking this."
 	invocation = "Ra'sha yoka!"
 	invoke_damage = 30
 
@@ -209,7 +209,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 //Rite of Offering: Converts or sacrifices a target.
 /obj/effect/rune/convert
 	cultist_name = "Offer"
-	cultist_desc = "offers a noncultist above it to Nar'sie, either converting them or sacrificing them."
+	cultist_desc = "Offers a non-cultist above it to Nar'sie, either converting them or sacrificing them."
 	req_cultists_text = "2 for conversion, 3 for living sacrifices and sacrifice targets."
 	invocation = "Mah'weyh pleggh at e'ntrath!"
 	icon_state = "3"
@@ -361,7 +361,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 
 /obj/effect/rune/empower
 	cultist_name = "Empower"
-	cultist_desc = "allows cultists to prepare greater amounts of blood magic at far less of a cost."
+	cultist_desc = "Allows cultists to prepare greater amounts of blood magic at far less of a cost."
 	invocation = "H'drak v'loso, mir'kanas verbot!"
 	icon_state = "3"
 	color = RUNE_COLOR_TALISMAN
@@ -375,7 +375,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 
 /obj/effect/rune/teleport
 	cultist_name = "Teleport"
-	cultist_desc = "warps everything above it to another chosen teleport rune."
+	cultist_desc = "Warps everything above it to another chosen teleport rune."
 	invocation = "Sas'so c'arta forbici!"
 	icon_state = "2"
 	color = RUNE_COLOR_TELEPORT
@@ -498,7 +498,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 //Ritual of Dimensional Rending: Calls forth the avatar of Nar'sie upon the station.
 /obj/effect/rune/narsie
 	cultist_name = "Nar'sie"
-	cultist_desc = "tears apart dimensional barriers, beginning the Red Harvest. You will need to protect 4 Bloodstones around the station, then the Anchor Bloodstone after invoking this rune or the summoning will backfire and need to be restarted. Requires 9 invokers, with the cult leader counting as half of this if they invoke the rune."
+	cultist_desc = "Tears apart dimensional barriers, beginning the Red Harvest. You will need to protect 4 Bloodstones around the station, then the Anchor Bloodstone after invoking this rune or the summoning will backfire and need to be restarted. Requires 9 invokers, with the cult leader counting as half of this if they invoke the rune."
 	invocation = "TOK-LYR RQA-NAP G'OLT-ULOFT!!"
 	req_cultists = 9
 	req_cultists_text = "9 cultists, with the cult leader counting as 5 if they are the invoker"
@@ -524,6 +524,12 @@ structure_check() searches for nearby cultist structures required for the invoca
 
 /obj/effect/rune/narsie/conceal() //can't hide this, and you wouldn't want to
 	return
+
+GLOBAL_VAR_INIT(narsie_effect_last_modified, 0)
+GLOBAL_VAR_INIT(narsie_summon_count, 0)
+/proc/set_narsie_count(new_count)
+	GLOB.narsie_summon_count = new_count
+	SEND_GLOBAL_SIGNAL(COMSIG_NARSIE_SUMMON_UPDATE, GLOB.narsie_summon_count)
 
 /obj/effect/rune/narsie/attack_hand(mob/living/user)
 	if(user.mind?.has_antag_datum(/datum/antagonist/cult/master))
@@ -583,7 +589,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 //Rite of Resurrection: Requires a dead or inactive cultist. When reviving the dead, you can only perform one revival for every three sacrifices your cult has carried out.
 /obj/effect/rune/raise_dead
 	cultist_name = "Revive"
-	cultist_desc = "requires a dead, mindless, or inactive cultist placed upon the rune. Provided there have been sufficient sacrifices, they will be given a new life. This will cause large amounts of damage to the invoker and the revived corpse."
+	cultist_desc = "Requires a dead, mindless, or inactive cultist placed upon the rune. Provided there have been sufficient sacrifices, they will be given a new life. This will cause large amounts of damage to the invoker and the revived corpse."
 	invocation = "Pasnar val'keriam usinar. Savrae ines amutan. Yam'toth remium il'tarat!" //Depends on the name of the user - see below
 	icon_state = "1"
 	color = RUNE_COLOR_MEDIUMRED
@@ -677,11 +683,11 @@ structure_check() searches for nearby cultist structures required for the invoca
 //Rite of the Corporeal Shield: When invoked, becomes solid and cannot be passed. Invoke again to undo.
 /obj/effect/rune/wall
 	cultist_name = "Barrier"
-	cultist_desc = "when invoked, makes a temporary invisible wall to block passage. Can be invoked again to reverse this."
+	cultist_desc = "When invoked, makes a temporary invisible wall to block passage. Can be invoked again to reverse this."
 	invocation = "Khari'd! Eske'te tannin!"
 	icon_state = "4"
 	color = RUNE_COLOR_DARKRED
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	var/datum/timedevent/density_timer
 	var/recharging = FALSE
 
@@ -699,7 +705,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	GLOB.wall_runes -= src
 	return ..()
 
-/obj/effect/rune/wall/BlockSuperconductivity()
+/obj/effect/rune/wall/BlockThermalConductivity()
 	return density
 
 /obj/effect/rune/wall/invoke(list/invokers)
@@ -742,7 +748,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 
 /obj/effect/rune/wall/proc/update_state()
 	deltimer(density_timer)
-	air_update_turf(1)
+	air_update_turf()
 	if(density)
 		density_timer = addtimer(CALLBACK(src, PROC_REF(lose_density)), 300, TIMER_STOPPABLE) //yogs: 30 seconds instead of 300 I could microwave a pizza before a barrier rune went down naturally
 		var/mutable_appearance/shimmer = mutable_appearance('icons/effects/effects.dmi', "barriershimmer", ABOVE_MOB_LAYER)
@@ -758,7 +764,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 //Rite of Joined Souls: Summons a single cultist.
 /obj/effect/rune/summon
 	cultist_name = "Summon Cultist"
-	cultist_desc = "summons a single cultist to the rune. Requires 2 invokers."
+	cultist_desc = "Summons a single cultist to the rune. Requires 2 invokers."
 	invocation = "N'ath reth sh'yro eth d'rekkathnor!"
 	req_cultists = 2
 	invoke_damage = 10
@@ -816,7 +822,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 //Rite of Boiling Blood: Deals extremely high amounts of damage to non-cultists nearby
 /obj/effect/rune/blood_boil
 	cultist_name = "Boil Blood"
-	cultist_desc = "boils the blood of non-believers who can see the rune, rapidly dealing extreme amounts of damage. Requires 3 invokers."
+	cultist_desc = "Boils the blood of non-believers who can see the rune, rapidly dealing extreme amounts of damage. Requires 3 invokers."
 	invocation = "Dedo ol'btoh!"
 	icon_state = "4"
 	color = RUNE_COLOR_BURNTORANGE
@@ -881,7 +887,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 //Rite of Spectral Manifestation: Summons a ghost on top of the rune as a cultist human with no items. User must stand on the rune at all times, and takes damage for each summoned ghost.
 /obj/effect/rune/manifest
 	cultist_name = "Spirit Realm"
-	cultist_desc = "manifests a spirit servant of the Geometer and allows you to ascend as a spirit yourself. The invoker must not move from atop the rune, and will take damage for each summoned spirit."
+	cultist_desc = "Manifests a spirit servant of the Geometer and allows you to ascend as a spirit yourself. The invoker must not move from atop the rune, and will take damage for each summoned spirit."
 	invocation = "Gal'h'rfikk harfrandid mud'gib!" //how the fuck do you pronounce this
 	icon_state = "7"
 	invoke_damage = 10
@@ -1008,7 +1014,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 
 /obj/effect/rune/apocalypse
 	cultist_name = "Apocalypse"
-	cultist_desc = "a harbinger of the end times. Grows in strength with the cult's desperation - but at the risk of... side effects."
+	cultist_desc = "A harbinger of the end times. Grows in strength with the cult's desperation - but at the risk of... side effects."
 	invocation = "Ta'gh fara'qha fel d'amar det!"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "apoc"
@@ -1046,7 +1052,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	visible_message(span_warning("A colossal shockwave of energy bursts from the rune, disintegrating it in the process!"))
 	for(var/mob/living/L in range(src, 3))
 		L.Paralyze(30)
-	empulse(T, 0.42*(intensity), 1)
+	empulse(T, 0.42*(intensity))
 	var/list/images = list()
 	var/zmatch = T.z
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
@@ -1056,7 +1062,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		if(ishuman(M))
 			if(!iscultist(M))
 				AH.hide_from(M)
-				addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(hudFix), M), duration)
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(hudFix), M), duration)
 			var/image/A = image('icons/mob/mob.dmi',M,"cultist", ABOVE_MOB_LAYER)
 			A.override = 1
 			add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/noncult, "human_apoc", A, NONE)

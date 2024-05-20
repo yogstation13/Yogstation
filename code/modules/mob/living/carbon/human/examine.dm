@@ -252,15 +252,10 @@
 				surgery_text += ", [S.operated_bodypart]"
 		msg += "[surgery_text].\n"
 
-	switch(fire_stacks)
-		if(1 to INFINITY)
-			msg += "[t_He] [t_is] covered in something flammable.\n"
-		if(-5 to -1)
-			msg += "[t_He] look[p_s()] a little damp.\n"
-		if(-10 to -5)
-			msg += "[t_He] look[p_s()] a little soaked.\n"
-		if(-INFINITY to -10)
-			msg += "[t_He] look[p_s()] drenched.\n"
+	if(has_status_effect(/datum/status_effect/fire_handler/fire_stacks))
+		msg += "[t_He] [t_is] covered in something flammable.\n"
+	if(has_status_effect(/datum/status_effect/fire_handler/wet_stacks))
+		msg += "[t_He] look[p_s()] a little soaked.\n"
 
 	if(visible_tumors)
 		msg += "[t_He] [t_has] has growths all over [t_his] body...\n"
@@ -361,19 +356,13 @@
 			if(stun_absorption[i]["end_time"] > world.time && stun_absorption[i]["examine_message"])
 				msg += "[t_He] [t_is][stun_absorption[i]["examine_message"]]\n"
 
-	if(!glasses && mind && mind.has_antag_datum(ANTAG_DATUM_THRALL))
-		if(getorganslot(ORGAN_SLOT_EYES))
-			msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
-		else
-			msg += "The pair of holes where [t_His] eyes would be seem unnaturally dark and soulless.\n"
-
-	if((!glasses || !wear_suit) && mind?.has_antag_datum(ANTAG_DATUM_VEIL))
+	if((!wear_suit && !w_uniform) && mind?.has_antag_datum(ANTAG_DATUM_THRALL))
 		msg += "[t_His] whole body is covered in sigils!\n"
 
 	if(!appears_dead)
 		if(src != user)
 			if(HAS_TRAIT(user, TRAIT_EMPATH))
-				if (a_intent != INTENT_HELP)
+				if (combat_mode)
 					msg += "[t_He] seem[p_s()] to be on guard.\n"
 				if (getOxyLoss() >= 10)
 					msg += "[t_He] seem[p_s()] winded.\n"
@@ -406,14 +395,20 @@
 				msg += "[t_He] [t_is] barely conscious.\n"
 		if(getorgan(/obj/item/organ/brain))
 			if(!key)
-				msg += "[span_deadsay("[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")]\n"
-			else if(!client)
-				msg += "[t_He] [t_has] a blank, absent-minded stare and appears completely unresponsive to anything. [t_He] may snap out of it soon.\n"
+				if(is_synth(src))
+					msg += "The unit is indicating that it is currently inactive. Place this unit inside a synthetic storage unit to allow the onboard synthetic intelligences to control it.\n"
+				else
+					msg += "[span_deadsay("[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")]\n"
+			else if(!client && !fake_client)
+				if(is_synth(src))
+					msg += "The unit is indicating that it is currently inactive. Place this unit inside a synthetic storage unit to allow the onboard synthetic intelligences to control it.\n"
+				else
+					msg += "[t_He] [t_has] a blank, absent-minded stare and appears completely unresponsive to anything. [t_He] may snap out of it soon.\n"
 
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
 
-	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
+	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE, user, .)
 
 	var/scar_severity = 0
 	for(var/i in all_scars)
@@ -484,9 +479,27 @@
 							"<a href='?src=[REF(src)];hud=s;view_comment=1'>\[View comment log\]</a>",
 							"<a href='?src=[REF(src)];hud=s;add_comment=1'>\[Add comment\]</a>"), "")
 	else if(isobserver(user) && traitstring)
-		. += "<span class='info'><b>Traits:</b> [traitstring]</span><br>"
+		. += "<span class='info'><b>Quirks:</b> [traitstring]</span><br>"
 	. += "</span>"
-	
+
+
+	var/flavor_text_link
+	/// The first 1-FLAVOR_PREVIEW_LIMIT characters in the mob's "flavor_text" DNA feature. FLAVOR_PREVIEW_LIMIT is defined in flavor_defines.dm.
+	var/preview_text = copytext_char((dna.features["flavor_text"]), 1, FLAVOR_PREVIEW_LIMIT)
+	// What examine_tgui.dm uses to determine if flavor text appears as "Obscured".
+	var/face_obscured = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
+
+	if(HAS_TRAIT(src, TRAIT_HUSK))
+		flavor_text_link = span_notice("This person has been husked, and is unrecognizable!")
+	else if ((HAS_TRAIT(src, TRAIT_DISFIGURED)))
+		flavor_text_link = span_notice("This person has been horribly disfigured, and is unrecognizable!")
+	else if (!(face_obscured))
+		flavor_text_link = span_notice("[preview_text]... <a href='?src=[REF(src)];lookup_info=open_examine_panel'>\[Look closer?\]</a>")
+	else
+		flavor_text_link = span_notice("<a href='?src=[REF(src)];lookup_info=open_examine_panel'>\[Examine closely...\]</a>")
+	if (flavor_text_link)
+		. += flavor_text_link
+
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()
 	if(!pronoun_replacement)
@@ -616,10 +629,6 @@
 		msg += "[t_He] really keeps to the left.\n"
 	else if(l_limbs_missing >= 2 && r_limbs_missing >= 2)
 		msg += "[t_He] [p_do()]n't seem all there.\n"
-
-
-	if(!glasses && mind && mind.has_antag_datum(ANTAG_DATUM_THRALL))
-		msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
 
 	if (length(msg))
 		. += span_warning("[msg.Join("")]")

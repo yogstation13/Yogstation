@@ -7,7 +7,6 @@
  *
  * Not intended as a replacement for the mob verb
  */
-
 /atom/movable/proc/point_at(atom/pointed_atom)
 	if(!isturf(loc))
 		return
@@ -22,20 +21,21 @@
 
 	var/turf/our_tile = get_turf(src)
 	var/obj/visual = new /obj/effect/temp_visual/point(our_tile, invisibility)
+	
 	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + pointed_atom.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + pointed_atom.pixel_y, time = 0.17 SECONDS, easing = EASE_OUT)
 
 /atom/movable/proc/create_point_bubble(atom/pointed_atom)
-	var/obj/effect/thought_bubble_effect = new
-
 	var/mutable_appearance/thought_bubble = mutable_appearance(
 		'icons/effects/effects.dmi',
 		"thought_bubble",
-		layer = FLOAT_LAYER,
+		offset_spokesman = src,
+		plane = POINT_PLANE,
 		appearance_flags = KEEP_APART,
 	)
 
 	var/mutable_appearance/pointed_atom_appearance = new(pointed_atom.appearance)
 	pointed_atom_appearance.blend_mode = BLEND_INSET_OVERLAY
+	pointed_atom_appearance.plane = FLOAT_PLANE
 	pointed_atom_appearance.layer = FLOAT_LAYER
 	pointed_atom_appearance.pixel_x = 0
 	pointed_atom_appearance.pixel_y = 0
@@ -48,7 +48,6 @@
 	thought_bubble.pixel_x = 16
 	thought_bubble.pixel_y = 32
 	thought_bubble.alpha = 200
-	thought_bubble.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 	var/mutable_appearance/point_visual = mutable_appearance(
 		'icons/mob/screen_gen.dmi',
@@ -58,26 +57,28 @@
 
 	thought_bubble.overlays += point_visual
 
-	// vis_contents is used to preserve mouse opacity
-	thought_bubble_effect.appearance = thought_bubble
-	vis_contents += thought_bubble_effect
+	add_overlay(thought_bubble)
+	LAZYADD(update_overlays_on_z, thought_bubble)
+	addtimer(CALLBACK(src, PROC_REF(clear_point_bubble), thought_bubble), POINT_TIME)
 
-	QDEL_IN(thought_bubble_effect, POINT_TIME)
+/atom/movable/proc/clear_point_bubble(mutable_appearance/thought_bubble)
+	LAZYREMOVE(update_overlays_on_z, thought_bubble)
+	cut_overlay(thought_bubble)
 
 /obj/effect/temp_visual/point
 	name = "pointer"
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "arrow"
-	layer = POINT_LAYER
+	plane = POINT_PLANE
 	duration = POINT_TIME
 
 /obj/effect/temp_visual/point/Initialize(mapload, set_invis = 0)
 	. = ..()
 	var/atom/old_loc = loc
-	loc = get_turf(src) // We don't want to actualy trigger anything when it moves
+	abstract_move(get_turf(src))
 	pixel_x = old_loc.pixel_x
 	pixel_y = old_loc.pixel_y
-	invisibility = set_invis
+	SetInvisibility(set_invis)
 
 
 #undef POINT_TIME

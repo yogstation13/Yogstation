@@ -12,7 +12,7 @@
 	. = ..()
 	if(amount)
 		credits = amount
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/item/holochip/examine(mob/user)
 	. = ..()
@@ -105,7 +105,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	var/wipe_chance = 60 / severity
+	var/wipe_chance = 6 * severity
 	if(prob(wipe_chance))
 		visible_message(span_warning("[src] fizzles and disappears!"))
 		qdel(src) //rip cash

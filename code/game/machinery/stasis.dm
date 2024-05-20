@@ -3,6 +3,7 @@
 	desc = "A not so comfortable looking bed with some nozzles at the top and bottom. It will keep someone in stasis."
 	icon = 'icons/obj/machines/stasis.dmi'
 	icon_state = "stasis"
+	base_icon_state = "stasis"
 	density = FALSE
 	can_buckle = TRUE
 	buckle_lying = 90
@@ -92,19 +93,20 @@
 		last_stasis_sound = _running
 
 /obj/machinery/stasis/AltClick(mob/user)
-	if(world.time >= stasis_can_toggle && user.canUseTopic(src, !issilicon(user)))
-		stasis_enabled = !stasis_enabled
-		stasis_can_toggle = world.time + stasis_cooldown
-		playsound(src, 'sound/machines/click.ogg', 60, TRUE)
-		play_power_sound()
-		update_appearance(UPDATE_ICON)
+	if(world.time < stasis_can_toggle || !user.canUseTopic(src, !issilicon(user)))
+		return
+	stasis_enabled = !stasis_enabled
+	stasis_can_toggle = world.time + stasis_cooldown
+	playsound(src, 'sound/machines/click.ogg', 60, TRUE)
+	play_power_sound()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/stasis/Exited(atom/movable/AM, atom/newloc)
 	if(AM == occupant)
 		var/mob/living/L = AM
 		if(L.has_status_effect(STATUS_EFFECT_STASIS))
 			thaw_them(L)
-	. = ..()
+	return ..()
 
 /obj/machinery/stasis/proc/stasis_running()
 	return stasis_enabled && is_operational()
@@ -112,32 +114,44 @@
 /obj/machinery/stasis/update_icon_state()
 	. = ..()
 	if(stat & BROKEN)
-		icon_state = "stasis_broken"
+		icon_state = "[base_icon_state]_broken"
 		return
 	if(panel_open || stat & MAINT)
-		icon_state = "stasis_maintenance"
+		icon_state = "[base_icon_state]_maintenance"
 		return
-	icon_state = "stasis"
+	icon_state = base_icon_state
+
+/obj/machinery/stasis/setDir()
+	. = ..()
+	update_appearance()
 
 /obj/machinery/stasis/update_overlays()
 	. = ..()
+	if(!mattress_state)
+		return
 	var/_running = stasis_running()
-	var/list/overlays_to_remove = managed_vis_overlays
+	if(!mattress_on)
+		mattress_on = SSvis_overlays.add_vis_overlay(src, icon, mattress_state, layer, plane, dir, alpha = 0, unique = TRUE)
+	else
+		vis_contents += mattress_on
+		mattress_on.dir = dir
+		if(managed_vis_overlays)
+			managed_vis_overlays += mattress_on
+		else
+			managed_vis_overlays = list(mattress_on)
 
-	if(mattress_state)
-		if(!mattress_on || !managed_vis_overlays)
-			mattress_on = SSvis_overlays.add_vis_overlay(src, icon, mattress_state, layer, plane, dir, alpha = 0, unique = TRUE)
+	if(mattress_on.alpha ? !_running : _running) //check the inverse of _running compared to truthy alpha, to see if they differ
+		var/new_alpha = _running ? 255 : 0
+		var/easing_direction = _running ? EASE_OUT : EASE_IN
+		animate(mattress_on, alpha = new_alpha, time = 50, easing = CUBIC_EASING|easing_direction)
 
-		if(mattress_on.alpha ? !_running : _running) //check the inverse of _running compared to truthy alpha, to see if they differ
-			var/new_alpha = _running ? 255 : 0
-			var/easing_direction = _running ? EASE_OUT : EASE_IN
-			animate(mattress_on, alpha = new_alpha, time = stasis_cooldown, easing = CUBIC_EASING|easing_direction)
+/obj/machinery/stasis/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
+	if(same_z_layer)
+		return ..()
+	SET_PLANE(mattress_on, PLANE_TO_TRUE(mattress_on.plane), new_turf)
+	return ..()
 
-		overlays_to_remove = managed_vis_overlays - mattress_on
-
-	SSvis_overlays.remove_vis_overlay(src, overlays_to_remove)
-
-/obj/machinery/stasis/obj_break(damage_flag)
+/obj/machinery/stasis/atom_break(damage_flag)
 	. = ..()
 	if(.)
 		play_power_sound()

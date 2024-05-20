@@ -9,7 +9,7 @@
 /obj/machinery/computer/cargo/express
 	name = "express supply console"
 	desc = "This console allows the user to purchase a package \
-		with 1/40th of the delivery time: made possible by NanoTrasen's new \"1500mm Orbital Railgun\".\
+		with 1/40th of the delivery time: made possible by Nanotrasen's new \"1500mm Orbital Railgun\".\
 		All sales are near instantaneous - please choose carefully"
 	icon_screen = "supply_express"
 	circuit = /obj/item/circuitboard/computer/cargo/express
@@ -109,7 +109,7 @@
 	data["printMsg"] = cooldown > 0 ? "Print Beacon for [BEACON_COST] credits ([cooldown])" : "Print Beacon for [BEACON_COST] credits"//buttontext for printing beacons
 	data["supplies"] = list()
 	message = "Sales are near-instantaneous - please choose carefully."
-	if(SSshuttle.supplyBlocked)
+	if(SSshuttle.supply_blocked)
 		message = blockade_warning
 	if(usingBeacon && !beacon)
 		message = "BEACON ERROR: BEACON MISSING"//beacon was destroyed
@@ -180,7 +180,7 @@
 						if (!landingzone)
 							WARNING("[src] couldnt find a Quartermaster/Storage (aka cargobay) area on the station, and as such it has set the supplypod landingzone to the area it resides in.")
 							landingzone = get_area(src)
-						for(var/turf/open/floor/T in landingzone.get_contained_turfs())//uses default landing zone
+						for(var/turf/open/floor/T in landingzone.get_turfs_from_all_zlevels())//uses default landing zone
 							if(T.is_blocked_turf())
 								continue
 							LAZYADD(empty_turfs, T)
@@ -197,7 +197,7 @@
 			else
 				if(SO.pack.get_cost() * (0.72*MAX_EMAG_ROCKETS) <= points_to_check) // bulk discount :^)
 					landingzone = GLOB.areas_by_type[pick(GLOB.the_station_areas)]  //override default landing zone
-					for(var/turf/open/floor/T in landingzone.get_contained_turfs())
+					for(var/turf/open/floor/T in landingzone.get_turfs_from_all_zlevels())
 						if(T.is_blocked_turf())
 							continue
 						LAZYADD(empty_turfs, T)

@@ -3,7 +3,6 @@
 /datum/bank_account
 	var/account_holder = "Rusty Venture"
 	var/account_balance = 0
-	var/payday_modifier
 	var/datum/job/account_job
 	var/list/bank_cards = list()
 	var/add_to_accounts = TRUE
@@ -14,7 +13,7 @@
 	var/bounties_claimed = 0 // Marks how many bounties this person has successfully claimed
 	var/sec_weapon_claimed = FALSE // If this account has claimed a weapon \code\modules\vending\security_armaments.dm
 
-/datum/bank_account/New(newname, job, modifier = 1)
+/datum/bank_account/New(newname, job)
 	var/limiter = 0
 	while(limiter < 10)
 		account_id = rand(111111,999999)
@@ -29,7 +28,6 @@
 		SSeconomy.bank_accounts["[account_id]"] = src
 	account_holder = newname
 	account_job = job
-	payday_modifier = modifier
 
 /datum/bank_account/Destroy()
 	if(add_to_accounts)
@@ -68,9 +66,9 @@
 	return FALSE
 
 /datum/bank_account/proc/payday(amt_of_paychecks, free = FALSE)
-	var/money_to_transfer = account_job.paycheck * payday_modifier * amt_of_paychecks
-	var/stolen_money = (1 - payday_modifier) * account_job.paycheck * amt_of_paychecks
-	GLOB.stolen_paycheck_money += stolen_money
+	var/money_to_transfer = account_job.paycheck * amt_of_paychecks
+	if(!money_to_transfer)
+		return TRUE
 	if(free)
 		adjust_money(money_to_transfer)
 		return TRUE

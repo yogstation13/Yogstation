@@ -68,7 +68,7 @@
 	return
 
 
-/obj/structure/closet/wardrobe/orange
+/obj/structure/closet/wardrobe/orange // Apparently this is unused
 	name = "prison wardrobe"
 	desc = "It's a storage unit for Nanotrasen-regulation prisoner attire."
 	icon_door = "orange"
@@ -78,6 +78,7 @@
 		new /obj/item/clothing/under/rank/prisoner(src)
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/under/rank/prisoner/skirt(src)
+	new /obj/item/clothing/under/plasmaman/prisoner(src)		
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/shoes/sneakers/orange(src)
 	return
@@ -119,10 +120,10 @@
 	icon_door = "white"
 
 /obj/structure/closet/wardrobe/pjs/PopulateContents()
-	new /obj/item/clothing/under/pj/red(src)
-	new /obj/item/clothing/under/pj/red(src)
-	new /obj/item/clothing/under/pj/blue(src)
-	new /obj/item/clothing/under/pj/blue(src)
+	new /obj/item/clothing/under/rank/medical/pj/red(src)
+	new /obj/item/clothing/under/rank/medical/pj/red(src)
+	new /obj/item/clothing/under/rank/medical/pj/blue(src)
+	new /obj/item/clothing/under/rank/medical/pj/blue(src)
 	for(var/i in 1 to 4)
 		new /obj/item/clothing/shoes/sneakers/white(src)
 	return
@@ -147,9 +148,9 @@
 		new /obj/item/clothing/mask/bandana/black(src)
 		new /obj/item/clothing/mask/bandana/black(src)
 	if(prob(40))
-		new /obj/item/clothing/under/assistantformal(src)
+		new /obj/item/clothing/under/rank/civilian/assistantformal(src)
 	if(prob(40))
-		new /obj/item/clothing/under/assistantformal(src)
+		new /obj/item/clothing/under/rank/civilian/assistantformal(src)
 	if(prob(30))
 		new /obj/item/clothing/suit/hooded/wintercoat(src)
 		new /obj/item/clothing/shoes/winterboots(src)

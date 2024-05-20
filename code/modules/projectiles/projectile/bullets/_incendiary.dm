@@ -1,6 +1,7 @@
 /obj/projectile/bullet/incendiary
 	damage = 20
 	var/fire_stacks = 4
+	demolition_mod = 0.75
 
 /obj/projectile/bullet/incendiary/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -10,7 +11,7 @@
 		M.ignite_mob()
 	var/turf/open/target_turf = get_turf(target)
 	if(istype(target_turf))
-		target_turf.IgniteTurf(rand(8, 22))
+		target_turf.ignite_turf(rand(8, 22))
 
 /obj/projectile/bullet/incendiary/Move()
 	. = ..()

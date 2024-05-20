@@ -262,7 +262,7 @@
   */
 /datum/wound/proc/try_treating(obj/item/I, mob/user)
 	// first we weed out if we're not dealing with our wound's bodypart, or if it might be an attack
-	if(QDELETED(I) || limb.body_zone != user.zone_selected || (I.force && user.a_intent != INTENT_HELP))
+	if(QDELETED(I) || limb.body_zone != user.zone_selected || (I.force && user.combat_mode))
 		return FALSE
 
 	var/allowed = FALSE
@@ -328,6 +328,12 @@
 		return
 	cryo_progress += power
 	if(cryo_progress > 66 * severity)
+		qdel(src)
+
+/// Same as above but called from healium, only work when the person is unconscious and cold
+/datum/wound/proc/on_healium(power)
+	cryo_progress += power
+	if(cryo_progress > 44 * severity)
 		qdel(src)
 
 /// When synthflesh is applied to the victim, we call this. No sense in setting up an entire chem reaction system for wounds when we only care for a few chems. Probably will change in the future

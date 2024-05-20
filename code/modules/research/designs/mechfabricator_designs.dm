@@ -72,16 +72,6 @@
 	construction_time = 100
 	category = list("Ripley")
 
-//firefighter subtype
-/datum/design/firefighter_chassis
-	name = "Exosuit Chassis (APLU \"Firefighter\")"
-	id = "firefighter_chassis"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/chassis/firefighter
-	materials = list(/datum/material/iron=20000)
-	construction_time = 100
-	category = list("Firefighter")
-
 /datum/design/ripley_torso
 	name = "Exosuit Torso (APLU \"Ripley\")"
 	id = "ripley_torso"
@@ -89,7 +79,7 @@
 	build_path = /obj/item/mecha_parts/part/ripley_torso
 	materials = list(/datum/material/iron=20000, /datum/material/glass=7500)
 	construction_time = 200
-	category = list("Ripley","Firefighter")
+	category = list("Ripley")
 
 /datum/design/ripley_left_arm
 	name = "Exosuit Left Arm (APLU \"Ripley\")"
@@ -98,7 +88,7 @@
 	build_path = /obj/item/mecha_parts/part/ripley_left_arm
 	materials = list(/datum/material/iron=15000)
 	construction_time = 150
-	category = list("Ripley","Firefighter")
+	category = list("Ripley")
 
 /datum/design/ripley_right_arm
 	name = "Exosuit Right Arm (APLU \"Ripley\")"
@@ -107,7 +97,7 @@
 	build_path = /obj/item/mecha_parts/part/ripley_right_arm
 	materials = list(/datum/material/iron=15000)
 	construction_time = 150
-	category = list("Ripley","Firefighter")
+	category = list("Ripley")
 
 /datum/design/ripley_left_leg
 	name = "Exosuit Left Leg (APLU \"Ripley\")"
@@ -116,7 +106,7 @@
 	build_path = /obj/item/mecha_parts/part/ripley_left_leg
 	materials = list(/datum/material/iron=15000)
 	construction_time = 150
-	category = list("Ripley","Firefighter")
+	category = list("Ripley")
 
 /datum/design/ripley_right_leg
 	name = "Exosuit Right Leg (APLU \"Ripley\")"
@@ -125,7 +115,7 @@
 	build_path = /obj/item/mecha_parts/part/ripley_right_leg
 	materials = list(/datum/material/iron=15000)
 	construction_time = 150
-	category = list("Ripley","Firefighter")
+	category = list("Ripley")
 
 //Odysseus
 /datum/design/odysseus_chassis
@@ -636,7 +626,7 @@
 
 //Exosuit Equipment
 /datum/design/ripleyupgrade
-	name = "Ripley MK-I to MK-II conversion kit"
+	name = "APLU MK-II \"Firefighter\" conversion kit"
 	id = "ripleyupgrade"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/ripleyupgrade
@@ -905,16 +895,6 @@
 	construction_time = 80
 	category = list("Cyborg Upgrade Modules")
 
-/datum/design/borg_upgrade_surgerykit
-	name = "Cyborg Upgrade (Advanced Surgical Kit)"
-	id = "borg_upgrade_surgerykit"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/surgerykit
-	/// Combined materials of all 3 advanced surgical tools
-	materials = list(/datum/material/iron = 22000, /datum/material/glass = 7500, /datum/material/plasma = 2000, /datum/material/uranium = 3000, /datum/material/silver = 6000, /datum/material/gold = 1500, /datum/material/diamond = 200, /datum/material/titanium = 12000)
-	construction_time = 140
-	category = list("Cyborg Upgrade Modules")
-
 /datum/design/borg_upgrade_analyzer
 	name = "Cyborg Upgrade (Advanced Analyzer)"
 	id = "borg_upgrade_analyzer"
@@ -923,6 +903,16 @@
 	/// Materials for advanced analyzer
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 2500, /datum/material/silver = 2000, /datum/material/gold = 1500, /datum/material/plastic = 1000)
 	construction_time = 140
+	category = list("Cyborg Upgrade Modules")
+
+/datum/design/borg_upgrade_surgicalomnitool
+	name = "Cyborg Upgrade (Advanced Surgical Omnitool)"
+	id = "borg_upgrade_surgicalomnitool"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/surgery_omnitool
+	/// Combined materials of all 3 advanced surgical tools
+	materials = list(/datum/material/iron = 22000, /datum/material/glass = 7500, /datum/material/plasma = 2000, /datum/material/uranium = 3000, /datum/material/silver = 6000, /datum/material/gold = 1500, /datum/material/diamond = 200, /datum/material/titanium = 12000)
+	construction_time = 14 SECONDS
 	category = list("Cyborg Upgrade Modules")
 
 /datum/design/borg_upgrade_trashofholding
@@ -1054,6 +1044,16 @@
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/service_cookbook
 	materials = list(/datum/material/iron = 15000, /datum/material/diamond = 1000)
+	construction_time = 4 SECONDS
+	category = list("Cyborg Upgrade Modules")
+
+/datum/design/borg_upgrade_autocleaner
+	name = "Cyborg Upgrade (Autocleaner)"
+	id = "borg_upgrade_janitor_autocleaner"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/janitor_autocleaner
+	/// Cost of a pimpin' ride upgrade.
+	materials = list(/datum/material/iron = 3000, /datum/material/glass = 200)
 	construction_time = 4 SECONDS
 	category = list("Cyborg Upgrade Modules")
 

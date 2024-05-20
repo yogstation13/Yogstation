@@ -1,4 +1,9 @@
 /obj/machinery/vending/assist
+	name = "\improper Part-Mart"
+	desc = "All the finest of miscellaneous electronics one could ever need! Not responsible for any injuries caused by reckless misuse of parts."
+	icon_state = "parts"
+	icon_deny = "parts-deny"
+	panel_type = "panel10"
 	products = list(/obj/item/assembly/prox_sensor = 5,
 					/obj/item/assembly/igniter = 3,
 					/obj/item/assembly/signaler = 4,
@@ -14,7 +19,9 @@
 	default_price = 10
 	extra_price = 50
 	payment_department = NO_FREEBIES
+	light_mask = "parts-light-mask"
 
 /obj/item/vending_refill/assist
 	machine_name = "Vendomat"
 	icon_state = "refill_engi"
+	

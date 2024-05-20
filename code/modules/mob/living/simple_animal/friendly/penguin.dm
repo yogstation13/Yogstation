@@ -10,13 +10,11 @@
 	emote_see = list("shakes its beak.", "flaps it's wings.","preens itself.")
 	faction = list("penguin")
 	minbodytemp = 0
-	see_in_dark = 5
 	speak_chance = 1
 	turns_per_move = 10
 	icon = 'icons/mob/penguins.dmi'
 	butcher_results = list(/obj/item/organ/ears/penguin = 1, /obj/item/reagent_containers/food/snacks/meat/slab/penguin = 3)
-
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_BAREFOOT
 	wuv_happy = "noots happily!"
 	wuv_angy = "hisses!" //I think birds tend to hiss when they're upset right
 

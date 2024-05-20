@@ -76,8 +76,6 @@
 	.["other"] = list()
 	.["instances"] = list()
 	for(var/obj/item/item in get_environment(a, blacklist))
-		if(item.status_traits && HAS_TRAIT(item, TRAIT_NODROP) || item.flags_1 & HOLOGRAM_1)
-			continue
 		LAZYADDASSOCLIST(.["instances"], item.type, item)
 		if(isstack(item))
 			var/obj/item/stack/stack = item

@@ -122,6 +122,19 @@ obj/machinery/holopad/secure/Initialize(mapload)
 	else if(disk && disk.record)
 		replay_start()
 
+/obj/machinery/holopad/tutorial/attackby(obj/item/P, mob/user, params)
+	. = ..()
+	if(istype(P, /obj/item/crowbar))
+		if(disk)
+			disk.forceMove(drop_location())
+			disk = null
+			return TRUE
+
+/obj/machinery/holopad/tutorial/examine(mob/user)
+	. = ..()
+	. += span_notice("Use a crowbar to remove an already inserted disk.")
+		
+
 /obj/machinery/holopad/tutorial/HasProximity(atom/movable/AM)
 	if (!isliving(AM))
 		return
@@ -167,7 +180,7 @@ obj/machinery/holopad/secure/Initialize(mapload)
 		if(outgoing_call)
 			outgoing_call.ConnectionFailure(src)
 
-/obj/machinery/holopad/obj_break()
+/obj/machinery/holopad/atom_break()
 	. = ..()
 	if(outgoing_call)
 		outgoing_call.ConnectionFailure(src)
@@ -192,6 +205,10 @@ obj/machinery/holopad/secure/Initialize(mapload)
 		return
 
 	if(default_unfasten_wrench(user, P))
+		if(replay_mode)
+			replay_stop()
+		if(record_mode)
+			record_stop()
 		return
 
 	if(default_deconstruction_crowbar(P))

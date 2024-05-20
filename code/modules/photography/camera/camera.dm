@@ -154,7 +154,7 @@
 	if(on) // EMP will only work on cameras that are on as it has power going through it
 		icon_state = state_off
 		on = FALSE
-		addtimer(CALLBACK(src, PROC_REF(emp_after)), (600/severity))
+		addtimer(CALLBACK(src, PROC_REF(emp_after)), (6*severity) SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 /obj/item/camera/proc/emp_after()
 	on = TRUE
@@ -224,7 +224,7 @@
 	var/list/turfs = list()
 	var/list/mobs = list()
 	var/blueprints = FALSE
-	var/clone_area = SSmapping.RequestBlockReservation(size_x * 2 + 1, size_y * 2 + 1)
+	var/clone_area = SSmapping.request_turf_block_reservation(size_x * 2 + 1, size_y * 2 + 1, 1)
 	for(var/turf/T in block(locate(target_turf.x - size_x, target_turf.y - size_y, target_turf.z), locate(target_turf.x + size_x, target_turf.y + size_y, target_turf.z)))
 		if((ai_user && GLOB.cameranet.checkTurfVis(T)) || (T in seen))
 			turfs += T

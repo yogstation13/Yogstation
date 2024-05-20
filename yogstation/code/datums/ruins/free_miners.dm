@@ -26,15 +26,15 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/whiteship/miner
 	name = "Free Miner Navigation Computer"
 	desc = "Used to designate a precise transit location for the Free Miner Ship."
-	jumpto_ports = list("whiteship_away" = 1, "whiteship_home" = 1, "whiteship_mining0" = 1, "whiteship_mining1" = 1, "whiteship_mining2" = 1)
+	jump_to_ports = list("whiteship_away" = 1, "whiteship_home" = 1, "whiteship_mining0" = 1, "whiteship_mining1" = 1, "whiteship_mining2" = 1)
 	x_offset = -4
 	y_offset = -7
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/whiteship/miner/Initialize(mapload)
 	. = ..()
-	for(var/V in SSshuttle.stationary)
+	for(var/V in SSshuttle.stationary_docking_ports)
 		var/obj/docking_port/stationary/S = V
-		if(jumpto_ports[S.id])
+		if(jump_to_ports[S.shuttle_id])
 			z_lock |= S.z
 
 
@@ -63,7 +63,7 @@
 
 /datum/outfit/freeminer
 	name = "Free Miner"
-	uniform = /obj/item/clothing/under/rank/miner
+	uniform = /obj/item/clothing/under/rank/cargo/miner
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	gloves = /obj/item/clothing/gloves/color/black
 	back = /obj/item/storage/backpack/industrial
@@ -88,7 +88,7 @@
 	prompt_name = "a free miner engineer"
 
 /datum/outfit/freeminer/engi
-	uniform = /obj/item/clothing/under/overalls
+	uniform = /obj/item/clothing/under/rank/cargo/overalls
 	l_pocket = null
 	r_pocket = null
 	gloves = /obj/item/clothing/gloves/color/yellow
@@ -108,7 +108,7 @@
 	return TRUE
 
 /datum/outfit/freeminer/captain
-	uniform = /obj/item/clothing/under/rank/vice
+	uniform = /obj/item/clothing/under/suit/vice
 	back = /obj/item/storage/backpack
 	l_pocket = /obj/item/melee/classic_baton/telescopic
 	r_pocket = null

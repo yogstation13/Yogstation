@@ -46,7 +46,7 @@
 		stored_extinguisher = null
 		update_appearance(UPDATE_ICON)
 
-/obj/structure/extinguisher_cabinet/attackby(obj/item/I, mob/user, params)
+/obj/structure/extinguisher_cabinet/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_WRENCH && !stored_extinguisher)
 		to_chat(user, span_notice("You start unsecuring [name]..."))
 		I.play_tool_sound(src)
@@ -68,7 +68,7 @@
 			return TRUE
 		else
 			toggle_cabinet(user)
-	else if(user.a_intent != INTENT_HARM)
+	else if(!user.combat_mode)
 		toggle_cabinet(user)
 	else
 		return ..()
@@ -91,6 +91,9 @@
 	else
 		toggle_cabinet(user)
 
+/obj/structure/extinguisher_cabinet/attack_hand_secondary(mob/user, modifiers)
+	toggle_cabinet(user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/structure/extinguisher_cabinet/attack_tk(mob/user)
 	if(stored_extinguisher)
@@ -133,7 +136,8 @@
 	else
 		icon_state = "extinguisher_empty"
 
-/obj/structure/extinguisher_cabinet/obj_break(damage_flag)
+/obj/structure/extinguisher_cabinet/atom_break(damage_flag)
+	. = ..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		broken = 1
 		opened = 1

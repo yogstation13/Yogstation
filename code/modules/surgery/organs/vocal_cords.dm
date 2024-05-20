@@ -245,8 +245,6 @@
 	var/static/regex/walk_words = regex("slow down")
 	var/static/regex/run_words = regex("run")
 	var/static/regex/helpintent_words = regex("help|hug")
-	var/static/regex/disarmintent_words = regex("disarm")
-	var/static/regex/grabintent_words = regex("grab")
 	var/static/regex/harmintent_words = regex("harm|fight|punch")
 	var/static/regex/throwmode_words = regex("throw|catch")
 	var/static/regex/flip_words = regex("flip|rotate|revolve|roll|somersault")
@@ -429,7 +427,7 @@
 		for(var/iter in 1 to 5 * power_multiplier)
 			for(var/V in listeners)
 				var/mob/living/L = V
-				addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(_step), L, direction? direction : pick(GLOB.cardinals)), 10 * (iter - 1))
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_step), L, direction? direction : pick(GLOB.cardinals)), 10 * (iter - 1))
 
 	//WALK
 	else if((findtext(message, walk_words)))
@@ -451,23 +449,7 @@
 	else if((findtext(message, helpintent_words)))
 		cooldown = COOLDOWN_MEME
 		for(var/mob/living/carbon/human/H in listeners)
-			addtimer(CALLBACK(H, TYPE_VERB_REF(/mob, a_intent_change), INTENT_HELP), i * 2)
-			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, click_random_mob)), i * 2)
-			i++
-
-	//DISARM INTENT
-	else if((findtext(message, disarmintent_words)))
-		cooldown = COOLDOWN_MEME
-		for(var/mob/living/carbon/human/H in listeners)
-			addtimer(CALLBACK(H, TYPE_VERB_REF(/mob, a_intent_change), INTENT_DISARM), i * 2)
-			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, click_random_mob)), i * 2)
-			i++
-
-	//GRAB INTENT
-	else if((findtext(message, grabintent_words)))
-		cooldown = COOLDOWN_MEME
-		for(var/mob/living/carbon/human/H in listeners)
-			addtimer(CALLBACK(H, TYPE_VERB_REF(/mob, a_intent_change), INTENT_GRAB), i * 2)
+			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living, set_combat_mode), FALSE), i * 2)
 			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, click_random_mob)), i * 2)
 			i++
 
@@ -475,7 +457,7 @@
 	else if((findtext(message, harmintent_words)))
 		cooldown = COOLDOWN_MEME
 		for(var/mob/living/carbon/human/H in listeners)
-			addtimer(CALLBACK(H, TYPE_VERB_REF(/mob, a_intent_change), INTENT_HARM), i * 2)
+			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living, set_combat_mode), TRUE), i * 2)
 			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, click_random_mob)), i * 2)
 			i++
 
@@ -570,7 +552,7 @@
 	//HONK
 	else if((findtext(message, honk_words)))
 		cooldown = COOLDOWN_MEME
-		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(playsound), get_turf(user), 'sound/items/bikehorn.ogg', 300, 1), 25)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), get_turf(user), 'sound/items/bikehorn.ogg', 300, 1), 25)
 		if(user.mind && user.mind.assigned_role == "Clown")
 			for(var/mob/living/carbon/C in listeners)
 				C.slip(140 * power_multiplier)

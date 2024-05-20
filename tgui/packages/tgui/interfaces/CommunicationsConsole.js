@@ -13,7 +13,13 @@ const STATE_MESSAGES = "messages";
 // Used for whether or not you need to swipe to confirm an alert level change
 const SWIPE_NEEDED = "SWIPE_NEEDED";
 
-const sortByCreditCost = sortBy(shuttle => shuttle.creditCost);
+const EMAG_SHUTTLE_NOTICE =
+  'This shuttle is deemed significantly dangerous to the crew, and is only supplied by the Syndicate.';
+
+const sortShuttles = sortBy(
+  (shuttle) => !shuttle.emagOnly,
+  (shuttle) => shuttle.initial_cost,
+);
 
 const AlertButton = (props, context) => {
   const { act, data } = useBackend(context);
@@ -123,17 +129,18 @@ const PageBuyingShuttle = (props, context) => {
         Budget: <b>{data.budget.toLocaleString()}</b> credits
       </Section>
 
-      {sortByCreditCost(data.shuttles).map(shuttle => (
+      {sortShuttles(data.shuttles).map(shuttle => (
         <Section
-          title={(
+          title={
             <span
               style={{
-                display: "inline-block",
-                width: "70%",
-              }}>
+                display: 'inline-block',
+                width: '70%',
+              }}
+            >
               {shuttle.name}
             </span>
-          )}
+          }
           key={shuttle.ref}
           buttons={(
             <Button
@@ -265,6 +272,7 @@ const PageMain = (props, context) => {
   const {
     alertLevel,
     alertLevelTick,
+    aprilFools,
     callShuttleReasonMinLength,
     canBuyShuttles,
     canMakeAnnouncement,

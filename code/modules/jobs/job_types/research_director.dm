@@ -11,7 +11,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the captain"
-	selection_color = "#ffddff"
 	req_admin_notify = 1
 	minimal_player_age = 7
 	exp_type_department = EXP_TYPE_SCIENCE
@@ -77,8 +76,8 @@
 
 	ears = /obj/item/radio/headset/heads/rd
 	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses/rd
-	uniform = /obj/item/clothing/under/rank/research_director
-	uniform_skirt = /obj/item/clothing/under/rank/research_director/skirt
+	uniform = /obj/item/clothing/under/rank/rnd/research_director
+	uniform_skirt = /obj/item/clothing/under/rank/rnd/research_director/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
 	suit = /obj/item/clothing/suit/toggle/labcoat

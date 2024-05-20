@@ -4,6 +4,11 @@
 	prefix = "_maps/RandomRuins/IceRuins/"
 	allow_duplicates = FALSE
 	cost = 5
+	ruin_type = ZTRAIT_ICE_RUINS
+	default_area = /area/icemoon/surface/outdoors/unexplored
+	has_ceiling = TRUE
+	ceiling_turf = /turf/closed/mineral/snowmountain/do_not_chasm
+	ceiling_baseturfs = list(/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm)
 
 // above ground only
 
@@ -17,7 +22,7 @@
 	name = "Icemoon Hermit"
 	id = "ice_hermit"
 	description = "The home of a hermit in the ice and snow, you can't possibly imagine who'd want to live here."
-	suffix = "icemoon_hermit.dmm"
+	suffix = "icemoon_surface_hermit.dmm"
 
 /datum/map_template/ruin/icemoon/lust
 	name = "Ruin of Lust"
@@ -56,6 +61,12 @@
 	suffix = "lavaland_surface_seed_vault.dmm"
 	allow_duplicates = FALSE
 
+/datum/map_template/ruin/icemoon/walker_village
+	name = "Walker Village"
+	id = "walkervillage"
+	description = "A town populated by strange, sapient zombies."
+	suffix = "icemoon_surface_walkervillage.dmm"
+
 // above and below ground together
 
 /datum/map_template/ruin/icemoon/mining_site
@@ -77,6 +88,8 @@
 
 /datum/map_template/ruin/icemoon/underground
 	name = "underground ruin"
+	ruin_type = ZTRAIT_ICE_RUINS_UNDERGROUND
+	default_area = /area/icemoon/underground/unexplored
 
 /datum/map_template/ruin/icemoon/underground/abandonedvillage
 	name = "Abandoned Village"
@@ -119,9 +132,3 @@
 	id = "wampacave"
 	description = "A cave inhabited by a strange monster, with an unfortunate hero..."
 	suffix = "icemoon_underground_wampacave.dmm"
-
-/datum/map_template/ruin/icemoon/underground/walker_village
-	name = "Walker Village"
-	id = "walkervillage"
-	description = "A town populated by strange, sapient zombies."
-	suffix = "icemoon_underground_walkervillage.dmm"

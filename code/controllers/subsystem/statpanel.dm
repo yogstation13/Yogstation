@@ -126,7 +126,7 @@ SUBSYSTEM_DEF(statpanels)
 	for(var/action_data in actions)
 		target.spell_tabs |= action_data[1]
 
-	target << output("[url_encode(json_encode(target.spell_tabs))];[actions]", "statbrowser:update_spells")
+	target << output("[url_encode(json_encode(target.spell_tabs))];[url_encode(json_encode(actions))]", "statbrowser:update_spells")
 
 /datum/controller/subsystem/statpanels/proc/set_turf_examine_tab(client/target, mob/target_mob)
 	var/list/overrides = list()
@@ -152,7 +152,7 @@ SUBSYSTEM_DEF(statpanels)
 			var/turf_content_ref = REF(turf_content)
 			if(!(turf_content_ref in cached_images))
 				cached_images += turf_content_ref
-				turf_content.RegisterSignal(turf_content, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/atom, remove_from_cache)) // we reset cache if anything in it gets deleted
+				turf_content.RegisterSignal(turf_content, COMSIG_QDELETING, TYPE_PROC_REF(/atom, remove_from_cache)) // we reset cache if anything in it gets deleted
 
 				if(ismob(turf_content) || length(turf_content.overlays) > 2)
 					turfitems[++turfitems.len] = list("[turf_content.name]", turf_content_ref, costly_icon2html(turf_content, target, sourceonly=TRUE))

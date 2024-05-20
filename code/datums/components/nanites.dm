@@ -184,21 +184,23 @@
 /datum/component/nanites/proc/on_emp(datum/source, severity)
 	if(HAS_TRAIT(host_mob, TRAIT_EMPPROOF_SELF))
 		return // don't do EMP effects if they're protected from EMPs
-	if(HAS_TRAIT(host_mob, TRAIT_FARADAYCAGE))
-		severity++
-		if(severity > EMP_LIGHT)
-			return
-	nanite_volume *= 1 - (rand(0.1, 0.25) / severity)		//Lose 10-25% of nanites
-	adjust_nanites(null, -(rand(5, 30) / severity))		//Lose 5-30 flat nanite volume
+	if(iscarbon(host_mob))
+		var/mob/living/carbon/host_carbon = host_mob
+		if(host_carbon.dna?.species)
+			severity *= host_carbon.dna.species.emp_mod
+	if(severity < 1)
+		return // don't bother if it's less than 1 severity
+	nanite_volume *= 1 - (rand(0.01, 0.025) * severity)		//Lose 1-2.5% of nanites for each severity level 
+	adjust_nanites(null, -(rand(0.5, 3) * severity))		//Lose 0.5-3 flat nanite volume for each severity level
 	for(var/X in programs)
 		var/datum/nanite_program/NP = X
 		NP.on_emp(severity)
 	addtimer(VARSET_CALLBACK(src, cloud_id, cloud_id), NANITE_SYNC_DELAY, TIMER_UNIQUE)//return it to normal, intentionally missing the next sync timer
 	cloud_id = 0 //temporarily disable resyncing so rogue programs actually have a chance to do something
 
-/datum/component/nanites/proc/on_shock(datum/source, shock_damage)
-	nanite_volume *= (rand(0.65, 0.90))		//Lose 10-35% of nanites
-	adjust_nanites(null, -(rand(5, 50)))			//Lose 5-50 flat nanite volume
+/datum/component/nanites/proc/on_shock(datum/source, shock_damage, obj/source_object, siemens_coeff, zone, tesla_shock)
+	nanite_volume *= 1 - (rand(0.10, 0.35)**siemens_coeff)		//Lose 10-35% of nanites
+	adjust_nanites(null, -(rand(5, 50)**siemens_coeff))			//Lose 5-50 flat nanite volume
 	for(var/X in programs)
 		var/datum/nanite_program/NP = X
 		NP.on_shock(shock_damage)

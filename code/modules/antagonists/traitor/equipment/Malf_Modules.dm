@@ -145,7 +145,8 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 /datum/action/innate/ai/nuke_station
 	name = "Doomsday Device"
 	desc = "Activates the doomsday device. This is not reversible and you must be in your core to start the process."
-	button_icon_state = "doomsday_device"
+	button_icon = 'icons/obj/machines/nuke_terminal.dmi'
+	button_icon_state = "nuclearbomb_timing"
 	auto_use_uses = FALSE
 
 /datum/action/innate/ai/nuke_station/Activate()
@@ -232,7 +233,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	if(owner.stat == DEAD)
 		return
 	priority_announce("Hostile runtimes detected in all station systems, please deactivate your AI to prevent possible damage to its morality core.", "Anomaly Alert", ANNOUNCER_AIMALF)
-	set_security_level("delta")
+	SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 	var/obj/machinery/doomsday_device/DOOM = new(owner_AI)
 	owner_AI.nuking = TRUE
 	owner_AI.doomsday_device = DOOM
@@ -325,7 +326,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 
 /datum/AI_Module/upgrade/upgrade_turrets/upgrade(mob/living/silicon/ai/AI)
 	for(var/obj/machinery/porta_turret/ai/turret in GLOB.machines)
-		turret.obj_integrity += 30
+		turret.modify_max_integrity(turret.max_integrity + 30, FALSE)
 		turret.lethal_projectile = /obj/projectile/beam/laser/heavylaser //Once you see it, you will know what it means to FEAR.
 		turret.lethal_projectile_sound = 'sound/weapons/lasercannonfire.ogg'
 
@@ -360,7 +361,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 
 	minor_announce("Hostile runtime detected in door controllers. Isolation lockdown protocols are now in effect. Please remain calm.","Network Alert:", TRUE)
 	to_chat(owner, span_danger("Lockdown initiated. Network reset in 90 seconds."))
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(minor_announce),
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce),
 		"Automatic system reboot complete. Have a secure day.",
 		"Network reset:"), 900)
 
@@ -386,11 +387,11 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	. = ..()
 	desc = "[desc] It has [uses] use\s remaining."
 
-/datum/action/innate/ai/ranged/override_machine/do_ability(mob/living/caller, atom/clicked_on)
+/datum/action/innate/ai/ranged/override_machine/do_ability(mob/living/caller, params, atom/clicked_on)
 	if(caller.incapacitated())
 		unset_ranged_ability(caller)
 		return FALSE
-	if(!istype(clicked_on, /obj/machinery))
+	if(!ismachinery(clicked_on))
 		to_chat(caller, span_warning("You can only animate machines!"))
 		return FALSE
 	var/obj/machinery/clicked_machine = clicked_on
@@ -474,7 +475,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	if(!QDELETED(to_explode)) //to check if the explosion killed it before we try to delete it
 		qdel(to_explode)
 
-/datum/action/innate/ai/ranged/overload_machine/do_ability(mob/living/caller, atom/clicked_on)
+/datum/action/innate/ai/ranged/overload_machine/do_ability(mob/living/caller, params, atom/clicked_on)
 	if(caller.incapacitated())
 		unset_ranged_ability(caller)
 		return FALSE
@@ -622,7 +623,8 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 /datum/action/innate/ai/break_air_alarms
 	name = "Override Air Alarm Safeties"
 	desc = "Enables the Flood setting on all air alarms."
-	button_icon_state = "break_air_alarms"
+	button_icon = 'icons/obj/monitors.dmi'
+	button_icon_state = "alarmx"
 	uses = 1
 
 /datum/action/innate/ai/break_air_alarms/Activate()

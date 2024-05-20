@@ -8,16 +8,70 @@
 	anchored = TRUE
 	density = TRUE
 
+	var/faction = list("hostile")
+	
 	var/max_mobs = 5
-	var/spawn_time = 300 //30 seconds default
+	var/spawn_time = 30 SECONDS
 	var/mob_types = list(/mob/living/simple_animal/hostile/carp)
 	var/spawn_text = "emerges from"
-	var/faction = list("hostile")
 	var/spawner_type = /datum/component/spawner
+	/// Is this spawner taggable with something?
+	var/scanner_taggable = FALSE
+	/// If this spawner's taggable, what can we tag it with?
+	var/static/list/scanner_types = list(/obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner)
+	/// If this spawner's taggable, what's the text we use to describe what we can tag it with?
+	var/scanner_descriptor = "mining analyzer"
+	/// Has this spawner been tagged/analyzed by a mining scanner?
+	var/gps_tagged = FALSE
+	/// A short identifier for the mob it spawns. Keep around 3 characters or less?
+	var/mob_gps_id = "???"
+	/// A short identifier for what kind of spawner it is, for use in putting together its GPS tag.
+	var/spawner_gps_id = "Creature Nest"
+	/// A complete identifier. Generated on tag (if tagged), used for its examine.
+	var/assigned_tag
+
+/obj/structure/spawner/examine(mob/user)
+	. = ..()
+	if(!scanner_taggable)
+		return
+	if(gps_tagged)
+		. += span_notice("A holotag's been attached, projecting \"<b>[assigned_tag]</b>\".")
+	else
+		. += span_notice("It looks like you could probably scan and tag it with a <b>[scanner_descriptor]</b>.")
+
+/obj/structure/spawner/attackby(obj/item/item, mob/user, params)
+	. = ..()
+	if(.)
+		return TRUE
+	if(scanner_taggable && is_type_in_list(item, scanner_types))
+		gps_tag(user)
+		return TRUE
+
+/// Tag the spawner, prefixing its GPS entry with an identifier - or giving it one, if nonexistent.
+/obj/structure/spawner/proc/gps_tag(mob/user)
+	if(gps_tagged)
+		to_chat(user, span_warning("[src] already has a holotag attached!"))
+		return
+	to_chat(user, span_notice("You affix a holotag to [src]."))
+	playsound(src, 'sound/machines/twobeep.ogg', 100)
+	gps_tagged = TRUE
+	assigned_tag = "\[[mob_gps_id]-[rand(100,999)]\] " + spawner_gps_id
+	var/datum/component/gps/our_gps = GetComponent(/datum/component/gps)
+	if(our_gps)
+		our_gps.gpstag = assigned_tag
+		return
+	AddComponent(/datum/component/gps, assigned_tag)
 
 /obj/structure/spawner/Initialize(mapload)
 	. = ..()
-	AddComponent(spawner_type, mob_types, spawn_time, faction, spawn_text, max_mobs)
+	AddComponent(\
+		spawner_type, \
+		spawn_types = mob_types, \
+		spawn_time = spawn_time, \
+		max_spawned = max_mobs, \
+		faction = faction, \
+		spawn_text = spawn_text, \
+	)
 
 /obj/structure/spawner/attack_animal(mob/living/simple_animal/M)
 	if(faction_check(faction, M.faction, FALSE)&&!M.client)

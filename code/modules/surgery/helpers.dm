@@ -1,11 +1,11 @@
-/proc/attempt_initiate_surgery(obj/item/I, mob/living/M, mob/user)
+/proc/attempt_initiate_surgery(obj/item/I, mob/living/M, mob/living/user, modifiers)
 	if(!istype(M))
 		return
 
 	var/mob/living/carbon/C
 	var/obj/item/bodypart/affecting
 	var/selected_zone = user.zone_selected
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return FALSE
 
 	if(iscarbon(M))
@@ -35,6 +35,10 @@
 					continue
 			else if(C && S.requires_bodypart) //mob with no limb in surgery zone when we need a limb
 				continue
+			else if(S.requires_bodypart_type == BODYPART_ORGANIC && !(M.mob_biotypes & MOB_ORGANIC))
+				continue //simplemob surgeries based on biotypes
+			else if(S.requires_bodypart_type == BODYPART_ROBOTIC && !(M.mob_biotypes & MOB_ROBOTIC))
+				continue
 			if(S.lying_required && (M.mobility_flags & MOBILITY_STAND))
 				continue
 			if(!S.can_start(user, M))
@@ -49,8 +53,7 @@
 					break
 
 		if(!available_surgeries.len)
-			to_chat(user, span_warning("You can't perform any surgeries on [M]'s [parse_zone(selected_zone)]!"))
-			return TRUE
+			return FALSE
 		
 		var/P = show_radial_menu(user, M, radial_list, radius = 40, require_near = TRUE, tooltips = TRUE)
 		if(P && user && user.Adjacent(M) && (I in user))
@@ -82,7 +85,7 @@
 				playsound(get_turf(M), 'sound/items/handling/cloth_drop.ogg', 30, TRUE, falloff_exponent = 1)
 				log_combat(user, M, "operated on", null, "(OPERATION TYPE: [procedure.name]) (TARGET AREA: [selected_zone])")
 				if(S.self_operable || user != M)
-					procedure.next_step(user, user.a_intent)
+					procedure.next_step(user, modifiers)
 			else
 				M.balloon_or_message(user, "need to expose the [parse_zone(selected_zone)]", \
 					span_warning("You need to expose [M]'s [parse_zone(selected_zone)] first!"))

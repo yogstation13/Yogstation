@@ -2260,7 +2260,7 @@
 	dir = 8;
 	dwidth = 3;
 	height = 5;
-	id = "mining_away";
+	shuttle_id = "mining_away";
 	name = "lavaland mine";
 	width = 7
 	},

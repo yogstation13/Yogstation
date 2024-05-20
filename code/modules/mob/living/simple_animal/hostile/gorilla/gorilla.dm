@@ -29,17 +29,15 @@
 	attack_sound = 'sound/weapons/punch1.ogg'
 	dextrous = TRUE
 	held_items = list(null, null)
-	possible_a_intents = list(INTENT_HELP, INTENT_GRAB, INTENT_DISARM, INTENT_HARM)
 	faction = list("jungle")
 	robust_searching = TRUE
 	stat_attack = UNCONSCIOUS
 	minbodytemp = 270
 	maxbodytemp = 350
 	unique_name = TRUE
+	footstep_type = FOOTSTEP_MOB_BAREFOOT
 	var/list/gorilla_overlays[GORILLA_TOTAL_LAYERS]
 	var/oogas = 0
-
-	do_footstep = TRUE
 
 // Gorillas like to dismember limbs from unconscious mobs.
 // Returns null when the target is not an unconscious carbon mob; a list of limbs (possibly empty) otherwise.
@@ -50,7 +48,7 @@
 		if(C.stat >= UNCONSCIOUS)
 			for(var/X in C.bodyparts)
 				var/obj/item/bodypart/BP = X
-				if(BP.body_part != HEAD && BP.body_part != CHEST)
+				if(!(BP.body_part & (HEAD|CHEST)))
 					if(BP.dismemberable)
 						parts += BP
 			return parts

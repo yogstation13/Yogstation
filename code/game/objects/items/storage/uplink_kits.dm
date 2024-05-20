@@ -73,7 +73,7 @@
 			new /obj/item/storage/belt/holster/syndicate(src) //A holster for your four guns. It could be 1 TC I guess, since the tactical webbing can't hold normal items?
 			new /obj/item/clothing/gloves/color/latex/nitrile(src) //Free?
 			new /obj/item/clothing/mask/gas/clown_hat(src) //Free?
-			new /obj/item/clothing/under/suit_jacket/really_black(src) //Free?
+			new /obj/item/clothing/under/suit/really_black(src) //Free?
 
 		if("murder") //Total cost of 28 TC
 			new /obj/item/melee/transforming/energy/sword/saber(src) //8 TC
@@ -92,10 +92,10 @@
 			new /obj/item/implanter/storage(src) //8 TC
 
 		if("hacker") //29 TC cost
-			new /obj/item/aiModule/syndicate(src) //4 TC
+			new /obj/item/aiModule/hacked(src) //4 TC
 			new /obj/item/card/emag(src) //6 TC
 			new /obj/item/encryptionkey/binary(src) //2 TC
-			new /obj/item/aiModule/toyAI(src) //Um, free...?
+			new /obj/item/aiModule/ion/toyAI(src) //Um, free...?
 			new /obj/item/multitool/ai_detect(src) //1 TC
 			new /obj/item/storage/toolbox/syndicate/real(src) //2 TC
 			new /obj/item/camera_bug(src) //1 TC
@@ -125,7 +125,7 @@
 			new /obj/item/clothing/glasses/thermal/syndi(src) //4 TC
 			new /obj/item/clothing/gloves/color/latex/nitrile(src) //Free?
 			new /obj/item/clothing/mask/gas/clown_hat(src) //Free?
-			new /obj/item/clothing/under/suit_jacket/really_black(src) //Free?
+			new /obj/item/clothing/under/suit/really_black(src) //Free?
 
 		if("metaops") //30 TC
 			new /obj/item/clothing/suit/space/hardsuit/syndi(src) //8 TC
@@ -225,7 +225,7 @@
 			new /obj/item/reagent_containers/glass/bottle/beesease(src) // 10 tc?
 			new /obj/item/gun/magic/staff/spellblade/beesword(src) //priceless
 
-		if("mr_freeze") // ~17 tc
+		if("mr_freeze") // ~25 tc
 			new /obj/item/clothing/glasses/cold(src) // 0 tc
 			new /obj/item/clothing/gloves/color/black(src) // 0 tc
 			new /obj/item/clothing/mask/chameleon/syndicate(src) // 0 tc on its own
@@ -237,8 +237,9 @@
 			new /obj/item/grenade/gluon(src) //
 			new /obj/item/dnainjector/geladikinesis(src) // 0 tc
 			new /obj/item/dnainjector/cryokinesis(src) // 1 or 2 tc, kind of useful
-			new /obj/item/gun/energy/temperature/security(src) // the crutch of this kit, alongside esword, ~4 tc
+			new /obj/item/gun/energy/temperature/security(src) // ~4 tc
 			new /obj/item/melee/transforming/energy/sword/saber/blue(src) //see see it fits the theme bc its blue and ice is blue, 8 tc
+			new /obj/item/reagent_containers/spray/chemsprayer/freeze(src) // filled with frost oil and you can refill it with whatever, ~8 tc
 
 		if("neo")
 			new /obj/item/clothing/glasses/sunglasses(src)
@@ -262,7 +263,7 @@
 
 
 		if("gang_boss")
-			new /obj/item/clothing/under/jabroni(src) //fishnet suit
+			new /obj/item/clothing/under/costume/jabroni(src) //fishnet suit
 			new /obj/item/clothing/suit/yogs/pinksweater(src) //close enough
 			new /obj/item/guardiancreator/tech(src) //15 TC
 			new /obj/item/stand_arrow/boss(src) //priceless, but if it had to get a price it'd be ~45 for 3 holoparasite injectors and ~21 3 mindslave implants. although its difficult to conceal and the holoparasites are random.
@@ -270,12 +271,11 @@
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
 
-		if("solo") //14 + 6x4 + 1 = 3 tc = 39 tc, or 37 if molti's pr gets merged. wow thats really costly this is probably going to busted. eh
-			new /obj/item/autosurgeon/syndicate/spinalspeed(src) //14 tc as of writing, 12 if molti's pr gets merged
+		if("solo") //14 + 6x3 + 1 = 3 tc = 31 tc. it was, in fact, busted
+			new /obj/item/autosurgeon/syndicate/spinalspeed(src) //12 tc
 			new /obj/item/clothing/suit/toggle/cyberpunk/solo(src) //dont know what this costs, vague guesstimate says 6tc
 			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
 			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
-			new /obj/item/storage/box/syndie_kit/emp_shield(src) //6 tc
 			new /obj/item/autosurgeon/upgraded_cyberlungs(src) //this is to remain true to the source material ok
 			new /obj/item/storage/pill_bottle/synaptizine(src) //take your drugs david, this and the lungs make up 1 tc
 			
@@ -300,7 +300,8 @@
 /obj/item/clothing/suit/toggle/cyberpunk/solo
 	name = "David's Jacket"
 	desc = "A jacket once owned by a legendary edgerunner, or so they say. Armored."
-	armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 35, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
+	armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 15, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF //it's too stylish to be destroyed
 
 /obj/item/stand_arrow/boss
 	desc = "An arrow that can unleash <span class='holoparasite'>massive potential</span> from those stabbed by it. It has been laced with syndicate mindslave nanites that will be linked to whoever first uses it in their hand."
@@ -771,7 +772,6 @@
 	new /obj/item/storage/backpack/chameleon/syndicate(src)
 	new /obj/item/radio/headset/chameleon/syndicate(src)
 	new /obj/item/stamp/chameleon/syndicate(src)
-	new /obj/item/pda/chameleon/syndicate(src)
 
 /obj/item/storage/box/syndie_kit/chameleon/plasmaman
 	real_name = "chameleon kit"
@@ -787,7 +787,6 @@
 	new /obj/item/storage/backpack/chameleon/syndicate(src)
 	new /obj/item/radio/headset/chameleon/syndicate(src)
 	new /obj/item/stamp/chameleon/syndicate(src)
-	new /obj/item/pda/chameleon/syndicate(src)
 
 //5*(2*4) = 5*8 = 45, 45 damage if you hit one person with all 5 stars.
 //Not counting the damage it will do while embedded (2*4 = 8, at 15% chance)
@@ -833,14 +832,14 @@
 	new /obj/item/book/granter/action/spell/mime/mimery_guns(src)
 
 /obj/item/storage/box/syndie_kit/centcom_costume/PopulateContents()
-	new /obj/item/clothing/under/rank/centcom_officer(src)
+	new /obj/item/clothing/under/rank/centcom/officer(src)
 	new /obj/item/clothing/head/beret/sec/centcom(src)
 	new /obj/item/clothing/shoes/sneakers/black(src)
 	new /obj/item/clothing/gloves/color/black(src)
 	new /obj/item/radio/headset/headset_cent/empty(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/storage/backpack/satchel(src)
-	new /obj/item/pda/heads(src)
+	new /obj/item/modular_computer/tablet/pda/preset/bureaucrat(src)
 	new /obj/item/clipboard(src)
 	new /obj/item/implanter/mindshield(src)
 
@@ -855,7 +854,6 @@
 	new /obj/item/storage/backpack/chameleon/broken(src)
 	new /obj/item/radio/headset/chameleon/broken(src)
 	new /obj/item/stamp/chameleon/broken(src)
-	new /obj/item/pda/chameleon/broken(src)
 	// No chameleon laser, they can't randomise for //REASONS//
 
 /obj/item/storage/box/syndie_kit/bee_grenades

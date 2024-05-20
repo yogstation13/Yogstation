@@ -12,10 +12,6 @@
 	tool_behaviour = TOOL_RETRACTOR
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/retractor/attack(mob/living/M, mob/user)
-	if(!attempt_initiate_surgery(src, M, user))
-		..()
-
 /obj/item/retractor/augment
 	name = "retractor"
 	desc = "Micro-mechanical manipulator for retracting stuff."
@@ -47,10 +43,6 @@
 	tool_behaviour = TOOL_HEMOSTAT
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("attacked", "pinched")
-
-/obj/item/hemostat/attack(mob/living/M, mob/user)
-	if(!attempt_initiate_surgery(src, M, user))
-		..()
 
 /obj/item/hemostat/augment
 	name = "hemostat"
@@ -87,9 +79,8 @@
 	damtype = BURN
 	attack_verb = list("burnt")
 
-/obj/item/cautery/attack(mob/living/M, mob/user)
-	if(!attempt_initiate_surgery(src, M, user))
-		..()
+/obj/item/cautery/ignition_effect(atom/A, mob/living/user)
+	. = span_danger("[user] carefully lights their [A.name] with [src].")
 
 /obj/item/cautery/augment
 	name = "cautery"
@@ -135,10 +126,6 @@
 	SSachievements.unlock_achievement(/datum/achievement/likearecord, user.client)
 	return (MANUAL_SUICIDE)
 
-/obj/item/surgicaldrill/attack(mob/living/M, mob/user)
-	if(!attempt_initiate_surgery(src, M, user))
-		..()
-
 /obj/item/surgicaldrill/augment
 	name = "surgical drill"
 	desc = "Effectively a small power drill contained within your arm, edges dulled to prevent tissue damage. May or may not pierce the heavens."
@@ -169,6 +156,7 @@
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
+	demolition_mod = 0.25
 	materials = list(/datum/material/iron=4000, /datum/material/glass=1000)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -179,10 +167,6 @@
 /obj/item/scalpel/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 80 * toolspeed, 100, 0)
-
-/obj/item/scalpel/attack(mob/living/M, mob/user)
-	if(!attempt_initiate_surgery(src, M, user))
-		..()
 
 /obj/item/scalpel/augment
 	name = "scalpel"
@@ -237,11 +221,8 @@
 
 /obj/item/circular_saw/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/cleave_attack)
 	AddComponent(/datum/component/butchering, 40 * toolspeed, 100, 5, 'sound/weapons/circsawhit.ogg') //saws are very accurate and fast at butchering
-
-/obj/item/circular_saw/attack(mob/living/M, mob/user)
-	if(!attempt_initiate_surgery(src, M, user))
-		..()
 
 /obj/item/circular_saw/augment
 	name = "circular saw"
@@ -279,10 +260,6 @@
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("corrected", "properly set")
 
-/obj/item/bonesetter/attack(mob/living/M, mob/user)
-	if(!attempt_initiate_surgery(src, M, user))
-		..()
-
 /obj/item/bonesetter/bone
 	name = "bone bonesetter"
 	desc = "A bonesetter made of bones... for setting bones with... bones?"
@@ -300,10 +277,6 @@
 	item_state = "drapes"
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("slapped")
-
-/obj/item/surgical_drapes/attack(mob/living/M, mob/user)
-	if(!attempt_initiate_surgery(src, M, user))
-		..()
 
 /obj/item/surgical_drapes/goliath
 	name = "goliath drapes"
@@ -399,8 +372,12 @@
 	light_range = 1
 	light_color = LIGHT_COLOR_GREEN
 	light_power = 0.2	//Barely glows on low power
+	demolition_mod = 1.5 // lasers are good at cutting metal
 	sharpness = SHARP_EDGED
 
+/obj/item/scalpel/advanced/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack) // woe, angry medbay be upon ye
 
 /obj/item/scalpel/advanced/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/machines/click.ogg', 50, TRUE)

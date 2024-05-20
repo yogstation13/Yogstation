@@ -60,8 +60,7 @@
 		trail.Flip(dir)
 		trail.Turn(180)
 		
-	img = image(trail, loc = src, layer = HUD_LAYER)
-	img.layer = HUD_LAYER
+	img = image(trail, loc = src)
 	img.plane = HUD_PLANE
 	img.appearance_flags = NO_CLIENT_COLOR
 	img.alpha = 0
@@ -180,7 +179,6 @@
 								//but travelling east and turning south gives you another south to east bend
 								//if(get_dir(trail_step, trail_step_next) == NORTH || get_dir(trail_step, trail_step_next) == SOUTH)
 								flip = TRUE
-						else
 			new effect_type(oldposition, trail_dir, sniffer, flip, trail_color)
 			
 	oldposition = get_turf(holder)

@@ -30,6 +30,7 @@
 	actions_types = list(/datum/action/item_action/organ_action/use)
 	var/inert = 0
 	var/preserved = 0
+	var/status_effect = STATUS_EFFECT_REGENERATIVE_CORE //yogs edit
 
 /obj/item/organ/regenerative_core/Initialize(mapload)
 	. = ..()
@@ -62,6 +63,7 @@
 		to_chat(owner, span_notice("[src] breaks down as it tries to activate."))
 	else
 		owner.revive(full_heal = 1)
+		SEND_SIGNAL(owner,COMSIG_REGEN_CORE_HEALED) //yogs edit
 	qdel(src)
 
 /obj/item/organ/regenerative_core/on_life()
@@ -85,8 +87,7 @@
 				to_chat(user, span_notice("[src] are useless on the dead."))
 				return
 			if(H != user)
-			
-				if(!is_station_level(user_turf.z) || is_reserved_level(user_turf.z))
+				if(is_mining_level(user_turf.z) || !is_station_level(user_turf.z) || is_reserved_level(user_turf.z))
 					H.visible_message(span_notice("[user] crushes [src] against [H]'s body, causing black tendrils to encover and reinforce [H.p_them()]!"))
 				else
 					H.visible_message(span_notice("[user] holds [src] against [H]'s body, coaxing the regenerating tendrils from [src]..."))
@@ -98,7 +99,7 @@
 					H.visible_message(span_notice("[src] explodes into a flurry of tendrils, rapidly covering and reinforcing [H]'s body."))
 				SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "other"))
 			else
-				if(!is_station_level(user_turf.z) || is_reserved_level(user_turf.z))
+				if(is_mining_level(user_turf.z) || !is_station_level(user_turf.z) || is_reserved_level(user_turf.z))
 					to_chat(user, span_notice("You crush [src] within your hand. Disgusting tendrils spread across your body, hold you together and allow you to keep moving, but for how long?"))
 				else
 					to_chat(user, span_notice("You hold [src] against your body, coaxing the regenerating tendrils from [src]..."))
@@ -109,8 +110,9 @@
 					balloon_alert(user, "Core applied!")
 					to_chat(user, span_notice("[src] explodes into a flurry of tendrils, rapidly spreading across your body. They will hold you together and allow you to keep moving, but for how long?"))
 				SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "self"))
-			H.apply_status_effect(STATUS_EFFECT_REGENERATIVE_CORE)
+			H.apply_status_effect(status_effect) //yogs edit
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "core", /datum/mood_event/healsbadman) //Now THIS is a miner buff (fixed - nerf)
+			SEND_SIGNAL(H,COMSIG_REGEN_CORE_HEALED) //yogs edit
 			qdel(src)
 
 /obj/item/organ/regenerative_core/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)

@@ -3,7 +3,9 @@
 	desc = "A vending machine which vends food, as required by section 47-C of the NT's Prisoner Ethical Treatment Agreement."
 	product_slogans = "Enjoy your meal.;Enough calories to support strenuous labor."
 	product_ads = "Sufficiently healthy.;Efficiently produced tofu!;Mmm! So good!;Have a meal.;You need food to live!;Have some more candy corn!;Try our new ice cups!"
+	light_mask = "snack-light-mask"
 	icon_state = "sustenance"
+	panel_type = "panel2"
 	products = list(/obj/item/reagent_containers/food/snacks/tofu/prison = 24,
 					/obj/item/reagent_containers/food/drinks/ice/prison = 12,
 					/obj/item/reagent_containers/food/snacks/candy_corn/prison = 6)

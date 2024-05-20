@@ -63,7 +63,7 @@
 			H.adjust_dizzy(5 SECONDS)
 		if(H.disgust >= DISGUST_LEVEL_DISGUSTED)
 			if(prob(25))
-				H.blur_eyes(3) //We need to add more shit down here
+				H.adjust_eye_blur(3) //We need to add more shit down here
 
 		H.adjust_disgust(-0.5 * disgust_metabolism)
 	switch(H.disgust)
@@ -145,23 +145,24 @@
 
 /obj/item/organ/stomach/cell/emp_act(severity)
 	to_chat(owner, emp_message)
-	charge(amount = owner.nutrition * -0.2 / severity)
+	charge(amount = owner.nutrition * -0.02 * severity)
 
-/obj/item/organ/stomach/cell/Insert(mob/living/carbon/M, special, drop_if_replaced)
+/obj/item/organ/stomach/cell/Insert(mob/living/carbon/stomach_owner, special, drop_if_replaced)
 	. = ..()
-	if(HAS_TRAIT(M, TRAIT_POWERHUNGRY))
-		M.nutrition = stored_charge
-	RegisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge))
+	if(HAS_TRAIT(stomach_owner, TRAIT_POWERHUNGRY))
+		stomach_owner.nutrition = stored_charge
+	RegisterSignal(stomach_owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge), override = TRUE)
 
-/obj/item/organ/stomach/cell/Remove(mob/living/carbon/M, special)
+/obj/item/organ/stomach/cell/Remove(mob/living/carbon/stomach_owner, special)
 	. = ..()
-	if(HAS_TRAIT(M, TRAIT_POWERHUNGRY))
-		stored_charge = M.nutrition
-		M.nutrition = 0
+	if(HAS_TRAIT(stomach_owner, TRAIT_POWERHUNGRY))
+		stored_charge = stomach_owner.nutrition
+		stomach_owner.nutrition = 0
 	UnregisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT)
-	M.dna?.species.handle_digestion(M) // update nutrition stuff
+	stomach_owner.dna?.species.handle_digestion(stomach_owner) // update nutrition stuff
 
 /obj/item/organ/stomach/cell/proc/charge(datum/source, amount, repairs)
+	SIGNAL_HANDLER
 	if(!HAS_TRAIT(owner, TRAIT_POWERHUNGRY))
 		return // do nothing in the owner doesn't run on electricity
 	owner.adjust_nutrition(amount/100) // ipcs can't get fat anymore
@@ -174,21 +175,25 @@
 	organ_flags = NONE
 	compatible_biotypes = ALL_NON_ROBOTIC
 
-/obj/item/organ/stomach/cell/ethereal/Insert(mob/living/carbon/M, special = 0)
-	..()
-	RegisterSignal(owner, COMSIG_LIVING_ELECTROCUTE_ACT, PROC_REF(on_electrocute))
+/obj/item/organ/stomach/cell/ethereal/Insert(mob/living/carbon/stomach_owner, special = 0)
+	. = ..()
+	RegisterSignal(stomach_owner, COMSIG_LIVING_ELECTROCUTE_ACT, PROC_REF(on_electrocute))
 
-/obj/item/organ/stomach/cell/ethereal/Remove(mob/living/carbon/M, special = 0)
-	UnregisterSignal(owner, COMSIG_LIVING_ELECTROCUTE_ACT)
-	..()
+/obj/item/organ/stomach/cell/ethereal/Remove(mob/living/carbon/stomach_owner, special = 0)
+	UnregisterSignal(stomach_owner, COMSIG_LIVING_ELECTROCUTE_ACT)
+	return ..()
 
-/obj/item/organ/stomach/cell/ethereal/proc/on_electrocute(datum/source, shock_damage, siemens_coeff = 1, illusion = FALSE)
+/obj/item/organ/stomach/cell/ethereal/proc/on_electrocute(mob/living/victim, shock_damage, obj/source, siemens_coeff = 1, zone = null, tesla_shock = 0, illusion = 0)
+	SIGNAL_HANDLER
 	if(illusion)
 		return
 	if(!HAS_TRAIT(owner, TRAIT_POWERHUNGRY))
 		return
 	owner.adjust_nutrition(shock_damage * siemens_coeff)
 	to_chat(owner, span_notice("You absorb some of the shock into your body!"))
+
+/obj/item/organ/stomach/cell/ethereal/emp_act(severity)
+	return // it's organic
 
 /obj/item/organ/stomach/cursed
 	name = "cursed stomach"
@@ -233,4 +238,4 @@
 	..()
 	var/datum/component/crawl/vomit/B = M.GetComponent(/datum/component/crawl/vomit)
 	if(B)
-		B.RemoveComponent()
+		qdel(B)

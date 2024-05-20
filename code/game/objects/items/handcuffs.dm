@@ -1,6 +1,6 @@
 /obj/item/restraints
 	icon = 'icons/obj/handcuffs.dmi'
-	breakouttime = 600
+	breakouttime = 60 SECONDS
 	var/break_strength = 2 // Minimum strength required for a holopara to break it
 
 /obj/item/restraints/suicide_act(mob/living/carbon/user)
@@ -37,7 +37,7 @@
 	throw_speed = 3
 	throw_range = 5
 	materials = list(/datum/material/iron=500)
-	breakouttime = 600 //Deciseconds = 60s = 1 minute
+	breakouttime = 60 SECONDS // add SECONDS or another unit becuase it will think deciseconds (100ds= 10s)
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	break_strength = 4
 	var/cuffsound = 'sound/weapons/handcuffs.ogg'
@@ -64,16 +64,6 @@
 								span_userdanger("[user] is trying to put [src.name] on [C]!"))
 
 			playsound(loc, cuffsound, 30, 1, -2)
-
-			// Yogs start: Prevents darkspawn from cheesing their bead sleep to cuff and kill
-			if(is_darkspawn_or_veil(user) && C.has_status_effect(STATUS_EFFECT_BROKEN_WILL) && (C.get_num_arms(FALSE) >= 2 || C.get_arm_ignore()))
-				to_chat(user, span_boldannounce("Restraining [C] will wake them up! Are you sure you want to do this?"))
-				C.visible_message(span_warning("[C] jerks in their sleep as they are restrained!"))
-				to_chat(C, span_boldannounce("Someone handles your arms roughly, pulling you towards wakefulness!"))
-				if(do_after(user, 1.5 SECONDS, C, progress = FALSE)) // No progress bar
-					C.remove_status_effect(STATUS_EFFECT_BROKEN_WILL)
-					C.SetUnconscious(0)
-			// Yogs end
 
 			if(do_after(user, 3 SECONDS, C) && (C.get_num_arms(FALSE) >= 2 || C.get_arm_ignore()))
 				if(iscyborg(user))
@@ -110,6 +100,10 @@
 	if(trashtype && !dispense)
 		qdel(src)
 	return
+
+/obj/item/restraints/handcuffs/energy/used/swarmer //energy cuffs are in abductor, why would you do this
+	breakouttime= 20 SECONDS // you already get teleported across the map
+	trashtype = /obj/item/restraints/handcuffs/energy/used
 
 /obj/item/restraints/handcuffs/cable/sinew
 	name = "sinew restraints"
@@ -232,7 +226,7 @@
 /obj/item/restraints/handcuffs/fake
 	name = "fake handcuffs"
 	desc = "Fake handcuffs meant for gag purposes."
-	breakouttime = 10 //Deciseconds = 1s
+	breakouttime = 1 SECONDS
 	break_strength = 1
 
 //Legcuffs
@@ -249,7 +243,7 @@
 	throwforce = 0
 	w_class = WEIGHT_CLASS_NORMAL
 	slowdown = 7
-	breakouttime = 300	//Deciseconds = 30s = 0.5 minute
+	breakouttime = 30 SECONDS
 	break_strength = 4
 
 /obj/item/restraints/legcuffs/beartrap
@@ -264,7 +258,11 @@
 
 /obj/item/restraints/legcuffs/beartrap/Initialize(mapload)
 	. = ..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(trap_stepped_on),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/item/restraints/legcuffs/beartrap/update_icon_state()
 	. = ..()
@@ -283,12 +281,77 @@
 	if(ishuman(user) && !user.stat && !user.restrained())
 		armed = !armed
 		update_appearance(UPDATE_ICON)
-		to_chat(user, span_notice("[src] is now [armed ? "armed" : "disarmed"]"))
+		to_chat(user, span_notice("[src] is now [armed ? "armed" : "disarmed"]."))
+
+/obj/item/restraints/legcuffs/beartrap/wrench_act(mob/living/user, obj/item/wrench/W)
+	if(armed && !anchored)
+		if(do_after(user, 1 SECONDS, src)) // Take the time to wrench it this trap to be more effective.
+			anchored = TRUE
+			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
+		return
+	..()
+
+/obj/item/restraints/legcuffs/beartrap/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+	if(armed && anchored && do_after(user, 1 SECONDS, src)) // And take the time to disarm this anchored trap.
+		close_trap()
 
 /obj/item/restraints/legcuffs/beartrap/proc/close_trap()
 	armed = FALSE
+	anchored = FALSE
 	update_appearance(UPDATE_ICON)
 	playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
+
+/obj/item/restraints/legcuffs/beartrap/proc/trap_stepped_on(datum/source, atom/movable/entering, ...)
+	SIGNAL_HANDLER
+
+	spring_trap(entering)
+
+/**
+ * Tries to spring the trap on the target movable.
+ *
+ * This proc is safe to call without knowing if the target is valid or if the trap is armed.
+ *
+ * Does not trigger on tiny mobs.
+ * If ignore_movetypes is FALSE, does not trigger on floating / flying / etc. mobs.
+ */
+/obj/item/restraints/legcuffs/beartrap/proc/spring_trap(atom/movable/target, ignore_movetypes = FALSE)
+	if(!armed || !isturf(loc) || !isliving(target))
+		return
+
+	var/mob/living/victim = target
+	if(istype(victim.buckled, /obj/vehicle))
+		var/obj/vehicle/ridden_vehicle = victim.buckled
+		if(!ridden_vehicle.are_legs_exposed) //close the trap without injuring/trapping the rider if their legs are inside the vehicle at all times.
+			close_trap()
+			ridden_vehicle.visible_message(span_danger("[ridden_vehicle] triggers \the [src]."))
+			return
+
+	//don't close the trap if they're as small as a mouse
+	if(victim.mob_size <= MOB_SIZE_TINY)
+		return
+	if(!ignore_movetypes && (victim.movement_type & MOVETYPES_NOT_TOUCHING_GROUND))
+		return
+
+	close_trap()
+	if(ignore_movetypes)
+		victim.visible_message(span_danger("\The [src] ensnares [victim]!"), \
+				span_userdanger("\The [src] ensnares you!"))
+	else
+		victim.visible_message(span_danger("[victim] triggers \the [src]."), \
+				span_userdanger("You trigger \the [src]!"))
+	var/def_zone = BODY_ZONE_CHEST
+	if(iscarbon(victim) && victim.body_position == STANDING_UP)
+		var/mob/living/carbon/carbon_victim = victim
+		def_zone = pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+		if(!carbon_victim.legcuffed && carbon_victim.num_legs >= 2) //beartrap can't cuff your leg if there's already a beartrap or legcuffs, or you don't have two legs.
+			INVOKE_ASYNC(carbon_victim, TYPE_PROC_REF(/mob/living/carbon, equip_to_slot), src, ITEM_SLOT_LEGCUFFED)
+			SSblackbox.record_feedback("tally", "handcuffs", 1, type)
+
+	victim.apply_damage(trap_damage, BRUTE, def_zone)
+
 
 /obj/item/restraints/legcuffs/beartrap/Crossed(AM as mob|obj)
 	if(armed && isturf(loc))
@@ -331,10 +394,10 @@
 	armed = 1
 	icon_state = "e_snare"
 	trap_damage = 0
-	breakouttime = 30
+	breakouttime = 3 SECONDS
 	item_flags = DROPDEL
 	flags_1 = NONE
-	break_strength = 2
+	break_strength = 2 
 
 /obj/item/restraints/legcuffs/beartrap/energy/Initialize(mapload)
 	. = ..()
@@ -349,7 +412,7 @@
 	Crossed(user) //honk
 
 /obj/item/restraints/legcuffs/beartrap/energy/cyborg
-	breakouttime = 20 // Cyborgs shouldn't have a strong restraint
+	breakouttime = 2 SECONDS // Cyborgs shouldn't have a strong restraint
 
 /obj/item/restraints/legcuffs/bola
 	name = "bola"
@@ -359,9 +422,9 @@
 	item_state = "bola"
 	lefthand_file = 'icons/mob/inhands/weapons/thrown_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/thrown_righthand.dmi'
-	breakouttime = 35//easy to apply, easy to break out of
+	breakouttime = 3.5 SECONDS //easy to apply, easy to break out of
 	gender = NEUTER
-	break_strength = 3
+	break_strength = 3 
 	var/immobilize = 0
 
 /obj/item/restraints/legcuffs/bola/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, quickstart = TRUE)
@@ -397,9 +460,9 @@
 	desc = "A strong bola, made with a long steel chain. It looks heavy, enough so that it could trip somebody."
 	icon_state = "bola_r"
 	item_state = "bola_r"
-	breakouttime = 70
+	breakouttime = 7 SECONDS
 	immobilize = 20
-	break_strength = 4
+	break_strength = 4 
 
 /obj/item/restraints/legcuffs/bola/watcher //tribal bola for tribal lizards
 	name = "watcher Bola"
@@ -407,7 +470,7 @@
 	icon_state = "bola_watcher"
 	icon_state_preview = "bola_watcher_preview"
 	item_state = "bola_watcher"
-	breakouttime = 45
+	breakouttime = 4.5 SECONDS
 
 /obj/item/restraints/legcuffs/bola/energy //For Security
 	name = "energy bola"
@@ -432,7 +495,7 @@
 	icon_state = "gonbola"
 	icon_state_preview = "gonbola_preview"
 	item_state = "bola_r"
-	breakouttime = 300
+	breakouttime = 30 SECONDS
 	slowdown = 0
 	var/datum/status_effect/gonbolaPacify/effectReference
 

@@ -93,6 +93,7 @@ export const MinesweeperContent = (props, context) => {
       <br />
       <Button
         content="Beginner"
+        disabled={emagged}
         selected={difficulty==="Beginner"}
         color={flag_mode ? "green" : "blue"}
         onClick={() => act('PRG_difficulty', {
@@ -100,6 +101,7 @@ export const MinesweeperContent = (props, context) => {
         })} />
       <Button
         content="Intermediate"
+        disabled={emagged}
         selected={difficulty==="Intermediate"}
         color="blue"
         onClick={() => act('PRG_difficulty', {
@@ -114,6 +116,7 @@ export const MinesweeperContent = (props, context) => {
         })} />
       <Button
         content="Custom"
+        disabled={emagged}
         selected={difficulty==="Custom"}
         color="blue"
         onClick={() => act('PRG_difficulty', {

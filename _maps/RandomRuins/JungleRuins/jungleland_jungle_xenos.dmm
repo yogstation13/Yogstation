@@ -1,0 +1,1255 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/alien/weeds/node,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"ab" = (
+/obj/effect/decal/cleanable/blood/gibs/up,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"ad" = (
+/obj/item/ammo_casing/shotgun/buckshot,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"ae" = (
+/obj/structure/fence,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"ai" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aj" = (
+/obj/effect/decal/cleanable/xenoblood,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"al" = (
+/obj/structure/fence/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"am" = (
+/obj/structure/alien/weeds,
+/obj/structure/alien/egg/burst,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"ao" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"ap" = (
+/obj/item/emptysandbag,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aq" = (
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"ar" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"as" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"au" = (
+/obj/effect/decal/cleanable/blood/xtracks{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"av" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aw" = (
+/obj/structure/alien/weeds,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"ax" = (
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"ay" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"az" = (
+/obj/item/stack/rods,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aA" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"aC" = (
+/mob/living/simple_animal/hostile/alien/sentinel{
+	maxbodytemp = 550
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aD" = (
+/obj/structure/punching_bag,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"aE" = (
+/obj/effect/decal/cleanable/xenoblood/xgibs/limb,
+/obj/effect/decal/cleanable/xenoblood/xgibs,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aF" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aG" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aH" = (
+/obj/structure/fence{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aI" = (
+/mob/living/simple_animal/hostile/alien{
+	maxbodytemp = 550
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aJ" = (
+/obj/effect/decal/cleanable/blood/gibs/limb,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aK" = (
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"aN" = (
+/obj/item/ammo_casing/shotgun/buckshot,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aP" = (
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aQ" = (
+/obj/effect/decal/cleanable/xenoblood/xgibs/core,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aR" = (
+/obj/structure/alien/weeds,
+/mob/living/simple_animal/hostile/alien/queen/large{
+	desc = "A gigantic alien who is in charge of the hive and all of its loyal servants.";
+	maxbodytemp = 550;
+	name = "alien queen";
+	pixel_x = -16;
+	plants_off = 1
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"aS" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aT" = (
+/obj/item/deployablemine/explosive,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aU" = (
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aV" = (
+/turf/closed/indestructible/wood,
+/area/ruin/unpowered)
+"aW" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aX" = (
+/obj/structure/fence/cut/large,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"aY" = (
+/obj/item/ammo_casing/shotgun/buckshot,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"fK" = (
+/obj/structure/curtain,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"gc" = (
+/obj/structure/alien/weeds,
+/obj/item/stack/sheet/mineral/wood,
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"ge" = (
+/mob/living/simple_animal/hostile/alien/drone{
+	maxbodytemp = 550
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"kb" = (
+/obj/effect/mine/stun,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"mH" = (
+/obj/structure/fence/cut/medium{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"pS" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"rF" = (
+/obj/structure/alien/weeds,
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/animalhide/goliath_hide,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"uP" = (
+/turf/closed/indestructible/wood,
+/area/template_noop)
+"vl" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood/jungle,
+/area/ruin/unpowered)
+"vF" = (
+/obj/structure/fence/end,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"yn" = (
+/obj/structure/alien/weeds,
+/obj/structure/closet/crate,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"yv" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/item/clothing/head/helmet/namhelm,
+/turf/open/floor/wood/jungle,
+/area/ruin/unpowered)
+"BA" = (
+/obj/effect/mine/explosive/ancient,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"Fi" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/item/clothing/suit/armor/vest/namflakjacket,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"Gy" = (
+/turf/open/floor/wood/jungle,
+/area/ruin/unpowered)
+"Ij" = (
+/obj/item/kitchen/knife/combat,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"Jo" = (
+/obj/structure/bed,
+/obj/item/clothing/gloves/yogs/army,
+/turf/open/floor/wood/jungle,
+/area/ruin/unpowered)
+"JR" = (
+/obj/structure/alien/weeds,
+/obj/structure/closet/crate/freezer,
+/obj/item/storage/box/mre,
+/obj/item/storage/box/mre,
+/obj/item/storage/box/mre/menu2,
+/obj/item/storage/box/mre/menu2,
+/obj/item/storage/box/mre/menu3,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"MY" = (
+/obj/structure/sign/warning{
+	desc = "A warning sign denoting landmines ahead."
+	},
+/turf/closed/indestructible/wood,
+/area/template_noop)
+"Ou" = (
+/obj/structure/alien/weeds,
+/obj/structure/bed/nest,
+/obj/effect/decal/cleanable/blood,
+/obj/item/clothing/suit/hooded/explorer,
+/obj/item/disk/design_disk/modkit_disc/rapid_repeater,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"PC" = (
+/obj/item/target/alien,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"SF" = (
+/obj/structure/alien/weeds,
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/storage/box/lethalshot,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"Ur" = (
+/obj/structure/fence/corner{
+	dir = 6
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"UW" = (
+/obj/structure/bed,
+/turf/open/floor/wood/jungle,
+/area/ruin/unpowered)
+"VC" = (
+/obj/item/target,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"Wj" = (
+/obj/structure/alien/weeds,
+/obj/structure/bed/nest,
+/obj/effect/decal/cleanable/blood,
+/obj/item/mining_voucher,
+/obj/item/clothing/glasses/meson/night,
+/obj/item/clothing/mask/gas/explorer,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"WA" = (
+/obj/item/reagent_containers/autoinjector/medipen/survival,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+
+(1,1,1) = {"
+aP
+al
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+al
+"}
+(2,1,1) = {"
+aP
+aH
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aS
+aP
+aP
+aP
+aP
+ai
+aP
+aP
+aP
+aP
+aH
+"}
+(3,1,1) = {"
+aP
+aH
+uP
+uP
+uP
+aP
+aP
+aP
+aP
+aV
+aV
+aV
+aV
+uP
+uP
+ay
+ay
+uP
+uP
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aP
+aH
+"}
+(4,1,1) = {"
+aP
+aH
+uP
+pS
+uP
+aP
+aU
+aP
+aP
+aV
+UW
+Jo
+aV
+aP
+aW
+ai
+aP
+ax
+aP
+aV
+am
+aw
+rF
+aw
+Ou
+aV
+aP
+aH
+"}
+(5,1,1) = {"
+aP
+aH
+uP
+fK
+uP
+aP
+aP
+aP
+aP
+aV
+yv
+Gy
+vl
+aP
+aP
+aP
+aP
+aG
+aP
+aV
+yn
+aw
+aR
+aw
+Wj
+aV
+aP
+aH
+"}
+(6,1,1) = {"
+aP
+aH
+aP
+aP
+aP
+aP
+aP
+aP
+ar
+aV
+UW
+UW
+aV
+aP
+aP
+aP
+aU
+aP
+aP
+aV
+aw
+aw
+aa
+aw
+am
+aV
+aP
+aH
+"}
+(7,1,1) = {"
+ar
+aH
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aV
+aV
+aV
+aV
+aS
+aP
+aP
+aP
+aP
+aP
+aV
+am
+aw
+gc
+JR
+SF
+aV
+aP
+aH
+"}
+(8,1,1) = {"
+aP
+aH
+aP
+aP
+aP
+aP
+aP
+aP
+aj
+aP
+aP
+aP
+aG
+aP
+aP
+aP
+aP
+aW
+aP
+aV
+aV
+aA
+aV
+aV
+aV
+aV
+ai
+aH
+"}
+(9,1,1) = {"
+aP
+aH
+aP
+aP
+aP
+aP
+ai
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+ai
+ai
+aP
+aP
+aJ
+av
+aP
+aP
+aP
+ax
+uP
+aP
+aH
+"}
+(10,1,1) = {"
+aP
+aH
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+ay
+aP
+Ij
+aP
+aP
+aP
+aP
+aP
+aP
+aI
+aP
+aP
+aP
+aP
+uP
+aP
+aH
+"}
+(11,1,1) = {"
+aP
+aH
+aP
+aP
+VC
+aP
+aP
+aP
+aP
+aP
+aP
+ay
+ab
+Fi
+ad
+as
+as
+aq
+aP
+aP
+ar
+aN
+aP
+aV
+aV
+aV
+aV
+aV
+"}
+(12,1,1) = {"
+aP
+aH
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+ay
+aP
+aP
+WA
+aP
+aC
+aP
+aW
+ai
+aP
+aP
+aP
+aV
+aD
+aK
+aD
+aV
+"}
+(13,1,1) = {"
+aP
+aH
+aP
+ar
+PC
+aP
+aP
+aP
+aP
+aP
+aP
+ay
+aY
+aP
+aj
+aP
+aY
+aP
+aP
+aP
+aP
+aP
+aP
+aK
+aK
+aK
+aK
+aV
+"}
+(14,1,1) = {"
+aP
+aH
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aW
+ay
+aP
+ar
+aP
+aP
+av
+aP
+aP
+aP
+ay
+aP
+aP
+aK
+aK
+aK
+ge
+aV
+"}
+(15,1,1) = {"
+aP
+aH
+aP
+aP
+VC
+aP
+aP
+ai
+aP
+aP
+aP
+ay
+aC
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+ap
+aV
+aD
+aK
+aD
+aV
+"}
+(16,1,1) = {"
+aP
+aH
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+ay
+ay
+ay
+ay
+ap
+aW
+aP
+aY
+ap
+aP
+ay
+ay
+aV
+aV
+aV
+aV
+aV
+"}
+(17,1,1) = {"
+aP
+aH
+aP
+aP
+ai
+aP
+aP
+aP
+aP
+aP
+aF
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+au
+ay
+aP
+aP
+aP
+uP
+aP
+aP
+aP
+aH
+"}
+(18,1,1) = {"
+aP
+aH
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+ao
+aP
+aP
+aP
+aP
+aP
+aP
+au
+aP
+aP
+aj
+aP
+uP
+aP
+aP
+aP
+aH
+"}
+(19,1,1) = {"
+aP
+aH
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+ax
+aP
+aP
+aU
+aE
+aP
+aT
+aP
+au
+az
+aP
+aP
+aP
+ay
+aP
+ai
+aP
+aH
+"}
+(20,1,1) = {"
+aP
+aH
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aQ
+aP
+aP
+aP
+ay
+aP
+aP
+aP
+aH
+"}
+(21,1,1) = {"
+aP
+aH
+aP
+aP
+aP
+aP
+ay
+aP
+aP
+aP
+ai
+aP
+aP
+aP
+az
+aP
+aP
+ai
+aP
+aP
+aP
+aP
+aT
+ay
+aP
+aP
+aP
+aH
+"}
+(22,1,1) = {"
+aP
+aH
+aP
+aP
+aP
+aP
+ay
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+ay
+aP
+aP
+aP
+aH
+"}
+(23,1,1) = {"
+aP
+aH
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+ay
+aP
+aP
+aP
+aH
+"}
+(24,1,1) = {"
+aP
+aH
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+ay
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+ay
+aP
+aP
+aP
+mH
+"}
+(25,1,1) = {"
+aW
+aH
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+ay
+ay
+ay
+aP
+ay
+ay
+ay
+ay
+ay
+ay
+ay
+aP
+aP
+aP
+aH
+"}
+(26,1,1) = {"
+aP
+aH
+aP
+aP
+aP
+ae
+ae
+ae
+ae
+aX
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+MY
+"}
+(27,1,1) = {"
+aP
+aH
+ai
+aP
+aP
+aP
+aP
+aW
+aP
+ai
+aP
+aP
+ar
+BA
+aP
+aP
+aW
+aP
+ai
+kb
+ai
+aP
+aP
+aP
+kb
+ai
+aP
+aP
+"}
+(28,1,1) = {"
+aP
+aH
+aP
+aP
+aP
+aP
+aW
+aW
+aW
+aP
+BA
+aW
+aP
+aP
+aP
+aP
+aP
+BA
+aP
+aP
+ai
+aP
+aP
+aP
+aP
+aP
+aP
+aW
+"}
+(29,1,1) = {"
+aP
+aH
+aP
+aP
+aP
+ai
+aP
+aP
+aP
+aP
+aP
+aP
+ai
+aW
+aP
+BA
+ai
+aP
+aP
+aP
+aP
+aW
+kb
+ai
+aP
+aP
+aP
+aP
+"}
+(30,1,1) = {"
+aP
+Ur
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+vF
+"}
+(31,1,1) = {"
+aP
+aW
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aW
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aP
+aW
+aP
+aP
+aP
+aP
+aP
+"}

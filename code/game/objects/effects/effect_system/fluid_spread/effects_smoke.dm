@@ -156,6 +156,19 @@
 /obj/effect/particle_effect/fluid/smoke/transparent
 	opacity = FALSE
 
+/// Special smoke used for the RCS thruster
+/obj/effect/particle_effect/fluid/smoke/trail
+	lifetime = 1 SECONDS
+	opacity = FALSE
+	alpha = 100
+
+/obj/effect/particle_effect/fluid/smoke/trail/Initialize(mapload, datum/fluid_group/group, ...)
+	. = ..()
+	var/matrix/start_transform = matrix(transform)/2
+	var/matrix/end_transform = matrix(transform)
+	transform = start_transform
+	animate(src, alpha = 0, transform = end_transform, time = lifetime)
+
 /**
  * A helper proc used to spawn small puffs of smoke.
  *
@@ -294,13 +307,12 @@
 		if(!distcheck || get_dist(location, chilly) < blast) // Otherwise we'll get silliness like people using Nanofrost to kill people through walls with cold air
 			air.set_temperature(temperature)
 		
-		if(air.get_moles(/datum/gas/plasma))
-			air.adjust_moles(/datum/gas/nitrogen, air.get_moles(/datum/gas/plasma))
-			air.set_moles(/datum/gas/plasma, 0)
+		if(air.get_moles(GAS_PLASMA))
+			air.adjust_moles(GAS_N2, air.get_moles(GAS_PLASMA))
+			air.set_moles(GAS_PLASMA, 0)
 
 		for(var/obj/effect/hotspot/fire in chilly)
 			qdel(fire)
-		chilly.air_update_turf()
 
 	if(weldvents)
 		for(var/obj/machinery/atmospherics/components/unary/comp in chilly)
@@ -371,7 +383,7 @@
 	for(var/atom/movable/thing as anything in location)
 		if(thing == src)
 			continue
-		if(location.intact && thing.level == 1) //hidden under the floor
+		if(location.underfloor_accessibility < UNDERFLOOR_INTERACTABLE && HAS_TRAIT(thing, TRAIT_T_RAY_VISIBLE))
 			continue
 		reagents.reaction(thing, TOUCH, fraction)
 
@@ -453,3 +465,10 @@
 
 /datum/effect_system/fluid_spread/smoke/chem/quick
 	effect_type = /obj/effect/particle_effect/fluid/smoke/chem/quick
+
+/datum/effect_system/fluid_spread/smoke/chem/darkspawn
+	effect_type = /obj/effect/particle_effect/fluid/smoke/chem/darkspawn
+
+/obj/effect/particle_effect/fluid/smoke/chem/darkspawn
+	lifetime = 10 SECONDS
+	opacity = FALSE

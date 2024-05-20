@@ -324,6 +324,26 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 
+/obj/item/toy/foamblade/light_eater
+	name = "foam armblade"
+	desc = "It says \"Nulton Dawns #1 fan\" on it."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "foamblade"
+	item_state = "light_eater"
+	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
+	attack_verb = list("eated", "absorbed", "slashed")
+
+/obj/item/toy/foamblade/umbral_tendrils
+	name = "malformed foam mass"
+	desc = "A terrible defect produced by a foam armblade manufacturer."
+	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
+	icon_state = "umbral_tendrils"
+	item_state = "umbral_tendrils"
+	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
+	attack_verb = list("devoured", "absorbed", "bludgeoned")
+
 /obj/item/toy/foamblade/baseball
 	name = "toy baseball bat"
 	desc = "A colorful foam baseball bat. The label on the handle reads Donksoft."
@@ -456,6 +476,14 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/ash_type = /obj/effect/decal/cleanable/ash
 
+/obj/item/toy/snappop/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
+
 /obj/item/toy/snappop/proc/pop_burst(n=3, c=1)
 	var/datum/effect_system/spark_spread/s = new()
 	s.set_up(n, c, src)
@@ -473,8 +501,7 @@
 	if(!..())
 		pop_burst()
 
-/obj/item/toy/snappop/Crossed(H as mob|obj)
-	. = ..()
+/obj/item/toy/snappop/proc/on_entered(datum/source, atom/movable/H, ...)
 	if(ishuman(H) || issilicon(H)) //i guess carp and shit shouldn't set them off
 		var/mob/living/carbon/M = H
 		if(issilicon(H) || M.m_intent == MOVE_INTENT_RUN)
@@ -518,7 +545,7 @@
 	else
 		. = ..()
 
-/obj/item/toy/prize/attack_hand(mob/user)
+/obj/item/toy/prize/attack_hand(mob/user, modifiers)
 	. = ..()
 	if(.)
 		return

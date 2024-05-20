@@ -16,23 +16,23 @@
 
 /obj/item/stack/spacecash/Initialize(mapload)
 	. = ..()
-	update_appearance(UPDATE_DESC)
+	update_desc()
 
-/obj/item/stack/spacecash/update_desc(updates=ALL)
+/obj/item/stack/spacecash/update_desc()
 	. = ..()
 	var/total_worth = get_item_credit_value()
-	desc = "It's worth [total_worth] credit[( total_worth > 1 ) ? "s" : ""]"
+	desc = "It's worth [total_worth] credit[(total_worth > 1) ? "s" : null] in total."
 
 /obj/item/stack/spacecash/get_item_credit_value()
 	return (amount*value)
 
 /obj/item/stack/spacecash/merge(obj/item/stack/S)
 	. = ..()
-	update_appearance(UPDATE_DESC)
+	update_desc()
 
-/obj/item/stack/spacecash/use(used, transfer = FALSE)
+/obj/item/stack/spacecash/use(used, transfer = FALSE, check = TRUE)
 	. = ..()
-	update_appearance(UPDATE_DESC)
+	update_desc()
 
 /obj/item/stack/spacecash/c1
 	icon_state = "spacecash"

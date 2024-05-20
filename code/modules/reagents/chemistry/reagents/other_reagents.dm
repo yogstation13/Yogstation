@@ -1,7 +1,7 @@
 /datum/reagent/blood
 	data = list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=null,"resistances"=null,"trace_chem"=null,"mind"=null,"ckey"=null,"gender"=null,"real_name"=null,"cloneable"=null,"factions"=null,"quirks"=null)
 	name = "Blood"
-	color = "#C80000" // rgb: 200, 0, 0
+	color = COLOR_BLOOD
 	metabolization_rate = 5 //fast rate so it disappears fast.
 	taste_description = "iron"
 	taste_mult = 1.3
@@ -30,17 +30,22 @@
 				L.ForceContractDisease(D)
 
 	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		if(C.get_blood_id() == /datum/reagent/blood && ((methods & INJECT) || ((methods & INGEST) && C.dna && C.dna.species && (DRINKSBLOOD in C.dna.species.species_traits))))
-			if(!data || !(data["blood_type"] in get_safe_blood(C.dna.blood_type)) && !IS_BLOODSUCKER(C))
-				C.reagents.add_reagent(/datum/reagent/toxin, reac_volume * 0.5)
-			else
-				C.blood_volume = min(C.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM(C))
+		var/mob/living/carbon/exposed_carbon = L
+		if(exposed_carbon.get_blood_id() == /datum/reagent/blood && (methods == INJECT || (methods == INGEST && exposed_carbon.dna && exposed_carbon.dna.species && (DRINKSBLOOD in exposed_carbon.dna.species.species_traits))))
+			if(data && data["blood_type"])
+				var/datum/blood_type/blood_type = data["blood_type"]
+				if(blood_type.type in exposed_carbon.dna.blood_type.compatible_types)
+					exposed_carbon.blood_volume = min(exposed_carbon.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM(L))
+					return
+			exposed_carbon.reagents.add_reagent(/datum/reagent/toxin, reac_volume * 0.5)
 
 
 /datum/reagent/blood/on_new(list/data)
 	if(istype(data))
 		SetViruses(src, data)
+		var/datum/blood_type/blood_type = data["blood_type"]
+		if(blood_type)
+			color = blood_type.color
 
 /datum/reagent/blood/on_merge(list/mix_data)
 	if(data && mix_data)
@@ -121,9 +126,8 @@
 /datum/reagent/water
 	name = "Water"
 	description = "An ubiquitous chemical substance that is composed of hydrogen and oxygen."
-	color = "#AAAAAA77" // rgb: 170, 170, 170, 77 (alpha)
+	color = "#609bdf77" // rgb: 96, 155, 223, 77 (alpha)
 	taste_description = "water"
-	var/cooling_temperature = 2
 	glass_icon_state = "glass_clear"
 	glass_name = "glass of water"
 	glass_desc = "The father of all refreshments."
@@ -138,21 +142,15 @@
 /datum/reagent/water/reaction_turf(turf/open/T, reac_volume)
 	if(!istype(T))
 		return
-	var/CT = cooling_temperature
 
 	if(reac_volume >= 5)
-		T.MakeSlippery(TURF_WET_WATER, 120 SECONDS, min(reac_volume*3 SECONDS, 300 SECONDS)) //yogs
+		T.MakeSlippery(TURF_WET_WATER, 120 SECONDS, min(reac_volume * 3 SECONDS, 300 SECONDS)) //yogs
 
 	for(var/mob/living/simple_animal/slime/M in T)
 		M.apply_water()
 
-	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in T)
-	if(hotspot && !isspaceturf(T))
-		if(T.air)
-			var/datum/gas_mixture/G = T.air
-			G.set_temperature(max(min(G.return_temperature()-(CT*1000),G.return_temperature()/CT),TCMB))
-			G.react(src)
-			qdel(hotspot)
+	T.extinguish_turf()
+
 	var/obj/effect/acid/A = (locate(/obj/effect/acid) in T)
 	if(A)
 		A.acid_level = max(A.acid_level - reac_volume*50, 0)
@@ -192,8 +190,16 @@
 		M.AdjustUnconscious(-reac_volume*0.3 SECONDS)
 		M.AdjustSleeping(-reac_volume*0.5 SECONDS)
 
-		M.adjust_fire_stacks(-(reac_volume / 10) * M.get_permeability(null, TRUE))
+		// this function allows lower volumes to still do something without preventing higher volumes from causing too much wetness
+		M.adjust_wet_stacks(3*log(2, (reac_volume*M.get_permeability(null, TRUE) + 10) / 10))
 		M.extinguish_mob() // permeability affects the negative fire stacks but not the extinguishing
+
+		// if preternis, update wetness instantly when applying more water instead of waiting for the next life tick
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			var/datum/species/preternis/P = H.dna?.species
+			if(istype(P))
+				P.handle_wetness(H)
 	..()
 
 /datum/reagent/water/on_mob_life(mob/living/carbon/M)
@@ -840,12 +846,6 @@
 	color = "#808080" // rgb: 128, 128, 128
 	taste_mult = 0 // oderless and tasteless
 
-/datum/reagent/oxygen/reaction_obj(obj/O, reac_volume)
-	if((!O) || (!reac_volume))
-		return 0
-	var/temp = holder ? holder.chem_temp : T20C
-	O.atmos_spawn_air("o2=[reac_volume/2];TEMP=[temp]")
-
 /datum/reagent/oxygen/reaction_turf(turf/open/T, reac_volume)
 	if(istype(T))
 		var/temp = holder ? holder.chem_temp : T20C
@@ -872,12 +872,6 @@
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
 	taste_mult = 0
-
-/datum/reagent/nitrogen/reaction_obj(obj/O, reac_volume)
-	if((!O) || (!reac_volume))
-		return 0
-	var/temp = holder ? holder.chem_temp : T20C
-	O.atmos_spawn_air("n2=[reac_volume/2];TEMP=[temp]")
 
 /datum/reagent/nitrogen/reaction_turf(turf/open/T, reac_volume)
 	if(istype(T))
@@ -1087,7 +1081,12 @@
 /datum/reagent/bluespace/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	if((methods & (TOUCH|VAPOR)) && (reac_volume > 5))
 		do_teleport(M, get_turf(M), (reac_volume / 5), asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE) //4 tiles per crystal
-	..()
+	return ..()
+
+/datum/reagent/bluespace/reaction_obj(obj/O, volume)
+	if(volume > 5 && !O.anchored) // can teleport objects that aren't anchored
+		do_teleport(O, get_turf(O), (volume / 5), asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE) //4 tiles per crystal
+	return ..()
 
 /datum/reagent/bluespace/on_mob_life(mob/living/carbon/M)
 	if(current_cycle > 10 && prob(15))
@@ -1345,12 +1344,6 @@
 	color = "#B0B0B0" // rgb : 192, 192, 192
 	taste_description = "something unknowable"
 
-/datum/reagent/carbondioxide/reaction_obj(obj/O, reac_volume)
-	if((!O) || (!reac_volume))
-		return 0
-	var/temp = holder ? holder.chem_temp : T20C
-	O.atmos_spawn_air("co2=[reac_volume/5];TEMP=[temp]")
-
 /datum/reagent/carbondioxide/reaction_turf(turf/open/T, reac_volume)
 	if(istype(T))
 		var/temp = holder ? holder.chem_temp : T20C
@@ -1364,12 +1357,6 @@
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	color = "#808080"
 	taste_description = "sweetness"
-
-/datum/reagent/nitrous_oxide/reaction_obj(obj/O, reac_volume)
-	if((!O) || (!reac_volume))
-		return 0
-	var/temp = holder ? holder.chem_temp : T20C
-	O.atmos_spawn_air("n2o=[reac_volume/5];TEMP=[temp]")
 
 /datum/reagent/nitrous_oxide/reaction_turf(turf/open/T, reac_volume)
 	if(istype(T))
@@ -1544,6 +1531,14 @@
 	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=0.5, blacklisted_movetypes=(FLYING|FLOATING)) // slowdown for if you're awake
 	ADD_TRAIT(L, TRAIT_SURGERY_PREPARED, "healium")
 
+/datum/reagent/healium/on_mob_add(mob/living/L)
+	. = ..()
+	ADD_TRAIT(L, TRAIT_PRESERVED_ORGANS, "healium")
+
+/datum/reagent/healium/on_mob_delete(mob/living/L)
+	REMOVE_TRAIT(L, TRAIT_PRESERVED_ORGANS, "healium")
+	return ..()
+
 /datum/reagent/healium/on_mob_life(mob/living/carbon/M)
 	M.SetSleeping(100)
 	M.SetUnconscious(100)
@@ -1553,10 +1548,21 @@
 		M.adjust_disgust((40 - M.disgust) / 10) // makes you sick
 		M.adjust_jitter_up_to(2, 10)
 	else if(M.bodytemperature < T0C)
+		var/power = -0.00009 * (M.bodytemperature ** 2) + 9
 		heal_factor *= (100 + max(T0C - M.bodytemperature, 200)) / 100 // if you're asleep, you get healed faster when you're cold (up to 3x at 73 kelvin)
+		for(var/i in M.all_wounds)
+			var/datum/wound/iter_wound = i
+			iter_wound.on_healium(power)
+
+		if(M.blood_volume < BLOOD_VOLUME_SAFE(M))
+			M.blood_volume = BLOOD_VOLUME_SAFE(M)
+
+	M.adjustOxyLoss(-10*heal_factor*REM)
 	M.adjustFireLoss(-7*heal_factor*REM)
 	M.adjustToxLoss(-5*heal_factor*REM)
 	M.adjustBruteLoss(-5*heal_factor*REM)
+	M.adjustCloneLoss(-5*heal_factor*REM)
+	REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 	..()
 
 /datum/reagent/healium/on_mob_end_metabolize(mob/living/L)
@@ -1776,7 +1782,7 @@
 /datum/reagent/carpet/reaction_turf(turf/T, reac_volume)
 	if(isplatingturf(T) || istype(T, /turf/open/floor/plasteel))
 		var/turf/open/floor/F = T
-		F.PlaceOnTop(/turf/open/floor/carpet, flags = CHANGETURF_INHERIT_AIR)
+		F.place_on_top(/turf/open/floor/carpet, flags = CHANGETURF_INHERIT_AIR)
 	..()
 
 /datum/reagent/bromine

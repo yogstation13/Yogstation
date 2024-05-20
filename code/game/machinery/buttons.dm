@@ -10,6 +10,9 @@
 	var/device_type = null
 	var/id = null
 	var/initialized_button = 0
+	light_power = 0.5 // Minimums, we want the button to glow if it has a mask, not light an area
+	light_range = 1.5
+	light_color = LIGHT_COLOR_VIVID_GREEN
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, RAD = 100, FIRE = 90, ACID = 70)
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
@@ -25,7 +28,7 @@
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 		panel_open = TRUE
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 
 
 	if(!built && !device && device_type)
@@ -45,12 +48,20 @@
 /obj/machinery/button/update_icon_state()
 	. = ..()
 	if(panel_open)
-		icon_state = "button-open"
+		icon_state = "doorctrl-open"
 	else
 		if(stat & (NOPOWER|BROKEN))
 			icon_state = "[skin]-p"
 		else
 			icon_state = skin
+
+/obj/machinery/button/update_appearance()
+	. = ..()
+
+	if(panel_open || (stat & (NOPOWER|BROKEN)))
+		set_light(0)
+	else
+		set_light(initial(light_range), light_power, light_color)
 
 /obj/machinery/button/update_overlays()
 	. = ..()
@@ -61,11 +72,11 @@
 	if(board)
 		. += "button-board"
 
-/obj/machinery/button/attackby(obj/item/W, mob/user, params)
+/obj/machinery/button/attackby(obj/item/W, mob/living/user, params)
 	if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(panel_open || allowed(user))
-			default_deconstruction_screwdriver(user, "button-open", "[skin]",W)
-			update_appearance(UPDATE_ICON)
+			default_deconstruction_screwdriver(user, "doorctrl-open", "[skin]",W)
+			update_appearance()
 		else
 			to_chat(user, span_danger("Maintenance Access Denied"))
 			flick("[skin]-denied", src)
@@ -109,7 +120,7 @@
 					id = getnewid()
 					to_chat(user, span_notice("No ID found. Generating New ID"))
 
-				P.buffer = id
+				multitool_set_buffer(user, W, id)
 				to_chat(user, span_notice("You link the button to the [P]."))
 				setup_device() // Has to be done. It sets the signaller up
 			else
@@ -122,11 +133,12 @@
 				to_chat(user, span_notice("You wipe the button's ID."))
 				id = null
 
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		return
 
-	if(user.a_intent != INTENT_HARM && !(W.item_flags & NOBLUDGEON))
-		return attack_hand(user)
+	if(!user.combat_mode && !(W.item_flags & NOBLUDGEON))
+		var/list/modifiers = params2list(params)
+		return attack_hand(user, modifiers)
 	else if(istype(W, /obj/item/airlock_scanner))		//yogs start
 		var/obj/item/airlock_scanner/S = W
 		S.show_access(src, user)					//yogs end
@@ -155,7 +167,12 @@
 		A.id = id
 	initialized_button = 1
 
-/obj/machinery/button/attack_hand(mob/user)
+/obj/machinery/button/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	if(id)
+		id = "[id]"
+		setup_device()
+
+/obj/machinery/button/attack_hand(mob/user, modifiers)
 	. = ..()
 	if(.)
 		return
@@ -173,7 +190,7 @@
 				req_access = list()
 				req_one_access = list()
 				board = null
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 			to_chat(user, span_notice("You remove electronics from the button frame."))
 
 		else
@@ -319,6 +336,6 @@
 /obj/item/wallframe/button
 	name = "button frame"
 	desc = "Used for building buttons."
-	icon_state = "button"
+	icon_state = "doorctrl"
 	result_path = /obj/machinery/button
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)

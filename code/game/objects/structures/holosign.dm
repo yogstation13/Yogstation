@@ -7,19 +7,19 @@
 	anchored = TRUE
 	max_integrity = 1
 	armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 0, BIO = 0, RAD = 0, FIRE = 20, ACID = 20)
-	var/obj/item/holosign_creator/projector
 	resistance_flags = FREEZE_PROOF
+	var/obj/item/holosign_creator/projector
+	var/use_vis_overlay = TRUE
 
-/obj/structure/holosign/New(loc, source_projector)
+/obj/structure/holosign/Initialize(mapload, source_projector)
+	. = ..()
+	var/turf/our_turf = get_turf(src)
+	if(use_vis_overlay)
+		alpha = 0
+		SSvis_overlays.add_vis_overlay(src, icon, icon_state, ABOVE_MOB_LAYER, MUTATE_PLANE(GAME_PLANE, our_turf), dir, add_appearance_flags = RESET_ALPHA) //you see mobs under it, but you hit them like they are above it
 	if(source_projector)
 		projector = source_projector
-		projector.signs += src
-	..()
-
-/obj/structure/holosign/Initialize(mapload)
-	. = ..()
-	alpha = 0
-	SSvis_overlays.add_vis_overlay(src, icon, icon_state, ABOVE_MOB_LAYER, plane, dir, add_appearance_flags = RESET_ALPHA) //you see mobs under it, but you hit them like they are above it
+		LAZYADD(projector.signs, src)
 
 /obj/structure/holosign/Destroy()
 	if(projector)
@@ -92,7 +92,7 @@
 	slippery_floor = get_turf(src)
 	if(!slippery_floor?.GetComponent(/datum/component/slippery))
 		return INITIALIZE_HINT_QDEL
-	RegisterSignal(slippery_floor.GetComponent(/datum/component/slippery), COMSIG_PARENT_QDELETING, PROC_REF(del_self))
+	RegisterSignal(slippery_floor.GetComponent(/datum/component/slippery), COMSIG_QDELETING, PROC_REF(del_self))
 
 /obj/structure/holosign/barrier/wetsign/proc/del_self()
 	SIGNAL_HANDLER
@@ -110,6 +110,10 @@
 		var/mob/living/carbon/human/janitor = mover
 		if(istype(janitor.shoes, /obj/item/clothing/shoes/galoshes))
 			return TRUE
+	if(iscyborg(mover))
+		var/mob/living/silicon/robot/cyborg = mover
+		if(istype(cyborg.module, /obj/item/robot_module/janitor))
+			return TRUE
 
 /obj/structure/holosign/barrier/engineering
 	icon_state = "holosign_engi"
@@ -122,7 +126,7 @@
 	icon_state = "holo_firelock"
 	density = FALSE
 	anchored = TRUE
-	CanAtmosPass = ATMOS_PASS_NO
+	can_atmos_pass = ATMOS_PASS_NO
 	resistance_flags = FIRE_PROOF | FREEZE_PROOF
 	alpha = 150
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
@@ -130,7 +134,7 @@
 
 /obj/structure/holosign/barrier/atmos/Initialize(mapload)
 	. = ..()
-	air_update_turf(TRUE)
+	air_update_turf()
 
 /obj/structure/holosign/barrier/cyborg
 	name = "Energy Field"
@@ -181,8 +185,8 @@
 		return FALSE
 	return TRUE
 
-/obj/structure/holosign/barrier/medical/attack_hand(mob/living/user)
-	if(CanPass(user) && user.a_intent == INTENT_HELP)
+/obj/structure/holosign/barrier/medical/attack_hand(mob/living/user, modifiers)
+	if(CanPass(user) && !user.combat_mode)
 		force_allaccess = !force_allaccess
 		to_chat(user, span_warning("You [force_allaccess ? "deactivate" : "activate"] the biometric scanners.")) //warning spans because you can make the station sick!
 	else
@@ -233,7 +237,7 @@
 	icon_state = "[initial(icon_state)][stasis ? "" : "_off"]"
 
 /obj/structure/holobed/AltClick(mob/living/user)
-	if(user.a_intent == INTENT_HELP)
+	if(!user.combat_mode)
 		stasis = !stasis
 		handle_stasis(occupant)
 		update_appearance(UPDATE_ICON)
@@ -280,7 +284,7 @@
 	if(!shockcd)
 		if(ismob(user))
 			var/mob/living/M = user
-			M.electrocute_act(15,"Energy Barrier", safety=1)
+			M.electrocute_act(15,"Energy Barrier", zone=user.held_index_to_hand(user.active_hand_index)) // you touched it with your hand
 			shockcd = TRUE
 			addtimer(CALLBACK(src, PROC_REF(cooldown)), 5)
 
@@ -292,6 +296,6 @@
 		return
 
 	var/mob/living/M = AM
-	M.electrocute_act(15,"Energy Barrier", safety=1)
+	M.electrocute_act(15,"Energy Barrier", zone=null)
 	shockcd = TRUE
 	addtimer(CALLBACK(src, PROC_REF(cooldown)), 5)

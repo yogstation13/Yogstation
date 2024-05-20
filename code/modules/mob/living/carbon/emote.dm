@@ -33,6 +33,21 @@
 							'sound/misc/clap2.ogg',
 							'sound/misc/clap3.ogg',
 							'sound/misc/clap4.ogg')
+/datum/emote/living/carbon/clap/run_emote(user, params, type_override, intentional = FALSE)
+	. = ..()
+	if(!.)
+		return
+	var/area/A = get_area(user)
+	if(A)
+		if(rand(0, 10000) == 0)
+			A.lightswitch = !A.lightswitch
+			A.update_appearance(UPDATE_ICON)
+		
+			for(var/obj/machinery/light_switch/L in A)
+				L.update_appearance(UPDATE_ICON)
+		
+			A.power_change()
+
 
 /datum/emote/living/carbon/crack
 	key = "crack"
@@ -56,6 +71,7 @@
 	key = "meow"
 	key_third_person = "meows"
 	message = "meows."
+	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/simple_animal/pet/cat)
 	emote_type = EMOTE_AUDIBLE
 	cooldown = 10 SECONDS
 
@@ -63,7 +79,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	return iscatperson(user)
+	return iscatperson(user) || iscat(user)
 
 /datum/emote/living/carbon/moan
 	key = "moan"

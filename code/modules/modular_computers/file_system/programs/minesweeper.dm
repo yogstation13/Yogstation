@@ -154,6 +154,8 @@
 	var/difficulty = MINESWEEPER_BEGINNER
 	var/value = MINESWEEPER_BEGINNER
 	var/current_difficulty = "Beginner"
+	///determines if a game has been won while it is emagged or not
+	var/emagwin = FALSE
 
 	var/starting_time = 0
 	var/time_frozen = 0
@@ -200,7 +202,10 @@
 	return TRUE
 
 /datum/minesweeper/proc/change_difficulty(diff)
-	difficulty = diff
+	if(host.obj_flags & EMAGGED)
+		difficulty = MINESWEEPER_EXPERT
+	else	
+		difficulty = diff
 	return TRUE
 
 /datum/minesweeper/proc/new_game()
@@ -286,28 +291,7 @@
 	var/result = select_square(x,y)
 	game_status = result
 	if(result == MINESWEEPER_VICTORY)
-		play_snd('yogstation/sound/arcade/minesweeper_win.ogg')
-		host.say("You cleared the board of all mines! Congratulations!")
-		if(emaggable && host.obj_flags & EMAGGED && value >= 1)
-			var/itemname
-			switch(rand(1,3))
-				if(1)
-					itemname = "a syndicate bomb beacon"
-					new /obj/item/sbeacondrop/bomb(host.loc)
-				if(2)
-					itemname = "a rocket launcher"
-					new /obj/item/gun/ballistic/rocketlauncher/unrestricted(host.loc)
-					new /obj/item/ammo_casing/caseless/rocket/hedp(host.loc)
-					new /obj/item/ammo_casing/caseless/rocket/hedp(host.loc)
-					new /obj/item/ammo_casing/caseless/rocket/hedp(host.loc)
-				if(3)
-					itemname = "two bags of c4"
-					new /obj/item/storage/backpack/duffelbag/syndie/c4(host.loc)
-					new /obj/item/storage/backpack/duffelbag/syndie/x4(host.loc)
-			message_admins("[key_name_admin(user)] won emagged Minesweeper and got [itemname]!")
-			vis_msg(span_notice("[host] dispenses [itemname]!"), span_notice("You hear a chime and a clunk."))
-		else
-			ticket_count += value
+		winner_chicken_dinner(user)
 
 	if(result == MINESWEEPER_DEAD && emaggable && (host.obj_flags & EMAGGED))
 		// One crossed wire, one wayward pinch of potassium chlorate, ONE ERRANT TWITCH
@@ -318,6 +302,34 @@
 		time_frozen = REALTIMEOFDAY - starting_time
 
 	return TRUE
+
+/datum/minesweeper/proc/winner_chicken_dinner(mob/user)
+	play_snd('yogstation/sound/arcade/minesweeper_win.ogg')
+	host.say("You cleared the board of all mines! Congratulations!")
+	ticket_count += value
+	if(emaggable && host.obj_flags & EMAGGED && value >= 1 && !emagwin)
+		
+		if(difficulty != MINESWEEPER_EXPERT)
+			return
+		else
+			var/itemname
+			switch(rand(1,3))
+				if(1)
+					itemname = "a syndicate bomb beacon"
+					new /obj/item/sbeacondrop/bomb(host.loc)
+				if(2)
+					itemname = "two deployable syndicate mines disguised as ducks"
+					new /obj/item/deployablemine/traitor(host.loc)
+					new /obj/item/deployablemine/traitor(host.loc)
+				if(3)
+					itemname = "a bag of c4 & x4 charges"
+					new /obj/item/storage/backpack/duffelbag/syndie/c4(host.loc)
+					new /obj/item/storage/backpack/duffelbag/syndie/x4(host.loc)
+			emagwin = TRUE
+			message_admins("[user] won emagged Minesweeper and got [itemname]!")
+			vis_msg(span_notice("[host] dispenses [itemname]!"), span_notice("You hear a chime and a clunk."))
+			return
+
 
 /datum/minesweeper/proc/generate_new_board(diff)
 	board_data = new /list(31,18) // Fresh board
@@ -447,3 +459,4 @@
 
 /datum/minesweeper/proc/KABLOOEY()
 	explosion(get_turf(host),1,3,rand(1,5),rand(1,10))
+

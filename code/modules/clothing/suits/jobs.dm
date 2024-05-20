@@ -55,7 +55,7 @@
 	armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	heat_protection = CHEST|GROIN|LEGS|ARMS
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/suit/det_suit/Initialize(mapload)
 	. = ..()
@@ -104,7 +104,7 @@
 	desc = "A dapper private investigator's grey suit coat."
 	icon_state = "detsuit"
 	item_state = "detsuit"
-	mutantrace_variation = NO_MUTANTRACE_VARIATION //This should be done for any det_suit that isn't an overcoat, as to not require two sprites to deal with weird-ass legs
+	mutantrace_variation = NONE //This should be done for any det_suit that isn't an overcoat, as to not require two sprites to deal with weird-ass legs
 
 //Engineering
 /obj/item/clothing/suit/hazardvest
@@ -115,6 +115,7 @@
 	blood_overlay_type = "armor"
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/t_scanner, /obj/item/radio, /obj/item/extinguisher/mini)
 	resistance_flags = NONE
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 20) // slightly more OSHA-compliant!
 
 //Lawyer
 /obj/item/clothing/suit/toggle/lawyer
@@ -194,7 +195,7 @@
 	item_state = "techpriest"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	hoodtype = /obj/item/clothing/head/hooded/techpriest
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/head/hooded/techpriest
 	name = "techpriest's hood"

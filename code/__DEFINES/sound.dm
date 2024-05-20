@@ -3,7 +3,7 @@
 #define CHANNEL_ADMIN 1023
 #define CHANNEL_VOX 1022
 #define CHANNEL_JUKEBOX 1021
-#define CHANNEL_JUSTICAR_ARK 1020
+#define CHANNEL_JUSTICIAR_ARK 1020
 #define CHANNEL_HEARTBEAT 1019 //sound channel for heartbeats
 #define CHANNEL_AMBIENT_EFFECTS 1018
 #define CHANNEL_AMBIENT_MUSIC 1017
@@ -117,3 +117,62 @@
 #define ANNOUNCER_SHUTTLEDOCK		"announcer_shuttledock"
 #define ANNOUNCER_SHUTTLERECALLED	"announcer_shuttlerecalled"
 #define ANNOUNCER_SPANOMALIES		"announcer_spanomalies"
+
+/// Global list of all of our announcer keys.
+GLOBAL_LIST_INIT(announcer_keys, list(
+	ANNOUNCER_AIMALF,
+	ANNOUNCER_ALIENS,
+	ANNOUNCER_ANIMES,
+	ANNOUNCER_GRANOMALIES,
+	ANNOUNCER_INTERCEPT,
+	ANNOUNCER_IONSTORM,
+	ANNOUNCER_METEORS,
+	ANNOUNCER_OUTBREAK5,
+	ANNOUNCER_OUTBREAK7,
+	ANNOUNCER_POWEROFF,
+	ANNOUNCER_POWERON,
+	ANNOUNCER_RADIATION,
+	ANNOUNCER_SHUTTLECALLED,
+	ANNOUNCER_SHUTTLEDOCK,
+	ANNOUNCER_SHUTTLERECALLED,
+	ANNOUNCER_SPANOMALIES,
+))
+
+/// List of all of our sound keys.
+#define SFX_SHATTER "shatter"
+#define SFX_EXPLOSION "explosion"
+#define SFX_EXPLOSION_CREAKING "explosion_creaking"
+#define SFX_HULL_CREAKING "hull_creaking"
+#define SFX_SPARKS "sparks"
+#define SFX_SOFTSPARKS "softsparks"
+#define SFX_RUSTLE "rustle"
+#define SFX_BODYFALL "bodyfall"
+#define SFX_PUNCH "punch"
+#define SFX_CLOWNSTEP "clownstep"
+#define SFX_COLLARBELL "collarbell"
+#define SFX_SUITSTEP "suitstep"
+#define SFX_SWING_HIT "swing_hit"
+#define SFX_HISS "hiss"
+#define SFX_PAGE_TURN "pageturn"
+#define SFX_RICOCHET "ricochet"
+#define SFX_TERMINAL_TYPE "terminal_type"
+#define SFX_DESCERATION "desceration"
+#define SFX_IM_HERE "im_here"
+#define SFX_CAN_OPEN "can_open"
+#define SFX_BULLET_MISS "bullet_miss"
+#define SFX_GUN_INSERT_EMPTY_MAGAZINE "gun_insert_empty_magazine"
+#define SFX_GUN_INSERT_FULL_MAGAZINE "gun_insert_full_magazine"
+#define SFX_GUN_REMOVE_EMPTY_MAGAZINE "gun_remove_empty_magazine"
+#define SFX_GUN_SLIDE_LOCK "gun_slide_lock"
+#define SFX_REVOLVER_SPIN "revolver_spin"
+#define SFX_LAW "law"
+#define SFX_LAW_RUSSIAN "law_russian"
+#define SFX_HONKBOT_E "honkbot_e"
+#define SFX_GOOSE "goose"
+#define SFX_CRAWLING_SHADOWS_WALK "crawling_shadows_walk"
+#define SFX_SMCALM "smcalm"
+#define SFX_SMDELAM "smdelam"
+#define SFX_KEYSTROKE "keystroke"
+#define SFX_KEYBOARD "keyboard"
+#define SFX_BUTTON "button"
+#define SFX_SWITCH "switch"

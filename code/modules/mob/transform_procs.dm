@@ -69,7 +69,7 @@
 		O.set_suicide(suiciding)
 	if(hellbound)
 		O.hellbound = hellbound
-	O.a_intent = INTENT_HARM
+	O.set_combat_mode(TRUE, TRUE)
 
 	//keep viruses?
 	if (tr_flags & TR_KEEPVIRUS)
@@ -335,7 +335,7 @@
 				changeling.purchasedpowers -= HF
 				changeling.regain_powers()
 
-	O.a_intent = INTENT_HELP
+	O.set_combat_mode(FALSE, TRUE)
 	if (tr_flags & TR_DEFAULTMSG)
 		to_chat(O, "<B>You are now a human.</B>")
 
@@ -354,15 +354,13 @@
 
 	qdel(src)
 
-/mob/living/carbon/human/AIize(transfer_after = TRUE, client/preference_source)
-	if (notransform)
+/mob/living/carbon/human/AIize(client/preference_source, move = TRUE)
+	if(notransform)
 		return
-	for(var/t in bodyparts)
-		qdel(t)
 
 	return ..()
 
-/mob/living/carbon/AIize(transfer_after = TRUE, client/preference_source)
+/mob/living/carbon/AIize(client/preference_source, move = TRUE)
 	if (notransform)
 		return
 	notransform = TRUE
@@ -371,26 +369,23 @@
 		dropItemToGround(W)
 	regenerate_icons()
 	icon = null
-	invisibility = INVISIBILITY_MAXIMUM
+	SetInvisibility(INVISIBILITY_MAXIMUM)
 	return ..()
 
-/mob/proc/AIize(transfer_after = TRUE, client/preference_source)
-	var/valid_core = FALSE
+/mob/proc/AIize(client/preference_source, move = TRUE)
+	var/list/turf/core_loc = list()
 	for(var/obj/machinery/ai/data_core/core in GLOB.data_cores)
 		if(core.valid_data_core())
-			valid_core = TRUE
-			break
-	if(!valid_core)
+			core_loc |= core.loc
+	if(!length(core_loc))
 		message_admins("No valid data core for [src]. Yell at a mapper! The AI will die.")
 
 	if(client)
 		stop_sound_channel(CHANNEL_LOBBYMUSIC)
 
-	if(!transfer_after)
-		mind.active = FALSE
+	var/mob/living/silicon/ai/our_AI = new /mob/living/silicon/ai(pick(core_loc), null, src)
 
-	. = new /mob/living/silicon/ai(loc, null, src)
-
+	. = our_AI
 
 	if(preference_source)
 		apply_pref_name(/datum/preference/name/ai, preference_source)
@@ -479,7 +474,7 @@
 		if("Drone")
 			new_xeno = new /mob/living/carbon/alien/humanoid/drone(loc)
 
-	new_xeno.a_intent = INTENT_HARM
+	new_xeno.set_combat_mode(TRUE, TRUE)
 	new_xeno.key = key
 	update_atom_languages()
 
@@ -512,7 +507,7 @@
 		new_slime = pick(babies)
 	else
 		new_slime = new /mob/living/simple_animal/slime(loc)
-	new_slime.a_intent = INTENT_HARM
+	new_slime.set_combat_mode(TRUE, TRUE)
 	new_slime.key = key
 
 	to_chat(new_slime, "<B>You are now a slime. Skreee!</B>")
@@ -540,7 +535,7 @@
 		qdel(t)
 
 	var/mob/living/simple_animal/pet/dog/corgi/new_corgi = new /mob/living/simple_animal/pet/dog/corgi (loc)
-	new_corgi.a_intent = INTENT_HARM
+	new_corgi.set_combat_mode(TRUE, TRUE)
 	new_corgi.key = key
 
 	to_chat(new_corgi, "<B>You are now a Corgi. Yap Yap!</B>")
@@ -564,7 +559,7 @@
 	icon = null
 	invisibility = INVISIBILITY_MAXIMUM
 	var/mob/living/simple_animal/hostile/gorilla/new_gorilla = new (get_turf(src))
-	new_gorilla.a_intent = INTENT_HARM
+	new_gorilla.set_combat_mode(TRUE, TRUE)
 	if(mind)
 		mind.transfer_to(new_gorilla)
 	else
@@ -587,7 +582,7 @@
 		qdel(t)
 
 	var/mob/living/simple_animal/pacman/new_pacman = new /mob/living/simple_animal/pacman (loc)
-	new_pacman.a_intent = INTENT_HARM
+	new_pacman.set_combat_mode(TRUE, TRUE)
 	new_pacman.key = key
 
 	to_chat(new_pacman, "<B>You are now a pacman. I LOVE PACMAN!</B>")
@@ -618,10 +613,10 @@
 	for(var/t in bodyparts)
 		qdel(t)
 
-	var/mob/new_mob = new mobpath(src.loc)
+	var/mob/living/new_mob = new mobpath(src.loc)
 
 	new_mob.key = key
-	new_mob.a_intent = INTENT_HARM
+	new_mob.set_combat_mode(TRUE, TRUE)
 
 
 	to_chat(new_mob, "You suddenly feel more... animalistic.")
@@ -637,10 +632,10 @@
 		to_chat(usr, span_danger("Sorry but this mob type is currently unavailable."))
 		return
 
-	var/mob/new_mob = new mobpath(src.loc)
+	var/mob/living/new_mob = new mobpath(src.loc)
 
 	new_mob.key = key
-	new_mob.a_intent = INTENT_HARM
+	new_mob.set_combat_mode(TRUE, TRUE)
 	to_chat(new_mob, "You feel more... animalistic")
 
 	. = new_mob

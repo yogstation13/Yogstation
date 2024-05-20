@@ -19,7 +19,7 @@
 	response_harm   = "stomps on"
 	emote_see = list("jiggles", "bounces in place")
 	speak_emote = list("blorbles")
-	bubble_icon = "slime"
+	bubble_icon = BUBBLE_SLIME
 	initial_language_holder = /datum/language_holder/slime
 
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -311,7 +311,7 @@
 /mob/living/simple_animal/slime/start_pulling(atom/movable/AM, state, force = move_force, supress_message = FALSE)
 	return
 
-/mob/living/simple_animal/slime/attack_ui(slot)
+/mob/living/simple_animal/slime/attack_ui(slot, params)
 	return
 
 /mob/living/simple_animal/slime/attack_slime(mob/living/simple_animal/slime/M)
@@ -345,11 +345,11 @@
 		attacked += 10
 
 /mob/living/simple_animal/slime/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		discipline_slime(user)
 		return ..()
 
-/mob/living/simple_animal/slime/attack_hand(mob/living/carbon/human/M)
+/mob/living/simple_animal/slime/attack_hand(mob/living/carbon/human/M, modifiers)
 	if(buckled)
 		M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 		if(buckled == M)
@@ -375,25 +375,25 @@
 				discipline_slime(M)
 	else
 		if(stat == DEAD && surgeries.len)
-			if(M.a_intent == INTENT_HELP || M.a_intent == INTENT_DISARM)
+			if(!M.combat_mode)
 				for(var/datum/surgery/S in surgeries)
-					if(S.next_step(M,M.a_intent))
+					if(S.next_step(M, modifiers))
 						return 1
 		if(..()) //successful attack
 			attacked += 10
 
 /mob/living/simple_animal/slime/attack_alien(mob/living/carbon/alien/humanoid/M)
-	if(..()) //if harm or disarm intent.
+	if(..()) //punching or shoving.
 		attacked += 10
 		discipline_slime(M)
 
 
 /mob/living/simple_animal/slime/attackby(obj/item/W, mob/living/user, params)
-	if(stat == DEAD && surgeries.len)
-		if(user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM)
-			for(var/datum/surgery/S in surgeries)
-				if(S.next_step(user,user.a_intent))
-					return 1
+	if(stat == DEAD && surgeries.len && !user.combat_mode)
+		var/list/modifiers = params2list(params)
+		for(var/datum/surgery/S in surgeries)
+			if(S.next_step(user, modifiers))
+				return 1
 	if(istype(W, /obj/item/stack/sheet/mineral/plasma) && !stat) //Let's you feed slimes plasma.
 		add_friendship(user, 1)
 		to_chat(user, span_notice("You feed the slime the plasma. It chirps happily."))
@@ -542,34 +542,34 @@
 	var/old_target = Target
 	Target = new_target
 	if(old_target && !SLIME_CARES_ABOUT(old_target))
-		UnregisterSignal(old_target, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(old_target, COMSIG_QDELETING)
 	if(Target)
-		RegisterSignal(Target, COMSIG_PARENT_QDELETING, PROC_REF(clear_memories_of), override = TRUE)
+		RegisterSignal(Target, COMSIG_QDELETING, PROC_REF(clear_memories_of), override = TRUE)
 
 /mob/living/simple_animal/slime/proc/set_leader(new_leader)
 	var/old_leader = Leader
 	Leader = new_leader
 	if(old_leader && !SLIME_CARES_ABOUT(old_leader))
-		UnregisterSignal(old_leader, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(old_leader, COMSIG_QDELETING)
 	if(Leader)
-		RegisterSignal(Leader, COMSIG_PARENT_QDELETING, PROC_REF(clear_memories_of), override = TRUE)
+		RegisterSignal(Leader, COMSIG_QDELETING, PROC_REF(clear_memories_of), override = TRUE)
 
 /mob/living/simple_animal/slime/proc/add_friendship(new_friend, amount = 1)
 	if(!Friends[new_friend])
 		Friends[new_friend] = 0
 	Friends[new_friend] += amount
 	if(new_friend)
-		RegisterSignal(new_friend, COMSIG_PARENT_QDELETING, PROC_REF(clear_memories_of), override = TRUE)
+		RegisterSignal(new_friend, COMSIG_QDELETING, PROC_REF(clear_memories_of), override = TRUE)
 
 /mob/living/simple_animal/slime/proc/set_friendship(new_friend, amount = 1)
 	Friends[new_friend] = amount
 	if(new_friend)
-		RegisterSignal(new_friend, COMSIG_PARENT_QDELETING, PROC_REF(clear_memories_of), override = TRUE)
+		RegisterSignal(new_friend, COMSIG_QDELETING, PROC_REF(clear_memories_of), override = TRUE)
 
 /mob/living/simple_animal/slime/proc/remove_friend(friend)
 	Friends -= friend
 	if(friend && !SLIME_CARES_ABOUT(friend))
-		UnregisterSignal(friend, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(friend, COMSIG_QDELETING)
 
 /mob/living/simple_animal/slime/proc/set_friends(new_buds)
 	clear_friends()

@@ -39,7 +39,6 @@
 	melee_damage_upper = 20
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	faction = list("spiders")
-	var/busy = SPIDER_IDLE
 	pass_flags = PASSTABLE
 	move_to_delay = 6
 	ventcrawler = VENTCRAWLER_ALWAYS
@@ -47,12 +46,11 @@
 	attack_sound = 'sound/weapons/bite.ogg'
 	unique_name = 1
 	gold_core_spawnable = HOSTILE_SPAWN
-	see_in_dark = 4
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+
+	footstep_type = FOOTSTEP_MOB_CLAW
+	var/busy = SPIDER_IDLE
 	var/playable_spider = FALSE
 	var/directive = "" //Message passed down to children, to relay the creator's orders
-
-	do_footstep = TRUE
 
 /mob/living/simple_animal/hostile/poison/giant_spider/Initialize(mapload)
 	. = ..()
@@ -192,7 +190,7 @@
 	gold_core_spawnable = NO_SPAWN
 	var/slowed_by_webs = FALSE
 
-/mob/living/simple_animal/hostile/poison/giant_spider/tarantula/Moved(atom/oldloc, dir)
+/mob/living/simple_animal/hostile/poison/giant_spider/tarantula/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(slowed_by_webs)
 		if(!(locate(/obj/structure/spider/stickyweb) in loc))

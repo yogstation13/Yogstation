@@ -7,6 +7,7 @@ GLOBAL_LIST_EMPTY(stealthminID)						//reference list with IDs that store ckeys,
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
 
 GLOBAL_LIST_EMPTY(player_list)				//all mobs **with clients attached**.
+GLOBAL_LIST_EMPTY(keyloop_list) //as above but can be limited to boost performance
 GLOBAL_LIST_EMPTY(mob_list)					//all mobs, including clientless
 GLOBAL_LIST_EMPTY(mob_directory)			//mob_id -> mob
 GLOBAL_LIST_EMPTY(alive_mob_list)			//all alive mobs, including clientless. Excludes /mob/dead/new_player
@@ -14,6 +15,7 @@ GLOBAL_LIST_EMPTY(suicided_mob_list)		//contains a list of all mobs that suicide
 GLOBAL_LIST_EMPTY(drones_list)
 GLOBAL_LIST_EMPTY(dead_mob_list)			//all dead mobs, including clientless. Excludes /mob/dead/new_player
 GLOBAL_LIST_EMPTY(joined_player_list)		//all clients that have joined the game at round-start or as a latejoin.
+GLOBAL_LIST_EMPTY(new_player_list) 			//all /mob/dead/new_player, in theory all should have clients and those that don't are in the process of spawning and get deleted when done.
 GLOBAL_LIST_EMPTY(silicon_mobs)				//all silicon mobs
 GLOBAL_LIST_EMPTY(mob_living_list)				//all instances of /mob/living and subtypes
 GLOBAL_LIST_EMPTY(carbon_list)				//all instances of /mob/living/carbon and subtypes, notably does not contain brains or simple animals
@@ -24,7 +26,6 @@ GLOBAL_LIST_INIT(simple_animals, list(list(),list(),list(),list())) // One for e
 GLOBAL_LIST_EMPTY(spidermobs)				//all sentient spider mobs
 GLOBAL_LIST_EMPTY(bots_list)
 GLOBAL_LIST_EMPTY(aiEyes)
-GLOBAL_LIST_EMPTY(new_player_list)			//all /mob/dead/new_player, in theory all should have clients and those that don't are in the process of spawning and get deleted when done.
 ///underages who have been reported to security for trying to buy things they shouldn't, so they can't spam
 GLOBAL_LIST_EMPTY(narcd_underages)
 
@@ -38,6 +39,14 @@ GLOBAL_LIST_EMPTY(latejoin_ai_cores)
 GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)
 
 GLOBAL_LIST_EMPTY(emote_list)
+
+GLOBAL_LIST_INIT(blood_types, generate_blood_types())
+
+/proc/generate_blood_types()
+	. = list()
+	for(var/path in subtypesof(/datum/blood_type))
+		var/datum/blood_type/new_type = new path()
+		.[new_type.name] = new_type
 
 /// Keys are the names of the accents, values are the name of their .json file.
 GLOBAL_LIST_INIT(accents_name2file, strings("accents.json", "accent_file_names", directory = "strings/accents"))

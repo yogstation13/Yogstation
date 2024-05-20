@@ -3,7 +3,7 @@
 /obj/item/ammo_casing/a357
 	name = ".357 magnum bullet casing"
 	desc = "A .357 magnum bullet casing."
-	caliber = "357"
+	caliber = CALIBER_357MAG
 	projectile_type = /obj/projectile/bullet/a357
 
 /obj/item/ammo_casing/a357/ironfeather
@@ -39,7 +39,7 @@
 	name = ".44 magnum bullet casing"
 	desc = "A .44 magnum bullet casing."
 	icon_state = "44-casing"
-	caliber = "44"
+	caliber = CALIBER_44MAG
 	projectile_type = /obj/projectile/bullet/m44
 
 // 7.62x38mmR (Nagant Revolver)
@@ -47,7 +47,7 @@
 /obj/item/ammo_casing/n762
 	name = "7.62x38mmR bullet casing"
 	desc = "A 7.62x38mmR bullet casing."
-	caliber = "n762"
+	caliber = CALIBER_762X38R
 	projectile_type = /obj/projectile/bullet/n762
 
 // .38 (Colt Detective Special + Vatra M38)
@@ -55,7 +55,7 @@
 /obj/item/ammo_casing/c38
 	name = ".38 special bullet casing"
 	desc = "A .38 special bullet casing."
-	caliber = "38"
+	caliber = CALIBER_38
 	projectile_type = /obj/projectile/bullet/c38
 
 /obj/item/ammo_casing/c38/rubber
@@ -88,5 +88,5 @@
 /obj/item/ammo_casing/tra32
 	name = ".32 TRAC bullet casing"
 	desc = "A .32 TRAC bullet casing."
-	caliber = "32trac"
+	caliber = CALIBER_32ACP
 	projectile_type = /obj/projectile/bullet/tra32

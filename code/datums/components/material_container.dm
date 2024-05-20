@@ -38,8 +38,8 @@
 	precondition = _precondition
 	after_insert = _after_insert
 
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(OnAttackBy))
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(OnExamine))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(OnAttackBy))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(OnExamine))
 
 	for(var/mat in mat_list) //Make the assoc list ref | amount
 		var/datum/material/M = getmaterialref(mat) || mat
@@ -58,7 +58,7 @@
 	var/list/tc = allowed_typecache
 	if(disable_attackby)
 		return
-	if(user.a_intent != INTENT_HELP)
+	if(user.combat_mode)
 		return
 	if(I.item_flags & ABSTRACT)
 		return

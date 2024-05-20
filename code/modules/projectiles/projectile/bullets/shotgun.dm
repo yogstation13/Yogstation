@@ -6,6 +6,7 @@
 	damage = 46 //About 2/3's the damage of buckshot but doesn't suffer from spread or negative AP
 	sharpness = SHARP_POINTY
 	wound_bonus = -30
+	demolition_mod = 2 // good at smashing through stuff
 
 /obj/projectile/bullet/shotgun/slug/syndie
 	name = "12g syndicate shotgun slug"
@@ -74,7 +75,8 @@
 	damage = 35 //Most certainly to drop below 3-shot threshold because of damage falloff
 	armour_penetration = 60 // he he funny round go through armor
 	wound_bonus = -40
-	penetrating = TRUE //Goes through an infinite number of mobs
+	demolition_mod = 3 // very good at smashing through stuff
+	penetrations = INFINITY //Goes through an infinite number of mobs
 
 /obj/projectile/bullet/shotgun/slug/Range()
 	..()
@@ -88,6 +90,7 @@
 	var/tile_dropoff = 0.4
 	var/tile_dropoff_s = 0.3
 	armour_penetration = -20 //Armor is 25% stronger against pellets
+	demolition_mod = 0.5 // bad at smashing through stuff
 
 /obj/projectile/bullet/pellet/shotgun_buckshot
 	name = "buckshot pellet"
@@ -200,10 +203,11 @@
 	desc = "A breaching round designed to destroy airlocks and windows with only a few shots, but is ineffective against other targets."
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
 	damage = 10 //does shit damage to everything except doors and windows
+	demolition_mod = 6 //not that bad at breaking things
 
 /obj/projectile/bullet/shotgun/slug/breaching/on_hit(atom/target)
-	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
-		damage = 500 //one shot to break a window or 3 shots to breach an airlock door
+	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly) || istype(target, /obj/structure/grille))
+		demolition_mod = 50 //one shot to break a window or 3 shots to breach an airlock door
 	..()
 
 /obj/projectile/bullet/pellet/hardlight

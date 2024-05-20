@@ -480,7 +480,7 @@
 /datum/outfit/gangster
 	name = "Gangster (Preview only)"
 	mask = /obj/item/clothing/mask/cigarette/cigar/havana
-	uniform = /obj/item/clothing/under/rank/vice
+	uniform = /obj/item/clothing/under/suit/vice
 	neck = /obj/item/clothing/neck/necklace/dope
 	head = /obj/item/clothing/head/fedora
 
@@ -514,7 +514,7 @@
 
 /datum/team/gang/proc/domination()
 	domination_time = world.time + determine_domination_time()*10
-	set_security_level("delta")
+	SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 
 /datum/team/gang/proc/determine_domination_time() // calculates the value in seconds (this is the initial domination time!)
 	var/total_territories = total_claimable_territories()

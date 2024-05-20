@@ -2,7 +2,7 @@
 	name = "Szlachta"
 	id = "szlachta"
 	limbs_id = "szlachta"
-	sexes = FALSE
+	possible_genders = list(PLURAL)
 	nojumpsuit = TRUE
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
 	siemens_coeff = 0
@@ -17,7 +17,7 @@
 	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,
 							TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER,
 							TRAIT_MONKEYLIKE, TRAIT_NOCRITDAMAGE, TRAIT_GENELESS, TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_HARDLY_WOUNDED, TRAIT_HUSK)
-	mutanteyes = /obj/item/organ/eyes/night_vision/alien
+	mutanteyes = /obj/item/organ/eyes/alien
 
 /datum/species/szlachta/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()

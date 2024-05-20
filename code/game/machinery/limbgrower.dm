@@ -126,7 +126,7 @@
 	return
 //end yog (please)
 
-/obj/machinery/limbgrower/attackby(obj/item/user_item, mob/user, params)
+/obj/machinery/limbgrower/attackby(obj/item/user_item, mob/living/user, params)
 	if (busy)
 		to_chat(user, span_alert("The Limb Grower is busy. Please wait for completion of previous operation."))
 		return
@@ -169,7 +169,7 @@
 	if(panel_open && default_deconstruction_crowbar(user_item))
 		return
 
-	if(user.a_intent == INTENT_HARM) //so we can hit the machine
+	if(user.combat_mode) //so we can hit the machine
 		return ..()
 
 /obj/machinery/limbgrower/ui_act(action, list/params)

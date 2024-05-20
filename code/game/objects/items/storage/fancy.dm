@@ -20,6 +20,7 @@
 	var/icon_type = "donut"
 	var/spawn_type = null
 	var/fancy_open = FALSE
+	var/can_toggle = TRUE //some things are always open like candles
 
 /obj/item/storage/fancy/PopulateContents()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
@@ -42,8 +43,9 @@
 			. += "There are [contents.len <= 0 ? "no" : "[contents.len]"] [icon_type]s left."
 
 /obj/item/storage/fancy/attack_self(mob/user)
-	fancy_open = !fancy_open
-	update_appearance(UPDATE_ICON)
+	if(can_toggle)
+		fancy_open = !fancy_open
+		update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/item/storage/fancy/Exited()
@@ -152,6 +154,8 @@
 	slot_flags = ITEM_SLOT_BELT
 	spawn_type = /obj/item/candle
 	fancy_open = TRUE
+	can_toggle = FALSE
+
 
 /obj/item/storage/fancy/candle_box/attack_self(mob_user)
 	. = ..()
@@ -193,7 +197,7 @@
 
 /obj/item/storage/fancy/cigarettes/PopulateContents()
 	for(var/i in 1 to 6)
-		new /obj/item/clothing/mask/cigarette(src)
+		new /obj/item/clothing/mask/cigarette/space_cigarette(src)
 
 /obj/item/storage/fancy/cigarettes/examine(mob/user)
 	. = ..()
@@ -503,3 +507,5 @@
 /obj/item/storage/fancy/nugget_box/PopulateContents()
 	for(var/i in 1 to 6)
 		new /obj/item/reagent_containers/food/snacks/nugget(src)
+
+

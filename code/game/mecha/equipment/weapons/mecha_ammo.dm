@@ -68,6 +68,13 @@
 	rounds = 5
 	ammo_type = "bfg"
 
+/obj/item/mecha_ammo/venom
+	name = "venom ammo"
+	desc = "A box of venom ammunition for use with the Syndicate LIGMA Snakebite Carbine. No, they don't fit in your C-20r, stop trying."
+	icon_state = "venom"
+	rounds = 24
+	ammo_type = "venom"
+
 /obj/item/mecha_ammo/missiles_br
 	name = "breaching missiles"
 	desc = "A box of large missiles, ready for loading into a BRM-6 exosuit missile rack."

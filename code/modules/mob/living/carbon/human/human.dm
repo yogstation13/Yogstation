@@ -11,8 +11,11 @@
 
 	icon_state = ""		//Remove the inherent human icon that is visible on the map editor. We're rendering ourselves limb by limb, having it still be there results in a bug where the basic human icon appears below as south in all directions and generally looks nasty.
 
+	physiology = new() //create physiology early so organs and bodyparts can modify it
+
 	//initialize limbs first
 	create_bodyparts()
+
 
 	setup_human_dna()
 
@@ -26,12 +29,17 @@
 
 	//initialise organs
 	create_internal_organs() //most of it is done in set_species now, this is only for parent call
-	physiology = new()
 
 	. = ..()
 
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_FACE_ACT, PROC_REF(clean_face))
 	AddComponent(/datum/component/personal_crafting)
+	AddElement(/datum/element/footstep, FOOTSTEP_MOB_HUMAN, 1, -6)
+	AddComponent(/datum/component/bloodysoles/feet, FOOTPRINT_SPRITE_SHOES)
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /mob/living/carbon/human/proc/setup_human_dna()
 	//initialize dna. for spawned humans; overwritten by other code
@@ -54,10 +62,15 @@
 	//...and display them.
 	add_to_all_human_data_huds()
 
+/mob/living/carbon/human/reset_perspective(atom/new_eye, force_reset = FALSE)
+	if(dna?.species?.prevent_perspective_change && !force_reset) // This is in case a species needs to prevent perspective changes in certain cases, like Dullahans preventing perspective changes when they're looking through their head.
+		update_fullscreen()
+		return
+	return ..()
 
 /mob/living/carbon/human/get_status_tab_items()
 	. = ..()
-	. += "Intent: [a_intent]"
+	. += "Combat mode: [combat_mode ? "On" : "Off"]"
 	. += "Move Mode: [m_intent]"
 	var/obj/item/tank/target_tank = internal || external
 	if(target_tank)
@@ -251,12 +264,11 @@
 
 // called when something steps onto a human
 // this could be made more general, but for now just handle mulebot
-/mob/living/carbon/human/Crossed(atom/movable/AM)
+/mob/living/carbon/human/proc/on_entered(datum/source, atom/movable/AM, ...)
 	var/mob/living/simple_animal/bot/mulebot/MB = AM
 	if(istype(MB))
 		MB.RunOver(src)
 
-	. = ..()
 	spreadFire(AM)
 
 /mob/living/carbon/human/Topic(href, href_list)
@@ -281,6 +293,12 @@
 			if(!has_embedded_objects())
 				clear_alert("embeddedobject")
 				SEND_SIGNAL(usr, COMSIG_CLEAR_MOOD_EVENT, "embedded")
+		return
+	if(href_list["lookup_info"])
+		switch(href_list["lookup_info"])
+			if("open_examine_panel")
+				tgui.holder = src
+				tgui.ui_interact(usr) //datum has a tgui component, here we open the window
 		return
 
 	if(href_list["item"]) //canUseTopic check for this is handled by mob/Topic()
@@ -538,6 +556,14 @@
 		// Might need re-wording.
 		to_chat(user, span_alert("There is no exposed flesh or thin material [above_neck(target_zone) ? "on [p_their()] head" : "on [p_their()] body"]."))
 
+/mob/living/carbon/human/get_butt_sprite()
+	return dna?.species?.get_butt_sprite(src)
+
+/mob/living/carbon/human/get_footprint_sprite()
+	var/obj/item/bodypart/l_leg/left_leg = get_bodypart(BODY_ZONE_L_LEG)
+	var/obj/item/bodypart/r_leg/right_leg = get_bodypart(BODY_ZONE_R_LEG)
+	return shoes?.footprint_sprite || left_leg?.footprint_sprite || right_leg?.footprint_sprite
+
 /mob/living/carbon/human/assess_threat(judgement_criteria, lasercolor = "", datum/callback/weaponcheck=null)
 	if(judgement_criteria & JUDGE_EMAGGED)
 		return 10 //Everyone is a criminal!
@@ -618,7 +644,8 @@
 		facial_hair_style = "Full Beard"
 	else
 		facial_hair_style = "Shaved"
-	hair_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
+	if(!HAS_TRAIT(src, TRAIT_BALD))
+		hair_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
 	underwear = "Nude"
 	update_body()
 	update_hair()
@@ -707,8 +734,8 @@
 #undef CPR_PANIC_SPEED
 
 /mob/living/carbon/human/cuff_resist(obj/item/I)
-	if(dna && (dna.check_mutation(HULK) || dna.check_mutation(ACTIVE_HULK)))
-		say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
+	if(dna && (dna.check_mutation(HULK)))
+		say(pick("RAAAAAAAARGH!", "HNNNNNNNNNGGGGGGH!", "GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", "AAAAAAARRRGH!" ), forced = "hulk")
 		if(..(I, cuff_break = FAST_CUFFBREAK))
 			dropItemToGround(I)
 	else
@@ -1004,14 +1031,14 @@
 			piggyback(target)
 			return
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
-		else if(user != target && user.a_intent == INTENT_GRAB && can_be_firemanned(target))
+		else if(user != target && can_be_firemanned(target))
 			fireman_carry(target)
 			return
-	. = ..()
+	return ..()
 
 //src is the user that will be carrying, target is the mob to be carried
 /mob/living/carbon/human/proc/can_piggyback(mob/living/carbon/target)
-	if (istype(target) && target.stat == CONSCIOUS && src.a_intent == INTENT_HELP)
+	if (istype(target) && target.stat == CONSCIOUS && !combat_mode)
 		return TRUE
 	return FALSE
 
@@ -1020,7 +1047,7 @@
 
 /mob/living/carbon/human/proc/fireman_carry(mob/living/carbon/target)
 	var/carrydelay = 50 //if you have latex you are faster at grabbing
-	var/skills_space = "" // Changes depending on glove type
+	var/skills_space = null // Changes depending on glove type
 	if(HAS_TRAIT(src, TRAIT_QUICKEST_CARRY))
 		carrydelay = 25
 		skills_space = "masterfully"
@@ -1033,7 +1060,7 @@
 	if(can_be_firemanned(target) && !incapacitated(FALSE, TRUE))
 		visible_message(span_notice("[src] starts [skills_space] lifting [target] onto their back.."),
 		//Joe Medic starts quickly/expertly lifting Grey Tider onto their back..
-		span_notice("[carrydelay < 35 ? "Using your gloves' nanochips, you" : "You"] [skills_space] start to lift [target] onto your back[carrydelay == 40 ? ", while assisted by the nanochips in your gloves.." : "..."]"))
+		span_notice("[carrydelay < 35 ? "Using your gloves' nanochips, you" : "You"] [skills_space ? "[skills_space] " : ""]start to lift [target] onto your back[carrydelay == 40 ? ", while assisted by the nanochips in your gloves.." : "..."]"))
 		//(Using your gloves' nanochips, you/You) ( /quickly/expertly) start to lift Grey Tider onto your back(, while assisted by the nanochips in your gloves../...)
 		if(do_after(src, carrydelay, target))
 			//Second check to make sure they're still valid to be carried
@@ -1073,7 +1100,7 @@
 		target.visible_message(span_warning("[target] really can't seem to mount [src]..."))
 		return
 	buckle_lying = lying_buckle
-	var/datum/component/riding/human/riding_datum = LoadComponent(/datum/component/riding/human)
+	var/datum/component/riding/human/riding_datum = AddComponent(/datum/component/riding/human)
 	if(target_hands_needed)
 		riding_datum.ride_check_rider_restrained = TRUE
 	if(buckled_mobs && ((target in buckled_mobs) || (buckled_mobs.len >= max_buckled_mobs)) || buckled)
@@ -1127,12 +1154,8 @@
 		remove_movespeed_modifier(MOVESPEED_ID_CRAWL_MODIFIER, TRUE)
 
 /mob/living/carbon/human/updatehealth()
-	var/oldhealth = health
 	. = ..()
 	dna?.species.spec_updatehealth(src)
-	if(!dna)
-		return
-	hulk_health_check(oldhealth)
 
 /mob/living/carbon/human/adjust_nutrition(change) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
@@ -1184,18 +1207,15 @@
 /mob/living/carbon/human/species
 	var/race = null
 
-/mob/living/carbon/human/species/Initialize(mapload)
-	. = ..()
-	set_species(race)
+/mob/living/carbon/human/species/create_dna()
+	dna = new /datum/dna(src)
+	dna.species = new race()
 
 /mob/living/carbon/human/species/abductor
 	race = /datum/species/abductor
 
 /mob/living/carbon/human/species/android
 	race = /datum/species/android
-
-/mob/living/carbon/human/species/corporate
-	race = /datum/species/corporate
 
 /mob/living/carbon/human/species/dullahan
 	race = /datum/species/dullahan
@@ -1345,12 +1365,15 @@
 
 /mob/living/carbon/human/species/ipc/empty/Initialize(mapload)
 	. = ..()
+	var/old_deathsound = deathsound
 	deathsound = null //make it a silent death
 	death()
 	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN) // There's no brain in here, perfect for recruitment to security
 	if(B)
 		B.Remove(src)
 		QDEL_NULL(B)
+	// By this point they are allowed to die loudly again
+	deathsound = old_deathsound
 
 /mob/living/carbon/human/species/plasma
 	race = /datum/species/plasmaman
@@ -1373,12 +1396,6 @@
 /mob/living/carbon/human/species/skeleton/lowcalcium
 	race = /datum/species/skeleton/lowcalcium
 
-/mob/living/carbon/human/species/synth
-	race = /datum/species/synth
-
-/mob/living/carbon/human/species/synth/military
-	race = /datum/species/synth/military
-
 /mob/living/carbon/human/species/vampire
 	race = /datum/species/vampire
 
@@ -1391,35 +1408,5 @@
 /mob/living/carbon/human/species/zombie/krokodil_addict
 	race = /datum/species/krokodil_addict
 
-/mob/living/carbon/human/proc/hulk_health_check(oldhealth)
-	if(!dna)
-		return
-
-	if(dna.check_mutation(ACTIVE_HULK))
-		if(health < HEALTH_THRESHOLD_CRIT)
-			dna.remove_mutation(ACTIVE_HULK)
-			return
-		if(health < oldhealth)
-			adjustStaminaLoss(-1.5 * (oldhealth - health))
-	else
-		if(!dna.check_mutation(HULK) && dna.check_mutation(GENETICS_HULK) && stat == CONSCIOUS && (oldhealth >= health + 10 || health < (0.5 * maxHealth)))
-			dna.add_mutation(ACTIVE_HULK)
-
-/mob/living/carbon/human/proc/hulk_stamina_check()
-	if(dna.check_mutation(ACTIVE_HULK))
-		if(staminaloss < 60 && prob(1))
-			adjust_confusion(7 SECONDS)
-			say("HULK SMASH!!")
-		if(staminaloss >= 90)
-			dna.remove_mutation(ACTIVE_HULK)
-			to_chat(src, span_notice("You have calm down enough to become human again."))
-			Knockdown(6)
-		return TRUE
-	else
-		return FALSE
-
-/mob/living/carbon/human/Bump(atom/movable/AM)
-	..()
-	if(dna.check_mutation(ACTIVE_HULK) && has_status_effect(/datum/status_effect/confusion) && (world.time - last_bumped) > 15)
-		Bumped(AM)
-		return AM.attack_hulk(src)
+/mob/living/carbon/human/species/zombie/preternis
+	race = /datum/species/preternis/zombie

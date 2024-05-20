@@ -16,7 +16,9 @@
 	icon_state = "space"
 	requires_power = TRUE
 	always_unpowered = TRUE
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = FALSE
+
+	base_lighting_alpha = 255
 	has_gravity = FALSE
 	power_light = FALSE
 	power_equip = FALSE
@@ -503,7 +505,6 @@
 	name = "Syndicate Derelict Solar Array"
 	icon_state = "yellow"
 	requires_power = FALSE
-	dynamic_lighting = DYNAMIC_LIGHTING_IFSTARLIGHT
 
 /area/ruin/space/has_grav/syndiederelict/hydroponics
 	name = "Syndicate Derelict Hydroponics"

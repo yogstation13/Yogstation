@@ -11,7 +11,7 @@
 	user << browse(create_panel_helper(create_mob_html), "window=create_mob;size=425x475")
 
 /proc/randomize_human(mob/living/carbon/human/human)
-	human.gender = pick(MALE, FEMALE)
+	human.gender = human.dna ? pick(human.dna.species.possible_genders) : pick(MALE, FEMALE, PLURAL, NEUTER)
 	human.real_name = human.dna?.species.random_name(human.gender) || random_unique_name(human.gender)
 	human.name = human.real_name
 	human.underwear = random_underwear(human.gender)
@@ -38,6 +38,10 @@
 	human.dna.features["dome"] = pick(GLOB.dome_list)
 	human.dna.features["dorsal_tubes"] = pick(GLOB.dorsal_tubes_list)
 	human.dna.features["ethereal_mark"] = pick(GLOB.ethereal_mark_list)
+	human.dna.features["preternis_weathering"] = pick(GLOB.preternis_weathering_list)
+	human.dna.features["preternis_antenna"] = pick(GLOB.preternis_antenna_list)
+	human.dna.features["preternis_eye"] = pick(GLOB.preternis_eye_list)
+	human.dna.features["preternis_core"] = pick(GLOB.preternis_core_list)
 	human.dna.features["pod_hair"] = pick(GLOB.pod_hair_list)
 	human.dna.features["pod_flower"] = GLOB.pod_flower_list[human.dna.features["pod_hair"]]
 

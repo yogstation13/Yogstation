@@ -29,7 +29,7 @@
 	icon_state = "compressor"
 	density = TRUE
 	resistance_flags = FIRE_PROOF
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	use_power = NO_POWER_USE // powered by gas flow
 	circuit = /obj/item/circuitboard/machine/power_compressor
 	var/obj/machinery/power/turbine/turbine
@@ -44,7 +44,7 @@
 	var/intake_ratio = 0.1 // might add a way to adjust this in-game later
 
 /obj/machinery/power/compressor/Destroy()
-	SSair.atmos_machinery.Remove(src)
+	SSair.stop_processing_machine(src)
 	if (turbine && turbine.compressor == src)
 		turbine.compressor = null
 	var/turf/T = get_turf(src)
@@ -62,7 +62,7 @@
 	icon_state = "turbine"
 	density = TRUE
 	resistance_flags = FIRE_PROOF
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	use_power = NO_POWER_USE // powered by gas flow
 	circuit = /obj/item/circuitboard/machine/power_turbine
 	var/opened = 0
@@ -72,7 +72,7 @@
 	var/productivity = 1
 
 /obj/machinery/power/turbine/Destroy()
-	SSair.atmos_machinery.Remove(src)
+	SSair.stop_processing_machine(src)
 	if (compressor && compressor.turbine == src)
 		compressor.turbine = null
 	compressor = null
@@ -91,13 +91,13 @@
 
 /obj/machinery/power/compressor/Initialize(mapload)
 	. = ..()
-	SSair.atmos_machinery += src
+	SSair.start_processing_machine(src)
 	// The inlet of the compressor is the direction it faces
 	gas_contained = new
 	inturf = get_step(src, dir)
 	locate_machinery()
 	if(!turbine)
-		obj_break()
+		atom_break()
 
 
 #define COMPFRICTION 5e5
@@ -109,6 +109,11 @@
 	turbine = locate() in get_step(src, get_dir(inturf, src))
 	if(turbine)
 		turbine.locate_machinery()
+
+/obj/machinery/power/compressor/multitool_act(mob/living/user, obj/item/multitool/tool)
+	multitool_set_buffer(user, tool, src)
+	user.balloon_alert(user, "saved to buffer")
+	return TRUE
 
 /obj/machinery/power/compressor/RefreshParts()
 	var/E = 0
@@ -134,7 +139,7 @@
 			stat &= ~BROKEN
 		else
 			to_chat(user, span_alert("Turbine not connected."))
-			obj_break()
+			atom_break()
 		return
 
 	default_deconstruction_crowbar(I)
@@ -189,12 +194,12 @@
 
 /obj/machinery/power/turbine/Initialize(mapload)
 	. = ..()
-	SSair.atmos_machinery += src
+	SSair.start_processing_machine(src)
 	// The outlet is pointed at the direction of the turbine component
 	outturf = get_step(src, dir)
 	locate_machinery()
 	if(!compressor)
-		obj_break()
+		atom_break()
 	connect_to_network()
 
 /obj/machinery/power/turbine/RefreshParts()
@@ -214,6 +219,14 @@
 	compressor = locate() in get_step(src, get_dir(outturf, src))
 	if(compressor)
 		compressor.locate_machinery()
+
+/obj/machinery/power/turbine/multitool_act(mob/living/user, obj/item/multitool/tool)
+	if(!compressor)
+		user.balloon_alert(user, "no compressor!")
+		return TRUE
+	multitool_set_buffer(user, tool, compressor)
+	user.balloon_alert(user, "saved to buffer")
+	return TRUE
 
 /obj/machinery/power/turbine/process(delta_time)
 	add_avail(lastgen) // add power in process() so it doesn't update power output separately from the rest of the powernet (bad)
@@ -235,7 +248,7 @@
 	if(!isclosedturf(outturf))
 		output_blocked = FALSE
 		for(var/atom/A in outturf)
-			if(!CANATMOSPASS(A, outturf))
+			if(!CANATMOSPASS(A, outturf, FALSE))
 				output_blocked = TRUE
 				break
 
@@ -274,7 +287,7 @@
 			stat &= ~BROKEN
 		else
 			to_chat(user, span_alert("Compressor not connected."))
-			obj_break()
+			atom_break()
 		return
 
 	default_deconstruction_crowbar(I)
@@ -344,6 +357,16 @@
 				return
 	else
 		compressor = locate(/obj/machinery/power/compressor) in range(7, src)
+
+/obj/machinery/computer/turbine_computer/multitool_act(mob/living/user, obj/item/multitool/tool)
+	var/atom/buffer_atom = multitool_get_buffer(user, tool)
+	if(istype(buffer_atom, /obj/machinery/power/compressor))
+		var/obj/machinery/power/compressor/new_link = buffer_atom
+		if(!new_link.comp_id)
+			new_link.comp_id = getnewid()
+		id = new_link.comp_id
+		user.balloon_alert(user, "linked!")
+	return TRUE
 
 /obj/machinery/computer/turbine_computer/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

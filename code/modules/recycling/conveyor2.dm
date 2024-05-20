@@ -61,6 +61,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 // create a conveyor
 /obj/machinery/conveyor/Initialize(mapload, newdir, newid)
 	. = ..()
+	AddElement(/datum/element/footstep_override, priority = STEP_SOUND_CONVEYOR_PRIORITY)
 	if(newdir)
 		setDir(newdir)
 	if(newid)
@@ -215,7 +216,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 				conveytime = 1
 				to_chat(user, span_notice("You set [src]'s speed back to default."))
 
-	else if(user.a_intent != INTENT_HARM)
+	else if(!user.combat_mode)
 		user.transferItemToLoc(I, drop_location())
 	else
 		return ..()

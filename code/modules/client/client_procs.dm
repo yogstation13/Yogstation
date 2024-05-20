@@ -94,7 +94,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			return
 
 	var/stl = CONFIG_GET(number/second_topic_limit)
-	if (!holder && stl)
+	if (!holder && stl && href_list["window_id"] != "statbrowser")
 		var/second = round(world.time, 10)
 		if (!topiclimiter)
 			topiclimiter = new(LIMITER_SIZE)
@@ -225,7 +225,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(copytext(tdata, 1, 3) == "/?")
 		tdata = copytext(tdata, 3)
 
-
 	if(connection != "seeker" && connection != "web")//Invalid connection type.
 		return null
 
@@ -233,7 +232,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	GLOB.directory[ckey] = src
 
 	// Instantiate tgui panel
-	tgui_panel = new(src)
+	tgui_panel = new(src, "browseroutput")
+
+	// Set the right-click menu mode
+	set_right_click_menu_mode(TRUE)
 
 	//tgui_panel.send_connected()
 
@@ -391,7 +393,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	if(holder)
 		add_admin_verbs()
-		to_chat(src, get_message_output("memo"))
+		var/memos = get_message_output("memo")
+		if(memos)
+			to_chat(src, memos)
 		adminGreet()
 
 	add_verbs_from_config()
@@ -404,6 +408,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
 		if (nnpa >= 0)
 			message_admins("New user: [key_name_admin(src)] ([address]) is connecting here for the first time.")
+			to_chat((GLOB.permissions.admins - GLOB.permissions.deadmins) | GLOB.mentors, "[key_name_mentor(src)] is connecting here for the first time, and might need help! Their BYOND account is [account_age] day[(account_age==1?"":"s")] old, created on [account_join_date].", confidential=TRUE)
 			if (CONFIG_GET(flag/irc_first_connection_alert))
 				send2irc_adminless_only("New-user", "[key_name(src)] is connecting for the first time!")
 	else if (isnum(cached_player_age) && cached_player_age < nnpa)
@@ -412,6 +417,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		player_age = account_age
 	if(account_age >= 0 && account_age < nnpa)
 		message_admins("[key_name_admin(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age==1?"":"s")] old, created on [account_join_date].")
+		to_chat((GLOB.permissions.admins - GLOB.permissions.deadmins) | GLOB.mentors, "[key_name_mentor(src)] is connecting, and might need help! Their BYOND account is [account_age] day[(account_age==1?"":"s")] old, created on [account_join_date].", confidential=TRUE)
 		if (CONFIG_GET(flag/irc_first_connection_alert))
 			send2irc_adminless_only("new_byond_user", "[key_name(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age==1?"":"s")] old, created on [account_join_date].")
 	get_message_output("watchlist entry", ckey)
@@ -436,7 +442,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	if(CONFIG_GET(flag/autoconvert_notes))
 		convert_notes_sql(ckey)
-	to_chat(src, get_message_output("message", ckey))
+	var/admin_messages = get_message_output("message", ckey)
+	if(admin_messages)
+		to_chat(src, admin_messages)
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
 		to_chat(src, span_warning("Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you."))
 
@@ -480,8 +488,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 //////////////
 
 /client/Del()
-	//if(credits)
-		//QDEL_LIST(credits)
 	log_access("Logout: [key_name(src)]")
 	if(holder)
 		adminGreet(1)
@@ -525,7 +531,15 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	seen_messages = null
 	Master.UpdateTickRate()
 	world.sync_logout_with_db(connection_number) // yogs - logout logging
+	if(!gc_destroyed)
+		gc_destroyed = world.time
+		if (!QDELING(src))
+			stack_trace("Client does not purport to be QDELING, this is going to cause bugs in other places!")
 
+		// Yes this is the same as what's found in qdel(). Yes it does need to be here
+		// Get off my back
+		SEND_SIGNAL(src, COMSIG_QDELETING, TRUE)
+		Destroy() //Clean up signals and timers.
 	return ..()
 
 /client/proc/set_client_age_from_db(connectiontopic)
@@ -982,6 +996,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 /client/proc/rescale_view(change, min, max)
 	view_size.setTo(clamp(change, min, max), clamp(change, min, max))
 
+/client/proc/set_eye(new_eye)
+	if(new_eye == eye)
+		return
+	var/atom/old_eye = eye
+	eye = new_eye
+	SEND_SIGNAL(src, COMSIG_CLIENT_SET_EYE, old_eye, new_eye)
 /**
   * Updates the keybinds for special keys
   *
@@ -1029,15 +1049,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		CRASH("change_view called without argument.")
 
 	view = new_size
+	SEND_SIGNAL(src, COMSIG_VIEW_SET, new_size)
 	apply_clickcatcher()
 	mob.reload_fullscreen()
-
-	if(mob && istype(mob.hud_used, /datum/hud/ai))
-		if(new_size == CONFIG_GET(string/default_view) || new_size == CONFIG_GET(string/default_view_square))
-			QDEL_NULL(mob.hud_used)
-			mob.create_mob_hud()
-			mob.hud_used.show_hud(mob.hud_used.hud_version)
-			mob.hud_used.update_ui_style(ui_style2icon(prefs.read_preference(/datum/preference/choiced/ui_style)))
 
 	if (isliving(mob))
 		var/mob/living/M = mob
@@ -1110,7 +1124,32 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	else
 		SSambience.ambience_listening_clients -= src
 
+/client/proc/open_filter_editor(atom/in_atom)
+	if(holder)
+		holder.filteriffic = new /datum/filter_editor(in_atom)
+		holder.filteriffic.ui_interact(mob)
+
 /client/proc/open_particle_editor(atom/in_atom)
 	if(holder)
 		holder.particool = new /datum/particle_editor(in_atom)
 		holder.particool.ui_interact(mob)
+
+/// Clears the client's screen, aside from ones that opt out
+/client/proc/clear_screen()
+	for (var/object in screen)
+		if (istype(object, /atom/movable/screen))
+			var/atom/movable/screen/screen_object = object
+			if (!screen_object.clear_with_screen)
+				continue
+
+		screen -= object
+
+/client/proc/set_right_click_menu_mode(shift_only = TRUE)
+	if(shift_only)
+		winset(src, "mapwindow.map", "right-click=true")
+		winset(src, "ShiftUp", "is-disabled=false")
+		winset(src, "Shift", "is-disabled=false")
+	else
+		winset(src, "mapwindow.map", "right-click=false")
+		winset(src, "default.Shift", "is-disabled=true")
+		winset(src, "default.ShiftUp", "is-disabled=true")

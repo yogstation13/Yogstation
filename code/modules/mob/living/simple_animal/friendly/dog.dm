@@ -15,13 +15,15 @@
 	emote_hear = list("barks!", "woofs!", "yaps.","pants.")
 	emote_see = list("shakes its head.", "chases its tail.","shivers.")
 	faction = list("neutral")
-	see_in_dark = 5
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	// VERY red, to fit the eyes
+	lighting_cutoff_red = 22
+	lighting_cutoff_green = 5
+	lighting_cutoff_blue = 5
 	speak_chance = 1
 	turns_per_move = 10
 	gold_core_spawnable = FRIENDLY_SPAWN
 	can_be_held = TRUE
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_CLAW
 	wuv_happy = "yaps happily!"
 	wuv_angy = "growls!"
 

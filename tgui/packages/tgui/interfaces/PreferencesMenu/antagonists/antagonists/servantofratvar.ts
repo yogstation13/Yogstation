@@ -13,7 +13,7 @@ const ServantOfRatvar: Antagonist = {
   description: [
     multiline`
       A flash of yellow light! The sound of whooshing steam and clanking cogs surrounds you, and you understand your mission.
-      Ratvar, the Clockwork Justicar, has trusted you to secure the gateway in his Ark!
+      Ratvar, the Clockwork Justiciar, has trusted you to secure the gateway in his Ark!
     `,
     RATVAR_MECHANICAL_DESCRIPTION,
   ],

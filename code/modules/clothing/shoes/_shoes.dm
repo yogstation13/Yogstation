@@ -1,6 +1,8 @@
 /obj/item/clothing/shoes
 	name = "shoes"
 	icon = 'icons/obj/clothing/shoes.dmi'
+	lefthand_file = 'icons/mob/inhands/clothing/shoes_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/clothing/shoes_righthand.dmi'
 	desc = "Comfortable-looking shoes."
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	var/chained = 0
@@ -9,13 +11,11 @@
 	slot_flags = ITEM_SLOT_FEET
 
 	slowdown = SHOES_SLOWDOWN
-	var/blood_state = BLOOD_STATE_NOT_BLOODY
-	var/list/bloody_shoes = list(BLOOD_STATE_HUMAN = 0,BLOOD_STATE_XENO = 0, BLOOD_STATE_OIL = 0, BLOOD_STATE_NOT_BLOODY = 0)
+	var/footprint_sprite = FOOTPRINT_SPRITE_SHOES
 	var/offset = 0
 	var/equipped_before_drop = FALSE
-	var/can_be_bloody = TRUE
 	var/xenoshoe = NO_DIGIT  // Check for if shoes can be worn by straight legs (NO_DIGIT) which is default, both / hybrid (EITHER_STYLE), or digitigrade only (YES_DIGIT)
-	var/mutantrace_variation = NO_MUTANTRACE_VARIATION // Assigns shoes to have variations for if worn clothing doesn't enforce straight legs (such as cursed jumpskirts)
+	var/mutantrace_variation = NONE // Assigns shoes to have variations for if worn clothing doesn't enforce straight legs (such as cursed jumpskirts)
 	var/adjusted = NORMAL_STYLE // Default needed to make the above work
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, RAD = 0, FIRE = 0, ACID = 0)
 
@@ -38,19 +38,24 @@
 			playsound(user, 'sound/weapons/genhit2.ogg', 50, 1)
 		return(BRUTELOSS)
 
-/obj/item/clothing/shoes/worn_overlays(isinhands = FALSE)
-	. = list()
-	if(!isinhands)
-		var/bloody = FALSE
-		if(HAS_BLOOD_DNA(src))
-			bloody = TRUE
-		else
-			bloody = bloody_shoes[BLOOD_STATE_HUMAN]
+/obj/item/clothing/shoes/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
+	. = ..()
+	if(isinhands)
+		return
 
-		if(damaged_clothes)
-			. += mutable_appearance('icons/effects/item_damage.dmi', "damagedshoe")
-		if(bloody)
-			. += mutable_appearance('icons/effects/blood.dmi', "shoeblood")
+	if(damaged_clothes)
+		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedshoe")
+
+	if(!HAS_BLOOD_DNA(src))
+		return
+
+	var/mutable_appearance/bloody_shoes
+	if(clothing_flags & LARGE_WORN_ICON)
+		bloody_shoes = mutable_appearance('icons/effects/64x64.dmi', "shoeblood_large")
+	else
+		bloody_shoes = mutable_appearance('icons/effects/blood.dmi', "shoeblood")
+	bloody_shoes.color = get_blood_dna_color(return_blood_DNA())
+	. += bloody_shoes
 
 /obj/item/clothing/shoes/equipped(mob/user, slot)
 	if(adjusted)
@@ -88,17 +93,6 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		M.update_inv_shoes()
-
-/obj/item/clothing/shoes/wash(clean_types)
-	. = ..()
-	if(!(clean_types & CLEAN_TYPE_BLOOD) || blood_state == BLOOD_STATE_NOT_BLOODY)
-		return
-	bloody_shoes = list(BLOOD_STATE_HUMAN = 0,BLOOD_STATE_XENO = 0, BLOOD_STATE_OIL = 0, BLOOD_STATE_NOT_BLOODY = 0)
-	blood_state = BLOOD_STATE_NOT_BLOODY
-	if(ismob(loc))
-		var/mob/M = loc
-		M.update_inv_shoes()
-	return TRUE
 
 /obj/item/proc/negates_gravity()
 	return FALSE

@@ -18,11 +18,13 @@
 	var/message_queue
 	var/sent_assets = list()
 	// Vars passed to initialize proc (and saved for later)
+	var/initial_strict_mode
 	var/initial_fancy
 	var/initial_assets
 	var/initial_inline_html
 	var/initial_inline_js
 	var/initial_inline_css
+	var/mouse_event_macro_set = FALSE
 
 /**
  * public

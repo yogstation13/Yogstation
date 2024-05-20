@@ -5,7 +5,6 @@
 	icon = 'icons/obj/puzzle_small.dmi'
 	item_state = "flash"
 	icon_state = "pressureplate"
-	level = 1
 	layer = LOW_OBJ_LAYER
 	var/trigger_mob = TRUE
 	var/trigger_item = FALSE
@@ -23,6 +22,7 @@
 	var/can_trigger = TRUE
 	var/trigger_delay = 10
 	var/protected = FALSE
+	var/undertile_pressureplate = TRUE
 
 /obj/item/pressure_plate/Initialize(mapload)
 	. = ..()
@@ -31,8 +31,10 @@
 		sigdev = new
 		sigdev.code = roundstart_signaller_code
 		sigdev.frequency = roundstart_signaller_freq
-		if(isopenturf(loc))
-			hide(TRUE)
+
+	if(undertile_pressureplate)
+		AddElement(/datum/element/undertile, tile_overlay = tile_overlay, use_anchor = TRUE)
+	RegisterSignal(src, COMSIG_OBJ_HIDE, PROC_REF(ToggleActive))
 
 /obj/item/pressure_plate/Crossed(atom/movable/AM)
 	. = ..()
@@ -77,20 +79,8 @@
 	else
 		to_chat(user, span_notice("You turn [src] off."))
 
-/obj/item/pressure_plate/hide(yes)
-	if(yes)
-		invisibility = INVISIBILITY_MAXIMUM
-		anchored = TRUE
-		icon_state = null
-		active = TRUE
-		can_trigger = TRUE
-		if(tile_overlay)
-			loc.add_overlay(tile_overlay)
-	else
-		invisibility = initial(invisibility)
-		anchored = FALSE
-		icon_state = initial(icon_state)
-		active = FALSE
-		if(tile_overlay)
-			loc.overlays -= tile_overlay
+///Called from COMSIG_OBJ_HIDE to toggle the active part, because yeah im not making a special exception on the element to support it
+/obj/item/pressure_plate/proc/ToggleActive(datum/source, underfloor_accessibility)
+	SIGNAL_HANDLER
 
+	active = underfloor_accessibility < UNDERFLOOR_VISIBLE

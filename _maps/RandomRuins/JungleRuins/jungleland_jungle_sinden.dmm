@@ -1,0 +1,1543 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aB" = (
+/obj/machinery/autolathe,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/powered/sinden)
+"aF" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/sinden)
+"aS" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/powered/sinden)
+"aY" = (
+/obj/machinery/computer/slot_machine/casino,
+/turf/open/floor/carpet/green,
+/area/ruin/powered/sinden)
+"bs" = (
+/turf/open/floor/carpet/green,
+/area/ruin/powered/sinden)
+"bx" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/sinden)
+"bM" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/carpet/green,
+/area/ruin/powered/sinden)
+"bY" = (
+/turf/open/floor/carpet/royalblack,
+/area/template_noop)
+"ci" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/carpet/red,
+/area/ruin/powered/sinden)
+"cB" = (
+/obj/machinery/vending/hydronutrients{
+	onstation = 0
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"cE" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/sinden)
+"cM" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"dn" = (
+/obj/structure/closet/crate{
+	name = "Poker Coins"
+	},
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/diamond,
+/obj/item/coin/diamond,
+/obj/item/coin/diamond,
+/obj/item/coin/diamond,
+/obj/item/coin/diamond,
+/turf/open/floor/carpet/black,
+/area/ruin/powered/sinden)
+"dy" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/sinden)
+"dL" = (
+/obj/machinery/door/airlock/wood,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblack,
+/area/ruin/powered/sinden)
+"dZ" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/carpet/black,
+/area/ruin/powered/sinden)
+"eN" = (
+/obj/structure/chair/stool/bar{
+	pixel_y = 6
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/powered/sinden)
+"fv" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/sinden)
+"gc" = (
+/obj/structure/chair/stool/bar{
+	pixel_y = 6
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/powered/sinden)
+"gJ" = (
+/turf/open/floor/carpet/royalblack,
+/area/ruin/powered/sinden)
+"gL" = (
+/obj/machinery/door/window/westright{
+	dir = 2
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/sinden)
+"gU" = (
+/turf/open/floor/wood,
+/area/ruin/powered/sinden)
+"hf" = (
+/obj/structure/chair/stool/bar{
+	pixel_y = 6
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/powered/sinden)
+"hg" = (
+/obj/machinery/light/small,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"hP" = (
+/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/structure/window,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"iM" = (
+/obj/structure/dresser,
+/turf/open/floor/carpet/black,
+/area/ruin/powered/sinden)
+"jc" = (
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"jH" = (
+/obj/structure/table/wood,
+/obj/machinery/chem_dispenser/drinks/fullupgrade,
+/turf/open/floor/wood,
+/area/ruin/powered/sinden)
+"kn" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/structure/window,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"kH" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/powered/sinden)
+"lu" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/carpet/royalblack,
+/area/ruin/powered/sinden)
+"mJ" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/sinden)
+"mX" = (
+/obj/machinery/teleport/station,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/sinden)
+"nu" = (
+/obj/structure/chair/wood,
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/sinden)
+"ny" = (
+/obj/machinery/biogenerator,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"nA" = (
+/obj/structure/closet,
+/obj/item/vending_refill/cigarette,
+/obj/item/vending_refill/boozeomat,
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/item/storage/bag/trash,
+/obj/item/soap,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/sinden)
+"oD" = (
+/obj/machinery/vending/cigarette{
+	onstation = 0
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/sinden)
+"oP" = (
+/obj/structure/chair/stool/bar,
+/turf/open/floor/carpet/green,
+/area/ruin/powered/sinden)
+"oY" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/powered/sinden)
+"pL" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/sinden)
+"pR" = (
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/sinden)
+"qE" = (
+/obj/machinery/vending/cigarette{
+	onstation = 0
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/powered/sinden)
+"qG" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"qO" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plating,
+/area/ruin/powered/sinden)
+"rw" = (
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/sinden)
+"rI" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/structure/mirror{
+	pixel_x = -28
+	},
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"rT" = (
+/obj/machinery/vending/boozeomat{
+	onstation = 0
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/sinden)
+"sr" = (
+/obj/structure/flora/tree/palm,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"sV" = (
+/obj/structure/table/wood,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters{
+	id = "dencounter"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/sinden)
+"tr" = (
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"tH" = (
+/obj/structure/chair/stool/bar{
+	pixel_y = 6
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/powered/sinden)
+"tW" = (
+/obj/machinery/door/airlock/wood{
+	req_access_txt = "25"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/sinden)
+"tZ" = (
+/obj/structure/table/wood/poker,
+/turf/open/floor/carpet/green,
+/area/ruin/powered/sinden)
+"uM" = (
+/obj/machinery/vending/dinnerware{
+	onstation = 0
+	},
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"uV" = (
+/obj/machinery/door/airlock/diamond,
+/obj/structure/fans/tiny,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "denentrance"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/ruin/powered/sinden)
+"ve" = (
+/obj/machinery/computer/teleporter{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/sinden)
+"vH" = (
+/obj/structure/bed,
+/obj/effect/mob_spawn/human/greedydemon{
+	dir = 8
+	},
+/obj/item/bedsheet/cult,
+/turf/open/floor/carpet/black,
+/area/ruin/powered/sinden)
+"vO" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/carpet/red,
+/area/ruin/powered/sinden)
+"wd" = (
+/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"wS" = (
+/obj/structure/table,
+/obj/item/book/manual/wiki/cooking_to_serve_man,
+/obj/effect/spawner/lootdrop/donkpockets,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"wZ" = (
+/obj/machinery/teleport/hub,
+/turf/open/floor/plating,
+/area/ruin/powered/sinden)
+"xT" = (
+/obj/machinery/door/airlock/wood{
+	req_access_txt = "25"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/sinden)
+"zw" = (
+/obj/structure/closet/secure_closet/bar,
+/obj/item/storage/box/dishdrive,
+/obj/item/gun/ballistic/revolver/russian,
+/turf/open/floor/wood,
+/area/ruin/powered/sinden)
+"zK" = (
+/obj/item/book/manual/wiki/hydroponicsplants,
+/obj/structure/closet/crate/hydroponics,
+/obj/item/storage/bag/plants/portaseeder,
+/obj/item/plant_analyzer,
+/obj/item/hatchet,
+/obj/item/shovel/spade,
+/obj/item/cultivator,
+/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/storage/box/disks_plantgene,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"AF" = (
+/obj/structure/toilet{
+	pixel_y = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"Br" = (
+/obj/machinery/vending/cigarette{
+	onstation = 0
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/powered/sinden)
+"BG" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblack,
+/area/ruin/powered/sinden)
+"Cn" = (
+/obj/structure/table/wood/poker,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/toy/cards/deck,
+/turf/open/floor/carpet/green,
+/area/ruin/powered/sinden)
+"CK" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/item/beacon,
+/turf/open/floor/wood,
+/area/ruin/powered/sinden)
+"Dl" = (
+/obj/machinery/smartfridge/food,
+/turf/open/floor/wood,
+/area/ruin/powered/sinden)
+"DP" = (
+/obj/machinery/smartfridge/disks,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"DQ" = (
+/obj/structure/table/wood/fancy/purple,
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/sinden)
+"ED" = (
+/obj/machinery/plantgenes,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"FB" = (
+/obj/machinery/processor,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"FY" = (
+/obj/machinery/oven,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"Ha" = (
+/obj/machinery/barsign,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/powered/sinden)
+"Hf" = (
+/turf/open/floor/carpet/black,
+/area/ruin/powered/sinden)
+"Hq" = (
+/obj/machinery/seed_extractor,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/structure/window,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"HC" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/ruin/powered/sinden)
+"HD" = (
+/obj/structure/closet/secure_closet/personal/cabinet{
+	req_access = list(25)
+	},
+/obj/item/storage/firstaid/regular,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c50,
+/obj/item/stack/spacecash/c50,
+/obj/item/stack/spacecash/c50,
+/obj/item/stack/spacecash/c20,
+/obj/item/stack/spacecash/c20,
+/obj/item/stack/spacecash/c10,
+/obj/item/stack/spacecash/c1,
+/obj/item/stack/spacecash/c1,
+/obj/item/stack/spacecash/c1,
+/obj/item/stack/spacecash/c1,
+/obj/item/stack/spacecash/c1,
+/obj/item/holochip{
+	credits = 400
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/powered/sinden)
+"HS" = (
+/obj/structure/chair/wood,
+/turf/open/floor/carpet/green,
+/area/ruin/powered/sinden)
+"IQ" = (
+/obj/machinery/computer/slot_machine/casino,
+/turf/open/floor/carpet/red,
+/area/ruin/powered/sinden)
+"Jh" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/powered/sinden)
+"JY" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"Kd" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/structure/sink{
+	pixel_y = 30
+	},
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"Ln" = (
+/obj/machinery/door/airlock/wood{
+	req_access_txt = "25"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/powered/sinden)
+"LL" = (
+/obj/structure/table/wood,
+/obj/machinery/reagentgrinder,
+/turf/open/floor/wood,
+/area/ruin/powered/sinden)
+"Mb" = (
+/obj/machinery/button/door{
+	id = "denentrance";
+	name = "Den Entrance Shutter";
+	pixel_x = -26;
+	pixel_y = -6
+	},
+/obj/machinery/button/door{
+	id = "dencounter";
+	name = "Den Counter Shutter";
+	pixel_x = -26;
+	pixel_y = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/sinden)
+"Nb" = (
+/obj/machinery/door/airlock/wood{
+	req_access_txt = "25"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/sinden)
+"Nr" = (
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/machinery/light,
+/obj/item/storage/box/ingredients/wildcard,
+/obj/item/storage/box/ingredients/carnivore,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"Nu" = (
+/obj/structure/table,
+/obj/item/kitchen/rollingpin,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"Oo" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/sinden)
+"OF" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/powered/sinden)
+"OK" = (
+/obj/machinery/door/airlock/wood,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/sinden)
+"ON" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"OV" = (
+/obj/machinery/door/airlock{
+	name = "Unisex Restrooms"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"PD" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/machinery/door/window/southleft,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"PP" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"Rn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/sinden)
+"SH" = (
+/obj/machinery/vending/hydroseeds{
+	onstation = 0
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/structure/window,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"SU" = (
+/obj/machinery/telecomms/relay/preset/telecomms{
+	generates_heat = 0;
+	use_power = 0
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/sinden)
+"Tm" = (
+/turf/open/floor/carpet/red,
+/area/ruin/powered/sinden)
+"Tp" = (
+/obj/machinery/griddle,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"Tw" = (
+/obj/structure/table/wood/poker,
+/obj/item/ashtray,
+/turf/open/floor/carpet/red,
+/area/ruin/powered/sinden)
+"Uo" = (
+/obj/machinery/jukebox,
+/turf/open/floor/carpet/green,
+/area/ruin/powered/sinden)
+"Us" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/carpet/green,
+/area/ruin/powered/sinden)
+"Va" = (
+/obj/machinery/door/airlock/wood{
+	req_access_txt = "25"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/sinden)
+"Wd" = (
+/obj/structure/closet/secure_closet/freezer/meat,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"WL" = (
+/turf/open/floor/plating,
+/area/ruin/powered/sinden)
+"WY" = (
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/clothing/gloves/color/fyellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/powered/sinden)
+"Xg" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/powered/sinden)
+"Xl" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/mixbowl,
+/obj/item/kitchen/knife,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/sinden)
+"Xt" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/deck,
+/turf/open/floor/carpet/green,
+/area/ruin/powered/sinden)
+"Zp" = (
+/obj/structure/table/wood,
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade,
+/turf/open/floor/wood,
+/area/ruin/powered/sinden)
+"ZW" = (
+/obj/structure/chair/stool/bar{
+	pixel_y = 6
+	},
+/turf/open/floor/carpet/royalblack,
+/area/ruin/powered/sinden)
+
+(1,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(2,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+sr
+jc
+"}
+(3,1,1) = {"
+jc
+jc
+jc
+jc
+kH
+kH
+kH
+kH
+kH
+lu
+gJ
+Xg
+bs
+Jh
+bs
+gJ
+gJ
+qE
+IQ
+hf
+IQ
+tH
+IQ
+tH
+Ha
+jc
+sr
+"}
+(4,1,1) = {"
+jc
+jc
+jc
+jc
+kH
+jH
+gU
+Mb
+sV
+ZW
+gJ
+bM
+tZ
+Xt
+tZ
+gJ
+gJ
+Tm
+Tw
+Tm
+Tw
+Tm
+Tw
+Tm
+kH
+jc
+jc
+"}
+(5,1,1) = {"
+jc
+jc
+jc
+jc
+kH
+Zp
+gU
+gU
+sV
+ZW
+gJ
+bs
+oP
+oP
+oP
+gJ
+gJ
+vO
+IQ
+tH
+IQ
+tH
+IQ
+tH
+kH
+JY
+jc
+"}
+(6,1,1) = {"
+jc
+kH
+kH
+kH
+kH
+mJ
+gU
+gU
+sV
+ZW
+gJ
+gJ
+gJ
+gJ
+gJ
+gJ
+gJ
+gJ
+gJ
+gJ
+gJ
+gJ
+gJ
+gJ
+uV
+bY
+bY
+"}
+(7,1,1) = {"
+jc
+kH
+zw
+gU
+kH
+LL
+gU
+gU
+sV
+ZW
+gJ
+gJ
+gJ
+gJ
+gJ
+gJ
+gJ
+gJ
+gJ
+gJ
+gJ
+gJ
+gJ
+gJ
+uV
+bY
+bY
+"}
+(8,1,1) = {"
+jc
+kH
+nA
+gU
+kH
+rT
+gU
+gU
+sV
+ZW
+gJ
+bs
+Uo
+bs
+bM
+gJ
+gJ
+ci
+IQ
+tH
+IQ
+tH
+IQ
+tH
+kH
+JY
+jc
+"}
+(9,1,1) = {"
+jc
+kH
+pR
+gU
+Va
+gU
+gU
+Dl
+kH
+kH
+kH
+bs
+bs
+bs
+bs
+gJ
+gJ
+Tm
+Tw
+Tm
+Tw
+Tm
+Tw
+Tm
+kH
+jc
+jc
+"}
+(10,1,1) = {"
+jc
+kH
+kH
+kH
+kH
+kH
+gU
+gU
+tW
+bs
+bs
+bs
+oP
+oP
+bs
+gJ
+gJ
+ci
+IQ
+gc
+IQ
+tH
+IQ
+tH
+kH
+jc
+sr
+"}
+(11,1,1) = {"
+jc
+kH
+zK
+ny
+Hq
+kH
+Nb
+kH
+kH
+kH
+bs
+bs
+tZ
+tZ
+eN
+gJ
+gJ
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+jc
+jc
+"}
+(12,1,1) = {"
+jc
+kH
+Kd
+ON
+PD
+tr
+tr
+tr
+Tp
+kH
+bs
+HS
+Xt
+tZ
+eN
+gJ
+gJ
+Tm
+OV
+tr
+rI
+kH
+jc
+jc
+jc
+jc
+jc
+"}
+(13,1,1) = {"
+jc
+kH
+wd
+wd
+hP
+wS
+tr
+tr
+FY
+kH
+bs
+bs
+tZ
+tZ
+eN
+gJ
+gJ
+qE
+kH
+AF
+hg
+kH
+jc
+jc
+sr
+jc
+jc
+"}
+(14,1,1) = {"
+jc
+kH
+ED
+wd
+hP
+qG
+tr
+FB
+kH
+kH
+OF
+bs
+oP
+oP
+bs
+gJ
+gJ
+ci
+kH
+kH
+kH
+kH
+kH
+kH
+jc
+jc
+sr
+"}
+(15,1,1) = {"
+jc
+kH
+PP
+ON
+PD
+tr
+tr
+Nr
+kH
+aY
+eN
+bs
+oP
+oP
+bs
+gJ
+gJ
+vO
+HC
+oD
+rw
+aF
+aF
+kH
+jc
+jc
+jc
+"}
+(16,1,1) = {"
+jc
+kH
+DP
+ON
+kn
+Nu
+tr
+Wd
+kH
+Cn
+bs
+bs
+tZ
+tZ
+eN
+gJ
+gJ
+gJ
+dL
+rw
+rw
+DQ
+DQ
+kH
+jc
+jc
+jc
+"}
+(17,1,1) = {"
+jc
+kH
+kH
+cB
+SH
+Xl
+tr
+cM
+kH
+bs
+bs
+HS
+Xt
+tZ
+eN
+gJ
+BG
+Tm
+HC
+rw
+rw
+cE
+cE
+kH
+jc
+jc
+jc
+"}
+(18,1,1) = {"
+jc
+jc
+kH
+kH
+kH
+kH
+tr
+uM
+kH
+Us
+bs
+bs
+tZ
+tZ
+eN
+gJ
+kH
+kH
+kH
+Oo
+rw
+aF
+aF
+kH
+jc
+jc
+jc
+"}
+(19,1,1) = {"
+jc
+jc
+kH
+dn
+iM
+kH
+Ln
+aS
+kH
+bM
+bs
+bs
+oP
+oP
+bs
+gJ
+kH
+rw
+aF
+rw
+rw
+DQ
+DQ
+kH
+jc
+jc
+jc
+"}
+(20,1,1) = {"
+jc
+jc
+kH
+Hf
+Hf
+Hf
+Hf
+dZ
+kH
+Br
+bs
+bs
+bs
+bs
+bs
+gJ
+kH
+nu
+DQ
+pL
+rw
+cE
+cE
+kH
+jc
+jc
+jc
+"}
+(21,1,1) = {"
+jc
+jc
+kH
+kH
+HD
+oY
+vH
+kH
+kH
+kH
+xT
+kH
+kH
+kH
+kH
+OK
+kH
+nu
+DQ
+pL
+rw
+rw
+bx
+kH
+jc
+jc
+jc
+"}
+(22,1,1) = {"
+jc
+jc
+jc
+kH
+kH
+kH
+kH
+kH
+aB
+qO
+WL
+Rn
+kH
+fv
+CK
+fv
+kH
+rw
+cE
+rw
+rw
+kH
+kH
+kH
+jc
+jc
+jc
+"}
+(23,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+kH
+WY
+WL
+dy
+gL
+SU
+kH
+ve
+mX
+wZ
+kH
+kH
+kH
+kH
+kH
+kH
+jc
+jc
+jc
+jc
+jc
+"}
+(24,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(25,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}

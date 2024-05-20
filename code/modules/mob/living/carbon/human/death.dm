@@ -4,6 +4,10 @@
 			new /obj/effect/temp_visual/gib_animation(loc, "gibbed-h")
 		if("robotic")
 			new /obj/effect/temp_visual/gib_animation(loc, "gibbed-r")
+		if("plasma")
+			new /obj/effect/temp_visual/gib_animation(loc, "gibbed-h") //This will have more use in the near future
+		if("polysmorph")
+			new /obj/effect/temp_visual/gib_animation(loc, "gibbed-a")
 
 /mob/living/carbon/human/dust(just_ash, drop_items, force)
 	if(drop_items)
@@ -29,15 +33,23 @@
 	if(with_bodyparts)
 		switch(dna.species.species_gibs)
 			if("human")
-				new /obj/effect/gibspawner/human(get_turf(src), dna, get_static_viruses())
+				new /obj/effect/gibspawner/human(get_turf(src), src, get_static_viruses())
 			if("robotic")
 				new /obj/effect/gibspawner/robot(get_turf(src))
+			if("plasma")
+				new /obj/effect/gibspawner/human(get_turf(src), src, get_static_viruses())
+			if("polysmorph")
+				new /obj/effect/gibspawner/xeno(get_turf(src), src, get_static_viruses())
 	else
 		switch(dna.species.species_gibs)
 			if("human")
-				new /obj/effect/gibspawner/human(get_turf(src), dna, get_static_viruses())
+				new /obj/effect/gibspawner/human(get_turf(src), src, get_static_viruses())
 			if("robotic")
 				new /obj/effect/gibspawner/robot(get_turf(src))
+			if("plasma")
+				new /obj/effect/gibspawner/human(get_turf(src), src, get_static_viruses())
+			if("polysmorph")
+				new /obj/effect/gibspawner/xeno(get_turf(src), src, get_static_viruses())
 
 /mob/living/carbon/human/spawn_dust(just_ash = FALSE)
 	if(just_ash)
@@ -48,6 +60,11 @@
 				new /obj/effect/decal/remains/human(loc)
 			if("robotic")
 				new /obj/effect/decal/remains/robot(loc)
+			if("plasma")
+				new /obj/effect/decal/remains/plasma(loc)
+			if("polysmorph")
+				new /obj/effect/decal/remains/xeno(loc)
+				
 
 /mob/living/carbon/human/death(gibbed)
 	if(stat == DEAD)

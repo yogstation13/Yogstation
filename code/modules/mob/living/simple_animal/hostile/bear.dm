@@ -14,7 +14,6 @@
 	speak_chance = 1
 	taunt_chance = 25
 	turns_per_move = 5
-	see_in_dark = 6
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/bear = 5, /obj/item/clothing/head/bearpelt = 1)
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
@@ -42,8 +41,7 @@
 
 	faction = list("russian")
 	gold_core_spawnable = HOSTILE_SPAWN
-
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 /mob/living/simple_animal/hostile/bear/loan
 	faction = list("hostile")

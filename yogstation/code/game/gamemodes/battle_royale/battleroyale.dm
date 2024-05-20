@@ -1,6 +1,7 @@
 GLOBAL_VAR(thebattlebus)
 GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 GLOBAL_VAR(stormdamage)
+GLOBAL_VAR(final_zone)
 
 /datum/game_mode/fortnite
 	name = "battle royale"
@@ -17,10 +18,11 @@ GLOBAL_VAR(stormdamage)
 	<i>Be the last man standing at the end of the game to win.</i>"
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
-	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering", "royale maint")
+	var/list/roundstart_traits = list(TRAIT_XRAY_VISION, TRAIT_NOHUNGER, TRAIT_NOBREATH, TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE, TRAIT_SAFEWELD, TRAIT_HARDLY_WOUNDED)
+	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering", "royale the bridge")
+	var/list/weathered = list() //list of all the places currently covered by weather
 	var/stage_interval = 3 MINUTES
 	var/loot_interval = 75 SECONDS //roughly the time between loot drops
-	var/loot_deviation = 30 SECONDS //how much plus or minus around the interval
 	var/borderstage = 0
 	var/weightcull = 5 //anything above this gets culled
 	var/can_end = FALSE //so it doesn't end during setup somehow
@@ -30,7 +32,7 @@ GLOBAL_VAR(stormdamage)
 	title_icon = "ss13"
 
 /datum/game_mode/fortnite/pre_setup()
-	GLOB.stormdamage = 2
+	GLOB.stormdamage = 3
 	INVOKE_ASYNC(src, PROC_REF(spawn_bus))//so if a runtime happens with the spawn_bus proc, the rest of pre_setup still happens
 	for(var/mob/L in GLOB.player_list)
 		if(!L.mind || !L.client || isobserver(L))
@@ -65,11 +67,8 @@ GLOBAL_VAR(stormdamage)
 		virgin.current.forceMove(GLOB.thebattlebus)
 		original_num ++
 		virgin.current.apply_status_effect(STATUS_EFFECT_DODGING_GAMER) //to prevent space from hurting
-		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
-		ADD_TRAIT(virgin.current, TRAIT_NOHUNGER, "getthatbreadgamers") //so they don't need to worry about annoyingly running out of food
-		ADD_TRAIT(virgin.current, TRAIT_NOBREATH, "breathingiscringe") //because atmos is silly and stupid and goofy and bad
-		ADD_TRAIT(virgin.current, TRAIT_NOSOFTCRIT, "KEEP GOING, FIGHT MORE") //because no sleepy
-		ADD_TRAIT(virgin.current, TRAIT_NOHARDCRIT, "Son always remember, dying is gay. @margot") //fight fight fight
+		for(var/i in roundstart_traits)
+			ADD_TRAIT(virgin.current, i, "battleroyale")
 		REMOVE_TRAIT(virgin.current, TRAIT_PACIFISM, ROUNDSTART_TRAIT) //FINE, i guess pacifists get to fight too
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
@@ -153,40 +152,44 @@ GLOBAL_VAR(stormdamage)
 /datum/game_mode/fortnite/proc/shrinkborders()
 	switch(borderstage)//to keep it seperate and not fuck with weather selection
 		if(1)
-			set_security_level("blue")
+			SSsecurity_level.set_level(SEC_LEVEL_BLUE)
 		if(4)
-			set_security_level("red")
+			SSsecurity_level.set_level(SEC_LEVEL_RED)
 		if(7)
-			set_security_level("gamma")
+			SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
 		if(9)
-			set_security_level("epsilon")
+			SSsecurity_level.set_level(SEC_LEVEL_EPSILON)
 
+	var/datum/weather/royale/W
 	switch(borderstage)
 		if(0)
-			SSweather.run_weather("royale start",2)
-		if(1 to 7)//close off the map
+			W = SSweather.run_weather("royale start",2)
+		if(1)
+			W = SSweather.run_weather("royale maint",2)
+		if(2 to 7)//close off the map
 			var/weather = pick(randomweathers)
-			SSweather.run_weather(weather, 2)
+			W = SSweather.run_weather(weather, 2)
 			randomweathers -= weather
 		if(8)
-			SSweather.run_weather("royale hallway", 2)//force them to bridge
+			GLOB.final_zone = replacetext(pick(randomweathers), "royale ", "")
+			W = SSweather.run_weather("royale hallway", 2)//force them to the final department
 		if(9)//finish it
 			SSweather.run_weather("royale centre", 2)
+
+	if(W && istype(W))
+		weathered |= W.areasToWeather
 
 	if(borderstage)//doesn't cull during round start
 		ItemCull()
 
+	GLOB.stormdamage *= 1.1
 	borderstage++
-
-	if(borderstage % 2 == 0) //so it scales, but not too hard
-		GLOB.stormdamage *= 1.5
 	
 	if(borderstage <= 9)
 		var/remainingpercent = LAZYLEN(GLOB.battleroyale_players) / original_num
 		stage_interval = max(1 MINUTES, initial(stage_interval) * remainingpercent) //intervals get faster as people die
 		loot_interval = min(stage_interval / 2, initial(loot_interval)) //loot spawns faster as more die, but won't ever take longer than base
-		loot_deviation = loot_interval / 2 //less deviation as time goes on
-		if(borderstage == 8)//final collapse takes the full time but still spawns loot faster
+		if(borderstage == 9)//final collapse takes the full time but still spawns loot faster
 			stage_interval = initial(stage_interval)
 		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
 
@@ -251,20 +254,39 @@ GLOBAL_VAR(stormdamage)
 		message_admins("battle royale loot drop lists have been depleted somehow, PANIC")
 
 /datum/game_mode/fortnite/proc/loot_drop()
-	loot_spawn(1)
-	var/nextdelay = loot_interval + (rand(1, loot_deviation * 2) - loot_deviation)
-	addtimer(CALLBACK(src, PROC_REF(loot_drop)), nextdelay)//literally just keep calling it
+	loot_spawn()
+	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
 
-/datum/game_mode/fortnite/proc/loot_spawn(amount = 3)
-	for(var/obj/effect/landmark/event_spawn/es in GLOB.landmarks_list)
-		var/area/AR = get_area(es)
+/// How many tiles in a given room gives a 100% guaranteed crate
+#define ROOMSIZESCALING 60
+/datum/game_mode/fortnite/proc/loot_spawn()
+	for(var/area/lootlake as anything in GLOB.areas)
+		if(!is_station_level(lootlake.z))//don't spawn it if it isn't a station level
+			continue
+		if(istype(lootlake, /area/space))//no nearspace
+			continue
+		if(istype(lootlake, /area/solar))//no solars
+			continue
+		if(istype(lootlake, /area/maintenance))//no maintenance, it's too large, it'd lag the hell out of the server and it's not as popular as main hallways
+			continue //also, ideally keeps people out of maints, and in larger open areas that are more interesting
+		if(is_type_in_list(lootlake, weathered))
+			continue //if the area is covered with a storm, don't spawn loot (less lag)
+		var/number = LAZYLEN(lootlake.get_zlevel_turf_lists())//so bigger areas spawn more crates
+		var/amount = round(number / ROOMSIZESCALING) + prob(((number % ROOMSIZESCALING)/ROOMSIZESCALING)*100) //any remaining tiles gives a probability to have an extra crate
 		for(var/I = 0, I < amount, I++)
-			var/turf/turfy = pick(get_area_turfs(AR))
-			while(turfy.density)//so it doesn't spawn inside walls
-				turfy = pick(get_area_turfs(AR))
-			var/obj/structure/closet/supplypod/centcompod/pod = new()
-			new /obj/structure/closet/crate/battleroyale(pod)
-			new /obj/effect/DPtarget(turfy, pod)
+			var/turf/turfy = pick(get_area_turfs(lootlake))
+			for(var/L = 0, L < 15, L++)//cap so it doesn't somehow end in an infinite loop
+				if(!turfy.density)//so it doesn't spawn inside walls
+					break
+				turfy = pick(get_area_turfs(lootlake))
+			addtimer(CALLBACK(src, PROC_REF(drop_pod), turfy), rand(1,50))//to even out the lag that creating a drop pod causes
+
+#undef ROOMSIZESCALING
+
+/datum/game_mode/fortnite/proc/drop_pod(turf/turfy)
+	var/obj/structure/closet/supplypod/centcompod/pod = new()
+	new /obj/structure/closet/crate/battleroyale(pod)
+	new /obj/effect/DPtarget(turfy, pod)
 
 //Antag and items
 /datum/antagonist/battleroyale
@@ -355,9 +377,12 @@ GLOBAL_VAR(stormdamage)
 	name = "very cool tie (do not remove)"
 	desc = "Totally not just here for keeping track of kills."
 	var/datum/antagonist/battleroyale/last_hit
-	clothing_traits = (TRAIT_NODROP)
 	resistance_flags = INDESTRUCTIBLE //no escaping
 
+/obj/item/clothing/neck/tie/gamer/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, "I will kill you if you take this off somehow") //can't be a clothing trait because those get applied to the mob, not the item
+	
 /obj/item/clothing/neck/tie/gamer/equipped(mob/user, slot)
 	. = ..()
 	RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(death))
@@ -430,7 +455,7 @@ GLOBAL_VAR(stormdamage)
 
 /obj/structure/battle_bus/proc/exit(mob/living/carbon/human/Ltaker)
 	Ltaker.forceMove(get_turf(src))
-	REMOVE_TRAIT(Ltaker, TRAIT_XRAY_VISION, "virginity")
+	REMOVE_TRAIT(Ltaker, TRAIT_XRAY_VISION, "battleroyale")
 	Ltaker.update_sight()
 	SEND_SOUND(Ltaker, 'yogstation/sound/effects/battleroyale/exitbus.ogg')
 

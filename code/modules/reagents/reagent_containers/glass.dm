@@ -7,7 +7,7 @@
 	resistance_flags = ACID_PROOF
 
 
-/obj/item/reagent_containers/glass/attack(mob/M, mob/user, obj/target)
+/obj/item/reagent_containers/glass/attack(mob/M, mob/living/user, obj/target)
 	if(!canconsume(M, user))
 		return
 
@@ -19,7 +19,7 @@
 		return
 
 	if(istype(M))
-		if(user.a_intent == INTENT_HARM)
+		if(user.combat_mode)
 			var/R
 			M.visible_message(span_danger("[user] splashes the contents of [src] onto [M]!"), \
 							span_userdanger("[user] splashes the contents of [src] onto [M]!"))
@@ -80,7 +80,7 @@
 		to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [target]."))
 
 	else if(is_spillable() && reagents.total_volume)
-		if(user.a_intent == INTENT_HARM)
+		if(user.combat_mode)
 			user.visible_message(span_danger("[user] splashes the contents of [src] onto [target]!"), \
 								span_notice("You splash the contents of [src] onto [target]."))
 			reagents.reaction(target, TOUCH)
@@ -127,24 +127,28 @@
 	. = ..()
 	if(!reagents.total_volume)
 		return
-	var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]10")
+	var/base_state = base_icon_state
+	if(isnull(base_state))
+		base_state = icon_state
+
+	var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[base_state]10")
 
 	var/percent = round((reagents.total_volume / volume) * 100)
 	switch(percent)
 		if(0 to 9)
-			filling.icon_state = "[icon_state]-10"
+			filling.icon_state = "[base_state]-10"
 		if(10 to 24)
-			filling.icon_state = "[icon_state]10"
+			filling.icon_state = "[base_state]10"
 		if(25 to 49)
-			filling.icon_state = "[icon_state]25"
+			filling.icon_state = "[base_state]25"
 		if(50 to 74)
-			filling.icon_state = "[icon_state]50"
+			filling.icon_state = "[base_state]50"
 		if(75 to 79)
-			filling.icon_state = "[icon_state]75"
+			filling.icon_state = "[base_state]75"
 		if(80 to 90)
-			filling.icon_state = "[icon_state]80"
+			filling.icon_state = "[base_state]80"
 		if(91 to INFINITY)
-			filling.icon_state = "[icon_state]100"
+			filling.icon_state = "[base_state]100"
 
 	filling.color = mix_color_from_reagents(reagents.reagent_list)
 	. += filling
@@ -168,15 +172,12 @@
 	name = "x-large beaker"
 	desc = "An extra-large beaker. Can hold up to 120 units."
 	icon_state = "beakerwhite"
+	/// Overrides the base state used for the fill overlay
+	base_icon_state = "beakerlarge"
 	materials = list(/datum/material/glass=2500, /datum/material/plastic=3000)
 	volume = 120
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,60,120)
-
-/obj/item/reagent_containers/glass/beaker/plastic/update_icon_state()
-	icon_state = "beakerlarge" // hack to lets us reuse the large beaker reagent fill states
-	. = ..()
-	icon_state = "beakerwhite"
 
 /obj/item/reagent_containers/glass/beaker/meta
 	name = "metamaterial beaker"
@@ -207,6 +208,11 @@
 	volume = 300
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,50,100,300)
+
+/obj/item/reagent_containers/glass/beaker/bluespace/dorf
+	name = "A perfectly normal bottle of beer"
+	list_reagents = list(/datum/reagent/consumable/ethanol/manly_dorf = 300)
+
 
 /obj/item/reagent_containers/glass/beaker/cryoxadone
 	list_reagents = list(/datum/reagent/medicine/cryoxadone = 30)

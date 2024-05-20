@@ -92,7 +92,7 @@
 	result = /obj/item/banner/security/mundane
 	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
-				/obj/item/clothing/under/rank/security = 1)
+				/obj/item/clothing/under/rank/security/officer = 1)
 	category = CAT_MISC
 
 /obj/item/banner/medical
@@ -116,7 +116,7 @@
 	result = /obj/item/banner/medical/mundane
 	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
-				/obj/item/clothing/under/rank/medical = 1)
+				/obj/item/clothing/under/rank/medical/doctor = 1)
 	category = CAT_MISC
 
 /obj/item/banner/medical/special_inspiration(mob/living/carbon/human/H)
@@ -145,7 +145,7 @@
 	result = /obj/item/banner/science/mundane
 	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
-				/obj/item/clothing/under/rank/scientist = 1)
+				/obj/item/clothing/under/rank/rnd/scientist = 1)
 	category = CAT_MISC
 
 /obj/item/banner/cargo
@@ -166,7 +166,7 @@
 	result = /obj/item/banner/cargo/mundane
 	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
-				/obj/item/clothing/under/rank/cargotech = 1)
+				/obj/item/clothing/under/rank/cargo/tech = 1)
 	category = CAT_MISC
 
 /obj/item/banner/engineering
@@ -190,7 +190,7 @@
 	result = /obj/item/banner/engineering/mundane
 	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
-				/obj/item/clothing/under/rank/engineer = 1)
+				/obj/item/clothing/under/rank/engineering/engineer = 1)
 	category = CAT_MISC
 
 /obj/item/banner/command
@@ -211,7 +211,7 @@
 	result = /obj/item/banner/command/mundane
 	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
-				/obj/item/clothing/under/captainparade = 1)
+				/obj/item/clothing/under/rank/command/captain/parade = 1)
 	category = CAT_MISC
 
 /obj/item/banner/red
@@ -280,11 +280,12 @@
 /obj/item/clothing/head/helmet/plate/crusader/prophet
 	name = "Prophet's Hat"
 	desc = "A religious-looking hat."
-	mob_overlay_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
+	worn_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
 	flags_1 = 0
 	armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 70, BIO = 60, RAD = 50, FIRE = 60, ACID = 60) //religion protects you from disease and radiation, honk.
 	worn_x_dimension = 64
 	worn_y_dimension = 64
+	clothing_flags = LARGE_WORN_ICON
 
 /obj/item/clothing/head/helmet/plate/crusader/prophet/red
 	icon_state = "prophet-red"
@@ -325,11 +326,11 @@
 	name = "Plate Gauntlets"
 	icon_state = "crusader"
 	desc = "They're like gloves, but made of metal."
-	siemens_coefficient = 0
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 100)
 
 /obj/item/clothing/gloves/plate/red
 	icon_state = "crusader-red"

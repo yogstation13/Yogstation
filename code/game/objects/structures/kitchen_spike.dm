@@ -15,6 +15,9 @@
 	if(default_unfasten_wrench(user, I))
 		return
 	else if(istype(I, /obj/item/stack/rods))
+		if(!anchored)
+			to_chat(user, span_warning("[src] must be anchored first!"))
+			return
 		var/obj/item/stack/rods/R = I
 		if(R.get_amount() >= 4)
 			R.use(4)
@@ -47,10 +50,10 @@
 	can_buckle = 1
 	max_integrity = 250
 
-/obj/structure/kitchenspike/attack_paw(mob/user)
-	return attack_hand(user)
+/obj/structure/kitchenspike/attack_paw(mob/living/user, modifiers)
+	return attack_hand(user, modifiers)
 
-/obj/structure/kitchenspike/crowbar_act(mob/living/user, obj/item/I)
+/obj/structure/kitchenspike/crowbar_act(mob/living/user, obj/item/I, modifiers)
 	if(has_buckled_mobs())
 		to_chat(user, span_notice("You can't do that while something's on the spike!"))
 		return TRUE
@@ -61,8 +64,8 @@
 	return TRUE
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/structure/kitchenspike/attack_hand(mob/user)
-	if(VIABLE_MOB_CHECK(user.pulling) && user.a_intent == INTENT_GRAB && !has_buckled_mobs())
+/obj/structure/kitchenspike/attack_hand(mob/living/user, modifiers)
+	if(VIABLE_MOB_CHECK(user.pulling) && user.combat_mode && !has_buckled_mobs())
 		var/mob/living/L = user.pulling
 		if(do_after(user, 12 SECONDS, src))
 			if(has_buckled_mobs()) //to prevent spam/queing up attacks

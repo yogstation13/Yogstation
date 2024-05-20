@@ -34,6 +34,8 @@
 #define BIO			"bio"
 /// Involves ionizing radiation.
 #define RAD			"rad"
+/// Involves electric shock.
+#define ELECTRIC	"electric"
 /// Involves fire or temperature extremes.
 #define FIRE		"fire"
 /// Involves corrosive substances.
@@ -63,6 +65,16 @@
 #define EFFECT_EYE_BLUR		"eye_blur"
 #define EFFECT_DROWSY		"drowsy"
 #define EFFECT_JITTER		"jitter"
+
+/// Alternate attack defines. Return these at the end of procs like afterattack_secondary.
+/// Calls the normal attack proc. For example, if returned in afterattack_secondary, will call afterattack.
+
+/// Will continue the chain depending on the return value of the non-alternate proc, like with normal attacks.
+#define SECONDARY_ATTACK_CALL_NORMAL 1
+/// Cancels the attack chain entirely.
+#define SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN 2
+/// Proceed with the attack chain, but don't call the normal methods.
+#define SECONDARY_ATTACK_CONTINUE_CHAIN 3
 
 //Bitflags defining which status effects could be or are inflicted on a mob
 #define CANSTUN			(1<<0)
@@ -126,16 +138,6 @@
 #define ATTACK_EFFECT_MECHFIRE	"mech_fire"
 #define ATTACK_EFFECT_MECHTOXIN	"mech_toxin"
 #define ATTACK_EFFECT_BOOP		"boop" //Honk
-
-//intent defines
-#define INTENT_HELP   "help"
-#define INTENT_GRAB   "grab"
-#define INTENT_DISARM "disarm"
-#define INTENT_HARM   "harm"
-//NOTE: INTENT_HOTKEY_* defines are not actual intents!
-//they are here to support hotkeys
-#define INTENT_HOTKEY_LEFT  "left"
-#define INTENT_HOTKEY_RIGHT "right"
 
 //the define for visible message range in combat
 #define COMBAT_MESSAGE_RANGE 3
@@ -236,8 +238,8 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define EXPLODE_LIGHT 3
 #define EXPLODE_GIB_THRESHOLD 50	//ex_act() with EXPLODE_DEVASTATE severity will gib mobs with less than this much bomb armor
 
-#define EMP_HEAVY 1
-#define EMP_LIGHT 2
+#define EMP_LIGHT 5 // maximum severity level without severe effects like organ failure and paralysis
+#define EMP_HEAVY 10 // max severity from most sources so you can't use a 5 billion tile EMP to instakill people
 
 #define GRENADE_CLUMSY_FUMBLE 1
 #define GRENADE_NONCLUMSY_FUMBLE 2

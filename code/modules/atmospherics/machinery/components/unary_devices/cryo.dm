@@ -7,39 +7,52 @@
 	// Must be tall, otherwise the filter will consider this as a 32x32 tile
 	// and will crop the head off.
 	icon_state = "mask_bg"
-	layer = ABOVE_WINDOW_LAYER + 0.01
+	layer = ABOVE_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pixel_y = 22
 	appearance_flags = KEEP_TOGETHER
+	/// The current occupant being presented
+	var/mob/living/occupant
 
-/atom/movable/visual/cryo_occupant/Initialize(mapload)
+/atom/movable/visual/cryo_occupant/Initialize(mapload, obj/machinery/atmospherics/components/unary/cryo_cell/parent)
 	. = ..()
 	// Alpha masking
 	// It will follow this as the animation goes, but that's no problem as the "mask" icon state
 	// already accounts for this.
 	add_filter("alpha_mask", 1, list("type" = "alpha", "icon" = icon('icons/obj/cryogenics.dmi', "mask"), "y" = -22))
+	RegisterSignal(parent, COMSIG_MACHINERY_SET_OCCUPANT, PROC_REF(on_set_occupant))
+	RegisterSignal(parent, COMSIG_CRYO_SET_ON, PROC_REF(on_set_on))
 
-/atom/movable/visual/cryo_occupant/proc/on_occupant_enter(mob/living/occupant)
+/// COMSIG_MACHINERY_SET_OCCUPANT callback
+/atom/movable/visual/cryo_occupant/proc/on_set_occupant(datum/source, mob/living/new_occupant)
+	SIGNAL_HANDLER
+
+	if(occupant)
+		vis_contents -= occupant
+		occupant.vis_flags &= ~VIS_INHERIT_PLANE
+		occupant.remove_traits(list(TRAIT_IMMOBILIZED, TRAIT_FORCED_STANDING), CRYO_TRAIT)
+	
+	occupant = new_occupant
+	if(!occupant)
+		return
+
 	occupant.setDir(SOUTH)
+	// We want to pull our occupant up to our plane so we look right
+	occupant.vis_flags |= VIS_INHERIT_PLANE
 	vis_contents += occupant
 	pixel_y = 22
-	ADD_TRAIT(occupant, TRAIT_IMMOBILIZED, CRYO_TRAIT)
-	ADD_TRAIT(occupant, TRAIT_FORCED_STANDING, CRYO_TRAIT)
+	occupant.add_traits(list(TRAIT_IMMOBILIZED, TRAIT_FORCED_STANDING), CRYO_TRAIT)
 	occupant.set_resting(FALSE, silent = TRUE)
 
-/atom/movable/visual/cryo_occupant/proc/on_occupant_exit(mob/living/occupant)
-	vis_contents -= occupant
-	REMOVE_TRAIT(occupant, TRAIT_IMMOBILIZED, CRYO_TRAIT)
-	REMOVE_TRAIT(occupant, TRAIT_FORCED_STANDING, CRYO_TRAIT)
-	if(occupant.resting || HAS_TRAIT(occupant, TRAIT_FLOORED))
-		occupant.set_resting(TRUE, silent = TRUE)
+/// COMSIG_CRYO_SET_ON callback
+/atom/movable/visual/cryo_occupant/proc/on_set_on(datum/source, on)
+	SIGNAL_HANDLER
 
-/atom/movable/visual/cryo_occupant/proc/on_toggle_on()
-	animate(src, pixel_y = 24, time = 20, loop = -1)
-	animate(pixel_y = 22, time = 20)
-
-/atom/movable/visual/cryo_occupant/proc/on_toggle_off()
-	animate(src)
+	if(on)
+		animate(src, pixel_y = 24, time = 20, loop = -1)
+		animate(pixel_y = 22, time = 20)
+	else
+		animate(src)
 
 /// Cryo cell
 /obj/machinery/atmospherics/components/unary/cryo_cell
@@ -49,10 +62,11 @@
 	density = TRUE
 	max_integrity = 350
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 30, ACID = 30)
-	layer = ABOVE_WINDOW_LAYER
+	layer = MOB_LAYER
 	state_open = FALSE
 	circuit = /obj/item/circuitboard/machine/cryo_tube
 	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
+	vent_movement = NONE
 	occupant_typecache = list(/mob/living/carbon, /mob/living/simple_animal)
 
 	showpipe = FALSE
@@ -81,8 +95,13 @@
 	var/breakout_time = 300
 	///Cryo will continue to treat people with 0 damage but existing wounds, but will sound off when damage healing is done in case doctors want to directly treat the wounds instead
 	var/treating_wounds = FALSE
+	/// Cryo should notify doctors if the patient is dead, and eject them if autoeject is enabled
+	var/patient_dead = FALSE
 	fair_market_price = 10
 	payment_department = ACCOUNT_MED
+
+	/// Reference to the datum connector we're using to interface with the pipe network
+	//var/datum/gas_machine_connector/internal_connector
 
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/Initialize(mapload)
@@ -97,15 +116,23 @@
 	radio.canhear_range = 0
 	radio.recalculateChannels()
 
-	occupant_vis = new(null)
+	occupant_vis = new(null, src)
 	vis_contents += occupant_vis
 
+/obj/machinery/atmospherics/components/unary/cryo_cell/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
+	. = ..()
+	if(same_z_layer)
+		return
+	SET_PLANE(occupant_vis, PLANE_TO_TRUE(occupant_vis.plane), new_turf)
+
+/obj/machinery/atmospherics/components/unary/cryo_cell/set_occupant(atom/movable/new_occupant)
+	. = ..()
+	update_appearance()
+
 /obj/machinery/atmospherics/components/unary/cryo_cell/Exited(atom/movable/AM, atom/newloc)
-	var/mob/living/oldoccupant = occupant
-	. = ..() // Parent proc takes care of removing occupant if necessary
-	if (oldoccupant && istype(oldoccupant) && AM == oldoccupant)
-		occupant_vis.on_occupant_exit(oldoccupant)
-		update_appearance(UPDATE_ICON)
+	. = ..()
+	if(AM == beaker)
+		beaker = null
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/on_construction()
 	..(dir, dir)
@@ -163,20 +190,25 @@
 		updateUsrDialog()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/on_deconstruction()
+	if(occupant)
+		occupant.vis_flags &= ~VIS_INHERIT_PLANE
+		REMOVE_TRAIT(occupant, TRAIT_IMMOBILIZED, CRYO_TRAIT)
+		REMOVE_TRAIT(occupant, TRAIT_FORCED_STANDING, CRYO_TRAIT)
+
 	if(beaker)
 		beaker.forceMove(drop_location())
 		beaker = null
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_icon(updates=ALL)
 	. = ..()
-	plane = initial(plane)
+	SET_PLANE_IMPLICIT(src, initial(plane))
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_icon_state()
-	. = ..()
 	icon_state = (state_open) ? "pod-open" : (on && is_operational()) ? "pod-on" : "pod-off"
+	return ..()
 
-GLOBAL_VAR_INIT(cryo_overlay_cover_on, mutable_appearance('icons/obj/cryogenics.dmi', "cover-on", layer = ABOVE_WINDOW_LAYER + 0.02))
-GLOBAL_VAR_INIT(cryo_overlay_cover_off, mutable_appearance('icons/obj/cryogenics.dmi', "cover-off", layer = ABOVE_WINDOW_LAYER + 0.02))
+/obj/machinery/atmospherics/components/unary/cryo_cell/update_layer()
+	return //no updates so we don't end up on layer 4.003 and overlapping mobs
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_overlays()
 	. = ..()
@@ -185,20 +217,17 @@ GLOBAL_VAR_INIT(cryo_overlay_cover_off, mutable_appearance('icons/obj/cryogenics
 	if(state_open)
 		return
 	if(on && is_operational())
-		. += GLOB.cryo_overlay_cover_on
+		. += mutable_appearance('icons/obj/cryogenics.dmi', "cover-on", ABOVE_ALL_MOB_LAYER, src, plane = ABOVE_GAME_PLANE)
 	else
-		. += GLOB.cryo_overlay_cover_off
+		. += mutable_appearance('icons/obj/cryogenics.dmi', "cover-off", ABOVE_ALL_MOB_LAYER, src, plane = ABOVE_GAME_PLANE)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/set_on(new_value)
 	if(on == new_value)
 		return
+	SEND_SIGNAL(src, COMSIG_CRYO_SET_ON, new_value)
 	. = on
 	on = new_value
-	if(on)
-		occupant_vis.on_toggle_on()
-	else
-		occupant_vis.on_toggle_off()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/process(delta_time)
@@ -224,19 +253,28 @@ GLOBAL_VAR_INIT(cryo_overlay_cover_off, mutable_appearance('icons/obj/cryogenics
 		for(var/obj/item/bodypart/limb in C.get_damaged_bodyparts(TRUE, TRUE, FALSE, BODYPART_ROBOTIC))
 			robotic_limb_damage += limb.get_damage(stamina=FALSE)
 
-	if(mob_occupant.health >= mob_occupant.getMaxHealth() - robotic_limb_damage) // Don't bother with fully healed people. Now takes robotic limbs into account.
-		var/has_cryo_wound = FALSE
-		if(C && C.all_wounds)
-			for(var/datum/wound/wound as anything in C.all_wounds)
-				if(wound.wound_flags & ACCEPTS_CRYO)
-					if(!treating_wounds) // if we have wounds and haven't already alerted the doctors we're only dealing with the wounds, let them know
-						playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
-						var/msg = "Patient vitals fully recovered, continuing automated burn treatment."
-						radio.talk_into(src, msg, radio_channel)
-					has_cryo_wound = TRUE
-					break
+	var/datum/gas_mixture/air1 = airs[1]
 
-		treating_wounds = has_cryo_wound
+	if(mob_occupant.health >= mob_occupant.getMaxHealth() - robotic_limb_damage) // Don't bother with fully healed people. Now takes robotic limbs into account.
+		var/has_wound = FALSE
+		if(C && C.all_wounds)
+			if(air1.total_moles() && air1.get_moles(GAS_HEALIUM) > MINIMUM_MOLE_COUNT)
+				if(!treating_wounds) // if we have wounds and haven't already alerted the doctors we're only dealing with the wounds, let them know
+					playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
+					var/msg = "Patient vitals fully recovered, continuing automated wound treatment."
+					radio.talk_into(src, msg, radio_channel)
+				has_wound = TRUE
+			else
+				for(var/datum/wound/wound as anything in C.all_wounds)
+					if(wound.wound_flags & ACCEPTS_CRYO)
+						if(!treating_wounds) // if we have wounds and haven't already alerted the doctors we're only dealing with the wounds, let them know
+							playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
+							var/msg = "Patient vitals fully recovered, continuing automated burn treatment."
+							radio.talk_into(src, msg, radio_channel)
+						has_wound = TRUE
+						break
+
+		treating_wounds = has_wound
 		if(!treating_wounds)
 			set_on(FALSE)
 			playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
@@ -247,8 +285,6 @@ GLOBAL_VAR_INIT(cryo_overlay_cover_off, mutable_appearance('icons/obj/cryogenics
 			radio.talk_into(src, msg, radio_channel)
 			return
 
-	var/datum/gas_mixture/air1 = airs[1]
-
 	if(air1.total_moles())
 		if(mob_occupant.bodytemperature < T0C) // Sleepytime. Why? More cryo magic.
 			mob_occupant.Sleeping((mob_occupant.bodytemperature * sleep_factor) * 1000 * delta_time)
@@ -257,28 +293,29 @@ GLOBAL_VAR_INIT(cryo_overlay_cover_off, mutable_appearance('icons/obj/cryogenics
 			if(reagent_transfer == 0) // Magically transfer reagents. Because cryo magic.
 				beaker.reagents.trans_to(occupant, 1, efficiency * 0.25) // Transfer reagents.
 				beaker.reagents.reaction(occupant, VAPOR)
-				if(air1.get_moles(/datum/gas/pluoxium) > 5 )//Use pluoxium over oxygen
-					air1.adjust_moles(/datum/gas/pluoxium, -max(0,air1.get_moles(/datum/gas/pluoxium) - 0.5 / efficiency))
-				else
-					air1.adjust_moles(/datum/gas/oxygen, -max(0,air1.get_moles(/datum/gas/oxygen) - 2 / efficiency)) //Let's use gas for this
+				if(air1.get_moles(GAS_PLUOXIUM) > 5 )//Use pluoxium over oxygen
+					air1.adjust_moles(GAS_PLUOXIUM, -max(0,air1.get_moles(GAS_PLUOXIUM) - 0.5 / efficiency))
+				else 
+					air1.adjust_moles(GAS_O2, -max(0,air1.get_moles(GAS_O2) - 2 / efficiency)) //Let's use gas for this
 				if(occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 100) //prevent cryoxadone overdose
 					occupant.reagents.del_reagent(/datum/reagent/medicine/cryoxadone)
 					occupant.reagents.add_reagent(/datum/reagent/medicine/cryoxadone, 99)
 			reagent_transfer += 0.5 * delta_time
 			if(reagent_transfer >= 10 * efficiency) // Throttle reagent transfer (higher efficiency will transfer the same amount but consume less from the beaker).
 				reagent_transfer = 0
-
+		if(air1.get_moles(GAS_HEALIUM) > 1) //healium check, if theres enough we get some extra healing from our favorite pink gas.
+			var/existing = mob_occupant.reagents.get_reagent_amount(/datum/reagent/healium)
+			mob_occupant.reagents.add_reagent(/datum/reagent/healium, 1 - existing)
+			air1.set_moles(GAS_HEALIUM, -max(0, air1.get_moles(GAS_HEALIUM) - 0.1 / efficiency))
 	return 1
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/process_atmos(delta_time)
-	..()
-
+/obj/machinery/atmospherics/components/unary/cryo_cell/process_atmos()
 	if(!on)
 		return
 
 	var/datum/gas_mixture/air1 = airs[1]
 
-	if(!nodes[1] || !airs[1] || (air1.get_moles(/datum/gas/oxygen) < 5 && air1.get_moles(/datum/gas/pluoxium) < 5)) // Turn off if the machine won't work.
+	if(!nodes[1] || !airs[1] || (air1.get_moles(GAS_O2) < 5 && air1.get_moles(GAS_PLUOXIUM) < 5)) // Turn off if the machine won't work.
 		set_on(FALSE)
 		return
 
@@ -299,10 +336,10 @@ GLOBAL_VAR_INIT(cryo_overlay_cover_off, mutable_appearance('icons/obj/cryogenics
 			air1.set_temperature(max(air1.return_temperature() - heat / air_heat_capacity, TCMB))
 			mob_occupant.adjust_bodytemperature(heat / heat_capacity, TCMB)
 
-		if(air1.get_moles(/datum/gas/pluoxium) > 5) //use pluoxium over oxygen
-			air1.set_moles(/datum/gas/pluoxium, max(0,air1.get_moles(/datum/gas/pluoxium) - 0.125 / efficiency))
-		else
-			air1.set_moles(/datum/gas/oxygen, max(0,air1.get_moles(/datum/gas/oxygen) - 0.5 / efficiency)) // Magically consume gas? Why not, we run on cryo magic.
+		if(air1.get_moles(GAS_PLUOXIUM) > 5) //use pluoxium over oxygen
+			air1.set_moles(GAS_PLUOXIUM, max(0,air1.get_moles(GAS_PLUOXIUM) - 0.125 / efficiency))
+		else 
+			air1.set_moles(GAS_O2, max(0,air1.get_moles(GAS_O2) - 0.5 / efficiency)) // Magically consume gas? Why not, we run on cryo magic.
 
 		if(air1.return_temperature() > 2000)
 			take_damage(clamp((air1.return_temperature())/200, 10, 20), BURN)
@@ -317,7 +354,7 @@ GLOBAL_VAR_INIT(cryo_overlay_cover_off, mutable_appearance('icons/obj/cryogenics
 		set_on(FALSE)
 	for(var/mob/M in contents) //only drop mobs
 		M.forceMove(get_turf(src))
-	occupant = null
+	set_occupant(null)
 	flick("pod-open-anim", src)
 	reagent_transfer = efficiency * 10 - 5 // wait before injecting the next occupant
 	..()
@@ -327,8 +364,6 @@ GLOBAL_VAR_INIT(cryo_overlay_cover_off, mutable_appearance('icons/obj/cryogenics
 	if((isnull(user) || istype(user)) && state_open && !panel_open)
 		flick("pod-close-anim", src)
 		..(user)
-		if(isliving(occupant))
-			occupant_vis.on_occupant_enter(occupant)
 		return occupant
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/container_resist(mob/living/user)
@@ -384,7 +419,7 @@ GLOBAL_VAR_INIT(cryo_overlay_cover_off, mutable_appearance('icons/obj/cryogenics
 		|| default_change_direction_wrench(user, I) \
 		|| default_pry_open(I) \
 		|| default_deconstruction_crowbar(I))
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		return
 	else if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		to_chat(user, "<span class='warning'>You can't access the maintenance panel while the pod is " \
@@ -512,17 +547,18 @@ GLOBAL_VAR_INIT(cryo_overlay_cover_off, mutable_appearance('icons/obj/cryogenics
 /obj/machinery/atmospherics/components/unary/cryo_cell/default_change_direction_wrench(mob/user, obj/item/wrench/W)
 	. = ..()
 	if(.)
-		SetInitDirections()
+		set_init_directions()
 		var/obj/machinery/atmospherics/node = nodes[1]
 		if(node)
 			node.disconnect(src)
 			nodes[1] = null
-		nullifyPipenet(parents[1])
-		atmosinit()
+			if(parents[1])
+				nullify_pipenet(parents[1])
+		atmos_init()
 		node = nodes[1]
 		if(node)
-			node.atmosinit()
-			node.addMember(src)
+			node.atmos_init()
+			node.add_member(src)
 		SSair.add_to_rebuild_queue(src)
 
 #undef MAX_TEMPERATURE

@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/food/snacks/bait
 	name = "development bait"
-	desc = "if you see this, get help"
+	desc = "If you see this, get help."
 	icon = 'yogstation/icons/obj/fishing/fishing.dmi'
 	icon_state = "bait_worm"
 	tastes = list("sour, rotten water" = 1)
@@ -54,7 +54,7 @@
 	fishing_power = 20
 
 /obj/item/reagent_containers/food/snacks/bait/worm/leech/attack(mob/living/M, mob/living/user)
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return ..()//wait no not there this is hitting 
 	M.visible_message(span_danger("[user] is putting a leech onto [M]!"))
 	if(!do_after(user, 2 SECONDS, M)) 

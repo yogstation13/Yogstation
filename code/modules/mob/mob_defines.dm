@@ -7,7 +7,6 @@
   * Has a lot of the creature game world logic, such as health etc
   */
 /mob
-	datum_flags = DF_USE_TAG
 	density = TRUE
 	layer = MOB_LAYER
 	animate_movement = 2
@@ -17,8 +16,26 @@
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	throwforce = 10
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+	// we never want to hide a turf because it's not lit
+	// We can rely on the lighting plane to handle that for us
+	see_in_dark = 1e6
 
-	var/lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
+	/// Whether the context menu is opened with shift-right-click as opposed to right-click
+	var/shift_to_open_context_menu = TRUE
+
+	/// Percentage of how much rgb to max the lighting plane at
+	/// This lets us brighten it without washing out color
+	/// Scale from 0-100, reset off update_sight()
+	var/lighting_cutoff = LIGHTING_CUTOFF_VISIBLE
+	// Individual color max for red, we can use this to color darkness without tinting the light
+	var/lighting_cutoff_red = 0
+	// Individual color max for green, we can use this to color darkness without tinting the light
+	var/lighting_cutoff_green = 0
+	// Individual color max for blue, we can use this to color darkness without tinting the light
+	var/lighting_cutoff_blue = 0
+	/// A list of red, green and blue cutoffs
+	/// This is what actually gets applied to the mob, it's modified by things like glasses
+	var/list/lighting_color_cutoffs = null
 	var/datum/mind/mind
 	var/static/next_mob_id = 0
 	/// The current client inhabiting this mob. Managed by login/logout
@@ -49,6 +66,9 @@
 	I'll make some notes on where certain variable defines should probably go.
 	Changing this around would probably require a good look-over the pre-existing code.
 	*/
+
+	///How many legs does this mob currently have. Should only be changed through set_num_legs()
+	var/num_legs = 2
 
 	/// The zone this mob is currently targeting
 	var/zone_selected = BODY_ZONE_CHEST
@@ -99,10 +119,11 @@
 	/// How many ticks this mob has been over reating
 	var/overeatduration = 0		// How long this guy is overeating //Carbon
 
-	/// The current intent of the mob
-	var/a_intent = INTENT_HELP//Living
-	/// List of possible intents a mob can have
-	var/list/possible_a_intents = null//Living
+	///Whether combat mode is enabled
+	var/combat_mode = FALSE
+	///Whether combat mode can be toggled
+	var/can_toggle_combat = TRUE
+
 	/// The movement intent of the mob (run/wal)
 	var/m_intent = MOVE_INTENT_RUN//Living
 
@@ -138,6 +159,8 @@
 	var/datum/hud/hud_used = null
 	/// I have no idea tbh
 	var/research_scanner = FALSE
+	/// What icon the mob uses for typing indicators
+	var/bubble_icon = BUBBLE_DEFAULT
 
 	/// Is the mob throw intent on
 	var/in_throw_mode = 0
@@ -220,3 +243,18 @@
 	var/action_speed_modifier = 1 //Value to multiply action delays by //yogs start: fuck
 
 	var/list/alerts = list() // contains /atom/movable/screen/alert only // On /mob so clientless mobs will throw alerts properly
+
+	///Contains the fullscreen overlays the mob can see (from 'code/_onclick/hud/fullscreen.dm')
+	var/list/screens = list()
+
+	///The HUD type the mob will gain on Initialize. (from 'code/_onclick/hud/hud.dm')
+	var/hud_type = /datum/hud
+
+	///The client colors the mob is looking at. (from 'code/modules/client/client_color.dm')
+	var/list/client_colours = list()
+
+	///What receives our keyboard inputs. src by default. (from 'code/modules/keybindings/focus.dm')
+	var/datum/focus
+
+	var/fake_client = FALSE // Currently only used for examines
+

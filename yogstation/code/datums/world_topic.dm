@@ -31,6 +31,8 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 	var/list/admin_keys = list()
 	for(var/adm in GLOB.permissions.admins)
 		var/client/C = adm
+		if(isnull(C)) //Yog we're having issues with null holders breaking adminwho, so let's skip nulls
+			continue
 		if(input["adminchannel"])
 			admin_keys += "[C][C.holder.fakekey ? "(Stealth)" : ""][C.is_afk() ? "(AFK)" : ""]"
 		else if(!C.holder.fakekey)

@@ -279,9 +279,10 @@
 	weather_immunities = list(WEATHER_LAVA, WEATHER_ASH)
 	obj_damage = 30
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
-	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-
+	// Purple, but bright cause we're gonna need to spot mobs on lavaland
+	lighting_cutoff_red = 35
+	lighting_cutoff_green = 20
+	lighting_cutoff_blue = 45
 
 /mob/living/simple_animal/hostile/big_legion/Initialize(mapload)
 	.=..()
@@ -313,7 +314,7 @@
 				head = /obj/item/clothing/head/helmet/space/plasmaman
 				belt = /obj/item/tank/internals/plasmaman/belt
 			else
-				uniform = /obj/item/clothing/under/rank/miner/lavaland
+				uniform = /obj/item/clothing/under/rank/cargo/miner/lavaland
 				if (prob(4))
 					belt = pickweight(list(/obj/item/storage/belt/mining = 2, /obj/item/storage/belt/mining/alt = 2))
 				else if(prob(10))
@@ -332,7 +333,7 @@
 				l_pocket = pickweight(list(/obj/item/stack/spacecash/c1000 = 7, /obj/item/reagent_containers/autoinjector/medipen/survival = 2, /obj/item/borg/upgrade/modkit/cooldown = 1 ))
 		if("Ashwalker")
 			mob_species = /datum/species/lizard/ashwalker
-			uniform = /obj/item/clothing/under/gladiator/ash_walker
+			uniform = /obj/item/clothing/under/costume/gladiator/ash_walker
 			if(prob(95))
 				head = /obj/item/clothing/head/helmet/gladiator
 			else
@@ -372,7 +373,7 @@
 				l_pocket = pick(list(/obj/item/jawsoflife, /obj/item/handdrill, /obj/item/weldingtool/experimental))
 		if("YeOlde")
 			mob_gender = FEMALE
-			uniform = /obj/item/clothing/under/maid
+			uniform = /obj/item/clothing/under/costume/maid
 			gloves = /obj/item/clothing/gloves/color/white
 			shoes = /obj/item/clothing/shoes/laceup
 			head = /obj/item/clothing/head/helmet/knight
@@ -395,7 +396,7 @@
 			back = /obj/item/tank/internals/oxygen
 			mask = /obj/item/clothing/mask/breath
 		if("Cultist")
-			uniform = /obj/item/clothing/under/roman
+			uniform = /obj/item/clothing/under/costume/roman
 			suit = /obj/item/clothing/suit/cultrobes
 			head = /obj/item/clothing/head/culthood
 			suit_store = /obj/item/tome
@@ -455,7 +456,7 @@
 		for(var/mob/living/M in view(src,1))
 			if(M.stat == DEAD && GLOB.aide_list.len <= 2 && (!M.has_status_effect(STATUS_EFFECT_EXHUMED))) //max of 3 bloodmen to minimize shitshows
 				L = new(M.loc)
-				L.faction = src.faction
+				L.faction = faction.Copy()
 				L.stored_mob = M
 				M.forceMove(L)
 				M.apply_status_effect(/datum/status_effect/exhumed)

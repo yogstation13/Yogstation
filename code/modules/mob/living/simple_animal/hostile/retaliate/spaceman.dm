@@ -11,7 +11,7 @@
 	response_help = "pokes"
 	response_disarm = "gently pushes aside"
 	response_harm = "punches"
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	maxHealth = 100
 	health = 100
 	speed = 0
@@ -22,8 +22,7 @@
 	attack_sound = 'sound/weapons/punch1.ogg'
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
-
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_SHOE
 
 /mob/living/simple_animal/hostile/retaliate/nanotrasenpeace //this should be in a different file
 	name = "Nanotrasen Private Security Officer"
@@ -49,7 +48,7 @@
 	attacktext = "punches"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	faction = list("nanotrasenprivate")
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	loot = list(/obj/effect/mob_spawn/human/corpse/nanotrasensoldier)
 	atmos_requirements = list("min_oxy" = 5, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 5, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 15

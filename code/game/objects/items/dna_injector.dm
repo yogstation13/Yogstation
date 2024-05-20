@@ -88,12 +88,7 @@
 /obj/item/dnainjector/antihulk
 	name = "\improper DNA injector (Anti-Hulk)"
 	desc = "Cures green skin."
-	remove_mutations = list(HULK, ACTIVE_HULK, GENETICS_HULK)
-
-/obj/item/dnainjector/hulkmut/genetics_hulk
-	name = "\improper DNA injector (Genetics Hulk)"
-	desc = "This will make you big and strong if you get hurt, but give you a bad skin condition."
-	add_mutations = list(GENETICS_HULK)
+	remove_mutations = list(HULK)
 
 /obj/item/dnainjector/hulkmut
 	name = "\improper DNA injector (Hulk)"
@@ -375,14 +370,6 @@
 /obj/item/dnainjector/antiparanoia
 	name = "\improper DNA injector (Anti-Paranoia)"
 	remove_mutations = list(PARANOIA)
-
-/obj/item/dnainjector/mindread
-	name = "\improper DNA injector (Mindread)"
-	add_mutations = list(MINDREAD)
-
-/obj/item/dnainjector/antimindread
-	name = "\improper DNA injector (Anti-Mindread)"
-	remove_mutations = list(MINDREAD)
 
 /obj/item/dnainjector/radioactive
 	name = "\improper DNA injector (Radioactive)"

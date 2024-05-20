@@ -53,20 +53,16 @@
 		to_chat(victim, span_userdanger("Your eyes explode with horrific pain!"))
 		victim.emote("scream")
 		eyes.applyOrganDamage(eyes.maxHealth)
-		victim.adjust_blurriness(30)
+		victim.adjust_eye_blur(30)
 		victim.adjust_blindness(30)
 		return TRUE
 
 /obj/item/clothing/glasses/wraith_spectacles/proc/set_vision_vars(update_vision)
-	lighting_alpha = null
 	tint = 0
 	vision_flags = NONE
-	darkness_view = 2
 	if(!up)
 		if(is_servant_of_ratvar(loc))
-			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 			vision_flags = SEE_MOBS | SEE_TURFS | SEE_OBJS
-			darkness_view = 3
 		else
 			tint = 3
 	if(update_vision && iscarbon(loc))
@@ -161,7 +157,7 @@
 	eyes.applyOrganDamage(0.5)
 	eye_damage_done += 0.5
 	if(eye_damage_done >= 20)
-		H.adjust_blurriness(2)
+		H.adjust_eye_blur(2)
 	if(eye_damage_done >= nearsight_breakpoint)
 		if(!HAS_TRAIT(H, TRAIT_NEARSIGHT))
 			to_chat(H, span_nzcrentr("Your vision doubles, then trembles. Darkness begins to close in. You can't keep this up!"))

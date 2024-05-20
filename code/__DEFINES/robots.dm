@@ -58,3 +58,9 @@
 #define BORG_MODULE_ALL_DISABLED (1<<0)
 #define BORG_MODULE_TWO_DISABLED (1<<1)
 #define BORG_MODULE_THREE_DISABLED (1<<2)
+
+//bot navigation beacon defines
+#define NAVBEACON_PATROL_MODE "patrol"
+#define NAVBEACON_PATROL_NEXT "next_patrol"
+#define NAVBEACON_DELIVERY_MODE "delivery"
+#define NAVBEACON_DELIVERY_DIRECTION "dir"

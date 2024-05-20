@@ -80,8 +80,13 @@
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	materials = list(/datum/material/iron = 1000)
 
+/obj/item/melee/cutlass/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack)
+
 /obj/item/melee/sabre/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/cleave_attack) // YES
 	AddComponent(/datum/component/butchering, 30, 95, 5) //fast and effective, but as a sword, it might damage the results.
 
 /obj/item/melee/sabre/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
@@ -319,13 +324,17 @@
 /obj/item/melee/classic_baton/proc/additional_effects_silicon(mob/living/target, mob/living/user)
 	return
 
-/obj/item/melee/classic_baton/attack(mob/living/target, mob/living/user)
-	if(!on)
+/obj/item/melee/classic_baton/attack(mob/living/target, mob/living/user, params)
+	var/list/modifiers = params2list(params)
+	if(!on || (user.combat_mode && modifiers && modifiers[RIGHT_CLICK])) // right click to harm, so you can keep combat mode on to prevent walking through people
 		return ..()
-
+	if(!isliving(target))
+		return ..()
+	if(!synth_check(user, SYNTH_RESTRICTED_WEAPON))
+		return TRUE
 	if(HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
 		to_chat(user, span_warning("You can't seem to remember how this works!"))
-		return
+		return TRUE
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
 		to_chat(user, "<span class ='danger'>You hit yourself over the head.</span>")
@@ -338,31 +347,20 @@
 			H.apply_damage(2*force, BRUTE, BODY_ZONE_HEAD)
 		else
 			user.take_bodypart_damage(2*force)
-		return
+		return TRUE
+
 	if(iscyborg(target))
-		// We don't stun if we're on harm.
-		if (user.a_intent != INTENT_HARM)
-			if (affect_silicon)
-				stun_silicon(target, user)
-			else
-				..()
-		else
-			..()
-		return
-	if(!isliving(target))
-		return
-	if (user.a_intent == INTENT_HARM)
-		if(!..())
-			return
-		if(!iscyborg(target))
-			return
+		if(affect_silicon)
+			stun_silicon(target, user)
+			return TRUE
+		return ..()
+
+	if(cooldown_check <= world.time)
+		stun(target, user)
 	else
-		if(cooldown_check <= world.time)
-			stun(target, user)
-		else
-			var/wait_desc = get_wait_description()
-			if (wait_desc)
-				to_chat(user, wait_desc)
+		var/wait_desc = get_wait_description()
+		if (wait_desc)
+			to_chat(user, wait_desc)
 
 /obj/item/melee/classic_baton/donkbat
 	name = "toy baseball bat"
@@ -626,7 +624,6 @@
 	T.visible_message(span_danger("[T] smacks into [src] and rapidly flashes to ash."),\
 	span_italics("You hear a loud crack as you are washed with a wave of heat."))
 	shard.Consume()
-	CALCULATE_ADJACENT_TURFS(T)
 
 /obj/item/melee/supermatter_sword/add_blood_DNA(list/blood_dna)
 	return FALSE
@@ -728,14 +725,14 @@
 			held_sausage = target
 		else
 			to_chat(user, span_warning("[target] doesn't seem to want to get on [src]!"))
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/item/melee/roastingstick/attack_hand(mob/user)
 	..()
 	if (held_sausage)
 		user.put_in_hands(held_sausage)
 		held_sausage = null
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/item/melee/roastingstick/update_overlays()
 	. = ..()
@@ -771,7 +768,7 @@
 		if (istype(target, /obj/singularity) && get_dist(user, target) < 10)
 			to_chat(user, "You send [held_sausage] towards [target].")
 			playsound(src, 'sound/items/rped.ogg', 50, 1)
-			beam = user.Beam(target,icon_state="rped_upgrade",time=100)
+			beam = user.Beam(target, icon_state = "rped_upgrade", time = 10 SECONDS)
 		else if (user.Adjacent(target))
 			to_chat(user, "You extend [src] towards [target].")
 			playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)

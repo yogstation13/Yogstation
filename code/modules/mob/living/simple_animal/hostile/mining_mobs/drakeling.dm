@@ -7,7 +7,7 @@
 	move_to_delay = 10
 	speak_emote = list("roars")
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	attack_sound = 'sound/magic/demon_attack1.ogg'
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "ash_whelp"
@@ -113,7 +113,7 @@
 
 /datum/action/cooldown/spell/pointed/drakeling
 	name = "ULTRA DRAGON ATTACK"
-	desc = "if you can see this something has probably gone very wrong and you should make a bug report."
+	desc = "If you can see this something has probably gone very wrong and you should make a bug report."
 	background_icon_state = "bg_demon"
 	panel = "Dragon"
 

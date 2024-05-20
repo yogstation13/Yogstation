@@ -206,13 +206,6 @@
 				else
 					message_admins("[key_name_admin(usr)] tried to create a revenant. Unfortunately, there were no candidates available.")
 					log_admin("[key_name(usr)] failed to create a revenant.")
-			if("shadowling")
-				if(makeShadowling())
-					message_admins("[key_name(usr)] created a shadowling.")
-					log_admin("[key_name(usr)] created a shadowling.")
-				else
-					message_admins("[key_name_admin(usr)] tried to create a shadowling. Unfortunately, there were no candidates available.")
-					log_admin("[key_name(usr)] failed to create a shadowling.")
 			if("darkspawn")
 				if(makeDarkspawn())
 					message_admins("[key_name(usr)] created a darkspawn.")
@@ -1160,7 +1153,7 @@
 
 		if(ishuman(L))
 			var/mob/living/carbon/human/observer = L
-			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), ITEM_SLOT_ICLOTHING)
+			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit(observer), ITEM_SLOT_ICLOTHING)
 			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/sneakers/black(observer), ITEM_SLOT_FEET)
 		L.Unconscious(10 SECONDS)
 		sleep(0.5 SECONDS)
@@ -1187,14 +1180,13 @@
 		if(!check_rights(R_SPAWN))
 			return
 
-		var/mob/living/carbon/human/H = locate(href_list["makeai"])
-		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human.", confidential=TRUE)
+		var/mob/our_mob = locate(href_list["makeai"])
+		if(!istype(our_mob))
 			return
-
-		message_admins(span_danger("Admin [key_name_admin(usr)] AIized [key_name_admin(H)]!"))
-		log_admin("[key_name(usr)] AIized [key_name(H)].")
-		H.AIize(TRUE, H.client)
+		
+		message_admins(span_danger("Admin [key_name_admin(usr)] AIized [key_name_admin(our_mob)]!"))
+		log_admin("[key_name(usr)] AIized [key_name(our_mob)].")
+		our_mob.AIize(our_mob.client)
 
 	else if(href_list["makealien"])
 		if(!check_rights(R_SPAWN))
@@ -2319,7 +2311,7 @@
 		return
 
 	var/customname = input(src, "Pick a title for the report", "Title") as text|null
-	var/prefix = "<center><b>NanoTrasen Fax Network</b></center><hr><center>RE: [inputsubject]</center><hr>"
+	var/prefix = "<center><b>Nanotrasen Fax Network</b></center><hr><center>RE: [inputsubject]</center><hr>"
 	var/suffix = "<hr><b>Signed:</b> <font face=\"[SIGNFONT]\"><i>[inputsigned]</i></font>"
 
 	inputmessage = parsemarkdown(inputmessage)

@@ -31,11 +31,10 @@
 	move_force = MOVE_FORCE_VERY_STRONG
 	move_resist = MOVE_FORCE_VERY_STRONG
 	pull_force = MOVE_FORCE_VERY_STRONG
+	loot = list(/obj/item/stack/sheet/animalhide/goliath_hide)
+	footstep_type = FOOTSTEP_MOB_HEAVY
 	var/pre_attack = 0
 	var/pre_attack_icon = "Goliath_preattack"
-	loot = list(/obj/item/stack/sheet/animalhide/goliath_hide)
-
-	do_footstep = TRUE
 
 /mob/living/simple_animal/hostile/asteroid/goliath/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
@@ -154,6 +153,7 @@
 	response_help = "pets"
 	crusher_loot = null
 	guaranteed_butcher_results = list() //no plates from joe
+	stop_automated_movement_when_pulled = TRUE //joe's pretty chill
 	move_force = MOVE_FORCE_DEFAULT
 	move_resist = MOVE_RESIST_DEFAULT
 	pull_force = PULL_FORCE_DEFAULT

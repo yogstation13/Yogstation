@@ -2,7 +2,7 @@
 	name = "arrow"
 	desc = "An arrow, typically fired from a bow."
 	projectile_type = /obj/projectile/bullet/reusable/arrow
-	caliber = "arrow"
+	caliber = CALIBER_ARROW
 	icon_state = "arrow"
 	item_state = "arrow"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -95,7 +95,7 @@
 	attached_parts = null
 	to_chat(user, span_notice("You remove the attached parts."))
 
-			
+
 /obj/item/ammo_casing/reusable/arrow/CheckParts(list/parts_list)
 	var/obj/item/ammo_casing/reusable/arrow/A = locate(/obj/item/ammo_casing/reusable/arrow) in parts_list
 	if(A)
@@ -147,11 +147,11 @@
 /obj/item/ammo_casing/reusable/arrow/proc/add_flame()
 	flaming = TRUE
 	update_appearance(UPDATE_ICON)
-	
+
 /obj/item/ammo_casing/reusable/arrow/proc/on_embed(target, mob/living/carbon/embedde)
 	if(syringe)
 		syringe.embed_inject(target, embedde)
-	
+
 /obj/item/ammo_casing/reusable/arrow/proc/embed_tick(target, mob/living/carbon/embedde)
 	if(syringe)
 		syringe.embed_inject(target, embedde)
@@ -218,7 +218,7 @@
 	desc = "An arrow tipped with bronze. Better against armor than iron."
 	icon_state = "bronzearrow"
 	item_state = "bronzearrow"
-	armour_penetration = 10 
+	armour_penetration = 10
 	projectile_type = /obj/projectile/bullet/reusable/arrow/bronze
 
 /obj/item/ammo_casing/reusable/arrow/glass
@@ -464,24 +464,24 @@
 		if(/obj/item/singularity_shard/stage2)
 			break_chance = 0.5
 			rads_released = 200
-			empulse(src, 0, 1)
+			empulse(src, 1)
 		if(/obj/item/singularity_shard/stage3)
 			break_chance = 1.5
 			rads_released = 500
-			empulse(src, 0, 3)
+			empulse(src, 3)
 		if(/obj/item/singularity_shard/stage4)
 			break_chance = 5
 			rads_released = 1000
-			empulse(src, 1, 5)
+			empulse(src, 5)
 		if(/obj/item/singularity_shard/stage5)
 			break_chance = 10
 			rads_released = 2000
-			empulse(src, 2, 7)
+			empulse(src, 7)
 		if(/obj/item/singularity_shard/stage6)
 			break_chance = 100
 			rads_released = 3000
-			empulse(src, 5, 15) // Its going to break open into a singulo anyways, may as well add some fireworks
-	
+			empulse(src, 15) // Its going to break open into a singulo anyways, may as well add some fireworks
+
 	// Handles releasing rads
 	if(rads_released)
 		radiation_pulse(src, rads_released, RAD_DISTANCE_COEFFICIENT * 0.5)
@@ -547,7 +547,7 @@
 	projectile_type = /obj/projectile/energy/arrow/disabler
 	harmful = FALSE
 	tick_damage_type = STAMINA
-	
+
 /obj/item/ammo_casing/reusable/arrow/energy/pulse
 	name = "pulse bolt"
 	desc = "An arrow made from hardlight. This one eliminates any obstructions it hits."

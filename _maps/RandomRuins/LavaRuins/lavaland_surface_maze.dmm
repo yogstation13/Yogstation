@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "h" = (
-/turf/closed/mineral/volcanic/lava_land_surface/hard/harder,
+/turf/closed/mineral/volcanic/lava_land_surface/harder,
 /area/template_noop)
 "i" = (
 /turf/closed/mineral/volcanic/lava_land_surface/hard,

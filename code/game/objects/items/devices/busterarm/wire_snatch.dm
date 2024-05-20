@@ -74,7 +74,8 @@
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	fire_sound = 'sound/weapons/batonextend.ogg'
 	max_charges = 3
-	item_flags = NEEDS_PERMIT | DROPDEL
+	item_flags = NEEDS_PERMIT | DROPDEL | NOBLUDGEON
+	weapon_weight = WEAPON_MEDIUM // to prevent dual-wield from messing with things
 	force = 0
 	can_charge = FALSE
 
@@ -95,7 +96,7 @@
 	name = "hook"
 	desc = "A hook."
 	projectile_type = /obj/projectile/wire
-	caliber = "hook"
+	caliber = CALIBER_HOOK
 	icon_state = "hook"
 
 /// Projectile
@@ -111,11 +112,12 @@
 	range = 8
 	hitsound = 'sound/effects/splat.ogg'
 	knockdown = 0
+	var/wire_icon_state = "chain"
 	var/wire
 
 /obj/projectile/wire/fire(setAngle)
 	if(firer)
-		wire = firer.Beam(src, icon_state = "chain", time = INFINITY, maxdistance = INFINITY)
+		wire = firer.Beam(src, icon_state = wire_icon_state, time = INFINITY, maxdistance = INFINITY)
 	..()
 
 /// Helper proc exclusively used for pulling the buster arm USER towards something anchored
@@ -129,7 +131,7 @@
 	var/mob/living/carbon/human/H = firer
 	if(!H)
 		return
-	H.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
+	H.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)
 	if(isobj(target)) // If it's an object
 		var/obj/item/I = target
 		if(!I?.anchored) // Give it to us if it's not anchored
@@ -152,7 +154,7 @@
 		var/armor = L.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
 		if(!L.anchored) // Only pull them if they're unanchored
 			if(istype(H))
-				L.visible_message(span_danger("[L] is pulled by [H]'s wire!"),span_userdanger("A wire grabs you and pulls you towards [H]!"))				
+				L.visible_message(span_danger("[L] is pulled by [H]'s wire!"),span_userdanger("A wire grabs you and pulls you towards [H]!"))
 				L.Immobilize(1.0 SECONDS)
 				if(prob(5))
 					firer.say("GET OVER HERE!!")//slicer's request
@@ -166,7 +168,7 @@
 				// If we happen to be facing a dense object after the wire snatches them, like a table or window
 				for(var/obj/D in T.contents)
 					if(D.density == TRUE)
-						D.take_damage(50)	
+						D.take_damage(50)
 						L.apply_damage(15, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 						L.forceMove(Q)
 						to_chat(H, span_warning("[H] catches [L] throws [L.p_them()] against [D]!"))

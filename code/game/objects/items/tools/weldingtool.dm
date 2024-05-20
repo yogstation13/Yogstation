@@ -23,6 +23,7 @@
 	light_on = FALSE
 	throw_speed = 3
 	throw_range = 5
+	demolition_mod = 0.5 // not very good at smashing
 	w_class = WEIGHT_CLASS_SMALL
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 30)
 	resistance_flags = FIRE_PROOF
@@ -103,9 +104,9 @@
 	dyn_explosion(T, plasmaAmount/5)//20 plasma in a standard welder has a 4 power explosion. no breaches, but enough to kill/dismember holder
 	qdel(src)
 
-/obj/item/weldingtool/attack(mob/living/M, mob/user)
+/obj/item/weldingtool/attack(mob/living/M, mob/living/user, params)
 	var/obj/item/clothing/mask/cigarette/cig = help_light_cig(M)
-	if(isOn() && user.a_intent == INTENT_HELP && cig && user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
+	if(isOn() && !user.combat_mode && cig && user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
 		if(cig.lit)
 			to_chat(user, span_notice("The [cig.name] is already lit."))
 			return FALSE
@@ -117,7 +118,7 @@
 			playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
 			return TRUE
 
-	if(user.a_intent == INTENT_HELP && ishuman(M))
+	if(!user.combat_mode && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
 		if(affecting?.status == BODYPART_ROBOTIC)
@@ -134,8 +135,7 @@
 			user.visible_message(span_notice("[user] fixes some of the dents on [M]'s [affecting.name]."), span_notice("You fix some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
 			return TRUE
 
-	if(!isOn() || user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
-		..()
+	return ..()
 
 /obj/item/weldingtool/afterattack(atom/O, mob/user, proximity)
 	. = ..()
@@ -225,6 +225,7 @@
 			playsound(loc, acti_sound, 50, 1)
 			force = 12
 			damtype = BURN
+			demolition_mod = 1.5 // pretty good at cutting
 			hitsound = 'sound/items/welder.ogg'
 			update_appearance(UPDATE_ICON)
 			START_PROCESSING(SSobj, src)
@@ -243,6 +244,7 @@
 	force = 3
 	damtype = "brute"
 	hitsound = "swing_hit"
+	demolition_mod = initial(demolition_mod)
 	update_appearance(UPDATE_ICON)
 
 

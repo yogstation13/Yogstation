@@ -550,7 +550,7 @@
 "jM" = (
 /obj/structure/stone_tile/surrounding/cracked,
 /obj/item/flashlight/lantern{
-	on = 1;
+	light_on = 1;
 	pixel_x = -1;
 	pixel_y = 6
 	},
@@ -671,9 +671,9 @@
 /area/lavaland/surface/outdoors)
 "mf" = (
 /obj/structure/stone_tile/surrounding,
-/obj/structure/altar_of_gods,
+/obj/structure/table/altar_of_gods,
 /obj/item/flashlight/lantern{
-	on = 1
+	light_on = 1
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
@@ -869,7 +869,7 @@
 "pJ" = (
 /obj/effect/turf_decal/sand,
 /obj/item/flashlight/lantern{
-	on = 1
+	light_on = 1
 	},
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/lavaland,
@@ -970,7 +970,7 @@
 	pixel_y = -4
 	},
 /obj/item/flashlight/lantern{
-	on = 1;
+	light_on = 1;
 	pixel_x = -6;
 	pixel_y = 14
 	},
@@ -1047,7 +1047,7 @@
 	},
 /obj/structure/stone_tile/surrounding,
 /obj/item/flashlight/lantern{
-	on = 1;
+	light_on = 1;
 	pixel_x = -1;
 	pixel_y = 6
 	},
@@ -1930,7 +1930,7 @@
 "ID" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lantern{
-	on = 1;
+	light_on = 1;
 	pixel_x = 4;
 	pixel_y = 4
 	},

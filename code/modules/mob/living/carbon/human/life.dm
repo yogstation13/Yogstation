@@ -98,7 +98,7 @@
 		else
 			adjust_blindness(-1)
 	if(eye_blurry)			//blurry eyes heal slowly
-		adjust_blurriness(-1)
+		adjust_eye_blur(-1)
 
 	if (getOrganLoss(ORGAN_SLOT_BRAIN) >= 60)
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "brain_damage", /datum/mood_event/brain_damage)
@@ -107,7 +107,7 @@
 
 	if(!dna)
 		return
-	if(prob(3) && dna.check_mutation(ACTIVE_HULK))
+	if(prob(3) && dna.check_mutation(HULK))
 		say(pick_list_replacements(BRAIN_DAMAGE_FILE, "hulk"))
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
@@ -154,27 +154,11 @@
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
 	dna.species.handle_environment(environment, src)
 
-///FIRE CODE
-/mob/living/carbon/human/handle_fire()
-	. = ..()
-	if(.) //if the mob isn't on fire anymore
-		return
-
-	if(dna)
-		. = dna.species.handle_fire(src) //do special handling based on the mob's species. TRUE = they are immune to the effects of the fire.
-
-	if(!last_fire_update)
-		last_fire_update = fire_stacks
-	if((fire_stacks > HUMAN_FIRE_STACK_ICON_NUM && last_fire_update <= HUMAN_FIRE_STACK_ICON_NUM) || (fire_stacks <= HUMAN_FIRE_STACK_ICON_NUM && last_fire_update > HUMAN_FIRE_STACK_ICON_NUM))
-		last_fire_update = fire_stacks
-		update_fire()
-
-
 /mob/living/carbon/human/proc/get_thermal_protection()
 	var/thermal_protection = 0 //Simple check to estimate how protected we are against multiple temperatures
 	if(wear_suit)
 		if(wear_suit.max_heat_protection_temperature >= FIRE_SUIT_MAX_TEMP_PROTECT)
-			thermal_protection += (wear_suit.max_heat_protection_temperature*0.7)
+			thermal_protection += (wear_suit.max_heat_protection_temperature*(1-THERMAL_PROTECTION_HEAD))
 	if(head)
 		if(head.max_heat_protection_temperature >= FIRE_HELM_MAX_TEMP_PROTECT)
 			thermal_protection += (head.max_heat_protection_temperature*THERMAL_PROTECTION_HEAD)

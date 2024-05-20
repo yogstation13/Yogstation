@@ -49,9 +49,10 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 		new/datum/stack_recipe("red filing cabinet", /obj/structure/filingcabinet/colored/red, 2, time = 3 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
 		new/datum/stack_recipe("yellow filing cabinet", /obj/structure/filingcabinet/colored/yellow, 2, time = 3 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("rack parts", /obj/item/rack_parts), \
+	new/datum/stack_recipe("crate shelf parts", /obj/item/rack_parts/shelf), \
 		)), \
 	null, \
-	new/datum/stack_recipe("canister", /obj/machinery/portable_atmospherics/canister/generic, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("canister", /obj/machinery/portable_atmospherics/canister, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("portable pump", /obj/machinery/portable_atmospherics/pump, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	null, \
 	new/datum/stack_recipe("floor tile", /obj/item/stack/tile/plasteel, 1, 4, 20), \
@@ -99,6 +100,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("airlock controller frame", /obj/item/wallframe/advanced_airlock_controller, 2), \
 	new/datum/stack_recipe("apc frame", /obj/item/wallframe/apc, 2), \
 	new/datum/stack_recipe("button frame", /obj/item/wallframe/button, 1), \
+	new/datum/stack_recipe("light switch frame", /obj/item/wallframe/light_switch, 1), \
 	new/datum/stack_recipe("extinguisher cabinet frame", /obj/item/wallframe/extinguisher_cabinet, 2), \
 	new/datum/stack_recipe("fire alarm frame", /obj/item/wallframe/firealarm, 2), \
 	new/datum/stack_recipe("telescreen frame", /obj/item/wallframe/telescreen, 3), \
@@ -221,7 +223,6 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("rolling pin", /obj/item/kitchen/rollingpin, 2, time = 30), \
 	new/datum/stack_recipe("tiki mask", /obj/item/clothing/mask/gas/tiki_mask, 2), \
 	new/datum/stack_recipe("winged wooden chair", /obj/structure/chair/wood/wings, 3, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("wood floor tile", /obj/item/stack/tile/wood, 1, 4, 20), \
 	new/datum/stack_recipe("wood table frame", /obj/structure/table_frame/wood, 2, time = 10), \
 	new/datum/stack_recipe("wooden barricade", /obj/structure/barricade/wooden, 5, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("wooden bucket", /obj/item/reagent_containers/glass/bucket/wooden, 3, time = 10),\
@@ -231,6 +232,12 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("wooden door", /obj/structure/mineral_door/wood, 10, time = 20, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("wooden sandals", /obj/item/clothing/shoes/sandal, 1), \
 
+	new/datum/stack_recipe_list("floor tiles", list( \
+		new/datum/stack_recipe("wood floor tile", /obj/item/stack/tile/wood, 1, 4, 20), \
+		new/datum/stack_recipe("parquet wood floor tile", /obj/item/stack/tile/wood/parquet, 1, 4, 20), \
+		new/datum/stack_recipe("large wood floor tile", /obj/item/stack/tile/wood/large, 1, 4, 20), \
+		new/datum/stack_recipe("tiled wood floor tile", /obj/item/stack/tile/wood/tile, 1, 4, 20), \
+	)), \
 	null, \
 	new/datum/stack_recipe_list("pews", list(
 		new /datum/stack_recipe("pew (left)", /obj/structure/chair/pew/left, 3, one_per_turf = TRUE, on_floor = TRUE),
@@ -258,7 +265,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	recipes = GLOB.wood_recipes
 	return ..()
 
-/obj/item/stack/sheet/mineral/wood/attack_obj(obj/O, mob/living/user)
+/obj/item/stack/sheet/mineral/wood/attack_atom(obj/O, mob/living/user)
 	if(istype(O, /obj/structure/window) || istype(O, /obj/machinery/door/airlock) || istype(O,/obj/machinery/door)) //I hate this but reportedly there is no other way :skull:
 		for(var/obj/structure/barricade/wooden/crude/crude in get_turf(O))
 			to_chat(user, span_warning("There is already a barricade there!"))
@@ -301,6 +308,8 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	if(!wood_stack && replace)
 		user.put_in_hands(new_item)
 
+/obj/item/stack/sheet/mineral/wood/ten
+	amount = 10
 /obj/item/stack/sheet/mineral/wood/fifty
 	amount = 50
 
@@ -900,7 +909,7 @@ GLOBAL_LIST_INIT(cheese_recipes, list (
 	merge_type = /obj/item/stack/sheet/ruinous_metal
 
 GLOBAL_LIST_INIT(ruinous_metal_recipes, list (
-	new/datum/stack_recipe("altar of the gods", /obj/structure/altar_of_gods, 6, one_per_turf = 1, on_floor = 1, time = 40), \
+	new/datum/stack_recipe("altar of the gods", /obj/structure/table/altar_of_gods, 6, one_per_turf = 1, on_floor = 1, time = 40), \
 	new/datum/stack_recipe("holy fountain", /obj/structure/holyfountain, 3, one_per_turf = 1, on_floor = 1, time = 40 )))
 
 /obj/item/stack/sheet/ruinous_metal/Initialize(mapload, new_amount, merge = TRUE)

@@ -1,6 +1,8 @@
 /obj/item/clothing/suit
-	icon = 'icons/obj/clothing/suits.dmi'
 	name = "suit"
+	icon = 'icons/obj/clothing/suits/suits.dmi'
+	lefthand_file = 'icons/mob/inhands/clothing/suits_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/clothing/suits_righthand.dmi'
 	var/fire_resist = T0C+100
 	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
@@ -10,7 +12,7 @@
 	var/blood_overlay_type = "suit"
 	var/togglename = null
 	var/suittoggled = FALSE
-	var/mutantrace_variation = NO_MUTANTRACE_VARIATION
+	var/mutantrace_variation = NONE
 	var/adjusted = NORMAL_STYLE
 	limb_integrity = 0 // disabled for most exo-suits
 	var/obj/item/badge/attached_badge
@@ -21,13 +23,15 @@
 		QDEL_NULL(attached_badge)
 	return ..()
 
-/obj/item/clothing/suit/worn_overlays(isinhands = FALSE)
-	. = list()
+/obj/item/clothing/suit/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
+	. = ..()
 	if(!isinhands)
 		if(damaged_clothes)
-			. += mutable_appearance('icons/effects/item_damage.dmi', "damaged[blood_overlay_type]")
+			. += mutable_appearance('icons/effects/item_damage.dmi', "damageduniform")
 		if(HAS_BLOOD_DNA(src))
-			. += mutable_appearance('icons/effects/blood.dmi', "[blood_overlay_type]blood")
+			var/mutable_appearance/bloody_armor = mutable_appearance('icons/effects/blood.dmi', "[blood_overlay_type]blood")
+			bloody_armor.color = get_blood_dna_color(return_blood_DNA())
+			. += bloody_armor
 		var/mob/living/carbon/human/M = loc
 		if(ishuman(M) && M.w_uniform)
 			var/obj/item/clothing/under/U = M.w_uniform
@@ -70,7 +74,7 @@
 		return
 	if(user)
 		to_chat(user, span_notice("You attach [I] to [src]."))
-	badge_overlay = mutable_appearance(attached_badge.mob_overlay_icon, "[attached_badge.accessory_state]")
+	badge_overlay = mutable_appearance(attached_badge.worn_icon, "[attached_badge.accessory_state]")
 	badge_overlay.alpha = attached_badge.alpha
 	badge_overlay.color = attached_badge.color
 	if(ishuman(loc))

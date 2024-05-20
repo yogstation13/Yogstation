@@ -161,7 +161,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/sillycup = 1,
 		/datum/reagent/consumable/ice = 15,
-		/datum/reagent/consumable/berryjuice = 5
+		/datum/reagent/consumable/grapejuice = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/snowcones/grape
 	category = CAT_ICE

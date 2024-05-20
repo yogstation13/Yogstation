@@ -24,11 +24,9 @@
 /datum/action/cooldown/bloodsucker/gangrel/transform/ActivatePower()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	var/mob/living/carbon/human/user = owner
-	if(!do_after(user, 10 SECONDS))
-		return
 	var/list/radial_display = list()
 	//get our options, switches are kinda weird here cause wwe ant to stack them
-	if(bloodsuckerdatum.total_blood_drank) //makes the icons for the options
+	if(bloodsuckerdatum) //makes the icons for the options
 		var/datum/radial_menu_choice/option = new
 		user.setDir(SOUTH)
 		var/icon/icon_to_mix = getFlatIcon(user)
@@ -55,6 +53,8 @@
 		option.info = "Turn into a giant bat simple mob with unique abilities."
 		radial_display["Bat"] = option
 	var/chosen_transform = show_radial_menu(user, user, radial_display)
+	if(!chosen_transform || !do_after(user, 10 SECONDS))
+		return
 	transform(chosen_transform) //actually transform
 	return ..()
 
@@ -85,7 +85,7 @@
 			user.dna.species.punchdamagehigh += 10 //very stronk
 			user.dna.species.punchstunthreshold += 10
 			user.dna.species.action_speed_coefficient *= 1.3
-			user.dna.species.armor += 40
+			user.dna.species.armor += 15
 			bloodsuckerdatum.AddBloodVolume(50)
 		if("Bat")
 			var/mob/living/simple_animal/hostile/bloodsucker/giantbat/gb
@@ -471,7 +471,7 @@
 	base_background_icon_state = "wolf_power_off"
 	power_explanation = "Rabidism:\n\
 		Rabidism will deal reduced damage to everyone in range including you.\n\
-		During Rabidism's ten second rage you'll deal alot more damage to structures.\n\
+		During Rabidism's ten second rage you'll deal a lot more damage to structures.\n\
 		Be aware of it's long cooldown time.\n\
 		Created from your Tresspass ability"
 	power_flags = BP_AM_TOGGLE
@@ -576,7 +576,7 @@
 	icon_state = "collar"
 	item_state = "collar"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	mob_overlay_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	worn_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 100)
 	body_parts_covered = NECK|HEAD
 
@@ -586,7 +586,7 @@
 	icon_state = "ears"
 	item_state = "ears"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	mob_overlay_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	worn_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 100)
 	flags_inv = HIDEHAIR|HIDEFACE
 	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
@@ -598,7 +598,7 @@
 	icon_state = "claws"
 	item_state = "claws"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	mob_overlay_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	worn_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	body_parts_covered = ARMS|HANDS
 	flags_inv = HIDEJUMPSUIT
 	var/datum/action/cooldown/bloodsucker/targeted/tear/tearaction = new
@@ -609,7 +609,7 @@
 	icon_state = "legs"
 	item_state = "legs"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	mob_overlay_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	worn_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	slowdown = SHOES_SLOWDOWN - 0.5
 	body_parts_covered = GROIN|LEGS|FEET
 
@@ -619,7 +619,7 @@
 	icon_state = "digilegs"
 	item_state = "digilegs"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	mob_overlay_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	worn_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	slowdown = SHOES_SLOWDOWN - 0.5
 	xenoshoe = YES_DIGIT
 	body_parts_covered = GROIN|LEGS|FEET

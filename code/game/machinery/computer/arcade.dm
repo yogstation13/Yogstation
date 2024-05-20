@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 
 /obj/machinery/computer/arcade
 	name = "random arcade"
-	desc = "random arcade machine"
+	desc = "A random arcade machine."
 	icon_state = "arcade"
 	icon_keyboard = null
 	icon_screen = "invaders"
@@ -120,12 +120,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		return
 
 	var/empprize = null
-	var/num_of_prizes = 0
-	switch(severity)
-		if(1)
-			num_of_prizes = rand(1,4)
-		if(2)
-			num_of_prizes = rand(0,2)
+	var/num_of_prizes = rand(0, severity / 2.5)
 	for(var/i = num_of_prizes; i > 0; i--)
 		if(override)
 			empprize = pickweight(prize_override)
@@ -584,7 +579,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 								playsound(loc, 'sound/weapons/genhit.ogg', 100, 1)
 								var/turf/open/space/T
 								for(T in orange(1, src))
-									T.PlaceOnTop(/turf/open/floor/plating)
+									T.place_on_top(/turf/open/floor/plating)
 						else
 							say("Something slams into the floor around [src] - luckily, it didn't get through!")
 							playsound(loc, 'sound/effects/bang.ogg', 50, 1)

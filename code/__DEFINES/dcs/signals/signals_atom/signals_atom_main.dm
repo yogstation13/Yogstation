@@ -3,15 +3,15 @@
 // All signals send the source datum of the signal as the first argument
 
 // /atom signals
-///from base of atom/proc/Initialize(mapload): sent any time a new atom is created in this atom
-#define COMSIG_ATOM_INITIALIZED_ON "atom_initialized_on"
 //from SSatoms InitAtom - Only if the  atom was not deleted or failed initialization
 #define COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZE "atom_init_success"
+//from SSatoms InitAtom - Only if the  atom was not deleted or failed initialization and has a loc
+#define COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON "atom_init_success_on"
 ///from base of atom/examine(): (/mob, list/examine_text)
-#define COMSIG_PARENT_EXAMINE "atom_examine"
+#define COMSIG_ATOM_EXAMINE "atom_examine"
 ///from base of atom/get_examine_name(): (/mob, list/overrides)
 #define COMSIG_ATOM_GET_EXAMINE_NAME "atom_examine_name"
-#define COMSIG_PARENT_EXAMINE_MORE "atom_examine_more"                    ///from base of atom/examine_more(): (/mob)
+#define COMSIG_ATOM_EXAMINE_MORE "atom_examine_more"                    ///from base of atom/examine_more(): (/mob)
 	//Positions for overrides list
 	#define EXAMINE_POSITION_ARTICLE (1<<0)
 	#define EXAMINE_POSITION_BEFORE (1<<1)
@@ -43,6 +43,8 @@
 #define COMSIG_ATOM_UPDATED_ICON "atom_updated_icon"
 ///from base of [/atom/proc/smooth_icon]: ()
 #define COMSIG_ATOM_SMOOTHED_ICON "atom_smoothed_icon"
+///from [/datum/controller/subsystem/processing/dcs/proc/rotate_decals]: (list/datum/element/decal/rotating)
+#define COMSIG_ATOM_DECALS_ROTATING "atom_decals_rotating"
 ///from base of atom/Entered(): (atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 #define COMSIG_ATOM_ENTERED "atom_entered"
 ///from base of atom/movable/Moved(): (atom/movable/arrived, atom/old_loc, list/atom/old_locs)
@@ -69,8 +71,10 @@
 #define COMSIG_ATOM_CREATEDBY_PROCESSING "atom_createdby_processing"
 ///when an atom is processed (mob/living/user, obj/item/I, list/atom/results)
 #define COMSIG_ATOM_PROCESSED "atom_processed"
+///called when teleporting into a possibly protected turf: (channel, turf/origin, turf/destination)
+#define COMSIG_ATOM_INTERCEPT_TELEPORTING "intercept_teleporting"
 ///called when teleporting into a protected turf: (channel, turf/origin)
-#define COMSIG_ATOM_INTERCEPT_TELEPORT "intercept_teleport"
+#define COMSIG_ATOM_INTERCEPT_TELEPORTED "intercept_teleport"
 	#define COMPONENT_BLOCK_TELEPORT (1<<0)
 ///called when an atom is added to the hearers on get_hearers_in_view(): (list/processing_list, list/hearers)
 #define COMSIG_ATOM_HEARER_IN_VIEW "atom_hearer_in_view"
@@ -95,6 +99,9 @@
 #define COMSIG_ATOM_PROPAGATE_RAD_PULSE "atom_propagate_radiation_pulse"
 /// from cosmetic items to restyle certain mobs, objects or organs: (atom/source, mob/living/trimmer, atom/movable/original_target, body_zone, restyle_type, style_speed)
 #define COMSIG_ATOM_RESTYLE "atom_restyle"
+
+/// Called on [/atom/SpinAnimation()] : (speed, loops, segments, angle)
+#define COMSIG_ATOM_SPIN_ANIMATION "atom_spin_animation"
 
 ///! from proc/get_rad_contents(): ()
 #define COMSIG_ATOM_RAD_PROBE "atom_rad_probe"

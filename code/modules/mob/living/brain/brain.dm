@@ -5,7 +5,6 @@
 	var/datum/dna/stored/stored_dna // dna var for brain. Used to store dna, brain dna is not considered like actual dna, brain.has_dna() returns FALSE.
 	stat = DEAD //we start dead by default
 	see_invisible = SEE_INVISIBLE_LIVING
-	possible_a_intents = list(INTENT_HELP, INTENT_HARM) //for mechas
 	speech_span = SPAN_ROBOT
 
 /mob/living/brain/Initialize(mapload)
@@ -16,6 +15,12 @@
 		var/obj/item/organ/brain/OB = new(loc) //we create a new brain organ for it.
 		OB.brainmob = src
 		forceMove(OB)
+
+/mob/living/brain/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
+	var/obj/item/organ/brain/brain_loc = loc
+	if(brain_loc && isnull(new_turf) && brain_loc.owner) //we're actively being put inside a new body.
+		return ..(old_turf, get_turf(brain_loc.owner), same_z_layer, notify_contents)
+	return ..()
 
 /mob/living/brain/proc/create_dna()
 	stored_dna = new /datum/dna/stored(src)

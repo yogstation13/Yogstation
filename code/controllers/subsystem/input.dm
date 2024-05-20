@@ -34,7 +34,8 @@ SUBSYSTEM_DEF(input)
 	var/list/clients = GLOB.clients
 	for(var/i in 1 to clients.len)
 		var/client/user = clients[i]
-		user.set_macros()
+		if(user)
+			user.set_macros()
 
 /datum/controller/subsystem/input/fire()
 	for(var/mob/user as anything in GLOB.player_list)

@@ -2,10 +2,12 @@
 // When the signal is called: (signal arguments)
 // All signals send the source datum of the signal as the first argument
 
-///from base of atom/movable/Moved(): (/atom)
+///from base of atom/movable/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change): (/atom)
+#define COMSIG_MOVABLE_PRE_ENTER "movable_pre_enter"
+///from base of atom/movable/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change): (/atom)
 #define COMSIG_MOVABLE_PRE_MOVE "movable_pre_move"
 	#define COMPONENT_MOVABLE_BLOCK_PRE_MOVE (1<<0)
-///from base of atom/movable/Moved(): (atom/old_loc, dir, forced, list/old_locs)
+///from base of atom/movable/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change): (atom/old_loc, dir, forced, list/old_locs)
 #define COMSIG_MOVABLE_MOVED "movable_moved"
 ///from base of atom/movable/Cross(): (/atom/movable)
 #define COMSIG_MOVABLE_CROSS "movable_cross"
@@ -77,14 +79,6 @@
 #define COMSIG_MOVABLE_SET_ANCHORED "movable_set_anchored"
 ///from base of atom/movable/setGrabState(): (newstate)
 #define COMSIG_MOVABLE_SET_GRAB_STATE "living_set_grab_state"
-///Called when the movable tries to change its dynamic light color setting, from base atom/movable/lighting_overlay_set_color(): (color)
-#define COMSIG_MOVABLE_LIGHT_OVERLAY_SET_RANGE "movable_light_overlay_set_color"
-///Called when the movable tries to change its dynamic light power setting, from base atom/movable/lighting_overlay_set_power(): (power)
-#define COMSIG_MOVABLE_LIGHT_OVERLAY_SET_POWER "movable_light_overlay_set_power"
-///Called when the movable tries to change its dynamic light range setting, from base atom/movable/lighting_overlay_set_range(): (range)
-#define COMSIG_MOVABLE_LIGHT_OVERLAY_SET_COLOR "movable_light_overlay_set_range"
-///Called when the movable tries to toggle its dynamic light LIGHTING_ON status, from base atom/movable/lighting_overlay_toggle_on(): (new_state)
-#define COMSIG_MOVABLE_LIGHT_OVERLAY_TOGGLE_ON "movable_light_overlay_toggle_on"
 ///called when the movable's glide size is updated: (new_glide_size)
 #define COMSIG_MOVABLE_UPDATE_GLIDE_SIZE "movable_glide_size"
 ///Called when a movable is hit by a plunger in layer mode, from /obj/item/plunger/attack_atom()
@@ -102,6 +96,7 @@
 /// from base of atom/movable/Process_Spacemove(): (movement_dir, continuous_move)
 #define COMSIG_MOVABLE_SPACEMOVE "spacemove"
 	#define COMSIG_MOVABLE_STOP_SPACEMOVE (1<<0)
+	#define COMSIG_MOVABLE_ALLOW_SPACEMOVE (1<<1)
 
 /// Sent from /obj/item/radio/talk_into(): (obj/item/radio/used_radio)
 #define COMSIG_MOVABLE_USING_RADIO "movable_radio"

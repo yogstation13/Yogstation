@@ -6,7 +6,7 @@
 
 /turf/open/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(prob(flammability * 100))
-		IgniteTurf(rand(IGNITE_TURF_LOW_POWER,IGNITE_TURF_HIGH_POWER))
+		ignite_turf(rand(IGNITE_TURF_LOW_POWER,IGNITE_TURF_HIGH_POWER))
 	return ..()
 
 /turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
@@ -17,32 +17,22 @@
 	if(!air)
 		return
 
-	if(air.get_moles(/datum/gas/hypernoblium) > REACTION_OPPRESSION_THRESHOLD)
+	if (air.get_moles(GAS_O2) < 0.5 || air.get_moles(GAS_HYPERNOB) > REACTION_OPPRESSION_THRESHOLD)
 		return
 
-	var/oxy = air.get_moles(/datum/gas/oxygen)
-	if (oxy < 0.5)
-		return
-	var/tox = air.get_moles(/datum/gas/plasma)
-	var/trit = air.get_moles(/datum/gas/tritium)
-	var/h2 = air.get_moles(/datum/gas/hydrogen)
+	var/has_fuel = air.get_moles(GAS_PLASMA) > 0.5 || air.get_moles(GAS_TRITIUM) > 0.5 || air.get_moles(GAS_H2) > 0.5
 
 	if(active_hotspot)
 		if(soh)
-			if(tox > 0.5 || trit > 0.5 || h2 > 0.5)
+			if(has_fuel)
 				if(active_hotspot.temperature < exposed_temperature)
 					active_hotspot.temperature = exposed_temperature
 				if(active_hotspot.volume < exposed_volume)
 					active_hotspot.volume = exposed_volume
 		return
 
-	if((exposed_temperature > PLASMA_MINIMUM_BURN_TEMPERATURE) && (tox > 0.5 || trit > 0.5 || h2 > 0.5))
-
+	if((exposed_temperature > PLASMA_MINIMUM_BURN_TEMPERATURE) && has_fuel)
 		active_hotspot = new /obj/effect/hotspot(src, exposed_volume*25, exposed_temperature)
-
-		active_hotspot.just_spawned = (current_cycle < SSair.times_fired)
-			//remove just_spawned protection if no longer processing this cell
-		SSair.add_to_active(src, 0)
 
 //This is the icon for fire on turfs, also helps for nurturing small fires until they are full tile
 /obj/effect/hotspot
@@ -73,11 +63,13 @@
 	if(!perform_exposure())
 		return INITIALIZE_HINT_QDEL
 	setDir(pick(GLOB.cardinals))
-	air_update_turf()
 
 /obj/effect/hotspot/proc/perform_exposure()
 	var/turf/open/location = loc
 	if(!istype(location) || !(location.air))
+		return FALSE
+	
+	if(SEND_SIGNAL(location, COMSIG_TURF_HOTSPOT_EXPOSE) & SUPPRESS_FIRE)
 		return FALSE
 
 	if(location.active_hotspot != src)
@@ -163,7 +155,7 @@
 	color = list(LERP(0.3, 1, 1-greyscale_fire) * heat_r,0.3 * heat_g * greyscale_fire,0.3 * heat_b * greyscale_fire, 0.59 * heat_r * greyscale_fire,LERP(0.59, 1, 1-greyscale_fire) * heat_g,0.59 * heat_b * greyscale_fire, 0.11 * heat_r * greyscale_fire,0.11 * heat_g * greyscale_fire,LERP(0.11, 1, 1-greyscale_fire) * heat_b, 0,0,0)
 	alpha = heat_a
 
-#define INSUFFICIENT(path) (location.air.get_moles(path) < 0.5)
+#define INSUFFICIENT(id) (location.air.get_moles(id) < 0.5)
 /obj/effect/hotspot/process()
 	if(just_spawned)
 		just_spawned = FALSE
@@ -181,11 +173,13 @@
 		return
 
 	//Not enough / nothing to burn
-	if(!location.air || (INSUFFICIENT(/datum/gas/plasma) && INSUFFICIENT(/datum/gas/tritium)) && INSUFFICIENT(/datum/gas/hydrogen) || INSUFFICIENT(/datum/gas/oxygen))
+	if(!location.air || (INSUFFICIENT(GAS_PLASMA) && INSUFFICIENT(GAS_TRITIUM)) && INSUFFICIENT(GAS_H2) || INSUFFICIENT(GAS_O2))
 		qdel(src)
 		return
 
-	perform_exposure()
+	if(!perform_exposure())
+		qdel(src)
+		return
 
 	if(bypassing)
 		icon_state = "3"
@@ -246,11 +240,6 @@
 
 /obj/effect/hotspot/singularity_pull()
 	return
-
-/obj/effect/dummy/lighting_obj/moblight/fire
-	name = "fire"
-	light_color = LIGHT_COLOR_FIRE
-	light_range = LIGHT_RANGE_FIRE
 
 #undef INSUFFICIENT
 #undef IGNITE_TURF_LOW_POWER

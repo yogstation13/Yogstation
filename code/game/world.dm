@@ -1,5 +1,10 @@
 #define RESTART_COUNTER_PATH "data/round_counter.txt"
 
+/// Force the log directory to be something specific in the data/logs folder
+#define OVERRIDE_LOG_DIRECTORY_PARAMETER "log-directory"
+/// Prevent the master controller from starting automatically
+#define NO_INIT_PARAMETER "no-init"
+
 GLOBAL_VAR(restart_counter)
 
 /**
@@ -211,19 +216,19 @@ GLOBAL_VAR(restart_counter)
 	var/list/fail_reasons
 	if(GLOB)
 		if(GLOB.total_runtimes != 0)
-			fail_reasons = list("Total runtimes: [GLOB.total_runtimes]")
+			fail_reasons = list(TEST_OUTPUT_RED("Total runtimes: [GLOB.total_runtimes]"))
 #ifdef UNIT_TESTS
 		if(GLOB.failed_any_test)
-			LAZYADD(fail_reasons, "Unit Tests failed!")
+			LAZYADD(fail_reasons, TEST_OUTPUT_RED("Unit Tests failed!"))
 #endif
 		if(!GLOB.log_directory)
-			LAZYADD(fail_reasons, "Missing GLOB.log_directory!")
+			LAZYADD(fail_reasons, TEST_OUTPUT_RED("Missing GLOB.log_directory!"))
 	else
-		fail_reasons = list("Missing GLOB!")
+		fail_reasons = list(TEST_OUTPUT_RED("Missing GLOB!"))
 	if(!fail_reasons)
 		text2file("Success!", "[GLOB.log_directory]/clean_run.lk")
 	else
-		log_world("Test run failed!\n[fail_reasons.Join("\n")]")
+		log_world("[TEST_OUTPUT_RED("Test run failed")]!\n[fail_reasons.Join("\n")]")
 	sleep(0) //yes, 0, this'll let Reboot finish and prevent byond memes
 	qdel(src) //shut it down
 
@@ -272,17 +277,18 @@ GLOBAL_VAR(restart_counter)
 
 	log_world("World rebooted at [time_stamp()]")
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
+	__auxmos_shutdown()
+	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
+	if (debug_server)
+		call_ext(debug_server, "auxtools_shutdown")()
 	..()
 
 /world/Del()
-	// memory leaks bad
-	var/num_deleted = 0
-	for(var/datum/gas_mixture/GM)
-		GM.__gasmixture_unregister()
-		num_deleted++
-	log_world("Deallocated [num_deleted] gas mixtures")
-	if(fexists(EXTOOLS))
-		LIBCALL(EXTOOLS, "cleanup")()
+	shutdown_logging() // makes sure the thread is closed before end, else we terminate
+	__auxmos_shutdown()
+	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
+	if (debug_server)
+		LIBCALL(debug_server, "auxtools_shutdown")()
 	..()
 
 /world/proc/update_status() //yogs -- Mirrored in the Yogs folder in March 2019. Do not edit, swallow, or submerge in acid
@@ -346,6 +352,43 @@ GLOBAL_VAR(restart_counter)
 	else
 		hub_password = "SORRYNOPASSWORD"
 
+/**
+ * Handles incresing the world's maxx var and intializing the new turfs and assigning them to the global area.
+ * If map_load_z_cutoff is passed in, it will only load turfs up to that z level, inclusive.
+ * This is because maploading will handle the turfs it loads itself.
+ */
+/world/proc/increase_max_x(new_maxx, map_load_z_cutoff = maxz)
+	if(new_maxx <= maxx)
+		return
+	var/old_max = world.maxx
+	maxx = new_maxx
+	if(!map_load_z_cutoff)
+		return
+	var/area/global_area = GLOB.areas_by_type[world.area] // We're guaranteed to be touching the global area, so we'll just do this
+	LISTASSERTLEN(global_area.turfs_by_zlevel, map_load_z_cutoff, list())
+	for (var/zlevel in 1 to map_load_z_cutoff)
+		var/list/to_add = block(
+			locate(old_max + 1, 1, zlevel),
+			locate(maxx, maxy, zlevel))
+
+		global_area.turfs_by_zlevel[zlevel] += to_add
+
+
+/world/proc/increase_max_y(new_maxy, map_load_z_cutoff = maxz)
+	if(new_maxy <= maxy)
+		return
+	var/old_maxy = maxy
+	maxy = new_maxy
+	if(!map_load_z_cutoff)
+		return
+	var/area/global_area = GLOB.areas_by_type[world.area] // We're guarenteed to be touching the global area, so we'll just do this
+	LISTASSERTLEN(global_area.turfs_by_zlevel, map_load_z_cutoff, list())
+	for (var/zlevel in 1 to map_load_z_cutoff)
+		var/list/to_add = block(
+			locate(1, old_maxy + 1, 1),
+			locate(maxx, maxy, map_load_z_cutoff))
+		global_area.turfs_by_zlevel[zlevel] += to_add
+
 /world/proc/incrementMaxZ()
 	maxz++
 	SSmobs.MaxZChanged()
@@ -376,3 +419,7 @@ GLOBAL_VAR(restart_counter)
 	SStimer?.reset_buckets()
 
 /world/proc/refresh_atmos_grid()
+
+#undef NO_INIT_PARAMETER
+#undef OVERRIDE_LOG_DIRECTORY_PARAMETER
+#undef RESTART_COUNTER_PATH

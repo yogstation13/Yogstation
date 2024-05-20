@@ -33,6 +33,17 @@
 	var/preload_cell_type
 	///used for passive discharge
 	var/cell_last_used = 0
+	light_range = 1.5
+	light_system = MOVABLE_LIGHT
+	light_on = FALSE
+	light_color = LIGHT_COLOR_ORANGE
+	light_power = 0.5
+
+/// Toggles the stun baton's light
+/obj/item/melee/baton/proc/toggle_light(mob/user)
+	set_light_on(!light_on)
+	return
+
 
 /obj/item/melee/baton/get_cell()
 	return cell
@@ -76,6 +87,7 @@
 		if(status && cell.charge < hitcost)
 			//we're below minimum, turn off
 			status = FALSE
+			set_light_on(FALSE)
 			update_appearance(UPDATE_ICON)
 			playsound(loc, "sparks", 75, 1, -1)
 			STOP_PROCESSING(SSobj, src) // no more charge? stop checking for discharge
@@ -99,6 +111,7 @@
 
 /obj/item/melee/baton/examine(mob/user)
 	. = ..()
+	. += span_notice("Left click to stun, right click to harm.")
 	if(cell)
 		. += span_notice("\The [src] is [round(cell.percent())]% charged.")
 	else
@@ -135,6 +148,8 @@
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
 		playsound(loc, "sparks", 75, 1, -1)
+		toggle_light(user)
+		do_sparks(1, TRUE, src)
 		cell_last_used = 0
 		if(status)
 			START_PROCESSING(SSobj, src)
@@ -149,12 +164,14 @@
 	update_appearance(UPDATE_ICON)
 	add_fingerprint(user)
 
-/obj/item/melee/baton/attack(mob/M, mob/living/carbon/human/user)
+/obj/item/melee/baton/attack(mob/M, mob/living/carbon/human/user, params)
 	if(status && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 		user.visible_message(span_danger("[user] accidentally hits [user.p_them()]self with [src]!"), \
 							span_userdanger("You accidentally hit yourself with [src]!"))
 		user.Paralyze(stunforce*3)
 		deductcharge(hitcost)
+		return
+	if(!synth_check(user, SYNTH_RESTRICTED_WEAPON))
 		return
 	if(HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
 		to_chat(user, span_warning("You can't seem to remember how this works!"))
@@ -175,7 +192,13 @@
 			A.handle_counter(L, user)
 			return
 
-	if(user.a_intent != INTENT_HARM)
+	var/list/modifiers = params2list(params)
+	if(modifiers && modifiers[RIGHT_CLICK])
+		if(status)
+			if(cooldown_check <= world.time)
+				baton_stun(M, user)
+		return ..()
+	else
 		if(status)
 			if(cooldown_check <= world.time)
 				if(baton_stun(M, user))
@@ -186,14 +209,9 @@
 		else
 			M.visible_message(span_warning("[user] has prodded [M] with [src]. Luckily it was off."), \
 							span_warning("[user] has prodded you with [src]. Luckily it was off."))
-	else
-		if(status)
-			if(cooldown_check <= world.time)
-				baton_stun(M, user)
-		..()
 
 
-/obj/item/melee/baton/proc/baton_stun(mob/living/L, mob/user)
+/obj/item/melee/baton/proc/baton_stun(mob/living/L, mob/living/user)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK)) //No message; check_shields() handles that
@@ -241,7 +259,7 @@
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/mind/M = H.mind
-		if(M && (M.assigned_role == "Assistant" || M.assigned_role == "Clown") && user.a_intent == INTENT_HARM)
+		if(M && (M.assigned_role == "Assistant" || M.assigned_role == "Clown") && user.combat_mode)
 			var/amount_given = 1
 			if(M.assigned_role == "Clown")
 				amount_given = 5
@@ -257,7 +275,7 @@
 /obj/item/melee/baton/emp_act(severity)
 	. = ..()
 	if (!(. & EMP_PROTECT_SELF))
-		deductcharge(1000 / severity)
+		deductcharge(100 * severity)
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/melee/baton/cattleprod
@@ -306,3 +324,5 @@
 	desc = "A new power management circuit which enables stun batons to instantly stun, at the cost of double power usage."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade3"
+
+

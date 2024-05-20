@@ -4,7 +4,7 @@
 	icon = 'icons/obj/clothing/accessories.dmi'
 	icon_state = "plasma"
 	item_state = ""	//no inhands
-	mob_overlay_icon = 'icons/mob/clothing/accessories.dmi'
+	worn_icon = 'icons/mob/clothing/accessories.dmi'
 	slot_flags = 0
 	w_class = WEIGHT_CLASS_SMALL
 	var/above_suit = FALSE
@@ -63,7 +63,7 @@
 		pixel_x -= 8
 		pixel_y += 8
 	layer = initial(layer)
-	plane = initial(plane)
+	SET_PLANE_IMPLICIT(src, initial(plane))
 	U.cut_overlays()
 	U.attached_accessory = null
 	U.accessory_overlay = null
@@ -91,6 +91,8 @@
 	desc = "For some classy, murderous fun."
 	icon_state = "waistcoat"
 	item_state = "waistcoat"
+	lefthand_file = 'icons/mob/inhands/clothing/suits_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/clothing/suits_righthand.dmi'
 	minimize_when_attached = FALSE
 	attachment_slot = null
 
@@ -99,6 +101,8 @@
 	desc = "The best part of a maid costume."
 	icon_state = "maidapron"
 	item_state = "maidapron"
+	lefthand_file = 'icons/mob/inhands/clothing/suits_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/clothing/suits_righthand.dmi'
 	minimize_when_attached = FALSE
 	attachment_slot = null
 
@@ -119,52 +123,48 @@
 	name = "bronze medal"
 	desc = "A bronze medal."
 	icon_state = "bronze"
-	materials = list(/datum/material/iron=1000)
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
 	resistance_flags = FIRE_PROOF
-	var/medaltype = "medal" //Sprite used for medalbox
-	var/commended = FALSE
-	above_suit = TRUE
-	above_suit_adjustable = TRUE
+	/// Sprite used for medalbox
+	var/medaltype = "medal"
+	/// Has this been use for a commendation?
+	var/commendation_message
+	/// Who was first given this medal
+	var/awarded_to
+	/// Who gave out this medal
+	var/awarder
 
-//Pinning medals on people
-/obj/item/clothing/accessory/medal/attack(mob/living/carbon/human/M, mob/living/user)
-	if(ishuman(M) && (user.a_intent == INTENT_HELP))
+/obj/item/clothing/accessory/medal/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/pinnable_accessory, on_pre_pin = CALLBACK(src, PROC_REF(provide_reason)))
 
-		if(M.wear_suit)
-			if((M.wear_suit.flags_inv & HIDEJUMPSUIT)) //Check if the jumpsuit is covered
-				to_chat(user, span_warning("Medals can only be pinned on jumpsuits."))
-				return
+/obj/item/clothing/accessory/medal/update_desc(updates)
+	. = ..()
+	if(commendation_message && awarded_to && awarder)
+		desc += span_info("<br>The inscription reads: [commendation_message] - Awarded to [awarded_to] by [awarder]")
 
-		if(M.w_uniform)
-			var/obj/item/clothing/under/U = M.w_uniform
-			var/delay = 20
-			if(user == M)
-				delay = 0
-			else
-				user.visible_message("[user] is trying to pin [src] on [M]'s chest.", \
-									 span_notice("You try to pin [src] on [M]'s chest."))
-			var/input
-			if(!commended && user != M)
-				input = stripped_input(user,"Please input a reason for this commendation, it will be recorded by Nanotrasen.", ,"", 140)
-			if(do_after(user, delay, M))
-				if(U.attach_accessory(src, user, 0)) //Attach it, do not notify the user of the attachment
-					if(user == M)
-						to_chat(user, span_notice("You attach [src] to [U]."))
-					else
-						user.visible_message("[user] pins \the [src] on [M]'s chest.", \
-											 span_notice("You pin \the [src] on [M]'s chest."))
-						if(input)
-							SSblackbox.record_feedback("associative", "commendation", 1, list("commender" = "[user.real_name]", "commendee" = "[M.real_name]", "medal" = "[src]", "reason" = input))
-							GLOB.commendations += "[user.real_name] awarded <b>[M.real_name]</b> the [span_medaltext("[name]")]! \n- [input]"
-							commended = TRUE
-							desc += "<br>The inscription reads: [input] - [user.real_name]"
-							log_game("<b>[key_name(M)]</b> was given the following commendation by <b>[key_name(user)]</b>: [input]")
-							message_admins("<b>[key_name_admin(M)]</b> was given the following commendation by <b>[key_name_admin(user)]</b>: [input]")
+/// Input a reason for the medal for the round end screen
+/obj/item/clothing/accessory/medal/proc/provide_reason(mob/living/carbon/human/distinguished, mob/user)
+	if(!commendation_message)
+		commendation_message = tgui_input_text(user, "Reason for this commendation? It will be recorded by Nanotrasen.", "Commendation", max_length = 140)
+	return !!commendation_message
 
-		else
-			to_chat(user, span_warning("Medals can only be pinned on jumpsuits!"))
-	else
-		..()
+/obj/item/clothing/accessory/medal/attach(obj/item/clothing/under/attach_to, mob/living/attacher)
+	var/mob/living/distinguished = attach_to.loc
+	if(isnull(attacher) || !istype(distinguished) || distinguished == attacher || awarded_to)
+		// You can't be awarded by nothing, you can't award yourself, and you can't be awarded someone else's medal
+		return ..()
+
+	awarder = attacher.real_name
+	awarded_to = distinguished.real_name
+
+	update_appearance(UPDATE_DESC)
+	distinguished.log_message("was given the following commendation by <b>[key_name(attacher)]</b>: [commendation_message]", LOG_GAME, color = "green")
+	message_admins("<b>[key_name_admin(distinguished)]</b> was given the following commendation by <b>[key_name_admin(attacher)]</b>: [commendation_message]")
+	GLOB.commendations += "[awarder] awarded <b>[awarded_to]</b> the <span class='medaltext'>[name]</span>! \n- [commendation_message]"
+	SSblackbox.record_feedback("associative", "commendation", 1, list("commender" = "[awarder]", "commendee" = "[awarded_to]", "medal" = "[src]", "reason" = commendation_message))
+
+	return ..()
 
 /obj/item/clothing/accessory/medal/conduct
 	name = "distinguished conduct medal"
@@ -316,13 +316,12 @@
 /obj/item/clothing/accessory/lawyers_badge/on_clothing_equip(obj/item/clothing/U, user)
 	var/mob/living/L = user
 	if(L)
-		L.bubble_icon = "lawyer"
+		L.AddElement(/datum/element/speech_bubble_override, BUBBLE_LAWYER)
 
 /obj/item/clothing/accessory/lawyers_badge/on_clothing_dropped(obj/item/clothing/U, user)
 	var/mob/living/L = user
 	if(L)
-		L.bubble_icon = initial(L.bubble_icon)
-
+		L.RemoveElement(/datum/element/speech_bubble_override, BUBBLE_LAWYER)
 
 ////////////////
 //HA HA! NERD!//
@@ -429,3 +428,70 @@
 	attachment_slot = null
 	above_suit = TRUE
 	above_suit_adjustable = TRUE
+	
+
+//////////////
+//Pride Pins//
+//////////////
+
+/obj/item/clothing/accessory/pride
+	name = "pride pin"
+	desc = "A Nanotrasen Diversity & Inclusion Center-sponsored holographic pin to show off your sexuality, reminding the crew of their unwavering commitment to equity, diversity, and inclusion!"
+	icon_state = "pride"
+	above_suit_adjustable = TRUE
+	var/static/list/pride_reskins = list(
+		"Rainbow Pride" = list(
+			"icon" = "pride_rainbow",
+			"info" = "A colorful striped rainbow that represents diversity and Gay Pride, pride in same-gender love!"),
+		"Bisexual Pride" = list(
+			"icon" = "pride_bi",
+			"info" = "Purple, dark pink and dark blue stripes that represent Bisexual Pride, pride in loving both binary genders!"),
+		"Pansexual Pride" = list(
+			"icon" = "pride_pan",
+			"info" = "Yellow, pink and blue stripes that represent Pansexual Pride, pride in loving regardless of sex or gender!"),
+		"Asexual Pride"	= list(
+			"icon" = "pride_ace",
+			"info" = "Black, grey, white and purple stripes that represent Asexual Pride, pride in nonsexual love!"),
+		"Non-binary Pride" = list(
+			"icon" = "pride_enby",
+			"info" = "Yellow, white, purple and black stripes that represent Non-Binary pride, pride in identifying as a Non-Binary gender!"),
+		"Transgender Pride"= list(
+			"icon" = "pride_trans",
+			"info" = "Blue, pink and white stripes that represent Transgender pride, pride in transitioning genders!"),
+		"Intersex Pride" = list(
+			"icon" = "pride_intersex",
+			"info" = "A yellow background with a disctint purple circle that represents Intersex pride, pride in atypical sex characteristics!"),
+		"Lesbian Pride" = list(
+			"icon" = "pride_lesbian",
+			"info" = "Orange and pink shaded stripes that represent Lesbian pride, pride in same-gender love among women!"),
+		"Gay Pride" = list(
+			"icon" = "pride_gay",
+			"info" = "Navy and turquoise shaded stripes that represent Gay pride, pride in same-gender love among men!"),
+		//meme pins under this
+		"Ian Pride" = list( //we love ian
+			"icon" = "pride_ian",
+			"info" = "A orange corgi, pride in the HoP's beloved pet!"),
+		"Void Pride" = list( //darkness antag
+			"icon" = "pride",
+			"info" = "Nothing, pride in NOTHING!!!"),
+		"Suspicious Pride Pin" = list( //syndicate
+			"icon" = "pride_suspicious",
+			"info" = "A black S on a red banner, pride in chaos!"),
+		"Grey Pride" = list( //assistants
+			"icon" = "pride_grey",
+			"info" = "A robust toolbox over a grey background, pride in what is stationwide!"),
+		"Command Pride" = list(
+			"icon" = "pride_command",
+			"info" = "A blue background with an elaborate white trim, pride in your superiors!")
+		)
+
+/obj/item/clothing/accessory/pride/attack_self(mob/user)
+	. = ..()
+	var/list/radial_menu = list()
+	for(var/pin_type in pride_reskins)
+		var/datum/radial_menu_choice/choice = new()
+		choice.image = icon(icon, pride_reskins[pin_type]["icon"])
+		choice.info = pride_reskins[pin_type]["info"]
+		radial_menu[pin_type] =  choice
+	var/Pin = show_radial_menu(user, user, radial_menu, tooltips = TRUE)
+	icon_state = Pin ? pride_reskins[Pin]["icon"] : initial(icon_state)

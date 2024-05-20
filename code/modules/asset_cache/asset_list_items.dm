@@ -170,6 +170,7 @@
 		"coding.png" = 'html/coding.png',
 		"ban.png" = 'html/ban.png',
 		"chrome-wrench.png" = 'html/chrome-wrench.png',
+		"mapping.png" = 'html/mapping.png',
 		"changelog.css" = 'html/changelog.css'
 	)
 	parents = list("changelog.html" = 'html/changelog.html')
@@ -367,6 +368,14 @@
 				if (machine)
 					item = machine
 
+			// Check for GAGS support where necessary
+			var/greyscale_config = initial(item.greyscale_config)
+			var/greyscale_colors = initial(item.greyscale_colors)
+			if (greyscale_config && greyscale_colors)
+				icon_file = SSgreyscale.GetColoredIconByType(greyscale_config, greyscale_colors)
+			else
+				icon_file = initial(item.icon)
+
 			icon_file = initial(item.icon)
 			icon_state = initial(item.icon_state)
 			#ifdef UNIT_TESTS
@@ -398,7 +407,11 @@
 		if (!ispath(item, /atom))
 			continue
 
-		var/icon_file = initial(item.icon)
+		var/icon_file
+		if (initial(item.greyscale_colors) && initial(item.greyscale_config))
+			icon_file = SSgreyscale.GetColoredIconByType(initial(item.greyscale_config), initial(item.greyscale_colors))
+		else
+			icon_file = initial(item.icon)
 		var/icon_state = initial(item.icon_state)
 		if(ispath(item, /obj/item/ammo_box))
 			var/obj/item/ammo_box/ammoitem = item
@@ -559,6 +572,30 @@
 		"dna_extra.gif" = 'html/dna_extra.gif'
 	)
 
+/datum/asset/spritesheet/virology_symptoms
+	name = "virology_symptoms"
+
+/datum/asset/spritesheet/virology_symptoms/create_spritesheets()
+	InsertAll("", 'icons/UI_Icons/symptoms/symptoms.dmi')
+
+/datum/asset/simple/virology_symptoms_animated
+	assets = list(
+		"symptom.invalid.png" = 'icons/UI_Icons/symptoms/invalid.png',
+		"symptom.alkali_perspiration.gif" = 'icons/UI_Icons/symptoms/alkali_perspiration.gif',
+		"symptom.autophago_necrosis.gif" = 'icons/UI_Icons/symptoms/autophago_necrosis.gif',
+        "symptom.ionizing_cellular_emission.gif" = 'icons/UI_Icons/symptoms/ionizing_cellular_emission.gif',
+        "symptom.narcolepsy.gif" = 'icons/UI_Icons/symptoms/narcolepsy.gif',
+        "symptom.necrotizing_fasciitis.gif" = 'icons/UI_Icons/symptoms/necrotizing_fasciitis.gif',
+        "symptom.nocturnal_regeneration.gif" = 'icons/UI_Icons/symptoms/nocturnal_regeneration.gif',
+        "symptom.plasma_fixation.gif" = 'icons/UI_Icons/symptoms/plasma_fixation.gif',
+        "symptom.regen_coma.gif" = 'icons/UI_Icons/symptoms/regen_coma.gif',
+        "symptom.self_respiration.gif" = 'icons/UI_Icons/symptoms/self_respiration.gif',
+        "symptom.silicolysis.gif" = 'icons/UI_Icons/symptoms/silicolysis.gif',
+        "symptom.starlight_condensation.gif" = 'icons/UI_Icons/symptoms/starlight_condensation.gif',
+        "symptom.tissue_hydration.gif" = 'icons/UI_Icons/symptoms/tissue_hydration.gif',
+        "symptom.voice_change.gif" = 'icons/UI_Icons/symptoms/voice_change.gif'
+	)
+
 /datum/asset/simple/orbit
 	assets = list(
 		"ghost.png"	= 'html/ghost.png'
@@ -627,3 +664,59 @@
 				glow = "pod_glow_[glow]"
 				podIcon.Blend(icon(icon_file, glow), ICON_OVERLAY)
 		Insert("pod_asset[style]", podIcon)
+
+/datum/asset/spritesheet/rcd
+	name = "rcd-tgui"
+
+/datum/asset/spritesheet/rcd/create_spritesheets()
+	//We load airlock icons seperatly from other icons cause they need overlays
+
+	//load all category essential icon_states. format is icon_file = list of icon states we need from that file
+	var/list/essentials = list(
+		'icons/mob/radial.dmi' = list("wallfloor", "delete", "dirwindow", "fullwindow", "dirwindow_r", "fullwindow_r", "cnorth", "csouth", "ceast", "cwest", "chair", "stool", "windoor", "secure_windoor"),
+		'icons/obj/recycling.dmi' = list("conveyor_construct", "switch-off"),
+		'icons/obj/structures.dmi' = list("window0", "rwindow0", "table", "glass_table"),
+		'icons/obj/stock_parts.dmi' = list("box_1"),
+	)
+
+	var/icon/icon
+	for(var/icon_file as anything in essentials)
+		for(var/icon_state as anything in essentials[icon_file])
+			icon = icon(icon = icon_file, icon_state = icon_state)
+			Insert(sanitize_css_class_name(icon_state), icon)
+
+	//for each airlock type we create its overlayed version with the suffix Glass in the sprite name
+	var/list/airlocks = list(
+		"Standard" = 'icons/obj/doors/airlocks/station/public.dmi',
+		"Public" = 'icons/obj/doors/airlocks/station2/glass.dmi',
+		"Engineering" = 'icons/obj/doors/airlocks/station/engineering.dmi',
+		"Atmospherics" = 'icons/obj/doors/airlocks/station/atmos.dmi',
+		"Security" = 'icons/obj/doors/airlocks/station/security.dmi',
+		"Command" = 'icons/obj/doors/airlocks/station/command.dmi',
+		"Medical" = 'icons/obj/doors/airlocks/station/medical.dmi',
+		"Research" = 'icons/obj/doors/airlocks/station/research.dmi',
+		"Freezer" = 'icons/obj/doors/airlocks/station/freezer.dmi',
+		"Virology" = 'icons/obj/doors/airlocks/station/virology.dmi',
+		"Mining" = 'icons/obj/doors/airlocks/station/mining.dmi',
+		"Maintenance" = 'icons/obj/doors/airlocks/station/maintenance.dmi',
+		"External" = 'icons/obj/doors/airlocks/external/external.dmi',
+		"External Maintenance" = 'icons/obj/doors/airlocks/station/maintenanceexternal.dmi',
+		"Airtight Hatch" = 'icons/obj/doors/airlocks/hatch/centcom.dmi',
+		"Maintenance Hatch" = 'icons/obj/doors/airlocks/hatch/maintenance.dmi'
+	)
+	//these 3 types dont have glass doors
+	var/list/exclusion = list("Freezer", "Airtight Hatch", "Maintenance Hatch")
+
+	for(var/airlock_name in airlocks)
+		//solid door with overlay
+		icon = icon(icon = airlocks[airlock_name] , icon_state = "closed" , dir = SOUTH)
+		icon.Blend(icon(icon = airlocks[airlock_name], icon_state = "fill_closed", dir = SOUTH), ICON_OVERLAY)
+		Insert(sanitize_css_class_name(airlock_name), icon)
+
+		//exclude these glass types
+		if(airlock_name in exclusion)
+			continue
+
+		//glass door no overlay
+		icon = icon(airlocks[airlock_name] , "closed" , SOUTH)
+		Insert(sanitize_css_class_name("[airlock_name]Glass"), icon)

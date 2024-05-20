@@ -15,7 +15,7 @@
 	icon_living = "daemon"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	speed = 1
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	stop_automated_movement = 1
 	status_flags = CANPUSH
 	attack_sound = 'sound/magic/demon_attack1.ogg'
@@ -33,8 +33,9 @@
 	obj_damage = 50
 	melee_damage_lower = 30
 	melee_damage_upper = 30
-	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	lighting_cutoff_red = 22
+	lighting_cutoff_green = 5
+	lighting_cutoff_blue = 5
 	bloodcrawl = BLOODCRAWL_EAT
 	var/playstyle_string = "<span class='big bold'>You are a slaughter demon,</span><B> a terrible creature from another realm. You have a single desire: To kill.  \
 							You may use the \"Blood Crawl\" ability near blood pools to travel through them, appearing and disappearing from the station at will. \

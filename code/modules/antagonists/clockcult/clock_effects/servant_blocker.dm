@@ -6,11 +6,11 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE
 	density = TRUE
-	CanAtmosPass = ATMOS_PASS_NO
+	can_atmos_pass = ATMOS_PASS_NO
 
 /obj/effect/clockwork/servant_blocker/Initialize(mapload)
 	. = ..()
-	air_update_turf(TRUE)
+	air_update_turf()
 
 /obj/effect/clockwork/servant_blocker/Destroy(force)
 	if(!force)
@@ -30,7 +30,7 @@
 			return FALSE
 	return TRUE
 
-/obj/effect/clockwork/servant_blocker/BlockSuperconductivity()
+/obj/effect/clockwork/servant_blocker/BlockThermalConductivity()
 	return TRUE
 
 /obj/effect/clockwork/servant_blocker/singularity_act()

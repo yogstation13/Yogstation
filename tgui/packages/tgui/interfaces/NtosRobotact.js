@@ -328,7 +328,7 @@ export const NtosRobotactContent = (props, context) => {
             buttons={(
               <Fragment>
                 <Button
-                  content="State Laws"
+                  content="Law Manager"
                   onClick={() => act('lawstate')} />
                 <Button
                   icon="volume-off"

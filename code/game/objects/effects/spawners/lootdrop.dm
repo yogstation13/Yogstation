@@ -713,7 +713,6 @@
 	name = "secure AI circuit board spawner"
 	loot = list(
 				/obj/item/circuitboard/computer/aiupload,
-				/obj/item/circuitboard/computer/ai_upload_download,
 				/obj/item/circuitboard/computer/borgupload
 				)
 
@@ -738,7 +737,7 @@
 	lootdoubles = FALSE
 
 	loot = list(
-		/obj/item/clothing/under/drip = 20,
+		/obj/item/clothing/under/costume/drip = 20,
 		"" = 80)
 
 /obj/effect/spawner/lootdrop/twenty_percent_drip_shoes

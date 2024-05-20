@@ -14,13 +14,18 @@
 	..()
 	var/turf/open/target_turf = get_turf(target)
 	if(istype(target_turf))
-		target_turf.IgniteTurf(rand(8, 16))
+		if(istype(ammo_type, /obj/item/ammo_casing/reusable/arrow))	
+			var/obj/item/ammo_casing/reusable/arrow/arrow = ammo_type
+			if(arrow.flaming)
+				target_turf.ignite_turf(rand(8, 16))
+		else
+			target_turf.ignite_turf(rand(8, 16))
 
 	if(!isliving(target) || (blocked == 100))
 		return
 		
 	var/mob/living/L = target	
-	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid) || istype(L, /mob/living/simple_animal/hostile/yog_jungle) || istype(L, /mob/living/simple_animal/hostile/tar))
 		L.apply_damage(fauna_damage_bonus)
 
 	if(!istype(ammo_type, /obj/item/ammo_casing/reusable/arrow))	
@@ -289,8 +294,8 @@
 		var/mob/living/carbon/C = target
 		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "tased", /datum/mood_event/tased)
 		SEND_SIGNAL(C, COMSIG_LIVING_MINOR_SHOCK)
-		if(C.dna && (C.dna.check_mutation(HULK) || C.dna.check_mutation(ACTIVE_HULK)))
-			C.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
+		if(C.dna && (C.dna.check_mutation(HULK)))
+			C.say(pick("RAAAAAAAARGH!", "HNNNNNNNNNGGGGGGH!", "GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", "AAAAAAARRRGH!" ), forced = "hulk")
 		else if((C.status_flags & CANKNOCKDOWN) && !HAS_TRAIT(C, TRAIT_STUNIMMUNE))
 			addtimer(CALLBACK(C, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), jitter), 5)
 		if(istype(C.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell/ethereal))

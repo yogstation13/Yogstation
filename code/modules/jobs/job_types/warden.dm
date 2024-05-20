@@ -10,7 +10,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of security"
-	selection_color = "#ffeeee"
 	minimal_player_age = 7
 	exp_requirements = 600
 	exp_type = EXP_TYPE_CREW
@@ -20,7 +19,7 @@
 
 	alt_titles = list("Brig Watchman", "Brig Superintendent", "Security Dispatcher", "Prison Supervisor")
 
-	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_FORENSICS_LOCKERS)
+	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_FORENSICS_LOCKERS, ACCESS_BRIG_PHYS, ACCESS_MEDICAL) //they get medical access because apparently the windoors AREN'T BRIG PHYS ACCESS
 	base_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_MECH_SECURITY, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM) // See /datum/job/warden/get_access()
 	paycheck = PAYCHECK_HARD
 	paycheck_department = ACCOUNT_SEC
@@ -71,11 +70,11 @@
 	name = "Warden"
 	jobtype = /datum/job/warden
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/warden
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/security/warden
 
 	ears = /obj/item/radio/headset/headset_sec/alt
-	uniform = /obj/item/clothing/under/rank/warden
-	uniform_skirt = /obj/item/clothing/under/rank/warden/skirt
+	uniform = /obj/item/clothing/under/rank/security/warden
+	uniform_skirt = /obj/item/clothing/under/rank/security/warden/skirt
 	shoes = /obj/item/clothing/shoes/jackboots
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/jackboots
 	suit = /obj/item/clothing/suit/armor/vest/warden/alt
@@ -89,7 +88,7 @@
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
 	duffelbag = /obj/item/storage/backpack/duffelbag/sec
-	box = /obj/item/storage/box/security
+	box = /obj/item/storage/box/survival/security
 
 	implants = list(/obj/item/implant/mindshield)
 

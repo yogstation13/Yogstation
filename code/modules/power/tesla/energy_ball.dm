@@ -33,12 +33,18 @@
 		set_light(10, 7, "#EEEEFF")
 
 /obj/singularity/energy_ball/supermatter
-	name = "supermatter energy ball"
-	color = "#ffe800"
+	name = "hypercharged supermatter energy ball"
+	desc = "The supermatter energy ball hovers ominously, a radiant orb of sheer power. Its brilliance is blinding, casting an intense glow that illuminates the surrounding area. The air crackles with the electric energy it exudes. The sheer intensity of its presence instills a sense of caution, reminding you of the untamed force contained within. Wisps of energy escape its surface, dissipating into the atmosphere with a sizzling sound. Sparks of energy occasionally arc between the crystal and the energy ball, crackling with a captivating yet dangerous allure."
+	icon_state = "smenergy_ball"
 	energy = 10000
 	max_balls = 20
-	zap_range = 20
+	zap_range = 7
 	hypercharged = TRUE
+
+/obj/singularity/energy_ball/supermatter/small_crystals
+	name = "floating hypercharged supermatter crystal"
+	desc = "The crystal emanates an otherworldly radiance, casting a soft, ethereal glow that illuminates the space around it. It hovers around the supermatter energy ball in a precise orbit, defying gravity with an elegant, weightless dance. Sparks of energy occasionally arc between the crystal and the energy ball, crackling with a captivating yet dangerous allure."
+	icon_state = "smcrystal1"
 
 /obj/singularity/energy_ball/ex_act(severity, target)
 	return
@@ -152,11 +158,12 @@
 
 	var/obj/singularity/energy_ball/EB
 	if(hypercharged)
-		EB = new /obj/singularity/energy_ball/supermatter(loc, 0, TRUE)
+		EB = new /obj/singularity/energy_ball/supermatter/small_crystals(loc, 0, TRUE)
+		EB.icon_state = "smcrystal[rand(1,3)]"
 	else
 		EB = new /obj/singularity/energy_ball(loc, 0, TRUE)
+		EB.transform *= pick(0.3, 0.4, 0.5, 0.6, 0.7)
 
-	EB.transform *= pick(0.3, 0.4, 0.5, 0.6, 0.7)
 	var/icon/I = icon(icon,icon_state,dir)
 
 	var/orbitsize = (I.Width() + I.Height()) * pick(0.4, 0.5, 0.6, 0.7, 0.8)
@@ -179,13 +186,12 @@
 		qdel(rip_u)
 		C.death()
 		
-/obj/singularity/energy_ball/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/golfclub))
-		var/turf/throw_at = get_ranged_target_turf(src, get_dir(user, src), 2)
-		throw_at(throw_at, 2, 1)
-		user.changeNext_move(CLICK_CD_RANGE)
-		return TRUE
-	. = ..()
+/obj/singularity/energy_ball/attackby(obj/item/hitby, mob/user, params)
+	if(!istype(hitby, /obj/item/golfclub))
+		return ..()
+	var/turf/throw_at = get_ranged_target_turf(src, get_dir(user, src), 2)
+	throw_at(throw_at, 2, 1)
+	user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/singularity/energy_ball/orbit(obj/singularity/energy_ball/target)
 	if (istype(target))
@@ -342,7 +348,7 @@
 
 	else if(closest_mob)
 		var/shock_damage = (tesla_flags & TESLA_MOB_DAMAGE)? (min(round(power/600), 90) + rand(-5, 5)) : 0
-		closest_mob.electrocute_act(shock_damage, source, 1, tesla_shock = 1, stun = (tesla_flags & TESLA_MOB_STUN), gib = zap_gib)
+		closest_mob.electrocute_act(shock_damage, source, 1, zone=null, tesla_shock = 1, stun = (tesla_flags & TESLA_MOB_STUN), gib = zap_gib)
 		if(issilicon(closest_mob))
 			var/mob/living/silicon/S = closest_mob
 			if((tesla_flags & TESLA_MOB_STUN) && (tesla_flags & TESLA_MOB_DAMAGE))

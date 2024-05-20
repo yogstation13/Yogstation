@@ -1,7 +1,7 @@
 /obj/item/ammo_box/magazine/internal/bow
 	name = "bow... magazine?" //shouldnt see this item
 	ammo_type = /obj/item/ammo_casing/reusable/arrow
-	caliber = "arrow"
+	caliber = CALIBER_ARROW
 	max_ammo = 1
 	start_empty = TRUE
 
@@ -22,10 +22,10 @@
 /obj/item/ammo_box/magazine/internal/bow/energy/clockcult
 	ammo_type = /obj/item/ammo_casing/reusable/arrow/energy/clockbolt
 	selectable_types = list(/obj/item/ammo_casing/reusable/arrow/energy/clockbolt)
-	
+
 /obj/item/ammo_box/magazine/arrow
 	name = "crossbow magazine"
 	ammo_type = /obj/item/ammo_casing/reusable/arrow
 	icon_state = ".50mag"
-	caliber = "arrow"
+	caliber = CALIBER_ARROW
 	max_ammo = 5

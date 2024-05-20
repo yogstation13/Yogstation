@@ -23,22 +23,23 @@
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 	attacktext = "slashes"
 	speak_emote = list("hisses")
-	bubble_icon = "alien"
-	a_intent = INTENT_HARM
+	bubble_icon = BUBBLE_ALIEN
+	combat_mode = TRUE
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 15
 	faction = list(ROLE_ALIEN)
 	status_flags = CANPUSH
 	minbodytemp = 0
-	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	// Going for a dark purple here
+	lighting_cutoff_red = 30
+	lighting_cutoff_green = 15
+	lighting_cutoff_blue = 50
 	unique_name = 1
 	gold_core_spawnable = NO_SPAWN
 	deathsound = 'sound/voice/hiss6.ogg'
 	deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw..."
-
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 /mob/living/simple_animal/hostile/alien/drone
 	name = "alien drone"
@@ -112,6 +113,9 @@
 			egg_cooldown = initial(egg_cooldown)
 			LayEggs()
 
+/mob/living/simple_animal/hostile/alien/get_butt_sprite()
+	return BUTT_SPRITE_XENOMORPH
+
 /mob/living/simple_animal/hostile/alien/proc/SpreadPlants()
 	if(!isturf(loc) || isspaceturf(loc))
 		return
@@ -134,7 +138,7 @@
 	icon_state = "alienq"
 	icon_living = "alienq"
 	icon_dead = "alienq_dead"
-	bubble_icon = "alienroyal"
+	bubble_icon = BUBBLE_ALIENROYAL
 	move_to_delay = 4
 	maxHealth = 400
 	health = 400
@@ -159,7 +163,7 @@
 	name = "lusty xenomorph maid"
 	melee_damage_lower = 0
 	melee_damage_upper = 0
-	a_intent = INTENT_HELP
+	combat_mode = FALSE
 	friendly = "caresses"
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE

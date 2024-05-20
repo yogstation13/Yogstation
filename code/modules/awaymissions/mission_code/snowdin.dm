@@ -4,7 +4,8 @@
 	name = "Snowdin"
 	icon_state = "awaycontent1"
 	requires_power = FALSE
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = FALSE
+	base_lighting_alpha = 255
 
 /area/awaymission/snowdin/outside
 	name = "Snowdin Tundra Plains"
@@ -14,7 +15,8 @@
 	name = "Snowdin Outpost"
 	icon_state = "awaycontent2"
 	requires_power = TRUE
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	static_lighting = TRUE
+	base_lighting_alpha = 0
 
 /area/awaymission/snowdin/post/medbay
 	name = "Snowdin Outpost - Medbay"
@@ -96,12 +98,14 @@
 /area/awaymission/snowdin/igloo
 	name = "Snowdin Igloos"
 	icon_state = "awaycontent14"
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	static_lighting = TRUE
+	base_lighting_alpha = 0
 
 /area/awaymission/snowdin/cave
 	name = "Snowdin Caves"
 	icon_state = "awaycontent15"
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	static_lighting = TRUE
+	base_lighting_alpha = 0
 
 /area/awaymission/snowdin/cave/cavern
 	name = "Snowdin Depths"
@@ -115,18 +119,21 @@
 /area/awaymission/snowdin/base
 	name = "Snowdin Main Base"
 	icon_state = "awaycontent16"
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	static_lighting = TRUE
+	base_lighting_alpha = 0
 	requires_power = TRUE
 
 /area/awaymission/snowdin/dungeon1
 	name = "Snowdin Depths"
 	icon_state = "awaycontent17"
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	static_lighting = TRUE
+	base_lighting_alpha = 0
 
 /area/awaymission/snowdin/sekret
 	name = "Snowdin Operations"
 	icon_state = "awaycontent18"
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	static_lighting = TRUE
+	base_lighting_alpha = 0
 	requires_power = TRUE
 
 /area/shuttle/snowdin/elevator1
@@ -151,20 +158,21 @@
 
 /turf/open/floor/plasteel/dark/snowdin
 	initial_gas_mix = FROZEN_ATMOS
-	planetary_atmos = 1
-	temperature = 180
+	planetary_atmos = TRUE
+	initial_temperature = 180
 
 /turf/open/lava/plasma
 	name = "liquid plasma"
 	desc = "A flowing stream of chilled liquid plasma. You probably shouldn't get in."
 	icon_state = "liquidplasma"
-	initial_gas_mix = "o2=0;n2=82;plasma=24;TEMP=120"
+	initial_gas_mix = BURNING_COLD
 	baseturfs = /turf/open/lava/plasma
 	slowdown = 2
 
 	light_range = 3
 	light_power = 0.75
 	light_color = LIGHT_COLOR_PURPLE
+	lava_temperature = 73 // cold, not hot
 
 /turf/open/lava/plasma/attackby(obj/item/I, mob/user, params)
 	var/obj/item/reagent_containers/glass/C = I
@@ -218,31 +226,40 @@
 					var/list/plasma_parts = list()//a list of the organic parts to be turned into plasma limbs
 					var/list/robo_parts = list()//keep a reference of robotic parts so we know if we can turn them into a plasmaman
 					var/mob/living/carbon/human/PP = L
-					var/S = PP.dna.species
-					if(istype(S, /datum/species/plasmaman) || istype(S, /datum/species/android) || istype(S, /datum/species/synth)) //ignore plasmamen/robotic species
+					var/datum/species/S = PP.dna.species
+					if(istype(S, /datum/species/plasmaman) || (S.inherent_biotypes & MOB_ROBOTIC)) //ignore plasmamen/robotic species
 						continue
 
 					for(var/BP in PP.bodyparts)
 						var/obj/item/bodypart/NN = BP
-						if(NN.status == BODYPART_ORGANIC && NN.species_id != "plasmaman") //getting every organic, non-plasmaman limb (augments/androids are immune to this)
-							plasma_parts += NN
 						if(NN.status == BODYPART_ROBOTIC)
 							robo_parts += NN
+						if(NN.body_zone == BODY_ZONE_HEAD) //don't add the head to the list, just transform them into an plasmaman when it's the only thing left
+							continue
+						if(NN.status == BODYPART_ORGANIC && !(NN.species_id == "plasmaman" || NN.species_id == "husk")) //getting every organic, non-plasmaman limb (augments/androids are immune to this)
+							plasma_parts += NN
 
 					if(prob(35)) //checking if the delay is over & if the victim actually has any parts to nom
 						PP.adjustToxLoss(15)
 						PP.adjustFireLoss(25)
-						if(plasma_parts.len)
-							var/obj/item/bodypart/NB = pick(plasma_parts) //using the above-mentioned list to get a choice of limbs for dismember() to use
-							PP.emote("scream")
-							NB.species_id = "plasmaman"//change the species_id of the limb to that of a plasmaman
-							NB.no_update = TRUE
-							NB.change_bodypart_status()
-							PP.visible_message(span_warning("[L] screams in pain as [L.p_their()] [NB] melts down to the bone!"), \
-											  span_userdanger("You scream out in pain as your [NB] melts down to the bone, leaving an eerie plasma-like glow where flesh used to be!"))
-						if(!plasma_parts.len && !robo_parts.len) //a person with no potential organic limbs left AND no robotic limbs, time to turn them into a plasmaman
+						if(length(plasma_parts))
+							var/obj/item/bodypart/NB = pick(plasma_parts) //using the above-mentioned list to get a choice of limbs to replace
+							playsound(PP, 'sound/effects/wounds/sizzle2.ogg', 80, TRUE)
+							if(PP.stat != DEAD)
+								PP.emote("scream")
+								PP.visible_message(span_warning("[L] screams in pain as [L.p_their()] [NB] melts down to the bone!"), span_userdanger("You scream out in pain as your [NB] melts down to the bone, leaving an eerie plasma-like glow where flesh used to be!"))
+							else
+								PP.visible_message(span_warning("[L]'s [NB] melts down to the bone!"))
+							var/obj/item/bodypart/replacement_part = new NB.type
+							replacement_part.species_id = "plasmaman"
+							replacement_part.original_owner = "plasma river"
+							replacement_part.replace_limb(PP)
+							qdel(NB)
+						else if(!length(robo_parts)) //a person with no potential organic limbs left AND no robotic limbs, time to turn them into a plasmaman
 							PP.ignite_mob()
+							PP.cure_husk(BURN) //cure the probable husk first
 							PP.set_species(/datum/species/plasmaman)
+							PP.regenerate_icons()
 							PP.visible_message(span_warning("[L] bursts into a brilliant purple flame as [L.p_their()] entire body is that of a skeleton!"), \
 											  span_userdanger("Your senses numb as all of your remaining flesh is turned into a purple slurry, sloshing off your body and leaving only your bones to show in a vibrant purple!"))
 

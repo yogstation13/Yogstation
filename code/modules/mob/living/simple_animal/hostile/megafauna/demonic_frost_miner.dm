@@ -35,6 +35,7 @@ Difficulty: Extremely Hard
 	var/projectile_speed_multiplier = 1
 	var/enraged = FALSE
 	var/enraging = FALSE
+	gps_name = "Bloodchilling Signal"
 	deathmessage = "falls to the ground, decaying into plasma particles."
 	deathsound = "bodyfall"
 	attack_action_types = list(/datum/action/innate/megafauna_attack/frost_orbs,
@@ -280,11 +281,27 @@ Difficulty: Extremely Hard
 /obj/item/clothing/shoes/winterboots/ice_boots/speedy
 	name = "cursed ice hiking boots"
 	desc = "A pair of winter boots contractually made by a devil, they cannot be taken off once put on."
-	slowdown = SHOES_SLOWDOWN - 1
+	slowdown = SHOES_SLOWDOWN - 0.5
+	var/obj/vehicle/ridden/scooter/wheelys/W
+	var/mob/living/carbon/human/owner
 
 /obj/item/clothing/shoes/winterboots/ice_boots/speedy/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
+	START_PROCESSING(SSobj, src)
+
+/obj/item/clothing/shoes/winterboots/ice_boots/speedy/equipped(mob/user, slot)
+	. = ..()
+	if((slot & ITEM_SLOT_FEET) && ishuman(user))
+		owner = user
+
+/obj/item/clothing/shoes/winterboots/ice_boots/speedy/process(delta_time)
+	if(prob(10) && owner && (owner.get_item_by_slot(ITEM_SLOT_FEET) == src))
+		if(!W)
+			W = new(src)
+		if(!W.has_buckled_mobs())
+			W.forceMove(get_turf(owner))
+			W.buckle_mob(owner)
 
 /obj/item/pickaxe/drill/jackhammer/demonic
 	name = "demonic jackhammer"
@@ -338,3 +355,9 @@ Difficulty: Extremely Hard
 		to_chat(owner, span_notice("The cube melts!"))
 	owner.cut_overlay(cube)
 	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
+
+/obj/item/gps/internal/frostminer
+	icon_state = null
+	gpstag = "Hollow Signal"
+	desc = "What could possibly be sending out a GPS signal in these wastes?"
+	invisibility = 100

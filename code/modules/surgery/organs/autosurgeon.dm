@@ -1,5 +1,3 @@
-#define INFINITE -1
-
 /obj/item/autosurgeon
 	name = "autosurgeon"
 	desc = "A device that automatically inserts an implant or organ into the user without the hassle of extensive surgery. It has a slot to insert implants/organs and a screwdriver slot for removing accidentally added items."
@@ -11,6 +9,9 @@
 	var/organ_type = /obj/item/organ
 	var/uses = INFINITE
 	var/starting_organ
+	var/static/list/blacklisted_organs = typecacheof(list(
+		/obj/item/organ/regenerative_core // Full heal with revive on demand.
+	))
 
 /obj/item/autosurgeon/Initialize(mapload)
 	. = ..()
@@ -62,6 +63,9 @@
 			return
 		else if(!uses)
 			to_chat(user, span_notice("[src] has already been used up."))
+			return
+		if(is_type_in_typecache(I, blacklisted_organs))
+			to_chat(user, span_notice("[I] does not fit in \the [src]."))
 			return
 		if(!user.transferItemToLoc(I, src))
 			return

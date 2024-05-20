@@ -3,18 +3,19 @@
 	desc = "It opens and closes."
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door1"
-	opacity = 1
+	opacity = TRUE
 	density = TRUE
 	move_resist = MOVE_FORCE_VERY_STRONG
 	layer = OPEN_DOOR_LAYER
 	power_channel = AREA_USAGE_ENVIRON
 	max_integrity = 350
 	armor = list(MELEE = 30, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 100, RAD = 100, FIRE = 80, ACID = 70)
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	flags_1 = PREVENT_CLICK_UNDER_1
 	damage_deflection = 10
 
 	interaction_flags_atom = INTERACT_ATOM_UI_INTERACT
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
 	/// TRUE means density will be set as soon as the door begins to close
 	var/air_tight = FALSE
@@ -62,10 +63,10 @@
 /obj/machinery/door/examine(mob/user)
 	. = ..()
 	if(red_alert_access)
-		if(GLOB.security_level >= SEC_LEVEL_RED)
+		if(SSsecurity_level.current_security_level.emergency_doors)
 			. += span_notice("Due to a security threat, its access requirements have been lifted!")
 		else
-			. += span_notice("In the event of a red alert, its access requirements will automatically lift.")
+			. += span_notice("In the event of an emegerency alert, its access requirements will automatically lift.")
 	if(!poddoor)
 		. += span_notice("Its maintenance panel is <b>screwed</b> in place.")
 	if(!isdead(user))
@@ -75,7 +76,7 @@
 		. += span_notice("It leads into [areaName].")
 
 /obj/machinery/door/check_access_list(list/access_list)
-	if(red_alert_access && GLOB.security_level >= SEC_LEVEL_RED)
+	if(red_alert_access && SSsecurity_level.current_security_level.emergency_doors)
 		return TRUE
 	return ..()
 
@@ -83,7 +84,7 @@
 	. = ..()
 	set_init_door_layer()
 	update_freelook_sight()
-	air_update_turf(1)
+	air_update_turf()
 	GLOB.airlocks += src
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(2, 1, src)
@@ -96,6 +97,13 @@
 		COMSIG_ATOM_MAGICALLY_UNLOCKED = PROC_REF(on_magic_unlock),
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
+	if(red_alert_access)
+		RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(update_security_level))
+
+/obj/machinery/door/proc/update_security_level(_, datum/security_level/new_level)
+	if(red_alert_access && new_level.emergency_doors)
+		visible_message(span_notice("[src] whirrs as it automatically lifts access requirements!"))
+		playsound(src, 'sound/machines/boltsup.ogg', 50, TRUE)
 
 /obj/machinery/door/proc/set_init_door_layer()
 	if(density)
@@ -103,12 +111,13 @@
 	else
 		layer = initial(layer)
 
-/obj/machinery/door/Destroy()
+/obj/machinery/door/Destroy(force=FALSE)
 	update_freelook_sight()
 	GLOB.airlocks -= src
 	if(spark_system)
 		qdel(spark_system)
 		spark_system = null
+	air_update_turf()
 	return ..()
 
 /obj/machinery/door/Bumped(atom/movable/AM)
@@ -246,7 +255,7 @@
 /obj/machinery/door/proc/unrestricted_side(mob/M) //Allows for specific side of airlocks to be unrestrected (IE, can exit maint freely, but need access to enter)
 	return get_dir(src, M) & unres_sides
 
-/obj/machinery/door/proc/try_to_weld(obj/item/weldingtool/W, mob/user)
+/obj/machinery/door/proc/try_to_weld(obj/item/weldingtool/W, mob/living/user, list/modifiers)
 	return
 
 /obj/machinery/door/proc/try_to_crowbar(obj/item/I, mob/user)
@@ -263,9 +272,9 @@
 	var/max_moles = min_moles
 	// okay this is a bit hacky. First, we set density to 0 and recalculate our adjacent turfs
 	density = FALSE
-	T.ImmediateCalculateAdjacentTurfs()
+	var/list/adj_turfs = TURF_SHARES(T)
 	// then we use those adjacent turfs to figure out what the difference between the lowest and highest pressures we'd be holding is
-	for(var/turf/open/T2 in T.atmos_adjacent_turfs)
+	for(var/turf/open/T2 in adj_turfs)
 		if((flags_1 & ON_BORDER_1) && get_dir(src, T2) != dir)
 			continue
 		var/moles = T2.air.total_moles()
@@ -274,29 +283,29 @@
 		if(moles > max_moles)
 			max_moles = moles
 	density = TRUE
-	T.ImmediateCalculateAdjacentTurfs() // alright lets put it back
 	return max_moles - min_moles > 20
 
-/obj/machinery/door/attackby(obj/item/I, mob/user, params)
+/obj/machinery/door/attackby(obj/item/I, mob/living/user, params)
 	add_fingerprint(user)
 
-	if(user.a_intent != INTENT_HARM && (I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/fireaxe)))
+	var/list/modifiers = params2list(params)
+	if((!user.combat_mode || (modifiers && modifiers[RIGHT_CLICK])) && (I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/fireaxe))) // right click always opens
 		try_to_crowbar(I, user)
-		return 1
+		return TRUE
 	else if(istype(I, /obj/item/zombie_hand/gamemode))
 		try_to_crowbar(I, user)
 		return TRUE
 	else if(I.tool_behaviour == TOOL_WELDER)
-		try_to_weld(I, user)
-		return 1
-	else if(!(I.item_flags & NOBLUDGEON) && user.a_intent != INTENT_HARM)
+		try_to_weld(I, user, modifiers)
+		return TRUE
+	else if(!(I.item_flags & NOBLUDGEON) && !user.combat_mode)
 		try_to_activate_door(user)
-		return 1
+		return TRUE
 	return ..()
 
 /obj/machinery/door/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
-	if(. && obj_integrity > 0)
+	if(. && atom_integrity > 0)
 		if(damage_amount >= 10 && prob(30))
 			spark_system.start()
 
@@ -316,9 +325,9 @@
 	. = ..()
 	if (. & EMP_PROTECT_SELF)
 		return
-	if(prob(20/severity) && (istype(src, /obj/machinery/door/airlock) || istype(src, /obj/machinery/door/window)) )
+	if(prob(2 * severity) && (istype(src, /obj/machinery/door/airlock) || istype(src, /obj/machinery/door/window)) )
 		INVOKE_ASYNC(src, PROC_REF(open))
-	if(prob(severity*10 - 20))
+	if(prob(severity*2 - 20))
 		if(secondsElectrified == MACHINE_NOT_ELECTRIFIED)
 			secondsElectrified = MACHINE_ELECTRIFIED_PERMANENT
 			LAZYADD(shockedby, "\[[time_stamp()]\]EM Pulse")
@@ -363,10 +372,10 @@
 	density = FALSE
 	sleep(open_speed)
 	layer = initial(layer)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	set_opacity(0)
 	operating = FALSE
-	air_update_turf(1)
+	air_update_turf()
 	update_freelook_sight()
 	if(autoclose)
 		spawn(autoclose)
@@ -394,11 +403,11 @@
 	sleep(open_speed)
 	density = TRUE
 	sleep(open_speed)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	if(visible && !glass)
 		set_opacity(1)
 	operating = FALSE
-	air_update_turf(1)
+	air_update_turf()
 	update_freelook_sight()
 	if(safe)
 		CheckForMobs()
@@ -453,9 +462,11 @@
 /obj/machinery/door/proc/update_freelook_sight()
 	if(!glass && GLOB.cameranet)
 		GLOB.cameranet.updateVisibility(src, 0)
+	if(!glass && GLOB.thrallnet)
+		GLOB.thrallnet.updateVisibility(src, 0)
 
-/obj/machinery/door/BlockSuperconductivity() // All non-glass airlocks block heat, this is intended.
-	if(opacity || heat_proof)
+/obj/machinery/door/BlockThermalConductivity() // All non-glass airlocks block heat, this is intended.
+	if(heat_proof && density)
 		return TRUE
 	return FALSE
 

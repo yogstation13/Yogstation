@@ -4,7 +4,7 @@
 	name = "shotgun slug"
 	desc = "A 12-gauge lead slug."
 	icon_state = "blshell"
-	caliber = "shotgun"
+	caliber = CALIBER_12GA
 	projectile_type = /obj/projectile/bullet/shotgun/slug
 	materials = list(/datum/material/iron=4000)
 
@@ -131,14 +131,14 @@
 	name = "depleted uranium slug"
 	desc = "A relatively low-tech shell, utilizing the unique properties of Uranium, and possessing \
 	very impressive armor penetration capabilities."
-	icon_state = "dushell" 
+	icon_state = "dushell"
 	projectile_type = /obj/projectile/bullet/shotgun/slug/uranium
 
 /obj/item/ammo_casing/shotgun/cryoshot
 	name = "cryoshot shell"
 	desc = "A state-of-the-art shell which uses the cooling power of Rhigoxane to snap freeze a target, without causing \
 	them much harm."
-	icon_state = "fshell" 
+	icon_state = "fshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_cryoshot
 	pellets = 4
 	variance = 30
@@ -148,7 +148,7 @@
 	desc = "A high-tech shotgun shell which can be loaded with materials to produce unique effects."
 	icon_state = "cshell"
 	projectile_type = null
-	
+
 /obj/item/ammo_casing/shotgun/dart
 	name = "shotgun dart"
 	desc = "A dart for use in shotguns. Can be injected with up to 30 units of any chemical."
@@ -208,7 +208,7 @@
 	icon_state = "breacher"
 	projectile_type = /obj/projectile/bullet/shotgun/slug/breaching
 	materials = list(/datum/material/iron=4000)
-	caliber = "breaching"
+	caliber = CALIBER_BREACH
 
 
 /obj/item/ammo_casing/shotgun/thundershot
@@ -231,10 +231,10 @@
 /obj/item/ammo_casing/shotgun/hardlight/emp_act(severity)
 	if (. & EMP_PROTECT_SELF)
 		return
-	variance = 60 // yikes
-	if(severity == EMP_HEAVY)
-		pellets = 3 // also yikes
-	addtimer(CALLBACK(src, PROC_REF(remove_emp)), 10 SECONDS / severity, TIMER_OVERRIDE|TIMER_UNIQUE)
+	variance = initial(variance) + severity*4 // yikes
+	if(severity > EMP_LIGHT)
+		pellets = initial(pellets) * (0.5**(severity / EMP_HEAVY)) // also yikes
+	addtimer(CALLBACK(src, PROC_REF(remove_emp)), severity SECONDS, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 /obj/item/ammo_casing/shotgun/hardlight/proc/remove_emp()
 	variance = initial(variance)

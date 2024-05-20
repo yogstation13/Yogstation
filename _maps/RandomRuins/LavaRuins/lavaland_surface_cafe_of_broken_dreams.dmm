@@ -60,6 +60,7 @@
 "aF" = (
 /obj/item/reagent_containers/glass/bottle/radscrub{
 	desc = "War. War never changes. But this can clean your radiation contamination problems!";
+	
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
@@ -442,7 +443,7 @@
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
 "FQ" = (
-/obj/structure/sign/barsign{
+/obj/machinery/barsign{
 	icon_state = "maltesefalcon"
 	},
 /turf/closed/wall/r_wall/rust,

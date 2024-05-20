@@ -159,7 +159,7 @@
 	qdel(src)
 
 /proc/wabbajack(mob/living/M, randomize)
-	if(!istype(M) || M.stat == DEAD || M.notransform || (GODMODE & M.status_flags))
+	if(!istype(M) || M.stat == DEAD || M.notransform || (GODMODE & M.status_flags) || HAS_TRAIT(M, TRAIT_SPECIESLOCK))
 		return
 
 	M.notransform = TRUE
@@ -287,7 +287,7 @@
 
 	M.log_message("became [new_mob.real_name]", LOG_ATTACK, color="orange")
 
-	new_mob.a_intent = INTENT_HARM
+	new_mob.set_combat_mode(TRUE)
 
 	M.wabbajack_act(new_mob)
 
@@ -332,7 +332,7 @@
 	B.name = "[M.name] Parmesan"
 	B.real_name = "[M.name] Parmesan"
 	B.set_stat(CONSCIOUS)
-	B.a_intent = INTENT_HARM
+	B.set_combat_mode(TRUE)
 	if(M.mind)
 		M.mind.transfer_to(B)
 	else
@@ -485,7 +485,7 @@
 
 /obj/structure/closet/decay/proc/decay()
 	animate(src, alpha = 0, time = 3 SECONDS)
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), src), 3 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), 3 SECONDS)
 
 /obj/structure/closet/decay/open(mob/living/user)
 	. = ..()
@@ -653,7 +653,7 @@
 		return FALSE
 	return ..()
 
-/obj/projectile/magic/aoe/Moved(atom/OldLoc, Dir)
+/obj/projectile/magic/aoe/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(trail)
 		create_trail()
@@ -684,11 +684,11 @@
 	armor_flag = MAGIC
 
 	/// The power of the zap itself when it electrocutes someone
-	var/tesla_power = 20000
+	var/zap_power = 2e4
 	/// The range of the zap itself when it electrocutes someone
-	var/tesla_range = 15
+	var/zap_range = 15
 	/// The flags of the zap itself when it electrocutes someone
-	var/tesla_flags = TESLA_MOB_DAMAGE | TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
+	var/zap_flags = TESLA_MOB_DAMAGE | TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
 	/// A reference to the chain beam between the caster and the projectile
 	var/datum/beam/chain
 
@@ -699,8 +699,7 @@
 
 /obj/projectile/magic/aoe/lightning/on_hit(target)
 	. = ..()
-	tesla_zap(src, tesla_range, tesla_power, tesla_flags)
-	qdel(src)
+	tesla_zap(source = src, zap_range = zap_range, power = zap_power, tesla_flags = zap_flags)
 
 /obj/projectile/magic/aoe/lightning/Destroy()
 	QDEL_NULL(chain)
@@ -715,9 +714,9 @@
 	speed = 0.3
 	armor_flag = MAGIC
 
-	tesla_power = 9000
-	tesla_range = 7
-	tesla_flags = TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
+	zap_power = 9000
+	zap_range = 7
+	zap_flags = TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
 
 /obj/projectile/magic/fireball
 	name = "bolt of fireball"
@@ -1102,10 +1101,10 @@
 	nodamage = TRUE
 	armor_flag = ENERGY
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/ion
-	var/light_emp_radius = 3
-	var/heavy_emp_radius = 0.5	//Effectively 1 but doesnt spread to adjacent tiles
+	var/ion_severity = EMP_HEAVY //Heavy EMP effect that doesn't spread to adjacent tiles
+	var/ion_range = 3
 
 /obj/projectile/magic/ion/on_hit(atom/target, blocked = FALSE)
 	..()
-	empulse(target, heavy_emp_radius, light_emp_radius)
+	empulse(target, ion_severity, ion_range)
 	return BULLET_ACT_HIT

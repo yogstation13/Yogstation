@@ -30,6 +30,7 @@
 	invocation_type = INVOCATION_WHISPER
 
 	item_type = /obj/item/instrument/violin/golden
+	spell_requirements = NONE
 
 /datum/action/cooldown/spell/pointed/summon_contract
 	name = "Summon infernal contract"
@@ -164,7 +165,7 @@
 		return FALSE
 	fakefire()
 	forceMove(drop_location())
-	client.eye = src
+	client.set_eye(src)
 	visible_message(span_warning("<B>[src] appears in a fiery blaze!</B>"))
 	playsound(get_turf(src), 'sound/magic/exit_blood.ogg', 100, 1, -1)
 	addtimer(CALLBACK(src, PROC_REF(fakefireextinguish)), 15, TIMER_UNIQUE)

@@ -1,6 +1,6 @@
 /obj/item/deskbell
 	name = "desk bell"
-	desc = "ding. ding."
+	desc = "Ding! Ding! Ding!"
 	icon = 'icons/obj/bell.dmi'
 	icon_state = "bell"
 	force = 5
@@ -61,8 +61,8 @@
 /obj/item/deskbell/attack_animal(mob/user)
 	return attack_hand(user)
 
-/obj/item/deskbell/attack_hand(mob/user)
-	ring(user.a_intent == INTENT_HARM)
+/obj/item/deskbell/attack_hand(mob/living/user)
+	ring(user.combat_mode)
 	add_fingerprint(user)
 	return
 

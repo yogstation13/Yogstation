@@ -15,6 +15,7 @@
 
 	var/last_pressure_delta = 0
 	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
+	vent_movement = VENTCRAWL_CAN_SEE
 
 	var/flipped = 0
 	var/mode = CIRCULATOR_HOT
@@ -76,7 +77,6 @@
 		last_pressure_delta = 0
 
 /obj/machinery/atmospherics/components/binary/circulator/process_atmos()
-	..()
 	update_icon_nopipes()
 
 /obj/machinery/atmospherics/components/binary/circulator/update_overlays()
@@ -86,11 +86,11 @@
 		for(var/direction in GLOB.cardinals)
 			if(!(direction & initialize_directions))
 				continue
-			var/obj/machinery/atmospherics/node = findConnecting(direction)
+			var/obj/machinery/atmospherics/node = find_connecting(direction)
 
 			var/image/cap
 			if(node)
-				cap = getpipeimage(icon, "cap", direction, node.pipe_color, piping_layer = piping_layer)
+				cap = get_pipe_image(icon, "cap", direction, node.pipe_color, piping_layer = piping_layer)
 
 			. += cap
 
@@ -124,7 +124,7 @@
 	else
 		if(!last_pressure_delta)
 			set_light(1)
-			SSvis_overlays.add_vis_overlay(src, icon, "circ-off", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+			SSvis_overlays.add_vis_overlay(src, icon, "circ-off", ABOVE_LIGHTING_PLANE, dir)
 			return
 		else
 			if(last_pressure_delta > ONE_ATMOSPHERE) //fast
@@ -132,18 +132,18 @@
 					set_light(3,2,"#4F82FF")
 				else
 					set_light(3,2,"#FF3232")
-				SSvis_overlays.add_vis_overlay(src, icon, "circ-ex[mode?"cold":"hot"]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
-				SSvis_overlays.add_vis_overlay(src, icon, "circ-run", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "circ-ex[mode?"cold":"hot"]", ABOVE_LIGHTING_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "circ-run", ABOVE_LIGHTING_PLANE, dir)
 			else	//slow
 				if(mode)
 					set_light(2,1,"#4F82FF")
 				else
 					set_light(2,1,"#FF3232")
-				SSvis_overlays.add_vis_overlay(src, icon, "circ-[mode?"cold":"hot"]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
-				SSvis_overlays.add_vis_overlay(src, icon, "circ-slow", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "circ-[mode?"cold":"hot"]", ABOVE_LIGHTING_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "circ-slow", ABOVE_LIGHTING_PLANE, dir)
 
 /obj/machinery/atmospherics/components/binary/circulator/wrench_act(mob/living/user, obj/item/I)
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return
 
 	if(!panel_open)
@@ -164,37 +164,37 @@
 	if(node1)
 		node1.disconnect(src)
 		nodes[1] = null
-		nullifyPipenet(parents[1])
+		nullify_pipenet(parents[1])
 	if(node2)
 		node2.disconnect(src)
 		nodes[2] = null
-		nullifyPipenet(parents[2])
+		nullify_pipenet(parents[2])
 
 	if(anchored)
-		SetInitDirections()
-		atmosinit()
+		set_init_directions()
+		atmos_init()
 		node1 = nodes[1]
 		if(node1)
-			node1.atmosinit()
-			node1.addMember(src)
+			node1.atmos_init()
+			node1.add_member(src)
 		node2 = nodes[2]
 		if(node2)
-			node2.atmosinit()
-			node2.addMember(src)
+			node2.atmos_init()
+			node2.add_member(src)
 		SSair.add_to_rebuild_queue(src)
 
 	update_appearance(UPDATE_ICON)
 
 	return TRUE
 
-/obj/machinery/atmospherics/components/binary/circulator/SetInitDirections()
+/obj/machinery/atmospherics/components/binary/circulator/set_init_directions()
 	switch(dir)
 		if(NORTH, SOUTH)
 			initialize_directions = EAST|WEST
 		if(EAST, WEST)
 			initialize_directions = NORTH|SOUTH
 
-/obj/machinery/atmospherics/components/binary/circulator/getNodeConnects()
+/obj/machinery/atmospherics/components/binary/circulator/get_node_connects()
 	if(flipped)
 		return list(turn(dir, 270), turn(dir, 90))
 	return list(turn(dir, 90), turn(dir, 270))
@@ -205,7 +205,7 @@
 	return FALSE
 
 /obj/machinery/atmospherics/components/binary/circulator/multitool_act(mob/living/user, obj/item/I)
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return
 	if(generator)
 		to_chat(user, span_warning("Disconnect [generator] first!"))
@@ -218,7 +218,7 @@
 /obj/machinery/atmospherics/components/binary/circulator/screwdriver_act(mob/user, obj/item/I)
 	if(..())
 		return TRUE
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return
 	if(generator)
 		to_chat(user, span_warning("Disconnect the generator first!"))
@@ -231,7 +231,7 @@
 	return TRUE
 
 /obj/machinery/atmospherics/components/binary/circulator/crowbar_act(mob/user, obj/item/I)
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return
 	if(anchored)
 		to_chat(user, span_warning("[src] is anchored!"))
@@ -255,7 +255,7 @@
 	generator.update_appearance(UPDATE_ICON)
 	generator = null
 
-/obj/machinery/atmospherics/components/binary/circulator/setPipingLayer(new_layer)
+/obj/machinery/atmospherics/components/binary/circulator/set_piping_layer(new_layer)
 	..()
 	pixel_x = 0
 	pixel_y = 0
@@ -273,7 +273,7 @@
 	playsound(src, 'sound/items/change_drill.ogg', 50)
 	update_icon_nopipes()
 
-/obj/machinery/atmospherics/components/binary/circulator/obj_break(damage_flag)
+/obj/machinery/atmospherics/components/binary/circulator/atom_break(damage_flag)
 	if(generator)
 		generator.kill_circs()
 		generator.update_appearance(UPDATE_ICON)

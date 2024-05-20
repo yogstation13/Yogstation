@@ -93,21 +93,14 @@
 			updateUsrDialog()
 		else if(ass) //ASS COPY. By Miauw
 			for(var/i = 0, i < copies, i++)
-				var/icon/temp_img
 				if(ishuman(ass) && (ass.get_item_by_slot(ITEM_SLOT_ICLOTHING) || ass.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
 					to_chat(usr, span_notice("You feel kind of silly, copying [ass == usr ? "your" : ass][ass == usr ? "" : "\'s"] ass with [ass == usr ? "your" : "[ass.p_their()]"] clothes on.") ) // '
 					break
 				else if(toner >= 5 && !busy && check_ass()) //You have to be sitting on the copier and either be a xeno or a human without clothes on.
-					if(isalienadult(ass) || istype(ass, /mob/living/simple_animal/hostile/alien)) //Xenos have their own asses, thanks to Pybro.
-						temp_img = icon('icons/ass/assalien.png')
-					else if(ishuman(ass)) //Suit checks are in check_ass
-						temp_img = icon(ass.gender == FEMALE ? 'icons/ass/assfemale.png' : 'icons/ass/assmale.png')
-						if(iscatperson(ass))
-							temp_img = icon('icons/ass/asscat.png')
-					else if(isdrone(ass)) //Drones are hot
-						temp_img = icon('icons/ass/assdrone.png')
-					else
+					var/butt_icon_state = ass.get_butt_sprite()
+					if(isnull(butt_icon_state))
 						break
+					var/icon/temp_img = icon('icons/mob/butts.dmi', butt_icon_state)
 					busy = TRUE
 					sleep(1.5 SECONDS)
 					var/obj/item/photo/p = new /obj/item/photo (loc)
@@ -232,7 +225,7 @@
 	else
 		return ..()
 
-/obj/machinery/photocopier/obj_break(damage_flag)
+/obj/machinery/photocopier/atom_break(damage_flag)
 	. = ..()
 	if(. && toner > 0)
 		new /obj/effect/decal/cleanable/oil(get_turf(src))
@@ -272,8 +265,8 @@
 	updateUsrDialog()
 
 /obj/machinery/photocopier/proc/check_ass() //I'm not sure wether I made this proc because it's good form or because of the name.
-	if(!ass)
-		return 0
+	if(!isliving(ass))
+		return FALSE
 	if(ass.loc != src.loc)
 		ass = null
 		updateUsrDialog()

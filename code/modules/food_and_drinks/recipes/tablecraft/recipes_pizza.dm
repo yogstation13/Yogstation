@@ -9,7 +9,7 @@
 		/obj/item/reagent_containers/food/snacks/flatdough = 1,
 		/obj/item/reagent_containers/food/snacks/meat/raw_cutlet = 3,
 		/obj/item/ammo_casing/c9mm = 8,
-		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
+		/obj/item/reagent_containers/food/snacks/cheesewedge/mozzarella = 1,
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/arnold/raw
@@ -20,7 +20,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/flatdough = 1,
 		/obj/item/reagent_containers/food/snacks/grown/cannabis = 3,
-		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
+		/obj/item/reagent_containers/food/snacks/cheesewedge/mozzarella = 1,
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/dank/raw
@@ -31,7 +31,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/flatdough = 1,
 		/obj/item/reagent_containers/food/snacks/donkpocket/warm = 3,
-		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
+		/obj/item/reagent_containers/food/snacks/cheesewedge/mozzarella = 1,
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/donkpocket/raw
@@ -43,7 +43,7 @@
 		/obj/item/reagent_containers/food/snacks/flatdough = 1,
 		/obj/item/reagent_containers/food/snacks/meat/raw_cutlet = 2,
 		/obj/item/reagent_containers/food/snacks/pineappleslice = 3,
-		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
+		/obj/item/reagent_containers/food/snacks/cheesewedge/mozzarella = 1,
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/pineapple/raw
@@ -53,7 +53,7 @@
 	name = "Margherita Pizza"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/flatdough = 1,
-		/obj/item/reagent_containers/food/snacks/cheesewedge = 4,
+		/obj/item/reagent_containers/food/snacks/cheesewedge/mozzarella = 4,
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/margherita/raw
@@ -64,7 +64,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/flatdough = 1,
 		/obj/item/reagent_containers/food/snacks/meat/raw_cutlet = 4,
-		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
+		/obj/item/reagent_containers/food/snacks/cheesewedge/mozzarella = 1,
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/meat/raw
@@ -75,7 +75,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/flatdough = 1,
 		/obj/item/reagent_containers/food/snacks/grown/mushroom = 5,
-		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
+		/obj/item/reagent_containers/food/snacks/cheesewedge/mozzarella = 1,
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/mushroom/raw
@@ -86,7 +86,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/flatdough = 1,
 		/obj/item/reagent_containers/food/snacks/raw_meatball = 3,
-		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
+		/obj/item/reagent_containers/food/snacks/cheesewedge/mozzarella = 1,
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/sassysage/raw
@@ -97,7 +97,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/flatdough = 1,
 		/obj/item/reagent_containers/food/snacks/fish/tuna = 1,
-		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
+		/obj/item/reagent_containers/food/snacks/cheesewedge/mozzarella = 1,
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/seafood/raw
@@ -111,7 +111,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/carrot = 1,
 		/obj/item/reagent_containers/food/snacks/grown/corn = 1,
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1,
-		/obj/item/reagent_containers/food/snacks/cheesewedge = 1
+		/obj/item/reagent_containers/food/snacks/cheesewedge/mozzarella = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/vegetable/raw
 	category = CAT_PIZZA

@@ -7,7 +7,6 @@
 	total_positions = 2
 	spawn_positions = 1
 	supervisors = "the head of personnel"
-	selection_color = "#bbe291"
 	var/cooks = 0 //Counts cooks amount
 
 	outfit = /datum/outfit/job/cook
@@ -15,7 +14,7 @@
 	alt_titles = list("Chef", "Hash Slinger", "Sous-chef", "Culinary Artist", "Culinarian")
 
 	added_access = list(ACCESS_HYDROPONICS, ACCESS_BAR)
-	base_access = list(ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
+	base_access = list(ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM, ACCESS_SERVHALL)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 
@@ -47,11 +46,11 @@
 	name = "Cook"
 	jobtype = /datum/job/cook
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/cook
 
 	ears = /obj/item/radio/headset/headset_srv
-	uniform = /obj/item/clothing/under/rank/chef
-	uniform_skirt = /obj/item/clothing/under/rank/chef/skirt
+	uniform = /obj/item/clothing/under/rank/civilian/chef
+	uniform_skirt = /obj/item/clothing/under/rank/civilian/chef/skirt
 	suit = /obj/item/clothing/suit/toggle/chef
 	head = /obj/item/clothing/head/chefhat
 	mask = /obj/item/clothing/mask/fakemoustache/italian

@@ -63,7 +63,7 @@
 		if(istype(new_mob))
 			if(bantype && is_banned_from(affected_mob.ckey, bantype))
 				replace_banned_player(new_mob)
-			new_mob.a_intent = INTENT_HARM
+			new_mob.set_combat_mode(TRUE)
 			if(affected_mob.mind)
 				affected_mob.mind.transfer_to(new_mob)
 			else
@@ -286,6 +286,22 @@
 	stage5	= list(span_danger("You have become a morph."))
 	new_form = /mob/living/simple_animal/hostile/morph
 	infectable_biotypes = MOB_ORGANIC|MOB_INORGANIC|MOB_UNDEAD //magic!
+
+/datum/disease/transformation/morph
+	name = "Carcinization"
+	cure_text = /datum/reagent/cellulose
+	cures = list(/datum/reagent/cellulose) // opposite of crab = barc = bark = cellulose
+	agent = "Carcinization"
+	desc = "Nature's next attempt to evolve you into a crab."
+	stage_prob = 20
+	severity = DISEASE_SEVERITY_BIOHAZARD
+	visibility_flags = 0
+	stage1	= list("Your hands itch.")
+	stage2	= list("Your skin feels crusty.")
+	stage3	= list(span_danger("Your hands are forming into claws."), span_danger("Your limbs begin to become crablike."))
+	stage4	= list(span_danger("You're raveing."))
+	stage5	= list(span_danger("You have become a crab."))
+	new_form = /mob/living/simple_animal/crab
 
 /datum/disease/transformation/ghost
 	name = "Spectral Curse"

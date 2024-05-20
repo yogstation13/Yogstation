@@ -132,7 +132,7 @@
 			if(G.vision_correction)
 				clear_fullscreen("nearsighted")
 				clear_fullscreen("eye_damage")
-			if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
+			if(G.vision_flags || G.invis_override || G.invis_view || !isnull(G.lighting_cutoff))
 				update_sight()
 			update_inv_glasses()
 		if(ITEM_SLOT_GLOVES)
@@ -168,6 +168,10 @@
 	//Item is handled and in slot, valid to call callback, for this proc should always be true
 	if(!not_handled)
 		I.equipped(src, slot, initial)
+
+		// Send a signal for when we equip an item that used to cover our feet/shoes. Used for bloody feet
+		if((I.body_parts_covered & FEET) || (I.flags_inv | I.transparent_protection) & HIDESHOES)
+			SEND_SIGNAL(src, COMSIG_CARBON_EQUIP_SHOECOVER, I, slot, initial)
 
 	return not_handled //For future deeper overrides
 
@@ -217,7 +221,7 @@
 		if(G.vision_correction)
 			if(HAS_TRAIT(src, TRAIT_NEARSIGHT))
 				overlay_fullscreen("nearsighted", /atom/movable/screen/fullscreen/impaired, 1)
-		if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
+		if(G.vision_flags || G.invis_override || G.invis_view || !isnull(G.lighting_cutoff))
 			update_sight()
 		if(!QDELETED(src))
 			update_inv_glasses()
@@ -250,6 +254,10 @@
 		s_store = null
 		if(!QDELETED(src))
 			update_inv_s_store()
+
+		// Send a signal for when we unequip an item that used to cover our feet/shoes. Used for bloody feet
+		if((I.body_parts_covered & FEET) || (I.flags_inv | I.transparent_protection) & HIDESHOES)
+			SEND_SIGNAL(src, COMSIG_CARBON_UNEQUIP_SHOECOVER, I, force, newloc, no_move, invdrop, silent)
 
 /mob/living/carbon/human/toggle_internals(obj/item/tank, is_external = FALSE)
 	// Just close the tank if it's the one the mob already has open.

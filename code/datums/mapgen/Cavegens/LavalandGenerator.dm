@@ -29,7 +29,7 @@
 	var/granite_smoothing_interations = 100
 	var/granite_birth_limit = 4
 	var/granite_death_limit = 3
-	var/granite_turf = /turf/closed/mineral/random/volcanic/hard/harder
+	var/granite_turf = /turf/closed/mineral/random/volcanic/harder
 
 	var/big_node_min = 25
 	var/big_node_max = 55
@@ -67,7 +67,7 @@
 				if(1)
 					hard_path = text2path("[T.type]/hard")
 				if(2)
-					hard_path = text2path("[T.type]/hard/harder")
+					hard_path = text2path("[T.type]/harder")
 			if(!ispath(hard_path)) //erm what the shit we dont have a hard(or er) type
 				continue
 			var/turf/new_turf = hard_path

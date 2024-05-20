@@ -1448,7 +1448,7 @@
 	dir = 2;
 	dwidth = 11;
 	height = 17;
-	id = "whiteship";
+	shuttle_id = "whiteship";
 	launch_status = 0;
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
 	name = "NT Frigate";
@@ -1694,11 +1694,11 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/closet/wardrobe/mixed,
 /obj/item/storage/wallet/random,
-/obj/item/clothing/under/rank/centcom_officer{
+/obj/item/clothing/under/rank/centcom/officer{
 	desc = "A badge on the arm indicates that it's meant to be worn by CentCom recovery teams. This one seems dusty and clearly hasn't been cleaned in some time.";
 	name = "\improper dusty old CentCom jumpsuit"
 	},
-/obj/item/clothing/under/rank/centcom_commander{
+/obj/item/clothing/under/rank/centcom/commander{
 	desc = "A badge on the arm indicates that it's meant to be worn by CentCom recovery teams. This one seems dusty and clearly hasn't been cleaned in some time.";
 	name = "\improper dusty old CentCom jumpsuit"
 	},

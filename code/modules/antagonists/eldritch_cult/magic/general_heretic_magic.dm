@@ -18,7 +18,7 @@ THIS FILE IS FOR ALL HERETIC SPELLS THAT DO NOT CONFER TO A PATH'S THEME OR YOU 
 	invocation = "R'CH T'H TR'TH!"
 	invocation_type = INVOCATION_SHOUT
 	// Mimes can cast it. Chaplains can cast it. Anyone can cast it, so long as they have a hand.
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	hand_path = /obj/item/melee/touch_attack/mansus_fist
 
@@ -69,6 +69,24 @@ THIS FILE IS FOR ALL HERETIC SPELLS THAT DO NOT CONFER TO A PATH'S THEME OR YOU 
 
 /obj/item/melee/touch_attack/mansus_fist/mind/upgraded //more ranged
 	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 4, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
+
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/basic
+	name = "Mansus Passage"
+	desc = "A short range spell that allows you to pass unimpeded through walls."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	sound = null
+
+	school = SCHOOL_FORBIDDEN
+	cooldown_time = 15 SECONDS
+
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
+
+	exit_jaunt_sound = null
+	jaunt_duration = 1.5 SECONDS
+	jaunt_in_time = 0.5 SECONDS
+	jaunt_out_time = 0.5 SECONDS
+	
 // Currently unused.
 /datum/action/cooldown/spell/touch/mad_touch
 	name = "Touch of Madness"
@@ -81,7 +99,7 @@ THIS FILE IS FOR ALL HERETIC SPELLS THAT DO NOT CONFER TO A PATH'S THEME OR YOU 
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 15 SECONDS
 	invocation_type = INVOCATION_NONE
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 	antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND
 
 /datum/action/cooldown/spell/touch/mad_touch/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
@@ -113,7 +131,7 @@ THIS FILE IS FOR ALL HERETIC SPELLS THAT DO NOT CONFER TO A PATH'S THEME OR YOU 
 	school = SCHOOL_FORBIDDEN
 	invocation = "SH'PE"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	possible_shapes = list(
 		/mob/living/simple_animal/mouse,\
@@ -136,17 +154,16 @@ THIS FILE IS FOR ALL HERETIC SPELLS THAT DO NOT CONFER TO A PATH'S THEME OR YOU 
 
 	invocation = "E'P"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
-	emp_heavy = 6
-	emp_light = 10
+	radius = 10
 
 /datum/action/cooldown/spell/list_target/telepathy/eldritch
 	name = "Eldritch Telepathy"
 	school = SCHOOL_FORBIDDEN
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 	antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND
 
 /datum/action/cooldown/spell/pointed/manse_link
@@ -163,7 +180,7 @@ THIS FILE IS FOR ALL HERETIC SPELLS THAT DO NOT CONFER TO A PATH'S THEME OR YOU 
 
 	invocation = "PI'RC' TH' M'ND."
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	cast_range = 7
 
@@ -221,7 +238,7 @@ THIS FILE IS FOR ALL HERETIC SPELLS THAT DO NOT CONFER TO A PATH'S THEME OR YOU 
 
 	school = SCHOOL_FORBIDDEN
 	invocation = "E'E'S"
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	cast_range = 10
 

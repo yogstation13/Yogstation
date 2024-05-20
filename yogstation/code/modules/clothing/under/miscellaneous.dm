@@ -223,7 +223,7 @@
 /obj/item/clothing/under/rank/det/yogs
 	name = "black detective suit"
 	desc = "A suit often worn by those detective types. Now in black!"
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/uniform/uniform.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/uniform/uniform.dmi'
 	icon = 'yogstation/icons/obj/clothing/uniforms.dmi'
 	icon_state = "black_detective"
 	item_state = "black_detective"
@@ -547,12 +547,6 @@
 	item_state = "victorianreddress"
 	can_adjust = FALSE
 
-/obj/item/clothing/under/yogs/shitcurity
-	name = "shitcurity uniform"
-	desc = "For the security members that want to show their true colors."
-	icon_state = "altsecurity"
-	item_state = "altsecurity"
-
 /obj/item/clothing/under/yogs/victoriouscaptainuniform
 	name = "very fancy captain uniform"
 	desc = "Ask not the sparrow how the eagle soars!"
@@ -571,4 +565,12 @@
 	desc = "Zip zap zoobity bap!"
 	icon_state = "cosby"
 	item_state = "cosby"
+	can_adjust = 0
+
+/obj/item/clothing/under/yogs/hawaiian_skirt
+	name = "hawaiian skirt"
+	desc = "A traditional hawaiian skirt, often called a pa'u."
+	icon_state = "hawaiian_skirt"
+	item_state = "hawaiian_skirt"
+	fitted = FEMALE_UNIFORM_TOP //no hole in the skirt
 	can_adjust = 0

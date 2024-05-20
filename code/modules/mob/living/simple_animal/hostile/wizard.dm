@@ -19,7 +19,7 @@
 	melee_damage_upper = 5
 	attacktext = "punches"
 	attack_sound = 'sound/weapons/punch1.ogg' // this is only here so i can recommit this
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 0
 	faction = list(ROLE_WIZARD)
@@ -28,7 +28,8 @@
 	
 	retreat_distance = 3 //out of fireball range
 	minimum_distance = 3
-	del_on_death = 1
+	del_on_death = TRUE
+	footstep_type = FOOTSTEP_MOB_SHOE
 	loot = list(
 		/obj/effect/mob_spawn/human/corpse/wizard,
 		/obj/item/staff,
@@ -39,8 +40,6 @@
 	var/datum/action/cooldown/spell/aoe/magic_missile/magic_missile
 
 	var/next_cast = 0
-
-	do_footstep = TRUE
 
 /mob/living/simple_animal/hostile/wizard/Initialize(mapload)
 	. = ..()
@@ -106,7 +105,7 @@
 	melee_damage_upper = 5
 	attacktext = "punches"
 	attack_sound = 'sound/weapons/punch1.ogg' 
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 0
 	faction = list(ROLE_WIZARD)

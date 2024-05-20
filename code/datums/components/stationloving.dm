@@ -9,7 +9,7 @@
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignals(parent, list(COMSIG_MOVABLE_Z_CHANGED), PROC_REF(check_in_bounds))
 	RegisterSignals(parent, list(COMSIG_MOVABLE_SECLUDED_LOCATION), PROC_REF(relocate))
-	RegisterSignals(parent, list(COMSIG_PARENT_PREQDELETED), PROC_REF(check_deletion))
+	RegisterSignals(parent, list(COMSIG_PREQDELETED), PROC_REF(check_deletion))
 	RegisterSignals(parent, list(COMSIG_ITEM_IMBUE_SOUL), PROC_REF(check_soul_imbue))
 	src.inform_admins = inform_admins
 	src.allow_death = allow_death
@@ -52,7 +52,7 @@
 
 /datum/component/stationloving/proc/in_bounds()
 	var/static/list/allowed_shuttles = typecacheof(list(/area/shuttle/syndicate, /area/shuttle/escape, /area/shuttle/pod_1, /area/shuttle/pod_2, /area/shuttle/pod_3, /area/shuttle/pod_4))
-	var/static/list/disallowed_centcom_areas = typecacheof(list(/area/abductor_ship, /area/fabric_of_reality, /area/awaymission/errorroom))
+	var/static/list/disallowed_centcom_areas = typecacheof(list(/area/centcom/abductor_ship, /area/centcom/fabric_of_reality, /area/awaymission/errorroom))
 	var/turf/T = get_turf_global(parent) // yogs - replace get_turf with get_turf_global
 	if (!T)
 		return FALSE

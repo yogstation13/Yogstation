@@ -2,18 +2,18 @@
 #define MOVE_ALLOWED 2 //Allow mob to pass through
 #define MOVE_NOT_ALLOWED 3 //Do not let the mob through
 
-#define SHADOWWALK_THRESHOLD 0.02
+#define WALK_COMPONENT_TRAIT "walk_component_trait"
+
+/datum/component/walk
 
 /datum/component/walk/Initialize()
 	if(!istype(parent, /mob/living))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(handle_move))
-	var/datum/component/footstep/footsteps = parent.GetComponent(/datum/component/footstep)
-	if (footsteps)
-		qdel(footsteps)
+	ADD_TRAIT(parent, TRAIT_SILENT_FOOTSTEPS, WALK_COMPONENT_TRAIT)
 
-/datum/component/walk/RemoveComponent()
-	parent.AddComponent(/datum/component/footstep)
+/datum/component/walk/ClearFromParent()
+	REMOVE_TRAIT(parent, TRAIT_SILENT_FOOTSTEPS, WALK_COMPONENT_TRAIT)
 	return ..()
 
 /datum/component/walk/proc/handle_move(datum/source, direction)
@@ -44,11 +44,50 @@
 	return
 
 /datum/component/walk/shadow
+	///use for tracking movement delay for shadow walking through walls
+	var/move_delay = 0
 	var/atom/movable/pulled
 
+/datum/component/walk/shadow/handle_move(datum/source, direction)
+	if(world.time < move_delay) //do not move anything ahead of this check please
+		return TRUE
+
+	var/mob/living/L = parent
+	if(!isshadowperson(L))
+		return FALSE
+	var/turf/T = get_step(L, direction)
+	L.setDir(direction)
+	if(!T)
+		return
+
+	//copied from mob_movement.dm to add proper movement delay to shadow walking
+	var/old_move_delay = move_delay
+	move_delay = world.time + world.tick_lag //this is here because Move() can now be called mutiple times per tick
+	var/add_delay = L.movement_delay()
+	L.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay * (((direction & 3) && (direction & 12)) ? 2 : 1))) // set it now in case of pulled objects
+	if(old_move_delay + (add_delay*MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
+		move_delay = old_move_delay
+	else
+		move_delay = world.time
+
+	var/allowed = can_walk(L, T)
+	switch(allowed)
+		if(DEFER_MOVE)
+			return FALSE
+		if(MOVE_NOT_ALLOWED)
+			return TRUE
+		if(MOVE_ALLOWED)
+			preprocess_move(L, T)
+			L.forceMove(T)
+			finalize_move(L, T)
+			if(direction & (direction - 1)) //extra delay for diagonals
+				add_delay *= 1.414214 // sqrt(2)
+			L.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay))
+			move_delay += add_delay
+			return TRUE
+
 /datum/component/walk/shadow/can_walk(mob/living/user, turf/destination)
-	var/turf/closed/mineral/obstruction = destination
-	return ((destination.get_lumcount() <= SHADOWWALK_THRESHOLD && !istype(obstruction)) ? MOVE_ALLOWED : DEFER_MOVE)
+	return ((destination.get_lumcount() <= SHADOW_SPECIES_DIM_LIGHT && !istype(destination, /turf/closed/mineral)) ? MOVE_ALLOWED : DEFER_MOVE)
 
 /datum/component/walk/shadow/preprocess_move(mob/living/user, turf/destination)
 	if(user.pulling)
@@ -63,11 +102,12 @@
 				return
 			L.face_atom(user)
 		pulled = user.pulling
+		pulled.set_glide_size(user.glide_size)
 		user.pulling.forceMove(get_turf(user))
 
 /datum/component/walk/shadow/finalize_move(mob/living/user, turf/destination)
 	if(pulled)
-		user.start_pulling(pulled, TRUE)
+		user.start_pulling(pulled, TRUE, supress_message = TRUE)
 		pulled = null
 
 /datum/component/walk/jaunt
@@ -80,7 +120,7 @@
 			R.reveal(20)
 			R.stun(20)
 		return MOVE_NOT_ALLOWED
-	if(destination.flags_1 & NOJAUNT_1 || is_secret_level(destination.z))
+	if(destination.turf_flags & NOJAUNT || is_secret_level(destination.z))
 		to_chat(user, span_warning("Some strange aura is blocking the way."))
 		return MOVE_NOT_ALLOWED
 	if (locate(/obj/effect/blessing, destination))

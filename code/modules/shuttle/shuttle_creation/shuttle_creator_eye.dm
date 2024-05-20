@@ -1,5 +1,5 @@
 //===============Camera Eye================
-/mob/camera/aiEye/remote/shuttle_creation
+/mob/camera/ai_eye/remote/shuttle_creation
 	name = "shuttle holo-drone"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "construction_drone"
@@ -8,18 +8,19 @@
 	var/turf/source_turf
 	var/max_range = 12
 
-/mob/camera/aiEye/remote/shuttle_creation/Initialize(mapload)
+/mob/camera/ai_eye/remote/shuttle_creation/Initialize(mapload)
 	. = ..()
 	setLoc(get_turf(source_turf))
 	icon_state = "construction_drone"
 
-/mob/camera/aiEye/remote/shuttle_creation/update_remote_sight(mob/living/user)
-	user.sight = BLIND|SEE_TURFS
-	user.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-	user.sync_lighting_plane_alpha()
+/mob/camera/ai_eye/remote/shuttle_creation/update_remote_sight(mob/living/user)
+	user.set_sight(BLIND|SEE_TURFS)
+	// Pale blue, should look nice I think
+	user.lighting_color_cutoffs = list(30, 40, 50)
+	user.sync_lighting_plane_cutoff()
 	return TRUE
 
-/mob/camera/aiEye/remote/shuttle_creation/relaymove(mob/user, direct)
+/mob/camera/ai_eye/remote/shuttle_creation/relaymove(mob/user, direct)
 	dir = direct //This camera eye is visible as a drone, and needs to keep the dir updated
 	var/initial = initial(sprint)
 	var/max_sprint = 50
@@ -38,18 +39,18 @@
 	else
 		sprint = initial
 
-/mob/camera/aiEye/remote/shuttle_creation/proc/can_move_to(turf/T)
+/mob/camera/ai_eye/remote/shuttle_creation/proc/can_move_to(turf/T)
 	var/origin_x = source_turf.x
 	var/origin_y = source_turf.y
 	var/change_X = abs(origin_x - T.x)
 	var/change_Y = abs(origin_y - T.y)
 	return (change_X < max_range && change_Y < max_range)
 
-/mob/camera/aiEye/remote/shuttle_creation/setLoc(T)
+/mob/camera/ai_eye/remote/shuttle_creation/setLoc(turf/destination, force_update = FALSE)
 	..()
 	if(eye_user?.client)
 		eye_user.client.images -= user_image
 		var/image/I = image(icon, loc, icon_state, FLY_LAYER, dir)
-		I.plane = MASSIVE_OBJ_LAYER
+		I.plane = MASSIVE_OBJ_PLANE
 		user_image = I
 		eye_user.client.images += user_image

@@ -179,6 +179,16 @@
 	maxstack = MAXCOIL
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/ethernet_coil
+	name = "Ethernet Coil"
+	id = "ethernet_coil"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 10, /datum/material/glass = 5)
+	build_path = /obj/item/stack/ethernet_coil
+	category = list("initial","Tools","Tool Designs")
+	maxstack = MAXCOIL
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/toolbox
 	name = "Toolbox"
 	id = "tool_box"
@@ -502,6 +512,15 @@
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 15000, /datum/material/glass = 7500)
 	build_path = /obj/item/rsf
+	category = list("initial","Miscellaneous", "Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
+/datum/design/rls
+	name = "Remote Light Switch (RLS)"
+	id = "rls"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 15000, /datum/material/glass = 7500)
+	build_path = /obj/item/rls
 	category = list("initial","Miscellaneous", "Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 

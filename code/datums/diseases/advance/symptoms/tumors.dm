@@ -2,6 +2,7 @@
 
 /datum/symptom/tumor
 	name = "Benign tumors"
+	icon = "benign_tumor"
 	desc = "The virus causes benign growths all over your body."
 	stealth = 0
 	resistance = 4
@@ -97,6 +98,7 @@
 
 /datum/symptom/tumor/malignant
 	name = "Malignant tumors"
+	icon = "malignant_tumors"
 	desc = "The virus causes malignant growths all over your body."
 	level = 7
 	resistance = 4

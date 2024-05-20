@@ -87,12 +87,18 @@
 	update_config_movespeed()
 	update_movespeed(TRUE)
 
+/mob/New()
+	// This needs to happen IMMEDIATELY. I'm sorry :(
+	GenerateTag()
+	return ..()
+
 /**
-  * Generate the tag for this mob
-  *
-  * This is simply "mob_"+ a global incrementing counter that goes up for every mob
-  */
+ * Generate the tag for this mob
+ *
+ * This is simply "mob_"+ a global incrementing counter that goes up for every mob
+ */
 /mob/GenerateTag()
+	. = ..()
 	tag = "mob_[next_mob_id++]"
 
 /**
@@ -176,7 +182,7 @@
 	t +=	span_danger("Temperature: [environment.return_temperature()] \n")
 	for(var/id in environment.get_gases())
 		if(environment.get_moles(id))
-			t+=span_notice("[GLOB.meta_gas_info[id][META_GAS_NAME]]: [environment.get_moles(id)] \n")
+			t+=span_notice("[GLOB.gas_data.names[id]]: [environment.get_moles(id)] \n")
 
 	to_chat(usr, t)
 
@@ -259,19 +265,25 @@
 
 		//This entire if/else chain could be in two lines but isn't for readibilties sake.
 		var/msg = message
+		var/msg_type = MSG_VISUAL
+
 		if(M.see_invisible < invisibility)//if src is invisible to M
 			msg = blind_message
+			msg_type = MSG_AUDIBLE
 		else if(T != loc && T != src) //if src is inside something and not a turf.
+			if(M != loc) // Only give the blind message to hearers that aren't the location
+				msg = blind_message
+				msg_type = MSG_AUDIBLE
+		else if(!HAS_TRAIT(M, TRAIT_HEAR_THROUGH_DARKNESS) && M.lighting_cutoff < LIGHTING_CUTOFF_HIGH && T.is_softly_lit() && !in_range(T,M)) //if it is too dark, unless we're right next to them.
 			msg = blind_message
-		else if(M.lighting_alpha > LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE && T.is_softly_lit() && !in_range(T,M)) //if it is too dark.
-			msg = blind_message
+			msg_type = MSG_AUDIBLE
 		if(!msg)
 			continue
 
 		if(visible_message_flags & EMOTE_MESSAGE && runechat_prefs_check(M, visible_message_flags) && !is_blind(M))
 			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = visible_message_flags)
 
-		M.show_message(msg, MSG_VISUAL, blind_message, MSG_AUDIBLE)
+		M.show_message(msg, msg_type, blind_message, MSG_AUDIBLE)
 
 
 
@@ -353,7 +365,7 @@
   * Mostly tries to put the item into the slot if possible, or call attack hand
   * on the item in the slot if the users active hand is empty
   */
-/mob/proc/attack_ui(slot)
+/mob/proc/attack_ui(slot, params)
 	var/obj/item/W = get_active_held_item()
 
 	if(istype(W))
@@ -364,7 +376,8 @@
 		// Activate the item
 		var/obj/item/I = get_item_by_slot(slot)
 		if(istype(I))
-			I.attack_hand(src)
+			var/list/modifiers = params2list(params)
+			I.attack_hand(src, modifiers)
 
 	return 0
 
@@ -449,36 +462,42 @@
   * reset_perspective() set eye to common default : mob on turf, loc otherwise
   * reset_perspective(thing) set the eye to the thing (if it's equal to current default reset to mob perspective)
   */
-/mob/proc/reset_perspective(atom/A)
-	if(client)
-		if(A)
-			if(ismovable(A))
-				//Set the the thing unless it's us
-				if(A != src)
-					client.perspective = EYE_PERSPECTIVE
-					client.eye = A
-				else
-					client.eye = client.mob
-					client.perspective = MOB_PERSPECTIVE
-			else if(isturf(A))
-				//Set to the turf unless it's our current turf
-				if(A != loc)
-					client.perspective = EYE_PERSPECTIVE
-					client.eye = A
-				else
-					client.eye = client.mob
-					client.perspective = MOB_PERSPECTIVE
-			else
-				//Do nothing
-		else
-			//Reset to common defaults: mob if on turf, otherwise current loc
-			if(isturf(loc))
-				client.eye = client.mob
-				client.perspective = MOB_PERSPECTIVE
-			else
+/mob/proc/reset_perspective(atom/new_eye)
+	SHOULD_CALL_PARENT(TRUE)
+	if(!client)
+		return
+
+	if(new_eye)
+		if(ismovable(new_eye))
+			//Set the new eye unless it's us
+			if(new_eye != src)
 				client.perspective = EYE_PERSPECTIVE
-				client.eye = loc
-		return 1
+				client.set_eye(new_eye)
+			else
+				client.set_eye(client.mob)
+				client.perspective = MOB_PERSPECTIVE
+
+		else if(isturf(new_eye))
+			//Set to the turf unless it's our current turf
+			if(new_eye != loc)
+				client.perspective = EYE_PERSPECTIVE
+				client.set_eye(new_eye)
+			else
+				client.set_eye(client.mob)
+				client.perspective = MOB_PERSPECTIVE
+		else
+			return TRUE //no setting eye to stupid things like areas or whatever
+	else
+		//Reset to common defaults: mob if on turf, otherwise current loc
+		if(isturf(loc))
+			client.set_eye(client.mob)
+			client.perspective = MOB_PERSPECTIVE
+		else
+			client.perspective = EYE_PERSPECTIVE
+			client.set_eye(loc)
+	/// Signal sent after the eye has been successfully updated, with the client existing.
+	SEND_SIGNAL(src, COMSIG_MOB_RESET_PERSPECTIVE)
+	return TRUE
 
 /// Show the mob's inventory to another mob
 /mob/proc/show_inv(mob/user)
@@ -574,11 +593,11 @@
 		return FALSE
 
 	//now we touch the thing we're examining
-	/// our current intent, so we can go back to it after touching
-	var/previous_intent = a_intent
-	a_intent = INTENT_HELP
+	/// temporarily turn off combat mode for reasons
+	var/previous_combat_mode = combat_mode
+	set_combat_mode(FALSE, TRUE)
 	examined_thing.attack_hand(src)
-	a_intent = previous_intent
+	set_combat_mode(previous_combat_mode, TRUE)
 
 	return TRUE
 
@@ -610,11 +629,11 @@
 	// check to see if their face is blocked or, if not, a signal blocks it
 	if(examined_mob.is_face_visible() && SEND_SIGNAL(src, COMSIG_MOB_EYECONTACT, examined_mob, TRUE) != COMSIG_BLOCK_EYECONTACT)
 		var/msg = span_smallnotice("You make eye contact with [examined_mob].")
-		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), src, msg), 3) // so the examine signal has time to fire and this will print after
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), src, msg), 3) // so the examine signal has time to fire and this will print after
 
 	if(!imagined_eye_contact && is_face_visible() && SEND_SIGNAL(examined_mob, COMSIG_MOB_EYECONTACT, src, FALSE) != COMSIG_BLOCK_EYECONTACT)
 		var/msg = span_smallnotice("[src] makes eye contact with you.")
-		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), examined_mob, msg), 3)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), examined_mob, msg), 3)
 
 ///Can this mob resist (default FALSE)
 /mob/proc/can_resist()
@@ -1239,16 +1258,19 @@
 
 ///Update the lighting plane and sight of this mob (sends COMSIG_MOB_UPDATE_SIGHT)
 /mob/proc/update_sight()
+	SHOULD_CALL_PARENT(TRUE)
+	if(HAS_TRAIT(src, TRAIT_NIGHT_VISION))
+		lighting_cutoff = max(lighting_cutoff, 6)
 	SEND_SIGNAL(src, COMSIG_MOB_UPDATE_SIGHT)
-	sync_lighting_plane_alpha()
+	sync_lighting_plane_cutoff()
 
 ///Set the lighting plane hud alpha to the mobs lighting_alpha var
-/mob/proc/sync_lighting_plane_alpha()
-	if(hud_used)
-		var/atom/movable/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
-		if (L)
-			L.alpha = lighting_alpha
-
+/mob/proc/sync_lighting_plane_cutoff()
+	if(!hud_used)
+		return
+	for(var/atom/movable/screen/plane_master/rendering_plate/lighting/light as anything in hud_used.get_true_plane_masters(RENDER_PLANE_LIGHTING))
+		light.set_light_cutoff(lighting_cutoff, lighting_color_cutoffs)
+		
 ///Update the mouse pointer of the attached client in this mob
 /mob/proc/update_mouse_pointer()
 	if (!client)
@@ -1266,6 +1288,10 @@
 	if(client.mouse_override_icon)
 		client.mouse_pointer_icon = client.mouse_override_icon
 
+/mob/proc/has_nightvision()
+	// Somewhat conservative, basically is your lighting plane bright enough that you the user can see stuff
+	var/light_offset = (lighting_color_cutoffs[1] + lighting_color_cutoffs[2] + lighting_color_cutoffs[3]) / 3 + lighting_cutoff
+	return light_offset >= LIGHTING_NIGHTVISION_THRESHOLD
 
 ///This mob is abile to read books
 /mob/proc/is_literate()

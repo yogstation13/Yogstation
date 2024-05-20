@@ -5,7 +5,7 @@
 	icon = 'icons/obj/clothing/badges.dmi'
 	icon_state = "sec1"
 	item_state = ""
-	mob_overlay_icon = 'icons/mob/clothing/badges.dmi'
+	worn_icon = 'icons/mob/clothing/badges.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	/// State of worn icon
 	var/accessory_state = "worn_chest_gold"
@@ -31,7 +31,7 @@
 	pixel_x -= 8
 	pixel_y += 8
 	layer = initial(layer)
-	plane = initial(plane)
+	SET_PLANE_IMPLICIT(src, initial(plane))
 	suit_target.cut_overlays()
 	suit_target.attached_badge = null
 	suit_target.badge_overlay = null

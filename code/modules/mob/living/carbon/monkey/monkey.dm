@@ -45,6 +45,7 @@
 
 	create_dna(src)
 	dna.initialize_dna(random_blood_type())
+	AddComponent(/datum/component/bloodysoles/feet)
 
 /mob/living/carbon/monkey/Destroy()
 	SSmobs.cubemonkeys -= src
@@ -91,7 +92,7 @@
 
 /mob/living/carbon/monkey/get_status_tab_items()
 	. = ..()
-	. += "Intent: [a_intent]"
+	. += "Combat Mode: [combat_mode ? "On" : "Off"]"
 	. += "Move Mode: [m_intent]"
 	if(client && mind)
 		var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)

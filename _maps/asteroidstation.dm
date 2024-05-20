@@ -1,1 +1,1 @@
-#define FORCE_MAP "_maps/asteroidstation.json"
+#define FORCE_MAP "asteroidstation"

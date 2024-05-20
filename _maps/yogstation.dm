@@ -1,1 +1,1 @@
-#define FORCE_MAP "_maps/yogstation.json"
+#define FORCE_MAP "yogstation"

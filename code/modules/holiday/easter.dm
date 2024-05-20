@@ -214,6 +214,7 @@
 /datum/crafting_recipe/food/mammi
 	name = "Mammi"
 	reqs = list(
+		/obj/item/reagent_containers/glass/bowl = 1,
 		/obj/item/reagent_containers/food/snacks/store/bread/plain = 1,
 		/obj/item/reagent_containers/food/snacks/chocolatebar = 1,
 		/datum/reagent/consumable/milk = 5

@@ -11,7 +11,9 @@
 	response_disarm = "shoves"
 	response_harm = "strikes"
 	status_flags = NONE
-	a_intent = INTENT_HARM
-	see_in_dark = 4
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	combat_mode = TRUE
+	// Let's do a blue, since they'll be on green turfs if this shit is ever finished
+	lighting_cutoff_red = 5
+	lighting_cutoff_green = 20
+	lighting_cutoff_blue = 25
 	mob_size = MOB_SIZE_LARGE

@@ -7,7 +7,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
 	},
-/turf/open/floor/carpet/exoticpurple,
+/turf/open/floor/carpet/purple,
 /area/template_noop)
 "b" = (
 /obj/structure/bed,
@@ -18,7 +18,7 @@
 	dir = 8
 	},
 /obj/item/bedsheet/purple,
-/turf/open/floor/carpet/exoticpurple,
+/turf/open/floor/carpet/purple,
 /area/template_noop)
 "n" = (
 /obj/machinery/light/small{
@@ -28,13 +28,13 @@
 	dir = 4
 	},
 /obj/structure/table/glass,
-/turf/open/floor/carpet/exoticpurple,
+/turf/open/floor/carpet/purple,
 /area/template_noop)
 "F" = (
 /obj/structure/chair/office/dark{
 	dir = 1
 	},
-/turf/open/floor/carpet/exoticpurple,
+/turf/open/floor/carpet/purple,
 /area/template_noop)
 "U" = (
 /obj/effect/landmark/xeno_spawn,
@@ -44,7 +44,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
 	},
-/turf/open/floor/carpet/exoticpurple,
+/turf/open/floor/carpet/purple,
 /area/template_noop)
 "Z" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -53,7 +53,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/turf/open/floor/carpet/exoticpurple,
+/turf/open/floor/carpet/purple,
 /area/template_noop)
 
 (1,1,1) = {"

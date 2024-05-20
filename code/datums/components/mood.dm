@@ -1,6 +1,3 @@
-#define MINOR_INSANITY_PEN 5
-#define MAJOR_INSANITY_PEN 10
-
 /datum/component/mood
 	var/mood //Real happiness
 	var/sanity = 100 //Current sanity
@@ -138,7 +135,7 @@
 			if(absmood > highest_absolute_mood)
 				highest_absolute_mood = absmood
 
-	if(!conflicting_moodies.len) //no special icons- go to the normal icon states
+	if(!conflicting_moodies.len && owner.mind) //no special icons- go to the normal icon states
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker) //bloodsucker edit
 		if(sanity < 25)
 			screen_obj.icon_state = "mood_insane"
@@ -192,11 +189,11 @@
 		if(4)
 			setSanity(sanity-0.025*delta_time, minimum=SANITY_DISTURBED)
 		if(5)
-			setSanity(sanity+0.1)
+			setSanity(sanity+0.1*delta_time)
 		if(6)
 			setSanity(sanity+0.15*delta_time)
 		if(7)
-			setSanity(sanity+0.2*delta_time)
+			setSanity(sanity+0.2*delta_time, maximum=SANITY_GREAT)
 		if(8)
 			setSanity(sanity+0.25*delta_time, maximum=SANITY_GREAT)
 		if(9)
@@ -235,28 +232,22 @@
 	var/mob/living/master = parent
 	switch(sanity)
 		if(SANITY_INSANE to SANITY_CRAZY)
-			setInsanityEffect(MAJOR_INSANITY_PEN)
-			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.75, movetypes=(~FLYING))
+			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.25, movetypes=(~FLYING))
 			sanity_level = 6
 		if(SANITY_CRAZY to SANITY_UNSTABLE)
-			setInsanityEffect(MINOR_INSANITY_PEN)
-			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.5, movetypes=(~FLYING))
+			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE)
 			sanity_level = 5
 		if(SANITY_UNSTABLE to SANITY_DISTURBED)
-			setInsanityEffect(0)
-			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.25, movetypes=(~FLYING))
+			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE)
 			sanity_level = 4
 		if(SANITY_DISTURBED to SANITY_NEUTRAL)
-			setInsanityEffect(0)
-			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE)
+			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=-0.05, movetypes=(~FLYING))
 			sanity_level = 3
 		if(SANITY_NEUTRAL+1 to SANITY_GREAT+1) //shitty hack but +1 to prevent it from responding to super small differences
-			setInsanityEffect(0)
-			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE)
+			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=-0.1, movetypes=(~FLYING))
 			sanity_level = 2
 		if(SANITY_GREAT+1 to INFINITY)
-			setInsanityEffect(0)
-			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE)
+			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=-0.15, movetypes=(~FLYING))
 			sanity_level = 1
 	update_mood_icon()
 
@@ -314,7 +305,7 @@
 	screen_obj_sanity = new
 	hud.infodisplay += screen_obj
 	hud.infodisplay += screen_obj_sanity
-	RegisterSignal(hud, COMSIG_PARENT_QDELETING, PROC_REF(unmodify_hud))
+	RegisterSignal(hud, COMSIG_QDELETING, PROC_REF(unmodify_hud))
 	RegisterSignal(screen_obj, COMSIG_CLICK, PROC_REF(hud_click))
 
 /datum/component/mood/proc/unmodify_hud(datum/source)
@@ -376,6 +367,3 @@
 /datum/component/mood/proc/check_area_mood(datum/source, area/A)
 	if(A.mood_bonus)
 		add_event(null, "area", /datum/mood_event/area, A.mood_bonus, A.mood_message)
-
-#undef MINOR_INSANITY_PEN
-#undef MAJOR_INSANITY_PEN

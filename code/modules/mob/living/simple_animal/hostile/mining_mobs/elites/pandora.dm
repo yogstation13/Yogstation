@@ -36,7 +36,7 @@
 	speed = 4
 	move_to_delay = 10
 	mouse_opacity = MOUSE_OPACITY_ICON
-	internal_type = /obj/item/gps/internal/pandora
+	gps_name = "Chaotic Signal"
 	deathsound = 'sound/magic/repulse.ogg'
 	deathmessage = "'s lights flicker, before its top part falls down."
 	loot_drop = /obj/item/clothing/accessory/pandora_hope
@@ -175,11 +175,6 @@
 	gpstag = "Chaotic Signal"
 	desc = "You opened the box."
 	invisibility = 100
-
-/mob/living/simple_animal/hostile/asteroid/elite/pandora/death()
-	QDEL_NULL(internal) // removes signal from a deceased elite.
-	. = ..()
-
 
 //The specific version of hiero's squares pandora uses
 /obj/effect/temp_visual/hierophant/blast/pandora

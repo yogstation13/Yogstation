@@ -40,6 +40,7 @@
 	var/next_flicker = 0 //Light flicker timer
 	var/base_power_modifier = REACTOR_POWER_FLAVOURISER
 	var/slagged = FALSE //Is this reactor even usable any more?
+	var/explosion_power = 7 //The explosion strength 
 	//Console statistics.
 	var/last_coolant_temperature = 0
 	var/last_output_temperature = 0
@@ -78,7 +79,7 @@
 	if(isnull(id))
 		id = getnewid()
 
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/get_integrity()
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/get_integrity()
 	return round(100 * vessel_integrity / initial(vessel_integrity), 0.01)
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/examine(mob/user)
@@ -175,12 +176,15 @@
 		to_chat(user, span_notice("The reactor has no fuel rods!"))
 		return TRUE
 	var/obj/item/fuel_rod/rod = tgui_input_list(usr, "Select a fuel rod to remove", "Fuel Rods", fuel_rods)
-	if(rod && istype(rod) && I.use_tool(src, user, removal_time))
+	if(rod && istype(rod) && I.use_tool(src, user, removal_time, volume=50))
 		if(temperature > REACTOR_TEMPERATURE_MINIMUM)
 			var/turf/T = get_turf(src)
 			T.atmos_spawn_air("water_vapor=[pressure/100];TEMP=[temperature]")
 		user.rad_act(rod.fuel_power * 1000)
 		fuel_rods.Remove(rod)
+		if(ismecha(user.loc))
+			rod.forceMove(get_step(get_turf(user.loc), user.loc.dir))
+			return TRUE
 		if(!user.put_in_hands(rod))
 			rod.forceMove(user.loc)
 	return TRUE
@@ -204,10 +208,9 @@
 	return TRUE
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/multitool_act(mob/living/user, obj/item/multitool/I)
-	if(istype(I))
-		to_chat(user, "<span class='notice'>You add \the [src]'s ID into the multitool's buffer.</span>")
-		I.buffer = src
-		return TRUE
+	to_chat(user, "<span class='notice'>You add \the [src]'s ID into the multitool's buffer.</span>")
+	multitool_set_buffer(user, I, src)
+	return TRUE
 
 //Admin procs to mess with the reaction environment.
 
@@ -307,14 +310,14 @@
 	if(active && moderator_input.total_moles() >= minimum_coolant_level)
 		// Fuel types: increases power and K
 		var/total_fuel_moles = 0
-		total_fuel_moles += moderator_input.get_moles(/datum/gas/plasma) * PLASMA_FUEL_POWER
-		total_fuel_moles += moderator_input.get_moles(/datum/gas/tritium) * TRITIUM_FUEL_POWER
-		total_fuel_moles += moderator_input.get_moles(/datum/gas/antinoblium) * ANTINOBLIUM_FUEL_POWER
+		total_fuel_moles += moderator_input.get_moles(GAS_PLASMA) * PLASMA_FUEL_POWER
+		total_fuel_moles += moderator_input.get_moles(GAS_TRITIUM) * TRITIUM_FUEL_POWER
+		total_fuel_moles += moderator_input.get_moles(GAS_ANTINOB) * ANTINOBLIUM_FUEL_POWER
 
 		// Power modifier types: increases fuel effectiveness
 		var/power_mod_moles = 0
-		power_mod_moles += moderator_input.get_moles(/datum/gas/oxygen) * OXYGEN_POWER_MOD
-		power_mod_moles += moderator_input.get_moles(/datum/gas/hydrogen) * HYDROGEN_POWER_MOD
+		power_mod_moles += moderator_input.get_moles(GAS_O2) * OXYGEN_POWER_MOD
+		power_mod_moles += moderator_input.get_moles(GAS_H2) * HYDROGEN_POWER_MOD
 
 		// Now make some actual power!
 		if(total_fuel_moles >= minimum_coolant_level) //You at least need SOME fuel.
@@ -322,39 +325,39 @@
 			var/power_modifier = max(power_mod_moles * 10 / moderator_input.total_moles(), 1) //You can never have negative IPM. For now.
 			power_produced = max(0,((fuel_power*power_modifier)*moderator_input.total_moles())) / delta_time
 			if(active)
-				coolant_output.adjust_moles(/datum/gas/pluonium, total_fuel_moles/20) //Shove out pluonium into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
+				coolant_output.adjust_moles(GAS_PLUONIUM, total_fuel_moles/20) //Shove out pluonium into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
 
 		// Control types: increases control of K
 		var/total_control_moles = 0
-		total_control_moles += moderator_input.get_moles(/datum/gas/nitrogen) * NITROGEN_CONTROL_MOD
-		total_control_moles += moderator_input.get_moles(/datum/gas/carbon_dioxide) * CARBON_CONTROL_MOD
-		total_control_moles += moderator_input.get_moles(/datum/gas/pluoxium) * PLUOXIUM_CONTROL_MOD
+		total_control_moles += moderator_input.get_moles(GAS_N2) * NITROGEN_CONTROL_MOD
+		total_control_moles += moderator_input.get_moles(GAS_CO2) * CARBON_CONTROL_MOD
+		total_control_moles += moderator_input.get_moles(GAS_PLUOXIUM) * PLUOXIUM_CONTROL_MOD
 		if(total_control_moles >= minimum_coolant_level)
 			var/control_bonus = total_control_moles / REACTOR_CONTROL_FACTOR //1 mol of n2 -> 0.002 bonus control rod effectiveness, if you want a super controlled reaction, you'll have to sacrifice some power.
 			control_rod_effectiveness = initial(control_rod_effectiveness) + control_bonus
 
 		// Permeability types: increases cooling efficiency
 		var/total_permeability_moles = 0
-		total_permeability_moles += moderator_input.get_moles(/datum/gas/bz) * BZ_PERMEABILITY_MOD
-		total_permeability_moles += moderator_input.get_moles(/datum/gas/water_vapor) * WATER_PERMEABILITY_MOD
-		total_permeability_moles += moderator_input.get_moles(/datum/gas/hypernoblium) * NOBLIUM_PERMEABILITY_MOD
+		total_permeability_moles += moderator_input.get_moles(GAS_BZ) * BZ_PERMEABILITY_MOD
+		total_permeability_moles += moderator_input.get_moles(GAS_H2O) * WATER_PERMEABILITY_MOD
+		total_permeability_moles += moderator_input.get_moles(GAS_HYPERNOB) * NOBLIUM_PERMEABILITY_MOD
 		if(total_permeability_moles >= minimum_coolant_level)
 			gas_absorption_effectiveness = clamp(gas_absorption_constant + (total_permeability_moles / REACTOR_PERMEABILITY_FACTOR), 0, 1)
 
 		// Radiation types: increases radiation
-		radioactivity_spice_multiplier += moderator_input.get_moles(/datum/gas/nitrogen) * NITROGEN_RAD_MOD //An example setup of 50 moles of n2 (for dealing with spent fuel) leaves us with a radioactivity spice multiplier of 3.
-		radioactivity_spice_multiplier += moderator_input.get_moles(/datum/gas/carbon_dioxide) * CARBON_RAD_MOD
-		radioactivity_spice_multiplier += moderator_input.get_moles(/datum/gas/hydrogen) * HYDROGEN_RAD_MOD 
-		radioactivity_spice_multiplier += moderator_input.get_moles(/datum/gas/tritium) * TRITIUM_RAD_MOD
-		radioactivity_spice_multiplier += moderator_input.get_moles(/datum/gas/antinoblium) * ANTINOBLIUM_RAD_MOD
+		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_N2) * NITROGEN_RAD_MOD //An example setup of 50 moles of n2 (for dealing with spent fuel) leaves us with a radioactivity spice multiplier of 3.
+		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_CO2) * CARBON_RAD_MOD
+		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_H2) * HYDROGEN_RAD_MOD 
+		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_TRITIUM) * TRITIUM_RAD_MOD
+		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_ANTINOB) * ANTINOBLIUM_RAD_MOD
 
 		// Integrity modification
-		var/healium_moles = moderator_input.get_moles(/datum/gas/healium)
+		var/healium_moles = moderator_input.get_moles(GAS_HEALIUM)
 		if(healium_moles > minimum_coolant_level)
 			integrity_restoration = max((2400-max(TCMB, temperature))/300) * delta_time //At 1800K integrity_restoration should be around 1, which then it cant keep up with the heat damage (around 1.1 maximum in temp_damage) to restore integrity
 
 		// Degradation types: degrades the fuel rods
-		var/total_degradation_moles = moderator_input.get_moles(/datum/gas/pluonium) //Because it's quite hard to get.
+		var/total_degradation_moles = moderator_input.get_moles(GAS_PLUONIUM) //Because it's quite hard to get.
 		if(total_degradation_moles >= minimum_coolant_level) //I'll be nice.
 			depletion_modifier += total_degradation_moles / 15 //Oops! All depletion. This causes your fuel rods to get SPICY.
 			if(prob(total_degradation_moles)) // don't spam the sound so much please
@@ -466,7 +469,7 @@
 		total_fuel_power += rod.fuel_power
 	return total_fuel_power
 
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/relay(var/sound, var/message=null, loop = FALSE, channel = null) //Sends a sound + text message to the crew of a ship
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/relay(sound, message=null, loop = FALSE, channel = null) //Sends a sound + text message to the crew of a ship
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z)
 			if(!isinspace(M))
@@ -568,7 +571,7 @@
 //Results: Engineering becomes unusable and your engine irreparable
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/meltdown()
 	set waitfor = FALSE
-	SSair.atmos_machinery -= src //Annd we're now just a useless brick.
+	SSair.stop_processing_machine(src)
 	vessel_integrity = null // this makes it show up weird on the monitor to even further emphasize something's gone horribly wrong
 	slagged = TRUE
 	color = null
@@ -593,26 +596,38 @@
 	T.assume_air(coolant_input)
 	T.assume_air(moderator_input)
 	T.assume_air(coolant_output)
-	var/turf/lower_turf = SSmapping.get_turf_below(T)
+	var/turf/lower_turf = GET_TURF_BELOW(T)
 	if(lower_turf) // reactor fuel will melt down into the lower levels on multi-z maps like icemeta
 		new /obj/structure/reactor_corium(lower_turf)
-		var/turf/lowest_turf = SSmapping.get_turf_below(lower_turf)
+		var/turf/lowest_turf = GET_TURF_BELOW(lower_turf)
 		if(lowest_turf) // WE NEED TO GO DEEPER
 			new /obj/structure/reactor_corium(lower_turf)
-	explosion(get_turf(src), 0, 5, 10, 20, TRUE, TRUE)
+	explosion(get_turf(src), GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
+	radiation_pulse(src, (K+1)*temperature*get_fuel_power()*has_fuel()/(REACTOR_MAX_CRITICALITY*REACTOR_MAX_FUEL_RODS))
+	shockwave()
 
 //Failure condition 2: Blowout. Achieved by reactor going over-pressured. This is a round-ender because it requires more fuckery to achieve.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/blowout()
-	explosion(get_turf(src), GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
+	var/explosion_mod = clamp(log(10, pressure), 1, 10)
+	explosion(get_turf(src), explosion_power * explosion_mod  * 0.5, explosion_power * explosion_mod + 2, explosion_power * explosion_mod + 4, explosion_power * explosion_mod + 6, 1, 1)
 	meltdown() //Double kill.
 	relay('sound/effects/reactor/explode.ogg')
+	priority_announce("Level 10 radiation hazard alert! Clouds of nuclear ash are forming near the reactor and expanding rapidly. Maintenance is the best shield against the ash storm.", "Radiation Alert", 'sound/misc/airraid.ogg', color_override="yellow")
 	SSweather.run_weather("nuclear fallout", src.z)
 	for(var/X in GLOB.landmarks_list)
 		if(istype(X, /obj/effect/landmark/nuclear_waste_spawner))
 			var/obj/effect/landmark/nuclear_waste_spawner/WS = X
 			if(is_station_level(WS.z)) //Begin the SLUDGING
-				WS.range *= 3
+				WS.range *= log(temperature)+K
 				WS.fire()
+
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/shockwave()
+	var/atom/movable/gravity_lens/shockwave = new(src)
+	shockwave.transform = matrix().Scale(0.5)
+	shockwave.pixel_x = -240
+	shockwave.pixel_y = -240
+	animate(shockwave, alpha = 0, transform = matrix().Scale(20), time = 10 SECONDS, easing = QUAD_EASING)
+	QDEL_IN(shockwave, 10.5 SECONDS)
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/update_icon(updates=ALL)
 	. = ..()
@@ -675,7 +690,7 @@
 
 /obj/machinery/computer/reactor/multitool_act(mob/living/user, obj/item/multitool/I)
 	if(isnull(id) || isnum(id))
-		var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/N = I.buffer
+		var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/N = multitool_get_buffer(user, I)
 		if(!istype(N))
 			user.balloon_alert(user, "invalid reactor ID!")
 			return TRUE
@@ -693,7 +708,7 @@
 
 /obj/item/circuitboard/computer/reactor
 	name = "Reactor Control (Computer Board)"
-	icon_state = "engineering"
+	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/computer/reactor
 
 /obj/machinery/computer/reactor/Initialize(mapload, obj/item/circuitboard/C)
@@ -950,7 +965,7 @@
 /datum/weather/nuclear_fallout
 	name = "nuclear fallout"
 	desc = "Irradiated dust falls down everywhere."
-	telegraph_duration = 50
+	telegraph_duration = 20 SECONDS
 	telegraph_message = "<span class='boldwarning'>The air suddenly becomes dusty..</span>"
 	weather_message = "<span class='userdanger'><i>You feel a wave of hot ash fall down on you.</i></span>"
 	weather_overlay = "light_ash"
@@ -960,7 +975,7 @@
 	weather_color = "green"
 	telegraph_sound = null
 	weather_sound = 'sound/effects/reactor/falloutwind.ogg'
-	end_duration = 100
+	end_duration = 200
 	area_type = /area
 	protected_areas = list(/area/maintenance, /area/ai_monitored/turret_protected/ai_upload, /area/ai_monitored/turret_protected/ai_upload_foyer,
 	/area/ai_monitored/turret_protected/ai, /area/shuttle)
@@ -968,7 +983,7 @@
 	immunity_type = "rad"
 
 /datum/weather/nuclear_fallout/weather_act(mob/living/L)
-	L.rad_act(100)
+	L.rad_act(2000)
 
 /datum/weather/nuclear_fallout/telegraph()
 	..()

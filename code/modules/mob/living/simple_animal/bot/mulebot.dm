@@ -18,7 +18,8 @@
 	health = 50
 	maxHealth = 50
 	damage_coeff = list(BRUTE = 0.5, BURN = 0.7, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
-	a_intent = INTENT_HARM //No swapping
+	combat_mode = TRUE //No swapping
+	can_toggle_combat = FALSE // I SAID NO SWAPPING
 	buckle_lying = 0
 	mob_size = MOB_SIZE_LARGE
 
@@ -83,7 +84,7 @@
 	..()
 	reached_target = 0
 
-/mob/living/simple_animal/bot/mulebot/attackby(obj/item/I, mob/user, params)
+/mob/living/simple_animal/bot/mulebot/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		..()
 		if(open)
@@ -189,6 +190,7 @@
 		if(BOT_NO_ROUTE)
 			data["modeStatus"] = "bad"
 		else
+			data["modeStatus"] = "unknown"
 	data["load"] = load ? load.name : null
 	data["destination"] = destination ? destination : null
 	data["home"] = home_destination
@@ -426,7 +428,7 @@
 		load.forceMove(loc)
 		load.pixel_y = initial(load.pixel_y)
 		load.layer = initial(load.layer)
-		load.plane = initial(load.plane)
+		SET_PLANE_IMPLICIT(load, initial(load.plane))
 		if(dirn)
 			var/turf/T = loc
 			var/turf/newT = get_step(T,dirn)
@@ -644,7 +646,7 @@
 					L.Knockdown(8 SECONDS)
 	return ..()
 
-// called from mob/living/carbon/human/Crossed()
+// called from mob/living/carbon/human/proc/on_entered()
 // when mulebot is in the same loc
 /mob/living/simple_animal/bot/mulebot/proc/RunOver(mob/living/carbon/human/H)
 	log_combat(src, H, "run over", null, "(DAMTYPE: [uppertext(BRUTE)])")
@@ -725,6 +727,11 @@
 		return loc.remove_air(amount)
 	else
 		return null
+
+/mob/living/simple_animal/bot/mulebot/remove_air_ratio(ratio)
+	if(loc)
+		return loc.remove_air_ratio(ratio)
+	return null
 
 /mob/living/simple_animal/bot/mulebot/resist()
 	..()

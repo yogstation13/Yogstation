@@ -91,7 +91,7 @@
 
 /obj/item/organ/ears/cat
 	name = "cat ears"
-	icon = 'icons/obj/clothing/hats.dmi'
+	icon = 'icons/obj/clothing/hats/hats.dmi'
 	icon_state = "kitty"
 	visual = TRUE
 	compatible_biotypes = ALL_BIOTYPES // meowchine... turn back now
@@ -157,15 +157,11 @@
 	compatible_biotypes = MOB_ROBOTIC // for IPCs
 
 /obj/item/organ/ears/robot/emp_act(severity)
-	switch(severity)
-		if(1)
-			owner.adjust_jitter(30 SECONDS)
-			owner.adjust_dizzy(30)
-			owner.Knockdown(5 SECONDS)
-			deaf = 30
-			to_chat(owner, span_warning("Your robotic ears are uselessly ringing."))
-		if(2)
-			owner.adjust_jitter(15 SECONDS)
-			owner.adjust_dizzy(15)
-			owner.Knockdown(10 SECONDS)
-			to_chat(owner, span_warning("Your robotic ears buzz."))  
+	owner.adjust_jitter(3 * severity)
+	owner.adjust_dizzy(3 * severity)
+	owner.Knockdown(severity SECONDS)
+	if(severity > EMP_LIGHT)
+		deaf = 3 * severity
+		to_chat(owner, span_warning("Your robotic ears are uselessly ringing."))
+		return
+	to_chat(owner, span_warning("Your robotic ears buzz."))  

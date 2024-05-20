@@ -25,7 +25,7 @@
 	///internal check for if we are being healed by ourselves, no double dipping
 	var/idiotcooldown = FALSE
 
-/datum/component/heal_react/boost/Initialize(boost_set, var/list/damtype_set)
+/datum/component/heal_react/boost/Initialize(boost_set, list/damtype_set)
 	if(boost_set)
 		boost_amount = boost_set
 	if(damtype_set)
@@ -67,7 +67,7 @@
 	var/favor = ..()
 	boost_amount = initial(boost_amount)
 	if(favor)
-		GLOB.religious_sect.adjust_favor(round(min(favor, 40), 0.1))
+		GLOB.religious_sect.adjust_favor(round(favor/2, 0.1))
 
 /datum/component/heal_react/boost/holylight/on_heal(var/mob/living/target,amount,damtype)
 	if(istype(get_area(target), /area/chapel))
@@ -75,4 +75,4 @@
 	var/favor = ..()
 	boost_amount = initial(boost_amount)
 	if(favor)
-		GLOB.religious_sect.adjust_favor(round(min(favor * 2, 40), 0.1))
+		GLOB.religious_sect.adjust_favor(round(favor/2, 0.1))

@@ -10,7 +10,7 @@ LINEN BINS
 	icon = 'icons/obj/bedsheets.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/bedsheet_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/bedsheet_righthand.dmi'
-	mob_overlay_icon = 'icons/mob/clothing/neck/sheets.dmi'
+	worn_icon = 'icons/mob/clothing/neck/sheets.dmi'
 	icon_state = "sheetwhite"
 	item_state = "sheetwhite"
 	slot_flags = ITEM_SLOT_NECK
@@ -27,9 +27,10 @@ LINEN BINS
 	dog_fashion = /datum/dog_fashion/head/ghost
 	var/list/dream_messages = list("white")
 
-/obj/item/bedsheet/attack(mob/living/M, mob/user)
-	if(!attempt_initiate_surgery(src, M, user))
-		..()
+/obj/item/bedsheet/attack(mob/living/M, mob/user, params)
+	var/list/modifiers = params2list(params)
+	if(!attempt_initiate_surgery(src, M, user, modifiers))
+		return ..()
 
 /obj/item/bedsheet/attack_self(mob/user)
 	if(newbedpath)

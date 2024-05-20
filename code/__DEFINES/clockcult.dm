@@ -100,7 +100,7 @@ GLOBAL_LIST_EMPTY(all_scripture)
 #define GATEWAY_RATVAR_ARRIVAL 600
 
 ///Objective text define
-#define CLOCKCULT_OBJECTIVE "Construct the Ark of the Clockwork Justicar and free Ratvar."
+#define CLOCKCULT_OBJECTIVE "Construct the Ark of the Clockwork Justiciar and free Ratvar."
 
 //Eminence defines
 /// How many walls can be superheated at once

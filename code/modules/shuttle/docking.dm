@@ -46,7 +46,7 @@
 		rotation = SIMPLIFY_DEGREES(rotation)
 
 	if(!movement_direction)
-		movement_direction = turn(preferred_direction, 180)
+		movement_direction = REVERSE_DIR(preferred_direction)
 
 	var/list/moved_atoms = list() //Everything not a turf that gets moved in the shuttle
 	var/list/areas_to_move = list() //unique assoc list of areas on turfs being moved
@@ -103,7 +103,18 @@
 	return DOCKING_SUCCESS
 
 /obj/docking_port/mobile/proc/preflight_check(list/old_turfs, list/new_turfs, list/areas_to_move, rotation)
-	for(var/i in 1 to old_turfs.len)
+	for(var/i in 1 to length(old_turfs))
+		var/turf/oldT = old_turfs[i]
+		var/turf/newT = new_turfs[i]
+		if(!newT)
+			return DOCKING_NULL_DESTINATION
+		if(!oldT)
+			return DOCKING_NULL_SOURCE
+
+		oldT.clear_adjacencies()
+		newT.clear_adjacencies()
+
+	for(var/i in 1 to length(old_turfs))
 		CHECK_TICK
 		var/turf/oldT = old_turfs[i]
 		var/turf/newT = new_turfs[i]
@@ -134,23 +145,25 @@
 		var/turf/oldT = old_turfs[i]
 		var/turf/newT = new_turfs[i]
 		var/move_mode = old_turfs[oldT]
+
+		if(move_mode & MOVE_TURF)
+			oldT.onShuttleMove(newT, movement_force, movement_direction) //turfs
+
+		if(move_mode & MOVE_AREA)
+			var/area/shuttle_area = oldT.loc
+			shuttle_area.onShuttleMove(oldT, newT, underlying_old_area) //areas
+
 		if(move_mode & MOVE_CONTENTS)
 			for(var/k in oldT)
 				var/atom/movable/moving_atom = k
 				if(moving_atom.loc != oldT) //fix for multi-tile objects
 					continue
-				moving_atom.onShuttleMove(newT, oldT, movement_force, movement_direction, old_dock, src)	//atoms
+				moving_atom.onShuttleMove(newT, oldT, movement_force, movement_direction, old_dock, src) //atoms
 				moved_atoms[moving_atom] = oldT
 
-		if(move_mode & MOVE_TURF)
-			oldT.onShuttleMove(newT, movement_force, movement_direction)									//turfs
-
-		if(move_mode & MOVE_AREA)
-			var/area/shuttle_area = oldT.loc
-			shuttle_area.onShuttleMove(oldT, newT, underlying_old_area)										//areas
 
 /obj/docking_port/mobile/proc/cleanup_runway(obj/docking_port/stationary/new_dock, list/old_turfs, list/new_turfs, list/areas_to_move, list/moved_atoms, rotation, movement_direction, area/underlying_old_area)
-	underlying_old_area.afterShuttleMove()
+	underlying_old_area.afterShuttleMove(0)
 
 	// Parallax handling
 	// This needs to be done before the atom after move
@@ -160,15 +173,27 @@
 	for(var/i in 1 to areas_to_move.len)
 		CHECK_TICK
 		var/area/internal_area = areas_to_move[i]
-		internal_area.afterShuttleMove(new_parallax_dir)													//areas
+		internal_area.afterShuttleMove(new_parallax_dir) //areas
 
 	for(var/i in 1 to old_turfs.len)
 		CHECK_TICK
 		if(!(old_turfs[old_turfs[i]] & MOVE_TURF))
 			continue
-		var/turf/oldT = old_turfs[i]
-		var/turf/newT = new_turfs[i]
-		newT.afterShuttleMove(oldT, rotation)																//turfs
+		var/turf/old_turf = old_turfs[i]
+		var/turf/new_turf = new_turfs[i]
+		new_turf.afterShuttleMove(old_turf, rotation) //turfs
+		var/turf/new_ceiling = get_step_multiz(new_turf, UP) // check if a ceiling is needed
+		if(new_ceiling)
+			// generate ceiling
+			if(istype(new_ceiling, /turf/open/openspace)) // why is this needed? because we have 2 different typepaths for openspace
+				new_ceiling.ChangeTurf(/turf/open/floor/engine/hull/ceiling, list(/turf/open/openspace))
+			else if (istype(new_ceiling, /turf/open/space/openspace))
+				new_ceiling.ChangeTurf(/turf/open/floor/engine/hull/ceiling, list(/turf/open/space/openspace))
+		var/turf/old_ceiling = get_step_multiz(old_turf, UP)
+		if(old_ceiling && istype(old_ceiling, /turf/open/floor/engine/hull/ceiling)) // check if a ceiling was generated previously
+			// remove old ceiling
+			var/turf/open/floor/engine/hull/ceiling/old_shuttle_ceiling = old_ceiling
+			old_shuttle_ceiling.ChangeTurf(old_shuttle_ceiling.old_turf_type)
 
 	for(var/i in 1 to moved_atoms.len)
 		CHECK_TICK
@@ -202,4 +227,3 @@
 			continue
 		var/turf/oldT = moved_atoms[moved_object]
 		moved_object.lateShuttleMove(oldT, movement_force, movement_direction)
-

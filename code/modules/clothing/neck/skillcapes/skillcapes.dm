@@ -4,14 +4,14 @@
 	icon = 'icons/obj/clothing/skillcapes.dmi'
 	icon_state = "ghost-skillcape"
 	item_state = "ghost-skillcape"
-	mob_overlay_icon = 'icons/mob/clothing/neck/skillcapes.dmi'
+	worn_icon = 'icons/mob/clothing/neck/skillcapes.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDESUITSTORAGE
 
 /obj/item/clothing/neck/skillcape/trimmed
 	name = "trimmed cape of skill"
-	desc = "a golden trimmed cape, marks proof of excellence."
+	desc = "A golden-trimmed cape, marks proof of excellence."
 
 /obj/item/clothing/neck/skillcape/admin
 	name = "cape of mighty judgement"

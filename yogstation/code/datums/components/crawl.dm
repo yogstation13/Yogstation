@@ -75,7 +75,7 @@
 	qdel(holder)
 	holder = null
 
-/datum/component/crawl/RemoveComponent(del_holder=TRUE)
+/datum/component/crawl/ClearFromParent(del_holder=TRUE)
 	var/mob/living/M = parent
 	if(del_holder && holder)
 		M.forceMove(get_turf(holder))
@@ -85,7 +85,7 @@
 
 ////////////BLOODCRAWL
 /datum/component/crawl/blood
-	crawling_types = list(/obj/effect/decal/cleanable/blood, /obj/effect/decal/cleanable/xenoblood, /obj/effect/decal/cleanable/trail_holder)
+	crawling_types = list(/obj/effect/decal/cleanable/blood, /obj/effect/decal/cleanable/xenoblood, /obj/effect/decal/cleanable/blood/trail_holder)
 	gain_message = span_boldnotice("You can now bloodcrawl! Alt-click blood or gibs to phase in and out.")
 	loss_message = span_warning("You can no longer bloodcrawl.")
 
@@ -356,7 +356,7 @@ GLOBAL_LIST_EMPTY(vomit_spots)
 		C.regenerate_icons()
 		C.extinguish_mob()
 	enteredvomit = target
-	RegisterSignal(target, COMSIG_PARENT_PREQDELETED, PROC_REF(throw_out))
+	RegisterSignal(target, COMSIG_PREQDELETED, PROC_REF(throw_out))
 	user.visible_message(span_warning("[user] sinks into the pool of vomit!?"))
 	playsound(get_turf(target), 'sound/magic/mutate.ogg', 50, 1, -1)
 	holder = new /obj/effect/dummy/crawling/vomit(get_turf(user))
@@ -386,7 +386,7 @@ GLOBAL_LIST_EMPTY(vomit_spots)
 		for(var/obj/item/vomitcrawl/B in C)
 			qdel(B)
 	..()
-	UnregisterSignal(enteredvomit, COMSIG_PARENT_PREQDELETED)
+	UnregisterSignal(enteredvomit, COMSIG_PREQDELETED)
 	enteredvomit = null
 	user.visible_message(span_warning("<B>[user] rises out of the pool of vomit!?</B>"))
 	exit_vomit_effect(target, user)

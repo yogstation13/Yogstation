@@ -5,12 +5,12 @@
 	icon_state = "robot"
 	maxHealth = 100
 	health = 100
-	bubble_icon = "robot"
+	bubble_icon = BUBBLE_ROBOT
 	designation = "Default" ///used for displaying the prefix & getting the current module of cyborg
 	has_limbs = 1
 	hud_type = /datum/hud/robot
-	blocks_emissive = EMISSIVE_BLOCK_GENERIC
-	light_system = MOVABLE_LIGHT
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
+	light_system = MOVABLE_LIGHT_DIRECTIONAL
 	light_on = FALSE
 
 	var/custom_name = ""
@@ -123,11 +123,11 @@
 	wires = new /datum/wires/robot(src)
 	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
 
+	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
 	RegisterSignal(src, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge))
 
 	robot_modules_background = new()
 	robot_modules_background.icon_state = "block"
-	robot_modules_background.layer = HUD_LAYER	//Objects that appear on screen are on layer ABOVE_HUD_LAYER, UI should be just below it.
 	robot_modules_background.plane = HUD_PLANE
 
 	ident = rand(1, 999)
@@ -344,6 +344,14 @@
 	if(thruster_button)
 		thruster_button.icon_state = "ionpulse[ionpulse_on]"
 
+/// Special handling for getting hit with a light eater
+/mob/living/silicon/robot/proc/on_light_eater(mob/living/silicon/robot/source, datum/light_eater)
+	SIGNAL_HANDLER
+	if(lamp_enabled)
+		smash_headlamp()
+	return COMPONENT_BLOCK_LIGHT_EATER
+
+
 /mob/living/silicon/robot/get_status_tab_items()
 	. = ..()
 	. += ""
@@ -411,8 +419,8 @@
 		return FALSE
 	return ISINRANGE(T1.x, T0.x - interaction_range, T0.x + interaction_range) && ISINRANGE(T1.y, T0.y - interaction_range, T0.y + interaction_range)
 
-/mob/living/silicon/robot/attackby(obj/item/W, mob/user, params)
-	if(W.tool_behaviour == TOOL_WELDER && (user.a_intent != INTENT_HARM || user == src))
+/mob/living/silicon/robot/attackby(obj/item/W, mob/living/user, params)
+	if(W.tool_behaviour == TOOL_WELDER && (!user.combat_mode || user == src))
 		user.changeNext_move(CLICK_CD_MELEE)
 		if (!getBruteLoss())
 			to_chat(user, span_warning("[src] is already in good condition!"))
@@ -453,7 +461,7 @@
 		else
 			to_chat(user, "The wires seem fine, there's no need to fix them.")
 
-	else if(W.tool_behaviour == TOOL_CROWBAR && (user.a_intent != INTENT_HARM || user == src))	// crowbar means open or close the cover
+	else if(W.tool_behaviour == TOOL_CROWBAR && (!user.combat_mode || user == src))	// crowbar means open or close the cover
 		if(opened)
 			to_chat(user, span_notice("You close the cover."))
 			opened = 0
@@ -539,7 +547,7 @@
 		else
 			to_chat(user, span_warning("Unable to locate a radio!"))
 
-	else if(W.GetID() && user.a_intent == INTENT_HELP)			// trying to unlock the interface with an ID card only on help intent.
+	else if(W.GetID() && !user.combat_mode)			// trying to unlock the interface with an ID card unless combat mode is on.
 		togglelock(user)
 
 	else if(istype(W, /obj/item/borg/upgrade/))
@@ -623,7 +631,7 @@
 	upgrades += new_upgrade
 	new_upgrade.forceMove(src)
 	RegisterSignal(new_upgrade, COMSIG_MOVABLE_MOVED, PROC_REF(remove_from_upgrades))
-	RegisterSignal(new_upgrade, COMSIG_PARENT_QDELETING, PROC_REF(on_upgrade_deleted))
+	RegisterSignal(new_upgrade, COMSIG_QDELETING, PROC_REF(on_upgrade_deleted))
 	logevent("Hardware \"[new_upgrade.name]\" installed successfully.")
 	return TRUE
 
@@ -634,7 +642,7 @@
 		return
 	old_upgrade.deactivate(src)
 	upgrades -= old_upgrade
-	UnregisterSignal(old_upgrade, list(COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING))
+	UnregisterSignal(old_upgrade, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING))
 
 /// Called when an applied upgrade is deleted.
 /mob/living/silicon/robot/proc/on_upgrade_deleted(obj/item/borg/upgrade/old_upgrade)
@@ -642,7 +650,7 @@
 	if(!QDELETED(src))
 		old_upgrade.deactivate(src)
 	upgrades -= old_upgrade
-	UnregisterSignal(old_upgrade, list(COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING))
+	UnregisterSignal(old_upgrade, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING))
 
 /mob/living/silicon/robot/verb/unlock_own_cover()
 	set category = "Robot Commands"
@@ -704,11 +712,11 @@
 		if(lamp_enabled)
 			eye_lights.icon_state = "[module.special_light_key ? "[module.special_light_key]":"[module.cyborg_base_icon]"]_l"
 			eye_lights.color = lamp_color
-			eye_lights.plane = 19 //glowy eyes
+			SET_PLANE_EXPLICIT(eye_lights, ABOVE_LIGHTING_PLANE, src) //glowy eyes
 		else
 			eye_lights.icon_state = "[module.special_light_key ? "[module.special_light_key]":"[module.cyborg_base_icon]"]_e[is_servant_of_ratvar(src) ? "_r" : ""]"
 			eye_lights.color = COLOR_WHITE
-			eye_lights.plane = -1
+			SET_PLANE_EXPLICIT(eye_lights, ABOVE_GAME_PLANE, src)
 		eye_lights.icon = icon
 		add_overlay(eye_lights)
 
@@ -782,7 +790,7 @@
 
 /mob/living/silicon/robot/verb/outputlaws()
 	set category = "Robot Commands"
-	set name = "State Laws"
+	set name = "Law Manager"
 
 	if(usr.stat == DEAD)
 		return //won't work if dead
@@ -795,15 +803,6 @@
 	if(usr.stat == DEAD)
 		return //won't work if dead
 	accentchange()
-
-/mob/living/silicon/robot/verb/set_automatic_say_channel() //Borg version of setting the radio for autosay messages.
-	set name = "Set Auto Announce Mode"
-	set desc = "Modify the default radio setting for stating your laws."
-	set category = "Robot Commands"
-
-	if(usr.stat == DEAD)
-		return //won't work if dead
-	set_autosay()
 
 /**
   * Handles headlamp smashing
@@ -920,7 +919,7 @@
 /mob/living/silicon/robot/modules/syndicate
 	icon_state = "synd_sec"
 	faction = list(ROLE_SYNDICATE)
-	bubble_icon = "syndibot"
+	bubble_icon = BUBBLE_SYNDIBOT
 	req_access = list(ACCESS_SYNDICATE)
 	lawupdate = FALSE
 	scrambledcodes = TRUE // These are rogue borgs.
@@ -958,7 +957,7 @@
 	playstyle_string = "<span class='big bold'>You are a Syndicate medical cyborg!</span><br>\
 						<b>You are armed with powerful medical tools to aid you in your mission: help the operatives secure the nuclear authentication disk. \
 						Your hypospray will produce Restorative Nanites, a wonder-drug that will heal most types of bodily damages, including clone and brain damage. It also produces morphine for offense. \
-						Your defibrillator paddles can revive operatives through their hardsuits, or can be used on harm intent to shock enemies! \
+						Your defibrillator paddles can revive operatives through their hardsuits, or can be used with combat mode on to shock enemies! \
 						Your energy saw functions as a circular saw, but can be activated to deal more damage, and your operative pinpointer will find and locate fellow nuclear operatives. \
 						<i>Help the operatives secure the disk at all costs!</i></b>"
 	set_module = /obj/item/robot_module/syndicate_medical
@@ -999,6 +998,26 @@
 		return FALSE
 	return TRUE
 
+/mob/living/silicon/robot/update_fire_overlay(stacks, on_fire, last_icon_state, suffix = "")
+	var/fire_icon = "generic_fire[suffix]"
+
+	if(!GLOB.fire_appearances[fire_icon])
+		var/mutable_appearance/new_fire_overlay = mutable_appearance('icons/mob/effects/onfire.dmi', fire_icon, -FIRE_LAYER)
+		new_fire_overlay.appearance_flags = RESET_COLOR
+		GLOB.fire_appearances[fire_icon] = new_fire_overlay
+
+	if(stacks && on_fire)
+		if(last_icon_state == fire_icon)
+			return last_icon_state
+		add_overlay(GLOB.fire_appearances[fire_icon])
+		return fire_icon
+
+	if(!last_icon_state)
+		return last_icon_state
+
+	cut_overlay(GLOB.fire_appearances[fire_icon])
+	return null
+	
 /mob/living/silicon/robot/updatehealth()
 	..()
 
@@ -1040,19 +1059,18 @@
 		return
 	if(stat == DEAD)
 		if(SSmapping.level_trait(z, ZTRAIT_NOXRAY))
-			sight = null
+			set_sight(null)
 		else if(is_secret_level(z))
-			sight = initial(sight)
+			set_sight(initial(sight))
 		else
-			sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_OBSERVER
+			set_sight(SEE_TURFS|SEE_MOBS|SEE_OBJS)
+		set_invis_see(SEE_INVISIBLE_OBSERVER)
 		return
 
-	see_invisible = initial(see_invisible)
-	see_in_dark = initial(see_in_dark)
-	sight = initial(sight)
-	lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
+	set_invis_see(initial(see_invisible))
+	var/new_sight = initial(sight)
+	lighting_cutoff = LIGHTING_CUTOFF_VISIBLE
+	lighting_color_cutoffs = list(lighting_cutoff_red, lighting_cutoff_green, lighting_cutoff_blue)
 
 	if(client.eye != src)
 		var/atom/A = client.eye
@@ -1060,37 +1078,30 @@
 			return
 
 	if(sight_mode & BORGMESON)
-		sight |= SEE_TURFS
-		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		see_in_dark = 2
-
-	if(sight_mode & BORGMESON_NIGHTVISION)
-		sight |= SEE_TURFS
-		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		see_in_dark = 8
+		new_sight |= SEE_TURFS
+		lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, list(5, 15, 5))
 
 	if(sight_mode & BORGMATERIAL)
-		sight |= SEE_OBJS
-		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		see_in_dark = 2
+		new_sight |= SEE_OBJS
+		lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, list(20, 25, 40))
 
 	if(sight_mode & BORGXRAY)
-		sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_invisible = SEE_INVISIBLE_LIVING
-		see_in_dark = 8
+		new_sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
+		set_invis_see(SEE_INVISIBLE_LIVING)
 
 	if(sight_mode & BORGTHERM)
-		sight |= SEE_MOBS
-		see_invisible = min(see_invisible, SEE_INVISIBLE_LIVING)
-		see_in_dark = 8
+		new_sight |= SEE_MOBS
+		lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, list(25, 8, 5))
+		set_invis_see(min(see_invisible, SEE_INVISIBLE_LIVING))
 
 	if(see_override)
-		see_invisible = see_override
+		set_invis_see(see_override)
 
 	if(SSmapping.level_trait(z, ZTRAIT_NOXRAY))
-		sight = null
+		new_sight = null
 
-	sync_lighting_plane_alpha()
+	set_sight(new_sight)
+	return ..()
 
 /mob/living/silicon/robot/update_stat()
 	if(status_flags & GODMODE)
@@ -1261,7 +1272,6 @@
 
 
 /mob/living/silicon/robot/proc/undeploy()
-
 	if(!deployed || !mind || !mainframe)
 		return
 	remove_sensors()
@@ -1274,11 +1284,13 @@
 	if(radio) //Return radio to normal
 		radio.recalculateChannels()
 	if(!QDELETED(builtInCamera))
-		builtInCamera.c_tag = real_name	//update the camera name too
+		builtInCamera.c_tag = real_name //update the camera name too
 	diag_hud_set_aishell()
 	mainframe.diag_hud_set_deployed()
 	if(mainframe.laws)
 		mainframe.laws.show_laws(mainframe) //Always remind the AI when switching
+	if(mainframe.eyeobj)
+		mainframe.eyeobj.setLoc(loc)
 	mainframe = null
 
 /mob/living/silicon/robot/attack_ai(mob/user)
@@ -1328,7 +1340,7 @@
 		return
 	. = ..(M, force, check_loc)
 
-/mob/living/silicon/robot/unbuckle_mob(mob/user, force=FALSE)
+/mob/living/silicon/robot/unbuckle_mob(mob/user, force=FALSE, can_fall = TRUE)
 	if(iscarbon(user))
 		var/datum/component/riding/riding_datum = GetComponent(/datum/component/riding)
 		if(istype(riding_datum))

@@ -69,7 +69,7 @@
 	if(.)
 		return
 	if(!pod_moving)
-		if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
+		if(user.pulling && isliving(user.pulling))
 			if(open_status == STATION_TUBE_OPEN)
 				var/mob/living/GM = user.pulling
 				if(user.grab_state >= GRAB_AGGRESSIVE)
@@ -177,11 +177,9 @@
 		sleep(OPEN_DURATION + 0.2 SECONDS)
 		pod_moving = FALSE
 		if(!QDELETED(pod))
-			var/datum/gas_mixture/floor_mixture = loc.return_air()
-			floor_mixture.archive()
-			pod.air_contents.archive()
-			pod.air_contents.share(floor_mixture, 1) //mix the pod's gas mixture with the tile it's on
-			air_update_turf()
+			var/datum/gas_mixture/floor_mixture = loc?.return_air()
+			if(floor_mixture)
+				equalize_all_gases_in_list(list(pod.air_contents,floor_mixture))
 
 /obj/structure/transit_tube/station/init_tube_dirs()
 	switch(dir)

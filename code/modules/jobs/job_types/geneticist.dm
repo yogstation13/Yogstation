@@ -7,7 +7,6 @@
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the chief medical officer and research director"
-	selection_color = "#d4ebf2"
 	exp_type = EXP_TYPE_CREW
 	exp_requirements = 60
 	alt_titles = list("DNA Mechanic", "Bioengineer", "Junior Geneticist", "Gene Splicer", "Mutation Specialist")
@@ -46,11 +45,11 @@
 	name = "Geneticist"
 	jobtype = /datum/job/geneticist
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/geneticist
 
 	ears = /obj/item/radio/headset/headset_medsci
-	uniform = /obj/item/clothing/under/rank/geneticist
-	uniform_skirt = /obj/item/clothing/under/rank/geneticist/skirt
+	uniform = /obj/item/clothing/under/rank/rnd/geneticist
+	uniform_skirt = /obj/item/clothing/under/rank/rnd/geneticist/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit =  /obj/item/clothing/suit/toggle/labcoat/genetics
 	suit_store =  /obj/item/flashlight/pen

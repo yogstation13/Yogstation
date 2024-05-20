@@ -160,7 +160,7 @@ SUBSYSTEM_DEF(explosions)
 		else
 			continue
 
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(wipe_color_and_text), wipe_colours), 100)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(wipe_color_and_text), wipe_colours), 100)
 
 /proc/wipe_color_and_text(list/atom/wiping)
 	for(var/i in wiping)
@@ -256,10 +256,10 @@ SUBSYSTEM_DEF(explosions)
 
 	if(!silent)
 		var/frequency = get_rand_frequency()
-		var/sound/explosion_sound = sound(get_sfx("explosion"))
+		var/sound/explosion_sound = sound(get_sfx(SFX_EXPLOSION))
 		var/sound/far_explosion_sound = sound('sound/effects/explosionfar.ogg')
-		var/sound/creaking_explosion_sound = sound(get_sfx("explosion_creaking"))
-		var/sound/hull_creaking_sound = sound(get_sfx("hull_creaking"))
+		var/sound/creaking_explosion_sound = sound(get_sfx(SFX_EXPLOSION_CREAKING))
+		var/sound/hull_creaking_sound = sound(get_sfx(SFX_HULL_CREAKING))
 		var/sound/explosion_echo_sound = sound('sound/effects/explosion_distant.ogg')
 		var/on_station = SSmapping.level_trait(epicenter.z, ZTRAIT_STATION)
 		var/creaking_explosion = FALSE
@@ -522,7 +522,7 @@ SUBSYSTEM_DEF(explosions)
 		for(var/thing in flame_turf)
 			if(thing)
 				var/turf/T = thing
-				T.IgniteTurf(rand(4, 24)) //Mostly for ambience!
+				T.ignite_turf(rand(4, 24)) //Mostly for ambience!
 		cost_flameturf = MC_AVERAGE(cost_flameturf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
 		if (low_turf.len || med_turf.len || high_turf.len)
@@ -586,3 +586,5 @@ SUBSYSTEM_DEF(explosions)
 		cost_throwturf = MC_AVERAGE(cost_throwturf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
 	currentpart = SSEXPLOSIONS_TURFS
+
+#undef SSAIR_REBUILD_PIPENETS

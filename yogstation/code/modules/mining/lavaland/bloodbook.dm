@@ -42,12 +42,12 @@
 		var/mob/living/M = hit_atom
 		inflict(thrownby, M, 0, FALSE)
 
-/obj/item/bloodbook/proc/tenderize(mob/living/user, mob/living/target, var/damage = 10)
+/obj/item/bloodbook/proc/tenderize(mob/living/user, mob/living/target, damage = 10)
 	var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
 	var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 10)
 	target.apply_damage(damage, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 
-/obj/item/bloodbook/proc/sceneend(mob/living/target, mob/living/user, var/die = FALSE)
+/obj/item/bloodbook/proc/sceneend(mob/living/target, mob/living/user, die = FALSE)
 	if((target.mobility_flags & MOBILITY_STAND))
 		animate(target, transform = null)
 	target.color = initial(target.color)
@@ -61,7 +61,7 @@
 	if(target != user)
 		tenderize(user, target, 10)
 
-/obj/item/bloodbook/proc/retaliate(mob/living/user, var/retaliatedam)
+/obj/item/bloodbook/proc/retaliate(mob/living/user, retaliatedam)
 	var/mob/living/L
 	REMOVE_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	if(retaliatedam == 0)
@@ -82,7 +82,7 @@
 		user.dna.species.disarm(user, A)
 		
 
-/obj/item/bloodbook/proc/severitycalc(mob/living/target, var/feedback)
+/obj/item/bloodbook/proc/severitycalc(mob/living/target, feedback)
 	if((target.health - feedback) <= (0))
 		if(iscarbon(target) && (target.stat > 0))
 			return FALSE
@@ -95,7 +95,7 @@
 			return 3
 	return FALSE
 
-/obj/item/bloodbook/proc/inflict(mob/living/user, mob/living/target, var/damage = 0, abouttobeslammed = TRUE)
+/obj/item/bloodbook/proc/inflict(mob/living/user, mob/living/target, damage = 0, abouttobeslammed = TRUE)
 	var/hurt
 	if(target == user)
 		return
@@ -190,7 +190,7 @@
 //animation stuff
 
 
-/obj/item/bloodbook/proc/animatepick(mob/living/user, mob/living/target, var/severity)
+/obj/item/bloodbook/proc/animatepick(mob/living/user, mob/living/target, severity)
 	if(isanimal(target))
 		var/mob/living/simple_animal/L = target
 		L.toggle_ai(AI_OFF)
@@ -271,7 +271,7 @@
 	if(target)
 		sceneend(target, user, TRUE)
 
-/obj/item/bloodbook/proc/falling(mob/living/user, mob/living/target, phase = 1, var/obj/portalb, var/obj/portalo)
+/obj/item/bloodbook/proc/falling(mob/living/user, mob/living/target, phase = 1, obj/portalb, obj/portalo)
 	switch(phase)
 		if(1)
 			var/obj/structure/prop/propportal/O = new(target.loc)
@@ -313,7 +313,7 @@
 		sceneend(target, user, TRUE)
 		return
 
-/obj/item/bloodbook/proc/damnedfang(mob/living/user, mob/living/target, phase = 1, var/obj/structure/bed/killbubble/orb) //finish
+/obj/item/bloodbook/proc/damnedfang(mob/living/user, mob/living/target, phase = 1, obj/structure/bed/killbubble/orb) //finish
 	switch(phase) 
 		if(1)
 			var/obj/structure/bed/killbubble/B = new(target.loc)
@@ -345,7 +345,7 @@
 		addtimer(CALLBACK(src, PROC_REF(sceneend), target, user, TRUE), 0.5 SECONDS)
 		return
 
-/obj/item/bloodbook/proc/shrink(mob/living/user, mob/living/target, phase = 1, var/obj/orb)
+/obj/item/bloodbook/proc/shrink(mob/living/user, mob/living/target, phase = 1, obj/orb)
 	switch(phase) 
 		if(1)
 			var/obj/structure/bed/killbubble/B = new(target.loc)
@@ -382,7 +382,7 @@
 		sceneend(target, user, TRUE)
 		return
 
-/obj/item/bloodbook/proc/vortex(mob/living/user, mob/living/target, phase = 1, var/obj/structure/bed/killbubble/hole, atom/visual)
+/obj/item/bloodbook/proc/vortex(mob/living/user, mob/living/target, phase = 1, obj/structure/bed/killbubble/hole, atom/visual)
 	switch(phase) 
 		if(1)
 			user.setDir(get_dir(user, target))
@@ -421,7 +421,7 @@
 		return
 
 
-/obj/item/bloodbook/proc/dunk(mob/living/user, mob/living/target, phase = 1, var/obj/hoop, var/turf/second)
+/obj/item/bloodbook/proc/dunk(mob/living/user, mob/living/target, phase = 1, obj/hoop, turf/second)
 	switch(phase)
 		if(1) 
 			user.Immobilize(0.9 SECONDS)
@@ -480,7 +480,7 @@
 		sceneend(target, user, TRUE)
 		return
 
-/obj/item/bloodbook/proc/redshot(mob/living/user, mob/living/target, phase = 1, var/obj/structure/prop/killight/red)
+/obj/item/bloodbook/proc/redshot(mob/living/user, mob/living/target, phase = 1, obj/structure/prop/killight/red)
 	switch(phase)
 		if(1) 
 			user.Immobilize(0.5 SECONDS)
@@ -540,7 +540,7 @@
 //megafauna animations
 
 //General Megafauna
-/obj/item/bloodbook/proc/mash(mob/living/user, mob/living/target, phase = 1, var/obj/first, var/obj/second, var/obj/third, list/pillarlist)
+/obj/item/bloodbook/proc/mash(mob/living/user, mob/living/target, phase = 1, obj/first, obj/second, obj/third, list/pillarlist)
 	switch(phase)
 		if(1) 
 			target.visible_message(span_warning("[user] points upward and the ground around [target] begins to crack!"))
@@ -590,7 +590,7 @@
 		sceneend(target, user)
 		return
 
-/obj/item/bloodbook/proc/spiritbomb(mob/living/user, mob/living/target, phase = 1, var/obj/floor, var/obj/sky, var/obj/structure/prop/killight/genkidama)
+/obj/item/bloodbook/proc/spiritbomb(mob/living/user, mob/living/target, phase = 1, obj/floor, obj/sky, obj/structure/prop/killight/genkidama)
 	switch(phase)
 		if(1) 
 			target.visible_message(span_warning("Runes appear above and below [target]!"))
@@ -632,7 +632,7 @@
 		return
 
 //Legion
-/obj/item/bloodbook/proc/headmassage(mob/living/user, var/mob/living/simple_animal/hostile/megafauna/legion/target, phase = 1, obj/hand)
+/obj/item/bloodbook/proc/headmassage(mob/living/user, mob/living/simple_animal/hostile/megafauna/legion/target, phase = 1, obj/hand)
 	switch(phase)
 		if(1) 
 			var/obj/structure/prop/killhand/left = new(target.loc)
@@ -682,7 +682,7 @@
 
 //nonlethal animations
 
-/obj/item/bloodbook/proc/inducingemission(mob/living/user, mob/living/target, phase = 1, var/obj/structure/prop/killight/geometry)
+/obj/item/bloodbook/proc/inducingemission(mob/living/user, mob/living/target, phase = 1, obj/structure/prop/killight/geometry)
 	switch(phase) 
 		if(1)
 			var/obj/structure/prop/killight/B = new(user.loc)
@@ -756,7 +756,7 @@
 	desc = "A blood-red prison."
 	density = FALSE
 	anchored = TRUE
-	layer = MASSIVE_OBJ_LAYER
+	plane= MASSIVE_OBJ_PLANE
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "leaper"
 	max_integrity = 500
@@ -767,7 +767,7 @@
 	var/obj/structure/slash/P = new(src.loc)
 	times++
 	addtimer(CALLBACK(src, PROC_REF(shred), times), 0.1 SECONDS)
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), P), 1.5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), P), 1.5 SECONDS)
 	return
 
 
@@ -782,14 +782,14 @@
 /obj/structure/prop
 	anchored = TRUE
 	density = FALSE
-	layer = MASSIVE_OBJ_LAYER
+	plane = MASSIVE_OBJ_PLANE
 	max_integrity = 500
 
 /obj/structure/prop/killrock
 	name = "ruby spire"
 	desc = "An unrelenting claw."
 	anchored = TRUE
-	layer = MASSIVE_OBJ_LAYER
+	plane = MASSIVE_OBJ_PLANE
 	icon = 'icons/obj/cult_64x64.dmi'
 	icon_state = "bloodstone-enter1"
 	var/stage = 1
@@ -870,10 +870,10 @@
 /obj/structure/slash
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "slash"
-	layer = POINT_LAYER
+	plane = POINT_PLANE
 	color =  "#ffa600"
 
 /obj/structure/slash/Initialize(mapload)
 	. = ..()
 	animate(src,  pixel_y = 30, transform = matrix(rand(1, 360), MATRIX_ROTATE).Scale(1.5))
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), src), 0.7 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), 0.7 SECONDS)

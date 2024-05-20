@@ -153,7 +153,7 @@
 	. = ..()
 
 	if(cell && !(. & EMP_PROTECT_CONTENTS))
-		deductcharge(5000 / severity)
+		deductcharge(500 * severity)
 
 	if (. & EMP_PROTECT_SELF)
 		return
@@ -308,7 +308,6 @@
 /obj/item/shockpaddles/Initialize(mapload, obj/item/defibrillator/spawned_in)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 8, \
 		force_wielded = 12, \
 		icon_wielded = "[base_icon_state]1", \
 	)
@@ -328,7 +327,7 @@
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(check_range))
 	listeningTo = user
 
-/obj/item/shockpaddles/Moved()
+/obj/item/shockpaddles/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	. = ..()
 	check_range()
 
@@ -392,7 +391,7 @@
 	forceMove(defib)
 	defib.update_appearance(UPDATE_ICON)
 
-/obj/item/shockpaddles/attack(mob/M, mob/user)
+/obj/item/shockpaddles/attack(mob/M, mob/living/user, params)
 
 	if(busy)
 		return
@@ -420,7 +419,8 @@
 			to_chat(user, span_warning("[src] are recharging!"))
 		return
 
-	if(user.a_intent == INTENT_DISARM)
+	var/list/modifiers = params2list(params)
+	if(modifiers && modifiers[RIGHT_CLICK])
 		do_disarm(M, user)
 		return
 
@@ -437,7 +437,7 @@
 		to_chat(user, span_warning("You need to target your patient's chest with [src]!"))
 		return
 
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		do_harm(H, user)
 		return
 
@@ -462,12 +462,14 @@
 		return
 	if(!req_defib && !combat)
 		return
-	busy = TRUE
 	M.visible_message(span_danger("[user] has touched [M] with [src]!"), \
 			span_userdanger("[user] has touched [M] with [src]!"))
-	M.adjustStaminaLoss(50)
-	M.Knockdown(100)
-	M.updatehealth() //forces health update before next life tick //isn't this done by adjustStaminaLoss anyway?
+	var/hit_percent = (100 - M.getarmor(user.zone_selected, ELECTRIC)) / 100
+	if(!hit_percent)
+		return
+	busy = TRUE
+	M.adjustStaminaLoss(50 * hit_percent)
+	M.Knockdown((10 * hit_percent) SECONDS)
 	playsound(src,  'sound/machines/defib_zap.ogg', 50, 1, -1)
 	M.emote("gasp")
 	log_combat(user, M, "stunned", src)

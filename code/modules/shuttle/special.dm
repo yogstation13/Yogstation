@@ -182,7 +182,15 @@
 	max_integrity = 1000
 	var/boot_dir = 1
 
-/obj/structure/table/wood/bar/Crossed(atom/movable/AM)
+/obj/structure/table/wood/bar/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
+
+/obj/structure/table/wood/bar/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(isliving(AM) && !is_barstaff(AM))
 		// No climbing on the bar please
 		var/mob/living/M = AM
@@ -190,8 +198,6 @@
 		M.Paralyze(40)
 		M.throw_at(throwtarget, 5, 1,src)
 		to_chat(M, span_notice("No climbing on the bar please."))
-	else
-		. = ..()
 
 /obj/structure/table/wood/bar/proc/is_barstaff(mob/living/user)
 	. = FALSE
@@ -208,7 +214,7 @@
 /mob/living/simple_animal/drone/snowflake/mafia
 	name = "Mafiosdrone"
 	icon_state = "drone_synd"
-	desc = "An indestructable drone \"\ probably\"\ involved in some shady buisness. Good thing its pacificm circuits are still there."
+	desc = "An indestructable drone \"\ probably\"\ involved in some shady business. Good thing its pacificm circuits are still there."
 	hacked = TRUE
 	laws = "1. Be loyal to members of the organization.\n\
 		2. Be rational.\n\
@@ -240,6 +246,12 @@
 	if(mover in approved_passengers)
 		set_scanline("scanning", 10)
 		return TRUE
+
+	if(ismecha(mover))
+		var/obj/mecha/mech = mover
+		if(mech.occupant != null && (mech.occupant in approved_passengers))
+			set_scanline("scanning", 10)
+			return TRUE
 
 	if(!isliving(mover)) //No stowaways
 		return FALSE

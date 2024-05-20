@@ -59,13 +59,9 @@
 	else
 		..()
 
-/mob/living/simple_animal/pet/attack_hand(mob/living/carbon/human/M)
+/mob/living/simple_animal/pet/attack_hand(mob/living/carbon/human/M, modifiers)
 	. = ..()
-	switch(M.a_intent)
-		if(INTENT_HELP)
-			wuv(M)
-		if(INTENT_HARM)
-			wuv(M, FALSE)
+	wuv(M, !M.combat_mode)
 
 /mob/living/simple_animal/pet/Initialize(mapload)
 	. = ..()

@@ -3,6 +3,8 @@
 	desc = "All the parts you need to build your own custom pc."
 	icon_state = "modularpc"
 	icon_deny = "modularpc-deny"
+	panel_type = "panel21"
+	light_mask = "modular-light-mask"
 	product_ads = "Get your gamer gear!;The best GPUs for all of your space-crypto needs!;The most robust cooling!;The finest RGB in space!"
 	vend_reply = "Game on!"
 	products = list(/obj/item/modular_computer/tablet/pda = 6,
@@ -22,10 +24,13 @@
 					/obj/item/computer_hardware/card_slot/secondary = 2,
 					/obj/item/computer_hardware/ai_slot = 2,
 					/obj/item/computer_hardware/printer/mini = 2,
-					/obj/item/computer_hardware/recharger/APC = 2)
+					/obj/item/computer_hardware/recharger/APC = 2,
+					/obj/item/computer_hardware/ai_interface = 2)
 	refill_canister = /obj/item/vending_refill/modularpc
 	default_price = 30
 	extra_price = 250
+	light_color = LIGHT_COLOR_BLUE
+	light_mask = "modular-light-mask"
 	payment_department = ACCOUNT_SCI
 
 /obj/item/vending_refill/modularpc

@@ -7,15 +7,14 @@
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the research director"
-	selection_color = "#ffeeff"
 	exp_requirements = 60
 	exp_type = EXP_TYPE_CREW
-	alt_titles = list("Augmentation Theorist", "Cyborg Maintainer", "Robotics Intern", "Biomechanical Engineer", "Mechatronic Engineer", "Machinist")
+	alt_titles = list("Augmentation Theorist", "Cyborg Maintainer", "Robotics Intern", "Biomechanical Engineer", "Mechatronic Engineer", "Machinist", "Chrome Shaman", "Ripperdoc")
 
 	outfit = /datum/outfit/job/roboticist
 
 	added_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_XENOBIOLOGY, ACCESS_GENETICS, ACCESS_RND)
-	base_access = list(ACCESS_ROBO_CONTROL, ACCESS_TECH_STORAGE, ACCESS_MORGUE, ACCESS_RESEARCH, ACCESS_MECH_SCIENCE, ACCESS_MECH_ENGINE, ACCESS_MECH_MEDICAL, ACCESS_MECH_MINING, ACCESS_MINERAL_STOREROOM)
+	base_access = list(ACCESS_ROBOTICS, ACCESS_ROBO_CONTROL, ACCESS_TECH_STORAGE, ACCESS_MORGUE, ACCESS_RESEARCH, ACCESS_MECH_SCIENCE, ACCESS_MECH_ENGINE, ACCESS_MECH_MEDICAL, ACCESS_MECH_MINING, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_SCI
 
@@ -52,8 +51,8 @@
 
 	belt = /obj/item/storage/belt/utility/full
 	ears = /obj/item/radio/headset/headset_sci
-	uniform = /obj/item/clothing/under/rank/roboticist
-	uniform_skirt = /obj/item/clothing/under/rank/roboticist/skirt
+	uniform = /obj/item/clothing/under/rank/rnd/roboticist
+	uniform_skirt = /obj/item/clothing/under/rank/rnd/roboticist/skirt
 	suit = /obj/item/clothing/suit/toggle/labcoat
 
 	backpack = /obj/item/storage/backpack/science
