@@ -427,7 +427,7 @@
 					icon_states_string = "[json_encode(an_icon_state)](\ref[an_icon_state])"
 				else
 					icon_states_string += ", [json_encode(an_icon_state)](\ref[an_icon_state])"
-	
+
 			stack_trace("[item] does not have a valid icon state, icon=[icon_file], icon_state=[json_encode(icon_state)](\ref[icon_state]), icon_states=[icon_states_string]")
 			continue
 		#endif
@@ -481,7 +481,7 @@
 			I.Blend(c, ICON_MULTIPLY)
 
 		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
-		
+
 		if(!sprites[imgid])
 			Insert(imgid, I)
 
@@ -611,9 +611,6 @@
 
 /datum/asset/spritesheet/sheetmaterials/create_spritesheets()
 	InsertAll("", 'icons/obj/stack_objects.dmi')
-
-	// Special case to handle Bluespace Crystals
-	Insert("polycrystal", 'icons/obj/telescience.dmi', "polycrystal")
 
 	Insert("dilithium_polycrystal", 'yogstation/icons/obj/telescience.dmi', "dilithium_polycrystal") //yogs: same as above but for dilithium
 
