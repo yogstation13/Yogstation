@@ -536,7 +536,7 @@
 	RegisterSignal(L,	COMSIG_MOB_REMOVE_REAGENT,	PROC_REF(reagent_purged))
 	return	..()
 
-/datum/reagent/medicine/calomel/on_mob_remove(mob/living/L)
+/datum/reagent/medicine/calomel/on_mob_delete(mob/living/L)
 	UnregisterSignal(L,	COMSIG_MOB_REMOVE_REAGENT)
 	return	..()
 
