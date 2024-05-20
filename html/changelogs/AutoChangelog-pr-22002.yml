@@ -1,0 +1,6 @@
+author: "Scrambledeggs00"
+delete-after: true 
+changes: 
+  - rscadd: "Adds in the maintenance musket, welding fuel cartridge, and black powder cartridge."
+  - soundadd: "Adds a firing and cocking sound for the musket."
+  - imageadd: "Adds sprites for the musket and cartridges."
