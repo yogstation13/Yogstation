@@ -60,3 +60,41 @@
 	desc = "This is kind of like when you rub your feet on a shag rug so you can zap your friends, only a lot less safe."
 	icon_state = "zapper"
 	item_state = "zapper"
+
+/datum/mutation/human/webbing
+	name = "Webbing Production"
+	desc = "Allows the user to lay webbing, and travel through it."
+	quality = POSITIVE
+	text_gain_indication = "<span class='notice'>Your skin feels webby.</span>"
+	instability = 15
+	power = /obj/effect/proc_holder/spell/self/lay_genetic_web
+
+/obj/effect/proc_holder/spell/self/lay_genetic_web
+	name = "Lay Web"
+	desc = "Drops a web. Only you will be able to traverse your web easily, making it pretty good for keeping you safe."
+	clothes_req = NONE
+	antimagic_allowed = TRUE
+	charge_max = 4 SECONDS //the same time to lay a web
+	action_icon = 'icons/mob/actions/actions_genetic.dmi'
+	action_icon_state = "lay_web"
+
+/obj/effect/proc_holder/spell/self/lay_genetic_web/cast(list/targets, mob/user = usr)
+	var/failed = FALSE
+	if(!isturf(user.loc))
+		to_chat(user, "<span class='warning'>You can't lay webs here!</span>")
+		failed = TRUE
+	var/turf/T = get_turf(user)
+	var/obj/structure/spider/stickyweb/genetic/W = locate() in T
+	if(W)
+		to_chat(user, "<span class='warning'>There's already a web here!</span>")
+		failed = TRUE
+	if(failed)
+		revert_cast(user)
+		return FALSE
+
+	user.visible_message("<span class='notice'>[user] begins to secrete a sticky substance.</span>","<span class='notice'>You begin to lay a web.</span>")
+	if(!do_after(user, 4 SECONDS, target = T))
+		to_chat(user, "<span class='warning'>Your web spinning was interrupted!</span>")
+		return
+	else
+		new /obj/structure/spider/stickyweb/genetic(T, user)
