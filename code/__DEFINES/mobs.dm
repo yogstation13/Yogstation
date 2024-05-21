@@ -378,9 +378,6 @@
 /// How far away you can be to make eye contact with someone while examining
 #define EYE_CONTACT_RANGE 5
 
-//this should be in the ai defines, but out ai defines are actual ai, not simplemob ai
-#define IS_DEAD_OR_INCAP(source) (source.incapacitated() || source.stat)
-
 #define DOING_INTERACTION(user, interaction_key) (LAZYACCESS(user.do_afters, interaction_key))
 #define DOING_INTERACTION_LIMIT(user, interaction_key, max_interaction_count) ((LAZYACCESS(user.do_afters, interaction_key) || 0) >= max_interaction_count)
 #define DOING_INTERACTION_WITH_TARGET(user, target) (LAZYACCESS(user.do_afters, target))

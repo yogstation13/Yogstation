@@ -21388,7 +21388,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
 	},
-/obj/effect/decal/cleanable/ash/crematorium,
+/obj/effect/decal/cleanable/ash,
 /obj/structure/cable{
 	icon_state = "2-8"
 	},

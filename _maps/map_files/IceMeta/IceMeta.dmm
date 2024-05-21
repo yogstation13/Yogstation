@@ -32379,10 +32379,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
-"jxo" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall,
-/area/maintenance/starboard)
 "jxp" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -255101,11 +255097,11 @@ cim
 iJT
 cim
 yjI
-jxo
 xqA
-jxo
-jxo
-jxo
+xqA
+xqA
+xqA
+xqA
 xqA
 dOc
 dOc

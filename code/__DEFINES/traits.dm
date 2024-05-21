@@ -201,9 +201,6 @@
 /// You can't see color!
 #define TRAIT_COLORBLIND "color_blind"
 
-/// trait that prevents AI controllers from planning detached from ai_status to prevent weird state stuff.
-#define TRAIT_AI_PAUSED "TRAIT_AI_PAUSED"
-
 /// This person is crying
 #define TRAIT_CRYING "crying"
 
