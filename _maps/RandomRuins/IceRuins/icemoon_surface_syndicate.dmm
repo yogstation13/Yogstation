@@ -2386,6 +2386,15 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/hfr_box/corner/syndicate,
+/obj/item/hfr_box/corner/syndicate,
+/obj/item/hfr_box/corner/syndicate,
+/obj/item/hfr_box/corner/syndicate,
+/obj/item/hfr_box/core/syndicate,
+/obj/item/hfr_box/body/waste_output/syndicate,
+/obj/item/hfr_box/body/moderator_input/syndicate,
+/obj/item/hfr_box/body/interface/syndicate,
+/obj/item/hfr_box/body/fuel_input/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
 "mq" = (
@@ -7511,6 +7520,10 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/trimline/purple/filled/line/lower,
+/obj/machinery/light_switch{
+	pixel_x = -12;
+	pixel_y = -24
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "NO" = (
