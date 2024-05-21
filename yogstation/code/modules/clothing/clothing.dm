@@ -2,7 +2,7 @@
 	var/list/species_restricted = null //Only these species can wear this kit.
 
 //BS12: Species-restricted clothing check.
-/obj/item/clothing/mob_can_equip(mob/M, slot)
+/obj/item/clothing/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
 	//if we can't equip the item anyway, don't bother with species_restricted (also cuts down on spam)
 	if(!..())
 		return FALSE
