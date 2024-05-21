@@ -1521,10 +1521,10 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/monastery)
 "tj" = (
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)

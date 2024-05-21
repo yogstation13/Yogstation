@@ -45,7 +45,7 @@
 	var/dmg = source.force * multi
 	if(dmg) // Truthy because backstabs can heal lol
 		target.apply_damage(dmg, source.damtype, BODY_ZONE_CHEST, 0, source.wound_bonus*multi, source.bare_wound_bonus*multi, source.sharpness*multi)
-		log_combat(user, target, "scored a backstab", source.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(source.damtype)])")
+		log_combat(user, target, "scored a backstab", source.name, "(COMBAT MODE: [user.combat_mode ? "ON" : "OFF"]) (DAMTYPE: [uppertext(source.damtype)])")
 		if(iscarbon(target))
 			// extra safe to ensure no sleeping
 			var/datum/emote/living/scream/scream_emote = new

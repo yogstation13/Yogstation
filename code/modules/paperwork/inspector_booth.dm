@@ -85,14 +85,14 @@
 	if (panel_open)
 		. += span_notice("[src]'s maintenance panel is open!")
 
-/obj/machinery/inspector_booth/attackby(obj/item/I, mob/user, params)
+/obj/machinery/inspector_booth/attackby(obj/item/I, mob/living/user, params)
 	// Normal tool interactions
 	if ((get_dir(user, src) == src.dir || get_dist_chebyshev(src, user) == 0) && default_deconstruction_screwdriver(user, "booth_maintenance", "booth", I))
 		return
 	if (default_change_direction_wrench(user, I) || default_deconstruction_crowbar(I))
 		return
 
-	if (user.a_intent != INTENT_HELP)
+	if (user.combat_mode)
 		return ..()
 
 	// For adding stamp upgrades to component_parts

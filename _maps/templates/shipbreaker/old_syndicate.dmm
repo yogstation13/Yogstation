@@ -1,0 +1,294 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/mineral/plastitanium/red/airless,
+/area/template_noop)
+"b" = (
+/obj/structure/window/reinforced/spawner/north,
+/obj/machinery/power/engine_capacitor_bank{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"c" = (
+/obj/structure/window/reinforced/spawner/west,
+/turf/open/floor/mineral/plastitanium/red/airless,
+/area/template_noop)
+"e" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Storage and Crew Quarters";
+	req_access_txt = "150"
+	},
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/template_noop)
+"f" = (
+/obj/structure/showcase/machinery/oldpod/used{
+	icon_state = "sleeper_s-open";
+	dir = 8;
+	name = "old prisoner pod";
+	desc = "A cryogenic pod used to hold prisoners for long-term transport."
+	},
+/obj/structure/window/reinforced/spawner,
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/template_noop)
+"g" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Bridge";
+	req_access_txt = "150"
+	},
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/template_noop)
+"h" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/template_noop)
+"m" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/template_noop)
+"n" = (
+/obj/item/restraints/handcuffs/cable/zipties/used,
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/template_noop)
+"o" = (
+/obj/machinery/modular_computer,
+/turf/open/floor/mineral/plastitanium,
+/area/template_noop)
+"p" = (
+/obj/structure/window/reinforced/spawner/west,
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/template_noop)
+"t" = (
+/obj/machinery/shuttle/engine{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"u" = (
+/turf/template_noop,
+/area/template_noop)
+"v" = (
+/obj/structure/window/reinforced/spawner/west,
+/obj/structure/closet/syndicate,
+/obj/item/clothing/under/syndicate/tacticool,
+/turf/open/floor/mineral/plastitanium/red/airless,
+/area/template_noop)
+"w" = (
+/obj/item/restraints/handcuffs/cable/zipties/used,
+/turf/open/floor/mineral/plastitanium/red/airless,
+/area/template_noop)
+"x" = (
+/obj/machinery/modular_computer,
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/template_noop)
+"B" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/template_noop)
+"C" = (
+/obj/machinery/door/window{
+	dir = 8
+	},
+/obj/structure/bed,
+/obj/item/bedsheet/syndie,
+/turf/open/floor/mineral/plastitanium/red/airless,
+/area/template_noop)
+"D" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red/airless,
+/area/template_noop)
+"E" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/template_noop)
+"F" = (
+/obj/machinery/door/window{
+	dir = 8
+	},
+/obj/structure/window/reinforced/spawner/north,
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/template_noop)
+"H" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/template_noop)
+"J" = (
+/obj/item/storage/box/zipties,
+/turf/open/floor/mineral/plastitanium/red/airless,
+/area/template_noop)
+"L" = (
+/turf/open/floor/mineral/plastitanium/red,
+/area/template_noop)
+"M" = (
+/obj/machinery/door/airlock/external/glass{
+	req_access_txt = "150"
+	},
+/turf/open/floor/mineral/plastitanium/red/airless,
+/area/template_noop)
+"O" = (
+/obj/structure/showcase/machinery/oldpod/used{
+	icon_state = "sleeper_s-open";
+	dir = 8;
+	name = "old prisoner pod";
+	desc = "A cryogenic pod used to hold prisoners for long-term transport."
+	},
+/turf/open/floor/mineral/plastitanium/red/airless,
+/area/template_noop)
+"P" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/structure/window/reinforced/spawner/north,
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/template_noop)
+"Q" = (
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/template_noop)
+"R" = (
+/obj/structure/closet/syndicate,
+/obj/item/bodybag/environmental/prisoner/syndicate,
+/obj/item/bodybag/environmental/prisoner/syndicate,
+/obj/item/bodybag/environmental/prisoner/syndicate,
+/obj/structure/window/reinforced/spawner,
+/turf/open/floor/mineral/plastitanium/red/airless,
+/area/template_noop)
+"U" = (
+/obj/structure/window/reinforced/spawner,
+/obj/machinery/door/window{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/template_noop)
+"V" = (
+/obj/item/bodybag/environmental/prisoner/syndicate,
+/turf/open/floor/mineral/plastitanium/red/airless,
+/area/template_noop)
+"Y" = (
+/obj/machinery/door/window,
+/obj/structure/bed,
+/obj/item/bedsheet/syndie,
+/turf/open/floor/mineral/plastitanium/red/airless,
+/area/template_noop)
+"Z" = (
+/obj/machinery/sleeper/syndie{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/airless/broken,
+/area/template_noop)
+
+(1,1,1) = {"
+h
+h
+h
+H
+H
+M
+H
+H
+H
+H
+E
+u
+"}
+(2,1,1) = {"
+h
+x
+Q
+Z
+H
+a
+H
+a
+a
+J
+b
+t
+"}
+(3,1,1) = {"
+h
+o
+D
+Q
+H
+M
+E
+V
+w
+a
+b
+t
+"}
+(4,1,1) = {"
+H
+H
+H
+g
+H
+a
+m
+a
+a
+a
+b
+t
+"}
+(5,1,1) = {"
+H
+Y
+a
+a
+e
+a
+L
+B
+Q
+a
+b
+t
+"}
+(6,1,1) = {"
+H
+R
+a
+a
+H
+c
+U
+Q
+F
+p
+b
+t
+"}
+(7,1,1) = {"
+E
+H
+v
+C
+H
+O
+f
+Q
+P
+n
+b
+t
+"}
+(8,1,1) = {"
+u
+E
+H
+H
+H
+H
+H
+H
+H
+H
+E
+u
+"}

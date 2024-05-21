@@ -143,7 +143,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	QDEL_NULL(smoke)
 	..()
 
-/obj/machinery/ai/data_core/attackby(obj/item/O, mob/user, params)
+/obj/machinery/ai/data_core/attackby(obj/item/O, mob/living/user, params)
 	if(istype(O, /obj/item/dead_ai))
 		if(dead_ai_blackbox)
 			to_chat(user, span_warning("There's already a neural core inserted!"))
@@ -168,7 +168,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 			return
 		if(default_deconstruction_crowbar(O))
 			return TRUE	
-	if(panel_open && user.a_intent != INTENT_HARM)
+	if(panel_open && !user.combat_mode)
 		if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 			return // Feedback in proc
 		if(HAS_TRAIT(O, TRAIT_NODROP))

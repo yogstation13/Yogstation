@@ -480,7 +480,7 @@
 /datum/outfit/gangster
 	name = "Gangster (Preview only)"
 	mask = /obj/item/clothing/mask/cigarette/cigar/havana
-	uniform = /obj/item/clothing/under/rank/vice
+	uniform = /obj/item/clothing/under/suit/vice
 	neck = /obj/item/clothing/neck/necklace/dope
 	head = /obj/item/clothing/head/fedora
 

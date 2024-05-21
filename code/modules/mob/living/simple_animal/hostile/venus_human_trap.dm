@@ -110,7 +110,7 @@
 	obj_damage = 60
 	melee_damage_lower = 25
 	melee_damage_upper = 25
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	atmos_requirements = list("min_oxy" = 1, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS
@@ -136,6 +136,11 @@
 	. = ..()
 	AddElement(/datum/element/life_draining, damage_overtime = 5, check_damage_callback = CALLBACK(src, PROC_REF(kudzu_need)))
 	remove_verb(src, /mob/living/verb/pulled) //no dragging the poor sap into the depths of the vines never to be seen again
+
+/mob/living/simple_animal/hostile/venus_human_trap/mob_negates_gravity()
+	if(kudzu_need(FALSE))
+		return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/venus_human_trap/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()

@@ -167,7 +167,7 @@
 
 /obj/item/clothing/gloves/color/captain/centcom/admiral
 	desc = "Regal black gloves, with a nice gold trim, a diamond anti-shock coating, and an integrated thermal barrier. Swanky."
-	name = "\improper CentCom grand admiral gloves"
+	name = "\improper CentCom executive admiral gloves"
 	icon_state = "grand_admiral"
 	item_state = "grand_admiral"
 
