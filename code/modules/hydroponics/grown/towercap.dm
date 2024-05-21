@@ -16,7 +16,7 @@
 	icon_dead = "towercap-dead"
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
 	mutatelist = list(/obj/item/seeds/tower/steel)
-	reagents_add = list(/datum/reagent/carbon = 0.5)
+	reagents_add = list(/datum/reagent/carbon = 0.5, reagents_add = list(/datum/reagent/oxygen = 0.1))
 
 /obj/item/seeds/tower/steel
 	name = "pack of steel-cap mycelium"
@@ -93,6 +93,8 @@
 	seed = /obj/item/seeds/tower/steel
 	name = "steel-cap log"
 	desc = "It's made of metal."
+	force = 9
+	throwforce = 7
 	icon_state = "steellogs"
 	plank_type = /obj/item/stack/rods
 	plank_name = "rods"
