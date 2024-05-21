@@ -10,3 +10,5 @@
 #define MONKIFY_BLOOD_COEFFICIENT (BLOOD_VOLUME_MONKEY/BLOOD_VOLUME_GENERIC) //the ratio of monkey to human blood volume so a 100% blood volume monkey will not instantly die when you turn it into a human with ~58% blood volume
 
 #define SPECIES_VOX "vox"
+
+#define BUTT_SPRITE_VOX "vox"

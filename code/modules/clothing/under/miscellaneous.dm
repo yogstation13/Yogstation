@@ -963,7 +963,7 @@
 	name = "incredibly fashionable outfit"
 	desc = "Expensive-looking designer vest. It radiates an aggressively attractive aura. You feel putting this on would change you forever."
 	icon = 'icons/obj/clothing/uniforms.dmi'
-	mob_overlay_icon = DEFAULT_UNIFORM_FILE
+	mob_overlay_icon = 'icons/mob/clothing/uniform/uniform.dmi'
 	icon_state = "drippy"
 	item_state = "drippy"
 	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, RAD = 10, FIRE = 100, ACID = 100)

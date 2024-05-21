@@ -28,7 +28,7 @@
 	icon_state = "jumpskirt"
 	item_state = "jumpsuit"
 	worn_icon_state = "jumpskirt"
-	worn_icon = 'icons/mob/clothing/uniform/color.dmi'
+	worn_icon = 'icons/mob/clothing/uniform/color.dmi'	
 
 /obj/item/clothing/under/color/random
 	icon_state = "random_jumpsuit"
