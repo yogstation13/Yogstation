@@ -56,3 +56,9 @@
 	template_id = "old_Stealth_Cutter"
 	description = "mapshaker_old_stealth_cutter"
 	mappath = "_maps/templates/shipbreaker/old_stealth_cutter.dmm"
+
+/datum/map_template/shipbreaker/cargo_old
+	name = "Old Cargo Shuttle"
+	template_id = "old_Cargo_Shuttle"
+	description = "mapshaker_old_cargo"
+	mappath = "_maps/templates/shipbreaker/old_cargo.dmm"
