@@ -4740,6 +4740,15 @@
 /obj/item/circuitboard/machine/holopad,
 /obj/item/storage/part_replacer/bluespace/tier4,
 /obj/item/circuitboard/machine/ore_redemption,
+/obj/item/hfr_box/corner/syndicate,
+/obj/item/hfr_box/core/syndicate,
+/obj/item/hfr_box/body/waste_output/syndicate,
+/obj/item/hfr_box/body/moderator_input/syndicate,
+/obj/item/hfr_box/body/interface/syndicate,
+/obj/item/hfr_box/body/fuel_input/syndicate,
+/obj/item/hfr_box/corner/syndicate,
+/obj/item/hfr_box/corner/syndicate,
+/obj/item/hfr_box/corner/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_jungle_base/cargo)
 "RN" = (

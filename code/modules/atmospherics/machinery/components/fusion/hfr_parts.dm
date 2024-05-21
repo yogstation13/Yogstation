@@ -133,9 +133,12 @@
 	circuit = /obj/item/circuitboard/machine/HFR_moderator_input
 
 /obj/machinery/atmospherics/components/unary/hypertorus/moderator_input/syndicate
-	color = "#320101"
 	circuit = /obj/item/circuitboard/machine/HFR_moderator_input
 	syndicate_machine = TRUE
+	icon_state = "moderator_input_syndie_off"
+	icon_state_open = "moderator_inpu_syndiet_open"
+	icon_state_off = "moderator_input_syndie_off"
+	icon_state_active = "moderator_input_syndie_active"
 
 /*
 * Interface and corners
@@ -443,7 +446,10 @@
 
 /obj/machinery/hypertorus/corner/syndicate
 	circuit = /obj/item/circuitboard/machine/HFR_corner/syndicate
-	color = "#320101"
+	icon_state = "corner_syndie_off"
+	icon_state_off = "corner_syndie_off"
+	icon_state_open = "corner_syndie_open"
+	icon_state_active = "corner_syndie_active"
 	syndicate_machine = TRUE
 
 /obj/item/paper/guides/jobs/atmos/hypertorus

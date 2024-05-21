@@ -170,10 +170,13 @@
 	var/warning_damage_flags = NONE
 
 /obj/machinery/atmospherics/components/unary/hypertorus/core/syndicate
-	desc = "This is the Hypertorus Fusion Reactor core, an advanced piece of technology to finely tune the reaction inside of the machine. It has I/O for cooling gases. Syndicate engineers have copied the HFR core designs from NT and modified the communication channel to syndicate to experiment the HFR in secret."
+	desc = "This is the Hypertorus Fusion Reactor core, an advanced piece of technology to finely tune the reaction inside of the machine. It has I/O for cooling gases. This one has been modified by the Syndicate, both to look cool and only transmit on Syndicate frequencies."
 	radio_key = /obj/item/encryptionkey/syndicate
 	syndicate_machine = 1
-	color = "#320101"
+	icon_state = "core_syndie_off"
+	icon_state_open = "core_syndie_open"
+	icon_state_off = "core_syndie_off"
+	icon_state_active = "core_syndie_active"
 
 /obj/machinery/atmospherics/components/unary/hypertorus/core/Initialize(mapload)
 	. = ..()
