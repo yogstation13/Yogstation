@@ -1,14 +1,14 @@
 //Lava often rises from the porous ground in the caverns deep below Undergruv and jungleland. It floods the entire level, submerging any space that isn't sealed off.
-//Similar to floor is lava except it floods anything that isn't sealed off from the outside + is designed for the caverns.
+//Similar to floor is lava except it floods anything that isn't sealed off from the outside + is designed for caverns.
 /datum/weather/lava_flood
 	name = "lava flood"
 	desc = "A deluge of lava rises up from this cavern's porous ground, submerging every space that isn't closed off from the outside."
 
-	telegraph_message = span_boldwarning("The ground begins to break and blister. The air shimmers with heat as it rises from the cracks below. Hurry inside.")
-	telegraph_duration = //150 300
+	telegraph_message = span_boldwarning("The ground begins to break and blister. Heat shimmers in the air as it rises from the cracks below. Hurry inside.")
+	telegraph_duration = //450 300
 	telegraph_overlay = //"light_ash"
 
-	weather_message = span_userdanger("<i>Molten lava surges out from below and floods every inch of the cavern! Stay indoors!</i>")
+	weather_message = span_userdanger("<i>Molten lava surges out from below and floods every inch of the cavern! Stay inside!</i>")
 	weather_duration_lower = //300 600
 	weather_duration_upper = //600 1200
 	weather_overlay = "lava"
@@ -23,8 +23,6 @@
 	target_trait = ZTRAIT_LAVAFLOOD
 
 	immunity_type = WEATHER_LAVA
-
-	probability = //90
 
 	barometer_predictable = TRUE
 

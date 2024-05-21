@@ -36,7 +36,7 @@
 			"Up": true,
 			"Linkage": null,
 			"Gravity": true,
-			"Baseturf": "/turf/open/lava/plasma/ice_moon",
+			"Baseturf": "/turf/open/floor/plating/asteroid/basalt",
 			"No Parallax": true
 		},
 		{
@@ -44,7 +44,7 @@
 			"Down": true,
 			"Linkage": null,
 			"Gravity": true,
-			"Baseturf": "/turf/open/openspace/icemoon/keep_below",
+			"Baseturf": "/turf/open/floor/plating/asteroid/basalt",
 			"No Parallax": true
 		},
 		{
