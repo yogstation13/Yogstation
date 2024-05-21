@@ -830,7 +830,7 @@
 	var/species_type = GLOB.species_list[species_id]
 	if(species_type)
 		id_to_species = new species_type()
-	if(body_zone in id_to_species?.static_part_body_zones)
+	if(length(id_to_species?.static_part_body_zones) && (body_zone in id_to_species.static_part_body_zones))
 		has_static_sprite_part = TRUE
 	else
 		has_static_sprite_part = FALSE

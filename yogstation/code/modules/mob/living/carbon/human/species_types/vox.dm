@@ -30,8 +30,8 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	breathid = "n2"
 	suicide_messages = list(
-		"is jamming their claws into their eye sockets!",
-		"is deeply inhaling oxygen!")
+		"%%SUICIDER%% is jamming %%P_THEIR%% claws into %%P_THEIR%% eye sockets!",
+		"%%SUICIDER%% is deeply inhaling oxygen!")
 	husk_color = null
 	eyes_icon = 'icons/mob/species/vox/eyes.dmi'
 	icon_husk = 'icons/mob/species/vox/bodyparts.dmi'

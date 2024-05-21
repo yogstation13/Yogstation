@@ -6,13 +6,13 @@
 	var/yogs_virus_infect_chance = 100
 	var/generate_husk_icon = FALSE
 	var/limb_icon_file
-	var/list/parts_to_husk = list()
+	var/list/parts_to_husk
 	var/eyes_icon = 'icons/mob/human_face.dmi'
-	var/list/static_part_body_zones = list()
-	var/list/suicide_messages = list()
+	var/list/static_part_body_zones
+	var/list/suicide_messages
 	var/cough_sound
 	var/sneeze_sound
-	var/list/survival_box_replacements = list(/*items_to_delete= list(), new_items= list()*/)
+	var/list/survival_box_replacements /*= list(items_to_delete= list(), new_items= list())*/
 
 /datum/species/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
