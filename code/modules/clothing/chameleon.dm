@@ -229,12 +229,12 @@
 
 	if(isitem(atom_target))
 		var/obj/item/item_target = target
-		item_target.mob_overlay_icon = initial(picked_item.mob_overlay_icon)
+		item_target.worn_icon = initial(picked_item.worn_icon)
 		item_target.lefthand_file = initial(picked_item.lefthand_file)
 		item_target.righthand_file = initial(picked_item.righthand_file)
 		if(initial(picked_item.greyscale_colors))
 			if(initial(picked_item.greyscale_config_worn))
-				item_target.mob_overlay_icon = SSgreyscale.GetColoredIconByType(
+				item_target.worn_icon = SSgreyscale.GetColoredIconByType(
 					initial(picked_item.greyscale_config_worn),
 					initial(picked_item.greyscale_colors),
 				)
@@ -310,7 +310,7 @@
 //starts off as black
 	name = "black jumpsuit"
 	icon_state = "jumpsuit"
-	mob_overlay_icon = 'icons/mob/clothing/uniform/color.dmi'
+	worn_icon = 'icons/mob/clothing/uniform/color.dmi'
 	greyscale_colors = "#3f3f3f"
 	greyscale_config = /datum/greyscale_config/jumpsuit
 	greyscale_config_inhand_left = /datum/greyscale_config/jumpsuit_inhand_left
@@ -331,7 +331,7 @@
 /obj/item/clothing/under/chameleon/ratvar
 	name = "ratvarian engineer's jumpsuit"
 	desc = "A tough jumpsuit woven from alloy threads. It can take on the appearance of other jumpsuits."
-	mob_overlay_icon = 'icons/mob/clothing/uniform/uniform.dmi'
+	worn_icon = 'icons/mob/clothing/uniform/uniform.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_inhand_left = null

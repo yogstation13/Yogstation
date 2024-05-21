@@ -45,25 +45,23 @@
 	if(random_color) //random colors!
 		set_greyscale(colors = list(pick(wirecutter_colors)))
 
-/obj/item/wirecutters/attack(mob/living/carbon/C, mob/user)
+/obj/item/wirecutters/attack(mob/living/carbon/C, mob/living/user, params)
 	if(istype(C) && C.handcuffed && istype(C.handcuffed, /obj/item/restraints/handcuffs/cable))
 		user.visible_message(span_notice("[user] cuts [C]'s restraints with [src]!"))
 		qdel(C.handcuffed)
-		return
+		return TRUE
 	else if(istype(C) && C.has_status_effect(STATUS_EFFECT_CHOKINGSTRAND))
 		to_chat(C, span_notice("You attempt to remove the durathread strand from around your neck."))
 		if(do_after(user, 1.5 SECONDS, C))
 			to_chat(C, span_notice("You succesfuly remove the durathread strand."))
 			C.remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
+		return TRUE
 	else if(istype(C) && C.legcuffed && (C.legcuffed.type == /obj/item/restraints/legcuffs/bola || istype(C.legcuffed, /obj/item/restraints/legcuffs/beartrap/energy)))
 		user.visible_message(span_notice("[user] cuts [C]'s restraints with [src]!"))
 		qdel(C.legcuffed)
 		C.legcuffed = null
-		return	
-	else if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, C, user))
-		return
-	else
-		..()
+		return TRUE
+	return ..()
 
 /obj/item/wirecutters/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is cutting at [user.p_their()] arteries with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))

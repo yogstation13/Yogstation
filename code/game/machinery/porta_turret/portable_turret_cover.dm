@@ -31,12 +31,12 @@
 	return parent_turret.attack_ai(user)
 
 
-/obj/machinery/porta_turret_cover/attack_hand(mob/user)
+/obj/machinery/porta_turret_cover/attack_hand(mob/user, modifiers)
 	. = ..()
 	if(.)
 		return
 
-	return parent_turret.attack_hand(user)
+	return parent_turret.attack_hand(user, modifiers)
 
 
 /obj/machinery/porta_turret_cover/attackby(obj/item/I, mob/user, params)

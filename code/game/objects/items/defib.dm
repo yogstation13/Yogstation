@@ -391,7 +391,7 @@
 	forceMove(defib)
 	defib.update_appearance(UPDATE_ICON)
 
-/obj/item/shockpaddles/attack(mob/M, mob/user)
+/obj/item/shockpaddles/attack(mob/M, mob/living/user, params)
 
 	if(busy)
 		return
@@ -419,7 +419,8 @@
 			to_chat(user, span_warning("[src] are recharging!"))
 		return
 
-	if(user.a_intent == INTENT_DISARM)
+	var/list/modifiers = params2list(params)
+	if(modifiers && modifiers[RIGHT_CLICK])
 		do_disarm(M, user)
 		return
 
@@ -436,7 +437,7 @@
 		to_chat(user, span_warning("You need to target your patient's chest with [src]!"))
 		return
 
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		do_harm(H, user)
 		return
 

@@ -70,7 +70,7 @@
 
 /mob/living/carbon/human/get_status_tab_items()
 	. = ..()
-	. += "Intent: [a_intent]"
+	. += "Combat mode: [combat_mode ? "On" : "Off"]"
 	. += "Move Mode: [m_intent]"
 	var/obj/item/tank/target_tank = internal || external
 	if(target_tank)
@@ -1031,14 +1031,14 @@
 			piggyback(target)
 			return
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
-		else if(user != target && user.a_intent == INTENT_GRAB && can_be_firemanned(target))
+		else if(user != target && can_be_firemanned(target))
 			fireman_carry(target)
 			return
-	. = ..()
+	return ..()
 
 //src is the user that will be carrying, target is the mob to be carried
 /mob/living/carbon/human/proc/can_piggyback(mob/living/carbon/target)
-	if (istype(target) && target.stat == CONSCIOUS && src.a_intent == INTENT_HELP)
+	if (istype(target) && target.stat == CONSCIOUS && !combat_mode)
 		return TRUE
 	return FALSE
 

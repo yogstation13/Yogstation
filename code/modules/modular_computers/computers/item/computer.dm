@@ -122,7 +122,7 @@
 /obj/item/modular_computer/pre_attack(atom/A, mob/living/user, params)
 	if(active_program?.clickon(A, user, params))
 		playsound(loc, 'sound/machines/ping.ogg', get_clamped_volume(), TRUE, -1) //Likewise for the tap sound
-		return
+		return TRUE
 	return ..()
 
 /**
@@ -233,6 +233,12 @@
 		return attack_self(M)
 	else
 		..()
+
+/obj/item/modular_computer/attack_hand(mob/living/user, modifiers)
+	if(modifiers?[RIGHT_CLICK])
+		attack_self(user)
+		return TRUE
+	return ..()
 
 /obj/item/modular_computer/attack_ai(mob/user)
 	return attack_self(user)

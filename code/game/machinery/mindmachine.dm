@@ -214,10 +214,10 @@
 		secondPod?.update_appearance(UPDATE_ICON)
 		firstPod?.open_machine()
 		secondPod?.open_machine()
-		
-/obj/machinery/mindmachine_hub/attackby(obj/item/I, mob/user, params)
+
+/obj/machinery/mindmachine_hub/attackby(obj/item/I, mob/living/user, params)
 	// Connection
-	if(user.a_intent == INTENT_HELP && I.tool_behaviour == TOOL_MULTITOOL)
+	if(!user.combat_mode && I.tool_behaviour == TOOL_MULTITOOL)
 		if(panel_open && fail_regardless)
 			to_chat(user, span_notice("You realign [src]'s regulator."))
 			fail_regardless = FALSE
@@ -680,9 +680,9 @@
 	hub?.disconnect_pods()
 	return ..()
 
-/obj/machinery/mindmachine_pod/attackby(obj/item/I, mob/user, params)
+/obj/machinery/mindmachine_pod/attackby(obj/item/I, mob/living/user, params)
 	// Force Unlock
-	if(user.a_intent == INTENT_HELP && I.tool_behaviour == TOOL_CROWBAR)
+	if(!user.combat_mode && I.tool_behaviour == TOOL_CROWBAR)
 		if(do_after(user, 1 SECONDS, src))
 			open_machine()
 			return

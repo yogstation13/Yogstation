@@ -28,14 +28,17 @@
 	else
 		transform = matrix(-1, 0, 0, 0, 1, 0)
 
-/obj/item/mantis/blade/attack(mob/living/M, mob/living/user, secondattack = FALSE)
+/obj/item/mantis/blade/attack(mob/living/M, mob/living/user, params, secondattack = FALSE)
 	. = ..()
-	var/obj/item/mantis/blade/secondsword = user.get_inactive_held_item()
-	if(istype(secondsword, /obj/item/mantis/blade) && !secondattack)
-		sleep(0.2 SECONDS)
-		secondsword.attack(M, user, TRUE)
-		user.changeNext_move(CLICK_CD_MELEE)
-	return
+	var/obj/item/mantis/blade/secondblade = user.get_inactive_held_item()
+	if(istype(secondblade, /obj/item/mantis/blade) && !secondattack)
+		addtimer(CALLBACK(src, PROC_REF(secondattack), M, user, params, secondblade), 2, TIMER_UNIQUE | TIMER_OVERRIDE)
+
+/obj/item/mantis/blade/proc/secondattack(mob/living/M, mob/living/user, params, obj/item/mantis/blade/secondblade)
+	if(QDELETED(secondblade) || QDELETED(src))
+		return
+	secondblade.attack(M, user, params, TRUE)
+	user.changeNext_move(CLICK_CD_MELEE)
 
 /obj/item/mantis/blade/syndicate
 	name = "G.O.R.L.E.X. mantis blade"

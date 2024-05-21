@@ -29,11 +29,8 @@
 	. += span_notice("It is currently set to [current_tool ? current_tool.name : "'off'"] mode.")
 	. += span_notice("Ctrl+Click it to open the radial menu!")
 
-/obj/item/holotool/attack(mob/living/M, mob/living/user)
-	if((tool_behaviour == TOOL_SCREWDRIVER) && !(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
-		return
-
-	if(tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && ishuman(M))
+/obj/item/holotool/attack(mob/living/M, mob/living/user, params)
+	if(tool_behaviour == TOOL_WELDER && !user.combat_mode && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
 		if(affecting?.status == BODYPART_ROBOTIC)
@@ -47,7 +44,7 @@
 			heal_robo_limb(src, H, user, 10, 0, 0, 50)
 			user.visible_message(span_notice("[user] fixes some of the dents on [M]'s [affecting.name]."), span_notice("You fix some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
 			return TRUE
-	. = ..()
+	return ..()
 
 /obj/item/holotool/use(used)
 	return TRUE //it just always works, capiche!?

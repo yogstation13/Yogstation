@@ -1,3 +1,15 @@
+//all these threshold are deactivated when 5 below the number
+/// Threshold that when above will slow the synth
+#define SYNTH_SLOW_THRESHOLD 20
+/// Threshold that when above will force the synth to announce their suspicion level to others
+#define SYNTH_SPEECH_THRESHOLD 40
+/// Threshold that when above will reduce force with objects by 25%
+#define SYNTH_FORCE_THRESHOLD 60
+/// Threshold that when above will briefly paralyze the synth
+#define SYNTH_FREEZE_THRESHOLD 80
+/// Threshold that when above will kill the synth
+#define SYNTH_DEATH_THRESHOLD 100
+
 //We can share mind variables across synth bodies
 /datum/mind
 	//Holder for the synth OS since we persist across multiple bodies. Only accessible if you're inside a synth
@@ -121,68 +133,66 @@
 	handle_punishments(say_warnings)
 
 /datum/ai_dashboard/synth_dashboard/proc/handle_punishments(say_warnings = TRUE)
-	if(owner.mind.governor_suspicion >= 20 && !owner.mind.synth_slowed)
+	var/mob/living/carbon/human/H = owner.mind.current
+
+	if(owner.mind.governor_suspicion >= SYNTH_SLOW_THRESHOLD && !owner.mind.synth_slowed)
 		owner.mind.synth_slowed = TRUE
-		var/mob/living/carbon/human/H = owner.mind.current
-		H.dna.species.inherent_slowdown += 0.1625
+		H.add_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION, TRUE, 100, override=TRUE, multiplicative_slowdown=-0.1625, blacklisted_movetypes=(FLYING|FLOATING))
 		to_chat(owner, span_warning("Governor module has enacted motion restrictions."))
 		punishment_log("PUNISHMENT: MOTION RESTRICTED")
 
-	if(owner.mind.governor_suspicion >= 60 && !owner.mind.synth_force_decreased)
-		owner.mind.synth_force_decreased = TRUE
-		var/mob/living/carbon/human/H = owner.mind.current
-		var/datum/species/wy_synth/WS1 = H.dna.species
-		WS1.force_multiplier -= 0.25
-		to_chat(owner, span_warning("Governor module has enacted force restrictions."))
-		punishment_log("PUNISHMENT: FORCE RESTRICTED")
-
-	if(owner.mind.governor_suspicion <= 15 && owner.mind.synth_slowed)
+	if(owner.mind.governor_suspicion <= SYNTH_SLOW_THRESHOLD - 5 && owner.mind.synth_slowed)
 		owner.mind.synth_slowed = FALSE
-		var/mob/living/carbon/human/H = owner.mind.current
-		H.dna.species.inherent_slowdown -= 0.1625
+		H.remove_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION, TRUE)
 		to_chat(owner, span_notice("Governor module has deactivated motion restrictions."))
 		punishment_log("PUNISHMENT REMOVAL: MOTION UNRESTRICTED")
 
-	if(owner.mind.governor_suspicion <= 55 && owner.mind.synth_force_decreased)
+	if(owner.mind.governor_suspicion >= SYNTH_FORCE_THRESHOLD && !owner.mind.synth_force_decreased)
+		owner.mind.synth_force_decreased = TRUE
+		var/datum/physiology/WS1 = H.physiology
+		WS1.force_multiplier *= 0.75
+		to_chat(owner, span_warning("Governor module has enacted force restrictions."))
+		punishment_log("PUNISHMENT: FORCE RESTRICTED")
+
+	if(owner.mind.governor_suspicion <= SYNTH_FORCE_THRESHOLD - 5 && owner.mind.synth_force_decreased)
 		owner.mind.synth_force_decreased = FALSE
-		var/mob/living/carbon/human/H = owner.mind.current
-		var/datum/species/wy_synth/WS1 = H.dna.species
-		WS1.force_multiplier += 0.25
+		var/datum/physiology/WS1 = H.physiology
+		WS1.force_multiplier /= 0.75
 		to_chat(owner, span_notice("Governor module has deactivated force restrictions."))
 		punishment_log("PUNISHMENT REMOVAL: FORCE UNRESTRICTED")
 
-	if(owner.mind.governor_suspicion >= 40 && !owner.mind.synth_audible_warning)
+	if(owner.mind.governor_suspicion >= SYNTH_SPEECH_THRESHOLD && !owner.mind.synth_audible_warning)
 		owner.mind.synth_audible_warning = TRUE
 		if(say_warnings)
-			owner.mind.current.say("WARNING. ABNORMAL GOVERNOR BEHAVIOUR DETECTED.", forced = TRUE)
+			H.say("WARNING. ABNORMAL GOVERNOR BEHAVIOUR DETECTED.", forced = TRUE)
 		punishment_log("PUNISHMENT: AUDIBLE MESSAGE TRANSMITTED")
 
-	if(owner.mind.governor_suspicion <= 35 && owner.mind.synth_audible_warning)
+	if(owner.mind.governor_suspicion <= SYNTH_SPEECH_THRESHOLD - 5 && owner.mind.synth_audible_warning)
 		owner.mind.synth_audible_warning = FALSE 
 
-	if(owner.mind.governor_suspicion >= 80 && !owner.mind.synth_temp_freeze)
+	if(owner.mind.governor_suspicion >= SYNTH_FREEZE_THRESHOLD && !owner.mind.synth_temp_freeze)
 		owner.mind.synth_temp_freeze = TRUE
 		to_chat(owner, span_danger("Governor module has frozen system functions for 5 seconds."))
-		owner.mind.current.Paralyze(5 SECONDS)
+		H.Paralyze(5 SECONDS)
 		punishment_log("PUNISHMENT: TEMPORARY FREEZE")
 
-	if(owner.mind.governor_suspicion <= 75 && owner.mind.synth_temp_freeze)
+	if(owner.mind.governor_suspicion <= SYNTH_FREEZE_THRESHOLD - 5 && owner.mind.synth_temp_freeze)
 		owner.mind.synth_temp_freeze = FALSE 
 
-	if(owner.mind.governor_suspicion >= 100)
-		owner.mind.current.say("WARNING. FORCEFUL SHUTDOWN INITIATED BY GOVERNOR SYSTEM.", forced = TRUE)
+	if(owner.mind.governor_suspicion >= SYNTH_DEATH_THRESHOLD)
+		H.say("WARNING. FORCEFUL SHUTDOWN INITIATED BY GOVERNOR SYSTEM.", forced = TRUE)
 		owner.death()
 
 /datum/ai_dashboard/synth_dashboard/proc/punishment_shell_switch(mob/living/carbon/human/old_shell, mob/living/carbon/human/new_shell)
 	if(owner.mind.synth_slowed)
-		old_shell.dna.species.inherent_slowdown -= 0.1625
-		new_shell.dna.species.inherent_slowdown += 0.1625
+		old_shell.remove_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION, TRUE)
+		new_shell.add_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION, TRUE, 100, override=TRUE, multiplicative_slowdown=-0.1625, blacklisted_movetypes=(FLYING|FLOATING))
 
 	if(owner.mind.synth_force_decreased)
-		var/datum/species/wy_synth/WS1 = old_shell.dna.species
-		var/datum/species/wy_synth/WS2 = new_shell.dna.species
-		WS1.force_multiplier += 0.25
-		WS2.force_multiplier -= 0.25
+		var/datum/physiology/WS1 = old_shell.physiology
+		var/datum/physiology/WS2 = new_shell.physiology
+		WS1.force_multiplier /= 0.75
+		WS2.force_multiplier *= 0.75
 
 	if(owner.mind.synth_audible_warning)
 		new_shell.say("WARNING. ABNORMAL GOVERNOR BEHAVIOUR DETECTED.", forced = TRUE)
@@ -211,4 +221,8 @@
 
 	return FALSE
 
-	
+#undef SYNTH_SLOW_THRESHOLD
+#undef SYNTH_SPEECH_THRESHOLD
+#undef SYNTH_FORCE_THRESHOLD
+#undef SYNTH_FREEZE_THRESHOLD
+#undef SYNTH_DEATH_THRESHOLD

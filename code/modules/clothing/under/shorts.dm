@@ -1,10 +1,11 @@
 /obj/item/clothing/under/shorts
 	name = "athletic shorts"
 	desc = "95% Polyester, 5% Spandex!"
+	worn_icon = 'icons/mob/clothing/uniform/shorts_pants_shirts.dmi'
 	gender = PLURAL
 	body_parts_covered = GROIN
 	fitted = NO_FEMALE_UNIFORM
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 	can_adjust = FALSE
 
 /obj/item/clothing/under/shorts/red

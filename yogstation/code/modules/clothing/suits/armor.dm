@@ -12,7 +12,7 @@
 /obj/item/clothing/suit/armor/vest/rycliesarmour
 	name = "war armour"
 	desc = "Good for protecting your chest during war."
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "rycliesarmour"
 	item_state = "rycliesarmour"
@@ -20,7 +20,7 @@
 /obj/item/clothing/suit/armor/vest/namflakjacket
 	name = "nam flak jacket"
 	desc = "Good for protecting your chest from napalm and toolboxes!"
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "namflakjacket"
 	item_state = "namflakjacket"
@@ -28,7 +28,7 @@
 /obj/item/clothing/suit/armor/vest/redcoatcoat
 	name = "redcoat coat"
 	desc = "Security is coming! Security is coming! Also padded with kevlar for protection."
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "red_coat_coat"
 	item_state = "red_coat_coat"
@@ -36,7 +36,7 @@
 /obj/item/clothing/suit/armor/vest/secmiljacket
 	name = "sec military jacket"
 	desc = "Aviators not included. Now with extra padding!"
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "secmiljacket"
 	item_state = "secmiljacket"
@@ -56,7 +56,7 @@
 /obj/item/clothing/suit/armor/vest/hosjacket
 	name = "head of security jacket"
 	desc = "All the style of a jacket with all the protection of a armor vest!"
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "hos_jacket"
 	item_state = "hos_item"
@@ -64,7 +64,7 @@
 /obj/item/clothing/suit/armor/vest/wardenjacket
 	name = "warden's black jacket"
 	desc = "All the style of a jacket with all the protection of a armor vest!"
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "warden_jacket"
 	item_state = "warden_item"
@@ -72,7 +72,7 @@
 /obj/item/clothing/suit/armor/hos/germancoat
 	name = "padded german coat"
 	desc = "For those cold german winters or those heads of security that want to show their true colors."
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "german_coat"
 	item_state = "german_item"
@@ -85,7 +85,7 @@
 /obj/item/clothing/suit/armor/vest/sovietcoat
 	name = "soviet coat"
 	desc = "Glory to Arstotzka! Now with padding protection!"
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "soviet_coat"
 	item_state = "soviet_item"
@@ -93,7 +93,7 @@
 /obj/item/clothing/suit/armor/vest/rurmcoat
 	name = "russian officer coat"
 	desc = "Papers please. Now with padding protection!"
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "ru_rmcoat"
 	item_state = "ru_rmcoat"
@@ -101,7 +101,7 @@
 /obj/item/clothing/suit/armor/heavy/juggernaut
 	name = "Juggernaut Suit"
 	desc = "I...am...the...JUGGERNAUT!!!"
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "juggernaut"
 	item_state = "juggernaut"

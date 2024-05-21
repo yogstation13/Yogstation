@@ -20,23 +20,34 @@
 	var/datum/martial_art/buster_style/buster_style = new
 
 /// Set up our actions, disable gloves
-/obj/item/bodypart/l_arm/robot/buster/attach_limb(mob/living/carbon/N, special)
+/obj/item/bodypart/l_arm/robot/buster/attach_limb(mob/living/carbon/new_owner, special)
 	. = ..()
-	megabuster_action.Grant(N)
-	if(N.mind.martial_art.type != buster_style) //you've already got buster style.
-		buster_style.teach(N)
-	to_chat(owner, "[span_boldannounce("You've gained the ability to use Buster Style!")]")
+	if(new_owner.mind)
+		megabuster_action.Grant(new_owner)
+		buster_style.teach(new_owner)
+		RegisterSignal(new_owner.mind, COMSIG_MIND_TRANSFERRED, PROC_REF(on_mind_transfer_from))
+	RegisterSignal(new_owner, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(on_mind_transfer_to))
 
 /// Remove our actions, re-enable gloves
 /obj/item/bodypart/l_arm/robot/buster/drop_limb(special)
-	var/mob/living/carbon/N = owner
-	var/obj/item/bodypart/r_arm = N.get_bodypart(BODY_ZONE_R_ARM)
-	megabuster_action.Remove(N)
-	if(!istype(r_arm, /obj/item/bodypart/r_arm/robot/buster)) //got another arm, don't remove it then.
-		buster_style.remove(N)
-		N.click_intercept = null
-		to_chat(owner, "[span_boldannounce("You've lost the ability to use Buster Style...")]")
-	..()
+	var/obj/item/bodypart/r_arm = owner.get_bodypart(BODY_ZONE_R_ARM)
+	if(owner.mind)
+		megabuster_action.Remove(owner)
+		if(!istype(r_arm, /obj/item/bodypart/r_arm/robot/buster))
+			buster_style.remove(owner)
+		UnregisterSignal(owner.mind, COMSIG_MIND_TRANSFERRED)
+	UnregisterSignal(owner, COMSIG_MOB_MIND_TRANSFERRED_INTO)
+	return ..()
+
+/obj/item/bodypart/l_arm/robot/buster/proc/on_mind_transfer_to(mob/living/new_mob)
+	buster_style.teach(new_mob)
+	megabuster_action.Grant(new_mob)
+	RegisterSignal(new_mob.mind, COMSIG_MIND_TRANSFERRED, PROC_REF(on_mind_transfer_from))
+
+/obj/item/bodypart/l_arm/robot/buster/proc/on_mind_transfer_from(datum/mind/old_mind)
+	buster_style.remove(old_mind.current)
+	megabuster_action.Remove(old_mind.current)
+	UnregisterSignal(old_mind, COMSIG_MIND_TRANSFERRED)
 
 /// Attacking a human mob with the arm causes it to instantly replace their arm
 /obj/item/bodypart/l_arm/robot/buster/attack(mob/living/L, proximity)
@@ -72,22 +83,34 @@
 	var/datum/martial_art/buster_style/buster_style = new
 
 /// Set up our actions, disable gloves
-/obj/item/bodypart/r_arm/robot/buster/attach_limb(mob/living/carbon/N, special)
+/obj/item/bodypart/r_arm/robot/buster/attach_limb(mob/living/carbon/new_owner, special)
 	. = ..()
-	megabuster_action.Grant(N)
-	buster_style.teach(N)
-	to_chat(owner, span_boldannounce("You've gained the ability to use Buster Style!"))
+	if(new_owner.mind)
+		megabuster_action.Grant(new_owner)
+		buster_style.teach(new_owner)
+		RegisterSignal(new_owner.mind, COMSIG_MIND_TRANSFERRED, PROC_REF(on_mind_transfer_from))
+	RegisterSignal(new_owner, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(on_mind_transfer_to))
 
 /// Remove our actions, re-enable gloves
 /obj/item/bodypart/r_arm/robot/buster/drop_limb(special)
-	var/mob/living/carbon/N = owner
-	var/obj/item/bodypart/l_arm = N.get_bodypart(BODY_ZONE_L_ARM)
-	megabuster_action.Remove(N)
-	if(!istype(l_arm, /obj/item/bodypart/l_arm/robot/buster))
-		buster_style.remove(N)
-		N.click_intercept = null
-		to_chat(owner, "[span_boldannounce("You've lost the ability to use Buster Style...")]")
-	..()
+	var/obj/item/bodypart/l_arm = owner.get_bodypart(BODY_ZONE_L_ARM)
+	if(owner.mind)
+		megabuster_action.Remove(owner)
+		if(!istype(l_arm, /obj/item/bodypart/l_arm/robot/buster))
+			buster_style.remove(owner)
+		UnregisterSignal(owner.mind, COMSIG_MIND_TRANSFERRED)
+	UnregisterSignal(owner, COMSIG_MOB_MIND_TRANSFERRED_INTO)
+	return ..()
+
+/obj/item/bodypart/r_arm/robot/buster/proc/on_mind_transfer_to(mob/living/new_mob)
+	buster_style.teach(new_mob)
+	megabuster_action.Grant(new_mob)
+	RegisterSignal(new_mob.mind, COMSIG_MIND_TRANSFERRED, PROC_REF(on_mind_transfer_from))
+
+/obj/item/bodypart/r_arm/robot/buster/proc/on_mind_transfer_from(datum/mind/old_mind)
+	buster_style.remove(old_mind.current)
+	megabuster_action.Remove(old_mind.current)
+	UnregisterSignal(old_mind, COMSIG_MIND_TRANSFERRED)
 
 /// Attacking a human mob with the arm causes it to instantly replace their arm
 /obj/item/bodypart/r_arm/robot/buster/attack(mob/living/L, proximity)

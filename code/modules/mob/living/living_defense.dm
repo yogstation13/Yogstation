@@ -95,6 +95,22 @@
 		else
 				return 0
 
+/mob/living/proc/set_combat_mode(new_mode, silent = TRUE, forced = TRUE)
+	if(combat_mode == new_mode)
+		return
+	if(!(forced || can_toggle_combat))
+		return
+	. = combat_mode
+	combat_mode = new_mode
+	if(hud_used?.action_intent)
+		hud_used.action_intent.update_appearance()
+	if(silent || !(client?.prefs.read_preference(/datum/preference/toggle/sound_combatmode)))
+		return
+	if(combat_mode)
+		playsound_local(src, 'sound/misc/ui_togglecombat.ogg', 25, FALSE, pressure_affected = FALSE) //Sound from interbay!
+	else
+		playsound_local(src, 'sound/misc/ui_toggleoffcombat.ogg', 25, FALSE, pressure_affected = FALSE) //Slightly modified version of the above
+
 /mob/living/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
 	if(istype(AM, /obj/item))
 		var/obj/item/I = AM
@@ -123,7 +139,7 @@
 /mob/living/mech_melee_attack(obj/mecha/M, punch_force, equip_allowed = TRUE)
 	if(M.selected?.melee_override && equip_allowed)
 		M.selected.action(src)
-	else if(M.occupant.a_intent == INTENT_HARM)
+	else if(M.occupant.combat_mode)
 		last_damage = "grand blunt trauma"
 		M.do_attack_animation(src)
 		switch(M.damtype)
@@ -146,7 +162,7 @@
 		updatehealth()
 		visible_message(span_danger("[M.name] has hit [src]!"), \
 						span_userdanger("[M.name] has hit [src]!"), null, COMBAT_MESSAGE_RANGE)
-		log_combat(M.occupant, src, "attacked", M, "(INTENT: [uppertext(M.occupant.a_intent)]) (DAMTYPE: [uppertext(M.damtype)])")
+		log_combat(M.occupant, src, "attacked", M, "(COMBAT MODE: [M.occupant.combat_mode ? "ON" : "OFF"]) (DAMTYPE: [uppertext(M.damtype)])")
 	else
 		step_away(src,M)
 		log_combat(M.occupant, src, "pushed", M)
@@ -202,9 +218,6 @@
 		if(!do_after(user, grab_upgrade_time, src))
 			return FALSE
 		if(!user.pulling || user.pulling != src || user.grab_state != old_grab_state)
-			return FALSE
-		if(user.a_intent != INTENT_GRAB)
-			to_chat(user, span_notice("You must be on grab intent to upgrade your grab further!"))
 			return FALSE
 	user.setGrabState(user.grab_state + 1)
 	switch(user.grab_state)
@@ -281,12 +294,12 @@
 		return TRUE
 
 
-/mob/living/attack_paw(mob/living/carbon/monkey/M)
+/mob/living/attack_paw(mob/living/carbon/monkey/M, modifiers)
 	if(isturf(loc) && istype(loc.loc, /area/start))
 		to_chat(M, "No attacking people at spawn, you jackass.")
 		return FALSE
 
-	if (M.a_intent == INTENT_HARM)
+	if (M.combat_mode)
 		if(HAS_TRAIT(M, TRAIT_PACIFISM))
 			to_chat(M, span_notice("You don't want to hurt anyone!"))
 			return FALSE
@@ -307,49 +320,41 @@
 				span_userdanger("[M.name] has attempted to bite [src]!"), null, COMBAT_MESSAGE_RANGE)
 	return FALSE
 
-/mob/living/attack_larva(mob/living/carbon/alien/larva/L)
-	switch(L.a_intent)
-		if(INTENT_HELP)
-			visible_message(span_notice("[L.name] rubs its head against [src]."))
-			return FALSE
+/mob/living/attack_larva(mob/living/carbon/alien/larva/L, modifiers)
+	if(L.combat_mode)
+		if(HAS_TRAIT(L, TRAIT_PACIFISM))
+			to_chat(L, span_notice("You don't want to hurt anyone!"))
+			return
 
+		L.do_attack_animation(src)
+		if(prob(90))
+			last_damage = "bite"
+			log_combat(L, src, "attacked")
+			visible_message(span_danger("[L.name] bites [src]!"), \
+				span_userdanger("[L.name] bites [src]!"), null, COMBAT_MESSAGE_RANGE)
+			playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
+			return TRUE
 		else
-			if(HAS_TRAIT(L, TRAIT_PACIFISM))
-				to_chat(L, span_notice("You don't want to hurt anyone!"))
-				return
+			visible_message(span_danger("[L.name] has attempted to bite [src]!"), \
+				span_userdanger("[L.name] has attempted to bite [src]!"), null, COMBAT_MESSAGE_RANGE)
+	else
+		visible_message(span_notice("[L.name] rubs its head against [src]."))
+		return FALSE
 
-			L.do_attack_animation(src)
-			if(prob(90))
-				last_damage = "bite"
-				log_combat(L, src, "attacked")
-				visible_message(span_danger("[L.name] bites [src]!"), \
-					span_userdanger("[L.name] bites [src]!"), null, COMBAT_MESSAGE_RANGE)
-				playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
-				return TRUE
-			else
-				visible_message(span_danger("[L.name] has attempted to bite [src]!"), \
-					span_userdanger("[L.name] has attempted to bite [src]!"), null, COMBAT_MESSAGE_RANGE)
+/mob/living/attack_alien(mob/living/carbon/alien/humanoid/M, modifiers)
+	if(modifiers && modifiers[RIGHT_CLICK])
+		last_damage = "minor blunt trauma"
+		M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
+		return TRUE
+	if(M.combat_mode)
+		if(HAS_TRAIT(M, TRAIT_PACIFISM))
+			to_chat(M, span_notice("You don't want to hurt anyone!"))
+			return FALSE
+		last_damage = "deep lacerations"
+		M.do_attack_animation(src)
+		return TRUE
+	visible_message(span_notice("[M] caresses [src] with its scythe like arm."))
 	return FALSE
-
-/mob/living/attack_alien(mob/living/carbon/alien/humanoid/M)
-	switch(M.a_intent)
-		if (INTENT_HELP)
-			visible_message(span_notice("[M] caresses [src] with its scythe like arm."))
-			return FALSE
-		if (INTENT_GRAB)
-			grabbedby(M)
-			return FALSE
-		if(INTENT_HARM)
-			if(HAS_TRAIT(M, TRAIT_PACIFISM))
-				to_chat(M, span_notice("You don't want to hurt anyone!"))
-				return FALSE
-			last_damage = "deep lacerations"
-			M.do_attack_animation(src)
-			return TRUE
-		if("disarm")
-			last_damage = "minor blunt trauma"
-			M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
-			return TRUE
 
 /mob/living/ex_act(severity, target, origin)
 	if(origin && istype(origin, /datum/spacevine_mutation) && isvineimmune(src))
