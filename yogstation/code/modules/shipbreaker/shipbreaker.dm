@@ -80,3 +80,9 @@
 	template_id = "old_Botany_Shuttle"
 	description = "mapshaker_old_botany"
 	mappath = "_maps/templates/shipbreaker/old_botany.dmm"
+
+/datum/map_template/shipbreaker/research_old
+	name = "Old Research Shuttle"
+	template_id = "old_Research_Shuttle"
+	description = "mapshaker_old_research"
+	mappath = "_maps/templates/shipbreaker/old_research.dmm"
