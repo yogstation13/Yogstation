@@ -3,190 +3,190 @@
 /obj/effect/clockwork/overlay/floor/bloodcult,
 /turf/open/floor/plasteel/cult/airless,
 /area/template_noop)
-"h" = (
+"c" = (
+/obj/effect/clockwork/overlay/floor/bloodcult,
+/obj/structure/destructible/cult/pillar,
+/turf/open/floor/plasteel/cult/airless,
+/area/template_noop)
+"d" = (
+/turf/template_noop,
+/area/template_noop)
+"e" = (
+/turf/closed/wall/mineral/cult,
+/area/template_noop)
+"j" = (
+/obj/effect/clockwork/overlay/floor/bloodcult,
+/obj/item/toy/toy_dagger,
+/turf/open/floor/plasteel/cult/airless,
+/area/template_noop)
+"q" = (
 /obj/effect/clockwork/overlay/floor/bloodcult,
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/bed,
 /obj/item/bedsheet/cult,
 /turf/open/floor/plasteel/cult/airless,
 /area/template_noop)
-"i" = (
+"v" = (
 /obj/effect/clockwork/overlay/floor/bloodcult,
-/obj/machinery/door/airlock/cult/friendly,
-/turf/open/floor/plasteel/cult/airless,
-/area/template_noop)
-"q" = (
-/obj/effect/clockwork/overlay/floor/bloodcult,
-/obj/structure/destructible/cult/pillar,
-/obj/effect/decal/cleanable/blood/gibs/down,
+/obj/machinery/door/airlock/cult/unruned/glass/friendly,
 /turf/open/floor/plasteel/cult/airless,
 /area/template_noop)
 "x" = (
 /obj/effect/clockwork/overlay/floor/bloodcult,
-/obj/structure/destructible/cult/pillar,
+/mob/living/simple_animal/hostile/netherworld/fcult/blindone,
 /turf/open/floor/plasteel/cult/airless,
 /area/template_noop)
 "y" = (
 /obj/effect/clockwork/overlay/floor/bloodcult,
 /obj/machinery/door/airlock/cult/friendly,
-/obj/effect/decal/cleanable/blood/gibs/down,
-/turf/open/floor/plasteel/cult/airless,
-/area/template_noop)
-"z" = (
-/obj/effect/clockwork/overlay/floor/bloodcult,
-/mob/living/simple_animal/hostile/netherworld/fcult/blindone,
 /turf/open/floor/plasteel/cult/airless,
 /area/template_noop)
 "A" = (
 /obj/effect/clockwork/overlay/floor/bloodcult,
-/obj/item/toy/plush/narplush,
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plasteel/cult/airless,
 /area/template_noop)
 "C" = (
 /obj/effect/clockwork/overlay/floor/bloodcult,
+/turf/closed/wall/mineral/cult,
+/area/template_noop)
+"F" = (
+/obj/effect/clockwork/overlay/floor/bloodcult,
+/obj/machinery/door/airlock/cult/friendly,
 /obj/effect/decal/cleanable/blood/gibs/down,
 /turf/open/floor/plasteel/cult/airless,
 /area/template_noop)
 "H" = (
-/turf/closed/wall/mineral/cult,
-/area/template_noop)
-"J" = (
 /obj/effect/clockwork/overlay/floor/bloodcult,
-/obj/machinery/door/airlock/cult/unruned/glass/friendly,
+/obj/structure/destructible/cult/pillar,
+/obj/effect/decal/cleanable/blood/gibs/down,
 /turf/open/floor/plasteel/cult/airless,
-/area/template_noop)
-"M" = (
-/obj/effect/clockwork/overlay/floor/bloodcult,
-/obj/effect/decal/cleanable/blood/gibs,
-/turf/open/floor/plasteel/cult/airless,
-/area/template_noop)
-"N" = (
-/obj/effect/clockwork/overlay/floor/bloodcult,
-/turf/closed/wall/mineral/cult,
 /area/template_noop)
 "P" = (
 /obj/effect/clockwork/overlay/floor/bloodcult,
-/obj/item/toy/toy_dagger,
+/obj/item/toy/plush/narplush,
 /turf/open/floor/plasteel/cult/airless,
 /area/template_noop)
-"W" = (
+"Y" = (
+/obj/effect/clockwork/overlay/floor/bloodcult,
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/plasteel/cult/airless,
+/area/template_noop)
+"Z" = (
 /obj/effect/clockwork/overlay/floor/bloodcult,
 /obj/structure/destructible/cult/forge,
 /turf/open/floor/plasteel/cult/airless,
 /area/template_noop)
-"Z" = (
-/turf/template_noop,
-/area/template_noop)
 
 (1,1,1) = {"
-N
-N
-N
-Z
-Z
-Z
-Z
-Z
-H
-N
-N
-N
+C
+C
+C
+d
+d
+d
+d
+d
+e
+C
+C
+C
 "}
 (2,1,1) = {"
-N
-h
-N
+C
+q
+C
+d
+d
+d
+d
+d
+e
+A
 Z
-Z
-Z
-Z
-Z
-H
-M
-W
-N
+C
 "}
 (3,1,1) = {"
-N
-z
+C
+x
+F
+C
+C
+C
+C
+C
+C
 y
-N
-N
-N
-N
-N
-N
-i
-A
-N
+P
+C
 "}
 (4,1,1) = {"
-H
-H
+e
+e
 a
-x
+c
 a
-M
+A
 a
-P
+j
 a
 a
-H
-H
+e
+e
 "}
 (5,1,1) = {"
-H
-H
+e
+e
 a
-C
+Y
 a
-a
-a
-q
 a
 a
 H
-H
+a
+a
+e
+e
 "}
 (6,1,1) = {"
-N
+C
 a
-i
-N
-N
-J
-N
-N
-N
-i
+y
+C
+C
+v
+C
+C
+C
+y
 a
-N
+C
 "}
 (7,1,1) = {"
-N
-h
-N
-Z
-Z
-Z
-Z
-Z
-H
+C
+q
+C
+d
+d
+d
+d
+d
+e
 a
-W
-N
+Z
+C
 "}
 (8,1,1) = {"
-N
-N
-N
-Z
-Z
-Z
-Z
-Z
-H
-N
-N
-N
+C
+C
+C
+d
+d
+d
+d
+d
+e
+C
+C
+C
 "}
