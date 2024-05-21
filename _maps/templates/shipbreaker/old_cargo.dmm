@@ -1,25 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/machinery/shuttle/engine{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/template_noop)
-"b" = (
-/obj/effect/spawner/lootdrop/crate_spawner,
-/turf/open/floor/mineral/titanium/blue/airless,
-/area/template_noop)
-"k" = (
-/turf/template_noop,
-/area/template_noop)
-"l" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Supply Shuttle Airlock";
-	req_access_txt = "31"
-	},
-/turf/open/space/basic,
-/area/template_noop)
-"n" = (
 /obj/machinery/conveyor{
 	dir = 4;
 	id = "QMLoad2"
@@ -36,22 +16,43 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"r" = (
-/obj/structure/closet/crate/engineering/electrical,
+"b" = (
+/obj/structure/closet/crate/freezer/blood,
 /turf/open/floor/mineral/titanium/blue/airless,
 /area/template_noop)
-"s" = (
-/turf/open/floor/mineral/titanium/blue/airless,
-/area/template_noop)
-"y" = (
+"c" = (
 /obj/structure/closet/crate/sphere,
 /turf/open/floor/mineral/titanium/blue/airless,
 /area/template_noop)
-"z" = (
+"e" = (
 /obj/structure/closet/crate/freezer/surplus_limbs,
 /turf/open/floor/mineral/titanium/blue/airless,
 /area/template_noop)
-"E" = (
+"f" = (
+/obj/structure/closet/crate/engineering/electrical,
+/turf/open/floor/mineral/titanium/blue/airless,
+/area/template_noop)
+"i" = (
+/turf/closed/wall/mineral/titanium,
+/area/template_noop)
+"o" = (
+/mob/living/simple_animal/hostile/mimic/crate,
+/turf/open/floor/mineral/titanium/blue/airless,
+/area/template_noop)
+"p" = (
+/obj/structure/closet/crate/radiation,
+/turf/open/floor/mineral/titanium/blue/airless,
+/area/template_noop)
+"r" = (
+/obj/machinery/power/engine_capacitor_bank{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"s" = (
 /obj/machinery/door/poddoor{
 	id = "QMLoaddoor";
 	name = "supply dock loading door"
@@ -68,140 +69,139 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"F" = (
-/obj/structure/closet/crate/radiation,
+"y" = (
 /turf/open/floor/mineral/titanium/blue/airless,
 /area/template_noop)
-"G" = (
-/obj/machinery/power/engine_capacitor_bank{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
+"E" = (
+/obj/machinery/shuttle/engine{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"O" = (
-/mob/living/simple_animal/hostile/mimic/crate,
+"G" = (
+/obj/effect/spawner/lootdrop/crate_spawner,
 /turf/open/floor/mineral/titanium/blue/airless,
 /area/template_noop)
-"T" = (
-/obj/structure/closet/crate/freezer/blood,
-/turf/open/floor/mineral/titanium/blue/airless,
+"N" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Supply Shuttle Airlock";
+	req_access_txt = "31"
+	},
+/turf/open/space/basic,
 /area/template_noop)
 "W" = (
-/turf/closed/wall/mineral/titanium,
+/turf/template_noop,
 /area/template_noop)
 
 (1,1,1) = {"
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
 W
-W
-W
-W
-W
-W
-W
-W
-W
-W
-W
-k
 "}
 (2,1,1) = {"
-W
+i
+G
+y
+y
 b
-s
-s
-T
-s
-s
-s
-z
-W
-W
-a
+y
+y
+y
+e
+i
+i
+E
 "}
 (3,1,1) = {"
-W
-s
-s
-s
-s
-s
-b
-s
-s
-s
+i
+y
+y
+y
+y
+y
 G
-a
+y
+y
+y
+r
+E
 "}
 (4,1,1) = {"
-W
-O
-s
-s
-s
+i
+o
 y
-s
-s
-s
-s
-G
-a
+y
+y
+c
+y
+y
+y
+y
+r
+E
 "}
 (5,1,1) = {"
-W
-s
-s
-b
-s
-s
-s
-s
-s
-s
+i
+y
+y
 G
-a
+y
+y
+y
+y
+y
+y
+r
+E
 "}
 (6,1,1) = {"
-W
-s
-s
-s
-s
-s
-s
-s
-s
+i
+y
+y
+y
+y
+y
+y
+y
+y
+f
 r
-G
-a
+E
 "}
 (7,1,1) = {"
-W
-F
-s
-s
-s
-s
-s
-s
-s
-W
-W
-a
+i
+p
+y
+y
+y
+y
+y
+y
+y
+i
+i
+E
 "}
 (8,1,1) = {"
+i
+i
+i
+a
+N
+i
+N
+s
+i
+i
+i
 W
-W
-W
-n
-l
-W
-l
-E
-W
-W
-W
-k
 "}

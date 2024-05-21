@@ -2,24 +2,35 @@
 "a" = (
 /turf/template_noop,
 /area/template_noop)
+"d" = (
+/obj/structure/grille/ratvar,
+/obj/structure/window/reinforced/clockwork/fulltile,
+/turf/open/floor/clockwork/reebe,
+/area/template_noop)
 "l" = (
-/obj/item/toy/plush/plushvar,
-/turf/open/floor/clockwork/reebe,
-/area/template_noop)
-"r" = (
-/obj/machinery/door/airlock/clockwork/brass,
-/turf/open/floor/clockwork/reebe,
-/area/template_noop)
-"t" = (
 /obj/structure/chair/brass{
 	dir = 1
 	},
 /turf/open/floor/clockwork/reebe,
 /area/template_noop)
-"y" = (
+"t" = (
 /turf/closed/wall/clockwork,
 /area/template_noop)
-"F" = (
+"w" = (
+/obj/structure/chair/brass{
+	dir = 8
+	},
+/turf/open/floor/clockwork/reebe,
+/area/template_noop)
+"x" = (
+/obj/item/toy/plush/plushvar,
+/turf/open/floor/clockwork/reebe,
+/area/template_noop)
+"y" = (
+/obj/machinery/door/airlock/clockwork/brass,
+/turf/open/floor/clockwork/reebe,
+/area/template_noop)
+"A" = (
 /obj/structure/table/reinforced/brass,
 /obj/item/reagent_containers/food/snacks/spaghetti/pastatomato,
 /obj/item/reagent_containers/food/snacks/spaghetti/pastatomato,
@@ -32,74 +43,63 @@
 /obj/item/reagent_containers/food/snacks/spaghetti/pastatomato,
 /turf/open/floor/clockwork/reebe,
 /area/template_noop)
-"G" = (
-/obj/structure/chair/brass{
-	dir = 8
-	},
-/turf/open/floor/clockwork/reebe,
-/area/template_noop)
 "H" = (
-/obj/structure/chair/brass{
-	dir = 4
-	},
-/turf/open/floor/clockwork/reebe,
-/area/template_noop)
-"K" = (
-/turf/open/floor/clockwork/reebe,
-/area/template_noop)
-"P" = (
 /obj/item/kitchen/fork,
 /turf/open/floor/clockwork/reebe,
 /area/template_noop)
-"V" = (
-/obj/structure/grille/ratvar,
-/obj/structure/window/reinforced/clockwork/fulltile,
+"Q" = (
 /turf/open/floor/clockwork/reebe,
 /area/template_noop)
-"X" = (
+"U" = (
 /obj/structure/chair/brass,
+/turf/open/floor/clockwork/reebe,
+/area/template_noop)
+"V" = (
+/obj/structure/chair/brass{
+	dir = 4
+	},
 /turf/open/floor/clockwork/reebe,
 /area/template_noop)
 
 (1,1,1) = {"
 a
 a
-V
-V
-V
-V
-V
-V
-V
-V
+d
+d
+d
+d
+d
+d
+d
+d
 a
 a
 "}
 (2,1,1) = {"
 a
 a
+d
+Q
+Q
 V
-K
-K
-H
-K
-K
-l
-V
+Q
+Q
+x
+d
 a
 a
 "}
 (3,1,1) = {"
 a
 a
-r
-K
-t
-F
-X
-K
-K
-r
+y
+Q
+l
+A
+U
+Q
+Q
+y
 a
 a
 "}
@@ -107,12 +107,12 @@ a
 a
 a
 a
-y
-K
-G
-P
-K
-y
+t
+Q
+w
+H
+Q
+t
 a
 a
 a
@@ -122,10 +122,10 @@ a
 a
 a
 a
-y
-K
-K
-y
+t
+Q
+Q
+t
 a
 a
 a
@@ -137,8 +137,8 @@ a
 a
 a
 a
-r
-r
+y
+y
 a
 a
 a

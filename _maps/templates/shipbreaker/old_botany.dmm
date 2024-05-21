@@ -1,0 +1,179 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"d" = (
+/turf/open/floor/grass/fairy/green,
+/area/template_noop)
+"f" = (
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/grass/fairy/green,
+/area/template_noop)
+"l" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/northleft{
+	dir = 8;
+	name = "Reception Window"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/grass/fairy/green,
+/area/template_noop)
+"o" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/closed/wall/mineral/titanium,
+/area/template_noop)
+"r" = (
+/obj/machinery/shuttle/engine{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"u" = (
+/obj/machinery/power/engine_capacitor_bank{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"y" = (
+/obj/item/gun/energy/floragun,
+/turf/open/floor/grass/fairy/green,
+/area/template_noop)
+"T" = (
+/obj/effect/spawner/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/template_noop)
+"W" = (
+/obj/machinery/hydroponics/constructable,
+/obj/item/seeds/random,
+/turf/open/floor/grass/fairy/green,
+/area/template_noop)
+"Y" = (
+/obj/structure/reagent_dispensers/watertank/high,
+/turf/open/floor/grass/fairy/green,
+/area/template_noop)
+"Z" = (
+/turf/closed/wall/mineral/titanium,
+/area/template_noop)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+Z
+o
+Z
+o
+Z
+o
+Z
+o
+u
+r
+a
+"}
+(3,1,1) = {"
+a
+Z
+W
+d
+W
+d
+W
+d
+W
+Z
+Z
+a
+"}
+(4,1,1) = {"
+a
+T
+d
+d
+d
+d
+d
+d
+d
+Z
+Z
+a
+"}
+(5,1,1) = {"
+a
+T
+d
+d
+d
+d
+d
+d
+Y
+Z
+Z
+a
+"}
+(6,1,1) = {"
+a
+Z
+y
+d
+d
+d
+d
+d
+f
+Z
+Z
+a
+"}
+(7,1,1) = {"
+a
+Z
+l
+l
+l
+l
+l
+l
+l
+u
+r
+a
+"}
+(8,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

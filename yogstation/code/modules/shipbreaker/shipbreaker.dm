@@ -74,3 +74,9 @@
 	template_id = "old_Clock_Cult_Shuttle"
 	description = "mapshaker_old_clock"
 	mappath = "_maps/templates/shipbreaker/old_clock.dmm"
+
+/datum/map_template/shipbreaker/botany_old
+	name = "Old Botany Shuttle"
+	template_id = "old_Botany_Shuttle"
+	description = "mapshaker_old_botany"
+	mappath = "_maps/templates/shipbreaker/old_botany.dmm"
