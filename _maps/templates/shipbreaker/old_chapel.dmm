@@ -120,8 +120,8 @@
 /turf/open/floor/carpet/purple,
 /area/template_noop)
 "W" = (
-/obj/structure/table/altar_of_gods,
 /obj/item/reagent_containers/food/snacks/hotcrossbun,
+/obj/structure/fluff/divine/convertaltar,
 /turf/open/floor/plasteel/chapel{
 	dir = 4
 	},
