@@ -105,9 +105,12 @@
 	circuit = /obj/item/circuitboard/machine/HFR_fuel_input
 
 /obj/machinery/atmospherics/components/unary/hypertorus/fuel_input/syndicate
-	color = "#320101"
 	circuit = /obj/item/circuitboard/machine/HFR_fuel_input
 	syndicate_machine = TRUE
+	icon_state = "fuel_input_off"
+	icon_state_open = "fuel_input_syndie_open"
+	icon_state_off = "fuel_input_syndie_off"
+	icon_state_active = "fuel_input_syndie_active"
 
 /obj/machinery/atmospherics/components/unary/hypertorus/waste_output
 	name = "HFR waste output port"
@@ -119,9 +122,12 @@
 	circuit = /obj/item/circuitboard/machine/HFR_waste_output
 
 /obj/machinery/atmospherics/components/unary/hypertorus/waste_output/syndicate
-	color = "#320101"
 	circuit = /obj/item/circuitboard/machine/HFR_waste_input
 	syndicate_machine = TRUE
+	icon_state = "waste_output_syndie_off"
+	icon_state_open = "waste_output_syndie_open"
+	icon_state_off = "waste_output_syndie_off"
+	icon_state_active = "waste_output_syndie_active"
 
 /obj/machinery/atmospherics/components/unary/hypertorus/moderator_input
 	name = "HFR moderator input port"
@@ -136,7 +142,7 @@
 	circuit = /obj/item/circuitboard/machine/HFR_moderator_input
 	syndicate_machine = TRUE
 	icon_state = "moderator_input_syndie_off"
-	icon_state_open = "moderator_inpu_syndiet_open"
+	icon_state_open = "moderator_input_syndie_open"
 	icon_state_off = "moderator_input_syndie_off"
 	icon_state_active = "moderator_input_syndie_active"
 
@@ -195,9 +201,12 @@
 	icon_state_active = "interface_active"
 
 /obj/machinery/hypertorus/interface/syndicate
-	color = "#320101"
 	circuit = /obj/item/circuitboard/machine/HFR_interface/syndicate
 	syndicate_machine = TRUE
+	icon_state = "interface_syndie_off"
+	icon_state_off = "interface_syndie_off"
+	icon_state_open = "interface_syndie_open"
+	icon_state_active = "interface_syndie_active"
 
 /obj/machinery/hypertorus/interface/Destroy()
 	if(connected_core)
@@ -271,14 +280,14 @@
 	if(connected_core.internal_fusion.total_moles())
 		for(var/gas_id in connected_core.internal_fusion.get_gases())
 			fusion_gasdata.Add(list(list(
-				"id"= gas_id,
+				"id"= initial(gas_id),
 				"amount" = round(connected_core.internal_fusion.get_moles(gas_id), 0.01),
 				"remove_rate" = round(connected_core.delta_fuel_list[gas_id], 0.01),
 			)))
 	else
 		for(var/gas_id in connected_core.internal_fusion.get_gases())
 			fusion_gasdata.Add(list(list(
-				"id"= gas_id,
+				"id"= initial(gas_id),
 				"amount" = 0,
 				"remove_rate" = round(connected_core.delta_fuel_list[gas_id], 0.01),
 			)))
@@ -287,14 +296,14 @@
 	if(connected_core.moderator_internal.total_moles())
 		for(var/gas_id in connected_core.moderator_internal.get_gases())
 			moderator_gasdata.Add(list(list(
-				"id"= gas_id,
+				"id"= initial(gas_id),
 				"amount" = round(connected_core.moderator_internal.get_moles(gas_id), 0.01),
 				"remove_rate" = round(connected_core.delta_mod_list[gas_id], 0.01),
 			)))
 	else
 		for(var/gas_id in connected_core.moderator_internal.get_gases())
 			moderator_gasdata.Add(list(list(
-				"id"= gas_id,
+				"id"= initial(gas_id),
 				"amount" = 0,
 				"remove_rate" = round(connected_core.delta_mod_list[gas_id], 0.01),
 			)))

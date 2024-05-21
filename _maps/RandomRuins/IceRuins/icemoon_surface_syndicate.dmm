@@ -1636,11 +1636,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"iM" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/plating,
-/area/ruin/syndicate_icemoon/maintenance)
 "iN" = (
 /obj/machinery/chem_master,
 /obj/effect/turf_decal/box/red,
@@ -2954,6 +2949,11 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
+"pD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/maintenance)
 "pE" = (
 /obj/structure/chair/americandiner{
 	dir = 4
@@ -13146,7 +13146,7 @@ Le
 um
 Qa
 rf
-iM
+pD
 Xj
 Cz
 jX
