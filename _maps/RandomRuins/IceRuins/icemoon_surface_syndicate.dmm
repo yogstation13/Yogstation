@@ -1191,6 +1191,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/visible,
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "gl" = (
@@ -1635,6 +1636,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"iM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/maintenance)
 "iN" = (
 /obj/machinery/chem_master,
 /obj/effect/turf_decal/box/red,
@@ -13140,7 +13146,7 @@ Le
 um
 Qa
 rf
-re
+iM
 Xj
 Cz
 jX
