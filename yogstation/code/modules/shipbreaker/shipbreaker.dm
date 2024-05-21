@@ -62,3 +62,9 @@
 	template_id = "old_Cargo_Shuttle"
 	description = "mapshaker_old_cargo"
 	mappath = "_maps/templates/shipbreaker/old_cargo.dmm"
+
+/datum/map_template/shipbreaker/blood_old
+	name = "Old Blood Cult Shuttle"
+	template_id = "old_Blood_Cult_Shuttle"
+	description = "mapshaker_old_blood"
+	mappath = "_maps/templates/shipbreaker/old_blood.dmm"
