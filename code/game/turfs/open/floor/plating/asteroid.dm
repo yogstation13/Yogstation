@@ -266,3 +266,9 @@
 /turf/open/floor/plating/asteroid/snow/atmosphere
 	initial_gas_mix = FROZEN_ATMOS
 	planetary_atmos = FALSE
+
+// Cavern variant that uses relevant atmos
+/turf/open/floor/plating/asteroid/basalt/cavern
+	initial_gas_mix = CAVERN_DEFAULT_ATMOS
+	planetary_atmos = TRUE
+	baseturfs = /turf/open/lava/smooth/cavern

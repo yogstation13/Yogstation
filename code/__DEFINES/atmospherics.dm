@@ -303,6 +303,7 @@ GLOBAL_LIST_INIT(atmos_adjacent_savings, list(0,0))
 #define LAVALAND_DEFAULT_ATMOS "o2=14;n2=23;TEMP=300"
 #define ICEMOON_DEFAULT_ATMOS "o2=14;n2=23;TEMP=180"
 #define JUNGLELAND_DEFAULT_ATMOS "o2=44;n2=164;TEMP=300" //yogs edit
+#define CAVERN_DEFAULT_ATMOS "co2=22;o2=7;n2=6;TEMP=315" // Caves are HOT and have very little breathable air
 
 //ATMOSIA GAS MONITOR TAGS
 #define ATMOS_GAS_MONITOR_INPUT_O2 "o2_in"

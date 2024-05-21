@@ -19,7 +19,7 @@
 			"Gravity": true,
 			"Lava Ruins": true,
 			"Bombcap Multiplier": 2.5,
-			"Baseturf": "/turf/open/lava/smooth/lava_land_surface",
+			"Baseturf": "/turf/open/floor/plating/asteroid/basalt/cavern",
 			"No Parallax": true
 		},
 		{
@@ -27,7 +27,7 @@
 			"Up": true,	
 			"Linkage": null,
 			"Gravity": true,
-			"Baseturf": "/turf/open/openspace/icemoon/keep_below",
+			"Baseturf": "/turf/open/floor/plating/asteroid/basalt",
 			"No Parallax": true
 		},
 		{

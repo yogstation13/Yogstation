@@ -260,3 +260,9 @@
 
 /turf/open/lava/smooth/airless
 	initial_gas_mix = AIRLESS_ATMOS
+
+// Cavern variant with relevant atmos applied
+/turf/open/lava/smooth/cavern
+	initial_gas_mix = CAVERN_DEFAULT_ATMOS
+	planetary_atmos = TRUE
+	baseturfs = /turf/open/lava/smooth/cavern

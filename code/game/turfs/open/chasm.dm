@@ -125,8 +125,12 @@
 	underlay_appearance.icon_state = "dirt"
 	return TRUE
 
-//For Bag of Holding Bombs
+// Cavern variant, relevant atmos applied
+/turf/open/chasm/lavaland/cavern
+	initial_gas_mix = CAVERN_DEFAULT_ATMOS
+	baseturfs = /turf/open/chasm/lavaland/cavern
 
+//For Bag of Holding Bombs
 /turf/open/chasm/magic
 	name = "tear in the fabric of reality"
 	desc = "Where does it lead?"
@@ -138,3 +142,4 @@
 
 /turf/open/chasm/magic/apply_components(mapload)
 	AddComponent(/datum/component/chasm, pick(get_area_turfs(/area/centcom/fabric_of_reality)), mapload)
+
