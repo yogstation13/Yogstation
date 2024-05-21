@@ -1,6 +1,7 @@
 /**
  * This file contain the eight parts surrounding the main core, those are: fuel input, moderator input, waste output, interface and the corners
  * The file also contain the guicode of the machine
+ * hours wasted making the syndie ones work: 1
  */
 /obj/machinery/atmospherics/components/unary/hypertorus
 	icon = 'icons/obj/atmospherics/components/hypertorus.dmi'
