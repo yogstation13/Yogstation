@@ -1,0 +1,4 @@
+author: "Scrambledeggs00"
+delete-after: true 
+changes: 
+  - bugfix: "PML won't delete its rocket if you click on an item."
