@@ -1,14 +1,16 @@
 import { useBackend } from '../backend';
-import { AnimatedNumber, Box, Button, LabeledList, Section } from '../components';
+import { AnimatedNumber, Box, Button, LabeledList, Section, Dimmer, Icon } from '../components';
 import { Window } from '../layouts';
 
 export const CargoHoldTerminal = (props, context) => {
   const { act, data } = useBackend(context);
   const {
+    target_points,
     points,
     pad,
     sending,
     status_report,
+    erasing,
   } = data;
   return (
     <Window
@@ -16,11 +18,17 @@ export const CargoHoldTerminal = (props, context) => {
       height={230}
       resizable>
       <Window.Content scrollable>
+        {!!erasing && (
+          <Dimmer fontSize="32px">
+            <Icon name="cog" spin={1} />
+            {' Leaving...'}
+          </Dimmer>
+        )}
         <Section>
           <LabeledList>
             <LabeledList.Item label="Current Cargo Value">
               <Box inline bold>
-                <AnimatedNumber value={Math.round(points)} /> credits
+                <AnimatedNumber value={Math.round(points)} />/{Math.round(target_points)} credits
               </Box>
             </LabeledList.Item>
           </LabeledList>

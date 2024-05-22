@@ -256,7 +256,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	. = ..()
 	if(!.)
 		return FALSE
-	/* 	Half the philosophy of posi-brains. 
+	/* 	Half the philosophy of posi-brains.
 		While they are mass producible like posi-brains, they lack "many of the strengths" that cyborgs have.*/
 	if(GLOB.servant_golem_users[M.ckey])
 		var/time_left = (GLOB.servant_golem_users[M.ckey]) - world.time
@@ -821,8 +821,9 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	var/endings = strings(PIRATE_NAMES_FILE, "endings")
 	return "[rank] [pick(beggings)][pick(endings)]"
 
-/obj/effect/mob_spawn/human/pirate/Destroy()
-	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
+/obj/effect/mob_spawn/human/pirate/Destroy(force)
+	if(!force)
+		new/obj/structure/showcase/machinery/oldpod/used(drop_location())
 	return ..()
 
 /obj/effect/mob_spawn/human/pirate/captain

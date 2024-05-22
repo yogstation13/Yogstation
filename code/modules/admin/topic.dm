@@ -93,14 +93,14 @@
 			return
 		switch(href_list["makeAntag"])
 			if("traitors")
-				if(src.makeTraitors())
+				if(makeTraitors())
 					message_admins("[key_name_admin(usr)] created traitors.")
 					log_admin("[key_name(usr)] created traitors.")
 				else
 					message_admins("[key_name_admin(usr)] tried to create traitors. Unfortunately, there were no candidates available.")
 					log_admin("[key_name(usr)] failed to create traitors.")
 			if("changelings")
-				if(src.makeChangelings())
+				if(makeChangelings())
 					message_admins("[key_name(usr)] created changelings.")
 					log_admin("[key_name(usr)] created changelings.")
 				else
@@ -1183,7 +1183,7 @@
 		var/mob/our_mob = locate(href_list["makeai"])
 		if(!istype(our_mob))
 			return
-		
+
 		message_admins(span_danger("Admin [key_name_admin(usr)] AIized [key_name_admin(our_mob)]!"))
 		log_admin("[key_name(usr)] AIized [key_name(our_mob)].")
 		our_mob.AIize(our_mob.client)

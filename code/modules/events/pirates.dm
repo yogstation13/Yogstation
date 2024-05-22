@@ -141,7 +141,7 @@
 
 	if(!is_station_level(z))
 		return
-	
+
 	var/datum/bank_account/account = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	var/siphoned = min(account.account_balance,siphon_per_tick)
 	account.adjust_money(-siphoned)
@@ -280,14 +280,17 @@
 
 /obj/machinery/computer/piratepad_control
 	name = "cargo hold control terminal"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/status_report = "Ready for delivery."
 	var/obj/machinery/piratepad/pad
 	var/warmup_time = 100
 	var/sending = FALSE
+	var/target_points = 50000
 	var/points = 0
 	var/datum/export_report/total_report
 	var/sending_timer
 	var/cargo_hold_id
+	var/erasing = FALSE // Win condition reached
 
 /obj/machinery/computer/piratepad_control/Initialize(mapload)
 	..()
@@ -318,10 +321,12 @@
 
 /obj/machinery/computer/piratepad_control/ui_data(mob/user)
 	var/list/data = list()
+	data["target_points"] = target_points
 	data["points"] = points
 	data["pad"] = pad ? TRUE : FALSE
 	data["sending"] = sending
 	data["status_report"] = status_report
+	data["erasing"] = erasing
 	return data
 
 /obj/machinery/computer/piratepad_control/ui_act(action, params)
@@ -400,6 +405,64 @@
 	flick(pad.sending_state,pad)
 	pad.icon_state = pad.idle_state
 	sending = FALSE
+	if(points < target_points || erasing)
+		return
+	erasing = TRUE
+	var/list/datum/weakref/pirates_to_erase = list()
+	for(var/datum/antagonist/pirate/pirate_datum in GLOB.antagonists)
+		if(!pirate_datum.owner?.current)
+			continue
+		var/pirate_weakref = WEAKREF(pirate_datum)
+		if(!pirate_weakref)
+			continue
+		for(var/datum/objective/loot/getbooty in pirate_datum.objectives)
+			getbooty.completed = TRUE
+		pirates_to_erase |= pirate_weakref
+		pirate_datum.owner.current.playsound_local(get_turf(pirate_datum.owner.current), 'sound/effects/seedling_chargeup.ogg', 100, TRUE)
+		to_chat(pirate_datum.owner.current, span_warning("You feel yourself becoming lighter! You will soon be transported far away!"))
+		pirate_datum.owner.current.add_overlay(image('icons/effects/effects.dmi', "dragnetfield"))
+		pirate_datum.owner.current.add_overlay(image('icons/effects/effects.dmi', "shieldsparkles"))
+	addtimer(CALLBACK(src, PROC_REF(erase_pirates), pirates_to_erase), 10 SECONDS)
+
+/obj/machinery/computer/piratepad_control/proc/erase_pirates(list/datum/weakref/who)
+	create_punishment()
+
+	for(var/datum/weakref/ref as anything in who)
+		var/datum/antagonist/pirate/pirate_datum = ref.resolve()
+		if(pirate_datum == null || !istype(pirate_datum))
+			continue
+		if(!pirate_datum.owner?.current)
+			continue
+		pirate_datum.owner.current.playsound_local(get_turf(pirate_datum.owner.current), 'sound/effects/empulse.ogg', 100, TRUE)
+		qdel(pirate_datum.owner.current)
+
+	var/area/shuttle/pirate/shuttle_area = get_area(src)
+
+	if(istype(shuttle_area))
+		for(var/thing in shuttle_area.get_all_contents())
+			if(istype(thing, /turf))
+				var/turf/turf_thing = thing
+				turf_thing.ChangeTurf(/turf/open/space)
+			else
+				qdel(thing, TRUE)
+		qdel(shuttle_area)
+
+/obj/machinery/computer/piratepad_control/proc/create_punishment()
+	priority_announce("A large increase of Syndicate activity has been detected in your sector.", "Warning", SSstation.announcer.get_rand_report_sound())
+	switch(rand(1, 6))
+		if(1)
+			makeTraitors()
+		if(2)
+			makeChangelings()
+		if(3)
+			new /datum/round_event/ghost_role/ninja()
+		if(4)
+			new /datum/round_event/ghost_role/blob()
+		if(5)
+			var/datum/round_event/meteor_wave/threatening/meteors = new()
+			meteors.announceWhen = -1 // they'll figure it out
+		if(6)
+			new /datum/round_event/ghost_role/operative()
 
 /obj/machinery/computer/piratepad_control/proc/start_sending()
 	if(sending)

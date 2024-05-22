@@ -48,6 +48,7 @@
 		var/area/A = get_area(P)
 		if(istype(A,/area/shuttle/pirate))
 			getbooty.cargo_hold = P
+			P.target_points = getbooty.target_value
 			break
 	getbooty.update_explanation_text()
 	objectives += getbooty

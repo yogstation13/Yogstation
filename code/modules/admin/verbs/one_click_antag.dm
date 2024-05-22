@@ -33,7 +33,7 @@
 	popup.set_content(dat)
 	popup.open()
 
-/datum/admins/proc/isReadytoRumble(mob/living/carbon/human/applicant, targetrole, onstation = TRUE, conscious = TRUE)
+/proc/isReadytoRumble(mob/living/carbon/human/applicant, targetrole, onstation = TRUE, conscious = TRUE)
 	if(applicant.mind.special_role)
 		return FALSE
 	if(!(targetrole in applicant.client.prefs.be_special))
@@ -49,7 +49,7 @@
 	return !is_banned_from(applicant.ckey, list(targetrole, ROLE_SYNDICATE))
 
 
-/datum/admins/proc/makeTraitors()
+/proc/makeTraitors()
 	var/datum/game_mode/traitor/temp = new
 
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
@@ -81,7 +81,7 @@
 	return 0
 
 
-/datum/admins/proc/makeChangelings()
+/proc/makeChangelings()
 
 	var/datum/game_mode/changeling/temp = new
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
