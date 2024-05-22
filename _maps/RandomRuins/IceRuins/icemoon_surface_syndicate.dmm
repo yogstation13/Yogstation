@@ -4890,6 +4890,10 @@
 /obj/effect/turf_decal/siding/blue{
 	dir = 10
 	},
+/obj/item/disk/surgery/brainwashing{
+	pixel_x = 8;
+	pixel_y = -6
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
 "zO" = (
