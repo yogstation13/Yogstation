@@ -701,8 +701,8 @@ datum/status_effect/stabilized/blue/on_remove()
 /datum/status_effect/stabilized/sepia/on_apply()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		owner.next_move_modifier *= 0.9
-		owner.action_speed_modifier *= 0.9
+		owner.next_move_modifier *= 0.7
+		owner.action_speed_modifier *= 0.7
 		H.physiology.stamina_mod *= 1.5
 		H.physiology.stun_mod *= 1.5
 	return ..()
@@ -710,8 +710,8 @@ datum/status_effect/stabilized/blue/on_remove()
 /datum/status_effect/stabilized/sepia/on_remove()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		owner.next_move_modifier /= 0.9
-		owner.action_speed_modifier /= 0.9
+		owner.next_move_modifier /= 0.7
+		owner.action_speed_modifier /= 0.7
 		H.physiology.stamina_mod /= 1.5
 		H.physiology.stun_mod /= 1.5
 	return ..()
