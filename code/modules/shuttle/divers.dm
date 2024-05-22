@@ -1,11 +1,3 @@
-/obj/machinery/computer/shuttle/ai_ship
-	name = "ai ship shuttle console"
-	desc = "Used to control the remote AI satellite shuttle."
-	circuit = /obj/item/circuitboard/computer/ai_ship
-	shuttleId = "ai_ship"
-	possible_destinations = "ai_station;ai_ship"
-	no_destination_swap = TRUE
-
 /obj/machinery/computer/shuttle/diver_a // Arrivals
 	name = "D.I.V.E.R. A control console"
 	desc = "Used to send D.I.V.E.R. transport pods up and down."
