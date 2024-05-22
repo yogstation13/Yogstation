@@ -5359,6 +5359,10 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/cargo)
+"Fp" = (
+/obj/structure/tank_dispenser,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/powered/syndicate_lava_base/atmospherics_research)
 "Fv" = (
 /obj/machinery/airalarm/syndicate{
 	dir = 4;
@@ -9194,8 +9198,8 @@ iG
 iG
 ji
 nk
-ji
-ji
+Fp
+Fp
 iG
 eF
 ez
