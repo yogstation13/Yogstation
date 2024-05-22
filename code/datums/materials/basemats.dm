@@ -220,3 +220,11 @@
 	greyscale_colors = "#506bc7"
 	categories = list(MAT_CATEGORY_ORE = TRUE)
 	sheet_type = /obj/item/stack/sheet/dilithium_crystal
+
+/datum/material/shipbreakium
+	name = "shipbreak Material"
+	id = "shipbreak_material"
+	desc = "leftover scrap from shipbreaking wrecks."
+	color = "#50c774"
+	greyscale_colors = "#50c774"
+	sheet_type = /obj/item/stack/sheet/shipbreak_material

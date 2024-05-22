@@ -3700,6 +3700,8 @@
 #include "code\modules\security_levels\level_interface.dm"
 #include "code\modules\security_levels\security_level_datums.dm"
 #include "code\modules\shipbreaker\shipbreak_console.dm"
+#include "code\modules\shipbreaker\shipbreak_scrap.dm"
+#include "code\modules\shipbreaker\shipbreak_tool_vendor.dm"
 #include "code\modules\shuttle\ai_ship.dm"
 #include "code\modules\shuttle\arrivals.dm"
 #include "code\modules\shuttle\assault_pod.dm"

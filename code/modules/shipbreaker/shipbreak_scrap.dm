@@ -1,0 +1,80 @@
+/obj/item/scrap
+	name = "A small piece of scrap"
+	desc = "Can be recycled for useful materials"
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "fire_extinguisher0"
+	item_state = "fire_extinguisher"
+	hitsound = 'sound/weapons/smash.ogg'
+	flags_1 = CONDUCT_1
+	throwforce = 10
+	w_class = WEIGHT_CLASS_SMALL 
+	throw_speed = 2
+	throw_range = 7
+	force = 10
+	materials = list(
+	/datum/material/iron = MINERAL_MATERIAL_AMOUNT * 1,
+	/datum/material/glass = MINERAL_MATERIAL_AMOUNT * 1,
+	/datum/material/shipbreakium = MINERAL_MATERIAL_AMOUNT * 1)
+	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+
+/obj/item/scrap/medium
+	name = "A medium piece of scrap"
+	desc = "Can be recycled for useful materials"
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "fire_extinguisher0"
+	item_state = "fire_extinguisher"
+	hitsound = 'sound/weapons/smash.ogg'
+	flags_1 = CONDUCT_1
+	throwforce = 10
+	w_class = WEIGHT_CLASS_NORMAL
+	throw_speed = 2
+	throw_range = 7
+	force = 10
+	materials = list(
+	/datum/material/iron = MINERAL_MATERIAL_AMOUNT * 2,
+	/datum/material/glass = MINERAL_MATERIAL_AMOUNT * 2,
+	/datum/material/shipbreakium = MINERAL_MATERIAL_AMOUNT * 2)
+	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+
+/obj/item/scrap/large
+	name = "A large piece of scrap"
+	desc = "Can be recycled for useful materials"
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "fire_extinguisher0"
+	item_state = "fire_extinguisher"
+	hitsound = 'sound/weapons/smash.ogg'
+	flags_1 = CONDUCT_1
+	throwforce = 10
+	w_class = WEIGHT_CLASS_BULKY 
+	throw_speed = 2
+	throw_range = 7
+	force = 10
+	materials = list(
+	/datum/material/iron = MINERAL_MATERIAL_AMOUNT * 4,
+	/datum/material/glass = MINERAL_MATERIAL_AMOUNT * 4,
+	/datum/material/shipbreakium = MINERAL_MATERIAL_AMOUNT * 4)
+	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+
+/obj/item/scrap/rare
+	name = "Advanced scrap material, left over from a sophisticated piece of machinery."
+	desc = "Can be recycled for useful materials"
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "fire_extinguisher0"
+	item_state = "fire_extinguisher"
+	hitsound = 'sound/weapons/smash.ogg'
+	flags_1 = CONDUCT_1
+	throwforce = 10
+	w_class = WEIGHT_CLASS_BULKY
+	throw_speed = 2
+	throw_range = 7
+	force = 10
+	materials = list(
+	/datum/material/silver = MINERAL_MATERIAL_AMOUNT * 10,
+	/datum/material/gold = MINERAL_MATERIAL_AMOUNT * 10,
+	/datum/material/uranium = MINERAL_MATERIAL_AMOUNT * 10,
+	/datum/material/shipbreakium = MINERAL_MATERIAL_AMOUNT * 10)
+	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
+	resistance_flags = FIRE_PROOF | ACID_PROOF

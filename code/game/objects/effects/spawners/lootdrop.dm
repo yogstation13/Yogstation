@@ -748,6 +748,24 @@
 		/obj/item/clothing/shoes/drip = 20,
 		"" = 80)
 
+/obj/effect/spawner/lootdrop/scrap_basic
+	name = "Small/Med/Large scrap spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+		/obj/item/scrap = 50,
+		/obj/item/scrap/medium = 30,
+		/obj/item/scrap/large = 20)
+
+/obj/effect/spawner/lootdrop/scrap_advanced
+	name = "Med/Large/rare scrap spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+		/obj/item/scrap/medium = 60,
+		/obj/item/scrap/large = 20,
+		/obj/item/scrap/rare = 10)
+		
 //Mob spawners
 /obj/effect/spawner/lootdrop/mob
 	icon = 'icons/mob/animal.dmi'
