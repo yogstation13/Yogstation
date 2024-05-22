@@ -134,7 +134,7 @@
 	id = /obj/item/card/id/syndicate/anyone
 	box = /obj/item/storage/box/survival/syndie
 	implants = list(
-	/obj/item/implant/teleporter/syndicate_lavaland, // Affects jungleland guys too, so change this when we de-shit the jungle base code
+	/obj/item/implant/teleporter/syndicate_lavaland,
 	/obj/item/implant/weapons_auth)
 
 /datum/outfit/lavaland_syndicate/post_equip(mob/living/carbon/human/H)

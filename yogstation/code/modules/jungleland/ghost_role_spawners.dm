@@ -71,6 +71,9 @@
 
 /datum/outfit/lavaland_syndicate/jungle
 	name = "Jungle Syndicate Agent"
+	implants = list(
+	/obj/item/implant/teleporter/syndicate_jungleland,
+	/obj/item/implant/weapons_auth)
 
 /datum/outfit/lavaland_syndicate/jungle/lieutenant
 	name = "Jungle Syndicate Lieutenant"
