@@ -176,9 +176,7 @@ GLOBAL_LIST_INIT(detective_vest_allowed, typecacheof(list(
 	/obj/item/reagent_containers/spray/pepper,
 	/obj/item/restraints/handcuffs,
 	/obj/item/storage/fancy/cigarettes,
-	/obj/item/tank/internals/emergency_oxygen,
-	/obj/item/tank/internals/plasmaman,
-	/obj/item/tank/internals/ipc_coolant)))
+	/obj/item/tank/internals)))
 
 GLOBAL_LIST_INIT(security_vest_allowed, typecacheof(list(
 	/obj/item/ammo_box,
@@ -191,9 +189,7 @@ GLOBAL_LIST_INIT(security_vest_allowed, typecacheof(list(
 	/obj/item/melee/classic_baton,
 	/obj/item/reagent_containers/spray/pepper,
 	/obj/item/restraints/handcuffs,
-	/obj/item/tank/internals/emergency_oxygen,
-	/obj/item/tank/internals/plasmaman,
-	/obj/item/tank/internals/ipc_coolant)))
+	/obj/item/tank/internals)))
 
 GLOBAL_LIST_INIT(security_wintercoat_allowed, typecacheof(list(
 	/obj/item/ammo_box,
@@ -207,7 +203,37 @@ GLOBAL_LIST_INIT(security_wintercoat_allowed, typecacheof(list(
 	/obj/item/melee/classic_baton,
 	/obj/item/reagent_containers/spray/pepper,
 	/obj/item/restraints/handcuffs,
-	/obj/item/tank/internals/emergency_oxygen,
-	/obj/item/tank/internals/plasmaman,
-	/obj/item/tank/internals/ipc_coolant,
+	/obj/item/tank/internals,
 	/obj/item/toy)))
+
+GLOBAL_LIST_INIT(labcoat_allowed, typecacheof(list(
+	/obj/item/analyzer,
+	/obj/item/multitool/tricorder,
+	/obj/item/stack/medical,
+	/obj/item/dnainjector,
+	/obj/item/reagent_containers/dropper,
+	/obj/item/reagent_containers/syringe,
+	/obj/item/reagent_containers/autoinjector,
+	/obj/item/healthanalyzer,
+	/obj/item/reagent_containers/glass/bottle,
+	/obj/item/reagent_containers/glass/beaker,
+	/obj/item/reagent_containers/pill,
+	/obj/item/storage/pill_bottle,
+	/obj/item/paper,
+	/obj/item/melee/classic_baton/telescopic,
+	/obj/item/soap,
+	/obj/item/sensor_device,
+	/obj/item/tank/internals, 
+	/obj/item/hypospray,
+	/obj/item/flashlight)))
+
+GLOBAL_LIST_INIT(mining_allowed, typecacheof(list(
+	/obj/item/flashlight, 
+	/obj/item/tank/internals, 
+	/obj/item/resonator, 
+	/obj/item/mining_scanner, 
+	/obj/item/t_scanner/adv_mining_scanner, 
+	/obj/item/gun/energy/kinetic_accelerator, 
+	/obj/item/pickaxe, 
+	/obj/item/organ/regenerative_core/legion, 
+	/obj/item/kitchen/knife/combat)))

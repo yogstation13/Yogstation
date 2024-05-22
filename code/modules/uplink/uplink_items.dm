@@ -791,7 +791,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
-/datum/uplink_item/ammo/pistol
+/datum/uplink_item/ammo/pistol/random
 	name = "Random 10mm Handgun Magazines"
 	desc = "A box that contains four random 10-round 10mm magazines at a discount; compatible with the Stechkin Pistol."
 	item = /obj/item/storage/box/syndie_kit/pistolammo/random
@@ -2260,7 +2260,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A modified version of the Stechkin pistol placed inside of the forearm to allow for easy concealment."
 	item = /obj/item/autosurgeon/arm/syndicate/stechkin_implant
 	cost = 9
-		
+
 /datum/uplink_item/implants/noslipall
 	name = "Slip Prevention Implant"
 	desc = "An implant that uses advanced sensors to detect when you are slipping and utilize motors in order to prevent it."
