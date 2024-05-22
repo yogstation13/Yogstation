@@ -13,8 +13,7 @@
 	force = 10
 	materials = list(
 	/datum/material/iron = MINERAL_MATERIAL_AMOUNT * 1,
-	/datum/material/glass = MINERAL_MATERIAL_AMOUNT * 1,
-	/datum/material/shipbreakium = MINERAL_MATERIAL_AMOUNT * 1)
+	/datum/material/glass = MINERAL_MATERIAL_AMOUNT * 1,)
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
@@ -33,8 +32,7 @@
 	force = 10
 	materials = list(
 	/datum/material/iron = MINERAL_MATERIAL_AMOUNT * 2,
-	/datum/material/glass = MINERAL_MATERIAL_AMOUNT * 2,
-	/datum/material/shipbreakium = MINERAL_MATERIAL_AMOUNT * 2)
+	/datum/material/glass = MINERAL_MATERIAL_AMOUNT * 2,)
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
@@ -53,8 +51,7 @@
 	force = 10
 	materials = list(
 	/datum/material/iron = MINERAL_MATERIAL_AMOUNT * 4,
-	/datum/material/glass = MINERAL_MATERIAL_AMOUNT * 4,
-	/datum/material/shipbreakium = MINERAL_MATERIAL_AMOUNT * 4)
+	/datum/material/glass = MINERAL_MATERIAL_AMOUNT * 4,)
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
@@ -74,7 +71,6 @@
 	materials = list(
 	/datum/material/silver = MINERAL_MATERIAL_AMOUNT * 10,
 	/datum/material/gold = MINERAL_MATERIAL_AMOUNT * 10,
-	/datum/material/uranium = MINERAL_MATERIAL_AMOUNT * 10,
-	/datum/material/shipbreakium = MINERAL_MATERIAL_AMOUNT * 10)
+	/datum/material/uranium = MINERAL_MATERIAL_AMOUNT * 10,)
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 	resistance_flags = FIRE_PROOF | ACID_PROOF

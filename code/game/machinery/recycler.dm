@@ -31,8 +31,7 @@
 	/datum/material/titanium, 
 	/datum/material/bluespace, 
 	/datum/material/dilithium, 
-	/datum/material/plastic,
-	/datum/material/shipbreakium), INFINITY, FALSE, null, null, null, TRUE)
+	/datum/material/plastic), INFINITY, FALSE, null, null, null, TRUE)
 	AddComponent(/datum/component/butchering, 0.1 SECONDS, amount_produced, amount_produced/5)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD

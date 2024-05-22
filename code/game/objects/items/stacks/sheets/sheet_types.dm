@@ -936,18 +936,3 @@ GLOBAL_LIST_INIT(ashresin_recipes, list (
 /obj/item/stack/sheet/ashresin/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.ashresin_recipes
 	. = ..()
-
-
-/obj/item/stack/sheet/shipbreak_material
-	name = "shipbreak material"
-	desc = "Sheets made out of broken ship parts."
-	singular_name = "ship-broken material"
-	icon_state = "sheet-metal"
-	item_state = "sheet-metal"
-	materials = list(/datum/material/shipbreakium=MINERAL_MATERIAL_AMOUNT)
-	throwforce = 10
-	flags_1 = CONDUCT_1
-	resistance_flags = FIRE_PROOF
-	merge_type = /obj/item/stack/sheet/shipbreak_material
-	point_value = 0
-	matter_amount = 4
