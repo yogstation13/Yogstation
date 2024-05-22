@@ -680,19 +680,6 @@
 	menutab = MENU_CLOTHING
 	additional_desc = "This gaudy hat has surprisingly good weight distribution, you could probably throw it very effectively."
 
-/obj/item/nullrod/tribal_knife/Initialize(mapload)
-	. = ..()
-	START_PROCESSING(SSobj, src)
-	AddComponent(/datum/component/butchering, 50, 100)
-
-/obj/item/nullrod/tribal_knife/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	. = ..()
-
-/obj/item/nullrod/tribal_knife/process()
-	slowdown = rand(-2, 2)
-
-
 /obj/item/nullrod/pitchfork
 	name = "unholy pitchfork"
 	desc = "Holding this makes you look absolutely devilish."
