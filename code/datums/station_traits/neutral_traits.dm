@@ -65,14 +65,14 @@
 /datum/station_trait/announcement_duke
 	name = "Announcement Duke"
 	trait_type = STATION_TRAIT_NEUTRAL
-	weight = 0.2
+	weight = 0.05
 	show_in_report = TRUE
 	report_message = "All our announcement systems are down and our interns are on strike, so we hired some guy off the street."
 	blacklist = list(/datum/station_trait/announcement_medbot,
 	/datum/station_trait/announcement_intern
 	)
 
-/datum/station_trait/announcement_duket/New()
+/datum/station_trait/announcement_duke/New()
 	. = ..()
 	SSstation.announcer = /datum/centcom_announcer/duke
 
