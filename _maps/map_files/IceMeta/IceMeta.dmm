@@ -2006,9 +2006,6 @@
 /area/medical/genetics)
 "aDH" = (
 /obj/structure/lattice/catwalk,
-/obj/structure/fans/tiny{
-	resistance_flags = 115
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -5819,9 +5816,6 @@
 /area/icemoon/underground/explored/laborcamp)
 "bJC" = (
 /obj/structure/lattice/catwalk,
-/obj/structure/fans/tiny{
-	resistance_flags = 115
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -19366,9 +19360,6 @@
 /area/solar/port/fore)
 "fMQ" = (
 /obj/structure/lattice/catwalk,
-/obj/structure/fans/tiny{
-	resistance_flags = 115
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -20151,7 +20142,7 @@
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/mine/maintenance)
 "fWS" = (
-/turf/open/space/basic,
+/turf/open/floor/plating/snowed/smoothed,
 /area/shipbreak)
 "fXe" = (
 /obj/machinery/airalarm{
@@ -39718,9 +39709,6 @@
 "lAM" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon,
-/obj/structure/fans/tiny{
-	resistance_flags = 115
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
@@ -40790,9 +40778,6 @@
 /area/chapel/main)
 "lPT" = (
 /obj/structure/lattice/catwalk,
-/obj/structure/fans/tiny{
-	resistance_flags = 115
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -69137,9 +69122,6 @@
 "tQu" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon,
-/obj/structure/fans/tiny{
-	resistance_flags = 115
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
@@ -69860,9 +69842,6 @@
 "tZD" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon,
-/obj/structure/fans/tiny{
-	resistance_flags = 115
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
@@ -75663,9 +75642,6 @@
 /area/science/mixing)
 "vEE" = (
 /obj/structure/lattice/catwalk,
-/obj/structure/fans/tiny{
-	resistance_flags = 115
-	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/snowed/smoothed,
 /area/icemoon/top_layer/outdoors)
@@ -77253,9 +77229,6 @@
 "wbG" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon,
-/obj/structure/fans/tiny{
-	resistance_flags = 115
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
