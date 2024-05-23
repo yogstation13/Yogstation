@@ -157,7 +157,7 @@
 			playsound(loc, 'sound/machines/ping.ogg', 50, 1)
 		else if(!desired_name)
 			say("No prisoner name inputted, security record not updated.")
-			
+
 	return 1
 
 

@@ -25,13 +25,13 @@ GLOBAL_LIST_EMPTY(engineering_nodes)
 	. = ..()
 	linked_techweb = SSresearch.science_tech
 
-/obj/machinery/computer/department_reward/proc/check_reward()
+/obj/machinery/computer/department_reward/proc/check_reward(delta_time)
 	return 0
 
-/obj/machinery/computer/department_reward/process()
+/obj/machinery/computer/department_reward/process(delta_time)
 	if(stat & (NOPOWER|BROKEN))
 		return // we dont return PROCESS_KILL because it's already handled in /obj/machinery
-	points += check_reward()
+	points += check_reward(delta_time)
 
 /obj/machinery/computer/department_reward/ui_interact(mob/user, datum/tgui/ui)
 	if(stat & (NOPOWER|BROKEN))
