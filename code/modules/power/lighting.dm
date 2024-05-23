@@ -961,9 +961,9 @@
 	. = ..()
 	switch(status)
 		if(LIGHT_BURNED)
-			inhand_icon_state = "[base_state]_burned"
+			item_state = "[base_state]_burned"
 		if(LIGHT_BROKEN)
-			inhand_icon_state = "[base_state]_broken"
+			item_state = "[base_state]_broken"
 
 /obj/item/light/tube/broken
 	status = LIGHT_BROKEN
