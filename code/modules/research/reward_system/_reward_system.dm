@@ -29,12 +29,12 @@ GLOBAL_LIST_EMPTY(engineering_nodes)
 	return 0
 
 /obj/machinery/computer/department_reward/process(delta_time)
-	if(stat & (NOPOWER|BROKEN))
-		return // we dont return PROCESS_KILL because it's already handled in /obj/machinery
+	if(!is_operational())
+		return
 	points += check_reward(delta_time)
 
 /obj/machinery/computer/department_reward/ui_interact(mob/user, datum/tgui/ui)
-	if(stat & (NOPOWER|BROKEN))
+	if(!is_operational())
 		return FALSE
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -81,7 +81,7 @@ GLOBAL_LIST_EMPTY(engineering_nodes)
 	if(..())
 		return
 
-	if(stat & (NOPOWER|BROKEN))
+	if(!is_operational())
 		return
 
 	switch(action)
