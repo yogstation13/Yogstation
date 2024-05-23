@@ -1,5 +1,6 @@
 /obj/machinery/computer/department_reward/security
 	name = "departmental research console (Security)"
+	desc = "A primitive version of the famous R&D console used to unlock department-relevant research. This one is powered by incarcerated criminals."
 	department_display = "Security"
 
 /obj/machinery/computer/department_reward/security/Initialize(mapload)
