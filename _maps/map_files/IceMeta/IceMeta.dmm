@@ -2004,6 +2004,16 @@
 /obj/structure/sink/puddle,
 /turf/open/floor/grass,
 /area/medical/genetics)
+"aDH" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating/snowed/smoothed,
+/area/icemoon/top_layer/outdoors)
 "aDI" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -3502,6 +3512,12 @@
 "aYT" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
 /turf/open/floor/plating/snowed/smoothed,
 /area/icemoon/top_layer/outdoors)
 "aYY" = (
@@ -5801,6 +5817,16 @@
 /obj/structure/ladder,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/underground/explored/laborcamp)
+"bJC" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating/snowed/smoothed,
+/area/icemoon/top_layer/outdoors)
 "bJD" = (
 /obj/effect/turf_decal/trimline/green/filled/line/lower,
 /turf/open/floor/plasteel,
@@ -8926,7 +8952,9 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 4
 	},
-/obj/structure/fans/tiny,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -11993,6 +12021,12 @@
 /obj/structure/lattice,
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
 /turf/open/floor/plating/snowed/smoothed,
 /area/icemoon/top_layer/outdoors)
 "dAp" = (
@@ -17335,7 +17369,9 @@
 /turf/open/floor/engine/n2,
 /area/engine/atmos/distro)
 "fiM" = (
-/obj/structure/fans/tiny,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
 /turf/open/floor/plating,
 /area/mine/abandoned)
 "fiU" = (
@@ -18975,7 +19011,9 @@
 	id = "Podbaydoor";
 	name = "Wilderness Access"
 	},
-/obj/structure/fans/tiny,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
 /turf/open/floor/engine,
 /area/escapepodbay)
 "fIm" = (
@@ -19326,6 +19364,19 @@
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/solar/port/fore)
+"fMQ" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating/snowed/smoothed,
+/area/icemoon/top_layer/outdoors)
 "fMT" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Starboard Primary Hallway"
@@ -20640,6 +20691,19 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall,
 /area/science/xenobiology)
+"ged" = (
+/obj/structure/lattice/catwalk,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating/snowed/smoothed,
+/area/icemoon/top_layer/outdoors)
 "gep" = (
 /turf/closed/wall,
 /area/storage/art)
@@ -27658,7 +27722,9 @@
 /obj/item/flashlight/lantern{
 	light_on = 1
 	},
-/obj/structure/fans/tiny,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
 /turf/open/floor/plating/snowed/colder,
 /area/mine/abandoned)
 "ihb" = (
@@ -28279,7 +28345,9 @@
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "iqX" = (
-/obj/structure/fans/tiny,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
 /obj/machinery/door/poddoor{
 	id = "Podbaydoor";
 	name = "Wilderness Access"
@@ -39647,6 +39715,17 @@
 	},
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
+"lAM" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plating/snowed/smoothed,
+/area/icemoon/top_layer/outdoors)
 "lAO" = (
 /obj/structure/table,
 /obj/item/book/manual/wiki/atmospherics,
@@ -40170,7 +40249,9 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "lIB" = (
-/obj/structure/fans/tiny,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
 /turf/open/floor/plating,
 /area/mine/laborcamp)
 "lIC" = (
@@ -40708,9 +40789,14 @@
 	},
 /area/chapel/main)
 "lPT" = (
-/obj/structure/lattice,
 /obj/structure/lattice/catwalk,
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating/snowed/smoothed,
 /area/icemoon/top_layer/outdoors)
 "lPV" = (
 /obj/machinery/door/airlock/public/glass{
@@ -46198,7 +46284,9 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
-/obj/structure/fans/tiny,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
 /obj/machinery/door/airlock/external{
 	name = "Engineering Escape Pod";
 	req_one_access_txt = "10;61"
@@ -57215,7 +57303,9 @@
 	id = "chapelgun";
 	name = "Chapel Launcher Door"
 	},
-/obj/structure/fans/tiny,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
 /turf/open/floor/plating,
 /area/chapel/main)
 "qyk" = (
@@ -65795,7 +65885,9 @@
 /area/ai_monitored/security/armory)
 "sVd" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/fans/tiny,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
 /turf/open/floor/plating,
 /area/mine/abandoned)
 "sVf" = (
@@ -69043,9 +69135,14 @@
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "tQu" = (
-/obj/structure/fans/tiny,
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
 /turf/open/floor/plating/snowed/smoothed,
 /area/icemoon/top_layer/outdoors)
 "tQF" = (
@@ -69760,6 +69857,17 @@
 /obj/effect/turf_decal/trimline/green/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"tZD" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plating/snowed/smoothed,
+/area/icemoon/top_layer/outdoors)
 "tZL" = (
 /obj/machinery/light/small,
 /turf/open/floor/engine,
@@ -75554,8 +75662,11 @@
 /turf/open/floor/plasteel,
 /area/science/mixing)
 "vEE" = (
-/obj/structure/fans/tiny,
 /obj/structure/lattice/catwalk,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/snowed/smoothed,
 /area/icemoon/top_layer/outdoors)
 "vEJ" = (
@@ -77139,6 +77250,17 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/port)
+"wbG" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plating/snowed/smoothed,
+/area/icemoon/top_layer/outdoors)
 "wbK" = (
 /obj/structure/table,
 /obj/item/storage/belt/medical{
@@ -81317,6 +81439,12 @@
 /area/maintenance/starboard/secondary)
 "xkE" = (
 /obj/structure/lattice/catwalk,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
 /turf/open/floor/plating/snowed/smoothed,
 /area/icemoon/top_layer/outdoors)
 "xkF" = (
@@ -82649,7 +82777,9 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 8
 	},
-/obj/structure/fans/tiny,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -84101,7 +84231,9 @@
 	id = "toxinsdriver";
 	name = "Toxins Launcher Bay Door"
 	},
-/obj/structure/fans/tiny,
+/obj/structure/fans/tiny{
+	resistance_flags = 115
+	},
 /turf/open/floor/plating,
 /area/science/mixing)
 "xTp" = (
@@ -243990,20 +244122,20 @@ ozK
 ozK
 ozK
 aKW
-tQu
-vEE
-vEE
-vEE
-vEE
-vEE
-vEE
-vEE
-vEE
-vEE
-vEE
-vEE
-vEE
-tQu
+wbG
+lPT
+lPT
+lPT
+lPT
+lPT
+lPT
+lPT
+lPT
+lPT
+lPT
+lPT
+lPT
+tZD
 tRh
 tRh
 tRh
@@ -244247,7 +244379,7 @@ ozK
 ozK
 ozK
 kBB
-vEE
+aDH
 fWS
 fWS
 fWS
@@ -244504,7 +244636,7 @@ ozK
 ozK
 ozK
 nNq
-vEE
+aDH
 fWS
 fWS
 fWS
@@ -244761,7 +244893,7 @@ ozK
 ozK
 ozK
 vqV
-vEE
+aDH
 fWS
 fWS
 fWS
@@ -245018,7 +245150,7 @@ ozK
 ozK
 ueX
 tJz
-vEE
+aDH
 fWS
 fWS
 fWS
@@ -245257,8 +245389,8 @@ bwy
 hIF
 pDH
 iqX
-lPT
-pnX
+ueX
+ozK
 ozK
 ozK
 ozK
@@ -245275,7 +245407,7 @@ ozK
 ozK
 ueX
 aKW
-vEE
+aDH
 fWS
 fWS
 fWS
@@ -245516,11 +245648,7 @@ pDH
 iqX
 dAi
 xkE
-xkE
-xkE
-aYT
-xkE
-xkE
+ged
 xkE
 aYT
 xkE
@@ -245532,7 +245660,11 @@ xkE
 xkE
 aYT
 xkE
-vEE
+xkE
+xkE
+aYT
+xkE
+aDH
 fWS
 fWS
 fWS
@@ -245771,8 +245903,8 @@ bwy
 hIF
 pDH
 fIf
-lPT
-pnX
+ueX
+ozK
 ozK
 ozK
 ozK
@@ -245789,7 +245921,7 @@ ueX
 ueX
 ueX
 kSM
-vEE
+fMQ
 fWS
 fWS
 fWS
@@ -246046,7 +246178,7 @@ ozK
 ozK
 ozK
 ozK
-vEE
+fMQ
 fWS
 fWS
 fWS
@@ -246304,19 +246436,19 @@ ozK
 ozK
 ozK
 tQu
-vEE
-vEE
-vEE
-vEE
-vEE
-vEE
-vEE
-vEE
-vEE
-vEE
-vEE
-vEE
-tQu
+bJC
+bJC
+bJC
+bJC
+bJC
+bJC
+bJC
+bJC
+bJC
+bJC
+bJC
+bJC
+lAM
 tRh
 tRh
 tRh
