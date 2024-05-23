@@ -955,6 +955,8 @@
 	icon_state = "ltube"
 	base_state = "ltube"
 	item_state = "ltube"
+	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	brightness = 8
 
 /obj/item/light/tube/update_icon_state()
