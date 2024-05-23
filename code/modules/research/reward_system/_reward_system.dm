@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(engineering_nodes)
 			var/datum/techweb_node/node = SSresearch.techweb_node_by_id(node_id)
 			for(var/des_id in node.design_ids)
 				var/datum/design/design = SSresearch.techweb_design_by_id(des_id)
-				if(design.departmental_flags & ALL) // usually mech or nanite or other abstract stuff
+				if(design.departmental_flags & ALL == ALL) // usually mech or nanite or other abstract stuff
 					continue
 				if(design.departmental_flags & (DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_ARMORY))
 					GLOB.security_nodes[node.id] = TRUE
