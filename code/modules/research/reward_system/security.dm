@@ -17,19 +17,19 @@
 		if(timer.timing && timer.desired_name)
 			criminals += timer.desired_name
 		CHECK_TICK
-	for(var/area/security/brig_cell/cell in GLOB.the_station_areas)
+	for(var/area/security/brig_cell/cell in GLOB.areas)
 		var/list/cell_humans = cell.get_all_contents_type(/mob/living/carbon/human)
 		for(var/mob/living/carbon/human/guy as anything in cell_humans)
-			if(guy.real_name in criminals)
+			if(guy.real_name in criminals && guy.stat == CONSCIOUS)
 				. += delta_time * 2.1 // 126 points per minute of captured criminal
 		CHECK_TICK
 
 	// Perma prisoners with no access
-	for(var/area/security/prison/perma in GLOB.the_station_areas)
+	for(var/area/security/prison/perma in GLOB.areas)
 		var/list/permad_humans = perma.get_all_contents_type(/mob/living/carbon/human)
 		for(var/mob/living/carbon/human/guy as anything in permad_humans)
 			var/obj/item/idcard = guy.get_idcard()
 			var/access = idcard?.GetAccess()
-			if(access == null || length(access) == 0)
+			if(access == null || length(access) == 0 && guy.stat == CONSCIOUS)
 				. += delta_time * 2.1 // 126 points per minute of captured criminal
 			CHECK_TICK
