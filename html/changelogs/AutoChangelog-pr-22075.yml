@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - tweak: "global statpanel data is updated 6x fasdter"
