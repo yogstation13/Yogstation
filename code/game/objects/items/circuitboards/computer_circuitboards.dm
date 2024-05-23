@@ -181,7 +181,7 @@
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/computer/department_reward
 
-/obj/item/circuitboard/computer/department_reward
+/obj/item/circuitboard/computer/department_reward/security
 	name = "Departmental Research Console (Security) (Computer Board)"
 	greyscale_colors = CIRCUIT_COLOR_SECURITY
 	build_path = /obj/machinery/computer/department_reward/security
