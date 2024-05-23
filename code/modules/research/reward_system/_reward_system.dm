@@ -66,7 +66,7 @@ GLOBAL_LIST_EMPTY(engineering_nodes)
 			var/node_entry = list()
 			node_entry["name"] = node.display_name
 			node_entry["id"] = node_id
-			node_entry["purchasable"] = node_price < points
+			node_entry["purchasable"] = node_price <= points
 			node_entry["price"] = node_price
 			node_entry["designs"] = list()
 			var/design_count = 0
