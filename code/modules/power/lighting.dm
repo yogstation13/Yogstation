@@ -19,13 +19,13 @@
 	name = "light fixture frame"
 	desc = "Used for building lights."
 	icon = 'icons/obj/lighting.dmi'
-	icon_state = "tube-construct-item"
+	icon_state = "tube_construct_item"
 	result_path = /obj/structure/light_construct
 	inverse = TRUE
 
 /obj/item/wallframe/light_fixture/small
 	name = "small light fixture frame"
-	icon_state = "bulb-construct-item"
+	icon_state = "bulb_construct_item"
 	result_path = /obj/structure/light_construct/small
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 
@@ -43,7 +43,7 @@
 	name = "light fixture frame"
 	desc = "A light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
-	icon_state = "tube-construct-stage1"
+	icon_state = "tube_construct_stage1"
 	anchored = TRUE
 	layer = WALL_OBJ_LAYER
 	max_integrity = 200
@@ -143,7 +143,7 @@
 			if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/coil = W
 				if(coil.use(1))
-					icon_state = "[fixture_type]-construct-stage2"
+					icon_state = "[fixture_type]_construct_stage2"
 					stage = 2
 					user.visible_message("[user.name] adds wires to [src].", \
 						span_notice("You add wires to [src]."))
@@ -157,7 +157,7 @@
 
 			if(W.tool_behaviour == TOOL_WIRECUTTER)
 				stage = 1
-				icon_state = "[fixture_type]-construct-stage1"
+				icon_state = "[fixture_type]_construct_stage1"
 				new /obj/item/stack/cable_coil(drop_location(), 1, "red")
 				user.visible_message("[user.name] removes the wiring from [src].", \
 					span_notice("You remove the wiring from [src]."), span_italics("You hear clicking."))
@@ -197,13 +197,13 @@
 
 /obj/structure/light_construct/small
 	name = "small light fixture frame"
-	icon_state = "bulb-construct-stage1"
+	icon_state = "bulb_construct_stage1"
 	fixture_type = "bulb"
 	sheets_refunded = 1
 
 /obj/structure/light_construct/floor
 	name = "floor light fixture frame"
-	icon_state = "floor-construct-stage1"
+	icon_state = "floor_construct_stage1"
 	fixture_type = "floor"
 	sheets_refunded = 1
 	layer = LOW_OBJ_LAYER
@@ -292,7 +292,7 @@
 
 /obj/machinery/light/broken
 	status = LIGHT_BROKEN
-	icon_state = "tube-broken"
+	icon_state = "tube_broken"
 
 // the smaller bulb light fixture
 
@@ -306,7 +306,7 @@
 
 /obj/machinery/light/small/broken
 	status = LIGHT_BROKEN
-	icon_state = "bulb-broken"
+	icon_state = "bulb_broken"
 
 /obj/machinery/light/Move()
 	if(status != LIGHT_BROKEN)
@@ -315,17 +315,17 @@
 
 /obj/machinery/light/built
 	status = LIGHT_EMPTY
-	icon_state = "tube-empty"
+	icon_state = "tube_empty"
 	start_with_cell = FALSE
 
 /obj/machinery/light/floor/built
 	status = LIGHT_EMPTY
-	icon_state = "floor-empty"
+	icon_state = "floor_empty"
 	start_with_cell = FALSE
 
 /obj/machinery/light/small/built
 	status = LIGHT_EMPTY
-	icon_state = "bulb-empty"
+	icon_state = "bulb_empty"
 	start_with_cell = FALSE
 
 // create a new lighting fixture
@@ -397,11 +397,11 @@
 			else
 				icon_state = "[base_state]"
 		if(LIGHT_EMPTY)
-			icon_state = "[base_state]-empty"
+			icon_state = "[base_state]_empty"
 		if(LIGHT_BURNED)
-			icon_state = "[base_state]-burned"
+			icon_state = "[base_state]_burned"
 		if(LIGHT_BROKEN)
-			icon_state = "[base_state]-broken"
+			icon_state = "[base_state]_broken"
 	return ..()
 
 /obj/machinery/light/update_overlays()
@@ -540,7 +540,7 @@
 /obj/machinery/light/proc/burn_out()
 	if(status == LIGHT_OK)
 		status = LIGHT_BURNED
-		icon_state = "[base_state]-burned"
+		icon_state = "[base_state]_burned"
 		on = FALSE
 		set_light(l_range = 0)
 		playsound(src.loc, 'sound/effects/burnout.ogg', 65)
@@ -644,15 +644,15 @@
 	switch(fitting)
 		if("tube")
 			newlight = new /obj/structure/light_construct(loc)
-			newlight.icon_state = "tube-construct-stage[current_stage]"
+			newlight.icon_state = "tube_construct_stage[current_stage]"
 
 		if("bulb")
 			newlight = new /obj/structure/light_construct/small(loc)
-			newlight.icon_state = "bulb-construct-stage[current_stage]"
+			newlight.icon_state = "bulb_construct_stage[current_stage]"
 
 		if("floor bulb")
 			newlight = new /obj/structure/light_construct/floor(loc)
-			newlight.icon_state = "floor-construct-stage[current_stage]"
+			newlight.icon_state = "floor_construct_stage[current_stage]"
 	newlight.setDir(dir)
 	newlight.stage = current_stage
 	if(!disassembled)
@@ -987,9 +987,9 @@
 		if(LIGHT_OK)
 			icon_state = base_state
 		if(LIGHT_BURNED)
-			icon_state = "[base_state]-burned"
+			icon_state = "[base_state]_burned"
 		if(LIGHT_BROKEN)
-			icon_state = "[base_state]-broken"
+			icon_state = "[base_state]_broken"
 
 /obj/item/light/update_desc()
 	. = ..()
@@ -1066,7 +1066,7 @@
 	name = "floor light frame"
 	desc = "Used for building lights."
 	icon = 'icons/obj/lighting.dmi'
-	icon_state = "floor-construct-stage1"
+	icon_state = "floor_construct_stage1"
 
 /obj/item/floor_light/examine(mob/user)
 	. = ..()
