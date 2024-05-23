@@ -19,7 +19,7 @@
 		var/list/cell_humans = cell.get_all_contents_type(/mob/living/carbon/human)
 		for(var/mob/living/carbon/human/guy as anything in cell_humans)
 			if(guy.real_name in criminals)
-				. += delta_time * 10 // 600 points per minute of captured criminal
+				. += delta_time * 2.1 // 126 points per minute of captured criminal
 		CHECK_TICK
 
 	// Perma prisoners with no access
@@ -29,5 +29,5 @@
 			var/obj/item/idcard = guy.get_idcard()
 			var/access = idcard?.GetAccess()
 			if(access == null || length(access) == 0)
-				. += delta_time * 10 // 600 points per minute of captured criminal
+				. += delta_time * 2.1 // 126 points per minute of captured criminal
 			CHECK_TICK

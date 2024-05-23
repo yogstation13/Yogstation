@@ -34,7 +34,7 @@ export const DepartmentReward = (props, context) => {
                 fontSize={1}
                 height={7}
                 fill
-                backgroundColor='blue'
+                backgroundColor='grey'
                 key={'node'+index}>
                 <Stack fill vertical>
                   <Stack.Item>
