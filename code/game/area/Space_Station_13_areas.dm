@@ -918,11 +918,19 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	minimap_color = "#530505"
 	lights_always_start_on = TRUE
 
+/area/security/prison/New()
+	. = ..()
+	GLOB.perma_prison_areas |= src
+
 /area/security/brig_cell
 	name = "Brig Cell"
 	icon_state = "sec_prison"
 	minimap_color = "#530505"
 	lights_always_start_on = TRUE
+
+/area/security/brig_cell/New()
+	. = ..()
+	GLOB.brig_cell_areas |= src
 
 /area/security/prison/hallway
 	name = "Prison Wing Hallway"

@@ -84,6 +84,7 @@
 
 	Radio = new/obj/item/radio(src)
 	Radio.listening = 0
+	GLOB.door_timers |= src
 
 /obj/machinery/door_timer/Initialize(mapload)
 	. = ..()
@@ -157,7 +158,7 @@
 			playsound(loc, 'sound/machines/ping.ogg', 50, 1)
 		else if(!desired_name)
 			say("No prisoner name inputted, security record not updated.")
-			
+
 	return 1
 
 
