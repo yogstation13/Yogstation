@@ -2499,7 +2499,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "aMq" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "Skynet_launch";
@@ -11951,7 +11951,7 @@
 	dir = 5
 	},
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "dzV" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular{
@@ -12105,7 +12105,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "dCG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -13392,9 +13392,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/auto_name/west{
-	pixel_x = -25
-	},
+/obj/machinery/power/apc/auto_name/west,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "dWi" = (
@@ -13780,7 +13778,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "eco" = (
 /turf/open/floor/circuit/green,
 /area/science/robotics/mechbay)
@@ -20161,7 +20159,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "fYg" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
@@ -21025,7 +21023,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "gjH" = (
 /obj/structure/table,
 /obj/item/toner,
@@ -21366,7 +21364,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "gov" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = -32
@@ -23393,8 +23391,7 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/machinery/computer/atmos_sim{
-	dir = 4;
-	mode = 1
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
@@ -32303,6 +32300,7 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 8
 	},
+/obj/machinery/computer/department_reward/security,
 /turf/open/floor/plasteel,
 /area/security/main)
 "jvl" = (
@@ -33710,7 +33708,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "jPB" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -34116,7 +34114,7 @@
 	dir = 5
 	},
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "jWr" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Cargo Bay Bridge Access"
@@ -51441,8 +51439,7 @@
 "oPd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/computer/atmos_sim{
-	dir = 4;
-	mode = 1
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
@@ -57909,6 +57906,9 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/cmo)
+"qHR" = (
+/turf/closed/wall,
+/area/security/brig_cell)
 "qHT" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -61202,7 +61202,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "rJq" = (
 /obj/structure/window/reinforced,
 /obj/structure/table,
@@ -62494,9 +62494,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "san" = (
-/obj/machinery/airalarm/directional/west{
-	pixel_x = -24
-	},
+/obj/machinery/airalarm/directional/west,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -75534,7 +75532,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "vGd" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -81844,7 +81842,7 @@
 	dir = 9
 	},
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "xti" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/visible{
 	dir = 4
@@ -241941,8 +241939,8 @@ suD
 aoc
 mdB
 ulr
-ulr
-ulr
+qHR
+qHR
 qin
 aqS
 cMp
@@ -242969,8 +242967,8 @@ suD
 aoc
 cyq
 ulr
-ulr
-ulr
+qHR
+qHR
 qin
 gQX
 qcv
