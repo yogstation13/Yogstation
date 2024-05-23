@@ -176,6 +176,11 @@
 
 //Generic
 
+/obj/item/circuitboard/computer/department_reward
+	name = "Departmental Research Console (Computer Board)"
+	greyscale_colors = CIRCUIT_COLOR_GENERIC
+	build_path = /obj/machinery/computer/department_reward
+
 /obj/item/circuitboard/computer/arcade/amputation
 	name = "Mediborg's Amputation Adventure (Computer Board)"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
@@ -354,7 +359,7 @@
 /obj/item/circuitboard/computer/rdconsole/production
 	name = "R&D Console Production Only (Computer Board)"
 	build_path = /obj/machinery/computer/rdconsole/production
-	
+
 /obj/item/circuitboard/computer/rdconsole/multitool_act(mob/living/user, obj/item/I)
 	. = ..()
 	user.visible_message(span_notice("[user] fiddles with [src]."), span_notice( "You fiddle with [src]."))
@@ -397,8 +402,8 @@
 		return TRUE
 	if(I.use_tool(src, user, 2 SECONDS, volume = 75))
 		unlocked = FALSE
-		to_chat(user, span_notice("You melt the solder back into place, restoring the connections in the traces."))	
-	
+		to_chat(user, span_notice("You melt the solder back into place, restoring the connections in the traces."))
+
 
 /obj/item/circuitboard/computer/rdservercontrol
 	name = "R&D Server Control (Computer Board)"
@@ -423,7 +428,7 @@
 /obj/item/circuitboard/computer/xenobiology/syndicateicemoon
 	name = "Syndicate Xenobiology Console (Computer Board)"
 	build_path = /obj/machinery/computer/camera_advanced/xenobio/syndicateicemoon
-	
+
 /obj/item/circuitboard/computer/shuttle/flight_control
 	name = "Shuttle Flight Control (Computer Board)"
 	build_path = /obj/machinery/computer/custom_shuttle
@@ -520,7 +525,7 @@
 	obj_flags |= EMAGGED
 	to_chat(user, span_notice("You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband."))
 	return TRUE
-	
+
 /obj/item/circuitboard/computer/cargo/express
 	name = "Express Supply Console (Computer Board)"
 	build_path = /obj/machinery/computer/cargo/express

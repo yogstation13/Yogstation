@@ -1,9 +1,3 @@
-GLOBAL_LIST_EMPTY(security_nodes)
-GLOBAL_LIST_EMPTY(medical_nodes)
-GLOBAL_LIST_EMPTY(cargo_nodes)
-GLOBAL_LIST_EMPTY(service_nodes)
-GLOBAL_LIST_EMPTY(science_nodes)
-GLOBAL_LIST_EMPTY(engineering_nodes)
 //Techweb nodes are GLOBAL, there should only be one instance of them in the game. Persistant changes should never be made to them in-game.
 //USE SSRESEARCH PROCS TO OBTAIN REFERENCES. DO NOT REFERENCE OUTSIDE OF SSRESEARCH OR YOU WILL FUCK UP GC.
 
@@ -34,19 +28,6 @@ GLOBAL_LIST_EMPTY(engineering_nodes)
 		prereq_ids[pre_id] = TRUE
 	for(var/des_id in design_ids)
 		design_ids[des_id] = TRUE
-		var/datum/design/design = SSresearch.techweb_designs[des_id]
-		if(design.departmental_flags & (DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_ARMORY))
-			GLOB.security_nodes |= id
-		if(design.departmental_flags & DEPARTMENTAL_FLAG_MEDICAL)
-			GLOB.medical_nodes |= id
-		if(design.departmental_flags & DEPARTMENTAL_FLAG_CARGO)
-			GLOB.cargo_nodes |= id
-		if(design.departmental_flags & DEPARTMENTAL_FLAG_SERVICE)
-			GLOB.service_nodes |= id
-		if(design.departmental_flags & DEPARTMENTAL_FLAG_SCIENCE)
-			GLOB.science_nodes |= id
-		if(design.departmental_flags & DEPARTMENTAL_FLAG_ENGINEERING)
-			GLOB.engineering_nodes |= id
 	for(var/unl_id in unlock_ids)
 		unlock_ids[unl_id] = TRUE
 
