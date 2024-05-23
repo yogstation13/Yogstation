@@ -45,10 +45,10 @@
 
 /obj/machinery/computer/shipbreaker/proc/area_clear_check()
 	for(var/turf/t in linked)
-		if(isopenturf(t) (istype(t, /turf/open/floor/plating/snowed/smoothed)))
+		if(((istype(t, /turf/open/floor/plating/snowed/smoothed))))
 			spawn_area_clear = TRUE
 
-		if(!isspaceturf(t))
+		else if(!isspaceturf(t))
 			spawn_area_clear = FALSE
 			return
 	for(var/obj/s in linked)
@@ -60,9 +60,9 @@
 
 /obj/machinery/computer/shipbreaker/proc/clear_floor_plating()
 	for(var/turf/t in linked)
-		if(isfloorturf(t))
+		if(((!istype(t, /turf/open/floor/plating/snowed/smoothed))))
 			t.ScrapeAway()
-
+			
 
 /obj/machinery/computer/shipbreaker/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
