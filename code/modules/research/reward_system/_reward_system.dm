@@ -41,20 +41,19 @@ GLOBAL_LIST_EMPTY(engineering_nodes)
 			var/datum/techweb_node/node = SSresearch.techweb_node_by_id(node_id)
 			for(var/des_id in node.design_ids)
 				var/datum/design/design = SSresearch.techweb_design_by_id(des_id)
-				if(design.departmental_flags & ALL == ALL) // usually mech or nanite or other abstract stuff
-					continue
-				if(design.departmental_flags & (DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_ARMORY))
-					GLOB.security_nodes[node.id] = TRUE
-				if(design.departmental_flags & DEPARTMENTAL_FLAG_MEDICAL)
-					GLOB.medical_nodes[node.id] = TRUE
-				if(design.departmental_flags & DEPARTMENTAL_FLAG_CARGO)
-					GLOB.cargo_nodes[node.id] = TRUE
-				if(design.departmental_flags & DEPARTMENTAL_FLAG_SERVICE)
-					GLOB.service_nodes[node.id] = TRUE
-				if(design.departmental_flags & DEPARTMENTAL_FLAG_SCIENCE)
-					GLOB.science_nodes[node.id] = TRUE
-				if(design.departmental_flags & DEPARTMENTAL_FLAG_ENGINEERING)
-					GLOB.engineering_nodes[node.id] = TRUE
+				if(design.departmental_flags != ALL)
+					if(design.departmental_flags & (DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_ARMORY))
+						GLOB.security_nodes[node.id] = TRUE
+					if(design.departmental_flags & DEPARTMENTAL_FLAG_MEDICAL)
+						GLOB.medical_nodes[node.id] = TRUE
+					if(design.departmental_flags & DEPARTMENTAL_FLAG_CARGO)
+						GLOB.cargo_nodes[node.id] = TRUE
+					if(design.departmental_flags & DEPARTMENTAL_FLAG_SERVICE)
+						GLOB.service_nodes[node.id] = TRUE
+					if(design.departmental_flags & DEPARTMENTAL_FLAG_SCIENCE)
+						GLOB.science_nodes[node.id] = TRUE
+					if(design.departmental_flags & DEPARTMENTAL_FLAG_ENGINEERING)
+						GLOB.engineering_nodes[node.id] = TRUE
 			CHECK_TICK
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -86,10 +85,13 @@ GLOBAL_LIST_EMPTY(engineering_nodes)
 			var/node_entry = list()
 			node_entry["name"] = node.display_name
 			node_entry["purchasable"] = node_price < points
-			node_entry["price"] = node.price_display(linked_techweb)[TECHWEB_POINT_TYPE_GENERIC]
+			node_entry["price"] = node_price
 			node_entry["designs"] = list()
+			var/design_count = 0
 			for(var/design_id in node.design_ids)
-				node_entry["designs"] |= design_id
+				design_count++
+				if(design_count <= 14)
+					node_entry["designs"] |= design_id
 			data["nodes"] += list(node_entry)
 	return data
 
