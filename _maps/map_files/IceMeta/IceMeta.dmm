@@ -12915,6 +12915,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
+"dPh" = (
+/obj/effect/landmark/carpspawn,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
+/area/icemoon/top_layer/outdoors)
 "dPj" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/storage/satellite)
@@ -221379,7 +221383,7 @@ hcl
 hcl
 hcl
 ozK
-ozK
+dPh
 ozK
 tRh
 tRh
@@ -222465,7 +222469,7 @@ ozK
 ozK
 ozK
 ozK
-ozK
+dPh
 tRh
 tRh
 tRh
@@ -224224,7 +224228,7 @@ ozK
 ozK
 ozK
 ozK
-ozK
+dPh
 ozK
 ozK
 ozK
@@ -226604,7 +226608,7 @@ ozK
 ozK
 ozK
 ozK
-ozK
+dPh
 ozK
 ozK
 tRh
@@ -228818,7 +228822,7 @@ tRh
 tRh
 ozK
 ozK
-ozK
+dPh
 ozK
 ozK
 ozK
@@ -231105,7 +231109,7 @@ tRh
 tRh
 tRh
 tRh
-ozK
+dPh
 ozK
 ozK
 ozK
@@ -234077,7 +234081,7 @@ ozK
 ozK
 ozK
 ozK
-ozK
+dPh
 ozK
 ozK
 tRh
@@ -236247,7 +236251,7 @@ tRh
 tRh
 tRh
 tRh
-ozK
+dPh
 ozK
 ozK
 ozK
@@ -245404,7 +245408,7 @@ ozK
 ozK
 ozK
 ozK
-ozK
+dPh
 ozK
 tRh
 tRh
@@ -257844,7 +257848,7 @@ tRh
 tRh
 tRh
 tRh
-ozK
+dPh
 ozK
 ozK
 ozK
@@ -262855,7 +262859,7 @@ ozK
 ozK
 ozK
 ozK
-ozK
+dPh
 ozK
 tRh
 tRh
@@ -274632,7 +274636,7 @@ ozK
 ozK
 ozK
 ozK
-ozK
+dPh
 tRh
 tRh
 tRh
