@@ -14,7 +14,7 @@
  &mdash; <a href="code/__DEFINES/dcs/signals/signals_turf.html#define">Define Details</a></header>
 <main>
 <h1>code/__DEFINES/dcs/signals/signals_turf.dm 
-            <a href="https://github.com/yogstation13/Yogstation/blob/f34220651b4af6ed89c38542f044f1387a95569c/code/__DEFINES/dcs/signals/signals_turf.dm">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed/code/__DEFINES/dcs/signals/signals_turf.dm">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_turf.dm"/></a></h1>
 
 <table class="summary" cellspacing="0">
@@ -38,79 +38,79 @@ They will be called with the new turf after the turf has changed.</td></tr>
         <tr><th><a href="code/__DEFINES/dcs/signals/signals_turf.html#define/COMSIG_TURF_IGNITED">COMSIG_TURF_IGNITED</a></th><td>From /turf/ignite_turf(): (power, fire_color)</td></tr>
         <tr><th><a href="code/__DEFINES/dcs/signals/signals_turf.html#define/SUPPRESS_FIRE">SUPPRESS_FIRE</a></th><td>Prevents hotspots and turf fires</td></tr></table><h2 id="define">Define Details</h2>
 <h3 id="define/COMSIG_TURF_CALCULATED_ADJACENT_ATMOS"><aside class="declaration">#define </aside>COMSIG_TURF_CALCULATED_ADJACENT_ATMOS
-            <a href="https://github.com/yogstation13/Yogstation/blob/f34220651b4af6ed89c38542f044f1387a95569c/code/__DEFINES/dcs/signals/signals_turf.dm#L22">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed/code/__DEFINES/dcs/signals/signals_turf.dm#L22">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_turf.dm 22"/></a>
     </h3>
     <p>from /turf/proc/immediate_calculate_adjacent_turfs()</p><h3 id="define/COMSIG_TURF_CHANGE"><aside class="declaration">#define </aside>COMSIG_TURF_CHANGE
-            <a href="https://github.com/yogstation13/Yogstation/blob/f34220651b4af6ed89c38542f044f1387a95569c/code/__DEFINES/dcs/signals/signals_turf.dm#L8">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed/code/__DEFINES/dcs/signals/signals_turf.dm#L8">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_turf.dm 8"/></a>
     </h3>
     <p>from base of turf/ChangeTurf(): (path, list/new_baseturfs, flags, list/post_change_callbacks).
 <code>post_change_callbacks</code> is a list that signal handlers can mutate to append <code>/datum/callback</code> objects.
 They will be called with the new turf after the turf has changed.</p><h3 id="define/COMSIG_TURF_DECAL_DETACHED"><aside class="declaration">#define </aside>COMSIG_TURF_DECAL_DETACHED
-            <a href="https://github.com/yogstation13/Yogstation/blob/f34220651b4af6ed89c38542f044f1387a95569c/code/__DEFINES/dcs/signals/signals_turf.dm#L27">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed/code/__DEFINES/dcs/signals/signals_turf.dm#L27">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_turf.dm 27"/></a>
     </h3>
     <p>from /datum/element/decal/Detach(): (description, cleanable, directional, mutable_appearance/pic)</p><h3 id="define/COMSIG_TURF_EXPOSE"><aside class="declaration">#define </aside>COMSIG_TURF_EXPOSE
-            <a href="https://github.com/yogstation13/Yogstation/blob/f34220651b4af6ed89c38542f044f1387a95569c/code/__DEFINES/dcs/signals/signals_turf.dm#L20">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed/code/__DEFINES/dcs/signals/signals_turf.dm#L20">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_turf.dm 20"/></a>
     </h3>
     <p>from /turf/open/temperature_expose(datum/gas_mixture/air, exposed_temperature)</p><h3 id="define/COMSIG_TURF_HAS_GRAVITY"><aside class="declaration">#define </aside>COMSIG_TURF_HAS_GRAVITY
-            <a href="https://github.com/yogstation13/Yogstation/blob/f34220651b4af6ed89c38542f044f1387a95569c/code/__DEFINES/dcs/signals/signals_turf.dm#L10">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed/code/__DEFINES/dcs/signals/signals_turf.dm#L10">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_turf.dm 10"/></a>
     </h3>
     <p>from base of atom/has_gravity(): (atom/asker, list/forced_gravities)</p><h3 id="define/COMSIG_TURF_HOTSPOT_EXPOSE"><aside class="declaration">#define </aside>COMSIG_TURF_HOTSPOT_EXPOSE
-            <a href="https://github.com/yogstation13/Yogstation/blob/f34220651b4af6ed89c38542f044f1387a95569c/code/__DEFINES/dcs/signals/signals_turf.dm#L45">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed/code/__DEFINES/dcs/signals/signals_turf.dm#L45">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_turf.dm 45"/></a>
     </h3>
     <p>From /datum/hotspot/perform_exposure()</p><h3 id="define/COMSIG_TURF_IGNITED"><aside class="declaration">#define </aside>COMSIG_TURF_IGNITED
-            <a href="https://github.com/yogstation13/Yogstation/blob/f34220651b4af6ed89c38542f044f1387a95569c/code/__DEFINES/dcs/signals/signals_turf.dm#L47">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed/code/__DEFINES/dcs/signals/signals_turf.dm#L47">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_turf.dm 47"/></a>
     </h3>
     <p>From /turf/ignite_turf(): (power, fire_color)</p><h3 id="define/COMSIG_TURF_INDUSTRIAL_LIFT_ENTER"><aside class="declaration">#define </aside>COMSIG_TURF_INDUSTRIAL_LIFT_ENTER
-            <a href="https://github.com/yogstation13/Yogstation/blob/f34220651b4af6ed89c38542f044f1387a95569c/code/__DEFINES/dcs/signals/signals_turf.dm#L24">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed/code/__DEFINES/dcs/signals/signals_turf.dm#L24">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_turf.dm 24"/></a>
     </h3>
     <p>called when an elevator enters this turf</p><h3 id="define/COMSIG_TURF_MOVABLE_THROW_LANDED"><aside class="declaration">#define </aside>COMSIG_TURF_MOVABLE_THROW_LANDED
-            <a href="https://github.com/yogstation13/Yogstation/blob/f34220651b4af6ed89c38542f044f1387a95569c/code/__DEFINES/dcs/signals/signals_turf.dm#L37">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed/code/__DEFINES/dcs/signals/signals_turf.dm#L37">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_turf.dm 37"/></a>
     </h3>
     <p>from base of datum/thrownthing/finalize(): (turf/turf, atom/movable/thrownthing) when something is thrown and lands on us</p><h3 id="define/COMSIG_TURF_MULTIZ_DEL"><aside class="declaration">#define </aside>COMSIG_TURF_MULTIZ_DEL
-            <a href="https://github.com/yogstation13/Yogstation/blob/f34220651b4af6ed89c38542f044f1387a95569c/code/__DEFINES/dcs/signals/signals_turf.dm#L12">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed/code/__DEFINES/dcs/signals/signals_turf.dm#L12">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_turf.dm 12"/></a>
     </h3>
     <p>from base of turf/multiz_turf_del(): (turf/source, direction)</p><h3 id="define/COMSIG_TURF_MULTIZ_NEW"><aside class="declaration">#define </aside>COMSIG_TURF_MULTIZ_NEW
-            <a href="https://github.com/yogstation13/Yogstation/blob/f34220651b4af6ed89c38542f044f1387a95569c/code/__DEFINES/dcs/signals/signals_turf.dm#L14">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed/code/__DEFINES/dcs/signals/signals_turf.dm#L14">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_turf.dm 14"/></a>
     </h3>
     <p>from base of turf/multiz_turf_new: (turf/source, direction)</p><h3 id="define/COMSIG_TURF_ON_SHUTTLE_MOVE"><aside class="declaration">#define </aside>COMSIG_TURF_ON_SHUTTLE_MOVE
-            <a href="https://github.com/yogstation13/Yogstation/blob/f34220651b4af6ed89c38542f044f1387a95569c/code/__DEFINES/dcs/signals/signals_turf.dm#L16">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed/code/__DEFINES/dcs/signals/signals_turf.dm#L16">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_turf.dm 16"/></a>
     </h3>
     <p>from base of turf/proc/onShuttleMove(): (turf/new_turf)</p><h3 id="define/COMSIG_TURF_PREPARE_STEP_SOUND"><aside class="declaration">#define </aside>COMSIG_TURF_PREPARE_STEP_SOUND
-            <a href="https://github.com/yogstation13/Yogstation/blob/f34220651b4af6ed89c38542f044f1387a95569c/code/__DEFINES/dcs/signals/signals_turf.dm#L33">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed/code/__DEFINES/dcs/signals/signals_turf.dm#L33">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_turf.dm 33"/></a>
     </h3>
     <p>from /datum/element/footstep/prepare_step(): (list/steps)</p><h3 id="define/COMSIG_TURF_RECEIVE_SWEEPED_ITEMS"><aside class="declaration">#define </aside>COMSIG_TURF_RECEIVE_SWEEPED_ITEMS
-            <a href="https://github.com/yogstation13/Yogstation/blob/f34220651b4af6ed89c38542f044f1387a95569c/code/__DEFINES/dcs/signals/signals_turf.dm#L30">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed/code/__DEFINES/dcs/signals/signals_turf.dm#L30">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_turf.dm 30"/></a>
     </h3>
     <p>from /obj/item/pushbroom/sweep(): (broom, user, items_to_sweep)</p><h3 id="define/COMSIG_TURF_RESERVATION_RELEASED"><aside class="declaration">#define </aside>COMSIG_TURF_RESERVATION_RELEASED
-            <a href="https://github.com/yogstation13/Yogstation/blob/f34220651b4af6ed89c38542f044f1387a95569c/code/__DEFINES/dcs/signals/signals_turf.dm#L18">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed/code/__DEFINES/dcs/signals/signals_turf.dm#L18">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_turf.dm 18"/></a>
     </h3>
     <p>from base of /datum/turf_reservation/proc/Release: (datum/turf_reservation/reservation)</p><h3 id="define/COMSIG_TURF_RESET_ELEVATION"><aside class="declaration">#define </aside>COMSIG_TURF_RESET_ELEVATION
-            <a href="https://github.com/yogstation13/Yogstation/blob/f34220651b4af6ed89c38542f044f1387a95569c/code/__DEFINES/dcs/signals/signals_turf.dm#L40">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed/code/__DEFINES/dcs/signals/signals_turf.dm#L40">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_turf.dm 40"/></a>
     </h3>
     <p>From element/elevation/reset_elevation(): (list/values)</p><h3 id="define/SUPPRESS_FIRE"><aside class="declaration">#define </aside>SUPPRESS_FIRE
-            <a href="https://github.com/yogstation13/Yogstation/blob/f34220651b4af6ed89c38542f044f1387a95569c/code/__DEFINES/dcs/signals/signals_turf.dm#L49">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed/code/__DEFINES/dcs/signals/signals_turf.dm#L49">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_turf.dm 49"/></a>
     </h3>
     <p>Prevents hotspots and turf fires</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/f34220651b4af6ed89c38542f044f1387a95569c">f342206</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/e2bcfdaf1cf5c19ed755d91ef6a6dd805e83e4ed">e2bcfda</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
