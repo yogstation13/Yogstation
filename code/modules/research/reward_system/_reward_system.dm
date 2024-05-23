@@ -97,7 +97,7 @@ GLOBAL_LIST_EMPTY(engineering_nodes)
 			var/node_price = node.get_price(linked_techweb)[TECHWEB_POINT_TYPE_GENERIC]
 			if(!node_price)
 				return
-			if(node_price >= points)
+			if(node_price > points)
 				return
 			if(!linked_techweb.research_node_id(node_id, TRUE, FALSE))
 				return
