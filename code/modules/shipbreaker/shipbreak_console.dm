@@ -45,6 +45,9 @@
 
 /obj/machinery/computer/shipbreaker/proc/area_clear_check()
 	for(var/turf/t in linked)
+		if(isopenturf(t) (istype(t, /turf/open/floor/plating/snowed/smoothed)))
+			spawn_area_clear = TRUE
+
 		if(!isspaceturf(t))
 			spawn_area_clear = FALSE
 			return
