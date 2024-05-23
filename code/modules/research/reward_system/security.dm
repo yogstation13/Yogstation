@@ -20,7 +20,7 @@
 	for(var/area/security/brig_cell/cell in GLOB.areas)
 		var/list/cell_humans = cell.get_all_contents_type(/mob/living/carbon/human)
 		for(var/mob/living/carbon/human/guy as anything in cell_humans)
-			if(guy.real_name in criminals && guy.stat == CONSCIOUS)
+			if(guy.real_name in criminals && guy.stat == CONSCIOUS && guy.mind?.assigned_role in GLOB.crew_positions)
 				. += delta_time * 2.1 // 126 points per minute of captured criminal
 		CHECK_TICK
 
@@ -30,6 +30,6 @@
 		for(var/mob/living/carbon/human/guy as anything in permad_humans)
 			var/obj/item/idcard = guy.get_idcard()
 			var/access = idcard?.GetAccess()
-			if(access == null || length(access) == 0 && guy.stat == CONSCIOUS)
+			if(access == null || length(access) == 0 && guy.stat == CONSCIOUS && guy.mind?.assigned_role in GLOB.crew_positions)
 				. += delta_time * 2.1 // 126 points per minute of captured criminal
 			CHECK_TICK
