@@ -954,8 +954,16 @@
 	desc = "A replacement light tube."
 	icon_state = "ltube"
 	base_state = "ltube"
-	item_state = "c_tube"
+	item_state = "ltube"
 	brightness = 8
+
+/obj/item/light/tube/update_icon_state()
+	. = ..()
+	switch(status)
+		if(LIGHT_BURNED)
+			inhand_icon_state = "[base_state]_burned"
+		if(LIGHT_BROKEN)
+			inhand_icon_state = "[base_state]_broken"
 
 /obj/item/light/tube/broken
 	status = LIGHT_BROKEN
