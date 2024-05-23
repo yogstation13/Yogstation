@@ -15,7 +15,7 @@
 	var/list/criminals = list()
 	for(var/obj/machinery/door_timer/timer in SSmachines.processing)
 		if(timer.timing && timer.desired_name)
-			timer.desired_name += criminals
+			criminals += timer.desired_name
 		CHECK_TICK
 	for(var/area/security/brig_cell/cell in GLOB.the_station_areas)
 		var/list/cell_humans = cell.get_all_contents_type(/mob/living/carbon/human)
