@@ -2,6 +2,7 @@
 	name = "departmental research console (Security)"
 	desc = "A primitive version of the famous R&D console used to unlock department-relevant research. This one is powered by incarcerated criminals."
 	department_display = "Security"
+	circuit = /obj/item/circuitboard/computer/department_reward/security
 
 /obj/machinery/computer/department_reward/security/Initialize(mapload)
 	nodes_available = GLOB.security_nodes
