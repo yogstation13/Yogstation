@@ -36,25 +36,6 @@ GLOBAL_LIST_EMPTY(engineering_nodes)
 /obj/machinery/computer/department_reward/ui_interact(mob/user, datum/tgui/ui)
 	if(stat & (NOPOWER|BROKEN))
 		return FALSE
-	if(nodes_available != null && length(nodes_available) == 0)
-		for(var/node_id in SSresearch.techweb_nodes)
-			var/datum/techweb_node/node = SSresearch.techweb_node_by_id(node_id)
-			for(var/des_id in node.design_ids)
-				var/datum/design/design = SSresearch.techweb_design_by_id(des_id)
-				if(design.departmental_flags != ALL)
-					if(design.departmental_flags & (DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_ARMORY))
-						GLOB.security_nodes[node.id] = TRUE
-					if(design.departmental_flags & DEPARTMENTAL_FLAG_MEDICAL)
-						GLOB.medical_nodes[node.id] = TRUE
-					if(design.departmental_flags & DEPARTMENTAL_FLAG_CARGO)
-						GLOB.cargo_nodes[node.id] = TRUE
-					if(design.departmental_flags & DEPARTMENTAL_FLAG_SERVICE)
-						GLOB.service_nodes[node.id] = TRUE
-					if(design.departmental_flags & DEPARTMENTAL_FLAG_SCIENCE)
-						GLOB.science_nodes[node.id] = TRUE
-					if(design.departmental_flags & DEPARTMENTAL_FLAG_ENGINEERING)
-						GLOB.engineering_nodes[node.id] = TRUE
-			CHECK_TICK
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "DepartmentReward", name)

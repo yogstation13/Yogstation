@@ -51,6 +51,7 @@ SUBSYSTEM_DEF(research)
 	point_types = TECHWEB_POINT_TYPE_LIST_ASSOCIATIVE_NAMES
 	initialize_all_techweb_designs()
 	initialize_all_techweb_nodes()
+	cache_department_designs()
 	science_tech = new /datum/techweb/science
 	ruin_tech = new /datum/techweb/ruin
 	admin_tech = new /datum/techweb/admin
@@ -281,4 +282,24 @@ SUBSYSTEM_DEF(research)
 				techweb_boost_items[path][node.id] = node.boost_item_paths[path]
 			else
 				techweb_boost_items[path] = list(node.id = node.boost_item_paths[path])
+		CHECK_TICK
+
+/datum/controller/subsystem/research/proc/cache_department_designs()
+	for(var/node_id in techweb_nodes)
+		var/datum/techweb_node/node = techweb_node_by_id(node_id)
+		for(var/des_id in node.design_ids)
+			var/datum/design/design = techweb_design_by_id(des_id)
+			if(design.departmental_flags != ALL)
+				if(design.departmental_flags & (DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_ARMORY))
+					GLOB.security_nodes[node.id] = TRUE
+				if(design.departmental_flags & DEPARTMENTAL_FLAG_MEDICAL)
+					GLOB.medical_nodes[node.id] = TRUE
+				if(design.departmental_flags & DEPARTMENTAL_FLAG_CARGO)
+					GLOB.cargo_nodes[node.id] = TRUE
+				if(design.departmental_flags & DEPARTMENTAL_FLAG_SERVICE)
+					GLOB.service_nodes[node.id] = TRUE
+				if(design.departmental_flags & DEPARTMENTAL_FLAG_SCIENCE)
+					GLOB.science_nodes[node.id] = TRUE
+				if(design.departmental_flags & DEPARTMENTAL_FLAG_ENGINEERING)
+					GLOB.engineering_nodes[node.id] = TRUE
 		CHECK_TICK
