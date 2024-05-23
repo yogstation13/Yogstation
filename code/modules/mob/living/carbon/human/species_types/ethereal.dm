@@ -209,6 +209,20 @@
 	.=..()
 	if(H.stat == DEAD)
 		return
+
+	if(H.nutrition < NUTRITION_LEVEL_ALMOST_FULL) //passive charging if in starlight
+		var/starlight = FALSE
+		if(istype(get_turf(H), /turf/open/space))
+			starlight = TRUE
+		else
+			for(var/turf/T in view(H, 2))
+				if(istype(T, /turf/open/space))
+					starlight = TRUE
+					break
+		
+		if(starlight)
+			H.adjust_nutrition(10) //small enough number so it doesn't jump from below almost full to being in discharge range
+
 	if(H.nutrition > NUTRITION_LEVEL_FULL && prob(10))//10% each tick for ethereals to explosively release excess energy if it reaches dangerous levels
 		discharge_process(H)
 	else if(H.nutrition < NUTRITION_LEVEL_STARVING && H.health > 10.5)
