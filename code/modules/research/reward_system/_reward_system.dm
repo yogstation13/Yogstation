@@ -57,7 +57,7 @@ GLOBAL_LIST_EMPTY(engineering_nodes)
 				continue
 			if(linked_techweb.researched_nodes[node_id])
 				continue
-			if(!linked_techweb.visible_nodes[node_id] && !linked_techweb.available_nodes[node_id])
+			if(!linked_techweb.available_nodes[node_id])
 				continue
 			var/datum/techweb_node/node = SSresearch.techweb_node_by_id(node_id)
 			var/node_price = node.get_price(linked_techweb)[TECHWEB_POINT_TYPE_GENERIC]
@@ -65,6 +65,7 @@ GLOBAL_LIST_EMPTY(engineering_nodes)
 				continue
 			var/node_entry = list()
 			node_entry["name"] = node.display_name
+			node_entry["id"] = node_id
 			node_entry["purchasable"] = node_price < points
 			node_entry["price"] = node_price
 			node_entry["designs"] = list()
@@ -90,7 +91,7 @@ GLOBAL_LIST_EMPTY(engineering_nodes)
 				return
 			if(linked_techweb.researched_nodes[node_id])
 				return
-			if(!linked_techweb.visible_nodes[node_id] && !linked_techweb.available_nodes[node_id])
+			if(!linked_techweb.available_nodes[node_id])
 				return
 			var/datum/techweb_node/node = SSresearch.techweb_node_by_id(node_id)
 			var/node_price = node.get_price(linked_techweb)[TECHWEB_POINT_TYPE_GENERIC]

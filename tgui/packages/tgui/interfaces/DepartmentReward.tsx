@@ -5,6 +5,7 @@ import { classes } from '../../common/react';
 
 type ResearchNode = {
   name: string;
+  id: string;
   purchasable: boolean;
   price: number;
   designs: string[];
@@ -57,7 +58,9 @@ export const DepartmentReward = (props, context) => {
                     <Button
                       content={"Purchase ["+node.price+"]"}
                       disabled={!node.purchasable}
-                      onClick={() => act('purchase')} />
+                      onClick={() => act('purchase', {
+                        node_id: node.id,
+                      })} />
                     </Box>
                   </Stack.Item>
                 </Stack>
