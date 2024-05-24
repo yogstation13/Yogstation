@@ -525,7 +525,7 @@
 
 /obj/item/organ/eyes/ethereal/ui_action_click()
 	var/client/dude = owner.client
-	if(!client)
+	if(!dude)
 		return
 
 	active=!active
