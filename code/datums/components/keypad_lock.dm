@@ -1,15 +1,15 @@
 /datum/component/keypad_lock //Thanks johnfulpwillard, didn't know components existed until I saw your PR
-	//What the user inputed
+	//What the user inputed and what shows in the bottom display
 	var/keypad_input = "INPUT NEW 5 DIGIT CODE"
 	//Keypad's code
 	var/access_code = ""
 	//If the item is locked or not
 	var/lock_status = FALSE
-	//What shows in lock_status_display
+	//What is added to lock_status_display
 	var/lock_display = "UNLOCKED"
 	//If there is an error message
 	var/error_message = FALSE
-	//If a display message can be replaced by code
+	//If a displayed message can be replaced by keypad_input
 	var/replace_message = TRUE
 	//Sound to play
 	var/keypad_sound = 'sound/machines/terminal_select.ogg'
@@ -17,14 +17,15 @@
 	//If the panel is open
 	var/panel_open = FALSE
 
-/datum/component/keypad_lock/Initialize(access_code = "", locked = FALSE, display = "INPUT NEW 5 DIGIT CODE")
+/datum/component/keypad_lock/Initialize(keypad_code = access_code, lock_state = lock_status, keypad_text = keypad_input, lock_text = lock_display)
 	. = ..()
 	if(!isobj(parent))
 		return COMPONENT_INCOMPATIBLE
 
-	src.access_code = access_code
-	src.lock_status = locked
-	src.keypad_input = display
+	src.access_code = keypad_code
+	src.lock_status = lock_state
+	src.keypad_input = keypad_text
+	src.lock_display = lock_text
 
 	var/atom/atom_parent = parent
 
@@ -160,7 +161,7 @@
 							SEND_SIGNAL(parent, COMSIG_TRY_STORAGE_SET_LOCKSTATE, lock_status)
 							source.update_appearance(UPDATE_ICON)
 						. = TRUE
-			//Reset current code
+			//Reset current code and engage lock
 			if("R")
 				if(access_code == "")
 					src.keypad_input = "INPUT NEW 5 DIGIT CODE"
