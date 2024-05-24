@@ -1,0 +1,6 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "Flamethrowers are now technically guns and can fit on your belt slot"
+  - bugfix: "Fixed deconstructing flamethrowers causing the resulting welding tool to be permanently unusable"
+  - bugfix: "Fixed flamethrowers being usable by pacifists and synths"
