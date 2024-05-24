@@ -20794,10 +20794,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
-"fKN" = (
-/obj/effect/decal/cleanable/glass,
-/turf/closed/wall/r_wall,
-/area/maintenance/central/secondary)
 "fKY" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -22272,7 +22268,6 @@
 /area/maintenance/starboard/fore)
 "gip" = (
 /obj/structure/sign/poster/contraband/syndicate_pistol,
-/obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/listeningstation)
 "giR" = (
@@ -38036,7 +38031,6 @@
 /area/ruin/powered)
 "leD" = (
 /obj/structure/sign/poster/contraband/eat,
-/obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/listeningstation)
 "leH" = (
@@ -55446,9 +55440,7 @@
 /turf/open/floor/eighties,
 /area/maintenance/starboard/fore)
 "qvF" = (
-/obj/effect/decal/cleanable/oil,
-/turf/closed/wall/r_wall,
-/area/maintenance/central/secondary)
+)
 "qvH" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -63342,10 +63334,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
-"sLA" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/indestructible/riveted,
-/area/ruin/space/has_grav/listeningstation)
 "sLU" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -78424,10 +78412,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/white,
 /area/science/lab)
-"xxg" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/listeningstation)
 "xxs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -96808,14 +96792,14 @@ wEZ
 wEZ
 wEZ
 hpr
-sLA
-sLA
-xxg
+hpr
+hpr
+wEZ
 dON
 gip
 leD
 cAq
-xxg
+wEZ
 wEZ
 wEZ
 msb
@@ -106410,7 +106394,7 @@ aFP
 akI
 dps
 pOe
-fKN
+aDY
 tIO
 mHF
 akp
@@ -106667,7 +106651,7 @@ avV
 xmT
 dps
 efF
-qvF
+aDY
 drO
 hCu
 akp
@@ -114512,6 +114496,7 @@ acb
 acb
 acb
 acb
+qvF
 "}
 (131,1,1) = {"
 acb

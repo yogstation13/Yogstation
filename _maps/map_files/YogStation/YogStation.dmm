@@ -67931,10 +67931,6 @@
 /obj/effect/turf_decal/loading_area,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/kitchen)
-"vGk" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall,
-/area/security/prison)
 "vGx" = (
 /turf/closed/wall/r_wall,
 /area/medical/genetics)

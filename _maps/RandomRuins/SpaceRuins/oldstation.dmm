@@ -5392,10 +5392,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/ancientstation/kitchen)
-"ud" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall,
-/area/ruin/space/has_grav/ancientstation/kitchen)
 "uj" = (
 /obj/effect/spawner/structure/solars/solar_96,
 /obj/structure/cable{

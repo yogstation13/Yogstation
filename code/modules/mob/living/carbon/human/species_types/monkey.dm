@@ -66,8 +66,7 @@
 
 /datum/species/monkey/spec_unarmedattack(mob/living/carbon/human/user, atom/target, modifiers)
 	// If our hands are not blocked, dont try to bite them
-//	if(!HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
-	if(!user.incapacitated(/*check_immobilized = TRUE*/))
+	if(!HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
 		// if we aren't an advanced tool user, we call attack_paw and cancel the preceeding attack chain
 		if(!user.IsAdvancedToolUser())
 			target.attack_paw(user, modifiers)
@@ -103,7 +102,7 @@
 	if(!mouth) // check for them having a head, ala HARS
 		return TRUE
 
-//	var/damage_roll = rand(mouth.unarmed_damage_low, mouth.unarmed_damage_high) CHANGE THIS TOMORROW HI
+//	var/damage_roll = rand(mouth.unarmed_damage_low, mouth.unarmed_damage_high) CHANGE THIS SOON HI <- need internal/organ port.. :c
 	var/damage_roll = rand(1, 2)
 	victim.apply_damage(damage_roll, BRUTE, affecting, armor)
 
@@ -200,15 +199,15 @@
 /obj/item/organ/brain/primate //Ook Ook
 	name = "Primate Brain"
 	desc = "This wad of meat is small, but has enlaged occipital lobes for spotting bananas."
-//	organ_traits = list(TRAIT_CAN_STRIP, TRAIT_PRIMITIVE) // No literacy or advanced tool usage.
+//	organ_traits = list(TRAIT_CAN_STRIP, TRAIT_PRIMITIVE) // No literacy or advanced tool usage. <- need internal/organ port, etc
 	actions_types = list(/datum/action/item_action/organ_action/toggle_trip)
 	/// Will this monkey stumble if they are crossed by a simple mob or a carbon in combat mode? Toggable by monkeys with clients, and is messed automatically set to true by monkey AI.
 	var/tripping = TRUE
 
 /datum/action/item_action/organ_action/toggle_trip
 	name = "Toggle Tripping"
-	button_icon = 'icons/mob/actions/actions_changeling.dmi'
-	button_icon_state = "lesser_form"
+	button_icon = 'icons/mob/actions/actions_animal.dmi'
+	button_icon_state = "neuron_deactivation"
 	background_icon_state = "bg_default_on"
 	overlay_icon_state = "bg_default_border"
 
@@ -221,11 +220,13 @@
 	if(monkey_brain.tripping)
 		monkey_brain.tripping = FALSE
 		background_icon_state = "bg_default"
-		to_chat(monkey_brain.owner, span_notice("You will now avoid stumbling while colliding with people who are in combat mode."))
+		button_icon_state = "neuron_activation"
+		to_chat(monkey_brain.owner, span_notice("You will now avoid stumbling when colliding with people who are in combat mode."))
 	else
 		monkey_brain.tripping = TRUE
 		background_icon_state = "bg_default_on"
-		to_chat(monkey_brain.owner, span_notice("You will now stumble while while colliding with people who are in combat mode."))
+		button_icon_state = "neuron_deactivation"
+		to_chat(monkey_brain.owner, span_notice("You will now stumble when colliding with people who are in combat mode."))
 	build_all_button_icons()
 
 /obj/item/organ/brain/primate/Insert(mob/living/carbon/primate, special = FALSE)
@@ -249,7 +250,7 @@
 		return
 	in_the_way_mob.knock_over(owner)
 
-// /obj/item/organ/brain/primate/get_attacking_limb(mob/living/carbon/human/target)
+// /obj/item/organ/brain/primate/get_attacking_limb(mob/living/carbon/human/target) <- need internal/organ port, etc
 	//return owner.get_bodypart(BODY_ZONE_HEAD)
 
 #undef MONKEY_SPEC_ATTACK_BITE_MISS_CHANCE

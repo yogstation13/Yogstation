@@ -178,14 +178,6 @@
 	name = "engraved floor"
 	},
 /area/awaymission/wildwest/vault)
-"aP" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/closed/mineral,
-/area/awaymission/wildwest/mines)
-"aQ" = (
-/obj/effect/decal/cleanable/blood,
-/turf/closed/mineral,
-/area/awaymission/wildwest/mines)
 "aR" = (
 /obj/structure/ore_box,
 /turf/open/floor/plating/ironsand{
@@ -1580,14 +1572,6 @@
 /turf/open/floor/plating/ironsand{
 	icon_state = "ironsand1"
 	},
-/area/awaymission/wildwest/mines)
-"fs" = (
-/obj/effect/decal/cleanable/blood,
-/turf/closed/wall/mineral/sandstone,
-/area/awaymission/wildwest/mines)
-"ft" = (
-/obj/effect/decal/cleanable/blood/gibs/down,
-/turf/closed/wall/mineral/sandstone,
 /area/awaymission/wildwest/mines)
 "fu" = (
 /obj/structure/chair/comfy/beige{
@@ -33893,7 +33877,7 @@ aT
 aT
 aT
 aT
-aP
+aN
 aN
 aN
 aT
@@ -34673,7 +34657,7 @@ aN
 aT
 aT
 aT
-aP
+aN
 aG
 aG
 aG
@@ -34916,17 +34900,17 @@ aN
 aN
 aT
 aT
-aP
-aN
-aT
-aT
-aT
-aT
-aT
 aN
 aN
+aT
+aT
+aT
+aT
+aT
 aN
-aP
+aN
+aN
+aN
 aN
 aT
 aT
@@ -35947,7 +35931,7 @@ aT
 aT
 aT
 aN
-aP
+aN
 aT
 aT
 aT
@@ -36455,7 +36439,7 @@ aN
 aN
 aN
 aN
-aP
+aN
 aT
 ej
 aT
@@ -36730,7 +36714,7 @@ aN
 aT
 aT
 aT
-aP
+aN
 aG
 aG
 aa
@@ -37239,7 +37223,7 @@ aN
 aN
 aT
 aT
-aP
+aN
 aN
 aT
 aT
@@ -38002,7 +37986,7 @@ aT
 aT
 aT
 aN
-aP
+aN
 aT
 aT
 aT
@@ -38518,15 +38502,15 @@ bu
 bu
 aN
 aN
-aQ
+aN
 ej
 aT
 aY
-aQ
 aN
 aN
 aN
-aP
+aN
+aN
 aT
 aT
 aN
@@ -39291,7 +39275,7 @@ aT
 ej
 aT
 aT
-aQ
+aN
 aN
 aN
 aN
@@ -39800,10 +39784,10 @@ bj
 bj
 bp
 bj
-fs
+bu
 aT
 aN
-aP
+aN
 aN
 aN
 aa
@@ -40305,7 +40289,7 @@ bj
 bj
 bj
 bu
-fs
+bu
 aT
 bu
 bj
@@ -40315,7 +40299,7 @@ bj
 bj
 bj
 bu
-fs
+bu
 aN
 aN
 aG
@@ -41592,7 +41576,7 @@ dt
 fr
 aT
 aY
-fs
+bu
 bu
 bu
 ci
@@ -42103,11 +42087,11 @@ bu
 bu
 bu
 bu
-fs
-fB
-fs
 bu
-eM
+fB
+bu
+bu
+bu
 bu
 bu
 bu
@@ -43131,7 +43115,7 @@ bj
 eF
 bj
 bj
-eM
+bu
 aT
 bu
 bj
@@ -43647,7 +43631,7 @@ bj
 bj
 bu
 aT
-eM
+bu
 bj
 cA
 bj
@@ -45194,9 +45178,9 @@ bu
 dm
 bu
 bu
-eM
 bu
-fs
+bu
+bu
 bu
 fr
 aN
@@ -46729,13 +46713,13 @@ bu
 bu
 bu
 bu
-ft
+bu
 bu
 ci
 ci
 bu
 bu
-eM
+bu
 bu
 bu
 bu
@@ -49820,7 +49804,7 @@ bl
 bj
 bj
 bj
-eM
+bu
 bj
 dP
 bu
@@ -52133,7 +52117,7 @@ bj
 bu
 gm
 bj
-eM
+bu
 bj
 bj
 bu

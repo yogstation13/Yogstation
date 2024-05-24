@@ -748,10 +748,6 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
-"du" = (
-/obj/effect/decal/cleanable/blood,
-/turf/closed/wall/mineral/titanium,
-/area/awaymission/spacebattle/cruiser)
 "dx" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/tile/bar,
@@ -22562,7 +22558,7 @@ cr
 kl
 cc
 dg
-du
+bT
 ab
 ab
 ab
@@ -27468,7 +27464,7 @@ bT
 bT
 bT
 bT
-du
+bT
 bT
 ib
 bT
@@ -30028,7 +30024,7 @@ fh
 fh
 fh
 bT
-du
+bT
 bT
 bT
 bT

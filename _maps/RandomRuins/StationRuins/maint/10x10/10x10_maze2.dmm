@@ -131,10 +131,6 @@
 	icon_state = "panelscorched"
 	},
 /area/template_noop)
-"Z" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall,
-/area/template_noop)
 
 (1,1,1) = {"
 w
@@ -170,7 +166,7 @@ Q
 Q
 w
 Q
-Z
+Q
 "}
 (4,1,1) = {"
 w

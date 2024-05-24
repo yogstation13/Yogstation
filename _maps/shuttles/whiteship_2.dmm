@@ -707,10 +707,6 @@
 /obj/item/multitool,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/abandoned)
-"XU" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/closed/wall/mineral/titanium,
-/area/shuttle/abandoned)
 "XZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -747,7 +743,7 @@ aa
 aa
 aa
 ab
-XU
+ab
 DO
 ah
 ah
@@ -772,7 +768,7 @@ au
 dJ
 aG
 aI
-XU
+ab
 EZ
 EZ
 EZ
@@ -932,7 +928,7 @@ au
 fk
 aG
 OH
-XU
+ab
 EZ
 EZ
 EZ
@@ -947,7 +943,7 @@ aa
 aa
 aa
 ab
-XU
+ab
 kc
 aG
 ah

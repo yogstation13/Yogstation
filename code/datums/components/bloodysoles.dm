@@ -215,7 +215,7 @@ Like its parent but can be applied to carbon mobs instead of clothing items
 */
 
 /datum/component/bloodysoles/feet
-	var/static/mutable_appearance/bloody_feet
+	var/mutable_appearance/bloody_feet
 
 /datum/component/bloodysoles/feet/Initialize()
 	if(!iscarbon(parent))
@@ -225,7 +225,7 @@ Like its parent but can be applied to carbon mobs instead of clothing items
 	if(footprint_sprite)
 		src.footprint_sprite = footprint_sprite
 	if(!bloody_feet)
-		bloody_feet = mutable_appearance('icons/effects/blood.dmi', "shoeblood", SHOES_LAYER)
+		bloody_feet = mutable_appearance('icons/effects/blood.dmi', "[ismonkey(wielder) ? "pawblood" : "shoeblood"]", SHOES_LAYER)
 
 	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(on_clean))
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
@@ -235,7 +235,7 @@ Like its parent but can be applied to carbon mobs instead of clothing items
 
 /datum/component/bloodysoles/feet/update_icon()
 	. = list()
-	if(ishuman(wielder))// Monkeys get no bloody feet :(
+	if(ishuman(wielder))// Monkeys get bloody feet :)
 		if(HAS_BLOOD_DNA(wielder))
 			bloody_feet.color = get_blood_dna_color(wielder.return_blood_DNA())
 			. += bloody_feet
@@ -247,9 +247,6 @@ Like its parent but can be applied to carbon mobs instead of clothing items
 			wielder.update_inv_shoes()
 
 /datum/component/bloodysoles/feet/add_parent_to_footprint(obj/effect/decal/cleanable/blood/footprints/FP)
-	if(ismonkey(wielder))
-		FP.species_types |= "monkey"
-		return
 
 	if(!ishuman(wielder))
 		FP.species_types |= "unknown"

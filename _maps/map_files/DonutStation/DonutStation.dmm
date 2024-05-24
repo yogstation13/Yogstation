@@ -29736,10 +29736,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"myW" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall/r_wall,
-/area/tcommsat/computer)
 "mzd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/flasher{
@@ -90421,7 +90417,7 @@ akr
 akr
 iVj
 akr
-myW
+akr
 ylr
 ylr
 ylr

@@ -155,9 +155,11 @@ There are several things that need to be remembered:
 		//Friendly reminder that icon_exists(file, state, scream = TRUE) is your friend when debugging this code.
 		var/icon_file
 		var/target_overlay = RESOLVE_ICON_STATE(uniform) //Selects proper icon from the vars the clothing has (Search define for more.)
+		var/handled_by_bodytype
 
 		if(dna?.species.limbs_id == "monkey" && (uniform.supports_variations_flags & CLOTHING_MONKEY_VARIATION))
 			icon_file = 'icons/mob/clothing/monkey/uniform.dmi'
+			handled_by_bodytype = TRUE
 
 		if(uniform.adjusted == ALT_STYLE)
 			target_overlay = "[target_overlay]_d"
@@ -178,6 +180,7 @@ There are several things that need to be remembered:
 				isinhands = FALSE,
 				femaleuniform = uniform.fitted, 
 				override_state = target_overlay,
+				override_file = handled_by_bodytype ? icon_file : null,
 			)
 		else
 			uniform_overlay = uniform.build_worn_icon(
@@ -185,6 +188,7 @@ There are several things that need to be remembered:
 				default_icon_file = icon_file, 
 				isinhands = FALSE, 
 				override_state = target_overlay,
+				override_file = handled_by_bodytype ? icon_file : null,
 			)
 
 
@@ -611,6 +615,7 @@ generate/load female uniform sprites matching all previously decided variables
 	isinhands = FALSE, 
 	femaleuniform = NO_FEMALE_UNIFORM, 
 	override_state = null,
+	override_file = null,
 )
 
 	var/t_state
@@ -620,7 +625,11 @@ generate/load female uniform sprites matching all previously decided variables
 		t_state = !isinhands ? (worn_icon_state ? worn_icon_state : icon_state) : (item_state ? item_state : icon_state)
 
 	//Find a valid icon file from variables+arguments
-	var/file2use = !isinhands ? (worn_icon ? worn_icon : default_icon_file) : default_icon_file
+	var/file2use
+	if(override_file)
+		file2use = override_file
+	else
+		file2use = !isinhands ? (worn_icon ? worn_icon : default_icon_file) : default_icon_file
 
 	//Find a valid layer from variables+arguments
 	var/layer2use = alternate_worn_layer ? alternate_worn_layer : default_layer

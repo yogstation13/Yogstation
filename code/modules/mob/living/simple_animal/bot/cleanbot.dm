@@ -203,8 +203,7 @@
 	target_types = typecacheof(target_types)
 
 /mob/living/simple_animal/bot/cleanbot/UnarmedAttack(atom/attack_target, proximity_flag, list/modifiers)
-//	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
-	if(incapacitated())
+	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		return
 	if(ismopable(attack_target))
 		mode = BOT_CLEANING
