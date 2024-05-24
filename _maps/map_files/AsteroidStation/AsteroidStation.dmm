@@ -43525,10 +43525,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
-"mOy" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/closed/wall/r_wall,
-/area/science/storage)
 "mOF" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/heater{
 	dir = 4
@@ -123607,7 +123603,7 @@ wUJ
 tPr
 etj
 dgo
-mOy
+akh
 awN
 vOX
 aJD

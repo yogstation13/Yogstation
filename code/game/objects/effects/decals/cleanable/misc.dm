@@ -81,6 +81,9 @@
 	. = ..()
 	icon_state = base_icon_state
 
+/obj/effect/decal/cleanable/dirt/dust/NeverShouldHaveComeHere(turf/here_turf)
+	return !istype(here_turf, /turf/closed/mineral/random/snow) && ..() //provisionary, if you read this post it on discord or something if not fixed, not really important
+
 /obj/effect/decal/cleanable/greenglow
 	name = "glowing goo"
 	desc = "Jeez. I hope that's not for lunch."
