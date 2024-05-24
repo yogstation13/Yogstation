@@ -32,9 +32,9 @@ const SecureKeypad = (props, context) => {
                 lineHeight={1.25}
                 width="125px"
                 className={classes([
-                  'NuclearBomb__Button',
-                  'NuclearBomb__Button--keypad',
-                  'NuclearBomb__Button--' + key,
+                  'KeypadLock__Button',
+                  'KeypadLock__Button--keypad',
+                  'KeypadLock__Button--' + key,
                 ])}
                 onClick={() => act('keypad', { digit: key })} />
             ))}
@@ -53,21 +53,21 @@ export const KeypadLock = (props, context) => {
   return (
     <Window
       width={400}
-      height={440}
-      theme="retro">
+      height={370}
+      theme="ntos_darkmode">
       <Window.Content>
         <Box m="6px">
           <Box
             mb="6px"
             textAlign="center"
-            className="NuclearBomb__displayBox">
+            className="KeypadLock__displayBox">
             {lock_status_display}
           </Box>
           <Flex mb={1.5}>
             <Flex.Item grow={1}>
               <Box
                 textAlign="center"
-                className="NuclearBomb__displayBox">
+                className="KeypadLock__displayBox">
                 {keypad_code_display}
               </Box>
             </Flex.Item>
