@@ -55435,8 +55435,6 @@
 	},
 /turf/open/floor/eighties,
 /area/maintenance/starboard/fore)
-"qvF" = (
-)
 "qvH" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -114492,7 +114490,7 @@ acb
 acb
 acb
 acb
-qvF
+acb
 "}
 (131,1,1) = {"
 acb

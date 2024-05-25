@@ -458,6 +458,8 @@ Difficulty: Hard
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	if(movement_dir)
+		if(!isturf(current_turf) || isclosedturf(current_turf) || isgroundlessturf(current_turf))
+			return
 		new /obj/effect/decal/cleanable/blood/bubblegum(src.loc)
 	if(charging)
 		DestroySurroundings()
