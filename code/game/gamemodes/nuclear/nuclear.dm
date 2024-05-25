@@ -5,8 +5,8 @@
 	config_tag = "nuclear"
 	report_type = "nuclear"
 	false_report_weight = 10
-	required_players = 10 // scales with player count, 1 operative for every 10 players, rounded down
-	required_enemies = 1 // lone operative at minimum
+	required_players = 20 // scales with player count, 1 operative for every 10 players, rounded down
+	required_enemies = 2 // needs more than one person to make a team
 	recommended_enemies = 5
 	antag_flag = ROLE_OPERATIVE
 	enemy_minimum_age = 14
