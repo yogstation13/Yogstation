@@ -49,6 +49,7 @@
 		},
 		{
 			//Surface
+			"Ocean Surface": true,
 			"Linkage": "Self",
 			"Gravity": true,
 			"Baseturf": "/turf/open/plating/beach/sand",

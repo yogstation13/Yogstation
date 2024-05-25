@@ -267,6 +267,7 @@
 	baseturfs = /turf/open/floor/plating/asteroid
 
 
+
 /turf/closed/mineral/random/volcanic
 	environment_type = "basalt"
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
@@ -1051,3 +1052,12 @@
 	name = "porous rock"
 	desc = "This rock is filled with pockets of breathable air."
 	baseturfs = /turf/open/floor/plating/asteroid
+
+	// Used in Undergruv/deep underground, low minerals with normal atmos
+/turf/closed/mineral/random/stationside/deepcaves
+	mineralChance = 6
+	mineralSpawnChanceList = list(
+		/turf/closed/mineral/uranium = 2, /turf/closed/mineral/diamond = 1, /turf/closed/mineral/gold = 4, /turf/closed/mineral/titanium = 4,
+		/turf/closed/mineral/silver = 6, /turf/closed/mineral/plasma = 15, /turf/closed/mineral/iron = 40,
+		/turf/closed/mineral/gibtonite = 2, /turf/closed/mineral/bscrystal = 1)
+	baseturfs = /turf/open/floor/plating/asteroid/basalt
