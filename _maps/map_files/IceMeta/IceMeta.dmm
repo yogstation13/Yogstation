@@ -12012,17 +12012,20 @@
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "dAi" = (
-/obj/structure/lattice,
-/obj/structure/lattice/catwalk,
-/obj/structure/marker_beacon,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/stripes/line{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/turf/open/floor/plating/snowed/smoothed,
-/area/icemoon/top_layer/outdoors)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/secondary)
 "dAp" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -13451,6 +13454,9 @@
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
@@ -24207,9 +24213,11 @@
 /area/maintenance/starboard)
 "haS" = (
 /obj/structure/cable/yellow,
-/obj/effect/turf_decal/stripes/line,
 /obj/machinery/power/apc/auto_name{
 	pixel_y = -23
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
@@ -37054,9 +37062,6 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
 "kJK" = (
-/obj/effect/turf_decal/stripes{
-	dir = 9
-	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -37065,6 +37070,9 @@
 /obj/machinery/camera{
 	c_tag = "Podbay Camera 2";
 	dir = 5
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 9
 	},
 /turf/open/floor/plasteel,
 /area/escapepodbay)
@@ -70888,6 +70896,12 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
@@ -245608,7 +245622,7 @@ ijj
 jgu
 qwx
 wAR
-uZv
+dAi
 qHW
 pOm
 wjA
@@ -245619,7 +245633,7 @@ bwy
 hIF
 pDH
 iqX
-dAi
+aYT
 xkE
 ged
 xkE
