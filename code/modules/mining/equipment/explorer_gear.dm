@@ -13,9 +13,8 @@
 	flags_prot = HIDEJUMPSUIT
 	hoodtype = /obj/item/clothing/head/hooded/explorer
 	armor = list(MELEE = 25, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 50, WOUND = 10)
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
 	resistance_flags = FIRE_PROOF
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/head/hooded/explorer
 	name = "explorer hood"
@@ -29,6 +28,15 @@
 	armor = list(MELEE = 25, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 50, WOUND = 10)
 	resistance_flags = FIRE_PROOF
 	var/adjusted = NORMAL_STYLE
+
+/obj/item/clothing/suit/hooded/explorer/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/armor_plate)
+	allowed |= GLOB.mining_allowed
+
+/obj/item/clothing/head/hooded/explorer/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/armor_plate)
 
 /obj/item/clothing/head/hooded/explorer/verb/hood_adjust()
 	set name = "Adjust Hood Style"
@@ -48,14 +56,6 @@
 		H.update_hair()
 		H.update_body()
 
-/obj/item/clothing/suit/hooded/explorer/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/armor_plate)
-
-/obj/item/clothing/head/hooded/explorer/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/armor_plate)
-
 /obj/item/clothing/mask/gas/explorer
 	name = "explorer gas mask"
 	desc = "A military-grade gas mask that can be connected to an air supply."
@@ -63,8 +63,8 @@
 	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	visor_flags_inv = HIDEFACIALHAIR
 	visor_flags_cover = MASKCOVERSMOUTH
-	mutantrace_adjusted = MUTANTRACE_VARIATION 
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_adjusted = DIGITIGRADE_VARIATION 
+	mutantrace_variation = DIGITIGRADE_VARIATION
 	actions_types = list(/datum/action/item_action/adjust)
 	armor = list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 0, BIO = 50, RAD = 0, FIRE = 20, ACID = 40, WOUND = 5)
 	resistance_flags = FIRE_PROOF
@@ -90,12 +90,12 @@
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 	slowdown = 0
 	armor = list(MELEE = 75, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 75, BIO = 100, RAD = 60, FIRE = 100, ACID = 100)
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
 
 /obj/item/clothing/suit/space/hostile_environment/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/spraycan_paintable)
 	START_PROCESSING(SSobj, src)
+	allowed |= GLOB.mining_allowed
 
 /obj/item/clothing/suit/space/hostile_environment/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -136,6 +136,6 @@
 	. = ..()
 	if(isinhands)
 		return
-	var/mutable_appearance/M = mutable_appearance(mob_overlay_icon, "hostile_env_glass")
+	var/mutable_appearance/M = mutable_appearance(worn_icon, "hostile_env_glass")
 	M.appearance_flags = RESET_COLOR
 	. += M

@@ -26,7 +26,7 @@
 
 /datum/outfit/yalp_cultist
 	name = "Cultist of Yalp Elor"
-	uniform = /obj/item/clothing/under/rank/chaplain
+	uniform = /obj/item/clothing/under/rank/civilian/chaplain
 	suit = /obj/item/clothing/suit/chaplainsuit/holidaypriest
 	gloves = /obj/item/clothing/gloves/color/red
 	shoes = /obj/item/clothing/shoes/sneakers/black
@@ -95,7 +95,7 @@
 
 /datum/outfit/russianhunters
 	name = "Russian Bouny Hunter"
-	uniform = /obj/item/clothing/under/soviet
+	uniform = /obj/item/clothing/under/costume/soviet
 	shoes = /obj/item/clothing/shoes/jackboots
 	head = /obj/item/clothing/head/bearpelt
 	gloves = /obj/item/clothing/gloves/color/black

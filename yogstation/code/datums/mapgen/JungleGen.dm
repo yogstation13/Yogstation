@@ -248,17 +248,13 @@
 		var/datum/biome/jungleland/selected_biome = possible_biomes[toxic_pick][humid_pick]
 
 		selected_biome = SSmapping.biomes[selected_biome] //Get the instance of this biome from SSmapping
-		var/turf/GT = selected_biome.generate_turf(gen_turf,density_strings)
-		if(istype(GT,/turf/open/floor/plating/dirt/jungleland))
-			var/turf/open/floor/plating/dirt/jungleland/J = GT
+		var/turf/generated_terrain = selected_biome.generate_turf(gen_turf,density_strings)
+		if(istype(generated_terrain,/turf/open/floor/plating/dirt/jungleland))
+			var/turf/open/floor/plating/dirt/jungleland/J = generated_terrain
 			J.ore_present = ore_map[world.maxx * (gen_turf.y - 1) + gen_turf.x]
 		var/area/jungleland/jungle_area = selected_biome.this_area 
-		var/area/old_area = GT.loc
-		old_area.contents -= GT 
-		old_area.contained_turfs -= GT
-		jungle_area.contents += GT
-		jungle_area.contained_turfs += GT
-		GT.change_area(old_area,jungle_area)
+		var/area/old_area = generated_terrain.loc
+		generated_terrain.change_area(old_area, jungle_area)
 		CHECK_TICK
 
 	for(var/biome in subtypesof(/datum/biome/jungleland))

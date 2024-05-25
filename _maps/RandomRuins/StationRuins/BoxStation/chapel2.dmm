@@ -723,12 +723,12 @@
 /area/chapel/office)
 "Kc" = (
 /obj/item/toy/figure/chaplain,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
 /obj/structure/table/wood/fancy,
 /turf/open/floor/carpet/red,
 /area/chapel/office)

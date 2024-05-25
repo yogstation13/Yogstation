@@ -234,7 +234,7 @@
 *   Item Adding
 ********************/
 
-/obj/machinery/smartfridge/attackby(obj/item/O, mob/user, params)
+/obj/machinery/smartfridge/attackby(obj/item/O, mob/living/user, params)
 	if(panel_open && is_wire_tool(O))
 		wires.interact(user)
 		return
@@ -321,7 +321,7 @@
 					indicate_full()
 				return TRUE
 
-		if(user.a_intent != INTENT_HARM)
+		if(!user.combat_mode)
 			to_chat(user, span_warning("\The [src] smartly refuses [O]."))
 			updateUsrDialog()
 			return FALSE

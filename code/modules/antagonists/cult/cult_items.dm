@@ -310,7 +310,7 @@
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 
 /obj/item/clothing/head/culthood/alt

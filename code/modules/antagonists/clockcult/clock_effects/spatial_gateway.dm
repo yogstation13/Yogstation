@@ -64,10 +64,10 @@
 	..()
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/effect/clockwork/spatial_gateway/attack_hand(mob/living/user)
+/obj/effect/clockwork/spatial_gateway/attack_hand(mob/living/user, modifiers)
 	if(!uses)
 		return FALSE
-	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
+	if(user.pulling && isliving(user.pulling))
 		var/mob/living/L = user.pulling
 		if(L.buckled || L.anchored || L.has_buckled_mobs())
 			return FALSE

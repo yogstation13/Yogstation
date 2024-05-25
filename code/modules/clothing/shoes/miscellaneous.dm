@@ -282,7 +282,7 @@
 	greyscale_config = /datum/greyscale_config/sneakers_wheelys
 	greyscale_config_inhand_left = /datum/greyscale_config/sneakers_inhand_left
 	greyscale_config_inhand_right = /datum/greyscale_config/sneakers_inhand_right
-	mob_overlay_icon = 'icons/mob/large-worn-icons/64x64/feet.dmi'
+	worn_icon = 'icons/mob/large-worn-icons/64x64/feet.dmi'
 	worn_icon_state = "wheelys"
 	worn_x_dimension = 64
 	worn_y_dimension = 64
@@ -472,7 +472,7 @@
 	icon_state = "footwraps"
 	item_state = "footwraps"
 	xenoshoe = EITHER_STYLE // This can be worn by digitigrade or straight legs, or a hybridization thereof (one prosthetic one digitigrade). Xenoshoe variable will default to NO_DIGIT, excluding digitigrade feet.
-	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
+	mutantrace_variation = DIGITIGRADE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
 
 /obj/item/clothing/shoes/xeno_wraps/jackboots // Footwraps woven with security-grade materials, still somewhat inferior to full jackboots.
 	name = "reinforced footwraps"
@@ -530,7 +530,7 @@
 	icon_state = "footwraps_e"
 	item_state = "footwraps_e"
 	xenoshoe = YES_DIGIT
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 100)
 
 /obj/item/clothing/shoes/xeno_wraps/science
@@ -539,7 +539,7 @@
 	icon_state = "footwraps_sc"
 	item_state = "footwraps_sc"
 	xenoshoe = YES_DIGIT
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/shoes/xeno_wraps/medical
 	name = "medical footwraps"
@@ -547,7 +547,7 @@
 	icon_state = "footwraps_m"
 	item_state = "footwraps_m"
 	xenoshoe = YES_DIGIT
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/shoes/xeno_wraps/cargo
 	name = "cargo footwraps"
@@ -555,7 +555,7 @@
 	icon_state = "footwraps_ca"
 	item_state = "footwraps_ca"
 	xenoshoe = YES_DIGIT
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /datum/action/item_action/dash
 	name = "Dash"
@@ -632,7 +632,7 @@
 	name = "fashionable shoes"
 	desc = "Expensive-looking designer sneakers. Loud, ostentatious, agressively attractive, you detest the idea of taking them off. The elaborate design on the sole could probably give you some decent traction."
 	icon = 'icons/obj/clothing/shoes.dmi'
-	mob_overlay_icon = 'icons/mob/clothing/feet/feet.dmi'
+	worn_icon = 'icons/mob/clothing/feet/feet.dmi'
 	icon_state = "dripshoes"
 	item_state = "dripshoes"
 	clothing_flags = NOSLIP_ICE | NOSLIP

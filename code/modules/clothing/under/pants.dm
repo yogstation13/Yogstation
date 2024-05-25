@@ -4,7 +4,8 @@
 	fitted = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
 	custom_price = 20
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
+	worn_icon = 'icons/mob/clothing/uniform/shorts_pants_shirts.dmi'
 
 /obj/item/clothing/under/pants/classicjeans
 	name = "classic jeans"

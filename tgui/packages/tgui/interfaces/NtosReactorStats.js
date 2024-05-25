@@ -1,14 +1,16 @@
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
 import { Button, ProgressBar, Section, Table } from '../components';
-import { ReactorStatsSection } from './ReactorComputer';
+import { ReactorHistory, ReactorStats } from './ReactorComputer';
 
 export const NtosReactorStats = (props, context) => {
+  const { act, data } = useBackend(context);
   return (
     <NtosWindow
       resizable
-      width={440}
-      height={650}>
+      width={400}
+      height={528}
+      theme={data.theme}>
       <NtosWindow.Content>
         <NtosReactorMonitorContent />
       </NtosWindow.Content>
@@ -24,16 +26,16 @@ export const NtosReactorMonitorContent = (props, context) => {
     );
   }
   return (
-    <Section
-      title="Reactor Monitor"
-      buttons={(
+    <>
+      <ReactorStats
+        section_buttons={(
         <Button
           icon="arrow-left"
           content="Back"
           onClick={() => act('PRG_clear')} />
-      )}>
-        <ReactorStatsSection />
-    </Section>
+        )} />
+      <ReactorHistory />
+    </>
   );
 };
 

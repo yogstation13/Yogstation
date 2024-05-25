@@ -77,6 +77,7 @@
 
 	return random_unique_name(gender)
 
+	// Fun names
 /datum/preference/name/clown
 	savefile_key = "clown_name"
 
@@ -97,30 +98,7 @@
 /datum/preference/name/mime/create_default_value()
 	return pick(GLOB.mime_names)
 
-/datum/preference/name/cyborg
-	savefile_key = "cyborg_name"
-
-	allow_numbers = TRUE
-	can_randomize = FALSE
-
-	explanation = "Cyborg name"
-	group = "silicons"
-	relevant_job = /datum/job/cyborg
-
-/datum/preference/name/cyborg/create_default_value()
-	return DEFAULT_CYBORG_NAME
-
-/datum/preference/name/ai
-	savefile_key = "ai_name"
-
-	allow_numbers = TRUE
-	explanation = "AI name"
-	group = "silicons"
-	relevant_job = /datum/job/ai
-
-/datum/preference/name/ai/create_default_value()
-	return pick(GLOB.ai_names)
-
+	// Religion names
 /datum/preference/name/religion
 	savefile_key = "religion_name"
 
@@ -143,3 +121,39 @@
 
 /datum/preference/name/deity/create_default_value()
 	return DEFAULT_DEITY
+
+	// Silicon names
+/datum/preference/name/ai
+	savefile_key = "ai_name"
+
+	allow_numbers = TRUE
+	explanation = "AI name"
+	group = "silicons"
+	relevant_job = /datum/job/ai
+
+/datum/preference/name/ai/create_default_value()
+	return pick(GLOB.ai_names)
+
+/datum/preference/name/cyborg
+	savefile_key = "cyborg_name"
+
+	allow_numbers = TRUE
+	can_randomize = FALSE
+
+	explanation = "Cyborg name"
+	group = "silicons"
+	relevant_job = /datum/job/cyborg
+
+/datum/preference/name/cyborg/create_default_value()
+	return DEFAULT_CYBORG_NAME
+
+/datum/preference/name/synthetic
+	savefile_key = "synthetic_name"
+
+	allow_numbers = TRUE
+	explanation = "Synthetic name"
+	group = "silicons"
+	relevant_job = /datum/job/synthetic
+
+/datum/preference/name/synthetic/create_default_value()
+	return pick(GLOB.synthetic_names)

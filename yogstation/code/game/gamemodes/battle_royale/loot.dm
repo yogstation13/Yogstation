@@ -242,7 +242,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/gun/ballistic/shotgun/doublebarrel/improvised = 0,
 		/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawn = 0,
 		/obj/item/gun/ballistic/revolver/detective = 0,
-		/obj/item/flamethrower/full/tank = 0,
+		/obj/item/gun/flamethrower/full = 0,
 
 		/obj/item/gun/ballistic/automatic/pistol = -1,
 		/obj/item/gun/ballistic/shotgun/doublebarrel = -1,
@@ -401,7 +401,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/slimecross/stabilized/bluespace = -5,
 		/obj/machinery/syndicatebomb = -5,
 		/obj/item/stand_arrow/safe = -5,
-		/obj/item/mdrive = -5, //get out of jail free card
+		/obj/item/mirage_drive = -5, //get out of jail free card
 		/obj/item/book/granter/martial/carp = -5,
 		/obj/item/battleroyale/martial/worldbreaker = -5, // Shaking the ground of Moria
 		/obj/item/bodypart/l_arm/robot/buster = -5,

@@ -1,3 +1,4 @@
+
 ///////////////////////////////////////////////////////////////
 //SS13 Optimized Map loader
 //////////////////////////////////////////////////////////////
@@ -93,7 +94,7 @@
 	/// Offset bounds. Same as parsed_bounds until load().
 	var/list/bounds
 
-	///any turf in this list is skipped inside of build_coordinate. Lazy assoc list
+	///any turf in this list is skipped inside of build_coordinate
 	var/list/turf_blacklist
 
 	// raw strings used to represent regexes more accurately
@@ -930,8 +931,10 @@ GLOBAL_LIST_EMPTY(map_model_default)
 
 		if(!new_z)
 			old_area = crds.loc
-			old_area.turfs_to_uncontain += crds
-			area_instance.contained_turfs.Add(crds)
+			LISTASSERTLEN(old_area.turfs_to_uncontain_by_zlevel, crds.z, list())
+			LISTASSERTLEN(area_instance.turfs_by_zlevel, crds.z, list())
+			old_area.turfs_to_uncontain_by_zlevel[crds.z] += crds
+			area_instance.turfs_by_zlevel[crds.z] += crds
 		area_instance.contents.Add(crds)
 
 		if(GLOB.use_preloader)

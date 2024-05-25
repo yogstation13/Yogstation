@@ -27,12 +27,7 @@
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "pump"
 	vent_movement = NONE
-
-/obj/machinery/atmospherics/components/binary/pump/CtrlClick(mob/user)
-	if(can_interact(user))
-		on = !on
-		update_appearance()
-	return ..()
+	quick_toggle = TRUE
 
 /obj/machinery/atmospherics/components/binary/pump/AltClick(mob/user)
 	if(can_interact(user))
@@ -110,11 +105,8 @@
 		return
 	switch(action)
 		if("power")
-			on = !on
-			var/msg = "was turned [on ? "on" : "off"] by [key_name(usr)]"
-			investigate_log(msg, INVESTIGATE_ATMOS)
-			investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - makes supermatter invest useful
-			. = TRUE
+			toggle_on()
+			return TRUE
 		if("pressure")
 			var/pressure = params["pressure"]
 			if(pressure == "max")
@@ -143,20 +135,14 @@
 	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))
 		return
 
-	var/old_on = on //for logging
-
 	if("power" in signal.data)
 		on = text2num(signal.data["power"])
 
 	if("power_toggle" in signal.data)
-		on = !on
+		toggle_on()
 
 	if("set_output_pressure" in signal.data)
 		target_pressure = clamp(text2num(signal.data["set_output_pressure"]),0,ONE_ATMOSPHERE*50)
-
-	if(on != old_on)
-		investigate_log("was turned [on ? "on" : "off"] by a remote signal", INVESTIGATE_ATMOS)
-		investigate_log("was turned [on ? "on" : "off"] by a remote signal", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 
 	if("status" in signal.data)
 		broadcast_status()

@@ -1,7 +1,7 @@
 /datum/species/ethereal
 	name = "Ethereal"
 	id = "ethereal"
-	attack_verb = "burn"
+	attack_verbs = list("burn", "sear")
 	attack_sound = 'sound/weapons/etherealhit.ogg'
 	miss_sound = 'sound/weapons/etherealmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ethereal
@@ -21,7 +21,7 @@
 	punchstunthreshold = 11 //Still stuns on max hit, but subsequently lower chance to stun overall
 	attack_type = BURN //burn bish
 	damage_overlay_type = "" //We are too cool for regular damage overlays
-	species_traits = list(NOEYESPRITES, EYECOLOR, MUTCOLORS, AGENDER, HAIR, FACEHAIR, HAS_FLESH) // i mean i guess they have blood so they can have wounds too
+	species_traits = list(NOEYESPRITES, EYECOLOR, MUTCOLORS, HAIR, FACEHAIR, HAS_FLESH) // i mean i guess they have blood so they can have wounds too
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_RADIMMUNE)
 	mutant_bodyparts = list("ethereal_mark")
@@ -29,7 +29,7 @@
 	species_language_holder = /datum/language_holder/ethereal
 	deathsound = 'yogstation/sound/voice/ethereal/deathsound.ogg'
 	screamsound = list('sound/voice/ethereal/ethereal_scream_1.ogg', 'sound/voice/ethereal/ethereal_scream_2.ogg', 'sound/voice/ethereal/ethereal_scream_3.ogg')
-	sexes = FALSE //no fetish content allowed
+	possible_genders = list(PLURAL) //no fetish content allowed
 	toxic_food = NONE
 	inert_mutation = RADIANTBURST
 	hair_color = "fixedmutcolor"
