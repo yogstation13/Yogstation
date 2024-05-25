@@ -467,7 +467,7 @@
 /datum/crafting_recipe/cartridge_welder
 	name = "Cartridge Welding Fuel" //Reversed so that they're together in the menu
 	result = /obj/item/ammo_casing/caseless/cartridge
-	reqs = list(/obj/item/stack/sheet/cloth = 1,
+	reqs = list(/obj/item/clothing/torncloth = 1,
 				/datum/reagent/fuel = 10)
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 2 SECONDS
@@ -476,7 +476,7 @@
 /datum/crafting_recipe/cartridge_BP
 	name = "Cartridge Black Powder"
 	result = /obj/item/ammo_casing/caseless/cartridge/black_powder
-	reqs = list(/obj/item/stack/sheet/cloth = 1,
+	reqs = list(/obj/item/clothing/torncloth = 1,
 				/datum/reagent/blackpowder = 10)
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 2 SECONDS
