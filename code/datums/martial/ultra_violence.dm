@@ -85,7 +85,7 @@
 		else
 			dash(H, target) // right click at range for dash
 			return COMSIG_MOB_CANCEL_CLICKON
-	else if(H.combat_mode && get_turf(H) != get_turf(target) && !H.get_active_held_item())
+	else if(H.combat_mode && get_turf(H) != get_turf(target) && !H.get_active_held_item() && !isitem(target))
 		parry(H, target) // left click for parry
 		return COMSIG_MOB_CANCEL_CLICKON
 	return NONE
@@ -321,19 +321,12 @@
 	var/list/parried_tiles = spiral_range_turfs(1, center_turf)
 	var/successful_parry = FALSE
 
-	// all roads lead to COMSIG_MOB_CANCEL_CLICKON so do the normal punch on the enemy in front of you
-	var/list/punch_targets = list()
-	for(var/mob/living/possible_target in range(1, center_turf))
-		if(H != possible_target && H.CanReach(possible_target))
-			punch_targets |= possible_target
-	if(punch_targets.len > 0)
-		var/mob/living/living_target = get_closest_atom(/mob/living, punch_targets, center_turf)
-		if(living_target)
-			H.UnarmedAttack(living_target, TRUE)
-
 	// parry time
+	var/list/punch_targets = list()
 	for(var/turf/parried_tile in parried_tiles)
 		for(var/thing in parried_tile.contents)
+			if(ismob(thing) && H != thing && get_dist(H, thing) <= 1)
+				punch_targets |= thing
 			if(isprojectile(thing))
 				var/obj/projectile/P = thing
 				P.firer = H
@@ -343,6 +336,12 @@
 				P.fire(get_angle(H, target)) // parry the projectile towards wherever you clicked
 				successful_parry = TRUE
 	
+	// all roads lead to COMSIG_MOB_CANCEL_CLICKON so do the normal punch on the enemy in front of you
+	if(punch_targets.len > 0) 
+		var/mob/living/living_target = get_closest_atom(/mob/living, punch_targets, center_turf)
+		if(living_target)
+			H.UnarmedAttack(living_target, TRUE, list())
+
 	// style bonus for successful parry
 	if(successful_parry)
 		H.visible_message(span_danger("[H] parries the projectile!"))

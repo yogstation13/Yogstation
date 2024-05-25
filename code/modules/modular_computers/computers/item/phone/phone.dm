@@ -8,6 +8,6 @@
 	hardware_flag = PROGRAM_PHONE
 	max_hardware_size = WEIGHT_CLASS_SMALL
 	w_class = WEIGHT_CLASS_SMALL
-	max_bays = 2
+	max_bays = 3
 	steel_sheet_cost = 1
 	slot_flags = ITEM_SLOT_ID | ITEM_SLOT_BELT

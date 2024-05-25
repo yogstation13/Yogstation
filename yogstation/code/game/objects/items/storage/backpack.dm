@@ -231,3 +231,22 @@
 	new /obj/item/clothing/head/beret/med/phys(src)
 	new /obj/item/clothing/head/beret/corpsec/phys(src)
 	new /obj/item/clothing/shoes/xeno_wraps/jackboots(src)
+
+/obj/item/storage/backpack/duffelbag/clothing/med/miner
+	name = "Mining Medic's clothing duffelbag"
+	desc = "A large duffel bag filled with clothing."
+	icon_state = "duffel-med"
+	item_state = "duffel-med"
+
+/obj/item/storage/backpack/duffelbag/clothing/med/miner/PopulateContents()
+	new /obj/item/clothing/suit/toggle/labcoat/emt/explorer(src)
+	new /obj/item/clothing/suit/toggle/labcoat/explorer(src)
+	new /obj/item/clothing/head/soft/emt/mining(src)
+	new /obj/item/clothing/head/beret/emt/mining(src)
+	new /obj/item/clothing/under/yogs/rank/miner/medic(src)
+	new /obj/item/storage/belt/medical/mining(src)
+	new /obj/item/clothing/glasses/hud/health/meson(src)
+	new /obj/item/clothing/gloves/color/latex/fireproof(src)
+	new /obj/item/clothing/shoes/sneakers/white(src)
+	new	/obj/item/radio/headset/headset_medcargo(src)
+	new /obj/item/clothing/mask/gas/explorer(src)

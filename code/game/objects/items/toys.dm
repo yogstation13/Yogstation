@@ -324,6 +324,26 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 
+/obj/item/toy/foamblade/light_eater
+	name = "foam armblade"
+	desc = "It says \"Nulton Dawns #1 fan\" on it."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "foamblade"
+	item_state = "light_eater"
+	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
+	attack_verb = list("eated", "absorbed", "slashed")
+
+/obj/item/toy/foamblade/umbral_tendrils
+	name = "malformed foam mass"
+	desc = "A terrible defect produced by a foam armblade manufacturer."
+	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
+	icon_state = "umbral_tendrils"
+	item_state = "umbral_tendrils"
+	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
+	attack_verb = list("devoured", "absorbed", "bludgeoned")
+
 /obj/item/toy/foamblade/baseball
 	name = "toy baseball bat"
 	desc = "A colorful foam baseball bat. The label on the handle reads Donksoft."
