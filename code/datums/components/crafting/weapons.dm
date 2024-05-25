@@ -346,6 +346,14 @@
 	time = 1 SECONDS
 	category = CAT_WEAPON_MELEE
 
+/datum/crafting_recipe/improvised_bayonet
+	name = "Improvised Bayonet"
+	reqs = list(/obj/item/stack/sheet/metal = 1,
+			/obj/item/stack/rods = 1)
+	result = /obj/item/kitchen/knife/improvised_bayonet
+	tool_behaviors = list(TOOL_WELDER, TOOL_WRENCH)
+	time = 10 SECONDS
+	category = CAT_WEAPON_MELEE
 
 // Ammo
 

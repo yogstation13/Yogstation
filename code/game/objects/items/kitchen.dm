@@ -291,4 +291,11 @@
 		qdel(src)
 		return
 
+/obj/item/kitchen/knife/improvised_bayonet
+	name = "improvised bayonet"
+	desc = "An improvised bayonet that looks like something you'd see in a museum."
+	icon_state = "improvised_bayonet"
+	force = 6
+	throwforce = 6
+
 /* Trays  moved to /obj/item/storage/bag */
