@@ -457,6 +457,7 @@ Difficulty: Hard
 	..()
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
+	var/turf/current_turf = get_turf(src)
 	if(movement_dir)
 		if(!isturf(current_turf) || isclosedturf(current_turf) || isgroundlessturf(current_turf))
 			return
