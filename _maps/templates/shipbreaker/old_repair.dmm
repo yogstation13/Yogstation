@@ -5,11 +5,6 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"b" = (
-/obj/machinery/shuttle_manipulator,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/titanium/airless,
-/area/template_noop)
 "c" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/decal/cleanable/dirt,
@@ -166,8 +161,8 @@
 /turf/open/floor/mineral/titanium/blue/airless,
 /area/template_noop)
 "D" = (
-/obj/machinery/modular_computer,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer,
 /turf/open/floor/mineral/titanium/airless,
 /area/template_noop)
 "E" = (
@@ -329,7 +324,7 @@ a
 r
 D
 n
-b
+j
 E
 g
 p

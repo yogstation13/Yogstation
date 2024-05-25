@@ -59,7 +59,6 @@
 /area/template_noop)
 "j" = (
 /obj/effect/turf_decal/ameritard,
-/obj/effect/turf_decal/ameritard,
 /obj/machinery/jukebox,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/airless,
@@ -177,7 +176,6 @@
 /obj/structure/table,
 /obj/machinery/microwave,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/wood/airless,
 /area/template_noop)
 "I" = (
@@ -231,7 +229,6 @@
 "X" = (
 /obj/machinery/deepfryer,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/item/reagent_containers/food/snacks/deadmouse/fat,
 /turf/open/floor/wood/airless/broken/three,
 /area/template_noop)
