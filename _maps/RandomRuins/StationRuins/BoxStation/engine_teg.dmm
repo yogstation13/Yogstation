@@ -32,10 +32,7 @@
 /turf/closed/wall,
 /area/engine/engineering)
 "aH" = (
-/obj/effect/mapping_helpers/teleport_anchor,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/manifold/orange/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "aQ" = (
@@ -170,7 +167,7 @@
 /area/engine/engineering)
 "dp" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 9
+	dir = 6
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -203,11 +200,10 @@
 /turf/template_noop,
 /area/space/nearstation)
 "ej" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 6
+/obj/machinery/atmospherics/components/unary/vent_scrubber{
+	dir = 1
 	},
-/turf/open/floor/engine,
+/turf/open/floor/engine/airless,
 /area/engine/engineering)
 "er" = (
 /obj/effect/turf_decal/stripes/line{
@@ -245,6 +241,13 @@
 "fo" = (
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
 	dir = 4
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"fu" = (
+/obj/structure/window/plasma/reinforced,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 10
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -352,8 +355,8 @@
 /area/engine/engineering)
 "kD" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 4
+/obj/structure/window/plasma/reinforced{
+	dir = 8
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -427,7 +430,9 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "nh" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
+/obj/structure/window/plasma/reinforced{
+	dir = 4
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "nw" = (
@@ -444,7 +449,13 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "oa" = (
-/obj/item/wrench,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 1
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "od" = (
@@ -668,7 +679,9 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "wd" = (
-/obj/effect/mapping_helpers/teleport_anchor,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/yellow/visible,
+/obj/machinery/meter,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "we" = (
@@ -732,6 +745,9 @@
 /area/engine/engineering)
 "ye" = (
 /obj/effect/turf_decal/stripes/corner,
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+	dir = 9
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "yz" = (
@@ -791,10 +807,8 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Ag" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible,
-/obj/machinery/meter,
-/obj/effect/mapping_helpers/teleport_anchor,
-/turf/open/floor/engine,
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/engine/airless,
 /area/engine/engineering)
 "Am" = (
 /obj/structure/cable/yellow{
@@ -882,6 +896,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"Ec" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/yellow/visible,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "Ej" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -901,8 +920,8 @@
 /area/engine/engineering)
 "EE" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 10
+/obj/machinery/atmospherics/pipe/manifold/orange/visible{
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -925,6 +944,17 @@
 	req_access_txt = "10"
 	},
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"FE" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/wrench,
+/obj/structure/window/plasma/reinforced{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 1
+	},
+/turf/open/floor/engine,
 /area/engine/engineering)
 "FL" = (
 /obj/structure/cable/yellow{
@@ -1035,7 +1065,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/teleport_anchor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1127,8 +1156,7 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Mi" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/manifold/orange/visible{
+/obj/structure/window/plasma/reinforced{
 	dir = 8
 	},
 /turf/open/floor/engine,
@@ -1386,7 +1414,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/airless,
-/area/space)
+/area/space/nearstation)
 "Tc" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -1458,7 +1486,6 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "VS" = (
-/obj/effect/mapping_helpers/teleport_anchor,
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
 	dir = 1
 	},
@@ -1532,12 +1559,17 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"WT" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "WW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "Xc" = (
@@ -1926,7 +1958,7 @@ lw
 Rl
 Xf
 cA
-wd
+cA
 Wk
 wU
 Si
@@ -2121,7 +2153,7 @@ ZP
 AD
 Ji
 hN
-cA
+YS
 Dr
 xW
 dD
@@ -2146,11 +2178,11 @@ fc
 cA
 fo
 EE
-PV
-PV
-Mi
+WT
+oa
 Ic
-UW
+Ic
+aH
 vW
 QA
 Pu
@@ -2173,12 +2205,12 @@ ad
 KJ
 cA
 fo
-cA
+Dr
 nh
-aH
+ad
 nh
 fb
-oa
+Dr
 QT
 rk
 ad
@@ -2201,13 +2233,13 @@ ac
 ht
 fb
 fo
-cA
-cA
-cA
-cA
-fb
-YS
-od
+fu
+ej
+yz
+Ag
+FE
+UW
+QT
 Wh
 ad
 dG
@@ -2229,13 +2261,13 @@ ac
 Ci
 kZ
 fo
-ej
-kB
-sY
-zQ
-Ag
-zQ
-dp
+fb
+kD
+Mi
+Mi
+cA
+cA
+od
 de
 ad
 dG
@@ -2257,12 +2289,12 @@ ad
 er
 AB
 fo
-QT
-kD
-QT
-cA
-fb
-fb
+dp
+kB
+sY
+zQ
+wd
+Ec
 ye
 eb
 fL
