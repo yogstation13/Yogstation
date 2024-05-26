@@ -16,7 +16,12 @@
 	required_shit_list = "Three dead bodies."
 
 /datum/eldritch_transmutation/final/knock_final/on_finished_recipe(mob/living/user, list/atoms, loc)
-	priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report a fiery entity of unknown power is quickly escalating the station temperature to unhabitable levels. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
+	priority_announce(
+		text = "Delta-class dimensional anomaly detec[generate_heretic_text()] Reality rended, torn. Gates open, doors open, [user.real_name] has ascended! Fear the rising tide! [generate_heretic_text()]",
+		title = "[generate_heretic_text()]",
+		sound = 'sound/ambience/antag/heretic/ascend_knock.ogg',
+		color_override = "pink",
+	)
 	
 	new /obj/structure/knock_tear(loc, user.mind)
 	var/mob/living/carbon/human/H = user
