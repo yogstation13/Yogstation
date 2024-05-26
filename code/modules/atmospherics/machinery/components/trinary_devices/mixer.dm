@@ -13,15 +13,9 @@
 
 	construction_type = /obj/item/pipe/trinary/flippable
 	pipe_state = "mixer"
+	quick_toggle = TRUE
 
 	//node 3 is the outlet, nodes 1 & 2 are intakes
-
-/obj/machinery/atmospherics/components/trinary/mixer/CtrlClick(mob/user)
-	if(can_interact(user))
-		on = !on
-		investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
-		update_appearance(UPDATE_ICON)
-	return ..()
 
 /obj/machinery/atmospherics/components/trinary/mixer/AltClick(mob/user)
 	if(can_interact(user))
@@ -140,9 +134,8 @@
 		return
 	switch(action)
 		if("power")
-			on = !on
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
-			. = TRUE
+			toggle_on(usr)
+			return TRUE
 		if("pressure")
 			var/pressure = params["pressure"]
 			if(pressure == "max")

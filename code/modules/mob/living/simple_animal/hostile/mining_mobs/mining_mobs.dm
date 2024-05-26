@@ -12,7 +12,7 @@
 	response_disarm = "shoves"
 	response_harm = "strikes"
 	status_flags = 0
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	var/crusher_loot
 	var/throw_message = "bounces off of"
 	var/fromtendril = FALSE

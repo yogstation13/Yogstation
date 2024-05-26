@@ -54,7 +54,7 @@
 	fishing_power = 20
 
 /obj/item/reagent_containers/food/snacks/bait/worm/leech/attack(mob/living/M, mob/living/user)
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return ..()//wait no not there this is hitting 
 	M.visible_message(span_danger("[user] is putting a leech onto [M]!"))
 	if(!do_after(user, 2 SECONDS, M)) 

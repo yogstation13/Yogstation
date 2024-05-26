@@ -73,8 +73,8 @@ obj/item/energy_harvester/Initialize(mapload)
 	STOP_PROCESSING(SSobj, src)
 	set_light(0)
 
-/obj/item/energy_harvester/attack_hand(mob/user, params)
-	if(anchored && user.a_intent != INTENT_HARM)
+/obj/item/energy_harvester/attack_hand(mob/living/user, params)
+	if(anchored && !user.combat_mode)
 		ui_interact(user)
 	return ..()
 

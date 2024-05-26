@@ -41,7 +41,7 @@ Difficulty: Insanely Hard
 	response_harm   = "assaults"
 	attacktext = "brutalized"
 	health = 500
-	a_intent = INTENT_HARM
+	combat_mode
 	sentience_type = SENTIENCE_BOSS
 	stat_attack = DEAD
 	wander = FALSE

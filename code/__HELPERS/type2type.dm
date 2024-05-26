@@ -94,8 +94,7 @@
 			return "northwest"
 		if(10)
 			return "southwest"
-		else
-	return
+	return NONE
 
 //Turns text into proper directions
 /proc/text2dir(direction)
@@ -116,8 +115,7 @@
 			return 6
 		if("SOUTHWEST")
 			return 10
-		else
-	return
+	return NONE
 
 //Converts an angle (degrees) into an ss13 direction
 /proc/angle2dir(degree)

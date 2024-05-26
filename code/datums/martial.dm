@@ -37,7 +37,9 @@
 	///the message for when you try to use a gun you can't use
 	var/no_gun_message = "Use of ranged weaponry would bring dishonor to the clan."
 	///used to allow certain guns as exceptions
-	var/gun_exceptions = list()
+	var/list/gun_exceptions = list()
+	///list of traits given to the martial art user
+	var/list/martial_traits = list()
 
 /**
   * martial art specific disarm attacks
@@ -168,6 +170,8 @@
 		base = H.mind.default_martial_art
 	if(help_verb)
 		add_verb(H, help_verb)
+	if(LAZYLEN(martial_traits))
+		H.add_traits(martial_traits, id)
 	H.mind.martial_art = src
 	if(no_guns)
 		for(var/mob/living/simple_animal/hostile/guardian/guardian in H.hasparasites())
@@ -211,4 +215,6 @@
 /datum/martial_art/proc/on_remove(mob/living/carbon/human/H)
 	if(help_verb)
 		remove_verb(H, help_verb)
+	if(LAZYLEN(martial_traits))
+		H.remove_traits(martial_traits, id)
 	return

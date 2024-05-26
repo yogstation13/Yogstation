@@ -40,6 +40,8 @@
 
 	/// If objects are below this layer, we pass through them
 	var/hit_threshhold = PROJECTILE_HIT_THRESHHOLD_LAYER
+	/// Hit mobs regardless of stun or critical condition
+	var/ignore_crit = FALSE
 
 	/// During each fire of SSprojectiles, the number of deciseconds since the last fire of SSprojectiles
 	/// is divided by this var, and the result truncated to the next lowest integer is
@@ -663,7 +665,7 @@
 			return FALSE
 	else
 		var/mob/living/L = target
-		if(!direct_target)
+		if(!direct_target && !ignore_crit)
 			if(!CHECK_BITFIELD(L.mobility_flags, MOBILITY_STAND) && (L in range(1, starting))) //if we're shooting over someone who's prone and nearby bc formations are cool and not going to be unbalanced
 				return FALSE
 			if(!CHECK_BITFIELD(L.mobility_flags, MOBILITY_USE | MOBILITY_STAND | MOBILITY_MOVE) || !(L.stat == CONSCIOUS))		//If they're able to 1. stand or 2. use items or 3. move, AND they are not softcrit,  they are not stunned enough to dodge projectiles passing over.
