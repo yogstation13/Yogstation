@@ -14,7 +14,6 @@
 	description = "mapshaker_syndicate"
 	mappath = "_maps/templates/shipbreaker/old_syndicate.dmm"
 
-
 /datum/map_template/shipbreaker/nt_old
 	name = "Old NT Medical Ship"
 	template_id = "old_NT_Med"
@@ -56,3 +55,63 @@
 	template_id = "old_Stealth_Cutter"
 	description = "mapshaker_old_stealth_cutter"
 	mappath = "_maps/templates/shipbreaker/old_stealth_cutter.dmm"
+
+/datum/map_template/shipbreaker/altar_old
+	name = "Old Ashwalker Altar Ship"
+	template_id = "old_altar"
+	description = "mapshaker_old_altar"
+	mappath = "_maps/templates/shipbreaker/old_altar.dmm"
+
+/datum/map_template/shipbreaker/banana_old
+	name = "Old Honk Ship"
+	template_id = "old_banana"
+	description = "mapshaker_old_banana"
+	mappath = "_maps/templates/shipbreaker/old_banana.dmm"
+
+/datum/map_template/shipbreaker/clockwork_old
+	name = "Old Clockwork Ship"
+	template_id = "old_clockwork"
+	description = "mapshaker_old_clockwork"
+	mappath = "_maps/templates/shipbreaker/old_clockwork.dmm"
+
+/datum/map_template/shipbreaker/diner_old
+	name = "Old Diner Ship"
+	template_id = "old_diner"
+	description = "mapshaker_old_diner"
+	mappath = "_maps/templates/shipbreaker/old_diner.dmm"
+
+/datum/map_template/shipbreaker/repair_old
+	name = "Old Repair Ship"
+	template_id = "old_repair"
+	description = "mapshaker_old_repair"
+	mappath = "_maps/templates/shipbreaker/old_repair.dmm"
+
+/datum/map_template/shipbreaker/cargo_old
+	name = "Old Cargo Shuttle"
+	template_id = "old_Cargo_Shuttle"
+	description = "mapshaker_old_cargo"
+	mappath = "_maps/templates/shipbreaker/old_cargo.dmm"
+
+/datum/map_template/shipbreaker/blood_old
+	name = "Old Blood Cult Shuttle"
+	template_id = "old_Blood_Cult_Shuttle"
+	description = "mapshaker_old_blood"
+	mappath = "_maps/templates/shipbreaker/old_blood.dmm"
+
+/datum/map_template/shipbreaker/clock_old
+	name = "Old Clock Cult Shuttle"
+	template_id = "old_Clock_Cult_Shuttle"
+	description = "mapshaker_old_clock"
+	mappath = "_maps/templates/shipbreaker/old_clock.dmm"
+
+/datum/map_template/shipbreaker/botany_old
+	name = "Old Botany Shuttle"
+	template_id = "old_Botany_Shuttle"
+	description = "mapshaker_old_botany"
+	mappath = "_maps/templates/shipbreaker/old_botany.dmm"
+
+/datum/map_template/shipbreaker/research_old
+	name = "Old Research Shuttle"
+	template_id = "old_Research_Shuttle"
+	description = "mapshaker_old_research"
+	mappath = "_maps/templates/shipbreaker/old_research.dmm"
