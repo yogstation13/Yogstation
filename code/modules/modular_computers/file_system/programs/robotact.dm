@@ -4,6 +4,7 @@
 	extended_desc = "A built-in app for cyborg self-management and diagnostics."
 	ui_header = "robotact.gif" //DEBUG -- new icon before PR
 	program_icon_state = "command"
+	category = PROGRAM_CATEGORY_SCIENCE
 	requires_ntnet = FALSE
 	transfer_access = null
 	available_on_ntnet = FALSE

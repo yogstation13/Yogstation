@@ -41,8 +41,6 @@ SUBSYSTEM_DEF(modular_computers)
 		// Has no TGUI file so is not meant to be a downloadable thing.
 		if(!initial(prog.tgui_id) || !initial(prog.filename))
 			continue
-		if(!initial(prog.category))
-			stack_trace("Program [prog] has no category set, please set one so it can show up in NTNet Downloader apps.")
 		prog = new prog
 
 		if(prog.available_on_ntnet)
