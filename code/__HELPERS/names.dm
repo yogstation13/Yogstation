@@ -324,5 +324,5 @@ GLOBAL_DATUM(syndicate_code_response_regex, /regex)
 		new_name += postfix
 		text = new_name.Join()
 	while(used_names[text])
-		used_names[text] = TRUE
+	used_names[text] = TRUE
 	return text
