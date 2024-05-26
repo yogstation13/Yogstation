@@ -717,7 +717,7 @@
 	desc = "Burn, baby burn. Contains three incendiary grenades, three plasma canisters, and a flamethrower. Requires Armory access to open."
 	cost = 1500
 	access = ACCESS_HEADS
-	contains = list(/obj/item/flamethrower/full,
+	contains = list(/obj/item/gun/flamethrower/full,
 					/obj/item/tank/internals/plasma,
 					/obj/item/tank/internals/plasma,
 					/obj/item/tank/internals/plasma,

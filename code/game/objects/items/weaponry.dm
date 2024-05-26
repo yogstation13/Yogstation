@@ -544,6 +544,34 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	icon_state = "broom"
 	resistance_flags = FLAMMABLE
 
+/obj/item/staff/darkspawn
+	name = "wizard staff..?"
+	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
+	icon_state = "shadow_staff"
+	item_state = "shadow_staff0"
+	base_icon_state = "shadow_staff"
+	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
+	
+/obj/item/staff/darkspawn/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, \
+		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
+		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
+	)
+
+/obj/item/staff/darkspawn/proc/on_wield()
+	item_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
+	if(ishuman(loc))
+		var/mob/living/carbon/human/C = loc
+		C.update_inv_hands()
+
+/obj/item/staff/darkspawn/proc/on_unwield()
+	item_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
+	if(ishuman(loc))
+		var/mob/living/carbon/human/C = loc
+		C.update_inv_hands()
+
 /obj/item/staff/stick
 	name = "stick"
 	desc = "A great tool to drag someone else's drinks across the bar."
