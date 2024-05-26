@@ -1,9 +1,3 @@
-#define FISHING_LOOT_NOTHING "nothing"
-#define FISHING_LOOT_JUNK "junk"
-#define FISHING_LOOT_COMMON "common"
-#define FISHING_LOOT_UNCOMMON "uncommon"
-#define FISHING_LOOT_RARE "rare"
-
 /datum/component/lava
 	var/turf/open/tile
 	dupe_type = /datum/component/lava //overwrite other types of lava
@@ -27,6 +21,9 @@
 	UnregisterSignal(parent, COMSIG_ATOM_EXITED, PROC_REF(Exited))
 	STOP_PROCESSING(SSobj, src)
 	
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------Triggers---------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/component/lava/proc/hitby(datum/source, atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	if(damage_stuff(AM))
 		START_PROCESSING(SSobj, src)
@@ -45,6 +42,9 @@
 	if(!damage_stuff(null, delta_time))
 		STOP_PROCESSING(SSobj, src)
 
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------safety check-----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/component/lava/proc/is_safe()
 	//if anything matching this typecache is found in the lava, we don't burn things
 	var/static/list/lava_safeties_typecache = typecacheof(list(/obj/structure/lattice/catwalk, /obj/structure/stone_tile))
@@ -72,6 +72,9 @@
 		if(apply_damage(thing, delta_time))
 			. = 1
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------Do the effect-----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/component/lava/proc/apply_damage(thing, delta_time) //override this for subtypes
 	. = 0
 	if(isobj(thing))
@@ -125,6 +128,9 @@
 			L.adjust_fire_stacks(20 * delta_time)
 			L.ignite_mob()
 
+////////////////////////////////////////////////////////////////////////////////////
+//-------------------------------Toxic water lava---------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/component/lava/toxic/apply_damage(thing, delta_time)
 	. = 0
 	if(isobj(thing)) //objects are unaffected for now
@@ -170,6 +176,9 @@
 		else if(prob(25))
 			L.acid_act(5,7.5)
 	
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------Plasma river lava-----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/component/lava/plasma/apply_damage(thing, delta_time)
 	. = 0
 	if(isobj(thing))
