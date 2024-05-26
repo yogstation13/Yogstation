@@ -56,33 +56,3 @@
 	template_id = "old_Stealth_Cutter"
 	description = "mapshaker_old_stealth_cutter"
 	mappath = "_maps/templates/shipbreaker/old_stealth_cutter.dmm"
-
-/datum/map_template/shipbreaker/cargo_old
-	name = "Old Cargo Shuttle"
-	template_id = "old_Cargo_Shuttle"
-	description = "mapshaker_old_cargo"
-	mappath = "_maps/templates/shipbreaker/old_cargo.dmm"
-
-/datum/map_template/shipbreaker/blood_old
-	name = "Old Blood Cult Shuttle"
-	template_id = "old_Blood_Cult_Shuttle"
-	description = "mapshaker_old_blood"
-	mappath = "_maps/templates/shipbreaker/old_blood.dmm"
-
-/datum/map_template/shipbreaker/clock_old
-	name = "Old Clock Cult Shuttle"
-	template_id = "old_Clock_Cult_Shuttle"
-	description = "mapshaker_old_clock"
-	mappath = "_maps/templates/shipbreaker/old_clock.dmm"
-
-/datum/map_template/shipbreaker/botany_old
-	name = "Old Botany Shuttle"
-	template_id = "old_Botany_Shuttle"
-	description = "mapshaker_old_botany"
-	mappath = "_maps/templates/shipbreaker/old_botany.dmm"
-
-/datum/map_template/shipbreaker/research_old
-	name = "Old Research Shuttle"
-	template_id = "old_Research_Shuttle"
-	description = "mapshaker_old_research"
-	mappath = "_maps/templates/shipbreaker/old_research.dmm"

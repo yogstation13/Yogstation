@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "fixed 10mm stock ammo being unpurchasable and all 10mm ammo being 2TC"
