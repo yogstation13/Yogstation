@@ -32,7 +32,7 @@
 
 	if(!held_index)
 		held_index = (active_hand_index % held_items.len)+1
-	
+
 	if(!isnum(held_index))
 		CRASH("You passed [held_index] into swap_hand instead of a number. WTF man")
 
@@ -119,8 +119,8 @@
 			take_bodypart_damage(10 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
 			victim.Knockdown(20)
 			Knockdown(20)
-			visible_message(span_danger("[src] crashes into [victim][extra_speed ? "really hard" : ""], knocking them both over!"),\
-				span_userdanger("You violently crash into [victim][extra_speed ? "extra hard" : ""]!"))
+			visible_message(span_danger("[src] crashes into [victim][extra_speed ? " really hard" : ""], knocking them both over!"),\
+				span_userdanger("You violently crash into [victim][extra_speed ? " extra hard" : ""]!"))
 		playsound(src,'sound/weapons/punch1.ogg',50,1)
 
 
@@ -414,7 +414,7 @@
 	if(!cuff || !cuff.loc)
 		return TRUE //???, we win nonetheless
 
-	if(buckled && !ignore_buckle) 
+	if(buckled && !ignore_buckle)
 		return FALSE
 
 	visible_message(span_danger("[src] manages to [cuff_break ? "break" : "remove"] [cuff]!"))

@@ -72,7 +72,7 @@
 
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN
 	blocks_emissive = EMISSIVE_BLOCK_NONE
-	
+
 	/// How much are wires secured
 	var/security_level = 0
 	/// If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
@@ -743,7 +743,7 @@
 		if(AIRLOCK_OPENING)
 			if(lights && hasPower())
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "lights_opening", FLOAT_LAYER, FLOAT_PLANE, dir)
-	
+
 	if(hasPower() && unres_sides)
 		for(var/heading in list(NORTH,SOUTH,EAST,WEST))
 			if(!(unres_sides & heading))
@@ -1050,7 +1050,7 @@
 							return
 						if(security_level != AIRLOCK_SECURITY_PLASTEEL_I_S)
 							return
-						user.visible_message(span_notice("[user] remove \the [src]'s shielding."),
+						user.visible_message(span_notice("[user] removes \the [src]'s shielding."),
 											span_notice("You remove \the [src]'s inner shielding."))
 						security_level = AIRLOCK_SECURITY_NONE
 						modify_max_integrity(normal_integrity)
@@ -1544,7 +1544,7 @@
 	if(QDELETED(src))
 		return
 	operating = FALSE
-	
+
 	if(!open()) // Something prevented it from being opened. For example, bolted/welded shut.
 		update_icon(state = AIRLOCK_CLOSED, override = TRUE)
 	obj_flags |= EMAGGED
