@@ -1,6 +1,6 @@
 /obj/item/clothing/glasses/sunglasses/cheap
 	name = "cheap sunglasses"
-	desc = "Made in china"
+	desc = "Made in china."
 	icon_state = "sun"
 	item_state = "sunglasses"
 	flash_protect = 0
