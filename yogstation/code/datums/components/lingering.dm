@@ -230,10 +230,10 @@
 						plasma_parts += NN
 
 				if(prob(35)) //checking if the delay is over & if the victim actually has any parts to nom
-					playsound(PP, 'sound/effects/wounds/sizzle2.ogg', 80, TRUE)
 					PP.adjustToxLoss(15)
 					PP.adjustFireLoss(25)
 					if(length(plasma_parts))
+						playsound(PP, 'sound/effects/wounds/sizzle2.ogg', 80, TRUE)
 						var/obj/item/bodypart/NB = pick(plasma_parts) //using the above-mentioned list to get a choice of limbs to replace
 						if(PP.stat != DEAD)
 							PP.emote("scream")
@@ -246,6 +246,7 @@
 						replacement_part.replace_limb(PP)
 						qdel(NB)
 					else if(!length(robo_parts)) //a person with no potential organic limbs left AND no robotic limbs, time to turn them into a plasmaman
+						playsound(PP, 'sound/effects/wounds/sizzle2.ogg', 80, TRUE)
 						PP.ignite_mob()
 						PP.cure_husk(BURN) //cure the probable husk first
 						PP.set_species(/datum/species/plasmaman)
