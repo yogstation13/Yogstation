@@ -1,0 +1,7 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Refactors lava into being a component with different types for toxic water and plasma rivers"
+  - bugfix: "can now rcd toxic water"
+  - bugfix: "boats and grilles now protect from toxic water"
+  - experiment: "please tell me DIRECTLY if there's anything wonky about lava/plasma/toxic water"
