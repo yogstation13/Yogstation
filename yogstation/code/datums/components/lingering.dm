@@ -230,11 +230,11 @@
 						plasma_parts += NN
 
 				if(prob(35)) //checking if the delay is over & if the victim actually has any parts to nom
+					playsound(PP, 'sound/effects/wounds/sizzle2.ogg', 80, TRUE)
 					PP.adjustToxLoss(15)
 					PP.adjustFireLoss(25)
 					if(length(plasma_parts))
 						var/obj/item/bodypart/NB = pick(plasma_parts) //using the above-mentioned list to get a choice of limbs to replace
-						playsound(PP, 'sound/effects/wounds/sizzle2.ogg', 80, TRUE)
 						if(PP.stat != DEAD)
 							PP.emote("scream")
 							PP.visible_message(span_warning("[L] screams in pain as [L.p_their()] [NB] melts down to the bone!"), span_userdanger("You scream out in pain as your [NB] melts down to the bone, leaving an eerie plasma-like glow where flesh used to be!"))
