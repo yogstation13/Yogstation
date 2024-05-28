@@ -225,7 +225,7 @@
 					if(NN.status == BODYPART_ROBOTIC)
 						robo_parts += NN
 					if(NN.body_zone == BODY_ZONE_HEAD) //don't add the head to the list, just transform them into an plasmaman when it's the only thing left
-						return
+						continue
 					if(NN.status == BODYPART_ORGANIC && !(NN.species_id == "plasmaman" || NN.species_id == "husk")) //getting every organic, non-plasmaman limb (augments/androids are immune to this)
 						plasma_parts += NN
 
