@@ -34,7 +34,59 @@
 	if(!smoothing_flags)
 		update_appearance()
 	AddComponent(/datum/component/fishable/lava)
-	AddComponent(/datum/component/lingering/lava)
+	AddComponent(/datum/component/lingering, CALLBACK(src, PROC_REF(burn_stuff)))
+
+/turf/open/lava/proc/burn_stuff(thing, delta_time)
+	if(isobj(thing))
+		var/obj/O = thing
+		if((O.resistance_flags & (LAVA_PROOF|INDESTRUCTIBLE)) || O.throwing)
+			return
+		. = TRUE
+		if((O.resistance_flags & (ON_FIRE)))
+			return
+		if(!(O.resistance_flags & FLAMMABLE))
+			O.resistance_flags |= FLAMMABLE //Even fireproof things burn up in lava
+		if(O.resistance_flags & FIRE_PROOF)
+			O.resistance_flags &= ~FIRE_PROOF
+		if(O.armor.fire > 50) //obj with 100% fire armor still get slowly burned away.
+			O.armor = O.armor.setRating(fire = 50)
+		O.fire_act(10000, 1000 * delta_time)
+
+	else if (isliving(thing))
+		. = TRUE
+		var/mob/living/L = thing
+		if(L.movement_type & FLYING)
+			return	//YOU'RE FLYING OVER IT
+		var/buckle_check = L.buckling
+		if(!buckle_check)
+			buckle_check = L.buckled
+		if(isobj(buckle_check))
+			var/obj/O = buckle_check
+			if(O.resistance_flags & LAVA_PROOF)
+				return
+		else if(isliving(buckle_check))
+			var/mob/living/live = buckle_check
+			if("lava" in live.weather_immunities)
+				return
+
+		if(!L.on_fire)
+			L.update_fire()
+
+		if(iscarbon(L))
+			var/mob/living/carbon/C = L
+			var/obj/item/clothing/S = C.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+			var/obj/item/clothing/H = C.get_item_by_slot(ITEM_SLOT_HEAD)
+
+			if(S && H && S.clothing_flags & LAVAPROTECT && H.clothing_flags & LAVAPROTECT)
+				return
+
+		if("lava" in L.weather_immunities)
+			return
+
+		L.adjustFireLoss(20 * delta_time)
+		if(L) //mobs turning into object corpses could get deleted here.
+			L.adjust_fire_stacks(20 * delta_time)
+			L.ignite_mob()
 
 /turf/open/lava/update_overlays()
 	. = ..()
