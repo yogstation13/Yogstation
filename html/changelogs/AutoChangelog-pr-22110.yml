@@ -1,4 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed some edge cases allowing swarmers to create dangerous atmos conditions"
