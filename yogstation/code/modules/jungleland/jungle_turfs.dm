@@ -197,7 +197,7 @@ Temperature: 126.85 °C (400 K)
 
 /turf/open/water/toxic_pit/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/lingering, CALLBACK(src, PROC_REF(toxic_stuff)))
+	AddComponent(/datum/component/lingering, CALLBACK(src, PROC_REF(toxic_stuff)), GLOB.lavasafeties)
 
 /turf/open/water/toxic_pit/proc/toxic_stuff(thing, delta_time)
 	if (isliving(thing)) //objects are unaffected for now

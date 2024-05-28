@@ -1,5 +1,8 @@
 ///LAVA
 
+/// list of typepaths that if they're on the same tile as lava will prevent the damage
+GLOBAL_LIST_INIT(lavasafeties, typecacheof(list(/obj/structure/lattice/catwalk, /obj/structure/stone_tile)))
+
 /turf/open/lava
 	name = "lava"
 	icon_state = "lava"
@@ -34,7 +37,7 @@
 	if(!smoothing_flags)
 		update_appearance()
 	AddComponent(/datum/component/fishable/lava)
-	AddComponent(/datum/component/lingering, CALLBACK(src, PROC_REF(burn_stuff)))
+	AddComponent(/datum/component/lingering, CALLBACK(src, PROC_REF(burn_stuff)), GLOB.lavasafeties)
 
 /turf/open/lava/proc/burn_stuff(thing, delta_time)
 	if(isobj(thing))
