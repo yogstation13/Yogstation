@@ -197,7 +197,7 @@ Temperature: 126.85 °C (400 K)
 
 /turf/open/water/toxic_pit/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/lava/toxic)
+	AddComponent(/datum/component/lingering/toxic)
 
 /turf/open/water/toxic_pit/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	switch(the_rcd.construction_mode)

@@ -1,81 +1,82 @@
-/datum/component/lava
-	var/turf/open/tile
-	dupe_type = /datum/component/lava //overwrite other types of lava
+/datum/component/lingering
+	dupe_type = /datum/component/lingering //overwrite other types of lingering effect
 
-/datum/component/lava/Initialize()
+/datum/component/lingering/Initialize()
 	if(!istype(parent, /turf))
 		return COMPONENT_INCOMPATIBLE
-	tile = parent
 
-/datum/component/lava/RegisterWithParent()
+/datum/component/lingering/RegisterWithParent()
 	. = ..()
 	RegisterSignal(parent, COMSIG_ATOM_HITBY, PROC_REF(hitby))
 	RegisterSignal(parent, COMSIG_ATOM_ENTERED, PROC_REF(Entered))
-	RegisterSignal(parent, COMSIG_ATOM_EXITED, PROC_REF(Exited))
-	tile = parent
 
-/datum/component/lava/UnregisterFromParent()
-	. = ..()
-	UnregisterSignal(parent, COMSIG_ATOM_HITBY, PROC_REF(hitby))
-	UnregisterSignal(parent, COMSIG_ATOM_ENTERED, PROC_REF(Entered))
-	UnregisterSignal(parent, COMSIG_ATOM_EXITED, PROC_REF(Exited))
+/datum/component/lingering/UnregisterFromParent()
+	UnregisterSignal(parent, COMSIG_ATOM_HITBY)
+	UnregisterSignal(parent, COMSIG_ATOM_ENTERED)
 	STOP_PROCESSING(SSobj, src)
+	. = ..()
 	
 ////////////////////////////////////////////////////////////////////////////////////
 //---------------------------------Triggers---------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/component/lava/proc/hitby(datum/source, atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
-	if(damage_stuff(AM))
+/datum/component/lingering/proc/hitby(datum/source, atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
+	if(affect_stuff(AM))
 		START_PROCESSING(SSobj, src)
 
-/datum/component/lava/proc/Entered(datum/source, atom/movable/AM)
-	if(damage_stuff(AM))
+/datum/component/lingering/proc/Entered(datum/source, atom/movable/AM)
+	if(affect_stuff(AM))
 		START_PROCESSING(SSobj, src)
 
-/datum/component/lava/proc/Exited(datum/source, atom/movable/Obj, atom/newloc)
-	if(isliving(Obj))
-		var/mob/living/L = Obj
-		if(!islava(newloc) && !L.on_fire)
-			L.update_fire()
-
-/datum/component/lava/process(delta_time)
-	if(!damage_stuff(null, delta_time))
+/datum/component/lingering/process(delta_time)
+	if(!affect_stuff(null, delta_time))
 		STOP_PROCESSING(SSobj, src)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //---------------------------------safety check-----------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/component/lava/proc/is_safe()
+/datum/component/lingering/proc/is_safe()
 	//if anything matching this typecache is found in the lava, we don't burn things
 	var/static/list/lava_safeties_typecache = typecacheof(list(/obj/structure/lattice/catwalk, /obj/structure/stone_tile))
 
-	var/list/found_safeties = typecache_filter_list(tile.contents, lava_safeties_typecache)
+	var/turf/open/place = get_turf(parent)
+
+	var/list/found_safeties = typecache_filter_list(place.contents, lava_safeties_typecache)
 
 	for(var/obj/structure/stone_tile/S in found_safeties)
 		if(S.fallen)
 			LAZYREMOVE(found_safeties, S)
 	return LAZYLEN(found_safeties)
 
-/datum/component/lava/proc/damage_stuff(AM, delta_time = 1)
+/datum/component/lingering/proc/affect_stuff(AM, delta_time = 1)
 	. = 0
 
 	if(is_safe())
 		return FALSE
 
-	var/thing_to_check = tile
-	if(!istype(thing_to_check, /turf))
+	if(AM) //if it's a specific object, apply to that one
+		return apply_effect(AM, delta_time)
+
+	var/turf/open/place = get_turf(parent) //otherwise, apply to every object on the turf
+
+	if(!place)
 		return
 
-	if (AM)
-		thing_to_check = list(AM)
-	for(var/thing in thing_to_check)
-		if(apply_damage(thing, delta_time))
+	for(var/thing in place.contents)
+		if(thing == parent)
+			continue
+		if(apply_effect(thing, delta_time))
 			. = 1
 
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------------Do the effect-----------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/component/lava/proc/apply_damage(thing, delta_time) //override this for subtypes
+/datum/component/lingering/proc/apply_effect(thing, delta_time) //override this for subtypes
+	return FALSE
+
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------Regular lava-----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/component/lingering/lava/apply_effect(thing, delta_time)
 	. = 0
 	if(isobj(thing))
 		var/obj/O = thing
@@ -131,7 +132,7 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //-------------------------------Toxic water lava---------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/component/lava/toxic/apply_damage(thing, delta_time)
+/datum/component/lingering/toxic/apply_effect(thing, delta_time)
 	. = 0
 	if(isobj(thing)) //objects are unaffected for now
 		return
@@ -179,7 +180,7 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------Plasma river lava-----------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/component/lava/plasma/apply_damage(thing, delta_time)
+/datum/component/lingering/plasma/apply_effect(thing, delta_time)
 	. = 0
 	if(isobj(thing))
 		var/obj/O = thing

@@ -176,7 +176,7 @@
 
 /turf/open/lava/plasma/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/lava/plasma) //overwrites the regular lava component
+	AddComponent(/datum/component/lingering/plasma) //overwrites the regular lava component
 
 /turf/open/lava/plasma/attackby(obj/item/I, mob/user, params)
 	var/obj/item/reagent_containers/glass/C = I

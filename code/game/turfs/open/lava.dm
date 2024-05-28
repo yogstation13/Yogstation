@@ -34,7 +34,7 @@
 	if(!smoothing_flags)
 		update_appearance()
 	AddComponent(/datum/component/fishable/lava)
-	AddComponent(/datum/component/lava)
+	AddComponent(/datum/component/lingering/lava)
 
 /turf/open/lava/update_overlays()
 	. = ..()
