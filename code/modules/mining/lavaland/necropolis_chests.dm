@@ -588,7 +588,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	desc = "A curved sword smelted from an unknown metal. Looking at it gives you the otherworldly urge to pawn it off for '30k', whatever that means."
 	lefthand_file = 'yogstation/icons/mob/inhands/weapons/scimmy_lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/weapons/scimmy_righthand.dmi'
-	icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "rune_scimmy"
 	force = 20
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
@@ -972,7 +972,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/item/melee/ghost_sword
 	name = "\improper spectral blade"
 	desc = "A rusted and dulled blade. It doesn't look like it'd do much damage. It glows weakly."
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "spectral"
 	item_state = "spectral"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'

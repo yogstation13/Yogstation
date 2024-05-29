@@ -94,7 +94,7 @@
 	hitsound = 'sound/weapons/chainsawhit.ogg'
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "imp_chainswordon"
 	item_state = "imp_chainswordon"
 	sharpness = SHARP_EDGED
