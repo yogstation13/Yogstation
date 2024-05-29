@@ -309,6 +309,7 @@
 	name = "IV drip"
 	reqs = 	list(/obj/item/stack/rods = 4, /obj/item/stack/sheet/metal = 1)
 	result = /obj/machinery/iv_drip
+	tool_behaviors = list(TOOL_SCREWDRIVER)
 	category = CAT_STRUCTURES
 	time = 5 SECONDS
 
