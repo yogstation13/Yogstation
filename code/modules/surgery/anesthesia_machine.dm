@@ -1,6 +1,6 @@
 /obj/machinery/anesthetic_machine
-	name = "Portable gas cylinder cart"
-	desc = "A wheeled machine that can hold a tank and distribute the gas using a breath mask."
+	name = "Portable gas tank cart"
+	desc = "A portable cart that can hold a gas tank and distribute the gas using a breath mask."
 	icon = 'icons/obj/iv_drip.dmi'
 	icon_state = "breath_machine"
 	anchored = FALSE
