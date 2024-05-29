@@ -16,7 +16,7 @@
 <h1>Regenerator component <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/regenerator.html">regenerator</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/11e2cea70a65310f752b784094083f4ac047a1fc/code/datums/elements/regenerator.dm#L9">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ade2635d4dbff3997f9a1573e5152370ce3df231/code/datums/elements/regenerator.dm#L9">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;regenerator.dm 9"/></a></h1>
 
 <p>A mob with this component will regenerate its health over time, as long as it has not received damage
@@ -32,48 +32,48 @@ in the last X seconds. Taking any damage will reset this cooldown.</p><table cla
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/11e2cea70a65310f752b784094083f4ac047a1fc/code/datums/elements/regenerator.dm#L13">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ade2635d4dbff3997f9a1573e5152370ce3df231/code/datums/elements/regenerator.dm#L13">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;regenerator.dm 13"/></a></h3>
         <p>Health to regenerate per second</p><h3 id="var/ignore_damage_types"><aside class="declaration">var </aside>ignore_damage_types
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/11e2cea70a65310f752b784094083f4ac047a1fc/code/datums/elements/regenerator.dm#L15">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ade2635d4dbff3997f9a1573e5152370ce3df231/code/datums/elements/regenerator.dm#L15">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;regenerator.dm 15"/></a></h3>
         <p>List of damage types we don't care about, in case you want to only remove this with fire damage or something</p><h3 id="var/outline_colour"><aside class="declaration">var </aside>outline_colour
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/11e2cea70a65310f752b784094083f4ac047a1fc/code/datums/elements/regenerator.dm#L17">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ade2635d4dbff3997f9a1573e5152370ce3df231/code/datums/elements/regenerator.dm#L17">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;regenerator.dm 17"/></a></h3>
         <p>Colour of regeneration animation, or none if you don't want one</p><h3 id="var/regeneration_delay"><aside class="declaration">var </aside>regeneration_delay
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/11e2cea70a65310f752b784094083f4ac047a1fc/code/datums/elements/regenerator.dm#L11">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ade2635d4dbff3997f9a1573e5152370ce3df231/code/datums/elements/regenerator.dm#L11">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;regenerator.dm 11"/></a></h3>
         <p>You will only regain health if you haven't been hurt for this many seconds</p><h3 id="var/regeneration_start_timer"><aside class="declaration">var </aside>regeneration_start_timer
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/11e2cea70a65310f752b784094083f4ac047a1fc/code/datums/elements/regenerator.dm#L21">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ade2635d4dbff3997f9a1573e5152370ce3df231/code/datums/elements/regenerator.dm#L21">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;regenerator.dm 21"/></a></h3>
         <p>When this timer completes we start restoring health, it is a timer rather than a cooldown so we can do something on its completion</p><h2 id="proc">Proc Details</h2><h3 id="proc/on_take_damage"><aside class="declaration">proc </aside>on_take_damage<aside>(/<a href="datum.html">datum</a>/source, damage, damagetype) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/11e2cea70a65310f752b784094083f4ac047a1fc/code/datums/elements/regenerator.dm#L48">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ade2635d4dbff3997f9a1573e5152370ce3df231/code/datums/elements/regenerator.dm#L48">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;regenerator.dm 48"/></a></aside>
         </h3>
         <p>When you take damage, reset the cooldown and start processing</p><h3 id="proc/start_regenerating"><aside class="declaration">proc </aside>start_regenerating<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/11e2cea70a65310f752b784094083f4ac047a1fc/code/datums/elements/regenerator.dm#L61">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ade2635d4dbff3997f9a1573e5152370ce3df231/code/datums/elements/regenerator.dm#L61">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;regenerator.dm 61"/></a></aside>
         </h3>
         <p>Start processing health regeneration, and show animation if provided</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/11e2cea70a65310f752b784094083f4ac047a1fc">11e2cea</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/ade2635d4dbff3997f9a1573e5152370ce3df231">ade2635</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
