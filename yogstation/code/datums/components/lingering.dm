@@ -97,8 +97,10 @@
 	if(!place)
 		return
 
+	var/safe = is_safe() //we call this here so it doesn't need to be called multiple times if it returns false
+
 	for(var/thing in place.contents)
-		if(is_safe()) //we don't want to damage anything, but if there's something here, make sure to keep processing just in case it stops being safe
+		if(safe) //we don't want to damage anything, but if there's something here, make sure to keep processing just in case it stops being safe
 			return TRUE
 		if(thing == parent)
 			continue
