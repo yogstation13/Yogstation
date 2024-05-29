@@ -491,7 +491,7 @@
 	desc = "Originally intended for cyborgs to assist in atmospherics projects, was soon scrapped due to safety concerns."
 	icon = 'yogstation/icons/obj/flamethrower.dmi'
 	icon_state = "flamethrowerbase"
-	ammo_type = list(/obj/item/ammo_casing/energy/flamethrower)
+	ammo_type = list(/obj/item/ammo_casing/energy/flame_projector)
 	can_charge = FALSE
 	use_cyborg_cell = TRUE
 

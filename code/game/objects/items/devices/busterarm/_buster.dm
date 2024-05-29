@@ -32,7 +32,7 @@
 /obj/item/buster
 	item_flags = DROPDEL
 	w_class = 5
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'

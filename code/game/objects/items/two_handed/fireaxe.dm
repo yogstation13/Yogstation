@@ -1,5 +1,5 @@
 /obj/item/fireaxe
-	icon = 'icons/obj/tools.dmi'
+	icon = 'icons/obj/weapons/axe.dmi'
 	icon_state = "fireaxe0"
 	base_icon_state = "fireaxe"
 	lefthand_file = 'icons/mob/inhands/weapons/axes_lefthand.dmi'
@@ -80,7 +80,6 @@
 /obj/item/fireaxe/energy
 	name = "energy fire axe"
 	desc = "A massive, two handed, energy-based hardlight axe capable of cutting through solid metal. 'Glory to atmosia' is carved on the side of the handle."
-	icon = 'icons/obj/weapons/energy.dmi'
 	icon_state = "energy-fireaxe0"
 	base_icon_state = "energy-fireaxe"
 	demolition_mod = 4 // DESTROY

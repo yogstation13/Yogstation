@@ -465,6 +465,7 @@
 	time = 0.5 SECONDS
 	category = CAT_WEAPON_AMMO
 
+/datum/crafting_recipe/bolts
 	name = "Bolts"
 	result = /obj/item/ammo_casing/caseless/bolts
 	reqs = list(/obj/item/stack/rods = 1)

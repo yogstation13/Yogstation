@@ -923,7 +923,7 @@ GLOBAL_LIST_INIT(maintenance_loot_major,list(
 	/obj/item/deployablemine/honk = W_RARE,
 	/obj/item/disk/nuclear/fake = W_MYTHICAL,
 	/obj/item/enloudener = W_RARE,
-	/obj/item/flamethrower = W_RARE,
+	/obj/item/gun/flamethrower = W_RARE,
 	/obj/item/grenade/chem_grenade/antiweed = W_UNCOMMON,
 	/obj/item/grenade/chem_grenade/teargas = W_RARE,
 	/obj/item/grenade/flashbang = W_RARE,
