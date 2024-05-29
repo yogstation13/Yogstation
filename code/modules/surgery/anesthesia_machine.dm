@@ -1,6 +1,6 @@
 /obj/machinery/anesthetic_machine
-	name = "Anesthetic Tank Holder"
-	desc = "A wheeled machine that can hold an anesthetic tank and distribute the air using a breath mask."
+	name = "Tank Holder"
+	desc = "A wheeled machine that can hold different type of tank and distribute the gas using a breath mask."
 	icon = 'icons/obj/iv_drip.dmi'
 	icon_state = "breath_machine"
 	anchored = FALSE
@@ -36,6 +36,27 @@
 	. = ..()
 	if(retract_mask())
 		visible_message("<span class='notice'>[user] retracts the mask back into the [src].</span>")
+	else if(attached_tank)// If attached tank, remove it.
+		attached_tank.forceMove(loc)
+		to_chat(user, "<span class='notice'>You remove the [attached_tank].</span>")
+		attached_tank = null
+		update_appearance(UPDATE_ICON)
+		if(mask_out)
+			retract_mask()
+
+/obj/machinery/anesthetic_machine/AltClick(mob/user)
+	. = ..()
+	if(attached_tank && mask_out)
+		to_chat(user, span_warning("Disconnect the tank from the person first!"))
+		return
+	else
+		visible_message(span_warning("[user] detaches the breath mask from [src]."), span_notice("You detach the breath mask from [src]."))
+		if(attached_tank)
+			attached_tank.forceMove(loc)
+		attached_mask.forceMove(loc)
+		new /obj/machinery/iv_drip(loc)
+		qdel(src)
+		
 
 /obj/machinery/anesthetic_machine/attacked_by(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/tank))
@@ -47,16 +68,6 @@
 		update_appearance(UPDATE_ICON)
 		return
 	. = ..()
-
-/obj/machinery/anesthetic_machine/AltClick(mob/user)
-	. = ..()
-	if(attached_tank)// If attached tank, remove it.
-		attached_tank.forceMove(loc)
-		to_chat(user, "<span class='notice'>You remove the [attached_tank].</span>")
-		attached_tank = null
-		update_appearance(UPDATE_ICON)
-		if(mask_out)
-			retract_mask()
 
 /obj/machinery/anesthetic_machine/proc/retract_mask()
 	if(mask_out)

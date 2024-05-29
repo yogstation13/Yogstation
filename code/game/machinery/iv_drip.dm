@@ -237,7 +237,7 @@
 
 	. += span_notice("[attached ? attached : "No one"] is attached.")
 
-/obj/machinery/iv_drip/screwdriver_act(mob/living/user, obj/item/I)
+/obj/machinery/iv_drip/attacked_by(obj/item/attacking_item, mob/living/user)
 	. = ..()
 	if(user.is_holding_item_of_type(/obj/item/clothing/mask/breath) && can_convert)
 		visible_message("<span class='warning'>[user] attempts to attach the breath mask to [src].</span>", "<span class='notice'>You attempt to attach the breath mask to [src].</span>")
