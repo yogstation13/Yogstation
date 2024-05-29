@@ -478,6 +478,9 @@
 	if(..())
 		return
 	switch(action)
+		if("recolor")
+			select_colors()
+			. = TRUE
 		if("relabel")
 			var/label = tgui_input_list(usr, "New canister label", "Canister", label2types)
 			if(isnull(label))
@@ -575,6 +578,24 @@
 				replace_tank(usr, FALSE)
 				. = TRUE
 	update_appearance(UPDATE_ICON)
+
+/obj/machinery/portable_atmospherics/canister/proc/select_colors()
+	var/atom/fake_atom = src
+	var/list/allowed_configs = list("[/datum/greyscale_config/canister/base]",
+									"[/datum/greyscale_config/canister/stripe]",
+									"[/datum/greyscale_config/canister/double_stripe]",
+									"[/datum/greyscale_config/canister/hazard]",
+									)
+	var/datum/greyscale_modify_menu/menu = new(
+		src, usr, allowed_configs, CALLBACK(src, PROC_REF(recolor)),
+		starting_icon_state=initial(fake_atom.icon_state),
+		starting_config=initial(fake_atom.greyscale_config),
+		starting_colors=initial(fake_atom.greyscale_colors)
+	)
+	menu.ui_interact(usr)
+
+/obj/machinery/portable_atmospherics/canister/proc/recolor(datum/greyscale_modify_menu/menu)
+	set_greyscale(menu.split_colors)
 
 /obj/machinery/portable_atmospherics/canister/examine(mob/dead/observer/user)
 	if(istype(user))
