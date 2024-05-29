@@ -31,6 +31,10 @@
 	if(attached_tank)
 		. += "tank_on"
 
+/obj/machinery/anesthetic_machine/examine(mob/user)
+	. = ..()
+	if(attached_tank)
+		. +=span_notice("There is a [attached_tank] attached to it.")
 
 /obj/machinery/anesthetic_machine/attack_hand(mob/living/user)
 	. = ..()
