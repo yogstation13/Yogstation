@@ -238,7 +238,6 @@
 	. += span_notice("[attached ? attached : "No one"] is attached.")
 
 /obj/machinery/iv_drip/attackby(obj/item/attacking_item, mob/living/user)
-	. = ..()
 	if(istype(attacking_item, /obj/item/clothing/mask/breath) && can_convert)
 		visible_message("<span class='warning'>[user] attempts to attach the breath mask to [src].</span>", "<span class='notice'>You attempt to attach the breath mask to [src].</span>")
 		if(!do_after(user, 10 SECONDS, src, timed_action_flags = IGNORE_HELD_ITEM))
@@ -248,6 +247,8 @@
 		qdel(attacking_item)
 		new /obj/machinery/anesthetic_machine(loc)
 		qdel(src)
+		return
+	return ..()
 
 /obj/machinery/iv_drip/saline
 	name = "saline drip"

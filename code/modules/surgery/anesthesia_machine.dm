@@ -63,7 +63,6 @@
 		
 
 /obj/machinery/anesthetic_machine/attackby(obj/item/I, mob/living/user)
-	. = ..()
 	if(istype(I, /obj/item/tank))
 		if(attached_tank) // If there is an attached tank, remove it and drop it on the floor
 			attached_tank.forceMove(loc)
@@ -72,6 +71,7 @@
 		attached_tank = I
 		update_appearance(UPDATE_ICON)
 		return
+	return ..()
 
 /obj/machinery/anesthetic_machine/proc/retract_mask()
 	if(mask_out)
