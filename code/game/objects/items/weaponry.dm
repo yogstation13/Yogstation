@@ -34,7 +34,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/sord
 	name = "\improper SORD"
 	desc = "This thing is so unspeakably shitty you are having a hard time even holding it."
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "sord"
 	item_state = "sord"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -54,7 +54,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/claymore
 	name = "claymore"
 	desc = "What are you standing around staring at this for? Get to killing!"
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "claymore"
 	item_state = "claymore"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -224,7 +224,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/claymore/bone
 	name = "Bone Sword"
 	desc = "Jagged pieces of bone are tied to what looks like a goliath's femur."
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "bone_sword"
 	item_state = "bone_sword"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -242,7 +242,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/katana
 	name = "katana"
 	desc = "Woefully underpowered in D20."
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "katana"
 	item_state = "katana"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -371,7 +371,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/throwing_star
 	name = "throwing star"
 	desc = "An ancient weapon still used to this day, due to its ease of lodging itself into its victim's body parts."
-	icon = 'icons/obj/weapons/misc.dmi'
+	icon = 'icons/obj/weapons/thrown.dmi'
 	icon_state = "throwingstar"
 	item_state = "eshield0"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
@@ -398,7 +398,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/switchblade
 	name = "switchblade"
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/shortsword.dmi'
 	icon_state = "switchblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
@@ -510,7 +510,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/cane
 	name = "cane"
 	desc = "A cane used by a true gentleman. Or a clown."
-	icon = 'icons/obj/weapons/misc.dmi'
+	icon = 'icons/obj/weapons/staff.dmi'
 	icon_state = "cane"
 	item_state = "stick"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -524,7 +524,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/staff
 	name = "wizard staff"
 	desc = "Apparently a staff used by the wizard."
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/weapons/staff.dmi'
 	icon_state = "staff"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
@@ -544,10 +544,38 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	icon_state = "broom"
 	resistance_flags = FLAMMABLE
 
+/obj/item/staff/darkspawn
+	name = "wizard staff..?"
+	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
+	icon_state = "shadow_staff"
+	item_state = "shadow_staff0"
+	base_icon_state = "shadow_staff"
+	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
+	
+/obj/item/staff/darkspawn/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, \
+		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
+		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
+	)
+
+/obj/item/staff/darkspawn/proc/on_wield()
+	item_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
+	if(ishuman(loc))
+		var/mob/living/carbon/human/C = loc
+		C.update_inv_hands()
+
+/obj/item/staff/darkspawn/proc/on_unwield()
+	item_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
+	if(ishuman(loc))
+		var/mob/living/carbon/human/C = loc
+		C.update_inv_hands()
+
 /obj/item/staff/stick
 	name = "stick"
 	desc = "A great tool to drag someone else's drinks across the bar."
-	icon = 'icons/obj/weapons/misc.dmi'
+	icon = 'icons/obj/weapons/staff.dmi'
 	icon_state = "cane"
 	item_state = "stick"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -633,7 +661,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/tailclub
 	name = "tail club"
 	desc = "For the beating to death of lizards with their own tails."
-	icon = 'icons/obj/weapons/misc.dmi'
+	icon = 'icons/obj/weapons/hammer.dmi'
 	icon_state = "tailclub"
 	force = 14
 	throwforce = 1 // why are you throwing a club do you even weapon
@@ -644,7 +672,6 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/melee/chainofcommand/tailwhip
 	name = "liz o' nine tails"
 	desc = "A whip fashioned from the severed tails of lizards."
-	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "tailwhip"
 	item_flags = NONE
 
@@ -734,6 +761,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/circlegame
 	name = "circled hand"
 	desc = "If somebody looks at this while it's below your waist, you get to bop them."
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "madeyoulook"
 	force = 0
 	throwforce = 0
@@ -743,7 +771,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/slapper
 	name = "slapper"
 	desc = "This is how real men fight."
-	icon = 'icons/obj/toy.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "latexballon"
 	item_state = "nothing"
 	force = 0
