@@ -1,6 +1,6 @@
 /obj/machinery/anesthetic_machine
 	name = "Anesthetic Tank Holder"
-	desc = "A wheeled machine that can hold an anesthetic tank and distribute the air using a breath mask."
+	desc = "A wheeled machine that can hold a tank and distribute the gas inside using a breath mask."
 	icon = 'icons/obj/iv_drip.dmi'
 	icon_state = "breath_machine"
 	anchored = FALSE
@@ -34,7 +34,7 @@
 /obj/machinery/anesthetic_machine/examine(mob/user)
 	. = ..()
 	if(attached_tank)
-		. +=span_notice("There is a [attached_tank] attached to it.")
+		. += span_notice("[attached_tank] is attached to it.")
 
 /obj/machinery/anesthetic_machine/attack_hand(mob/living/user)
 	. = ..()
