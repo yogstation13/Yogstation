@@ -6,7 +6,7 @@
 	key = STRIPPABLE_ITEM_BACK
 	item_slot = ITEM_SLOT_BACK
 
-/datum/strippable_item/mob_item_slot/back/get_alternate_actions(atom/source, mob/user)
+/datum/strippable_item/mob_item_slot/back/get_alternate_action(atom/source, mob/user)
 	return get_strippable_alternate_action_internals(get_item(source), source)
 
 /datum/strippable_item/mob_item_slot/mask
