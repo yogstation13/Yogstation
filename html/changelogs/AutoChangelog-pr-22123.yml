@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes a bug that prevents opening someone elses tank if it's in their belt slot"
