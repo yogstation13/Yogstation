@@ -54,6 +54,10 @@
 		to_chat(user, span_warning("Disconnect the tank from the person first!"))
 		return
 	else
+		visible_message(span_warning("[user] attempts to detach the breath mask from [src]."), span_notice("You attempt to detach the breath mask from [src]."))
+		if(!do_after(user, 5 SECONDS, src, timed_action_flags = IGNORE_HELD_ITEM))
+			to_chat(user, span_warning("You fail to attach the breath mask to [src]!"))
+			return
 		visible_message(span_warning("[user] detaches the breath mask from [src]."), span_notice("You detach the breath mask from [src]."))
 		if(attached_tank)
 			attached_tank.forceMove(loc)
