@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed cyborgs that haven't yet selected a module being immune to damage."
