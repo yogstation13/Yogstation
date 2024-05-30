@@ -90,7 +90,7 @@
 		return
 	if(prob(severity) && istype(crosser) && !isvineimmune(crosser) && crosser.can_inject(crosser, FALSE, BODY_ZONE_CHEST))
 		to_chat(crosser, span_alert("You accidentally touch the vine and feel a strange sensation."))
-		crosser.adjustToxLoss(5)
+		crosser.apply_damage(5 * (100 - crosser.getarmor(null, BIO)) / 100)
 
 /datum/spacevine_mutation/toxicity/on_eat(obj/structure/spacevine/holder, mob/living/eater)
 	if(!isvineimmune(eater))
