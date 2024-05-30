@@ -531,7 +531,7 @@
 			M.reagents.remove_reagent(R.type,5)
 	if(M.health > 20)
 		M.adjustToxLoss(2.5*REM, 0)
-	. = 1
+		. = 1
 	..()
 
 /datum/reagent/medicine/potass_iodide
