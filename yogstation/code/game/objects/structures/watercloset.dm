@@ -1,5 +1,5 @@
 /obj/structure/toilet/attackby(obj/item/I, mob/living/user, params)
-	if (istype(I, /obj/item/flamethrower))
+	if (istype(I, /obj/item/gun/flamethrower))
 		if (!user.is_holding_item_of_type(/obj/item/crowbar))
 			to_chat(user, span_warning("You need a crowbar to retrofit this toilet into a bong!"))
 			return
