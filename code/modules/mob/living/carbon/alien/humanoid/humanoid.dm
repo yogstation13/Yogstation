@@ -23,11 +23,6 @@ GLOBAL_LIST_INIT(strippable_alien_humanoid_items, create_strippable_list(list(
 	/datum/strippable_item/mob_item_slot/legcuffs,
 )))
 
-/mob/living/carbon/alien/humanoid/Initialize()
-	. = ..()
-	AddElement(/datum/element/footstep, FOOTSTEP_MOB_CLAW, 0.5, -11)
-	AddElement(/datum/element/strippable, GLOB.strippable_alien_humanoid_items)
-
 /mob/living/carbon/alien/humanoid/restrained(ignore_grab)
 	return handcuffed
 
