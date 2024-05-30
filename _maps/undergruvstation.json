@@ -12,7 +12,6 @@
 	},
 	"traits": [
 		{
-			//Mine level
 			"Linkage": null,
 			"Weather_Lavaflood": true,
 			"Mining": true,
@@ -23,7 +22,6 @@
 			"No Parallax": true
 		},
 		{
-			//Deck III - Mostly rock
 			"Up": true,	
 			"Linkage": null,
 			"Gravity": true,
@@ -31,7 +29,6 @@
 			"No Parallax": true
 		},
 		{
-			//Deck II - Mostly stuff
 			"Down": true,
 			"Up": true,
 			"Linkage": null,
@@ -40,7 +37,6 @@
 			"No Parallax": true
 		},
 		{
-			//Deck I - Main stuff
 			"Down": true,
 			"Linkage": null,
 			"Gravity": true,
@@ -48,7 +44,6 @@
 			"No Parallax": true
 		},
 		{
-			//Surface
 			"Ocean Surface": true,
 			"Linkage": "Self",
 			"Gravity": true,
