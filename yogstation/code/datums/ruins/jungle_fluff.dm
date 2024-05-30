@@ -15,9 +15,11 @@ If any of you find this, I'm so sorry. I failed you all.<BR>
 /obj/item/paper/pamphlet/undergruv_intro
 	name = "Undergruv station welcome brochure"
 	icon_state = "pamphlet_cave"
-	info = {"<h1>Welcome to the Undergruv installation!</h1><br>\
-			<b>After 6 years of excavation and seismic surveying, Nanotrasen welcomes you \
-			to its latest state-of-the-art subterranean station!</b><br><br>\
+	info = {"<b>Welcome to the Undergruv installation!</b><br>\
+			After 6 years of excavation and seismic surveying, Nanotrasen welcomes you, \
+			valued employee, to the latest state-of-the-art subterranean station!<br>\
+			Not long after the <s>controversial</s> discovery of Y-383, one of our many brave expeditionary teams \
+			reported an unusually large cavern deep below the planet's surface. 
 
 			<b>Dropping Down</b><br>\
 			The building you're standing in currently is the station's heavy-duty surface \
