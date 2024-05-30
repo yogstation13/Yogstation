@@ -219,17 +219,17 @@ GLOBAL_LIST_INIT(labcoat_allowed, typecacheof(list(
 	/obj/item/melee/classic_baton/telescopic,
 	/obj/item/soap,
 	/obj/item/sensor_device,
-	/obj/item/tank/internals, 
+	/obj/item/tank/internals,
 	/obj/item/hypospray,
 	/obj/item/flashlight)))
 
 GLOBAL_LIST_INIT(mining_allowed, typecacheof(list(
-	/obj/item/flashlight, 
-	/obj/item/tank/internals, 
-	/obj/item/resonator, 
-	/obj/item/mining_scanner, 
-	/obj/item/t_scanner/adv_mining_scanner, 
-	/obj/item/gun/energy/kinetic_accelerator, 
-	/obj/item/pickaxe, 
-	/obj/item/organ/regenerative_core/legion, 
+	/obj/item/flashlight,
+	/obj/item/tank/internals,
+	/obj/item/resonator,
+	/obj/item/mining_scanner,
+	/obj/item/t_scanner/adv_mining_scanner,
+	/obj/item/gun/energy/kinetic_accelerator,
+	/obj/item/pickaxe,
+	/obj/item/organ/regenerative_core/legion,
 	/obj/item/kitchen/knife/combat)))
