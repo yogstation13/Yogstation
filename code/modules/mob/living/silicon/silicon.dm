@@ -53,6 +53,12 @@
 	faction += "silicon"
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
 		diag_hud.add_atom_to_hud(src)
+	if(islist(armor))
+		armor = getArmor(arglist(armor))
+	else if(!armor)
+		armor = getArmor()
+	else if(!istype(armor, /datum/armor))
+		stack_trace("Invalid type [armor.type] found in .armor during [type] Initialize()")
 	diag_hud_set_status()
 	diag_hud_set_health()
 	ADD_TRAIT(src, TRAIT_FORCED_STANDING, "cyborg") // not CYBORG_ITEM_TRAIT because not an item
@@ -404,8 +410,6 @@
 /mob/living/silicon/proc/run_armor(damage_amount, damage_type, damage_flag = 0, armor_penetration = 0)
 	if(damage_type != BRUTE && damage_type != BURN)
 		return 0
-	if(isnull(armor))
-		return damage_amount
 	var/armor_protection = 0
 	if(damage_flag)
 		armor_protection = armor.getRating(damage_flag)
