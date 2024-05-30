@@ -437,13 +437,12 @@
 	taste_description = "ash"
 
 /datum/reagent/medicine/charcoal/on_mob_life(mob/living/carbon/M)
-	M.adjustToxLoss(-2.5*REM, 0)
+	M.adjustToxLoss(-2*REM, 0)
 	. = 1
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
 			M.reagents.remove_reagent(R.type,0.5)
-	return ..()
-
+	..()
 /datum/reagent/medicine/system_cleaner
 	name = "System Cleaner"
 	description = "Neutralizes harmful chemical compounds inside synthetic systems."
@@ -532,7 +531,8 @@
 			M.reagents.remove_reagent(R.type,5)
 	if(M.health > 20)
 		M.adjustToxLoss(2.5*REM, 0)
-	return..()
+	. = 1
+	..()
 
 /datum/reagent/medicine/potass_iodide
 	name = "Potassium Iodide"
