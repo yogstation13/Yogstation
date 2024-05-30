@@ -4,7 +4,7 @@
 /obj/item/dopmirror
 	name = "ominous mirror"
 	desc = "What do you see looking back at you?"
-	icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
+	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "mirrornormal"
 	actions_types = list(/datum/action/item_action/mirrorrecall, /datum/action/item_action/rerollmirror)
 	COOLDOWN_DECLARE(next_search)
@@ -105,7 +105,7 @@
 /datum/action/item_action/mirrorrecall
 	name = "Recall"
 	desc = "Bring the reflection back into the mirror."
-	button_icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
+	button_icon = 'icons/obj/lavaland/artefacts.dmi'
 	button_icon_state = "mirrornormal"
 
 /datum/action/item_action/rerollmirror
@@ -229,7 +229,7 @@
 
 /datum/action/innate/jumpback
 	name = "Return to Mirror"
-	button_icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
+	button_icon = 'icons/obj/lavaland/artefacts.dmi'
 	button_icon_state = "mirrornormal"
 
 /datum/action/innate/jumpback/Activate()
@@ -245,7 +245,7 @@
 #define COOLDOWN_REAPPEAR 20 SECONDS
 /datum/action/innate/appear
 	name = "Exit Mirror"
-	button_icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
+	button_icon = 'icons/obj/lavaland/artefacts.dmi'
 	button_icon_state = "mirrorcrack"
 	COOLDOWN_DECLARE(next_appearance)
 

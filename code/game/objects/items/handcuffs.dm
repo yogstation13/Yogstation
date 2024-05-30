@@ -417,6 +417,7 @@
 /obj/item/restraints/legcuffs/bola
 	name = "bola"
 	desc = "A restraining device designed to be thrown at the target. Upon connecting with said target, it will wrap around their legs, making it difficult for them to move quickly."
+	icon = 'icons/obj/weapons/thrown.dmi'
 	icon_state = "bola"
 	icon_state_preview = "bola_preview"
 	item_state = "bola"

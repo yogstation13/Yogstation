@@ -158,7 +158,7 @@
 
 /datum/action/vine_snatch
 	name = "Vine Snatch - using it while having a target, recently marked with a vine mark in the range of 2 tiles will pull an item in their active hands to you, or pull and knockdown them."
-	button_icon = 'icons/obj/changeling.dmi'
+	button_icon = 'icons/obj/weapons/hand.dmi'
 	button_icon_state = "tentacle"
 	var/mob/living/carbon/human/marked_dude = null
 	var/last_time_marked = 0

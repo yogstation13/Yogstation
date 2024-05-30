@@ -585,9 +585,6 @@
 			lighting_cutoff = eyes.lighting_cutoff
 		if(!isnull(eyes.color_cutoffs))
 			lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, eyes.color_cutoffs)
-		if(istype(eyes, /obj/item/organ/eyes/ethereal) && client) //special view range ethereal eyes
-			client.view_size.resetToDefault(getScreenSize(client.prefs.read_preference(/datum/preference/toggle/widescreen)))
-			client.view_size.addTo("2x2")
 
 	for(var/image/I in infra_images)
 		if(client)
