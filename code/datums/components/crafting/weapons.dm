@@ -346,12 +346,12 @@
 	time = 1 SECONDS
 	category = CAT_WEAPON_MELEE
 
-/datum/crafting_recipe/improvised_bayonet
-	name = "Improvised Bayonet"
-	reqs = list(/obj/item/stack/sheet/metal = 1,
-			/obj/item/stack/rods = 1)
-	result = /obj/item/kitchen/knife/improvised_bayonet
-	tool_behaviors = list(TOOL_WELDER, TOOL_WRENCH)
+/datum/crafting_recipe/plug_bayonet
+	name = "Plug Bayonet"
+	reqs = list(/obj/item/kitchen/knife = 1,
+			/obj/item/stack/sheet/mineral/wood = 1)
+	result = /obj/item/kitchen/knife/plug_bayonet
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WRENCH)
 	time = 10 SECONDS
 	category = CAT_WEAPON_MELEE
 

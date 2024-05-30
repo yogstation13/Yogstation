@@ -289,11 +289,10 @@
 		qdel(src)
 		return
 
-/obj/item/kitchen/knife/improvised_bayonet
-	name = "improvised bayonet"
-	desc = "An improvised bayonet that looks like something you'd see in a museum."
-	icon_state = "improvised_bayonet"
-	force = 6
-	throwforce = 6
+/obj/item/kitchen/knife/plug_bayonet
+	name = "plug bayonet"
+	desc = "A knife blade that has been pounded into some wood meant to plug the barrel of a musket, making it a spear."
+	icon_state = "plug_bayonet"
+	bayonet = FALSE
 
 /* Trays  moved to /obj/item/storage/bag */
