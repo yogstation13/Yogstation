@@ -150,7 +150,7 @@
 /obj/item/melee/arm_blade
 	name = "arm blade"
 	desc = "A grotesque blade made out of bone and flesh that cleaves through people as a hot knife through butter."
-	icon = 'icons/obj/changeling.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "arm_blade"
 	item_state = "arm_blade"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
@@ -243,7 +243,7 @@
 /obj/item/gun/magic/tentacle
 	name = "tentacle"
 	desc = "A fleshy tentacle that can stretch out and grab things or people."
-	icon = 'icons/obj/changeling.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "tentacle"
 	item_state = "tentacle"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
@@ -574,7 +574,7 @@
 /obj/item/melee/flesh_maul
 	name = "flesh maul"
 	desc = "A horrifying mass of pulsing flesh and glistening bone. More than capable of crushing anyone unfortunate enough to be hit by it."
-	icon = 'icons/obj/changeling.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "flesh_maul"
 	item_state = "flesh_maul"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
