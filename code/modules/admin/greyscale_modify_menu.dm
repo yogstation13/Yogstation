@@ -256,6 +256,7 @@ This is highly likely to cause massive amounts of lag as every object in the gam
 	for(var/i in length(split_colors) + 1 to config.expected_colors)
 		LAZYADD(split_colors, rgb(100, 100, 100))
 	var/list/used_colors = split_colors.Copy(1, config.expected_colors+1)
+	split_colors = used_colors
 
 	sprite_data = list()
 
