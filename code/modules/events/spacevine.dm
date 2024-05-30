@@ -48,7 +48,7 @@
 	return
 
 /datum/spacevine_mutation/proc/on_hit(obj/structure/spacevine/holder, mob/hitter, obj/item/I, expected_damage)
-	. = expected_damage
+	return expected_damage
 
 /datum/spacevine_mutation/proc/on_cross(obj/structure/spacevine/holder, mob/crosser)
 	return
@@ -124,7 +124,7 @@
 
 /datum/spacevine_mutation/fire_proof/on_hit(obj/structure/spacevine/holder, mob/hitter, obj/item/weapon, expected_damage)
 	if(weapon?.damtype == BURN)
-		return 0
+		return expected_damage * 0.5
 	return expected_damage
 
 /datum/spacevine_mutation/vine_eating
@@ -249,9 +249,8 @@
 
 /datum/spacevine_mutation/woodening/on_hit(obj/structure/spacevine/holder, mob/living/hitter, obj/item/I, expected_damage)
 	if(I.is_sharp())
-		. = expected_damage * 0.5
-	else
-		. = expected_damage
+		return expected_damage * 0.5
+	return expected_damage
 
 /datum/spacevine_mutation/flowering
 	name = "flowering"
@@ -365,9 +364,9 @@
 /obj/structure/spacevine/attack_hand(mob/user)
 	for(var/datum/spacevine_mutation/SM in mutations)
 		SM.on_hit(src, user)
-	if(buckled_mobs.len)
-		user_unbuckle_mob(user, user)
-	. = ..()
+	if(buckled_mobs?.len)
+		user_unbuckle_mob(buckled_mobs[1], user)
+	return ..()
 
 /obj/structure/spacevine/attack_paw(mob/living/user)
 	for(var/datum/spacevine_mutation/SM in mutations)
@@ -519,14 +518,14 @@
 		buckle_mob(V, 1)
 
 /obj/structure/spacevine/proc/spread()
-	var/list/valid_turfs = list()
-
 	// check adjacent turfs if this vine can spread to it
+	var/list/valid_turfs = list()
 	var/turf/turf_candidate
 	for(var/direction in GLOB.cardinals_multiz)
 		turf_candidate = get_step_multiz(src, direction)
 		if(!turf_candidate) // nowhere to go in that direction
 			continue
+		turf_candidate ||= can_z_move(DOWN, turf_candidate, z_move_flags = ZMOVE_FALL_FLAGS|ZMOVE_ALLOW_ANCHORED)
 		if(!can_spread_to(turf_candidate))
 			continue
 		valid_turfs |= turf_candidate
@@ -540,19 +539,27 @@
 
 /// Checks whether this vine can spread to the given turf
 /obj/structure/spacevine/proc/can_spread_to(turf/turf_candidate)
-	if(isclosedturf(turf_candidate)) // absolutely not
+	if(isclosedturf(turf_candidate) || isspaceturf(turf_candidate)) // absolutely not
 		return FALSE
-	var/turf/starting_turf = get_turf(src)
+
+	if(islava(turf_candidate) && !(resistance_flags & LAVA_PROOF))
+		return FALSE // don't bother with lava unless we're resistant
+
 	var/area/turf_area = get_area(turf_candidate)
 	if(!turf_area.blob_allowed) // no growing outside the station
 		return FALSE
+	
+	var/turf/starting_turf = get_turf(src)
 	if(isgroundlessturf(starting_turf) && isgroundlessturf(turf_candidate)) // can bridge a 1 tile gap at most
 		return FALSE
+
 	var/obj/machinery/door/blocked_door = locate(/obj/machinery/door) in turf_candidate
 	if(blocked_door && !(blocked_door.welded || blocked_door.locked)) // a door to be opened
 		return TRUE
-	if(!TURFS_CAN_SHARE(starting_turf, turf_candidate)) // blocked by something
+
+	if(!(turf_candidate.Enter(src, TRUE) && starting_turf.Exit(src, turf_candidate))) // blocked by something
 		return FALSE
+
 	return TRUE
 
 /// Creates a new spacevine on a given turf
@@ -561,11 +568,13 @@
 	var/obj/structure/spacevine/existing_vine = locate(/obj/structure/spacevine) in stepturf
 
 	if(the_door && !existing_vine) // open the door!
-		if(istype(the_door, /obj/machinery/door/airlock))
+		if(the_door.density && istype(the_door, /obj/machinery/door/airlock))
 			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
 			sleep(6 SECONDS)
-		if(the_door.locked || the_door.welded)
-			return // uh oh, still blocked
+		if(QDELETED(src))
+			return
+		if(!can_spread_to(stepturf))
+			return
 		the_door.open()
 
 	for(var/datum/spacevine_mutation/mutation as anything in mutations)
@@ -576,6 +585,10 @@
 			var/turf/second_step = get_step_multiz(stepturf, get_dir(get_turf(src), stepturf))
 			if(second_step && can_spread_to(second_step)) // vines need a bit of help to get through doors properly
 				sleep(2 SECONDS)
+				if(QDELETED(new_vine) || QDELETED(src))
+					return
+				if(!can_spread_to(second_step))
+					return
 				new_vine.spread_to_turf(second_step)
 
 /obj/structure/spacevine/ex_act(severity, target)
