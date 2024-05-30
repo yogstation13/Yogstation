@@ -241,3 +241,42 @@
 
 	force_wielded = 8
 	can_be_explosive = FALSE
+
+/obj/item/melee/spear/plugged_musket
+	name = "plugged maintenance musket"
+	desc = "A maintenance musket with a plug bayonet"
+	icon_state = "plugged_musket0"
+	base_icon_state = "plugged_musket"
+	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
+	throwforce = 10
+	can_be_explosive = FALSE
+	var/unplugging = FALSE
+
+/obj/item/melee/spear/plugged_musket/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, \
+		force_wielded = force_wielded, \
+		icon_wielded = "[base_icon_state]1", \
+		wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 0, DAMAGE_HIGH = 0), \
+	)
+
+/obj/item/melee/spear/plugged_musket/attackby(obj/item/A, mob/user, params)
+	if(istype(A, /obj/item/screwdriver))
+		//Remove plug and make it a rifle again
+		if(unplugging)
+			to_chat(user, span_warning("You're already reloading it!"))
+			return
+		user.visible_message(span_warning("[user] starts unplugging the [src]!"), span_notice("You start unplugging the [src]."))
+		unplugging = TRUE
+		if(!do_after(user, 5 SECONDS, user))
+			unplugging = FALSE
+			user.balloon_alert(user, "You were interrupted!")
+			return
+		unplugging = FALSE
+		var/obj/item/gun/ballistic/maint_musket/P = new /obj/item/gun/ballistic/maint_musket
+		var/obj/item/kitchen/knife/plug_bayonet/B = new /obj/item/kitchen/knife/plug_bayonet
+		user.put_in_hands(P)
+		user.put_in_hands(B)
+		qdel(src)
+
+	..()
