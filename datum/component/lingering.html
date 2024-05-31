@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;lingering - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/lingering.html#var">Var Details</a> - <a href="datum/component/lingering.html#proc">Proc Details</a></header>
+<main>
+<h1>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/lingering.html">lingering</a>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/53c652c2023ed83e2eec175dcce062cd13106270/yogstation/code/datums/components/lingering.dm#L1">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;datums&#x2F;components&#x2F;lingering.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/lingering.html#var/affect_callback">affect_callback</a></th><td>A callback on the parent to be called when it tries to apply an affect on an atom</td></tr>
+            <tr><th><a href="datum/component/lingering.html#var/safeties_typecache">safeties_typecache</a></th><td>A list of things that if even one is on the tile, will prevent the effect</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/lingering.html#proc/Initialize">Initialize</a></th><td>Lingering component</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/affect_callback"><aside class="declaration">var </aside>affect_callback
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/53c652c2023ed83e2eec175dcce062cd13106270/yogstation/code/datums/components/lingering.dm#L4">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;datums&#x2F;components&#x2F;lingering.dm 4"/></a></h3>
+        <p>A callback on the parent to be called when it tries to apply an affect on an atom</p><h3 id="var/safeties_typecache"><aside class="declaration">var </aside>safeties_typecache
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/53c652c2023ed83e2eec175dcce062cd13106270/yogstation/code/datums/components/lingering.dm#L8">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;datums&#x2F;components&#x2F;lingering.dm 8"/></a></h3>
+        <p>A list of things that if even one is on the tile, will prevent the effect</p><h2 id="proc">Proc Details</h2><h3 id="proc/Initialize"><aside class="parent"><a title="/datum/component" href="datum/component.html#proc/Initialize">&uarr;</a></aside>Initialize<aside>(/<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a>/affect_callback, /list/safeties_typecache) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/53c652c2023ed83e2eec175dcce062cd13106270/yogstation/code/datums/components/lingering.dm#L17">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;datums&#x2F;components&#x2F;lingering.dm 17"/></a></aside>
+        </h3>
+        <p>Lingering component</p>
+<p>essentially caltrops, but it keeps triggering every SSobj tick</p>
+<p>vars:</p>
+<ul>
+<li>affect_callback (required) A callback that triggers a proc that returns true or false, false will stop the processing of the component</li>
+<li>safeties_typecache (optional) A list of typepaths that if they're on the same tile will prevent the effect</li>
+</ul></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/53c652c2023ed83e2eec175dcce062cd13106270">53c652c</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

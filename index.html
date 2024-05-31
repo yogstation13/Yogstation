@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(885 modules,
-    3119/11001 macros, 28.4%)</aside></h3>
+<aside>(888 modules,
+    3157/11031 macros, 28.6%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -116,7 +116,6 @@ General Public License version 3.
     <li><a href="code/__DEFINES/dcs/signals/signals_mood.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_mood">signals_mood</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_moveloop.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_moveloop">signals_moveloop</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_movetype.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_movetype">signals_movetype</a></li>
-    <li><a href="code/__DEFINES/dcs/signals/signals_ntnet.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_ntnet">signals_ntnet</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_object.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_object">signals_object</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_song.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_song">signals_song</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_spell.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_spell">signals_spell</a></li>
@@ -157,6 +156,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/misc.html" title="code&#x2F;__DEFINES&#x2F;misc">misc</a></li>
     <li><a href="code/__DEFINES/mobfactions.html" title="code&#x2F;__DEFINES&#x2F;mobfactions">mobfactions</a></li>
     <li><a href="code/__DEFINES/mobs.html" title="code&#x2F;__DEFINES&#x2F;mobs">mobs</a></li>
+    <li><a href="code/__DEFINES/modular_computer.html" title="code&#x2F;__DEFINES&#x2F;modular_computer">modular_computer</a></li>
     <li><a href="code/__DEFINES/movement.html" title="code&#x2F;__DEFINES&#x2F;movement">movement</a></li>
     <li><a href="code/__DEFINES/multiz.html" title="code&#x2F;__DEFINES&#x2F;multiz">multiz</a></li>
     <li><a href="code/__DEFINES/obj_flags.html" title="code&#x2F;__DEFINES&#x2F;obj_flags">obj_flags</a> - For masks, allows you to breathe from internals on adjecent tiles</li>
@@ -295,6 +295,7 @@ SPDX-License-Identifier: MIT</li>
 Materials are now instanced datums, with an associative list of them being kept in SSmaterials. We only instance the materials once and then re-use these instances for everything.
 These materials call on_applied() on whatever item they are applied to, common effects are adding components, changing color and changing description. This allows us to differentiate items based on the material they are made out of.area</li>
     <li><a href="code/controllers/subsystem/minor_mapping.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minor_mapping">minor_mapping</a></li>
+    <li><a href="code/controllers/subsystem/modular_computers.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;modular_computers">modular_computers</a></li>
     <li><a href="code/controllers/subsystem/overlays.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;overlays">overlays</a></li>
     <li><a href="code/controllers/subsystem/parallax.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;parallax">parallax</a></li>
     <li><a href="code/controllers/subsystem/runechat.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;runechat">runechat</a></li>
@@ -327,6 +328,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/datums/components/action_item_overlay.html" title="code&#x2F;datums&#x2F;components&#x2F;action_item_overlay">action_item_overlay</a></li>
     <li><a href="code/datums/components/anti_magic.html" title="code&#x2F;datums&#x2F;components&#x2F;anti_magic">anti_magic</a></li>
     <li><a href="code/datums/components/bakeable.html" title="code&#x2F;datums&#x2F;components&#x2F;bakeable">bakeable</a></li>
+    <li><a href="code/datums/components/blocking.html" title="code&#x2F;datums&#x2F;components&#x2F;blocking">blocking</a></li>
     <li><a href="code/datums/components/chasm.html" title="code&#x2F;datums&#x2F;components&#x2F;chasm">chasm</a></li>
     <li><a href="code/datums/components/connect_containers.html" title="code&#x2F;datums&#x2F;components&#x2F;connect_containers">connect_containers</a></li>
     <li><a href="code/datums/components/connect_loc_behalf.html" title="code&#x2F;datums&#x2F;components&#x2F;connect_loc_behalf">connect_loc_behalf</a></li>
@@ -403,6 +405,7 @@ SPDX-License-Identifier: MIT</li>
     <li class="has-children"><span title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators">dungeon_generators</span><ul class="index-tree">
     <li><a href="code/datums/mapgen/dungeon_generators/dungeon_room.html" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room">dungeon_room</a></li>
     <li><a href="code/datums/mapgen/dungeon_generators/dungeon_room_theme.html" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme">dungeon_room_theme</a></li>
+    <li><span class="no-substance">maintenance_generator&#x2F;</span><a href="code/datums/mapgen/dungeon_generators/maintenance_generator/maintenance_generator.html" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;maintenance_generator&#x2F;maintenance_generator">maintenance_generator</a></li>
     </ul></li>
     </ul></li>
     <li class="has-children"><a href="code/datums/martial.html" title="code&#x2F;datums&#x2F;martial">martial</a><ul class="index-tree">
@@ -476,7 +479,10 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/game/machinery/slotmachine.html" title="code&#x2F;game&#x2F;machinery&#x2F;slotmachine">slotmachine</a></li>
     <li><a href="code/game/machinery/status_display.html" title="code&#x2F;game&#x2F;machinery&#x2F;status_display">status_display</a></li>
     <li><a href="code/game/machinery/syndicatebomb.html" title="code&#x2F;game&#x2F;machinery&#x2F;syndicatebomb">syndicatebomb</a></li>
-    <li><span class="no-substance">telecomms&#x2F;</span><a href="code/game/machinery/telecomms/broadcasting.html" title="code&#x2F;game&#x2F;machinery&#x2F;telecomms&#x2F;broadcasting">broadcasting</a></li>
+    <li class="has-children"><span title="code&#x2F;game&#x2F;machinery&#x2F;telecomms">telecomms</span><ul class="index-tree">
+    <li><a href="code/game/machinery/telecomms/broadcasting.html" title="code&#x2F;game&#x2F;machinery&#x2F;telecomms&#x2F;broadcasting">broadcasting</a></li>
+    <li><a href="code/game/machinery/telecomms/ntnet_relay.html" title="code&#x2F;game&#x2F;machinery&#x2F;telecomms&#x2F;ntnet_relay">ntnet_relay</a></li>
+    </ul></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;game&#x2F;mecha">mecha</span><ul class="index-tree">
     <li class="has-children"><span class="no-substance">equipment&#x2F;</span><span title="code&#x2F;game&#x2F;mecha&#x2F;equipment&#x2F;tools">tools</span><ul class="index-tree">
@@ -577,7 +583,6 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/game/turfs/open/floor/plating/catwalk_plating.html" title="code&#x2F;game&#x2F;turfs&#x2F;open&#x2F;floor&#x2F;plating&#x2F;catwalk_plating">catwalk_plating</a></li>
     </ul></li>
     </ul></li>
-    <li><a href="code/game/turfs/open/lava.html" title="code&#x2F;game&#x2F;turfs&#x2F;open&#x2F;lava">lava</a></li>
     <li><span class="no-substance">space&#x2F;</span><a href="code/game/turfs/open/space/transit.html" title="code&#x2F;game&#x2F;turfs&#x2F;open&#x2F;space&#x2F;transit">transit</a></li>
     </ul></li>
     <li><a href="code/game/turfs/turf.html" title="code&#x2F;game&#x2F;turfs&#x2F;turf">turf</a></li>
@@ -1279,7 +1284,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1271 detailed/2140 documented/30100 total, 7.1%)</aside></h3>
+<aside>(1277 detailed/2147 documented/30104 total, 7.1%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1393,6 +1398,7 @@ Bug report is up, waiting on a fix</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;AI_Module&#x2F;destructive&#x2F;override_machine">Machine Override</span> - Override Machine: Allows the AI to override a machine, animating it into an angry, living version of itself.</li>
     </ul></li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;AI_Module&#x2F;upgrade">upgrade</span> - Modules that are improving AI abilities and assets<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;AI_Module&#x2F;upgrade&#x2F;camera_laser_gun">Upgrade Camera Laser Gun</span> - AI Laser Gun: Upgrades the ability to shoot lasers from cameras. If they do not have it, gives the non-upgraded ability.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;AI_Module&#x2F;upgrade&#x2F;eavesdrop">Enhanced Surveillance</span> - Enhanced Surveillance: Enables AI to hear conversations going on near its active vision.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;AI_Module&#x2F;upgrade&#x2F;mecha_domination">Unlock Mech Domination</span> - Unlock Mech Domination: Unlocks the ability to dominate mechs. Big shocker, right?</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;AI_Module&#x2F;upgrade&#x2F;upgrade_cameras">Upgrade Camera Network</span> - Upgrade Camera Network: EMP-proofs all cameras, in addition to giving them X-ray vision.</li>
@@ -1761,6 +1767,7 @@ The namespace folder's name will change if any of the assets change. (excluding 
 and apply it as an overlay of the action button</li>
     <li><a href="datum/component/anti_magic.html" title="&#x2F;datum&#x2F;component&#x2F;anti_magic">anti_magic</a> - This provides different types of magic resistance on an object</li>
     <li><a href="datum/component/bakeable.html" title="&#x2F;datum&#x2F;component&#x2F;bakeable">bakeable</a> - This component indicates this object can be baked in an oven.</li>
+    <li><a href="datum/component/blocking.html" title="&#x2F;datum&#x2F;component&#x2F;blocking">blocking</a></li>
     <li><a href="datum/component/bloodysoles.html" title="&#x2F;datum&#x2F;component&#x2F;bloodysoles">bloodysoles</a></li>
     <li><a href="datum/component/caltrop.html" title="&#x2F;datum&#x2F;component&#x2F;caltrop">caltrop</a></li>
     <li><a href="datum/component/chasm.html" title="&#x2F;datum&#x2F;component&#x2F;chasm">chasm</a></li>
@@ -1795,6 +1802,7 @@ no food found: it bites you and regains some health.</li>
     <li><span class="no-substance">heal_react&#x2F;</span><a href="datum/component/heal_react/boost.html" title="&#x2F;datum&#x2F;component&#x2F;heal_react&#x2F;boost">boost</a></li>
     <li><a href="datum/component/internal_cam.html" title="&#x2F;datum&#x2F;component&#x2F;internal_cam">internal_cam</a> - Internal camera component, basically a bodycam component, so it's not tied to an item</li>
     <li><a href="datum/component/light_eater.html" title="&#x2F;datum&#x2F;component&#x2F;light_eater">light_eater</a> - Makes anything it attaches to capable of removing something's ability to produce light until it is destroyed</li>
+    <li><a href="datum/component/lingering.html" title="&#x2F;datum&#x2F;component&#x2F;lingering">lingering</a></li>
     <li><a href="datum/component/material_container.html" title="&#x2F;datum&#x2F;component&#x2F;material_container">material_container</a></li>
     <li><a href="datum/component/mech_pilot.html" title="&#x2F;datum&#x2F;component&#x2F;mech_pilot">mech_pilot</a> - A component for clothes that affect one's ability to pilot mechs</li>
     <li><a href="datum/component/mind_linker.html" title="&#x2F;datum&#x2F;component&#x2F;mind_linker">Mind Linker</a> - A component that handles linking multiple player's minds
@@ -1841,7 +1849,7 @@ Items with this component that get picked up may give their parent mob the slip 
     <li><a href="datum/computer_file/program/card_mod.html" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;card_mod">card_mod</a></li>
     <li><a href="datum/computer_file/program/cargobounty.html" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;cargobounty">cargobounty</a></li>
     <li><a href="datum/computer_file/program/energy_harvester_control.html" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;energy_harvester_control">energy_harvester_control</a></li>
-    <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;ntnetdownload">ntnetdownload</span><ul class="index-tree">
+    <li class="has-children"><a href="datum/computer_file/program/ntnetdownload.html" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;ntnetdownload">ntnetdownload</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;ntnetdownload&#x2F;emagged">emagged</span> - A simple pre-emagged version</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;ntnetdownload&#x2F;syndicate">syndicate</span> - This app only lists programs normally found in the emagged section of the normal downloader app</li>
     </ul></li>
@@ -1904,6 +1912,7 @@ for scheduling different subsystems for different stages of the round</li>
     <li><a href="datum/controller/subsystem/machines.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;machines">Machines</a></li>
     <li><a href="datum/controller/subsystem/mapping.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;mapping">Mapping</a></li>
     <li><a href="datum/controller/subsystem/materials.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;materials">Materials</a></li>
+    <li><a href="datum/controller/subsystem/modular_computers.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;modular_computers">Modular Computers</a></li>
     <li><a href="datum/controller/subsystem/parallax.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;parallax">Parallax</a></li>
     <li><a href="datum/controller/subsystem/persistent_paintings.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;persistent_paintings">Persistent Paintings</a></li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;processing">processing</span><ul class="index-tree">
@@ -3983,6 +3992,7 @@ See [limbgrower_designs.dm] for everything we can make.</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;mineral&#x2F;unloading_machine">unloading machine</span> - Unloading unit</li>
     </ul></li>
     <li><a href="obj/machinery/modular_computer.html" title="&#x2F;obj&#x2F;machinery&#x2F;modular_computer">modular computer</a></li>
+    <li><a href="obj/machinery/ntnet_relay.html" title="&#x2F;obj&#x2F;machinery&#x2F;ntnet_relay">NTNet Quantum Relay</a></li>
     <li><a href="obj/machinery/oven.html" title="&#x2F;obj&#x2F;machinery&#x2F;oven">oven</a></li>
     <li><a href="obj/machinery/paystand.html" title="&#x2F;obj&#x2F;machinery&#x2F;paystand">unregistered pay stand</a></li>
     <li><a href="obj/machinery/plate_press.html" title="&#x2F;obj&#x2F;machinery&#x2F;plate_press">license plate press</a></li>
@@ -4141,6 +4151,7 @@ Chance to give Bat form, or turn them into a bat.</li>
     <li class="has-children"><a href="obj/structure/slime_crystal.html" title="&#x2F;obj&#x2F;structure&#x2F;slime_crystal">slimic pylon</a><ul class="index-tree">
     <li><a href="obj/structure/slime_crystal/bluespace.html" title="&#x2F;obj&#x2F;structure&#x2F;slime_crystal&#x2F;bluespace">bluespace</a></li>
     </ul></li>
+    <li><a href="obj/structure/spacevine.html" title="&#x2F;obj&#x2F;structure&#x2F;spacevine">space vines</a></li>
     <li class="has-children"><a href="obj/structure/spawner.html" title="&#x2F;obj&#x2F;structure&#x2F;spawner">monster nest</a><ul class="index-tree">
     <li><span class="no-substance">nether&#x2F;</span><a href="obj/structure/spawner/nether/bluespace_tap.html" title="&#x2F;obj&#x2F;structure&#x2F;spawner&#x2F;nether&#x2F;bluespace_tap">bluespace_tap</a></li>
     </ul></li>
@@ -4219,7 +4230,7 @@ uranium</li>
     </ul></li>
     </ul></li>
     <li><span class="no-substance">indestructible&#x2F;</span><a href="turf/open/indestructible/brazil.html" title="&#x2F;turf&#x2F;open&#x2F;indestructible&#x2F;brazil">..</a></li>
-    <li><a href="turf/open/lava.html" title="&#x2F;turf&#x2F;open&#x2F;lava">lava</a> - LAVA</li>
+    <li><a href="turf/open/lava.html" title="&#x2F;turf&#x2F;open&#x2F;lava">lava</a></li>
     <li class="has-children"><a href="turf/open/openspace.html" title="&#x2F;turf&#x2F;open&#x2F;openspace">open space</a><ul class="index-tree">
     <li><a href="turf/open/openspace/icemoon.html" title="&#x2F;turf&#x2F;open&#x2F;openspace&#x2F;icemoon">ice chasm</a></li>
     </ul></li>
@@ -4236,7 +4247,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/e57bf7b59b68dd754a9491943a9181a8ffb75d5b">e57bf7b</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/53c652c2023ed83e2eec175dcce062cd13106270">53c652c</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
