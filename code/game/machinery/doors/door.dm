@@ -445,6 +445,8 @@
 		var/turf/location = get_turf(src)
 		//add_blood doesn't work for borgs/xenos, but add_blood_floor does.
 		L.add_splatter_floor(location)
+		if(prob(1)) //no clip out of reality into the backrooms
+			INVOKE_ASYNC(L, TYPE_PROC_REF(/mob/living, clip_into_backrooms))
 	for(var/obj/mecha/M in get_turf(src))
 		M.take_damage(DOOR_CRUSH_DAMAGE)
 
