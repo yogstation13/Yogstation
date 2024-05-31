@@ -1712,3 +1712,22 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		var/ERROR_ERROR_LANDMARK_ERROR = "ERROR-ERROR: ERROR landmark missing!"
 		log_mapping(ERROR_ERROR_LANDMARK_ERROR)
 		CRASH(ERROR_ERROR_LANDMARK_ERROR)
+
+//plays a short clipping animation then send the mob into the backrooms
+/mob/living/proc/clip_into_backrooms()
+	playsound(get_turf(src), 'yogstation/sound/effects/backrooms_clipping.ogg', 80, FALSE)
+	set_resting(FALSE)
+	Immobilize(1.9 SECONDS, TRUE, TRUE)
+	var/x_diff = 4
+	var/y_diff = 1
+	var/rotation = 40
+	if(prob(50))
+		rotation *= -1
+	animate(src, pixel_x = x_diff, pixel_y = y_diff, time = 0.5, transform = matrix(rotation + x_diff, MATRIX_ROTATE), loop = 18, flags = ANIMATION_RELATIVE|ANIMATION_PARALLEL)
+	animate(pixel_x = -x_diff , pixel_y = -y_diff, transform = matrix(rotation - x_diff, MATRIX_ROTATE), time = 0.5, flags = ANIMATION_RELATIVE)
+	sleep(1.8 SECONDS)
+	pixel_x = 0
+	pixel_y = 0
+	set_resting(FALSE)
+	transform = matrix()
+	sendToBackrooms()

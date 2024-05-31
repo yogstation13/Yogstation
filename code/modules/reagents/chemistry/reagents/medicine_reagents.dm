@@ -441,9 +441,8 @@
 	. = 1
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
-			M.reagents.remove_reagent(R.type,1)
+			M.reagents.remove_reagent(R.type,0.5)
 	..()
-
 /datum/reagent/medicine/system_cleaner
 	name = "System Cleaner"
 	description = "Neutralizes harmful chemical compounds inside synthetic systems."
@@ -523,13 +522,13 @@
 	description = "Quickly purges the body of all chemicals. Toxin damage is dealt if the patient is in good condition."
 	reagent_state = LIQUID
 	color = "#19C832"
-	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	metabolization_rate = 0.5 *	REAGENTS_METABOLISM
 	taste_description = "acid"
 
 /datum/reagent/medicine/calomel/on_mob_life(mob/living/carbon/M)
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
-			M.reagents.remove_reagent(R.type,2.5)
+			M.reagents.remove_reagent(R.type,5)
 	if(M.health > 20)
 		M.adjustToxLoss(2.5*REM, 0)
 		. = 1

@@ -1386,3 +1386,11 @@
 			setDir(EAST, forced)
 		else
 			setDir(WEST, forced)
+
+/atom/movable/proc/sendToBackrooms()
+	var/backrooms_level = SSmapping.levels_by_trait(ZTRAIT_PROCEDURAL_MAINTS)
+	if(LAZYLEN(backrooms_level))
+		var/turf/destination = find_safe_turf(zlevels = backrooms_level, dense_atoms = FALSE)
+		if(destination)
+			forceMove(destination)
+			return TRUE

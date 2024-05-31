@@ -1,7 +1,7 @@
 /datum/computer_file/program/budget_monitor
 	filename = "budgetmonitor"
 	filedesc = "Budget Monitor"
-	category = PROGRAM_CATEGORY_CMD
+	category = PROGRAM_CATEGORY_SUPPLY
 	program_icon_state = "id"
 	extended_desc = "This program will allow you to view the financial status of your department(s)."
 	transfer_access = ACCESS_HEADS

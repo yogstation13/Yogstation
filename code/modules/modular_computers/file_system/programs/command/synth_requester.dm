@@ -9,7 +9,7 @@ GLOBAL_LIST_INIT(granted_synthetic_access, list())
 /datum/computer_file/program/synth_requester
 	filename = "synth_req"
 	filedesc = "Synthetic Manager"
-	category = PROGRAM_CATEGORY_CMD
+	category = PROGRAM_CATEGORY_EQUIPMENT
 	program_icon_state = "id"
 	extended_desc = "Program for requesting synthetic assistance and granting departmental access."
 	transfer_access = ACCESS_HEADS
