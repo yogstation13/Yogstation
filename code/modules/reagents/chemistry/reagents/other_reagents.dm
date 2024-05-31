@@ -1562,6 +1562,9 @@
 	M.adjustToxLoss(-5*heal_factor*REM)
 	M.adjustBruteLoss(-5*heal_factor*REM)
 	M.adjustCloneLoss(-5*heal_factor*REM)
+	for(var/obj/item/organ/organs in M.internal_organs)
+		if(organs.status == ORGAN_ORGANIC)
+			organs.healing_factor = max(organs.healing_factor, 2*heal_factor*REM)
 	REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 	..()
 
