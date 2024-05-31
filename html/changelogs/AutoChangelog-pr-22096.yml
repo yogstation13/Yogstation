@@ -1,0 +1,4 @@
+author: "cowbot92"
+delete-after: true 
+changes: 
+  - mapping: "Adjusts it so that space ninjas can spawn on icemeta properly"
