@@ -259,7 +259,19 @@
 	icon_state = "herald_cloak"
 	body_parts_covered = CHEST|GROIN|ARMS
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	hit_reaction_chance = 10
+	var/hit_reaction_chance = 10
+
+/obj/item/clothing/neck/cloak/herald_cloak/equipped(mob/user, slot)
+	. = ..()
+	if(slot_flags & slot)
+		RegisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(hit_reaction))
+	else
+		UnregisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS)
+
+/obj/item/clothing/neck/cloak/herald_cloak/dropped(mob/user)
+	if(user.get_item_by_slot(ITEM_SLOT_NECK) == src)
+		UnregisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS)
+	return ..()
 
 /obj/item/clothing/neck/cloak/herald_cloak/proc/reactionshot(mob/living/carbon/owner)
 	var/static/list/directional_shot_angles = list(0, 45, 90, 135, 180, 225, 270, 315)
@@ -274,10 +286,10 @@
 	H.firer = owner
 	H.fire(set_angle)
 
-/obj/item/clothing/neck/cloak/herald_cloak/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	. = FALSE
+/obj/item/clothing/neck/cloak/herald_cloak/proc/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, damage, attack_text = "the attack")
 	if(prob(hit_reaction_chance))
 		owner.visible_message(span_danger("[owner]'s [src] emits a loud noise as [owner] is struck!"))
 		var/static/list/directional_shot_angles = list(0, 45, 90, 135, 180, 225, 270, 315)
 		playsound(get_turf(owner), 'sound/magic/clockwork/invoke_general.ogg', 20, TRUE)
 		addtimer(CALLBACK(src, PROC_REF(reactionshot), owner), 10)
+	return NONE

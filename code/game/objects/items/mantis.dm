@@ -43,7 +43,10 @@
 /obj/item/mantis/blade/syndicate
 	name = "G.O.R.L.E.X. mantis blade"
 	icon_state = "syndie_mantis"
-	block_chance = 20
+
+/obj/item/mantis/blade/syndicate/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/blocking, block_force = 10, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK)
 
 /obj/item/mantis/blade/NT
 	name = "H.E.P.H.A.E.S.T.U.S. mantis blade"

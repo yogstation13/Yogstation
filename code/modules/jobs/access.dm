@@ -96,10 +96,6 @@
 		return FALSE
 	return TRUE
 
-/// Checks ntnet access
-/obj/proc/check_access_ntnet(datum/netdata/data)
-	return check_access_list(data.passkey)
-
 /// Get access for centcom job
 /proc/get_centcom_access(job)
 	switch(job)

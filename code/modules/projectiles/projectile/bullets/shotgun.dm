@@ -78,6 +78,10 @@
 	demolition_mod = 3 // very good at smashing through stuff
 	penetrations = INFINITY //Goes through an infinite number of mobs
 
+/obj/projectile/bullet/shotgun/slug/uranium/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_SHIELDBUSTER, INNATE_TRAIT)
+
 /obj/projectile/bullet/shotgun/slug/Range()
 	..()
 	if(damage > 0)

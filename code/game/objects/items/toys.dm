@@ -391,19 +391,14 @@
  */
 /obj/item/melee/dualsaber/toy
 	name = "double-bladed toy sword"
-	desc = "A cheap, plastic replica of TWO energy swords.  Double the fun!"
+	desc = "A cheap, plastic replica of TWO energy swords. Double the fun!"
 	force = 0
 	force_wielded = 0 // Why did someone make this a subtype of dualsabers
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 5
 	attack_verb = list("attacked", "struck", "hit")
-
-/obj/item/melee/dualsaber/toy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	return 0
-
-/obj/item/melee/dualsaber/toy/IsReflect() //Stops Toy Dualsabers from reflecting energy projectiles
-	return 0
+	toy = TRUE
 
 /*
  * Subtype of Vxtvul Hammer
@@ -415,7 +410,6 @@
 	throwforce = 0
 	resistance_flags = NONE
 	armour_penetration = 0
-	block_chance = 0
 	w_class = WEIGHT_CLASS_NORMAL
 	toy = TRUE
 
@@ -1797,7 +1791,7 @@ obj/item/toy/turn_tracker
 	if(ismovable(target) && blocked != 100)
 		var/atom/movable/A = target
 		A.visible_message(span_danger("[A] is snagged by [firer]'s hook!"))
-	return 
+	return
 
 /obj/item/gun/magic/sickly_blade_toy/attack(mob/living/M, mob/living/user)
 	if((IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
