@@ -90,11 +90,11 @@
 		return
 	if(prob(severity) && istype(crosser) && !isvineimmune(crosser) && crosser.can_inject(crosser, FALSE, BODY_ZONE_CHEST))
 		to_chat(crosser, span_alert("You accidentally touch the vine and feel a strange sensation."))
-		crosser.apply_damage(5 * (100 - crosser.getarmor(null, BIO)) / 100)
+		crosser.apply_damage(5, TOX, null, crosser.getarmor(null, BIO))
 
 /datum/spacevine_mutation/toxicity/on_eat(obj/structure/spacevine/holder, mob/living/eater)
 	if(!isvineimmune(eater))
-		eater.adjustToxLoss(5)
+		eater.apply_damage(5, TOX, null, crosser.getarmor(null, BIO))
 
 /datum/spacevine_mutation/explosive  //OH SHIT IT CAN CHAINREACT RUN!!!
 	name = "explosive"
@@ -220,7 +220,7 @@
 
 /datum/spacevine_mutation/thorns/on_cross(obj/structure/spacevine/holder, mob/living/crosser)
 	if(prob(severity) && istype(crosser) && !isvineimmune(crosser) && crosser.can_inject(crosser, FALSE, BODY_ZONE_CHEST))
-		crosser.adjustBruteLoss(5 * (100 - crosser.getarmor(null, BIO)) / 100)
+		crosser.apply_damage(5, BRUTE, null, crosser.getarmor(null, BIO), sharpness = SHARP_POINTY)
 		to_chat(crosser, span_alert("You cut yourself on the thorny vines."))
 
 /datum/spacevine_mutation/thorns/on_hit(obj/structure/spacevine/holder, mob/living/hitter, obj/item/I, expected_damage)
