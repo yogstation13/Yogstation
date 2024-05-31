@@ -244,7 +244,7 @@
 
 /obj/item/melee/spear/plugged_musket
 	name = "plugged maintenance musket"
-	desc = "A maintenance musket with a plug bayonet"
+	desc = "A maintenance musket with a plug bayonet. You can unplug it with a screwdriver."
 	icon_state = "plugged_musket0"
 	base_icon_state = "plugged_musket"
 	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
@@ -264,9 +264,9 @@
 	if(istype(A, /obj/item/screwdriver))
 		//Remove plug and make it a rifle again
 		if(unplugging)
-			to_chat(user, span_warning("You're already reloading it!"))
+			to_chat(user, span_warning("You're already unplugging it!"))
 			return
-		user.visible_message(span_warning("[user] starts unplugging the [src]!"), span_notice("You start unplugging the [src]."))
+		user.visible_message(span_warning("[user] starts unplugging [src]!"), span_notice("You start unplugging [src]."))
 		unplugging = TRUE
 		if(!do_after(user, 5 SECONDS, user))
 			unplugging = FALSE
