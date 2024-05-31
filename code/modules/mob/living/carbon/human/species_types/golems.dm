@@ -1603,7 +1603,7 @@
 /obj/item/melee/supermatter_sword/hand
 	name = "supermatter hand"
 	desc = "A hand of a robust supermatter golem."
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
 	icon_state = "disintegrate"

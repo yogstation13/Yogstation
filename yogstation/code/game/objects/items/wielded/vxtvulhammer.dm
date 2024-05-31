@@ -2,7 +2,7 @@
  * Vxtvul Hammer
  */
 /obj/item/melee/vxtvulhammer
-	icon = 'icons/obj/weapons/misc.dmi'
+	icon = 'icons/obj/weapons/hammer.dmi'
 	icon_state = "vxtvul_hammer0-0"
 	base_icon_state = "vxtvul_hammer"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'

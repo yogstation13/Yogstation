@@ -114,7 +114,7 @@
 	desc = "Taken from a giant bee and folded over one thousand times in pure honey. Can sting through anything."
 	fire_sound = 'sound/items/syringeproj.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/spellblade/beesword
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "beesword"
 	item_state = "stinger"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'

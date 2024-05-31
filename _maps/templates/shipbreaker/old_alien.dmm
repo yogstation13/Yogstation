@@ -43,7 +43,7 @@
 /area/template_noop)
 "z" = (
 /obj/machinery/door/airlock/abductor,
-/turf/open/space/basic,
+/turf/open/floor/plating/abductor,
 /area/template_noop)
 "A" = (
 /obj/structure/table/optable/abductor,

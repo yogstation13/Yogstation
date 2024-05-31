@@ -1,6 +1,6 @@
 /obj/item/shield
 	name = "shield"
-	icon = 'icons/obj/shields.dmi'
+	icon = 'icons/obj/weapons/shield.dmi'
 	slowdown = 0.2
 	item_flags = SLOWS_WHILE_IN_HAND
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 0, BOMB = 30, BIO = 0, RAD = 0, FIRE = 80, ACID = 70)

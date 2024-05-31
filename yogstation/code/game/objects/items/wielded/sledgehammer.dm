@@ -4,7 +4,7 @@
 /obj/item/melee/sledgehammer
 	name = "sledgehammer"
 	desc = "An archaic tool used to drive nails and break down hollow walls."
-	icon = 'icons/obj/weapons/misc.dmi'
+	icon = 'icons/obj/weapons/hammer.dmi'
 	worn_icon = 'yogstation/icons/mob/clothing/back.dmi'
 	icon_state = "sledgehammer"
 	item_state = "sledgehammer"

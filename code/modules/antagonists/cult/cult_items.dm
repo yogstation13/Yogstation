@@ -10,7 +10,7 @@
 /obj/item/melee/cultblade/dagger
 	name = "ritual dagger"
 	desc = "A strange dagger said to be used by sinister groups for \"preparing\" a corpse before sacrificing it to their dark gods."
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/weapons/khopesh.dmi'
 	icon_state = "render"
 	item_state = "cultdagger"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -34,7 +34,7 @@
 /obj/item/melee/cultblade
 	name = "eldritch longsword"
 	desc = "A sword humming with unholy energy. It glows with a dim red light."
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "cultblade"
 	item_state = "cultblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -103,7 +103,7 @@
 	light_system = MOVABLE_LIGHT
 	light_range = 4
 	attack_verb = list("cleaved", "slashed", "torn", "hacked", "ripped", "diced", "carved")
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "cultbastard"
 	item_state = "cultbastard"
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -814,7 +814,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 /obj/item/blood_beam
 	name = "\improper magical aura"
 	desc = "Sinister looking aura that distorts the flow of reality around it."
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
 	icon_state = "disintegrate"

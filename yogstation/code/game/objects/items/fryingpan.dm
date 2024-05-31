@@ -3,7 +3,7 @@
 	desc = "A cast-iron frying pan designed for cooking food."
 	lefthand_file = 'yogstation/icons/mob/inhands/weapons/pan_lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/weapons/pan_righthand.dmi'
-	icon = 'yogstation/icons/obj/pan.dmi'
+	icon = 'icons/obj/weapons/shortsword.dmi'
 	icon_state = "frying_pan"
 	w_class = 3
 	force = 12

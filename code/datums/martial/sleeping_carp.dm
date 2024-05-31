@@ -174,7 +174,7 @@
 	throwforce = 20
 	throw_speed = 2
 	attack_verb = list("smashed", "slammed", "whacked", "thwacked")
-	icon = 'icons/obj/weapons/misc.dmi'
+	icon = 'icons/obj/weapons/staff.dmi'
 	icon_state = "bostaff0"
 	base_icon_state = "bostaff"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'

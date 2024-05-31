@@ -53,6 +53,12 @@
 	faction += "silicon"
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
 		diag_hud.add_atom_to_hud(src)
+	if(islist(armor))
+		armor = getArmor(arglist(armor))
+	else if(!armor)
+		armor = getArmor()
+	else if(!istype(armor, /datum/armor))
+		stack_trace("Invalid type [armor.type] found in .armor during [type] Initialize()")
 	diag_hud_set_status()
 	diag_hud_set_health()
 	ADD_TRAIT(src, TRAIT_FORCED_STANDING, "cyborg") // not CYBORG_ITEM_TRAIT because not an item

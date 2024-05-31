@@ -65,6 +65,7 @@
 /obj/item/melee/transforming/energy/axe
 	name = "energy axe"
 	desc = "An energized battle axe."
+	icon = 'icons/obj/weapons/axe.dmi'
 	icon_state = "axe0"
 	lefthand_file = 'icons/mob/inhands/weapons/axes_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/axes_righthand.dmi'

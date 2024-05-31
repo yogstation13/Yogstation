@@ -195,30 +195,23 @@ Temperature: 126.85 °C (400 K)
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/water/toxic_pit
 
-/turf/open/water/toxic_pit/Entered(atom/movable/AM)
+/turf/open/water/toxic_pit/Initialize(mapload)
 	. = ..()
-	if(!ishuman(AM))
-		return
-		
-	var/mob/living/carbon/human/humie = AM
-	var/chance = (100 - humie.getarmor(null,BIO)) * 0.33
+	AddComponent(/datum/component/lava/toxic)
 
-	if(AM.movement_type & (FLYING|FLOATING) || !AM.has_gravity() || HAS_TRAIT(AM,TRAIT_SULPH_PIT_IMMUNE))
-		return
+/turf/open/water/toxic_pit/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
+	switch(the_rcd.construction_mode)
+		if(RCD_FLOORWALL)
+			return list("mode" = RCD_FLOORWALL, "delay" = 0, "cost" = 3)
+	return FALSE
 
-	if(isipc(humie) && prob(chance))
-		humie.adjustFireLoss(33)
-		to_chat(humie,span_danger("the sulphuric solution burns and singes into your plating!"))
-		return 
-
-	if(HAS_TRAIT(humie,TRAIT_TOXIMMUNE) || HAS_TRAIT(humie,TRAIT_TOXINLOVER))
-		return
-	
-	if(prob(chance * 0.33))
-		humie.reagents.add_reagent(/datum/reagent/toxic_metabolities,7.5)
-	
-	if(prob((chance * 0.15 ) + 10 ))
-		humie.acid_act(5,7.5)
+/turf/open/water/toxic_pit/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
+	switch(passed_mode)
+		if(RCD_FLOORWALL)
+			to_chat(user, span_notice("You build a floor."))
+			place_on_top(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+			return TRUE
+	return FALSE
 
 /turf/open/water/safe/jungle
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
@@ -231,28 +224,6 @@ Temperature: 126.85 °C (400 K)
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/water/deep_toxic_pit
-
-/turf/open/water/deep_toxic_pit/Entered(atom/movable/AM)
-	. = ..()
-	if(!ishuman(AM))
-		return
-
-	var/mob/living/carbon/human/humie = AM
-	
-	if(AM.movement_type & (FLYING|FLOATING) || !AM.has_gravity())
-		return
-
-	if(isipc(humie))
-		humie.adjustFireLoss(33)
-		to_chat(humie,span_danger("the sulphuric solution burns and singes into your plating!"))
-		return
-
-	if(HAS_TRAIT(humie,TRAIT_TOXIMMUNE) || HAS_TRAIT(humie,TRAIT_TOXINLOVER))
-		return
-	
-	humie.reagents.add_reagent(/datum/reagent/toxic_metabolities,15)
-	humie.adjustFireLoss(33)
-	humie.acid_act(15,15)
 
 /turf/open/floor/wood/jungle
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
