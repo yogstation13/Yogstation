@@ -33,16 +33,16 @@
 // 0 - No signal, 1 - Low signal, 2 - High signal. 3 - Wired Connection
 /obj/item/computer_hardware/network_card/proc/get_signal(specific_action = 0)
 	if(!holder) // Hardware is not installed in anything. No signal. How did this even get called?
-		return 0
+		return NTNET_NO_SIGNAL
 
 	if(!check_functionality())
-		return 0
+		return NTNET_NO_SIGNAL
 
 	if(ethernet) // Computer is connected via wired connection.
-		return 3
+		return NTNET_ETHERNET_SIGNAL
 
-	if(!SSnetworks.station_network || !SSnetworks.station_network.check_function(specific_action)) // NTNet is down and we are not connected via wired connection. No signal.
-		return 0
+	if(!SSmodular_computers || !SSmodular_computers.check_function(specific_action)) // NTNet is down and we are not connected via wired connection. No signal.
+		return NTNET_NO_SIGNAL
 
 	if(holder)
 
@@ -50,14 +50,14 @@
 		if((T && istype(T)) && (is_station_level(T.z) || is_mining_level(T.z)))
 			// Computer is on station. Low/High signal depending on what type of network card you have
 			if(long_range)
-				return 2
+				return NTNET_GOOD_SIGNAL
 			else
-				return 1
+				return NTNET_LOW_SIGNAL
 
 	if(long_range) // Computer is not on station, but it has upgraded network card. Low signal.
-		return 1
+		return NTNET_LOW_SIGNAL
 
-	return 0 // Computer is not on station and does not have upgraded network card. No signal.
+	return NTNET_NO_SIGNAL // Computer is not on station and does not have upgraded network card. No signal.
 
 
 /obj/item/computer_hardware/network_card/advanced

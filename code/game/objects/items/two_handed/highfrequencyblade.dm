@@ -1,5 +1,5 @@
 /obj/item/vibro_weapon
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "hfrequency0"
 	base_icon_state = "hfrequency"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'

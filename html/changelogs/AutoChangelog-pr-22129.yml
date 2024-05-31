@@ -1,0 +1,9 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "Thorny and toxic vines now take protective clothing into account"
+  - tweak: "Fireproof vines take half burn damage instead of none"
+  - bugfix: "Fixed vines growing outside on the icemoon"
+  - bugfix: "Fixed vines spreading through solid windows"
+  - bugfix: "Fixed runtime error when clicking on vines"
+  - bugfix: "Fixed vines sometimes not being able to spread when next to a wall"

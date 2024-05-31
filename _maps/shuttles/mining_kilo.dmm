@@ -73,7 +73,9 @@
 	shuttle_id = "mining";
 	name = "mining shuttle";
 	port_direction = 4;
-	width = 7
+	width = 7;
+	callTime = 10;
+	ignitionTime = 10
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/mining)

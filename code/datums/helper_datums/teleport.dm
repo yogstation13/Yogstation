@@ -173,10 +173,9 @@
 			continue
 
 		if(extended_safety_checks)
-			if(islava(F)) //chasms aren't /floor, and so are pre-filtered
-				var/turf/open/lava/L = F
-				if(!L.is_safe())
-					continue
+			var/datum/component/lingering/safety_check = F.GetComponent(/datum/component/lingering)
+			if(safety_check && !safety_check.is_safe()) //chasms aren't /floor, and so are pre-filtered
+				continue
 					
 		// Check that we're not warping onto a table or window
 		if(!dense_atoms)

@@ -13,6 +13,7 @@
 /obj/item/energy_katana
 	name = "energy katana"
 	desc = "A katana infused with strong energy."
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "energy_katana"
 	item_state = "energy_katana"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -29,7 +30,6 @@
 	sharpness = SHARP_EDGED
 	max_integrity = 200
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	icon = 'icons/obj/weapons/swords.dmi'
 	var/datum/effect_system/spark_spread/spark_system
 	var/datum/action/innate/dash/ninja/jaunt
 	var/dash_toggled = TRUE

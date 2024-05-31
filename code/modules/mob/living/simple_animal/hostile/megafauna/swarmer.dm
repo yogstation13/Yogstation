@@ -141,12 +141,11 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 /mob/living/simple_animal/hostile/swarmer/ai/Move(atom/newloc)
 	if(newloc)
 		if(newloc.z == z) //so these actions are Z-specific
-			if(islava(newloc))
-				var/turf/open/lava/L = newloc
-				if(!L.is_safe())
-					StartAction(20)
-					new /obj/structure/lattice/catwalk/swarmer_catwalk(newloc)
-					return FALSE
+			var/datum/component/lingering/safety_check = newloc.GetComponent(/datum/component/lingering)
+			if(safety_check && !safety_check.is_safe()) 
+				StartAction(20)
+				new /obj/structure/lattice/catwalk/swarmer_catwalk(newloc)
+				return FALSE
 
 			if(ischasm(newloc) && !throwing)
 				throw_at(get_edge_target_turf(src, get_dir(src, newloc)), 7 , 3, src, FALSE) //my planet needs me
