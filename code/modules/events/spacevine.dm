@@ -94,7 +94,7 @@
 
 /datum/spacevine_mutation/toxicity/on_eat(obj/structure/spacevine/holder, mob/living/eater)
 	if(!isvineimmune(eater))
-		eater.apply_damage(5, TOX, null, crosser.getarmor(null, BIO))
+		eater.apply_damage(5, TOX, null, eater.getarmor(null, BIO))
 
 /datum/spacevine_mutation/explosive  //OH SHIT IT CAN CHAINREACT RUN!!!
 	name = "explosive"
