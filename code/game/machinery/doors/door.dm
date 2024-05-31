@@ -17,6 +17,8 @@
 	interaction_flags_atom = INTERACT_ATOM_UI_INTERACT
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
+	/// Door remote allow control
+	var/opens_with_door_remote = FALSE
 	/// TRUE means density will be set as soon as the door begins to close
 	var/air_tight = FALSE
 	/// How long is this door electrified for
