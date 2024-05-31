@@ -60,6 +60,10 @@
 	greyscale_colors = CIRCUIT_COLOR_COMMAND
 	build_path = /obj/machinery/computer/shuttle/diver_c
 
+/obj/item/circuitboard/computer/diver_d // Aux. landing/ERT
+	name = "D.I.V.E.R. D Control Console (Computer Board)"
+	greyscale_colors = CIRCUIT_COLOR_COMMAND
+	build_path = /obj/machinery/computer/shuttle/diver_d
 
 //obj/item/circuitboard/computer/shield
 //	name = "Shield Control (Computer Board)"
