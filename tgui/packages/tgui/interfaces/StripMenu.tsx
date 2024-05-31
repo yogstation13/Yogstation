@@ -257,12 +257,12 @@ export const StripMenu = (props, context) => {
   }
 
   return (
-    <Window title={`Stripping ${data.name}`} width={400} height={400}>
+    <Window title={`Stripping ${data.name}`} width={400} height={380}>
       <Window.Content>
         <Stack fill vertical>
           {range(0, ROWS).map(row => (
-            <Stack.Item key={row}>
-              <Stack fill>
+            <Stack.Item grow key={row} ml={-2}>
+              <Stack fill justify="space-around">
                 {range(0, COLUMNS).map(column => {
                   const key = getGridSpotKey([row, column]);
                   const keyAtSpot = gridSpots.get(key);
@@ -298,8 +298,9 @@ export const StripMenu = (props, context) => {
                       <Box
                         as="img"
                         src={`data:image/jpeg;base64,${item.icon}`}
-                        height="100%"
-                        width="100%"
+                        height="64px"
+                        width="64px"
+                        ml={-0.9}
                         style={{
                           "-ms-interpolation-mode": "nearest-neighbor",
                           "vertical-align": "middle",
@@ -317,12 +318,12 @@ export const StripMenu = (props, context) => {
                             : "eye-slash"
                         }
                         size={3}
-                        ml={0}
-                        mt={1.3}
+                        ml={-1}
+                        mt={2.1}
                         style={{
                           "text-align": "center",
-                          height: "100%",
-                          width: "100%",
+                          height: "64px",
+                          width: "64px",
                         }}
                       />
                     );
@@ -341,8 +342,8 @@ export const StripMenu = (props, context) => {
                       <Box
                         style={{
                           position: "relative",
-                          width: "100%",
-                          height: "100%",
+                          width: "64px",
+                          height: "64px",
                         }}
                       >
                         <Button
@@ -353,14 +354,14 @@ export const StripMenu = (props, context) => {
                           }}
                           fluid
                           tooltip={tooltip}
+                          ml={-0.9}
                           style={{
                             background: item?.interacting
                               ? "hsl(39, 73%, 30%)"
                               : undefined,
                             position: "relative",
-                            width: "100%",
-                            height: "100%",
-                            padding: 0,
+                            width: "64px",
+                            height: "64px",
                           }}
                         >
                           {slot.image && (
@@ -374,8 +375,9 @@ export const StripMenu = (props, context) => {
                                 height: "32px",
                                 left: "50%",
                                 top: "50%",
+                                "-ms-interpolation-mode": "nearest-neighbor",
                                 transform:
-                                  "translateX(-50%) translateY(-50%) scale(0.8)",
+                                  "translateX(-50%) translateY(-50%)",
                               }}
                             />
                           )}
