@@ -184,7 +184,7 @@
 		if(magazine.stored_ammo.len > 0)
 			user.balloon_alert(user, "Already loaded!")
 			return
-		user.visible_message(span_warning("[user] starts reloading the [src]!"), span_notice("You start reloading the [src]."))
+		user.visible_message(span_warning("[user] starts reloading [src]!"), span_notice("You start reloading [src]."))
 		reloading_active = TRUE
 		if(!do_after(user, 5 SECONDS, user))
 			reloading_active = FALSE
