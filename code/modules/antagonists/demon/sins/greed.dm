@@ -41,14 +41,14 @@
 	name = "peculiar katana"
 	desc = "The handle seems to dig into your flesh as you swing it..."
 	force = 20
-	block_chance = 25
+	block_force = 10
 	armour_penetration = 15
 	sharpness = SHARP_EDGED
 
 /obj/item/katana/greedcursed/attack(mob/target, mob/living/carbon/human/user)
 	to_chat(user, "<span class ='warning'>[src] digs into your hands...</span>")
 	user.apply_damage(rand(force/4, force/2), BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)) //5-10 damage to one of your arms
-	..()
+	return ..()
 
 /obj/item/reagent_containers/pill/greedcursed //has a good amount of healing chems, you just have to deal with being set on fire first
 	name = "strange pill"

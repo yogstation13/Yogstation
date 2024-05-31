@@ -15,13 +15,13 @@
 		qdel(src)
 		return
 	ntnrc_uid = id
-	if(SSnetworks.station_network)
-		SSnetworks.station_network.chat_channels.Add(src)
+	if(SSmodular_computers)
+		SSmodular_computers.chat_channels += src
 	..()
 
 /datum/ntnet_conversation/Destroy()
-	if(SSnetworks.station_network)
-		SSnetworks.station_network.chat_channels.Remove(src)
+	if(SSmodular_computers)
+		SSmodular_computers.chat_channels.Remove(src)
 	return ..()
 
 /datum/ntnet_conversation/proc/add_message(message, username)

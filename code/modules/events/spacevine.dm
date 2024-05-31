@@ -38,9 +38,6 @@
 /datum/spacevine_mutation/proc/process_mutation(obj/structure/spacevine/holder)
 	return
 
-/datum/spacevine_mutation/proc/process_temperature(obj/structure/spacevine/holder, temp, volume)
-	return
-
 /datum/spacevine_mutation/proc/on_birth(obj/structure/spacevine/holder)
 	return
 
@@ -51,7 +48,7 @@
 	return
 
 /datum/spacevine_mutation/proc/on_hit(obj/structure/spacevine/holder, mob/hitter, obj/item/I, expected_damage)
-	. = expected_damage
+	return expected_damage
 
 /datum/spacevine_mutation/proc/on_cross(obj/structure/spacevine/holder, mob/crosser)
 	return
@@ -91,13 +88,13 @@
 /datum/spacevine_mutation/toxicity/on_cross(obj/structure/spacevine/holder, mob/living/crosser)
 	if(issilicon(crosser))
 		return
-	if(prob(severity) && istype(crosser) && !isvineimmune(crosser))
+	if(prob(severity) && istype(crosser) && !isvineimmune(crosser) && crosser.can_inject(crosser, FALSE, BODY_ZONE_CHEST))
 		to_chat(crosser, span_alert("You accidentally touch the vine and feel a strange sensation."))
-		crosser.adjustToxLoss(5)
+		crosser.apply_damage(5, TOX, null, crosser.getarmor(null, BIO))
 
 /datum/spacevine_mutation/toxicity/on_eat(obj/structure/spacevine/holder, mob/living/eater)
 	if(!isvineimmune(eater))
-		eater.adjustToxLoss(5)
+		eater.apply_damage(5, TOX, null, eater.getarmor(null, BIO))
 
 /datum/spacevine_mutation/explosive  //OH SHIT IT CAN CHAINREACT RUN!!!
 	name = "explosive"
@@ -120,14 +117,15 @@
 	hue = "#ff8888"
 	quality = MINOR_NEGATIVE
 
-/datum/spacevine_mutation/fire_proof/process_temperature(obj/structure/spacevine/holder, temp, volume)
-	return 1
+/datum/spacevine_mutation/fire_proof/add_mutation_to_vinepiece(obj/structure/spacevine/holder)
+	. = ..()
+	holder.extinguish()
+	holder.resistance_flags |= FIRE_PROOF
 
-/datum/spacevine_mutation/fire_proof/on_hit(obj/structure/spacevine/holder, mob/hitter, obj/item/I, expected_damage)
-	if(I && I.damtype == BURN)
-		. = 0
-	else
-		. = expected_damage
+/datum/spacevine_mutation/fire_proof/on_hit(obj/structure/spacevine/holder, mob/hitter, obj/item/weapon, expected_damage)
+	if(weapon?.damtype == BURN)
+		return expected_damage * 0.5
+	return expected_damage
 
 /datum/spacevine_mutation/vine_eating
 	name = "vine eating"
@@ -221,17 +219,22 @@
 	quality = NEGATIVE
 
 /datum/spacevine_mutation/thorns/on_cross(obj/structure/spacevine/holder, mob/living/crosser)
-	if(prob(severity) && istype(crosser) && !isvineimmune(crosser))
-		var/mob/living/M = crosser
-		M.adjustBruteLoss(5)
-		to_chat(M, span_alert("You cut yourself on the thorny vines."))
+	if(prob(severity) && istype(crosser) && !isvineimmune(crosser) && crosser.can_inject(crosser, FALSE, BODY_ZONE_CHEST))
+		crosser.apply_damage(5, BRUTE, null, crosser.getarmor(null, BIO), sharpness = SHARP_POINTY)
+		to_chat(crosser, span_alert("You cut yourself on the thorny vines."))
 
 /datum/spacevine_mutation/thorns/on_hit(obj/structure/spacevine/holder, mob/living/hitter, obj/item/I, expected_damage)
-	if(prob(severity) && istype(hitter) && !isvineimmune(hitter))
-		var/mob/living/M = hitter
-		M.adjustBruteLoss(5)
-		to_chat(M, span_alert("You cut yourself on the thorny vines."))
 	. =	expected_damage
+	// carbons have arms
+	var/obj/item/bodypart/arm_used = iscarbon(hitter) ? hitter.has_hand_for_held_index(hitter.active_hand_index) : null
+	if(prob(severity) && istype(hitter) && !isvineimmune(hitter) && hitter.can_inject(hitter, FALSE, arm_used?.body_zone))
+		// thick gloves protect you
+		var/obj/item/clothing/glove_protection = hitter.get_item_by_slot(ITEM_SLOT_GLOVES)
+		if(isclothing(glove_protection) && (glove_protection.clothing_flags & THICKMATERIAL))
+			return
+		// check bio protection
+		hitter.apply_damage(5, BRUTE, arm_used?.body_zone, hitter.getarmor(arm_used?.body_zone, BIO), sharpness = SHARP_POINTY)
+		to_chat(hitter, span_alert("You cut yourself on the thorny vines."))
 
 /datum/spacevine_mutation/woodening
 	name = "hardened"
@@ -246,9 +249,8 @@
 
 /datum/spacevine_mutation/woodening/on_hit(obj/structure/spacevine/holder, mob/living/hitter, obj/item/I, expected_damage)
 	if(I.is_sharp())
-		. = expected_damage * 0.5
-	else
-		. = expected_damage
+		return expected_damage * 0.5
+	return expected_damage
 
 /datum/spacevine_mutation/flowering
 	name = "flowering"
@@ -362,8 +364,9 @@
 /obj/structure/spacevine/attack_hand(mob/user)
 	for(var/datum/spacevine_mutation/SM in mutations)
 		SM.on_hit(src, user)
-	user_unbuckle_mob(user, user)
-	. = ..()
+	if(buckled_mobs?.len)
+		user_unbuckle_mob(buckled_mobs[1], user)
+	return ..()
 
 /obj/structure/spacevine/attack_paw(mob/living/user)
 	for(var/datum/spacevine_mutation/SM in mutations)
@@ -415,26 +418,32 @@
 	return ..()
 
 /datum/spacevine_controller/proc/spawn_spacevine_piece(turf/location, obj/structure/spacevine/parent, list/muts)
-	var/obj/structure/spacevine/SV = new(location)
-	growth_queue += SV
-	vines += SV
-	SV.master = src
+	var/obj/structure/spacevine/new_vine = new(location)
+	growth_queue += new_vine
+	vines += new_vine
+	new_vine.master = src
 	if(muts && muts.len)
 		for(var/datum/spacevine_mutation/M in muts)
-			M.add_mutation_to_vinepiece(SV)
+			M.add_mutation_to_vinepiece(new_vine)
 		return
 	if(parent)
-		SV.mutations |= parent.mutations
+		new_vine.mutations |= parent.mutations
 		var/parentcolor = parent.atom_colours[FIXED_COLOUR_PRIORITY]
-		SV.add_atom_colour(parentcolor, FIXED_COLOUR_PRIORITY)
+		new_vine.add_atom_colour(parentcolor, FIXED_COLOUR_PRIORITY)
 		if(prob(mutativeness))
-			var/datum/spacevine_mutation/random_mutate = pick(vine_mutations_list - SV.mutations)
-			random_mutate.add_mutation_to_vinepiece(SV)
+			var/datum/spacevine_mutation/random_mutate = pick(vine_mutations_list - new_vine.mutations)
+			random_mutate.add_mutation_to_vinepiece(new_vine)
 
-	for(var/datum/spacevine_mutation/SM in SV.mutations)
-		SM.on_birth(SV)
-	location.Entered(SV)
-	return SV
+	for(var/datum/spacevine_mutation/vine_mutation in new_vine.mutations)
+		vine_mutation.on_birth(new_vine)
+
+	var/datum/gas_mixture/turf_air = location.return_air()
+	new_vine.temperature_expose(turf_air, turf_air.return_temperature(), turf_air.return_volume())
+	if(QDELETED(new_vine)) // it already died from the environment
+		return
+
+	location.Entered(new_vine)
+	return new_vine
 
 /datum/spacevine_controller/proc/VineDestroyed(obj/structure/spacevine/S)
 	S.master = null
@@ -509,38 +518,78 @@
 		buckle_mob(V, 1)
 
 /obj/structure/spacevine/proc/spread()
-	var/direction = pick(GLOB.cardinals)
-	var/turf/stepturf = get_step(src,direction)
-	if (!isspaceturf(stepturf) && stepturf.Enter(src))
-		for(var/datum/spacevine_mutation/SM in mutations)
-			SM.on_spread(src, stepturf)
-			stepturf = get_step(src,direction) //in case turf changes, to make sure no runtimes happen
-		if(!locate(/obj/structure/spacevine, stepturf))
-			if(master)
-				master.spawn_spacevine_piece(stepturf, src)
-	else if(locate(/obj/machinery/door, stepturf) && !locate(/obj/structure/spacevine, stepturf)) //if there's a door in the way
-		var/obj/machinery/door/D = locate(/obj/machinery/door, stepturf)
-		if(D)
-			if(!D.locked && !D.welded)
-				if(!locate(/obj/structure/spacevine, stepturf))
-					if(istype(D, /obj/machinery/door/airlock))
-						if(!istype(D, /obj/machinery/door/airlock/external))
-							var/obj/machinery/door/airlock/A = D
-							playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
-							sleep(6 SECONDS)
-							A.open(2)
-							for(var/datum/spacevine_mutation/SM in mutations)
-								SM.on_spread(src, stepturf)
-								stepturf = get_step(src,direction)
-							if(master)
-								master.spawn_spacevine_piece(stepturf, src)
-					else
-						D.open()
-						for(var/datum/spacevine_mutation/SM in mutations)
-							SM.on_spread(src, stepturf)
-							stepturf = get_step(src,direction)
-						if(master)
-							master.spawn_spacevine_piece(stepturf, src)
+	// check adjacent turfs if this vine can spread to it
+	var/list/valid_turfs = list()
+	var/turf/turf_candidate
+	for(var/direction in GLOB.cardinals_multiz)
+		turf_candidate = get_step_multiz(src, direction)
+		if(!turf_candidate) // nowhere to go in that direction
+			continue
+		turf_candidate ||= can_z_move(DOWN, turf_candidate, z_move_flags = ZMOVE_FALL_FLAGS|ZMOVE_ALLOW_ANCHORED)
+		if(!can_spread_to(turf_candidate))
+			continue
+		valid_turfs |= turf_candidate
+
+	// no valid turfs
+	if(!valid_turfs.len)
+		return
+
+	// spread onto one of the valid turfs
+	INVOKE_ASYNC(src, PROC_REF(spread_to_turf), pick(valid_turfs))
+
+/// Checks whether this vine can spread to the given turf
+/obj/structure/spacevine/proc/can_spread_to(turf/turf_candidate)
+	if(isclosedturf(turf_candidate) || isspaceturf(turf_candidate)) // absolutely not
+		return FALSE
+
+	if(islava(turf_candidate) && !(resistance_flags & LAVA_PROOF))
+		return FALSE // don't bother with lava unless we're resistant
+
+	var/area/turf_area = get_area(turf_candidate)
+	if(!turf_area.blob_allowed) // no growing outside the station
+		return FALSE
+	
+	var/turf/starting_turf = get_turf(src)
+	if(isgroundlessturf(starting_turf) && isgroundlessturf(turf_candidate)) // can bridge a 1 tile gap at most
+		return FALSE
+
+	var/obj/machinery/door/blocked_door = locate(/obj/machinery/door) in turf_candidate
+	if(blocked_door && !(blocked_door.welded || blocked_door.locked)) // a door to be opened
+		return TRUE
+
+	if(!(turf_candidate.Enter(src, TRUE) && starting_turf.Exit(src, turf_candidate))) // blocked by something
+		return FALSE
+
+	return TRUE
+
+/// Creates a new spacevine on a given turf
+/obj/structure/spacevine/proc/spread_to_turf(turf/stepturf)
+	var/obj/machinery/door/the_door = locate(/obj/machinery/door) in stepturf
+	var/obj/structure/spacevine/existing_vine = locate(/obj/structure/spacevine) in stepturf
+
+	if(the_door && !existing_vine) // open the door!
+		if(the_door.density && istype(the_door, /obj/machinery/door/airlock))
+			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
+			sleep(6 SECONDS)
+		if(QDELETED(src))
+			return
+		if(!can_spread_to(stepturf))
+			return
+		the_door.open()
+
+	for(var/datum/spacevine_mutation/mutation as anything in mutations)
+		mutation.on_spread(src, stepturf)
+	if(!existing_vine || QDELETED(existing_vine))
+		var/obj/structure/spacevine/new_vine = master.spawn_spacevine_piece(stepturf, src)
+		if(the_door && (new_vine && !QDELETED(new_vine)))
+			var/turf/second_step = get_step_multiz(stepturf, get_dir(get_turf(src), stepturf))
+			if(second_step && can_spread_to(second_step)) // vines need a bit of help to get through doors properly
+				sleep(2 SECONDS)
+				if(QDELETED(new_vine) || QDELETED(src))
+					return
+				if(!can_spread_to(second_step))
+					return
+				new_vine.spread_to_turf(second_step)
 
 /obj/structure/spacevine/ex_act(severity, target)
 	if(istype(target, type)) //if its agressive spread vine dont do anything
@@ -551,11 +600,8 @@
 	if(!i && prob(100/severity))
 		qdel(src)
 
-/obj/structure/spacevine/temperature_expose(null, temp, volume)
-	var/override = 0
-	for(var/datum/spacevine_mutation/SM in mutations)
-		override += SM.process_temperature(src, temp, volume)
-	if(!override)
+/obj/structure/spacevine/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	if(exposed_temperature >= FIRE_MINIMUM_TEMPERATURE_TO_EXIST && !(resistance_flags & FIRE_PROOF))
 		qdel(src)
 
 /obj/structure/spacevine/CanAllowThrough(atom/movable/mover, turf/target)

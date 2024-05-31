@@ -238,10 +238,12 @@
 	var/mob/living/current_mob = mob_override || owner.current
 	handle_clown_mutation(current_mob, mob_override ? null : "Your bloodlusting desire overcomes your clownish heritage, you are able to use weapons!")
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(vampire_life))
+	ADD_TRAIT(current_mob, TRAIT_UNHOLY, type)
 
 /datum/antagonist/vampire/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
 	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
+	REMOVE_TRAIT(current_mob, TRAIT_UNHOLY, type)
 	return ..()
 
 /datum/antagonist/vampire/proc/vampire_life(mob/living/source, seconds_per_tick, times_fired)

@@ -1,7 +1,7 @@
 /datum/computer_file/program/chatclient
 	filename = "ntnrc_client"
 	filedesc = "Chat Client"
-	category = PROGRAM_CATEGORY_MISC
+	category = PROGRAM_CATEGORY_DEVICE
 	program_icon_state = "command"
 	extended_desc = "This program allows communication over NTNRC network"
 	size = 8
@@ -27,7 +27,7 @@
 	if(..())
 		return
 
-	var/datum/ntnet_conversation/channel = SSnetworks.station_network.get_chat_channel_by_id(active_channel)
+	var/datum/ntnet_conversation/channel = SSmodular_computers.get_chat_channel_by_id(active_channel)
 	var/authed = FALSE
 	computer.play_interact_sound()
 	if(channel && ((channel.operator == src) || netadmin_mode))
@@ -69,7 +69,7 @@
 				return TRUE
 
 			active_channel =  new_target
-			channel = SSnetworks.station_network.get_chat_channel_by_id(new_target)
+			channel = SSmodular_computers.get_chat_channel_by_id(new_target)
 			if(!(src in channel.clients) && !channel.password)
 				channel.add_client(src)
 			return TRUE
@@ -107,7 +107,7 @@
 				return TRUE
 			var/mob/living/user = usr
 			if(can_run(user, TRUE, ACCESS_NETWORK))
-				for(var/C in SSnetworks.station_network.chat_channels)
+				for(var/C in SSmodular_computers.chat_channels)
 					var/datum/ntnet_conversation/chan = C
 					chan.remove_client(src)
 				netadmin_mode = TRUE
@@ -127,7 +127,7 @@
 				log_say(log_message)
 				return
 			//yogs end
-			for(var/C in SSnetworks.station_network.chat_channels)
+			for(var/C in SSmodular_computers.chat_channels)
 				var/datum/ntnet_conversation/chan = C
 				if(src in chan.clients)
 					chan.add_status_message("[username] is now known as [newname].")
@@ -206,7 +206,7 @@
 
 /datum/computer_file/program/chatclient/process_tick()
 	. = ..()
-	var/datum/ntnet_conversation/channel = SSnetworks.station_network.get_chat_channel_by_id(active_channel)
+	var/datum/ntnet_conversation/channel = SSmodular_computers.get_chat_channel_by_id(active_channel)
 	if(program_state != PROGRAM_STATE_KILLED)
 		ui_header = "ntnrc_idle.gif"
 		if(channel)
@@ -221,7 +221,7 @@
 		ui_header = "ntnrc_idle.gif"
 
 /datum/computer_file/program/chatclient/kill_program(forced = FALSE)
-	for(var/C in SSnetworks.station_network.chat_channels)
+	for(var/C in SSmodular_computers.chat_channels)
 		var/datum/ntnet_conversation/channel = C
 		channel.remove_client(src)
 	..()
@@ -232,7 +232,7 @@
 	return data
 
 /datum/computer_file/program/chatclient/ui_data(mob/user)
-	if(!SSnetworks.station_network || !SSnetworks.station_network.chat_channels)
+	if(!SSmodular_computers || !SSmodular_computers.chat_channels)
 		return list()
 
 	var/list/data = list()
@@ -240,7 +240,7 @@
 	data = get_header_data()
 
 	var/list/all_channels = list()
-	for(var/C in SSnetworks.station_network.chat_channels)
+	for(var/C in SSmodular_computers.chat_channels)
 		var/datum/ntnet_conversation/conv = C
 		if(conv && conv.title)
 			all_channels.Add(list(list(
@@ -252,7 +252,7 @@
 	data["active_channel"] = active_channel
 	data["username"] = username
 	data["adminmode"] = netadmin_mode
-	var/datum/ntnet_conversation/channel = SSnetworks.station_network.get_chat_channel_by_id(active_channel)
+	var/datum/ntnet_conversation/channel = SSmodular_computers.get_chat_channel_by_id(active_channel)
 	if(channel)
 		data["title"] = channel.title
 		var/authed = FALSE

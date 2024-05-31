@@ -601,7 +601,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 							new /obj/effect/gibspawner/human/bodypartless(get_turf(C))
 
 				C.apply_damage(max(0, squish_damage - crit_rebate))
-				C.AddElement(/datum/element/squish, 18 SECONDS)
 			else
 				L.visible_message("<span class='danger'>[L] is crushed by [src]!</span>", \
 				"<span class='userdanger'>You are crushed by [src]!</span>")
@@ -609,10 +608,13 @@ GLOBAL_LIST_EMPTY(vending_products)
 				if(crit_case)
 					L.apply_damage(squish_damage)
 
+			L.AddElement(/datum/element/squish, 18 SECONDS)
 			L.Paralyze(60)
 			L.emote("scream")
 			playsound(L, 'sound/effects/blobattack.ogg', 40, TRUE)
 			playsound(L, 'sound/effects/splat.ogg', 50, TRUE)
+			if(prob(1)) //send them to the backrooms
+				INVOKE_ASYNC(L, TYPE_PROC_REF(/mob/living, clip_into_backrooms))
 
 	var/matrix/M = matrix()
 	M.Turn(pick(90, 270))
