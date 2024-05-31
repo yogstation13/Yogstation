@@ -251,7 +251,6 @@
 	throwforce = 10
 	throw_speed = 2
 	can_be_explosive = FALSE
-	var/unplugging = FALSE
 
 /obj/item/melee/spear/plugged_musket/Initialize(mapload)
 	. = ..()
@@ -263,25 +262,16 @@
 
 /obj/item/melee/spear/plugged_musket/examine(mob/user)
 	. = ..()
-	. += span_info("Use a <b>screwdriver</b> to unplug it.")
+	. += span_info("<b>Alt Click</b> to unplug it.")
 
-/obj/item/melee/spear/plugged_musket/attackby(obj/item/A, mob/user, params)
-	if(istype(A, /obj/item/screwdriver))
-		//Remove plug and make it a rifle again
-		if(unplugging)
-			to_chat(user, span_warning("You're already unplugging it!"))
-			return
-		user.visible_message(span_warning("[user] starts unplugging [src]!"), span_notice("You start unplugging [src]."))
-		unplugging = TRUE
-		if(!do_after(user, 5 SECONDS, user))
-			unplugging = FALSE
-			user.balloon_alert(user, "You were interrupted!")
-			return
-		unplugging = FALSE
-		var/obj/item/gun/ballistic/maint_musket/P = new /obj/item/gun/ballistic/maint_musket
-		var/obj/item/kitchen/knife/plug_bayonet/B = new /obj/item/kitchen/knife/plug_bayonet
-		user.put_in_hands(P)
-		user.put_in_hands(B)
-		qdel(src)
-
+/obj/item/melee/spear/plugged_musket/AltClick(mob/living/carbon/user)
+	//Remove plug and make it a rifle again
+	user.balloon_alert(user, "Barrel unplugged!")
+	user.visible_message(span_warning("[user] unplugs [src]!"), span_notice("You unplug [src]."))
+	var/obj/item/gun/ballistic/maint_musket/P = new /obj/item/gun/ballistic/maint_musket
+	var/obj/item/kitchen/knife/plug_bayonet/B = new /obj/item/kitchen/knife/plug_bayonet
+	qdel(src)
+	user.put_in_hands(P)
+	user.put_in_hands(B)
+	
 	..()
