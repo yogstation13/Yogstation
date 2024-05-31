@@ -20,7 +20,7 @@
 
 /obj/item/paper/crumpled/bloody/fluff/awaymissions/scientist_raid/report5
 	name = "hastily scribbled note"
-	info = "Forgive me for what I have done... Corporate goons are knocking down the door to my room, it seems they've caught on to my... unique ways of researching. I've hidden my last prototype in my safe. To anyone reading this, please carry on my research. The code to the safe is 7295"
+	info = "Forgive me for what I have done... Corporate goons are knocking down the door to my room, it seems they've caught on to my... unique ways of researching. I've hidden my last prototype in my safe. To anyone reading this, please carry on my research. The code to the safe is 72956"
 
 /obj/item/ai_cpu/organic
 	name = "experimental organic neural processing unit"
@@ -41,9 +41,7 @@
 
 /obj/item/storage/secure/safe/scientist_raid/Initialize(mapload)
 	. = ..()
-	l_code = "7295"
-	l_set = TRUE
+	AddComponent(/datum/component/keypad_lock, keypad_code = "72956", lock_state = TRUE, keypad_text = "INPUT 5 DIGIT CODE", lock_text = "LOCKED")
+	icon_state = "safe_locked"
 	new /obj/item/ai_cpu/organic(src)
 	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, TRUE)
-	cut_overlays()
-	

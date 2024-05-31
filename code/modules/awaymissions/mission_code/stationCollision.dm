@@ -126,16 +126,18 @@ GLOBAL_VAR_INIT(sc_safecode5, "[rand(0,9)]")
  */
 /obj/item/storage/secure/safe/sc_ssafe
 	name = "Captain's secure safe"
-
+	
 /obj/item/storage/secure/safe/sc_ssafe/Initialize(mapload)
 	. = ..()
-	l_code = "[GLOB.sc_safecode1][GLOB.sc_safecode2][GLOB.sc_safecode3][GLOB.sc_safecode4][GLOB.sc_safecode5]"
-	l_set = 1
+	var/l_code = "[GLOB.sc_safecode1][GLOB.sc_safecode2][GLOB.sc_safecode3][GLOB.sc_safecode4][GLOB.sc_safecode5]"
+	AddComponent(/datum/component/keypad_lock, keypad_code = l_code, lock_state = TRUE, keypad_text = "INPUT 5 DIGIT CODE", lock_text = "LOCKED")
+	icon_state = "safe_locked"
 	new /obj/item/gun/energy/mindflayer(src)
 	new /obj/item/soulstone(src)
 	new /obj/item/clothing/suit/space/hardsuit/cult(src)
 	//new /obj/item/teleportation_scroll(src)
 	new /obj/item/stack/ore/diamond(src)
+	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, TRUE)
 
 /*
  * Modified Nar'sie
