@@ -18,6 +18,8 @@
 		return
 	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, TRAIT_HULK)
 	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, TRAIT_HULK)
+	ADD_TRAIT(owner, TRAIT_SHIELDBUSTER, TRAIT_HULK)
+	ADD_TRAIT(owner, TRAIT_NO_BLOCKING, TRAIT_HULK) // don't block, only SMASH
 	owner.update_body_parts()
 	owner.dna.species.handle_mutant_bodyparts(owner)
 	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "hulk", /datum/mood_event/hulk)
@@ -32,6 +34,8 @@
 		return
 	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, TRAIT_HULK)
 	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, TRAIT_HULK)
+	REMOVE_TRAIT(owner, TRAIT_SHIELDBUSTER, TRAIT_HULK)
+	REMOVE_TRAIT(owner, TRAIT_NO_BLOCKING, TRAIT_HULK)
 	owner.update_body_parts()
 	owner.dna.species.handle_mutant_bodyparts(owner)
 	SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "hulk")

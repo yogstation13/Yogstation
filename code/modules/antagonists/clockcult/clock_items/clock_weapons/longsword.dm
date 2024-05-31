@@ -5,7 +5,6 @@
 	force = 18
 	throwforce = 20
 	armour_penetration = 10
-	block_chance = 35
 	attack_verb = list("attacked", "slashed", "cut", "torn", "gored")
 	clockwork_desc = "A powerful sword of Ratvarian making. Enemies hit with it will be struck with a powerful electromagnetic pulse."
 	var/emp_severity = EMP_LIGHT
@@ -15,6 +14,7 @@
 /obj/item/clockwork/weapon/brass_sword/Initialize(mapload, new_action)
 	. = ..()
 	AddComponent(/datum/component/cleave_attack) // slice and dice in the name of ratvar
+	AddComponent(/datum/component/blocking, block_force = 15, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|REFLECTIVE_BLOCK)
 
 /obj/item/clockwork/weapon/brass_sword/attack(mob/living/target, mob/living/carbon/human/user)
 	. = ..()

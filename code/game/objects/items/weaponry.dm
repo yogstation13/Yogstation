@@ -66,21 +66,17 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	throwforce = 10
 	w_class = WEIGHT_CLASS_HUGE
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	block_chance = 50
 	sharpness = SHARP_EDGED
 	max_integrity = 200
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
 	resistance_flags = FIRE_PROOF
+	var/block_force = 25
 
 /obj/item/claymore/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/cleave_attack, arc_size=90)
 	AddComponent(/datum/component/butchering, 40, 105)
-
-/obj/item/claymore/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(attack_type == PROJECTILE_ATTACK)
-		final_block_chance = 0 //Don't bring a sword to a gunfight
-	return ..()
+	AddComponent(/datum/component/blocking, block_force = src.block_force)
 
 /obj/item/claymore/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is falling on [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -90,7 +86,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	name = "ancient sword"
 	desc = "A cracked and blunted sword, clearly weathered over the ages."
 	force = 21
-	block_chance = 30
+	block_force = 15
 
 /obj/item/claymore/ruin/excalibur
 	name = "Excalibur"
@@ -101,7 +97,6 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	flags_1 = CONDUCT_1
 	item_flags = DROPDEL //IF THIS HAPPENS YOU FUCKING LOST AN ARM! DUMBASS!!
 	slot_flags = null
-	block_chance = 0 //RNG WON'T HELP YOU NOW, PANSY
 	light_range = 3
 	attack_verb = list("brutalized", "eviscerated", "disemboweled", "hacked", "carved", "cleaved") //ONLY THE MOST VISCERAL ATTACK VERBS
 	var/notches = 0 //HOW MANY PEOPLE HAVE BEEN SLAIN WITH THIS BLADE
@@ -164,9 +159,6 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		to_chat(user, span_warning("[src] thrums for a moment and falls dark. Perhaps there's nobody nearby."))
 		return
 	to_chat(user, span_danger("[src] thrums and points to the [dir2text(get_dir(user, closest_victim))]."))
-
-/obj/item/claymore/highlander/IsReflect()
-	return 1 //YOU THINK YOUR PUNY LASERS CAN STOP ME?
 
 /obj/item/claymore/highlander/proc/add_notch(mob/living/user) //DYNAMIC CLAYMORE PROGRESSION SYSTEM - THIS IS THE FUTURE
 	notches++
@@ -236,7 +228,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	w_class = WEIGHT_CLASS_BULKY
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "tore", "ripped", "diced", "cut")
-	block_chance = 30
+	block_force = 15
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
 
 /obj/item/katana
@@ -254,15 +246,17 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	w_class = WEIGHT_CLASS_HUGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	block_chance = 50
 	sharpness = SHARP_EDGED
 	max_integrity = 200
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
 	resistance_flags = FIRE_PROOF
+	var/block_force = 20
 
 /obj/item/katana/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/cleave_attack)
+	if(!block_force)
+		return
+	AddComponent(/datum/component/blocking, block_force = src.block_force, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|REFLECTIVE_BLOCK)
 
 /obj/item/katana/basalt
 	name = "basalt katana"
@@ -270,7 +264,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	icon_state = "basalt_katana"
 	item_state = "basalt_katana"
 	force = 18
-	block_chance = 20
+	block_force = 0 // why block when you can dodge?
 
 	var/fauna_damage_bonus = 52
 	var/fauna_damage_type = BRUTE

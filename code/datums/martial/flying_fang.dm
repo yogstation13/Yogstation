@@ -65,7 +65,7 @@
 		return
 	playsound(get_turf(A), 'sound/weapons/slap.ogg', 50, TRUE, -1)
 	for(var/obj/item/I in D.held_items)
-		if(I.block_chance)
+		if(I.GetComponent(/datum/component/blocking))
 			D.visible_message(span_danger("[A] tail slaps [I] out of [D]'s hands!"), \
 							 span_userdanger("[A] tail slaps your [I] out of your hands!"))
 			D.dropItemToGround(I)
