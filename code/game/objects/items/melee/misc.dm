@@ -41,6 +41,28 @@
 	. = ..()
 	AddComponent(/datum/component/butchering, 60, 80) //very imprecise
 
+/obj/item/melee/cutlass
+	name = "cutlass"
+	desc = "YAAAAAR! A fine weapon for a pirate, fit for slicing land-lubbers." //All pirate weapons must have pirate quips from now on it is non-negotiable
+	icon = 'icons/obj/weapons/longsword.dmi'
+	icon_state = "metalcutlass"
+	item_state = "metalcutlass"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	slot_flags = ITEM_SLOT_BELT
+	force = 18
+	throwforce = 10
+	w_class = WEIGHT_CLASS_HUGE
+	sharpness = SHARP_EDGED
+	attack_verb = list("slashed", "cut")
+	hitsound = 'sound/weapons/rapierhit.ogg'
+	materials = list(/datum/material/iron = 1000)
+
+/obj/item/melee/cutlass/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack)
+	AddComponent(/datum/component/blocking, block_flags = 15, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|REFLECTIVE_BLOCK)
+
 /obj/item/melee/sabre
 	name = "officer's sabre"
 	desc = "An elegant weapon, its monomolecular edge is capable of cutting through flesh and bone with ease."
@@ -55,44 +77,17 @@
 	throwforce = 10
 	wound_bonus = 10
 	w_class = WEIGHT_CLASS_BULKY
-	block_chance = 50
 	armour_penetration = 75
 	sharpness = SHARP_EDGED
 	attack_verb = list("slashed", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	materials = list(/datum/material/iron = 1000)
 
-/obj/item/melee/cutlass
-	name = "cutlass"
-	desc = "YAAAAAR! A fine weapon for a pirate, fit for slicing land-lubbers." //All pirate weapons must have pirate quips from now on it is non-negotiable
-	icon = 'icons/obj/weapons/longsword.dmi'
-	icon_state = "metalcutlass"
-	item_state = "metalcutlass"
-	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	slot_flags = ITEM_SLOT_BELT
-	force = 18
-	throwforce = 10
-	w_class = WEIGHT_CLASS_HUGE
-	block_chance = 30
-	sharpness = SHARP_EDGED
-	attack_verb = list("slashed", "cut")
-	hitsound = 'sound/weapons/rapierhit.ogg'
-	materials = list(/datum/material/iron = 1000)
-
-/obj/item/melee/cutlass/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/cleave_attack)
-
 /obj/item/melee/sabre/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/cleave_attack) // YES
 	AddComponent(/datum/component/butchering, 30, 95, 5) //fast and effective, but as a sword, it might damage the results.
-
-/obj/item/melee/sabre/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(attack_type == PROJECTILE_ATTACK)
-		final_block_chance = 0 //Don't bring a sword to a gunfight
-	return ..()
+	AddComponent(/datum/component/blocking, block_force = 20)
 
 /obj/item/melee/sabre/on_exit_storage(datum/component/storage/concrete/S)
 	var/obj/item/storage/belt/sabre/B = S.real_location()
@@ -160,10 +155,13 @@
 	sharpness = SHARP_EDGED
 	force = 7
 	throwforce = 10
-	block_chance = 20
 	armour_penetration = 85
 	attack_verb = list("slashed", "stung", "prickled", "poked")
 	hitsound = 'sound/weapons/rapierhit.ogg'
+
+/obj/item/melee/beesword/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/blocking, block_force = 10)
 
 /obj/item/melee/beesword/afterattack(atom/target, mob/user, proximity = TRUE)
 	. = ..()
@@ -215,7 +213,7 @@
 /obj/item/melee/classic_baton/proc/stun(mob/living/target, mob/living/user)
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		if (H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK))
+		if (H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK, damage_type = STAMINA))
 			playsound(target, 'sound/weapons/genhit.ogg', 50, 1)
 			return
 		var/datum/martial_art/M = H.check_block()
@@ -470,7 +468,7 @@
 /obj/item/melee/classic_baton/telescopic/contractor_baton/stun(mob/living/target, mob/living/user)
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		if (H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK))
+		if (H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK, damage_type = STAMINA))
 			playsound(target, 'sound/weapons/genhit.ogg', 50, 1)
 			return
 		var/datum/martial_art/M = H.check_block()

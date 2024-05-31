@@ -736,7 +736,7 @@
 				return
 		if(!H.get_active_held_item())
 			to_chat(quirk_holder, span_danger("You can't keep your eyes off [I.name]."))
-			H.UnarmedAttack(I)
+			H.UnarmedAttack(I, TRUE, list())
 
 /datum/quirk/ineloquent
 	name = "Ineloquent"

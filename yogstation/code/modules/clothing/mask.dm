@@ -69,7 +69,7 @@
   */
 /obj/item/clothing/mask/yogs/cluwne/happy_cluwne
 	name = "Happy Cluwne Mask"
-	desc = "The mask of a poor cluwne that has been scrubbed of its curse by the Nanotrasen supernatural machinations division. Guaranteed to be 99% curse free and 99.9% not haunted. "
+	desc = "The mask of a poor cluwne that has been scrubbed of its curse by the Nanotrasen supernatural machinations division. Guaranteed to be 99% curse free and 99.9% not haunted."
 	item_flags = ABSTRACT
 	clothing_flags = VOICEBOX_TOGGLABLE
 	auto_cluwne = FALSE
@@ -226,7 +226,7 @@
 
 /obj/item/clothing/mask/yogs/freddy
 	name = "brown bear mask"
-	desc = "A mask representing a old pizza place mascot."
+	desc = "A mask representing an old pizza place mascot."
 	clothing_flags = MASKINTERNALS
 	flags_inv = HIDEEARS|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 	icon_state = "freddy"
@@ -235,7 +235,7 @@
 
 /obj/item/clothing/mask/yogs/bonnie
 	name = "purple bunny mask"
-	desc = "A mask representing a old pizza place mascot."
+	desc = "A mask representing an old pizza place mascot."
 	clothing_flags = MASKINTERNALS
 	flags_inv = HIDEEARS|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 	icon_state = "bonnie"
@@ -244,7 +244,7 @@
 
 /obj/item/clothing/mask/yogs/chica
 	name = "yellow chicken mask"
-	desc = "A mask representing a old pizza place mascot."
+	desc = "A mask representing an old pizza place mascot."
 	clothing_flags = MASKINTERNALS
 	flags_inv = HIDEEARS|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 	icon_state = "chica"
@@ -253,7 +253,7 @@
 
 /obj/item/clothing/mask/yogs/foxy
 	name = "red fox mask"
-	desc = "A mask representing a old pizza place mascot."
+	desc = "A mask representing an old pizza place mascot."
 	clothing_flags = MASKINTERNALS
 	flags_inv = HIDEEARS|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 	icon_state = "foxy"

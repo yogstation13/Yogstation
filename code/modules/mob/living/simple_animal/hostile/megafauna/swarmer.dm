@@ -141,7 +141,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 /mob/living/simple_animal/hostile/swarmer/ai/Move(atom/newloc)
 	if(newloc)
 		if(newloc.z == z) //so these actions are Z-specific
-			var/datum/component/lava/safety_check = newloc.GetComponent(/datum/component/lava)
+			var/datum/component/lingering/safety_check = newloc.GetComponent(/datum/component/lingering)
 			if(safety_check && !safety_check.is_safe()) 
 				StartAction(20)
 				new /obj/structure/lattice/catwalk/swarmer_catwalk(newloc)
