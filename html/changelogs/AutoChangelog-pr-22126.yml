@@ -1,0 +1,7 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - spellcheck: "Changed description and name of anes tank into a normal tank holder"
+  - tweak: "You can now craft iv drip and iv drip has been removed from the cargo pack because it would be obsolete"
+  - tweak: "You can now turn iv drip into a tank holder by clicking it with breath mask instead of using screwdriver while holding mask, the duration to transform is now 5 seconds instead of 10s"
+  - tweak: "You can now turn tank holder back into iv drip by altclicking the tank holder"
