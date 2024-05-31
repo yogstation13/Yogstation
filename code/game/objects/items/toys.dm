@@ -391,7 +391,7 @@
  */
 /obj/item/melee/dualsaber/toy
 	name = "double-bladed toy sword"
-	desc = "A cheap, plastic replica of TWO energy swords.  Double the fun!"
+	desc = "A cheap, plastic replica of TWO energy swords. Double the fun!"
 	force = 0
 	force_wielded = 0 // Why did someone make this a subtype of dualsabers
 	throwforce = 0
@@ -1797,7 +1797,7 @@ obj/item/toy/turn_tracker
 	if(ismovable(target) && blocked != 100)
 		var/atom/movable/A = target
 		A.visible_message(span_danger("[A] is snagged by [firer]'s hook!"))
-	return 
+	return
 
 /obj/item/gun/magic/sickly_blade_toy/attack(mob/living/M, mob/living/user)
 	if((IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
