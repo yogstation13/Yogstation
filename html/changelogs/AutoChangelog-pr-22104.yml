@@ -1,0 +1,4 @@
+author: "wonderinghost, JohnFulpWillard"
+delete-after: true 
+changes: 
+  - experiment: "Reworked NTNet Downloader and backend modpc/airlock remote stuff."
