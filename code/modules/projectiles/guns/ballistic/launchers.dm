@@ -207,5 +207,5 @@
 			user.put_in_hands(P)
 			qdel(src)
 			qdel(A)
-			
+
 	..()
