@@ -1,0 +1,6 @@
+author: "Scrambledeggs00"
+delete-after: true 
+changes: 
+  - tweak: "safes and secure briefcases now use TGUI"
+  - imageadd: "added sprites to account for removed overlays"
+  - imagedel: "removed overlays for safes and secure briefcases"
