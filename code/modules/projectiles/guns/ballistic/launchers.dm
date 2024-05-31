@@ -204,8 +204,7 @@
 			user.balloon_alert(user, "Barrel plugged!")
 			user.visible_message(span_warning("[user] plugs [src]!"), span_notice("You plug [src]."))
 			var/obj/item/melee/spear/plugged_musket/P = new /obj/item/melee/spear/plugged_musket
-			user.put_in_hands(P)
 			qdel(src)
 			qdel(A)
-
+			user.put_in_hands(P)
 	..()

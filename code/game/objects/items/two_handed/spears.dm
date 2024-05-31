@@ -244,11 +244,12 @@
 
 /obj/item/melee/spear/plugged_musket
 	name = "plugged maintenance musket"
-	desc = "A maintenance musket with a plug bayonet. You can unplug it with a screwdriver."
+	desc = "A maintenance musket with a plug bayonet."
 	icon_state = "plugged_musket0"
 	base_icon_state = "plugged_musket"
 	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 	throwforce = 10
+	throw_speed = 2
 	can_be_explosive = FALSE
 	var/unplugging = FALSE
 
@@ -259,6 +260,10 @@
 		icon_wielded = "[base_icon_state]1", \
 		wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 0, DAMAGE_HIGH = 0), \
 	)
+
+/obj/item/melee/spear/plugged_musket/examine(mob/user)
+	. = ..()
+	. += span_info("Use a <b>screwdriver</b> to unplug it.")
 
 /obj/item/melee/spear/plugged_musket/attackby(obj/item/A, mob/user, params)
 	if(istype(A, /obj/item/screwdriver))
