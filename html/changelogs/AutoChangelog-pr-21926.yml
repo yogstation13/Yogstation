@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - rscadd: "\"Upgrade Camera Laser Gun\" added to malfunction modules costing 30 CPU. Changes projectile to heavy lasers."
