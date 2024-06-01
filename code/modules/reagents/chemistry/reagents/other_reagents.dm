@@ -1540,9 +1540,9 @@
 				organs.organ_flags &= ~ORGAN_FAILING
 	if(L.stat == DEAD)
 		if(L.getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE)
-			L.adjustBruteLoss(-L.getBruteLoss()-MAX_REVIVE_BRUTE_DAMAGE+10)
+			L.adjustBruteLoss(-(L.getBruteLoss() - MAX_REVIVE_FIRE_DAMAGE + 50))
 		if(L.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE)
-			L.adjustFireLoss(-L.getFireLoss()-MAX_REVIVE_FIRE_DAMAGE+10)
+			L.adjustFireLoss(-(L.getFireLoss() - MAX_REVIVE_FIRE_DAMAGE + 50))
 		if(HAS_TRAIT(L, TRAIT_HUSK))
 			L.cure_husk()
 	ADD_TRAIT(L, TRAIT_PRESERVED_ORGANS, "healium")
