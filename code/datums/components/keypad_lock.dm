@@ -16,6 +16,8 @@
 
 	//If the panel is open
 	var/panel_open = FALSE
+	//Last viable keypad_input
+	var/memory_code = ""
 
 /datum/component/keypad_lock/Initialize(keypad_code = access_code, lock_state = lock_status, keypad_text = keypad_input, lock_text = lock_display)
 	. = ..()
@@ -64,30 +66,56 @@
 
 /datum/component/keypad_lock/proc/on_screwdriver_act(atom/source, mob/user, obj/item/tool)
 	SIGNAL_HANDLER
-	if(!src.lock_status)
-		return COMPONENT_BLOCK_TOOL_ATTACK
 	panel_open = !panel_open
 	user.balloon_alert(user, "panel [panel_open ? "opened" : "closed"]")
 	return COMPONENT_BLOCK_TOOL_ATTACK
 
 /datum/component/keypad_lock/proc/on_multitool_act(atom/source, mob/user, obj/item/tool)
 	SIGNAL_HANDLER
-	if(!src.lock_status)
-		return COMPONENT_BLOCK_TOOL_ATTACK
 	if(!panel_open)
 		user.balloon_alert(user, "panel is closed!")
 		return COMPONENT_BLOCK_TOOL_ATTACK
-	user.balloon_alert(user, "reseting memory")
+	else if(!src.lock_status)
+		INVOKE_ASYNC(src, PROC_REF(hack_open), source, user, tool)
+		return COMPONENT_BLOCK_TOOL_ATTACK
 	INVOKE_ASYNC(src, PROC_REF(hack_open), source, user, tool)
 	return COMPONENT_BLOCK_TOOL_ATTACK
 
 /datum/component/keypad_lock/proc/hack_open(atom/source, mob/user, obj/item/tool)
-	if(!tool.use_tool(parent, user, 40 SECONDS))
-		user.balloon_alert(user, "interupted!")
-		return
-	user.balloon_alert(user, "memory reset")
-	src.access_code = ""
-	src.keypad_input = "INPUT NEW 5 DIGIT CODE"
+	//How many digits of memory_code match and are in the same place as in access_code
+	var/correct_digits = 0
+	//Character variables for checking
+	var/access_char = ""
+	var/memory_char = ""
+
+	//Reset code if unlocked and it has an access_code
+	if(!src.lock_status)
+		if(access_code == "")
+			user.balloon_alert(user, "memory already reset!")
+			return
+		user.balloon_alert(user, "reseting memory")
+		if(!tool.use_tool(parent, user, 10 SECONDS))
+			user.balloon_alert(user, "interupted!")
+			return
+		user.balloon_alert(user, "memory reset")
+		src.access_code = ""
+		src.keypad_input = "INPUT NEW 5 DIGIT CODE"
+		src.replace_message = TRUE
+	//Fallout like hacking if locked
+	else
+		if(length(memory_code) != 5)
+			user.balloon_alert(user, "memory empty!")
+			return
+		user.balloon_alert(user, "memory checked")
+		//Find correct_digits
+		for(var/i in 1 to 5)
+			access_char = access_code[i]
+			memory_char = memory_code[i]
+			if(memory_char == access_char)
+				correct_digits += 1
+		//Send messages to user
+		to_chat(user, span_info("Entry [memory_code] denied."))
+		to_chat(user, span_info("[correct_digits]/5 correct."))
 
 /datum/component/keypad_lock/proc/on_update_icon_state(obj/source)
 	SIGNAL_HANDLER
@@ -149,6 +177,7 @@
 						error_message = TRUE
 					//Wrong code
 					else if(src.keypad_input != src.access_code)
+						src.memory_code = src.keypad_input
 						src.keypad_input = "ERROR: WRONG CODE"
 						error_message = TRUE
 					//Correct code
