@@ -254,8 +254,7 @@
 			return
 		set_on(FALSE)
 		playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
-		var/msg = "Healium injection completed. Ejecting patient."
-		open_machine()
+		var/msg = "Healium injection completed."
 		radio.talk_into(src, msg, radio_channel)
 		return
 
