@@ -25,7 +25,7 @@
 
 //Library themed
 /datum/generator_theme/wooden
-	weight = 15
+	weight = 20
 	weighted_possible_floor_types = list(
 		/turf/open/floor/carpet = 1
 		)
