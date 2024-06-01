@@ -1524,18 +1524,30 @@
 	can_synth = FALSE
 	taste_description = "rubbery"
 
-/datum/reagent/healium/on_mob_metabolize(mob/living/L)
+/datum/reagent/healium/on_mob_metabolize(mob/living/carbon/L)
 	. = ..()
 	L.SetSleeping(1000)
 	L.SetUnconscious(1000)
 	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=0.5, blacklisted_movetypes=(FLYING|FLOATING)) // slowdown for if you're awake
 	ADD_TRAIT(L, TRAIT_SURGERY_PREPARED, "healium")
 
-/datum/reagent/healium/on_mob_add(mob/living/L)
+/datum/reagent/healium/on_mob_add(mob/living/carbon/L)
 	. = ..()
+	for(var/obj/item/organ/organs in L.internal_organs)
+		if(organs.status == ORGAN_ORGANIC)
+			organs.damage -= 10
+			if(organs.organ_flags & ORGAN_FAILING)
+				organs.organ_flags &= ~ORGAN_FAILING
+	if(L.stat == DEAD)
+		if(L.getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE)
+			L.adjustBruteLoss(-L.getBruteLoss()-MAX_REVIVE_BRUTE_DAMAGE+50)
+		if(L.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE)
+			L.adjustFireLoss(-L.getFireLoss()-MAX_REVIVE_FIRE_DAMAGE+50)
+		if(HAS_TRAIT(L, TRAIT_HUSK))
+			L.cure_husk()
 	ADD_TRAIT(L, TRAIT_PRESERVED_ORGANS, "healium")
 
-/datum/reagent/healium/on_mob_delete(mob/living/L)
+/datum/reagent/healium/on_mob_delete(mob/living/carbon/L)
 	REMOVE_TRAIT(L, TRAIT_PRESERVED_ORGANS, "healium")
 	return ..()
 
@@ -1564,7 +1576,7 @@
 	M.adjustCloneLoss(-5*heal_factor*REM)
 	for(var/obj/item/organ/organs in M.internal_organs)
 		if(organs.status == ORGAN_ORGANIC)
-			organs.healing_factor = max(organs.healing_factor, 2*heal_factor*REM)
+			organs.damage = max(0, -2*heal_factor*REM)
 	REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 	..()
 
