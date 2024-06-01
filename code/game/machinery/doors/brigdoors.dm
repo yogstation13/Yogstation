@@ -81,13 +81,8 @@
 
 /obj/machinery/door_timer/Initialize(mapload)
 	. = ..()
-
 	Radio = new/obj/item/radio(src)
 	Radio.listening = 0
-	GLOB.door_timers |= src
-
-/obj/machinery/door_timer/Initialize(mapload)
-	. = ..()
 	if(id != null)
 		for(var/obj/machinery/door/window/brigdoor/M in urange(20, src))
 			if (M.id == id)
@@ -104,6 +99,11 @@
 	if(!targets.len)
 		atom_break()
 	update_appearance(UPDATE_ICON)
+
+/obj/machinery/door_timer/Destroy(force)
+	. = ..()
+	if(timing)
+		timer_end(forced = TRUE)
 
 /obj/machinery/door_timer/attackby(obj/item/W, mob/user, params)
 	var/obj/item/card/id/card = W.GetID()
@@ -133,6 +133,7 @@
 
 	activation_time = world.time
 	timing = TRUE
+	GLOB.active_door_timers |= src
 
 	for(var/obj/machinery/door/window/brigdoor/door in targets)
 		if(door.density)
@@ -171,6 +172,7 @@
 		Radio.talk_into(src, "Timer has expired. Releasing prisoner.", FREQ_SECURITY)
 
 	timing = FALSE
+	GLOB.active_door_timers -= src
 	activation_time = null
 	set_timer(0)
 	update_appearance(UPDATE_ICON)
