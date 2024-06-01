@@ -5,6 +5,8 @@
 #define MENU_CLOTHING "clothing" //things that can be worn
 #define MENU_MISC "misc" //anything that doesn't quite fit into the other categories
 
+#define HOLY_DEFENDER "holy_defender"
+
 /obj/item/nullrod
 	name = "null rod"
 	desc = "A rod of pure obsidian; its very presence disrupts and dampens the powers of Nar'sie and Ratvar's followers."
@@ -35,6 +37,24 @@
 /obj/item/nullrod/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, MAGIC_RESISTANCE|MAGIC_RESISTANCE_HOLY)
+	RegisterSignal(src, COMSIG_ITEM_PRE_BLOCK, PROC_REF(on_pre_block))
+	RegisterSignal(src, COMSIG_ITEM_POST_BLOCK, PROC_REF(on_post_block))
+
+/obj/item/nullrod/proc/on_pre_block(obj/item/source, mob/living/defender, atom/movable/incoming, damage, attack_type)
+	REMOVE_TRAIT(src, TRAIT_PARRYING, HOLY_DEFENDER)
+	if(HAS_TRAIT(defender, TRAIT_UNHOLY))
+		to_chat(defender, span_warning("[src]'s holy power overwhelms you!"))
+		defender.Knockdown(0.5 SECONDS, TRUE)
+		return COMPONENT_CANCEL_BLOCK
+	if(HAS_TRAIT(incoming, TRAIT_UNHOLY) || HAS_TRAIT(incoming.loc, TRAIT_UNHOLY)) // attack by cultists and unholy creatures
+		ADD_TRAIT(src, TRAIT_PARRYING, HOLY_DEFENDER)
+	return NONE
+
+/obj/item/nullrod/proc/on_post_block(obj/item/source, mob/living/defender, atom/movable/incoming, damage, attack_type)
+	if(HAS_TRAIT_FROM(src, TRAIT_PARRYING, HOLY_DEFENDER))
+		defender.visible_message(span_warning("A holy force protects [defender]!"), span_boldannounce("A holy force protects you!"))
+		REMOVE_TRAIT(src, TRAIT_PARRYING, HOLY_DEFENDER)
+	return NONE
 
 /obj/item/nullrod/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is killing [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to get closer to god!"))
@@ -141,7 +161,6 @@
 	desc = "A weapon fit for a crusade!"
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
-	block_chance = 30
 	sharpness = SHARP_EDGED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -151,11 +170,7 @@
 /obj/item/nullrod/claymore/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/cleave_attack)
-
-/obj/item/nullrod/claymore/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(attack_type == PROJECTILE_ATTACK)
-		final_block_chance = 0 //Don't bring a sword to a gunfight
-	return ..()
+	AddComponent(/datum/component/blocking, block_force = 10)
 
 /obj/item/nullrod/claymore/darkblade
 	name = "dark blade"
@@ -366,7 +381,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	damtype = STAMINA
 	force = 18
-	block_chance = 40
 	slot_flags = ITEM_SLOT_BACK
 	sharpness = SHARP_NONE
 	menutab = MENU_WEAPON
@@ -375,11 +389,7 @@
 /obj/item/nullrod/bostaff/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/cleave_attack, arc_size=180)
-
-/obj/item/nullrod/bostaff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(attack_type == PROJECTILE_ATTACK)
-		final_block_chance = 0 //Don't bring a stick to a gunfight
-	return ..()
+	AddComponent(/datum/component/blocking, block_force = 15, WEAPON_BLOCK_FLAGS|OMNIDIRECTIONAL_BLOCK)
 
 /obj/item/nullrod/tribal_knife
 	name = "arrhythmic knife"
@@ -457,7 +467,6 @@
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_HUGE
 	force = 12
-	block_chance = 10
 	wound_bonus = -20
 	attack_verb = list("thwacked")
 	menutab = MENU_WEAPON
@@ -483,7 +492,6 @@
 			swordright.sheath = src
 			swordright.force = force
 			swordright.armour_penetration = armour_penetration
-			swordright.block_chance = block_chance
 			swordright.wound_bonus = wound_bonus
 			swordright.bare_wound_bonus = bare_wound_bonus
 			swordright.reskinned = TRUE
@@ -494,7 +502,6 @@
 			swordleft.sheath = src
 			swordleft.force = force
 			swordleft.armour_penetration = armour_penetration
-			swordleft.block_chance = block_chance
 			swordleft.wound_bonus = wound_bonus
 			swordleft.bare_wound_bonus = bare_wound_bonus
 			swordleft.reskinned = TRUE
@@ -541,6 +548,10 @@
 	w_class = WEIGHT_CLASS_HUGE
 	chaplain_spawnable = FALSE
 	var/obj/item/nullrod/dualsword/sheath //so the sheathe is refilled when the swords are dropped
+
+/obj/item/nullrod/handedsword/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/blocking, block_force = 10)
 
 /obj/item/nullrod/handedsword/other
 	name = "Splendor"
@@ -826,7 +837,17 @@
 	var/shield_icon = "shield-old"
 	var/shield_on = "shield-old"
 
-/obj/item/nullrod/staff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/nullrod/staff/equipped(mob/user, slot, initial)
+	. = ..()
+	RegisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(hit_reaction))
+
+/obj/item/nullrod/staff/dropped(mob/user, silent)
+	UnregisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS)
+	return ..()
+
+/obj/item/nullrod/staff/proc/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, damage, attack_text = "the attack")
+	if(!owner.is_holding(src))
+		return NONE
 	recharge_cooldown = world.time + recharge_delay
 	if(current_charges > 0)
 		var/datum/effect_system/spark_spread/s = new
@@ -840,8 +861,8 @@
 			owner.visible_message("[owner]'s shield overloads!")
 			shield_icon = "broken"
 			owner.regenerate_icons()
-		return 1
-	return 0
+		return SHIELD_REFLECT
+	return NONE
 
 /obj/item/nullrod/staff/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -1371,6 +1392,8 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 /obj/item/nullrod/unrestricted //anyone can select the nullrod, not just the chaplain
 	chaplain_bypass = TRUE
 	chaplain_spawnable = FALSE
+
+#undef HOLY_DEFENDER
 
 #undef MENU_WEAPON
 #undef MENU_ARM

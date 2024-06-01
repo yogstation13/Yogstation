@@ -25,6 +25,7 @@
 #define ROOM_RATING_DEATH 					(1<<3)
 
 //For categorizing rooms 
+///Random is the default, so it doesn't need to be included in the weighted list to spawn
 #define ROOM_TYPE_RANDOM 			"random"
 #define ROOM_TYPE_SPACE 			"space"
 #define ROOM_TYPE_RUIN 				"ruin"

@@ -14,7 +14,6 @@
 	throwforce = 1 //it's terribly weighted, what do you expect?
 	hitsound = 'sound/items/trayhit1.ogg'
 	attack_verb = list("scooped", "bopped", "spooned", "wacked")
-	block_chance = 30 //Only works in melee, but I bet your ass you could raise its handle to deflect a sword
 	wound_bonus = -10
 	bare_wound_bonus = -15
 	materials = list(/datum/material/iron=18000)
@@ -29,6 +28,7 @@
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
 	AddComponent(/datum/component/cleave_attack, requires_wielded=TRUE, no_multi_hit=TRUE)
+	AddComponent(/datum/component/blocking, block_force = 15, block_flags = WEAPON_BLOCK_FLAGS|WIELD_TO_BLOCK)
 
 /obj/item/bigspoon/proc/on_wield(atom/source, mob/living/user)
 	hitsound = 'yogstation/sound/weapons/bat_hit.ogg'

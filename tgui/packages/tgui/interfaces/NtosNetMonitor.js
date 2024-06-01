@@ -8,14 +8,9 @@ export const NtosNetMonitor = (props, context) => {
     ntnetrelays,
     ntnetstatus,
     config_softwaredownload,
-    config_peertopeer,
     config_communication,
-    config_systemcontrol,
     idsalarm,
     idsstatus,
-    ntnetmaxlogs,
-    maxlogs,
-    minlogs,
     ntnetlogs = [],
   } = data;
   return (
@@ -34,13 +29,23 @@ export const NtosNetMonitor = (props, context) => {
               selected={ntnetstatus}
               onClick={() => act('toggleWireless')} />
           )}>
-          {ntnetrelays ? (
-            <LabeledList>
-              <LabeledList.Item label="Active NTNet Relays">
-                {ntnetrelays}
-              </LabeledList.Item>
-            </LabeledList>
-          ) : "No Relays Connected"}
+          {ntnetrelays.map((relay) => (
+            <Section
+              key={relay.ref}
+              title={relay.name}
+              buttons={
+                <Button.Confirm
+                  color={relay.is_operational ? 'good' : 'bad'}
+                  content={relay.is_operational ? 'ENABLED' : 'DISABLED'}
+                  onClick={() =>
+                    act('toggle_relay', {
+                      ref: relay.ref,
+                    })
+                  }
+                />
+              }
+            />
+          ))}
         </Section>
         <Section title="Firewall Configuration">
           <LabeledList>
@@ -54,15 +59,6 @@ export const NtosNetMonitor = (props, context) => {
                   onClick={() => act('toggle_function', { id: "1" })} />
               )} />
             <LabeledList.Item
-              label="Peer to Peer Traffic"
-              buttons={(
-                <Button
-                  icon={config_peertopeer ? 'power-off' : 'times'}
-                  content={config_peertopeer ? 'ENABLED' : 'DISABLED'}
-                  selected={config_peertopeer}
-                  onClick={() => act('toggle_function', { id: "2" })} />
-              )} />
-            <LabeledList.Item
               label="Communication Systems"
               buttons={(
                 <Button
@@ -70,15 +66,6 @@ export const NtosNetMonitor = (props, context) => {
                   content={config_communication ? 'ENABLED' : 'DISABLED'}
                   selected={config_communication}
                   onClick={() => act('toggle_function', { id: "3" })} />
-              )} />
-            <LabeledList.Item
-              label="Remote System Control"
-              buttons={(
-                <Button
-                  icon={config_systemcontrol ? 'power-off' : 'times'}
-                  content={config_systemcontrol ? 'ENABLED' : 'DISABLED'}
-                  selected={config_systemcontrol}
-                  onClick={() => act('toggle_function', { id: "4" })} />
               )} />
           </LabeledList>
         </Section>
@@ -110,19 +97,6 @@ export const NtosNetMonitor = (props, context) => {
                     color="bad"
                     onClick={() => act('resetIDS')} />
                 </>
-              )} />
-            <LabeledList.Item
-              label="Max Log Count"
-              buttons={(
-                <NumberInput
-                  value={ntnetmaxlogs}
-                  minValue={minlogs}
-                  maxValue={maxlogs}
-                  width="39px"
-                  onChange={(e, value) => act('updatemaxlogs', {
-                    new_number: value,
-                  })}
-                />
               )} />
           </LabeledList>
           <Section

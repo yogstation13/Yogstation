@@ -84,7 +84,6 @@
 	base_icon_state = "energy-fireaxe"
 	demolition_mod = 4 // DESTROY
 	armour_penetration = 50 // Probably doesn't care much for armor given how it can destroy solid metal structures
-	block_chance = 50 // Big handle and large flat energy blade, good for blocking things
 	heat = 1800 // It's a FIRE axe
 	w_class = WEIGHT_CLASS_NORMAL
 	hitsound = "swing_hit"
@@ -109,6 +108,7 @@
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
+	AddComponent(/datum/component/blocking, block_force = 15, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|REFLECTIVE_BLOCK|WIELD_TO_BLOCK)
 
 /obj/item/fireaxe/energy/proc/on_wield(obj/item/source, mob/living/carbon/user)
 	w_class = w_class_on
@@ -127,11 +127,6 @@
 /obj/item/fireaxe/energy/attack(mob/living/M, mob/living/user)
 	..()
 	M.ignite_mob() // Ignites you if you're flammable
-
-/obj/item/fireaxe/energy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text, final_block_chance, damage, attack_type)
-	if(!HAS_TRAIT(src, TRAIT_WIELDED))
-		return 0 // large energy blade can only block stuff if it's actually on
-	return ..()
 
 /obj/item/fireaxe/energy/ignition_effect(atom/A, mob/user)
 	if(!HAS_TRAIT(src, TRAIT_WIELDED))
