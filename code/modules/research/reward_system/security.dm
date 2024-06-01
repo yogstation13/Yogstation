@@ -19,12 +19,18 @@ GLOBAL_LIST_EMPTY(perma_prison_areas)
 	var/list/criminals = list()
 	for(var/obj/machinery/door_timer/timer in GLOB.door_timers)
 		if(timer.timing && timer.desired_name)
-			criminals += timer.desired_name
+			criminals |= timer.desired_name
 		CHECK_TICK
 	for(var/area/security/brig_cell/cell in GLOB.brig_cell_areas)
 		var/list/cell_humans = cell.get_all_contents_type(/mob/living/carbon/human)
 		for(var/mob/living/carbon/human/guy as anything in cell_humans)
-			if(guy.real_name in criminals && guy.stat == CONSCIOUS && (guy.mind?.assigned_role in GLOB.crew_positions))
+			var/found = FALSE
+			for(var/name in criminals)
+				if(guy.real_name == name)
+					found = TRUE
+					break
+			if(found && guy.stat == CONSCIOUS && (guy.mind?.assigned_role in GLOB.crew_positions))
+				criminals -= guy.real_name
 				. += delta_time * 2.1 // 126 points per minute of captured criminal
 		CHECK_TICK
 
