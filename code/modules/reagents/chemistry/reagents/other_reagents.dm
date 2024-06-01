@@ -1543,8 +1543,6 @@
 			L.adjustBruteLoss(-(L.getBruteLoss() - MAX_REVIVE_FIRE_DAMAGE + 50))
 		if(L.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE)
 			L.adjustFireLoss(-(L.getFireLoss() - MAX_REVIVE_FIRE_DAMAGE + 50))
-		if(HAS_TRAIT(L, TRAIT_HUSK))
-			L.cure_husk()
 	ADD_TRAIT(L, TRAIT_PRESERVED_ORGANS, "healium")
 
 /datum/reagent/healium/on_mob_delete(mob/living/carbon/L)
