@@ -52,7 +52,7 @@
 			if(live_mob.stat > CONSCIOUS || live_mob.health <= 20)
 				var/existing = live_mob.reagents.get_reagent_amount(/datum/reagent/healium)
 				if(existing)
-					live_mob.reagents.del_reagent(/datum/reagent/healium)
+					live_mob.reagents.del_reagent(/datum/reagent/healium) //for retriggering
 				live_mob.reagents.add_reagent(/datum/reagent/healium, 10)
 	qdel(src)
 
