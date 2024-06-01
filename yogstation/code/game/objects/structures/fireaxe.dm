@@ -30,7 +30,7 @@
 	return ..()
 
 /obj/structure/fireaxecabinet/proc/check_deconstruct(obj/item/I, mob/user)
-	if(istype(I, /obj/item/wrench) && !(flags_1 & NODECONSTRUCT_1) && !fireaxe && (open || broken || atom_integrity >= max_integrity))
+	if(istype(I, /obj/item/wrench) && !(flags_1 & NODECONSTRUCT_1) && !(fireaxe || spareid) && (open || broken || atom_integrity >= max_integrity))
 		//User is attempting to wrench an open/broken fireaxe cabinet with NO fireaxe in it
 		user.visible_message(span_warning("[user] disassembles the [name]."), \
 							 "You start to disassemble the [name]...", \
@@ -49,12 +49,12 @@
 			return
 	else if(istype(I, /obj/item/wrench) && !(flags_1 & NODECONSTRUCT_1) && !broken && !open)
 		//User is attempting to wrench a closed & non-broken fireaxe cab
-		to_chat(user, span_warning("You need to open the door first to access the [src]'s bolts!"))
+		to_chat(user, span_warning("You need to open the door first to access [src]'s bolts!"))
 		//Still allow damage to pass through, in case they are trying to destroy the cab's window with the wrench.
 		return
-	else if(istype(I, /obj/item/wrench) && !(flags_1 & NODECONSTRUCT_1) && (open || broken) && fireaxe)
+	else if(istype(I, /obj/item/wrench) && !(flags_1 & NODECONSTRUCT_1) && (open || broken) && (fireaxe || spareid))
 		//User is attempting to wrench an open and ready fireaxe cabinet, but the axe is still in it's slot.
-		to_chat(user, span_warning("You need to remove the fireaxe first to deconstruct the [src]!"))
+		to_chat(user, span_warning("You need to empty [src] first to deconstruct it!"))
 		return
 
 /obj/structure/fireaxecabinet/proc/reset_lock(mob/user)
