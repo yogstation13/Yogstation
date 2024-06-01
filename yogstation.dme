@@ -4037,7 +4037,6 @@
 #include "yogstation\code\datums\components\storage\storage.dm"
 #include "yogstation\code\datums\diseases\_MobProcs.dm"
 #include "yogstation\code\datums\diseases\cluwnification.dm"
-#include "yogstation\code\datums\diseases\advance\advance.dm"
 #include "yogstation\code\datums\diseases\advance\symptoms\confusion.dm"
 #include "yogstation\code\datums\diseases\advance\symptoms\heal.dm"
 #include "yogstation\code\datums\looping_sounds\darkspawn.dm"
