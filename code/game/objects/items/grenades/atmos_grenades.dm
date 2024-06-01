@@ -49,7 +49,7 @@
 		for(var/mob/living/carbon/live_mob in turf_loc)
 			live_mob.adjustStaminaLoss(stamina_damage / distance_from_center)
 			live_mob.adjust_bodytemperature(-150 / distance_from_center)
-			if(live_mob.stat == (DEAD|UNCONSCIOUS|SOFT_CRIT) || live_mob.health <= 20)
+			if(live_mob.stat > CONSCIOUS) || live_mob.health <= 20))
 				var/existing = live_mob.reagents.get_reagent_amount(/datum/reagent/healium)
 				if(existing)
 					live_mob.reagents.del_reagent(/datum/reagent/healium)
