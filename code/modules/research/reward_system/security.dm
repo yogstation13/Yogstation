@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(perma_prison_areas)
 				continue
 			if(!guy.mind || !(guy.mind.assigned_role in GLOB.crew_positions))
 				continue
-			criminals -= guy.real_name
+			criminal_names -= guy.real_name
 			. += delta_time * 2.1 // 126 points per minute of captured criminal
 		CHECK_TICK
 
