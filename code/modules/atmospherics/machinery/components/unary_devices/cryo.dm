@@ -255,6 +255,9 @@
 		set_on(FALSE)
 		playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
 		var/msg = "Healium injection completed."
+		if(autoeject) // Eject if configured.
+			msg += " Auto ejecting patient now."
+			open_machine()
 		radio.talk_into(src, msg, radio_channel)
 		return
 
