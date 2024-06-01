@@ -94,13 +94,55 @@
 /datum/species/polysmorph/create_pref_unique_perks()
 	var/list/to_add = list()
 
-	// TODO
-
-	return to_add
-
-/datum/species/polysmorph/create_pref_biotypes_perks()
-	var/list/to_add = list()
-
-	// TODO
+	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "running",
+			SPECIES_PERK_NAME = "Predator Genes",
+			SPECIES_PERK_DESC = "Polysmorphs keep a fraction of the agility found in their xenomorph ancestors. \
+								Their movement speed and crawl speed are slightly faster than most races.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "low-vision",
+			SPECIES_PERK_NAME = "Darkvision",
+			SPECIES_PERK_DESC = "Polysmorphs have an advanced set of eyes protected inside their domed head. \
+								These eyes provide a degree of night-vision, letting them see better in the dark than most.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "lungs",
+			SPECIES_PERK_NAME = "Devolved Vessels",
+			SPECIES_PERK_DESC = "Polysmorphs have a set of plasma vessels, degraded and fused with human lungs through the spawning process. \
+								This mutated organ lets polysmorphs breathe both plasma and oxygen safely, but is easily hurt from breathing in hot air.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "bone",
+			SPECIES_PERK_NAME = "Exoskeletal",
+			SPECIES_PERK_DESC = "Polysmorphs have a rigid exoskeleton lining their bodies, making them harder to wound.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "filter",
+			SPECIES_PERK_NAME = "Reckless Filtration",
+			SPECIES_PERK_DESC = "Polysmorphs have alien livers capable of filtering out toxins much faster than most races. \
+								Despite this, it's not very tough, and takes more damage from processing too many toxins at once.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "commenting",
+			SPECIES_PERK_NAME = "Alien Sssssspeech",
+			SPECIES_PERK_DESC = "Polysmorphs have a mouthed tongue similar to xenomorphs, but without the teeth. \
+								They have a tendency to hissssss when sssssspeaking.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "wrench",
+			SPECIES_PERK_NAME = "Indextrous",
+			SPECIES_PERK_DESC = "Polysmorphs have large claw-like fingers built for slicing rather than quick or precise motions. \
+								They use tools and items a bit slower than most races.",
+		),
+	)
 
 	return to_add

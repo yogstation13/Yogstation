@@ -139,7 +139,44 @@
 /datum/species/ipc/create_pref_unique_perks()
 	var/list/to_add = list()
 
-	// TODO
+	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "brain",
+			SPECIES_PERK_NAME = "Rerouted Consciousnes",
+			SPECIES_PERK_DESC = "IPCs have positronic brains located in their chest rather than their head. \
+								They can survive decapitation, but revival needs special reactivation surgery done on the brain.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "wrench",
+			SPECIES_PERK_NAME = "Working Machine",
+			SPECIES_PERK_DESC = "IPCs are manufactured to be quick and cheap workers. \
+								They use tools and items faster than most races.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "robot",
+			SPECIES_PERK_NAME = "Automa",
+			SPECIES_PERK_DESC = "IPCs are completely inorganic. \
+								They boast complete immunity to toxins, cell damage, disease, husking, and have no need to breathe. \
+								Their \"organs\" will not heal naturally however, and must be replaced if damaged.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "trash-alt",
+			SPECIES_PERK_NAME = "Random Access Memories", // RIP daft punk
+			SPECIES_PERK_DESC = "IPCs hold all recent memories in their RAM chips, which wipe automatically on death. \
+								An IPC will never remember when or how it died, regardless of how long it's been dead."
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "dna",
+			SPECIES_PERK_NAME = "Missing Sequence",
+			SPECIES_PERK_DESC = "IPCs have no DNA or genetic sequence. \
+								They can't be affected by genetic mutations, nor be cloned.",
+		),
+	)
 
 	return to_add
 
