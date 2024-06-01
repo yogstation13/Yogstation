@@ -1535,7 +1535,7 @@
 	. = ..()
 	for(var/obj/item/organ/organs in L.internal_organs)
 		if(organs.status == ORGAN_ORGANIC)
-			organs.damage -= 10
+			organs.applyOrganDamage(-20)
 			if(organs.organ_flags & ORGAN_FAILING)
 				organs.organ_flags &= ~ORGAN_FAILING
 	if(L.stat == DEAD)
@@ -1576,7 +1576,7 @@
 	M.adjustCloneLoss(-5*heal_factor*REM)
 	for(var/obj/item/organ/organs in M.internal_organs)
 		if(organs.status == ORGAN_ORGANIC)
-			organs.damage = max(0, -2*heal_factor*REM)
+			organs.applyOrganDamage(-2*heal_factor*REM)
 	REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 	..()
 
