@@ -807,6 +807,7 @@
 #include "code\datums\mapgen\Cavegens\LavalandGenerator.dm"
 #include "code\datums\mapgen\dungeon_generators\dungeon_room.dm"
 #include "code\datums\mapgen\dungeon_generators\dungeon_room_theme.dm"
+#include "code\datums\mapgen\dungeon_generators\generator_theme.dm"
 #include "code\datums\mapgen\dungeon_generators\maintenance_generator\maintenance_generator.dm"
 #include "code\datums\mapgen\dungeon_generators\maintenance_generator\maintenance_room.dm"
 #include "code\datums\mapgen\dungeon_generators\maintenance_generator\maintenance_room_theme.dm"
