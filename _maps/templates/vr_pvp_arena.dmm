@@ -1,0 +1,1515 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"af" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plasteel/dark,
+/area/space)
+"aT" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/space)
+"bQ" = (
+/obj/machinery/door/airlock/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/space)
+"cy" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/plasteel/dark,
+/area/space)
+"dG" = (
+/obj/machinery/door/airlock/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/space)
+"dY" = (
+/obj/structure/closet,
+/turf/open/floor/plasteel/dark,
+/area/space)
+"em" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel,
+/area/space)
+"eD" = (
+/obj/item/kirbyplants/random,
+/obj/effect/landmark/vr_start_ffa,
+/turf/open/floor/engine,
+/area/space)
+"fX" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
+"gb" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/engine,
+/area/space)
+"gM" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/space)
+"hD" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/space)
+"hI" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/space)
+"iJ" = (
+/obj/item/kirbyplants/random,
+/obj/effect/landmark/vr_start_ffa,
+/turf/open/floor/plasteel/dark,
+/area/space)
+"jj" = (
+/obj/structure/closet,
+/turf/open/floor/engine,
+/area/space)
+"lI" = (
+/obj/structure/table/glass,
+/turf/open/floor/plasteel,
+/area/space)
+"lJ" = (
+/obj/machinery/door/airlock/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
+"nr" = (
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/space)
+"oy" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/space)
+"sx" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plasteel,
+/area/space)
+"sO" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
+"tf" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plasteel,
+/area/space)
+"tx" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/space)
+"tQ" = (
+/obj/effect/landmark/vr_start_tdm_blue,
+/turf/open/floor/engine,
+/area/space)
+"vi" = (
+/obj/structure/closet,
+/turf/open/floor/plasteel,
+/area/space)
+"vJ" = (
+/turf/closed/indestructible/syndicate,
+/area/space)
+"vV" = (
+/obj/structure/closet,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/space)
+"yu" = (
+/obj/machinery/light{
+	dir = 8;
+	light_color = "#e8eaff"
+	},
+/obj/effect/landmark/vr_start_ffa,
+/turf/open/floor/engine,
+/area/space)
+"yK" = (
+/turf/closed/indestructible/riveted,
+/area/space)
+"yP" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/item/kirbyplants/random,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/space)
+"Au" = (
+/obj/machinery/door/airlock/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/space)
+"AP" = (
+/obj/structure/table/glass,
+/turf/open/floor/plasteel/dark,
+/area/space)
+"Cs" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plasteel/dark,
+/area/space)
+"CB" = (
+/turf/closed/wall,
+/area/space)
+"CC" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/landmark/vr_start_ffa,
+/turf/open/floor/engine,
+/area/space)
+"Dr" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/barricade/sandbags,
+/turf/open/floor/engine,
+/area/space)
+"DH" = (
+/obj/item/kirbyplants/random,
+/obj/effect/landmark/vr_start_ffa,
+/turf/open/floor/plasteel,
+/area/space)
+"GK" = (
+/obj/machinery/door/airlock/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/space)
+"Hn" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/space)
+"HH" = (
+/turf/closed/indestructible/fakeglass,
+/area/space)
+"HP" = (
+/obj/machinery/door/airlock/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
+"Id" = (
+/obj/item/kirbyplants/random,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
+"Iq" = (
+/obj/machinery/computer/atmos_sim,
+/turf/open/floor/plasteel,
+/area/space)
+"Kd" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/space)
+"Le" = (
+/turf/open/floor/plasteel/dark,
+/area/space)
+"Lq" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
+"Me" = (
+/obj/machinery/light,
+/turf/open/floor/engine,
+/area/space)
+"Nf" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/closet,
+/turf/open/floor/plasteel,
+/area/space)
+"Oi" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/engine,
+/area/space)
+"OQ" = (
+/obj/structure/table/glass,
+/turf/closed/wall,
+/area/space)
+"Px" = (
+/obj/machinery/computer/atmos_sim{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
+"PV" = (
+/turf/open/floor/engine,
+/area/space)
+"Qf" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/space)
+"St" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/space)
+"SZ" = (
+/turf/open/floor/plasteel,
+/area/space)
+"TQ" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
+"UB" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/engine,
+/area/space)
+"Vu" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/item/kirbyplants/random,
+/turf/open/floor/plasteel,
+/area/space)
+"VJ" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/plasteel,
+/area/space)
+"Wv" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/space)
+"WL" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
+"Xk" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/space)
+"YJ" = (
+/obj/effect/landmark/vr_start_tdm_red,
+/turf/open/floor/engine,
+/area/space)
+
+(1,1,1) = {"
+yK
+yK
+yK
+yK
+yK
+yK
+yK
+yK
+yK
+yK
+yK
+yK
+yK
+yK
+yK
+yK
+yK
+yK
+yK
+yK
+yK
+yK
+yK
+yK
+"}
+(2,1,1) = {"
+yK
+VJ
+SZ
+SZ
+CB
+SZ
+SZ
+SZ
+bQ
+SZ
+SZ
+yu
+tQ
+SZ
+SZ
+bQ
+SZ
+SZ
+CB
+SZ
+SZ
+SZ
+DH
+yK
+"}
+(3,1,1) = {"
+yK
+SZ
+SZ
+SZ
+SZ
+SZ
+tf
+SZ
+CB
+SZ
+SZ
+PV
+PV
+SZ
+SZ
+CB
+SZ
+SZ
+tf
+SZ
+SZ
+SZ
+SZ
+yK
+"}
+(4,1,1) = {"
+yK
+SZ
+St
+CB
+CB
+SZ
+SZ
+SZ
+CB
+SZ
+SZ
+PV
+PV
+SZ
+SZ
+CB
+SZ
+SZ
+SZ
+SZ
+CB
+SZ
+SZ
+yK
+"}
+(5,1,1) = {"
+yK
+SZ
+SZ
+CB
+VJ
+SZ
+SZ
+SZ
+CB
+CB
+sx
+Dr
+Dr
+sx
+CB
+CB
+CB
+SZ
+SZ
+SZ
+CB
+CB
+SZ
+yK
+"}
+(6,1,1) = {"
+yK
+CB
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+yP
+SZ
+PV
+PV
+SZ
+gM
+VJ
+hI
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+yK
+"}
+(7,1,1) = {"
+yK
+SZ
+SZ
+CB
+CB
+CB
+SZ
+SZ
+SZ
+hI
+SZ
+PV
+PV
+SZ
+SZ
+SZ
+Xk
+SZ
+SZ
+tf
+SZ
+SZ
+SZ
+yK
+"}
+(8,1,1) = {"
+yK
+SZ
+SZ
+CB
+DH
+SZ
+SZ
+SZ
+CB
+nr
+SZ
+PV
+PV
+SZ
+SZ
+SZ
+Vu
+CB
+SZ
+tf
+SZ
+SZ
+CB
+yK
+"}
+(9,1,1) = {"
+yK
+SZ
+SZ
+CB
+SZ
+tf
+SZ
+SZ
+CB
+nr
+SZ
+PV
+PV
+SZ
+SZ
+SZ
+hI
+SZ
+SZ
+tf
+tf
+SZ
+CB
+yK
+"}
+(10,1,1) = {"
+yK
+SZ
+SZ
+CB
+SZ
+tf
+SZ
+SZ
+CB
+nr
+SZ
+Oi
+Oi
+tf
+SZ
+SZ
+hI
+SZ
+SZ
+SZ
+SZ
+SZ
+CB
+yK
+"}
+(11,1,1) = {"
+yK
+CB
+SZ
+CB
+SZ
+tf
+SZ
+SZ
+CB
+nr
+SZ
+PV
+PV
+SZ
+SZ
+SZ
+hI
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+yK
+"}
+(12,1,1) = {"
+yK
+SZ
+SZ
+CB
+SZ
+tf
+SZ
+SZ
+CB
+nr
+SZ
+PV
+CB
+SZ
+SZ
+CB
+CB
+CB
+CB
+SZ
+SZ
+SZ
+SZ
+yK
+"}
+(13,1,1) = {"
+yK
+SZ
+St
+CB
+SZ
+SZ
+SZ
+SZ
+gM
+hI
+SZ
+PV
+PV
+SZ
+SZ
+SZ
+hI
+SZ
+Qf
+SZ
+SZ
+Qf
+SZ
+yK
+"}
+(14,1,1) = {"
+yK
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+hI
+SZ
+PV
+PV
+SZ
+SZ
+SZ
+CB
+CB
+CB
+dG
+dG
+CB
+CB
+yK
+"}
+(15,1,1) = {"
+yK
+CB
+CB
+CB
+CB
+CB
+GK
+GK
+CB
+CB
+oy
+aT
+aT
+oy
+oy
+Nf
+CB
+lI
+SZ
+SZ
+SZ
+SZ
+CB
+yK
+"}
+(16,1,1) = {"
+yK
+CB
+gM
+VJ
+SZ
+SZ
+SZ
+SZ
+vV
+CB
+SZ
+Oi
+Oi
+tf
+tf
+SZ
+CB
+Iq
+SZ
+SZ
+SZ
+SZ
+SZ
+yK
+"}
+(17,1,1) = {"
+yK
+lI
+SZ
+SZ
+SZ
+CB
+CB
+SZ
+SZ
+sx
+SZ
+PV
+PV
+SZ
+SZ
+SZ
+CB
+Iq
+SZ
+lI
+lI
+lI
+SZ
+yK
+"}
+(18,1,1) = {"
+yK
+lI
+SZ
+CB
+SZ
+vi
+CB
+SZ
+SZ
+sx
+SZ
+PV
+PV
+SZ
+SZ
+vi
+CB
+Iq
+SZ
+lI
+CB
+CB
+SZ
+yK
+"}
+(19,1,1) = {"
+HH
+lI
+SZ
+CB
+SZ
+SZ
+CB
+SZ
+vi
+CB
+SZ
+PV
+PV
+SZ
+SZ
+SZ
+em
+SZ
+SZ
+CB
+CB
+lI
+SZ
+yK
+"}
+(20,1,1) = {"
+HH
+lI
+SZ
+CB
+vi
+SZ
+SZ
+SZ
+CB
+CB
+SZ
+PV
+PV
+SZ
+SZ
+SZ
+em
+SZ
+SZ
+CB
+lI
+SZ
+SZ
+yK
+"}
+(21,1,1) = {"
+HH
+lI
+SZ
+CB
+CB
+lI
+SZ
+vi
+CB
+vi
+SZ
+PV
+PV
+SZ
+SZ
+SZ
+em
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+yK
+"}
+(22,1,1) = {"
+HH
+jj
+PV
+PV
+PV
+PV
+Me
+CB
+CB
+PV
+PV
+PV
+hD
+PV
+PV
+PV
+UB
+PV
+PV
+PV
+PV
+PV
+PV
+yK
+"}
+(23,1,1) = {"
+HH
+PV
+PV
+PV
+eD
+PV
+PV
+CB
+gb
+PV
+PV
+PV
+CB
+PV
+PV
+PV
+UB
+PV
+PV
+PV
+PV
+PV
+PV
+vJ
+"}
+(24,1,1) = {"
+HH
+Le
+Le
+CB
+CB
+Le
+Le
+tx
+Le
+Le
+Le
+PV
+PV
+Le
+Le
+iJ
+CB
+Le
+Le
+CB
+AP
+CB
+Le
+vJ
+"}
+(25,1,1) = {"
+HH
+Le
+Le
+CB
+CB
+Le
+Le
+tx
+Le
+Le
+Le
+PV
+PV
+Le
+Le
+CB
+CB
+Le
+Le
+Le
+AP
+CB
+Le
+vJ
+"}
+(26,1,1) = {"
+HH
+Le
+Le
+Le
+Le
+Le
+Le
+tx
+Le
+Le
+Le
+PV
+PV
+Le
+Le
+CB
+AP
+Le
+Le
+Le
+AP
+CB
+Le
+vJ
+"}
+(27,1,1) = {"
+vJ
+Lq
+CB
+dY
+dY
+CB
+Le
+tx
+Le
+Le
+Le
+PV
+PV
+Le
+dY
+CB
+Le
+Le
+AP
+Le
+Le
+CB
+Le
+vJ
+"}
+(28,1,1) = {"
+vJ
+Le
+CB
+CB
+CB
+Le
+Le
+tx
+dY
+Le
+Le
+PV
+PV
+Le
+CB
+CB
+Le
+AP
+CB
+Le
+Le
+Le
+Le
+vJ
+"}
+(29,1,1) = {"
+vJ
+Le
+Le
+Le
+Le
+Le
+Px
+CB
+Le
+Le
+Le
+PV
+PV
+Le
+CB
+iJ
+Le
+Le
+AP
+Le
+Le
+Le
+Le
+vJ
+"}
+(30,1,1) = {"
+vJ
+Le
+Le
+Le
+Le
+Le
+Px
+CB
+Le
+Le
+Le
+PV
+PV
+Le
+af
+Le
+Le
+AP
+OQ
+CB
+Le
+Le
+Le
+vJ
+"}
+(31,1,1) = {"
+vJ
+dY
+Le
+Le
+Le
+Le
+Px
+CB
+Le
+Cs
+Cs
+Oi
+Oi
+Le
+af
+Le
+Le
+Le
+Le
+Le
+Le
+Le
+Le
+vJ
+"}
+(32,1,1) = {"
+vJ
+CB
+sO
+Le
+Le
+cy
+AP
+CB
+dY
+Le
+Le
+PV
+PV
+Le
+CB
+cy
+Le
+Le
+Le
+Le
+Le
+Le
+Le
+vJ
+"}
+(33,1,1) = {"
+vJ
+CB
+CB
+HP
+HP
+CB
+CB
+CB
+TQ
+TQ
+TQ
+Kd
+Hn
+TQ
+CB
+CB
+AP
+Le
+Le
+Le
+Le
+AP
+CB
+vJ
+"}
+(34,1,1) = {"
+vJ
+Le
+Le
+Le
+Le
+WL
+Le
+fX
+Le
+Le
+Le
+CB
+PV
+Le
+Le
+CB
+CB
+CB
+lJ
+lJ
+CB
+CB
+CB
+vJ
+"}
+(35,1,1) = {"
+vJ
+Le
+Le
+Le
+Le
+Le
+Le
+fX
+Le
+Le
+Le
+PV
+PV
+Le
+Le
+Wv
+Le
+WL
+Le
+Le
+WL
+Le
+Le
+vJ
+"}
+(36,1,1) = {"
+vJ
+Le
+Le
+CB
+CB
+Le
+Le
+fX
+Le
+Le
+Cs
+Oi
+Oi
+Le
+Le
+Wv
+CB
+Le
+Le
+Le
+Le
+Le
+Le
+vJ
+"}
+(37,1,1) = {"
+vJ
+Le
+Le
+Le
+CB
+Le
+Le
+fX
+Le
+Le
+Le
+PV
+PV
+Le
+Le
+Wv
+CB
+Le
+Le
+Le
+sO
+Le
+CB
+vJ
+"}
+(38,1,1) = {"
+vJ
+Lq
+Le
+CB
+Le
+Le
+Le
+fX
+Le
+Le
+Le
+PV
+PV
+Le
+Le
+Wv
+Le
+Le
+Le
+Le
+CB
+Le
+CB
+vJ
+"}
+(39,1,1) = {"
+vJ
+Le
+Le
+CB
+Lq
+Le
+Le
+fX
+cy
+sO
+Le
+PV
+PV
+Le
+Id
+Wv
+Le
+Le
+Le
+Le
+CB
+Le
+CB
+vJ
+"}
+(40,1,1) = {"
+vJ
+Le
+CB
+CB
+Le
+Le
+Le
+CB
+CB
+CB
+af
+Dr
+Dr
+af
+CB
+CB
+Lq
+Le
+CB
+CB
+CB
+Le
+CB
+vJ
+"}
+(41,1,1) = {"
+vJ
+Le
+Le
+CB
+CB
+Le
+Le
+Le
+CB
+Le
+Le
+PV
+PV
+Le
+Le
+CB
+Le
+Le
+Le
+Le
+WL
+Le
+Le
+vJ
+"}
+(42,1,1) = {"
+vJ
+Le
+Le
+WL
+Le
+Le
+Le
+Le
+CB
+Le
+Le
+PV
+PV
+Le
+Le
+CB
+Le
+Le
+Le
+Le
+Le
+Le
+Le
+vJ
+"}
+(43,1,1) = {"
+vJ
+iJ
+Le
+Le
+Le
+CB
+Le
+Le
+Au
+Le
+Le
+YJ
+CC
+Le
+Le
+Au
+Le
+Le
+Le
+CB
+Le
+Le
+iJ
+vJ
+"}
+(44,1,1) = {"
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+vJ
+"}

@@ -588,6 +588,13 @@
 			i++
 	return i
 
+/proc/get_all_by_type(list/L, type)
+	var/list/out = list()
+	for(var/T in L)
+		if(istype(T, type))
+			out += T
+	return out
+
 /// Find a datum record from a list
 /proc/find_record(field, value, list/L)
 	for(var/datum/data/record/R in L)

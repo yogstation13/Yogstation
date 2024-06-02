@@ -23,6 +23,11 @@
 	. = ..()
 	AddComponent(/datum/component/uplink, owner, FALSE, TRUE, null, tc_amount)
 
+/obj/item/uplink/restricted/Initialize(mapload)
+	. = ..()
+	var/datum/component/uplink/hidden_uplink = GetComponent(/datum/component/uplink)
+	hidden_uplink.allow_restricted = FALSE
+
 /obj/item/uplink/debug
 	name = "debug uplink"
 
@@ -99,7 +104,7 @@
 	. = ..()
 	AddComponent(/datum/component/uplink/nanotrasen, owner, FALSE, TRUE, null, wc_start)
 	datum_owner = owner
-	
+
 /obj/item/ntuplink/proc/finalize() //if the uplink type has been modified somehow, remove it and replace it
 	var/datum/component/uplink/nanotrasen/uplink = GetComponent(/datum/component/uplink/nanotrasen)
 	if(uplink)
