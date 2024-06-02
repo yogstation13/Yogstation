@@ -6,21 +6,29 @@
 	var/list/weighted_possible_floor_types = list()
 	///Weighted list of walls for the generator to choose from
 	var/list/weighted_possible_wall_types = list()
-	///Weighted list of extra features that can spawn in the area, such as closets.
-	var/list/weighted_feature_spawn_list = list(
-		/obj/machinery/space_heater = 2,
+	///Weighted list of extra features that spawn against walls.
+	var/list/weighted_againstwall_spawn_list = list(
+		/obj/machinery/space_heater = 1,
 		/obj/structure/closet/emcloset = 2,
 		/obj/structure/closet/firecloset = 2,
 		/obj/structure/closet/toolcloset = 1,
-		list(/obj/structure/table, /obj/effect/spawner/lootdrop/maintenance) = 1,
+		list(/obj/structure/table, /obj/effect/spawner/lootdrop/maintenance) = 1, //we do it this way so we can spawn things in groups
 		list(/obj/structure/rack, /obj/effect/spawner/lootdrop/maintenance) = 1
 	)
-	///Weighted list of extra obstructions that can spawn in the area, such as grilles and girders. (also spawns out in the open (mostly for flavour))
-	var/list/weighted_obstruction_spawn_list = list(
+	///Weighted list of extra features that spawn out in the open
+	var/list/weighted_openfloor_spawn_list = list(
 		/obj/structure/grille = 3,
 		/obj/structure/grille/broken = 4,
 		/obj/structure/girder/displaced = 2,
-		/obj/effect/spawner/lootdrop/maintenance = 2 //technically not an obstruction
+		/obj/structure/girder = 2,
+		/obj/effect/spawner/lootdrop/maintenance = 2
+	)
+	///Weighted list of extra features that spawn in narrow hallways
+	var/list/weighted_hallway_spawn_list = list(
+		/obj/structure/grille = 3,
+		/obj/structure/grille/broken = 4,
+		/obj/structure/girder/displaced = 2,
+		/obj/effect/spawner/lootdrop/maintenance = 2
 	)
 
 //Library themed
@@ -34,18 +42,22 @@
 		/turf/closed/wall/mineral/wood = 1
 		)
 
-	weighted_feature_spawn_list = list(
-		/obj/machinery/space_heater = 2,
+	weighted_againstwall_spawn_list = list(
+		/obj/machinery/space_heater = 1,
 		/obj/structure/closet/emcloset = 2,
 		/obj/structure/closet/firecloset = 2,
 		/obj/structure/closet/toolcloset = 1,
 		list(/obj/structure/table, /obj/effect/spawner/lootdrop/maintenance) = 1,
-		list(/obj/structure/rack, /obj/effect/spawner/lootdrop/maintenance) = 1,
-		/obj/item/book/random = 1
+		list(/obj/structure/rack, /obj/effect/spawner/lootdrop/maintenance) = 1
 		)
 
-	weighted_obstruction_spawn_list = list(
-		/obj/structure/bookcase/random = 3,
+	weighted_openfloor_spawn_list = list(
+		/obj/structure/bookcase/random = 4,
+		/obj/effect/spawner/lootdrop/maintenance = 2,
+		/obj/item/book/random = 3,
+		)
+
+	weighted_hallway_spawn_list = list(
 		/obj/effect/spawner/lootdrop/maintenance = 2,
 		/obj/item/book/random = 2,
 		)
@@ -61,8 +73,8 @@
 		/turf/closed/wall/mineral/iron = 1
 		)
 
-	weighted_feature_spawn_list = list(
-		/obj/machinery/space_heater = 2,
+	weighted_againstwall_spawn_list = list(
+		/obj/machinery/space_heater = 1,
 		/obj/structure/closet/emcloset = 2,
 		/obj/structure/closet/firecloset = 2,
 		/obj/structure/closet/toolcloset = 1,
@@ -73,9 +85,17 @@
 		/obj/effect/gibspawner/human = 1,
 		)
 
-	weighted_obstruction_spawn_list = list(
-		/obj/structure/kitchenspike = 3,
+	weighted_openfloor_spawn_list = list(
+		/obj/structure/kitchenspike = 4,
 		/obj/effect/spawner/lootdrop/maintenance = 2,
+		/obj/effect/spawner/lootdrop/random_meat = 2,
+		list(/obj/effect/spawner/lootdrop/random_meat, /obj/effect/gibspawner/generic) = 1,
+		/obj/effect/decal/remains/human = 1,
+		/obj/effect/gibspawner/human = 1,
+		)
+
+	weighted_hallway_spawn_list = list(
+		/obj/effect/spawner/lootdrop/maintenance = 3,
 		/obj/effect/spawner/lootdrop/random_meat = 2,
 		list(/obj/effect/spawner/lootdrop/random_meat, /obj/effect/gibspawner/generic) = 1,
 		/obj/effect/decal/remains/human = 1,
@@ -93,13 +113,13 @@
 		/turf/closed/wall/mineral/bamboo = 1
 		)
 
-	weighted_feature_spawn_list = list(
+	var/list/weighted_againstwall_spawn_list = list(
 		/obj/machinery/space_heater = 3,
-		/obj/structure/closet/emcloset = 3,
-		/obj/structure/closet/firecloset = 3,
-		/obj/structure/closet/toolcloset = 2,
-		list(/obj/structure/table, /obj/effect/spawner/lootdrop/maintenance) = 2,
-		list(/obj/structure/rack, /obj/effect/spawner/lootdrop/maintenance) = 2,
+		/obj/structure/closet/emcloset = 6,
+		/obj/structure/closet/firecloset = 6,
+		/obj/structure/closet/toolcloset = 3,
+		list(/obj/structure/table, /obj/effect/spawner/lootdrop/maintenance) = 3, //we do it this way so we can spawn things in groups
+		list(/obj/structure/rack, /obj/effect/spawner/lootdrop/maintenance) = 3,
 		/obj/structure/flora/ausbushes = 1,
 		/obj/structure/flora/ausbushes/leafybush = 1,
 		/obj/structure/flora/ausbushes/sunnybush = 1,
@@ -107,10 +127,9 @@
 		/obj/structure/flora/ausbushes/ywflowers = 1,
 		/obj/structure/flora/ausbushes/ppflowers = 1,
 		/obj/structure/flora/ausbushes/fullgrass = 1,
-		/obj/structure/flora/tree/jungle = 1,
-		)
+	)
 
-	weighted_obstruction_spawn_list = list(
+	weighted_openfloor_spawn_list = list(
 		/obj/effect/spawner/lootdrop/maintenance = 2,
 		/obj/structure/flora/ausbushes = 1,
 		/obj/structure/flora/ausbushes/leafybush = 1,
@@ -119,6 +138,18 @@
 		/obj/structure/flora/ausbushes/ywflowers = 1,
 		/obj/structure/flora/ausbushes/ppflowers = 1,
 		/obj/structure/flora/ausbushes/fullgrass = 1,
+		/obj/structure/flora/tree/jungle = 5
+		)
+
+	weighted_hallway_spawn_list = list(
+		/obj/effect/spawner/lootdrop/maintenance = 2,
+		/obj/structure/flora/ausbushes = 1,
+		/obj/structure/flora/ausbushes/leafybush = 1,
+		/obj/structure/flora/ausbushes/sunnybush = 1,
+		/obj/structure/flora/ausbushes/lavendergrass = 1,
+		/obj/structure/flora/ausbushes/ywflowers = 1,
+		/obj/structure/flora/ausbushes/ppflowers = 1,
+		/obj/structure/flora/ausbushes/fullgrass = 1
 		)
 
 /turf/open/floor/plating/dirt/jungleland/backrooms //fullbright backrooms? in this economy?

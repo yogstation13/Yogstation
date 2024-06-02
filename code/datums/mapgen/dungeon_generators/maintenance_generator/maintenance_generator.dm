@@ -19,8 +19,8 @@
 	///Boolean, wether or not apcs are added to the maintenance
 	var/include_apcs = TRUE
 
-	///Weighted list of extra features that can spawn in the area, such as closets.
-	var/list/weighted_feature_spawn_list = list(
+	///Weighted list of extra features that spawn against walls.
+	var/list/weighted_againstwall_spawn_list = list(
 		/obj/machinery/space_heater = 2,
 		/obj/structure/closet/emcloset = 2,
 		/obj/structure/closet/firecloset = 2,
@@ -28,12 +28,19 @@
 		list(/obj/structure/table, /obj/effect/spawner/lootdrop/maintenance) = 1, //we do it this way so we can spawn things in groups
 		list(/obj/structure/rack, /obj/effect/spawner/lootdrop/maintenance) = 1
 	)
-	///Weighted list of extra obstructions that can spawn in the area, such as grilles and girders.
-	var/list/weighted_obstruction_spawn_list = list(
+	///Weighted list of extra features that spawn out in the open
+	var/list/weighted_openfloor_spawn_list = list(
 		/obj/structure/grille = 3,
 		/obj/structure/grille/broken = 4,
 		/obj/structure/girder/displaced = 2,
-		/obj/effect/spawner/lootdrop/maintenance = 2 //technically not an obstruction
+		/obj/effect/spawner/lootdrop/maintenance = 2
+	)
+	///Weighted list of extra features that spawn in narrow hallways
+	var/list/weighted_hallway_spawn_list = list(
+		/obj/structure/grille = 3,
+		/obj/structure/grille/broken = 4,
+		/obj/structure/girder/displaced = 2,
+		/obj/effect/spawner/lootdrop/maintenance = 2
 	)
 	///multiplied by the number of valid turf to decide how many things should be spawned
 	var/feature_spawn_ratio = 0.15
@@ -130,11 +137,11 @@
 		if(brazil)
 			things_to_spawn = /obj/item/toy/plush/lizard/azeel
 		else if(blocking_passage)
-			things_to_spawn = pick_weight(weighted_obstruction_spawn_list)
+			things_to_spawn = pick_weight(weighted_hallway_spawn_list)
 		else if(against_wall)
-			things_to_spawn = pick_weight(weighted_feature_spawn_list)
+			things_to_spawn = pick_weight(weighted_againstwall_spawn_list)
 		else
-			things_to_spawn = pick_weight(weighted_obstruction_spawn_list)
+			things_to_spawn = pick_weight(weighted_openfloor_spawn_list)
 
 		if(!islist(things_to_spawn)) //we're expecting a list, but most things in the list won't be one
 			things_to_spawn = list(things_to_spawn) //so we put them in a list
@@ -288,7 +295,7 @@
 ////////////////////////////////////////////////////////////////
 /datum/map_generator/dungeon_generator/maintenance/backrooms
 	probability_room_types = list(ROOM_TYPE_RUIN = 75) //remove the space
-	feature_spawn_ratio = 0.2 //slightly more dense in features than regular maints
+	feature_spawn_ratio = 0.20 //slightly more dense in features than regular maints
 
 	//removes firelocks and apcs as the area is large enough that it annihilates the server if it has a bunch of firelocks
 	atmos_control = null
@@ -302,8 +309,9 @@
 		if(length(picked_theme.weighted_possible_wall_types))
 			weighted_closed_turf_types = picked_theme.weighted_possible_wall_types
 		//never let walls and floor be reduced to nothing, but let features be reduced to nothing
-		weighted_feature_spawn_list = picked_theme.weighted_feature_spawn_list
-		weighted_obstruction_spawn_list = picked_theme.weighted_obstruction_spawn_list
+		weighted_againstwall_spawn_list = picked_theme.weighted_againstwall_spawn_list
+		weighted_openfloor_spawn_list = picked_theme.weighted_openfloor_spawn_list
+		weighted_hallway_spawn_list = picked_theme.weighted_hallway_spawn_list
 	return ..()
 
 /turf/open/floor/plating/backrooms
