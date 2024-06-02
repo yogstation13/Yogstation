@@ -174,7 +174,7 @@
 		COOLDOWN_RESET(src, parry_cd)
 	else
 		consecutive_blocks++
-		addtimer(VARSET_CALLBACK(src, consecutive_blocks, 0), 1 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) // blocking resets the cooldown
+		addtimer(VARSET_CALLBACK(src, consecutive_blocks, 0), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) // blocking resets the cooldown
 	defender.visible_message(span_danger("[defender] [is_parrying ? "parries" : "blocks"] [attack_text] with [used_item]!"))
 
 	var/effective_damage = max((damage * (1 + consecutive_blocks * CONSECUTIVE_BLOCK_PENALTY)) - effective_block_force, 0)
@@ -186,6 +186,7 @@
 	else
 		defender.adjustStaminaLoss(effective_damage, TRUE)
 		if(defender.getStaminaLoss() >= STAGGER_THRESHOLD)
+			to_chat(defender, span_userdanger("You're knocked off-balance by [attack_text]!"))
 			defender.Knockdown(3 SECONDS, TRUE)
 
 	if(attack_type & PROJECTILE_ATTACK)
