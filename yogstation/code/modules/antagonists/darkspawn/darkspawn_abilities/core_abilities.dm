@@ -30,7 +30,7 @@
 	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
-	psi_cost = 5
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 5)
 	hand_path = /obj/item/melee/touch_attack/devour_will
 	var/eating = FALSE //If we're devouring someone's will
 
@@ -143,7 +143,7 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
 	hand_path = /obj/item/melee/touch_attack/darkspawn
-	psi_cost = 5
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 5)
 	//Boolean on whether we're tying someone's hands
 	var/tying = FALSE
 
@@ -221,7 +221,7 @@
 	panel = "Darkspawn"
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_IMMOBILE
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 60
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 60)
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 	///Boolean on whether this is in use.
 	var/in_use = FALSE
@@ -300,7 +300,7 @@
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
-	psi_cost = 35
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 35)
 	cooldown_time = 15 SECONDS
 	cast_range = 2
 	///Whether or not the user is in the process of "building"

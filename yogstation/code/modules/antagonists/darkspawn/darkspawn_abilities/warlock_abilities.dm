@@ -80,7 +80,7 @@
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 60
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 60)
 	cooldown_time = 30 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg'
 	aoe_radius = 6
@@ -146,7 +146,7 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
 	cooldown_time = 10 MINUTES
-	psi_cost = 200
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 200)
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 
 /datum/action/cooldown/spell/touch/null_charge/is_valid_target(atom/cast_on)
@@ -207,14 +207,11 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	cast_range = 7
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 2)
 	///The mob being targeted by the ability
 	var/mob/living/channeled
 	///The beam visual drawn by the ability
 	var/datum/beam/visual
-	///The antag datum that psi is being drawn from
-	var/datum/antagonist/darkspawn/cost
-	///How much psi is taken every process tick (5 times a second)
-	var/upkeep_cost = 2
 	///How much damage or healing happens every process tick
 	var/damage_amount = 2
 	///The cooldown duration, only applied when the ability ends
@@ -231,8 +228,6 @@
 /datum/action/cooldown/spell/pointed/extract/Grant(mob/grant_to)
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
-	if(isdarkspawn(owner))
-		cost = isdarkspawn(owner)
 
 /datum/action/cooldown/spell/pointed/extract/is_valid_target(atom/cast_on)
 	if(!isliving(cast_on))
@@ -251,6 +246,9 @@
 /datum/action/cooldown/spell/pointed/extract/process()
 	if(channeled)
 		balloon_counter++
+		if(!owner.mind)
+			cancel()
+			return
 		if(!visual || QDELETED(visual))
 			cancel()
 			return
@@ -263,9 +261,10 @@
 		if(get_dist(owner, channeled) > cast_range)
 			cancel()
 			return
-		if(cost && (!cost.use_psi(upkeep_cost)))
+		if(!SEND_SIGNAL(owner.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, resource_costs[ANTAG_RESOURCE_DARKSPAWN]))
 			cancel()
 			return
+		SEND_SIGNAL(owner.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, resource_costs)
 		if(balloon_counter >= 5)
 			balloon_counter = 0
 			owner.balloon_alert(owner, "...thum...")
@@ -333,7 +332,7 @@
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 30
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 30)
 	cooldown_time = 30 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
 	aoe_radius = 7
@@ -376,7 +375,7 @@
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
 	spell_requirements = SPELL_CASTABLE_AS_BRAIN
-	psi_cost = 35
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 35)
 	cooldown_time = 30 SECONDS
 	cast_range = 10
 	ranged_mousepointer = 'icons/effects/mouse_pointers/cult_target.dmi'
@@ -440,7 +439,7 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 80
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 80)
 	cooldown_time = 60 SECONDS
 	length = 5 SECONDS
 
@@ -468,7 +467,7 @@
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	cooldown_time = 90 SECONDS
-	psi_cost = 100 //big fuckin layzer
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 100) //big fuckin layzer
 	sound = null
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	cast_range = INFINITY //lol
@@ -611,7 +610,7 @@
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	cooldown_time = 90 SECONDS
-	psi_cost = 100 //big fuckin boom
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 100) //big fuckin boom
 	sound = null
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	cast_range = INFINITY //lol

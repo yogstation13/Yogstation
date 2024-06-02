@@ -100,7 +100,7 @@
 	name = "Anacea"
 	id = /datum/reagent/toxin/anacea
 	results = list(/datum/reagent/toxin/anacea = 3)
-	required_reagents = list(/datum/reagent/medicine/haloperidol = 1, /datum/reagent/impedrezene = 1, /datum/reagent/uranium/radium = 1)
+	required_reagents = list(/datum/reagent/medicine/naloxone = 1, /datum/reagent/impedrezene = 1, /datum/reagent/uranium/radium = 1)
 
 /datum/chemical_reaction/mimesbane
 	name = "Mime's Bane"
