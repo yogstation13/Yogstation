@@ -113,7 +113,7 @@
 		/turf/closed/wall/mineral/bamboo = 1
 		)
 
-	var/list/weighted_againstwall_spawn_list = list(
+	weighted_againstwall_spawn_list = list(
 		/obj/machinery/space_heater = 3,
 		/obj/structure/closet/emcloset = 6,
 		/obj/structure/closet/firecloset = 6,
