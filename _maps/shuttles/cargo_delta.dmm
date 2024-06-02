@@ -90,15 +90,13 @@
 /turf/open/floor/plasteel,
 /area/shuttle/supply)
 "n" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "Supply Shuttle Airlock";
-	req_access_txt = "31"
+/obj/machinery/door/airlock/titanium{
+	name = "Supply Shuttle Airlock"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/docking_port/mobile/supply{
 	dir = 4;
-	dwidth = 4;
-	width = 12
+	dwidth = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -116,7 +114,6 @@
 /area/shuttle/supply)
 "p" = (
 /obj/machinery/button/door{
-	dir = 2;
 	id = "cargounload";
 	name = "Loading Doors";
 	pixel_x = -24;
@@ -146,9 +143,8 @@
 /turf/open/floor/plasteel,
 /area/shuttle/supply)
 "r" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "Supply Shuttle Airlock";
-	req_access_txt = "31"
+/obj/machinery/door/airlock/titanium{
+	name = "Supply Shuttle Airlock"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor/border_only{

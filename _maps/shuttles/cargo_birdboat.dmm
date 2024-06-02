@@ -4,7 +4,6 @@
 /area/shuttle/supply)
 "e" = (
 /obj/machinery/conveyor{
-	dir = 2;
 	id = "cargoshuttle";
 	name = "cargo shuttle conveyor belt"
 	},
@@ -81,8 +80,7 @@
 /area/shuttle/supply)
 "o" = (
 /obj/machinery/door/airlock/titanium{
-	name = "Supply Shuttle Airlock";
-	req_access_txt = "31"
+	name = "Supply Shuttle Airlock"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -94,7 +92,6 @@
 /area/shuttle/supply)
 "p" = (
 /obj/machinery/button/door{
-	dir = 2;
 	id = "QMLoaddoor2";
 	name = "Loading Doors";
 	pixel_x = 24;
@@ -116,8 +113,7 @@
 /area/shuttle/supply)
 "q" = (
 /obj/machinery/door/airlock/titanium{
-	name = "Supply Shuttle Airlock";
-	req_access_txt = "31"
+	name = "Supply Shuttle Airlock"
 	},
 /obj/docking_port/mobile/supply{
 	dwidth = 3;
@@ -206,7 +202,6 @@
 /area/shuttle/supply)
 "R" = (
 /obj/machinery/conveyor{
-	dir = 2;
 	id = "cargoshuttle";
 	name = "cargo shuttle conveyor belt"
 	},

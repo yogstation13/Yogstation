@@ -34,8 +34,7 @@
 /area/shuttle/supply)
 "g" = (
 /obj/machinery/door/airlock/titanium{
-	name = "Supply Shuttle Airlock";
-	req_access_txt = "31"
+	name = "Supply Shuttle Airlock"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -47,13 +46,9 @@
 /area/shuttle/supply)
 "i" = (
 /obj/machinery/door/airlock/titanium{
-	name = "Supply Shuttle Airlock";
-	req_access_txt = "31"
+	name = "Supply Shuttle Airlock"
 	},
-/obj/docking_port/mobile/supply{
-	dwidth = 5;
-	width = 12
-	},
+/obj/docking_port/mobile/supply,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
@@ -106,7 +101,6 @@
 	dir = 4
 	},
 /obj/machinery/button/door{
-	dir = 2;
 	id = "QMLoaddoor2";
 	name = "Loading Doors";
 	pixel_x = 24;

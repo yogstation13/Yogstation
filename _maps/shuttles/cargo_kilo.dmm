@@ -257,9 +257,8 @@
 /turf/open/floor/plating,
 /area/shuttle/supply)
 "K" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "Supply Shuttle Airlock";
-	req_access_txt = "31"
+/obj/machinery/door/airlock/titanium{
+	name = "Supply Shuttle Airlock"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/docking_port/mobile/supply{
@@ -275,9 +274,8 @@
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/supply)
 "V" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "Supply Shuttle Airlock";
-	req_access_txt = "31"
+/obj/machinery/door/airlock/titanium{
+	name = "Supply Shuttle Airlock"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor/border_only{
