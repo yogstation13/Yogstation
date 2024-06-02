@@ -174,7 +174,7 @@
 		COOLDOWN_RESET(src, parry_cd)
 	else
 		consecutive_blocks++
-		addtimer(VARSET_CALLBACK(src, consecutive_blocks, 0), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) // blocking resets the cooldown
+		addtimer(VARSET_CALLBACK(src, consecutive_blocks, 0), 1.5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) // blocking resets the cooldown
 	defender.visible_message(span_danger("[defender] [is_parrying ? "parries" : "blocks"] [attack_text] with [used_item]!"))
 
 	var/effective_damage = max((damage * (1 + consecutive_blocks * CONSECUTIVE_BLOCK_PENALTY)) - effective_block_force, 0)
