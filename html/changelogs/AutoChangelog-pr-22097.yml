@@ -1,8 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Makes ethereals get slowly charged by starlight"
-  - rscadd: "Makes ethereals get rapidly charged by electrocution and energy projectiles"
-  - tweak: "Ethereal discharge now discharges a static amount of electricity"
-  - bugfix: "Ethereals can now properly stop discharging by releasing power into an apc"
-  - bugfix: "Ethereals can no longer discharge multiple times at once"
