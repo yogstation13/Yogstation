@@ -23,7 +23,6 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	AddComponent(/datum/component/light_eater)
-	RegisterSignal(new_darkspawn, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(hit_reaction))
 	for(var/obj/item/umbral_tendrils/U in loc)
 		if(U != src)
 			twin = U
@@ -32,20 +31,9 @@
 			U.force *= 0.75
 
 /obj/item/umbral_tendrils/Destroy()
-	if(darkspawn)
-		UnregisterSignal(darkspawn, COMSIG_HUMAN_CHECK_SHIELDS)
 	if(!QDELETED(twin))
 		qdel(twin)
 	return ..()
-
-// can dodge a projectile every once in a while
-/obj/item/umbral_tendrils/proc/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, damage, attack_text = "the attack", attack_type = MELEE_ATTACK)
-	if(!(attack_type & PROJECTILE_ATTACK))
-		return NONE //only give defense against shooting
-	if(!COOLDOWN_FINISHED(src, dodge_cooldown))
-		return NONE
-	COOLDOWN_START(src, dodge_cooldown, 1 SECONDS)
-	return SHIELD_DODGE
 
 /obj/item/umbral_tendrils/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //this doesn't work and i have no clue why
 	. = ..()
