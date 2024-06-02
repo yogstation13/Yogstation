@@ -474,7 +474,7 @@
 	name = "Hypernoblium-Antinoblium Annihilation"
 	id = "noblium_annihilation"
 	required_reagents = list(/datum/reagent/hypernoblium = 1, /datum/reagent/antinoblium = 1)
-	strengthdiv = 150
+	strengthdiv = 0.1
 	noblium_suppression = FALSE
 	mob_react = FALSE // no
 
