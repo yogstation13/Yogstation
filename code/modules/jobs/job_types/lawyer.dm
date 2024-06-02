@@ -13,7 +13,7 @@
 
 	outfit = /datum/outfit/job/lawyer
 
-	added_access = list()
+	added_access = list(ACCESS_MAINT_TUNNELS)
 	base_access = list(ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS, ACCESS_SERVHALL)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CIV

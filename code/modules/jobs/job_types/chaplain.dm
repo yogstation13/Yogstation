@@ -13,7 +13,7 @@
 
 	alt_titles = list("Priest", "Preacher", "Cleric", "Exorcist", "Vicar")
 
-	added_access = list()
+	added_access = list(ACCESS_MAINT_TUNNELS)
 	base_access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_THEATRE, ACCESS_SERVHALL)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CIV
