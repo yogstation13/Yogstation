@@ -353,6 +353,10 @@
 	var/tracer_fire_chance = 0
 	var/fire_color = "green"
 
+/obj/projectile/beam/beam_rifle/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_SHIELDBUSTER, INNATE_TRAIT)
+
 /obj/projectile/beam/beam_rifle/hitscan
 	icon_state = ""
 	hitscan = TRUE

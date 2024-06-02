@@ -66,9 +66,8 @@
 /obj/item/gun/ballistic/rocketlauncher/unrestricted
 	pin = /obj/item/firing_pin
 
-/obj/item/gun/ballistic/rocketlauncher/afterattack()
-	. = ..()
-	magazine.get_round(FALSE) //Hack to clear the mag after it's fired
+/obj/item/gun/ballistic/rocketlauncher/process_chamber()
+	magazine.get_round(FALSE)
 
 /obj/item/gun/ballistic/rocketlauncher/equipped()
 	if(prob(1))

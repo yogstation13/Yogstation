@@ -1,7 +1,7 @@
 /obj/item/highfive
 	name = "raised hand"
 	desc = "Slap my hand."
-	icon = 'icons/obj/toy.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "latexballon"
 	item_state = "nothing"
 	hitsound = 'sound/weapons/punchmiss.ogg'
@@ -28,7 +28,7 @@
 /obj/item/handholding
 	name = "hand for holding"
 	desc = "You rapscallion, how scandalous!"
-	icon = 'icons/obj/toy.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "latexballon"
 	item_state = "nothing"
 	hitsound = 'sound/weapons/punchmiss.ogg'

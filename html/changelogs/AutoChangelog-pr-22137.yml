@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Sugary drinks like soda and sweet tea now give short-term positive mood effects"
+  - tweak: "Sugar in general makes you happier, briefly"
