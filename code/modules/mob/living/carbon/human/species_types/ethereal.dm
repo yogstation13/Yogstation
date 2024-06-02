@@ -280,7 +280,7 @@
 	if(H.stat == DEAD)
 		return
 
-	if(H.nutrition < NUTRITION_LEVEL_ALMOST_FULL) //passive charging if in starlight
+	if(H.nutrition < NUTRITION_LEVEL_WELL_FED) //passive charging if in starlight
 		var/starlight = FALSE
 		if(istype(get_turf(H), /turf/open/space))
 			starlight = TRUE
