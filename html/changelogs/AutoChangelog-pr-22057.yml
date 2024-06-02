@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Adds naloxone, a new chem that purges specifically drugs and toxins"
-  - rscdel: "Removes haloperidol"
