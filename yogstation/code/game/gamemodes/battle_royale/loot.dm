@@ -242,7 +242,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/gun/ballistic/shotgun/doublebarrel/improvised = 0,
 		/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawn = 0,
 		/obj/item/gun/ballistic/revolver/detective = 0,
-		/obj/item/flamethrower/full/tank = 0,
+		/obj/item/gun/flamethrower/full = 0,
 
 		/obj/item/gun/ballistic/automatic/pistol = -1,
 		/obj/item/gun/ballistic/shotgun/doublebarrel = -1,
