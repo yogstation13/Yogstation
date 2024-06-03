@@ -16,7 +16,7 @@
 <h1>/<a href="datum.html">datum</a>/<a href="datum/dungeon_room_theme.html">dungeon_room_theme</a>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L8">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L8">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 8"/></a></h1>
 
 <p>Dungeon room themes determine the style of the generated rooms. If you want to create a new dungeon generator for say, Icemeta,
@@ -59,7 +59,7 @@ using subtypes or typesof, which is something you can't do from the base definit
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L37">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L37">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 37"/></a></h3>
         <p>The number of features spawned in a room is:
 (area inside the room * feature_weight as a percent) rounded up
@@ -68,7 +68,7 @@ the higher this number, the more features spawned</p>
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L50">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L50">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 50"/></a></h3>
         <p>The upper limit of mobs spawned in a room is determined by a logarithmic function using the interior size of the room. This variable
 is the chance that a mob spawns in each iteration of the spawning loop. 
@@ -77,116 +77,116 @@ a 50% chance to actually spawn a mob, otherwise it will decrease the number of s
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L11">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L11">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 11"/></a></h3>
         <p>Contains flags pertaining to the qualities of the room, such as ROOM_HAS_FLOORS if it, y'know, has floors</p><h3 id="var/special_feature"><aside class="declaration">var </aside>special_feature
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L28">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L28">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 28"/></a></h3>
         <p>For room themes that call for very specific features appearing. Currently just for handling ruins via their landmark object</p><h3 id="var/weighted_feature_spawn_list"><aside class="declaration">var </aside>weighted_feature_spawn_list
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L39">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L39">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 39"/></a></h3>
         <p>Weighted list of features you want to spawn. Like unfinished machines, broken mechs, blood splatters. Keep in mind these will be placed randomly</p><h3 id="var/weighted_mob_spawn_list"><aside class="declaration">var </aside>weighted_mob_spawn_list
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L52">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L52">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 52"/></a></h3>
         <p>Weighted list of features you want to spawn. Spiders in a room that has webbing, or possums in a room full of trash.</p><h3 id="var/weighted_possible_door_types"><aside class="declaration">var </aside>weighted_possible_door_types
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L25">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L25">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 25"/></a></h3>
         <p>Weighted list of doors for the room to choose from</p><h3 id="var/weighted_possible_floor_types"><aside class="declaration">var </aside>weighted_possible_floor_types
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L17">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L17">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 17"/></a></h3>
         <p>Weighted list of floorings for the room to choose from</p><h3 id="var/weighted_possible_wall_types"><aside class="declaration">var </aside>weighted_possible_wall_types
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L19">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L19">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 19"/></a></h3>
         <p>Weighted list of walls for the room to choose from</p><h3 id="var/weighted_possible_window_types"><aside class="declaration">var </aside>weighted_possible_window_types
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L21">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L21">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 21"/></a></h3>
         <p>If you want the theme or rooms to include windows, specify the window type here, be it the basic window obj, or a spawner for a preset window</p><h3 id="var/window_weight"><aside class="declaration">var </aside>window_weight
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L23">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L23">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 23"/></a></h3>
         <p>percent chance of spawning a window instead of a wall</p><h2 id="proc">Proc Details</h2><h3 id="proc/Initialize"><aside class="declaration">proc </aside>Initialize<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L79">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L79">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 79"/></a></aside>
         </h3>
         <p>Room flags are assigned based on which lists have any elements.
 These flags are checked by the room that owns the theme to determine which furnishing procs need to be called</p><h3 id="proc/New">New<aside>(/<a href="datum.html">datum</a>/<a href="datum/dungeon_room.html">dungeon_room</a>/_dungeon_room_ref) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L55">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L55">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 55"/></a></aside>
         </h3>
         <p>Initialize the new room by sanity checking values and then assigning the bitflags that describe room behavior to the parent room</p><h3 id="proc/get_random_door"><aside class="declaration">proc </aside>get_random_door<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L126">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L126">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 126"/></a></aside>
         </h3>
         <p>Return a random door /obj from the list of door options, selected based on weight. Defaults to basic door if no door is found</p><h3 id="proc/get_random_feature"><aside class="declaration">proc </aside>get_random_feature<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L140">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L140">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 140"/></a></aside>
         </h3>
         <p>Return a random feature /obj the list of feature options, selected based on weight. Returns null if nothing is found</p><h3 id="proc/get_random_flooring"><aside class="declaration">proc </aside>get_random_flooring<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L105">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L105">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 105"/></a></aside>
         </h3>
         <p>Return a random flooring /turf from the list of flooring options, selected based on weight. Defaults to basic plating if no flooring is found</p><h3 id="proc/get_random_mob"><aside class="declaration">proc </aside>get_random_mob<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L157">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L157">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 157"/></a></aside>
         </h3>
         <p>Return a random mob /atom the list of mob options, selected based on weight. Returns null if nothing is found
 The reason it returns an atom rather than a mob specifically is because there are some weird cases where mobs are objects, like specific silicons</p><h3 id="proc/get_random_wall"><aside class="declaration">proc </aside>get_random_wall<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L112">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L112">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 112"/></a></aside>
         </h3>
         <p>Return a random wall /turf from the list of wall options, selected based on weight. Defaults to basic wall if no wall is found</p><h3 id="proc/get_random_window"><aside class="declaration">proc </aside>get_random_window<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L119">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L119">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 119"/></a></aside>
         </h3>
         <p>Return a random window /obj from the list of window options, selected based on weight. Defaults to basic window spawner if no window is found</p><h3 id="proc/get_special_feature"><aside class="declaration">proc </aside>get_special_feature<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L133">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L133">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 133"/></a></aside>
         </h3>
         <p>Return the path for the special feature of the room. Returns null if nothing is found</p><h3 id="proc/post_generate"><aside class="declaration">proc </aside>post_generate<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L174">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L174">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 174"/></a></aside>
         </h3>
         <p>If you want to do anything fancy with the mobs or items in the room after you know they exist. 
@@ -194,14 +194,14 @@ Like renaming items, reassigning factions, calling specific procs from them.
 Whatever your little heart desires</p><h3 id="proc/pre_initialize"><aside class="declaration">proc </aside>pre_initialize<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/df28d4c6621982d4662314ffddf74a8be32d39ba/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L72">
+            <a href="https://github.com/yogstation13/Yogstation/blob/365be0d414599282e8495133147da2285f877d07/code/datums/mapgen/dungeon_generators/dungeon_room_theme.dm#L72">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme.dm 72"/></a></aside>
         </h3>
         <p>Any sort of room specific logic you need to do before running the Initialize() that will assign room flags. For example if you want to generate a list
 using subtypes or typesof, which is something you can't do from the base definition and needs to be done in a proc.</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/df28d4c6621982d4662314ffddf74a8be32d39ba">df28d4c</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/365be0d414599282e8495133147da2285f877d07">365be0d</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
