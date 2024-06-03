@@ -76,7 +76,8 @@
 		/datum/reagent/gold,
 		/datum/reagent/diethylamine,
 		/datum/reagent/saltpetre,
-		/datum/reagent/medicine/charcoal
+		/datum/reagent/medicine/charcoal,
+		/datum/reagent/lemoline
 	)
 	var/list/emagged_reagents = list(
 		/datum/reagent/toxin/carpotoxin,
