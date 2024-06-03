@@ -1,0 +1,4 @@
+author: " ktlwjec"
+delete-after: true 
+changes: 
+  - bugfix: "You need to empty the spare ID cabinet before you can wrench it."
