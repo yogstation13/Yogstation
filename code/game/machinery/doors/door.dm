@@ -379,6 +379,7 @@
 	operating = FALSE
 	air_update_turf()
 	update_freelook_sight()
+	SEND_SIGNAL(src, COMSIG_ATOM_DOOR_OPEN)
 	if(autoclose)
 		spawn(autoclose)
 			close()

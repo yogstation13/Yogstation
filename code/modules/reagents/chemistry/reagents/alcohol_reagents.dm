@@ -16,6 +16,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning
 	accelerant_quality = 5
+	liquid_fire_power = 10
 /*
 Boozepwr Chart
 Note that all higher effects of alcohol poisoning will inherit effects for smaller amounts (i.e. light poisoning inherts from slight poisoning)

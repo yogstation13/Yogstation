@@ -93,7 +93,7 @@
  * This replaces the current turf if it is plating and is passed plating, is tile and is passed tile.
  * It places the new turf on top of itself if it is plating and is passed a tile.
  * It also replaces the turf if it is tile and is passed plating, essentially destroying the over turf.
- * Flags argument is passed directly to ChangeTurf or PlaceOnTop
+ * Flags argument is passed directly to ChangeTurf or place_on_top
  */
 /turf/open/proc/replace_floor(turf/open/new_floor_path, flags)
 	if (!overfloor_placed && initial(new_floor_path.overfloor_placed))

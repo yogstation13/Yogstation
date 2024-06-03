@@ -20,7 +20,7 @@
 	///list of miners & their mining points from gems to be given once all exports are processed, used by supply shuttles
 	var/list/gem_payout = list()
 
-/area/shuttle/PlaceOnTopReact(list/new_baseturfs, turf/fake_turf_type, flags)
+/area/shuttle/place_on_topReact(list/new_baseturfs, turf/fake_turf_type, flags)
 	. = ..()
 	if(length(new_baseturfs) > 1 || fake_turf_type)
 		return // More complicated larger changes indicate this isn't a player

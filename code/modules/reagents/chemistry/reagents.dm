@@ -76,8 +76,23 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/harmful = FALSE
 	/// The default reagent container for the reagent. Currently only used for crafting icon/displays.
 	var/obj/item/reagent_containers/default_container = /obj/item/reagent_containers/glass/bottle
-
-	/// Are we from a material? We might wanna know that for special stuff. Like metalgen. Is replaced with a ref of the material on New()
+	
+	///Whether it will evaporate if left untouched on a liquids simulated puddle
+	var/evaporates = TRUE
+	///How much fire power does the liquid have, for burning on simulated liquids. Not enough fire power/unit of entire mixture may result in no fire
+	var/liquid_fire_power = 0
+	///How fast does the liquid burn on simulated turfs, if it does
+	var/liquid_fire_burnrate = 0
+	///Whether a fire from this requires oxygen in the atmosphere
+	var/fire_needs_oxygen = TRUE
+	///The opacity of the chems used to determine the alpha of liquid turfs
+	var/opacity = 175
+	///The rate of evaporation in units per call
+	var/evaporation_rate = 1
+	/// do we have a turf exposure (used to prevent liquids doing un-needed processes)
+	var/turf_exposure = FALSE
+	/// are we slippery?
+	var/slippery = TRUE
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	. = ..()
@@ -147,6 +162,9 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 /// Called when the reagent container is hit by an explosion
 /datum/reagent/proc/on_ex_act(severity)
+	return
+
+/datum/reagent/proc/evaporate(turf/exposed_turf, reac_volume)
 	return
 
 /// Called if the reagent has passed the overdose threshold and is set to be triggering overdose effects

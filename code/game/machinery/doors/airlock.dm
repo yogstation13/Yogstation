@@ -1373,6 +1373,7 @@
 			locked = !locked
 		if(welded)
 			welded = !welded
+	SEND_SIGNAL(src, COMSIG_AIRLOCK_OPEN, forced)
 	operating = TRUE
 	update_icon(state = AIRLOCK_OPENING, override = TRUE)
 	sleep(0.1 SECONDS)
@@ -1389,6 +1390,7 @@
 	if(delayed_close_requested)
 		delayed_close_requested = FALSE
 		addtimer(CALLBACK(src, PROC_REF(close)), 1)
+	SEND_SIGNAL(src, COMSIG_ATOM_DOOR_OPEN) /// this is different because we need one that covers all doors
 	return TRUE
 
 

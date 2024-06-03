@@ -42,6 +42,7 @@
 	return ..()
 
 /mob/living/proc/ZImpactDamage(turf/T, levels)
+	SEND_SIGNAL(T, COMSIG_TURF_MOB_FALL, src)
 	visible_message(span_danger("[src] crashes into [T] with a sickening noise!"))
 	adjustBruteLoss((levels * 5) ** 1.5)
 	Knockdown(levels * 50)
