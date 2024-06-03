@@ -5,7 +5,7 @@
 	desc = "Touch something to make it disappear temporarily."
 	background_icon_state = "bg_mime"
 	overlay_icon_state = "bg_mime_border"
-	button_icon = 'icons/obj/wizard.dmi'
+	button_icon = 'icons/obj/weapons/hand.dmi'
 	button_icon_state = "nothing"
 	panel = "Mime"
 

@@ -297,6 +297,9 @@
 	desc = "A patented Nanotrasen storage system designed for any kind of stacks. This is geared towards sheets, rods, and tiles."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sheetsnatcher"
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
+	var/spam_protection = FALSE //If this is TRUE, the holder won't receive any messages when they fail to pick up ore through crossing it
+	var/mob/listeningTo
 
 	var/capacity = 500; //the number of sheets it can carry.
 	w_class = WEIGHT_CLASS_NORMAL
@@ -308,6 +311,44 @@
 	STR.allow_quick_empty = TRUE
 	STR.set_holdable(list(/obj/item/stack/sheet, /obj/item/stack/tile, /obj/item/stack/rods))
 	STR.max_items = 500
+
+/obj/item/storage/bag/sheetsnatcher/proc/pickup_sheets(mob/living/user)
+	var/show_message = FALSE
+	var/turf/tile = user.loc
+	if (!isturf(tile))
+		return
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	if(STR)
+		for(var/A in tile)
+			if (!is_type_in_typecache(A, STR.can_hold))
+				continue
+			else if(SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, A, user, TRUE))
+				show_message = TRUE
+			else
+				if(!spam_protection)
+					to_chat(user, span_warning("Your [name] is full and can't hold any more!"))
+					spam_protection = TRUE
+					continue
+	if(show_message)
+		playsound(user, "rustle", 50, TRUE)
+		user.visible_message(span_notice("[user] scoops up the sheets beneath [user.p_them()]."), \
+		span_notice("You scoop up the sheets beneath you with your [name]."))
+	spam_protection = FALSE
+
+/obj/item/storage/bag/sheetsnatcher/equipped(mob/user)
+	. = ..()
+	if(listeningTo == user)
+		return
+	if(listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(pickup_sheets))
+	listeningTo = user
+
+/obj/item/storage/bag/sheetsnatcher/dropped()
+	. = ..()
+	if(listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+		listeningTo = null
 
 // -----------------------------
 //    Stack Snatcher (Cyborg)

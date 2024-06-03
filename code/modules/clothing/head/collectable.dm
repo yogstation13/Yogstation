@@ -6,18 +6,18 @@
 	desc = "A rare collectable hat."
 
 /obj/item/clothing/head/collectable/petehat
-	name = "ultra rare Pete's hat!"
+	name = "ultra rare Pete's hat"
 	desc = "It smells faintly of plasma."
 	icon_state = "petehat"
 
 /obj/item/clothing/head/collectable/slime
-	name = "collectable slime cap!"
+	name = "collectable slime cap"
 	desc = "It just latches right in place!"
 	icon_state = "slime"
 	dynamic_hair_suffix = ""
 
 /obj/item/clothing/head/collectable/xenom
-	name = "collectable xenomorph helmet!"
+	name = "collectable xenomorph helmet"
 	desc = "Hiss hiss hiss!"
 	icon_state = "xenom"
 

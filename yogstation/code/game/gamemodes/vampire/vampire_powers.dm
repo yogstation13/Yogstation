@@ -1,18 +1,10 @@
 /datum/action/cooldown/spell
 	var/gain_desc
-	var/blood_used = 0
 	var/vamp_req = FALSE
 
 /datum/action/cooldown/spell/can_cast_spell(feedback = TRUE)
 	if(vamp_req)
 		if(!is_vampire(owner))
-			return FALSE
-		var/datum/antagonist/vampire/V = owner.mind.has_antag_datum(/datum/antagonist/vampire)
-		if(!V)
-			return FALSE
-		if(V.usable_blood < blood_used)
-			if(feedback)
-				to_chat(owner, span_warning("You do not have enough blood to cast this!"))
 			return FALSE
 	return ..()
 
@@ -26,19 +18,6 @@
 		// sanity check before we cast
 		if(!is_vampire(owner))
 			return
-
-		if(!blood_used)
-			return
-
-		// enforce blood
-		var/datum/antagonist/vampire/vampire = owner.mind.has_antag_datum(/datum/antagonist/vampire)
-
-		if(blood_used <= vampire.usable_blood)
-			vampire.usable_blood -= blood_used
-
-		if(cast_on)
-			to_chat(owner, span_notice("<b>You have [vampire.usable_blood] left to use.</b>"))
-
 	return ..()
 
 /datum/action/cooldown/spell/is_valid_target(mob/living/target)
@@ -84,7 +63,7 @@
 
 	check_flags = NONE
 	cooldown_time = 20 SECONDS
-	blood_used = 20
+	resource_costs = list(ANTAG_RESOURCE_VAMPIRE = 20)
 	vamp_req = TRUE
 
 /datum/action/cooldown/spell/rejuvenate/cast(mob/living/user)
@@ -180,7 +159,7 @@
 	school = SCHOOL_SANGUINE
 
 	cooldown_time = 30 SECONDS
-	blood_used = 20
+	resource_costs = list(ANTAG_RESOURCE_VAMPIRE = 20)
 	active_msg = span_warning("You prepare your hypnosis technique.")
 	deactive_msg = span_warning("You stop preparing your hypnosis.")
 	vamp_req = TRUE
@@ -342,7 +321,7 @@
 	school = SCHOOL_SANGUINE
 
 	aoe_radius = 4
-	blood_used = 20
+	resource_costs = list(ANTAG_RESOURCE_VAMPIRE = 20)
 	vamp_req = TRUE
 
 /datum/action/cooldown/spell/aoe/screech/get_things_to_cast_on(atom/center)
@@ -389,7 +368,7 @@
 
 	cooldown_time = 2 MINUTES
 	vamp_req = TRUE
-	blood_used = 30
+	resource_costs = list(ANTAG_RESOURCE_VAMPIRE = 30)
 	var/num_bats = 2
 
 /datum/action/cooldown/spell/bats/cast(mob/living/user)
@@ -415,7 +394,7 @@
 	background_icon_state = "bg_vampire"
 	overlay_icon_state = "bg_vampire_border"
 
-	blood_used = 30
+	resource_costs = list(ANTAG_RESOURCE_VAMPIRE = 30)
 	vamp_req = TRUE
 
 /datum/action/cooldown/spell/pointed/vampirize
@@ -430,7 +409,7 @@
 
 	school = SCHOOL_SANGUINE
 
-	blood_used = 300
+	resource_costs = list(ANTAG_RESOURCE_VAMPIRE = 300)
 	vamp_req = TRUE
 
 /datum/action/cooldown/spell/pointed/vampirize/InterceptClickOn(mob/living/user, params, atom/target_atom)
@@ -443,11 +422,11 @@
 	var/datum/antagonist/vampire/vamp = user.mind.has_antag_datum(/datum/antagonist/vampire)
 	if(is_vampire(target))
 		to_chat(user, span_warning("They're already a vampire!"))
-		vamp.usable_blood += blood_used	// Refund cost
+		SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_VAMPIRE = -300)) // Refund cost
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 		to_chat(user, span_warning("[target]'s mind is too strong!"))
-		vamp.usable_blood += blood_used	// Refund cost
+		SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_VAMPIRE = -300)) // Refund cost
 		return FALSE
 	user.visible_message(span_warning("[user] latches onto [target]'s neck, pure dread eminating from them."), span_warning("You latch onto [target]'s neck, preparing to transfer your unholy blood to them."), span_warning("A dreadful feeling overcomes you"))
 	target.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 10) //incase you're choking the victim
@@ -464,7 +443,7 @@
 		if(!do_after(user, 7 SECONDS, target))
 			to_chat(user, span_danger("The pact has failed! [target] has not became a vampire."))
 			to_chat(target, span_notice("The visions stop, and you relax."))
-			vamp.usable_blood += blood_used	// Refund the cost
+			SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_VAMPIRE = -300)) // Refund cost
 			return FALSE
 	if(!QDELETED(user) && !QDELETED(target))
 		to_chat(user, span_notice(". . ."))
@@ -494,7 +473,7 @@
 
 	school = SCHOOL_CONJURATION
 
-	blood_used = 100
+	resource_costs = list(ANTAG_RESOURCE_VAMPIRE = 100)
 	vamp_req = TRUE
 
 /datum/action/cooldown/spell/summon_coat/cast(mob/living/user)
@@ -525,14 +504,14 @@
 	cooldown_time = 20 SECONDS
 	die_with_shapeshifted_form = FALSE
 	convert_damage_type = STAMINA
-	blood_used = 15
+	resource_costs = list(ANTAG_RESOURCE_VAMPIRE = 15)
 	vamp_req = TRUE
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED
 	possible_shapes = list(/mob/living/simple_animal/hostile/vampire_bat)
 
 /datum/action/cooldown/spell/shapeshift/vampire/can_cast_spell()
 	if(ishuman(owner))
-		blood_used = 15
+		bypass_cost = FALSE
 	else
-		blood_used = 0
+		bypass_cost = TRUE
 	return ..()

@@ -4,19 +4,22 @@
 /datum/dungeon_room/maintenance/generate_room_theme()
 
 	if(!room_type)
-		if(completed_room && is_ruin_compatible() && prob(75))
-			//because ruins are a special type we overwrite the previous flags so the only possible theme is the ruin type
-			room_type = ROOM_TYPE_RUIN
-		
-		else if(completed_room && prob(20))
-			room_type = ROOM_TYPE_SPACE
-		else
+		var/list/room_types = generator_ref.probability_room_types
+
+		//if the room is a completed room, decide what special room type it should roll
+		if(completed_room)
+			for(var/type_check in room_types) //go through all types that the generator allows
+				if(type_check == ROOM_TYPE_RUIN && !is_ruin_compatible()) //the ruin type is special and needs to have a specific shape of room to work
+					continue
+				if(prob(room_types[type_check])) //get the probability of that ruin type from the list
+					room_type = type_check
+
+		if(!room_type) //if a room type wasn't picked, default to random
 			room_type = ROOM_TYPE_RANDOM
 	
 	if(!room_danger_level)
 		if(completed_room && prob(50))
 			room_danger_level = ROOM_RATING_HOSTILE
-		
 		else
 			room_danger_level = ROOM_RATING_SAFE
 

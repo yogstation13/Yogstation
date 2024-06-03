@@ -75,6 +75,7 @@
 		M.cut_overlays()
 		M.add_overlay(disguise.overlays)
 		M.update_inv_hands()
+		RegisterSignal(M, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(hit_reaction))
 
 /obj/item/clothing/suit/armor/abductor/vest/proc/DeactivateStealth()
 	if(!stealth_active)
@@ -86,12 +87,14 @@
 		M.name_override = null
 		M.cut_overlays()
 		M.regenerate_icons()
+		UnregisterSignal(M, COMSIG_HUMAN_CHECK_SHIELDS)
 
-/obj/item/clothing/suit/armor/abductor/vest/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/abductor/vest/proc/hit_reaction()
 	DeactivateStealth()
 
-/obj/item/clothing/suit/armor/abductor/vest/IsReflect()
+/obj/item/clothing/suit/armor/abductor/vest/dropped(mob/user)
 	DeactivateStealth()
+	return ..()
 
 /obj/item/clothing/suit/armor/abductor/vest/ui_action_click()
 	switch(mode)

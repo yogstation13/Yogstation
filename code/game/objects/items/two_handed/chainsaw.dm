@@ -68,12 +68,9 @@
 	armour_penetration = 100
 	force_on = 30
 
-/obj/item/melee/chainsaw/doomslayer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(attack_type == PROJECTILE_ATTACK)
-		owner.visible_message(span_danger("Ranged attacks just make [owner] angrier!"))
-		playsound(src, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, 1)
-		return 1
-	return 0
+/obj/item/melee/chainsaw/doomslayer/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/blocking, block_force = INFINITY, block_flags = PROJECTILE_ATTACK|REFLECTIVE_BLOCK|ALWAYS_BLOCK)
 
 /obj/item/melee/chainsaw/demon
 	name = "demon chainsaw"

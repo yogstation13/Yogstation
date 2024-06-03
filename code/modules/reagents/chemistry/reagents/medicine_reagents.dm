@@ -441,9 +441,8 @@
 	. = 1
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
-			M.reagents.remove_reagent(R.type,1)
+			M.reagents.remove_reagent(R.type,0.5)
 	..()
-
 /datum/reagent/medicine/system_cleaner
 	name = "System Cleaner"
 	description = "Neutralizes harmful chemical compounds inside synthetic systems."
@@ -523,13 +522,13 @@
 	description = "Quickly purges the body of all chemicals. Toxin damage is dealt if the patient is in good condition."
 	reagent_state = LIQUID
 	color = "#19C832"
-	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	metabolization_rate = 0.5 *	REAGENTS_METABOLISM
 	taste_description = "acid"
 
 /datum/reagent/medicine/calomel/on_mob_life(mob/living/carbon/M)
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
-			M.reagents.remove_reagent(R.type,2.5)
+			M.reagents.remove_reagent(R.type,5)
 	if(M.health > 20)
 		M.adjustToxLoss(2.5*REM, 0)
 		. = 1
@@ -1288,23 +1287,27 @@
 	..()
 	. = 1
 
-/datum/reagent/medicine/haloperidol
-	name = "Haloperidol"
-	description = "Increases depletion rates for most stimulating/hallucinogenic drugs. Reduces druggy effects and jitteriness. Severe stamina regeneration penalty, causes drowsiness. Small chance of brain damage."
+/datum/reagent/medicine/naloxone
+	name = "Naloxone"
+	description = "Rapidly purges most hazardous chemicals. Causes muscle weakness, and in higher dosages, brain and liver damage"
 	reagent_state = LIQUID
 	color = "#27870a"
+	overdose_threshold = 20
 	metabolization_rate = 0.4 * REAGENTS_METABOLISM
+	var/static/list/purge_types = list(typecacheof(list(/datum/reagent/drug, /datum/reagent/toxin))) //add more to this list as needed
 
-/datum/reagent/medicine/haloperidol/on_mob_life(mob/living/carbon/M)
-	for(var/datum/reagent/drug/R in M.reagents.reagent_list)
-		M.reagents.remove_reagent(R.type,5)
-	M.adjust_drowsiness(2 SECONDS)
-	M.adjust_jitter(-3 SECONDS)
-	M.adjust_hallucinations(-5 SECONDS)
-	if(prob(20))
-		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1*REM, 50)
+/datum/reagent/medicine/naloxone/on_mob_life(mob/living/carbon/M)
+	for(var/datum/reagent/R in M.reagents.reagent_list)
+		if(is_type_in_typecache(R, purge_types))
+			M.reagents.remove_reagent(R.type,5)
 	M.adjustStaminaLoss(2.5*REM, 0)
 	M.clear_stamina_regen()
+	..()
+	return TRUE
+
+/datum/reagent/medicine/naloxone/overdose_process(mob/living/M)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.5 * REM, 50)
+	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 0.5 * REM)
 	..()
 	return TRUE
 

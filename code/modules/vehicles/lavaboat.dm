@@ -6,7 +6,7 @@
 	desc = "A boat used for traversing lava."
 	icon_state = "goliath_boat"
 	icon = 'icons/obj/lavaland/dragonboat.dmi'
-	resistance_flags = LAVA_PROOF | FIRE_PROOF
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	can_buckle = TRUE
 	legs_required = 0
 	arms_required = 0
@@ -29,7 +29,7 @@
 	desc = "Not to be confused with the kind Research hassles you for."
 	force = 12
 	w_class = WEIGHT_CLASS_NORMAL
-	resistance_flags = LAVA_PROOF | FIRE_PROOF
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /datum/crafting_recipe/oar
 	name = "Goliath Bone Oar"

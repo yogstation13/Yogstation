@@ -14,7 +14,7 @@
 /obj/item/borg/stun/attack(mob/living/M, mob/living/user)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.check_shields(src, 0, "[M]'s [name]", MELEE_ATTACK))
+		if(H.check_shields(src, 0, "[M]'s [name]", MELEE_ATTACK, 0, STAMINA))
 			playsound(M, 'sound/weapons/genhit.ogg', 50, 1)
 			return FALSE
 	if(iscyborg(user))

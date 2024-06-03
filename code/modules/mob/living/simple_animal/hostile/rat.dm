@@ -22,6 +22,7 @@
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
+	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	faction = list("rat")
 	var/body_color
 

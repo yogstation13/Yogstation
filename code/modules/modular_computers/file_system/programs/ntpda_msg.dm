@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 /datum/computer_file/program/pdamessager
 	filename = "pda_client"
 	filedesc = "PDA Messaging"
-	category = PROGRAM_CATEGORY_MISC
+	category = PROGRAM_CATEGORY_DEVICE
 	program_icon_state = "command"
 	extended_desc = "This program allows for direct messaging with other modular computers"
 	size = 3

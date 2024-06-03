@@ -219,7 +219,7 @@
 	requires_ntnet = FALSE //Tracking should not require NTNET, as sensors are not on the network at all, and the program is downloaded locally.
 	transfer_access = ACCESS_MEDICAL
 	available_on_ntnet = TRUE
-	category = PROGRAM_CATEGORY_MED
+	category = PROGRAM_CATEGORY_EQUIPMENT
 	program_icon = "street-view"
 
 /datum/computer_file/program/radar/lifeline/find_atom()
@@ -275,7 +275,7 @@
 /datum/computer_file/program/radar/fission360
 	filename = "Fission360"
 	filedesc = "Fission360"
-	category = PROGRAM_CATEGORY_MISC
+	category = PROGRAM_CATEGORY_EQUIPMENT
 	program_icon_state = "radarsyndicate"
 	extended_desc = "This program allows for tracking of nuclear authorization disks and warheads."
 	requires_ntnet = FALSE
@@ -321,7 +321,7 @@
 /datum/computer_file/program/radar/implant
 	filename = "implanttracker"
 	filedesc = "Implant Tracker"
-	category = PROGRAM_CATEGORY_SEC
+	category = PROGRAM_CATEGORY_SECURITY
 	extended_desc = "This program allows for tracking those implanted with tracking implants."
 	requires_ntnet = FALSE //Same as Lifeline.
 	transfer_access = ACCESS_BRIG

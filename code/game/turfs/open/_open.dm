@@ -554,8 +554,9 @@
 		icon_state = "necro[rand(2,3)]"
 
 /turf/open/indestructible/brazil/lostit
-	icon = 'yogstation/icons/turf/floors/ballpit_smooth.dmi'
-	icon_state = "smooth"
+	icon = 'yogstation/icons/turf/floors/ballpit.dmi'
+	icon_state = "ballpit-255"
+	base_icon_state = "ballpit"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_BRAZIL
 	canSmoothWith = SMOOTH_GROUP_BRAZIL

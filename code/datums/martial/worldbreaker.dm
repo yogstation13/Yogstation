@@ -27,7 +27,7 @@
 	id = MARTIALART_WORLDBREAKER
 	no_guns = TRUE
 	help_verb = /mob/living/carbon/human/proc/worldbreaker_help
-	martial_traits = list(TRAIT_RESISTHEAT, TRAIT_NOSOFTCRIT, TRAIT_STUNIMMUNE, TRAIT_NOVEHICLE, TRAIT_BOTTOMLESS_STOMACH)
+	martial_traits = list(TRAIT_RESISTHEAT, TRAIT_NOSOFTCRIT, TRAIT_STUNIMMUNE, TRAIT_NO_BLOCKING, TRAIT_NOVEHICLE, TRAIT_BOTTOMLESS_STOMACH)
 	///traits applied when the user has enough plates to trigger heavy mode
 	var/list/heavy_traits = list(TRAIT_BOMBIMMUNE, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE)
 	var/list/thrown = list()

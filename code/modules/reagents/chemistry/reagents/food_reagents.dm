@@ -26,6 +26,8 @@
 	if(methods & INGEST)
 		if (quality && !HAS_TRAIT(M, TRAIT_AGEUSIA))
 			switch(quality)
+				if (DRINK_SODA)
+					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/soda)
 				if (DRINK_NICE)
 					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_nice)
 				if (DRINK_GOOD)
@@ -174,6 +176,7 @@
 	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 255, 255, 255
+	quality = DRINK_SODA
 	taste_mult = 1.5 // stop sugar drowning out other flavours
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	metabolization_rate = 2 * REAGENTS_METABOLISM

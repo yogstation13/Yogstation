@@ -95,9 +95,9 @@
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	force = 20
 	armour_penetration = 75
-	block_chance = 50
 	sharpness = SHARP_EDGED
 	max_charges = 4
+	var/block_force = 15
 
 /obj/item/gun/magic/staff/spellblade/weak
 	name = "ashy spellblade"
@@ -107,18 +107,14 @@
 /obj/item/gun/magic/staff/spellblade/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 15, 125, 0, hitsound)
-
-/obj/item/gun/magic/staff/spellblade/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(attack_type == PROJECTILE_ATTACK)
-		final_block_chance = 0
-	return ..()
+	AddComponent(/datum/component/blocking, block_force = src.block_force)
 
 /obj/item/gun/magic/staff/spellblade/beesword
 	name = "The Stinger"
 	desc = "Taken from a giant bee and folded over one thousand times in pure honey. Can sting through anything."
 	fire_sound = 'sound/items/syringeproj.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/spellblade/beesword
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "beesword"
 	item_state = "stinger"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -128,13 +124,13 @@
 	sharpness = SHARP_EDGED
 	force = 7
 	throwforce = 10
-	block_chance = 20
 	armour_penetration = 85
 	sharpness = SHARP_POINTY
 	max_charges = 6
 	recharge_rate = 1
 	attack_verb = list("slashed", "stung", "prickled", "poked")
 	hitsound = 'sound/weapons/rapierhit.ogg'
+	block_force = 10
 
 /obj/item/gun/magic/staff/spellblade/beesword/afterattack(target, mob/user, proximity_flag)
 	. = ..()

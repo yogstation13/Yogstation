@@ -2,7 +2,7 @@
  * Vxtvul Hammer
  */
 /obj/item/melee/vxtvulhammer
-	icon = 'icons/obj/weapons/misc.dmi'
+	icon = 'icons/obj/weapons/hammer.dmi'
 	icon_state = "vxtvul_hammer0-0"
 	base_icon_state = "vxtvul_hammer"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
@@ -15,7 +15,6 @@
 	armour_penetration = 50 //Designed for shattering walls in a single blow, I don't think it cares much about armor
 	throwforce = 18
 	attack_verb = list("attacked", "hit", "struck", "bludgeoned", "bashed", "smashed")
-	block_chance = 30 //Only works in melee, but I bet your ass you could raise its handle to deflect a sword
 	sharpness = SHARP_NONE //Blunt, breaks bones
 	wound_bonus = -10
 	bare_wound_bonus = 15
@@ -51,6 +50,8 @@
 		requires_wielded=TRUE, \
 		cleave_end_callback=CALLBACK(src, PROC_REF(end_swing)), \
 	)
+	if(!toy)
+		AddComponent(/datum/component/blocking, block_force = 20, block_flags = WEAPON_BLOCK_FLAGS|WIELD_TO_BLOCK)
 
 /obj/item/melee/vxtvulhammer/Destroy() //Even though the hammer won't probably be destroyed, Ever™
 	QDEL_NULL(spark_system)
@@ -79,11 +80,6 @@
 	if(supercharged)
 		supercharge()
 
-/obj/item/melee/vxtvulhammer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(attack_type == PROJECTILE_ATTACK || !HAS_TRAIT(src, TRAIT_WIELDED)) //Doesn't work against ranged or if it's not wielded
-		final_block_chance = 0 //Please show me how you can block a bullet with an industrial hammer I would LOVE to see it
-	return ..()
-
 /obj/item/melee/vxtvulhammer/attack(mob/living/carbon/human/target, mob/living/carbon/user) //This doesn't consider objects, only people
 	if (charging) //So you can't attack while charging
 		to_chat(user, span_notice("You flip the switch off before your attack."))
@@ -101,10 +97,12 @@
 		if(!toy)
 			force = initial(force) + (HAS_TRAIT(src, TRAIT_WIELDED) ? force_wielded : 0) + 12 //12 additional damage for a total of 40 has to be a massively irritating check because of how force_wielded works
 			armour_penetration = 100
+			ADD_TRAIT(src, TRAIT_SHIELDBUSTER, "supercharge")
 	else
 		set_light_on(FALSE)
 		force = initial(force) + (HAS_TRAIT(src, TRAIT_WIELDED) ? force_wielded : 0)
 		armour_penetration = initial(armour_penetration)
+		REMOVE_TRAIT(src, TRAIT_SHIELDBUSTER, "supercharge")
 	update_appearance(UPDATE_ICON)
 
 /obj/item/melee/vxtvulhammer/proc/charge_hammer(mob/living/carbon/user)

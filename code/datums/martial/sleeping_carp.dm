@@ -174,12 +174,11 @@
 	throwforce = 20
 	throw_speed = 2
 	attack_verb = list("smashed", "slammed", "whacked", "thwacked")
-	icon = 'icons/obj/weapons/misc.dmi'
+	icon = 'icons/obj/weapons/staff.dmi'
 	icon_state = "bostaff0"
 	base_icon_state = "bostaff"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
-	block_chance = 50
 
 /obj/item/melee/bostaff/Initialize(mapload)
 	. = ..()
@@ -187,10 +186,11 @@
 		force_wielded = 14, \
 	)
 	AddComponent(/datum/component/cleave_attack, arc_size=180, requires_wielded=TRUE)
+	AddComponent(/datum/component/blocking, block_force = 25, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|OMNIDIRECTIONAL_BLOCK|WIELD_TO_BLOCK)
 
 /obj/item/melee/bostaff/update_icon_state()
 	. = ..()
-	icon_state = "[base_icon_state]0"
+	icon_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
 
 /obj/item/melee/bostaff/attack(mob/target, mob/living/user, params)
 	add_fingerprint(user)
@@ -245,8 +245,3 @@
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15, 150)
 	else
 		return ..()
-
-/obj/item/melee/bostaff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(HAS_TRAIT(src, TRAIT_WIELDED))
-		return ..()
-	return FALSE

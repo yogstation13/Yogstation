@@ -62,6 +62,7 @@
 	secondsElectrified = MACHINE_NOT_ELECTRIFIED //How many seconds remain until the door is no longer electrified. -1/MACHINE_ELECTRIFIED_PERMANENT = permanently electrified until someone fixes it.
 	assemblytype = /obj/structure/door_assembly
 	normalspeed = TRUE
+	opens_with_door_remote = TRUE
 	explosion_block = 1
 	hud_possible = list(DIAG_AIRLOCK_HUD)
 	smoothing_groups = SMOOTH_GROUP_AIRLOCK
@@ -72,7 +73,7 @@
 
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN
 	blocks_emissive = EMISSIVE_BLOCK_NONE
-	
+
 	/// How much are wires secured
 	var/security_level = 0
 	/// If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
@@ -181,7 +182,6 @@
 	diag_hud_set_electrified()
 
 	rebuild_parts()
-	AddComponent(/datum/component/ntnet_interface)
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -336,56 +336,6 @@
 			cyclelinkairlock_target()	//yogs end
 		if ("cyclelinkeddir")
 			cyclelinkairlock()
-
-/obj/machinery/door/airlock/check_access_ntnet(datum/netdata/data)
-	return !requiresID() || ..()
-
-/obj/machinery/door/airlock/ntnet_receive(datum/netdata/data)
-	// Check if the airlock is powered and can accept control packets.
-	if(!hasPower() || !canAIControl())
-		return
-
-	// Check packet access level.
-	if(!check_access_ntnet(data))
-		return
-
-	// Handle received packet.
-	var/command = lowertext(data.data["data"])
-	var/command_value = lowertext(data.data["data_secondary"])
-	switch(command)
-		if("open")
-			if(command_value == "on" && !density)
-				return
-
-			if(command_value == "off" && density)
-				return
-
-			if(density)
-				INVOKE_ASYNC(src, PROC_REF(open))
-			else
-				INVOKE_ASYNC(src, PROC_REF(close))
-
-		if("bolt")
-			if(command_value == "on" && locked)
-				return
-
-			if(command_value == "off" && !locked)
-				return
-
-			if(locked)
-				unbolt()
-			else
-				bolt()
-
-		if("emergency")
-			if(command_value == "on" && emergency)
-				return
-
-			if(command_value == "off" && !emergency)
-				return
-
-			emergency = !emergency
-			update_appearance(UPDATE_ICON)
 
 /obj/machinery/door/airlock/lock()
 	bolt()
@@ -743,7 +693,7 @@
 		if(AIRLOCK_OPENING)
 			if(lights && hasPower())
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "lights_opening", FLOAT_LAYER, FLOAT_PLANE, dir)
-	
+
 	if(hasPower() && unres_sides)
 		for(var/heading in list(NORTH,SOUTH,EAST,WEST))
 			if(!(unres_sides & heading))
@@ -1050,7 +1000,7 @@
 							return
 						if(security_level != AIRLOCK_SECURITY_PLASTEEL_I_S)
 							return
-						user.visible_message(span_notice("[user] remove \the [src]'s shielding."),
+						user.visible_message(span_notice("[user] removes \the [src]'s shielding."),
 											span_notice("You remove \the [src]'s inner shielding."))
 						security_level = AIRLOCK_SECURITY_NONE
 						modify_max_integrity(normal_integrity)
@@ -1187,7 +1137,7 @@
 			open(2)
 		var/obj/item/umbral_tendrils/T = C
 		var/list/modifiers = params2list(params)
-		if(!T.darkspawn)
+		if(!isdarkspawn(user))
 			return ..()
 		else if((!user.combat_mode || (modifiers && modifiers[RIGHT_CLICK])) && density)
 			// we dont want Duality double-hitting the airlock when we're trying to pry it open
@@ -1197,9 +1147,9 @@
 				if(!hasPower()) // a crowbar can do this and you're telling me tentacles struggle?
 					open(2)
 					return
-				if(!T.darkspawn.has_psi(15))
+				if(!(user.mind && SEND_SIGNAL(user.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, 15)))
 					to_chat(user, span_warning("You need at least 15 Psi to force open an airlock!"))
-					return
+					return 
 				user.visible_message(span_warning("[user] starts forcing open [src]!"), span_velvet("<b>ueahz</b><br>You begin forcing open [src]..."))
 				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE)
 				if(!T.twin)
@@ -1211,28 +1161,28 @@
 				open(2)
 				if(density && !open(2))
 					to_chat(user, span_warning("Despite your attempts, [src] refuses to open!"))
-				T.darkspawn.use_psi(15)
+				SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 15))
 			else
-				if(!T.darkspawn.has_psi(30))
+				if(!(user.mind && SEND_SIGNAL(user.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, 30)))
 					to_chat(user, span_warning("You need at least 30 Psi to smash down an airlock!"))
-					return
+					return 
 				user.visible_message(span_boldwarning("[user] starts slamming [T] into [src]!"), \
 				"<span class='velvet italics'>You loudly begin smashing down [src].</span>")
 				while(atom_integrity > max_integrity * 0.25)
 					if(T.twin)
 						if(!do_after(user, rand(4, 6), src))
-							T.darkspawn.use_psi(30)
+							SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 30))
 							return
 					else
 						if(!do_after(user, rand(8, 10), src))
-							T.darkspawn.use_psi(30)
+							SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 30))
 							return
 					playsound(src, 'yogstation/sound/magic/pass_smash_door.ogg', 50, TRUE)
 					take_damage(max_integrity / rand(8, 15))
 					to_chat(user, "<span class='velvet bold'>klaj.</span>")
 				ex_act(EXPLODE_DEVASTATE)
 				user.visible_message(span_boldwarning("[user] slams down [src]!"), "<span class='velvet bold'>KLAJ.</span>")
-				T.darkspawn.use_psi(30)
+				SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 30))
 		else
 			return ..()
 	else
@@ -1544,7 +1494,7 @@
 	if(QDELETED(src))
 		return
 	operating = FALSE
-	
+
 	if(!open()) // Something prevented it from being opened. For example, bolted/welded shut.
 		update_icon(state = AIRLOCK_CLOSED, override = TRUE)
 	obj_flags |= EMAGGED

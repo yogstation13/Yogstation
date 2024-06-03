@@ -1862,46 +1862,36 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)
 	return
 
-/datum/species/proc/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style, modifiers)
-	if(!istype(M))
+/datum/species/proc/spec_attack_hand(mob/living/carbon/human/attacker, mob/living/carbon/human/defender, datum/martial_art/attacker_style, modifiers)
+	if(!istype(attacker))
 		return
-	CHECK_DNA_AND_SPECIES(M)
-	CHECK_DNA_AND_SPECIES(H)
+	CHECK_DNA_AND_SPECIES(attacker)
+	CHECK_DNA_AND_SPECIES(defender)
 
-	if(!istype(M)) //sanity check for drones.
+	if(!istype(attacker)) //sanity check for drones.
 		return
-	if(M.mind)
-		attacker_style = M.mind.martial_art
+	if(attacker.mind)
+		attacker_style = attacker.mind.martial_art
 	var/disarming = (modifiers && modifiers[RIGHT_CLICK])
-	if((M != H) && (M.combat_mode || disarming) && H.check_shields(M, 0, M.name, attack_type = UNARMED_ATTACK))
-		if(M.dna.check_mutation(HULK) && disarming)
-			H.check_shields(0, M.name) // We check their shields twice since we are a hulk. Also triggers hitreactions for HULK_ATTACK
-			M.visible_message(span_danger("[M]'s punch knocks the shield out of [H]'s hand."), \
-							span_userdanger("[M]'s punch knocks the shield out of [H]'s hand."))
-			if(M.dna)
-				playsound(H.loc, M.dna.species.attack_sound, 25, 1, -1)
-			else
-				playsound(H.loc, 'sound/weapons/punch1.ogg', 25, 1, -1)
-			log_combat(M, H, "hulk punched a shield held by")
-			return FALSE
+	if((attacker != defender) && (attacker.combat_mode || disarming) && defender.check_shields(attacker, 0, attacker.name, UNARMED_ATTACK, 0, attacker.dna.species.attack_type))
 		if(istype(attacker_style, /datum/martial_art/flyingfang) && disarming)
-			disarm(M, H, attacker_style)
-		log_combat(M, H, "attempted to touch")
-		H.visible_message(span_warning("[M] attempted to touch [H]!"))
-		return 0
-	SEND_SIGNAL(M, COMSIG_MOB_ATTACK_HAND, M, H, attacker_style, modifiers)
+			disarm(attacker, defender, attacker_style)
+			return
+		log_combat(attacker, defender, "attempted to touch")
+		defender.visible_message(span_warning("[attacker] attempted to touch [defender]!"))
+		return
+	SEND_SIGNAL(attacker, COMSIG_MOB_ATTACK_HAND, attacker, defender, attacker_style, modifiers)
 	if(disarming)
-		disarm(M, H, attacker_style)
-	else if(M.combat_mode)
-		harm(M, H, attacker_style)
+		disarm(attacker, defender, attacker_style)
+	else if(attacker.combat_mode)
+		harm(attacker, defender, attacker_style)
 	else
-		help(M, H, attacker_style)
+		help(attacker, defender, attacker_style)
 
 /datum/species/proc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, mob/living/carbon/human/H)
 	// Allows you to put in item-specific reactions based on species
-	if(user != H)
-		if(H.check_shields(I, I.force, "the [I.name]", MELEE_ATTACK, I.armour_penetration))
-			return FALSE
+	if(user != H && H.check_shields(I, I.force, "the [I.name]", MELEE_ATTACK, I.armour_penetration, I.damtype))
+		return FALSE
 	var/datum/martial_art/M = H.check_block()
 	if(M)
 		M.handle_counter(H, user)

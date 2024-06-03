@@ -66,8 +66,10 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "K" = (
-/obj/structure/shuttle/engine/heater,
 /obj/structure/window/reinforced/spawner/north,
+/obj/machinery/power/engine_capacitor_bank{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/template_noop)
 "L" = (
@@ -94,7 +96,9 @@
 /turf/open/floor/mineral/titanium/blue/airless,
 /area/template_noop)
 "Q" = (
-/obj/structure/shuttle/engine/propulsion,
+/obj/machinery/shuttle/engine{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/template_noop)
 "S" = (

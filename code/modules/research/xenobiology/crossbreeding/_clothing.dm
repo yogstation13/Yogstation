@@ -137,8 +137,30 @@ Slimecrossing Armor
 	slowdown = 4
 	var/hit_reflect_chance = 40
 
-/obj/item/clothing/suit/armor/heavy/adamantine/IsReflect(def_zone)
-	if(def_zone in list(BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG) && prob(hit_reflect_chance))
-		return TRUE
-	else
-		return FALSE
+/obj/item/clothing/suit/armor/heavy/adamantine/equipped(mob/user, slot)
+	. = ..()
+	if(slot_flags & slot)
+		RegisterSignal(user, COMSIG_ATOM_BULLET_ACT, PROC_REF(do_reflect))
+
+/obj/item/clothing/suit/armor/heavy/adamantine/dropped(mob/user)
+	if(user.get_item_by_slot(ITEM_SLOT_OCLOTHING) == src)
+		UnregisterSignal(user, COMSIG_ATOM_BULLET_ACT)
+	return ..()
+
+/obj/item/clothing/suit/armor/heavy/adamantine/proc/do_reflect(mob/living/defender, obj/projectile/incoming, def_zone)
+	if(!(incoming.reflectable & REFLECT_NORMAL))
+		return NONE
+	if(!(def_zone in list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))) //If not shot where ablative is covering you, you don't get the reflection bonus!
+		return NONE
+	incoming.damage *= 0.5 // split the damage between you and whoever it gets reflected at
+	incoming.on_hit(defender, defender.run_armor_check(def_zone, incoming.armor_flag, "", "", incoming.armour_penetration))
+	incoming.setAngle()
+	if(incoming.hitscan) // hitscan check
+		incoming.store_hitscan_collision(incoming.trajectory.copy_to())
+	incoming.firer = defender
+	var/new_angle_s = incoming.Angle + rand(120,240)
+	while(new_angle_s > 180)	// Translate to regular projectile degrees
+		new_angle_s -= 360
+	incoming.setAngle(new_angle_s)
+	playsound(defender, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, 1)
+	return BULLET_ACT_FORCE_PIERCE

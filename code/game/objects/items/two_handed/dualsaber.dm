@@ -17,7 +17,6 @@
 	hitsound = "swing_hit"
 	armour_penetration = 35
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	block_chance = 75
 	max_integrity = 200
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 70)
 	resistance_flags = FIRE_PROOF
@@ -31,6 +30,7 @@
 	var/w_class_on = WEIGHT_CLASS_BULKY
 	var/saber_color = "green"
 	var/hacked = FALSE
+	var/toy = FALSE
 	var/list/possible_colors = list("red", "blue", "green", "purple")
 
 /obj/item/melee/dualsaber/Initialize(mapload)
@@ -58,6 +58,19 @@
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
 	AddComponent(/datum/component/cleave_attack, arc_size=360, swing_speed_mod=1.5, requires_wielded=TRUE) // lol, lmao even
+	if(!toy)
+		AddComponent(/datum/component/blocking, \
+			block_force = 30, \
+			block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|REFLECTIVE_BLOCK|OMNIDIRECTIONAL_BLOCK|WIELD_TO_BLOCK, \
+		)
+
+/obj/item/melee/dualsaber/equipped(mob/user, slot, initial)
+	. = ..()
+	RegisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(on_shield_block))
+
+/obj/item/melee/dualsaber/dropped(mob/user, silent)
+	UnregisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS)
+	return ..()
 
 /obj/item/melee/dualsaber/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -106,12 +119,24 @@
 	if(HAS_TRAIT(src, TRAIT_WIELDED) && prob(50))
 		INVOKE_ASYNC(src, PROC_REF(jedi_spin), user)
 
+/obj/item/melee/dualsaber/proc/on_shield_block(mob/living/user, block_result)
+	SIGNAL_HANDLER
+	if(block_result && user.is_holding(src))
+		INVOKE_ASYNC(src, PROC_REF(jedi_spin), user)
+
 /obj/item/melee/dualsaber/proc/jedi_spin(mob/living/user)
-	for(var/i in list(NORTH,SOUTH,EAST,WEST,EAST,SOUTH,NORTH,SOUTH,EAST,WEST,EAST,SOUTH))
-		user.setDir(i)
-		if(i == WEST)
+	RegisterSignal(user, COMSIG_ATOM_PRE_DIR_CHANGE, PROC_REF(on_user_dir_change), override = TRUE)
+	var/original_dir = user.dir
+	for(var/i in 1 to 12)
+		if(user.dir == original_dir)
 			user.emote("flip")
+		user.setDir(turn(i, 90), forced = TRUE)
 		sleep(0.1 SECONDS)
+	user.setDir(original_dir, forced = TRUE)
+	UnregisterSignal(user, COMSIG_ATOM_PRE_DIR_CHANGE)
+
+/obj/item/melee/dualsaber/proc/on_user_dir_change()
+	return COMPONENT_ATOM_BLOCK_DIR_CHANGE
 
 /obj/item/melee/dualsaber/proc/impale(mob/living/user)
 	to_chat(user, span_warning("You twirl around a bit before losing your balance and impaling yourself on [src]."))
@@ -119,11 +144,6 @@
 		user.take_bodypart_damage(20,25,check_armor = TRUE)
 	else
 		user.adjustStaminaLoss(25)
-
-/obj/item/melee/dualsaber/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(HAS_TRAIT(src, TRAIT_WIELDED))
-		return ..()
-	return 0
 
 /obj/item/melee/dualsaber/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)  //In case thats just so happens that it is still activated on the groud, prevents hulk from picking it up
 	if(HAS_TRAIT(src, TRAIT_WIELDED))
@@ -137,10 +157,6 @@
 		open_flame()
 	else
 		STOP_PROCESSING(SSobj, src)
-
-/obj/item/melee/dualsaber/IsReflect()
-	if(HAS_TRAIT(src, TRAIT_WIELDED))
-		return TRUE
 
 /obj/item/melee/dualsaber/ignition_effect(atom/A, mob/user)
 	// same as /obj/item/melee/transforming/energy, mostly
@@ -205,8 +221,3 @@
 	desc = "Two energy swords taped crudely together. 'at last we finally get some revenge' is scribbled on the side with crayon."
 
 	force_wielded = 27 //total of 30 to be equal to an esword, it's literally just two duct taped together
-
-/obj/item/melee/dualsaber/makeshift/IsReflect()//only 50% chance to reflect, so it still has the cool effect, but not 100% chance
-	if(prob(50))
-		return ..()
-	return FALSE

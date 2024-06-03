@@ -33,7 +33,7 @@
 /obj/item/melee/overcharged_emitter
 	name = "supercharged emitter"
 	desc = "The result of all the prosthetic's power building up in its palm. It's fading fast."
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "flagellation"
 	item_state = "hivehand"
 	color = "#04b8ff"
