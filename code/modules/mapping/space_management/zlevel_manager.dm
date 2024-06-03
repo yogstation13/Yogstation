@@ -41,14 +41,3 @@
 	if (z_list && z >= 1 && z <= z_list.len)
 		return z_list[z]
 	CRASH("Unmanaged z-level [z]! maxz = [world.maxz], z_list.len = [z_list ? z_list.len : "null"]")
-
-/datum/controller/subsystem/mapping/proc/generate_backrooms()
-	var/datum/space_level/backrooms = add_new_zlevel("The Backrooms", ZTRAITS_BACKROOM_MAINTS, contain_turfs = FALSE)
-	backrooms.set_linkage(SELFLOOPING)
-	var/area/procedurally_generated/maintenance/the_backrooms/suffer = new()
-	suffer.setup("The Backrooms")
-	for(var/turf/to_contain as anything in Z_TURFS(backrooms.z_value))
-		var/area/old_area = to_contain.loc
-		to_contain.ChangeTurf(/turf/open/genturf, flags = CHANGETURF_DEFER_CHANGE)
-		to_contain.change_area(old_area, suffer)
-	suffer.RunGeneration()

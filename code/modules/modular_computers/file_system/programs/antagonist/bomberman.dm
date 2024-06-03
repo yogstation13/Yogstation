@@ -3,7 +3,7 @@ GLOBAL_LIST_EMPTY(PDABombCodes)
 /datum/computer_file/program/bomberman
 	filename = "bomberman"
 	filedesc = "BomberMan"
-	category = PROGRAM_CATEGORY_MISC
+	category = PROGRAM_CATEGORY_EQUIPMENT
 	program_icon_state = "hostile"
 	extended_desc = "A new-age version of the classic 'Detomatix' program run on legacy PDAs. Can be used to attempt detonation of any PDA on the messaging list."
 	size = 5

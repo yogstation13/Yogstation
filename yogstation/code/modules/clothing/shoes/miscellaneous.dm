@@ -17,7 +17,7 @@
 	name = "scary clown shoes"
 	desc = "Clown shoes often seen being worn by sewer clowns."
 	icon = 'yogstation/icons/obj/clothing/shoes.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/feet/feet.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/feet/feet.dmi'
 	icon_state = "scaryclownshoes"
 	item_state = "scaryclownshoes"
 
@@ -25,7 +25,7 @@
 	name = "bee shoes"
 	desc = "It's hip to wear bees."
 	icon = 'yogstation/icons/obj/clothing/shoes.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/feet/feet.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/feet/feet.dmi'
 	icon_state = "bee_shoes"
 	item_state = "bee_shoes"
 

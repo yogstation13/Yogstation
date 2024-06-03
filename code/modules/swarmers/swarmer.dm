@@ -116,6 +116,8 @@
 ////CTRL CLICK FOR SWARMERS AND SWARMER_ACT()'S////
 /mob/living/simple_animal/hostile/swarmer/AttackingTarget()
 	if(!isliving(target))
+		if(!environment_check(target))
+			return FALSE
 		return target.swarmer_act(src)
 	if(iscyborg(target))
 		var/mob/living/silicon/borg = target
@@ -146,6 +148,44 @@
 		prepare_target(A)
 
 ////END CTRL CLICK FOR SWARMERS////
+
+///Checks whether a target atom is safe to deconstruct.
+/mob/living/simple_animal/hostile/swarmer/proc/environment_check(atom/target)
+	var/turf/target_area = get_area(target)
+	if(istype(target_area, /area/engine/supermatter))
+		to_chat(src, span_warning("Disrupting the containment of a supermatter crystal would not be to our benefit. Aborting."))
+		target = null
+		return FALSE
+	if(istype(target_area, /area/shuttle)) // some of you can't behave
+		to_chat(src, span_warning("Preventing crew evacuation interferes with our goal. Aborting."))
+		target = null
+		return FALSE
+	if(target.can_atmos_pass == ATMOS_PASS_YES) // will never block atmos, it's safe to deconstruct
+		return TRUE
+	var/turf/target_turf = get_turf(target)
+	for(var/direction in GLOB.cardinals_multiz) // check any adjacent turfs
+		var/turf/open/adjacent_turf = get_step_multiz(target_turf, direction)
+		if(!adjacent_turf || !isopenturf(adjacent_turf))
+			continue
+		if(adjacent_turf.active_hotspot || adjacent_turf.turf_fire)
+			to_chat(src, span_warning("Destroying this object could allow fire to spread. Aborting."))
+			target = null
+			return FALSE
+		var/datum/gas_mixture/turf_air = adjacent_turf.return_air()
+		if(turf_air.return_pressure() < HAZARD_LOW_PRESSURE || isspaceturf(adjacent_turf) || istype(get_area(adjacent_turf), /area/shuttle))
+			to_chat(src, span_warning("Destroying this object has the potential to cause a hull breach. Aborting."))
+			target = null
+			return FALSE
+		if(turf_air.return_temperature() > BODYTEMP_HEAT_DAMAGE_LIMIT || turf_air.return_temperature() < BODYTEMP_COLD_DAMAGE_LIMIT || turf_air.return_pressure() > HAZARD_HIGH_PRESSURE)
+			to_chat(src, span_warning("Destroying this object may result in an inhospitable environment. Aborting."))
+			target = null
+			return FALSE
+		for(var/gas_id in turf_air.get_gases())
+			if((GLOB.gas_data.flags[gas_id] & GAS_FLAG_DANGEROUS) && turf_air.get_moles(gas_id) > MINIMUM_MOLE_COUNT)
+				to_chat(src, span_warning("Destroying this object will likely cause a gas leak. Aborting."))
+				target = null
+				return FALSE
+	return TRUE
 
 /**
   * Called when a swarmer creates a structure or drone

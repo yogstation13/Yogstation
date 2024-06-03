@@ -69,7 +69,7 @@
 		O.set_suicide(suiciding)
 	if(hellbound)
 		O.hellbound = hellbound
-	O.a_intent = INTENT_HARM
+	O.set_combat_mode(TRUE, TRUE)
 
 	//keep viruses?
 	if (tr_flags & TR_KEEPVIRUS)
@@ -335,7 +335,7 @@
 				changeling.purchasedpowers -= HF
 				changeling.regain_powers()
 
-	O.a_intent = INTENT_HELP
+	O.set_combat_mode(FALSE, TRUE)
 	if (tr_flags & TR_DEFAULTMSG)
 		to_chat(O, "<B>You are now a human.</B>")
 
@@ -474,7 +474,7 @@
 		if("Drone")
 			new_xeno = new /mob/living/carbon/alien/humanoid/drone(loc)
 
-	new_xeno.a_intent = INTENT_HARM
+	new_xeno.set_combat_mode(TRUE, TRUE)
 	new_xeno.key = key
 	update_atom_languages()
 
@@ -507,7 +507,7 @@
 		new_slime = pick(babies)
 	else
 		new_slime = new /mob/living/simple_animal/slime(loc)
-	new_slime.a_intent = INTENT_HARM
+	new_slime.set_combat_mode(TRUE, TRUE)
 	new_slime.key = key
 
 	to_chat(new_slime, "<B>You are now a slime. Skreee!</B>")
@@ -535,7 +535,7 @@
 		qdel(t)
 
 	var/mob/living/simple_animal/pet/dog/corgi/new_corgi = new /mob/living/simple_animal/pet/dog/corgi (loc)
-	new_corgi.a_intent = INTENT_HARM
+	new_corgi.set_combat_mode(TRUE, TRUE)
 	new_corgi.key = key
 
 	to_chat(new_corgi, "<B>You are now a Corgi. Yap Yap!</B>")
@@ -559,7 +559,7 @@
 	icon = null
 	invisibility = INVISIBILITY_MAXIMUM
 	var/mob/living/simple_animal/hostile/gorilla/new_gorilla = new (get_turf(src))
-	new_gorilla.a_intent = INTENT_HARM
+	new_gorilla.set_combat_mode(TRUE, TRUE)
 	if(mind)
 		mind.transfer_to(new_gorilla)
 	else
@@ -582,7 +582,7 @@
 		qdel(t)
 
 	var/mob/living/simple_animal/pacman/new_pacman = new /mob/living/simple_animal/pacman (loc)
-	new_pacman.a_intent = INTENT_HARM
+	new_pacman.set_combat_mode(TRUE, TRUE)
 	new_pacman.key = key
 
 	to_chat(new_pacman, "<B>You are now a pacman. I LOVE PACMAN!</B>")
@@ -613,10 +613,10 @@
 	for(var/t in bodyparts)
 		qdel(t)
 
-	var/mob/new_mob = new mobpath(src.loc)
+	var/mob/living/new_mob = new mobpath(src.loc)
 
 	new_mob.key = key
-	new_mob.a_intent = INTENT_HARM
+	new_mob.set_combat_mode(TRUE, TRUE)
 
 
 	to_chat(new_mob, "You suddenly feel more... animalistic.")
@@ -632,10 +632,10 @@
 		to_chat(usr, span_danger("Sorry but this mob type is currently unavailable."))
 		return
 
-	var/mob/new_mob = new mobpath(src.loc)
+	var/mob/living/new_mob = new mobpath(src.loc)
 
 	new_mob.key = key
-	new_mob.a_intent = INTENT_HARM
+	new_mob.set_combat_mode(TRUE, TRUE)
 	to_chat(new_mob, "You feel more... animalistic")
 
 	. = new_mob

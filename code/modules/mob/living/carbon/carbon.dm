@@ -32,7 +32,7 @@
 
 	if(!held_index)
 		held_index = (active_hand_index % held_items.len)+1
-	
+
 	if(!isnum(held_index))
 		CRASH("You passed [held_index] into swap_hand instead of a number. WTF man")
 
@@ -64,7 +64,7 @@
 	else
 		mode() // Activate held item
 
-/mob/living/carbon/attackby(obj/item/I, mob/user, params)
+/mob/living/carbon/attackby(obj/item/I, mob/living/user, params)
 	// Fun situation, needing surgery code to be at the /mob/living level but needing it to happen before wound code so you can actualy do the wound surgeries
 	for(var/datum/surgery/S in surgeries)
 		if(S.location != user.zone_selected)
@@ -73,11 +73,11 @@
 			continue
 		if(!S.self_operable && user == src)
 			continue
-		if(!(user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM))
+		if(user.combat_mode)
 			continue
 		return ..()
 
-	if(!all_wounds || !(user.a_intent == INTENT_HELP || user == src))
+	if(!all_wounds || user.combat_mode || user == src)
 		return ..()
 
 	for(var/i in shuffle(all_wounds))
@@ -119,8 +119,8 @@
 			take_bodypart_damage(10 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
 			victim.Knockdown(20)
 			Knockdown(20)
-			visible_message(span_danger("[src] crashes into [victim][extra_speed ? "really hard" : ""], knocking them both over!"),\
-				span_userdanger("You violently crash into [victim][extra_speed ? "extra hard" : ""]!"))
+			visible_message(span_danger("[src] crashes into [victim][extra_speed ? " really hard" : ""], knocking them both over!"),\
+				span_userdanger("You violently crash into [victim][extra_speed ? " extra hard" : ""]!"))
 		playsound(src,'sound/weapons/punch1.ogg',50,1)
 
 
@@ -414,7 +414,7 @@
 	if(!cuff || !cuff.loc)
 		return TRUE //???, we win nonetheless
 
-	if(buckled && !ignore_buckle) 
+	if(buckled && !ignore_buckle)
 		return FALSE
 
 	visible_message(span_danger("[src] manages to [cuff_break ? "break" : "remove"] [cuff]!"))
@@ -485,9 +485,9 @@
 	if(locate(/obj/item/assembly/health) in src)
 		. += "Health: [health]"
 
-/mob/living/carbon/attack_ui(slot)
+/mob/living/carbon/attack_ui(slot, params)
 	if(!has_hand_for_held_index(active_hand_index))
-		return 0
+		return FALSE
 	return ..()
 
 /mob/living/carbon/has_mouth()
@@ -585,9 +585,6 @@
 			lighting_cutoff = eyes.lighting_cutoff
 		if(!isnull(eyes.color_cutoffs))
 			lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, eyes.color_cutoffs)
-		if(istype(eyes, /obj/item/organ/eyes/ethereal) && client) //special view range ethereal eyes
-			client.view_size.resetToDefault(getScreenSize(client.prefs.read_preference(/datum/preference/toggle/widescreen)))
-			client.view_size.addTo("2x2")
 
 	for(var/image/I in infra_images)
 		if(client)

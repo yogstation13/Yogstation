@@ -87,17 +87,18 @@
 	. = ..()
 	cached_image = mutable_appearance('yogstation/icons/effects/effects.dmi',"tar_shield")
 	owner.add_overlay(cached_image)
-	RegisterSignal(owner,COMSIG_MOB_CHECK_SHIELDS,PROC_REF(react_to_attack))
+	RegisterSignal(owner, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(react_to_attack))
 
 /datum/status_effect/tar_shield/on_remove()
 	owner.cut_overlay(cached_image)
-	UnregisterSignal(owner,COMSIG_MOB_CHECK_SHIELDS)
+	UnregisterSignal(owner, COMSIG_HUMAN_CHECK_SHIELDS)
 	. = ..()
 	
 /datum/status_effect/tar_shield/proc/react_to_attack(datum/source, atom/AM, damage, attack_text, attack_type, armour_penetration)
 	new /obj/effect/better_animated_temp_visual/tar_shield_pop(get_turf(owner))
 	owner.visible_message(span_danger("[owner]'s shields absorbs [attack_text]!"))
 	qdel(src)
+	return SHIELD_BLOCK
 
 /datum/status_effect/bounty_of_the_forest
 	id = "bounty_of_the_forest"

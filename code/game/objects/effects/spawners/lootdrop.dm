@@ -737,7 +737,7 @@
 	lootdoubles = FALSE
 
 	loot = list(
-		/obj/item/clothing/under/drip = 20,
+		/obj/item/clothing/under/costume/drip = 20,
 		"" = 80)
 
 /obj/effect/spawner/lootdrop/twenty_percent_drip_shoes

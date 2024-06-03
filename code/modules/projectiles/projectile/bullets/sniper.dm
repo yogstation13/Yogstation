@@ -8,6 +8,12 @@
 	dismemberment = 50
 	armour_penetration = 50
 	demolition_mod = 2.2 // very effective against armored structures and vehicles
+	var/shieldbuster = TRUE // doesn't just penetrate shields, it DESTROYS them
+
+/obj/projectile/bullet/p50/Initialize(mapload)
+	. = ..()
+	if(shieldbuster)
+		ADD_TRAIT(src, TRAIT_SHIELDBUSTER, INNATE_TRAIT)
 
 /obj/projectile/bullet/p50/soporific
 	name = ".50 soporific bullet"
@@ -15,6 +21,7 @@
 	damage = 0
 	dismemberment = 0
 	paralyze = 0
+	shieldbuster = FALSE
 
 /obj/projectile/bullet/p50/soporific/on_hit(atom/target, blocked = FALSE)
 	if((blocked != 100) && isliving(target))
@@ -30,6 +37,7 @@
 	penetration_flags = PENETRATE_OBJECTS | PENETRATE_MOBS
 	dismemberment = 0 //It goes through you cleanly.
 	paralyze = 0
+	shieldbuster = FALSE
 
 /obj/projectile/bullet/p50/penetrator/shuttle //Nukeop Shuttle Variety
 	icon_state = "gaussstrong"

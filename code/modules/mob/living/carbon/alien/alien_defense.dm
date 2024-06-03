@@ -13,59 +13,53 @@
 As such, they can either help or harm other aliens. Help works like the human help command while harm is a simple nibble.
 In all, this is a lot like the monkey code. /N
 */
-/mob/living/carbon/alien/attack_alien(mob/living/carbon/alien/M)
+/mob/living/carbon/alien/attack_alien(mob/living/carbon/alien/M, modifiers)
 	if(isturf(loc) && istype(loc.loc, /area/start))
 		to_chat(M, "No attacking people at spawn, you jackass.")
 		return
 
-	switch(M.a_intent)
-
-		if(INTENT_HELP)
-			set_resting(FALSE)
-			AdjustStun(-60)
-			AdjustKnockdown(-60)
-			AdjustImmobilized(-60)
-			AdjustParalyzed(-60)
-			AdjustUnconscious(-60)
-			AdjustSleeping(-100)
-			visible_message(span_notice("[M.name] nuzzles [src] trying to wake [p_them()] up!"))
-
-		if(INTENT_GRAB)
-			grabbedby(M)
-
-		else
-			if(health > 0)
-				M.do_attack_animation(src, ATTACK_EFFECT_BITE)
-				playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
-				visible_message(span_danger("[M.name] bites [src]!"), \
-						span_userdanger("[M.name] bites [src]!"), null, COMBAT_MESSAGE_RANGE)
-				adjustBruteLoss(1)
-				log_combat(M, src, "attacked")
-				updatehealth()
-			else
-				to_chat(M, span_warning("[name] is too injured for that."))
+	if(modifiers && modifiers[CTRL_CLICK])
+		grabbedby(M)
+	else if(!M.combat_mode)
+		set_resting(FALSE)
+		AdjustStun(-60)
+		AdjustKnockdown(-60)
+		AdjustImmobilized(-60)
+		AdjustParalyzed(-60)
+		AdjustUnconscious(-60)
+		AdjustSleeping(-100)
+		visible_message(span_notice("[M.name] nuzzles [src] trying to wake [p_them()] up!"))
+	else if(health > 0)
+		M.do_attack_animation(src, ATTACK_EFFECT_BITE)
+		playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
+		visible_message(span_danger("[M.name] bites [src]!"), \
+			span_userdanger("[M.name] bites [src]!"), null, COMBAT_MESSAGE_RANGE)
+		adjustBruteLoss(1)
+		log_combat(M, src, "attacked")
+		updatehealth()
+	else
+		to_chat(M, span_warning("[name] is too injured for that."))
 
 
 /mob/living/carbon/alien/attack_larva(mob/living/carbon/alien/larva/L)
 	return attack_alien(L)
 
 
-/mob/living/carbon/alien/attack_hand(mob/living/carbon/human/M)
+/mob/living/carbon/alien/attack_hand(mob/living/carbon/human/M, modifiers)
 	if(..())	//to allow surgery to return properly.
-		return 0
+		return FALSE
 
-	switch(M.a_intent)
-		if(INTENT_HELP)
-			help_shake_act(M)
-		if(INTENT_GRAB)
-			grabbedby(M)
-		if (INTENT_HARM)
-			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
-			return 1
-		if(INTENT_DISARM)
-			M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
-			return 1
-	return 0
+	if(modifiers && modifiers[RIGHT_CLICK])
+		M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
+		return TRUE
+	if(modifiers && modifiers[CTRL_CLICK])
+		grabbedby(M)
+		return FALSE
+	if(M.combat_mode)
+		M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+		return TRUE
+	help_shake_act(M)
+	return FALSE
 
 
 /mob/living/carbon/alien/attack_paw(mob/living/carbon/monkey/M)

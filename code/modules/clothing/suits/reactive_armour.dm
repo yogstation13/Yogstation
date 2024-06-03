@@ -36,7 +36,6 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
 	actions_types = list(/datum/action/item_action/toggle)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	hit_reaction_chance = 50
 	///Whether the armor will try to react to hits (is it on)
 	var/active = 0
 	///This will be true for 30 seconds after an EMP, it makes the reaction effect dangerous to the user.
@@ -49,6 +48,18 @@
 	var/reactivearmor_cooldown_duration = 5 SECONDS
 	///The cooldown itself of the reactive armor for when it can activate again.
 	COOLDOWN_DECLARE(reactivearmor_cooldown)
+
+/obj/item/clothing/suit/armor/reactive/equipped(mob/user, slot)
+	. = ..()
+	if(slot_flags & slot)
+		RegisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(hit_reaction))
+	else
+		UnregisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS)
+
+/obj/item/clothing/suit/armor/reactive/dropped(mob/user)
+	if(user.get_item_by_slot(ITEM_SLOT_OCLOTHING) == src)
+		UnregisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS)
+	return ..()
 
 /obj/item/clothing/suit/armor/reactive/attack_self(mob/user)
 	active = !(active)
@@ -68,14 +79,12 @@
 		A.build_all_button_icons()
 	return
 
-/obj/item/clothing/suit/armor/reactive/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text, damage, attack_type)
-	. = ..()
-
-	if(!active || !prob(hit_reaction_chance))
-		return FALSE
+/obj/item/clothing/suit/armor/reactive/proc/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, damage, attack_text, attack_type)
+	if(!active)
+		return NONE
 	if(reactivearmor_cooldown_duration && !COOLDOWN_FINISHED(src, reactivearmor_cooldown))
 		cooldown_activation(owner)
-		return FALSE
+		return NONE
 	if(reactivearmor_cooldown_duration)
 		COOLDOWN_START(src, reactivearmor_cooldown, reactivearmor_cooldown_duration)
 
@@ -99,7 +108,7 @@
  */
 /obj/item/clothing/suit/armor/reactive/proc/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message(span_danger("The reactive armor doesn't do much! No surprises here."))
-	return TRUE
+	return SHIELD_BLOCK
 
 /**
  * A proc for doing owner unfriendly reactive armor effects.
@@ -108,7 +117,7 @@
  */
 /obj/item/clothing/suit/armor/reactive/proc/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message(span_danger("The reactive armor doesn't do much, despite being emp'd! Besides giving off a special message, of course."))
-	return TRUE
+	return SHIELD_BLOCK
 
 /obj/item/clothing/suit/armor/reactive/emp_act(severity)
 	. = ..()
@@ -134,7 +143,7 @@
 	playsound(get_turf(owner),'sound/magic/blink.ogg', 100, 1)
 	do_teleport(teleatom = owner, destination = get_turf(owner), no_effects = TRUE, precision = tele_range, channel = TELEPORT_CHANNEL_BLUESPACE)
 	owner.rad_act(rad_amount)
-	return TRUE
+	return SHIELD_BLOCK
 
 /obj/item/clothing/suit/armor/reactive/teleport/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message(span_danger("The reactive teleport system flings itself clear of [attack_text], leaving someone behind in the process!"))
@@ -143,7 +152,7 @@
 	playsound(get_turf(owner), 'sound/magic/blink.ogg', 100, 1)
 	do_teleport(teleatom = src, destination = get_turf(owner), no_effects = TRUE, precision = tele_range, channel = TELEPORT_CHANNEL_BLUESPACE)
 	owner.rad_act(rad_amount)
-	return FALSE //you didn't actually evade the attack now did you
+	return NONE //you didn't actually evade the attack now did you
 
 //Fire
 
@@ -160,14 +169,14 @@
 		C.fire_stacks += 8
 		C.ignite_mob()
 	owner.fire_stacks = -20
-	return TRUE
+	return SHIELD_REFLECT
 
 /obj/item/clothing/suit/armor/reactive/fire/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message(span_danger("[src] just makes [attack_text] worse by spewing fire on [owner]!"))
 	playsound(get_turf(owner),'sound/magic/fireball.ogg', 100, 1)
 	owner.fire_stacks += 12
 	owner.ignite_mob()
-	return FALSE
+	return NONE
 
 //Stealth
 
@@ -202,7 +211,7 @@
 	owner.visible_message(span_danger("[owner] is hit by [attack_text] in the chest!")) //We pretend to be hit, since blocking it would stop the message otherwise
 	owner.alpha = 0
 	addtimer(CALLBACK(src, PROC_REF(end_stealth), owner), stealth_time)
-	return TRUE
+	return SHIELD_BLOCK
 
 /obj/item/clothing/suit/armor/reactive/stealth/proc/end_stealth(mob/living/carbon/human/owner)
 	in_stealth = FALSE
@@ -215,7 +224,7 @@
 	owner.visible_message(span_danger("[src] activates, cloaking the wrong person!"))
 	attacker.alpha = 0
 	addtimer(VARSET_CALLBACK(attacker, alpha, initial(attacker.alpha)), 4 SECONDS)
-	return FALSE
+	return NONE
 
 //Tesla
 
@@ -255,7 +264,7 @@
 /obj/item/clothing/suit/armor/reactive/tesla/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message(span_danger("[src] blocks [attack_text], sending out arcs of lightning!"))
 	tesla_zap(owner, tesla_range, tesla_power, tesla_flags)
-	return TRUE
+	return SHIELD_BLOCK
 
 /obj/item/clothing/suit/armor/reactive/tesla/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message(span_danger("[src] blocks [attack_text], but pulls a massive charge of energy into [owner] from the surrounding environment!"))
@@ -263,7 +272,7 @@
 		owner.flags_1 &= ~TESLA_IGNORE_1
 	electrocute_mob(owner, get_area(src), src, 1)
 	owner.flags_1 |= TESLA_IGNORE_1
-	return FALSE
+	return NONE
 
 //Repulse
 
@@ -287,7 +296,7 @@
 		A.safe_throw_at(throwtarget, 10, 1, force = repulse_force)
 		thrown_items[A] = A
 
-	return TRUE
+	return SHIELD_REFLECT
 
 /obj/item/clothing/suit/armor/reactive/repulse/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	playsound(get_turf(owner),'sound/magic/repulse.ogg', 100, 1)
@@ -300,7 +309,7 @@
 		A.safe_throw_at(owner, 10, 1, force = repulse_force)
 		thrown_items[A] = A
 
-	return FALSE
+	return NONE
 
 //Table
 
@@ -318,7 +327,7 @@
 	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "table", /datum/mood_event/table)
 	do_teleport(teleatom = owner, destination = get_turf(owner), no_effects = TRUE, precision = tele_range, channel = TELEPORT_CHANNEL_BLUESPACE)
 	new /obj/structure/table(get_turf(owner))
-	return TRUE
+	return SHIELD_BLOCK
 
 /obj/item/clothing/suit/armor/reactive/table/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message(span_danger("The reactive teleport system flings [owner] clear of [attack_text] and slams [owner.p_them()] into a fabricated glass table!"))
@@ -327,7 +336,7 @@
 	do_teleport(teleatom = owner, destination = get_turf(owner), no_effects = TRUE, precision = tele_range, channel = TELEPORT_CHANNEL_BLUESPACE)
 	var/obj/structure/table/glass/table = new(get_turf(owner))
 	table.table_shatter(owner)
-	return TRUE
+	return SHIELD_BLOCK
 
 //Hallucinating
 
@@ -348,14 +357,14 @@
 	owner.visible_message(span_danger("[src] blocks [attack_text], the body of an assistant forming to absorb it!")) //get down mr president
 	var/mob/living/simple_animal/hostile/shadowclone = new /mob/living/simple_animal/hostile/hallucination(get_turf(src))
 	shadowclone.friends += owner
-	return TRUE
+	return SHIELD_BLOCK
 
 /obj/item/clothing/suit/armor/reactive/hallucinating/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message(span_danger("[src] blocks [attack_text], the body of an assistant forming to absorb it, before turning on [owner]!"))
 	var/mob/living/simple_animal/hostile/shadowclone = new /mob/living/simple_animal/hostile/hallucination(get_turf(src))
 	shadowclone.GiveTarget(owner)
 	owner.adjust_hallucinations(150)
-	return TRUE
+	return SHIELD_BLOCK
 
 //Radiation
 
@@ -380,9 +389,9 @@
 	radiation_pulse(src, 500, effect_range)
 	for(var/i = 1 to 5)
 		fire_nuclear_particle()
-	return TRUE
+	return SHIELD_BLOCK
 
 /obj/item/clothing/suit/armor/reactive/radiation/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message(span_danger("[src] blocks [attack_text], but pulls a massive charge of radiation wave into [owner] from the surrounding environment!"))
 	owner.adjustToxLoss(10)
-	return TRUE
+	return SHIELD_BLOCK

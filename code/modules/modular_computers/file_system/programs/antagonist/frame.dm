@@ -3,7 +3,7 @@ GLOBAL_LIST_EMPTY(PDAFrameCodes)
 /datum/computer_file/program/frame
 	filename = "frame"
 	filedesc = "F.R.A.M.E."
-	category = PROGRAM_CATEGORY_MISC
+	category = PROGRAM_CATEGORY_EQUIPMENT
 	program_icon_state = "hostile"
 	extended_desc = "A new-age version of the classic 'F.R.A.M.E.' program run on legacy PDAs. Can be used to silently open an uplink on any PDA on the messaging list."
 	size = 5

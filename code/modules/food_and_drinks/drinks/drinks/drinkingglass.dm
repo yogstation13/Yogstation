@@ -108,22 +108,22 @@
 	else
 		..()
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/attack(obj/target, mob/user)
-	if(user.a_intent == INTENT_HARM && ismob(target) && target.reagents && reagents.total_volume)
+/obj/item/reagent_containers/food/drinks/drinkingglass/attack(obj/target, mob/living/user)
+	if(user.combat_mode && ismob(target) && target.reagents && reagents.total_volume)
 		target.visible_message(span_danger("[user] splashes the contents of [src] onto [target]!"), \
 						span_userdanger("[user] splashes the contents of [src] onto [target]!"))
 		log_combat(user, target, "splashed", src)
 		reagents.reaction(target, TOUCH)
 		reagents.clear_reagents()
 		return
-	..()
+	return ..()
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/afterattack(obj/target, mob/user, proximity)
+/obj/item/reagent_containers/food/drinks/drinkingglass/afterattack(obj/target, mob/living/user, proximity)
 	. = ..()
 	if((!proximity) || !check_allowed_items(target,target_self=1))
 		return
 
-	else if(reagents.total_volume && user.a_intent == INTENT_HARM)
+	else if(reagents.total_volume && user.combat_mode)
 		user.visible_message(span_danger("[user] splashes the contents of [src] onto [target]!"), \
 							span_notice("You splash the contents of [src] onto [target]."))
 		reagents.reaction(target, TOUCH)

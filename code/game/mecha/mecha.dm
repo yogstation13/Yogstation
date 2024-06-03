@@ -172,6 +172,7 @@
 	diag_hud_set_mechcell()
 	diag_hud_set_mechstat()
 	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
+	ADD_TRAIT(src, TRAIT_SHIELDBUSTER, INNATE_TRAIT) // previously it didn't even check shields at all, now it still doesn't but does some fun stuff in the process
 
 /// Special light eater handling
 /obj/mecha/proc/on_light_eater(obj/vehicle/sealed/source, datum/light_eater)
@@ -875,6 +876,7 @@
 	to_chat(AI, AI.can_dominate_mechs ? span_announce("Takeover of [name] complete! You are now loaded onto the onboard computer. Do not attempt to leave the station sector!") :\
 		span_notice("You have been uploaded to a mech's onboard computer."))
 	to_chat(AI, "<span class='reallybig boldnotice'>Use Middle-Mouse to activate mech functions and equipment. Click normally for AI interactions.</span>")
+	register_occupant(AI)
 	if(interaction == AI_TRANS_FROM_CARD)
 		GrantActions(AI, FALSE) //No eject/return to core action for AI uploaded by card
 	else
@@ -890,6 +892,7 @@
 		occupant = pilot_mob
 		pilot_mob.mecha = src
 		pilot_mob.forceMove(src)
+		register_occupant(pilot_mob)
 		GrantActions(pilot_mob)//needed for checks, and incase a badmin puts somebody in the mob
 
 /obj/mecha/proc/aimob_exit_mech(mob/living/simple_animal/hostile/syndicate/mecha_pilot/pilot_mob)
@@ -899,6 +902,7 @@
 		pilot_mob.mecha = null
 	icon_state = "[initial(icon_state)]-open"
 	pilot_mob.forceMove(get_turf(src))
+	register_occupant(pilot_mob)
 	RemoveActions(pilot_mob)
 
 
@@ -986,6 +990,16 @@
 		to_chat(user, span_warning("You stop entering the exosuit!"))
 	return
 
+/obj/mecha/proc/register_occupant(mob/living/new_occupant)
+	RegisterSignal(new_occupant, COMSIG_MOVABLE_KEYBIND_FACE_DIR, PROC_REF(on_turn), TRUE)
+
+/obj/mecha/proc/unregister_occupant(mob/living/new_occupant)
+	UnregisterSignal(new_occupant, COMSIG_MOVABLE_KEYBIND_FACE_DIR)
+
+/obj/mecha/proc/on_turn()
+	SIGNAL_HANDLER
+	return COMSIG_IGNORE_MOVEMENT_LOCK
+
 /obj/mecha/proc/moved_inside(mob/living/carbon/human/H)
 	if(H && H.client && (H in range(1)))
 		occupant = H
@@ -998,6 +1012,7 @@
 		icon_state = initial(icon_state)
 		setDir(dir_in)
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
+		register_occupant(H)
 		if(!internal_damage)
 			SEND_SOUND(occupant, sound('sound/mecha/nominal.ogg',volume=50))
 		return 1
@@ -1053,6 +1068,7 @@
 	icon_state = initial(icon_state)
 	update_appearance(UPDATE_ICON)
 	setDir(dir_in)
+	register_occupant(mmi_as_oc)
 	log_message("[mmi_as_oc] moved in as pilot.", LOG_MECHA)
 	if(istype(mmi_as_oc, /obj/item/mmi/posibrain))											//yogs start reminder to posibrain to not be shitlers
 		to_chat(brainmob, "<b>As a synthetic intelligence, you answer to all crewmembers and the AI.\n\
@@ -1109,14 +1125,17 @@
 	if(ishuman(occupant))
 		mob_container = occupant
 		RemoveActions(occupant, human_occupant=1)
+		unregister_occupant(occupant)
 	else if(isbrain(occupant))
 		var/mob/living/brain/brain = occupant
 		RemoveActions(brain)
+		unregister_occupant(occupant)
 		mob_container = brain.container
 	else if(isAI(occupant))
 		var/mob/living/silicon/ai/AI = occupant
 		if(forced)//This should only happen if there are multiple AIs in a round, and at least one is Malf.
 			RemoveActions(occupant)
+			unregister_occupant(occupant)
 			occupant.gib()  //If one Malf decides to steal a mech from another AI (even other Malfs!), they are destroyed, as they have nowhere to go when replaced.
 			occupant = null
 			silicon_pilot = FALSE
@@ -1126,6 +1145,7 @@
 			AI.controlled_mech = null
 			AI.remote_control = null
 			RemoveActions(occupant, 1)
+			unregister_occupant(occupant)
 			mob_container = AI
 			newloc = null
 			if(GLOB.primary_data_core)
@@ -1301,30 +1321,3 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			if(MP)
 				evaNum *= MP.piloting_speed
 	return evaNum
-
-/obj/mecha/proc/face_atom(atom/A)			//Pretty much identical to the mob proc that does the same thing
-	if( !A || !x || !y || !A.x || !A.y )	//Do we have a target with a location and do we have a location?
-		return								//Note: we don't check for states and stuff because this is just for forcing facing. That can come later.
-	var/dx = A.x - x	//Gets the difference in x and y coordinates
-	var/dy = A.y - y
-	if(!dx && !dy) 		// Wall items are graphically shifted but on the floor
-		if(A.pixel_y > 16)
-			setDir(NORTH)
-		else if(A.pixel_y < -16)
-			setDir(SOUTH)
-		else if(A.pixel_x > 16)
-			setDir(EAST)
-		else if(A.pixel_x < -16)
-			setDir(WEST)
-		return
-
-	if(abs(dx) < abs(dy))
-		if(dy > 0)
-			setDir(NORTH)
-		else
-			setDir(SOUTH)
-	else
-		if(dx > 0)
-			setDir(EAST)
-		else
-			setDir(WEST)

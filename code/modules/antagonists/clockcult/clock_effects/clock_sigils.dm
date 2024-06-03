@@ -23,7 +23,7 @@
 
 /obj/effect/clockwork/sigil/attackby(obj/item/I, mob/living/user, params)
 	if(I.force)
-		if(is_servant_of_ratvar(user) && user.a_intent != INTENT_HARM)
+		if(is_servant_of_ratvar(user) && !user.combat_mode)
 			return ..()
 		user.visible_message(span_warning("[user] scatters [src] with [I]!"), span_danger("You scatter [src] with [I]!"))
 		qdel(src)
@@ -36,7 +36,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/effect/clockwork/sigil/attack_hand(mob/user)
 	if(iscarbon(user) && !user.stat)
-		if(is_servant_of_ratvar(user) && user.a_intent != INTENT_HARM)
+		if(is_servant_of_ratvar(user) && !user.combat_mode)
 			return ..()
 		user.visible_message(span_warning("[user] stamps out [src]!"), span_danger("You stomp on [src], scattering it into thousands of particles."))
 		qdel(src)

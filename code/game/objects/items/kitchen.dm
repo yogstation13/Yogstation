@@ -82,9 +82,10 @@
 
 /obj/item/kitchen/knife
 	name = "kitchen knife"
+	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
+	icon = 'icons/obj/weapons/shortsword.dmi'
 	icon_state = "knife"
 	item_state = "knife"
-	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
 	flags_1 = CONDUCT_1
 	force = 10
 	w_class = WEIGHT_CLASS_SMALL
@@ -106,9 +107,10 @@
 	. = ..()
 	AddComponent(/datum/component/butchering, 80 - force, 100, force - 10) //bonus chance increases depending on force
 
-/obj/item/kitchen/knife/attack(mob/living/carbon/M, mob/living/carbon/user)
-	if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
-		return
+/obj/item/kitchen/knife/attack(mob/living/carbon/M, mob/living/carbon/user, params)
+	var/list/modifiers = params2list(params)
+	if(!user.combat_mode && attempt_initiate_surgery(src, M, user, modifiers))
+		return TRUE
 	else if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 			M = user
@@ -125,7 +127,7 @@
 /obj/item/kitchen/knife/ritual
 	name = "ritual knife"
 	desc = "The unearthly energies that once powered this blade are now dormant."
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/weapons/khopesh.dmi'
 	icon_state = "render"
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
@@ -215,8 +217,7 @@
 
 /obj/item/kitchen/knife/combat/cyborg
 	name = "cyborg knife"
-	icon = 'icons/obj/items_cyborg.dmi'
-	icon_state = "knife"
+	icon_state = "cyborg_knife"
 	desc = "A cyborg-mounted plasteel knife. Extremely sharp and durable."
 
 /obj/item/kitchen/knife/carrotshiv
@@ -243,7 +244,6 @@
 /obj/item/kitchen/knife/shank
 	name = "shank"
 	desc = "A crude knife fashioned by securing a glass shard and a rod together with cables, and welding them together."
-	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "shank"
 	item_state = "shank"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_EARS
@@ -277,9 +277,8 @@
 
 /obj/item/kitchen/knife/makeshift
 	name = "makeshift knife"
-	icon_state = "knife_makeshift"
-	icon = 'icons/obj/improvised.dmi'
 	desc = "A flimsy, poorly made replica of a classic cooking utensil."
+	icon_state = "knife_makeshift"
 	force = 8
 	throwforce = 8
 

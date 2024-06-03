@@ -45,8 +45,8 @@
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/cargo
 
 	ears = /obj/item/radio/headset/headset_cargo
-	uniform = /obj/item/clothing/under/rank/cargotech
-	uniform_skirt = /obj/item/clothing/under/rank/cargotech/skirt
+	uniform = /obj/item/clothing/under/rank/cargo/tech
+	uniform_skirt = /obj/item/clothing/under/rank/cargo/tech/skirt
 	l_hand = /obj/item/export_scanner
 
 /datum/outfit/job/cargo_tech/no_pda

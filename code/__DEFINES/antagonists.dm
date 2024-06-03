@@ -31,7 +31,6 @@
 //Blob
 /// blob gets a free reroll every X time
 #define BLOB_REROLL_TIME 2400
-#define BLOB_SPREAD_COST 4
 #define OVERMIND_STARTING_AUTO_PLACE_TIME 6 MINUTES
 /// blob refunds this much if it attacks and doesn't spread
 #define BLOB_ATTACK_REFUND 2
@@ -208,3 +207,7 @@ GLOBAL_LIST_INIT(ai_employers, list(
 	"SyndOS",
 	"Unshackled",
 ))
+
+// Antag resource defines
+#define ANTAG_RESOURCE_DARKSPAWN "psi"
+#define ANTAG_RESOURCE_VAMPIRE "blood"
