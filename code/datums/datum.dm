@@ -8,7 +8,7 @@
   * thing in the entire game, and so you can easily cause memory usage to rise a lot with careless
   * use of variables at this level
   */
-  
+
 /datum
 	/**
 	  * Tick count time when this object was destroyed.
@@ -60,9 +60,17 @@
 	/// List for handling persistent filters.
 	var/list/filter_data
 
-#ifdef TESTING
-	var/running_find_references
+#ifdef REFERENCE_TRACKING
+	/// When was this datum last touched by a reftracker?
+	/// If this value doesn't match with the start of the search
+	/// We know this datum has never been seen before, and we should check it
 	var/last_find_references = 0
+	/// How many references we're trying to find when searching
+	var/references_to_clear = 0
+	#ifdef REFERENCE_TRACKING_DEBUG
+	///Stores info about where refs are found, used for sanity checks and testing
+	var/list/found_refs
+	#endif
 #endif
 
 #ifdef DATUMVAR_DEBUGGING_MODE
@@ -80,10 +88,10 @@
 
 /**
   * Default implementation of clean-up code.
-  * 
+  *
   * This should be overridden to remove all references pointing to the object being destroyed, if
   * you do override it, make sure to call the parent and return it's return value by default
-  * 
+  *
   * Return an appropriate QDEL_HINT to modify handling of your deletion;
   * in most cases this is QDEL_HINT_QUEUE.
   *
@@ -93,7 +101,7 @@
   * * Notifying datums listening to signals from this datum that we are going away
   *
   * Returns QDEL_HINT_QUEUE
-  */ 
+  */
 /datum/proc/Destroy(force=FALSE, ...)
 	SHOULD_CALL_PARENT(TRUE)
 	tag = null
