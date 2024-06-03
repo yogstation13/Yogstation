@@ -30,6 +30,7 @@
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
+	AddComponent(/datum/component/blocking, block_force = 20, WEAPON_BLOCK_FLAGS|WIELD_TO_BLOCK)
 
 /obj/item/gun/magic/darkspawn/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //this doesn't work and i have no clue why
 	. = ..()
@@ -52,23 +53,16 @@
 
 ////////////////////////TWO-HANDED BLOCKING//////////////////////////
 /obj/item/gun/magic/darkspawn/proc/on_wield() //guns do weird things to some of the icon procs probably, and i can't find which ones, so i need to do this all again
-	block_chance = 50
 	item_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
 	if(ishuman(loc))
 		var/mob/living/carbon/human/C = loc
 		C.update_inv_hands()
 
 /obj/item/gun/magic/darkspawn/proc/on_unwield()
-	block_chance = 0
 	item_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
 	if(ishuman(loc))
 		var/mob/living/carbon/human/C = loc
 		C.update_inv_hands()
-
-/obj/item/gun/magic/darkspawn/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(attack_type != PROJECTILE_ATTACK)
-		final_block_chance = 0 //don't bring a staff to a knife fight
-	return ..()
 
 ////////////////////////INFINITE AMMO////////////////////////// (some psi required)
 /obj/item/gun/magic/darkspawn/can_shoot()
@@ -77,18 +71,14 @@
 		psi_cost *= 0.5
 	if(isliving(src.loc))
 		var/mob/living/dude = src.loc
-		if(isdarkspawn(dude))
-			var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(dude)
-			if(darkspawn && !darkspawn.has_psi(psi_cost))
-				return FALSE
+		if(!(dude.mind && SEND_SIGNAL(dude.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, psi_cost)))
+			return FALSE
 	return ..()
 
 /obj/item/gun/magic/darkspawn/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 	. = ..()
-	if(. && isdarkspawn(user))
-		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
-		if(darkspawn)
-			darkspawn.use_psi(psi_cost)
+	if(. && user.mind)
+		SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = psi_cost))
 
 /obj/item/gun/magic/darkspawn/process_chamber()
 	. = ..()

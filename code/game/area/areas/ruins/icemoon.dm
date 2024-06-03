@@ -1,17 +1,24 @@
 // Icemoon Ruins
 
+//Library
 /area/ruin/unpowered/buried_library
 	name = "Buried Library"
 	icon_state = "dk_yellow"
 
+//Walker Village
+
 /area/ruin/powered/walker_village
 	name = "Walker Village"
 
+//Bathhouse
 /area/ruin/powered/bathhouse
 	name = "Bath House"
 	icon_state = "dk_yellow"
 	mood_bonus = 10
 	mood_message = span_nicegreen("This place is like paradise, I don't ever want to leave!\n")
+
+
+//Inn
 
 /area/ruin/powered/inn
 	name = "Inn"
@@ -20,6 +27,8 @@
 /area/ruin/powered/inn/shed
 	name = "Inn Shed"
 	icon_state = "dk_yellow"
+
+//Syndicate Icemoon
 
 /area/ruin/syndicate_icemoon
 	name = "Syndicate Research Outpost"
@@ -62,5 +71,9 @@
 	name = "Syndicate Research Outpost Xenobiology"
 	xenobiology_compatible = TRUE
 
+/area/ruin/syndicate_icemoon/maintenance
+	name = "Syndicate Research Outpost Maintenance"
+
+//Hermit
 /area/ruin/powered/icemoon_hermit
 	name = "Icemoon Hermit"

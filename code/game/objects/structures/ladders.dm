@@ -186,6 +186,10 @@
 		return
 	use(user)
 
+/obj/structure/ladder/attack_hand_secondary(mob/user, modifiers)
+	use(user, going_up = FALSE)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
 /obj/structure/ladder/attack_paw(mob/user)
 	use(user)
 	return TRUE

@@ -459,6 +459,7 @@
 	name = "Iced Tea"
 	description = "No relation to a certain rap artist/actor."
 	color = "#104038" // rgb: 16, 64, 56
+	quality = DRINK_SODA // sweet tea is sugary
 	nutriment_factor = 0
 	taste_description = "sweet tea"
 	glass_icon_state = "icedteaglass"
@@ -479,6 +480,7 @@
 	name = "Cola"
 	description = "A refreshing beverage."
 	color = "#100800" // rgb: 16, 8, 0
+	quality = DRINK_SODA
 	taste_description = "cola"
 	glass_icon_state  = "glass_brown"
 	glass_name = "glass of Space Cola"
@@ -493,6 +495,7 @@
 	name = "Root Beer"
 	description = "Beer, but not."
 	color = "#251505" // rgb: 16, 8, 0
+	quality = DRINK_SODA
 	taste_description = "root and beer"
 	glass_icon_state  = "glass_brown"
 	glass_name = "glass of root beer"
@@ -562,6 +565,7 @@
 	name = "SM Wind"
 	description = "Blows right through you like a space wind."
 	color = "#102000" // rgb: 16, 32, 0
+	quality = DRINK_SODA
 	taste_description = "sweet citrus soda"
 	glass_icon_state = "Space_mountain_wind_glass"
 	glass_name = "glass of Space Mountain Wind"
@@ -579,6 +583,7 @@
 	name = "Dr. Gibb"
 	description = "A delicious blend of 42 different flavours."
 	color = "#102000" // rgb: 16, 32, 0
+	quality = DRINK_SODA
 	taste_description = "cherry soda" // FALSE ADVERTISING
 	glass_icon_state = "dr_gibb_glass"
 	glass_name = "glass of Dr. Gibb"
@@ -593,6 +598,7 @@
 	name = "Space-Up"
 	description = "Tastes like a hull breach in your mouth."
 	color = "#00FF00" // rgb: 0, 255, 0
+	quality = DRINK_SODA
 	taste_description = "cherry soda"
 	glass_icon_state = "space-up_glass"
 	glass_name = "glass of Space-Up"
@@ -607,6 +613,7 @@
 	name = "Spite"
 	description = "A tangy substance made of 0.5% natural citrus!"
 	color = "#8CFF00" // rgb: 135, 255, 0
+	quality = DRINK_SODA
 	taste_description = "tangy lime and lemon soda"
 	glass_icon_state = "glass_yellow"
 	glass_name = "glass of lemon-lime"
@@ -621,6 +628,7 @@
 	name = "Pwr Game"
 	description = "The only drink with the PWR that true gamers crave."
 	color = "#9385bf" // rgb: 58, 52, 75
+	quality = DRINK_SODA
 	taste_description = "sweet and salty tang"
 	glass_icon_state = "glass_red"
 	glass_name = "glass of Pwr Game"
@@ -634,6 +642,7 @@
 	name = "Shambler's Juice"
 	description = "~Shake me up some of that Shambler's Juice!~"
 	color = "#f00060" // rgb: 94, 0, 38
+	quality = DRINK_SODA
 	taste_description = "carbonated metallic soda"
 	glass_icon_state = "glass_red"
 	glass_name = "glass of Shambler's juice"
@@ -678,6 +687,7 @@
 	name = "Monkey Energy"
 	description = "The only drink that will make you unleash the ape."
 	color = "#f39b03" // rgb: 243, 155, 3
+	quality = DRINK_SODA
 	taste_description = "barbecue and nostalgia"
 	glass_icon_state = "monkey_energy_glass"
 	glass_name = "glass of Monkey Energy"

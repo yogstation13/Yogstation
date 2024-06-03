@@ -628,7 +628,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	if(robeless)
 		new_spell.spell_requirements &= ~SPELL_REQUIRES_WIZARD_GARB
-		new_spell.psi_cost = 0 //breaks balance, but allows non darkspawns to use darkspawn abilities
+		new_spell.bypass_cost = TRUE //breaks balance, but allows non antags to use antag specific abilities
 
 	new_spell.Grant(spell_recipient)
 

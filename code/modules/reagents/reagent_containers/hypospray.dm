@@ -414,6 +414,7 @@
 		else
 			transfer_amount = possible_transfer_amounts[1]
 		balloon_alert(user, "transferring [transfer_amount]u")
+		return
 
 /obj/item/hypospray/proc/can_use_hypo(atom/target, mob/user)
 	return (container && user.CanReach(target))

@@ -55,7 +55,7 @@
 		return FALSE
 	broken = TRUE
 	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, FALSE)
-	desc += "It appears to be broken."
+	desc += " It appears to be broken."
 	icon_state = src.icon_broken
 	if(user)
 		visible_message(span_warning("\The [src] has been broken by [user] with an electromagnetic card!"))

@@ -1841,9 +1841,13 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		var/mob/living/carbon/human/thehuman = L
 		for(var/obj/item/shield/theshield in thehuman.contents)
 			mighty_shield = theshield
-			mighty_shield.block_chance += 10
+			var/datum/component/blocking/block_component = mighty_shield.GetComponent(/datum/component/blocking)
+			if(!block_component)
+				stack_trace("[theshield.type] is missing its blocking component!")
+				return ..()
+			block_component.block_force += 5
 			to_chat(thehuman, span_notice("[theshield] appears polished, although you don't recall polishing it."))
-			return TRUE
+	return ..()
 
 /datum/reagent/consumable/ethanol/alexander/on_mob_life(mob/living/L)
 	..()
@@ -1852,7 +1856,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/alexander/on_mob_end_metabolize(mob/living/L)
 	if(mighty_shield)
-		mighty_shield.block_chance -= 10
+		var/datum/component/blocking/block_component = mighty_shield.GetComponent(/datum/component/blocking)
+		if(!block_component)
+			stack_trace("[mighty_shield.type] is missing its blocking component!")
+			return ..()
+		block_component.block_force -= 5
 		to_chat(L,span_notice("You notice [mighty_shield] looks worn again. Weird."))
 	..()
 

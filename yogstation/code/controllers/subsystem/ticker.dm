@@ -8,14 +8,11 @@
 		"https://www.youtube.com/watch?v=jA4u5Pur5KA",						// Jim Carrey - Cuban Pete
 		"https://www.youtube.com/watch?v=lIrum6iFz6U", 						// Electric Light Orchestra - Mr. Blue Sky
 		"https://www.youtube.com/watch?v=Ae2N5310MXE",						// SolusLunes - Endless Space
-		"https://www.youtube.com/watch?v=WEhS9Y9HYjU", 						// Noel Harrison - The Windmills of Your Mind
 		"https://www.youtube.com/watch?v=UPHmazxB38g", 						// MashedByMachines - Sector11
 		"https://soundcloud.com/jeffimam/title-plasma-attack",				// Jeff Imam - Title - Plasma Attack
 		"https://www.youtube.com/watch?v=KaOC9danxNo", 						// David Bowie - Space Oddity (Cover by Chris Hadfield)
-		"https://www.youtube.com/watch?v=f2cGxy-ZHIs", 						// Ólafur Arnalds - So Close (feat. Arnór Dan)
 		"https://www.youtube.com/watch?v=UaD4AiqYDyA", 						// X-CEED - Flip-Flap
 		"https://www.youtube.com/watch?v=a90kqxX3jPg",						// Monster860 - Orion Trail
-		"https://www.youtube.com/watch?v=xLUxhkwXsDE",						// Snooty Fox - Ritchie Everett
 		"https://www.youtube.com/watch?v=zKxwED8-Hws",						// Monster860 - Journey to Cygni
 		"https://www.youtube.com/watch?v=icy4-CQHVh4", 						// Joseph "Zhaytee" Toscano - Absconditus
 		"https://www.youtube.com/watch?v=dCPWE4WexM8", 						// Hiroaki Yoshida, Hitomi Komatsu - Robocop Theme (Remix by Cboyardee)
@@ -27,32 +24,23 @@
 		"https://www.youtube.com/watch?v=r-eMVfiT8_c",						// Kelly Bailey - Nuclear Missile Jam/Something Secret Steers Us (Remix)
 		"https://www.youtube.com/watch?v=WcWix770cvQ",						// Wintergatan - Local Cluster
 		"https://www.youtube.com/watch?v=w5hBQDepXOE",						// Michael Giacchino - Main Theme (STAR TREK Beyond)
-		"https://www.youtube.com/watch?v=orT5RN3Zwak",						// Kirk Franklin - Revolution
 		"https://www.youtube.com/watch?v=9whQIbNmu9s",						// Admiral Hippie - Clown.wmv
-		"https://www.youtube.com/watch?v=UlHGGKgzgzI",						// Elbow - Leaders of the Free World
 		"https://www.youtube.com/watch?v=67BwWgrMlxk",						// Chris Christodoulou - Risk of Rain Coalescence
 		"https://www.youtube.com/watch?v=SQOdPQQf2Uo",						// Star Trek The Motion Picture: Main Theme Album Style Edit
 		"https://www.youtube.com/watch?v=jJDAV9vSmYc",						// Chris Remo - The Wizard
 		"https://www.youtube.com/watch?v=nRjLv1L0WF8",						// Blue Oyster Cult - Sole Survivor
-		"https://www.youtube.com/watch?v=51Uw-9lNl08",						// fIREHOSE - Brave Captain
 		"https://www.youtube.com/watch?v=xhlH91k-86E",						// J.G. Thirlwell - In a Spaceage Mood
-		"https://www.youtube.com/watch?v=Ld6TfpgJg7g",						// Tom Kane - Freeway Jazz
 		"https://www.youtube.com/watch?v=ZhhQrFfzFM4",						// Carpenter Brut - Escape from Midwich Valley
-		"https://www.youtube.com/watch?v=dLrdSC9MVb4",						// Tally Hall - Turn the Lights Off
 		"https://www.youtube.com/watch?v=YGulLVWu-s0",						// God Hand "Rock a Bay"
 		"https://www.youtube.com/watch?v=IhEqUKBTffU",						// Streets Of Rogue - 5-1
 		"https://www.youtube.com/watch?v=fXvxnDmwB_I",						// Rain World THS - Action Scene
-		"https://www.youtube.com/watch?v=cklpO4kYZKs",						// The Kinks - Apeman
 		"https://www.youtube.com/watch?v=MPPCNM85eRY",						// The Kinks - Super Sonic Ship
 		"https://www.youtube.com/watch?v=tRcPA7Fzebw",						// David Bowie - Starman
 		"https://www.youtube.com/watch?v=zquJ6AqvVNw",						// Dungeons of Dredmor - Diggle Hell
-		"https://www.youtube.com/watch?v=cYUGOSjRs3Q",  					// Blake Robinson - Traitor's Motif
 		"https://www.youtube.com/watch?v=uiPJQgw6M_g",						// Ribbiks - Chasing Suns
 		"https://www.youtube.com/watch?v=7F_xOzLWy5U",						// Ataraxia - Deja Vuzz
 		"https://www.youtube.com/watch?v=dxDpdfzwuD4",						// The Penis (Eek!) - Surasshu
 		"https://www.youtube.com/watch?v=VJ817kvh_DM",						// Ben Prunty - FTL - Theme Song
-		"https://www.youtube.com/watch?v=7F_xOzLWy5U",						// Ataraxia - Deja Vuzz
-		"https://www.youtube.com/watch?v=hZb_6_WfquU",            			// Steam Powered Giraffe - Fire Fire
 		"https://www.youtube.com/watch?v=52Gg9CqhbP8",  					// Stuck in the Sound - Let's G
 		"https://www.youtube.com/watch?v=8GW6sLrK40k",						// HOME - Resonance
 		"https://www.youtube.com/watch?v=8DNoXUnaQ9k",						// Chris Christodoulou - Dies Irae
@@ -70,6 +58,8 @@
 		"https://www.youtube.com/watch?v=OGcMPp7TNo4",						// Bear McCreary - Wander My Friends
 		"https://soundcloud.com/lemmino/firecracker",						// LEMMiNO - Firecracker - CC BY-SA 4.0
 		"https://www.youtube.com/watch?v=bJNXazHoLkE",						// Bright Primate - Bio-Engineering
+		"https://soundcloud.com/jeffimam/the-sadness-club-at-the-edge-of-the-universe", // Jeff Imam - The Sadness Club At The Edge Of The Universe
+		"https://soundcloud.com/jeffimam/forest"							// Jeff Imam - Forest
 		)
 	selected_lobby_music = pick(songs)
 
