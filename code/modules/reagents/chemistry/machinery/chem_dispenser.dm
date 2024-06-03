@@ -76,8 +76,8 @@
 		/datum/reagent/gold,
 		/datum/reagent/diethylamine,
 		/datum/reagent/saltpetre,
-		/datum/reagent/medicine/charcoal,
-		/datum/reagent/lemoline
+		/datum/reagent/medicine/charcoal
+		
 	)
 	var/list/emagged_reagents = list(
 		/datum/reagent/toxin/carpotoxin,
@@ -85,7 +85,8 @@
 		/datum/reagent/medicine/morphine,
 		/datum/reagent/drug/space_drugs,
 		/datum/reagent/toxin,
-		/datum/reagent/uranium
+		/datum/reagent/uranium,
+		/datum/reagent/lemoline
 	)
 
 	var/list/saved_recipes = list()
