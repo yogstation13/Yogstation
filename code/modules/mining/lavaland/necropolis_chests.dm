@@ -2028,57 +2028,67 @@ GLOBAL_LIST_EMPTY(aide_list)
 	COOLDOWN_START(src, next_headcraft, COOLDOWN_HEADCRAFT)
 
 
-/obj/item/claycanister/proc/follow(atom/target, icon_state, phase = 1, var/obj/damocles, var/obj/silhouette, var/turf/landingzone)
-	switch(phase)
-		if(1)
-			target.visible_message(span_warning("A stone head grows and floats overhead!"))
-			var/obj/item/minihead/realdeal = new(get_turf(target))
-			var/obj/item/minihead/shadow = new(get_turf(target))
-			shadow.icon_state = icon_state
-			shadow.usedup = TRUE
-			realdeal.icon_state = icon_state
-			realdeal.usedup = TRUE
-			shadow.color = "#000000"
-			walk_towards(shadow, target, 0, 0)
-			walk_towards(realdeal, target, 0, 0)
-			animate(realdeal, pixel_y = 60, pixel_x = 0, transform = matrix().Scale(3), time = 1.5 SECONDS)
-			animate(shadow, pixel_y = -30, transform = matrix().Scale(3), time = 1.5 SECONDS)
-			addtimer(CALLBACK(src, PROC_REF(follow), target, null, phase+1, realdeal, shadow), 1.5 SECONDS)
-			return
-		if(2)
-			walk(damocles, 0)
-			walk(silhouette, 0)
-			addtimer(CALLBACK(src, PROC_REF(follow), target, null, phase+1, damocles, silhouette), 0.5 SECONDS)
-			return
-		if(3)
-			var/turf/uhoh = get_turf(damocles)
-			animate(damocles, pixel_y = 0, time = 1 SECONDS, easing = ELASTIC_EASING)
-			animate(silhouette, transform = matrix().Scale(3), time = 0.7 SECONDS)
-			addtimer(CALLBACK(src, PROC_REF(follow), target, null, phase+1, null, null, uhoh), 0.05 SECONDS)
-			playsound(damocles, 'sound/effects/break_stone.ogg', 15, 1)
-			playsound(damocles, 'sound/effects/meteorimpact.ogg', 30, 1)
-			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), damocles), 0.05 SECONDS)
-			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), silhouette), 0.05 SECONDS)
-			return
-		if(4)
-			landingzone.break_tile()
-			for(var/mob/witness in range(10, target))
-				shake_camera(witness, 1, 2)
-			for(var/obj/X in landingzone.contents)
-				X.take_damage(objdam)
-			for(var/mob/living/coyote in landingzone.contents)
-				var/armor = coyote.run_armor_check(BODY_ZONE_HEAD, MELEE, armour_penetration = 0)
-				coyote.apply_damage(smashdam, BRUTE, BODY_ZONE_HEAD, armor)
-				to_chat(coyote, span_userdanger("The boulder comes down on your head!"))
-				if(isanimal(coyote))
-					coyote.adjustBruteLoss(animaldam)
-					if(coyote.stat == DEAD)
-						coyote.gib()
-			for(var/mob/living/tripped in range(1, landingzone))
-				tripped.Immobilize(1 SECONDS)
-				to_chat(tripped, span_userdanger("The shockwave disrupts your balance!"))
-			return
+/obj/item/claycanister/proc/rise(atom/target, icon_state, var/obj/damocles, var/obj/silhouette)
+	target.visible_message(span_warning("A stone head grows and floats overhead!"))
+	var/obj/item/minihead/realdeal = new(get_turf(target))
+	var/obj/item/minihead/shadow = new(get_turf(target))
+	shadow.icon_state = icon_state
+	shadow.usedup = TRUE
+	realdeal.icon_state = icon_state
+	realdeal.usedup = TRUE
+	shadow.color = "#000000"
+	walk_towards(shadow, target, 0, 0)
+	walk_towards(realdeal, target, 0, 0)
+	animate(realdeal, pixel_y = 60, pixel_x = 0, transform = matrix().Scale(3), time = 1.5 SECONDS)
+	animate(shadow, pixel_y = -30, transform = matrix().Scale(3), time = 1.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(follow),realdeal, shadow), 1.5 SECONDS)
+	return
 
+/obj/item/claycanister/proc/follow(var/obj/damocles, var/obj/silhouette)
+	if(!src)
+		damocles.visible_message(span_warning("The stone head shatters!"))
+		qdel(damocles)
+		qdel(silhouette)
+		return
+	walk(damocles, 0)
+	walk(silhouette, 0)
+	addtimer(CALLBACK(src, PROC_REF(comedown), damocles, silhouette), 0.5 SECONDS)
+	return
+
+/obj/item/claycanister/proc/comedown(var/obj/damocles, var/obj/silhouette)
+	if(!src)
+		damocles.visible_message(span_warning("The stone head shatters!"))
+		qdel(damocles)
+		qdel(silhouette)
+		return
+	var/turf/uhoh = get_turf(damocles)
+	animate(damocles, pixel_y = 0, time = 1 SECONDS, easing = ELASTIC_EASING)
+	animate(silhouette, transform = matrix().Scale(3), time = 0.7 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(crush), uhoh), 0.05 SECONDS)
+	playsound(damocles, 'sound/effects/break_stone.ogg', 15, 1)
+	playsound(damocles, 'sound/effects/meteorimpact.ogg', 30, 1)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), damocles), 0.05 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), silhouette), 0.05 SECONDS)
+	return
+
+/obj/item/claycanister/proc/crush(var/turf/landingzone)
+	landingzone.break_tile()
+	for(var/mob/witness in range(10, landingzone))
+		shake_camera(witness, 1, 2)
+	for(var/obj/X in landingzone.contents)
+		X.take_damage(objdam)
+	for(var/mob/living/coyote in landingzone.contents)
+		var/armor = coyote.run_armor_check(BODY_ZONE_HEAD, MELEE, armour_penetration = 0)
+		coyote.apply_damage(smashdam, BRUTE, BODY_ZONE_HEAD, armor)
+		to_chat(coyote, span_userdanger("The boulder comes down on your head!"))
+		if(isanimal(coyote))
+			coyote.adjustBruteLoss(animaldam)
+			if(coyote.stat == DEAD)
+				coyote.gib()
+	for(var/mob/living/tripped in range(1, landingzone))
+		tripped.Immobilize(1 SECONDS)
+		to_chat(tripped, span_userdanger("The shockwave disrupts your balance!"))
+	return
 
 
 /obj/item/minihead
@@ -2102,19 +2112,19 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/item/minihead/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	if(hit_atom && !usedup)
-		origin.follow(hit_atom, src.icon_state)
+		origin.rise(hit_atom, src.icon_state)
 		usedup = TRUE
 
 /obj/item/minihead/after_throw(datum/callback/callback)
 	. = ..()
 	if(!usedup)
-		origin.follow(src.loc, src.icon_state)
+		origin.rise(src.loc, src.icon_state)
 		usedup = TRUE
 	qdel(src)
 
 /obj/item/minihead/attack_self(mob/user)
 	if(!usedup)
-		origin.follow(src, src.icon_state)
+		origin.rise(src, src.icon_state)
 		usedup = TRUE
 		qdel(src)
 
