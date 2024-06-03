@@ -380,8 +380,7 @@
 	air_update_turf()
 	update_freelook_sight()
 	if(autoclose)
-		spawn(autoclose)
-			close()
+		addtimer(CALLBACK(src, PROC_REF(close)), 1 DECISECONDS)
 	return TRUE
 
 /obj/machinery/door/proc/close()
