@@ -1,0 +1,5 @@
+author: "wonderinghost"
+delete-after: true 
+changes: 
+  - tweak: "alters mapmerge tool to prevent a error"
+  - mapping: "security reception is now spammable"
