@@ -2013,7 +2013,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/item/claycanister
 	name = "archaic clay canister"
 	desc = "A seemingly bottomless canister of violet clay. Kneading it seems to always results in a shape resembling a head, regardless of intent or concentration."
-	icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
+	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "claycan"
 	force = 5 
 	throwforce = 3
