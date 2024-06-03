@@ -68,7 +68,7 @@
 						/datum/reagent/mercury = 0.15,
 						/datum/reagent/lithium = 0.15,
 						/datum/reagent/medicine/atropine = 0.15,
-						/datum/reagent/medicine/haloperidol = 0.15,
+						/datum/reagent/medicine/naloxone = 0.15,
 						/datum/reagent/drug/methamphetamine = 0.15,
 						/datum/reagent/consumable/capsaicin = 0.15,
 						/datum/reagent/barbers_aid = 0.15,

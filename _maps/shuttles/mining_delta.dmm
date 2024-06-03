@@ -292,7 +292,9 @@
 	shuttle_id = "mining";
 	name = "mining shuttle";
 	port_direction = 8;
-	width = 7
+	width = 7;
+	callTime = 10;
+	ignitionTime = 10
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4

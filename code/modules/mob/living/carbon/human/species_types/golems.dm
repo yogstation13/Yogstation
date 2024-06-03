@@ -1603,7 +1603,7 @@
 /obj/item/melee/supermatter_sword/hand
 	name = "supermatter hand"
 	desc = "A hand of a robust supermatter golem."
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
 	icon_state = "disintegrate"
@@ -1661,7 +1661,6 @@
 	id = "tar golem"
 	species_traits = list(NOBLOOD,MUTCOLORS,NO_UNDERWEAR, NO_DNA_COPY, NOTRANSSTING)
 	inherent_traits = list(TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS)
-	inherent_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
 	speedmod = 1.5 // Slightly faster
 	armor = 25
 	punchstunthreshold = 13

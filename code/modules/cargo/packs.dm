@@ -717,7 +717,7 @@
 	desc = "Burn, baby burn. Contains three incendiary grenades, three plasma canisters, and a flamethrower. Requires Armory access to open."
 	cost = 1500
 	access = ACCESS_HEADS
-	contains = list(/obj/item/flamethrower/full,
+	contains = list(/obj/item/gun/flamethrower/full,
 					/obj/item/tank/internals/plasma,
 					/obj/item/tank/internals/plasma,
 					/obj/item/tank/internals/plasma,
@@ -1605,13 +1605,6 @@
 	contains = list(/obj/item/defibrillator/loaded,
 					/obj/item/defibrillator/loaded)
 	crate_name = "defibrillator crate"
-
-/datum/supply_pack/medical/iv_drip
-	name = "IV Drip Crate"
-	desc = "Contains a single IV drip for administering blood to patients."
-	cost = 1000
-	contains = list(/obj/machinery/iv_drip)
-	crate_name = "iv drip crate"
 
 /datum/supply_pack/medical/supplies
 	name = "Medical Supplies Crate"

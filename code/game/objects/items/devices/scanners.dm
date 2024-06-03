@@ -43,7 +43,7 @@ GENE SCANNER
 
 /obj/item/t_scanner/attack_self(mob/user)
 	toggle_on()
-	
+
 /obj/item/t_scanner/AltClick(mob/user)
 	if(!user.canUseTopic(src, BE_CLOSE))
 		return
@@ -240,7 +240,7 @@ GENE SCANNER
 						combined_msg += "\t[span_alert("Subject has [ears.damage > ears.maxHealth ? "permanent ": "temporary "]hearing damage.")]"
 						healthy = FALSE
 					if(ears.deaf)
-						combined_msg += "\t[span_alert("Subject is [ears.damage > ears.maxHealth ? "permanently ": "temporarily "] deaf.")]"
+						combined_msg += "\t[span_alert("Subject is [ears.damage > ears.maxHealth ? "permanently ": "temporarily "]deaf.")]"
 						healthy = FALSE
 				if(healthy)
 					combined_msg += "\t[span_info("Healthy.")]"
@@ -386,7 +386,7 @@ GENE SCANNER
 	var/temp_span = "notice"
 	if(M.bodytemperature <= BODYTEMP_HEAT_DAMAGE_LIMIT || M.bodytemperature >= BODYTEMP_COLD_DAMAGE_LIMIT)
 		temp_span = "warning"
-	
+
 	combined_msg += "<span_class = '[temp_span]'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>"
 
 	// Time of death
@@ -600,7 +600,7 @@ GENE SCANNER
 		user.put_in_hands(new /obj/item/bot_assembly/atmosbot)
 	else
 		..()
-		
+
 /obj/item/analyzer/attack_self(mob/user)
 	add_fingerprint(user)
 	scangasses(user)			//yogs start: Makes the gas scanning able to be used elseware
@@ -667,7 +667,7 @@ GENE SCANNER
 			if(id in GLOB.hardcoded_gases)
 				continue
 			var/gas_concentration = environment.get_moles(id)/total_moles
-			combined_msg += span_alert("[GLOB.gas_data.names[id]]: [round(gas_concentration*100, 0.01)] % ([round(environment.get_moles(id), 0.01)] mol)") 
+			combined_msg += span_alert("[GLOB.gas_data.names[id]]: [round(gas_concentration*100, 0.01)] % ([round(environment.get_moles(id), 0.01)] mol)")
 		combined_msg += span_info("Temperature: [round(environment.return_temperature()-T0C, 0.01)] &deg;C ([round(environment.return_temperature(), 0.01)] K)")
 	to_chat(user, examine_block(combined_msg.Join("\n")))
 

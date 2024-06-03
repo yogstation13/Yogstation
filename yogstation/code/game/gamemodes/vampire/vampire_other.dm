@@ -32,31 +32,24 @@
 /obj/item/clothing/suit/draculacoat/equipped(mob/user, slot)
 	. = ..()
 	if(slot == ITEM_SLOT_OCLOTHING)
-		RegisterSignal(user, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_projectile_hit))
+		RegisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(dodge))
+	else
+		UnregisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS)
 
 /obj/item/clothing/suit/draculacoat/dropped(mob/user)
-	. = ..()
-	UnregisterSignal(user, COMSIG_ATOM_BULLET_ACT)
-
-/obj/item/clothing/suit/draculacoat/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(!isprojectile(hitby) && dodge(owner, hitby, attack_text))
-		return TRUE
+	if(user.get_item_by_slot(ITEM_SLOT_OCLOTHING) == src)
+		UnregisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS)
 	return ..()
-	
-/obj/item/clothing/suit/draculacoat/proc/on_projectile_hit(mob/living/carbon/human/user, obj/projectile/P, def_zone)
-	SIGNAL_HANDLER
-	if(dodge(user, P, "[P]"))
-		return BULLET_ACT_FORCE_PIERCE
 		
-/obj/item/clothing/suit/draculacoat/proc/dodge(mob/living/carbon/human/user, atom/movable/hitby, attack_text)
+/obj/item/clothing/suit/draculacoat/proc/dodge(mob/living/carbon/human/user, atom/movable/incoming, damage, attack_text)
 	if(user.incapacitated() || !COOLDOWN_FINISHED(src, dodge_cooldown) || !is_vampire(user))
-		return FALSE
+		return NONE
 	COOLDOWN_START(src, dodge_cooldown, dodge_delay)
 
 	user.balloon_alert_to_viewers("dodged!", "dodged!", COMBAT_MESSAGE_RANGE)
 	user.visible_message(span_danger("With inhuman speed [user] dodges [attack_text]!"), span_userdanger("You dodge [attack_text]"), null, COMBAT_MESSAGE_RANGE)
 	playsound(user, 'sound/effects/space_wind_big.ogg', 50, 1)
-	return TRUE
+	return SHIELD_DODGE
 
 /obj/item/clothing/suit/draculacoat/process()
 	var/mob/living/carbon/human/user = src.loc

@@ -150,7 +150,7 @@
 /obj/item/melee/arm_blade
 	name = "arm blade"
 	desc = "A grotesque blade made out of bone and flesh that cleaves through people as a hot knife through butter."
-	icon = 'icons/obj/changeling.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "arm_blade"
 	item_state = "arm_blade"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
@@ -243,7 +243,7 @@
 /obj/item/gun/magic/tentacle
 	name = "tentacle"
 	desc = "A fleshy tentacle that can stretch out and grab things or people."
-	icon = 'icons/obj/changeling.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "tentacle"
 	item_state = "tentacle"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
@@ -431,8 +431,6 @@
 	icon_state = "ling_shield"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
-	block_chance = 50
-
 	var/remaining_uses //Set by the changeling ability.
 
 /obj/item/shield/changeling/Initialize(mapload)
@@ -440,18 +438,13 @@
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 	if(ismob(loc))
 		loc.visible_message(span_warning("The end of [loc.name]\'s hand inflates rapidly, forming a huge shield-like mass!"), span_warning("We inflate our hand into a strong shield."), span_italics("You hear organic matter ripping and tearing!"))
+	RegisterSignal(src, COMSIG_ITEM_POST_BLOCK, PROC_REF(post_block))
 
-/obj/item/shield/changeling/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/shield/changeling/proc/post_block(obj/item/source, mob/living/defender)
+	remaining_uses -= 1
 	if(remaining_uses < 1)
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			H.visible_message(span_warning("With a sickening crunch, [H] reforms [H.p_their()] shield into an arm!"), span_notice("We assimilate our shield into our body"), "<span class='italics>You hear organic matter ripping and tearing!</span>")
+		defender.visible_message(span_warning("With a sickening crunch, [defender] reforms [defender.p_their()] shield into an arm!"), span_notice("We assimilate our shield into our body"), "<span class='italics>You hear organic matter ripping and tearing!</span>")
 		qdel(src)
-		return 0
-	else
-		remaining_uses--
-		return ..()
-
 
 /***************************************\
 |*********SPACE SUIT + HELMET***********|
@@ -574,7 +567,7 @@
 /obj/item/melee/flesh_maul
 	name = "flesh maul"
 	desc = "A horrifying mass of pulsing flesh and glistening bone. More than capable of crushing anyone unfortunate enough to be hit by it."
-	icon = 'icons/obj/changeling.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "flesh_maul"
 	item_state = "flesh_maul"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'

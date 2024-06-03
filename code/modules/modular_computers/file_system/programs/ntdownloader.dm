@@ -21,24 +21,17 @@
 	var/downloaderror = ""
 	var/obj/item/modular_computer/my_computer = null
 	var/emagged = FALSE
-	var/list/main_repo
-	var/list/antag_repo
 
-	var/list/show_categories = list(
-		PROGRAM_CATEGORY_CMD,
-		PROGRAM_CATEGORY_SEC,
-		PROGRAM_CATEGORY_ENGI,
-		PROGRAM_CATEGORY_SCI,
-		PROGRAM_CATEGORY_MED,
-		PROGRAM_CATEGORY_SUPL,
-		PROGRAM_CATEGORY_MISC,
+	///The list of categories to display in the UI, in order of which they appear.
+	var/static/list/show_categories = list(
+		PROGRAM_CATEGORY_DEVICE,
+		PROGRAM_CATEGORY_EQUIPMENT,
+		PROGRAM_CATEGORY_GAMES,
+		PROGRAM_CATEGORY_SECURITY,
+		PROGRAM_CATEGORY_ENGINEERING,
+		PROGRAM_CATEGORY_SUPPLY,
+		PROGRAM_CATEGORY_SCIENCE,
 	)
-
-
-/datum/computer_file/program/ntnetdownload/run_program()
-	. = ..()
-	main_repo = SSnetworks.station_network.available_station_software
-	antag_repo = SSnetworks.station_network.available_antag_software
 
 /datum/computer_file/program/ntnetdownload/run_emag()
 	if(emagged)
@@ -49,7 +42,7 @@
 	if(downloaded_file)
 		return FALSE
 
-	var/datum/computer_file/program/PRG = SSnetworks.station_network.find_ntnet_file_by_name(filename)
+	var/datum/computer_file/program/PRG = SSmodular_computers.find_ntnet_file_by_name(filename)
 
 	if(!PRG || !istype(PRG))
 		return FALSE
@@ -65,10 +58,10 @@
 
 	ui_header = "downloader_running.gif"
 
-	if(PRG in main_repo)
+	if(PRG in SSmodular_computers.available_station_software)
 		generate_network_log("Began downloading file [PRG.filename].[PRG.filetype] from NTNet Software Repository.")
 		hacked_download = FALSE
-	else if(PRG in antag_repo)
+	else if(PRG in SSmodular_computers.available_antag_software)
 		generate_network_log("Began downloading file **ENCRYPTED**.[PRG.filetype] from unspecified server.")
 		hacked_download = TRUE
 	else
@@ -123,7 +116,7 @@
 	if(ntnet_status != 3) // Ethernet unaffected by distance
 		var/dist = 100
 		// Loop through every ntnet relay, find the closest one and use that
-		for(var/obj/machinery/ntnet_relay/n in SSnetworks.station_network.relays)
+		for(var/obj/machinery/ntnet_relay/n as anything in SSmachines.get_machines_by_type(/obj/machinery/ntnet_relay))
 			var/cur_dist = get_dist_euclidian(n, computer)
 			if(n.is_operational() && cur_dist <= dist)
 				dist = cur_dist
@@ -151,14 +144,13 @@
 	return FALSE
 
 /datum/computer_file/program/ntnetdownload/ui_data(mob/user)
+	var/list/data = get_header_data()
 	my_computer = computer
 
 	if(!istype(my_computer))
-		return
+		return data
 	var/obj/item/computer_hardware/card_slot/card_slot = computer.all_components[MC_CARD]
 	var/list/access = card_slot?.GetAccess()
-
-	var/list/data = get_header_data()
 
 	data["downloading"] = !!downloaded_file
 	data["error"] = downloaderror || FALSE
@@ -176,34 +168,31 @@
 	data["disk_used"] = hard_drive.used_capacity
 	data["emagged"] = emagged
 
-	var/list/repo = antag_repo | main_repo
-	var/list/program_categories = list()
+	var/list/repo = SSmodular_computers.available_antag_software | SSmodular_computers.available_station_software
 
-	for(var/I in repo)
-		var/datum/computer_file/program/P = I
-		if(!(P.category in program_categories))
-			program_categories.Add(P.category)
+	data["programs"] = list()
+	for(var/datum/computer_file/program/programs as anything in repo)
 		data["programs"] += list(list(
-			"icon" = P.program_icon,
-			"filename" = P.filename,
-			"filedesc" = P.filedesc,
-			"fileinfo" = P.extended_desc,
-			"category" = P.category,
-			"installed" = !!hard_drive.find_file_by_name(P.filename),
-			"compatible" = check_compatibility(P),
-			"size" = P.size,
-			"access" = emagged ? TRUE : P.can_run(user,transfer = 1, access = access),
-			"verifiedsource" = P.available_on_ntnet,
+			"icon" = programs.program_icon,
+			"filename" = programs.filename,
+			"filedesc" = programs.filedesc,
+			"fileinfo" = programs.extended_desc,
+			"category" = programs.category,
+			"installed" = !!hard_drive.find_file_by_name(programs.filename),
+			"compatible" = check_compatibility(programs),
+			"size" = programs.size,
+			"access" = programs.can_run(user, transfer = TRUE, access = access),
+			"verifiedsource" = programs.available_on_ntnet,
 		))
 
-	data["categories"] = show_categories & program_categories
+	data["categories"] = show_categories
 
 	return data
 
 /datum/computer_file/program/ntnetdownload/proc/check_compatibility(datum/computer_file/program/P)
 	var/hardflag = computer.hardware_flag
 
-	if(P && P.is_supported_by_hardware(hardflag,0))
+	if(P && P.is_supported_by_hardware(hardflag, 0))
 		return TRUE
 	return FALSE
 
@@ -230,8 +219,3 @@
 	ui_header = "downloader_finished.gif"
 	tgui_id = "NtosNetDownloader"
 	emagged = TRUE
-
-/datum/computer_file/program/ntnetdownload/syndicate/run_program()
-	. = ..()
-	main_repo = SSnetworks.station_network.available_antag_software
-	antag_repo = null

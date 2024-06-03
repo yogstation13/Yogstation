@@ -305,6 +305,14 @@
 	category = CAT_STRUCTURES
 	time = 15 SECONDS
 
+/datum/crafting_recipe/iv_drip
+	name = "IV drip"
+	reqs = 	list(/obj/item/stack/rods = 4, /obj/item/stack/sheet/metal = 1)
+	result = /obj/machinery/iv_drip
+	tool_behaviors = list(TOOL_SCREWDRIVER)
+	category = CAT_STRUCTURES
+	time = 5 SECONDS
+
 /datum/crafting_recipe/sink
 	name = "Sink"
 	reqs = 	list(/obj/item/stack/rods = 1, /obj/item/stack/sheet/metal = 4)

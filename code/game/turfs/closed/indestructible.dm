@@ -233,3 +233,15 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	smoothing_groups = SMOOTH_GROUP_HIERO_WALL
 	canSmoothWith = SMOOTH_GROUP_HIERO_WALL
 
+/turf/closed/indestructible/backrooms
+	name = "wall"
+	desc = "A huge chunk of metal used to separate rooms."
+	icon = 'icons/turf/walls/wall.dmi'
+	icon_state = "wall-0"
+	base_icon_state = "wall"
+
+	baseturfs = /turf/open/floor/plating/backrooms
+
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
+	canSmoothWith = SMOOTH_GROUP_WALLS
