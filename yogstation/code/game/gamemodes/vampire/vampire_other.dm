@@ -31,15 +31,10 @@
 
 /obj/item/clothing/suit/draculacoat/equipped(mob/user, slot)
 	. = ..()
-<<<<<<< joe
 	if(slot & ITEM_SLOT_OCLOTHING)
-		RegisterSignal(user, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_projectile_hit))
-=======
-	if(slot == ITEM_SLOT_OCLOTHING)
 		RegisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(dodge))
 	else
 		UnregisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS)
->>>>>>> master
 
 /obj/item/clothing/suit/draculacoat/dropped(mob/user)
 	if(user.get_item_by_slot(ITEM_SLOT_OCLOTHING) == src)
