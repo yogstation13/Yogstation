@@ -220,7 +220,7 @@
 		return
 	for(var/turf/room_turf in interior)
 		//we want to remove everything in the loc but don't want to change the loc type in this way
-		room_turf.empty(null, ignore_typecache = protected_atoms)
+		room_turf.empty(pickweight(weighted_open_turf_types), ignore_typecache = protected_atoms, flags = CHANGETURF_DEFER_CHANGE | CHANGETURF_IGNORE_AIR)
 		room_turf.place_on_top(pick(room_theme.get_random_flooring()), flags = CHANGETURF_DEFER_CHANGE | CHANGETURF_IGNORE_AIR)
 		
 	return
@@ -251,7 +251,8 @@
 			if(istype(other_side_of_door, /turf/open/space))
 				num_of_doors_to_gen--
 				continue
-			door_spot.empty(pick(room_theme.get_random_flooring()), ignore_typecache = protected_atoms, flags = CHANGETURF_DEFER_CHANGE | CHANGETURF_IGNORE_AIR)
+			door_spot.empty(pickweight(weighted_open_turf_types), ignore_typecache = protected_atoms, flags = CHANGETURF_DEFER_CHANGE | CHANGETURF_IGNORE_AIR)
+			door_spot.place_on_top(pick(room_theme.get_random_flooring()), flags = CHANGETURF_DEFER_CHANGE | CHANGETURF_IGNORE_AIR)
 			var/door_path = room_theme.get_random_door()
 			if(ispath(door_path))
 				var/obj/machinery/door/new_door = new door_path(door_spot)

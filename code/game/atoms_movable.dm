@@ -1359,3 +1359,38 @@
 				ADD_TRAIT(pulling, TRAIT_FLOORED, CHOKEHOLD_TRAIT)
 				ADD_TRAIT(pulling, TRAIT_HANDS_BLOCKED, CHOKEHOLD_TRAIT)
 
+// Simple helper to face what you clicked on, in case it should be needed in more than one place
+/atom/movable/proc/face_atom(atom/A, forced = FALSE)
+	if(!A || !x || !y || !A.x || !A.y )
+		return
+	var/dx = A.x - x
+	var/dy = A.y - y
+	if(!dx && !dy) // Wall items are graphically shifted but on the floor
+		if(A.pixel_y > 16)
+			setDir(NORTH, forced)
+		else if(A.pixel_y < -16)
+			setDir(SOUTH, forced)
+		else if(A.pixel_x > 16)
+			setDir(EAST, forced)
+		else if(A.pixel_x < -16)
+			setDir(WEST, forced)
+		return
+
+	if(abs(dx) < abs(dy))
+		if(dy > 0)
+			setDir(NORTH, forced)
+		else
+			setDir(SOUTH, forced)
+	else
+		if(dx > 0)
+			setDir(EAST, forced)
+		else
+			setDir(WEST, forced)
+
+/atom/movable/proc/sendToBackrooms()
+	var/backrooms_level = SSmapping.levels_by_trait(ZTRAIT_PROCEDURAL_MAINTS)
+	if(LAZYLEN(backrooms_level))
+		var/turf/destination = find_safe_turf(zlevels = backrooms_level, dense_atoms = FALSE)
+		if(destination)
+			forceMove(destination)
+			return TRUE

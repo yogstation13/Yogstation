@@ -11,7 +11,7 @@
 	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,NOZOMBIE,NOHUSK,NOBLOOD, NO_UNDERWEAR)
 	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_NOBREATH, TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB, TRAIT_REDUCED_DAMAGE_SLOWDOWN, TRAIT_NOGUNS, TRAIT_NO_GRENADES)
 	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_EYES)
-	inherent_biotypes = list(MOB_ROBOTIC)
+	inherent_biotypes = MOB_ROBOTIC
 	mutantbrain = /obj/item/organ/brain/positron/synth
 	mutantheart = /obj/item/organ/heart/cybernetic
 	mutanteyes = /obj/item/organ/eyes/robotic/synth
@@ -25,7 +25,6 @@
 	exotic_blood = /datum/reagent/oil
 	use_skintones = TRUE
 	forced_skintone = "albino"
-	inherent_biotypes = MOB_ROBOTIC
 
 	burnmod = 0.9
 	heatmod = 0.95

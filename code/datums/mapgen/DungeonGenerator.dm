@@ -68,6 +68,9 @@
 	var/room_datum_path = /datum/dungeon_room
 	var/room_theme_path = /datum/dungeon_room_theme
 
+	///A list of the probability that a type of room theme can be selected. look at mapping.dm in yog defines
+	var/list/probability_room_types = list()
+
 	///Weighted list of the types that spawns if the turf is open
 	var/weighted_open_turf_types = list(/turf/open/floor/plating = 10)
 	///Expanded list of the types that spawns if the turf is open

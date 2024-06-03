@@ -98,7 +98,7 @@
 	buttontooltipstyle = "alien"
 
 	sound = 'sound/effects/bamf.ogg'
-	psi_cost = 35
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 35)
 	cooldown_time = 45 SECONDS
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
@@ -189,7 +189,7 @@
 	panel = "Darkspawn"
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 70
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 70)
 	cooldown_time = 90 SECONDS
 
 	sound = 'sound/effects/bamf.ogg'
@@ -219,7 +219,7 @@
 	panel = "Darkspawn"
 	sound = 'sound/magic/voidblink.ogg'
 
-	psi_cost = 20
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 20)
 	cooldown_time = 20 SECONDS
 	cast_range = 7
 	active_msg = span_velvet("You prepare to take a step through the void.")
@@ -248,7 +248,7 @@
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 65
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 65)
 	cooldown_time = 60 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
 	aoe_radius = 3

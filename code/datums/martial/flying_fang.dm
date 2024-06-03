@@ -42,10 +42,10 @@
 	var/slam_staminadamage = A.get_punchdamagehigh() * 1.5 + 10	//25 damage
 	A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
 	playsound(D, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
-	D.apply_damage(slam_staminadamage, STAMINA, selected_zone, armor_block)														
+	D.apply_damage(slam_staminadamage, STAMINA, selected_zone, armor_block)
 	D.apply_damage(A.get_punchdamagehigh() + 5, A.dna.species.attack_type, selected_zone, armor_block)	//15 damage
 	D.visible_message(span_danger("[A] slams into [D], knocking them off balance!"), \
-					  span_userdanger("[A] slams into you, knocking you off  balance!"))
+					  span_userdanger("[A] slams into you, knocking you off balance!"))
 	D.add_movespeed_modifier("tail slap", update=TRUE, priority=101, multiplicative_slowdown=0.9)
 	addtimer(CALLBACK(D, TYPE_PROC_REF(/mob, remove_movespeed_modifier), "tail slap"), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	log_combat(A, D, "slammed (Flying Fang)")
@@ -65,7 +65,7 @@
 		return
 	playsound(get_turf(A), 'sound/weapons/slap.ogg', 50, TRUE, -1)
 	for(var/obj/item/I in D.held_items)
-		if(I.block_chance)
+		if(I.GetComponent(/datum/component/blocking))
 			D.visible_message(span_danger("[A] tail slaps [I] out of [D]'s hands!"), \
 							 span_userdanger("[A] tail slaps your [I] out of your hands!"))
 			D.dropItemToGround(I)
@@ -172,20 +172,20 @@
 	var/list/modifiers = params2list(params)
 	if(modifiers[SHIFT_CLICK] || modifiers[CTRL_CLICK] || modifiers[ALT_CLICK])
 		return NONE
-	
+
 	if(!modifiers[RIGHT_CLICK] || get_dist(lizard, target) <= 1)
 		return NONE
 
 	if(lizard.wear_suit?.clothing_flags & THICKMATERIAL)
 		to_chat(lizard, span_warning("Your [lizard.wear_suit] is too bulky to pounce with!"))
 		return NONE
-	
+
 	if(!COOLDOWN_FINISHED(src, next_leap))
 		return NONE
-	
+
 	if(lizard.buckled)
 		lizard.buckled.unbuckle_mob(lizard, force = TRUE)
-	
+
 	leaping = TRUE
 	lizard.Knockdown(5 SECONDS)
 	lizard.Immobilize(3 SECONDS, TRUE, TRUE) //prevents you from breaking out of your pounce
@@ -216,7 +216,7 @@
 			//Blocking knocks the lizard down too
 			if(blocked)
 				lizard.SetKnockdown(10 SECONDS)
-			
+
 			//Otherwise the not-blocker gets stunned and the lizard is okay
 			else
 				victim.Paralyze(6 SECONDS)
@@ -243,7 +243,7 @@
 	to_chat(usr, span_notice("Your training has rendered you more resistant to pain, allowing you to keep fighting effectively for longer and reducing the effectiveness of stun and stamina weapons by about a third."))
 	to_chat(usr, span_warning("However, the primitive instincts gained through this training prevent you from using guns or stun weapons."))
 	to_chat(usr, span_notice("<b>All of your unarmed attacks deal increased brute damage with a small amount of armor piercing</b>"))
-	
+
 	to_chat(usr, "[span_notice("Disarm")]: Headbutt your enemy, Deals minor stamina and brute damage, as well as causing eye blurriness. Prevents the target from using ranged weapons effectively for a few seconds if they are not wearing a helmet.")
 
 	to_chat(usr, "[span_notice("Tail Slap")]: Shove three times. High armor piercing attack that causes a short slow followed by a knockdown. Deals heavy stamina damage. Requires you to have a tail, which must be exposed")
