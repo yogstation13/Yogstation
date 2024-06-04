@@ -94,7 +94,7 @@
 	name = "vibration blade"
 	desc = "A blade with an edge that vibrates rapidly, enabling it to easily cut through armor and flesh alike."
 	hitsound = "swing_hit"
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "hfrequency0"
 	icon_state_on = "hfrequency1"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'

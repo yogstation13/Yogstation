@@ -214,10 +214,10 @@
 	required_reagents = list(/datum/reagent/medicine/cryoxadone = 1, /datum/reagent/sodium = 1)
 	required_catalysts = list(/datum/reagent/toxin/plasma = 5)
 
-/datum/chemical_reaction/haloperidol
-	name = "Haloperidol"
-	id = /datum/reagent/medicine/haloperidol
-	results = list(/datum/reagent/medicine/haloperidol = 5)
+/datum/chemical_reaction/naloxone
+	name = "Naloxone"
+	id = /datum/reagent/medicine/naloxone
+	results = list(/datum/reagent/medicine/naloxone = 5)
 	required_reagents = list(/datum/reagent/chlorine = 1, /datum/reagent/fluorine = 1, /datum/reagent/aluminium = 1, /datum/reagent/medicine/potass_iodide = 1, /datum/reagent/oil = 1)
 
 /datum/chemical_reaction/bicaridine

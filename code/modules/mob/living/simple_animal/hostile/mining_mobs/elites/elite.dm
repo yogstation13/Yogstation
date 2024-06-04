@@ -28,7 +28,7 @@
 	var/chosen_attack = 1
 	/// Attack actions, sets chosen_attack to the number in the action
 	var/list/attack_action_types = list()
-	
+
 	var/can_talk = FALSE
 	var/obj/loot_drop = null
 
@@ -159,7 +159,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 
 /obj/structure/elite_tumor
 	name = "pulsing tumor"
-	desc = "An odd, pulsing tumor sticking out of the ground.  You feel compelled to reach out and touch it..."
+	desc = "An odd, pulsing tumor sticking out of the ground. You feel compelled to reach out and touch it..."
 	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	resistance_flags = INDESTRUCTIBLE
 	var/activity = TUMOR_INACTIVE
@@ -184,13 +184,13 @@ While using this makes the system rely on OnFire, it still gives options for tim
 		switch(activity)
 			if(TUMOR_PASSIVE)
 				activity = TUMOR_ACTIVE
-				visible_message(span_boldwarning("[src] convulses as your arm enters its radius.  Your instincts tell you to step back."))
+				visible_message(span_boldwarning("[src] convulses as your arm enters its radius. Your instincts tell you to step back."))
 				activator = user
 				addtimer(CALLBACK(src, PROC_REF(return_elite)), 30)
 				INVOKE_ASYNC(src, PROC_REF(arena_checks))
 			if(TUMOR_INACTIVE)
 				activity = TUMOR_ACTIVE
-				visible_message(span_boldwarning("[src] begins to convulse.  Your instincts tell you to step back."))
+				visible_message(span_boldwarning("[src] begins to convulse. Your instincts tell you to step back."))
 				activator = user
 				addtimer(CALLBACK(src, PROC_REF(spawn_elite)), 3 SECONDS)
 
@@ -286,7 +286,7 @@ obj/structure/elite_tumor/proc/onEliteWon()
 
 /obj/item/tumor_shard
 	name = "tumor shard"
-	desc = "A strange, sharp, crystal shard from an odd tumor on Lavaland.  Stabbing the corpse of a lavaland elite with this will revive them, assuming their soul still lingers.  Revived lavaland elites only have half their max health, but are completely loyal to their reviver."
+	desc = "A strange, sharp, crystal shard from an odd tumor on Lavaland. Stabbing the corpse of a lavaland elite with this will revive them, assuming their soul still lingers. Revived lavaland elites only have half their max health, but are completely loyal to their reviver."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "crevice_shard"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -302,17 +302,17 @@ obj/structure/elite_tumor/proc/onEliteWon()
 	if(istype(target, /mob/living/simple_animal/hostile/asteroid/elite) && proximity_flag)
 		var/mob/living/simple_animal/hostile/asteroid/elite/E = target
 		if(E.stat != DEAD || E.sentience_type != SENTIENCE_BOSS || !E.key)
-			user.visible_message(span_notice("It appears [E] is unable to be revived right now.  Perhaps try again later."))
+			user.visible_message(span_notice("It appears [E] is unable to be revived right now. Perhaps try again later."))
 			return
 		E.faction = list("neutral")
 		E.revive(full_heal = TRUE, admin_revive = TRUE)
 		user.visible_message(span_notice("[user] stabs [E] with [src], reviving it."))
 		E.playsound_local(get_turf(E), 'sound/effects/magic.ogg', 40, 0)
-		to_chat(E, "<span class='userdanger'>You have been revived by [user].  While you can't speak to them, you owe [user] a great debt.  Assist [user.p_them()] in achieving [user.p_their()] goals, regardless of risk.</span")
-		to_chat(E, "<span class='big bold'>Note that you now share the loyalties of [user].  You are expected not to intentionally sabotage their faction unless commanded to!</span>")
+		to_chat(E, "<span class='userdanger'>You have been revived by [user]. While you can't speak to them, you owe [user] a great debt. Assist [user.p_them()] in achieving [user.p_their()] goals, regardless of risk.</span")
+		to_chat(E, "<span class='big bold'>Note that you now share the loyalties of [user]. You are expected not to intentionally sabotage their faction unless commanded to!</span>")
 		E.maxHealth = E.maxHealth * 0.25
 		E.health = E.maxHealth
-		E.desc = "[E.desc]  However, this one appears appears less wild in nature, and calmer around people."
+		E.desc = "[E.desc] However, this one appears appears less wild in nature, and calmer around people."
 		E.sentience_type = SENTIENCE_ORGANIC
 		qdel(src)
 	else

@@ -380,7 +380,7 @@
 /obj/item/claymore/weak
 	desc = "This one is rusted."
 	force = 30
-	block_chance = 30
+	block_force = 15
 	armour_penetration = 5
 
 /obj/item/claymore/weak/ceremonial

@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/pointed/projectile/cast_iron
 	name = "Cast Iron"
 	desc = "This spell fires a cast iron bolt."
-	button_icon = 'yogstation/icons/obj/pan.dmi'
+	button_icon = 'icons/obj/weapons/shortsword.dmi'
 	button_icon_state = "frying_pan"
 
 	school = SCHOOL_EVOCATION
@@ -24,7 +24,7 @@
 
 /obj/projectile/magic/cast_iron
 	name = "cast iron"
-	icon = 'yogstation/icons/obj/pan.dmi'
+	icon = 'icons/obj/weapons/shortsword.dmi'
 	icon_state = "frying_pan"
 	damage = 20
 	damage_type = BRUTE

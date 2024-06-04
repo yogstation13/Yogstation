@@ -1,0 +1,59 @@
+@use '../base.scss';
+@use '../colors.scss';
+@use '../functions.scss' as *;
+
+$color-reset: colors.bg(colors.$red) !default;
+$color-enter: colors.bg(colors.$green) !default;
+
+$background-beige: #E8E4C9;
+$background-black: #090b19;
+
+.KeypadLock__displayBox {
+  background-color: $background-black;
+  border: 0.167em inset $background-beige;
+  color: #03e017;
+  font-size: 2em;
+  font-family: monospace;
+  padding: 0.25em;
+}
+
+.KeypadLock__Button {
+  outline-width: 0.25rem !important;
+  border-width: 0.65rem !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.KeypadLock__Button--keypad {
+  background-color: $background-beige;
+  border-color: $background-beige;
+  &:hover {
+    background-color: lighten($background-black, 15%) !important;
+    border-color: lighten($background-black, 15%) !important;
+  }
+}
+
+.KeypadLock__Button--E {
+  background-color: $color-enter !important;
+  border-color: $color-enter !important;
+  &:hover {
+    background-color: lighten($color-enter, 25%) !important;
+    border-color: lighten($color-enter, 25%) !important;
+  }
+}
+
+.KeypadLock__Button--R {
+  background-color: $color-reset !important;
+  border-color: $color-reset !important;
+  &:hover {
+    background-color: lighten($color-reset, 25%) !important;
+    border-color: lighten($color-reset, 25%) !important;
+  }
+}
+
+.KeypadLock__NTIcon {
+  background-image: url('../assets/bg-nanotrasen.svg');
+  background-size: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+}

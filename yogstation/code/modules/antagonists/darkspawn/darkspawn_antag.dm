@@ -63,6 +63,8 @@
 	if(!team)
 		team = new
 	team.add_member(owner)
+	RegisterSignal(owner, COMSIG_MIND_CHECK_ANTAG_RESOURCE, PROC_REF(has_psi))
+	RegisterSignal(owner, COMSIG_MIND_SPEND_ANTAG_RESOURCE, PROC_REF(use_psi))
 	return ..()
 
 /datum/antagonist/darkspawn/on_removal()
@@ -73,6 +75,8 @@
 	owner.current.hud_used.psi_counter.invisibility = initial(owner.current.hud_used.psi_counter.invisibility)
 	owner.current.hud_used.psi_counter.maptext = ""
 	QDEL_NULL(picked_class)
+	UnregisterSignal(owner, COMSIG_MIND_CHECK_ANTAG_RESOURCE)
+	UnregisterSignal(owner, COMSIG_MIND_SPEND_ANTAG_RESOURCE)
 	return ..()
 
 /datum/antagonist/darkspawn/apply_innate_effects(mob/living/mob_override)
@@ -307,15 +311,24 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Psi regen and usage-------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/antagonist/darkspawn/proc/has_psi(amt)
+/datum/antagonist/darkspawn/proc/has_psi(datum/mind, flag = ANTAG_RESOURCE_DARKSPAWN, amt)
+	SIGNAL_HANDLER
+	if(flag != ANTAG_RESOURCE_DARKSPAWN)
+		return FALSE
 	return psi >= amt
 
-/datum/antagonist/darkspawn/proc/use_psi(amt)
-	if(!has_psi(amt))
+/datum/antagonist/darkspawn/proc/use_psi(datum/mind, list/resource_costs)
+	SIGNAL_HANDLER
+	if(!LAZYLEN(resource_costs))
 		return
-	if(psi_regen_delay)
+	var/amount = resource_costs[ANTAG_RESOURCE_DARKSPAWN]
+	if(!amount)
+		return
+	if(!has_psi(amt = amount))
+		return
+	if(amount > 0 && psi_regen_delay)
 		COOLDOWN_START(src, psi_cooldown, psi_regen_delay)
-	psi -= amt
+	psi -= amount
 	psi = round(psi, 0.1)
 	update_psi_hud()
 	return TRUE

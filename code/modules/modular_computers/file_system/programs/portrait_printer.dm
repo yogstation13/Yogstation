@@ -15,6 +15,7 @@
 	extended_desc = "This program connects to a Spinward Sector community art site for viewing and printing art."
 	transfer_access = ACCESS_LIBRARY
 	usage_flags = PROGRAM_CONSOLE | PROGRAM_TELESCREEN
+	category = PROGRAM_CATEGORY_EQUIPMENT
 	requires_ntnet = TRUE
 	size = 9
 	tgui_id = "NtosPortraitPrinter"
