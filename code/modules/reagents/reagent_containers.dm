@@ -149,10 +149,22 @@
 		return
 
 	else
-		if(isturf(target) && reagents.reagent_list.len && thrownby)
-			log_combat(thrownby, target, "splashed (thrown) [english_list(reagents.reagent_list)]", "in [AREACOORD(target)]")
-			log_game("[key_name(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [AREACOORD(target)].")
-			message_admins("[ADMIN_LOOKUPFLW(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [ADMIN_VERBOSEJMP(target)].")
+		if(isturf(target))
+			var/turf/T = target
+			if(istype(T, /turf/open))
+				T.add_liquid_from_reagents(reagents, FALSE, reagents.chem_temp)
+			if(reagents.reagent_list.len && thrownby)
+				log_combat(thrownby, target, "splashed (thrown) [english_list(reagents.reagent_list)]", "in [AREACOORD(target)]")
+				log_game("[key_name(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [AREACOORD(target)].")
+				message_admins("[ADMIN_LOOKUPFLW(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [ADMIN_VERBOSEJMP(target)].")
+		else
+			reagents.reaction(target, TOUCH)
+			var/turf/targets_loc = target.loc
+			if(istype(targets_loc, /turf/open))
+				targets_loc.add_liquid_from_reagents(reagents)
+			else
+				targets_loc = get_step_towards(targets_loc, thrownby)
+				targets_loc.add_liquid_from_reagents(reagents) //not perfect but i can't figure out how to move something to the nearest visible turf from throw_target
 		visible_message(span_notice("[src] spills its contents all over [target]."))
 		reagents.reaction(target, TOUCH)
 		if(QDELETED(src))
