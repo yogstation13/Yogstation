@@ -1,7 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - tweak: "Healium now heal organic organs"
-  - tweak: "Cryo tube can now inject healium into dead body"
-  - tweak: "Healium when applied to dead body now heals organic organs (can fix the failure organs aswell), brutes and burns, to a safe level for defibbing."
-  - tweak: "Healium grenade now injects healium into nearby mobs if they their overall health is below or equal to 20, softcrit, dead, or unconscious"
