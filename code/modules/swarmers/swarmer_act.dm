@@ -64,8 +64,12 @@
 	return FALSE
 
 /turf/open/lava/swarmer_act()
-	var/datum/component/lingering/safety_check = src.GetComponent(/datum/component/lingering)
-	if(safety_check && !safety_check.is_safe()) //chasms aren't /floor, and so are pre-filtered
+	var/list/components = src.GetComponents(/datum/component/lingering)
+	var/safe = TRUE
+	for(var/datum/component/lingering/safety_check as anything in components)
+		if(safety_check)
+			safe = (safe && safety_check.is_safe())
+	if(!safe)
 		new /obj/structure/lattice/catwalk/swarmer_catwalk(src)
 	return FALSE
 

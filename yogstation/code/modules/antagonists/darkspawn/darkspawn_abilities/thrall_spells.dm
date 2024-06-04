@@ -14,7 +14,7 @@
 	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
-	psi_cost = 100
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 100)
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 	///Willpower spent by the darkspawn datum to thrall a mind
 	var/willpower_cost = 1
@@ -188,7 +188,7 @@
 	buttontooltipstyle = "alien"
 
 	cast_range = INFINITY //lol
-	psi_cost = 40
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 40)
 	cooldown_time = 5 SECONDS
 	panel = "Darkspawn"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
@@ -287,7 +287,7 @@
 	button_icon_state = "speedboost_veils"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
-	psi_cost = 50
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 50)
 	cooldown_time = 1 MINUTES
 	spell_requirements = SPELL_CASTABLE_AS_BRAIN
 	sound = 'sound/magic/staff_healing.ogg'
@@ -364,7 +364,7 @@
 	spell_requirements = SPELL_CASTABLE_AS_BRAIN
 	cooldown_time = 5 MINUTES //it's REALLY strong
 	sound = 'sound/magic/staff_healing.ogg'
-	psi_cost = 100 //it's REALLY strong
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 100)
 	invocation_type = INVOCATION_SHOUT
 	invocation = "CKKREM!"
 
@@ -406,7 +406,7 @@
 /datum/action/cooldown/spell/pointed/darkspawn_build/thrall_eye
 	name = "Opticial"
 	desc = "Places a floating watchful eye."
-	psi_cost = 20
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 20)
 	object_type = /obj/machinery/camera/darkspawn
 	language_final = "Ixnce"
 	cast_time = 1 SECONDS
@@ -415,7 +415,7 @@
 //----------------------Abilities that thralls get----------------------//
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/pointed/seize/lesser
-	psi_cost = 0 //thralls don't have psi
+	bypass_cost = TRUE //thralls don't have psi
 	cooldown_time = 45 SECONDS
 	stun_duration = 5 SECONDS
 
@@ -456,4 +456,4 @@
 
 /datum/action/cooldown/spell/pointed/darkspawn_build/thrall_eye/thrall/thrall
 	desc = "Places a floating watchful eye for your masters to observe through."
-	psi_cost = 0
+	bypass_cost = TRUE
