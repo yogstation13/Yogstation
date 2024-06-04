@@ -231,7 +231,7 @@
 
 	H.cut_overlay(overcharge)
 
-	if(H.nutrition > NUTRITION_LEVEL_FULL)
+	if(H.nutrition <= NUTRITION_LEVEL_FULL)
 		H.visible_message(span_notice("[H] stops sparking."), span_notice("Your energy settles down again."))
 		return //if they successfully release into an apc, no more discharge
 
