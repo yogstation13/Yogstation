@@ -238,10 +238,27 @@
 	if(!occupant)
 		return
 
+	var/datum/gas_mixture/air1 = airs[1]
 	var/mob/living/mob_occupant = occupant
 	if(mob_occupant.on_fire)
 		mob_occupant.extinguish_mob()
-	if(mob_occupant.stat == DEAD) // We don't bother with dead people.
+	if(mob_occupant.stat == DEAD) // We don't bother with dead people except if we got healium.
+		var/existing = mob_occupant.reagents.get_reagent_amount(/datum/reagent/healium)
+		if(existing)
+			mob_occupant.reagents.del_reagent(/datum/reagent/healium)
+			mob_occupant.reagents.add_reagent(/datum/reagent/healium, existing)
+		else if(!existing && air1.get_moles(GAS_HEALIUM) > 1)
+			mob_occupant.reagents.add_reagent(/datum/reagent/healium, 1)
+			air1.set_moles(GAS_HEALIUM, -max(0, air1.get_moles(GAS_HEALIUM) - 0.1 / efficiency))
+		else
+			return
+		set_on(FALSE)
+		playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
+		var/msg = "Healium injection completed."
+		if(autoeject) // Eject if configured.
+			msg += " Auto ejecting patient now."
+			open_machine()
+		radio.talk_into(src, msg, radio_channel)
 		return
 
 	var/mob/living/carbon/C
@@ -252,8 +269,6 @@
 	if(iscarbon(mob_occupant))
 		for(var/obj/item/bodypart/limb in C.get_damaged_bodyparts(TRUE, TRUE, FALSE, BODYPART_ROBOTIC))
 			robotic_limb_damage += limb.get_damage(stamina=FALSE)
-
-	var/datum/gas_mixture/air1 = airs[1]
 
 	if(mob_occupant.health >= mob_occupant.getMaxHealth() - robotic_limb_damage) // Don't bother with fully healed people. Now takes robotic limbs into account.
 		var/has_wound = FALSE
