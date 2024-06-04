@@ -18,6 +18,8 @@
 	var/panel_open = FALSE
 	//Last viable keypad_input
 	var/memory_code = ""
+	//If it is emagged
+	var/is_emaged = FALSE
 
 /datum/component/keypad_lock/Initialize(keypad_code = access_code, lock_state = lock_status, keypad_text = keypad_input, lock_text = lock_display)
 	. = ..()
@@ -37,6 +39,7 @@
 	. = ..()
 	RegisterSignal(parent, COMSIG_ATOM_TOOL_ACT(TOOL_SCREWDRIVER), PROC_REF(on_screwdriver_act))
 	RegisterSignal(parent, COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL), PROC_REF(on_multitool_act))
+	RegisterSignal(parent, COMSIG_ATOM_EMAG_ACT, PROC_REF(emag_act))
 
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_ICON_STATE, PROC_REF(on_update_icon_state))
@@ -50,6 +53,7 @@
 	UnregisterSignal(parent, list(
 		COMSIG_ATOM_TOOL_ACT(TOOL_SCREWDRIVER),
 		COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL),
+		COMSIG_ATOM_EMAG_ACT,
 		COMSIG_ATOM_EXAMINE,
 		COMSIG_ATOM_UPDATE_ICON_STATE,
 	))
@@ -63,6 +67,8 @@
 /datum/component/keypad_lock/proc/on_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	examine_list += "The service panel is currently <b>[panel_open ? "unscrewed" : "screwed shut"]</b>."
+	if(is_emaged)
+		examine_list += span_warning("The keypad's display is bugged and requires a reset.")
 
 /datum/component/keypad_lock/proc/on_screwdriver_act(atom/source, mob/user, obj/item/tool)
 	SIGNAL_HANDLER
@@ -102,11 +108,12 @@
 		src.keypad_input = "INPUT NEW 5 DIGIT CODE"
 		src.replace_message = TRUE
 	//Fallout like hacking if locked
+	//Cows and Bulls but without the Cows
 	else
 		if(length(memory_code) != 5)
 			user.balloon_alert(user, "memory empty!")
 			return
-		user.balloon_alert(user, "memory checked")
+		user.balloon_alert(user, "checking memory")
 		//Find correct_digits
 		for(var/i in 1 to 5)
 			access_char = access_code[i]
@@ -117,9 +124,24 @@
 		to_chat(user, span_info("Entry [memory_code] denied."))
 		to_chat(user, span_info("[correct_digits]/5 correct."))
 
+/datum/component/keypad_lock/proc/emag_act(mob/user, obj/item/card/emag)
+	SIGNAL_HANDLER
+	//Unlock item and show clues of being emaged
+	is_emaged = TRUE
+	src.lock_status = FALSE
+	src.lock_display = "ERROR"
+	SEND_SIGNAL(parent, COMSIG_TRY_STORAGE_SET_LOCKSTATE, lock_status)
+	on_update_icon_state(parent)
+	user.visible_message(span_warning("Sparks fly out of [parent]'s keypad!"))
+	playsound(parent, "sparks", 50, 1)
+	return COMPONENT_BLOCK_TOOL_ATTACK
+
 /datum/component/keypad_lock/proc/on_update_icon_state(obj/source)
 	SIGNAL_HANDLER
-	source.icon_state = source.base_icon_state + "[src.lock_status ? "_locked" : null]"
+	if(is_emaged)
+		source.icon_state = source.base_icon_state + "_emaged"
+	else
+		source.icon_state = source.base_icon_state + "[src.lock_status ? "_locked" : null]"
 
 /datum/component/keypad_lock/proc/on_interact(atom/source, mob/user)
 	SIGNAL_HANDLER
@@ -198,6 +220,7 @@
 					src.keypad_input = "INPUT 5 DIGIT CODE"
 				error_message = FALSE
 				replace_message = TRUE
+				is_emaged = FALSE
 				src.lock_status = TRUE
 				lock_display = "LOCKED"
 				SEND_SIGNAL(parent, COMSIG_TRY_STORAGE_SET_LOCKSTATE, lock_status)
