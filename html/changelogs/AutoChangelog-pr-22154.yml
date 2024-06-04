@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "Blocking consecutive attacks costs increasing stamina damage"
+  - tweak: "Adds chat feedback for when you're knocked down by trying to block with high stamina damage"
