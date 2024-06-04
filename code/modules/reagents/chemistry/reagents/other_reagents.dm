@@ -126,8 +126,9 @@
 /datum/reagent/water
 	name = "Water"
 	description = "An ubiquitous chemical substance that is composed of hydrogen and oxygen."
-	color = "#609bdf77" // rgb: 96, 155, 223, 77 (alpha)
+	color = "#00B8FF" // rgb: 170, 170, 170, 77 (alpha)
 	taste_description = "water"
+	evaporation_rate = 4 // water goes fast
 	glass_icon_state = "glass_clear"
 	glass_name = "glass of water"
 	glass_desc = "The father of all refreshments."

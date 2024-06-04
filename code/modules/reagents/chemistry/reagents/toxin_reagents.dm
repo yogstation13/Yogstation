@@ -7,6 +7,7 @@
 	color = "#CF3600" // rgb: 207, 54, 0
 	taste_description = "bitterness"
 	taste_mult = 1.2
+	evaporation_rate = 3 //6x faster than normal chems
 	var/toxpwr = 1.5
 	var/silent_toxin = FALSE //won't produce a pain message when processed by liver/Life(seconds_per_tick = SSMOBS_DT, times_fired) if there isn't another non-silent toxin present.
 

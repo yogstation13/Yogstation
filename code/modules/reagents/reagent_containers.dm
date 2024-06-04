@@ -170,8 +170,13 @@
 		if(QDELETED(src))
 			return
 
-	if(!isturf(target)) // it all ends up on the floor because gravity exists
-		reagents.reaction(get_turf(target), TOUCH)
+	playsound(target, 'sound/effects/slosh.ogg', 25, TRUE)
+	var/image/splash_animation = image('icons/effects/effects.dmi', target, "splash")
+	if(isturf(target))
+		splash_animation = image('icons/effects/effects.dmi', target, "splash_floor")
+	splash_animation.color = mix_color_from_reagents(reagents.reagent_list)
+	flick_overlay_global(splash_animation, GLOB.clients, 1.0 SECONDS)
+
 	reagents.clear_reagents()
 
 /obj/item/reagent_containers/microwave_act(obj/machinery/microwave/M)
