@@ -91,6 +91,8 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.set_holdable(null, list(/obj/item/storage/secure/briefcase))
 	STR.max_w_class = 8 //??
+	var/datum/component/keypad_lock/keypad = GetComponent(/datum/component/keypad_lock)
+	keypad.lock_strength = 1 //Safes cannot be forced open, only hacked
 
 /obj/item/storage/secure/safe/PopulateContents()
 	new /obj/item/paper(src)

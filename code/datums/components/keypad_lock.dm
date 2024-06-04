@@ -18,8 +18,16 @@
 	var/panel_open = FALSE
 	//Last viable keypad_input
 	var/memory_code = ""
-	//If it is emagged
-	var/is_emaged = FALSE
+	//If it is forced
+	var/is_forced = FALSE
+	//Strength of lock: determines how easy/hard it is to bypass lock
+	//0 = force open and hacking | 1 = hacking only | 2 = hacking only and no reseting memory
+	var/lock_strength = 0
+	//List of items that can force keypad locks
+	var/list/keypad_tools = list(/obj/item/jawsoflife, 
+							/obj/item/umbral_tendrils,
+							/obj/item/mantis/blade,
+							/obj/item/melee/arm_blade)
 
 /datum/component/keypad_lock/Initialize(keypad_code = access_code, lock_state = lock_status, keypad_text = keypad_input, lock_text = lock_display)
 	. = ..()
@@ -40,6 +48,7 @@
 	RegisterSignal(parent, COMSIG_ATOM_TOOL_ACT(TOOL_SCREWDRIVER), PROC_REF(on_screwdriver_act))
 	RegisterSignal(parent, COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL), PROC_REF(on_multitool_act))
 	RegisterSignal(parent, COMSIG_ATOM_EMAG_ACT, PROC_REF(emag_act))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_atom_attackby))
 
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_ICON_STATE, PROC_REF(on_update_icon_state))
@@ -54,6 +63,7 @@
 		COMSIG_ATOM_TOOL_ACT(TOOL_SCREWDRIVER),
 		COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL),
 		COMSIG_ATOM_EMAG_ACT,
+		COMSIG_ATOM_ATTACKBY,
 		COMSIG_ATOM_EXAMINE,
 		COMSIG_ATOM_UPDATE_ICON_STATE,
 	))
@@ -67,19 +77,19 @@
 /datum/component/keypad_lock/proc/on_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	examine_list += "The service panel is currently <b>[panel_open ? "unscrewed" : "screwed shut"]</b>."
-	if(is_emaged)
+	if(is_forced)
 		examine_list += span_warning("The keypad's display is bugged and requires a reset.")
 
 /datum/component/keypad_lock/proc/on_screwdriver_act(atom/source, mob/user, obj/item/tool)
 	SIGNAL_HANDLER
 	panel_open = !panel_open
-	user.balloon_alert(user, "panel [panel_open ? "opened" : "closed"]")
+	user.balloon_alert(user, "Panel [panel_open ? "opened" : "closed"]")
 	return COMPONENT_BLOCK_TOOL_ATTACK
 
 /datum/component/keypad_lock/proc/on_multitool_act(atom/source, mob/user, obj/item/tool)
 	SIGNAL_HANDLER
 	if(!panel_open)
-		user.balloon_alert(user, "panel is closed!")
+		user.balloon_alert(user, "Panel is closed!")
 		return COMPONENT_BLOCK_TOOL_ATTACK
 	else if(!src.lock_status)
 		INVOKE_ASYNC(src, PROC_REF(hack_open), source, user, tool)
@@ -94,26 +104,30 @@
 	var/access_char = ""
 	var/memory_char = ""
 
-	//Reset code if unlocked and it has an access_code
+	//Reset code if unlocked, it has an access_code, and if lock is weak enough
 	if(!src.lock_status)
-		if(access_code == "")
-			user.balloon_alert(user, "memory already reset!")
+		if(lock_strength == 2)
+			user.balloon_alert(user, "Encryption too strong!")
 			return
-		user.balloon_alert(user, "reseting memory")
-		if(!tool.use_tool(parent, user, 10 SECONDS))
-			user.balloon_alert(user, "interupted!")
-			return
-		user.balloon_alert(user, "memory reset")
-		src.access_code = ""
-		src.keypad_input = "INPUT NEW 5 DIGIT CODE"
-		src.replace_message = TRUE
+		else
+			if(access_code == "")
+				user.balloon_alert(user, "Memory already reset!")
+				return
+			user.balloon_alert(user, "Reseting memory")
+			if(!tool.use_tool(parent, user, 10 SECONDS))
+				user.balloon_alert(user, "Interupted!")
+				return
+			user.balloon_alert(user, "Memory reset")
+			src.access_code = ""
+			src.keypad_input = "INPUT NEW 5 DIGIT CODE"
+			src.replace_message = TRUE
 	//Fallout like hacking if locked
 	//Cows and Bulls but without the Cows
 	else
 		if(length(memory_code) != 5)
-			user.balloon_alert(user, "memory empty!")
+			user.balloon_alert(user, "Memory empty!")
 			return
-		user.balloon_alert(user, "checking memory")
+		user.balloon_alert(user, "Checking memory")
 		//Find correct_digits
 		for(var/i in 1 to 5)
 			access_char = access_code[i]
@@ -126,8 +140,39 @@
 
 /datum/component/keypad_lock/proc/emag_act(mob/user, obj/item/card/emag)
 	SIGNAL_HANDLER
+	force_open()
+
+/datum/component/keypad_lock/proc/on_atom_attackby(datum/source, obj/item/I, mob/user, params)
+	SIGNAL_HANDLER
+	//Check to see if locked and used appropriate item
+	if(lock_status && is_type_in_list(I, keypad_tools))
+		//Check if lock is weak enough
+		if(lock_strength != 0)
+			user.balloon_alert(user, "Lock is too strong!")
+			return
+		else
+			user.visible_message(span_warning("[user] starts using [I] to force [source] open!"), span_notice("You start using [I] to force [source] open."))
+			playsound(source, 'sound/machines/airlock_alien_prying.ogg', 10)
+			if(!do_after(user, 10 SECONDS, user))
+				user.balloon_alert(user, "You were interrupted!")
+				return
+			force_open()
+
+/datum/component/keypad_lock/proc/on_update_icon_state(obj/source)
+	SIGNAL_HANDLER
+	if(is_forced)
+		source.icon_state = source.base_icon_state + "_forced"
+	else
+		source.icon_state = source.base_icon_state + "[src.lock_status ? "_locked" : null]"
+
+/datum/component/keypad_lock/proc/on_interact(atom/source, mob/user, obj/item/tool)
+	SIGNAL_HANDLER
+	//Show UI
+	INVOKE_ASYNC(src, PROC_REF(ui_interact), user)
+
+/datum/component/keypad_lock/proc/force_open(mob/user)
 	//Unlock item and show clues of being emaged
-	is_emaged = TRUE
+	is_forced = TRUE
 	src.lock_status = FALSE
 	src.lock_display = "ERROR"
 	SEND_SIGNAL(parent, COMSIG_TRY_STORAGE_SET_LOCKSTATE, lock_status)
@@ -135,17 +180,6 @@
 	user.visible_message(span_warning("Sparks fly out of [parent]'s keypad!"))
 	playsound(parent, "sparks", 50, 1)
 	return COMPONENT_BLOCK_TOOL_ATTACK
-
-/datum/component/keypad_lock/proc/on_update_icon_state(obj/source)
-	SIGNAL_HANDLER
-	if(is_emaged)
-		source.icon_state = source.base_icon_state + "_emaged"
-	else
-		source.icon_state = source.base_icon_state + "[src.lock_status ? "_locked" : null]"
-
-/datum/component/keypad_lock/proc/on_interact(atom/source, mob/user)
-	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, PROC_REF(ui_interact), user)
 
 /datum/component/keypad_lock/ui_interact(mob/user, datum/tgui/ui) //Thanks chubby for helping me with TGUI 
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -220,7 +254,7 @@
 					src.keypad_input = "INPUT 5 DIGIT CODE"
 				error_message = FALSE
 				replace_message = TRUE
-				is_emaged = FALSE
+				is_forced = FALSE
 				src.lock_status = TRUE
 				lock_display = "LOCKED"
 				SEND_SIGNAL(parent, COMSIG_TRY_STORAGE_SET_LOCKSTATE, lock_status)
