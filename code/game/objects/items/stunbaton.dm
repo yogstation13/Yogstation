@@ -214,7 +214,7 @@
 /obj/item/melee/baton/proc/baton_stun(mob/living/L, mob/living/user)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK)) //No message; check_shields() handles that
+		if(H.check_shields(src, stamina_damage, "[user]'s [name]", MELEE_ATTACK)) //No message; check_shields() handles that
 			playsound(L, 'sound/weapons/genhit.ogg', 50, 1)
 			return 0
 	if(iscyborg(loc))

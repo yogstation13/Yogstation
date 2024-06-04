@@ -789,5 +789,30 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 /datum/AI_Module/upgrade/mecha_domination/upgrade(mob/living/silicon/ai/AI)
 	AI.can_dominate_mechs = TRUE //Yep. This is all it does. Honk!
 
+/// AI Laser Gun: Upgrades the ability to shoot lasers from cameras. If they do not have it, gives the non-upgraded ability.
+/datum/AI_Module/upgrade/camera_laser_gun
+	name = "Upgrade Camera Laser Gun"
+	description = "Upgrades your ability to shoot lasers from any camera at targets. \
+	Should you not already have the ability, grants the non-upgraded ability. Upgrade is done immediately upon purchase."
+	cost = 30
+	upgrade = TRUE
+	unlock_text = span_notice("You remove the safety controls on your camera light program.")
+	unlock_sound = 'sound/items/rped.ogg'
+
+/datum/AI_Module/upgrade/camera_laser_gun/upgrade(mob/living/silicon/ai/AI)
+	var/datum/action/innate/ai/ranged/cameragun/ai_action
+	for(var/datum/action/innate/ai/ranged/cameragun/listed_action in AI.actions)
+		ai_action = listed_action
+		// Benefits: 2x damage, more wound, and setting people on fire.
+		ai_action.proj_type = /obj/projectile/beam/laser/heavylaser
+
+	if(ai_action)
+		unlock_text = span_notice("Optimization detected in camera light program... Changes applied.")
+		return
+	
+	// For non-traitor AIs. Non-upgraded ability.
+	ai_action = new
+	ai_action.Grant(AI)
+
 #undef DEFAULT_DOOMSDAY_TIMER
 #undef DOOMSDAY_ANNOUNCE_INTERVAL

@@ -71,79 +71,50 @@
 						return BULLET_ACT_FORCE_PIERCE
 
 	if(!(P.original == src && P.firer == src)) //can't block or reflect when shooting yourself
-		if(P.reflectable & REFLECT_NORMAL)
-			if(check_reflect(def_zone)) // Checks if you've passed a reflection% check
-				visible_message(span_danger("The [P.name] gets reflected by [src]!"), \
-								span_userdanger("The [P.name] gets reflected by [src]!"))
-				if(P.hitscan) // hitscan check
-					P.store_hitscan_collision(P.trajectory.copy_to())
-				// Find a turf near or on the original location to bounce to
-				if(!isturf(loc)) //Open canopy mech (ripley) check. if we're inside something and still got hit
-					P.force_hit = TRUE //The thing we're in passed the bullet to us. Pass it back, and tell it to take the damage.
-					loc.bullet_act(P)
-					return BULLET_ACT_HIT
-				if(P.starting)
-					var/new_x = P.starting.x + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
-					var/new_y = P.starting.y + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
-					var/turf/curloc = get_turf(src)
+		var/shield_check = check_shields(P, P.damage, "the [P.name]", PROJECTILE_ATTACK, P.armour_penetration, P.damage_type)
+		if(shield_check & SHIELD_DODGE) // skill issue, just dodge
+			playsound(src, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, 1)
+			return BULLET_ACT_FORCE_PIERCE
 
-					// redirect the projectile
-					P.original = locate(new_x, new_y, P.z)
-					P.starting = curloc
-					P.firer = src
-					P.yo = new_y - curloc.y
-					P.xo = new_x - curloc.x
-					var/new_angle_s = P.Angle + rand(120,240)
-					while(new_angle_s > 180)	// Translate to regular projectile degrees
-						new_angle_s -= 360
-					P.setAngle(new_angle_s)
+		if(shield_check & SHIELD_REFLECT)
+			if(P.hitscan) // hitscan check
+				P.store_hitscan_collision(P.trajectory.copy_to())
 
-				return BULLET_ACT_FORCE_PIERCE // complete projectile permutation
+			// Find a turf near or on the original location to bounce to
+			if(!isturf(loc)) //Open canopy mech (ripley) check. if we're inside something and still got hit
+				P.force_hit = TRUE //The thing we're in passed the bullet to us. Pass it back, and tell it to take the damage.
+				loc.bullet_act(P)
+				return BULLET_ACT_HIT
 
-		if(check_shields(P, P.damage, "the [P.name]", PROJECTILE_ATTACK, P.armour_penetration))
+			if(P.starting)
+				var/new_x = P.starting.x + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
+				var/new_y = P.starting.y + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
+				var/turf/curloc = get_turf(src)
+
+				// redirect the projectile
+				P.original = locate(new_x, new_y, P.z)
+				P.starting = curloc
+				P.yo = new_y - curloc.y
+				P.xo = new_x - curloc.x
+
+			P.firer = src
+			var/new_angle_s = P.Angle + rand(120,240)
+			while(new_angle_s > 180)	// Translate to regular projectile degrees
+				new_angle_s -= 360
+			P.setAngle(new_angle_s)
+			playsound(src, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, 1)
+			return BULLET_ACT_FORCE_PIERCE
+		
+		if(shield_check & SHIELD_BLOCK)
 			P.on_hit(src, 100, def_zone)
 			return BULLET_ACT_HIT
 
 	return ..(P, def_zone)
 
-/mob/living/carbon/human/proc/check_reflect(def_zone) //Reflection checks for anything in your l_hand, r_hand, or wear_suit based on the reflection chance of the object
-	if(wear_suit)
-		if(wear_suit.IsReflect(def_zone) == 1)
-			return 1
-	for(var/obj/item/I in held_items)
-		if(I.IsReflect(def_zone) == 1)
-			return 1
-	return 0
-
 /mob/living/carbon/human/proc/check_shields(atom/AM, damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0, damage_type = BRUTE)
-	//YOGS EDIT BEGIN
-	if(SEND_SIGNAL(src, COMSIG_MOB_CHECK_SHIELDS, AM, damage, attack_text, attack_type, armour_penetration))	
-		return TRUE 
-	//YOGS EDIT END
-	var/block_chance_modifier = round(damage / -3)
-	for(var/obj/item/I in held_items)
-		if(!istype(I, /obj/item/clothing))
-			var/final_block_chance = I.block_chance - (clamp((armour_penetration-I.armour_penetration)/2,0,100)) + block_chance_modifier //So armour piercing blades can still be parried by other blades, for example
-			if(I.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
-				if (istype(I, /obj/item/shield))
-					var/obj/item/shield/S = I
-					return S.on_shield_block(src, AM, attack_text, damage, attack_type)
-				return TRUE
-	if(wear_suit)
-		var/final_block_chance = wear_suit.block_chance - (clamp((armour_penetration-wear_suit.armour_penetration)/2,0,100)) + block_chance_modifier
-		if(wear_suit.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
-			return TRUE
-	if(w_uniform)
-		var/final_block_chance = w_uniform.block_chance - (clamp((armour_penetration-w_uniform.armour_penetration)/2,0,100)) + block_chance_modifier
-		if(w_uniform.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
-			return TRUE
-	if(wear_neck)
-		var/final_block_chance = wear_neck.block_chance - (clamp((armour_penetration-wear_neck.armour_penetration)/2,0,100)) + block_chance_modifier
-		if(wear_neck.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
-			return TRUE
-	if(SEND_SIGNAL(src, COMSIG_HUMAN_CHECK_SHIELDS, AM, damage, attack_text, attack_type, armour_penetration, damage_type) & SHIELD_BLOCK)
-		return TRUE
-	return FALSE
+	var/block_result = SEND_SIGNAL(src, COMSIG_HUMAN_CHECK_SHIELDS, AM, damage, attack_text, attack_type, armour_penetration, damage_type)
+	SEND_SIGNAL(src, COMSIG_HUMAN_AFTER_BLOCK, block_result)
+	return block_result
 
 /mob/living/carbon/human/proc/check_block()
 	if(mind)
@@ -178,7 +149,7 @@
 /mob/living/carbon/human/attacked_by(obj/item/I, mob/living/user)
 	if(!I || !user)
 		return 0
-
+	
 	var/obj/item/bodypart/affecting
 	if(user == src)
 		affecting = get_bodypart(check_zone(user.zone_selected)) //stabbing yourself always hits the right target
@@ -188,19 +159,22 @@
 			zone_hit_chance += 10
 		affecting = get_bodypart(ran_zone(user.zone_selected, zone_hit_chance))
 	var/target_area = parse_zone(check_zone(user.zone_selected)) //our intended target
+
+	SSblackbox.record_feedback("nested tally", "item_used_for_combat", 1, list("[I.force]", "[I.type]"))
+	SSblackbox.record_feedback("tally", "zone_targeted", 1, target_area)
+
+	// the attacked_by code varies among species
+	. = dna.species.spec_attacked_by(I, user, affecting, src)
+
+	if(!.) // failed
+		return
+	
 	if(affecting)
 		if(I.force && I.damtype != STAMINA && affecting.status == BODYPART_ROBOTIC) // Bodpart_robotic sparks when hit, but only when it does real damage
 			if(I.force >= 5 && !isinsurgent(src)) //small change, insurgent ipcs don't give off sparks if hit
 				do_sparks(1, FALSE, loc)
 
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)
-
-	SSblackbox.record_feedback("nested tally", "item_used_for_combat", 1, list("[I.force]", "[I.type]"))
-	SSblackbox.record_feedback("tally", "zone_targeted", 1, target_area)
-
-	// the attacked_by code varies among species
-	return dna.species.spec_attacked_by(I, user, affecting, src)
-
 
 /mob/living/carbon/human/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
 	if(user.combat_mode)
@@ -262,14 +236,14 @@
 	if(can_inject(M, 1, affecting))//Thick suits can stop monkey bites.
 		if(..()) //successful monkey bite, this handles disease contraction.
 			var/damage = rand(1, 3)
-			if(check_shields(M, damage, "the [M.name]"))
+			if(check_shields(M, damage, "the [M.name]", UNARMED_ATTACK))
 				return 0
 			if(stat != DEAD)
 				apply_damage(damage, BRUTE, affecting, run_armor_check(affecting, MELEE))
 		return 1
 
 /mob/living/carbon/human/attack_alien(mob/living/carbon/alien/humanoid/M, modifiers)
-	if(check_shields(M, 0, "the [M.name]"))
+	if(check_shields(M, 0, "the [M.name]", UNARMED_ATTACK))
 		visible_message(span_danger("[M] attempted to touch [src]!"))
 		return 0
 
@@ -325,7 +299,7 @@
 
 	if(..()) //successful larva bite.
 		var/damage = rand(1, 3)
-		if(check_shields(L, damage, "the [L.name]"))
+		if(check_shields(L, damage, "the [L.name]", UNARMED_ATTACK))
 			return 0
 		if(stat != DEAD)
 			L.amount_grown = min(L.amount_grown + damage, L.max_grown)
@@ -361,7 +335,7 @@
 			damage = rand(10, 35)
 			wound_mod = -90 // 35^1.4=145, 145-90=55
 
-		if(check_shields(M, damage, "the [M.name]"))
+		if(check_shields(M, damage, "the [M.name]", UNARMED_ATTACK))
 			return 0
 
 		var/dam_zone = dismembering_strike(M, pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
@@ -379,6 +353,8 @@
 		M.selected.action(src)
 	else if(M.occupant.combat_mode)
 		M.do_attack_animation(src)
+		if(check_shields(M, punch_force, "[M]", MELEE_ATTACK, damage_type = M.damtype)) // you sure can try
+			return
 		if(M.damtype == BRUTE)
 			step_away(src,M,15)
 		var/obj/item/bodypart/temp = get_bodypart(pick(BODY_ZONE_CHEST, BODY_ZONE_CHEST, BODY_ZONE_CHEST, BODY_ZONE_HEAD))

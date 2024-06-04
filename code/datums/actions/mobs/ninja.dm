@@ -24,7 +24,7 @@
 	name = "Create Throwing Stars (3E)"
 	desc = "Creates some throwing stars"
 	button_icon_state = "throwingstar"
-	button_icon = 'icons/obj/weapons/misc.dmi'
+	button_icon = 'icons/obj/weapons/thrown.dmi'
 
 /datum/action/item_action/ninjanet
 	name = "Energy Net (25E)"
@@ -36,7 +36,7 @@
 	name = "Recall Energy Katana (Variable Cost)"
 	desc = "Teleports the Energy Katana linked to this suit to its wearer, cost based on distance."
 	button_icon_state = "energy_katana"
-	button_icon = 'icons/obj/weapons/swords.dmi'
+	button_icon = 'icons/obj/weapons/longsword.dmi'
 
 /datum/action/item_action/ninja_stealth
 	name = "Toggle Stealth"

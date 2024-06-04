@@ -82,7 +82,6 @@
 	},
 /obj/item/melee/sabre{
 	armour_penetration = 0;
-	block_chance = 10;
 	color = "#808080";
 	desc = "A sword of ancient design. Strangely, the blade is made of stone....";
 	force = 6;

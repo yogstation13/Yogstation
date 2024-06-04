@@ -1,7 +1,7 @@
 /datum/computer_file/program/chemscan
 	filename = "chemscan"
 	filedesc = "Chemical Scanner"
-	category = PROGRAM_CATEGORY_MED
+	category = PROGRAM_CATEGORY_DEVICE
 	program_icon_state = "air"
 	extended_desc = "A small built-in sensor reads out the chemicals in an item."
 	network_destination = "chem scan"

@@ -68,10 +68,9 @@
 	name = "donut box"
 	desc = "Mmm. Donuts."
 	icon = 'icons/obj/food/containers.dmi'
-	icon_state = "donutbox_inner"
+	icon_state = "donutbox"
 	icon_type = "donut"
 	spawn_type = /obj/item/reagent_containers/food/snacks/donut
-	fancy_open = TRUE
 	appearance_flags = KEEP_TOGETHER
 
 /obj/item/storage/fancy/donut_box/Initialize(mapload)

@@ -90,7 +90,7 @@ Stabilized extracts:
 
 /obj/item/slimecross/stabilized/sepia
 	colour = "sepia"
-	effect_desc = "Randomly adjusts the owner's speed."
+	effect_desc = "Adjusts the speed at which the owner does actions."
 
 /obj/item/slimecross/stabilized/cerulean
 	colour = "cerulean"
