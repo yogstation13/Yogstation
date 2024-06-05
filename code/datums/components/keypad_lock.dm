@@ -99,7 +99,9 @@
 
 /datum/component/keypad_lock/proc/hack_open(atom/source, mob/user, obj/item/tool)
 	//How many digits of memory_code match and are in the same place as in access_code
-	var/correct_digits = 0
+	var/bulls = 0
+	//How many digits of memory_code match but are in the wrong position
+	var/cows = 0
 	//Character variables for checking
 	var/access_char = ""
 	var/memory_char = ""
@@ -121,22 +123,24 @@
 			src.access_code = ""
 			src.keypad_input = "INPUT NEW 5 DIGIT CODE"
 			src.replace_message = TRUE
-	//Fallout like hacking if locked
-	//Cows and Bulls but without the Cows
+	//Cows and Bulls
 	else
 		if(length(memory_code) != 5)
 			user.balloon_alert(user, "Memory empty!")
 			return
 		user.balloon_alert(user, "Checking memory")
-		//Find correct_digits
+		//Find bulls
 		for(var/i in 1 to 5)
 			access_char = access_code[i]
 			memory_char = memory_code[i]
 			if(memory_char == access_char)
-				correct_digits += 1
+				bulls += 1
+			else if(findtext(access_code, memory_char))
+				cows += 1
 		//Send messages to user
-		to_chat(user, span_info("Entry [memory_code] denied."))
-		to_chat(user, span_info("[correct_digits]/5 correct."))
+		to_chat(user, span_warning("Entry [memory_code] denied.")) //warning to help separate multiple memory messages
+		to_chat(user, span_info("[bulls]/5 correct."))
+		to_chat(user, span_info("[cows]/5 correct but in wrong position."))
 
 /datum/component/keypad_lock/proc/emag_act(mob/user, obj/item/card/emag)
 	SIGNAL_HANDLER
