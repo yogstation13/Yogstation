@@ -811,7 +811,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 		unlock_text = span_notice("Optimization detected in camera light program... Changes applied.")
 		return
 	
-	// For non-traitor AIs. Non-upgraded ability.
+	// Non-upgraded in case they do not have it already. Mainly for non-antag AIs.
 	ai_action = new
 	ai_action.Grant(AI)
 
