@@ -1100,8 +1100,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 			dragon_shapeshift.Grant(user)
 		if(3)
 			to_chat(user, span_danger("You feel like you could walk straight through lava now."))
-			H.weather_immunities |= "lava"
-			H.weather_immunities |= "ash"
+			H.weather_immunities |= WEATHER_LAVA
+			H.weather_immunities |= WEATHER_ASH
 
 	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
