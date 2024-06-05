@@ -140,11 +140,11 @@
 
 /datum/component/keypad_lock/proc/emag_act(mob/user, obj/item/card/emag)
 	SIGNAL_HANDLER
-	force_open()
+	force_open(user)
 
 /datum/component/keypad_lock/proc/on_atom_attackby(datum/source, obj/item/I, mob/user, params)
 	SIGNAL_HANDLER
-	//Check to see if locked and used appropriate item
+	//Check to see if locked and using appropriate item
 	if(lock_status && is_type_in_list(I, keypad_tools))
 		//Check if lock is weak enough
 		if(lock_strength != 0)
@@ -156,7 +156,7 @@
 			if(!do_after(user, 10 SECONDS, user))
 				user.balloon_alert(user, "You were interrupted!")
 				return
-			force_open()
+			force_open(user)
 
 /datum/component/keypad_lock/proc/on_update_icon_state(obj/source)
 	SIGNAL_HANDLER
@@ -171,7 +171,7 @@
 	INVOKE_ASYNC(src, PROC_REF(ui_interact), user)
 
 /datum/component/keypad_lock/proc/force_open(mob/user)
-	//Unlock item and show clues of being emaged
+	//Unlock item and show clues of being forced
 	is_forced = TRUE
 	src.lock_status = FALSE
 	src.lock_display = "ERROR"
