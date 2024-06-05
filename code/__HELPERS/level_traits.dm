@@ -30,3 +30,5 @@ GLOBAL_VAR(station_level_z_scratch)
 #define is_secret_level(z) SSmapping.level_trait(z, ZTRAIT_SECRET)
 
 #define is_reebe(z) SSmapping.level_trait(z, ZTRAIT_REEBE)
+
+#define is_backrooms(z) SSmapping.level_trait(z, ZTRAIT_PROCEDURAL_MAINTS)

@@ -51,8 +51,8 @@
 
 	belt = /obj/item/storage/belt/utility/full
 	ears = /obj/item/radio/headset/headset_sci
-	uniform = /obj/item/clothing/under/rank/roboticist
-	uniform_skirt = /obj/item/clothing/under/rank/roboticist/skirt
+	uniform = /obj/item/clothing/under/rank/rnd/roboticist
+	uniform_skirt = /obj/item/clothing/under/rank/rnd/roboticist/skirt
 	suit = /obj/item/clothing/suit/toggle/labcoat
 
 	backpack = /obj/item/storage/backpack/science

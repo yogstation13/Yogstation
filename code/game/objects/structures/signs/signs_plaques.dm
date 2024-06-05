@@ -26,21 +26,6 @@
 	desc = "Next to the extremely long list of names and job titles, there is a drawing of a little child. The child appears to be retarded. Beneath the image, someone has scratched the word \"PACKETS\"."
 	icon_state = "kiddieplaque"
 
-/obj/structure/sign/plaques/ai_password
-	name = "\improper AI default password"
-	desc = "This plaque contains the default password for AI control consoles onboard this station."
-	var/control_code = "BUG"
-
-/obj/structure/sign/plaques/ai_password/Initialize(mapload)
-	. = ..()
-	control_code = GLOB.ai_control_code
-
-/obj/structure/sign/plaques/ai_password/examine(mob/living/user)
-	. = ..()
-	if(Adjacent(user))
-		. += span_notice("The following digits are stamped into the plaque: [control_code]")
-	else
-		. += span_notice("You must be closer to read the code.")
 
 /obj/structure/sign/plaques/kiddie/badger
 	name = "\improper Remembrance Plaque"

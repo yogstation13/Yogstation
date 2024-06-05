@@ -49,15 +49,6 @@
 	},
 /turf/open/floor/pod/dark,
 /area/clerk)
-"h" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/obj/structure/chair/americandiner{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/clerk)
 "i" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
@@ -231,6 +222,15 @@
 	},
 /turf/open/floor/pod/dark,
 /area/clerk)
+"z" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/structure/chair/americandiner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/clerk)
 "A" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -305,18 +305,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/clerk)
-"I" = (
-/obj/structure/rack,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 1
-	},
-/obj/effect/spawner/lootdrop/plushies,
-/turf/open/floor/pod/dark,
-/area/clerk)
-"J" = (
+"H" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
 	},
@@ -327,6 +316,20 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower,
+/obj/machinery/light_switch{
+	pixel_y = 25
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"I" = (
+/obj/structure/rack,
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/spawner/lootdrop/plushies,
 /turf/open/floor/pod/dark,
 /area/clerk)
 "K" = (
@@ -381,8 +384,8 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/poddoor/multi_tile/four_tile_hor{
-	id = "giftshop";
-	armor = list("melee" = 50, "bullet" = 80, "laser" = 80, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70)
+	armor = list("melee" = 50, "bullet" = 80, "laser" = 80, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70);
+	id = "giftshop"
 	},
 /turf/open/floor/plasteel/dark,
 /area/clerk)
@@ -477,9 +480,9 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/toy/plush/nukeplushie{
-	pixel_y = 7;
+	desc = "A stuffed toy that resembles a syndicate nuclear operative. The tag claims operatives to be purely fictitious. This one seems to be skilled at guitar.";
 	pixel_x = 4;
-	desc = "A stuffed toy that resembles a syndicate nuclear operative. The tag claims operatives to be purely fictitious. This one seems to be skilled at guitar."
+	pixel_y = 7
 	},
 /obj/item/instrument/eguitar{
 	pixel_x = 4;
@@ -547,7 +550,7 @@ o
 (5,1,1) = {"
 Y
 a
-J
+H
 Z
 d
 t
@@ -570,7 +573,7 @@ T
 a
 c
 p
-h
+z
 a
 E
 x

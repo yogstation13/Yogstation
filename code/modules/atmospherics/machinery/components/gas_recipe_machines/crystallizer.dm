@@ -296,7 +296,7 @@
 		requirements = list("To create [selected_recipe.name] you will need:")
 		for(var/gas_type in selected_recipe.requirements)
 			var/amount_consumed = selected_recipe.requirements[gas_type]
-			requirements += "-[amount_consumed] moles of [initial(gas_type)]"
+			requirements += "-[amount_consumed] moles of [GLOB.gas_data.names[gas_type]]"
 		requirements += "In a temperature range between [selected_recipe.min_temp] K and [selected_recipe.max_temp] K"
 		requirements += "The crystallization reaction will be [selected_recipe.energy_release ? (selected_recipe.energy_release > 0 ? "exothermic" : "endothermic") : "thermally neutral"]"
 	data["requirements"] = requirements.Join("\n")

@@ -31,7 +31,7 @@
 	starting_node = TRUE
 	display_name = "Mechanical Exosuits"
 	description = "Mechanized exosuits that are several magnitudes stronger and more powerful than the average human."
-	design_ids = list("mecha_tracking", "mechacontrol", "mechapower", "mech_recharger", "ripley_chassis", "firefighter_chassis", "ripley_torso", "ripley_left_arm", "ripley_right_arm", "ripley_left_leg", "ripley_right_leg",
+	design_ids = list("mecha_tracking", "mechacontrol", "mechapower", "mech_recharger", "ripley_chassis", "ripley_torso", "ripley_left_arm", "ripley_right_arm", "ripley_left_leg", "ripley_right_leg",
 	"ripley_main", "ripley_peri", "ripleyupgrade", "mech_hydraulic_clamp")
 
 /datum/techweb_node/mech_tools
@@ -375,7 +375,7 @@
 	display_name = "Cyborg Upgrades: Advanced Medical"
 	description = "Advanced upgrades that focus on cyborgs with a medical-related module."
 	prereq_ids = list("cyborg_upgrades_medical", "exp_tools")
-	design_ids = list("borg_upgrade_piercinghypospray", "borg_upgrade_surgerykit", "borg_upgrade_analyzer")
+	design_ids = list("borg_upgrade_piercinghypospray", "borg_upgrade_surgicalomnitool", "borg_upgrade_analyzer")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 
 /datum/techweb_node/cyborg_upgrades_mining
@@ -399,7 +399,7 @@
 	display_name = "Artificial Intelligence"
 	description = "AI unit research."
 	prereq_ids = list("base")
-	design_ids = list("server_cabinet", "ai_data_core", "ai_core_display", "ai_server_overview", "ram1", "basic_ai_cpu", "ai_resource_distribution", "aifixer", "safeguard_module", "onehuman_module", "protectstation_module", "quarantine_module", "oxygen_module", "freeform_module", "reset_module", "purge_module", "remove_module", "freeformcore_module", "asimov_module", "crewsimov_module", "pranksimov_module", "paladin_module", "tyrant_module", "overlord_module", "ceo_module", "cowboy_module", "mother_module", "silicop_module", "construction_module", "metaexperiment_module", "researcher_module", "siliconcollective_module", "spotless_module", "clown_module", "chapai_module", "druid_module", "detective_module", "reporter_module", "wafflehouse_module", "default_module", "borg_ai_control", "mecha_tracking_ai_control", "intellicard")
+	design_ids = list("server_cabinet", "networking_machine", "subcontroller", "synth_pod", "ai_data_core", "ai_core_display", "ai_server_overview", "ram1", "basic_ai_cpu", "aifixer", "safeguard_module", "onehuman_module", "reporter_module", "protectstation_module", "quarantine_module", "oxygen_module", "freeform_module", "reset_module", "purge_module", "remove_module", "freeformcore_module", "asimov_module", "crewsimov_module", "paladin_module", "tyrant_module", "overlord_module", "ceo_module", "cowboy_module", "mother_module", "silicop_module", "construction_module", "metaexperiment_module", "researcher_module", "siliconcollective_module", "spotless_module", "clown_module", "chapai_module", "druid_module", "detective_module", "default_module", "borg_ai_control", "mecha_tracking_ai_control", "intellicard")
 	research_costs = list(TECHWEB_POINT_TYPE_AI = 1000)
 
 /////////////////////////EMP tech/////////////////////////
@@ -455,7 +455,7 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)  //they are really shitty
 	design_ids = list("hdd_basic", "hdd_advanced", "hdd_super", "hdd_cluster", "ssd_small", "ssd_micro", "netcard_basic", "netcard_advanced", "netcard_wired",
 	"portadrive_basic", "portadrive_advanced", "portadrive_super", "cardslot", "secondcardslot", "aislot", "miniprinter", "APClink", "bat_control", "bat_normal", "bat_advanced",
-	"bat_super", "bat_micro", "bat_nano", "cpu_normal", "pcpu_normal", "cpu_small", "pcpu_small", "sensorpackage")
+	"bat_super", "bat_micro", "bat_nano", "cpu_normal", "pcpu_normal", "cpu_small", "pcpu_small", "sensorpackage", "aiinterface")
 
 /datum/techweb_node/computer_board_gaming
 	id = "computer_board_gaming"
@@ -531,6 +531,11 @@
 	design_ids = list("cybernetic_heart", "cybernetic_liver", "cybernetic_lungs", "cybernetic_stomach", "cybernetic_ears", "cybernetic_appendix")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 
+datum/techweb_node/cyber_organs/New()
+	..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
+		research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
+
 /datum/techweb_node/cyber_organs_upgraded
 	id = "cyber_organs_upgraded"
 	display_name = "Upgraded Cybernetic Organs"
@@ -538,6 +543,11 @@
 	prereq_ids = list("cyber_organs")
 	design_ids = list("cybernetic_heart_u", "cybernetic_liver_u", "cybernetic_lungs_u", "cybernetic_stomach_u")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
+
+/datum/techweb_node/cyber_organs_upgraded/New()
+	..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
+		research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 750)
 
 /datum/techweb_node/ipc_organs
 	id = "ipc_organs"
@@ -555,6 +565,11 @@
 	design_ids = list("ci-nutriment", "ci-breather", "ci-gloweyes", "ci-meson", "ci-welding", "ci-medhud", "ci-sechud", "ci-scihud", "ci-diaghud")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
+/datum/techweb_node/cyber_implants/New()
+	..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
+		research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1250)
+
 /datum/techweb_node/adv_cyber_implants
 	id = "adv_cyber_implants"
 	display_name = "Advanced Cybernetic Implants"
@@ -562,6 +577,11 @@
 	prereq_ids = list("neural_programming", "cyber_implants","integrated_HUDs")
 	design_ids = list("ci-toolset", "ci-surgery", "ci-reviver", "ci-nutrimentplus", "ci-magboots")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
+/datum/techweb_node/adv_cyber_implants/New()
+	..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
+		research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1250)
 
 /datum/techweb_node/combat_cyber_implants
 	id = "combat_cyber_implants"
@@ -571,6 +591,11 @@
 	design_ids = list("ci-antidrop", "ci-antistun", "ci-thrusters", "ci-jumpboots", "ci-wheelies")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
+/datum/techweb_node/combat_cyber_implants/New()
+	..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
+		research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1250)
+
 /datum/techweb_node/illegal_cyber_implants
 	id = "illegal_cyber_implants"
 	display_name = "Illegal Cybernetic Implants"
@@ -578,6 +603,11 @@
 	prereq_ids = list("combat_cyber_implants","syndicate_basic")
 	design_ids = list("ci-noslipwater")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+
+/datum/techweb_node/illegal_cyber_implants/New()
+	..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
+		research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 
 ////////////////////////Tools////////////////////////
 

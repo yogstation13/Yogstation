@@ -26,6 +26,8 @@
 	if(methods & INGEST)
 		if (quality && !HAS_TRAIT(M, TRAIT_AGEUSIA))
 			switch(quality)
+				if (DRINK_SODA)
+					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/soda)
 				if (DRINK_NICE)
 					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_nice)
 				if (DRINK_GOOD)
@@ -174,6 +176,7 @@
 	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 255, 255, 255
+	quality = DRINK_SODA
 	taste_mult = 1.5 // stop sugar drowning out other flavours
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	metabolization_rate = 2 * REAGENTS_METABOLISM
@@ -257,26 +260,25 @@
 	taste_description = "mint"
 
 /datum/reagent/consumable/frostoil/on_mob_life(mob/living/carbon/M)
-	var/cooling = 0
+	var/cooling = -10 * TEMPERATURE_DAMAGE_COEFFICIENT
 	switch(current_cycle)
 		if(1 to 15)
-			cooling = -10 * TEMPERATURE_DAMAGE_COEFFICIENT
 			if(holder.has_reagent(/datum/reagent/consumable/capsaicin))
 				holder.remove_reagent(/datum/reagent/consumable/capsaicin, 5)
 			if(isslime(M))
 				cooling = -rand(5,20)
 		if(15 to 25)
-			cooling = -20 * TEMPERATURE_DAMAGE_COEFFICIENT
+			cooling *= 2
 			if(isslime(M))
 				cooling = -rand(10,20)
 		if(25 to 35)
-			cooling = -30 * TEMPERATURE_DAMAGE_COEFFICIENT
+			cooling *= 3
 			if(prob(1) && !HAS_TRAIT(M, TRAIT_RESISTCOLD))
 				M.emote("shiver")
 			if(isslime(M))
 				cooling = -rand(15,20)
 		if(35 to INFINITY)
-			cooling = -40 * TEMPERATURE_DAMAGE_COEFFICIENT
+			cooling *= 4
 			if(prob(5) && !HAS_TRAIT(M, TRAIT_RESISTCOLD))
 				M.emote("shiver")
 			if(isslime(M))

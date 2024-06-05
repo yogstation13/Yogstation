@@ -7,6 +7,8 @@
 	obj_flags = CAN_BE_HIT | BLOCKS_CONSTRUCTION_DIR
 	density = TRUE
 	anchored = TRUE
+	pass_flags = LETPASSTHROW|PASSSTRUCTURE
+	layer = ABOVE_MOB_LAYER
 	pixel_y = -16
 
 	///Boolean on whether the railing should be cimable.
@@ -37,18 +39,20 @@
 /obj/structure/railing/attackby(obj/item/I, mob/living/user, params)
 	add_fingerprint(user)
 
-	if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP)
+	if(I.tool_behaviour == TOOL_WELDER && !user.combat_mode)
 		if(atom_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=0))
-				return
+				return TRUE
 
 			to_chat(user, span_notice("You begin repairing [src]..."))
 			if(I.use_tool(src, user, 40, volume=50))
 				update_integrity(max_integrity)
 				to_chat(user, span_notice("You repair [src]."))
+			return TRUE
 		else
 			to_chat(user, span_warning("[src] is already in good condition!"))
-		return
+		return TRUE
+	return ..()
 
 /obj/structure/railing/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()

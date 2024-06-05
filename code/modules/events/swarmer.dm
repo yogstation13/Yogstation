@@ -8,7 +8,7 @@
 	dynamic_should_hijack = TRUE
 
 /datum/round_event/spawn_swarmer/announce(fake)
-	priority_announce("Our long-range sensors have detected that your station's defenses have been breached by some sort of alien device.  We suggest searching for and destroying it as soon as possible.", "[command_name()] High-Priority Update")
+	priority_announce("Our long-range sensors have detected that your station's defenses have been breached by some sort of alien device. We suggest searching for and destroying it as soon as possible.", "[command_name()] High-Priority Update")
 
 /datum/round_event/spawn_swarmer
 	announceWhen = 70
@@ -18,7 +18,7 @@
 	for(var/x in GLOB.xeno_spawn)
 		var/turf/spawn_turf = x
 		var/light_amount = spawn_turf.get_lumcount()
-		if(light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD)
+		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
 			spawn_locs += spawn_turf
 	if(!spawn_locs.len)
 		message_admins("No valid spawn locations found in GLOB.xeno_spawn, aborting swarmer spawning...")

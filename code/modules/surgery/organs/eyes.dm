@@ -477,6 +477,9 @@
 	if(!isnull(light_flags))
 		set_light_flags(light_flags)
 
+/obj/item/organ/eyes/robotic/synth
+	flash_protect = 2
+
 /obj/item/organ/eyes/moth
 	name = "moth eyes"
 	desc = "These eyes can see just a little too well, light doesn't entirely agree with them."
@@ -490,29 +493,43 @@
 
 /obj/item/organ/eyes/polysmorph
 	name = "polysmorph eyes"
-	desc = "Eyes from a polysmorph, capable of retaining slightly more vision in low light environments"
-	lighting_cutoff = LIGHTING_CUTOFF_REAL_LOW
+	desc = "Eyes from a polysmorph, better capable of sensing heat than other eyes."
+	actions_types = list(/datum/action/item_action/organ_action/use)
+	var/infrared = FALSE
+
+/obj/item/organ/eyes/polysmorph/Remove(mob/living/carbon/M, special)
+	REMOVE_TRAIT(owner, TRAIT_INFRARED_VISION, type)
+	owner.update_sight()
+	. = ..()
+	
+/obj/item/organ/eyes/polysmorph/ui_action_click()
+	if(infrared)
+		REMOVE_TRAIT(owner, TRAIT_INFRARED_VISION, type)
+	else
+		ADD_TRAIT(owner, TRAIT_INFRARED_VISION, type)
+	owner.update_sight()
+	infrared = !infrared
 
 /obj/item/organ/eyes/ethereal
 	name = "fractal eyes"
 	desc = "Crystalline eyes from an Ethereal. Seeing with them should feel like using a kaleidoscope, but somehow it isn't."
 	icon_state = "ethereal_eyes"
+	actions_types = list(/datum/action/item_action/organ_action/use)
 	///Color of the eyes, is set by the species on gain
 	var/ethereal_color = "#9c3030"
+	var/active = FALSE
 
 /obj/item/organ/eyes/ethereal/Initialize(mapload)
 	. = ..()
 	add_atom_colour(ethereal_color, FIXED_COLOUR_PRIORITY)
 
-/obj/item/organ/eyes/ethereal/Insert(mob/living/carbon/M, special, drop_if_replaced, initialising)
-	. = ..()
-	var/client/dude = M.client
-	if(dude)
-		dude.view_size.resetToDefault(getScreenSize(dude.prefs.read_preference(/datum/preference/toggle/widescreen)))
-		dude.view_size.addTo("2x2")
+/obj/item/organ/eyes/ethereal/ui_action_click()
+	var/client/dude = owner.client
+	if(!dude)
+		return
 
-/obj/item/organ/eyes/ethereal/Remove(mob/living/carbon/M, special)
-	var/client/dude = M.client
-	if(dude)
-		dude.view_size.resetToDefault(getScreenSize(dude.prefs.read_preference(/datum/preference/toggle/widescreen)))
-	. = ..()
+	active=!active
+	if(active)
+		dude.view_size.zoomOut(2)
+	else
+		dude.view_size.zoomIn()

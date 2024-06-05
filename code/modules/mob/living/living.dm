@@ -73,7 +73,7 @@
 	last_bumped = world.time
 
 //Called when we bump onto a mob
-/mob/living/proc/MobBump(mob/M)
+/mob/living/proc/MobBump(mob/living/M)
 	//Even if we don't push/swap places, we "touched" them, so spread fire
 	spreadFire(M)
 
@@ -119,13 +119,13 @@
 			if(!too_strong)
 				mob_swap = TRUE
 		else
-			//You can swap with the person you are dragging on grab intent, and restrained people in most cases
-			if(M.pulledby == src && a_intent == INTENT_GRAB && !too_strong)
+			//You can swap with the person you are dragging, and restrained people in most cases
+			if(M.pulledby == src && !too_strong)
 				mob_swap = TRUE
 			else if(
 				!(HAS_TRAIT(M, TRAIT_NOMOBSWAP) || HAS_TRAIT(src, TRAIT_NOMOBSWAP))&&\
-				((M.restrained() && !too_strong) || M.a_intent == INTENT_HELP) &&\
-				(restrained() || a_intent == INTENT_HELP)
+				((M.restrained() && !too_strong) || !M.combat_mode) &&\
+				(restrained() || !combat_mode)
 			)
 				mob_swap = TRUE
 		if(mob_swap)
@@ -165,14 +165,16 @@
 		var/mob/living/L = M
 		if(HAS_TRAIT(L, TRAIT_PUSHIMMUNE))
 			return TRUE
-	//If they're a human, and they're not in help intent, block pushing
-	if(ishuman(M) && (M.a_intent != INTENT_HELP))
+	//If they're a human, and they're in combat mode, block pushing
+	if(ishuman(M) && M.combat_mode)
 		return TRUE
 	//anti-riot equipment is also anti-push
 	for(var/obj/item/I in M.held_items)
-		if(!istype(M, /obj/item/clothing))
-			if(prob(I.block_chance*2))
-				return
+		var/datum/component/blocking/block_component = I.GetComponent(/datum/component/blocking)
+		if(!block_component) // can't use signals for this or it'll trip stuff like reactive armor
+			continue
+		if(block_component.blocking && block_component.can_block(M, src, 0, UNARMED_ATTACK))
+			return TRUE
 
 /mob/living/get_photo_description(obj/item/camera/camera)
 	var/list/mob_details = list()
@@ -237,6 +239,8 @@
 	if(!(AM.can_be_pulled(src, state, force)))
 		return FALSE
 	if(throwing || !(mobility_flags & MOBILITY_PULL))
+		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_MOB_PULL, AM, state, force) & COMPONENT_BLOCK_PULL)
 		return FALSE
 
 	AM.add_fingerprint(src)
@@ -346,7 +350,7 @@
 
 	if(istype(AM) && Adjacent(AM))
 		start_pulling(AM)
-	else
+	else if(!combat_mode)
 		stop_pulling()
 
 /mob/living/stop_pulling()
@@ -375,7 +379,7 @@
 	visible_message("<b>[src]</b> points at [A].", span_notice("You point at [A]."))
 	return TRUE
 
-/mob/living/verb/succumb(whispered as null)
+/mob/living/verb/succumb(whispered as num|null)
 	set hidden = TRUE
 	if (InCritical())
 		log_message("Has [whispered ? "whispered his final words" : "succumbed to death"] while in [InFullCritical() ? "hard":"soft"] critical with [round(health, 0.1)] points of health!", LOG_ATTACK)
@@ -719,6 +723,8 @@
 	return bleed_amount
 
 /mob/living/proc/getTrail()
+	if(is_synth(src))
+		return
 	if(getBruteLoss() < 300)
 		return pick("ltrails_1", "ltrails_2")
 	else
@@ -1584,8 +1590,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
         /datum/antagonist/cult,
         /datum/antagonist/darkspawn,
         /datum/antagonist/rev,
-        /datum/antagonist/shadowling,
-        /datum/antagonist/veil
+        /datum/antagonist/thrall,
     )
     for(var/antagcheck in bad_antags)
         if(mind?.has_antag_datum(antagcheck))
@@ -1707,3 +1712,22 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		var/ERROR_ERROR_LANDMARK_ERROR = "ERROR-ERROR: ERROR landmark missing!"
 		log_mapping(ERROR_ERROR_LANDMARK_ERROR)
 		CRASH(ERROR_ERROR_LANDMARK_ERROR)
+
+//plays a short clipping animation then send the mob into the backrooms
+/mob/living/proc/clip_into_backrooms()
+	playsound(get_turf(src), 'yogstation/sound/effects/backrooms_clipping.ogg', 80, FALSE)
+	set_resting(FALSE)
+	Immobilize(1.9 SECONDS, TRUE, TRUE)
+	var/x_diff = 4
+	var/y_diff = 1
+	var/rotation = 40
+	if(prob(50))
+		rotation *= -1
+	animate(src, pixel_x = x_diff, pixel_y = y_diff, time = 0.5, transform = matrix(rotation + x_diff, MATRIX_ROTATE), loop = 18, flags = ANIMATION_RELATIVE|ANIMATION_PARALLEL)
+	animate(pixel_x = -x_diff , pixel_y = -y_diff, transform = matrix(rotation - x_diff, MATRIX_ROTATE), time = 0.5, flags = ANIMATION_RELATIVE)
+	sleep(1.8 SECONDS)
+	pixel_x = 0
+	pixel_y = 0
+	set_resting(FALSE)
+	transform = matrix()
+	sendToBackrooms()

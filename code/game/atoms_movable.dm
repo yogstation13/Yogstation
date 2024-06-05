@@ -382,6 +382,8 @@
 			else
 				to_chat(src, span_warning("You are not Superman."))
 		return FALSE
+	if(pass_flags & PASSFLOOR) //ghosts bypass turf z checks
+		return destination
 	if((!(z_move_flags & ZMOVE_IGNORE_OBSTACLES) && !(start.zPassOut(direction) && destination.zPassIn(direction))) || (!(z_move_flags & ZMOVE_ALLOW_ANCHORED) && anchored))
 		if(z_move_flags & ZMOVE_FEEDBACK)
 			to_chat(rider || src, span_warning("You couldn't move there!"))
@@ -586,11 +588,13 @@
 				)
 		) // If this is a multi-tile object then we need to predict the new locs and check if they allow our entrance.
 		for(var/atom/entering_loc as anything in new_locs)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_ENTER, entering_loc)
 			if(!entering_loc.Enter(src))
 				return
 			if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, entering_loc) & COMPONENT_MOVABLE_BLOCK_PRE_MOVE)
 				return
 	else // Else just try to enter the single destination.
+		SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_ENTER, newloc)
 		if(!newloc.Enter(src))
 			return
 		if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, newloc) & COMPONENT_MOVABLE_BLOCK_PRE_MOVE)
@@ -819,6 +823,13 @@
 /atom/movable/proc/forceMove(atom/destination)
 	. = FALSE
 	if(destination)
+		var/turf/old_turf = get_turf(src)
+		var/turf/new_turf = get_turf(destination)
+		if(new_turf && ismob(src))
+			var/mob/M = src
+			if(is_secret_level(new_turf.z) && !M.client?.holder && old_turf.z != new_turf.z)
+				return
+
 		. = doMove(destination)
 	else
 		CRASH("No valid destination passed into forceMove")
@@ -1348,3 +1359,38 @@
 				ADD_TRAIT(pulling, TRAIT_FLOORED, CHOKEHOLD_TRAIT)
 				ADD_TRAIT(pulling, TRAIT_HANDS_BLOCKED, CHOKEHOLD_TRAIT)
 
+// Simple helper to face what you clicked on, in case it should be needed in more than one place
+/atom/movable/proc/face_atom(atom/A, forced = FALSE)
+	if(!A || !x || !y || !A.x || !A.y )
+		return
+	var/dx = A.x - x
+	var/dy = A.y - y
+	if(!dx && !dy) // Wall items are graphically shifted but on the floor
+		if(A.pixel_y > 16)
+			setDir(NORTH, forced)
+		else if(A.pixel_y < -16)
+			setDir(SOUTH, forced)
+		else if(A.pixel_x > 16)
+			setDir(EAST, forced)
+		else if(A.pixel_x < -16)
+			setDir(WEST, forced)
+		return
+
+	if(abs(dx) < abs(dy))
+		if(dy > 0)
+			setDir(NORTH, forced)
+		else
+			setDir(SOUTH, forced)
+	else
+		if(dx > 0)
+			setDir(EAST, forced)
+		else
+			setDir(WEST, forced)
+
+/atom/movable/proc/sendToBackrooms()
+	var/backrooms_level = SSmapping.levels_by_trait(ZTRAIT_PROCEDURAL_MAINTS)
+	if(LAZYLEN(backrooms_level))
+		var/turf/destination = find_safe_turf(zlevels = backrooms_level, dense_atoms = FALSE)
+		if(destination)
+			forceMove(destination)
+			return TRUE

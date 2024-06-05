@@ -4,7 +4,7 @@
 	icon = 'icons/obj/clothing/accessories.dmi'
 	icon_state = "plasma"
 	item_state = ""	//no inhands
-	mob_overlay_icon = 'icons/mob/clothing/accessories.dmi'
+	worn_icon = 'icons/mob/clothing/accessories.dmi'
 	slot_flags = 0
 	w_class = WEIGHT_CLASS_SMALL
 	var/above_suit = FALSE
@@ -123,52 +123,48 @@
 	name = "bronze medal"
 	desc = "A bronze medal."
 	icon_state = "bronze"
-	materials = list(/datum/material/iron=1000)
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
 	resistance_flags = FIRE_PROOF
-	var/medaltype = "medal" //Sprite used for medalbox
-	var/commended = FALSE
-	above_suit = TRUE
-	above_suit_adjustable = TRUE
+	/// Sprite used for medalbox
+	var/medaltype = "medal"
+	/// Has this been use for a commendation?
+	var/commendation_message
+	/// Who was first given this medal
+	var/awarded_to
+	/// Who gave out this medal
+	var/awarder
 
-//Pinning medals on people
-/obj/item/clothing/accessory/medal/attack(mob/living/carbon/human/M, mob/living/user)
-	if(ishuman(M) && (user.a_intent == INTENT_HELP))
+/obj/item/clothing/accessory/medal/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/pinnable_accessory, on_pre_pin = CALLBACK(src, PROC_REF(provide_reason)))
 
-		if(M.wear_suit)
-			if((M.wear_suit.flags_inv & HIDEJUMPSUIT)) //Check if the jumpsuit is covered
-				to_chat(user, span_warning("Medals can only be pinned on jumpsuits."))
-				return
+/obj/item/clothing/accessory/medal/update_desc(updates)
+	. = ..()
+	if(commendation_message && awarded_to && awarder)
+		desc += span_info("<br>The inscription reads: [commendation_message] - Awarded to [awarded_to] by [awarder]")
 
-		if(M.w_uniform)
-			var/obj/item/clothing/under/U = M.w_uniform
-			var/delay = 20
-			if(user == M)
-				delay = 0
-			else
-				user.visible_message("[user] is trying to pin [src] on [M]'s chest.", \
-									 span_notice("You try to pin [src] on [M]'s chest."))
-			var/input
-			if(!commended && user != M)
-				input = stripped_input(user,"Please input a reason for this commendation, it will be recorded by Nanotrasen.", ,"", 140)
-			if(do_after(user, delay, M))
-				if(U.attach_accessory(src, user, 0)) //Attach it, do not notify the user of the attachment
-					if(user == M)
-						to_chat(user, span_notice("You attach [src] to [U]."))
-					else
-						user.visible_message("[user] pins \the [src] on [M]'s chest.", \
-											 span_notice("You pin \the [src] on [M]'s chest."))
-						if(input)
-							SSblackbox.record_feedback("associative", "commendation", 1, list("commender" = "[user.real_name]", "commendee" = "[M.real_name]", "medal" = "[src]", "reason" = input))
-							GLOB.commendations += "[user.real_name] awarded <b>[M.real_name]</b> the [span_medaltext("[name]")]! \n- [input]"
-							commended = TRUE
-							desc += "<br>The inscription reads: [input] - [user.real_name]"
-							log_game("<b>[key_name(M)]</b> was given the following commendation by <b>[key_name(user)]</b>: [input]")
-							message_admins("<b>[key_name_admin(M)]</b> was given the following commendation by <b>[key_name_admin(user)]</b>: [input]")
+/// Input a reason for the medal for the round end screen
+/obj/item/clothing/accessory/medal/proc/provide_reason(mob/living/carbon/human/distinguished, mob/user)
+	if(!commendation_message)
+		commendation_message = tgui_input_text(user, "Reason for this commendation? It will be recorded by Nanotrasen.", "Commendation", max_length = 140)
+	return !!commendation_message
 
-		else
-			to_chat(user, span_warning("Medals can only be pinned on jumpsuits!"))
-	else
-		..()
+/obj/item/clothing/accessory/medal/attach(obj/item/clothing/under/attach_to, mob/living/attacher)
+	var/mob/living/distinguished = attach_to.loc
+	if(isnull(attacher) || !istype(distinguished) || distinguished == attacher || awarded_to)
+		// You can't be awarded by nothing, you can't award yourself, and you can't be awarded someone else's medal
+		return ..()
+
+	awarder = attacher.real_name
+	awarded_to = distinguished.real_name
+
+	update_appearance(UPDATE_DESC)
+	distinguished.log_message("was given the following commendation by <b>[key_name(attacher)]</b>: [commendation_message]", LOG_GAME, color = "green")
+	message_admins("<b>[key_name_admin(distinguished)]</b> was given the following commendation by <b>[key_name_admin(attacher)]</b>: [commendation_message]")
+	GLOB.commendations += "[awarder] awarded <b>[awarded_to]</b> the <span class='medaltext'>[name]</span>! \n- [commendation_message]"
+	SSblackbox.record_feedback("associative", "commendation", 1, list("commender" = "[awarder]", "commendee" = "[awarded_to]", "medal" = "[src]", "reason" = commendation_message))
+
+	return ..()
 
 /obj/item/clothing/accessory/medal/conduct
 	name = "distinguished conduct medal"

@@ -15,7 +15,7 @@
 	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE)
 	nojumpsuit = 1
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
-	sexes = 1
+	possible_genders = list(MALE, PLURAL, FEMALE)
 	damage_overlay_type = ""
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/golem
 	// To prevent golem subtypes from overwhelming the odds when random species
@@ -221,7 +221,7 @@
 	speedmod = 4 //pretty fucking slow
 	meat = /obj/item/stack/ore/iron
 	info_text = "As a <span class='danger'>Plasteel Golem</span>, you are slower, but harder to stun, and hit very hard when punching. You also magnetically attach to surfaces and so don't float without gravity and cannot have positions swapped with other beings."
-	attack_verb = "smash"
+	attack_verbs = list("smash")
 	attack_effect = ATTACK_EFFECT_SMASH
 	attack_sound = 'sound/effects/meteorimpact.ogg' //hits pretty hard
 	prefix = "Plasteel"
@@ -370,7 +370,7 @@
 	fixed_mut_color = "#77ff00"
 	meat = /obj/item/stack/ore/uranium
 	info_text = "As an <span class='danger'>Uranium Golem</span>, your very touch burns and irradiates organic lifeforms."
-	attack_verb = "burn"
+	attack_verbs = list("burn")
 	attack_sound = 'sound/weapons/sear.ogg'
 	attack_type = BURN
 	prefix = "Uranium"
@@ -393,12 +393,12 @@
 	var/attacker_irradiate_value = rand(user.dna.species.punchdamagelow, user.dna.species.punchdamagehigh)
 	target.apply_effect(attacker_irradiate_value*5, EFFECT_IRRADIATE, radiation_block)
 
-/datum/species/golem/uranium/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
+/datum/species/golem/uranium/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style, modifiers)
 	..()
-	if(COOLDOWN_FINISHED(src, radiation_emission_cooldown) && M != H &&  M.a_intent != INTENT_HELP)
+	if(COOLDOWN_FINISHED(src, radiation_emission_cooldown) && M != H &&  M.combat_mode)
 		radiation_emission(H)
 
-/datum/species/golem/uranium/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
+/datum/species/golem/uranium/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, mob/living/carbon/human/H)
 	..()
 	if(COOLDOWN_FINISHED(src, radiation_emission_cooldown) && user != H)
 		radiation_emission(H)
@@ -489,7 +489,7 @@
 	fixed_mut_color = "#3333ff"
 	meat = /obj/item/stack/ore/bluespace_crystal
 	info_text = "As a <span class='danger'>Bluespace Golem</span>, you are spatially unstable: You will teleport when hit, and you can teleport manually at a long distance."
-	attack_verb = "bluespace punch"
+	attack_verbs = list("bluespace punch")
 	attack_sound = 'sound/effects/phasein.ogg'
 	prefix = "Bluespace"
 	special_names = list("Crystal", "Polycrystal")
@@ -516,12 +516,12 @@
 		else
 			reactive_teleport(H)
 
-/datum/species/golem/bluespace/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
+/datum/species/golem/bluespace/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style, modifiers)
 	..()
-	if(world.time > last_teleport + teleport_cooldown && M != H &&  M.a_intent != INTENT_HELP)
+	if(world.time > last_teleport + teleport_cooldown && M != H &&  M.combat_mode)
 		reactive_teleport(H)
 
-/datum/species/golem/bluespace/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
+/datum/species/golem/bluespace/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, mob/living/carbon/human/H)
 	..()
 	if(world.time > last_teleport + teleport_cooldown && user != H)
 		reactive_teleport(H)
@@ -586,7 +586,7 @@
 	punchstunthreshold = 2 //Harmless and can't stun
 	meat = /obj/item/stack/ore/bananium
 	info_text = "As a <span class='danger'>Bananium Golem</span>, you are made for pranking. Your body emits natural honks, and you can barely even hurt people when punching them. Your skin also bleeds banana peels when damaged."
-	attack_verb = "honk"
+	attack_verbs = list("honk")
 	attack_sound = 'sound/items/airhorn2.ogg'
 	prefix = "Bananium"
 	special_names = null
@@ -613,13 +613,13 @@
 	var/golem_name = "[uppertext(clown_name)]"
 	return golem_name
 
-/datum/species/golem/bananium/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
+/datum/species/golem/bananium/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style, modifiers)
 	..()
-	if(world.time > last_banana + banana_cooldown && M != H &&  M.a_intent != INTENT_HELP)
+	if(world.time > last_banana + banana_cooldown && M != H &&  M.combat_mode)
 		new/obj/item/grown/bananapeel/specialpeel(get_turf(H))
 		last_banana = world.time
 
-/datum/species/golem/bananium/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
+/datum/species/golem/bananium/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, mob/living/carbon/human/H)
 	..()
 	if(world.time > last_banana + banana_cooldown && user != H)
 		new/obj/item/grown/bananapeel/specialpeel(get_turf(H))
@@ -663,7 +663,7 @@
 	name = "Runic Golem"
 	id = "runic golem"
 	limbs_id = "cultgolem"
-	sexes = FALSE
+	possible_genders = list(PLURAL)
 	info_text = "As a <span class='danger'>Runic Golem</span>, you possess eldritch powers granted by the Elder Goddess Nar'sie."
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH) //no mutcolors
 	prefix = "Runic"
@@ -733,10 +733,10 @@
 	info_text = "<span class='bold alloy'>As a </span><span class='bold brass'>Clockwork Golem</span><span class='bold alloy'>, you are faster than other types of golems. On death, you will break down into scrap.</span>"
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH)
 	armor = 20 //Reinforced, but much less so to allow for fast movement
-	attack_verb = "smash"
+	attack_verbs = list("smash")
 	attack_effect = ATTACK_EFFECT_SMASH
 	attack_sound = 'sound/magic/clockwork/anima_fragment_attack.ogg'
-	sexes = FALSE
+	possible_genders = list(PLURAL)
 	speedmod = 0
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
 	damage_overlay_type = "synth"
@@ -786,7 +786,7 @@
 	name = "Cloth Golem"
 	id = "cloth golem"
 	limbs_id = "clothgolem"
-	sexes = FALSE
+	possible_genders = list(PLURAL)
 	info_text = "As a <span class='danger'>Cloth Golem</span>, you are able to reform yourself after death, provided your remains aren't burned or destroyed. You are, of course, very flammable. \
 	Being made of cloth, your body is magic resistant and faster than that of other golems, but weaker and less resilient."
 	species_traits = list(NOBLOOD,NO_UNDERWEAR) //no mutcolors, and can burn
@@ -940,12 +940,12 @@
 	if(world.time > last_gong_time + gong_cooldown)
 		gong(H)
 
-/datum/species/golem/bronze/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
+/datum/species/golem/bronze/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style, modifiers)
 	..()
-	if(world.time > last_gong_time + gong_cooldown &&  M.a_intent != INTENT_HELP)
+	if(world.time > last_gong_time + gong_cooldown &&  M.combat_mode)
 		gong(H)
 
-/datum/species/golem/bronze/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
+/datum/species/golem/bronze/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, mob/living/carbon/human/H)
 	..()
 	if(world.time > last_gong_time + gong_cooldown)
 		gong(H)
@@ -1040,7 +1040,7 @@
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH)
 	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
 	limbs_id = "c_golem" //special sprites
-	attack_verb = "whips"
+	attack_verbs = list("whips")
 	attack_sound = 'sound/weapons/whip.ogg'
 	miss_sound = 'sound/weapons/etherealmiss.ogg'
 	fixed_mut_color = null
@@ -1055,7 +1055,7 @@
 	var/brother_creation_cooldown = 300
 	ghost_cooldown = 2 MINUTES // The ability to create a golem shell as a golem. This is the embodiment of golem army, surely?
 
-/datum/species/golem/cardboard/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
+/datum/species/golem/cardboard/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, mob/living/carbon/human/H)
 	. = ..()
 	if(user != H)
 		return FALSE //forced reproduction is rape.
@@ -1120,7 +1120,7 @@
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH,HAS_BONE)
 	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	mutanttongue = /obj/item/organ/tongue/bone
-	sexes = FALSE
+	possible_genders = list(PLURAL)
 	fixed_mut_color = null
 	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_FAKEDEATH,TRAIT_CALCIUM_HEALER,TRAIT_NOHUNGER)
 	info_text = "As a <span class='danger'>Bone Golem</span>, You have a powerful spell that lets you chill your enemies with fear, and milk heals you! Just make sure to watch our for bone-hurting juice."
@@ -1177,7 +1177,7 @@
 	name = "Capitalist Golem"
 	id = "capitalist golem"
 	prefix = "Capitalist"
-	attack_verb = "monopoliz"
+	attack_verbs = list("monopoliz")
 	limbs_id = "ca_golem"
 	special_names = list("John D. Rockefeller","Rich Uncle Pennybags","Commodore Vanderbilt","Entrepreneur","Mr. Moneybags", "Adam Smith")
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH)
@@ -1228,7 +1228,7 @@
 	name = "Churchgoing Capitalist Golem"
 	id = "church_capitalist golem"
 	prefix = "Religio-Capitalist"
-	attack_verb = "monopoliz"
+	attack_verbs = list("monopoliz")
 	limbs_id = "ca_golem"
 	special_names = list("John D. Rockefeller","Rich Uncle Pennybags","Commodore Vanderbilt","Entrepreneur","Mr. Moneybags", "Adam Smith")
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES)
@@ -1252,7 +1252,7 @@
 	name = "Soviet Golem"
 	id = "soviet golem"
 	prefix = "Comrade"
-	attack_verb = "nationaliz"
+	attack_verbs = list("nationaliz")
 	limbs_id = "s_golem"
 	special_names = list("Stalin","Lenin","Trotsky","Marx","Comrade") //comrade comrade
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH)
@@ -1317,7 +1317,7 @@
 
 /datum/species/golem/cheese/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H)
 	..()
-	if(M.reagents && M != H && M.a_intent == INTENT_HARM)
+	if(M.reagents && M != H && M.combat_mode)
 		if((M.nutrition + 10) > (600 * (1 + M.overeatduration / 2000)))
 			return
 		else
@@ -1389,6 +1389,7 @@
 	active_msg = span_notice("You start channeling your telecrystal core....")
 	deactive_msg = span_notice("You stop channeling your telecrystal core.")
 	spell_requirements = NONE
+	var/beam_icon = "tentacle"
 
 /datum/action/cooldown/spell/pointed/phase_jump/InterceptClickOn(mob/living/user, params, atom/target)
 	. = ..()
@@ -1400,7 +1401,7 @@
 	var/obj/spot1 = new phaseout(get_turf(user), user.dir)
 	owner.forceMove(target_turf)
 	var/obj/spot2 = new phasein(get_turf(user), user.dir)
-	spot1.Beam(spot2, "tentacle", time=2 SECONDS)
+	spot1.Beam(spot2, beam_icon, time=2 SECONDS)
 	user.visible_message(span_danger("[user] phase shifts away!"), span_warning("You shift around the space around you."))
 	return TRUE
 
@@ -1420,7 +1421,7 @@
 	name = "Ruinous Golem"
 	id = "ruinous golem"
 	limbs_id = "ruingolem"
-	sexes = FALSE
+	possible_genders = list(PLURAL)
 	armor = 40 //down from 55
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES) //no mutcolors or eyesprites
 	speedmod = 1.5 //inbetween gold golem and iron
@@ -1458,7 +1459,7 @@
 	name = "Wax Golem"
 	id = "wax golem"
 	limbs_id = "waxgolem"
-	sexes = FALSE
+	possible_genders = list(PLURAL)
 	info_text = "As a <span class='danger'>Wax Golem</span>, you are made of very resilient wax and wick. \
 	While you can burn, you take much less burn damage than other golems. You also have the ability to revive after death if you died while on fire."
 	species_traits = list(NOBLOOD,NO_UNDERWEAR, NO_DNA_COPY, NOTRANSSTING, NOEYESPRITES) //no mutcolors or eyesprites
@@ -1541,7 +1542,7 @@
 	changesource_flags = MIRROR_BADMIN 
 	random_eligible = FALSE // Hell no
 	info_text = "As a <span class='danger'>Supermatter Golem</span>, you dust almost any physical object that interacts with you, while taking half as much brute damage and three times more burn damage. You also explode on death."
-	attack_verb = "dusting punch"
+	attack_verbs = list("dusting punch")
 	attack_sound = 'sound/effects/supermatter.ogg'
 	fixed_mut_color = "ff0"
 	brutemod = 1.5
@@ -1564,7 +1565,7 @@
 	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
 	M.dust()
 
-/datum/species/golem/supermatter/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
+/datum/species/golem/supermatter/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, mob/living/carbon/human/H)
 	..()
 	H.visible_message(span_danger("[user] tries to attack [H] with [I], but [I] turns into dust with a brilliant flash of light!"))
 	playsound(get_turf(H), 'sound/effects/supermatter.ogg', 10, TRUE)
@@ -1602,7 +1603,7 @@
 /obj/item/melee/supermatter_sword/hand
 	name = "supermatter hand"
 	desc = "A hand of a robust supermatter golem."
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
 	icon_state = "disintegrate"
@@ -1660,7 +1661,6 @@
 	id = "tar golem"
 	species_traits = list(NOBLOOD,MUTCOLORS,NO_UNDERWEAR, NO_DNA_COPY, NOTRANSSTING)
 	inherent_traits = list(TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS)
-	inherent_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
 	speedmod = 1.5 // Slightly faster
 	armor = 25
 	punchstunthreshold = 13

@@ -168,7 +168,7 @@
 	antag_datum = /datum/antagonist/traitor
 	antag_flag = ROLE_TRAITOR
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
-	restricted_roles = list("Cyborg", "AI", "Positronic Brain")
+	restricted_roles = list("Cyborg", "AI", "Positronic Brain", "Synthetic")
 	required_candidates = 1
 	weight = 7
 	cost = 10
@@ -201,8 +201,8 @@
 		if(is_centcom_level(player.z))
 			living_players -= player // We don't autotator people in CentCom
 			continue
-		if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0))
-			living_players -= player // We don't autotator people with roles already
+		if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0 || !(player.mind.assigned_role in GLOB.crew_positions)))
+			living_players -= player // We don't autotator people with roles already or non crewmembers
 			continue
 		if(!(ROLE_TRAITOR in player.client.prefs.be_special))
 			living_players -= player
@@ -252,7 +252,7 @@
 		if(is_centcom_level(player.z))
 			candidates -= player
 			continue
-		if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0))
+		if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0 || !(player.mind.assigned_role in GLOB.crew_positions)))
 			candidates -= player
 			continue
 		if(!(ROLE_MALF in player.client.prefs.be_special))
@@ -483,7 +483,7 @@
 	for(var/X in GLOB.xeno_spawn)
 		var/turf/T = X
 		var/light_amount = T.get_lumcount()
-		if(light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD)
+		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
 			spawn_locs += T
 	if(!spawn_locs.len)
 		return FALSE
@@ -563,7 +563,7 @@
 	antag_flag = ROLE_VAMPIRE
 	antag_datum = /datum/antagonist/vampire
 	protected_roles = list("Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Security Officer", "Chaplain", "Detective", "Warden", "Brig Physician")
-	restricted_roles = list("Cyborg", "AI")
+	restricted_roles = list("Cyborg", "AI", "Synthetic")
 	required_candidates = 1
 	weight = 5
 	cost = 15
@@ -588,7 +588,7 @@
 		if(is_centcom_level(player.z))
 			living_players -= player // We don't autotator people in CentCom
 			continue
-		if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0))
+		if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0 || !(player.mind.assigned_role in GLOB.crew_positions)))
 			living_players -= player // We don't autovamp people with roles already
 			continue
 		if(!(ROLE_VAMPIRE in player.client.prefs.be_special))
@@ -640,7 +640,7 @@
 	for(var/X in GLOB.xeno_spawn)
 		var/turf/T = X
 		var/light_amount = T.get_lumcount()
-		if(light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD)
+		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
 			spawn_locs += T
 
 	if(!spawn_locs.len)
@@ -713,7 +713,7 @@
 		"Warden", "Security Officer", "Detective", "Brig Physician",
 		"Curator"
 	)
-	restricted_roles = list("AI","Cyborg", "Positronic Brain")
+	restricted_roles = list("AI","Cyborg", "Positronic Brain", "Synthetic")
 	required_candidates = 1
 	weight = 5
 	cost = 10
@@ -733,7 +733,7 @@
 			living_players -= player
 		else if(is_centcom_level(player.z))
 			living_players -= player // We don't allow people in CentCom
-		else if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0))
+		else if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0 || !(player.mind.assigned_role in GLOB.crew_positions)))
 			living_players -= player // We don't allow people with roles already
 
 /datum/dynamic_ruleset/midround/bloodsucker/execute()
@@ -845,6 +845,7 @@
 			|| !(ROLE_OBSESSED in candidate.client?.prefs?.be_special) \
 			|| !SSjob.GetJob(candidate.mind.assigned_role) \
 			|| (candidate.mind.assigned_role in GLOB.nonhuman_positions) \
+			|| !(candidate.mind.assigned_role in GLOB.crew_positions) \
 		)
 			candidates -= candidate
 

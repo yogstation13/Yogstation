@@ -1,14 +1,3 @@
-/mob/living/simple_animal/hostile/wizard/trey
-	name = "Trey of The Shattered Voice"
-	desc = "The Wizard Federations first and only lizard wizard. It seems to have a stuttering problem"
-	icon = 'yogstation/icons/mob/simple_human.dmi'
-	icon_state = "wizardtrey"
-	icon_living = "wizardtrey"
-	icon_dead = "wizardtrey_dead"
-	speak_emote = list("stutters")
-	speak = list("o-oh god", "p-please d-ie", "ei n-nath?")
-	speak_chance = 1
-
 /mob/living/simple_animal/hostile/wizard/cloaked
 	name = "Malarky The Mad"
 	desc = "Malarky The Mad, former space wizard who was recently disbanded from the wizards federation. He uses unholy magic to preserve his body trapped up in his bubble made of magic slowly decaying. Now he spends his days hallucinating in his old abandoned wizard den plotting his revenge."
@@ -25,7 +14,6 @@
 	..()
 	shieldoverlay = image('icons/effects/effects.dmi', "shield-old")
 	overlays += shieldoverlay
-
 
 /mob/living/simple_animal/hostile/wizard/cloaked/death()
 	..()

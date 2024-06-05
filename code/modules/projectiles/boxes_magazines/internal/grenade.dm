@@ -28,3 +28,8 @@
 	caliber = null
 	max_ammo = 1
 
+/obj/item/ammo_box/magazine/internal/cartridge
+	name = "cartridges"
+	ammo_type = /obj/item/ammo_casing/caseless/cartridge
+	caliber = CALIBER_MUSKET
+	max_ammo = 1

@@ -1,13 +1,13 @@
 /mob/living/carbon/update_sight()
-	. = ..()
 	if(mind)
 		var/datum/antagonist/vampire/V = mind.has_antag_datum(/datum/antagonist/vampire)
 		if(V)
 			if(V.get_ability(/datum/vampire_passive/full))
-				sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-				see_in_dark = max(see_in_dark, 8)
+				ADD_TRAIT(src, TRAIT_TRUE_NIGHT_VISION, "full_vamp")
+				ADD_TRAIT(src, TRAIT_XRAY_VISION, "full_vamp")
 			else if(V.get_ability(/datum/vampire_passive/vision))
-				sight |= (SEE_MOBS)
+				ADD_TRAIT(src, TRAIT_THERMAL_VISION, "partial_vamp")
+	return ..()
 
 /mob/living/carbon/relaymove(mob/user, direction)
 	if(user in src.stomach_contents)
@@ -36,7 +36,7 @@
 					span_userdanger("[src] is attempting to devour you!"))
 	if(!do_after(src, devour_time, C))
 		return
-	if(pulling && pulling == C && grab_state >= GRAB_AGGRESSIVE && a_intent == INTENT_GRAB)
+	if(pulling && pulling == C && grab_state >= GRAB_AGGRESSIVE && combat_mode)
 		C.visible_message(span_danger("[src] devours [C]!"), \
 						span_userdanger("[src] devours you!"))
 		C.forceMove(src)

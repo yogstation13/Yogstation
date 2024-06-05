@@ -61,7 +61,7 @@
 /obj/item/buster/megabuster
 	name = "supercharged fist"
 	desc = "The result of all the prosthetic's power building up. It's fading fast."
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "fist"
 	item_state = "disintegrate"
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'

@@ -10,15 +10,15 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/list/allowed_contents = typecache_filter_list_reverse(get_all_contentsIgnoring(ignore_typecache), ignored_atoms)
 	allowed_contents -= src
 	for(var/i in 1 to allowed_contents.len)
-		var/thing = allowed_contents[i]
+		var/atom/thing = allowed_contents[i]
 		qdel(thing, force=TRUE)
 
 	if(turf_type)
 		ChangeTurf(turf_type, baseturf_type, flags)
 
-/turf/proc/copyTurf(turf/copy_to_turf)
+/turf/proc/copyTurf(turf/copy_to_turf, copy_air, flags)
 	if(copy_to_turf.type != type)
-		copy_to_turf.ChangeTurf(type)
+		copy_to_turf.ChangeTurf(type, null, flags)
 	if(copy_to_turf.icon_state != icon_state)
 		copy_to_turf.icon_state = icon_state
 	if(copy_to_turf.icon != icon)

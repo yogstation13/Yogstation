@@ -71,8 +71,8 @@
 		add_dent(WALL_DENT_HIT)
 
 /turf/closed/wall/run_atom_armor(damage_amount, damage_type, damage_flag, attack_dir, armour_penetration)
-	if(damage_amount < damage_deflection && (damage_type in list(MELEE, BULLET, LASER, ENERGY)))
-		return 0 // absolutely no bypassing damage deflection by using projectiles
+	if(damage_amount < damage_deflection && (damage_flag in list(MELEE, BULLET, LASER, ENERGY)))
+		return 0 // absolutely no bypassing damage deflection by using projectiles FOR REAL THIS TIME
 	return ..()
 
 /turf/closed/wall/atom_destruction(damage_flag)
@@ -199,13 +199,14 @@
 	var/turf/T = user.loc	//get user's location for delay checks
 
 	//the istype cascade has been spread among various procs for easy overriding
-	if(try_clean(attacking_item, user, T) || try_wallmount(attacking_item, user, T) || try_decon(attacking_item, user, T))
+	var/list/modifiers = params2list(params)
+	if(try_decon(attacking_item, user, T, modifiers) || try_clean(attacking_item, user, T) || try_wallmount(attacking_item, user, T))
 		return
 
-	return ..() || (attacking_item.attack_atom(src, user))
+	return ..() || (attacking_item.attack_atom(src, user, params))
 
-/turf/closed/wall/proc/try_clean(obj/item/W, mob/user, turf/T)
-	if(user.a_intent == INTENT_HARM)
+/turf/closed/wall/proc/try_clean(obj/item/W, mob/living/user, turf/T, modifiers)
+	if(user.combat_mode)
 		return FALSE
 
 	if(W.tool_behaviour == TOOL_WELDER)
@@ -245,7 +246,10 @@
 
 	return FALSE
 
-/turf/closed/wall/proc/try_decon(obj/item/I, mob/user, turf/T)
+/turf/closed/wall/proc/try_decon(obj/item/I, mob/user, turf/T, modifiers)
+	if(!(modifiers && modifiers[RIGHT_CLICK]))
+		return FALSE
+
 	if(I.tool_behaviour == TOOL_WELDER)
 		if(!I.tool_start_check(user, amount=0))
 			return FALSE

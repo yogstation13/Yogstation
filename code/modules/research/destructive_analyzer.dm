@@ -31,23 +31,18 @@ Note: Must be placed within 3 tiles of the R&D Console
 	linked_console.linked_destroy = null
 	..()
 
-/obj/machinery/rnd/destructive_analyzer/screwdriver_act(mob/living/user, obj/item/I)
-	if(..())
-		return TRUE
-	if(user.a_intent == INTENT_DISARM)
-		return FALSE
-	else
-		Insert_Item(I, user)
-	return TRUE
+/obj/machinery/rnd/destructive_analyzer/screwdriver_act(mob/living/user, obj/item/I, modifiers)
+	if(!(modifiers && modifiers[RIGHT_CLICK]))
+		return Insert_Item(I, user)
+	return ..()
 
-/obj/machinery/rnd/destructive_analyzer/Insert_Item(obj/item/O, mob/user)
-	if(user.a_intent != INTENT_HARM)
-		. = 1
+/obj/machinery/rnd/destructive_analyzer/Insert_Item(obj/item/O, mob/living/user)
+	if(!user.combat_mode)
 		if(!is_insertion_ready(user))
-			return
+			return TRUE
 		if(!user.transferItemToLoc(O, src))
 			to_chat(user, span_warning("\The [O] is stuck to your hand, you cannot put it in the [src.name]!"))
-			return
+			return TRUE
 		busy = TRUE
 		loaded_item = O
 		to_chat(user, span_notice("You add the [O.name] to the [src.name]!"))
@@ -55,6 +50,8 @@ Note: Must be placed within 3 tiles of the R&D Console
 		addtimer(CALLBACK(src, PROC_REF(finish_loading)), 10)
 		if (linked_console)
 			linked_console.updateUsrDialog()
+		return TRUE
+	return FALSE
 
 /obj/machinery/rnd/destructive_analyzer/proc/finish_loading()
 	update_appearance(UPDATE_ICON)

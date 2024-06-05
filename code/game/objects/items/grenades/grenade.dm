@@ -58,6 +58,9 @@
 /obj/item/grenade/attack_self(mob/user)
 	if(!active)
 		if(clown_check(user))
+			if(HAS_TRAIT(user, TRAIT_NO_GRENADES))
+				to_chat(user, span_warning("You can't use grenades!"))
+				return
 			preprime(user)
 
 /obj/item/grenade/proc/log_grenade(mob/user, turf/T)
@@ -120,13 +123,6 @@
 
 /obj/item/grenade/attack_paw(mob/user)
 	return attack_hand(user)
-
-/obj/item/grenade/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	var/obj/projectile/P = hitby
-	if(damage && attack_type == PROJECTILE_ATTACK && P.damage_type != STAMINA && prob(5))
-		owner.visible_message(span_danger("[attack_text] hits [owner]'s [src], setting it off! What a shot!"))
-		prime()
-		return TRUE //It hit the grenade, not them
 
 /obj/item/grenade/afterattack(atom/target, mob/user)
 	. = ..()

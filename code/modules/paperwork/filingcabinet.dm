@@ -115,7 +115,7 @@
 		if(P.use_tool(src, user, 20, volume=50))
 			to_chat(user, span_notice("You successfully [anchored ? "unwrench" : "wrench"] [src]."))
 			anchored = !anchored
-	else if(user.a_intent != INTENT_HARM)
+	else if(!user.combat_mode)
 		to_chat(user, span_warning("You can't put [P] in [src]!"))
 	else
 		return ..()

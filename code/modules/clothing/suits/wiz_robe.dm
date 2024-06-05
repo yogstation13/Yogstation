@@ -69,7 +69,7 @@
 	strip_delay = 50
 	equip_delay_other = 50
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/suit/wizrobe/red
 	name = "red wizard robe"
@@ -101,7 +101,7 @@
 	icon_state = "magusblue"
 	item_state = "magusblue"
 	flags_inv = HIDEJUMPSUIT
-	mutantrace_variation = NO_MUTANTRACE_VARIATION
+	mutantrace_variation = NONE
 
 /obj/item/clothing/suit/wizrobe/magusred
 	name = "\improper Magus robe"
@@ -109,7 +109,7 @@
 	icon_state = "magusred"
 	item_state = "magusred"
 	flags_inv = HIDEJUMPSUIT
-	mutantrace_variation = NO_MUTANTRACE_VARIATION
+	mutantrace_variation = NONE
 
 
 /obj/item/clothing/suit/wizrobe/santa
@@ -118,7 +118,7 @@
 	icon_state = "santa"
 	item_state = "santa"
 	flags_inv = HIDEJUMPSUIT
-	mutantrace_variation = NO_MUTANTRACE_VARIATION
+	mutantrace_variation = NONE
 
 /obj/item/clothing/suit/wizrobe/fake
 	name = "wizard robe"
@@ -202,7 +202,7 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF | THICKMATERIAL
 	w_class = WEIGHT_CLASS_BULKY
 	flags_inv = HIDEJUMPSUIT
-	mutantrace_variation = NO_MUTANTRACE_VARIATION
+	mutantrace_variation = NONE
 	var/current_charges = 15
 	var/max_charges = 3
 	var/recharge_delay = 0
@@ -249,7 +249,19 @@
 	if(!allowed)
 		allowed = GLOB.advanced_hardsuit_allowed
 
-/obj/item/clothing/suit/wizrobe/armor/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/wizrobe/armor/equipped(mob/user, slot)
+	. = ..()
+	if(slot_flags & slot)
+		RegisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(hit_reaction))
+	else
+		UnregisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS)
+
+/obj/item/clothing/suit/wizrobe/armor/dropped(mob/user)
+	if(user.get_item_by_slot(ITEM_SLOT_OCLOTHING))
+		UnregisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS)
+	return ..()
+
+/obj/item/clothing/suit/wizrobe/armor/proc/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, damage, attack_text = "the attack")
 	recharge_cooldown = world.time + recharge_delay
 	if(current_charges > 0)
 		var/datum/effect_system/spark_spread/s = new
@@ -263,8 +275,8 @@
 			owner.visible_message("[owner]'s shield overloads!")
 			shield_state = "broken"
 			owner.update_inv_wear_suit()
-		return 1
-	return 0
+		return SHIELD_REFLECT
+	return NONE
 
 
 /obj/item/clothing/suit/wizrobe/armor/Destroy()
@@ -283,7 +295,7 @@
 			var/mob/living/carbon/human/C = loc
 			C.update_inv_wear_suit()
 
-/obj/item/clothing/suit/wizrobe/armor/worn_overlays(isinhands)
+/obj/item/clothing/suit/wizrobe/armor/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(!isinhands)
 		. += mutable_appearance('icons/effects/effects.dmi', shield_state, MOB_LAYER + 0.01)

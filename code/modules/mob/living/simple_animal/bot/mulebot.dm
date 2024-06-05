@@ -18,7 +18,8 @@
 	health = 50
 	maxHealth = 50
 	damage_coeff = list(BRUTE = 0.5, BURN = 0.7, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
-	a_intent = INTENT_HARM //No swapping
+	combat_mode = TRUE //No swapping
+	can_toggle_combat = FALSE // I SAID NO SWAPPING
 	buckle_lying = 0
 	mob_size = MOB_SIZE_LARGE
 
@@ -64,7 +65,6 @@
 	mulebot_count += 1
 	set_id(suffix || id || "#[mulebot_count]")
 	suffix = null
-	AddComponent(/datum/component/ntnet_interface)
 
 /mob/living/simple_animal/bot/mulebot/Destroy()
 	unload(0)
@@ -83,7 +83,7 @@
 	..()
 	reached_target = 0
 
-/mob/living/simple_animal/bot/mulebot/attackby(obj/item/I, mob/user, params)
+/mob/living/simple_animal/bot/mulebot/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		..()
 		if(open)
@@ -189,6 +189,7 @@
 		if(BOT_NO_ROUTE)
 			data["modeStatus"] = "bad"
 		else
+			data["modeStatus"] = "unknown"
 	data["load"] = load ? load.name : null
 	data["destination"] = destination ? destination : null
 	data["home"] = home_destination

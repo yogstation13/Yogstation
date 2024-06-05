@@ -120,6 +120,7 @@
 		reset_spell_cooldown()
 	else
 		StartCooldown()
+		consume_resource()
 		build_all_button_icons()
 
 /// Registers all signal procs for the hand.
@@ -317,7 +318,7 @@
 /obj/item/melee/touch_attack
 	name = "\improper outstretched hand"
 	desc = "High Five?"
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
 	icon_state = "latexballon"

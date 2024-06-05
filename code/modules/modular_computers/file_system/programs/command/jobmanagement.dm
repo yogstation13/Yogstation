@@ -1,7 +1,7 @@
 /datum/computer_file/program/job_management
 	filename = "job_manage"
 	filedesc = "Job Manager"
-	category = PROGRAM_CATEGORY_CMD
+	category = PROGRAM_CATEGORY_EQUIPMENT
 	program_icon_state = "id"
 	extended_desc = "Program for viewing and changing job slot availability."
 	transfer_access = ACCESS_HEADS

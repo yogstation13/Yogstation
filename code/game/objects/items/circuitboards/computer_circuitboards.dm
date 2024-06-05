@@ -432,20 +432,12 @@
 	name = "Shuttle Navigation Computer (Computer Board)"
 	build_path = /obj/machinery/computer/camera_advanced/shuttle_docker/custom
 
-/obj/item/circuitboard/computer/ai_upload_download
-	name = "AI Control Console (Computer Board)"
-	greyscale_colors = CIRCUIT_COLOR_SCIENCE
-	build_path = /obj/machinery/computer/ai_control_console
 
 /obj/item/circuitboard/computer/ai_server_overview
 	name = "AI Server Overview Console (Computer Board)"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/computer/ai_server_console
 
-/obj/item/circuitboard/computer/ai_resource_distribution
-	name = "AI Resource Distribution Console (Computer Board)"
-	greyscale_colors = CIRCUIT_COLOR_SCIENCE
-	build_path = /obj/machinery/computer/ai_resource_distribution
 
 //Security
 
@@ -571,3 +563,9 @@
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/computer/shuttle/mining
 
+
+//Miscellaneous/ruin exclusive
+
+/obj/item/circuitboard/computer/terminal
+	name = "Data Terminal (Computer Board)"
+	build_path = /obj/machinery/computer/terminal

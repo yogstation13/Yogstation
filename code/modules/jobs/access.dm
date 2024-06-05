@@ -96,10 +96,6 @@
 		return FALSE
 	return TRUE
 
-/// Checks ntnet access
-/obj/proc/check_access_ntnet(datum/netdata/data)
-	return check_access_list(data.passkey)
-
 /// Get access for centcom job
 /proc/get_centcom_access(job)
 	switch(job)
@@ -410,7 +406,7 @@
 				"Atmospheric Technician", "Chief Medical Officer", "Medical Doctor", "Chemist", "Geneticist", "Virologist",
 				// yogs start - Yog jobs
 				"Research Director", "Scientist", "Roboticist", "Head of Security", "Warden", "Detective", "Security Officer",
-				"Network Admin", "Mining Medic", "Paramedic", "Psychiatrist", "Clerk", "Tourist", "Space Bartender", "Artist", "Brig Physician")
+				"Network Admin", "Mining Medic", "Paramedic", "Psychiatrist", "Clerk", "Tourist", "Space Bartender", "Artist", "Brig Physician", "Synthetic")
 				// yogs end
 
 /// Gets all jobs with hud icons
@@ -419,7 +415,7 @@
 
 /// Gets all centcom jobs
 /proc/get_all_centcom_jobs()
-	return list("VIP Guest","Custodian","Thunderdome Overseer","CentCom Official","Medical Officer","Research Officer","Special Ops Officer","Admiral","CentCom Commander","Emergency Response Team Commander","Security Response Officer","Engineer Response Officer", "Medical Response Officer","CentCom Bartender", "Janitorial Response Officer", "Religious Response Officer", "CentCom Captain", "CentCom Major", "CentCom Commodore", "CentCom Colonel", "CentCom Rear-Admiral", "CentCom Admiral", "CentCom Grand Admiral", "Comedy Response Officer", "HONK Squad Trooper")
+	return list("VIP Guest","Custodian","Thunderdome Overseer","CentCom Official","Medical Officer","Research Officer","Special Ops Officer","Admiral","CentCom Commander","Emergency Response Team Commander","Security Response Officer","Engineer Response Officer", "Medical Response Officer","CentCom Bartender", "Janitorial Response Officer", "Religious Response Officer", "CentCom Captain", "CentCom Major", "CentCom Commodore", "CentCom Colonel", "CentCom Rear-Admiral", "CentCom Admiral", "CentCom Executive Admiral", "Comedy Response Officer", "HONK Squad Trooper")
 
 /// Gets all task for jobs
 /proc/get_all_task_force_jobs()

@@ -447,13 +447,13 @@ GLOBAL_LIST_EMPTY(vending_products)
 		default_deconstruction_screwdriver(user, icon_state, icon_state, I)
 		cut_overlays()
 		if(panel_open)
-			add_overlay("[initial(icon_state)]-panel")
+			update_appearance(UPDATE_ICON)
 		updateUsrDialog()
 	else
 		to_chat(user, span_warning("You must first secure [src]."))
 	return TRUE
 
-/obj/machinery/vending/attackby(obj/item/I, mob/user, params)
+/obj/machinery/vending/attackby(obj/item/I, mob/living/user, params)
 	if(panel_open && is_wire_tool(I))
 		wires.interact(user)
 		return
@@ -475,7 +475,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				else
 					to_chat(user, span_notice("There's nothing to restock!"))
 			return
-	if(user.a_intent != INTENT_HARM && compartmentLoadAccessCheck(user))
+	if(!user.combat_mode && compartmentLoadAccessCheck(user))
 		if(canLoadItem(I))
 			loadingAttempt(I,user)
 			updateUsrDialog() //can't put this on the proc above because we spam it below
@@ -601,7 +601,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 							new /obj/effect/gibspawner/human/bodypartless(get_turf(C))
 
 				C.apply_damage(max(0, squish_damage - crit_rebate))
-				C.AddElement(/datum/element/squish, 18 SECONDS)
 			else
 				L.visible_message("<span class='danger'>[L] is crushed by [src]!</span>", \
 				"<span class='userdanger'>You are crushed by [src]!</span>")
@@ -609,10 +608,13 @@ GLOBAL_LIST_EMPTY(vending_products)
 				if(crit_case)
 					L.apply_damage(squish_damage)
 
+			L.AddElement(/datum/element/squish, 18 SECONDS)
 			L.Paralyze(60)
 			L.emote("scream")
 			playsound(L, 'sound/effects/blobattack.ogg', 40, TRUE)
 			playsound(L, 'sound/effects/splat.ogg', 50, TRUE)
+			if(prob(1)) //send them to the backrooms
+				INVOKE_ASYNC(L, TYPE_PROC_REF(/mob/living, clip_into_backrooms))
 
 	var/matrix/M = matrix()
 	M.Turn(pick(90, 270))

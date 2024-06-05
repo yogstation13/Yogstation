@@ -23,11 +23,13 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "aj" = (
-/obj/effect/turf_decal/siding/white,
 /obj/structure/closet/emcloset/anchored,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/machinery/light_switch{
 	pixel_y = 24
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 10
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/main)
@@ -264,6 +266,9 @@
 /obj/item/reagent_containers/syringe/antiviral,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
+"cB" = (
+/turf/open/floor/plating/dirt/jungleland/quarry,
+/area/jungleland/toxic_pit)
 "cD" = (
 /obj/machinery/atmospherics/components/trinary/filter/atmos/plasma,
 /turf/open/floor/plasteel/dark,
@@ -307,15 +312,19 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/engineering)
+"cW" = (
+/obj/structure/ore_box,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/jungleland/toxic_pit)
 "cY" = (
 /obj/structure/disposaloutlet{
-	dir = 4
+	dir = 1
 	},
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
 /obj/structure/railing{
-	dir = 1
+	dir = 4
 	},
 /turf/open/floor/plating/jungle_baseturf,
 /area/jungleland/toxic_pit)
@@ -358,6 +367,12 @@
 /obj/machinery/light,
 /turf/open/floor/engine,
 /area/ruin/powered/syndicate_lava_base/chemistry)
+"dI" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/syndicate_lava_base/cargo)
 "dK" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Central Pod"
@@ -378,7 +393,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/open/floor/plating/jungle_baseturf,
+/turf/open/floor/plating/rust,
 /area/jungleland/toxic_pit)
 "dQ" = (
 /obj/machinery/door/airlock/public/glass{
@@ -537,6 +552,9 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/powered/syndicate_lava_base/dormitories)
+"fh" = (
+/turf/open/floor/plating,
+/area/jungleland/toxic_pit)
 "fi" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -28
@@ -705,14 +723,23 @@
 /obj/machinery/button/door{
 	id = "lavalandsyndi_telecomms";
 	name = "Telecomms Blast Door Control";
-	pixel_y = 28;
-	req_access_txt = "150"
+	pixel_y = 36;
+	req_access_txt = "150";
+	pixel_x = -6
 	},
 /obj/machinery/button/door{
 	id = "lavalandsyndi_centralwindows";
 	name = "Exterior Windows Blast Door Control";
 	pixel_y = 36;
-	req_access_txt = "150"
+	req_access_txt = "150";
+	pixel_x = 6
+	},
+/obj/item/radio/intercom{
+	syndicate = 1;
+	freerange = 1;
+	pixel_y = 24;
+	name = "syndicate interception intercom";
+	desc = "A quite wonderful device that can access all Nanotrasen radio frequencies with up-to-date encryption keys. Its components are quite fragile, and moving it will damage them severely."
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/telecomms)
@@ -1043,7 +1070,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/plating/jungle_baseturf,
+/turf/open/floor/plating/rust,
 /area/ruin/powered/syndicate_lava_base/main)
 "jU" = (
 /obj/effect/turf_decal/siding/wood{
@@ -1234,7 +1261,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/turf/open/floor/plating/jungle_baseturf,
+/turf/open/floor/plating/rust,
 /area/jungleland/toxic_pit)
 "lX" = (
 /obj/structure/flora/junglebush/b,
@@ -1578,7 +1605,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/plating/jungle_baseturf,
+/turf/open/floor/plating/rust,
 /area/ruin/powered/syndicate_lava_base/main)
 "oB" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
@@ -1608,10 +1635,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/main)
-"oV" = (
-/obj/structure/flora/ausbushes/stalkybush,
-/turf/open/water/toxic_pit,
-/area/jungleland/toxic_pit)
 "pf" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -1788,8 +1811,14 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
+"qy" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/syndicate_lava_base/main)
 "qF" = (
-/turf/open/floor/plating/jungle_baseturf,
+/turf/open/floor/plating/rust,
 /area/jungleland/toxic_pit)
 "qU" = (
 /obj/machinery/chem_heater,
@@ -1807,6 +1836,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/engine,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "qX" = (
@@ -2257,6 +2287,7 @@
 /obj/item/ammo_box/magazine/m10mm,
 /obj/item/clothing/glasses/sunglasses,
 /obj/item/kitchen/knife/combat/survival,
+/obj/item/ammo_box/magazine/m10mm,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "uv" = (
@@ -2334,7 +2365,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/open/floor/plating/jungle_baseturf,
+/turf/open/floor/plating/rust,
 /area/jungleland/toxic_pit)
 "vJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
@@ -2391,6 +2422,11 @@
 /obj/machinery/porta_turret/syndicate,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/vault)
+"wF" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/mineral/ore_redemption,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/syndicate_lava_base/cargo)
 "wI" = (
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/siding/white{
@@ -3117,7 +3153,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "Dq" = (
-/obj/effect/turf_decal/siding/white,
 /obj/item/kirbyplants/random,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/machinery/power/apc/auto_name/north{
@@ -3125,6 +3160,9 @@
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/main)
@@ -3256,6 +3294,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/main)
+"EL" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/jungleland/toxic_pit)
 "EM" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 8
@@ -3752,11 +3794,11 @@
 	dir = 4;
 	dwidth = 5;
 	height = 5;
-	shuttle_id = "syndicatelavalandbase_cargo";
 	name = "Syndicate Jungle Base: Cargo Bay Dock";
-	width = 11
+	width = 11;
+	shuttle_id = "syndicatelavalandbase_cargo"
 	},
-/turf/open/water/deep_toxic_pit,
+/turf/open/floor/plating,
 /area/jungleland/toxic_pit)
 "Im" = (
 /obj/structure/table/wood,
@@ -3775,6 +3817,7 @@
 /obj/item/suppressor,
 /obj/item/ammo_box/magazine/m10mm,
 /obj/item/kitchen/knife/combat/survival,
+/obj/item/ammo_box/magazine/m10mm,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "Iy" = (
@@ -3874,7 +3917,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/plating/jungle_baseturf,
+/turf/open/floor/plating/rust,
 /area/ruin/powered/syndicate_lava_base/main)
 "Je" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -3886,6 +3929,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/telecomms)
+"Jk" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust,
+/area/jungleland/toxic_pit)
 "Jm" = (
 /obj/structure/sign/warning/biohazard,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
@@ -4192,6 +4239,10 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
+"MS" = (
+/obj/machinery/light/small,
+/turf/open/floor/plating,
+/area/ruin/powered/syndicate_lava_base/main)
 "Nf" = (
 /obj/machinery/door/airlock/glass/incinerator/syndicatelava_interior,
 /obj/machinery/door/firedoor/border_only{
@@ -4203,6 +4254,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/engine,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "Np" = (
@@ -4232,7 +4284,7 @@
 /area/ruin/powered/syndicate_lava_base/main)
 "Ns" = (
 /obj/machinery/door/poddoor/incinerator_syndicatelava_main,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating/burnt,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "Nu" = (
 /obj/effect/turf_decal/siding/wood/corner{
@@ -4286,13 +4338,8 @@
 /area/ruin/powered/syndicate_lava_base/engineering)
 "ND" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
-"NE" = (
-/obj/structure/flora/ausbushes/reedbush,
-/turf/open/water/deep_toxic_pit,
-/area/jungleland/toxic_pit)
 "NI" = (
 /obj/machinery/disposal/bin,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -4311,7 +4358,7 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/rust,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "NR" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
@@ -4369,9 +4416,6 @@
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "Oy" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
@@ -4517,6 +4561,7 @@
 /obj/item/suppressor,
 /obj/item/ammo_box/magazine/m10mm,
 /obj/item/kitchen/knife/combat/survival,
+/obj/item/ammo_box/magazine/m10mm,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "Qf" = (
@@ -4572,7 +4617,7 @@
 /area/ruin/powered/syndicate_lava_base/virology)
 "Qp" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/jungle_baseturf,
+/turf/open/floor/plating,
 /area/jungleland/toxic_pit)
 "Qt" = (
 /obj/machinery/light,
@@ -4611,8 +4656,10 @@
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "Rj" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "Rk" = (
@@ -4692,6 +4739,7 @@
 /obj/item/stock_parts/cell/bluespace,
 /obj/item/circuitboard/machine/holopad,
 /obj/item/storage/part_replacer/bluespace/tier4,
+/obj/item/circuitboard/machine/ore_redemption,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "RN" = (
@@ -4904,15 +4952,15 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "SV" = (
-/obj/machinery/computer/shuttle{
+/obj/machinery/computer/terminal{
 	desc = "Occasionally used to call in a resupply shuttle if one is in range.";
+	name = "syndicate resupply shuttle console";
 	icon_keyboard = "syndie_key";
 	icon_screen = "syndishuttle";
-	light_color = "#FA8282";
-	name = "syndicate cargo shuttle terminal";
-	possible_destinations = "syndielavaland_cargo";
-	req_access_txt = "150";
-	shuttleId = "syndie_cargo"
+	upperinfo = "Syndicate Resupply Terminal - Jungleland Research Outpost";
+	content = list("This terminal is currently locked due to no supply shuttles being in range. For resupply, please contact Syndicate Command via your onboard red phone.");
+	tguitheme = "syndicate";
+	light_color = "#FA8282"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
@@ -5171,6 +5219,9 @@
 /area/ruin/powered/syndicate_lava_base/engineering)
 "Wn" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/chemistry)
 "Wp" = (
@@ -5443,6 +5494,9 @@
 /obj/item/reagent_containers/glass/beaker/waterbottle/large{
 	pixel_x = 3;
 	pixel_y = -3
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
@@ -5975,18 +6029,18 @@ iX
 Fi
 Fi
 Fi
-ZW
 Fi
 Fi
+Fi
 iX
 iX
 iX
 iX
-iX
-iX
-iX
-iX
-iX
+Fi
+Fi
+Fi
+Fi
+Fi
 iX
 Fi
 Fi
@@ -6030,7 +6084,6 @@ Fi
 Fi
 Fi
 Fi
-ZW
 Fi
 Fi
 Fi
@@ -6041,12 +6094,13 @@ Fi
 Fi
 Fi
 Fi
-NE
 Fi
-iX
-iX
-iX
-iX
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
 Fi
 Fi
 Fi
@@ -6106,7 +6160,7 @@ Fi
 Fi
 Fi
 Fi
-iX
+Fi
 Fi
 Fi
 Fi
@@ -6251,8 +6305,8 @@ Fi
 Fi
 Fi
 Fi
-oV
-oV
+iX
+iX
 iX
 iX
 iX
@@ -6268,7 +6322,7 @@ iX
 iX
 Fi
 Fi
-NE
+Fi
 Fi
 Fi
 Fi
@@ -6290,9 +6344,9 @@ Fi
 Fi
 Fi
 Fi
-Fi
-Fi
-Fi
+PW
+PW
+PW
 Fi
 Fi
 Fi
@@ -6349,12 +6403,12 @@ Fi
 Fi
 Fi
 Fi
-Fi
-Fi
-Fi
-Fi
-Fi
-Fi
+PW
+PW
+PW
+cB
+Lj
+PW
 Fi
 Fi
 Fi
@@ -6370,7 +6424,7 @@ QM
 Pa
 Oz
 Nz
-NE
+Fi
 Fi
 Fi
 Fi
@@ -6409,14 +6463,14 @@ dw
 Fi
 Fi
 Fi
-Fi
-Fi
-Fi
-Fi
-Fi
-Fi
-Fi
-Fi
+PW
+PW
+PW
+cB
+cB
+cB
+PW
+PW
 Fi
 Fi
 Nz
@@ -6470,14 +6524,14 @@ dw
 Fi
 Fi
 Fi
-Fi
-Fi
-Fi
 PW
-zH
 PW
-Fi
-ZW
+cB
+cB
+cB
+PW
+PW
+PW
 Fi
 Fi
 Nz
@@ -6530,11 +6584,11 @@ Df
 dw
 Fi
 Fi
-ZW
+Fi
 Fi
 PW
 PW
-Lj
+cB
 PW
 PW
 lt
@@ -6592,7 +6646,7 @@ dw
 Fi
 Fi
 Fi
-PW
+cW
 PW
 PW
 PW
@@ -6660,7 +6714,7 @@ PW
 PW
 PW
 PW
-PW
+HA
 Fi
 CO
 lm
@@ -6716,7 +6770,7 @@ HA
 HA
 qF
 qF
-qF
+fh
 Qp
 qF
 qF
@@ -6779,10 +6833,10 @@ ov
 qF
 qF
 qF
-qF
-qF
+fh
+fh
 Jc
-qF
+fh
 wk
 JU
 CO
@@ -6833,7 +6887,7 @@ WL
 ML
 Uc
 dw
-IJ
+qy
 xN
 qF
 JU
@@ -6845,7 +6899,7 @@ fw
 JU
 qF
 xN
-IJ
+MS
 CO
 Bg
 jt
@@ -6878,7 +6932,7 @@ iX
 iX
 Fi
 Fi
-ZW
+Fi
 Fi
 Fi
 Fi
@@ -6943,7 +6997,7 @@ Fi
 Fi
 Fi
 Fi
-NE
+Fi
 Fi
 kH
 iL
@@ -6979,7 +7033,7 @@ FX
 TW
 Su
 Fi
-ZW
+Fi
 Fi
 Fi
 Fi
@@ -7350,7 +7404,7 @@ Fi
 Fi
 Fi
 Fi
-iX
+Fi
 iX
 iX
 iX
@@ -7410,8 +7464,8 @@ Fi
 Fi
 Fi
 Fi
-iX
-iX
+Fi
+Fi
 iX
 iX
 iX
@@ -7471,9 +7525,9 @@ Fi
 Fi
 Fi
 Fi
-iX
-iX
-iX
+Fi
+Fi
+Fi
 iX
 iX
 iX
@@ -7531,10 +7585,10 @@ Fi
 Fi
 Fi
 Fi
-ZW
-iX
-iX
-iX
+Fi
+Fi
+Fi
+Fi
 iX
 iX
 iX
@@ -7565,9 +7619,9 @@ AT
 iZ
 KL
 JU
-IJ
+qy
 xN
-qF
+fh
 JU
 fw
 fw
@@ -7575,9 +7629,9 @@ QR
 fw
 fw
 JU
-qF
+fh
 xN
-IJ
+MS
 El
 yY
 UX
@@ -7594,8 +7648,8 @@ Fi
 Fi
 Fi
 Fi
-iX
-iX
+Fi
+Fi
 iX
 iX
 iX
@@ -7628,13 +7682,13 @@ rl
 JU
 JU
 wk
-qF
+fh
 jQ
 qF
-Qp
-Qp
-qF
-Qp
+Jk
+Jk
+fh
+Jk
 jQ
 qF
 wk
@@ -7646,8 +7700,9 @@ Hw
 LJ
 Rj
 Oy
-Ja
+dI
 ND
+El
 El
 Fi
 Fi
@@ -7655,8 +7710,7 @@ Fi
 Fi
 Fi
 Fi
-iX
-iX
+Fi
 iX
 iX
 iX
@@ -7692,11 +7746,11 @@ HA
 HA
 HA
 qF
+fh
+fh
 qF
 qF
-qF
-qF
-Qp
+Jk
 HA
 HA
 Fi
@@ -7711,14 +7765,14 @@ mI
 RK
 El
 El
+wk
 Fi
 Fi
 Fi
 Fi
 Fi
 Fi
-iX
-iX
+Fi
 iX
 iX
 "}
@@ -7772,15 +7826,15 @@ El
 El
 El
 El
-wk
+El
 Fi
 Fi
 Fi
 Fi
 Fi
-iX
-iX
-iX
+Fi
+Fi
+Fi
 iX
 "}
 (37,1,1) = {"
@@ -7812,7 +7866,7 @@ OC
 Fi
 Fi
 Fi
-Fi
+PW
 PW
 pw
 pw
@@ -7839,9 +7893,9 @@ Fi
 Fi
 Fi
 Fi
-iX
-iX
-iX
+Fi
+Fi
+Fi
 iX
 "}
 (38,1,1) = {"
@@ -7881,7 +7935,7 @@ pw
 PW
 PW
 Fi
-ZW
+Fi
 Fi
 Zo
 oj
@@ -7900,9 +7954,9 @@ Fi
 Fi
 Fi
 Fi
-iX
-iX
-iX
+Fi
+Fi
+Fi
 iX
 "}
 (39,1,1) = {"
@@ -7950,7 +8004,7 @@ Rk
 El
 YI
 zo
-eU
+wF
 Ja
 eU
 fM
@@ -7961,9 +8015,9 @@ Fi
 Fi
 Fi
 Fi
-iX
-iX
-iX
+Fi
+Fi
+Fi
 iX
 "}
 (40,1,1) = {"
@@ -7975,7 +8029,7 @@ Fi
 tE
 tE
 PW
-PW
+EL
 PW
 tZ
 wk
@@ -8022,9 +8076,9 @@ Fi
 Fi
 Fi
 Fi
-iX
-iX
-iX
+Fi
+Fi
+Fi
 iX
 "}
 (41,1,1) = {"
@@ -8062,7 +8116,7 @@ Fi
 Fi
 Fi
 Fi
-NE
+Fi
 Fi
 Fi
 Fi
@@ -8084,8 +8138,8 @@ Fi
 Fi
 Fi
 Fi
-iX
-iX
+Fi
+Fi
 iX
 "}
 (42,1,1) = {"
@@ -8145,7 +8199,7 @@ Fi
 Fi
 Fi
 Fi
-iX
+Fi
 iX
 iX
 "}
@@ -8191,7 +8245,7 @@ Fi
 Fi
 Fi
 Fi
-Fi
+PW
 El
 Zo
 El
@@ -8199,6 +8253,7 @@ FN
 El
 Zo
 wk
+PW
 Fi
 Fi
 Fi
@@ -8206,7 +8261,6 @@ Fi
 Fi
 Fi
 Fi
-iX
 iX
 iX
 "}
@@ -8252,21 +8306,21 @@ Fi
 Fi
 Fi
 Fi
-Fi
-Fi
-Fi
-Fi
+PW
+PW
+PW
+fh
 Ik
+fh
+PW
+PW
+PW
 Fi
 Fi
 Fi
 Fi
 Fi
 Fi
-Fi
-Fi
-Fi
-iX
 iX
 iX
 iX
@@ -8283,7 +8337,6 @@ Fi
 Fi
 Fi
 Fi
-NE
 Fi
 Fi
 Fi
@@ -8315,6 +8368,13 @@ Fi
 Fi
 Fi
 Fi
+PW
+PW
+PW
+fh
+PW
+PW
+PW
 Fi
 Fi
 Fi
@@ -8322,12 +8382,6 @@ Fi
 Fi
 Fi
 Fi
-Fi
-Fi
-Fi
-Fi
-iX
-iX
 iX
 iX
 iX
@@ -8376,18 +8430,18 @@ Fi
 Fi
 Fi
 Fi
+PW
+PW
+PW
+PW
+PW
 Fi
-ZW
 Fi
 Fi
 Fi
 Fi
 Fi
 Fi
-ZW
-Fi
-iX
-iX
 iX
 iX
 iX
@@ -8445,9 +8499,9 @@ Fi
 Fi
 Fi
 Fi
-iX
-iX
-iX
+Fi
+Fi
+Fi
 iX
 iX
 iX
@@ -8475,7 +8529,7 @@ iX
 Fi
 Fi
 Fi
-ZW
+Fi
 iX
 iX
 iX
@@ -8503,10 +8557,10 @@ Fi
 Fi
 Fi
 Fi
-iX
-iX
-iX
-iX
+Fi
+Fi
+Fi
+Fi
 iX
 iX
 iX
@@ -8555,18 +8609,18 @@ iX
 iX
 iX
 iX
-iX
-iX
-iX
-iX
-iX
-iX
-iX
-iX
-iX
-iX
-iX
-iX
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
 iX
 iX
 iX
@@ -8618,15 +8672,15 @@ iX
 iX
 iX
 iX
-iX
-iX
-iX
-iX
-iX
-iX
-iX
-iX
-iX
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
 iX
 iX
 iX
@@ -8682,8 +8736,8 @@ iX
 iX
 iX
 iX
-iX
-iX
+Fi
+Fi
 iX
 iX
 iX
@@ -8737,9 +8791,9 @@ Kp
 Kp
 Kp
 Kp
-Kp
-Kp
-Kp
+iX
+iX
+iX
 iX
 iX
 iX
@@ -8800,17 +8854,17 @@ Kp
 Kp
 Kp
 Kp
-Kp
-Kp
-Kp
-Kp
-Kp
-Kp
-Kp
-Kp
-Kp
-Kp
-Kp
+iX
+iX
+iX
+iX
+iX
+iX
+iX
+iX
+iX
+iX
+iX
 Kp
 Kp
 Kp

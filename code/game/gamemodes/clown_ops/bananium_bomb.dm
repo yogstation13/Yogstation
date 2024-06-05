@@ -53,7 +53,7 @@
 		H.Stun(10)
 		var/obj/item/clothing/C
 		if(!H.w_uniform || H.dropItemToGround(H.w_uniform))
-			C = new /obj/item/clothing/under/rank/clown(H)
+			C = new /obj/item/clothing/under/rank/civilian/clown(H)
 			ADD_TRAIT(C, TRAIT_NODROP, CLOWN_NUKE_TRAIT)
 			H.equip_to_slot_or_del(C, ITEM_SLOT_ICLOTHING)
 

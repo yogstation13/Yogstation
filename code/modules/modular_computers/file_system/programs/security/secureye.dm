@@ -4,7 +4,7 @@
 /datum/computer_file/program/secureye
 	filename = "secureye"
 	filedesc = "SecurEye"
-	category = PROGRAM_CATEGORY_SEC
+	category = PROGRAM_CATEGORY_SECURITY
 	ui_header = "borg_mon.gif"
 	program_icon_state = "generic"
 	extended_desc = "This program allows access to standard security camera networks."
@@ -114,7 +114,7 @@
 				camera_ref = WEAKREF(selected_camera)
 			else
 				camera_ref = null
-			playsound(src, get_sfx("terminal_type"), 25, FALSE)
+			playsound(src, get_sfx(SFX_TERMINAL_TYPE), 25, FALSE)
 			if(isnull(camera_ref))
 				return TRUE
 
@@ -186,7 +186,7 @@
 /datum/computer_file/program/secureye/mining
 	filename = "overwatch"
 	filedesc = "OverWatch"
-	category = PROGRAM_CATEGORY_SUPL
+	category = PROGRAM_CATEGORY_SUPPLY
 	extended_desc = "This program allows access to the mining base camera network."
 	transfer_access = ACCESS_MINING
 	size = 5

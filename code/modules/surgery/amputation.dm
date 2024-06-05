@@ -7,6 +7,11 @@
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_HEAD)
 
+/datum/surgery/amputation/can_start(mob/user, mob/living/carbon/target)
+	if(isshadowperson(target)) // no cutting off shadow limbs because they look horrendous when spliced with other species
+		return FALSE
+	return TRUE
+
 /datum/surgery/amputation/mechanic
 	requires_bodypart_type = BODYPART_ROBOTIC
 	lying_required = FALSE

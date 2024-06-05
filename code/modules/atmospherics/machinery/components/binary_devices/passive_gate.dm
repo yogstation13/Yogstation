@@ -25,16 +25,7 @@ Passive gate is similar to the regular pump except:
 
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "passivegate"
-
-
-/obj/machinery/atmospherics/components/binary/passive_gate/CtrlClick(mob/user)
-	if(can_interact(user))
-		on = !on
-		var/msg = "was turned [on ? "on" : "off"] by [key_name(user)]"
-		investigate_log(msg, INVESTIGATE_ATMOS)
-		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
-		update_appearance(UPDATE_ICON)
-	return ..()
+	quick_toggle = TRUE
 
 /obj/machinery/atmospherics/components/binary/passive_gate/AltClick(mob/user)
 	if(can_interact(user))
@@ -106,11 +97,8 @@ Passive gate is similar to the regular pump except:
 		return
 	switch(action)
 		if("power")
-			on = !on
-			var/msg = "was turned [on ? "on" : "off"] by [key_name(usr)]"
-			investigate_log(msg, INVESTIGATE_ATMOS)
-			investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
-			. = TRUE
+			toggle_on(usr)
+			return TRUE
 		if("pressure")
 			var/pressure = params["pressure"]
 			if(pressure == "max")
@@ -128,7 +116,7 @@ Passive gate is similar to the regular pump except:
 				var/msg = "was set to [target_pressure] kPa by [key_name(usr)]"
 				investigate_log(msg, INVESTIGATE_ATMOS)
 				investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
-	update_appearance(UPDATE_ICON)
+				update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/components/binary/passive_gate/atmos_init()
 	..()

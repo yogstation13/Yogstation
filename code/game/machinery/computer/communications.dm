@@ -54,12 +54,16 @@
 
 /// Are we NOT a silicon, AND we're logged in as the captain?
 /obj/machinery/computer/communications/proc/authenticated_as_non_silicon_captain(mob/user)
+	if(is_synth(user))
+		return FALSE
 	if (issilicon(user))
 		return FALSE
 	return ACCESS_CAPTAIN in authorize_access
 
 /// Are we a silicon, OR we're logged in as the captain?
 /obj/machinery/computer/communications/proc/authenticated_as_silicon_or_captain(mob/user)
+	if(is_synth(user))
+		return FALSE
 	if (issilicon(user))
 		return TRUE
 	return ACCESS_CAPTAIN in authorize_access
@@ -366,16 +370,7 @@
 				new /obj/item/card/id/captains_spare/temporary(loc)
 				COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 				priority_announce("The emergency spare ID has been printed by [authorize_name].", "Emergency Spare ID Warning System", SSstation.announcer.get_rand_report_sound())
-		if("printAIControlCode")
-			if(authenticated_as_non_silicon_head(usr))
-				if(!COOLDOWN_FINISHED(src, important_action_cooldown))
-					return
-				playsound(loc, 'sound/items/poster_being_created.ogg', 100, 1)
-				GLOB.ai_control_code = random_nukecode(6)
-				new /obj/item/paper/ai_control_code(loc)
-				COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
-				priority_announce("The AI Control Code been printed by [authorize_name]. All previous codes have been invalidated.", "Central Tech Support", SSstation.announcer.get_rand_report_sound())
-
+				
 
 /obj/machinery/computer/communications/ui_data(mob/user)
 	var/list/data = list(
