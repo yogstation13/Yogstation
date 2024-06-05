@@ -2637,6 +2637,38 @@
 	name = "X"
 	icon_state = "x"
 
+/datum/sprite_accessory/ethereal_mark/druid
+	name = "Druid"
+	icon_state = "druid"
+
+/datum/sprite_accessory/ethereal_mark/full
+	name = "Full"
+	icon_state = "full"
+
+/datum/sprite_accessory/ethereal_mark/stars
+	name = "Stars"
+	icon_state = "stars"
+
+/datum/sprite_accessory/ethereal_mark/onion
+	name = "Onion"
+	icon_state = "onion"
+
+/datum/sprite_accessory/ethereal_mark/cheese
+	name = "Cheese"
+	icon_state = "cheese"
+
+/datum/sprite_accessory/ethereal_mark/nova
+	name = "Nova"
+	icon_state = "nova"
+
+/datum/sprite_accessory/ethereal_mark/mc
+	name = "M.C."
+	icon_state = "mc"
+
+/datum/sprite_accessory/ethereal_mark/shard
+	name = "Shard"
+	icon_state = "shard"
+
 //Preternis body weathering
 /datum/sprite_accessory/preternis_weathering
 	icon = 'icons/mob/mutant_bodyparts.dmi'
