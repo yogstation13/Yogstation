@@ -1,0 +1,7 @@
+author: "Warface1234455, Wallemations, SyncIt21, Ghommie"
+delete-after: true 
+changes: 
+  - tweak: "you can now set gas canister color with your desire"
+  - tweak: "Change all unique canister colors back to the old colors"
+  - tweak: "Re-add missing canister labels"
+  - bugfix: "Fixed an issue with the \"recolor from string\" option in the greyscale modify menu that resulted in invisible icons."
