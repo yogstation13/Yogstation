@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>tgui&#x2F;README.md - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>tgui <aside>tgui/README.md</aside> 
+            <a href="https://github.com/yogstation13/Yogstation/blob/51b43ea8cac119d9fd0166636f1f0f616b49a21f/tgui/README.md">
+        <img src="git.png" width="16" height="16" title="tgui&#x2F;README.md"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><hh2 id="introduction">Introduction</hh2>
+<p>tgui is a robust user interface framework of /tg/station.</p>
+<p>tgui is very different from most UIs you will encounter in BYOND programming.
+It is heavily reliant on Javascript and web technologies as opposed to DM.
+If you are familiar with NanoUI (a library which can be found on almost
+every other SS13 codebase), tgui should be fairly easy to pick up.</p>
+<hh2 id="learn-tgui">Learn tgui</hh2>
+<p>People come to tgui from different backgrounds and with different
+learning styles. Whether you prefer a more theoretical or a practical
+approach, we hope you’ll find this section helpful.</p>
+<hh3 id="practical-tutorial">Practical Tutorial</hh3>
+<p>If you are completely new to frontend and prefer to <strong>learn by doing</strong>,
+start with our <a href="docs/tutorial-and-examples.md">practical tutorial</a>.</p>
+<hh3 id="guides">Guides</hh3>
+<p>This project uses <strong>Inferno</strong> - a very fast UI rendering engine with a similar
+API to React. Take your time to read these guides:</p>
+<ul>
+<li><a href="https://reactjs.org/docs/hello-world.html">React guide</a></li>
+<li><a href="https://infernojs.org/docs/guides/components">Inferno documentation</a> -
+highlights differences with React.</li>
+</ul>
+<p>If you were already familiar with an older, Ractive-based tgui, and want
+to translate concepts between old and new tgui, read this
+<a href="docs/converting-old-tgui-interfaces.md">interface conversion guide</a>.</p>
+<hh2 id="pre-requisites">Pre-requisites</hh2>
+<p>You will need these programs to start developing in tgui:</p>
+<ul>
+<li><a href="https://nodejs.org/en/download/">Node v12.13+</a></li>
+<li><a href="https://yarnpkg.com/en/docs/install">Yarn v1.19+</a> (optional)</li>
+<li><a href="https://git-scm.com/downloads">Git Bash</a>
+or <a href="https://www.msys2.org/">MSys2</a> (optional)</li>
+</ul>
+<p><strong>DO NOT install Chocolatey if Node installer asks you to!</strong></p>
+<hh2 id="usage">Usage</hh2>
+<p><strong>For Git Bash, MSys2, WSL, Linux or macOS users:</strong></p>
+<p>Change your directory to <code>tgui</code>.</p>
+<p>Run <code>bin/tgui --install-git-hooks</code> to install merge drivers which will
+assist you in conflict resolution when rebasing your branches. Only has
+to be done once.</p>
+<p>Run <code>bin/tgui</code> with any of the options listed below.</p>
+<p><strong>For Windows CMD or PowerShell users:</strong></p>
+<p>If you haven't opened the console already, you can do that by holding
+Shift and right clicking on the <code>tgui</code> folder, then pressing
+either <code>Open command window here</code> or <code>Open PowerShell window here</code>.</p>
+<p>Run <code>.\bin\tgui.bat</code> with any of the options listed below.</p>
+<blockquote>
+<p>If using PowerShell, you will receive errors if trying to run
+<code>.\bin\tgui.ps1</code>, because default Windows policy does not allow direct
+execution of PS1 scripts. Run <code>.\bin\tgui.bat</code> instead.</p>
+</blockquote>
+<p><strong>Available commands:</strong></p>
+<ul>
+<li><code>bin/tgui</code> - Build the project in production mode.</li>
+<li><code>bin/tgui --dev</code> - Launch a development server.
+<ul>
+<li>tgui development server provides you with incremental compilation,
+hot module replacement and logging facilities in all running instances
+of tgui. In short, this means that you will instantly see changes in the
+game as you code it. Very useful, highly recommended.</li>
+<li>In order to use it, you should start the game server first, connect to it
+and wait until the world has been properly loaded and you are no longer
+in the lobby. Start tgui dev server, and once it has finished building,
+press F5 on any tgui window. You'll know that it's hooked correctly if
+you see a green bug icon in titlebar and data gets dumped to the console.</li>
+</ul>
+</li>
+<li><code>bin/tgui --dev --reload</code> - Reload byond cache once.</li>
+<li><code>bin/tgui --dev --debug</code> - Run server with debug logging enabled.</li>
+<li><code>bin/tgui --dev --no-hot</code> - Disable hot module replacement (helps when
+doing development on IE8).</li>
+<li><code>bin/tgui --lint</code> - Show problems with the code.</li>
+<li><code>bin/tgui --test</code> - Run tests.</li>
+<li><code>bin/tgui --fix</code> - Auto-fix problems with the code.</li>
+<li><code>bin/tgui --analyze</code> - Run a bundle analyzer.</li>
+<li><code>bin/tgui --clean</code> - Clean up project repo.</li>
+<li><code>bin/tgui [webpack options]</code> - Build the project with custom webpack
+options.</li>
+</ul>
+<p><strong>For virgins:</strong></p>
+<p>You can double-click these batch files to achieve the same thing:</p>
+<ul>
+<li><code>bin\tgui.bat</code> - Build the project in production mode.</li>
+<li><code>bin\tgui-dev-server.bat</code> - Launch a development server.</li>
+</ul>
+<blockquote>
+<p>Remember to always run a full build before submitting a PR. It creates
+a compressed javascript bundle which is then referenced from DM code.
+We prefer to keep it version controlled, so that people could build the
+game just by using Dream Maker.</p>
+</blockquote>
+<hh2 id="troubleshooting">Troubleshooting</hh2>
+<p><strong>Development server doesn't find my BYOND cache!</strong></p>
+<p>This happens if your Documents folder in Windows has a custom location, for
+example in <code>E:\Libraries\Documents</code>. Development server tries its best to find
+this non-standard location (searches for a Windows Registry key), but it can
+fail. You have to run the dev server with an additional environmental
+variable, with a full path to BYOND cache.</p>
+<pre><code>BYOND_CACHE=&quot;E:/Libraries/Documents/BYOND/cache&quot;
+</code></pre>
+<p><strong>Webpack errors out with some cryptic messages!</strong></p>
+<blockquote>
+<p>Example: <code>No template for dependency: PureExpressionDependency</code>
+Webpack stores its cache on disk since tgui 4.3, and it is very sensitive
+to build configuration. So if you update webpack, or share the same cache
+directory between development and production build, it will start
+hallucinating.</p>
+</blockquote>
+<p>To fix this kind of problem, run <code>bin/tgui --clean</code> and try again.</p>
+<hh2 id="developer-tools">Developer Tools</hh2>
+<p>When developing with <code>tgui-dev-server</code>, you will have access to certain
+development only features.</p>
+<p><strong>Debug Logs.</strong>
+When running server via <code>bin/tgui --dev --debug</code>, server will print debug
+logs and time spent on rendering. Use this information to optimize your
+code, and try to keep re-renders below 16ms.</p>
+<p><strong>Kitchen Sink.</strong>
+Press <code>F12</code> to open the KitchenSink interface. This interface is a
+playground to test various tgui components.</p>
+<p><strong>Layout Debugger.</strong>
+Press <code>F11</code> to toggle the <em>layout debugger</em>. It will show outlines of
+all tgui elements, which makes it easy to understand how everything comes
+together, and can reveal certain layout bugs which are not normally visible.</p>
+<hh2 id="project-structure">Project Structure</hh2>
+<ul>
+<li><code>/packages</code> - Each folder here represents a self-contained Node module.</li>
+<li><code>/packages/common</code> - Helper functions</li>
+<li><code>/packages/tgui/index.js</code> - Application entry point.</li>
+<li><code>/packages/tgui/components</code> - Basic UI building blocks.</li>
+<li><code>/packages/tgui/interfaces</code> - Actual in-game interfaces.
+Interface takes data via the <code>state</code> prop and outputs an html-like stucture,
+which you can build using existing UI components.</li>
+<li><code>/packages/tgui/layouts</code> - Root level UI components, that affect the final
+look and feel of the browser window. They usually hold various window
+elements, like the titlebar and resize handlers, and control the UI theme.</li>
+<li><code>/packages/tgui/routes.js</code> - This is where tgui decides which interface to
+pull and render.</li>
+<li><code>/packages/tgui/layout.js</code> - A root-level component, holding the
+window elements, like the titlebar, buttons, resize handlers. Calls
+<code>routes.js</code> to decide which component to render.</li>
+<li><code>/packages/tgui/styles/main.scss</code> - CSS entry point.</li>
+<li><code>/packages/tgui/styles/functions.scss</code> - Useful SASS functions.
+Stuff like <code>lighten</code>, <code>darken</code>, <code>luminance</code> are defined here.</li>
+<li><code>/packages/tgui/styles/atomic</code> - Atomic CSS classes.
+These are very simple, tiny, reusable CSS classes which you can use and
+combine to change appearance of your elements. Keep them small.</li>
+<li><code>/packages/tgui/styles/components</code> - CSS classes which are used
+in UI components. These stylesheets closely follow the
+<a href="https://en.bem.info/methodology/">BEM</a> methodology.</li>
+<li><code>/packages/tgui/styles/interfaces</code> - Custom stylesheets for your interfaces.
+Add stylesheets here if you really need a fine control over your UI styles.</li>
+<li><code>/packages/tgui/styles/layouts</code> - Layout-related styles.</li>
+<li><code>/packages/tgui/styles/themes</code> - Contains all the various themes you can
+use in tgui. Each theme must be registered in <code>webpack.config.js</code> file.</li>
+</ul>
+<hh2 id="component-reference">Component Reference</hh2>
+<p>See: <a href="docs/component-reference.md">Component Reference</a>.</p>
+<hh2 id="license">License</hh2>
+<p>Source code is covered by /tg/station's parent license - <strong>AGPL-3.0</strong>
+(see the main <a href="../README.md">README</a>), unless otherwise indicated.</p>
+<p>Some files are annotated with a copyright header, which explicitly states
+the copyright holder and license of the file. Most of the core tgui
+source code is available under the <strong>MIT</strong> license.</p>
+<p>The Authors retain all copyright to their respective work here submitted.</p></td></tr></table></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/51b43ea8cac119d9fd0166636f1f0f616b49a21f">51b43ea</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>tgui&#x2F;docs&#x2F;converting-old-tgui-interfaces.md - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>Converting old tgui interfaces to tgui-next <aside>tgui/docs/converting-old-tgui-interfaces.md</aside> 
+            <a href="https://github.com/yogstation13/Yogstation/blob/51b43ea8cac119d9fd0166636f1f0f616b49a21f/tgui/docs/converting-old-tgui-interfaces.md">
+        <img src="git.png" width="16" height="16" title="tgui&#x2F;docs&#x2F;converting-old-tgui-interfaces.md"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>This guide is going to assume you already know roughly how tgui-next works, how to make new uis, etc. It's mostly aimed at helping translate concepts between tgui and tgui-next, and clarify some confusing parts of the transition.</p>
+<hh2 id="backend">Backend</hh2>
+<p>Backend in almost every case does not require any changes. In particularly heavy ui cases, something to be aware of is the new <code>ui_static_data()</code> proc. This proc allows you to split some data sent to the interface off into data that will only be sent on ui initialize and when manually updated by elsewhere in the code. Useful for things like cargo where you have a very large set of mostly identical code.</p>
+<p>Keep in mind that for uis where <em>all</em> data doesn't need to be live updating, you can just toggle off autoupdate for the ui instead of messing with static data.</p>
+<hh2 id="frontend">Frontend</hh2>
+<p>The very first thing to note is the name of the <code>ract</code> file containing the old interface. Whatever the name is (minus the extension) is going to be what the route key is going to be.</p>
+<p>One thing I like to do before starting work on a conversion is screenshot what the old interface looks like so I have something to reference to make sure that the styling can line up as well.</p>
+<hh2 id="general-syntax-changes">General syntax changes</hh2>
+<p>Ractive has a fairly different templating syntax from React.</p>
+<hh3 id=""><code>data</code></hh3>
+<p>You likely already know that React data inserts look like this</p>
+<pre><code class="language-jsx">{data.example_data}
+</code></pre>
+<p>Ractive looks very similar, the only real difference is that React uses one paranthesis instead of two.</p>
+<pre><code class="language-ractive">{{data.example_data}}
+</code></pre>
+<p>However, you may occasionally come across data inserts that instead of referencing the <code>data</code> var or things contained within it instead reference <code>adata</code>. <code>adata</code> was short for animated data, and was used for smooth number animations in interfaces. instead of having a seperate data structure for this. tgui-next instead uses a component, which is <code>AnimatedNumber</code>.</p>
+<p><code>AnimatedNumber</code> is used like this</p>
+<pre><code class="language-jsx">&lt;AnimatedNumber value={data.example_data}/&gt;
+</code></pre>
+<p>Make sure you don't forget to import it.</p>
+<hh3 id="conditionals">Conditionals</hh3>
+<p>Ractive conditionals look very different from React conditionals.</p>
+<p>A ractive <code>if</code> (only render if result of expression is true) looks like this</p>
+<pre><code class="language-ractive">{{#if data.condition}}
+  &lt;span&gt;Example Render&lt;/span&gt;
+{{/if}}
+</code></pre>
+<p>The equivalent React would be</p>
+<pre><code class="language-jsx">{!!data.condition &amp;&amp; (
+  &lt;Fragment&gt;Example Render&lt;/Fragment&gt;
+)}
+</code></pre>
+<p>This might look a bit intimidating compared to the reactive part but it's not as complicated as it seems:</p>
+<ol>
+<li>A new jsx context is opened with <code>{}</code></li>
+<li>jsx contexts like this always render whatever the return value is, so we can use <code>&amp;&amp;</code> to return a value we want. <code>&amp;&amp;</code> returns the last true value (or not &quot;falsey&quot; because this is js).</li>
+<li>jsx tags are never &quot;falsey&quot;, so a conditioned paired with a jsx tag will mean the condition being true will continue on and return the tag. <code>()</code> is just used to contain the tag</li>
+<li>The <code>!!</code> is not a special operator, it is a literal double negation. This is because most <code>false</code> values coming from byond are going to actually be <code>0</code>, which would be rendered if the condition is false. Negating <code>0</code> returns <code>true</code>, negating <code>true</code> returns <code>false</code>, which isn't rendered.</li>
+<li><code>Fragment</code> is actually a true &quot;dead tag&quot;. It's similar to <code>span</code> in that it just contains things without providing functionality, but it's unwrapped before the final render and children of it are injected into its parent. In a case where you only need to render text without any styling, it's probably better to just return a string literal (<code>&quot;Example Render&quot;</code>), but this was just to illustrate that you can put any tag in this expression.</li>
+</ol>
+<p>You don't really need to know all this to understand how to use it, but I find it helps with understanding when things go wrong.</p>
+<p>Ractive conditionals can have an <code>else</code> as well</p>
+<pre><code class="language-ractive">{{#if data.condition}}
+  value
+{{else}}
+  other value
+{{/if}}
+</code></pre>
+<p>Similarly to the previous example, just add a <code>||</code> operator to handle the
+&quot;falsy&quot; condition:</p>
+<pre><code class="language-jsx">{!!data.condition &amp;&amp; (
+  &lt;Fragment&gt;
+    value
+  &lt;/Fragment&gt;
+) || (
+  &lt;Fragment&gt;
+    other value
+  &lt;/Fragment&gt;
+)}
+</code></pre>
+<p>There's also our good old friend - the ternary:</p>
+<pre><code class="language-jsx">{data.condition ? 'value' : 'other value'}
+</code></pre>
+<p>Keep in mind you can also use tags here like the conditional example,
+and you can mix string literals, values, and tags as well.</p>
+<pre><code class="language-jsx">{data.is_robot ? (
+  &lt;Button content=&quot;Robot Button&quot;/&gt;
+) : 'Not a robot'}
+</code></pre>
+<hh3 id="loops">Loops</hh3>
+<p>Ractive has loops for iterating over data and inserting something for each
+member of an array or object</p>
+<pre><code>{{#each data.list_of_foo}}
+  foo {{number}} is here.
+{{/each}}
+</code></pre>
+<p>This didn't care whether the data was an array or an object, and members of each entry of the loop were &quot;unwrapped&quot; so to say. <code>{{number}}</code> in that example is referring to the <code>{{number}}</code> value on the entry of the list for that iterate.</p>
+<p>The React equivalent to this is going to be <code>map</code>.</p>
+<p><em>AN IMPORTANT DISTINCTION HERE IS THAT NOW WE CARE WHETHER THIS IS AN OBJECT OR AN ARRAY BEING ACTED ON.</em></p>
+<p>Objects are represented by <code>{}</code>, arrays by <code>[]</code></p>
+<p>&quot;How can I tell?&quot; you may ask. It's fairly simple, associated lists on the byond side are going to be turned into objects when they get json converted, normal lists are going to be turned into arrays.</p>
+<p><code>list(&quot;bla&quot;, &quot;blo&quot;)</code> would become <code>[&quot;bla&quot;, &quot;blo&quot;]</code> and <code>list(&quot;foo&quot; = 1, &quot;bar&quot; = 2)</code> would become <code>{&quot;foo&quot;: 1, &quot;bar&quot;: 2}</code></p>
+<p>First things first, above the <code>return</code> of the function you're making the interface in, you're going to want to add something like this</p>
+<pre><code class="language-jsx">const things = data.things || [];
+</code></pre>
+<p>This ensures that you'll never be reading a null entry by mistake. Substitute <code>{}</code> for objects as appropriate.</p>
+<p>If it's an array, you'll want to do this in the template</p>
+<pre><code class="language-jsx">{things.map(thing =&gt; (
+  &lt;Fragment&gt;
+    Thing {thing.number} is here!
+  &lt;/Fragment&gt;
+))}
+</code></pre>
+<p><code>map</code> is a function that calls a passed function (a lambda) on each entry, and returns the value. You should already know that returned tags and values (except <code>false</code>) get rendered, so that's how it's rendering each time.</p>
+<p>A lambda is what's known as an anonymous function, it's a function that doesn't have a name that's only used for a specific usage. <code>map</code> wants a function that has one parameter, so we define one parameter then use <code>=&gt;</code> to say the parameter has to do with the following block.</p>
+<p><code>parameter =&gt; ()</code> is just a shorthand for <code>parameter =&gt; {return();}</code></p>
+<p>This is quite a bit higher concept than ractive's each statements, so feel free to look around and <del>copy paste</del> learn from how other interfaces use this.</p>
+<p>Now for objects, there's a genuinely pretty gross syntax here. We apoligize, it's related to ie8 compatibility nonsense.</p>
+<pre><code class="language-jsx">{map((value, key) =&gt; (
+  &lt;Fragment&gt;
+    Key is {key}, value is {value}
+  &lt;/Fragment&gt;
+))(fooObject)}
+</code></pre>
+<p>Again, sorry for this syntax. <code>fooObject</code> would be the object being iterated on, value would be the value of the iterated entry on the list, and key would be the key. the naming of value and key isn't important here, but knowing that it goes <code>value</code>, <code>key</code> in that order is important.</p>
+<p>It is sometimes better to preemptively convert an object to array before
+the big return statement, like this:</p>
+<pre><code class="language-jsx">const fooArray = map((value, key) =&gt; {
+  return { key, value };
+})(fooObject);
+</code></pre>
+<p>Or if you just want to discard all keys, this will also work nicely:</p>
+<pre><code class="language-jsx">const fooArray = toArray(fooObject);
+</code></pre>
+<p>Also occasionally you'd see an else:</p>
+<pre><code>{{#each data.potentially_empty_list}}
+  Thing &quot;{{name}}&quot; is in this list!
+{{else}}
+  None found!
+{{/each}}
+</code></pre>
+<p>This would iterate using the first contents each time, or display the second option if the list was empty.</p>
+<p>To do a similar thing in JSX, just check if array is empty like this:</p>
+<pre><code class="language-jsx">{fooArray.length === 0 &amp;&amp; 'fooArray is empty.'}
+{fooArray.map(foo =&gt; (
+  &lt;Fragment&gt;
+    Foo is {foo}
+  &lt;/Fragment&gt;
+))}
+</code></pre>
+<hh3 id="extra-stuff">Extra Stuff</hh3>
+<p>I'll put some extra stuff here when I think of it.</p>
+<hh2 id="components">Components</hh2>
+<p>This will be a reference of tgui components and the tgui-next equivalent.</p>
+<hh3 id=""><code>ui-display</code></hh3>
+<p>Equivalent of <code>&lt;ui-display&gt;</code> is <code>&lt;Section&gt;</code></p>
+<pre><code>&lt;ui-display title=&quot;Status&quot;&gt;
+  Contents
+&lt;/ui-display&gt;
+</code></pre>
+<p>becomes</p>
+<pre><code class="language-jsx">&lt;Section title=&quot;Status&quot;&gt;
+  Contents
+&lt;/Section&gt;
+</code></pre>
+<p>A feature sometimes used is if <code>ui-display</code> has the <code>button</code> property, it will contain a <code>partial</code> command. This becomes the <code>buttons</code> property on <code>Section</code>:</p>
+<pre><code>&lt;ui-display title=&quot;Status&quot; button&gt;
+  {{#partial button}}
+    &lt;ui-button /&gt; // lots more button bullshit here
+  {{/partial}}
+  Contents
+&lt;/ui-display&gt;
+</code></pre>
+<p>becomes</p>
+<pre><code class="language-jsx">&lt;Section
+  title=&quot;Status&quot;
+  buttons={(
+    &lt;Button /&gt;
+  )}&gt;
+  Contents
+&lt;/Section&gt;
+</code></pre>
+<hh3 id=""><code>ui-section</code></hh3>
+<p>Very important to note <code>ui-section</code> is NOT the equivalent of <code>Section</code></p>
+<p><code>&lt;ui-section&gt;</code> does not have a direct equivalent, but the closest equivalent is <code>&lt;LabeledList&gt;</code></p>
+<pre><code>&lt;ui-section label=&quot;power&quot;&gt;
+  No Power
+&lt;/ui-section&gt;
+&lt;ui-section label=&quot;connection&quot;&gt;
+  No Connection
+&lt;/ui-section&gt;
+</code></pre>
+<p>becomes</p>
+<pre><code class="language-jsx">&lt;LabeledList&gt;
+  &lt;LabeledList.Item label=&quot;power&quot;&gt;
+    No Power
+  &lt;/LabeledList.Item&gt;
+  &lt;LabeledList.Item label=&quot;connection&quot;&gt;
+    No Connection
+  &lt;/LabeledList.Item&gt;
+&lt;/LabeledList&gt;
+</code></pre>
+<p>Important to note that <code>LabeledList.Item</code> has <code>buttons</code> as well.</p>
+<p>Also good to know that if you need the contents of a <code>LabeledList.Item</code> to be colored, you can just set the <code>color</code> prop on it instead of putting a <code>span</code> inside it.</p>
+<hh3 id=""><code>ui-notice</code></hh3>
+<p><code>&lt;ui-notice&gt;</code> has a direct equivalent in <code>&lt;NoticeBox&gt;</code></p>
+<pre><code>&lt;ui-notice&gt;
+  Notice stuff!
+&lt;/ui-notice&gt;
+</code></pre>
+<p>becomes</p>
+<pre><code class="language-jsx">&lt;NoticeBox&gt;
+  Notice stuff!
+&lt;/NoticeBox&gt;
+</code></pre>
+<hh3 id=""><code>ui-button</code></hh3>
+<p>The equivalent of <code>ui-button</code> is <code>Button</code> but it works quite a bit differently.</p>
+<pre><code>&lt;ui-button
+  state='{{data.condition ? &quot;disabled&quot; : null}}'
+  action=&quot;ui_action&quot;
+  params={param: value}&gt;
+  Click
+&lt;/ui-button&gt;
+</code></pre>
+<p>becomes</p>
+<pre><code class="language-jsx">&lt;Button
+  content=&quot;Click&quot;
+  disabled={data.condition}
+  onClick={() =&gt; act('ui_action', {
+    param: value,
+  })}/&gt;
+</code></pre></td></tr></table></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/51b43ea8cac119d9fd0166636f1f0f616b49a21f">51b43ea</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

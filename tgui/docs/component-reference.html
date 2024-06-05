@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>tgui&#x2F;docs&#x2F;component-reference.md - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>Component Reference <aside>tgui/docs/component-reference.md</aside> 
+            <a href="https://github.com/yogstation13/Yogstation/blob/51b43ea8cac119d9fd0166636f1f0f616b49a21f/tgui/docs/component-reference.md">
+        <img src="git.png" width="16" height="16" title="tgui&#x2F;docs&#x2F;component-reference.md"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><blockquote>
+<p>Notice: This documentation might be out of date, so always check the source
+code to see the most up-to-date information.</p>
+</blockquote>
+<!--
+This table of contents must be manually maintained.
+Make sure to add new items to this list if you document new components.
+-->
+<ul>
+<li><a href="#general-concepts">General Concepts</a></li>
+<li><a href="#tguicomponents"><code>tgui/components</code></a>
+<ul>
+<li><a href="#animatednumber"><code>AnimatedNumber</code></a></li>
+<li><a href="#blockquote"><code>BlockQuote</code></a></li>
+<li><a href="#box"><code>Box</code></a></li>
+<li><a href="#button"><code>Button</code></a></li>
+<li><a href="#buttoncheckbox"><code>Button.Checkbox</code></a></li>
+<li><a href="#buttonconfirm"><code>Button.Confirm</code></a></li>
+<li><a href="#buttoninput"><code>Button.Input</code></a></li>
+<li><a href="#byondui"><code>ByondUi</code></a></li>
+<li><a href="#collapsible"><code>Collapsible</code></a></li>
+<li><a href="#colorbox"><code>ColorBox</code></a></li>
+<li><a href="#dimmer"><code>Dimmer</code></a></li>
+<li><a href="#divider"><code>Divider</code></a></li>
+<li><a href="#dropdown"><code>Dropdown</code></a></li>
+<li><a href="#flex"><code>Flex</code></a></li>
+<li><a href="#flexitem"><code>Flex.Item</code></a></li>
+<li><a href="#grid"><code>Grid</code></a></li>
+<li><a href="#gridcolumn"><code>Grid.Column</code></a></li>
+<li><a href="#icon"><code>Icon</code></a></li>
+<li><a href="#input"><code>Input</code></a></li>
+<li><a href="#knob"><code>Knob</code></a></li>
+<li><a href="#labeledcontrols"><code>LabeledControls</code></a></li>
+<li><a href="#labeledcontrolsitem"><code>LabeledControls.Item</code></a></li>
+<li><a href="#labeledlist"><code>LabeledList</code></a></li>
+<li><a href="#labeledlistitem"><code>LabeledList.Item</code></a></li>
+<li><a href="#labeledlistdivider"><code>LabeledList.Divider</code></a></li>
+<li><a href="#modal"><code>Modal</code></a></li>
+<li><a href="#noticebox"><code>NoticeBox</code></a></li>
+<li><a href="#numberinput"><code>NumberInput</code></a></li>
+<li><a href="#progressbar"><code>ProgressBar</code></a></li>
+<li><a href="#roundgauge"><code>RoundGauge</code></a></li>
+<li><a href="#section"><code>Section</code></a></li>
+<li><a href="#slider"><code>Slider</code></a></li>
+<li><a href="#stack">'Stack'</a></li>
+<li><a href="#table"><code>Table</code></a></li>
+<li><a href="#tablerow"><code>Table.Row</code></a></li>
+<li><a href="#tablecell"><code>Table.Cell</code></a></li>
+<li><a href="#tabs"><code>Tabs</code></a></li>
+<li><a href="#tabstab"><code>Tabs.Tab</code></a></li>
+<li><a href="#tooltip"><code>Tooltip</code></a></li>
+</ul>
+</li>
+<li><a href="#tguilayouts"><code>tgui/layouts</code></a>
+<ul>
+<li><a href="#window"><code>Window</code></a></li>
+<li><a href="#windowcontent"><code>Window.Content</code></a></li>
+</ul>
+</li>
+</ul>
+<hh2 id="general-concepts">General Concepts</hh2>
+<p>These are the components which you can use for interface construction.
+If you have trouble finding the exact prop you need on a component,
+please note, that most of these components inherit from other basic
+components, such as <a href="#box">Box</a>. This component in particular provides a lot
+of styling options for all components, e.g. <code>color</code> and <code>opacity</code>, thus
+it is used a lot in this framework.</p>
+<p><strong>Event handlers.</strong>
+Event handlers are callbacks that you can attack to various element to
+listen for browser events. Inferno supports camelcase (<code>onClick</code>) and
+lowercase (<code>onclick</code>) event names.</p>
+<ul>
+<li>Camel case names are what's called <em>synthetic</em> events, and are the
+<strong>preferred way</strong> of handling events in React, for efficiency and
+performance reasons. Please read
+<a href="https://infernojs.org/docs/guides/event-handling">Inferno Event Handling</a>
+to understand what this is about.</li>
+<li>Lower case names are native browser events and should be used sparingly,
+for example when you need an explicit IE8 support. <strong>DO NOT</strong> use
+lowercase event handlers unless you really know what you are doing.</li>
+<li><a href="#button">Button</a> component does not support the lowercase <code>onclick</code> event.
+Use the camel case <code>onClick</code> instead.</li>
+</ul>
+<hh2 id=""><code>tgui/components</code></hh2><hh3 id=""><code>AnimatedNumber</code></hh3>
+<p>This component provides animations for numeric values.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li><code>value: number</code> - Value to animate.</li>
+<li><code>initial: number</code> - Initial value to use in animation when element
+first appears. If you set initial to <code>0</code> for example, number will always
+animate starting from <code>0</code>, and if omitted, it will not play an initial
+animation.</li>
+<li><code>format: value =&gt; value</code> - Output formatter.
+<ul>
+<li>Example: <code>value =&gt; Math.round(value)</code>.</li>
+</ul>
+</li>
+<li><code>children: (formattedValue, rawValue) =&gt; any</code> - Pull the animated number to
+animate more complex things deeper in the DOM tree.
+<ul>
+<li>Example: <code>(_, value) =&gt; &lt;Icon rotation={value} /&gt;</code></li>
+</ul>
+</li>
+</ul>
+<hh3 id=""><code>BlockQuote</code></hh3>
+<p>Just a block quote, just like this example in markdown:</p>
+<blockquote>
+<p>Here's an example of a block quote.</p>
+</blockquote>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+</ul>
+<hh3 id=""><code>Box</code></hh3>
+<p>The Box component serves as a wrapper component for most of the CSS utility
+needs. It creates a new DOM element, a <code>&lt;div&gt;</code> by default that can be changed
+with the <code>as</code> property. Let's say you want to use a <code>&lt;span&gt;</code> instead:</p>
+<pre><code class="language-jsx">&lt;Box as=&quot;span&quot; m={1}&gt;
+  &lt;Button /&gt;
+&lt;/Box&gt;
+</code></pre>
+<p>This works great when the changes can be isolated to a new DOM element.
+For instance, you can change the margin this way.</p>
+<p>However, sometimes you have to target the underlying DOM element.
+For instance, you want to change the text color of the button. The Button
+component defines its own color. CSS inheritance doesn't help.</p>
+<p>To workaround this problem, the Box children accept a render props function.
+This way, <code>Button</code> can pull out the <code>className</code> generated by the <code>Box</code>.</p>
+<pre><code class="language-jsx">&lt;Box color=&quot;primary&quot;&gt;
+  {props =&gt; &lt;Button {...props} /&gt;}
+&lt;/Box&gt;
+</code></pre>
+<p><strong>Box Units</strong></p>
+<p><code>Box</code> units, like width, height and margins can be defined in two ways:</p>
+<ul>
+<li>By plain numbers
+<ul>
+<li>1 unit equals <code>1rem</code> for width, height and positioning properties.</li>
+<li>1 unit equals <code>0.5rem</code> for margins and paddings.</li>
+</ul>
+</li>
+<li>By strings with proper CSS units
+<ul>
+<li>For example: <code>100px</code>, <code>2em</code>, <code>1rem</code>, <code>100%</code>, etc.</li>
+</ul>
+</li>
+</ul>
+<p>If you need more precision, you can always use fractional numbers.</p>
+<p>Default font size (<code>1rem</code>) is equal to <code>12px</code>.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li><code>as: string</code> - The component used for the root node.</li>
+<li><code>color: string</code> - Applies an atomic <code>color-&lt;name&gt;</code> class to the element.
+<ul>
+<li>See <code>styles/atomic/color.scss</code>.</li>
+</ul>
+</li>
+<li><code>width: number</code> - Box width.</li>
+<li><code>minWidth: number</code> - Box minimum width.</li>
+<li><code>maxWidth: number</code> - Box maximum width.</li>
+<li><code>height: number</code> - Box height.</li>
+<li><code>minHeight: number</code> - Box minimum height.</li>
+<li><code>maxHeight: number</code> - Box maximum height.</li>
+<li><code>fontSize: number</code> - Font size.</li>
+<li><code>fontFamily: string</code> - Font family.</li>
+<li><code>lineHeight: number</code> - Directly affects the height of text lines.
+Useful for adjusting button height.</li>
+<li><code>inline: boolean</code> - Forces the <code>Box</code> to appear as an <code>inline-block</code>,
+or in other words, makes the <code>Box</code> flow with the text instead of taking
+all available horizontal space.</li>
+<li><code>m: number</code> - Margin on all sides.</li>
+<li><code>mx: number</code> - Horizontal margin.</li>
+<li><code>my: number</code> - Vertical margin.</li>
+<li><code>mt: number</code> - Top margin.</li>
+<li><code>mb: number</code> - Bottom margin.</li>
+<li><code>ml: number</code> - Left margin.</li>
+<li><code>mr: number</code> - Right margin.</li>
+<li><code>p: number</code> - Padding on all sides.</li>
+<li><code>px: number</code> - Horizontal padding.</li>
+<li><code>py: number</code> - Vertical padding.</li>
+<li><code>pt: number</code> - Top padding.</li>
+<li><code>pb: number</code> - Bottom padding.</li>
+<li><code>pl: number</code> - Left padding.</li>
+<li><code>pr: number</code> - Right padding.</li>
+<li><code>opacity: number</code> - Opacity, from 0 to 1.</li>
+<li><code>bold: boolean</code> - Make text bold.</li>
+<li><code>italic: boolean</code> - Make text italic.</li>
+<li><code>nowrap: boolean</code> - Stops text from wrapping.</li>
+<li><code>textAlign: string</code> - Align text inside the box.
+<ul>
+<li><code>left</code> (default)</li>
+<li><code>center</code></li>
+<li><code>right</code></li>
+</ul>
+</li>
+<li><code>position: string</code> - A direct mapping to <code>position</code> CSS property.
+<ul>
+<li><code>relative</code> - Relative positioning.</li>
+<li><code>absolute</code> - Absolute positioning.</li>
+<li><code>fixed</code> - Fixed positioning.</li>
+</ul>
+</li>
+<li><code>color: string</code> - An alias to <code>textColor</code>.</li>
+<li><code>textColor: string</code> - Sets text color.
+<ul>
+<li><code>#ffffff</code> - Hex format</li>
+<li><code>rgba(255, 255, 255, 1)</code> - RGB format</li>
+<li><code>purple</code> - Applies an atomic <code>color-&lt;name&gt;</code> class to the element.
+See <code>styles/color-map.scss</code>.</li>
+</ul>
+</li>
+<li><code>backgroundColor: string</code> - Sets background color.
+<ul>
+<li><code>#ffffff</code> - Hex format</li>
+<li><code>rgba(255, 255, 255, 1)</code> - RGB format</li>
+</ul>
+</li>
+</ul>
+<hh3 id=""><code>Button</code></hh3>
+<p>Buttons allow users to take actions, and make choices, with a single click.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>fluid: boolean</code> - Fill all available horizontal space.</li>
+<li><code>icon: string</code> - Adds an icon to the button.</li>
+<li><code>color: string</code> - Button color, as defined in <code>variables.scss</code>.
+<ul>
+<li>There is also a special color <code>transparent</code> - makes the button
+transparent and slightly dim when inactive.</li>
+</ul>
+</li>
+<li><code>disabled: boolean</code> - Disables and greys out the button.</li>
+<li><code>selected: boolean</code> - Activates the button (gives it a green color).</li>
+<li><code>tooltip: string</code> - A fancy, boxy tooltip, which appears when hovering
+over the button.</li>
+<li><code>tooltipPosition?: string</code> - Position of the tooltip. See <a href="#Popper"><code>Popper</code></a> for valid options.</li>
+<li><code>ellipsis: boolean</code> - If button width is constrained, button text will
+be truncated with an ellipsis. Be careful however, because this prop breaks
+the baseline alignment.</li>
+<li><code>title: string</code> - A native browser tooltip, which appears when hovering
+over the button.</li>
+<li><code>children: any</code> - Content to render inside the button.</li>
+<li><code>onClick: function</code> - Called when element is clicked.</li>
+</ul>
+<hh3 id=""><code>Button.Checkbox</code></hh3>
+<p>A ghetto checkbox, made entirely using existing Button API.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#button">Button</a></li>
+<li><code>checked: boolean</code> - Boolean value, which marks the checkbox as checked.</li>
+</ul>
+<hh3 id=""><code>Button.Confirm</code></hh3>
+<p>A button with an extra confirmation step, using native button component.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#button">Button</a></li>
+<li><code>confirmMessage: string</code> - Text to display after first click; defaults to &quot;Confirm?&quot;</li>
+<li><code>confirmColor: string</code> - Color to display after first click; defaults to &quot;bad&quot;</li>
+</ul>
+<hh3 id=""><code>Button.Input</code></hh3>
+<p>A button that turns into an input box after the first click. Turns back into a
+button after the user hits enter, defocuses, or hits escape. Enter and defocus
+commit, while escape cancels.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>fluid</code>: fill availible horizontal space</li>
+<li><code>onCommit: (e, value) =&gt; void</code>: function that is called after the user
+defocuses the input or presses enter</li>
+<li><code>currentValue: string</code>: default string to display when the input is shown</li>
+<li><code>defaultValue: string</code>: default value emitted if the user leaves the box
+blank when hitting enter or defocusing. If left undefined, will cancel the
+change on a blank defocus/enter</li>
+</ul>
+<hh3 id=""><code>ByondUi</code></hh3>
+<p>Displays a BYOND UI element on top of the browser, and leverages browser's
+layout engine to position it just like any other HTML element. It is
+especially useful if you want to display a secondary game map in your
+interface.</p>
+<p>Example (button):</p>
+<pre><code>&lt;ByondUi
+  params={{
+    id: 'test_button', // optional, can be auto-generated
+    parent: 'some_container', // optional, defaults to the current window
+    type: 'button',
+    text: 'Hello, world!',
+  }} /&gt;
+</code></pre>
+<p>Example (map):</p>
+<pre><code>&lt;ByondUi
+  params={{
+    id: 'test_map',
+    type: 'map',
+  }} /&gt;
+</code></pre>
+<p>It supports a full set of <code>Box</code> properties for layout purposes.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>params: any</code> - An object with parameters, which are directly passed to
+the <code>winset</code> proc call. You can find a full reference of these parameters
+in <a href="https://secure.byond.com/docs/ref/skinparams.html">BYOND controls and parameters guide</a>.</li>
+</ul>
+<hh3 id=""><code>Collapsible</code></hh3>
+<p>Displays contents when open, acts as a fluid button when closed. Click to
+toggle, closed by default.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>children: any</code> - What is collapsed when closed</li>
+<li><code>title: string</code> - Text to display on the button for collapsing</li>
+<li><code>color: string</code> - Color of the button; see <a href="#button">Button</a></li>
+<li><code>buttons: any</code> - Buttons or other content to render inline with the button</li>
+</ul>
+<hh3 id=""><code>ColorBox</code></hh3>
+<p>Displays a 1-character wide colored square. Can be used as a status indicator,
+or for visually representing a color.</p>
+<p>If you want to set a background color on an element, use a plain
+<a href="#box">Box</a> instead.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>color: string</code> - Color of the box.</li>
+</ul>
+<hh3 id=""><code>Dimmer</code></hh3>
+<p>Dims surrounding area to emphasize content placed inside.</p>
+<p>Content is automatically centered inside the dimmer.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+</ul>
+<hh3 id=""><code>Divider</code></hh3>
+<p>Draws a horizontal or vertical line, dividing a section into groups.
+Works like the good old <code>&lt;hr&gt;</code> element, but it's fancier.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li><code>vertical: boolean</code> - Divide content vertically.</li>
+<li><code>hidden: boolean</code> - Divider can divide content without creating a dividing
+line.</li>
+</ul>
+<hh3 id=""><code>Dropdown</code></hh3>
+<p>A simple dropdown box component. Lets the user select from a list of options
+and displays selected entry.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>options: string[]</code> - An array of strings which will be displayed in the
+dropdown when open</li>
+<li><code>selected: string</code> - Currently selected entry</li>
+<li><code>width: number</code> - Width of dropdown button and resulting menu</li>
+<li><code>over: boolean</code> - dropdown renders over instead of below</li>
+<li><code>color: string</code> - color of dropdown button</li>
+<li><code>onClick: (e) =&gt; void</code> - Called when dropdown button is clicked</li>
+<li><code>onSelected: (value) =&gt; void</code> - Called when a value is picked from the list, <code>value</code> is the value that was picked</li>
+</ul>
+<hh3 id=""><code>Flex</code></hh3>
+<p>Quickly manage the layout, alignment, and sizing of grid columns, navigation,
+components, and more with a full suite of responsive flexbox utilities.</p>
+<p>If you are new to or unfamiliar with flexbox, we encourage you to read this
+<a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">CSS-Tricks flexbox guide</a>.</p>
+<p>Consists of two elements: <code>&lt;Flex&gt;</code> and <code>&lt;Flex.Item&gt;</code>. Both of them provide
+the most straight-forward mapping to flex CSS properties as possible.</p>
+<p>One of the most basic usage of flex, is to align certain elements
+to the left, and certain elements to the right:</p>
+<pre><code class="language-jsx">&lt;Flex&gt;
+  &lt;Flex.Item grow={1}&gt;
+    Button description
+  &lt;/Flex.Item&gt;
+  &lt;Flex.Item&gt;
+    &lt;Button&gt;
+      Perform an action
+    &lt;/Button&gt;
+  &lt;/Flex.Item&gt;
+&lt;/Flex&gt;
+</code></pre>
+<p>Flex item with <code>grow</code> property will grow to take all available empty space,
+while flex items without grow will take the minimum amount of space. This
+effectively places the last flex item to the very end of the flex container.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><del><code>spacing: number</code></del> - <strong>Removed in tgui 4.3</strong>,
+use <a href="#stack">Stack</a> instead.</li>
+<li><code>inline: boolean</code> - Makes flexbox container inline, with similar behavior
+to an <code>inline</code> property on a <code>Box</code>.</li>
+<li><code>direction: string</code> - This establishes the main-axis, thus defining the
+direction flex items are placed in the flex container.
+<ul>
+<li><code>row</code> (default) - left to right.</li>
+<li><code>row-reverse</code> - right to left.</li>
+<li><code>column</code> - top to bottom.</li>
+<li><code>column-reverse</code> - bottom to top.</li>
+</ul>
+</li>
+<li><code>wrap: string</code> - By default, flex items will all try to fit onto one line.
+You can change that and allow the items to wrap as needed with this property.
+<ul>
+<li><code>nowrap</code> (default) - all flex items will be on one line</li>
+<li><code>wrap</code> - flex items will wrap onto multiple lines, from top to bottom.</li>
+<li><code>wrap-reverse</code> - flex items will wrap onto multiple lines from bottom to top.</li>
+</ul>
+</li>
+<li><code>align: string</code> - Default alignment of all children.
+<ul>
+<li><code>stretch</code> (default) - stretch to fill the container.</li>
+<li><code>start</code> - items are placed at the start of the cross axis.</li>
+<li><code>end</code> - items are placed at the end of the cross axis.</li>
+<li><code>center</code> - items are centered on the cross axis.</li>
+<li><code>baseline</code> - items are aligned such as their baselines align.</li>
+</ul>
+</li>
+<li><code>justify: string</code> - This defines the alignment along the main axis.
+It helps distribute extra free space leftover when either all the flex
+items on a line are inflexible, or are flexible but have reached their
+maximum size. It also exerts some control over the alignment of items
+when they overflow the line.
+<ul>
+<li><code>flex-start</code> (default) - items are packed toward the start of the
+flex-direction.</li>
+<li><code>flex-end</code> - items are packed toward the end of the flex-direction.</li>
+<li><code>space-between</code> - items are evenly distributed in the line; first item is
+on the start line, last item on the end line</li>
+<li><code>space-around</code> - items are evenly distributed in the line with equal space
+around them. Note that visually the spaces aren't equal, since all the items
+have equal space on both sides. The first item will have one unit of space
+against the container edge, but two units of space between the next item
+because that next item has its own spacing that applies.</li>
+<li><code>space-evenly</code> - items are distributed so that the spacing between any two
+items (and the space to the edges) is equal.</li>
+<li>TBD (not all properties are supported in IE11).</li>
+</ul>
+</li>
+</ul>
+<hh3 id=""><code>Flex.Item</code></hh3>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>order: number</code> - By default, flex items are laid out in the source order.
+However, the order property controls the order in which they appear in the
+flex container.</li>
+<li><code>grow: number | boolean</code> - This defines the ability for a flex item to grow
+if necessary. It accepts a unitless value that serves as a proportion. It
+dictates what amount of the available space inside the flex container the
+item should take up. This number is unit-less and is relative to other
+siblings.</li>
+<li><code>shrink: number | boolean</code> - This defines the ability for a flex item to
+shrink if necessary. Inverse of <code>grow</code>.</li>
+<li><code>basis: number | string</code> - This defines the default size of an element
+before any flex-related calculations are done. Has to be a length
+(e.g. <code>20%</code>, <code>5rem</code>), an <code>auto</code> or <code>content</code> keyword.
+<ul>
+<li><strong>Important:</strong> IE11 flex is buggy, and auto width/height calculations
+can sometimes end up in a circular dependency. This usually happens, when
+working with tables inside flex (they have wacky internal widths and such).
+Setting basis to <code>0</code> breaks the loop and fixes all of the problems.</li>
+</ul>
+</li>
+<li><code>align: string</code> - This allows the default alignment (or the one specified by
+align-items) to be overridden for individual flex items. See: <a href="#flex">Flex</a>.</li>
+</ul>
+<hh3 id=""><code>Grid</code></hh3>
+<blockquote>
+<p><strong>Deprecated:</strong> This component is no longer recommended due to the variety
+of bugs that come with table-based layouts.
+We recommend using <a href="#flex">Flex</a> instead.</p>
+</blockquote>
+<p>Helps you to divide horizontal space into two or more equal sections.
+It is essentially a single-row <code>Table</code>, but with some extra features.</p>
+<p>Example:</p>
+<pre><code class="language-jsx">&lt;Grid&gt;
+  &lt;Grid.Column&gt;
+    &lt;Section title=&quot;Section 1&quot;&gt;
+      Hello world!
+    &lt;/Section&gt;
+  &lt;/Grid.Column&gt;
+  &lt;Grid.Column size={2}&gt;
+    &lt;Section title=&quot;Section 2&quot;&gt;
+      Hello world!
+    &lt;/Section&gt;
+  &lt;/Grid.Column&gt;
+&lt;/Grid&gt;
+</code></pre>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#table">Table</a></li>
+</ul>
+<hh3 id=""><code>Grid.Column</code></hh3>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#tablecell">Table.Cell</a></li>
+<li><code>size: number</code> (default: 1) - Size of the column relative to other columns.</li>
+</ul>
+<hh3 id=""><code>Icon</code></hh3>
+<p>Renders one of the FontAwesome icons of your choice.</p>
+<pre><code class="language-jsx">&lt;Icon name=&quot;plus&quot; /&gt;
+</code></pre>
+<p>To smoothen the transition from v4 to v5, we have added a v4 semantic to
+transform names with <code>-o</code> suffixes to FA Regular icons. For example:</p>
+<ul>
+<li><code>square</code> will get transformed to <code>fas square</code></li>
+<li><code>square-o</code> will get transformed to <code>far square</code></li>
+</ul>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>name: string</code> - Icon name.</li>
+<li><code>size: number</code> - Icon size. <code>1</code> is normal size, <code>2</code> is two times bigger.
+Fractional numbers are supported.</li>
+<li><code>rotation: number</code> - Icon rotation, in degrees.</li>
+<li><code>spin: boolean</code> - Whether an icon should be spinning. Good for load
+indicators.</li>
+</ul>
+<hh3 id=""><code>Input</code></hh3>
+<p>A basic text input, which allow users to enter text into a UI.</p>
+<blockquote>
+<p>Input does not support custom font size and height due to the way
+it's implemented in CSS. Eventually, this needs to be fixed.</p>
+</blockquote>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>value: string</code> - Value of an input.</li>
+<li><code>placeholder: string</code> - Text placed into Input box when it's empty,
+otherwise nothing. Clears automatically when focused.</li>
+<li><code>fluid: boolean</code> - Fill all available horizontal space.</li>
+<li><code>selfClear: boolean</code> - Clear after hitting enter, as well as remain focused
+when this happens. Useful for things like chat inputs.</li>
+<li><code>onChange: (e, value) =&gt; void</code> - An event, which fires when you commit
+the text by either unfocusing the input box, or by pressing the Enter key.</li>
+<li><code>onInput: (e, value) =&gt; void</code> - An event, which fires on every keypress.</li>
+</ul>
+<hh3 id=""><code>Knob</code></hh3>
+<p>A radial control, which allows dialing in precise values by dragging it
+up and down.</p>
+<p>Single click opens an input box to manually type in a number.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>animated: boolean</code> - Animates the value if it was changed externally.</li>
+<li><code>bipolar: boolean</code> - Knob can be bipolar or unipolar.</li>
+<li><code>size: number</code> - Relative size of the knob. <code>1</code> is normal size, <code>2</code> is two
+times bigger. Fractional numbers are supported.</li>
+<li><code>color: string</code> - Color of the outer ring around the knob.</li>
+<li><code>value: number</code> - Value itself, controls the position of the cursor.</li>
+<li><code>unit: string</code> - Unit to display to the right of value.</li>
+<li><code>minValue: number</code> - Lowest possible value.</li>
+<li><code>maxValue: number</code> - Highest possible value.</li>
+<li><code>fillValue: number</code> - If set, this value will be used to set the fill
+percentage of the outer ring independently of the main value.</li>
+<li><code>ranges: { color: [from, to] }</code> - Applies a <code>color</code> to the outer ring around
+the knob based on whether the value lands in the range between <code>from</code> and <code>to</code>.
+See an example of this prop in <a href="#progressbar">ProgressBar</a>.</li>
+<li><code>step: number</code> (default: 1) - Adjust value by this amount when
+dragging the input.</li>
+<li><code>stepPixelSize: number</code> (default: 1) - Screen distance mouse needs
+to travel to adjust value by one <code>step</code>.</li>
+<li><code>format: value =&gt; value</code> - Format value using this function before
+displaying it.</li>
+<li><code>suppressFlicker: number</code> - A number in milliseconds, for which the input
+will hold off from updating while events propagate through the backend.
+Default is about 250ms, increase it if you still see flickering.</li>
+<li><code>onChange: (e, value) =&gt; void</code> - An event, which fires when you release
+the input, or successfully enter a number.</li>
+<li><code>onDrag: (e, value) =&gt; void</code> - An event, which fires about every 500ms
+when you drag the input up and down, on release and on manual editing.</li>
+</ul>
+<hh3 id=""><code>LabeledControls</code></hh3>
+<p>LabeledControls is a horizontal grid, that is designed to hold various
+controls, like <a href="#knob">Knobs</a> or small <a href="#button">Buttons</a>. Every item in
+this grid is labeled at the bottom.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>children: LabeledControls.Item</code> - Items to render.</li>
+</ul>
+<hh3 id=""><code>LabeledControls.Item</code></hh3>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>label: string</code> - Item label.</li>
+</ul>
+<hh3 id=""><code>LabeledList</code></hh3>
+<p>LabeledList is a continuous, vertical list of text and other content, where
+every item is labeled. It works just like a two column table, where first
+column is labels, and second column is content.</p>
+<pre><code class="language-jsx">&lt;LabeledList&gt;
+  &lt;LabeledList.Item label=&quot;Item&quot;&gt;
+    Content
+  &lt;/LabeledList.Item&gt;
+&lt;/LabeledList&gt;
+</code></pre>
+<p>If you want to have a button on the right side of an item (for example,
+to perform some sort of action), there is a way to do that:</p>
+<pre><code class="language-jsx">&lt;LabeledList&gt;
+  &lt;LabeledList.Item
+    label=&quot;Item&quot;
+    buttons={(
+      &lt;Button&gt;
+        Click me!
+      &lt;/Button&gt;
+    )}&gt;
+    Content
+  &lt;/LabeledList.Item&gt;
+&lt;/LabeledList&gt;
+</code></pre>
+<p><strong>Props:</strong></p>
+<ul>
+<li><code>children: LabeledList.Item</code> - Items to render.</li>
+</ul>
+<hh3 id=""><code>LabeledList.Item</code></hh3>
+<p><strong>Props:</strong></p>
+<ul>
+<li><code>label: string</code> - Item label.</li>
+<li><code>color: string</code> - Sets the color of the text.</li>
+<li><code>buttons: any</code> - Buttons to render aside the content.</li>
+<li><code>children: any</code> - Content of this labeled item.</li>
+</ul>
+<hh3 id=""><code>LabeledList.Divider</code></hh3>
+<p>Adds some empty space between LabeledList items.</p>
+<p>Example:</p>
+<pre><code class="language-jsx">&lt;LabeledList&gt;
+  &lt;LabeledList.Item label=&quot;Foo&quot;&gt;
+    Content
+  &lt;/LabeledList.Item&gt;
+  &lt;LabeledList.Divider size={1} /&gt;
+&lt;/LabeledList&gt;
+</code></pre>
+<p><strong>Props:</strong></p>
+<ul>
+<li><code>size: number</code> - Size of the divider.</li>
+</ul>
+<hh3 id=""><code>Modal</code></hh3>
+<p>A modal window. Uses a <a href="#dimmer">Dimmer</a> under the hood, and dynamically
+adjusts its own size to fit the content you're trying to display.</p>
+<p>Must be a direct child of a layout component (e.g. <a href="#window">Window</a>).</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+</ul>
+<hh3 id=""><code>NoticeBox</code></hh3>
+<p>A notice box, which warns you about something very important.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>info: boolean</code> - Info box</li>
+<li><code>success: boolean</code> - Success box</li>
+<li><code>warning: bolean</code> - Warning box</li>
+<li><code>danger: boolean</code> - Danger box</li>
+</ul>
+<hh3 id=""><code>NumberInput</code></hh3>
+<p>A fancy, interactive number input, which you can either drag up and down
+to fine tune the value, or single click it to manually type a number.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li><code>animated: boolean</code> - Animates the value if it was changed externally.</li>
+<li><code>fluid: boolean</code> - Fill all available horizontal space.</li>
+<li><code>value: number</code> - Value itself.</li>
+<li><code>unit: string</code> - Unit to display to the right of value.</li>
+<li><code>minValue: number</code> - Lowest possible value.</li>
+<li><code>maxValue: number</code> - Highest possible value.</li>
+<li><code>step: number</code> (default: 1) - Adjust value by this amount when
+dragging the input.</li>
+<li><code>stepPixelSize: number</code> (default: 1) - Screen distance mouse needs
+to travel to adjust value by one <code>step</code>.</li>
+<li><code>width: string|number</code> - Width of the element, in <code>Box</code> units or pixels.</li>
+<li><code>height: string|numer</code> - Height of the element, in <code>Box</code> units or pixels.</li>
+<li><code>lineHeight: string|number</code> - lineHeight of the element, in <code>Box</code> units or pixels.</li>
+<li><code>fontSize: string|number</code> - fontSize of the element, in <code>Box</code> units or pixels.</li>
+<li><code>format: value =&gt; value</code> - Format value using this function before
+displaying it.</li>
+<li><code>suppressFlicker: number</code> - A number in milliseconds, for which the input
+will hold off from updating while events propagate through the backend.
+Default is about 250ms, increase it if you still see flickering.</li>
+<li><code>onChange: (e, value) =&gt; void</code> - An event, which fires when you release
+the input, or successfully enter a number.</li>
+<li><code>onDrag: (e, value) =&gt; void</code> - An event, which fires about every 500ms
+when you drag the input up and down, on release and on manual editing.</li>
+</ul>
+<hh3 id=""><code>Popper</code></hh3>
+<p>Popper lets you position elements so that they don't go out of the bounds of the window. See <a href="https://popper.js.org/">popper.js</a> for more information.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li><code>popperContent: InfernoNode</code> - The content that will be put inside the popper.</li>
+<li><code>options?: { ... }</code> - An object of options to pass to <code>createPopper</code>. See [https://popper.js.org/docs/v2/constructors/#options], but the one you want most is <code>placement</code>. Valid placements are &quot;bottom&quot;, &quot;top&quot;, &quot;left&quot;, and &quot;right&quot;. You can affix &quot;-start&quot; and &quot;-end&quot; to achieve something like top left or top right respectively. You can also use &quot;auto&quot; (with an optional &quot;-start&quot; or &quot;-end&quot;), where a best fit will be chosen.</li>
+<li><code>additionalStyles: { ... }</code> - A map of CSS styles to add to the element that will contain the popper.</li>
+</ul>
+<hh3 id=""><code>ProgressBar</code></hh3>
+<p>Progress indicators inform users about the status of ongoing processes.</p>
+<pre><code class="language-jsx">&lt;ProgressBar value={0.6} /&gt;
+</code></pre>
+<p>Usage of <code>ranges</code> prop:</p>
+<pre><code class="language-jsx">&lt;ProgressBar
+  ranges={{
+    good: [0.5, Infinity],
+    average: [0.25, 0.5],
+    bad: [-Infinity, 0.25],
+  }}
+  value={0.6} /&gt;
+</code></pre>
+<p><strong>Props:</strong></p>
+<ul>
+<li><code>value: number</code> - Current progress as a floating point number between
+<code>minValue</code> (default: 0) and <code>maxValue</code> (default: 1). Determines the
+percentage and how filled the bar is.</li>
+<li><code>minValue: number</code> - Lowest possible value.</li>
+<li><code>maxValue: number</code> - Highest possible value.</li>
+<li><code>ranges: { color: [from, to] }</code> - Applies a <code>color</code> to the progress bar
+based on whether the value lands in the range between <code>from</code> and <code>to</code>.</li>
+<li><code>color: string</code> - Color of the progress bar.</li>
+<li><code>children: any</code> - Content to render inside the progress bar.</li>
+</ul>
+<hh3 id=""><code>RoundGauge</code></hh3>
+<p>The RoundGauge component provides a visual representation of a single metric, as well as being capable of showing informational or cautionary boundaries related to that metric.</p>
+<pre><code class="language-jsx">&lt;RoundGauge
+  size={1.75}
+  value={tankPressure}
+  minValue={0}
+  maxValue={pressureLimit}
+  alertAfter={pressureLimit * 0.70}
+  ranges={{
+    &quot;good&quot;: [0, pressureLimit * 0.70],
+    &quot;average&quot;: [pressureLimit * 0.70, pressureLimit * 0.85],
+    &quot;bad&quot;: [pressureLimit * 0.85, pressureLimit],
+  }}
+  format={formatPressure} /&gt;
+</code></pre>
+<p>The alert on the gauge is optional, and will only be shown if the <code>alertAfter</code> prop is defined. When defined, the alert will begin to flash the respective color upon which the needle currently rests, as defined in the <code>ranges</code> prop.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>value: number</code> - The current value of the metric.</li>
+<li><code>minValue: number</code> (default: 0) - The lower bound of the guage.</li>
+<li><code>maxValue: number</code> (default: 1) - The upper bound of the guage.</li>
+<li><code>ranges: { color: [from, to] }</code> (default: <code>{ &quot;good&quot;: [0, 1] }</code>) - Provide regions of the guage to color between two specified values of the metric.</li>
+<li><code>alertAfter: number</code> (optional) - When provided, will cause an alert symbol on the gauge to begin flashing in the color upon which the needle currently rest, as defined in <code>ranges</code>.</li>
+<li><code>format: function(value) =&gt; string</code> (optional) - When provided, will be used to format the value of the metric for display.</li>
+<li><code>size: number</code> (default: 1) - When provided scales the gauge.</li>
+</ul>
+<hh3 id=""><code>Section</code></hh3>
+<p>Section is a surface that displays content and actions on a single topic.</p>
+<p>They should be easy to scan for relevant and actionable information.
+Elements, like text and images, should be placed in them in a way that
+clearly indicates hierarchy.</p>
+<p>Section can also be titled to clearly define its purpose.</p>
+<pre><code class="language-jsx">&lt;Section title=&quot;Cargo&quot;&gt;
+  Here you can order supply crates.
+&lt;/Section&gt;
+</code></pre>
+<p>If you want to have a button on the right side of an section title
+(for example, to perform some sort of action), there is a way to do that:</p>
+<pre><code class="language-jsx">&lt;Section
+  title=&quot;Cargo&quot;
+  buttons={(
+    &lt;Button&gt;
+      Send shuttle
+    &lt;/Button&gt;
+  )}&gt;
+  Here you can order supply crates.
+&lt;/Section&gt;
+</code></pre>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>title: string</code> - Title of the section.</li>
+<li><code>level: number</code> - Section level in hierarchy. Default is 1, higher number
+means deeper level of nesting. Must be an integer number.</li>
+<li><code>buttons: any</code> - Buttons to render aside the section title.</li>
+<li><code>fill: boolean</code> - If true, fills all available vertical space.</li>
+<li><code>fitted: boolean</code> - If true, removes all section padding.</li>
+<li><code>scrollable: boolean</code> - Shows or hides the scrollbar.</li>
+<li><code>children: any</code> - Content of this section.</li>
+</ul>
+<hh3 id=""><code>Slider</code></hh3>
+<p>A horizontal, <a href="#progressbar">ProgressBar</a>-like control, which allows dialing
+in precise values by dragging it left and right.</p>
+<p>Single click opens an input box to manually type in a number.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>animated: boolean</code> - Animates the value if it was changed externally.</li>
+<li><code>color: string</code> - Color of the slider.</li>
+<li><code>value: number</code> - Value itself, controls the position of the cursor.</li>
+<li><code>unit: string</code> - Unit to display to the right of value.</li>
+<li><code>minValue: number</code> - Lowest possible value.</li>
+<li><code>maxValue: number</code> - Highest possible value.</li>
+<li><code>fillValue: number</code> - If set, this value will be used to set the fill
+percentage of the progress bar filler independently of the main value.</li>
+<li><code>ranges: { color: [from, to] }</code> - Applies a <code>color</code> to the slider
+based on whether the value lands in the range between <code>from</code> and <code>to</code>.
+See an example of this prop in <a href="#progressbar">ProgressBar</a>.</li>
+<li><code>step: number</code> (default: 1) - Adjust value by this amount when
+dragging the input.</li>
+<li><code>stepPixelSize: number</code> (default: 1) - Screen distance mouse needs
+to travel to adjust value by one <code>step</code>.</li>
+<li><code>format: value =&gt; value</code> - Format value using this function before
+displaying it.</li>
+<li><code>suppressFlicker: number</code> - A number in milliseconds, for which the input
+will hold off from updating while events propagate through the backend.
+Default is about 250ms, increase it if you still see flickering.</li>
+<li><code>onChange: (e, value) =&gt; void</code> - An event, which fires when you release
+the input, or successfully enter a number.</li>
+<li><code>onDrag: (e, value) =&gt; void</code> - An event, which fires about every 500ms
+when you drag the input up and down, on release and on manual editing.</li>
+</ul>
+<hh3 id=""><code>Stack</code></hh3>
+<p>A higher-level component, that is based on <a href="#flex">Flex</a>. The main difference
+from <code>Flex</code>, is that this component automatically adds spacing between
+all stack items, reducing the boilerplate that you have to write!</p>
+<p>Consists of two elements: <code>&lt;Stack&gt;</code> and <code>&lt;Stack.Item&gt;</code>.</p>
+<p>Stacks can be vertical by adding a <code>vertical</code> property.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-jsx">&lt;Stack&gt;
+  &lt;Stack.Item grow&gt;
+    Button description
+  &lt;/Stack.Item&gt;
+  &lt;Stack.Item&gt;
+    &lt;Button&gt;
+      Perform an action
+    &lt;/Button&gt;
+  &lt;/Stack.Item&gt;
+&lt;/Stack&gt;
+</code></pre>
+<p><strong>Example of a high-level window layout:</strong></p>
+<p>Stacks can be used for high level window layout.
+Make sure to use the <code>fill</code> property.</p>
+<pre><code class="language-jsx">&lt;Window&gt;
+  &lt;Window.Content&gt;
+    &lt;Stack fill&gt;
+      &lt;Stack.Item&gt;
+        &lt;Section fill&gt;
+          Sidebar
+        &lt;/Section&gt;
+      &lt;/Stack.Item&gt;
+      &lt;Stack.Item grow&gt;
+        &lt;Stack fill vertical&gt;
+          &lt;Stack.Item grow&gt;
+            &lt;Section fill scrollable&gt;
+              Main content
+            &lt;/Section&gt;
+          &lt;/Stack.Item&gt;
+          &lt;Stack.Item&gt;
+            &lt;Section&gt;
+              Bottom pane
+            &lt;/Section&gt;
+          &lt;/Stack.Item&gt;
+        &lt;/Stack&gt;
+      &lt;/Stack.Item&gt;
+    &lt;/Stack&gt;
+  &lt;/Window.Content&gt;
+&lt;/Window&gt;
+</code></pre>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#flex">Flex</a></li>
+<li><code>fill: boolean</code> - If set, stack will fill all available height.</li>
+<li><code>vertical: boolean</code> - If set, stack will work in vertical mode.</li>
+</ul>
+<hh3 id=""><code>Stack.Item</code></hh3>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#flexitem">Flex.Item</a></li>
+</ul>
+<hh3 id=""><code>Table</code></hh3>
+<p>A straight forward mapping to a standard html table, which is slightly
+simplified (does not need a <code>&lt;tbody&gt;</code> tag) and with sane default styles
+(e.g. table width is 100% by default).</p>
+<p>Example:</p>
+<pre><code class="language-jsx">&lt;Table&gt;
+  &lt;Table.Row&gt;
+    &lt;Table.Cell bold&gt;
+      Hello world!
+    &lt;/Table.Cell&gt;
+    &lt;Table.Cell collapsing color=&quot;label&quot;&gt;
+      Label
+    &lt;/Table.Cell&gt;
+  &lt;/Table.Row&gt;
+&lt;/Table&gt;
+</code></pre>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>collapsing: boolean</code> - Collapses table to the smallest possible size.</li>
+</ul>
+<hh3 id=""><code>Table.Row</code></hh3>
+<p>A straight forward mapping to <code>&lt;tr&gt;</code> element.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+</ul>
+<hh3 id=""><code>Table.Cell</code></hh3>
+<p>A straight forward mapping to <code>&lt;td&gt;</code> element.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>collapsing: boolean</code> - Collapses table cell to the smallest possible size,
+and stops any text inside from wrapping.</li>
+</ul>
+<hh3 id=""><code>Tabs</code></hh3>
+<p>Tabs make it easy to explore and switch between different views.</p>
+<p>Here is an example of how you would construct a simple tabbed view:</p>
+<pre><code class="language-jsx">&lt;Tabs&gt;
+  &lt;Tabs.Tab
+    selected={tabIndex === 1}
+    onClick={() =&gt; setTabIndex(1)}&gt;
+    Tab one
+  &lt;/Tabs.Tab&gt;
+  &lt;Tabs.Tab
+    selected={tabIndex === 2}
+    onClick={() =&gt; setTabIndex(2)}&gt;
+    Tab two
+  &lt;/Tabs.Tab&gt;
+&lt;/Tabs&gt;
+&lt;Box&gt;
+  Tab selected: {tabIndex}
+&lt;/Box&gt;
+</code></pre>
+<p>Notice that tabs do not contain state. It is your job to track the selected
+tab, handle clicks and place tab content where you need it. In return, you get
+a lot of flexibility in regards to how you can layout your tabs.</p>
+<p>Tabs also support a vertical configuration. This is usually paired with a
+<a href="#flex">Flex</a> component to render tab content to the right.</p>
+<pre><code class="language-jsx">&lt;Flex&gt;
+  &lt;Flex.Item&gt;
+    &lt;Tabs vertical&gt;
+      ...
+    &lt;/Tabs&gt;
+  &lt;/Flex.Item&gt;
+  &lt;Flex.Item grow={1} basis={0}&gt;
+    Tab content.
+  &lt;/Flex.Item&gt;
+&lt;/Flex&gt;
+</code></pre>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>vertical: boolean</code> - Use a vertical configuration, where tabs will be
+stacked vertically.</li>
+<li><code>children: Tab[]</code> - This component only accepts tabs as its children.</li>
+</ul>
+<hh3 id=""><code>Tabs.Tab</code></hh3>
+<p>An individual tab element. Tabs function like buttons, so they inherit
+a lot of <code>Button</code> props.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#button">Button</a></li>
+<li><code>altSelection</code> - Whether the tab buttons select via standard select (color
+change) or by adding a white indicator to the selected tab.
+Intended for usage on interfaces where tab color has relevance.</li>
+<li><code>icon: string</code> - Tab icon.</li>
+<li><code>children: any</code> - Tab text.</li>
+<li><code>onClick: function</code> - Called when element is clicked.</li>
+</ul>
+<hh3 id=""><code>Tooltip</code></hh3>
+<p>A boxy tooltip from tgui 1. It is very hacky in its current state, and
+requires setting <code>position: relative</code> on the container.</p>
+<p>Please note, that <a href="#button">Button</a> component has a <code>tooltip</code> prop, and
+it is recommended to use that prop instead.</p>
+<p>Usage:</p>
+<pre><code class="language-jsx">&lt;Tooltip position=&quot;bottom&quot; content=&quot;Box tooltip&quot;&gt;
+  &lt;Box position=&quot;relative&quot;&gt;
+    Sample text.
+  &lt;/Box&gt;
+&lt;/Tooltip&gt;
+</code></pre>
+<p><strong>Props:</strong></p>
+<ul>
+<li><code>position?: string</code> - Tooltip position. See <a href="#Popper"><code>Popper</code></a> for valid options. Defaults to &quot;auto&quot;.</li>
+<li><code>content: string</code> - Content of the tooltip. Must be a plain string.
+Fragments or other elements are <strong>not</strong> supported.</li>
+</ul>
+<hh2 id=""><code>tgui/layouts</code></hh2><hh3 id=""><code>Window</code></hh3>
+<p>A root-level component, which draws the window chrome, titlebar, resize
+handlers, and controls the UI theme. All tgui interfaces must implement
+it in one way or another.</p>
+<p>Example:</p>
+<pre><code class="language-jsx">&lt;Window theme=&quot;hackerman&quot;&gt;
+  &lt;Window.Content scrollable&gt;
+    Hello, world!
+  &lt;/Window.Content&gt;
+&lt;/Window&gt;
+</code></pre>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>className: string</code> - Applies a CSS class to the element.</li>
+<li><code>theme: string</code> - A name of the theme.
+<ul>
+<li>For a list of themes, see <code>packages/tgui/styles/themes</code>.</li>
+</ul>
+</li>
+<li><code>title: string</code> - Window title.</li>
+<li><code>width: number</code> - Window width.</li>
+<li><code>height: number</code> - Window height.</li>
+<li><code>canClose: boolean</code> - Controls the ability to close the window.</li>
+<li><code>children: any</code> - Child elements, which are rendered directly inside the
+window. If you use a <a href="#dimmer">Dimmer</a> or <a href="#modal">Modal</a> in your UI,
+they should be put as direct childs of a Window, otherwise you should be
+putting your content into <a href="#windowcontent">Window.Content</a>.</li>
+</ul>
+<hh3 id=""><code>Window.Content</code></hh3>
+<p>Canonical window content, which is usually the main target of window focus.
+Can be scrollable.</p>
+<p><strong>Props:</strong></p>
+<ul>
+<li>See inherited props: <a href="#box">Box</a></li>
+<li><code>className: string</code> - Applies a CSS class to the element.</li>
+<li><code>fitted: boolean</code> - If true, removes all padding.</li>
+<li><code>scrollable: boolean</code> - Shows or hides the scrollbar.</li>
+<li><code>children: any</code> - Main content of your window.</li>
+</ul></td></tr></table></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/51b43ea8cac119d9fd0166636f1f0f616b49a21f">51b43ea</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

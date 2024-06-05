@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>tgui&#x2F;docs&#x2F;migration-to-v4-from-v3.md - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>tgui Migration Guide to v4 from v3 <aside>tgui/docs/migration-to-v4-from-v3.md</aside> 
+            <a href="https://github.com/yogstation13/Yogstation/blob/51b43ea8cac119d9fd0166636f1f0f616b49a21f/tgui/docs/migration-to-v4-from-v3.md">
+        <img src="git.png" width="16" height="16" title="tgui&#x2F;docs&#x2F;migration-to-v4-from-v3.md"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><hh2 id="the-easy-part">The Easy Part</hh2>
+<ul>
+<li>Copy and replace the following files in bulk:
+<ul>
+<li><code>code/__DEFINES/tgui.dm</code></li>
+<li><code>code/controllers/subsystem/tgui.dm</code></li>
+<li><code>code/modules/tgui/**</code></li>
+<li><code>tgui/**</code>
+<ul>
+<li>Except: <code>tgui/packages/tgui/interfaces</code></li>
+<li>Manually resolve conflicts for files that were touched outside the
+<code>interfaces</code> folder.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Copy the updated <code>log_tgui</code> proc from:
+<ul>
+<li><code>code/__HELPERS/_logging.dm</code></li>
+</ul>
+</li>
+</ul>
+<p>If you have a dual nano/tgui setup, then make sure to rename all ui procs
+on <code>/datum</code>, such as <code>ui_interact</code> to <code>tgui_interact</code>, to avoid namespace
+clashing. Usual stuff.</p>
+<hh2 id="update-proc-signatures">Update <code>ui_interact</code> proc signatures</hh2>
+<p>First of all, tgui states need to move from <code>ui_interact</code> to <code>ui_state</code>.</p>
+<p>One way of doing it, is to just cherry pick those procs from upstream.</p>
+<p>If you want to search and replace manually, search for <code>state = GLOB</code>, and
+extract those things into <code>ui_state</code> procs like so:</p>
+<pre><code class="language-dm">.../ui_state(mob/user)
+	return GLOB.default_state
+</code></pre>
+<p>Then reduce <code>ui_interact</code> until you finish with something like this:</p>
+<pre><code class="language-dm">.../ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, &quot;FooBar&quot;, &quot;Foo Bar UI&quot;, 600, 400)
+		ui.open()
+</code></pre>
+<hh2 id="update-asset-delivery-code">Update asset delivery code</hh2>
+<p>Remove all asset code that injects stylesheets by modifying tgui's <code>basehtml</code>.
+You no longer need to do that.</p>
+<p>Find all occurences of <code>asset.send(user)</code> in <code>ui_interact</code>, and refactor those
+snippets to the following proc:</p>
+<pre><code class="language-dm">.../ui_assets(mob/user)
+	return list(
+    get_asset_datum(/datum/asset/simple/foobar),
+  )
+</code></pre>
+<hh2 id="check-for-new-bugs">Check <code>ui_act</code> for new bugs</hh2>
+<p>Code behind <code>ui_act</code> was recently refactored to use JSON-encoded payloads
+instead of just strings. Since it can now carry numbers and other complex
+types, you should check that the code is type agnostic and does not break
+due to an assumption that every parameter is a string.</p>
+<p>One of such offenders is the personal crafting interface, where it needlessly
+compares parameters to <code>&quot;&quot;</code> and <code>&quot;0&quot;</code>. You can now replace this code with
+simple assignments, because an empty category will now be properly <code>null</code>
+instead of an empty string.</p>
+<hh2 id="backend-data-changes">Backend data changes</hh2>
+<p>Interfaces that relied on <code>config.window.id</code>, must now use
+<code>window.__windowId__</code>, which is a global constant unique for the page
+the script is running on (so you can be sure it never changes).</p>
+<p>In case of <code>ByondUi</code>, this parameter can be completely omitted, because
+parent will always default to the current window id.</p>
+<p>Affected interfaces:</p>
+<ul>
+<li><code>CameraConsole</code></li>
+<li>Any interface that uses the <code>ByondUi</code> component</li>
+</ul>
+<hr />
+<p>That's all folks!</p>
+<p>There is a lot of stuff that was refactored under the hood, but normal UI
+stuff wouldn't and shouldn't touch it, so you should be good with just
+going through the checklist above.</p></td></tr></table></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/51b43ea8cac119d9fd0166636f1f0f616b49a21f">51b43ea</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

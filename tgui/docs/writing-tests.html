@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>tgui&#x2F;docs&#x2F;writing-tests.md - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>tgui/docs/writing-tests.md 
+            <a href="https://github.com/yogstation13/Yogstation/blob/51b43ea8cac119d9fd0166636f1f0f616b49a21f/tgui/docs/writing-tests.md">
+        <img src="git.png" width="16" height="16" title="tgui&#x2F;docs&#x2F;writing-tests.md"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><hh2 id="jest">Jest</hh2>
+<p>You can now write and run unit tests in tgui.</p>
+<p>It's quite simple: create a file ending in <code>.test.ts</code> or <code>.spec.ts</code> (usually with the same filename as the file you're testing), and create a test case:</p>
+<pre><code class="language-js">test('something', () =&gt; {
+  expect('a').toBe('a');
+});
+</code></pre>
+<p>To run the tests, type the following into the terminal:</p>
+<pre><code>bin/tgui --test
+</code></pre>
+<p>There is an example test in <code>packages/common/react.spec.ts</code>.</p>
+<p>You can read more about Jest here: https://jestjs.io/docs/en/getting-started</p>
+<p>Note, that there is still no real solution to test UIs for now, even though a lot of the support is here (jest + jsdom). That will come later.</p></td></tr></table></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/51b43ea8cac119d9fd0166636f1f0f616b49a21f">51b43ea</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
