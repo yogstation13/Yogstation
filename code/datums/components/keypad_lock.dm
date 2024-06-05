@@ -155,11 +155,8 @@
 			user.balloon_alert(user, "Lock is too strong!")
 			return
 		else
-			user.visible_message(span_warning("[user] starts using [I] to force [source] open!"), span_notice("You start using [I] to force [source] open."))
+			user.visible_message(span_warning("[user] uses [I] to force [source] open!"), span_notice("You use [I] to force [source] open."))
 			playsound(source, 'sound/machines/airlock_alien_prying.ogg', 10)
-			if(!do_after(user, 10 SECONDS, user))
-				user.balloon_alert(user, "You were interrupted!")
-				return
 			force_open(user)
 
 /datum/component/keypad_lock/proc/on_update_icon_state(obj/source)
