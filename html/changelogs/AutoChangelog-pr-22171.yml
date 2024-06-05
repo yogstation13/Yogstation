@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes a minor logic error that prevented ethereals from discharging"
