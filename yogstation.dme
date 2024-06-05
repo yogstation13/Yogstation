@@ -3018,6 +3018,8 @@
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\surveillance.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\synth_control.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\synths\_synth_project.dm"
+#include "code\modules\mob\living\silicon\ai\decentralized\projects\synths\cold_protection.dm"
+#include "code\modules\mob\living\silicon\ai\decentralized\projects\synths\heat_protection.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\synths\speed_buff.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\systech\cpu.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\systech\overclocking.dm"
