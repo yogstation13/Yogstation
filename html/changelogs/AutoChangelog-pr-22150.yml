@@ -1,0 +1,7 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Removes preternis inconsistent virus interactions"
+  - tweak: "Removes burnmod from preternis"
+  - tweak: "Removes brute resistance from preternis limbs"
+  - tweak: "Removes preternis lungs acting weirdly with hot gases"
