@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "Nuclear operatives minimum player count reduced to 20"
+  - tweak: "Telecrystals gained when declaring war now scales with player count"
