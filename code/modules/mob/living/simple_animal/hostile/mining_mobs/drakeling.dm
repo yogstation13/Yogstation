@@ -22,7 +22,7 @@
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
 	speak_chance = 5
-	weather_immunities = list(WEATHER_LAVA, "ash")
+	weather_immunities = list(WEATHER_LAVA, WEATHER_ASH)
 	movement_type = FLYING
 	faction = list("neutral")
 	minbodytemp = 0 //SPACE
