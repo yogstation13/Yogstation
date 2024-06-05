@@ -16,26 +16,6 @@ const getGridSpotKey = (spot: [number, number]): GridSpotKey => {
   return `${spot[0]}/${spot[1]}`;
 };
 
-const CornerText = (props: {
-  align: "left" | "right";
-  children: string;
-}): JSX.Element => {
-  const { align, children } = props;
-
-  return (
-    <Box
-      style={{
-        position: "relative",
-        left: align === "left" ? "2px" : "-2px",
-        "text-align": align,
-        "text-shadow": "1px 1px 1px #555",
-      }}
-    >
-      {children}
-    </Box>
-  );
-};
-
 type AlternateAction = {
   icon: string;
   text: string;
@@ -58,12 +38,12 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
   },
 
   enable_internals: {
-    icon: "tg-air-tank",
+    icon: "mask-ventilator",
     text: "Enable internals",
   },
 
   disable_internals: {
-    icon: "tg-air-tank-slash",
+    icon: "wind",
     text: "Disable internals",
   },
 
@@ -156,14 +136,12 @@ const SLOTS: Record<
     displayName: "right hand",
     gridSpot: getGridSpotKey([2, 4]),
     image: "inventory-hand_r.png",
-    additionalComponent: <CornerText align="left">R</CornerText>,
   },
 
   left_hand: {
     displayName: "left hand",
     gridSpot: getGridSpotKey([2, 5]),
     image: "inventory-hand_l.png",
-    additionalComponent: <CornerText align="right">L</CornerText>,
   },
 
   shoes: {
@@ -257,9 +235,15 @@ export const StripMenu = (props, context) => {
   }
 
   return (
-    <Window title={`Stripping ${data.name}`} width={400} height={380}>
-      <Window.Content>
-        <Stack fill vertical>
+    <Window
+      title={`Stripping ${data.name}`}
+      width={410}
+      height={380}>
+      <Window.Content
+        style={{
+          background: "#25252b",
+        }} >
+        <Stack fill vertical ml={'10px'}>
           {range(0, ROWS).map(row => (
             <Stack.Item grow key={row} ml={-2}>
               <Stack fill justify="space-around">
@@ -300,7 +284,8 @@ export const StripMenu = (props, context) => {
                         src={`data:image/jpeg;base64,${item.icon}`}
                         height="64px"
                         width="64px"
-                        ml={-0.9}
+                        mt={0}
+                        ml={-1}
                         style={{
                           "-ms-interpolation-mode": "nearest-neighbor",
                           "vertical-align": "middle",
@@ -358,7 +343,7 @@ export const StripMenu = (props, context) => {
                           style={{
                             background: item?.interacting
                               ? "hsl(39, 73%, 30%)"
-                              : undefined,
+                              : "#25252b",
                             position: "relative",
                             width: "64px",
                             height: "64px",
@@ -368,11 +353,11 @@ export const StripMenu = (props, context) => {
                             <Box
                               as="img"
                               src={resolveAsset(slot.image)}
-                              opacity={0.7}
+                              opacity={0.9}
                               style={{
                                 position: "absolute",
-                                width: "32px",
-                                height: "32px",
+                                width: "64px",
+                                height: "64px",
                                 left: "50%",
                                 top: "50%",
                                 "-ms-interpolation-mode": "nearest-neighbor",
@@ -397,6 +382,9 @@ export const StripMenu = (props, context) => {
                               });
                             }}
                             tooltip={alternateAction.text}
+                            mr={1}
+                            width={1.6}
+                            height={1.6}
                             style={{
                               background: "rgba(0, 0, 0, 0.6)",
                               position: "absolute",
@@ -405,7 +393,10 @@ export const StripMenu = (props, context) => {
                               "z-index": 2,
                             }}
                           >
-                            <Icon name={alternateAction.icon} />
+                            <Icon
+                              ml={-0.75}
+                              color={'white'}
+                              name={alternateAction.icon} />
                           </Button>
                         )}
                       </Box>
