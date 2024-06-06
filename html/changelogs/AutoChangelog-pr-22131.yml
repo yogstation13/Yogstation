@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - rscadd: "Added TGUI stripping menu"
+  - bugfix: "Fixed xenos not having footsteps"
