@@ -274,6 +274,24 @@
 		ITEM_SLOT_DEX_STORAGE
 	)
 
+/obj/item/reagent_containers/glass/bucket/attackby_secondary(obj/item/weapon, mob/user, params)
+	. = ..()
+	if(istype(weapon, /obj/item/mop))
+		if(reagents.total_volume == volume)
+			to_chat(user, "The [src.name] can't hold anymore liquids")
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+		var/obj/item/mop/attacked_mop = weapon
+
+		if(attacked_mop.reagents.total_volume < 0.1)
+			to_chat(user, span_warning("Your [attacked_mop.name] is already dry!"))
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+		to_chat(user, "You wring out the [attacked_mop.name] into the [src.name].")
+		attacked_mop.reagents.trans_to(src, attacked_mop.mopcap * 0.25)
+		attacked_mop.reagents.remove_all(attacked_mop.mopcap)
+		return SECONDARY_ATTACK_CONTINUE_CHAIN
+
 /obj/item/reagent_containers/glass/bucket/wooden
 	name = "wooden bucket"
 	icon_state = "woodbucket"

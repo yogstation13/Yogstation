@@ -39,6 +39,12 @@
 	var/range = input(usr, "Enter range:", "Range selection", 2) as num
 
 	for(var/obj/effect/abstract/liquid_turf/liquid in range(range, epicenter))
+		if(QDELETED(liquid))
+			continue
+		if(!liquid)
+			continue
+		if(!liquid.liquid_group)
+			continue
 		liquid.liquid_group.remove_any(liquid, liquid.liquid_group.reagents_per_turf)
 		qdel(liquid)
 

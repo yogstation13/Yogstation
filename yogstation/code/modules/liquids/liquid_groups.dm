@@ -314,7 +314,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(!QDELETED(remover))
 		check_liquid_removal(remover, amount)
 	total_reagent_volume = reagents.total_volume
-	reagents_per_turf = total_reagent_volume / length(members)
+	reagents_per_turf = max(1, total_reagent_volume / length(members))
 	expected_turf_height = CEILING(reagents_per_turf, 1) / LIQUID_HEIGHT_DIVISOR
 	if(!total_reagent_volume && !reagents.total_volume)
 		remove_all()

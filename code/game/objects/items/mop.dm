@@ -47,6 +47,11 @@
 		return
 
 	if(T)
+		// Disable normal cleaning if there are liquids.
+		if(T.liquids)
+			to_chat(user, span_warning("It would be quite difficult to clean this with a pool of liquids on top!"))
+			return
+
 		user.visible_message("[user] begins to clean \the [T] with [src].", span_notice("You begin to clean \the [T] with [src]..."))
 
 		var/realspeed = mopspeed
