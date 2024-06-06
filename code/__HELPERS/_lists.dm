@@ -41,7 +41,7 @@
  */
 
 ///Initialize the lazylist
-#define LAZYINITLIST(L) if (!L) L = list()
+#define LAZYINITLIST(L) if (!L) { L = list(); }
 ///If the provided list is empty, set it to null
 #define UNSETEMPTY(L) if (L && !length(L)) L = null
 ///Remove an item from the list, set the list to null if empty
@@ -76,6 +76,11 @@
 ///Returns the list if it's actually a valid list, otherwise will initialize it
 #define SANITIZE_LIST(L) ( islist(L) ? L : list() )
 #define reverseList(L) reverseRange(L.Copy())
+/// Performs an insertion on the given lazy list with the given key and value. If the value already exists, a new one will not be made.
+#define LAZYORASSOCLIST(lazy_list, key, value) \
+	LAZYINITLIST(lazy_list); \
+	LAZYINITLIST(lazy_list[key]); \
+	lazy_list[key] |= value;
 ///Adds to the item K the value V, if the list is null it will initialize it
 #define LAZYADDASSOC(L, K, V) if(!L) { L = list(); } L[K] += V;
 ///Removes the value V from the item K, if the item K is empty will remove it from the list, if the list is empty will set the list to null
