@@ -2112,13 +2112,13 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/item/minihead/proc/comedown(var/obj/damocles, var/obj/silhouette)
 	var/turf/uhoh = get_turf(damocles)
-	animate(damocles, pixel_y = 0, time = 1 SECONDS, easing = ELASTIC_EASING)
-	animate(silhouette, transform = matrix().Scale(3), time = 0.7 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(crush), uhoh), 0.04 SECONDS)
+	animate(damocles, pixel_y = 0, time = 0.2 SECONDS, easing = ELASTIC_EASING)
+	animate(silhouette, transform = matrix().Scale(3), time = 0.2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(crush), uhoh), 0.1 SECONDS)
 	playsound(damocles, 'sound/effects/break_stone.ogg', 15, 1)
 	playsound(damocles, 'sound/effects/meteorimpact.ogg', 30, 1)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), silhouette), 0.05 SECONDS)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), damocles), 0.05 SECONDS)
+	QDEL_IN(silhouette, 0.2 SECONDS)
+	QDEL_IN(damocles, 0.2 SECONDS)
 	return
 
 /obj/item/minihead/proc/crush(var/turf/landingzone)
