@@ -146,7 +146,7 @@
 	SIGNAL_HANDLER
 	force_open(user)
 
-/datum/component/keypad_lock/proc/on_atom_attackby(datum/source, obj/item/I, mob/user, params)
+/datum/component/keypad_lock/proc/on_atom_attackby(datum/source, obj/item/I, mob/user, params) //Thanks for the help Ynot
 	SIGNAL_HANDLER
 	//Check to see if locked and using appropriate item
 	if(lock_status && is_type_in_list(I, keypad_tools))
