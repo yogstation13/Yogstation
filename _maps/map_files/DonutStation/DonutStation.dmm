@@ -47,16 +47,6 @@
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/tcommsat/server)
-"abo" = (
-/obj/effect/turf_decal/trimline/chemorange/filled/corner/lower{
-	dir = 4
-	},
-/obj/effect/landmark/start/chemist,
-/obj/structure/chair/office/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "abp" = (
 /obj/structure/girder,
 /turf/open/floor/plating,
@@ -4369,11 +4359,6 @@
 /obj/structure/table,
 /turf/open/floor/grass,
 /area/hydroponics/garden)
-"bNd" = (
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
-/obj/machinery/light,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "bNi" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/white,
@@ -8578,13 +8563,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/teleporter)
-"dtY" = (
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 6
-	},
-/obj/machinery/chem_heater,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "dud" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -10648,6 +10626,46 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"enz" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool,
+/obj/item/weldingtool/abductor,
+/obj/item/weldingtool/experimental/brass,
+/obj/item/weldingtool/hugetank,
+/obj/item/weldingtool/largetank,
+/obj/item/weldingtool/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
+"enE" = (
+/obj/structure/closet/secure_closet/chemical,
+/obj/item/toy/figure/chemist,
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
+/obj/item/book/manual/wiki/chemistry{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/book/manual/wiki/grenades,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool/experimental/brass,
+/obj/item/weldingtool/makeshift,
+/obj/item/weldingtool/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "enL" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
@@ -11546,6 +11564,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"eHt" = (
+/obj/machinery/chem_heater,
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
+/obj/machinery/light,
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "eIc" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
@@ -11748,43 +11777,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"eLB" = (
-/obj/machinery/camera{
-	c_tag = "Medical - Chemistry";
-	dir = 1;
-	network = list("ss13","Medical")
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -28
-	},
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
-/obj/structure/table/glass,
-/obj/item/hand_labeler,
-/obj/item/clothing/glasses/science{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/clothing/glasses/science,
-/obj/item/screwdriver{
-	pixel_x = -1;
-	pixel_y = -5
-	},
-/obj/item/grenade/chem_grenade,
-/obj/item/grenade/chem_grenade{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/grenade/chem_grenade{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/stack/cable_coil/random{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/stack/cable_coil/random,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "eLD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -11959,6 +11951,24 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"eQo" = (
+/obj/machinery/power/apc{
+	areastring = "/area/medical/chemistry";
+	dir = 2;
+	name = "Chemistry APC";
+	pixel_y = -23
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool/experimental/brass,
+/obj/item/weldingtool/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "eQD" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/closet/secure_closet/personal,
@@ -14001,6 +14011,34 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"fEg" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/chemorange/filled/corner/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/chemorange/filled/corner/lower{
+	dir = 1
+	},
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool,
+/obj/item/weldingtool/abductor,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "fEn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -14298,27 +14336,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/explab)
-"fLk" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/chemorange/filled/corner/lower{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/chemorange/filled/corner/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "fLC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -14808,6 +14825,20 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
+"fUz" = (
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool,
+/obj/item/weldingtool/abductor,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "fUM" = (
 /obj/machinery/atmospherics/components/binary/pump/on,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -15356,6 +15387,25 @@
 /obj/effect/landmark/start/janitor,
 /turf/open/floor/plasteel,
 /area/janitor)
+"ghx" = (
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "chemistryshutter";
+	name = "Chemistry Privacy Toggle";
+	pixel_x = -26;
+	pixel_y = 31
+	},
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool,
+/obj/item/weldingtool/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "ghy" = (
 /obj/structure/lattice,
 /obj/structure/window/reinforced{
@@ -16506,16 +16556,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint)
-"gKV" = (
-/obj/structure/sign/poster/official/safety_eye_protection{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 10
-	},
-/obj/machinery/vending/wardrobe/chem_wardrobe,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "gLB" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -17209,15 +17249,6 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/aft)
-"hba" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "hbi" = (
 /obj/machinery/papershredder,
 /turf/open/floor/wood,
@@ -18064,22 +18095,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"hvi" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 1
-	},
-/obj/effect/landmark/start/chemist,
-/obj/structure/chair/office/light{
-	dir = 1
-	},
-/obj/machinery/light_switch{
-	pixel_y = 27
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "hvQ" = (
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
 /obj/effect/turf_decal/tile/green/opposingcorners{
@@ -19319,14 +19334,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"hXw" = (
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/machinery/disposal/bin,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "hXy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -21008,6 +21015,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"iNH" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool,
+/obj/item/weldingtool/abductor,
+/obj/item/weldingtool/experimental,
+/obj/item/weldingtool/experimental/brass,
+/obj/item/weldingtool/hugetank,
+/obj/item/weldingtool/largetank,
+/obj/item/weldingtool/makeshift,
+/obj/item/weldingtool/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "iNV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -21933,6 +21957,21 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"jhL" = (
+/obj/structure/sign/poster/official/safety_eye_protection{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 10
+	},
+/obj/machinery/vending/wardrobe/chem_wardrobe,
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "jhQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -22742,13 +22781,6 @@
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
-"jzh" = (
-/obj/machinery/chem_dispenser,
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "jzs" = (
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/door/airlock/maintenance_hatch,
@@ -23267,6 +23299,21 @@
 	},
 /turf/open/floor/wood,
 /area/hallway/primary/central)
+"jHQ" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 6
+	},
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "jHS" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower,
@@ -23389,13 +23436,6 @@
 	},
 /turf/open/floor/carpet,
 /area/library)
-"jKC" = (
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "jKL" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -24952,18 +24992,6 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"krW" = (
-/obj/machinery/requests_console{
-	department = "Chemistry";
-	departmentType = 2;
-	name = "Chemistry Request Console";
-	pixel_y = -28
-	},
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
-/obj/machinery/reagentgrinder,
-/obj/structure/table/glass,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "krY" = (
 /obj/machinery/seed_extractor,
 /turf/open/floor/plasteel,
@@ -27650,6 +27678,20 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"lFs" = (
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool,
+/obj/item/weldingtool/abductor,
+/obj/item/weldingtool/experimental/brass,
+/obj/item/weldingtool/hugetank,
+/obj/item/weldingtool/largetank,
+/obj/item/weldingtool/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "lFB" = (
 /obj/machinery/conveyor{
 	dir = 1;
@@ -28152,6 +28194,20 @@
 	},
 /turf/open/space/basic,
 /area/solar/port/fore)
+"lPY" = (
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/chem_master,
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool,
+/obj/item/weldingtool/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "lQG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -28597,6 +28653,21 @@
 /obj/item/screwdriver,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"lZR" = (
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 9
+	},
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "lZX" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/visible{
 	dir = 4
@@ -29243,15 +29314,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"moB" = (
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 9
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "moH" = (
 /obj/structure/sign/poster/contraband/random{
 	pixel_x = -32
@@ -29305,18 +29367,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
-"mqd" = (
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "chemistryshutter";
-	name = "Chemistry Privacy Toggle";
-	pixel_x = -26;
-	pixel_y = 31
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "mqj" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -29895,6 +29945,29 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/port/fore)
+"mBG" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool,
+/obj/item/weldingtool/abductor,
+/obj/item/weldingtool/experimental/brass,
+/obj/item/weldingtool/hugetank,
+/obj/item/weldingtool/makeshift,
+/obj/item/weldingtool/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "mBL" = (
 /obj/structure/table,
 /obj/item/weldingtool,
@@ -32359,6 +32432,31 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/security/processing)
+"nCQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool,
+/obj/item/weldingtool/abductor,
+/obj/item/weldingtool/experimental,
+/obj/item/weldingtool/experimental/brass,
+/obj/item/weldingtool/hugetank,
+/obj/item/weldingtool/largetank,
+/obj/item/weldingtool/makeshift,
+/obj/item/weldingtool/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "nCU" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/visible{
 	dir = 4
@@ -33703,13 +33801,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
-"obM" = (
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 1
-	},
-/obj/machinery/chem_master,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "obO" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -34477,6 +34568,18 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/crew_quarters/fitness)
+"otX" = (
+/obj/machinery/chem_dispenser,
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 4
+	},
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "oua" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -34706,13 +34809,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"oys" = (
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 5
-	},
-/obj/machinery/chem_heater,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "oyE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -35099,6 +35195,22 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"oIL" = (
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool,
+/obj/item/weldingtool/abductor,
+/obj/item/weldingtool/experimental,
+/obj/item/weldingtool/experimental/brass,
+/obj/item/weldingtool/hugetank,
+/obj/item/weldingtool/largetank,
+/obj/item/weldingtool/makeshift,
+/obj/item/weldingtool/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "oIM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -36492,6 +36604,27 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
+"prF" = (
+/obj/effect/turf_decal/trimline/chemorange/filled/corner/lower{
+	dir = 4
+	},
+/obj/effect/landmark/start/chemist,
+/obj/structure/chair/office/light{
+	dir = 1
+	},
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool,
+/obj/item/weldingtool/abductor,
+/obj/item/weldingtool/experimental/brass,
+/obj/item/weldingtool/hugetank,
+/obj/item/weldingtool/largetank,
+/obj/item/weldingtool/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "prH" = (
 /obj/machinery/vending/coffee,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
@@ -37380,6 +37513,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"pKs" = (
+/obj/machinery/chem_dispenser,
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool,
+/obj/item/weldingtool/abductor,
+/obj/item/weldingtool/experimental,
+/obj/item/weldingtool/experimental/brass,
+/obj/item/weldingtool/hugetank,
+/obj/item/weldingtool/largetank,
+/obj/item/weldingtool/makeshift,
+/obj/item/weldingtool/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "pKz" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -37888,13 +38038,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"pTs" = (
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "pTD" = (
 /obj/machinery/modular_computer/console/preset/curator{
 	dir = 1
@@ -39001,12 +39144,6 @@
 	},
 /turf/open/floor/wood,
 /area/tcommsat/computer)
-"qqN" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "qqY" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
@@ -39656,6 +39793,20 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/medical/morgue)
+"qGa" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/chemorange/filled/corner/lower{
+	dir = 4
+	},
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "qGg" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -39667,6 +39818,29 @@
 /obj/structure/transit_tube/diagonal,
 /turf/open/space/basic,
 /area/space/nearstation)
+"qGh" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/landmark/start/chemist,
+/obj/structure/chair/office/light{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_y = 27
+	},
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool,
+/obj/item/weldingtool/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "qGo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
@@ -40627,6 +40801,26 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
+"rcC" = (
+/obj/machinery/requests_console{
+	department = "Chemistry";
+	departmentType = 2;
+	name = "Chemistry Request Console";
+	pixel_y = -28
+	},
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
+/obj/machinery/reagentgrinder,
+/obj/structure/table/glass,
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool/experimental/brass,
+/obj/item/weldingtool/makeshift,
+/obj/item/weldingtool/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "rcJ" = (
 /obj/structure/particle_accelerator/particle_emitter/center{
 	dir = 1;
@@ -40843,6 +41037,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"rhP" = (
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool,
+/obj/item/weldingtool/abductor,
+/obj/item/weldingtool/experimental/brass,
+/obj/item/weldingtool/hugetank,
+/obj/item/weldingtool/makeshift,
+/obj/item/weldingtool/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "rhV" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/stripes/line{
@@ -44015,6 +44223,22 @@
 "sBp" = (
 /turf/open/floor/plating/foam,
 /area/maintenance/starboard)
+"sBt" = (
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 5
+	},
+/obj/structure/table/glass,
+/obj/item/storage/box/beakers,
+/obj/item/storage/box/syringes,
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool,
+/obj/item/weldingtool/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "sBu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -45370,18 +45594,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
-"tfC" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "tfW" = (
 /obj/machinery/power/tesla_coil,
 /turf/open/floor/plating/airless,
@@ -45789,6 +46001,20 @@
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
+"toE" = (
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 5
+	},
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "toG" = (
 /obj/machinery/light/small{
 	brightness = 3;
@@ -46178,13 +46404,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
-"tvK" = (
-/obj/machinery/chem_master,
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 5
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "tvT" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
@@ -46492,6 +46711,18 @@
 /obj/item/restraints/legcuffs/beartrap,
 /turf/open/floor/plasteel,
 /area/janitor)
+"tCa" = (
+/obj/machinery/chem_master,
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 5
+	},
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "tCS" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
@@ -47016,6 +47247,20 @@
 /obj/item/seeds/potato,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"tNl" = (
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool,
+/obj/item/weldingtool/abductor,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "tNF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -47056,18 +47301,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"tOj" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "tOr" = (
 /obj/machinery/bookbinder,
 /turf/open/floor/wood,
@@ -47148,6 +47381,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"tQo" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/turf/open/floor/plating,
+/area/medical/chemistry)
 "tQS" = (
 /turf/closed/wall/r_wall,
 /area/science/mixing)
@@ -47694,6 +47936,28 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
+"uct" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool,
+/obj/item/weldingtool/abductor,
+/obj/item/weldingtool/experimental,
+/obj/item/weldingtool/experimental/brass,
+/obj/item/weldingtool/hugetank,
+/obj/item/weldingtool/largetank,
+/obj/item/weldingtool/makeshift,
+/obj/item/weldingtool/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "ucx" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 9
@@ -48817,25 +49081,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"uBO" = (
-/obj/structure/closet/secure_closet/chemical,
-/obj/item/toy/figure/chemist,
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
-/obj/item/book/manual/wiki/chemistry{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/book/manual/wiki/grenades,
-/obj/item/stack/sheet/mineral/plasma,
-/obj/machinery/power/apc{
-	areastring = "/area/medical/chemistry";
-	dir = 2;
-	name = "Chemistry APC";
-	pixel_y = -23
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "uBS" = (
 /obj/machinery/light{
 	dir = 8
@@ -49547,6 +49792,51 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"uQv" = (
+/obj/machinery/camera{
+	c_tag = "Medical - Chemistry";
+	dir = 1;
+	network = list("ss13","Medical")
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -28
+	},
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
+/obj/structure/table/glass,
+/obj/item/hand_labeler,
+/obj/item/clothing/glasses/science{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/clothing/glasses/science,
+/obj/item/screwdriver{
+	pixel_x = -1;
+	pixel_y = -5
+	},
+/obj/item/grenade/chem_grenade,
+/obj/item/grenade/chem_grenade{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/grenade/chem_grenade{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/stack/cable_coil/random{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/cable_coil/random,
+/obj/item/lighter,
+/obj/item/lighter/badass,
+/obj/item/lighter/gold,
+/obj/item/lighter/greyscale,
+/obj/item/lighter/slime,
+/obj/item/weldingtool/experimental/brass,
+/obj/item/weldingtool/makeshift,
+/obj/item/weldingtool/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "uQH" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/stripes/line{
@@ -50662,9 +50952,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
-"vpk" = (
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "vpC" = (
 /obj/structure/sign/poster/official/space_cops{
 	pixel_x = 32
@@ -52211,10 +52498,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"vXK" = (
-/obj/machinery/chem_dispenser,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "vXX" = (
 /obj/effect/turf_decal/pool{
 	dir = 1
@@ -52964,15 +53247,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"wpC" = (
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 5
-	},
-/obj/structure/table/glass,
-/obj/item/storage/box/beakers,
-/obj/item/storage/box/syringes,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "wpE" = (
 /obj/machinery/advanced_airlock_controller{
 	dir = 8;
@@ -55564,10 +55838,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
-"xoU" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "xpa" = (
 /turf/open/indestructible/sound/pool/end,
 /area/crew_quarters/fitness/recreation)
@@ -57763,12 +58033,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"yif" = (
-/obj/effect/turf_decal/trimline/chemorange/filled/corner/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "yip" = (
 /obj/structure/table,
 /obj/item/reagent_containers/spray/pestspray{
@@ -86901,11 +87165,11 @@ swz
 ooJ
 vNj
 icl
-moB
-pTs
-jKC
-fLk
-gKV
+lZR
+fUz
+tNl
+fEg
+jhL
 icl
 kbP
 arA
@@ -87158,11 +87422,11 @@ jYh
 fKE
 vYu
 icl
-hvi
-vpk
-vpk
-tfC
-eLB
+qGh
+rhP
+rhP
+mBG
+uQv
 icl
 nXP
 gIJ
@@ -87415,11 +87679,11 @@ pvV
 dGO
 vNj
 icl
-obM
-vXK
-xoU
-tOj
-krW
+lPY
+pKs
+iNH
+nCQ
+rcC
 icl
 nXP
 gIJ
@@ -87672,11 +87936,11 @@ etj
 vWB
 jtg
 tuu
-mqd
-vpk
-vpk
-hba
-uBO
+ghx
+oIL
+oIL
+uct
+enE
 icl
 nXP
 gIJ
@@ -87929,11 +88193,11 @@ jZe
 hhG
 rhB
 niP
-wpC
-abo
-vpk
-qqN
-hXw
+sBt
+prF
+lFs
+enz
+eQo
 icl
 nXP
 gIJ
@@ -88186,11 +88450,11 @@ jZe
 jZe
 jZe
 vEG
-sFh
-tvK
-jzh
-yif
-bNd
+tQo
+tCa
+otX
+qGa
+eHt
 icl
 nXP
 gxy
@@ -88443,11 +88707,11 @@ vxr
 vxr
 vxr
 jNK
-sFh
-sFh
-sFh
-oys
-dtY
+tQo
+tQo
+tQo
+toE
+jHQ
 icl
 nXP
 gxy
