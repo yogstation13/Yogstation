@@ -25,7 +25,7 @@
 
 
 /datum/ai_behavior/break_spine
-	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT
+	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_REQUIRE_REACH
 	action_cooldown = 0.7 SECONDS
 	var/give_up_distance = 10
 
@@ -82,7 +82,7 @@
 /// Use the currently held item, or unarmed, on a weakref to an object in the world
 /datum/ai_behavior/use_on_object
 	required_distance = 1
-	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT
+	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_REQUIRE_REACH
 
 /datum/ai_behavior/use_on_object/setup(datum/ai_controller/controller, target_key)
 	. = ..()
@@ -113,7 +113,7 @@
 
 /datum/ai_behavior/give
 	required_distance = 1
-	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT
+	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_REQUIRE_REACH
 
 
 /datum/ai_behavior/give/setup(datum/ai_controller/controller, target_key)
@@ -180,7 +180,7 @@
 
 /datum/ai_behavior/consume
 	required_distance = 1
-	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT
+	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_REQUIRE_REACH
 	action_cooldown = 2 SECONDS
 
 /datum/ai_behavior/consume/setup(datum/ai_controller/controller, target_key)
@@ -225,7 +225,7 @@
 
 /// This behavior involves attacking a target.
 /datum/ai_behavior/attack
-	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_MOVE_AND_PERFORM
+	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_MOVE_AND_PERFORM | AI_BEHAVIOR_REQUIRE_REACH
 	required_distance = 1
 
 /datum/ai_behavior/attack/perform(seconds_per_tick, datum/ai_controller/controller)

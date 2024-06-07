@@ -15,7 +15,7 @@
 	var/full_speed = TRUE // If the jetpack will have a speedboost in space/nograv or not
 	var/classic = TRUE // If the jetpack uses the classic two-tank sprite. False if it has its own special sprite (syndicate jetpack, or void jetpack)
 	var/jetspeed = -0.3 // Negative increases speed
-	var/datum/callback/thrust_callback
+	var/thrust_callback
 
 /obj/item/tank/jetpack/Initialize(mapload)
 	. = ..()
@@ -156,7 +156,7 @@
 	gas_type = null //it starts empty
 	full_speed = FALSE //moves at hardsuit jetpack speeds
 
-/obj/item/tank/jetpack/improvised/allow_thrust(num)
+/obj/item/tank/jetpack/improvised/allow_thrust(num, use_fuel = TRUE)
 	if(!ismob(loc))
 		return FALSE
 

@@ -2,7 +2,7 @@
 	screeches = list("roar","screech")
 
 /datum/ai_behavior/monkey_equip
-	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT
+	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_REQUIRE_REACH
 
 /datum/ai_behavior/monkey_equip/finish_action(datum/ai_controller/controller, success)
 	. = ..()

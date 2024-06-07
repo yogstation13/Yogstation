@@ -511,7 +511,7 @@
 		return
 	if(!chassis)
 		return
-	return COMSIG_MOVABLE_ALLOW_SPACEMOVE //This parent should never exist in-game outside admeme use, so why not let it be a creative thruster?
+	return COMSIG_MOVABLE_STOP_SPACEMOVE //This parent should never exist in-game outside admeme use, so why not let it be a creative thruster?
 
 /obj/item/mecha_parts/mecha_equipment/thrusters/get_equip_info()
 	return "[..()] \[<b>Thrusters: </b> [thrusters_active ? "Enabled" : "Disabled"]\]"
@@ -538,7 +538,7 @@
 		our_mix.remove(moles)
 		return
 	our_mix.remove(move_cost)
-	return COMSIG_MOVABLE_ALLOW_SPACEMOVE
+	return COMSIG_MOVABLE_STOP_SPACEMOVE
 
 /obj/item/mecha_parts/mecha_equipment/thrusters/ion //for mechs with built-in thrusters, should never really exist un-attached to a mech
 	name = "ion thruster package"
@@ -553,7 +553,7 @@
 		thrusters_active = FALSE
 		thrust_trail.stop()
 		return
-	return COMSIG_MOVABLE_ALLOW_SPACEMOVE
+	return COMSIG_MOVABLE_STOP_SPACEMOVE
 
 /datum/action/innate/mecha/equipment/toggle_thrusters
 	name = "Toggle Thrusters"

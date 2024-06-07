@@ -19,6 +19,11 @@
 	var/obj/item/card/id/access_card
 	var/list/moving = list()
 
+/obj/item/mirage_drive/examine(datum/source, mob/user, list/examine_list)
+	. = ..()
+	if(!COOLDOWN_FINISHED(src, last_dash))
+		. += span_notice("A digital display on it reads [COOLDOWN_TIMELEFT(src, last_dash)/10].")
+
 /obj/item/mirage_drive/afterattack(atom/target, mob/living/carbon/user)
 	var/turf/T = get_turf(target)
 	var/next_dash = 0
