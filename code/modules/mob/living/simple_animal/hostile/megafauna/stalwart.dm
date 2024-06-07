@@ -116,7 +116,7 @@
 			shake_camera(M, 4, 3)
 			sleep(0.5 SECONDS)
 	playsound(src, 'sound/machines/sm/accent/delam/14.ogg', 400, 1)
-	
+
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/shoot_projectile(turf/marker, set_angle)
 	playsound(src, 'sound/weapons/ionrifle.ogg', 400, 1)
 	if(!isnum(set_angle) && (!marker || marker == loc))
@@ -305,7 +305,7 @@
 	attack_sound = 'sound/weapons/pierce_slow.ogg'
 	speak_emote = list("buzzes")
 	faction = list("mining")
-	weather_immunities = list("lava","ash")
+	weather_immunities = list(WEATHER_LAVA,WEATHER_ASH)
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/Initialize(mapload)
 	. = ..()

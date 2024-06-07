@@ -162,6 +162,8 @@
 			continue
 		if(initial(path.cost) > TELECRYSTALS_DEFAULT)
 			continue
+		if(!initial(path.item))
+			continue
 		values += "[path]"
 
 	return values

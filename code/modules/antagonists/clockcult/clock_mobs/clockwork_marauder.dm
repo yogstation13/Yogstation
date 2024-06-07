@@ -16,7 +16,7 @@
 	melee_damage_upper = 15
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-	weather_immunities = list("lava")
+	weather_immunities = list(WEATHER_LAVA)
 	movement_type = FLYING
 	combat_mode = TRUE
 	loot = list(/obj/item/clockwork/component/geis_capacitor/fallen_armor)

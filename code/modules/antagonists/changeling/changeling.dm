@@ -131,7 +131,7 @@
 
 /datum/antagonist/changeling/proc/make_absorbable()
 	var/mob/living/carbon/C = owner.current
-	if(ishuman(C) && (NO_DNA_COPY in C.dna.species.species_traits || !C.has_dna()))
+	if(ishuman(C) && ((NO_DNA_COPY in C.dna.species.species_traits) || !C.has_dna() || (NOHUSK in C.dna.species.species_traits)))
 		to_chat(C, span_userdanger("You have been made a human, as your original race had incompatible DNA."))
 		C.set_species(/datum/species/human, TRUE, TRUE)
 		if(C.client?.prefs?.read_preference(/datum/preference/name/backup_human) && !is_banned_from(C.client?.ckey, "Appearance"))

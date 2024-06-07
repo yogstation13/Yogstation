@@ -231,7 +231,7 @@
 
 	H.cut_overlay(overcharge)
 
-	if(H.nutrition > NUTRITION_LEVEL_FULL)
+	if(H.nutrition <= NUTRITION_LEVEL_FULL)
 		H.visible_message(span_notice("[H] stops sparking."), span_notice("Your energy settles down again."))
 		return //if they successfully release into an apc, no more discharge
 
@@ -280,7 +280,7 @@
 	if(H.stat == DEAD)
 		return
 
-	if(H.nutrition < NUTRITION_LEVEL_ALMOST_FULL) //passive charging if in starlight
+	if(H.nutrition < NUTRITION_LEVEL_WELL_FED) //passive charging if in starlight
 		var/starlight = FALSE
 		if(istype(get_turf(H), /turf/open/space))
 			starlight = TRUE
