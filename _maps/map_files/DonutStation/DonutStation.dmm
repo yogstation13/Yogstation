@@ -3939,15 +3939,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
-"bDs" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 5
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "bDJ" = (
 /turf/closed/wall,
 /area/science/xenobiology)
@@ -4378,6 +4369,11 @@
 /obj/structure/table,
 /turf/open/floor/grass,
 /area/hydroponics/garden)
+"bNd" = (
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
+/obj/machinery/light,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "bNi" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/white,
@@ -8582,6 +8578,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/teleporter)
+"dtY" = (
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 6
+	},
+/obj/machinery/chem_heater,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "dud" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -10104,12 +10107,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"eaI" = (
-/obj/machinery/chem_heater,
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
-/obj/machinery/light,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "eaP" = (
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 1
@@ -17212,6 +17209,15 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/aft)
+"hba" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "hbi" = (
 /obj/machinery/papershredder,
 /turf/open/floor/wood,
@@ -19313,6 +19319,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"hXw" = (
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal/bin,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "hXy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -27832,15 +27846,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/grass,
 /area/hydroponics/garden)
-"lIE" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "lIP" = (
 /obj/structure/railing{
 	dir = 8
@@ -31377,15 +31382,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"ngH" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/chemorange/filled/corner/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "ngQ" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -34465,15 +34461,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
-"otb" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "oti" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -34719,6 +34706,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"oys" = (
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 5
+	},
+/obj/machinery/chem_heater,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "oyE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -39007,6 +39001,12 @@
 	},
 /turf/open/floor/wood,
 /area/tcommsat/computer)
+"qqN" = (
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "qqY" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
@@ -41873,18 +41873,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/storage)
-"rFw" = (
-/obj/structure/closet/secure_closet/chemical,
-/obj/item/toy/figure/chemist,
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
-/obj/item/book/manual/wiki/chemistry{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/book/manual/wiki/grenades,
-/obj/item/stack/sheet/mineral/plasma,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "rFB" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge";
@@ -48829,6 +48817,25 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"uBO" = (
+/obj/structure/closet/secure_closet/chemical,
+/obj/item/toy/figure/chemist,
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
+/obj/item/book/manual/wiki/chemistry{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/book/manual/wiki/grenades,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/machinery/power/apc{
+	areastring = "/area/medical/chemistry";
+	dir = 2;
+	name = "Chemistry APC";
+	pixel_y = -23
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "uBS" = (
 /obj/machinery/light{
 	dir = 8
@@ -57079,16 +57086,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"xSX" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "xTi" = (
 /obj/machinery/vending/security,
 /turf/open/floor/plasteel/showroomfloor,
@@ -57526,17 +57523,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"ycU" = (
-/obj/machinery/power/apc{
-	areastring = "/area/medical/chemistry";
-	dir = 2;
-	name = "Chemistry APC";
-	pixel_y = -23
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "ycZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -57777,6 +57763,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"yif" = (
+/obj/effect/turf_decal/trimline/chemorange/filled/corner/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "yip" = (
 /obj/structure/table,
 /obj/item/reagent_containers/spray/pestspray{
@@ -87683,8 +87675,8 @@ tuu
 mqd
 vpk
 vpk
-lIE
-rFw
+hba
+uBO
 icl
 nXP
 gIJ
@@ -87940,8 +87932,8 @@ niP
 wpC
 abo
 vpk
-otb
-ycU
+qqN
+hXw
 icl
 nXP
 gIJ
@@ -88197,8 +88189,8 @@ vEG
 sFh
 tvK
 jzh
-ngH
-eaI
+yif
+bNd
 icl
 nXP
 gxy
@@ -88454,8 +88446,8 @@ jNK
 sFh
 sFh
 sFh
-bDs
-xSX
+oys
+dtY
 icl
 nXP
 gxy
