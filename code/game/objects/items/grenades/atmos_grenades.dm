@@ -22,7 +22,7 @@
 	name = "Healium crystal"
 	desc = "A crystal made from the Healium gas, it's cold to the touch."
 	icon_state = "healium_crystal"
-	grind_results = list(/datum/reagent/healium = 20)
+	grind_results = list(/datum/reagent/gas/healium = 20)
 	///Amount of stamina damage mobs will take if in range
 	var/stamina_damage = 30
 	///Range of the grenade that will cool down and affect mobs
@@ -50,10 +50,9 @@
 			live_mob.adjustStaminaLoss(stamina_damage / distance_from_center)
 			live_mob.adjust_bodytemperature(-150 / distance_from_center)
 			if(live_mob.stat > CONSCIOUS || live_mob.health <= 20)
-				var/existing = live_mob.reagents.get_reagent_amount(/datum/reagent/healium)
-				if(existing)
-					live_mob.reagents.del_reagent(/datum/reagent/healium) //for retriggering
-				live_mob.reagents.add_reagent(/datum/reagent/healium, 10)
+				var/datum/reagent/gas/healium/heal_reagent = new()
+				heal_reagent.reaction_mob(live_mob, VAPOR, 10, permeability = live_mob.get_permeability())
+				qdel(heal_reagent)
 	qdel(src)
 
 /obj/item/grenade/gas_crystal/pluonium_crystal

@@ -3559,6 +3559,7 @@
 #include "code\modules\reagents\chemistry\reagents\toxin_reagents.dm"
 #include "code\modules\reagents\chemistry\recipes\cat2_medicines.dm"
 #include "code\modules\reagents\chemistry\recipes\drugs.dm"
+#include "code\modules\reagents\chemistry\recipes\gas_reagents.dm"
 #include "code\modules\reagents\chemistry\recipes\medicine.dm"
 #include "code\modules\reagents\chemistry\recipes\others.dm"
 #include "code\modules\reagents\chemistry\recipes\pyrotechnics.dm"
