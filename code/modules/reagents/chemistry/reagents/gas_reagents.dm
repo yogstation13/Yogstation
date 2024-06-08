@@ -82,7 +82,7 @@
 
 /datum/reagent/gas/nitrium/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)
 	if(reac_volume > 5)
-		var/datum/reagent/R = new /datum/reagent/nitrosyl_plasmide()
+		var/datum/reagent/R = new /datum/reagent/gas/nitrosyl_plasmide()
 		R.reaction_mob(exposed_mob, methods, reac_volume / 2.5)
 		if(reac_volume > 8 && prob(reac_volume*5) && (methods & VAPOR))
 			exposed_mob.adjustOrganLoss(ORGAN_SLOT_LUNGS, reac_volume/2)
