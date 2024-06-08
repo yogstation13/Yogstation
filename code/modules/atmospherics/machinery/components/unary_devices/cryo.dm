@@ -307,6 +307,10 @@
 			var/existing = mob_occupant.reagents.get_reagent_amount(/datum/reagent/healium)
 			mob_occupant.reagents.add_reagent(/datum/reagent/healium, 1 - existing)
 			air1.set_moles(GAS_HEALIUM, -max(0, air1.get_moles(GAS_HEALIUM) - 0.1 / efficiency))
+		if(air1.get_moles(GAS_HEXANE) > 1)
+			var/existing = mob_occupant.reagents.get_reagent_amount(/datum/reagent/hexane)
+			mob_occupant.reagents.add_reagent(/datum/reagent/hexane, 1 - existing)
+			air1.set_moles(GAS_HEXANE, -max(0, air1.get_moles(GAS_HEXANE) - 0.1 / efficiency))
 	return 1
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/process_atmos()
