@@ -1,7 +1,7 @@
 /datum/computer_file/program/crew_manifest
 	filename = "crewmani"
 	filedesc = "Crew Manifest"
-	category = PROGRAM_CATEGORY_CMD
+	category = PROGRAM_CATEGORY_SECURITY
 	program_icon_state = "id"
 	extended_desc = "Program for viewing and printing the current crew manifest."
 	requires_ntnet = FALSE

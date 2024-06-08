@@ -183,7 +183,7 @@
 	.= ..()
 	AddComponent(/datum/component/squeak, list('sound/effects/collarbell1.ogg'=1,'sound/effects/collarbell2.ogg'=1), 50, 100, 2)
 
-/obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, mob/equipper, slot, disable_warning = 0)
+/obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
 	if(ishuman(M))
 		return FALSE
 	return ..()
@@ -461,13 +461,13 @@
 	set_cloak(0)
 	UnregisterSignal(current_user, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_BULLET_ACT))
 	if(user)
-		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_BULLET_ACT))
+		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_HUMAN_CHECK_SHIELDS))
 
 	var/mob/new_user = loc
 	if(istype(new_user) && new_user.get_item_by_slot(ITEM_SLOT_NECK) == src)
 		current_user = new_user
 		RegisterSignal(current_user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
-		RegisterSignal(current_user, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_projectile_hit))
+		RegisterSignal(current_user, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(dodge))
 		START_PROCESSING(SSobj, src)
 	else
 		STOP_PROCESSING(SSobj, src)
@@ -487,29 +487,19 @@
 		return
 	set_cloak(cloak + (cloak_charge_rate * delta_time))
 
-/obj/item/clothing/neck/cloak/ranger/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(!isprojectile(hitby) && dodge(owner, hitby, attack_text))
-		return TRUE
-	return ..()
-
 /obj/item/clothing/neck/cloak/ranger/proc/on_move(mob/user, Dir, Forced = FALSE)
 	if(update_signals(user))
 		set_cloak(cloak - cloak_move_loss)
 
-/obj/item/clothing/neck/cloak/ranger/proc/on_projectile_hit(mob/living/carbon/human/user, obj/projectile/P, def_zone)
-	SIGNAL_HANDLER
-	if(dodge(user, P, "[P]"))
-		return BULLET_ACT_FORCE_PIERCE
-
-/obj/item/clothing/neck/cloak/ranger/proc/dodge(mob/living/carbon/human/user, atom/movable/hitby, attack_text)
+/obj/item/clothing/neck/cloak/ranger/proc/dodge(mob/living/carbon/human/user, atom/movable/hitby, damage, attack_text)
 	if(!update_signals(user) || current_user.incapacitated() || !prob(cloak))
-		return FALSE
+		return NONE
 
 	set_cloak(cloak - cloak_dodge_loss)
 	current_user.SpinAnimation(7,1)
 	current_user.balloon_alert_to_viewers("Dodged!", "Dodged!", COMBAT_MESSAGE_RANGE)
 	current_user.visible_message(span_danger("[current_user] dodges [attack_text]!"), span_userdanger("You dodge [attack_text]"), null, COMBAT_MESSAGE_RANGE)
-	return TRUE
+	return SHIELD_DODGE
 
 /obj/item/clothing/neck/cloak/ranger/syndie
 	name = "shadow cloak"

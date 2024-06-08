@@ -19,7 +19,14 @@
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"
 ///from /mob/living/carbon/human/proc/check_shields(): (atom/hit_by, damage, attack_text, attack_type, armour_penetration)
 #define COMSIG_HUMAN_CHECK_SHIELDS "human_check_shields"
+	///Standard block, stops projectiles in their tracks
 	#define SHIELD_BLOCK (1<<0)
+	///Reflects projectiles back to whence they came
+	#define SHIELD_REFLECT (1<<1)
+	///Projectiles just pass right through
+	#define SHIELD_DODGE (1<<2)
+///from /mob/living/carbon/human/proc/check_shields(): (block_result)
+#define COMSIG_HUMAN_AFTER_BLOCK "human_after_block"
 ///from /mob/living/carbon/human/proc/force_say(): ()
 #define COMSIG_HUMAN_FORCESAY "human_forcesay"
 

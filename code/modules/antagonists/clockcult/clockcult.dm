@@ -131,6 +131,7 @@
 	current.throw_alert("clockinfo", /atom/movable/screen/alert/clockwork/infodump)
 	if(clockwork_ark_active() && ishuman(current))
 		current.add_overlay(mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER))
+	ADD_TRAIT(current, TRAIT_UNHOLY, type)
 	add_team_hud(current)
 
 /datum/antagonist/clockcult/remove_innate_effects(mob/living/mob_override)
@@ -164,6 +165,7 @@
 		temp_owner.update_mob_action_buttons() //because a few clockcult things are action buttons and we may be wearing/holding them, we need to update buttons
 	temp_owner.cut_overlays()
 	temp_owner.regenerate_icons()
+	REMOVE_TRAIT(current, TRAIT_UNHOLY, type)
 
 /datum/antagonist/clockcult/on_removal()
 	SSticker.mode.servants_of_ratvar -= owner

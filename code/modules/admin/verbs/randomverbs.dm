@@ -1147,7 +1147,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 									ADMIN_PUNISHMENT_SCARIFY,
 									ADMIN_PUNISHMENT_SMSPIDER,
 									ADMIN_PUNISHMENT_FLASHBANG,
-									ADMIN_PUNISHMENT_WIBBLY)
+									ADMIN_PUNISHMENT_WIBBLY,
+									ADMIN_PUNISHMENT_BACKROOMS)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
 
@@ -1334,6 +1335,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if(ADMIN_PUNISHMENT_WIBBLY)
 			apply_wibbly_filters(target, 888)
 			to_chat(target, span_warning("Something feels very... wibbly!"))
+			
+		if(ADMIN_PUNISHMENT_BACKROOMS)
+			INVOKE_ASYNC(target, TYPE_PROC_REF(/mob/living, clip_into_backrooms))
 
 	punish_log(target, punishment)
 

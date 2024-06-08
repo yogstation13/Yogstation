@@ -174,6 +174,75 @@
 	light_color = LIGHT_COLOR_PURPLE
 	lava_temperature = 73 // cold, not hot
 
+/turf/open/lava/plasma/burn_stuff(thing, delta_time)
+	if (isliving(thing)) //objects are unaffected for now
+		. = TRUE
+		var/mob/living/L = thing
+		if(L.movement_type & FLYING)
+			return	//YOU'RE FLYING OVER IT
+		if(WEATHER_SNOW in L.weather_immunities)
+			return
+
+		var/buckle_check = L.buckling
+		if(!buckle_check)
+			buckle_check = L.buckled
+		if(isobj(buckle_check))
+			var/obj/O = buckle_check
+			if(O.resistance_flags & FREEZE_PROOF)
+				return
+
+		else if(isliving(buckle_check))
+			var/mob/living/live = buckle_check
+			if(WEATHER_SNOW in live.weather_immunities)
+				return
+
+		L.adjustFireLoss(2)
+		if(L)
+			L.adjust_fire_stacks(20) //dipping into a stream of plasma would probably make you more flammable than usual
+			L.adjust_bodytemperature(-rand(50,65)) //its cold, man
+			if(ishuman(L))//are they a carbon?
+				var/list/plasma_parts = list()//a list of the organic parts to be turned into plasma limbs
+				var/list/robo_parts = list()//keep a reference of robotic parts so we know if we can turn them into a plasmaman
+				var/mob/living/carbon/human/PP = L
+				var/datum/species/S = PP.dna.species
+				if(istype(S, /datum/species/plasmaman) || (S.inherent_biotypes & MOB_ROBOTIC)) //ignore plasmamen/robotic species
+					return
+
+				for(var/BP in PP.bodyparts)
+					var/obj/item/bodypart/NN = BP
+					if(NN.status == BODYPART_ROBOTIC)
+						robo_parts += NN
+					if(NN.body_zone == BODY_ZONE_HEAD) //don't add the head to the list, just transform them into an plasmaman when it's the only thing left
+						continue
+					if(NN.status == BODYPART_ORGANIC && !(NN.species_id == "plasmaman" || NN.species_id == "husk")) //getting every organic, non-plasmaman limb (augments/androids are immune to this)
+						plasma_parts += NN
+
+				if(prob(35)) //checking if the delay is over & if the victim actually has any parts to nom
+					PP.adjustToxLoss(15)
+					PP.adjustFireLoss(25)
+					if(length(plasma_parts))
+						playsound(PP, 'sound/effects/wounds/sizzle2.ogg', 80, TRUE)
+						var/obj/item/bodypart/NB = pick(plasma_parts) //using the above-mentioned list to get a choice of limbs to replace
+						if(PP.stat != DEAD)
+							PP.emote("scream")
+							PP.visible_message(span_warning("[L] screams in pain as [L.p_their()] [NB] melts down to the bone!"), span_userdanger("You scream out in pain as your [NB] melts down to the bone, leaving an eerie plasma-like glow where flesh used to be!"))
+						else
+							PP.visible_message(span_warning("[L]'s [NB] melts down to the bone!"))
+						var/obj/item/bodypart/replacement_part = new NB.type
+						replacement_part.species_id = "plasmaman"
+						replacement_part.original_owner = "plasma river"
+						replacement_part.replace_limb(PP)
+						qdel(NB)
+					else if(!length(robo_parts)) //a person with no potential organic limbs left AND no robotic limbs, time to turn them into a plasmaman
+						playsound(PP, 'sound/effects/wounds/sizzle2.ogg', 80, TRUE)
+						PP.ignite_mob()
+						PP.cure_husk(BURN) //cure the probable husk first
+						PP.set_species(/datum/species/plasmaman)
+						PP.regenerate_icons()
+						PP.visible_message(span_warning("[L] bursts into a brilliant purple flame as [L.p_their()] entire body is that of a skeleton!"), \
+											span_userdanger("Your senses numb as all of your remaining flesh is turned into a purple slurry, sloshing off your body and leaving only your bones to show in a vibrant purple!"))
+
+
 /turf/open/lava/plasma/attackby(obj/item/I, mob/user, params)
 	var/obj/item/reagent_containers/glass/C = I
 	if(C.reagents.total_volume >= C.volume)
@@ -181,88 +250,6 @@
 		return
 	C.reagents.add_reagent(/datum/reagent/toxin/plasma, rand(5, 10))
 	user.visible_message("[user] scoops some plasma from the [src] with \the [C].", span_notice("You scoop out some plasma from the [src] using \the [C]."))
-
-/turf/open/lava/plasma/burn_stuff(AM)
-	. = 0
-
-	if(is_safe())
-		return FALSE
-
-	var/thing_to_check = src
-	if (AM)
-		thing_to_check = list(AM)
-	for(var/thing in thing_to_check)
-		if(isobj(thing))
-			var/obj/O = thing
-			if((O.resistance_flags & (FREEZE_PROOF)) || O.throwing)
-				continue
-
-		else if (isliving(thing))
-			. = 1
-			var/mob/living/L = thing
-			if(L.movement_type & FLYING)
-				continue	//YOU'RE FLYING OVER IT
-			if(WEATHER_SNOW in L.weather_immunities)
-				continue
-
-			var/buckle_check = L.buckling
-			if(!buckle_check)
-				buckle_check = L.buckled
-			if(isobj(buckle_check))
-				var/obj/O = buckle_check
-				if(O.resistance_flags & FREEZE_PROOF)
-					continue
-
-			else if(isliving(buckle_check))
-				var/mob/living/live = buckle_check
-				if(WEATHER_SNOW in live.weather_immunities)
-					continue
-
-			L.adjustFireLoss(2)
-			if(L)
-				L.adjust_fire_stacks(20) //dipping into a stream of plasma would probably make you more flammable than usual
-				L.adjust_bodytemperature(-rand(50,65)) //its cold, man
-				if(ishuman(L))//are they a carbon?
-					var/list/plasma_parts = list()//a list of the organic parts to be turned into plasma limbs
-					var/list/robo_parts = list()//keep a reference of robotic parts so we know if we can turn them into a plasmaman
-					var/mob/living/carbon/human/PP = L
-					var/datum/species/S = PP.dna.species
-					if(istype(S, /datum/species/plasmaman) || (S.inherent_biotypes & MOB_ROBOTIC)) //ignore plasmamen/robotic species
-						continue
-
-					for(var/BP in PP.bodyparts)
-						var/obj/item/bodypart/NN = BP
-						if(NN.status == BODYPART_ROBOTIC)
-							robo_parts += NN
-						if(NN.body_zone == BODY_ZONE_HEAD) //don't add the head to the list, just transform them into an plasmaman when it's the only thing left
-							continue
-						if(NN.status == BODYPART_ORGANIC && !(NN.species_id == "plasmaman" || NN.species_id == "husk")) //getting every organic, non-plasmaman limb (augments/androids are immune to this)
-							plasma_parts += NN
-
-					if(prob(35)) //checking if the delay is over & if the victim actually has any parts to nom
-						PP.adjustToxLoss(15)
-						PP.adjustFireLoss(25)
-						if(length(plasma_parts))
-							var/obj/item/bodypart/NB = pick(plasma_parts) //using the above-mentioned list to get a choice of limbs to replace
-							playsound(PP, 'sound/effects/wounds/sizzle2.ogg', 80, TRUE)
-							if(PP.stat != DEAD)
-								PP.emote("scream")
-								PP.visible_message(span_warning("[L] screams in pain as [L.p_their()] [NB] melts down to the bone!"), span_userdanger("You scream out in pain as your [NB] melts down to the bone, leaving an eerie plasma-like glow where flesh used to be!"))
-							else
-								PP.visible_message(span_warning("[L]'s [NB] melts down to the bone!"))
-							var/obj/item/bodypart/replacement_part = new NB.type
-							replacement_part.species_id = "plasmaman"
-							replacement_part.original_owner = "plasma river"
-							replacement_part.replace_limb(PP)
-							qdel(NB)
-						else if(!length(robo_parts)) //a person with no potential organic limbs left AND no robotic limbs, time to turn them into a plasmaman
-							PP.ignite_mob()
-							PP.cure_husk(BURN) //cure the probable husk first
-							PP.set_species(/datum/species/plasmaman)
-							PP.regenerate_icons()
-							PP.visible_message(span_warning("[L] bursts into a brilliant purple flame as [L.p_their()] entire body is that of a skeleton!"), \
-											  span_userdanger("Your senses numb as all of your remaining flesh is turned into a purple slurry, sloshing off your body and leaving only your bones to show in a vibrant purple!"))
-
 
 /obj/vehicle/ridden/lavaboat/plasma
 	name = "plasma boat"

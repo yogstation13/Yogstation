@@ -60,7 +60,7 @@
 		addtimer(CALLBACK(src, PROC_REF(echo)), 1)
 
 	for(var/i in 1 to num_tendrils)
-		var/obj/item/umbral_tendrils/T = new(owner, isdarkspawn(owner))
+		var/obj/item/umbral_tendrils/T = new(owner)
 		if(ability_flags & TENDRIL_UPGRADE_CLEAVE)
 			T.AddComponent(/datum/component/cleave_attack, arc_size=180)
 		owner.put_in_hands(T)
@@ -91,7 +91,7 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 25
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 25)
 	cooldown_time = 45 SECONDS
 
 /datum/action/cooldown/spell/aoe/deluge/cast(atom/cast_on)
@@ -133,7 +133,7 @@
 	spell_requirements = NONE
 	cooldown_time = 5 SECONDS
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
-	psi_cost = 20
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 20)
 	var/charging = FALSE
 
 /datum/action/cooldown/spell/pointed/shadow_crash/Grant(mob/grant_to)
@@ -204,7 +204,7 @@
 	antimagic_flags = NONE
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	sound = 'yogstation/sound/creatures/darkspawn_howl.ogg'
-	psi_cost = 75
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 75)
 
 /datum/action/cooldown/spell/time_dilation/can_cast_spell(feedback)
 	if(owner.has_status_effect(STATUS_EFFECT_TIME_DILATION))
@@ -235,7 +235,7 @@
 	panel = "Darkspawn"
 	spell_requirements = NONE
 	check_flags = AB_CHECK_CONSCIOUS
-	psi_cost = 50 //big boom = big cost
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 50)
 	cooldown_time = 20 SECONDS
 	aoe_radius = 7
 	///Boolean, if the spell is being charged up
@@ -318,19 +318,14 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	///Antag datum that the psi is coming from
-	var/datum/antagonist/darkspawn/cost
-	///Psi cost of maintaining the spell
-	var/upkeep_cost = 1
-
-/datum/action/cooldown/spell/toggle/creep/Grant(mob/grant_to)
-	. = ..()
-	if(isdarkspawn(owner))
-		cost = isdarkspawn(owner)
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 1)
 		
 /datum/action/cooldown/spell/toggle/creep/process()
-	if(active && cost && (!cost.use_psi(upkeep_cost)))
-		Activate(owner)
+	if(active)
+		if(!SEND_SIGNAL(owner.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, resource_costs[ANTAG_RESOURCE_DARKSPAWN]))
+			Activate(owner)
+		else
+			SEND_SIGNAL(owner.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, resource_costs)
 	return ..()
 
 /datum/action/cooldown/spell/toggle/creep/Enable()
@@ -365,23 +360,18 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = NONE
 	cooldown_time = 1 SECONDS
-	///Antag datum that the psi is coming from
-	var/datum/antagonist/darkspawn/cost
-	///Psi cost of maintaining the spell
-	var/upkeep_cost = 1
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 1)
 	///Boolean, if the user was running before activating this spell
 	var/was_running
 	///List of traits applied during the effect
 	var/list/traits = list(TRAIT_STUNIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_NODEATH, TRAIT_IGNOREDAMAGESLOWDOWN)
-
-/datum/action/cooldown/spell/toggle/indomitable/Grant(mob/grant_to)
-	. = ..()
-	if(isdarkspawn(owner))
-		cost = isdarkspawn(owner)
 		
 /datum/action/cooldown/spell/toggle/indomitable/process()
-	if(active && cost && (!cost.use_psi(upkeep_cost)))
-		Activate(owner)
+	if(active)
+		if(!SEND_SIGNAL(owner.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, resource_costs[ANTAG_RESOURCE_DARKSPAWN]))
+			Activate(owner)
+		else
+			SEND_SIGNAL(owner.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, resource_costs)
 	if(active && owner.m_intent != MOVE_INTENT_WALK)
 		owner.toggle_move_intent()
 	return ..()
@@ -421,7 +411,7 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 15
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 15)
 	cooldown_time = 20 SECONDS
 	invocation_type = INVOCATION_SHOUT
 	invocation = "Kmmo'axhe!"

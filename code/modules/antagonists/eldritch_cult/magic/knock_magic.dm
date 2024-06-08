@@ -4,7 +4,7 @@
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
-	button_icon_state = "phaseout"
+	button_icon_state = "caretaker"
 	sound = null
 
 	school = SCHOOL_FORBIDDEN
@@ -79,7 +79,7 @@
 	sound = 'sound/effects/magic.ogg'
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
-	button_icon_state = "spacetime"
+	button_icon_state = "lock_ascension"
 
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 60 SECONDS

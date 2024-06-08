@@ -172,6 +172,7 @@
 	diag_hud_set_mechcell()
 	diag_hud_set_mechstat()
 	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
+	ADD_TRAIT(src, TRAIT_SHIELDBUSTER, INNATE_TRAIT) // previously it didn't even check shields at all, now it still doesn't but does some fun stuff in the process
 
 /// Special light eater handling
 /obj/mecha/proc/on_light_eater(obj/vehicle/sealed/source, datum/light_eater)
@@ -1320,30 +1321,3 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			if(MP)
 				evaNum *= MP.piloting_speed
 	return evaNum
-
-/obj/mecha/proc/face_atom(atom/A)			//Pretty much identical to the mob proc that does the same thing
-	if( !A || !x || !y || !A.x || !A.y )	//Do we have a target with a location and do we have a location?
-		return								//Note: we don't check for states and stuff because this is just for forcing facing. That can come later.
-	var/dx = A.x - x	//Gets the difference in x and y coordinates
-	var/dy = A.y - y
-	if(!dx && !dy) 		// Wall items are graphically shifted but on the floor
-		if(A.pixel_y > 16)
-			setDir(NORTH)
-		else if(A.pixel_y < -16)
-			setDir(SOUTH)
-		else if(A.pixel_x > 16)
-			setDir(EAST)
-		else if(A.pixel_x < -16)
-			setDir(WEST)
-		return
-
-	if(abs(dx) < abs(dy))
-		if(dy > 0)
-			setDir(NORTH)
-		else
-			setDir(SOUTH)
-	else
-		if(dx > 0)
-			setDir(EAST)
-		else
-			setDir(WEST)

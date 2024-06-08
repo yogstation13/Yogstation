@@ -9,6 +9,8 @@
 #define SYNTH_FREEZE_THRESHOLD 80
 /// Threshold that when above will kill the synth
 #define SYNTH_DEATH_THRESHOLD 100
+/// Strength of the slowdown
+#define SYNTH_SLOW_STRENGTH 1
 
 //We can share mind variables across synth bodies
 /datum/mind
@@ -137,7 +139,7 @@
 
 	if(owner.mind.governor_suspicion >= SYNTH_SLOW_THRESHOLD && !owner.mind.synth_slowed)
 		owner.mind.synth_slowed = TRUE
-		H.add_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION, TRUE, 100, override=TRUE, multiplicative_slowdown=-0.1625, blacklisted_movetypes=(FLYING|FLOATING))
+		H.add_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION, TRUE, 100, override=TRUE, multiplicative_slowdown=SYNTH_SLOW_STRENGTH, blacklisted_movetypes=(FLYING|FLOATING))
 		to_chat(owner, span_warning("Governor module has enacted motion restrictions."))
 		punishment_log("PUNISHMENT: MOTION RESTRICTED")
 
@@ -186,7 +188,7 @@
 /datum/ai_dashboard/synth_dashboard/proc/punishment_shell_switch(mob/living/carbon/human/old_shell, mob/living/carbon/human/new_shell)
 	if(owner.mind.synth_slowed)
 		old_shell.remove_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION, TRUE)
-		new_shell.add_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION, TRUE, 100, override=TRUE, multiplicative_slowdown=-0.1625, blacklisted_movetypes=(FLYING|FLOATING))
+		new_shell.add_movespeed_modifier(MOVESPEED_ID_SYNTH_SUSPICION, TRUE, 100, override=TRUE, multiplicative_slowdown=SYNTH_SLOW_STRENGTH, blacklisted_movetypes=(FLYING|FLOATING))
 
 	if(owner.mind.synth_force_decreased)
 		var/datum/physiology/WS1 = old_shell.physiology
@@ -226,3 +228,4 @@
 #undef SYNTH_FORCE_THRESHOLD
 #undef SYNTH_FREEZE_THRESHOLD
 #undef SYNTH_DEATH_THRESHOLD
+#undef SYNTH_SLOW_STRENGTH

@@ -1,7 +1,7 @@
 /obj/item/melee/baseball_bat
 	name = "baseball bat"
 	desc = "A traditional tool for a game of Baseball. Modern wood isn't very strong, try not to crack the bat!"
-	icon = 'icons/obj/weapons/misc.dmi'
+	icon = 'icons/obj/weapons/bat.dmi'
 	icon_state = "baseball_bat"
 	item_state = "baseball_bat"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'

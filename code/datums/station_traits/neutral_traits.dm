@@ -72,7 +72,7 @@
 	/datum/station_trait/announcement_intern
 	)
 
-/datum/station_trait/announcement_duket/New()
+/datum/station_trait/announcement_duke/New()
 	. = ..()
 	SSstation.announcer = /datum/centcom_announcer/duke
 

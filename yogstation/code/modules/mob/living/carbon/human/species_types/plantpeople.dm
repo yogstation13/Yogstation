@@ -356,7 +356,7 @@
  Podpeople subspecies: IVYMEN
 */
 /datum/species/pod/ivymen
-	// A unique podpeople mutation native to Jungleland. 
+	// A unique podpeople mutation native to Jungleland.
 	// They are adapted to the region, don't mind meat, and move faster than normal podpeople.
 	// However, they can't use guns or machines.
 	name = "Ivymen"
@@ -369,11 +369,11 @@
 
 /datum/species/pod/ivymen/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
-	C.weather_immunities |= "acid"
+	C.weather_immunities |= WEATHER_ACID
 
 /datum/species/pod/ivymen/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	C.weather_immunities -= "acid"
+	C.weather_immunities -= WEATHER_ACID
 
 
 #undef STATUS_MESSAGE_COOLDOWN

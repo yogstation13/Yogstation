@@ -25,6 +25,6 @@
 	. = ..()
 	SSdemo.mark_turf(src)
 
-/atom/movable/setDir()
+/atom/movable/setDir(newdir, forced = FALSE)
 	. = ..()
 	SSdemo.mark_dirty(src)
