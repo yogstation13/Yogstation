@@ -82,7 +82,7 @@
 	gas_type = GAS_NITRIUM
 
 /datum/reagent/gas/nitrium/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)
-	if(reac_volume > 5)
+	if(reac_volume > 5 || (methods & INGEST|INJECT))
 		var/datum/reagent/R = new /datum/reagent/nitrosyl_plasmide()
 		R.reaction_mob(exposed_mob, methods, reac_volume)
 		if(reac_volume > 8 && prob(reac_volume*5) && (methods & VAPOR))
@@ -111,6 +111,30 @@
 		M.adjustStaminaLoss(-2 * REM, FALSE)
 		M.adjustToxLoss(1.5 *REM, FALSE)
 	M.adjust_jitter(15 SECONDS)
+	return ..()
+
+/datum/reagent/gas/nitrosyl_plasmide
+	name = "Nitrosyl plasmide"
+	description = "A highly reactive substance that makes you feel faster."
+	reagent_state = LIQUID // not actually a gas
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	color = "#90560B"
+	can_synth = FALSE
+	gas_type = GAS_NITRIUM
+	taste_description = "burning"
+
+/datum/reagent/gas/nitrosyl_plasmide/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)
+	if(methods & VAPOR)
+		exposed_mob.adjustFireLoss(reac_volume * REM / 2.5)
+		exposed_mob.adjustToxLoss(reac_volume * REM / 5)
+	return ..()
+
+/datum/reagent/gas/nitrosyl_plasmide/on_mob_metabolize(mob/living/L)
+	. = ..()
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+
+/datum/reagent/gas/nitrosyl_plasmide/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
 	return ..()
 
 /datum/reagent/gas/freon

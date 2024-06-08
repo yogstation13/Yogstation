@@ -1304,29 +1304,6 @@
 	color = "#604030" // rgb: 96, 64, 48
 	taste_description = "iron"
 
-/datum/reagent/nitrosyl_plasmide
-	name = "Nitrosyl plasmide"
-	description = "A highly reactive substance that makes you feel faster."
-	reagent_state = LIQUID // not actually a gas
-	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	color = "#90560B"
-	can_synth = FALSE
-	taste_description = "burning"
-
-/datum/reagent/nitrosyl_plasmide/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)
-	if(methods & VAPOR)
-		exposed_mob.adjustFireLoss(reac_volume * REM / 2.5)
-		exposed_mob.adjustToxLoss(reac_volume * REM / 5)
-	return ..()
-
-/datum/reagent/nitrosyl_plasmide/on_mob_metabolize(mob/living/L)
-	. = ..()
-	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
-
-/datum/reagent/nitrosyl_plasmide/on_mob_end_metabolize(mob/living/L)
-	L.remove_movespeed_modifier(type)
-	return ..()
-
 /////////////////////////Coloured Crayon Powder////////////////////////////
 //For colouring in /proc/mix_color_from_reagents
 
