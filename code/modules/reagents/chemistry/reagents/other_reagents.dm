@@ -10,7 +10,7 @@
 	glass_desc = "Are you sure this is tomato juice?"
 	shot_glass_icon_state = "shotglassred"
 
-/datum/reagent/blood/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/blood/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(L) //bloodsucker start
 	if(bloodsuckerdatum)
 		bloodsuckerdatum.bloodsucker_blood_volume = min(bloodsuckerdatum.bloodsucker_blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM(L))
@@ -111,7 +111,7 @@
 	color = "#C81040" // rgb: 200, 16, 64
 	taste_description = "slime"
 
-/datum/reagent/vaccine/reaction_mob(mob/living/L, methods=TOUCH, reac_volume)
+/datum/reagent/vaccine/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(islist(data) && (((methods & INGEST) && reac_volume >= 5) || (methods & INJECT)))//drinking it requires at least 5u, injection doesn't
 		for(var/thing in L.diseases)
 			var/datum/disease/D = thing
@@ -181,7 +181,7 @@
  *	Water reaction to a mob
  */
 
-/datum/reagent/water/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)//Splashing people with water can help put them out!
+/datum/reagent/water/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)//Splashing people with water can help put them out!
 	if(!istype(M))
 		return
 	if(methods & TOUCH)
@@ -226,7 +226,7 @@
 	REMOVE_TRAIT(L, TRAIT_HOLY, type)
 	..()
 
-/datum/reagent/water/holywater/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+/datum/reagent/water/holywater/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(is_servant_of_ratvar(M))
 		to_chat(M, span_userdanger("A darkness begins to spread its unholy tendrils through your mind, purging the Justiciar's influence!"))
 	..()
@@ -320,7 +320,7 @@
 	description = "Something that shouldn't exist on this plane of existence."
 	taste_description = "suffering"
 
-/datum/reagent/fuel/unholywater/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/fuel/unholywater/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if((methods & (TOUCH|VAPOR)) && permeability)
 		M.reagents.add_reagent(type, permeability * reac_volume / 4)
 		return
@@ -434,7 +434,7 @@
 	taste_description = "sour oranges"
 	var/saved_color
 
-/datum/reagent/spraytan/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1)
+/datum/reagent/spraytan/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(ishuman(M))
 		if(methods & (PATCH|VAPOR))
 			var/mob/living/carbon/human/N = M
@@ -800,7 +800,7 @@
 	can_synth = FALSE //sorry, wrong maintenance pill, enjoy  being a dumb slime permanently
 	taste_description = "slime"
 
-/datum/reagent/aslimetoxin/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/aslimetoxin/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(!(methods & TOUCH) && prob(permeability * 100))
 		M.ForceContractDisease(new /datum/disease/transformation/slime(), FALSE, TRUE)
 
@@ -811,7 +811,7 @@
 	can_synth = FALSE
 	taste_description = "decay"
 
-/datum/reagent/gluttonytoxin/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/gluttonytoxin/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(prob(permeability * 100))
 		M.ForceContractDisease(new /datum/disease/transformation/morph(), FALSE, TRUE)
 
@@ -822,7 +822,7 @@
 	can_synth = FALSE
 	taste_description = "decay"
 
-/datum/reagent/ghosttoxin/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/ghosttoxin/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(prob(permeability * 100))
 		M.ForceContractDisease(new /datum/disease/transformation/ghost(), FALSE, TRUE)
 
@@ -959,7 +959,7 @@
 	taste_description = "bitterness"
 	toxpwr = 0
 
-/datum/reagent/space_cleaner/sterilizine/reaction_mob(mob/living/carbon/C, methods=TOUCH, reac_volume)
+/datum/reagent/space_cleaner/sterilizine/reaction_mob(mob/living/carbon/C, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(methods & (TOUCH|VAPOR|PATCH))
 		for(var/s in C.surgeries)
 			var/datum/surgery/S = s
@@ -980,7 +980,7 @@
 		C.blood_volume += 0.5
 	..()
 
-/datum/reagent/iron/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+/datum/reagent/iron/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(M.has_bane(BANE_IRON)) //If the target is weak to cold iron, then poison them.
 		if(holder && holder.chem_temp < 100) // COLD iron.
 			M.reagents.add_reagent(/datum/reagent/toxin, reac_volume)
@@ -1000,7 +1000,7 @@
 	color = "#D0D0D0" // rgb: 208, 208, 208
 	taste_description = "expensive yet reasonable metal"
 
-/datum/reagent/silver/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+/datum/reagent/silver/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(M.has_bane(BANE_SILVER))
 		M.reagents.add_reagent(/datum/reagent/toxin, reac_volume)
 	if(ishuman(M) && is_sinfuldemon(M) && prob(80)) //sinful demons have a lesser reaction to silver
@@ -1045,7 +1045,7 @@
 	taste_description = "fizzling blue"
 	compatible_biotypes = ALL_BIOTYPES
 
-/datum/reagent/bluespace/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+/datum/reagent/bluespace/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if((methods & (TOUCH|VAPOR)) && (reac_volume > 5))
 		do_teleport(M, get_turf(M), (reac_volume / 5), asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE) //4 tiles per crystal
 	return ..()
@@ -1121,7 +1121,7 @@
 	accelerant_quality = 10
 	compatible_biotypes = ALL_BIOTYPES
 
-/datum/reagent/fuel/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)//Splashing people with welding fuel to make them easy to ignite!
+/datum/reagent/fuel/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)//Splashing people with welding fuel to make them easy to ignite!
 	if(methods & (TOUCH|VAPOR))
 		M.adjust_fire_stacks(reac_volume / 10)
 		return
@@ -1159,7 +1159,7 @@
 		for(var/mob/living/simple_animal/slime/M in T)
 			M.adjustToxLoss(rand(5,10))
 
-/datum/reagent/space_cleaner/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+/datum/reagent/space_cleaner/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(methods & (TOUCH|VAPOR))
 		M.wash(clean_types)
 	if(methods & (INJECT|INGEST))
@@ -1182,7 +1182,7 @@
 	M.adjustToxLoss(6.33)
 	..()
 
-/datum/reagent/space_cleaner/ez_clean/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/space_cleaner/ez_clean/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	..()
 	if((methods & (TOUCH|VAPOR)) && !issilicon(M) && permeability)
 		var/existing = M.reagents.get_reagent_amount(type)
@@ -1234,7 +1234,7 @@
 	can_synth = FALSE
 	taste_description = "sludge"
 
-/datum/reagent/nanomachines/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/nanomachines/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if((methods & (PATCH|INGEST|INJECT)) || ((methods & VAPOR) && prob(min(reac_volume,100)*permeability)))
 		L.ForceContractDisease(new /datum/disease/transformation/robot(), FALSE, TRUE)
 
@@ -1245,7 +1245,7 @@
 	can_synth = FALSE
 	taste_description = "sludge"
 
-/datum/reagent/xenomicrobes/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/xenomicrobes/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if((methods & (PATCH|INGEST|INJECT)) || ((methods & VAPOR) && prob(min(reac_volume,100)*permeability)))
 		L.ForceContractDisease(new /datum/disease/transformation/xeno(), FALSE, TRUE)
 
@@ -1256,7 +1256,7 @@
 	can_synth = FALSE
 	taste_description = "slime"
 
-/datum/reagent/fungalspores/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/fungalspores/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if((methods & (PATCH|INGEST|INJECT)) || ((methods & VAPOR) && prob(min(reac_volume,100)*permeability)))
 		L.ForceContractDisease(new /datum/disease/tuberculosis(), FALSE, TRUE)
 
@@ -1267,7 +1267,7 @@
 	taste_description = "goo"
 	can_synth = FALSE //special orange man request
 
-/datum/reagent/snail/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/snail/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if((methods & (PATCH|INGEST|INJECT)) || ((methods & VAPOR) && prob(min(reac_volume,100)*permeability)))
 		L.ForceContractDisease(new /datum/disease/gastrolosis(), FALSE, TRUE)
 
@@ -1518,7 +1518,7 @@
 	M.add_atom_colour(pick(random_color_list), WASHABLE_COLOUR_PRIORITY)
 	..()
 
-/datum/reagent/colorful_reagent/reaction_mob(mob/living/M, reac_volume)
+/datum/reagent/colorful_reagent/reaction_mob(mob/living/M, methods, reac_volume, show_message = TRUE, permeability = 1)
 	M.add_atom_colour(pick(random_color_list), WASHABLE_COLOUR_PRIORITY)
 	..()
 
@@ -1540,7 +1540,7 @@
 	var/list/potential_colors = list("0ad","a0f","f73","d14","d14","0b5","0ad","f73","fc2","084","05e","d22","fa0") // fucking hair code
 	taste_description = "sourness"
 
-/datum/reagent/hair_dye/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/hair_dye/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(methods & (TOUCH|VAPOR))
 		if(M && ishuman(M) && permeability)
 			var/mob/living/carbon/human/H = M
@@ -1555,7 +1555,7 @@
 	color = "#C8A5DC"
 	taste_description = "sourness"
 
-/datum/reagent/barbers_aid/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/barbers_aid/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(methods & (TOUCH|VAPOR))
 		if(M && ishuman(M) && permeability && !HAS_TRAIT(M, TRAIT_BALD))
 			var/mob/living/carbon/human/H = M
@@ -1572,7 +1572,7 @@
 	color = "#C8A5DC"
 	taste_description = "sourness"
 
-/datum/reagent/concentrated_barbers_aid/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/concentrated_barbers_aid/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(methods & (TOUCH|VAPOR))
 		if(M && ishuman(M) && permeability && !HAS_TRAIT(M, TRAIT_BALD))
 			var/mob/living/carbon/human/H = M
@@ -1587,7 +1587,7 @@
 	color = "#ecb2cf"
 	taste_description = "bitterness"
 
-/datum/reagent/baldium/reaction_mob(mob/living/M, methods, reac_volume, show_message, permeability)
+/datum/reagent/baldium/reaction_mob(mob/living/M, methods, reac_volume, show_message = TRUE, permeability = 1)
 	. = ..()
 	if(!(methods & (TOUCH|VAPOR)))
 		return
@@ -1738,7 +1738,7 @@
 	can_synth = FALSE
 	taste_description = "brains"
 
-/datum/reagent/romerol/reaction_mob(mob/living/carbon/human/H, methods=TOUCH, reac_volume)
+/datum/reagent/romerol/reaction_mob(mob/living/carbon/human/H, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	// Silently add the zombie infection organ to be activated upon death
 	if(!H.getorganslot(ORGAN_SLOT_ZOMBIE))
 		var/obj/item/organ/zombie_infection/nodamage/ZI = new()
@@ -1911,7 +1911,7 @@
 	taste_description = "inner peace"
 	can_synth = FALSE
 
-/datum/reagent/tranquility/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/tranquility/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if((methods & (PATCH|INGEST|INJECT)) || ((methods & VAPOR) && prob(min(reac_volume,100)*permeability)))
 		L.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)
 
