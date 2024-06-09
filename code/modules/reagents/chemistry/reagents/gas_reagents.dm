@@ -5,12 +5,12 @@
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // handled through gas breathing, metabolism must be lower for breathcode to keep up
 	///The ID of the gas created when this is splashed
 	var/gas_type
-/* REMOVE THIS COMMENTED SECTION
+
 /datum/reagent/gas/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
-	if(methods == VAPOR) // if vapor is the only exposure method (you breathed it in)
+	if(methods & BREATH)
 		reac_volume = min(2, reac_volume) // make sure it only adds at most 2 units of it, to prevent infinite buildup
 	return ..(exposed_mob, methods, reac_volume, show_message, permeability)
-*/
+
 /datum/reagent/gas/reaction_turf(turf/open/T, reac_volume)
 	if(istype(T))
 		var/temp = holder ? holder.chem_temp : T20C
@@ -54,7 +54,7 @@
 	taste_description = "sweetness"
 	gas_type = GAS_NITROUS
 
-/datum/reagent/gas/nitrous_oxide/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)
+/datum/reagent/gas/nitrous_oxide/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(methods & VAPOR)
 		// apply 2 seconds of drowsiness per unit applied, with a min duration of 4 seconds
 		var/drowsiness_to_apply = max(round(reac_volume, 1) * 2 SECONDS, 4 SECONDS)
@@ -80,7 +80,7 @@
 	taste_description = "sourness"
 	gas_type = GAS_NITRIUM
 
-/datum/reagent/gas/nitrium/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)
+/datum/reagent/gas/nitrium/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(reac_volume > 5)
 		var/datum/reagent/R = new /datum/reagent/gas/nitrosyl_plasmide()
 		R.reaction_mob(exposed_mob, methods, reac_volume / 2.5)
@@ -120,7 +120,7 @@
 	taste_description = "burning"
 	gas_type = GAS_FREON
 
-/datum/reagent/gas/freon/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)
+/datum/reagent/gas/freon/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(!(methods & VAPOR))
 		return ..()
 	if(prob(reac_volume*5))
@@ -163,7 +163,7 @@
 	REMOVE_TRAIT(L, TRAIT_PRESERVED_ORGANS, type)
 	return ..()
 
-/datum/reagent/gas/hypernoblium/reaction_mob(mob/living/M, method, reac_volume, show_message, touch_protection)
+/datum/reagent/gas/hypernoblium/reaction_mob(mob/living/M, method, reac_volume, show_message = TRUE, permeability = 1)
 	. = ..()
 	if(reac_volume >= REACTION_OPPRESSION_THRESHOLD)
 		M.extinguish_mob()
@@ -179,7 +179,7 @@
 	gas_type = GAS_ANTINOB
 	var/flame_timer = 0
 
-/datum/reagent/gas/antinoblium/reaction_mob(mob/living/M, method, reac_volume, show_message, touch_protection)
+/datum/reagent/gas/antinoblium/reaction_mob(mob/living/M, method, reac_volume, show_message = TRUE, permeability = 1)
 	. = ..()
 	M.fire_stacks = max(reac_volume, M.fire_stacks)
 
