@@ -33,3 +33,4 @@
 	ammo_type = /obj/item/ammo_casing/caseless/cartridge
 	caliber = CALIBER_MUSKET
 	max_ammo = 1
+	start_empty = TRUE
