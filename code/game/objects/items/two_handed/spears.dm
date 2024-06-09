@@ -273,5 +273,4 @@
 	qdel(src)
 	user.put_in_hands(P)
 	user.put_in_hands(B)
-	
-	..()
+	return ..()
