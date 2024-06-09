@@ -60,7 +60,7 @@
 	..()
 	. = TRUE
 
-/datum/reagent/medicine/c2/probital/reaction_mob(mob/living/L, methods=TOUCH, reac_volume)
+/datum/reagent/medicine/c2/probital/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(!(methods & INGEST) || !iscarbon(L))
 		return
 
@@ -130,7 +130,7 @@
 	..()
 	. = TRUE
 
-/datum/reagent/medicine/c2/rhigoxane/reaction_mob(mob/living/carbon/exposed_mob, methods=VAPOR, reac_volume)
+/datum/reagent/medicine/c2/rhigoxane/reaction_mob(mob/living/carbon/exposed_mob, methods=VAPOR, reac_volume, show_message = TRUE, permeability = 1)
 	. = ..()
 	if(!(methods & VAPOR))
 		return
@@ -223,7 +223,7 @@
 	overdose_threshold = 6
 	var/conversion_amount
 
-/datum/reagent/medicine/c2/thializid/reaction_mob(mob/living/L, methods=TOUCH, reac_volume)
+/datum/reagent/medicine/c2/thializid/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(!(methods & INJECT) || !iscarbon(L))
 		return
 	var/mob/living/carbon/C = L

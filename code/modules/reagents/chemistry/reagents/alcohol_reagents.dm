@@ -1109,7 +1109,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	M.adjustFireLoss(-2)
 	return ..()
 
-/datum/reagent/consumable/ethanol/aloe/reaction_mob(mob/living/M, methods=TOUCH)
+/datum/reagent/consumable/ethanol/aloe/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(methods & INGEST)
 		to_chat(M, span_notice("You remember that Aloe heals burns, so drinking it surely would work too right?"))
 	return ..()
@@ -1158,7 +1158,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		M.adjustFireLoss(-0.5)
 	return ..()
 
-/datum/reagent/consumable/ethanol/acid_spit/reaction_mob(mob/living/M, methods=TOUCH)
+/datum/reagent/consumable/ethanol/acid_spit/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(methods & INGEST)
 		if(ispolysmorph(M))
 			to_chat(M, span_notice("Ah! The sweet taste of Acid to wash the burns away"))

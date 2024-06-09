@@ -3,12 +3,13 @@
 	description = "A colorless, odorless, tasteless gas that should not exist."
 	taste_description = "bad code"
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // handled through gas breathing, metabolism must be lower for breathcode to keep up
+	reagent_state = GAS
 	///The ID of the gas created when this is splashed
 	var/gas_type
 
-/datum/reagent/gas/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/gas/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(methods & BREATH)
-		reac_volume = min(2, reac_volume) // make sure it only adds at most 2 units of it, to prevent infinite buildup
+		reac_volume = min(2, reac_volume) // make sure it only adds at most 2 units of it when breathed, to prevent infinite buildup
 	return ..(exposed_mob, methods, reac_volume, show_message, permeability)
 
 /datum/reagent/gas/reaction_turf(turf/open/T, reac_volume)
@@ -81,12 +82,13 @@
 	gas_type = GAS_NITRIUM
 
 /datum/reagent/gas/nitrium/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
-	if(reac_volume > 5)
-		var/datum/reagent/R = new /datum/reagent/gas/nitrosyl_plasmide()
-		R.reaction_mob(exposed_mob, methods, reac_volume / 2.5)
-		if(reac_volume > 8 && prob(reac_volume*5) && (methods & VAPOR))
-			exposed_mob.adjustOrganLoss(ORGAN_SLOT_LUNGS, reac_volume/2)
+	if(reac_volume > 5 || (methods & INGEST|INJECT))
+		var/datum/reagent/metabolite = new /datum/reagent/gas/nitrosyl_plasmide()
+		metabolite.reaction_mob(exposed_mob, methods, reac_volume, show_message, permeability)
+		if(reac_volume * permeability > 8 && prob(reac_volume * permeability * 5) && (methods & VAPOR))
+			exposed_mob.adjustOrganLoss(ORGAN_SLOT_LUNGS, reac_volume * permeability / 2)
 			to_chat(exposed_mob, span_alert("You feel a burning sensation in your chest"))
+		qdel(metabolite)
 	return ..()
 
 /datum/reagent/gas/nitrium/on_mob_metabolize(mob/living/L)
@@ -110,6 +112,30 @@
 		M.adjustStaminaLoss(-2 * REM, FALSE)
 		M.adjustToxLoss(1.5 *REM, FALSE)
 	M.adjust_jitter(15 SECONDS)
+	return ..()
+
+/datum/reagent/gas/nitrosyl_plasmide
+	name = "Nitrosyl plasmide"
+	description = "A highly reactive substance that makes you feel faster."
+	reagent_state = LIQUID // not actually a gas
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	color = "#90560B"
+	can_synth = FALSE
+	gas_type = GAS_NITRIUM
+	taste_description = "burning"
+
+/datum/reagent/gas/nitrosyl_plasmide/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
+	if(methods & VAPOR)
+		exposed_mob.adjustFireLoss(reac_volume * REM / 2.5)
+		exposed_mob.adjustToxLoss(reac_volume * REM / 5)
+	return ..()
+
+/datum/reagent/gas/nitrosyl_plasmide/on_mob_metabolize(mob/living/L)
+	. = ..()
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+
+/datum/reagent/gas/nitrosyl_plasmide/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
 	return ..()
 
 /datum/reagent/gas/freon
@@ -217,7 +243,7 @@
 	///Funny voice
 	var/helium_speech = FALSE
 
-/datum/reagent/gas/healium/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/gas/healium/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(methods & VAPOR)
 		helium_speech = TRUE
 	return ..()
@@ -306,7 +332,7 @@
 	ADD_TRAIT(L, TRAIT_RESISTHEAT, type)
 
 /datum/reagent/gas/halon/on_mob_life(mob/living/carbon/M)
-	M.adjustOxyLoss(1)
+	M.adjustOxyLoss(0.5)
 	return ..()
 
 /datum/reagent/gas/halon/on_mob_end_metabolize(mob/living/L)
@@ -335,7 +361,7 @@
 	return ..()
 
 /datum/reagent/gas/hexane/on_mob_life(mob/living/carbon/M)
-	M.adjust_hallucinations(12 SECONDS)
+	M.adjust_hallucinations_up_to(12 SECONDS, 2 MINUTES)
 	if(prob(33))
-		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1, 150)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.5, 150)
 	return ..()
