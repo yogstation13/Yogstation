@@ -289,4 +289,14 @@
 		qdel(src)
 		return
 
+/obj/item/kitchen/knife/plug_bayonet
+	name = "plug bayonet"
+	desc = "A knife blade that has been pounded into some wood."
+	icon_state = "plug_bayonet"
+	bayonet = FALSE
+
+/obj/item/kitchen/knife/plug_bayonet/examine(mob/user)
+	. = ..()
+	. += span_info("It can be used on a <b>maintenance musket</b> to plug its barrel.")
+
 /* Trays  moved to /obj/item/storage/bag */

@@ -42,10 +42,10 @@
 		if(rand(0, 10000) == 0)
 			A.lightswitch = !A.lightswitch
 			A.update_appearance(UPDATE_ICON)
-		
+
 			for(var/obj/machinery/light_switch/L in A)
 				L.update_appearance(UPDATE_ICON)
-		
+
 			A.power_change()
 
 
@@ -80,6 +80,11 @@
 	if(!.)
 		return FALSE
 	return iscatperson(user) || iscat(user)
+
+/datum/emote/living/carbon/meow/get_sound(mob/living/user)
+	if(user.mind?.miming || !user.can_speak_vocal())
+		return
+	return pick('sound/voice/feline/meow1.ogg', 'sound/voice/feline/meow2.ogg', 'sound/voice/feline/meow3.ogg', 'sound/voice/feline/meow4.ogg', 'sound/effects/meow1.ogg')
 
 /datum/emote/living/carbon/moan
 	key = "moan"

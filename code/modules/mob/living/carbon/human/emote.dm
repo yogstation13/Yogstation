@@ -29,6 +29,11 @@
 		REMOVE_TRAIT(human_user, TRAIT_CRYING, "[type]")
 		human_user.update_body()
 
+/datum/emote/living/carbon/human/cry/get_sound(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+	return user.dna.species.get_cry_sound(user)
+
 #undef CRY_DURATION
 
 /datum/emote/living/carbon/human/dap
@@ -113,8 +118,8 @@
 	var/mob/living/carbon/human/H = user
 	if(H.mind?.miming || !H.can_speak_vocal())
 		return
-	if(H.dna?.species) //yogs start: grabs scream from screamsound located in the appropriate species file.
-		return H.dna.species.get_scream_sound(H) //yogs end - current added screams: basic human, moth, lizard, preternis, felinid.
+	if(H.dna?.species)
+		return H.dna.species.get_scream_sound(H)
 
 /datum/emote/living/carbon/human/scream/screech //If a human tries to screech it'll just scream.
 	key = "screech"
@@ -122,21 +127,6 @@
 	message = "screeches."
 	emote_type = EMOTE_AUDIBLE
 	vary = FALSE
-
-/datum/emote/living/carbon/meow
-	key = "meow"
-	key_third_person = "meows"
-	message = "meows."
-	emote_type = EMOTE_AUDIBLE
-	cooldown = 10 SECONDS
-
-/datum/emote/living/carbon/meow/can_run_emote(mob/living/user, status_check = TRUE, intentional)
-	return iscatperson(user) && ..()
-
-/datum/emote/living/carbon/meow/get_sound(mob/living/user)
-	if(user.mind?.miming || !user.can_speak_vocal())
-		return
-	return pick('sound/voice/feline/meow1.ogg', 'sound/voice/feline/meow2.ogg', 'sound/voice/feline/meow3.ogg', 'sound/voice/feline/meow4.ogg', 'sound/effects/meow1.ogg')
 
 /datum/emote/living/carbon/human/rattle
 	key = "rattle"
@@ -253,6 +243,11 @@
 			else
 				H.OpenWings()
 			addtimer(CALLBACK(H, open ? TYPE_PROC_REF(/mob/living/carbon/human, OpenWings) : TYPE_PROC_REF(/mob/living/carbon/human, CloseWings)), wing_time)
+
+/datum/emote/living/carbon/human/flap/get_sound(mob/living/carbon/human/user)
+	if(ismoth(user))
+		return 'sound/voice/moth/moth_flutter.ogg'
+	return ..()
 
 /datum/emote/living/carbon/human/flap/aflap
 	key = "aflap"
