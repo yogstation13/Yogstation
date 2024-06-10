@@ -2435,6 +2435,22 @@
 					)
 	crate_name = "grilling fuel kit crate"
 
+/datum/supply_pack/organic/food_cart
+	name = "Food Cart Crate"
+	desc = "Contains a food cart for all your mobile food needs."
+	cost = 5000
+	crate_type = /obj/structure/closet/crate/large
+	contains = list(/obj/machinery/food_cart)
+	crate_name = "food cart crate"
+
+/datum/supply_pack/organic/icecream_vat
+	name = "Ice cream Vat Crate"
+	desc = "A vat of ice-cold icecream for those hot shifts in Atmospherics."
+	cost = 5000
+	crate_type = /obj/structure/closet/crate/large
+	contains = list(/obj/machinery/icecream_vat)
+	crate_name = "ice cream vat crate"
+
 //////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// Livestock /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
