@@ -228,7 +228,6 @@
 	. = on
 	on = new_value
 	update_appearance()
-	CRASH("AAAAAAAA")
 
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/process(delta_time)
