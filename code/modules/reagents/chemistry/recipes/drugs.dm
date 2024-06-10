@@ -25,7 +25,7 @@
 	name = /datum/reagent/drug/methamphetamine
 	id = /datum/reagent/drug/methamphetamine
 	results = list(/datum/reagent/drug/methamphetamine = 4)
-	required_reagents = list(/datum/reagent/medicine/ephedrine = 1, /datum/reagent/iodine = 1, /datum/reagent/phosphorus = 1, /datum/reagent/hydrogen = 1, /datum/reagent/toxin/acid/fluacid = 1)
+	required_reagents = list(/datum/reagent/medicine/ephedrine = 1, /datum/reagent/iodine = 1, /datum/reagent/phosphorus = 1, /datum/reagent/gas/hydrogen = 1, /datum/reagent/toxin/acid/fluacid = 1)
 	required_temp = 374
 
 /datum/chemical_reaction/methamphetamine/on_reaction(datum/reagents/holder)
@@ -60,14 +60,14 @@
 	name = "Happiness"
 	id = /datum/reagent/drug/happiness
 	results = list(/datum/reagent/drug/happiness = 4)
-	required_reagents = list(/datum/reagent/nitrous_oxide = 2, /datum/reagent/medicine/epinephrine = 1, /datum/reagent/consumable/ethanol = 1)
+	required_reagents = list(/datum/reagent/gas/nitrous_oxide = 2, /datum/reagent/medicine/epinephrine = 1, /datum/reagent/consumable/ethanol = 1)
 	required_catalysts = list(/datum/reagent/toxin/plasma = 5)
 
 /datum/chemical_reaction/red_eye
 	name = "Red-Eye"
 	id = /datum/reagent/drug/red_eye
 	results = list(/datum/reagent/drug/red_eye = 4) //1tc = 40u of red_eye
-	required_reagents = list(/datum/reagent/medicine/diphenhydramine = 1, /datum/reagent/redspace = 2, /datum/reagent/iodine = 1, /datum/reagent/hydrogen = 1, /datum/reagent/consumable/sugar = 1) 
+	required_reagents = list(/datum/reagent/medicine/diphenhydramine = 1, /datum/reagent/redspace = 2, /datum/reagent/iodine = 1, /datum/reagent/gas/hydrogen = 1, /datum/reagent/consumable/sugar = 1) 
 	
 /datum/chemical_reaction/pumpup
 	name = "Pump-Up"
@@ -79,4 +79,4 @@
 	name = "Blue-Eye"
 	id = /datum/reagent/drug/blue_eye
 	results = list(/datum/reagent/drug/blue_eye = 5)
-	required_reagents = list(/datum/reagent/medicine/diphenhydramine = 1, /datum/reagent/bluespace = 2, /datum/reagent/iodine = 1, /datum/reagent/hydrogen = 1, /datum/reagent/consumable/sugar = 1)
+	required_reagents = list(/datum/reagent/medicine/diphenhydramine = 1, /datum/reagent/bluespace = 2, /datum/reagent/iodine = 1, /datum/reagent/gas/hydrogen = 1, /datum/reagent/consumable/sugar = 1)
