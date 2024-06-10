@@ -88,7 +88,7 @@ def main(settings):
         shutil.copyfile(fname, fname + ".before")
         old_map = DMM.from_file(fname + ".backup")
         new_map = DMM.from_file(fname)
-        merge_map(new_map, old_map).to_file(fname, settings.tgm)
+        merge_map(new_map, old_map).to_file(fname, tgm=settings.tgm)
 
 if __name__ == '__main__':
     main(frontend.read_settings())

@@ -1,3 +1,5 @@
+#define DISCHARGE_LOSS 100 //how much power is lost during a discharge
+
 /datum/species/ethereal
 	name = "Ethereal"
 	id = "ethereal"
@@ -46,6 +48,8 @@
 	var/emageffect = FALSE
 	var/emag_timer = null
 	var/emag_speed = 4 //how many deciseconds between each colour cycle
+	var/discharging = FALSE
+
 	var/r1
 	var/g1
 	var/b1
@@ -58,10 +62,24 @@
 
 	var/obj/effect/dummy/lighting_obj/moblight/species/ethereal_light
 
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------Extra Stuff------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/species/ethereal/random_name(gender,unique,lastname)
+	if(unique)
+		return random_unique_ethereal_name()
+
+	var/randname = ethereal_name()
+
+	return randname
+
 /datum/species/ethereal/Destroy(force)
 	QDEL_NULL(ethereal_light)
 	return ..()
 
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------Species Gain and Loss-------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/species/ethereal/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
 	if(!ishuman(C))
@@ -89,28 +107,9 @@
 	deltimer(emag_timer)
 	return ..()
 
-/datum/species/ethereal/random_name(gender,unique,lastname)
-	if(unique)
-		return random_unique_ethereal_name()
-
-	var/randname = ethereal_name()
-
-	return randname
-
-/datum/species/ethereal/proc/setup_color(mob/living/carbon/human/ethereal)
-	default_color = ethereal.dna.features["mcolor"]
-	r1 = GETREDPART(default_color)
-	g1 = GETGREENPART(default_color)
-	b1 = GETBLUEPART(default_color)
-	var/list/hsl = rgb2hsl(r1, g1, b1)
-	//both saturation and lightness are a scale of 0 to 1
-	hsl[2] = min(hsl[2], 0.7) //don't let saturation be too high or it's overwhelming
-	hsl[3] = max(hsl[3], 0.5) //don't let lightness be too low or it looks like a void of light
-	var/list/rgb = hsl2rgb(hsl[1], hsl[2], hsl[3]) //terrible way to do it, but it works
-	r1 = rgb[1]
-	g1 = rgb[2]
-	b1 = rgb[3]
-
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------Light Handler----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/species/ethereal/spec_updatehealth(mob/living/carbon/human/ethereal)
 	. = ..()
 	if(!ethereal_light)
@@ -137,12 +136,34 @@
 		fixed_mut_color = rgb(128,128,128)
 	ethereal.update_body()
 
-/// Special handling for getting hit with a light eater
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Light Colour Helper-------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/species/ethereal/proc/setup_color(mob/living/carbon/human/ethereal)
+	default_color = ethereal.dna.features["mcolor"]
+	r1 = GETREDPART(default_color)
+	g1 = GETGREENPART(default_color)
+	b1 = GETBLUEPART(default_color)
+	var/list/hsl = rgb2hsl(r1, g1, b1)
+	//both saturation and lightness are a scale of 0 to 1
+	hsl[2] = min(hsl[2], 0.7) //don't let saturation be too high or it's overwhelming
+	hsl[3] = max(hsl[3], 0.5) //don't let lightness be too low or it looks like a void of light
+	var/list/rgb = hsl2rgb(hsl[1], hsl[2], hsl[3]) //terrible way to do it, but it works
+	r1 = rgb[1]
+	g1 = rgb[2]
+	b1 = rgb[3]
+
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------------Light eater---------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/species/ethereal/proc/on_light_eater(mob/living/carbon/human/source, datum/light_eater)
 	SIGNAL_HANDLER
 	spec_emp_act(source, EMP_LIGHT)
 	return COMPONENT_BLOCK_LIGHT_EATER
 
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------------EMP effects---------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/species/ethereal/spec_emp_act(mob/living/carbon/human/H, severity)
 	.=..()
 	if(!EMPeffect)
@@ -156,6 +177,9 @@
 	spec_updatehealth(H)
 	to_chat(H, span_notice("You feel more energized as your shine comes back."))
 
+////////////////////////////////////////////////////////////////////////////////////
+//-----------------------------------Emag effects---------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/species/ethereal/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
 	if(emageffect)
 		return FALSE
@@ -188,6 +212,40 @@
 	animate(H, emag_speed, color = null) //back to boring
 	H.visible_message(span_danger("[H]'s light goes back to it's normal state!"))
 
+////////////////////////////////////////////////////////////////////////////////////
+//-------------------------------Discharge effect---------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/species/ethereal/proc/discharge_process(mob/living/carbon/human/H)
+	H.visible_message(span_danger("[H] begins to spark violently!"), span_warning("You begin to lose control over your energy!"))
+
+	var/static/mutable_appearance/overcharge //shameless copycode from lightning spell copied from another codebase copied from another codebase
+	overcharge = overcharge || mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
+	H.add_overlay(overcharge)
+
+	discharging = TRUE
+	if(!do_after(H, 5 SECONDS, timed_action_flags = IGNORE_ALL)) 
+		discharging = FALSE
+		stack_trace("[H]'s Ethereal discharge was canceled somehow.")
+		return //nothing should be able to stop this do_after, but just in case
+	discharging = FALSE
+
+	H.cut_overlay(overcharge)
+
+	if(H.nutrition <= NUTRITION_LEVEL_FULL)
+		H.visible_message(span_notice("[H] stops sparking."), span_notice("Your energy settles down again."))
+		return //if they successfully release into an apc, no more discharge
+
+	H.flash_lighting_fx(5, 7, current_color)
+	playsound(H, 'sound/magic/lightningshock.ogg', 100, TRUE, extrarange = 5)
+	H.visible_message(span_danger("[H] violently discharges energy!"), span_warning("You violently discharge energy!"))
+
+	H.adjust_nutrition(-DISCHARGE_LOSS)
+	tesla_zap(H, 2, H.nutrition * 5, TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_ALLOW_DUPLICATES)
+	H.electrocute_act(0, "discharge bolt", override = TRUE, stun = TRUE)
+
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------External Charging effects---------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/species/ethereal/spec_rad_act(mob/living/carbon/human/H, amount, collectable_radiation)
 	if(!collectable_radiation)
 		return
@@ -205,11 +263,37 @@
 		H.adjust_nutrition(P.damage * (1 - (H.getarmor(null, RAD) / 100)))
 		return TRUE
 
+/datum/species/ethereal/on_hit(obj/projectile/P, mob/living/carbon/human/H)
+	. = ..()
+	if(P.armor_flag == ENERGY)
+		H.adjust_nutrition(P.damage * (1 - (H.getarmor(null, ENERGY) / 100)))
+
+/datum/species/ethereal/spec_electrocute_act(mob/living/carbon/human/H, shock_damage, obj/source, siemens_coeff = 1, zone = BODY_ZONE_R_ARM, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
+	H.adjust_nutrition(shock_damage) //don't charge too much or discharge will create an infinite loop with it's self shock
+	return
+
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------Hunger Handling---------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/species/ethereal/spec_life(mob/living/carbon/human/H)
 	.=..()
 	if(H.stat == DEAD)
 		return
-	if(H.nutrition > NUTRITION_LEVEL_FULL && prob(10))//10% each tick for ethereals to explosively release excess energy if it reaches dangerous levels
+
+	if(H.nutrition < NUTRITION_LEVEL_WELL_FED) //passive charging if in starlight
+		var/starlight = FALSE
+		if(istype(get_turf(H), /turf/open/space))
+			starlight = TRUE
+		else
+			for(var/turf/T in view(H, 2))
+				if(istype(T, /turf/open/space))
+					starlight = TRUE
+					break
+		
+		if(starlight)
+			H.adjust_nutrition(10) //small enough number so it doesn't jump from below almost full to being in discharge range
+
+	if(!discharging && H.nutrition > NUTRITION_LEVEL_FULL && prob(10))//10% each tick for ethereals to explosively release excess energy if it reaches dangerous levels
 		discharge_process(H)
 	else if(H.nutrition < NUTRITION_LEVEL_STARVING && H.health > 10.5)
 		apply_damage(0.65, TOX, null, 0, H)
@@ -230,23 +314,9 @@
 			H.clear_alert("ethereal_charge")
 			H.clear_alert("ethereal_overcharge")
 
-/datum/species/ethereal/proc/discharge_process(mob/living/carbon/human/H)
-	to_chat(H, "<span class='warning'>You begin to lose control over your charge!</span>")
-	H.visible_message("<span class='danger'>[H] begins to spark violently!</span>")
-	var/static/mutable_appearance/overcharge //shameless copycode from lightning spell copied from another codebase copied from another codebase
-	overcharge = overcharge || mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
-	H.add_overlay(overcharge)
-	if(do_after(H, 5 SECONDS, timed_action_flags = IGNORE_ALL))
-		H.flash_lighting_fx(5, 7, current_color)
-		playsound(H, 'sound/magic/lightningshock.ogg', 100, TRUE, extrarange = 5)
-		H.cut_overlay(overcharge)
-		tesla_zap(H, 2, H.nutrition * 5, TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_ALLOW_DUPLICATES)
-		H.nutrition = NUTRITION_LEVEL_MOSTLY_FULL
-		to_chat(H, "<span class='warning'>You violently discharge energy!</span>")
-		H.visible_message("<span class='danger'>[H] violently discharges energy!</span>")
-		H.electrocute_act(0, "discharge bolt", override = TRUE, stun = TRUE)
-		return
-
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------Species preference info-----------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/species/ethereal/get_features()
 	var/list/features = ..()
 
@@ -295,8 +365,8 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "bolt",
-			SPECIES_PERK_NAME = "Nuclear-Powered",
-			SPECIES_PERK_DESC = "Ethereals can gain charge when absorbing certain kinds of radiation.",
+			SPECIES_PERK_NAME = "Energy-Sponge",
+			SPECIES_PERK_DESC = "Ethereals can gain charge when absorbing certain kinds of energy or radiation.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
@@ -307,3 +377,5 @@
 	)
 
 	return to_add
+
+#undef DISCHARGE_LOSS
