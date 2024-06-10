@@ -5,7 +5,7 @@
 	name = "libital"
 	id = /datum/reagent/medicine/c2/libital
 	results = list(/datum/reagent/medicine/c2/libital = 5)
-	required_reagents = list(/datum/reagent/phenol = 3, /datum/reagent/oxygen = 1, /datum/reagent/nitrogen = 1)
+	required_reagents = list(/datum/reagent/phenol = 3, /datum/reagent/gas/oxygen = 1, /datum/reagent/gas/nitrogen = 1)
 
 /datum/chemical_reaction/medicine/probital
 	name = "probital"
@@ -19,13 +19,13 @@
 	name = "lenturi"
 	id = /datum/reagent/medicine/c2/lenturi
 	results = list(/datum/reagent/medicine/c2/lenturi = 5)
-	required_reagents = list(/datum/reagent/ammonia = 1, /datum/reagent/silver = 1, /datum/reagent/sulphur = 1, /datum/reagent/oxygen = 1, /datum/reagent/bromine = 1)
+	required_reagents = list(/datum/reagent/ammonia = 1, /datum/reagent/silver = 1, /datum/reagent/sulphur = 1, /datum/reagent/gas/oxygen = 1, /datum/reagent/bromine = 1)
 
 /datum/chemical_reaction/medicine/aiuri
 	name = "aiuri"
 	id = /datum/reagent/medicine/c2/aiuri
 	results = list(/datum/reagent/medicine/c2/aiuri = 5)
-	required_reagents = list(/datum/reagent/ammonia = 2, /datum/reagent/toxin/acid = 1, /datum/reagent/hydrogen = 2)
+	required_reagents = list(/datum/reagent/ammonia = 2, /datum/reagent/toxin/acid = 1, /datum/reagent/gas/hydrogen = 2)
 
 /datum/chemical_reaction/medicine/rhigoxane
 	name = "rhigoxane"
@@ -41,7 +41,7 @@
 	name = "tirimol"
 	id = /datum/reagent/medicine/c2/tirimol
 	results = list(/datum/reagent/medicine/c2/tirimol = 5)
-	required_reagents = list(/datum/reagent/nitrogen = 3, /datum/reagent/acetone = 2)
+	required_reagents = list(/datum/reagent/gas/nitrogen = 3, /datum/reagent/acetone = 2)
 	required_catalysts = list(/datum/reagent/toxin/acid = 1)
 
 /*****TOX*****/
@@ -50,10 +50,10 @@
 	name = "seiver"
 	id = /datum/reagent/medicine/c2/seiver
 	results = list(/datum/reagent/medicine/c2/seiver = 3)
-	required_reagents = list(/datum/reagent/nitrogen = 1, /datum/reagent/potassium = 1, /datum/reagent/aluminium = 1)
+	required_reagents = list(/datum/reagent/gas/nitrogen = 1, /datum/reagent/potassium = 1, /datum/reagent/aluminium = 1)
 
 /datum/chemical_reaction/medicine/thializid
 	name = "thializid"
 	id = /datum/reagent/medicine/c2/thializid
 	results = list(/datum/reagent/medicine/c2/thializid = 5)
-	required_reagents = list(/datum/reagent/sulphur = 1, /datum/reagent/fluorine = 1, /datum/reagent/toxin = 1, /datum/reagent/nitrous_oxide = 2)
+	required_reagents = list(/datum/reagent/sulphur = 1, /datum/reagent/fluorine = 1, /datum/reagent/toxin = 1, /datum/reagent/gas/nitrous_oxide = 2)

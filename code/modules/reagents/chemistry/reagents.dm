@@ -112,6 +112,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 ///Called after a reagent is transfered
 /datum/reagent/proc/on_transfer(atom/A, methods=TOUCH, trans_volume)
+
 /// Called when this reagent is first added to a mob
 /datum/reagent/proc/on_mob_add(mob/living/L)
 	return

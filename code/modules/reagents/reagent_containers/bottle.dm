@@ -347,7 +347,7 @@
 
 /obj/item/reagent_containers/glass/bottle/hydrogen
 	name = "hydrogen bottle"
-	list_reagents = list(/datum/reagent/hydrogen = 30)
+	list_reagents = list(/datum/reagent/gas/hydrogen = 30)
 
 /obj/item/reagent_containers/glass/bottle/lithium
 	name = "lithium bottle"
@@ -359,11 +359,11 @@
 
 /obj/item/reagent_containers/glass/bottle/nitrogen
 	name = "nitrogen bottle"
-	list_reagents = list(/datum/reagent/nitrogen = 30)
+	list_reagents = list(/datum/reagent/gas/nitrogen = 30)
 
 /obj/item/reagent_containers/glass/bottle/oxygen
 	name = "oxygen bottle"
-	list_reagents = list(/datum/reagent/oxygen = 30)
+	list_reagents = list(/datum/reagent/gas/oxygen = 30)
 
 /obj/item/reagent_containers/glass/bottle/fluorine
 	name = "fluorine bottle"

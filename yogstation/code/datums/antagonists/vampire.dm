@@ -79,6 +79,8 @@
 	check_vampire_upgrade()
 	owner.special_role = "vampire"
 	owner.current.faction += "vampire"
+	RegisterSignal(owner, COMSIG_MIND_CHECK_ANTAG_RESOURCE, PROC_REF(has_blood))
+	RegisterSignal(owner, COMSIG_MIND_SPEND_ANTAG_RESOURCE, PROC_REF(use_blood))
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/H = owner.current
 		RegisterSignal(H, COMSIG_HUMAN_BURNING, PROC_REF(handle_fire))
@@ -86,13 +88,15 @@
 		if(B)
 			B.organ_flags &= ~ORGAN_VITAL
 			B.decoy_override = TRUE
-	..()
+	return ..()
 
 /datum/antagonist/vampire/on_removal()
 	remove_vampire_powers()
 	owner.current.faction -= "vampire"
 	SSticker.mode.vampires -= owner
 	owner.special_role = null
+	UnregisterSignal(owner, COMSIG_MIND_CHECK_ANTAG_RESOURCE)
+	UnregisterSignal(owner, COMSIG_MIND_SPEND_ANTAG_RESOURCE)
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/H = owner.current
 		UnregisterSignal(H, COMSIG_HUMAN_BURNING)
@@ -110,7 +114,7 @@
 		if(B && (B.decoy_override != initial(B.decoy_override)))
 			B.organ_flags |= ORGAN_VITAL
 			B.decoy_override = FALSE
-	..()
+	return ..()
 
 /datum/antagonist/vampire/greet()
 	to_chat(owner, span_userdanger("You are a Vampire!"))
@@ -187,6 +191,24 @@
 		steal_objective.find_target()
 		add_objective(steal_objective)
 
+/datum/antagonist/vampire/proc/has_blood(datum/mind, flag = ANTAG_RESOURCE_VAMPIRE, amt)
+	SIGNAL_HANDLER
+	if(flag != ANTAG_RESOURCE_VAMPIRE)
+		return FALSE
+	return usable_blood >= amt
+
+/datum/antagonist/vampire/proc/use_blood(datum/mind, list/resource_costs)
+	SIGNAL_HANDLER
+	if(!LAZYLEN(resource_costs))
+		return
+	var/amount = resource_costs[ANTAG_RESOURCE_VAMPIRE]
+	if(!amount)
+		return
+	if(!has_blood(amt = amount))
+		return
+	usable_blood -= amount
+	to_chat(owner.current, span_notice("<b>You have [usable_blood] left to use.</b>"))
+
 /datum/antagonist/vampire/proc/vamp_burn(severe_burn = FALSE)
 	var/mob/living/L = owner.current
 	if(!L)
@@ -238,10 +260,12 @@
 	var/mob/living/current_mob = mob_override || owner.current
 	handle_clown_mutation(current_mob, mob_override ? null : "Your bloodlusting desire overcomes your clownish heritage, you are able to use weapons!")
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(vampire_life))
+	ADD_TRAIT(current_mob, TRAIT_UNHOLY, type)
 
 /datum/antagonist/vampire/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
 	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
+	REMOVE_TRAIT(current_mob, TRAIT_UNHOLY, type)
 	return ..()
 
 /datum/antagonist/vampire/proc/vampire_life(mob/living/source, seconds_per_tick, times_fired)
@@ -286,7 +310,7 @@
 	else if(O.grab_state >= GRAB_NECK)
 		blood_to_take *= 1.5 //50% more blood from targets that are being neck grabbed or above
 	if(!silent)
-		O.visible_message(span_danger("[O] grabs [H]'s neck harshly and sinks in their fangs!"), span_danger("You sink your fangs into [H] and begin to [blood_to_take > BLOOD_SUCK_BASE ? "quickly" : ""] drain their blood."), span_notice("You hear a soft puncture and a wet sucking noise."))
+		O.visible_message(span_danger("[O] grabs [H]'s neck harshly and sinks in their fangs!"), span_danger("You sink your fangs into [H] and begin to [blood_to_take > BLOOD_SUCK_BASE ? "quickly " : ""]drain their blood."), span_notice("You hear a soft puncture and a wet sucking noise."))
 		playsound(O.loc, 'sound/weapons/bite.ogg', 50, 1)
 	else
 		to_chat(O, span_notice("You stealthily begin to drain blood from [H]. Be careful, as they will notice if their blood gets too low."))

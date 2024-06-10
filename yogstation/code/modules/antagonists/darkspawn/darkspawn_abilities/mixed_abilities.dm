@@ -17,7 +17,7 @@
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
-	psi_cost = 30
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 30)
 	cooldown_time = 10 SECONDS
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 	///status effect applied by the spell
@@ -57,7 +57,7 @@
 	antimagic_flags = NONE
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 60
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 60)
 	cooldown_time = 45 SECONDS
 
 /datum/action/cooldown/spell/aoe/icyveins/cast(atom/cast_on)
@@ -97,7 +97,7 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = NONE
-	psi_cost = 55
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 55)
 	cooldown_time = 1 SECONDS //to prevent double clicking by accident
 	die_with_shapeshifted_form = FALSE
 	convert_damage = TRUE
@@ -117,9 +117,9 @@
 
 /datum/action/cooldown/spell/shapeshift/crawling_shadows/can_cast_spell(feedback)
 	if(owner.has_status_effect(/datum/status_effect/shapechange_mob/from_spell)) //so it's free to change back, but costs psi to change
-		psi_cost = 0
+		bypass_cost = TRUE
 	else
-		psi_cost = initial(psi_cost)
+		bypass_cost = FALSE
 	if(owner.has_status_effect(STATUS_EFFECT_TAGALONG))
 		return FALSE
 	if(owner.movement_type & VENTCRAWLING) //don't let them smoosh themselves
@@ -143,7 +143,7 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 40
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 40)
 	///How long the clones last
 	var/duration = 10 SECONDS
 
@@ -175,7 +175,7 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 100
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 100)
 	cooldown_time = 3 MINUTES
 	///mob summoned by the spell
 	var/mob/living/simple_animal/hostile/illusion/darkspawn/psyche/dude

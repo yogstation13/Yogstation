@@ -9,7 +9,7 @@
 	name = "Space Lube"
 	id = /datum/reagent/lube
 	results = list(/datum/reagent/lube = 4)
-	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
+	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/gas/oxygen = 1)
 
 /datum/chemical_reaction/naniteremover
 	name = "Nanolytic Agent"
@@ -39,13 +39,13 @@
 	name = "Impedrezene"
 	id = /datum/reagent/impedrezene
 	results = list(/datum/reagent/impedrezene = 2)
-	required_reagents = list(/datum/reagent/mercury = 1, /datum/reagent/oxygen = 1, /datum/reagent/consumable/sugar = 1)
+	required_reagents = list(/datum/reagent/mercury = 1, /datum/reagent/gas/oxygen = 1, /datum/reagent/consumable/sugar = 1)
 
 /datum/chemical_reaction/cryptobiolin
 	name = "Cryptobiolin"
 	id = /datum/reagent/cryptobiolin
 	results = list(/datum/reagent/cryptobiolin = 3)
-	required_reagents = list(/datum/reagent/potassium = 1, /datum/reagent/oxygen = 1, /datum/reagent/consumable/sugar = 1)
+	required_reagents = list(/datum/reagent/potassium = 1, /datum/reagent/gas/oxygen = 1, /datum/reagent/consumable/sugar = 1)
 
 /datum/chemical_reaction/glycerol
 	name = "Glycerol"
@@ -106,7 +106,7 @@
 /datum/chemical_reaction/candlefication
 	name = "Candlefication"
 	id = "candlefication"
-	required_reagents = list(/datum/reagent/consumable/cornoil = 5, /datum/reagent/hydrogen  = 5)
+	required_reagents = list(/datum/reagent/consumable/cornoil = 5, /datum/reagent/gas/hydrogen  = 5)
 	required_temp = 374
 	mob_react = FALSE
 
@@ -118,7 +118,7 @@
 /datum/chemical_reaction/candlefication2
 	name = "Candlefication2"
 	id = "candlefication2"
-	required_reagents = list(/datum/reagent/consumable/cooking_oil = 5, /datum/reagent/hydrogen  = 5)
+	required_reagents = list(/datum/reagent/consumable/cooking_oil = 5, /datum/reagent/gas/hydrogen  = 5)
 	required_temp = 374
 	mob_react = FALSE
 
@@ -142,15 +142,15 @@
 /datum/chemical_reaction/carbondioxide
 	name = "Direct Carbon Oxidation"
 	id = "burningcarbon"
-	results = list(/datum/reagent/carbondioxide = 3)
-	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/oxygen = 2)
+	results = list(/datum/reagent/gas/carbondioxide = 3)
+	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/gas/oxygen = 2)
 	required_temp = 777 // pure carbon isn't especially reactive.
 
 /datum/chemical_reaction/nitrous_oxide
 	name = "Nitrous Oxide"
-	id = /datum/reagent/nitrous_oxide
-	results = list(/datum/reagent/nitrous_oxide = 5)
-	required_reagents = list(/datum/reagent/ammonia = 2, /datum/reagent/nitrogen = 1, /datum/reagent/oxygen = 2)
+	id = /datum/reagent/gas/nitrous_oxide
+	results = list(/datum/reagent/gas/nitrous_oxide = 5)
+	required_reagents = list(/datum/reagent/ammonia = 2, /datum/reagent/gas/nitrogen = 1, /datum/reagent/gas/oxygen = 2)
 	required_temp = 525
 
 //Technically a mutation toxin
@@ -415,7 +415,7 @@
 	name = "Foaming Agent"
 	id = /datum/reagent/foaming_agent
 	results = list(/datum/reagent/foaming_agent = 1)
-	required_reagents = list(/datum/reagent/lithium = 1, /datum/reagent/hydrogen = 1)
+	required_reagents = list(/datum/reagent/lithium = 1, /datum/reagent/gas/hydrogen = 1)
 
 /datum/chemical_reaction/smart_foaming_agent
 	name = "Smart foaming Agent"
@@ -431,7 +431,7 @@
 	name = "Ammonia"
 	id = /datum/reagent/ammonia
 	results = list(/datum/reagent/ammonia = 3)
-	required_reagents = list(/datum/reagent/hydrogen = 3, /datum/reagent/nitrogen = 1)
+	required_reagents = list(/datum/reagent/gas/hydrogen = 3, /datum/reagent/gas/nitrogen = 1)
 
 /datum/chemical_reaction/diethylamine
 	name = "Diethylamine"
@@ -475,7 +475,7 @@
 	name = /datum/reagent/acetone
 	id = /datum/reagent/acetone
 	results = list(/datum/reagent/acetone = 3)
-	required_reagents = list(/datum/reagent/oil = 1, /datum/reagent/fuel = 1, /datum/reagent/oxygen = 1)
+	required_reagents = list(/datum/reagent/oil = 1, /datum/reagent/fuel = 1, /datum/reagent/gas/oxygen = 1)
 
 /datum/chemical_reaction/carpet
 	name = /datum/reagent/carpet
@@ -487,7 +487,7 @@
 	name = "Oil"
 	id = /datum/reagent/oil
 	results = list(/datum/reagent/oil = 3)
-	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/carbon = 1, /datum/reagent/hydrogen = 1)
+	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/carbon = 1, /datum/reagent/gas/hydrogen = 1)
 
 /datum/chemical_reaction/phenol
 	name = /datum/reagent/phenol
@@ -711,13 +711,13 @@
 	name = /datum/reagent/saltpetre
 	id = /datum/reagent/saltpetre
 	results = list(/datum/reagent/saltpetre = 3)
-	required_reagents = list(/datum/reagent/potassium = 1, /datum/reagent/nitrogen = 1, /datum/reagent/oxygen = 3)
+	required_reagents = list(/datum/reagent/potassium = 1, /datum/reagent/gas/nitrogen = 1, /datum/reagent/gas/oxygen = 3)
 
 /datum/chemical_reaction/lye
 	name = /datum/reagent/lye
 	id = /datum/reagent/lye
 	results = list(/datum/reagent/lye = 3)
-	required_reagents = list(/datum/reagent/sodium = 1, /datum/reagent/hydrogen = 1, /datum/reagent/oxygen = 1)
+	required_reagents = list(/datum/reagent/sodium = 1, /datum/reagent/gas/hydrogen = 1, /datum/reagent/gas/oxygen = 1)
 
 /datum/chemical_reaction/lye2
 	name = /datum/reagent/lye
@@ -819,7 +819,7 @@
 	name = /datum/reagent/consumable/sugar
 	id = /datum/reagent/consumable/sugar
 	results = list(/datum/reagent/consumable/sugar = 3)
-	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/oxygen = 1, /datum/reagent/fuel = 1)
+	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/gas/oxygen = 1, /datum/reagent/fuel = 1)
 
 /datum/chemical_reaction/welding_fuel
 	name = /datum/reagent/fuel
@@ -833,7 +833,7 @@
 	name = /datum/reagent/stable_plasma
 	id = /datum/reagent/stable_plasma
 	results = list(/datum/reagent/stable_plasma = 6)
-	required_reagents = list(/datum/reagent/toxin/plasma = 3, /datum/reagent/hydrogen = 3)
+	required_reagents = list(/datum/reagent/toxin/plasma = 3, /datum/reagent/gas/hydrogen = 3)
 	required_catalysts =  list(/datum/reagent/consumable/ethanol = 5)
 	required_temp = 100
 	is_cold_recipe = TRUE

@@ -1,0 +1,6 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - experiment: "Refactored gas reagents and gas breath effects"
+  - tweak: "Most gases with breath effects now work in cryo tubes"
+  - bugfix: "Fixed certain gases sometimes not having effects on preterni"

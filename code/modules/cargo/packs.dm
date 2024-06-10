@@ -1606,13 +1606,6 @@
 					/obj/item/defibrillator/loaded)
 	crate_name = "defibrillator crate"
 
-/datum/supply_pack/medical/iv_drip
-	name = "IV Drip Crate"
-	desc = "Contains a single IV drip for administering blood to patients."
-	cost = 1000
-	contains = list(/obj/machinery/iv_drip)
-	crate_name = "iv drip crate"
-
 /datum/supply_pack/medical/supplies
 	name = "Medical Supplies Crate"
 	desc = "Contains several medical supplies. German doctor not included."
@@ -2441,6 +2434,22 @@
 					/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy
 					)
 	crate_name = "grilling fuel kit crate"
+
+/datum/supply_pack/organic/food_cart
+	name = "Food Cart Crate"
+	desc = "Contains a food cart for all your mobile food needs."
+	cost = 5000
+	crate_type = /obj/structure/closet/crate/large
+	contains = list(/obj/machinery/food_cart)
+	crate_name = "food cart crate"
+
+/datum/supply_pack/organic/icecream_vat
+	name = "Ice cream Vat Crate"
+	desc = "A vat of ice-cold icecream for those hot shifts in Atmospherics."
+	cost = 5000
+	crate_type = /obj/structure/closet/crate/large
+	contains = list(/obj/machinery/icecream_vat)
+	crate_name = "ice cream vat crate"
 
 //////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// Livestock /////////////////////////////////////

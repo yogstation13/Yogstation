@@ -207,19 +207,35 @@
 				H.throw_alert(alert_category, alert_type)
 		else if(alert_category)
 			H.clear_alert(alert_category)
-	var/list/breath_reagents = GLOB.gas_data.breath_reagents
-	for(var/gas in breath.get_gases())
-		if(gas in breath_reagents)
-			var/datum/reagent/R = breath_reagents[gas]
-			H.reagents.add_reagent(R, breath.get_moles(gas)*eff)
-			mole_adjustments[gas] = (gas in mole_adjustments) ? mole_adjustments[gas] - breath.get_moles(gas) : -breath.get_moles(gas)
 
-	for(var/gas in mole_adjustments)
-		breath.adjust_moles(gas, mole_adjustments[gas])
+	// Handle gases that give you reagents
+	var/mole_ratio
+	var/breath_reagent_type // define these here to speed it up a bit
+	var/datum/reagent/breath_reagent
+	for(var/gas in breath.get_gases())
+		breath_reagent_type = GLOB.gas_data.breath_reagents[gas]
+		mole_ratio = eff * breath.get_moles(gas) / gas_stimulation_min
+		if(breath_reagent_type && mole_ratio > 1)
+			breath_reagent = new breath_reagent_type()
+			breath_reagent.reaction_mob(H, VAPOR|BREATH, 2*mole_ratio)
+			breath.set_moles(gas, 0) // absorbed into the lungs
 
 	//-- TRACES --//
 
 	if(breath)	// If there's some other shit in the air lets deal with it here.
+
+	//yogs start -- Adds Nitrogen Narcosis
+	//NITROGEN
+		var/N2_pp = PP(breath, GAS_N2)
+		if(N2_pp > NITROGEN_NARCOSIS_PRESSURE_LOW) // Giggles
+			if(prob(20))
+				INVOKE_ASYNC(H, TYPE_PROC_REF(/mob/living/carbon/human, emote), pick("giggle","laugh"))
+			if(N2_pp > NITROGEN_NARCOSIS_PRESSURE_HIGH) // Hallucinations
+				if(prob(15))
+					to_chat(H, span_userdanger("You can't think straight!"))
+					H.adjust_confusion_up_to(N2_pp / 10, 12 SECONDS)
+				H.adjust_hallucinations(5 SECONDS)
+	//yogs end
 
 	// N2O
 
@@ -249,54 +265,6 @@
 			H.adjust_hallucinations(5 SECONDS)
 			H.reagents.add_reagent(/datum/reagent/bz_metabolites,1)
 
-	// Nitrium
-		var/nitrium_pp = PP(breath, GAS_NITRIUM)
-		// Random chance to inflict side effects, increases with pressure.
-		if (nitrium_pp > 15 && prob(nitrium_pp))
-			H.adjustOrganLoss(ORGAN_SLOT_LUNGS, nitrium_pp * 0.1)
-			to_chat(H, span_alert("You feel a burning sensation in your chest"))
-		gas_breathed = breath.get_moles(GAS_NITRIUM)
-		// Metabolize to reagents.
-		if (gas_breathed > gas_stimulation_min)
-			var/existing = H.reagents.get_reagent_amount(/datum/reagent/nitrium_low_metabolization)
-			H.reagents.add_reagent(/datum/reagent/nitrium_low_metabolization, max(0, 2 - existing))
-		if (gas_breathed > gas_stimulation_min * 2.5)
-			var/existing = H.reagents.get_reagent_amount(/datum/reagent/nitrium_high_metabolization)
-			H.reagents.add_reagent(/datum/reagent/nitrium_high_metabolization, max(0, 1 - existing))
-		breath.adjust_moles(GAS_NITRIUM, -gas_breathed)
-
-	// Freon
-		var/freon_pp = PP(breath,GAS_FREON)
-		if (prob(freon_pp))
-			to_chat(H, span_alert("Your mouth feels like it's burning!"))
-		if (freon_pp >40)
-			H.emote("gasp")
-			H.adjustFireLoss(15)
-			if (prob(freon_pp/2))
-				to_chat(H, span_alert("Your throat closes up!"))
-				H.silent = max(H.silent, 3)
-		else
-			H.adjustFireLoss(freon_pp/4)
-		gas_breathed = breath.get_moles(GAS_FREON)
-		if (gas_breathed > gas_stimulation_min)
-			H.reagents.add_reagent(/datum/reagent/freon,1*eff)
-
-		breath.adjust_moles(GAS_FREON, -gas_breathed)
-
-	// Healium
-		var/healium_pp = PP(breath,GAS_HEALIUM)
-		if(healium_pp > SA_sleep_min)
-			var/existing = H.reagents.get_reagent_amount(/datum/reagent/healium)
-			H.reagents.add_reagent(/datum/reagent/healium,max(0, 1*eff - existing))
-		gas_breathed = breath.get_moles(GAS_HEALIUM)
-		if(gas_breathed > gas_stimulation_min && !helium_speech)
-			helium_speech = TRUE
-			RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_helium_speech))
-		else if (gas_breathed <= gas_stimulation_min && helium_speech)
-			helium_speech = FALSE
-			UnregisterSignal(owner, COMSIG_MOB_SAY)
-		breath.adjust_moles(GAS_HEALIUM, -gas_breathed)
-
 	// Pluonium
 		// Inert
 
@@ -309,38 +277,6 @@
 			H.adjustToxLoss(8)
 		gas_breathed = breath.get_moles(GAS_ZAUKER)
 		breath.adjust_moles(GAS_ZAUKER, -gas_breathed)
-
-	// Halon
-		gas_breathed = breath.get_moles(GAS_HALON)
-		if(gas_breathed > gas_stimulation_min)
-			H.adjustOxyLoss(5)
-			var/existing = H.reagents.get_reagent_amount(/datum/reagent/halon)
-			H.reagents.add_reagent(/datum/reagent/halon,max(0, 1 - existing))
-		gas_breathed = breath.get_moles(GAS_HALON)
-		breath.adjust_moles(GAS_HALON, -gas_breathed)
-
-	// Hexane
-		gas_breathed = breath.get_moles(GAS_HEXANE)
-		if(gas_breathed > gas_stimulation_min)
-			H.adjust_hallucinations(50 SECONDS)
-			H.reagents.add_reagent(/datum/reagent/hexane,5)
-			if(prob(33))
-				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
-		breath.adjust_moles(GAS_HEXANE, -gas_breathed)
-
-	// Hyper-noblium
-		gas_breathed = breath.get_moles(GAS_HYPERNOB)
-		if(gas_breathed > gas_stimulation_min)
-			var/existing = H.reagents.get_reagent_amount(/datum/reagent/hypernoblium)
-			H.reagents.add_reagent(/datum/reagent/hypernoblium, max(0, eff - existing))
-		breath.adjust_moles(GAS_HYPERNOB, -gas_breathed)
-
-	// Anti-noblium
-		gas_breathed = breath.get_moles(GAS_ANTINOB)
-		if(gas_breathed > gas_stimulation_min)
-			var/existing = H.reagents.get_reagent_amount(/datum/reagent/antinoblium)
-			H.reagents.add_reagent(/datum/reagent/antinoblium, max(0, eff - existing))
-		breath.adjust_moles(GAS_ANTINOB, -gas_breathed)
 
 	// Miasma
 		if (breath.get_moles(GAS_MIASMA))
@@ -436,10 +372,6 @@
 		if(breath_temperature > heat_level_1_threshold)
 			if(prob(20))
 				to_chat(H, span_warning("You feel [hot_message] in your [name]!"))
-
-/obj/item/organ/lungs/proc/handle_helium_speech(owner, list/speech_args)
-	SIGNAL_HANDLER
-	speech_args[SPEECH_SPANS] |= SPAN_HELIUM
 
 /obj/item/organ/lungs/on_life()
 	..()

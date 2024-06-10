@@ -65,7 +65,6 @@
 	mulebot_count += 1
 	set_id(suffix || id || "#[mulebot_count]")
 	suffix = null
-	AddComponent(/datum/component/ntnet_interface)
 
 /mob/living/simple_animal/bot/mulebot/Destroy()
 	unload(0)
