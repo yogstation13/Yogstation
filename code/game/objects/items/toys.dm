@@ -35,6 +35,14 @@
 	force = 0
 
 
+obj/item/toy/snowglobe
+	name = "Hyper-Realistic Snow Globe"
+	desc = "An uncanny looking snow globe, there's a little man with a pickaxe in it."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "snow_globe_goodsprings"
+	item_state = "snow_globe_goodsprings"
+	custom_price = 2000 // this is important, doesn't actually affect the cargo export cost but makes me feel better about it
+
 /*
  * Balloons
  */
