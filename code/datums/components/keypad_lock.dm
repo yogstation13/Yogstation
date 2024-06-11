@@ -115,7 +115,7 @@
 			if(access_code == "")
 				user.balloon_alert(user, "Memory already reset!")
 				return
-			user.balloon_alert(user, "Reseting memory")
+			user.balloon_alert(user, "Resetting memory")
 			if(!tool.use_tool(parent, user, 10 SECONDS))
 				user.balloon_alert(user, "Interupted!")
 				return
