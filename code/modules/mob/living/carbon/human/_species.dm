@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/list/mob/living/ignored_by = list()
 	//Breathing!
 	///what type of gas is breathed
-	var/breathid = "o2"
+	var/breathid = GAS_O2
 
 	/// Special typing indicators
 	var/bubble_icon = BUBBLE_DEFAULT

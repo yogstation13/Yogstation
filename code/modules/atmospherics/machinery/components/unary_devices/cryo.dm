@@ -242,19 +242,11 @@
 	var/mob/living/mob_occupant = occupant
 	if(mob_occupant.on_fire)
 		mob_occupant.extinguish_mob()
-	if(mob_occupant.stat == DEAD) // We don't bother with dead people except if we got healium.
-		var/existing = mob_occupant.reagents.get_reagent_amount(/datum/reagent/healium)
-		if(existing)
-			mob_occupant.reagents.del_reagent(/datum/reagent/healium)
-			mob_occupant.reagents.add_reagent(/datum/reagent/healium, existing)
-		else if(!existing && air1.get_moles(GAS_HEALIUM) > 1)
-			mob_occupant.reagents.add_reagent(/datum/reagent/healium, 1)
-			air1.set_moles(GAS_HEALIUM, -max(0, air1.get_moles(GAS_HEALIUM) - 0.1 / efficiency))
-		else
-			return
+
+	if(mob_occupant.stat == DEAD && air1.get_moles(GAS_HEALIUM) < 1) // We don't bother with dead people except if we got healium.
 		set_on(FALSE)
 		playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
-		var/msg = "Healium injection completed."
+		var/msg = "Patient is deceased."
 		if(autoeject) // Eject if configured.
 			msg += " Auto ejecting patient now."
 			open_machine()
@@ -307,7 +299,7 @@
 		if(beaker)
 			if(reagent_transfer == 0) // Magically transfer reagents. Because cryo magic.
 				beaker.reagents.trans_to(occupant, 1, efficiency * 0.25) // Transfer reagents.
-				beaker.reagents.reaction(occupant, VAPOR)
+				beaker.reagents.reaction(occupant, VAPOR|BREATH)
 				if(air1.get_moles(GAS_PLUOXIUM) > 5 )//Use pluoxium over oxygen
 					air1.adjust_moles(GAS_PLUOXIUM, -max(0,air1.get_moles(GAS_PLUOXIUM) - 0.5 / efficiency))
 				else 
@@ -318,11 +310,16 @@
 			reagent_transfer += 0.5 * delta_time
 			if(reagent_transfer >= 10 * efficiency) // Throttle reagent transfer (higher efficiency will transfer the same amount but consume less from the beaker).
 				reagent_transfer = 0
-		if(air1.get_moles(GAS_HEALIUM) > 1) //healium check, if theres enough we get some extra healing from our favorite pink gas.
-			var/existing = mob_occupant.reagents.get_reagent_amount(/datum/reagent/healium)
-			mob_occupant.reagents.add_reagent(/datum/reagent/healium, 1 - existing)
-			air1.set_moles(GAS_HEALIUM, -max(0, air1.get_moles(GAS_HEALIUM) - 0.1 / efficiency))
-	return 1
+		for(var/gas_id in air1.get_gases()) // some gases can be inhaled as reagents
+			var/reagent_type = GLOB.gas_data.breath_reagents[gas_id]
+			if(!reagent_type)
+				continue
+			var/datum/reagent/gas_reagent = new reagent_type()
+			gas_reagent.reaction_mob(mob_occupant, VAPOR|BREATH, 2, permeability = 1)
+			air1.adjust_moles(gas_id, -0.1 / efficiency)
+			qdel(gas_reagent)
+
+	return TRUE
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/process_atmos()
 	if(!on)

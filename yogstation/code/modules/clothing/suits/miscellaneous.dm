@@ -397,3 +397,9 @@
 	desc = "Women..."
 	icon_state = "lesbian"
 	item_state = "lesbian"
+
+/obj/item/clothing/suit/jacket/urinal_costume
+	name = "urinal costume"
+	desc = "You're taking the piss outta this, aren't you?"
+	icon_state = "urinal"
+	item_state = "urinal"
