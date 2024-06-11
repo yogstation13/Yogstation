@@ -1,7 +1,7 @@
 /datum/computer_file/program/ai
 	filename = "DEBUG"
 	filedesc = "DEBUG"
-	category = PROGRAM_CATEGORY_ENGI
+	category = PROGRAM_CATEGORY_ENGINEERING
 	program_icon_state = "power_monitor"
 	extended_desc = "This program connects to a local AI network to allow for administrative access"
 	ui_header = "power_norm.gif"

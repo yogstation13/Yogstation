@@ -188,6 +188,17 @@
 	time = 12
 	category = CAT_WEAPON_RANGED
 
+/datum/crafting_recipe/maint_musket
+	name = "Maintenance Musket"
+	reqs = list(/obj/item/pipe = 1,
+				/obj/item/stack/sheet/metal = 1,
+				/obj/item/weaponcrafting/stock = 1,
+				/obj/item/stack/packageWrap = 5)
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WELDER, TOOL_WRENCH)
+	result = /obj/item/gun/ballistic/maint_musket
+	time = 10 SECONDS
+	category = CAT_WEAPON_RANGED
+
 /datum/crafting_recipe/sledgehammer
 	name = "Sledgehammer"
 	result = /obj/item/melee/sledgehammer
@@ -335,6 +346,14 @@
 	time = 1 SECONDS
 	category = CAT_WEAPON_MELEE
 
+/datum/crafting_recipe/plug_bayonet
+	name = "Plug Bayonet"
+	reqs = list(/obj/item/kitchen/knife = 1,
+			/obj/item/stack/sheet/mineral/wood = 1)
+	result = /obj/item/kitchen/knife/plug_bayonet
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WRENCH)
+	time = 10 SECONDS
+	category = CAT_WEAPON_MELEE
 
 // Ammo
 
@@ -446,11 +465,30 @@
 	time = 0.5 SECONDS
 	category = CAT_WEAPON_AMMO
 
+/datum/crafting_recipe/bolts
 	name = "Bolts"
 	result = /obj/item/ammo_casing/caseless/bolts
 	reqs = list(/obj/item/stack/rods = 1)
 	tool_behaviors = list(TOOL_WIRECUTTER)
 	time = 0.5 SECONDS
+	category = CAT_WEAPON_AMMO
+
+/datum/crafting_recipe/cartridge_welder
+	name = "Cartridge Welding Fuel" //Reversed so that they're together in the menu
+	result = /obj/item/ammo_casing/caseless/cartridge
+	reqs = list(/obj/item/clothing/torncloth = 1,
+				/datum/reagent/fuel = 10)
+	tool_behaviors = list(TOOL_SCREWDRIVER)
+	time = 2 SECONDS
+	category = CAT_WEAPON_AMMO
+
+/datum/crafting_recipe/cartridge_BP
+	name = "Cartridge Black Powder"
+	result = /obj/item/ammo_casing/caseless/cartridge/black_powder
+	reqs = list(/obj/item/clothing/torncloth = 1,
+				/datum/reagent/blackpowder = 10)
+	tool_behaviors = list(TOOL_SCREWDRIVER)
+	time = 2 SECONDS
 	category = CAT_WEAPON_AMMO
 
 /datum/crafting_recipe/wood_arrow

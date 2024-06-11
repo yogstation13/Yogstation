@@ -110,7 +110,7 @@
 	name = "Thermite"
 	id = /datum/reagent/thermite
 	results = list(/datum/reagent/thermite = 3)
-	required_reagents = list(/datum/reagent/aluminium = 1, /datum/reagent/iron = 1, /datum/reagent/oxygen = 1)
+	required_reagents = list(/datum/reagent/aluminium = 1, /datum/reagent/iron = 1, /datum/reagent/gas/oxygen = 1)
 
 /datum/chemical_reaction/emp_pulse
 	name = "EMP Pulse"
@@ -153,7 +153,7 @@
 	name = /datum/reagent/stabilizing_agent
 	id = /datum/reagent/stabilizing_agent
 	results = list(/datum/reagent/stabilizing_agent = 3)
-	required_reagents = list(/datum/reagent/iron = 1, /datum/reagent/oxygen = 1, /datum/reagent/hydrogen = 1)
+	required_reagents = list(/datum/reagent/iron = 1, /datum/reagent/gas/oxygen = 1, /datum/reagent/gas/hydrogen = 1)
 
 /datum/chemical_reaction/clf3
 	name = "Chlorine Trifluoride"
@@ -186,14 +186,14 @@
 
 /datum/chemical_reaction/reagent_explosion/methsplosion/methboom2
 	id = "methboom2"
-	required_reagents = list(/datum/reagent/diethylamine = 1, /datum/reagent/iodine = 1, /datum/reagent/phosphorus = 1, /datum/reagent/hydrogen = 1) //diethylamine is often left over from mixing the ephedrine.
+	required_reagents = list(/datum/reagent/diethylamine = 1, /datum/reagent/iodine = 1, /datum/reagent/phosphorus = 1, /datum/reagent/gas/hydrogen = 1) //diethylamine is often left over from mixing the ephedrine.
 	required_temp = 300 //room temperature, chilling it even a little will prevent the explosion
 
 /datum/chemical_reaction/sorium
 	name = "Sorium"
 	id = /datum/reagent/sorium
 	results = list(/datum/reagent/sorium = 4)
-	required_reagents = list(/datum/reagent/mercury = 1, /datum/reagent/oxygen = 1, /datum/reagent/nitrogen = 1, /datum/reagent/carbon = 1)
+	required_reagents = list(/datum/reagent/mercury = 1, /datum/reagent/gas/oxygen = 1, /datum/reagent/gas/nitrogen = 1, /datum/reagent/carbon = 1)
 
 /datum/chemical_reaction/sorium/on_reaction(datum/reagents/holder, created_volume)
 	if(holder.has_reagent(/datum/reagent/stabilizing_agent))
@@ -326,7 +326,7 @@
 	name = /datum/reagent/sonic_powder
 	id = /datum/reagent/sonic_powder
 	results = list(/datum/reagent/sonic_powder = 3)
-	required_reagents = list(/datum/reagent/oxygen = 1, /datum/reagent/consumable/space_cola = 1, /datum/reagent/phosphorus = 1)
+	required_reagents = list(/datum/reagent/gas/oxygen = 1, /datum/reagent/consumable/space_cola = 1, /datum/reagent/phosphorus = 1)
 
 /datum/chemical_reaction/sonic_powder/on_reaction(datum/reagents/holder, created_volume)
 	if(holder.has_reagent(/datum/reagent/stabilizing_agent))
@@ -374,7 +374,7 @@
 	name = /datum/reagent/cryostylane
 	id = /datum/reagent/cryostylane
 	results = list(/datum/reagent/cryostylane = 3)
-	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/stable_plasma = 1, /datum/reagent/nitrogen = 1)
+	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/stable_plasma = 1, /datum/reagent/gas/nitrogen = 1)
 
 /datum/chemical_reaction/cryostylane/on_reaction(datum/reagents/holder, created_volume)
 	holder.chem_temp = 20 // cools the fuck down
@@ -384,7 +384,7 @@
 	name = "ephemeral cryostylane reaction"
 	id = "cryostylane_oxygen"
 	results = list(/datum/reagent/cryostylane = 1)
-	required_reagents = list(/datum/reagent/cryostylane = 1, /datum/reagent/oxygen = 1)
+	required_reagents = list(/datum/reagent/cryostylane = 1, /datum/reagent/gas/oxygen = 1)
 	mob_react = FALSE
 
 /datum/chemical_reaction/cryostylane_oxygen/on_reaction(datum/reagents/holder, created_volume)
@@ -394,7 +394,7 @@
 	name = "ephemeral pyrosium reaction"
 	id = "pyrosium_oxygen"
 	results = list(/datum/reagent/pyrosium = 1)
-	required_reagents = list(/datum/reagent/pyrosium = 1, /datum/reagent/oxygen = 1)
+	required_reagents = list(/datum/reagent/pyrosium = 1, /datum/reagent/gas/oxygen = 1)
 	mob_react = FALSE
 
 /datum/chemical_reaction/pyrosium_oxygen/on_reaction(datum/reagents/holder, created_volume)
@@ -473,8 +473,8 @@
 /datum/chemical_reaction/reagent_explosion/noblium_annihilation
 	name = "Hypernoblium-Antinoblium Annihilation"
 	id = "noblium_annihilation"
-	required_reagents = list(/datum/reagent/hypernoblium = 1, /datum/reagent/antinoblium = 1)
-	strengthdiv = 1
+	required_reagents = list(/datum/reagent/gas/hypernoblium = 1, /datum/reagent/gas/antinoblium = 1)
+	strengthdiv = 0.5
 	noblium_suppression = FALSE
 	mob_react = FALSE // no
 

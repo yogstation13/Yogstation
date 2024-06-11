@@ -40,6 +40,7 @@
 	var/next_flicker = 0 //Light flicker timer
 	var/base_power_modifier = REACTOR_POWER_FLAVOURISER
 	var/slagged = FALSE //Is this reactor even usable any more?
+	var/explosion_power = 7 //The explosion strength
 	//Console statistics.
 	var/last_coolant_temperature = 0
 	var/last_output_temperature = 0
@@ -260,7 +261,7 @@
 			if(prob(25) && L.z == z) //If youre running the reactor cold though, no need to flicker the lights.
 				L.flicker()
 		investigate_log("Reactor overloading at [power]% power", INVESTIGATE_REACTOR)
-	
+
 	// Meltdown this, blowout that, I just wanna grill for god's sake!
 	for(var/atom/movable/I in get_turf(src))
 		if(isliving(I))
@@ -346,7 +347,7 @@
 		// Radiation types: increases radiation
 		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_N2) * NITROGEN_RAD_MOD //An example setup of 50 moles of n2 (for dealing with spent fuel) leaves us with a radioactivity spice multiplier of 3.
 		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_CO2) * CARBON_RAD_MOD
-		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_H2) * HYDROGEN_RAD_MOD 
+		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_H2) * HYDROGEN_RAD_MOD
 		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_TRITIUM) * TRITIUM_RAD_MOD
 		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_ANTINOB) * ANTINOBLIUM_RAD_MOD
 
@@ -434,7 +435,7 @@
 		last_power_produced = power_produced
 		last_power_produced *= (max(0,power)/100) //Aaaand here comes the cap. Hotter reactor => more power.
 		last_power_produced *= base_power_modifier //Finally, we turn it into actual usable numbers.
-	
+
 	// Let's check if they're about to die, and let them know.
 	handle_alerts(delta_time)
 	update_icon()
@@ -505,7 +506,7 @@
 	vessel_integrity += integrity_restoration
 	if(vessel_integrity > initial(vessel_integrity)) //hey you cant go above
 		vessel_integrity = initial(vessel_integrity)
-	
+
 	//Second alert condition: Overpressurized (the more lethal one)
 	if(pressure >= REACTOR_PRESSURE_CRITICAL)
 		alert = TRUE
@@ -564,7 +565,7 @@
 	set_light(10)
 
 	//PANIC
-	
+
 
 //Failure condition 1: Meltdown. Achieved by having heat go over tolerances. This is less devastating because it's easier to achieve.
 //Results: Engineering becomes unusable and your engine irreparable
@@ -601,20 +602,32 @@
 		var/turf/lowest_turf = GET_TURF_BELOW(lower_turf)
 		if(lowest_turf) // WE NEED TO GO DEEPER
 			new /obj/structure/reactor_corium(lower_turf)
-	explosion(get_turf(src), 0, 5, 10, 20, TRUE, TRUE)
+	explosion(get_turf(src), GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
+	radiation_pulse(src, (K+1)*temperature*get_fuel_power()*has_fuel()/(REACTOR_MAX_CRITICALITY*REACTOR_MAX_FUEL_RODS))
+	shockwave()
 
 //Failure condition 2: Blowout. Achieved by reactor going over-pressured. This is a round-ender because it requires more fuckery to achieve.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/blowout()
-	explosion(get_turf(src), GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
+	var/explosion_mod = clamp(log(10, pressure), 1, 10)
+	explosion(get_turf(src), explosion_power * explosion_mod  * 0.5, explosion_power * explosion_mod + 2, explosion_power * explosion_mod + 4, explosion_power * explosion_mod + 6, 1, 1)
 	meltdown() //Double kill.
 	relay('sound/effects/reactor/explode.ogg')
+	priority_announce("Level 10 radiation hazard alert! Clouds of nuclear ash are forming near the reactor and expanding rapidly. Maintenance is the best shield against the ash storm.", "Radiation Alert", 'sound/misc/airraid.ogg', color_override="yellow")
 	SSweather.run_weather("nuclear fallout", src.z)
 	for(var/X in GLOB.landmarks_list)
 		if(istype(X, /obj/effect/landmark/nuclear_waste_spawner))
 			var/obj/effect/landmark/nuclear_waste_spawner/WS = X
 			if(is_station_level(WS.z)) //Begin the SLUDGING
-				WS.range *= 3
+				WS.range *= log(temperature)+K
 				WS.fire()
+
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/shockwave()
+	var/atom/movable/gravity_lens/shockwave = new(src)
+	shockwave.transform = matrix().Scale(0.5)
+	shockwave.pixel_x = -240
+	shockwave.pixel_y = -240
+	animate(shockwave, alpha = 0, transform = matrix().Scale(20), time = 10 SECONDS, easing = QUAD_EASING)
+	QDEL_IN(shockwave, 10.5 SECONDS)
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/update_icon(updates=ALL)
 	. = ..()
@@ -952,7 +965,7 @@
 /datum/weather/nuclear_fallout
 	name = "nuclear fallout"
 	desc = "Irradiated dust falls down everywhere."
-	telegraph_duration = 50
+	telegraph_duration = 20 SECONDS
 	telegraph_message = "<span class='boldwarning'>The air suddenly becomes dusty..</span>"
 	weather_message = "<span class='userdanger'><i>You feel a wave of hot ash fall down on you.</i></span>"
 	weather_overlay = "light_ash"
@@ -962,15 +975,15 @@
 	weather_color = "green"
 	telegraph_sound = null
 	weather_sound = 'sound/effects/reactor/falloutwind.ogg'
-	end_duration = 100
+	end_duration = 200
 	area_type = /area
 	protected_areas = list(/area/maintenance, /area/ai_monitored/turret_protected/ai_upload, /area/ai_monitored/turret_protected/ai_upload_foyer,
 	/area/ai_monitored/turret_protected/ai, /area/shuttle)
 	end_message = "<span class='notice'>The ash stops falling.</span>"
-	immunity_type = "rad"
+	immunity_type = WEATHER_RAD
 
 /datum/weather/nuclear_fallout/weather_act(mob/living/L)
-	L.rad_act(100)
+	L.rad_act(2000)
 
 /datum/weather/nuclear_fallout/telegraph()
 	..()

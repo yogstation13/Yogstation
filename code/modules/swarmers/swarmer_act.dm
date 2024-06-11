@@ -64,7 +64,12 @@
 	return FALSE
 
 /turf/open/lava/swarmer_act()
-	if(!is_safe())
+	var/list/components = src.GetComponents(/datum/component/lingering)
+	var/safe = TRUE
+	for(var/datum/component/lingering/safety_check as anything in components)
+		if(safety_check)
+			safe = (safe && safety_check.is_safe())
+	if(!safe)
 		new /obj/structure/lattice/catwalk/swarmer_catwalk(src)
 	return FALSE
 
@@ -79,22 +84,6 @@
 	return TRUE
 
 /obj/machinery/light/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
-	S.dis_integrate(src)
-	return TRUE
-
-/obj/machinery/door/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
-	var/isonshuttle = istype(get_area(src), /area/shuttle)
-	for(var/turf/T in range(1, src))
-		var/area/A = get_area(T)
-		var/datum/gas_mixture/turf_air = T.return_air()
-		if(turf_air.get_moles(GAS_H2) > 1 || turf_air.get_moles(GAS_TRITIUM) > 1 || turf_air.get_moles(GAS_PLASMA) > 1 || (locate(/obj/effect/hotspot) in T) || turf_air.return_pressure() > 500 || turf_air.return_temperature() > 750 || !turf_air.total_moles() || isspaceturf(T) || (!isonshuttle && (istype(A, /area/shuttle) || istype(A, /area/space))) || (isonshuttle && !istype(A, /area/shuttle)))
-			to_chat(S, span_warning("Destroying this object has the potential to cause a hull breach. Aborting."))
-			S.target = null
-			return FALSE
-		else if(istype(A, /area/engine/supermatter))
-			to_chat(S, span_warning("Disrupting the containment of a supermatter crystal would not be to our benefit. Aborting."))
-			S.target = null
-			return FALSE
 	S.dis_integrate(src)
 	return TRUE
 
@@ -167,36 +156,6 @@
 /obj/machinery/gateway/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
 	to_chat(S, span_warning("This bluespace source will be important to us later. Aborting."))
 	return FALSE
-
-/turf/closed/wall/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
-	var/isonshuttle = istype(loc, /area/shuttle)
-	for(var/turf/T in range(1, src))
-		var/area/A = get_area(T)
-		var/datum/gas_mixture/turf_air = T.return_air()
-		if(turf_air.get_moles(GAS_H2) > 1 || turf_air.get_moles(GAS_TRITIUM) > 1 || turf_air.get_moles(GAS_PLASMA) > 1 || (locate(/obj/effect/hotspot) in T) || turf_air.return_pressure() > 500 || turf_air.return_temperature() > 750 || !turf_air.total_moles() || isspaceturf(T) || (!isonshuttle && (istype(A, /area/shuttle) || istype(A, /area/space))) || (isonshuttle && !istype(A, /area/shuttle)))
-			to_chat(S, span_warning("Destroying this object has the potential to cause a hull breach. Aborting."))
-			S.target = null
-			return TRUE
-		else if(istype(A, /area/engine/supermatter))
-			to_chat(S, span_warning("Disrupting the containment of a supermatter crystal would not be to our benefit. Aborting."))
-			S.target = null
-			return TRUE
-	return ..()
-
-/obj/structure/window/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
-	var/is_on_shuttle = istype(get_area(src), /area/shuttle)
-	for(var/turf/adj_turf in range(1, src))
-		var/area/adj_area = get_area(adj_turf)
-		var/datum/gas_mixture/turf_air = adj_turf.return_air()
-		if(turf_air.get_moles(GAS_H2) > 1 || turf_air.get_moles(GAS_TRITIUM) > 1 || turf_air.get_moles(GAS_PLASMA) > 1 || (locate(/obj/effect/hotspot) in adj_turf) || turf_air.return_pressure() > 500 || turf_air.return_temperature() > 750 || !turf_air.total_moles() || isspaceturf(adj_turf) || (!is_on_shuttle && (istype(adj_area, /area/shuttle) || istype(adj_area, /area/space))) || (is_on_shuttle && !istype(adj_area, /area/shuttle)))
-			to_chat(actor, span_warning("Destroying this object has the potential to cause a hull breach. Aborting."))
-			actor.target = null
-			return TRUE
-		if(istype(adj_area, /area/engine/supermatter))
-			to_chat(actor, span_warning("Disrupting the containment of a supermatter crystal would not be to our benefit. Aborting."))
-			actor.target = null
-			return TRUE
-	return ..()
 
 /obj/item/stack/cable_coil/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)//Wiring would be too effective as a resource
 	to_chat(actor, span_warning("This object does not contain enough materials to work with."))

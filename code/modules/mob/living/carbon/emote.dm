@@ -42,10 +42,10 @@
 		if(rand(0, 10000) == 0)
 			A.lightswitch = !A.lightswitch
 			A.update_appearance(UPDATE_ICON)
-		
+
 			for(var/obj/machinery/light_switch/L in A)
 				L.update_appearance(UPDATE_ICON)
-		
+
 			A.power_change()
 
 
@@ -71,6 +71,7 @@
 	key = "meow"
 	key_third_person = "meows"
 	message = "meows."
+	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/simple_animal/pet/cat)
 	emote_type = EMOTE_AUDIBLE
 	cooldown = 10 SECONDS
 
@@ -78,7 +79,12 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	return iscatperson(user)
+	return iscatperson(user) || iscat(user)
+
+/datum/emote/living/carbon/meow/get_sound(mob/living/user)
+	if(user.mind?.miming || !user.can_speak_vocal())
+		return
+	return pick('sound/voice/feline/meow1.ogg', 'sound/voice/feline/meow2.ogg', 'sound/voice/feline/meow3.ogg', 'sound/voice/feline/meow4.ogg', 'sound/effects/meow1.ogg')
 
 /datum/emote/living/carbon/moan
 	key = "moan"

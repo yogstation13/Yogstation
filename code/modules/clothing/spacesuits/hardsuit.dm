@@ -68,7 +68,7 @@
 	add_overlay(hat)
 	hat.forceMove(src)
 
-	hat_overlay = mutable_appearance(hat.mob_overlay_icon, hat.icon_state)
+	hat_overlay = mutable_appearance(hat.worn_icon, hat.icon_state)
 	hat_overlay.alpha = hat.alpha
 	hat_overlay.color = hat.color
 	if(ishuman(loc))
@@ -743,7 +743,7 @@
 	armor = list(MELEE = 30, BULLET = 5, LASER = 10, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 75, FIRE = 60, ACID = 30, ELECTRIC = 100)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/clown
 
-/obj/item/clothing/suit/space/hardsuit/clown/mob_can_equip(mob/M, slot)
+/obj/item/clothing/suit/space/hardsuit/clown/mob_can_equip(mob/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
 	if(!..() || !ishuman(M))
 		return FALSE
 	var/mob/living/carbon/human/H = M
@@ -1234,7 +1234,7 @@
 	item_state = "centcom"
 	w_class = WEIGHT_CLASS_BULKY
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	clothing_flags = STOPSPRESSUREDAMAGE | STOPSPRESSUREDAMAGE
+	clothing_flags = THICKMATERIAL | STOPSPRESSUREDAMAGE
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	cold_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT

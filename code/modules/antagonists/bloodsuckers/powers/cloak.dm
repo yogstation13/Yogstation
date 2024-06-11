@@ -93,7 +93,7 @@
 	name = "cloak of shadows"
 	desc = "Fancy stuff."
 	icon = 'icons/obj/vamp_obj.dmi'
-	mob_overlay_icon = 'icons/obj/vamp_obj.dmi'
+	worn_icon = 'icons/obj/vamp_obj.dmi'
 	icon_state = "cloak"
 	item_state = "cloak"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 10, ACID = 100) //good if you haven nothing

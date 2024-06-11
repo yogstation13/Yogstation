@@ -365,7 +365,7 @@
   * Mostly tries to put the item into the slot if possible, or call attack hand
   * on the item in the slot if the users active hand is empty
   */
-/mob/proc/attack_ui(slot)
+/mob/proc/attack_ui(slot, params)
 	var/obj/item/W = get_active_held_item()
 
 	if(istype(W))
@@ -376,7 +376,8 @@
 		// Activate the item
 		var/obj/item/I = get_item_by_slot(slot)
 		if(istype(I))
-			I.attack_hand(src)
+			var/list/modifiers = params2list(params)
+			I.attack_hand(src, modifiers)
 
 	return 0
 
@@ -498,10 +499,6 @@
 	SEND_SIGNAL(src, COMSIG_MOB_RESET_PERSPECTIVE)
 	return TRUE
 
-/// Show the mob's inventory to another mob
-/mob/proc/show_inv(mob/user)
-	return
-
 /**
   * Examine a mob
   *
@@ -592,11 +589,11 @@
 		return FALSE
 
 	//now we touch the thing we're examining
-	/// our current intent, so we can go back to it after touching
-	var/previous_intent = a_intent
-	a_intent = INTENT_HELP
+	/// temporarily turn off combat mode for reasons
+	var/previous_combat_mode = combat_mode
+	set_combat_mode(FALSE, TRUE)
 	examined_thing.attack_hand(src)
-	a_intent = previous_intent
+	set_combat_mode(previous_combat_mode, TRUE)
 
 	return TRUE
 
@@ -808,10 +805,6 @@
 		unset_machine()
 		src << browse(null, t1)
 
-	if(href_list["refresh"])
-		if(machine && in_range(src, usr))
-			show_inv(machine)
-
 
 	if(href_list["item"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
 		var/slot = text2num(href_list["item"])
@@ -827,12 +820,6 @@
 				usr.stripPanelUnequip(what,src,slot)
 		else
 			usr.stripPanelEquip(what,src,slot)
-
-	if(usr.machine == src)
-		if(Adjacent(usr))
-			show_inv(usr)
-		else
-			usr << browse(null,"window=mob[REF(src)]")
 
 // The src mob is trying to strip an item from someone
 // Defined in living.dm
@@ -857,12 +844,6 @@
 		return
 	if(isAI(M))
 		return
-
-/mob/MouseDrop_T(atom/dropping, atom/user)
-	. = ..()
-	if(ismob(dropping) && dropping != user && user == src)
-		var/mob/M = dropping
-		M.show_inv(user)
 
 /**
   * Handle the result of a click drag onto this mob
@@ -1034,7 +1015,7 @@
 		is_magic_blocked = TRUE
 	if((casted_magic_flags & MAGIC_RESISTANCE_HOLY) && HAS_TRAIT(src, TRAIT_HOLY))
 		is_magic_blocked = TRUE
-	
+
 	if(is_magic_blocked && charge_cost > 0 && !HAS_TRAIT(src, TRAIT_RECENTLY_BLOCKED_MAGIC))
 		on_block_magic_effects(casted_magic_flags, antimagic_sources)
 
@@ -1269,7 +1250,7 @@
 		return
 	for(var/atom/movable/screen/plane_master/rendering_plate/lighting/light as anything in hud_used.get_true_plane_masters(RENDER_PLANE_LIGHTING))
 		light.set_light_cutoff(lighting_cutoff, lighting_color_cutoffs)
-		
+
 ///Update the mouse pointer of the attached client in this mob
 /mob/proc/update_mouse_pointer()
 	if (!client)

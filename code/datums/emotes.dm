@@ -27,7 +27,7 @@
 	/// Message with %t at the end to allow adding params to the message, like for mobs doing an emote relatively to something else.
 	var/message_param = ""
 	/// Whether the emote is visible and/or audible bitflag
-	var/emote_type = EMOTE_VISIBLE 
+	var/emote_type = EMOTE_VISIBLE
 	/// Checks if the mob can use its hands before performing the emote.
 	var/hands_use_check = FALSE
 	/// Will only work if the emote is EMOTE_AUDIBLE.
@@ -85,7 +85,7 @@
 	var/dchatmsg = "<b>[user]</b> [msg]"
 
 	var/tmp_sound = get_sound(user)
-	if(tmp_sound && (!only_forced_audio || !intentional))
+	if(tmp_sound && should_play_sound(user, intentional) && (!only_forced_audio || !intentional))
 		playsound(user, tmp_sound, 50, vary)
 
 	for(var/mob/M in GLOB.dead_mob_list)
@@ -188,6 +188,32 @@
 	if(HAS_TRAIT(user, TRAIT_EMOTEMUTE))
 		return FALSE
 
+	return TRUE
+
+/**
+ * Check to see if the user should play a sound when performing the emote.
+ *
+ * Arguments:
+ * * user - Person that is doing the emote.
+ * * intentional - Bool that says whether the emote was forced (FALSE) or not (TRUE).
+ *
+ * Returns a bool about whether or not the user should play a sound when performing the emote.
+ */
+/datum/emote/proc/should_play_sound(mob/user, intentional = FALSE)
+	if(emote_type & EMOTE_AUDIBLE && !muzzle_ignore)
+		if(user.is_muzzled())
+			return FALSE
+		if(HAS_TRAIT(user, TRAIT_MUTE))
+			return FALSE
+		if(ishuman(user))
+			var/mob/living/carbon/human/loud_mouth = user
+			if(HAS_MIND_TRAIT(loud_mouth, TRAIT_MIMING)) // vow of silence prevents outloud noises
+				return FALSE
+			if(!loud_mouth.getorganslot(ORGAN_SLOT_TONGUE))
+				return FALSE
+
+	if(only_forced_audio && intentional)
+		return FALSE
 	return TRUE
 
 /**

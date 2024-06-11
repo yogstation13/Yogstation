@@ -66,9 +66,8 @@
 /obj/item/gun/ballistic/rocketlauncher/unrestricted
 	pin = /obj/item/firing_pin
 
-/obj/item/gun/ballistic/rocketlauncher/afterattack()
-	. = ..()
-	magazine.get_round(FALSE) //Hack to clear the mag after it's fired
+/obj/item/gun/ballistic/rocketlauncher/process_chamber()
+	magazine.get_round(FALSE)
 
 /obj/item/gun/ballistic/rocketlauncher/equipped()
 	if(prob(1))
@@ -148,3 +147,64 @@
 	. = ..()
 	playsound(loc, "sparks", 75, 1, -1)
 	do_sparks(8, 3, usr)
+
+/obj/item/gun/ballistic/maint_musket
+	name = "maintenance musket"
+	desc = "A weapon with notoriously poor accuracy; it makes up for this by being quick and easy to smash together."
+	icon_state = "maint_musket"
+	item_state = "maint_musket"
+	mag_type = /obj/item/ammo_box/magazine/internal/cartridge
+	w_class = WEIGHT_CLASS_HUGE
+	weapon_weight = WEAPON_HEAVY
+	slot_flags = ITEM_SLOT_BACK
+	casing_ejector = FALSE
+	bolt_type = BOLT_TYPE_NO_BOLT
+	internal_magazine = TRUE
+	empty_indicator = FALSE
+	can_bayonet = TRUE
+	knife_x_offset = 27
+	knife_y_offset = 13
+	can_suppress = FALSE
+	force = 5
+	cartridge_wording = "cartridge"
+	fire_sound = 'sound/weapons/musket_shot.ogg'
+	load_sound = 'sound/weapons/musket_cock.ogg'
+	pin = /obj/item/firing_pin
+	var/reloading_active = FALSE
+
+/obj/item/gun/ballistic/maint_musket/process_chamber()
+	magazine.get_round(FALSE)
+
+/obj/item/gun/ballistic/maint_musket/attackby(obj/item/A, mob/user, params)
+	
+	if(istype(A, /obj/item/ammo_casing/caseless/cartridge))
+		if(reloading_active)
+			to_chat(user, span_warning("You're already reloading it!"))
+			return
+		if(magazine.stored_ammo.len > 0)
+			user.balloon_alert(user, "Already loaded!")
+			return
+		user.visible_message(span_warning("[user] starts reloading [src]!"), span_notice("You start reloading [src]."))
+		reloading_active = TRUE
+		if(!do_after(user, 5 SECONDS, user))
+			reloading_active = FALSE
+			user.balloon_alert(user, "You were interrupted!")
+			return
+		reloading_active = FALSE
+
+	if(istype(A, /obj/item/kitchen/knife/plug_bayonet))
+		//Turn it into a spear if unloaded and has no bayonet
+		if(magazine.stored_ammo.len != 0)
+			user.balloon_alert(user, "Unload it!")
+			return
+		else if(src.bayonet)
+			user.balloon_alert(user, "Remove its bayonet!")
+			return
+		else
+			user.balloon_alert(user, "Barrel plugged!")
+			user.visible_message(span_warning("[user] plugs [src]!"), span_notice("You plug [src]."))
+			var/obj/item/melee/spear/plugged_musket/P = new /obj/item/melee/spear/plugged_musket
+			qdel(src)
+			qdel(A)
+			user.put_in_hands(P)
+	..()

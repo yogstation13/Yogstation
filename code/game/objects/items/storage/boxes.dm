@@ -54,9 +54,10 @@
 	if(illustration)
 		. += illustration
 
-/obj/item/storage/box/attack_self(mob/user)
+/obj/item/storage/box/attack_self(mob/user, modifiers)
 	..()
-
+	if(modifiers?[RIGHT_CLICK]) // right click opens the storage
+		return
 	if(!foldable)
 		return
 	if(contents.len)

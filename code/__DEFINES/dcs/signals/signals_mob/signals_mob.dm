@@ -129,6 +129,9 @@
 #define COMSIG_MOB_SWAP_HANDS "mob_swap_hands"
 ///from base of /mob/verb/pointed: (atom/A)
 #define COMSIG_MOB_POINTED "mob_pointed"
+///from base of /mob/living/start_pulling: (atom/movable/AM, state, force)
+#define COMSIG_MOB_PULL "mob_pull"
+	#define COMPONENT_BLOCK_PULL (1<<0) // blocks pulling
 ///Mob is trying to open the wires of a target [/atom], from /datum/wires/interactable(): (atom/target)
 #define COMSIG_TRY_WIRES_INTERACT "try_wires_interact"
 	#define COMPONENT_CANT_INTERACT_WIRES (1<<0)

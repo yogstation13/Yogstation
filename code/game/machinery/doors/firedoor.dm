@@ -147,7 +147,7 @@
 /obj/machinery/door/firedoor/try_to_activate_door(mob/user)
 	return
 
-/obj/machinery/door/firedoor/try_to_weld(obj/item/weldingtool/W, mob/user)
+/obj/machinery/door/firedoor/try_to_weld(obj/item/weldingtool/W, mob/living/user, list/modifiers)
 	if(!W.tool_start_check(user, amount=0))
 		return
 	user.visible_message(span_notice("[user] starts [welded ? "unwelding" : "welding"] [src]."), span_notice("You start welding [src]."))
@@ -195,12 +195,12 @@
 /obj/machinery/door/firedoor/attack_robot(mob/user)
 	return attack_ai(user)
 
-/obj/machinery/door/firedoor/attack_alien(mob/user)
+/obj/machinery/door/firedoor/attack_alien(mob/living/user)
 	add_fingerprint(user)
 	if(welded)
 		to_chat(user, span_warning("[src] refuses to budge!"))
 		return
-	if(user.a_intent == INTENT_HARM)
+	if(user.combat_mode)
 		return ..()
 	else
 		open()

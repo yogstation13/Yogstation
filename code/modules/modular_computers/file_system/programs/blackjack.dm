@@ -16,6 +16,7 @@
 	program_icon_state = "arcade"
 	extended_desc = "Nanotrasen does not permit anyone under the age of 21 to partake in gambling. Requires an NTNet connection."
 	requires_ntnet = TRUE
+	category = PROGRAM_CATEGORY_GAMES
 	network_destination = "arcade network"
 	size = 4
 	tgui_id = "NtosBlackjack"

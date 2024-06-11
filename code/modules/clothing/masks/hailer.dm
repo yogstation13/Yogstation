@@ -17,7 +17,7 @@
 	visor_flags_inv = HIDEFACIALHAIR|HIDEFACE
 	flags_cover = MASKCOVERSMOUTH
 	visor_flags_cover = MASKCOVERSMOUTH
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 	modifies_speech = TRUE
 
 	var/aggressiveness = 2

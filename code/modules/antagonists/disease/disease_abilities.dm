@@ -37,7 +37,7 @@ new /datum/disease_ability/symptom/medium/heal/sensory_restoration,
 new /datum/disease_ability/symptom/medium/heal/mind_restoration,
 new /datum/disease_ability/symptom/powerful/fire,
 new /datum/disease_ability/symptom/powerful/flesh_eating,
-new /datum/disease_ability/symptom/powerful/inorganic_adaptation,
+new /datum/disease_ability/symptom/mild/inorganic_adaptation,
 new /datum/disease_ability/symptom/powerful/undead_adaptation, //yogs change
 new /datum/disease_ability/symptom/powerful/heal/starlight,
 new /datum/disease_ability/symptom/powerful/heal/oxygen,
@@ -437,7 +437,7 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 /datum/disease_ability/symptom/powerful/flesh_eating
 	symptoms = list(/datum/symptom/flesh_eating)
 
-/datum/disease_ability/symptom/powerful/inorganic_adaptation
+/datum/disease_ability/symptom/mild/inorganic_adaptation
 	symptoms = list(/datum/symptom/inorganic_adaptation)
 
 //yogs start

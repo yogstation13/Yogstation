@@ -13,23 +13,21 @@
 /obj/item/energy_katana
 	name = "energy katana"
 	desc = "A katana infused with strong energy."
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "energy_katana"
 	item_state = "energy_katana"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	force = 30
 	throwforce = 30
-	block_chance = 50
 	armour_penetration = 50
 	w_class = WEIGHT_CLASS_NORMAL
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	block_chance = 50
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	sharpness = SHARP_EDGED
 	max_integrity = 200
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	icon = 'icons/obj/weapons/swords.dmi'
 	var/datum/effect_system/spark_spread/spark_system
 	var/datum/action/innate/dash/ninja/jaunt
 	var/dash_toggled = TRUE
@@ -40,6 +38,7 @@
 	spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
+	AddComponent(/datum/component/blocking, block_force = 15, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|REFLECTIVE_BLOCK)
 
 /obj/item/energy_katana/attack_self(mob/user)
 	dash_toggled = !dash_toggled

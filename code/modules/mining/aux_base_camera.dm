@@ -79,6 +79,7 @@
 		return FALSE
 	eyeobj = new /mob/camera/ai_eye/remote/base_construction(get_turf(spawn_spot))
 	eyeobj.origin = src
+	return TRUE
 
 
 /obj/machinery/computer/camera_advanced/base_construction/attackby(obj/item/W, mob/user, params)

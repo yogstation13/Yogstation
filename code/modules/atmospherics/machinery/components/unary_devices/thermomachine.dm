@@ -13,6 +13,7 @@
 
 	pipe_flags = PIPING_ONE_PER_TURF
 	vent_movement = NONE
+	quick_toggle = TRUE
 
 	var/icon_state_off = "freezer"
 	var/icon_state_on = "freezer_1"
@@ -111,13 +112,6 @@
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("The status display reads: Efficiency <b>[(heat_capacity/5000)*100]%</b>.")
 		. += span_notice("Temperature range <b>[min_temperature]K - [max_temperature]K ([(T0C-min_temperature)*-1]C - [(T0C-max_temperature)*-1]C)</b>.")
-
-/obj/machinery/atmospherics/components/unary/thermomachine/CtrlClick(mob/living/user)
-	if(can_interact(user))
-		on = !on
-		investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
-		update_appearance(UPDATE_ICON)
-	return ..()
 
 /obj/machinery/atmospherics/components/unary/thermomachine/process_atmos()
 	if(!on || !nodes[1])

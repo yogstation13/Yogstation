@@ -456,36 +456,18 @@
 			//Because a servant of medicines stops at nothing to help others, lets keep them on their toes and give them an additional boost.
 			if(itemUser.health < itemUser.maxHealth)
 				new /obj/effect/temp_visual/heal(get_turf(itemUser), "#375637")
-			itemUser.adjustBruteLoss(-1.5 * efficiency)
-			itemUser.adjustFireLoss(-1.5 * efficiency)
-			itemUser.adjustToxLoss(-1.5 * efficiency, forced = TRUE) //Because Slime People are people too
-			itemUser.adjustOxyLoss(-1.5 * efficiency)
-			itemUser.adjustStaminaLoss(-1.5 * efficiency)
-			itemUser.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1.5 * efficiency)
-			itemUser.adjustCloneLoss(-0.5 * efficiency) //Becasue apparently clone damage is the bastion of all health
+			itemUser.heal_ordered_damage(2 * efficiency, list(BRUTE, BURN, TOX, OXY, STAMINA, BRAIN, CLONE), forced = TRUE)
 		//Heal all those around you, unbiased
 		for(var/mob/living/L in view(7, owner))
-			if(ispath(rod_type, /obj/item/rod_of_asclepius/white)) //Used for adjusting the Holy Light Sect Favor from white rod healing.
-				if(L.stat == DEAD)
-					continue
-				var/total_healing = (min(L.getBruteLoss(), 3.5*efficiency) + min(L.getFireLoss(), 3.5*efficiency) + min(L.getOxyLoss(), 3.5*efficiency) + min(L.getToxLoss(), 3.5 * efficiency))
-				GLOB.religious_sect.adjust_favor(total_healing * 0.2)
+			if(issilicon(L)) //this is the organics heal rod, not the robotics heal rod
+				continue
+			var/total_healing = 5 * efficiency
 			if(L.health < L.maxHealth)
 				new /obj/effect/temp_visual/heal(get_turf(L), "#375637")
-			if(iscarbon(L))
-				L.adjustBruteLoss(-3.5 * efficiency)
-				L.adjustFireLoss(-3.5 * efficiency)
-				L.adjustToxLoss(-3.5 * efficiency, forced = TRUE) //Because Slime People are people too
-				L.adjustOxyLoss(-3.5 * efficiency)
-				L.adjustStaminaLoss(-3.5 * efficiency)
-				L.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3.5 * efficiency)
-				L.adjustCloneLoss(-1 * efficiency) //Becasue apparently clone damage is the bastion of all health
-			else if(issilicon(L))
-				L.adjustBruteLoss(-3.5 * efficiency)
-				L.adjustFireLoss(-3.5 * efficiency)
-			else if(isanimal(L))
-				var/mob/living/simple_animal/SM = L
-				SM.adjustHealth(-3.5 * efficiency, forced = TRUE)
+			var/residual_healing = max(L.heal_ordered_damage(total_healing, list(BRUTE, BURN, TOX, OXY, STAMINA, BRAIN, CLONE), forced = TRUE), 0)
+			if(ispath(rod_type, /obj/item/rod_of_asclepius/white) && L.stat != DEAD) //Used for adjusting the Holy Light Sect Favor from white rod healing.
+				var/actual_healing = total_healing - residual_healing
+				GLOB.religious_sect.adjust_favor(actual_healing * 0.2)
 
 /datum/status_effect/good_music
 	id = "Good Music"

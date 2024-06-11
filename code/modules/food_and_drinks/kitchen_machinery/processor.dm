@@ -59,7 +59,7 @@
 	else
 		qdel(what)
 
-/obj/machinery/processor/attackby(obj/item/O, mob/user, params)
+/obj/machinery/processor/attackby(obj/item/O, mob/living/user, params)
 	if(processing)
 		to_chat(user, span_warning("[src] is in the process of processing!"))
 		return TRUE
@@ -93,19 +93,19 @@
 		user.visible_message("[user] put [O] into [src].", \
 			"You put [O] into [src].")
 		user.transferItemToLoc(O, src, TRUE)
-		return 1
+		return TRUE
 	else
-		if(user.a_intent != INTENT_HARM)
+		if(!user.combat_mode)
 			to_chat(user, span_warning("That probably won't blend!"))
-			return 1
+			return TRUE
 		else
 			return ..()
 
-/obj/machinery/processor/interact(mob/user)
+/obj/machinery/processor/interact(mob/living/user)
 	if(processing)
 		to_chat(user, span_warning("[src] is in the process of processing!"))
 		return TRUE
-	if(user.a_intent == INTENT_GRAB && ismob(user.pulling) && PROCESSOR_SELECT_RECIPE(user.pulling))
+	if(user.combat_mode && ismob(user.pulling) && PROCESSOR_SELECT_RECIPE(user.pulling))
 		if(user.grab_state < GRAB_AGGRESSIVE)
 			to_chat(user, span_warning("You need a better grip to do that!"))
 			return

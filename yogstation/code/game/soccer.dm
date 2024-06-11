@@ -119,5 +119,5 @@ obj/item/soccerball/after_throw(datum/callback/callback)
 obj/item/soccerball/Crossed(atom/movable/AM, oldloc)
 	. = ..()
 	var/mob/living/carbon/A = AM
-	if(istype(AM,/mob/living) && (istype(AM,/mob/living/simple_animal) || A.a_intent != INTENT_HELP))
+	if(istype(AM,/mob/living) && (istype(AM,/mob/living/simple_animal) || A.combat_mode))
 		Move(get_step(AM,AM.dir),AM.dir)

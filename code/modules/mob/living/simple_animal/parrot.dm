@@ -55,7 +55,7 @@
 	response_disarm = "gently moves aside"
 	response_harm   = "swats"
 	stop_automated_movement = 1
-	a_intent = INTENT_HARM //parrots now start "aggressive" since only player parrots will nuzzle.
+	combat_mode = TRUE //parrots now start "aggressive" since only player parrots will nuzzle.
 	attacktext = "chomps"
 	friendly = "grooms"
 	mob_size = MOB_SIZE_SMALL
@@ -118,6 +118,7 @@
 			  /mob/living/simple_animal/parrot/proc/toggle_mode,
 			  /mob/living/simple_animal/parrot/proc/perch_mob_player))
 
+	AddElement(/datum/element/strippable, GLOB.strippable_parrot_items)
 
 /mob/living/simple_animal/parrot/examine(mob/user)
 	. = ..()
@@ -142,7 +143,7 @@
 	. = ..()
 	. += ""
 	. += "Held Item: [held_item]"
-	. += "Mode: [a_intent]"
+	. += "Combat Mode: [combat_mode ? "On" : "Off"]"
 
 /mob/living/simple_animal/parrot/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, list/message_mods = list())
 	. = ..()
@@ -172,101 +173,105 @@
 			return ITALICS | REDUCE_RANGE
 
 	return 0
-/*
- * Inventory
- */
-/mob/living/simple_animal/parrot/show_inv(mob/user)
-	user.set_machine(src)
 
-	var/dat = 	"<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><div align='center'><b>Inventory of [name]</b></div><p>"
-	dat += "<br><B>Headset:</B> <A href='?src=[REF(src)];[ears ? "remove_inv=ears'>[ears]" : "add_inv=ears'>Nothing"]</A></BODY></HTML>"
+GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
+	/datum/strippable_item/parrot_headset,
+)))
 
-	user << browse(dat, "window=mob[REF(src)];size=325x500")
-	onclose(user, "window=mob[REF(src)]")
+/datum/strippable_item/parrot_headset
+	key = STRIPPABLE_ITEM_PARROT_HEADSET
+
+/datum/strippable_item/parrot_headset/get_item(atom/source)
+	var/mob/living/simple_animal/parrot/parrot_source = source
+	return istype(parrot_source) ? parrot_source.ears : null
+
+/datum/strippable_item/parrot_headset/try_equip(atom/source, obj/item/equipping, mob/user)
+	. = ..()
+	if (!.)
+		return FALSE
+
+	if (!istype(equipping, /obj/item/radio/headset))
+		to_chat(user, "<span class='warning'>[equipping] won't fit!</span>")
+		return FALSE
+	return TRUE
 
 
-/mob/living/simple_animal/parrot/Topic(href, href_list)
-	if(!(iscarbon(usr) || iscyborg(usr)) || !usr.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-		usr << browse(null, "window=mob[REF(src)]")
-		usr.unset_machine()
+// There is no delay for putting a headset on a parrot.
+/datum/strippable_item/parrot_headset/start_equip(atom/source, obj/item/equipping, mob/user)
+	return TRUE
+
+/datum/strippable_item/parrot_headset/finish_equip(atom/source, obj/item/equipping, mob/user)
+	var/obj/item/radio/headset/radio = equipping
+	if (!istype(radio))
+		return
+	var/mob/living/simple_animal/parrot/parrot_source = source
+	if (!istype(parrot_source))
+		return
+	if (!user.transferItemToLoc(radio, source))
 		return
 
-	//Removing from inventory
-	if(href_list["remove_inv"])
-		var/remove_from = href_list["remove_inv"]
-		switch(remove_from)
-			if("ears")
-				if(!ears)
-					to_chat(usr, span_warning("There is nothing to remove from its [remove_from]!"))
-					return
-				if(!stat)
-					say("[available_channels.len ? "[pick(available_channels)] " : null]BAWWWWWK LEAVE THE HEADSET BAWKKKKK!")
-				ears.forceMove(drop_location())
-				ears = null
-				for(var/possible_phrase in speak)
-					if(copytext_char(possible_phrase, 2, 3) in GLOB.department_radio_keys)
-						possible_phrase = copytext_char(possible_phrase, 3)
+	parrot_source.ears = radio
 
-	//Adding things to inventory
-	else if(href_list["add_inv"])
-		var/add_to = href_list["add_inv"]
-		if(!usr.get_active_held_item())
-			to_chat(usr, span_warning("You have nothing in your hand to put on its [add_to]!"))
-			return
-		switch(add_to)
-			if("ears")
-				if(ears)
-					to_chat(usr, span_warning("It's already wearing something!"))
-					return
-				else
-					var/obj/item/item_to_add = usr.get_active_held_item()
-					if(!item_to_add)
-						return
+	to_chat(user, "<span class='notice'>You fit [radio] onto [source].</span>")
 
-					if( !istype(item_to_add,  /obj/item/radio/headset) )
-						to_chat(usr, span_warning("This object won't fit!"))
-						return
+	parrot_source.available_channels.Cut()
 
-					var/obj/item/radio/headset/headset_to_add = item_to_add
+	for (var/channel in radio.channels)
+		var/channel_to_add
 
-					if(!usr.transferItemToLoc(headset_to_add, src))
-						return
-					ears = headset_to_add
-					to_chat(usr, span_notice("You fit the headset onto [src]."))
+		switch (channel)
+			if (RADIO_CHANNEL_ENGINEERING)
+				channel_to_add = RADIO_TOKEN_ENGINEERING
+			if (RADIO_CHANNEL_COMMAND)
+				channel_to_add = RADIO_TOKEN_COMMAND
+			if (RADIO_CHANNEL_SECURITY)
+				channel_to_add = RADIO_TOKEN_SECURITY
+			if (RADIO_CHANNEL_SCIENCE)
+				channel_to_add = RADIO_TOKEN_SCIENCE
+			if (RADIO_CHANNEL_MEDICAL)
+				channel_to_add = RADIO_TOKEN_MEDICAL
+			if (RADIO_CHANNEL_SUPPLY)
+				channel_to_add = RADIO_TOKEN_SUPPLY
+			if (RADIO_CHANNEL_SERVICE)
+				channel_to_add = RADIO_TOKEN_SERVICE
 
-					LAZYCLEARLIST(available_channels)
-					for(var/ch in headset_to_add.channels)
-						switch(ch)
-							if(RADIO_CHANNEL_ENGINEERING)
-								available_channels.Add(RADIO_TOKEN_ENGINEERING)
-							if(RADIO_CHANNEL_COMMAND)
-								available_channels.Add(RADIO_TOKEN_COMMAND)
-							if(RADIO_CHANNEL_SECURITY)
-								available_channels.Add(RADIO_TOKEN_SECURITY)
-							if(RADIO_CHANNEL_SCIENCE)
-								available_channels.Add(RADIO_TOKEN_SCIENCE)
-							if(RADIO_CHANNEL_MEDICAL)
-								available_channels.Add(RADIO_TOKEN_MEDICAL)
-							if(RADIO_CHANNEL_SUPPLY)
-								available_channels.Add(RADIO_TOKEN_SUPPLY)
-							if(RADIO_CHANNEL_SERVICE)
-								available_channels.Add(RADIO_TOKEN_SERVICE)
+		if (channel_to_add)
+			parrot_source.available_channels += channel_to_add
 
-					if(headset_to_add.translate_binary)
-						available_channels.Add(MODE_TOKEN_BINARY)
-	else
-		return ..()
+	if (radio.translate_binary)
+		parrot_source.available_channels.Add(MODE_TOKEN_BINARY)
 
+/datum/strippable_item/parrot_headset/start_unequip(atom/source, mob/user)
+	. = ..()
+	if (!.)
+		return FALSE
+
+	var/mob/living/simple_animal/parrot/parrot_source = source
+	if (!istype(parrot_source))
+		return
+
+	if (!parrot_source.stat)
+		parrot_source.say("[parrot_source.available_channels.len ? "[pick(parrot_source.available_channels)] " : null]BAWWWWWK LEAVE THE HEADSET BAWKKKKK!")
+
+	return TRUE
+
+/datum/strippable_item/parrot_headset/finish_unequip(atom/source, mob/user)
+	var/mob/living/simple_animal/parrot/parrot_source = source
+	if (!istype(parrot_source))
+		return
+
+	parrot_source.ears.forceMove(parrot_source.drop_location())
+	parrot_source.ears = null
 
 /*
  * Attack responces
  */
 //Humans, monkeys, aliens
-/mob/living/simple_animal/parrot/attack_hand(mob/living/carbon/M)
+/mob/living/simple_animal/parrot/attack_hand(mob/living/carbon/M, modifiers)
 	..()
 	if(client)
 		return
-	if(!stat && M.a_intent == INTENT_HARM)
+	if(!stat && M.combat_mode)
 
 		icon_state = icon_living //It is going to be flying regardless of whether it flees or attacks
 
@@ -281,7 +286,7 @@
 		else
 			parrot_state |= PARROT_FLEE		//Otherwise, fly like a bat out of hell!
 			drop_held_item(0)
-	if(stat != DEAD && M.a_intent == INTENT_HELP)
+	if(stat != DEAD && !M.combat_mode)
 		handle_automated_speech(1) //assured speak/emote
 	return
 
@@ -552,7 +557,7 @@
 		var/mob/living/L = parrot_interest
 		if(melee_damage_upper == 0)
 			melee_damage_upper = parrot_damage_upper
-			a_intent = INTENT_HARM
+			set_combat_mode(TRUE)
 
 		//If the mob is close enough to interact with
 		if(Adjacent(parrot_interest))
@@ -848,13 +853,9 @@
 	if(stat || !client)
 		return
 
-	if(a_intent != INTENT_HELP)
-		melee_damage_upper = 0
-		a_intent = INTENT_HELP
-	else
-		melee_damage_upper = parrot_damage_upper
-		a_intent = INTENT_HARM
-	to_chat(src, "You will now [a_intent] others.")
+	set_combat_mode(!combat_mode)
+	melee_damage_upper = combat_mode ? parrot_damage_upper : 0
+	to_chat(src, "Combat mode [combat_mode ? "enabled" : "disabled"].")
 	return
 
 /*

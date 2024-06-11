@@ -1,0 +1,105 @@
+/**
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
+ */
+
+ @use 'sass:color';
+ @use 'sass:meta';
+
+ @use '../colors.scss' with (
+   $primary: rgba(180,180,180),
+   $label: rgba(180,180,180),
+   $good: rgba(180,180,180),
+   // $fg-map-keys: (),
+   // $bg-map-keys: (),
+ );
+ @use '../base.scss' with (
+   $color-bg: rgba(180,180,180),
+   $color-bg-grad-spread: 0%,
+ );
+
+ .theme-bosyn {
+   // Atomic classes
+   @include meta.load-css('../atomic/color.scss');
+
+   // Components
+   @include meta.load-css('../components/Button.scss', $with: (
+     'color-default': rgb(82, 8, 23),
+     'color-disabled': rgba(180,180,180),
+     'color-selected': rgba(110, 10, 30),
+   ));
+   @include meta.load-css('../components/Input.scss', $with: (
+     'border-color': rgba(180,180,180),
+   ));
+   @include meta.load-css('../components/ProgressBar.scss', $with: (
+     'background-color': rgb(82, 8, 23),
+     'color-default-fill': rgba(110, 10, 30),
+   ));
+   @include meta.load-css('../components/Modal.scss');
+   @include meta.load-css('../components/Section.scss');
+
+   // Layouts
+   @include meta.load-css('../layouts/Layout.scss');
+   @include meta.load-css('../layouts/Window.scss');
+   @include meta.load-css('../layouts/TitleBar.scss', $with: (
+     'background-color': rgb(82, 8, 23),
+   ));
+
+   .Layout__content {
+     //background-image: none;
+     background-image: repeating-linear-gradient(
+          0deg,
+          rgba(black, 0.15),
+          rgba(black, 0.15) 1px,
+          transparent 2.5px,
+          transparent 5px
+        ),
+        radial-gradient( rgb(82, 8, 23), black 120%);
+     background-size: 100%, 100%;
+     background-position: center, center;
+   }
+
+   .Button {
+     font:  Inconsolata;
+     color:rgba(180,180,180);
+     text-shadow: 0 0 2px rgba(180,180,180);
+   }
+   .Button:hover {
+     background-color:rgba(180,180,180),;
+     transition: 0.1s;
+ }
+ .Button--selected{
+   color: rgba(180,180,180),;
+ }
+
+
+   body {
+     //background-color: black;
+     color: white;
+     font: 1.3rem Inconsolata;
+     text-shadow: 0 0 2px rgba(180,180,180),;
+
+     //font: bold 12px Arial, 'Helvetica Neue', Helvetica, sans-serif;
+   }
+   .Section {
+     color:rgba(180,180,180),
+   }
+   .Tab {
+     color: rgba(180,180,180),;
+   }
+   .Tab--selected {
+     color: rgba(180,180,180),;
+     border: 2px solid rgba(180,180,180),;
+     background-color: rgb(82, 8, 23);
+   }
+   ::selection {
+       background: #0080FF;
+     text-shadow: none;
+   }
+   .Table{
+     text-shadow: 0 0 2px rgba(180,180,180)
+   }
+   .Flex{
+     text-shadow: 0 0 2px rgba(180,180,180)
+   }
+ }

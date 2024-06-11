@@ -66,6 +66,16 @@
 #define EFFECT_DROWSY		"drowsy"
 #define EFFECT_JITTER		"jitter"
 
+/// Alternate attack defines. Return these at the end of procs like afterattack_secondary.
+/// Calls the normal attack proc. For example, if returned in afterattack_secondary, will call afterattack.
+
+/// Will continue the chain depending on the return value of the non-alternate proc, like with normal attacks.
+#define SECONDARY_ATTACK_CALL_NORMAL 1
+/// Cancels the attack chain entirely.
+#define SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN 2
+/// Proceed with the attack chain, but don't call the normal methods.
+#define SECONDARY_ATTACK_CONTINUE_CHAIN 3
+
 //Bitflags defining which status effects could be or are inflicted on a mob
 #define CANSTUN			(1<<0)
 #define CANKNOCKDOWN	(1<<1)
@@ -111,11 +121,31 @@
 #define CRAWLING_ADD_SLOWDOWN 4
 
 //Attack types for checking shields/hit reactions
-#define MELEE_ATTACK 1
-#define UNARMED_ATTACK 2
-#define PROJECTILE_ATTACK 3
-#define THROWN_PROJECTILE_ATTACK 4
-#define LEAP_ATTACK 5
+#define MELEE_ATTACK (1<<0)
+#define UNARMED_ATTACK (1<<1)
+#define PROJECTILE_ATTACK (1<<2)
+#define THROWN_PROJECTILE_ATTACK (1<<3)
+#define LEAP_ATTACK (1<<4)
+
+///Blocking projectiles reflects them back to whence they came.
+#define REFLECTIVE_BLOCK (1<<5)
+///Can block from any direction.
+#define OMNIDIRECTIONAL_BLOCK (1<<6)
+///The blocking item is transparent and cannot block beam projectiles.
+#define TRANSPARENT_BLOCK (1<<7)
+///Has the ability to parry, increasing block force for the first fraction of a second. Cannot block anything with TRAIT_UNPARRIABLE.
+#define PARRYING_BLOCK (1<<8)
+///Takes damage when blocking.
+#define DAMAGE_ON_BLOCK (1<<9)
+///Requires wielding to block.
+#define WIELD_TO_BLOCK (1<<10)
+///Will always block, even when not trying to.
+#define ALWAYS_BLOCK (1<<11)
+
+///Default block flags for melee weapons.
+#define WEAPON_BLOCK_FLAGS MELEE_ATTACK|UNARMED_ATTACK|THROWN_PROJECTILE_ATTACK|PARRYING_BLOCK
+///Default block flags for shields.
+#define SHIELD_BLOCK_FLAGS MELEE_ATTACK|UNARMED_ATTACK|PROJECTILE_ATTACK|THROWN_PROJECTILE_ATTACK|LEAP_ATTACK|DAMAGE_ON_BLOCK
 
 //attack visual effects
 #define ATTACK_EFFECT_PUNCH		"punch"
@@ -128,16 +158,6 @@
 #define ATTACK_EFFECT_MECHFIRE	"mech_fire"
 #define ATTACK_EFFECT_MECHTOXIN	"mech_toxin"
 #define ATTACK_EFFECT_BOOP		"boop" //Honk
-
-//intent defines
-#define INTENT_HELP   "help"
-#define INTENT_GRAB   "grab"
-#define INTENT_DISARM "disarm"
-#define INTENT_HARM   "harm"
-//NOTE: INTENT_HOTKEY_* defines are not actual intents!
-//they are here to support hotkeys
-#define INTENT_HOTKEY_LEFT  "left"
-#define INTENT_HOTKEY_RIGHT "right"
 
 //the define for visible message range in combat
 #define COMBAT_MESSAGE_RANGE 3
