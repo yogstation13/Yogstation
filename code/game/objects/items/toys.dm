@@ -35,7 +35,7 @@
 	force = 0
 
 
-obj/item/toy/snowglobe
+/obj/item/toy/snowglobe
 	name = "Hyper-Realistic Snow Globe"
 	desc = "An uncanny looking snow globe, there's a little man with a pickaxe in it."
 	icon = 'icons/obj/toy.dmi'
