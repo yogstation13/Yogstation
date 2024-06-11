@@ -27,7 +27,8 @@
 	var/list/keypad_tools = list(/obj/item/jawsoflife, 
 							/obj/item/umbral_tendrils,
 							/obj/item/mantis/blade,
-							/obj/item/melee/arm_blade)
+							/obj/item/melee/arm_blade,
+							/obj/item/light_eater)
 
 /datum/component/keypad_lock/Initialize(keypad_code = access_code, lock_state = lock_status, keypad_text = keypad_input, lock_text = lock_display)
 	. = ..()
