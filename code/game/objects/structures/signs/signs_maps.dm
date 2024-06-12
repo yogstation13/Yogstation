@@ -87,31 +87,31 @@
 
 // Z-level deck signs
 /obj/structure/sign/deck/one
-	name = "deck one"
-	desc = "A sign indicating that you're standing on the station's first deck. It's only down from here."
+	name = "deck 1"
+	desc = "A sign designating this level as the station's first deck. It's only down from here."
 	icon_state = "deck_1"
 
 /obj/structure/sign/deck/two
-	name = "deck two"
-	desc "A sign indicating that you're standing on the station's second deck."
+	name = "deck 2"
+	desc = "A sign designating this level as the station's second deck."
 	icon_state = "deck_2"
 
 /obj/structure/sign/deck/three
-	name = "deck three"
-	desc = "A sign indicating that you're standing on the station's third deck."
+	name = "deck 3"
+	desc = "A sign designating this level as the station's third deck."
 	icon_state = "deck_3"
 
 /obj/structure/sign/deck/four
-	name = "deck four"
-	desc = "A sign indicating that you're standing on the station's fourth deck."
+	name = "deck 4"
+	desc = "A sign designating this level as the station's fourth deck."
 	icon_state = "deck_4"
 
 /obj/structure/sign/deck/five
-	name = "deck five"
-	desc = "A sign indicating that you're standing on the station's fifth deck. It's only up from here" // What madman would make something with 6 z-levels
+	name = "deck 5"
+	desc = "A sign designating this level as the station's fifth deck. It's only up from here" // What madman would make map with 6 z-levels
 	icon_state = "deck_5"
 
 /obj/structure/sign/deck/nice
-	name = "dick sixty nine"
+	name = "dick 69"
 	desc = "Nice."
 	icon_state = "deck_nice"
