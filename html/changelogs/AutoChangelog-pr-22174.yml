@@ -1,0 +1,5 @@
+author: "Scrambledeggs00"
+delete-after: true 
+changes: 
+  - tweak: "Changed how hacking keypad locks works"
+  - imageadd: "Added sprites for forced keypad items"
