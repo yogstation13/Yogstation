@@ -33,7 +33,7 @@
 	W.on_reading_finished(brother)
 	qdel(W)
 
-	var/T = new /obj/item/storage/box/bloodbrother()
+	var/obj/item/storage/box/bloodbrother/T = new()
 	if(brother.equip_to_slot(T, ITEM_SLOT_BACKPACK)) //except for here, where it will fail because there's no backpack slot to equip to
 		SEND_SIGNAL(brother.back, COMSIG_TRY_STORAGE_SHOW, brother)// which is fine, because it'll just not do anything and give a notice (probably)
 	else
