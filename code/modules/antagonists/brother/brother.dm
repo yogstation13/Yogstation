@@ -253,7 +253,7 @@
 /obj/item/storage/box/bloodbrother/PopulateContents()
 	var/list/uplink_items = get_uplink_items(null, FALSE)
 	var/remaining_value = total_box_value
-	while(remaining_value)
+	while(remaining_value > 0)
 		var/category = pick(allowed_categories)
 		var/item = pick(uplink_items[category])
 		var/datum/uplink_item/I = uplink_items[category][item]
