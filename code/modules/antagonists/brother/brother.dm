@@ -39,31 +39,6 @@
 	else
 		to_chat(brother, span_userdanger("Unfortunately, you weren't able to get a keepsake box. This is bad and you should adminhelp (press F1)."))
 
-/obj/item/storage/box/bloodbrother
-	name = "Keepsake box"
-	desc = "A box full of unusual items found in the maintenance hallways."
-	///total tc cost that can be inside the box
-	var/total_box_value = 5
-	///maximum amount of tc any individual item can be
-	var/item_value_cap = 2
-	///list of categories that items are allowed to come from
-	var/list/allowed_categories = list("Stealth Gadgets", "Misc. Gadgets", "(Pointless) Badassery")
-
-/obj/item/storage/box/bloodbrother/PopulateContents()
-	var/list/uplink_items = get_uplink_items(null, FALSE)
-	var/remaining_value = total_box_value
-	while(remaining_value)
-		var/category = pick(allowed_categories)
-		var/item = pick(uplink_items[category])
-		var/datum/uplink_item/I = uplink_items[category][item]
-
-		if(I.cost > item_value_cap)
-			continue
-		if(I.cost > remaining_value)
-			continue
-		remaining_value -= I.cost
-		new I.item(src)
-
 /datum/antagonist/brother/on_removal()
 	SSticker.mode.brothers -= owner
 	if(owner.current)
@@ -262,3 +237,30 @@
 
 /datum/team/brother_team/antag_listing_name()
 	return "[name] blood brothers"
+
+
+//box given to every bloodbrother
+/obj/item/storage/box/bloodbrother
+	name = "Keepsake box"
+	desc = "A box full of unusual items found in the maintenance hallways."
+	///total tc cost that can be inside the box
+	var/total_box_value = 5
+	///maximum amount of tc any individual item can be
+	var/item_value_cap = 2
+	///list of categories that items are allowed to come from
+	var/list/allowed_categories = list("Stealth Gadgets", "Misc. Gadgets", "(Pointless) Badassery")
+
+/obj/item/storage/box/bloodbrother/PopulateContents()
+	var/list/uplink_items = get_uplink_items(null, FALSE)
+	var/remaining_value = total_box_value
+	while(remaining_value)
+		var/category = pick(allowed_categories)
+		var/item = pick(uplink_items[category])
+		var/datum/uplink_item/I = uplink_items[category][item]
+
+		if(I.cost > item_value_cap)
+			continue
+		if(I.cost > remaining_value)
+			continue
+		remaining_value -= I.cost
+		new I.item(src)
