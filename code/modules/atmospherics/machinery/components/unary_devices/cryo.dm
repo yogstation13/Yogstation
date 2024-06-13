@@ -311,12 +311,14 @@
 			if(reagent_transfer >= 10 * efficiency) // Throttle reagent transfer (higher efficiency will transfer the same amount but consume less from the beaker).
 				reagent_transfer = 0
 		for(var/gas_id in air1.get_gases()) // some gases can be inhaled as reagents
+			if(air1.get_moles(gas_id) < (0.1 / efficiency))
+				continue
 			var/reagent_type = GLOB.gas_data.breath_reagents[gas_id]
 			if(!reagent_type)
 				continue
 			var/datum/reagent/gas_reagent = new reagent_type()
 			gas_reagent.reaction_mob(mob_occupant, VAPOR|BREATH, 2, permeability = 1)
-			air1.adjust_moles(gas_id, max(-0.1 / efficiency, -air1.get_moles(gas_id)))
+			air1.adjust_moles(gas_id, -0.1 / efficiency)
 			qdel(gas_reagent)
 
 	return TRUE
