@@ -316,7 +316,7 @@
 				continue
 			var/datum/reagent/gas_reagent = new reagent_type()
 			gas_reagent.reaction_mob(mob_occupant, VAPOR|BREATH, 2, permeability = 1)
-			air1.adjust_moles(gas_id, -0.1 / efficiency)
+			air1.adjust_moles(gas_id, max(-0.1 / efficiency, -air1.get_moles(gas_id)))
 			qdel(gas_reagent)
 
 	return TRUE
