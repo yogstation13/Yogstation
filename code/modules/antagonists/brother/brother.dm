@@ -28,9 +28,42 @@
 	return ..()
 
 /datum/antagonist/brother/proc/equip_brother()
+	var/mob/living/brother = owner.current
 	var/obj/item/book/granter/crafting_recipe/weapons/W = new
-	W.on_reading_finished(owner.current)
+	W.on_reading_finished(brother)
 	qdel(W)
+
+	var/T = new /obj/item/storage/box/bloodbrother()
+	if(brother.equip_to_slot(T, ITEM_SLOT_BACKPACK))
+		SEND_SIGNAL(brother.back, COMSIG_TRY_STORAGE_SHOW, H)
+	else
+		to_chat(brother, span_userdanger("Unfortunately, you weren't able to get a goodie box. This is bad and you should adminhelp (press F1)."))
+
+/obj/item/storage/box/bloodbrother
+	name = "Goodie box"
+	desc = "A dusty crate from the back of the Syndicate warehouse. Rumored to contain a valuable assortment of items, \
+			but you never know. Contents are sorted to always be worth 50 TC."
+	///maximum tc cost that can be inside the box
+	var/max_box_value = 5
+	///maximum amount of tc any individual item can be
+	var/item_value_cap = 2
+	///list of categories that items are allowed to come from
+	var/list/allowed_categories = list("Stealth Gadgets", "Misc. Gadgets", "(Pointless) Badassery")
+
+/obj/item/storage/box/bloodbrother/PopulateContents()
+	var/list/uplink_items = get_uplink_items(null, FALSE)
+	var/remaining_value = max_box_value
+	while(remaining_value)
+		var/category = pick(allowed_categories)
+		var/item = pick(uplink_items[category])
+		var/datum/uplink_item/I = uplink_items[category][item]
+
+		if(I.cost > item_value_cap)
+			continue
+		if(remaining_value < I.cost)
+			continue
+		remaining_value -= I.cost
+		var/obj/goods = new I.item(src)
 
 /datum/antagonist/brother/on_removal()
 	SSticker.mode.brothers -= owner
