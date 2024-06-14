@@ -16,21 +16,19 @@
 
 /obj/item/radio/headset/Initialize(mapload)
 	. = ..()
+	set_listening(TRUE)
 	recalculateChannels()
+	possibly_deactivate_in_loc()
 
-/obj/item/radio/headset/talk_into(mob/living/M, message, channel, list/spans, datum/language/language, list/message_mods)
-	if (!listening)
-		return ITALICS | REDUCE_RANGE
-	return ..()
+/obj/item/radio/headset/proc/possibly_deactivate_in_loc()
+	if(ismob(loc))
+		set_listening(should_be_listening)
+	else
+		set_listening(FALSE, actual_setting = FALSE)
 
-/obj/item/radio/headset/can_receive(freq, level, AIuser)
-	if(ishuman(src.loc))
-		var/mob/living/carbon/human/H = src.loc
-		if(H.ears == src)
-			return ..(freq, level)
-	else if(AIuser)
-		return ..(freq, level)
-	return FALSE
+/obj/item/radio/headset/Moved(atom/OldLoc, Dir)
+	. = ..()
+	possibly_deactivate_in_loc()
 
 /obj/item/radio/headset/ui_data(mob/user)
 	. = ..()
@@ -266,8 +264,6 @@
 	keyslot2 = new /obj/item/encryptionkey/ai
 	command = TRUE
 
-/obj/item/radio/headset/silicon/can_receive(freq, level)
-	return ..(freq, level, TRUE)
 
 /obj/item/radio/headset/attackby(obj/item/W, mob/user, params)
 	user.set_machine(src)

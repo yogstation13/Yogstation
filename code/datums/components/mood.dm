@@ -29,7 +29,7 @@
 /datum/component/mood/Destroy()
 	STOP_PROCESSING(SSmood, src)
 	var/atom/movable/movable_parent = parent
-	movable_parent.lose_area_sensitivity(MOOD_COMPONENT_TRAIT)
+	movable_parent.lose_area_sensitivity(MOOD_DATUM_TRAIT)
 	unmodify_hud()
 	return ..()
 

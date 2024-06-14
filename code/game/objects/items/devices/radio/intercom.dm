@@ -97,17 +97,11 @@
 /obj/item/radio/intercom/ui_state(mob/user)
 	return GLOB.default_state
 
-/obj/item/radio/intercom/can_receive(freq, level)
-	if(!on)
-		return FALSE
-	if(wires.is_cut(WIRE_RX))
-		return FALSE
-	if(!(0 in level))
+/obj/item/radio/intercom/can_receive(freq, list/levels)
+	if(levels != RADIO_NO_Z_LEVEL_RESTRICTION)
 		var/turf/position = get_turf(src)
-		if(isnull(position) || !(position.z in level))
+		if(isnull(position) || !(position.z in levels))
 			return FALSE
-	if(!src.listening)
-		return FALSE
 	if(freq == FREQ_SYNDICATE)
 		if(!(src.syndie))
 			return FALSE//Prevents broadcast of messages over devices lacking the encryption

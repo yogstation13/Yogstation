@@ -11,6 +11,7 @@
 	icon_state = "caster"
 	desc = "This machine has a dish-like shape and green lights. It is designed to detect and process subspace radio activity."
 	density = TRUE
+	telecomms_type = /obj/machinery/telecomms/receiver
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 30
 	circuit = /obj/item/circuitboard/machine/telecomms/receiver

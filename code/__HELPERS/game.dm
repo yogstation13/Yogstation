@@ -18,6 +18,50 @@
 /proc/cheap_hypotenuse(Ax,Ay,Bx,By)
 	return sqrt(abs(Ax - Bx)**2 + abs(Ay - By)**2) //A squared + B squared = C squared
 
+/proc/circlerange(center=usr,radius=3)
+
+	var/turf/centerturf = get_turf(center)
+	var/list/turfs = new/list()
+	var/rsq = radius * (radius+0.5)
+
+	for(var/atom/T in range(radius, centerturf))
+		var/dx = T.x - centerturf.x
+		var/dy = T.y - centerturf.y
+		if(dx*dx + dy*dy <= rsq)
+			turfs += T
+
+	//turfs += centerturf
+	return turfs
+
+/proc/circleview(center=usr,radius=3)
+
+	var/turf/centerturf = get_turf(center)
+	var/list/atoms = new/list()
+	var/rsq = radius * (radius+0.5)
+
+	for(var/atom/A in view(radius, centerturf))
+		var/dx = A.x - centerturf.x
+		var/dy = A.y - centerturf.y
+		if(dx*dx + dy*dy <= rsq)
+			atoms += A
+
+	//turfs += centerturf
+	return atoms
+
+
+/proc/circleviewturfs(center=usr,radius=3) //Is there even a diffrence between this proc and circle_range_turfs()? // Yes
+
+	var/turf/centerturf = get_turf(center)
+	var/list/turfs = new/list()
+	var/rsq = radius * (radius+0.5)
+
+	for(var/turf/T in view(radius, centerturf))
+		var/dx = T.x - centerturf.x
+		var/dy = T.y - centerturf.y
+		if(dx*dx + dy*dy <= rsq)
+			turfs += T
+	return turfs
+
 //This is the new version of recursive_mob_check, used for say().
 //The other proc was left intact because morgue trays use it.
 //Sped this up again for real this time
@@ -67,47 +111,6 @@
 		processed_list[A] = A
 
 	return
-
-// Better recursive loop, technically sort of not actually recursive cause that shit is retarded, enjoy.
-//No need for a recursive limit either
-/proc/recursive_mob_check(atom/O,client_check=1,sight_check=1,include_radio=1)
-
-	var/list/processing_list = list(O)
-	var/list/processed_list = list()
-	var/list/found_mobs = list()
-
-	while(processing_list.len)
-
-		var/atom/A = processing_list[1]
-		var/passed = 0
-
-		if(ismob(A))
-			var/mob/A_tmp = A
-			passed=1
-
-			if(client_check && !A_tmp.client)
-				passed=0
-
-			if(sight_check && !isInSight(A_tmp, O))
-				passed=0
-
-		else if(include_radio && istype(A, /obj/item/radio))
-			passed=1
-
-			if(sight_check && !isInSight(A, O))
-				passed=0
-
-		if(passed)
-			found_mobs |= A
-
-		for(var/atom/B in A)
-			if(!processed_list[B])
-				processing_list |= B
-
-		processing_list.Cut(1, 2)
-		processed_list[A] = A
-
-	return found_mobs
 
 /proc/get_cardinal_step_away(atom/start, atom/finish) //returns the position of a step from start away from finish, in one of the cardinal directions
 	//returns only NORTH, SOUTH, EAST, or WEST

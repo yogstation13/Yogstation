@@ -183,12 +183,10 @@
 		orbiting.end_orbit(src)
 		orbiting = null
 
-	if(important_recursive_contents && (important_recursive_contents[RECURSIVE_CONTENTS_CLIENT_MOBS] || important_recursive_contents[RECURSIVE_CONTENTS_HEARING_SENSITIVE]))
-		SSspatial_grid.force_remove_from_cell(src)
+	if(spatial_grid_key)
+		SSspatial_grid.force_remove_from_grid(src)
 
 	LAZYCLEARLIST(client_mobs_in_contents)
-
-	LAZYCLEARLIST(important_recursive_contents)//has to be before moveToNullspace() so that we can exit our spatial_grid cell if we're in it
 
 	. = ..()
 
@@ -196,6 +194,11 @@
 		qdel(movable_content)
 
 	moveToNullspace()
+
+	//This absolutely must be after moveToNullspace()
+	//We rely on Entered and Exited to manage this list, and the copy of this list that is on any /atom/movable "Containers"
+	//If we clear this before the nullspace move, a ref to this object will be hung in any of its movable containers
+	LAZYNULL(important_recursive_contents)
 
 	vis_locs = null //clears this atom out of all viscontents
 
@@ -955,19 +958,19 @@
 
 ///allows this movable to hear and adds itself to the important_recursive_contents list of itself and every movable loc its in
 /atom/movable/proc/become_hearing_sensitive(trait_source = TRAIT_GENERIC)
-	if(!HAS_TRAIT(src, TRAIT_HEARING_SENSITIVE))
-		//RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_HEARING_SENSITIVE), .proc/on_hearing_sensitive_trait_loss)
-		for(var/atom/movable/location as anything in get_nested_locs(src) + src)
-			LAZYADDASSOCLIST(location.important_recursive_contents, RECURSIVE_CONTENTS_HEARING_SENSITIVE, src)
-
-		var/turf/our_turf = get_turf(src)
-		if(our_turf && SSspatial_grid.initialized)
-			SSspatial_grid.enter_cell(src, our_turf)
-
-		else if(our_turf && !SSspatial_grid.initialized)//SSspatial_grid isnt init'd yet, add ourselves to the queue
-			SSspatial_grid.enter_pre_init_queue(src, RECURSIVE_CONTENTS_HEARING_SENSITIVE)
-
 	ADD_TRAIT(src, TRAIT_HEARING_SENSITIVE, trait_source)
+	if(!HAS_TRAIT(src, TRAIT_HEARING_SENSITIVE))
+		return
+
+	for(var/atom/movable/location as anything in get_nested_locs(src) + src)
+		LAZYINITLIST(location.important_recursive_contents)
+		var/list/recursive_contents = location.important_recursive_contents // blue hedgehog velocity
+		if(!length(recursive_contents[RECURSIVE_CONTENTS_HEARING_SENSITIVE]))
+			SSspatial_grid.add_grid_awareness(location, SPATIAL_GRID_CONTENTS_TYPE_HEARING)
+		recursive_contents[RECURSIVE_CONTENTS_HEARING_SENSITIVE] += list(src)
+
+	var/turf/our_turf = get_turf(src)
+	SSspatial_grid.add_grid_membership(src, our_turf, SPATIAL_GRID_CONTENTS_TYPE_HEARING)
 
 /**
  * removes the hearing sensitivity channel from the important_recursive_contents list of this and all nested locs containing us if there are no more sources of the trait left
@@ -983,18 +986,20 @@
 		return
 
 	var/turf/our_turf = get_turf(src)
-	if(our_turf && SSspatial_grid.initialized)
-		SSspatial_grid.exit_cell(src, our_turf)
-	else if(our_turf && !SSspatial_grid.initialized)
-		SSspatial_grid.remove_from_pre_init_queue(src, RECURSIVE_CONTENTS_HEARING_SENSITIVE)
+	/// We get our awareness updated by the important recursive contents stuff, here we remove our membership
+	SSspatial_grid.remove_grid_membership(src, our_turf, SPATIAL_GRID_CONTENTS_TYPE_HEARING)
 
 	for(var/atom/movable/location as anything in get_nested_locs(src) + src)
-		LAZYREMOVEASSOC(location.important_recursive_contents, RECURSIVE_CONTENTS_HEARING_SENSITIVE, src)
+		var/list/recursive_contents = location.important_recursive_contents // blue hedgehog velocity
+		recursive_contents[RECURSIVE_CONTENTS_HEARING_SENSITIVE] -= src
+		if(!length(recursive_contents[RECURSIVE_CONTENTS_HEARING_SENSITIVE]))
+			SSspatial_grid.remove_grid_awareness(location, SPATIAL_GRID_CONTENTS_TYPE_HEARING)
+		ASSOC_UNSETEMPTY(recursive_contents, RECURSIVE_CONTENTS_HEARING_SENSITIVE)
+		UNSETEMPTY(location.important_recursive_contents)
 
 ///allows this movable to know when it has "entered" another area no matter how many movable atoms its stuffed into, uses important_recursive_contents
 /atom/movable/proc/become_area_sensitive(trait_source = TRAIT_GENERIC)
 	if(!HAS_TRAIT(src, TRAIT_AREA_SENSITIVE))
-		//RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_AREA_SENSITIVE), .proc/on_area_sensitive_trait_loss)
 		for(var/atom/movable/location as anything in get_nested_locs(src) + src)
 			LAZYADDASSOCLIST(location.important_recursive_contents, RECURSIVE_CONTENTS_AREA_SENSITIVE, src)
 	ADD_TRAIT(src, TRAIT_AREA_SENSITIVE, trait_source)
@@ -1010,31 +1015,54 @@
 	for(var/atom/movable/location as anything in get_nested_locs(src) + src)
 		LAZYREMOVEASSOC(location.important_recursive_contents, RECURSIVE_CONTENTS_AREA_SENSITIVE, src)
 
-///propogates new_client's mob through our nested contents, similar to other important_recursive_contents procs
+
+///propogates ourselves through our nested contents, similar to other important_recursive_contents procs
 ///main difference is that client contents need to possibly duplicate recursive contents for the clients mob AND its eye
-/atom/movable/proc/enable_client_mobs_in_contents(client/new_client)
-	var/turf/our_turf = get_turf(src)
-
-	if(our_turf && SSspatial_grid.initialized)
-		SSspatial_grid.enter_cell(src, our_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
-	else if(our_turf && !SSspatial_grid.initialized)
-		SSspatial_grid.enter_pre_init_queue(src, RECURSIVE_CONTENTS_CLIENT_MOBS)
-
+/mob/proc/enable_client_mobs_in_contents()
 	for(var/atom/movable/movable_loc as anything in get_nested_locs(src) + src)
-		LAZYORASSOCLIST(movable_loc.important_recursive_contents, RECURSIVE_CONTENTS_CLIENT_MOBS, new_client.mob)
-
-///Clears the clients channel of this movables important_recursive_contents list and all nested locs
-/atom/movable/proc/clear_important_client_contents(client/former_client)
+		LAZYINITLIST(movable_loc.important_recursive_contents)
+		var/list/recursive_contents = movable_loc.important_recursive_contents // blue hedgehog velocity
+		if(!length(recursive_contents[RECURSIVE_CONTENTS_CLIENT_MOBS]))
+			SSspatial_grid.add_grid_awareness(movable_loc, SPATIAL_GRID_CONTENTS_TYPE_CLIENTS)
+		LAZYINITLIST(recursive_contents[RECURSIVE_CONTENTS_CLIENT_MOBS])
+		recursive_contents[RECURSIVE_CONTENTS_CLIENT_MOBS] |= src
 
 	var/turf/our_turf = get_turf(src)
+	/// We got our awareness updated by the important recursive contents stuff, now we add our membership
+	SSspatial_grid.add_grid_membership(src, our_turf, SPATIAL_GRID_CONTENTS_TYPE_CLIENTS)
 
-	if(our_turf && SSspatial_grid.initialized)
-		SSspatial_grid.exit_cell(src, our_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
-	else if(our_turf && !SSspatial_grid.initialized)
-		SSspatial_grid.remove_from_pre_init_queue(src, RECURSIVE_CONTENTS_CLIENT_MOBS)
+///Clears the clients channel of this mob
+/mob/proc/clear_important_client_contents()
+	var/turf/our_turf = get_turf(src)
+	SSspatial_grid.remove_grid_membership(src, our_turf, SPATIAL_GRID_CONTENTS_TYPE_CLIENTS)
 
 	for(var/atom/movable/movable_loc as anything in get_nested_locs(src) + src)
-		LAZYREMOVEASSOC(movable_loc.important_recursive_contents, RECURSIVE_CONTENTS_CLIENT_MOBS, former_client.mob)
+		LAZYINITLIST(movable_loc.important_recursive_contents)
+		var/list/recursive_contents = movable_loc.important_recursive_contents // blue hedgehog velocity
+		LAZYINITLIST(recursive_contents[RECURSIVE_CONTENTS_CLIENT_MOBS])
+		recursive_contents[RECURSIVE_CONTENTS_CLIENT_MOBS] -= src
+		if(!length(recursive_contents[RECURSIVE_CONTENTS_CLIENT_MOBS]))
+			SSspatial_grid.remove_grid_awareness(movable_loc, SPATIAL_GRID_CONTENTS_TYPE_CLIENTS)
+		ASSOC_UNSETEMPTY(recursive_contents, RECURSIVE_CONTENTS_CLIENT_MOBS)
+		UNSETEMPTY(movable_loc.important_recursive_contents)
+
+///called when this movable becomes the parent of a storage component that is currently being viewed by a player. uses important_recursive_contents
+/atom/movable/proc/become_active_storage(datum/storage/source)
+	if(!HAS_TRAIT(src, TRAIT_ACTIVE_STORAGE))
+		for(var/atom/movable/location as anything in get_nested_locs(src) + src)
+			LAZYADDASSOCLIST(location.important_recursive_contents, RECURSIVE_CONTENTS_ACTIVE_STORAGE, src)
+	ADD_TRAIT(src, TRAIT_ACTIVE_STORAGE, REF(source))
+
+///called when this movable's storage component is no longer viewed by any players, unsets important_recursive_contents
+/atom/movable/proc/lose_active_storage(datum/storage/source)
+	if(!HAS_TRAIT(src, TRAIT_ACTIVE_STORAGE))
+		return
+	REMOVE_TRAIT(src, TRAIT_ACTIVE_STORAGE, REF(source))
+	if(HAS_TRAIT(src, TRAIT_ACTIVE_STORAGE))
+		return
+
+	for(var/atom/movable/location as anything in get_nested_locs(src) + src)
+		LAZYREMOVEASSOC(location.important_recursive_contents, RECURSIVE_CONTENTS_ACTIVE_STORAGE, src)
 
 /**
  * Called when a movable changes z-levels.

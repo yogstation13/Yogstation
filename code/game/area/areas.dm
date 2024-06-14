@@ -765,25 +765,44 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 			used_environ += amount
 
 /**
-  * Call back when an atom enters an area
-  *
-  * Sends signals COMSIG_AREA_ENTERED and COMSIG_ENTER_AREA (to the atom)
-  *
-  * If the area has ambience, then it plays some ambience music to the ambience channel
-  */
-/area/Entered(atom/movable/M)
+ * Call back when an atom enters an area
+ *
+ * Sends signals COMSIG_AREA_ENTERED and COMSIG_ENTER_AREA (to a list of atoms)
+ *
+ * If the area has ambience, then it plays some ambience music to the ambience channel
+ */
+/area/Entered(atom/movable/arrived, area/old_area)
 	set waitfor = FALSE
-	SEND_SIGNAL(src, COMSIG_AREA_ENTERED, M)
-	SEND_SIGNAL(M, COMSIG_ENTER_AREA, src) //The atom that enters the area
+	SEND_SIGNAL(src, COMSIG_AREA_ENTERED, arrived, old_area)
+
+	if(!arrived.important_recursive_contents?[RECURSIVE_CONTENTS_AREA_SENSITIVE])
+		return
+	for(var/atom/movable/recipient as anything in arrived.important_recursive_contents[RECURSIVE_CONTENTS_AREA_SENSITIVE])
+		SEND_SIGNAL(recipient, COMSIG_ENTER_AREA, src)
+
+	if(!isliving(arrived))
+		return
+
+	var/mob/living/L = arrived
+	if(!L.ckey)
+		return
+
+	if(ambient_buzz != old_area.ambient_buzz)
+		L.refresh_looping_ambience()
 
 /**
-  * Called when an atom exits an area
-  *
-  * Sends signals COMSIG_AREA_EXITED and COMSIG_EXIT_AREA (to the atom)
-  */
-/area/Exited(atom/movable/M)
-	SEND_SIGNAL(src, COMSIG_AREA_EXITED, M)
-	SEND_SIGNAL(M, COMSIG_EXIT_AREA, src) //The atom that exits the area
+ * Called when an atom exits an area
+ *
+ * Sends signals COMSIG_AREA_EXITED and COMSIG_EXIT_AREA (to a list of atoms)
+ */
+/area/Exited(atom/movable/gone, direction)
+	SEND_SIGNAL(src, COMSIG_AREA_EXITED, gone, direction)
+	SEND_SIGNAL(gone, COMSIG_MOVABLE_EXITED_AREA, src, direction)
+
+	if(!gone.important_recursive_contents?[RECURSIVE_CONTENTS_AREA_SENSITIVE])
+		return
+	for(var/atom/movable/recipient as anything in gone.important_recursive_contents[RECURSIVE_CONTENTS_AREA_SENSITIVE])
+		SEND_SIGNAL(recipient, COMSIG_EXIT_AREA, src)
 
 /**
   * Returns true if this atom has gravity for the passed in turf

@@ -11,6 +11,7 @@
 	icon_state = "relay"
 	desc = "A mighty piece of hardware used to send massive amounts of data far away."
 	density = TRUE
+	telecomms_type = /obj/machinery/telecomms/relay
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 30
 	netspeed = 5

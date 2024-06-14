@@ -37,6 +37,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	var/broadcasting = FALSE  // Whether the radio will transmit dialogue it hears nearby.
 	var/listening = TRUE  // Whether the radio is currently receiving.
+	///used for tracking what broadcasting should be in the absence of things forcing it off, eg its set to broadcast but gets emp'd temporarily
+	var/should_be_broadcasting = FALSE
+	///used for tracking what listening should be in the absence of things forcing it off, eg its set to listen but gets emp'd temporarily
+	var/should_be_listening = TRUE
+
 	var/prison_radio = FALSE  // If true, the transmit wire starts cut.
 	var/unscrewed = FALSE  // Whether wires are accessible. Toggleable by screwdrivering.
 	var/freerange = FALSE  // If true, the radio has access to the full spectrum.
@@ -52,7 +57,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/translate_binary = FALSE  // If true, can hear the special binary channel.
 	var/independent = FALSE  // If true, can say/hear on the special CentCom channel.
 	var/syndie = FALSE  // If true, hears all well-known channels automatically, and can say/hear on the Syndicate channel.
-	var/list/channels = list()  // Map from name (see communications.dm) to on/off. First entry is current department (:h).
+	/// associative list of the encrypted radio channels this radio is currently set to listen/broadcast to, of the form: list(channel name = TRUE or FALSE)
+	var/list/channels
 	var/list/secure_radio_connections
 	var/list/radio_sounds = list('yogstation/sound/effects/radio1.ogg','yogstation/sound/effects/radio2.ogg','yogstation/sound/effects/radio3.ogg')
 
@@ -123,11 +129,14 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	wires = new /datum/wires/radio(src)
 	if(prison_radio)
 		wires.cut(WIRE_TX) // OH GOD WHY
-	secure_radio_connections = new
+	secure_radio_connections = list()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
-	frequency = sanitize_frequency(frequency, freerange)
-	set_frequency(frequency)
+	set_listening(listening)
+	set_broadcasting(broadcasting)
+	set_frequency(sanitize_frequency(frequency, freerange, syndie))
+	set_on(on)
+
 
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])

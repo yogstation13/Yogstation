@@ -429,7 +429,7 @@
 		get_area(get_ranged_target_turf(center, EAST, 1)),
 		get_area(get_ranged_target_turf(center, WEST, 1))
 		)
-	list_clear_nulls(.)
+	listclearnulls(.)
 
 ///Checks if the mob provided (must_be_alone) is alone in an area
 /proc/alone_in_area(area/the_area, mob/must_be_alone, check_type = /mob/living/carbon)
@@ -472,4 +472,3 @@
 	if(!length(peel))
 		return center //Offer the center only as a default case when we don't have a valid circle.
 	return peel
-

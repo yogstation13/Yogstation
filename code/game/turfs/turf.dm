@@ -26,6 +26,10 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	/// Does this turf block air from existing on it
 	var/blocks_air = FALSE
 	
+	///what /mob/oranges_ear instance is already assigned to us as there should only ever be one.
+	///used for guaranteeing there is only one oranges_ear per turf when assigned, speeds up view() iteration
+	var/mob/oranges_ear/assigned_oranges_ear
+
 	/// If there's a tile over a basic floor that can be ripped out
 	var/overfloor_placed = FALSE
 	/// How accessible underfloor pieces such as wires, pipes, etc are on this turf. Can be HIDDEN, VISIBLE, or INTERACTABLE.
