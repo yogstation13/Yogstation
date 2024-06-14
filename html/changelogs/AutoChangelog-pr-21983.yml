@@ -1,0 +1,7 @@
+author: "wonderinghost"
+delete-after: true 
+changes: 
+  - rscadd: "adds a destination tagger holder to bins and a disposal rotator"
+  - rscadd: "adds a sort mail helper, drop on sort pipe to configure"
+  - mapping: "reroutes box disposal pipes for the moment"
+  - bugfix: "wrap pipes now pull wrapped packages out to the side"
