@@ -1034,9 +1034,8 @@
 	thing_to_husk.icon = husk_icon
 	var/icon_of_husk = husked_guy?.dna?.species?.icon_husk || passed_species?.icon_husk
 	if(draw_blood)
-		var/mutable_appearance/husk_blood = mutable_appearance(icon_of_husk || 'yogstation/icons/mob/human_parts.dmi', "overlay_[husked_guy?.dna?.species?.id || passed_species?.id]husk")
+		var/mutable_appearance/husk_blood = mutable_appearance(icon_of_husk || 'yogstation/icons/mob/human_parts.dmi', "overlay_[husked_guy?.dna?.species?.id || passed_species?.id]husk", appearance_flags = RESET_COLOR)
 		husk_blood.blend_mode = BLEND_INSET_OVERLAY
-		husk_blood.appearance_flags |= RESET_COLOR
 		husk_blood.dir = thing_to_husk.dir
 		thing_to_husk.add_overlay(husk_blood)
 

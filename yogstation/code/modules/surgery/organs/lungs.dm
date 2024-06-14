@@ -64,7 +64,7 @@
 /obj/item/organ/lungs/vox
 	name = "vox lungs"
 	icon_state = "lungs-vox"
-	desc = "Contain no dust."
+	desc = "They're filled with dust...wow."
 	decay_factor = 0
 	breathing_class = BREATH_VOX
 

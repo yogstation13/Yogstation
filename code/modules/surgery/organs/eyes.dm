@@ -102,8 +102,7 @@
 		eye_overlay.color = eye_color
 
 	if(head.eyes_static)
-		var/mutable_appearance/eyes_static_sprite = mutable_appearance(eye_overlay.icon, "[eye_overlay.icon_state]_static_[head.eyes_static]", eye_overlay.layer)
-		eyes_static_sprite.appearance_flags |= RESET_COLOR
+		var/mutable_appearance/eyes_static_sprite = mutable_appearance(eye_overlay.icon, "[eye_overlay.icon_state]_static_[head.eyes_static]", eye_overlay.layer, appearance_flags = RESET_COLOR)
 		eye_overlay.add_overlay(eyes_static_sprite)
 
 	// Cry emote overlay

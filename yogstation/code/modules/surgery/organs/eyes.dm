@@ -1,6 +1,5 @@
 /obj/item/organ/eyes/vox
 	name = "vox eyes"
-	desc = "A keen eye is essential for successful raiding and trading."
 	icon_state = "eyes-vox"
 	decay_factor = 0
 
