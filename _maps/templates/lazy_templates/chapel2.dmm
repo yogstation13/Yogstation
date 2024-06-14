@@ -59,6 +59,7 @@
 	departmentType = 2;
 	pixel_y = 30
 	},
+/obj/item/toy/figure/chaplain,
 /turf/open/floor/carpet/red,
 /area/chapel/office)
 "cC" = (
@@ -184,6 +185,9 @@
 /obj/item/pen,
 /obj/item/reagent_containers/food/drinks/bottle/holywater,
 /obj/structure/table/wood/fancy,
+/obj/item/flashlight/lamp{
+	pixel_y = 10
+	},
 /turf/open/floor/carpet/red,
 /area/chapel/office)
 "iB" = (
@@ -231,20 +235,17 @@
 /turf/template_noop,
 /area/template_noop)
 "kK" = (
+/obj/structure/sign/warning/vacuum/external{
+	pixel_y = 32
+	},
 /obj/machinery/door/window{
 	dir = 8;
 	name = "Mass Driver";
 	req_access_txt = "22"
 	},
-/obj/machinery/mass_driver{
-	dir = 4;
-	id = "chapelgun";
-	name = "Holy Driver"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/item/reagent_containers/food/snacks/grown/poppy,
 /turf/open/floor/plating,
 /area/chapel/office)
 "kU" = (
@@ -477,6 +478,15 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
+"Cs" = (
+/obj/machinery/mass_driver{
+	dir = 1;
+	id = "chapelgun";
+	name = "Holy Driver"
+	},
+/obj/item/reagent_containers/food/snacks/grown/poppy,
+/turf/open/floor/plating,
+/area/chapel/office)
 "Cv" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -541,12 +551,9 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "DX" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_y = 32
-	},
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/stripes/line{
-	dir = 4
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/chapel/office)
@@ -609,12 +616,7 @@
 /turf/open/floor/carpet/black,
 /area/chapel/main)
 "FN" = (
-/obj/machinery/door/poddoor{
-	id = "chapelgun";
-	name = "Chapel Launcher Door"
-	},
-/obj/structure/fans/tiny,
-/turf/open/floor/plating,
+/turf/closed/wall,
 /area/space/nearstation)
 "Gn" = (
 /obj/item/nullrod,
@@ -728,15 +730,12 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
 "Kc" = (
-/obj/item/toy/figure/chaplain,
-/obj/item/clothing/under/rank/civilian/chaplain/burial,
-/obj/item/clothing/under/rank/civilian/chaplain/burial,
-/obj/item/clothing/under/rank/civilian/chaplain/burial,
-/obj/item/clothing/under/rank/civilian/chaplain/burial,
-/obj/item/clothing/under/rank/civilian/chaplain/burial,
-/obj/item/clothing/under/rank/civilian/chaplain/burial,
-/obj/structure/table/wood/fancy,
-/turf/open/floor/carpet/red,
+/obj/structure/fans/tiny,
+/obj/machinery/door/poddoor{
+	id = "chapelgun";
+	name = "Chapel Launcher Door"
+	},
+/turf/open/floor/plating,
 /area/chapel/office)
 "Kn" = (
 /obj/structure/closet/crate/coffin,
@@ -748,10 +747,13 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
 "Kz" = (
-/obj/item/flashlight/lamp{
-	pixel_y = 10
-	},
 /obj/structure/table/wood/fancy,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
+/obj/item/clothing/under/rank/civilian/chaplain/burial,
 /turf/open/floor/carpet/red,
 /area/chapel/office)
 "KA" = (
@@ -790,7 +792,6 @@
 /area/chapel/office)
 "Nz" = (
 /obj/structure/railing,
-/obj/structure/altar_of_gods,
 /turf/open/floor/carpet/red,
 /area/chapel/main)
 "NN" = (
@@ -1343,7 +1344,7 @@ TA
 Te
 zg
 NN
-Kc
+an
 VJ
 zg
 rx
@@ -1448,10 +1449,10 @@ Cq
 xL
 "}
 (16,1,1) = {"
-zg
+Kc
 DX
+Cs
 zg
-an
 cC
 Kz
 XU
