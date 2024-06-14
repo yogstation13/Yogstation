@@ -13,8 +13,6 @@
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	screamsound = list('sound/voice/vox/shriek1.ogg'/*, 'sound/voice/vox/ashriek.ogg'*/)
-	cough_sound = 'sound/voice/vox/shriekcough.ogg'
-	sneeze_sound = 'sound/voice/vox/shrieksneeze.ogg'
 	mutantbrain = /obj/item/organ/brain/vox // Brain damage on EMP
 	mutantheart = /obj/item/organ/heart/vox
 	mutantliver = /obj/item/organ/liver/vox // Liver damage on EMP
@@ -60,6 +58,12 @@
 
 /datum/species/vox/get_butt_sprite()
 	return BUTT_SPRITE_VOX
+
+/datum/species/vox/get_cough_sound(mob/living/carbon/human/vox)
+	return 'sound/voice/vox/shriekcough.ogg'
+
+/datum/species/vox/get_sneeze_sound(mob/living/carbon/human/vox)
+	return 'sound/voice/vox/shrieksneeze.ogg'
 
 /datum/species/vox/random_name(unique)
 	if(unique)
@@ -174,7 +178,7 @@
 	return to_add
 
 /datum/species/vox/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	if(chem.type == /datum/reagent/oxygen)
+	if(chem.type == /datum/reagent/gas/oxygen)
 		H.adjustToxLoss(1*REAGENTS_EFFECT_MULTIPLIER)
 		H.reagents.remove_reagent(chem.type, chem.metabolization_rate)
 		return FALSE

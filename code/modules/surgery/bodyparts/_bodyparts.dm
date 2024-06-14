@@ -826,20 +826,16 @@
 		else
 			no_update = FALSE
 	is_husked = FALSE
-	var/datum/species/id_to_species
-	var/species_type = GLOB.species_list[species_id]
-	if(species_type)
-		id_to_species = new species_type()
-	if(length(id_to_species?.static_part_body_zones) && (body_zone in id_to_species.static_part_body_zones))
-		has_static_sprite_part = TRUE
-	else
-		has_static_sprite_part = FALSE
 	if(HAS_TRAIT(C, TRAIT_HUSK) && is_organic_limb())
 		if(ishuman(C))
 			var/mob/living/carbon/human/S = C
 			if(isszlachta(S))
 				return
-		if(!id_to_species?.generate_husk_icon)
+		var/datum/species/id_to_species
+		var/species_type = GLOB.species_list[species_id]
+		if(species_type)
+			id_to_species = new species_type()
+		if(id_to_species && !id_to_species.generate_husk_icon)
 			species_id = "husk" //overrides species_id
 			
 		dmg_overlay_type = "" //no damage overlay shown when husked
@@ -858,6 +854,14 @@
 		var/datum/species/S = H.dna.species
 		if(!limb_override)
 			species_id = S.limbs_id
+		var/datum/species/id_to_species
+		var/species_type = GLOB.species_list[species_id]
+		if(species_type)
+			id_to_species = new species_type()
+		if(id_to_species && (body_zone in id_to_species.static_part_body_zones))
+			has_static_sprite_part = TRUE
+		else
+			has_static_sprite_part = FALSE
 		species_flags_list = S.species_traits
 
 		if(S.use_skintones)
@@ -987,7 +991,7 @@
 			. += aux
 		if(has_static_sprite_part)
 			var/limb_static_icon_name = "[species_id]_[body_zone]_static"
-			if(limb_icon_variant in id_to_species.get_special_statics())
+			if(id_to_species && (limb_icon_variant in id_to_species.get_special_statics()))
 				limb_static_icon_name += "_[limb_icon_variant]"
 			limb_static = image(limb.icon, limb_static_icon_name, limb.layer, limb.dir)
 			. += limb_static
