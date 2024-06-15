@@ -241,7 +241,7 @@
 
 //box given to every bloodbrother
 /obj/item/storage/box/bloodbrother
-	name = "Keepsake box"
+	name = "keepsake box"
 	desc = "A box full of unusual items found in the maintenance hallways."
 	///total tc cost that can be inside the box
 	var/total_box_value = 5
@@ -253,7 +253,11 @@
 /obj/item/storage/box/bloodbrother/PopulateContents()
 	var/list/uplink_items = get_uplink_items(null, FALSE)
 	var/remaining_value = total_box_value
-	while(remaining_value)
+
+	for(var/i = 50; i > 0; i--) //only iterate 50 times, so it doesn't get stuck in an infinite loop
+		if(remaining_value <= 0)
+			break
+
 		var/category = pick(allowed_categories)
 		var/item = pick(uplink_items[category])
 		var/datum/uplink_item/I = uplink_items[category][item]
@@ -264,3 +268,6 @@
 			continue
 		remaining_value -= I.cost
 		new I.item(src)
+
+	if(remaining_value > 0)
+		message_admins("a blood brother has spawned with a keepsake box that has less than the usual value of items, please alert a coder")
