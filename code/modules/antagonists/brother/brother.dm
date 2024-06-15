@@ -248,7 +248,7 @@
 	///maximum amount of tc any individual item can be
 	var/item_value_cap = 2
 	///list of categories that items are allowed to come from
-	var/list/allowed_categories = list("Stealth Gadgets", "Misc. Gadgets", "(Pointless) Badassery")
+	var/list/allowed_categories = list(UPLINK_CATEGORY_STEALTH_GADGETS, UPLINK_CATEGORY_MISC, UPLINK_CATEGORY_BADASS)
 
 /obj/item/storage/box/bloodbrother/PopulateContents()
 	var/list/uplink_items = get_uplink_items(null, FALSE)
