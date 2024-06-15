@@ -263,8 +263,10 @@
 		var/datum/uplink_item/I = uplink_items[category][item]
 
 		if(I.cost > item_value_cap)
+			uplink_items[category] -= uplink_items[category][item] //remove it so it can't keep getting picked despite being invalid
 			continue
 		if(I.cost > remaining_value)
+			uplink_items[category] -= uplink_items[category][item] //remove it so it can't keep getting picked despite being invalid
 			continue
 		remaining_value -= I.cost
 		new I.item(src)
