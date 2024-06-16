@@ -1,0 +1,4 @@
+author: "wonderinghost"
+delete-after: true 
+changes: 
+  - bugfix: "trash now lead to recycler room instead of looping"
