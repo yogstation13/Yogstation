@@ -208,6 +208,7 @@
 	flush = FALSE
 
 /obj/machinery/disposal/proc/newHolderDestination(obj/structure/disposalholder/H)
+	H.destinationTag = SORT_TYPE_DISPOSALS
 	for(var/obj/item/smallDelivery/O in src)
 		H.tomail = TRUE
 		return
