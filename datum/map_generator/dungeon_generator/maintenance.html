@@ -16,35 +16,63 @@
 <h1>/<a href="datum.html">datum</a>/<a href="datum/map_generator.html">map_generator</a>/<a href="datum/map_generator/dungeon_generator.html">dungeon_generator</a>/<a href="datum/map_generator/dungeon_generator/maintenance.html">maintenance</a>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/8217eecaf23e7408ec5bccde5b5a713d64a6e04f/code/datums/mapgen/dungeon_generators/maintenance_generator/maintenance_generator.dm#L6">
+            <a href="https://github.com/yogstation13/Yogstation/blob/1890d2720cfa197ac475c0ff12961b258320613e/code/datums/mapgen/dungeon_generators/maintenance_generator/maintenance_generator.dm#L6">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;maintenance_generator&#x2F;maintenance_generator.dm 6"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
             <tr><th><a href="datum/map_generator/dungeon_generator/maintenance.html#var/atmos_control">atmos_control</a></th><td>Boolean, whether or not firelocks are added to the maintenance</td></tr>
-            <tr><th><a href="datum/map_generator/dungeon_generator/maintenance.html#var/include_apcs">include_apcs</a></th><td>Boolean, wether or not apcs are added to the maintenance</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/map_generator/dungeon_generator/maintenance.html#var/feature_spawn_ratio">feature_spawn_ratio</a></th><td>multiplied by the number of valid turf to decide how many things should be spawned</td></tr>
+            <tr><th><a href="datum/map_generator/dungeon_generator/maintenance.html#var/include_apcs">include_apcs</a></th><td>Boolean, wether or not apcs are added to the maintenance</td></tr>
+            <tr><th><a href="datum/map_generator/dungeon_generator/maintenance.html#var/weighted_againstwall_spawn_list">weighted_againstwall_spawn_list</a></th><td>Weighted list of extra features that spawn against walls.</td></tr>
+            <tr><th><a href="datum/map_generator/dungeon_generator/maintenance.html#var/weighted_hallway_spawn_list">weighted_hallway_spawn_list</a></th><td>Weighted list of extra features that spawn in narrow hallways</td></tr>
+            <tr><th><a href="datum/map_generator/dungeon_generator/maintenance.html#var/weighted_openfloor_spawn_list">weighted_openfloor_spawn_list</a></th><td>Weighted list of extra features that spawn out in the open</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
             <tr><th><a href="datum/map_generator/dungeon_generator/maintenance.html#proc/add_maint_loot">add_maint_loot</a></th><td>we only want to look to place firedoors every 5 tiles, so we don't place too many</td></tr></table>
     <h2 id="var">Var Details</h2><h3 id="var/atmos_control"><aside class="declaration">var </aside>atmos_control
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/8217eecaf23e7408ec5bccde5b5a713d64a6e04f/code/datums/mapgen/dungeon_generators/maintenance_generator/maintenance_generator.dm#L18">
+            <a href="https://github.com/yogstation13/Yogstation/blob/1890d2720cfa197ac475c0ff12961b258320613e/code/datums/mapgen/dungeon_generators/maintenance_generator/maintenance_generator.dm#L18">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;maintenance_generator&#x2F;maintenance_generator.dm 18"/></a></h3>
-        <p>Boolean, whether or not firelocks are added to the maintenance</p><h3 id="var/include_apcs"><aside class="declaration">var </aside>include_apcs
+        <p>Boolean, whether or not firelocks are added to the maintenance</p><h3 id="var/feature_spawn_ratio"><aside class="declaration">var </aside>feature_spawn_ratio
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/8217eecaf23e7408ec5bccde5b5a713d64a6e04f/code/datums/mapgen/dungeon_generators/maintenance_generator/maintenance_generator.dm#L20">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;maintenance_generator&#x2F;maintenance_generator.dm 20"/></a></h3>
-        <p>Boolean, wether or not apcs are added to the maintenance</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_maint_loot"><aside class="declaration">proc </aside>add_maint_loot<aside>() 
+            <a href="https://github.com/yogstation13/Yogstation/blob/1890d2720cfa197ac475c0ff12961b258320613e/code/datums/mapgen/dungeon_generators/maintenance_generator/maintenance_generator.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;maintenance_generator&#x2F;maintenance_generator.dm 46"/></a></h3>
+        <p>multiplied by the number of valid turf to decide how many things should be spawned</p><h3 id="var/include_apcs"><aside class="declaration">var </aside>include_apcs
+            <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/8217eecaf23e7408ec5bccde5b5a713d64a6e04f/code/datums/mapgen/dungeon_generators/maintenance_generator/maintenance_generator.dm#L78">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;maintenance_generator&#x2F;maintenance_generator.dm 78"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/1890d2720cfa197ac475c0ff12961b258320613e/code/datums/mapgen/dungeon_generators/maintenance_generator/maintenance_generator.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;maintenance_generator&#x2F;maintenance_generator.dm 20"/></a></h3>
+        <p>Boolean, wether or not apcs are added to the maintenance</p><h3 id="var/weighted_againstwall_spawn_list"><aside class="declaration">var </aside>weighted_againstwall_spawn_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/1890d2720cfa197ac475c0ff12961b258320613e/code/datums/mapgen/dungeon_generators/maintenance_generator/maintenance_generator.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;maintenance_generator&#x2F;maintenance_generator.dm 23"/></a></h3>
+        <p>Weighted list of extra features that spawn against walls.</p><h3 id="var/weighted_hallway_spawn_list"><aside class="declaration">var </aside>weighted_hallway_spawn_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/1890d2720cfa197ac475c0ff12961b258320613e/code/datums/mapgen/dungeon_generators/maintenance_generator/maintenance_generator.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;maintenance_generator&#x2F;maintenance_generator.dm 39"/></a></h3>
+        <p>Weighted list of extra features that spawn in narrow hallways</p><h3 id="var/weighted_openfloor_spawn_list"><aside class="declaration">var </aside>weighted_openfloor_spawn_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/1890d2720cfa197ac475c0ff12961b258320613e/code/datums/mapgen/dungeon_generators/maintenance_generator/maintenance_generator.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;maintenance_generator&#x2F;maintenance_generator.dm 32"/></a></h3>
+        <p>Weighted list of extra features that spawn out in the open</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_maint_loot"><aside class="declaration">proc </aside>add_maint_loot<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/1890d2720cfa197ac475c0ff12961b258320613e/code/datums/mapgen/dungeon_generators/maintenance_generator/maintenance_generator.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;maintenance_generator&#x2F;maintenance_generator.dm 102"/></a></aside>
         </h3>
         <p>we only want to look to place firedoors every 5 tiles, so we don't place too many</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/8217eecaf23e7408ec5bccde5b5a713d64a6e04f">8217eec</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/1890d2720cfa197ac475c0ff12961b258320613e">1890d27</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
