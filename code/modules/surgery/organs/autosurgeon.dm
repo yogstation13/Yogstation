@@ -127,6 +127,7 @@
 		return
 	for(var/i in storedorgans)
 		handle_surgery(i, user)
+	storedorgans = list()
 	user.visible_message(span_notice("[user] presses a button on [src], and you hear a short mechanical noise."), span_notice("You feel a sharp sting as [src] plunges into your body."))
 	playsound(get_turf(user), 'sound/weapons/circsawhit.ogg', 50, 1)
 	name = initial(name)
@@ -150,7 +151,7 @@
 			AM.forceMove(drop_loc)
 			to_chat(user, span_notice("You remove the [J] from [src]."))
 			storedorgans -= J
-
+		
 		I.play_tool_sound(src)
 		if(!refills)
 			name = "dulled [initial(name)]"
