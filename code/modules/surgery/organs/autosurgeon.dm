@@ -38,6 +38,8 @@
 	if(locate(/obj/item/organ/cyberimp/arm) in storedorgans)
 		. += span_notice("It will implant any arm implants in the [target_arm == BODY_ZONE_L_ARM ? "left" : "right"] arm first.")
 		. += span_notice("This can be switched with ALT + CLICK.")
+	if(refills > 0)
+		. += span_notice("Can accept [refills] more implants before it ceases to function.")
 
 ////////////////////////////////////////////////////////////////////////////////////
 //---------------------------------Adding organs----------------------------------//
