@@ -286,7 +286,7 @@
 			STR.remove_from_storage(O,src)
 		b.update_appearance()
 		update_appearance()
-	if(istype(I, /obj/item/destTagger))
+	else if(istype(I, /obj/item/destTagger))
 		return
 	else
 		return ..()
