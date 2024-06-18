@@ -1,6 +1,7 @@
 #define DEFAULT_METEOR_LIFETIME 1800
 GLOBAL_VAR_INIT(meteor_wave_delay, 625) //minimum wait between waves in tenths of seconds
 //set to at least 100 unless you want evarr ruining every round
+// This spelling mistake? Name? is older then git, I'm scared to touch it
 
 //Meteors probability of spawning during a given wave
 GLOBAL_LIST_INIT(meteors_normal, list(/obj/effect/meteor/dust=3, /obj/effect/meteor/medium=8, /obj/effect/meteor/big=3, \
@@ -38,8 +39,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 		if(max_i<=0)
 			return
 	var/Me = pickweight(meteortypes)
-	var/obj/effect/meteor/M = new Me(pickedstart, pickedgoal)
-	M.dest = pickedgoal
+	new Me(pickedstart, pickedgoal)
 
 /proc/spaceDebrisStartLoc(startSide, Z)
 	var/starty
@@ -112,77 +112,75 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	var/atom/dest
 	///Lifetime in seconds
 	var/lifetime = DEFAULT_METEOR_LIFETIME
-	
-	var/timerid = null
 
-/obj/effect/meteor/Move()
-	if(z != z_original || loc == dest)
-		qdel(src)
-		return FALSE
+/obj/effect/meteor/Initialize(mapload, turf/target)
+	. = ..()
+	z_original = z
+	GLOB.meteor_list += src
+	SSaugury.register_doom(src, threat)
+	SpinAnimation()
+	chase_target(target)
 
-	. = ..() //process movement...
+/obj/effect/meteor/Destroy()
+	GLOB.meteor_list -= src
+	return ..()
 
-	if(.)//.. if did move, ram the turf we get in
+/obj/effect/meteor/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
+	. = ..()
+	if(QDELETED(src))
+		return
+
+	if(old_loc != loc)//If did move, ram the turf we get in
 		var/turf/T = get_turf(loc)
 		ram_turf(T)
 
 		if(prob(10) && !isspaceturf(T))//randomly takes a 'hit' from ramming
 			get_hit()
 
-/obj/effect/meteor/Process_Spacemove(movement_dir = 0)
-	return TRUE
+	if(z != z_original || loc == get_turf(dest))
+		qdel(src)
+		return
 
-/obj/effect/meteor/Destroy()
-	if (timerid)
-		deltimer(timerid)
-	GLOB.meteor_list -= src
-	SSaugury.unregister_doom(src)
-	walk(src,0) //this cancels the walk_towards() proc
-	. = ..()
-
-/obj/effect/meteor/Initialize(mapload, target)
-	. = ..()
-	z_original = z
-	GLOB.meteor_list += src
-	SSaugury.register_doom(src, threat)
-	SpinAnimation()
-	timerid = QDEL_IN(src, lifetime)
-	chase_target(target)
-	update_appearance()
+/obj/effect/meteor/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
+	return TRUE //Keeps us from drifting for no reason
 
 /obj/effect/meteor/Bump(atom/A)
+	. = ..() //What could go wrong
 	if(A)
 		ram_turf(get_turf(A))
 		playsound(src.loc, meteorsound, 40, TRUE)
 		get_hit()
 
+/obj/effect/meteor/proc/chase_target(atom/chasing, delay, home)
+	if(!isatom(chasing))
+		return
+	var/datum/move_loop/new_loop = SSmove_manager.move_towards(src, chasing, delay, home, lifetime)
+	if(!new_loop)
+		return
+
+	RegisterSignal(new_loop, COMSIG_QDELETING, PROC_REF(handle_stopping))
+
+/obj/effect/meteor/proc/handle_stopping()
+	SIGNAL_HANDLER
+	if(!QDELETED(src))
+		qdel(src)
+
 /obj/effect/meteor/proc/ram_turf(turf/T)
-	//first bust whatever is in the turf
-	for(var/thing in T)
-		if(thing == src)
-			continue
-		if(isliving(thing))
-			var/mob/living/living_thing = thing
-			living_thing.visible_message(span_warning("[src] slams into [living_thing]."), span_userdanger("[src] slams into you!."))
-		switch(hitpwr)
-			if(EXPLODE_DEVASTATE)
-				SSexplosions.high_mov_atom += thing
-			if(EXPLODE_HEAVY)
-				SSexplosions.med_mov_atom += thing
-			if(EXPLODE_LIGHT)
-				SSexplosions.low_mov_atom += thing
+	if(isspaceturf(T))
+		return
 
-	//then, ram the turf if it still exists
-	if(T && !isspaceturf(T))
-		switch(hitpwr)
-			if(EXPLODE_DEVASTATE)
-				SSexplosions.highturf += T
-			if(EXPLODE_HEAVY)
-				SSexplosions.medturf += T
-			if(EXPLODE_LIGHT)
-				SSexplosions.lowturf += T
+	//first yell at mobs about them dying horribly
+	for(var/mob/living/thing in T)
+		thing.visible_message(span_warning("[src] slams into [thing]."), span_userdanger("[src] slams into you!."))
 
-
+	//then, ram the turf
+	switch(hitpwr)
+		if(EXPLODE_DEVASTATE)
+			SSexplosions.highturf += T
+		if(EXPLODE_HEAVY)
+			SSexplosions.medturf += T
+		if(EXPLODE_LIGHT)
+			SSexplosions.lowturf += T
 
 //process getting 'hit' by colliding with a dense object
 //or randomly when ramming turfs
@@ -207,11 +205,6 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	for(var/throws = dropamt, throws > 0, throws--)
 		var/thing_to_spawn = pick(meteordrop)
 		new thing_to_spawn(get_turf(src))
-
-/obj/effect/meteor/proc/chase_target(atom/chasing, delay = 1)
-	set waitfor = FALSE
-	if(chasing)
-		walk_towards(src, chasing, delay)
 
 /obj/effect/meteor/proc/meteor_effect()
 	if(heavy)

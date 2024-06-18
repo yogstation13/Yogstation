@@ -89,7 +89,7 @@
 		var/mob/living/carbon/alien/A = M
 		A.updatePlasmaDisplay()
 
-/obj/item/organ/alien/plasmavessel/Remove(mob/living/carbon/M, special = 0)
+/obj/item/organ/alien/plasmavessel/Remove(mob/living/carbon/M, special = FALSE)
 	..()
 	if(isalien(M))
 		var/mob/living/carbon/alien/A = M
@@ -111,7 +111,7 @@
 	..()
 	M.faction |= ROLE_ALIEN
 
-/obj/item/organ/alien/hivenode/Remove(mob/living/carbon/M, special = 0)
+/obj/item/organ/alien/hivenode/Remove(mob/living/carbon/M, special = FALSE)
 	M.faction -= ROLE_ALIEN
 	..()
 

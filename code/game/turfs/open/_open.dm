@@ -669,9 +669,9 @@
 
 		var/turf/target = get_ranged_target_turf(slipper, olddir, 4)
 		if(lube & SLIDE)
-			new /datum/forced_movement(slipper, target, 1, FALSE, CALLBACK(slipper, TYPE_PROC_REF(/mob/living/carbon, spin), 1, 1))
+			slipper.AddComponent(/datum/component/force_move, target, TRUE)
 		else if(lube&SLIDE_ICE)
-			new /datum/forced_movement(slipper, get_ranged_target_turf(slipper, olddir, 1), 1, FALSE)	//spinning would be bad for ice, fucks up the next dir
+			slipper.AddComponent(/datum/component/force_move, target, FALSE)//spinning would be bad for ice, fucks up the next dir
 		return 1
 
 /turf/open/proc/MakeSlippery(wet_setting = TURF_WET_WATER, min_wet_time = 0, wet_time_to_add = 0, max_wet_time = MAXIMUM_WET_TIME, permanent)

@@ -109,7 +109,7 @@
 	//We'll be using this from now on
 	var/mob/living/carbon/C = owner.current
 	if(istype(C))
-		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
+		var/obj/item/organ/brain/B = C.get_organ_slot(ORGAN_SLOT_BRAIN)
 		if(B && (B.decoy_override != initial(B.decoy_override)))
 			B.organ_flags |= ORGAN_VITAL
 			B.decoy_override = FALSE
@@ -407,7 +407,7 @@
 	RegisterSignal(mob_to_tweak, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 	RegisterSignals(mob_to_tweak, list(COMSIG_MOB_MIDDLECLICKON, COMSIG_MOB_ALTCLICKON), PROC_REF(on_click_sting))
 	//Brains optional.
-	var/obj/item/organ/brain/our_ling_brain = mob_to_tweak.getorganslot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/brain/our_ling_brain = mob_to_tweak.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(our_ling_brain)
 		our_ling_brain.organ_flags &= ~ORGAN_VITAL
 		our_ling_brain.decoy_override = TRUE

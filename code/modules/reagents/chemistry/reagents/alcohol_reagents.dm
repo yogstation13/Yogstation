@@ -44,7 +44,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		// Volume, power, and server alcohol rate effect how quickly one gets drunk
 		drinker.adjust_drunk_effect(sqrt(volume) * booze_power * ALCOHOL_RATE * REM)
 		if(boozepwr > 0)
-			var/obj/item/organ/liver/liver = drinker.getorganslot(ORGAN_SLOT_LIVER)
+			var/obj/item/organ/liver/liver = drinker.get_organ_slot(ORGAN_SLOT_LIVER)
 			if (istype(liver))
 				liver.applyOrganDamage(((max(sqrt(volume) * (boozepwr ** ALCOHOL_EXPONENT) * liver.alcohol_tolerance, 0))/150))
 	return ..()
@@ -220,7 +220,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		to_chat(M, span_notice("[pick("You have a really bad headache.", "Your eyes hurt.", "You find it hard to stay still.", "You feel your heart practically beating out of your chest.")]"))
 
 	if(prob(5) && iscarbon(M))
-		var/obj/item/organ/eyes/eyes = M.getorganslot(ORGAN_SLOT_EYES)
+		var/obj/item/organ/eyes/eyes = M.get_organ_slot(ORGAN_SLOT_EYES)
 		if(HAS_TRAIT(M, TRAIT_BLIND))
 			if(istype(eyes))
 				eyes.Remove(M)
@@ -1408,7 +1408,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/bacchus_blessing/on_mob_life(mob/living/carbon/C)
 	. = ..()
 	if(HAS_TRAIT(C, TRAIT_ALCOHOL_TOLERANCE))
-		var/obj/item/organ/liver/L = C.getorganslot(ORGAN_SLOT_LIVER)
+		var/obj/item/organ/liver/L = C.get_organ_slot(ORGAN_SLOT_LIVER)
 		if(istype(L)) // Bacchus is proud
 			L.damage = min(L.damage - 1, 0)
 

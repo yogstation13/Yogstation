@@ -1,10 +1,11 @@
-//The minimum for glide_size to be clamped to.
+/// The minimum for glide_size to be clamped to.
 #define MIN_GLIDE_SIZE 1
-//The maximum for glide_size to be clamped to.
-//This shouldn't be higher than the icon size, and generally you shouldn't be changing this, but it's here just in case.
+/// The maximum for glide_size to be clamped to.
+/// This shouldn't be higher than the icon size, and generally you shouldn't be changing this, but it's here just in case.
 #define MAX_GLIDE_SIZE 32
 
 // Originally a really stupid /tg/ var that sucked and was really bad and caused it to look horrible. Now it's a way of compensating for time dilation
+/// Compensating for time dilation
 GLOBAL_VAR_INIT(glide_size_multiplier, 1.0)
 
 ///Broken down, here's what this does:
@@ -13,8 +14,51 @@ GLOBAL_VAR_INIT(glide_size_multiplier, 1.0)
 /// Then that's multiplied by the global glide size multiplier. 1.25 by default feels pretty close to spot on. This is just to try to get byond to behave.
 /// The whole result is then clamped to within the range above.
 /// Not very readable but it works
-#define DELAY_TO_GLIDE_SIZE(delay) (clamp(((32 / max((delay) / world.tick_lag, 1)) * GLOB.glide_size_multiplier), MIN_GLIDE_SIZE, MAX_GLIDE_SIZE))
+#define DELAY_TO_GLIDE_SIZE(delay) (clamp(((world.icon_size / max((delay) / world.tick_lag, 1)) * GLOB.glide_size_multiplier), MIN_GLIDE_SIZE, MAX_GLIDE_SIZE))
+//#define DELAY_TO_GLIDE_SIZE(delay) (clamp(((32 / max((delay) / world.tick_lag, 1)) * GLOB.glide_size_multiplier), MIN_GLIDE_SIZE, MAX_GLIDE_SIZE))
 
+///Similar to DELAY_TO_GLIDE_SIZE, except without the clamping, and it supports piping in an unrelated scalar //1 / INFINITY is a bandaid we need more but we need to change how gitbot handles its test before we do so
+#define MOVEMENT_ADJUSTED_GLIDE_SIZE(delay, movement_disparity) (world.icon_size / max((delay) / world.tick_lag, 1 / INFINITY) * movement_disparity * GLOB.glide_size_multiplier)
+
+//Movement loop priority. Only one loop can run at a time, this dictates that
+// Higher numbers beat lower numbers
+///Standard, go lower then this if you want to override, higher otherwise
+#define MOVEMENT_DEFAULT_PRIORITY 10
+///Very few things should override this
+#define MOVEMENT_SPACE_PRIORITY 100
+///Higher then the heavens
+#define MOVEMENT_ABOVE_SPACE_PRIORITY (MOVEMENT_SPACE_PRIORITY + 1)
+
+//Movement loop flags
+///Should the loop act immediately following its addition?
+#define MOVEMENT_LOOP_START_FAST (1<<0)
+///Do we not use the priority system?
+#define MOVEMENT_LOOP_IGNORE_PRIORITY (1<<1)
+///Should we override the loop's glide?
+#define MOVEMENT_LOOP_IGNORE_GLIDE (1<<2)
+///Should we not update our movables dir on move?
+#define MOVEMENT_LOOP_NO_DIR_UPDATE (1<<3)
+
+///Is the loop moving the movable outside its control, like it's an external force? e.g. footsteps won't play if enabled.
+#define MOVEMENT_LOOP_OUTSIDE_CONTROL (1<<4)
+
+// Movement loop status flags
+/// Has the loop been paused, soon to be resumed?
+#define MOVELOOP_STATUS_PAUSED (1<<0)
+/// Is the loop running? (Is true even when paused)
+#define MOVELOOP_STATUS_RUNNING (1<<1)
+/// Is the loop queued in a subsystem?
+#define MOVELOOP_STATUS_QUEUED (1<<2)
+
+/**
+ * Returns a bitfield containing flags both present in `flags` arg and the `processing_move_loop_flags` move_packet variable.
+ * Has no use outside of procs called within the movement proc chain.
+ */
+#define CHECK_MOVE_LOOP_FLAGS(movable, flags) (movable.move_packet ? (movable.move_packet.processing_move_loop_flags & (flags)) : NONE)
+
+//Index defines for movement bucket data packets
+#define MOVEMENT_BUCKET_TIME 1
+#define MOVEMENT_BUCKET_LIST 2
 
 /**
  * currently_z_moving defines. Higher numbers mean higher priority.
@@ -67,3 +111,23 @@ GLOBAL_VAR_INIT(glide_size_multiplier, 1.0)
 #define ZMOVE_STAIRS_FLAGS (ZMOVE_CHECK_PULLEDBY|ZMOVE_ALLOW_BUCKLED)
 /// Used for falling down open space.
 #define ZMOVE_FALL_FLAGS (ZMOVE_FALL_CHECKS|ZMOVE_ALLOW_BUCKLED)
+
+/// Classic bluespace teleportation, requires a sender but no receiver
+#define TELEPORT_CHANNEL_BLUESPACE "bluespace"
+/// Quantum-based teleportation, requires both sender and receiver, but is free from normal disruption
+#define TELEPORT_CHANNEL_QUANTUM "quantum"
+/// Wormhole teleportation, is not disrupted by bluespace fluctuations but tends to be very random or unsafe
+#define TELEPORT_CHANNEL_WORMHOLE "wormhole"
+/// Magic teleportation, does whatever it wants (unless there's antimagic)
+#define TELEPORT_CHANNEL_MAGIC "magic"
+/// Cult teleportation, does whatever it wants (unless there's holiness)
+#define TELEPORT_CHANNEL_CULT "cult"
+/// Eigenstate teleportation, can do most things (that aren't in a teleport-prevented zone)
+#define TELEPORT_CHANNEL_EIGENSTATE "eigenstate"
+/// Anything else
+#define TELEPORT_CHANNEL_FREE "free"
+
+///Return values for moveloop Move()
+#define MOVELOOP_FAILURE 0
+#define MOVELOOP_SUCCESS 1
+#define MOVELOOP_NOT_READY 2

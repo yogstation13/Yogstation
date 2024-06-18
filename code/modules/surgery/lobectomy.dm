@@ -12,7 +12,7 @@
 	possible_locs = list(BODY_ZONE_CHEST)
 
 /datum/surgery/lobectomy/can_start(mob/user, mob/living/carbon/target)
-	var/obj/item/organ/lungs/L = target.getorganslot(ORGAN_SLOT_LUNGS)
+	var/obj/item/organ/lungs/L = target.get_organ_slot(ORGAN_SLOT_LUNGS)
 	if(L)
 		if(L.damage > 60 && !L.operated)
 			return TRUE
@@ -49,7 +49,7 @@
 /datum/surgery_step/lobectomy/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		var/obj/item/organ/lungs/L = H.getorganslot(ORGAN_SLOT_LUNGS)
+		var/obj/item/organ/lungs/L = H.get_organ_slot(ORGAN_SLOT_LUNGS)
 		L.operated = TRUE
 		H.setOrganLoss(ORGAN_SLOT_LUNGS, 60)
 		display_results(user, target, span_notice("You successfully excise [H]'s most damaged lobe."),
@@ -60,7 +60,7 @@
 /datum/surgery_step/lobectomy/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		var/obj/item/organ/lungs/L = H.getorganslot(ORGAN_SLOT_LUNGS)
+		var/obj/item/organ/lungs/L = H.get_organ_slot(ORGAN_SLOT_LUNGS)
 		L.operated = TRUE
 		H.adjustOrganLoss(ORGAN_SLOT_LUNGS, 10)
 		H.losebreath += 4

@@ -79,9 +79,9 @@
 		if(admin_response != "Yes")
 			return ..()
 		if(admin == M)
-			admin = M.humanize(TR_KEEPITEMS|TR_KEEPIMPLANTS|TR_KEEPORGANS|TR_KEEPDAMAGE|TR_KEEPVIRUS|TR_KEEPSTUNS|TR_KEEPREAGENTS|TR_DEFAULTMSG)
+			admin = M.humanize()
 		else
-			M.humanize(TR_KEEPITEMS|TR_KEEPIMPLANTS|TR_KEEPORGANS|TR_KEEPDAMAGE|TR_KEEPVIRUS|TR_KEEPSTUNS|TR_KEEPREAGENTS|TR_DEFAULTMSG)
+			M.humanize()
 	return ..()
 
 /datum/antagonist/monkey/leader
@@ -134,7 +134,9 @@
 	if(..())
 		return TRUE
 	var/datum/disease/D = new /datum/disease/transformation/jungle_fever()
-	for(var/mob/living/carbon/monkey/M in GLOB.alive_mob_list)
+	for(var/mob/living/carbon/human/M in GLOB.alive_mob_list)
+		if(!ismonkey(M))
+			continue
 		if (M.HasDisease(D) && (M.onCentCom() || M.onSyndieBase()))
 			escaped_monkeys++
 	if(escaped_monkeys >= monkeys_to_win)
@@ -152,14 +154,18 @@
 
 /datum/team/monkey/proc/infected_monkeys_alive()
 	var/datum/disease/D = new /datum/disease/transformation/jungle_fever()
-	for(var/mob/living/carbon/monkey/M in GLOB.alive_mob_list)
+	for(var/mob/living/carbon/human/M in GLOB.alive_mob_list)
+		if(!ismonkey(M))
+			continue
 		if(M.HasDisease(D))
 			return TRUE
 	return FALSE
 
 /datum/team/monkey/proc/infected_monkeys_escaped()
 	var/datum/disease/D = new /datum/disease/transformation/jungle_fever()
-	for(var/mob/living/carbon/monkey/M in GLOB.alive_mob_list)
+	for(var/mob/living/carbon/human/M in GLOB.alive_mob_list)
+		if(!ismonkey(M))
+			continue
 		if(M.HasDisease(D) && (M.onCentCom() || M.onSyndieBase()))
 			return TRUE
 	return FALSE

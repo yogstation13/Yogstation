@@ -8,6 +8,7 @@
 	opacity = FALSE
 	anchored = TRUE
 	layer = BELOW_MOB_LAYER
+	pass_flags_self = PASSBLOB
 	can_atmos_pass = ATMOS_PASS_PROC
 	obj_flags = CAN_BE_HIT|BLOCK_Z_OUT_DOWN // stops blob mobs from falling on multiz.
 	var/point_return = 0 //How many points the blob gets back when it removes a blob of that type. If less than 0, blob cannot be removed.
@@ -77,7 +78,7 @@
 /obj/structure/blob/can_atmos_pass(turf/target_turf, vertical = FALSE)
 	return !atmosblock
 
-/obj/structure/blob/CanAStarPass(ID, dir, caller)
+/obj/structure/blob/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller, no_id = FALSE)
 	. = 0
 	if(ismovable(caller))
 		var/atom/movable/mover = caller

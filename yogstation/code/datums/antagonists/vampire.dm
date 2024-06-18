@@ -84,7 +84,7 @@
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/H = owner.current
 		RegisterSignal(H, COMSIG_HUMAN_BURNING, PROC_REF(handle_fire))
-		var/obj/item/organ/brain/B = H.getorganslot(ORGAN_SLOT_BRAIN)
+		var/obj/item/organ/brain/B = H.get_organ_slot(ORGAN_SLOT_BRAIN)
 		if(B)
 			B.organ_flags &= ~ORGAN_VITAL
 			B.decoy_override = TRUE
@@ -110,7 +110,7 @@
 	owner.special_role = null
 	var/mob/living/carbon/human/C = owner.current
 	if(istype(C))
-		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
+		var/obj/item/organ/brain/B = C.get_organ_slot(ORGAN_SLOT_BRAIN)
 		if(B && (B.decoy_override != initial(B.decoy_override)))
 			B.organ_flags |= ORGAN_VITAL
 			B.decoy_override = FALSE

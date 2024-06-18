@@ -305,7 +305,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/parallax_layer)
 /atom/movable/screen/parallax_layer/proc/update_o(view)
 	if (!view)
 		view = world.view
-
+	
 	var/static/parallax_scaler = world.icon_size / 480
 
 	// Turn the view size into a grid of correctly scaled overlays

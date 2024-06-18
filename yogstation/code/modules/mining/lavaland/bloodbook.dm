@@ -837,7 +837,7 @@
 	if(ismineralturf(front))
 		var/turf/closed/mineral/M = front
 		M.attempt_drill()
-	if(!(front.reachableTurftestdensity(T = front)))
+	if(!get_adjacent_open_turfs(front))
 		return FALSE
 	src.forceMove(front)
 	L.forceMove(front)

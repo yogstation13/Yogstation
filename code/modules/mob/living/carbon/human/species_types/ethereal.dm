@@ -92,10 +92,10 @@
 	RegisterSignal(ethereal, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
 	spec_updatehealth(ethereal)
 
-	var/obj/item/organ/heart/ethereal/ethereal_heart = ethereal.getorganslot(ORGAN_SLOT_HEART)
+	var/obj/item/organ/heart/ethereal/ethereal_heart = ethereal.get_organ_slot(ORGAN_SLOT_HEART)
 	if(ethereal_heart)
 		ethereal_heart.ethereal_color = default_color
-	var/obj/item/organ/eyes/ethereal/ethereal_eyes = ethereal.getorganslot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/ethereal/ethereal_eyes = ethereal.get_organ_slot(ORGAN_SLOT_EYES)
 	if(ethereal_eyes)
 		ethereal_eyes.ethereal_color = default_color
 

@@ -9,6 +9,7 @@
 	dense_when_open = TRUE
 	delivery_icon = "deliverycrate"
 	door_anim_time = 0 // no animation
+	pass_flags_self = PASSSTRUCTURE | LETPASSTHROW
 	breakout_time = 20 SECONDS
 	var/crate_climb_time = 20
 	var/obj/item/paper/fluff/jobs/cargo/manifest/manifest

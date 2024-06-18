@@ -228,8 +228,6 @@
 		moblist.Add(M)
 	for(var/mob/dead/new_player/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/carbon/monkey/M in sortmob)
-		moblist.Add(M)
 	for(var/mob/living/simple_animal/slime/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/simple_animal/M in sortmob)
@@ -842,7 +840,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 //as sleeps aren't cheap and sleeping only to wake up and sleep again is wasteful
 #define DELTA_CALC max(((max(TICK_USAGE, world.cpu) / 100) * max(Master.sleep_delta-1,1)), 1)
 
-///returns the number of ticks slept
+///Returns the number of ticks slept
 /proc/stoplag(initial_delay)
 	if (!Master || Master.init_stage_completed < INITSTAGE_MAX)
 		sleep(world.tick_lag)
@@ -987,8 +985,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 			if(rail.ini_dir == dir_to_check || rail.ini_dir == FULLTILE_WINDOW_DIR || dir_to_check == FULLTILE_WINDOW_DIR)
 				return FALSE
 	return TRUE
-
-#define UNTIL(X) while(!(X)) stoplag()
 
 /proc/pass(...)
 	return

@@ -7,7 +7,7 @@
 	obj_flags = CAN_BE_HIT | BLOCKS_CONSTRUCTION_DIR
 	density = TRUE
 	anchored = TRUE
-	pass_flags = LETPASSTHROW|PASSSTRUCTURE
+	pass_flags_self = LETPASSTHROW|PASSSTRUCTURE
 	layer = ABOVE_MOB_LAYER
 	pixel_y = -16
 

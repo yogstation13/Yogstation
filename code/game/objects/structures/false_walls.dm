@@ -160,7 +160,7 @@
 	. = ..()
 	. += fake_examine_message
 
-/obj/structure/falsewall/CanAStarPass(ID, dir, caller)
+/obj/structure/falsewall/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller, no_id = FALSE)
 	. = ..()
 	if(!isliving(caller))
 		return FALSE

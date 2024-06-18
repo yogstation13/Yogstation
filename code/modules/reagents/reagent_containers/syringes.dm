@@ -42,9 +42,7 @@
 			return FALSE
 
 	// chance of monkey retaliation
-	if(ismonkey(target) && prob(MONKEY_SYRINGE_RETALIATION_PROB))
-		var/mob/living/carbon/monkey/M = target
-		M.retaliate(user)
+	SEND_SIGNAL(target, COMSIG_LIVING_TRY_SYRINGE, user)
 
 	SEND_SIGNAL(target, COMSIG_LIVING_TRY_SYRINGE, user)
 	return TRUE
@@ -55,7 +53,11 @@
 	if(!try_syringe(target, user, proximity))
 		return
 	
-	var/contained = reagents.log_list()
+	//Always log attemped injects for admins
+	var/list/injected = list()
+	for(var/datum/reagent/R in reagents.reagent_list)
+		injected += R.name
+	var/contained = english_list(injected)
 	log_combat(user, target, "attempted to inject", src, addition="which had [contained]")
 
 	if(!reagents.total_volume)

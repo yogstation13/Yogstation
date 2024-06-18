@@ -25,10 +25,6 @@
 "aF" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
-"aP" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/indestructible/rock,
-/area/lavaland/surface)
 "ba" = (
 /turf/closed/indestructible/rock,
 /area/ruin/unpowered)
@@ -2260,9 +2256,9 @@ ab
 ab
 ab
 Gf
-aP
+ab
 lA
-aP
+ab
 ab
 Gf
 wA
@@ -3394,7 +3390,7 @@ at
 at
 as
 as
-aP
+ab
 ab
 lA
 Ai

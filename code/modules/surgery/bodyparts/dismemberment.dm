@@ -294,7 +294,7 @@
 			pill.forceMove(src)
 
 	//Make sure de-zombification happens before organ removal instead of during it
-	var/obj/item/organ/zombie_infection/ooze = owner.getorganslot(ORGAN_SLOT_ZOMBIE)
+	var/obj/item/organ/zombie_infection/ooze = owner.get_organ_slot(ORGAN_SLOT_ZOMBIE)
 	if(istype(ooze))
 		ooze.transfer_to_limb(src, owner)
 

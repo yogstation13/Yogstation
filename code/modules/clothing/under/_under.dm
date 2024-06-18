@@ -32,7 +32,7 @@
 	if(damaged_clothes)
 		. += mutable_appearance('icons/effects/item_damage.dmi', "damageduniform")
 	if(HAS_BLOOD_DNA(src))
-		var/mutable_appearance/bloody_uniform = mutable_appearance('icons/effects/blood.dmi', "uniformblood")
+		var/mutable_appearance/bloody_uniform = mutable_appearance('icons/effects/blood.dmi', "[ismonkey(loc) ? "fitblood" : "uniformblood"]")
 		bloody_uniform.color = get_blood_dna_color(return_blood_DNA())
 		. += bloody_uniform
 	if(accessory_overlay)
@@ -93,7 +93,7 @@
 		if(!alt_covers_chest)
 			body_parts_covered |= CHEST
 
-	if(slot == ITEM_SLOT_ICLOTHING && freshly_laundered)
+	if(slot & ITEM_SLOT_ICLOTHING && freshly_laundered)
 		freshly_laundered = FALSE
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "fresh_laundry", /datum/mood_event/fresh_laundry)
 

@@ -36,10 +36,10 @@
 
 	var/passed = TRUE
 
-	var/head_ch = 80
-	var/body_ch = 100
-	var/hands_ch = 35
-	var/feet_ch = 15
+	var/head_chance = 80
+	var/body_chance = 100
+	var/hands_chance = 35
+	var/feet_chance = 15
 
 	if(prob(15/D.permeability_mod))
 		return
@@ -49,7 +49,14 @@
 
 	//Checks your protection on a random bodypart, should work with precise zones too if specified
 	if(!target_zone)
-		target_zone = pick(head_ch;BODY_ZONE_HEAD,body_ch;BODY_ZONE_CHEST,hands_ch/2;BODY_ZONE_L_ARM,feet_ch/2;BODY_ZONE_L_LEG,hands_ch/2;BODY_ZONE_R_ARM,feet_ch/2;BODY_ZONE_R_LEG)
+		target_zone = pick(
+			head_chance; BODY_ZONE_HEAD,
+			body_chance; BODY_ZONE_CHEST,
+			hands_chance /2; BODY_ZONE_L_ARM,
+			feet_chance /2; BODY_ZONE_L_LEG,
+			hands_chance /2; BODY_ZONE_R_ARM,
+			feet_chance /2; BODY_ZONE_R_LEG
+			)
 	passed = prob(get_permeability(target_zone) * 100)
 
 	if(passed)

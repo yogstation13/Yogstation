@@ -35,7 +35,6 @@
 	/// True if this symptom can appear from [/datum/disease/advance/proc/GenerateSymptoms]
 	var/naturally_occuring = TRUE
 	/// Types of mob this symptom should affect.
-	/// Checked against [/mob/living/proc/get_process_flags]
 	var/compatible_biotypes = MOB_ORGANIC
 
 /datum/symptom/New()

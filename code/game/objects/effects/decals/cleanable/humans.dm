@@ -76,8 +76,10 @@
 /obj/effect/decal/cleanable/blood/splatter/over_window // special layer/plane set to appear on windows
 	layer = ABOVE_WINDOW_LAYER
 	plane = GAME_PLANE
-	turf_loc_check = FALSE
 	alpha = 180
+
+/obj/effect/decal/cleanable/blood/splatter/over_window/NeverShouldHaveComeHere(turf/here_turf)
+	return isgroundlessturf(here_turf)
 
 /obj/effect/decal/cleanable/blood/tracks
 	icon_state = "tracks"
@@ -118,6 +120,8 @@
 
 	dryname = "rotting gibs"
 	drydesc = "They look bloody and gruesome while some terrible smell fills the air."
+	///Information about the diseases our streaking spawns
+	var/list/streak_diseases
 
 /obj/effect/decal/cleanable/blood/gibs/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
@@ -137,19 +141,33 @@
 	. = ..()
 
 /obj/effect/decal/cleanable/blood/gibs/proc/streak(list/directions, mapload=FALSE)
-	set waitfor = FALSE
-	var/list/diseases = list()
-	SEND_SIGNAL(src, COMSIG_GIBS_STREAK, directions, diseases)
+	SEND_SIGNAL(src, COMSIG_GIBS_STREAK, directions, streak_diseases)
 	var/direction = pick(directions)
-	for(var/i in 0 to pick(0, 1, 2))
-		if (!mapload)
-			sleep(0.2 SECONDS)
-		if(i > 0)
-			var/obj/effect/decal/cleanable/blood/splatter/splat = new /obj/effect/decal/cleanable/blood/splatter(loc, diseases)
+	streak_diseases = list()
+	var/delay = 2
+	var/range = pick(0, 200; 1, 150; 2, 50; 3, 17; 50) //the 3% chance of 50 steps is intentional and played for laughs.
+	if(!step_to(src, get_step(src, direction), 0))
+		return
+	if(mapload)
+		for (var/i = 1, i < range, i++)
+			var/turf/turf_sending = get_step(src, direction)
+			if(isclosedturf(turf_sending) || (isgroundlessturf(turf_sending) && !GET_TURF_BELOW(turf_sending)))
+				continue
+			var/obj/effect/decal/cleanable/blood/splatter/splat = new /obj/effect/decal/cleanable/blood/splatter(loc, streak_diseases)
 			if(!QDELETED(splat) && HAS_BLOOD_DNA(src))
 				splat.add_blood_DNA(src.return_blood_DNA())
-		if(!step_to(src, get_step(src, direction), 0))
-			break
+			if (!step_to(src, turf_sending, 0))
+				break
+		return
+
+	var/datum/move_loop/loop = SSmove_manager.move_to(src, get_step(src, direction), delay = delay, timeout = range * delay, priority = MOVEMENT_ABOVE_SPACE_PRIORITY)
+	RegisterSignal(loop, COMSIG_MOVELOOP_POSTPROCESS, PROC_REF(spread_movement_effects))
+
+/obj/effect/decal/cleanable/blood/gibs/proc/spread_movement_effects(datum/move_loop/has_target/source)
+	SIGNAL_HANDLER
+	if(NeverShouldHaveComeHere(loc))
+		return
+	new /obj/effect/decal/cleanable/blood/splatter(loc, streak_diseases)
 
 /obj/effect/decal/cleanable/blood/gibs/up
 	icon_state = "gibup1"
@@ -342,14 +360,20 @@
 			loc.add_blood_DNA(blood_dna_info)
 	return ..()
 
-/// Set the splatter up to fly through the air until it rounds out of steam or hits something. Contains sleep() pending imminent moveloop rework, don't call without async'ing it
+/// Set the splatter up to fly through the air until it rounds out of steam or hits something
 /obj/effect/decal/cleanable/blood/hitsplatter/proc/fly_towards(turf/target_turf, range)
-	if(range <= 0)
-		qdel(src)
-		return
+	var/delay = 2
+	var/datum/move_loop/loop = SSmove_manager.move_towards(src, target_turf, delay, timeout = delay * range, priority = MOVEMENT_ABOVE_SPACE_PRIORITY, flags = MOVEMENT_LOOP_START_FAST)
+	RegisterSignal(loop, COMSIG_MOVELOOP_PREPROCESS_CHECK, PROC_REF(pre_move))
+	RegisterSignal(loop, COMSIG_MOVELOOP_POSTPROCESS, PROC_REF(post_move))
+	RegisterSignal(loop, COMSIG_QDELETING, PROC_REF(loop_done))
 
-	step_towards(src,target_turf)
+/obj/effect/decal/cleanable/blood/hitsplatter/proc/pre_move(datum/move_loop/source)
+	SIGNAL_HANDLER
 	prev_loc = loc
+
+/obj/effect/decal/cleanable/blood/hitsplatter/proc/post_move(datum/move_loop/source)
+	SIGNAL_HANDLER
 	for(var/atom/iter_atom in get_turf(src))
 		if(hit_endpoint)
 			return
@@ -368,12 +392,13 @@
 				splashed_human.w_uniform.add_blood_DNA(blood_dna_info)
 				splashed_human.update_inv_w_uniform()    //updates mob overlays to show the new blood (no refresh)
 			splatter_strength--
-
 	if(splatter_strength <= 0) // we used all the puff so we delete it.
 		qdel(src)
-		return
 
-	addtimer(CALLBACK(src, PROC_REF(fly_towards), target_turf, range -1), 2)
+/obj/effect/decal/cleanable/blood/hitsplatter/proc/loop_done(datum/source)
+	SIGNAL_HANDLER
+	if(!QDELETED(src))
+		qdel(src)
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Bump(atom/bumped_atom)
 	if(!iswallturf(bumped_atom) && !istype(bumped_atom, /obj/structure/window))

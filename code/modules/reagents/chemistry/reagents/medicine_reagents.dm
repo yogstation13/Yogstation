@@ -473,7 +473,7 @@
 	compatible_biotypes = MOB_ROBOTIC
 
 /datum/reagent/medicine/liquid_solder/on_mob_life(mob/living/M)
-	var/obj/item/organ/O = M.getorganslot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/O = M.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!(O.organ_flags & ORGAN_SYNTHETIC)) // don't heal organic brains in partially synthetic mobs
 		return ..()
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3*REM)
@@ -819,7 +819,7 @@
 	taste_description = "dull toxin"
 
 /datum/reagent/medicine/oculine/on_mob_life(mob/living/carbon/M)
-	var/obj/item/organ/eyes/eyes = M.getorganslot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = M.get_organ_slot(ORGAN_SLOT_EYES)
 	if (!eyes)
 		return
 	eyes.applyOrganDamage(-2)
@@ -1620,10 +1620,10 @@
 			to_chat(M, span_userdanger("You feel like your blood has stopped moving!"))
 
 		if(prob(50))
-			var/obj/item/organ/lungs/our_lungs = M.getorganslot(ORGAN_SLOT_LUNGS)
+			var/obj/item/organ/lungs/our_lungs = M.get_organ_slot(ORGAN_SLOT_LUNGS)
 			our_lungs.applyOrganDamage(1)
 		else
-			var/obj/item/organ/heart/our_heart = M.getorganslot(ORGAN_SLOT_HEART)
+			var/obj/item/organ/heart/our_heart = M.get_organ_slot(ORGAN_SLOT_HEART)
 			our_heart.applyOrganDamage(1)
 
 /datum/reagent/medicine/coagulant/on_mob_metabolize(mob/living/M)

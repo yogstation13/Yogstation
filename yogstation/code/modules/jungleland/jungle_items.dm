@@ -380,7 +380,7 @@
 	return ..()
 
 /obj/item/clothing/head/yogs/tar_king_crown/item_action_slot_check(slot, mob/user)
-	if(slot == ITEM_SLOT_HEAD)
+	if(slot & ITEM_SLOT_HEAD)
 		return TRUE
 	return FALSE
 

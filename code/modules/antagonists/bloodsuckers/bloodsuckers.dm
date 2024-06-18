@@ -586,10 +586,10 @@
 	owner.current.remove_language(/datum/language/vampiric)
 	// Heart & Eyes
 	var/mob/living/carbon/user = owner.current
-	var/obj/item/organ/heart/newheart = owner.current.getorganslot(ORGAN_SLOT_HEART)
+	var/obj/item/organ/heart/newheart = owner.current.get_organ_slot(ORGAN_SLOT_HEART)
 	if(newheart)
 		newheart.beating = initial(newheart.beating)
-	var/obj/item/organ/eyes/user_eyes = user.getorganslot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/user_eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	if(user_eyes)
 		user_eyes.flash_protect = initial(user_eyes.flash_protect)
 		user_eyes.sight_flags = initial(user_eyes.sight_flags)

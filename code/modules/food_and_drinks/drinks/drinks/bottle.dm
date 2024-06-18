@@ -534,7 +534,7 @@
 			if(isclosedturf(center_turf) && isopenturf(get_turf(src)))
 				center_turf = get_turf(src) // if it hits a wall, light the floor in front of the wall on fire, not the wall itself
 			center_turf.ignite_turf(fire_power)
-			for(var/turf/T in center_turf.reachableAdjacentAtmosTurfs())
+			for(var/turf/T in center_turf.GetAtmosAdjacentTurfs(TRUE))
 				if(prob(fire_power))
 					T.ignite_turf(fire_power)
 	return ..()

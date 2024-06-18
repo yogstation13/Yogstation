@@ -197,7 +197,7 @@
 	walk(ref, dir, lag)
 
 /proc/_walk_towards(ref, trg, lag)
-	walk_towards(ref, trg, lag)
+	SSmove_manager.move_towards(ref, trg, lag)
 
 /proc/_walk_to(ref, trg, min, lag)
 	walk_to(ref, trg, min, lag)

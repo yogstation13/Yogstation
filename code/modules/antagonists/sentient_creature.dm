@@ -10,7 +10,7 @@
 	broodmother.Blend(rgb(128, 128, 128, 128), ICON_MULTIPLY)
 	final_icon.Blend(broodmother, ICON_UNDERLAY, -world.icon_size / 4, 0)
 
-	var/icon/rat = icon('icons/mob/animal.dmi', "regalrat")
+	var/icon/rat = icon('icons/mob/mouse.dmi', "regalrat")
 	rat.Blend(rgb(128, 128, 128, 128), ICON_MULTIPLY)
 	final_icon.Blend(rat, ICON_UNDERLAY, world.icon_size / 4, 0)
 

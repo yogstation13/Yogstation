@@ -134,11 +134,10 @@ Difficulty: Hard
 
 	if(!BUBBLEGUM_SMASH)
 		triple_charge()
+	else if(prob(50 + anger_modifier))
+		hallucination_charge()
 	else
-		if(prob(50 + anger_modifier))
-			hallucination_charge()
-		else
-			surround_with_hallucinations()
+		surround_with_hallucinations()
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/proc/triple_charge()
 	charge(delay = 6)
@@ -180,16 +179,16 @@ Difficulty: Hard
 	charging = TRUE
 	revving_charge = TRUE
 	DestroySurroundings()
-	walk(src, 0)
+	SSmove_manager.stop_looping(src)
 	setDir(dir)
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(loc,src)
 	animate(D, alpha = 0, color = "#FF0000", transform = matrix()*2, time = 0.3 SECONDS)
 	SLEEP_CHECK_DEATH(delay)
 	revving_charge = FALSE
 	var/movespeed = 0.7
-	walk_towards(src, T, movespeed)
+	SSmove_manager.move_towards(src, T, movespeed)
 	SLEEP_CHECK_DEATH(get_dist(src, T) * movespeed)
-	walk(src, 0) // cancel the movement
+	SSmove_manager.stop_looping(src) // cancel the movement
 	try_bloodattack()
 	charging = FALSE
 
@@ -458,7 +457,10 @@ Difficulty: Hard
 	..()
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
+	var/turf/current_turf = get_turf(src)
 	if(movement_dir)
+		if(!isturf(current_turf) || isclosedturf(current_turf) || isgroundlessturf(current_turf))
+			return
 		new /obj/effect/decal/cleanable/blood/bubblegum(src.loc)
 	if(charging)
 		DestroySurroundings()

@@ -35,14 +35,14 @@
 	///Do we effect the appearance of our mob. Used to save time in preference code
 	var/visual = TRUE
 
-/obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE,special_zone = null)
+/obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE, special_zone = null)
 	if(!iscarbon(M) || owner == M)
 		return
 
 	if(special_zone)
 		zone = special_zone
 
-	var/obj/item/organ/replaced = M.getorganslot(slot)
+	var/obj/item/organ/replaced = M.get_organ_slot(slot)
 	if(replaced && !special_zone)
 		replaced.Remove(M, special = 1)
 		if(drop_if_replaced)
@@ -59,8 +59,10 @@
 		A.Grant(M)
 	SEND_SIGNAL(M, COMSIG_CARBON_GAIN_ORGAN, src, special)
 
+	SEND_SIGNAL(src, COMSIG_ORGAN_IMPLANTED, M)
+
 //Special is for instant replacement like autosurgeons
-/obj/item/organ/proc/Remove(mob/living/carbon/M, special = FALSE)
+/obj/item/organ/proc/Remove(mob/living/carbon/M, special = 0)
 	owner = null
 	if(M)
 		M.internal_organs -= src
@@ -71,6 +73,8 @@
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.Remove(M)
+
+	SEND_SIGNAL(src, COMSIG_ORGAN_REMOVED, M)
 	SEND_SIGNAL(M, COMSIG_CARBON_LOSE_ORGAN, src, special)
 
 /obj/item/organ/proc/on_find(mob/living/finder)
@@ -260,22 +264,22 @@
 		return
 
 	else
-		if(!getorganslot(ORGAN_SLOT_LUNGS))
+		if(!get_organ_slot(ORGAN_SLOT_LUNGS))
 			var/obj/item/organ/lungs/L = new()
 			L.Insert(src)
 
-		if(!getorganslot(ORGAN_SLOT_HEART))
+		if(!get_organ_slot(ORGAN_SLOT_HEART))
 			var/obj/item/organ/heart/H = new()
 			H.Insert(src)
 
-		if(!getorganslot(ORGAN_SLOT_TONGUE))
+		if(!get_organ_slot(ORGAN_SLOT_TONGUE))
 			var/obj/item/organ/tongue/T = new()
 			T.Insert(src)
 
-		if(!getorganslot(ORGAN_SLOT_EYES))
+		if(!get_organ_slot(ORGAN_SLOT_EYES))
 			var/obj/item/organ/eyes/E = new()
 			E.Insert(src)
 
-		if(!getorganslot(ORGAN_SLOT_EARS))
+		if(!get_organ_slot(ORGAN_SLOT_EARS))
 			var/obj/item/organ/ears/ears = new()
 			ears.Insert(src)

@@ -262,6 +262,9 @@
 
 	pulling = AM
 	AM.set_pulledby(src)
+
+	SEND_SIGNAL(src, COMSIG_LIVING_START_PULL, AM, state, force)
+
 	if(!supress_message)
 		var/sound_to_play = 'sound/weapons/thudswoosh.ogg'
 		if(ishuman(src))
@@ -575,7 +578,7 @@
 		reload_fullscreen()
 		revive_guardian()
 		. = 1
-		var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
+		var/obj/item/organ/brain/B = get_organ_slot(ORGAN_SLOT_BRAIN)
 		if(B)
 			if(B && B.decay_progress > 5 MINUTES && !admin_revive)
 				to_chat(src, span_danger("As life pours back through your body, you struggle to recall what last happened to you; every memory before your death is hazy. You feel like you've been dead for too long"))
@@ -738,7 +741,7 @@
 
 	var/list/turfs_to_check = list()
 
-	if(has_limbs)
+	if(!has_limbs)
 		var/turf/T = get_step(src, angle2dir(dir2angle(direction)+90))
 		if (T)
 			turfs_to_check += T
@@ -756,8 +759,7 @@
 				if (AM.density && AM.anchored)
 					pressure_resistance_prob_delta -= 5
 					break
-	if(!force_moving)
-		..(pressure_difference, direction, pressure_resistance_prob_delta)
+	..(pressure_difference, direction, pressure_resistance_prob_delta)
 
 /mob/living/can_resist()
 	if(next_move > world.time)
@@ -817,7 +819,7 @@
 			adjustStaminaLoss(rand(8,15))//8 is from 7.5 rounded up
 			visible_message(span_danger("[src] struggles as they fail to break free of [pulledby]'s grip!"))
 		if(moving_resist && client) //we resisted by trying to move
-			client.move_delay = world.time + 20
+			client.move_delay = world.time + 2 SECONDS
 	else
 		pulledby.stop_pulling()
 		return FALSE
@@ -1546,7 +1548,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		if("eye_blind")
 			set_blindness(var_value)
 		if("eye_damage")
-			var/obj/item/organ/eyes/E = getorganslot(ORGAN_SLOT_EYES)
+			var/obj/item/organ/eyes/E = get_organ_slot(ORGAN_SLOT_EYES)
 			if(E)
 				E.setOrganDamage(var_value)
 		if("eye_blurry")

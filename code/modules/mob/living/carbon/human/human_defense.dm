@@ -200,7 +200,7 @@
 			last_damage = "fist"
 		dna.species.spec_attack_hand(H, src, user.mind?.martial_art, modifiers)
 
-/mob/living/carbon/human/attack_paw(mob/living/carbon/monkey/M, modifiers)
+/mob/living/carbon/human/attack_paw(mob/living/carbon/human/species/monkey/M, modifiers)
 	var/dam_zone = pick(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	var/obj/item/bodypart/affecting = get_bodypart(ran_zone(dam_zone))
 	if(!affecting)
@@ -235,7 +235,7 @@
 
 	if(can_inject(M, 1, affecting))//Thick suits can stop monkey bites.
 		if(..()) //successful monkey bite, this handles disease contraction.
-			var/damage = rand(1, 3)
+			var/damage = rand(M.dna.species.punchdamagelow, M.dna.species.punchdamagehigh)	
 			if(check_shields(M, damage, "the [M.name]", UNARMED_ATTACK))
 				return 0
 			if(stat != DEAD)
@@ -659,7 +659,7 @@
 				remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
 			return
 		else if(creamed)
-			if(istype(getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/lizard))
+			if(istype(get_organ_slot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/lizard))
 				visible_message(span_notice("[src] eats the pie off [p_their()] face with [p_their()] forked tongue."), 
 								span_notice("You eat the pie off your face with your forked tongue."))
 				reagents.add_reagent(/datum/reagent/consumable/banana, 1)

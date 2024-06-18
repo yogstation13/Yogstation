@@ -304,7 +304,7 @@
 	metabolization_rate = 6 * REAGENTS_METABOLISM
 
 /datum/reagent/consumable/condensedcapsaicin/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
-	if(!ishuman(M) && !ismonkey(M))
+	if(!ishuman(M))
 		return
 
 	var/mob/living/carbon/victim = M
@@ -459,10 +459,10 @@
 	taste_description = "childhood whimsy"
 
 /datum/reagent/consumable/sprinkles/on_mob_life(mob/living/carbon/M)
-	if(HAS_TRAIT(M.mind, TRAIT_LAW_ENFORCEMENT_METABOLISM))
+	if(M.mind && HAS_TRAIT(M.mind, TRAIT_LAW_ENFORCEMENT_METABOLISM))
 		M.heal_bodypart_damage(1,1, 0)
 		. = 1
-	..()
+	return ..()
 
 /datum/reagent/consumable/cornoil
 	name = "Corn Oil"
@@ -633,7 +633,7 @@
 	if(!permeability)
 		return ..()
 	if((methods & INGEST) || ((methods & (TOUCH|PATCH|VAPOR)) && !M.is_mouth_covered() && !M.is_eyes_covered()))
-		if(!M.getorganslot(ORGAN_SLOT_EYES))	//can't blind somebody with no eyes
+		if(!M.get_organ_slot(ORGAN_SLOT_EYES))	//can't blind somebody with no eyes
 			to_chat(M, "<span class = 'notice'>Your eye sockets feel wet.</span>")
 		else
 			if(!M.eye_blurry)

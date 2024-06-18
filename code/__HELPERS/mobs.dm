@@ -126,7 +126,8 @@
 		"pod_hair" = pick(GLOB.pod_hair_list),
 		"ipc_screen" = pick(GLOB.ipc_screens_list),
 		"ipc_antenna" = pick(GLOB.ipc_antennas_list),
-		"ipc_chassis" = pick(GLOB.ipc_chassis_list)
+		"ipc_chassis" = pick(GLOB.ipc_chassis_list),
+		"tail_monkey" = "None"
 	))
 
 /proc/random_hair_style(gender)
@@ -324,7 +325,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/atom/target_loc = target?.loc
 
 	var/drifting = FALSE
-	if(!user.Process_Spacemove() && user.inertia_dir)
+	if(SSmove_manager.processing_on(user, SSspacedrift))
 		drifting = TRUE
 
 	var/holding = user.get_active_held_item()
@@ -347,7 +348,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		if(!QDELETED(progbar))
 			progbar.update(world.time - starttime)
 
-		if(drifting && !user.inertia_dir)
+		if(drifting && !SSmove_manager.processing_on(user, SSspacedrift))
 			drifting = FALSE
 			user_loc = user.loc
 

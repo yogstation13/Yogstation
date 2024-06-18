@@ -209,9 +209,9 @@
 	for(var/obj/item/organ/organ as anything in bloodsuckeruser.internal_organs)
 		organ.setOrganDamage(0)
 	if(!HAS_TRAIT(bloodsuckeruser, TRAIT_MASQUERADE))
-		var/obj/item/organ/heart/current_heart = bloodsuckeruser.getorganslot(ORGAN_SLOT_HEART)
+		var/obj/item/organ/heart/current_heart = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART)
 		current_heart.beating = FALSE
-	var/obj/item/organ/eyes/current_eyes = bloodsuckeruser.getorganslot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/current_eyes = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_EYES)
 	if(current_eyes)
 		current_eyes.flash_protect = max(initial(current_eyes.flash_protect) - 1, - 1)
 		current_eyes.color_cutoffs = list(25, 8, 5)

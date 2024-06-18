@@ -25,7 +25,7 @@
 	toggle_mister(user)
 
 /obj/item/watertank/item_action_slot_check(slot, mob/user)
-	if(slot == user.getBackSlot())
+	if(slot & user.getBackSlot())
 		return 1
 
 /obj/item/watertank/proc/toggle_mister(mob/living/user)
@@ -278,10 +278,10 @@
 		var/obj/effect/resin_container/resin = new (get_turf(src))
 		log_game("[key_name(user)] used Resin Launcher at [AREACOORD(user)].")
 		playsound(src,'sound/items/syringeproj.ogg',40,TRUE)
-		for(var/a=0, a<5, a++)
-			step_towards(resin, target)
-			sleep(0.2 SECONDS)
-		resin.Smoke()
+		var/delay = 2
+		var/datum/move_loop/loop = SSmove_manager.move_towards(resin, target, delay, timeout = delay * 5, priority = MOVEMENT_ABOVE_SPACE_PRIORITY)
+		RegisterSignal(loop, COMSIG_MOVELOOP_POSTPROCESS, PROC_REF(resin_stop_check))
+		RegisterSignal(loop, COMSIG_QDELETING, PROC_REF(resin_landed))
 		return
 
 	if(nozzle_mode == RESIN_FOAM)
@@ -301,6 +301,20 @@
 		else
 			to_chat(user, span_warning("Resin foam mix is still being synthesized..."))
 			return
+
+/obj/item/extinguisher/mini/nozzle/proc/resin_stop_check(datum/move_loop/source, result)
+	SIGNAL_HANDLER
+	if(result == MOVELOOP_SUCCESS)
+		return
+	resin_landed(source)
+	qdel(source)
+
+/obj/item/extinguisher/mini/nozzle/proc/resin_landed(datum/move_loop/source)
+	SIGNAL_HANDLER
+	if(!istype(source.moving, /obj/effect/resin_container) || QDELETED(source.moving))
+		return
+	var/obj/effect/resin_container/resin = source.moving
+	resin.Smoke()
 
 /obj/item/extinguisher/mini/nozzle/proc/add_foam_charge()
 	resin_charges++
@@ -323,6 +337,10 @@
 	foaming.start()
 	playsound(src,'sound/effects/bamf.ogg',100,TRUE)
 	qdel(src)
+
+// Please don't spacedrift thanks
+/obj/effect/resin_container/newtonian_move(direction, instant = FALSE, start_delay = 0)
+	return TRUE
 
 #undef EXTINGUISHER
 #undef RESIN_LAUNCHER
@@ -355,7 +373,7 @@
 	toggle_injection()
 
 /obj/item/reagent_containers/chemtank/item_action_slot_check(slot, mob/user)
-	if(slot == ITEM_SLOT_BACK)
+	if(slot & ITEM_SLOT_BACK)
 		return 1
 
 /obj/item/reagent_containers/chemtank/proc/toggle_injection()

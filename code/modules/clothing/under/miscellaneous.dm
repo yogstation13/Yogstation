@@ -63,6 +63,7 @@
 	item_state = "waiter"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
+	supports_variations_flags = CLOTHING_MONKEY_VARIATION
 
 /obj/item/clothing/under/rank/prisoner
 	name = "prison jumpsuit"
@@ -972,7 +973,7 @@
 
 /obj/item/clothing/under/drip/equipped(mob/user, slot)
 	. = ..()
-	if(slot == ITEM_SLOT_ICLOTHING)
+	if(slot & ITEM_SLOT_ICLOTHING)
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drippy", /datum/mood_event/drippy)
 		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "dripless", /datum/mood_event/drippy)
 		if(user && ishuman(user) && !user.GetComponent(/datum/component/mood))

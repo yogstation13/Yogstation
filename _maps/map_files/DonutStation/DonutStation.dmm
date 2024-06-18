@@ -2990,7 +2990,7 @@
 	dir = 4;
 	network = list("ss13","Medical","Virology")
 	},
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 9
 	},
@@ -15390,7 +15390,7 @@
 /area/maintenance/aft)
 "ghI" = (
 /obj/structure/disposalpipe/segment,
-/mob/living/carbon/monkey/punpun,
+/mob/living/carbon/human/species/monkey/punpun,
 /turf/open/floor/carpet/black,
 /area/crew_quarters/bar)
 "ghL" = (
@@ -21431,7 +21431,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "iWG" = (
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	dir = 1
 	},
 /turf/open/floor/grass,
@@ -21443,7 +21443,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
 	},
-/obj/effect/decal/cleanable/ash/crematorium,
+/obj/effect/decal/cleanable/ash,
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
@@ -29273,7 +29273,7 @@
 /turf/open/floor/plasteel,
 /area/security/courtroom)
 "mpK" = (
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	dir = 1
 	},
 /obj/structure/window/reinforced{
@@ -29786,10 +29786,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"myW" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall/r_wall,
-/area/tcommsat/computer)
 "mzd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/flasher{
@@ -34418,7 +34414,7 @@
 /area/hydroponics/garden)
 "ose" = (
 /obj/effect/landmark/xeno_spawn,
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 8
 	},
@@ -35484,7 +35480,7 @@
 	brightness = 3;
 	dir = 8
 	},
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 10
 	},
@@ -39381,7 +39377,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	dir = 1
 	},
 /turf/open/floor/grass,
@@ -49147,7 +49143,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
 "uGT" = (
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 8
 	},
@@ -90537,7 +90533,7 @@ akr
 akr
 iVj
 akr
-myW
+akr
 ylr
 ylr
 ylr

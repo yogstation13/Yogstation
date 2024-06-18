@@ -111,7 +111,7 @@
 		//WS Begin - Display Ethereal Charge and Crystallization Cooldown
 		if(istype(src))
 			var/datum/species/ethereal/eth_species = src.dna?.species
-			var/obj/item/organ/heart/ethereal/eth_heart = getorganslot(ORGAN_SLOT_HEART)
+			var/obj/item/organ/heart/ethereal/eth_heart = get_organ_slot(ORGAN_SLOT_HEART)
 			if(istype(eth_species))
 				. += "Crystal Charge: [round((nutrition / NUTRITION_LEVEL_MOSTLY_FULL) * 100, 0.1)]%"
 			if(eth_heart && istype(eth_heart))
@@ -204,13 +204,13 @@
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			var/perpname = get_face_name(get_id_name(""))
-			if(istype(H.glasses, /obj/item/clothing/glasses/hud) || istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud))
+			if(istype(H.glasses, /obj/item/clothing/glasses/hud) || istype(H.get_organ_slot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud))
 				var/datum/data/record/R = find_record("name", perpname, GLOB.data_core.general)
 				if(href_list["photo_front"] || href_list["photo_side"])
 					if(R)
 						if(!H.canUseHUD())
 							return
-						else if(!istype(H.glasses, /obj/item/clothing/glasses/hud) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/medical))
+						else if(!istype(H.glasses, /obj/item/clothing/glasses/hud) && !istype(H.get_organ_slot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/medical))
 							return
 						var/obj/item/photo/P = null
 						if(href_list["photo_front"])
@@ -221,13 +221,13 @@
 							P.show(H)
 
 				if(href_list["hud"] == "m")
-					if(istype(H.glasses, /obj/item/clothing/glasses/hud/health) || istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/medical))
+					if(istype(H.glasses, /obj/item/clothing/glasses/hud/health) || istype(H.get_organ_slot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/medical))
 						if(href_list["p_stat"])
 							var/health_status = input(usr, "Specify a new physical status for this person.", "Medical HUD", R.fields["p_stat"]) in list("Active", "Physically Unfit", "*Unconscious*", "*Deceased*", "Cancel")
 							if(R)
 								if(!H.canUseHUD())
 									return
-								else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/health) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/medical))
+								else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/health) && !istype(H.get_organ_slot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/medical))
 									return
 								if(health_status && health_status != "Cancel")
 									R.fields["p_stat"] = health_status
@@ -237,7 +237,7 @@
 							if(R)
 								if(!H.canUseHUD())
 									return
-								else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/health) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/medical))
+								else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/health) && !istype(H.get_organ_slot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/medical))
 									return
 								if(health_status && health_status != "Cancel")
 									R.fields["m_stat"] = health_status
@@ -286,7 +286,7 @@
 								to_chat(usr, span_danger("Gathered data is inconsistent with the analysis, possible cause: poisoning."))
 
 				if(href_list["hud"] == "s")
-					if(istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
+					if(istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.get_organ_slot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
 						if(usr.stat || usr == src) //|| !usr.canmove || usr.restrained()) Fluff: Sechuds have eye-tracking technology and sets 'arrest' to people that the wearer looks and blinks at.
 							return													  //Non-fluff: This allows sec to set people to arrest as they get disarmed or beaten
 						// Checks the user has security clearence before allowing them to change arrest status via hud, comment out to enable all access
@@ -312,7 +312,7 @@
 									if(setcriminal != "Cancel")
 										if(R)
 											if(H.canUseHUD())
-												if(istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
+												if(istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.get_organ_slot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
 													investigate_log("[key_name(src)] has been set from [R.fields["criminal"]] to [setcriminal] by [key_name(usr)].", INVESTIGATE_RECORDS)
 													R.fields["comments"] |= GLOB.data_core.createCommentEntry("Criminal status set to [setcriminal].", allowed_access)
 													R.fields["criminal"] = setcriminal
@@ -323,7 +323,7 @@
 									if(R)
 										if(!H.canUseHUD())
 											return
-										else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
+										else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.get_organ_slot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
 											return
 										to_chat(usr, "<b>Name:</b> [R.fields["name"]]	<b>Criminal Status:</b> [R.fields["criminal"]]")
 										to_chat(usr, "<b>Crimes:</b>")
@@ -349,7 +349,7 @@
 												return
 											else if(!H.canUseHUD())
 												return
-											else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
+											else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.get_organ_slot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
 												return
 											var/crime = GLOB.data_core.createCrimeEntry(crimeName, crimeDetails, allowed_access, station_time_timestamp())
 											GLOB.data_core.addCrime(R.fields["id"], crime)
@@ -361,7 +361,7 @@
 									if(R)
 										if(!H.canUseHUD())
 											return
-										else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
+										else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.get_organ_slot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
 											return
 										to_chat(usr, "<b>Comments/Log:</b>")
 										for(var/datum/data/comment/C in R.fields["comments"])
@@ -377,7 +377,7 @@
 												return
 											else if(!H.canUseHUD())
 												return
-											else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
+											else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.get_organ_slot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
 												return
 											var/comment = GLOB.data_core.createCommentEntry(commentValue, allowed_access)
 											GLOB.data_core.addComment(R.fields["id"], comment)
@@ -544,7 +544,7 @@
 			to_chat(src, span_warning("Remove [p_their()] mask first!"))
 			return FALSE
 
-		if (!getorganslot(ORGAN_SLOT_LUNGS))
+		if (!get_organ_slot(ORGAN_SLOT_LUNGS))
 			to_chat(src, span_warning("You have no lungs to breathe with, so you cannot perform CPR!"))
 			return FALSE
 
@@ -568,7 +568,7 @@
 
 		if (HAS_TRAIT(target, TRAIT_NOBREATH))
 			to_chat(target, span_unconscious("You feel a breath of fresh air... which is a sensation you don't recognise..."))
-		else if (!target.getorganslot(ORGAN_SLOT_LUNGS))
+		else if (!target.get_organ_slot(ORGAN_SLOT_LUNGS))
 			to_chat(target, span_unconscious("You feel a breath of fresh air... but you don't feel any better..."))
 		// yogs start - can't CPR people with ash walker lungs whithout having them yourself
 		else if(!!they_ashlung != !!we_ashlung)
@@ -685,6 +685,7 @@
 	if(creamed) //clean both to prevent a rare bug
 		cut_overlay(mutable_appearance('icons/effects/creampie.dmi', "creampie_lizard"))
 		cut_overlay(mutable_appearance('icons/effects/creampie.dmi', "creampie_human"))
+		cut_overlay(mutable_appearance('icons/effects/creampie.dmi', "creampie_monkey"))
 		creamed = FALSE
 
 //Turns a mob black, flashes a skeleton overlay
@@ -1019,7 +1020,7 @@
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_POWERHUNGRY))
-		if(!istype(getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
+		if(!istype(get_organ_slot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
 			nutrition = 0
 			dna?.species.get_hunger_alert(src)
 			return FALSE
@@ -1035,7 +1036,7 @@
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_POWERHUNGRY))
-		if(!istype(getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
+		if(!istype(get_organ_slot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
 			nutrition = 0
 			dna?.species.get_hunger_alert(src)
 			return FALSE
@@ -1062,12 +1063,21 @@
 		return FALSE
 	return ..()
 
+/mob/living/carbon/human/monkeybrain
+	ai_controller = /datum/ai_controller/monkey
+
 /mob/living/carbon/human/species
 	var/race = null
+	var/use_random_name = TRUE
 
 /mob/living/carbon/human/species/create_dna()
 	dna = new /datum/dna(src)
 	dna.species = new race()
+
+/mob/living/carbon/human/species/set_species(datum/species/mrace, icon_update, pref_load)
+	. = ..()
+	if(use_random_name)
+		fully_replace_character_name(real_name, dna.species.random_name())
 
 /mob/living/carbon/human/species/abductor
 	race = /datum/species/abductor
@@ -1226,7 +1236,7 @@
 	var/old_deathsound = deathsound
 	deathsound = null //make it a silent death
 	death()
-	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN) // There's no brain in here, perfect for recruitment to security
+	var/obj/item/organ/brain/B = get_organ_slot(ORGAN_SLOT_BRAIN) // There's no brain in here, perfect for recruitment to security
 	if(B)
 		B.Remove(src)
 		QDEL_NULL(B)

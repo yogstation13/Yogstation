@@ -2,7 +2,7 @@
 	name = "Organ manipulation"
 	icon_state = "organ_manipulation"
 	desc = "This surgery covers operations to remove/insert internal organs, tails, and cyber implants."
-	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
+	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD)
 	requires_real_bodypart = 1
 	steps = list(
@@ -100,7 +100,7 @@
 		preop_sound = initial(preop_sound)
 		success_sound = initial(success_sound)
 		I = tool
-		if(target_zone != I.zone || target.getorganslot(I.slot))
+		if(target_zone != I.zone || target.get_organ_slot(I.slot))
 			to_chat(user, span_notice("There is no room for [I] in [target]'s [parse_zone(target_zone)]!"))
 			return -1
 

@@ -68,7 +68,7 @@
 	span_userdanger("Dented and scratched, your armor falls away, and your fragile form breaks apart without its protection."))
 	. = ..()
 
-/mob/living/simple_animal/hostile/clockwork/marauder/Process_Spacemove(movement_dir = 0)
+/mob/living/simple_animal/hostile/clockwork/marauder/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
 	return TRUE
 
 /mob/living/simple_animal/hostile/clockwork/marauder/adjustHealth(amount, updating_health = TRUE, forced = FALSE)

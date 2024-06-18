@@ -150,11 +150,13 @@
 		target.forceMove(src)
 		if(user == target)
 			user.visible_message("[user] climbs into [src].", span_notice("You climb into [src]."))
+			. = TRUE
 		else
 			target.visible_message(span_danger("[user] has placed [target] in [src]."), span_userdanger("[user] has placed [target] in [src]."))
 			log_combat(user, target, "stuffed", addition="into [src]")
 			target.LAssailant = WEAKREF(user)
-		update_appearance()
+			. = TRUE
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/disposal/relaymove(mob/user)
 	attempt_escape(user)

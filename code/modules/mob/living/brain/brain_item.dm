@@ -110,7 +110,7 @@
 			ADD_TRAIT(brainmob, TRAIT_BADDNA, source)
 		for(var/source in GET_TRAIT_SOURCES(L, TRAIT_NOCLONE))
 			ADD_TRAIT(brainmob, TRAIT_NOCLONE, source)
-		var/obj/item/organ/zombie_infection/ZI = L.getorganslot(ORGAN_SLOT_ZOMBIE)
+		var/obj/item/organ/zombie_infection/ZI = L.get_organ_slot(ORGAN_SLOT_ZOMBIE)
 		if(ZI)
 			brainmob.set_species(ZI.old_species)	//For if the brain is cloned
 	if(L.mind && L.mind.current)

@@ -9,7 +9,7 @@
 				/datum/surgery_step/incise, 
 				/datum/surgery_step/handle_cavity, 
 				/datum/surgery_step/close)
-	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
+	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_CHEST)
 
 /datum/surgery/cavity_implant/mechanical

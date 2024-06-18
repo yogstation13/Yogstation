@@ -58,7 +58,7 @@
 	if(A.wear_suit?.flags_inv & HIDEJUMPSUIT)
 		to_chat(A, span_warning("Your tail is covered by your [A.wear_suit]!"))
 		return
-	var/obj/item/organ/tail = A.getorganslot(ORGAN_SLOT_TAIL)
+	var/obj/item/organ/tail = A.get_organ_slot(ORGAN_SLOT_TAIL)
 	if(!istype(tail, /obj/item/organ/tail/lizard))
 		A.visible_message(span_danger("[A] spins around."), \
 						  span_userdanger("You spin around like a doofus."))

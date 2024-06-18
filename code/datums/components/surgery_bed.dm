@@ -48,7 +48,7 @@
 	var/mob/living/carbon/human/patient = get_patient()
 	if(!patient)
 		return FALSE
-	if(ishuman(patient) ||  ismonkey(patient))
+	if(ishuman(patient))
 		return patient
 	return FALSE
 

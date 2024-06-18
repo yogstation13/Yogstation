@@ -67,8 +67,8 @@
 			var/heart_strength = span_danger("no")
 			var/lung_strength = span_danger("no")
 
-			var/obj/item/organ/heart/heart = M.getorganslot(ORGAN_SLOT_HEART)
-			var/obj/item/organ/lungs/lungs = M.getorganslot(ORGAN_SLOT_LUNGS)
+			var/obj/item/organ/heart/heart = M.get_organ_slot(ORGAN_SLOT_HEART)
+			var/obj/item/organ/lungs/lungs = M.get_organ_slot(ORGAN_SLOT_LUNGS)
 
 			if(!(M.stat == DEAD || (HAS_TRAIT(M, TRAIT_FAKEDEATH))))
 				if(heart && istype(heart))
@@ -214,7 +214,7 @@
 
 /obj/item/clothing/neck/anti_magic_collar/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
-	if((slot & slot_flags))
+	if(slot & slot_flags)
 		to_chat(user, span_danger("You hear the collar click as it locks around your neck!"))
 		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 		RegisterSignal(user, COMSIG_MOB_RESTRICT_MAGIC, PROC_REF(restrict_casting_magic))

@@ -74,10 +74,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned/bridge)
-"bU" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shuttle/abandoned/engine)
 "bX" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light/small{
@@ -2908,11 +2904,11 @@ Vb
 Wh
 rS
 hu
-bU
+at
 at
 jP
 at
-bU
+at
 TB
 Ov
 Wh
@@ -2927,11 +2923,11 @@ aa
 aS
 AC
 ca
-bU
+at
 Ie
 PR
 sJ
-bU
+at
 Do
 re
 aS
@@ -2945,7 +2941,7 @@ aa
 aa
 aS
 at
-bU
+at
 al
 oR
 oh

@@ -63,9 +63,9 @@
 	// Falsifies Health & Genetic Analyzers
 	ADD_TRAIT(user, TRAIT_MASQUERADE, BLOODSUCKER_TRAIT)
 	// Organs
-	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	eyes.flash_protect = initial(eyes.flash_protect)
-	var/obj/item/organ/heart/vampheart = user.getorganslot(ORGAN_SLOT_HEART)
+	var/obj/item/organ/heart/vampheart = user.get_organ_slot(ORGAN_SLOT_HEART)
 	vampheart.beating = TRUE
 	user.apply_status_effect(STATUS_EFFECT_MASQUERADE)
 
@@ -78,9 +78,9 @@
 	// Remove genes, then make unable to get new ones.
 	user.dna.remove_all_mutations()
 	// Organs
-	var/obj/item/organ/heart/vampheart = user.getorganslot(ORGAN_SLOT_HEART)
+	var/obj/item/organ/heart/vampheart = user.get_organ_slot(ORGAN_SLOT_HEART)
 	vampheart.beating = FALSE
-	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	if(eyes)
 		eyes.flash_protect = max(initial(eyes.flash_protect) - 1, - 1)
 	// Remove all diseases

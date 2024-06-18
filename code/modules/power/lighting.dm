@@ -789,7 +789,7 @@
 		if(isethereal(H))
 			to_chat(H, span_notice("You start channeling some power through the [fitting] into your body."))
 			if(do_after(user, 1 SECONDS, src))
-				if(istype(H.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
+				if(istype(H.get_organ_slot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
 					to_chat(H, span_notice("You receive some charge from the [fitting]."))
 					H.adjust_nutrition(100)
 				else

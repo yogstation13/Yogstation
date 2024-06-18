@@ -97,8 +97,7 @@
 	icon_state = "bloodaltar"
 	density = TRUE
 	anchored = FALSE
-	pass_flags = LETPASSTHROW
-	can_buckle = FALSE
+	pass_flags_self = LETPASSTHROW
 	var/sacrifices = 0
 	var/sacrificialtask = FALSE
 	var/organ_name = ""

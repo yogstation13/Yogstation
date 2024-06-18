@@ -109,7 +109,7 @@
 		if(isitem(T) || !ismovable(T) || !(T.density))
 			continue
 		T.SpinAnimation(0.2 SECONDS, 1)
-		if(Q.density || (!(Q.reachableTurftestdensity(T = Q))))
+		if(Q.density || !get_adjacent_open_turfs(Q))
 			if(isliving(T))
 				var/mob/living/target = T
 				target.adjustBruteLoss(5)
@@ -125,7 +125,7 @@
 			if(ismineralturf(Q))
 				var/turf/closed/mineral/M = Q
 				M.attempt_drill()
-		if(Q.density || (!(Q.reachableTurftestdensity(T = Q))))
+		if(Q.density || !get_adjacent_open_turfs(Q))
 			return  
 		T.forceMove(Q)
 	addtimer(CALLBACK(src, PROC_REF(fly), ball, dir, triplength-1), 0.1 SECONDS)			

@@ -42,7 +42,7 @@
 				if(!reagents || !reagents.total_volume)
 					return // The drink might be empty after the delay, such as by spam-feeding
 				M.visible_message(span_danger("[user] feeds something to [M]."), span_userdanger("[user] feeds something to you."))
-				log_combat(user, M, "fed", reagents.log_list())
+				log_combat(user, M, "fed", reagents.get_reagent_log_string())
 			else
 				to_chat(user, span_notice("You swallow a gulp of [src]."))
 			var/fraction = min(5/reagents.total_volume, 1)
@@ -300,7 +300,7 @@
 
 /obj/item/reagent_containers/glass/bucket/equipped(mob/user, slot)
 	..()
-	if (slot == ITEM_SLOT_HEAD)
+	if (slot & ITEM_SLOT_HEAD)
 		if(reagents.total_volume)
 			to_chat(user, span_userdanger("[src]'s contents spill all over you!"))
 			reagents.reaction(user, TOUCH)

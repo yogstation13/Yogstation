@@ -887,7 +887,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/vape/equipped(mob/user, slot)
 	. = ..()
-	if(slot == ITEM_SLOT_MASK)
+	if(slot & ITEM_SLOT_MASK)
 		if(!screw)
 			to_chat(user, span_notice("You start puffing on the vape."))
 			DISABLE_BITFIELD(reagents.flags, NO_REACT)

@@ -517,7 +517,7 @@
 	lighting_cutoff = initial(lighting_cutoff)
 	lighting_color_cutoffs = list(lighting_cutoff_red, lighting_cutoff_green, lighting_cutoff_blue)
 
-	var/obj/item/organ/eyes/eyes = getorganslot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = get_organ_slot(ORGAN_SLOT_EYES)
 	if(eyes)
 		set_invis_see(eyes.see_invisible)
 		new_sight |= eyes.sight_flags
@@ -634,7 +634,7 @@
 	if(wear_mask)
 		. += wear_mask.tint
 
-	var/obj/item/organ/eyes/E = getorganslot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/E = get_organ_slot(ORGAN_SLOT_EYES)
 	if(E)
 		. += E.tint
 
@@ -1248,5 +1248,5 @@
  * Make sure it's used AFTER stamina damage is applied.
  */
 /mob/living/carbon/clear_stamina_regen()
-	for(var/obj/item/bodypart/B in bodyparts)
-		B.stamina_cache = list()
+	for(var/obj/item/bodypart/part as anything in bodyparts)
+		part.stamina_cache = list()

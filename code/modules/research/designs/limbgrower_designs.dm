@@ -133,14 +133,13 @@
 	build_path = /obj/item/organ/tongue/lizard
 	category = list("lizard")
 
-//  someday this will get uncommented
-// /datum/design/monkey_tail
-// 	name = "Monkey Tail"
-// 	id = "monkeytail"
-// 	build_type = LIMBGROWER
-// 	reagents_list = list(/datum/reagent/medicine/synthflesh = 20)
-// 	build_path = /obj/item/organ/tail/monkey
-// 	category = list("other","initial")
+/datum/design/monkey_tail
+	name = "Monkey Tail"
+	id = "monkeytail"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 20)
+	build_path = /obj/item/organ/tail/monkey
+	category = list("other","initial")
 
 /datum/design/cat_tail
 	name = "Cat Tail"

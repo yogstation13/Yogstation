@@ -974,7 +974,7 @@
 "KL" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/line,
-/mob/living/carbon/monkey/punpun,
+/mob/living/carbon/human/species/monkey/punpun,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
@@ -1095,10 +1095,6 @@
 	req_access_txt = "25"
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/powered/spacebar)
-"NQ" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall,
 /area/ruin/space/has_grav/powered/spacebar)
 "Oo" = (
 /obj/machinery/door/firedoor/border_only,
@@ -2419,7 +2415,7 @@ FB
 FB
 Dz
 FB
-NQ
+FB
 ZN
 LN
 sM

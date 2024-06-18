@@ -48,7 +48,7 @@
 				return
 			if(!reagents || !reagents.total_volume)
 				return // The drink might be empty after the delay, such as by spam-feeding
-			log_combat(user, M, "fed", reagents.log_list())
+			log_combat(user, M, "fed", reagents.get_reagent_log_string())
 
 		if(!C.drink_text(src, C, user))
 			return

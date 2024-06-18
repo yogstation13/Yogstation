@@ -155,6 +155,11 @@ There are several things that need to be remembered:
 		//Friendly reminder that icon_exists(file, state, scream = TRUE) is your friend when debugging this code.
 		var/icon_file
 		var/target_overlay = RESOLVE_ICON_STATE(uniform) //Selects proper icon from the vars the clothing has (Search define for more.)
+		var/handled_by_bodytype
+
+		if(dna?.species.limbs_id == "monkey" && (uniform.supports_variations_flags & CLOTHING_MONKEY_VARIATION))
+			icon_file = 'icons/mob/clothing/monkey/uniform.dmi'
+			handled_by_bodytype = TRUE
 
 		if(uniform.adjusted == ALT_STYLE)
 			target_overlay = "[target_overlay]_d"
@@ -162,6 +167,9 @@ There are several things that need to be remembered:
 			target_overlay = "[target_overlay]_l"
 		else if(uniform.adjusted == DIGIALT_STYLE)
 			target_overlay = "[target_overlay]_d_l" // yogs end
+
+		if(!icon_exists(icon_file, target_overlay)) //Sanity check.
+			icon_file = 'icons/mob/clothing/uniform/uniform.dmi'
 
 		var/mutable_appearance/uniform_overlay
 
@@ -172,6 +180,7 @@ There are several things that need to be remembered:
 				isinhands = FALSE,
 				femaleuniform = uniform.fitted, 
 				override_state = target_overlay,
+				override_file = handled_by_bodytype ? icon_file : null,
 			)
 		else
 			uniform_overlay = uniform.build_worn_icon(
@@ -179,12 +188,13 @@ There are several things that need to be remembered:
 				default_icon_file = icon_file, 
 				isinhands = FALSE, 
 				override_state = target_overlay,
+				override_file = handled_by_bodytype ? icon_file : null,
 			)
 
 
 		if(OFFSET_UNIFORM in dna.species.offset_features)
-			uniform_overlay.pixel_x += dna.species.offset_features[OFFSET_UNIFORM][1]
-			uniform_overlay.pixel_y += dna.species.offset_features[OFFSET_UNIFORM][2]
+			uniform_overlay?.pixel_x += dna.species.offset_features[OFFSET_UNIFORM][1]
+			uniform_overlay?.pixel_y += dna.species.offset_features[OFFSET_UNIFORM][2]
 		overlays_standing[UNIFORM_LAYER] = uniform_overlay
 		apply_overlay(UNIFORM_LAYER)
 
@@ -223,7 +233,7 @@ There are several things that need to be remembered:
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_GLOVES) + 1]
 		inv.update_appearance(UPDATE_ICON)
 
-	if(!gloves && blood_in_hands)
+	if(!gloves && blood_in_hands && !(NOBLOODOVERLAY in dna.species.species_traits))
 		var/mutable_appearance/bloody_overlay = mutable_appearance('icons/effects/blood.dmi', "bloodyhands", -GLOVES_LAYER)
 		if(get_num_arms(FALSE) < 2)
 			if(has_left_hand(FALSE))
@@ -605,6 +615,7 @@ generate/load female uniform sprites matching all previously decided variables
 	isinhands = FALSE, 
 	femaleuniform = NO_FEMALE_UNIFORM, 
 	override_state = null,
+	override_file = null,
 )
 
 	var/t_state
@@ -614,7 +625,11 @@ generate/load female uniform sprites matching all previously decided variables
 		t_state = !isinhands ? (worn_icon_state ? worn_icon_state : icon_state) : (item_state ? item_state : icon_state)
 
 	//Find a valid icon file from variables+arguments
-	var/file2use = !isinhands ? (worn_icon ? worn_icon : default_icon_file) : default_icon_file
+	var/file2use
+	if(override_file)
+		file2use = override_file
+	else
+		file2use = !isinhands ? (worn_icon ? worn_icon : default_icon_file) : default_icon_file
 
 	//Find a valid layer from variables+arguments
 	var/layer2use = alternate_worn_layer ? alternate_worn_layer : default_layer
@@ -756,7 +771,7 @@ generate/load female uniform sprites matching all previously decided variables
 
 		// eyes
 		if(!(NOEYESPRITES in dna.species.species_traits))
-			var/obj/item/organ/eyes/parent_eyes = getorganslot(ORGAN_SLOT_EYES)
+			var/obj/item/organ/eyes/parent_eyes = get_organ_slot(ORGAN_SLOT_EYES)
 			if(parent_eyes)
 				add_overlay(parent_eyes.generate_body_overlay(src))
 			else

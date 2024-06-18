@@ -110,11 +110,11 @@
 					H.emote("wag")
 				if(-1)
 					stop_wagging_tail(H)
-	if(!H.getorganslot(ORGAN_SLOT_TAIL) && !regrowtimer)
+	if(!H.get_organ_slot(ORGAN_SLOT_TAIL) && !regrowtimer)
 		regrowtimer = addtimer(CALLBACK(src, PROC_REF(regrow_tail), H), 20 MINUTES, TIMER_UNIQUE)
 
 /datum/species/lizard/proc/regrow_tail(mob/living/carbon/human/H)
-	if(!H.getorganslot(ORGAN_SLOT_TAIL) && H.stat != DEAD)
+	if(!H.get_organ_slot(ORGAN_SLOT_TAIL) && H.stat != DEAD)
 		var/obj/item/organ/tail/lizard/tail = new mutanttail()
 		tail.color = H.dna.features["mcolor"]
 		tail.tail_type = H.dna.features["tail_lizard"]

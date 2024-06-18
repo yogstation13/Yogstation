@@ -155,7 +155,7 @@
 				pod.update_appearance(UPDATE_ICON)
 			sleep(SleepTime)
 			if(open_status == STATION_TUBE_CLOSED && pod && pod.loc == loc)
-				pod.follow_tube()
+				pod.follow_tube(src)
 			pod_moving = FALSE
 			return TRUE
 	return FALSE

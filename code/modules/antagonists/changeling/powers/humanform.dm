@@ -27,6 +27,8 @@
 	to_chat(user, span_notice("We transform our appearance."))
 	..()
 	changeling.purchasedpowers -= src
+	var/datum/dna/chosen_dna = chosen_prof.dna
+	var/datum/species/chosen_species = chosen_dna.species
 
-	user.humanize(TR_KEEPITEMS | TR_KEEPIMPLANTS | TR_KEEPORGANS | TR_KEEPDAMAGE | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_KEEPSE, chosen_prof)
+	user.humanize(species = chosen_species)
 	return TRUE

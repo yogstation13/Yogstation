@@ -685,8 +685,9 @@ GLOBAL_LIST_EMPTY(lockers)
 		return air_contents.return_temperature()
 	return ..()
 
-/obj/structure/closet/CanAStarPass(ID, dir, caller)
-	//The parent function just checks if it's not dense, and if a closet is open then it's not dense 
+/obj/structure/closet/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller, no_id = FALSE)
+	if(can_open(caller) || allowed(caller))
+		return TRUE
 	. = ..()
 	if(!.)
 		if(ismob(caller))

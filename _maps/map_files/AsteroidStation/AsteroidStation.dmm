@@ -5761,7 +5761,7 @@
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/storage)
 "baa" = (
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/effect/turf_decal/trimline/yellow/filled/line/lower{
 	dir = 5
 	},
@@ -20839,10 +20839,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
-"fKN" = (
-/obj/effect/decal/cleanable/glass,
-/turf/closed/wall/r_wall,
-/area/maintenance/central/secondary)
 "fKY" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -22317,7 +22313,6 @@
 /area/maintenance/starboard/fore)
 "gip" = (
 /obj/structure/sign/poster/contraband/syndicate_pistol,
-/obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/listeningstation)
 "giR" = (
@@ -25511,7 +25506,7 @@
 /area/ai_monitored/turret_protected/ai_upload)
 "hig" = (
 /obj/effect/turf_decal/sand,
-/mob/living/carbon/monkey/punpun,
+/mob/living/carbon/human/species/monkey/punpun,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "hio" = (
@@ -34873,7 +34868,7 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "kaI" = (
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
@@ -36151,7 +36146,7 @@
 	pixel_x = -8;
 	pixel_y = 11
 	},
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
 "kva" = (
@@ -38088,7 +38083,6 @@
 /area/ruin/powered)
 "leD" = (
 /obj/structure/sign/poster/contraband/eat,
-/obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/listeningstation)
 "leH" = (
@@ -43614,10 +43608,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
-"mOy" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/closed/wall/r_wall,
-/area/science/storage)
 "mOF" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/heater{
 	dir = 4
@@ -45211,22 +45201,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/security/courtroom)
-"nlo" = (
-/obj/machinery/button/door{
-	id = "permacells2";
-	name = "Privacy Shutters";
-	pixel_y = -25
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/obj/machinery/camera{
-	c_tag = "Prison Cell 2";
-	dir = 1;
-	network = list("ss13","prison")
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "nlv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -55554,10 +55528,6 @@
 	},
 /turf/open/floor/eighties,
 /area/maintenance/starboard/fore)
-"qvF" = (
-/obj/effect/decal/cleanable/oil,
-/turf/closed/wall/r_wall,
-/area/maintenance/central/secondary)
 "qvH" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -60294,8 +60264,9 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "rSb" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
+/mob/living/carbon/human/species/monkey,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -63469,10 +63440,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
-"sLA" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/indestructible/riveted,
-/area/ruin/space/has_grav/listeningstation)
 "sLU" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -67900,7 +67867,7 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos/pumproom)
 "ubJ" = (
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/item/reagent_containers/food/snacks/grown/banana{
 	pixel_x = -12;
 	pixel_y = 7
@@ -72492,7 +72459,7 @@
 	name = "Monkey Pen";
 	req_access_txt = "9"
 	},
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -77313,7 +77280,7 @@
 /turf/open/floor/carpet,
 /area/library)
 "wZf" = (
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/structure/flora/ausbushes/sparsegrass{
 	pixel_x = 5;
 	pixel_y = -2
@@ -78568,10 +78535,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/white,
 /area/science/lab)
-"xxg" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/listeningstation)
 "xxs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -96952,14 +96915,14 @@ wEZ
 wEZ
 wEZ
 hpr
-sLA
-sLA
-xxg
+hpr
+hpr
+wEZ
 dON
 gip
 leD
 cAq
-xxg
+wEZ
 wEZ
 wEZ
 msb
@@ -106554,7 +106517,7 @@ aFP
 akI
 dps
 pOe
-fKN
+aDY
 tIO
 mHF
 akp
@@ -106811,7 +106774,7 @@ avV
 xmT
 dps
 efF
-qvF
+aDY
 drO
 hCu
 akp
@@ -114450,7 +114413,6 @@ wKe
 qEj
 ajQ
 wKe
-nlo
 ajQ
 wKe
 yif
@@ -114640,6 +114602,7 @@ msb
 msb
 msb
 msb
+acb
 acb
 acb
 acb
@@ -123767,7 +123730,7 @@ wUJ
 tPr
 etj
 dgo
-mOy
+akh
 awN
 vOX
 aJD

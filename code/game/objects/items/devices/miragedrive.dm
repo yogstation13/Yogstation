@@ -14,20 +14,10 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	item_state = "mdrive"
 	w_class = WEIGHT_CLASS_SMALL
-
 	COOLDOWN_DECLARE(last_dash)
 	COOLDOWN_DECLARE(last_attack)
 	var/obj/item/card/id/access_card
 	var/list/moving = list()
-
-/obj/item/mirage_drive/Initialize(mapload)
-	. = ..()
-	access_card = new /obj/item/card/id/captains_spare()
-
-/obj/item/mirage_drive/Destroy(force=FALSE)
-	QDEL_NULL(access_card)
-	moving = null
-	return ..()
 
 /obj/item/mirage_drive/examine(datum/source, mob/user, list/examine_list)
 	. = ..()
@@ -44,8 +34,8 @@
 	if(!COOLDOWN_FINISHED(src, last_dash))
 		to_chat(user, span_warning("You can't use the drive for another [COOLDOWN_TIMELEFT(src, last_dash)/10] seconds!"))
 		return
-	testpath = get_path_to(src, T, /turf/proc/Distance_cardinal, 0, 0, 0, /turf/proc/reachableTurftestdensity, id = access_card, simulated_only = FALSE, get_best_attempt = TRUE)
-	if(length(testpath) == 0)
+	testpath = get_path_to(src, T, 30, 0, simulated_only = FALSE)
+	if(!length(testpath))
 		to_chat(user, span_warning("There's no unobstructed path to the destination!"))
 		return
 	if(user.legcuffed && !(target in view(9, (user))))
@@ -142,7 +132,7 @@
 	for(var/atom/movable/K in mirage)
 		jumpangle = jumpangle + 150
 		var/turf/open/Q = get_step(get_turf(target), turn(target.dir, jumpangle))
-		if(Q.reachableTurftestdensity(T = Q))
+		if(get_path_to(src, Q, 30, 0, simulated_only = FALSE))
 			K.forceMove(Q)
 		else
 			K.forceMove(get_turf(target))

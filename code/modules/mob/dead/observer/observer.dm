@@ -296,7 +296,7 @@ Works together with spawning an observer, noted above.
 			return
 		if(ishuman(usr)) //following code only applies to those capable of having an ethereal heart, ie humans
 			var/mob/living/carbon/human/crystal_fella = usr
-			var/our_heart = crystal_fella.getorganslot(ORGAN_SLOT_HEART)
+			var/our_heart = crystal_fella.get_organ_slot(ORGAN_SLOT_HEART)
 			if(istype(our_heart, /obj/item/organ/heart/ethereal)) //so you got the heart?
 				var/obj/item/organ/heart/ethereal/ethereal_heart = our_heart
 				ethereal_heart.stop_crystalization_process(crystal_fella) //stops the crystallization process
@@ -965,8 +965,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set_light_on(!value ? TRUE : FALSE)
 
 // Ghosts have no momentum, being massless ectoplasm
-/mob/dead/observer/Process_Spacemove(movement_dir)
-	return 1
+/mob/dead/observer/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
+	return TRUE
 
 /mob/dead/observer/vv_edit_var(var_name, var_value)
 	. = ..()

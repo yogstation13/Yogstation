@@ -26,15 +26,31 @@
 	mergeable_decal = FALSE
 
 /obj/effect/decal/cleanable/xenoblood/xgibs/proc/streak(list/directions, mapload=FALSE)
-	set waitfor = 0
+	SEND_SIGNAL(src, COMSIG_GIBS_STREAK, directions)
 	var/direction = pick(directions)
-	for(var/i = 0, i < pick(1, 200; 2, 150; 3, 50), i++)
-		if (!mapload)
-			sleep(0.2 SECONDS)
-		if(i > 0)
+	var/delay = 2
+	var/range = pick(0, 200; 1, 150; 2, 50; 3, 17; 50) //the 3% chance of 50 steps is intentional and played for laughs.
+	if(!step_to(src, get_step(src, direction), 0))
+		return
+	if(mapload)
+		for (var/i = 1, i < range, i++)
+			var/turf/turf_sending = get_step(src, direction)
+			if(isclosedturf(turf_sending) || (isgroundlessturf(turf_sending) && !GET_TURF_BELOW(turf_sending)))
+				continue
 			new /obj/effect/decal/cleanable/xenoblood/xsplatter(loc)
-		if(!step_to(src, get_step(src, direction), 0))
-			break
+			if (!step_to(src, turf_sending, 0))
+				break
+		return
+
+	var/datum/move_loop/loop = SSmove_manager.move_to_dir(src, get_step(src, direction), delay = delay, timeout = range * delay, priority = MOVEMENT_ABOVE_SPACE_PRIORITY)
+	RegisterSignal(loop, COMSIG_MOVELOOP_POSTPROCESS, PROC_REF(spread_movement_effects))
+
+
+/obj/effect/decal/cleanable/xenoblood/xgibs/proc/spread_movement_effects(datum/move_loop/has_target/source)
+	SIGNAL_HANDLER
+	if(NeverShouldHaveComeHere(loc))
+		return
+	new /obj/effect/decal/cleanable/xenoblood/xsplatter(loc)
 
 /obj/effect/decal/cleanable/xenoblood/xgibs/ex_act()
 	return

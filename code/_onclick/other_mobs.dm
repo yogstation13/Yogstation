@@ -37,7 +37,11 @@
 	if(override)
 		return
 
-	SEND_SIGNAL(src, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, A)
+	SEND_SIGNAL(src, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, A, proximity)
+
+	if(dna?.species?.spec_unarmedattack(src, A)) //Because species like monkeys dont use attack hand
+		return
+
 	if(modifiers[RIGHT_CLICK])
 		var/secondary_result = A.attack_hand_secondary(src, modifiers)
 		if(secondary_result == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN || secondary_result == SECONDARY_ATTACK_CONTINUE_CHAIN)
@@ -128,56 +132,14 @@
 /mob/living/UnarmedAttack(atom/A, proximity, modifiers)
 	A.attack_animal(src, modifiers)
 
-/atom/proc/attack_animal(mob/user, modifiers)
-	return
+/atom/proc/attack_animal(mob/user)
+	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_ANIMAL, user)
 
-/mob/living/RestrainedClickOn(atom/A)
-	return
-
-/*
-	Monkeys
-*/
-/mob/living/carbon/monkey/UnarmedAttack(atom/A, proximity, modifiers)
-	A.attack_paw(src, modifiers)
-
-/atom/proc/attack_paw(mob/user, modifiers)
+///Attacked by monkey
+/atom/proc/attack_paw(mob/user)
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_PAW, user) & COMPONENT_NO_ATTACK_HAND)
 		return TRUE
 	return FALSE
-
-/*
-	Monkey RestrainedClickOn() was apparently the
-	one and only use of all of the restrained click code
-	(except to stop you from doing things while handcuffed);
-	moving it here instead of various hand_p's has simplified
-	things considerably
-*/
-/mob/living/carbon/monkey/RestrainedClickOn(atom/A)
-	if(..())
-		return
-	if(!combat_mode || !ismob(A))
-		return
-	if(is_muzzled())
-		return
-	var/mob/living/carbon/ML = A
-	if(istype(ML))
-		var/dam_zone = pick(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-		var/obj/item/bodypart/affecting = null
-		if(ishuman(ML))
-			var/mob/living/carbon/human/H = ML
-			affecting = H.get_bodypart(ran_zone(dam_zone))
-		var/armor = ML.run_armor_check(affecting, MELEE)
-		if(prob(75))
-			ML.apply_damage(rand(1,3), BRUTE, affecting, armor)
-			ML.visible_message(span_danger("[name] bites [ML]!"), \
-							span_userdanger("[name] bites [ML]!"))
-			if(armor >= 2)
-				return
-			for(var/thing in diseases)
-				var/datum/disease/D = thing
-				ML.ForceContractDisease(D)
-		else
-			ML.visible_message(span_danger("[src] has attempted to bite [ML]!"))
 
 /*
 	Aliens

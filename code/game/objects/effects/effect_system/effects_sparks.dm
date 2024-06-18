@@ -11,7 +11,6 @@
 	sparks.autocleanup = TRUE
 	sparks.start()
 
-
 /obj/effect/particle_effect/sparks
 	name = "sparks"
 	icon_state = "sparks"

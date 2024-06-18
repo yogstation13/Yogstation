@@ -10,7 +10,7 @@
 	RegisterSignals(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(equippedChanged))
 
 /datum/component/earhealing/proc/equippedChanged(datum/source, mob/living/carbon/user, slot)
-	if (slot == ITEM_SLOT_EARS && istype(user))
+	if (slot & ITEM_SLOT_EARS && istype(user))
 		if (!wearer)
 			START_PROCESSING(SSobj, src)
 		wearer = user
@@ -24,7 +24,7 @@
 		STOP_PROCESSING(SSobj, src)
 		return
 	if(!HAS_TRAIT(wearer, TRAIT_DEAF))
-		var/obj/item/organ/ears/ears = wearer.getorganslot(ORGAN_SLOT_EARS)
+		var/obj/item/organ/ears/ears = wearer.get_organ_slot(ORGAN_SLOT_EARS)
 		if (ears)
 			var/minDeaf = 0
 			if(ears.damage >= ears.maxHealth)

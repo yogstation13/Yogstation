@@ -24,6 +24,12 @@
 	var/staminaloss = 0		//Stamina damage, or exhaustion. You recover it slowly naturally, and are knocked down if it gets too high. Holodeck and hallucinations deal this.
 	var/crit_threshold = HEALTH_THRESHOLD_CRIT // when the mob goes from "normal" to crit
 
+	//Damage dealing vars! These are meaningless outside of specific instances where it's checked and defined.
+	/// Lower bound of damage done by unarmed melee attacks. Mob code is a mess, only works where this is checked for.
+	var/melee_damage_lower = 0
+	/// Upper bound of damage done by unarmed melee attacks. Please ensure you check the xyz_defenses.dm for the mobs in question to see if it uses this or hardcoded values.
+	var/melee_damage_upper = 0
+
 	var/mobility_flags = MOBILITY_FLAGS_DEFAULT
 
 	var/resting = FALSE
@@ -77,7 +83,7 @@
 	var/health_doll_icon //if this exists AND the normal sprite is bigger than 32x32, this is the replacement icon state (because health doll size limitations). the icon will always be screen_gen.dmi
 
 	var/last_bumped = 0
-	var/unique_name = 0 //if a mob's name should be appended with an id when created e.g. Mob (666)
+	var/unique_name = FALSE //if a mob's name should be appended with an id when created e.g. Mob (666)
 
 	var/list/butcher_results = null //these will be yielded from butchering with a probability chance equal to the butcher item's effectiveness
 	var/list/guaranteed_butcher_results = null //these will always be yielded from butchering

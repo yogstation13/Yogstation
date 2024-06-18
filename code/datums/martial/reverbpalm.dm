@@ -27,7 +27,7 @@
 		L.apply_damage(borgdam, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 
 /datum/martial_art/reverberating_palm/proc/crash(atom/movable/ram, turf/Q)
-	if(Q.density || (!(Q.reachableTurftestdensity(T = Q))))
+	if(Q.density || !get_adjacent_open_turfs(Q))
 		if(isliving(ram))
 			var/mob/living/target = ram
 			target.adjustBruteLoss(5)
@@ -38,7 +38,7 @@
 		if(ismineralturf(Q))
 			var/turf/closed/mineral/M = Q
 			M.attempt_drill()
-	if(Q.density || (!(Q.reachableTurftestdensity(T = Q))))
+	if(Q.density || !get_adjacent_open_turfs(Q))
 		return FALSE
 	else 
 		ram.forceMove(Q)
@@ -186,7 +186,7 @@
 		initiate(user)
 	for(var/mob/living/target in rushed)
 		(crash(target, Q))
-	if(Q.density || (!(Q.reachableTurftestdensity(T = Q))))
+	if(Q.density || !get_adjacent_open_turfs(Q))
 		return
 	user.forceMove(Q)
 	var/turf/R = get_step(Q, dir)

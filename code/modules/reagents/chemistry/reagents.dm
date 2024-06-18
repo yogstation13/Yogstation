@@ -24,7 +24,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/specific_heat = SPECIFIC_HEAT_DEFAULT
 	/// used by taste messages
 	var/taste_description = "metaphorical salt"
-	///how this taste compares to others. Higher values means it is more noticable
+	///how this taste compares to others. Higher values means it is more noticeable
 	var/taste_mult = 1
 	/// use for specialty drinks.
 	var/glass_name = "glass of ...what?"

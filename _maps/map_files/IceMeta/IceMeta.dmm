@@ -2382,7 +2382,7 @@
 	dir = 4
 	},
 /obj/structure/flora/ausbushes/sparsegrass,
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
 "aKh" = (
@@ -7437,7 +7437,7 @@
 	dir = 10
 	},
 /obj/structure/flora/ausbushes/sparsegrass,
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/virology)
 "chR" = (
@@ -7503,7 +7503,7 @@
 "ciC" = (
 /obj/machinery/light,
 /obj/structure/flora/ausbushes/ppflowers,
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
 "ciE" = (
@@ -14320,7 +14320,7 @@
 /turf/open/floor/plasteel/chapel,
 /area/chapel/main)
 "elW" = (
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/virology)
 "elY" = (
@@ -17646,7 +17646,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
 	},
-/mob/living/carbon/monkey/punpun,
+/mob/living/carbon/human/species/monkey/punpun,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "fmD" = (
@@ -32473,10 +32473,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
-"jxo" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall,
-/area/maintenance/starboard)
 "jxp" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -43480,7 +43476,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
 "mCd" = (
@@ -74823,7 +74819,7 @@
 /area/engine/engineering)
 "vtI" = (
 /obj/structure/sink/puddle,
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/virology)
 "vtQ" = (
@@ -255355,11 +255351,11 @@ cim
 iJT
 cim
 yjI
-jxo
 xqA
-jxo
-jxo
-jxo
+xqA
+xqA
+xqA
+xqA
 xqA
 dOc
 dOc

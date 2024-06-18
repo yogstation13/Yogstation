@@ -31,7 +31,7 @@
 
 /obj/item/clothing/suit/draculacoat/equipped(mob/user, slot)
 	. = ..()
-	if(slot == ITEM_SLOT_OCLOTHING)
+	if(slot & ITEM_SLOT_OCLOTHING)
 		RegisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(dodge))
 	else
 		UnregisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS)

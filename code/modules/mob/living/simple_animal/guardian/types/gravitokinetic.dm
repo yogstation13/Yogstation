@@ -35,7 +35,7 @@
 	for(var/datum/component/C in gravito_targets)
 		remove_gravity(C)
 
-/mob/living/simple_animal/hostile/guardian/gravitokinetic/Moved(oldLoc, dir)
+/mob/living/simple_animal/hostile/guardian/gravitokinetic/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	for(var/datum/component/C in gravito_targets)
 		if(get_dist(src, C.parent) > gravity_power_range)

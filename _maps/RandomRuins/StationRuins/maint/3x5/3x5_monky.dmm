@@ -9,7 +9,7 @@
 /area/template_noop)
 "d" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/template_noop)
 "e" = (
@@ -30,7 +30,7 @@
 /area/template_noop)
 "i" = (
 /obj/structure/flora/junglebush/b,
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/template_noop)
 "k" = (

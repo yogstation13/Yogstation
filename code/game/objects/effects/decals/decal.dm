@@ -3,15 +3,12 @@
 	plane = FLOOR_PLANE
 	anchored = TRUE
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	var/turf_loc_check = TRUE
 
 /obj/effect/decal/Initialize(mapload)
 	. = ..()
 	if(NeverShouldHaveComeHere(loc))
-		// Yog Code: Mappers you have a lot of shit to clean up before we can enable this
-		// if(mapload)
-		// 	stack_trace("[name] spawned in a bad turf ([loc]) at [AREACOORD(src)] in \the [get_area(src)].
-		// 		Please remove it or allow it to pass NeverShouldHaveComeHere if it's intended.")
+		stack_trace("[name] spawned in a bad turf ([loc]) at [AREACOORD(src)] in \the [get_area(src)]. \
+					Please remove it or allow it to pass NeverShouldHaveComeHere if it's intended.")
 		return INITIALIZE_HINT_QDEL
 	var/static/list/loc_connections = list(
 		COMSIG_TURF_CHANGE = PROC_REF(on_decal_move),

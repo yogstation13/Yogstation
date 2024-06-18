@@ -109,7 +109,7 @@
 		if(current.density)	//If it's a wall and we're not at our target, we can't stab through it
 			return 0
 		for(var/obj/O in current)
-			if(O.density && !(O.pass_flags & LETPASSTHROW))	//If there's a solid object we can't reach over on the turf
+			if(O.density && !(O.pass_flags_self & LETPASSTHROW))	//If there's a solid object we can't reach over on the turf
 				return 0
 		current = next
 		if(next != targloc)	//Move to the next tile if we're not already there

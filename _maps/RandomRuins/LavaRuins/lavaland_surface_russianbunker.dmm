@@ -502,10 +502,6 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/wood,
 /area/ruin/unpowered/russianbunker)
-"ww" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/russianbunker)
 "xs" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /mob/living/simple_animal/hostile/russian/ranged/trooper,
@@ -1379,7 +1375,7 @@ YQ
 YQ
 aH
 aM
-ww
+YQ
 YQ
 YQ
 zB

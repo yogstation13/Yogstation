@@ -25,7 +25,7 @@
 		else if((C.status_flags & CANKNOCKDOWN) && !HAS_TRAIT(C, TRAIT_STUNIMMUNE))
 			addtimer(CALLBACK(C, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), jitter), 5)
 		//yogstation edit begin -------------------------------------------
-		if(istype(C.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell/ethereal))
+		if(istype(C.get_organ_slot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell/ethereal))
 			C.adjust_nutrition(40)
 			to_chat(C,span_notice("You get charged by [src]."))
 		//yogstation edit end ---------------------------------------------
