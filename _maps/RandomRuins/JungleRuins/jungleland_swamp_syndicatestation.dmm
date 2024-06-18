@@ -2288,6 +2288,7 @@
 /obj/item/clothing/glasses/sunglasses,
 /obj/item/kitchen/knife/combat/survival,
 /obj/item/ammo_box/magazine/m10mm,
+/obj/item/clothing/under/syndicate/sniper,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/powered/syndicate_jungle_base/dormitories)
 "uv" = (
@@ -2903,9 +2904,9 @@
 /obj/item/ammo_casing/shotgun/syndie,
 /obj/item/ammo_casing/shotgun/syndie,
 /obj/item/storage/belt/bandolier,
-/obj/item/clothing/under/rank/bartender,
 /obj/item/clothing/head/that,
 /obj/item/clothing/glasses/sunglasses/reagent,
+/obj/item/clothing/under/rank/civilian/bartender,
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_jungle_base/bar)
 "Bw" = (
@@ -3818,6 +3819,7 @@
 /obj/item/ammo_box/magazine/m10mm,
 /obj/item/kitchen/knife/combat/survival,
 /obj/item/ammo_box/magazine/m10mm,
+/obj/item/clothing/under/syndicate/sniper,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/powered/syndicate_jungle_base/dormitories)
 "Iy" = (
@@ -4562,6 +4564,7 @@
 /obj/item/ammo_box/magazine/m10mm,
 /obj/item/kitchen/knife/combat/survival,
 /obj/item/ammo_box/magazine/m10mm,
+/obj/item/clothing/under/syndicate/sniper,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/powered/syndicate_jungle_base/dormitories)
 "Qf" = (

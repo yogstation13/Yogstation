@@ -625,6 +625,7 @@
 /obj/item/kitchen/knife/combat,
 /obj/item/binoculars,
 /obj/item/crowbar/red,
+/obj/item/clothing/under/syndicate/sniper,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "dg" = (
@@ -5355,6 +5356,7 @@
 /obj/item/storage/toolbox/syndicate,
 /obj/item/kitchen/knife/combat/survival,
 /obj/item/binoculars,
+/obj/item/clothing/under/syndicate/sniper,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "BX" = (
@@ -6773,6 +6775,7 @@
 /obj/item/kitchen/knife/combat/survival,
 /obj/item/binoculars,
 /obj/item/crowbar/red,
+/obj/item/clothing/under/syndicate/sniper,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "Jf" = (
@@ -7048,6 +7051,7 @@
 /obj/item/kitchen/knife/combat/survival,
 /obj/item/binoculars,
 /obj/item/crowbar/red,
+/obj/item/clothing/under/syndicate/sniper,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "KL" = (
@@ -8504,6 +8508,7 @@
 	pixel_y = 28;
 	pixel_x = -6
 	},
+/obj/item/clothing/under/syndicate/sniper,
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
 "SZ" = (
