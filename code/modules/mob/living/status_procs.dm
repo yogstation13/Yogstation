@@ -502,11 +502,12 @@
 		return TRUE
 
 /mob/living/proc/become_husk(source)
-	if(!HAS_TRAIT(src, TRAIT_HUSK))
+	var/was_husk = HAS_TRAIT(src, TRAIT_HUSK)
+	ADD_TRAIT(src, TRAIT_HUSK, source)
+	if(!was_husk)
 		ADD_TRAIT(src, TRAIT_DISFIGURED, "husk")
 		update_body()
 		. = TRUE
-	ADD_TRAIT(src, TRAIT_HUSK, source)
 
 /mob/living/proc/cure_fakedeath(list/sources)
 	REMOVE_TRAIT(src, TRAIT_FAKEDEATH, sources)
