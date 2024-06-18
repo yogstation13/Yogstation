@@ -352,7 +352,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/tank/toxins{
+/obj/machinery/atmospherics/components/unary/tank/plasma{
 	dir = 8;
 	volume = 6e+006
 	},
