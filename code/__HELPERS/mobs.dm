@@ -95,10 +95,21 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_antennas, GLOB.ipc_antennas_list)
 	if(!GLOB.ipc_chassis_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_chassis, GLOB.ipc_chassis_list)
+	if(!GLOB.vox_quills_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/vox_quills, GLOB.vox_quills_list)
+	if(!GLOB.vox_facial_quills_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/vox_facial_quills, GLOB.vox_facial_quills_list)
+	if(!GLOB.vox_tails_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/vox_tails, GLOB.vox_tails_list)
+	if(!GLOB.vox_body_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/vox_body_markings, GLOB.vox_body_markings_list)
+	if(!GLOB.vox_tail_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/vox_tail_markings, GLOB.vox_tail_markings_list)
 
 	//For now we will always return none for tail_human and ears.		this shit was unreadable if you do somethign like this make it at least readable
 	return(list(
 		"mcolor" = "#[pick("7F","FF")][pick("7F","FF")][pick("7F","FF")]",
+		"mcolor_secondary" = "#[pick("7F","FF")][pick("7F","FF")][pick("7F","FF")]",
 		"gradientstyle" = random_hair_gradient_style(10),
 		"gradientcolor" = "#[pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F")]",
 		"tail_lizard" = pick(GLOB.tails_list_lizard),
@@ -126,7 +137,12 @@
 		"pod_hair" = pick(GLOB.pod_hair_list),
 		"ipc_screen" = pick(GLOB.ipc_screens_list),
 		"ipc_antenna" = pick(GLOB.ipc_antennas_list),
-		"ipc_chassis" = pick(GLOB.ipc_chassis_list)
+		"ipc_chassis" = pick(GLOB.ipc_chassis_list),
+		"vox_skin_tone" = pick(GLOB.vox_skin_tones),
+		"vox_quills" = pick(GLOB.vox_quills_list),
+		"vox_facial_quills" = pick(GLOB.vox_facial_quills_list),
+		"vox_body_markings" = pick(GLOB.vox_body_markings_list),
+		"vox_tail_markings" = pick(GLOB.vox_tail_markings_list)
 	))
 
 /proc/random_hair_style(gender)
