@@ -82,6 +82,7 @@
 		return FALSE
 
 	UnregisterSignal(holder, COMSIG_ITEM_PREDROPPED)
+	UnregisterSignal(owner, COMSIG_CARBON_REMOVE_LIMB)
 
 	if(!syndicate_implant)
 		owner.visible_message(span_notice("[owner] retracts [holder] back into [owner.p_their()] [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
@@ -109,6 +110,7 @@
 
 	holder = item
 	RegisterSignal(holder, COMSIG_ITEM_PREDROPPED, PROC_REF(on_drop))
+	RegisterSignal(owner, COMSIG_CARBON_REMOVE_LIMB, PROC_REF(Retract))
 	ADD_TRAIT(holder, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
 	holder.resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF

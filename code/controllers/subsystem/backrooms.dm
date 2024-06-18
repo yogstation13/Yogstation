@@ -4,6 +4,7 @@ SUBSYSTEM_DEF(backrooms)
 	flags = SS_NO_FIRE
 
 	var/datum/map_generator/dungeon_generator/backrooms_generator
+	var/datum/generator_theme/picked_theme = /datum/generator_theme
 
 /datum/controller/subsystem/backrooms/Initialize(timeofday)
 #ifdef LOWMEMORYMODE
@@ -13,9 +14,18 @@ SUBSYSTEM_DEF(backrooms)
 	return SS_INIT_NO_NEED
 #endif
 
+	pick_theme()
 	generate_backrooms()
+	//spawn_anomalies()
 	return SS_INIT_SUCCESS
 
+/datum/controller/subsystem/backrooms/proc/pick_theme()
+	var/list/themes = typesof(/datum/generator_theme)
+	for(var/datum/generator_theme/possible as anything in themes) //assign the weight
+		themes[possible] = initial(possible.weight)
+
+	picked_theme = pickweight(themes)
+	picked_theme = new picked_theme
 
 /datum/controller/subsystem/backrooms/proc/generate_backrooms()
 	var/list/errorList = list()
@@ -37,10 +47,15 @@ SUBSYSTEM_DEF(backrooms)
 		var/max_y = backrooms_generator.max_y
 		var/z_level = backrooms_generator.z_level
 
+		var/border = /turf/closed/wall
+		if(picked_theme && length(picked_theme.weighted_possible_wall_types)) //make sure the wall matches the theme
+			border = pickweight(picked_theme.weighted_possible_wall_types)
+
 		for(var/turf/current_turf in block(locate(min_x,min_y,z_level),locate(max_x,max_y,z_level)))
 			if(current_turf.x == min_x || current_turf.x == max_x || current_turf.y == min_y || current_turf.y == max_y)
 				current_turf.empty(null, flags = CHANGETURF_DEFER_CHANGE | CHANGETURF_IGNORE_AIR)
-				current_turf.place_on_top(/turf/closed/indestructible/backrooms, flags = CHANGETURF_DEFER_CHANGE | CHANGETURF_IGNORE_AIR)
+				var/turf/wall = current_turf.place_on_top(border, flags = CHANGETURF_DEFER_CHANGE | CHANGETURF_IGNORE_AIR)
+				wall.resistance_flags |= INDESTRUCTIBLE //make the wall indestructible
 
 	addtimer(CALLBACK(src, PROC_REF(generate_exit)), 1 MINUTES)
 
