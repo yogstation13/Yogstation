@@ -52,7 +52,6 @@
 	var/skin_tone = ""
 	var/body_gender = ""
 	var/species_id = ""
-	var/is_husked = FALSE
 	var/should_draw_gender = FALSE
 	var/should_draw_greyscale = FALSE
 	var/species_color = ""
@@ -825,7 +824,6 @@
 			no_update = TRUE
 		else
 			no_update = FALSE
-	is_husked = FALSE
 	if(HAS_TRAIT(C, TRAIT_HUSK) && is_organic_limb())
 		if(ishuman(C))
 			var/mob/living/carbon/human/S = C
@@ -841,7 +839,6 @@
 		dmg_overlay_type = "" //no damage overlay shown when husked
 		should_draw_gender = FALSE
 		should_draw_greyscale = FALSE
-		is_husked = TRUE
 		no_update = TRUE
 
 	if(no_update)
@@ -1014,13 +1011,14 @@
 	if(should_draw_greyscale)
 		draw_color = mutation_color || species_color || (skin_tone && skintone2hex(skin_tone))
 
-	if(is_husked)
-		huskify_image(limb, owner, TRUE, id_to_species)
-		if(aux)
-			huskify_image(aux, owner, TRUE, id_to_species)
-		if(limb_static)
-			huskify_image(limb_static, owner, TRUE, id_to_species)
-		draw_color = id_to_species?.husk_color || owner?.dna?.species?.husk_color
+	if(status == BODYPART_ORGANIC || (status == BODYPART_ROBOTIC && render_like_organic == TRUE))
+		if(id_to_species && id_to_species.generate_husk_icon && owner && HAS_TRAIT(owner, TRAIT_HUSK))
+			huskify_image(limb, owner, TRUE, id_to_species)
+			if(aux)
+				huskify_image(aux, owner, TRUE, id_to_species)
+			if(limb_static)
+				huskify_image(limb_static, owner, TRUE, id_to_species)
+			draw_color = id_to_species.husk_color
 
 	if(draw_color)
 		limb.color = "[draw_color]"
