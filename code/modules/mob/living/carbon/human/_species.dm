@@ -149,6 +149,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/species_gibs = "human"
 	/// Can this species use numbers in its name?
 	var/allow_numbers_in_name = FALSE
+	///Does this species have different sprites according to sex? A species may have sexes, but only one kind of bodypart sprite like chests
 	var/is_dimorphic = TRUE
 	/// species-only traits. Can be found in DNA.dm
 	var/list/species_traits = list()
@@ -813,7 +814,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(parent_eyes)
 				eye_overlay += parent_eyes.generate_body_overlay(H)
 			else
-				var/mutable_appearance/missing_eyes = mutable_appearance('icons/mob/human_face.dmi', "eyes_missing", -BODY_LAYER)
+				var/mutable_appearance/missing_eyes = mutable_appearance(HD.eyes_icon, "eyes_missing", -BODY_LAYER)
 				if(OFFSET_FACE in offset_features)
 					missing_eyes.pixel_x += offset_features[OFFSET_FACE][1]
 					missing_eyes.pixel_y += offset_features[OFFSET_FACE][2]
@@ -867,8 +868,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 /datum/species/proc/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour)
 	var/list/bodyparts_to_add = mutant_bodyparts.Copy()
-	if(HAS_TRAIT(H, TRAIT_HUSK) && length(parts_to_husk))
-		bodyparts_to_add &= parts_to_husk
 	var/list/relevent_layers = list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER, BODY_FRONT_LAYER)
 	var/list/standing	= list()
 

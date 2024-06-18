@@ -35,7 +35,6 @@
 	icon_husk = 'icons/mob/species/vox/bodyparts.dmi'
 	limb_icon_file = 'icons/mob/species/vox/bodyparts.dmi'
 	static_part_body_zones = list(BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-	parts_to_husk = list("vox_tail", "vox_tail_markings", "wagging_vox_tail", "wagging_vox_tail_markings", "vox_body_markings")
 	survival_box_replacements = list(items_to_delete = list(/obj/item/clothing/mask/breath, /obj/item/tank/internals/emergency_oxygen),\
 											 new_items = list(/obj/item/tank/internals/emergency_oxygen/nitrogen, /obj/item/clothing/mask/breath/vox))
 	creampie_id = "creampie_vox"
