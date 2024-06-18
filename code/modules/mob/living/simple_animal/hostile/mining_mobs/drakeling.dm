@@ -22,7 +22,7 @@
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
 	speak_chance = 5
-	weather_immunities = list("lava", "ash")
+	weather_immunities = list(WEATHER_LAVA, WEATHER_ASH)
 	movement_type = FLYING
 	faction = list("neutral")
 	minbodytemp = 0 //SPACE
@@ -124,7 +124,7 @@
 	var/mob/living/simple_animal/hostile/drakeling/drake
 
 /datum/action/cooldown/spell/pointed/drakeling/link_to(Target)
-	. = ..()	
+	. = ..()
 	drake = Target || target
 
 /datum/action/cooldown/spell/pointed/drakeling/InterceptClickOn(mob/living/caller, params, atom/target)
