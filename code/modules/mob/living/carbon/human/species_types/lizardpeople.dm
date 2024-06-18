@@ -20,6 +20,7 @@
 	attack_verbs = list("slash", "scratch", "claw")
 	attack_effect = ATTACK_EFFECT_CLAW
 	barefoot_step_sound = FOOTSTEP_MOB_CLAW
+	creampie_id = "creampie_lizard"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard

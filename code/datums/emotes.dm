@@ -146,6 +146,8 @@
 		. = message_monkey
 	else if(isipc(user) && message_ipc)
 		. = message_ipc
+	else if(isvox(user) && message_vox)
+		. = message_vox
 	else if(isanimal(user) && message_simple)
 		. = message_simple
 

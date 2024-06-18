@@ -117,6 +117,17 @@
 				alert_type = alert["alert_type"]
 		if(alert_category)
 			H.throw_alert(alert_category, alert_type)
+		var/list/too_much_gas_alerts = list()
+		for(var/gas in gas_max)
+			var/gas_alert_category
+			if(ispath(gas))
+				var/datum/breathing_class/breathclass = gas
+				gas_alert_category = breathclass.high_alert_category
+			else
+				gas_alert_category = GLOB.gas_data.breath_alert_info[gas]["too_much_alert"]["alert_category"]
+			too_much_gas_alerts += gas_alert_category
+		for(var/alert as anything in too_much_gas_alerts)
+			H.clear_alert(alert)
 		return FALSE
 
 	#define PP_MOLES(X) ((X / total_moles) * pressure)

@@ -20,3 +20,8 @@
 			to_chat(owner, span_userdanger("You feel your heart collapse in on itself!"))
 			Remove(owner) //the heart is made of nanites so without them it just breaks down
 		qdel(src)
+
+/obj/item/organ/heart/vox
+	name = "vox heart"
+	icon_state = "heart-vox"
+	decay_factor = 0
