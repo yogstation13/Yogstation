@@ -107,14 +107,14 @@
 ///Syndicate Listening Post
 
 /obj/effect/mob_spawn/human/lavaland_syndicate
-	name = "Syndicate Bioweapon Scientist"
+	name = "Syndicate Scientist"
 	roundstart = FALSE
 	death = FALSE
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
-	short_desc = "You are a syndicate science technician, employed in a top secret research facility developing biological weapons."
+	short_desc = "You are a syndicate science technician, employed in a top secret research facility developing chemical weapons and atmospheric devices."
 	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Continue your research as best you can, and try to keep a low profile."
-	important_info = "The base is rigged with explosives, DO NOT abandon it, let it fall into enemy hands, or share your supplies with non-syndicate personnel."
+	important_info = "The base is rigged with explosives, DO NOT abandon it, let it fall into enemy hands, or share your supplies with non-Syndicate personnel."
 	outfit = /datum/outfit/lavaland_syndicate
 	assignedrole = "Lavaland Syndicate"
 
@@ -153,6 +153,7 @@
 	flavour_text = "Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Collaborate with your partner to disrupt Nanotrasen operations and do not let the base fall into enemy hands! In addition, you are subordinate to your lieutenant should any issues arise."
 	important_info = "DO NOT abandon the base, let it fall into enemy hands, or share your supplies with non-Syndicate personnel."
 	outfit = /datum/outfit/lavaland_syndicate/comms/subordinate
+	assignedrole = "Space Syndicate"
 
 /obj/effect/mob_spawn/human/lavaland_syndicate/comms/space/lieutenant
 	name = "Syndicate Lieutenant Space Comms Agent"
