@@ -61,7 +61,7 @@
 /obj/machinery/atmospherics/components/unary/tank/oxygen
 	gas_type = GAS_O2
 	greyscale_colors = "#148df4"
-s
+
 /obj/machinery/atmospherics/components/unary/tank/oxygen/Initialize(mapload)
 	. = ..()
 	var/datum/gas_mixture/air_contents = airs[1]
