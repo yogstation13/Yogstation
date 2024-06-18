@@ -190,6 +190,7 @@
 					/obj/item/clothing/under/rank/cargo/tech/skirt/turtleneck = 3,					
 					/obj/item/clothing/shoes/sneakers/black = 3,
 					/obj/item/clothing/shoes/xeno_wraps/cargo = 3,
+					/obj/item/clothing/shoes/xeno_wraps/cargo/cleated = 1,
 					/obj/item/clothing/gloves/fingerless = 3,
 					/obj/item/clothing/head/soft = 3,
 					/obj/item/radio/headset/headset_cargo = 3,
