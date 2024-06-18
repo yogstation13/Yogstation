@@ -266,14 +266,14 @@ Temperature: 126.85 °C (400 K)
 /turf/open/water/safe/jungle
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 
-/turf/open/water/deep_toxic_pit
+/turf/open/water/toxic_pit/deep_toxic_pit
 	name = "deep sulphuric pit"
 	desc = "Extraordinarily toxic."
 	color = "#004700"
 	slowdown = 4
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
-	baseturfs = /turf/open/water/deep_toxic_pit
+	baseturfs = /turf/open/water/toxic_pit/deep_toxic_pit
 	acid_strength = 2
 
 /turf/open/floor/wood/jungle

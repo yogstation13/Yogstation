@@ -233,7 +233,7 @@
 /turf/closed/wall,
 /area/mine/laborcamp)
 "gg" = (
-/turf/open/water/deep_toxic_pit,
+/turf/open/water/toxic_pit/deep_toxic_pit,
 /area/jungleland/explored)
 "gh" = (
 /obj/machinery/door/airlock/security/glass{
@@ -1162,7 +1162,7 @@
 /turf/open/floor/plating/dirt/jungleland/dry_swamp,
 /area/jungleland/explored)
 "LE" = (
-/turf/open/water/deep_toxic_pit,
+/turf/open/water/toxic_pit/deep_toxic_pit,
 /area/jungleland/ocean)
 "LM" = (
 /obj/structure/ore_box,
