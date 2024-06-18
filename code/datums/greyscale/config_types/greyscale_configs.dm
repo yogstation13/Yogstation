@@ -33,10 +33,6 @@
 	icon_file = 'icons/obj/atmospherics/pressure_tank.dmi'
 	json_config = 'code/datums/greyscale/json_configs/pressure_tank.json'
 
-/datum/greyscale_config/pressure_tank/stripe
-	name = "Striped Pressure Tank"
-	json_config = 'code/datums/greyscale/json_configs/pressure_tank_stripe.json'
-
 /datum/greyscale_config/carp
 	name = "Space Carp"
 	icon_file = 'icons/mob/carp.dmi'
