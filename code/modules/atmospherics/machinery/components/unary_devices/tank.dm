@@ -5,7 +5,7 @@
 	desc = "A large vessel containing pressurized gas."
 
 	icon = 'icons/obj/atmospherics/pressure_tank.dmi'
-	icon_state = "tank_base"
+	icon_state = "base"
 
 	max_integrity = 800
 	density = TRUE
@@ -49,7 +49,9 @@
 
 /obj/machinery/atmospherics/components/unary/tank/plasma
 	gas_type = GAS_PLASMA
-	greyscale_colors = "#d75500"
+	greyscale_config = null
+	greyscale_colors = null
+	icon_state = "plasma"
 
 /obj/machinery/atmospherics/components/unary/tank/plasma/Initialize(mapload)
 	. = ..()
@@ -58,7 +60,7 @@
 
 /obj/machinery/atmospherics/components/unary/tank/oxygen
 	gas_type = GAS_O2
-	greyscale_colors = "#158aed"
+	greyscale_colors = "#148df4"
 
 /obj/machinery/atmospherics/components/unary/tank/oxygen/Initialize(mapload)
 	. = ..()
