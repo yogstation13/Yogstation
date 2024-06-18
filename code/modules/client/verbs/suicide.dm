@@ -1,18 +1,18 @@
-#define SUICIDE_MESSAGE(p_their, p_theyre, p_them) pick( \
-	"[src] is attempting to push [p_their] own head off [p_their] shoulders! It looks like [p_theyre] trying to commit suicide.", \
-	"[src] is pushing [p_their] thumbs into [p_their] eye sockets! It looks like [p_theyre] trying to commit suicide.", \
-	"[src] is ripping [p_their] own arms off! It looks like [p_theyre] trying to commit suicide.", \
-	"[src] is attempting to pull [p_their] own head off! It looks like [p_theyre] trying to commit suicide.", \
-	"[src] is aggressively grabbing [p_their] own neck! It looks like [p_theyre] trying to commit suicide.", \
-	"[src] is pulling [p_their] eyes out of their sockets! It looks like [p_theyre] trying to commit suicide.", \
-	"[src] is hugging [p_them]self to death! It looks like [p_theyre] trying to commit suicide.", \
-	"[src] is high-fiving [p_them]self to death! It looks like [p_theyre] trying to commit suicide.", \
-	"[src] is getting too high on life! It looks like [p_theyre] trying to commit suicide.", \
-	"[src] is attempting to bite [p_their] tongue off! It looks like [p_theyre] trying to commit suicide.", \
-	"[src] is jamming [p_their] thumbs into [p_their] eye sockets! It looks like [p_theyre] trying to commit suicide.", \
-	"[src] is twisting [p_their] own neck! It looks like [p_theyre] trying to commit suicide.", \
-	"[src] is holding [p_their] breath! It looks like [p_theyre] trying to commit suicide.", \
-)
+GLOBAL_LIST_INIT(human_suicide_messages, list( \
+	"%%SUICIDER%% is attempting to push %%P_THEIR%% own head off %%P_THEIR%% shoulders! It looks like %%P_THEYRE%% trying to commit suicide.", \
+	"%%SUICIDER%% is pushing %%P_THEIR%% thumbs into %%P_THEIR%% eye sockets! It looks like %%P_THEYRE%% trying to commit suicide.", \
+	"%%SUICIDER%% is ripping %%P_THEIR%% own arms off! It looks like %%P_THEYRE%% trying to commit suicide.", \
+	"%%SUICIDER%% is attempting to pull %%P_THEIR%% own head off! It looks like %%P_THEYRE%% trying to commit suicide.", \
+	"%%SUICIDER%% is aggressively grabbing %%P_THEIR%% own neck! It looks like %%P_THEYRE%% trying to commit suicide.", \
+	"%%SUICIDER%% is pulling %%P_THEIR%% eyes out of their sockets! It looks like %%P_THEYRE%% trying to commit suicide.", \
+	"%%SUICIDER%% is hugging %%P_THEM%%self to death! It looks like %%P_THEYRE%% trying to commit suicide.", \
+	"%%SUICIDER%% is high-fiving %%P_THEM%%self to death! It looks like %%P_THEYRE%% trying to commit suicide.", \
+	"%%SUICIDER%% is getting too high on life! It looks like %%P_THEYRE%% trying to commit suicide.", \
+	"%%SUICIDER%% is attempting to bite %%P_THEIR%% tongue off! It looks like %%P_THEYRE%% trying to commit suicide.", \
+	"%%SUICIDER%% is jamming %%P_THEIR%% thumbs into %%P_THEIR%% eye sockets! It looks like %%P_THEYRE%% trying to commit suicide.", \
+	"%%SUICIDER%% is twisting %%P_THEIR%% own neck! It looks like %%P_THEYRE%% trying to commit suicide.", \
+	"%%SUICIDER%% is holding %%P_THEIR%% breath! It looks like %%P_THEYRE%% trying to commit suicide.", \
+))
 
 /mob/var/suiciding = 0
 
@@ -101,9 +101,13 @@
 
 				return
 
-		var/suicide_message = SUICIDE_MESSAGE(p_their(), p_theyre(), p_them())
-
-		visible_message(span_danger("[suicide_message]"), span_userdanger("[suicide_message]"))
+		var/list/suicide_messages = GLOB.human_suicide_messages.Copy()
+		suicide_messages |= dna.species.suicide_messages
+		var/chosen_message = pick(suicide_messages)
+		var/list/text_replacements = list("%%SUICIDER%%" = "[src]", "%%P_THEIR%%" = "[p_their()]", "%%P_THEM%%" = "[p_them()]", "%%P_THEYRE%%" = "[p_theyre()]")
+		for(var/find_text in text_replacements)
+			chosen_message = replacetext(chosen_message, find_text, text_replacements[find_text])
+		visible_message(span_danger(chosen_message), span_userdanger(chosen_message))
 
 		suicide_log()
 
@@ -278,5 +282,3 @@
 		to_chat(src, "Something inside your head stops your action!")
 		return
 	return TRUE
-
-#undef SUICIDE_MESSAGE

@@ -20,6 +20,7 @@
 	attack_verbs = list("slash", "scratch", "claw")
 	attack_effect = ATTACK_EFFECT_CLAW
 	barefoot_step_sound = FOOTSTEP_MOB_CLAW
+	creampie_id = "creampie_lizard"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard
@@ -29,7 +30,6 @@
 	liked_food = MEAT | GRILLED | SEAFOOD | MICE | FRUIT
 	inert_mutation = FIREBREATH
 	deathsound = 'sound/voice/lizard/deathsound.ogg'
-	screamsound = 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' //yogs - lizard scream
 	wings_icon = "Dragon"
 	species_language_holder = /datum/language_holder/lizard
 	var/heat_stunmod = 0
@@ -292,3 +292,54 @@
 	return TRUE
 
 #undef LIZARD_SLOWDOWN
+
+/datum/species/lizard/get_scream_sound(mob/living/carbon/human/lizard)
+	return pick(
+		'sound/voice/lizard/lizard_scream_1.ogg',
+		'sound/voice/lizard/lizard_scream_2.ogg',
+		'sound/voice/lizard/lizard_scream_3.ogg',
+		'yogstation/sound/voice/lizardperson/lizard_scream.ogg',
+	)
+
+/datum/species/lizard/get_cough_sound(mob/living/carbon/human/lizard)
+	if(lizard.gender == FEMALE)
+		return pick(
+			'sound/voice/human/female_cough1.ogg',
+			'sound/voice/human/female_cough2.ogg',
+			'sound/voice/human/female_cough3.ogg',
+			'sound/voice/human/female_cough4.ogg',
+			'sound/voice/human/female_cough5.ogg',
+			'sound/voice/human/female_cough6.ogg',
+		)
+	return pick(
+		'sound/voice/human/male_cough1.ogg',
+		'sound/voice/human/male_cough2.ogg',
+		'sound/voice/human/male_cough3.ogg',
+		'sound/voice/human/male_cough4.ogg',
+		'sound/voice/human/male_cough5.ogg',
+		'sound/voice/human/male_cough6.ogg',
+	)
+
+
+/datum/species/lizard/get_cry_sound(mob/living/carbon/human/lizard)
+	if(lizard.gender == FEMALE)
+		return pick(
+			'sound/voice/human/female_cry1.ogg',
+			'sound/voice/human/female_cry2.ogg',
+		)
+	return pick(
+		'sound/voice/human/male_cry1.ogg',
+		'sound/voice/human/male_cry2.ogg',
+		'sound/voice/human/male_cry3.ogg',
+	)
+
+
+/datum/species/lizard/get_sneeze_sound(mob/living/carbon/human/lizard)
+	if(lizard.gender == FEMALE)
+		return 'sound/voice/human/female_sneeze1.ogg'
+	return 'sound/voice/human/male_sneeze1.ogg'
+
+/datum/species/lizard/get_laugh_sound(mob/living/carbon/human)
+	if(!istype(human))
+		return
+	return 'sound/voice/lizard/lizard_laugh1.ogg'

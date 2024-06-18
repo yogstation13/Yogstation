@@ -317,12 +317,12 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/proc/is_accessible(datum/preferences/preferences)
 	SHOULD_CALL_PARENT(TRUE)
 	SHOULD_NOT_SLEEP(TRUE)
-
-	if (!isnull(relevant_mutant_bodypart) || !isnull(relevant_species_trait))
-		var/species_type = preferences.read_preference(/datum/preference/choiced/species)
-
-		var/datum/species/species = new species_type
-		if (!(savefile_key in species.get_features()))
+	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+	if(species_type in blacklisted_species)
+		return FALSE
+	if(!isnull(relevant_mutant_bodypart) ||  !isnull(relevant_species_trait))
+		if(!(savefile_key in species.get_features()))
 			return FALSE
 
 	if (!should_show_on_page(preferences.current_window))

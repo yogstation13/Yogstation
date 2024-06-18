@@ -2609,9 +2609,21 @@
 	color_src = EYECOLOR
 	emissive = TRUE
 
+/datum/sprite_accessory/ethereal_mark/cheese
+	name = "Cheese"
+	icon_state = "cheese"
+
+/datum/sprite_accessory/ethereal_mark/druid
+	name = "Druid"
+	icon_state = "druid"
+
 /datum/sprite_accessory/ethereal_mark/eyes
 	name = "Eyes"
 	icon_state = "eyes"
+
+/datum/sprite_accessory/ethereal_mark/full
+	name = "Full"
+	icon_state = "full"
 
 /datum/sprite_accessory/ethereal_mark/diamond
 	name = "Diamond"
@@ -2621,13 +2633,33 @@
 	name = "Heart"
 	icon_state = "heart"
 
+/datum/sprite_accessory/ethereal_mark/mc
+	name = "M.C."
+	icon_state = "mc"
+
+/datum/sprite_accessory/ethereal_mark/nova
+	name = "Nova"
+	icon_state = "nova"
+
 /datum/sprite_accessory/ethereal_mark/omega
 	name = "Omega"
 	icon_state = "omega"
 
+/datum/sprite_accessory/ethereal_mark/onion
+	name = "Onion"
+	icon_state = "onion"
+
 /datum/sprite_accessory/ethereal_mark/plus
 	name = "Plus"
 	icon_state = "plus"
+
+/datum/sprite_accessory/ethereal_mark/shard
+	name = "Shard"
+	icon_state = "shard"
+
+/datum/sprite_accessory/ethereal_mark/stars
+	name = "Stars"
+	icon_state = "stars"
 
 /datum/sprite_accessory/ethereal_mark/triangle
 	name = "Triangle"

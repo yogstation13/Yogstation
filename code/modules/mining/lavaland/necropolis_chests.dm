@@ -707,7 +707,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	compatible_biotypes = ALL_BIOTYPES
 	color = "#FFEBEB"
 
-/datum/reagent/flightpotion/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1)
+/datum/reagent/flightpotion/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/C = M
 		var/valid_species = (ishumanbasic(C) || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || ispodperson(C) || isethereal(C))
@@ -2006,3 +2006,136 @@ GLOBAL_LIST_EMPTY(aide_list)
 			var/mob/living/M = hit_atom
 			if(curse(thrownby, M) == TRUE)
 				to_chat(thrownby, span_notice("You appear before the cane and stab [M], making a new minion out of [M.p_them()]!"))
+
+//Olmec
+
+#define COOLDOWN_HEADCRAFT 10 SECONDS
+/obj/item/claycanister
+	name = "archaic clay canister"
+	desc = "A seemingly bottomless canister of violet clay. Kneading it seems to always results in a shape resembling a head, regardless of intent or concentration."
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	icon_state = "claycan"
+	force = 5 
+	throwforce = 3
+	w_class = WEIGHT_CLASS_NORMAL
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	COOLDOWN_DECLARE(next_headcraft)
+	var/next_craft = 0
+
+
+
+/obj/item/claycanister/attack_self(mob/user)
+	if(!COOLDOWN_FINISHED(src, next_headcraft))
+		to_chat(user, span_warning("You can't do that yet!"))
+		return
+	var/obj/item/minihead/B = new()
+	user.put_in_hands(B)
+	to_chat(user, span_notice("You mold a head from the clay!"))
+	COOLDOWN_START(src, next_headcraft, COOLDOWN_HEADCRAFT)
+
+
+
+/obj/item/minihead
+	name = "small clay head"
+	desc = "An earthen homage to its colossal predecessor. The round shape and heft almost scream its desire for flight."
+	icon = 'yogstation/icons/mob/human_parts.dmi'
+	icon_state = "b_golem_head"
+	var/list/headlist = list("abductor_head", "plasmaman_head", "skeleton_head", "cultgolem_head", "fly_head_m", "moth_head_f", "agent_head", "skeleton_head")
+	color = "#774e6d"
+	force = 0
+	throwforce = 0
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF //indestructable bc it needs to exist for a few seconds before dying to not runtime
+	w_class = WEIGHT_CLASS_SMALL
+	var/usedup = FALSE
+	var/smashdam = 25 
+	var/animaldam = 50
+	var/objdam = 25
+
+
+/obj/item/minihead/Initialize(mapload)
+	. = ..()
+	src.icon_state = pick(headlist)
+	
+
+/obj/item/minihead/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	. = ..()
+	if(hit_atom && !usedup)
+		rise(hit_atom, src.icon_state)
+		usedup = TRUE
+
+/obj/item/minihead/after_throw(datum/callback/callback)
+	. = ..()
+	if(!usedup)
+		rise(src.loc, src.icon_state)
+		usedup = TRUE
+
+/obj/item/minihead/attack_self(mob/user)
+	if(!usedup)
+		rise(src, src.icon_state)
+		usedup = TRUE
+
+/obj/item/minihead/attack_hand(mob/user)
+	if(isturf(src.loc) && usedup)
+		return
+	. = ..()
+
+/obj/item/minihead/pickup(mob/user)
+	if(usedup)
+		return FALSE
+	. = ..()
+	
+
+
+/obj/item/minihead/proc/rise(atom/target, icon_state)
+	target.visible_message(span_warning("A stone head grows and floats overhead!"))
+	alpha = 0
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), 2.5 SECONDS)
+	var/obj/item/minihead/shadow = new(get_turf(target))
+	var/obj/item/minihead/realdeal = new(get_turf(target))
+	realdeal.icon_state = icon_state
+	realdeal.usedup = TRUE
+	shadow.icon_state = icon_state
+	shadow.usedup = TRUE
+	shadow.color = "#000000"
+	walk_towards(shadow, target, 0, 0)
+	walk_towards(realdeal, target, 0, 0)
+	animate(realdeal, pixel_y = 60, pixel_x = 0, transform = matrix().Scale(3), time = 1.5 SECONDS)
+	animate(shadow, pixel_y = -30, transform = matrix().Scale(3), time = 1.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(follow), realdeal, shadow), 1.5 SECONDS)
+	return
+
+/obj/item/minihead/proc/follow(var/obj/damocles, var/obj/silhouette)
+	walk(damocles, 0)
+	walk(silhouette, 0)
+	addtimer(CALLBACK(src, PROC_REF(comedown), damocles, silhouette), 0.5 SECONDS)
+	return
+
+/obj/item/minihead/proc/comedown(var/obj/damocles, var/obj/silhouette)
+	var/turf/uhoh = get_turf(damocles)
+	animate(damocles, pixel_y = 0, time = 0.2 SECONDS, easing = ELASTIC_EASING)
+	animate(silhouette, transform = matrix().Scale(3), time = 0.2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(crush), uhoh), 0.1 SECONDS)
+	playsound(damocles, 'sound/effects/break_stone.ogg', 15, 1)
+	playsound(damocles, 'sound/effects/meteorimpact.ogg', 30, 1)
+	QDEL_IN(silhouette, 0.2 SECONDS)
+	QDEL_IN(damocles, 0.2 SECONDS)
+	return
+
+/obj/item/minihead/proc/crush(var/turf/landingzone)
+	landingzone.break_tile()
+	for(var/mob/witness in range(10, landingzone))
+		shake_camera(witness, 1, 2)
+	for(var/obj/X in landingzone.contents)
+		X.take_damage(objdam)
+	for(var/mob/living/coyote in landingzone.contents)
+		var/armor = coyote.run_armor_check(BODY_ZONE_HEAD, MELEE, armour_penetration = 0)
+		coyote.apply_damage(smashdam, BRUTE, BODY_ZONE_HEAD, armor)
+		to_chat(coyote, span_userdanger("The boulder comes down on your head!"))
+		if(isanimal(coyote))
+			coyote.adjustBruteLoss(animaldam)
+			if(coyote.stat == DEAD)
+				coyote.gib()
+	for(var/mob/living/tripped in range(1, landingzone))
+		tripped.Immobilize(1 SECONDS)
+		to_chat(tripped, span_userdanger("The shockwave disrupts your balance!"))
+	qdel(src)
