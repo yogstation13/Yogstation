@@ -1,6 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - rscdel: "Reverted ugly ass pressure tanks"
-  - bugfix: "Fixed pressure tanks unintentionally looking ugly as hell, they now look normal"
-  - imagedel: "Deleted ugly ass pressure tank sprites"
