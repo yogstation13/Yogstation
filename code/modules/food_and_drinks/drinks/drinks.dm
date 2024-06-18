@@ -605,7 +605,7 @@
 	name = "canned air"
 	desc = "There is no air shortage. Do not drink."
 	icon_state = "air"
-	list_reagents = list(/datum/reagent/nitrogen = 24, /datum/reagent/oxygen = 6)
+	list_reagents = list(/datum/reagent/gas/nitrogen = 24, /datum/reagent/gas/oxygen = 6)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/buzz_fuzz
 	name = "Buzz Fuzz"

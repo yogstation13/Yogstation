@@ -430,6 +430,14 @@
 	loot = list(pick(soups) = 1,pick(salads) = 1,pick(mains) = 1)
 	. = ..()
 
+/obj/effect/spawner/lootdrop/random_meat
+	name = "meat loot spawner"
+
+/obj/effect/spawner/lootdrop/random_meat/Initialize(mapload)
+	var/item = pick(typesof(/obj/item/reagent_containers/food/snacks/meat/slab))
+	new item(loc)
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/spawner/lootdrop/maintenance
 	name = "maintenance loot spawner"
 	// see code/_globalvars/lists/maintenance_loot.dm for loot table

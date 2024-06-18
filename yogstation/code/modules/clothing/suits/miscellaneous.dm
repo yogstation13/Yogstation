@@ -82,7 +82,7 @@
 
 /obj/item/clothing/suit/yogs/thejestercoat
 	name = "jester coat"
-	desc = "It's a pretty nice coat...OR IS IT!!!."
+	desc = "It's a pretty nice coat...OR IS IT!!!"
 	icon_state = "the_jester_coat"
 	item_state = "the_jester_coat"
 
@@ -262,7 +262,7 @@
 	desc = "A detective jacket that is blue!"
 	icon_state = "blue_detective"
 	item_state = "blue_item"
-	
+
 /obj/item/clothing/suit/yogs/leathercoat
 	name = "black leather coat"
 	desc = "So you too can be the one."
@@ -397,3 +397,9 @@
 	desc = "Women..."
 	icon_state = "lesbian"
 	item_state = "lesbian"
+
+/obj/item/clothing/suit/jacket/urinal_costume
+	name = "urinal costume"
+	desc = "You're taking the piss outta this, aren't you?"
+	icon_state = "urinal"
+	item_state = "urinal"

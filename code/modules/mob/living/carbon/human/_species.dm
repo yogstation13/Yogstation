@@ -134,7 +134,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	///Special sound for grabbing
 	var/grab_sound
 	///yogs - audio of a species' scream
-	var/screamsound
+	var/screamsound  //yogs - grabs scream from screamsound list or string
 	/// The visual effect of the attack.
 	var/attack_effect = ATTACK_EFFECT_PUNCH
 	///is a flying species, just a check for some things
@@ -166,7 +166,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/list/mob/living/ignored_by = list()
 	//Breathing!
 	///what type of gas is breathed
-	var/breathid = "o2"
+	var/breathid = GAS_O2
 
 	/// Special typing indicators
 	var/bubble_icon = BUBBLE_DEFAULT
@@ -2362,11 +2362,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(HAS_BONE in species_traits)
 		. |= BIO_JUST_BONE
 
-/datum/species/proc/get_scream_sound(mob/living/carbon/human/H)
-	if(islist(screamsound))
-		return pick(screamsound)
-	return screamsound
-
 /datum/species/proc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
 	. = TRUE
 	if(C == user)
@@ -2452,6 +2447,28 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /// Given a human, will adjust it before taking a picture for the preferences UI.
 /// This should create a CONSISTENT result, so the icons don't randomly change.
 /datum/species/proc/prepare_human_for_preview(mob/living/carbon/human/human)
+	return
+
+/// Returns the species' scream sound.
+/datum/species/proc/get_scream_sound(mob/living/carbon/human/human)
+	if(islist(screamsound))
+		return pick(screamsound)
+	return screamsound
+
+/// Returns the species' cry sound.
+/datum/species/proc/get_cry_sound(mob/living/carbon/human/human)
+	return
+
+/// Returns the species' cough sound.
+/datum/species/proc/get_cough_sound(mob/living/carbon/human/human)
+	return
+
+/// Returns the species' laugh sound
+/datum/species/proc/get_laugh_sound(mob/living/carbon/human/human)
+	return
+
+/// Returns the species' sneeze sound.
+/datum/species/proc/get_sneeze_sound(mob/living/carbon/human/human)
 	return
 
 /**

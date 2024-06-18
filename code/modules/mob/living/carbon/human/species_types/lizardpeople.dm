@@ -29,7 +29,6 @@
 	liked_food = MEAT | GRILLED | SEAFOOD | MICE | FRUIT
 	inert_mutation = FIREBREATH
 	deathsound = 'sound/voice/lizard/deathsound.ogg'
-	screamsound = 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' //yogs - lizard scream
 	wings_icon = "Dragon"
 	species_language_holder = /datum/language_holder/lizard
 	var/heat_stunmod = 0
@@ -65,7 +64,7 @@
 	else
 		heat_stunmod = 0
 	var/heat_stun_mult = 1.1**(last_heat_stunmod - heat_stunmod) //1.1^(difference between last and current values)
-	if(heat_stun_mult != 1) 		//If they're the same 1.1^0 is 1, so no change, if we go up we divide by 1.1	
+	if(heat_stun_mult != 1) 		//If they're the same 1.1^0 is 1, so no change, if we go up we divide by 1.1
 		stunmod *= heat_stun_mult 	//however many times, and if it goes down we multiply by 1.1
 						//This gets us an effective stunmod of 0.91, 1, 1.1, 1.21, 1.33, based on temp
 
@@ -81,7 +80,7 @@
 
 /datum/species/lizard/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()
-	C.remove_movespeed_modifier(LIZARD_SLOWDOWN)	
+	C.remove_movespeed_modifier(LIZARD_SLOWDOWN)
 
 /datum/species/lizard/spec_fully_heal(mob/living/carbon/human/H)
 	. = ..()
@@ -91,7 +90,7 @@
 	. = ..()
 	if((H.client && H.client.prefs.read_preference(/datum/preference/toggle/mood_tail_wagging)) && !is_wagging_tail() && H.mood_enabled)
 		var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
-		if(!istype(mood) || !(mood.shown_mood >= MOOD_LEVEL_HAPPY2)) 
+		if(!istype(mood) || !(mood.shown_mood >= MOOD_LEVEL_HAPPY2))
 			return
 		var/chance = 0
 		switch(mood.shown_mood)
@@ -122,7 +121,7 @@
 		tail.spines = H.dna.features["spines"]
 		tail.Insert(H, TRUE)
 		H.visible_message("[H]'s tail regrows.","You feel your tail regrow.")
-	
+
 /datum/species/lizard/get_species_description()
 	return "The first sentient beings encountered by the SIC outside of the Sol system, vuulen are the most \
 		commonly encountered non-human species in SIC space. Despite being one of the most integrated species in the SIC, they \
@@ -137,7 +136,7 @@
 		varied and rich cultures emerged and grew. By the time first contact occurred between humans and vuulen, \
 		the latter were a kind of medieval age, having even dabbled with the bluespace crystals naturally present \
 		on the planet, albeit without success.",
- 
+
 		"The SIC was highly interested in Sangris for two reasons when it was discovered. The first was the \
 		discovery of sapient life. The second was the great plethora of plasma and bluespace located on the planet. \
 		A diplomatic team was quickly assembled, but the first contact turned violent. Afterwards, the SIC waged war \
@@ -150,7 +149,7 @@
 		citizens of the SIC. The Opsillian Republic went from a mere puppet state to a somewhat independent and legitimate government, \
 		though many human companies continued to exploit vuulen as workers, as labor laws for non-humans \
 		offered significantly less privilege than what would be expected.",
- 
+
 		"Vuulek communities are organized in clans, though their impact on the culture of the individuals is limited. \
 		They tend to live like humans due to their colonization, only occasionally practicing some of \
 		their clan traditions. Despite efforts to integrate vuulen into the SIC through establishments such \
@@ -158,7 +157,7 @@
 		eager to prove their worth and qualities. In addition, strength and honor are still values commonly held \
 		by vuulen. Awareness of the past atrocities committed against vuulen by the SIC vary greatly \
 		between individuals, both amongst humans and vuulen.",
- 
+
 		"Today, the vuulek societies have been almost completely assimilated in the SIC, \
 		and vuulen are now considered SIC citizens and claim almost all the same rights as humans \
 		do. However, lawyers still struggle in rigged courts to try and claim a sense of equality \
@@ -195,11 +194,11 @@
 // yogs start - Ashwalkers now have ash immunity
 /datum/species/lizard/ashwalker/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
-	C.weather_immunities |= "ash"
+	C.weather_immunities |= WEATHER_ASH
 
 /datum/species/lizard/ashwalker/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	C.weather_immunities -= "ash"
+	C.weather_immunities -= WEATHER_ASH
 
 //Ash walker shaman, worse defensive stats, but better at surgery and have a healing touch ability
 /datum/species/lizard/ashwalker/shaman
@@ -217,7 +216,7 @@
 
 //gives the heal spell
 /datum/species/lizard/ashwalker/shaman/on_species_gain(mob/living/carbon/C, datum/species/old_species)
-	. = ..()	
+	. = ..()
 	lizard_touch = new(C)
 	lizard_touch.Grant(C)
 
@@ -265,7 +264,7 @@
  These guys only come from the dragon's blood bottle from lavaland. They're basically just lizards with all-around marginally better stats and fire resistance.
  Sadly they only get digitigrade legs. Can't have everything!
 */
-/datum/species/lizard/draconid	
+/datum/species/lizard/draconid
 	name = "Draconid"
 	id = "draconid"
 	limbs_id = "lizard"
@@ -280,11 +279,11 @@
 
 /datum/species/lizard/draconid/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
-	C.weather_immunities |= "ash"
+	C.weather_immunities |= WEATHER_ASH
 
 /datum/species/lizard/draconid/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	C.weather_immunities -= "ash"
+	C.weather_immunities -= WEATHER_ASH
 
 // yogs end
 
@@ -292,3 +291,54 @@
 	return TRUE
 
 #undef LIZARD_SLOWDOWN
+
+/datum/species/lizard/get_scream_sound(mob/living/carbon/human/lizard)
+	return pick(
+		'sound/voice/lizard/lizard_scream_1.ogg',
+		'sound/voice/lizard/lizard_scream_2.ogg',
+		'sound/voice/lizard/lizard_scream_3.ogg',
+		'yogstation/sound/voice/lizardperson/lizard_scream.ogg',
+	)
+
+/datum/species/lizard/get_cough_sound(mob/living/carbon/human/lizard)
+	if(lizard.gender == FEMALE)
+		return pick(
+			'sound/voice/human/female_cough1.ogg',
+			'sound/voice/human/female_cough2.ogg',
+			'sound/voice/human/female_cough3.ogg',
+			'sound/voice/human/female_cough4.ogg',
+			'sound/voice/human/female_cough5.ogg',
+			'sound/voice/human/female_cough6.ogg',
+		)
+	return pick(
+		'sound/voice/human/male_cough1.ogg',
+		'sound/voice/human/male_cough2.ogg',
+		'sound/voice/human/male_cough3.ogg',
+		'sound/voice/human/male_cough4.ogg',
+		'sound/voice/human/male_cough5.ogg',
+		'sound/voice/human/male_cough6.ogg',
+	)
+
+
+/datum/species/lizard/get_cry_sound(mob/living/carbon/human/lizard)
+	if(lizard.gender == FEMALE)
+		return pick(
+			'sound/voice/human/female_cry1.ogg',
+			'sound/voice/human/female_cry2.ogg',
+		)
+	return pick(
+		'sound/voice/human/male_cry1.ogg',
+		'sound/voice/human/male_cry2.ogg',
+		'sound/voice/human/male_cry3.ogg',
+	)
+
+
+/datum/species/lizard/get_sneeze_sound(mob/living/carbon/human/lizard)
+	if(lizard.gender == FEMALE)
+		return 'sound/voice/human/female_sneeze1.ogg'
+	return 'sound/voice/human/male_sneeze1.ogg'
+
+/datum/species/lizard/get_laugh_sound(mob/living/carbon/human)
+	if(!istype(human))
+		return
+	return 'sound/voice/lizard/lizard_laugh1.ogg'

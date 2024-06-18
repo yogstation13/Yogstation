@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Presses the funny button that makes the new synthetic research projects show up in game"
-  - bugfix: "fixes synths not properly getting slowed by governor module"
