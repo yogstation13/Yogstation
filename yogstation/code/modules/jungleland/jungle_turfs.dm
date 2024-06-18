@@ -271,8 +271,6 @@ Temperature: 126.85 °C (400 K)
 	desc = "Extraordinarily toxic."
 	color = "#004700"
 	slowdown = 4
-	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
-	planetary_atmos = TRUE
 	baseturfs = /turf/open/water/toxic_pit/deep_toxic_pit
 	acid_strength = 2
 
