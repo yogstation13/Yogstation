@@ -202,7 +202,14 @@ Temperature: 126.85 °C (400 K)
 	AddComponent(/datum/component/lingering, CALLBACK(src, PROC_REF(toxic_stuff)), GLOB.lavasafeties)
 
 /turf/open/water/toxic_pit/proc/toxic_stuff(thing, delta_time)
-	if (isliving(thing)) //objects are unaffected for now
+	if(isobj(thing))
+		var/obj/O = thing
+		if((O.resistance_flags & (UNACIDABLE|INDESTRUCTIBLE)) || O.throwing)
+			return
+		. = TRUE
+		O.acid_act(5 * acid_strength, 7.5 * acid_strength)
+
+	else if (isliving(thing))
 		. = TRUE
 		var/mob/living/L = thing
 		if(WEATHER_ACID in L.weather_immunities) //if they're immune to acid weather
