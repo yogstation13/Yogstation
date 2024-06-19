@@ -227,6 +227,9 @@ SUBSYSTEM_DEF(shuttle)
 			var/mob/M = I
 			if(M.stat != DEAD)
 				++alive
+		
+		var/total = length(GLOB.joined_player_list)
+		if(!total) return
 
 		if(alive / total <= threshold)
 			var/msg = "Automatically dispatching shuttle due to crew death."
