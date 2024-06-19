@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "reusable autosurgeons can now implant both organs and limbs"
-  - experiment: "Refactored autosurgeons please report any inconsistencies"
