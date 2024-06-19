@@ -815,7 +815,7 @@ GLOBAL_LIST_INIT(maintenance_loot_moderate,list(
 	/obj/item/aicard/aitater = W_RARE,
 	/obj/item/ammo_box/foambox/riot = W_RARE,
 	/obj/item/assembly/flash = W_UNCOMMON,
-	/obj/item/autosurgeon/limb/head/robot = W_MYTHICAL,
+	/obj/item/autosurgeon/head/robot = W_MYTHICAL,
 	/obj/item/bikehorn/sad = W_MYTHICAL,
 	/obj/item/bikehorn/golden = W_MYTHICAL,
 	/obj/item/bombcore/training = W_MYTHICAL,
