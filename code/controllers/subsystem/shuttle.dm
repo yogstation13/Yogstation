@@ -217,28 +217,33 @@ SUBSYSTEM_DEF(shuttle)
 	if(emergency_no_escape || admin_emergency_no_recall || emergency_no_recall || !emergency || !SSticker.HasRoundStarted())
 		return
 
-	var/threshold = CONFIG_GET(number/emergency_shuttle_autocall_threshold)
-	if(!threshold)
+	if(!length(GLOB.joined_player_list)) //if there's nobody actually in the game...
 		return
 
-	var/alive = 0
-	for(var/I in GLOB.player_list)
-		var/mob/M = I
-		if(M.stat != DEAD)
-			++alive
+	var/threshold = CONFIG_GET(number/emergency_shuttle_autocall_threshold)
+	if(threshold)
+		var/alive = 0
+		for(var/I in GLOB.player_list)
+			var/mob/M = I
+			if(M.stat != DEAD)
+				++alive
 
-	var/total = GLOB.joined_player_list.len
-	if(total <= 0)
-		return //no players no autoevac
-
-	if(alive / total <= threshold)
-		var/msg = "Automatically dispatching shuttle due to crew death."
+		if(alive / total <= threshold)
+			var/msg = "Automatically dispatching shuttle due to crew death."
+			message_admins(msg)
+			log_game("[msg] Alive: [alive], Roundstart: [total], Threshold: [threshold]")
+			emergency_no_recall = TRUE
+			priority_announce("Catastrophic casualties detected: crisis shuttle protocols activated - jamming recall signals across all frequencies.")
+			if(emergency.timeLeft(1) > emergency_no_recall * 0.4)
+				emergency.request(null, set_coefficient = 0.4)
+			return
+	if(world.time - SSticker.round_start_time >= 2 HOURS) //auto call the shuttle after 2 hours 
+		var/msg = "Automatically dispatching shuttle due to lack of shift end response."
 		message_admins(msg)
-		log_game("[msg] Alive: [alive], Roundstart: [total], Threshold: [threshold]")
 		emergency_no_recall = TRUE
-		priority_announce("Catastrophic casualties detected: crisis shuttle protocols activated - jamming recall signals across all frequencies.")
-		if(emergency.timeLeft(1) > emergency_no_recall * 0.4)
-			emergency.request(null, set_coefficient = 0.4)
+		priority_announce("Dispatching shuttle due to lack of shift end response.")
+		if(emergency.mode == SHUTTLE_IDLE)
+			emergency.request(null)
 
 /datum/controller/subsystem/shuttle/proc/block_recall(lockout_timer)
 	if(isnull(lockout_timer))
@@ -434,7 +439,7 @@ SUBSYSTEM_DEF(shuttle)
 
 	if(callShuttle)
 		if(EMERGENCY_IDLE_OR_RECALLED)
-			emergency.request(null, set_coefficient = 2.5)
+			emergency.request(null, set_coefficient = ALERT_COEFF_AUTOEVAC_NORMAL)
 			log_game("There is no means of calling the shuttle anymore. Shuttle automatically called.")
 			message_admins("All the communications consoles were destroyed and all AIs are inactive. Shuttle called.")
 
