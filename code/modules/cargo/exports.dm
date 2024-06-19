@@ -115,7 +115,7 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 					we thank you for providing them. Your value is expended, and you will be ransomed back to your station. We always get paid, \
 					so it's only a matter of time before we ship you back...\"</i></span>")
 
-		var/ransom = 3000 //people are pretty cheap
+		var/ransom = 100 * rand(18, 45) //people are pretty cheap
 		var/points_to_check
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 		if(D)
