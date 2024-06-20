@@ -860,3 +860,75 @@
 	results = list(/datum/reagent/plastic_polymers = 10)
 	required_reagents = list(/datum/reagent/microplastics = 10)
 	required_temp = 600
+
+/datum/chemical_reaction/ice_cream
+	name = /datum/reagent/consumable/ice_cream
+	id = /datum/reagent/consumable/ice_cream
+	results = list(/datum/reagent/consumable/ice_cream = 10)
+	required_reagents = list(/datum/reagent/consumable/milk = 5, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/sodiumchloride = 2)
+
+/datum/chemical_reaction/ice_cream_vanilla
+	name = /datum/reagent/consumable/ice_cream/vanilla
+	id = /datum/reagent/consumable/ice_cream/vanilla
+	results = list(/datum/reagent/consumable/ice_cream/vanilla = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/vanilla = 2)
+
+/datum/chemical_reaction/ice_cream_chocolate
+	name = /datum/reagent/consumable/ice_cream/chocolate
+	id = /datum/reagent/consumable/ice_cream/chocolate
+	results = list(/datum/reagent/consumable/ice_cream/chocolate = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/coco = 2)
+
+/datum/chemical_reaction/ice_cream_strawberry
+	name = /datum/reagent/consumable/ice_cream/strawberry
+	id = /datum/reagent/consumable/ice_cream/strawberry
+	results = list(/datum/reagent/consumable/ice_cream/strawberry = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/berryjuice = 2)
+
+/datum/chemical_reaction/ice_cream_blue
+	name = /datum/reagent/consumable/ice_cream/blue
+	id = /datum/reagent/consumable/ice_cream/blue
+	results = list(/datum/reagent/consumable/ice_cream/blue = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/ethanol/singulo = 2)
+
+/datum/chemical_reaction/ice_cream_lemon_sorbet
+	name = /datum/reagent/consumable/ice_cream/lemon_sorbet
+	id = /datum/reagent/consumable/ice_cream/lemon_sorbet
+	results = list(/datum/reagent/consumable/ice_cream/lemon_sorbet = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/lemonjuice = 2)
+
+/datum/chemical_reaction/ice_cream_caramel
+	name = /datum/reagent/consumable/ice_cream/caramel
+	id = /datum/reagent/consumable/ice_cream/caramel
+	results = list(/datum/reagent/consumable/ice_cream/caramel = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/caramel = 2)
+
+/datum/chemical_reaction/ice_cream_banana
+	name = /datum/reagent/consumable/ice_cream/banana
+	id = /datum/reagent/consumable/ice_cream/banana
+	results = list(/datum/reagent/consumable/ice_cream/banana = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/banana = 2)
+
+/datum/chemical_reaction/ice_cream_orange_creamsicle
+	name = /datum/reagent/consumable/ice_cream/orange_creamsicle
+	id = /datum/reagent/consumable/ice_cream/orange_creamsicle
+	results = list(/datum/reagent/consumable/ice_cream/orange_creamsicle = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/orangejuice = 2)
+
+/datum/chemical_reaction/ice_cream_peach
+	name = /datum/reagent/consumable/ice_cream/peach
+	id = /datum/reagent/consumable/ice_cream/peach
+	results = list(/datum/reagent/consumable/ice_cream/peach = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/peachjuice = 2)
+
+/datum/chemical_reaction/ice_cream_cherry_chocolate
+	name = /datum/reagent/consumable/ice_cream/cherry_chocolate
+	id = /datum/reagent/consumable/ice_cream/cherry_chocolate
+	results = list(/datum/reagent/consumable/ice_cream/cherry_chocolate = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream/chocolate = 10, /datum/reagent/consumable/cherryjelly = 2)
+
+/datum/chemical_reaction/ice_cream_meat
+	name = /datum/reagent/consumable/ice_cream/meat
+	id = /datum/reagent/consumable/ice_cream/meat
+	results = list(/datum/reagent/consumable/ice_cream/meat = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/liquidgibs = 2)
