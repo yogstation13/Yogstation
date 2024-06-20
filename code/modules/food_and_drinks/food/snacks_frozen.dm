@@ -61,7 +61,7 @@
 
 /obj/item/reagent_containers/food/snacks/icecream_scoop/vanilla
 	name = "vanilla ice cream scoop"
-	desc = "The most commonly known ice cream flavor; it has been and still is a widely popular flavor."
+	desc = "The most commonly known ice cream flavor; it has been and still is widely popular."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "icecream_vanilla"
 	bonus_reagents = list(/datum/reagent/consumable/ice_cream/vanilla = 2)
@@ -116,7 +116,7 @@
 
 /obj/item/reagent_containers/food/snacks/icecream_scoop/caramel
 	name = "caramel ice cream scoop"
-	desc = "An ancient frozen treat supposedly invented by the Persians that is still enjoyed today."
+	desc = "Ice cream that has been flavored with caramel; a treat for sugar lovers."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "icecream_caramel"
 	bonus_reagents = list(/datum/reagent/consumable/ice_cream/caramel = 2)

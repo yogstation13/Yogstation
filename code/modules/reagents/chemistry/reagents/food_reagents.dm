@@ -948,7 +948,7 @@
 /datum/reagent/consumable/ice_cream
 	name = "Plain Ice Cream"
 	description = "Also known as sweet cream; it still makes for a tasty treat."
-	reagent_state = LIQUID
+	reagent_state = LIQUID //Melted ice cream, you need ice to make it solid
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	color = "#EDF7DF"
 	taste_description = "creamy"
@@ -971,9 +971,11 @@
 	//Ice cream makes you happy
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "ice cream", /datum/mood_event/ice_cream, name)
 
+	..()
+
 /datum/reagent/consumable/ice_cream/vanilla
 	name = "Vanilla Ice Cream"
-	description = "The most commonly known ice cream flavor; it has been and still is a widely popular flavor."
+	description = "The most commonly known ice cream flavor; it has been and still is widely popular."
 	color = "#ECE2C5"
 	flavor_chem = /datum/reagent/consumable/vanilla
 
