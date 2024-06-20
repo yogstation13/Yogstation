@@ -1357,3 +1357,53 @@
 	desc = "A bag containing fresh, dry coffee robusta beans. Ethically sourced and packaged by Waffle Corp."
 	beantype = /obj/item/reagent_containers/food/snacks/grown/coffee/robusta
 
+/obj/item/storage/box/ice_cream_carton
+	icon_state = "ice_cream_carton"
+	icon = 'icons/obj/food/containers.dmi'
+	name = "Big Top [ice_cream_name] carton"
+	desc = "A classic ice cream brand; this carton contains [ice_cream_name]."
+
+	//What goes in the name and description
+	var/ice_cream_name = "plain ice cream"
+	//What flavor will be inside the carton
+	var/ice_cream_flavor = /obj/item/reagent_containers/food/snacks/icecream_scoop
+
+/obj/item/storage/box/ice_cream_carton/Initialize(mapload)
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 7
+	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/icecream_scoop))
+
+/obj/item/storage/box/ice_cream_carton/PopulateContents()
+	var/static/items_inside = list(
+		ice_cream_flavor = 7
+		)
+	generate_items_inside(items_inside,src)
+
+/obj/item/storage/box/ice_cream_carton/examine(mob/user)
+	. = ..()
+	if(length(contents) == 7)
+		. += span_notice("This carton is full of ice cream!")
+	else if(length(contents) == 0)
+		. += span_warning("This carton is empty!")
+	else
+		. += span_notice("This carton has some scoops missing!")
+
+/obj/item/storage/box/ice_cream_carton/update_overlays()
+	. = ..()
+	//How much ice cream is in the carton
+	var/inventory_count = length(contents)
+	//What icon to use for the overlay
+	var/carton_overlay = null
+
+	if(inventory_count == 0)
+		return .
+	else if(inventory_count == 5)
+		carton_overlay = "ice_cream_lid"
+	else
+		carton_overlay = find_overlay(contents)
+	
+	var/mutable_appearance/ice_cream_overlay = mutable_appearance(icon, carton_overlay)
+	. += ice_cream_overlay
+
+/obj/item/storage/box/ice_cream_carton/proc/find_overlay(carton_contents)
