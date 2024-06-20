@@ -953,16 +953,16 @@
 	color = "#EDF7DF"
 	taste_description = "creamy"
 
-	var/flavor_chem = NULL //Chem added to flavored ice creams
-	var/flavor_chem_extra = NULL
+	var/flavor_chem = null //Chem added to flavored ice creams
+	var/flavor_chem_extra = null
 	var/flavor_chem_amount = 0.4 //How much of the flavor chem to add on metabolism
 
 
 /datum/reagent/consumable/ice_cream/on_mob_life(mob/living/carbon/M)
 	//Add flavor chem if there is one
-	if(flavor_chem != NULL)
+	if(flavor_chem != null)
 		holder.add_reagent(flavor_chem, flavor_chem_amount)
-		if(flavor_chem_extra != NULL)
+		if(flavor_chem_extra != null)
 			holder.add_reagent(flavor_chem_extra, flavor_chem_amount)
 
 	//Ice cream cools you down
