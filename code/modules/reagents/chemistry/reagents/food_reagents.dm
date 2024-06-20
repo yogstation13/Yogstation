@@ -968,6 +968,9 @@
 	//Ice cream cools you down
 	M.adjust_bodytemperature(-10 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 
+	//Ice cream makes you happy
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "ice cream", /datum/mood_event/ice_cream, name)
+
 /datum/reagent/consumable/ice_cream/vanilla
 	name = "Vanilla Ice Cream"
 	description = "The most commonly known ice cream flavor; it has been and still is a widely popular flavor."
