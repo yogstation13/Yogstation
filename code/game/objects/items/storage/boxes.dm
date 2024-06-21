@@ -1358,36 +1358,73 @@
 	beantype = /obj/item/reagent_containers/food/snacks/grown/coffee/robusta
 
 /obj/item/storage/box/ice_cream_carton
-	icon_state = "ice_cream_carton"
+	icon_state = "ice_cream"
 	icon = 'icons/obj/food/containers.dmi'
-	name = "Big Top [ice_cream_name] carton"
-	desc = "A classic ice cream brand; this carton contains [ice_cream_name]."
+	name = "Big Top plain ice cream carton"
+	desc = "A classic ice cream brand; this carton contains plain ice cream."
 
-	//What goes in the name and description
-	var/ice_cream_name = "plain ice cream"
 	//What flavor will be inside the carton
-	var/ice_cream_flavor = /obj/item/reagent_containers/food/snacks/icecream_scoop
+	var/ice_cream_flavor = /obj/item/reagent_containers/food/snacks/ice_cream_scoop
 
 /obj/item/storage/box/ice_cream_carton/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
-	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/icecream_scoop))
+	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/ice_cream_scoop))
 
 /obj/item/storage/box/ice_cream_carton/PopulateContents()
-	var/static/items_inside = list(
-		ice_cream_flavor = 7
-		)
-	generate_items_inside(items_inside,src)
+	for(var/i in 1 to 7)
+		new ice_cream_flavor(src)
+
+/obj/item/storage/box/ice_cream_carton/attackby(obj/item/A, mob/user, params)
+	//Allow for name and desc to be changed with pen
+	if(istype(A, /obj/item/pen))
+		var/choice = input(usr, "Choose which flavor to change to", "Changing Carton Flavor") as null|anything in list("Plain", "Vanilla", "Chocolate", "Strawberry", "Blue", "Lemon Sorbet", "Caramel", "Banana", "Orange Creamsicle", "Peach", "Cherry Chocolate", "Meat Lover's")
+		switch(choice)
+			if("Plain")
+				name = "Big Top plain ice cream carton"
+				desc = "A classic ice cream brand; this carton contains plain ice cream."
+			if("Vanilla")
+				name = "Big Top vanilla ice cream carton"
+				desc = "A classic ice cream brand; this carton contains vanilla ice cream."
+			if("Chocolate")
+				name = "Big Top chocolate ice cream carton"
+				desc = "A classic ice cream brand; this carton contains chocolate ice cream."
+			if("Strawberry")
+				name = "Big Top strawberry ice cream carton"
+				desc = "A classic ice cream brand; this carton contains strawberry ice cream."
+			if("Blue")
+				name = "Big Top blue ice cream carton"
+				desc = "A classic ice cream brand; this carton contains blue ice cream."
+			if("Lemon Sorbet")
+				name = "Big Top lemon sorbet carton"
+				desc = "A classic ice cream brand; this carton contains lemon sorbet."
+			if("Caramel")
+				name = "Big Top caramel ice cream carton"
+				desc = "A classic ice cream brand; this carton contains caramel ice cream."
+			if("Banana")
+				name = "Big Top banana ice cream carton"
+				desc = "A classic ice cream brand; this carton contains banana ice cream."
+			if("Orange Creamsicle")
+				name = "Big Top orange creamsicle carton"
+				desc = "A classic ice cream brand; this carton contains orange creamsicle."
+			if("Peach")
+				name = "Big Top peach ice cream carton"
+				desc = "A classic ice cream brand; this carton contains peach ice cream."
+			if("Cherry Chocolate")
+				name = "Big Top cherry chocolate ice cream carton"
+				desc = "A classic ice cream brand; this carton contains cherry chocolate ice cream."
+			if("Meat Lover's")
+				name = "Big Top meat lover's ice cream carton"
+				desc = "A classic ice cream brand; this carton contains meat lover's ice cream."
+		return
+	..()
 
 /obj/item/storage/box/ice_cream_carton/examine(mob/user)
 	. = ..()
-	if(length(contents) == 7)
-		. += span_notice("This carton is full of ice cream!")
-	else if(length(contents) == 0)
-		. += span_warning("This carton is empty!")
-	else
-		. += span_notice("This carton has some scoops missing!")
+	. += span_notice("You can change the carton's flavor with a <b>Pen<b>.")
+	if(length(contents) == 0)
+		. += span_warning("This carton is <b>EMPTY<b>!!") //PANIC!!
 
 /obj/item/storage/box/ice_cream_carton/update_overlays()
 	. = ..()
@@ -1398,12 +1435,63 @@
 
 	if(inventory_count == 0)
 		return .
-	else if(inventory_count == 5)
-		carton_overlay = "ice_cream_lid"
 	else
-		carton_overlay = find_overlay(contents)
+		carton_overlay = "_lid"
 	
-	var/mutable_appearance/ice_cream_overlay = mutable_appearance(icon, carton_overlay)
+	var/mutable_appearance/ice_cream_overlay = mutable_appearance(icon, "ice_cream[carton_overlay]")
 	. += ice_cream_overlay
 
-/obj/item/storage/box/ice_cream_carton/proc/find_overlay(carton_contents)
+/obj/item/storage/box/ice_cream_carton/vanilla
+	name = "Big Top vanilla ice cream carton"
+	desc = "A classic ice cream brand; this carton contains vanilla ice cream."
+	ice_cream_flavor = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla
+
+/obj/item/storage/box/ice_cream_carton/chocolate
+	name = "Big Top chocolate ice cream carton"
+	desc = "A classic ice cream brand; this carton contains chocolate ice cream."
+	ice_cream_flavor = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/chocolate
+
+/obj/item/storage/box/ice_cream_carton/strawberry
+	name = "Big Top strawberry ice cream carton"
+	desc = "A classic ice cream brand; this carton contains strawberry ice cream."
+	ice_cream_flavor = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/strawberry
+
+/obj/item/storage/box/ice_cream_carton/blue
+	name = "Big Top blue ice cream carton"
+	desc = "A classic ice cream brand; this carton contains blue ice cream."
+	ice_cream_flavor = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/blue
+
+/obj/item/storage/box/ice_cream_carton/lemon_sorbet
+	name = "Big Top lemon sorbet carton"
+	desc = "A classic ice cream brand; this carton contains lemon sorbet."
+	ice_cream_flavor = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/lemon_sorbet
+
+/obj/item/storage/box/ice_cream_carton/caramel
+	name = "Big Top caramel ice cream carton"
+	desc = "A classic ice cream brand; this carton contains caramel ice cream."
+	ice_cream_flavor = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/caramel
+
+/obj/item/storage/box/ice_cream_carton/banana
+	name = "Big Top banana ice cream carton"
+	desc = "A classic ice cream brand; this carton contains banana ice cream."
+	ice_cream_flavor = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/banana
+
+/obj/item/storage/box/ice_cream_carton/orange_creamsicle
+	name = "Big Top orange creamsicle carton"
+	desc = "A classic ice cream brand; this carton contains orange creamsicle."
+	ice_cream_flavor = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/orange_creamsicle
+
+/obj/item/storage/box/ice_cream_carton/peach
+	name = "Big Top peach ice cream carton"
+	desc = "A classic ice cream brand; this carton contains peach ice cream."
+	ice_cream_flavor = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/peach
+
+/obj/item/storage/box/ice_cream_carton/cherry_chocolate
+	name = "Big Top cherry chocolate ice cream carton"
+	desc = "A classic ice cream brand; this carton contains cherry chocolate ice cream."
+	ice_cream_flavor = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/cherry_chocolate
+
+/obj/item/storage/box/ice_cream_carton/meat
+	name = "Big Top meat lover's ice cream carton"
+	desc = "A classic ice cream brand; this carton contains meat lover's ice cream."
+	ice_cream_flavor = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/meat
