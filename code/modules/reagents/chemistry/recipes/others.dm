@@ -940,7 +940,7 @@
 	mob_react = FALSE
 
 	//What scoop it will create
-	var/ice_cream_scoop = /obj/item/reagent_containers/food/snacks/icecream_scoop
+	var/ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop
 
 /datum/chemical_reaction/ice_cream_solidification/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
@@ -951,64 +951,64 @@
 	name = "Vanilla Ice Cream Solidification"
 	id = "ice_cream_vanilla"
 	required_reagents = list(/datum/reagent/consumable/ice_cream/vanilla = 10, /datum/reagent/consumable/ice = 2)
-	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/icecream_scoop/vanilla
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla
 
 /datum/chemical_reaction/ice_cream_solidification/chocolate
 	name = "Chocolate Ice Cream Solidification"
 	id = "ice_cream_chocolate"
 	required_reagents = list(/datum/reagent/consumable/ice_cream/chocolate = 10, /datum/reagent/consumable/ice = 2)
-	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/icecream_scoop/chocolate
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/chocolate
 
 /datum/chemical_reaction/ice_cream_solidification/strawberry
 	name = "Strawberry Ice Cream Solidification"
 	id = "ice_cream_strawberry"
 	required_reagents = list(/datum/reagent/consumable/ice_cream/strawberry = 10, /datum/reagent/consumable/ice = 2)
-	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/icecream_scoop/strawberry
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/strawberry
 
 /datum/chemical_reaction/ice_cream_solidification/blue
 	name = "Blue Ice Cream Solidification"
 	id = "ice_cream_blue"
 	required_reagents = list(/datum/reagent/consumable/ice_cream/blue = 10, /datum/reagent/consumable/ice = 2)
-	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/icecream_scoop/blue
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/blue
 
 /datum/chemical_reaction/ice_cream_solidification/lemon_sorbet
 	name = "Lemon Sorbet Solidification"
 	id = "ice_cream_lemon_sorbet"
 	required_reagents = list(/datum/reagent/consumable/ice_cream/lemon_sorbet = 10, /datum/reagent/consumable/ice = 2)
-	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/icecream_scoop/lemon_sorbet
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/lemon_sorbet
 
 /datum/chemical_reaction/ice_cream_solidification/caramel
 	name = "Caramel Ice Cream Solidification"
 	id = "ice_cream_caramel"
 	required_reagents = list(/datum/reagent/consumable/ice_cream/caramel = 10, /datum/reagent/consumable/ice = 2)
-	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/icecream_scoop/caramel
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/caramel
 
 /datum/chemical_reaction/ice_cream_solidification/banana
 	name = "Banana Ice Cream Solidification"
 	id = "ice_cream_banana"
 	required_reagents = list(/datum/reagent/consumable/ice_cream/banana = 10, /datum/reagent/consumable/ice = 2)
-	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/icecream_scoop/banana
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/banana
 
 /datum/chemical_reaction/ice_cream_solidification/orange_creamsicle
 	name = "Orange Creamsicle Solidification"
 	id = "ice_cream_orange_creamsicle"
 	required_reagents = list(/datum/reagent/consumable/ice_cream/orange_creamsicle = 10, /datum/reagent/consumable/ice = 2)
-	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/icecream_scoop/orange_creamsicle
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/orange_creamsicle
 
 /datum/chemical_reaction/ice_cream_solidification/peach
 	name = "Peach Ice Cream Solidification"
 	id = "ice_cream_peach"
 	required_reagents = list(/datum/reagent/consumable/ice_cream/peach = 10, /datum/reagent/consumable/ice = 2)
-	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/icecream_scoop/peach
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/peach
 
 /datum/chemical_reaction/ice_cream_solidification/cherry_chocolate
 	name = "Cherry Chocolate Ice Cream Solidification"
 	id = "ice_cream_cherry_chocolate"
 	required_reagents = list(/datum/reagent/consumable/ice_cream/cherry_chocolate = 10, /datum/reagent/consumable/ice = 2)
-	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/icecream_scoop/cherry_chocolate
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/cherry_chocolate
 
 /datum/chemical_reaction/ice_cream_solidification/meat
 	name = "Meat Ice Cream Solidification"
 	id = "ice_cream_meat"
 	required_reagents = list(/datum/reagent/consumable/ice_cream/meat = 10, /datum/reagent/consumable/ice = 2)
-	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/icecream_scoop/meat
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/meat

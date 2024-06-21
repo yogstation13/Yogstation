@@ -48,7 +48,7 @@
 //ICE CREAM//
 /////////////
 
-/obj/item/reagent_containers/food/snacks/icecream_scoop
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop
 	name = "plain ice cream scoop"
 	desc = "Also known as sweet cream; it still makes for a tasty treat."
 	icon = 'icons/obj/kitchen.dmi'
@@ -59,7 +59,7 @@
 	tastes = list("ice cream" = 1)
 	foodtype = DAIRY | SUGAR
 
-/obj/item/reagent_containers/food/snacks/icecream_scoop/vanilla
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla
 	name = "vanilla ice cream scoop"
 	desc = "The most commonly known ice cream flavor; it has been and still is widely popular."
 	icon = 'icons/obj/kitchen.dmi'
@@ -70,7 +70,7 @@
 	tastes = list("ice cream" = 1, "vanilla" = 1)
 	foodtype = DAIRY | SUGAR
 
-/obj/item/reagent_containers/food/snacks/icecream_scoop/chocolate
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/chocolate
 	name = "chocolate ice cream scoop"
 	desc = "Ice cream mixed with natural coco; made for those who can't get enough chocolate."
 	icon = 'icons/obj/kitchen.dmi'
@@ -81,7 +81,7 @@
 	tastes = list("ice cream" = 1, "chocolate" = 1)
 	foodtype = DAIRY | SUGAR | CHOCOLATE
 
-/obj/item/reagent_containers/food/snacks/icecream_scoop/strawberry
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/strawberry
 	name = "strawberry ice cream scoop"
 	desc = "Ice cream supposedly made with real strawberries."
 	icon = 'icons/obj/kitchen.dmi'
@@ -92,7 +92,7 @@
 	tastes = list("ice cream" = 1, "strawberries" = 1)
 	foodtype = DAIRY | SUGAR | FRUIT
 
-/obj/item/reagent_containers/food/snacks/icecream_scoop/blue
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/blue
 	name = "blue ice cream scoop"
 	desc = "A faintly blue ice cream flavor; it is notorious for its ability to stain."
 	icon = 'icons/obj/kitchen.dmi'
@@ -103,7 +103,7 @@
 	tastes = list("ice cream" = 1, "blue" = 1)
 	foodtype = DAIRY | SUGAR | ALCOHOL
 
-/obj/item/reagent_containers/food/snacks/icecream_scoop/lemon_sorbet
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/lemon_sorbet
 	name = "lemon sorbet scoop"
 	desc = "An ancient frozen treat supposedly invented by the Persians that is still enjoyed today."
 	icon = 'icons/obj/kitchen.dmi'
@@ -114,7 +114,7 @@
 	tastes = list("ice cream" = 1, "lemons" = 1)
 	foodtype = DAIRY | SUGAR | FRUIT
 
-/obj/item/reagent_containers/food/snacks/icecream_scoop/caramel
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/caramel
 	name = "caramel ice cream scoop"
 	desc = "Ice cream that has been flavored with caramel; a treat for sugar lovers."
 	icon = 'icons/obj/kitchen.dmi'
@@ -125,7 +125,7 @@
 	tastes = list("ice cream" = 1, "caramel" = 1)
 	foodtype = DAIRY | SUGAR
 
-/obj/item/reagent_containers/food/snacks/icecream_scoop/banana
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/banana
 	name = "banana ice cream scoop"
 	desc = "The ice cream of choice for clowns everywhere. Honk!"
 	icon = 'icons/obj/kitchen.dmi'
@@ -136,7 +136,7 @@
 	tastes = list("ice cream" = 1, "banana" = 1)
 	foodtype = DAIRY | SUGAR | FRUIT
 
-/obj/item/reagent_containers/food/snacks/icecream_scoop/orange_creamsicle
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/orange_creamsicle
 	name = "orange creamsicle scoop"
 	desc = "An ice cream flavor made after a popular popsicle flavor. It is not quite the same off the stick..."
 	icon = 'icons/obj/kitchen.dmi'
@@ -147,7 +147,7 @@
 	tastes = list("ice cream" = 1, "oranges" = 1)
 	foodtype = DAIRY | SUGAR | FRUIT
 
-/obj/item/reagent_containers/food/snacks/icecream_scoop/peach
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/peach
 	name = "peach ice cream scoop"
 	desc = "Ice cream flavored with peaches; it is rather uncommon due to wizards buying up most of it."
 	icon = 'icons/obj/kitchen.dmi'
@@ -158,7 +158,7 @@
 	tastes = list("ice cream" = 1, "peaches" = 1)
 	foodtype = DAIRY | SUGAR | FRUIT
 
-/obj/item/reagent_containers/food/snacks/icecream_scoop/cherry_chocolate
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/cherry_chocolate
 	name = "cherry chocolate ice cream scoop"
 	desc = "A wonderfully tangy and sweet ice cream made with coco and cherries."
 	icon = 'icons/obj/kitchen.dmi'
@@ -169,7 +169,7 @@
 	tastes = list("ice cream" = 1, "cherries" = 1, "chocolate" = 1)
 	foodtype = DAIRY | SUGAR | FRUIT | CHOCOLATE
 
-/obj/item/reagent_containers/food/snacks/icecream_scoop/meat
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/meat
 	name = "meat lover's ice cream scoop"
 	desc = "Ice cream flavored with meat, because someone wanted meat in their ice cream."
 	icon = 'icons/obj/kitchen.dmi'
