@@ -865,7 +865,7 @@
 	name = /datum/reagent/consumable/ice_cream
 	id = /datum/reagent/consumable/ice_cream
 	results = list(/datum/reagent/consumable/ice_cream = 10)
-	required_reagents = list(/datum/reagent/consumable/milk = 5, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/sodiumchloride = 2)
+	required_reagents = list(/datum/reagent/consumable/cream = 5, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/sodiumchloride = 2)
 
 /datum/chemical_reaction/ice_cream_vanilla
 	name = /datum/reagent/consumable/ice_cream/vanilla
