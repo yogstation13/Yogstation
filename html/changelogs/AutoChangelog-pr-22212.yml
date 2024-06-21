@@ -1,0 +1,7 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes jungleland mobs not being immune to toxic water"
+  - bugfix: "Fixes deep toxic water not being more dangerous"
+  - bugfix: "Fixes jungleland plant people not being immune to toxic water like intended"
+  - bugfix: "Fixes objects being unaffected by the toxic water acid (cardboard boxes)"
