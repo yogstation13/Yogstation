@@ -1,0 +1,5 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "icemeta mobs should be immune to snow properly now"
+  - rscadd: "adds cleated footwraps for lizards and xenos, which let you walk across ice"
