@@ -7,7 +7,7 @@
 	name = "Icecream sandwich"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla = 1,
-		/obj/item/reagent_containers/food/snacks/cookie = 1
+		/obj/item/reagent_containers/food/snacks/cookie = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/icecreamsandwich
 	category = CAT_ICE

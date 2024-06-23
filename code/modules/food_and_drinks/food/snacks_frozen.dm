@@ -61,7 +61,7 @@
 
 /obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla
 	name = "vanilla ice cream scoop"
-	desc = "The most commonly known ice cream flavor; it has been and still is widely popular."
+	desc = "The most commonly known ice cream flavor; it has bean and still is widely popular."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "icecream_vanilla"
 	bonus_reagents = list(/datum/reagent/consumable/ice_cream/vanilla = 2)
@@ -72,7 +72,7 @@
 
 /obj/item/reagent_containers/food/snacks/ice_cream_scoop/chocolate
 	name = "chocolate ice cream scoop"
-	desc = "Ice cream mixed with natural coco; made for those who can't get enough chocolate."
+	desc = "Ice cream mixed with natural cocoa; made for those who can't get enough chocolate."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "icecream_chocolate"
 	bonus_reagents = list(/datum/reagent/consumable/ice_cream/chocolate = 2)
