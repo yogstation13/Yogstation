@@ -38,7 +38,7 @@
 		/obj/item/clothing/mask/gas/clown_hat = 1,
 		/obj/item/reagent_containers/food/snacks/grown/cherries = 1,
 		/obj/item/reagent_containers/food/snacks/grown/banana = 2,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla = 1
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/banana = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/honkdae
 	category = CAT_ICE
