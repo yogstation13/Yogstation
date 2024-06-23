@@ -72,7 +72,7 @@
 
 /obj/item/reagent_containers/food/snacks/ice_cream_scoop/chocolate
 	name = "chocolate ice cream scoop"
-	desc = "Ice cream mixed with natural coco; made for those who can't get enough chocolate."
+	desc = "Ice cream mixed with natural cocoa; made for those who can't get enough chocolate."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "icecream_chocolate"
 	bonus_reagents = list(/datum/reagent/consumable/ice_cream/chocolate = 2)
