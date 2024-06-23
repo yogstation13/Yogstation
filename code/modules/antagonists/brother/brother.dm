@@ -28,14 +28,14 @@
 	return ..()
 
 /datum/antagonist/brother/proc/equip_brother()
-	var/mob/living/carbon/human/brother = owner.current
+	var/mob/living/carbon/brother = owner.current
 	var/obj/item/book/granter/crafting_recipe/weapons/W = new
 	W.on_reading_finished(brother)
 	qdel(W)
 
 	if(istype(brother))
 		var/obj/item/storage/box/bloodbrother/T = new()
-		if(brother.equip_to_slot(T, ITEM_SLOT_BACKPACK))
+		if(brother.equip_to_slot_or_del(T, ITEM_SLOT_BACKPACK))
 			SEND_SIGNAL(brother.back, COMSIG_TRY_STORAGE_SHOW, brother)
 			return
 	
