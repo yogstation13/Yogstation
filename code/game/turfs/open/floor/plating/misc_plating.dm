@@ -93,6 +93,7 @@
 /turf/open/floor/plating/ashplanet/wateryrock
 	gender = PLURAL
 	name = "wet rocky ground"
+	icon = 'icons/turf/mining.dmi'
 	icon_state = "wateryrock"
 	base_icon_state = null
 	smoothing_flags = NONE
