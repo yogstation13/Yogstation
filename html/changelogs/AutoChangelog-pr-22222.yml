@@ -1,4 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - imageadd: "Adds diagonal sprites to cleave attack effects to correctly reflect attack direction"
