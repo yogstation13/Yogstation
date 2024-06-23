@@ -28,16 +28,19 @@
 	return ..()
 
 /datum/antagonist/brother/proc/equip_brother()
-	var/mob/living/carbon/human/brother = owner.current //it's probably fine if we cast this directly to human, because the procs being called don't care
+	var/mob/living/carbon/human/brother = owner.current
 	var/obj/item/book/granter/crafting_recipe/weapons/W = new
 	W.on_reading_finished(brother)
 	qdel(W)
 
-	var/obj/item/storage/box/bloodbrother/T = new()
-	if(brother.equip_to_slot(T, ITEM_SLOT_BACKPACK)) //except for here, where it will fail because there's no backpack slot to equip to
-		SEND_SIGNAL(brother.back, COMSIG_TRY_STORAGE_SHOW, brother)// which is fine, because it'll just not do anything and give a notice (probably)
-	else
-		to_chat(brother, span_userdanger("Unfortunately, you weren't able to get a keepsake box. This is bad and you should adminhelp (press F1)."))
+	if(istype(brother))
+		var/obj/item/storage/box/bloodbrother/T = new()
+		if(brother.equip_to_slot(T, ITEM_SLOT_BACKPACK))
+			SEND_SIGNAL(brother.back, COMSIG_TRY_STORAGE_SHOW, brother)
+			return
+	
+	//this only prints if it fails to give the box
+	to_chat(brother, span_userdanger("Unfortunately, you weren't able to get a keepsake box. This is bad and you should adminhelp (press F1)."))
 
 /datum/antagonist/brother/on_removal()
 	SSticker.mode.brothers -= owner
