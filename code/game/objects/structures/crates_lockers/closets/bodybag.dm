@@ -31,11 +31,12 @@
 /obj/structure/closet/body_bag/attackby(obj/item/interact_tool, mob/user, params)
 	if (istype(interact_tool, /obj/item/pen) || istype(interact_tool, /obj/item/toy/crayon))
 		if(!user.is_literate(interact_tool))
+			to_chat(user, span_notice("You scribble illegibly on [src]!"))
 			return
 		var/t = tgui_input_text(user, "What would you like the label to be?", name, max_length = 53)
 		if(user.get_active_held_item() != interact_tool)
 			return
-		if(!user.incapacitated())
+		if(!user.canUseTopic(src, BE_CLOSE))
 			return
 		handle_tag("[t ? t : initial(name)]")
 		return

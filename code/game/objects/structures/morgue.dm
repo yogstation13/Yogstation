@@ -150,6 +150,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 		animate_slide_out(moving)
 	recursive_organ_check(src)
 	update_appearance(UPDATE_ICON)
+	return TRUE
 
 /obj/structure/bodycontainer/proc/close()
 	if(!COOLDOWN_FINISHED(src, open_close_cd))
@@ -221,6 +222,11 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 
 #undef SLIDE_LENGTH
 
+#define MORGUE_EMPTY 1
+#define MORGUE_NO_MOBS 2
+#define MORGUE_ONLY_BRAINDEAD 3
+#define MORGUE_HAS_REVIVABLE 4
+
 /*
  * Morgue
  */
@@ -287,6 +293,11 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 
 	icon_state = "morgue2" // Dead, brainded mob.
 	return ..()
+
+#undef MORGUE_EMPTY
+#undef MORGUE_NO_MOBS
+#undef MORGUE_ONLY_BRAINDEAD
+#undef MORGUE_HAS_REVIVABLE
 
 /*
  * Crematorium
