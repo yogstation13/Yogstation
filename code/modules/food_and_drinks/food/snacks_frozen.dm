@@ -61,7 +61,7 @@
 
 /obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla
 	name = "vanilla ice cream scoop"
-	desc = "The most commonly known ice cream flavor; it has been and still is widely popular."
+	desc = "The most commonly known ice cream flavor; it has bean and still is widely popular."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "icecream_vanilla"
 	bonus_reagents = list(/datum/reagent/consumable/ice_cream/vanilla = 2)
