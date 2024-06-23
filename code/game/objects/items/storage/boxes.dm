@@ -1357,6 +1357,19 @@
 	desc = "A bag containing fresh, dry coffee robusta beans. Ethically sourced and packaged by Waffle Corp."
 	beantype = /obj/item/reagent_containers/food/snacks/grown/coffee/robusta
 
+#define CARTON_PLAIN "plain ice cream"
+#define CARTON_VANILLA "vanilla ice cream"
+#define CARTON_CHOCOLATE "chocolate ice cream"
+#define CARTON_STRAWBERRY "strawberry ice cream"
+#define CARTON_BLUE "blue ice cream"
+#define CARTON_LEMON_SORBET "lemon sorbet"
+#define CARTON_CARAMEL "caramel ice cream"
+#define CARTON_BANANA "banana ice cream"
+#define CARTON_ORANGE_CREAMSICKLE "orange creamsickle"
+#define CARTON_PEACH "peach ice cream"
+#define CARTON_CHERRY_CHOCOLATE "cherry chocolate ice cream"
+#define CARTON_MEAT "meat lover's ice cream"
+
 /obj/item/storage/box/ice_cream_carton
 	icon_state = "ice_cream"
 	icon = 'icons/obj/food/containers.dmi'
@@ -1379,45 +1392,10 @@
 /obj/item/storage/box/ice_cream_carton/attackby(obj/item/A, mob/user, params)
 	//Allow for name and desc to be changed with pen
 	if(istype(A, /obj/item/pen))
-		var/choice = input(usr, "Choose which flavor to change to", "Changing Carton Flavor") as null|anything in list("Plain", "Vanilla", "Chocolate", "Strawberry", "Blue", "Lemon Sorbet", "Caramel", "Banana", "Orange Creamsicle", "Peach", "Cherry Chocolate", "Meat Lover's")
-		switch(choice)
-			if("Plain")
-				name = "Big Top plain ice cream carton"
-				desc = "A classic ice cream brand; this carton contains plain ice cream."
-			if("Vanilla")
-				name = "Big Top vanilla ice cream carton"
-				desc = "A classic ice cream brand; this carton contains vanilla ice cream."
-			if("Chocolate")
-				name = "Big Top chocolate ice cream carton"
-				desc = "A classic ice cream brand; this carton contains chocolate ice cream."
-			if("Strawberry")
-				name = "Big Top strawberry ice cream carton"
-				desc = "A classic ice cream brand; this carton contains strawberry ice cream."
-			if("Blue")
-				name = "Big Top blue ice cream carton"
-				desc = "A classic ice cream brand; this carton contains blue ice cream."
-			if("Lemon Sorbet")
-				name = "Big Top lemon sorbet carton"
-				desc = "A classic ice cream brand; this carton contains lemon sorbet."
-			if("Caramel")
-				name = "Big Top caramel ice cream carton"
-				desc = "A classic ice cream brand; this carton contains caramel ice cream."
-			if("Banana")
-				name = "Big Top banana ice cream carton"
-				desc = "A classic ice cream brand; this carton contains banana ice cream."
-			if("Orange Creamsicle")
-				name = "Big Top orange creamsicle carton"
-				desc = "A classic ice cream brand; this carton contains orange creamsicle."
-			if("Peach")
-				name = "Big Top peach ice cream carton"
-				desc = "A classic ice cream brand; this carton contains peach ice cream."
-			if("Cherry Chocolate")
-				name = "Big Top cherry chocolate ice cream carton"
-				desc = "A classic ice cream brand; this carton contains cherry chocolate ice cream."
-			if("Meat Lover's")
-				name = "Big Top meat lover's ice cream carton"
-				desc = "A classic ice cream brand; this carton contains meat lover's ice cream."
-		return
+		var/choice = input(usr, "Choose which flavor to change to", "Changing Carton Flavor") as null|anything in list(CARTON_PLAIN, CARTON_VANILLA, CARTON_CHOCOLATE, CARTON_STRAWBERRY, CARTON_BLUE, CARTON_LEMON_SORBET, CARTON_CARAMEL, CARTON_BANANA, CARTON_ORANGE_CREAMSICKLE, CARTON_PEACH, CARTON_CHERRY_CHOCOLATE, CARTON_MEAT)
+		if(choice != null)
+			name = "Big Top [choice] carton"
+			desc = "A classic ice cream brand; this carton contains [choice]."
 	..()
 
 /obj/item/storage/box/ice_cream_carton/examine(mob/user)
@@ -1495,3 +1473,16 @@
 	name = "Big Top meat lover's ice cream carton"
 	desc = "A classic ice cream brand; this carton contains meat lover's ice cream."
 	ice_cream_flavor = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/meat
+
+#undef CARTON_PLAIN
+#undef CARTON_VANILLA
+#undef CARTON_CHOCOLATE
+#undef CARTON_STRAWBERRY
+#undef CARTON_BLUE
+#undef CARTON_LEMON_SORBET
+#undef CARTON_CARAMEL
+#undef CARTON_BANANA
+#undef CARTON_ORANGE_CREAMSICKLE
+#undef CARTON_PEACH
+#undef CARTON_CHERRY_CHOCOLATE
+#undef CARTON_MEAT
