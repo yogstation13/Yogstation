@@ -15,9 +15,13 @@
 	open_flags = HORIZONTAL_HOLD //intended for bodies, so people lying down
 	notreallyacloset = TRUE
 	door_anim_time = 0 // no animation
+	can_install_electronics = FALSE
+
 	var/foldedbag_path = /obj/item/bodybag
 	var/obj/item/bodybag/foldedbag_instance = null
-	var/tagged = 0 // so closet code knows to put the tag overlay back
+
+	///The tagged name of the bodybag, also used to check if the bodybag IS tagged.
+	var/tag_name
 
 /obj/structure/closet/body_bag/Destroy()
 	// If we have a stored bag, and it's in nullspace (not in someone's hand), delete it.
@@ -25,32 +29,26 @@
 		QDEL_NULL(foldedbag_instance)
 	return ..()
 
-/obj/structure/closet/body_bag/attackby(obj/item/I, mob/user, params)
-	if (istype(I, /obj/item/pen) || istype(I, /obj/item/toy/crayon))
-		if(!user.is_literate())
-			to_chat(user, span_notice("You scribble illegibly on [src]!"))
+/obj/structure/closet/body_bag/attackby(obj/item/interact_tool, mob/user, params)
+	if (istype(interact_tool, /obj/item/pen) || istype(interact_tool, /obj/item/toy/crayon))
+		if(!user.can_write(interact_tool))
 			return
-		var/t = stripped_input(user, "What would you like the label to be?", name, null, 53)
-		if(user.get_active_held_item() != I)
+		var/t = tgui_input_text(user, "What would you like the label to be?", name, max_length = 53)
+		if(user.get_active_held_item() != interact_tool)
 			return
-		if(!user.canUseTopic(src, BE_CLOSE))
+		if(!user.can_perform_action(src))
 			return
-		if(t)
-			name = "[initial(name)] - [t]"
-			tagged = 1
-			update_appearance(UPDATE_ICON)
-		else
-			name = initial(name)
+		handle_tag("[t ? t : initial(name)]")
 		return
-	else if((I.tool_behaviour == TOOL_WIRECUTTER) && tagged)
+	if(!tag_name)
+		return
+	if(interact_tool.tool_behaviour == TOOL_WIRECUTTER || interact_tool.get_sharpness())
 		to_chat(user, span_notice("You cut the tag off [src]."))
-		name = initial(name)
-		tagged = 0
-		update_appearance(UPDATE_ICON)
+		handle_tag()
 
 /obj/structure/closet/body_bag/update_overlays()
 	. = ..()
-	if (tagged)
+	if (tag_name)
 		. += "bodybag_label"
 
 /obj/structure/closet/body_bag/close()
