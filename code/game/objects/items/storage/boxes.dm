@@ -1396,6 +1396,7 @@
 		if(choice != null)
 			name = "Big Top [choice] carton"
 			desc = "A classic ice cream brand; this carton contains [choice]."
+		return
 	..()
 
 /obj/item/storage/box/ice_cream_carton/examine(mob/user)

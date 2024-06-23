@@ -981,7 +981,7 @@
 
 /datum/reagent/consumable/ice_cream/chocolate
 	name = "Chocolate Ice Cream"
-	description = "Ice cream mixed with natural coco; made for those who can't get enough chocolate."
+	description = "Ice cream mixed with natural cocoa; made for those who can't get enough chocolate."
 	color =	"#865C32"
 	flavor_chem = /datum/reagent/consumable/coco
 	taste_description = "creamy chocolate"
