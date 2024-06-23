@@ -41,9 +41,6 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	max_integrity = 400
 	dir = SOUTH
 
-	/*var/message_cooldown
-	var/breakout_time = 600*/
-
 	///The morgue tray this container will open/close to put/take things in/out.
 	var/obj/structure/tray/connected = null
 	///Boolean on whether we're locked and will not allow the tray to be opened.
@@ -124,7 +121,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	user.visible_message(null, \
 		span_notice("You lean on the back of [src] and start pushing the tray open... (this will take about [DisplayTimeText(BREAKOUT_TIME)].)"), \
 		span_italics("You hear a metallic creaking from [src]."))
-	if(!do_after(user, BREAKDOWN_TIME, target = src))
+	if(!do_after(user, BREAKOUT_TIME, target = src))
 		return
 	if(!user || user.stat != CONSCIOUS || user.loc != src)
 		return
@@ -161,16 +158,18 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	COOLDOWN_START(src, open_close_cd, 0.5 SECONDS)
 	playsound(src, 'sound/effects/roll.ogg', 5, 1)
 	playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
-for(var/atom/movable/AM in connected.loc)
-		if(!AM.anchored || AM == connected)
-			if(isliving(AM))
-				var/mob/living/living_mob = AM
-				if(living_mob.incorporeal_move)
-					continue
-			else if(istype(entering, /obj/effect/dummy/phased_mob) || isdead(entering))
+	var/turf/close_loc = connected.loc
+	for(var/atom/movable/entering in close_loc)
+		if(entering.anchored && entering != connected)
+			continue
+		if(isliving(entering))
+			var/mob/living/living_mob = entering
+			if(living_mob.incorporeal_move)
 				continue
-				AM.forceMove(src)
+		else if(istype(entering, /obj/effect/dummy/phased_mob) || isdead(entering))
+			continue
 		animate_slide_in(entering, close_loc)
+		entering.forceMove(src)
 	update_appearance(UPDATE_ICON)
 
 #define SLIDE_LENGTH (0.3 SECONDS)
@@ -300,7 +299,6 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	desc = "A human incinerator. Works well on barbecue nights."
 	icon_state = "crema1"
 	dir = SOUTH
-	breakout_time = 3 SECONDS
 	var/cremate_time = 3 SECONDS
 	var/cremate_timer
 	var/id = 1
@@ -355,7 +353,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		audible_message(span_italics("You hear a roar as the crematorium fires up."))
 		locked = TRUE
 		update_appearance(UPDATE_ICON)
-		cremate_timer = addtimer(CALLBACK(src, PROC_REF(finish_cremate), user), (breakout_time + cremate_time ), TIMER_STOPPABLE)
+		cremate_timer = addtimer(CALLBACK(src, PROC_REF(finish_cremate), user), (BREAKOUT_TIME + cremate_time ), TIMER_STOPPABLE)
 		
 
 /obj/structure/bodycontainer/crematorium/open()
@@ -527,4 +525,4 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		. = . || (mover.pass_flags & PASSTABLE)
 
 #undef BREAKOUT_COOLDOWN
-#undef BREAKDOWN_TIME
+#undef BREAKOUT_TIME
