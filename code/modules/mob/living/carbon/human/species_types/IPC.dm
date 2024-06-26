@@ -157,7 +157,7 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "robot",
-			SPECIES_PERK_NAME = "Automa",
+			SPECIES_PERK_NAME = "Automata",
 			SPECIES_PERK_DESC = "IPCs are completely inorganic. \
 								They boast complete immunity to toxins, cell damage, disease, husking, and have no need to breathe. \
 								Their \"organs\" will not heal naturally however, and must be replaced if damaged.",
