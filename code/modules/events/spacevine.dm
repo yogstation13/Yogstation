@@ -379,7 +379,7 @@
 /datum/spacevine_controller
 	var/list/obj/structure/spacevine/vines
 	var/list/growth_queue
-	var/spread_multiplier = 5
+	var/spread_multiplier = 2
 	var/spread_cap = 30
 	var/list/vine_mutations_list
 	var/mutativeness = 1
@@ -397,7 +397,7 @@
 		mutativeness = potency / 10
 	if(production != null)
 		spread_cap *= production / 5
-		spread_multiplier /= production / 5
+		spread_multiplier *= 2 / production
 
 /datum/spacevine_controller/vv_get_dropdown()
 	. = ..()
