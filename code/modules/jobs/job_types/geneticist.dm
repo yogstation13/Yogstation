@@ -41,6 +41,8 @@
 
 	smells_like = "monkey hair"
 
+	bounty_types = CIV_JOB_MED
+
 /datum/outfit/job/geneticist
 	name = "Geneticist"
 	jobtype = /datum/job/geneticist

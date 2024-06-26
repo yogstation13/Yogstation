@@ -26,20 +26,44 @@
 		if(!C.requestonly)
 			cargo_console = C
 			to_chat(user, span_notice("Scanner linked to [C]."))
+		return
 	else if(!istype(cargo_console))
 		to_chat(user, span_warning("You must link [src] to a cargo console first!"))
+		return
+
+	// Before you fix it:
+	// yes, checking manifests is a part of intended functionality.
+
+	var/datum/export_report/ex = export_item_and_contents(O, cargo_console.get_export_categories(), dry_run=TRUE)
+	var/price = 0
+	for(var/x in ex.total_amount)
+		price += ex.total_value[x]
+
+	if(price)
+		to_chat(user, span_notice("Scanned [O], value: <b>[price]</b> credits[O.contents.len ? " (contents included)" : ""]."))
 	else
-		// Before you fix it:
-		// yes, checking manifests is a part of intended functionality.
+		to_chat(user, span_warning("Scanned [O], no export value."))
 
-		var/datum/export_report/ex = export_item_and_contents(O, cargo_console.get_export_categories(), dry_run=TRUE)
-		var/price = 0
-		for(var/x in ex.total_amount)
-			price += ex.total_value[x]
+	if(ishuman(user))
+		var/mob/living/carbon/human/scan_human = user
+		if(istype(O, /obj/item/bounty_cube))
+			var/obj/item/bounty_cube/cube = O
+			var/datum/bank_account/scanner_account = scan_human.get_bank_account()
 
-		if(price)
-			to_chat(user, span_notice("Scanned [O], value: <b>[price]</b> credits[O.contents.len ? " (contents included)" : ""]."))
-		else
-			to_chat(user, span_warning("Scanned [O], no export value."))
-		if(bounty_ship_item_and_contents(O, dry_run=TRUE))
-			to_chat(user, span_notice("Scanned item is eligible for one or more bounties."))
+			if(!istype(get_area(cube), /area/shuttle/supply))
+				to_chat(user, span_warning("Shuttle placement not detected. Handling tip not registered."))
+
+			else if(cube.bounty_handler_account)
+				to_chat(user, span_warning("Bank account for handling tip already registered!"))
+
+			else if(scanner_account)
+				cube.AddComponent(/datum/component/pricetag, scanner_account, cube.handler_tip)
+
+				cube.bounty_handler_account = scanner_account
+				cube.bounty_handler_account.bank_card_talk("Bank account for [price ? "<b>[price * cube.handler_tip]</b> credit " : ""]handling tip successfully registered.")
+
+				if(cube.bounty_holder_account != cube.bounty_handler_account) //No need to send a tracking update to the person scanning it
+					cube.bounty_holder_account.bank_card_talk("<b>[cube]</b> was scanned in \the <b>[get_area(cube)]</b> by <b>[scan_human] ([scan_human.job])</b>.")
+
+			else
+				to_chat(user, span_warning("Bank account not detected. Handling tip not registered."))

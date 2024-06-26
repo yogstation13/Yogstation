@@ -36,6 +36,8 @@
 	
 	smells_like = "fertilizer"
 
+	bounty_types = CIV_JOB_GROW
+
 /datum/outfit/job/botanist
 	name = "Botanist"
 	jobtype = /datum/job/hydro

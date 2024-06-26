@@ -2472,6 +2472,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"bhR" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/holopad,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "bii" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 4
@@ -3832,6 +3839,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"bSQ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/conveyor_switch{
+	id = "bounty"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "bSU" = (
 /obj/machinery/light{
 	dir = 1
@@ -3990,20 +4006,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"bUS" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 8
-	},
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "bVm" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -8608,12 +8610,6 @@
 	},
 /turf/open/floor/carpet,
 /area/security/detectives_office)
-"eeG" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "eeO" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only{
@@ -11205,14 +11201,6 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"fkR" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 1
-	},
-/obj/structure/chair,
-/obj/effect/landmark/start/assistant,
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "fli" = (
 /obj/machinery/advanced_airlock_controller{
 	pixel_y = 24
@@ -11543,15 +11531,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"fsY" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower,
-/obj/machinery/light,
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_y = -30
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "ftr" = (
 /turf/closed/wall/r_wall,
 /area/medical/genetics)
@@ -12535,6 +12514,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"fPY" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/computer/bounty{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "fQa" = (
 /turf/closed/wall/r_wall,
 /area/engine/supermatter)
@@ -12561,6 +12549,21 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"fQs" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 10
+	},
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Quartermaster's Desk";
+	departmentType = 2;
+	pixel_x = -32
+	},
+/obj/machinery/modular_computer/console/preset/cargo/qm{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "fRa" = (
 /obj/machinery/light,
 /obj/structure/disposalpipe/segment{
@@ -20344,13 +20347,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"jGo" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/holopad,
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "jGV" = (
 /obj/structure/fireaxecabinet/bridge{
 	pixel_x = 32
@@ -22415,6 +22411,23 @@
 "kKp" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/maintenance/aft)
+"kKE" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/computer/bounty{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "kKN" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/shieldgen,
@@ -24707,21 +24720,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"lQU" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 10
-	},
-/obj/machinery/computer/bounty{
-	dir = 1
-	},
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Quartermaster's Desk";
-	departmentType = 2;
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "lRg" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -28822,19 +28820,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
-"nTx" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 4
-	},
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "nTF" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/stripes/corner{
@@ -30259,15 +30244,6 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
-"oJl" = (
-/obj/effect/turf_decal/trimline/brown/filled/corner/lower{
-	dir = 1
-	},
-/obj/machinery/computer/bounty{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "oJs" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -31770,6 +31746,20 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"pup" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower,
+/obj/machinery/light,
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = -30
+	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "bounty"
+	},
+/obj/machinery/bounty_packager,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "puu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -32876,6 +32866,16 @@
 /obj/machinery/smartfridge/chemistry/virology/preloaded,
 /turf/closed/wall/r_wall,
 /area/medical/virology)
+"pWd" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 9
+	},
+/obj/machinery/camera{
+	c_tag = "Quartermaster's Office";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "pWm" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /obj/structure/table,
@@ -36210,6 +36210,14 @@
 /obj/structure/closet/secure_closet/security,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/customs)
+"rBw" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower,
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "bounty"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "rBC" = (
 /turf/closed/wall/r_wall,
 /area/security/checkpoint/science)
@@ -36851,6 +36859,20 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
+"rTa" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 4
+	},
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "rTl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -49486,19 +49508,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"xZY" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 9
-	},
-/obj/machinery/modular_computer/console/preset/cargo/qm{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "Quartermaster's Office";
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "yab" = (
 /obj/machinery/power/apc{
 	areastring = "/area/security/brig";
@@ -75560,10 +75569,10 @@ hYs
 ewA
 hOJ
 pQR
-xZY
-bUS
+pWd
+kKE
 uZz
-lQU
+fQs
 pQR
 gTy
 dNz
@@ -78132,7 +78141,7 @@ pRg
 bPi
 msR
 fWC
-jaW
+rBw
 dby
 gtb
 fDV
@@ -78387,9 +78396,9 @@ vkW
 nEQ
 maX
 fDA
-fkR
-jGo
-fsY
+bhR
+fPY
+pup
 laH
 fDA
 aPG
@@ -78645,11 +78654,11 @@ ewA
 fbN
 uwH
 jHK
-eeG
-jaW
+bSQ
+rBw
 dby
 dTN
-oJl
+jHK
 nFF
 iLn
 laH
@@ -79159,7 +79168,7 @@ ewA
 maX
 fDA
 iOZ
-nTx
+rTa
 hRH
 dby
 aGU

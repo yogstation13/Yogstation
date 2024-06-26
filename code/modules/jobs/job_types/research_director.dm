@@ -67,6 +67,8 @@
 
 	smells_like = "theoretical education"
 
+	bounty_types = list(CIV_JOB_ROBO, CIV_JOB_SCI, CIV_JOB_XENO)
+
 /datum/outfit/job/rd
 	name = "Research Director"
 	jobtype = /datum/job/rd

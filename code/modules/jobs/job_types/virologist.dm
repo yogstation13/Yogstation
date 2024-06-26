@@ -51,6 +51,8 @@
 	minimal_lightup_areas = list(/area/medical/virology)
 	
 	smells_like = "germlessness"
+	
+	bounty_types = list(CIV_JOB_VIRO, CIV_JOB_VIRO, CIV_JOB_MED)
 
 /datum/outfit/job/virologist
 	name = "Virologist"

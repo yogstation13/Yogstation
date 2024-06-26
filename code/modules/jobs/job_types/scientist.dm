@@ -47,6 +47,8 @@
 	
 	smells_like = "slime"
 
+	bounty_types = list(CIV_JOB_SCI, CIV_JOB_XENO)
+
 /datum/outfit/job/scientist
 	name = "Scientist"
 	jobtype = /datum/job/scientist

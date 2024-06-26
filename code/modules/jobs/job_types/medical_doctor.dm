@@ -47,6 +47,8 @@
 
 	smells_like = "a hospital"
 
+	bounty_types = CIV_JOB_MED
+
 /datum/outfit/job/doctor
 	name = "Medical Doctor"
 	jobtype = /datum/job/doctor
