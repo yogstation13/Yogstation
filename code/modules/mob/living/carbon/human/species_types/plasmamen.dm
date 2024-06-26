@@ -250,12 +250,12 @@
 			SPECIES_PERK_ICON = "user-astronaut",
 			SPECIES_PERK_NAME = "The Suit",
 			SPECIES_PERK_DESC = "Plasmamen begin wearing an airtight envirosuit, which they are dependant on to stay alive. \
-								Their envirohelm is also space-worthy, provides welding protection, and a built-in headlamp.",
+								Their envirohelm is also space-worthy, provides welding protection, and has a built-in headlamp.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "skull",
-			SPECIES_PERK_NAME = "Hazard Born",
+			SPECIES_PERK_NAME = "Hazard-Born",
 			SPECIES_PERK_DESC = "Plasmamen are reborn in the plasmafires they died in. \
 								They're completely immune to husking, starving, the cold, and most diseases.",
 		),

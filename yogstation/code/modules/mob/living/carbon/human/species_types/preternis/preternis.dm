@@ -337,7 +337,7 @@
 			SPECIES_PERK_ICON = "lungs",
 			SPECIES_PERK_NAME = "Nanovapor Filters",
 			SPECIES_PERK_DESC = "Preterni have bioengineered lungs that require little oxygen, and filter trace amounts of toxic gases from the air. \
-								However, they're incredibly vulnerable to cold gases.",
+								However, they're prone to being damaged from breathing in cold air.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
