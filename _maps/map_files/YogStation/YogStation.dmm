@@ -724,7 +724,7 @@
 	name = "Cell 1 Locker"
 	},
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "aeB" = (
 /obj/machinery/power/tracker,
 /obj/structure/cable/yellow{
@@ -843,7 +843,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "afN" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
@@ -1579,7 +1579,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "aly" = (
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/flasher/portable,
@@ -1775,7 +1775,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "amw" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -2278,7 +2278,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "aqo" = (
 /obj/structure/dresser,
 /turf/open/floor/wood,
@@ -4109,7 +4109,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "aDG" = (
 /obj/machinery/button/door{
 	id = "briggate";
@@ -13555,6 +13555,7 @@
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
+/obj/structure/filingcabinet,
 /turf/open/floor/plasteel,
 /area/security/main)
 "clf" = (
@@ -16022,7 +16023,7 @@
 	name = "Cell 3 Locker"
 	},
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "cRZ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -23530,8 +23531,10 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "fyS" = (
-/obj/structure/filingcabinet,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
+/obj/machinery/computer/department_reward/security{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/main)
 "fza" = (
@@ -56557,7 +56560,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "rxG" = (
 /obj/machinery/space_heater,
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
@@ -66027,7 +66030,7 @@
 	name = "Cell 2 Locker"
 	},
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/brig_cell)
 "uWS" = (
 /obj/item/crowbar,
 /obj/item/wrench,
@@ -74112,6 +74115,9 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/security/main)
+"xUS" = (
+/turf/closed/wall,
+/area/security/brig_cell)
 "xUX" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -102813,8 +102819,8 @@ agj
 mKD
 qhW
 agj
-agj
-agj
+xUS
+xUS
 aiX
 tRq
 aKE
@@ -103841,8 +103847,8 @@ lIb
 lLO
 wYv
 agj
-agj
-agj
+xUS
+xUS
 aiX
 tEI
 jmL

@@ -1,4 +1,3 @@
-
 //Techweb nodes are GLOBAL, there should only be one instance of them in the game. Persistant changes should never be made to them in-game.
 //USE SSRESEARCH PROCS TO OBTAIN REFERENCES. DO NOT REFERENCE OUTSIDE OF SSRESEARCH OR YOU WILL FUCK UP GC.
 
@@ -25,12 +24,12 @@
 
 /datum/techweb_node/proc/Initialize()
 	//Make lists associative for lookup
-	for(var/id in prereq_ids)
-		prereq_ids[id] = TRUE
-	for(var/id in design_ids)
-		design_ids[id] = TRUE
-	for(var/id in unlock_ids)
-		unlock_ids[id] = TRUE
+	for(var/pre_id in prereq_ids)
+		prereq_ids[pre_id] = TRUE
+	for(var/des_id in design_ids)
+		design_ids[des_id] = TRUE
+	for(var/unl_id in unlock_ids)
+		unlock_ids[unl_id] = TRUE
 
 /datum/techweb_node/Destroy()
 	SSresearch.techweb_nodes -= id
