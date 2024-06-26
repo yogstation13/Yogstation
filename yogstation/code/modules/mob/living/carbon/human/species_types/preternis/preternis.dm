@@ -320,12 +320,6 @@
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "shield-virus",
-			SPECIES_PERK_NAME = "Foreign Immune System",
-			SPECIES_PERK_DESC = "Preterni biology is extraordinarily alien, posing a challenge to any modern diseases trying to infect them.",
-		),
-		list(
-			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "wrench",
 			SPECIES_PERK_NAME = "Worker Drone",
 			SPECIES_PERK_DESC = "Preterni were designed to be quick and efficient workers. \
