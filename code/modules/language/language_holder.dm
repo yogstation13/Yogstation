@@ -392,6 +392,7 @@ Key procs
 								/datum/language/bonespeak = list(LANGUAGE_ATOM),
 								/datum/language/sylvan = list(LANGUAGE_ATOM),
 								/datum/language/draconic = list(LANGUAGE_ATOM),
+								/datum/language/vox = list(LANGUAGE_ATOM),
 								/datum/language/machine = list(LANGUAGE_ATOM))
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 							/datum/language/felinid = list(LANGUAGE_ATOM),
@@ -402,6 +403,7 @@ Key procs
 							/datum/language/bonespeak = list(LANGUAGE_ATOM),
 							/datum/language/sylvan = list(LANGUAGE_ATOM),
 							/datum/language/draconic = list(LANGUAGE_ATOM),
+							/datum/language/vox = list(LANGUAGE_ATOM),
 							/datum/language/machine = list(LANGUAGE_ATOM))
 
 /datum/language_holder/empty

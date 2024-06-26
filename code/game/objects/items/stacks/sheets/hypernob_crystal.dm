@@ -3,7 +3,7 @@
 	desc = "Crystalized bz, oxygen and hypernoblium stored in a bottle to environmental proof your clothes."
 	icon_state = "hypernoblium_crystal"
 	resistance_flags = FIRE_PROOF | ACID_PROOF | FREEZE_PROOF | UNACIDABLE
-	grind_results = list(/datum/reagent/hypernoblium = 20)
+	grind_results = list(/datum/reagent/gas/hypernoblium = 20)
 	merge_type = /obj/item/stack/hypernoblium_crystal
 
 /obj/item/stack/hypernoblium_crystal/afterattack(obj/target_object, mob/user, proximity)
@@ -37,5 +37,5 @@
 	desc = "Crystalized antinoblium, bz, and plasma. An incredibly volatile material."
 	icon_state = "antinoblium_crystal"
 	resistance_flags = FIRE_PROOF | ACID_PROOF | FREEZE_PROOF | UNACIDABLE
-	grind_results = list(/datum/reagent/antinoblium = 20)
+	grind_results = list(/datum/reagent/gas/antinoblium = 20)
 	merge_type = /obj/item/stack/antinoblium_crystal

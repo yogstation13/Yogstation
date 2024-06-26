@@ -2126,7 +2126,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/implants/reusable
 	name = "Reusable Autosurgeon"
 	desc = "An empty autosurgeon, but unlike others can be used multiple times. More suspicious than others."
-	item = /obj/item/autosurgeon/suspicious
+	item = /obj/item/autosurgeon/suspicious/reusable
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 5
 	// Nukies have no use for this and their autosurgeons are already multi-use
@@ -2146,7 +2146,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "This implant will stimulate muscle movements to help you get back up on your feet faster after being stunned. \
 			This version is modified to help reduce exhaustion during combat. \
 			Comes with an autosurgeon."
-	item = /obj/item/autosurgeon/anti_stun
+	item = /obj/item/autosurgeon/suspicious/anti_stun
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 8
 	surplus = 0
@@ -2189,7 +2189,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/implants/reviver
 	name = "Syndicate Reviver Implant"
 	desc = "A more powerful and experimental version of the one utilized by Nanotrasen, this implant will attempt to revive and heal you if you are critically injured. Comes with an autosurgeon."
-	item = /obj/item/autosurgeon/reviver/syndicate
+	item = /obj/item/autosurgeon/suspicious/reviver
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 8
 	surplus = 0
@@ -2242,7 +2242,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/implants/xray
 	name = "X-ray Vision Implant"
 	desc = "These cybernetic eyes will give you X-ray vision. Comes with an autosurgeon."
-	item = /obj/item/autosurgeon/xray_eyes
+	item = /obj/item/autosurgeon/suspicious/xray_eyes
 	cost = 10
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
@@ -2250,7 +2250,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/implants/mantis
 	name = "G.O.R.L.E.X. Mantis Blade"
 	desc = "One G.O.R.L.E.X Mantis blade implant able to be retracted inside your body at will for easy storage and concealing. Two blades can be used at once."
-	item = /obj/item/autosurgeon/arm/syndicate/syndie_mantis
+	item = /obj/item/autosurgeon/suspicious/syndie_mantis
 	cost = 6
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
@@ -2258,26 +2258,26 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/implants/stechkin_implant
 	name = "Stechkin arm implant"
 	desc = "A modified version of the Stechkin pistol placed inside of the forearm to allow for easy concealment."
-	item = /obj/item/autosurgeon/arm/syndicate/stechkin_implant
+	item = /obj/item/autosurgeon/suspicious/stechkin_implant
 	cost = 9
 
 /datum/uplink_item/implants/noslipall
 	name = "Slip Prevention Implant"
 	desc = "An implant that uses advanced sensors to detect when you are slipping and utilize motors in order to prevent it."
-	item = /obj/item/multisurgeon/noslipall
+	item = /obj/item/autosurgeon/suspicious/noslipall
 	cost = 6	//tax for them being nigh impossible to steal or lose
 
 /datum/uplink_item/implants/airshoes
 	name = "Air Shoes Implant"
 	desc = "As a result of extreme popularity of the Air Shoes an implant version was developed. Just like the boots there are jets allowing the users to reach high speeds for prolonged durations and short bursts."
-	item = /obj/item/multisurgeon/airshoes
+	item = /obj/item/autosurgeon/suspicious/airshoes
 	cost = 6	//2 tc tax for them being nigh impossible to steal or lose
 	manufacturer = /datum/corporation/traitor/cybersun
 
 /datum/uplink_item/implants/spinal
 	name = "Neural Overclocker Implant"
 	desc = "Stimulates your central nervous system in order to enable you to perform muscle movements faster. Careful not to overuse it."
-	item = /obj/item/autosurgeon/syndicate/spinalspeed
+	item = /obj/item/autosurgeon/suspicious/spinalspeed
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 12
 	exclude_modes = list(/datum/game_mode/infiltration, /datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
@@ -2381,7 +2381,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			It can be charged by the user's concentration, which permits a single blow that will decimate construction, \
 			fling bodies, and heavily damage mechs. Vir'ln krx'tai, lost one."
 	cost = 10
-	item = /obj/item/autosurgeon/arm/syndicate/syndie_hammer
+	item = /obj/item/autosurgeon/suspicious/syndie_hammer
 	restricted_species = list("preternis")
 
 /datum/uplink_item/race_restricted/hammerimplant/New()

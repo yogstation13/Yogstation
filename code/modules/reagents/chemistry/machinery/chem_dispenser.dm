@@ -44,12 +44,12 @@
 		/datum/reagent/copper,
 		/datum/reagent/consumable/ethanol,
 		/datum/reagent/fluorine,
-		/datum/reagent/hydrogen,
+		/datum/reagent/gas/hydrogen,
 		/datum/reagent/iodine,
 		/datum/reagent/lithium,
 		/datum/reagent/mercury,
-		/datum/reagent/nitrogen,
-		/datum/reagent/oxygen,
+		/datum/reagent/gas/nitrogen,
+		/datum/reagent/gas/oxygen,
 		/datum/reagent/phosphorus,
 		/datum/reagent/potassium,
 		/datum/reagent/silicon,
@@ -77,6 +77,7 @@
 		/datum/reagent/diethylamine,
 		/datum/reagent/saltpetre,
 		/datum/reagent/medicine/charcoal
+		
 	)
 	var/list/emagged_reagents = list(
 		/datum/reagent/toxin/carpotoxin,
@@ -84,7 +85,8 @@
 		/datum/reagent/medicine/morphine,
 		/datum/reagent/drug/space_drugs,
 		/datum/reagent/toxin,
-		/datum/reagent/uranium
+		/datum/reagent/uranium,
+		/datum/reagent/lemoline
 	)
 
 	var/list/saved_recipes = list()
@@ -715,13 +717,13 @@
 		/datum/reagent/copper,
 		/datum/reagent/consumable/ethanol,
 		/datum/reagent/fluorine,
-		/datum/reagent/hydrogen,
+		/datum/reagent/gas/hydrogen,
 		/datum/reagent/iodine,
 		/datum/reagent/iron,
 		/datum/reagent/lithium,
 		/datum/reagent/mercury,
-		/datum/reagent/nitrogen,
-		/datum/reagent/oxygen,
+		/datum/reagent/gas/nitrogen,
+		/datum/reagent/gas/oxygen,
 		/datum/reagent/phosphorus,
 		/datum/reagent/potassium,
 		/datum/reagent/uranium/radium,

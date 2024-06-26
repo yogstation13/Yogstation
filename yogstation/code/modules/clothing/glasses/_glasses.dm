@@ -1,3 +1,6 @@
+/obj/item/clothing/glasses
+	sprite_sheets = list(SPECIES_VOX = VOX_EYES_FILE)
+
 /obj/item/clothing/glasses/sunglasses/cheap
 	name = "cheap sunglasses"
 	desc = "Made in China."
