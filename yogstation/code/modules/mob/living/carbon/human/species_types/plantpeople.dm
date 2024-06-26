@@ -348,7 +348,7 @@
 			SPECIES_PERK_ICON = "clover", // Looks a bit like a sun too
 			SPECIES_PERK_NAME = "Photosynthetic",
 			SPECIES_PERK_DESC = "Phytosians passively heal and gain nutrition when exposed to light. \
-								This effect is doubled when digesting sugar.",
+								This effect is doubled while digesting sugar.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
