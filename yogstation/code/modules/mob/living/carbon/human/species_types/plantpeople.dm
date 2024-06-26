@@ -348,25 +348,26 @@
 			SPECIES_PERK_ICON = "clover", // Looks a bit like a sun too
 			SPECIES_PERK_NAME = "Photosynthetic",
 			SPECIES_PERK_DESC = "Phytosians passively heal and gain nutrition when exposed to light. \
-								This effect is doubled while digesting sugar.",
+								This effect is doubled while processing sugar.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "lungs",
 			SPECIES_PERK_NAME = "Carbon Cycle",
-			SPECIES_PERK_DESC = "Phytosians can breathe CO2 safely.",
+			SPECIES_PERK_DESC = "Phytosians can breathe both oxygen and CO2 safely.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "tree",
 			SPECIES_PERK_NAME = "Friend of the Flora",
-			SPECIES_PERK_DESC = "Phytosians are treated .",
+			SPECIES_PERK_DESC = "Phytosians are viewed by certain hostile plant creatures (such as killer tomatoes) as neutral, \
+								and won't immediately be hostile toward them.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "flask",
 			SPECIES_PERK_NAME = "Botanical Biology",
-			SPECIES_PERK_DESC = "Phytosians are hurt by herbicides and other chemicals that affect plant life.",
+			SPECIES_PERK_DESC = "Phytosians are hurt by herbicides and affected by other chemicals that impact plant life.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,

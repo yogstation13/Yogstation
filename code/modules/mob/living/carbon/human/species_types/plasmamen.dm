@@ -256,8 +256,8 @@
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "skull",
 			SPECIES_PERK_NAME = "Hazard Born",
-			SPECIES_PERK_DESC = "Plasmamen are reborn by the plasmafire they died in. \
-								They're completely immune to husking, starving, the cold, and resist diseases.",
+			SPECIES_PERK_DESC = "Plasmamen are reborn in the plasmafires they died in. \
+								They're completely immune to husking, starving, the cold, and most diseases.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
@@ -291,8 +291,7 @@
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "dna",
 			SPECIES_PERK_NAME = "Charred Genome",
-			SPECIES_PERK_DESC = "Plasmaman DNA . \
-								They have no genetic sequence, and can't be affect by genetic mutations at all. \
+			SPECIES_PERK_DESC = "Plasmaman DNA is too rigid and burnt to hold a genetic sequence, and can't be affect by genetic mutations at all. \
 								Despite this, they can still be cloned.",
 		),
 	)

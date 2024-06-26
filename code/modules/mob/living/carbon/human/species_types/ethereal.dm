@@ -361,7 +361,7 @@
 			SPECIES_PERK_ICON = "sun", // May or may not be worse than lightbulb idk
 			SPECIES_PERK_NAME = "Living Star",
 			SPECIES_PERK_DESC = "Ethereals are naturally bioluminescent, emitting a constant source of light from their bodies. \
-								The brightness of this light changes based on energy.",
+								The brightness of this light changes based on their energy level and health.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,

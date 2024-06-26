@@ -106,8 +106,8 @@
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "low-vision",
 			SPECIES_PERK_NAME = "Darkvision",
-			SPECIES_PERK_DESC = "Polysmorphs have an advanced set of eyes protected inside their domed head. \
-								These eyes provide a degree of night-vision, letting them see better in the dark than most.",
+			SPECIES_PERK_DESC = "Polysmorphs have an advanced set of eyes hidden inside their domed head. \
+								These eyes can provide infrared sight, highlighting any living thing in view even in darkness.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
