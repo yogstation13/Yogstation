@@ -85,8 +85,10 @@
 	/// The amount of smoke to create on cast. This is a range, so a value of 5 will create enough smoke to cover everything within 5 steps.
 	var/smoke_amt = 0
 
-	///used for darkspawn, if there is a psi cost, it will try to check for a darkspawn datum
-	var/psi_cost = 0 //can var edit psi_cost to 0 to make darkspawn abilities usable by non-darkspawns
+	/// An associative list of all resource costs
+	var/list/resource_costs
+	/// Boolean, if true, resource costs will be ignored
+	var/bypass_cost = FALSE
 
 /datum/action/cooldown/spell/Grant(mob/grant_to)
 	// If our spell is mind-bound, we only wanna grant it to our mind
@@ -175,17 +177,13 @@
 		return FALSE
 
 	//used for darkspawn spells
-	if(psi_cost)
-		if(isdarkspawn(owner))
-			var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
-			if(!darkspawn.has_psi(psi_cost))
+	if(owner.mind && !bypass_cost && LAZYLEN(resource_costs))
+		for(var/i in resource_costs)
+			var/has_cost = SEND_SIGNAL(owner.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, i, resource_costs[i])
+			if(!has_cost)
 				if(feedback)
-					owner.balloon_alert(owner, span_warning("Not enough psi!"))
+					to_chat(owner, span_warning("You don't have enough [i]!"))
 				return FALSE
-		else
-			if(feedback)
-				to_chat(owner, span_warning("Your mind is incapable of comprehending this ability!"))
-			return FALSE
 
 	// If the spell requires the user has no antimagic equipped, and they're holding antimagic
 	// that corresponds with the spell's antimagic, then they can't actually cast the spell
@@ -348,10 +346,8 @@
 
 /// Called after the effect happens, whether that's after the button press or after hitting someone with a touch ability
 /datum/action/cooldown/spell/proc/consume_resource() //to-do: rework vampire blood use into using this proc
-	if(psi_cost && isdarkspawn(owner))
-		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
-		darkspawn.use_psi(psi_cost)
-
+	if(!bypass_cost && owner.mind && LAZYLEN(resource_costs))
+		SEND_SIGNAL(owner.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, resource_costs)
 
 /// Provides feedback after a spell cast occurs, in the form of a cast sound and/or invocation
 /datum/action/cooldown/spell/proc/spell_feedback()

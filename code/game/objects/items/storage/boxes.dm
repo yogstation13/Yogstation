@@ -146,13 +146,16 @@
 	new /obj/item/radio/off(src)
 
 /obj/item/storage/box/survival/proc/wardrobe_removal()
-	if(!isplasmaman(loc)) //We need to specially fill the box with plasmaman gear, since it's intended for one
+	if(!ishuman(loc))
 		return
-	var/obj/item/mask = locate(/obj/item/clothing/mask/breath) in src
-	var/obj/item/internals = locate(/obj/item/tank/internals/emergency_oxygen) in src
-	new /obj/item/tank/internals/plasmaman/belt(src)
-	qdel(mask) // Get rid of the items that shouldn't be
-	qdel(internals)
+	var/mob/living/carbon/human/box_owner = loc
+	if(!length(box_owner.dna?.species?.survival_box_replacements))
+		return
+	var/list/survival_box_replacements_delete = box_owner.dna.species.survival_box_replacements["items_to_delete"]
+	var/list/survival_box_replacements_add = box_owner.dna.species.survival_box_replacements["new_items"]
+	var/list/items_to_delete = survival_box_replacements_delete?.Copy() || list()
+	var/list/new_items = survival_box_replacements_add?.Copy() || list()
+	box_owner.dna.species.survival_box_replacement(box_owner, src, items_to_delete, new_items)
 
 /obj/item/storage/box/survival/mining
 	mask_type = /obj/item/clothing/mask/gas/explorer

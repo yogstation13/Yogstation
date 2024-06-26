@@ -11,9 +11,6 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/english
 
-	var/list/female_screams = list('sound/voice/human/femalescream_1.ogg', 'sound/voice/human/femalescream_2.ogg', 'sound/voice/human/femalescream_3.ogg', 'sound/voice/human/femalescream_4.ogg', 'sound/voice/human/femalescream_5.ogg')
-	var/list/male_screams = list('sound/voice/human/malescream_1.ogg', 'sound/voice/human/malescream_2.ogg', 'sound/voice/human/malescream_3.ogg', 'sound/voice/human/malescream_4.ogg', 'sound/voice/human/malescream_5.ogg')
-
 	smells_like = "soap and superiority"
 
 /datum/species/human/qualifies_for_rank(rank, list/features)
@@ -27,13 +24,73 @@
 	var/obj/item/organ/tail/tail = human.getorganslot(ORGAN_SLOT_TAIL)
 	return tail?.get_butt_sprite() || butt_sprite
 
-/datum/species/human/get_scream_sound(mob/living/carbon/human/H)
-	if(H.gender == FEMALE)
-		return pick(female_screams)
-	else
+/datum/species/human/get_scream_sound(mob/living/carbon/human/human)
+	if(human.gender == MALE)
 		if(prob(1))
 			return 'sound/voice/human/wilhelm_scream.ogg'
-		return pick(male_screams)
+		return pick(
+			'sound/voice/human/malescream_1.ogg',
+			'sound/voice/human/malescream_2.ogg',
+			'sound/voice/human/malescream_3.ogg',
+			'sound/voice/human/malescream_4.ogg',
+			'sound/voice/human/malescream_5.ogg',
+			'sound/voice/human/malescream_6.ogg',
+		)
+
+	return pick(
+		'sound/voice/human/femalescream_1.ogg',
+		'sound/voice/human/femalescream_2.ogg',
+		'sound/voice/human/femalescream_3.ogg',
+		'sound/voice/human/femalescream_4.ogg',
+		'sound/voice/human/femalescream_5.ogg',
+	)
+
+/datum/species/human/get_cough_sound(mob/living/carbon/human/human)
+	if(human.gender == FEMALE)
+		return pick(
+			'sound/voice/human/female_cough1.ogg',
+			'sound/voice/human/female_cough2.ogg',
+			'sound/voice/human/female_cough3.ogg',
+			'sound/voice/human/female_cough4.ogg',
+			'sound/voice/human/female_cough5.ogg',
+			'sound/voice/human/female_cough6.ogg',
+		)
+	return pick(
+		'sound/voice/human/male_cough1.ogg',
+		'sound/voice/human/male_cough2.ogg',
+		'sound/voice/human/male_cough3.ogg',
+		'sound/voice/human/male_cough4.ogg',
+		'sound/voice/human/male_cough5.ogg',
+		'sound/voice/human/male_cough6.ogg',
+	)
+
+/datum/species/human/get_cry_sound(mob/living/carbon/human/human)
+	if(human.gender == FEMALE)
+		return pick(
+			'sound/voice/human/female_cry1.ogg',
+			'sound/voice/human/female_cry2.ogg',
+		)
+	return pick(
+		'sound/voice/human/male_cry1.ogg',
+		'sound/voice/human/male_cry2.ogg',
+		'sound/voice/human/male_cry3.ogg',
+	)
+
+
+/datum/species/human/get_sneeze_sound(mob/living/carbon/human/human)
+	if(human.gender == FEMALE)
+		return 'sound/voice/human/female_sneeze1.ogg'
+	return 'sound/voice/human/male_sneeze1.ogg'
+
+/datum/species/human/get_laugh_sound(mob/living/carbon/human/human)
+	if(!ishuman(human))
+		return
+	if(human.gender == FEMALE)
+		return 'sound/voice/human/womanlaugh.ogg'
+	return pick(
+		'sound/voice/human/manlaugh1.ogg',
+		'sound/voice/human/manlaugh2.ogg',
+	)
 
 /datum/species/human/prepare_human_for_preview(mob/living/carbon/human/human)
 	human.hair_style = "Business Hair"
@@ -59,7 +116,7 @@
 		and Blueshield Security Services. A skirmish on Luna between Martian marines, Lunis troopers, and EarthFed soldiers then sparked the Great Sol War in 2280. The first conflict that saw the usage of laser weaponry, casual nuclear armaments in spatial \
 		warfare, and intense military cybernetics, the Great Sol War quickly paved the way for a variety of conventions to prevent devastating planetary attacks. Despite this, the war came to a close in 2288 after Mars fails to land seventeen different meteors \
 		into Earth, the latter threatening to glass the red planet entirely.",
-		
+
 		"In 2294, after tensions have declined further, the Coalition rebranded into the SIC, or the Sol Interplanetary Coalition, made up of a four-member council system that includes Earth, Mars, \
 		planetoids (such as Ganymede or Ceres), and space stations (such as Venus or Pluto). A variety of colony ship projects failed, despite the combined assets of each member of the SIC. It is only in 2400, during a time known as the Great Embarkment, that a \
 		colony ship successfully arrived in the adjacent Val system, greatly enabling humanity's access to the revolutionary material known as baroxuldium, or plasma. The next one hundred years would see a wonderful golden age of humanity setting out into the stars, \

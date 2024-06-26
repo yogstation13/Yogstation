@@ -10,7 +10,7 @@
 	)
 
 #define EXPANDED_MEDICAL_REAGENTS list(\
-		/datum/reagent/medicine/haloperidol,\
+		/datum/reagent/medicine/naloxone,\
 		/datum/reagent/medicine/inacusiate,\
 		/datum/reagent/medicine/mannitol,\
 		/datum/reagent/medicine/mutadone,\

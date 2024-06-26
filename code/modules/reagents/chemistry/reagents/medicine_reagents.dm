@@ -285,7 +285,7 @@
 	reagent_state = LIQUID
 	color = "#FF9696"
 
-/datum/reagent/medicine/styptic_powder/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/medicine/styptic_powder/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		if(!(methods & (PATCH|TOUCH)))
 			M.adjustToxLoss(0.5*reac_volume*permeability)
@@ -367,7 +367,7 @@
 	..()
 	return TRUE
 
-/datum/reagent/medicine/mine_salve/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1)
+/datum/reagent/medicine/mine_salve/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		if(!(methods & (PATCH|TOUCH)))
 			M.adjust_nutrition(-5)
@@ -404,7 +404,7 @@
 			sneaky.assume_disguise(dude)
 	. = ..()
 
-/datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, methods=TOUCH, reac_volume,show_message = 1)
+/datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	var/can_heal = FALSE
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
@@ -451,7 +451,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	compatible_biotypes = MOB_ROBOTIC
 
-/datum/reagent/medicine/system_cleaner/reaction_mob(mob/living/L, methods=TOUCH, reac_volume)
+/datum/reagent/medicine/system_cleaner/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(!(L.mob_biotypes & MOB_ORGANIC))
 		for(var/thing in L.diseases) // can clean viruses from fully synthetic hosts
 			var/datum/disease/D = thing
@@ -915,7 +915,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "magnets"
 
-/datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+/datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	var/datum/reagent/S = M.reagents?.get_reagent(/datum/reagent/medicine/strange_reagent)
 	if((S?.volume + reac_volume) < REQUIRED_STRANGE_REAGENT_FOR_REVIVAL)
 		M.visible_message(span_warning("[M]'s body shivers slightly, maybe the dose wasn't enough..."))
@@ -1287,23 +1287,27 @@
 	..()
 	. = 1
 
-/datum/reagent/medicine/haloperidol
-	name = "Haloperidol"
-	description = "Increases depletion rates for most stimulating/hallucinogenic drugs. Reduces druggy effects and jitteriness. Severe stamina regeneration penalty, causes drowsiness. Small chance of brain damage."
+/datum/reagent/medicine/naloxone
+	name = "Naloxone"
+	description = "Rapidly purges most hazardous chemicals. Causes muscle weakness, and in higher dosages, brain and liver damage"
 	reagent_state = LIQUID
 	color = "#27870a"
+	overdose_threshold = 20
 	metabolization_rate = 0.4 * REAGENTS_METABOLISM
+	var/static/list/purge_types = list(typecacheof(list(/datum/reagent/drug, /datum/reagent/toxin))) //add more to this list as needed
 
-/datum/reagent/medicine/haloperidol/on_mob_life(mob/living/carbon/M)
-	for(var/datum/reagent/drug/R in M.reagents.reagent_list)
-		M.reagents.remove_reagent(R.type,5)
-	M.adjust_drowsiness(2 SECONDS)
-	M.adjust_jitter(-3 SECONDS)
-	M.adjust_hallucinations(-5 SECONDS)
-	if(prob(20))
-		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1*REM, 50)
+/datum/reagent/medicine/naloxone/on_mob_life(mob/living/carbon/M)
+	for(var/datum/reagent/R in M.reagents.reagent_list)
+		if(is_type_in_typecache(R, purge_types))
+			M.reagents.remove_reagent(R.type,5)
 	M.adjustStaminaLoss(2.5*REM, 0)
 	M.clear_stamina_regen()
+	..()
+	return TRUE
+
+/datum/reagent/medicine/naloxone/overdose_process(mob/living/M)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.5 * REM, 50)
+	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 0.5 * REM)
 	..()
 	return TRUE
 
@@ -1543,7 +1547,7 @@
 	M.adjustBruteLoss(-0.35 * REM, 0)
 	return TRUE
 
-/datum/reagent/medicine/polypyr/reaction_mob(mob/living/carbon/human/exposed_human, methods=TOUCH, reac_volume)
+/datum/reagent/medicine/polypyr/reaction_mob(mob/living/carbon/human/exposed_human, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	. = ..()
 	if(!(methods & (TOUCH|VAPOR)) || !ishuman(exposed_human) || (reac_volume < 0.5))
 		return
@@ -1798,7 +1802,7 @@
 					M.drop_all_held_items() // end IF both drugs present
 	return
 
-/datum/reagent/medicine/burnmix/reaction_mob(mob/living/M, methods=TOUCH, reac_volume,show_message = 1)
+/datum/reagent/medicine/burnmix/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(iscarbon(M))
 		if (M.stat == DEAD) // If the mob is dead and you apply it via touch. You get to play an RNG healing game.
 			if(methods & (PATCH|TOUCH))
@@ -1836,7 +1840,7 @@
 	taste_description = "metallic dust"
 	self_consuming = TRUE
 
-/datum/reagent/medicine/radscrub/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+/datum/reagent/medicine/radscrub/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(methods & (TOUCH|VAPOR))
 		M.wash(CLEAN_RAD) //you only get decontaminated if it's spray based, can't spam out 100 1u pills
 
@@ -1887,7 +1891,7 @@
 	taste_description = "a bunch of tiny robots"
 	can_synth = FALSE
 
-/datum/reagent/medicine/resurrector_nanites/reaction_mob(mob/living/carbon/M)
+/datum/reagent/medicine/resurrector_nanites/reaction_mob(mob/living/carbon/M, methods = TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	..()
 	if(M.stat != DEAD)
 		return

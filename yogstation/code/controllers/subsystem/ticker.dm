@@ -40,6 +40,7 @@
 		"https://www.youtube.com/watch?v=uiPJQgw6M_g",						// Ribbiks - Chasing Suns
 		"https://www.youtube.com/watch?v=7F_xOzLWy5U",						// Ataraxia - Deja Vuzz
 		"https://www.youtube.com/watch?v=dxDpdfzwuD4",						// The Penis (Eek!) - Surasshu
+		"https://www.youtube.com/watch?v=TszmdpUtf0A",						// Short Circuit - Daft Punk
 		"https://www.youtube.com/watch?v=VJ817kvh_DM",						// Ben Prunty - FTL - Theme Song
 		"https://www.youtube.com/watch?v=52Gg9CqhbP8",  					// Stuck in the Sound - Let's G
 		"https://www.youtube.com/watch?v=8GW6sLrK40k",						// HOME - Resonance

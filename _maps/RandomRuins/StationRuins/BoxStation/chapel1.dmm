@@ -817,6 +817,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/mapping_helpers/mail_sorting/service/chapel,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "YT" = (

@@ -17,7 +17,6 @@
 	disliked_food = GROSS | VEGETABLES
 
 	//stat mods
-	burnmod = 1.2 //The plasteel has a really high heat capacity, however, it's not great at dispersing the heat to concentrated heat is gonna burn
 	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
 	heatmod = 2 //Once the heat gets through it's gonna BURN
 	tempmod = 0.15 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
@@ -27,9 +26,6 @@
 	punchdamagehigh = 7 //not built for large high speed acts like punches
 	punchstunthreshold = 7 //technically better stunning
 	siemens_coeff = 1.75 //Circuits REALLY don't like extra electricity flying around
-	yogs_virus_infect_chance = 25
-	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
-	virus_stage_rate_boost = 5 //Not designed with viruses in mind since it doesn't usually get in
 
 	//organs
 	mutanteyes = /obj/item/organ/eyes/robotic/preternis
@@ -73,7 +69,6 @@
 		BP.render_like_organic = TRUE 	// Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
 		BP.emp_reduction = EMP_LIGHT
 		BP.burn_reduction = 1
-		BP.brute_reduction = 1
 		if(BP.body_zone == BODY_ZONE_CHEST)
 			continue
 		if(BP.body_zone == BODY_ZONE_HEAD)
@@ -94,7 +89,6 @@
 		BP.change_bodypart_status(ORGAN_ORGANIC,FALSE,TRUE)
 		BP.emp_reduction = initial(BP.emp_reduction)
 		BP.burn_reduction = initial(BP.burn_reduction)
-		BP.brute_reduction = initial(BP.brute_reduction)
 
 	UnregisterSignal(C, COMSIG_MOB_ALTCLICKON)
 
