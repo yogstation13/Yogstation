@@ -326,26 +326,3 @@ GLOBAL_DATUM(syndicate_code_response_regex, /regex)
 	while(used_names[text])
 	used_names[text] = TRUE
 	return text
-
-/**
- * Generates a random name for the mob based on their gender or species (for humans)
- *
- * * unique - If the name should be unique, IE, avoid picking names that mobs already have.
- */
-/mob/proc/generate_random_mob_name(unique)
-	return generate_random_name_species_based(gender, unique, /datum/species/human)
-
-/mob/living/carbon/generate_random_mob_name(unique)
-	return generate_random_name_species_based(gender, unique, dna?.species?.type || /datum/species/human)
-
-/mob/living/silicon/generate_random_mob_name(unique)
-	return generate_random_name(gender, unique, list(/datum/language/machine = 1))
-
-/mob/living/simple_animal/drone/generate_random_mob_name(unique)
-	return generate_random_name(gender, unique, list(/datum/language/machine = 1))
-
-/mob/living/simple_animal/bot/generate_random_mob_name(unique)
-	return generate_random_name(gender, unique, list(/datum/language/machine = 1))
-
-/mob/living/simple_animal/bot/generate_random_mob_name(unique)
-	return generate_random_name(gender, unique, list(/datum/language/machine = 1))
