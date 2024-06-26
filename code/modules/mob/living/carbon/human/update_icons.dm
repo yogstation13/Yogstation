@@ -805,7 +805,7 @@ generate/load female uniform sprites matching all previously decided variables
 		else
 			. += "-robotic"
 		if(BP.use_digitigrade)
-			if("[dna.species]" == "polysmorph")
+			if("[dna.species]" == SPECIES_POLYSMORPH)
 				. += "-pdigitigrade[BP.use_digitigrade]"
 			else
 				. += "-digitigrade[BP.use_digitigrade]"

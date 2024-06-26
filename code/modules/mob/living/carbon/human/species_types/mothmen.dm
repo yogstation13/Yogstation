@@ -1,7 +1,7 @@
 /datum/species/moth
 	name = "Ex'hai"
 	plural_form = "Ex'hau"
-	id = "moth"
+	id = SPECIES_MOTH
 	say_mod = "flutters"
 	default_color = "00FF00"
 	species_traits = list(LIPS, NOEYESPRITES,HAS_FLESH,HAS_BONE)
