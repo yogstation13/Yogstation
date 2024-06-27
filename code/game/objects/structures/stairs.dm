@@ -164,66 +164,17 @@
 	icon_state = "stairs_alone"
 	base_icon_state = "stairs_alone"
 
-/obj/structure/stairs/goon/north
-	dir = NORTH
-
-/obj/structure/stairs/goon/south
-	dir = SOUTH
-
-/obj/structure/stairs/goon/east
-	dir = EAST
-
-/obj/structure/stairs/goon/west
-	dir = WEST
-
 // Middle
 /obj/structure/stairs/goon/wide
 	icon_state = "stairs_middle"
 	base_icon_state = "stairs_middle"
-
-/obj/structure/stairs/goon/wide/north
-	dir = NORTH
-
-/obj/structure/stairs/goon/wide/south
-	dir = SOUTH
-
-/obj/structure/stairs/goon/wide/east
-	dir = EAST
-
-/obj/structure/stairs/goon/wide/west
-	dir = WEST
 
 // Left side
 /obj/structure/stairs/goon/wide/left
 	icon_state = "stairs_wide"
 	base_icon_state = "stairs_wide"
 
-/obj/structure/stairs/goon/wide/left/north
-	dir = NORTH
-
-/obj/structure/stairs/goon/wide/left/south
-	dir = SOUTH
-
-/obj/structure/stairs/goon/wide/left/east
-	dir = EAST
-
-/obj/structure/stairs/goon/wide/left/west
-	dir = WEST
-
 // Right side
-
 /obj/structure/stairs/goon/wide/right
 	icon_state = "stairs2_wide"
 	base_icon_state = "stairs2_wide"
-
-/obj/structure/stairs/goon/wide/right/north
-	dir = NORTH
-
-/obj/structure/stairs/goon/wide/right/south
-	dir = SOUTH
-
-/obj/structure/stairs/goon/wide/right/east
-	dir = EAST
-
-/obj/structure/stairs/goon/wide/right/west
-	dir = WEST
