@@ -190,6 +190,7 @@
 	var/obj/item/card/id/I = user.get_idcard(TRUE)
 	if(I)
 		I.shipbreaking_points += points
+		to_chat(usr, "You redeem [points] shipbreaking points.")
 		points = 0
 		playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
 	else
