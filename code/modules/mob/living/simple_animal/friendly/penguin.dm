@@ -52,3 +52,9 @@
 	density = FALSE
 	pass_flags = PASSMOB
 	butcher_results = list(/obj/item/organ/ears/penguin = 1, /obj/item/reagent_containers/food/snacks/meat/slab/penguin = 1)
+
+/mob/living/simple_animal/pet/penguin/baby/gustavo
+	name = "Gustavo"
+	desc = "Poor Gustavo never smiles, for he has no friends to smile with."
+	gender = MALE
+
