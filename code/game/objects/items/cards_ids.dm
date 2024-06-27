@@ -341,6 +341,7 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 25, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	var/mining_points = 0 //For redeeming at mining equipment vendors
+	var/shipbreaking_points = 0 //for redeeming at shipbreaking equipment vendors
 	var/list/access = list()
 	var/registered_name = null // The name registered_name on the card
 	var/assignment = null
