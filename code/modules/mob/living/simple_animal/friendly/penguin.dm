@@ -55,6 +55,6 @@
 
 /mob/living/simple_animal/pet/penguin/baby/gustavo
 	name = "Gustavo"
-	desc = "Poor Gustavo never smiles, for he has no friends to smile with."
+	desc = "Little Gustavo never smiles, for he has no friends to smile with. He looks like he could use a really good hug."
 	gender = MALE
-
+	//hugged_desc = "Little Gustavo is smiling happily! It looks like he's finally found a friend."

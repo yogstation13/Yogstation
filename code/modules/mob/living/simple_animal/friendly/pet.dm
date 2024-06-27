@@ -110,18 +110,16 @@
 		if(M && stat != DEAD)
 			emote("me", 1, wuv_angy, TRUE)
 
-
-//Called when hugging. expand into generally interacting, where future coders could switch the intent?
-/mob/living/simple_animal/pet/proc/on_hug(mob/living/hugger, mob/living/hugged)
-	if(resilience >= TRAUMA_RESILIENCE_WOUND)
-		return
-	if(!COOLDOWN_FINISHED(src, hug_therapy_cd))
-		return
-	COOLDOWN_START(src, hug_therapy_cd, hug_therapy_cd_time)
-	var/cure_chance = random_cure_chance / 6
-	if(HAS_TRAIT(hugger, TRAIT_FRIENDLY))
-		cure_chance *= 1.25
-	cure_chance *= psych_bonus(hugger) * 0.35 // hugging is not that good at curing trauma but it helps
-	cure_chance *= check_hypno_vulnerable(hugged)
-	if(prob(cure_chance))
-		qdel(src) // Sometimes, all you need is a good hug..
+/*
+/mob/living/simple_animal/pet/proc/hug_affect(mob/living/hugger, mob/M, change = TRUE)
+	if(change)
+		if(M && stat != DEAD && HAS_TRAIT(hugger, TRAIT_FRIENDLY)) // We need a professional hugger
+			emote("me", 1, wuv_happy, TRUE)
+			if(!M.hugged_name)
+				M.name = M.hugged_name
+			if(!M.hugged_desc)
+				M.desc = M.hugged_desc
+			if(flags_1 & HOLOGRAM_1)
+				return
+			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal, src)
+*/
