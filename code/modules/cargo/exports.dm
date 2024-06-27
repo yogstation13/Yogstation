@@ -56,7 +56,7 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 		if(!dry_run && (sold || delete_unsold))
 			if(isliving(thing))
 				thing.investigate_log("trafficked via cargo export",INVESTIGATE_CARGO)
-				handleTrafficking(thing)
+				INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(handleTrafficking), thing)
 			else
 				qdel(thing)
 
