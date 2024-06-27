@@ -5,7 +5,6 @@
 	icon_state = "bismuth"
 	icon_living = "bismuth"
 	icon_dead = "bis_dead"
-	var/icon_hiding = "yeeslow_scared"
 	speak_emote = list("grumbles")
 	emote_hear = list("grunts.","grumbles.")
 	emote_see = list("wags their tail.", "sniffs at the ground.")
@@ -25,6 +24,14 @@
 	glide_size = 2
 	can_be_held = FALSE
 	footstep_type = FOOTSTEP_MOB_SHOE
+
+/mob/living/simple_animal/triceratops/Initialize(mapload)
+	var/cap = CONFIG_GET(number/bismuthcap)
+	if (LAZYLEN(SSmobs.bismuth) > cap)
+		if(prob(30))
+			new /mob/living/simple_animal/triceratops(loc)
+			SSmobs.bismuth += src
+	. = ..()
 
 /mob/living/simple_animal/triceratops/handle_automated_movement()
 	if(!isturf(src.loc) || !(mobility_flags & MOBILITY_MOVE) || buckled)
