@@ -54,7 +54,15 @@
 	key = "whistle"
 	key_third_person = "whistles"
 	message = "whistles."
-	emote_type = EMOTE_AUDIBLE
+	message_mime = "whistles silently!"
+	cooldown = 5 SECONDS
+	vary = TRUE
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+
+/datum/emote/living/whistle/get_sound(mob/living/user)
+	if(!istype(user))
+		return
+	return 'sound/voice/human/whistle1.ogg'
 
 /datum/emote/living/iwhistle
 	key = "iwhistle"

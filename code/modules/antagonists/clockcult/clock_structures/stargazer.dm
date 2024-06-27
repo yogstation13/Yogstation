@@ -152,7 +152,12 @@
 			I.light_power = 3
 			I.light_range = 3
 			I.light_color = LIGHT_COLOR_CLOCKWORK
-			I.block_chance += 15
+			var/datum/component/blocking/block_component = I.GetComponent(/datum/component/blocking)
+			if(!block_component)
+				I.AddComponent(/datum/component/blocking, block_force = 15, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|REFLECTIVE_BLOCK)
+			else
+				block_component.block_force += 5
+				block_component.block_flags |= PROJECTILE_ATTACK|REFLECTIVE_BLOCK
 			to_chat(user, "<span class='neovgre'>[I] shines with a brilliant protecting light!</span>")
 			return
 		if(6)
@@ -165,7 +170,12 @@
 			I.AddComponent(/datum/component/lifesteal, 4)
 			return
 		if(8)
-			I.block_chance += 10
+			var/datum/component/blocking/block_component = I.GetComponent(/datum/component/blocking)
+			if(!block_component)
+				I.AddComponent(/datum/component/blocking, block_force = 10, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK)
+			else
+				block_component.block_force += 5
+				block_component.block_flags |= PROJECTILE_ATTACK
 			I.resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 			to_chat(user, "<span class='neovgre'>[I] becomes unbreakable!</span>")
 			return

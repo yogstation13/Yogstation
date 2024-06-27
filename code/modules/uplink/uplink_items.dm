@@ -139,11 +139,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 //Discounts (dynamically filled above)
 /datum/uplink_item/discounts
-	category = "Discounts"
+	category = UPLINK_CATEGORY_DISCOUNTS
 
 //All bundles and telecrystals
 /datum/uplink_item/bundles_TC
-	category = "Bundles"
+	category = UPLINK_CATEGORY_BUNDLES
 	surplus = 0
 	cant_discount = TRUE
 
@@ -325,7 +325,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 // Dangerous Items
 /datum/uplink_item/dangerous
-	category = "Conspicuous Weapons"
+	category = UPLINK_CATEGORY_CONSPICUOUS
 
 /datum/uplink_item/dangerous/busterarm
 	name = "Buster Arm"
@@ -466,7 +466,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Flamethrower"
 	desc = "A flamethrower, fueled by a portion of highly flammable biotoxins stolen previously from Nanotrasen \
 			stations. Make a statement by roasting the filth in their own greed. Use with caution."
-	item = /obj/item/flamethrower/full/tank
+	item = /obj/item/gun/flamethrower/full
 	cost = 4
 	surplus = 40
 	include_modes = list(/datum/game_mode/nuclear)
@@ -649,7 +649,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 // Stealthy Weapons
 /datum/uplink_item/stealthy_weapons
-	category = "Stealthy Weapons"
+	category = UPLINK_CATEGORY_STEALTH_WEAPONS
 
 /datum/uplink_item/stealthy_weapons/combatglovesplus
 	name = "Combat Gloves Plus"
@@ -781,7 +781,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 // Ammunition
 /datum/uplink_item/ammo
-	category = "Ammunition"
+	category = UPLINK_CATEGORY_AMMO
 	surplus = 40
 
 /datum/uplink_item/ammo/pistol
@@ -791,7 +791,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
-/datum/uplink_item/ammo/pistol
+/datum/uplink_item/ammo/pistol/random
 	name = "Random 10mm Handgun Magazines"
 	desc = "A box that contains four random 10-round 10mm magazines at a discount; compatible with the Stechkin Pistol."
 	item = /obj/item/storage/box/syndie_kit/pistolammo/random
@@ -1147,7 +1147,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 //Grenades and Explosives
 /datum/uplink_item/explosives
-	category = "Explosives"
+	category = UPLINK_CATEGORY_EXPLOSIVES
 
 /datum/uplink_item/explosives/bioterrorfoam
 	name = "Bioterror Foam Grenade"
@@ -1383,7 +1383,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 //Support and Mechs
 /datum/uplink_item/support
-	category = "Support and Exosuits"
+	category = UPLINK_CATEGORY_SUPPORT
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -1468,7 +1468,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 // Stealth Items
 /datum/uplink_item/stealthy_tools
-	category = "Stealth Gadgets"
+	category = UPLINK_CATEGORY_STEALTH_GADGETS
 
 /datum/uplink_item/stealthy_tools/spy_bug
 	name = "Box of Spy Bugs"
@@ -1646,7 +1646,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 //Space Suits and Hardsuits
 /datum/uplink_item/suits
-	category = "Space Suits"
+	category = UPLINK_CATEGORY_SPACE_SUITS
 	surplus = 40
 
 /datum/uplink_item/suits/space_suit
@@ -1689,7 +1689,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 // Devices and Tools
 /datum/uplink_item/device_tools
-	category = "Misc. Gadgets"
+	category = UPLINK_CATEGORY_MISC
 
 /datum/uplink_item/device_tools/cutouts
 	name = "Adaptive Cardboard Cutouts"
@@ -2113,7 +2113,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 // Implants
 /datum/uplink_item/implants
-	category = "Implants"
+	category = UPLINK_CATEGORY_IMPLANTS
 	surplus = 50
 
 
@@ -2126,7 +2126,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/implants/reusable
 	name = "Reusable Autosurgeon"
 	desc = "An empty autosurgeon, but unlike others can be used multiple times. More suspicious than others."
-	item = /obj/item/autosurgeon/suspicious
+	item = /obj/item/autosurgeon/suspicious/reusable
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 5
 	// Nukies have no use for this and their autosurgeons are already multi-use
@@ -2146,7 +2146,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "This implant will stimulate muscle movements to help you get back up on your feet faster after being stunned. \
 			This version is modified to help reduce exhaustion during combat. \
 			Comes with an autosurgeon."
-	item = /obj/item/autosurgeon/anti_stun
+	item = /obj/item/autosurgeon/suspicious/anti_stun
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 8
 	surplus = 0
@@ -2189,7 +2189,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/implants/reviver
 	name = "Syndicate Reviver Implant"
 	desc = "A more powerful and experimental version of the one utilized by Nanotrasen, this implant will attempt to revive and heal you if you are critically injured. Comes with an autosurgeon."
-	item = /obj/item/autosurgeon/reviver/syndicate
+	item = /obj/item/autosurgeon/suspicious/reviver
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 8
 	surplus = 0
@@ -2242,7 +2242,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/implants/xray
 	name = "X-ray Vision Implant"
 	desc = "These cybernetic eyes will give you X-ray vision. Comes with an autosurgeon."
-	item = /obj/item/autosurgeon/xray_eyes
+	item = /obj/item/autosurgeon/suspicious/xray_eyes
 	cost = 10
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
@@ -2250,7 +2250,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/implants/mantis
 	name = "G.O.R.L.E.X. Mantis Blade"
 	desc = "One G.O.R.L.E.X Mantis blade implant able to be retracted inside your body at will for easy storage and concealing. Two blades can be used at once."
-	item = /obj/item/autosurgeon/arm/syndicate/syndie_mantis
+	item = /obj/item/autosurgeon/suspicious/syndie_mantis
 	cost = 6
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
@@ -2258,26 +2258,26 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/implants/stechkin_implant
 	name = "Stechkin arm implant"
 	desc = "A modified version of the Stechkin pistol placed inside of the forearm to allow for easy concealment."
-	item = /obj/item/autosurgeon/arm/syndicate/stechkin_implant
+	item = /obj/item/autosurgeon/suspicious/stechkin_implant
 	cost = 9
-		
+
 /datum/uplink_item/implants/noslipall
 	name = "Slip Prevention Implant"
 	desc = "An implant that uses advanced sensors to detect when you are slipping and utilize motors in order to prevent it."
-	item = /obj/item/multisurgeon/noslipall
+	item = /obj/item/autosurgeon/suspicious/noslipall
 	cost = 6	//tax for them being nigh impossible to steal or lose
 
 /datum/uplink_item/implants/airshoes
 	name = "Air Shoes Implant"
 	desc = "As a result of extreme popularity of the Air Shoes an implant version was developed. Just like the boots there are jets allowing the users to reach high speeds for prolonged durations and short bursts."
-	item = /obj/item/multisurgeon/airshoes
+	item = /obj/item/autosurgeon/suspicious/airshoes
 	cost = 6	//2 tc tax for them being nigh impossible to steal or lose
 	manufacturer = /datum/corporation/traitor/cybersun
 
 /datum/uplink_item/implants/spinal
 	name = "Neural Overclocker Implant"
 	desc = "Stimulates your central nervous system in order to enable you to perform muscle movements faster. Careful not to overuse it."
-	item = /obj/item/autosurgeon/syndicate/spinalspeed
+	item = /obj/item/autosurgeon/suspicious/spinalspeed
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 12
 	exclude_modes = list(/datum/game_mode/infiltration, /datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
@@ -2329,7 +2329,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 //Infiltrator shit
 /datum/uplink_item/infiltration
-	category = "Infiltration Gear"
+	category = UPLINK_CATEGORY_INFILTRATION
 	include_modes = list(/datum/game_mode/infiltration)
 	surplus = 0
 
@@ -2348,7 +2348,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 //Race-specific items
 /datum/uplink_item/race_restricted
-	category = "Species-Restricted"
+	category = UPLINK_CATEGORY_SPECIES
 	surplus = 0
 
 /datum/uplink_item/race_restricted/syndilamp
@@ -2381,7 +2381,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			It can be charged by the user's concentration, which permits a single blow that will decimate construction, \
 			fling bodies, and heavily damage mechs. Vir'ln krx'tai, lost one."
 	cost = 10
-	item = /obj/item/autosurgeon/arm/syndicate/syndie_hammer
+	item = /obj/item/autosurgeon/suspicious/syndie_hammer
 	restricted_species = list("preternis")
 
 /datum/uplink_item/race_restricted/hammerimplant/New()
@@ -2415,7 +2415,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 // Role-specific items
 /datum/uplink_item/role_restricted
-	category = "Role-Restricted"
+	category = UPLINK_CATEGORY_ROLE
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	surplus = 0
 
@@ -2759,7 +2759,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 // Pointless
 /datum/uplink_item/badass
-	category = "(Pointless) Badassery"
+	category = UPLINK_CATEGORY_BADASS
 	surplus = 0
 
 /datum/uplink_item/badass/costumes/obvious_chameleon
@@ -2892,7 +2892,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	var/required_ert_uplink = null //Do we need a specific uplink? Defaults to universal.
 
 /datum/uplink_item/nt/energy_weps
-	category = "Energy Weapons"
+	category = UPLINK_CATEGORY_ENERGY
 
 /datum/uplink_item/nt/energy_weps/egun
 	name = "Energy Gun"
@@ -2959,7 +2959,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 100
 
 /datum/uplink_item/nt/ball_weps
-	category = "Ballistic Weapons"
+	category = UPLINK_CATEGORY_BALLISTIC
 	required_ert_uplink = NT_ERT_TROOPER
 
 /datum/uplink_item/nt/ball_weps/boarder
@@ -3004,7 +3004,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	limited_stock = 2 // SAY HELLO TO MY LITTLE FRIEND
 
 /datum/uplink_item/nt/ammo
-	category = "Ammunition"
+	category = UPLINK_CATEGORY_AMMO
 	required_ert_uplink = NT_ERT_TROOPER
 
 /datum/uplink_item/nt/ammo/recharger
@@ -3118,7 +3118,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 
 /datum/uplink_item/nt/mech
-	category = "Exosuits"
+	category = UPLINK_CATEGORY_EXOSUITS
 	required_ert_uplink = NT_ERT_ENGINEER
 
 /datum/uplink_item/nt/mech/marauder
@@ -3206,7 +3206,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 
 /datum/uplink_item/nt/cqc
-	category = "Close Quarters Combat"
+	category = UPLINK_CATEGORY_CQC
 
 /datum/uplink_item/nt/cqc/esword
 	name = "Energy Sword"
@@ -3270,7 +3270,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 
 /datum/uplink_item/nt/support
-	category = "Support"
+	category = UPLINK_CATEGORY_NT_SUPPORT
 
 /datum/uplink_item/nt/support/c4
 	name = "Composition C-4"
@@ -3376,7 +3376,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	required_ert_uplink = NT_ERT_ENGINEER
 
 /datum/uplink_item/nt/hardsuit
-	category = "Armor & Hardsuits"
+	category = UPLINK_CATEGORY_HARDSUITS
 
 /datum/uplink_item/nt/hardsuit/armor
 	name = "Armor Vest"
@@ -3459,7 +3459,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cant_discount = TRUE
 
 /datum/uplink_item/nt/gear
-	category = "Other Gear"
+	category = UPLINK_CATEGORY_OTHER
 
 /datum/uplink_item/nt/gear/secbelt
 	name = "Stocked Security Belt"

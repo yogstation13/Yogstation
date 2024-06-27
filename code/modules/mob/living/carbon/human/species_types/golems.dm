@@ -745,7 +745,7 @@
 	species_language_holder = /datum/language_holder/clockwork
 	ghost_cooldown = 20 MINUTES // Trade some armor for human levels of speed. Only obtainable from adminbus or clockwork.
 	var/has_corpse
-	
+
 /datum/species/golem/clockwork/on_species_gain(mob/living/carbon/human/H)
 	. = ..()
 	H.faction |= "ratvar"
@@ -1015,7 +1015,7 @@
 
 /datum/species/golem/snow/on_species_gain(mob/living/carbon/grant_to, datum/species/old_species)
 	. = ..()
-	grant_to.weather_immunities |= "snow"
+	grant_to.weather_immunities |= WEATHER_SNOW
 	snowball = new(grant_to)
 	snowball.StartCooldown()
 	snowball.Grant(grant_to)
@@ -1026,7 +1026,7 @@
 
 /datum/species/golem/snow/on_species_loss(mob/living/carbon/remove_from)
 	. = ..()
-	remove_from.weather_immunities -= "snow"
+	remove_from.weather_immunities -= WEATHER_SNOW
 	QDEL_NULL(snowball)
 	QDEL_NULL(cryo)
 	return ..()
@@ -1187,7 +1187,7 @@
 	changesource_flags = MIRROR_BADMIN
 	random_eligible = FALSE
 	ghost_cooldown = null // Adminbus only.
-		
+
 /datum/species/golem/capitalist/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
 	C.equip_to_slot_or_del(new /obj/item/clothing/head/that (), ITEM_SLOT_HEAD)
@@ -1269,7 +1269,7 @@
 	C.revive(full_heal = TRUE)
 	to_chat(C, span_alert("You are now a soviet golem! Do not harm fellow soviet golems. Kill captalist golems and hit people with your fists to spread the glorious light of communism to others! Cyka Blyat!"))
 	to_chat(C, span_userdanger("Hit non-golems several times in order to get them starving and on your side!"))
-	
+
 	SEND_SOUND(C, sound('sound/misc/Russian_Anthem_chorus.ogg'))
 	var/datum/action/cooldown/spell/aoe/knock/OPEN_THE_DOOR = new(C)
 	OPEN_THE_DOOR.Grant(C)
@@ -1539,7 +1539,7 @@
 	id = "supermatter golem"
 	mutanthands = /obj/item/melee/supermatter_sword/hand
 	inherent_traits = list(TRAIT_NOHARDCRIT,TRAIT_NOSOFTCRIT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS)
-	changesource_flags = MIRROR_BADMIN 
+	changesource_flags = MIRROR_BADMIN
 	random_eligible = FALSE // Hell no
 	info_text = "As a <span class='danger'>Supermatter Golem</span>, you dust almost any physical object that interacts with you, while taking half as much brute damage and three times more burn damage. You also explode on death."
 	attack_verbs = list("dusting punch")
@@ -1558,7 +1558,7 @@
 	playsound(get_turf(H), 'sound/effects/supermatter.ogg', 10, TRUE)
 	H.visible_message(span_danger("[AM] knocks into [H], and then turns into dust with a flash of light!"))
 	qdel(AM)
-	
+
 /datum/species/golem/supermatter/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
 	..()
 	M.visible_message(span_danger("[M] tries to punch [H], but turns into dust with a brilliant flash of light!"))
@@ -1570,7 +1570,7 @@
 	H.visible_message(span_danger("[user] tries to attack [H] with [I], but [I] turns into dust with a brilliant flash of light!"))
 	playsound(get_turf(H), 'sound/effects/supermatter.ogg', 10, TRUE)
 	qdel(I)
-	
+
 
 /datum/species/golem/supermatter/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	. = ..()
@@ -1578,7 +1578,7 @@
 		return .
 	H.visible_message(span_danger("[P] melts on collision with [H]!"))
 	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
-	return BULLET_ACT_FORCE_PIERCE 
+	return BULLET_ACT_FORCE_PIERCE
 
 /datum/species/golem/supermatter/spec_life(mob/living/carbon/C)
 	. = ..()
@@ -1603,7 +1603,7 @@
 /obj/item/melee/supermatter_sword/hand
 	name = "supermatter hand"
 	desc = "A hand of a robust supermatter golem."
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
 	icon_state = "disintegrate"
@@ -1661,7 +1661,6 @@
 	id = "tar golem"
 	species_traits = list(NOBLOOD,MUTCOLORS,NO_UNDERWEAR, NO_DNA_COPY, NOTRANSSTING)
 	inherent_traits = list(TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS)
-	inherent_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
 	speedmod = 1.5 // Slightly faster
 	armor = 25
 	punchstunthreshold = 13
@@ -1674,7 +1673,7 @@
 
 /datum/species/golem/tar/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
-	TP = new 
+	TP = new
 	TP.Grant(C)
 
 

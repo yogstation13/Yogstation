@@ -736,7 +736,7 @@
 				return
 		if(!H.get_active_held_item())
 			to_chat(quirk_holder, span_danger("You can't keep your eyes off [I.name]."))
-			H.UnarmedAttack(I)
+			H.UnarmedAttack(I, TRUE, list())
 
 /datum/quirk/ineloquent
 	name = "Ineloquent"
@@ -828,10 +828,12 @@
 
 /datum/quirk/telomeres_short/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (NO_DNA_COPY in initial(species_type.species_traits)) //Can't pick if you have no DNA bruv.
-
-	if(disallowed_trait)
+	var/no_dna = (NO_DNA_COPY in initial(species_type.species_traits)) //Can't pick if you have no DNA bruv.
+	var/no_clone = (TRAIT_NOCLONE in initial(species_type.inherent_traits))
+	if(no_dna)
 		return "You have no DNA!"
+	else if(no_clone)
+		return "Your species cannot be cloned!"
 	return FALSE
 
 /datum/quirk/body_purist

@@ -386,14 +386,14 @@ GLOBAL_VAR(final_zone)
 /obj/item/clothing/neck/tie/gamer/equipped(mob/user, slot)
 	. = ..()
 	RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(death))
+	RegisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(hit_reaction))
 
 /obj/item/clothing/neck/tie/gamer/proc/death()
 	if(last_hit)
 		last_hit.killed++
 	qdel(src)//so reviving them doesn't give the necklace back
 
-/obj/item/clothing/neck/tie/gamer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text, final_block_chance, damage, attack_type)
-	. = ..()
+/obj/item/clothing/neck/tie/gamer/proc/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, damage, attack_text)
 	var/mob/living/culprit
 
 	if(isprojectile(hitby))//get the person that shot the projectile

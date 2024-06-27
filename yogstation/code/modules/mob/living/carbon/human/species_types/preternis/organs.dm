@@ -125,13 +125,6 @@
 	cold_level_2_damage = 4
 	cold_level_3_threshold = 220
 	cold_level_3_damage = 6
-
-	heat_level_1_threshold = 500
-	heat_level_1_damage = 4
-	heat_level_2_threshold = 1000
-	heat_level_2_damage = 7
-	heat_level_3_threshold = 35000 //are you on the fucking surface of the sun or something?
-	heat_level_3_damage = 25 //you should already be dead
 	
 ///////////////////////////////////////////////////////////
 //---------------------Preternis Stomach-----------------//

@@ -108,6 +108,11 @@
 		if(ismob(AM))
 			var/mob/M = AM
 			M.reset_perspective(src)	// if a client mob, update eye to follow this holder
+
+	if(destinationTag == 0 && other.destinationTag != 0)
+		destinationTag = other.destinationTag
+	if(!tomail && other.tomail)
+		tomail = TRUE		
 	qdel(other)
 
 

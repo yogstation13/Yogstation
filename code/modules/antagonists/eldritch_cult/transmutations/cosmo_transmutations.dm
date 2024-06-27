@@ -32,7 +32,12 @@
 			ADD_TRAIT(user, TRAIT_RESISTHIGHPRESSURE, MAGIC_TRAIT)
 			ADD_TRAIT(user, TRAIT_NOBREATH, MAGIC_TRAIT)
 			var/mob/dead/observer/ghost_candidate = pick(candidates)
-			priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report two entitites of immeasurable power. Beginning sector purge. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
+			priority_announce(
+				text = "[generate_heretic_text()] A Star Gazer has arrived into the station, [user.real_name] has ascended! This station is the domain of the Cosmos! [generate_heretic_text()]",
+				title = "[generate_heretic_text()]",
+				sound = 'sound/ambience/antag/heretic/ascend_cosmic.ogg',
+				color_override = "pink",
+			)
 
 			log_game("[key_name_admin(ghost_candidate)] has taken control of ([key_name_admin(summoned)]).")
 			summoned.ghostize(FALSE)
@@ -50,7 +55,12 @@
 				if(istype(spells, /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash)) //I dont want big mobs to be able to use ash jaunt
 					spells.Remove(user)
 					qdel(spells)
-			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the cosmos, for The Creator has ascended! Unmake all of reality! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
+			priority_announce(
+				text = "[generate_heretic_text()] Fear the cosmos, for The Creator, [user.real_name] Unmake all of reality! [generate_heretic_text()]",
+				title = "[generate_heretic_text()]",
+				sound = 'sound/ambience/antag/heretic/ascend_cosmic.ogg',
+				color_override = "pink",
+			)
 			var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
 			SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
 

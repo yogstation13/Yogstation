@@ -12,7 +12,7 @@
 	var/message = "Hello!"
 	// How long before another message can be sent
 	var/cooldown_time = 0 SECONDS
-	// What area is required for this device to work, if there is any 
+	// What area is required for this device to work, if there is any
 	var/required_area
 	// If the encryption key can be removed
 	var/key_locked = FALSE
@@ -35,7 +35,7 @@
 		return
 	if(!radio.keyslot)
 		to_chat(user, span_notice("[src] doesn't have any encryption keys!"))
-		return 
+		return
 	to_chat(user, span_notice("You pop out [radio.keyslot] from [src]."))
 	user.put_in_hands(radio.keyslot)
 	radio.keyslot = null
@@ -54,7 +54,7 @@
 		if(!user.transferItemToLoc(I, src))
 			return
 		radio.keyslot = I
-	
+
 /obj/item/assembly/radio/activate()
 	if(TIMER_COOLDOWN_CHECK(src, "message") || (required_area && !istype(get_area(src), required_area)) || !message)
 		return
@@ -66,7 +66,7 @@
 
 /obj/item/assembly/radio/bell
 	name = "desk bell announcer"
-	message = "Presence requested at the front desk"
+	message = "Presence requested at the front desk."
 	cooldown_time = 1 MINUTES
 	key_locked = TRUE
 

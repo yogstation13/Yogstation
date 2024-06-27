@@ -588,7 +588,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	desc = "A curved sword smelted from an unknown metal. Looking at it gives you the otherworldly urge to pawn it off for '30k', whatever that means."
 	lefthand_file = 'yogstation/icons/mob/inhands/weapons/scimmy_lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/weapons/scimmy_righthand.dmi'
-	icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "rune_scimmy"
 	force = 20
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
@@ -707,7 +707,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	compatible_biotypes = ALL_BIOTYPES
 	color = "#FFEBEB"
 
-/datum/reagent/flightpotion/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1)
+/datum/reagent/flightpotion/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/C = M
 		var/valid_species = (ishumanbasic(C) || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || ispodperson(C) || isethereal(C))
@@ -972,7 +972,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/item/melee/ghost_sword
 	name = "\improper spectral blade"
 	desc = "A rusted and dulled blade. It doesn't look like it'd do much damage. It glows weakly."
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "spectral"
 	item_state = "spectral"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -993,6 +993,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 	START_PROCESSING(SSobj, src)
 	GLOB.poi_list |= src
 	AddComponent(/datum/component/butchering, 150, 90)
+	AddComponent(/datum/component/blocking, block_force = 1, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|REFLECTIVE_BLOCK)
+	RegisterSignal(src, COMSIG_ITEM_PRE_BLOCK, PROC_REF(update_block_force))
+	RegisterSignal(src, COMSIG_ITEM_POST_BLOCK, PROC_REF(post_block))
 
 /obj/item/melee/ghost_sword/Destroy()
 	for(var/mob/dead/observer/G in spirits)
@@ -1058,11 +1061,19 @@ GLOBAL_LIST_EMPTY(aide_list)
 	user.visible_message(span_danger("[user] strikes with the force of [ghost_counter] vengeful spirits!"))
 	..()
 
-/obj/item/melee/ghost_sword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/melee/ghost_sword/proc/update_block_force(obj/item/source, mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/ghost_counter = ghost_check()
-	final_block_chance += clamp((ghost_counter * 5), 0, 75)
-	owner.visible_message(span_danger("[owner] is protected by a ring of [ghost_counter] ghosts!"))
-	return ..()
+	if(!ghost_counter)
+		return COMPONENT_CANCEL_BLOCK
+	var/datum/component/blocking/block_component = GetComponent(/datum/component/blocking)
+	if(!block_component)
+		CRASH("[type] is missing its blocking component!")
+	block_component.block_force = clamp(ghost_counter * 2, 0, 30)
+	return NONE
+
+/obj/item/melee/ghost_sword/proc/post_block(obj/item/source, mob/living/carbon/human/defender)
+	var/ghost_counter = ghost_check()
+	defender.visible_message(span_danger("[defender] is protected by a ring of [ghost_counter] ghosts!"))
 
 //Blood
 
@@ -1089,8 +1100,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 			dragon_shapeshift.Grant(user)
 		if(3)
 			to_chat(user, span_danger("You feel like you could walk straight through lava now."))
-			H.weather_immunities |= "lava"
-			H.weather_immunities |= "ash"
+			H.weather_immunities |= WEATHER_LAVA
+			H.weather_immunities |= WEATHER_ASH
 
 	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
@@ -1755,7 +1766,6 @@ GLOBAL_LIST_EMPTY(aide_list)
 	throw_speed = 4
 	materials = list(/datum/material/bluespace = 8000, /datum/material/diamond = 2000, /datum/material/dilithium = 2000)
 	sharpness = SHARP_NONE
-	block_chance = 0
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/w_class_on = WEIGHT_CLASS_HUGE
 	var/fauna_damage_bonus = 0
@@ -1769,6 +1779,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
+	AddComponent(/datum/component/blocking, block_force = 10, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK|WIELD_TO_BLOCK)
 
 /obj/item/melee/spear/bonespear/stalwartpike/update_icon_state()
 	. = ..()
@@ -1778,7 +1789,6 @@ GLOBAL_LIST_EMPTY(aide_list)
 	playsound(src, 'sound/magic/summonitems_generic.ogg', 50, 1)
 	sharpness = SHARP_POINTY
 	w_class = w_class_on
-	block_chance = 25
 	force = 8
 	fauna_damage_bonus = 52
 
@@ -1787,7 +1797,6 @@ GLOBAL_LIST_EMPTY(aide_list)
 	sharpness = initial(sharpness)
 	w_class = initial(w_class)
 	force = initial(force)
-	block_chance = initial(block_chance)
 	fauna_damage_bonus = initial(fauna_damage_bonus)
 
 /obj/item/melee/spear/bonespear/stalwartpike/afterattack(atom/target, mob/user, proximity)
@@ -1997,3 +2006,136 @@ GLOBAL_LIST_EMPTY(aide_list)
 			var/mob/living/M = hit_atom
 			if(curse(thrownby, M) == TRUE)
 				to_chat(thrownby, span_notice("You appear before the cane and stab [M], making a new minion out of [M.p_them()]!"))
+
+//Olmec
+
+#define COOLDOWN_HEADCRAFT 10 SECONDS
+/obj/item/claycanister
+	name = "archaic clay canister"
+	desc = "A seemingly bottomless canister of violet clay. Kneading it seems to always results in a shape resembling a head, regardless of intent or concentration."
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	icon_state = "claycan"
+	force = 5 
+	throwforce = 3
+	w_class = WEIGHT_CLASS_NORMAL
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	COOLDOWN_DECLARE(next_headcraft)
+	var/next_craft = 0
+
+
+
+/obj/item/claycanister/attack_self(mob/user)
+	if(!COOLDOWN_FINISHED(src, next_headcraft))
+		to_chat(user, span_warning("You can't do that yet!"))
+		return
+	var/obj/item/minihead/B = new()
+	user.put_in_hands(B)
+	to_chat(user, span_notice("You mold a head from the clay!"))
+	COOLDOWN_START(src, next_headcraft, COOLDOWN_HEADCRAFT)
+
+
+
+/obj/item/minihead
+	name = "small clay head"
+	desc = "An earthen homage to its colossal predecessor. The round shape and heft almost scream its desire for flight."
+	icon = 'yogstation/icons/mob/human_parts.dmi'
+	icon_state = "b_golem_head"
+	var/list/headlist = list("abductor_head", "plasmaman_head", "skeleton_head", "cultgolem_head", "fly_head_m", "moth_head_f", "agent_head", "skeleton_head")
+	color = "#774e6d"
+	force = 0
+	throwforce = 0
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF //indestructable bc it needs to exist for a few seconds before dying to not runtime
+	w_class = WEIGHT_CLASS_SMALL
+	var/usedup = FALSE
+	var/smashdam = 25 
+	var/animaldam = 50
+	var/objdam = 25
+
+
+/obj/item/minihead/Initialize(mapload)
+	. = ..()
+	src.icon_state = pick(headlist)
+	
+
+/obj/item/minihead/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	. = ..()
+	if(hit_atom && !usedup)
+		rise(hit_atom, src.icon_state)
+		usedup = TRUE
+
+/obj/item/minihead/after_throw(datum/callback/callback)
+	. = ..()
+	if(!usedup)
+		rise(src.loc, src.icon_state)
+		usedup = TRUE
+
+/obj/item/minihead/attack_self(mob/user)
+	if(!usedup)
+		rise(src, src.icon_state)
+		usedup = TRUE
+
+/obj/item/minihead/attack_hand(mob/user)
+	if(isturf(src.loc) && usedup)
+		return
+	. = ..()
+
+/obj/item/minihead/pickup(mob/user)
+	if(usedup)
+		return FALSE
+	. = ..()
+	
+
+
+/obj/item/minihead/proc/rise(atom/target, icon_state)
+	target.visible_message(span_warning("A stone head grows and floats overhead!"))
+	alpha = 0
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), 2.5 SECONDS)
+	var/obj/item/minihead/shadow = new(get_turf(target))
+	var/obj/item/minihead/realdeal = new(get_turf(target))
+	realdeal.icon_state = icon_state
+	realdeal.usedup = TRUE
+	shadow.icon_state = icon_state
+	shadow.usedup = TRUE
+	shadow.color = "#000000"
+	walk_towards(shadow, target, 0, 0)
+	walk_towards(realdeal, target, 0, 0)
+	animate(realdeal, pixel_y = 60, pixel_x = 0, transform = matrix().Scale(3), time = 1.5 SECONDS)
+	animate(shadow, pixel_y = -30, transform = matrix().Scale(3), time = 1.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(follow), realdeal, shadow), 1.5 SECONDS)
+	return
+
+/obj/item/minihead/proc/follow(var/obj/damocles, var/obj/silhouette)
+	walk(damocles, 0)
+	walk(silhouette, 0)
+	addtimer(CALLBACK(src, PROC_REF(comedown), damocles, silhouette), 0.5 SECONDS)
+	return
+
+/obj/item/minihead/proc/comedown(var/obj/damocles, var/obj/silhouette)
+	var/turf/uhoh = get_turf(damocles)
+	animate(damocles, pixel_y = 0, time = 0.2 SECONDS, easing = ELASTIC_EASING)
+	animate(silhouette, transform = matrix().Scale(3), time = 0.2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(crush), uhoh), 0.1 SECONDS)
+	playsound(damocles, 'sound/effects/break_stone.ogg', 15, 1)
+	playsound(damocles, 'sound/effects/meteorimpact.ogg', 30, 1)
+	QDEL_IN(silhouette, 0.2 SECONDS)
+	QDEL_IN(damocles, 0.2 SECONDS)
+	return
+
+/obj/item/minihead/proc/crush(var/turf/landingzone)
+	landingzone.break_tile()
+	for(var/mob/witness in range(10, landingzone))
+		shake_camera(witness, 1, 2)
+	for(var/obj/X in landingzone.contents)
+		X.take_damage(objdam)
+	for(var/mob/living/coyote in landingzone.contents)
+		var/armor = coyote.run_armor_check(BODY_ZONE_HEAD, MELEE, armour_penetration = 0)
+		coyote.apply_damage(smashdam, BRUTE, BODY_ZONE_HEAD, armor)
+		to_chat(coyote, span_userdanger("The boulder comes down on your head!"))
+		if(isanimal(coyote))
+			coyote.adjustBruteLoss(animaldam)
+			if(coyote.stat == DEAD)
+				coyote.gib()
+	for(var/mob/living/tripped in range(1, landingzone))
+		tripped.Immobilize(1 SECONDS)
+		to_chat(tripped, span_userdanger("The shockwave disrupts your balance!"))
+	qdel(src)

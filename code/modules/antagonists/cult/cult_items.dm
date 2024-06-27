@@ -10,7 +10,7 @@
 /obj/item/melee/cultblade/dagger
 	name = "ritual dagger"
 	desc = "A strange dagger said to be used by sinister groups for \"preparing\" a corpse before sacrificing it to their dark gods."
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/weapons/khopesh.dmi'
 	icon_state = "render"
 	item_state = "cultdagger"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -34,7 +34,7 @@
 /obj/item/melee/cultblade
 	name = "eldritch longsword"
 	desc = "A sword humming with unholy energy. It glows with a dim red light."
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "cultblade"
 	item_state = "cultblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -93,7 +93,6 @@
 	name = "bloody bastard sword"
 	desc = "An enormous sword used by Nar'sien cultists to rapidly harvest the souls of non-believers."
 	w_class = WEIGHT_CLASS_HUGE
-	block_chance = 50
 	throwforce = 20
 	force = 35
 	armour_penetration = 45
@@ -104,7 +103,7 @@
 	light_system = MOVABLE_LIGHT
 	light_range = 4
 	attack_verb = list("cleaved", "slashed", "torn", "hacked", "ripped", "diced", "carved")
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/longsword.dmi'
 	icon_state = "cultbastard"
 	item_state = "cultbastard"
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -128,6 +127,7 @@
 	jaunt = new(src)
 	linked_action = new(src)
 	AddComponent(/datum/component/butchering, 50, 80)
+	AddComponent(/datum/component/blocking, block_force = 15, block_flags = WEAPON_BLOCK_FLAGS|PROJECTILE_ATTACK)
 
 /obj/item/melee/cult_bastard/examine(mob/user)
 	. = ..()
@@ -171,25 +171,6 @@
 	linked_action.Remove(user)
 	jaunt.Remove(user)
 	user.update_icons()
-
-/obj/item/melee/cult_bastard/IsReflect()
-	if(spinning)
-		playsound(src, pick('sound/weapons/effects/ric1.ogg', 'sound/weapons/effects/ric2.ogg', 'sound/weapons/effects/ric3.ogg', 'sound/weapons/effects/ric4.ogg', 'sound/weapons/effects/ric5.ogg'), 100, 1)
-		return TRUE
-	else
-		..()
-
-/obj/item/melee/cult_bastard/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(prob(final_block_chance))
-		if(attack_type == PROJECTILE_ATTACK)
-			owner.visible_message(span_danger("[owner] deflects [attack_text] with [src]!"))
-			playsound(src, pick('sound/weapons/effects/ric1.ogg', 'sound/weapons/effects/ric2.ogg', 'sound/weapons/effects/ric3.ogg', 'sound/weapons/effects/ric4.ogg', 'sound/weapons/effects/ric5.ogg'), 100, 1)
-			return TRUE
-		else
-			playsound(src, 'sound/weapons/parry.ogg', 75, 1)
-			owner.visible_message(span_danger("[owner] parries [attack_text] with [src]!"))
-			return TRUE
-	return FALSE
 
 /obj/item/melee/cult_bastard/afterattack(atom/target, mob/user, proximity, click_parameters)
 	. = ..()
@@ -254,15 +235,19 @@
 	holder.changeNext_move(50)
 	holder.apply_status_effect(/datum/status_effect/sword_spin)
 	sword.spinning = TRUE
-	sword.block_chance = 100
 	sword.slowdown += 1.5
+	var/datum/component/blocking/block_component = sword.GetComponent(/datum/component/blocking)
+	block_component.block_flags |= (OMNIDIRECTIONAL_BLOCK|ALWAYS_BLOCK)
+	block_component.block_force += 15
 	addtimer(CALLBACK(src, PROC_REF(stop_spinning)), 50)
 	holder.update_mob_action_buttons()
 
 /datum/action/innate/cult/spin2win/proc/stop_spinning()
 	sword.spinning = FALSE
-	sword.block_chance = 50
 	sword.slowdown -= 1.5
+	var/datum/component/blocking/block_component = sword.GetComponent(/datum/component/blocking)
+	block_component.block_flags &= ~(OMNIDIRECTIONAL_BLOCK|ALWAYS_BLOCK)
+	block_component.block_force -= 15
 	sleep(sword.spin_cooldown)
 	holder.update_mob_action_buttons()
 
@@ -426,8 +411,17 @@
 			user.emote("scream")
 			user.adjustBruteLoss(25)
 			user.dropItemToGround(src, TRUE)
+	else if(slot_flags & slot)
+		RegisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(hit_reaction))
+	else
+		UnregisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS)
 
-/obj/item/clothing/suit/hooded/cultrobes/cult_shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/hooded/cultrobes/cult_shield/dropped(mob/living/user)
+	if(user.get_item_by_slot(ITEM_SLOT_OCLOTHING) == src)
+		UnregisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS)
+	return ..()
+
+/obj/item/clothing/suit/hooded/cultrobes/cult_shield/proc/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(shielded)
 		owner.visible_message(span_danger("\The [attack_text] is deflected in a burst of blood-red sparks!"))
 		shielded = FALSE
@@ -435,8 +429,8 @@
 		owner.visible_message(span_danger("The runed shield around [owner] suddenly disappears!"))
 		owner.update_inv_wear_suit()
 		addtimer(CALLBACK(src, PROC_REF(reshield)), 45 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
-		return 1
-	return 0
+		return SHIELD_BLOCK
+	return NONE
 
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/proc/reshield()
 	shielded = TRUE
@@ -820,7 +814,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 /obj/item/blood_beam
 	name = "\improper magical aura"
 	desc = "Sinister looking aura that distorts the flow of reality around it."
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
 	icon_state = "disintegrate"
@@ -941,68 +935,66 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	throwforce = 15
 	throw_speed = 1
 	throw_range = 4
+	block_force = 30
+	block_flags = PROJECTILE_ATTACK|REFLECTIVE_BLOCK
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("bumped", "prodded")
 	hitsound = 'sound/weapons/smash.ogg'
 	var/illusions = 4
 
-/obj/item/shield/mirror/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(iscultist(owner))
-		if(istype(hitby, /obj/projectile))
-			var/obj/projectile/P = hitby
-			if(P.damage_type == BRUTE || P.damage_type == BURN)
-				if(P.damage >= 30)
-					var/turf/T = get_turf(owner)
-					T.visible_message(span_warning("The sheer force from [P] shatters the mirror shield!"))
-					new /obj/effect/temp_visual/cult/sparks(T)
-					playsound(T, 'sound/effects/glassbr3.ogg', 100)
-					owner.Paralyze(25)
-					qdel(src)
-					return FALSE
-			if(P.reflectable & REFLECT_NORMAL)
-				return FALSE //To avoid reflection chance double-dipping with block chance
-		. = ..()
-		if(.)
-			if(illusions > 0)
-				playsound(src, 'sound/weapons/parry.ogg', 100, 1)
-				illusions--
-				addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/shield/mirror, readd)), 450)
-				if(illusions >= 0)//should make sure shotgun doesn't spawn 90 bajillion illusions in a single shot
-					if(prob(60))
-						var/mob/living/simple_animal/hostile/illusion/M = new(owner.loc)
-						M.faction = list("cult")
-						M.Copy_Parent(owner, 70, 1)
-						M.move_to_delay = owner.movement_delay()
-					else
-						var/mob/living/simple_animal/hostile/illusion/escape/E = new(owner.loc)
-						E.Copy_Parent(owner, 70, 1)
-						E.GiveTarget(owner)
-						E.Goto(owner, owner.movement_delay(), E.minimum_distance)
-			else
-				var/turf/T = get_turf(owner)
-				T.visible_message(span_warning("[src] shatters as it blocks [hitby]!"))
-				new /obj/effect/temp_visual/cult/sparks(T)
-				qdel(src)
-			return TRUE
+/obj/item/shield/mirror/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_POST_BLOCK, PROC_REF(after_block))
 
+/obj/item/shield/mirror/block_check(obj/item/source, mob/living/defender, atom/movable/incoming, damage, attack_type, armour_penetration, damage_type)
+	if(!iscultist(defender))
+		var/mob/living/simple_animal/hostile/illusion/H = new /mob/living/simple_animal/hostile/illusion(defender.loc)
+		H.Copy_Parent(defender, 100, 20, 5)
+		H.faction = list("cult")
+		H.GiveTarget(defender)
+		H.move_to_delay = defender.movement_delay()
+		to_chat(defender, span_danger("<b>[src] betrays you!</b>"))
+		return COMPONENT_CANCEL_BLOCK
+	if(damage >= 30 && damage_type != STAMINA)
+		var/turf/T = get_turf(defender)
+		defender.visible_message(
+			span_warning("The sheer force from [incoming] shatters the mirror shield!"),
+			span_userdanger("The sheer force from [incoming] shatters your mirror shield!"),
+		)
+		new /obj/effect/temp_visual/cult/sparks(T)
+		playsound(T, 'sound/effects/glassbr3.ogg', 100)
+		defender.Paralyze(2.5 SECONDS)
+		qdel(src)
+		return COMPONENT_CANCEL_BLOCK
+	return NONE
+
+/obj/item/shield/mirror/proc/after_block(obj/item/source, mob/living/defender, atom/movable/incoming, damage, attack_type, armour_penetration, damage_type)
+	if(illusions > 0)
+		playsound(src, 'sound/weapons/parry.ogg', 100, 1)
+		illusions--
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/shield/mirror, readd)), 450)
+		if(illusions >= 0)//should make sure shotgun doesn't spawn 90 bajillion illusions in a single shot
+			if(prob(60))
+				var/mob/living/simple_animal/hostile/illusion/M = new /mob/living/simple_animal/hostile/illusion(defender.loc)
+				M.faction = list("cult")
+				M.Copy_Parent(defender, 70, 1)
+				M.move_to_delay = defender.movement_delay()
+			else
+				var/mob/living/simple_animal/hostile/illusion/escape/E = new /mob/living/simple_animal/hostile/illusion/escape(defender.loc)
+				E.Copy_Parent(defender, 70, 1)
+				E.GiveTarget(defender)
+				E.Goto(defender, defender.movement_delay(), E.minimum_distance)
 	else
-		if(prob(50))
-			var/mob/living/simple_animal/hostile/illusion/H = new(owner.loc)
-			H.Copy_Parent(owner, 100, 20, 5)
-			H.faction = list("cult")
-			H.GiveTarget(owner)
-			H.move_to_delay = owner.movement_delay()
-			to_chat(owner, span_danger("<b>[src] betrays you!</b>"))
-		return FALSE
+		var/turf/T = get_turf(defender)
+		T.visible_message(span_warning("[src] shatters from the impact!"))
+		new /obj/effect/temp_visual/cult/sparks(T)
+		qdel(src)
 
 /obj/item/shield/mirror/proc/readd()
 	illusions++
 	if(illusions == initial(illusions) && isliving(loc))
 		var/mob/living/holder = loc
 		to_chat(holder, "<span class='cult italic'>The shield's illusions are back at full strength!</span>")
-
-/obj/item/shield/mirror/IsReflect()
-	return prob(block_chance)
 
 /obj/item/shield/mirror/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	var/turf/T = get_turf(hit_atom)

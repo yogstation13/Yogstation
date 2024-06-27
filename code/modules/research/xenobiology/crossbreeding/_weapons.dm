@@ -59,7 +59,6 @@ Slimecrossing Weapons
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 0, BOMB = 30, BIO = 0, RAD = 0, FIRE = 80, ACID = 70)
 	slot_flags = ITEM_SLOT_BACK
 	slowdown = 0.2	//it's a big heavy shield, it's gonna slow you at least a bit
-	block_chance = 75
 	throw_range = 1 //How far do you think you're gonna throw a solid crystalline shield...?
 	throw_speed = 2
 	force = 15 //Heavy, but hard to wield.
@@ -69,6 +68,7 @@ Slimecrossing Weapons
 /obj/item/adamantineshield/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
+	AddComponent(/datum/component/blocking, block_force = 30, block_flags = SHIELD_BLOCK_FLAGS|REFLECTIVE_BLOCK|ALWAYS_BLOCK)
 
 //Bloodchiller - Chilling Green
 /obj/item/gun/magic/bloodchill

@@ -2,7 +2,7 @@
 /datum/computer_file/program/paperwork_printer
 	filename = "ppwrkprnt"
 	filedesc = "Paperwork Printing"
-	category = PROGRAM_CATEGORY_MISC
+	category = PROGRAM_CATEGORY_EQUIPMENT
 	program_icon_state = "id"
 	extended_desc = "Program for dispensing paperwork."
 	requires_ntnet = FALSE
