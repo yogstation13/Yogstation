@@ -99,8 +99,7 @@
 	. = ..()
 	C.remove_language(/datum/language/machine, source = LANGUAGE_SYNTH)
 	os_button.Remove(C)
-	inbuilt_cpu.forceMove(get_turf(C))
-	inbuilt_cpu = null
+	QDEL_NULL(inbuilt_cpu)
 	C.physiology.force_multiplier /= 1.25
 
 /datum/species/wy_synth/proc/handle_speech(datum/source, list/speech_args)
