@@ -98,14 +98,14 @@
 /datum/ai_dashboard/synth_dashboard/proc/switch_shell(mob/living/carbon/human/old_shell, mob/living/carbon/human/new_shell)
 	var/list/restart = list()
 	for(var/datum/ai_project/running_project in running_projects)
-		running_project.stop()
+		running_project.stop(TRUE)
 		restart += running_project
 
 	old_shell.mind.transfer_to(new_shell) //transfer the mind between the stop and restart or we can't handle mind specific things in the projects
 	
 	for(var/datum/ai_project/to_restart as anything in restart)
 		to_restart.synth = new_shell
-		to_restart.run_project()
+		to_restart.run_project(FALSE, TRUE)
 	owner = new_shell
 	punishment_shell_switch(old_shell, new_shell)
 
