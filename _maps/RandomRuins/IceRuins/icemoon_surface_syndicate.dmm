@@ -625,6 +625,7 @@
 /obj/item/kitchen/knife/combat,
 /obj/item/binoculars,
 /obj/item/crowbar/red,
+/obj/item/clothing/under/syndicate/sniper,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "dg" = (
@@ -1191,6 +1192,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/visible,
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "gl" = (
@@ -2386,6 +2388,15 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/hfr_box/corner/syndicate,
+/obj/item/hfr_box/corner/syndicate,
+/obj/item/hfr_box/corner/syndicate,
+/obj/item/hfr_box/corner/syndicate,
+/obj/item/hfr_box/core/syndicate,
+/obj/item/hfr_box/body/waste_output/syndicate,
+/obj/item/hfr_box/body/moderator_input/syndicate,
+/obj/item/hfr_box/body/interface/syndicate,
+/obj/item/hfr_box/body/fuel_input/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
 "mq" = (
@@ -2939,6 +2950,11 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
+"pD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/maintenance)
 "pE" = (
 /obj/structure/chair/americandiner{
 	dir = 4
@@ -4875,6 +4891,10 @@
 /obj/effect/turf_decal/siding/blue{
 	dir = 10
 	},
+/obj/item/disk/surgery/brainwashing{
+	pixel_x = 8;
+	pixel_y = -6
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
 "zO" = (
@@ -5336,6 +5356,7 @@
 /obj/item/storage/toolbox/syndicate,
 /obj/item/kitchen/knife/combat/survival,
 /obj/item/binoculars,
+/obj/item/clothing/under/syndicate/sniper,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "BX" = (
@@ -6754,6 +6775,7 @@
 /obj/item/kitchen/knife/combat/survival,
 /obj/item/binoculars,
 /obj/item/crowbar/red,
+/obj/item/clothing/under/syndicate/sniper,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "Jf" = (
@@ -7029,6 +7051,7 @@
 /obj/item/kitchen/knife/combat/survival,
 /obj/item/binoculars,
 /obj/item/crowbar/red,
+/obj/item/clothing/under/syndicate/sniper,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "KL" = (
@@ -7511,6 +7534,10 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/trimline/purple/filled/line/lower,
+/obj/machinery/light_switch{
+	pixel_x = -12;
+	pixel_y = -24
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "NO" = (
@@ -8481,6 +8508,7 @@
 	pixel_y = 28;
 	pixel_x = -6
 	},
+/obj/item/clothing/under/syndicate/sniper,
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
 "SZ" = (
@@ -13127,7 +13155,7 @@ Le
 um
 Qa
 rf
-re
+pD
 Xj
 Cz
 jX

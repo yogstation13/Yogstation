@@ -1,4 +1,6 @@
 /obj/item/implant/teleporter
+	name = "recall implant"
+	desc = "A bluespace recall implant used by shady organisations and the especially paranoid. Used to keep people from going 'out of bounds', whatever that means."
 	var/list/whitelist = list()
 	var/list/blacklist = list()
 	var/pointofreturn = null //where to return them to if they go out of bounds
@@ -8,6 +10,18 @@
 	var/retrievalmessage = "Retrieval complete."
 	var/punishment = FALSE
 	var/punishment_damage = 0
+
+/obj/item/implant/teleporter/get_data()
+	var/dat = {"
+		<b>Implant Specifications:</b><BR>
+		<b>Name:</b> Recall Implant<BR>
+		<b>Life:</b> Permanent<BR>
+		<b>Important Notes:</b> <font color='red'>Removal of implant is not advised.</font><BR>
+		<HR>
+		<b>Implant Details:</b> <BR>
+		<b>Function:</b> Recalls the implantee once they go too far from where the implant was initially activated. Kills implantee - quite messily - upon removal.<HR>
+	"}
+	return dat
 
 /obj/item/implant/teleporter/Initialize(mapload)
 	START_PROCESSING(SSobj, src)
@@ -119,6 +133,11 @@
 
 /obj/item/implant/teleporter/syndicate_lavaland
 	pointofreturn = /area/ruin/powered/syndicate_lava_base
+	usewhitelist = TRUE
+	retrievalmessage = "Agent retrieval complete."
+
+/obj/item/implant/teleporter/syndicate_jungleland
+	pointofreturn = /area/ruin/powered/syndicate_jungle_base
 	usewhitelist = TRUE
 	retrievalmessage = "Agent retrieval complete."
 

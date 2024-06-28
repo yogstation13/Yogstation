@@ -1249,6 +1249,7 @@
 /obj/item/clothing/under/syndicate,
 /obj/item/clothing/under/syndicate/combat,
 /obj/item/clothing/under/syndicate/camo,
+/obj/item/clothing/under/syndicate/sniper,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "kW" = (
@@ -1802,6 +1803,7 @@
 /obj/item/clothing/under/syndicate/camo,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/suppressor,
+/obj/item/clothing/under/syndicate/sniper,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "wj" = (
