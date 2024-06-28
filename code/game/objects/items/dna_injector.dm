@@ -45,7 +45,7 @@
 			if(fields["UF"])
 				M.dna.unique_features = merge_text(M.dna.unique_features, fields["UF"])
 			if(fields["UI"] || fields["UF"])
-				M.updateappearance(mutcolor_update=1, mutations_overlay_update=1)
+				M.updateappearance(mutcolor_update = TRUE, mutations_overlay_update = TRUE)
 		log_attack("[log_msg] [loc_name(user)]")
 		return TRUE
 	return FALSE

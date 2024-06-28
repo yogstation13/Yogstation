@@ -55,12 +55,10 @@ There are several things that need to be remembered:
 
 //used when putting/removing clothes that hide certain mutant body parts to just update those and not update the whole body.
 /mob/living/carbon/human/proc/update_mutant_bodyparts()
-	dna.species.handle_mutant_bodyparts(src)
-
+	dna?.species.handle_mutant_bodyparts(src)
 
 /mob/living/carbon/human/update_body()
-	remove_overlay(BODY_LAYER)
-	dna.species.handle_body(src)
+	dna?.species.handle_body(src)
 	..()
 
 /mob/living/carbon/human/update_fire()
@@ -887,4 +885,3 @@ generate/load female uniform sprites matching all previously decided variables
 	update_inv_wear_mask()
 
 #undef RESOLVE_ICON_STATE
-

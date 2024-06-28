@@ -1,5 +1,4 @@
 /datum/reagent/blood
-	data = list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=null,"resistances"=null,"trace_chem"=null,"mind"=null,"ckey"=null,"gender"=null,"real_name"=null,"cloneable"=null,"factions"=null,"quirks"=null)
 	name = "Blood"
 	color = COLOR_BLOOD
 	metabolization_rate = 5 //fast rate so it disappears fast.
@@ -9,6 +8,22 @@
 	glass_name = "glass of tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
 	shot_glass_icon_state = "shotglassred"
+
+	data = list(
+		"donor" = null,
+		"viruses" = null,
+		"blood_DNA" = null,
+		"blood_type" = null,
+		"resistances" = null,
+		"trace_chem" = null,
+		"mind" = null,
+		"ckey" = null,
+		"gender" = null,
+		"real_name" = null,
+		"cloneable" = null,
+		"factions" = null,
+		"quirks" = null
+		)
 
 /datum/reagent/blood/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(L) //bloodsucker start
