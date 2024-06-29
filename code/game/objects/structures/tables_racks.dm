@@ -34,6 +34,7 @@
 	var/buildstackamount = 1
 	var/framestackamount = 2
 	var/deconstruction_ready = 1
+	var/last_bump = 0
 
 /obj/structure/table/Initialize(mapload)
 	. = ..()
@@ -43,34 +44,17 @@
 		success_chance = 0.8, \
 	)
 
-/** Performs a complex check for toe stubbing as people would scream "IMPROVE DONT REMOVE" if I had my way.
-  * Uses an early probability based return for to save cycles which is perfectly valid since the highest probability is 20 anyway.
-  * Chance of getting your toe stubbed: (regular = 0.033%, running = 0.1%, blind = 20%, blurry_eyes = 2%, congenitally blind = 1%  )
-  * Chance goes up if you go fast, such as with meth. So does damage.
-  */
 /obj/structure/table/Bumped(mob/living/carbon/human/H)
 	. = ..()
-	if(prob(80))
+	if(!istype(H))
 		return
-	if(!istype(H) || H.shoes || !(H.mobility_flags & MOBILITY_STAND) || !H.dna.species.has_toes())
+	var/feetCover = (H.wear_suit && (H.wear_suit.body_parts_covered & FEET)) || (H.w_uniform && (H.w_uniform.body_parts_covered & FEET))
+	if(!HAS_TRAIT(H, TRAIT_ALWAYS_STUBS) && (H.shoes || feetCover || !(H.mobility_flags & MOBILITY_STAND) || HAS_TRAIT(H, TRAIT_PIERCEIMMUNE) || H.m_intent == MOVE_INTENT_WALK))
 		return
-	var/speed_multiplier = 2/H.cached_multiplicative_slowdown
-	var/blindness_multiplier = 1
-	if(H.eye_blurry)
-		blindness_multiplier = 4
-	if(H.eye_blind)
-		blindness_multiplier = 200
-	if(HAS_TRAIT_FROM(H, "blind", ROUNDSTART_TRAIT))
-		blindness_multiplier = 2
-	var/chance = 0.5*blindness_multiplier*speed_multiplier
-	if(prob(chance))
-		to_chat(H, span_warning("You stub your toe on the [name]!"))
-		H.visible_message("[H] stubs their toe on the [name].")
-		H.emote("scream")
-		var/shiddedleg = pick(BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
-		H.apply_damage(2*speed_multiplier, BRUTE, def_zone = shiddedleg)
-		H.apply_damage(30*speed_multiplier, STAMINA, def_zone = shiddedleg)
-		H.Paralyze(10*speed_multiplier)
+	if(HAS_TRAIT(H, TRAIT_ALWAYS_STUBS) || ((world.time >= last_bump + 100) && prob(5)))
+		to_chat(H, "<span class='warning'>You stub your toe on the [name]!</span>")
+		H.stub_toe(2)
+	last_bump = world.time //do the cooldown here so walking into a table only checks toestubs once
 
 /obj/structure/table/examine(mob/user)
 	. = ..()

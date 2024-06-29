@@ -288,9 +288,6 @@
 
 // yogs end
 
-/datum/species/lizard/has_toes()
-	return TRUE
-
 #undef LIZARD_SLOWDOWN
 
 /datum/species/lizard/get_scream_sound(mob/living/carbon/human/lizard)

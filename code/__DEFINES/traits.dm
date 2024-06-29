@@ -285,3 +285,6 @@
 
 ///reduces the cooldown of all used /datum/action/cooldown by 25%
 #define TRAIT_FAST_COOLDOWNS "short_spell_cooldowns" 
+
+/// You will always stub your toe on tables, even if you're wearing shoes
+#define TRAIT_ALWAYS_STUBS "always_stubs_toe"

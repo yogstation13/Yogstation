@@ -230,9 +230,6 @@
 		soggy = FALSE
 		H.clear_alert("preternis_wet")
 
-/datum/species/preternis/has_toes()//their toes are mine, they shall never have them back
-	return FALSE
-
 /datum/species/preternis/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	// called before a projectile hit
 	if(istype(P, /obj/projectile/energy/nuclear_particle))
