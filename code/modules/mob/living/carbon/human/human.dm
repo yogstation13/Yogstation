@@ -1031,7 +1031,7 @@
 			nutrition = 0
 			dna?.species.get_hunger_alert(src)
 			return FALSE
-		if(nutrition >= NUTRITION_LEVEL_FAT)
+		if(nutrition >= NUTRITION_LEVEL_FAT && change > 0)
 			return FALSE
 		change = min(change, NUTRITION_LEVEL_FAT - nutrition) // no getting fat
 	..()
