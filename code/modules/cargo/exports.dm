@@ -54,11 +54,126 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 					report.exported_atoms += " [thing.name]"
 					break
 		if(!dry_run && (sold || delete_unsold))
-			if(ismob(thing))
-				thing.investigate_log("deleted through cargo export",INVESTIGATE_CARGO)
-			qdel(thing)
+			if(isliving(thing))
+				thing.investigate_log("trafficked via cargo export",INVESTIGATE_CARGO)
+				INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(handleTrafficking), thing)
+			else
+				qdel(thing)
 
 	return report
+
+
+// They're off to holding - handle the return timer and give some text about what's going on.
+/proc/handleTrafficking(mob/living/M)
+	//get rid of them for the time being
+	var/turf/holding_turf = pick(GLOB.holdingfacility)
+	M.forceMove(holding_turf)
+	
+	var/list/victim_belongings = list()
+
+	if (iscarbon(M))
+		for(var/obj/item/W in M)
+			if (ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(W == H.w_uniform)
+					continue //So all they're left with are shoes and uniform.
+				if(W == H.shoes)
+					continue
+				if(H.implants && (W in H.implants))
+					continue
+
+			M.transferItemToLoc(W)
+			victim_belongings.Add(W)
+
+	// Ship 'em back - dead or alive, 4 minutes wait.
+	// Even if they weren't the target, we're still treating them the same.
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(returnTrafficked), M, victim_belongings), (4 MINUTES))
+
+	if (M.stat != DEAD)
+		// Heal them up - gets them out of crit/soft crit. If omnizine is removed in the future, this needs to be replaced with a
+		// method of healing them, consequence free, to a reasonable amount of health.
+		M.reagents.add_reagent(/datum/reagent/medicine/omnizine, 20)
+
+		M.flash_act()
+		M.adjust_confusion(10 SECONDS)
+		M.adjust_eye_blur(0.5 SECONDS)
+		to_chat(M, span_warning("You feel strange..."))
+		sleep(6 SECONDS)
+		to_chat(M, span_warning("That pod did something to you..."))
+		M.adjust_dizzy(3.5 SECONDS)
+		sleep(6.5 SECONDS)
+		to_chat(M, span_warning("Your head pounds... It feels like it's going to burst out your skull!"))
+		M.flash_act()
+		M.adjust_confusion(20 SECONDS)
+		M.adjust_eye_blur(3)
+		sleep(3 SECONDS)
+		to_chat(M, span_warning("Your head pounds..."))
+		sleep(10 SECONDS)
+		M.flash_act()
+		M.Unconscious(20 SECONDS)
+		to_chat(M, "<span class='reallybig hypnophrase'>A million voices echo in your head... <i>\"Your mind held many valuable secrets - \
+					we thank you for providing them. Your value is expended, and you will be ransomed back to your station. We always get paid, \
+					so it's only a matter of time before we ship you back...\"</i></span>")
+
+		var/ransom = 100 * rand(18, 45) //people are pretty cheap
+		var/points_to_check
+		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+		if(D)
+			points_to_check = D.account_balance
+		if(points_to_check >= ransom)
+			D.adjust_money(-ransom)
+		else
+			D.adjust_money(-points_to_check)
+		priority_announce("One of your crew was captured by a rival organisation - we've needed to pay their ransom to bring them back. \
+						As is policy we've taken a portion of the station's funds to offset the overall cost.", null, null, null, "Nanotrasen Asset Protection")
+
+		M.adjust_eye_blur(1 SECONDS)
+		M.adjust_dizzy(1.5 SECONDS)
+		M.adjust_confusion(20 SECONDS)
+
+// We're returning the victim
+/proc/returnTrafficked(mob/living/M, list/victim_belongings)
+
+	var/turf/pod_rand_loc = get_safe_random_station_turf()
+	if (pod_rand_loc)
+
+		var/obj/structure/closet/supplypod/return_pod = new()
+		return_pod.bluespace = TRUE
+		return_pod.explosionSize = list(0,0,0,0)
+		return_pod.style = STYLE_SYNDICATE
+
+		do_sparks(8, FALSE, M)
+		M.visible_message(span_notice("[M] vanishes..."))
+
+		for(var/obj/item/W in M)
+			if (ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(W == H.w_uniform)
+					continue //So all they're left with are shoes and uniform.
+				if(W == H.shoes)
+					continue
+				if(H.implants && (W in H.implants))
+					continue
+			M.dropItemToGround(W)
+
+		for(var/obj/item/W in victim_belongings)
+			W.forceMove(return_pod)
+
+		M.forceMove(return_pod)
+
+		M.flash_act()
+		M.adjust_eye_blur(30)
+		M.adjust_dizzy(35 SECONDS)
+		M.adjust_confusion(20 SECONDS)
+
+		new /obj/effect/DPtarget(pod_rand_loc, return_pod)
+	else
+		to_chat(M, "<span class='reallybig hypnophrase'>A million voices echo in your head... <i>\"Seems where you got sent here from won't \
+					be able to handle our pod... You will die here instead.\"</i></span>")
+		if (iscarbon(M))
+			var/mob/living/carbon/C = M
+			if (C.can_heartattack())
+				C.set_heartattack(TRUE)
 
 /datum/export
 	var/unit_name = ""				// Unit name. Only used in "Received [total_amount] [name]s [message]." message
