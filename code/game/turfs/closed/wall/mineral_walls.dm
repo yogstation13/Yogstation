@@ -286,6 +286,26 @@
 	smoothing_groups = SMOOTH_GROUP_SURVIVAL_TITANIUM_POD + SMOOTH_GROUP_TITANIUM_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_SURVIVAL_TITANIUM_POD
 
+// Decoratives
+/turf/closed/wall/mineral/titanium/survival/pod/deco
+	icon = 'icons/turf/walls.dmi'
+
+	// These mfs dont smooth
+	base_icon_state = null
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null
+
+/turf/closed/wall/mineral/titanium/survival/pod/deco/sheltersign
+	name = "shelter sign"
+	desc = "A high visibility sign designating a safe shelter."
+	icon_state = "survival_shelter"
+
+/turf/closed/wall/mineral/titanium/survival/pod/deco/ntsign
+	name = "nanotrasen mining corps sign"
+	desc = "A sign of relief for weary miners, and a warning for would-be competitors to Nanotrasen's mining claims."
+	icon_state = "survival_nt"
+
 /////////////////////Plastitanium walls/////////////////////
 
 /turf/closed/wall/mineral/plastitanium
