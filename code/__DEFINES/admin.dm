@@ -88,7 +88,7 @@
 #define ADMIN_PUNISHMENT_FLASHBANG "Flashbang"
 #define ADMIN_PUNISHMENT_WIBBLY "Wibblify"
 #define ADMIN_PUNISHMENT_BACKROOMS "Backrooms"
-#define ADMIN_PUNISHMENT_TOE "Stub Toe (Once)"
+#define ADMIN_PUNISHMENT_TOE "Stub Toe (Instant)"
 #define ADMIN_PUNISHMENT_TOEPLUS "Stub Toe (Always)"
 
 #define AHELP_ACTIVE 1
