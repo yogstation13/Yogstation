@@ -79,8 +79,8 @@
 	density = FALSE
 	pass_flags = PASSMOB
 	collar_type = "kitten"
-	var/list/pet_kitten_names = list("Fajita", "Pumpkin", "Meowchael", "Catrick", "Genghis Kat", "Sir Isaac Mewton", "Nugget", "Meowchelangelo", "Meowgaret", "Lemon", "Meowria", "Todd Meoward", "Dolly Purrton", "Pickle", "Runt", "Claws", "Patches", "Skippy", "Teddy", "Frank", "Quilt", "Lenny", "Benny", "Hubert", "Scrungemuffin", "Pizza", "Pawl Meowcartney")
-	var/list/rare_pet_kitten_names = list("Fuckface", "Chief Meowdical Officer", "Mewcular Opurrative", "Dumbass Cat", "Backup Ian", "Mischief")
+	var/list/pet_kitten_names = list("Fajita", "Pumpkin", "Mischief", "Nugget", "Lemon", "Pickle", "Runt", "Claws", "Paws", "Patches", "Skippy", "Teddy", "Frank", "Quilt", "Lenny", "Benny", "Hubert", "Scrungemuffin", "Pizza", "Fluff", "Cleo", "Eevee", "Mango", "Mayhem", "Cinnamon", "Snickerdoodle", "Spice", "Mocha", "Concrete", "Fish", "Fae", "Mittens", "Blaze", "Snuggles", "Boots", "Goofball", "Tiger")
+	var/list/rare_pet_kitten_names = list("Fuckface", "Chief Meowdical Officer", "Catrick", "Mewcular Opurrative", "Meowgaret Thatcher", "Meowria", "Meowchelangelo", "Todd Meoward", "Dolly Purrton", "Dumbass Cat", "Genghis Kat", "Sir Isaac Mewton", "Backup Ian", "Pawl Meowcartney", "Runtime Jr", "Meowchael")
 
 /mob/living/simple_animal/pet/cat/kitten/Initialize(mapload)
 	. = ..()

@@ -23,7 +23,12 @@
 	required_shit_list = "Three dead bodies."
 
 /datum/eldritch_transmutation/final/blade_final/on_finished_recipe(mob/living/user, list/atoms, loc)
-	priority_announce("Master of blades, the Torn Champion's disciple, [user.real_name] has ascended! Their steel is that which will cut reality in a maelstom of silver!", ANNOUNCER_SPANOMALIES)
+	priority_announce(
+		text = "[generate_heretic_text()] Master of blades, the Torn Champion's disciple, [user.real_name] has ascended! Their steel is that which will cut reality in a maelstom of silver! [generate_heretic_text()]",
+		title = "[generate_heretic_text()]",
+		sound = 'sound/ambience/antag/heretic/ascend_blade.ogg',
+		color_override = "pink",
+	)
 	
 	var/mob/living/carbon/human/H = user
 	user.apply_status_effect(/datum/status_effect/protective_blades/recharging, null, 8, 30, 0.25 SECONDS, 1 MINUTES)

@@ -272,10 +272,10 @@
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
 
 		if("solo") //14 + 6x3 + 1 = 3 tc = 31 tc. it was, in fact, busted
-			new /obj/item/autosurgeon/syndicate/spinalspeed(src) //12 tc
+			new /obj/item/autosurgeon/suspicious/spinalspeed(src) //12 tc
 			new /obj/item/clothing/suit/toggle/cyberpunk/solo(src) //dont know what this costs, vague guesstimate says 6tc
-			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
-			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
+			new /obj/item/autosurgeon/suspicious/syndie_mantis(src) //6 tc
+			new /obj/item/autosurgeon/suspicious/syndie_mantis(src) //6 tc
 			new /obj/item/autosurgeon/upgraded_cyberlungs(src) //this is to remain true to the source material ok
 			new /obj/item/storage/pill_bottle/synaptizine(src) //take your drugs david, this and the lungs make up 1 tc
 			
@@ -876,12 +876,12 @@
 	real_name = "augmentation kit"
 
 /obj/item/storage/box/syndie_kit/augmentation/PopulateContents()
-	new /obj/item/autosurgeon/limb/head/robot(src)
-	new /obj/item/autosurgeon/limb/chest/robot(src)
-	new /obj/item/autosurgeon/limb/l_arm/robot(src)
-	new /obj/item/autosurgeon/limb/r_arm/robot(src)
-	new /obj/item/autosurgeon/limb/l_leg/robot(src)
-	new /obj/item/autosurgeon/limb/r_leg/robot(src)
+	new /obj/item/autosurgeon/head/robot(src)
+	new /obj/item/autosurgeon/chest/robot(src)
+	new /obj/item/autosurgeon/l_arm/robot(src)
+	new /obj/item/autosurgeon/r_arm/robot(src)
+	new /obj/item/autosurgeon/l_leg/robot(src)
+	new /obj/item/autosurgeon/r_leg/robot(src)
 
 /obj/item/storage/box/syndie_kit/augmentation/superior
 	real_name = "superior augmentation kit"

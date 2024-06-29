@@ -330,7 +330,7 @@
 
 	if(HAS_TRAIT(I, TRAIT_NODROP) && !force)
 		return FALSE
-	
+
 	if((SEND_SIGNAL(I, COMSIG_ITEM_PRE_UNEQUIP, force, newloc, no_move, invdrop, silent) & COMPONENT_ITEM_BLOCK_UNEQUIP) && !force)
 		return FALSE
 
@@ -407,14 +407,13 @@
 
 
 /mob/living/carbon/proc/check_obscured_slots(transparent_protection)
-	var/list/obscured = list()
+	var/obscured = NONE
 	var/hidden_slots = NONE
 
-	for(var/obj/item/I in get_equipped_items())
-		hidden_slots |= I.flags_inv
-		hidden_slots |= I.flags_prot
+	for(var/obj/item/equipped_item in get_equipped_items())
+		hidden_slots |= equipped_item.flags_inv
 		if(transparent_protection)
-			hidden_slots |= I.transparent_protection
+			hidden_slots |= equipped_item.transparent_protection
 
 	if(hidden_slots & HIDENECK)
 		obscured |= ITEM_SLOT_NECK
@@ -462,7 +461,7 @@
 	to_chat(M, span_warning("You are unable to equip that!"))
 	return FALSE
 
- 
+
 /mob/verb/quick_equip()
 	set name = "quick-equip"
 	set hidden = TRUE

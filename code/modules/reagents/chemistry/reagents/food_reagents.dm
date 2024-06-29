@@ -303,7 +303,7 @@
 	taste_description = "scorching agony"
 	metabolization_rate = 6 * REAGENTS_METABOLISM
 
-/datum/reagent/consumable/condensedcapsaicin/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+/datum/reagent/consumable/condensedcapsaicin/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(!ishuman(M) && !ismonkey(M))
 		return
 
@@ -607,7 +607,7 @@
 		M.adjustToxLoss(-1*REM, 0)
 	..()
 
-/datum/reagent/consumable/honey/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+/datum/reagent/consumable/honey/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
   if(iscarbon(M) && (methods & (TOUCH|VAPOR|PATCH)))
     var/mob/living/carbon/C = M
     for(var/s in C.surgeries)
@@ -693,7 +693,7 @@
 		//Lazy list of mobs affected by the luminosity of this reagent.
 	var/list/mobs_affected
 
-/datum/reagent/consumable/tinlux/reaction_mob(mob/living/M)
+/datum/reagent/consumable/tinlux/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	add_reagent_light(M)
 
 /datum/reagent/consumable/tinlux/on_mob_end_metabolize(mob/living/M)

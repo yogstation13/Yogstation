@@ -45,7 +45,7 @@
 
 /obj/item/paper/fluff/ruins/oldstation/generator_manual
 	name = "S.U.P.E.R.P.A.C.M.A.N.-type portable generator manual"
-	info = "<i>You can barely make out a faded sentence...</i> <br><br> Wrench down the generator on top of a wire node connected to either a SMES input terminal or the power grid." 
+	info = "<i>You can barely make out a faded sentence...</i> <br><br> Wrench down the generator on top of a wire node connected to either a SMES input terminal or the power grid."
 
 /obj/item/paper/fluff/ruins/oldstation/nuclearcore_status
 	name = "Nuclear Reactor Status Assessment"
@@ -84,7 +84,7 @@
 		"Reactor integrity report: Cooling system damaged!",
 		"Incidents of Note:",
 		"1: Primary Radiation Detector deactivated after 112 years due to power failure. Auxilliary detector reported no radiation.",
-		"2: Data burst recieved from unidentified station in the region, callsign NTSS-13. Successfully decoded into research data.",
+		"2: Data burst received from unidentified station in the region, callsign NTSS-13. Successfully decoded into research data.",
 		"3: An unidentified biotic force has intruded upon Delta wing.",
 		"Cryogenic System Report:",
 		"Crew entered stasis on: 10/03/2445",

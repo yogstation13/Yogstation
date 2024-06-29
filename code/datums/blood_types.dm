@@ -57,7 +57,7 @@
 ////////////////////////////////////////////////////////////////
 /datum/blood_type/lizard
 	name = "L"
-	color = LIGHT_COLOR_BLUEGREEN
+	color = "#f24b2e"
 	compatible_types = list(/datum/blood_type/lizard)
 
 
