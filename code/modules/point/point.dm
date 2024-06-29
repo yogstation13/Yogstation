@@ -27,7 +27,7 @@
 	var/final_y = (tile.y - our_tile.y) * world.icon_size + pointed_atom.pixel_y
 	var/list/click_params = params2list(params)
 	if(!length(click_params) || !click_params["screen-loc"])
-		animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + pointed_atom.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + pointed_atom.pixel_y, time = 1.7, easing = EASE_OUT)
+		animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + pointed_atom.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + pointed_atom.pixel_y, time = 0.17 SECONDS, easing = EASE_OUT)
 		return
 	else
 		var/list/actual_view = getviewsize(M.client ? M.client.view : world.view)
