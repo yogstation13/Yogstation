@@ -10,7 +10,7 @@
 	name = "stairs"
 	icon = 'icons/obj/stairs.dmi'
 	icon_state = "stairs"
-	layer = BELOW_OPEN_DOOR_LAYER
+	layer = EMISSIVE_FLOOR_LAYER
 	anchored = TRUE
 	move_resist = INFINITY
 
