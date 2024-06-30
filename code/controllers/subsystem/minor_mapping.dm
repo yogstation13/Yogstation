@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(minor_mapping)
 	var/list/turfs = find_satchel_suitable_turfs()
 	///List of areas where satchels should not be placed.
 	var/list/blacklisted_area_types = list(
-		/area/holodeck,
+		/area/holodeck, //Do stuff here for surface before merging
 		)
 
 	while(turfs.len && satchel_amount > 0)
