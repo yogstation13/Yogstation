@@ -97,7 +97,7 @@
 /datum/action/cooldown/spell/cone/staggered/fire_breath/do_mob_cone_effect(mob/living/target_mob, atom/caster, level)
 	// Further out targets take less immediate burn damage and get less fire stacks.
 	// The actual burn damage application is not blocked by fireproofing, like space dragons.
-	target_mob.apply_damage(max(10, max_damage - (5 * level)), BURN, wound_bonus = -30, bare_wound_bonus = 30)
+	target_mob.apply_damage(max(10, max_damage - (5 * level)), BURN, wound_bonus = -50, bare_wound_bonus = 40)
 	target_mob.adjust_fire_stacks(max(2, 5 - level))
 	target_mob.ignite_mob()
 
