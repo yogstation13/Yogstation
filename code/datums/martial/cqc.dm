@@ -70,9 +70,9 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //proc the moves will use for damage dealing for armour checking purposes
 /datum/martial_art/cqc/proc/stamina_harm(mob/living/carbon/human/user, mob/living/carbon/human/victim, damage)
-	var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
-	var/armor = target.run_armor_check(limb_to_hit, MELEE)
-	target.apply_damage(damage, STAMINA, blocked = armor)
+	var/obj/item/bodypart/limb_to_hit = victim.get_bodypart(user.zone_selected)
+	var/armor = victim.run_armor_check(limb_to_hit, MELEE)
+	victim.apply_damage(damage, STAMINA, blocked = armor)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------------Harm intent-----------------------------------//
@@ -103,7 +103,7 @@
 	D.Immobilize(1 SECONDS)
 
 	playsound(get_turf(D), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
-	D.visible_message(span_danger("[A] [picked_hit_type] [D]!"), span_userdanger("[A] [picked_hit_type] you!"))
+	D.visible_message(span_danger("[A] [attack_verb] [D]!"), span_userdanger("[A] [attack_verb] you!"))
 	A.changeNext_move(CLICK_CD_RANGE) //faster cooldown from basic hits
 
 	log_combat(A, D, "[attack_verb] (CQC)")
@@ -363,7 +363,6 @@
 /datum/martial_art/cqc/under_siege
 	name = "Close Quarters Cooking"
 	id = MARTIALART_CQC_COOK
-	just_a_cook = TRUE
 
 /datum/martial_art/cqc/under_siege/can_use(mob/living/carbon/human/H) //this is used to make chef CQC only work in kitchen
 	var/area/A = get_area(H)
