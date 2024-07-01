@@ -154,7 +154,7 @@
 
 	var/old_grab_state = A.grab_state
 	D.grabbedby(A)
-	INVOKE_ASYNC(A, TYPE_PROC_REF(/mob/living, changeNext_move), CLICK_CD_RAPID)//gotta do it this way because grabs are weird
+	addtimer(CALLBACK(A, TYPE_PROC_REF(/mob/living, changeNext_move), CLICK_CD_RAPID)) //gotta do it this way because grabs are weird
 	if(A.grab_state == GRAB_AGGRESSIVE && A.grab_state != old_grab_state)
 		D.visible_message(span_warning("[A] locks [D] into a restraining position!"), span_userdanger("[A] locks you into a restraining position!"))
 		log_combat(A, D, "restrained (CQC)")
