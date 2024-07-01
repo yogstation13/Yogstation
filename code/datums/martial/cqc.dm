@@ -148,10 +148,8 @@
 
 	if(D.grabbedby(A))
 		A.changeNext_move(CLICK_CD_RAPID) //faster cooldown from grabs
-
-	add_to_streak("G",D)
-	if(check_streak(A,D)) //if a combo is made no grab upgrade is done
-		return TRUE
+	if(A.grab_state == GRAB_AGGRESSIVE)
+		Restrain(A, D)
 	return TRUE
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -267,13 +265,11 @@
 		return
 
 	D.visible_message(span_warning("[A] locks [D] into a restraining position!"), span_userdanger("[A] locks you into a restraining position!"))
-	D.Stun(10)
-	if(!(A.pulling == D))
-		D.grabbedby(A, 1)
-	if(A.grab_state < GRAB_AGGRESSIVE)
-		A.grab_state = GRAB_AGGRESSIVE
 	log_combat(A, D, "restrained (CQC)")
+	D.Stun(10)
+
 	do_after(A, 1 SECONDS, D)
+
 	log_combat(A, D, "began to chokehold(CQC)")
 	D.visible_message(
 		span_danger("[isipc(D) ? "[A] attempts to deactivate [D]!" : "[A] puts [D] into a chokehold!"]"),
