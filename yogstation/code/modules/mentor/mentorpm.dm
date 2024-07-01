@@ -87,6 +87,15 @@
 		message_admins(log_message)
 		log_mentor(log_message)
 		return
+		
+	var/datum/DBQuery/add_mhelp_query = SSdbcore.NewQuery(
+		"INSERT INTO `[format_table_name("admin_tickets")]` (round_id, sender, sendermentor, receiver, receivermentor, message, datetime) VALUES (:round, :send, :smentor, :receive, :rmentor, :msg, Now());",
+		list("round" = GLOB.round_id, "send" = ckey, "smentor" = is_mentor(), "receive" = C.ckey, "rmentor" = C.is_mentor(), "msg" = msg)
+	)
+	if(!add_mhelp_query.Execute())
+		message_admins("Failed insert mhelp into mhelp DB. Check the SQL error logs for more details.")
+	qdel(add_mhelp_query)
+
 	msg = emoji_parse(msg)
 	if(C)
 		send_mentor_sound(C)
