@@ -49,7 +49,7 @@
 	
 	var/datum/DBQuery/add_mhelp_query = SSdbcore.NewQuery(
 		"INSERT INTO `[format_table_name("mentor_helps")]` (round_id, sender, sendermentor, receivermentor, message, datetime) VALUES (:round, :send, :smentor, :rmentor, :msg, Now());",
-		list("round" = GLOB.round_id, "send" = ckey, "smentor" = bool2numberstring(is_mentor()), "rmentor" = "1", "msg" = msg)
+		list("round" = GLOB.round_id, "send" = ckey, "smentor" = bool2number(is_mentor()), "rmentor" = 1, "msg" = msg)
 	)
 	if(!add_mhelp_query.Execute())
 		message_admins("Failed insert mhelp into mhelp DB. Check the SQL error logs for more details.")

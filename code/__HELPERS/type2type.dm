@@ -617,8 +617,8 @@
 	return {"<html><head><meta http-equiv="refresh" content="0;URL='[url]'"/></head><body onLoad="parent.location='[url]'"></body></html>"}
 
 ///don't look at me like that, i need to make sure it's a 0 or 1 for the database, it can't be true false
-/proc/bool2numberstring(boolean)
+/proc/bool2number(boolean)
 	if(boolean)
-		return "1"
+		return 1
 	else
-		return "0"
+		return 0
