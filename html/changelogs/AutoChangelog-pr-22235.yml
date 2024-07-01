@@ -1,7 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - spellcheck: "Rewrote all species info in the character preferences menu to be updated and not misleading!"
-  - tweak: "The character preferences menu is now a bit bigger"
-  - bugfix: "You will no longer be told plasmamen \"have no need to breathe\" in the species info section"
-  - experiment: "Yell at me if something breaks with the species select menu, or if there are any typos"

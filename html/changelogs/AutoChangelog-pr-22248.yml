@@ -1,4 +1,0 @@
-author: " thanks for the help @TehLadyK"
-delete-after: true 
-changes: 
-  - bugfix: "cloning scans and disks no longer hold a direct reference to your DNA appearance attributes"
