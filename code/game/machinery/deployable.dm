@@ -102,6 +102,8 @@
 			to_chat(user, span_notice("You disassemble the barricade."))
 			new /obj/item/stack/sheet/mineral/wood(user.loc, 5)
 			qdel(src)
+		return
+	return ..()
 
 /obj/structure/barricade/wooden/crude/snow
 	desc = "This space is blocked off by a crude assortment of planks. It seems to be covered in a layer of snow."
