@@ -62,8 +62,8 @@
 			return TRUE
 		if(isliving(L))// if we're a non immune mob inside an immune mob we have to reconsider if that mob is immune to protect ourselves
 			var/mob/living/the_mob = L
-			var/resist = the_mob.getarmor(null, ACID)
-			if(resist >= 100)
+			var/resist = max(the_mob.getarmor(null, ACID), the_mob.get_permeability(linear = TRUE))
+			if(resist >= 80) //don't need 100% immunity to be immune to rain falling on your head
 				return TRUE
 			if((immunity_type in the_mob.weather_immunities) || (WEATHER_ALL in the_mob.weather_immunities))
 				return TRUE
@@ -78,11 +78,10 @@
 /datum/weather/acid_rain/weather_act(mob/living/L)
 	if(is_acid_immune(L))
 		return
-	//rather than applying acid which would break the server, just apply a mix of burn and tox
-	L.apply_damage_type(1, BURN)
-	if(ishuman(L)) //also inject metabolites
+	if(ishuman(L)) //inject metabolites
 		var/mob/living/carbon/human/humie = L
 		if(humie.reagents.get_reagent_amount(/datum/reagent/toxic_metabolities) < 2) //don't fill them up, but keep them with some in them
 			humie.reagents.add_reagent(/datum/reagent/toxic_metabolities, 1)
 	else
-		L.apply_damage_type(1, TOX) //i have no clue how this'll work since they don't have toxin damage, maybe it'll apply regular damage or something
+		L.apply_damage_type(1, BURN)
+		L.apply_damage_type(1, TOX)
