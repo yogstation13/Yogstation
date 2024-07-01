@@ -285,6 +285,9 @@
 /obj/structure/girder/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		var/remains = pick(/obj/item/stack/rods, /obj/item/stack/sheet/metal)
+		var/area/shipbreak/A = get_area(src)
+		if(istype(A)) //shipbreaking
+			remains = /obj/item/stack/scrap/framing
 		new remains(loc)
 	qdel(src)
 

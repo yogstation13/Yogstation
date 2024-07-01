@@ -134,6 +134,17 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 /obj/item/stock_parts/get_part_rating()
 	return rating
 
+/obj/item/stock_parts/get_shipbreaking_reward()
+	if(prob(rating * 10)) //more chance to get better things if you have a higher rating
+		switch(rand(1,10))
+			if(1 to 6)
+				return /obj/item/stack/scrap/electronics
+			if(6 to 9)
+				return /obj/item/stack/scrap/plasma
+			if(10)
+				return /obj/item/stack/scrap/crystalline_matrix
+	return null
+
 //Rating 1
 
 /obj/item/stock_parts/capacitor

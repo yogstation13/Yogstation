@@ -4560,6 +4560,7 @@
 #include "yogstation\code\modules\scripting\Parser\Parser.dm"
 #include "yogstation\code\modules\scripting\Scanner\Scanner.dm"
 #include "yogstation\code\modules\scripting\Scanner\token.dm"
+#include "yogstation\code\modules\shipbreaker\scrap.dm"
 #include "yogstation\code\modules\shipbreaker\shipbreaker.dm"
 #include "yogstation\code\modules\shuttle\emergency.dm"
 #include "yogstation\code\modules\shuttle\syndicate.dm"

@@ -445,7 +445,14 @@ Class Procs:
 		return ..()
 	spawn_frame(disassembled)
 	for(var/obj/item/I in component_parts)
-		I.forceMove(loc)
+		var/area/shipbreak/A = get_area(src)
+		if(istype(A) && I.get_shipbreaking_reward()) //shipbreaking
+			var/obj/item/reward = I.get_shipbreaking_reward()
+			if(reward)
+				new reward(loc)
+				qdel(I)
+		else
+			I.forceMove(loc)
 	component_parts.Cut()
 	return ..()
 
