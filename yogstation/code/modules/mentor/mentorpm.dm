@@ -89,7 +89,7 @@
 		return
 		
 	var/datum/DBQuery/add_mhelp_query = SSdbcore.NewQuery(
-		"INSERT INTO `[format_table_name("admin_tickets")]` (round_id, sender, sendermentor, receiver, receivermentor, message, datetime) VALUES (:round, :send, :smentor, :receive, :rmentor, :msg, Now());",
+		"INSERT INTO `[format_table_name("mentor_helps")]` (round_id, sender, sendermentor, receiver, receivermentor, message, datetime) VALUES (:round, :send, :smentor, :receive, :rmentor, :msg, Now());",
 		list("round" = GLOB.round_id, "send" = ckey, "smentor" = is_mentor(), "receive" = C.ckey, "rmentor" = C.is_mentor(), "msg" = msg)
 	)
 	if(!add_mhelp_query.Execute())

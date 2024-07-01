@@ -48,7 +48,7 @@
 	mt.log += "<b>[src.key]:</b> [msg]"
 	
 	var/datum/DBQuery/add_mhelp_query = SSdbcore.NewQuery(
-		"INSERT INTO `[format_table_name("admin_tickets")]` (round_id, sender, sendermentor, receivermentor, message, datetime) VALUES (:round, :send, :smentor, :rmentor, :msg, Now());",
+		"INSERT INTO `[format_table_name("mentor_helps")]` (round_id, sender, sendermentor, receivermentor, message, datetime) VALUES (:round, :send, :smentor, :rmentor, :msg, Now());",
 		list("round" = GLOB.round_id, "send" = ckey, "smentor" = is_mentor(), "rmentor" = TRUE, "msg" = msg)
 	)
 	if(!add_mhelp_query.Execute())
