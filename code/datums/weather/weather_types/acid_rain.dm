@@ -23,7 +23,7 @@
 
 	immunity_type = WEATHER_ACID // temp
 
-	probability = 90
+	probability = 90000
 
 	barometer_predictable = TRUE
 
@@ -34,7 +34,7 @@
 			return TRUE
 		if(isliving(L))// if we're a non immune mob inside an immune mob we have to reconsider if that mob is immune to protect ourselves
 			var/mob/living/the_mob = L
-			var/resist = L.getarmor(null, ACID)
+			var/resist = the_mob.getarmor(null, ACID)
 			if(resist >= 100)
 				return TRUE
 			if((immunity_type in the_mob.weather_immunities) || (WEATHER_ALL in the_mob.weather_immunities))
