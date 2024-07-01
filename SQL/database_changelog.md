@@ -8,6 +8,23 @@ INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (5, 13);
 
 In any query remember to add a prefix to the table names if you use one.
 
+Version 5.14 2024-07-01, molti Adds mentor help tracking
+```sql
+DROP TABLE IF EXISTS `mentor_interactions`
+CREATE TABLE IF NOT EXISTS `mentor_interactions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `round_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `when` datetime NOT NULL DEFAULT current_timestamp(),
+  `ckey` varchar(32) NOT NULL,
+  `target_ckey` varchar(32) DEFAULT NULL,
+  `ckey_mentor` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `target_mentor` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `message` text,
+  PRIMARY KEY (`id`),
+  KEY `idx_round` (`round_id`),
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+
 version 5.13 2023-05-10
 Adds allow_vpn to bound credentials flags
 
