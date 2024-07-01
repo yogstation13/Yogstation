@@ -173,10 +173,19 @@
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
-		SPECIES_PERK_ICON = "thermometer-empty",
-		SPECIES_PERK_NAME = "Cold-blooded",
-		SPECIES_PERK_DESC = "Lizardpeople have difficulty regulating their body temperature, they're not quite as affected by the temperature itself though.",
-	))
+		SPECIES_PERK_ICON = "thermometer-half",
+		SPECIES_PERK_NAME = "Cold-Blooded",
+		SPECUES_PERK_DESC = "Vuulen are cold-blooded, and have evolved to withstand extreme temperatures for longer than most. \
+							They're also affected by temperature psychologically, becoming more awake and alert in heat, but grow tired and drowsy in the cold.",
+		),
+		list(
+		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+		SPECIES_PERK_ICON = "commenting",
+		SPECIES_PERK_NAME = "Reptilian Ssspeech",
+		SPECIES_PERK_DESC = "Vuulen have a forked tongue, similar to that of a snake. \
+							They have a tendency to hisss when ssspeaking.",
+		),
+	)
 
 	return to_add
 
