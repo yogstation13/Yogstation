@@ -307,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `mentor_interactions` (
   `target_mentor` tinyint(3) unsigned NOT NULL DEFAULT 0,
   `message` text,
   PRIMARY KEY (`id`),
-  KEY `idx_round` (`round_id`),
+  KEY `idx_round` (`round_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `mentor_memo`;
