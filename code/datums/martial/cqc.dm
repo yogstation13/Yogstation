@@ -351,7 +351,7 @@
 	combined_msg += "[span_notice("Slam")]: Harm Disarm. Slam opponent into the ground, knocking them down and dealing decent stamina damage."
 	combined_msg += "[span_notice("Discombobulate")]: Harm Harm. Offensive move, deals bonus stamina damage and confuses the target."
 
-	combined_msg += "[span_notice("Chokehold")]: Grab Grab. Locks opponents into a restraining position, and proceeds to attempt to choke them unconcious."
+	combined_msg += "[span_notice("Chokehold")]: Getting a target into an aggressive grab lock them into a restraining position, and proceeds to attempt to choke them unconscious."
 
 	combined_msg += "<b><i>In addition, by having your throw mode on when being attacked, you enter an active defense mode where you have a chance to counter attacks done to you. Beware, counter-attacks are tiring and you won't be able to defend yourself forever!</i></b>"
 
