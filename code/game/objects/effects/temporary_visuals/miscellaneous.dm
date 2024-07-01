@@ -289,6 +289,16 @@
 	icon_state = "purplecrack"
 	duration = 0.6 SECONDS
 
+/obj/effect/temp_visual/revenant/cracks/glow
+
+/obj/effect/temp_visual/revenant/cracks/glow/Initialize(mapload)
+	. = ..()
+	update_appearance(UPDATE_OVERLAYS)
+
+/obj/effect/temp_visual/revenant/cracks/glow/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, icon_states, src)
+
 /obj/effect/temp_visual/gravpush
 	name = "gravity wave"
 	icon_state = "shieldsparkles"
