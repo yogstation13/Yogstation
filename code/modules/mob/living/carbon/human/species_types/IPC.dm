@@ -143,7 +143,7 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "brain",
-			SPECIES_PERK_NAME = "Rerouted Consciousnes",
+			SPECIES_PERK_NAME = "Rerouted Consciousness",
 			SPECIES_PERK_DESC = "IPCs have positronic brains located in their chest rather than their head. \
 								They can survive decapitation, but revival needs special reactivation surgery done on the brain.",
 		),
