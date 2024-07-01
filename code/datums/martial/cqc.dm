@@ -116,9 +116,15 @@
 /datum/martial_art/cqc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
+
+	if(A.pulling == D && A.grab_state >= GRAB_AGGRESSIVE)
+		chokehold(A, D)
+		return TRUE
+
 	add_to_streak("D",D)
 	if(check_streak(A,D))
 		return TRUE
+
 
 	A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
 	playsound(get_turf(D), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
@@ -146,10 +152,13 @@
 	if(A == D) // prevents grabbing yourself
 		return FALSE
 
+	var/old_grab_state = A.grab_state
 	if(D.grabbedby(A))
 		A.changeNext_move(CLICK_CD_RAPID) //faster cooldown from grabs
-	if(A.grab_state == GRAB_AGGRESSIVE)
-		Restrain(A, D)
+	if(A.grab_state == GRAB_AGGRESSIVE && A.grab_state != old_grab_state)
+		D.visible_message(span_warning("[A] locks [D] into a restraining position!"), span_userdanger("[A] locks you into a restraining position!"))
+		log_combat(A, D, "restrained (CQC)")
+		D.Stun(1 SECONDS)
 	return TRUE
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -260,15 +269,9 @@
   * attack that puts the target into a restraining position, stunning and muting them for a short period
   * used to set up a chokehold attack
   */
-/datum/martial_art/cqc/proc/Restrain(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/cqc/proc/chokehold(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(chokehold_active)
 		return
-
-	D.visible_message(span_warning("[A] locks [D] into a restraining position!"), span_userdanger("[A] locks you into a restraining position!"))
-	log_combat(A, D, "restrained (CQC)")
-	D.Stun(10)
-
-	do_after(A, 1 SECONDS, D)
 
 	log_combat(A, D, "began to chokehold(CQC)")
 	D.visible_message(
@@ -351,7 +354,8 @@
 	combined_msg += "[span_notice("Slam")]: Harm Disarm. Slam opponent into the ground, knocking them down and dealing decent stamina damage."
 	combined_msg += "[span_notice("Discombobulate")]: Harm Harm. Offensive move, deals bonus stamina damage and confuses the target."
 
-	combined_msg += "[span_notice("Chokehold")]: Getting a target into an aggressive grab locks them into a restraining position, and proceeds to attempt to choke them unconscious."
+	combined_msg += "[span_notice("Restrain")]: Getting a target into an aggressive grab locks them into a restraining position, briefly stunning them."
+	combined_msg += "[span_notice("Chokehold")]: Disarming a target you have aggressively grabbed will attempt to choke them unconscious."
 
 	combined_msg += "<b><i>In addition, by having your throw mode on when being attacked, you enter an active defense mode where you have a chance to counter attacks done to you. Beware, counter-attacks are tiring and you won't be able to defend yourself forever!</i></b>"
 
