@@ -29,6 +29,11 @@
 	///used to stop a chokehold attack from stacking
 	var/chokehold_active = FALSE
 
+/datum/martial_art/cqc/can_use(mob/living/carbon/human/H)
+	if(!H.combat_mode)
+		return FALSE
+	return ..()
+
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------------Check Streak----------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
