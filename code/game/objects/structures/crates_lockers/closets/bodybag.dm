@@ -156,8 +156,8 @@
 	mob_storage_capacity = 1
 	contents_pressure_protection = 0.8
 	contents_thermal_insulation = 0.5
-	foldedbag_path = /obj/item/bodybag/environmental/
-	weather_protection = list(WEATHER_ACID, WEATHER_ASH, WEATHER_RAD, WEATHER_SNOW, ) // Does not protect against lava or the The Floor Is Lava spell.
+	foldedbag_path = /obj/item/bodybag/environmental
+	weather_protection = list(WEATHER_ALL)
 
 /obj/structure/closet/body_bag/environmental/nanotrasen
 	name = "elite environmental protection bag"
