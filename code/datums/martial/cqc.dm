@@ -19,8 +19,6 @@
 #define PRESSURE_COMBO "DH"
 ///consecutive combo string
 #define CONSECUTIVE_COMBO "HH"
-///restrain combo string
-#define RESTRAIN_COMBO "GG"
 
 /datum/martial_art/cqc
 	name = "CQC"
@@ -63,10 +61,6 @@
 	if(findtext(streak,CONSECUTIVE_COMBO))
 		streak = ""
 		Consecutive(A,D)
-		return TRUE
-	if(findtext(streak,RESTRAIN_COMBO))
-		streak = ""
-		Restrain(A,D)
 		return TRUE
 	return FALSE
 
