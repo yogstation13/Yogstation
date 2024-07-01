@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed barricades being indestructible to everything except crowbars"
