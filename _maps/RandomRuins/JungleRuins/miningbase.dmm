@@ -24,7 +24,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
 	},
-/mob/living/simple_animal/turtle,
+/mob/living/simple_animal/triceratops,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "av" = (
