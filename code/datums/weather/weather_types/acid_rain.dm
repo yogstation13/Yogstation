@@ -3,19 +3,17 @@
 	name = "acid rain"
 	desc = "The planet's thunderstorms are by nature acidic, and will incinerate anyone standing beneath them without protection."
 
-	telegraph_duration = 400
+	telegraph_duration = 20 SECONDS //less dangerous, less telegraph
 	telegraph_message = span_boldwarning("Thunder rumbles far above. You hear droplets drumming against the canopy. Seek shelter.")
-	telegraph_sound = 'sound/ambience/acidrain_start.ogg'
+	telegraph_sound = null //put something like a generic thunder rumbling sound here, just as a sound warning
 
 	weather_message = span_userdanger("<i>Acidic rain pours down around you! Get inside!</i>")
 	weather_overlay = "acid_rain"
-	weather_duration_lower = 600
-	weather_duration_upper = 1500
-	weather_sound = 'sound/ambience/acidrain_mid.ogg'
+	weather_duration_lower = 60 SECONDS
+	weather_duration_upper = 150 SECONDS
 
-	end_duration = 100
+	end_duration = 20 SECONDS
 	end_message = span_boldannounce("The downpour gradually slows to a light shower. It should be safe outside now.")
-	end_sound = 'sound/ambience/acidrain_end.ogg'
 
 	area_type = /area
 	protect_indoors = TRUE
@@ -23,10 +21,40 @@
 
 	immunity_type = WEATHER_ACID // temp
 
-	probability = 90000
+	probability = 90
 
 	barometer_predictable = TRUE
 
+	var/datum/looping_sound/outside_acid_rain/sound_outside = new(list(), FALSE, TRUE)
+	var/datum/looping_sound/inside_acid_rain/sound_inside = new(list(), FALSE, TRUE)
+
+/datum/weather/acid_rain/telegraph()
+	. = ..()
+	var/list/inside_areas = list()
+	var/list/outside_areas = list()
+	var/list/eligible_areas = list()
+	for (var/z in impacted_z_levels)
+		eligible_areas += SSmapping.areas_in_z["[z]"]
+	for(var/i in 1 to eligible_areas.len)
+		var/area/place = eligible_areas[i]
+		if(place.outdoors)
+			outside_areas += place
+		else
+			inside_areas += place
+		CHECK_TICK
+
+	sound_outside.output_atoms = outside_areas
+	sound_inside.output_atoms = inside_areas
+
+/datum/weather/acid_rain/start()
+	. = ..()
+	sound_outside.start()
+	sound_inside.start()
+
+/datum/weather/acid_rain/wind_down()
+	. = ..()
+	sound_outside.stop()
+	sound_inside.stop()
 
 /datum/weather/acid_rain/proc/is_acid_immune(atom/L)
 	while (L && !isturf(L))
@@ -51,5 +79,10 @@
 	if(is_acid_immune(L))
 		return
 	//rather than applying acid which would break the server, just apply a mix of burn and tox
-	L.apply_damage_type(2, BURN)
-	L.apply_damage_type(2, TOX)
+	L.apply_damage_type(1, BURN)
+	if(ishuman(L)) //also inject metabolites
+		var/mob/living/carbon/human/humie = L
+		if(humie.reagents.get_reagent_amount(/datum/reagent/toxic_metabolities) < 2) //don't fill them up, but keep them with some in them
+			humie.reagents.add_reagent(/datum/reagent/toxic_metabolities, 2)
+	else
+		L.apply_damage_type(1, TOX) //i have no clue how this'll work since they don't have toxin damage, maybe it'll apply regular damage or something

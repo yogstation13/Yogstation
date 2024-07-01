@@ -45,3 +45,25 @@
 	start_length = 130
 	end_sound = 'sound/weather/ashstorm/inside/weak_end.ogg'
 	volume = 20
+
+
+
+/datum/looping_sound/outside_acid_rain
+	mid_sounds = list(
+		'sound/ambience/acidrain_mid.ogg'=1
+		)
+	mid_length = 130
+	start_sound = 'sound/ambience/acidrain_start.ogg'
+	start_length = 130
+	end_sound = 'sound/ambience/acidrain_end.ogg'
+	volume = 80
+
+/datum/looping_sound/inside_acid_rain
+	mid_sounds = list(
+		'sound/ambience/acidrain_mid.ogg'=1
+		)
+	mid_length = 130
+	start_sound = 'sound/ambience/acidrain_start.ogg'
+	start_length = 130
+	end_sound = 'sound/ambience/acidrain_end.ogg'
+	volume = 50
