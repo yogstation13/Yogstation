@@ -77,7 +77,7 @@
 /obj/projectile/curse_hand/progenitor/on_hit(atom/target, blocked)
 	if(isliving(target))
 		var/mob/living/victim = target
-		if(is_darkspawn_or_thrall(victim))
+		if(is_team_darkspawn(victim))
 			return BULLET_ACT_FORCE_PIERCE
 	return ..()
 	

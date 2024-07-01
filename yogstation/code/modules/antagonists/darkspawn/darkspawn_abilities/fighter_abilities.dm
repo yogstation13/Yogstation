@@ -109,7 +109,7 @@
 	if(isliving(victim))
 		var/mob/living/target = victim
 		target.extinguish_mob()
-		if(is_darkspawn_or_thrall(target) && ispreternis(target)) //don't make preterni allies wet
+		if(is_team_darkspawn(target) && ispreternis(target)) //don't make preterni allies wet
 			return
 		target.adjust_wet_stacks(20)
 		target.adjust_wet_stacks(20)
@@ -434,6 +434,6 @@
 	if(!isliving(victim) || !can_see(caster, victim))
 		return
 	var/mob/living/target = victim
-	if(is_darkspawn_or_thrall(target))
+	if(is_team_darkspawn(target))
 		return
 	target.apply_status_effect(STATUS_EFFECT_TAUNT, owner)

@@ -151,7 +151,7 @@
 	for(var/mob/M in GLOB.player_list)
 		if(get_dist(M, src) > 7)
 			M.playsound_local(src, 'yogstation/sound/creatures/progenitor_distant.ogg', 35, FALSE, falloff_exponent = 5)
-		else if(is_darkspawn_or_thrall(M) || M==src) //the progenitor is PROBABLY a darkspawn, but just in case
+		else if(is_team_darkspawn(M) || M==src) //the progenitor is PROBABLY a darkspawn, but just in case
 			continue
 		else if(isliving(M))
 			var/mob/living/L = M
@@ -210,7 +210,7 @@
 	if(!isliving(cast_on)) //sanity check
 		return
 	var/mob/living/target = cast_on
-	if(is_darkspawn_or_thrall(target))
+	if(is_team_darkspawn(target))
 		return
 	var/zoinks = rand(1, 50) / 100 //like, this isn't even my final form!
 	owner.visible_message(span_warning("[owner]'s sigils flare as it glances at [target]!"), span_velvet("You direct [zoinks]% of your psionic power into [target]'s mind!"))

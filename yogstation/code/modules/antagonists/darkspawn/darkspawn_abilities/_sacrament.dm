@@ -24,7 +24,7 @@
 
 /datum/action/cooldown/spell/sacrament/cast(atom/cast_on)
 	. = ..()
-	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
+	darkspawn = isdarkspawn(owner)
 	if(!darkspawn)
 		to_chat(owner, span_warning("Error with non darkspawn using sacrament spell"))
 		return
@@ -47,7 +47,7 @@
 
 	var/processed_message = span_progenitor("\[Mindlink\] [user] has begun performing the sacrament.")
 	for(var/mob/M as anything in GLOB.alive_mob_list)
-		if(is_darkspawn_or_thrall(M))
+		if(is_team_darkspawn(M))
 			to_chat(M, processed_message)
 	deadchat_broadcast(processed_message, null, user)
 
@@ -115,4 +115,4 @@
 	if(!in_use)
 		return
 	playsound(T, 'yogstation/sound/magic/divulge_end.ogg', 25, FALSE)
-	new/obj/effect/temp_visual/revenant/cracks(T)
+	new/obj/effect/temp_visual/revenant/cracks/glow(T)

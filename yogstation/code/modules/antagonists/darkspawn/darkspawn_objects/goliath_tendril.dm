@@ -22,7 +22,7 @@
 /obj/effect/temp_visual/goliath_tentacle/darkspawn/trip()
 	var/latched = 0
 	for(var/mob/living/L in loc)
-		if(is_darkspawn_or_thrall(L) || L.stat == DEAD)
+		if(is_team_darkspawn(L) || L.stat == DEAD)
 			continue
 		visible_message(span_danger("[src] grabs hold of [L]!"))
 		if(!L.IsStun())
