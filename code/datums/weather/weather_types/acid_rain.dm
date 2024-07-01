@@ -83,5 +83,5 @@
 		if(humie.reagents.get_reagent_amount(/datum/reagent/toxic_metabolities) < 2) //don't fill them up, but keep them with some in them
 			humie.reagents.add_reagent(/datum/reagent/toxic_metabolities, 1)
 	else
-		L.apply_damage_type(1, BURN)
-		L.apply_damage_type(1, TOX)
+		L.apply_damage_type(0.5, BURN)
+		L.apply_damage_type(0.5, TOX)
