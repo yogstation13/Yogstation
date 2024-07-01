@@ -220,3 +220,4 @@
 	greyscale_colors = "#506bc7"
 	categories = list(MAT_CATEGORY_ORE = TRUE)
 	sheet_type = /obj/item/stack/sheet/dilithium_crystal
+
