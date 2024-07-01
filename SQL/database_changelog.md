@@ -10,7 +10,7 @@ In any query remember to add a prefix to the table names if you use one.
 
 Version 5.14 2024-07-01, molti Adds mentor help tracking
 ```sql
-DROP TABLE IF EXISTS `mentor_interactions`
+DROP TABLE IF EXISTS `mentor_interactions`;
 CREATE TABLE IF NOT EXISTS `mentor_interactions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `round_id` int(10) unsigned NOT NULL DEFAULT 0,
