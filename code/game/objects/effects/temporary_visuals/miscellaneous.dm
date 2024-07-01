@@ -297,7 +297,7 @@
 
 /obj/effect/temp_visual/revenant/cracks/glow/update_overlays()
 	. = ..()
-	. += emissive_appearance(icon, icon_states, src)
+	. += emissive_appearance(icon, icon_state, src)
 
 /obj/effect/temp_visual/gravpush
 	name = "gravity wave"
