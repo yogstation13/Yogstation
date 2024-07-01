@@ -47,7 +47,7 @@
 		Kick(A,D)
 		return TRUE
 		
-	if(!D.mobility_flags & MOBILITY_STAND) //the rest need a standing target
+	if(!(D.mobility_flags & MOBILITY_STAND)) //the rest need a standing target
 		return FALSE
 
 	if(findtext(streak,SLAM_COMBO))
