@@ -62,7 +62,7 @@
 			return TRUE
 		if(isliving(L))// if we're a non immune mob inside an immune mob we have to reconsider if that mob is immune to protect ourselves
 			var/mob/living/the_mob = L
-			var/resist = max(the_mob.getarmor(null, ACID), the_mob.get_permeability(linear = TRUE))
+			var/resist = max(the_mob.getarmor(null, ACID), the_mob.get_permeability(null, TRUE))
 			if(resist >= 80) //don't need 100% immunity to be immune to rain falling on your head
 				return TRUE
 			if((immunity_type in the_mob.weather_immunities) || (WEATHER_ALL in the_mob.weather_immunities))
