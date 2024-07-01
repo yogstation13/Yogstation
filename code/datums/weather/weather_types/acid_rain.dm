@@ -83,6 +83,6 @@
 	if(ishuman(L)) //also inject metabolites
 		var/mob/living/carbon/human/humie = L
 		if(humie.reagents.get_reagent_amount(/datum/reagent/toxic_metabolities) < 2) //don't fill them up, but keep them with some in them
-			humie.reagents.add_reagent(/datum/reagent/toxic_metabolities, 2)
+			humie.reagents.add_reagent(/datum/reagent/toxic_metabolities, 1)
 	else
 		L.apply_damage_type(1, TOX) //i have no clue how this'll work since they don't have toxin damage, maybe it'll apply regular damage or something
