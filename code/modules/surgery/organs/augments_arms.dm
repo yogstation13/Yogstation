@@ -82,7 +82,7 @@
 		return FALSE
 
 	UnregisterSignal(holder, COMSIG_ITEM_PREDROPPED)
-	UnregisterSignal(holder, COMSIG_ITEM_PRE_ATTACK_SECONDARY)
+	UnregisterSignal(owner, COMSIG_CARBON_TOGGLE_THROW)
 	UnregisterSignal(owner, COMSIG_CARBON_REMOVE_LIMB)
 
 	if(!syndicate_implant)
@@ -104,7 +104,7 @@
 /obj/item/organ/cyberimp/arm/proc/on_drop(datum/source, mob/user)
 	Retract()
 
-/obj/item/organ/cyberimp/arm/proc/secondary_attack()
+/obj/item/organ/cyberimp/arm/proc/throw_mode()
 
 /obj/item/organ/cyberimp/arm/proc/Extend(obj/item/item)
 	if(!(item in src))
@@ -113,7 +113,7 @@
 
 	holder = item
 	RegisterSignal(holder, COMSIG_ITEM_PREDROPPED, PROC_REF(on_drop))
-	RegisterSignal(holder, COMSIG_ITEM_PRE_ATTACK_SECONDARY, PROC_REF(secondary_attack))
+	RegisterSignal(owner, COMSIG_CARBON_TOGGLE_THROW, PROC_REF(throw_mode))
 	RegisterSignal(owner, COMSIG_CARBON_REMOVE_LIMB, PROC_REF(Retract))
 	ADD_TRAIT(holder, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
@@ -223,9 +223,9 @@
 /obj/item/organ/cyberimp/arm/toolset/l
 	zone = BODY_ZONE_L_ARM
 
-/obj/item/organ/cyberimp/arm/toolset/secondary_attack() //right click to swap weapons
+/obj/item/organ/cyberimp/arm/toolset/throw_mode() //press r to toggle items instead of prepping a throw
 	ui_action_click()
-	return COMPONENT_SECONDARY_CANCEL_ATTACK_CHAIN
+	return COMSIG_CARBON_BLOCK_TOGGLE_THROW
 
 /obj/item/organ/cyberimp/arm/toolset/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!(locate(/obj/item/kitchen/knife/combat/cyborg) in items_list))

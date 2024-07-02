@@ -128,6 +128,8 @@
 /mob/living/carbon/proc/toggle_throw_mode()
 	if(stat)
 		return
+	if(SEND_SIGNAL(src, COMSIG_CARBON_TOGGLE_THROW) & COMSIG_CARBON_BLOCK_TOGGLE_THROW)
+		return
 	if(ismecha(loc))
 		var/obj/mecha/M = loc
 		if(M.occupant == src)
