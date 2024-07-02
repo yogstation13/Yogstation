@@ -203,7 +203,7 @@
 		playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 		step(D, A.dir)
 		stamina_harm(A, D, A.get_punchdamagehigh() * 1.5) //15 damage
-		D.add_movespeed_modifier(MOVESPEED_ID_SHOVE, multiplicative_slowdown = SHOVE_SLOWDOWN_STRENGTH)
+		D.add_movespeed_modifier(MOVESPEED_ID_SHOVE, override = TRUE, multiplicative_slowdown = (SHOVE_SLOWDOWN_STRENGTH * 1.5))
 		addtimer(CALLBACK(D, TYPE_PROC_REF(/mob/living/carbon/human, clear_shove_slowdown)), SHOVE_SLOWDOWN_LENGTH)
 	else
 		log_combat(A, D, "prone-kicked(CQC)")
