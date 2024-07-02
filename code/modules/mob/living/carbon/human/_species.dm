@@ -325,9 +325,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		return 0
 	return 1
 
-/datum/species/proc/has_toes()
-	return FALSE
-
 /// Sprite to show for photocopying mob butts
 /datum/species/proc/get_butt_sprite(mob/living/carbon/human/human)
 	return human.gender == FEMALE ? BUTT_SPRITE_HUMAN_FEMALE : BUTT_SPRITE_HUMAN_MALE
