@@ -62,9 +62,12 @@
 			return TRUE
 		if(isliving(L))// if we're a non immune mob inside an immune mob we have to reconsider if that mob is immune to protect ourselves
 			var/mob/living/the_mob = L
-			var/resist = max(the_mob.getarmor(null, ACID), the_mob.get_permeability(null, TRUE))
-			if(resist >= 80) //don't need 100% immunity to be immune to rain falling on your head
+			var/bio_armour =  max(the_mob.getarmor(null, ACID), 1) //scales from 0 to 100 (100 being better) (make sure 0 bio armour doesn't invalidate perfect impermeability)
+			var/permeability = max(the_mob.get_permeability(null, TRUE), 0.01) //scales from 1 to 0 (0 being better) (make sure we don't divide by 0)
+			var/final_resist = bio_armour / permeability
+			if(final_resist >= 100) //having either max bio armour or perfect impermability is immunity, but having lower of one can be supplemented by the other
 				return TRUE
+
 			if((immunity_type in the_mob.weather_immunities) || (WEATHER_ALL in the_mob.weather_immunities))
 				return TRUE
 		if(istype(L, /obj/structure/closet))

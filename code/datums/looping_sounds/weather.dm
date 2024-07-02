@@ -50,7 +50,7 @@
 
 /datum/looping_sound/outside_acid_rain
 	start_sound = 'sound/weather/acidrain/outside/acidrain_outside_start.ogg'
-	start_length = 11 SECONDS
+	start_length = 11.5 SECONDS
 
 	mid_sounds = list(
 		'sound/weather/acidrain/outside/acidrain_outside_mid1.ogg'=1,
@@ -58,14 +58,14 @@
 		'sound/weather/acidrain/outside/acidrain_outside_mid3.ogg'=1,
 		'sound/weather/acidrain/outside/acidrain_outside_mid4.ogg'=1
 		)
-	mid_length = 11 SECONDS
+	mid_length = 11.5 SECONDS //want a bit of overlap, but not too much
 
 	end_sound = 'sound/weather/acidrain/acidrain_end.ogg'
 	volume = 90
 
 /datum/looping_sound/inside_acid_rain
 	start_sound = 'sound/weather/acidrain/inside/acidrain_inside_start.ogg'
-	start_length = 11 SECONDS
+	start_length = 11.5 SECONDS
 
 	mid_sounds = list(
 		'sound/weather/acidrain/inside/acidrain_inside_mid1.ogg'=1,
@@ -73,8 +73,8 @@
 		'sound/weather/acidrain/inside/acidrain_inside_mid3.ogg'=1,
 		'sound/weather/acidrain/inside/acidrain_inside_mid4.ogg'=1
 		)
-	mid_length = 11 SECONDS
+	mid_length = 11.5 SECONDS //want a bit of overlap, but not too much
 
 	end_sound = 'sound/weather/acidrain/acidrain_end.ogg'
 
-	volume = 80 //the audio files are already just a bit quieter than the outside ones
+	volume = 70 //the audio files are already just a bit quieter than the outside ones
