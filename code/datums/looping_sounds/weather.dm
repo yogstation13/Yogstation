@@ -60,7 +60,7 @@
 	mid_length = 12 SECONDS
 
 	end_sound = 'sound/weather/acidrain/outside/acidrain_outside_end.ogg'
-	volume = 100
+	volume = 70
 
 /datum/looping_sound/inside_acid_rain
 	start_sound = 'sound/weather/acidrain/inside/acidrain_inside_start.ogg'
@@ -76,4 +76,4 @@
 
 	end_sound = 'sound/weather/acidrain/inside/acidrain_inside_end.ogg'
 
-	volume = 70 //the audio files are already just a bit quieter than the outside ones, but it should still be notably quieter
+	volume = 40 //the audio files are already just a bit quieter than the outside ones, but it should still be notably quieter
