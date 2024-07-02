@@ -47,14 +47,9 @@
 	volume = 20
 
 
-
-
-//start_length and mid_length are very finely tuned to the length of the audio files, please don't touch them
-//it's to ensure that the parts where they fade in and out properly overlap without too much of the rest of the audio overlapping
-//this prevents it from either having "quite spots" or "loud spots" when a sound isn't playing or two are playing at once
 /datum/looping_sound/outside_acid_rain
 	start_sound = 'sound/weather/acidrain/outside/acidrain_outside_start.ogg'
-	start_length = 11.7 SECONDS
+	start_length = 12 SECONDS
 
 	mid_sounds = list(
 		'sound/weather/acidrain/outside/acidrain_outside_mid1.ogg'=1,
@@ -62,14 +57,14 @@
 		'sound/weather/acidrain/outside/acidrain_outside_mid3.ogg'=1,
 		'sound/weather/acidrain/outside/acidrain_outside_mid4.ogg'=1
 		)
-	mid_length = 11.7 SECONDS
+	mid_length = 12 SECONDS
 
 	end_sound = 'sound/weather/acidrain/outside/acidrain_outside_end.ogg'
-	volume = 90
+	volume = 100
 
 /datum/looping_sound/inside_acid_rain
 	start_sound = 'sound/weather/acidrain/inside/acidrain_inside_start.ogg'
-	start_length = 11.7 SECONDS
+	start_length = 12 SECONDS
 
 	mid_sounds = list(
 		'sound/weather/acidrain/inside/acidrain_inside_mid1.ogg'=1,
@@ -77,7 +72,7 @@
 		'sound/weather/acidrain/inside/acidrain_inside_mid3.ogg'=1,
 		'sound/weather/acidrain/inside/acidrain_inside_mid4.ogg'=1
 		)
-	mid_length = 11.7 SECONDS
+	mid_length = 12 SECONDS
 
 	end_sound = 'sound/weather/acidrain/inside/acidrain_inside_end.ogg'
 
