@@ -49,21 +49,32 @@
 
 
 /datum/looping_sound/outside_acid_rain
+	start_sound = 'sound/weather/acidrain/outside/acidrain_outside_start.ogg'
+	start_length = 11 SECONDS
+
 	mid_sounds = list(
-		'sound/ambience/acidrain_mid.ogg'=1
+		'sound/weather/acidrain/outside/acidrain_outside_mid1.ogg'=1,
+		'sound/weather/acidrain/outside/acidrain_outside_mid2.ogg'=1,
+		'sound/weather/acidrain/outside/acidrain_outside_mid3.ogg'=1,
+		'sound/weather/acidrain/outside/acidrain_outside_mid4.ogg'=1
 		)
-	mid_length = 130
-	start_sound = 'sound/ambience/acidrain_start.ogg'
-	start_length = 130
-	end_sound = 'sound/ambience/acidrain_end.ogg'
-	volume = 80
+	mid_length = 11 SECONDS
+
+	end_sound = 'sound/weather/acidrain/acidrain_end.ogg'
+	volume = 90
 
 /datum/looping_sound/inside_acid_rain
+	start_sound = 'sound/weather/acidrain/inside/acidrain_inside_start.ogg'
+	start_length = 11 SECONDS
+
 	mid_sounds = list(
-		'sound/ambience/acidrain_mid.ogg'=1
+		'sound/weather/acidrain/inside/acidrain_inside_mid1.ogg'=1,
+		'sound/weather/acidrain/inside/acidrain_inside_mid2.ogg'=1,
+		'sound/weather/acidrain/inside/acidrain_inside_mid3.ogg'=1,
+		'sound/weather/acidrain/inside/acidrain_inside_mid4.ogg'=1
 		)
-	mid_length = 130
-	start_sound = 'sound/ambience/acidrain_start.ogg'
-	start_length = 130
-	end_sound = 'sound/ambience/acidrain_end.ogg'
-	volume = 50
+	mid_length = 11 SECONDS
+
+	end_sound = 'sound/weather/acidrain/acidrain_end.ogg'
+
+	volume = 80 //the audio files are already just a bit quieter than the outside ones

@@ -3,9 +3,9 @@
 	name = "acid rain"
 	desc = "The planet's thunderstorms are by nature acidic, and will incinerate anyone standing beneath them without protection."
 
-	telegraph_duration = 20 SECONDS //less dangerous, less telegraph
 	telegraph_message = span_boldwarning("Thunder rumbles far above. You hear droplets drumming against the canopy. Seek shelter.")
-	telegraph_sound = null //put something like a generic thunder rumbling sound here, just as a sound warning
+	telegraph_duration = 30 SECONDS //if you change this i will kill you because the sound file lines up with this
+	telegraph_sound = 'sound/weather/acidrain/acidrain_telegraph.ogg'
 
 	weather_message = span_userdanger("<i>Acidic rain pours down around you! Get inside!</i>")
 	weather_overlay = "acid_rain"
