@@ -32,7 +32,6 @@ endmap
 
 map asteroidstation
 	minplayers 40
-	votable
 endmap
 
 map donutstation
