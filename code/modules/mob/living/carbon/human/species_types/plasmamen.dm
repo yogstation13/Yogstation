@@ -1,7 +1,7 @@
 /datum/species/plasmaman
 	name = "Plasmaman"
 	plural_form = "Plasmamen"
-	id = "plasmaman"
+	id = SPECIES_PLASMAMAN
 	say_mod = "rattles"
 	possible_genders = list(PLURAL)
 	meat = /obj/item/stack/sheet/mineral/plasma

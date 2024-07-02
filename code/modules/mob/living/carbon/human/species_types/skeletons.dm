@@ -1,7 +1,7 @@
 /datum/species/skeleton
 	// 2spooky
 	name = "Spooky Scary Skeleton"
-	id = "skeleton"
+	id = SPECIES_SKELETON
 	say_mod = "rattles"
 	possible_genders = list(NEUTER)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/skeleton
@@ -23,7 +23,7 @@
 	id = "weakskeleton"
 	brutemod = 1.5 // Their low calcium bones are much weaker to being smashed.
 	punchdamagehigh = 5 // their weak bones don't let them punch very well.
-	limbs_id = "skeleton" //they are just normal skeletons but weaker
+	limbs_id = SPECIES_SKELETON //they are just normal skeletons but weaker
 
 /datum/species/skeleton/lowcalcium/check_roundstart_eligible()
 	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
