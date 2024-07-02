@@ -134,9 +134,7 @@
 	A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
 	playsound(get_turf(D), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 
-	var/obj/item/I = D.get_active_held_item()
-	if(I)
-		D.dropItemToGround(I)
+	if(D.drop_all_held_items())
 		D.visible_message(span_warning("[A] quickly grabs [D]'s arm and and chops it, disarming them!"), span_userdanger("[A] grabs your arm and chops it, disarming you!"))
 	else
 		D.visible_message(span_warning("[A] quickly chops [D]'s arm!"), span_userdanger("[A] quickly chops your arm!"))
