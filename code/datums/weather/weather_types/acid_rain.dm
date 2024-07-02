@@ -78,6 +78,7 @@
 /datum/weather/acid_rain/weather_act(mob/living/L)
 	if(is_acid_immune(L))
 		return
+	L.adjust_wet_stacks(2)
 	if(ishuman(L)) //inject metabolites
 		var/mob/living/carbon/human/humie = L
 		if(humie.reagents.get_reagent_amount(/datum/reagent/toxic_metabolities) < 2) //don't fill them up, but keep them with some in them
