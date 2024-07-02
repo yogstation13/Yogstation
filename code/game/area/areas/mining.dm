@@ -247,3 +247,16 @@
 
 /area/icemoon/underground/explored/laborcamp
 	name = "Icemoon Labor Camp"
+
+
+/**********************Undergruv/Jungleland Underground Areas**************************/
+
+/area/jungleland/ocean/nomine
+	mining_speed = FALSE
+	flags_1 = NONE
+	blob_allowed = FALSE
+	outdoors = FALSE //no fultons
+
+/area/jungleland/ocean/nomine/isles
+	name = "Beach Isles"
+	icon_state = "explored"

@@ -1,0 +1,54 @@
+{
+	"map_name": "UndergruvStation",
+	"map_path": "map_files/undergruvstation",
+	"map_file": "UndergruvStation.dmm",
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"planetary": 1,
+	"shuttles": {
+		"cargo": "cargo_box",
+		"ferry": "ferry_fancy",
+		"emergency": "emergency_meta"
+	},
+	"traits": [
+		{
+			"Linkage": null,
+			"Weather_Lavaflood": true,
+			"Mining": true,
+			"Gravity": true,
+			"Lava Ruins": true,
+			"Bombcap Multiplier": 2.5,
+			"Baseturf": "/turf/open/floor/plating/asteroid/basalt/cavern",
+			"No Parallax": true
+		},
+		{
+			"Up": true,	
+			"Linkage": null,
+			"Gravity": true,
+			"Baseturf": "/turf/open/floor/plating/asteroid/basalt",
+			"No Parallax": true
+		},
+		{
+			"Down": true,
+			"Up": true,
+			"Linkage": null,
+			"Gravity": true,
+			"Baseturf": "/turf/open/floor/plating/asteroid/basalt",
+			"No Parallax": true
+		},
+		{
+			"Down": true,
+			"Linkage": null,
+			"Gravity": true,
+			"Baseturf": "/turf/open/floor/plating/asteroid/basalt",
+			"No Parallax": true
+		},
+		{
+			"Linkage": "Self",
+			"Gravity": true,
+			"Baseturf": "/turf/open/plating/beach/sand",
+			"No Parallax": true
+		}
+	],
+	"minetype": "none"
+}

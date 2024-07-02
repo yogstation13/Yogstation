@@ -533,3 +533,6 @@
 /turf/open/floor/fakespace/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 	generate_space_underlay(underlay_appearance, asking_turf)
 	return TRUE
+
+/turf/open/floor/fakespace/airless
+	initial_gas_mix = AIRLESS_ATMOS
