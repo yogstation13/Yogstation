@@ -212,7 +212,7 @@
 		var/kickdamage = A.get_punchdamagehigh() * 4	//40 damage
 		stamina_harm(A, D, kickdamage)
 		D.clear_stamina_regen() //used for keeping people down, so reset that regen timer
-		D.Paralyze(5)
+		D.Stun(1 SECONDS)
 		D.silent += 2
 	return TRUE
 
