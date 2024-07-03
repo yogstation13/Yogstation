@@ -840,22 +840,22 @@
 	. = ..()
 	var/datum/dna/holder = quirk_holder?.has_dna()
 	if(holder)
-		ADD_TRAIT(holder, TRAIT_SHORT_TELOMERES, ROUNDSTART_TRAIT)
+		holder.features |= TRAIT_SHORT_TELOMERES
 
 /datum/quirk/telomeres_short/Destroy()
 	. = ..()
 	var/datum/dna/holder = quirk_holder?.has_dna()
 	if(holder)
-		REMOVE_TRAIT(holder, TRAIT_SHORT_TELOMERES, ROUNDSTART_TRAIT)
+		holder.features -= TRAIT_SHORT_TELOMERES
 	
 /datum/quirk/telomeres_short/transfer_mob(mob/living/to_mob)
 	. = ..()
 	var/datum/dna/holder = quirk_holder?.has_dna()
 	if(holder)
-		REMOVE_TRAIT(holder, TRAIT_SHORT_TELOMERES, ROUNDSTART_TRAIT)
+		holder.features -= TRAIT_SHORT_TELOMERES
 	holder = to_mob?.has_dna()
 	if(holder)
-		ADD_TRAIT(holder, TRAIT_SHORT_TELOMERES, ROUNDSTART_TRAIT)
+		holder.features |= TRAIT_SHORT_TELOMERES
 
 /datum/quirk/body_purist
 	name = "Body Purist"
