@@ -14,6 +14,8 @@
 	var/safety = tgui_alert(user, "Doing this will have extremely dire consequences for the station and its crew. Be sure you know what you're doing.", "Put in [A.name]?", list("Proceed", "Abort"))
 	if(safety != "Proceed" || QDELETED(A) || QDELETED(W) || QDELETED(user) || !user.canUseTopic(A, BE_CLOSE, iscarbon(user)) || !user.canUseTopic(W, BE_CLOSE, iscarbon(user)))
 		return
+	if(get_dist(W, user) > 1)
+		return
 	var/turf/loccheck = get_turf(A)
 	if(is_reebe(loccheck.z))
 		user.visible_message(span_warning("An unseen force knocks [user] to the ground!"), "[span_big_brass("\"I think not!\"")]")
