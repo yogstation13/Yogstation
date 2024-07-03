@@ -30,6 +30,11 @@
 	/// Color to apply to the area while weather is occuring
 	var/weather_color = null
 
+	/// In deciseconds, how long until the next weather on this Z level once this starts (lower end)
+	var/cooldown_lower = 3000
+	/// In deciseconds, how long until the next weather on this z level once this starts (higher end)
+	var/cooldown_higher = 6000
+
 	/// Displayed once the weather is over
 	var/end_message = "<span class='danger'>The wind relents its assault.</span>"
 	/// In deciseconds, how long the "wind-down" graphic will appear before vanishing entirely

@@ -10,8 +10,14 @@
 	weather_message = span_userdanger("<i>Acidic rain pours down around you! Get inside!</i>")
 	weather_overlay = "acid_rain"
 	overlay_plane = HIGHEST_EVER_PLANE + 1 //why does this work, it shouldn't work, this is stupid and i hate it, why is this the ONLY thing that works, why won't it just show up normally, it shows up normally on lavaland, but not on jungleland, i don't understand it doesn't make any sense, this is all wrong
-	weather_duration_lower = 60 SECONDS
-	weather_duration_upper = 150 SECONDS
+	
+	//lasts shorter
+	weather_duration_lower = 45 SECONDS
+	weather_duration_upper = 90 SECONDS
+
+	//happens slightly more often
+	cooldown_lower = 2500
+	cooldown_higher = 4500
 
 	end_duration = 20 SECONDS
 	end_message = span_boldannounce("The downpour gradually slows to a light shower. It should be safe outside now.")
