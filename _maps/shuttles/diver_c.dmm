@@ -1,0 +1,26 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/open/floor/pod/light,/area/shuttle/mining/diver_c)
+"c" = (/turf/closed/wall/mineral/titanium/survival/pod,/area/shuttle/mining/diver_c)
+"e" = (/obj/effect/turf_decal/stripes/corner{dir = 4},/obj/machinery/newscaster{pixel_x = -30},/turf/open/floor/pod/light,/area/shuttle/mining/diver_c)
+"g" = (/obj/structure/sign/mining{dir = 4},/turf/closed/wall/mineral/titanium/survival/pod,/area/shuttle/mining/diver_c)
+"l" = (/obj/structure/sign/mining,/turf/closed/wall/mineral/titanium/survival/pod,/area/shuttle/mining/diver_c)
+"q" = (/obj/structure/chair/comfy/shuttle{dir = 1},/turf/open/floor/pod/dark,/area/shuttle/mining/diver_c)
+"t" = (/obj/structure/sign/mining{dir = 8},/turf/closed/wall/mineral/titanium/survival/pod,/area/shuttle/mining/diver_c)
+"v" = (/obj/structure/sign/warning/nosmoking/circle{pixel_x = 33},/obj/effect/turf_decal/stripes/corner{dir = 1},/turf/open/floor/pod/light,/area/shuttle/mining/diver_c)
+"z" = (/obj/machinery/door/poddoor/preopen{id = "molly"; name = "D.I.V.E.R. C Heavy Airlock"},/obj/machinery/button{id = "molly"; pixel_x = -27; name = "Heavy Airlock Control"},/obj/effect/turf_decal/stripes/line,/obj/effect/turf_decal/stripes/line{dir = 1},/turf/open/floor/pod/light,/area/shuttle/mining/diver_c)
+"E" = (/obj/effect/turf_decal/stripes/line{dir = 1},/turf/open/floor/pod/light,/area/shuttle/mining/diver_c)
+"I" = (/obj/docking_port/mobile{dir = 8; dwidth = 3; height = 5; shuttle_id = "mining"; name = "mining shuttle"; port_direction = 4; width = 7; ignitionTime = 45},/turf/closed/wall/mineral/titanium/survival/pod,/area/shuttle/mining/diver_c)
+"K" = (/obj/machinery/door/poddoor/preopen{id = "molly"; name = "D.I.V.E.R. C Heavy Airlock"},/obj/machinery/button{id = "molly"; pixel_x = 27; name = "Heavy Airlock Control"},/obj/effect/turf_decal/stripes/line,/obj/effect/turf_decal/stripes/line{dir = 1},/turf/open/floor/pod/light,/area/shuttle/mining/diver_c)
+"R" = (/obj/structure/ore_box,/obj/effect/turf_decal/bot,/turf/open/floor/pod/dark,/area/shuttle/mining/diver_c)
+"T" = (/obj/machinery/computer/shuttle/diver_c{dir = 4},/obj/effect/turf_decal/box,/turf/open/floor/pod/dark,/area/shuttle/mining/diver_c)
+"W" = (/obj/machinery/computer/shuttle/diver_c{dir = 8},/obj/effect/turf_decal/box,/turf/open/floor/pod/dark,/area/shuttle/mining/diver_c)
+"X" = (/obj/structure/table/reinforced,/obj/effect/turf_decal/bot,/turf/open/floor/pod/dark,/area/shuttle/mining/diver_c)
+
+(1,1,1) = {"
+acczKcca
+cceEEvcc
+tTbbbbWg
+cXqqqqXI
+ccRRRRcc
+aclcclca
+"}
