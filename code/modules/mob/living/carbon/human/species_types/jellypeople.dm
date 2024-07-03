@@ -2,7 +2,7 @@
 	// Entirely alien beings that seem to be made entirely out of gel. They have three eyes and a skeleton visible within them.
 	name = "Jellyperson"
 	plural_form = "Jellypeople"
-	id = "jelly"
+	id = SPECIES_JELLYPERSON
 	default_color = "00FF90"
 	say_mod = "chirps"
 	bubble_icon = BUBBLE_SLIME
@@ -166,7 +166,7 @@
 /datum/species/jelly/slime
 	name = "Slimeperson"
 	plural_form = "Slimepeople"
-	id = "slime"
+	id = SPECIES_SLIMEPERSON
 	default_color = "00FFFF"
 	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,NOBLOOD)
 	say_mod = "says"
@@ -442,7 +442,7 @@
 /datum/species/jelly/luminescent
 	name = "Luminescent"
 	plural_form = null
-	id = "lum"
+	id = SPECIES_LUMINESCENT
 	say_mod = "says"
 	var/glow_intensity = LUMINESCENT_DEFAULT_GLOW
 	var/obj/item/slime_extract/current_extract
@@ -614,7 +614,7 @@
 /datum/species/jelly/stargazer
 	name = "Stargazer"
 	plural_form = null
-	id = "stargazer"
+	id = SPECIES_STARGAZER
 	var/datum/action/innate/project_thought/project_thought
 	var/datum/action/innate/link_minds/link_minds
 	var/list/mob/living/linked_mobs = list()

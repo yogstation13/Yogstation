@@ -5,7 +5,7 @@
 	id = "synthetic"
 	say_mod = "states"
 
-	limbs_id = "human"
+	limbs_id = SPECIES_HUMAN
 	damage_overlay_type = "synth"
 
 	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,NOZOMBIE,NOHUSK,NOBLOOD, NO_UNDERWEAR)

@@ -1,7 +1,7 @@
 /datum/species/polysmorph
 	//Human xenopmorph hybrid
 	name = "Polysmorph"
-	id = "polysmorph"
+	id = SPECIES_POLYSMORPH
 	species_traits = list(NOEYESPRITES, MUTCOLORS, NOCOLORCHANGE, DIGITIGRADE, HAS_FLESH, HAS_BONE, HAS_TAIL)
 	possible_genders = list(FEMALE)
 	inherent_traits = list(TRAIT_ACIDBLOOD, TRAIT_SKINNY)
