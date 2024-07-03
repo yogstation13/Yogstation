@@ -31,7 +31,7 @@
 	var/weather_color = null
 
 	/// In deciseconds, how long until the next weather on this Z level once this starts (lower end)
-	var/cooldown_lower = 3000
+	var/cooldown_lower = 3000 
 	/// In deciseconds, how long until the next weather on this z level once this starts (higher end)
 	var/cooldown_higher = 6000
 
