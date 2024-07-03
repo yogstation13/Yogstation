@@ -66,13 +66,12 @@
 			if(acid_armour >= 70) //give a bit of wiggle room, this isn't supposed to be that dangerous for someone that's prepared
 				return TRUE
 
-			if((immunity_type in the_mob.weather_immunities) || (WEATHER_ALL in the_mob.weather_immunities))
+			if(the_mob.weather_immunities & immunity_type)
 				return TRUE
 		if(istype(L, /obj/structure/closet))
 			var/obj/structure/closet/the_locker = L
-			if(the_locker.weather_protection)
-				if((immunity_type in the_locker.weather_protection) || (WEATHER_ALL in the_locker.weather_protection))
-					return TRUE
+			if(the_locker.weather_protection & immunity_type)
+				return TRUE
 		L = L.loc //Check parent items immunities (recurses up to the turf)
 	return FALSE //RIP you
 

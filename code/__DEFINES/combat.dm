@@ -298,10 +298,10 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define BULLET_ACT_PENETRATE		(1<<4)
 
 // Weather immunities //
-#define WEATHER_STORM "storm"
-#define WEATHER_ACID "acid"
-#define WEATHER_ASH "ash"
-#define WEATHER_LAVA "lava"
-#define WEATHER_RAD "rad"
-#define WEATHER_SNOW "snow"
-#define WEATHER_ALL "all"
+#define WEATHER_LAVA (1<<0)
+#define WEATHER_ACID (1<<1)
+#define WEATHER_ASH (1<<2)
+#define WEATHER_RAD (1<<3)
+#define WEATHER_SNOW (1<<4)
+
+#define WEATHER_STORM (WEATHER_ACID | WEATHER_ASH | WEATHER_RAD | WEATHER_SNOW)
