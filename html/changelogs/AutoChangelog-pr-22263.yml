@@ -1,0 +1,6 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Power chromosome increases fire breath damage"
+  - tweak: "Fire breath gene base damage reduced and is less likely to wound"
+  - tweak: "Empowered fire breath knocks you down if you're restrained"
