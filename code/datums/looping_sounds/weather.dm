@@ -76,4 +76,4 @@
 
 	end_sound = 'sound/weather/acidrain/inside/acidrain_inside_end.ogg'
 
-	volume = 40 //the audio files are already just a bit quieter than the outside ones, but it should still be notably quieter
+	volume = 50 //the audio files are already just a bit quieter than the outside ones, but it should still be notably quieter

@@ -218,6 +218,7 @@
 /datum/weather/proc/update_areas()
 	var/list/new_overlay_cache = generate_overlay_cache()
 	for(var/area/impacted as anything in impacted_areas)
+		to_chat(world, "updating weather overlays for [name] in [impacted]")
 		if(length(overlay_cache))
 			impacted.overlays -= overlay_cache
 		if(length(new_overlay_cache))
