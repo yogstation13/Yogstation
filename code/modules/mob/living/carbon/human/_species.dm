@@ -454,8 +454,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		C.hud_used.update_locked_slots()
 
 	// this needs to be FIRST because qdel calls update_body which checks if we have DIGITIGRADE legs or not and if not then removes DIGITIGRADE from species_traits
-	if(("legs" in C.dna.species.mutant_bodyparts) && C.dna.features["legs"] == "Digitigrade Legs")
-		species_traits += DIGITIGRADE
 	if(DIGITIGRADE in species_traits)
 		C.Digitigrade_Leg_Swap(FALSE)
 
@@ -1094,8 +1092,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					S = GLOB.wings_list[H.dna.features["wingsdetail"]]
 				if("wingsdetailopen")
 					S = GLOB.wings_open_list[H.dna.features["wingsdetail"]]
-				if("legs")
-					S = GLOB.legs_list[H.dna.features["legs"]]
 				if("moth_wings")
 					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
 				if("moth_wingsopen")

@@ -97,19 +97,6 @@
 	target.dna.features["horns"] = value
 
 
-/datum/preference/choiced/lizard_legs
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
-	savefile_key = "feature_lizard_legs"
-	savefile_identifier = PREFERENCE_CHARACTER
-	relevant_mutant_bodypart = "legs"
-
-/datum/preference/choiced/lizard_legs/init_possible_values()
-	return assoc_to_keys(GLOB.legs_list)
-
-/datum/preference/choiced/lizard_legs/apply_to_human(mob/living/carbon/human/target, value)
-	target.dna.features["legs"] = value
-
-
 /datum/preference/choiced/lizard_snout
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "feature_lizard_snout"

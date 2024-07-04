@@ -2,7 +2,7 @@
 	//Human xenopmorph hybrid
 	name = "Polysmorph"
 	id = SPECIES_POLYSMORPH
-	species_traits = list(NOEYESPRITES, MUTCOLORS, NOCOLORCHANGE, DIGITIGRADE, HAS_FLESH, HAS_BONE, HAS_TAIL)
+	species_traits = list(NOEYESPRITES, DIGITIGRADE, MUTCOLORS, NOCOLORCHANGE, DIGITIGRADE, HAS_FLESH, HAS_BONE, HAS_TAIL)
 	possible_genders = list(FEMALE)
 	inherent_traits = list(TRAIT_ACIDBLOOD, TRAIT_SKINNY)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
@@ -40,8 +40,8 @@
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	fixed_mut_color = "#444466" //don't mess with this if you don't feel like manually adjusting the mutant bodypart sprites
-	mutant_bodyparts = list("tail_polysmorph", "dome", "dorsal_tubes", "teeth", "legs")
-	default_features = list("tail_polysmorph" = "Polys", "dome" = "None", "dorsal_tubes" = "No", "teeth" = "None", "legs" = "Normal Legs")
+	mutant_bodyparts = list("tail_polysmorph", "dome", "dorsal_tubes", "teeth")
+	default_features = list("tail_polysmorph" = "Polys", "dome" = "None", "dorsal_tubes" = "No", "teeth" = "None")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 
 	smells_like = "charred, acidic meat"
