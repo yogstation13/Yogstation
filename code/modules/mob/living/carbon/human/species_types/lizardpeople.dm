@@ -7,10 +7,10 @@
 	id = SPECIES_LIZARD
 	say_mod = "hisses"
 	default_color = "00FF00"
-	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,HAS_FLESH,HAS_BONE,HAS_TAIL)
+	species_traits = list(MUTCOLORS,EYECOLOR,DIGITIGRADE,LIPS,HAS_FLESH,HAS_BONE,HAS_TAIL)
 	inherent_traits = list(TRAIT_COLDBLOODED)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_REPTILE
-	mutant_bodyparts = list("tail_lizard", "snout", "spines", "horns", "frills", "body_markings", "legs")
+	mutant_bodyparts = list("tail_lizard", "snout", "spines", "horns", "frills", "body_markings")
 	mutanttongue = /obj/item/organ/tongue/lizard
 	mutanttail = /obj/item/organ/tail/lizard
 	coldmod = 0.67 //used to being cold, just doesn't like it much
