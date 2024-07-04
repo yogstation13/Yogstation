@@ -36,7 +36,7 @@
 	var/final_armour = (electric_armour + melee_armour) / 2
 	target.apply_damage(amount, BURN, zone, final_armour)
 	if(ishuman(target))
-		var/mob/living/carbon/human/flicker
+		var/mob/living/carbon/human/flicker = target
 		flicker.electrocution_animation(4 SECONDS)
 
 /datum/martial_art/lightning_flow/proc/on_click(mob/living/carbon/human/H, atom/target, params)
