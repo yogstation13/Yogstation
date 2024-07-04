@@ -198,7 +198,7 @@
 	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/blobby, /mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad)
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_corrupted_dryad/Shoot(atom/targeted_atom)
-	playsound(src, 'sound/magic/clockwork/narsie_attack.ogg', 100, 1)
+	playsound(src, 'sound/magic/clockwork/narsie_attack.ogg', 80, 1)
 	addtimer(CALLBACK(src, PROC_REF(finish_shoot), targeted_atom), 1 SECONDS) //give it a slight telegraph before shotgunning the person in the face
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_corrupted_dryad/proc/finish_shoot(atom/targeted_atom)
