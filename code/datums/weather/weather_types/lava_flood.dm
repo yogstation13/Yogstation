@@ -1,9 +1,9 @@
-//Lava often rises from the porous ground in the caverns deep below Undergruv and jungleland. It floods the entire level, submerging any space that isn't sealed off.
-//Similar to floor is lava except it floods anything that isn't sealed off from the outside + is designed for caverns.
+//Lava often rises from the porous ground in the caverns deep below. It floods the entire level, submerging any space that isn't sealed off.
+//Similar to floor is lava except it floods *everywhere* that isn't sealed off from the outside.
 /*
 /datum/weather/lava_flood
 	name = "lava flood"
-	desc = "A deluge of lava rises up from this cavern's porous ground, submerging every space that isn't closed off from the outside."
+	desc = "A deluge of lava rises up from the cavern's porous ground, submerging every space that isn't closed off from the outside."
 
 	telegraph_message = span_boldwarning("The ground begins to break and blister. Heat shimmers in the air as it rises from the cracks below. Hurry inside.")
 	telegraph_duration = //450 300

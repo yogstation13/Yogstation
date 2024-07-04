@@ -33,6 +33,8 @@
 			. += mutable_appearance('icons/effects/item_damage.dmi', "damagedgloves")
 		if(HAS_BLOOD_DNA(src))
 			var/mutable_appearance/bloody_hands = mutable_appearance('icons/effects/blood.dmi', "bloodyhands")
+			if(species_fitted && icon_exists(bloody_hands.icon, "bloodyhands_[species_fitted]")) 
+				bloody_hands.icon_state = "bloodyhands_[species_fitted]"
 			bloody_hands.color = get_blood_dna_color(return_blood_DNA())
 			. += bloody_hands
 

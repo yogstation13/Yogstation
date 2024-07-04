@@ -230,3 +230,15 @@
 
 /area/shuttle/caravan/freighter3
 	name = "Tiny Freighter"
+
+/area/shuttle/arrival/diver_a
+	name = "D.I.V.E.R. A"
+
+/area/shuttle/diver_b
+	name = "D.I.V.E.R. B"
+
+/area/shuttle/mining/diver_c
+	name = "D.I.V.E.R. C"
+
+/area/shuttle/transport/diver_d
+	name = "D.I.V.E.R. D"

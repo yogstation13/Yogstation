@@ -194,18 +194,31 @@ Temperature: 126.85 °C (400 K)
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/water/toxic_pit
+	///multiplier for the strength of the toxicity, multiplies basically every damage value and damage probability
+	var/acid_strength = 1
 
 /turf/open/water/toxic_pit/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/lingering, CALLBACK(src, PROC_REF(toxic_stuff)), GLOB.lavasafeties)
 
 /turf/open/water/toxic_pit/proc/toxic_stuff(thing, delta_time)
-	if (isliving(thing)) //objects are unaffected for now
+	if(isobj(thing))
+		var/obj/O = thing
+		if((O.resistance_flags & (UNACIDABLE|INDESTRUCTIBLE)) || O.throwing)
+			return
+		. = TRUE
+		O.acid_act(5 * acid_strength, 7.5 * acid_strength)
+
+	else if (isliving(thing))
 		. = TRUE
 		var/mob/living/L = thing
-		if(L.movement_type & (FLYING|FLOATING))
-			return	//YOU'RE FLYING OVER IT
-		if(HAS_TRAIT(L,TRAIT_SULPH_PIT_IMMUNE))
+		if(WEATHER_ACID in L.weather_immunities) //if they're immune to acid weather
+			return
+		if(L.movement_type & (FLYING|FLOATING)) //YOU'RE FLYING OVER IT
+			return	
+		if(!L.has_gravity()) //you don't have gravity somehow and as such can walk on water i guess
+			return	
+		if(HAS_TRAIT(L,TRAIT_SULPH_PIT_IMMUNE)) //just straight up immune
 			return
 		var/buckle_check = L.buckling
 		if(!buckle_check)
@@ -216,6 +229,8 @@ Temperature: 126.85 °C (400 K)
 				return
 		else if(isliving(buckle_check))
 			var/mob/living/live = buckle_check
+			if(WEATHER_ACID in live.weather_immunities)
+				return
 			if(live.movement_type & (FLYING|FLOATING))
 				return
 			if(HAS_TRAIT(live, TRAIT_SULPH_PIT_IMMUNE))
@@ -223,23 +238,23 @@ Temperature: 126.85 °C (400 K)
 
 		if(ishuman(L))
 			var/mob/living/carbon/human/humie = L
-			var/chance = (100 - humie.getarmor(null,BIO)) * 0.33
+			var/chance = ((100 - humie.getarmor(null,BIO)) * 0.33) * acid_strength
 
 			if(isipc(humie) && prob(chance))
-				humie.adjustFireLoss(15)
+				humie.adjustFireLoss(15 * acid_strength)
 				to_chat(humie,span_danger("The sulphuric solution burns and singes into your plating!"))
 				return
 
 			if(prob((chance * 0.5) + 10))
-				humie.acid_act(15,15)
+				humie.acid_act(15 * acid_strength, 15 * acid_strength)
 				
 			if(HAS_TRAIT(L,TRAIT_TOXIMMUNE) || HAS_TRAIT(L,TRAIT_TOXINLOVER))
 				return
 			
-			humie.reagents.add_reagent(/datum/reagent/toxic_metabolities, 2)
+			humie.reagents.add_reagent(/datum/reagent/toxic_metabolities, 2 * acid_strength)
 
-		else if(prob(25))
-			L.acid_act(5,7.5)
+		else if(prob(25 * acid_strength))
+			L.acid_act(5 * acid_strength, 7.5 * acid_strength)
 
 /turf/open/water/toxic_pit/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	switch(the_rcd.construction_mode)
@@ -258,14 +273,13 @@ Temperature: 126.85 °C (400 K)
 /turf/open/water/safe/jungle
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 
-/turf/open/water/deep_toxic_pit
+/turf/open/water/toxic_pit/deep
 	name = "deep sulphuric pit"
 	desc = "Extraordinarily toxic."
 	color = "#004700"
 	slowdown = 4
-	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
-	planetary_atmos = TRUE
-	baseturfs = /turf/open/water/deep_toxic_pit
+	baseturfs = /turf/open/water/toxic_pit/deep
+	acid_strength = 2
 
 /turf/open/floor/wood/jungle
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS

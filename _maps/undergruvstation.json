@@ -44,8 +44,8 @@
 			"No Parallax": true
 		},
 		{
-			"Ocean Surface": true,
 			"Linkage": "Self",
+			"Weather_Acidrain": true,
 			"Gravity": true,
 			"Baseturf": "/turf/open/plating/beach/sand",
 			"No Parallax": true

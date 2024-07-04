@@ -3,6 +3,16 @@
 	specific_heat = 20
 	name = "Oxygen"
 	label = "O₂"
+	breath_alert_info = list(
+		not_enough_alert = list(
+			alert_category = "not_enough_oxy",
+			alert_type = /atom/movable/screen/alert/not_enough_oxy
+		),
+		too_much_alert = list(
+			alert_category = "too_much_oxy",
+			alert_type = /atom/movable/screen/alert/too_much_oxy
+		)
+	)
 	ui_color = "blue"
 
 /datum/gas/nitrogen
@@ -47,6 +57,16 @@
 	gas_overlay = "plasma"
 	moles_visible = MOLES_GAS_VISIBLE
 	flags = GAS_FLAG_DANGEROUS
+	breath_alert_info = list(
+		not_enough_alert = list(
+			alert_category = "not_enough_tox",
+			alert_type = /atom/movable/screen/alert/not_enough_tox,
+		),
+		too_much_alert = list(
+			alert_category = "too_much_tox",
+			alert_type = /atom/movable/screen/alert/too_much_tox,
+		)
+	)
 	ui_color = "orange"
 
 /datum/gas/water_vapor
@@ -67,6 +87,7 @@
 	label = "Hyper-nob"
 	gas_overlay = "freon"
 	moles_visible = MOLES_GAS_VISIBLE
+	breath_reagent = /datum/reagent/gas/hypernoblium
 	flags = GAS_FLAG_DANGEROUS
 	ui_color = "teal"
 
@@ -88,6 +109,7 @@
 	gas_overlay = "nitrium"
 	moles_visible = MOLES_GAS_VISIBLE
 	flags = GAS_FLAG_DANGEROUS
+	breath_reagent = /datum/reagent/gas/nitrium
 	fusion_power = 7
 	ui_color = "brown"
 
@@ -130,6 +152,7 @@
 	name = "Freon"
 	gas_overlay = "freon"
 	moles_visible = MOLES_GAS_VISIBLE *30
+	breath_reagent = /datum/reagent/gas/freon
 	fusion_power = -5
 	ui_color = "paleturquoise"
 
@@ -147,6 +170,7 @@
 	name = "Healium"
 	gas_overlay = "healium"
 	moles_visible = MOLES_GAS_VISIBLE
+	breath_reagent = /datum/reagent/gas/healium
 	ui_color = "salmon"
 
 /datum/gas/pluonium
@@ -165,6 +189,7 @@
 	flags = GAS_FLAG_DANGEROUS
 	gas_overlay = "halon"
 	moles_visible = MOLES_GAS_VISIBLE
+	breath_reagent = /datum/reagent/gas/halon
 	ui_color = "purple"
 
 /datum/gas/antinoblium
@@ -174,6 +199,7 @@
 	label = "Anti-nob"
 	gas_overlay = "antinoblium"
 	moles_visible = MOLES_GAS_VISIBLE
+	breath_reagent = /datum/reagent/gas/antinoblium
 	fusion_power = 20
 	ui_color = "maroon"
 
@@ -193,6 +219,7 @@
 	flags = GAS_FLAG_DANGEROUS
 	gas_overlay = "hexane"
 	moles_visible = MOLES_GAS_VISIBLE
+	breath_reagent = /datum/reagent/gas/hexane
 	ui_color = "plum"
 
 /datum/gas/dilithium // Main point is that this helps fusion occur at a significantly lower temperature than normal

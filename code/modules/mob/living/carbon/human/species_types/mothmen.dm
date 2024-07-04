@@ -24,7 +24,7 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/mothmen
 
-	screamsound = 'sound/voice/moth/scream_moth.ogg'
+	deathsound = 'sound/voice/moth/moth_death.ogg'
 
 	smells_like = "dusty dryness"
 
@@ -137,3 +137,50 @@
 	)
 
 	return to_add
+
+/datum/species/moth/get_scream_sound(mob/living/carbon/human)
+	return 'sound/voice/moth/scream_moth.ogg'
+
+/datum/species/moth/get_cough_sound(mob/living/carbon/human/moth)
+	if(moth.gender == FEMALE)
+		return pick(
+			'sound/voice/human/female_cough1.ogg',
+			'sound/voice/human/female_cough2.ogg',
+			'sound/voice/human/female_cough3.ogg',
+			'sound/voice/human/female_cough4.ogg',
+			'sound/voice/human/female_cough5.ogg',
+			'sound/voice/human/female_cough6.ogg',
+		)
+	return pick(
+		'sound/voice/human/male_cough1.ogg',
+		'sound/voice/human/male_cough2.ogg',
+		'sound/voice/human/male_cough3.ogg',
+		'sound/voice/human/male_cough4.ogg',
+		'sound/voice/human/male_cough5.ogg',
+		'sound/voice/human/male_cough6.ogg',
+	)
+
+
+/datum/species/moth/get_cry_sound(mob/living/carbon/human/moth)
+	if(moth.gender == FEMALE)
+		return pick(
+			'sound/voice/human/female_cry1.ogg',
+			'sound/voice/human/female_cry2.ogg',
+		)
+	return pick(
+		'sound/voice/human/male_cry1.ogg',
+		'sound/voice/human/male_cry2.ogg',
+		'sound/voice/human/male_cry3.ogg',
+	)
+
+
+/datum/species/moth/get_sneeze_sound(mob/living/carbon/human/moth)
+	if(moth.gender == FEMALE)
+		return 'sound/voice/human/female_sneeze1.ogg'
+	return 'sound/voice/human/male_sneeze1.ogg'
+
+
+/datum/species/moth/get_laugh_sound(mob/living/carbon/human)
+	if(!istype(human))
+		return
+	return 'sound/voice/moth/moth_laugh1.ogg'

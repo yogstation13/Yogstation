@@ -109,3 +109,17 @@
 	else
 		if(M && stat != DEAD)
 			emote("me", 1, wuv_angy, TRUE)
+
+/* FIX THIS BEFORE MERGING // I suck at code apparently
+/mob/living/simple_animal/pet/proc/hug_affect(mob/living/hugger, mob/M, change = TRUE)
+	if(change)
+		if(M && stat != DEAD && HAS_TRAIT(hugger, TRAIT_FRIENDLY)) // We need a professional hugger
+			emote("me", 1, wuv_happy, TRUE)
+			if(!M.hugged_name)
+				M.name = M.hugged_name
+			if(!M.hugged_desc)
+				M.desc = M.hugged_desc
+			if(flags_1 & HOLOGRAM_1)
+				return
+			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal, src)
+*/
