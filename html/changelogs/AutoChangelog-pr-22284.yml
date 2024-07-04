@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Prevents being able to bag of holding bomb from a range using other bodies"
