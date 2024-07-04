@@ -89,7 +89,9 @@
 	L.apply_damage_type(0.5, BURN)
 	if(ishuman(L)) //inject metabolites
 		var/mob/living/carbon/human/humie = L
-		if(humie.reagents.get_reagent_amount(/datum/reagent/toxic_metabolities) <= 20) //don't let them get up to the absolute highest metabolites tier, but they should still need to be worried
+		if(isipc(humie))
+			humie.apply_damage_type(0.5, BURN)
+		else if(humie.reagents.get_reagent_amount(/datum/reagent/toxic_metabolities) <= 20) //don't let them get up to the absolute highest metabolites tier, but they should still need to be worried
 			humie.reagents.add_reagent(/datum/reagent/toxic_metabolities, 2)
 	else
 		L.apply_damage_type(0.5, TOX)
