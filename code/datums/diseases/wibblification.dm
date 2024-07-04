@@ -17,9 +17,9 @@
 		previous_chat = stage
 		switch(stage)
 			if(2)
-				to_chat(target, span_warning("You feel a little... wibbly?"))
+				to_chat(affected_mob, span_warning("You feel a little... wibbly?"))
 			if(3)
-				to_chat(target, span_warning("Something feels very... wibbly!"))
+				to_chat(affected_mob, span_warning("Something feels very... wibbly!"))
 				apply_wibbly_filters(affected_mob)
 
 /datum/disease/wibblification/cure(add_resistance) //this ain't happening, but if it does
