@@ -40,6 +40,12 @@
 
 	//list of canister types for relabeling
 	var/static/list/label2types = list(
+		"generic" = /obj/machinery/portable_atmospherics/canister/generic,
+		"generic-stripe" = /obj/machinery/portable_atmospherics/canister/generic/stripe,
+		"generic-x2stripe" = /obj/machinery/portable_atmospherics/canister/generic/stripe_double,
+		"generic-hazard" = /obj/machinery/portable_atmospherics/canister/generic/hazard,
+		"caution" = /obj/machinery/portable_atmospherics/canister,
+		"fusion-danger" = /obj/machinery/portable_atmospherics/canister/fusion,
 		"n2" = /obj/machinery/portable_atmospherics/canister/nitrogen,
 		"o2" = /obj/machinery/portable_atmospherics/canister/oxygen,
 		"co2" = /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
@@ -71,17 +77,33 @@
 		return
 	..()
 
+/obj/machinery/portable_atmospherics/canister/generic
+	greyscale_config = /datum/greyscale_config/canister
+	greyscale_colors = "#808080"
+
+/obj/machinery/portable_atmospherics/canister/generic/stripe
+	greyscale_config = /datum/greyscale_config/canister/stripe
+	greyscale_colors = "#808080#eeeeee"
+
+/obj/machinery/portable_atmospherics/canister/generic/stripe_double
+	greyscale_config = /datum/greyscale_config/canister/double_stripe
+	greyscale_colors = "#808080#eeeeee"
+
+/obj/machinery/portable_atmospherics/canister/generic/hazard
+	greyscale_config = /datum/greyscale_config/canister/hazard
+	greyscale_colors = "#808080#1a1a1a"
+
 /obj/machinery/portable_atmospherics/canister/nitrogen
 	name = "Nitrogen canister"
 	desc = "Nitrogen gas. Reportedly useful for something."
 	greyscale_config = /datum/greyscale_config/canister
-	greyscale_colors = "#1b6d1b"
+	greyscale_colors = "#009823"
 	gas_type = GAS_N2
 
 /obj/machinery/portable_atmospherics/canister/oxygen
 	name = "Oxygen canister"
 	desc = "Oxygen. Necessary for human life."
-	greyscale_config = /datum/greyscale_config/canister/stripe
+	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#2786e5#e8fefe"
 	gas_type = GAS_O2
 
@@ -89,14 +111,14 @@
 	name = "Carbon dioxide canister"
 	desc = "Carbon dioxide. What the fuck is carbon dioxide?"
 	greyscale_config = /datum/greyscale_config/canister
-	greyscale_colors = "#4e4c48"
+	greyscale_colors = "#1c1c1c"
 	gas_type = GAS_CO2
 
 /obj/machinery/portable_atmospherics/canister/plasma
 	name = "Plasma canister"
 	desc = "Plasma gas. The reason YOU are here. Highly toxic."
 	greyscale_config = /datum/greyscale_config/canister/hazard
-	greyscale_colors = "#f63400#000000"
+	greyscale_colors = "#f63800#000000"
 	gas_type = GAS_PLASMA
 
 /obj/machinery/portable_atmospherics/canister/bz
@@ -110,7 +132,7 @@
 	name = "Nitrous oxide canister"
 	desc = "Nitrous oxide gas. Known to cause drowsiness."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
-	greyscale_colors = "#1b6d1b#ffffff"
+	greyscale_colors = "#009823#ffffff"
 	gas_type = GAS_NITROUS
 
 /obj/machinery/portable_atmospherics/canister/air
@@ -130,14 +152,14 @@
 	name = "Hyper-noblium canister"
 	desc = "Hyper-Noblium. More noble than all other gases."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
-	greyscale_colors = "#6399fc#b2b2b2"
+	greyscale_colors = "#009823#f8c344"
 	gas_type = GAS_HYPERNOB
 
 /obj/machinery/portable_atmospherics/canister/nitrium
 	name = "Nitrium canister"
 	desc = "Nitrium gas. Feels great 'til the acid eats your lungs."
-	greyscale_config = /datum/greyscale_config/canister
-	greyscale_colors = "#7b4732"
+	greyscale_config = /datum/greyscale_config/canister/double_stripe
+	greyscale_colors = "#793b15#ffffff"
 	gas_type = GAS_NITRIUM
 
 /obj/machinery/portable_atmospherics/canister/pluoxium
@@ -151,7 +173,7 @@
 	name = "Water vapor canister"
 	desc = "Water vapor. We get it, you vape."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
-	greyscale_colors = "#17c3c7#ffffff"
+	greyscale_colors = "#17c3c7#007dc3"
 	gas_type = GAS_H2O
 	filled = 1
 
@@ -197,8 +219,8 @@
 /obj/machinery/portable_atmospherics/canister/pluonium
 	name = "Pluonium canister"
 	desc = "Pluonium, reacts differently with various gases."
-	greyscale_config = /datum/greyscale_config/canister
-	greyscale_colors = "#2786e5"
+	greyscale_config = /datum/greyscale_config/canister/double_stripe
+	greyscale_colors = "#178842#71e382"
 	gas_type = GAS_PLUONIUM
 	filled = 1
 
@@ -206,7 +228,7 @@
 	name = "Halon canister"
 	desc = "Halon, remove oxygen from high temperature fires and cool down the area."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
-	greyscale_colors = "#9b5d7f#368bff"
+	greyscale_colors = "#943d98#00ccff"
 	gas_type = GAS_HALON
 	filled = 1
 
@@ -215,7 +237,7 @@
 	desc = "Hexane, highly flammable, what a shame."
 
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
-	greyscale_colors = "#9b608b#fd89fd"
+	greyscale_colors = "#943d98#fd89fd"
 	gas_type = GAS_HEXANE
 	filled = 1
 
@@ -223,7 +245,7 @@
 	name = "Zauker canister"
 	desc = "Zauker, highly toxic"
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
-	greyscale_colors = "#009a00#006600"
+	greyscale_colors = "#178842#214b4b"
 	gas_type = GAS_ZAUKER
 	filled = 1
 
@@ -478,6 +500,24 @@
 	if(..())
 		return
 	switch(action)
+		if("recolor")
+			var/initial_config = greyscale_config
+			var/list/allowed_configs = list("[/datum/greyscale_config/canister]",
+											"[/datum/greyscale_config/canister/stripe]",
+											"[/datum/greyscale_config/canister/double_stripe]",
+											"[/datum/greyscale_config/canister/hazard]",
+											)
+			if(isnull(initial_config))
+				return FALSE
+
+			var/datum/greyscale_modify_menu/menu = new(
+				src, usr, allowed_configs, CALLBACK(src, PROC_REF(recolor)),
+				starting_icon_state = initial(icon_state),
+				starting_config = greyscale_config,
+				starting_colors = greyscale_colors
+			)
+			menu.ui_interact(usr)
+			. = TRUE
 		if("relabel")
 			var/label = tgui_input_list(usr, "New canister label", "Canister", label2types)
 			if(isnull(label))
@@ -576,6 +616,9 @@
 				. = TRUE
 	update_appearance(UPDATE_ICON)
 
+/obj/machinery/portable_atmospherics/canister/proc/recolor(datum/greyscale_modify_menu/menu)
+	set_greyscale(menu.split_colors, menu.config.type)
+
 /obj/machinery/portable_atmospherics/canister/examine(mob/dead/observer/user)
 	if(istype(user))
 		analyzer_act(user, src)
@@ -585,7 +628,8 @@
 	name = "Fusion Canister"
 	desc = "A violent mix of gases resulting in a fusion reaction inside the canister. <br>\
 			A note on the side reads: \"DANGER: DO NOT OPEN\""
-	icon_state = "danger"
+	greyscale_config = /datum/greyscale_config/canister/hazard
+	greyscale_colors = "#0099ff#ff3300"
 
 /* yog- ADMEME CANISTERS */
 
@@ -593,7 +637,8 @@
 /obj/machinery/portable_atmospherics/canister/fusion_test
 	name = "Fusion Test Canister"
 	desc = "This should never be spawned in game."
-	icon_state = "danger"
+	greyscale_config = /datum/greyscale_config/canister/hazard
+	greyscale_colors = "#0099ff#ff3300"
 
 /obj/machinery/portable_atmospherics/canister/fusion_test/create_gas()
 	air_contents.set_moles(GAS_TRITIUM, 10)
@@ -606,7 +651,9 @@
  /obj/machinery/portable_atmospherics/canister/fusion_test_2
 	name = "Fusion Test Canister"
 	desc = "This should never be spawned in game."
-	icon_state = "danger"
+	greyscale_config = /datum/greyscale_config/canister/hazard
+	greyscale_colors = "#0099ff#ff3300"
+
 /obj/machinery/portable_atmospherics/canister/fusion_test_2/create_gas()
 	air_contents.set_moles(GAS_TRITIUM, 10)
 	air_contents.set_moles(GAS_PLASMA, 15000)
@@ -618,7 +665,9 @@
 /obj/machinery/portable_atmospherics/canister/fusion_test_3
 	name = "Fusion Test Canister"
 	desc = "This should never be spawned in game."
-	icon_state = "danger"
+	greyscale_config = /datum/greyscale_config/canister/hazard
+	greyscale_colors = "#0099ff#ff3300"
+
 /obj/machinery/portable_atmospherics/canister/fusion_test_3/create_gas()
 	air_contents.set_moles(GAS_TRITIUM, 1000)
 	air_contents.set_moles(GAS_PLASMA, 4500)
@@ -630,7 +679,9 @@
 /obj/machinery/portable_atmospherics/canister/fusion_test_4
 	name = "Cold Fusion Test Canister"
 	desc = "This should never be spawned in game. Contains dilithium for cold fusion."
-	icon_state = "danger"
+	greyscale_config = /datum/greyscale_config/canister/hazard
+	greyscale_colors = "#0099ff#ff3300"
+
 /obj/machinery/portable_atmospherics/canister/fusion_test_4/create_gas()
 	air_contents.set_moles(GAS_TRITIUM, 1000)
 	air_contents.set_moles(GAS_PLASMA, 4500)
@@ -642,7 +693,9 @@
 /obj/machinery/portable_atmospherics/canister/stimball_test
 	name = "Stimball Test Canister"
 	desc = "This should never be spawned in game except for testing purposes."
-	icon_state = "danger"
+	greyscale_config = /datum/greyscale_config/canister/hazard
+	greyscale_colors = "#0099ff#ff3300"
+
 /obj/machinery/portable_atmospherics/canister/stimball_test/create_gas()
 	air_contents.set_moles(GAS_NITRIUM, 1000)
 	air_contents.set_moles(GAS_PLASMA, 1000)
