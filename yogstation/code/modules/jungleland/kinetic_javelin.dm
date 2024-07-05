@@ -180,7 +180,7 @@
 
 /obj/item/kinetic_javelin_core/blue/charged_effect(mob/living/simple_animal/hostile/victim, obj/item/kinetic_javelin/javelin,mob/user)
 	for(var/mob/living/simple_animal/hostile/H in range(4, victim) - victim)
-		victim.Beam(H,"lightning[rand(1,12)]", time = 15)
+		victim.Beam(H,"lightning[rand(1,12)]", beam_color = charged_glow_color, time = 15)
 		H.adjustFireLoss(15)
 
 /obj/item/kinetic_javelin_core/red 
