@@ -167,7 +167,7 @@
 /datum/species/jelly/proc/handle_wetness(mob/living/carbon/human/H)
 	var/datum/status_effect/fire_handler/wet_stacks/wetness = H.has_status_effect(/datum/status_effect/fire_handler/wet_stacks)
 	if(wetness && wetness.stacks >= 1) // needs at least 1 wetness stack to do anything
-		H.add_movespeed_modifier("slime_person_wet", update = TRUE, priority = 102, multiplicative_slowdown = 1.2, blacklisted_movetypes=(FLYING|FLOATING))
+		H.add_movespeed_modifier("slime_person_wet", update = TRUE, priority = 102, multiplicative_slowdown = 0.5, blacklisted_movetypes=(FLYING|FLOATING))
 		//damage has a flat amount with an additional amount based on how wet they are
 		H.adjustStaminaLoss(8 - (H.fire_stacks / 2))
 		H.clear_stamina_regen()
