@@ -186,11 +186,9 @@
 			new /obj/item/book/granter/action/spell/summonitem(src) //So you can throw your lightsaber and call it back. A 1 SP cost spell that doesn't require robes
 
 		if("white_whale_holy_grail") //Unique items that don't appear anywhere else, more than 100 carps or your TC back
-			new /obj/item/pneumatic_cannon/speargun(src)
-			new /obj/item/storage/magspear_quiver(src)
+			new /obj/item/clothing/gloves/gasharpoon
 			new /obj/item/clothing/suit/space/hardsuit/carp(src) //1 carp
 			new /obj/item/clothing/mask/gas/carp(src) //1 carp?
-			new /obj/item/pitchfork/trident(src)
 			new /obj/item/grenade/clusterbuster/syndie/spawner_spesscarp(src) //when you need A LOT of carps, you'll get at least (but most likely more) 30 carps with that
 			new /obj/item/grenade/spawnergrenade/spesscarp(src) //for precise and quick delivery of carps, 5 carps per grenade for a total of 20 carps
 			new /obj/item/grenade/spawnergrenade/spesscarp(src)
