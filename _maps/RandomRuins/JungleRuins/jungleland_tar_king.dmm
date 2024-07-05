@@ -23,7 +23,7 @@
 /turf/open/water/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "ai" = (
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "aj" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
@@ -213,7 +213,7 @@
 /area/ruin/unpowered/tar_temple)
 "aX" = (
 /obj/structure/bonfire,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "aY" = (
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
@@ -447,7 +447,7 @@
 /area/ruin/unpowered/tar_temple)
 "RE" = (
 /obj/item/flashlight/lantern,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "Tg" = (
 /obj/structure/stone_tile/surrounding_tile,

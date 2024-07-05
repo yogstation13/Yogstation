@@ -124,21 +124,14 @@ Temperature: 126.85 °C (400 K)
 	icon_plating = "barren_rocks"
 	icon_state_regular_floor = "barren_rocks"
 
-/turf/open/floor/plating/dirt/jungleland/toxic_pit
+/turf/open/floor/plating/dirt/jungleland/shallow_mud
 	name = "shallow mud"
 	desc = "Pit of shallow mud."
 	icon_state = "toxic_pit"
 	icon_plating = "toxic_pit"
 	icon_state_regular_floor = "toxic_pit"
 
-/turf/open/floor/plating/dirt/jungleland/dry_swamp
-	name = "dried surface"
-	desc = "It used to be a riverbed."
-	icon_state = "dry_swamp"
-	icon_plating = "dry_swamp"
-	icon_state_regular_floor = "dry_swamp"
-
-/turf/open/floor/plating/dirt/jungleland/dying_forest
+/turf/open/floor/plating/dirt/jungleland/deep_sand
 	name = "deep sand"
 	desc = "This sand runs deep into the earth."
 	icon_state = "dying_forest"
@@ -279,7 +272,7 @@ Temperature: 126.85 °C (400 K)
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 
 /turf/open/floor/plating/jungle_baseturf/dying
-	baseturfs = /turf/open/floor/plating/dirt/jungleland/dying_forest
+	baseturfs = /turf/open/floor/plating/dirt/jungleland/deep_sand
 
 /turf/open/indestructible/grass/jungle
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
@@ -297,8 +290,8 @@ Temperature: 126.85 °C (400 K)
 	baseturfs = /turf/open/floor/plating/dirt/jungleland/jungle
 
 /turf/closed/mineral/ash_rock/jungle/swamp
-	turf_type = /turf/open/floor/plating/dirt/jungleland/toxic_pit
-	baseturfs = /turf/open/floor/plating/dirt/jungleland/toxic_pit
+	turf_type = /turf/open/floor/plating/dirt/jungleland/shallow_mud
+	baseturfs = /turf/open/floor/plating/dirt/jungleland/shallow_mud
 
 /turf/open/water/tar_basin
 	name = "tar basin"

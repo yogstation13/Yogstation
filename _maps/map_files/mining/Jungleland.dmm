@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "at" = (
 /obj/structure/flytrap,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "az" = (
 /obj/docking_port/stationary{
@@ -49,7 +49,7 @@
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
 "be" = (
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "bi" = (
 /obj/machinery/conveyor{
@@ -163,7 +163,7 @@
 /area/jungleland/explored)
 "di" = (
 /obj/structure/flora/junglebush/b,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "dJ" = (
 /turf/closed/wall,
@@ -466,7 +466,7 @@
 /area/mine/laborcamp)
 "mx" = (
 /obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "mQ" = (
 /obj/machinery/computer/security/labor{
@@ -539,7 +539,7 @@
 /area/mine/laborcamp)
 "pA" = (
 /obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "pQ" = (
 /obj/structure/chair/stool,
@@ -741,7 +741,7 @@
 /area/mine/laborcamp/security)
 "vR" = (
 /obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "wK" = (
 /obj/machinery/light/small,
@@ -845,7 +845,7 @@
 /area/mine/laborcamp)
 "zg" = (
 /obj/structure/flora/junglebush,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "zk" = (
 /obj/machinery/power/smes{
@@ -909,11 +909,11 @@
 /turf/open/floor/plating,
 /area/mine/laborcamp)
 "Dd" = (
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "Dg" = (
 /obj/structure/fence,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "Dj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -1035,7 +1035,7 @@
 /obj/structure/fence/corner{
 	dir = 5
 	},
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "GM" = (
 /obj/machinery/computer/shuttle/labor/one_way{
@@ -1059,7 +1059,7 @@
 /area/mine/laborcamp)
 "Hw" = (
 /obj/structure/flora/rock/pile,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "HS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -1073,7 +1073,7 @@
 /area/mine/laborcamp)
 "Ii" = (
 /obj/structure/flora/tree/dead/jungle,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "IC" = (
 /obj/machinery/power/apc{
@@ -1159,7 +1159,7 @@
 /area/mine/laborcamp/security)
 "Lv" = (
 /obj/structure/flora/junglebush,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "LE" = (
 /turf/open/water/toxic_pit/deep,
@@ -1214,11 +1214,11 @@
 /area/mine/laborcamp)
 "NM" = (
 /obj/structure/flora/tree/jungle/small,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "NV" = (
 /obj/structure/flora/tree/jungle/small,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "Oi" = (
 /obj/effect/turf_decal/bot,
@@ -1245,7 +1245,7 @@
 "OJ" = (
 /obj/structure/flora/tree/jungle,
 /obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "OL" = (
 /obj/structure/window/reinforced{
@@ -1326,7 +1326,7 @@
 /area/mine/laborcamp)
 "Tq" = (
 /obj/structure/herb/liberal_hats,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "Ts" = (
 /turf/closed/wall/r_wall,
