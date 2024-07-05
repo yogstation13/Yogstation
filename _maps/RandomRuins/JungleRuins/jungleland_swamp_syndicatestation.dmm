@@ -880,7 +880,7 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "iX" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/jungleland/toxic_pit)
 "iZ" = (
 /obj/machinery/door/firedoor/border_only{
@@ -3359,7 +3359,7 @@
 /turf/open/floor/engine/plasma,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "Fi" = (
-/turf/open/water/toxic_pit/deep,
+/turf/open/water/smooth/toxic_pit/deep,
 /area/jungleland/toxic_pit)
 "Fl" = (
 /obj/effect/turf_decal/siding/brown,
@@ -3705,7 +3705,7 @@
 /area/ruin/powered/syndicate_lava_base/bar)
 "HA" = (
 /obj/structure/lattice/catwalk,
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/jungleland/toxic_pit)
 "HM" = (
 /obj/structure/disposalpipe/junction{
@@ -5631,7 +5631,7 @@
 /area/ruin/powered/syndicate_lava_base/cargo)
 "ZW" = (
 /obj/structure/flora/ausbushes/stalkybush,
-/turf/open/water/toxic_pit/deep,
+/turf/open/water/smooth/toxic_pit/deep,
 /area/jungleland/toxic_pit)
 "ZX" = (
 /obj/effect/turf_decal/siding/blue{

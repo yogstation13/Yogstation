@@ -63,7 +63,7 @@ Temperature: 126.85 °C (400 K)
 	icon_state = "jungle"
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
-	baseturfs = /turf/open/water/toxic_pit
+	baseturfs = /turf/open/water/smooth/toxic_pit
 	icon_state_regular_floor = "jungle" //used to remember what icon state the tile should have by default
 	icon_regular_floor = 'yogstation/icons/turf/floors/jungle.dmi' //used to remember what icon the tile should have by default
 	icon_plating = "jungle"
@@ -166,7 +166,7 @@ Temperature: 126.85 °C (400 K)
 		ore_present = pick(GLOB.quarry_ores)
 	can_spawn_ore = TRUE
 
-/turf/open/water/toxic_pit
+/turf/open/water/smooth/toxic_pit
 	name = "sulphuric pit"
 	desc = "Very toxic."
 	color = "#00c167"
@@ -174,31 +174,16 @@ Temperature: 126.85 °C (400 K)
 	slowdown = 2
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
-	baseturfs = /turf/open/water/toxic_pit
-
-	//icon = MAP_SWITCH('icons/turf/smoothwater.dmi', 'icons/turf/floors.dmi') //uses smoothwater during gameplay and floors.dmi in mapping tools
-	icon_state = "riverwater_motion"
-	base_icon_state = "riverwater_motion"
-	layer = HIGH_TURF_LAYER //so it draws above other turf
-	transform = MAP_SWITCH(TRANSLATE_MATRIX(-4, -4), matrix()) //since smoothwater.dmi is a 40x40 size sprite, we shift it slightly down and to the left so it stays centered
-
-	//placeholder for while we don't have specific sprites
-	icon = MAP_SWITCH('icons/turf/smoothrocks.dmi', 'icons/turf/mining.dmi')
-	icon_state = "rock"
-	base_icon_state = "smoothrocks"
-
-	smoothing_groups = SMOOTH_GROUP_TURF_WATER
-	canSmoothWith = SMOOTH_GROUP_TURF_WATER //so it only smooths with other water
-	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	baseturfs = /turf/open/water/smooth/toxic_pit
 
 	///multiplier for the strength of the toxicity, multiplies basically every damage value and damage probability
 	var/acid_strength = 1
 
-/turf/open/water/toxic_pit/Initialize(mapload)
+/turf/open/water/smooth/toxic_pit/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/lingering, CALLBACK(src, PROC_REF(toxic_stuff)), GLOB.lavasafeties)
 
-/turf/open/water/toxic_pit/proc/toxic_stuff(thing, delta_time)
+/turf/open/water/smooth/toxic_pit/proc/toxic_stuff(thing, delta_time)
 	if(isobj(thing))
 		var/obj/O = thing
 		if((O.resistance_flags & (UNACIDABLE|INDESTRUCTIBLE)) || O.throwing)
@@ -253,13 +238,13 @@ Temperature: 126.85 °C (400 K)
 		else if(prob(25 * acid_strength))
 			L.acid_act(5 * acid_strength, 7.5 * acid_strength)
 
-/turf/open/water/toxic_pit/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
+/turf/open/water/smooth/toxic_pit/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	switch(the_rcd.construction_mode)
 		if(RCD_FLOORWALL)
 			return list("mode" = RCD_FLOORWALL, "delay" = 0, "cost" = 3)
 	return FALSE
 
-/turf/open/water/toxic_pit/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
+/turf/open/water/smooth/toxic_pit/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
 	switch(passed_mode)
 		if(RCD_FLOORWALL)
 			to_chat(user, span_notice("You build a floor."))
@@ -270,12 +255,12 @@ Temperature: 126.85 °C (400 K)
 /turf/open/water/safe/jungle
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 
-/turf/open/water/toxic_pit/deep
+/turf/open/water/smooth/toxic_pit/deep
 	name = "deep sulphuric pit"
 	desc = "Extraordinarily toxic."
 	color = "#004700"
 	slowdown = 4
-	baseturfs = /turf/open/water/toxic_pit/deep
+	baseturfs = /turf/open/water/smooth/toxic_pit/deep
 	acid_strength = 2
 
 /turf/open/floor/wood/jungle

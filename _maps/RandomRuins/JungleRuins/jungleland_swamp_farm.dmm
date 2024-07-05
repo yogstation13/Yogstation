@@ -12,7 +12,7 @@
 /area/ruin/unpowered)
 "d" = (
 /obj/structure/flora/ausbushes/stalkybush,
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 "e" = (
 /obj/structure/fans/tiny/invisible,
@@ -52,7 +52,7 @@
 /area/template_noop)
 "s" = (
 /mob/living/simple_animal/hostile/yog_jungle/meduracha,
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 "t" = (
 /obj/structure/chair/sofa/bamboo/right,
@@ -127,7 +127,7 @@
 	},
 /area/ruin/unpowered)
 "L" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 "M" = (
 /obj/item/seeds/wheat/rice,
@@ -188,7 +188,7 @@
 /area/ruin/unpowered)
 "Z" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 
 (1,1,1) = {"

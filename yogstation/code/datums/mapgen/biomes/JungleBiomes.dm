@@ -41,7 +41,7 @@
 
 /datum/biome/jungleland/dry_swamp
 	turf_type = /turf/open/floor/plating/dirt/jungleland/deep_sand
-	closed_turf = /turf/open/water/toxic_pit
+	closed_turf = /turf/open/water/smooth/toxic_pit
 	cellular_noise_map_id = LOW_DENSITY
 	dense_flora = list(/obj/structure/flora/rock = 2,/obj/structure/flora/rock/jungle = 1,/obj/structure/flora/rock/pile = 2)
 	loose_flora = list(/obj/structure/flora/ausbushes/stalkybush = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/stump=2,/obj/structure/flora/tree/jungle = 1,/obj/structure/herb/cinchona = 0.1, /obj/structure/flytrap = 0.1)
@@ -61,7 +61,7 @@
 
 /datum/biome/jungleland/toxic_pit
 	turf_type = /turf/open/floor/plating/dirt/jungleland/shallow_mud
-	closed_turf = /turf/open/water/toxic_pit
+	closed_turf = /turf/open/water/smooth/toxic_pit
 	loose_flora = list(/obj/structure/flora/ausbushes/stalkybush = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/stump=2,/obj/structure/flora/tree/jungle = 1,/obj/structure/herb/explosive_shrooms = 0.05,/obj/structure/herb/liberal_hats = 0.5,/obj/structure/herb/magnus_purpura = 0.5)
 	dense_flora = list(/obj/structure/flora/ausbushes/stalkybush = 1)
 	loose_flora_density = 20

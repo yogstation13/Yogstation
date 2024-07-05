@@ -6,13 +6,13 @@
 /obj/structure/closet/crate/coffin{
 	opened = 1
 	},
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/ruin/unpowered)
 "g" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/ruin/unpowered)
 "h" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 "j" = (
 /obj/structure/table/wood,
@@ -46,7 +46,7 @@
 /area/ruin/unpowered)
 "E" = (
 /mob/living/simple_animal/hostile/skeleton,
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/ruin/unpowered)
 "I" = (
 /obj/item/candle/infinite{

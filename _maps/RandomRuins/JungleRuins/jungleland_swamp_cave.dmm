@@ -42,7 +42,7 @@
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
 "F" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/ruin/unpowered)
 "H" = (
 /obj/structure/flora/ash/cap_shroom,
@@ -64,7 +64,7 @@
 /turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/ruin/unpowered)
 "R" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 "X" = (
 /turf/closed/mineral/ash_rock/jungle/deepjungle,

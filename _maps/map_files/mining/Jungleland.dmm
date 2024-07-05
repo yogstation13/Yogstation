@@ -233,7 +233,7 @@
 /turf/closed/wall,
 /area/mine/laborcamp)
 "gg" = (
-/turf/open/water/toxic_pit/deep,
+/turf/open/water/smooth/toxic_pit/deep,
 /area/jungleland/explored)
 "gh" = (
 /obj/machinery/door/airlock/security/glass{
@@ -1162,7 +1162,7 @@
 /turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "LE" = (
-/turf/open/water/toxic_pit/deep,
+/turf/open/water/smooth/toxic_pit/deep,
 /area/jungleland/ocean)
 "LM" = (
 /obj/structure/ore_box,
@@ -1361,7 +1361,7 @@
 /turf/open/floor/plating,
 /area/mine/laborcamp)
 "UW" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/jungleland/ocean)
 "Vt" = (
 /obj/machinery/washing_machine,

@@ -1183,7 +1183,7 @@
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "lK" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 "lM" = (
 /obj/structure/disposalpipe/segment{
@@ -2017,7 +2017,7 @@
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "Ap" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/jungleland/explored)
 "Ar" = (
 /obj/machinery/vending/boozeomat,
@@ -2248,7 +2248,7 @@
 /area/mine/infirmary)
 "Cv" = (
 /obj/structure/lattice/catwalk,
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/jungleland/explored)
 "CE" = (
 /obj/effect/turf_decal/siding/wood/corner{
