@@ -169,21 +169,28 @@ Temperature: 126.85 °C (400 K)
 /turf/open/water/toxic_pit
 	name = "sulphuric pit"
 	desc = "Very toxic."
-	//icon = MAP_SWITCH('icons/turf/smoothwater.dmi', 'icons/turf/floors.dmi')
 	color = "#00c167"
-	icon = MAP_SWITCH('icons/turf/smoothrocks.dmi', 'icons/turf/mining.dmi')
-	base_icon_state = "riverwater_motion"
-	icon_state = "rock"
-	base_icon_state = "smoothrocks"
+
 	slowdown = 2
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/water/toxic_pit
-	layer = HIGH_TURF_LAYER
-	transform = MAP_SWITCH(TRANSLATE_MATRIX(-4, -4), matrix())
+
+	//icon = MAP_SWITCH('icons/turf/smoothwater.dmi', 'icons/turf/floors.dmi') //uses smoothwater during gameplay and floors.dmi in mapping tools
+	icon_state = "riverwater_motion"
+	base_icon_state = "riverwater_motion"
+	layer = HIGH_TURF_LAYER //so it draws above other turf
+	transform = MAP_SWITCH(TRANSLATE_MATRIX(-4, -4), matrix()) //since smoothwater.dmi is a 40x40 size sprite, we shift it slightly down and to the left so it stays centered
+
+	//placeholder for while we don't have specific sprites
+	icon = MAP_SWITCH('icons/turf/smoothrocks.dmi', 'icons/turf/mining.dmi')
+	icon_state = "rock"
+	base_icon_state = "smoothrocks"
+
 	smoothing_groups = SMOOTH_GROUP_TURF_WATER
-	canSmoothWith = SMOOTH_GROUP_TURF_WATER
+	canSmoothWith = SMOOTH_GROUP_TURF_WATER //so it only smooths with other water
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+
 	///multiplier for the strength of the toxicity, multiplies basically every damage value and damage probability
 	var/acid_strength = 1
 
