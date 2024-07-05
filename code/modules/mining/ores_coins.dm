@@ -66,7 +66,7 @@
 			qdel(src)
 
 /obj/item/stack/ore/attack(mob/living/M, mob/living/user)
-	if(!user.combat_mode || M != user || !ishuman(user))
+	if(user.combat_mode || M != user || !ishuman(user))
 		return ..()
 
 	var/mob/living/carbon/human/H = user
@@ -265,6 +265,11 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	points = 50
 	materials = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/titanium
+	eaten_text = "The titanium shards lacerate your insides as you eat it."
+
+/obj/item/stack/ore/titanium/eaten(mob/living/carbon/human/H)
+	H.vomit(0, TRUE, FALSE) // vomit blood, no stun
+	return TRUE
 
 /obj/item/stack/ore/slag
 	name = "slag"
