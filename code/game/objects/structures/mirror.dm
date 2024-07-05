@@ -179,8 +179,8 @@
 
 /obj/structure/mirror/magic/lesser/New()
 	choosable_races = GLOB.roundstart_races.Copy()
-	if(!("felinid" in choosable_races))
-		choosable_races += "felinid"
+	if(!(SPECIES_FELINE in choosable_races))
+		choosable_races += SPECIES_FELINE
 	..()
 
 /obj/structure/mirror/magic/badmin/New()

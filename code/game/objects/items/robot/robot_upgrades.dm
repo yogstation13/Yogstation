@@ -1019,7 +1019,7 @@
 	R.module.basic_modules += RPED
 	R.module.add_module(RPED, FALSE, TRUE)
 
-/obj/item/borg/upgrade/plasmacutter
+/obj/item/borg/upgrade/plasmacutter_granter
 	name = "mining cyborg plasma cutter"
 	desc = "A plasma cutter module for the mining cyborg."
 	icon = 'icons/obj/guns/energy.dmi'
@@ -1029,7 +1029,7 @@
 	module_flags = BORG_MODULE_MINER
 
 /// Gives the cyborg an advanced plasma cutter.
-/obj/item/borg/upgrade/plasmacutter/action(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/plasmacutter_granter/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -1043,7 +1043,7 @@
 	R.module.basic_modules += PC
 	R.module.add_module(PC, FALSE, TRUE)
 
-/obj/item/borg/upgrade/plasmacutter/deactivate(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/plasmacutter_granter/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(!.)
 		return FALSE

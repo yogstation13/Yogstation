@@ -1,8 +1,8 @@
 //Subtype of human
 /datum/species/human/felinid
 	name = "Felinid Human"
-	id = "felinid"
-	limbs_id = "human"
+	id = SPECIES_FELINE
+	limbs_id = SPECIES_HUMAN
 	attack_verbs = list("slash")
 	attack_effect = ATTACK_EFFECT_CLAW
 	attack_sound = 'sound/weapons/slash.ogg'

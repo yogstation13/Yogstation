@@ -202,7 +202,7 @@
 	if(attack_type & (UNARMED_ATTACK|THROWN_PROJECTILE_ATTACK|LEAP_ATTACK))
 		playsound(defender, 'sound/weapons/smash.ogg', 50, TRUE)
 
-	if(block_flags & DAMAGE_ON_BLOCK)
+	if((block_flags & DAMAGE_ON_BLOCK) && !is_parrying)
 		used_item.take_damage(damage, damage_type)
 
 	return SHIELD_BLOCK
