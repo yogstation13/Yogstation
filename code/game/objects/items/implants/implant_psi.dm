@@ -2,7 +2,6 @@
 	name = "psi dampener implant"
 	desc = "A safety implant for registered psi-operants."
 	implant_color = "n"
-	activated = FALSE
 
 	var/overload = 0
 	var/max_overload = 100
@@ -66,10 +65,10 @@
 
 /obj/item/implant/psi_control/proc/get_psi_mode()
 	if(psi_mode == PSI_IMPLANT_AUTOMATIC)
-		switch(get_security_level())
-			if("green")
+		switch(SSsecurity_level.get_current_level_as_number())
+			if(SEC_LEVEL_GREEN)
 				return PSI_IMPLANT_SHOCK
-			if("blue")
+			if(SEC_LEVEL_BLUE)
 				return PSI_IMPLANT_WARN
 			else
 				return PSI_IMPLANT_LOG

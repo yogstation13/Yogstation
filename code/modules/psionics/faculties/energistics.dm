@@ -72,13 +72,13 @@
 			to_chat(user, span_notice("You manage to stop yourself before firing a harmful laser from your eyes, you don't want to risk harming anyone..."))
 
 		var/user_rank = user.psi.get_rank(faculty)
-		var/obj/item/projectile/pew
+		var/obj/projectile/pew
 		var/pew_sound
 
 		if(user.psi.zorch_harm)
-			pew = new /obj/item/projectile/beam/laser(get_turf(user))
+			pew = new /obj/projectile/beam/laser(get_turf(user))
 		else
-			pew = new /obj/item/projectile/beam/disabler(get_turf(user))
+			pew = new /obj/projectile/beam/disabler(get_turf(user))
 
 		switch(user_rank)
 			if(PSI_RANK_PARAMOUNT)

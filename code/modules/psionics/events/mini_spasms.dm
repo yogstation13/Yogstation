@@ -46,11 +46,11 @@
 		to_chat(victim, span_danger("A hauntingly familiar sound hisses from \icon[source] \the [source], and your vision flickers!"))
 		victim.psi.backblast(rand(5,15))
 		victim.Paralyze(0.5 SECONDS)
-		victim.Jitter(10 SECONDS)
+		victim.adjust_jitter(10 SECONDS)
 	else
 		victim.visible_message(span_danger("[victim] starts having a seizure!"), span_userdanger("An indescribable, brain-tearing sound hisses from \icon[source] \the [source], and you collapse in a seizure!"))
 		victim.Unconscious(20 SECONDS)
-		victim.Jitter(1 SECONDS)
+		victim.adjust_jitter(1 SECONDS)
 		SEND_SIGNAL(victim, COMSIG_ADD_MOOD_EVENT, "minispasm", /datum/mood_event/epilepsy)
 		var/new_latencies = rand(2,4)
 		var/list/faculties = list(PSI_COERCION, PSI_REDACTION, PSI_ENERGISTICS, PSI_PSYCHOKINESIS)

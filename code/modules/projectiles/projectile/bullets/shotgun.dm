@@ -224,16 +224,16 @@
 	armour_penetration = -40 // Energy armor is usually very low so uhh
 
 
-/obj/item/projectile/bullet/pellet/nullglass
+/obj/projectile/bullet/pellet/nullglass
 	name = "nullglass pellet"
 	damage = 6
 	wound_bonus = 3
 	bare_wound_bonus = 3
 
-/obj/item/projectile/bullet/pellet/nullglass/disrupts_psionics()
+/obj/projectile/bullet/pellet/nullglass/disrupts_psionics()
 	return src
 
-/obj/item/projectile/bullet/pellet/nullglass/on_hit(atom/target)
+/obj/projectile/bullet/pellet/nullglass/on_hit(atom/target)
 	. = ..()
 	if(prob(10))
 		var/obj/item/implant/nullglass/imp = new()

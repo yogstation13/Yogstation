@@ -965,14 +965,14 @@
 	build_path = /obj/item/ammo_casing/a357
 	category = list("hacked", "Security")
 
-/obj/item/projectile/bullet/a357/nullglass
+/obj/projectile/bullet/a357/nullglass
 	name = ".357 NULL bullet"
 	damage = 30
 
-/obj/item/projectile/bullet/a357/nullglass/disrupts_psionics()
+/obj/projectile/bullet/a357/nullglass/disrupts_psionics()
 	return src
 
-/obj/item/projectile/bullet/a357/nullglass/on_hit(atom/target)
+/obj/projectile/bullet/a357/nullglass/on_hit(atom/target)
 	. = ..()
 	if(prob(50))
 		var/obj/item/implant/nullglass/imp = new()

@@ -706,7 +706,7 @@
 	spawn_gibs()
 
 /// Causes the mob to have a seizure
-/mob/living/carbon/proc/seizure(unconscious = 20 SECONDS, jitter = 1 SECONDS)
+/mob/living/carbon/proc/seizure(unconscious = 20 SECONDS)
 	visible_message(span_danger("[src] starts having a seizure!"))
 	Unconscious(unconscious)
 	SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "seizure", /datum/mood_event/epilepsy)

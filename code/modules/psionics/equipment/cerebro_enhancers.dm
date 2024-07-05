@@ -27,9 +27,6 @@
 		integrate()
 		return
 
-	if(paramount_check && !H?.mind?.has_antag_datum(/datum/antagonist/paramount))
-		to_chat(user, span_notice("You have no clue how to use this!"))
-
 	var/choice = input("Select a brainboard to install or remove.","Psionic Amplifier") as null|anything in SSpsi.faculties_by_name
 	if(!choice)
 		return
@@ -64,9 +61,6 @@
 	var/mob/living/carbon/human/H = loc
 	if(!istype(H))
 		return
-	if(paramount_check && !H?.mind?.has_antag_datum(/datum/antagonist/paramount))
-		to_chat(H, span_notice("You have no clue how to use this!"))
-
 
 	to_chat(H, span_warning("You feel a strange tugging sensation as \the [src] begins removing the slave-minds from your brain..."))
 	playsound(H, 'sound/weapons/circsawhit.ogg', 50, 1, -1)
@@ -103,10 +97,6 @@
 
 	if(!istype(H) || H.head != src)
 		to_chat(usr, span_warning("\The [src] must be worn on your head in order to be activated."))
-		return
-
-	if(paramount_check && !H?.mind?.has_antag_datum(/datum/antagonist/paramount))
-		to_chat(H, span_notice("You have no clue how to use this!"))
 		return
 
 	if(LAZYLEN(boosted_faculties) < max_boosted_faculties)

@@ -21,11 +21,11 @@
 	last_armor_check = 0
 	return 0
 
-/datum/psi_complexus/proc/handle_block_chance(obj/item/projectile/projectile)
+/datum/psi_complexus/proc/handle_block_chance(obj/projectile/projectile)
 	var/effective_rank
 	var/chance = 0
 
-	if(istype(projectile, /obj/item/projectile/beam) || istype(projectile, /obj/item/projectile/energy))
+	if(istype(projectile, /obj/projectile/beam) || istype(projectile, /obj/projectile/energy))
 		effective_rank = get_rank(PSI_ENERGISTICS)
 	else
 		effective_rank = get_rank(PSI_PSYCHOKINESIS)

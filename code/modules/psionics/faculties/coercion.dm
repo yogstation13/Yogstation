@@ -39,7 +39,7 @@
 			M.emote("scream")
 			to_chat(M, span_danger("Your senses are blasted into oblivion by a psionic scream!"))
 			M.blind_eyes(1 SECONDS)
-			M.confused = rand(3,8)
+			M.adjust_confusion(10 SECONDS)
 		return TRUE
 
 /datum/psionic_power/coercion/mindread
@@ -286,10 +286,10 @@
 			target.SetParalyzed(0)
 		if(coercion_rank >= PSI_RANK_PARAMOUNT)
 			target.SetParalyzed(0)
-		target.drowsyness = 0
+		target.SetDaze(0)
 		if(istype(target, /mob/living/carbon))
 			var/mob/living/carbon/M = target
-			M.hallucination = max(M.hallucination, 10)
+			M.adjust_hallucinations(60 SECONDS)
 		return TRUE
 
 /datum/psionic_power/coercion/commune

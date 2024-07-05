@@ -6,7 +6,7 @@
 	item_state = "psiblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	hitsound = 'sound/weapons/psisword.ogg'
+	hitsound = 'sound/effects/psi/psisword.ogg'
 	var/can_break_wall = FALSE
 	var/wall_break_time = 6 SECONDS
 
