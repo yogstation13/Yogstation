@@ -37,7 +37,8 @@
 	hair_color = "fixedmutcolor"
 	hair_alpha = 140
 	swimming_component = /datum/component/swimming/ethereal
-	possable_faculties = list(PSI_ENERGISTICS)
+	possible_faculties = list(PSI_ENERGISTICS)
+	latency_chance = 25
 	wings_icon = "Ethereal"
 	wings_detail = "Etherealdetails"
 
