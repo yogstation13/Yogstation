@@ -357,7 +357,7 @@
 	build_type = MECHFAB
 	materials = list (/datum/material/iron = 2500, /datum/material/glass = 1000, /datum/material/silver = 500, /datum/material/plastic = 500)
 	construction_time = 200
-	build_path = /obj/item/organ/cyberimp/arm/toolset
+	build_path = /obj/item/organ/cyberimp/arm/toolset/botany
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -368,7 +368,7 @@
 	build_type = MECHFAB
 	materials = list (/datum/material/iron = 2500, /datum/material/glass = 1000, /datum/material/silver = 500, /datum/material/plastic = 500)
 	construction_time = 200
-	build_path = /obj/item/organ/cyberimp/arm/toolset
+	build_path = /obj/item/organ/cyberimp/arm/toolset/janitor
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -379,7 +379,7 @@
 	build_type = MECHFAB
 	materials = list (/datum/material/iron = 2500, /datum/material/glass = 1500, /datum/material/bananium = 3000) //costs more bananium than any other individual item, but the utility is unmatched
 	construction_time = 200
-	build_path = /obj/item/organ/cyberimp/arm/toolset
+	build_path = /obj/item/organ/cyberimp/arm/toolset/clown
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
