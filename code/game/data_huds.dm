@@ -47,7 +47,7 @@
 	hud_icons = list(ID_HUD)
 
 /datum/atom_hud/data/human/security/advanced
-	hud_icons = list(ID_HUD, IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD, NANITE_HUD)
+	hud_icons = list(ID_HUD, IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD, NANITE_HUD, IMPPSI_HUD)
 
 /datum/atom_hud/data/human/security/advanced/hos
 	hud_icons = list(ID_HUD, IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD, NANITE_HUD, STATUS_HUD, HEALTH_HUD)
@@ -212,7 +212,7 @@ Security HUDs! Basic mode shows only the job.
 
 /mob/living/proc/sec_hud_set_implants()
 	var/image/holder
-	for(var/i in list(IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD))
+	for(var/i in list(IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, IMPPSI_HUD))
 		holder = hud_list[i]
 		holder.icon_state = null
 		set_hud_image_inactive(i)
@@ -231,6 +231,12 @@ Security HUDs! Basic mode shows only the job.
 			holder.pixel_y = IC.Height() - world.icon_size
 			holder.icon_state = "hud_imp_chem"
 			set_hud_image_active(IMPCHEM_HUD)
+		else if(istype(I, /obj/item/implant/psi_control))
+			holder = hud_list[IMPPSI_HUD]
+			var/icon/IC = icon(icon, icon_state, dir)
+			holder.pixel_y = IC.Height() - world.icon_size
+			holder.icon_state = "hud_imp_psi"
+			set_hud_image_active(IMPPSI_HUD)
 
 	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
 		holder = hud_list[IMPLOYAL_HUD]

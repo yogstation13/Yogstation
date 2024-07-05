@@ -250,6 +250,28 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	recipes = GLOB.plastitaniumglass_recipes
 	return ..()
 
+GLOBAL_LIST_INIT(nullglass_recipes, list ( \
+	new/datum/stack_recipe("nullglass tile", /obj/item/stack/tile/mineral/nullglass, time = 0), \
+))
+
+/obj/item/stack/sheet/nullglass
+	name = "nullglass"
+	desc = "A glass sheet made out of a strange black glass capable of nullifying magic."
+	singular_name = "nullglass sheet"
+	icon_state = "sheet-nullglass"
+	item_state = "sheet-nullglass"
+	materials = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	merge_type = /obj/item/stack/sheet/nullglass
+	grind_results = list(/datum/reagent/crystal = 1)
+	matter_amount = 4
+
+/obj/item/stack/sheet/nullglass/fifty
+	amount = 50
+
+/obj/item/stack/sheet/nullglass/Initialize(mapload, new_amount, merge = TRUE)
+	recipes = GLOB.nullglass_recipes
+	return ..()
+
 /obj/item/shard
 	name = "shard"
 	desc = "A nasty looking shard of glass."
@@ -357,3 +379,12 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	icon_prefix = "plasma"
 	weld_material = /obj/item/stack/sheet/plasmaglass
+
+/obj/item/shard/nullglass
+	name = "null shard"
+	desc = "A nasty looking shard of nullglass."
+	icon_state = "nulllarge"
+	icon_prefix = "null"
+
+/obj/item/shard/nullglass/disrupts_psionics()
+	return src

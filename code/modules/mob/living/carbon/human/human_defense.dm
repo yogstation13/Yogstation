@@ -48,6 +48,12 @@
 		if(spec_return)
 			return spec_return
 
+	if((!P.disrupts_psionics() && psi && psi.handle_block_chance(P) && psi.spend_power(round(P.damage/4), round(P.damage/20))))
+		P.firer = src
+		P.setAngle(rand(0, 360))
+		visible_message(span_danger("[src] deflects [P]!"))
+		return BULLET_ACT_FORCE_PIERCE
+
 	if(mind)
 		if(mind.martial_art && !incapacitated(FALSE, TRUE) && mind.martial_art.can_use(src) && (mind.martial_art.deflection_chance || ((mind.martial_art.id == "sleeping carp") && in_throw_mode))) //Some martial arts users can deflect projectiles!
 			if(prob(mind.martial_art.deflection_chance) || ((mind.martial_art.id == "sleeping carp") && in_throw_mode)) // special check if sleeping carp is our martial art and throwmode is on, deflect

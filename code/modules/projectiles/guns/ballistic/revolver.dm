@@ -71,6 +71,9 @@
 	if (current_skin)
 		. += "It can be spun with <b>alt+click</b>"
 
+/obj/item/gun/ballistic/revolver/nullglass
+	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/nullglass
+
 /obj/item/gun/ballistic/revolver/ultrasecure
 	pin = /obj/item/firing_pin/fucked
 

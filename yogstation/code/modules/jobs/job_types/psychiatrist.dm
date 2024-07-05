@@ -41,6 +41,12 @@
 /datum/job/psych/proc/GaxStationChanges() // I'M SORRY
 	return TRUE
 
+/datum/job/psych/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
+	. = ..()
+	H.set_psi_rank(PSI_REDACTION, PSI_RANK_OPERANT)
+	if(H.psi)
+		to_chat(M, "You are psionically awakened, part of a tiny minority, and you are the first and only exposure most of the crew will have to the mentally gifted.")
+
 /datum/outfit/job/psych
 	name = "Psych"
 	jobtype = /datum/job/psych
@@ -50,3 +56,4 @@
 	l_hand = /obj/item/storage/briefcase
 	glasses = /obj/item/clothing/glasses/regular
 	ears = /obj/item/radio/headset/headset_med
+	implants = list(/obj/item/implant/psi_control/psych)

@@ -55,6 +55,13 @@
 	max_ammo = 6
 	multiple_sprites = AMMO_BOX_PER_BULLET
 
+/obj/item/ammo_box/a357/nullglass
+	name = "speed loader (.357 NULL)"
+	desc = "A seven-shot speed loader designed for .357 revolvers. \
+			These rounds trade damage for the ability to disrupt psionics."
+	icon_state = "357null"
+	ammo_type = /obj/item/ammo_casing/a357/nullglass
+
 // .38 special loaders
 
 /obj/item/ammo_box/c38

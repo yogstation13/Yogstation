@@ -42,6 +42,13 @@
 	caliber = CALIBER_44MAG
 	projectile_type = /obj/projectile/bullet/m44
 
+// revolver?
+
+/obj/item/ammo_casing/a357/nullglass
+	name = ".357 NULL bullet casing"
+	desc = "A .357 NULL bullet casing."
+	projectile_type = /obj/item/projectile/bullet/a357/nullglass
+
 // 7.62x38mmR (Nagant Revolver)
 
 /obj/item/ammo_casing/n762

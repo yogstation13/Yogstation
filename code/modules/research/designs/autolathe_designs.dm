@@ -965,6 +965,20 @@
 	build_path = /obj/item/ammo_casing/a357
 	category = list("hacked", "Security")
 
+/obj/item/projectile/bullet/a357/nullglass
+	name = ".357 NULL bullet"
+	damage = 30
+
+/obj/item/projectile/bullet/a357/nullglass/disrupts_psionics()
+	return src
+
+/obj/item/projectile/bullet/a357/nullglass/on_hit(atom/target)
+	. = ..()
+	if(prob(50))
+		var/obj/item/implant/nullglass/imp = new()
+		imp.implant(target)
+		playsound(loc, 'sound/effects/glass_step.ogg', 30, TRUE)
+
 /datum/design/a357/ironfeather
 	name = ".357 Ironfeather Bullet"
 	id = "a357_ironfeather"

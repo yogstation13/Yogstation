@@ -242,6 +242,15 @@
 	force_wielded = 8
 	can_be_explosive = FALSE
 
+/obj/item/melee/spear/nullglass
+	icon = 'icons/obj/weapons/spears.dmi'
+	icon_state = "spearnull0"
+	base_icon_state = "nullglass_spear"
+	var/psi_stress = 0
+
+/obj/item/twohanded/spear/nullglass/disrupts_psionics()
+	return src
+
 /obj/item/melee/spear/plugged_musket
 	name = "plugged maintenance musket"
 	desc = "A maintenance musket with a plug bayonet."

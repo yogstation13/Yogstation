@@ -252,6 +252,25 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	resistance_flags = FIRE_PROOF
 	var/block_force = 20
 
+/obj/item/claymore/nullglass
+	name = "nullglass claymore"
+	icon_state = "claymore_nullglass"
+	item_state = "claymore_nullglass"
+	force = 20
+	throwforce = 5
+	block_force = 15
+	var/shatter_chance = 30
+
+/obj/item/claymore/nullglass/disrupts_psionics()
+	return src
+
+/obj/item/claymore/nullglass/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(prob(shatter_chance))
+		var/obj/item/implant/nullglass/imp = new()
+		imp.implant(target)
+		playsound(loc, 'sound/effects/glass_step.ogg', 30, TRUE)
+
 /obj/item/katana/Initialize(mapload)
 	. = ..()
 	if(!block_force)
