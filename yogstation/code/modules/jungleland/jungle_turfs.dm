@@ -46,9 +46,6 @@ Temperature: 126.85 °C (400 K)
 /area/jungleland/toxic_pit
 	name = "Toxic Pit"
 
-/area/jungleland/barren_rocks
-	name = "Barren Rocks"
-
 /area/jungleland/dry_swamp
 	name = "Rocky Beach"
 
@@ -86,6 +83,9 @@ Temperature: 126.85 °C (400 K)
 	can_spawn_ore = FALSE
 	if(spawn_overlay)
 		add_overlay(image(icon='yogstation/icons/obj/jungle.dmi',icon_state="dug_spot",layer=BELOW_OBJ_LAYER))
+	spawn_ores()
+
+/turf/open/floor/plating/dirt/jungleland/proc/spawn_ores()
 	var/datum/ore_patch/ore = GLOB.jungle_ores[ ore_present ]
 	if(ore)
 		ore.spawn_at(src)
@@ -116,26 +116,13 @@ Temperature: 126.85 °C (400 K)
 /turf/open/floor/plating/dirt/jungleland/ex_act(severity, target)
 	if(can_spawn_ore && prob( (severity/3)*100  ))
 		spawn_rock()
+		
 /turf/open/floor/plating/dirt/jungleland/barren_rocks
 	name = "rocky surface"
 	desc = "Surface covered by rocks, pebbles and stones."
 	icon_state = "barren_rocks"
 	icon_plating = "barren_rocks"
 	icon_state_regular_floor = "barren_rocks"
-
-/turf/open/floor/plating/dirt/jungleland/toxic_rocks
-	name = "mud"
-	desc = "Liquid mixed with dirt."
-	icon_state = "toxic_rocks"
-	icon_plating = "toxic_rocks"
-	icon_state_regular_floor = "toxic_rocks"
-
-/turf/open/floor/plating/dirt/jungleland/dry_swamp
-	name = "sand"
-	desc = "Mounds upon mounds of sand."
-	icon_state = "dry_swamp"
-	icon_plating = "dry_swamp"
-	icon_state_regular_floor = "dry_swamp"
 
 /turf/open/floor/plating/dirt/jungleland/toxic_pit
 	name = "shallow mud"
@@ -144,12 +131,12 @@ Temperature: 126.85 °C (400 K)
 	icon_plating = "toxic_pit"
 	icon_state_regular_floor = "toxic_pit"
 
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1
+/turf/open/floor/plating/dirt/jungleland/dry_swamp
 	name = "dried surface"
 	desc = "It used to be a riverbed."
-	icon_state = "dry_swamp1"
-	icon_plating = "dry_swamp1"
-	icon_state_regular_floor = "dry_swamp1"
+	icon_state = "dry_swamp"
+	icon_plating = "dry_swamp"
+	icon_state_regular_floor = "dry_swamp"
 
 /turf/open/floor/plating/dirt/jungleland/dying_forest
 	name = "deep sand"

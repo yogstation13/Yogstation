@@ -185,14 +185,14 @@
 	suffix = "jungleland_dead_bubblegum.dmm"
 	always_place = TRUE
 
-/datum/map_template/ruin/jungle/barren/drake
-	name = "Ash Drake"
-	id = "barren_drake"
-	description = "Ash Drake"
-	suffix = "jungleland_barren_drake.dmm"
-	always_place = TRUE
-	allow_duplicates = TRUE
-	cost = 20
+// /datum/map_template/ruin/jungle/barren/drake
+// 	name = "Ash Drake"
+// 	id = "barren_drake"
+// 	description = "Ash Drake"
+// 	suffix = "jungleland_barren_drake.dmm"
+// 	always_place = TRUE
+// 	allow_duplicates = TRUE
+// 	cost = 20
 
 //NESTS
 /datum/map_template/ruin/jungle/dying/dead_nest

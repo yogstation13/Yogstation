@@ -21,7 +21,7 @@
 /datum/map_generator/jungleland
 
 	var/list/possible_biomes = list(
-		BIOME_BARREN = list(	LOW_HUMIDITY = /datum/biome/jungleland/barren_rocks,
+		BIOME_BARREN = list(	LOW_HUMIDITY = /datum/biome/jungleland/dry_swamp,
 						MED_HUMIDITY = /datum/biome/jungleland/dry_swamp, 
 						HIGH_HUMIDITY = /datum/biome/jungleland/dying_forest),
 

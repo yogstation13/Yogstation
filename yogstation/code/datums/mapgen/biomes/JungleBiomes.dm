@@ -1,4 +1,5 @@
 /datum/biome/jungleland
+	//how dense the closed turf is relative to the open turf
 	var/cellular_noise_map_id = MED_DENSITY
 	var/turf/closed_turf = /turf/closed/mineral/random
 	var/list/dense_flora = list()
@@ -38,18 +39,9 @@
 		var/obj/structure/flora = pickweight(loose_flora)
 		new flora(gen_turf)
 
-/datum/biome/jungleland/barren_rocks
-	turf_type = /turf/open/floor/plating/dirt/jungleland/barren_rocks
-	loose_flora = list(/obj/structure/flora/rock = 2,/obj/structure/flora/rock/pile = 2)
-	loose_flora_density = 10
-	cellular_noise_map_id = LOW_DENSITY
-	fauna_density = 0.5 
-	fauna_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random = 33,/mob/living/simple_animal/hostile/asteroid/goliath/beast = 33,/mob/living/simple_animal/hostile/asteroid/goldgrub = 25,/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1, /mob/living/simple_animal/hostile/asteroid/marrowweaver = 7)
-	this_area = /area/jungleland/barren_rocks
-
 /datum/biome/jungleland/dry_swamp
-	turf_type = /turf/open/floor/plating/dirt/jungleland/dry_swamp
-	closed_turf = /turf/open/floor/plating/dirt/jungleland/dry_swamp1
+	turf_type = /turf/open/floor/plating/dirt/jungleland/dying_forest
+	closed_turf = /turf/open/floor/plating/dirt/jungleland/dry_swamp
 	dense_flora = list(/obj/structure/flora/rock = 2,/obj/structure/flora/rock/jungle = 1,/obj/structure/flora/rock/pile = 2)
 	loose_flora = list(/obj/structure/flora/ausbushes/stalkybush = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/stump=2,/obj/structure/flora/tree/jungle = 1,/obj/structure/herb/cinchona = 0.1, /obj/structure/flytrap = 0.1)
 	dense_flora_density = 10
@@ -73,7 +65,7 @@
 
 /datum/biome/jungleland/dying_forest
 	turf_type = /turf/open/floor/plating/dirt/jungleland/dying_forest
-	closed_turf = /turf/open/floor/plating/dirt/jungleland/dying_forest
+	closed_turf = /turf/open/floor/plating/dirt/jungleland/toxic_pit
 	dense_flora = list(/obj/structure/flora/stump=1,/obj/structure/flora/tree/dead/jungle = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/tree/jungle/small = 1,/obj/structure/herb/cinchona = 0.25)
 	dense_flora_density = 50
 	fauna_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing = 39,/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad = 55,/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1,/mob/living/simple_animal/hostile/yog_jungle/mosquito = 5)
