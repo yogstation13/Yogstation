@@ -147,7 +147,7 @@
 	name = "nullglass buckshot shell"
 	desc = "A buckshot shell loaded with shells of nullglass that disrupt psionic."
 	icon_state = "mshell" // Temp
-	projectile_type = /obj/item/projectile/bullet/pellet/nullglass
+	projectile_type = /obj/projectile/bullet/pellet/nullglass
 	pellets = 6
 	variance = 25
 

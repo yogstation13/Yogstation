@@ -134,7 +134,7 @@
 			to_chat(owner,span_warning("Your nose begins to bleed..."))
 			owner.add_splatter_floor(small_drip = TRUE)
 		// Your get a headache. Yes this is stolen from disease code, sue me
-		if(21 to effective_heat)
+		if(21 to 500)
 			switch(effective_heat)
 				if(0 to 200)
 					to_chat(owner, span_warning("[pick("Your head hurts.", "Your head pounds.")]"))

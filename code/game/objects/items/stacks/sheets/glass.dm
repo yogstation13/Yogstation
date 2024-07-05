@@ -262,7 +262,7 @@ GLOBAL_LIST_INIT(nullglass_recipes, list ( \
 	item_state = "sheet-nullglass"
 	materials = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/nullglass
-	grind_results = list(/datum/reagent/crystal = 1)
+	grind_results = list(/datum/reagent/water/holywater = 1)
 	matter_amount = 4
 
 /obj/item/stack/sheet/nullglass/fifty

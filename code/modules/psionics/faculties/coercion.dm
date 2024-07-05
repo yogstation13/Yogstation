@@ -220,19 +220,6 @@
 				to_chat(target, "<span class='reallybig hypnophrase'>[lost_memory]</span>")
 				to_chat(target, span_warning("You can't remember anything surounding that phrase!"))
 
-			if(COGMANIP_THRALL)
-				if(!target.mind || !target.key)
-					to_chat(user, span_warning("\The [target] is mindless!"))
-					return TRUE
-				to_chat(user, span_warning("You plunge your mentality into that of \the [target]..."))
-				if(!do_after(user, target.stat == CONSCIOUS ? 2 MINUTES : 1 MINUTES, target, FALSE))
-					user.psi.backblast(rand(10,25))
-					return TRUE
-				to_chat(user, span_danger("You sear through \the [target]'s neurons, reshaping as you see fit and leaving them subservient to your will!"))
-				to_chat(target, span_danger("Your defenses have eroded away and \the [user] has made you their mindslave."))
-				var/datum/antagonist/thrall/T = new()
-				T.master = user.mind
-				target.mind.add_antag_datum(T)
 		return TRUE
 
 /datum/psionic_power/coercion/assay
