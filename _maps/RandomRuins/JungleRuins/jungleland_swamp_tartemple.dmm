@@ -4,7 +4,7 @@
 /area/ruin/unpowered/tar_temple)
 "b" = (
 /mob/living/simple_animal/hostile/tar/amalgamation,
-/turf/open/floor/plating/dirt/jungleland/shallow_mud,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/ruin/unpowered/tar_temple)
 "c" = (
 /obj/structure/mineral_door/wood,
@@ -41,7 +41,7 @@
 /area/ruin/unpowered/tar_temple)
 "l" = (
 /mob/living/simple_animal/hostile/tar/shade,
-/turf/open/floor/plating/dirt/jungleland/shallow_mud,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/ruin/unpowered/tar_temple)
 "m" = (
 /obj/structure/stone_tile/surrounding_tile,
@@ -52,7 +52,7 @@
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
 "p" = (
-/turf/open/floor/plating/dirt/jungleland/shallow_mud,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/ruin/unpowered/tar_temple)
 "q" = (
 /obj/structure/flora/ausbushes/reedbush,
@@ -90,7 +90,7 @@
 /area/ruin/unpowered/tar_temple)
 "D" = (
 /obj/structure/fluff/tarstatue,
-/turf/open/floor/plating/dirt/jungleland/shallow_mud,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/ruin/unpowered/tar_temple)
 "E" = (
 /obj/structure/table/wood,
@@ -133,7 +133,7 @@
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
 "Q" = (
-/turf/open/floor/plating/dirt/jungleland/shallow_mud,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/template_noop)
 "R" = (
 /obj/effect/decal/remains/human,
@@ -157,7 +157,7 @@
 /area/ruin/unpowered/tar_temple)
 "V" = (
 /obj/structure/barricade/wooden,
-/turf/open/floor/plating/dirt/jungleland/shallow_mud,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/ruin/unpowered/tar_temple)
 "W" = (
 /obj/structure/stone_tile/surrounding_tile{
@@ -169,11 +169,11 @@
 /obj/structure/necropolis_gate{
 	name = "ancient gate"
 	},
-/turf/open/floor/plating/dirt/jungleland/shallow_mud,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/ruin/unpowered/tar_temple)
 "Z" = (
 /obj/structure/bonfire/prelit,
-/turf/open/floor/plating/dirt/jungleland/shallow_mud,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/ruin/unpowered/tar_temple)
 
 (1,1,1) = {"
