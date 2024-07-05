@@ -222,13 +222,13 @@
 	always_place = TRUE
 	cost = 2
 
-/datum/map_template/ruin/jungle/barren/barren_nest
-	name = "Barren Nest"
-	id = "jungle-barren-nest"
-	description = "a nest"
-	suffix = "jungleland_barren_nest.dmm"	
-	allow_duplicates = TRUE 
-	always_place = TRUE
+// /datum/map_template/ruin/jungle/barren/barren_nest
+// 	name = "Barren Nest"
+// 	id = "jungle-barren-nest"
+// 	description = "a nest"
+// 	suffix = "jungleland_barren_nest.dmm"	
+// 	allow_duplicates = TRUE 
+// 	always_place = TRUE
 
 // OBSIDIAN PILLARS 
 
