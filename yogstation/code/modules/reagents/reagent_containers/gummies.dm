@@ -92,7 +92,7 @@
 	color = "#ffdf4e"
 
 /obj/item/reagent_containers/gummy/nitro
-	list_reagents = list(/datum/reagent/nitrous_oxide = 10, /datum/reagent/consumable/applejuice = 3, /datum/reagent/consumable/sugar = 2)
+	list_reagents = list(/datum/reagent/gas/nitrous_oxide = 10, /datum/reagent/consumable/applejuice = 3, /datum/reagent/consumable/sugar = 2)
 	color = "#20a000"
 
 /obj/item/reagent_containers/gummy/mime

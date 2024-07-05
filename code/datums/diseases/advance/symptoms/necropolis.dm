@@ -58,7 +58,7 @@
 				H.physiology.punchdamagehigh_bonus += 4
 				H.physiology.punchdamagelow_bonus += 4
 				H.physiology.punchstunthreshold_bonus += 1				//Makes standard punches 5-14 with higher stun chance (1-10, stun on 10 -> 5-14, stun on 11-14)
-				H.physiology.brute_mod *= 0.6			
+				H.physiology.brute_mod *= 0.6
 				H.physiology.burn_mod *= 0.6
 				H.physiology.heat_mod *= 0.6
 				H.add_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN, update=TRUE, priority=100, multiplicative_slowdown=0.5)
@@ -66,8 +66,8 @@
 				if(fireproof)
 					ADD_TRAIT(H, TRAIT_RESISTHEAT, DISEASE_TRAIT)
 					ADD_TRAIT(H, TRAIT_RESISTHIGHPRESSURE, DISEASE_TRAIT)
-					M.weather_immunities |= "ash"
-					M.weather_immunities |= "lava"
+					M.weather_immunities |= WEATHER_ASH
+					M.weather_immunities |= WEATHER_LAVA
 		else
 			if(prob(base_message_chance))
 				to_chat(M, span_notice("[pick("Your skin has become a hardened carapace", "Your strength is superhuman.", "You feel invincible.")]"))
@@ -103,7 +103,7 @@
 		H.remove_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN)
 		H.physiology.punchdamagehigh_bonus -= 4
 		H.physiology.punchdamagelow_bonus -= 4
-		H.physiology.punchstunthreshold_bonus -= 1	
+		H.physiology.punchstunthreshold_bonus -= 1
 		H.physiology.brute_mod /= 0.6
 		H.physiology.burn_mod /= 0.6
 		H.physiology.heat_mod /= 0.6
@@ -111,6 +111,6 @@
 		if(fireproof)
 			REMOVE_TRAIT(H, TRAIT_RESISTHIGHPRESSURE, DISEASE_TRAIT)
 			REMOVE_TRAIT(H, TRAIT_RESISTHEAT, DISEASE_TRAIT)
-			H.weather_immunities -= "ash"
-			H.weather_immunities -= "lava"
+			H.weather_immunities -= WEATHER_ASH
+			H.weather_immunities -= WEATHER_LAVA
 

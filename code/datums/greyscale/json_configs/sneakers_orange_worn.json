@@ -13,6 +13,20 @@
 			"color_ids": [ 2 ]
 		}
 	],
+	"sneakers_vox": [
+		{
+			"type": "icon_state",
+			"icon_state": "sneakers_back_vox",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "sneakers_front_vox",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		}
+	],
 	"sneakers_chained": [
 		{
 			"type": "icon_state",
@@ -29,6 +43,25 @@
 		{
 			"type": "icon_state",
 			"icon_state": "sneakers_chained",
+			"blend_mode": "overlay"
+		}
+	],
+	"sneakers_chained_vox": [
+		{
+			"type": "icon_state",
+			"icon_state": "sneakers_back_vox",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "sneakers_front_vox",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "sneakers_chained_vox",
 			"blend_mode": "overlay"
 		}
 	]

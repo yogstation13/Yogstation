@@ -35,7 +35,7 @@
 
 	if(C.mind && C.mind.has_antag_datum(/datum/antagonist/changeling) && !no_id_transfer)	//congrats, you're trapped in a body you don't control
 		if(brainmob && !(C.stat == DEAD || (HAS_TRAIT(C, TRAIT_DEATHCOMA))))
-			to_chat(brainmob, "<span class = danger>You can't feel your body! You're still just a brain!</span>")
+			to_chat(brainmob, span_danger("You can't feel your body! You're still just a [brain_name]!"))
 		forceMove(C)
 		C.update_hair()
 		return
@@ -90,7 +90,7 @@
 		..()
 
 /obj/item/organ/brain/proc/transfer_identity(mob/living/L)
-	name = "[L.name]'s brain"
+	name = "[L.name]'s [brain_name]"
 	if(brainmob || decoy_override)
 		return
 	if(!L.mind)
@@ -115,7 +115,7 @@
 			brainmob.set_species(ZI.old_species)	//For if the brain is cloned
 	if(L.mind && L.mind.current)
 		L.mind.transfer_to(brainmob)
-	to_chat(brainmob, span_notice("You feel slightly disoriented. That's normal when you're just a brain."))
+	to_chat(brainmob, span_notice("You feel slightly disoriented. That's normal when you're just a [brain_name]."))
 
 /obj/item/organ/brain/attackby(obj/item/O, mob/user, params)
 	user.changeNext_move(CLICK_CD_MELEE)
@@ -138,7 +138,7 @@
 			to_chat(user, span_warning("You failed to pour [O] onto [src]!"))
 			return
 
-		user.visible_message("[user] pours the contents of [O] onto [src], causing it to reform its original shape and turn a slightly brighter shade of pink.", span_notice("You pour the contents of [O] onto [src], causing it to reform its original shape and turn a slightly brighter shade of pink."))
+		user.visible_message("[user] pours the contents of [O] onto [src], causing it to reform its original shape and turn a slightly brighter shade[brain_name == "brain" ? " of pink." : "."]", span_notice("You pour the contents of [O] onto [src], causing it to reform its original shape and turn a slightly brighter shade[brain_name == "brain" ? " of pink." : "."]"))
 		setOrganDamage(damage - (0.05 * maxHealth))	//heals a small amount, and by using "setorgandamage", we clear the failing variable if that was up
 
 		O.reagents.clear_reagents()
@@ -193,7 +193,7 @@
 
 	// This should be a better check but this covers 99.9% of cases
 	if(!(compatible_biotypes & C.mob_biotypes))
-		to_chat(user, span_warner("This brain is incompatiable with this beings biology!"))
+		to_chat(user, span_warner("This brain is incompatible with this being's biology!"))
 		return
 
 	if(!target_has_brain && C.is_eyes_covered() && user.zone_selected == BODY_ZONE_HEAD)
@@ -226,7 +226,7 @@
 
 /obj/item/organ/brain/on_life()
 	if(damage >= BRAIN_DAMAGE_DEATH) //rip
-		to_chat(owner, span_userdanger("The last spark of life in your brain fizzles out..."))
+		to_chat(owner, span_userdanger("The last spark of life in your [brain_name] fizzles out..."))
 		owner.death()
 		brain_death = TRUE
 
