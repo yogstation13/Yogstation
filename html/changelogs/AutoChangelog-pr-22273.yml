@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Dropping a toolset item now retracts it rather than bringing up the menu to swap"
-  - tweak: "Attempting to activate throw mode with a toolset item now brings up the menu to swap"
