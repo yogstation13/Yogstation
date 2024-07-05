@@ -33,8 +33,10 @@
 	throw_range = 7
 	throw_speed = 1
 	w_class = WEIGHT_CLASS_NORMAL
+	/// Base damage before any multipliers
 	var/unmodified_throwforce = 15
-	var/exotic_damage_multiplier = 3 // yes you heard me, it deals 8 times more damage in exotic environments.
+	/// Extra damage in exotic environments
+	var/exotic_damage_multiplier = 2
 	var/obj/item/kinetic_javelin_core/core 	
 	var/charges = 0
 	var/max_charges = 3
@@ -99,10 +101,10 @@
 		. += "You can insert a core by using it on the javelin."
 
 /obj/item/kinetic_javelin/throw_at(atom/target, range, speed, mob/thrower, spin, diagonals_first, datum/callback/callback, force, quickstart)
-	. = ..()
 	if(always_recall && thrower)
 		RegisterSignal(src, COMSIG_MOVABLE_THROW_LANDED, PROC_REF(loyalty))
 		returner = thrower
+	return ..()
 
 /obj/item/kinetic_javelin/proc/loyalty()
 	UnregisterSignal(src, COMSIG_MOVABLE_THROW_LANDED)
@@ -177,8 +179,8 @@
 	return "When charged, the next successful hit against an enemy unleashes a surge of electricity that targets all nearby exotic lifeforms." 
 
 /obj/item/kinetic_javelin_core/blue/charged_effect(mob/living/simple_animal/hostile/victim, obj/item/kinetic_javelin/javelin,mob/user)
-	for(var/mob/living/simple_animal/hostile/H in range(4,victim) - victim)
-		victim.Beam(H,"lightning[rand(1,12)]",time = 15)
+	for(var/mob/living/simple_animal/hostile/H in range(4, victim) - victim)
+		victim.Beam(H,"lightning[rand(1,12)]", time = 15)
 		H.adjustFireLoss(15)
 
 /obj/item/kinetic_javelin_core/red 
@@ -189,10 +191,10 @@
 	javelin_item_state = "kinetic_javelin_red"
 
 /obj/item/kinetic_javelin_core/red/get_effect_description()
-	return "Upon charging it increases the damage of kinetic spear by 25%" 
+	return "Upon charging it increases the damage of kinetic spear by 50%" 
 
 /obj/item/kinetic_javelin_core/red/charged_effect(mob/living/simple_animal/hostile/victim, obj/item/kinetic_javelin/javelin,mob/user)
-	javelin.throwforce += javelin.throwforce * 0.25	
+	javelin.throwforce *= 1.5	
 
 /obj/item/kinetic_javelin_core/green
 	name = "Merciful Kinetic Javelin Core"
@@ -200,15 +202,13 @@
 	charged_glow_color = "#00b61b"
 	javelin_icon_state = "green"
 	javelin_item_state = "kinetic_javelin_green"
+	var/heal_amount = 10
 
 /obj/item/kinetic_javelin_core/green/get_effect_description()
-	return "Striking an enemy while charged heals 5 of each damage type." 
+	return "Striking an enemy while charged heals [heal_amount] damage distributed across all types." 
 
 /obj/item/kinetic_javelin_core/green/charged_effect(mob/living/simple_animal/hostile/victim, obj/item/kinetic_javelin/javelin,mob/living/user)
-	user.adjustFireLoss(-5,FALSE)
-	user.adjustBruteLoss(-5,FALSE)
-	user.adjustToxLoss(-5,FALSE)
-	user.adjustOxyLoss(-5)
+	user.heal_ordered_damage(heal_amount, list(BURN, BRUTE, TOX, OXY))
 
 /obj/item/kinetic_javelin_core/yellow
 	name = "Radiant Kinetic Javelin Core"
@@ -218,16 +218,10 @@
 	javelin_item_state = "kinetic_javelin_yellow"
 
 /obj/item/kinetic_javelin_core/yellow/get_effect_description()
-	return "Striking an enemy while charged slows that enemy to near standstill for 3 seconds." 
+	return "Striking an enemy while charged slows that enemy to a standstill for 3 seconds." 
 
 /obj/item/kinetic_javelin_core/yellow/charged_effect(mob/living/simple_animal/hostile/victim, obj/item/kinetic_javelin/javelin,mob/user)
-	walk(victim,0)
-	victim.move_to_delay = 600
-	addtimer(CALLBACK(src,PROC_REF(remove_debuff),victim),3 SECONDS)
-
-/obj/item/kinetic_javelin_core/yellow/proc/remove_debuff(mob/living/simple_animal/hostile/victim)
-	if(victim)
-		victim.move_to_delay = initial(victim.move_to_delay)
+	victim.Immobilize(3 SECONDS)
 
 /obj/item/kinetic_javelin_core/purple
 	name = "Loyal Kinetic Javelin Core"
@@ -237,17 +231,13 @@
 	javelin_item_state = "kinetic_javelin_purple"
 
 /obj/item/kinetic_javelin_core/purple/get_effect_description()
-	return "Kinetic spear will always be able to be recalled, even when you miss an enemy, but drastically reduces it's flying speed and damage." 
+	return "Kinetic spear will always be able to be recalled, even when you miss an enemy." 
 
 /obj/item/kinetic_javelin_core/purple/on_insert(obj/item/kinetic_javelin/javelin)
 	javelin.always_recall = TRUE
-	javelin.throw_speed = 0.5
-	javelin.exotic_damage_multiplier = 2
 
 /obj/item/kinetic_javelin_core/purple/on_remove(obj/item/kinetic_javelin/javelin)
 	javelin.always_recall = FALSE
-	javelin.throw_speed = 1
-	javelin.exotic_damage_multiplier = 3
 
 /obj/item/kinetic_javelin/blue 
 	core = /obj/item/kinetic_javelin_core/blue
