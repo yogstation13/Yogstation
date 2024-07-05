@@ -314,7 +314,7 @@
 /area/ruin/powered/syndicate_lava_base/engineering)
 "cW" = (
 /obj/structure/ore_box,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/jungleland/toxic_pit)
 "cY" = (
 /obj/structure/disposaloutlet{
@@ -658,7 +658,7 @@
 	dir = 4
 	},
 /obj/item/clothing/head/fishing,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/jungleland/toxic_pit)
 "gC" = (
 /obj/effect/turf_decal/siding/yellow/corner{
@@ -1218,7 +1218,7 @@
 /area/ruin/powered/syndicate_lava_base/bar)
 "lt" = (
 /obj/structure/flora/stump,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/jungleland/toxic_pit)
 "lw" = (
 /obj/machinery/computer/arcade/orion_trail,
@@ -2017,7 +2017,7 @@
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "rW" = (
 /obj/structure/flytrap,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/jungleland/toxic_pit)
 "sa" = (
 /obj/structure/dresser,
@@ -2257,7 +2257,7 @@
 /area/ruin/powered/syndicate_lava_base/cargo)
 "tZ" = (
 /obj/machinery/light/small,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/ruin/powered/syndicate_lava_base/chemistry)
 "ue" = (
 /obj/structure/table/wood,
@@ -2715,7 +2715,7 @@
 /area/ruin/powered/syndicate_lava_base/main)
 "zH" = (
 /obj/structure/flora/junglebush,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/jungleland/toxic_pit)
 "zO" = (
 /obj/effect/turf_decal/tile/bar,
@@ -3296,7 +3296,7 @@
 /area/ruin/powered/syndicate_lava_base/main)
 "EL" = (
 /obj/structure/flora/tree/jungle/small,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/jungleland/toxic_pit)
 "EM" = (
 /obj/effect/turf_decal/siding/red{
@@ -3574,7 +3574,7 @@
 /area/ruin/powered/syndicate_lava_base/engineering)
 "GR" = (
 /obj/structure/flora/junglebush/c,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/jungleland/toxic_pit)
 "GX" = (
 /obj/structure/closet/crate,
@@ -3969,7 +3969,7 @@
 /area/ruin/powered/syndicate_lava_base/virology)
 "JD" = (
 /obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/jungleland/toxic_pit)
 "JG" = (
 /obj/structure/chair/office/dark{
@@ -4114,7 +4114,7 @@
 /area/ruin/powered/syndicate_lava_base/bar)
 "Lj" = (
 /obj/structure/flora/junglebush/b,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/jungleland/toxic_pit)
 "Lo" = (
 /obj/effect/turf_decal/siding/yellow/corner{
@@ -4377,7 +4377,7 @@
 /area/ruin/powered/syndicate_lava_base/main)
 "NZ" = (
 /obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/jungleland/toxic_pit)
 "Oa" = (
 /obj/machinery/door/airlock/external{
@@ -4550,7 +4550,7 @@
 /turf/open/floor/engine/n2,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "PW" = (
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/jungleland/toxic_pit)
 "Qb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -5207,7 +5207,7 @@
 /area/ruin/powered/syndicate_lava_base/bar)
 "VR" = (
 /obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/jungleland/toxic_pit)
 "VW" = (
 /obj/machinery/atmospherics/components/binary/pump{

@@ -124,7 +124,7 @@ Temperature: 126.85 °C (400 K)
 	icon_plating = "barren_rocks"
 	icon_state_regular_floor = "barren_rocks"
 
-/turf/open/floor/plating/dirt/jungleland/toxic_pit
+/turf/open/floor/plating/dirt/jungleland/shallow_mud
 	name = "shallow mud"
 	desc = "Pit of shallow mud."
 	icon_state = "toxic_pit"
@@ -297,8 +297,8 @@ Temperature: 126.85 °C (400 K)
 	baseturfs = /turf/open/floor/plating/dirt/jungleland/jungle
 
 /turf/closed/mineral/ash_rock/jungle/swamp
-	turf_type = /turf/open/floor/plating/dirt/jungleland/toxic_pit
-	baseturfs = /turf/open/floor/plating/dirt/jungleland/toxic_pit
+	turf_type = /turf/open/floor/plating/dirt/jungleland/shallow_mud
+	baseturfs = /turf/open/floor/plating/dirt/jungleland/shallow_mud
 
 /turf/open/water/tar_basin
 	name = "tar basin"
