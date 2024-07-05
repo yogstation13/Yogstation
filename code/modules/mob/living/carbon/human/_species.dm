@@ -212,7 +212,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	// Psi Stuff
 	/// Prob chance that mobs of this species have latent psionics
-	var/latency_chance = 15
+	var/latency_chance = 100
 	/// List of faculties that can be chosen for random psionics
 	var/possible_faculties = list(PSI_COERCION, PSI_PSYCHOKINESIS, PSI_REDACTION, PSI_ENERGISTICS)
 	/// What level starting faculties are at

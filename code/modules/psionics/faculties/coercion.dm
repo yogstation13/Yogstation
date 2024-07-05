@@ -5,7 +5,6 @@
 /datum/psionic_faculty/coercion
 	id = PSI_COERCION
 	name = "Coercion"
-	associated_intent = INTENT_DISARM
 
 /datum/psionic_power/coercion
 	faculty = PSI_COERCION

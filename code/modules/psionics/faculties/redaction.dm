@@ -1,7 +1,6 @@
 /datum/psionic_faculty/redaction
 	id = PSI_REDACTION
 	name = "Redaction"
-	associated_intent = INTENT_HELP
 	armour_types = list(BIO, RAD)
 
 /datum/psionic_power/redaction

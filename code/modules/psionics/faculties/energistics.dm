@@ -1,7 +1,6 @@
 /datum/psionic_faculty/energistics
 	id = PSI_ENERGISTICS
 	name = "Energistics"
-	associated_intent = INTENT_HARM
 	armour_types = list("bomb", "laser", "energy")
 
 /datum/psionic_power/energistics
