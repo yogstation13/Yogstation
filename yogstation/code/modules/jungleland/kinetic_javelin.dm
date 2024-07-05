@@ -202,7 +202,7 @@
 	charged_glow_color = "#00b61b"
 	javelin_icon_state = "green"
 	javelin_item_state = "kinetic_javelin_green"
-	var/heal_amount = 10
+	var/heal_amount = 20
 
 /obj/item/kinetic_javelin_core/green/get_effect_description()
 	return "Striking an enemy while charged heals [heal_amount] damage distributed across all types." 
