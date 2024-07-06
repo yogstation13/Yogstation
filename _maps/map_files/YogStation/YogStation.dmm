@@ -45275,11 +45275,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"nre" = (
-/obj/structure/transit_tube/curved/flipped,
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
 "nrq" = (
 /obj/structure/grille,
 /obj/machinery/meter{
@@ -55773,13 +55768,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/teleporter)
-"rhR" = (
-/obj/machinery/camera{
-	c_tag = "Atmospherics Exterior Airlock"
-	},
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
 "rhV" = (
 /obj/item/kirbyplants/random,
 /obj/machinery/door/firedoor/border_only,
@@ -63922,6 +63910,13 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/disposal/incinerator)
+"ufR" = (
+/obj/machinery/camera{
+	c_tag = "Atmospherics Exterior Airlock"
+	},
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
 "ugf" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/white,
@@ -69994,6 +69989,11 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
+"wpC" = (
+/obj/structure/transit_tube/curved/flipped,
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
 "wpR" = (
 /obj/structure/window/reinforced,
 /obj/effect/turf_decal/bot_white,
@@ -110351,9 +110351,9 @@ cjQ
 cjQ
 cjQ
 xBO
-rhR
+ufR
 gXs
-nre
+wpC
 jFu
 jFu
 jFu
@@ -118332,7 +118332,7 @@ aKN
 aaa
 gXs
 pEf
-jXD
+cva
 cva
 cva
 dOn
