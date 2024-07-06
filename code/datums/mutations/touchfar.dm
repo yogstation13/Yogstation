@@ -9,6 +9,7 @@
 /datum/action/cooldown/spell/touch/shock/far
 	name = "Extended Shock Touch"
 	hand_path = /obj/item/melee/touch_attack/shock/far
+	drop_items = FALSE
 
 /datum/action/cooldown/spell/touch/shock/far/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
 	. = ..()
