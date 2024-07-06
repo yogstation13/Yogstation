@@ -20392,10 +20392,6 @@
 /obj/machinery/vending/cola/random,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
-"gar" = (
-/obj/effect/turf_decal/stripes/corner,
-/turf/open/floor/plating,
-/area/maintenance/port)
 "gax" = (
 /obj/machinery/door/airlock/command{
 	name = "Captain's Quarters";
@@ -25280,6 +25276,10 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/maintenance/port)
+"htp" = (
+/obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "hts" = (
@@ -78135,10 +78135,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"wpJ" = (
-/obj/structure/lattice,
-/turf/closed/wall,
-/area/maintenance/port/aft)
 "wpM" = (
 /obj/item/kirbyplants{
 	icon_state = "plant-03"
@@ -233408,7 +233404,7 @@ fSP
 orH
 nKV
 vbS
-wpJ
+fSP
 ueX
 ueX
 exO
@@ -236212,7 +236208,7 @@ mWs
 eiU
 mOp
 gxJ
-gar
+htp
 fSP
 eeN
 nHe
