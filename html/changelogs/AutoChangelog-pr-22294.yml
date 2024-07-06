@@ -1,0 +1,7 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "plasmacutters now go slightly further when mining on jungleland"
+  - tweak: "reduced jungleland ore spawns"
+  - bugfix: "fixed a typo that prevented bluespace from spawning on jungleland"
+  - bugfix: "fixed the plasmacutter ore upgrade not working on jungleland"
