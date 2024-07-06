@@ -384,9 +384,9 @@ GLOBAL_LIST_INIT(nests, list())
 	return ..()
 
 /obj/structure/spawner/nest/proc/spawn_mother_monster()
-	var/mob/living/simple_animal/hostile/yog_jungle/type = pick(mob_types)
-	if(initial(type.alpha_type) == 0)
-		var/mob/living/simple_animal/hostile/yog_jungle/monster = new type(loc)
+	var/mob/living/simple_animal/hostile/yog_jungle/enemy_type = pick(mob_types)
+	if(!initial(enemy_type.alpha_type))
+		var/mob/living/simple_animal/hostile/yog_jungle/monster = new enemy_type(loc)
 		monster.setMaxHealth(monster.maxHealth * 1.5)
 		monster.health = monster.maxHealth * 1.5
 		monster.move_to_delay = max(monster.move_to_delay / 2, 1)
@@ -399,8 +399,9 @@ GLOBAL_LIST_INIT(nests, list())
 		monster.transform = M
 		monster.color = "#c30505"
 		return
-	type = initial(type.alpha_type)
-	new type(loc)
+	enemy_type = initial(enemy_type.alpha_type)
+	new enemy_type(loc)
+
 /obj/structure/spawner/nest/jungle
 	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/dryad, /mob/living/simple_animal/hostile/yog_jungle/yellowjacket)
 

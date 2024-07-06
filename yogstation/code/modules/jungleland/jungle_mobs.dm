@@ -182,7 +182,7 @@
 	health = 285
 	spacewalk = TRUE
 	melee_damage_lower = 30
-	melee_damage_upper = 55 // ouch
+	melee_damage_upper = 30
 	rapid_melee = 2
 	butcher_results = list(/obj/item/stack/sheet/skin_twister = 2,/obj/item/stack/sheet/bone = 3, /obj/item/stack/sheet/sinew = 2)
 	alpha_damage_boost = 0 // 30-55 damage is too much to be boosts by 50%
@@ -238,7 +238,7 @@
 		lure_encryption_key = headphones.keyslot
 	else 
 		fully_heal()
-	faction = list("mining")
+	faction |= "mining"
 
 /mob/living/simple_animal/hostile/yog_jungle/skin_twister/proc/reveal_true_form()
 	new /obj/effect/better_animated_temp_visual/skin_twister_out(get_turf(src))
@@ -252,7 +252,7 @@
 	speak_chance = initial(speak_chance)
 	taunt_chance = initial(taunt_chance)
 	human_lure = FALSE
-	faction = list("skin_walkers")
+	faction -= "mining"
 
 /mob/living/simple_animal/hostile/yog_jungle/skin_twister/proc/pick_lure()
 	var/mob/living/picked = pick(subtypesof(/mob/living/simple_animal/hostile/yog_jungle))
@@ -308,8 +308,8 @@
 	health = 120
 	spacewalk = TRUE
 	loot  = list(/obj/item/stack/sheet/slime)
-	melee_damage_lower = 4
-	melee_damage_upper = 6
+	melee_damage_lower = 5
+	melee_damage_upper = 5
 	
 	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_blobby
 
@@ -363,8 +363,8 @@
 	maxHealth = 60
 	health = 60
 	spacewalk = TRUE
-	melee_damage_lower = 10
-	melee_damage_upper = 40 
+	melee_damage_lower = 20
+	melee_damage_upper = 20
 	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_mosquito
 	move_to_delay = 5
 	var/can_charge = TRUE
@@ -372,16 +372,15 @@
 	var/charge_ramp_up = 2 SECONDS
 	var/charging = FALSE
 
-	var/has_blood = FALSE
 	var/overshoot_dist = 5
 
 /mob/living/simple_animal/hostile/yog_jungle/mosquito/Aggro()
 	. = ..()
-	prepare_charge()
+	INVOKE_ASYNC(src, PROC_REF(prepare_charge))
 
 /mob/living/simple_animal/hostile/yog_jungle/mosquito/Goto(target, delay, minimum_distance)
 	if (iscarbon(target) && get_dist(src,target) > 4 && get_charge())
-		prepare_charge()
+		INVOKE_ASYNC(src, PROC_REF(prepare_charge))
 		return
 
 	if(!charging)
@@ -400,10 +399,6 @@
 	if(prob(malaria_chance * 0.25))
 		var/datum/disease/malaria/infection = new() 
 		humie.ForceContractDisease(infection,FALSE,TRUE)
-	has_blood = TRUE 
-	rapid_melee = TRUE
-	melee_damage_lower = 30 
-	melee_damage_upper = 50
 	icon_state = "mosquito_blood"
 	animate(src,color = initial(color),time = charge_ramp_up*2)
 
@@ -544,8 +539,8 @@
 	move_to_delay = 12
 	speed = 3
 	ranged = 1
-	melee_damage_lower = 13
-	melee_damage_upper = 16
+	melee_damage_lower = 10
+	melee_damage_upper = 10
 	stat_attack = 1
 	robust_searching = 1
 	see_in_dark = 7
@@ -641,7 +636,7 @@
 	icon_state = "tar_faithless"
 	health = 200
 	maxHealth = 200
-	melee_damage_lower = 25
+	melee_damage_lower = 30
 	melee_damage_upper = 30
 
 /mob/living/simple_animal/hostile/tar/amalgamation/AttackingTarget()

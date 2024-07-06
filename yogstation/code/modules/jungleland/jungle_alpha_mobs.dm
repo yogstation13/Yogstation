@@ -28,7 +28,7 @@
 	health = 300
 	spacewalk = TRUE
 	crusher_loot = /obj/item/crusher_trophy/jungleland/meduracha_tentacles
-	melee_damage_lower = 20
+	melee_damage_lower = 25
 	melee_damage_upper = 25
 	ranged = TRUE 
 	ranged_cooldown = 5 SECONDS
@@ -114,7 +114,7 @@
 	pixel_y = -16
 	move_to_delay = 5
 	loot  = list(/obj/item/stack/sheet/slime = 10, /obj/item/gem/emerald = 2)
-	melee_damage_lower = 30
+	melee_damage_lower = 40
 	melee_damage_upper = 40
 	crusher_loot = /obj/item/crusher_trophy/jungleland/blob_brain
 	sentience_type = SENTIENCE_BOSS
@@ -154,7 +154,7 @@
 	health = 500
 	crusher_loot = /obj/item/crusher_trophy/jungleland/dryad_branch
 	loot = list(/obj/item/organ/regenerative_core/dryad = 5, /obj/item/gem/emerald = 2)
-	melee_damage_lower = 20
+	melee_damage_lower = 25
 	melee_damage_upper = 25
 	ranged = TRUE 
 	ranged_cooldown = 20 SECONDS
@@ -186,7 +186,7 @@
 	health = 500
 	crusher_loot = /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch
 	loot = list(/obj/item/organ/regenerative_core/dryad/corrupted = 5, /obj/item/gem/emerald = 2)
-	melee_damage_lower = 20
+	melee_damage_lower = 25
 	melee_damage_upper = 25
 	ranged = TRUE 
 	ranged_cooldown = 17.5 SECONDS
@@ -195,7 +195,7 @@
 	projectiletype = /obj/projectile/jungle/damage_orb
 	sentience_type = SENTIENCE_BOSS
 
-	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/blobby, /mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad)
+	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1, /mob/living/simple_animal/hostile/yog_jungle/blobby = 5, /mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad = 20)
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_corrupted_dryad/Shoot(atom/targeted_atom)
 	playsound(src, 'sound/magic/clockwork/narsie_attack.ogg', 80, 1)
@@ -213,8 +213,8 @@
 
 	for(var/turf/T as anything in to_shoot)
 		shoot_projectile(T)
-	for(var/i in 0 to rand(1,3))
-		var/to_spawn = pick(spawnables)
+	for(var/i in 0 to rand(1,2))
+		var/to_spawn = pickweight(spawnables)
 		var/mob/living/simple_animal/hostile/spawned = new to_spawn(get_step(src,pick(GLOB.cardinals)))
 		spawned.faction = faction
 		spawned.PickTarget(targeted_atom)
@@ -250,8 +250,8 @@
 	health = 350
 	crusher_loot = /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch
 	butcher_results = list(/obj/item/stinger = 1, /obj/item/stack/sheet/animalhide/weaver_chitin = 2, /obj/item/stack/sheet/sinew = 4, /obj/item/gem/ruby = 2)
-	melee_damage_lower = 15
-	melee_damage_upper = 25
+	melee_damage_lower = 35
+	melee_damage_upper = 35
 	pixel_x = -16
 	pixel_y = -16
 	sentience_type = SENTIENCE_BOSS
@@ -260,16 +260,15 @@
 	var/charge_ramp_up = 1 SECONDS
 	var/charging = FALSE
 
-	var/has_blood = FALSE
 	var/overshoot_dist = 5
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_mosquito/Aggro()
 	. = ..()
-	prepare_charge()
+	INVOKE_ASYNC(src, PROC_REF(prepare_charge))
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_mosquito/Goto(target, delay, minimum_distance)
 	if (iscarbon(target) && get_dist(src,target) > 4 && get_charge())
-		prepare_charge()
+		INVOKE_ASYNC(src, PROC_REF(prepare_charge))
 		return
 
 	if(!charging)
@@ -288,10 +287,6 @@
 	if(prob(malaria_chance * 0.5))
 		var/datum/disease/malaria/infection = new() 
 		humie.ForceContractDisease(infection,FALSE,TRUE)
-	has_blood = TRUE 
-	rapid_melee = TRUE
-	melee_damage_lower = 30 
-	melee_damage_upper = 50
 	icon_state = "mosquito_blood"
 	animate(src,color = initial(color),time = charge_ramp_up*2)
 
