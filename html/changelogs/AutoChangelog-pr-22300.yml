@@ -1,6 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Adds titanium ore eat effect"
-  - bugfix: "eating ores as pretenis now requires combat mode off instead of on"
-  - tweak: "preternis stomach emp effect now makes the host vomit blood"
