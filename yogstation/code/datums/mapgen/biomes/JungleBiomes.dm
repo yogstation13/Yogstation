@@ -89,9 +89,9 @@
 	closed_turf = /turf/open/water/smooth/toxic_pit
 
 	dense_flora = list(
-		/obj/structure/flora/ausbushes/stalkybush = 10
+		/obj/structure/flora/ausbushes/stalkybush = 10,
 		/obj/structure/flora/rock/pile = 3,
-		/obj/structure/herb/magnus_purpura = 1,
+		/obj/structure/herb/magnus_purpura = 1
 		)
 	dense_flora_density = 10
 
