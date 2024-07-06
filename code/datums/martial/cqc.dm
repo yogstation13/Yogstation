@@ -32,7 +32,7 @@
 /datum/martial_art/cqc/can_use(mob/living/carbon/human/H)
 	if(!H.combat_mode)
 		return FALSE
-	return TRUE
+	return ..()
 
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------------Check Streak----------------------------------//
