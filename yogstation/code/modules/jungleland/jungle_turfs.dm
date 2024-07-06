@@ -71,6 +71,8 @@ Temperature: 126.85 °C (400 K)
 	var/ore_present = ORE_EMPTY
 	var/spawn_overlay = TRUE
 	var/can_mine = TRUE
+	light_power = 2
+	light_range = 2 // fullbright it for proper shadows and darkspawn interaction
 
 /turf/open/floor/plating/dirt/jungleland/drill_act(obj/item/mecha_parts/mecha_equipment/drill/drill)
 	if(drill.do_after_mecha(src, 10 / drill.drill_level))
@@ -123,6 +125,8 @@ Temperature: 126.85 °C (400 K)
 	icon_state = "barren_rocks"
 	icon_plating = "barren_rocks"
 	icon_state_regular_floor = "barren_rocks"
+	light_power = 0
+	light_range = 0
 
 /turf/open/floor/plating/dirt/jungleland/shallow_mud
 	name = "shallow mud"
@@ -175,6 +179,9 @@ Temperature: 126.85 °C (400 K)
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/water/smooth/toxic_pit
+
+	light_power = 2
+	light_range = 2 // fullbright it for proper shadows and darkspawn interaction
 
 	///multiplier for the strength of the toxicity, multiplies basically every damage value and damage probability
 	var/acid_strength = 1
@@ -295,25 +302,27 @@ Temperature: 126.85 °C (400 K)
 	turf_type = /turf/open/floor/plating/dirt/jungleland/shallow_mud
 	baseturfs = /turf/open/floor/plating/dirt/jungleland/shallow_mud
 
-/turf/open/water/tar_basin
+/turf/open/water/smooth/tar_basin
 	name = "tar basin"
 	color = "#680047"
 	slowdown = 4
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
-	baseturfs = /turf/open/water/tar_basin
+	baseturfs = /turf/open/water/smooth/tar_basin
 
 
 /turf/open/floor/plating/dirt/jungleland/obsidian
 	name =	"obsidian ground"
 	desc = "Dark crystaline flooring."
 	icon_state = "obsidian"
+	light_range = 0
 
 /turf/closed/obsidian
 	name = "obsidian wall"
 	desc = "Obsidian wall tearing out of the earth, it reflects light in all the colours you could ever imagine, and you can see something shining brightly within it. You can't quite seem to destroy it with a pickaxe, but maybe an explosion may suffice?"
 	icon = 'yogstation/icons/turf/walls/obsidian.dmi'
 	icon_state = "wall"
+	base_icon_state = "wall"
 	smoothing_groups = SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_MINERAL_WALLS
 	canSmoothWith = SMOOTH_GROUP_MINERAL_WALLS
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER

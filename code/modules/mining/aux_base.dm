@@ -230,7 +230,7 @@
 			/turf/open/indestructible,
 			/turf/open/water/smooth/toxic_pit,
 			/turf/open/water/smooth/toxic_pit/deep,
-			/turf/open/water/tar_basin,
+			/turf/open/water/smooth/tar_basin,
 			)) - typecacheof(list(
 			/turf/closed/mineral,
 			))

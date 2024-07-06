@@ -16,7 +16,7 @@
 /area/ruin/unpowered/tar_temple)
 "e" = (
 /mob/living/simple_animal/hostile/tar/dryad,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "f" = (
 /obj/structure/stone_tile/slab/burnt,
@@ -76,7 +76,7 @@
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
 "y" = (
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "z" = (
 /obj/structure/flora/ausbushes/reedbush,
@@ -107,7 +107,7 @@
 /area/ruin/unpowered/tar_temple)
 "H" = (
 /mob/living/simple_animal/hostile/tar/shade,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "I" = (
 /obj/effect/decal/remains/human,

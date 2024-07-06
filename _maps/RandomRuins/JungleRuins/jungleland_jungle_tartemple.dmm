@@ -134,7 +134,7 @@
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
 "K" = (
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "L" = (
 /obj/structure/stone_tile/surrounding_tile,
