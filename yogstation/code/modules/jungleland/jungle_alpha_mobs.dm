@@ -314,7 +314,7 @@
 		animate(src,color = initial(color),time = charge_ramp_up)
 		return
 
-	throw_at(found_turf,dist + overshoot_dist,4,spin = FALSE)
+	throw_at(found_turf,dist + overshoot_dist, 3, spin = FALSE)
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_mosquito/proc/reset_charge()
 	can_charge = TRUE
