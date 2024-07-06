@@ -42542,6 +42542,11 @@
 	},
 /turf/open/floor/wood/large,
 /area/crew_quarters/heads/captain)
+"msA" = (
+/obj/structure/transit_tube/curved/flipped,
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
 "msD" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -63910,13 +63915,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/disposal/incinerator)
-"ufR" = (
-/obj/machinery/camera{
-	c_tag = "Atmospherics Exterior Airlock"
-	},
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
 "ugf" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/white,
@@ -69989,11 +69987,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
-"wpC" = (
-/obj/structure/transit_tube/curved/flipped,
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
 "wpR" = (
 /obj/structure/window/reinforced,
 /obj/effect/turf_decal/bot_white,
@@ -70775,6 +70768,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft_starboard)
+"wHz" = (
+/obj/machinery/camera{
+	c_tag = "Atmospherics Exterior Airlock"
+	},
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
 "wHG" = (
 /obj/structure/sign/painting{
 	persistence_id = "public";
@@ -110351,9 +110351,9 @@ cjQ
 cjQ
 cjQ
 xBO
-ufR
+wHz
 gXs
-wpC
+msA
 jFu
 jFu
 jFu
@@ -116020,7 +116020,7 @@ pEf
 pEf
 pEf
 pEf
-jXD
+cva
 cva
 cva
 cva
@@ -118590,7 +118590,7 @@ gXs
 gXs
 pEf
 pEf
-jXD
+cva
 cva
 cva
 sAu
@@ -118848,7 +118848,7 @@ gXs
 gXs
 pEf
 ogh
-jXD
+cva
 cva
 cva
 iXp
