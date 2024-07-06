@@ -710,6 +710,7 @@
 #include "code\datums\diseases\sleepy.dm"
 #include "code\datums\diseases\transformation.dm"
 #include "code\datums\diseases\tuberculosis.dm"
+#include "code\datums\diseases\wibblification.dm"
 #include "code\datums\diseases\wizarditis.dm"
 #include "code\datums\diseases\advance\advance.dm"
 #include "code\datums\diseases\advance\presets.dm"
