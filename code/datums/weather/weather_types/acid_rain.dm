@@ -83,6 +83,8 @@
 	return FALSE //RIP you
 
 /datum/weather/acid_rain/weather_act(mob/living/L)
+	if(HAS_TRAIT(L,TRAIT_SULPH_PIT_IMMUNE))
+		return
 	if(is_acid_immune(L))
 		return
 	L.adjust_wet_stacks(2)
