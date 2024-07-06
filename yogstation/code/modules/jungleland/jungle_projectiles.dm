@@ -5,21 +5,20 @@
 	name = "Orb of healing"
 	icon_state = "heal_orb"
 	damage = -10
-	speed = 2
 	homing = TRUE
 
 /obj/projectile/jungle/damage_orb
 	name = "Orb of vengeance"
 	icon_state = "damage_orb"
 	damage = 20
-	speed = 1
+	armor_flag = MELEE
 
 /obj/projectile/jungle/meduracha_spit
 	name = "Glob of toxic goo"
 	icon_state = "meduracha_spit"
 	damage = 20
-	speed = 3
 	damage_type = TOX
+	armor_flag = BIO
 
 /obj/projectile/jungle/meduracha_spit/on_hit(atom/target, blocked)
 	. = ..()
