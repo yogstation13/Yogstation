@@ -32,7 +32,7 @@
 /datum/martial_art/cqc/can_use(mob/living/carbon/human/H)
 	if(!H.combat_mode)
 		return FALSE
-	return ..()
+	return TRUE
 
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------------Check Streak----------------------------------//
@@ -373,28 +373,33 @@
 	name = "Close Quarters Cooking"
 	id = MARTIALART_CQC_COOK
 
-/datum/martial_art/cqc/under_siege/can_use(mob/living/carbon/human/H) //this is used to make chef CQC only work in kitchen
+/datum/martial_art/cqc/under_siege/proc/in_kitchen(mob/living/carbon/human/H)
 	var/area/A = get_area(H)
-	if(!(istype(A, /area/crew_quarters/kitchen)))
+	if(istype(A, /area/crew_quarters/kitchen))
+		return TRUE
+	return FALSE
+
+/datum/martial_art/cqc/under_siege/can_use(mob/living/carbon/human/H) //this is used to make chef CQC only work in kitchen
+	if(!in_kitchen(H))
 		return FALSE
 	return ..()
 
 /datum/martial_art/cqc/under_siege/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!can_use(D)) //if you somehow check the streak on a target outside of kitchen, still stop
+	if(!in_kitchen(D)) //if you somehow check the streak on a target outside of kitchen, still stop
 		return FALSE
 	return ..()
 
 /datum/martial_art/cqc/under_siege/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!can_use(D)) //no disarming people outside of the kitchen
+	if(!in_kitchen(D)) //no disarming people outside of the kitchen
 		return FALSE
 	return ..()
 
 /datum/martial_art/cqc/under_siege/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!can_use(D)) //no harming people outside of the kitchen
+	if(!in_kitchen(D)) //no harming people outside of the kitchen
 		return FALSE
 	return ..()
 
 /datum/martial_art/cqc/under_siege/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!can_use(D)) //no grabbing people outside of the kitchen
+	if(!in_kitchen(D)) //no grabbing people outside of the kitchen
 		return FALSE
 	return ..()
