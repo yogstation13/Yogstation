@@ -23,6 +23,7 @@
 	swimming_component = /datum/component/swimming/dissolve
 	hair_color = "mutcolor"
 	hair_alpha = 140
+	var/soggy = FALSE
 
 /datum/species/jelly/on_species_loss(mob/living/carbon/C)
 	if(regenerate_limbs)
@@ -40,6 +41,10 @@
 /datum/species/jelly/spec_life(mob/living/carbon/human/H)
 	if(H.stat == DEAD) //can't farm slime jelly from a dead slime/jelly person indefinitely
 		return
+
+	handle_wetness(H)
+
+	
 	if(!H.blood_volume)
 		H.blood_volume += 5
 		H.adjustBruteLoss(5)
@@ -158,6 +163,26 @@
 		to_chat(H, span_warning("...but there is not enough of you to fix everything! You must attain more mass to heal completely!"))
 		return
 	to_chat(H, span_warning("...but there is not enough of you to go around! You must attain more mass to heal!"))
+
+/datum/species/jelly/proc/handle_wetness(mob/living/carbon/human/H)
+	var/datum/status_effect/fire_handler/wet_stacks/wetness = H.has_status_effect(/datum/status_effect/fire_handler/wet_stacks)
+	if(wetness && wetness.stacks >= 1) // needs at least 1 wetness stack to do anything
+		H.add_movespeed_modifier("slime_person_wet", update = TRUE, priority = 102, multiplicative_slowdown = 0.5, blacklisted_movetypes=(FLYING|FLOATING))
+		//damage has a flat amount with an additional amount based on how wet they are
+		H.adjustStaminaLoss(8 - (H.fire_stacks / 2))
+		H.clear_stamina_regen()
+		H.adjustFireLoss(2.5 - (H.fire_stacks / 3))
+		H.set_jitter_if_lower(10 SECONDS)
+		H.set_stutter_if_lower(1 SECONDS)
+		if(!soggy)//play once when it starts
+			H.emote("scream")
+			to_chat(H, span_userdanger("Every cell in your body begins to break down from the excess of water, get dry!"))
+		H.adjust_wet_stacks(-1)
+		soggy = TRUE
+	else if(soggy)
+		H.remove_movespeed_modifier("slime_person_wet")
+		to_chat(H, "You breathe a sigh of relief as you dry off.")
+		soggy = FALSE
 
 ////////////////////////////////////////////////////////SLIMEPEOPLE///////////////////////////////////////////////////////////////////
 
