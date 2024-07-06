@@ -31,8 +31,6 @@
 		var/mob/living/carbon/carbon_victim = victim
 		var returned_damage = carbon_victim.electrocute_act(15, caster, 1, zone = caster.zone_selected, stun = FALSE) // Does not stun. Never let this stun.
 		if(returned_damage != FALSE && returned_damage > 0)
-			carbon_victim.dropItemToGround(carbon_victim.get_active_held_item())
-			carbon_victim.dropItemToGround(carbon_victim.get_inactive_held_item())
 			// Confusion is more or less expected to happen due to the rarity of electric armor and the ability to select zones.
 			// Expected defense items: hardsuit (all @ 100), insulated gloves (arms @ 100), any engineering shoes (legs @ 100), hardsuit (head @ 100), hazard vest / engineering coat (chest @ 20).
 			var/shock_multiplier = returned_damage / 15 // Accounts for armor, siemens_coeff, and future changes.
