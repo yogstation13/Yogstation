@@ -1,6 +1,6 @@
 /datum/status_effect/holy_fire
 	id = "doubledown"
-	duration = 5 SECONDS
+	duration = 6 SECONDS
 	tick_interval = 1 //10 times per second
 	status_type = STATUS_EFFECT_REFRESH
 	var/total_damage = 180
