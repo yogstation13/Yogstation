@@ -1,6 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "fixed darkspawn being unable to ascend"
-  - bugfix: "fixed darkspawn hitting ability spawned allies with certain spells"
-  - tweak: "makes the darkspawn ascension cracks glow as emissives because it makes them look cooler"
