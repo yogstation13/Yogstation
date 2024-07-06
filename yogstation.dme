@@ -892,6 +892,7 @@
 #include "code\datums\status_effects\debuffs\drunk.dm"
 #include "code\datums\status_effects\debuffs\fire_stacks.dm"
 #include "code\datums\status_effects\debuffs\hallucination.dm"
+#include "code\datums\status_effects\debuffs\holy_fire.dm"
 #include "code\datums\status_effects\debuffs\jitteriness.dm"
 #include "code\datums\status_effects\debuffs\knuckleroot.dm"
 #include "code\datums\status_effects\debuffs\red_eye.dm"

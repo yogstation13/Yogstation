@@ -39,7 +39,7 @@
 	var/exotic_damage_multiplier = 2
 	var/obj/item/kinetic_javelin_core/core 	
 	var/charges = 0
-	var/max_charges = 3
+	var/max_charges = 2
 	var/charged = FALSE
 	var/always_recall = FALSE
 	///The mob to return the spear to if thrown
@@ -140,9 +140,9 @@
 		if(isliving(hit_atom))
 			if(!always_recall)
 				user.put_in_active_hand(src)
-			charge_up()
 			if(charged)
 				core.charged_effect(hit_atom,src,user)
+			charge_up()
 		else 
 			remove_charge()
 	else
@@ -217,11 +217,20 @@
 	javelin_icon_state = "yellow"
 	javelin_item_state = "kinetic_javelin_yellow"
 
+/obj/item/kinetic_javelin_core/yellow/on_insert(obj/item/kinetic_javelin/javelin)
+	javelin.max_charges = 1
+	javelin.exotic_damage_multiplier = 0
+	
+/obj/item/kinetic_javelin_core/yellow/on_remove(obj/item/kinetic_javelin/javelin)
+	javelin.max_charges = initial(javelin.max_charges)
+	javelin.exotic_damage_multiplier = initial(javelin.exotic_damage_multiplier)
+
 /obj/item/kinetic_javelin_core/yellow/get_effect_description()
-	return "Striking an enemy while charged slows that enemy to a standstill for 3 seconds." 
+	return "Striking an enemy while charged discharges the javelin into the enemy, igniting them with brilliant fire. Does no damage with the spear itself." 
 
 /obj/item/kinetic_javelin_core/yellow/charged_effect(mob/living/simple_animal/hostile/victim, obj/item/kinetic_javelin/javelin,mob/user)
-	victim.Immobilize(3 SECONDS)
+	victim.apply_status_effect(STATUS_EFFECT_HOLY_FIRE)
+	javelin.remove_charge()
 
 /obj/item/kinetic_javelin_core/purple
 	name = "Loyal Kinetic Javelin Core"
