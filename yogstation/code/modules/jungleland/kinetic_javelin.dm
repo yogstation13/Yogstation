@@ -142,7 +142,8 @@
 				user.put_in_active_hand(src)
 			if(charged)
 				core.charged_effect(hit_atom,src,user)
-			charge_up()
+			else
+				charge_up()
 		else 
 			remove_charge()
 	else
@@ -155,7 +156,7 @@
 	if(!core)
 		return
 	charges += 1 
-	if(charges == 3)
+	if(charges >= max_charges)
 		if(!charged)
 			add_filter("charge_glow", 2, list("type" = "outline", "color" = core.charged_glow_color, "size" = 2))
 		core.on_charged(src)
