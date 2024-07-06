@@ -1,0 +1,7 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "Reduced kudzu spread rate at low production time"
+  - tweak: "Aggressive spread vines no longer explode you when spreading onto you"
+  - bugfix: "Fixed vine-immune mobs being hurt by aggressively spreading vines"
+  - bugfix: "Fixed aggresive spread vines damaging things under the floor"
