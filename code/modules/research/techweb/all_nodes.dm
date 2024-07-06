@@ -433,7 +433,7 @@
 	display_name = "Clown Technology"
 	description = "Honk?!"
 	prereq_ids = list("base")
-	design_ids = list("air_horn", "honker_main", "honker_peri", "honker_targ", "honk_chassis", "honk_head", "honk_torso", "honk_left_arm", "honk_right_arm",
+	design_ids = list("ci-clownset", "air_horn", "honker_main", "honker_peri", "honker_targ", "honk_chassis", "honk_head", "honk_torso", "honk_left_arm", "honk_right_arm",
 	"honk_left_leg", "honk_right_leg", "mech_banana_mortar", "mech_mousetrap_mortar", "mech_honker", "mech_punching_face", "implant_trombone", "borg_transform_clown", "clown_mine", "clownshot", "clownshoesimplant",
 	"holosignclown")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
@@ -575,7 +575,7 @@ datum/techweb_node/cyber_organs/New()
 	display_name = "Advanced Cybernetic Implants"
 	description = "Upgraded and more powerful cybernetic implants."
 	prereq_ids = list("neural_programming", "cyber_implants","integrated_HUDs")
-	design_ids = list("ci-toolset", "ci-surgery", "ci-reviver", "ci-nutrimentplus", "ci-magboots")
+	design_ids = list("ci-toolset", "ci-surgery", "ci-janitorset", "ci-botanyset", "ci-reviver", "ci-nutrimentplus", "ci-magboots")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/adv_cyber_implants/New()
