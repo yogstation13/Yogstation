@@ -117,6 +117,11 @@
 
 	return ..(target, range, speed, thrower, real_spin, diagonals_first, callback, force, quickstart)
 
+/obj/item/kinetic_javelin/after_throw(datum/callback/callback) //basically just the same proc, but without the random rotation
+	if (callback) //call the original callback
+		. = callback.Invoke()
+	item_flags &= ~IN_INVENTORY
+
 /obj/item/kinetic_javelin/proc/loyalty()
 	UnregisterSignal(src, COMSIG_MOVABLE_THROW_LANDED)
 	if(returner)
