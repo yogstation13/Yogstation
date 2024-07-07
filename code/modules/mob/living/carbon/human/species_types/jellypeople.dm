@@ -40,11 +40,10 @@
 	C.faction |= "slime"
 
 /datum/species/jelly/spec_life(mob/living/carbon/human/H)
-	if(H.stat == DEAD) //can't farm slime jelly from a dead slime/jelly person indefinitely
-		return
-
 	handle_wetness(H)
 
+	if(H.stat == DEAD) //can't farm slime jelly from a dead slime/jelly person indefinitely
+		return
 	
 	if(!H.blood_volume)
 		H.blood_volume += 5
@@ -79,18 +78,19 @@
 	if(wetness && wetness.stacks >= 1) // needs at least 1 wetness stack to do anything
 		H.add_movespeed_modifier("slime_person_wet", update = TRUE, priority = 102, multiplicative_slowdown = 0.5, blacklisted_movetypes=(FLYING|FLOATING))
 		H.adjustCloneLoss(1)
-		H.set_jitter_if_lower(10 SECONDS)
-		H.set_stutter_if_lower(1 SECONDS)
-		if(!soggy)//play once when it starts
-			H.emote("scream")
-			to_chat(H, span_userdanger("Every cell in your body begins to break down from the excess of water, get dry!"))
+		if(H.stat != DEAD)
+			H.set_jitter_if_lower(10 SECONDS)
+			H.set_stutter_if_lower(1 SECONDS)
+			if(!soggy)//play once when it starts
+				H.emote("scream")
+				to_chat(H, span_userdanger("Every cell in your body begins to break down from the excess of water, get dry!"))
 		H.adjust_wet_stacks(-1)
 		soggy = TRUE
 	else if(soggy)
 		H.remove_movespeed_modifier("slime_person_wet")
 		to_chat(H, "You breathe a sigh of relief as you dry off.")
 		soggy = FALSE
-		
+
 /datum/species/jelly/proc/Cannibalize_Body(mob/living/carbon/human/H)
 	var/list/limbs_to_consume = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG) - H.get_missing_limbs()
 	var/obj/item/bodypart/consumed_limb
