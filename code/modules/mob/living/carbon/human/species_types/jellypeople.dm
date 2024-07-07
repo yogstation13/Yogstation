@@ -50,24 +50,20 @@
 		H.adjustBruteLoss(5)
 		to_chat(H, span_danger("You feel empty!"))
 
-	var/blood_level_normal = BLOOD_VOLUME_NORMAL(H)
-	var/blood_level_okay = BLOOD_VOLUME_OKAY(H) //gotta pre-define these because beyond doesn't like having initial() in switch statements
-	var/blood_level_bad = BLOOD_VOLUME_BAD(H)
-
 	switch(H.blood_volume)
-		if(0 to blood_level_bad)
+		if(0 to (BLOOD_VOLUME_GENERIC * BLOOD_BAD_MULTI))
 			Cannibalize_Body(H)
 
-		if(blood_level_bad to blood_level_okay)
+		if((BLOOD_VOLUME_GENERIC * BLOOD_BAD_MULTI) to (BLOOD_VOLUME_GENERIC * BLOOD_OKAY_MULTI))
 			if(prob(5))
 				to_chat(H, span_danger("You feel drained!"))
 
-		if(blood_level_okay to blood_level_normal)
+		if((BLOOD_VOLUME_GENERIC * BLOOD_OKAY_MULTI) to BLOOD_VOLUME_GENERIC)
 			if(H.nutrition >= NUTRITION_LEVEL_STARVING)
 				H.blood_volume += 3
 				H.adjust_nutrition(-2.5)
 
-		if(blood_level_normal to INFINITY)
+		if(BLOOD_VOLUME_GENERIC to INFINITY)
 			H.adjustCloneLoss(-0.5) //slowly re-knit cell damage
 
 	if(regenerate_limbs)
