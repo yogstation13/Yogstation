@@ -31,7 +31,7 @@
 	item_state = "kinetic_javelin"
 	force = 10
 	throw_range = 7
-	throw_speed = 1
+	throw_speed = 1.5
 	w_class = WEIGHT_CLASS_NORMAL
 	/// Base damage before any multipliers
 	var/unmodified_throwforce = 15
@@ -101,10 +101,21 @@
 		. += "You can insert a core by using it on the javelin."
 
 /obj/item/kinetic_javelin/throw_at(atom/target, range, speed, mob/thrower, spin, diagonals_first, datum/callback/callback, force, quickstart)
-	if(always_recall && thrower)
-		RegisterSignal(src, COMSIG_MOVABLE_THROW_LANDED, PROC_REF(loyalty))
-		returner = thrower
-	return ..()
+	var/real_spin = spin
+	if(thrower && core)
+		if(always_recall)
+			RegisterSignal(src, COMSIG_MOVABLE_THROW_LANDED, PROC_REF(loyalty))
+			returner = thrower
+		real_spin = FALSE //disable the spin if a person threw it
+
+		//point the spear in the direction it's being thrown
+		var/angle = get_angle(target, thrower)
+		var/matrix/turn_matrix = matrix(transform)
+		turn_matrix.Turn(angle)
+		turn_matrix.Turn(135) //because the javelin sprite itself is angled
+		transform = turn_matrix
+
+	return ..(target, range, speed, thrower, real_spin, diagonals_first, callback, force, quickstart)
 
 /obj/item/kinetic_javelin/proc/loyalty()
 	UnregisterSignal(src, COMSIG_MOVABLE_THROW_LANDED)
@@ -241,13 +252,15 @@
 	javelin_item_state = "kinetic_javelin_purple"
 
 /obj/item/kinetic_javelin_core/purple/get_effect_description()
-	return "Kinetic spear will always be able to be recalled, even when you miss an enemy." 
+	return "Kinetic spear will always be able to be recalled, even when you miss an enemy. Halves flight speed." 
 
 /obj/item/kinetic_javelin_core/purple/on_insert(obj/item/kinetic_javelin/javelin)
 	javelin.always_recall = TRUE
+	javelin.throw_speed = initial(javelin.throw_speed)/2
 
 /obj/item/kinetic_javelin_core/purple/on_remove(obj/item/kinetic_javelin/javelin)
 	javelin.always_recall = FALSE
+	javelin.throw_speed = initial(javelin.throw_speed)
 
 /obj/item/kinetic_javelin/blue 
 	core = /obj/item/kinetic_javelin_core/blue
