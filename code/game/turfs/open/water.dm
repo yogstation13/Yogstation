@@ -22,7 +22,7 @@
 	icon_state = "riverwater_motion"
 	base_icon_state = "smoothwater"
 	layer = HIGH_TURF_LAYER //so it draws above other turf
-	transform = MAP_SWITCH(TRANSLATE_MATRIX(-4, -4), matrix()) //since smoothwater.dmi is a 40x40 size sprite, we shift it slightly down and to the left so it stays centered
+	transform = MAP_SWITCH(TRANSLATE_MATRIX(-6, -6), matrix()) //since smoothwater.dmi is a 44x44 size sprite, we shift it slightly down and to the left so it stays centered
 
 	smoothing_groups = SMOOTH_GROUP_TURF_WATER
 	canSmoothWith = SMOOTH_GROUP_TURF_WATER //so it only smooths with other water
