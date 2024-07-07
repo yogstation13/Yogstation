@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Robotic tongues no longer make you speak like an IPC"
+  - bugfix: "IPC insurgents no longer try to disguise as a gorilla"
