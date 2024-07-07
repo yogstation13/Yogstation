@@ -48,6 +48,10 @@
 	if(!isplasmaman(H)) //no killing plasmies
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/costume/kilt/highlander(H), ITEM_SLOT_ICLOTHING)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/highlander(H), ITEM_SLOT_HEAD)
+		if(isvox(H))
+			H.equip_to_slot_or_del(new /obj/item/tank/internals/emergency_oxygen/vox(H), ITEM_SLOT_BELT)
+			H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), ITEM_SLOT_MASK)
+			H.open_internals(H.get_item_by_slot(ITEM_SLOT_BELT))
 	else
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/plasmaman(H), ITEM_SLOT_ICLOTHING)
 		H.equip_to_slot_or_del(new /obj/item/tank/internals/plasmaman/belt/full(H), ITEM_SLOT_BELT)

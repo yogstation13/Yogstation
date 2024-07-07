@@ -1063,7 +1063,7 @@
 	return ..()
 
 /datum/status_effect/broken_will/tick()
-	if(is_darkspawn_or_thrall(owner) || owner.stat == DEAD)
+	if(is_team_darkspawn(owner) || owner.stat == DEAD)
 		qdel(src)
 		return
 	owner.Unconscious(15)

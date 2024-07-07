@@ -61,7 +61,7 @@
 	for(var/mob/living/user as anything in range(2, get_turf(src)))
 		if(!istype(user))
 			continue
-		if(is_darkspawn_or_thrall(user))
+		if(is_team_darkspawn(user))
 			continue
 		var/turf/target = get_ranged_target_turf(user, get_dir(M, user))
 		user.throw_at(target, 2, 2, M)

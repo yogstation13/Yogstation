@@ -11,8 +11,16 @@
 
 /datum/component/storage/concrete/bluespace/bag_of_holding/proc/recursive_insertion(obj/item/W, mob/living/user)
 	var/atom/A = parent
+	var/client/asked = user.client //store the client that is responding to the prompt
 	var/safety = tgui_alert(user, "Doing this will have extremely dire consequences for the station and its crew. Be sure you know what you're doing.", "Put in [A.name]?", list("Proceed", "Abort"))
-	if(safety != "Proceed" || QDELETED(A) || QDELETED(W) || QDELETED(user) || !user.canUseTopic(A, BE_CLOSE, iscarbon(user)) || !user.canUseTopic(W, BE_CLOSE, iscarbon(user)))
+	if(safety != "Proceed")
+		return
+	//get the mob of the client that responded to the prompt
+	var/mob/living/responder = asked.mob 
+	//this ensures that if someone can swap mob bodies while the prompt is open, they can't use that prompt to remotely detonate the BoH bomb that's on that other body
+	if(QDELETED(A) || QDELETED(W) || QDELETED(responder))
+		return
+	if(!responder.canUseTopic(A, BE_CLOSE, iscarbon(responder)) || !responder.canUseTopic(W, BE_CLOSE, iscarbon(user)))
 		return
 	var/turf/loccheck = get_turf(A)
 	if(is_reebe(loccheck.z))

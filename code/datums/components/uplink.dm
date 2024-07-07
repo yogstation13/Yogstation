@@ -4,6 +4,29 @@ GLOBAL_LIST_EMPTY(uplinks)
 #define NT_ERT_TROOPER 1
 #define NT_ERT_MEDIC 2
 #define NT_ERT_ENGINEER 3
+
+#define UPLINK_CATEGORY_DISCOUNTS "Discounts"
+#define UPLINK_CATEGORY_BUNDLES "Bundles"
+#define UPLINK_CATEGORY_CONSPICUOUS "Conspicuous Weapons"
+#define UPLINK_CATEGORY_STEALTH_WEAPONS "Stealthy Weapons"
+#define UPLINK_CATEGORY_AMMO "Ammunition"
+#define UPLINK_CATEGORY_EXPLOSIVES "Explosives"
+#define UPLINK_CATEGORY_SUPPORT "Support and Exosuits"
+#define UPLINK_CATEGORY_STEALTH_GADGETS "Stealth Gadgets"
+#define UPLINK_CATEGORY_SPACE_SUITS "Space Suits"
+#define UPLINK_CATEGORY_IMPLANTS "Implants"
+#define UPLINK_CATEGORY_INFILTRATION "Infiltration Gear"
+#define UPLINK_CATEGORY_SPECIES "Species-Restricted"
+#define UPLINK_CATEGORY_ROLE "Role-Restricted"
+#define UPLINK_CATEGORY_MISC "Misc. Gadgets"
+#define UPLINK_CATEGORY_BADASS "(Pointless) Badassery"
+#define UPLINK_CATEGORY_ENERGY "Energy Weapons"
+#define UPLINK_CATEGORY_BALLISTIC "Ballistic Weapons"
+#define UPLINK_CATEGORY_EXOSUITS "Exosuits"
+#define UPLINK_CATEGORY_CQC "Close Quarters Combat"
+#define UPLINK_CATEGORY_NT_SUPPORT "Support"
+#define UPLINK_CATEGORY_HARDSUITS "Armor & Hardsuits"
+#define UPLINK_CATEGORY_OTHER "Other Gear"
 /**
  * Uplinks
  *

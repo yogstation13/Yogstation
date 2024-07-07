@@ -1,7 +1,7 @@
 /datum/species/plasmaman
 	name = "Plasmaman"
 	plural_form = "Plasmamen"
-	id = "plasmaman"
+	id = SPECIES_PLASMAMAN
 	say_mod = "rattles"
 	possible_genders = list(PLURAL)
 	meat = /obj/item/stack/sheet/mineral/plasma
@@ -28,7 +28,8 @@
 	liked_food = DAIRY
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 	species_language_holder = /datum/language_holder/plasmaman
-	
+	survival_box_replacements = list(items_to_delete = list(/obj/item/clothing/mask/breath, /obj/item/tank/internals/emergency_oxygen),\
+											 new_items = list(/obj/item/tank/internals/plasmaman/belt))
 	screamsound = list('sound/voice/plasmaman/plasmeme_scream_1.ogg', 'sound/voice/plasmaman/plasmeme_scream_2.ogg', 'sound/voice/plasmaman/plasmeme_scream_3.ogg')
 
 	smells_like = "plasma-caked calcium"
@@ -206,7 +207,7 @@
 	return BUTT_SPRITE_PLASMA
 
 /datum/species/plasmaman/get_species_description()
-	return "Reanimated skeletons of those who died in plasma fires, plasmamen are the first alien sapient beings to be \
+	return "Reanimated skeletons of those who died in plasma fires, plasmamen were the first sapient alien beings to be \
 		discovered, even though they're mainly former humans. While horrifying, most manage to return to their previous position in society before their transformation."
 
 /datum/species/plasmaman/get_species_lore()
@@ -246,47 +247,52 @@
 	to_add += list(
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "user-shield",
-			SPECIES_PERK_NAME = "Protected",
-			SPECIES_PERK_DESC = "Plasmamen are immune to radiation, poisons, and most diseases.",
+			SPECIES_PERK_ICON = "user-astronaut",
+			SPECIES_PERK_NAME = "The Suit",
+			SPECIES_PERK_DESC = "Plasmamen begin wearing an airtight envirosuit, which they are dependant on to stay alive. \
+								Their envirohelm is also space-worthy, provides welding protection, and has a built-in headlamp.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "skull",
+			SPECIES_PERK_NAME = "Hazard-Born",
+			SPECIES_PERK_DESC = "Plasmamen are reborn in the plasmafires they died in. \
+								They're completely immune to husking, starving, the cold, and most diseases.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "bone",
-			SPECIES_PERK_NAME = "Wound Resistance",
-			SPECIES_PERK_DESC = "Plasmamen have higher tolerance for damage that would wound others.",
-		),
-		list(
-			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "wind",
-			SPECIES_PERK_NAME = "Plasma Healing",
-			SPECIES_PERK_DESC = "Plasmamen can heal wounds by consuming plasma.",
-		),
-		list(
-			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "hard-hat",
-			SPECIES_PERK_NAME = "Protective Helmet",
-			SPECIES_PERK_DESC = "Plasmamen's helmets provide them shielding from the flashes of welding, as well as an inbuilt flashlight.",
+			SPECIES_PERK_NAME = "Bones of Steel",
+			SPECIES_PERK_DESC = "Plasmamen have tough bones infused with solid plasma. \
+								They only suffer fracture wounds, and are generally harder to wound.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "fire",
-			SPECIES_PERK_NAME = "Living Torch",
-			SPECIES_PERK_DESC = "Plasmamen instantly ignite when their body makes contact with oxygen.",
+			SPECIES_PERK_NAME = "Phlogiston",
+			SPECIES_PERK_DESC = "Plasmamen have a makeup of solid, volatile plasma. \
+								Exposure to oxygen gas will ignite this plasma, instantly setting them ablaze.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-			SPECIES_PERK_ICON = "wind",
-			SPECIES_PERK_NAME = "Plasma Breathing",
-			SPECIES_PERK_DESC = "Plasmamen must breathe plasma to survive. You receive a tank when you arrive.",
+			SPECIES_PERK_ICON = "lungs",
+			SPECIES_PERK_NAME = "Baroxuldium Breath",
+			SPECIES_PERK_DESC = "Plasmamen can breathe plasma gas safely, but oxygen is highly toxic. \
+								They receive a tank that can last most of the shift on arrival, and have a spare in their emergency box",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-			SPECIES_PERK_ICON = "briefcase-medical",
-			SPECIES_PERK_NAME = "Complex Biology",
-			SPECIES_PERK_DESC = "Plasmamen take specialized medical knowledge to be \
-				treated. Do not expect speedy revival, if you are lucky enough to get \
-				one at all.",
+			SPECIES_PERK_ICON = "heart-circle-exclamation",
+			SPECIES_PERK_NAME = "Heartless Husks",
+			SPECIES_PERK_DESC = "Plasmamen, since their violent rebirth, do not have hearts. \
+								Combined with how they react to oxygen, surgery and revival may be difficult.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "dna",
+			SPECIES_PERK_NAME = "Charred Genome",
+			SPECIES_PERK_DESC = "Plasmaman DNA is too rigid and burnt to hold a genetic sequence, and can't be affect by genetic mutations at all. \
+								Despite this, they can still be cloned.",
 		),
 	)
 
