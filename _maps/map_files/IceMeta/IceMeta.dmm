@@ -5274,15 +5274,6 @@
 /mob/living/simple_animal/pet/axolotl/bop,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
-"bBJ" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
 "bBL" = (
 /obj/machinery/newscaster{
 	pixel_x = 28;
@@ -23479,12 +23470,20 @@
 /turf/open/floor/plasteel/dark,
 /area/teleporter)
 "gTy" = (
-/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "gTJ" = (
 /obj/machinery/light{
 	dir = 8
@@ -66717,13 +66716,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/white,
 /area/science/explab)
-"tly" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating,
-/area/maintenance/disposal)
 "tlF" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -247196,7 +247188,7 @@ uwd
 aJi
 iQj
 jGH
-hoN
+gTy
 uZS
 wMw
 cTz
@@ -247710,7 +247702,7 @@ lWb
 aJi
 tdO
 trI
-hoN
+gTy
 whk
 uFJ
 lEw
