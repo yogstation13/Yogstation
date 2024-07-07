@@ -588,21 +588,17 @@ update_label("John Doe", "Clowny")
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 
-/obj/item/card/id/synthetic
+/obj/item/card/id/silver/synthetic
 	name = "synthetic identification card"
 	desc = "An integrated card that allows synthetic units access across the station."
-	icon_state = "id_silver"
-	item_state = "silver_id"
-	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
-	item_flags = DROPDEL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	item_flags = DROPDEL
 
-/obj/item/card/id/synthetic/Initialize(mapload)
+/obj/item/card/id/silver/synthetic/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, SYNTHETIC_TRAIT)
 
-/obj/item/card/id/synthetic/GetAccess()
+/obj/item/card/id/silver/synthetic/GetAccess()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		if(H.mind)
@@ -611,7 +607,7 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/syndicate
 	name = "agent card"
-	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE, ACCESS_MINERAL_STOREROOM)
 	var/anyone = FALSE //Can anyone forge the ID or just syndicate?
 	var/forged = FALSE //have we set a custom name and job assignment, or will we use what we're given when we chameleon change?
 
@@ -661,7 +657,7 @@ update_label("John Doe", "Clowny")
 
 			var/newAge = input(user, "Choose the ID's age:\n([AGE_MIN]-[AGE_MAX])", "Agent card age") as num|null
 			if(newAge)
-				registered_age = max(round(text2num(newAge)), 0)
+				registered_age = clamp(round(text2num(newAge)), AGE_MIN, AGE_MAX)
 
 			registered_name = input_name
 			assignment = target_occupation

@@ -81,7 +81,7 @@
 		T.atmos_spawn_air("plasma=[reac_volume];TEMP=[temp]")
 	return
 
-/datum/reagent/toxin/plasma/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)//Splashing people with plasma is stronger than fuel!
+/datum/reagent/toxin/plasma/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)//Splashing people with plasma is stronger than fuel!
 	if(methods & (TOUCH|VAPOR))
 		M.adjust_fire_stacks(reac_volume / 5)
 		return
@@ -176,7 +176,7 @@
 	L.cure_fakedeath(type)
 	..()
 
-/datum/reagent/toxin/zombiepowder/reaction_mob(mob/living/L, methods=TOUCH, reac_volume)
+/datum/reagent/toxin/zombiepowder/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	L.adjustOxyLoss(0.5*REM, 0)
 	if(methods & INGEST)
 		var/datum/reagent/toxin/zombiepowder/Z = L.reagents.has_reagent(/datum/reagent/toxin/zombiepowder)
@@ -231,6 +231,10 @@
 		M.adjust_hallucinations(20 SECONDS)
 	return ..()
 
+/datum/reagent/toxin/mindbreaker/changeling
+	name = "Mind Destroyer Toxin"
+	description = "An even more powerful hallucinogen only created by changeling toxin sacs. Not a thing to be messed with."
+
 /datum/reagent/toxin/relaxant
 	name = "Muscle Relaxant"
 	description = "A potent paralytic chemical that causes the patient to move and act slower."
@@ -262,7 +266,7 @@
 		var/obj/structure/spacevine/SV = O
 		SV.on_chem_effect(src)
 
-/datum/reagent/toxin/plantbgone/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+/datum/reagent/toxin/plantbgone/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(istype(M, /mob/living/simple_animal/hostile/venus_human_trap))
 		var/mob/living/simple_animal/hostile/venus_human_trap/planty = M
 		planty.weedkiller(reac_volume * 2)
@@ -284,7 +288,7 @@
 	color = "#4B004B" // rgb: 75, 0, 75
 	toxpwr = 1
 
-/datum/reagent/toxin/pestkiller/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+/datum/reagent/toxin/pestkiller/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	..()
 	if(M.mob_biotypes & MOB_BUG)
 		var/damage = min(round(0.4*reac_volume, 0.1),10)
@@ -409,7 +413,7 @@
 	glass_desc = "A drink that is guaranteed to knock you silly."
 	var/list/paralyzeparts = list(TRAIT_PARALYSIS_L_ARM, TRAIT_PARALYSIS_R_ARM, TRAIT_PARALYSIS_R_LEG, TRAIT_PARALYSIS_L_LEG)
 
-/datum/reagent/toxin/staminatoxin/neurotoxin_alien/reaction_mob(mob/living/M, methods, reac_volume, show_message, permeability)
+/datum/reagent/toxin/staminatoxin/neurotoxin_alien/reaction_mob(mob/living/M, methods, reac_volume, show_message = TRUE, permeability = 1)
 	. = ..()
 	var/amount = round(max(reac_volume * clamp(permeability, 0, 1), 0.1))
 	if(amount >= 0.5 && !isalien(M))
@@ -976,7 +980,7 @@
 		if(M.dna.species.type != /datum/species/skeleton && M.dna.species.type != /datum/species/plasmaman) //We're so sorry skeletons, you're so misunderstood
 			if(bp)
 				bp.receive_damage(20, 0, 200, wound_bonus = rand(30, 130))
-				playsound(M, get_sfx("desceration"), 50, TRUE, -1)
+				playsound(M, get_sfx(SFX_DESCERATION), 50, TRUE, -1)
 				M.visible_message(span_warning("[M]'s bones hurt too much!!"), span_danger("Your bones hurt too much!!"))
 				M.say("OOF!!", forced = /datum/reagent/toxin/bonehurtingjuice)
 			else //SUCH A LUST FOR REVENGE!!!
@@ -984,7 +988,7 @@
 				M.say("Why are we still here, just to suffer?", forced = /datum/reagent/toxin/bonehurtingjuice)
 		else //you just want to socialize
 			if(bp)
-				playsound(M, get_sfx("desceration"), 50, TRUE, -1)
+				playsound(M, get_sfx(SFX_DESCERATION), 50, TRUE, -1)
 				M.visible_message(span_warning("[M] rattles loudly and flails around!!"), span_danger("Your bones hurt so much that your missing muscles spasm!!"))
 				M.say("OOF!!", forced=/datum/reagent/toxin/bonehurtingjuice)
 				bp.receive_damage(200, 0, 0) //But I don't think we should

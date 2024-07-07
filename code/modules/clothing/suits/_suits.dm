@@ -12,7 +12,7 @@
 	var/blood_overlay_type = "suit"
 	var/togglename = null
 	var/suittoggled = FALSE
-	var/mutantrace_variation = NO_MUTANTRACE_VARIATION
+	var/mutantrace_variation = NONE
 	var/adjusted = NORMAL_STYLE
 	limb_integrity = 0 // disabled for most exo-suits
 	var/obj/item/badge/attached_badge
@@ -23,13 +23,15 @@
 		QDEL_NULL(attached_badge)
 	return ..()
 
-/obj/item/clothing/suit/worn_overlays(isinhands = FALSE)
+/obj/item/clothing/suit/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(!isinhands)
 		if(damaged_clothes)
 			. += mutable_appearance('icons/effects/item_damage.dmi', "damageduniform")
 		if(HAS_BLOOD_DNA(src))
 			var/mutable_appearance/bloody_armor = mutable_appearance('icons/effects/blood.dmi', "[blood_overlay_type]blood")
+			if(species_fitted && icon_exists(bloody_armor.icon, "[bloody_armor.icon_state]_[species_fitted]")) 
+				bloody_armor.icon_state = "[bloody_armor.icon_state]_[species_fitted]"
 			bloody_armor.color = get_blood_dna_color(return_blood_DNA())
 			. += bloody_armor
 		var/mob/living/carbon/human/M = loc
@@ -74,7 +76,7 @@
 		return
 	if(user)
 		to_chat(user, span_notice("You attach [I] to [src]."))
-	badge_overlay = mutable_appearance(attached_badge.mob_overlay_icon, "[attached_badge.accessory_state]")
+	badge_overlay = mutable_appearance(attached_badge.worn_icon, "[attached_badge.accessory_state]")
 	badge_overlay.alpha = attached_badge.alpha
 	badge_overlay.color = attached_badge.color
 	if(ishuman(loc))

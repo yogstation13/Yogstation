@@ -98,6 +98,8 @@
 	return TRUE
 
 /turf/closed/wall/proc/dismantle_wall(devastated = FALSE, explode = FALSE)
+	if(resistance_flags & INDESTRUCTIBLE)
+		return
 	if(devastated)
 		devastate_wall()
 	else
@@ -126,6 +128,8 @@
 		new /obj/item/stack/sheet/metal(src)
 
 /turf/closed/wall/ex_act(severity, target)
+	if(resistance_flags & INDESTRUCTIBLE)
+		return
 	if(target == src)
 		dismantle_wall(TRUE, TRUE)
 		return
@@ -199,13 +203,14 @@
 	var/turf/T = user.loc	//get user's location for delay checks
 
 	//the istype cascade has been spread among various procs for easy overriding
-	if(try_clean(attacking_item, user, T) || try_wallmount(attacking_item, user, T) || try_decon(attacking_item, user, T))
+	var/list/modifiers = params2list(params)
+	if(try_decon(attacking_item, user, T, modifiers) || try_clean(attacking_item, user, T) || try_wallmount(attacking_item, user, T))
 		return
 
-	return ..() || (attacking_item.attack_atom(src, user))
+	return ..() || (attacking_item.attack_atom(src, user, params))
 
-/turf/closed/wall/proc/try_clean(obj/item/W, mob/user, turf/T)
-	if(user.a_intent == INTENT_HARM)
+/turf/closed/wall/proc/try_clean(obj/item/W, mob/living/user, turf/T, modifiers)
+	if(user.combat_mode)
 		return FALSE
 
 	if(W.tool_behaviour == TOOL_WELDER)
@@ -245,7 +250,10 @@
 
 	return FALSE
 
-/turf/closed/wall/proc/try_decon(obj/item/I, mob/user, turf/T)
+/turf/closed/wall/proc/try_decon(obj/item/I, mob/user, turf/T, modifiers)
+	if(!(modifiers && modifiers[RIGHT_CLICK]))
+		return FALSE
+
 	if(I.tool_behaviour == TOOL_WELDER)
 		if(!I.tool_start_check(user, amount=0))
 			return FALSE

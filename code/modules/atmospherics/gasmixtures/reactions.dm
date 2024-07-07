@@ -373,7 +373,7 @@
 
 		var/new_heat_capacity = air.heat_capacity()
 		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
-			air.set_temperature(clamp(((old_thermal_energy + reaction_energy)/new_heat_capacity),TCMB,INFINITY))
+			air.set_temperature(clamp(((old_thermal_energy + reaction_energy)/(new_heat_capacity*0.8)),TCMB,INFINITY))
 		return REACTING
 
 /datum/gas_reaction/nitriumformation //The formation of nitrium. Endothermic. Requires N2O as a catalyst.

@@ -8,8 +8,8 @@
 	var/modifies_speech = FALSE
 	var/mask_adjusted = 0
 	var/adjusted_flags = null
-	var/mutantrace_variation = NO_MUTANTRACE_VARIATION //Are there special sprites for specific situations? Don't use this unless you need to.
-	var/mutantrace_adjusted = NO_MUTANTRACE_VARIATION //Are there special sprites for specific situations? Don't use this unless you need to.
+	var/mutantrace_variation = NONE //Are there special sprites for specific situations? Don't use this unless you need to.
+	var/mutantrace_adjusted = NONE //Are there special sprites for specific situations? Don't use this unless you need to.
 
 /obj/item/clothing/mask/attack_self(mob/user)
 	if(CHECK_BITFIELD(clothing_flags, VOICEBOX_TOGGLABLE))
@@ -30,7 +30,7 @@
 
 /obj/item/clothing/mask/proc/handle_speech()
 
-/obj/item/clothing/mask/worn_overlays(isinhands = FALSE)
+/obj/item/clothing/mask/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(!isinhands)
 		if(body_parts_covered & HEAD)
@@ -38,6 +38,8 @@
 				. += mutable_appearance('icons/effects/item_damage.dmi', "damagedmask")
 			if(HAS_BLOOD_DNA(src))
 				var/mutable_appearance/bloody_mask = mutable_appearance('icons/effects/blood.dmi', "maskblood")
+				if(species_fitted && icon_exists(bloody_mask.icon, "maskblood_[species_fitted]")) 
+					bloody_mask.icon_state = "maskblood_[species_fitted]"
 				bloody_mask.color = get_blood_dna_color(return_blood_DNA())
 				. += bloody_mask
 

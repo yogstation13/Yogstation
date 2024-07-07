@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(atoms)
 		testing("Late initialized [late_loaders.len] atoms")
 		late_loaders.Cut()
 
-	if (created_atoms)
+	if(created_atoms)
 		atoms_to_return += created_atoms
 		created_atoms = null
 

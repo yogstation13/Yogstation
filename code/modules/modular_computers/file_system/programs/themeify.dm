@@ -8,6 +8,7 @@
 	size = 2
 	available_on_ntnet = TRUE
 	requires_ntnet = FALSE
+	category = PROGRAM_CATEGORY_DEVICE
 	tgui_id = "NtosThemeConfigure"
 	program_icon="paint-roller"
 

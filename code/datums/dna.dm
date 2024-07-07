@@ -161,11 +161,13 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 
 	switch(holder.gender)
 		if(MALE)
-			L[DNA_GENDER_BLOCK] = construct_block(G_MALE, 3)
+			L[DNA_GENDER_BLOCK] = construct_block(G_MALE, GENDERS)
 		if(FEMALE)
-			L[DNA_GENDER_BLOCK] = construct_block(G_FEMALE, 3)
+			L[DNA_GENDER_BLOCK] = construct_block(G_FEMALE, GENDERS)
+		if(NEUTER)
+			L[DNA_GENDER_BLOCK] = construct_block(G_NEUTER, GENDERS)
 		else
-			L[DNA_GENDER_BLOCK] = construct_block(G_PLURAL, 3)
+			L[DNA_GENDER_BLOCK] = construct_block(G_PLURAL, GENDERS)
 	if(ishuman(holder))
 		var/mob/living/carbon/human/H = holder
 		if(!GLOB.hair_styles_list.len)
@@ -189,6 +191,8 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 
 	if(features["mcolor"])
 		L[DNA_MUTANT_COLOR_BLOCK] = sanitize_hexcolor(features["mcolor"], include_crunch = FALSE)
+	if(features["mcolor_secondary"])
+		L[DNA_MUTANT_COLOR_SECONDARY] = sanitize_hexcolor(features["mcolor_secondary"], include_crunch = FALSE)
 	if(features["body_markings"])
 		L[DNA_LIZARD_MARKINGS_BLOCK] = construct_block(GLOB.body_markings_list.Find(features["body_markings"]), GLOB.body_markings_list.len)
 	if(features["tail_lizard"])
@@ -229,6 +233,16 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		L[DNA_POD_HAIR_BLOCK] = construct_block(GLOB.pod_hair_list.Find(features["pod_hair"]), GLOB.pod_hair_list.len)
 	if(features["pod_flower"])
 		L[DNA_POD_FLOWER_BLOCK] = construct_block(GLOB.pod_flower_list.Find(features["pod_flower"]), GLOB.pod_flower_list.len)
+	if(features["vox_quills"])
+		L[DNA_VOX_QUILLS_BLOCK] = construct_block(GLOB.vox_quills_list.Find(features["vox_quills"]), GLOB.vox_quills_list.len)
+	if(features["vox_facial_quills"])
+		L[DNA_VOX_FACIAL_QUILLS_BLOCK] = construct_block(GLOB.vox_facial_quills_list.Find(features["vox_facial_quills"]), GLOB.vox_facial_quills_list.len)
+	if(features["vox_tail_markings"])
+		L[DNA_VOX_TAIL_MARKINGS_BLOCK] = construct_block(GLOB.vox_tail_markings_list.Find(features["vox_tail_markings"]), GLOB.vox_tail_markings_list.len)
+	if(features["vox_body_markings"])
+		L[DNA_VOX_BODY_MARKINGS_BLOCK] = construct_block(GLOB.vox_body_markings_list.Find(features["vox_body_markings"]), GLOB.vox_body_markings_list.len)
+	if(features["vox_skin_tone"])
+		L[DNA_VOX_SKIN_TONE_BLOCK] = construct_block(GLOB.vox_skin_tones.Find(features["vox_skin_tone"]), GLOB.vox_skin_tones.len)
 
 	for(var/blocknum in 1 to DNA_FEATURE_BLOCKS)
 		. += L[blocknum] || random_string(GET_UI_BLOCK_LEN(blocknum), GLOB.hex_characters)
@@ -326,11 +340,13 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		if(DNA_GENDER_BLOCK)
 			switch(H.gender)
 				if(MALE)
-					set_uni_identity_block(blocknumber, construct_block(G_MALE, 3))
+					set_uni_identity_block(blocknumber, construct_block(G_MALE, GENDERS))
 				if(FEMALE)
-					set_uni_identity_block(blocknumber, construct_block(G_FEMALE, 3))
+					set_uni_identity_block(blocknumber, construct_block(G_FEMALE, GENDERS))
+				if(NEUTER)
+					set_uni_identity_block(blocknumber, construct_block(G_NEUTER, GENDERS))
 				else
-					set_uni_identity_block(blocknumber, construct_block(G_PLURAL, 3))
+					set_uni_identity_block(blocknumber, construct_block(G_PLURAL, GENDERS))
 		if(DNA_FACIAL_HAIR_STYLE_BLOCK)
 			set_uni_identity_block(blocknumber, construct_block(GLOB.facial_hair_styles_list.Find(H.facial_hair_style), GLOB.facial_hair_styles_list.len))
 		if(DNA_HAIR_STYLE_BLOCK)
@@ -344,6 +360,8 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	switch(blocknumber)
 		if(DNA_MUTANT_COLOR_BLOCK)
 			set_uni_feature_block(blocknumber, sanitize_hexcolor(features["mcolor"], include_crunch = FALSE))
+		if(DNA_MUTANT_COLOR_SECONDARY)
+			set_uni_feature_block(blocknumber, sanitize_hexcolor(features["mcolor_secondary"], include_crunch = FALSE))
 		if(DNA_LIZARD_MARKINGS_BLOCK)
 			set_uni_feature_block(blocknumber, construct_block(GLOB.body_markings_list.Find(features["body_markings"]), GLOB.body_markings_list.len))
 		if(DNA_LIZARD_TAIL_BLOCK)
@@ -384,6 +402,16 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 			set_uni_feature_block(blocknumber, construct_block(GLOB.pod_hair_list.Find(features["pod_hair"]), GLOB.pod_hair_list.len))
 		if(DNA_POD_FLOWER_BLOCK)
 			set_uni_feature_block(blocknumber, construct_block(GLOB.pod_flower_list.Find(features["pod_flower"]), GLOB.pod_flower_list.len))
+		if(DNA_VOX_QUILLS_BLOCK)
+			set_uni_feature_block(blocknumber, construct_block(GLOB.vox_quills_list.Find(features["vox_quills"]), GLOB.vox_quills_list.len))
+		if(DNA_VOX_FACIAL_QUILLS_BLOCK)
+			set_uni_feature_block(blocknumber, construct_block(GLOB.vox_facial_quills_list.Find(features["vox_facial_quills"]), GLOB.vox_facial_quills_list.len))
+		if(DNA_VOX_TAIL_MARKINGS_BLOCK)
+			set_uni_feature_block(blocknumber, construct_block(GLOB.vox_tail_markings_list.Find(features["vox_tail_markings"]), GLOB.vox_tail_markings_list.len))
+		if(DNA_VOX_BODY_MARKINGS_BLOCK)
+			set_uni_feature_block(blocknumber, construct_block(GLOB.vox_body_markings_list.Find(features["vox_body_markings"]), GLOB.vox_body_markings_list.len))
+		if(DNA_VOX_SKIN_TONE_BLOCK)
+			set_uni_feature_block(blocknumber, construct_block(GLOB.vox_skin_tones.Find(features["vox_skin_tone"]), GLOB.vox_skin_tones.len))
 
 //Please use add_mutation or activate_mutation instead
 /datum/dna/proc/force_give(datum/mutation/human/HM)
@@ -483,6 +511,8 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 
 
 /mob/living/carbon/set_species(datum/species/mrace, icon_update = TRUE, pref_load = FALSE)
+	if(HAS_TRAIT(src, TRAIT_SPECIESLOCK))//can't swap species
+		return
 	if(mrace && has_dna())
 		var/datum/species/new_race
 		if(ispath(mrace))
@@ -571,11 +601,13 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	if(!has_dna())
 		return
 
-	switch(deconstruct_block(get_uni_identity_block(dna.unique_identity, DNA_GENDER_BLOCK), 3))
+	switch(deconstruct_block(get_uni_identity_block(dna.unique_identity, DNA_GENDER_BLOCK), GENDERS))
 		if(G_MALE)
 			gender = MALE
 		if(G_FEMALE)
 			gender = FEMALE
+		if(G_NEUTER)
+			gender = NEUTER
 		else
 			gender = PLURAL
 
@@ -588,12 +620,18 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	eye_color = sanitize_hexcolor(get_uni_identity_block(structure, DNA_EYE_COLOR_BLOCK))
 	facial_hair_style = GLOB.facial_hair_styles_list[deconstruct_block(get_uni_identity_block(structure, DNA_FACIAL_HAIR_STYLE_BLOCK), GLOB.facial_hair_styles_list.len)]
 	if(HAS_TRAIT(src, TRAIT_BALD))
-		hair_style = "Bald"	
+		if(isvox(src))
+			dna.features["vox_quills"] = "None"
+			dna.update_uf_block(DNA_VOX_QUILLS_BLOCK)
+		else
+			hair_style = "Bald"	
 	else
 		hair_style = GLOB.hair_styles_list[deconstruct_block(get_uni_identity_block(structure, DNA_HAIR_STYLE_BLOCK), GLOB.hair_styles_list.len)]
 	var/features = dna.unique_features
 	if(dna.features["mcolor"])
 		dna.features["mcolor"] = sanitize_hexcolor(get_uni_feature_block(features, DNA_MUTANT_COLOR_BLOCK))
+	if(dna.features["mcolor_secondary"])
+		dna.features["mcolor_secondary"] = sanitize_hexcolor(get_uni_feature_block(features, DNA_MUTANT_COLOR_SECONDARY))
 	if(dna.features["body_markings"])
 		dna.features["body_markings"] = GLOB.body_markings_list[deconstruct_block(get_uni_feature_block(features, DNA_LIZARD_MARKINGS_BLOCK), GLOB.body_markings_list.len)]
 	if(dna.features["tail_lizard"])
@@ -637,6 +675,16 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		dna.features["pod_hair"] = GLOB.pod_hair_list[deconstruct_block(get_uni_feature_block(features, DNA_POD_HAIR_BLOCK), GLOB.pod_hair_list.len)]
 	if(dna.features["pod_flower"])
 		dna.features["pod_flower"] = GLOB.pod_flower_list[deconstruct_block(get_uni_feature_block(features, DNA_POD_FLOWER_BLOCK), GLOB.pod_flower_list.len)]
+	if(dna.features["vox_quills"])
+		dna.features["vox_quills"] = GLOB.vox_quills_list[deconstruct_block(get_uni_feature_block(features, DNA_VOX_QUILLS_BLOCK), GLOB.vox_quills_list.len)]
+	if(dna.features["vox_facial_quills"])
+		dna.features["vox_facial_quills"] = GLOB.vox_facial_quills_list[deconstruct_block(get_uni_feature_block(features, DNA_VOX_FACIAL_QUILLS_BLOCK), GLOB.vox_facial_quills_list.len)]
+	if(dna.features["vox_tail_markings"])
+		dna.features["vox_tail_markings"] = GLOB.vox_tail_markings_list[deconstruct_block(get_uni_feature_block(features, DNA_VOX_TAIL_MARKINGS_BLOCK), GLOB.vox_tail_markings_list.len)]
+	if(dna.features["vox_body_markings"])
+		dna.features["vox_body_markings"] = GLOB.vox_body_markings_list[deconstruct_block(get_uni_feature_block(features, DNA_VOX_BODY_MARKINGS_BLOCK), GLOB.vox_body_markings_list.len)]
+	if(dna.features["vox_skin_tone"])
+		dna.features["vox_skin_tone"] = GLOB.vox_skin_tones[deconstruct_block(get_uni_feature_block(features, DNA_VOX_SKIN_TONE_BLOCK), GLOB.vox_skin_tones.len)]
 
 	if(icon_update)
 		dna.species.handle_body(src) // We want 'update_body_parts()' to be called only if mutcolor_update is TRUE, so no 'update_body()' here.

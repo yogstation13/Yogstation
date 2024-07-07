@@ -188,7 +188,7 @@
 
 /datum/quirk/nyctophobia/on_process()
 	var/mob/living/carbon/human/H = quirk_holder
-	if((H.dna.species.id in list("shadow", "nightmare", "darkspawn")) || (H.mind && (H.mind.has_antag_datum(ANTAG_DATUM_THRALL) || H.mind.has_antag_datum(ANTAG_DATUM_SLING) || H.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN) || H.mind.has_antag_datum(ANTAG_DATUM_VEIL)))) //yogs - thrall & sling check
+	if((H.dna.species.id in list("shadow", "nightmare", "darkspawn")) || is_darkspawn_or_thrall(H))
 		return //we're tied with the dark, so we don't get scared of it; don't cleanse outright to avoid cheese
 	var/turf/T = get_turf(quirk_holder)
 	var/lums = T.get_lumcount()
@@ -736,7 +736,7 @@
 				return
 		if(!H.get_active_held_item())
 			to_chat(quirk_holder, span_danger("You can't keep your eyes off [I.name]."))
-			H.UnarmedAttack(I)
+			H.UnarmedAttack(I, TRUE, list())
 
 /datum/quirk/ineloquent
 	name = "Ineloquent"
@@ -828,8 +828,78 @@
 
 /datum/quirk/telomeres_short/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (NO_DNA_COPY in initial(species_type.species_traits)) //Can't pick if you have no DNA bruv.
-
-	if(disallowed_trait)
+	var/no_dna = (NO_DNA_COPY in initial(species_type.species_traits)) //Can't pick if you have no DNA bruv.
+	var/no_clone = (TRAIT_NOCLONE in initial(species_type.inherent_traits))
+	if(no_dna)
 		return "You have no DNA!"
+	else if(no_clone)
+		return "Your species cannot be cloned!"
 	return FALSE
+
+/datum/quirk/body_purist
+	name = "Body Purist"
+	desc = "You believe your body is a temple and its natural form is an embodiment of perfection. Accordingly, you despise the idea of ever augmenting it with unnatural parts, cybernetic, prosthetic, or anything like it."
+	icon = "person-rays"
+	value = -2
+	mood_quirk = TRUE
+	gain_text = span_danger("You now begin to hate the idea of having cybernetic implants.")
+	lose_text = span_notice("Maybe cybernetics aren't so bad. You now feel okay with augmentations and prosthetics.")
+	medical_record_text = "This patient has disclosed an extreme hatred for unnatural bodyparts and augmentations."
+	var/cybernetics_level = 0
+
+/datum/quirk/body_purist/add()
+	check_cybernetics()
+	RegisterSignal(quirk_holder, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(on_organ_gain))
+	RegisterSignal(quirk_holder, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(on_organ_lose))
+	RegisterSignal(quirk_holder, COMSIG_CARBON_ATTACH_LIMB, PROC_REF(on_limb_gain))
+	RegisterSignal(quirk_holder, COMSIG_CARBON_REMOVE_LIMB, PROC_REF(on_limb_lose))
+
+/datum/quirk/body_purist/remove()
+	UnregisterSignal(quirk_holder, list(
+		COMSIG_CARBON_GAIN_ORGAN,
+		COMSIG_CARBON_LOSE_ORGAN,
+		COMSIG_CARBON_ATTACH_LIMB,
+		COMSIG_CARBON_REMOVE_LIMB,
+	))
+	SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "body_purist")
+
+/datum/quirk/body_purist/proc/check_cybernetics()
+	var/mob/living/carbon/owner = quirk_holder
+	if(!istype(owner))
+		return
+	for(var/obj/item/bodypart/limb as anything in owner.bodyparts)
+		if(!limb.is_organic_limb())
+			cybernetics_level++
+	for(var/obj/item/organ/organ as anything in owner.internal_organs)
+		if(organ.organ_flags & ORGAN_SYNTHETIC || organ.status == ORGAN_ROBOTIC)
+			cybernetics_level++
+	update_mood()
+
+/datum/quirk/body_purist/proc/update_mood()
+	SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "body_purist")
+	if(cybernetics_level)
+		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "body_purist", /datum/mood_event/body_purist, -cybernetics_level * 10)
+
+/datum/quirk/body_purist/proc/on_organ_gain(datum/source, obj/item/organ/new_organ, special)
+	SIGNAL_HANDLER
+	if(new_organ.organ_flags & ORGAN_SYNTHETIC || new_organ.status == ORGAN_ROBOTIC)
+		cybernetics_level++
+		update_mood()
+
+/datum/quirk/body_purist/proc/on_organ_lose(datum/source, obj/item/organ/old_organ, special)
+	SIGNAL_HANDLER
+	if(old_organ.organ_flags & ORGAN_SYNTHETIC || old_organ.status == ORGAN_ROBOTIC)
+		cybernetics_level--
+		update_mood()
+
+/datum/quirk/body_purist/proc/on_limb_gain(datum/source, obj/item/bodypart/new_limb, special)
+	SIGNAL_HANDLER
+	if(!new_limb.is_organic_limb())
+		cybernetics_level++
+		update_mood()
+
+/datum/quirk/body_purist/proc/on_limb_lose(datum/source, obj/item/bodypart/old_limb, special)
+	SIGNAL_HANDLER
+	if(!old_limb.is_organic_limb())
+		cybernetics_level--
+		update_mood()

@@ -53,7 +53,6 @@
 			/datum/antagonist/rev,
 			/datum/antagonist/clockcult,
 			/datum/antagonist/darkspawn,
-			/datum/antagonist/shadowling,
 			/datum/antagonist/zombie
 			)
 		for(var/datum/antagonist/NTA in new_owner.antag_datums)
@@ -190,6 +189,7 @@
 		if(cult_team.cult_ascendent)
 			cult_team.ascend(current)
 
+	ADD_TRAIT(current, TRAIT_UNHOLY, type)
 	add_team_hud(current)
 
 /datum/antagonist/cult/remove_innate_effects(mob/living/mob_override)
@@ -203,6 +203,7 @@
 	communion.Remove(current)
 	magic.Remove(current)
 	current.clear_alert("bloodsense")
+	REMOVE_TRAIT(current, TRAIT_UNHOLY, type)
 	if(ishuman(current))
 		var/mob/living/carbon/human/H = current
 		H.eye_color = original_eye_color

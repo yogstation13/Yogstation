@@ -45,6 +45,8 @@
 	data["lawchanges"] = length(GLOB.lawchanges)
 	return data
 
+#define THUNDERDOME_TEMPLATE_FILE "admin_thunderdome.dmm"
+
 /datum/tgui_secrets_panel/ui_act(action, params)
 	if(..())
 		return
@@ -80,25 +82,25 @@
 				mob_user << browse(dat, "window=showadmins;size=600x500")
 
 		if("tdomereset")
-			if(!check_rights_for(rights, R_ADMIN))
-				return
-			var/delete_mobs = tgui_alert(mob_user, "Clear all mobs?","Confirm",list("Yes","No","Cancel"))
-			if(delete_mobs == "Cancel")
+			var/delete_mobs = tgui_alert(usr, "Clear all mobs?", "Thunderdome Reset", list("Yes", "No", "Cancel"))
+			if(!delete_mobs || delete_mobs == "Cancel")
 				return
 
-			log_admin("[key_name(mob_user)] reset the thunderdome to default with delete_mobs==[delete_mobs].", 1)
-			message_admins(span_adminnotice("[key_name_admin(mob_user)] reset the thunderdome to default with delete_mobs=[delete_mobs]."))
+			log_admin("[key_name(holder)] reset the thunderdome to default with delete_mobs marked as [delete_mobs].")
+			message_admins(span_adminnotice("[key_name_admin(holder)] reset the thunderdome to default with delete_mobs marked as [delete_mobs]."))
 
 			var/area/thunderdome = GLOB.areas_by_type[/area/centcom/tdome/arena]
 			if(delete_mobs == "Yes")
 				for(var/mob/living/mob in thunderdome)
 					qdel(mob) //Clear mobs
 			for(var/obj/obj in thunderdome)
-				if(!istype(obj, /obj/machinery/camera) && !istype(obj, /obj/effect/abstract/proximity_checker))
+				if(!istype(obj, /obj/machinery/camera))
 					qdel(obj) //Clear objects
 
-			var/area/template = GLOB.areas_by_type[/area/centcom/tdome/arena_source]
-			template.copy_contents_to(thunderdome)
+			var/datum/map_template/thunderdome_template = SSmapping.map_templates[THUNDERDOME_TEMPLATE_FILE]
+			thunderdome_template.should_place_on_top = FALSE
+			var/turf/thunderdome_corner = locate(thunderdome.x - 3, thunderdome.y - 1, 1) // have to do a little bit of coord manipulation to get it in the right spot
+			thunderdome_template.load(thunderdome_corner)
 
 		if("clear_virus")
 
@@ -403,8 +405,8 @@
 				H.fully_replace_character_name(H.real_name,newname)
 				H.update_mutant_bodyparts()
 				if(animetype == "Yes")
-					var/seifuku = pick(typesof(/obj/item/clothing/under/schoolgirl))
-					var/obj/item/clothing/under/schoolgirl/I = new seifuku
+					var/seifuku = pick(typesof(/obj/item/clothing/under/costume/schoolgirl))
+					var/obj/item/clothing/under/costume/schoolgirl/I = new seifuku
 					var/olduniform = H.w_uniform
 					H.temporarilyRemoveItemFromInventory(H.w_uniform, TRUE, FALSE)
 					H.equip_to_slot_or_del(I, ITEM_SLOT_ICLOTHING)
@@ -587,3 +589,5 @@
 		log_admin("[key_name(mob_user)] used secret [action]")
 		if (ok)
 			to_chat(world, text("<B>A secret has been activated by []!</B>", mob_user.key))
+
+#undef THUNDERDOME_TEMPLATE_FILE

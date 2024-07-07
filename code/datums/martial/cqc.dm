@@ -195,7 +195,7 @@
 
 ///CQC grab, stuns for 1.5 seconds on use
 /datum/martial_art/cqc/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(A.a_intent == INTENT_GRAB && A!=D && (can_use(A) && can_use(D))) // A!=D prevents grabbing yourself
+	if(A!=D && (can_use(A) && can_use(D))) // A!=D prevents grabbing yourself
 		add_to_streak("G",D)
 		if(check_streak(A,D)) //if a combo is made no grab upgrade is done
 			return TRUE
@@ -340,9 +340,9 @@
 
 	to_chat(usr, span_notice("<b>All of your unarmed attacks deal stamina damage instead of your normal physical damage type</b>"))
 
-	to_chat(usr, span_notice("<b>Disarm Intent</b> Has a chance to disarm the opponent's main hand, and immediately pick up the item if successful"))
-	to_chat(usr, span_notice("<b>Grab Intent</b> Will stun opponents for a short second, allowing you to quickly increase the strength of your grabs"))
-	to_chat(usr, span_notice("<b>Harm Intent</b> Will deal a competitive amount of stamina damage, and hitting a standing opponent while you are prone will both knock them down and stand you up"))
+	to_chat(usr, span_notice("<b>Shoving (Right Click)</b> Has a chance to disarm the opponent's main hand, and immediately pick up the item if successful"))
+	to_chat(usr, span_notice("<b>Grabbing (Ctrl Click)</b> Will stun opponents briefly, allowing you to quickly increase the strength of your grabs"))
+	to_chat(usr, span_notice("<b>Punching (Combat Mode)</b> Will deal more stamina damage, and hitting a standing opponent while you are prone will both knock them down and stand you up"))
 
 	to_chat(usr, "[span_notice("Slam")]: Grab Harm. Slam opponent into the ground, knocking them down and dealing decent stamina damage.")
 	to_chat(usr, "[span_notice("CQC Kick")]: Disarm Harm. Knocks opponent away and slows them. Deals heavy stamina damage to prone opponents, as well as muting them for a short time.")

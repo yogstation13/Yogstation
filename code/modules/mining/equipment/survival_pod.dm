@@ -282,6 +282,10 @@
 	. = ..()
 	air_update_turf()
 
+//Visible, indestructible fans
+/obj/structure/fans/tiny/indestructible
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
 //Inivisible, indestructible fans
 /obj/structure/fans/tiny/invisible
 	name = "air flow blocker"

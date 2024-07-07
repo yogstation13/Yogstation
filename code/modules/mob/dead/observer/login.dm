@@ -18,3 +18,4 @@
 
 	update_icon(new_form = preferred_form)
 	updateghostimages()
+	client.set_right_click_menu_mode(FALSE)

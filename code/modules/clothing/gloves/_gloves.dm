@@ -26,13 +26,15 @@
 	user.visible_message(span_suicide("\the [src] are forcing [user]'s hands around [user.p_their()] neck! It looks like the gloves are possessed!"))
 	return OXYLOSS
 
-/obj/item/clothing/gloves/worn_overlays(isinhands = FALSE)
+/obj/item/clothing/gloves/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(!isinhands)
 		if(damaged_clothes)
 			. += mutable_appearance('icons/effects/item_damage.dmi', "damagedgloves")
 		if(HAS_BLOOD_DNA(src))
 			var/mutable_appearance/bloody_hands = mutable_appearance('icons/effects/blood.dmi', "bloodyhands")
+			if(species_fitted && icon_exists(bloody_hands.icon, "bloodyhands_[species_fitted]")) 
+				bloody_hands.icon_state = "bloodyhands_[species_fitted]"
 			bloody_hands.color = get_blood_dna_color(return_blood_DNA())
 			. += bloody_hands
 
@@ -43,5 +45,5 @@
 		M.update_inv_gloves()
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
-/obj/item/clothing/gloves/proc/Touch(atom/A, proximity)
+/obj/item/clothing/gloves/proc/Touch(atom/A, proximity, modifiers)
 	return 0 // return 1 to cancel attack_hand()

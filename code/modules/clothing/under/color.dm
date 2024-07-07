@@ -11,8 +11,8 @@
 	icon_state = "jumpsuit"
 	item_state = "jumpsuit"
 	worn_icon_state = "jumpsuit"
-	mob_overlay_icon = 'icons/mob/clothing/uniform/color.dmi'
-	mutantrace_variation = MUTANTRACE_VARIATION
+	worn_icon = 'icons/mob/clothing/uniform/color.dmi'
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/skirt/color
 	dying_key = DYE_REGISTRY_JUMPSKIRT
@@ -28,7 +28,7 @@
 	icon_state = "jumpskirt"
 	item_state = "jumpsuit"
 	worn_icon_state = "jumpskirt"
-	mob_overlay_icon = 'icons/mob/clothing/uniform/color.dmi'	
+	worn_icon = 'icons/mob/clothing/uniform/color.dmi'	
 
 /obj/item/clothing/under/color/random
 	icon_state = "random_jumpsuit"
@@ -92,9 +92,20 @@
 	greyscale_config_worn = null
 	can_adjust = FALSE
 
-/obj/item/clothing/under/color/grey/glorf/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/under/color/grey/glorf/equipped(mob/user, slot)
+	. = ..()
+	if(slot_flags & slot)
+		RegisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(say_glorf))
+	else
+		UnregisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS)
+
+/obj/item/clothing/under/color/grey/glorf/dropped(mob/user)
+	if(user.get_item_by_slot(ITEM_SLOT_ICLOTHING) == src)
+		UnregisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS)
+	return ..()
+
+/obj/item/clothing/under/color/grey/glorf/proc/say_glorf(mob/living/carbon/human/owner)
 	owner.forcesay(GLOB.hit_appends)
-	return 0
 
 /obj/item/clothing/under/color/blue
 	name = "blue jumpsuit"

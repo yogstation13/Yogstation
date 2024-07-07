@@ -6,7 +6,7 @@
 	name = "traitor+brothers"
 	config_tag = "traitorbro"
 	restricted_jobs = list("AI", "Cyborg", "Synthetic")
-	required_players = 20 //yogs - just a minor change
+	required_players = 15
 	title_icon = "ss13"
 
 
@@ -16,6 +16,7 @@
 	<span class='danger'>Blood Brothers</span>: Accomplish your objectives.\n\
 	<span class='notice'>Crew</span>: Do not let the traitors or brothers succeed!"
 
+	num_modifier = -2 //less traitors to account for the blood brothers
 	var/list/datum/team/brother_team/pre_brother_teams = list()
 	var/const/team_amount = 2 //hard limit on brother teams if scaling is turned off
 	var/const/min_team_size = 2

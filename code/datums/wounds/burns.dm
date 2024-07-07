@@ -80,6 +80,7 @@
 
 	switch(infestation)
 		if(0 to WOUND_INFECTION_MODERATE)
+			return
 		if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
 			if(prob(30))
 				victim.adjustToxLoss(0.2)

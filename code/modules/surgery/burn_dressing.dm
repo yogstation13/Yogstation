@@ -50,13 +50,13 @@
 	else
 		user.visible_message(span_notice("[user] looks for [target]'s [parse_zone(user.zone_selected)]."), span_notice("You look for [target]'s [parse_zone(user.zone_selected)]..."))
 
-/datum/surgery_step/debride_infected/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
+/datum/surgery_step/debride_infected/success(mob/living/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/datum/wound/burn/burn_wound = surgery.operated_wound
 	if(burn_wound)
 		display_results(user, target, span_notice("You successfully excise some of the infected flesh from [target]'s [parse_zone(target_zone)]."),
 			span_notice("[user] successfully excises some of the infected flesh from [target]'s [parse_zone(target_zone)] with [tool]!"),
 			span_notice("[user] successfully excises some of the infected flesh from [target]'s [parse_zone(target_zone)]!"))
-		log_combat(user, target, "excised infected flesh in", addition="INTENT: [uppertext(user.a_intent)]")
+		log_combat(user, target, "excised infected flesh in", addition="COMBAT MODE: [user.combat_mode ? "ON" : "OFF"]")
 		surgery.operated_bodypart.receive_damage(brute=3, wound_bonus=CANT_WOUND)
 		burn_wound.infestation -= infestation_removed
 		burn_wound.sanitization += sanitization_added
@@ -98,13 +98,13 @@
 	else
 		user.visible_message(span_notice("[user] looks for [target]'s [parse_zone(user.zone_selected)]."), span_notice("You look for [target]'s [parse_zone(user.zone_selected)]..."))
 
-/datum/surgery_step/dress/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
+/datum/surgery_step/dress/success(mob/living/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/datum/wound/burn/burn_wound = surgery.operated_wound
 	if(burn_wound)
 		display_results(user, target, span_notice("You successfully wrap [target]'s [parse_zone(target_zone)] with [tool]."),
 			span_notice("[user] successfully wraps [target]'s [parse_zone(target_zone)] with [tool]!"),
 			span_notice("[user] successfully wraps [target]'s [parse_zone(target_zone)]!"))
-		log_combat(user, target, "dressed burns in", addition="INTENT: [uppertext(user.a_intent)]")
+		log_combat(user, target, "dressed burns in", addition="COMBAT MODE: [user.combat_mode ? "ON" : "OFF"]")
 		burn_wound.sanitization += 3
 		burn_wound.flesh_healing += 5
 		var/obj/item/bodypart/the_part = target.get_bodypart(target_zone)

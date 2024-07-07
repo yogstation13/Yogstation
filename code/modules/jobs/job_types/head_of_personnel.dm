@@ -75,8 +75,8 @@
 
 	glasses = /obj/item/clothing/glasses/hud/personnel
 	ears = /obj/item/radio/headset/heads/hop
-	uniform = /obj/item/clothing/under/rank/head_of_personnel
-	uniform_skirt = /obj/item/clothing/under/rank/head_of_personnel/skirt
+	uniform = /obj/item/clothing/under/rank/command/head_of_personnel
+	uniform_skirt = /obj/item/clothing/under/rank/command/head_of_personnel/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
 	head = /obj/item/clothing/head/hopcap

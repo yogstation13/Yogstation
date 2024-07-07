@@ -16,27 +16,38 @@
 	icon_state = "left_buster_arm"
 	max_damage = 50
 	aux_layer = 12
-	var/obj/item/bodypart/r_arm/robot/buster/opphand
 	var/datum/action/cooldown/buster/megabuster/l/megabuster_action = new/datum/action/cooldown/buster/megabuster/l()
 	var/datum/martial_art/buster_style/buster_style = new
 
 /// Set up our actions, disable gloves
-/obj/item/bodypart/l_arm/robot/buster/attach_limb(mob/living/carbon/N, special)
+/obj/item/bodypart/l_arm/robot/buster/attach_limb(mob/living/carbon/new_owner, special)
 	. = ..()
-	megabuster_action.Grant(N)
-	buster_style.teach(N)
-	to_chat(owner, "[span_boldannounce("You've gained the ability to use Buster Style!")]")
+	if(new_owner.mind)
+		megabuster_action.Grant(new_owner)
+		buster_style.teach(new_owner)
+		RegisterSignal(new_owner.mind, COMSIG_MIND_TRANSFERRED, PROC_REF(on_mind_transfer_from))
+	RegisterSignal(new_owner, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(on_mind_transfer_to))
 
 /// Remove our actions, re-enable gloves
 /obj/item/bodypart/l_arm/robot/buster/drop_limb(special)
-	var/mob/living/carbon/N = owner
-	var/obj/item/bodypart/r_arm = N.get_bodypart(BODY_ZONE_R_ARM)
-	megabuster_action.Remove(N)
-	if(!istype(r_arm, /obj/item/bodypart/r_arm/robot/buster))
-		buster_style.remove(N)
-		N.click_intercept = null
-		to_chat(owner, "[span_boldannounce("You've lost the ability to use Buster Style...")]")
-	..()
+	var/obj/item/bodypart/r_arm = owner.get_bodypart(BODY_ZONE_R_ARM)
+	if(owner.mind)
+		megabuster_action.Remove(owner)
+		if(!istype(r_arm, /obj/item/bodypart/r_arm/robot/buster))
+			buster_style.remove(owner)
+		UnregisterSignal(owner.mind, COMSIG_MIND_TRANSFERRED)
+	UnregisterSignal(owner, COMSIG_MOB_MIND_TRANSFERRED_INTO)
+	return ..()
+
+/obj/item/bodypart/l_arm/robot/buster/proc/on_mind_transfer_to(mob/living/new_mob)
+	buster_style.teach(new_mob)
+	megabuster_action.Grant(new_mob)
+	RegisterSignal(new_mob.mind, COMSIG_MIND_TRANSFERRED, PROC_REF(on_mind_transfer_from))
+
+/obj/item/bodypart/l_arm/robot/buster/proc/on_mind_transfer_from(datum/mind/old_mind)
+	buster_style.remove(old_mind.current)
+	megabuster_action.Remove(old_mind.current)
+	UnregisterSignal(old_mind, COMSIG_MIND_TRANSFERRED)
 
 /// Attacking a human mob with the arm causes it to instantly replace their arm
 /obj/item/bodypart/l_arm/robot/buster/attack(mob/living/L, proximity)
@@ -44,7 +55,7 @@
 		return
 	if(!ishuman(L))
 		return
-	if(L.mind.martial_art.type in subtypesof(/datum/martial_art) && !(istype(L.mind.martial_art, /datum/martial_art/cqc/under_siege))) //prevents people from learning several martial arts or swapping between them
+	if((L.mind.martial_art != L.mind.default_martial_art) && !(istype(L.mind.martial_art, /datum/martial_art/cqc/under_siege))) //prevents people from learning several martial arts or swapping between them
 		to_chat(L, span_warning("You are already dedicated to using [L.mind.martial_art.name]!"))
 		return
 	playsound(L,'sound/effects/phasein.ogg', 20, 1)
@@ -54,7 +65,7 @@
 /// Using the arm in-hand switches the arm it replaces
 /obj/item/bodypart/l_arm/robot/buster/attack_self(mob/user)
 	. = ..()
-	opphand = new /obj/item/bodypart/r_arm/robot/buster(get_turf(src))
+	var/obj/item/bodypart/r_arm/robot/buster/opphand = new(get_turf(src))
 	opphand.brute_dam = src.brute_dam
 	opphand.burn_dam = src.burn_dam 
 	to_chat(user, span_notice("You modify [src] to be installed on the right arm."))
@@ -68,27 +79,38 @@
 	icon_state = "right_buster_arm"
 	max_damage = 50
 	aux_layer = 12
-	var/obj/item/bodypart/l_arm/robot/buster/opphand
 	var/datum/action/cooldown/buster/megabuster/r/megabuster_action = new/datum/action/cooldown/buster/megabuster/r()
 	var/datum/martial_art/buster_style/buster_style = new
 
 /// Set up our actions, disable gloves
-/obj/item/bodypart/r_arm/robot/buster/attach_limb(mob/living/carbon/N, special)
+/obj/item/bodypart/r_arm/robot/buster/attach_limb(mob/living/carbon/new_owner, special)
 	. = ..()
-	megabuster_action.Grant(N)
-	buster_style.teach(N)
-	to_chat(owner, span_boldannounce("You've gained the ability to use Buster Style!"))
+	if(new_owner.mind)
+		megabuster_action.Grant(new_owner)
+		buster_style.teach(new_owner)
+		RegisterSignal(new_owner.mind, COMSIG_MIND_TRANSFERRED, PROC_REF(on_mind_transfer_from))
+	RegisterSignal(new_owner, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(on_mind_transfer_to))
 
 /// Remove our actions, re-enable gloves
 /obj/item/bodypart/r_arm/robot/buster/drop_limb(special)
-	var/mob/living/carbon/N = owner
-	var/obj/item/bodypart/l_arm = N.get_bodypart(BODY_ZONE_L_ARM)
-	megabuster_action.Remove(N)
-	if(!istype(l_arm, /obj/item/bodypart/l_arm/robot/buster))
-		buster_style.remove(N)
-		N.click_intercept = null
-		to_chat(owner, "[span_boldannounce("You've lost the ability to use Buster Style...")]")
-	..()
+	var/obj/item/bodypart/l_arm = owner.get_bodypart(BODY_ZONE_L_ARM)
+	if(owner.mind)
+		megabuster_action.Remove(owner)
+		if(!istype(l_arm, /obj/item/bodypart/l_arm/robot/buster))
+			buster_style.remove(owner)
+		UnregisterSignal(owner.mind, COMSIG_MIND_TRANSFERRED)
+	UnregisterSignal(owner, COMSIG_MOB_MIND_TRANSFERRED_INTO)
+	return ..()
+
+/obj/item/bodypart/r_arm/robot/buster/proc/on_mind_transfer_to(mob/living/new_mob)
+	buster_style.teach(new_mob)
+	megabuster_action.Grant(new_mob)
+	RegisterSignal(new_mob.mind, COMSIG_MIND_TRANSFERRED, PROC_REF(on_mind_transfer_from))
+
+/obj/item/bodypart/r_arm/robot/buster/proc/on_mind_transfer_from(datum/mind/old_mind)
+	buster_style.remove(old_mind.current)
+	megabuster_action.Remove(old_mind.current)
+	UnregisterSignal(old_mind, COMSIG_MIND_TRANSFERRED)
 
 /// Attacking a human mob with the arm causes it to instantly replace their arm
 /obj/item/bodypart/r_arm/robot/buster/attack(mob/living/L, proximity)
@@ -96,7 +118,7 @@
 		return
 	if(!ishuman(L))
 		return
-	if(L.mind.martial_art.type in subtypesof(/datum/martial_art) && !(istype(L.mind.martial_art, /datum/martial_art/cqc/under_siege))) //prevents people from learning several martial arts or swapping between them
+	if((L.mind.martial_art != L.mind.default_martial_art) && !(istype(L.mind.martial_art, /datum/martial_art/cqc/under_siege))) //prevents people from learning several martial arts or swapping between them
 		to_chat(L, span_warning("You are already dedicated to using [L.mind.martial_art.name]!"))
 		return
 	playsound(L,'sound/effects/phasein.ogg', 20, 1)
@@ -106,7 +128,7 @@
 /// Using the arm in-hand switches the arm it replaces
 /obj/item/bodypart/r_arm/robot/buster/attack_self(mob/user)
 	. = ..()
-	opphand = new /obj/item/bodypart/l_arm/robot/buster(get_turf(src))
+	var/obj/item/bodypart/l_arm/robot/buster/opphand = new(get_turf(src))
 	opphand.brute_dam = src.brute_dam
 	opphand.burn_dam = src.burn_dam 
 	to_chat(user, span_notice("You modify [src] to be installed on the left arm."))

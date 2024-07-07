@@ -68,17 +68,18 @@
 
 /obj/item/clockwork/replica_fabricator/pre_attack(atom/target, mob/living/user, params)
 	if(!target || !user || !is_servant_of_ratvar(user) || istype(target, /obj/item/storage))
-		return TRUE
+		return FALSE
 	return fabricate(target, user)
 
 //A note here; return values are for if we CAN BE PUT ON A TABLE, not IF WE ARE SUCCESSFUL, unless no_table_check is TRUE
 /obj/item/clockwork/replica_fabricator/proc/fabricate(atom/target, mob/living/user, silent, no_table_check)
 	if(!target || !user)
 		return FALSE
+	. = TRUE
 	if(repairing)
 		if(!silent)
 			to_chat(user, span_warning("You are currently repairing [repairing] with [src]!"))
-		return FALSE
+		return TRUE
 	var/list/fabrication_values = target.fabrication_vals(user, src, silent) //relevant values for fabricating stuff, given as an associated list
 	if(!islist(fabrication_values))
 		if(fabrication_values != TRUE) //if we get true, fail, but don't send a message for whatever reason
@@ -87,8 +88,8 @@
 			if(!silent)
 				to_chat(user, span_warning("[target] cannot be fabricated!"))
 			if(!no_table_check)
-				return TRUE
-		return FALSE
+				return
+		return
 	if(GLOB.ratvar_awakens)
 		fabrication_values["power_cost"] = 0
 
@@ -101,7 +102,7 @@
 	var/target_type = target.type
 
 	if(!fabricate_checks(fabrication_values, target, target_type, user, silent))
-		return FALSE
+		return
 
 	fabrication_values["operation_time"] *= speed_multiplier
 
@@ -116,7 +117,7 @@
 				user.visible_message(span_warning("[user]'s [name] starts consuming [target]!"), \
 				span_brass("Your [name] starts consuming [target]..."))
 		if(!do_after(user, fabrication_values["operation_time"], target, extra_checks = CALLBACK(src, PROC_REF(fabricate_checks), fabrication_values, target, target_type, user, TRUE)))
-			return FALSE
+			return
 		if(!silent)
 			var/atom/A = fabrication_values["new_obj_type"]
 			if(A)
@@ -155,8 +156,8 @@
 			qdel(target)
 	adjust_clockwork_power(-fabrication_values["power_cost"])
 	if(no_table_check)
-		return TRUE
-	return FALSE
+		return
+	return
 
 //The following three procs are heavy wizardry.
 //What these procs do is they take an existing list of values, which they then modify.

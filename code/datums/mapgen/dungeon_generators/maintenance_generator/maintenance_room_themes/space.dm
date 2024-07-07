@@ -56,9 +56,8 @@
 		if(5 to 6)
 			//a dolphino
 			weighted_feature_spawn_list += pick(/mob/living/simple_animal/hostile/retaliate/dolphin, /mob/living/simple_animal/hostile/retaliate/dolphin/manatee)
-		else
-			//you get nothing good day sir
-		
+		if(7 to 10)
+			return
 
 /datum/dungeon_room_theme/maintenance/space/hostile
 	room_type = ROOM_RATING_HOSTILE

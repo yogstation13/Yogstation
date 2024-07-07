@@ -275,6 +275,15 @@
 /obj/machinery/power/grounding_rod,
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"bT" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer4{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_x = 23
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
 "bW" = (
 /obj/machinery/power/rad_collector,
 /turf/open/floor/plating/airless,
@@ -610,12 +619,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"tD" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer4{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
 "uo" = (
 /obj/structure/grille,
 /obj/structure/cable/orange{
@@ -800,6 +803,18 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"Dc" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_x = 23
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "Em" = (
 /obj/item/wirecutters,
 /turf/open/space/basic,
@@ -933,18 +948,21 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"Ok" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer2{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_x = -23
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
 "On" = (
 /obj/structure/grille,
 /obj/structure/cable/orange{
 	icon_state = "2-8"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
-"Ov" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer2{
-	dir = 1
-	},
-/turf/open/floor/plating,
 /area/engine/engineering)
 "Oz" = (
 /obj/structure/lattice/catwalk,
@@ -1003,15 +1021,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"UO" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "VD" = (
 /obj/machinery/power/rad_collector,
 /obj/structure/cable/orange{
@@ -1032,6 +1041,15 @@
 "WN" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
+/area/engine/engineering)
+"WS" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_x = -23
+	},
+/turf/open/floor/engine,
 /area/engine/engineering)
 "Zr" = (
 /obj/structure/cable/yellow{
@@ -1246,7 +1264,7 @@ al
 aD
 bb
 mp
-Ov
+Ok
 ad
 Jy
 co
@@ -1412,7 +1430,7 @@ aj
 bI
 Cw
 bG
-UO
+Dc
 bg
 ME
 Hf
@@ -1636,7 +1654,7 @@ bx
 bK
 xD
 ci
-ai
+WS
 bg
 ME
 Hf
@@ -1806,7 +1824,7 @@ an
 aE
 bb
 mQ
-tD
+bT
 ad
 On
 uo

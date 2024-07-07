@@ -18,12 +18,14 @@
 	target_obj.add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
 	target_obj.alpha -= 25
 
+	/* uncomment if we end up porting tg organ code
 	if (isinternalorgan(target))
 		var/obj/item/organ/internal/organ = target
 		organ.organ_flags |= ORGAN_FROZEN
 	else if (isbodypart(target))
 		for(var/obj/item/organ/internal/organ in target_obj.contents)
 			organ.organ_flags |= ORGAN_FROZEN
+	*/
 
 	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
 	RegisterSignal(target, COMSIG_MOVABLE_THROW_LANDED, PROC_REF(shatter_on_throw))
@@ -38,12 +40,14 @@
 	obj_source.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, GLOB.freon_color_matrix)
 	obj_source.alpha += 25
 
+	/* uncomment if we end up porting tg organ code
 	if (isinternalorgan(source))
 		var/obj/item/organ/internal/organ = source
 		organ.organ_flags &= ~ORGAN_FROZEN
 	else if (isbodypart(source))
 		for(var/obj/item/organ/internal/organ in obj_source.contents)
 			organ.organ_flags &= ~ORGAN_FROZEN
+	*/
 
 	return ..()
 

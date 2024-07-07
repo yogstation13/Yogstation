@@ -1,5 +1,7 @@
 ///An unreadied player counts for this much compared to a readied one
 #define UNREADIED_PLAYER_MULTIPLIER 0.75
+///An observer player counts this much compared to a readied one
+#define OBSERVER_PLAYER_MULTIPLIER 0.25
 
 #define NUKE_RESULT_FLUKE 0
 #define NUKE_RESULT_NUKE_WIN 1
@@ -31,7 +33,6 @@
 //Blob
 /// blob gets a free reroll every X time
 #define BLOB_REROLL_TIME 2400
-#define BLOB_SPREAD_COST 4
 #define OVERMIND_STARTING_AUTO_PLACE_TIME 6 MINUTES
 /// blob refunds this much if it attacks and doesn't spread
 #define BLOB_ATTACK_REFUND 2
@@ -191,3 +192,7 @@
 
 /// Checks if the given mob is a malf ai.
 #define IS_MALF_AI(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/malf_ai))
+
+// Antag resource defines
+#define ANTAG_RESOURCE_DARKSPAWN "psi"
+#define ANTAG_RESOURCE_VAMPIRE "blood"

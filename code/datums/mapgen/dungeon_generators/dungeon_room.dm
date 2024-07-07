@@ -193,11 +193,8 @@
 	for(var/turf/room_turf in (interior + exterior))
 		var/area/old_area = get_area(room_turf)
 		if(area_ref != old_area && !generator_ref.areas_included.Find(old_area))
-			area_ref.contents += room_turf
-			area_ref.contained_turfs += room_turf
-			old_area.turfs_to_uncontain += room_turf
 			room_turf.change_area(old_area, area_ref)
-	
+
 	return TRUE
 
 ///For each tile in the exterior, build a wall to keep the assistants out. Or a window if the room theme calls for it
@@ -223,7 +220,7 @@
 		return
 	for(var/turf/room_turf in interior)
 		//we want to remove everything in the loc but don't want to change the loc type in this way
-		room_turf.empty(null, ignore_typecache = protected_atoms)
+		room_turf.empty(pickweight(weighted_open_turf_types), ignore_typecache = protected_atoms, flags = CHANGETURF_DEFER_CHANGE | CHANGETURF_IGNORE_AIR)
 		room_turf.place_on_top(pick(room_theme.get_random_flooring()), flags = CHANGETURF_DEFER_CHANGE | CHANGETURF_IGNORE_AIR)
 		
 	return
@@ -254,7 +251,8 @@
 			if(istype(other_side_of_door, /turf/open/space))
 				num_of_doors_to_gen--
 				continue
-			door_spot.empty(pick(room_theme.get_random_flooring()), ignore_typecache = protected_atoms, flags = CHANGETURF_DEFER_CHANGE | CHANGETURF_IGNORE_AIR)
+			door_spot.empty(pickweight(weighted_open_turf_types), ignore_typecache = protected_atoms, flags = CHANGETURF_DEFER_CHANGE | CHANGETURF_IGNORE_AIR)
+			door_spot.place_on_top(pick(room_theme.get_random_flooring()), flags = CHANGETURF_DEFER_CHANGE | CHANGETURF_IGNORE_AIR)
 			var/door_path = room_theme.get_random_door()
 			if(ispath(door_path))
 				var/obj/machinery/door/new_door = new door_path(door_spot)

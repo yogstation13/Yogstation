@@ -9,7 +9,7 @@
 	mutant_bodyparts = list("pod_hair", "pod_flower")
 	default_features = list("mcolor" = "#00FF00", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage")
 	rare_say_mod = list("rustles" = 10)
-	attack_verb = "slash"
+	attack_verbs = list("slash", "lash")
 	attack_effect = ATTACK_EFFECT_CLAW
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
@@ -62,7 +62,7 @@
 	return BUTT_SPRITE_FLOWERPOT
 
 /datum/species/pod/spec_life(mob/living/carbon/human/H)
-	if(H.stat == DEAD || H.stat == UNCONSCIOUS || (H.mind && H.mind.has_antag_datum(ANTAG_DATUM_THRALL)))
+	if(H.stat == DEAD || H.stat == UNCONSCIOUS)
 		return
 	if(IS_BLOODSUCKER(H) && !HAS_TRAIT(H, TRAIT_MASQUERADE))
 		return
@@ -356,7 +356,7 @@
  Podpeople subspecies: IVYMEN
 */
 /datum/species/pod/ivymen
-	// A unique podpeople mutation native to Jungleland. 
+	// A unique podpeople mutation native to Jungleland.
 	// They are adapted to the region, don't mind meat, and move faster than normal podpeople.
 	// However, they can't use guns or machines.
 	name = "Ivymen"
@@ -369,11 +369,11 @@
 
 /datum/species/pod/ivymen/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
-	C.weather_immunities |= "acid"
+	C.weather_immunities |= WEATHER_ACID
 
 /datum/species/pod/ivymen/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	C.weather_immunities -= "acid"
+	C.weather_immunities -= WEATHER_ACID
 
 
 #undef STATUS_MESSAGE_COOLDOWN

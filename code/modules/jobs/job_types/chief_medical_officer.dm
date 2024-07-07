@@ -62,8 +62,8 @@
 
 	belt = /obj/item/storage/belt/medical/chief/full
 	ears = /obj/item/radio/headset/heads/cmo
-	uniform = /obj/item/clothing/under/rank/chief_medical_officer
-	uniform_skirt = /obj/item/clothing/under/rank/chief_medical_officer/skirt
+	uniform = /obj/item/clothing/under/rank/medical/chief_medical_officer
+	uniform_skirt = /obj/item/clothing/under/rank/medical/chief_medical_officer/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
 	suit = /obj/item/clothing/suit/toggle/labcoat/cmo

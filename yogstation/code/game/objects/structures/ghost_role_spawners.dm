@@ -126,7 +126,7 @@
 	
 /datum/outfit/crewmember
 	name = "Exploratory Crew Member"
-	uniform = /obj/item/clothing/under/rank/scientist
+	uniform = /obj/item/clothing/under/rank/rnd/scientist
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit = /obj/item/clothing/suit/toggle/labcoat/science
 	back = /obj/item/storage/backpack/science
@@ -198,7 +198,7 @@
 	glasses = /obj/item/clothing/glasses/sunglasses
 
 	gloves = /obj/item/clothing/gloves/color/captain
-	uniform =  /obj/item/clothing/under/rank/captain
+	uniform =  /obj/item/clothing/under/rank/command/captain
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/alt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	head = /obj/item/clothing/head/caphat/parade

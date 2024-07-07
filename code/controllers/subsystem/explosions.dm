@@ -256,10 +256,10 @@ SUBSYSTEM_DEF(explosions)
 
 	if(!silent)
 		var/frequency = get_rand_frequency()
-		var/sound/explosion_sound = sound(get_sfx("explosion"))
+		var/sound/explosion_sound = sound(get_sfx(SFX_EXPLOSION))
 		var/sound/far_explosion_sound = sound('sound/effects/explosionfar.ogg')
-		var/sound/creaking_explosion_sound = sound(get_sfx("explosion_creaking"))
-		var/sound/hull_creaking_sound = sound(get_sfx("hull_creaking"))
+		var/sound/creaking_explosion_sound = sound(get_sfx(SFX_EXPLOSION_CREAKING))
+		var/sound/hull_creaking_sound = sound(get_sfx(SFX_HULL_CREAKING))
 		var/sound/explosion_echo_sound = sound('sound/effects/explosion_distant.ogg')
 		var/on_station = SSmapping.level_trait(epicenter.z, ZTRAIT_STATION)
 		var/creaking_explosion = FALSE

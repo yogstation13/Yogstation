@@ -1,7 +1,7 @@
 // WINTER COATS
 
 /obj/item/clothing/suit/hooded/wintercoat
-	mob_overlay_icon = 'icons/mob/clothing/suit/wintercoat.dmi'
+	worn_icon = 'icons/mob/clothing/suit/wintercoat.dmi'
 	icon = 'icons/obj/clothing/suits/wintercoat.dmi'
 	name = "winter coat"
 	desc = "A heavy jacket made from 'synthetic' animal furs."
@@ -14,7 +14,7 @@
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter)
 
 /obj/item/clothing/head/hooded/winterhood
-	mob_overlay_icon = 'icons/mob/clothing/head/winterhood.dmi'
+	worn_icon = 'icons/mob/clothing/head/winterhood.dmi'
 	icon = 'icons/obj/clothing/hats/winterhood.dmi'
 	name = "winter hood"
 	desc = "A hood attached to a heavy winter jacket."

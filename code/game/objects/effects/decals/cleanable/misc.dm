@@ -253,3 +253,6 @@
 /obj/effect/decal/cleanable/dirt_siding/corner
 	name = "dirt corner"
 	icon_state = "dirt_side_corner"
+
+/obj/effect/decal/cleanable/dirt_siding/end
+	icon_state = "dirt_side_end"

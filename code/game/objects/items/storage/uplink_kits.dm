@@ -73,7 +73,7 @@
 			new /obj/item/storage/belt/holster/syndicate(src) //A holster for your four guns. It could be 1 TC I guess, since the tactical webbing can't hold normal items?
 			new /obj/item/clothing/gloves/color/latex/nitrile(src) //Free?
 			new /obj/item/clothing/mask/gas/clown_hat(src) //Free?
-			new /obj/item/clothing/under/suit_jacket/really_black(src) //Free?
+			new /obj/item/clothing/under/suit/really_black(src) //Free?
 
 		if("murder") //Total cost of 28 TC
 			new /obj/item/melee/transforming/energy/sword/saber(src) //8 TC
@@ -125,7 +125,7 @@
 			new /obj/item/clothing/glasses/thermal/syndi(src) //4 TC
 			new /obj/item/clothing/gloves/color/latex/nitrile(src) //Free?
 			new /obj/item/clothing/mask/gas/clown_hat(src) //Free?
-			new /obj/item/clothing/under/suit_jacket/really_black(src) //Free?
+			new /obj/item/clothing/under/suit/really_black(src) //Free?
 
 		if("metaops") //30 TC
 			new /obj/item/clothing/suit/space/hardsuit/syndi(src) //8 TC
@@ -263,7 +263,7 @@
 
 
 		if("gang_boss")
-			new /obj/item/clothing/under/jabroni(src) //fishnet suit
+			new /obj/item/clothing/under/costume/jabroni(src) //fishnet suit
 			new /obj/item/clothing/suit/yogs/pinksweater(src) //close enough
 			new /obj/item/guardiancreator/tech(src) //15 TC
 			new /obj/item/stand_arrow/boss(src) //priceless, but if it had to get a price it'd be ~45 for 3 holoparasite injectors and ~21 3 mindslave implants. although its difficult to conceal and the holoparasites are random.
@@ -272,10 +272,10 @@
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
 
 		if("solo") //14 + 6x3 + 1 = 3 tc = 31 tc. it was, in fact, busted
-			new /obj/item/autosurgeon/syndicate/spinalspeed(src) //12 tc
+			new /obj/item/autosurgeon/suspicious/spinalspeed(src) //12 tc
 			new /obj/item/clothing/suit/toggle/cyberpunk/solo(src) //dont know what this costs, vague guesstimate says 6tc
-			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
-			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
+			new /obj/item/autosurgeon/suspicious/syndie_mantis(src) //6 tc
+			new /obj/item/autosurgeon/suspicious/syndie_mantis(src) //6 tc
 			new /obj/item/autosurgeon/upgraded_cyberlungs(src) //this is to remain true to the source material ok
 			new /obj/item/storage/pill_bottle/synaptizine(src) //take your drugs david, this and the lungs make up 1 tc
 			
@@ -832,7 +832,7 @@
 	new /obj/item/book/granter/action/spell/mime/mimery_guns(src)
 
 /obj/item/storage/box/syndie_kit/centcom_costume/PopulateContents()
-	new /obj/item/clothing/under/rank/centcom_officer(src)
+	new /obj/item/clothing/under/rank/centcom/officer(src)
 	new /obj/item/clothing/head/beret/sec/centcom(src)
 	new /obj/item/clothing/shoes/sneakers/black(src)
 	new /obj/item/clothing/gloves/color/black(src)
@@ -876,12 +876,12 @@
 	real_name = "augmentation kit"
 
 /obj/item/storage/box/syndie_kit/augmentation/PopulateContents()
-	new /obj/item/autosurgeon/limb/head/robot(src)
-	new /obj/item/autosurgeon/limb/chest/robot(src)
-	new /obj/item/autosurgeon/limb/l_arm/robot(src)
-	new /obj/item/autosurgeon/limb/r_arm/robot(src)
-	new /obj/item/autosurgeon/limb/l_leg/robot(src)
-	new /obj/item/autosurgeon/limb/r_leg/robot(src)
+	new /obj/item/autosurgeon/head/robot(src)
+	new /obj/item/autosurgeon/chest/robot(src)
+	new /obj/item/autosurgeon/l_arm/robot(src)
+	new /obj/item/autosurgeon/r_arm/robot(src)
+	new /obj/item/autosurgeon/l_leg/robot(src)
+	new /obj/item/autosurgeon/r_leg/robot(src)
 
 /obj/item/storage/box/syndie_kit/augmentation/superior
 	real_name = "superior augmentation kit"

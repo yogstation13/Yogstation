@@ -98,6 +98,10 @@
 	. = ..()
 	blood_flow -= 0.03 * power // i think it's like a minimum of 3 power, so .09 blood_flow reduction per tick is pretty good for 0 effort
 
+/datum/wound/pierce/on_healium(power)
+	. = ..()
+	blood_flow -= 0.08 * power 
+
 /datum/wound/pierce/on_synthflesh(power)
 	. = ..()
 	blood_flow -= 0.05 * power // 20u * 0.05 = -1 blood flow, less than with slashes but still good considering smaller bleed rates

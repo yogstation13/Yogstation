@@ -73,6 +73,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_IGNOREDAMAGESLOWDOWN "ignoredamageslowdown"
 /// Makes it so the mob can use guns regardless of tool user status
 #define TRAIT_GUN_NATURAL "gunnatural"
+/// Can't hold people up with guns, for whatever reason
+#define TRAIT_NO_HOLDUP "no_holdup"
 /// Causes death-like unconsciousness
 #define TRAIT_DEATHCOMA "deathcoma"
 /// The mob has the stasis effect.
@@ -197,6 +199,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_FASTMED "fast_med_use"
 /// The mob is holy and resistance to cult magic
 #define TRAIT_HOLY "holy"
+/// This mob or weapon is unholy, and is easier to block using holy weapons.
+#define TRAIT_UNHOLY "unholy"
 /// This mob is antimagic, and immune to spells / cannot cast spells
 #define TRAIT_ANTIMAGIC "anti_magic"
 /// This allows a person who has antimagic to cast spells without getting blocked
@@ -672,8 +676,16 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_WIELDED "wielded"
 /// This item is currently performing a cleaving attack
 #define TRAIT_CLEAVING "cleaving"
+/// This item is currently parrying.
+#define TRAIT_PARRYING "parrying"
+/// Cannot be blocked with weapons, only shields.
+#define TRAIT_UNPARRIABLE "unparriable"
 /// A transforming item that is actively extended / transformed
 #define TRAIT_TRANSFORM_ACTIVE "active_transform"
+/// Knocks shields out of people's hands.
+#define TRAIT_SHIELDBUSTER "shieldbuster"
+/// Incapable of blocking.
+#define TRAIT_NO_BLOCKING "no_blocking"
 /// Buckling yourself to objects with this trait won't immobilize you
 #define TRAIT_NO_IMMOBILIZE "no_immobilize"
 /// Prevents stripping this equipment

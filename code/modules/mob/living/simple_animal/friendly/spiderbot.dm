@@ -68,7 +68,7 @@
 		update_appearance(UPDATE_ICON)
 		return 1
 
-	else if(O.tool_behaviour == TOOL_WELDER && (user.a_intent != INTENT_HARM || user == src)) ///Removed needless self repair part
+	else if(O.tool_behaviour == TOOL_WELDER && (!user.combat_mode || user == src)) ///Removed needless self repair part
 		user.changeNext_move(CLICK_CD_MELEE)
 		if (!getBruteLoss())
 			to_chat(user, span_warning("[src] is already in good condition!"))

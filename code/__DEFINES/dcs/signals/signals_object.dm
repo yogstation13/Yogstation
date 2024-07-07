@@ -193,8 +193,14 @@
 /// Called by /obj/item/proc/worn_overlays(list/overlays, mutable_appearance/standing, isinhands, icon_file)
 #define COMSIG_ITEM_GET_WORN_OVERLAYS "item_get_worn_overlays"
 /// for tc refunding items: (mob/living/user); returns TRUE if refund is allowed, FALSE if not.
-#define COMSIG_ITEM_REFUND	"item_refund"						
+#define COMSIG_ITEM_REFUND	"item_refund"
 
+/// from base of datum/component/blocking/try_to_block(): (mob/living/defender, atom/movable/incoming, damage, attack_type)
+#define COMSIG_ITEM_PRE_BLOCK "item_pre_block"
+	///Prevents blocking with an item
+	#define COMPONENT_CANCEL_BLOCK (1<<0)
+/// from base of datum/component/blocking/on_block(): (mob/living/defender, atom/movable/incoming, damage, attack_type)
+#define COMSIG_ITEM_POST_BLOCK "item_post_block"
 
 ///from base of [/obj/item/proc/tool_check_callback]: (mob/living/user)
 #define COMSIG_TOOL_IN_USE "tool_in_use"
@@ -459,3 +465,19 @@
 
 /// from /obj/item/detective_scanner/scan(): (mob/user, list/extra_data)
 #define COMSIG_DETECTIVE_SCANNED "det_scanned"
+
+// /datum/element/light_eater
+///from base of [/datum/element/light_eater/proc/table_buffet]: (list/light_queue, datum/light_eater)
+#define COMSIG_LIGHT_EATER_QUEUE "light_eater_queue"
+///from base of [/datum/element/light_eater/proc/devour]: (datum/light_eater)
+#define COMSIG_LIGHT_EATER_ACT "light_eater_act"
+	///Prevents the default light eater behavior from running in case of immunity or custom behavior
+	#define COMPONENT_BLOCK_LIGHT_EATER (1<<0)
+///from base of [/datum/element/light_eater/proc/devour]: (atom/eaten_light)
+#define COMSIG_LIGHT_EATER_DEVOUR "light_eater_devour"
+
+
+/// Flag for when /afterattack potentially acts on an item.
+/// Used for the swap hands/drop tutorials to know when you might just be trying to do something normally.
+/// Does not necessarily imply success, or even that it did hit an item, just intent.
+#define COMPONENT_AFTERATTACK_PROCESSED_ITEM (1<<0)

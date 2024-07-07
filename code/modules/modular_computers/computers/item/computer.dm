@@ -122,7 +122,7 @@
 /obj/item/modular_computer/pre_attack(atom/A, mob/living/user, params)
 	if(active_program?.clickon(A, user, params))
 		playsound(loc, 'sound/machines/ping.ogg', get_clamped_volume(), TRUE, -1) //Likewise for the tap sound
-		return
+		return TRUE
 	return ..()
 
 /**
@@ -233,6 +233,12 @@
 		return attack_self(M)
 	else
 		..()
+
+/obj/item/modular_computer/attack_hand(mob/living/user, modifiers)
+	if(modifiers?[RIGHT_CLICK])
+		attack_self(user)
+		return TRUE
+	return ..()
 
 /obj/item/modular_computer/attack_ai(mob/user)
 	return attack_self(user)
@@ -505,7 +511,7 @@
 	if(!get_ntnet_status())
 		return FALSE
 	var/obj/item/computer_hardware/network_card/network_card = all_components[MC_NET]
-	return SSnetworks.station_network.add_log(text, network_card)
+	return SSmodular_computers.add_log(text, network_card)
 
 /obj/item/modular_computer/proc/shutdown_computer(loud = TRUE)
 	kill_program(forced = TRUE)
@@ -666,12 +672,6 @@
 
 /obj/item/modular_computer/proc/parent_moved()
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED)
-
-/// Sets visible messages to also send to holder because coders didn't know it didn't do this
-/obj/item/modular_computer/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags)
-	. = ..()
-	if(ismob(loc))
-		to_chat(loc, message)
 
 /obj/item/modular_computer/proc/uplink_check(mob/living/M, code)
 	return SEND_SIGNAL(src, COMSIG_NTOS_CHANGE_RINGTONE, M, code) & COMPONENT_STOP_RINGTONE_CHANGE

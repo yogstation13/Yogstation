@@ -1,48 +1,77 @@
+/obj/item/clothing
+	var/list/species_restricted = null //Only these species can wear this kit.
+
+//BS12: Species-restricted clothing check.
+/obj/item/clothing/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
+	//if we can't equip the item anyway, don't bother with species_restricted (also cuts down on spam)
+	if(!..())
+		return FALSE
+	// Skip species restriction checks on non-equipment slots
+	if(slot in list(ITEM_SLOT_BACKPACK, ITEM_SLOT_LPOCKET, ITEM_SLOT_RPOCKET))
+		return TRUE
+	if(species_restricted && ishuman(M))
+		var/wearable
+		var/exclusive
+		var/mob/living/carbon/human/H = M
+		if("exclude" in species_restricted)
+			exclusive = TRUE
+		if(H.dna.species)
+			if(exclusive)
+				if(!(H.dna.species.id in species_restricted))
+					wearable = TRUE
+			else
+				if(H.dna.species.id in species_restricted)
+					wearable = TRUE
+			if(!wearable)
+				to_chat(M, span_warning("Your species cannot wear [src]."))
+				return FALSE
+	return TRUE
+
 /obj/item/clothing/ears/yogs
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/ears/ears.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/ears/ears.dmi'
 	icon = 'yogstation/icons/obj/clothing/ears.dmi'
 
 /obj/item/clothing/glasses/yogs
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/eyes/eyes.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/eyes/eyes.dmi'
 	icon = 'yogstation/icons/obj/clothing/glasses.dmi'
 
 /obj/item/clothing/gloves/yogs
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/hands/hands.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/hands/hands.dmi'
 	icon = 'yogstation/icons/obj/clothing/gloves.dmi'
 
 /obj/item/clothing/head/yogs
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 
 /obj/item/clothing/neck/yogs
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/neck/neck.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/neck/neck.dmi'
 	icon = 'yogstation/icons/obj/clothing/neck.dmi'
 
 /obj/item/clothing/mask/yogs
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/mask/mask.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/mask/mask.dmi'
 	icon = 'yogstation/icons/obj/clothing/masks.dmi'
 
 /obj/item
 	var/list/alternate_screams = list()
 
 /obj/item/clothing/shoes/yogs
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/feet/feet.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/feet/feet.dmi'
 	icon = 'yogstation/icons/obj/clothing/shoes.dmi'
 
 /obj/item/clothing/suit/yogs
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 
 /obj/item/clothing/under/yogs
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/uniform/uniform.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/uniform/uniform.dmi'
 	icon = 'yogstation/icons/obj/clothing/uniforms.dmi'
 
 /obj/item/clothing/back/yogs
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/back.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/back.dmi'
 	icon = 'yogstation/icons/obj/clothing/back.dmi'
 
 /obj/item/storage/belt/yogs
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/belt.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/belt.dmi'
 	icon = 'yogstation/icons/obj/clothing/belts.dmi'
 
 /obj/item/clothing/torncloth

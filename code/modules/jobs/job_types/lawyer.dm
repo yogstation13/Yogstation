@@ -43,8 +43,8 @@
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/fountainpen/lawyer
 
 	ears = /obj/item/radio/headset/headset_srvsec
-	uniform = /obj/item/clothing/under/lawyer/bluesuit
-	uniform_skirt = /obj/item/clothing/under/lawyer/bluesuit/skirt
+	uniform = /obj/item/clothing/under/rank/civilian/lawyer/bluesuit
+	uniform_skirt = /obj/item/clothing/under/rank/civilian/lawyer/bluesuit/skirt
 	suit = /obj/item/clothing/suit/toggle/lawyer
 	shoes = /obj/item/clothing/shoes/laceup
 	l_hand = /obj/item/storage/briefcase/lawyer
@@ -62,10 +62,10 @@
 	var/datum/job/lawyer/J = SSjob.GetJobType(jobtype)
 	J.lawyers++
 	if(J.lawyers>1)
-		uniform = /obj/item/clothing/under/lawyer/purpsuit
+		uniform = /obj/item/clothing/under/rank/civilian/lawyer/purpsuit
 		suit = /obj/item/clothing/suit/toggle/lawyer/purple
 
 /datum/outfit/job/lawyer/get_types_to_preload()
 	. = ..()
-	. += /obj/item/clothing/under/lawyer/purpsuit
+	. += /obj/item/clothing/under/rank/civilian/lawyer/purpsuit
 	. += /obj/item/clothing/suit/toggle/lawyer/purple

@@ -29,6 +29,11 @@
 		REMOVE_TRAIT(human_user, TRAIT_CRYING, "[type]")
 		human_user.update_body()
 
+/datum/emote/living/carbon/human/cry/get_sound(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+	return user.dna.species.get_cry_sound(user)
+
 #undef CRY_DURATION
 
 /datum/emote/living/carbon/human/dap
@@ -113,13 +118,8 @@
 	var/mob/living/carbon/human/H = user
 	if(H.mind?.miming || !H.can_speak_vocal())
 		return
-	if(H.dna?.species) //yogs start: grabs scream from screamsound located in the appropriate species file.
-		return H.dna.species.get_scream_sound(H) //yogs end - current added screams: basic human, moth, lizard, preternis, felinid.
-
-/datum/emote/living/carbon/meow/get_sound(mob/living/user)
-	if(user.mind?.miming || !user.can_speak_vocal())
-		return
-	return pick('sound/voice/feline/meow1.ogg', 'sound/voice/feline/meow2.ogg', 'sound/voice/feline/meow3.ogg', 'sound/voice/feline/meow4.ogg', 'sound/effects/meow1.ogg')
+	if(H.dna?.species)
+		return H.dna.species.get_scream_sound(H)
 
 /datum/emote/living/carbon/human/rattle
 	key = "rattle"
@@ -129,8 +129,8 @@
 	emote_type = EMOTE_AUDIBLE
 	sound = 'sound/voice/rattled.ogg'
 
-/datum/emote/living/carbon/rattle/can_run_emote(mob/living/user, status_check = TRUE, intentional)
-	return isskeleton(user) && ..()
+/datum/emote/living/carbon/human/rattle/can_run_emote(mob/living/user, status_check = TRUE, intentional)
+	return (isskeleton(user) || isplasmaman(user)) && ..()
 
 /datum/emote/living/carbon/human/pale
 	key = "pale"
@@ -209,6 +209,45 @@
 		return
 	if(H.dna.species.is_wagging_tail())
 		. = null
+
+/datum/emote/living/carbon/human/flap
+	key = "flap"
+	key_third_person = "flaps"
+	message = "flaps their wings."
+	hands_use_check = TRUE
+	var/wing_time = 20
+
+/datum/emote/living/carbon/human/flap/can_run_emote(mob/user, status_check, intentional)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.dna.features["wings"] == "None")
+			return FALSE
+	return ..()
+
+/datum/emote/living/carbon/human/flap/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(. && ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/open = FALSE
+		if(H.dna.features["wings"] != "None")
+			if("wingsopen" in H.dna.species.mutant_bodyparts)
+				open = TRUE
+				H.CloseWings()
+			else
+				H.OpenWings()
+			addtimer(CALLBACK(H, open ? TYPE_PROC_REF(/mob/living/carbon/human, OpenWings) : TYPE_PROC_REF(/mob/living/carbon/human, CloseWings)), wing_time)
+
+/datum/emote/living/carbon/human/flap/get_sound(mob/living/carbon/human/user)
+	if(ismoth(user))
+		return 'sound/voice/moth/moth_flutter.ogg'
+	return ..()
+
+/datum/emote/living/carbon/human/flap/aflap
+	key = "aflap"
+	key_third_person = "aflaps"
+	message = "flaps their wings ANGRILY!"
+	hands_use_check = TRUE
+	wing_time = 10
 
 /datum/emote/living/carbon/human/wing
 	key = "wing"

@@ -202,10 +202,13 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/suit_storage_unit/open,
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
+	},
+/obj/machinery/suit_storage_unit/syndicate{
+	helmet_type = /obj/item/clothing/head/helmet/space/syndicate/black/red;
+	suit_type = /obj/item/clothing/suit/space/syndicate/black/red
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/engineering)
@@ -388,7 +391,7 @@
 "bq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/paper{
-	info = "Due to Syndicate security protocols and several desertion incidents, we have not shipped you any spacesuits."
+	info = "We have seen fit to provide you with spacesuits. HOWEVER, you are also issued a recall implant. It will bring you back to the post if you go too far. In addition, it WILL kill you - PERMANENTLY - if removed."
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/engineering)
@@ -490,10 +493,13 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/suit_storage_unit/open,
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -28
+	},
+/obj/machinery/suit_storage_unit/syndicate{
+	helmet_type = /obj/item/clothing/head/helmet/space/syndicate/black/red;
+	suit_type = /obj/item/clothing/suit/space/syndicate/black/red
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/engineering)
@@ -2469,9 +2475,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
-"LU" = (
-/turf/open/floor/plating/asteroid/airless,
-/area)
 "Mc" = (
 /obj/effect/turf_decal/stripes/asteroid/corner,
 /obj/effect/turf_decal/sand/plating,
@@ -4323,7 +4326,7 @@ aL
 bn
 bn
 sR
-LU
+Mw
 NO
 NO
 NO

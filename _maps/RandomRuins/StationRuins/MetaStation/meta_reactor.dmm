@@ -8,28 +8,6 @@
 "aj" = (
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
-"aA" = (
-/obj/machinery/shower{
-	pixel_y = 20
-	},
-/obj/machinery/camera{
-	c_tag = "Engineering South Clean Room";
-	dir = 8;
-	network = list("ss13","engine")
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 25
-	},
-/turf/open/floor/noslip,
-/area/engine/engineering)
-"aD" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_y = -28
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "aK" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine,
@@ -346,14 +324,6 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/top_layer/outdoors)
-"lx" = (
-/obj/structure/closet/firecloset,
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
 "lE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/effect/turf_decal/stripes/line{
@@ -694,6 +664,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"sK" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/light_switch{
+	pixel_x = 23
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "sY" = (
 /obj/machinery/atmospherics/pipe/simple/brown/visible{
 	dir = 8
@@ -714,6 +694,16 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"tG" = (
+/obj/machinery/shower{
+	pixel_y = 20
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/open/floor/noslip,
 /area/engine/engineering)
 "tS" = (
 /obj/effect/turf_decal/stripes/line,
@@ -757,6 +747,17 @@
 	name = "Atmos to Moderator"
 	},
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"vD" = (
+/obj/structure/closet/radiation,
+/obj/item/clothing/glasses/meson/engine,
+/obj/effect/turf_decal/bot,
+/obj/item/sealant,
+/obj/machinery/camera{
+	c_tag = "Engineering South Clean Room";
+	network = list("ss13","engine")
+	},
+/turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "vJ" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -822,16 +823,6 @@
 /obj/item/sealant,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"yt" = (
-/obj/structure/closet/radiation,
-/obj/item/clothing/glasses/meson/engine,
-/obj/effect/turf_decal/bot,
-/obj/item/sealant,
-/obj/structure/cable/orange{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
 "yD" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -862,6 +853,17 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"zv" = (
+/obj/structure/closet/firecloset,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/light_switch{
+	pixel_y = -23
+	},
+/turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "zF" = (
 /obj/structure/cable/yellow{
@@ -980,6 +982,20 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"BP" = (
+/obj/structure/closet/radiation,
+/obj/item/clothing/glasses/meson/engine,
+/obj/effect/turf_decal/bot,
+/obj/item/sealant,
+/obj/structure/cable/orange{
+	icon_state = "4-8"
+	},
+/obj/machinery/camera{
+	c_tag = "Engineering North Clean Room";
+	network = list("ss13","engine")
+	},
+/turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "CS" = (
 /obj/machinery/atmospherics/pipe/simple/brown/visible,
@@ -1100,22 +1116,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"FQ" = (
-/obj/machinery/computer/station_alert{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_y = -28
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
 "Gh" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	name = "Moderators to Reactor"
@@ -1176,6 +1176,22 @@
 /area/engine/engineering)
 "It" = (
 /turf/open/floor/engine,
+/area/engine/engineering)
+"Ix" = (
+/obj/machinery/computer/station_alert{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "IA" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
@@ -1351,12 +1367,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"Oe" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
+"NP" = (
+/obj/machinery/shower{
+	pixel_y = 20
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/turf/open/floor/plasteel,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 25
+	},
+/turf/open/floor/noslip,
 /area/engine/engineering)
 "OD" = (
 /turf/template_noop,
@@ -1573,21 +1591,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"Uk" = (
-/obj/machinery/shower{
-	pixel_y = 20
-	},
-/obj/machinery/camera{
-	c_tag = "Engineering North Clean Room";
-	dir = 8;
-	network = list("ss13","engine")
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/turf/open/floor/noslip,
-/area/engine/engineering)
 "Uq" = (
 /obj/machinery/door/poddoor{
 	id = "reactorvent";
@@ -1619,13 +1622,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"Va" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "Vb" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1644,6 +1640,16 @@
 	dir = 8
 	},
 /turf/open/floor/engine,
+/area/engine/engineering)
+"Vo" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/machinery/light_switch{
+	pixel_x = 23
+	},
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "Vr" = (
 /obj/machinery/light{
@@ -1684,6 +1690,14 @@
 	req_access_txt = "10"
 	},
 /turf/open/floor/plasteel/dark,
+/area/engine/engineering)
+"Wq" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/engine,
 /area/engine/engineering)
 "WA" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1850,7 +1864,7 @@ OD
 OD
 IG
 jp
-yt
+BP
 Pd
 zG
 jp
@@ -1858,9 +1872,9 @@ lY
 EB
 di
 bl
-FQ
+Ix
 jp
-zG
+vD
 MQ
 zG
 OD
@@ -1902,7 +1916,7 @@ OD
 eZ
 tS
 jp
-Uk
+tG
 nh
 EG
 jp
@@ -1910,9 +1924,9 @@ UH
 JW
 hW
 Vb
-lx
+zv
 jp
-aA
+NP
 nh
 Zo
 OD
@@ -2110,7 +2124,7 @@ dO
 mU
 Np
 rB
-Oe
+Vo
 kC
 fA
 pp
@@ -2120,7 +2134,7 @@ xJ
 QH
 DK
 BF
-Va
+sK
 ya
 IA
 wF
@@ -2224,7 +2238,7 @@ GL
 SJ
 kJ
 lX
-aD
+Wq
 jp
 mU
 mU

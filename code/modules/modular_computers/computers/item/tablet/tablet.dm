@@ -11,7 +11,7 @@
 	hardware_flag = PROGRAM_TABLET
 	max_hardware_size = WEIGHT_CLASS_SMALL
 	w_class = WEIGHT_CLASS_NORMAL
-	max_bays = 3
+	max_bays = 4
 	steel_sheet_cost = 1
 	slot_flags = ITEM_SLOT_BELT
 	has_light = TRUE //LED flashlight!

@@ -223,7 +223,7 @@
 /obj/item/clothing/under/rank/det/yogs
 	name = "black detective suit"
 	desc = "A suit often worn by those detective types. Now in black!"
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/uniform/uniform.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/uniform/uniform.dmi'
 	icon = 'yogstation/icons/obj/clothing/uniforms.dmi'
 	icon_state = "black_detective"
 	item_state = "black_detective"
@@ -574,3 +574,28 @@
 	item_state = "hawaiian_skirt"
 	fitted = FEMALE_UNIFORM_TOP //no hole in the skirt
 	can_adjust = 0
+
+/obj/item/clothing/under/rank/prisoner
+	sprite_sheets = list("GAGS_sprite" = list(SPECIES_VOX))
+
+/obj/item/clothing/under/vox
+	icon = 'icons/obj/clothing/species/vox/uniforms.dmi'
+	species_restricted = list(SPECIES_VOX)
+
+/obj/item/clothing/under/vox/vox_casual
+	name = "alien clothing"
+	desc = "This doesn't look very comfortable."
+	icon_state = "vox-casual-1"
+	item_state = "vox-casual-1"
+
+/obj/item/clothing/under/vox/vox_robes
+	name = "alien robes"
+	desc = "Weird and flowing!"
+	icon_state = "vox-casual-2"
+	item_state = "vox-casual-2"
+
+/obj/item/clothing/under/vox/vox_casual
+	name = "alien jumpsuit"
+	desc = "These loose clothes are optimized for the labors of the lower castes onboard the arkships. Large openings in the top allow for breathability while the pants are durable yet flexible enough to not restrict movement."
+	icon_state = "vox-jumpsuit"
+	item_state = "vox-jumpsuit"

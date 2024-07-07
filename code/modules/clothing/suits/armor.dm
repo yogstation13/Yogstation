@@ -55,7 +55,7 @@
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	strip_delay = 80
 	clothing_flags = THICKMATERIAL
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/hosarmor
 
 /obj/item/clothing/suit/armor/hos/trenchcoat
@@ -82,7 +82,7 @@
 	name = "warden's armored jacket"
 	desc = "A red jacket with silver rank pips and body armor strapped on top."
 	icon_state = "warden_jacket"
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/suit/armor/vest/leather
 	name = "security overcoat"
@@ -92,7 +92,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	heat_protection = CHEST|GROIN|LEGS|ARMS
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 	dog_fashion = null
 
 /obj/item/clothing/suit/armor/vest/capcarapace
@@ -141,7 +141,7 @@
 	strip_delay = 80
 	equip_delay_other = 60
 	slowdown = 0.33
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/suit/armor/bone
 	name = "bone armor"
@@ -186,7 +186,7 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/suit/armor/pathfinder/Initialize(mapload)
 	. = ..()
@@ -204,7 +204,7 @@
 
 /obj/item/clothing/suit/armor/laserproof
 	name = "reflective jacket"
-	desc = "A jacket that excels in protecting the wearer against energy projectiles, as well as occasionally reflecting them."
+	desc = "A jacket that excels in protecting the wearer against energy projectiles, reflecting them back to reduce incoming damage."
 	icon_state = "armor_reflec"
 	item_state = "armor_reflec"
 	blood_overlay_type = "armor"
@@ -213,13 +213,34 @@
 	heat_protection = CHEST|GROIN|ARMS
 	armor = list(MELEE = 10, BULLET = 10, LASER = 60, ENERGY = 50, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	var/hit_reflect_chance = 50
 
-/obj/item/clothing/suit/armor/laserproof/IsReflect(def_zone)
+/obj/item/clothing/suit/armor/laserproof/equipped(mob/user, slot)
+	. = ..()
+	if(slot_flags & slot)
+		RegisterSignal(user, COMSIG_ATOM_BULLET_ACT, PROC_REF(do_reflect))
+
+/obj/item/clothing/suit/armor/laserproof/dropped(mob/user)
+	if(user.get_item_by_slot(ITEM_SLOT_OCLOTHING) == src)
+		UnregisterSignal(user, COMSIG_ATOM_BULLET_ACT)
+	return ..()
+
+/obj/item/clothing/suit/armor/laserproof/proc/do_reflect(mob/living/defender, obj/projectile/incoming, def_zone)
+	if(!(incoming.reflectable & REFLECT_NORMAL))
+		return NONE
 	if(!(def_zone in list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))) //If not shot where ablative is covering you, you don't get the reflection bonus!
-		return FALSE
-	if (prob(hit_reflect_chance))
-		return TRUE
+		return NONE
+	incoming.damage *= 0.5 // split the damage between you and whoever it gets reflected at
+	incoming.on_hit(defender, defender.run_armor_check(def_zone, incoming.armor_flag, "", "", incoming.armour_penetration))
+	incoming.setAngle()
+	if(incoming.hitscan) // hitscan check
+		incoming.store_hitscan_collision(incoming.trajectory.copy_to())
+	incoming.firer = defender
+	var/new_angle_s = incoming.Angle + rand(120,240)
+	while(new_angle_s > 180)	// Translate to regular projectile degrees
+		new_angle_s -= 360
+	incoming.setAngle(new_angle_s)
+	playsound(defender, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, 1)
+	return BULLET_ACT_FORCE_PIERCE
 
 /obj/item/clothing/suit/armor/vest/det_suit
 	name = "detective's armor vest"
@@ -289,7 +310,7 @@
 	desc = "A classic suit of plate armour, highly effective at stopping melee attacks."
 	icon_state = "knight_green"
 	item_state = "knight_green"
-	mutantrace_variation = NO_MUTANTRACE_VARIATION
+	mutantrace_variation = NONE
 
 /obj/item/clothing/suit/armor/riot/knight/yellow
 	icon_state = "knight_yellow"
@@ -412,7 +433,7 @@
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	clothing_flags = THICKMATERIAL
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 //////////////// PLATED ARMOR ////////////////
 // Helmet type in code/modules/clothing/head/helmet.dm

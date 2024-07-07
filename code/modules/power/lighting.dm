@@ -369,6 +369,8 @@
 				break_light_tube(TRUE)
 	update(trigger = FALSE)
 
+	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
+
 /obj/machinery/light/Destroy()
 	GLOB.lights.Remove(src)
 	var/area/A = get_area(src)
@@ -694,6 +696,13 @@
 		if(BURN)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 
+
+/obj/machinery/light/proc/on_light_eater(obj/machinery/light/source, datum/light_eater)
+	SIGNAL_HANDLER
+	if(status != LIGHT_EMPTY)
+		var/obj/item/light/tube = drop_light_tube()
+		tube?.burn()
+	return COMPONENT_BLOCK_LIGHT_EATER
 // returns if the light has power /but/ is manually turned off
 // if a light is turned off, it won't activate emergency power
 /obj/machinery/light/proc/turned_off()
@@ -910,7 +919,7 @@
 	throwforce = 5
 	w_class = WEIGHT_CLASS_TINY
 	materials = list(/datum/material/glass=100)
-	grind_results = list(/datum/reagent/silicon = 5, /datum/reagent/nitrogen = 10) //Nitrogen is used as a cheaper alternative to argon in incandescent lighbulbs
+	grind_results = list(/datum/reagent/silicon = 5, /datum/reagent/gas/nitrogen = 10) //Nitrogen is used as a cheaper alternative to argon in incandescent lighbulbs
 	///How much light it gives off
 	var/brightness = 2
 	///LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN

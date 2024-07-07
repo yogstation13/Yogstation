@@ -17,7 +17,7 @@
 		var/mob/living/carbon/human/H = loc
 		H.update_hair()
 
-/obj/item/clothing/head/worn_overlays(isinhands = FALSE)
+/obj/item/clothing/head/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(isinhands)
 		return
@@ -33,6 +33,8 @@
 		bloody_helmet = mutable_appearance('icons/effects/64x64.dmi', "helmetblood_large")
 	else
 		bloody_helmet = mutable_appearance('icons/effects/blood.dmi', "helmetblood")
+		if(species_fitted && icon_exists(bloody_helmet.icon, "helmetblood_[species_fitted]")) 
+			bloody_helmet.icon_state = "helmetblood_[species_fitted]"
 	bloody_helmet.color = get_blood_dna_color(return_blood_DNA())
 	. += bloody_helmet
 
@@ -46,7 +48,7 @@
 	. = ..()
 	if(!hattable)
 		return
-	if(throwingdatum?.thrower?.zone_selected != BODY_ZONE_HEAD && throwingdatum?.thrower?.a_intent != INTENT_HELP)
+	if(throwingdatum?.thrower?.zone_selected != BODY_ZONE_HEAD)
 		return
 	if(ishuman(hit_atom))
 		var/mob/living/carbon/human/H = hit_atom

@@ -20,6 +20,9 @@
 	// We can rely on the lighting plane to handle that for us
 	see_in_dark = 1e6
 
+	/// Whether the context menu is opened with shift-right-click as opposed to right-click
+	var/shift_to_open_context_menu = TRUE
+
 	/// Percentage of how much rgb to max the lighting plane at
 	/// This lets us brighten it without washing out color
 	/// Scale from 0-100, reset off update_sight()
@@ -116,10 +119,11 @@
 	/// How many ticks this mob has been over reating
 	var/overeatduration = 0		// How long this guy is overeating //Carbon
 
-	/// The current intent of the mob
-	var/a_intent = INTENT_HELP//Living
-	/// List of possible intents a mob can have
-	var/list/possible_a_intents = null//Living
+	///Whether combat mode is enabled
+	var/combat_mode = FALSE
+	///Whether combat mode can be toggled
+	var/can_toggle_combat = TRUE
+
 	/// The movement intent of the mob (run/wal)
 	var/m_intent = MOVE_INTENT_RUN//Living
 

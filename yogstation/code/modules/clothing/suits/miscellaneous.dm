@@ -1,5 +1,5 @@
 /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	name = "network admin's winter coat"
 	icon_state = "coatsignaltech"
@@ -7,7 +7,7 @@
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/engineering/tcomms
 
 /obj/item/clothing/head/hooded/winterhood/engineering/tcomms
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	icon_state = "winterhood_signaltech"
 
@@ -22,7 +22,7 @@
 	icon_state = "blackwhitesweat"
 
 /obj/item/clothing/suit/hooded/wintercoat/bluecoat
-    mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+    worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
     icon = 'yogstation/icons/obj/clothing/suits.dmi'
     name = "Blue winter coat"
     icon_state = "coatwinterblue"
@@ -30,7 +30,7 @@
     hoodtype = /obj/item/clothing/head/hooded/winterhood/bluecoat
 
 /obj/item/clothing/head/hooded/winterhood/bluecoat
-    mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+    worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
     icon = 'yogstation/icons/obj/clothing/hats.dmi'
     icon_state = "hood_blue"
 
@@ -53,7 +53,7 @@
 	item_state = "hamiltoncoat"
 
 /obj/item/clothing/suit/hooded/sandsuit
-    mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+    worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
     icon = 'yogstation/icons/obj/clothing/suits.dmi'
     name = "sand suit"
     desc = "A suit often worn by desert nomads."
@@ -63,7 +63,7 @@
     hoodtype = /obj/item/clothing/head/hooded/sandsuit
 
 /obj/item/clothing/head/hooded/sandsuit
-    mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+    worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
     icon = 'yogstation/icons/obj/clothing/hats.dmi'
     icon_state = "sandsuit"
     flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
@@ -82,7 +82,7 @@
 
 /obj/item/clothing/suit/yogs/thejestercoat
 	name = "jester coat"
-	desc = "It's a pretty nice coat...OR IS IT!!!."
+	desc = "It's a pretty nice coat...OR IS IT!!!"
 	icon_state = "the_jester_coat"
 	item_state = "the_jester_coat"
 
@@ -126,7 +126,7 @@
 	name = "robotics steampunk labcoat"
 	desc = "A labcoat with a steampunk design to it for a roboticist."
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon_state = "wardt_lab"
 	item_state = "wardt_lab"
 
@@ -134,7 +134,7 @@
 	name = "robotics fancy labcoat"
 	desc = "A labcoat with a few markings denoting it as a labcoat for a roboticist."
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon_state = "aeneasrinil"
 	item_state = "aeneasrinil"
 
@@ -190,7 +190,7 @@
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 
 /obj/item/clothing/suit/hooded/fiendcowl
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	name = "fiend cowl"
 	desc = "Only a really evil person would wear such a fiendish cowl!"
@@ -200,13 +200,13 @@
 	hoodtype = /obj/item/clothing/head/hooded/fiendhood
 
 /obj/item/clothing/head/hooded/fiendhood
-    mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+    worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
     icon = 'yogstation/icons/obj/clothing/hats.dmi'
     icon_state = "fiendhood"
     flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 
 /obj/item/clothing/suit/hooded/eldritchcowl
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	name = "eldritch cowl"
 	desc = "A tattered heretical cloak from a time long passed."
@@ -216,7 +216,7 @@
 	hoodtype = /obj/item/clothing/head/hooded/eldritchhood
 
 /obj/item/clothing/head/hooded/eldritchhood
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	icon_state = "eldritchhood"
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR|HIDEMASK
@@ -228,7 +228,7 @@
 	item_state = "infsuit"
 
 /obj/item/clothing/suit/hooded/caretakercloak
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	name = "caretaker cloak"
 	desc = "Yeah, he will 'take care' of you alright."
@@ -238,7 +238,7 @@
 	hoodtype = /obj/item/clothing/head/hooded/caretakerhood
 
 /obj/item/clothing/head/hooded/caretakerhood
-    mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+    worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
     icon = 'yogstation/icons/obj/clothing/hats.dmi'
     icon_state = "caretakerhood"
     flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
@@ -246,7 +246,7 @@
 /obj/item/clothing/suit/det_suit/yogs
 	name = "detective long coat"
 	desc = "For those detectives that value fashion over function."
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "detective_coat"
 	item_state = "detective_item"
@@ -262,7 +262,7 @@
 	desc = "A detective jacket that is blue!"
 	icon_state = "blue_detective"
 	item_state = "blue_item"
-	
+
 /obj/item/clothing/suit/yogs/leathercoat
 	name = "black leather coat"
 	desc = "So you too can be the one."
@@ -302,7 +302,7 @@
 	item_state = "monkrobes"
 
 /obj/item/clothing/suit/hooded/spesshoodie
-    mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+    worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
     icon = 'yogstation/icons/obj/clothing/suits.dmi'
     name = "spess hoodie"
     desc = "A hoodie...IN SPESS!!!"
@@ -312,7 +312,7 @@
     hoodtype = /obj/item/clothing/head/hooded/spesshoodie
 
 /obj/item/clothing/head/hooded/spesshoodie
-    mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+    worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
     icon = 'yogstation/icons/obj/clothing/hats.dmi'
     icon_state = "spesshoodie"
     flags_inv = HIDEEARS|HIDEHAIR
@@ -351,7 +351,7 @@
 	name = "punk jacket"
 	desc = "My Moon My Man."
 	togglename = "symbol"
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "punk"
 	item_state = "punk"
@@ -370,7 +370,7 @@
 	item_state = "northern"
 
 /obj/item/clothing/suit/jacket/pride
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	name = "pride jacket"
 	desc = "Gay."
@@ -397,3 +397,38 @@
 	desc = "Women..."
 	icon_state = "lesbian"
 	item_state = "lesbian"
+
+/obj/item/clothing/suit/jacket/urinal_costume
+	name = "urinal costume"
+	desc = "You're taking the piss outta this, aren't you?"
+	icon_state = "urinal"
+	item_state = "urinal"
+
+/obj/item/clothing/suit/hooded/vox_robes
+	name = "alien hooded robes"
+	desc = "Large, comfortable robes worn by those who need a bit more covering. The thick fabric contains a pocket suitable for those that need their hands free during their work, while the cloth serves to cover scars or other injuries to the wearer's body."
+	icon = VOX_SUIT_FILE
+	icon_state = "vox-robes"
+	item_state = "vox-robes"
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	hoodtype = /obj/item/clothing/head/hooded/vox_robe_hood
+	species_restricted = list(SPECIES_VOX)
+
+/obj/item/clothing/head/hooded/vox_robe_hood
+	name = "alien hood"
+	desc = "The thick fabric of this hood serves a variety of purposes to the vox wearing it - serving as a method to hide a scarred face or a way to keep warm in the coldest areas onboard the ship."
+	icon = VOX_HEAD_FILE
+	icon_state = "vox-robes-hood"
+	item_state = "vox-robes-hood"
+	flags_inv = HIDEHAIR
+	flags_cover = HEADCOVERSEYES
+	species_restricted = list(SPECIES_VOX)
+
+/obj/item/clothing/suit/armor/vox_scrap
+	name = "rusted metal armor"
+	desc = "A hodgepodge of various pieces of metal scrapped together into a rudimentary vox-shaped piece of armor."
+	allowed = list(/obj/item/gun, /obj/item/tank)
+	armor = list(MELEE = 70, BULLET = 30, LASER = 20, ENERGY = 5, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15) //Higher melee armor versus lower everything else.
+	icon_state = "vox-scrap"
+	body_parts_covered = CHEST|ARMS|GROIN|LEGS
+	species_restricted = list(SPECIES_VOX)

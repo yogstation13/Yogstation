@@ -82,34 +82,6 @@
 /atom/proc/MouseDrop_T(atom/dropping, mob/user)
 	SEND_SIGNAL(src, COMSIG_MOUSEDROPPED_ONTO, dropping, user)
 
-
-/client/MouseDown(datum/object, location, control, params)
-	if(QDELETED(object)) //Yep, you can click on qdeleted things before they have time to nullspace. Fun.
-		return
-	SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEDOWN, object, location, control, params)
-	if(mouse_down_icon)
-		mouse_pointer_icon = mouse_down_icon
-	var/delay = mob.CanMobAutoclick(object, location, params)
-	if(delay)
-		selected_target[1] = object
-		selected_target[2] = params
-		while(selected_target[1])
-			Click(selected_target[1], location, control, selected_target[2])
-			sleep(delay)
-	active_mousedown_item = mob.canMobMousedown(object, location, params)
-	if(active_mousedown_item)
-		active_mousedown_item.onMouseDown(object, location, params, mob)
-
-/client/MouseUp(object, location, control, params)
-	if(SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEUP, object, location, control, params) & COMPONENT_CLIENT_MOUSEUP_INTERCEPT)
-		click_intercept_time = world.time
-	if(mouse_up_icon)
-		mouse_pointer_icon = mouse_up_icon
-	selected_target[1] = null
-	if(active_mousedown_item)
-		active_mousedown_item.onMouseUp(object, location, params, mob)
-		active_mousedown_item = null
-
 /client
 	var/list/atom/selected_target[2]
 	var/obj/item/active_mousedown_item = null
@@ -127,8 +99,13 @@
 	//The params we were passed at the start of the drag, in list form
 	var/list/drag_details
 
-/client/MouseDown(object, location, control, params)
-	if (mouse_down_icon)
+/client/MouseDown(datum/object, location, control, params)
+	if(!control)
+		return
+	if(QDELETED(object)) //Yep, you can click on qdeleted things before they have time to nullspace. Fun.
+		return
+	SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEDOWN, object, location, control, params)
+	if(mouse_down_icon)
 		mouse_pointer_icon = mouse_down_icon
 	var/delay = mob.CanMobAutoclick(object, location, params)
 	if(delay)
@@ -142,7 +119,11 @@
 		active_mousedown_item.onMouseDown(object, location, params, mob)
 
 /client/MouseUp(object, location, control, params)
-	if (mouse_up_icon)
+	if(!control)
+		return
+	if(SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEUP, object, location, control, params) & COMPONENT_CLIENT_MOUSEUP_INTERCEPT)
+		click_intercept_time = world.time
+	if(mouse_up_icon)
 		mouse_pointer_icon = mouse_up_icon
 	selected_target[1] = null
 	if(active_mousedown_item)
@@ -176,9 +157,6 @@
 
 /obj/item/proc/onMouseUp(object, location, params, mob)
 	return
-
-/obj/item/gun/CanItemAutoclick(object, location, params)
-	. = automatic
 
 /atom/proc/IsAutoclickable()
 	return TRUE

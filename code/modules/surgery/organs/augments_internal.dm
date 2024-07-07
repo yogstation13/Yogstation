@@ -106,6 +106,7 @@
 		COMSIG_LIVING_STATUS_KNOCKDOWN,
 		COMSIG_LIVING_STATUS_IMMOBILIZE,
 		COMSIG_LIVING_STATUS_PARALYZE,
+		COMSIG_LIVING_STATUS_DAZE,
 	)
 
 	var/stun_cap_amount = 4 SECONDS
@@ -194,9 +195,9 @@
 	icon_state = "cyber_implants"
 	var/list/boxed = list(
 		/obj/item/autosurgeon/thermal_eyes,
-		/obj/item/autosurgeon/xray_eyes,
-		/obj/item/autosurgeon/anti_stun,
-		/obj/item/autosurgeon/reviver)
+		/obj/item/autosurgeon/suspicious/xray_eyes,
+		/obj/item/autosurgeon/suspicious/anti_stun,
+		/obj/item/autosurgeon/suspicious/reviver)
 	var/amount = 5
 
 /obj/item/storage/box/cyber_implants/PopulateContents()

@@ -66,7 +66,7 @@
 			qdel(src)
 
 /obj/item/stack/ore/attack(mob/living/M, mob/living/user)
-	if(user.a_intent == INTENT_HARM || M != user || !ishuman(user))
+	if(!user.combat_mode || M != user || !ishuman(user))
 		return ..()
 
 	var/mob/living/carbon/human/H = user

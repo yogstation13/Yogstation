@@ -329,7 +329,7 @@
 	desc = "One of two blades used to form a break bow. Can attack with both blades at the same time or combine them into a bow."
 	icon_state = "brakebow_blade"
 	item_state = "brakebow_blade"
-	icon = 'icons/obj/weapons/swords.dmi'
+	icon = 'icons/obj/weapons/shortsword.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -368,7 +368,7 @@
 /obj/item/break_blade/pre_attack(atom/A, mob/living/user, params)
 	if(istype(A, /obj/item/break_blade))
 		form_bow(user, A)
-		return FALSE
+		return TRUE
 	. = ..()
 
 /obj/item/break_blade/attack(mob/living/M, mob/living/user, secondattack = FALSE)

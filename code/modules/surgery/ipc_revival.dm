@@ -106,7 +106,7 @@
 /datum/surgery/synth_revival/can_start(mob/user, mob/living/target)
 	if(target.stat != DEAD)
 		return FALSE // they're already activated
-	if(!is_synth(user))
+	if(!is_synth(target))
 		return FALSE
 	var/obj/item/organ/brain/B = target.getorganslot(ORGAN_SLOT_BRAIN)
 	if(!B) // you can't reactivate a brain that DOESN'T EXIST

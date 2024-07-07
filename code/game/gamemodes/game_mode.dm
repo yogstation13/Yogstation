@@ -70,13 +70,24 @@
 /datum/game_mode/proc/can_start()
 	var/playerC = 0
 	var/unreadiedPlayers = 0
+	var/ghostPlayers = 0
 	for(var/mob/dead/new_player/player in GLOB.player_list)
-		if(player.client && (player.ready == PLAYER_READY_TO_PLAY))
+		if(!player.client)
+			continue
+
+		if(player.ready == PLAYER_READY_TO_PLAY)
 			playerC++
-		else if(player.client && (player.ready == PLAYER_NOT_READY) && !player.client.holder) //Admins don't count :)
+
+		if(player.client.holder) //Admins don't count towards unreadied or observing player count
+			continue
+
+		if(player.ready == PLAYER_NOT_READY)
 			unreadiedPlayers++
+		else if(player.ready == PLAYER_READY_TO_OBSERVE)
+			ghostPlayers++
+
 	if(!GLOB.Debug2)
-		var/adjustedPlayerCount = round(playerC + (unreadiedPlayers * UNREADIED_PLAYER_MULTIPLIER), 1)
+		var/adjustedPlayerCount = round(playerC + (unreadiedPlayers * UNREADIED_PLAYER_MULTIPLIER) + (ghostPlayers * OBSERVER_PLAYER_MULTIPLIER), 1)
 		log_game("Round can_start() with [adjustedPlayerCount] adjusted count, versus [playerC] regular player count. Requirement: [required_players] Gamemode: [name]")
 		if(adjustedPlayerCount < required_players || (maximum_players >= 0 && playerC > maximum_players))
 			return FALSE
@@ -140,6 +151,16 @@
 		replacementmode.make_antag_chance(character)
 	return
 
+//replace someone that's job banned
+/datum/game_mode/proc/replace_jobbaned_player(mob/living/M, role_type, pref)
+	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [role_type]?", "[role_type]", null, pref, 50, M)
+	var/mob/dead/observer/theghost = null
+	to_chat(M, "You have been expelled from your body! Appeal your job ban if you want to avoid this in the future!")
+	M.ghostize(0)
+	if(candidates.len)
+		theghost = pick(candidates)
+		message_admins("[key_name_admin(theghost)] has taken control of ([key_name_admin(M)]) to replace a jobbaned player.")
+		M.key = theghost.key
 
 /// Allows rounds to basically be "rerolled" should the initial premise fall through. Also known as mulligan antags.
 /datum/game_mode/proc/convert_roundtype()
@@ -147,8 +168,9 @@
 	var/list/living_crew = list()
 
 	for(var/mob/Player in GLOB.mob_list)
-		if(Player.mind && Player.stat != DEAD && !isnewplayer(Player) && !isbrain(Player) && Player.client)
+		if(Player.mind && Player.stat != DEAD && !isnewplayer(Player) && !isbrain(Player) && Player.client && (Player.mind.assigned_role in GLOB.crew_positions))
 			living_crew += Player
+
 	var/malc = CONFIG_GET(number/midround_antag_life_check)
 	if(living_crew.len / GLOB.joined_player_list.len <= malc) //If a lot of the player base died, we start fresh
 		message_admins("Convert_roundtype failed due to too many dead people. Limit is [malc * 100]% living crew")

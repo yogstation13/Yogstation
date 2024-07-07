@@ -71,13 +71,21 @@
 	key = "cough"
 	key_third_person = "coughs"
 	message = "coughs!"
-	emote_type = EMOTE_AUDIBLE
+	message_mime = "acts out an exaggerated cough!"
+	cooldown = 5 SECONDS
 	stat_allowed = SOFT_CRIT
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
+	vary = TRUE
 
 /datum/emote/living/cough/can_run_emote(mob/user, status_check = TRUE , intentional)
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_SOOTHED_THROAT))
 		return FALSE
+
+/datum/emote/living/cough/get_sound(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+	return user.dna.species.get_cough_sound(user)
 
 /datum/emote/living/cross
 	key = "cross"
@@ -145,33 +153,6 @@
 	if(. && isliving(user))
 		var/mob/living/L = user
 		L.Knockdown(60)
-
-/datum/emote/living/flap
-	key = "flap"
-	key_third_person = "flaps"
-	message = "flaps their wings."
-	hands_use_check = TRUE
-	var/wing_time = 20
-
-/datum/emote/living/flap/run_emote(mob/user, params, type_override, intentional)
-	. = ..()
-	if(. && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		var/open = FALSE
-		if(H.dna.features["wings"] != "None")
-			if("wingsopen" in H.dna.species.mutant_bodyparts)
-				open = TRUE
-				H.CloseWings()
-			else
-				H.OpenWings()
-			addtimer(CALLBACK(H, open ? TYPE_PROC_REF(/mob/living/carbon/human, OpenWings) : TYPE_PROC_REF(/mob/living/carbon/human, CloseWings)), wing_time)
-
-/datum/emote/living/flap/aflap
-	key = "aflap"
-	key_third_person = "aflaps"
-	message = "flaps their wings ANGRILY!"
-	hands_use_check = TRUE
-	wing_time = 10
 
 /datum/emote/living/frown
 	key = "frown"
@@ -266,13 +247,8 @@
 
 /datum/emote/living/laugh/get_sound(mob/living/user)
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		var/human_laugh = ishumanbasic(H) || iscatperson(H)
-		if(human_laugh && (!H.mind || !H.mind.miming))
-			if(user.gender == FEMALE)
-				return 'sound/voice/human/womanlaugh.ogg'
-			else
-				return pick('sound/voice/human/manlaugh1.ogg', 'sound/voice/human/manlaugh2.ogg')
+		var/mob/living/carbon/human/human_user = user
+		return human_user.dna.species.get_laugh_sound(user)
 
 /datum/emote/living/look
 	key = "look"
@@ -378,7 +354,15 @@
 	key = "sneeze"
 	key_third_person = "sneezes"
 	message = "sneezes."
-	emote_type = EMOTE_AUDIBLE
+	cooldown = 5 SECONDS
+	message_mime = "acts out an exaggerated silent sneeze."
+	vary = TRUE
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
+
+/datum/emote/living/sneeze/get_sound(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+	return user.dna.species.get_sneeze_sound(user)
 
 /datum/emote/living/smug
 	key = "smug"
@@ -489,6 +473,25 @@
 	key_third_person = "yawns"
 	message = "yawns."
 	emote_type = EMOTE_AUDIBLE
+
+/datum/emote/living/gasp_shock
+	key = "gaspshock"
+	key_third_person = "gaspsshock"
+	message = "gasps in shock!"
+	message_mime = "gasps in silent shock!"
+	cooldown = 2 SECONDS
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
+	stat_allowed = SOFT_CRIT
+
+/datum/emote/living/gasp_shock/get_sound(mob/living/user)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/human_user = user
+	if(ishumanbasic(human_user) || iscatperson(human_user) && !HAS_MIND_TRAIT(human_user, TRAIT_MIMING))
+		if(human_user.gender == FEMALE)
+			return pick('sound/voice/human/gasp_female1.ogg', 'sound/voice/human/gasp_female2.ogg', 'sound/voice/human/gasp_female3.ogg')
+		else
+			return pick('sound/voice/human/gasp_male1.ogg', 'sound/voice/human/gasp_male2.ogg')
 
 /datum/emote/living/custom
 	key = "me"
