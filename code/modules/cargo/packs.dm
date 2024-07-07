@@ -1428,7 +1428,7 @@
 
 /datum/supply_pack/medical/bloodpacks
 	name = "Blood Pack Variety Crate"
-	desc = "Contains eight different blood packs for reintroducing blood to patients."
+	desc = "Contains many different blood packs for reintroducing blood to patients."
 	cost = 3500
 	contains = list(/obj/item/reagent_containers/blood,
 					/obj/item/reagent_containers/blood,
@@ -1439,6 +1439,7 @@
 					/obj/item/reagent_containers/blood/OPlus,
 					/obj/item/reagent_containers/blood/OMinus,
 					/obj/item/reagent_containers/blood/lizard,
+					/obj/item/reagent_containers/blood/vox,
 					/obj/item/reagent_containers/blood/ethereal)
 	crate_name = "blood freezer"
 	crate_type = /obj/structure/closet/crate/freezer
@@ -2434,6 +2435,22 @@
 					/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy
 					)
 	crate_name = "grilling fuel kit crate"
+
+/datum/supply_pack/organic/food_cart
+	name = "Food Cart Crate"
+	desc = "Contains a food cart for all your mobile food needs."
+	cost = 5000
+	crate_type = /obj/structure/closet/crate/large
+	contains = list(/obj/machinery/food_cart)
+	crate_name = "food cart crate"
+
+/datum/supply_pack/organic/icecream_vat
+	name = "Ice cream Vat Crate"
+	desc = "A vat of ice-cold icecream for those hot shifts in Atmospherics."
+	cost = 5000
+	crate_type = /obj/structure/closet/crate/large
+	contains = list(/obj/machinery/icecream_vat)
+	crate_name = "ice cream vat crate"
 
 //////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// Livestock /////////////////////////////////////

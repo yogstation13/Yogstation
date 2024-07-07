@@ -1,7 +1,9 @@
-#define CHALLENGE_TELECRYSTALS 280
-#define CHALLENGE_TIME_LIMIT 3000
-#define CHALLENGE_MIN_PLAYERS 40
-#define CHALLENGE_SHUTTLE_DELAY 15000 // 25 minutes, so the ops have at least 5 minutes before the shuttle is callable.
+/// The number of telecrystals per player
+#define CHALLENGE_TELECRYSTALS_PER_PLAYER 7
+/// How long the operatives have to declare war
+#define CHALLENGE_TIME_LIMIT (5 MINUTES)
+/// How long after declaring war before the operatives can show up
+#define CHALLENGE_SHUTTLE_DELAY (25 MINUTES) // 25 minutes, so the ops have at least 5 minutes before the shuttle is callable.
 
 GLOBAL_LIST_EMPTY(jam_on_wardec)
 
@@ -75,7 +77,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 		uplinks += uplink
 
 
-	var/tc_to_distribute = CHALLENGE_TELECRYSTALS
+	var/tc_to_distribute = CHALLENGE_TELECRYSTALS_PER_PLAYER * GLOB.player_list.len
 	var/tc_per_nukie = round(tc_to_distribute / (length(orphans)+length(uplinks)))
 
 	for (var/datum/component/uplink/uplink in uplinks)
@@ -104,9 +106,6 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 	if(declaring_war)
 		to_chat(user, "You are already in the process of declaring war! Make your mind up.")
 		return FALSE
-	if(GLOB.player_list.len < CHALLENGE_MIN_PLAYERS)
-		to_chat(user, "The enemy crew is too small to be worth declaring war on.")
-		return FALSE
 	if(!user.onSyndieBase())
 		to_chat(user, "You have to be at your base to use this.")
 		return FALSE
@@ -123,7 +122,6 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 /obj/item/nuclear_challenge/clownops
 	uplink_type = /obj/item/uplink/clownop
 
-#undef CHALLENGE_TELECRYSTALS
+#undef CHALLENGE_TELECRYSTALS_PER_PLAYER
 #undef CHALLENGE_TIME_LIMIT
-#undef CHALLENGE_MIN_PLAYERS
 #undef CHALLENGE_SHUTTLE_DELAY

@@ -557,6 +557,12 @@
 	xenoshoe = YES_DIGIT
 	mutantrace_variation = DIGITIGRADE_VARIATION
 
+/obj/item/clothing/shoes/xeno_wraps/cargo/cleated
+	name = "cleated footwraps"
+	desc = "Standard issue Nanotrasen cloth footwraps, with steel cleats riveted every few inches to help cross ice."
+	clothing_flags = NOSLIP_ICE
+
+
 /datum/action/item_action/dash
 	name = "Dash"
 	desc = "Momentarily maximizes the jets of the shoes, allowing the user to dash a short distance."

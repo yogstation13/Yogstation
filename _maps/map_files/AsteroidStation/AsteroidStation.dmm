@@ -78649,7 +78649,7 @@
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/secondarydatacoreserver)
 "xyw" = (
-/obj/machinery/atmospherics/components/unary/tank/toxins{
+/obj/machinery/atmospherics/components/unary/tank/plasma{
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{

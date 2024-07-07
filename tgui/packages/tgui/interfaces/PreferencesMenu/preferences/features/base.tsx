@@ -22,6 +22,7 @@ export type Feature<
   >;
   category?: string;
   description?: string;
+  sortingPrefix?: string;
 };
 
 /**
