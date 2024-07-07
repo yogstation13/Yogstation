@@ -146,7 +146,7 @@
 /datum/species/preternis/zombie
 	name = "Low-Functioning Preternis"
 	id = "preterniszombie"
-	limbs_id = "preternis"
+	limbs_id = SPECIES_PRETERNIS
 	inherent_traits = list(TRAIT_NOBREATH, TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE, TRAIT_NO_BLOOD_REGEN, TRAIT_STABLELIVER, TRAIT_STABLEHEART, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_FAKEDEATH, TRAIT_STUNIMMUNE, TRAIT_NODEATH)
 	mutanthands = /obj/item/zombie_hand
 	var/static/list/spooks = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')

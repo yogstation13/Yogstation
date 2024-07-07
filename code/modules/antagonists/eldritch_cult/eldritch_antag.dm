@@ -1,3 +1,15 @@
+
+/*
+ * Simple helper to generate a string of
+ * garbled symbols up to [length] characters.
+ *
+ * Used in creating spooky-text for heretic ascension announcements.
+ */
+/proc/generate_heretic_text(length = 25)
+	. = ""
+	for(var/i in 1 to length)
+		. += pick("!", "$", "^", "@", "&", "#", "*", "(", ")", "?")
+
 /datum/antagonist/heretic
 	name = "Heretic"
 	roundend_category = "Heretics"
@@ -108,7 +120,7 @@
 	log_admin("[key_name(admin)] has heresized [key_name(new_owner)].")
 
 /datum/antagonist/heretic/greet()
-	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ecult_op.ogg', 100, FALSE, pressure_affected = FALSE)//subject to change
+	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/heretic/heretic_gain.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE) // no longer subject to change
 	to_chat(owner, span_userdanger("You are the Heretic."))
 	owner.announce_objectives()
 	to_chat(owner, "<span class='cult'>The text whispers, and forbidden knowledge licks at your mind!<br>\

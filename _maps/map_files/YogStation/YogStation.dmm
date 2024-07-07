@@ -34297,7 +34297,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "jjR" = (
-/obj/machinery/atmospherics/components/unary/tank/toxins,
+/obj/machinery/atmospherics/components/unary/tank/plasma,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "jjS" = (

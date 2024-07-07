@@ -174,7 +174,7 @@
 
 /datum/quirk/colorist/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (HAIR in initial(species_type.species_traits)) // No Hair
+	var/disallowed_trait = (HAIR in initial(species_type.species_traits)) || ("vox_quills" in initial(species_type.mutant_bodyparts)) // No Hair
 
 	if(!disallowed_trait)
 		return "You don't have hair!"
