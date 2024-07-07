@@ -1,0 +1,10 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "fixes a bug where the loyalty core kinetic javelin sometimes wouldn't return"
+  - tweak: "Kinetic javelin now does 30 damage on fauna hit rather than 45"
+  - tweak: "Enraged javelin core now gives a 50% damage boost rather than 25%"
+  - tweak: "Merciful kinetic javelin core now heals 20 health distributed smartly rather than 5 to every damage type"
+  - tweak: "Loyalty Javelin core no longer throws slower or does less damage"
+  - tweak: "Radiant javelin core now applies a short duration burn but does no impact damage"
+  - bugfix: "fixes a bug where most status effects were 1 decisecond slower with their effects than intended"
