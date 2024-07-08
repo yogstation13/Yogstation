@@ -1,4 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed the system alert app's icon glitching out of the PDA frame during high alert"
