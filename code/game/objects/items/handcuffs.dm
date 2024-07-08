@@ -251,7 +251,7 @@
 	throw_speed = 1
 	throw_range = 1
 	icon_state = "beartrap"
-	desc = "A trap used to catch bears and other legged creatures."
+	desc = "A trap used to catch bears and other legged creatures. Must be anchored to trigger."
 	break_strength = 4
 	var/armed = 0
 	var/trap_damage = 20
@@ -318,7 +318,7 @@
  * If ignore_movetypes is FALSE, does not trigger on floating / flying / etc. mobs.
  */
 /obj/item/restraints/legcuffs/beartrap/proc/spring_trap(atom/movable/target, ignore_movetypes = FALSE)
-	if(!armed || !isturf(loc) || !isliving(target))
+	if(!armed || !isturf(loc) || !isliving(target) || !anchored)
 		return
 
 	var/mob/living/victim = target
