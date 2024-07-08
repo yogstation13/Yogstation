@@ -12,10 +12,12 @@
 	var/max_boosted_faculties = 3
 	var/boosted_psipower = 120
 	var/paramount_check = FALSE
-
-/obj/item/clothing/head/helmet/space/psi_amp/Initialize()
-	. = ..()
-	verbs += /obj/item/clothing/head/helmet/space/psi_amp/proc/integrate
+	
+/obj/item/clothing/head/helmet/space/psi_amp/verb/integrate_action()
+	set name = "Integrate"
+	set category = null
+	set src in usr
+	integrate()
 
 /obj/item/clothing/head/helmet/space/psi_amp/attack_self(mob/user)
 
