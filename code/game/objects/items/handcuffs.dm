@@ -321,6 +321,7 @@
 	if(!armed || !isturf(loc) || !isliving(target))
 		return
 
+	var/mob/living/victim = target
 	//don't close the trap if they're as small as a mouse
 	if(victim.mob_size <= MOB_SIZE_TINY)
 		return
@@ -332,7 +333,6 @@
 		close_trap()
 		return
 
-	var/mob/living/victim = target
 	if(istype(victim.buckled, /obj/vehicle))
 		var/obj/vehicle/ridden_vehicle = victim.buckled
 		if(!ridden_vehicle.are_legs_exposed) //close the trap without injuring/trapping the rider if their legs are inside the vehicle at all times.
