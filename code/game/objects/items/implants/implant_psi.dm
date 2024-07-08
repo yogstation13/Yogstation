@@ -21,7 +21,7 @@
 				<b>Integrity:</b> Implant will last so long as the device is inside the bloodstream."}
 	return dat
 
-/obj/item/implant/psi_control/Initialize()
+/obj/item/implant/psi_control/Initialize(mapload)
 	. = ..()
 	SSpsi.psi_dampeners += src
 	SSpsi.processing += src
@@ -147,7 +147,7 @@
 	var/stress_left = 100
 	var/lifespan = 1 MINUTES
 
-/obj/item/implant/nullglass/Initialize()
+/obj/item/implant/nullglass/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, lifespan)
 
