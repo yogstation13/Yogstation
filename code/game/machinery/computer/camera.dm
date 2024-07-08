@@ -50,7 +50,7 @@
 
 /obj/machinery/computer/security/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
-	if(!user.canUseTopic(src, no_dextery = TRUE)) //prevents monkeys from using camera consoles
+	if(!user.canUseTopic(src, no_dexterity = TRUE)) //prevents monkeys from using camera consoles
 		return
 	// Update UI
 	ui = SStgui.try_update_ui(user, src, ui)

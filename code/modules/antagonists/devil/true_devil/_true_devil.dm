@@ -93,7 +93,7 @@
 		visible_message(span_warning("[src] easily breaks out of [p_their()] handcuffs!"), \
 					span_notice("With just a thought your handcuffs fall off."))
 
-/mob/living/carbon/true_devil/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
+/mob/living/carbon/true_devil/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE)
 	if(incapacitated())
 		to_chat(src, span_warning("You can't do that right now!"))
 		return FALSE
