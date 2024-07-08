@@ -51,6 +51,64 @@
 				aura_color = "#33cc33"
 			if(PSI_ENERGISTICS)
 				aura_color = "#cccc33"
+		
+	// for(var/datum/psionic_power/power in subtypesof(/datum/psionic_power))
+
+	//operant level psionics
+	if(get_rank(PSI_COERCION) == 2)
+		var/datum/action/cooldown/spell/pointed/disarm/disarm = new(owner)
+		disarm.Grant(owner)
+	if(get_rank(PSI_PSYCHOKINESIS) == 2)
+		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
+		ranged_touch.Grant(owner)
+	if(get_rank(PSI_REDACTION) == 2)
+		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
+		ranged_touch.Grant(owner)
+	if(get_rank(PSI_ENERGISTICS) == 2)
+		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
+		ranged_touch.Grant(owner)
+
+	//master level psionics
+	if(get_rank(PSI_COERCION) == 3)
+		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
+		ranged_touch.Grant(owner)
+	if(get_rank(PSI_PSYCHOKINESIS) == 3)
+		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
+		ranged_touch.Grant(owner)
+	if(get_rank(PSI_REDACTION) == 3)
+		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
+		ranged_touch.Grant(owner)
+	if(get_rank(PSI_ENERGISTICS) == 3)
+		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
+		ranged_touch.Grant(owner)
+
+	//grandmaster level psionics
+	if(get_rank(PSI_COERCION) == 4)
+		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
+		ranged_touch.Grant(owner)
+	if(get_rank(PSI_PSYCHOKINESIS) == 4)
+		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
+		ranged_touch.Grant(owner)
+	if(get_rank(PSI_REDACTION) == 4)
+		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
+		ranged_touch.Grant(owner)
+	if(get_rank(PSI_ENERGISTICS) == 4)
+		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
+		ranged_touch.Grant(owner)
+
+	//paramount psionics
+	if(get_rank(PSI_COERCION) == 5)
+		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
+		ranged_touch.Grant(owner)
+	if(get_rank(PSI_PSYCHOKINESIS) == 5)
+		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
+		ranged_touch.Grant(owner)
+	if(get_rank(PSI_REDACTION) == 5)
+		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
+		ranged_touch.Grant(owner)
+	if(get_rank(PSI_ENERGISTICS) == 5)
+		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
+		ranged_touch.Grant(owner)
 
 	if(!announced && owner?.client && !QDELETED(src))
 		announced = TRUE
@@ -58,6 +116,10 @@
 		to_chat(owner, span_notice("<font size = 3>You are <b>psionic</b>, touched by powers beyond understanding.</font>"))
 		to_chat(owner, span_notice("<b>Shift-left-click your Psi icon</b> on the bottom right to <b>view a summary of how to use them</b>, or <b>left click</b> it to <b>suppress or unsuppress</b> your psionics. Beware: overusing your gifts can have <b>deadly consequences</b>."))
 		to_chat(owner, "<hr>")
+
+	
+	
+
 
 /datum/psi_complexus/process()
 

@@ -30,6 +30,8 @@
 #define SCHOOL_FORBIDDEN "forbidden"
 /// Blood magic, involves vampirism, draining blood, etc.
 #define SCHOOL_SANGUINE "sanguine"
+/// psionic powers, not *technically* magic
+#define SCHOOL_PSIONIC "psionic"
 
 // Invocation types - what does the wizard need to do to invoke (cast) the spell?
 /// Allows being able to cast the spell without saying or doing anything.

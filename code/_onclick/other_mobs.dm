@@ -5,8 +5,6 @@
 	Otherwise pretty standard.
 */
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity, modifiers)
-	if(psi)
-		INVOKE_PSI_POWERS(src, psi.get_melee_powers(), A, FALSE)
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		if(src == A)
 			check_self_for_injuries()
@@ -52,11 +50,7 @@
 /mob/living/carbon/human/attack_empty_hand()
 	if(psi)
 		INVOKE_PSI_POWERS(src, psi.get_manifestations(), src, FALSE)
-
-/mob/living/carbon/human/RangedAttack(atom/A, params)
-	if(psi)
-		INVOKE_PSI_POWERS(src, psi.get_ranged_powers(), A, TRUE)
-
+	
 //Return TRUE to cancel other attack hand effects that respect it.
 /atom/proc/attack_hand(mob/user, modifiers)
 	. = FALSE

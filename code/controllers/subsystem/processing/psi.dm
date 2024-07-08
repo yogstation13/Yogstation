@@ -12,7 +12,6 @@ PROCESSING_SUBSYSTEM_DEF(psi)
 	var/list/psi_dampeners =          list()
 	var/list/psi_monitors =           list()
 	var/list/armour_faculty_by_type = list()
-	var/list/faculties_by_intent  = list()
 
 /datum/controller/subsystem/processing/psi/New()
 	NEW_SS_GLOBAL(SSpsi)
@@ -28,7 +27,6 @@ PROCESSING_SUBSYSTEM_DEF(psi)
 		var/datum/psionic_faculty/faculty = new ftype
 		faculties_by_id[faculty.id] = faculty
 		faculties_by_name[faculty.name] = faculty
-		faculties_by_intent[faculty.associated_intent] = faculty.id
 
 	var/list/powers = subtypesof(/datum/psionic_power)
 	for(var/ptype in powers)

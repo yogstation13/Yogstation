@@ -2,6 +2,7 @@
 /obj/screen/psi/armour
 	name = "Psi-Armour"
 	icon_state = "psiarmour_off"
+	plane = HUD_PLANE
 
 /obj/screen/psi/armour/update_icon()
 	..()
@@ -21,6 +22,7 @@
 /obj/screen/psi/autoredaction
 	name = "Autoredaction"
 	icon_state = "healing_off"
+	plane = HUD_PLANE
 
 /obj/screen/psi/autoredaction/update_icon()
 	..()
@@ -40,6 +42,7 @@
 /obj/screen/psi/zorch_harm
 	name = "Zorch Mode"
 	icon_state = "zorch_disable"
+	plane = HUD_PLANE
 
 /obj/screen/psi/zorch_harm/update_icon()
 	..()
@@ -59,6 +62,7 @@
 /obj/screen/psi/limiter
 	name = "Psi-Limiter"
 	icon_state = "limiter_100"
+	plane = HUD_PLANE
 
 /obj/screen/psi/limiter/update_icon()
 	..()
@@ -94,6 +98,7 @@
 	name = "Show/Hide Psi UI"
 	icon_state = "arrow_left"
 	var/obj/screen/psi/hub/controller
+	plane = HUD_PLANE
 
 /obj/screen/psi/toggle_psi_menu/New(var/mob/living/_owner, var/obj/screen/psi/hub/_controller)
 	controller = _controller
