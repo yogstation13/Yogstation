@@ -22814,7 +22814,7 @@
 /turf/open/floor/engine,
 /area/centcom/syndicate_mothership)
 "pJM" = (
-/turf/closed/indestructible/alien,
+/turf/closed/indestructible/abductor,
 /area/bluespace_locker)
 "pLF" = (
 /obj/machinery/vending/wardrobe/cargo_wardrobe,
