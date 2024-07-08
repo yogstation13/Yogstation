@@ -318,7 +318,18 @@
  * If ignore_movetypes is FALSE, does not trigger on floating / flying / etc. mobs.
  */
 /obj/item/restraints/legcuffs/beartrap/proc/spring_trap(atom/movable/target, ignore_movetypes = FALSE)
-	if(!armed || !isturf(loc) || !isliving(target) || !anchored)
+	if(!armed || !isturf(loc) || !isliving(target))
+		return
+
+	//don't close the trap if they're as small as a mouse
+	if(victim.mob_size <= MOB_SIZE_TINY)
+		return
+	if(!ignore_movetypes && (victim.movement_type & MOVETYPES_NOT_TOUCHING_GROUND))
+		return
+
+	if(!anchored)
+		visible_message(span_notice("[src] flops about uselessly as it gets triggered without being properly anchored to the ground."))
+		close_trap()
 		return
 
 	var/mob/living/victim = target
@@ -328,12 +339,6 @@
 			close_trap()
 			ridden_vehicle.visible_message(span_danger("[ridden_vehicle] triggers \the [src]."))
 			return
-
-	//don't close the trap if they're as small as a mouse
-	if(victim.mob_size <= MOB_SIZE_TINY)
-		return
-	if(!ignore_movetypes && (victim.movement_type & MOVETYPES_NOT_TOUCHING_GROUND))
-		return
 
 	close_trap()
 	if(ignore_movetypes)
