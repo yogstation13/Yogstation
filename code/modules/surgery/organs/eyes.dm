@@ -525,7 +525,7 @@
 
 /obj/item/organ/eyes/ethereal/Remove(mob/living/carbon/M, special)
 	. = ..()
-	M?.client?.dude?.view_size?.zoomIn()
+	M?.client?.view_size?.zoomIn()
 
 /obj/item/organ/eyes/ethereal/Initialize(mapload)
 	. = ..()
