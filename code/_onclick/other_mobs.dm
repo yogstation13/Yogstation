@@ -56,7 +56,7 @@
 
 /mob/living/carbon/human/RangedAttack(atom/A, params)
 	if(psi)
-		SEND_SIGNAL(src, COMSIG_PSI_INVOKE, A, TRUE, params)
+		SEND_SIGNAL(src, COMSIG_PSI_INVOKE, A, FALSE, params)
 
 //Return TRUE to cancel other attack hand effects that respect it.
 /atom/proc/attack_hand(mob/user, modifiers)
