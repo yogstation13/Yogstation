@@ -4,9 +4,9 @@
 	/// Associated psi faculty.
 	var/faculty
 	/// File to pull the ability icon from.
-	var/icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	var/icon = 'icons/obj/psychic_powers.dmi'
 	/// Sprite of the ability itself.
-	var/icon_state = "creep"
+	var/icon_state = "base_power"
 	/// Minimum psi rank to use this power.
 	var/min_rank
 	/// Base psi stamina cost for using this power.

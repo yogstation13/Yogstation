@@ -2,6 +2,7 @@
 	name = "Psi"
 	icon_state = "psi_suppressed"
 	screen_loc = "EAST-1:28,CENTER-4:7"
+	plane = HUD_PLANE
 	hidden = FALSE
 	maptext_x = 6
 	maptext_y = -8

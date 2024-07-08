@@ -16,12 +16,11 @@
 	use_sound = 'sound/effects/psi/power_fabrication.ogg'
 	admin_log = FALSE
 
-/datum/psionic_power/psychokinesis/psiblade/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if((target && user != target) || !user.combat_mode)
-		return FALSE
+/datum/psionic_power/psychokinesis/psiblade/on_select(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	. = ..()
 	if(.)
 		var/obj/item/psychic_power/psiblade/blade = new /obj/item/psychic_power/psiblade(user, user)
+		user.put_in_hands(blade)
 		switch(user.psi.get_rank(faculty))
 			if(PSI_RANK_PARAMOUNT)
 				blade.can_break_wall = TRUE
@@ -29,11 +28,12 @@
 				blade.force = 40
 			if(PSI_RANK_GRANDMASTER)
 				blade.can_break_wall = TRUE
-				blade.force = 30
+				blade.force = 24
+				blade.armour_penetration = 30
 			if(PSI_RANK_MASTER)
-				blade.force = 20
+				blade.force = 18
 			else
-				blade.force = 10
+				blade.force = 12
 		return blade
 
 /datum/psionic_power/psychokinesis/tinker
@@ -45,12 +45,11 @@
 	use_sound = 'sound/effects/psi/power_fabrication.ogg'
 	admin_log = FALSE
 
-/datum/psionic_power/psychokinesis/tinker/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if((target && user != target) || user.combat_mode)
-		return FALSE
+/datum/psionic_power/psychokinesis/tinker/on_select(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	. = ..()
 	if(.)
 		var/obj/item/psychic_power/tinker/tool = new(user)
+		user.put_in_hands(tool)
 		switch(user.psi.get_rank(faculty))
 			if(PSI_RANK_PARAMOUNT)
 				tool.possible_tools = list(TOOL_SCREWDRIVER, TOOL_CROWBAR, TOOL_WIRECUTTER, TOOL_WRENCH, TOOL_WELDER, TOOL_MULTITOOL, TOOL_SCALPEL, TOOL_SAW, TOOL_RETRACTOR, TOOL_HEMOSTAT, TOOL_DRILL, TOOL_CAUTERY, TOOL_BONESET, TOOL_MINING, TOOL_SHOVEL, TOOL_HATCHET)

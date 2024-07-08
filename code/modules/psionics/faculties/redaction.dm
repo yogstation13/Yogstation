@@ -97,7 +97,7 @@
 	cost =            9
 	heat =            15
 	cooldown =        6 SECONDS
-	min_rank =        PSI_RANK_GRANDMASTER
+	min_rank =        PSI_RANK_OPERANT
 	use_description = "Target a patient while on help intent at melee range to cleanse radiation and genetic damage from a patient."
 
 /datum/psionic_power/redaction/cleanse/invoke(var/mob/living/user, var/mob/living/carbon/human/target, proximity, parameters)
@@ -129,7 +129,7 @@
 	cost =            25
 	heat =            100
 	cooldown =        8 SECONDS
-	min_rank =        PSI_RANK_PARAMOUNT
+	min_rank =        PSI_RANK_OPERANT
 	faculty =         PSI_REDACTION
 	use_description = "Obtain a grab on a dead target, target the head, then select help intent and use the grab against them to attempt to bring them back to life. The process is lengthy and failure is punished harshly."
 	admin_log = FALSE

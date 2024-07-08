@@ -1,5 +1,6 @@
 // Begin psi armour toggle.
 /obj/screen/psi/armour
+	plane = HUD_PLANE
 	name = "Psi-Armour"
 	icon_state = "psiarmour_off"
 
@@ -19,6 +20,7 @@
 
 // Begin autoredaction toggle.
 /obj/screen/psi/autoredaction
+	plane = HUD_PLANE
 	name = "Autoredaction"
 	icon_state = "healing_off"
 
@@ -57,6 +59,7 @@
 
 // Begin limiter toggle.
 /obj/screen/psi/limiter
+	plane = HUD_PLANE
 	name = "Psi-Limiter"
 	icon_state = "limiter_100"
 
@@ -94,6 +97,7 @@
 	name = "Show/Hide Psi UI"
 	icon_state = "arrow_left"
 	var/obj/screen/psi/hub/controller
+	plane = HUD_PLANE
 
 /obj/screen/psi/toggle_psi_menu/New(var/mob/living/_owner, var/obj/screen/psi/hub/_controller)
 	controller = _controller
@@ -107,7 +111,6 @@
 	controller.update_icon()
 
 /obj/screen/psi/toggle_psi_menu/update_icon()
-	. = ..()
 	if(hidden)
 		icon_state = "arrow_left"
 	else
