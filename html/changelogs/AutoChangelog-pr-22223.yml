@@ -1,0 +1,6 @@
+author: "Scrambledeggs00"
+delete-after: true 
+changes: 
+  - rscadd: "Added new type of ice cream and cartons for them"
+  - tweak: "Changed recipes of some frozen foods to use new ice cream"
+  - imageadd: "Added sprites for ice cream cartons"
