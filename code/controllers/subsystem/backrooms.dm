@@ -16,6 +16,7 @@ SUBSYSTEM_DEF(backrooms)
 
 	pick_theme()
 	generate_backrooms()
+	delete_beacons()
 	//spawn_anomalies()
 	return SS_INIT_SUCCESS
 
@@ -59,6 +60,15 @@ SUBSYSTEM_DEF(backrooms)
 
 	addtimer(CALLBACK(src, PROC_REF(generate_exit)), 1 MINUTES)
 
+/datum/controller/subsystem/backrooms/proc/delete_beacons()
+	var/list/zlevel = SSmapping.levels_by_trait(ZTRAIT_PROCEDURAL_MAINTS)
+	for(var/obj/item/beacon/bacon as anything in GLOB.teleportbeacons)
+		if(bacon.z in zlevel) //if the beacon is in the backrooms, delete it
+			qdel(bacon)
+
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Exit related things-------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/controller/subsystem/backrooms/proc/generate_exit()
 	var/list/backrooms_level = SSmapping.levels_by_trait(ZTRAIT_PROCEDURAL_MAINTS)
 	if(LAZYLEN(backrooms_level))
