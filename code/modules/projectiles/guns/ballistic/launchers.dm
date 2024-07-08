@@ -143,7 +143,7 @@
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	pin = /obj/item/firing_pin
 
-/obj/item/gun/ballistic/gauss/afterattack()
+/obj/item/gun/ballistic/gauss/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
 	. = ..()
 	playsound(loc, "sparks", 75, 1, -1)
 	do_sparks(8, 3, usr)
