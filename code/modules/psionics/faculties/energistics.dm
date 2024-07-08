@@ -6,35 +6,16 @@
 /datum/psionic_power/energistics
 	faculty = PSI_ENERGISTICS
 
-/datum/psionic_power/energistics/disrupt
-	name =            "Disrupt"
-	cost =            20
-	heat =            20
-	cooldown =        10 SECONDS
-	min_rank =        PSI_RANK_MASTER
-	use_description = "Target the head, eyes or mouth while on harm intent to use a melee attack that causes a localized electromagnetic pulse."
-
-/datum/psionic_power/energistics/disrupt/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(user.zone_selected != BODY_ZONE_HEAD && user.zone_selected != BODY_ZONE_PRECISE_EYES && user.zone_selected != BODY_ZONE_PRECISE_MOUTH)
-		return FALSE
-	if(isturf(target))
-		return FALSE
-	. = ..()
-	if(.)
-		user.visible_message("<span class='danger'>\The [user] releases a gout of crackling static and arcing lightning over \the [target]!</span>")
-		empulse(target, 0, 1)
-		return TRUE
-
 /datum/psionic_power/energistics/electrocute
 	name =            "Electrocute"
 	cost =            10
 	heat =            30
 	cooldown =        7.5 SECONDS
-	min_rank =        PSI_RANK_GRANDMASTER
-	use_description = "Target the chest or groin while on harm intent to use a melee attack that electrocutes a victim."
+	min_rank =        PSI_RANK_OPERANT
+	use_description = "Enter combat mode to use a melee attack that electrocutes a victim, or charge an energy cell."
 
 /datum/psionic_power/energistics/electrocute/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(user.zone_selected != BODY_ZONE_CHEST && user.zone_selected != BODY_ZONE_PRECISE_GROIN)
+	if(!user.combat_mode)
 		return FALSE
 	if(isturf(target))
 		return FALSE
@@ -52,6 +33,29 @@
 			return TRUE
 		else
 			return FALSE
+
+/datum/psionic_power/energistics/spark
+	name =            "Spark"
+	cost =            1
+	cooldown =        1 SECONDS
+	min_rank =        PSI_RANK_OPERANT
+	use_description = "Target a non-living target in melee range on harm intent to cause some sparks to appear. This can light fires."
+
+/datum/psionic_power/energistics/spark/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
+	if(isnull(target) || istype(target)) 
+		return FALSE
+	. = ..()
+	if(.)
+		if(istype(target,/obj/item/clothing/mask/cigarette))
+			var/obj/item/clothing/mask/cigarette/S = target
+			S.light("[user] snaps \his fingers and \the [S.name] lights up.")
+			user.emote("snap")
+			playsound(S.loc, "sparks", 50, 1)
+		else
+			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+			s.set_up(5, 1, src)
+			s.start()
+		return TRUE
 
 /datum/psionic_power/energistics/zorch
 	name =             "Zorch"
@@ -99,25 +103,21 @@
 			user.visible_message(span_danger("[user]'s eyes flare with light!"))
 			return TRUE
 
-/datum/psionic_power/energistics/spark
-	name =            "Spark"
-	cost =            1
-	cooldown =        1 SECONDS
-	min_rank =        PSI_RANK_OPERANT
-	use_description = "Target a non-living target in melee range on harm intent to cause some sparks to appear. This can light fires."
+/datum/psionic_power/energistics/disrupt
+	name =            "Disrupt"
+	cost =            20
+	heat =            20
+	cooldown =        10 SECONDS
+	min_rank =        PSI_RANK_GRANDMASTER
+	use_description = "Enter combat mode and attack a target to cause a localized electromagnetic pulse."
 
-/datum/psionic_power/energistics/spark/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(isnull(target) || istype(target)) 
+/datum/psionic_power/energistics/disrupt/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
+	if(!user.combat_mode)
+		return FALSE
+	if(isturf(target))
 		return FALSE
 	. = ..()
 	if(.)
-		if(istype(target,/obj/item/clothing/mask/cigarette))
-			var/obj/item/clothing/mask/cigarette/S = target
-			S.light("[user] snaps \his fingers and \the [S.name] lights up.")
-			user.emote("snap")
-			playsound(S.loc, "sparks", 50, 1)
-		else
-			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-			s.set_up(5, 1, src)
-			s.start()
+		user.visible_message("<span class='danger'>\The [user] releases a gout of crackling static and arcing lightning over \the [target]!</span>")
+		empulse(target, 5, 1)
 		return TRUE

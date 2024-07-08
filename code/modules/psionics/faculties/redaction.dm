@@ -135,7 +135,7 @@
 	admin_log = FALSE
 
 /datum/psionic_power/revive/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!isliving(target) || !istype(target) || user.zone_selected != BODY_ZONE_PRECISE_EYES || target.pulledby != user || user.grab_state < GRAB_AGGRESSIVE)
+	if(!isliving(target) || !istype(target))
 		return FALSE
 	. = ..()
 	if(.)
