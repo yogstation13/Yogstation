@@ -9,7 +9,7 @@
 /datum/psionic_power/coercion
 	faculty = PSI_COERCION
 
-/datum/psionic_power/coercion/invoke(var/mob/living/user, var/mob/living/target)
+/datum/psionic_power/coercion/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if (!istype(target))
 		to_chat(user, span_warning("You cannot mentally attack \the [target]."))
 		return FALSE
@@ -23,7 +23,7 @@
 	min_rank =			PSI_RANK_GRANDMASTER
 	use_description =	"Target the eyes or mouth on disarm intent and click anywhere to use a radial attack that blinds, deafens and disorients everyone near you."
 
-/datum/psionic_power/coercion/blindstrike/invoke(var/mob/living/user, var/mob/living/target)
+/datum/psionic_power/coercion/blindstrike/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if(user.zone_selected == BODY_ZONE_PRECISE_MOUTH || user.zone_selected != BODY_ZONE_PRECISE_EYES || (istype(target) && target.pulledby == user))
 		return FALSE
 	. = ..()
@@ -47,7 +47,7 @@
 	min_rank =			PSI_RANK_MASTER
 	use_description =	"Target the head on disarm intent at melee range to attempt to read a victim's surface thoughts."
 
-/datum/psionic_power/coercion/mindread/invoke(var/mob/living/user, var/mob/living/target)
+/datum/psionic_power/coercion/mindread/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if(!istype(target) || target == user || user.zone_selected != BODY_ZONE_HEAD || target.pulledby == user)
 		return FALSE
 	. = ..()
@@ -83,7 +83,7 @@
 	min_rank =			PSI_RANK_OPERANT
 	use_description =	"Target the chest or groin on disarm intent to use a melee attack equivalent to a strike from a stun baton."
 
-/datum/psionic_power/coercion/agony/invoke(var/mob/living/user, var/mob/living/target)
+/datum/psionic_power/coercion/agony/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if(!istype(target))
 		return FALSE
 	if(user.zone_selected != BODY_ZONE_CHEST && user.zone_selected != BODY_ZONE_PRECISE_GROIN)
@@ -102,7 +102,7 @@
 	min_rank =			PSI_RANK_MASTER
 	use_description =	"Target the arms or hands on disarm intent to use a ranged attack that may rip the weapons away from the target."
 
-/datum/psionic_power/coercion/spasm/invoke(var/mob/living/user, var/mob/living/carbon/human/target)
+/datum/psionic_power/coercion/spasm/invoke(var/mob/living/user, var/mob/living/carbon/human/target, proximity, parameters)
 	if(!istype(target))
 		return FALSE
 
@@ -129,7 +129,7 @@
 	min_rank =			PSI_RANK_GRANDMASTER
 	use_description =	"Grab a victim, target the eyes, then attack them while on disarm intent, in order to manipulate their mind. The process takes some time, and failure is punished harshly."
 
-/datum/psionic_power/coercion/cognitivemanipulation/invoke(var/mob/living/user, var/mob/living/target)
+/datum/psionic_power/coercion/cognitivemanipulation/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if(!istype(target) || user.zone_selected != BODY_ZONE_PRECISE_EYES || target.pulledby != user)
 		return FALSE
 	. = ..()
@@ -221,7 +221,7 @@
 	min_rank =			PSI_RANK_OPERANT
 	use_description =	"Grab a patient, target the head, then use the grab on them while on disarm intent, in order to perform a deep coercive-redactive probe of their psionic potential."
 
-/datum/psionic_power/coercion/assay/invoke(var/mob/living/user, var/mob/living/target)
+/datum/psionic_power/coercion/assay/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if(!istype(target) || user.zone_selected != BODY_ZONE_HEAD || target.pulledby != user || user == target)
 		return FALSE
 	. = ..()
@@ -244,7 +244,7 @@
 	min_rank =			PSI_RANK_MASTER
 	use_description =	"Grab a patient, target the mouth, then use the grab on them while on disarm intent, in order to cure ailments of the mind."
 
-/datum/psionic_power/coercion/focus/invoke(var/mob/living/user, var/mob/living/target)
+/datum/psionic_power/coercion/focus/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if(user.zone_selected != BODY_ZONE_PRECISE_MOUTH || target.pulledby != user)
 		return FALSE
 	. = ..()
@@ -276,7 +276,7 @@
 	min_rank =			PSI_RANK_OPERANT
 	use_description =	"Target the mouth and click on a creature on disarm intent to psionically send them a message."
 
-/datum/psionic_power/coercion/commune/invoke(var/mob/living/user, var/mob/living/target)
+/datum/psionic_power/coercion/commune/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if(user.zone_selected != BODY_ZONE_PRECISE_MOUTH || user == target)
 		return FALSE
 	. = ..()
@@ -322,7 +322,7 @@
 	min_rank =			PSI_RANK_OPERANT
 	use_description =	"Click on yourself with an empty hand on disarm intent to detect nearby psionic signatures."
 
-/datum/psionic_power/coercion/psiping/invoke(var/mob/living/user, var/mob/living/target)
+/datum/psionic_power/coercion/psiping/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if((target && user != target))
 		return FALSE
 	. = ..()

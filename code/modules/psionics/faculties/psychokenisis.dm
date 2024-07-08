@@ -16,7 +16,7 @@
 	use_sound = 'sound/effects/psi/power_fabrication.ogg'
 	admin_log = FALSE
 
-/datum/psionic_power/psychokinesis/psiblade/invoke(var/mob/living/user, var/mob/living/target)
+/datum/psionic_power/psychokinesis/psiblade/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if((target && user != target) || !user.combat_mode)
 		return FALSE
 	. = ..()
@@ -45,7 +45,7 @@
 	use_sound = 'sound/effects/psi/power_fabrication.ogg'
 	admin_log = FALSE
 
-/datum/psionic_power/psychokinesis/tinker/invoke(var/mob/living/user, var/mob/living/target)
+/datum/psionic_power/psychokinesis/tinker/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if((target && user != target) || user.combat_mode)
 		return FALSE
 	. = ..()
@@ -78,7 +78,7 @@
 		/obj/machinery/door
 	)
 
-/datum/psionic_power/psychokinesis/telekinesis/invoke(var/mob/living/user, var/mob/living/target)
+/datum/psionic_power/psychokinesis/telekinesis/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if(!user.combat_mode)
 		return FALSE
 	. = ..()

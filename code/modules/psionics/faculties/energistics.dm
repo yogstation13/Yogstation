@@ -14,7 +14,7 @@
 	min_rank =        PSI_RANK_MASTER
 	use_description = "Target the head, eyes or mouth while on harm intent to use a melee attack that causes a localized electromagnetic pulse."
 
-/datum/psionic_power/energistics/disrupt/invoke(var/mob/living/user, var/mob/living/target)
+/datum/psionic_power/energistics/disrupt/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if(user.zone_selected != BODY_ZONE_HEAD && user.zone_selected != BODY_ZONE_PRECISE_EYES && user.zone_selected != BODY_ZONE_PRECISE_MOUTH)
 		return FALSE
 	if(isturf(target))
@@ -33,7 +33,7 @@
 	min_rank =        PSI_RANK_GRANDMASTER
 	use_description = "Target the chest or groin while on harm intent to use a melee attack that electrocutes a victim."
 
-/datum/psionic_power/energistics/electrocute/invoke(var/mob/living/user, var/mob/living/target)
+/datum/psionic_power/energistics/electrocute/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if(user.zone_selected != BODY_ZONE_CHEST && user.zone_selected != BODY_ZONE_PRECISE_GROIN)
 		return FALSE
 	if(isturf(target))
@@ -61,7 +61,7 @@
 	min_rank =         PSI_RANK_MASTER
 	use_description = "Use this ranged laser attack while on harm intent. Your mastery of Energistics will determine how powerful the laser is. Be wary of overuse, and try not to fry your own brain."
 
-/datum/psionic_power/energistics/zorch/invoke(var/mob/living/user, var/mob/living/target)
+/datum/psionic_power/energistics/zorch/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	. = ..()
 	if(.)
 		if(HAS_TRAIT(user, TRAIT_PACIFISM) && user.psi.zorch_harm)
@@ -106,7 +106,7 @@
 	min_rank =        PSI_RANK_OPERANT
 	use_description = "Target a non-living target in melee range on harm intent to cause some sparks to appear. This can light fires."
 
-/datum/psionic_power/energistics/spark/invoke(var/mob/living/user, var/mob/living/target)
+/datum/psionic_power/energistics/spark/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if(isnull(target) || istype(target)) 
 		return FALSE
 	. = ..()

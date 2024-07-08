@@ -22,7 +22,7 @@
 	/// A sound effect to play when the power is used.
 	var/use_sound = 'sound/effects/psi/power_used.ogg'
 
-/datum/psionic_power/proc/invoke(mob/living/user, atom/target)
+/datum/psionic_power/proc/invoke(mob/living/user, atom/target, proximity, parameters)
 
 	if(!user.psi)
 		return FALSE
