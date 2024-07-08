@@ -1,17 +1,21 @@
 /mob/living/simple_animal/hostile/yog_jungle/alpha
 	gold_core_spawnable = FALSE
+	sentience_type = SENTIENCE_BOSS
+	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha/death(gibbed)
 	new /obj/structure/closet/crate/necropolis/tendril(loc)
 	return ..()
 
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------Big squiggle----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_meduracha
 	name ="Meduracha majora"
-	desc = "Collosal beast of tentacles, its deep eye looks directly at you."
+	desc = "Colossal mass of tentacles, its deep eye looks directly at you."
 	icon_state = "alpha_meduracha"
 	icon_living = "alpha_meduracha"
 	icon_dead = "alpha_meduracha_dead"
-	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
 	speak = list("hgrah!","blrp!","poasp!","ahkr!")
 	speak_emote = list("bubbles", "vibrates")
 	emote_hear = list("gazes.","bellows.","splashes.")
@@ -20,10 +24,6 @@
 	taunt_chance = 1
 	move_to_delay = 7
 	butcher_results = list(/obj/item/stack/sheet/meduracha = 5, /obj/item/gem/emerald = 2)
-	faction = list("mining")
-	response_help  = "gently pokes"
-	response_disarm = "gently pushes aside"
-	response_harm   = "hits"
 	maxHealth = 300
 	health = 300
 	spacewalk = TRUE
@@ -33,7 +33,6 @@
 	ranged = TRUE 
 	ranged_cooldown = 5 SECONDS
 	projectiletype = /obj/projectile/jungle/meduracha_spit
-	sentience_type = SENTIENCE_BOSS
 
 	var/list/anchors = list("SOUTH" = null, "NORTH" = null, "EAST" = null, "WEST" = null)
 	
@@ -88,6 +87,9 @@
 	anchors[side] = get_beam()
 	qdel(B)
 
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------Big blob--------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_blobby
 	name = "Gelatinous Giant"
 	desc = "A gelatinous creature of the swampy regions of the jungle. It's a big blob of goo, and it's not very friendly."
@@ -95,7 +97,6 @@
 	icon_state = "big_blob"
 	icon_living = "big_blob"
 	icon_dead = "big_blob_dead"
-	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
 	speak = list("brbl","bop","pop","blsp")
 	speak_emote = list("bops", "pops")
 	emote_hear = list("vibrates.","listens.","hears.")
@@ -103,9 +104,6 @@
 	speak_chance = 1
 	taunt_chance = 1
 	turns_per_move = 1
-	response_help  = "pets"
-	response_disarm = "gently pushes aside"
-	response_harm   = "hits"
 	faction = list("mining")
 	maxHealth = 400
 	health = 400
@@ -117,7 +115,6 @@
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	crusher_loot = /obj/item/crusher_trophy/jungleland/blob_brain
-	sentience_type = SENTIENCE_BOSS
 	var/stage = 1
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_blobby/attacked_by(obj/item/I, mob/living/user)
@@ -138,70 +135,69 @@
 	M.Scale(1/stage)
 	transform = M
 
+////////////////////////////////////////////////////////////////////////////////////
+//-----------------------------------Big trees------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_dryad
 	name ="Wrath of Gaia"
-	desc = "Collosal tree inhabited by all the furious spirits of the jungle."
+	desc = "Colossal tree inhabited by all the furious spirits of the jungle."
 	icon = 'yogstation/icons/mob/jungle96x96.dmi'
 	icon_state = "wrath_of_gaia"
 	icon_living = "wrath_of_gaia"
 	icon_dead = "wrath_of_gaia_dead"
-	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
-	faction = list("mining")
-	response_help  = "gently pokes"
-	response_disarm = "gently pushes aside"
-	response_harm   = "hits"
 	maxHealth = 500
 	health = 500
-	crusher_loot = /obj/item/crusher_trophy/jungleland/dryad_branch
 	loot = list(/obj/item/organ/regenerative_core/dryad = 5, /obj/item/gem/emerald = 2)
-	melee_damage_lower = 25
-	melee_damage_upper = 25
+	crusher_loot = /obj/item/crusher_trophy/jungleland/dryad_branch
+	melee_damage_lower = 0
+	melee_damage_upper = 0
+	minimum_distance = 5
 	ranged = TRUE 
-	ranged_cooldown = 20 SECONDS
-	move_to_delay = 10
-	pixel_x = -32
-	sentience_type = SENTIENCE_BOSS
-	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/dryad,/mob/living/simple_animal/hostile/yog_jungle/meduracha, /mob/living/simple_animal/hostile/yog_jungle/yellowjacket,/mob/living/simple_animal/hostile/yog_jungle/emeraldspider)
-
-/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_dryad/OpenFire(atom/A)
-	. = ..()
-	for(var/i in 0 to rand(1,3))
-		var/to_spawn = pick(spawnables)
-		var/mob/living/simple_animal/hostile/spawned = new to_spawn(get_step(src,pick(GLOB.cardinals)))
-		spawned.PickTarget(A)
-
-/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_corrupted_dryad
-	name ="Wrath of Corruption"
-	desc = "Collosal tree that used to be a home of the dryads. Now it serves as a weapon of corruption, spreading it's destruction wherever it goes."
-	icon = 'yogstation/icons/mob/jungle96x96.dmi'
-	icon_state = "wrath_of_corruption"
-	icon_living = "wrath_of_corruption"
-	icon_dead = "wrath_of_corruption_dead"
-	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
-	faction = list("mining")
-	response_help  = "gently pokes"
-	response_disarm = "gently pushes aside"
-	response_harm   = "hits"
-	maxHealth = 500
-	health = 500
-	crusher_loot = /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch
-	loot = list(/obj/item/organ/regenerative_core/dryad/corrupted = 5, /obj/item/gem/emerald = 2)
-	melee_damage_lower = 25
-	melee_damage_upper = 25
-	ranged = TRUE 
-	ranged_cooldown = 17.5 SECONDS
+	ranged_cooldown = 15 SECONDS
 	move_to_delay = 10
 	pixel_x = -32
 	projectiletype = /obj/projectile/jungle/damage_orb
-	sentience_type = SENTIENCE_BOSS
 
-	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1, /mob/living/simple_animal/hostile/yog_jungle/blobby = 5, /mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad = 20)
+	var/max_spawn = 3
+	var/list/spawnables = list(
+		/mob/living/simple_animal/hostile/yog_jungle/dryad = 4,
+		/mob/living/simple_animal/hostile/yog_jungle/meduracha = 2, 
+		/mob/living/simple_animal/hostile/yog_jungle/yellowjacket = 2,
+		/mob/living/simple_animal/hostile/yog_jungle/emeraldspider = 2,
+		/mob/living/simple_animal/hostile/yog_jungle/blobby = 2,
+		/mob/living/simple_animal/hostile/yog_jungle/mosquito = 2
+		)
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_corrupted_dryad/Shoot(atom/targeted_atom)
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_dryad/Shoot(atom/targeted_atom)
 	playsound(src, 'sound/magic/clockwork/narsie_attack.ogg', 80, 1)
-	addtimer(CALLBACK(src, PROC_REF(finish_shoot), targeted_atom), 1 SECONDS) //give it a slight telegraph before shotgunning the person in the face
+	addtimer(CALLBACK(src, PROC_REF(finish_shoot), targeted_atom), 1 SECONDS) //give it a slight telegraph before doing the attack
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_corrupted_dryad/proc/finish_shoot(atom/targeted_atom)
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_dryad/proc/finish_shoot(atom/targeted_atom)
+	for(var/i in 0 to rand(1, max_spawn))
+		var/to_spawn = pickweight(spawnables)
+		var/mob/living/simple_animal/hostile/spawned = new to_spawn(get_step(src,pick(GLOB.cardinals)))
+		spawned.PickTarget(targeted_atom)
+
+/**
+ * Corrupted version also shoots, but spawns less enemies and mostly spawns corrupted dryads
+ */
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_dryad/corrupted
+	name ="Wrath of Corruption"
+	desc = "Colossal tree that used to be a home to the dryads. Now it serves as a weapon of corruption, spreading it's destruction wherever it goes."
+	icon_state = "wrath_of_corruption"
+	icon_living = "wrath_of_corruption"
+	icon_dead = "wrath_of_corruption_dead"
+	loot = list(/obj/item/organ/regenerative_core/dryad/corrupted = 5, /obj/item/gem/emerald = 2)
+	crusher_loot = /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch
+
+	max_spawn = 2
+	spawnables = list(
+		/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1, 
+		/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad = 20
+		)
+
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_dryad/corrupted/finish_shoot(atom/targeted_atom)
+	. = ..()
 	var/angle = Get_Angle(src,targeted_atom)
 	var/list/to_shoot = list() 
 	
@@ -213,13 +209,8 @@
 
 	for(var/turf/T as anything in to_shoot)
 		shoot_projectile(T)
-	for(var/i in 0 to rand(1,2))
-		var/to_spawn = pickweight(spawnables)
-		var/mob/living/simple_animal/hostile/spawned = new to_spawn(get_step(src,pick(GLOB.cardinals)))
-		spawned.faction = faction
-		spawned.PickTarget(targeted_atom)
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_corrupted_dryad/proc/shoot_projectile(atom/targeted_atom)
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_dryad/corrupted/proc/shoot_projectile(atom/targeted_atom)
 	var/turf/startloc = get_turf(src)
 	var/obj/projectile/P = new projectiletype(startloc)
 	playsound(src, projectilesound, 100, 1)
@@ -234,18 +225,16 @@
 	P.preparePixelProjectile(targeted_atom, src)
 	P.fire()
 
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------Big mosquito----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_mosquito
 	name ="Mosquito Patriarch"
-	desc = "A collosoal blood sucking mosquito, it is very angry."
+	desc = "A colossal blood sucking mosquito, it looks very angry."
 	icon = 'yogstation/icons/mob/jungle64x64.dmi'
 	icon_state = "mosquito"
 	icon_living = "mosquito"
 	icon_dead = "mosquito_dead"
-	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
-	faction = list("mining")
-	response_help  = "gently pokes"
-	response_disarm = "gently pushes aside"
-	response_harm   = "hits"
 	maxHealth = 350
 	health = 350
 	crusher_loot = /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch
@@ -254,7 +243,6 @@
 	melee_damage_upper = 35
 	pixel_x = -16
 	pixel_y = -16
-	sentience_type = SENTIENCE_BOSS
 	var/can_charge = TRUE
 	var/cooldown = 5 SECONDS
 	var/charge_ramp_up = 1 SECONDS
@@ -326,9 +314,12 @@
 /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_mosquito/proc/get_charge()
 	return can_charge 
 
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------------Big wasp------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_yellowjacket
 	name = "yellow jacket matriarch"
-	desc = "A large and aggressive creature with a massive stinger. It is very angry."
+	desc = "A large and aggressive creature with a massive stinger, it looks very angry."
 	icon = 'yogstation/icons/mob/jungle64x64.dmi'
 	icon_state = "wasp"
 	icon_living = "wasp"
@@ -341,7 +332,6 @@
 	speak_emote = list("buzzes")
 	vision_range = 5
 	aggro_vision_range = 9
-	see_in_dark = 7
 	speed = 2
 	maxHealth = 320
 	health = 320
@@ -356,7 +346,6 @@
 	crusher_loot = /obj/item/crusher_trophy/jungleland/wasp_head
 	pixel_x = -16 
 	pixel_y = -16
-	sentience_type = SENTIENCE_BOSS
 	var/charging = FALSE
 	var/revving_charge = FALSE
 	var/poison_type = /datum/reagent/toxin/concentrated
