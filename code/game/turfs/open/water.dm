@@ -18,7 +18,7 @@
 	heavyfootstep = FOOTSTEP_WATER
 
 /turf/open/water/smooth
-	icon = MAP_SWITCH('icons/turf/smoothwater.dmi', 'icons/turf/floors.dmi') //uses smoothwater during gameplay and floors.dmi in mapping tools
+	icon = MAP_SWITCH('yogstation/icons/turf/floors/smoothwater.dmi', 'icons/turf/floors.dmi') //uses smoothwater during gameplay and floors.dmi in mapping tools
 	icon_state = "riverwater_motion"
 	base_icon_state = "smoothwater"
 	layer = HIGH_TURF_LAYER //so it draws above other turf
