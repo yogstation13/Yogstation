@@ -41,9 +41,9 @@
 	var/use_psi_mode = get_psi_mode()
 	return (use_psi_mode == PSI_IMPLANT_SHOCK || use_psi_mode == PSI_IMPLANT_WARN) ? src : FALSE
 
-/obj/item/implant/psi_control/removed()
+/obj/item/implant/psi_control/removed(mob/living/source, silent = FALSE, special = 0)
 	var/mob/living/M = imp_in
-	if(disrupts_psionics() && istype(M) && M.psi)
+	if(!silent && disrupts_psionics() && istype(M) && M.psi)
 		to_chat(M, span_notice("You feel the chilly shackles around your psionic faculties fade away."))
 	. = ..()
 

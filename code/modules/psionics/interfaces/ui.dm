@@ -1,4 +1,4 @@
-obj/screen/psi
+/obj/screen/psi
 	icon = 'icons/mob/screen_psi.dmi'
 	var/mob/living/owner
 	var/hidden = TRUE
@@ -14,6 +14,7 @@ obj/screen/psi
 	. = ..()
 
 /obj/screen/psi/update_icon()
+	. = ..()
 	if(hidden)
 		invisibility = 101
 	else
