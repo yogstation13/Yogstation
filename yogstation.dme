@@ -3564,7 +3564,6 @@
 #include "code\modules\psionics\faculties\energistics.dm"
 #include "code\modules\psionics\faculties\psychokenisis.dm"
 #include "code\modules\psionics\faculties\redaction.dm"
-#include "code\modules\psionics\faculties\faculty_abilities\coercion\coercion_abilities.dm"
 #include "code\modules\psionics\interfaces\ui.dm"
 #include "code\modules\psionics\interfaces\ui_hub.dm"
 #include "code\modules\psionics\interfaces\ui_toggle.dm"

@@ -9,7 +9,6 @@
 	var/mutable_appearance/heat_bar
 	var/mutable_appearance/heat_bar_filling
 	var/list/components
-	plane = HUD_PLANE
 
 /obj/screen/psi/hub/New(var/mob/living/_owner)
 	on_cooldown = image(icon, "cooldown")

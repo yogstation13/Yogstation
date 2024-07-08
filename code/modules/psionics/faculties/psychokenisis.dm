@@ -25,22 +25,23 @@
 		var/obj/item/psychic_power/psiblade/blade = new /obj/item/psychic_power/psiblade(user, user)
 		switch(user.psi.get_rank(faculty))
 			if(PSI_RANK_PARAMOUNT)
+				blade.can_break_wall = TRUE
+				blade.wall_break_time = 3 SECONDS
 				blade.force = 40
 			if(PSI_RANK_GRANDMASTER)
-				blade.force = 24
-				blade.armour_penetration = 25
-				blade.AddComponent(/datum/component/cleave_attack, arc_size=180)
+				blade.can_break_wall = TRUE
+				blade.force = 30
 			if(PSI_RANK_MASTER)
-				blade.force = 18
+				blade.force = 20
 			else
-				blade.force = 12
+				blade.force = 10
 		return blade
 
 /datum/psionic_power/psychokinesis/tinker
-	name = "Tinker"
-	cost = 5
-	cooldown = 10
-	min_rank = PSI_RANK_OPERANT
+	name =            "Tinker"
+	cost =            5
+	cooldown =        10
+	min_rank =        PSI_RANK_OPERANT
 	use_description = "Click on or otherwise activate an empty hand while on help intent to manifest a psychokinetic tool. Use it in-hand to switch between tool types."
 	use_sound = 'sound/effects/psi/power_fabrication.ogg'
 	use_manifest = TRUE
@@ -57,7 +58,7 @@
 				tool.possible_tools = list(TOOL_SCREWDRIVER, TOOL_CROWBAR, TOOL_WIRECUTTER, TOOL_WRENCH, TOOL_WELDER, TOOL_MULTITOOL, TOOL_SCALPEL, TOOL_SAW, TOOL_RETRACTOR, TOOL_HEMOSTAT, TOOL_DRILL, TOOL_CAUTERY, TOOL_BONESET, TOOL_MINING, TOOL_SHOVEL, TOOL_HATCHET)
 				tool.toolspeed = 0.25
 			if(PSI_RANK_GRANDMASTER)
-				tool.possible_tools = list(TOOL_SCREWDRIVER, TOOL_CROWBAR, TOOL_WIRECUTTER, TOOL_WRENCH, TOOL_WELDER, TOOL_SCALPEL, TOOL_SAW, TOOL_RETRACTOR, TOOL_HEMOSTAT, TOOL_DRILL, TOOL_CAUTERY, TOOL_MINING, TOOL_SHOVEL, TOOL_HATCHET)
+				tool.possible_tools = list(TOOL_SCREWDRIVER, TOOL_CROWBAR, TOOL_WIRECUTTER, TOOL_WRENCH, TOOL_SCALPEL, TOOL_SAW, TOOL_RETRACTOR, TOOL_HEMOSTAT, TOOL_DRILL, TOOL_CAUTERY, TOOL_MINING, TOOL_SHOVEL, TOOL_HATCHET)
 				tool.toolspeed = 0.5
 			if(PSI_RANK_MASTER)
 				tool.possible_tools = list(TOOL_SCREWDRIVER, TOOL_CROWBAR, TOOL_WIRECUTTER, TOOL_WRENCH, TOOL_SCALPEL, TOOL_RETRACTOR, TOOL_HEMOSTAT, TOOL_MINING, TOOL_SHOVEL, TOOL_HATCHET)
@@ -68,9 +69,45 @@
 		return tool
 
 /datum/psionic_power/psychokinesis/telekinesis
-	name = "Telekinesis"
-	cost = 5
-	cooldown = 1 SECONDS
-	min_rank = PSI_RANK_OPERANT
-	use_description = "Grants the ability to telepathically move and access objects. Upgrades with your Psi Rank."
-	
+	name =            "Telekinesis"
+	cost =            5
+	cooldown =        1 SECONDS
+	use_ranged =      TRUE
+	use_manifest =    FALSE
+	min_rank =        PSI_RANK_GRANDMASTER
+	use_description = "Click on a distant target while on grab intent to manifest a psychokinetic grip. Use it manipulate objects at a distance."
+	admin_log = FALSE
+	use_sound = 'sound/effects/psi/power_used.ogg'
+	var/global/list/valid_machine_types = list(
+		/obj/machinery/door
+	)
+
+/datum/psionic_power/psychokinesis/telekinesis/invoke(var/mob/living/user, var/mob/living/target)
+	if(!user.combat_mode)
+		return FALSE
+	. = ..()
+	if(.)
+
+		var/distance = get_dist(user, target)
+		if(distance > user.psi.get_rank(PSI_PSYCHOKINESIS) * 2)
+			to_chat(user, span_warning("Your telekinetic power won't reach that far."))
+			return FALSE
+
+		if(istype(target, /mob) || istype(target, /obj))
+			var/obj/item/psychic_power/telekinesis/tk = new(user)
+			if(tk.set_focus(target))
+				tk.sparkle()
+				user.visible_message("<span class='notice'>\The [user] reaches out.</span>")
+				return tk
+		else if(istype(target, /obj/structure))
+			user.visible_message("<span class='notice'>\The [user] makes a strange gesture.</span>")
+			var/obj/O = target
+			O.attack_hand(user)
+			return TRUE
+		else if(istype(target, /obj/machinery))
+			for(var/mtype in valid_machine_types)
+				if(istype(target, mtype))
+					var/obj/machinery/machine = target
+					machine.attack_hand(user)
+					return TRUE
+	return FALSE
