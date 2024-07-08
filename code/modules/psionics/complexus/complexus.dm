@@ -92,6 +92,8 @@
 	. = ..()
 
 /datum/psi_complexus/proc/select_power(mob/user)
+	if(suppressed)
+		return
 	if(!LAZYLEN(learned_powers))
 		return
 	var/list/choice_list = LAZYCOPY(learned_powers)
@@ -102,6 +104,8 @@
 		selected_power.on_select(user)
 
 /datum/psi_complexus/proc/invoke_power(mob/user, atom/target, proximity, parameters)
+	if(suppressed)
+		return
 	if(!selected_power)
 		return
 	user.playsound_local(soundin = 'sound/effects/psi/power_evoke.ogg')
