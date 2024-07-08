@@ -83,9 +83,9 @@
 	return FALSE //RIP you
 
 /datum/weather/acid_rain/weather_act(mob/living/L)
+	L.adjust_wet_stacks(2)
 	if(is_acid_immune(L))
 		return
-	L.adjust_wet_stacks(2)
 	if(HAS_TRAIT(L,TRAIT_SULPH_PIT_IMMUNE)) //immunity to the acid doesn't mean immunity to the wet
 		return
 	if(ishuman(L)) //inject metabolites
