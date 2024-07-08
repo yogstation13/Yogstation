@@ -3,6 +3,10 @@
 	var/name
 	/// Associated psi faculty.
 	var/faculty
+	/// File to pull the ability icon from.
+	var/icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	/// Sprite of the ability itself.
+	var/icon_state = "creep"
 	/// Minimum psi rank to use this power.
 	var/min_rank
 	/// Base psi stamina cost for using this power.
@@ -13,12 +17,6 @@
 	var/cooldown
 	/// Whether or not using this power prints an admin attack log.
 	var/admin_log = TRUE
-	/// This power functions from a distance.
-	var/use_ranged    
-	/// This power functions at melee range.
-	var/use_melee
-	/// This power manifests an item in the user's hands.       
-	var/use_manifest
 	/// A short description of how to use this power, shown via assay.
 	var/use_description
 	/// A sound effect to play when the power is used.
@@ -55,3 +53,8 @@
 		log_attack("[user] Used psipower ([name]) on [target]")
 	if(use_sound)
 		playsound(user.loc, use_sound, 75)
+
+/datum/psionic_power/proc/on_select(mob/living/user)
+	to_chat(world, "[name] was selected by [user]")
+
+	return TRUE

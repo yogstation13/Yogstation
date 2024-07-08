@@ -11,7 +11,6 @@
 	cost =            20
 	heat =            20
 	cooldown =        10 SECONDS
-	use_melee =       TRUE
 	min_rank =        PSI_RANK_MASTER
 	use_description = "Target the head, eyes or mouth while on harm intent to use a melee attack that causes a localized electromagnetic pulse."
 
@@ -31,7 +30,6 @@
 	cost =            10
 	heat =            30
 	cooldown =        7.5 SECONDS
-	use_melee =       TRUE
 	min_rank =        PSI_RANK_GRANDMASTER
 	use_description = "Target the chest or groin while on harm intent to use a melee attack that electrocutes a victim."
 
@@ -60,7 +58,6 @@
 	cost =             15
 	heat =             15
 	cooldown =         2 SECONDS
-	use_ranged =       TRUE
 	min_rank =         PSI_RANK_MASTER
 	use_description = "Use this ranged laser attack while on harm intent. Your mastery of Energistics will determine how powerful the laser is. Be wary of overuse, and try not to fry your own brain."
 
@@ -106,7 +103,6 @@
 	name =            "Spark"
 	cost =            1
 	cooldown =        1 SECONDS
-	use_melee =       TRUE
 	min_rank =        PSI_RANK_OPERANT
 	use_description = "Target a non-living target in melee range on harm intent to cause some sparks to appear. This can light fires."
 

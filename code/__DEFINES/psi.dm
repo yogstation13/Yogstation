@@ -16,18 +16,7 @@
 #define PSI_IMPLANT_LOG        "Log Incident"
 #define PSI_IMPLANT_DISABLED   "Disabled"
 
-#define INVOKE_PSI_POWERS(holder, powers, target, return_on_invocation) \
-	if(holder?.psi?.can_use()) { \
-		for(var/datum/psionic_power/power as anything in powers) { \
-			var/obj/item/result = power.invoke(holder, target); \
-			if(result) { \
-				power.handle_post_power(holder, target); \
-				if(istype(result)) { \
-					holder.playsound_local(soundin = 'sound/effects/psi/power_evoke.ogg'); \
-					LAZYADD(holder.psi.manifested_items, result); \
-					holder.put_in_hands(result); \
-				} \
-				return return_on_invocation; \
-			} \
-		} \
-	}
+#define COMSIG_PSI_SELECTION "select action"
+#define COMSIG_PSI_INVOKE "invoke selected"
+///return to block the regular action from happening
+	#define COMSIG_PSI_BLOCK_ACTION (1<<0)

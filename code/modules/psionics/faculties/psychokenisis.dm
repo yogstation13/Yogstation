@@ -14,7 +14,6 @@
 	min_rank =        PSI_RANK_OPERANT
 	use_description = "Click on or otherwise activate an empty hand while on harm intent to manifest a psychokinetic cutting blade. The power the blade will vary based on your mastery of the faculty."
 	use_sound = 'sound/effects/psi/power_fabrication.ogg'
-	use_manifest = TRUE
 	admin_log = FALSE
 
 /datum/psionic_power/psychokinesis/psiblade/invoke(var/mob/living/user, var/mob/living/target)
@@ -44,7 +43,6 @@
 	min_rank =        PSI_RANK_OPERANT
 	use_description = "Click on or otherwise activate an empty hand while on help intent to manifest a psychokinetic tool. Use it in-hand to switch between tool types."
 	use_sound = 'sound/effects/psi/power_fabrication.ogg'
-	use_manifest = TRUE
 	admin_log = FALSE
 
 /datum/psionic_power/psychokinesis/tinker/invoke(var/mob/living/user, var/mob/living/target)
@@ -72,8 +70,6 @@
 	name =            "Telekinesis"
 	cost =            5
 	cooldown =        1 SECONDS
-	use_ranged =      TRUE
-	use_manifest =    FALSE
 	min_rank =        PSI_RANK_GRANDMASTER
 	use_description = "Click on a distant target while on grab intent to manifest a psychokinetic grip. Use it manipulate objects at a distance."
 	admin_log = FALSE

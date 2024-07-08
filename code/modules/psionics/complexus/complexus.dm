@@ -55,15 +55,57 @@
 	var/aura_color = "#ff0022"
 
 	// Cached powers.
-	var/list/melee_powers             // Powers used in melee range.
-	var/list/grab_powers              // Powers use by using a grab.
-	var/list/ranged_powers            // Powers used at range.
-	var/list/manifestation_powers     // Powers that create an item.
-	var/list/powers_by_faculty        // All powers within a given faculty.
+	var/list/learned_powers            // All powers known
+	var/list/powers_by_faculty
+	var/datum/psionic_power/selected_power  // Power currently selected
 
 	var/obj/screen/psi/hub/ui	      // Reference to the master psi UI object.
 	var/mob/living/owner              // Reference to our owner.
 	var/image/_aura_image             // Client image
+
+/datum/psi_complexus/New(mob/M)
+	owner = M
+	START_PROCESSING(SSpsi, src)
+	RegisterSignal(M, COMSIG_PSI_SELECTION, PROC_REF(select_power))
+	RegisterSignal(M, COMSIG_PSI_INVOKE, PROC_REF(invoke_power))
+
+/datum/psi_complexus/Destroy()
+	destroy_aura_image(_aura_image)
+	STOP_PROCESSING(SSpsi, src)
+	if(owner)
+		UnregisterSignal(owner, COMSIG_PSI_SELECTION)
+		UnregisterSignal(owner, COMSIG_PSI_INVOKE)
+		cancel()
+		if(owner.client)
+			owner.client.screen -= ui.components
+			owner.client.screen -= ui
+			for(var/thing in SSpsi.all_aura_images)
+				owner.client.images -= thing
+		QDEL_NULL(ui)
+		owner.psi = null
+		owner = null
+
+	if(manifested_items)
+		for(var/thing in manifested_items)
+			qdel(thing)
+		manifested_items.Cut()
+	. = ..()
+
+/datum/psi_complexus/proc/select_power(mob/user)
+	if(!LAZYLEN(learned_powers))
+		return
+	var/list/choice_list = LAZYCOPY(learned_powers)
+	for(var/datum/psionic_power/I as anything in choice_list)
+		choice_list[I] = image(I.icon, null, I.icon_state)
+	selected_power = show_radial_menu(user, user, choice_list)
+	if(selected_power)
+		selected_power.on_select(user)
+
+/datum/psi_complexus/proc/invoke_power(mob/user, atom/target, proximity, parameters)
+	if(!selected_power)
+		return
+	user.playsound_local(soundin = 'sound/effects/psi/power_evoke.ogg')
+	return selected_power.invoke(user, target, proximity, parameters)
 
 /datum/psi_complexus/proc/get_aura_image()
 	if(_aura_image && !istype(_aura_image))
@@ -95,27 +137,3 @@
 	for(var/datum/psi_complexus/psychic in SSpsi.processing)
 		psychic?.owner?.client?.images -= aura_image
 	SSpsi.all_aura_images -= aura_image
-
-/datum/psi_complexus/New(mob/M)
-	owner = M
-	START_PROCESSING(SSpsi, src)
-
-/datum/psi_complexus/Destroy()
-	destroy_aura_image(_aura_image)
-	STOP_PROCESSING(SSpsi, src)
-	if(owner)
-		cancel()
-		if(owner.client)
-			owner.client.screen -= ui.components
-			owner.client.screen -= ui
-			for(var/thing in SSpsi.all_aura_images)
-				owner.client.images -= thing
-		QDEL_NULL(ui)
-		owner.psi = null
-		owner = null
-
-	if(manifested_items)
-		for(var/thing in manifested_items)
-			qdel(thing)
-		manifested_items.Cut()
-	. = ..()
