@@ -58,10 +58,6 @@
 	if(get_rank(PSI_COERCION) == 2)
 		var/datum/action/cooldown/spell/pointed/disarm/disarm = new(owner)
 		disarm.Grant(owner)
-		var/datum/action/cooldown/spell/list_target/telepathy/psionic/telepathy = new(owner)
-		telepathy.Grant(owner)
-		var/datum/action/cooldown/spell/pointed/psychic_scream/scream = new(owner)
-		scream.Grant(owner)
 	if(get_rank(PSI_PSYCHOKINESIS) == 2)
 		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
 		ranged_touch.Grant(owner)
@@ -74,13 +70,8 @@
 
 	//master level psionics
 	if(get_rank(PSI_COERCION) == 3)
-		var/datum/action/cooldown/spell/disarm = locate(/datum/action/cooldown/spell/pointed/disarm) in owner.actions
-		if(disarm)
-			disarm.Remove(owner)
-		var/datum/action/cooldown/spell/pointed/disarm/master/disarm_master = new(owner)
-		disarm_master.Grant(owner)
-		var/datum/action/cooldown/spell/pointed/psychic_scream/psy_scream= new(owner)
-		psy_scream.Grant(owner)
+		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
+		ranged_touch.Grant(owner)
 	if(get_rank(PSI_PSYCHOKINESIS) == 3)
 		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
 		ranged_touch.Grant(owner)
@@ -93,11 +84,8 @@
 
 	//grandmaster level psionics
 	if(get_rank(PSI_COERCION) == 4)
-		var/datum/action/cooldown/spell/disarm_master = locate(/datum/action/cooldown/spell/pointed/disarm/master) in owner.actions
-		if(disarm_master)
-			disarm_master.Remove(owner)
-		var/datum/action/cooldown/spell/pointed/disarm/grandmaster/disarm_gmaster = new(owner)
-		disarm_gmaster.Grant(owner)
+		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
+		ranged_touch.Grant(owner)
 	if(get_rank(PSI_PSYCHOKINESIS) == 4)
 		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
 		ranged_touch.Grant(owner)
@@ -110,12 +98,8 @@
 
 	//paramount psionics
 	if(get_rank(PSI_COERCION) == 5)
-		var/datum/action/cooldown/spell/disarm_gmaster = locate(/datum/action/cooldown/spell/pointed/disarm/grandmaster) in owner.actions
-		if(disarm_gmaster)
-			disarm_gmaster.Remove(owner)
-
-		var/datum/action/cooldown/spell/pointed/dis_arm/dis_arm = new(owner)
-		dis_arm.Grant(owner)
+		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
+		ranged_touch.Grant(owner)
 	if(get_rank(PSI_PSYCHOKINESIS) == 5)
 		var/datum/action/cooldown/spell/pointed/projectile/fireball/ranged_touch = new(owner)
 		ranged_touch.Grant(owner)

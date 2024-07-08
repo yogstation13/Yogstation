@@ -18,4 +18,3 @@ obj/screen/psi
 		invisibility = 101
 	else
 		invisibility = 0
-	. = ..()
