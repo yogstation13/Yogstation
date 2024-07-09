@@ -53,7 +53,7 @@
 			playsound(S.loc, "sparks", 50, 1)
 		else
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-			s.set_up(5, 1, src)
+			s.set_up(5, 1, target)
 			s.start()
 		return TRUE
 
