@@ -111,6 +111,7 @@
 	controller.update_icon()
 
 /obj/screen/psi/toggle_psi_menu/update_icon()
+	. = ..()
 	if(hidden)
 		icon_state = "arrow_left"
 	else
