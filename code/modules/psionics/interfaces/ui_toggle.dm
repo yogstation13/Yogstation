@@ -42,6 +42,7 @@
 /obj/screen/psi/zorch_harm
 	name = "Zorch Mode"
 	icon_state = "zorch_disable"
+	plane = HUD_PLANE
 
 /obj/screen/psi/zorch_harm/update_icon()
 	..()
