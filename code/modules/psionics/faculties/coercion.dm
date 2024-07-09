@@ -9,6 +9,52 @@
 /datum/psionic_power/coercion
 	faculty = PSI_COERCION
 
+/datum/psionic_power/coercion/commune
+	name =				"Commune"
+	cost =				10
+	cooldown =			8 SECONDS
+	min_rank =			PSI_RANK_OPERANT
+	use_description =	"Target the mouth and click on a creature on disarm intent to psionically send them a message."
+
+/datum/psionic_power/coercion/commune/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
+	if(user.zone_selected != BODY_ZONE_PRECISE_MOUTH || user == target)
+		return FALSE
+	. = ..()
+	if(.)
+		user.visible_message("<i><span class='notice'>[user] touches their fingers to their temple.</span></i>")
+		var/text = pretty_filter(stripped_input(user, "What would you like to say?", "Speak to creature", null, null))
+
+		if(!text)
+			return
+
+		if(target.stat == DEAD)
+			to_chat(user,"<span class='cult'>Not even a psion of your level can speak to the dead.</span>")
+			return
+
+		if (issilicon(target)) 
+			to_chat(user,"<span class='warning'>This can only be used on living organisms.</span>")
+			return
+
+		log_say("[key_name(user)] communed to [key_name(target)]: [text]")
+
+		for (var/mob/M in GLOB.player_list)
+			if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
+				to_chat(M,"<span class='notice'>[user] psionically says to [target]:</span> [text]")
+
+		var/mob/living/carbon/human/H = target
+		if(prob(25) && (target.mind && target.mind.assigned_role == "Chaplain"))
+			to_chat(H,"<b>You sense [user]'s psyche enter your mind, whispering quietly:</b> [text]")
+		else
+			to_chat(H,"<b>You feel something crawl behind your eyes, hearing:</b> [text]")
+			if(istype(H))
+				if(prob(10) && !(H.dna.species.species_traits & NOBLOOD))
+					to_chat(H,"<span class='warning'>Your nose begins to bleed...</span>")
+					H.add_splatter_floor(small_drip = TRUE)
+				else if(prob(25))
+					to_chat(H,"<span class='warning'>Your head hurts...</span>")
+				else if(prob(50))
+					to_chat(H,"<span class='warning'>Your mind buzzes...</span>")
+
 /datum/psionic_power/coercion/assay
 	name =				"Assay"
 	cost =				15
@@ -116,6 +162,19 @@
 		target.apply_damage(10 * (user.psi.get_rank(PSI_COERCION) - 1), STAMINA, BODY_ZONE_CHEST)
 		return TRUE
 
+	if(.)
+		to_chat(user, "<span class='danger'>You lash out, stabbing into \the [target] with a lance of psi-power.</span>")
+		to_chat(target, "<span class='danger'>The muscles in your arms cramp horrendously!</span>")
+		if(prob(75))
+			target.emote("scream")
+		if(prob(75) && target.held_items[1] && target.dropItemToGround(target.get_item_for_held_index(1)))
+			target.visible_message("<span class='danger'>\The [target] drops what they were holding as their left hand spasms!</span>")
+		if(prob(75) && target.held_items[2] && target.dropItemToGround(target.get_item_for_held_index(2)))
+			target.visible_message("<span class='danger'>\The [target] drops what they were holding as their right hand spasms!</span>")
+		return TRUE
+
+
+
 /datum/psionic_power/coercion/spasm
 	name =				"Spasm"
 	cost =				15
@@ -131,63 +190,6 @@
 		return FALSE
 
 	. = ..()
-
-	if(.)
-		to_chat(user, "<span class='danger'>You lash out, stabbing into \the [target] with a lance of psi-power.</span>")
-		to_chat(target, "<span class='danger'>The muscles in your arms cramp horrendously!</span>")
-		if(prob(75))
-			target.emote("scream")
-		if(prob(75) && target.held_items[1] && target.dropItemToGround(target.get_item_for_held_index(1)))
-			target.visible_message("<span class='danger'>\The [target] drops what they were holding as their left hand spasms!</span>")
-		if(prob(75) && target.held_items[2] && target.dropItemToGround(target.get_item_for_held_index(2)))
-			target.visible_message("<span class='danger'>\The [target] drops what they were holding as their right hand spasms!</span>")
-		return TRUE
-
-/datum/psionic_power/coercion/commune
-	name =				"Commune"
-	cost =				10
-	cooldown =			8 SECONDS
-	min_rank =			PSI_RANK_OPERANT
-	use_description =	"Target the mouth and click on a creature on disarm intent to psionically send them a message."
-
-/datum/psionic_power/coercion/commune/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(user.zone_selected != BODY_ZONE_PRECISE_MOUTH || user == target)
-		return FALSE
-	. = ..()
-	if(.)
-		user.visible_message("<i><span class='notice'>[user] touches their fingers to their temple.</span></i>")
-		var/text = pretty_filter(stripped_input(user, "What would you like to say?", "Speak to creature", null, null))
-
-		if(!text)
-			return
-
-		if(target.stat == DEAD)
-			to_chat(user,"<span class='cult'>Not even a psion of your level can speak to the dead.</span>")
-			return
-
-		if (issilicon(target)) 
-			to_chat(user,"<span class='warning'>This can only be used on living organisms.</span>")
-			return
-
-		log_say("[key_name(user)] communed to [key_name(target)]: [text]")
-
-		for (var/mob/M in GLOB.player_list)
-			if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
-				to_chat(M,"<span class='notice'>[user] psionically says to [target]:</span> [text]")
-
-		var/mob/living/carbon/human/H = target
-		if(prob(25) && (target.mind && target.mind.assigned_role == "Chaplain"))
-			to_chat(H,"<b>You sense [user]'s psyche enter your mind, whispering quietly:</b> [text]")
-		else
-			to_chat(H,"<b>You feel something crawl behind your eyes, hearing:</b> [text]")
-			if(istype(H))
-				if(prob(10) && !(H.dna.species.species_traits & NOBLOOD))
-					to_chat(H,"<span class='warning'>Your nose begins to bleed...</span>")
-					H.add_splatter_floor(small_drip = TRUE)
-				else if(prob(25))
-					to_chat(H,"<span class='warning'>Your head hurts...</span>")
-				else if(prob(50))
-					to_chat(H,"<span class='warning'>Your mind buzzes...</span>")
 
 /datum/psionic_power/coercion/focus
 	name =				"Focus"

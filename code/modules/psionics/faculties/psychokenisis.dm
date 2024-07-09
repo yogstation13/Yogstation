@@ -12,6 +12,7 @@
 	cost =            10
 	cooldown =        3 SECONDS
 	min_rank =        PSI_RANK_OPERANT
+	icon_state = "psy_blade"
 	use_description = "Click on or otherwise activate an empty hand while on harm intent to manifest a psychokinetic cutting blade. The power the blade will vary based on your mastery of the faculty."
 	use_sound = 'sound/effects/psi/power_fabrication.ogg'
 	admin_log = FALSE
@@ -41,6 +42,7 @@
 	cost =            5
 	cooldown =        10
 	min_rank =        PSI_RANK_OPERANT
+	icon_state = "psy_tinker"
 	use_description = "Click on or otherwise activate an empty hand while on help intent to manifest a psychokinetic tool. Use it in-hand to switch between tool types."
 	use_sound = 'sound/effects/psi/power_fabrication.ogg'
 	admin_log = FALSE
@@ -70,6 +72,7 @@
 	cost =            5
 	cooldown =        1 SECONDS
 	min_rank =        PSI_RANK_GRANDMASTER
+	icon_state = "psy_tele"
 	use_description = "Click on a distant target while on grab intent to manifest a psychokinetic grip. Use it manipulate objects at a distance."
 	admin_log = FALSE
 	use_sound = 'sound/effects/psi/power_used.ogg'

@@ -25,6 +25,7 @@
 	heat =            1
 	cooldown =        3 SECONDS
 	min_rank =        PSI_RANK_OPERANT
+	icon_state = "redac_skinsight"
 	use_description = "Grab a patient, target the chest, then switch to help intent and use the grab on them to perform a health scan."
 
 /datum/psionic_power/redaction/skinsight/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
@@ -42,6 +43,7 @@
 	heat =            10
 	cooldown =        5 SECONDS
 	min_rank =        PSI_RANK_OPERANT
+	icon_state = "redac_mend"
 	use_description = "Target a patient while on help intent at melee range to mend a variety of maladies, such as bleeding or broken bones. Higher ranks in this faculty allow you to mend a wider range of problems."
 
 /datum/psionic_power/redaction/mend/invoke(var/mob/living/user, var/mob/living/carbon/human/target, proximity, parameters)
@@ -98,6 +100,7 @@
 	heat =            15
 	cooldown =        6 SECONDS
 	min_rank =        PSI_RANK_OPERANT
+	icon_state = "redac_cleanse"
 	use_description = "Target a patient while on help intent at melee range to cleanse radiation and genetic damage from a patient."
 
 /datum/psionic_power/redaction/cleanse/invoke(var/mob/living/user, var/mob/living/carbon/human/target, proximity, parameters)
@@ -131,6 +134,7 @@
 	cooldown =        8 SECONDS
 	min_rank =        PSI_RANK_OPERANT
 	faculty =         PSI_REDACTION
+	icon_state = "redac_revive"
 	use_description = "Obtain a grab on a dead target, target the head, then select help intent and use the grab against them to attempt to bring them back to life. The process is lengthy and failure is punished harshly."
 	admin_log = FALSE
 
