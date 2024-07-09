@@ -258,8 +258,8 @@ GLOBAL_LIST_INIT(nullglass_recipes, list ( \
 	name = "nullglass"
 	desc = "A glass sheet made out of a strange black glass capable of nullifying magic."
 	singular_name = "nullglass sheet"
-	icon_state = "sheet-nullglass"
-	item_state = "sheet-nullglass"
+	icon_state = "sheet-plastitaniumglass"
+	item_state = "sheet-plastitaniumglass"
 	materials = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/nullglass
 	grind_results = list(/datum/reagent/water/holywater = 1)
