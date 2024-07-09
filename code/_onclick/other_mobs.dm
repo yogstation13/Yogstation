@@ -6,7 +6,7 @@
 */
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity, modifiers)
 	if(psi)
-		if(SEND_SIGNAL(src, COMSIG_PSI_INVOKE, A, proximity, modifiers) & COMSIG_PSI_BLOCK_ACTION)
+		if(SEND_SIGNAL(src, COMSIG_PSI_INVOKE, A, proximity, modifiers))
 			return
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		if(src == A)

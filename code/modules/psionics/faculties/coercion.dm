@@ -30,11 +30,11 @@
 
 		if(target.stat == DEAD)
 			to_chat(user, span_cult("Not even a psion of your level can speak to the dead."))
-			return COMSIG_PSI_BLOCK_ACTION
+			return TRUE
 
 		if (issilicon(target)) 
 			to_chat(user, span_warning("This can only be used on living organisms."))
-			return COMSIG_PSI_BLOCK_ACTION
+			return TRUE
 
 		log_say("[key_name(user)] communed to [key_name(target)]: [text]")
 
@@ -74,11 +74,11 @@
 		to_chat(target, span_warning("Your persona is being probed by the psychic lens of \the [user]."))
 		if(!do_after(user, (target.stat == CONSCIOUS ? 50 : 25), target, FALSE))
 			user.psi.backblast(rand(5,10))
-			return COMSIG_PSI_BLOCK_ACTION
+			return TRUE
 		to_chat(user, span_notice("You retreat from \the [target], holding your new knowledge close."))
 		to_chat(target, span_danger("Your mental complexus is laid bare to judgement of \the [user]."))
 		target.show_psi_assay(user)
-		return COMSIG_PSI_BLOCK_ACTION
+		return TRUE
 
 /datum/psionic_power/coercion/psiping
 	name =				"Psi-ping"
@@ -95,7 +95,7 @@
 	if(.)
 		to_chat(user, "<span class='notice'>You take a moment to tune into the local Nlom...</span>")
 		if(!do_after(user, 3 SECONDS, user))
-			return
+			return FALSE
 		var/list/dirs = list()
 		for(var/mob/living/L in range(20))
 			var/turf/T = get_turf(L)
@@ -137,6 +137,7 @@
 			to_chat(user, span_notice("You sense " + jointext(feedback, " ") + " towards the [dir2text(text2num(d))]."))
 		if(!length(dirs))
 			to_chat(user, span_notice("You detect no psionic signatures but your own."))
+		return TRUE
 
 /datum/psionic_power/coercion/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if (!istype(target))
@@ -161,7 +162,7 @@
 		user.visible_message("<span class='danger'>\The [target] has been struck by \the [user]!</span>")
 		playsound(user.loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 		target.apply_damage(10 * (user.psi.get_rank(PSI_COERCION) - 1), STAMINA, BODY_ZONE_CHEST)
-		return COMSIG_PSI_BLOCK_ACTION
+		return TRUE
 
 /datum/psionic_power/coercion/spasm
 	name =				"Spasm"
@@ -189,7 +190,7 @@
 			target.visible_message("<span class='danger'>\The [target] drops what they were holding as their left hand spasms!</span>")
 		if(prob(75) && target.held_items[2] && target.dropItemToGround(target.get_item_for_held_index(2)))
 			target.visible_message("<span class='danger'>\The [target] drops what they were holding as their right hand spasms!</span>")
-		return COMSIG_PSI_BLOCK_ACTION
+		return TRUE
 
 /datum/psionic_power/coercion/focus
 	name =				"Focus"
@@ -209,7 +210,7 @@
 		to_chat(target, span_warning("Your mind is being cleansed of ailments by \the [user]."))
 		if(!do_after(user, (target.stat == CONSCIOUS ? 5 SECONDS : 2.5 SECONDS), target, FALSE))
 			user.psi.backblast(rand(5,10))
-			return COMSIG_PSI_BLOCK_ACTION
+			return TRUE
 		to_chat(user, span_warning("You clear \the [target]'s mind of ailments."))
 		to_chat(target, span_warning("Your mind is cleared of ailments."))
 
@@ -222,7 +223,7 @@
 		if(istype(target, /mob/living/carbon))
 			var/mob/living/carbon/M = target
 			M.adjust_hallucinations(60 SECONDS)
-		return COMSIG_PSI_BLOCK_ACTION
+		return TRUE
 
 /datum/psionic_power/coercion/mindread
 	name =				"Read Mind"
@@ -242,12 +243,12 @@
 
 	if(target.stat == DEAD || (HAS_TRAIT(target, TRAIT_FAKEDEATH)) || !target.client)
 		to_chat(user, span_warning("\The [target] is in no state for a mind-read."))
-		return COMSIG_PSI_BLOCK_ACTION
+		return FALSE
 
 	user.visible_message(span_warning("\The [user] touches \the [target]'s temple..."))
 	var/question =  input(user, "Say something?", "Read Mind", "Penny for your thoughts?") as null|text
 	if(!question || user.incapacitated() || !do_after(user, 20))
-		return COMSIG_PSI_BLOCK_ACTION
+		return TRUE
 
 	var/started_mindread = world.time
 	to_chat(user, span_notice("<b>You dip your mentality into the surface layer of \the [target]'s mind, seeking an answer: <i>[question]</i></b>"))
@@ -259,7 +260,7 @@
 	else
 		to_chat(user, span_notice("<b>You skim thoughts from the surface of \the [target]'s mind: <i>[answer]</i></b>"))
 	log_game("[key_name(user)] read mind of [key_name(target)] with question \"[question]\" and [answer?"got answer \"[answer]\".":"got no answer."]")
-	return COMSIG_PSI_BLOCK_ACTION
+	return TRUE
 
 /datum/psionic_power/coercion/blindstrike
 	name =				"Blindstrike"
@@ -281,7 +282,7 @@
 			to_chat(M, span_danger("Your senses are blasted into oblivion by a psionic scream!"))
 			M.blind_eyes(1 SECONDS)
 			M.adjust_confusion(10 SECONDS)
-		return COMSIG_PSI_BLOCK_ACTION
+		return TRUE
 
 /datum/psionic_power/coercion/dis_arm
 	name =				"Dis-Arm"
@@ -303,4 +304,4 @@
 			if(!(bodypart.body_part & (HEAD|CHEST|LEGS)))
 				if(bodypart.dismemberable)
 					bodypart.dismember()
-		return COMSIG_PSI_BLOCK_ACTION
+		return TRUE

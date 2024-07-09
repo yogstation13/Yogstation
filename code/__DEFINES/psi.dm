@@ -18,5 +18,3 @@
 
 #define COMSIG_PSI_SELECTION "select action"
 #define COMSIG_PSI_INVOKE "invoke selected"
-///return to block the regular action from happening
-	#define COMSIG_PSI_BLOCK_ACTION (1<<0)
