@@ -52,7 +52,7 @@
 	/obj/item/reagent_containers/food/snacks/grown/wheat))
 
 /obj/item/grown/log/attackby(obj/item/W, mob/user, params)
-	if(W.is_sharp())
+	if(W.is_sharp() || (W.tool_behaviour == TOOL_HATCHET))
 		user.show_message(span_notice("You make [plank_name] out of \the [src]!"), MSG_VISUAL)
 		var/seed_modifier = 0
 		if(seed)
