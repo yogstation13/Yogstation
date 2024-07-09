@@ -82,11 +82,11 @@
 					return COMSIG_PSI_BLOCK_ACTION
 		if(target.health < target.maxHealth)
 			target.heal_ordered_damage(redaction_rank * 15, list(BRUTE, BURN, TOX))
-			to_chat(user, span_notice("You patch up some of the damage to [target]'s [E]."))
+			to_chat(user, span_notice("You patch up some of the damage to [target]."))
 			new /obj/effect/temp_visual/heal(get_turf(target), "#33cc33")
 			return COMSIG_PSI_BLOCK_ACTION
 
-		to_chat(user, span_notice("You can find nothing within \the [target]'s [E.name] to mend."))
+		to_chat(user, span_notice("You can find nothing within \the [target] to mend."))
 		return FALSE
 
 /datum/psionic_power/redaction/cleanse
