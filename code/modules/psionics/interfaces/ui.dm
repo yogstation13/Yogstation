@@ -15,6 +15,9 @@
 
 /obj/screen/psi/update_icon()
 	. = ..()
+	handle_visibility()
+
+/obj/screen/psi/proc/handle_visibility()
 	if(hidden)
 		invisibility = 101
 	else

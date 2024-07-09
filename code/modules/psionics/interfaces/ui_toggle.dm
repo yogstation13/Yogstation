@@ -110,8 +110,7 @@
 		psi.hidden = set_hidden
 	controller.update_icon()
 
-/obj/screen/psi/toggle_psi_menu/update_icon()
-	. = ..()
+/obj/screen/psi/toggle_psi_menu/handle_visibility()
 	if(hidden)
 		icon_state = "arrow_left"
 	else
