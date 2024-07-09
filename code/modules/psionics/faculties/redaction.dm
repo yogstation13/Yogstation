@@ -1,7 +1,7 @@
 /datum/psionic_faculty/redaction
 	id = PSI_REDACTION
 	name = "Redaction"
-	armour_types = list(BIO, RAD)
+	armour_types = list(BIO, RAD, ACID)
 
 /datum/psionic_power/redaction
 	faculty = PSI_REDACTION
