@@ -27,6 +27,7 @@
 				blade.can_break_wall = TRUE
 				blade.wall_break_time = 3 SECONDS
 				blade.force = 40
+				blade.armour_penetration = 30
 			if(PSI_RANK_GRANDMASTER)
 				blade.can_break_wall = TRUE
 				blade.force = 24
