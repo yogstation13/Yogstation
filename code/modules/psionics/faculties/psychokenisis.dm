@@ -119,8 +119,7 @@
 	if(.)
 		if(istype(target, /obj/structure) || istype(target, /obj/machinery))
 			user.visible_message(span_notice("\The [user] makes a strange gesture."))
-			var/obj/struct = target
-			user.UnarmedAttack(struct, TRUE)
+			user.UnarmedAttack(target, TRUE)
 			return TRUE
 		else if(istype(target, /mob) || istype(target, /obj))
 			var/obj/item/psychic_power/telekinesis/tk = new(user)
