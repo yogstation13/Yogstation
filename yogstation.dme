@@ -3551,6 +3551,7 @@
 #include "code\modules\psionics\complexus\complexus_process.dm"
 #include "code\modules\psionics\equipment\cerebro_enhancers.dm"
 #include "code\modules\psionics\equipment\psipower.dm"
+#include "code\modules\psionics\equipment\psipower_baton.dm"
 #include "code\modules\psionics\equipment\psipower_blade.dm"
 #include "code\modules\psionics\equipment\psipower_tinker.dm"
 #include "code\modules\psionics\equipment\psipower_tk.dm"
