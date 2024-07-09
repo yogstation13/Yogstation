@@ -877,4 +877,4 @@
 		return
 	COOLDOWN_START(src, next_trigger, cooldown_duration)
 	if(M.psi)
-		M.psi.check_latency_trigger(30, "a Three Eye overdose")
+		M.psi.check_latency_trigger(30, "a Three Eye overdose", 30)

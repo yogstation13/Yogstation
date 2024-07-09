@@ -965,7 +965,7 @@
 		var/datum/psi_complexus/psi = locate(href_list["trigger_psi_latencies"])
 		log_admin("[key_name(usr)] triggered psi latencies for [key_name(psi.owner)].")
 		message_admins(span_adminnotice("[key_name_admin(usr)] triggered psi latencies for [key_name(psi.owner)]."))
-		psi.check_latency_trigger(100, "outside intervention", redactive = TRUE)
+		psi.check_latency_trigger(100, "outside intervention")
 
 	else if(href_list["monkeyone"])
 		if(!check_rights(R_SPAWN))

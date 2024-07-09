@@ -1,10 +1,10 @@
-/datum/psi_complexus/proc/check_latency_trigger(trigger_strength = 0, source, redactive = FALSE)
+/datum/psi_complexus/proc/check_latency_trigger(trigger_strength = 0, source, brain_damage = 0)
 
 	if(!LAZYLEN(latencies))
 		return FALSE
 
-	if(!redactive) //don't force it when it's not had time to rest
-		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(trigger_strength/2, trigger_strength))
+	if(brain_damage) //don't force it when it's not had time to rest
+		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(brain_damage/2, brain_damage))
 
 	if(world.time < next_latency_trigger)
 		return

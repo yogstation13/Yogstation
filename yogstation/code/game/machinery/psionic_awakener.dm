@@ -13,6 +13,7 @@
 	var/open_sound = 'sound/machines/podopen.ogg'
 	var/close_sound = 'sound/machines/podclose.ogg'
 
+	var/brain_damage = 50
 	var/trigger_power = 50
 
 	COOLDOWN_DECLARE(next_trigger)
@@ -31,8 +32,12 @@
 	var/E
 	for(var/obj/item/stock_parts/manipulator/B in component_parts)
 		E += B.rating
+	var/F
+	for(var/obj/item/stock_parts/manipulator/B in component_parts)
+		F += B.rating
 
-	trigger_power = initial(trigger_power) + (5* E)
+	trigger_power = initial(trigger_power) + (5 * E)
+	brain_damage = initial(brain_damage) - (5 * F)
 
 /obj/machinery/psionic_awakener/container_resist(mob/living/user)
 	visible_message(span_notice("[occupant] emerges from [src]!"), span_notice("You climb out of [src]!"))
@@ -195,22 +200,21 @@
 		playsound(src, 'sound/effects/psi/power_fail.ogg', 50, TRUE, 2)
 		return
 
+	var/actual_power = trigger_power
 	if(obj_flags & EMAGGED)
-		trigger_power = 100
+		actual_power = 100
 
 	if(obj_flags & EMAGGED)
 		playsound(src, 'sound/effects/gravhit.ogg', 30, TRUE, 5)
 		visible_message(span_notice("[src] makes some unusual noises."))
-		mob_occupant.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(trigger_power, trigger_power * 2))
+		mob_occupant.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(brain_damage, brain_damage * 2))
 
-	if(mob_occupant?.psi?.check_latency_trigger(trigger_power, name))
+	if(mob_occupant?.psi?.check_latency_trigger(actual_power, name, brain_damage))
 		visible_message(span_notice("[src] whirrs loudly as it successfully triggers latent psionic abilities in [mob_occupant]."))
 		playsound(src, 'sound/effects/psi/power_evoke.ogg', 50, TRUE, 2)
 		playsound(src, 'sound/effects/psi/power_fabrication.ogg', 50, TRUE, 2)
 		log_admin("[name] triggered psi latencies for [key_name(mob_occupant)].")
 		message_admins(span_adminnotice("[ADMIN_FLW(name)] triggered psi latencies for [key_name(mob_occupant)]."))
-		trigger_power = initial(trigger_power)
 	else
 		visible_message(span_notice("[src] whirrs quietly as it fails to unlock any psionic potential."))
 		playsound(src, 'sound/effects/psi/power_fail.ogg', 50, TRUE, 2)
-		trigger_power += 10 //little bit of pity, so it's not just rng

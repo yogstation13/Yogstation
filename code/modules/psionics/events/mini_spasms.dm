@@ -61,7 +61,7 @@
 			sleep(30)
 		victim.psi.update()
 	sleep(4.5 SECONDS)
-	victim.psi.check_latency_trigger(100, "a psionic scream", redactive = TRUE)
+	victim.psi.check_latency_trigger(100, "a psionic scream")
 
 /datum/round_event/minispasm/end()
 	priority_announce( \
