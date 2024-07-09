@@ -20,23 +20,37 @@
 /datum/psionic_power/psychokinesis/psiblade/on_select(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	. = ..()
 	if(.)
-		var/obj/item/psychic_power/psiblade/blade = new /obj/item/psychic_power/psiblade(user, user)
-		user.put_in_hands(blade)
-		switch(user.psi.get_rank(faculty))
-			if(PSI_RANK_PARAMOUNT)
-				blade.can_break_wall = TRUE
-				blade.wall_break_time = 3 SECONDS
-				blade.force = 40
-				blade.armour_penetration = 30
-			if(PSI_RANK_GRANDMASTER)
-				blade.can_break_wall = TRUE
-				blade.force = 24
-				blade.armour_penetration = 30
-			if(PSI_RANK_MASTER)
-				blade.force = 18
-			else
-				blade.force = 12
-		return blade
+		if(HAS_TRAIT(user, TRAIT_PACIFISM))
+			var/obj/item/melee/classic_baton/psychic_power/psibaton/baton = new /obj/item/melee/classic_baton/psychic_power/psibaton(user, user)
+			user.put_in_hands(baton)
+			switch(user.psi.get_rank(faculty))
+				if(PSI_RANK_PARAMOUNT)
+					baton.stamina_damage = 50
+				if(PSI_RANK_GRANDMASTER)
+					baton.stamina_damage = 40
+				if(PSI_RANK_MASTER)
+					baton.stamina_damage = 25
+				else
+					baton.stamina_damage = 15
+			return baton
+		else
+			var/obj/item/psychic_power/psiblade/blade = new /obj/item/psychic_power/psiblade(user, user)
+			user.put_in_hands(blade)
+			switch(user.psi.get_rank(faculty))
+				if(PSI_RANK_PARAMOUNT)
+					blade.can_break_wall = TRUE
+					blade.wall_break_time = 3 SECONDS
+					blade.force = 40
+					blade.armour_penetration = 30
+				if(PSI_RANK_GRANDMASTER)
+					blade.can_break_wall = TRUE
+					blade.force = 24
+					blade.armour_penetration = 30
+				if(PSI_RANK_MASTER)
+					blade.force = 18
+				else
+					blade.force = 12
+			return blade
 
 /datum/psionic_power/psychokinesis/tinker
 	name =            "Tinker"
