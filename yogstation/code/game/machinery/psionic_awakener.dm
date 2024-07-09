@@ -36,8 +36,8 @@
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
 		F += B.rating
 
-	trigger_power = initial(trigger_power) + (5 * E)
-	brain_damage = initial(brain_damage) - (5 * F)
+	brain_damage = initial(brain_damage) - (5 * E)
+	trigger_power = initial(trigger_power) + (5 * F)
 
 /obj/machinery/psionic_awakener/container_resist(mob/living/user)
 	visible_message(span_notice("[occupant] emerges from [src]!"), span_notice("You climb out of [src]!"))
