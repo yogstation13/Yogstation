@@ -226,9 +226,9 @@
 			target.SetAllImmobility(0)
 			resilience = TRAUMA_RESILIENCE_LOBOTOMY
 		target.SetDaze(0)
-		target.cure_trauma_type(resilience = resilience)
 		if(istype(target, /mob/living/carbon))
 			var/mob/living/carbon/M = target
+			M.cure_trauma_type(resilience = resilience)
 			M.adjust_hallucinations(10 SECONDS)
 		return TRUE
 
