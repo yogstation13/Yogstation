@@ -27,6 +27,7 @@
 		var/obj/item/thing = _focus
 		check_paramount = (thing.w_class >= WEIGHT_CLASS_BULKY)
 	else
+		qdel(src)
 		return FALSE
 
 	if(_focus.anchored || (check_paramount && owner.psi.get_rank(PSI_PSYCHOKINESIS) < PSI_RANK_PARAMOUNT))
@@ -51,11 +52,12 @@
 	return focus.do_simple_ranged_interaction(user)
 
 /obj/item/psychic_power/telekinesis/afterattack(atom/target, mob/living/user, proximity)
-
-	if(!target || !user || (isobj(target) && !isturf(target.loc)) || !user.psi || !user.psi.can_use() || !user.psi.spend_power(5))
+	if(!target || !user || (isobj(target) && !isturf(target.loc)))
+		return
+	if(!user.psi || !user.psi.can_use() || !user.psi.spend_power(5) || get_dist(get_turf(focus), get_turf(owner)) > (owner.psi.get_rank(PSI_PSYCHOKINESIS) * 3))
+		owner.dropItemToGround(src)
 		return
 
-	//user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) FIX ME
 	user.psi.set_cooldown(5)
 
 	var/distance = get_dist(get_turf(user), get_turf(focus ? focus : target))
@@ -76,9 +78,11 @@
 		else
 			if(!focus.anchored)
 				var/user_rank = owner.psi.get_rank(PSI_PSYCHOKINESIS)
-				focus.throw_at(target, user_rank*2, user_rank*10, owner)
-			sleep(1)
-			sparkle()
+				focus.throw_at(target, user_rank*2, user_rank, owner, callback = CALLBACK(src, PROC_REF(end_throw)))
+
+/obj/item/psychic_power/telekinesis/proc/end_throw()
+	sparkle()
+	if(!focus || !isturf(focus.loc) || get_dist(get_turf(focus), get_turf(owner)) > (owner.psi.get_rank(PSI_PSYCHOKINESIS) * 3))
 		owner.dropItemToGround(src)
 
 /obj/item/psychic_power/telekinesis/proc/sparkle()

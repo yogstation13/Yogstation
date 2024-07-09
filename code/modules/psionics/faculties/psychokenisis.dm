@@ -17,7 +17,10 @@
 	use_sound = 'sound/effects/psi/power_fabrication.ogg'
 	admin_log = FALSE
 
-/datum/psionic_power/psychokinesis/psiblade/on_select(var/mob/living/user, var/mob/living/target, proximity, parameters)
+/datum/psionic_power/psychokinesis/psiblade/invoke(mob/living/user, mob/living/target, proximity, parameters)
+	return FALSE
+
+/datum/psionic_power/psychokinesis/psiblade/on_select(mob/living/user)
 	. = ..()
 	if(.)
 		if(HAS_TRAIT(user, TRAIT_PACIFISM))
@@ -62,7 +65,10 @@
 	use_sound = 'sound/effects/psi/power_fabrication.ogg'
 	admin_log = FALSE
 
-/datum/psionic_power/psychokinesis/tinker/on_select(var/mob/living/user, var/mob/living/target, proximity, parameters)
+/datum/psionic_power/psychokinesis/tinker/invoke(mob/living/user, mob/living/target, proximity, parameters)
+	return FALSE
+
+/datum/psionic_power/psychokinesis/tinker/on_select(mob/living/user)
 	. = ..()
 	if(.)
 		var/obj/item/psychic_power/tinker/tool = new(user)
@@ -95,23 +101,15 @@
 		/obj/machinery/door
 	)
 
-/datum/psionic_power/psychokinesis/telekinesis/on_select(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!user.combat_mode)
-		return FALSE
+/datum/psionic_power/psychokinesis/telekinesis/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	. = ..()
 	if(.)
 		var/distance = get_dist(user, target)
-		if(distance > user.psi.get_rank(PSI_PSYCHOKINESIS) * 2)
+		if(distance > (user.psi.get_rank(PSI_PSYCHOKINESIS) * 3))
 			to_chat(user, span_warning("Your telekinetic power won't reach that far."))
 			return FALSE
 
-		if(istype(target, /mob) || istype(target, /obj))
-			var/obj/item/psychic_power/telekinesis/tk = new(user)
-			if(tk.set_focus(target))
-				tk.sparkle()
-				user.visible_message("<span class='notice'>\The [user] reaches out.</span>")
-				return tk
-		else if(istype(target, /obj/structure))
+		if(istype(target, /obj/structure))
 			user.visible_message("<span class='notice'>\The [user] makes a strange gesture.</span>")
 			var/obj/O = target
 			O.attack_hand(user)
@@ -122,4 +120,11 @@
 					var/obj/machinery/machine = target
 					machine.attack_hand(user)
 					return TRUE
+		else if(istype(target, /mob) || istype(target, /obj))
+			var/obj/item/psychic_power/telekinesis/tk = new(user)
+			user.put_in_hands(tk)
+			if(tk.set_focus(target))
+				tk.sparkle()
+				user.visible_message("<span class='notice'>\The [user] reaches out.</span>")
+				return tk
 	return FALSE
