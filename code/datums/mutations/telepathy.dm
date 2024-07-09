@@ -2,6 +2,7 @@
 	name = "Telepathy"
 	desc = "A rare mutation that allows the user to telepathically communicate to others."
 	quality = POSITIVE
+	locked = TRUE
 	text_gain_indication = span_notice("You can hear your own voice echoing in your mind!")
 	text_lose_indication = span_notice("You don't hear your mind echo anymore.")
 	difficulty = 12
