@@ -72,5 +72,5 @@
 	name = "chocolate ice cream cone"
 	desc = "Delicious chocolate cone, but no ice cream."
 	icon_state = "icecream_cone_chocolate"
-	tastes = list("bland" = 4, "chocolate" =6)
+	tastes = list("bland" = 4, "chocolate" = 6)
 	extra_reagent = /datum/reagent/consumable/coco
