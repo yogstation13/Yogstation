@@ -83,7 +83,7 @@
 /datum/psionic_power/coercion/psiping
 	name =				"Psi-ping"
 	cost =				30
-	cooldown =			20 SECONDS
+	cooldown =			30 SECONDS
 	min_rank =			PSI_RANK_OPERANT
 	icon_state = "coe_psiping"
 	use_description =	"Activate the power with z, then click on yourself with an empty hand to detect nearby psionic signatures."
@@ -101,9 +101,9 @@
 			return FALSE 
 		searching = FALSE
 		var/list/dirs = list()
-		for(var/mob/living/L in range(20))
+		for(var/mob/living/L in GLOB.mob_living_list)
 			var/turf/T = get_turf(L)
-			if(!T || L == user || L.stat == DEAD || issilicon(L) || !L.psi)
+			if(!T || L == user || L.stat == DEAD || issilicon(L) || !L.psi || (L.z != user.z))
 				continue
 			/*
 			var/image/ping_image = image(icon = 'icons/effects/effects.dmi', icon_state = "sonar_ping", loc = user)

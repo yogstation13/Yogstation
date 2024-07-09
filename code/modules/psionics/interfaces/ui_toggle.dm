@@ -26,6 +26,8 @@
 
 /obj/screen/psi/autoredaction/update_icon()
 	..()
+	if(owner.psi.get_rank(PSI_REDACTION) < PSI_RANK_LATENT)
+		invisibility = 101
 	if(invisibility == 0)
 		icon_state = owner.psi.use_autoredaction ? "healing_on" : "healing_off"
 
@@ -46,6 +48,8 @@
 
 /obj/screen/psi/zorch_harm/update_icon()
 	..()
+	if(owner.psi.get_rank(PSI_ENERGISTICS) < PSI_RANK_LATENT)
+		invisibility = 101
 	if(invisibility == 0)
 		icon_state = owner.psi.zorch_harm ? "zorch_harm" : "zorch_disable"
 
@@ -100,7 +104,7 @@
 	var/obj/screen/psi/hub/controller
 	plane = HUD_PLANE
 
-/obj/screen/psi/toggle_psi_menu/New(var/mob/living/_owner, var/obj/screen/psi/hub/_controller)
+/obj/screen/psi/toggle_psi_menu/New(mob/living/_owner, obj/screen/psi/hub/_controller)
 	controller = _controller
 	..(_owner)
 
