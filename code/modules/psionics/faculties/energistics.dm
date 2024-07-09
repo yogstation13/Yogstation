@@ -23,13 +23,13 @@
 		if(istype(target))
 			user.visible_message(span_danger("\The [user] sends a jolt of electricity arcing into \the [target]!"))
 			target.electrocute_act(rand(15,45), user, 1, user.zone_selected)
-			return COMSIG_PSI_BLOCK_ACTION
+			return TRUE
 		else if(isatom(target))
 			var/obj/item/stock_parts/cell/charging_cell = target.get_cell()
 			if(istype(charging_cell))
 				user.visible_message(span_danger("\The [user] sends a jolt of electricity arcing into \the [target], charging it!"))
 				charging_cell.give(rand(15,45))
-			return COMSIG_PSI_BLOCK_ACTION
+			return TRUE
 		else
 			return FALSE
 
@@ -55,7 +55,7 @@
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(5, 1, target)
 			s.start()
-		return COMSIG_PSI_BLOCK_ACTION
+		return TRUE
 
 /datum/psionic_power/energistics/zorch
 	name =             "Zorch"
@@ -102,7 +102,7 @@
 			pew.firer = user
 			pew.fire(Get_Angle(user, target))
 			user.visible_message(span_danger("[user]'s eyes flare with light!"))
-			return COMSIG_PSI_BLOCK_ACTION
+			return TRUE
 
 /datum/psionic_power/energistics/disrupt
 	name =            "Disrupt"
@@ -120,4 +120,4 @@
 	if(.)
 		user.visible_message("<span class='danger'>\The [user] releases a gout of crackling static and arcing lightning over \the [target]!</span>")
 		empulse(target, 5, 1)
-		return COMSIG_PSI_BLOCK_ACTION
+		return TRUE

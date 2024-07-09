@@ -112,7 +112,9 @@
 	if(!selected_power)
 		return
 	user.playsound_local(soundin = 'sound/effects/psi/power_evoke.ogg')
-	return selected_power.invoke(user, target, proximity, parameters)
+	. = selected_power.invoke(user, target, proximity, parameters)
+	if(.)
+		selected_power.handle_post_power(user, target)
 
 /datum/psi_complexus/proc/get_aura_image()
 	if(_aura_image && !istype(_aura_image))

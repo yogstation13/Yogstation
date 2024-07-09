@@ -71,7 +71,7 @@
 				body_part = target.get_embedded_part(removed_item)
 				target.remove_embedded_object(removed_item, get_turf(target))
 				to_chat(user, span_notice("You extend a tendril of psychokinetic-redactive power and carefully tease \the [removed_item] free of [target]'s [body_part]."))
-				return COMSIG_PSI_BLOCK_ACTION
+				return TRUE
 
 		if(redaction_rank >= PSI_RANK_GRANDMASTER)
 			for(var/obj/item/organ/O in target.internal_organs)
@@ -79,12 +79,12 @@
 					var/heal = redaction_rank * 10
 					to_chat(user, span_notice("You encourage the damaged tissue of \the [O] to repair itself."))
 					O.applyOrganDamage(-rand(heal, heal * 2))
-					return COMSIG_PSI_BLOCK_ACTION
+					return TRUE
 		if(target.health < target.maxHealth)
 			target.heal_ordered_damage(redaction_rank * 15, list(BRUTE, BURN, TOX))
 			to_chat(user, span_notice("You patch up some of the damage to [target]."))
 			new /obj/effect/temp_visual/heal(get_turf(target), "#33cc33")
-			return COMSIG_PSI_BLOCK_ACTION
+			return TRUE
 
 		to_chat(user, span_notice("You can find nothing within \the [target] to mend."))
 		return FALSE
@@ -111,16 +111,16 @@
 				target.radiation -= removing
 			else
 				target.radiation = 0
-			return COMSIG_PSI_BLOCK_ACTION
+			return TRUE
 		if(target.getCloneLoss())
 			to_chat(user, span_notice("You stitch together some of the mangled DNA within \the [target]..."))
 			if(target.getCloneLoss() >= removing)
 				target.adjustCloneLoss(-removing)
 			else
 				target.adjustCloneLoss(-(target.getCloneLoss()))
-			return COMSIG_PSI_BLOCK_ACTION
+			return TRUE
 		to_chat(user, span_notice("You can find no genetic damage or radiation to heal within \the [target]."))
-		return COMSIG_PSI_BLOCK_ACTION
+		return TRUE
 
 /datum/psionic_power/revive
 	name =            "Revive"
@@ -140,21 +140,21 @@
 	if(.)
 		if(target.stat != DEAD && !HAS_TRAIT(target, TRAIT_FAKEDEATH))
 			to_chat(user, span_warning("This person is already alive!"))
-			return COMSIG_PSI_BLOCK_ACTION
+			return TRUE
 
 		if((world.time - target.timeofdeath) > DEFIB_TIME_LIMIT)
 			to_chat(user, span_warning("\The [target] has been dead for too long to revive."))
-			return COMSIG_PSI_BLOCK_ACTION
+			return TRUE
 
 		user.visible_message(span_notice("<i>\The [user] splays out their hands over \the [target]'s body...</i>"))
 		target.notify_ghost_cloning("Your heart is being revived!")
 		target.grab_ghost()
 		if(!do_after(user, 10 SECONDS, target, FALSE))
 			user.psi.backblast(rand(10,25))
-			return COMSIG_PSI_BLOCK_ACTION
+			return TRUE
 
 		to_chat(target, span_notice("Life floods back into your body!"))
 		target.visible_message(span_notice("\The [target] shudders violently!"))
 		target.adjustOxyLoss(-rand(15,20))
 		target.revive()
-		return COMSIG_PSI_BLOCK_ACTION
+		return TRUE
