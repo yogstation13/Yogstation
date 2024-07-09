@@ -31,7 +31,9 @@
 	survival_box_replacements = list(items_to_delete = list(/obj/item/clothing/mask/breath, /obj/item/tank/internals/emergency_oxygen),\
 											 new_items = list(/obj/item/tank/internals/plasmaman/belt))
 	screamsound = list('sound/voice/plasmaman/plasmeme_scream_1.ogg', 'sound/voice/plasmaman/plasmeme_scream_2.ogg', 'sound/voice/plasmaman/plasmeme_scream_3.ogg')
-
+	latency_chance = 35
+	possible_faculties = list(PSI_COERCION, PSI_PSYCHOKINESIS, PSI_ENERGISTICS)
+	starting_psi_level = PSI_RANK_LATENT
 	smells_like = "plasma-caked calcium"
 
 	/// If the bones themselves are burning clothes won't help you much

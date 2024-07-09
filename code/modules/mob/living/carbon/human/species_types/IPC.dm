@@ -51,6 +51,10 @@
 	// Hats need to be 1 up
 	offset_features = list(OFFSET_HEAD = list(0,1))
 
+	latency_chance = 0
+	possible_faculties = NONE
+	starting_psi_level = NONE
+
 	var/datum/action/innate/change_screen/change_screen
 
 	smells_like = "industrial lubricant"

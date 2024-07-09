@@ -29,6 +29,7 @@
 
 	latency_chance = 100
 	possible_faculties = list(PSI_COERCION)
+	starting_psi_level = PSI_RANK_LATENT
 
 	//organs
 	mutanteyes = /obj/item/organ/eyes/robotic/preternis
