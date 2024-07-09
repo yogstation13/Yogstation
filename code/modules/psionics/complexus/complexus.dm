@@ -59,17 +59,37 @@
 
 	var/obj/screen/psi/hub/ui	      // Reference to the master psi UI object.
 	var/mob/living/owner              // Reference to our owner.
+	var/datum/mind/thinker			//reference to the mind
 	var/image/_aura_image             // Client image
 
 /datum/psi_complexus/New(mob/M)
+	if(!M.mind)
+		qdel(src)
+		return
+	thinker = M.mind
 	owner = M
 	START_PROCESSING(SSpsi, src)
-	RegisterSignal(M, COMSIG_PSI_SELECTION, PROC_REF(select_power))
-	RegisterSignal(M, COMSIG_PSI_INVOKE, PROC_REF(invoke_power))
+	RegisterSignal(owner, COMSIG_PSI_SELECTION, PROC_REF(select_power))
+	RegisterSignal(owner, COMSIG_PSI_INVOKE, PROC_REF(invoke_power))
+	RegisterSignal(thinker, COMSIG_MIND_TRANSFERRED, PROC_REF(mind_swap))
+
+/datum/psi_complexus/proc/mind_swap(datum/mind/source, mob/previous_body)
+	if(!istype(source))
+		return
+	UnregisterSignal(owner, COMSIG_PSI_SELECTION)
+	UnregisterSignal(owner, COMSIG_PSI_INVOKE)
+	owner.psi = null
+	if(source.current)
+		owner = source.current
+		RegisterSignal(owner, COMSIG_PSI_SELECTION, PROC_REF(select_power))
+		RegisterSignal(owner, COMSIG_PSI_INVOKE, PROC_REF(invoke_power))
+		owner.psi = src
+	update()
 
 /datum/psi_complexus/Destroy()
 	destroy_aura_image(_aura_image)
 	STOP_PROCESSING(SSpsi, src)
+	UnregisterSignal(thinker, COMSIG_MIND_TRANSFERRED)
 	if(owner)
 		UnregisterSignal(owner, COMSIG_PSI_SELECTION)
 		UnregisterSignal(owner, COMSIG_PSI_INVOKE)
