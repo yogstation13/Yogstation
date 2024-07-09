@@ -1896,9 +1896,6 @@
 /obj/structure/safe,
 /obj/item/toy/plush/nukeplushie,
 /obj/item/toy/figure/syndie,
-/obj/item/disk/nuclear/fake{
-	desc = "While at first glance it looks like the real deal, the station number stamped on the bottom reads '12'. Huh."
-	},
 /obj/item/toy/plush/carpplushie/dehy_carp{
 	break_message = "%SRC vanishes in a small explosion.";
 	desc = "An adorable stuffed toy that resembles Cayenne. Faintly smells of explosives.";
@@ -1911,6 +1908,11 @@
 	pixel_y = -24;
 	req_access_txt = "150";
 	specialfunctions = 4
+	},
+/obj/item/computer_hardware/hard_drive/portable/syndicate{
+	icon_state = "nucleardisk";
+	name = "nuclear authentication disk";
+	desc = "While at first glance it looks like the real deal, the station number stamped on the bottom reads '12'. Huh."
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/vault)
