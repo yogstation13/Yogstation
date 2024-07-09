@@ -179,7 +179,11 @@
 			duration /= 40 //Much better with hatchets and axes.
 		else
 			duration /= W.force
+		if(W.hitsound)
+			playsound(get_turf(src), W.hitsound, 100, 0, 0)
+		user.visible_message(span_notice("[user] begins to cut down [src] with [W]."),span_notice("You begin to cut down [src] with [W]."), "You hear the sound of chopping.")
 		if(do_after(user, duration, src))
+			user.visible_message(span_notice("[user] fells [src] with the [W]."),span_notice("You fell [src] with the [W]."), "You hear the sound of a tree falling.")
 			dismantle_wall(FALSE,FALSE)
 			return
 	return ..()
