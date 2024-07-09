@@ -9,7 +9,7 @@
 	if(psi?.use_psi_armour)
 		var/psi_armor = psi.get_armour(attack_flag)
 		if(psi_armor && psi.spend_power(10))
-			to_chat(src, span_warning("You block the blow with your mind!"))
+			to_chat(src, span_warning("You soften the blow with your mind!"))
 			armor = min(armor + psi_armor, 100)
 
 	if(armor > 0 && armour_penetration)	//WE HAVE ARMOR
