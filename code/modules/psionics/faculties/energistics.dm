@@ -15,22 +15,20 @@
 	use_description = "Enter combat mode to use a melee attack that electrocutes a victim, or charge an energy cell."
 
 /datum/psionic_power/energistics/electrocute/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!user.combat_mode)
-		return FALSE
-	if(isturf(target))
+	if(!user.combat_mode || !istype(target) || !proximity) 
 		return FALSE
 	. = ..()
 	if(.)
 		if(istype(target))
 			user.visible_message(span_danger("\The [user] sends a jolt of electricity arcing into \the [target]!"))
 			target.electrocute_act(rand(15,45), user, 1, user.zone_selected)
-			return TRUE
+			return COMSIG_PSI_BLOCK_ACTION
 		else if(isatom(target))
 			var/obj/item/stock_parts/cell/charging_cell = target.get_cell()
 			if(istype(charging_cell))
 				user.visible_message(span_danger("\The [user] sends a jolt of electricity arcing into \the [target], charging it!"))
 				charging_cell.give(rand(15,45))
-			return TRUE
+			return COMSIG_PSI_BLOCK_ACTION
 		else
 			return FALSE
 
@@ -39,10 +37,10 @@
 	cost =            1
 	cooldown =        1 SECONDS
 	min_rank =        PSI_RANK_OPERANT
-	use_description = "Target a non-living target in melee range on harm intent to cause some sparks to appear. This can light fires."
+	use_description = "Target a non-living thing in melee range on harm intent to cause some sparks to appear. This can light fires."
 
 /datum/psionic_power/energistics/spark/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(isnull(target) || istype(target)) 
+	if(!user.combat_mode || isnull(target) || istype(target) || !proximity) 
 		return FALSE
 	. = ..()
 	if(.)
@@ -55,7 +53,7 @@
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(5, 1, target)
 			s.start()
-		return TRUE
+		return COMSIG_PSI_BLOCK_ACTION
 
 /datum/psionic_power/energistics/zorch
 	name =             "Zorch"
@@ -101,7 +99,7 @@
 			pew.firer = user
 			pew.fire(Get_Angle(user, target))
 			user.visible_message(span_danger("[user]'s eyes flare with light!"))
-			return TRUE
+			return COMSIG_PSI_BLOCK_ACTION
 
 /datum/psionic_power/energistics/disrupt
 	name =            "Disrupt"
@@ -112,12 +110,10 @@
 	use_description = "Enter combat mode and attack a target to cause a localized electromagnetic pulse."
 
 /datum/psionic_power/energistics/disrupt/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!user.combat_mode)
-		return FALSE
-	if(isturf(target))
+	if(!user.combat_mode || !istype(target) || !proximity)
 		return FALSE
 	. = ..()
 	if(.)
 		user.visible_message("<span class='danger'>\The [user] releases a gout of crackling static and arcing lightning over \the [target]!</span>")
 		empulse(target, 5, 1)
-		return TRUE
+		return COMSIG_PSI_BLOCK_ACTION
