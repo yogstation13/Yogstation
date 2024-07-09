@@ -120,7 +120,7 @@
 	name = "saw bone"
 	implements = list(TOOL_SAW = 100, /obj/item/melee/transforming/energy/sword/cyborg/saw = 100,
 		/obj/item/melee/arm_blade = 75, /obj/item/mounted_chainsaw = 65, /obj/item/melee/chainsaw = 50,
-		/obj/item/fireaxe = 50, /obj/item/hatchet = 35, /obj/item/kitchen/knife/butcher = 25)
+		/obj/item/fireaxe = 50, TOOL_HATCHET = 35, /obj/item/kitchen/knife/butcher = 25)
 	time = 5.4 SECONDS
 	preop_sound = list(
 		/obj/item/circular_saw = 'sound/surgery/saw.ogg',
