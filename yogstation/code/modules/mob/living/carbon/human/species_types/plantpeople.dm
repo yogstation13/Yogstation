@@ -31,6 +31,7 @@
 	wings_icon = "Plant"
 	wings_detail = "Plantdetails"
 	inert_mutation = SAPBLOOD
+	
 	latency_chance = 50
 	possible_faculties = list(PSI_REDACTION)
 	starting_psi_level = PSI_RANK_LATENT
