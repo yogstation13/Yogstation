@@ -80,8 +80,7 @@
 					to_chat(user, span_notice("You encourage the damaged tissue of \the [O] to repair itself."))
 					O.applyOrganDamage(-rand(heal, heal * 2))
 					return TRUE
-		if(target.health < target.maxHealth)
-			target.heal_ordered_damage(redaction_rank * 15, list(BRUTE, BURN, TOX))
+		if(target.health < target.maxHealth && target.heal_ordered_damage(redaction_rank * 15, list(BRUTE, BURN, TOX)) > 0)
 			to_chat(user, span_notice("You patch up some of the damage to [target]."))
 			new /obj/effect/temp_visual/heal(get_turf(target), "#33cc33")
 			return TRUE
