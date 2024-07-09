@@ -1,7 +1,7 @@
 /datum/psionic_faculty/energistics
 	id = PSI_ENERGISTICS
 	name = "Energistics"
-	armour_types = list("bomb", "laser", "energy")
+	armour_types = list(BOMB, LASER, ENERGY)
 
 /datum/psionic_power/energistics
 	faculty = PSI_ENERGISTICS
