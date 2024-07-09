@@ -33,7 +33,7 @@
 	for(var/obj/item/stock_parts/manipulator/B in component_parts)
 		E += B.rating
 	var/F
-	for(var/obj/item/stock_parts/manipulator/B in component_parts)
+	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
 		F += B.rating
 
 	trigger_power = initial(trigger_power) + (5 * E)
