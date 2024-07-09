@@ -11,17 +11,17 @@
 	var/mutable_appearance/heat_bar_filling
 	var/list/components
 
-/obj/screen/psi/hub/New(var/mob/living/_owner)
+/obj/screen/psi/hub/New(mob/living/_owner)
 	on_cooldown = image(icon, "cooldown")
 	heat_bar = mutable_appearance(icon, "heat_bar")
 	heat_bar.pixel_y += 28
 	heat_bar_filling = mutable_appearance(icon, "")
 	heat_bar_filling.pixel_y += 28
 	components = list(
+		new /obj/screen/psi/limiter(_owner),
 		new /obj/screen/psi/armour(_owner),
 		new /obj/screen/psi/autoredaction(_owner),
 		new /obj/screen/psi/zorch_harm(_owner),
-		new /obj/screen/psi/limiter(_owner),
 		new /obj/screen/psi/toggle_psi_menu(_owner, src)
 		)
 	..()
