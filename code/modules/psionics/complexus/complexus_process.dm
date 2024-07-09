@@ -199,7 +199,7 @@
 
 	// Heal everything left.
 	if(heal_general && prob(mend_prob) && (owner.getBruteLoss() || owner.getFireLoss() || owner.getOxyLoss() || owner.getToxLoss()) && spend_power(heal_rate))
-		owner.heal_ordered_damage(heal_rate, list(BRUTE, BURN, TOX, OXY), BODYPART_ANY, TRUE)
+		owner.heal_ordered_damage(heal_rate, list(BRUTE, BURN, TOX, OXY), BODYPART_ORGANIC, TRUE)
 		new /obj/effect/temp_visual/heal(get_turf(owner), "#33cc33")
 		if(prob(25))
 			to_chat(owner, span_notice("Your skin crawls as your autoredactive faculty heals your body."))
