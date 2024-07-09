@@ -256,6 +256,21 @@
 	desc = "A set of surgical tools hidden behind a concealed panel on the user's arm."
 	items_list = list(/obj/item/retractor/augment, /obj/item/hemostat/augment, /obj/item/cautery/augment, /obj/item/surgicaldrill/augment, /obj/item/scalpel/augment, /obj/item/circular_saw/augment)
 
+/obj/item/organ/cyberimp/arm/toolset/botany
+	name = "botanical toolset implant"
+	desc = "A set of botanical tools hidden behind a concealed panel on the user's arm."
+	items_list = list(/obj/item/hatchet, /obj/item/cultivator, /obj/item/plant_analyzer, /obj/item/reagent_containers/glass/bucket, /obj/item/reagent_containers/dropper)
+
+/obj/item/organ/cyberimp/arm/toolset/janitor
+	name = "janitorial toolset implant"
+	desc = "A set of janitorial tools hidden behind a concealed panel on the user's arm."
+	items_list = list(/obj/item/mop/advanced, /obj/item/broom, /obj/item/reagent_containers/spray/cleaner, /obj/item/holosign_creator/janibarrier, /obj/item/lightreplacer)
+
+/obj/item/organ/cyberimp/arm/toolset/clown
+	name = "comedy toolset implant"
+	desc = "A set of comedy tools hidden behind a concealed panel on the user's arm."
+	items_list = list(/obj/item/holosign_creator/clown, /obj/item/reagent_containers/spray/waterflower/lube, /obj/item/gun/water/full, /obj/item/bikehorn/airhorn)
+
 /obj/item/organ/cyberimp/arm/esword
 	name = "arm-mounted energy blade"
 	desc = "An illegal and highly dangerous cybernetic implant that can project a deadly blade of concentrated energy."

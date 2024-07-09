@@ -183,6 +183,7 @@
 /obj/item/tank/internals/emergency_oxygen/double
 	name = "double emergency oxygen tank"
 	icon_state = "emergency_double"
+	item_state = "emergency_engi"
 	volume = 8
 
 /obj/item/tank/internals/emergency_oxygen/double/empty/populate_gas()
