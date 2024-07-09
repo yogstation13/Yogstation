@@ -1,16 +1,28 @@
 /datum/psi_complexus/proc/check_latency_trigger(trigger_strength = 0, source, redactive = FALSE)
 
-	if(!LAZYLEN(latencies) || world.time < next_latency_trigger)
+	if(!LAZYLEN(latencies))
 		return FALSE
+
+	if(!redactive) //don't force it when it's not had time to rest
+		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(trigger_strength/2, trigger_strength))
+
+	if(world.time < next_latency_trigger)
+		return
 
 	next_latency_trigger = world.time + rand(10 SECONDS, 30 SECONDS)
 
-	if(!redactive)
-		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(trigger_strength, trigger_strength * 2))
-
 	if(prob(trigger_strength))
 		var/faculty = pick(latencies)
-		var/new_rank = pickweight(list(PSI_RANK_OPERANT = 100, PSI_RANK_MASTER = 10, PSI_RANK_GRANDMASTER = 1)) //weighted so you can still roll grandmaster, but at a really rare chance
+
+		var/new_rank = PSI_RANK_OPERANT
+		switch(rand(0, 100)) //i intially tried using a weighted list with pickweight, but i kept getting out of bounds errors for some reason
+			if(0) //weighted so you can still roll grandmaster, but at a really rare chance
+				new_rank = PSI_RANK_GRANDMASTER
+			if(1 to 10)
+				new_rank = PSI_RANK_MASTER
+			if(11 to 100)
+				new_rank = PSI_RANK_OPERANT
+
 		owner.set_psi_rank(faculty, new_rank)
 		var/datum/psionic_faculty/faculty_decl = SSpsi.get_faculty(faculty)
 		to_chat(owner, span_danger("You scream internally as your [faculty_decl.name] faculty is forced into operancy by [source]!"))

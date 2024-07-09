@@ -179,7 +179,7 @@
 			. = TRUE
 
 /obj/machinery/psionic_awakener/proc/trigger_psionics(mob/living/mob_occupant)
-	if(!mob_occupant || !COOLDOWN_FINISHED(src, next_trigger))
+	if(!mob_occupant || mob_occupant.stat == DEAD || !COOLDOWN_FINISHED(src, next_trigger))
 		return
 	COOLDOWN_START(src, next_trigger, cooldown_duration)
 
