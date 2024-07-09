@@ -1,7 +1,7 @@
 /datum/psionic_faculty/psychokinesis
 	id = PSI_PSYCHOKINESIS
 	name = "Psychokinesis"
-	armour_types = list("melee", "bullet")
+	armour_types = list(MELEE, BULLET)
 
 /datum/psionic_power/psychokinesis
 	faculty = PSI_PSYCHOKINESIS

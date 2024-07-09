@@ -47,8 +47,6 @@
 	var/list/manifested_items
 	/// world.time minimum before a trigger can be attempted again.
 	var/next_latency_trigger = 0
-	/// world.time of last armour check.
-	var/last_armor_check              
 	var/last_aura_size
 	var/last_aura_alpha
 	var/last_aura_color
