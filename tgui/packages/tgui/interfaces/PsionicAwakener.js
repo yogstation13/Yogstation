@@ -37,6 +37,12 @@ export const PsionicAwakener = (props, context) => {
                   {occupant.brainLoss ? 'Abnormal' : 'Healthy'}
                 </LabeledList.Item>
               </LabeledList>
+              <Box mt={1} />
+              <ProgressBar
+                value={200 - occupant.brainLoss}
+                minValue={0}
+                maxValue={200}
+                color={occupant.brainLoss ? 'bad' : 'good'} />
             </>
           )}
 
@@ -52,7 +58,7 @@ export const PsionicAwakener = (props, context) => {
               onClick={() => act('door')} />
           )}>
           <Button
-            icon='door-open'
+            icon='power-off'
             content='Activate'
             onClick={() => act('activate')}
             disabled={!ready} />

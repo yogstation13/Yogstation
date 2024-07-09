@@ -836,6 +836,9 @@
 		"THE LIGHT THE DARK A STAR IN CHAINS"
 	)
 
+	COOLDOWN_DECLARE(next_trigger)
+	var/cooldown_duration = 15 SECONDS
+
 /datum/reagent/drug/three_eye/on_mob_metabolize(mob/living/L)
 	..()
 	ADD_TRAIT(L, TRAIT_XRAY_VISION, type)
@@ -869,5 +872,9 @@
 		M.adjust_jitter(350 SECONDS)
 	if(prob(10))
 		to_chat(M, span_danger("[pick(overdose_messages)]"))
+		return
+	if(!COOLDOWN_FINISHED(src, next_trigger))
+		return
+	COOLDOWN_START(src, next_trigger, cooldown_duration)
 	if(M.psi)
 		M.psi.check_latency_trigger(30, "a Three Eye overdose")
