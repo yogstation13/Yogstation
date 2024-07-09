@@ -51023,7 +51023,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "pxM" = (
-/obj/structure/bookcase/random/religion,
+/obj/machinery/psionic_awakener,
 /turf/open/floor/wood,
 /area/medical/psych)
 "pxQ" = (
@@ -67267,7 +67267,7 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "vtO" = (
-/obj/structure/bookcase/random/nonfiction,
+/obj/machinery/psi_monitor,
 /turf/open/floor/wood,
 /area/medical/psych)
 "vtR" = (

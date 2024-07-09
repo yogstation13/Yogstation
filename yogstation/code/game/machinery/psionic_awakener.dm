@@ -2,11 +2,11 @@
 	name = "psionic awakener"
 	desc = "An enclosed machine used trigger psionic latencies."
 	icon = 'icons/obj/machines/sleeper.dmi'
-	icon_state = "sleeper"
-	base_icon_state = "sleeper"
+	icon_state = "oldpod"
+	base_icon_state = "oldpod"
 	density = FALSE
 	state_open = TRUE
-	circuit = /obj/item/circuitboard/machine/sleeper //remember to change this
+	circuit = /obj/item/circuitboard/machine/psionic_awakener
 	clicksound = 'sound/machines/pda_button1.ogg'
 
 	var/enter_message = "<span class='notice'><b>You feel cool air surround you. You go numb as your senses turn inward.</b></span>"
