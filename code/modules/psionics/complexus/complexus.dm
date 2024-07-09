@@ -100,8 +100,8 @@
 	for(var/datum/psionic_power/I as anything in choice_list)
 		choice_list[I] = image(I.icon, null, I.icon_state)
 	var/selection = show_radial_menu(user, user, choice_list)
-	if(selection)
-		selected_power = selection
+	selected_power = selection
+	if(selection) //wipe the selected power unless something was actually chosen
 		selected_power.on_select(user)
 		user.balloon_alert(user, "Selected [selected_power.name]")
 

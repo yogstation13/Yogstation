@@ -73,6 +73,7 @@
 	if(stamina < stamina_cost)
 		return FALSE
 	if((heat + heat_cost) >= limiter)
+		to_chat(owner, "Your limiter prevents you from performing that.")
 		return FALSE
 	adjust_stamina(-stamina_cost)
 	adjust_heat(heat_cost)

@@ -14,7 +14,7 @@
 	var/list/choice_list = LAZYCOPY(possible_tools)
 	for(var/I as anything in choice_list)
 		choice_list[I] = image(icon, null, I)
-	var/choice = show_radial_menu(owner, owner, choice_list)
+	var/choice = show_radial_menu(owner, owner, choice_list, null, 42)
 
 	if(!choice)
 		return
