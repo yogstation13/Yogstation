@@ -10,7 +10,6 @@
 	liked_food = JUNKFOOD | FRIED | GRILLED
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/english
-	latency_chance = 50
 	possible_faculties = list(PSI_COERCION, PSI_REDACTION, PSI_PSYCHOKINESIS, PSI_ENERGISTICS)
 	starting_psi_level = PSI_RANK_LATENT
 

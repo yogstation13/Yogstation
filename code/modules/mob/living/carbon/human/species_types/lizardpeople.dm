@@ -35,7 +35,6 @@
 	var/heat_stunmod = 0
 	var/last_heat_stunmod = 0
 	var/regrowtimer
-	latency_chance = 50
 	possible_faculties = list(PSI_COERCION, PSI_REDACTION, PSI_PSYCHOKINESIS, PSI_ENERGISTICS)
 	starting_psi_level = PSI_RANK_LATENT
 
