@@ -157,9 +157,6 @@
 			if(DEAD)
 				data["occupant"]["stat"] = "Dead"
 				data["occupant"]["statstate"] = "bad"
-		data["occupant"]["health"] = mob_occupant.health
-		data["occupant"]["maxHealth"] = mob_occupant.maxHealth
-		data["occupant"]["minHealth"] = HEALTH_THRESHOLD_DEAD
 		data["occupant"]["brainLoss"] = mob_occupant.getOrganLoss(ORGAN_SLOT_BRAIN)
 	return data
 
