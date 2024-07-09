@@ -173,11 +173,13 @@
 	canSmoothWith = SMOOTH_GROUP_BAMBOO_WALLS
 
 /turf/closed/wall/mineral/wood/attackby(obj/item/W, mob/user)
-	if(W.is_sharp() && W.force)
-		var/duration = (48/W.force) * 2 //In seconds, for now.
+	if((W.is_sharp() && W.force) || (W.tool_behaviour == TOOL_HATCHET))
+		var/duration = 20 SECONDS
 		if((W.tool_behaviour == TOOL_HATCHET) || istype(W, /obj/item/fireaxe))
-			duration /= 4 //Much better with hatchets and axes.
-		if(do_after(user, duration*10, src)) //Into deciseconds.
+			duration /= 40 //Much better with hatchets and axes.
+		else
+			duration /= W.force
+		if(do_after(user, duration, src))
 			dismantle_wall(FALSE,FALSE)
 			return
 	return ..()
