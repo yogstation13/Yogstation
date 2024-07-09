@@ -46,27 +46,32 @@
 	. = ..()
 	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
 
+/datum/action/cooldown/spell/touch/devour_will/proc/check_viable(mob/living/carbon/target, mob/living/carbon/caster) //check if a target is viable for draining
+	if(!target.mind)
+		to_chat(caster, span_warning("You cannot drain the mindless."))
+		return FALSE
+	if(is_team_darkspawn(target))
+		to_chat(caster, span_warning("You cannot drain allies."))
+		return FALSE
+	if(!istype(target))
+		to_chat(caster, span_warning("[target]'s mind is too pitiful to be of any use."))
+		return FALSE
+	if(target.stat == DEAD)
+		to_chat(caster, span_warning("[target] is too weak to drain."))
+		return FALSE
+	if(target.has_status_effect(STATUS_EFFECT_DEVOURED_WILL))
+		to_chat(caster, span_warning("[target]'s mind has not yet recovered enough willpower to be worth devouring."))
+		return FALSE
+	return TRUE
+
 /datum/action/cooldown/spell/touch/devour_will/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/target, mob/living/carbon/caster)
 	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(caster)
 	if(!darkspawn || eating || target == caster)
 		return
-	if(!target.mind)
-		to_chat(caster, span_warning("You cannot drain the mindless."))
-		return
-	if(is_team_darkspawn(target))
-		to_chat(caster, span_warning("You cannot drain allies."))
-		return
-	if(!istype(target))
-		to_chat(caster, span_warning("[target]'s mind is too pitiful to be of any use."))
-		return
-	if(target.stat == DEAD)
-		to_chat(caster, span_warning("[target] is too weak to drain."))
-		return
-	if(target.has_status_effect(STATUS_EFFECT_DEVOURED_WILL))
-		to_chat(caster, span_warning("[target]'s mind has not yet recovered enough willpower to be worth devouring."))
+	if(!check_viable(target, caster))
 		return
 
-	caster.Immobilize(1 SECONDS) // So they don't accidentally move while beading
+	caster.Immobilize(1 SECONDS) // So they don't accidentally move during the first second of the action, cancelling it
 	target.silent += 5
 
 	caster.balloon_alert(caster, "Cera ko...")
@@ -83,8 +88,7 @@
 		return FALSE
 	eating = FALSE
 
-	if(target.has_status_effect(STATUS_EFFECT_DEVOURED_WILL))
-		to_chat(caster, span_warning("[target]'s mind has not yet recovered enough willpower to be worth devouring."))
+	if(!check_viable(target, caster))
 		return
 		
 	//put the victim to sleep before the visible_message proc so the victim doesn't see it
