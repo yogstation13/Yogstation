@@ -179,7 +179,7 @@
 	use_description =	"Activate the power with z, then target a creature to use a ranged attack that may rip the weapons away from the target."
 
 /datum/psionic_power/coercion/spasm/invoke(mob/living/user, mob/living/carbon/human/target, proximity, parameters)
-	if(!istype(target) || user == target || !user.combat_mode ||  || isipc(target))
+	if(!istype(target) || user == target || !user.combat_mode || isipc(target))
 		return FALSE
 
 	. = ..()
