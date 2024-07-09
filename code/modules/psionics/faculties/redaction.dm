@@ -51,9 +51,6 @@
 		return FALSE
 	. = ..()
 	if(.)
-		var/obj/item/bodypart/E = target.get_bodypart(user.zone_selected)
-
-
 		user.visible_message(span_notice("<i>\The [user] rests a hand on \the [target]...</i>"))
 		to_chat(target, span_notice("A healing warmth suffuses you."))
 
