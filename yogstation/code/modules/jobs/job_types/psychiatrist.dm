@@ -45,8 +45,8 @@
 	. = ..()
 	if(!isipc(H))
 		H.set_psi_rank(PSI_REDACTION, PSI_RANK_OPERANT)
-			if(H.psi)
-				to_chat(M, "You are psionically awakened, part of a tiny minority, and you are the first and only exposure most of the crew will have to the mentally gifted.")
+		if(H.psi)
+			to_chat(M, "You are psionically awakened, part of a tiny minority, and you are the first and only exposure most of the crew will have to the mentally gifted.")
 
 /datum/outfit/job/psych
 	name = "Psych"
