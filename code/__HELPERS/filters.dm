@@ -295,7 +295,7 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	if(!isnull(flags))
 		.["flags"] = flags
 
-/proc/apply_wibbly_filters(atom/in_atom, length)
+/proc/apply_wibbly_filters(atom/in_atom)
 	for(var/i in 1 to 7)
 		//This is a very baffling and strange way of doing this but I am just preserving old functionality
 		var/X
