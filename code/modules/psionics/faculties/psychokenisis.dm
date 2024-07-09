@@ -13,7 +13,7 @@
 	cooldown =        3 SECONDS
 	min_rank =        PSI_RANK_OPERANT
 	icon_state = "psy_blade"
-	use_description = "Click on or otherwise activate an empty hand while on harm intent to manifest a psychokinetic cutting blade. The power the blade will vary based on your mastery of the faculty."
+	use_description = "Summon a psiblade or psibaton, if the user is a pacifist. The power the blade/baton will vary based on your mastery of the faculty."
 	use_sound = 'sound/effects/psi/power_fabrication.ogg'
 	admin_log = FALSE
 
@@ -58,7 +58,7 @@
 	cooldown =        10
 	min_rank =        PSI_RANK_OPERANT
 	icon_state = "psy_tinker"
-	use_description = "Click on or otherwise activate an empty hand while on help intent to manifest a psychokinetic tool. Use it in-hand to switch between tool types."
+	use_description = "Summon a psychokinetic tool. Use it in-hand to switch between tool types, different tools are available at different psi levels."
 	use_sound = 'sound/effects/psi/power_fabrication.ogg'
 	admin_log = FALSE
 
@@ -95,12 +95,11 @@
 		/obj/machinery/door
 	)
 
-/datum/psionic_power/psychokinesis/telekinesis/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
+/datum/psionic_power/psychokinesis/telekinesis/on_select(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if(!user.combat_mode)
 		return FALSE
 	. = ..()
 	if(.)
-
 		var/distance = get_dist(user, target)
 		if(distance > user.psi.get_rank(PSI_PSYCHOKINESIS) * 2)
 			to_chat(user, span_warning("Your telekinetic power won't reach that far."))

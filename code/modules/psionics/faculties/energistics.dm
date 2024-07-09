@@ -12,7 +12,7 @@
 	heat =            30
 	cooldown =        7.5 SECONDS
 	min_rank =        PSI_RANK_OPERANT
-	use_description = "Enter combat mode to use a melee attack that electrocutes a victim, or charge an energy cell."
+	use_description = "Activate the power with z, then Enter combat mode to use a melee attack that electrocutes a victim, or charge an energy cell."
 
 /datum/psionic_power/energistics/electrocute/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if(!user.combat_mode || !istype(target) || !proximity) 
@@ -37,7 +37,7 @@
 	cost =            1
 	cooldown =        1 SECONDS
 	min_rank =        PSI_RANK_OPERANT
-	use_description = "Target a non-living thing in melee range on harm intent to cause some sparks to appear. This can light fires."
+	use_description = "Activate the power with z, then target a non-living thing in melee range with combat mode on to cause some sparks to appear. This can light fires."
 
 /datum/psionic_power/energistics/spark/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if(!user.combat_mode || isnull(target) || istype(target) || !proximity) 
@@ -61,7 +61,7 @@
 	heat =             15
 	cooldown =         2 SECONDS
 	min_rank =         PSI_RANK_MASTER
-	use_description = "Use this ranged laser attack while on harm intent. Your mastery of Energistics will determine how powerful the laser is. Be wary of overuse, and try not to fry your own brain."
+	use_description = "Activate the power with z, then use this ranged laser attack with combat mode on. Your mastery of Energistics will determine how powerful the laser is. Be wary of overuse, and try not to fry your own brain."
 
 /datum/psionic_power/energistics/zorch/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	. = ..()
@@ -107,7 +107,7 @@
 	heat =            20
 	cooldown =        10 SECONDS
 	min_rank =        PSI_RANK_GRANDMASTER
-	use_description = "Enter combat mode and attack a target to cause a localized electromagnetic pulse."
+	use_description = "Activate the power with z, then enter combat mode and attack a target to cause a localized electromagnetic pulse."
 
 /datum/psionic_power/energistics/disrupt/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
 	if(!user.combat_mode || !istype(target) || !proximity)
