@@ -53,15 +53,7 @@
 	if(.)
 		var/obj/item/bodypart/E = target.get_bodypart(user.zone_selected)
 
-		if(!E)
-			to_chat(user, span_warning("They are missing that limb."))
-			return COMSIG_PSI_BLOCK_ACTION
-
-		if(E.status == BODYPART_ROBOTIC)
-			to_chat(user, span_warning("That limb is prosthetic."))
-			return COMSIG_PSI_BLOCK_ACTION
-
-		user.visible_message(span_notice("<i>\The [user] rests a hand on \the [target]'s [E.name]...</i>"))
+		user.visible_message(span_notice("<i>\The [user] rests a hand on \the [target]...</i>"))
 		to_chat(target, span_notice("A healing warmth suffuses you."))
 
 		var/redaction_rank = user.psi.get_rank(PSI_REDACTION)
@@ -86,8 +78,8 @@
 					to_chat(user, span_notice("You encourage the damaged tissue of \the [O] to repair itself."))
 					O.applyOrganDamage(-rand(heal, heal * 2))
 					return COMSIG_PSI_BLOCK_ACTION
-		if(E.get_damage(TRUE))
-			E.heal_ordered_damage(redaction_rank * 15, list(BRUTE, BURN, TOX))
+		if(target.health < target.maxHealth)
+			target.heal_ordered_damage(redaction_rank * 15, list(BRUTE, BURN, TOX))
 			to_chat(user, span_notice("You patch up some of the damage to [target]'s [E]."))
 			new /obj/effect/temp_visual/heal(get_turf(target), "#33cc33")
 			return COMSIG_PSI_BLOCK_ACTION
