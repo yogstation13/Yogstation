@@ -22,12 +22,12 @@
 	UNSETEMPTY(latencies)
 	var/rank_count = max(1, LAZYLEN(ranks))
 	if(force || last_rating != CEILING(combined_rank/rank_count, 1))
+		rebuild_power_cache = TRUE
+		rebuild_power_cache()
 		if(highest_rank <= 1)
 			if(highest_rank == 0)
 				qdel(src)
 			return
-		rebuild_power_cache = TRUE
-		rebuild_power_cache()
 		SEND_SOUND(owner, 'sound/effects/psi/power_unlock.ogg')
 		rating = CEILING(combined_rank/rank_count, 1)
 		cost_modifier = 1
