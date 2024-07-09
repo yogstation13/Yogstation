@@ -14,6 +14,7 @@
 	cost =				10
 	cooldown =			8 SECONDS
 	min_rank =			PSI_RANK_OPERANT
+	icon_state = "coe_commune"
 	use_description =	"Activate the power with z, then click on a creature on to psionically send them a message."
 
 /datum/psionic_power/coercion/commune/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
@@ -60,6 +61,7 @@
 	cost =				15
 	cooldown =			10 SECONDS
 	min_rank =			PSI_RANK_OPERANT
+	icon_state = "coe_assay"
 	use_description =	"Activate the power with z, then click on a target in order to perform a deep coercive-redactive probe of their psionic potential."
 
 /datum/psionic_power/coercion/assay/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
@@ -83,6 +85,7 @@
 	cost =				30
 	cooldown =			25 SECONDS
 	min_rank =			PSI_RANK_OPERANT
+	icon_state = "coe_psiping"
 	use_description =	"Activate the power with z, then click on yourself with an empty hand to detect nearby psionic signatures."
 
 /datum/psionic_power/coercion/psiping/invoke(mob/living/user, mob/living/target, proximity, parameters)
@@ -147,6 +150,7 @@
 	heat =				15
 	cooldown =			7 SECONDS
 	min_rank =			PSI_RANK_OPERANT
+	icon_state = "coe_agony"
 	use_description =	"Activate the power with z, attack someone to use a melee attack to deal minor stamina damage. Higher psi levels augment the damage done."
 
 /datum/psionic_power/coercion/agony/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
@@ -164,6 +168,7 @@
 	cost =				15
 	cooldown =			10 SECONDS
 	min_rank =			PSI_RANK_MASTER
+	icon_state = "coe_spasm"
 	use_description =	"Activate the power with z, then target a creature to use a ranged attack that may rip the weapons away from the target."
 
 /datum/psionic_power/coercion/spasm/invoke(var/mob/living/user, var/mob/living/carbon/human/target, proximity, parameters)
@@ -191,6 +196,7 @@
 	cost =				10
 	cooldown =			8 SECONDS
 	min_rank =			PSI_RANK_MASTER
+	icon_state = "coe_focus"
 	use_description =	"Activate the power with z, then click on someone in order to cure ailments of the mind."
 
 /datum/psionic_power/coercion/focus/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
@@ -224,6 +230,7 @@
 	heat =				15
 	cooldown =			25 SECONDS //It should take a WHILE to be able to use this again.
 	min_rank =			PSI_RANK_MASTER
+	icon_state = "coe_mindread"
 	use_description =	"Activate the power with z, then click on someone in melee range to attempt to read a victim's surface level thoughts."
 
 /datum/psionic_power/coercion/mindread/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
@@ -259,6 +266,7 @@
 	cost =				8
 	cooldown =			12 SECONDS
 	min_rank =			PSI_RANK_GRANDMASTER
+	icon_state = "coe_blindstrike"
 	use_description =	"Activate the power with z, then click anywhere to use a radial attack that blinds, deafens and disorients everyone near you."
 
 /datum/psionic_power/coercion/blindstrike/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
@@ -280,6 +288,7 @@
 	cost =				10
 	cooldown =			12 SECONDS
 	min_rank =			PSI_RANK_PARAMOUNT
+	icon_state = "coe_disarm"
 	use_description =	"Activate the power with z, then click your target with combat mode to Psionically rip their arms off."
 
 /datum/psionic_power/coercion/dis_arm/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)

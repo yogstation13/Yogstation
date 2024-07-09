@@ -8,7 +8,7 @@
 	use_sound = null
 
 /datum/psionic_power/psychokinesis/psiblade
-	name =            "Psiblade"
+	name =            "Psiblade/Psibaton"
 	cost =            10
 	cooldown =        3 SECONDS
 	min_rank =        PSI_RANK_OPERANT

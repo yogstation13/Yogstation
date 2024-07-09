@@ -12,6 +12,7 @@
 	heat =            30
 	cooldown =        7.5 SECONDS
 	min_rank =        PSI_RANK_OPERANT
+	icon_state = "ene_ele"
 	use_description = "Activate the power with z, then Enter combat mode to use a melee attack that electrocutes a victim, or charge an energy cell."
 
 /datum/psionic_power/energistics/electrocute/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
@@ -37,6 +38,7 @@
 	cost =            1
 	cooldown =        1 SECONDS
 	min_rank =        PSI_RANK_OPERANT
+	icon_state = "ene_spark"
 	use_description = "Activate the power with z, then target a non-living thing in melee range with combat mode on to cause some sparks to appear. This can light fires."
 
 /datum/psionic_power/energistics/spark/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
@@ -61,6 +63,7 @@
 	heat =             15
 	cooldown =         2 SECONDS
 	min_rank =         PSI_RANK_MASTER
+	icon_state = "ene_zorch"
 	use_description = "Activate the power with z, then use this ranged laser attack with combat mode on. Your mastery of Energistics will determine how powerful the laser is. Be wary of overuse, and try not to fry your own brain."
 
 /datum/psionic_power/energistics/zorch/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
@@ -107,6 +110,7 @@
 	heat =            20
 	cooldown =        10 SECONDS
 	min_rank =        PSI_RANK_GRANDMASTER
+	icon_state = "ene_disrupt"
 	use_description = "Activate the power with z, then enter combat mode and attack a target to cause a localized electromagnetic pulse."
 
 /datum/psionic_power/energistics/disrupt/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
