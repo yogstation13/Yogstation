@@ -26,5 +26,5 @@
 	name = "psychokinetic [tool_behaviour]"
 	icon_state = "[tool_behaviour]"
 	update_icon()
-	to_chat(owner, "<span class='notice'>You begin emulating \a [tool_behaviour].</span>")
+	to_chat(owner, span_notice("You begin emulating \a [tool_behaviour]."))
 	owner.playsound_local(soundin = 'sound/effects/psi/power_fabrication.ogg')
