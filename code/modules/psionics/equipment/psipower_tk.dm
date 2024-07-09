@@ -27,7 +27,6 @@
 		var/obj/item/thing = _focus
 		check_paramount = (thing.w_class >= WEIGHT_CLASS_BULKY)
 	else
-		qdel(src)
 		return FALSE
 
 	if(_focus.anchored || (check_paramount && owner.psi.get_rank(PSI_PSYCHOKINESIS) < PSI_RANK_PARAMOUNT))
@@ -46,6 +45,10 @@
 	overlays += I
 	return TRUE
 
+/obj/item/psychic_power/telekinesis/proc/valid_distance(mob/living/user, atom/target)
+	var/distance = get_dist(get_turf(user), get_turf(focus ? focus : target))
+	return (distance <= (owner.psi.get_rank(PSI_PSYCHOKINESIS) * 2))
+
 /obj/item/psychic_power/telekinesis/attack_self(mob/user)
 	user.visible_message(span_notice("[user] makes a strange gesture."))
 	sparkle()
@@ -54,16 +57,17 @@
 /obj/item/psychic_power/telekinesis/afterattack(atom/target, mob/living/user, proximity)
 	if(!target || !user || (isobj(target) && !isturf(target.loc)))
 		return
-	if(!user.psi || !user.psi.can_use() || !user.psi.spend_power(5) || get_dist(get_turf(focus), get_turf(owner)) > (owner.psi.get_rank(PSI_PSYCHOKINESIS) * 3))
+
+	if(!valid_distance(user, target))
+		owner.dropItemToGround(src)
+		to_chat(user, span_warning("Your telekinetic power won't reach that far."))
+		return
+
+	if(!user.psi || !user.psi.can_use() || !user.psi.spend_power(5))
 		owner.dropItemToGround(src)
 		return
 
 	user.psi.set_cooldown(5)
-
-	var/distance = get_dist(get_turf(user), get_turf(focus ? focus : target))
-	if(distance > user.psi.get_rank(PSI_PSYCHOKINESIS))
-		to_chat(user, span_warning("Your telekinetic power won't reach that far."))
-		return FALSE
 
 	if(target == focus)
 		attack_self(user)
@@ -82,7 +86,7 @@
 
 /obj/item/psychic_power/telekinesis/proc/end_throw()
 	sparkle()
-	if(!focus || !isturf(focus.loc) || get_dist(get_turf(focus), get_turf(owner)) > (owner.psi.get_rank(PSI_PSYCHOKINESIS) * 3))
+	if(!focus || !isturf(focus.loc) || !valid_distance(owner, focus))
 		owner.dropItemToGround(src)
 
 /obj/item/psychic_power/telekinesis/proc/sparkle()

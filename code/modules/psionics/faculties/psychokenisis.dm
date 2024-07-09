@@ -102,24 +102,23 @@
 	)
 
 /datum/psionic_power/psychokinesis/telekinesis/invoke(mob/living/user, mob/living/target, proximity, parameters)
+	var/distance = get_dist(user, target)
+	if(distance > (user.psi.get_rank(PSI_PSYCHOKINESIS) * 2))
+		to_chat(user, span_warning("Your telekinetic power won't reach that far."))
+		return FALSE
+	if(istype(target, /obj/machinery) && !(target.type in valid_machine_types))
+		return FALSE
 	. = ..()
 	if(.)
-		var/distance = get_dist(user, target)
-		if(distance > (user.psi.get_rank(PSI_PSYCHOKINESIS) * 3))
-			to_chat(user, span_warning("Your telekinetic power won't reach that far."))
-			return FALSE
-
 		if(istype(target, /obj/structure))
 			user.visible_message("<span class='notice'>\The [user] makes a strange gesture.</span>")
 			var/obj/O = target
 			O.attack_hand(user)
 			return TRUE
-		else if(istype(target, /obj/machinery))
-			for(var/mtype in valid_machine_types)
-				if(istype(target, mtype))
-					var/obj/machinery/machine = target
-					machine.attack_hand(user)
-					return TRUE
+		else if(istype(target, /obj/machinery) && (target.type in valid_machine_types))
+			var/obj/machinery/machine = target
+			machine.attack_hand(user)
+			return TRUE
 		else if(istype(target, /mob) || istype(target, /obj))
 			var/obj/item/psychic_power/telekinesis/tk = new(user)
 			user.put_in_hands(tk)
