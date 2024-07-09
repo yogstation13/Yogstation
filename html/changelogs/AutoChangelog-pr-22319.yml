@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes a bug where ethereal eyes didn't remove the zoom effect upon removal"
