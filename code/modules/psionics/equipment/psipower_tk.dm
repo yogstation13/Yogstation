@@ -45,23 +45,29 @@
 	overlays += I
 	return TRUE
 
+/obj/item/psychic_power/telekinesis/proc/valid_distance(mob/living/user, atom/target)
+	var/distance = get_dist(get_turf(user), get_turf(focus ? focus : target))
+	return (distance <= (owner.psi.get_rank(PSI_PSYCHOKINESIS) * 2))
+
 /obj/item/psychic_power/telekinesis/attack_self(mob/user)
 	user.visible_message(span_notice("[user] makes a strange gesture."))
 	sparkle()
 	return focus.do_simple_ranged_interaction(user)
 
 /obj/item/psychic_power/telekinesis/afterattack(atom/target, mob/living/user, proximity)
-
-	if(!target || !user || (isobj(target) && !isturf(target.loc)) || !user.psi || !user.psi.can_use() || !user.psi.spend_power(5))
+	if(!target || !user || (isobj(target) && !isturf(target.loc)))
 		return
 
-	//user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) FIX ME
-	user.psi.set_cooldown(5)
-
-	var/distance = get_dist(get_turf(user), get_turf(focus ? focus : target))
-	if(distance > user.psi.get_rank(PSI_PSYCHOKINESIS))
+	if(!valid_distance(user, target))
+		owner.dropItemToGround(src)
 		to_chat(user, span_warning("Your telekinetic power won't reach that far."))
-		return FALSE
+		return
+
+	if(!user.psi || !user.psi.can_use() || !user.psi.spend_power(5))
+		owner.dropItemToGround(src)
+		return
+
+	user.psi.set_cooldown(5)
 
 	if(target == focus)
 		attack_self(user)
@@ -76,9 +82,11 @@
 		else
 			if(!focus.anchored)
 				var/user_rank = owner.psi.get_rank(PSI_PSYCHOKINESIS)
-				focus.throw_at(target, user_rank*2, user_rank*10, owner)
-			sleep(1)
-			sparkle()
+				focus.throw_at(target, user_rank*2, user_rank, owner, callback = CALLBACK(src, PROC_REF(end_throw)))
+
+/obj/item/psychic_power/telekinesis/proc/end_throw()
+	sparkle()
+	if(!focus || !isturf(focus.loc) || !valid_distance(owner, focus))
 		owner.dropItemToGround(src)
 
 /obj/item/psychic_power/telekinesis/proc/sparkle()

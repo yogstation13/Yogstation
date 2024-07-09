@@ -173,11 +173,17 @@
 	canSmoothWith = SMOOTH_GROUP_BAMBOO_WALLS
 
 /turf/closed/wall/mineral/wood/attackby(obj/item/W, mob/user)
-	if(W.is_sharp() && W.force)
-		var/duration = (48/W.force) * 2 //In seconds, for now.
+	if((W.is_sharp() && W.force) || (W.tool_behaviour == TOOL_HATCHET))
+		var/duration = 20 SECONDS
 		if((W.tool_behaviour == TOOL_HATCHET) || istype(W, /obj/item/fireaxe))
-			duration /= 4 //Much better with hatchets and axes.
-		if(do_after(user, duration*10, src)) //Into deciseconds.
+			duration /= 40 //Much better with hatchets and axes.
+		else
+			duration /= W.force
+		if(W.hitsound)
+			playsound(get_turf(src), W.hitsound, 100, 0, 0)
+		user.visible_message(span_notice("[user] begins to cut down [src] with [W]."),span_notice("You begin to cut down [src] with [W]."), "You hear the sound of chopping.")
+		if(do_after(user, duration, src))
+			user.visible_message(span_notice("[user] fells [src] with the [W]."),span_notice("You fell [src] with the [W]."), "You hear the sound of a tree falling.")
 			dismantle_wall(FALSE,FALSE)
 			return
 	return ..()
