@@ -7,6 +7,8 @@
 		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(brain_damage/2, brain_damage))
 
 	if(world.time < next_latency_trigger && !force)
+		if(brain_damage)
+			to_chat(owner, span_danger("Your head throbs as [source] messes with your brain!"))
 		return
 
 	next_latency_trigger = world.time + rand(10 SECONDS, 30 SECONDS)
