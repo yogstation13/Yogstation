@@ -27,6 +27,13 @@
 	icon_state = "[base_icon_state][state_open ? "-open" : null]"
 	return ..()
 
+/obj/machinery/psionic_awakener/RefreshParts()
+	var/E
+	for(var/obj/item/stock_parts/manipulator/B in component_parts)
+		E += B.rating
+
+	trigger_power = initial(trigger_power) + (5* E)
+
 /obj/machinery/psionic_awakener/container_resist(mob/living/user)
 	visible_message(span_notice("[occupant] emerges from [src]!"), span_notice("You climb out of [src]!"))
 	open_machine()
