@@ -18,7 +18,7 @@
 	use_description =	"Activate the power with z, then click on a creature on to psionically send them a message."
 
 /datum/psionic_power/coercion/commune/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!istype(target) || user == target)
+	if(!istype(target) || user == target || isipc(target))
 		return FALSE
 	. = ..()
 	if(.)
@@ -65,7 +65,7 @@
 	use_description =	"Activate the power with z, then click on a target in order to perform a deep coercive-redactive probe of their psionic potential."
 
 /datum/psionic_power/coercion/assay/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!istype(target) || user == target)
+	if(!istype(target) || user == target || isipc(target))
 		return FALSE
 	. = ..()
 	if(.)
@@ -155,7 +155,7 @@
 	use_description =	"Activate the power with z, attack someone to use a melee attack to deal minor stamina damage. Higher psi levels augment the damage done."
 
 /datum/psionic_power/coercion/agony/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!istype(target) || !proximity || user == target)
+	if(!istype(target) || !proximity || user == target || isipc(target))
 		return FALSE
 	. = ..()
 	if(.)
@@ -173,7 +173,7 @@
 	use_description =	"Activate the power with z, then target a creature to use a ranged attack that may rip the weapons away from the target."
 
 /datum/psionic_power/coercion/spasm/invoke(var/mob/living/user, var/mob/living/carbon/human/target, proximity, parameters)
-	if(!istype(target) || user == target)
+	if(!istype(target) || user == target || isipc(target))
 		return FALSE
 
 	if(!(user.zone_selected in list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)))
@@ -201,7 +201,7 @@
 	use_description =	"Activate the power with z, then click on someone in order to cure ailments of the mind."
 
 /datum/psionic_power/coercion/focus/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!istype(target) || !proximity || user == target)
+	if(!istype(target) || !proximity || user == target || isipc(target))
 		return FALSE
 	. = ..()
 	if(.)
@@ -235,7 +235,7 @@
 	use_description =	"Activate the power with z, then click on someone in melee range to attempt to read a victim's surface level thoughts."
 
 /datum/psionic_power/coercion/mindread/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!istype(target) || target == user || !proximity)
+	if(!istype(target) || target == user || !proximity || isipc(target))
 		return FALSE
 	. = ..()
 	if(!.)
@@ -271,6 +271,8 @@
 	use_description =	"Activate the power with z, then click anywhere to use a radial attack that blinds, deafens and disorients everyone near you."
 
 /datum/psionic_power/coercion/blindstrike/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
+	if(isipc(target))
+		return FALSE
 	. = ..()
 	if(.)
 		user.visible_message(span_danger("\The [user] suddenly throws back their head, as though screaming silently!"))
@@ -293,7 +295,7 @@
 	use_description =	"Activate the power with z, then click your target with combat mode to Psionically rip their arms off."
 
 /datum/psionic_power/coercion/dis_arm/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!user.combat_mode)
+	if(!user.combat_mode || isipc(target))
 		return FALSE
 	. = ..()
 	if(.)

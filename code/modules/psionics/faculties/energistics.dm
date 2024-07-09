@@ -16,7 +16,7 @@
 	use_description = "Activate the power with z, then Enter combat mode to use a melee attack that electrocutes a victim, or charge an energy cell."
 
 /datum/psionic_power/energistics/electrocute/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!user.combat_mode || !istype(target) || !proximity) 
+	if(!user.combat_mode || !istype(target) || !proximity || isipc(target)) 
 		return FALSE
 	. = ..()
 	if(.)
@@ -42,7 +42,7 @@
 	use_description = "Activate the power with z, then target a non-living thing in melee range with combat mode on to cause some sparks to appear. This can light fires."
 
 /datum/psionic_power/energistics/spark/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!user.combat_mode || isnull(target) || istype(target) || !proximity) 
+	if(!user.combat_mode || isnull(target) || istype(target) || !proximity || isipc(target)) 
 		return FALSE
 	. = ..()
 	if(.)
@@ -114,7 +114,7 @@
 	use_description = "Activate the power with z, then enter combat mode and attack a target to cause a localized electromagnetic pulse."
 
 /datum/psionic_power/energistics/disrupt/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!user.combat_mode || !istype(target) || !proximity)
+	if(!user.combat_mode || !istype(target) || !proximity || isipc(target))
 		return FALSE
 	. = ..()
 	if(.)
