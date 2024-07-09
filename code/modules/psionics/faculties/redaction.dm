@@ -29,7 +29,7 @@
 	use_description = "Grab a patient, target the chest, then switch to help intent and use the grab on them to perform a health scan."
 
 /datum/psionic_power/redaction/skinsight/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!istype(target) || user.zone_selected != BODY_ZONE_CHEST || target.pulledby == user)
+	if(user.combat_mode)
 		return FALSE
 	. = ..()
 	if(.)
@@ -47,7 +47,7 @@
 	use_description = "Target a patient while on help intent at melee range to mend a variety of maladies, such as bleeding or broken bones. Higher ranks in this faculty allow you to mend a wider range of problems."
 
 /datum/psionic_power/redaction/mend/invoke(var/mob/living/user, var/mob/living/carbon/human/target, proximity, parameters)
-	if(!istype(user) || !istype(target) || target.pulledby != user || user.grab_state >= GRAB_AGGRESSIVE)
+	if(user.combat_mode)
 		return FALSE
 	. = ..()
 	if(.)
@@ -104,7 +104,7 @@
 	use_description = "Target a patient while on help intent at melee range to cleanse radiation and genetic damage from a patient."
 
 /datum/psionic_power/redaction/cleanse/invoke(var/mob/living/user, var/mob/living/carbon/human/target, proximity, parameters)
-	if(!istype(user) || !istype(target) || target.pulledby != user || user.zone_selected != BODY_ZONE_PRECISE_MOUTH)
+	if(user.combat_mode)
 		return FALSE
 	. = ..()
 	if(.)
@@ -139,7 +139,7 @@
 	admin_log = FALSE
 
 /datum/psionic_power/revive/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!isliving(target) || !istype(target))
+	if(user.combat_mode)
 		return FALSE
 	. = ..()
 	if(.)
