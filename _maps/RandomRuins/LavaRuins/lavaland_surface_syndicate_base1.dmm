@@ -318,10 +318,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/orange/visible/layer4,
 /obj/effect/turf_decal/siding/green{
 	dir = 8
 	},
+/obj/machinery/atmospherics/components/binary/valve/layer4,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/atmospherics_research)
 "da" = (
@@ -3573,10 +3573,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/orange/visible/layer4,
 /obj/effect/turf_decal/siding/green{
 	dir = 10
 	},
+/obj/machinery/atmospherics/components/binary/valve/layer4,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/atmospherics_research)
 "nd" = (
