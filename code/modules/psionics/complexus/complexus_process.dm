@@ -1,4 +1,4 @@
-/datum/psi_complexus/proc/update(force)
+/datum/psi_complexus/proc/update(force, silent)
 
 	set waitfor = FALSE
 
@@ -28,7 +28,8 @@
 			if(highest_rank == 0)
 				qdel(src)
 			return
-		SEND_SOUND(owner, 'sound/effects/psi/power_unlock.ogg')
+		if(!silent)
+			SEND_SOUND(owner, 'sound/effects/psi/power_unlock.ogg')
 		rating = CEILING(combined_rank/rank_count, 1)
 		cost_modifier = 1
 		if(rating > 1)

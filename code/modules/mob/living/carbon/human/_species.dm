@@ -511,9 +511,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		fly.Grant(C)
 
 	C.add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 100, override=TRUE, multiplicative_slowdown=speedmod, movetypes=(~FLYING))
-
-	if(!C.psi && prob(latency_chance))
-		C.set_psi_rank(pick(possible_faculties), starting_psi_level)
 		
 	C.regenerate_icons()
 	SEND_SIGNAL(C, COMSIG_SPECIES_GAIN, src, old_species)
