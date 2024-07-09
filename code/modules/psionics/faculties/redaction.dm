@@ -53,6 +53,7 @@
 	if(.)
 		var/obj/item/bodypart/E = target.get_bodypart(user.zone_selected)
 
+
 		user.visible_message(span_notice("<i>\The [user] rests a hand on \the [target]...</i>"))
 		to_chat(target, span_notice("A healing warmth suffuses you."))
 
@@ -61,14 +62,18 @@
 
 		if(pk_rank >= PSI_RANK_LATENT && redaction_rank >= PSI_RANK_MASTER)
 			var/removal_size = clamp(5-pk_rank, 0, 5)
-			var/valid_objects = list()
-			for(var/obj/item/thing in E.embedded_objects)
-				if(thing.w_class >= removal_size)
-					valid_objects += thing
-			if(LAZYLEN(valid_objects))
-				var/removing = pick(valid_objects)
-				target.remove_embedded_object(removing)
-				to_chat(user, span_notice("You extend a tendril of psychokinetic-redactive power and carefully tease \the [removing] free of \the [E]."))
+			var/list/embedded_list = list()
+			var/obj/item/bodypart/body_part
+			for(var/obj/item/bodypart/part in target.bodyparts)
+				for(var/obj/item/embedded in part.embedded_objects)
+					if(embedded.w_class >= removal_size)
+						embedded_list += embedded
+
+			if(LAZYLEN(embedded_list))
+				var/removed_item = pick(embedded_list)
+				body_part = target.get_embedded_part(removed_item)
+				target.remove_embedded_object(removed_item, get_turf(target))
+				to_chat(user, span_notice("You extend a tendril of psychokinetic-redactive power and carefully tease \the [removed_item] free of [target]'s [body_part]."))
 				return COMSIG_PSI_BLOCK_ACTION
 
 		if(redaction_rank >= PSI_RANK_GRANDMASTER)
