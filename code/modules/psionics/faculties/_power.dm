@@ -55,6 +55,4 @@
 		playsound(user.loc, use_sound, 75)
 
 /datum/psionic_power/proc/on_select(mob/living/user)
-	to_chat(world, "[name] was selected by [user]")
-
 	return TRUE

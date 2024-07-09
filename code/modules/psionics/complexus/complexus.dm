@@ -103,6 +103,7 @@
 	if(selection)
 		selected_power = selection
 		selected_power.on_select(user)
+		user.balloon_alert(user, "Selected [selected_power.name]")
 
 /datum/psi_complexus/proc/invoke_power(mob/user, atom/target, proximity, parameters)
 	if(suppressed)
