@@ -99,8 +99,9 @@
 	var/list/choice_list = LAZYCOPY(learned_powers)
 	for(var/datum/psionic_power/I as anything in choice_list)
 		choice_list[I] = image(I.icon, null, I.icon_state)
-	selected_power = show_radial_menu(user, user, choice_list)
-	if(selected_power)
+	var/selection = show_radial_menu(user, user, choice_list)
+	if(selection)
+		selected_power = selection
 		selected_power.on_select(user)
 
 /datum/psi_complexus/proc/invoke_power(mob/user, atom/target, proximity, parameters)

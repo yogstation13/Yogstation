@@ -9,6 +9,9 @@
 			var/datum/psionic_faculty/faculty_decl = SSpsi.get_faculty(faculty)
 			for(var/P in faculty_decl.powers)
 				var/datum/psionic_power/power = P
+				if(!power.min_rank) //if a minimum rank wasn't set, it's probably either bad coding or a parent used for typepathing, so don't include it
+					continue
+
 				if(relevant_rank >= power.min_rank)
 					LAZYADD(powers_by_faculty[power.faculty], power)
 					LAZYADD(learned_powers, power)

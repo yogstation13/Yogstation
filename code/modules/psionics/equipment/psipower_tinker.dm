@@ -11,7 +11,11 @@
 	if(!owner || loc != owner)
 		return
 
-	var/choice = input("Select a tool to emulate.","Power") as null|anything in possible_tools
+	var/list/choice_list = LAZYCOPY(possible_tools)
+	for(var/I as anything in choice_list)
+		choice_list[I] = image(icon, null, I)
+	var/choice = show_radial_menu(owner, owner, choice_list)
+
 	if(!choice)
 		return
 
