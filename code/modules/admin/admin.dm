@@ -138,7 +138,7 @@
 	if(isliving(M))
 		var/mob/living/psyker = M
 		if(psyker.psi)
-			body += "<A href='?_src_=holder;[HrefToken()];remove_psionics=[REF(psyker.psi)]'>Remove psionics.</a><br/><br/>"
+			body += "<A href='?_src_=holder;[HrefToken()];remove_psionics=[REF(psyker.psi)]'>Remove psionics.</a><br/>"
 			body += "<A href='?_src_=holder;[HrefToken()];trigger_psi_latencies=[REF(psyker.psi)]'>Trigger latencies.</a><br/>"
 		body += "<table width = '100%'>"
 		for(var/faculty in list(PSI_COERCION, PSI_PSYCHOKINESIS, PSI_REDACTION, PSI_ENERGISTICS))
