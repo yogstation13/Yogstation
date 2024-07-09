@@ -94,6 +94,7 @@
 /datum/psi_complexus/proc/select_power(mob/user)
 	if(suppressed)
 		return
+	rebuild_power_cache()
 	if(!LAZYLEN(learned_powers))
 		return
 	var/list/choice_list = LAZYCOPY(learned_powers)

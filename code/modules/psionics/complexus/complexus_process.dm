@@ -21,9 +21,9 @@
 
 	UNSETEMPTY(latencies)
 	var/rank_count = max(1, LAZYLEN(ranks))
+	rebuild_power_cache = TRUE
+	rebuild_power_cache()
 	if(force || last_rating != CEILING(combined_rank/rank_count, 1))
-		rebuild_power_cache = TRUE
-		rebuild_power_cache()
 		if(highest_rank <= 1)
 			if(highest_rank == 0)
 				qdel(src)
@@ -110,16 +110,16 @@
 			heal_poison = TRUE
 			heal_internal = TRUE
 			mend_prob = 50
-			heal_rate = 7
+			heal_rate = 10
 		if(PSI_RANK_GRANDMASTER)
 			heal_poison = TRUE
 			heal_internal = TRUE
 			mend_prob = 20
-			heal_rate = 5
+			heal_rate = 7
 		if(PSI_RANK_MASTER)
 			heal_internal = TRUE
 			mend_prob = 10
-			heal_rate = 3
+			heal_rate = 4
 		if(PSI_RANK_OPERANT)
 			mend_prob = 5
 			heal_rate = 1
@@ -194,14 +194,12 @@
 		if(owner.getCloneLoss() && spend_power(heal_rate))
 			if(prob(25))
 				to_chat(owner, span_notice("Your autoredactive faculty stitches together some of your mangled DNA."))
-			owner.adjustCloneLoss(-heal_rate)
+			owner.adjustCloneLoss(-(heal_rate/2))
 			return
 
 	// Heal everything left.
-	if(heal_general && prob(mend_prob) && (owner.getBruteLoss() || owner.getFireLoss() || owner.getOxyLoss()) && spend_power(heal_rate))
-		owner.adjustBruteLoss(-(heal_rate))
-		owner.adjustFireLoss(-(heal_rate))
-		owner.adjustOxyLoss(-(heal_rate))
+	if(heal_general && prob(mend_prob) && (owner.getBruteLoss() || owner.getFireLoss() || owner.getOxyLoss() || owner.getToxLoss()) && spend_power(heal_rate))
+		owner.heal_ordered_damage(heal_rate, list(BRUTE, BURN, TOX, OXY), BODYPART_ANY, TRUE)
 		new /obj/effect/temp_visual/heal(get_turf(owner), "#33cc33")
 		if(prob(25))
 			to_chat(owner, span_notice("Your skin crawls as your autoredactive faculty heals your body."))
