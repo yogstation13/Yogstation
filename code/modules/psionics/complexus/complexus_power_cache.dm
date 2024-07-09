@@ -7,6 +7,8 @@
 		for(var/faculty in ranks)
 			var/relevant_rank = get_rank(faculty)
 			var/datum/psionic_faculty/faculty_decl = SSpsi.get_faculty(faculty)
+			if(!faculty_decl) //if it's not initialized yet, come back later
+				continue
 			for(var/P in faculty_decl.powers)
 				var/datum/psionic_power/power = P
 				if(!power.min_rank) //if a minimum rank wasn't set, it's probably either bad coding or a parent used for typepathing, so don't include it

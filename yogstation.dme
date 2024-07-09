@@ -4142,6 +4142,7 @@
 #include "yogstation\code\game\gamemodes\vampire\vampire_objectives.dm"
 #include "yogstation\code\game\gamemodes\vampire\vampire_other.dm"
 #include "yogstation\code\game\gamemodes\vampire\vampire_powers.dm"
+#include "yogstation\code\game\machinery\psionic_awakener.dm"
 #include "yogstation\code\game\machinery\suit_storage_unit.dm"
 #include "yogstation\code\game\machinery\computer\arcade.dm"
 #include "yogstation\code\game\machinery\computer\atmos_sim.dm"
