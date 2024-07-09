@@ -155,7 +155,7 @@ Regenerative extracts:
 
 /obj/item/slimecross/regenerative/bluespace/Initialize(mapload)
 	. = ..()
-	T = get_turf(src)
+	T = pick(range(3, get_turf(src))) //picks a random tile in the area
 
 /obj/item/slimecross/regenerative/sepia
 	colour = "sepia"
