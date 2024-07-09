@@ -147,7 +147,7 @@
 			to_chat(user, span_warning("This person is already alive!"))
 			return TRUE
 
-		if(((world.time - target.timeofdeath) > DEFIB_TIME_LIMIT))
+		if((world.time - target.timeofdeath) > DEFIB_TIME_LIMIT)
 			to_chat(user, span_warning("\The [target] has been dead for too long to revive."))
 			return TRUE
 
