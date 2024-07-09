@@ -4,9 +4,11 @@
 
 	var/use_He_is =  "You are"
 	var/use_He_has = "You have"
+	var/use_Your = "your"
 	if(istype(machine) || viewer != src)
 		use_He_is =  "[p_they(TRUE)] [p_are()]"
 		use_He_has = "[p_they(TRUE)] [p_have()]"
+		use_Your = "[p_their()]"
 
 	var/list/dat = list()
 
@@ -44,16 +46,17 @@
 					rating_descriptor = "This indicates the presence of significant psi capabilities of the Grandmaster rank or higher."
 				if(5)
 					use_rating = "<font color = '#FF0000'>[effective_rating]-Alpha</font>"
-					rating_descriptor = "This indicates the presence of major psi capabilities of the Paramount Grandmaster rank or higher."
+					rating_descriptor = "This indicates the presence of major psi capabilities of the Paramount rank or higher."
 				else
 					use_rating = "[effective_rating]-Lambda"
 					rating_descriptor = "This indicates the presence of trace latent psi capabilities."
 
 		dat += "[use_He_has] an overall psi rating of [use_rating].<br><i>[rating_descriptor]</i><hr>"
 
-		dat += "[use_He_is] currently <b>[psi.suppressed ? "suppressing" : "not suppressing"]</b> your psychic operancy.<br>"
-		dat += "[use_He_has] <b>[psi.stamina]/[psi.max_stamina]</b> psi stamina remaining.<br>"
-		dat += "<hr>"
+		if(psi.announced)
+			dat += "[use_He_is] currently <b>[psi.suppressed ? "suppressing" : "not suppressing"]</b> [use_Your] psychic operancy.<br>"
+			dat += "[use_He_has] <b>[psi.stamina]/[psi.max_stamina]</b> psi stamina remaining.<br>"
+			dat += "<hr>"
 
 		for(var/faculty_id in psi.ranks)
 			var/datum/psionic_faculty/faculty = SSpsi.get_faculty(faculty_id)

@@ -12,7 +12,7 @@
 /datum/psionic_power/coercion/commune
 	name =				"Commune"
 	cost =				10
-	cooldown =			8 SECONDS
+	cooldown =			5 SECONDS
 	min_rank =			PSI_RANK_OPERANT
 	icon_state = "coe_commune"
 	use_description =	"Activate the power with z, then click on a creature on to psionically send them a message."
@@ -59,7 +59,7 @@
 /datum/psionic_power/coercion/assay
 	name =				"Assay"
 	cost =				15
-	cooldown =			10 SECONDS
+	cooldown =			5 SECONDS
 	min_rank =			PSI_RANK_OPERANT
 	icon_state = "coe_assay"
 	use_description =	"Activate the power with z, then click on a target in order to perform a deep coercive-redactive probe of their psionic potential."
@@ -83,23 +83,27 @@
 /datum/psionic_power/coercion/psiping
 	name =				"Psi-ping"
 	cost =				30
-	cooldown =			25 SECONDS
+	cooldown =			20 SECONDS
 	min_rank =			PSI_RANK_OPERANT
 	icon_state = "coe_psiping"
 	use_description =	"Activate the power with z, then click on yourself with an empty hand to detect nearby psionic signatures."
+	var/searching = FALSE
 
 /datum/psionic_power/coercion/psiping/invoke(mob/living/user, mob/living/target, proximity, parameters)
-	if(user != target)
+	if(user != target || searching)
 		return FALSE
 	. = ..()
 	if(.)
-		to_chat(user, "<span class='notice'>You take a moment to tune into the local Nlom...</span>")
+		to_chat(user, span_notice("You take a moment to tune into the local Nlom..."))
+		searching = TRUE
 		if(!do_after(user, 3 SECONDS, user))
-			return FALSE
+			searching = FALSE
+			return FALSE 
+		searching = FALSE
 		var/list/dirs = list()
 		for(var/mob/living/L in range(20))
 			var/turf/T = get_turf(L)
-			if(!T || L == user || L.stat == DEAD || issilicon(L))
+			if(!T || L == user || L.stat == DEAD || issilicon(L) || !L.psi)
 				continue
 			/*
 			var/image/ping_image = image(icon = 'icons/effects/effects.dmi', icon_state = "sonar_ping", loc = user)
@@ -110,7 +114,7 @@
 			user << ping_image
 			addtimer(CALLBACK(GLOBAL_PROC, /proc/qdel, ping_image), 8)
 			*/
-			var/direction = num2text(get_dir(user, L))
+			var/direction = num2text(angle2dir(Get_Angle(user, L)))
 			var/dist
 			if(text2num(direction))
 				switch(get_dist(user, L))
@@ -128,14 +132,16 @@
 				dist = "on top of you"
 			LAZYINITLIST(dirs[direction])
 			dirs[direction][dist] += 1
-		for(var/d in dirs)
+		if(length(dirs))
 			var/list/feedback = list()
-			for(var/dst in dirs[d])
-				feedback += "[dirs[d][dst]] psionic signature\s [dst],"
-			if(feedback.len > 1)
-				feedback[feedback.len - 1] += " and"
-			to_chat(user, span_notice("You sense " + jointext(feedback, " ") + " towards the [dir2text(text2num(d))]."))
-		if(!length(dirs))
+			feedback += "You sense..."
+			for(var/d in dirs)
+				feedback += "[capitalize(dir2text(text2num(d)))]:"
+				for(var/dst in dirs[d])
+					feedback += "[dirs[d][dst]] psionic signature\s [dst]."
+			
+			to_chat(user, span_notice(feedback.Join("<br>")))
+		else
 			to_chat(user, span_notice("You detect no psionic signatures but your own."))
 		return TRUE
 
@@ -148,20 +154,20 @@
 /datum/psionic_power/coercion/agony
 	name =				"Agony"
 	cost =				20
-	heat =				15
-	cooldown =			7 SECONDS
+	heat =				20
+	cooldown =			5 SECONDS
 	min_rank =			PSI_RANK_OPERANT
 	icon_state = "coe_agony"
-	use_description =	"Activate the power with z, attack someone to use a melee attack to deal minor stamina damage. Higher psi levels augment the damage done."
+	use_description =	"Activate the power with z, attack someone while in combat mode to deal minor stamina damage. Higher psi levels augment the damage done."
 
-/datum/psionic_power/coercion/agony/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!istype(target) || !proximity || user == target)
+/datum/psionic_power/coercion/agony/invoke(mob/living/user, mob/living/target, proximity, parameters)
+	if(!istype(target) || !proximity || user == target || !user.combat_mode)
 		return FALSE
 	. = ..()
 	if(.)
 		user.visible_message("<span class='danger'>\The [target] has been struck by \the [user]!</span>")
 		playsound(user.loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
-		target.apply_damage(10 * (user.psi.get_rank(PSI_COERCION) - 1), STAMINA, BODY_ZONE_CHEST)
+		target.apply_damage(20 * (user.psi.get_rank(PSI_COERCION) - 1), STAMINA, BODY_ZONE_CHEST)
 		return TRUE
 
 /datum/psionic_power/coercion/spasm
@@ -172,24 +178,21 @@
 	icon_state = "coe_spasm"
 	use_description =	"Activate the power with z, then target a creature to use a ranged attack that may rip the weapons away from the target."
 
-/datum/psionic_power/coercion/spasm/invoke(var/mob/living/user, var/mob/living/carbon/human/target, proximity, parameters)
-	if(!istype(target) || user == target)
-		return FALSE
-
-	if(!(user.zone_selected in list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)))
+/datum/psionic_power/coercion/spasm/invoke(mob/living/user, mob/living/carbon/human/target, proximity, parameters)
+	if(!istype(target) || user == target || !user.combat_mode)
 		return FALSE
 
 	. = ..()
 
 	if(.)
-		to_chat(user, "<span class='danger'>You lash out, stabbing into \the [target] with a lance of psi-power.</span>")
-		to_chat(target, "<span class='danger'>The muscles in your arms cramp horrendously!</span>")
+		to_chat(user, span_danger("You lash out, stabbing into \the [target] with a lance of psi-power."))
+		to_chat(target, span_danger("The muscles in your arms cramp horrendously!"))
 		if(prob(75))
 			target.emote("scream")
 		if(prob(75) && target.held_items[1] && target.dropItemToGround(target.get_item_for_held_index(1)))
-			target.visible_message("<span class='danger'>\The [target] drops what they were holding as their left hand spasms!</span>")
+			target.visible_message(span_danger("\The [target] drops what they were holding as their left hand spasms!"))
 		if(prob(75) && target.held_items[2] && target.dropItemToGround(target.get_item_for_held_index(2)))
-			target.visible_message("<span class='danger'>\The [target] drops what they were holding as their right hand spasms!</span>")
+			target.visible_message(span_danger("\The [target] drops what they were holding as their right hand spasms!"))
 		return TRUE
 
 /datum/psionic_power/coercion/focus
@@ -200,7 +203,7 @@
 	icon_state = "coe_focus"
 	use_description =	"Activate the power with z, then click on someone in order to cure ailments of the mind."
 
-/datum/psionic_power/coercion/focus/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
+/datum/psionic_power/coercion/focus/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(!istype(target) || !proximity || user == target)
 		return FALSE
 	. = ..()
@@ -214,15 +217,19 @@
 		to_chat(user, span_warning("You clear \the [target]'s mind of ailments."))
 		to_chat(target, span_warning("Your mind is cleared of ailments."))
 
+		var/resilience = TRAUMA_RESILIENCE_BASIC
 		var/coercion_rank = user.psi.get_rank(PSI_COERCION)
 		if(coercion_rank >= PSI_RANK_GRANDMASTER)
 			target.SetParalyzed(0)
+			resilience = TRAUMA_RESILIENCE_SURGERY
 		if(coercion_rank >= PSI_RANK_PARAMOUNT)
-			target.SetParalyzed(0)
+			target.SetAllImmobility(0)
+			resilience = TRAUMA_RESILIENCE_LOBOTOMY
 		target.SetDaze(0)
+		target.cure_trauma_type(resilience = resilience)
 		if(istype(target, /mob/living/carbon))
 			var/mob/living/carbon/M = target
-			M.adjust_hallucinations(60 SECONDS)
+			M.adjust_hallucinations(10 SECONDS)
 		return TRUE
 
 /datum/psionic_power/coercion/mindread
@@ -252,14 +259,14 @@
 
 	var/started_mindread = world.time
 	to_chat(user, span_notice("<b>You dip your mentality into the surface layer of \the [target]'s mind, seeking an answer: <i>[question]</i></b>"))
-	to_chat(target, span_notice("<b>Your mind is compelled to answer: <i>[question]</i></b>")) // I wonder how this will go down with the playerbase
+	to_chat(target, span_hypnophrase("<b>Your mind is compelled to answer: <i>[question]</i></b>")) // I wonder how this will go down with the playerbase
 
 	var/answer =  input(target, question, "Read Mind") as null|text
 	if(!answer || world.time > started_mindread + 25 SECONDS || user.stat != CONSCIOUS || target.stat == DEAD)
 		to_chat(user, span_notice("<b>You receive nothing useful from \the [target].</b>"))
 	else
 		to_chat(user, span_notice("<b>You skim thoughts from the surface of \the [target]'s mind: <i>[answer]</i></b>"))
-	log_game("[key_name(user)] read mind of [key_name(target)] with question \"[question]\" and [answer?"got answer \"[answer]\".":"got no answer."]")
+	log_game("[key_name(user)] read mind of [key_name(target)] with question \"[question]\" and [answer? "got answer \"[answer]\".":"got no answer."]")
 	return TRUE
 
 /datum/psionic_power/coercion/blindstrike
