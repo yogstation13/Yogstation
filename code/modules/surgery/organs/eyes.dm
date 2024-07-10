@@ -523,6 +523,10 @@
 	var/ethereal_color = "#9c3030"
 	var/active = FALSE
 
+/obj/item/organ/eyes/ethereal/Remove(mob/living/carbon/M, special)
+	. = ..()
+	M?.client?.view_size?.zoomIn()
+
 /obj/item/organ/eyes/ethereal/Initialize(mapload)
 	. = ..()
 	add_atom_colour(ethereal_color, FIXED_COLOUR_PRIORITY)

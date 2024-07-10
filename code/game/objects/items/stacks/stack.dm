@@ -9,7 +9,7 @@
  * Stacks
  */
 /obj/item/stack
-	icon = 'yogstation/icons/obj/stack_objects.dmi' // yogs -- use yog icons instead of tg
+	icon = 'icons/obj/stack_objects.dmi'
 	gender = PLURAL
 	max_integrity = 100
 	/// A list to all recipies this stack item can create.
@@ -70,7 +70,7 @@
 	// 	set_mats_per_unit(mats_per_unit, 1)
 	// else if(LAZYLEN(custom_materials))
 	// 	set_mats_per_unit(custom_materials, amount ? 1/amount : 1)
-	
+
 	. = ..()
 	if(merge)
 		for(var/obj/item/stack/item_stack in loc)
@@ -80,7 +80,7 @@
 				INVOKE_ASYNC(src, PROC_REF(merge_without_del), item_stack)
 				if(is_zero_amount(delete_if_zero = FALSE))
 					return INITIALIZE_HINT_QDEL
-	
+
 	// recipes = get_main_recipes().Copy()
 	// if(material_type)
 	// 	var/datum/material/what_are_we_made_of = GET_MATERIAL_REF(material_type) //First/main material

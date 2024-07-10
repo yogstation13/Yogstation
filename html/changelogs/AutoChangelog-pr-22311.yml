@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Golems no longer turn invisible when husked"
-  - tweak: "Golems can no longer be husked"
