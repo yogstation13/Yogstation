@@ -24,7 +24,7 @@
 	. = ..()
 	if(.)
 		if(HAS_TRAIT(user, TRAIT_PACIFISM))
-			var/obj/item/melee/classic_baton/psychic_power/psibaton/baton = new /obj/item/melee/classic_baton/psychic_power/psibaton(user, user)
+			var/obj/item/melee/classic_baton/psibaton/baton = new /obj/item/melee/classic_baton/psibaton(user, user)
 			user.put_in_hands(baton)
 			switch(user.psi.get_rank(faculty))
 				if(PSI_RANK_PARAMOUNT)

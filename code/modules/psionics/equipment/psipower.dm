@@ -4,6 +4,7 @@
 	anchored = TRUE
 	var/maintain_cost = 3
 	var/mob/living/owner
+	item_flags = DROPDEL
 
 /obj/item/psychic_power/New(mob/living/L)
 	owner = L
@@ -20,13 +21,13 @@
 	STOP_PROCESSING(SSprocessing, src)
 	. = ..()
 
-/obj/item/psychic_power/attack_self(mob/user)
-	user.playsound_local(soundin = 'sound/effects/psi/power_fail.ogg')
-	user.dropItemToGround(src)
-
-/obj/item/psychic_power/dropped()
-	..()
+/obj/item/psychic_power/throw_at(atom/target, range, speed, mob/thrower, spin, diagonals_first, datum/callback/callback, force, quickstart)
+	SEND_SOUND(thrower, sound('sound/effects/psi/power_fail.ogg', volume = 50))
 	qdel(src)
+
+/obj/item/psychic_power/attack_self(mob/user)
+	SEND_SOUND(user, sound('sound/effects/psi/power_fail.ogg', volume = 50))
+	user.dropItemToGround(src)
 
 /obj/item/psychic_power/process()
 	if(istype(owner))

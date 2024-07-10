@@ -9,8 +9,4 @@
 	hitsound = 'sound/effects/psi/psisword.ogg'
 	var/can_break_wall = FALSE
 	var/wall_break_time = 6 SECONDS
-
-/obj/item/psychic_power/psiblade/dropped(var/mob/living/user)
-	..()
-	playsound(loc, 'sound/effects/psi/power_fail.ogg', 30, 1)
-	QDEL_IN(src, 1)
+	drop_sound = 'sound/effects/psi/power_fail.ogg'
