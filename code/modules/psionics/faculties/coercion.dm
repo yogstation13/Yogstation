@@ -104,7 +104,7 @@
 		var/list/dirs = list()
 		for(var/mob/living/L in GLOB.mob_living_list)
 			var/turf/T = get_turf(L)
-			if(!T || L == user || L.stat == DEAD || issilicon(L) || !L.psi || (L.z != user.z))
+			if(!T || L == user || L.stat == DEAD || issilicon(L) || !(L.psi || isdarkspawn(L)) || (L.z != user.z))
 				continue
 			/*
 			var/image/ping_image = image(icon = 'icons/effects/effects.dmi', icon_state = "sonar_ping", loc = user)
