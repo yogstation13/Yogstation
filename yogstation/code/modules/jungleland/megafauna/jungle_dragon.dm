@@ -270,8 +270,8 @@
 	if(!target)
 		return
 	target.visible_message(span_boldwarning("Bulbs rain from the sky!"))
-	for(var/turf/turf in range(9,get_turf(target)))
-		if(prob(11))
+	for(var/turf/turf in range(10,get_turf(target)))
+		if(prob(15))
 			new /obj/effect/temp_visual/target/jungle(turf)
 
 /**
