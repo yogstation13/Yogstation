@@ -188,6 +188,8 @@
 #define TRAIT_SHORT_TELOMERES	"short_telomeres" //You cannot be CLOONED
 #define TRAIT_LONG_TELOMERES	"long_telomeres" //You get CLOONED faster!!!
 #define TRAIT_NO_GRENADES		"no_nades"
+#define TRAIT_PSIONICALLY_TUNED "psionically_tuned"
+#define TRAIT_PSIONICALLY_DEAFENED "psionically_deafened"
 ///You become a Marine that can eat crayons!!!
 #define TRAIT_MARINE  "marine"
 

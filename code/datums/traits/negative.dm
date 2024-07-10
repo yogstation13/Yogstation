@@ -924,3 +924,14 @@
 	if(!old_limb.is_organic_limb())
 		cybernetics_level--
 		update_mood()
+
+
+/datum/quirk/psionically_deafened
+	name = "Psionically Tuned"
+	desc = "You don't believe in fancy mumbo jumbo like 'psionics' or 'going to the doctor'."
+	icon = "face-grin-tongue"
+	value = -3
+	mob_trait = TRAIT_PSIONICALLY_DEAFENED
+	gain_text = span_notice("You feel like you got your head on straight, probably.")
+	lose_text = span_notice("You feel like you should invest in a tinfoil hat. Now.")
+	medical_record_text = "Patient demonstrates high... anti... afinity to cerebral testing...?"
