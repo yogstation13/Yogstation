@@ -275,7 +275,8 @@
 /datum/psionic_power/coercion/blindstrike
 	name =				"Blindstrike"
 	cost =				8
-	cooldown =			12 SECONDS
+	heat =				15
+	cooldown =			10 SECONDS
 	min_rank =			PSI_RANK_GRANDMASTER
 	icon_state = "coe_blindstrike"
 	use_description =	"Activate the power with z, then click anywhere to use a radial attack that blinds, deafens and disorients everyone near you."
@@ -299,7 +300,8 @@
 /datum/psionic_power/coercion/dis_arm
 	name =				"Dis-Arm"
 	cost =				10
-	cooldown =			12 SECONDS
+	heat =				10
+	cooldown =			10 SECONDS
 	min_rank =			PSI_RANK_PARAMOUNT
 	icon_state = "coe_disarm"
 	use_description =	"Activate the power with z, then click your target with combat mode to Psionically rip their arms off."
