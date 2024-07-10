@@ -841,12 +841,12 @@
 
 /datum/reagent/drug/three_eye/on_mob_metabolize(mob/living/L)
 	..()
-	ADD_TRAIT(L, TRAIT_XRAY_VISION, type)
+	ADD_TRAIT(L, TRAIT_THERMAL_VISION, type)
 	L.add_client_colour(/datum/client_colour/thirdeye)
 	L.update_sight()
 
 /datum/reagent/drug/three_eye/on_mob_end_metabolize(mob/living/L)
-	REMOVE_TRAIT(L, TRAIT_XRAY_VISION, type)
+	REMOVE_TRAIT(L, TRAIT_THERMAL_VISION, type)
 	L.remove_client_colour(/datum/client_colour/thirdeye)
 	L.update_sight()
 	..()
