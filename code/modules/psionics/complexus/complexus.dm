@@ -130,7 +130,7 @@
 		return
 	if(!selected_power)
 		return
-	user.playsound_local(soundin = 'sound/effects/psi/power_evoke.ogg')
+	SEND_SOUND(user, sound('sound/effects/psi/power_evoke.ogg', volume = 50))
 	. = selected_power.invoke(user, target, proximity, parameters)
 	if(.)
 		selected_power.handle_post_power(user, target)
@@ -146,15 +146,14 @@
 	return _aura_image
 
 /proc/create_aura_image(newloc)
-	var/image/aura_image = image(loc = newloc, icon = 'icons/effects/psi_aura_small.dmi', icon_state = "aura")
+	var/image/aura_image = image('icons/effects/psi_aura_small.dmi', newloc, "aura")
 	aura_image.blend_mode = BLEND_MULTIPLY
 	aura_image.appearance_flags = NO_CLIENT_COLOR | RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
+	aura_image.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	aura_image.layer = TURF_LAYER + 0.5
 	aura_image.alpha = 0
 	aura_image.pixel_x = -64
 	aura_image.pixel_y = -64
-	aura_image.mouse_opacity = 0
-	aura_image.appearance_flags = 0
 	for(var/datum/psi_complexus/psychic in SSpsi.processing)
 		if(!psychic.suppressed)
 			psychic?.owner?.client?.images += aura_image
