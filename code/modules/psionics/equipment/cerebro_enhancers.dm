@@ -138,6 +138,7 @@
 	name = "psionic amplifier"
 	desc = "A crown-of-thorns cerebro-energetic enhancer that interfaces directly with the brain, isolating and strengthening psionic signals. It kind of looks like a tiara having sex with an industrial robot."
 	icon_state = "amp"
+	flags_cover = NONE
 	flags_inv = 0
 	body_parts_covered = 0
 
