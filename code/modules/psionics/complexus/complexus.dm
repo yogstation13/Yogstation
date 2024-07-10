@@ -61,9 +61,12 @@
 	var/mob/living/owner              // Reference to our owner.
 	var/datum/mind/thinker
 	var/image/_aura_image             // Client image
+	var/obj/effect/overlay/aura/image_holder //holder so we don't have to apply the image directly to the mob, making it's clickbox massive
 
 /datum/psi_complexus/New(mob/M)
 	owner = M
+	image_holder = new(src)
+	owner.vis_contents += image_holder
 	START_PROCESSING(SSpsi, src)
 	RegisterSignal(owner, COMSIG_PSI_SELECTION, PROC_REF(select_power))
 	RegisterSignal(owner, COMSIG_PSI_INVOKE, PROC_REF(invoke_power))
@@ -79,8 +82,10 @@
 		return
 	UnregisterSignal(owner, COMSIG_PSI_SELECTION)
 	UnregisterSignal(owner, COMSIG_PSI_INVOKE)
+	owner.vis_contents -= image_holder
 	owner.psi = null
 	owner = brain.current
+	owner.vis_contents += image_holder
 	RegisterSignal(owner, COMSIG_PSI_SELECTION, PROC_REF(select_power))
 	RegisterSignal(owner, COMSIG_PSI_INVOKE, PROC_REF(invoke_power))
 	owner.psi = src
@@ -103,6 +108,7 @@
 		QDEL_NULL(ui)
 		owner.psi = null
 		owner = null
+	QDEL_NULL(image_holder)
 
 	if(manifested_items)
 		for(var/thing in manifested_items)
@@ -142,8 +148,21 @@
 		_aura_image = null
 		CRASH("Non-image found in psi complexus: \ref[A] - \the [A] - [istype(A) ? A.type : "non-atom"]")
 	if(!_aura_image)
-		_aura_image = create_aura_image(owner)
+		_aura_image = create_aura_image(image_holder)
 	return _aura_image
+
+/obj/effect/overlay/aura
+	name = ""
+	// icon = 'icons/effects/psi_aura_small.dmi'
+	// icon_state = "aura"
+	// pixel_x = -64
+	// pixel_y = -64
+	plane = GAME_PLANE
+	appearance_flags = NO_CLIENT_COLOR | RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	blend_mode = BLEND_MULTIPLY
+	layer = TURF_LAYER + 0.5
+	alpha = 0
 
 /proc/create_aura_image(newloc)
 	var/image/aura_image = image('icons/effects/psi_aura_small.dmi', newloc, "aura")
