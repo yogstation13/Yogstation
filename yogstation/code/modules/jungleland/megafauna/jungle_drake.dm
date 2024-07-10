@@ -201,7 +201,7 @@
 		T.ChangeTurf(reset_turf, flags = CHANGETURF_INHERIT_AIR)
 
 /obj/effect/temp_visual/drakewall/jungle
-	name = "Vine Barrier"
+	name = "dense vines"
 	desc = "A jungle drakes vine something or other, idk."
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "Hvy"
