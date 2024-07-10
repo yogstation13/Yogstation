@@ -18,3 +18,15 @@
 	var/current_rank = psi.get_rank(faculty)
 	if(current_rank != rank && (!take_larger || current_rank < rank))
 		psi.set_rank(faculty, rank, defer_update, temporary)
+
+/mob/living/carbon/human
+	/// Whether or not it's tried to apply the species based latency
+	var/tried_species = FALSE
+
+/mob/living/carbon/human/Login() //happens here because psi sorta relies on the thing having a mind
+	. = ..()
+	if(!psi && !tried_species)
+		tried_species = TRUE
+		var/datum/species/dude = dna.species
+		if(prob(dude.latency_chance))
+			set_psi_rank(pick(dude.possible_faculties), dude.starting_psi_level)

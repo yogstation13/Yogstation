@@ -59,6 +59,7 @@
 
 	var/obj/screen/psi/hub/ui	      // Reference to the master psi UI object.
 	var/mob/living/owner              // Reference to our owner.
+	var/datum/mind/thinker
 	var/image/_aura_image             // Client image
 
 /datum/psi_complexus/New(mob/M)
@@ -66,27 +67,28 @@
 	START_PROCESSING(SSpsi, src)
 	RegisterSignal(owner, COMSIG_PSI_SELECTION, PROC_REF(select_power))
 	RegisterSignal(owner, COMSIG_PSI_INVOKE, PROC_REF(invoke_power))
-	RegisterSignal(owner, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(mind_swap))
+	thinker = owner.mind
+	if(thinker && istype(thinker))
+		RegisterSignal(thinker, COMSIG_MIND_TRANSFERRED, PROC_REF(mind_swap))
 
-/datum/psi_complexus/proc/mind_swap(mob/living/new_mob)
-	if(!new_mob || !istype(new_mob))
+/datum/psi_complexus/proc/mind_swap(datum/mind/brain, mob/living/oldbody)
+	if(!brain || !istype(brain) || !brain.current)
 		return
 	UnregisterSignal(owner, COMSIG_PSI_SELECTION)
 	UnregisterSignal(owner, COMSIG_PSI_INVOKE)
-	UnregisterSignal(owner, COMSIG_MOB_MIND_TRANSFERRED_INTO)
 	owner.psi = null
-	owner = new_mob
+	owner = brain.current
 	RegisterSignal(owner, COMSIG_PSI_SELECTION, PROC_REF(select_power))
 	RegisterSignal(owner, COMSIG_PSI_INVOKE, PROC_REF(invoke_power))
-	RegisterSignal(owner, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(mind_swap))
 	owner.psi = src
-	update(TRUE)
+	update(TRUE, TRUE)
 
 /datum/psi_complexus/Destroy()
 	destroy_aura_image(_aura_image)
 	STOP_PROCESSING(SSpsi, src)
+	if(thinker && istype(thinker))
+		UnregisterSignal(thinker, COMSIG_MIND_TRANSFERRED)
 	if(owner)
-		UnregisterSignal(owner, COMSIG_MOB_MIND_TRANSFERRED_INTO)
 		UnregisterSignal(owner, COMSIG_PSI_SELECTION)
 		UnregisterSignal(owner, COMSIG_PSI_INVOKE)
 		cancel()

@@ -95,6 +95,6 @@
 		owner.psi.cancel()
 		owner.psi.hide_auras()
 	else
-		owner.playsound_local(soundin = 'sound/effects/psi/power_unlock.ogg')
+		SEND_SOUND(owner, sound('sound/effects/psi/power_unlock.ogg'))
 		owner.psi.show_auras()
 	update_icon() 
