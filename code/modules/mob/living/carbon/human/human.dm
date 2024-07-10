@@ -489,7 +489,7 @@
 		threatcount += 2
 
 	//Check for nonhuman scum
-	if(dna && dna.species.id && dna.species.id != "human")
+	if(dna && dna.species.id && dna.species.id != SPECIES_HUMAN)
 		threatcount += 1
 
 	//mindshield implants imply trustworthyness
@@ -514,6 +514,7 @@
 	underwear = "Nude"
 	update_body()
 	update_hair()
+	dna.update_dna_identity()
 
 /mob/living/carbon/human/singularity_pull(S, current_size)
 	..()
@@ -1031,7 +1032,7 @@
 			nutrition = 0
 			dna?.species.get_hunger_alert(src)
 			return FALSE
-		if(nutrition >= NUTRITION_LEVEL_FAT)
+		if(nutrition >= NUTRITION_LEVEL_FAT && change > 0)
 			return FALSE
 		change = min(change, NUTRITION_LEVEL_FAT - nutrition) // no getting fat
 	..()

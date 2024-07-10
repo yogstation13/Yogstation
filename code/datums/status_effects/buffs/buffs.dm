@@ -44,7 +44,7 @@
 /datum/status_effect/vanguard_shield
 	id = "vanguard"
 	duration = 200
-	tick_interval = 0 //tick as fast as possible
+	tick_interval = 1 //tick as fast as possible
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = /atom/movable/screen/alert/status_effect/vanguard
 	var/datum/progressbar/progbar
@@ -268,7 +268,6 @@
 /datum/status_effect/blooddrunk
 	id = "blooddrunk"
 	duration = 10
-	tick_interval = 0
 	alert_type = /atom/movable/screen/alert/status_effect/blooddrunk
 
 /atom/movable/screen/alert/status_effect/blooddrunk
@@ -553,7 +552,6 @@
 /datum/status_effect/doubledown
 	id = "doubledown"
 	duration = 20
-	tick_interval = 0
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /atom/movable/screen/alert/status_effect/doubledown
 	var/obj/effect/temp_visual/decoy/tensecond/s_such_strength //surely a combo wont go on for more than 10 seconds
@@ -625,7 +623,6 @@
 /datum/status_effect/diamondskin
 	id = "diamondskin"
 	duration = 20 SECONDS
-	tick_interval = 0
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /atom/movable/screen/alert/status_effect/diamondskin
 
