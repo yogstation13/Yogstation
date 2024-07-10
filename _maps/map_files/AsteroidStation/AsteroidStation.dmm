@@ -18792,6 +18792,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
+/obj/machinery/psi_monitor,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
 "fbD" = (
@@ -41618,7 +41619,6 @@
 /turf/open/floor/eighties,
 /area/maintenance/starboard/fore)
 "mmq" = (
-/obj/machinery/psi_monitor,
 /turf/open/floor/wood,
 /area/medical/psych)
 "mmr" = (

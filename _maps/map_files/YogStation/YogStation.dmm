@@ -67267,7 +67267,6 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "vtO" = (
-/obj/machinery/psi_monitor,
 /turf/open/floor/wood,
 /area/medical/psych)
 "vtR" = (
@@ -69789,6 +69788,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"wlB" = (
+/obj/effect/turf_decal/tile/blue/opposingcorners{
+	dir = 1
+	},
+/obj/machinery/psi_monitor,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/cmo)
 "wlK" = (
 /obj/machinery/camera/motion{
 	c_tag = "Armory External";
@@ -114165,7 +114171,7 @@ jXL
 wgu
 pbD
 elr
-vcC
+wlB
 dmN
 lcC
 guV

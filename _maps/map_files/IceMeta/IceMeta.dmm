@@ -30245,6 +30245,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+"iQD" = (
+/obj/machinery/psi_monitor,
+/turf/open/floor/carpet/royalblue,
+/area/crew_quarters/heads/cmo)
 "iQG" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 1
@@ -52390,7 +52394,6 @@
 /obj/machinery/firealarm{
 	pixel_y = 26
 	},
-/obj/machinery/psi_monitor,
 /turf/open/floor/wood,
 /area/medical/psych)
 "paG" = (
@@ -241145,7 +241148,7 @@ stG
 ybi
 fBT
 sTb
-ikX
+iQD
 abG
 prw
 iFX

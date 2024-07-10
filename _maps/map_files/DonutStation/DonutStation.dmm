@@ -17227,6 +17227,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal)
+"hdP" = (
+/obj/machinery/psi_monitor,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/cmo)
 "hef" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -54030,7 +54034,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/psi_monitor,
 /turf/open/floor/carpet,
 /area/medical/psych)
 "wLj" = (
@@ -84149,7 +84152,7 @@ wNV
 vPD
 dAq
 kOP
-hqJ
+hdP
 vQv
 pkJ
 vZq
