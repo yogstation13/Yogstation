@@ -51,8 +51,8 @@
 
 /datum/action/innate/megafauna_attack/vine_swoop
 	name = "Vine Swoop"
-	button_icon = 'icons/effects/effects.dmi'
-	button_icon_state = "lavastaff_warn"
+	icon = 'icons/effects/spacevines.dmi'
+	icon_state = "flower_bud"
 	chosen_message = span_colossus("You are now swooping and raining lava at your target.")
 	chosen_attack_num = 4
 
@@ -73,7 +73,7 @@
 				if(L in hit_list || L == source)
 					continue
 				hit_list += L
-				L.adjustFireLoss(30)
+				L.adjustBruteLoss(30)
 				to_chat(L, span_userdanger("You're lacerated by [source]'s vines!"))
 
 			// deals damage to mechs
@@ -149,7 +149,7 @@
 /mob/living/simple_animal/hostile/megafauna/dragon/jungle/lava_pools(amount, delay = 0.8)
 	if(!target)
 		return
-	target.visible_message(span_boldwarning("Lava starts to pool up around you!"))
+	target.visible_message(span_boldwarning("Toxic water starts to pool up around you!"))
 	while(amount > 0)
 		if(QDELETED(target))
 			break
@@ -178,7 +178,8 @@
 		if(istype(L, /mob/living/simple_animal/hostile/megafauna/dragon))
 			continue
 		to_chat(L, span_userdanger("You fall directly into the pool of acid!"))
-		L.acid_act(15, 15)
+		L.adjustFireLoss(20)
+		L.acid_act(30, 10)
 
 	// deals damage to mechs
 	for(var/obj/mecha/M in T.contents)
