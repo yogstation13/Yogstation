@@ -92,7 +92,7 @@
 		sleep(0.15 SECONDS)
 
 /obj/effect/temp_visual/vineball
-	name = "Vine"
+	name = "barbed vines"
 	desc = "A jungle drakes vine something or other, idk."
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "Light"
