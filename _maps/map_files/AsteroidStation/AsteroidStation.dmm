@@ -41618,7 +41618,7 @@
 /turf/open/floor/eighties,
 /area/maintenance/starboard/fore)
 "mmq" = (
-/obj/structure/bookcase/random/reference,
+/obj/machinery/psi_monitor,
 /turf/open/floor/wood,
 /area/medical/psych)
 "mmr" = (
@@ -80829,7 +80829,7 @@
 	dir = 4;
 	pixel_x = -24
 	},
-/obj/structure/bookcase/random/reference,
+/obj/machinery/psionic_awakener,
 /turf/open/floor/wood,
 /area/medical/psych)
 "yfr" = (

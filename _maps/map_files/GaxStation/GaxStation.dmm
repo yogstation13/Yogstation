@@ -7292,6 +7292,7 @@
 /obj/machinery/light_switch{
 	pixel_y = 24
 	},
+/obj/machinery/psi_monitor,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
 "dxA" = (
@@ -21850,6 +21851,7 @@
 	pixel_x = 26;
 	pixel_y = -4
 	},
+/obj/structure/closet/crate/freezer/blood,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "kwm" = (
@@ -37293,10 +37295,10 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "sep" = (
-/obj/structure/closet/crate/freezer/blood,
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 6
 	},
+/obj/machinery/psionic_awakener,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "seF" = (

@@ -2169,6 +2169,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
 	},
+/obj/machinery/psionic_awakener,
 /turf/open/floor/wood,
 /area/medical/psych)
 "aGg" = (
@@ -52389,6 +52390,7 @@
 /obj/machinery/firealarm{
 	pixel_y = 26
 	},
+/obj/machinery/psi_monitor,
 /turf/open/floor/wood,
 /area/medical/psych)
 "paG" = (
