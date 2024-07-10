@@ -1,6 +1,6 @@
 /datum/species/android
 	name = "Android"
-	id = "android"
+	id = SPECIES_ANDROID
 	say_mod = "states"
 	bubble_icon = BUBBLE_ROBOT
 	possible_genders = list(PLURAL, NEUTER)

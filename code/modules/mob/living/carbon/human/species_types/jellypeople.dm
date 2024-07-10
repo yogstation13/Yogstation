@@ -2,7 +2,7 @@
 	// Entirely alien beings that seem to be made entirely out of gel. They have three eyes and a skeleton visible within them.
 	name = "Jellyperson"
 	plural_form = "Jellypeople"
-	id = "jelly"
+	id = SPECIES_JELLYPERSON
 	default_color = "00FF90"
 	say_mod = "chirps"
 	bubble_icon = BUBBLE_SLIME
@@ -23,6 +23,7 @@
 	swimming_component = /datum/component/swimming/dissolve
 	hair_color = "mutcolor"
 	hair_alpha = 140
+	var/soggy = FALSE
 
 /datum/species/jelly/on_species_loss(mob/living/carbon/C)
 	if(regenerate_limbs)
@@ -40,6 +41,10 @@
 /datum/species/jelly/spec_life(mob/living/carbon/human/H)
 	if(H.stat == DEAD) //can't farm slime jelly from a dead slime/jelly person indefinitely
 		return
+
+	handle_wetness(H)
+
+	
 	if(!H.blood_volume)
 		H.blood_volume += 5
 		H.adjustBruteLoss(5)
@@ -159,6 +164,26 @@
 		return
 	to_chat(H, span_warning("...but there is not enough of you to go around! You must attain more mass to heal!"))
 
+/datum/species/jelly/proc/handle_wetness(mob/living/carbon/human/H)
+	var/datum/status_effect/fire_handler/wet_stacks/wetness = H.has_status_effect(/datum/status_effect/fire_handler/wet_stacks)
+	if(wetness && wetness.stacks >= 1) // needs at least 1 wetness stack to do anything
+		H.add_movespeed_modifier("slime_person_wet", update = TRUE, priority = 102, multiplicative_slowdown = 0.5, blacklisted_movetypes=(FLYING|FLOATING))
+		//damage has a flat amount with an additional amount based on how wet they are
+		H.adjustStaminaLoss(8 - (H.fire_stacks / 2))
+		H.clear_stamina_regen()
+		H.adjustFireLoss(2.5 - (H.fire_stacks / 3))
+		H.set_jitter_if_lower(10 SECONDS)
+		H.set_stutter_if_lower(1 SECONDS)
+		if(!soggy)//play once when it starts
+			H.emote("scream")
+			to_chat(H, span_userdanger("Every cell in your body begins to break down from the excess of water, get dry!"))
+		H.adjust_wet_stacks(-1)
+		soggy = TRUE
+	else if(soggy)
+		H.remove_movespeed_modifier("slime_person_wet")
+		to_chat(H, "You breathe a sigh of relief as you dry off.")
+		soggy = FALSE
+
 ////////////////////////////////////////////////////////SLIMEPEOPLE///////////////////////////////////////////////////////////////////
 
 //Slime people are able to split like slimes, retaining a single mind that can swap between bodies.
@@ -166,7 +191,7 @@
 /datum/species/jelly/slime
 	name = "Slimeperson"
 	plural_form = "Slimepeople"
-	id = "slime"
+	id = SPECIES_SLIMEPERSON
 	default_color = "00FFFF"
 	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,NOBLOOD)
 	say_mod = "says"
@@ -442,7 +467,7 @@
 /datum/species/jelly/luminescent
 	name = "Luminescent"
 	plural_form = null
-	id = "lum"
+	id = SPECIES_LUMINESCENT
 	say_mod = "says"
 	var/glow_intensity = LUMINESCENT_DEFAULT_GLOW
 	var/obj/item/slime_extract/current_extract
@@ -614,7 +639,7 @@
 /datum/species/jelly/stargazer
 	name = "Stargazer"
 	plural_form = null
-	id = "stargazer"
+	id = SPECIES_STARGAZER
 	var/datum/action/innate/project_thought/project_thought
 	var/datum/action/innate/link_minds/link_minds
 	var/list/mob/living/linked_mobs = list()

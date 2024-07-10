@@ -22,7 +22,7 @@
 /obj/item/restraints/legcuffs/beartrap/dark/spring_trap(AM as mob|obj)
 	if(isliving(AM))
 		var/mob/living/target = AM
-		if(is_darkspawn_or_thrall(target))
+		if(is_team_darkspawn(target))
 			return
 	return ..()
 	
@@ -42,7 +42,7 @@
 
 /obj/structure/trap/darkspawn/examine(mob/user)
 	. = ..()
-	if(examine_text && is_darkspawn_or_thrall(user))
+	if(examine_text && is_team_darkspawn(user))
 		. += span_velvet("The runes denote [examine_text].")
 
 /obj/structure/trap/darkspawn/Initialize(mapload)
@@ -52,7 +52,7 @@
 /obj/structure/trap/darkspawn/on_trap_entered(datum/source, atom/movable/AM, ...)
 	if(isliving(AM))
 		var/mob/living/target = AM
-		if(is_darkspawn_or_thrall(target))
+		if(is_team_darkspawn(target))
 			return
 	if(isprojectile(AM)) //if it's flying above the trap, don't trigger it
 		return

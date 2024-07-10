@@ -164,7 +164,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 		if(2)
 			carbon_mob.adjustOxyLoss(-heal_amt)
 		if(3)
-			carbon_mob.adjustToxLoss(-heal_amt)
+			carbon_mob.adjustToxLoss(-heal_amt, TRUE, TRUE)//don't kill jellypeople
 		if(4)
 			carbon_mob.adjustCloneLoss(-heal_amt)
 		if(5)

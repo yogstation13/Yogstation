@@ -453,7 +453,7 @@
 	if(ishuman(M))
 		if(methods & (PATCH|VAPOR))
 			var/mob/living/carbon/human/N = M
-			if(N.dna.species.id == "human")
+			if(N.dna.species.id == SPECIES_HUMAN)
 				switch(N.skin_tone)
 					if("african1")
 						N.skin_tone = "african2"

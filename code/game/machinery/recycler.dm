@@ -17,6 +17,7 @@
 	var/crush_damage = 1000
 	var/eat_victim_items = TRUE
 	var/item_recycle_sound = 'sound/items/welder.ogg'
+	var/points = 0
 
 /obj/machinery/recycler/Initialize(mapload)
 	AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass, /datum/material/plasma, /datum/material/silver, /datum/material/gold, /datum/material/diamond, /datum/material/uranium, /datum/material/bananium, /datum/material/titanium, /datum/material/bluespace, /datum/material/dilithium, /datum/material/plastic), INFINITY, FALSE, null, null, null, TRUE)
@@ -164,6 +165,9 @@
 		var/material_amount = materials.get_item_material_amount(I)
 		if(!material_amount)
 			return
+		if(istype(I, /obj/item/stack/scrap))
+			var/obj/item/stack/scrap/S = I
+			points += S.point_value
 		materials.insert_item(I, material_amount, multiplier = (amount_produced / 100))
 		materials.retrieve_all()
 
@@ -178,6 +182,20 @@
 	playsound(src, 'sound/machines/ping.ogg', 50, FALSE)
 	safety_mode = FALSE
 	update_appearance(UPDATE_ICON)
+
+/obj/machinery/recycler/attack_hand(mob/living/user)
+	if(!points)
+		to_chat(usr, span_warning("No points to claim."))
+		return
+	var/obj/item/card/id/I = user.get_idcard(TRUE)
+	if(I)
+		I.shipbreaking_points += points
+		to_chat(usr, "You redeem [points] shipbreaking points.")
+		points = 0
+		playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
+	else
+		to_chat(usr, span_warning("No valid ID detected."))
+				
 
 /obj/machinery/recycler/proc/crush_living(mob/living/L)
 
