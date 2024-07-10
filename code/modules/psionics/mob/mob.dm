@@ -13,6 +13,8 @@
 	. = ..()
 
 /mob/living/proc/set_psi_rank(faculty, rank, take_larger, defer_update, temporary)
+	if(isipc(src))
+		return
 	if(!psi)
 		psi = new(src)
 	var/current_rank = psi.get_rank(faculty)

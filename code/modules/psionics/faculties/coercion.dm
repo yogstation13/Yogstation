@@ -307,7 +307,7 @@
 	use_description =	"Activate the power with z, then click your target with combat mode to Psionically rip their arms off."
 
 /datum/psionic_power/coercion/dis_arm/invoke(mob/living/user, mob/living/target, proximity, parameters)
-	if(!user.combat_mode || isipc(target))
+	if(!user.combat_mode || isipc(target) || user == target)
 		return FALSE
 	. = ..()
 	if(.)
