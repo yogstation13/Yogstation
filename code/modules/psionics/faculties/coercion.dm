@@ -72,7 +72,7 @@
 		user.visible_message(span_warning("\The [user] holds the head of \the [target] in both hands..."))
 		to_chat(user, span_notice("You insinuate your mentality into that of \the [target]..."))
 		to_chat(target, span_warning("Your persona is being probed by the psychic lens of \the [user]."))
-		if(!do_after(user, (target.stat == CONSCIOUS ? 50 : 25), target, FALSE))
+		if(!do_after(user, (target.stat == CONSCIOUS ? (4 SECONDS) : (2 SECONDS)), target, FALSE))
 			user.psi.backblast(rand(5,10))
 			return TRUE
 		to_chat(user, span_notice("You retreat from \the [target], holding your new knowledge close."))
@@ -82,8 +82,9 @@
 
 /datum/psionic_power/coercion/psiping
 	name =				"Psi-ping"
-	cost =				30
-	cooldown =			30 SECONDS
+	cost =				50
+	heat =				20
+	cooldown =			20 SECONDS
 	min_rank =			PSI_RANK_OPERANT
 	icon_state = "coe_psiping"
 	use_description =	"Activate the power with z, then click on yourself with an empty hand to detect nearby psionic signatures."
@@ -155,7 +156,7 @@
 	name =				"Agony"
 	cost =				20
 	heat =				20
-	cooldown =			5 SECONDS
+	cooldown =			2 SECONDS
 	min_rank =			PSI_RANK_OPERANT
 	icon_state = "coe_agony"
 	use_description =	"Activate the power with z, attack someone while in combat mode to deal minor stamina damage. Higher psi levels augment the damage done."
@@ -173,6 +174,7 @@
 /datum/psionic_power/coercion/spasm
 	name =				"Spasm"
 	cost =				15
+	heat =				10
 	cooldown =			10 SECONDS
 	min_rank =			PSI_RANK_MASTER
 	icon_state = "coe_spasm"
@@ -211,7 +213,7 @@
 		user.visible_message(span_warning("\The [user] holds the head of \the [target] in both hands..."))
 		to_chat(user, span_notice("You probe \the [target]'s mind for various ailments.."))
 		to_chat(target, span_warning("Your mind is being cleansed of ailments by \the [user]."))
-		if(!do_after(user, (target.stat == CONSCIOUS ? 5 SECONDS : 2.5 SECONDS), target, FALSE))
+		if(!do_after(user, (target.stat == CONSCIOUS ? 4 SECONDS : 2 SECONDS), target, FALSE))
 			user.psi.backblast(rand(5,10))
 			return TRUE
 		to_chat(user, span_warning("You clear \the [target]'s mind of ailments."))
@@ -225,6 +227,7 @@
 		if(coercion_rank >= PSI_RANK_PARAMOUNT)
 			target.SetAllImmobility(0)
 			resilience = TRAUMA_RESILIENCE_LOBOTOMY
+
 		target.SetDaze(0)
 		if(istype(target, /mob/living/carbon))
 			var/mob/living/carbon/M = target
@@ -241,7 +244,7 @@
 	icon_state = "coe_mindread"
 	use_description =	"Activate the power with z, then click on someone in melee range to attempt to read a victim's surface level thoughts."
 
-/datum/psionic_power/coercion/mindread/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
+/datum/psionic_power/coercion/mindread/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(!istype(target) || target == user || !proximity || isipc(target))
 		return FALSE
 	. = ..()
@@ -277,7 +280,7 @@
 	icon_state = "coe_blindstrike"
 	use_description =	"Activate the power with z, then click anywhere to use a radial attack that blinds, deafens and disorients everyone near you."
 
-/datum/psionic_power/coercion/blindstrike/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
+/datum/psionic_power/coercion/blindstrike/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(isipc(target))
 		return FALSE
 	. = ..()
@@ -301,7 +304,7 @@
 	icon_state = "coe_disarm"
 	use_description =	"Activate the power with z, then click your target with combat mode to Psionically rip their arms off."
 
-/datum/psionic_power/coercion/dis_arm/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
+/datum/psionic_power/coercion/dis_arm/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(!user.combat_mode || isipc(target))
 		return FALSE
 	. = ..()
