@@ -396,7 +396,7 @@
 	name = "Ivymen"
 	id = "ivymen"
 	limbs_id = SPECIES_PODPERSON
-	inherent_traits = list(TRAIT_NOGUNS,TRAIT_RESISTHIGHPRESSURE)
+	inherent_traits = list(TRAIT_NOGUNS,TRAIT_RESISTHIGHPRESSURE, TRAIT_SULPH_PIT_IMMUNE)
 	speedmod = 0
 	mutantlungs = /obj/item/organ/lungs/plant/ivymen
 	disliked_food = DAIRY
