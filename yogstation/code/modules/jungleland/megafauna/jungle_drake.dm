@@ -20,7 +20,13 @@
 		/datum/action/innate/megafauna_attack/mass_vine,
 		/datum/action/innate/megafauna_attack/vine_swoop
 		)
-	fire_sound = 'sound/weapons/whip.ogg' //placeholder
+	fire_sound = 'sound/magic/tail_swing.ogg'
+	
+	/**
+	 * both of these are placeholders and need to be swapped out at some point
+	 */
+	music_path = /datum/music/sourced/battle/ash_drake
+	small_sprite_type = /datum/action/small_sprite/megafauna/drake
 
 /mob/living/simple_animal/hostile/megafauna/dragon/jungle/Initialize(mapload)
 	. = ..()
