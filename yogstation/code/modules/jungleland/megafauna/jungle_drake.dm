@@ -202,7 +202,7 @@
 
 /obj/effect/temp_visual/drakewall/jungle
 	name = "dense vines"
-	desc = "A jungle drakes vine something or other, idk."
+	desc = "So thick you can barely move through it!"
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "Hvy"
 
