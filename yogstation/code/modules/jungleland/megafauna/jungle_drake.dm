@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/megafauna/dragon/jungle
 	name = "jungle dragon"
-	desc = "Warden of the viridian."
+	desc = "Guardians of the jungle, they seem to wander the lands in search of something."
 	icon = 'yogstation/icons/mob/jungle64x64.dmi'
 	gps_name = "Verdant Signal"
 	deathmessage = "collapses to the floor, its strength long since exhausted."
