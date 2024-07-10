@@ -13,7 +13,7 @@
 	cooldown =        3 SECONDS
 	min_rank =        PSI_RANK_OPERANT
 	icon_state = "psy_blade"
-	use_description = "Activate the power with z, summon a psiblade or psibaton, if the user is a pacifist. The power the blade/baton will vary based on your mastery of the faculty."
+	use_description = "Activate the power with z, summon a psiblade, or psibaton if the user is a pacifist. The power the blade/baton will vary based on your mastery of the faculty."
 	use_sound = 'sound/effects/psi/power_fabrication.ogg'
 	admin_log = FALSE
 

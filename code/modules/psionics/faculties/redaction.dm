@@ -15,6 +15,9 @@
 	return FALSE
 
 /datum/psionic_power/redaction/invoke(mob/living/user, mob/living/target, proximity, parameters)
+	if(isipc(target))
+		to_chat(user, span_warning("[target]'s metallic nature refuses the psionic tampering"))
+		return FALSE
 	if(check_dead(target))
 		return FALSE
 	. = ..()
@@ -29,7 +32,7 @@
 	use_description = "Activate the power with z, then target the mob you wish to scan with combat mode off. Higher psi levels provide more information."
 
 /datum/psionic_power/redaction/skinsight/invoke(mob/living/user, mob/living/target, proximity, parameters)
-	if(user.combat_mode || !istype(target) || !proximity || isipc(target))
+	if(user.combat_mode || !istype(target) || !proximity)
 		return FALSE
 	. = ..()
 	if(.)
@@ -47,7 +50,7 @@
 	use_description = "Activate the power with z, then target the mob you wish to heal with combat mode off. Higher psi levels provide further healing."
 
 /datum/psionic_power/redaction/mend/invoke(mob/living/user, mob/living/carbon/human/target, proximity, parameters)
-	if(user.combat_mode || !istype(target) || !proximity || isipc(target))
+	if(user.combat_mode || !istype(target) || !proximity)
 		return FALSE
 	. = ..()
 	if(.)
@@ -80,7 +83,7 @@
 					to_chat(user, span_notice("You encourage the damaged tissue of \the [O] to repair itself."))
 					O.applyOrganDamage(-rand(heal, heal * 2))
 					return TRUE
-		if(target.health < target.maxHealth && target.heal_ordered_damage(redaction_rank * 15, list(BRUTE, BURN, TOX)) > 0)
+		if(target.health < target.maxHealth && target.heal_ordered_damage(redaction_rank * 10, list(BRUTE, BURN, TOX)) > 0)
 			to_chat(user, span_notice("You patch up some of the damage to [target]."))
 			new /obj/effect/temp_visual/heal(get_turf(target), "#33cc33")
 			return TRUE
@@ -98,7 +101,7 @@
 	use_description = "Activate the power with z, then target the mob you wish cleanse of radiation and clone damage with combat mode off."
 
 /datum/psionic_power/redaction/cleanse/invoke(mob/living/user, mob/living/carbon/human/target, proximity, parameters)
-	if(user.combat_mode || !istype(target) || !proximity || isipc(target))
+	if(user.combat_mode || !istype(target) || !proximity)
 		return FALSE
 	. = ..()
 	if(.)
@@ -141,7 +144,9 @@
 			to_chat(user, span_warning("This person is already alive!"))
 			return TRUE
 
-		if((world.time - target.timeofdeath) > DEFIB_TIME_LIMIT)
+		var/is_paramount = user.psi.get_rank(PSI_REDACTION) >= PSI_RANK_PARAMOUNT
+
+		if(!is_paramount && (world.time - target.timeofdeath) > DEFIB_TIME_LIMIT)
 			to_chat(user, span_warning("\The [target] has been dead for too long to revive."))
 			return TRUE
 
@@ -155,5 +160,5 @@
 		to_chat(target, span_notice("Life floods back into your body!"))
 		target.visible_message(span_notice("\The [target] shudders violently!"))
 		target.adjustOxyLoss(-rand(15,20))
-		target.revive()
+		target.revive(is_paramount)
 		return TRUE

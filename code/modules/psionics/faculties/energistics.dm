@@ -15,14 +15,14 @@
 	icon_state = "ene_ele"
 	use_description = "Activate the power with z, then Enter combat mode to use a melee attack that electrocutes a victim, or charge an energy cell."
 
-/datum/psionic_power/energistics/electrocute/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!user.combat_mode || !istype(target) || !proximity || isipc(target)) 
+/datum/psionic_power/energistics/electrocute/invoke(mob/living/user, mob/living/target, proximity, parameters)
+	if(!user.combat_mode || !istype(target) || !proximity) 
 		return FALSE
 	. = ..()
 	if(.)
 		if(istype(target))
 			user.visible_message(span_danger("\The [user] sends a jolt of electricity arcing into \the [target]!"))
-			target.electrocute_act(rand(15,45), user, 1, user.zone_selected)
+			target.electrocute_act(rand(15,45), user, 1, user.zone_selected, stun = (user.psi.get_rank(PSI_ENERGISTICS) >= PSI_RANK_PARAMOUNT))
 			return TRUE
 		else if(isatom(target))
 			var/obj/item/stock_parts/cell/charging_cell = target.get_cell()
@@ -41,8 +41,8 @@
 	icon_state = "ene_spark"
 	use_description = "Activate the power with z, then target a non-living thing in melee range with combat mode on to cause some sparks to appear. This can light fires."
 
-/datum/psionic_power/energistics/spark/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!user.combat_mode || isnull(target) || istype(target) || !proximity || isipc(target)) 
+/datum/psionic_power/energistics/spark/invoke(mob/living/user, mob/living/target, proximity, parameters)
+	if(!user.combat_mode || isnull(target) || istype(target) || !proximity) 
 		return FALSE
 	. = ..()
 	if(.)
@@ -66,7 +66,7 @@
 	icon_state = "ene_zorch"
 	use_description = "Activate the power with z, then use this ranged laser attack with combat mode on. Your mastery of Energistics will determine how powerful the laser is. Be wary of overuse, and try not to fry your own brain."
 
-/datum/psionic_power/energistics/zorch/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
+/datum/psionic_power/energistics/zorch/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	. = ..()
 	if(.)
 		if(HAS_TRAIT(user, TRAIT_PACIFISM) && user.psi.zorch_harm)
@@ -111,10 +111,10 @@
 	cooldown =        10 SECONDS
 	min_rank =        PSI_RANK_GRANDMASTER
 	icon_state = "ene_disrupt"
-	use_description = "Activate the power with z, then enter combat mode and attack a target to cause a localized electromagnetic pulse."
+	use_description = "Activate the power with z, then attack a target while in combat mode to cause a localized electromagnetic pulse."
 
-/datum/psionic_power/energistics/disrupt/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!user.combat_mode || !istype(target) || !proximity || isipc(target))
+/datum/psionic_power/energistics/disrupt/invoke(mob/living/user, mob/living/target, proximity, parameters)
+	if(!user.combat_mode || !istype(target) || !proximity)
 		return FALSE
 	. = ..()
 	if(.)

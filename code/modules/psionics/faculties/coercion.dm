@@ -9,6 +9,15 @@
 /datum/psionic_power/coercion
 	faculty = PSI_COERCION
 
+/datum/psionic_power/coercion/invoke(mob/living/user, mob/living/target, proximity, parameters)
+	if (!istype(target))
+		to_chat(user, span_warning("You cannot mentally attack \the [target]."))
+		return FALSE
+	if(isipc(target))
+		to_chat(user, span_warning("[target]'s metallic nature refuses the psionic tampering"))
+		return FALSE
+	. = ..()
+
 /datum/psionic_power/coercion/commune
 	name =				"Commune"
 	cost =				10
@@ -18,7 +27,7 @@
 	use_description =	"Activate the power with z, then click on a creature on to psionically send them a message."
 
 /datum/psionic_power/coercion/commune/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!istype(target) || user == target || isipc(target))
+	if(!istype(target) || user == target)
 		return FALSE
 	. = ..()
 	if(.)
@@ -63,8 +72,8 @@
 	icon_state = "coe_assay"
 	use_description =	"Activate the power with z, then click on a target in order to perform a deep coercive-redactive probe of their psionic potential."
 
-/datum/psionic_power/coercion/assay/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
-	if(!istype(target) || user == target || isipc(target))
+/datum/psionic_power/coercion/assay/invoke(mob/living/user,  mob/living/target, proximity, parameters)
+	if(!istype(target) || user == target)
 		return FALSE
 	. = ..()
 	if(.)
@@ -145,12 +154,6 @@
 			to_chat(user, span_notice("You detect no psionic signatures but your own."))
 		return TRUE
 
-/datum/psionic_power/coercion/invoke(mob/living/user, mob/living/target, proximity, parameters)
-	if (!istype(target))
-		to_chat(user, span_warning("You cannot mentally attack \the [target]."))
-		return FALSE
-	. = ..()
-
 /datum/psionic_power/coercion/agony
 	name =				"Agony"
 	cost =				20
@@ -161,7 +164,7 @@
 	use_description =	"Activate the power with z, attack someone while in combat mode to deal minor stamina damage. Higher psi levels augment the damage done."
 
 /datum/psionic_power/coercion/agony/invoke(mob/living/user, mob/living/target, proximity, parameters)
-	if(!istype(target) || !proximity || user == target || !user.combat_mode || isipc(target))
+	if(!istype(target) || !proximity || user == target || !user.combat_mode)
 		return FALSE
 	. = ..()
 	if(.)
@@ -180,9 +183,8 @@
 	use_description =	"Activate the power with z, then target a creature to use a ranged attack that may rip the weapons away from the target."
 
 /datum/psionic_power/coercion/spasm/invoke(mob/living/user, mob/living/carbon/human/target, proximity, parameters)
-	if(!istype(target) || user == target || !user.combat_mode || isipc(target))
+	if(!istype(target) || user == target || !user.combat_mode)
 		return FALSE
-
 	. = ..()
 
 	if(.)
@@ -205,7 +207,7 @@
 	use_description =	"Activate the power with z, then click on someone in order to cure ailments of the mind."
 
 /datum/psionic_power/coercion/focus/invoke(mob/living/user, mob/living/target, proximity, parameters)
-	if(!istype(target) || !proximity || user == target || isipc(target))
+	if(!istype(target) || !proximity || user == target)
 		return FALSE
 	. = ..()
 	if(.)
@@ -241,10 +243,10 @@
 	cooldown =			25 SECONDS //It should take a WHILE to be able to use this again.
 	min_rank =			PSI_RANK_MASTER
 	icon_state = "coe_mindread"
-	use_description =	"Activate the power with z, then click on someone in melee range to attempt to read a victim's surface level thoughts."
+	use_description =	"Activate the power with z, then click on someone in melee range to attempt to read a surface level thought."
 
 /datum/psionic_power/coercion/mindread/invoke(mob/living/user, mob/living/target, proximity, parameters)
-	if(!istype(target) || target == user || !proximity || isipc(target))
+	if(!istype(target) || target == user || !proximity)
 		return FALSE
 	. = ..()
 	if(!.)
@@ -281,14 +283,14 @@
 	use_description =	"Activate the power with z, then click anywhere to use a radial attack that blinds, deafens and disorients everyone near you."
 
 /datum/psionic_power/coercion/blindstrike/invoke(mob/living/user, mob/living/target, proximity, parameters)
-	if(isipc(target))
-		return FALSE
 	. = ..()
 	if(.)
 		user.visible_message(span_danger("\The [user] suddenly throws back their head, as though screaming silently!"))
 		to_chat(user, span_danger("You strike at all around you with a deafening psionic scream!"))
 		for(var/mob/living/M in orange(user, user.psi.get_rank(PSI_COERCION)))
 			if(M == user)
+				continue
+			if(isipc(M))
 				continue
 			M.emote("scream")
 			to_chat(M, span_danger("Your senses are blasted into oblivion by a psionic scream!"))
@@ -306,7 +308,7 @@
 	use_description =	"Activate the power with z, then click your target with combat mode to Psionically rip their arms off."
 
 /datum/psionic_power/coercion/dis_arm/invoke(mob/living/user, mob/living/target, proximity, parameters)
-	if(!user.combat_mode || isipc(target) || user == target)
+	if(!user.combat_mode || user == target)
 		return FALSE
 	. = ..()
 	if(.)
