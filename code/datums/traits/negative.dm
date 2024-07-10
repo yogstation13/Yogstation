@@ -930,7 +930,7 @@
 	name = "Psionically Deafened"
 	desc = "You don't believe in fancy mumbo jumbo like 'psionics' or 'going to the doctor'."
 	icon = "hand-back-fist"
-	value = -3
+	value = -1
 	mob_trait = TRAIT_PSIONICALLY_DEAFENED
 	gain_text = span_notice("You feel like you got your head on straight, probably.")
 	lose_text = span_notice("You feel like you should invest in a tinfoil hat. Now.")
