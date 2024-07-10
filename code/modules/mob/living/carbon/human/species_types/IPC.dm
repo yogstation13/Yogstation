@@ -65,11 +65,9 @@
 
 /datum/species/ipc/on_species_gain(mob/living/carbon/C, datum/species/old_species) // Let's make that IPC actually robotic.
 	. = ..()
+	if(C.psi) //no psionics for the metal man
+		QDEL_NULL(C.psi)
 	C.particles = new /particles/smoke/ipc()
-	var/obj/item/organ/appendix/A = C.getorganslot(ORGAN_SLOT_APPENDIX) // Easiest way to remove it.
-	if(A)
-		A.Remove(C)
-		QDEL_NULL(A)
 	if(ishuman(C) && !change_screen)
 		change_screen = new
 		change_screen.Grant(C)
