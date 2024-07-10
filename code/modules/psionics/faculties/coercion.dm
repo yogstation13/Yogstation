@@ -38,9 +38,8 @@
 
 		log_say("[key_name(user)] communed to [key_name(target)]: [text]")
 
-		for (var/mob/M in GLOB.player_list)
-			if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
-				to_chat(M,"<span class='notice'>[user] psionically says to [target]:</span> [text]")
+		for (var/mob/M in GLOB.dead_mob_list)
+			to_chat(M,"<span class='notice'>[user] psionically says to [target]:</span> [text]")
 
 		var/mob/living/carbon/human/H = target
 		if(prob(25) && (target.mind && target.mind.assigned_role == "Chaplain"))
