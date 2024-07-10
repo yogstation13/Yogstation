@@ -32,28 +32,28 @@
 	name = "Vine Cone"
 	button_icon = 'icons/obj/wizard.dmi'
 	button_icon_state = "fireball"
-	chosen_message = span_colossus("You are now shooting fire at your target.")
+	chosen_message = span_colossus("You are now shooting vines at your target.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/vine_cone_meteors
 	name = "Vine Cone With Meteors"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
-	chosen_message = span_colossus("You are now shooting fire at your target and raining fire around you.")
+	chosen_message = span_colossus("You are now shooting vines at your target and raining bulbs around you.")
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/mass_vine
 	name = "Mass Vine Attack"
 	button_icon = 'icons/effects/fire.dmi'
 	button_icon_state = "1"
-	chosen_message = span_colossus("You are now shooting mass fire at your target.")
+	chosen_message = span_colossus("You are now shooting mass vines at your target.")
 	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/vine_swoop
 	name = "Vine Swoop"
-	icon = 'icons/effects/spacevines.dmi'
-	icon_state = "flower_bud"
-	chosen_message = span_colossus("You are now swooping and raining lava at your target.")
+	button_icon = 'icons/effects/spacevines.dmi'
+	button_icon_state = "flower_bud"
+	chosen_message = span_colossus("You are now swooping and raining bulbs at your target.")
 	chosen_attack_num = 4
 
 /mob/living/simple_animal/hostile/megafauna/dragon/jungle/fire_line(list/turfs)
@@ -172,7 +172,7 @@
 	var/turf/T = get_turf(src)
 	playsound(T,'sound/magic/fleshtostone.ogg', 80, 1)
 	sleep(duration)
-	playsound(T,'sound/items/poster_ripped.ogg', 200, 1)
+	playsound(T,'sound/effects/splosh.ogg', 200, 1)
 
 	for(var/mob/living/L in T.contents)
 		if(istype(L, /mob/living/simple_animal/hostile/megafauna/dragon))
