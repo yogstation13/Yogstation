@@ -428,7 +428,7 @@ ipc martial arts stuff
 	var/list/initial_step_sounds
 	var/list/initial_walk_sounds
 	var/list/initial_genders
-	var/list/blacklisted_species = list(/datum/species/ethereal, /datum/species/moth)//species that really don't work with this system (lizards aren't quite right either, but whatever)
+	var/list/blacklisted_species = list(/datum/species/ethereal, /datum/species/moth, /datum/species/gorilla)//species that really don't work with this system (lizards aren't quite right either, but whatever)
 	var/list/old_features
 	var/old_gender
 	var/ipc_color
