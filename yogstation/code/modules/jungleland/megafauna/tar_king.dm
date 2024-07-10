@@ -442,9 +442,3 @@
 /obj/effect/temp_visual/tar_king_chaser/proc/make_blast()
 	var/obj/effect/better_animated_temp_visual/tar_king_chaser_impale/T = new(loc, caster)
 	T.damage = damage
-
-/obj/item/gps/internal/tar_king
-	icon_state = null
-	gpstag = "Murky Signal"
-	desc = "There's something flickering in the dark."
-	invisibility = 100
