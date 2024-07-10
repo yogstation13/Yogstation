@@ -112,7 +112,7 @@
 		return
 	if(host_mob.mind.has_antag_datum(/datum/antagonist/gang, TRUE))
 		return
-	if(is_darkspawn_or_thrall(host_mob))
+	if(is_team_darkspawn(host_mob))
 		return
 	ADD_TRAIT(host_mob, TRAIT_MINDSHIELD, "nanites")
 	host_mob.sec_hud_set_implants()

@@ -188,7 +188,7 @@
 
 /datum/quirk/nyctophobia/on_process()
 	var/mob/living/carbon/human/H = quirk_holder
-	if(isshadowperson(H) || is_darkspawn_or_thrall(H))
+	if(isshadowperson(H) || is_team_darkspawn(H))
 		return //we're tied with the dark, so we don't get scared of it; don't cleanse outright to avoid cheese
 	var/turf/T = get_turf(quirk_holder)
 	var/lums = T.get_lumcount()
@@ -823,7 +823,6 @@
 	desc = "Due to hundreds of cloning cycles, your DNA's telomeres are dangerously shortened. Your DNA can't support cloning without expensive DNA restructuring, and what's worse- you work for Nanotrasen."
 	icon = "magnifying-glass-minus"
 	value = -2
-	mob_trait = TRAIT_SHORT_TELOMERES
 	medical_record_text = "DNA analysis indicates that the patient's DNA telomeres are artificially shortened from previous cloner usage."
 
 /datum/quirk/telomeres_short/check_quirk(datum/preferences/prefs)
@@ -835,6 +834,28 @@
 	else if(no_clone)
 		return "Your species cannot be cloned!"
 	return FALSE
+
+//we apply it directly to the dna so it carries over to the brain mob if someone tries to clone the brain
+/datum/quirk/telomeres_short/New(mob/living/quirk_mob, spawn_effects, no_init)
+	. = ..()
+	var/datum/dna/holder = quirk_holder?.has_dna()
+	if(holder)
+		holder.features |= TRAIT_SHORT_TELOMERES
+
+/datum/quirk/telomeres_short/Destroy()
+	. = ..()
+	var/datum/dna/holder = quirk_holder?.has_dna()
+	if(holder)
+		holder.features -= TRAIT_SHORT_TELOMERES
+	
+/datum/quirk/telomeres_short/transfer_mob(mob/living/to_mob)
+	. = ..()
+	var/datum/dna/holder = quirk_holder?.has_dna()
+	if(holder)
+		holder.features -= TRAIT_SHORT_TELOMERES
+	holder = to_mob?.has_dna()
+	if(holder)
+		holder.features |= TRAIT_SHORT_TELOMERES
 
 /datum/quirk/body_purist
 	name = "Body Purist"
