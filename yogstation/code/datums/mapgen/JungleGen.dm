@@ -51,6 +51,11 @@
 		)
 
 	var/list/ore_preferences = list(
+		ORE_EMPTY = list(
+			WORLEY_REG_SIZE = 10,
+			WORLEY_THRESHOLD = 3,
+			WORLEY_NODE_PER_REG = 50),
+
 		ORE_IRON = list(
 			WORLEY_REG_SIZE = 10,
 			WORLEY_THRESHOLD = 3,
@@ -99,6 +104,12 @@
 //creates a 2d map of every single ore vein on the map
 /datum/map_generator/jungleland/proc/generate_ores(list/turfs)
 	var/list/ore_strings = list(
+		ORE_EMPTY  = rustg_worley_generate("[ore_preferences[ORE_EMPTY][WORLEY_REG_SIZE]]",
+										"[ore_preferences[ORE_EMPTY][WORLEY_THRESHOLD]]",
+										"[ore_preferences[ORE_EMPTY][WORLEY_NODE_PER_REG]]",
+										"[world.maxx]",
+										"1",
+										"2"),
 		ORE_BLUESPACE  = rustg_worley_generate("[ore_preferences[ORE_BLUESPACE][WORLEY_REG_SIZE]]",
 										"[ore_preferences[ORE_BLUESPACE][WORLEY_THRESHOLD]]",
 										"[ore_preferences[ORE_BLUESPACE][WORLEY_NODE_PER_REG]]",
@@ -156,6 +167,7 @@
 										"2"))
 	//order of generation, ordered from rarest to most common
 	var/list/generation_queue = list(
+		ORE_EMPTY,
 		ORE_IRON,
 		ORE_SILVER,
 		ORE_TITANIUM,
