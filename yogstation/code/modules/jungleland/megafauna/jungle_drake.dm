@@ -4,7 +4,8 @@
 	icon = 'yogstation/icons/mob/jungle64x64.dmi'
 	gps_name = "Verdant Signal"
 	deathmessage = "collapses to the floor, its strength long since exhausted."
-
+	weather_immunities = WEATHER_ACID
+	
 	small_sprite_type = /datum/action/small_sprite/megafauna/drake
 	music_component = /datum/component/music_player/battle
 	music_path = /datum/music/sourced/battle/ash_drake
