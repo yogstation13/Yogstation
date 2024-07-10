@@ -482,3 +482,9 @@
 	lose_text = span_notice("You can finally think straight, no more voices.")
 	medical_record_text = "Patient demonstrates high affinity for cerebral testing."
 
+/datum/quirk/psionically_tuned/check_quirk(datum/preferences/prefs)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+
+	if(species_type == /datum/species/ipc) // IPCs cant use psionics normally
+		return "You have no brain!"
+	return FALSE

@@ -935,3 +935,10 @@
 	gain_text = span_notice("You feel like you got your head on straight, probably.")
 	lose_text = span_notice("You feel like you should invest in a tinfoil hat. Now.")
 	medical_record_text = "Patient demonstrates high... anti... afinity to cerebral testing...?"
+
+/datum/quirk/psionically_deafened/check_quirk(datum/preferences/prefs)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+
+	if(species_type == /datum/species/ipc) // IPCs cant use psionics normally
+		return "You have no brain!"
+	return FALSE
