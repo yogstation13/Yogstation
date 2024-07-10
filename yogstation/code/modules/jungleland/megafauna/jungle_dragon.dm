@@ -99,7 +99,7 @@
 			new /obj/item/lava_staff(src)
 			new /obj/item/book/granter/action/spell/sacredflame(src)
 		if(3)
-			new /obj/item/dragon_egg(src)
+			new /obj/item/jungle_dragon_egg(src)
 		if(4)
 			if(prob(25))	//Still same chance but now you know if you're turning into a lizard (ew)
 				new /obj/item/dragons_blood/refined(src)
@@ -113,6 +113,26 @@
 	..()
 	new /obj/item/crusher_trophy/tail_spike(src)
 	new /obj/item/gem/amber(src)
+
+/obj/item/jungle_dragon_egg
+	name = "dragon's egg"
+	desc = "A large egg-shaped rock. It's cold to the touch..."
+	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
+	icon_state = "large_egg"
+	color = "#2C2C2C"
+
+/obj/item/jungle_dragon_egg/acid_melt()
+	visible_message(span_boldwarning("[src] suddenly begins to glow red and starts violently shaking!"))
+	name = "heated dragon's egg"
+	desc = "A large egg seemingly made out of rock. It's red-hot and seems to be shaking!"
+	color = "#008f11"
+	resistance_flags = UNACIDABLE | ACID_PROOF
+	addtimer(CALLBACK(src, PROC_REF(hatch)), 20 SECONDS)
+
+/obj/item/jungle_dragon_egg/proc/hatch()
+	visible_message(span_boldwarning("[src] suddenly cracks apart, revealing a tiny jungle dragon!"))
+	new /mob/living/simple_animal/hostile/drakeling(get_turf(src))
+	qdel(src)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Basic blast attacks-------------------------------//
