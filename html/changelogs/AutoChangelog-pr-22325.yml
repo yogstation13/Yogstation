@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Regenerative bluespace core now teleports to within a 7x7 area"
