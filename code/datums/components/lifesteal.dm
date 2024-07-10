@@ -31,6 +31,8 @@
 	do_lifesteal(firer, target)
 
 /datum/component/lifesteal/proc/do_lifesteal(atom/heal_target, atom/damage_target)
+	if(heal_target == damage_target)
+		return
 	if(isliving(heal_target) && isliving(damage_target))
 		var/mob/living/healing = heal_target
 		var/mob/living/damaging = damage_target
