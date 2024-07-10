@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/megafauna/dragon/jungle
-	name = "jungle drake"
+	name = "jungle dragon"
 	desc = "Warden of the viridian."
 	icon = 'yogstation/icons/mob/jungle64x64.dmi'
 	gps_name = "Verdant Signal"
@@ -21,6 +21,12 @@
 		/datum/action/innate/megafauna_attack/vine_swoop
 		)
 	fire_sound = 'sound/items/poster_ripped.ogg' //placeholder
+
+/mob/living/simple_animal/hostile/megafauna/dragon/jungle/Initialize(mapload)
+	. = ..()
+	if(prob(1))
+		name = "Yharon"
+		desc = "This is a message to my master."
 
 /datum/action/innate/megafauna_attack/vine_cone
 	name = "Vine Cone"
