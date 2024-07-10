@@ -93,7 +93,7 @@
 	if(QDELETED(owner))
 		qdel(src)
 		return
-	if(tick_interval < world.time)
+	if(tick_interval <= world.time)
 		tick(delta_time, times_fired)
 		tick_interval = world.time + initial(tick_interval)
 	if(duration != -1 && duration < world.time)

@@ -27,11 +27,17 @@
 /datum/martial_art/lightning_flow/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(dashing)
 		return TRUE
-	damage(D, A, 5, zone=A.zone_selected)
+	damage(D, A, 5, A.zone_selected)
 	return FALSE
 
-/datum/martial_art/lightning_flow/proc/damage(mob/living/target, mob/living/carbon/human/user, amount = 5, stun = FALSE, zone = null)
-	target.electrocute_act(amount, user, stun = stun, zone = zone)
+/datum/martial_art/lightning_flow/proc/damage(mob/living/target, mob/living/carbon/human/user, amount = 5, zone = null)
+	var/electric_armour = target.run_armor_check(zone, ELECTRIC)
+	var/melee_armour = target.run_armor_check(zone, MELEE)
+	var/final_armour = (electric_armour + melee_armour) / 2
+	target.apply_damage(amount, BURN, zone, final_armour)
+	if(ishuman(target))
+		var/mob/living/carbon/human/flicker = target
+		flicker.electrocution_animation(4 SECONDS)
 
 /datum/martial_art/lightning_flow/proc/on_click(mob/living/carbon/human/H, atom/target, params)
 	var/list/modifiers = params2list(params)
@@ -91,7 +97,6 @@
 		var/mob/living/carbon/human/victim = target
 		if(victim.check_shields(src, 0, "[H]", attack_type = LEAP_ATTACK))
 			return FALSE
-		H.SetKnockdown(0) //remove the self knockdown from the dropkick
 		dropkick(target, H, throwingdatum)
 	else if(action_modifiers[CTRL_CLICK])
 		target.grabbedby(H)
@@ -105,13 +110,17 @@
 /////////////////////////////////////////////////////////////////
 /datum/martial_art/lightning_flow/proc/dropkick(mob/living/target, mob/living/carbon/human/H, datum/thrownthing/throwingdatum)
 	target.visible_message(span_danger("[H] dropkicks [target]!"), span_userdanger("[H] dropkicks you!"))
+	do_sparks(4, FALSE, target)
+
 	target.Knockdown(5 SECONDS)
-	damage(target, H, 15, TRUE, BODY_ZONE_CHEST)
+	H.SetKnockdown(0) //remove the self knockdown from the dropkick
+	H.set_resting(FALSE)
+	damage(target, H, 15, BODY_ZONE_CHEST)
+
 	var/destination = throwingdatum.target
 	if(get_dist(target, destination) < 5)
 		destination = get_ranged_target_turf(get_turf(H), throwingdatum.init_dir, 5)
 	target.throw_at(destination, 5, 3, H)
-	do_sparks(4, FALSE, target)
 
 /////////////////////////////////////////////////////////////////
 //-----------------training related section--------------------//
@@ -138,7 +147,7 @@
 		var/mob/living/carbon/human/user = H
 		user.physiology.punchdamagelow_bonus += 5
 		user.physiology.punchdamagehigh_bonus += 5
-		user.physiology.punchstunthreshold_bonus += 5
+		user.physiology.punchstunthreshold_bonus += 6 //no knockdowns
 
 /datum/martial_art/lightning_flow/on_remove(mob/living/carbon/human/H)
 	UnregisterSignal(H, COMSIG_MOB_CLICKON)
@@ -146,7 +155,7 @@
 		var/mob/living/carbon/human/user = H
 		user.physiology.punchdamagelow_bonus -= 5
 		user.physiology.punchdamagehigh_bonus -= 5
-		user.physiology.punchstunthreshold_bonus -= 5
+		user.physiology.punchstunthreshold_bonus -= 6
 	return ..()
 
 #undef ACTION_DELAY

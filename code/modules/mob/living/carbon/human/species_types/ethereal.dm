@@ -2,7 +2,7 @@
 
 /datum/species/ethereal
 	name = "Ethereal"
-	id = "ethereal"
+	id = SPECIES_ETHEREAL
 	attack_verbs = list("burn", "sear")
 	attack_sound = 'sound/weapons/etherealhit.ogg'
 	miss_sound = 'sound/weapons/etherealmiss.ogg'
