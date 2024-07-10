@@ -927,7 +927,7 @@
 
 
 /datum/quirk/psionically_deafened
-	name = "Psionically Tuned"
+	name = "Psionically Deafened"
 	desc = "You don't believe in fancy mumbo jumbo like 'psionics' or 'going to the doctor'."
 	icon = "hand-back-fist"
 	value = -3
