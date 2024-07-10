@@ -155,7 +155,9 @@
  * Warning for where not to stand and damage handler
  */
 /obj/effect/temp_visual/lava_warning/jungle
-	icon_state = "lavastaff_warn"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "riverwater_motion"
+	color = "#00c167"
 	layer = BELOW_MOB_LAYER
 	light_range = 2
 	duration = 1.3 SECONDS
@@ -185,7 +187,7 @@
 		T.ChangeTurf(reset_turf, flags = CHANGETURF_INHERIT_AIR)
 
 /obj/effect/temp_visual/drakewall/jungle
-	name = "Fire Barrier"
+	name = "Vine Barrier"
 	desc = "A jungle drakes vine something or other, idk."
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "Hvy"
@@ -199,7 +201,7 @@
 /mob/living/simple_animal/hostile/megafauna/dragon/jungle/fire_rain()
 	if(!target)
 		return
-	target.visible_message(span_boldwarning("Fire rains from the sky!"))
+	target.visible_message(span_boldwarning("Bulbs rain from the sky!"))
 	for(var/turf/turf in range(9,get_turf(target)))
 		if(prob(11))
 			new /obj/effect/temp_visual/target/jungle(turf)
@@ -239,6 +241,10 @@
 	randomdir = TRUE
 	duration = 0.9 SECONDS
 	pixel_z = 270
+
+/obj/effect/temp_visual/fireball/jungle/Initialize(mapload)
+	. = ..()
+	SpinAnimation()
 
 ////////////////////////////////////////////////////////////////////////////////////
 //-------------------------------Swooping attack----------------------------------//
