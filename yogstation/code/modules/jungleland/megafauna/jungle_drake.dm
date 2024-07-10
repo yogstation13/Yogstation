@@ -93,7 +93,7 @@
 
 /obj/effect/temp_visual/vineball
 	name = "barbed vines"
-	desc = "A jungle drakes vine something or other, idk."
+	desc = "Not the kind you want to brush up against, move!"
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "Light"
 	duration = 5
