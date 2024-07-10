@@ -31,7 +31,7 @@
 
 /obj/item/psychic_power/process()
 	if(istype(owner))
-		if(!owner.psi.spend_power(maintain_cost))
+		if(!owner?.psi?.spend_power(maintain_cost))
 			qdel(src)
 	if(!owner || loc != owner || !(src in owner.held_items))
 		if(ishuman(loc))

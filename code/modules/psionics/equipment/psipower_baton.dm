@@ -39,7 +39,7 @@
 
 /obj/item/melee/classic_baton/psibaton/process()
 	if(istype(owner))
-		if(!owner.psi.spend_power(maintain_cost))
+		if(!owner?.psi?.spend_power(maintain_cost))
 			qdel(src)
 	if(!owner || loc != owner || !(src in owner.held_items))
 		if(ishuman(loc))
