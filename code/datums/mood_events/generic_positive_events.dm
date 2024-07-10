@@ -207,6 +207,11 @@
 	description = span_nicegreen("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!\n")
 	mood_change = 10
 
+/datum/mood_event/ice_cream
+	description = span_nicegreen("I recently enjoyed some nice and cool ice cream.\n")
+	mood_change = 2
+	timeout = 2 MINUTES
+
 /datum/mood_event/area
 	description = "" //Fill this out in the area
 	mood_change = 0

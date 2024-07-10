@@ -24,7 +24,7 @@ GLOBAL_LIST_INIT(jungle_ores, list( \
 		ORE_DIAMOND = new /datum/ore_patch/diamond(), 
 		ORE_TITANIUM = new /datum/ore_patch/titanium(), 
 		ORE_URANIUM = new /datum/ore_patch/uranium(),
-		ORE_BLUESAPCE = new /datum/ore_patch/bluespace(),
+		ORE_BLUESPACE = new /datum/ore_patch/bluespace(),
 		ORE_DILITHIUM = new /datum/ore_patch/dilithium()
 ))
 

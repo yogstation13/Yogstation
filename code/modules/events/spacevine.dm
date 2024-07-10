@@ -144,16 +144,28 @@
 	quality = NEGATIVE
 
 /datum/spacevine_mutation/aggressive_spread/on_spread(obj/structure/spacevine/holder, turf/target)
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			SSexplosions.highturf += target
-		if(EXPLODE_HEAVY)
-			SSexplosions.medturf += target
-		if(EXPLODE_LIGHT)
-			SSexplosions.lowturf += target
+	for(var/atom/destructible_atom in target)
+		if(isliving(destructible_atom)) // living things need to be handled differently
+			var/mob/living/victim = destructible_atom
+			if(isvineimmune(victim))
+				continue
+			if(!victim.can_inject(null, FALSE))
+				continue
+			victim.apply_damage(5, BRUTE, null, victim.getarmor(null, BIO))
+			continue
+
+		if(!destructible_atom.uses_integrity)
+			continue // skip anything that isn't destructible
+		if(destructible_atom.layer < ABOVE_NORMAL_TURF_LAYER)
+			continue // don't bother with stuff under the floors
+		destructible_atom.ex_act(severity, target)
 
 /datum/spacevine_mutation/aggressive_spread/on_buckle(obj/structure/spacevine/holder, mob/living/buckled)
-	buckled.ex_act(severity, null, src)
+	if(isvineimmune(buckled))
+		return
+	if(!buckled.can_inject(null, FALSE))
+		return
+	buckled.apply_damage(10, BRUTE, null, buckled.getarmor(null, BIO))
 
 /datum/spacevine_mutation/transparency
 	name = "transparent"
@@ -397,7 +409,7 @@
 		mutativeness = potency / 10
 	if(production != null)
 		spread_cap *= production / 5
-		spread_multiplier *= 2 / production
+		spread_multiplier *= 2 / (5 + production)
 
 /datum/spacevine_controller/vv_get_dropdown()
 	. = ..()

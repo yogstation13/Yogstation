@@ -462,7 +462,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	name = "cable coil"
 	custom_price = 15
 	gender = NEUTER //That's a cable coil sounds better than that's some cable coils
-	icon = 'icons/obj/power.dmi'
+	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "coil"
 	item_state = "coil"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -676,7 +676,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(!isturf(T) || T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE || !T.can_have_cabling())
 		to_chat(user, span_warning("You can only lay cables on top of exterior catwalks and plating!"))
 		return
-	
+
 	if(get_amount() < 1) // Out of cable
 		to_chat(user, span_warning("There is no cable left!"))
 		return

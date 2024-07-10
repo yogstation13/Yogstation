@@ -86,6 +86,9 @@ Temperature: 126.85 °C (400 K)
 	can_spawn_ore = FALSE
 	if(spawn_overlay)
 		add_overlay(image(icon='yogstation/icons/obj/jungle.dmi',icon_state="dug_spot",layer=BELOW_OBJ_LAYER))
+	spawn_ores()
+
+/turf/open/floor/plating/dirt/jungleland/proc/spawn_ores()
 	var/datum/ore_patch/ore = GLOB.jungle_ores[ ore_present ]
 	if(ore)
 		ore.spawn_at(src)
@@ -116,6 +119,7 @@ Temperature: 126.85 °C (400 K)
 /turf/open/floor/plating/dirt/jungleland/ex_act(severity, target)
 	if(can_spawn_ore && prob( (severity/3)*100  ))
 		spawn_rock()
+		
 /turf/open/floor/plating/dirt/jungleland/barren_rocks
 	name = "rocky surface"
 	desc = "Surface covered by rocks, pebbles and stones."

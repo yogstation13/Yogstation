@@ -214,7 +214,7 @@
 						robo_parts += NN
 					if(NN.body_zone == BODY_ZONE_HEAD) //don't add the head to the list, just transform them into an plasmaman when it's the only thing left
 						continue
-					if(NN.status == BODYPART_ORGANIC && !(NN.species_id == "plasmaman" || NN.species_id == "husk")) //getting every organic, non-plasmaman limb (augments/androids are immune to this)
+					if(NN.status == BODYPART_ORGANIC && !(NN.species_id == SPECIES_PLASMAMAN || NN.species_id == "husk")) //getting every organic, non-plasmaman limb (augments/androids are immune to this)
 						plasma_parts += NN
 
 				if(prob(35)) //checking if the delay is over & if the victim actually has any parts to nom
@@ -229,7 +229,7 @@
 						else
 							PP.visible_message(span_warning("[L]'s [NB] melts down to the bone!"))
 						var/obj/item/bodypart/replacement_part = new NB.type
-						replacement_part.species_id = "plasmaman"
+						replacement_part.species_id = SPECIES_PLASMAMAN
 						replacement_part.original_owner = "plasma river"
 						replacement_part.replace_limb(PP)
 						qdel(NB)
