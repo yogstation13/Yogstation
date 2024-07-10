@@ -38,9 +38,11 @@
 	for(var/thing in victims)
 		var/mob/living/victim = thing
 		var/obj/item/radio/source = victims[victim]
-		do_spasm(victim, source)
+		INVOKE_ASYNC(src, PROC_REF(do_spasm), victim, source)
 
 /datum/round_event/minispasm/proc/do_spasm(mob/living/victim, obj/item/radio/source)
+	if(isipc(victim))
+		return
 	if(victim.psi)
 		playsound(source, 'sound/creatures/narsie_rises.ogg', 75) //LOUD AS FUCK BOY
 		to_chat(victim, span_danger("A hauntingly familiar sound hisses from \icon[source] \the [source], and your vision flickers!"))
