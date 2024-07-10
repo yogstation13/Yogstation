@@ -54,7 +54,7 @@
 		victim.Unconscious(20 SECONDS)
 		victim.adjust_jitter(1 SECONDS)
 		SEND_SIGNAL(victim, COMSIG_ADD_MOOD_EVENT, "minispasm", /datum/mood_event/epilepsy)
-		var/new_latencies = rand(2,4)
+		var/new_latencies = rand(1,4)
 		var/list/faculties = list(PSI_COERCION, PSI_REDACTION, PSI_ENERGISTICS, PSI_PSYCHOKINESIS)
 		for(var/i = 1 to new_latencies)
 			to_chat(victim, span_danger("<font size = 3>[pick(psi_operancy_messages)]</font>"))
