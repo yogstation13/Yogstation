@@ -72,6 +72,7 @@ Difficulty: Medium
 	var/player_cooldown = 0
 	///sound used by any ability that shoots stuff
 	var/fire_sound = 'sound/magic/fireball.ogg'
+	var/max_anger = 20
 
 /datum/action/innate/megafauna_attack/fire_cone
 	name = "Fire Cone"
@@ -105,7 +106,7 @@ Difficulty: Medium
 	if(swooping)
 		return
 
-	anger_modifier = clamp(((maxHealth - health)/50),0,20)
+	anger_modifier = clamp(((maxHealth - health)/50),0,max_anger)
 	ranged_cooldown = world.time + ranged_cooldown_time
 
 	if(client)

@@ -4422,7 +4422,7 @@
 #include "yogstation\code\modules\jungleland\jungle_turfs.dm"
 #include "yogstation\code\modules\jungleland\jungleland_crafting.dm"
 #include "yogstation\code\modules\jungleland\kinetic_javelin.dm"
-#include "yogstation\code\modules\jungleland\megafauna\jungle_drake.dm"
+#include "yogstation\code\modules\jungleland\megafauna\jungle_dragon.dm"
 #include "yogstation\code\modules\jungleland\megafauna\tar_king.dm"
 #include "yogstation\code\modules\language\darkspeak.dm"
 #include "yogstation\code\modules\language\japanese.dm"
