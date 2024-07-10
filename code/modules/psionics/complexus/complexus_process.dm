@@ -82,7 +82,7 @@
 	if(owner.stat == CONSCIOUS && stamina && use_autoredaction && !suppressed && get_rank(PSI_REDACTION) >= PSI_RANK_OPERANT)
 		attempt_regeneration()
 
-	var/next_aura_size = max(0.1,((stamina/max_stamina)*min(3,rating))/5)
+	var/next_aura_size = max(0.1, ( (stamina/max_stamina) * min(2, rating) ) /2)
 	var/next_aura_alpha = round(((suppressed ? max(0,rating - 2) : rating)/5)*255)
 
 	if(next_aura_alpha != last_aura_alpha || next_aura_size != last_aura_size || aura_color != last_aura_color)

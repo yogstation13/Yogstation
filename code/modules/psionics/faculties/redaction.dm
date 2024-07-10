@@ -7,14 +7,14 @@
 	faculty = PSI_REDACTION
 	admin_log = FALSE
 
-/datum/psionic_power/redaction/proc/check_dead(var/mob/living/target)
+/datum/psionic_power/redaction/proc/check_dead(mob/living/target)
 	if(!istype(target))
 		return FALSE
 	if(target.stat == DEAD || HAS_TRAIT(target, TRAIT_FAKEDEATH))
 		return TRUE
 	return FALSE
 
-/datum/psionic_power/redaction/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
+/datum/psionic_power/redaction/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(check_dead(target))
 		return FALSE
 	. = ..()
@@ -28,7 +28,7 @@
 	icon_state = "redac_skinsight"
 	use_description = "Activate the power with z, then target the mob you wish to scan with combat mode off. Higher psi levels provide more information."
 
-/datum/psionic_power/redaction/skinsight/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
+/datum/psionic_power/redaction/skinsight/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(user.combat_mode || !istype(target) || !proximity || isipc(target))
 		return FALSE
 	. = ..()
@@ -46,7 +46,7 @@
 	icon_state = "redac_mend"
 	use_description = "Activate the power with z, then target the mob you wish to heal with combat mode off. Higher psi levels provide further healing."
 
-/datum/psionic_power/redaction/mend/invoke(var/mob/living/user, var/mob/living/carbon/human/target, proximity, parameters)
+/datum/psionic_power/redaction/mend/invoke(mob/living/user, mob/living/carbon/human/target, proximity, parameters)
 	if(user.combat_mode || !istype(target) || !proximity || isipc(target))
 		return FALSE
 	. = ..()
@@ -97,7 +97,7 @@
 	icon_state = "redac_cleanse"
 	use_description = "Activate the power with z, then target the mob you wish cleanse of radiation and clone damage with combat mode off."
 
-/datum/psionic_power/redaction/cleanse/invoke(var/mob/living/user, var/mob/living/carbon/human/target, proximity, parameters)
+/datum/psionic_power/redaction/cleanse/invoke(mob/living/user, mob/living/carbon/human/target, proximity, parameters)
 	if(user.combat_mode || !istype(target) || !proximity || isipc(target))
 		return FALSE
 	. = ..()
@@ -132,7 +132,7 @@
 	use_description = "Activate the power with z, then target the mob you wish to revive with combat mode off. Has several limiting factors. Higher psi levels upgrade the revive."
 	admin_log = FALSE
 
-/datum/psionic_power/revive/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
+/datum/psionic_power/revive/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(user.combat_mode || !istype(target) || !proximity || isipc(target))
 		return FALSE
 	. = ..()
