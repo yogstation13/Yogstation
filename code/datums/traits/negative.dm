@@ -929,7 +929,7 @@
 /datum/quirk/psionically_deafened
 	name = "Psionically Tuned"
 	desc = "You don't believe in fancy mumbo jumbo like 'psionics' or 'going to the doctor'."
-	icon = "face-grin-tongue"
+	icon = "hand-back-fist"
 	value = -3
 	mob_trait = TRAIT_PSIONICALLY_DEAFENED
 	gain_text = span_notice("You feel like you got your head on straight, probably.")

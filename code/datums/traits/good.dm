@@ -475,7 +475,7 @@
 /datum/quirk/psionically_tuned
 	name = "Psionically Tuned"
 	desc = "A psionic storm passed through you in your youth, you have a much higher chance to be a latent psionic user, and have increased psi stamina."
-	icon = "face-grin-tongue"
+	icon = "brain"
 	value = 3
 	mob_trait = TRAIT_PSIONICALLY_TUNED
 	gain_text = span_notice("You feel much more tuned to the veil.")
