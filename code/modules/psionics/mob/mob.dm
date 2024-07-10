@@ -28,9 +28,10 @@
 	if(!psi && !tried_species)
 		tried_species = TRUE
 		var/datum/species/dude = dna.species
+		var/latency_chance = dude.latency_chance
 		if(HAS_TRAIT(dude, TRAIT_PSIONICALLY_TUNED))
-			dude.latency_chance + 15
+			latency_chance = min(latency_chance + 15, 100)
 		else if(HAS_TRAIT(dude, TRAIT_PSIONICALLY_DEAFENED))
-			dude.latency_chance - 100
-		if(prob(dude.latency_chance))
+			latency_chance = 0
+		if(prob(latency_chance))
 			set_psi_rank(pick(dude.possible_faculties), dude.starting_psi_level)
