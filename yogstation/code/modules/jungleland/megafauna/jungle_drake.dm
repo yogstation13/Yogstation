@@ -20,7 +20,7 @@
 		/datum/action/innate/megafauna_attack/mass_vine,
 		/datum/action/innate/megafauna_attack/vine_swoop
 		)
-	fire_sound = 'sound/items/poster_ripped.ogg' //placeholder
+	fire_sound = 'sound/weapons/whip.ogg' //placeholder
 
 /mob/living/simple_animal/hostile/megafauna/dragon/jungle/Initialize(mapload)
 	. = ..()
