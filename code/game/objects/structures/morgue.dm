@@ -53,7 +53,6 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 
 
 /obj/structure/bodycontainer/Initialize(mapload)
-	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	if(connected)
 		connected = new connected(src)
@@ -243,13 +242,13 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 
 /obj/structure/bodycontainer/morgue/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
+	update_appearance(UPDATE_ICON)
 	if(!istype(arrived, /obj/structure/closet/body_bag))
 		return
 	var/obj/structure/closet/body_bag/arrived_bag = arrived
 	if(!arrived_bag.tag_name)
 		return
 	name = "[initial(name)] - ([arrived_bag.tag_name])"
-	update_appearance(UPDATE_ICON)
 
 /obj/structure/bodycontainer/morgue/Exited(atom/movable/gone, direction)
 	. = ..()
