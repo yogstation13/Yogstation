@@ -129,11 +129,7 @@
 /turf/open/floor/plating/airless,
 /area/template_noop)
 "M" = (
-/turf/closed/indestructible{
-	desc = "A wall impregnated with Fixium, able to withstand massive explosions with ease";
-	icon_state = "riveted";
-	name = "hyper-reinforced wall"
-	},
+/turf/closed/indestructible/riveted/testingsite,
 /area/template_noop)
 "O" = (
 /obj/effect/turf_decal/stripes/line,
