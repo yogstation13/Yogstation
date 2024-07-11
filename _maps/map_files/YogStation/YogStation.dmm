@@ -23076,21 +23076,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"frH" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/chair/stool{
-	pixel_y = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/machinery/atmospherics/components/binary/pump/on/layer2{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore/secondary)
 "frM" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
@@ -29623,6 +29608,21 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
+"hGV" = (
+/obj/structure/chair/stool{
+	pixel_y = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/machinery/atmospherics/components/binary/pump/on/layer2{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore/secondary)
 "hGZ" = (
 /obj/structure/chair{
 	dir = 8
@@ -34297,7 +34297,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "jjR" = (
-/obj/machinery/atmospherics/components/unary/tank/toxins,
+/obj/machinery/atmospherics/components/unary/tank/plasma,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "jjS" = (
@@ -110772,7 +110772,7 @@ aaa
 esT
 aaa
 abp
-frH
+hGV
 atm
 sXv
 trb

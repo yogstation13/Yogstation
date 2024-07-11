@@ -12,8 +12,8 @@ import { FeatureChoicedServerData, FeatureValueInput } from "./preferences/featu
 import { filterMap, sortBy } from "common/collections";
 import { useRandomToggleState } from "./useRandomToggleState";
 
-const CLOTHING_CELL_SIZE = 48;
-const CLOTHING_SIDEBAR_ROWS = 9;
+const CLOTHING_CELL_SIZE = 56;
+const CLOTHING_SIDEBAR_ROWS = 11;
 
 const CLOTHING_SELECTION_CELL_SIZE = 48;
 const CLOTHING_SELECTION_WIDTH = 5.4;
@@ -341,7 +341,11 @@ const createSetRandomization = (
 const sortPreferences = sortBy<[string, unknown]>(
   ([featureId, _]) => {
     const feature = features[featureId];
-    return feature?.name;
+    if (feature?.sortingPrefix) {
+      return feature.sortingPrefix + feature.name;
+    } else {
+      return feature?.name;
+  }
   });
 
 const PreferenceList = (props: {

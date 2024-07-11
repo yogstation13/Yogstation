@@ -345,6 +345,7 @@
 			prof.righthand_file_list[slot] = I.righthand_file
 			prof.worn_icon_list[slot] = I.worn_icon
 			prof.worn_icon_state_list[slot] = I.worn_icon_state
+			prof.sprite_sheets_list[slot] = I.sprite_sheets
 			prof.exists_list[slot] = 1
 		else
 			continue
@@ -676,6 +677,7 @@
 	new_profile.socks = socks
 	new_profile.worn_icon_list = worn_icon_list.Copy()
 	new_profile.worn_icon_state_list = worn_icon_state_list.Copy()
+	new_profile.sprite_sheets_list = sprite_sheets_list.Copy()
 	new_profile.stored_scars = stored_scars.Copy()
 
 /datum/antagonist/changeling/xenobio

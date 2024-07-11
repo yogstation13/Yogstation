@@ -833,7 +833,7 @@
 				if(0 to NUTRITION_LEVEL_STARVING)
 					combined_msg += span_danger("You're starving!")
 
-	if(dna.species.id == "skeleton")
+	if(isskeleton(src))
 		var/obj/item/clothing/under/under = w_uniform
 		if((!under || under.adjusted) && (!wear_suit))
 			play_xylophone()

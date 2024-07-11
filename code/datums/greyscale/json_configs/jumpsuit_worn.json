@@ -12,10 +12,31 @@
 			"blend_mode": "overlay"
 		}
 	],
+	"jumpsuit_vox": [
+		{
+			"type": "icon_state",
+			"icon_state": "jumpsuit_vox",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "jumpsuit_accessories_vox",
+			"blend_mode": "overlay"
+		}
+	],
 	"jumpsuit_d" : [
 		{
 			"type": "icon_state",
 			"icon_state": "jumpsuit_d",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	],
+	"jumpsuit_d_vox": [
+		{
+			"type": "icon_state",
+			"icon_state": "jumpsuit_d_vox",
 			"blend_mode": "overlay",
 			"color_ids": [ 1 ]
 		}
@@ -54,10 +75,31 @@
 			"blend_mode": "overlay"
 		}
 	],
+	"jumpskirt_vox": [
+		{
+			"type": "icon_state",
+			"icon_state": "jumpskirt_vox",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "jumpskirt_accessories_vox",
+			"blend_mode": "overlay"
+		}
+	],
 	"jumpskirt_d" : [
 		{
 			"type": "icon_state",
 			"icon_state": "jumpskirt_d",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	],
+	"jumpskirt_d_vox" : [
+		{
+			"type": "icon_state",
+			"icon_state": "jumpskirt_d_vox",
 			"blend_mode": "overlay",
 			"color_ids": [ 1 ]
 		}

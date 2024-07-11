@@ -420,7 +420,14 @@
 /mob/living/carbon/human/get_footprint_sprite()
 	var/obj/item/bodypart/l_leg/left_leg = get_bodypart(BODY_ZONE_L_LEG)
 	var/obj/item/bodypart/r_leg/right_leg = get_bodypart(BODY_ZONE_R_LEG)
-	return shoes?.footprint_sprite || left_leg?.footprint_sprite || right_leg?.footprint_sprite
+	var/species_id
+	var/datum/species/species
+	if(left_leg?.species_id == right_leg?.species_id)
+		species_id = left_leg.species_id
+		var/species_type = GLOB.species_list[species_id]
+		if(species_type)
+			species = new species_type()
+	return species?.get_footprint_sprite() || shoes?.footprint_sprite || left_leg?.footprint_sprite || right_leg?.footprint_sprite
 
 /mob/living/carbon/human/assess_threat(judgement_criteria, lasercolor = "", datum/callback/weaponcheck=null)
 	if(judgement_criteria & JUDGE_EMAGGED)
@@ -482,7 +489,7 @@
 		threatcount += 2
 
 	//Check for nonhuman scum
-	if(dna && dna.species.id && dna.species.id != "human")
+	if(dna && dna.species.id && dna.species.id != SPECIES_HUMAN)
 		threatcount += 1
 
 	//mindshield implants imply trustworthyness
@@ -507,6 +514,7 @@
 	underwear = "Nude"
 	update_body()
 	update_hair()
+	dna.update_dna_identity()
 
 /mob/living/carbon/human/singularity_pull(S, current_size)
 	..()
@@ -685,6 +693,7 @@
 	if(creamed) //clean both to prevent a rare bug
 		cut_overlay(mutable_appearance('icons/effects/creampie.dmi', "creampie_lizard"))
 		cut_overlay(mutable_appearance('icons/effects/creampie.dmi', "creampie_human"))
+		cut_overlay(mutable_appearance('icons/effects/creampie.dmi', "creampie_vox"))
 		creamed = FALSE
 
 //Turns a mob black, flashes a skeleton overlay
@@ -1023,7 +1032,7 @@
 			nutrition = 0
 			dna?.species.get_hunger_alert(src)
 			return FALSE
-		if(nutrition >= NUTRITION_LEVEL_FAT)
+		if(nutrition >= NUTRITION_LEVEL_FAT && change > 0)
 			return FALSE
 		change = min(change, NUTRITION_LEVEL_FAT - nutrition) // no getting fat
 	..()

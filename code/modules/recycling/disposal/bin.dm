@@ -208,6 +208,7 @@
 	flush = FALSE
 
 /obj/machinery/disposal/proc/newHolderDestination(obj/structure/disposalholder/H)
+	H.destinationTag = SORT_TYPE_DISPOSALS
 	for(var/obj/item/smallDelivery/O in src)
 		H.tomail = TRUE
 		return
@@ -285,7 +286,7 @@
 			STR.remove_from_storage(O,src)
 		b.update_appearance()
 		update_appearance()
-	if(istype(I, /obj/item/destTagger))
+	else if(istype(I, /obj/item/destTagger))
 		return
 	else
 		return ..()
