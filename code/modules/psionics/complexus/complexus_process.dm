@@ -169,7 +169,7 @@
 				if(istype(W, /datum/wound/burn))
 					var/datum/wound/burn/degree = W
 					degree.sanitization += (heal_rate * 0.5)
-					flesh_healing += (heal_rate * 0.5)
+					degree.flesh_healing += (heal_rate * 0.5)
 					if(prob(25))
 						to_chat(owner, span_notice("Your autoredactive faculty cleans and mends the burn on your [W.limb]."))
 					return
