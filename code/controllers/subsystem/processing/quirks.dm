@@ -28,7 +28,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		list("Cybernetic Organ (Lungs)", "Body Purist"),
 		list("Cybernetic Organ (Heart)", "Body Purist"),
 		list("Cybernetic Organ (Liver)", "Body Purist"),
-		list("Upgraded Cybernetic Organ", "Body Purist")
+		list("Upgraded Cybernetic Organ", "Body Purist"),
 		list("Psionically Deafened", "Psionically Tuned")
 	) 
 
