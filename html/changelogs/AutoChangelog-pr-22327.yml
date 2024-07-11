@@ -1,0 +1,8 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed a floor in bluespace lockers looking like ERROR"
+  - bugfix: "Fixed abductor ship walls looking entirely like ERROR (whoops)"
+  - bugfix: "Fixed the invincible wall found in toxins launch sites looking like ERROR"
+  - spellcheck: "Rewrote flavor text for the indestructible walls at toxins launch sites"
+  - experiment: "Abductor ships probably look incredibly lame and circular now, fixes coming soon"

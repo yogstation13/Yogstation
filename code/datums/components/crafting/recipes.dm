@@ -873,3 +873,19 @@
 	result = /obj/structure/reactor_frame
 	category = CAT_STRUCTURES
 	time = 10 SECONDS
+
+/datum/crafting_recipe/morguetray
+	name = "Morgue Tray"
+	reqs = list(
+		/obj/item/stack/sheet/metal = 5
+	)
+	result = /obj/structure/tray/morgue
+	category = CAT_STRUCTURES
+
+/datum/crafting_recipe/crematortray
+	name = "Crematorium Tray"
+	reqs = list(
+		/obj/item/stack/sheet/metal = 5
+	)
+	result = /obj/structure/tray/cremator
+	category = CAT_STRUCTURES
