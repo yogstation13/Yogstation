@@ -79,10 +79,12 @@
 	. = ..()
 	closeToolTip(usr)
 
-/obj/screen/psi/hub/Click(var/location, var/control, var/params)
+/obj/screen/psi/hub/Click(location, control, params)
 	var/list/click_params = params2list(params)
 	if(click_params["shift"])
 		owner.show_psi_assay(owner)
+		return
+	if(owner.stat != CONSCIOUS)
 		return
 
 	if(owner.psi.suppressed && owner.psi.stun)

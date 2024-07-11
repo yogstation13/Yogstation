@@ -15,14 +15,21 @@
 	cancel()
 
 /datum/psi_complexus/proc/get_armour(armourtype)
-	if(can_use_passive())
-		return round(clamp(clamp(4 * rating, 0, 20) * get_rank(SSpsi.armour_faculty_by_type[armourtype]), 0, 100) * (stamina/max_stamina))
-	return 0
+	if(!use_psi_armour || !can_use_passive())
+		return 0
+	
+	/**
+	 * rating multiplied by the rank of that specific faculty, multiplied by stamina percentage
+	 */
+	return round(clamp(clamp(4 * rating, 0, 20) * get_rank(SSpsi.armour_faculty_by_type[armourtype]), 0, 100) * (stamina/max_stamina))
 
 /datum/psi_complexus/proc/handle_block_chance(obj/projectile/projectile)
+	if(!use_psi_armour || !can_use_passive())
+		return FALSE
+
 	var/effective_rank
 	var/chance = 0
-
+	
 	if(istype(projectile, /obj/projectile/beam) || istype(projectile, /obj/projectile/energy))
 		effective_rank = get_rank(PSI_ENERGISTICS)
 	else

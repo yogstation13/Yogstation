@@ -13,7 +13,7 @@
 		icon_state = owner.psi.use_psi_armour ? "psiarmour_on" : "psiarmour_off"
 
 /obj/screen/psi/armour/Click()
-	if(!owner.psi)
+	if(!owner.psi || owner.stat != CONSCIOUS)
 		return
 	owner.psi.use_psi_armour = !owner.psi.use_psi_armour
 	to_chat(owner, span_notice("You will [owner.psi.use_psi_armour ? "now" : "no longer"] use your psionics to deflect or block incoming attacks."))
@@ -35,7 +35,7 @@
 		icon_state = owner.psi.use_autoredaction ? "healing_on" : "healing_off"
 
 /obj/screen/psi/autoredaction/Click()
-	if(!owner.psi)
+	if(!owner.psi || owner.stat != CONSCIOUS)
 		return
 	owner.psi.use_autoredaction = !owner.psi.use_autoredaction
 	to_chat(owner, span_notice("You will [owner.psi.use_autoredaction ? "now" : "no longer"] use your psionics to regenerate."))
@@ -57,7 +57,7 @@
 		icon_state = owner.psi.zorch_harm ? "zorch_harm" : "zorch_disable"
 
 /obj/screen/psi/zorch_harm/Click()
-	if(!owner.psi)
+	if(!owner.psi || owner.stat != CONSCIOUS)
 		return
 	owner.psi.zorch_harm = !owner.psi.zorch_harm
 	to_chat(owner, span_notice("You will now fire [owner.psi.zorch_harm ? "lethal" : "non-lethal"] lasers with your psionics."))

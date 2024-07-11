@@ -97,9 +97,17 @@
 	if(update_hud)
 		ui.update_icon()
 
+/**
+ * Priority order is
+ * -Stopped heart (actively dying)
+ * -Regular damage (probably dying)
+ * -Wounds (might bleed out)
+ * -Tox/Clone/Rad (You're probably not hurt a different way when you need to heal this)
+ * -Organ damage (just keep us busy and topped off)
+ */
 /datum/psi_complexus/proc/attempt_regeneration()
 
-	var/heal_general =  FALSE
+	var/heal_paramount = FALSE
 	var/heal_poison =   FALSE
 	var/heal_internal = FALSE
 	var/heal_rate =     0
@@ -107,7 +115,7 @@
 
 	switch(get_rank(PSI_REDACTION))
 		if(PSI_RANK_PARAMOUNT)
-			heal_general = TRUE
+			heal_paramount = TRUE
 			heal_poison = TRUE
 			heal_internal = TRUE
 			mend_prob = 50
@@ -130,77 +138,77 @@
 	if(!heal_rate || stamina < heal_rate)
 		return // Don't backblast from trying to heal ourselves thanks.
 
-	if(ishuman(owner))
+	if(prob(mend_prob))
+		// Fix our heart if we're paramount.
+		if(heal_paramount && ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			var/obj/item/organ/heart/should_beat = H.getorganslot(ORGAN_SLOT_HEART)
+			if(should_beat && !should_beat.beating && spend_power(heal_rate))
+				should_beat.Restart()
 
-		var/mob/living/carbon/human/H = owner
-
-		// Mend internal damage.
-		if(prob(mend_prob))
-/*
-			// Fix our heart if we're paramount.
-			if(heal_general && H.is_asystole() && spend_power(heal_rate))
-				H.resuscitate()
-*/
-			// Heal organ damage.
-			if(heal_internal)
-				for(var/obj/item/organ/I in H.internal_organs)
-
-					if(I.organ_flags & ORGAN_SYNTHETIC)
-						continue
-
-					if(I.damage > 0 && spend_power(heal_rate))
-						I.applyOrganDamage(-heal_rate)
-						if(prob(25))
-							to_chat(H, span_notice("Your innards itch as your autoredactive faculty mends your [I.name]."))
-						return
-			/* To fix
-			// Heal broken bones.
-			if(H.bad_external_organs.len)
-				for(var/obj/item/organ/external/E in H.bad_external_organs)
-					if(BP_IS_ROBOTIC(E))
-						continue
-					if(heal_internal && (E.status & ORGAN_BROKEN) && E.damage < (E.min_broken_damage * config.organ_health_multiplier)) // So we don't mend and autobreak.
-						if(spend_power(heal_rate))
-							if(E.mend_fracture())
-								to_chat(H, span_notice("Your autoredactive faculty coaxes together the shattered bones in your [E.name]."))
-								return
-					if(heal_bleeding)
-						if((E.status & ORGAN_ARTERY_CUT) && spend_power(heal_rate))
-							to_chat(H, span_notice("Your autoredactive faculty mends the torn artery in your [E.name], stemming the worst of the bleeding."))
-							E.status &= ~ORGAN_ARTERY_CUT
-							return
-						if(E.status & ORGAN_TENDON_CUT)
-							to_chat(H, span_notice("Your autoredactive faculty repairs the severed tendon in your [E.name]."))
-							E.status &= ~ORGAN_TENDON_CUT
-							return TRUE
-						for(var/datum/wound/W in E.wounds)
-							if(W.bleeding() && spend_power(heal_rate))
-								to_chat(H, span_notice("Your autoredactive faculty knits together severed veins, stemming the bleeding from \a [W.desc] on your [E.name]."))
-								W.bleed_timer = 0
-								W.clamped = TRUE
-								E.status &= ~ORGAN_BLEEDING
-								return
-			*/
-
-
-	// Heal radiation, cloneloss and poisoning.
-	if(heal_poison)
-
-		if(owner.radiation && spend_power(heal_rate))
+		// Heal actual damage
+		if((owner.getBruteLoss() || owner.getFireLoss() || owner.getOxyLoss()) && spend_power(heal_rate))
+			owner.heal_ordered_damage(heal_rate, list(BRUTE, BURN, OXY), BODYPART_ANY) //it gets to heal robotic parts because otherwise it'd suck you dry trying to fix unfixable limbs
+			new /obj/effect/temp_visual/heal(get_turf(owner), "#33cc33")
 			if(prob(25))
-				to_chat(owner, span_notice("Your autoredactive faculty repairs some of the radiation damage to your body."))
-			owner.radiation = max(0, owner.radiation - (heal_rate * 5))
-			return
+				to_chat(owner, span_notice("Your skin crawls as your autoredactive faculty heals your body."))
 
-		if(owner.getCloneLoss() && spend_power(heal_rate))
-			if(prob(25))
-				to_chat(owner, span_notice("Your autoredactive faculty stitches together some of your mangled DNA."))
-			owner.adjustCloneLoss(-(heal_rate/2))
-			return
+		// Repair wounds
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			for(var/datum/wound/W in H.all_wounds)
+				if(!spend_power(heal_rate))
+					return
 
-	// Heal everything left.
-	if(heal_general && prob(mend_prob) && (owner.getBruteLoss() || owner.getFireLoss() || owner.getOxyLoss() || owner.getToxLoss()) && spend_power(heal_rate))
-		owner.heal_ordered_damage(heal_rate, list(BRUTE, BURN, TOX, OXY), BODYPART_ANY, TRUE) //it gets to heal robotic parts because otherwise it'd suck you dry trying to fix unfixable limbs
-		new /obj/effect/temp_visual/heal(get_turf(owner), "#33cc33")
-		if(prob(25))
-			to_chat(owner, span_notice("Your skin crawls as your autoredactive faculty heals your body."))
+				if(W.blood_flow)
+					W.blood_flow -= (heal_rate * 0.5)
+					if(prob(25))
+						to_chat(owner, span_notice("Your autoredactive faculty stems the flow of blood from your [W.limb]."))
+					return
+
+				if(istype(W, /datum/wound/burn))
+					var/datum/wound/burn/degree = W
+					degree.sanitization += (heal_rate * 0.5)
+					flesh_healing += (heal_rate * 0.5)
+					if(prob(25))
+						to_chat(owner, span_notice("Your autoredactive faculty cleans and mends the burn on your [W.limb]."))
+					return
+
+				if(istype(W, /datum/wound/blunt))
+					qdel(W)
+					playsound(H, 'sound/surgery/bone3.ogg', 25)
+					to_chat(owner, span_notice("Your autoredactive faculty snaps the bones in your [W.limb] back into place."))
+					return
+
+		// Heal radiation, cloneloss and poisoning.
+		if(heal_poison)
+			if(owner.getToxLoss() && spend_power(heal_rate))
+				if(prob(25))
+					to_chat(owner, span_notice("Your autoredactive faculty purges foreign toxins in your body."))
+				owner.adjustToxLoss(heal_rate, TRUE, TRUE)
+
+			if(owner.getCloneLoss() && spend_power(heal_rate))
+				if(prob(25))
+					to_chat(owner, span_notice("Your autoredactive faculty stitches together some of your mangled DNA."))
+				owner.adjustCloneLoss(-(heal_rate/2))
+				return
+
+			if(owner.radiation && spend_power(heal_rate))
+				if(prob(25))
+					to_chat(owner, span_notice("Your autoredactive faculty repairs some of the radiation damage to your body."))
+				owner.radiation = max(0, owner.radiation - (heal_rate * 5))
+				return
+
+		// Heal organ damage.
+		if(heal_internal && ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			for(var/obj/item/organ/I in H.internal_organs)
+
+				if(I.organ_flags & ORGAN_SYNTHETIC)
+					continue
+
+				if(I.damage > 0 && spend_power(heal_rate))
+					I.applyOrganDamage(-heal_rate)
+					if(prob(25))
+						to_chat(H, span_notice("Your innards itch as your autoredactive faculty mends your [I.name]."))
+					return
