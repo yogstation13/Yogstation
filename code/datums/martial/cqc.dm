@@ -105,7 +105,7 @@
 		var/bonus_damage = A.get_punchdamagehigh() * 1.5 //15 damage
 		stamina_harm(A, D, bonus_damage)
 
-	D.Immobilize(1 SECONDS)
+	D.Immobilize(0.5 SECONDS)
 
 	playsound(get_turf(D), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 	D.visible_message(span_danger("[A] [attack_verb] [D]!"), span_userdanger("[A] [attack_verb] you!"))
