@@ -6833,10 +6833,8 @@
 /turf/open/floor/plasteel,
 /area/teleporter)
 "aXp" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
+/obj/structure/disposalpipe/segment,
+/turf/closed/wall,
 /area/crew_quarters/locker)
 "aXs" = (
 /obj/effect/turf_decal/stripes/line,
@@ -7267,9 +7265,8 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "bbO" = (
-/obj/machinery/portable_atmospherics/pump,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
 /area/crew_quarters/locker)
 "bbR" = (
 /turf/open/floor/plasteel,
@@ -10618,21 +10615,10 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "bEb" = (
-/obj/structure/closet,
-/obj/item/clothing/under/suit/female{
-	pixel_x = 3;
-	pixel_y = 1
-	},
-/obj/item/clothing/under/suit/really_black{
-	pixel_x = -2
-	},
-/obj/structure/window{
+/obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/blue/opposingcorners{
-	dir = 1
-	},
-/turf/open/floor/plasteel/cafeteria,
+/turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "bEc" = (
 /obj/effect/decal/cleanable/dirt,
@@ -14858,8 +14844,9 @@
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "cBh" = (
-/obj/machinery/portable_atmospherics/scrubber,
-/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "cBm" = (
@@ -16748,11 +16735,8 @@
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "dgL" = (
-/obj/effect/landmark/event_spawn,
-/obj/effect/turf_decal/tile/blue/opposingcorners{
-	dir = 1
-	},
-/turf/open/floor/plasteel/cafeteria,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "dgV" = (
 /obj/machinery/atmospherics/components/binary/pump/on/layer2{
@@ -28510,8 +28494,7 @@
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/storage)
 "hoR" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
+/obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -29409,15 +29392,8 @@
 /turf/open/floor/plating/broken,
 /area/maintenance/port/fore)
 "hCM" = (
-/obj/structure/table,
-/obj/item/razor,
-/obj/structure/window{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue/opposingcorners{
-	dir = 1
-	},
-/turf/open/floor/plasteel/cafeteria,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "hCQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -31215,10 +31191,11 @@
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
 "igL" = (
-/obj/effect/turf_decal/tile/blue/opposingcorners{
-	dir = 1
+/obj/machinery/door/airlock/mining/glass{
+	name = "Cargo Bay";
+	req_access_txt = "31"
 	},
-/turf/open/floor/plasteel/cafeteria,
+/turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "igQ" = (
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower{
@@ -31544,6 +31521,9 @@
 "inN" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
@@ -33227,12 +33207,8 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "iQm" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
+/obj/effect/turf_decal/bot,
+/obj/effect/portal/permanent/backrooms,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "iQC" = (
@@ -33263,6 +33239,9 @@
 	dir = 4;
 	name = "Locker Room APC";
 	pixel_x = 24
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
@@ -35691,11 +35670,11 @@
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
 "jKb" = (
-/obj/machinery/washing_machine,
-/obj/effect/turf_decal/tile/blue/opposingcorners{
-	dir = 1
+/obj/structure/disposalpipe/trunk{
+	dir = 4
 	},
-/turf/open/floor/plasteel/cafeteria,
+/obj/machinery/disposal/bin,
+/turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "jKG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -36678,12 +36657,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/secondarydatacore)
 "khj" = (
-/obj/machinery/washing_machine,
 /obj/machinery/light,
-/obj/effect/turf_decal/tile/blue/opposingcorners{
-	dir = 1
+/obj/structure/disposalpipe/segment{
+	dir = 9
 	},
-/turf/open/floor/plasteel/cafeteria,
+/turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "khm" = (
 /obj/structure/railing/corner,
@@ -36716,16 +36694,16 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "khF" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Locker Room Maintenance";
-	req_access_txt = "12"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/cable{
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/mining/glass{
+	name = "Cargo Bay";
+	req_access_txt = "31"
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
@@ -44722,10 +44700,6 @@
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
 "ndA" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Cargo Bay Maintenance";
-	req_access_txt = "31"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -44736,6 +44710,10 @@
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/mining/glass{
+	name = "Cargo Bay";
+	req_access_txt = "31"
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
@@ -66224,12 +66202,6 @@
 /area/science/research)
 "vaP" = (
 /obj/machinery/light,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
@@ -93595,9 +93567,9 @@ aQN
 aTw
 aUU
 bbg
-hoR
+aPA
 hCM
-igL
+hCM
 jKb
 aPA
 hfy
@@ -93853,7 +93825,7 @@ gaP
 gzV
 mNd
 aXp
-igL
+dgL
 dgL
 khj
 aPA
@@ -94109,10 +94081,10 @@ aQN
 aTw
 aUU
 dqM
+aPA
 aQN
-bEb
-igL
-jKb
+aQN
+aQN
 aPA
 hfy
 hfy
@@ -94366,10 +94338,10 @@ aQN
 gzP
 aTB
 dqM
-hrn
-aPA
-aPA
-aPA
+bbO
+aQN
+aQN
+aQN
 aPA
 aPA
 avA
@@ -94623,12 +94595,12 @@ aQN
 aQN
 aQN
 nos
-aXs
+igL
+aQN
+aQN
+aQN
+hCM
 bbO
-bbO
-bbO
-bbO
-aPA
 ioi
 ucp
 aSk
@@ -94880,12 +94852,12 @@ aQN
 aQN
 aQN
 aQN
-aXs
+bbO
+hrn
 cBh
-cBh
-cBh
-cBh
-aPA
+hoR
+hCM
+bbO
 ioi
 lmY
 aZE
@@ -95137,10 +95109,10 @@ aQN
 aQN
 aQN
 aQN
-aXv
+aPA
+aXs
 iQm
-iQm
-iQm
+bEb
 vaP
 aPA
 kLg
@@ -95394,8 +95366,8 @@ aXt
 aLr
 aXt
 aXt
-aXt
-aQN
+aPA
+aXv
 inN
 iQI
 rLL
