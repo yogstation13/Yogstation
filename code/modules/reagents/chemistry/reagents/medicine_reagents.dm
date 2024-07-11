@@ -1289,7 +1289,7 @@
 
 /datum/reagent/medicine/naloxone
 	name = "Naloxone"
-	description = "Rapidly purges most hazardous chemicals. Causes muscle weakness, and in higher dosages, brain and liver damage"
+	description = "Rapidly purges most hazardous chemicals. Causes muscle weakness, and in higher dosages, brain and liver damage."
 	reagent_state = LIQUID
 	color = "#27870a"
 	overdose_threshold = 20
