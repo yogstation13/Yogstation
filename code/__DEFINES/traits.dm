@@ -285,3 +285,6 @@
 
 ///reduces the cooldown of all used /datum/action/cooldown by 25%
 #define TRAIT_FAST_COOLDOWNS "short_spell_cooldowns" 
+
+/// One can breath under water, you get me?
+#define TRAIT_WATER_BREATHING "water_breathing"
