@@ -15,7 +15,7 @@
 	new dropping_item(get_turf(src))
 	for(var/obj/structure/fluff/grave/other_grave in orange(9,src))
 		if(prob(60)) //9 is too many, go for a much more reasonable number...
-			new /mob/living/simple_animal/hostile/asteroid/hivelord/legion(get_turf(other_grave))
+			new /mob/living/simple_animal/hostile/mining/hivelord/legion(get_turf(other_grave))
 		else
 			new /mob/living/simple_animal/hostile/skeleton(get_turf(other_grave))
 		playsound(other_grave, 'sound/effects/break_stone.ogg', 50, 1)

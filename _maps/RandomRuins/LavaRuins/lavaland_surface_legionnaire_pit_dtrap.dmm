@@ -12,7 +12,7 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
 "aN" = (
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion{
+/mob/living/simple_animal/hostile/mining/hivelord/legion{
 	color = "#e215d6";
 	desc = "You can still see what was once a human under the shifting mass of corruption. This one feels oddly... helpful?";
 	loot = list(/obj/item/organ/regenerative_core/legion,/obj/item/clothing/mask/yogs/freddy);
@@ -31,13 +31,13 @@
 	pixel_x = 1;
 	pixel_y = -3
 	},
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire{
+/mob/living/simple_animal/hostile/mining/elite/legionnaire{
 	faction = list("boss","mining")
 	},
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
 "aX" = (
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random,
+/mob/living/simple_animal/hostile/mining/basilisk/watcher/random,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "bn" = (
@@ -216,7 +216,7 @@
 /area/ruin/unpowered)
 "dM" = (
 /obj/structure/stone_tile/surrounding,
-/mob/living/simple_animal/hostile/asteroid/goliath/beast/random,
+/mob/living/simple_animal/hostile/mining/goliath/beast/random,
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
 "dV" = (
@@ -257,7 +257,7 @@
 "fu" = (
 /obj/structure/stone_tile/surrounding,
 /obj/structure/stone_tile/center,
-/mob/living/simple_animal/hostile/asteroid/marrowweaver,
+/mob/living/simple_animal/hostile/mining/marrowweaver,
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
 "fB" = (
@@ -424,7 +424,7 @@
 /turf/open/indestructible/boss,
 /area/ruin/unpowered)
 "jB" = (
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random,
+/mob/living/simple_animal/hostile/mining/basilisk/watcher/random,
 /obj/structure/stone_tile/block{
 	dir = 8
 	},
@@ -484,7 +484,7 @@
 /turf/open/chasm/lavaland,
 /area/lavaland/surface/outdoors)
 "lE" = (
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing,
+/mob/living/simple_animal/hostile/mining/basilisk/watcher/magmawing,
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
 "lT" = (
@@ -563,7 +563,7 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
 "mv" = (
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/mob/living/simple_animal/hostile/mining/hivelord/legion,
 /mob/living/simple_animal/hostile/skeleton{
 	faction = list("skeleton","mining")
 	},
@@ -599,7 +599,7 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
 "mP" = (
-/mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient,
+/mob/living/simple_animal/hostile/mining/goliath/beast/ancient,
 /obj/structure/stone_tile/surrounding,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
@@ -701,7 +701,7 @@
 /turf/open/indestructible/boss,
 /area/lavaland/surface/outdoors)
 "oC" = (
-/mob/living/simple_animal/hostile/asteroid/fugu{
+/mob/living/simple_animal/hostile/mining/fugu{
 	armour_penetration = 50;
 	color = "#990000";
 	desc = "The wumborian fugu rapidly increases its body mass in order to ward off its prey. Great care should be taken to avoid it while it's in this state as it is nearly invincible, but it cannot maintain its form forever. This one seems to have adapted to its new living conditions after thrashing its containment.";
@@ -860,7 +860,7 @@
 "sw" = (
 /obj/structure/stone_tile/surrounding/burnt,
 /obj/structure/stone_tile/center/burnt,
-/mob/living/simple_animal/hostile/asteroid/elite/broodmother_child{
+/mob/living/simple_animal/hostile/mining/elite/broodmother_child{
 	faction = list("boss","mining")
 	},
 /turf/open/lava/smooth/lava_land_surface,
@@ -1295,7 +1295,7 @@
 /area/ruin/unpowered)
 "Ed" = (
 /obj/structure/stone_tile/slab,
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/advanced,
+/mob/living/simple_animal/hostile/mining/hivelord/legion/advanced,
 /turf/open/chasm/lavaland,
 /area/ruin/unpowered)
 "Eo" = (
@@ -1491,7 +1491,7 @@
 /turf/open/chasm/lavaland,
 /area/ruin/unpowered)
 "If" = (
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing,
+/mob/living/simple_animal/hostile/mining/basilisk/watcher/icewing,
 /turf/open/chasm/lavaland,
 /area/ruin/unpowered)
 "Ii" = (
@@ -1528,7 +1528,7 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
 "IU" = (
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random,
+/mob/living/simple_animal/hostile/mining/basilisk/watcher/random,
 /obj/structure/stone_tile/block{
 	dir = 4
 	},
@@ -1645,7 +1645,7 @@
 	pixel_x = 2;
 	pixel_y = -8
 	},
-/mob/living/simple_animal/hostile/asteroid/marrowweaver/ice,
+/mob/living/simple_animal/hostile/mining/marrowweaver/ice,
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
 "Lc" = (
@@ -1713,7 +1713,7 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
 "Mg" = (
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire{
+/mob/living/simple_animal/hostile/mining/elite/legionnaire{
 	faction = list("boss","mining")
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -1745,7 +1745,7 @@
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
 "Nq" = (
-/mob/living/simple_animal/hostile/asteroid/marrowweaver,
+/mob/living/simple_animal/hostile/mining/marrowweaver,
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
 "Nr" = (
@@ -1849,7 +1849,7 @@
 "Pj" = (
 /obj/structure/stone_tile/surrounding/burnt,
 /obj/structure/stone_tile/center/cracked,
-/mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient,
+/mob/living/simple_animal/hostile/mining/goliath/beast/ancient,
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
 "Pl" = (
@@ -1924,7 +1924,7 @@
 	pixel_x = 4;
 	pixel_y = 3
 	},
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/mob/living/simple_animal/hostile/mining/hivelord/legion,
 /mob/living/simple_animal/hostile/skeleton{
 	faction = list("skeleton","mining")
 	},
@@ -2307,7 +2307,7 @@
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
 "WH" = (
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random,
+/mob/living/simple_animal/hostile/mining/basilisk/watcher/random,
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
 "WJ" = (
@@ -2330,7 +2330,7 @@
 /obj/structure/stone_tile/block{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/asteroid/goliath/beast/random,
+/mob/living/simple_animal/hostile/mining/goliath/beast/random,
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
 "YE" = (

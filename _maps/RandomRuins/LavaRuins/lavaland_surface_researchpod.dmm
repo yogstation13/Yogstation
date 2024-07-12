@@ -159,7 +159,7 @@
 /turf/closed/wall/mineral/titanium/survival/nodiagonal,
 /area/ruin/powered)
 "M" = (
-/mob/living/simple_animal/hostile/asteroid/marrowweaver/ice,
+/mob/living/simple_animal/hostile/mining/marrowweaver/ice,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"

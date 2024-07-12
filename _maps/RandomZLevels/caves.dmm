@@ -1733,7 +1733,7 @@
 	},
 /area/awaymission/caves/BMP_asteroid/level_two)
 "fo" = (
-/mob/living/simple_animal/hostile/asteroid/fugu,
+/mob/living/simple_animal/hostile/mining/fugu,
 /turf/open/floor/plating/asteroid/basalt{
 	initial_gas_mix = "n2=23;o2=14"
 	},

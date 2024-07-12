@@ -51,7 +51,7 @@
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/template_noop)
 "s" = (
-/mob/living/simple_animal/hostile/yog_jungle/meduracha,
+/mob/living/simple_animal/hostile/mining/yog_jungle/meduracha,
 /turf/open/water/toxic_pit,
 /area/template_noop)
 "t" = (

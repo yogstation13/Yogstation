@@ -16,7 +16,7 @@
   * A unique fight incorporating the head mechanic of legion into a whole new beast.  Combatants will need to make sure the tag-team of head and body don't lure them into a deadly trap.
   */
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire
+/mob/living/simple_animal/hostile/mining/elite/legionnaire
 	name = "legionnaire"
 	desc = "A towering skeleton, embodying the terrifying power of Legion."
 	icon_state = "legionnaire"
@@ -47,7 +47,7 @@
 								/datum/action/innate/elite_attack/bonfire_teleport,
 								/datum/action/innate/elite_attack/spew_smoke)
 
-	var/mob/living/simple_animal/hostile/asteroid/elite/legionnairehead/myhead = null
+	var/mob/living/simple_animal/hostile/mining/elite/legionnairehead/myhead = null
 	var/obj/structure/legionnaire_bonfire/mypile = null
 	var/has_head = TRUE
 
@@ -75,7 +75,7 @@
 	chosen_message = span_boldwarning("Your head will spew smoke in an area, wherever it may be.")
 	chosen_attack_num = SPEW_SMOKE
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/OpenFire()
+/mob/living/simple_animal/hostile/mining/elite/legionnaire/OpenFire()
 	if(client)
 		switch(chosen_attack)
 			if(LEGIONNAIRE_CHARGE)
@@ -98,7 +98,7 @@
 		if(SPEW_SMOKE)
 			spew_smoke()
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/legionnaire_charge(target)
+/mob/living/simple_animal/hostile/mining/elite/legionnaire/proc/legionnaire_charge(target)
 	ranged_cooldown = world.time + 50
 	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
 	var/turf/T = get_step(get_turf(src), dir_to_target)
@@ -109,7 +109,7 @@
 	visible_message(span_boldwarning("[src] prepares to charge!"))
 	addtimer(CALLBACK(src, PROC_REF(legionnaire_charge_2), dir_to_target, 0), 5)
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/legionnaire_charge_2(move_dir, times_ran)
+/mob/living/simple_animal/hostile/mining/elite/legionnaire/proc/legionnaire_charge_2(move_dir, times_ran)
 	if(times_ran >= 4)
 		return
 	var/turf/T = get_step(get_turf(src), move_dir)
@@ -137,7 +137,7 @@
 		L.adjustBruteLoss(50)
 	addtimer(CALLBACK(src, PROC_REF(legionnaire_charge_2), move_dir, (times_ran + 1)), 2)
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/head_detach(target)
+/mob/living/simple_animal/hostile/mining/elite/legionnaire/proc/head_detach(target)
 	ranged_cooldown = world.time + 10
 	if(myhead != null)
 		myhead.adjustBruteLoss(600)
@@ -148,7 +148,7 @@
 		icon_living = "legionnaire_headless"
 		icon_aggro = "legionnaire_headless"
 		visible_message(span_boldwarning("[src]'s head flies off!"))
-		var/mob/living/simple_animal/hostile/asteroid/elite/legionnairehead/newhead = new /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead(loc)
+		var/mob/living/simple_animal/hostile/mining/elite/legionnairehead/newhead = new /mob/living/simple_animal/hostile/mining/elite/legionnairehead(loc)
 		newhead.flags_1 |= (flags_1 & ADMIN_SPAWNED_1)
 		newhead.GiveTarget(target)
 		newhead.faction = faction.Copy()
@@ -161,11 +161,11 @@
 			myhead.melee_damage_lower = 20
 			myhead.melee_damage_upper = 20
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/onHeadDeath()
+/mob/living/simple_animal/hostile/mining/elite/legionnaire/proc/onHeadDeath()
 	myhead = null
 	addtimer(CALLBACK(src, PROC_REF(regain_head)), 50)
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/regain_head()
+/mob/living/simple_animal/hostile/mining/elite/legionnaire/proc/regain_head()
 	has_head = TRUE
 	if(stat == DEAD)
 		return
@@ -174,7 +174,7 @@
 	icon_aggro = "legionnaire"
 	visible_message(span_boldwarning("The top of [src]'s spine leaks a black liquid, forming into a skull!"))
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/bonfire_teleport()
+/mob/living/simple_animal/hostile/mining/elite/legionnaire/proc/bonfire_teleport()
 	ranged_cooldown = world.time + 5
 	if(mypile == null)
 		var/obj/structure/legionnaire_bonfire/newpile = new /obj/structure/legionnaire_bonfire(loc)
@@ -197,7 +197,7 @@
 		visible_message(span_boldwarning("[src] forms from the bonfire!"))
 		mypile.forceMove(legionturf)
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/spew_smoke()
+/mob/living/simple_animal/hostile/mining/elite/legionnaire/proc/spew_smoke()
 	ranged_cooldown = world.time + 60
 	var/turf/T = null
 	if(myhead != null)
@@ -221,7 +221,7 @@
 	invisibility = 100
 
 //The legionnaire's head.  Basically the same as any legion head, but we have to tell our creator when we die so they can generate another head.
-/mob/living/simple_animal/hostile/asteroid/elite/legionnairehead
+/mob/living/simple_animal/hostile/mining/elite/legionnairehead
 	name = "legionnaire head"
 	desc = "The legionnaire's head floating by itself.  One shouldn't get too close, though once it sees you, you really don't have a choice."
 	icon_state = "legionnaire_head"
@@ -244,10 +244,10 @@
 	deathmessage = "crumbles away!"
 	faction = list()
 	ranged = FALSE
-	var/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/body = null
+	var/mob/living/simple_animal/hostile/mining/elite/legionnaire/body = null
 	true_spawn = FALSE
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnairehead/death()
+/mob/living/simple_animal/hostile/mining/elite/legionnairehead/death()
 	. = ..()
 	if(body)
 		body.onHeadDeath()
@@ -264,7 +264,7 @@
 	density = FALSE
 	light_range = 4
 	light_color = LIGHT_COLOR_RED
-	var/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/myowner = null
+	var/mob/living/simple_animal/hostile/mining/elite/legionnaire/myowner = null
 	
 	
 /obj/structure/legionnaire_bonfire/Entered(atom/movable/mover, atom/target)
@@ -303,13 +303,13 @@
 
 /obj/item/crusher_trophy/legionnaire_spine/on_mark_detonation(mob/living/target, mob/living/user)
 	if(rand(1, 100) <= bonus_value && target.stat != DEAD)
-		var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/A = new /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion(user.loc)
+		var/mob/living/simple_animal/hostile/mining/hivelordbrood/legion/A = new /mob/living/simple_animal/hostile/mining/hivelordbrood/legion(user.loc)
 		A.flags_1 |= (flags_1 & ADMIN_SPAWNED_1)
 		A.GiveTarget(target)
 		A.friends = user
 		A.faction = user.faction.Copy()
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant
+/mob/living/simple_animal/hostile/mining/elite/legionnaire/attendant
 	name = "attendant"
 	desc = "A towering protector who doesn't share its smaller cousins' aversion to lethality. Its large stature can assist its allies in traversing difficult terrain."
 	maxHealth = 200
@@ -327,17 +327,17 @@
 	do_footstep = FALSE
 	tame = 1
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/death()
+/mob/living/simple_animal/hostile/mining/elite/legionnaire/attendant/death()
 	GLOB.aide_list -= src
 	..()
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/AttackingTarget()
+/mob/living/simple_animal/hostile/mining/elite/legionnaire/attendant/AttackingTarget()
 	. = ..()
 	var/mob/living/L = target
-	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/mining))
 		L.apply_damage(fauna_damage_bonus, BRUTE)
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/Initialize(mapload)
+/mob/living/simple_animal/hostile/mining/elite/legionnaire/attendant/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(10,40, MOB_LAYER), TEXT_SOUTH = list(-10, 40, MOB_LAYER), TEXT_EAST = list(0, 40, MOB_LAYER), TEXT_WEST = list( 0, 40, MOB_LAYER)))
@@ -349,7 +349,7 @@
 	RegisterSignal(src, COMSIG_MOVABLE_BUCKLE, PROC_REF(give_abilities))
 	RegisterSignal(src, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(remove_abilities))
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/proc/give_abilities(mob/living/elite, mob/living/M, force = FALSE)
+/mob/living/simple_animal/hostile/mining/elite/legionnaire/attendant/proc/give_abilities(mob/living/elite, mob/living/M, force = FALSE)
 	toggle_ai(AI_OFF)
 	if(istype(click_intercept, /datum/action/cooldown/spell/pointed/drakeling))
 		var/datum/action/cooldown/spell/pointed/drakeling/D = click_intercept
@@ -358,7 +358,7 @@
 		action.Remove(src)
 		action.Grant(M)
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/proc/remove_abilities(mob/living/elite, mob/living/M, force = FALSE)
+/mob/living/simple_animal/hostile/mining/elite/legionnaire/attendant/proc/remove_abilities(mob/living/elite, mob/living/M, force = FALSE)
 	toggle_ai(AI_ON)
 	if(istype(M.click_intercept, /datum/action/cooldown/spell/pointed/drakeling))
 		var/datum/action/cooldown/spell/pointed/drakeling/D = M.click_intercept

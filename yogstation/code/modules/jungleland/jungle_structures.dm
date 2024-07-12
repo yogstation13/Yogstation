@@ -384,15 +384,14 @@ GLOBAL_LIST_INIT(nests, list())
 	return ..()
 
 /obj/structure/spawner/nest/proc/spawn_mother_monster()
-	var/mob/living/simple_animal/hostile/yog_jungle/enemy_type = pick(mob_types)
+	var/mob/living/simple_animal/hostile/mining/yog_jungle/enemy_type = pick(mob_types)
 	if(!initial(enemy_type.alpha_type))
-		var/mob/living/simple_animal/hostile/yog_jungle/monster = new enemy_type(loc)
+		var/mob/living/simple_animal/hostile/mining/yog_jungle/monster = new enemy_type(loc)
 		monster.setMaxHealth(monster.maxHealth * 1.5)
 		monster.health = monster.maxHealth * 1.5
 		monster.move_to_delay = max(monster.move_to_delay / 2, 1)
-		if(monster.alpha_damage_boost == 1) //mobs with really high damage amounts may be exempt from giant damage boosts
-			monster.melee_damage_lower *= 1.5
-			monster.melee_damage_upper *= 1.5
+		monster.melee_damage_lower *= 1.5
+		monster.melee_damage_upper *= 1.5
 		monster.faction = list("mining")
 		var/matrix/M = matrix()
 		M.Scale(1.5,1.5)
@@ -403,13 +402,13 @@ GLOBAL_LIST_INIT(nests, list())
 	new enemy_type(loc)
 
 /obj/structure/spawner/nest/jungle
-	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/dryad, /mob/living/simple_animal/hostile/yog_jungle/yellowjacket)
+	possible_mob_types = list(/mob/living/simple_animal/hostile/mining/yog_jungle/dryad, /mob/living/simple_animal/hostile/mining/wasp/yellowjacket)
 
 /obj/structure/spawner/nest/swamp
-	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/mosquito,/mob/living/simple_animal/hostile/yog_jungle/meduracha, /mob/living/simple_animal/hostile/yog_jungle/blobby)
+	possible_mob_types = list(/mob/living/simple_animal/hostile/mining/wasp/mosquito,/mob/living/simple_animal/hostile/mining/yog_jungle/meduracha, /mob/living/simple_animal/hostile/mining/yog_jungle/blobby)
 
 /obj/structure/spawner/nest/dying
-	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad,/mob/living/simple_animal/hostile/yog_jungle/mosquito)
+	possible_mob_types = list(/mob/living/simple_animal/hostile/mining/yog_jungle/corrupted_dryad,/mob/living/simple_animal/hostile/mining/wasp/mosquito)
 
 /obj/effect/spawner/tendril_spawner
 

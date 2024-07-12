@@ -3,7 +3,7 @@
 #define TUMOR_PASSIVE 2
 
 //Elite mining mobs
-/mob/living/simple_animal/hostile/asteroid/elite
+/mob/living/simple_animal/hostile/mining/elite
 	name = "elite"
 	desc = "An elite monster, found in one of the strange tumors on lavaland."
 	icon = 'icons/mob/lavaland/lavaland_elites.dmi'
@@ -33,7 +33,7 @@
 	var/obj/loot_drop = null
 
 //Gives player-controlled variants the ability to swap attacks
-/mob/living/simple_animal/hostile/asteroid/elite/Initialize(mapload)
+/mob/living/simple_animal/hostile/mining/elite/Initialize(mapload)
 	. = ..()
 	if(gps_name && true_spawn)
 		AddComponent(/datum/component/gps, gps_name)
@@ -42,7 +42,7 @@
 		attack_action.Grant(src)
 
 //Prevents elites from attacking members of their faction (can't hurt themselves either) and lets them mine rock with an attack despite not being able to smash walls.
-/mob/living/simple_animal/hostile/asteroid/elite/AttackingTarget()
+/mob/living/simple_animal/hostile/mining/elite/AttackingTarget()
 	if(istype(target, /mob/living/simple_animal/hostile))
 		var/mob/living/simple_animal/hostile/M = target
 		if(faction_check_mob(M))
@@ -64,7 +64,7 @@
 		M.attempt_drill()
 
 //Elites can't talk (normally)!
-/mob/living/simple_animal/hostile/asteroid/elite/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/simple_animal/hostile/mining/elite/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(can_talk)
 		. = ..()
 		return TRUE
@@ -102,7 +102,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 	build_all_button_icons(UPDATE_BUTTON_STATUS)
 
 /datum/action/innate/elite_attack/update_button_status(atom/movable/screen/movable/action_button/button, force = FALSE)
-	var/mob/living/simple_animal/hostile/asteroid/elite/elite_owner = owner
+	var/mob/living/simple_animal/hostile/mining/elite/elite_owner = owner
 	if(!istype(owner))
 		button.maptext = ""
 		return
@@ -114,21 +114,21 @@ While using this makes the system rely on OnFire, it still gives options for tim
 		button.maptext = MAPTEXT("<b>[round(timeleft/10, 0.1)]</b>")
 
 /datum/action/innate/elite_attack/Grant(mob/living/L)
-	if(istype(L, /mob/living/simple_animal/hostile/asteroid/elite))
+	if(istype(L, /mob/living/simple_animal/hostile/mining/elite))
 		START_PROCESSING(SSfastprocess, src)
 		return ..()
 	return FALSE
 
 /datum/action/innate/elite_attack/Activate()
-	var/mob/living/simple_animal/hostile/asteroid/elite/elite_owner = owner
+	var/mob/living/simple_animal/hostile/mining/elite/elite_owner = owner
 	elite_owner.chosen_attack = chosen_attack_num
 	to_chat(elite_owner, chosen_message)
 
-/mob/living/simple_animal/hostile/asteroid/elite/updatehealth()
+/mob/living/simple_animal/hostile/mining/elite/updatehealth()
 	. = ..()
 	update_health_hud()
 
-/mob/living/simple_animal/hostile/asteroid/elite/update_health_hud()
+/mob/living/simple_animal/hostile/mining/elite/update_health_hud()
 	if(hud_used)
 		var/severity = 0
 		var/healthpercent = (health/maxHealth) * 100
@@ -165,11 +165,11 @@ While using this makes the system rely on OnFire, it still gives options for tim
 	var/activity = TUMOR_INACTIVE
 	var/times_won = 0
 	var/mob/living/carbon/human/activator = null
-	var/mob/living/simple_animal/hostile/asteroid/elite/mychild = null
-	var/potentialspawns = list(/mob/living/simple_animal/hostile/asteroid/elite/broodmother,
-								/mob/living/simple_animal/hostile/asteroid/elite/pandora,
-								/mob/living/simple_animal/hostile/asteroid/elite/legionnaire,
-								/mob/living/simple_animal/hostile/asteroid/elite/herald)
+	var/mob/living/simple_animal/hostile/mining/elite/mychild = null
+	var/potentialspawns = list(/mob/living/simple_animal/hostile/mining/elite/broodmother,
+								/mob/living/simple_animal/hostile/mining/elite/pandora,
+								/mob/living/simple_animal/hostile/mining/elite/legionnaire,
+								/mob/living/simple_animal/hostile/mining/elite/herald)
 	icon = 'icons/obj/lavaland/tumor.dmi'
 	icon_state = "tumor"
 	pixel_x = -16
@@ -227,7 +227,7 @@ obj/structure/elite_tumor/proc/return_elite()
 
 /obj/structure/elite_tumor/process(delta_time)
 	if(isturf(loc))
-		for(var/mob/living/simple_animal/hostile/asteroid/elite/elitehere in loc)
+		for(var/mob/living/simple_animal/hostile/mining/elite/elitehere in loc)
 			if(elitehere == mychild && activity == TUMOR_PASSIVE)
 				mychild.adjustHealth(-mychild.maxHealth*0.025 * delta_time)
 				var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(mychild))
@@ -299,8 +299,8 @@ obj/structure/elite_tumor/proc/onEliteWon()
 
 /obj/item/tumor_shard/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
-	if(istype(target, /mob/living/simple_animal/hostile/asteroid/elite) && proximity_flag)
-		var/mob/living/simple_animal/hostile/asteroid/elite/E = target
+	if(istype(target, /mob/living/simple_animal/hostile/mining/elite) && proximity_flag)
+		var/mob/living/simple_animal/hostile/mining/elite/E = target
 		if(E.stat != DEAD || E.sentience_type != SENTIENCE_BOSS || !E.key)
 			user.visible_message(span_notice("It appears [E] is unable to be revived right now. Perhaps try again later."))
 			return
@@ -332,7 +332,7 @@ obj/structure/elite_tumor/proc/onEliteWon()
 	light_color = LIGHT_COLOR_RED
 
 	var/mob/living/carbon/human/activator = null
-	var/mob/living/simple_animal/hostile/asteroid/elite/ourelite = null
+	var/mob/living/simple_animal/hostile/mining/elite/ourelite = null
 
 /obj/effect/temp_visual/elite_tumor_wall/Initialize(mapload, new_caster)
 	. = ..()

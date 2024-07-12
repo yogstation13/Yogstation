@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "b" = (
-/mob/living/simple_animal/hostile/asteroid/polarbear{
+/mob/living/simple_animal/hostile/mining/polarbear{
 	name = "The Wampa"
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,

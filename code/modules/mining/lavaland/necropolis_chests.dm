@@ -610,8 +610,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return
 	if(isliving(target))
 		var/mob/living/L = target
-		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid) || istype(L,/mob/living/simple_animal/hostile/yog_jungle)) //no loot allowed from the little skulls
-			if(!istype(L, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
+		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/mining) || istype(L,/mob/living/simple_animal/hostile/mining/yog_jungle)) //no loot allowed from the little skulls
+			if(!istype(L, /mob/living/simple_animal/hostile/mining/hivelordbrood))
 				RegisterSignal(target, COMSIG_LIVING_DEATH, PROC_REF(roll_loot), TRUE)
 			//after quite a bit of grinding, you'll be doing a total of 120 damage to fauna per hit. A lot, but i feel like the grind justifies the payoff. also this doesn't effect crew. so. go nuts.
 			L.apply_damage(mobs_grinded*5,BRUTE)
@@ -1805,7 +1805,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return
 	if(isliving(target))
 		var/mob/living/L = target
-		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/mining))
 			L.apply_damage(fauna_damage_bonus,fauna_damage_type)
 			playsound(L, 'sound/magic/blind.ogg', 100, 1)
 
@@ -1882,7 +1882,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
 	for(var/i=1 to limit)
-		var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide/B = new(user.loc)
+		var/mob/living/simple_animal/hostile/mining/hivelordbrood/aide/B = new(user.loc)
 		B.faction = user.faction
 	to_chat(user, span_notice("You tap the cane against a nearby surface and call upon your aides!"))
 	playsound(loc, 'sound/weapons/ricochet.ogg', 20, 1)
@@ -1891,7 +1891,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/item/cane/cursed/proc/bigfinish(mob/living/user, mob/living/target)
 	var/mob/living/M = target
 	if(M.stat != DEAD)
-		var/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/L = new(M.loc)
+		var/mob/living/simple_animal/hostile/mining/elite/legionnaire/attendant/L = new(M.loc)
 		M.adjustBruteLoss(M.health)
 		GLOB.aide_list += L
 		L.faction = user.faction
@@ -1901,7 +1901,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/item/cane/cursed/proc/littlefinish(mob/living/user, mob/living/target)
 	var/mob/living/M = target
-	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/L = new(M.loc)
+	var/mob/living/simple_animal/hostile/mining/hivelord/legion/aide/L = new(M.loc)
 	M.adjustBruteLoss(M.health)
 	L.stored_mob = M
 	M.forceMove(L)
@@ -1916,7 +1916,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/item/cane/cursed/proc/curse(mob/living/user, mob/living/target)
 	var/mob/living/M = target
-	if((faction_check(M.faction, "cane")) || istype(M, /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead) || istype(M, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
+	if((faction_check(M.faction, "cane")) || istype(M, /mob/living/simple_animal/hostile/mining/elite/legionnairehead) || istype(M, /mob/living/simple_animal/hostile/mining/hivelordbrood))
 		return FALSE
 	if(isbot(M))//because they just walk out of the aide lol
 		return FALSE
@@ -1944,7 +1944,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			limit ++
 			to_chat(user, span_notice("Defeating a powerful foe has increased the cane's capacity for minions!"))
 			return TRUE
-	if(istype(M, /mob/living/simple_animal/hostile/asteroid/elite))
+	if(istype(M, /mob/living/simple_animal/hostile/mining/elite))
 		if(M.health > M.maxHealth/5)
 			to_chat(user, span_notice("Your target must be weakened!"))
 			return FALSE

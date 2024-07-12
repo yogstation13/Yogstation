@@ -6,7 +6,7 @@
 /turf/closed/wall/mineral/sandstone,
 /area/ruin/unpowered)
 "c" = (
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/mob/living/simple_animal/hostile/mining/hivelord/legion,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "d" = (
@@ -38,7 +38,7 @@
 "r" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/mob/living/simple_animal/hostile/mining/hivelord/legion,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "t" = (
@@ -77,7 +77,7 @@
 /area/ruin/unpowered)
 "R" = (
 /obj/effect/turf_decal/sand,
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/mob/living/simple_animal/hostile/mining/hivelord/legion,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/unpowered)
 "S" = (

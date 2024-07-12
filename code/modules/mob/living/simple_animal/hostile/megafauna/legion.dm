@@ -90,7 +90,7 @@ Difficulty: Medium
 		charge_target()
 
 /mob/living/simple_animal/hostile/megafauna/legion/proc/create_legion_skull()
-	var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/A = new(loc)
+	var/mob/living/simple_animal/hostile/mining/hivelordbrood/legion/A = new(loc)
 	A.GiveTarget(target)
 	A.friends = friends
 	A.faction = faction
@@ -120,7 +120,7 @@ Difficulty: Medium
 	if(. && ishuman(target))
 		var/mob/living/L = target
 		if(L.stat == UNCONSCIOUS)
-			var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/A = new(loc)
+			var/mob/living/simple_animal/hostile/mining/hivelordbrood/legion/A = new(loc)
 			A.infest(L)
 
 /mob/living/simple_animal/hostile/megafauna/legion/proc/reset_charge()

@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "b" = (
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher,
+/mob/living/simple_animal/hostile/mining/basilisk/watcher,
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered)
 "h" = (
@@ -13,7 +13,7 @@
 /turf/closed/mineral/random/volcanic,
 /area/ruin/unpowered)
 "q" = (
-/mob/living/simple_animal/hostile/asteroid/goliath/beast,
+/mob/living/simple_animal/hostile/mining/goliath/beast,
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered)
 "G" = (

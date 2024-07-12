@@ -277,7 +277,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		return
 	if(isliving(target))
 		var/mob/living/L = target
-		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/mining))
 			L.apply_damage(fauna_damage_bonus,fauna_damage_type)
 			playsound(L, 'sound/weapons/sear.ogg', 100, 1)
 

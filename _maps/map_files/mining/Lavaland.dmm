@@ -1630,7 +1630,7 @@
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 1
 	},
-/mob/living/simple_animal/hostile/asteroid/gutlunch/grublunch,
+/mob/living/simple_animal/hostile/mining/gutlunch/grublunch,
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered/dragonslair)
 "nC" = (

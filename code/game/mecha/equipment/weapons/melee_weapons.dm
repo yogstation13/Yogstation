@@ -189,7 +189,7 @@
 					C.apply_damage(max(chassis.force + weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness, wound_bonus = sword_wound_bonus)
 				else							//Regular mobs just take damage
 					L.apply_damage(max(chassis.force + weapon_damage, minimum_damage), dam_type)
-					if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid) && fauna_damage_bonus)	//If we're hitting fauna, because heck those guys
+					if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/mining) && fauna_damage_bonus)	//If we're hitting fauna, because heck those guys
 						L.apply_damage(fauna_damage_bonus, dam_type)
 
 				L.visible_message(span_danger("[chassis.name] strikes [L] with a wide swing of [src]!"), \
@@ -224,7 +224,7 @@
 			C.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness, wound_bonus = sword_wound_bonus)
 		else if(!precise_no_mobdamage)
 			L.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type)
-			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//Stab them harder
+			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/mining))	//Stab them harder
 				L.apply_damage(fauna_damage_bonus, dam_type)
 
 		L.visible_message(span_danger("[chassis.name] strikes [L] with [src]!"), \
@@ -429,7 +429,7 @@
 				C.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness, wound_bonus = sword_wound_bonus)
 			else if(!precise_no_mobdamage)
 				L.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type)
-				if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//Stab them harder
+				if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/mining))	//Stab them harder
 					L.apply_damage(fauna_damage_bonus, dam_type)
 
 			L.visible_message(span_danger("[chassis.name] strikes [L] with [src]!"), \
@@ -548,7 +548,7 @@
 			C.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness)
 		else
 			L.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type)
-			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid) && fauna_damage_bonus)	//Stab them harder
+			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/mining) && fauna_damage_bonus)	//Stab them harder
 				L.apply_damage(fauna_damage_bonus, dam_type)
 
 		L.visible_message(span_danger("[chassis.name] stabs [L] with [src]!"), \

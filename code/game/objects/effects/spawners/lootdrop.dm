@@ -782,6 +782,6 @@
 	icon_state = "weaver"
 	lootdoubles = 0
 	lootcount = 1
-	loot = list(/mob/living/simple_animal/hostile/asteroid/marrowweaver = 35,
-			/mob/living/simple_animal/hostile/asteroid/marrowweaver/ice = 5,
+	loot = list(/mob/living/simple_animal/hostile/mining/marrowweaver = 35,
+			/mob/living/simple_animal/hostile/mining/marrowweaver/ice = 5,
 			"" = 60)

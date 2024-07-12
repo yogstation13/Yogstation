@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/asteroid/marrowweaver
+/mob/living/simple_animal/hostile/mining/marrowweaver
 	name = "marrow weaver"
 	desc = "A big, angry, venomous spider. It likes to snack on bone marrow. Its preferred food source is you."
 	icon = 'yogstation/icons/mob/lavaland/lavaland_monsters.dmi'
@@ -33,7 +33,7 @@
 	var/melee_damage_lower_angery1 = 15
 	var/melee_damage_upper_angery1 = 20
 
-/mob/living/simple_animal/hostile/asteroid/marrowweaver/adjustHealth(amount)
+/mob/living/simple_animal/hostile/mining/marrowweaver/adjustHealth(amount)
 	if(buttmad == 0)
 		if(health < maxHealth/3)
 			buttmad = 1
@@ -54,7 +54,7 @@
 			poison_per_bite = initial(poison_per_bite)
 	..()
 
-/mob/living/simple_animal/hostile/asteroid/marrowweaver/AttackingTarget()
+/mob/living/simple_animal/hostile/mining/marrowweaver/AttackingTarget()
 	..()
 	if(isliving(target))
 		var/mob/living/L = target
@@ -81,7 +81,7 @@
 			else
 				to_chat(src, span_warning("There are no organs left in this corpse."))
 
-/mob/living/simple_animal/hostile/asteroid/marrowweaver/CanAttack(atom/A)
+/mob/living/simple_animal/hostile/mining/marrowweaver/CanAttack(atom/A)
 	if(..())
 		return TRUE
 	if((health < maxHealth) && ishuman(A) && !faction_check_mob(A))
@@ -93,7 +93,7 @@
 				return TRUE
 	return FALSE
 
-/mob/living/simple_animal/hostile/asteroid/marrowweaver/clown
+/mob/living/simple_animal/hostile/mining/marrowweaver/clown
 	name = "Clown Spider"
 	desc = "A big, angry, venomous clown spider. It likes to snack on noses. Its preferred food source is you."
 	icon = 'goon/icons/mob/clownspider.dmi'
@@ -110,7 +110,7 @@
 	maxHealth = 250
 	poison_type = /datum/reagent/consumable/ethanol/bananahonk
 
-/mob/living/simple_animal/hostile/asteroid/marrowweaver/cluwne
+/mob/living/simple_animal/hostile/mining/marrowweaver/cluwne
 	name = "Cluwne Spider"
 	desc = "A big, angry, venomous... something It likes to snack on souls. Its preferred food source is you probably."
 	icon = 'goon/icons/mob/cluwnespider.dmi'
@@ -127,7 +127,7 @@
 	maxHealth = 450
 	poison_type = /datum/reagent/cluwnification
 	
-/mob/living/simple_animal/hostile/asteroid/marrowweaver/ice
+/mob/living/simple_animal/hostile/mining/marrowweaver/ice
 	name = "Frostbite Spider"
 	desc = "A big, angry, venomous ice spider. It likes to snack on bone marrow. Its preferred food source is you."
 	icon_state = "weaver_ice"

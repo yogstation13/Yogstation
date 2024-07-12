@@ -8786,7 +8786,7 @@
 /turf/open/floor/plasteel/dark/snowdin,
 /area/awaymission/snowdin/outside)
 "tm" = (
-/mob/living/simple_animal/hostile/asteroid/basilisk,
+/mob/living/simple_animal/hostile/mining/basilisk,
 /turf/open/floor/plating/asteroid/snow/ice,
 /area/awaymission/snowdin/cave/cavern)
 "tn" = (
@@ -9645,7 +9645,7 @@
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/snowdin/outside)
 "vI" = (
-/mob/living/simple_animal/hostile/asteroid/basilisk,
+/mob/living/simple_animal/hostile/mining/basilisk,
 /turf/open/floor/plating/asteroid/snow{
 	floor_variance = 0;
 	icon_state = "snow_dug";

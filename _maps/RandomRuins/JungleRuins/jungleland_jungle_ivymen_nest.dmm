@@ -207,7 +207,7 @@
 /turf/closed/wall/mineral/wood,
 /area/jungleland/explored)
 "se" = (
-/mob/living/simple_animal/hostile/asteroid/gutlunch/guthen{
+/mob/living/simple_animal/hostile/mining/gutlunch/guthen{
 	desc = "Some strange bug that doesn't look like it comes from here. Eats dead things and produces a thick and nutritious milk."
 	},
 /turf/open/indestructible/grass,

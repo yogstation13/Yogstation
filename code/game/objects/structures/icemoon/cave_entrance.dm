@@ -7,7 +7,7 @@
 
 	faction = list("mining")
 	max_mobs = 3
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/wolf)
+	mob_types = list(/mob/living/simple_animal/hostile/mining/wolf)
 
 	move_resist = INFINITY
 	anchored = TRUE
@@ -29,7 +29,7 @@
 /obj/structure/spawner/ice_moon/polarbear
 	max_mobs = 1
 	spawn_time = 600 //60 seconds
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/polarbear)
+	mob_types = list(/mob/living/simple_animal/hostile/mining/polarbear)
 
 /obj/structure/spawner/ice_moon/polarbear/clear_rock()
 	for(var/turf/F in RANGE_TURFS(1, src))
@@ -38,4 +38,4 @@
 			M.ScrapeAway(null, CHANGETURF_IGNORE_AIR)
 
 /obj/structure/spawner/ice_moon/snowlegion
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow)
+	mob_types = list(/mob/living/simple_animal/hostile/mining/hivelord/legion/snow)

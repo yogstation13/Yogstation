@@ -12954,7 +12954,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "doI" = (
-/mob/living/simple_animal/hostile/asteroid/goliath,
+/mob/living/simple_animal/hostile/mining/goliath,
 /turf/open/floor/plating/asteroid,
 /area/space/nearstation)
 "doO" = (
@@ -58118,7 +58118,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "rlj" = (
-/mob/living/simple_animal/hostile/asteroid/hivelord,
+/mob/living/simple_animal/hostile/mining/hivelord,
 /turf/open/floor/plating/asteroid,
 /area/space/nearstation)
 "rls" = (

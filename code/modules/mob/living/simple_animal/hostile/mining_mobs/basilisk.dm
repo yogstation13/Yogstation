@@ -1,5 +1,5 @@
 //A beast that fire freezing blasts.
-/mob/living/simple_animal/hostile/asteroid/basilisk
+/mob/living/simple_animal/hostile/mining/basilisk
 	name = "basilisk"
 	desc = "A territorial beast, covered in a thick shell that absorbs energy. Its stare causes victims to freeze from the inside."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
@@ -45,12 +45,12 @@
 	armor_flag = ENERGY
 	temperature = 50
 
-/mob/living/simple_animal/hostile/asteroid/basilisk/GiveTarget(new_target)
+/mob/living/simple_animal/hostile/mining/basilisk/GiveTarget(new_target)
 	if(..()) //we have a target
 		if(isliving(target) && !target.Adjacent(targets_from) && ranged_cooldown <= world.time)//No more being shot at point blank or spammed with RNG beams
 			OpenFire(target)
 
-/mob/living/simple_animal/hostile/asteroid/basilisk/ex_act(severity, target)
+/mob/living/simple_animal/hostile/mining/basilisk/ex_act(severity, target)
 	switch(severity)
 		if(1)
 			gib()
@@ -60,7 +60,7 @@
 			adjustBruteLoss(110)
 
 //Watcher
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher
+/mob/living/simple_animal/hostile/mining/basilisk/watcher
 	name = "watcher"
 	desc = "A levitating, eye-like creature held aloft by winglike formations of sinew. A sharp spine of crystal protrudes from its body."
 	icon = 'icons/mob/lavaland/watcher.dmi'
@@ -86,13 +86,13 @@
 	loot = list()
 	butcher_results = list(/obj/item/stack/ore/diamond = 2, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/bone = 1)
 
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random/Initialize(mapload)
+/mob/living/simple_animal/hostile/mining/basilisk/watcher/random/Initialize(mapload)
 	. = ..()
 	if(prob(1))
-		new /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing(loc)
+		new /mob/living/simple_animal/hostile/mining/basilisk/watcher/icewing(loc)
 		return INITIALIZE_HINT_QDEL
 
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing
+/mob/living/simple_animal/hostile/mining/basilisk/watcher/magmawing
 	name = "magmawing watcher"
 	desc = "When raised very close to lava, some watchers adapt to the extreme heat and use lava as both a weapon and wings."
 	icon_state = "watcher_magmawing"
@@ -111,7 +111,7 @@
 	loot = list()
 	butcher_results = list(/obj/item/stack/ore/diamond = 2, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/bone = 1)
 
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing
+/mob/living/simple_animal/hostile/mining/basilisk/watcher/icewing
 	name = "icewing watcher"
 	desc = "Very rarely, some watchers will eke out an existence far from heat sources. In the absence of warmth, they become icy and fragile but fire much stronger freezing blasts."
 	icon_state = "watcher_icewing"
@@ -152,20 +152,20 @@
 		var/mob/living/L = target
 		L.apply_status_effect(/datum/status_effect/freon/watcher)
 
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/tendril
+/mob/living/simple_animal/hostile/mining/basilisk/watcher/tendril
 	fromtendril = TRUE
 
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing/tendril
+/mob/living/simple_animal/hostile/mining/basilisk/watcher/magmawing/tendril
 	fromtendril = TRUE
 
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing/death(gibbed)
+/mob/living/simple_animal/hostile/mining/basilisk/watcher/icewing/death(gibbed)
 	if(prob(10))
 		new /obj/item/gem/fdiamond(loc)
 		deathmessage = "spits out a diamond as it dies!"
 	. = ..()
 	deathmessage = initial(deathmessage)
 
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing/death(gibbed)
+/mob/living/simple_animal/hostile/mining/basilisk/watcher/magmawing/death(gibbed)
 	if(prob(10))
 		new /obj/item/gem/magma(loc)
 		deathmessage = "spits out a golden gem as it dies!"

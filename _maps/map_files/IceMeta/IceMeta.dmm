@@ -69794,7 +69794,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
 	},
-/mob/living/simple_animal/hostile/asteroid/goliath/beast/joe,
+/mob/living/simple_animal/hostile/mining/goliath/beast/joe,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "uaA" = (

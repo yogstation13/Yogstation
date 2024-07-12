@@ -229,13 +229,13 @@
 	switch(rand(1,2))
 		if(1)
 			for(var/i = 0 to total)
-				var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/S = new(loc)
+				var/mob/living/simple_animal/hostile/mining/hivelordbrood/staldrone/S = new(loc)
 				S.GiveTarget(target)
 				S.friends = friends
 				S.faction = faction
 		if(2)
 			for(var/i = 0 to total)
-				var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/ranged/R = new(loc)
+				var/mob/living/simple_animal/hostile/mining/hivelordbrood/staldrone/ranged/R = new(loc)
 				R.GiveTarget(target)
 				R.friends = friends
 				R.faction = faction
@@ -246,7 +246,7 @@
 	visible_message(span_danger("[src] warps in many mini mechanoids!"))
 	playsound(src, 'sound/magic/castsummon.ogg', 300, 1, 2)
 	for(var/i = 0 to total)
-		var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/S = new(loc)
+		var/mob/living/simple_animal/hostile/mining/hivelordbrood/staldrone/S = new(loc)
 		S.GiveTarget(target)
 		S.friends = friends
 		S.faction = faction
@@ -286,7 +286,7 @@
 
 //Projectiles and such
 
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone
+/mob/living/simple_animal/hostile/mining/hivelordbrood/staldrone
 	name = "mini mechanoid"
 	desc = "A tiny creature made of...some kind of gemstone? It seems angry."
 	icon = 'icons/mob/drone.dmi'
@@ -307,11 +307,11 @@
 	faction = list("mining")
 	weather_immunities = list(WEATHER_LAVA,WEATHER_ASH)
 
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/Initialize(mapload)
+/mob/living/simple_animal/hostile/mining/hivelordbrood/staldrone/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(death)), 30 SECONDS)
 
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/ranged
+/mob/living/simple_animal/hostile/mining/hivelordbrood/staldrone/ranged
 	ranged = 1
 	ranged_message = "blasts"
 	icon_state = "drone_scout"
@@ -323,7 +323,7 @@
 	projectiletype = /obj/projectile/stalpike/weak
 	projectilesound = 'sound/weapons/ionrifle.ogg'
 
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/ranged/GiveTarget(new_target)
+/mob/living/simple_animal/hostile/mining/hivelordbrood/staldrone/ranged/GiveTarget(new_target)
 	if(..())
 		if(isliving(target) && !target.Adjacent(targets_from) && ranged_cooldown <= world.time)
 			OpenFire(target)

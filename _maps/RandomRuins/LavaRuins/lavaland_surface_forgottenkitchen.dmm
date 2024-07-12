@@ -267,7 +267,7 @@
 /obj/structure/chair/stool/bar,
 /obj/effect/turf_decal/tile/dark/opposingcorners,
 /obj/effect/turf_decal/tile/red/opposingcorners,
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random,
+/mob/living/simple_animal/hostile/mining/basilisk/watcher/random,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
 "oD" = (
@@ -325,7 +325,7 @@
 "rg" = (
 /obj/effect/turf_decal/tile/dark/opposingcorners,
 /obj/effect/turf_decal/tile/red/opposingcorners,
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random,
+/mob/living/simple_animal/hostile/mining/basilisk/watcher/random,
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
@@ -650,7 +650,7 @@
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
 "Ef" = (
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random,
+/mob/living/simple_animal/hostile/mining/hivelord/legion/random,
 /turf/open/floor/plasteel/lavaland{
 	icon_state = "cafeteria"
 	},
@@ -671,7 +671,7 @@
 "EG" = (
 /obj/effect/turf_decal/tile/dark/opposingcorners,
 /obj/effect/turf_decal/tile/red/opposingcorners,
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random,
+/mob/living/simple_animal/hostile/mining/basilisk/watcher/random,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
 "EH" = (
@@ -899,7 +899,7 @@
 	},
 /obj/effect/turf_decal/tile/dark/opposingcorners,
 /obj/effect/turf_decal/tile/red/opposingcorners,
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random,
+/mob/living/simple_animal/hostile/mining/basilisk/watcher/random,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
 "NX" = (
@@ -1074,7 +1074,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered)
 "Vh" = (
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random,
+/mob/living/simple_animal/hostile/mining/hivelord/legion/random,
 /obj/item/stack/sheet/metal,
 /obj/machinery/light/broken{
 	dir = 4
@@ -1096,7 +1096,7 @@
 	},
 /area/ruin/powered)
 "Wv" = (
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random,
+/mob/living/simple_animal/hostile/mining/hivelord/legion/random,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered)
 "Yl" = (

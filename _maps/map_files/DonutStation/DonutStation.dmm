@@ -492,7 +492,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard)
 "alz" = (
-/mob/living/simple_animal/hostile/asteroid/goliath,
+/mob/living/simple_animal/hostile/mining/goliath,
 /turf/open/floor/plating/asteroid/airless,
 /area/space/nearstation)
 "alE" = (
@@ -2036,7 +2036,7 @@
 "aRE" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/asteroid/hivelord,
+/mob/living/simple_animal/hostile/mining/hivelord,
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
 "aSb" = (
@@ -13835,7 +13835,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/asteroid/hivelord,
+/mob/living/simple_animal/hostile/mining/hivelord,
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
 "fBr" = (
@@ -31263,7 +31263,7 @@
 /area/chapel/main)
 "neX" = (
 /obj/structure/table_frame/wood,
-/mob/living/simple_animal/hostile/asteroid/basilisk{
+/mob/living/simple_animal/hostile/mining/basilisk{
 	environment_smash = 0
 	},
 /turf/open/floor/carpet/green,
@@ -40924,7 +40924,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/asteroid/hivelord,
+/mob/living/simple_animal/hostile/mining/hivelord,
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
 "riX" = (
@@ -53555,7 +53555,7 @@
 /area/quartermaster/storage)
 "wzV" = (
 /obj/effect/turf_decal/sand/plating,
-/mob/living/simple_animal/hostile/asteroid/hivelord,
+/mob/living/simple_animal/hostile/mining/hivelord,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "wAa" = (
@@ -54192,7 +54192,7 @@
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
 "wOE" = (
-/mob/living/simple_animal/hostile/asteroid/hivelord,
+/mob/living/simple_animal/hostile/mining/hivelord,
 /turf/open/floor/plating/asteroid/airless,
 /area/space/nearstation)
 "wOT" = (
@@ -55715,7 +55715,7 @@
 /area/crew_quarters/dorms)
 "xrN" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/asteroid/hivelord,
+/mob/living/simple_animal/hostile/mining/hivelord,
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
 "xrQ" = (

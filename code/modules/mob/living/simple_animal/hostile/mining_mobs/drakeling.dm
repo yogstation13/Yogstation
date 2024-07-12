@@ -199,7 +199,7 @@
 			if((L in hit_list) || (L in protected))
 				continue
 			hit_list += L
-			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/mining))
 				L.adjustBruteLoss(damage * 3) //60 damage plus the normal damage against fauna, total of 80 should make it mega competitive vs other weapons
 			L.adjustFireLoss(damage)
 			to_chat(L, span_userdanger("You're hit by [source]'s fire breath!"))
@@ -257,7 +257,7 @@
 			var/push_dir = get_dir(loc, L.loc)
 			var/turf/target_push_turf = get_step(L.loc, push_dir)
 			L.Move(target_push_turf, push_dir)
-		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/mining))
 			L.adjustBruteLoss(40)
 	if(ismineralturf(target))
 		var/turf/closed/mineral/M = target
