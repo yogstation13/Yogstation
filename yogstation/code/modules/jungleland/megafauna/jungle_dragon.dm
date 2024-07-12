@@ -116,22 +116,22 @@
 
 /obj/item/jungle_dragon_egg
 	name = "dragon's egg"
-	desc = "A large egg-shaped rock. It's cold to the touch..."
+	desc = "A large egg-shaped rock. It seems dry and brittle..."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "large_egg"
-	color = "#2C2C2C"
+	color = "#422600"
 
 /obj/item/jungle_dragon_egg/acid_melt()
-	visible_message(span_boldwarning("[src] suddenly begins to glow red and starts violently shaking!"))
-	name = "heated dragon's egg"
-	desc = "A large egg seemingly made out of rock. It's red-hot and seems to be shaking!"
+	visible_message(span_boldwarning("[src] suddenly begins to glow green and starts violently shaking!"))
+	name = "rehydrated dragon's egg" //why are we hydrating an egg? idfk
+	desc = "A large egg seemingly made out of rock. It's slick with moisture and seems to be shaking!"
 	color = "#008f11"
 	resistance_flags = UNACIDABLE | ACID_PROOF
 	addtimer(CALLBACK(src, PROC_REF(hatch)), 20 SECONDS)
 
 /obj/item/jungle_dragon_egg/proc/hatch()
 	visible_message(span_boldwarning("[src] suddenly cracks apart, revealing a tiny jungle dragon!"))
-	new /mob/living/simple_animal/hostile/drakeling(get_turf(src))
+	new /mob/living/simple_animal/hostile/drakeling/jungle(get_turf(src))
 	qdel(src)
 
 ////////////////////////////////////////////////////////////////////////////////////

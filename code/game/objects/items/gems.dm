@@ -117,7 +117,7 @@
 
 /obj/item/gem/amber
 	name = "draconic amber"
-	desc = "A brittle, strange mineral that forms from the rapidly cooling blood of a dying ash drake. Cherished by gemcutters for its faint glow and unique, soft warmth. Rumors among some mining crews whisper of the dragon's strength being bestowed to one that wears a necklace of this amber."
+	desc = "A brittle, strange mineral that forms from the rapidly cooling blood of a dying drake. Cherished by gemcutters for its faint glow and unique, soft warmth. Rumors among some mining crews whisper of the dragon's strength being bestowed to one that wears a necklace of this amber."
 	icon_state = "amber"
 	point_value = 1600
 	light_range = 2

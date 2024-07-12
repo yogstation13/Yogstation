@@ -3,7 +3,7 @@
 	desc = "A baby dragon! While relatively smaller than an adult, it's still larger than a person."
 	maxHealth = 200
 	health = 200
-	speed = 5
+	speed = 3
 	move_to_delay = 10
 	speak_emote = list("roars")
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
@@ -37,7 +37,14 @@
 	var/attack_cooldown = 0
 	var/list/food_items = list(/obj/item/reagent_containers/food/snacks/meat/slab/goliath = 20, /obj/item/reagent_containers/food/snacks/meat/steak/goliath = 40)
 	var/grinding = FALSE
-	var/datum/action/drake_ollie/dollie
+	///list for the typepath of all the abilities this drakeling has access to
+	var/list/mounted_abilities = list(
+		/datum/action/cooldown/drake_ollie,
+		/datum/action/cooldown/spell/pointed/drakeling/wing_flap,
+		/datum/action/cooldown/spell/pointed/drakeling/fire_breath
+	)
+	///list for storing all the instantiated abilities
+	var/list/datum/action/cooldown/instantiated = list()
 
 /mob/living/simple_animal/hostile/drakeling/Initialize(mapload)
 	. = ..()
@@ -48,42 +55,31 @@
 	D.set_vehicle_dir_layer(EAST, ABOVE_MOB_LAYER)
 	D.set_vehicle_dir_layer(WEST, ABOVE_MOB_LAYER)
 	D.vehicle_move_delay = 1
-	dollie = new
-	dollie.dragon = src
+
+	for(var/abilitypath as anything in mounted_abilities)
+		var/datum/action/cooldown/ability = new abilitypath(src)
+		instantiated |= ability
+
 	remove_abilities(src)
 	RegisterSignal(src, COMSIG_MOVABLE_BUCKLE, PROC_REF(give_abilities))
 	RegisterSignal(src, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(remove_abilities))
 
 /mob/living/simple_animal/hostile/drakeling/proc/give_abilities(mob/living/drake, mob/living/M, force = FALSE)
 	toggle_ai(AI_OFF)
-	if(istype(click_intercept, /datum/action/cooldown/spell/pointed/drakeling))
-		var/datum/action/cooldown/spell/pointed/drakeling/D = click_intercept
-		D.unset_click_ability(D.owner)
-	dollie.Grant(M)
-	for(var/datum/action/cooldown/spell/pointed/drakeling/attack_action in actions)
-		attack_action.Remove(src)
-
-	var/datum/action/cooldown/spell/pointed/drakeling/wing_flap/the_flappening = new(src) //having to do this cause the lists don't want to work
-	the_flappening.Grant(M)
-
-	var/datum/action/cooldown/spell/pointed/drakeling/fire_breath/the_breathening = new(src)
-	the_breathening.Grant(M)
+	for(var/datum/action/cooldown/ability as anything in instantiated)
+		if(click_intercept == ability)
+			ability.unset_click_ability(ability.owner)
+		ability.Remove(src)
+		ability.Grant(M)
 
 /mob/living/simple_animal/hostile/drakeling/proc/remove_abilities(mob/living/drake, mob/living/M, force = FALSE)
 	toggle_ai(AI_ON)
-	if(M)
-		if(istype(M.click_intercept, /datum/action/cooldown/spell/pointed/drakeling))
-			var/datum/action/cooldown/spell/pointed/drakeling/D = M.click_intercept
-			D.unset_click_ability(D.owner)
-		dollie.Remove(M)
-		for(var/datum/action/cooldown/spell/pointed/drakeling/attack_action in M.actions)
-			attack_action.Remove(M)
-
-	var/datum/action/cooldown/spell/pointed/drakeling/wing_flap/the_flappening = new(src)
-	the_flappening.Grant(src)
-
-	var/datum/action/cooldown/spell/pointed/drakeling/fire_breath/the_breathening = new(src)
-	the_breathening.Grant(src)
+	for(var/datum/action/cooldown/ability as anything in instantiated)
+		if(M)
+			if(M.click_intercept == ability)
+				ability.unset_click_ability(ability.owner)
+			ability.Remove(M)
+		ability.Grant(src)
 
 /mob/living/simple_animal/hostile/drakeling/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/clothing/neck/petcollar))
@@ -133,7 +129,7 @@
 		return FALSE
 	drake.face_atom(target)
 	if(drake.attack_cooldown > world.time)
-		to_chat(owner, "<span class='warning'>Your[owner == drake ? "" : " dragon's"] attack is not ready yet!")
+		to_chat(owner, span_warning("Your[owner == drake ? "" : " dragon's"] attack is not ready yet!"))
 		return TRUE
 	drake.attack_cooldown = cooldown_time + world.time
 	addtimer(CALLBACK(src, PROC_REF(cooldown_over), owner), cooldown_time)
@@ -270,33 +266,38 @@
 
 
 ///dragon ollie, do I have to explain?
-/datum/action/drake_ollie
+/datum/action/cooldown/drake_ollie
 	name = "DRAGON Ollie"
 	desc = "This seems like a REALLY COOL IDEA"
 	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	button_icon_state = "dragon_ollie"
-	//cooldown to next jump
-	var/next_ollie
+	cooldown_time = 5 SECONDS //this gives a "slight" speed boost when used and unlike the skateboard variant doesn't have much of a downside so the cooldown is longer
 	var/mob/living/simple_animal/hostile/drakeling/dragon
 
-/datum/action/drake_ollie/Trigger()
-	if(world.time > next_ollie)
-		if(dragon.grinding)
-			return
-		var/mob/living/L = owner
-		var/turf/landing_turf = get_step(dragon.loc, dragon.dir)
-		L.spin(0.4 SECONDS, 0.1 SECONDS)
-		animate(L, pixel_y = -6, time = 0.4 SECONDS)
-		animate(dragon, pixel_y = -6, time = 0.3 SECONDS)
-		playsound(dragon, 'sound/vehicles/skateboard_ollie.ogg', 50, TRUE)
-		passtable_on(L, VEHICLE_TRAIT)
-		passtable_on(dragon, VEHICLE_TRAIT)
-		L.Move(landing_turf, dragon.dir)
-		passtable_off(L, VEHICLE_TRAIT)
-		passtable_off(dragon, VEHICLE_TRAIT)
-		if(locate(/obj/structure/table) in dragon.loc.contents)
-			addtimer(CALLBACK(dragon, TYPE_PROC_REF(/mob/living/simple_animal/hostile/drakeling, grind)), 2)
-		next_ollie = world.time + 50 //this gives a "slight" speed boost when used and unlike the skateboard variant doesn't have much of a downside so the cooldown is longer
+/datum/action/cooldown/drake_ollie/IsAvailable(feedback)
+	if(dragon.grinding)
+		return FALSE
+	return ..()
+	
+/datum/action/cooldown/drake_ollie/link_to(Target)
+	. = ..()
+	dragon = Target || target
+
+/datum/action/cooldown/drake_ollie/Activate(atom/target)
+	. = ..()
+	var/mob/living/L = owner
+	var/turf/landing_turf = get_step(dragon.loc, dragon.dir)
+	L.spin(0.4 SECONDS, 0.1 SECONDS)
+	animate(L, pixel_y = -6, time = 0.4 SECONDS)
+	animate(dragon, pixel_y = -6, time = 0.3 SECONDS)
+	playsound(dragon, 'sound/vehicles/skateboard_ollie.ogg', 50, TRUE)
+	passtable_on(L, VEHICLE_TRAIT)
+	passtable_on(dragon, VEHICLE_TRAIT)
+	L.Move(landing_turf, dragon.dir)
+	passtable_off(L, VEHICLE_TRAIT)
+	passtable_off(dragon, VEHICLE_TRAIT)
+	if(locate(/obj/structure/table) in landing_turf.contents)
+		addtimer(CALLBACK(dragon, TYPE_PROC_REF(/mob/living/simple_animal/hostile/drakeling, grind)), 2)
 
 /mob/living/simple_animal/hostile/drakeling/proc/grind()
 	var/turf/T = get_step(src, dir)
