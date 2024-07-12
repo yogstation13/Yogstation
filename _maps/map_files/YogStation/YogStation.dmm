@@ -10639,6 +10639,12 @@
 /area/maintenance/port/fore)
 "bEb" = (
 /obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "bEc" = (
@@ -16758,7 +16764,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/carpet/royalblack,
 /area/quartermaster/storage)
 "dgV" = (
 /obj/machinery/atmospherics/components/binary/pump/on/layer2{
@@ -17280,6 +17286,9 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -18444,6 +18453,10 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/aft)
+"dNE" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/plasteel,
+/area/crew_quarters/locker)
 "dNO" = (
 /obj/structure/railing{
 	dir = 9
@@ -26077,7 +26090,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/carpet/royalblack,
 /area/quartermaster/storage)
 "gvE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -26595,10 +26608,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"gGY" = (
-/obj/effect/landmark/start/backrooms_explorer,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "gHh" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -28035,7 +28044,7 @@
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "hfy" = (
 /obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
+/turf/open/floor/carpet/royalblack,
 /area/quartermaster/storage)
 "hfJ" = (
 /obj/structure/closet/boxinggloves,
@@ -30819,6 +30828,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"iap" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "ias" = (
 /obj/machinery/firealarm{
 	dir = 4;
@@ -31261,6 +31276,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "igQ" = (
@@ -33280,7 +33296,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/carpet/royalblack,
 /area/quartermaster/storage)
 "iQC" = (
 /obj/structure/disposalpipe/segment{
@@ -43704,9 +43720,6 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "mNd" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -43714,6 +43727,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "mNg" = (
@@ -44325,7 +44339,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/carpet/royalblack,
 /area/quartermaster/storage)
 "mXv" = (
 /obj/machinery/holopad,
@@ -45219,10 +45233,13 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "nos" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
-	},
 /obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
 	},
 /turf/open/floor/plasteel,
@@ -47882,6 +47899,10 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/kitchen)
+"opt" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "opJ" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -52899,7 +52920,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/carpet/royalblack,
 /area/quartermaster/storage)
 "qgG" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -56057,8 +56078,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft_starboard)
 "rmz" = (
-/obj/effect/portal/permanent/backrooms,
-/obj/effect/turf_decal/bot,
+/obj/effect/landmark/start/backrooms_explorer,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "rmD" = (
@@ -59760,6 +59780,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"sFv" = (
+/turf/open/floor/carpet/royalblack,
+/area/quartermaster/storage)
 "sFE" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -60113,7 +60136,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/carpet/royalblack,
 /area/quartermaster/storage)
 "sLv" = (
 /obj/machinery/camera{
@@ -62808,6 +62831,12 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
+"tKy" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "tKP" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod Four";
@@ -65506,7 +65535,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/carpet/royalblack,
 /area/quartermaster/storage)
 "uMg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -68402,6 +68431,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"vLj" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "vLD" = (
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
@@ -93877,12 +93912,12 @@ gaP
 gzV
 mNd
 aZE
-gGY
-gGY
-khj
-bjr
-hfy
 rmz
+rmz
+khj
+sFv
+hfy
+rGf
 iQm
 qgK
 cnh
@@ -94392,7 +94427,7 @@ aTB
 dqM
 qgK
 bjr
-bjr
+tKy
 khj
 bjr
 fCc
@@ -94645,10 +94680,10 @@ eVv
 aQR
 aQN
 aQN
-aQN
+dNE
 nos
 igL
-bEb
+iap
 bEb
 aXp
 bjr
@@ -94906,7 +94941,7 @@ aQN
 ubY
 bbO
 hrn
-bjr
+vLj
 bjr
 bjr
 qgK
@@ -95163,14 +95198,14 @@ aQN
 avA
 aZE
 aXs
-gGY
+rmz
 bjr
 bjr
 qgK
 bjr
 lmY
 bjr
-bjr
+opt
 jNT
 wUZ
 riG
