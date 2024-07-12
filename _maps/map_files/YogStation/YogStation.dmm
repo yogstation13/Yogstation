@@ -6855,6 +6855,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/landmark/start/backrooms_explorer,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "aXt" = (
@@ -26594,6 +26595,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"gGY" = (
+/obj/effect/landmark/start/backrooms_explorer,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "gHh" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -93872,8 +93877,8 @@ gaP
 gzV
 mNd
 aZE
-bjr
-bjr
+gGY
+gGY
 khj
 bjr
 hfy
@@ -95158,7 +95163,7 @@ aQN
 avA
 aZE
 aXs
-bjr
+gGY
 bjr
 bjr
 qgK
