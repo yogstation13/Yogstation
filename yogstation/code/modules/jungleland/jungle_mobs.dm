@@ -367,7 +367,7 @@
 	emote_hear = list("buzzes")
 	emote_taunt = list("buzzes")	
 	move_to_delay = 4
-	ranged_cooldown_time = 4 SECONDS
+	ranged_cooldown_time = 3 SECONDS
 	pressure_resistance = 100
 	speak_chance = 0
 	taunt_chance = 0
