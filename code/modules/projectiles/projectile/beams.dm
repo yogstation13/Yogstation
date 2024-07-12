@@ -287,7 +287,7 @@
 	///damage done during the graze
 	var/graze_damage = 10
 
-/obj/projectile/beam/bfg/Range()
+/obj/projectile/beam/laser/bfg/Range()
 	. = ..()
 	for(var/atom/movable/passed in range(1, src))
 		if(passed == src || (passed in grazed))
