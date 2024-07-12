@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(901 modules,
-    3175/11201 macros, 28.3%)</aside></h3>
+<aside>(902 modules,
+    3177/11208 macros, 28.3%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -570,6 +570,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/game/objects/structures/girders.html" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;girders">girders</a></li>
     <li><a href="code/game/objects/structures/kitchen_spike.html" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;kitchen_spike">kitchen_spike</a></li>
     <li><a href="code/game/objects/structures/manned_turret.html" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;manned_turret">manned_turret</a></li>
+    <li><a href="code/game/objects/structures/morgue.html" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;morgue">morgue</a></li>
     <li><a href="code/game/objects/structures/safe.html" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;safe">safe</a></li>
     <li><a href="code/game/objects/structures/statues.html" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;statues">statues</a></li>
     </ul></li>
@@ -1302,7 +1303,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1290 detailed/2160 documented/30467 total, 7.1%)</aside></h3>
+<aside>(1292 detailed/2163 documented/30470 total, 7.1%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -3238,7 +3239,10 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
     <li><a href="obj/effect/spawner/lootdrop/randomdrink.html" title="&#x2F;obj&#x2F;effect&#x2F;spawner&#x2F;lootdrop&#x2F;randomdrink">randomdrink</a></li>
     <li><a href="obj/effect/spawner/lootdrop/randomfood.html" title="&#x2F;obj&#x2F;effect&#x2F;spawner&#x2F;lootdrop&#x2F;randomfood">randomfood</a></li>
     </ul></li>
-    <li><span class="no-substance">temp_visual&#x2F;</span><a href="obj/effect/temp_visual/scent_trail.html" title="&#x2F;obj&#x2F;effect&#x2F;temp_visual&#x2F;scent_trail">&#x2F;improper scent trail</a></li>
+    <li class="has-children"><span title="&#x2F;obj&#x2F;effect&#x2F;temp_visual">temp_visual</span><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;temp_visual&#x2F;morgue_content">morgue_content</span> - Used to mimic the appearance of an object sliding into a morgue tray.</li>
+    <li><a href="obj/effect/temp_visual/scent_trail.html" title="&#x2F;obj&#x2F;effect&#x2F;temp_visual&#x2F;scent_trail">&#x2F;improper scent trail</a></li>
+    </ul></li>
     <li class="has-children"><a href="obj/effect/turf_decal.html" title="&#x2F;obj&#x2F;effect&#x2F;turf_decal">turf_decal</a><ul class="index-tree">
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;turf_decal&#x2F;tile">tile</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;turf_decal&#x2F;tile&#x2F;bar">bar tile decal</span> - Bar tiles</li>
@@ -4128,6 +4132,7 @@ Just take it all
 Chance to give Bat form, or turn them into a bat.</li>
     <li><a href="obj/structure/bloodsucker/vassalrack.html" title="&#x2F;obj&#x2F;structure&#x2F;bloodsucker&#x2F;vassalrack">persuasion rack</a></li>
     </ul></li>
+    <li><a href="obj/structure/bodycontainer.html" title="&#x2F;obj&#x2F;structure&#x2F;bodycontainer">bodycontainer</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;bonfire">bonfire</span> - BONFIRES</li>
     <li><a href="obj/structure/cable.html" title="&#x2F;obj&#x2F;structure&#x2F;cable">power cable</a></li>
     <li><a href="obj/structure/carp_rift.html" title="&#x2F;obj&#x2F;structure&#x2F;carp_rift">Carp Rift</a> - The portals Space Dragon summons to bring carp onto the station.</li>
@@ -4226,6 +4231,7 @@ uranium</li>
     </ul></li>
     <li><a href="obj/structure/trap/eldritch.html" title="&#x2F;obj&#x2F;structure&#x2F;trap&#x2F;eldritch">elder carving</a></li>
     </ul></li>
+    <li><a href="obj/structure/tray.html" title="&#x2F;obj&#x2F;structure&#x2F;tray">tray</a></li>
     <li><a href="obj/structure/window.html" title="&#x2F;obj&#x2F;structure&#x2F;window">window</a></li>
     </ul></li>
     <li class="has-children"><span class="no-substance">vehicle&#x2F;ridden&#x2F;</span><span title="&#x2F;obj&#x2F;vehicle&#x2F;ridden&#x2F;scooter">scooter</span><ul class="index-tree">
@@ -4287,7 +4293,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/61d27d58be16e993d9e7363cbe44fed3f653f32e">61d27d5</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/9141eb5653439587df7b41abfe3863e6de239492">9141eb5</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
