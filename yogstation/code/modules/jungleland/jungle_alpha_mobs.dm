@@ -153,7 +153,7 @@
 	melee_damage_upper = 0
 	minimum_distance = 5
 	ranged = TRUE 
-	ranged_cooldown = 15 SECONDS
+	ranged_cooldown = 20 SECONDS
 	move_to_delay = 10
 	pixel_x = -32
 	projectiletype = /obj/projectile/jungle/damage_orb
@@ -192,7 +192,6 @@
 
 	max_spawn = 2
 	spawnables = list(
-		/mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister = 1, 
 		/mob/living/simple_animal/hostile/asteroid/yog_jungle/corrupted_dryad = 20
 		)
 
@@ -239,7 +238,7 @@
 	move_to_delay = 5
 	movement_type = FLYING
 	ranged = 1
-	ranged_cooldown_time = 120
+	ranged_cooldown_time = 12 SECONDS
 	speak_emote = list("buzzes")
 	vision_range = 5
 	aggro_vision_range = 9
@@ -329,6 +328,7 @@
 	maxHealth = 350
 	health = 350
 	move_to_delay = 4
+	ranged_cooldown_time = 4 SECONDS //constantly dashes
 	crusher_loot = /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch
 	butcher_results = list(/obj/item/stinger = 1, /obj/item/stack/sheet/animalhide/weaver_chitin = 2, /obj/item/stack/sheet/sinew = 4, /obj/item/gem/ruby = 2)
 	melee_damage_lower = 35
@@ -337,6 +337,7 @@
 	pixel_y = -16
 	dash_speed = 0.8
 	poison_per_attack = 0
+	attack_sound = null
 
 /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_yellowjacket/mosquito/AttackingTarget()
 	..()

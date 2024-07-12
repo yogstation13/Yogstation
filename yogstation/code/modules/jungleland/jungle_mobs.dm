@@ -366,8 +366,8 @@
 	speak_emote = list("buzzes")
 	emote_hear = list("buzzes")
 	emote_taunt = list("buzzes")	
-	vision_range = 4
 	move_to_delay = 4
+	ranged_cooldown_time = 4 SECONDS
 	pressure_resistance = 100
 	speak_chance = 0
 	taunt_chance = 0
@@ -384,6 +384,7 @@
 	alpha_type = /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_yellowjacket/mosquito
 	poison_per_attack = 0
 	dash_speed = 0.8
+	attack_sound = null
 
 /mob/living/simple_animal/hostile/asteroid/wasp/mosquito/AttackingTarget()
 	..()
