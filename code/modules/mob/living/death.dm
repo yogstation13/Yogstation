@@ -19,6 +19,23 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 	SEND_SIGNAL(src, COMSIG_LIVING_GIBBED, no_brain, no_organs, no_bodyparts)
 	qdel(src)
 
+/mob/living/proc/gib_no_drop(no_brain, no_organs, no_bodyparts)
+	var/prev_lying = lying
+	if(stat != DEAD)
+		death(TRUE)
+
+	if(!prev_lying)
+		gib_animation()
+
+	spill_organs(no_brain, no_organs, no_bodyparts)
+
+	if(!no_bodyparts)
+		spread_bodyparts(no_brain, no_organs)
+
+	spawn_gibs(no_bodyparts)
+	SEND_SIGNAL(src, COMSIG_LIVING_GIBBED, no_brain, no_organs, no_bodyparts)
+	qdel(src)
+
 /mob/living/proc/gib_animation()
 	return
 
