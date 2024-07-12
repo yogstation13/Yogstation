@@ -281,6 +281,8 @@
 	light_power = 2
 	light_color = "#ffff00"
 	speed = 1
+	wound_bonus = -20
+	bare_wound_bonus = 10
 	fire_hazard = TRUE
 	///used to keep track of people to prevent grazing the same target multiple times
 	var/list/grazed = list()
