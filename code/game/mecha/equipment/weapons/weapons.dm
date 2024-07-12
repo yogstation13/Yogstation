@@ -228,7 +228,7 @@
 	icon_state = "mecha_laser"
 	energy_drain = 500
 	equip_cooldown = 2 SECONDS
-	projectile = /obj/projectile/beam/bfg
+	projectile = /obj/projectile/beam/laser/bfg
 	harmful = TRUE
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
