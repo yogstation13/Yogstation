@@ -1396,7 +1396,7 @@
 /obj/structure/window{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/asteroid_drone,
+/mob/living/simple_animal/hostile/mining_drone,
 /turf/open/floor/plating,
 /area/awaymission/caves/BMP_asteroid)
 "el" = (
@@ -1442,7 +1442,7 @@
 	dir = 8
 	},
 /obj/structure/window,
-/mob/living/simple_animal/hostile/asteroid_drone,
+/mob/living/simple_animal/hostile/mining_drone,
 /turf/open/floor/plating,
 /area/awaymission/caves/BMP_asteroid)
 "et" = (

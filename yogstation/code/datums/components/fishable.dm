@@ -105,7 +105,7 @@
 
 	)
 	rare_loot = list(
-		/mob/living/simple_animal/hostile/asteroid_drone,
+		/mob/living/simple_animal/hostile/mining_drone,
 		/mob/living/simple_animal/hostile/asteroid/goliath,
 		/obj/item/stack/sheet/mineral/mythril,
 		/obj/structure/closet/crate/necropolis/tendril, //populated chest
