@@ -33400,10 +33400,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"iSH" = (
-/obj/structure/lattice,
-/turf/closed/wall,
-/area/maintenance/port/fore)
 "iSP" = (
 /obj/structure/closet/crate,
 /obj/effect/decal/cleanable/dirt,
@@ -39797,10 +39793,6 @@
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
-"loR" = (
-/obj/structure/lattice,
-/turf/closed/wall/r_wall,
-/area/security/execution/transfer)
 "lpj" = (
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 1
@@ -94840,7 +94832,7 @@ aaa
 aaa
 aaa
 aaa
-iSH
+alU
 bJu
 alU
 lFj
@@ -96380,7 +96372,7 @@ rnS
 rnS
 rnS
 rnS
-loR
+afA
 aaa
 alU
 lFj
