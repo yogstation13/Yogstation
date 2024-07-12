@@ -16,7 +16,7 @@
 	weather_immunities = list(WEATHER_ACID)
 	movement_type = FLYING
 	emote_see = list("flaps its little wings.", "waves its tail.","hops around a few times.", "wiggles it's vines.", "tilts its head.")
-	var/list/mounted_abilities = list(
+	mounted_abilities = list(
 		/datum/action/cooldown/drake_ollie,
 		/datum/action/cooldown/spell/pointed/drakeling/wing_flap,
 		/datum/action/cooldown/spell/pointed/drakeling/vine_lash
