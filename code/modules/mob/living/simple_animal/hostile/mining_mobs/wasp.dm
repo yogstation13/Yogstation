@@ -71,7 +71,6 @@
 	setDir(dir)
 	SLEEP_CHECK_DEATH(delay)
 	revving_charge = FALSE
-	var/movespeed = dash_speed
 	walk_towards(src, T, dash_speed)
 	SLEEP_CHECK_DEATH(get_dist(src, T) * dash_speed)
 	walk(src, 0) // cancel the movement
