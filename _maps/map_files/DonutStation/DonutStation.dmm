@@ -16624,7 +16624,6 @@
 /area/tcommsat/computer)
 "gPN" = (
 /obj/structure/chair/stool,
-/obj/effect/landmark/start/virologist,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
@@ -26497,7 +26496,6 @@
 /area/clerk)
 "lgu" = (
 /obj/structure/bed,
-/obj/effect/landmark/start/virologist,
 /obj/item/bedsheet/medical/virology,
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 5

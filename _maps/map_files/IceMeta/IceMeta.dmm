@@ -51319,7 +51319,6 @@
 /obj/structure/chair/office/light{
 	dir = 4
 	},
-/obj/effect/landmark/start/virologist,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -51378,7 +51377,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/effect/landmark/start/virologist,
 /obj/effect/turf_decal/trimline/green/filled/corner/lower{
 	dir = 4
 	},

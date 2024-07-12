@@ -309,7 +309,6 @@
 	"Network Admin" = list("engineering","green"),
 	"Medical Doctor" = list("medical","blue"),
 	"Geneticist" = list("medical","purple"),
-	"Virologist" = list("medical","green"),
 	"Chemist" = list("medical","orange"),
 	"Paramedic" = list("medical","white"),
 	"Psychiatrist" = list("medical","brown"),

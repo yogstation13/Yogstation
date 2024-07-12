@@ -37,7 +37,6 @@ GLOBAL_LIST_INIT(original_medical_positions, list(
 	"Chief Medical Officer",
 	"Medical Doctor",
 	"Geneticist",
-	"Virologist",
 	"Chemist",
 	"Paramedic",
 	"Psychiatrist",

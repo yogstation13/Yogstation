@@ -120,9 +120,6 @@
 		if("Medical Doctor")
 			O = new /datum/outfit/job/plasmaman/doctor
 
-		if("Virologist")
-			O = new /datum/outfit/job/plasmaman/virologist
-
 		if("Chemist")
 			O = new /datum/outfit/job/plasmaman/chemist
 

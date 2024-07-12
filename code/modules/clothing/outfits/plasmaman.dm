@@ -248,25 +248,6 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 
-/datum/outfit/job/plasmaman/virologist
-	name = "Plasmaman Virologist"
-	
-	jobtype = /datum/job/virologist
-
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/medical/viro
-
-	head = /obj/item/clothing/head/helmet/space/plasmaman/viro
-	r_hand= /obj/item/tank/internals/plasmaman/belt/full
-	mask = /obj/item/clothing/mask/breath
-	uniform = /obj/item/clothing/under/plasmaman/viro
-	ears = /obj/item/radio/headset/headset_med
-	shoes = /obj/item/clothing/shoes/sneakers/white
-	suit =  /obj/item/clothing/suit/toggle/labcoat/virologist
-	suit_store =  /obj/item/flashlight/pen
-	backpack = /obj/item/storage/backpack/virology
-	satchel = /obj/item/storage/backpack/satchel/vir
-	duffelbag = /obj/item/storage/backpack/duffelbag/med
-
 /datum/outfit/job/plasmaman/chemist
 	name = "Plasmaman Chemist"
 	

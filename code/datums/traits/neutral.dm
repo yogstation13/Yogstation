@@ -251,8 +251,6 @@
 				heirloom_type = pick(/obj/item/clothing/neck/stethoscope)
 			if("Chemist")
 				heirloom_type = pick(/obj/item/book/manual/wiki/chemistry, /obj/item/clothing/mask/vape)
-			if("Virologist")
-				heirloom_type = /obj/item/reagent_containers/syringe
 			//Engineering
 			if("Chief Engineer")
 				heirloom_type = pick(/obj/item/clothing/head/hardhat/white, /obj/item/screwdriver, /obj/item/wrench, /obj/item/weldingtool, /obj/item/crowbar, /obj/item/wirecutters)

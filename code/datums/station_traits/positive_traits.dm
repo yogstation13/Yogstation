@@ -177,7 +177,6 @@
 		/datum/job/roboticist = /obj/item/organ/cyberimp/eyes/hud/diagnostic, // Robots and mechs.
 		/datum/job/scientist = /obj/item/organ/cyberimp/eyes/hud/science, // Science, duh.
 		/datum/job/tourist = /obj/item/organ/heart/cybernetic,
-		/datum/job/virologist = /obj/item/organ/lungs/cybernetic/upgraded,
 		/datum/job/warden = /obj/item/organ/cyberimp/eyes/hud/security,
 	)
 

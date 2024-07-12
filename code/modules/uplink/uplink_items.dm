@@ -2682,7 +2682,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/syringe/rapidsyringe
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 8
-	restricted_roles = list("Chemist", "Chief Medical Officer", "Virologist")
+	restricted_roles = list("Chemist", "Chief Medical Officer")
 
 /datum/uplink_item/role_restricted/chemical_art
 	name = "Psychotic Brawl Notes"

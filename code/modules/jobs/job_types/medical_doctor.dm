@@ -5,8 +5,8 @@
 	orbit_icon = "staff-snake"
 	department_head = list("Chief Medical Officer")
 	faction = "Station"
-	total_positions = 5
-	spawn_positions = 3
+	total_positions = 6
+	spawn_positions = 4
 	supervisors = "the chief medical officer"
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
@@ -15,7 +15,7 @@
 	outfit = /datum/outfit/job/doctor
 
 	added_access = list(ACCESS_CHEMISTRY, ACCESS_GENETICS)
-	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CLONING, ACCESS_MECH_MEDICAL, ACCESS_MINERAL_STOREROOM)
+	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CLONING, ACCESS_MECH_MEDICAL, ACCESS_MINERAL_STOREROOM, ACCESS_VIROLOGY)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
 
