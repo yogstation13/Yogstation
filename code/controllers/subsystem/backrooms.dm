@@ -6,6 +6,11 @@ SUBSYSTEM_DEF(backrooms)
 	var/datum/map_generator/dungeon_generator/backrooms_generator
 	var/datum/generator_theme/picked_theme = /datum/generator_theme
 
+	//associative list of objects and how much they sell for
+	var/list/golden_loot = list( 
+		/obj/item/statuebust = 100,
+	)
+
 /datum/controller/subsystem/backrooms/Initialize(timeofday)
 #ifdef LOWMEMORYMODE
 	return SS_INIT_NO_NEED
@@ -17,7 +22,7 @@ SUBSYSTEM_DEF(backrooms)
 	pick_theme()
 	generate_backrooms()
 	SEND_GLOBAL_SIGNAL(COMSIG_BACKROOMS_INITIALIZE)
-	//spawn_anomalies()
+	spawn_loot()
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/backrooms/proc/pick_theme()
@@ -58,42 +63,70 @@ SUBSYSTEM_DEF(backrooms)
 				var/turf/wall = current_turf.place_on_top(border, flags = CHANGETURF_DEFER_CHANGE | CHANGETURF_IGNORE_AIR)
 				wall.resistance_flags |= INDESTRUCTIBLE //make the wall indestructible
 
-	addtimer(CALLBACK(src, PROC_REF(generate_exit)), 1 MINUTES)
+/datum/controller/subsystem/backrooms/proc/spawn_loot()
+	var/backrooms_level = SSmapping.levels_by_trait(ZTRAIT_PROCEDURAL_MAINTS)
+	if(!LAZYLEN(backrooms_level))
+		return
+	var/number = rand(20, 50)
+	var/turf/destination
+	var/item_path
+	var/value
+	for(var/i in 1 to number)
+		destination = find_safe_turf(zlevels = backrooms_level, dense_atoms = FALSE)
+		item_path = pick(golden_loot)
+		value = golden_loot[item_path]
 
-/datum/controller/subsystem/backrooms/proc/generate_exit()
-	var/list/backrooms_level = SSmapping.levels_by_trait(ZTRAIT_PROCEDURAL_MAINTS)
-	if(LAZYLEN(backrooms_level))
-		var/turf/way_out = find_safe_turf(zlevels = backrooms_level, dense_atoms = FALSE)
-		new /obj/effect/portal/permanent/one_way/backrooms(way_out)
+		var/obj/item/thing = new item_path(destination) //spawn the thing and make it gold
+		thing.AddComponent(/datum/component/valuable, value)
 
-/obj/effect/portal/permanent/one_way/backrooms/get_link_target_turf()
-	var/list/valid_lockers = typecacheof(typesof(/obj/structure/closet) - typesof(/obj/structure/closet/body_bag)\
-	- typesof(/obj/structure/closet/secure_closet) - typesof(/obj/structure/closet/cabinet)\
-	- typesof(/obj/structure/closet/cardboard) \
-	- typesof(/obj/structure/closet/supplypod) - typesof(/obj/structure/closet/stasis)\
-	- typesof(/obj/structure/closet/abductor) - typesof(/obj/structure/closet/bluespace), only_root_path = TRUE) //stolen from bluespace lockers
+////////////////////////////////////////////////////////////////////////////////////
+//-------------------------------Valuable items-----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/export/backrooms
+	//cost is irrelevant because we overwrite the proc
+	unit_name = "golden object"
+	export_types = list(/obj/item) //sell any object so long as it has the component
 
-	var/list/lockers_list = list()
-	for(var/obj/structure/closet/L in GLOB.lockers)
-		if(!is_station_level(L.z))
-			continue
-		if(!is_type_in_typecache(L, valid_lockers))
-			continue
-		if(L.opened)
-			continue
-		lockers_list += L
-	var/obj/structure/closet/exit = pick(lockers_list)
-	if(!exit)
-		exit = new(get_safe_random_station_turf())
-	return get_turf(exit)
+/datum/export/backrooms/applies_to(obj/O, allowed_categories = NONE, apply_elastic = TRUE)
+	var/datum/component/valuable/value = O.GetComponent(/datum/component/valuable)
+	if(!value || !istype(value))
+		return FALSE
+	return ..()
+	
+/datum/export/backrooms/get_cost(obj/O, allowed_categories = NONE, apply_limit = TRUE)
+	var/amount = get_amount(O)
+	var/datum/component/valuable/value = O.GetComponent(/datum/component/valuable)
+	if(value && istype(value))
+		return round(value.cost * amount)
+	return 0
 
-/obj/effect/portal/permanent/one_way/backrooms/teleport(atom/movable/M, force)
-	. = ..()
-	if(.)
-		var/obj/structure/closet/end = locate() in get_turf(M)
-		if(end)
-			M.forceMove(end) //get in the locker, nerd
 
+/datum/component/valuable
+	///how much the item is worth
+	var/cost
+
+/datum/component/valuable/Initialize(cost)
+	if(!isitem(parent))
+		return COMPONENT_INCOMPATIBLE
+	src.cost = cost
+
+/datum/component/valuable/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+	if(isitem(parent))
+		var/obj/item/goldplate = parent
+		goldplate.add_atom_colour("#ffd700", FIXED_COLOUR_PRIORITY)
+	
+/datum/component/valuable/UnregisterFromParent()
+	UnregisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+
+/datum/component/valuable/proc/on_examine(atom/eaten_light, mob/examiner, list/examine_text)
+	SIGNAL_HANDLER
+	examine_text += span_notice("This looks valuable, it could probably be sold for a lot.")
+	return NONE
+
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------Entrance and exit portal----------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /obj/effect/portal/permanent/backrooms
 	icon_state = "wooden_tv"
 
