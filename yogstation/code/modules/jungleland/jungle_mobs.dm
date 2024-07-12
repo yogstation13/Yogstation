@@ -367,7 +367,7 @@
 	emote_hear = list("buzzes")
 	emote_taunt = list("buzzes")	
 	vision_range = 4
-	move_to_delay = 3
+	move_to_delay = 4
 	pressure_resistance = 100
 	speak_chance = 0
 	taunt_chance = 0
@@ -382,7 +382,6 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 20
 	alpha_type = /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_yellowjacket/mosquito
-	move_to_delay = 5
 	poison_per_attack = 0
 	dash_speed = 0.8
 
@@ -400,8 +399,11 @@
 	icon_state = "mosquito_blood"
 
 ////////////////////////////////////////////////////////////////////////////////////
-//------------------------------------Wasps---------------------------------------//
+//------------------------------------spider--------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
+/**
+ * basically shoots bolas as the target
+ */
 /mob/living/simple_animal/hostile/asteroid/yog_jungle/emeraldspider
 	name = "emerald spider"
 	desc = "A big, angry, venomous spider. Flings webs at prey to slow them down, before closing in on them."

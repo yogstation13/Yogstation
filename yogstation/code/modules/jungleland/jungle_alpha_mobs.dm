@@ -328,7 +328,7 @@
 	icon_dead = "mosquito_dead"
 	maxHealth = 350
 	health = 350
-	move_to_delay = 3
+	move_to_delay = 4
 	crusher_loot = /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch
 	butcher_results = list(/obj/item/stinger = 1, /obj/item/stack/sheet/animalhide/weaver_chitin = 2, /obj/item/stack/sheet/sinew = 4, /obj/item/gem/ruby = 2)
 	melee_damage_lower = 35
