@@ -57,7 +57,7 @@
 	to_chat(target, span_notice("A healing warmth suffuses you."))
 	new /obj/effect/temp_visual/heal(get_turf(target), "#33cc33")
 
-	var/pk_rank = get_rank(PSI_PSYCHOKINESIS)
+	var/pk_rank = user.psi.get_rank(PSI_PSYCHOKINESIS)
 	var/redaction_rank = user.psi.get_rank(PSI_REDACTION)
 
 
@@ -86,23 +86,23 @@
 			var/mob/living/carbon/human/H = target
 			for(var/datum/wound/W in H.all_wounds)
 				if(W.blood_flow)
-					W.blood_flow -= (pk_rank * 0.5)
+					W.blood_flow -= (redaction_rank * 0.5)
 					if(prob(25))
-						to_chat(owner, span_notice("You stem the flow of blood streaming from [target]'s [W.limb]."))
+						to_chat(user, span_notice("You stem the flow of blood streaming from [target]'s [W.limb]."))
 					return TRUE
 
 				if(istype(W, /datum/wound/burn))
 					var/datum/wound/burn/degree = W
-					degree.sanitization += (pk_rank * 0.5)
-					degree.flesh_healing += (pk_rank * 0.5)
+					degree.sanitization += (redaction_rank * 0.5)
+					degree.flesh_healing += (redaction_rank * 0.5)
 					if(prob(25))
-						to_chat(owner, span_notice("You clean and mend the burns on [target]'s [W.limb]."))
+						to_chat(user, span_notice("You clean and mend the burns on [target]'s [W.limb]."))
 					return TRUE
 
 				if(istype(W, /datum/wound/blunt))
 					qdel(W)
 					playsound(H, 'sound/surgery/bone3.ogg', 25)
-					to_chat(owner, span_notice("You snap the bones in [target]'s [W.limb] back into place."))
+					to_chat(user, span_notice("You snap the bones in [target]'s [W.limb] back into place."))
 					return TRUE
 
 		// Repair internal organs
