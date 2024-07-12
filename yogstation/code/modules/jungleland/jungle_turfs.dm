@@ -46,6 +46,9 @@ Temperature: 126.85 °C (400 K)
 /area/jungleland/toxic_pit
 	name = "Toxic Pit"
 
+/area/jungleland/tar_wastes
+	name = "Tar Wastes"
+
 /area/jungleland/dry_swamp
 	name = "Rocky Beach"
 
@@ -266,7 +269,7 @@ Temperature: 126.85 °C (400 K)
 	name = "deep sulphuric pit"
 	desc = "Extraordinarily toxic."
 	color = "#004700"
-	slowdown = 4
+	slowdown = 5
 	baseturfs = /turf/open/water/smooth/toxic_pit/deep
 	acid_strength = 2
 

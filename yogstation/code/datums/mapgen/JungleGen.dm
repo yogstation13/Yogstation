@@ -21,13 +21,17 @@
 /datum/map_generator/jungleland
 
 	var/list/possible_biomes = list(
-		BIOME_BARREN = list(	LOW_HUMIDITY = /datum/biome/jungleland/dry_swamp,
+		BIOME_BARREN = list(	
+						LOW_HUMIDITY = /datum/biome/jungleland/tar_wastes,
 						MED_HUMIDITY = /datum/biome/jungleland/dry_swamp, 
-						HIGH_HUMIDITY = /datum/biome/jungleland/dying_forest),
+						HIGH_HUMIDITY = /datum/biome/jungleland/dying_forest
+						),
 
-		BIOME_TOXIC = list(	LOW_HUMIDITY = /datum/biome/jungleland/toxic_pit,
+		BIOME_TOXIC = list(	
+						LOW_HUMIDITY = /datum/biome/jungleland/toxic_pit,
 						MED_HUMIDITY = /datum/biome/jungleland/toxic_pit,
-						HIGH_HUMIDITY = /datum/biome/jungleland/jungle)
+						HIGH_HUMIDITY = /datum/biome/jungleland/jungle
+						)
 	)
 	///Used to select "zoom" level into the perlin noise, higher numbers result in slower transitions
 	var/perlin_zoom = 65

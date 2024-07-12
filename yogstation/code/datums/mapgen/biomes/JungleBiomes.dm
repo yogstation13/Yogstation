@@ -47,6 +47,15 @@
 		var/obj/structure/flora = pickweight(loose_flora)
 		new flora(gen_turf)
 
+/datum/biome/jungleland/tar_wastes
+	turf_type = /turf/open/floor/plating/dirt/jungleland/obsidian
+	closed_turf = /turf/open/water/smooth/tar_basin
+	loose_flora = list(/obj/structure/flora/rock = 2,/obj/structure/flora/rock/pile = 2)
+	loose_flora_density = 10
+	fauna_density = 0.5 
+	fauna_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random = 33,/mob/living/simple_animal/hostile/asteroid/goliath/beast = 33,/mob/living/simple_animal/hostile/asteroid/goldgrub = 25,/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1, /mob/living/simple_animal/hostile/asteroid/marrowweaver = 7)
+	this_area = /area/jungleland/tar_wastes
+
 /datum/biome/jungleland/dry_swamp
 	turf_type = /turf/open/floor/plating/dirt/jungleland/deep_sand
 	closed_turf = /turf/open/water/smooth/toxic_pit
