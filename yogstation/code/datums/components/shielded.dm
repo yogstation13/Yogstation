@@ -97,14 +97,19 @@
 
 /datum/component/shielded/proc/on_equipped(datum/source, mob/equipper, slot)
 	current_owner = equipper
-	shield_active = (target_slot == slot)
-	RegisterSignal(current_owner, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_shield_overlay))
-	RegisterSignal(current_owner, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(on_shield_check))
-	current_owner.update_appearance(UPDATE_OVERLAYS)
+	if(target_slot & slot)
+		RegisterSignal(current_owner, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_shield_overlay))
+		RegisterSignal(current_owner, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(on_shield_check))
+		shield_active = TRUE
+		current_owner.update_appearance(UPDATE_OVERLAYS)
+	else // it wasn't equippped in the right slot
+		on_dropped(source, equipper)
 
 /datum/component/shielded/proc/on_dropped(datum/source,mob/dropper)
-	shield_active = FALSE
+	if(!shield_active)
+		return // our job here is already done
 	UnregisterSignal(current_owner, list(COMSIG_ATOM_UPDATE_OVERLAYS, COMSIG_HUMAN_CHECK_SHIELDS))
+	shield_active = FALSE
 	current_owner.update_appearance(UPDATE_OVERLAYS)
 	current_owner =  null
 
