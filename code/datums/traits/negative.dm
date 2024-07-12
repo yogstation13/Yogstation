@@ -928,13 +928,13 @@
 
 /datum/quirk/psionically_deafened
 	name = "Psionically Deafened"
-	desc = "You were born far away from the veil, deafening you to psionic latency. You cannot awaken as a psionic with this quirk."
+	desc = "You were born within a region of space more distant to veil, deafening you to psionic latency. You cannot awaken as a psionic with this quirk."
 	icon = "hand-back-fist"
 	value = -1
 	mob_trait = TRAIT_PSIONICALLY_DEAFENED
-	gain_text = span_notice("You feel like you got your head on straight, probably.")
-	lose_text = span_notice("You feel like you should invest in a tinfoil hat. Now.")
-	medical_record_text = "Patient demonstrates high... anti... affinity to cerebral testing...?"
+	gain_text = span_notice("You feel a sense of numbness in your thoughts.")
+	lose_text = span_notice("You feel like a weight has receeded from your mind.")
+	medical_record_text = "Patient demonstrates unusually stagnant brain patterns."
 
 /datum/quirk/psionically_deafened/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
