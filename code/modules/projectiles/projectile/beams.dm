@@ -274,13 +274,14 @@
 	wound_bonus = -5
 
 /// BFG
-/obj/projectile/beam/bfg
+/obj/projectile/beam/laser/bfg
 	name = "searing rod"
 	icon_state = "lava"
 	damage = 35
 	light_power = 2
 	light_color = "#ffff00"
 	speed = 1
+	fire_hazard = TRUE
 	///used to keep track of people to prevent grazing the same target multiple times
 	var/list/grazed = list()
 	///damage done during the graze
