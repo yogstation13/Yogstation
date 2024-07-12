@@ -943,7 +943,7 @@ datum/techweb_node/cyber_organs/New()
 	display_name = "Exosuit Weapon (BFG-90 \"Graze\" Radioactive Cannon)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("adv_beam_weapons")
-	design_ids = list("mech_bfg", "mech_bfg_ammo")
+	design_ids = list("mech_bfg")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/mech_laser

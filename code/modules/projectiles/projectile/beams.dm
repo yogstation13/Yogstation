@@ -281,15 +281,21 @@
 	light_power = 2
 	light_color = "#ffff00"
 	speed = 1
+	///used to keep track of people to prevent grazing the same target multiple times
+	var/list/grazed = list()
 
 /obj/projectile/beam/bfg/Range()
 	. = ..()
 	for(var/atom/movable/passed in range(1, src))
-		if(passed == src)
+		if(passed == src || (passed in grazed))
 			continue
 		if(isliving(passed))
 			var/mob/living/m_passed = passed
-			m_passed.apply_damage(HEAT_DAMAGE_LEVEL_3, BURN)
+			var/blocked = m_passed.run_armor_check(null, BURN)
+			m_passed.apply_damage(10, BURN, blocked = blocked)
+			m_passed.playsound_local(m_passed, hitsound, 30, TRUE)
+			to_chat(m_passed, "[src] sears you as it flies nearby.")
 			new /obj/effect/temp_visual/ratvar/ocular_warden(get_turf(m_passed))
 		else
 			passed.fire_act(460, 100)
+		grazed |= passed

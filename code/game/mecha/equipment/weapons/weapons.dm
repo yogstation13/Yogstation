@@ -222,6 +222,15 @@
 	projectile = /obj/projectile/energy/electrode
 	fire_sound = 'sound/weapons/taser.ogg'
 
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/bfg
+	name = "\improper BFG-90 \"Graze\" Radioactive Cannon"
+	desc = "A weapon for combat exosuits. Shoots an incredibly hot beam surrounded by a field of plasma."
+	icon_state = "mecha_laser"
+	energy_drain = 500
+	equip_cooldown = 2 SECONDS
+	projectile = /obj/projectile/beam/bfg
+	harmful = TRUE
+	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/honker
 	name = "\improper HoNkER BlAsT 5000"
@@ -390,19 +399,6 @@
 	projectile_delay = 2
 	harmful = TRUE
 	ammo_type = "lmg"
-
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/bfg
-	name = "\improper BFG-90 \"Graze\" Radioactive Cannon"
-	desc = "A weapon for combat exosuits. Shoots an incredibly hot beam surrounded by a field of plasma."
-	icon_state = "mecha_laser"
-	equip_cooldown = 2 SECONDS
-	projectile = /obj/projectile/beam/bfg
-	projectiles = 5
-	projectiles_cache = 0
-	projectiles_cache_max = 10
-	harmful = TRUE
-	ammo_type = "bfg"
-	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/venom
 	name = "\improper K0-B3 \"Snakebite\" Carbine"
