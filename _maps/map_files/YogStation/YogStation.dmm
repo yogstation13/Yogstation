@@ -14519,6 +14519,7 @@
 /area/medical/medbay/lobby)
 "cvh" = (
 /obj/effect/turf_decal/box,
+/obj/effect/spawner/backrooms_portal,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "cvr" = (
@@ -20593,11 +20594,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/distro)
-"eyf" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/backrooms_explorer,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "eyp" = (
 /obj/structure/transit_tube/curved/flipped{
 	dir = 4
@@ -31523,7 +31519,6 @@
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 8
 	},
-/obj/effect/landmark/start/backrooms_explorer,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "imT" = (
@@ -42791,10 +42786,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"myJ" = (
-/obj/effect/landmark/start/backrooms_explorer,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "myO" = (
 /obj/structure/chair{
 	dir = 8
@@ -73970,7 +73961,6 @@
 "xNL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/obj/effect/landmark/start/backrooms_explorer,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "xNM" = (
@@ -93104,7 +93094,7 @@ bcL
 ool
 aZE
 qQE
-myJ
+bjr
 lAc
 hFR
 qgK
@@ -93361,7 +93351,7 @@ xKk
 eOb
 aZE
 mNm
-eyf
+lAc
 pNc
 hsg
 qgK
