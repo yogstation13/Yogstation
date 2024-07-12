@@ -13,8 +13,8 @@
 	var/open_sound = 'sound/machines/podopen.ogg'
 	var/close_sound = 'sound/machines/podclose.ogg'
 
-	var/brain_damage = 50
-	var/trigger_power = 50
+	var/brain_damage = 60 //effectively 50 because the default components reduce it by 10
+	var/trigger_power = 40 //effectively 50 because the default components increase it by 10
 
 	COOLDOWN_DECLARE(next_trigger)
 	var/cooldown_duration = 10 SECONDS
@@ -36,8 +36,8 @@
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
 		F += B.rating
 
-	brain_damage = initial(brain_damage) - (5 * E)
-	trigger_power = initial(trigger_power) + (5 * F)
+	brain_damage = initial(brain_damage) - (10 * E)
+	trigger_power = initial(trigger_power) + (10 * F)
 
 /obj/machinery/psionic_awakener/container_resist(mob/living/user)
 	visible_message(span_notice("[occupant] emerges from [src]!"), span_notice("You climb out of [src]!"))

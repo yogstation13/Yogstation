@@ -2,6 +2,10 @@
 
 	set waitfor = FALSE
 
+	if(HAS_TRAIT(owner, TRAIT_PSIONICALLY_IMMUNE) || HAS_TRAIT(owner, TRAIT_PSIONICALLY_DEAFENED)) //no psionics for you
+		qdel(src)
+		return
+
 	var/last_rating = rating
 	var/highest_faculty
 	var/highest_rank = 0
@@ -62,6 +66,9 @@
 		to_chat(owner, "<hr>")
 
 /datum/psi_complexus/process()
+	if(HAS_TRAIT(owner, TRAIT_PSIONICALLY_IMMUNE) || HAS_TRAIT(owner, TRAIT_PSIONICALLY_DEAFENED)) //no psionics for you
+		qdel(src)
+		return
 
 	var/update_hud
 	if(stun)

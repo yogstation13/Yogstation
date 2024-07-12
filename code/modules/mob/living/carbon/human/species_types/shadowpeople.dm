@@ -195,6 +195,7 @@
 		TRAIT_GENELESS, 
 		TRAIT_NOCRITDAMAGE,
 		TRAIT_NOGUNS,
+		TRAIT_PSIONICALLY_DEAFENED, //no doubling up psionic powers
 		TRAIT_SPECIESLOCK //never let them swap off darkspawn, it can cause issues
 		)
 	mutanteyes = /obj/item/organ/eyes/darkspawn
@@ -206,9 +207,6 @@
 /datum/species/shadow/darkspawn/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
 	C.fully_replace_character_name("[C.real_name]", darkspawn_name())
-	if(C.psi)
-		QDEL_NULL(C.psi) //no psionics as the psionic species
-		to_chat(C, span_velvet("You shed your lesser psionic abilities as you assume your true form."))
 
 /datum/species/shadow/darkspawn/spec_updatehealth(mob/living/carbon/human/H)
 	var/datum/antagonist/darkspawn/antag = isdarkspawn(H)

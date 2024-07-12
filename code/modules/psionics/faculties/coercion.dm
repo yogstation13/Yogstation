@@ -13,8 +13,8 @@
 	if (!istype(target))
 		to_chat(user, span_warning("You cannot mentally attack \the [target]."))
 		return FALSE
-	if(isipc(target))
-		to_chat(user, span_warning("[target]'s metallic nature refuses the psionic tampering"))
+	if(HAS_TRAIT(target, TRAIT_PSIONICALLY_IMMUNE))
+		to_chat(user, span_warning("[target]'s unnatural anatomy refuses the psionic tampering"))
 		return FALSE
 	. = ..()
 
@@ -290,7 +290,7 @@
 		for(var/mob/living/M in orange(user, user.psi.get_rank(PSI_COERCION)))
 			if(M == user)
 				continue
-			if(isipc(M))
+			if(HAS_TRAIT(M, TRAIT_PSIONICALLY_IMMUNE))
 				continue
 			M.emote("scream")
 			to_chat(M, span_danger("Your senses are blasted into oblivion by a psionic scream!"))

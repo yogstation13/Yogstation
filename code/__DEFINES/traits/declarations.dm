@@ -740,6 +740,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SETTLER "settler"
 #define TRAIT_PSIONICALLY_TUNED "Psionically Tuned"
 #define TRAIT_PSIONICALLY_DEAFENED "Psionically Deafened"
+/// Can never have psionics, but is pretty much immune to direct tampering by them
+#define TRAIT_PSIONICALLY_IMMUNE "Psionically Immune"
 
 /// This mob always lands on their feet when they fall, for better or for worse.
 #define TRAIT_CATLIKE_GRACE "catlike_grace"
