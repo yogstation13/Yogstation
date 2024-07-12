@@ -12,7 +12,7 @@
 
 	outfit = /datum/outfit/job/cargo_tech
 
-	alt_titles = list("Pioneer", "Pathfinder", "Delver", "Traveller", "New-Hire", "Company Asset")
+	alt_titles = list("Pioneer", "Pathfinder", "Delver", "Traveller", "New-Hire", "Company Asset", "Reality Hopper")
 
 	added_access = list(ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION)
 	base_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM)
