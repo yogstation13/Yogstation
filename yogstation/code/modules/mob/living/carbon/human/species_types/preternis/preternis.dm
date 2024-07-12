@@ -1,7 +1,7 @@
 /datum/species/preternis
 	name = "Preternis"
 	plural_form = "Preterni"
-	id = "preternis"
+	id = SPECIES_PRETERNIS
 
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE, TRAIT_NO_BLOOD_REGEN)
@@ -17,7 +17,6 @@
 	disliked_food = GROSS | VEGETABLES
 
 	//stat mods
-	burnmod = 1.2 //The plasteel has a really high heat capacity, however, it's not great at dispersing the heat to concentrated heat is gonna burn
 	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
 	heatmod = 2 //Once the heat gets through it's gonna BURN
 	tempmod = 0.15 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
@@ -27,9 +26,6 @@
 	punchdamagehigh = 7 //not built for large high speed acts like punches
 	punchstunthreshold = 7 //technically better stunning
 	siemens_coeff = 1.75 //Circuits REALLY don't like extra electricity flying around
-	yogs_virus_infect_chance = 25
-	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
-	virus_stage_rate_boost = 5 //Not designed with viruses in mind since it doesn't usually get in
 
 	//organs
 	mutanteyes = /obj/item/organ/eyes/robotic/preternis
@@ -73,7 +69,6 @@
 		BP.render_like_organic = TRUE 	// Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
 		BP.emp_reduction = EMP_LIGHT
 		BP.burn_reduction = 1
-		BP.brute_reduction = 1
 		if(BP.body_zone == BODY_ZONE_CHEST)
 			continue
 		if(BP.body_zone == BODY_ZONE_HEAD)
@@ -94,7 +89,6 @@
 		BP.change_bodypart_status(ORGAN_ORGANIC,FALSE,TRUE)
 		BP.emp_reduction = initial(BP.emp_reduction)
 		BP.burn_reduction = initial(BP.burn_reduction)
-		BP.brute_reduction = initial(BP.brute_reduction)
 
 	UnregisterSignal(C, COMSIG_MOB_ALTCLICKON)
 
@@ -320,26 +314,50 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "cookie-bite",
-			SPECIES_PERK_NAME = "Stone eater",
-			SPECIES_PERK_DESC = "Preterni can eat ores to replenish their metal skin. All ores are not created equal.",
+			SPECIES_PERK_NAME = "Stone Eater",
+			SPECIES_PERK_DESC = "Preterni are fitted with grinders in their stomach, letting them eat and process ores to replenish their metal skin. \
+								All ores are not created equal.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "wrench",
+			SPECIES_PERK_NAME = "Worker Drone",
+			SPECIES_PERK_DESC = "Preterni were designed to be quick and efficient workers. \
+								They use tools and items faster than most races.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "low-vision",
+			SPECIES_PERK_NAME = "Augmented Sight",
+			SPECIES_PERK_DESC = "Preterni have a night vision lens they can toggle built into their eyes. \
+								This lens will drain power while active.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "lungs",
+			SPECIES_PERK_NAME = "Nanovapor Filters",
+			SPECIES_PERK_DESC = "Preterni have bioengineered lungs that require little oxygen, and filter trace amounts of toxic gases from the air. \
+								However, they're prone to being damaged from breathing in cold air.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "flask",
 			SPECIES_PERK_NAME = "Chemical Purge",
-			SPECIES_PERK_DESC = "Preterni will purge any foreign chemicals after a short time of them being in the blood stream.",
+			SPECIES_PERK_DESC = "Preterni have an elaborate system of filters for decontaminating their organic parts. \
+								A percentage of all foreign chemicals in their bloodstream are purged every few seconds.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-			SPECIES_PERK_ICON = "droplet-slash",
+			SPECIES_PERK_ICON = "shower",
 			SPECIES_PERK_NAME = "Keep Dry",
-			SPECIES_PERK_DESC = "Preterni have exposed circuitry under cracks in their body, if water gets in they will short, causing weakness in the limbs and burns.",
+			SPECIES_PERK_DESC = "Preterni have exposed circuitry under the cracks in their outer shell. \
+								Contact with water will short their electronics, causing weakness in the limbs and burns.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "droplet-slash",
 			SPECIES_PERK_NAME = "Metal Marrow",
-			SPECIES_PERK_DESC = "Preterni have solid metal bones with no internal marrow. Their body will not create blood to replace any lost.",
+			SPECIES_PERK_DESC = "Preterni have solid metal bones with no internal marrow. Their body will not create blood to replace any lost."
 		),
 	)
 

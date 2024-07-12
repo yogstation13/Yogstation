@@ -427,7 +427,7 @@
 					icon_states_string = "[json_encode(an_icon_state)](\ref[an_icon_state])"
 				else
 					icon_states_string += ", [json_encode(an_icon_state)](\ref[an_icon_state])"
-	
+
 			stack_trace("[item] does not have a valid icon state, icon=[icon_file], icon_state=[json_encode(icon_state)](\ref[icon_state]), icon_states=[icon_states_string]")
 			continue
 		#endif
@@ -481,7 +481,7 @@
 			I.Blend(c, ICON_MULTIPLY)
 
 		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
-		
+
 		if(!sprites[imgid])
 			Insert(imgid, I)
 
@@ -612,9 +612,6 @@
 /datum/asset/spritesheet/sheetmaterials/create_spritesheets()
 	InsertAll("", 'icons/obj/stack_objects.dmi')
 
-	// Special case to handle Bluespace Crystals
-	Insert("polycrystal", 'icons/obj/telescience.dmi', "polycrystal")
-
 	Insert("dilithium_polycrystal", 'yogstation/icons/obj/telescience.dmi', "dilithium_polycrystal") //yogs: same as above but for dilithium
 
 
@@ -720,3 +717,24 @@
 		//glass door no overlay
 		icon = icon(airlocks[airlock_name] , "closed" , SOUTH)
 		Insert(sanitize_css_class_name("[airlock_name]Glass"), icon)
+
+/datum/asset/simple/inventory
+	assets = list(
+		"inventory-glasses.png" = 'icons/UI_Icons/inventory_midnight/glasses.png',
+		"inventory-head.png" = 'icons/UI_Icons/inventory_midnight/head.png',
+		"inventory-neck.png" = 'icons/UI_Icons/inventory_midnight/neck.png',
+		"inventory-mask.png" = 'icons/UI_Icons/inventory_midnight/mask.png',
+		"inventory-ears.png" = 'icons/UI_Icons/inventory_midnight/ears.png',
+		"inventory-uniform.png" = 'icons/UI_Icons/inventory_midnight/uniform.png',
+		"inventory-suit.png" = 'icons/UI_Icons/inventory_midnight/suit.png',
+		"inventory-gloves.png" = 'icons/UI_Icons/inventory_midnight/gloves.png',
+		"inventory-hand_l.png" = 'icons/UI_Icons/inventory_midnight/hand_l.png',
+		"inventory-hand_r.png" = 'icons/UI_Icons/inventory_midnight/hand_r.png',
+		"inventory-shoes.png" = 'icons/UI_Icons/inventory_midnight/shoes.png',
+		"inventory-suit_storage.png" = 'icons/UI_Icons/inventory_midnight/suit_storage.png',
+		"inventory-id.png" = 'icons/UI_Icons/inventory_midnight/id.png',
+		"inventory-belt.png" = 'icons/UI_Icons/inventory_midnight/belt.png',
+		"inventory-back.png" = 'icons/UI_Icons/inventory_midnight/back.png',
+		"inventory-pocket.png" = 'icons/UI_Icons/inventory_midnight/pocket.png',
+		"inventory-collar.png" = 'icons/UI_Icons/inventory_midnight/collar.png',
+	)

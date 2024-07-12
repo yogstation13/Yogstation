@@ -1038,7 +1038,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 /obj/item/proc/canStrip(mob/stripper, mob/owner)
 	SHOULD_BE_PURE(TRUE)
-	return !HAS_TRAIT(src, TRAIT_NODROP)
+	return !HAS_TRAIT(src, TRAIT_NODROP)  && !(item_flags & ABSTRACT)
 
 /obj/item/proc/doStrip(mob/stripper, mob/owner)
 	return owner.dropItemToGround(src)
@@ -1189,3 +1189,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/proc/update_item_action_buttons(update_flags = ALL, force = FALSE)
 	for(var/datum/action/current_action as anything in actions)
 		current_action.build_all_button_icons(update_flags, force)
+
+/obj/item/proc/get_shipbreaking_reward()
+	return null

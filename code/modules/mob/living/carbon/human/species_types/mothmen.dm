@@ -1,7 +1,7 @@
 /datum/species/moth
 	name = "Ex'hai"
 	plural_form = "Ex'hau"
-	id = "moth"
+	id = SPECIES_MOTH
 	say_mod = "flutters"
 	default_color = "00FF00"
 	species_traits = list(LIPS, NOEYESPRITES,HAS_FLESH,HAS_BONE)
@@ -24,7 +24,7 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/mothmen
 
-	screamsound = 'sound/voice/moth/scream_moth.ogg'
+	deathsound = 'sound/voice/moth/moth_death.ogg'
 
 	smells_like = "dusty dryness"
 
@@ -111,29 +111,76 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "feather-alt",
-			SPECIES_PERK_NAME = "Precious Wings",
-			SPECIES_PERK_DESC = "Moths can fly in pressurized, zero-g environments and safely land short falls using their wings.",
+			SPECIES_PERK_NAME = "Flutter-Wings",
+			SPECIES_PERK_DESC = "Ex'hau naturally have large, delicate wings. They can fly in pressurized, zero-g environments and safely land \
+								short falls using them. Take care however, as they're easily burnt off.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "tshirt",
-			SPECIES_PERK_NAME = "Meal Plan",
-			SPECIES_PERK_DESC = "Moths can eat clothes for nourishment.",
+			SPECIES_PERK_ICON = "scroll",
+			SPECIES_PERK_NAME = "Silky Sustenance",
+			SPECIES_PERK_DESC = "Ex'hau are able to feed off proteins found in most fabrics, letting them eat cloth and most clothing for nourishment.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-			SPECIES_PERK_ICON = "fire",
-			SPECIES_PERK_NAME = "Ablazed Wings",
-			SPECIES_PERK_DESC = "Moth wings are fragile, and can be easily burnt off.",
+			SPECIES_PERK_ICON = "fa-solid fa-eye",
+			SPECIES_PERK_NAME = "Nocturnal Eyes",
+			SPECIES_PERK_DESC = "Ex'hau have very sensitive eyes. Welding may need more than one layer of protection, \
+				and sunglasses won't shield them from flashes.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-			SPECIES_PERK_ICON = "sun",
-			SPECIES_PERK_NAME = "Bright Lights",
-			SPECIES_PERK_DESC = "Moths need an extra layer of flash protection to protect \
-				themselves, such as against security officers or when welding. Welding \
-				masks will work.",
+			SPECIES_PERK_ICON = "mosquito",
+			SPECIES_PERK_NAME = "Fluffy Pests",
+			SPECIES_PERK_DESC = "Ex'hau are very similar to insects genetically, and are hurt much more by fly swatters and insecticides.",
 		),
 	)
 
 	return to_add
+
+/datum/species/moth/get_scream_sound(mob/living/carbon/human)
+	return 'sound/voice/moth/scream_moth.ogg'
+
+/datum/species/moth/get_cough_sound(mob/living/carbon/human/moth)
+	if(moth.gender == FEMALE)
+		return pick(
+			'sound/voice/human/female_cough1.ogg',
+			'sound/voice/human/female_cough2.ogg',
+			'sound/voice/human/female_cough3.ogg',
+			'sound/voice/human/female_cough4.ogg',
+			'sound/voice/human/female_cough5.ogg',
+			'sound/voice/human/female_cough6.ogg',
+		)
+	return pick(
+		'sound/voice/human/male_cough1.ogg',
+		'sound/voice/human/male_cough2.ogg',
+		'sound/voice/human/male_cough3.ogg',
+		'sound/voice/human/male_cough4.ogg',
+		'sound/voice/human/male_cough5.ogg',
+		'sound/voice/human/male_cough6.ogg',
+	)
+
+
+/datum/species/moth/get_cry_sound(mob/living/carbon/human/moth)
+	if(moth.gender == FEMALE)
+		return pick(
+			'sound/voice/human/female_cry1.ogg',
+			'sound/voice/human/female_cry2.ogg',
+		)
+	return pick(
+		'sound/voice/human/male_cry1.ogg',
+		'sound/voice/human/male_cry2.ogg',
+		'sound/voice/human/male_cry3.ogg',
+	)
+
+
+/datum/species/moth/get_sneeze_sound(mob/living/carbon/human/moth)
+	if(moth.gender == FEMALE)
+		return 'sound/voice/human/female_sneeze1.ogg'
+	return 'sound/voice/human/male_sneeze1.ogg'
+
+
+/datum/species/moth/get_laugh_sound(mob/living/carbon/human)
+	if(!istype(human))
+		return
+	return 'sound/voice/moth/moth_laugh1.ogg'

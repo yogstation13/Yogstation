@@ -11,3 +11,9 @@
 	singular_name = "gorilla skin piece"
 	icon_state = "sheet-gorilla"
 	item_state = "sheet-gorilla"
+
+/obj/item/stack/sheet/animalhide/vox
+	name = "vox hide"
+	desc = "SKREE!"
+	singular_name = "vox hide piece"
+	icon_state = "sheet-vox"

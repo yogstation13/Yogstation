@@ -901,11 +901,6 @@
 				if(what.doStrip(src, who))
 					log_combat(src, who, "stripped [what] off")
 
-	if(Adjacent(who)) //update inventory window
-		who.show_inv(src)
-	else
-		src << browse(null,"window=mob[REF(who)]")
-
 // The src mob is trying to place an item on someone
 // Override if a certain mob should be behave differently when placing items (can't, for example)
 /mob/living/stripPanelEquip(obj/item/what, mob/who, where)
@@ -936,11 +931,6 @@
 							what.forceMove(get_turf(who))
 					else
 						who.equip_to_slot(what, where, TRUE)
-
-		if(Adjacent(who)) //update inventory window
-			who.show_inv(src)
-		else
-			src << browse(null,"window=mob[REF(who)]")
 
 /mob/living/singularity_pull(S, current_size)
 	..()
@@ -1223,7 +1213,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	var/datum/status_effect/fire_handler/fire_handler = has_status_effect(/datum/status_effect/fire_handler)
 	if(fire_handler)
 		fire_handler.update_overlay()
-		
+
 /**
  * Extinguish all fire on the mob
  *
@@ -1716,7 +1706,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 //	if(!resting)
 //		get_up()
 	set_resting(FALSE)
-	
+
 /mob/living/proc/move_to_error_room()
 	var/obj/effect/landmark/error/error_landmark = locate(/obj/effect/landmark/error) in GLOB.landmarks_list
 	if(error_landmark)

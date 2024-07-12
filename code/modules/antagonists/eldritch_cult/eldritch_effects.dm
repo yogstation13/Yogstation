@@ -386,7 +386,7 @@
 					BP.dismember(BURN)
 				if(PENANCE_SKELETON)
 					var/obj/item/bodypart/BP
-					while(!BP || BP.species_id == "skeleton")
+					while(!BP || BP.species_id == SPECIES_SKELETON)
 						if(!LAZYLEN(unspooked_limbs))
 							to_chat(C, span_warning("Something you did managed to break brazil limb sacrificing stuff, make a bug report!"))
 							return
@@ -394,7 +394,7 @@
 						BP = C.get_bodypart(target_zone)
 					var/obj/item/bodypart/replacement_part = new BP.type
 					replacement_part.max_damage = 15
-					replacement_part.species_id = "skeleton"
+					replacement_part.species_id = SPECIES_SKELETON
 					replacement_part.original_owner = "inside"
 					replacement_part.replace_limb(owner)
 					C.visible_message(span_warning("The skin on [owner]'s [BP] suddenly melts off, revealing bone!"), span_warning("The skin and muscle on your [BP] is suddenly melted off!"))

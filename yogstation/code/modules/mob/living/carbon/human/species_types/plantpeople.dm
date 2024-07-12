@@ -3,7 +3,7 @@
 /datum/species/pod
 	// A mutation caused by a human being ressurected in a revival pod. These regain health in light, and begin to wither in darkness.
 	name = "Phytosian"
-	id = "pod" // We keep this at pod for compatibility reasons
+	id = SPECIES_PODPERSON // We keep this at pod for compatibility reasons
 	default_color = "59CE00"
 	species_traits = list(MUTCOLORS, EYECOLOR, HAS_FLESH, HAS_BONE)
 	mutant_bodyparts = list("pod_hair", "pod_flower")
@@ -313,7 +313,7 @@
 		on a divine monument known as the Mother Tree. The main continent was wiped barren of life save the Tree, \
 		until jars of blood crashed into it and spawned the few victors. The survivors formed the Gukdem Confederacy: \
 		a government tasked with preventing such an event from happening again through strict authoritarian policies. \
-		They quickly butchered almost all remaining non-phytosians lifeforms on Muldova in order to to assimilate them, \
+		They quickly butchered almost all remaining non-phytosians lifeforms on Muldova in order to assimilate them, \
 		enclosing the rest to ensure a steady supply of population.",
 
 		"In the year 2511, drones of Sano-Waltfield Industries landing on Muldova alerted phytosians of the existence \
@@ -329,9 +329,9 @@
 		at worst; it is a rather unremarkable event, since they'll be back soon. Violent, often lethal sports are not uncommon and \
 		still remain popular among them today. Most notable is the phytosian's obsession with fire. Fire is both revered and \
 		feared, as incineration is one of the only ways for a phytosian to truly die; it destroysthe podseeds under them and \
-		evaporates blood.  It is a divine power, a destructive force, and an escape from the endless cycle of rebirth.",
+		evaporates blood. It is a divine power, a destructive force, and an escape from the endless cycle of rebirth.",
 
-		"Today, few embassies exist on Muldova, and anything shown to SIC denizens and representative is carefully \
+		"Today, few embassies exist on Muldova, and anything shown to SIC denizens and representatives is carefully \
 		chosen and controlled. Cooperation and exchanges between the SIC and the Confederacy are almost inexistent. \
 		The only phytosians seen in SIC space are generally political opponents to the Confederacy or have come to \
 		observe the galaxy outside their system, intending on coming back to provide a full report. Phytosians \
@@ -342,26 +342,60 @@
 /datum/species/pod/create_pref_unique_perks()
 	var/list/to_add = list()
 
-	// TODO
+	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "clover", // Looks a bit like a sun too
+			SPECIES_PERK_NAME = "Photosynthetic",
+			SPECIES_PERK_DESC = "Phytosians passively heal and gain nutrition when exposed to light. \
+								This effect is doubled while processing sugar.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "lungs",
+			SPECIES_PERK_NAME = "Carbon Cycle",
+			SPECIES_PERK_DESC = "Phytosians can breathe both oxygen and CO2 safely.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "tree",
+			SPECIES_PERK_NAME = "Friend of the Flora",
+			SPECIES_PERK_DESC = "Phytosians are viewed by certain hostile plant creatures (such as killer tomatoes) as neutral, \
+								and won't immediately be hostile toward them.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "flask",
+			SPECIES_PERK_NAME = "Botanical Biology",
+			SPECIES_PERK_DESC = "Phytosians are hurt by herbicides and affected by other chemicals that impact plant life.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "plant-wilt",
+			SPECIES_PERK_NAME = "Wilting",
+			SPECIES_PERK_DESC = "Phytosians lose nutrition in darkness, and will begin to wilt and die while starving. \
+								This effect is tripled while processing sugar.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "walking",
+			SPECIES_PERK_NAME = "Lumbering Steps",
+			SPECIES_PERK_DESC = "Phytosians are slower than most races.",
+		),
+	)
 
 	return to_add
 
-/datum/species/pod/create_pref_biotypes_perks()
-	var/list/to_add = list()
-
-	// TODO
-
-	return to_add
 /*
  Podpeople subspecies: IVYMEN
 */
 /datum/species/pod/ivymen
-	// A unique podpeople mutation native to Jungleland. 
+	// A unique podpeople mutation native to Jungleland.
 	// They are adapted to the region, don't mind meat, and move faster than normal podpeople.
 	// However, they can't use guns or machines.
 	name = "Ivymen"
 	id = "ivymen"
-	limbs_id = "pod"
+	limbs_id = SPECIES_PODPERSON
 	inherent_traits = list(TRAIT_NOGUNS,TRAIT_RESISTHIGHPRESSURE)
 	speedmod = 0
 	mutantlungs = /obj/item/organ/lungs/plant/ivymen
@@ -369,11 +403,11 @@
 
 /datum/species/pod/ivymen/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
-	C.weather_immunities |= "acid"
+	C.weather_immunities |= WEATHER_ACID
 
 /datum/species/pod/ivymen/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	C.weather_immunities -= "acid"
+	C.weather_immunities -= WEATHER_ACID
 
 
 #undef STATUS_MESSAGE_COOLDOWN

@@ -1428,7 +1428,7 @@
 
 /datum/supply_pack/medical/bloodpacks
 	name = "Blood Pack Variety Crate"
-	desc = "Contains eight different blood packs for reintroducing blood to patients."
+	desc = "Contains many different blood packs for reintroducing blood to patients."
 	cost = 3500
 	contains = list(/obj/item/reagent_containers/blood,
 					/obj/item/reagent_containers/blood,
@@ -1439,6 +1439,7 @@
 					/obj/item/reagent_containers/blood/OPlus,
 					/obj/item/reagent_containers/blood/OMinus,
 					/obj/item/reagent_containers/blood/lizard,
+					/obj/item/reagent_containers/blood/vox,
 					/obj/item/reagent_containers/blood/ethereal)
 	crate_name = "blood freezer"
 	crate_type = /obj/structure/closet/crate/freezer
@@ -2405,6 +2406,24 @@
 					/obj/item/reagent_containers/food/snacks/grown/cucumber)
 	crate_name = "food crate"
 
+/datum/supply_pack/organic/ice_cream
+	name = "Big Top Ice Cream Crate"
+	desc = "A crate with a carton of every flavor of Big Top brand ice cream."
+	cost = 2500
+	contains = list(/obj/item/storage/box/ice_cream_carton,
+					/obj/item/storage/box/ice_cream_carton/vanilla,
+					/obj/item/storage/box/ice_cream_carton/chocolate,
+					/obj/item/storage/box/ice_cream_carton/strawberry,
+					/obj/item/storage/box/ice_cream_carton/blue,
+					/obj/item/storage/box/ice_cream_carton/lemon_sorbet,
+					/obj/item/storage/box/ice_cream_carton/caramel,
+					/obj/item/storage/box/ice_cream_carton/banana,
+					/obj/item/storage/box/ice_cream_carton/orange_creamsicle,
+					/obj/item/storage/box/ice_cream_carton/peach,
+					/obj/item/storage/box/ice_cream_carton/cherry_chocolate,
+					/obj/item/storage/box/ice_cream_carton/meat)
+	crate_name = "ice cream crate"
+
 /datum/supply_pack/organic/vending/hydro_refills
 	name = "Hydroponics Vending Machines Refills"
 	desc = "When the clown takes all the banana seeds. Contains a NutriMax refill and an MegaSeed Servitor refill."
@@ -2434,6 +2453,22 @@
 					/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy
 					)
 	crate_name = "grilling fuel kit crate"
+
+/datum/supply_pack/organic/food_cart
+	name = "Food Cart Crate"
+	desc = "Contains a food cart for all your mobile food needs."
+	cost = 5000
+	crate_type = /obj/structure/closet/crate/large
+	contains = list(/obj/machinery/food_cart)
+	crate_name = "food cart crate"
+
+/datum/supply_pack/organic/icecream_vat
+	name = "Ice cream Vat Crate"
+	desc = "A vat of ice-cold icecream for those hot shifts in Atmospherics."
+	cost = 5000
+	crate_type = /obj/structure/closet/crate/large
+	contains = list(/obj/machinery/icecream_vat)
+	crate_name = "ice cream vat crate"
 
 //////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// Livestock /////////////////////////////////////

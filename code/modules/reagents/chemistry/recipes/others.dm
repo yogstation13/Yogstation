@@ -9,7 +9,7 @@
 	name = "Space Lube"
 	id = /datum/reagent/lube
 	results = list(/datum/reagent/lube = 4)
-	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
+	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/gas/oxygen = 1)
 
 /datum/chemical_reaction/naniteremover
 	name = "Nanolytic Agent"
@@ -39,13 +39,13 @@
 	name = "Impedrezene"
 	id = /datum/reagent/impedrezene
 	results = list(/datum/reagent/impedrezene = 2)
-	required_reagents = list(/datum/reagent/mercury = 1, /datum/reagent/oxygen = 1, /datum/reagent/consumable/sugar = 1)
+	required_reagents = list(/datum/reagent/mercury = 1, /datum/reagent/gas/oxygen = 1, /datum/reagent/consumable/sugar = 1)
 
 /datum/chemical_reaction/cryptobiolin
 	name = "Cryptobiolin"
 	id = /datum/reagent/cryptobiolin
 	results = list(/datum/reagent/cryptobiolin = 3)
-	required_reagents = list(/datum/reagent/potassium = 1, /datum/reagent/oxygen = 1, /datum/reagent/consumable/sugar = 1)
+	required_reagents = list(/datum/reagent/potassium = 1, /datum/reagent/gas/oxygen = 1, /datum/reagent/consumable/sugar = 1)
 
 /datum/chemical_reaction/glycerol
 	name = "Glycerol"
@@ -106,7 +106,7 @@
 /datum/chemical_reaction/candlefication
 	name = "Candlefication"
 	id = "candlefication"
-	required_reagents = list(/datum/reagent/consumable/cornoil = 5, /datum/reagent/hydrogen  = 5)
+	required_reagents = list(/datum/reagent/consumable/cornoil = 5, /datum/reagent/gas/hydrogen  = 5)
 	required_temp = 374
 	mob_react = FALSE
 
@@ -118,7 +118,7 @@
 /datum/chemical_reaction/candlefication2
 	name = "Candlefication2"
 	id = "candlefication2"
-	required_reagents = list(/datum/reagent/consumable/cooking_oil = 5, /datum/reagent/hydrogen  = 5)
+	required_reagents = list(/datum/reagent/consumable/cooking_oil = 5, /datum/reagent/gas/hydrogen  = 5)
 	required_temp = 374
 	mob_react = FALSE
 
@@ -142,15 +142,15 @@
 /datum/chemical_reaction/carbondioxide
 	name = "Direct Carbon Oxidation"
 	id = "burningcarbon"
-	results = list(/datum/reagent/carbondioxide = 3)
-	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/oxygen = 2)
+	results = list(/datum/reagent/gas/carbondioxide = 3)
+	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/gas/oxygen = 2)
 	required_temp = 777 // pure carbon isn't especially reactive.
 
 /datum/chemical_reaction/nitrous_oxide
 	name = "Nitrous Oxide"
-	id = /datum/reagent/nitrous_oxide
-	results = list(/datum/reagent/nitrous_oxide = 5)
-	required_reagents = list(/datum/reagent/ammonia = 2, /datum/reagent/nitrogen = 1, /datum/reagent/oxygen = 2)
+	id = /datum/reagent/gas/nitrous_oxide
+	results = list(/datum/reagent/gas/nitrous_oxide = 5)
+	required_reagents = list(/datum/reagent/ammonia = 2, /datum/reagent/gas/nitrogen = 1, /datum/reagent/gas/oxygen = 2)
 	required_temp = 525
 
 //Technically a mutation toxin
@@ -415,7 +415,7 @@
 	name = "Foaming Agent"
 	id = /datum/reagent/foaming_agent
 	results = list(/datum/reagent/foaming_agent = 1)
-	required_reagents = list(/datum/reagent/lithium = 1, /datum/reagent/hydrogen = 1)
+	required_reagents = list(/datum/reagent/lithium = 1, /datum/reagent/gas/hydrogen = 1)
 
 /datum/chemical_reaction/smart_foaming_agent
 	name = "Smart foaming Agent"
@@ -431,7 +431,7 @@
 	name = "Ammonia"
 	id = /datum/reagent/ammonia
 	results = list(/datum/reagent/ammonia = 3)
-	required_reagents = list(/datum/reagent/hydrogen = 3, /datum/reagent/nitrogen = 1)
+	required_reagents = list(/datum/reagent/gas/hydrogen = 3, /datum/reagent/gas/nitrogen = 1)
 
 /datum/chemical_reaction/diethylamine
 	name = "Diethylamine"
@@ -475,7 +475,7 @@
 	name = /datum/reagent/acetone
 	id = /datum/reagent/acetone
 	results = list(/datum/reagent/acetone = 3)
-	required_reagents = list(/datum/reagent/oil = 1, /datum/reagent/fuel = 1, /datum/reagent/oxygen = 1)
+	required_reagents = list(/datum/reagent/oil = 1, /datum/reagent/fuel = 1, /datum/reagent/gas/oxygen = 1)
 
 /datum/chemical_reaction/carpet
 	name = /datum/reagent/carpet
@@ -487,7 +487,7 @@
 	name = "Oil"
 	id = /datum/reagent/oil
 	results = list(/datum/reagent/oil = 3)
-	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/carbon = 1, /datum/reagent/hydrogen = 1)
+	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/carbon = 1, /datum/reagent/gas/hydrogen = 1)
 
 /datum/chemical_reaction/phenol
 	name = /datum/reagent/phenol
@@ -711,13 +711,13 @@
 	name = /datum/reagent/saltpetre
 	id = /datum/reagent/saltpetre
 	results = list(/datum/reagent/saltpetre = 3)
-	required_reagents = list(/datum/reagent/potassium = 1, /datum/reagent/nitrogen = 1, /datum/reagent/oxygen = 3)
+	required_reagents = list(/datum/reagent/potassium = 1, /datum/reagent/gas/nitrogen = 1, /datum/reagent/gas/oxygen = 3)
 
 /datum/chemical_reaction/lye
 	name = /datum/reagent/lye
 	id = /datum/reagent/lye
 	results = list(/datum/reagent/lye = 3)
-	required_reagents = list(/datum/reagent/sodium = 1, /datum/reagent/hydrogen = 1, /datum/reagent/oxygen = 1)
+	required_reagents = list(/datum/reagent/sodium = 1, /datum/reagent/gas/hydrogen = 1, /datum/reagent/gas/oxygen = 1)
 
 /datum/chemical_reaction/lye2
 	name = /datum/reagent/lye
@@ -819,7 +819,7 @@
 	name = /datum/reagent/consumable/sugar
 	id = /datum/reagent/consumable/sugar
 	results = list(/datum/reagent/consumable/sugar = 3)
-	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/oxygen = 1, /datum/reagent/fuel = 1)
+	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/gas/oxygen = 1, /datum/reagent/fuel = 1)
 
 /datum/chemical_reaction/welding_fuel
 	name = /datum/reagent/fuel
@@ -833,7 +833,7 @@
 	name = /datum/reagent/stable_plasma
 	id = /datum/reagent/stable_plasma
 	results = list(/datum/reagent/stable_plasma = 6)
-	required_reagents = list(/datum/reagent/toxin/plasma = 3, /datum/reagent/hydrogen = 3)
+	required_reagents = list(/datum/reagent/toxin/plasma = 3, /datum/reagent/gas/hydrogen = 3)
 	required_catalysts =  list(/datum/reagent/consumable/ethanol = 5)
 	required_temp = 100
 	is_cold_recipe = TRUE
@@ -860,3 +860,157 @@
 	results = list(/datum/reagent/plastic_polymers = 10)
 	required_reagents = list(/datum/reagent/microplastics = 10)
 	required_temp = 600
+
+/datum/chemical_reaction/ice_cream
+	name = /datum/reagent/consumable/ice_cream
+	id = /datum/reagent/consumable/ice_cream
+	results = list(/datum/reagent/consumable/ice_cream = 10)
+	required_reagents = list(/datum/reagent/consumable/cream = 5, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/sodiumchloride = 2)
+	required_temp = 272
+	is_cold_recipe = TRUE
+
+/datum/chemical_reaction/ice_cream_vanilla
+	name = /datum/reagent/consumable/ice_cream/vanilla
+	id = /datum/reagent/consumable/ice_cream/vanilla
+	results = list(/datum/reagent/consumable/ice_cream/vanilla = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/vanilla = 2)
+
+/datum/chemical_reaction/ice_cream_chocolate
+	name = /datum/reagent/consumable/ice_cream/chocolate
+	id = /datum/reagent/consumable/ice_cream/chocolate
+	results = list(/datum/reagent/consumable/ice_cream/chocolate = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/coco = 2)
+
+/datum/chemical_reaction/ice_cream_strawberry
+	name = /datum/reagent/consumable/ice_cream/strawberry
+	id = /datum/reagent/consumable/ice_cream/strawberry
+	results = list(/datum/reagent/consumable/ice_cream/strawberry = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/berryjuice = 2)
+
+/datum/chemical_reaction/ice_cream_blue
+	name = /datum/reagent/consumable/ice_cream/blue
+	id = /datum/reagent/consumable/ice_cream/blue
+	results = list(/datum/reagent/consumable/ice_cream/blue = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/ethanol/singulo = 2)
+
+/datum/chemical_reaction/ice_cream_lemon_sorbet
+	name = /datum/reagent/consumable/ice_cream/lemon_sorbet
+	id = /datum/reagent/consumable/ice_cream/lemon_sorbet
+	results = list(/datum/reagent/consumable/ice_cream/lemon_sorbet = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/lemonjuice = 2)
+
+/datum/chemical_reaction/ice_cream_caramel
+	name = /datum/reagent/consumable/ice_cream/caramel
+	id = /datum/reagent/consumable/ice_cream/caramel
+	results = list(/datum/reagent/consumable/ice_cream/caramel = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/caramel = 2)
+
+/datum/chemical_reaction/ice_cream_banana
+	name = /datum/reagent/consumable/ice_cream/banana
+	id = /datum/reagent/consumable/ice_cream/banana
+	results = list(/datum/reagent/consumable/ice_cream/banana = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/banana = 2)
+
+/datum/chemical_reaction/ice_cream_orange_creamsicle
+	name = /datum/reagent/consumable/ice_cream/orange_creamsicle
+	id = /datum/reagent/consumable/ice_cream/orange_creamsicle
+	results = list(/datum/reagent/consumable/ice_cream/orange_creamsicle = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/orangejuice = 2)
+
+/datum/chemical_reaction/ice_cream_peach
+	name = /datum/reagent/consumable/ice_cream/peach
+	id = /datum/reagent/consumable/ice_cream/peach
+	results = list(/datum/reagent/consumable/ice_cream/peach = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/peachjuice = 2)
+
+/datum/chemical_reaction/ice_cream_cherry_chocolate
+	name = /datum/reagent/consumable/ice_cream/cherry_chocolate
+	id = /datum/reagent/consumable/ice_cream/cherry_chocolate
+	results = list(/datum/reagent/consumable/ice_cream/cherry_chocolate = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream/chocolate = 10, /datum/reagent/consumable/cherryjelly = 2)
+
+/datum/chemical_reaction/ice_cream_meat
+	name = /datum/reagent/consumable/ice_cream/meat
+	id = /datum/reagent/consumable/ice_cream/meat
+	results = list(/datum/reagent/consumable/ice_cream/meat = 10)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/liquidgibs = 2)
+
+/datum/chemical_reaction/ice_cream_solidification
+	name = "Ice Cream Solidification"
+	id = "ice_cream"
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/ice = 2)
+	mob_react = FALSE
+
+	//What scoop it will create
+	var/ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop
+
+/datum/chemical_reaction/ice_cream_solidification/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new ice_cream_scoop(location)
+
+/datum/chemical_reaction/ice_cream_solidification/vanilla
+	name = "Vanilla Ice Cream Solidification"
+	id = "ice_cream_vanilla"
+	required_reagents = list(/datum/reagent/consumable/ice_cream/vanilla = 10, /datum/reagent/consumable/ice = 2)
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla
+
+/datum/chemical_reaction/ice_cream_solidification/chocolate
+	name = "Chocolate Ice Cream Solidification"
+	id = "ice_cream_chocolate"
+	required_reagents = list(/datum/reagent/consumable/ice_cream/chocolate = 10, /datum/reagent/consumable/ice = 2)
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/chocolate
+
+/datum/chemical_reaction/ice_cream_solidification/strawberry
+	name = "Strawberry Ice Cream Solidification"
+	id = "ice_cream_strawberry"
+	required_reagents = list(/datum/reagent/consumable/ice_cream/strawberry = 10, /datum/reagent/consumable/ice = 2)
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/strawberry
+
+/datum/chemical_reaction/ice_cream_solidification/blue
+	name = "Blue Ice Cream Solidification"
+	id = "ice_cream_blue"
+	required_reagents = list(/datum/reagent/consumable/ice_cream/blue = 10, /datum/reagent/consumable/ice = 2)
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/blue
+
+/datum/chemical_reaction/ice_cream_solidification/lemon_sorbet
+	name = "Lemon Sorbet Solidification"
+	id = "ice_cream_lemon_sorbet"
+	required_reagents = list(/datum/reagent/consumable/ice_cream/lemon_sorbet = 10, /datum/reagent/consumable/ice = 2)
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/lemon_sorbet
+
+/datum/chemical_reaction/ice_cream_solidification/caramel
+	name = "Caramel Ice Cream Solidification"
+	id = "ice_cream_caramel"
+	required_reagents = list(/datum/reagent/consumable/ice_cream/caramel = 10, /datum/reagent/consumable/ice = 2)
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/caramel
+
+/datum/chemical_reaction/ice_cream_solidification/banana
+	name = "Banana Ice Cream Solidification"
+	id = "ice_cream_banana"
+	required_reagents = list(/datum/reagent/consumable/ice_cream/banana = 10, /datum/reagent/consumable/ice = 2)
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/banana
+
+/datum/chemical_reaction/ice_cream_solidification/orange_creamsicle
+	name = "Orange Creamsicle Solidification"
+	id = "ice_cream_orange_creamsicle"
+	required_reagents = list(/datum/reagent/consumable/ice_cream/orange_creamsicle = 10, /datum/reagent/consumable/ice = 2)
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/orange_creamsicle
+
+/datum/chemical_reaction/ice_cream_solidification/peach
+	name = "Peach Ice Cream Solidification"
+	id = "ice_cream_peach"
+	required_reagents = list(/datum/reagent/consumable/ice_cream/peach = 10, /datum/reagent/consumable/ice = 2)
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/peach
+
+/datum/chemical_reaction/ice_cream_solidification/cherry_chocolate
+	name = "Cherry Chocolate Ice Cream Solidification"
+	id = "ice_cream_cherry_chocolate"
+	required_reagents = list(/datum/reagent/consumable/ice_cream/cherry_chocolate = 10, /datum/reagent/consumable/ice = 2)
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/cherry_chocolate
+
+/datum/chemical_reaction/ice_cream_solidification/meat
+	name = "Meat Ice Cream Solidification"
+	id = "ice_cream_meat"
+	required_reagents = list(/datum/reagent/consumable/ice_cream/meat = 10, /datum/reagent/consumable/ice = 2)
+	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/meat

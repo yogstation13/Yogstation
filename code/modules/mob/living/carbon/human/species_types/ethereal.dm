@@ -2,7 +2,7 @@
 
 /datum/species/ethereal
 	name = "Ethereal"
-	id = "ethereal"
+	id = SPECIES_ETHEREAL
 	attack_verbs = list("burn", "sear")
 	attack_sound = 'sound/weapons/etherealhit.ogg'
 	miss_sound = 'sound/weapons/etherealmiss.ogg'
@@ -231,7 +231,7 @@
 
 	H.cut_overlay(overcharge)
 
-	if(H.nutrition > NUTRITION_LEVEL_FULL)
+	if(H.nutrition <= NUTRITION_LEVEL_FULL)
 		H.visible_message(span_notice("[H] stops sparking."), span_notice("Your energy settles down again."))
 		return //if they successfully release into an apc, no more discharge
 
@@ -280,7 +280,7 @@
 	if(H.stat == DEAD)
 		return
 
-	if(H.nutrition < NUTRITION_LEVEL_ALMOST_FULL) //passive charging if in starlight
+	if(H.nutrition < NUTRITION_LEVEL_WELL_FED) //passive charging if in starlight
 		var/starlight = FALSE
 		if(istype(get_turf(H), /turf/open/space))
 			starlight = TRUE
@@ -325,7 +325,7 @@
 	return features
 
 /datum/species/ethereal/get_species_description()
-	return "Ethereals are one of the two other spacefaring species encountered by the SIC. Strange slime-based humanoids that emit light based on their \
+	return "Ethereals are one of the two other spacefaring species encountered by the SIC. Strange humanoids comprised of crystal and stardust that emit light based on their \
 		general health, ethereals are also well-known for their general benevolence and naivety. While not common within SIC space, they are still \
 		a relatively accepted species in its borders."
 
@@ -358,21 +358,43 @@
 	to_add += list(
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "lightbulb",
-			SPECIES_PERK_NAME = "Disco Ball",
-			SPECIES_PERK_DESC = "Ethereals passively generate their own light.",
+			SPECIES_PERK_ICON = "sun", // May or may not be worse than lightbulb idk
+			SPECIES_PERK_NAME = "Living Star",
+			SPECIES_PERK_DESC = "Ethereals are naturally bioluminescent, emitting a constant source of light from their bodies. \
+								The brightness of this light changes based on their energy level and health.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "heart-circle-bolt",
+			SPECIES_PERK_NAME = "Crystal Core",
+			SPECIES_PERK_DESC = "Ethereals have strange crystalline hearts that never decompose, and form a regenerative chrysalis around them 5 minutes after death. \
+								Reviving through this intense process leaves crystal growths in and around the brain, leaving the host with permanent brain trauma.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "arrows-to-eye",
+			SPECIES_PERK_NAME = "Telescopic Orbits", // Literally the best thing you could call this
+			SPECIES_PERK_DESC = "Ethereals have a wider field of vision, letting them see one tile further in all directions. \
+								(Things may look slightly smaller because of this).",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "lungs",
+			SPECIES_PERK_NAME = "Respirative Electrolysis",
+			SPECIES_PERK_DESC = "Ethereals have a network of conductive chambers in their lungs that convert any inhaled water vapor into hydrogen and oxygen.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "bolt",
-			SPECIES_PERK_NAME = "Energy-Sponge",
-			SPECIES_PERK_DESC = "Ethereals can gain charge when absorbing certain kinds of energy or radiation.",
+			SPECIES_PERK_NAME = "Bioelectric",
+			SPECIES_PERK_DESC = "Ethereals can gain charge when absorbing certain kinds of energy or radiation. \
+								Storing too much energy may lead to a violent electrical discharge.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-			SPECIES_PERK_ICON = "biohazard",
-			SPECIES_PERK_NAME = "Starving Artist",
-			SPECIES_PERK_DESC = "Ethereals take toxin damage while starving.",
+			SPECIES_PERK_ICON = "battery-quarter",
+			SPECIES_PERK_NAME = "Fizzling Hunger",
+			SPECIES_PERK_DESC = "Ethereals fizzle out without enough energy to fuel them, taking toxin damage until death.",
 		),
 	)
 
