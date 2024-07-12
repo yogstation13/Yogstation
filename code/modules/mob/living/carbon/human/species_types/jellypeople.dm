@@ -73,7 +73,7 @@
 	var/datum/status_effect/fire_handler/wet_stacks/wetness = H.has_status_effect(/datum/status_effect/fire_handler/wet_stacks)
 	if(wetness && wetness.stacks >= 1) // needs at least 1 wetness stack to do anything
 		H.add_movespeed_modifier("slime_person_wet", update = TRUE, priority = 102, multiplicative_slowdown = 0.5, blacklisted_movetypes=(FLYING|FLOATING))
-		H.adjustCloneLoss(1)
+		H.adjustCloneLoss(2)
 		if(H.stat != DEAD)
 			H.set_jitter_if_lower(10 SECONDS)
 			H.set_stutter_if_lower(1 SECONDS)
