@@ -219,7 +219,7 @@
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
 "aZ" = (
-/mob/living/simple_animal/hostile/mining/hivelord/tar,
+/mob/living/simple_animal/hostile/asteroid/hivelord/tar,
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
 "cG" = (

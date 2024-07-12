@@ -12,7 +12,7 @@
 	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
-		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/mining))
+		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
 			L.apply_damage(fauna_damage_bonus)
 			playsound(L, 'sound/weapons/kenetic_accel.ogg', 100, 1)
 	handle_drop()

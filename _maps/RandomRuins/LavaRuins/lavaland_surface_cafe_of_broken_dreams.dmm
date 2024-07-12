@@ -16,14 +16,14 @@
 	},
 /area/lavaland/surface/outdoors)
 "ah" = (
-/mob/living/simple_animal/hostile/mining/hivelord/legion,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "ai" = (
 /turf/open/floor/wood,
 /area/ruin/powered)
 "aj" = (
-/mob/living/simple_animal/hostile/mining/goliath/beast,
+/mob/living/simple_animal/hostile/asteroid/goliath/beast,
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
 	},
@@ -39,7 +39,7 @@
 /turf/open/floor/wood,
 /area/ruin/powered)
 "at" = (
-/mob/living/simple_animal/hostile/mining/goliath/beast,
+/mob/living/simple_animal/hostile/asteroid/goliath/beast,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "aw" = (
@@ -77,7 +77,7 @@
 /turf/open/floor/wood,
 /area/ruin/powered)
 "aK" = (
-/mob/living/simple_animal/hostile/mining/hivelord/legion/dwarf,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "aL" = (
@@ -134,7 +134,7 @@
 /area/ruin/powered)
 "aY" = (
 /obj/item/clothing/suit/jacket/leather,
-/mob/living/simple_animal/hostile/mining/hivelord/legion,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "aZ" = (
@@ -331,7 +331,7 @@
 /turf/open/floor/wood,
 /area/ruin/powered)
 "bW" = (
-/mob/living/simple_animal/hostile/mining/marrowweaver,
+/mob/living/simple_animal/hostile/asteroid/marrowweaver,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "cw" = (
@@ -358,7 +358,7 @@
 /turf/open/floor/wood/lavaland,
 /area/ruin/powered)
 "fO" = (
-/mob/living/simple_animal/hostile/mining/hivelord/legion,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
 /turf/open/floor/wood/lavaland,
 /area/ruin/powered)
 "gO" = (
@@ -372,7 +372,7 @@
 /area/lavaland/surface/outdoors)
 "ka" = (
 /obj/effect/turf_decal/sand,
-/mob/living/simple_animal/hostile/mining/hivelord/legion,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
 /turf/open/floor/plasteel/lavaland,
 /area/lavaland/surface/outdoors)
 "lc" = (

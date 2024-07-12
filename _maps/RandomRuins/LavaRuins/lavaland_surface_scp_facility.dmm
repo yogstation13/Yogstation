@@ -120,7 +120,7 @@
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/unpowered)
 "dl" = (
-/mob/living/simple_animal/hostile/mining/basilisk/watcher,
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface)
 "do" = (

@@ -1,14 +1,14 @@
-/mob/living/simple_animal/hostile/mining/yog_jungle //yog_jungle and not just jungle because TG has some mobs under /jungle/ that i dont want to fuck with and override (they are unused, but like whats the point..)
+/mob/living/simple_animal/hostile/asteroid/yog_jungle //yog_jungle and not just jungle because TG has some mobs under /jungle/ that i dont want to fuck with and override (they are unused, but like whats the point..)
 	icon = 'yogstation/icons/mob/jungle.dmi'
 	vision_range = 4
 	pressure_resistance = 100
  
-/mob/living/simple_animal/hostile/mining/yog_jungle/attacked_by(obj/item/I, mob/living/user)
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/attacked_by(obj/item/I, mob/living/user)
 	if(stat == CONSCIOUS && AIStatus != AI_OFF && !client && user)
 		ADD_TRAIT(user,TRAIT_ENEMY_OF_THE_FOREST,JUNGLELAND_TRAIT)	
 	return ..()
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/dryad
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/dryad
 	name = "Jungle spirit"
 	desc = "A spirit of the jungle, protector of the forest, heals the ones in need, and butchers the ones that plauge the forest."
 	icon_state = "dryad"
@@ -35,11 +35,11 @@
 	retreat_distance = 1
 	minimum_distance = 3
 	projectiletype = /obj/projectile/jungle/damage_orb
-	alpha_type = /mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_dryad
+	alpha_type = /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_dryad
 	var/alt_projectiletype = /obj/projectile/jungle/heal_orb
 	var/alt_cooldown_time = 10 SECONDS
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/dryad/Shoot(atom/targeted_atom)
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/dryad/Shoot(atom/targeted_atom)
 	if(HAS_TRAIT(targeted_atom,TRAIT_ENEMY_OF_THE_FOREST)) 
 		projectiletype = initial(projectiletype)
 		ranged_cooldown_time = alt_cooldown_time
@@ -48,7 +48,7 @@
 		ranged_cooldown_time = initial(ranged_cooldown_time)	
 	return ..()
 	
-/mob/living/simple_animal/hostile/mining/yog_jungle/corrupted_dryad
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/corrupted_dryad
 	name = "Cursed jungle spirit"
 	desc = "A spirit of the jungle, once a protector, but now corrupted by forced beyond this world. It's essence it's twisted and it will attack everyone in sight"
 	icon_state = "corrupted_dryad"
@@ -74,9 +74,9 @@
 	retreat_distance = 1
 	minimum_distance = 3
 	projectiletype = /obj/projectile/jungle/damage_orb
-	alpha_type = /mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_dryad/corrupted
+	alpha_type = /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_dryad/corrupted
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/meduracha
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/meduracha
 	name ="Meduracha aquatica"
 	desc = "A predator of the toxic swamps, it's long tendrils cause very fast toxic buildup that after a while will cause varying degrees of incapacitation"
 	icon_state = "meduracha"
@@ -103,15 +103,15 @@
 
 	rapid_melee = 3
 	
-	alpha_type = /mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_meduracha
+	alpha_type = /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_meduracha
 
 	var/sulking = FALSE 
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/meduracha/Initialize()
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/meduracha/Initialize()
 	. = ..()
 	RegisterSignal(src,COMSIG_MOVABLE_MOVED,PROC_REF(on_sulking))
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/meduracha/AttackingTarget()
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/meduracha/AttackingTarget()
 	. = ..()
 	update_sulking(FALSE)
 	if(!ishuman(target))
@@ -121,20 +121,20 @@
 	if(prob(max(10,chance * 0.66))) // higher chance than toxic water
 		humie.reagents.add_reagent(/datum/reagent/toxic_metabolities,2.5)
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/meduracha/Goto(target, delay, minimum_distance)
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/meduracha/Goto(target, delay, minimum_distance)
 	update_sulking(TRUE)
 	return ..()
 	
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/meduracha/LoseAggro()
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/meduracha/LoseAggro()
 	update_sulking(TRUE)
 	return ..()
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/meduracha/proc/update_sulking(bool)
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/meduracha/proc/update_sulking(bool)
 	sulking = bool
 	on_sulking()
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/meduracha/proc/on_sulking()
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/meduracha/proc/on_sulking()
 	if(stat != CONSCIOUS)
 		return
 	if(istype(loc,/turf/open/water) && sulking)
@@ -150,7 +150,7 @@
 /**
  * Disguises as a killed player, calling for help over comms to trick people into getting killed too
  */
-/mob/living/simple_animal/hostile/mining/yog_jungle/skin_twister
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister
 	name = "Skin twister"
 	desc = "The apex predator of this planet, kills everything and then steals the victim's skin, allowing it to lure it's prey and kill them with ease"
 	icon_state = "skin_twister"
@@ -182,7 +182,7 @@
 	var/obj/item/encryptionkey/lure_encryption_key
 	var/victim_ref
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/skin_twister/AttackingTarget()
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister/AttackingTarget()
 	. = ..()
 	if(victim_ref)
 		reveal_true_form()
@@ -192,7 +192,7 @@
 		if(!QDELETED(living_target) && living_target.stat > UNCONSCIOUS) //Unconcious or dead
 			steal_identity(living_target)
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/skin_twister/Life()
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister/Life()
 	. = ..()
 	if(!.) //dead 
 		return 
@@ -200,7 +200,7 @@
 	if(human_lure && prob(5))
 		lure()
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/skin_twister/proc/steal_identity(mob/living/victim)
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister/proc/steal_identity(mob/living/victim)
 
 	new /obj/effect/better_animated_temp_visual/skin_twister_in(get_turf(src))
 	name = victim.name
@@ -229,7 +229,7 @@
 		fully_heal()
 	faction |= "mining"
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/skin_twister/proc/reveal_true_form()
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister/proc/reveal_true_form()
 	new /obj/effect/better_animated_temp_visual/skin_twister_out(get_turf(src))
 	name = initial(name)
 	desc = initial(desc)
@@ -243,8 +243,8 @@
 	human_lure = FALSE
 	faction -= "mining"
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/skin_twister/proc/pick_lure()
-	var/mob/living/picked = pick(subtypesof(/mob/living/simple_animal/hostile/mining/yog_jungle))
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister/proc/pick_lure()
+	var/mob/living/picked = pick(subtypesof(/mob/living/simple_animal/hostile/asteroid/yog_jungle))
 	return pick(list("Help me!", "I'm stuck!", "Come quickly, I'm close to death!", "I'm dying!", "I won't make it unless someone comes here!", "Please don't leave me!", 
 				"I'm so close to base!", "These fucking beasts got me", "I'm out of pens", "I'm running out of blood", "Please, I beg you", "I walked into the fucking water", 
 				"[initial(picked.name)] nearly killed me, but I'm gonna bleed out", "Damned fauna", "Why fucking again?", "I have so many mats", 
@@ -252,7 +252,7 @@
 				"HELP", "MINING", "MINING BASE",
 				"If someone finds my body take the loot [pick("mango", "alpha", "delta", "beta", "omega" , "olive", "tango", "fiesta", "carp")] [rand(0,9)][rand(0,9)][rand(0,9)]", "HELP [pick(generate_code_phrase(TRUE))]"))
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/skin_twister/proc/lure()
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister/proc/lure()
 	if(!human_lure)
 		return
 	
@@ -267,7 +267,7 @@
 
 	say(lure)
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/skin_twister/death(gibbed)
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister/death(gibbed)
 	move_force = MOVE_FORCE_DEFAULT
 	move_resist = MOVE_RESIST_DEFAULT
 	pull_force = PULL_FORCE_DEFAULT
@@ -280,7 +280,7 @@
 /**
  * Splits upon death, summoning two smaller versions of itself
  */
-/mob/living/simple_animal/hostile/mining/yog_jungle/blobby
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/blobby
 	name = "Blobby"
 	desc = "A gelatinous creature of the swampy regions of the jungle. It's a big blob of goo, and it's not very friendly."
 	icon_state = "blobby"
@@ -305,12 +305,12 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 5
 	
-	alpha_type = /mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_blobby
+	alpha_type = /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_blobby
 
 	var/current_size = 3
 
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/blobby/Initialize(mapload,spawned_size = 3)
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/blobby/Initialize(mapload,spawned_size = 3)
 	. = ..()
 	current_size = spawned_size > 0 ? spawned_size : current_size
 	melee_damage_lower = melee_damage_lower * current_size
@@ -321,7 +321,7 @@
 	maxHealth = maxHealth * (current_size/3)
 	health = health * (current_size/3)
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/blobby/death(gibbed)
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/blobby/death(gibbed)
 	if(current_size > 1  && !gibbed)
 		del_on_death = TRUE
 		var/list/possible_spawns = list()
@@ -329,8 +329,8 @@
 			if(isclosedturf(T))
 				continue 
 			possible_spawns += T
-		var/mob/living/simple_animal/hostile/A =  new /mob/living/simple_animal/hostile/mining/yog_jungle/blobby(pick(possible_spawns),current_size - 1)
-		var/mob/living/simple_animal/hostile/B = new /mob/living/simple_animal/hostile/mining/yog_jungle/blobby(pick(possible_spawns),current_size - 1)
+		var/mob/living/simple_animal/hostile/A =  new /mob/living/simple_animal/hostile/asteroid/yog_jungle/blobby(pick(possible_spawns),current_size - 1)
+		var/mob/living/simple_animal/hostile/B = new /mob/living/simple_animal/hostile/asteroid/yog_jungle/blobby(pick(possible_spawns),current_size - 1)
 		if(target)
 			A.FindTarget(list(target))
 			B.FindTarget(list(target))
@@ -342,7 +342,7 @@
 /**
  * jungle version of the wasp. Slightly weaker and faster, with different loot. Renamed to avoid confusion. Credit to original creator.
  */
-/mob/living/simple_animal/hostile/mining/wasp/yellowjacket
+/mob/living/simple_animal/hostile/asteroid/wasp/yellowjacket
 	name = "yellow jacket"
 	desc = "A large and aggressive creature with a massive stinger."
 	pressure_resistance = 100
@@ -351,10 +351,10 @@
 	health = 160
 	butcher_results = list(/obj/item/stinger = 1,/obj/item/stack/sheet/animalhide/weaver_chitin = 1, /obj/item/stack/sheet/sinew = 1, /obj/item/stack/sheet/bone = 1)
 	loot = list()
-	alpha_type = /mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_yellowjacket
+	alpha_type = /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_yellowjacket
 
 //the same thing, but with malaria instead of toxins
-/mob/living/simple_animal/hostile/mining/wasp/mosquito
+/mob/living/simple_animal/hostile/asteroid/wasp/mosquito
 	name = "Giant Mosquito"
 	desc = "Massively overgrown bug, how did it get so big?"
 	icon = 'yogstation/icons/mob/jungle.dmi'
@@ -381,12 +381,12 @@
 	spacewalk = TRUE
 	melee_damage_lower = 20
 	melee_damage_upper = 20
-	alpha_type = /mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_yellowjacket/mosquito
+	alpha_type = /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_yellowjacket/mosquito
 	move_to_delay = 5
 	poison_per_attack = 0
 	dash_speed = 0.8
 
-/mob/living/simple_animal/hostile/mining/wasp/mosquito/AttackingTarget()
+/mob/living/simple_animal/hostile/asteroid/wasp/mosquito/AttackingTarget()
 	..()
 	if(!ishuman(target))
 		return
@@ -402,7 +402,7 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------------Wasps---------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/mob/living/simple_animal/hostile/mining/yog_jungle/emeraldspider
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/emeraldspider
 	name = "emerald spider"
 	desc = "A big, angry, venomous spider. Flings webs at prey to slow them down, before closing in on them."
 	icon_state = "emeraldspider"
@@ -459,7 +459,7 @@
 	icon_state = "websling"
 	icon = 'yogstation/icons/mob/jungle.dmi'
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/emeraldspider/AttackingTarget()
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/emeraldspider/AttackingTarget()
 	..()
 	if(isliving(target))
 		var/mob/living/L = target
@@ -484,7 +484,7 @@
 			else
 				to_chat(src, span_warning("There are no organs left in this corpse."))
 
-/mob/living/simple_animal/hostile/mining/yog_jungle/emeraldspider/CanAttack(atom/A)
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/emeraldspider/CanAttack(atom/A)
 	if(..())
 		return TRUE
 	if((health < maxHealth) && ishuman(A) && !faction_check_mob(A))
@@ -604,7 +604,7 @@
 	. = ..()
 	icon_state = "demon-[rand(0,2)]" 
 
-mob/living/simple_animal/hostile/mining/hivelord/tar
+mob/living/simple_animal/hostile/asteroid/hivelord/tar
 	name = "pillar of tar"
 	desc = "A solid chunk of tar. You struggle to think that something like this could even be alive, but it seems to pulsate and even move at times..."
 	icon = 'yogstation/icons/mob/jungle.dmi'
@@ -632,9 +632,9 @@ mob/living/simple_animal/hostile/mining/hivelord/tar
 	attacktext = "flings tar at"
 	throw_message = "falls into thick tar before falling through the"
 	loot = list()
-	brood_type = /mob/living/simple_animal/hostile/mining/hivelordbrood/tar
+	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/tar
 
-/mob/living/simple_animal/hostile/mining/hivelordbrood/tar
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/tar
 	name = "tar aspect"
 	desc = "A floating orb of tar animated through dark magic, ready to hunt down prey."
 	icon = 'yogstation/icons/mob/jungle.dmi'

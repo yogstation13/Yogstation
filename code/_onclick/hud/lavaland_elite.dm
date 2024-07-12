@@ -1,7 +1,7 @@
 /datum/hud/lavaland_elite
 	ui_style = 'icons/mob/screen_elite.dmi'
 
-/datum/hud/lavaland_elite/New(mob/living/simple_animal/hostile/mining/elite)
+/datum/hud/lavaland_elite/New(mob/living/simple_animal/hostile/asteroid/elite)
 	..()
 	pull_icon = new /atom/movable/screen/pull(src)
 	pull_icon.icon = ui_style

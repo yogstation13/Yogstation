@@ -102,7 +102,7 @@
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/abandonedzoo)
 "ap" = (
-/mob/living/simple_animal/hostile/mining/goldgrub{
+/mob/living/simple_animal/hostile/asteroid/goldgrub{
 	will_burrow = 0
 	},
 /turf/open/floor/plating/asteroid,
@@ -116,7 +116,7 @@
 /turf/open/floor/plating/asteroid,
 /area/ruin/space/has_grav/abandonedzoo)
 "as" = (
-/mob/living/simple_animal/hostile/mining/basilisk,
+/mob/living/simple_animal/hostile/asteroid/basilisk,
 /turf/open/floor/plating/asteroid,
 /area/ruin/space/has_grav/abandonedzoo)
 "at" = (

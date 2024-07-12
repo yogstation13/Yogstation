@@ -1,5 +1,5 @@
 //An ore-devouring but easily scared creature
-/mob/living/simple_animal/hostile/mining/goldgrub
+/mob/living/simple_animal/hostile/asteroid/goldgrub
 	name = "goldgrub"
 	desc = "A worm that grows fat from eating everything in its sight. Seems to enjoy precious metals and other shiny things, hence the name."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
@@ -34,14 +34,14 @@
 	var/will_burrow = TRUE
 	var/max_loot = 15 // The maximum amount of ore that can be stored in this thing's gut
 
-/mob/living/simple_animal/hostile/mining/goldgrub/Initialize(mapload)
+/mob/living/simple_animal/hostile/asteroid/goldgrub/Initialize(mapload)
 	. = ..()
 	var/i = rand(1,3)
 	while(i)
 		loot += pick(wanted_objects)
 		i--
 
-/mob/living/simple_animal/hostile/mining/goldgrub/GiveTarget(new_target)
+/mob/living/simple_animal/hostile/asteroid/goldgrub/GiveTarget(new_target)
 	target = new_target
 	if(target != null)
 		if(wanted_objects[target.type] && loot.len < max_loot)
@@ -54,13 +54,13 @@
 			if(will_burrow)
 				addtimer(CALLBACK(src, PROC_REF(burrow)), chase_time)
 
-/mob/living/simple_animal/hostile/mining/goldgrub/AttackingTarget()
+/mob/living/simple_animal/hostile/asteroid/goldgrub/AttackingTarget()
 	if(wanted_objects[target.type])
 		eat_ore(target)
 		return
 	return ..()
 
-/mob/living/simple_animal/hostile/mining/goldgrub/proc/eat_ore(atom/targeted_ore)
+/mob/living/simple_animal/hostile/asteroid/goldgrub/proc/eat_ore(atom/targeted_ore)
 	var/obj/item/stack/ore/O = targeted_ore
 	if(length(loot) < max_loot)
 		var/using = min(max_loot - length(loot), O.amount)
@@ -72,20 +72,20 @@
 		search_objects = 0
 		visible_message(span_notice("\The [name] nibbles some of the ore and then stops. \She seems to be full!"))
 
-/mob/living/simple_animal/hostile/mining/goldgrub/proc/burrow()//You failed the chase to kill the goldgrub in time!
+/mob/living/simple_animal/hostile/asteroid/goldgrub/proc/burrow()//You failed the chase to kill the goldgrub in time!
 	if(stat == CONSCIOUS)
 		visible_message(span_danger("\The [name] buries into the ground, vanishing from sight!"))
 		qdel(src)
 
-/mob/living/simple_animal/hostile/mining/goldgrub/bullet_act(obj/projectile/P)
+/mob/living/simple_animal/hostile/asteroid/goldgrub/bullet_act(obj/projectile/P)
 	visible_message(span_danger("\The [P.name] was repelled by [name]'s blubberous girth!"))
 	return BULLET_ACT_BLOCK
 
-/mob/living/simple_animal/hostile/mining/goldgrub/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/hostile/asteroid/goldgrub/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	vision_range = 9
 	. = ..()
 
-/mob/living/simple_animal/hostile/mining/goldgrub/death(gibbed)
+/mob/living/simple_animal/hostile/asteroid/goldgrub/death(gibbed)
 	if(prob(10))
 		new /obj/item/gem/rupee(loc)
 	. = ..()

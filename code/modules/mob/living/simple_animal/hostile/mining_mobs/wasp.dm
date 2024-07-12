@@ -1,5 +1,5 @@
 //A wasp that charges at their enemy, injecting them with poison
-/mob/living/simple_animal/hostile/mining/wasp
+/mob/living/simple_animal/hostile/asteroid/wasp
 	name = "wasp"
 	desc = "A massive, mutated wasp equipped with a giant stinger. Its eyes flash with burning fury."
 	icon = 'icons/mob/jungle/wasp.dmi'
@@ -34,14 +34,14 @@
 	var/poison_per_attack = 5
 	var/dash_speed = 1
 
-/mob/living/simple_animal/hostile/mining/wasp/AttackingTarget()
+/mob/living/simple_animal/hostile/asteroid/wasp/AttackingTarget()
 	..()
 	if(isliving(target))
 		var/mob/living/L = target
 		if(target.reagents)
 			L.reagents.add_reagent(poison_type, poison_per_attack)
 
-/mob/living/simple_animal/hostile/mining/wasp/OpenFire()
+/mob/living/simple_animal/hostile/asteroid/wasp/OpenFire()
 	if(charging)
 		return
 	var/tturf = get_turf(target)
@@ -51,10 +51,10 @@
 		charge()
 		ranged_cooldown = world.time + ranged_cooldown_time
 
-/mob/living/simple_animal/hostile/mining/wasp/Aggro()
+/mob/living/simple_animal/hostile/asteroid/wasp/Aggro()
 	vision_range = aggro_vision_range
 
-/mob/living/simple_animal/hostile/mining/wasp/proc/charge(atom/chargeat = target, delay = 5)
+/mob/living/simple_animal/hostile/asteroid/wasp/proc/charge(atom/chargeat = target, delay = 5)
 	if(!chargeat)
 		return
 	var/chargeturf = get_turf(chargeat)
@@ -77,7 +77,7 @@
 	walk(src, 0) // cancel the movement
 	charging = FALSE
 
-/mob/living/simple_animal/hostile/mining/wasp/Move()
+/mob/living/simple_animal/hostile/asteroid/wasp/Move()
 	if(revving_charge)
 		return FALSE
 	if(charging)

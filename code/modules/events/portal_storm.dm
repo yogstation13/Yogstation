@@ -141,17 +141,17 @@
 		/mob/living/simple_animal/hostile/megafauna/swarmer_swarm_beacon = 4,
 		/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner = 6,
 		/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner = 6,
-		/mob/living/simple_animal/hostile/mining/elite/broodmother = 5,
-		/mob/living/simple_animal/hostile/mining/elite/herald = 5,
-		/mob/living/simple_animal/hostile/mining/elite/legionnaire = 5,
-		/mob/living/simple_animal/hostile/mining/elite/pandora = 5,
+		/mob/living/simple_animal/hostile/asteroid/elite/broodmother = 5,
+		/mob/living/simple_animal/hostile/asteroid/elite/herald = 5,
+		/mob/living/simple_animal/hostile/asteroid/elite/legionnaire = 5,
+		/mob/living/simple_animal/hostile/asteroid/elite/pandora = 5,
 		/mob/living/simple_animal/hostile/space_dragon = 5
 	)
 	hostile_types = list(
-		/mob/living/simple_animal/hostile/mining/hivelord/legion/tendril = 25,
-		/mob/living/simple_animal/hostile/mining/basilisk/watcher = 25,
-		/mob/living/simple_animal/hostile/mining/goliath/beast = 25,
-		/mob/living/simple_animal/hostile/mining/marrowweaver = 25
+		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/tendril = 25,
+		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher = 25,
+		/mob/living/simple_animal/hostile/asteroid/goliath/beast = 25,
+		/mob/living/simple_animal/hostile/asteroid/marrowweaver = 25
 	)
 	var/list/anomaly_types = list(
 		ANOMALY_FLUX_EXPLOSIVE = 150,

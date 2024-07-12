@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/mining/hivelord
+/mob/living/simple_animal/hostile/asteroid/hivelord
 	name = "hivelord"
 	desc = "A truly alien creature, it is a mass of unknown organic material, constantly fluctuating. When attacking, pieces of it split off and attack in tandem with the original."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
@@ -31,11 +31,11 @@
 	minimum_distance = 3
 	pass_flags = PASSTABLE
 	loot = list(/obj/item/organ/regenerative_core)
-	var/brood_type = /mob/living/simple_animal/hostile/mining/hivelordbrood
+	var/brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood
 
-/mob/living/simple_animal/hostile/mining/hivelord/OpenFire(the_target)
+/mob/living/simple_animal/hostile/asteroid/hivelord/OpenFire(the_target)
 	if(world.time >= ranged_cooldown)
-		var/mob/living/simple_animal/hostile/mining/hivelordbrood/A = new brood_type(src.loc)
+		var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/A = new brood_type(src.loc)
 
 		A.flags_1 |= (flags_1 & ADMIN_SPAWNED_1)
 		A.GiveTarget(target)
@@ -43,19 +43,19 @@
 		A.faction = faction.Copy()
 		ranged_cooldown = world.time + ranged_cooldown_time
 
-/mob/living/simple_animal/hostile/mining/hivelord/AttackingTarget()
+/mob/living/simple_animal/hostile/asteroid/hivelord/AttackingTarget()
 	OpenFire()
 	return TRUE
 
-/mob/living/simple_animal/hostile/mining/hivelord/spawn_crusher_loot()
+/mob/living/simple_animal/hostile/asteroid/hivelord/spawn_crusher_loot()
 	loot += crusher_loot //we don't butcher
 
-/mob/living/simple_animal/hostile/mining/hivelord/death(gibbed)
+/mob/living/simple_animal/hostile/asteroid/hivelord/death(gibbed)
 	mouse_opacity = MOUSE_OPACITY_ICON
 	..(gibbed)
 
 //A fragile but rapidly produced creature
-/mob/living/simple_animal/hostile/mining/hivelordbrood
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood
 	name = "hivelord brood"
 	desc = "A fragment of the original Hivelord, rallying behind its original. One isn't much of a threat, but..."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
@@ -85,19 +85,19 @@
 	pass_flags = PASSTABLE
 	del_on_death = 1
 
-/mob/living/simple_animal/hostile/mining/hivelordbrood/Initialize(mapload)
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(death)), 100)
 
-/mob/living/simple_animal/hostile/mining/hivelordbrood/CanAllowThrough(atom/movable/mover, turf/target)
-	if(istype(mover, /mob/living/simple_animal/hostile/mining/hivelord))
-		var/mob/living/simple_animal/hostile/mining/hivelord/HL = mover
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/CanAllowThrough(atom/movable/mover, turf/target)
+	if(istype(mover, /mob/living/simple_animal/hostile/asteroid/hivelord))
+		var/mob/living/simple_animal/hostile/asteroid/hivelord/HL = mover
 		if(istype(src, HL.brood_type))
 			return TRUE
 	return ..()
 
 //Legion
-/mob/living/simple_animal/hostile/mining/hivelord/legion
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion
 	name = "legion"
 	desc = "You can still see what was once a human under the shifting mass of corruption."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
@@ -119,7 +119,7 @@
 	crusher_loot = /obj/item/crusher_trophy/legion_skull
 	crusher_drop_mod = 10
 	loot = list(/obj/item/organ/regenerative_core/legion)
-	brood_type = /mob/living/simple_animal/hostile/mining/hivelordbrood/legion
+	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion
 	del_on_death = 1
 	stat_attack = UNCONSCIOUS
 	pass_flags = null
@@ -127,13 +127,13 @@
 	var/dwarf_mob = FALSE
 	var/mob/living/carbon/human/stored_mob
 
-/mob/living/simple_animal/hostile/mining/hivelord/legion/random/Initialize(mapload)
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random/Initialize(mapload)
 	. = ..()
 	if(prob(5))
-		new /mob/living/simple_animal/hostile/mining/hivelord/legion/dwarf(loc)
+		new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf(loc)
 		return INITIALIZE_HINT_QDEL
 
-/mob/living/simple_animal/hostile/mining/hivelord/legion/dwarf
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf
 	name = "dwarf legion"
 	desc = "You can still see what was once a rather small human under the shifting mass of corruption."
 	icon_state = "dwarf_legion"
@@ -145,7 +145,7 @@
 	speed = 2 //faster!
 	dwarf_mob = TRUE
 
-/mob/living/simple_animal/hostile/mining/hivelord/legion/death(gibbed)
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/death(gibbed)
 	visible_message(span_warning("The skulls on [src] wail in anger as they flee from their dying host!"))
 	var/turf/T = get_turf(src)
 	if(T)
@@ -160,11 +160,11 @@
 			new /obj/effect/mob_spawn/human/corpse/damaged/legioninfested(T)
 	..(gibbed)
 
-/mob/living/simple_animal/hostile/mining/hivelord/legion/tendril
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/tendril
 	fromtendril = TRUE
 
 //Legion skull
-/mob/living/simple_animal/hostile/mining/hivelordbrood/legion
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion
 	name = "legion"
 	desc = "One of many."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
@@ -191,7 +191,7 @@
 	var/can_infest_dead = FALSE
 
 // Snow Legion
-/mob/living/simple_animal/hostile/mining/hivelord/legion/snow
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow
 	name = "snow legion"
 	desc = "You can still see what was once a human under the shifting snowy mass, clearly decorated by a clown."
 	icon = 'icons/mob/icemoon/icemoon_monsters.dmi'
@@ -201,10 +201,10 @@
 	icon_dead = "snowlegion"
 	crusher_loot = /obj/item/crusher_trophy/legion_skull
 	loot = list(/obj/item/organ/regenerative_core/legion)
-	brood_type = /mob/living/simple_animal/hostile/mining/hivelordbrood/legion/snow
+	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/snow
 
 // Snow Legion skull
-/mob/living/simple_animal/hostile/mining/hivelordbrood/legion/snow
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/snow
 	name = "snow legion"
 	desc = "One of many."
 	icon = 'icons/mob/icemoon/icemoon_monsters.dmi'
@@ -213,18 +213,18 @@
 	icon_aggro = "snowlegion_head"
 	icon_dead = "snowlegion_head"
 
-/mob/living/simple_animal/hostile/mining/hivelordbrood/legion/Life(seconds_per_tick = SSMOBS_DT, times_fired)
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(isturf(loc))
 		for(var/mob/living/carbon/human/H in view(src,1)) //Only for corpse right next to/on same tile
 			if(H.stat == UNCONSCIOUS || (can_infest_dead && H.stat == DEAD))
 				infest(H)
 	..()
 
-/mob/living/simple_animal/hostile/mining/hivelordbrood/legion/proc/infest(mob/living/carbon/human/H)
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/proc/infest(mob/living/carbon/human/H)
 	visible_message(span_warning("[name] burrows into the flesh of [H]!"))
-	var/mob/living/simple_animal/hostile/mining/hivelord/legion/L
+	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/L
 	if(H.dna.check_mutation(DWARFISM)) //dwarf legions aren't just fluff!
-		L = new /mob/living/simple_animal/hostile/mining/hivelord/legion/dwarf(H.loc)
+		L = new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf(H.loc)
 	else
 		L = new(H.loc)
 	visible_message(span_warning("[L] staggers to [L.p_their()] feet!"))
@@ -235,17 +235,17 @@
 	qdel(src)
 
 //Advanced Legion is slightly tougher to kill and can raise corpses (revive other legions)
-/mob/living/simple_animal/hostile/mining/hivelord/legion/advanced
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/advanced
 	stat_attack = DEAD
 	maxHealth = 120
 	health = 120
-	brood_type = /mob/living/simple_animal/hostile/mining/hivelordbrood/legion/advanced
+	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/advanced
 	icon_state = "dwarf_legion"
 	icon_living = "dwarf_legion"
 	icon_aggro = "dwarf_legion"
 	icon_dead = "dwarf_legion"
 
-/mob/living/simple_animal/hostile/mining/hivelordbrood/legion/advanced
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/advanced
 	stat_attack = DEAD
 	can_infest_dead = TRUE
 
@@ -286,7 +286,7 @@
 
 /mob/living/simple_animal/hostile/big_legion/Initialize(mapload)
 	.=..()
-	AddComponent(/datum/component/spawner, list(/mob/living/simple_animal/hostile/mining/hivelord/legion), 200, faction, "peels itself off from", 3)
+	AddComponent(/datum/component/spawner, list(/mob/living/simple_animal/hostile/asteroid/hivelord/legion), 200, faction, "peels itself off from", 3)
 
 //Tendril-spawned Legion remains, the charred skeletons of those whose bodies sank into laval or fell into chasms.
 /obj/effect/mob_spawn/human/corpse/charredskeleton
@@ -407,7 +407,7 @@
 	. = ..()
 
 //aide
-/mob/living/simple_animal/hostile/mining/hivelord/legion/aide
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide
 	name = "aide"
 	desc = "A being aggressive to anybody it doesn't see as its charge."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
@@ -420,19 +420,19 @@
 	health = 30 //dont want crew to have a hard time killing actual fodder
 	loot = null
 	color = "#7422a3"
-	brood_type = /mob/living/simple_animal/hostile/mining/hivelordbrood/aide
+	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide
 
-/mob/living/simple_animal/hostile/mining/hivelord/legion/aide/Initialize(mapload)
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/Initialize(mapload)
 	. = ..()
 	GLOB.aide_list += src
 	return
 
-/mob/living/simple_animal/hostile/mining/hivelord/legion/aide/death()
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/death()
 	. = ..()
 	GLOB.aide_list -= src
 	return
 
-/mob/living/simple_animal/hostile/mining/hivelordbrood/aide
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide
 	name = "aide"
 	desc = "They bruise but they try not to kill."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
@@ -450,8 +450,8 @@
 	color = "#7422a3"
 	var/fauna_damage_bonus = 10
 
-/mob/living/simple_animal/hostile/mining/hivelordbrood/aide/Life(seconds_per_tick = SSMOBS_DT, times_fired)
-	var/mob/living/simple_animal/hostile/mining/hivelord/legion/aide/L
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide/Life(seconds_per_tick = SSMOBS_DT, times_fired)
+	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/L
 	if(isturf(loc))
 		for(var/mob/living/M in view(src,1))
 			if(M.stat == DEAD && GLOB.aide_list.len <= 2 && (!M.has_status_effect(STATUS_EFFECT_EXHUMED))) //max of 3 bloodmen to minimize shitshows
@@ -463,19 +463,19 @@
 				qdel(src)
 	..()
 
-/mob/living/simple_animal/hostile/mining/hivelordbrood/aide/AttackingTarget()
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide/AttackingTarget()
 	. = ..()
 	var/mob/living/L = target
-	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/mining))
+	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
 		L.apply_damage(fauna_damage_bonus, BRUTE)
 
-/mob/living/simple_animal/hostile/mining/hivelordbrood/aide/CanAttack(atom/the_target)
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide/CanAttack(atom/the_target)
 	. = ..()
 	var/mob/living/T = the_target
 	if(T.health < T.maxHealth/10)
 		return FALSE
 
-/mob/living/simple_animal/hostile/mining/hivelord/legion/aide/CanAttack(atom/the_target)
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/CanAttack(atom/the_target)
 	. = ..()
 	var/mob/living/T = the_target
 	if(T.health < T.maxHealth/10)

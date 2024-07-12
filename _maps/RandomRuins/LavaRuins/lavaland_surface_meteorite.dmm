@@ -6,7 +6,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "aw" = (
-/mob/living/simple_animal/hostile/mining/marrowweaver,
+/mob/living/simple_animal/hostile/asteroid/marrowweaver,
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
@@ -59,7 +59,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "bw" = (
-/mob/living/simple_animal/hostile/mining/hivelord/legion/advanced,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/advanced,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "bE" = (
@@ -258,7 +258,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "eL" = (
-/mob/living/simple_animal/hostile/mining/hivelord/legion/random,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "fM" = (
@@ -338,7 +338,7 @@
 	pixel_y = -6
 	},
 /obj/item/fireaxe/boneaxe,
-/mob/living/simple_animal/hostile/mining/gutlunch,
+/mob/living/simple_animal/hostile/asteroid/gutlunch,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "gC" = (
@@ -357,14 +357,14 @@
 /turf/closed/indestructible/riveted/boss,
 /area/ruin/unpowered/ash_walkers)
 "gR" = (
-/mob/living/simple_animal/hostile/mining/goliath/beast,
+/mob/living/simple_animal/hostile/asteroid/goliath/beast,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "gS" = (
 /obj/structure/stone_tile{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/mining/goliath/beast,
+/mob/living/simple_animal/hostile/asteroid/goliath/beast,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "hb" = (
@@ -377,7 +377,7 @@
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 9
 	},
-/mob/living/simple_animal/hostile/mining/hivelord/legion/advanced,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/advanced,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "hn" = (
@@ -421,7 +421,7 @@
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/mining/marrowweaver,
+/mob/living/simple_animal/hostile/asteroid/marrowweaver,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
@@ -463,7 +463,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "iB" = (
-/mob/living/simple_animal/hostile/mining/goliath/beast,
+/mob/living/simple_animal/hostile/asteroid/goliath/beast,
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "iC" = (
@@ -559,7 +559,7 @@
 "jN" = (
 /obj/structure/stone_tile/surrounding,
 /obj/item/stack/marker_beacon,
-/mob/living/simple_animal/hostile/mining/basilisk/watcher/icewing,
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "jS" = (
@@ -576,7 +576,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "jU" = (
-/mob/living/simple_animal/hostile/mining/basilisk/watcher/random,
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "kb" = (
@@ -596,7 +596,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "kj" = (
-/mob/living/simple_animal/hostile/mining/basilisk/watcher/magmawing,
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing,
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "ky" = (
@@ -604,7 +604,7 @@
 /obj/structure/stone_tile/block/cracked{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/mining/marrowweaver,
+/mob/living/simple_animal/hostile/asteroid/marrowweaver,
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "kL" = (
@@ -697,7 +697,7 @@
 	pixel_y = 7
 	},
 /obj/effect/mob_spawn/human/corpse/damaged/legioninfested,
-/mob/living/simple_animal/hostile/mining/basilisk,
+/mob/living/simple_animal/hostile/asteroid/basilisk,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "mt" = (
@@ -1062,7 +1062,7 @@
 	dir = 8
 	},
 /obj/structure/stone_tile/cracked,
-/mob/living/simple_animal/hostile/mining/gutlunch,
+/mob/living/simple_animal/hostile/asteroid/gutlunch,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "tb" = (
@@ -1293,7 +1293,7 @@
 /obj/structure/stone_tile/block/cracked{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/mining/goliath/beast/random,
+/mob/living/simple_animal/hostile/asteroid/goliath/beast/random,
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 1
 	},
@@ -1309,7 +1309,7 @@
 /obj/structure/stone_tile/cracked{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/mining/elite/broodmother_child{
+/mob/living/simple_animal/hostile/asteroid/elite/broodmother_child{
 	faction = list("mining")
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -1330,7 +1330,7 @@
 /area/lavaland/surface/outdoors)
 "yC" = (
 /obj/effect/turf_decal/sand,
-/mob/living/simple_animal/hostile/mining/goliath/beast/ancient,
+/mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/unpowered/ash_walkers)
 "yF" = (
@@ -1480,7 +1480,7 @@
 /obj/structure/spider{
 	icon_state = "stickyweb2"
 	},
-/mob/living/simple_animal/hostile/mining/marrowweaver,
+/mob/living/simple_animal/hostile/asteroid/marrowweaver,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "Cb" = (
@@ -1575,7 +1575,7 @@
 	dir = 5
 	},
 /obj/item/stack/marker_beacon,
-/mob/living/simple_animal/hostile/mining/goliath/beast/ancient,
+/mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "DG" = (
@@ -1625,7 +1625,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "El" = (
-/mob/living/simple_animal/hostile/mining/marrowweaver,
+/mob/living/simple_animal/hostile/asteroid/marrowweaver,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "Eo" = (
@@ -1714,7 +1714,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "EX" = (
-/mob/living/simple_animal/hostile/mining/basilisk/watcher/random{
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random{
 	desc = "He watches the fallen. Also makes great sushi.";
 	name = "gerald"
 	},
@@ -1801,7 +1801,7 @@
 /area/ruin/unpowered/ash_walkers)
 "Gi" = (
 /obj/structure/stone_tile/center,
-/mob/living/simple_animal/hostile/mining/marrowweaver,
+/mob/living/simple_animal/hostile/asteroid/marrowweaver,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "Gn" = (
@@ -2050,7 +2050,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "KF" = (
-/mob/living/simple_animal/hostile/mining/hivelord/legion/random{
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random{
 	desc = "Was a nice young lad until he got transformed into a legion. Still staying strong and living his best life!";
 	name = "timothy"
 	},
@@ -2198,7 +2198,7 @@
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered/ash_walkers)
 "MY" = (
-/mob/living/simple_animal/hostile/mining/hivelord,
+/mob/living/simple_animal/hostile/asteroid/hivelord,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "Na" = (
@@ -2306,7 +2306,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "Pi" = (
-/mob/living/simple_animal/hostile/mining/hivelord/legion/dwarf,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "Pl" = (
@@ -2564,7 +2564,7 @@
 /turf/closed/mineral/random/volcanic,
 /area/lavaland/surface/outdoors)
 "Um" = (
-/mob/living/simple_animal/hostile/mining/goliath/beast/ancient,
+/mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "UC" = (
@@ -2578,7 +2578,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "UM" = (
-/mob/living/simple_animal/hostile/mining/basilisk/watcher/random,
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random,
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 1
 	},
@@ -2670,7 +2670,7 @@
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 1
 	},
-/mob/living/simple_animal/hostile/mining/goliath/beast,
+/mob/living/simple_animal/hostile/asteroid/goliath/beast,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "We" = (
@@ -2784,7 +2784,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "XH" = (
-/mob/living/simple_animal/hostile/mining/goliath/beast/random,
+/mob/living/simple_animal/hostile/asteroid/goliath/beast/random,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "Yc" = (

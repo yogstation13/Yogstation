@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/mining/wolf
+/mob/living/simple_animal/hostile/asteroid/wolf
 	name = "white wolf"
 	desc = "A beast that survives by feasting on weaker opponents, they're much stronger with numbers."
 	icon = 'icons/mob/icemoon/icemoon_monsters.dmi'
@@ -33,12 +33,12 @@
 	robust_searching = TRUE
 	var/retreat_message_said = FALSE
 
-/mob/living/simple_animal/hostile/mining/wolf/Move(atom/newloc)
+/mob/living/simple_animal/hostile/asteroid/wolf/Move(atom/newloc)
 	if(newloc && newloc.z == z && (islava(newloc) || ischasm(newloc)))
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/mining/wolf/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/hostile/asteroid/wolf/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
 	if(health <= maxHealth*0.1)
 		if(!retreat_message_said && target)
@@ -48,7 +48,7 @@
 	else
 		retreat_distance = initial(retreat_distance)
 
-/mob/living/simple_animal/hostile/mining/wolf/Life(seconds_per_tick = SSMOBS_DT, times_fired)
+/mob/living/simple_animal/hostile/asteroid/wolf/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(target == null)
 		adjustHealth(-maxHealth*0.025)

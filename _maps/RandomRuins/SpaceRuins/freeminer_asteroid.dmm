@@ -9,22 +9,22 @@
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered)
 "n" = (
-/mob/living/simple_animal/hostile/mining/goliath,
+/mob/living/simple_animal/hostile/asteroid/goliath,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered)
 "s" = (
-/mob/living/simple_animal/hostile/mining/basilisk,
+/mob/living/simple_animal/hostile/asteroid/basilisk,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered)
 "D" = (
 /turf/closed/mineral/random/high_chance,
 /area/ruin/unpowered)
 "I" = (
-/mob/living/simple_animal/hostile/mining/hivelord,
+/mob/living/simple_animal/hostile/asteroid/hivelord,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered)
 "K" = (
-/mob/living/simple_animal/hostile/mining/goldgrub,
+/mob/living/simple_animal/hostile/asteroid/goldgrub,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered)
 "X" = (

@@ -211,7 +211,7 @@
 /mob/living/simple_animal/hostile/double/AttackingTarget()
 	..()
 	var/mob/living/simple_animal/M = target
-	if(ismegafauna(M) || istype(M, /mob/living/simple_animal/hostile/mining) || istype(M, /mob/living/simple_animal/hostile/mining/yog_jungle))
+	if(ismegafauna(M) || istype(M, /mob/living/simple_animal/hostile/asteroid) || istype(M, /mob/living/simple_animal/hostile/asteroid/yog_jungle))
 		M.apply_damage(melee_fauna_bonus, BRUTE)
 
 /mob/living/simple_animal/hostile/double/bullet_act(obj/projectile/P)
@@ -315,5 +315,5 @@
 /obj/projectile/doppshot/on_hit(atom/target, blocked = FALSE)
 	var/mob/living/M = target
 	M.apply_damage(actual_damage, BRUTE)
-	if(ismegafauna(M) || istype(M, /mob/living/simple_animal/hostile/mining) || istype(M, /mob/living/simple_animal/hostile/mining/yog_jungle))
+	if(ismegafauna(M) || istype(M, /mob/living/simple_animal/hostile/asteroid) || istype(M, /mob/living/simple_animal/hostile/asteroid/yog_jungle))
 		M.apply_damage(ranged_fauna_bonus, BRUTE)

@@ -495,7 +495,7 @@ Difficulty: Very Hard
 		if("lavaland")//Depressurizes the place... and free cult metal, I guess.
 			NewTerrainFloors = /turf/open/floor/grass/snow/basalt
 			NewTerrainWalls = /turf/closed/wall/mineral/cult
-			NewFlora = list(/mob/living/simple_animal/hostile/mining/goldgrub)
+			NewFlora = list(/mob/living/simple_animal/hostile/asteroid/goldgrub)
 			florachance = 1
 		if("winter") //Snow terrain is slow to move in and cold! Get the assistants to shovel your driveway.
 			NewTerrainFloors = /turf/open/floor/grass/snow

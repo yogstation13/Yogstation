@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/mining/ambusher
+/mob/living/simple_animal/hostile/asteroid/ambusher
 	name = "white wolf"
 	desc = "A beast that survives by feasting on weaker opponents, they're much stronger with numbers."
 	icon = 'icons/mob/icemoon/icemoon_monsters.dmi'
@@ -35,12 +35,12 @@
 	var/poison_type = /datum/reagent/toxin/ambusher_toxin
 	var/poison_per_bite = 0
 
-/mob/living/simple_animal/hostile/mining/ambusher/Move(atom/newloc)
+/mob/living/simple_animal/hostile/asteroid/ambusher/Move(atom/newloc)
 	if(newloc && newloc.z == z && (islava(newloc) || ischasm(newloc)))
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/mining/ambusher/Life(seconds_per_tick = SSMOBS_DT, times_fired)
+/mob/living/simple_animal/hostile/asteroid/ambusher/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(!revealed) //Make sure it doesn't twitch if already revealed
 		if(prob(10)) //Randomly twitch to differentiate it from normal wolves
 			icon_state = "ambusher_twitch"
@@ -49,7 +49,7 @@
 		else
 			icon_state = "whitewolf"
 
-/mob/living/simple_animal/hostile/mining/ambusher/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/hostile/asteroid/ambusher/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
 	if(health <= 175 && !revealed) //Reveal itself if damaged enough and if it hasn't already done so
 		name = "white wolf?"
@@ -73,14 +73,14 @@
 		addtimer(CALLBACK(src, PROC_REF(endRage)), 6 SECONDS) //Rage timer
 		revealed = TRUE
 
-/mob/living/simple_animal/hostile/mining/ambusher/AttackingTarget()
+/mob/living/simple_animal/hostile/asteroid/ambusher/AttackingTarget()
 	..()
 	if(isliving(target))
 		var/mob/living/L = target
 		if(target.reagents)
 			L.reagents.add_reagent(poison_type, poison_per_bite)
 
-/mob/living/simple_animal/hostile/mining/ambusher/proc/endRage()
+/mob/living/simple_animal/hostile/asteroid/ambusher/proc/endRage()
 	color = null //Remove the color
 	move_to_delay = 4 //Slow down, toxin will let it keep up with player and if player did not get poisoned then ambusher skill issue
 	melee_damage_lower = 12 //More damage to make up for less speed
@@ -90,7 +90,7 @@
 	attack_sound = 'sound/effects/wounds/blood3.ogg'
 	src.visible_message(span_warning("The white wolf slows down as it focuses on you!"))
 
-/mob/living/simple_animal/hostile/mining/ambusher/Life(seconds_per_tick = SSMOBS_DT, times_fired)
+/mob/living/simple_animal/hostile/asteroid/ambusher/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(target == null)
 		adjustHealth(-maxHealth*0.025)

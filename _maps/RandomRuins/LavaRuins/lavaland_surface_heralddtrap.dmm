@@ -304,7 +304,7 @@
 /area/lavaland/surface/outdoors)
 "zU" = (
 /obj/item/clothing/neck/cloak/herald_cloak,
-/mob/living/simple_animal/hostile/mining/elite/herald{
+/mob/living/simple_animal/hostile/asteroid/elite/herald{
 	faction = list("mining")
 	},
 /obj/structure/closet/crate/necropolis/tendril{
@@ -527,7 +527,7 @@
 /turf/closed/mineral/diamond/volcanic/hard,
 /area/lavaland/surface/outdoors)
 "SE" = (
-/mob/living/simple_animal/hostile/mining/hivelord/legion/advanced,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/advanced,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "SH" = (

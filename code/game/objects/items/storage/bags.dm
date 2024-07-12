@@ -141,13 +141,13 @@
 /obj/item/storage/bag/ore/proc/Pickup_ores(mob/living/user)
 	var/show_message = FALSE
 	var/obj/structure/ore_box/box
-	var/mob/living/simple_animal/hostile/mining_drone/drone
+	var/mob/living/simple_animal/hostile/asteroid_drone/drone
 	var/turf/tile = user.loc
 	if (!isturf(tile))
 		return
 	if (istype(user.pulling, /obj/structure/ore_box))
 		box = user.pulling
-	else if (istype(user.pulling, /mob/living/simple_animal/hostile/mining_drone))
+	else if (istype(user.pulling, /mob/living/simple_animal/hostile/asteroid_drone))
 		drone = user.pulling
 
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)

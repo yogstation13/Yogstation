@@ -23,7 +23,7 @@
 /turf/open/floor/plating/asteroid,
 /area/shuttle/escape/meteor)
 "f" = (
-/mob/living/simple_animal/hostile/mining/goliath,
+/mob/living/simple_animal/hostile/asteroid/goliath,
 /turf/open/floor/plating/asteroid,
 /area/shuttle/escape/meteor)
 "g" = (

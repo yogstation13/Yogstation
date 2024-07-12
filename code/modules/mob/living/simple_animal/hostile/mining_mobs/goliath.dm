@@ -1,5 +1,5 @@
 //A slow but strong beast that tries to stun using its tentacles
-/mob/living/simple_animal/hostile/mining/goliath
+/mob/living/simple_animal/hostile/asteroid/goliath
 	name = "goliath"
 	desc = "A massive beast that uses long tentacles to ensnare its prey, threatening them is not advised under any conditions."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
@@ -36,29 +36,29 @@
 	var/pre_attack = 0
 	var/pre_attack_icon = "Goliath_preattack"
 
-/mob/living/simple_animal/hostile/mining/goliath/Life(seconds_per_tick = SSMOBS_DT, times_fired)
+/mob/living/simple_animal/hostile/asteroid/goliath/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	handle_preattack()
 
-/mob/living/simple_animal/hostile/mining/goliath/proc/handle_preattack()
+/mob/living/simple_animal/hostile/asteroid/goliath/proc/handle_preattack()
 	if(ranged_cooldown <= world.time + ranged_cooldown_time*0.25 && !pre_attack)
 		pre_attack++
 	if(!pre_attack || stat || AIStatus == AI_IDLE)
 		return
 	icon_state = pre_attack_icon
 
-/mob/living/simple_animal/hostile/mining/goliath/revive(full_heal = 0, admin_revive = 0)
+/mob/living/simple_animal/hostile/asteroid/goliath/revive(full_heal = 0, admin_revive = 0)
 	if(..())
 		anchored = TRUE
 		. = 1
 
-/mob/living/simple_animal/hostile/mining/goliath/death(gibbed)
+/mob/living/simple_animal/hostile/asteroid/goliath/death(gibbed)
 	move_force = MOVE_FORCE_DEFAULT
 	move_resist = MOVE_RESIST_DEFAULT
 	pull_force = PULL_FORCE_DEFAULT
 	..(gibbed)
 
-/mob/living/simple_animal/hostile/mining/goliath/OpenFire()
+/mob/living/simple_animal/hostile/asteroid/goliath/OpenFire()
 	var/tturf = get_turf(target)
 	if(!isturf(tturf))
 		return
@@ -69,19 +69,19 @@
 		icon_state = icon_aggro
 		pre_attack = 0
 
-/mob/living/simple_animal/hostile/mining/goliath/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/hostile/asteroid/goliath/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	ranged_cooldown -= 10
 	handle_preattack()
 	. = ..()
 
-/mob/living/simple_animal/hostile/mining/goliath/Aggro()
+/mob/living/simple_animal/hostile/asteroid/goliath/Aggro()
 	vision_range = aggro_vision_range
 	handle_preattack()
 	if(icon_state != icon_aggro)
 		icon_state = icon_aggro
 
 //Lavaland Goliath
-/mob/living/simple_animal/hostile/mining/goliath/beast
+/mob/living/simple_animal/hostile/asteroid/goliath/beast
 	name = "goliath"
 	desc = "A hulking, armor-plated beast with long tendrils arching from its back."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
@@ -99,13 +99,13 @@
 	stat_attack = UNCONSCIOUS
 	robust_searching = 1
 
-/mob/living/simple_animal/hostile/mining/goliath/beast/random/Initialize(mapload)
+/mob/living/simple_animal/hostile/asteroid/goliath/beast/random/Initialize(mapload)
 	. = ..()
 	if(prob(1))
-		new /mob/living/simple_animal/hostile/mining/goliath/beast/ancient(loc)
+		new /mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient(loc)
 		return INITIALIZE_HINT_QDEL
 
-/mob/living/simple_animal/hostile/mining/goliath/beast/ancient
+/mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient
 	name = "ancient goliath"
 	desc = "Goliaths are biologically immortal, and rare specimens have survived for centuries. This one is clearly ancient, and its tentacles constantly churn the earth around it."
 	icon_state = "Goliath"
@@ -126,7 +126,7 @@
 	var/turf/last_location
 	var/tentacle_recheck_cooldown = 100
 
-/mob/living/simple_animal/hostile/mining/goliath/beast/ancient/Life(seconds_per_tick = SSMOBS_DT, times_fired)
+/mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(!.) // dead
 		return
@@ -144,10 +144,10 @@
 			else
 				cached_tentacle_turfs -= t
 
-/mob/living/simple_animal/hostile/mining/goliath/beast/tendril
+/mob/living/simple_animal/hostile/asteroid/goliath/beast/tendril
 	fromtendril = TRUE
 
-/mob/living/simple_animal/hostile/mining/goliath/beast/joe
+/mob/living/simple_animal/hostile/asteroid/goliath/beast/joe
 	name = "Joe"
 	desc = "The mining team's pet goliath! Usually found hard at work at the coin press."
 	response_help = "pets"

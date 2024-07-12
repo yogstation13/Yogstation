@@ -79,7 +79,7 @@
 		/obj/item/stack/sheet/mineral/coal
 	)
 	common_loot = list(
-		/mob/living/simple_animal/hostile/mining/gutlunch,
+		/mob/living/simple_animal/hostile/asteroid/gutlunch,
 		/obj/item/stack/sheet/bone,
 		/obj/item/stack/sheet/animalhide/goliath_hide,
 		/obj/item/claymore/ruin,
@@ -105,8 +105,8 @@
 
 	)
 	rare_loot = list(
-		/mob/living/simple_animal/hostile/mining_drone,
-		/mob/living/simple_animal/hostile/mining/goliath,
+		/mob/living/simple_animal/hostile/asteroid_drone,
+		/mob/living/simple_animal/hostile/asteroid/goliath,
 		/obj/item/stack/sheet/mineral/mythril,
 		/obj/structure/closet/crate/necropolis/tendril, //populated chest
 		/obj/item/book_of_babel,
