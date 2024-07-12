@@ -928,7 +928,7 @@
 
 /datum/quirk/psionically_deafened
 	name = "Psionically Deafened"
-	desc = "You were born far away from the veil, deafening you to psionic latency. You cannot awaken as a psionic with this quirk"
+	desc = "You were born far away from the veil, deafening you to psionic latency. You cannot awaken as a psionic with this quirk."
 	icon = "hand-back-fist"
 	value = -1
 	mob_trait = TRAIT_PSIONICALLY_DEAFENED
