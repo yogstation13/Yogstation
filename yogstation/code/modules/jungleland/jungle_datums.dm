@@ -278,7 +278,7 @@
 	description = "Yellowish liquid with VERY potent anti-acidic properties"
 	color = "#eeff00"
 	taste_description = "sweet"
-	metabolization_rate = 0.05
+	metabolization_rate = 0.1
 	alert_id = "magnus_purpura_condensed"
 
 //i tried to base it off of actual malaria
