@@ -1,4 +1,0 @@
-author: " cark"
-delete-after: true 
-changes: 
-  - mapping: "fixes a lot of mapping errors on Ice and Box involving structures being where they aint supposed to"
