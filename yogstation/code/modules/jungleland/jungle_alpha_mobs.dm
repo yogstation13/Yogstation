@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/mining/yog_jungle/alpha
-	gold_core_spawnable = FALSE
+	gold_core_spawnable = NO_SPAWN
 	sentience_type = SENTIENCE_BOSS
 	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
 
@@ -226,95 +226,6 @@
 	P.fire()
 
 ////////////////////////////////////////////////////////////////////////////////////
-//----------------------------------Big mosquito----------------------------------//
-////////////////////////////////////////////////////////////////////////////////////
-/mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_mosquito
-	name ="Mosquito Patriarch"
-	desc = "A colossal blood sucking mosquito, it looks very angry."
-	icon = 'yogstation/icons/mob/jungle64x64.dmi'
-	icon_state = "mosquito"
-	icon_living = "mosquito"
-	icon_dead = "mosquito_dead"
-	maxHealth = 350
-	health = 350
-	crusher_loot = /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch
-	butcher_results = list(/obj/item/stinger = 1, /obj/item/stack/sheet/animalhide/weaver_chitin = 2, /obj/item/stack/sheet/sinew = 4, /obj/item/gem/ruby = 2)
-	melee_damage_lower = 35
-	melee_damage_upper = 35
-	pixel_x = -16
-	pixel_y = -16
-	var/can_charge = TRUE
-	var/cooldown = 5 SECONDS
-	var/charge_ramp_up = 1 SECONDS
-	var/charging = FALSE
-
-	var/overshoot_dist = 5
-
-/mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_mosquito/Aggro()
-	. = ..()
-	INVOKE_ASYNC(src, PROC_REF(prepare_charge))
-
-/mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_mosquito/Goto(target, delay, minimum_distance)
-	if (iscarbon(target) && get_dist(src,target) > 4 && get_charge())
-		INVOKE_ASYNC(src, PROC_REF(prepare_charge))
-		return
-
-	if(!charging)
-		return ..()
-
-/mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_mosquito/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	. = ..()
-	charging = FALSE
-	if(!ishuman(hit_atom))
-		animate(src,color = initial(color),time = charge_ramp_up/2)
-		return 
-	
-	var/mob/living/carbon/human/humie = hit_atom
-	humie.blood_volume -= 15 // ouch!
-	var/malaria_chance = 150 - humie.getarmor(null,BIO) // NEVER 100 PERCENT
-	if(prob(malaria_chance * 0.5))
-		var/datum/disease/malaria/infection = new() 
-		humie.ForceContractDisease(infection,FALSE,TRUE)
-	icon_state = "mosquito_blood"
-	animate(src,color = initial(color),time = charge_ramp_up*2)
-
-/mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_mosquito/proc/prepare_charge()
-	if(!get_charge())
-		return FALSE 
-
-	var/dir = Get_Angle(src.loc,target.loc)
-	
-	//i actually fucking hate this utility function, for whatever reason Get_Angle returns the angle assuming that [0;-1] is 0 degrees rather than [1;0] like any sane being.
-	var/tx = clamp(0,round(target.loc.x + sin(dir) * overshoot_dist),255)
-	var/ty = clamp(0,round(target.loc.y + cos(dir) * overshoot_dist),255)
-
-	var/turf/found_turf = locate(tx,ty,loc.z)
-
-	if(found_turf == null)
-		return FALSE 
-	
-	var/dist = get_dist(src,found_turf)
-
-	charging = TRUE
-	animate(src,color = rgb(163, 0, 0),time = charge_ramp_up)
-	sleep(charge_ramp_up)
-	if(stat == DEAD)
-		animate(src,color = initial(color),time = charge_ramp_up)
-		return
-
-	throw_at(found_turf,dist + overshoot_dist, 3, spin = FALSE)
-
-/mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_mosquito/proc/reset_charge()
-	can_charge = TRUE
-
-/mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_mosquito/proc/use_charge()
-	can_charge = FALSE 
-	addtimer(CALLBACK(src,PROC_REF(reset_charge)),cooldown,TIMER_UNIQUE)
-
-/mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_mosquito/proc/get_charge()
-	return can_charge 
-
-////////////////////////////////////////////////////////////////////////////////////
 //------------------------------------Big wasp------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_yellowjacket
@@ -333,8 +244,8 @@
 	vision_range = 5
 	aggro_vision_range = 9
 	speed = 2
-	maxHealth = 320
-	health = 320
+	maxHealth = 280
+	health = 280
 	environment_smash = ENVIRONMENT_SMASH_NONE //held off by walls and windows, stupid oversized bee
 	melee_damage_lower = 10  //not that lethal, but it'll catch up to you easily
 	melee_damage_upper = 10
@@ -346,6 +257,7 @@
 	crusher_loot = /obj/item/crusher_trophy/jungleland/wasp_head
 	pixel_x = -16 
 	pixel_y = -16
+	var/dash_speed = 1
 	var/charging = FALSE
 	var/revving_charge = FALSE
 	var/poison_type = /datum/reagent/toxin/concentrated
@@ -388,10 +300,10 @@
 	setDir(dir)
 	SLEEP_CHECK_DEATH(delay)
 	revving_charge = FALSE
-	var/movespeed = 1
-	walk_towards(src, T, movespeed)
-	SLEEP_CHECK_DEATH(get_dist(src, T) * movespeed)
+	walk_towards(src, T, dash_speed)
+	SLEEP_CHECK_DEATH(get_dist(src, T) * dash_speed)
 	walk(src, 0) // cancel the movement
+	release_guards()
 	charging = FALSE
 
 /mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_yellowjacket/Move()
@@ -401,3 +313,43 @@
 		DestroySurroundings() //"Fred, were you feeding steroids to the wasp again?"
 	..()
 
+/mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_yellowjacket/proc/release_guards()
+	new /mob/living/simple_animal/hostile/mining/wasp/yellowjacket(get_turf(src))
+
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------Big mosquito----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_yellowjacket/mosquito
+	name ="Mosquito Patriarch"
+	desc = "A colossal blood sucking mosquito, it looks very angry."
+	icon = 'yogstation/icons/mob/jungle64x64.dmi'
+	icon_state = "mosquito"
+	icon_living = "mosquito"
+	icon_dead = "mosquito_dead"
+	maxHealth = 350
+	health = 350
+	move_to_delay = 3
+	crusher_loot = /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch
+	butcher_results = list(/obj/item/stinger = 1, /obj/item/stack/sheet/animalhide/weaver_chitin = 2, /obj/item/stack/sheet/sinew = 4, /obj/item/gem/ruby = 2)
+	melee_damage_lower = 35
+	melee_damage_upper = 35
+	pixel_x = -16
+	pixel_y = -16
+	dash_speed = 0.8
+	poison_per_attack = 0
+
+/mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_yellowjacket/mosquito/AttackingTarget()
+	..()
+	if(!ishuman(target))
+		return
+
+	var/mob/living/carbon/human/humie = target
+	humie.blood_volume -= 15 // ouch!
+	var/malaria_chance = 150 - humie.getarmor(null,BIO) // NEVER 100 PERCENT
+	if(prob(malaria_chance * 0.5))
+		var/datum/disease/malaria/infection = new() 
+		humie.ForceContractDisease(infection,FALSE,TRUE)
+	icon_state = "mosquito_blood"
+
+/mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_yellowjacket/mosquito/release_guards()
+	return //no guards, mosquitos are spiteful creatures

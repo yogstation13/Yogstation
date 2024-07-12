@@ -32,6 +32,7 @@
 	var/revving_charge = FALSE
 	var/poison_type = /datum/reagent/toxin/venom
 	var/poison_per_attack = 5
+	var/dash_speed = 1
 
 /mob/living/simple_animal/hostile/mining/wasp/AttackingTarget()
 	..()
@@ -70,9 +71,9 @@
 	setDir(dir)
 	SLEEP_CHECK_DEATH(delay)
 	revving_charge = FALSE
-	var/movespeed = 1
-	walk_towards(src, T, movespeed)
-	SLEEP_CHECK_DEATH(get_dist(src, T) * movespeed)
+	var/movespeed = dash_speed
+	walk_towards(src, T, dash_speed)
+	SLEEP_CHECK_DEATH(get_dist(src, T) * dash_speed)
 	walk(src, 0) // cancel the movement
 	charging = FALSE
 

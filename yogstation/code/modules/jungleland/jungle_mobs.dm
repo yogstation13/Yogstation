@@ -337,9 +337,11 @@
 	return ..()
 
 ////////////////////////////////////////////////////////////////////////////////////
-//-----------------------------------Blobby---------------------------------------//
+//------------------------------------Wasps---------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-//jungle version of the wasp. Slightly weaker and faster, with different loot. Renamed to avoid confusion. Credit to original creator.
+/**
+ * jungle version of the wasp. Slightly weaker and faster, with different loot. Renamed to avoid confusion. Credit to original creator.
+ */
 /mob/living/simple_animal/hostile/mining/wasp/yellowjacket
 	name = "yellow jacket"
 	desc = "A large and aggressive creature with a massive stinger."
@@ -365,6 +367,7 @@
 	emote_hear = list("buzzes")
 	emote_taunt = list("buzzes")	
 	vision_range = 4
+	move_to_delay = 3
 	pressure_resistance = 100
 	speak_chance = 0
 	taunt_chance = 0
@@ -378,16 +381,17 @@
 	spacewalk = TRUE
 	melee_damage_lower = 20
 	melee_damage_upper = 20
-	alpha_type = /mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_mosquito
+	alpha_type = /mob/living/simple_animal/hostile/mining/yog_jungle/alpha/alpha_yellowjacket/mosquito
 	move_to_delay = 5
 	poison_per_attack = 0
+	dash_speed = 0.8
 
 /mob/living/simple_animal/hostile/mining/wasp/mosquito/AttackingTarget()
 	..()
 	if(!ishuman(target))
 		return
 
-	var/mob/living/carbon/human/humie = hit_atom
+	var/mob/living/carbon/human/humie = target
 	humie.blood_volume -= 10 // ouch!
 	var/malaria_chance = 125 - humie.getarmor(null,BIO)
 	if(prob(malaria_chance * 0.25))
@@ -395,8 +399,9 @@
 		humie.ForceContractDisease(infection,FALSE,TRUE)
 	icon_state = "mosquito_blood"
 
-
-
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------------Wasps---------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /mob/living/simple_animal/hostile/mining/yog_jungle/emeraldspider
 	name = "emerald spider"
 	desc = "A big, angry, venomous spider. Flings webs at prey to slow them down, before closing in on them."

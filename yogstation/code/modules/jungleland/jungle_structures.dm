@@ -388,14 +388,11 @@ GLOBAL_LIST_INIT(nests, list())
 	if(!initial(enemy_type.alpha_type))
 		var/mob/living/simple_animal/hostile/mining/yog_jungle/monster = new enemy_type(loc)
 		monster.setMaxHealth(monster.maxHealth * 1.5)
-		monster.health = monster.maxHealth * 1.5
-		monster.move_to_delay = max(monster.move_to_delay / 2, 1)
+		monster.health = monster.maxHealth
+		monster.move_to_delay = max(monster.move_to_delay / 2, 2)
 		monster.melee_damage_lower *= 1.5
 		monster.melee_damage_upper *= 1.5
-		monster.faction = list("mining")
-		var/matrix/M = matrix()
-		M.Scale(1.5,1.5)
-		monster.transform = M
+		monster.transform = matrix().Scale(1.5)
 		monster.color = "#c30505"
 		return
 	enemy_type = initial(enemy_type.alpha_type)
