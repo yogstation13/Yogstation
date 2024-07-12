@@ -77,6 +77,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = "Cargo Technician"
 	icon_state = "Cargo Technician"
 
+/obj/effect/landmark/start/backrooms_explorer
+	name = "Backrooms Explorer"
+	icon_state = "Quartermaster"
+
 /obj/effect/landmark/start/bartender
 	name = "Bartender"
 	icon_state = "Bartender"
