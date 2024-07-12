@@ -283,6 +283,8 @@
 	speed = 1
 	///used to keep track of people to prevent grazing the same target multiple times
 	var/list/grazed = list()
+	///damage done during the graze
+	var/graze_damage = 10
 
 /obj/projectile/beam/bfg/Range()
 	. = ..()
@@ -291,8 +293,8 @@
 			continue
 		if(isliving(passed))
 			var/mob/living/m_passed = passed
-			var/blocked = m_passed.run_armor_check(null, BURN)
-			m_passed.apply_damage(10, BURN, blocked = blocked)
+			var/blocked = m_passed.run_armor_check(null, armor)
+			m_passed.apply_damage(graze_damage, BURN, blocked = blocked)
 			m_passed.playsound_local(m_passed, hitsound, 30, TRUE)
 			to_chat(m_passed, "[src] sears you as it flies nearby.")
 			new /obj/effect/temp_visual/ratvar/ocular_warden(get_turf(m_passed))
