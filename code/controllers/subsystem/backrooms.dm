@@ -16,6 +16,7 @@ SUBSYSTEM_DEF(backrooms)
 
 	pick_theme()
 	generate_backrooms()
+	SEND_GLOBAL_SIGNAL(COMSIG_BACKROOMS_INITIALIZE)
 	//spawn_anomalies()
 	return SS_INIT_SUCCESS
 
@@ -100,6 +101,9 @@ SUBSYSTEM_DEF(backrooms)
 	name = "backrooms two way portal spawner"
 
 /obj/effect/spawner/backrooms_portal/Initialize(mapload)
+	RegisterSignal(SSdcs, COMSIG_BACKROOMS_INITIALIZE, PROC_REF(spawn_portals))
+
+/obj/effect/spawner/backrooms_portal/proc/spawn_portals()
 	var/backrooms_level = SSmapping.levels_by_trait(ZTRAIT_PROCEDURAL_MAINTS)
 	if(LAZYLEN(backrooms_level))
 		var/turf/way_out = find_safe_turf(zlevels = backrooms_level, dense_atoms = FALSE)
