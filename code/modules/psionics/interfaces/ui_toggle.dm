@@ -51,7 +51,7 @@
 
 /obj/screen/psi/zorch_harm/update_icon()
 	..()
-	if(owner.psi.get_rank(PSI_ENERGISTICS) < PSI_RANK_OPERANT) //only energistics get zorch
+	if(owner.psi.get_rank(PSI_ENERGISTICS) < PSI_RANK_MASTER) //only energistics get zorch
 		invisibility = 101
 	if(invisibility == 0)
 		icon_state = owner.psi.zorch_harm ? "zorch_harm" : "zorch_disable"
