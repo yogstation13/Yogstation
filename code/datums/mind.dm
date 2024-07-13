@@ -209,6 +209,8 @@
 /datum/mind/proc/add_antag_datum(datum_type_or_instance, team)
 	if(!datum_type_or_instance)
 		return
+	if(has_antag_datum(datum_type_or_instance)) //if they already have it, don't give it again
+		return
 	var/datum/antagonist/A
 	if(!ispath(datum_type_or_instance))
 		A = datum_type_or_instance
@@ -396,10 +398,18 @@
 		return I
 
 
+//Register a signal to the creator such that if they gain an antagonist datum, they also get it
+/datum/mind/proc/add_creator_antag(mob/living/creator, datum/antagonist/antag)
+	add_antag_datum(antag)
+
+/datum/mind/proc/remove_creator_antag(mob/living/creator, datum/antagonist/antag)
+	remove_antag_datum(antag)
 
 //Link a new mobs mind to the creator of said mob. They will join any team they are currently on, and will only switch teams when their creator does.
-
 /datum/mind/proc/enslave_mind_to_creator(mob/living/creator)
+	RegisterSignal(creator, COMSIG_ANTAGONIST_GAINED, PROC_REF(add_creator_antag), creator) //re-enslave to the new antag
+	RegisterSignal(creator, COMSIG_ANTAGONIST_REMOVED, PROC_REF(remove_creator_antag), creator) //remove enslavement to the antag
+
 	if(iscultist(creator))
 		SSticker.mode.add_cultist(src)
 
