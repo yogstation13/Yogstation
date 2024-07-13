@@ -417,6 +417,9 @@
 		N.nukeop_outfit = null
 		add_antag_datum(N,converter.nuke_team)
 
+	else if(is_team_darkspawn(creator))
+		add_antag_datum(/datum/antagonist/psyche)
+
 
 	enslaved_to = WEAKREF(creator)
 
