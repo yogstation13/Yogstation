@@ -22,7 +22,7 @@
 				new_rank = PSI_RANK_GRANDMASTER
 			if(1 to 100)
 				new_rank = PSI_RANK_MASTER
-			if(101 to 10000)
+			else
 				new_rank = PSI_RANK_OPERANT
 
 		owner.set_psi_rank(faculty, new_rank)
