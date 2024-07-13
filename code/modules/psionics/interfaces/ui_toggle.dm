@@ -7,7 +7,7 @@
 /obj/screen/psi/armour/update_icon()
 	..()
 	//everything but coercion gets psi armour
-	if(!(owner.psi.get_rank(PSI_ENERGISTICS) > PSI_RANK_OPERANT || owner.psi.get_rank(PSI_PSYCHOKINESIS) > PSI_RANK_OPERANT || owner.psi.get_rank(PSI_REDACTION) > PSI_RANK_OPERANT))
+	if(!(owner.psi.get_rank(PSI_ENERGISTICS) >= PSI_RANK_OPERANT || owner.psi.get_rank(PSI_PSYCHOKINESIS) >= PSI_RANK_OPERANT || owner.psi.get_rank(PSI_REDACTION) >= PSI_RANK_OPERANT))
 		invisibility = 101
 	if(invisibility == 0)
 		icon_state = owner.psi.use_psi_armour ? "psiarmour_on" : "psiarmour_off"
