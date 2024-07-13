@@ -17,12 +17,12 @@
 		var/faculty = pick(latencies)
 
 		var/new_rank = PSI_RANK_OPERANT
-		switch(rand(0, 100)) //i intially tried using a weighted list with pickweight, but i kept getting out of bounds errors for some reason
+		switch(rand(0, 10000)) //i intially tried using a weighted list with pickweight, but i kept getting out of bounds errors for some reason
 			if(0) //weighted so you can still roll grandmaster, but at a really rare chance
 				new_rank = PSI_RANK_GRANDMASTER
-			if(1 to 10)
+			if(1 to 100)
 				new_rank = PSI_RANK_MASTER
-			if(11 to 100)
+			if(101 to INFINITY)
 				new_rank = PSI_RANK_OPERANT
 
 		owner.set_psi_rank(faculty, new_rank)
