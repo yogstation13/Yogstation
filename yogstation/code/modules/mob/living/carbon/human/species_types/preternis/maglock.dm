@@ -7,11 +7,11 @@
 
 /datum/action/cooldown/spell/toggle/maglock/Grant(mob/M)
 	. = ..()
-	RegisterSignal(owner, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(UpdateSpeed))
+	RegisterSignal(M, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(UpdateSpeed))
 
 /datum/action/cooldown/spell/toggle/maglock/Remove(mob/M)
-	UnregisterSignal(owner, COMSIG_MOB_CLIENT_PRE_MOVE)
-	. = ..()
+	UnregisterSignal(M, COMSIG_MOB_CLIENT_PRE_MOVE)
+	return ..()
 
 /datum/action/cooldown/spell/toggle/maglock/Enable()
 	ADD_TRAIT(owner, TRAIT_NOSLIPWATER, type)
@@ -29,7 +29,7 @@
 	to_chat(owner, span_notice("You disable your mag-pulse traction system."))
 	UpdateSpeed()
 
-/datum/action/cooldown/spell/toggle/maglock/UpdateSpeed()
+/datum/action/cooldown/spell/toggle/maglock/proc/UpdateSpeed()
 	if(active && !HAS_TRAIT(owner, TRAIT_IGNORESLOWDOWN) && owner.has_gravity())
 		owner.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown = 1, blacklisted_movetypes=(FLYING|FLOATING))
 	else if(owner.has_movespeed_modifier(type))
