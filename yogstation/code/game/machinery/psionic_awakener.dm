@@ -25,17 +25,17 @@
 	var/trigger_power = 40 //effectively 50 because the default components increase it by 10
 
 	/// maximum amount of nullspace dust the machine can hold
-	var/nullspace_max = 100
+	var/nullspace_max = 150
 	/// current amount of nullspace dust the machine has
 	var/nullspace_dust = 0
 
 	/// list of all treatments the awakener is capable of
 	var/list/treatments = list(
 		AWAKENER_TRIGGER = 0,
-		AWAKENER_COERCION = 30,
-		AWAKENER_REDACTION = 30,
-		AWAKENER_ENERGISTICS = 30,
-		AWAKENER_PSYCHOKINESIS = 30
+		AWAKENER_COERCION = PSI_COERCION,
+		AWAKENER_REDACTION = PSI_REDACTION,
+		AWAKENER_ENERGISTICS = PSI_ENERGISTICS,
+		AWAKENER_PSYCHOKINESIS = PSI_PSYCHOKINESIS
 	)
 
 	/// currently selected outcome from pressing the button
@@ -184,8 +184,6 @@
 	data["nullspace"] = nullspace_dust
 	data["nullspace_max"] = nullspace_max
 	data["active_treatment"] = active_treatment
-	if(active_treatment != "none")
-		data["treatment_cost"] = treatments[active_treatment]
 
 	data["treatments"] = list()
 	for(var/T in treatments)
@@ -209,7 +207,21 @@
 				data["occupant"]["stat"] = "Dead"
 				data["occupant"]["statstate"] = "bad"
 		data["occupant"]["brainLoss"] = mob_occupant.getOrganLoss(ORGAN_SLOT_BRAIN)
+
+		data["treatment_cost"] = get_cost(mob_occupant)
 	return data
+
+/obj/machinery/psionic_awakener/proc/get_cost(mob/living/mob_occupant)
+	var/faculty = treatments[active_treatment]
+	var/cost = 0
+	if(faculty)
+		cost = 30 //costs 30 base to unlock a specific faculty
+		if(mob_occupant.psi)
+			var/faculty_rank = mob_occupant.psi.get_rank(faculty)
+			cost += max(faculty_rank-1, 0) * 30 //cost 30 more dust per rank beyond that
+			if(faculty_rank >= PSI_RANK_PARAMOUNT)
+				cost = 9999999
+	return cost
 
 /obj/machinery/psionic_awakener/ui_act(action, params)
 	if(..())
@@ -233,8 +245,12 @@
 				return
 			
 			switch(active_treatment)
+				if("none")
+					return
 				if(AWAKENER_TRIGGER)
 					trigger_psionics(mob_occupant)
+				else
+					empower_psionics(mob_occupant)
 			. = TRUE
 
 /obj/machinery/psionic_awakener/proc/trigger_psionics(mob/living/mob_occupant)
@@ -242,8 +258,8 @@
 		return
 	COOLDOWN_START(src, next_trigger, cooldown_duration)
 
-	if(!mob_occupant.psi)
-		visible_message(span_notice("[src] whirrs quietly as it fails to detect any psionic potential."))
+	if(!mob_occupant.psi || !LAZYLEN(mob_occupant.psi.latencies))
+		visible_message(span_notice("[src] whirrs quietly as it fails to detect any untapped psionic potential."))
 		playsound(src, 'sound/effects/psi/power_fail.ogg', 50, TRUE, 2)
 		recent_result = "Incapable"
 		return
@@ -268,3 +284,30 @@
 		visible_message(span_notice("[src] whirrs quietly as it fails to unlock any psionic potential."))
 		playsound(src, 'sound/effects/psi/power_fail.ogg', 50, TRUE, 2)
 		recent_result = "Failure"
+
+/obj/machinery/psionic_awakener/proc/empower_psionics(mob/living/mob_occupant)
+	if(!mob_occupant || mob_occupant.stat == DEAD || !COOLDOWN_FINISHED(src, next_trigger))
+		return
+
+	var/faculty = treatments[active_treatment]
+	var/cost = get_cost(mob_occupant)
+
+	if(nullspace_dust < cost)
+		return
+	
+	COOLDOWN_START(src, next_trigger, cooldown_duration)
+
+	nullspace_dust -= cost
+
+
+	var/new_rank = (mob_occupant?.psi?.get_rank(faculty) + 1) || PSI_RANK_OPERANT
+	mob_occupant.set_psi_rank(faculty, new_rank)
+	mob_occupant.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(brain_damage, brain_damage * 2))
+	to_chat(mob_occupant, span_danger("Your head throbs as [src] messes with your brain!"))
+
+	visible_message(span_notice("[src] whirrs loudly as it successfully [new_rank == PSI_RANK_OPERANT ? "awakens" : "reinforces"] [mob_occupant]'s [faculty] faculty."))
+	playsound(src, 'sound/effects/psi/power_evoke.ogg', 50, TRUE, 2)
+	playsound(src, 'sound/effects/psi/power_fabrication.ogg', 50, TRUE, 2)
+	log_admin("[name] upgraded psi [faculty] for [key_name(mob_occupant)].")
+	message_admins(span_adminnotice("[ADMIN_FLW(name)] upgraded psi [faculty] for [key_name(mob_occupant)]."))
+	recent_result = "Successful"

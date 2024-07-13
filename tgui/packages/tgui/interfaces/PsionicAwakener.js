@@ -21,7 +21,7 @@ export const PsionicAwakener = (props, context) => {
   const treatments = data.treatments || [];
 
   return (
-    <Window width={330} height={450}>
+    <Window width={350} height={500}>
       <Window.Content >
         <Section
           title={occupant.name ? occupant.name : 'No Occupant'}
@@ -78,7 +78,7 @@ export const PsionicAwakener = (props, context) => {
             </LabeledList.Item>
             <LabeledList.Item
               label="Dust Cost">
-              {treatment_cost ? treatment_cost + " dust" : "nothing"}
+              {treatment_cost ? treatment_cost : "nothing"}
             </LabeledList.Item>
             <LabeledList.Item
               label="Treatment">
