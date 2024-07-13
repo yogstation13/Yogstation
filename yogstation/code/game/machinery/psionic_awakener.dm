@@ -25,7 +25,7 @@
 	var/trigger_power = 40 //effectively 50 because the default components increase it by 10
 
 	/// maximum amount of nullspace dust the machine can hold
-	var/nullspace_max = 150
+	var/nullspace_max = 200
 	/// current amount of nullspace dust the machine has
 	var/nullspace_dust = 0
 
@@ -219,6 +219,8 @@
 		if(mob_occupant.psi)
 			var/faculty_rank = mob_occupant.psi.get_rank(faculty)
 			cost += max(faculty_rank-1, 0) * 30 //cost 30 more dust per rank beyond that
+			if(faculty_rank >= PSI_RANK_GRANDMASTER) //could maybe tweak this to be exponential scaling rather than linear
+				cost += 30 //extra 30 to go to paramount (since paramount is fuckin strong)
 			if(faculty_rank >= PSI_RANK_PARAMOUNT)
 				cost = 9999999
 	return cost
@@ -236,12 +238,12 @@
 			. = TRUE
 		if("set")
 			var/treatment = params["treatment"]
-			if(!is_operational() || !mob_occupant || isnull(treatment))
+			if(!is_operational() || isnull(treatment))
 				return
 			active_treatment = treatment
 			. = TRUE
 		if("activate")
-			if(!is_operational() || !mob_occupant)
+			if(!is_operational() || !mob_occupant || !mob_occupant.mind)
 				return
 			
 			switch(active_treatment)
@@ -300,7 +302,7 @@
 	nullspace_dust -= cost
 
 
-	var/new_rank = (mob_occupant?.psi?.get_rank(faculty) + 1) || PSI_RANK_OPERANT
+	var/new_rank = max(mob_occupant?.psi?.get_rank(faculty) + 1, PSI_RANK_OPERANT)
 	mob_occupant.set_psi_rank(faculty, new_rank)
 	mob_occupant.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(brain_damage, brain_damage * 2))
 	to_chat(mob_occupant, span_danger("Your head throbs as [src] messes with your brain!"))

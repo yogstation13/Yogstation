@@ -18,11 +18,11 @@
 
 		var/new_rank = PSI_RANK_OPERANT
 		switch(rand(0, 10000)) //i intially tried using a weighted list with pickweight, but i kept getting out of bounds errors for some reason
-			if(0) //weighted so you can still roll grandmaster, but at a really rare chance
+			if(0) //weighted so you can still roll grandmaster, but at an incredibly rare chance
 				new_rank = PSI_RANK_GRANDMASTER
 			if(1 to 100)
 				new_rank = PSI_RANK_MASTER
-			if(101 to INFINITY)
+			if(100 to INFINITY)
 				new_rank = PSI_RANK_OPERANT
 
 		owner.set_psi_rank(faculty, new_rank)

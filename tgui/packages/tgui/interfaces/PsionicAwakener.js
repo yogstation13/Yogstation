@@ -40,7 +40,6 @@ export const PsionicAwakener = (props, context) => {
                 <ProgressBar
                   label="Brain"
                   value={200 - occupant.brainLoss}
-                  minValue={0}
                   maxValue={200}
                   color={occupant.brainLoss ? 'bad' : 'good'} />
               </LabeledList.Item>
@@ -64,13 +63,15 @@ export const PsionicAwakener = (props, context) => {
           )}>
           <LabeledList>
             <LabeledList.Item
-              label="Nullspace Dust">
+              label="Nullspace Dust"
+              color='purple'>
               <ProgressBar
                 label="Nullspace Dust"
                 value={nullspace}
-                minValue={0}
                 maxValue={nullspace_max}
-                color='white' />
+                color='white'>{
+                nullspace ? nullspace : 0}/{nullspace_max}
+              </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item
               label="Selected">
@@ -114,7 +115,6 @@ export const PsionicAwakener = (props, context) => {
             <Button
               key={treatment}
               content={treatment}
-              disabled={!occupied}
               color={active_treatment===treatment ? 'green' : null}
               width='100%'
               onClick={() => act('set', {
