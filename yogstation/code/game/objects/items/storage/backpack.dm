@@ -253,34 +253,3 @@
 	new /obj/item/clothing/shoes/sneakers/white(src)
 	new	/obj/item/radio/headset/headset_medcargo(src)
 	new /obj/item/clothing/mask/gas/explorer(src)
-
-/obj/item/storage/backpack/duffelbag/clothing/med/paramed
-	name = "Paramedics's clothing duffelbag"
-	desc = "A large duffel bag filled with clothing."
-	icon_state = "duffel-med"
-	item_state = "duffel-med"
-
-/obj/item/storage/backpack/duffelbag/clothing/med/paramed/PopulateContents()
-	switch(pick("blue", "green", "purple"))
-		if ("blue")
-			new /obj/item/clothing/under/rank/medical/doctor/blue(src)
-		if ("green")
-			new /obj/item/clothing/under/rank/medical/doctor/green(src)
-		if ("purple")
-			new /obj/item/clothing/under/rank/medical/doctor/purple(src)
-	switch(pick("blue", "green", "purple"))
-		if ("blue")
-			new /obj/item/clothing/under/rank/medical/doctor/blue(src)
-		if ("green")
-			new /obj/item/clothing/under/rank/medical/doctor/green(src)
-		if ("purple")
-			new /obj/item/clothing/under/rank/medical/doctor/purple(src)
-		
-	new /obj/item/clothing/shoes/sneakers/white(src)
-	new /obj/item/clothing/under/rank/medical/doctor(src)
-	new /obj/item/clothing/suit/toggle/labcoat/emt(src)
-	new /obj/item/clothing/head/beret/emt/green(src)
-	new /obj/item/clothing/head/beret/emt(src)
-	new /obj/item/clothing/head/soft/emt(src)
-	new /obj/item/clothing/suit/toggle/labcoat/emt/green(src)
-	new /obj/item/clothing/head/soft/emt/green (src)

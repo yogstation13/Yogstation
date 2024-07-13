@@ -80,11 +80,8 @@
 
 /obj/structure/closet/secure_closet/paramedic/PopulateContents()
 	..()
-	if(prob(50))
-		new /obj/item/storage/backpack/medic(src)
-	else
-		new /obj/item/storage/backpack/satchel/med(src)
-	new /obj/item/storage/backpack/duffelbag/clothing/med/paramed(src)
+	new /obj/item/clothing/shoes/sneakers/white(src) //shoes and a jumpsuit in case something goes wrong, otherwise clothes are just in vendor
+	new /obj/item/clothing/under/rank/medical/doctor(src)
 	new /obj/item/defibrillator/loaded(src)
 	new /obj/item/storage/firstaid/hypospray/paramedic(src)
 	new /obj/item/radio/headset/headset_med(src)
