@@ -37,7 +37,7 @@
 			latency_chance += 15
 
 		var/list/latencies = dude.possible_faculties
-		latencies = latencies.copy
+		latencies = latencies.Copy()
 		if(!length(latencies))
 			return
 
