@@ -36,7 +36,8 @@
 		if(HAS_TRAIT(src, TRAIT_PSIONICALLY_TUNED))
 			latency_chance += 15
 
-		var/list/latencies = dude.possible_faculties.Copy()
+		var/list/latencies = dude.possible_faculties
+		latencies = latencies.copy
 		if(!length(latencies))
 			return
 
