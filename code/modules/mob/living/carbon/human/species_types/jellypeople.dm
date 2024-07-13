@@ -56,8 +56,9 @@
 			to_chat(H, span_danger("You feel drained!"))
 	if(H.blood_volume < BLOOD_VOLUME_BAD(H))
 		Cannibalize_Body(H)
-	if(regenerate_limbs)
-		regenerate_limbs.build_all_button_icons()
+	var/datum/action/innate/regenerate_limbs/ability = locate() in instantiated_abilities
+	if(ability)
+		ability.build_all_button_icons()
 
 /datum/species/jelly/proc/Cannibalize_Body(mob/living/carbon/human/H)
 	var/list/limbs_to_consume = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG) - H.get_missing_limbs()
@@ -655,7 +656,7 @@
 	if(!do_after(caster, 5 SECONDS, victim))
 		return
 	
-	for(var/datum/action/ability as anything in victim.abilities)
+	for(var/datum/action/ability as anything in victim.actions)
 		if(istype(ability, /datum/action/innate/linked_speech))
 			var/datum/action/innate/linked_speech/speaker = ability
 			if(speaker.linkage == src)
