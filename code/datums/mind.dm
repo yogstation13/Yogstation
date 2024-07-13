@@ -400,10 +400,30 @@
 
 //Register a signal to the creator such that if they gain an antagonist datum, they also get it
 /datum/mind/proc/add_creator_antag(mob/living/creator, datum/antagonist/antag)
-	add_antag_datum(antag)
+	var/antag_type = antag.type
+
+	//don't give them a full antag status if there's a suitable servant antag datum
+	var/list/antag_downgrade = list(
+		/datum/antagonist/darkspawn = /datum/antagonist/psyche,
+		/datum/antagonist/thrall = /datum/antagonist/psyche
+	)
+	if(antag_type in antag_downgrade)
+		antag_type = antag_downgrade[antag_type]
+
+	add_antag_datum(antag_type)
 
 /datum/mind/proc/remove_creator_antag(mob/living/creator, datum/antagonist/antag)
-	remove_antag_datum(antag)
+	var/antag_type = antag.type
+
+	//make sure to do it here too so the proper tag is removed
+	var/list/antag_downgrade = list(
+		/datum/antagonist/darkspawn = /datum/antagonist/psyche,
+		/datum/antagonist/thrall = /datum/antagonist/psyche
+	)
+	if(antag_type in antag_downgrade)
+		antag_type = antag_downgrade[antag_type]
+
+	remove_antag_datum(antag_type)
 
 //Link a new mobs mind to the creator of said mob. They will join any team they are currently on, and will only switch teams when their creator does.
 /datum/mind/proc/enslave_mind_to_creator(mob/living/creator)
