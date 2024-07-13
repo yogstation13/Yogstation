@@ -59,7 +59,7 @@
 		for(var/i = 1 to new_latencies)
 			to_chat(victim, span_danger("<font size = 3>[pick(psi_operancy_messages)]</font>"))
 			victim.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(10,20))
-			victim.set_psi_rank(pick_n_take(faculties), 1)
+			victim.set_psi_rank(pick_n_take(faculties), PSI_RANK_LATENT)
 			sleep(30)
 		victim.psi.update()
 	sleep(4.5 SECONDS)

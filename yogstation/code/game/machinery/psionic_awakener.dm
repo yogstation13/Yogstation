@@ -15,7 +15,7 @@
 	circuit = /obj/item/circuitboard/machine/psionic_awakener
 	clicksound = 'sound/machines/pda_button1.ogg'
 
-	var/enter_message = "<span class='notice'><b>You feel cool air surround you. You go numb as your senses turn inward.</b></span>"
+	var/enter_message = "<span class='notice'><b>As the lid slams shut you become acutely aware of how dark and quiet it is inside.</b></span>"
 	var/open_sound = 'sound/machines/podopen.ogg'
 	var/close_sound = 'sound/machines/podclose.ogg'
 

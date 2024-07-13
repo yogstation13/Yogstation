@@ -12,13 +12,14 @@
 	var/combined_rank = 0
 	for(var/faculty in ranks)
 		var/check_rank = get_rank(faculty)
-		if(check_rank == 1)
+		if(check_rank == PSI_RANK_LATENT && !LAZYFIND(latencies, faculty)) //if they're latent and it's not already on the list, add it to latencies
 			LAZYADD(latencies, faculty)
-		else
-			if(check_rank <= 0)
+		else if(check_rank != PSI_RANK_LATENT)
+			if(check_rank <= PSI_RANK_BLUNT) //if they're not capable at all, remove it entirely
 				ranks -= faculty
-			LAZYREMOVE(latencies, faculty)
+			LAZYREMOVE(latencies, faculty) //remove it from the list because they aren't latent anymore
 		combined_rank += check_rank
+
 		if(!highest_faculty || highest_rank < check_rank)
 			highest_faculty = faculty
 			highest_rank = check_rank

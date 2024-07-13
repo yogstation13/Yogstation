@@ -34,6 +34,20 @@
 		var/datum/species/dude = dna.species
 		var/latency_chance = dude.latency_chance
 		if(HAS_TRAIT(src, TRAIT_PSIONICALLY_TUNED))
-			latency_chance = min(latency_chance + 15, 100)
+			latency_chance += 15
+
+		var/list/latencies = dude.possible_faculties.Copy()
+		if(!length(latencies))
+			return
+
 		if(prob(latency_chance))
-			set_psi_rank(pick(dude.possible_faculties), dude.starting_psi_level)
+			set_psi_rank(pick_n_take(latencies), dude.starting_psi_level)
+			
+		if(!length(latencies) || !HAS_TRAIT(src, TRAIT_PSIONICALLY_TUNED))
+			return
+
+		latency_chance *= 0.1 //really low chance of getting two if you're tuned
+
+		if(prob(latency_chance))
+			set_psi_rank(pick(latencies), dude.starting_psi_level)
+
