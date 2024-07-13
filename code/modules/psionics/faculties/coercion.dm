@@ -169,6 +169,7 @@
 		return FALSE
 	. = ..()
 	if(.)
+		user.do_attack_animation(target, ATTACK_EFFECT_PUNCH)
 		user.visible_message("<span class='danger'>\The [target] has been struck by \the [user]!</span>")
 		playsound(user.loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 		target.apply_damage(20 * (user.psi.get_rank(PSI_COERCION) - 1), STAMINA, BODY_ZONE_CHEST)
