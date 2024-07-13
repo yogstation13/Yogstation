@@ -8,7 +8,7 @@
 /obj/item/reagent_containers/food/condiment
 	name = "condiment container"
 	desc = "Just your average condiment container."
-	icon = 'yogstation/icons/obj/food/containers.dmi' //yogs changed icon path
+	icon = 'icons/obj/food/containers.dmi' //yogs changed icon path
 	icon_state = "emptycondiment"
 	reagent_flags = OPENCONTAINER_NOSPILL
 	possible_transfer_amounts = list(1, 5, 10, 15, 20, 25, 30, 50)
@@ -235,7 +235,7 @@
 /obj/item/reagent_containers/food/condiment/cream
 	name = "milk cream"
 	desc = "It's cream. Made from milk. What else did you think you'd find in there?"
-	icon = 'yogstation/icons/obj/food/containers.dmi'
+	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "cream"
 	list_reagents = list(/datum/reagent/consumable/cream = 100)
 
