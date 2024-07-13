@@ -80,7 +80,8 @@
 		user.visible_message(span_warning("\The [user] holds the head of \the [target] in both hands..."))
 		to_chat(user, span_notice("You insinuate your mentality into that of \the [target]..."))
 		to_chat(target, span_warning("Your persona is being probed by the psychic lens of \the [user]."))
-		if(!do_after(user, (target.stat == CONSCIOUS ? (4 SECONDS) : (2 SECONDS)), target, FALSE))
+		var/speed = (4 - (user.psi.get_rank(PSI_COERCION) - 1)) SECONDS
+		if(!do_after(user, speed, target, FALSE))
 			user.psi.backblast(rand(5,10))
 			return TRUE
 		to_chat(user, span_notice("You retreat from \the [target], holding your new knowledge close."))

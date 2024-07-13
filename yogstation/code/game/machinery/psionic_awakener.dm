@@ -1,3 +1,9 @@
+#define AWAKENER_TRIGGER "Awaken Latencies"
+#define AWAKENER_COERCION "Reinforce Coercion"
+#define AWAKENER_REDACTION "Reinforce Redaction"
+#define AWAKENER_ENERGISTICS "Reinforce Energistics"
+#define AWAKENER_PSYCHOKINESIS "Reinforce Psychokinesis"
+
 /obj/machinery/psionic_awakener
 	name = "psionic awakener"
 	desc = "An enclosed machine used trigger psionic latencies."
@@ -13,8 +19,30 @@
 	var/open_sound = 'sound/machines/podopen.ogg'
 	var/close_sound = 'sound/machines/podclose.ogg'
 
+	/// how much brain damage it does if it tries to unlock potential
 	var/brain_damage = 60 //effectively 50 because the default components reduce it by 10
+	/// % chance of psionic power triggering being successful
 	var/trigger_power = 40 //effectively 50 because the default components increase it by 10
+
+	/// maximum amount of nullspace dust the machine can hold
+	var/nullspace_max = 100
+	/// current amount of nullspace dust the machine has
+	var/nullspace_dust = 0
+
+	/// list of all treatments the awakener is capable of
+	var/list/treatments = list(
+		AWAKENER_TRIGGER = 0,
+		AWAKENER_COERCION = 30,
+		AWAKENER_REDACTION = 30,
+		AWAKENER_ENERGISTICS = 30,
+		AWAKENER_PSYCHOKINESIS = 30
+	)
+
+	/// currently selected outcome from pressing the button
+	var/active_treatment = "none"
+
+	/// text print of the most recent activation result
+	var/recent_result
 
 	COOLDOWN_DECLARE(next_trigger)
 	var/cooldown_duration = 10 SECONDS
@@ -52,6 +80,7 @@
 		container_resist(user)
 
 /obj/machinery/psionic_awakener/open_machine()
+	recent_result = null
 	if(!state_open && !panel_open)
 		flick("[base_icon_state]-anim", src)
 		if(open_sound)
@@ -151,6 +180,16 @@
 	data["open"] = state_open
 	data["ready"] = COOLDOWN_FINISHED(src, next_trigger)
 	data["timeleft"] = (COOLDOWN_TIMELEFT(src, next_trigger))/10
+	data["result"] = recent_result
+	data["nullspace"] = nullspace_dust
+	data["nullspace_max"] = nullspace_max
+	data["active_treatment"] = active_treatment
+	if(active_treatment != "none")
+		data["treatment_cost"] = treatments[active_treatment]
+
+	data["treatments"] = list()
+	for(var/T in treatments)
+		data["treatments"] += T
 
 	data["occupant"] = list()
 	var/mob/living/mob_occupant = occupant
@@ -183,11 +222,19 @@
 			else
 				open_machine()
 			. = TRUE
+		if("set")
+			var/treatment = params["treatment"]
+			if(!is_operational() || !mob_occupant || isnull(treatment))
+				return
+			active_treatment = treatment
+			. = TRUE
 		if("activate")
 			if(!is_operational() || !mob_occupant)
 				return
 			
-			trigger_psionics(mob_occupant)
+			switch(active_treatment)
+				if(AWAKENER_TRIGGER)
+					trigger_psionics(mob_occupant)
 			. = TRUE
 
 /obj/machinery/psionic_awakener/proc/trigger_psionics(mob/living/mob_occupant)
@@ -198,6 +245,7 @@
 	if(!mob_occupant.psi)
 		visible_message(span_notice("[src] whirrs quietly as it fails to detect any psionic potential."))
 		playsound(src, 'sound/effects/psi/power_fail.ogg', 50, TRUE, 2)
+		recent_result = "Incapable"
 		return
 
 	var/actual_power = trigger_power
@@ -215,6 +263,8 @@
 		playsound(src, 'sound/effects/psi/power_fabrication.ogg', 50, TRUE, 2)
 		log_admin("[name] triggered psi latencies for [key_name(mob_occupant)].")
 		message_admins(span_adminnotice("[ADMIN_FLW(name)] triggered psi latencies for [key_name(mob_occupant)]."))
+		recent_result = "Successful"
 	else
 		visible_message(span_notice("[src] whirrs quietly as it fails to unlock any psionic potential."))
 		playsound(src, 'sound/effects/psi/power_fail.ogg', 50, TRUE, 2)
+		recent_result = "Failure"

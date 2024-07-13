@@ -11,14 +11,20 @@ export const PsionicAwakener = (props, context) => {
     occupied,
     ready,
     timeleft,
+    result,
+    active_treatment,
+    treatment_cost,
+    nullspace,
+    nullspace_max,
   } = data;
 
+  const treatments = data.treatments || [];
+
   return (
-    <Window width={300} height={300}>
+    <Window width={330} height={450}>
       <Window.Content >
         <Section
           title={occupant.name ? occupant.name : 'No Occupant'}
-          minHeight="100px"
           buttons={!!occupant.stat && (
             <Box
               inline
@@ -28,25 +34,24 @@ export const PsionicAwakener = (props, context) => {
             </Box>
           )}>
           {!!occupied && (
-            <>
-              <Box mt={1} />
-              <LabeledList>
-                <LabeledList.Item
+            <LabeledList>
+              <LabeledList.Item
+                label="Brain">
+                <ProgressBar
                   label="Brain"
-                  color={occupant.brainLoss ? 'bad' : 'good'}>
-                  {occupant.brainLoss ? 'Abnormal' : 'Healthy'}
+                  value={200 - occupant.brainLoss}
+                  minValue={0}
+                  maxValue={200}
+                  color={occupant.brainLoss ? 'bad' : 'good'} />
+              </LabeledList.Item>
+              {!!result && (
+                <LabeledList.Item
+                label="Result">
+                {result}
                 </LabeledList.Item>
-              </LabeledList>
-              <Box mt={1} />
-              <ProgressBar
-                value={200 - occupant.brainLoss}
-                minValue={0}
-                maxValue={200}
-                color={occupant.brainLoss ? 'bad' : 'good'} />
-            </>
+              )}
+            </LabeledList>
           )}
-
-          <Box mt={1} />
         </Section>
         <Section
           title="Awaken"
@@ -57,17 +62,66 @@ export const PsionicAwakener = (props, context) => {
               content={open ? 'Open' : 'Closed'}
               onClick={() => act('door')} />
           )}>
-          <Button
-            icon='power-off'
-            content='Activate'
-            onClick={() => act('activate')}
-            disabled={!ready} />
-          {!ready && (
-            <Box
-              lineHeight="20px"
-              color="label">
-              Awakener cooling down ({timeleft}) seconds
-            </Box>)}
+          <LabeledList>
+            <LabeledList.Item
+              label="Nullspace Dust">
+              <ProgressBar
+                label="Nullspace Dust"
+                value={nullspace}
+                minValue={0}
+                maxValue={nullspace_max}
+                color='white' />
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Selected">
+              {active_treatment}
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Dust Cost">
+              {treatment_cost ? treatment_cost + " dust" : "nothing"}
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Treatment">
+              <Button
+                icon='power-off'
+                content='Activate'
+                onClick={() => act('activate')}
+                disabled={!ready || (treatment_cost > nullspace)} />
+            </LabeledList.Item>
+            {!ready && (
+              <LabeledList.Item
+                label="Cooling down">
+              <Box
+                lineHeight="20px"
+                color="label">
+                ({timeleft}) seconds
+              </Box>
+              </LabeledList.Item>
+            )}
+            {treatment_cost > nullspace && (
+              <LabeledList.Item
+                label="Error"
+                color='bad'
+                >
+                INSUFFICIENT NULLSPACE
+              </LabeledList.Item>
+            )}
+          </LabeledList>
+        </Section>
+        <Section
+          title="Treatments">
+          {treatments.map(treatment => (
+            <Button
+              key={treatment}
+              content={treatment}
+              disabled={!occupied}
+              color={active_treatment===treatment ? 'green' : null}
+              width='100%'
+              onClick={() => act('set', {
+                treatment: treatment,
+              })}
+            />
+          ))}
         </Section>
       </Window.Content>
     </Window>

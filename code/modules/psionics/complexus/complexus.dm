@@ -136,7 +136,6 @@
 		return
 	if(!selected_power)
 		return
-	SEND_SOUND(user, sound('sound/effects/psi/power_evoke.ogg', volume = 50))
 	. = selected_power.invoke(user, target, proximity, parameters)
 	if(.)
 		selected_power.handle_post_power(user, target)
