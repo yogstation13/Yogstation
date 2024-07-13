@@ -32,5 +32,5 @@
 /datum/action/cooldown/spell/toggle/maglock/proc/UpdateSpeed()
 	if(active && !HAS_TRAIT(owner, TRAIT_IGNORESLOWDOWN) && owner.has_gravity())
 		owner.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown = 1, blacklisted_movetypes=(FLYING|FLOATING))
-	else if(owner.has_movespeed_modifier(type))
+	else
 		owner.remove_movespeed_modifier(type)
