@@ -266,15 +266,14 @@
 		var/turf/E = get_step(src, d)
 		shoot_projectile(E)
 
-/mob/living/simple_animal/hostile/megafauna/stalwart/proc/enrage(mob/living/L)
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		if(H.mind)
-			if(H.mind.martial_art && prob(H.mind.martial_art.deflection_chance))
-				. = TRUE
-		if(H.mind)
-			if(H.dna.species == /datum/species/golem/sand)
-				. = TRUE
+/mob/living/simple_animal/hostile/megafauna/stalwart/proc/enrage(mob/living/carbon/target)
+	if(!iscarbon(target))
+		return FALSE
+	if(target.dna?.species == /datum/species/golem/sand)
+		return TRUE
+	if(target.mind.has_martialart(MARTIALART_SPACIALLDOMINANCE))
+		return TRUE
+	return FALSE
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/death()
 	. = ..()

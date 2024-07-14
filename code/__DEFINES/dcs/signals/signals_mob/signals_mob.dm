@@ -85,6 +85,8 @@
 
 ///from base of /mob/living/proc/apply_damage(): (damage, damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
 #define COMSIG_MOB_APPLY_DAMAGE "mob_apply_damage"
+	/// Cancels incoming damage.
+	#define COMPONENT_NO_APPLY_DAMAGE (1<<0)
 ///from adjust procs and bodypart heal_damage(): (amount, damtype)
 #define COMSIG_MOB_APPLY_HEALING "mob_apply_healing"
 ///from base of /mob/living/attack_alien(): (user)

@@ -1,5 +1,7 @@
 
 /mob/living/silicon/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, attack_direction = null)
+	if(SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone) & COMPONENT_NO_APPLY_DAMAGE)
+		return FALSE
 	var/hit_percent = (100-blocked)/100
 	if(!damage || (hit_percent <= 0))
 		return 0
@@ -8,7 +10,7 @@
 			adjustBruteLoss(damage * hit_percent)
 		if(BURN)
 			adjustFireLoss(damage * hit_percent)
-	return 1
+	return damage * hit_percent
 
 
 /mob/living/silicon/apply_effect(effect = 0,effecttype = EFFECT_STUN, blocked = FALSE)

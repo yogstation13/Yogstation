@@ -121,15 +121,14 @@ Difficulty: Very Hard
 		else
 			alternating_dir_shots()
 
-/mob/living/simple_animal/hostile/megafauna/colossus/proc/enrage(mob/living/L)
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		if(H.mind)
-			if(H.mind.martial_art && prob(H.mind.martial_art.deflection_chance))
-				. = TRUE
-		if(H.mind)
-			if(H.dna.species == /datum/species/golem/sand)
-				. = TRUE
+/mob/living/simple_animal/hostile/megafauna/colossus/proc/enrage(mob/living/carbon/target)
+	if(!iscarbon(target))
+		return FALSE
+	if(target.dna?.species == /datum/species/golem/sand)
+		return TRUE
+	if(target.mind.has_martialart(MARTIALART_SPACIALLDOMINANCE))
+		return TRUE
+	return FALSE
 
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/alternating_dir_shots()
 	ranged_cooldown = world.time + 40

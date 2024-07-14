@@ -182,6 +182,8 @@
 
 /datum/species/wy_synth/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, attack_direction = null)
 	. = ..()
+	if(!.)
+		return
 	var/hit_percent = (100-(blocked+armor))/100
 	if(damage * hit_percent * brutemod > 0)
 		if(last_warned <= world.time)

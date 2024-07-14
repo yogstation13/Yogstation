@@ -9,10 +9,11 @@
 	standard 0 if fail
 */
 /mob/living/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, attack_direction = null)
-	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone)
+	if(SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone, wound_bonus, bare_wound_bonus, sharpness, attack_direction) & COMPONENT_NO_APPLY_DAMAGE)
+		return FALSE
 	var/hit_percent = (100-blocked)/100
 	if(!damage || (hit_percent <= 0))
-		return 0
+		return FALSE
 	switch(damagetype)
 		if(BRUTE)
 			adjustBruteLoss(damage * hit_percent)
@@ -28,7 +29,7 @@
 			adjustStaminaLoss(damage * hit_percent)
 		if(BRAIN)
 			adjustOrganLoss(ORGAN_SLOT_BRAIN, damage * hit_percent)
-	return 1
+	return damage * hit_percent
 
 /mob/living/proc/apply_damage_type(damage = 0, damagetype = BRUTE, required_status, forced) //like apply damage except it always uses the damage procs
 	switch(damagetype)

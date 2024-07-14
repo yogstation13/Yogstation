@@ -13,8 +13,6 @@
 	name = "Ultra Violence"
 	id = MARTIALART_ULTRAVIOLENCE
 	no_guns = TRUE
-	deflection_chance = 0
-	reroute_deflection = TRUE
 	help_verb = /mob/living/carbon/human/proc/ultra_violence_help
 	gun_exceptions = list(/obj/item/gun/ballistic/revolver/ipcmartial)
 	no_gun_message = "This gun is not compliant with Ultra Violence standards."

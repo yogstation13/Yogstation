@@ -31,16 +31,15 @@
 
 /datum/component/after_image/RegisterWithParent()
 	loop_timer = addtimer(CALLBACK(src, PROC_REF(spawn_image)), rest_time, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start loop
-	RegisterSignal(parent, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(update_step))
-	RegisterSignal(parent, COMSIG_MOB_CLIENT_MOVED, PROC_REF(update_glide))
+	RegisterSignal(parent, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(update_step))
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(update_glide))
 	owner = parent
 
 /datum/component/after_image/UnregisterFromParent()
 	deltimer(loop_timer)
-	UnregisterSignal(parent, COMSIG_MOB_CLIENT_PRE_MOVE)
-	UnregisterSignal(parent, COMSIG_MOB_CLIENT_MOVED)
+	UnregisterSignal(parent, list(COMSIG_MOVABLE_PRE_MOVE, COMSIG_MOVABLE_MOVED))
 
-/datum/component/after_image/proc/update_step(mob/living/mover, dir) //when did the step start
+/datum/component/after_image/proc/update_step(mob/living/mover, atom/new_loc) //when did the step start
 	previous_loc = get_turf(mover)
 	last_movement = world.time
 
