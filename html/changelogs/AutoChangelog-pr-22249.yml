@@ -1,7 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - experiment: "Actual stairs (currently only exist on IceMeta) are now visually rendered lower than some objects, you make report if see any issue yes?"
-  - mapping: "The stairs found in mining on IceMeta now look a bit nicer"
-  - mapping: "The stairs in the garden on NVS Gax now have some nice shading"
-  - mapping: "The botanist's windoor between hydroponics and the kitchen on NVS Gax can no longer be opened with RD access (lol, lmao even)"

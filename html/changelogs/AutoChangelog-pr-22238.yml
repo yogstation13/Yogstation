@@ -1,6 +1,0 @@
-author: "cowbot92"
-delete-after: true 
-changes: 
-  - rscadd: "Adds new pet: Bismuth the Triceratops"
-  - imageadd: "Adds sprites for a triceratops"
-  - mapping: "Adjusts jungle land pets"
