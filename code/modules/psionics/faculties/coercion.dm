@@ -26,7 +26,7 @@
 	icon_state = "coe_commune"
 	use_description =	"Activate the power with z, then click on a creature on to psionically send them a message."
 
-/datum/psionic_power/coercion/commune/invoke(var/mob/living/user, var/mob/living/target, proximity, parameters)
+/datum/psionic_power/coercion/commune/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(!istype(target) || user == target)
 		return FALSE
 	. = ..()
@@ -52,9 +52,9 @@
 
 		var/mob/living/carbon/human/H = target
 		if(prob(25) && (target?.mind?.assigned_role == "Chaplain"))
-			to_chat(H,"<b>You sense [user]'s psyche enter your mind, whispering quietly:</b> [text]")
+			to_chat(H, span_notice("<b>You sense [user]'s psyche enter your mind, whispering quietly:</b> [text]"))
 		else
-			to_chat(H,"<b>You feel something crawl behind your eyes, hearing:</b> [text]")
+			to_chat(H, span_notice("<b>You feel something crawl behind your eyes, hearing:</b> [text]"))
 			if(istype(H))
 				if(prob(10) && !(H.dna.species.species_traits & NOBLOOD))
 					to_chat(H, span_warning("Your nose begins to bleed..."))
@@ -287,8 +287,7 @@
 /datum/psionic_power/coercion/blindstrike/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	. = ..()
 	if(.)
-		user.visible_message(span_danger("\The [user] suddenly throws back their head, as though screaming silently!"))
-		to_chat(user, span_danger("You strike at all around you with a deafening psionic scream!"))
+		user.visible_message(span_danger("\The [user] suddenly throws back their head, as though screaming silently!"), span_danger("You strike at all around you with a deafening psionic scream!"))
 		for(var/mob/living/M in orange(user, user.psi.get_rank(PSI_COERCION)))
 			if(M == user)
 				continue
