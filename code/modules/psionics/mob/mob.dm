@@ -34,7 +34,7 @@
 		var/datum/species/dude = dna.species
 		var/latency_chance = dude.latency_chance
 		if(HAS_TRAIT(src, TRAIT_PSIONICALLY_TUNED))
-			latency_chance += 15
+			dude.latency_chance += 15
 
 		var/list/latencies = dude.possible_faculties
 		latencies = latencies.Copy()
