@@ -140,6 +140,7 @@
 		D.apply_damage(A.get_punchdamagehigh() / 2, BRUTE, chosen_arm.body_zone, wound_bonus = CANT_WOUND)	//5 damage
 		D.Immobilize(1 SECONDS)
 		A.Immobilize(0.4 SECONDS)
+		adjust_focus(10)
 		return TRUE
 	return basic_hit(A,D)
 
