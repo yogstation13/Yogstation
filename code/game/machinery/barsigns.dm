@@ -441,7 +441,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 	neon_color = COLOR_RED
 
 /datum/barsign/orangejuice
-	name = "Oranges' Juicery"
+	name = "Orange Juicery"
 	icon_state = "orangejuice"
 	desc = "For those who wish to be optimally tactful to the non-alcoholic population."
 	neon_color = COLOR_ORANGE
