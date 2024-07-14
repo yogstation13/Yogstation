@@ -133,7 +133,8 @@ SUBSYSTEM_DEF(backrooms)
 //----------------------------Entrance and exit portal----------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /obj/effect/portal/permanent/backrooms
-	icon_state = "wooden_tv"
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "television"
 
 /obj/effect/spawner/backrooms_portal
 	name = "backrooms two way portal spawner"
