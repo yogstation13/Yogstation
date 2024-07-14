@@ -323,8 +323,8 @@
 	weighted_feature_spawn_list = list(
 		/obj/structure/filingcabinet/chestdrawer = 1,
 		/obj/item/kirbyplants/random  = 2,
-		list(/obj/structure/rack , /obj/item/melee/spear/bonespear/chitinspear, /obj/item/melee/spear/plugged_musket) = 1,
-		list(/obj/structure/rack , /obj/item/kitchen/knife/combat/bone, /obj/item/clothing/suit/armor/vest/old, /obj/item/clothing/head/helmet/riot) = 1,
+		list(/obj/structure/rack , /obj/item/melee/spear/plugged_musket) = 1,
+		list(/obj/structure/rack , /obj/item/clothing/suit/armor/vest, /obj/item/clothing/head/helmet/riot) = 1,
 		/obj/structure/frame/machine = 1,
 		/obj/structure/frame/computer = 1,	
 		)
@@ -332,4 +332,12 @@
 	weighted_mob_spawn_list = list(
 		/mob/living/simple_animal/hostile/robot/burst = 2,
 		)
-	
+/datum/dungeon_room_theme/maintenance/ancient_armory/pre_initialize()
+
+	. = ..()
+	for(var/i in 1 to 3)
+		if(prob(10))
+		//if i include all types of every stock part and subtype, it gets super bogged down, so one from each pool
+			weighted_feature_spawn_list[/obj/item/kitchen/knife/combat/bone]++
+		else
+			weighted_feature_spawn_list[/obj/item/melee/spear/bonespear/chitinspear]++
