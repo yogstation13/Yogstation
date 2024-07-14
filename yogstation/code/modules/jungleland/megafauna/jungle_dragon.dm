@@ -38,8 +38,13 @@
 	icon = 'yogstation/icons/mob/jungle64x64.dmi'
 	gps_name = "Verdant Signal"
 	deathmessage = "collapses to the ground, its strength long since exhausted."
-	weather_immunities = WEATHER_ACID
 	
+	melee_damage_lower = 20
+	melee_damage_upper = 20
+	ranged_cooldown_time = 2.5 SECONDS //uses ranged attacks faster
+	minimum_distance = 5 //tries to keep it's range rather than rushing down the target
+	retreat_distance = 2
+
 	small_sprite_type = /datum/action/small_sprite/megafauna/drake
 	music_component = /datum/component/music_player/battle
 	music_path = /datum/music/sourced/battle/ash_drake
@@ -68,6 +73,7 @@
 	 */
 	music_path = /datum/music/sourced/battle/ash_drake
 	small_sprite_type = /datum/action/small_sprite/megafauna/drake
+	/// used for the silly yharon reference
 
 
 /mob/living/simple_animal/hostile/megafauna/dragon/jungle/Initialize(mapload)
@@ -76,63 +82,51 @@
 		desc = "This is my message to my master."
 		deathmessage = "lets out a final dying roar."
 		music_path = /datum/music/sourced/battle/jungledragon/meme
-		max_anger = 30 //more dangerous attacks
-		ranged_cooldown_time = 20 //faster fight, good luck buddy
 		crusher_loot += loot //only get the crusher trophy once
 		loot += loot //double the loot for a harder fight
 		guaranteed_butcher_results += guaranteed_butcher_results
+		ranged_cooldown_time = 2 SECONDS //even faster
 	return ..()
 
 ////////////////////////////////////////////////////////////////////////////////////
-//------------------------------------Loot----------------------------------------//
+//------------------------------Standard ai activity------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/obj/structure/closet/crate/necropolis/jungle_dragon
-	name = "dragon chest"
+/mob/living/simple_animal/hostile/megafauna/dragon/jungle/OpenFire()
+	if(swooping)
+		return
 
-/obj/structure/closet/crate/necropolis/jungle_dragon/PopulateContents()
-	new /obj/item/gem/amber(src)
-	var/loot = rand(1,4)
-	switch(loot)
-		if(1)
-			new /obj/item/melee/ghost_sword(src)
-		if(2)
-			new /obj/item/lava_staff(src)
-			new /obj/item/book/granter/action/spell/sacredflame(src)
-		if(3)
-			new /obj/item/jungle_dragon_egg(src)
-		if(4)
-			if(prob(25))	//Still same chance but now you know if you're turning into a lizard (ew)
-				new /obj/item/dragons_blood/refined(src)
-			else
-				new /obj/item/dragons_blood(src)
+	anger_modifier = clamp(((maxHealth - health)/50),0,20)
+	ranged_cooldown = world.time + ranged_cooldown_time
 
-/obj/structure/closet/crate/necropolis/jungle_dragon/crusher
-	name = "overgrown dragon chest"
+	if(client)
+		switch(chosen_attack)
+			if(1)
+				fire_cone(meteors = FALSE)
+			if(2)
+				fire_cone()
+			if(3)
+				mass_fire(12, 15, 3)
+			if(4)
+				lava_swoop()
+		return
 
-/obj/structure/closet/crate/necropolis/jungle_dragon/crusher/PopulateContents()
-	..()
-	new /obj/item/crusher_trophy/tail_spike(src)
-	new /obj/item/gem/amber(src)
+	shoot_fire_attack()
 
-/obj/item/jungle_dragon_egg
-	name = "dragon's egg"
-	desc = "A large egg-shaped rock. It seems dry and brittle..."
-	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
-	icon_state = "large_egg"
-	color = "#422600"
+/mob/living/simple_animal/hostile/megafauna/dragon/jungle/shoot_fire_attack()
+	anger_modifier = ((maxHealth - health)/maxHealth) * 100
 
-/obj/item/jungle_dragon_egg/acid_melt()
-	visible_message(span_boldwarning("[src] suddenly begins to glow green and starts violently shaking!"))
-	name = "rehydrated dragon's egg" //why are we hydrating an egg? idfk
-	desc = "A large egg seemingly made out of rock. It's slick with moisture and seems to be shaking!"
-	color = "#008f11"
-	resistance_flags = UNACIDABLE | ACID_PROOF
-	addtimer(CALLBACK(src, PROC_REF(hatch)), 20 SECONDS)
+	if(prob(anger_modifier)) //100% chance for mass fire as they get close to death
+		mass_fire()
+	else if(prob(anger_modifier)) //pretty likely to lava swoop as they get closer to death
+		lava_swoop()
+	else //just regular cones to start out
+		fire_cone()
 
-/obj/item/jungle_dragon_egg/proc/hatch()
-	visible_message(span_boldwarning("[src] suddenly cracks apart, revealing a tiny jungle dragon!"))
-	new /mob/living/simple_animal/hostile/drakeling/jungle(get_turf(src))
-	qdel(src)
+/mob/living/simple_animal/hostile/megafauna/dragon/jungle/mass_fire(spiral_count = 12, range = 15, times = 6)
+	SLEEP_CHECK_DEATH(0)
+	if(prob(50))
+		INVOKE_ASYNC(src, PROC_REF(fire_rain))
+	return ..()
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Basic blast attacks-------------------------------//
@@ -147,8 +141,8 @@
 	for(var/turf/T in turfs)
 		if(istype(T, /turf/closed))
 			break
-		var/obj/effect/hotspot/hot_hot_there_is_already_fire_here_why_would_you_make_more = locate() in T
-		if(!hot_hot_there_is_already_fire_here_why_would_you_make_more)
+		var/obj/effect/temp_visual/vineball/noextras = locate() in T
+		if(!noextras)
 			new /obj/effect/temp_visual/vineball(T)
 			for(var/mob/living/L in T.contents)
 				if(L in hit_list || L == source)
@@ -182,7 +176,7 @@
 /mob/living/simple_animal/hostile/megafauna/dragon/jungle/lava_arena()
 	if(!target)
 		return
-	target.visible_message(span_boldwarning("[src] encases you in an arena of fire!"))
+	target.visible_message(span_boldwarning("[src] encases you in an arena of brambles!"))
 	var/amount = 3
 	var/turf/center = get_turf(target)
 	var/list/walled = RANGE_TURFS(3, center) - RANGE_TURFS(2, center)
@@ -306,33 +300,25 @@
 	if(ismineralturf(T))
 		var/turf/closed/mineral/M = T
 		M.attempt_drill()
-	playsound(T,'sound/effects/gravhit.ogg', 80, 1)
+	playsound(T,'sound/effects/curseattack.ogg', 80, 1)
+	var/hit = FALSE
 	for(var/mob/living/L in T.contents)
 		if(istype(L, /mob/living/simple_animal/hostile/megafauna/dragon))
 			continue
-		if(islist(flame_hit) && !flame_hit[L])
-			L.adjustBruteLoss(40)
-			to_chat(L, span_userdanger("You're hit by the falling bulb!"))
-			flame_hit[L] = TRUE
-		else
-			L.adjustBruteLoss(10) //if we've already hit them, do way less damage
+		L.apply_status_effect(/datum/status_effect/holy_fire/weak)
+		to_chat(L, span_userdanger("You're seared by the light of the sun!"))
+		hit = TRUE
+	if(!hit)
+		T.ignite_turf(20, "#fff700")
 
 /**
  * Visual target for where it's gonna land
  */
 /obj/effect/temp_visual/fireball/jungle
-	name = "falling bulb"
+	name = "godray"
 	desc = "Get out of the way!"
-	icon = 'icons/effects/spacevines.dmi'
-	icon_state = "flower_bud"
-	layer = FLY_LAYER
-	randomdir = TRUE
-	duration = 0.9 SECONDS
-	pixel_z = 270
-
-/obj/effect/temp_visual/fireball/jungle/Initialize(mapload)
-	. = ..()
-	SpinAnimation()
+	icon = 'icons/obj/projectiles.dmi'
+	icon_state = "seedling"
 
 ////////////////////////////////////////////////////////////////////////////////////
 //-------------------------------Swooping attack----------------------------------//
@@ -449,3 +435,54 @@
 
 /obj/effect/temp_visual/dragon_flight/end/jungle
 	icon = 'yogstation/icons/mob/jungle64x64.dmi'
+
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------------Loot----------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/obj/structure/closet/crate/necropolis/jungle_dragon
+	name = "dragon chest"
+
+/obj/structure/closet/crate/necropolis/jungle_dragon/PopulateContents()
+	new /obj/item/gem/amber(src)
+	var/loot = rand(1,4)
+	switch(loot)
+		if(1)
+			new /obj/item/melee/ghost_sword(src)
+		if(2)
+			new /obj/item/lava_staff(src)
+			new /obj/item/book/granter/action/spell/sacredflame(src)
+		if(3)
+			new /obj/item/jungle_dragon_egg(src)
+		if(4)
+			if(prob(25))	//Still same chance but now you know if you're turning into a lizard (ew)
+				new /obj/item/dragons_blood/refined(src)
+			else
+				new /obj/item/dragons_blood(src)
+
+/obj/structure/closet/crate/necropolis/jungle_dragon/crusher
+	name = "overgrown dragon chest"
+
+/obj/structure/closet/crate/necropolis/jungle_dragon/crusher/PopulateContents()
+	..()
+	new /obj/item/crusher_trophy/tail_spike(src)
+	new /obj/item/gem/amber(src)
+
+/obj/item/jungle_dragon_egg
+	name = "dragon's egg"
+	desc = "A large egg-shaped rock. It seems dry and brittle..."
+	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
+	icon_state = "large_egg"
+	color = "#422600"
+
+/obj/item/jungle_dragon_egg/acid_melt()
+	visible_message(span_boldwarning("[src] suddenly begins to glow green and starts violently shaking!"))
+	name = "rehydrated dragon's egg" //why are we hydrating an egg? idfk
+	desc = "A large egg seemingly made out of rock. It's slick with moisture and seems to be shaking!"
+	color = "#008f11"
+	resistance_flags = UNACIDABLE | ACID_PROOF
+	addtimer(CALLBACK(src, PROC_REF(hatch)), 20 SECONDS)
+
+/obj/item/jungle_dragon_egg/proc/hatch()
+	visible_message(span_boldwarning("[src] suddenly cracks apart, revealing a tiny jungle dragon!"))
+	new /mob/living/simple_animal/hostile/drakeling/jungle(get_turf(src))
+	qdel(src)

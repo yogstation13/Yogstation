@@ -1,9 +1,11 @@
 /datum/status_effect/holy_fire
-	id = "doubledown"
+	id = "holyfire"
 	duration = 6 SECONDS
 	tick_interval = 1 //10 times per second
 	status_type = STATUS_EFFECT_REFRESH
+	///total damage dealth over the course of the debuff
 	var/total_damage = 180
+	///holder variable for the damage per tick, calculated upon application
 	var/damage_per_tick = 1
 
 /datum/status_effect/holy_fire/on_apply()
@@ -21,3 +23,7 @@
 /datum/status_effect/holy_fire/on_remove()
 	owner.remove_emitter("holy_fire")
 	owner.remove_emitter("holy_sparks")
+
+/datum/status_effect/holy_fire/weak
+	id = "holyfire_weak"
+	total_damage = 40
