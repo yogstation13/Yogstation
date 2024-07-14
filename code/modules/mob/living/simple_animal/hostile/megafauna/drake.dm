@@ -120,16 +120,12 @@ Difficulty: Medium
 				lava_swoop()
 		return
 
-	if(prob(15 + anger_modifier))
-		lava_swoop()
-
-	else if(prob(10+anger_modifier))
-		shoot_fire_attack()
-	else
-		fire_cone()
+	shoot_fire_attack()
 
 /mob/living/simple_animal/hostile/megafauna/dragon/proc/shoot_fire_attack()
-	if(health < maxHealth*0.5)
+	if(prob(15 + anger_modifier))
+		lava_swoop()
+	else if(prob(10+anger_modifier) && health < maxHealth*0.5)
 		mass_fire()
 	else
 		fire_cone()

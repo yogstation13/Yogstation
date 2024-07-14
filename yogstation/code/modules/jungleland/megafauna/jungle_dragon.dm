@@ -91,27 +91,6 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Standard ai activity------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/mob/living/simple_animal/hostile/megafauna/dragon/jungle/OpenFire()
-	if(swooping)
-		return
-
-	anger_modifier = clamp(((maxHealth - health)/50),0,20)
-	ranged_cooldown = world.time + ranged_cooldown_time
-
-	if(client)
-		switch(chosen_attack)
-			if(1)
-				fire_cone(meteors = FALSE)
-			if(2)
-				fire_cone()
-			if(3)
-				mass_fire(12, 15, 3)
-			if(4)
-				lava_swoop()
-		return
-
-	shoot_fire_attack()
-
 /mob/living/simple_animal/hostile/megafauna/dragon/jungle/shoot_fire_attack()
 	anger_modifier = ((maxHealth - health)/maxHealth) * 100
 
