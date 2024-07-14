@@ -87,7 +87,7 @@ export const PsionicAwakener = (props, context) => {
                 icon='power-off'
                 content='Activate'
                 onClick={() => act('activate')}
-                disabled={!ready || (treatment_cost > nullspace)} />
+                disabled={!ready || (treatment_cost > nullspace) || !occupied} />
             </LabeledList.Item>
             {!ready && (
               <LabeledList.Item

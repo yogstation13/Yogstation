@@ -14,7 +14,9 @@
 
 /datum/round_event/psi/tick()
 	for(var/thing in SSpsi.processing)
+		if(!istype(thing, /datum/psi_complexus))
+			continue
 		apply_psi_effect(thing)
 
-/datum/round_event/psi/proc/apply_psi_effect(var/datum/psi_complexus/psi)
+/datum/round_event/psi/proc/apply_psi_effect(datum/psi_complexus/psi)
 	return

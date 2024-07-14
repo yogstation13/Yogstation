@@ -12,7 +12,7 @@
 		"Your head aches as a psychic wail intrudes on your psyche."
 		)
 
-/datum/round_event/psi/wail/apply_psi_effect(var/datum/psi_complexus/psi)
+/datum/round_event/psi/wail/apply_psi_effect(datum/psi_complexus/psi)
 	var/annoyed
 	if(prob(1))
 		psi.stunned(1)
