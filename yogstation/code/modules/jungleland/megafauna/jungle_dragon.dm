@@ -148,7 +148,7 @@
 				if(L in hit_list || L == source)
 					continue
 				hit_list += L
-				L.adjustBruteLoss(30)
+				L.apply_damage(30, BRUTE, blocked = L.run_armor_check())
 				to_chat(L, span_userdanger("You're lacerated by [source]'s vines!"))
 
 			// deals damage to mechs
@@ -253,7 +253,7 @@
 		if(istype(L, /mob/living/simple_animal/hostile/megafauna/dragon))
 			continue
 		to_chat(L, span_userdanger("You fall directly into the pool of acid!"))
-		L.adjustFireLoss(20)
+		L.apply_damage(20, BURN)
 		L.acid_act(30, 10)
 
 	// deals damage to mechs
@@ -309,7 +309,7 @@
 		to_chat(L, span_userdanger("You're seared by the light of the sun!"))
 		hit = TRUE
 	if(!hit)
-		T.ignite_turf(20, "#fff700")
+		T.ignite_turf(20, "#fffca5")
 
 /**
  * Visual target for where it's gonna land
