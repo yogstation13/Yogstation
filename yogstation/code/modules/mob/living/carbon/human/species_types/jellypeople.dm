@@ -46,7 +46,7 @@
 		// transfer the swap-body ui if it's open
 		var/datum/action/innate/swap_body/this_swap = locate() in old.actions
 		var/datum/action/innate/swap_body/other_swap = locate() in dupe.actions
-		if(!this_swap || !other_swap)
+		if(!this_swap && !other_swap)
 			return
 		var/datum/tgui/ui = SStgui.get_open_ui(old, this_swap, "main") || SStgui.get_open_ui(dupe, this_swap, "main")
 		if(ui)

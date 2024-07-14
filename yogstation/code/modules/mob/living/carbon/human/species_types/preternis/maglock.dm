@@ -4,6 +4,8 @@
 	button_icon_state = "magboots0"
 	button_icon = 'icons/obj/clothing/shoes.dmi'
 	background_icon_state = "bg_default"
+	overlay_icon_state = "bg_alien_border"
+	spell_requirements = NONE
 
 /datum/action/cooldown/spell/toggle/maglock/Grant(mob/M)
 	. = ..()

@@ -631,11 +631,13 @@
 	button_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
+	spell_requirements = NONE
+	invocation_type = INVOCATION_NONE
 	var/list/datum/action/speech_abilities = list()
 
 /datum/action/cooldown/spell/touch/link_minds/Grant(mob/grant_to)
 	. = ..()
-	var/datum/action/innate/linked_speech/action = new(grant_to.mind)
+	var/datum/action/innate/slime_speech/action = new(grant_to)
 	action.Grant(grant_to)
 	action.linkage = src
 	speech_abilities += action
@@ -650,6 +652,7 @@
 	if(!isliving(target))
 		return
 	var/mob/living/victim = target
+
 	to_chat(caster, span_notice("You begin linking [victim]'s mind to yours..."))
 	to_chat(victim, span_warning("You feel a foreign presence within your mind..."))
 
@@ -657,8 +660,8 @@
 		return
 	
 	for(var/datum/action/ability as anything in victim.actions)
-		if(istype(ability, /datum/action/innate/linked_speech))
-			var/datum/action/innate/linked_speech/speaker = ability
+		if(istype(ability, /datum/action/innate/slime_speech))
+			var/datum/action/innate/slime_speech/speaker = ability
 			if(speaker.linkage == src)
 				speech_abilities -= speaker
 				speaker.Remove(victim)
@@ -667,7 +670,7 @@
 				to_chat(victim, span_notice("You are no longer connected to [caster.real_name]'s Slime Link."))
 				return TRUE
 	
-	var/datum/action/innate/linked_speech/action = new(victim.mind)
+	var/datum/action/innate/slime_speech/action = new(victim)
 	action.Grant(victim)
 	action.linkage = src
 	speech_abilities += action
@@ -675,7 +678,7 @@
 	to_chat(victim, span_notice("You are now connected to [caster.real_name]'s Slime Link."))
 	return TRUE
 
-/datum/action/innate/linked_speech
+/datum/action/innate/slime_speech
 	name = "Slimelink"
 	desc = "Send a psychic message to everyone connected to your slime link."
 	button_icon_state = "link_speech"
@@ -683,7 +686,7 @@
 	background_icon_state = "bg_alien"
 	var/datum/action/cooldown/spell/touch/link_minds/linkage
 
-/datum/action/innate/linked_speech/Activate()
+/datum/action/innate/slime_speech/Activate()
 	var/mob/living/carbon/human/H = owner
 	if(!linkage)
 		to_chat(H, span_warning("The link seems to have been severed..."))
@@ -706,8 +709,6 @@
 		for(var/X in linkage.speech_abilities)
 			var/datum/action/innate/linked_speech = X
 			if(!linked_speech || !istype(linked_speech))
-				continue
-			if(linked_speech.owner == H)
 				continue
 			to_chat(linked_speech.owner, msg)
 
