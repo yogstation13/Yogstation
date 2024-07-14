@@ -10,7 +10,7 @@
 
 /obj/item/psychic_power/telekinesis/process()
 	if(!focus || !isturf(focus.loc) || !valid_distance(owner, focus))
-		owner.dropItemToGround(src)
+		qdel(src)
 		return
 	. = ..()
 
@@ -59,12 +59,15 @@
 		return
 
 	if(!valid_distance(user, target))
-		owner.dropItemToGround(src)
 		to_chat(user, span_warning("Your telekinetic power won't reach that far."))
+		qdel(src)
 		return
 
-	if(!user.psi || !user.psi.can_use() || !user.psi.spend_power(5))
-		owner.dropItemToGround(src)
+	if(!user.psi || !user.psi.can_use())
+		return
+
+	if(!user.psi.spend_power(5))
+		qdel(src)
 		return
 
 	user.psi.set_cooldown(5)
@@ -87,7 +90,7 @@
 /obj/item/psychic_power/telekinesis/proc/end_throw()
 	sparkle()
 	if(!focus || !isturf(focus.loc) || !valid_distance(owner, focus))
-		owner.dropItemToGround(src)
+		qdel(src)
 
 /obj/item/psychic_power/telekinesis/proc/sparkle()
 	set waitfor = 0
