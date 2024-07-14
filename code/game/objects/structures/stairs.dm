@@ -10,7 +10,7 @@
 	name = "stairs"
 	icon = 'icons/obj/stairs.dmi'
 	icon_state = "stairs"
-	layer = BELOW_OPEN_DOOR_LAYER
+	layer = EMISSIVE_FLOOR_LAYER
 	anchored = TRUE
 	move_resist = INFINITY
 
@@ -156,3 +156,25 @@
 		if(S.dir == dir)
 			return FALSE
 	return TRUE
+
+// For the sake of keeping the same sprite as /turf/open/floor/plasteel/stairs/goon/stairs
+// One-tile stairs
+/obj/structure/stairs/goon
+	icon = 'goon/icons/turfs/floors.dmi'
+	icon_state = "stairs_alone"
+	base_icon_state = "stairs_alone"
+
+// Middle
+/obj/structure/stairs/goon/wide
+	icon_state = "stairs_middle"
+	base_icon_state = "stairs_middle"
+
+// Left side
+/obj/structure/stairs/goon/wide/left
+	icon_state = "stairs_wide"
+	base_icon_state = "stairs_wide"
+
+// Right side
+/obj/structure/stairs/goon/wide/right
+	icon_state = "stairs2_wide"
+	base_icon_state = "stairs2_wide"

@@ -9,7 +9,7 @@
 /obj/item/pizzabox
 	name = "pizza box"
 	desc = "A box suited for pizzas."
-	icon = 'yogstation/icons/obj/food/containers.dmi'
+	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "pizzabox"
 	item_state = "pizzabox"
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
