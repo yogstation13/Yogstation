@@ -471,20 +471,3 @@
 	specific = /datum/language/bonespeak
 	gain_text = span_notice("You have learned to understand Bonespeak.")
 	lose_text = span_notice("You have forgotten how to understand Bonespeak.")
-
-/datum/quirk/psionically_tuned
-	name = "Psionically Tuned"
-	desc = "A psionic storm passed through you in your youth, you have a much higher chance to be a latent psionic user, and have increased psi stamina."
-	icon = "brain"
-	value = 3
-	mob_trait = TRAIT_PSIONICALLY_TUNED
-	gain_text = span_notice("You feel much more tuned to the veil.")
-	lose_text = span_notice("You can finally think straight, no more voices.")
-	medical_record_text = "Patient demonstrates high affinity for cerebral testing."
-
-/datum/quirk/psionically_tuned/check_quirk(datum/preferences/prefs)
-	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-
-	if(species_type == /datum/species/ipc) // IPCs cant use psionics normally
-		return "You have no brain!"
-	return FALSE

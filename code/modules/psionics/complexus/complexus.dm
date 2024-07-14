@@ -70,9 +70,6 @@
 	START_PROCESSING(SSpsi, src)
 	RegisterSignal(owner, COMSIG_PSI_SELECTION, PROC_REF(select_power))
 	RegisterSignal(owner, COMSIG_PSI_INVOKE, PROC_REF(invoke_power))
-	if(HAS_TRAIT(M, TRAIT_PSIONICALLY_TUNED))
-		max_stamina = initial(max_stamina) + 25
-		stamina = max_stamina
 	thinker = owner.mind
 	if(thinker && istype(thinker))
 		RegisterSignal(thinker, COMSIG_MIND_TRANSFERRED, PROC_REF(mind_swap))

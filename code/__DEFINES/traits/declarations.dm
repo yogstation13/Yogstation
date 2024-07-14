@@ -738,7 +738,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_POSTERBOY "poster_boy"
 #define TRAIT_THROWINGARM "throwing_arm"
 #define TRAIT_SETTLER "settler"
-#define TRAIT_PSIONICALLY_TUNED "Psionically Tuned"
 #define TRAIT_PSIONICALLY_DEAFENED "Psionically Deafened"
 /// Can never have psionics, but is pretty much immune to direct tampering by them
 #define TRAIT_PSIONICALLY_IMMUNE "Psionically Immune"
