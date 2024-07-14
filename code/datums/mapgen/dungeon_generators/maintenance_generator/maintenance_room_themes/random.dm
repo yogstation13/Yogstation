@@ -179,7 +179,7 @@
 		/obj/item/weldingtool/largetank = 1,
 		/obj/structure/frame/machine = 1,
 		/obj/structure/frame/computer = 1,
-		/obj/effect/spawner/lootdrop/random_anomaly_core
+		/obj/effect/spawner/lootdrop/random_anomaly_core = 1
 		)
 	weighted_mob_spawn_list = list(
 		/mob/living/simple_animal/hostile/hivebot = 5, 
@@ -264,3 +264,72 @@
 			weighted_mob_spawn_list[/mob/living/simple_animal/slime/random]++
 		else
 			weighted_mob_spawn_list[/mob/living/simple_animal/slime]++
+
+/datum/dungeon_room_theme/maintenance/machine_parts
+	weighted_feature_spawn_list = list(
+		/obj/effect/decal/cleanable/robot_debris = 2, 
+		/obj/effect/decal/cleanable/oil = 3,
+		/obj/item/stack/cable_coil/random = 5,
+		/obj/structure/frame/machine = 3,
+		/obj/structure/frame/computer = 2,
+		/obj/effect/spawner/lootdrop/random_anomaly_core = 1
+		)
+	weighted_mob_spawn_list = list(
+		/mob/living/simple_animal/hostile/hivebot = 5, 
+		/mob/living/simple_animal/hostile/hivebot/range = 2,
+		/mob/living/simple_animal/hostile/hivebot/rapid = 1,
+		)
+
+/datum/dungeon_room_theme/maintenance/machine_parts/pre_initialize()
+	. = ..()
+	if(prob(75))
+		weighted_feature_spawn_list |= pick(typesof(/obj/item/circuitboard)) 
+
+
+/datum/dungeon_room_theme/maintenance/bank
+	weighted_feature_spawn_list = list(
+		/obj/structure/safe = 1, 
+		/obj/item/coin/gold = 5,
+		/obj/item/coin/silver = 5,
+		/obj/item/stack/sheet/mineral/gold = 10, ///this DLC is about letting go, letting go of poverty!!!
+		/obj/item/stack/spacecash/c1000 = 2,
+		/obj/item/stack/sheet/mineral/diamond = 1
+		)
+	weighted_mob_spawn_list = list(
+		/mob/living/simple_animal/hostile/hivebot/range = 2,
+		)
+
+/datum/dungeon_room_theme/maintenance/kitchen
+	weighted_feature_spawn_list = list(
+		/obj/machinery/griddle = 1,
+		/obj/machinery/microwave = 1,
+		/obj/structure/closet/secure_closet/freezer/fridge = 1,
+		/obj/item/storage/box/donkpockets = 1,
+		/obj/item/kitchen/knife = 1,
+		/obj/effect/spawner/lootdrop/random_meat = 5
+
+		)
+	weighted_mob_spawn_list = list(
+		/mob/living/simple_animal/hostile/retaliate/goat/ = 2
+		)
+
+/datum/dungeon_room_theme/maintenance/ancient_armory
+	weighted_possible_floor_types = list(
+		/turf/open/floor/plasteel/dark = 3,
+		/turf/open/floor/plasteel = 5,
+		/turf/open/floor/plating = 3, 
+		)
+	
+	weighted_feature_spawn_list = list(
+		/obj/structure/filingcabinet/chestdrawer = 1,
+		/obj/item/kirbyplants/random  = 2,
+		list(/obj/structure/rack , /obj/item/melee/spear/bonespear/chitinspear, /obj/item/melee/spear/plugged_musket) = 1,
+		list(/obj/structure/rack , /obj/item/kitchen/knife/combat/bone, /obj/item/clothing/suit/armor/vest/old, /obj/item/clothing/head/helmet/riot) = 1,
+		/obj/structure/frame/machine = 1,
+		/obj/structure/frame/computer = 1,	
+		)
+	
+	weighted_mob_spawn_list = list(
+		/mob/living/simple_animal/hostile/robot/burst = 2,
+		)
+	
