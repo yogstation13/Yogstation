@@ -6,8 +6,8 @@
 	orbit_icon = "box"
 	department_head = list("Head of Personnel")
 	faction = "Station"
-	total_positions = 2
-	spawn_positions = 1
+	total_positions = 4
+	spawn_positions = 4
 	supervisors = "the quartermaster and the head of personnel"
 
 	outfit = /datum/outfit/job/cargo_tech
