@@ -32,6 +32,7 @@
 
 /datum/dungeon_room_theme/maintenance/material_storeroom
 	weighted_feature_spawn_list = list(
+		/obj/effect/spawner/lootdrop/random_anomaly_core = 1,
 		/obj/item/stack/rods/fifty = 2,
 		/obj/item/stack/cable_coil/random = 2,
 		/obj/item/stack/sheet/metal/fifty = 2,
@@ -94,6 +95,7 @@
 /datum/dungeon_room_theme/maintenance/junk
 	weighted_feature_spawn_list = list(
 		/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 1,
+		/obj/effect/spawner/lootdrop/random_anomaly_core = 1
 		)
 	
 	weighted_mob_spawn_list = list(
@@ -177,6 +179,7 @@
 		/obj/item/weldingtool/largetank = 1,
 		/obj/structure/frame/machine = 1,
 		/obj/structure/frame/computer = 1,
+		/obj/effect/spawner/lootdrop/random_anomaly_core
 		)
 	weighted_mob_spawn_list = list(
 		/mob/living/simple_animal/hostile/hivebot = 5, 
