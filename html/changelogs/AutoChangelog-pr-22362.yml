@@ -1,0 +1,4 @@
+author: " OrbisAnima"
+delete-after: true 
+changes: 
+  - bugfix: "Corrected the bio emergency crate"
