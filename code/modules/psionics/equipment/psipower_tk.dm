@@ -9,7 +9,7 @@
 	. = ..()
 
 /obj/item/psychic_power/telekinesis/process()
-	if(!focus || !isturf(focus.loc) || get_dist(get_turf(focus), get_turf(owner)) > owner.psi.get_rank(PSI_PSYCHOKINESIS))
+	if(!focus || !isturf(focus.loc) || !valid_distance(owner, focus))
 		owner.dropItemToGround(src)
 		return
 	. = ..()
