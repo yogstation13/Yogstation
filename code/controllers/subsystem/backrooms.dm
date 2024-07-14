@@ -8,10 +8,9 @@ SUBSYSTEM_DEF(backrooms)
 
 	//associative list of objects and how much they sell for
 	var/list/golden_loot = list( 
-		/obj/item/statuebust = 100,
-		/obj/item/melee/fryingpan = 1000,
-		/obj/item/reagent_containers/food/snacks/urinalcake = 250,
-		/obj/item/bigspoon = 50,
+		/obj/item/statuebust = 500,
+		/obj/item/reagent_containers/food/snacks/urinalcake = 1000,
+		/obj/item/bigspoon = 4000,
 	)
 
 /datum/controller/subsystem/backrooms/Initialize(timeofday)
