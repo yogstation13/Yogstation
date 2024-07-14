@@ -63,7 +63,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 
 /obj/machinery/barsign/update_overlays()
 	. = ..()
-	
+
 	if(((stat & NOPOWER) && !(stat & EMPED)) || (stat & BROKEN))
 		return
 
@@ -439,6 +439,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 	icon_state = "slowdive"
 	desc = "First stop out of hell, last stop before heaven."
 	neon_color = COLOR_RED
+
+/datum/barsign/orangejuice
+	name = "Oranges' Juicery"
+	icon_state = "orangejuice"
+	desc = "For those who wish to be optimally tactful to the non-alcoholic population."
+	neon_color = COLOR_ORANGE
 
 // Hidden signs list below this point
 
