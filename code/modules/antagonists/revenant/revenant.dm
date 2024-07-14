@@ -72,6 +72,7 @@
 	. = ..()
 	flags_1 |= RAD_NO_CONTAMINATE_1
 	ADD_TRAIT(src, TRAIT_SIXTHSENSE, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_PSIONICALLY_IMMUNE, INNATE_TRAIT)
 
 	var/datum/action/cooldown/spell/list_target/telepathy/revenant/telepathy = new(src)
 	telepathy.Grant(src)

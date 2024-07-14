@@ -43,8 +43,6 @@
 /datum/round_event/minispasm/proc/do_spasm(mob/living/victim, obj/item/radio/source)
 	if(HAS_TRAIT(src, TRAIT_PSIONICALLY_DEAFENED) || HAS_TRAIT(src, TRAIT_PSIONICALLY_IMMUNE))
 		return
-	if(istype(victim, /mob/living/simple_animal/revenant)) // we want some weird things getting powers, but not this
-		return
 	if(victim.psi)
 		playsound(source, 'sound/creatures/narsie_rises.ogg', 75) //LOUD AS FUCK BOY
 		to_chat(victim, span_danger("A hauntingly familiar sound hisses from \icon[source] \the [source], and your vision flickers!"))
