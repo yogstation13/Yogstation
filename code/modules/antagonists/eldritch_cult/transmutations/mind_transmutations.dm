@@ -32,10 +32,10 @@
 	if(defender.dna?.check_mutation(HULK))
 		return NONE
 	defender.visible_message(
-		span_danger("[src] deflects the projectile; [defender.p_they()] can't be hit with ranged weapons!"),
+		span_danger("[defender] deflects the projectile; [defender.p_they()] can't be hit with ranged weapons!"),
 		span_userdanger("You deflect the projectile!"),
 	)
-	playsound(src, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, 1)
+	playsound(defender, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, 1)
 	return BULLET_ACT_BLOCK
 
 /datum/eldritch_transmutation/final/mind_final/on_finished_recipe(mob/living/user, list/atoms, loc)
