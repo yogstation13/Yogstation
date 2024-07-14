@@ -46,10 +46,12 @@
 					blade.wall_break_time = 3 SECONDS
 					blade.force = 40
 					blade.armour_penetration = 30
+					blade.AddComponent(/datum/component/cleave_attack, arc_size=180, requires_wielded=TRUE)
 				if(PSI_RANK_GRANDMASTER)
 					blade.can_break_wall = TRUE
 					blade.force = 24
 					blade.armour_penetration = 30
+					blade.AddComponent(/datum/component/cleave_attack, arc_size=180, requires_wielded=TRUE)
 				if(PSI_RANK_MASTER)
 					blade.force = 18
 				else
