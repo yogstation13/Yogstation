@@ -1,0 +1,5 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - rscadd: "More lizard customization options: spine/tail plating!"
+  - imageadd: "With accompanying sprites and animations!"
