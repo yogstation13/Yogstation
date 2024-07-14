@@ -262,7 +262,7 @@
 /mob/living/simple_animal/hostile/megafauna/dragon/jungle/fire_rain()
 	if(!target)
 		return
-	target.visible_message(span_boldwarning("Bulbs rain from the sky!"))
+	target.visible_message(span_boldwarning("Light rains down from the sky!"))
 	for(var/turf/turf in range(10,get_turf(target)))
 		if(prob(15))
 			new /obj/effect/temp_visual/target/jungle(turf)
