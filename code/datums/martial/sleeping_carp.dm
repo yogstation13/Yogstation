@@ -7,6 +7,7 @@
 	no_guns = TRUE
 	allow_temp_override = FALSE
 	help_verb = /mob/living/carbon/human/proc/sleeping_carp_help
+	martial_traits = list(TRAIT_REDUCED_DAMAGE_SLOWDOWN)
 	var/old_grab_state = null
 	/// Focus is built up by attacking and depletes over time or when taking damage.
 	var/focus_level = 0
