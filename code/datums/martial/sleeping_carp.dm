@@ -96,10 +96,8 @@
 		adjusted_damage *= 0.5
 	if(adjusted_damage > focus_level && adjusted_damage > 0)
 		adjusted_damage -= focus_level
-		to_chat(defender, "Focus: [focus_level]")
 		adjust_focus(-focus_level) // this needs to be set to zero before calling apply_damage again or it causes an infinite loop
 		var/damage_amount = defender.apply_damage(adjusted_damage, damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
-		to_chat(defender, "Incoming: [damage], Effective: [adjusted_damage], Taken: [damage_amount], Blocked: [blocked], Health: [defender.health]%")
 		defender.visible_message(span_danger("[src] deflects some of the incoming damage!"), span_userdanger("You deflect some of the incoming damage!"))
 	else
 		adjust_focus(-adjusted_damage)

@@ -2108,7 +2108,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(H.buckled && istype(H.buckled, /obj/structure))//prevent buckling corpses to chairs to make indestructible projectile walls
 			var/obj/structure/sitter = H.buckled
 			sitter.take_damage(damage, damagetype)
-	to_chat(H, "Damage taken: [damage * hit_percent]")
 	return damage * hit_percent
 
 /datum/species/proc/on_hit(obj/projectile/P, mob/living/carbon/human/H)
