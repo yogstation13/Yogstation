@@ -266,7 +266,6 @@
 		return stomach_knee(A, D)
 	else
 		return back_kick(A, D)
-	return FALSE
 
 /datum/martial_art/the_sleeping_carp/basic_hit(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
