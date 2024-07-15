@@ -52,15 +52,13 @@
 	name = "Mass Driver";
 	req_access_txt = "22"
 	},
-/obj/machinery/mass_driver{
-	dir = 4;
-	id = "chapelgun";
-	name = "Holy Driver"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/turf/open/floor/plating,
+/obj/structure/sign/warning/vacuum/external{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "du" = (
 /obj/structure/table/wood,
@@ -280,12 +278,10 @@
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "nS" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_y = 32
-	},
-/obj/effect/landmark/event_spawn,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
+/obj/machinery/mass_driver{
+	dir = 1;
+	id = "chapelgun";
+	name = "Holy Driver"
 	},
 /turf/open/floor/plating,
 /area/chapel/main)
@@ -448,6 +444,14 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
+/area/chapel/main)
+"Cb" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/poddoor{
+	id = "chapelgun";
+	name = "Chapel Launcher Door"
+	},
+/turf/open/floor/plating,
 /area/chapel/main)
 "Ck" = (
 /turf/closed/wall,
@@ -717,6 +721,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
+"SU" = (
+/obj/effect/landmark/event_spawn,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/chapel/main)
 "SX" = (
 /obj/structure/bodycontainer/crematorium{
 	id = "crematoriumChapel"
@@ -781,12 +792,7 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "XX" = (
-/obj/machinery/door/poddoor{
-	id = "chapelgun";
-	name = "Chapel Launcher Door"
-	},
-/obj/structure/fans/tiny,
-/turf/open/floor/plating,
+/turf/closed/wall,
 /area/space/nearstation)
 "Yh" = (
 /obj/structure/cable{
@@ -1199,8 +1205,8 @@ ZG
 Ck
 "}
 (16,1,1) = {"
-Ck
-Ck
+Cb
+SU
 nS
 Ck
 Fi
