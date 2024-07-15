@@ -1,5 +1,7 @@
 /// The rate at which focus decays per second.
 #define FOCUS_DECAY_RATE -5
+/// Delay before focus starts decaying over time.
+#define FOCUS_DECAY_COOLDOWN 2 SECONDS
 
 /datum/martial_art/the_sleeping_carp
 	name = "The Sleeping Carp"
@@ -7,18 +9,17 @@
 	no_guns = TRUE
 	allow_temp_override = FALSE
 	help_verb = /mob/living/carbon/human/proc/sleeping_carp_help
-	martial_traits = list(TRAIT_REDUCED_DAMAGE_SLOWDOWN)
-	var/old_grab_state = null
+	martial_traits = list(TRAIT_REDUCED_DAMAGE_SLOWDOWN, TRAIT_STRONG_GRABBER)
 	/// Focus is built up by attacking and depletes over time or when taking damage.
 	var/focus_level = 0
+	/// Temporary immunity to focus decay over time.
+	var/focus_decay_immunity = 0
 	/// Image overlay when building up focus.
 	var/image/focus_shield
 
 /datum/martial_art/the_sleeping_carp/teach(mob/living/carbon/human/user, make_temporary)
 	. = ..()
 	user.faction.Add("carp") // fish are friends, not food!
-	user.physiology.cold_mod *= 0.25
-	user.physiology.pressure_mod *= 0.25 // go hang out with the space carp
 	RegisterSignal(user, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_bullet_act))
 	RegisterSignal(user, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(on_update_overlays))
 	RegisterSignal(user, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(on_apply_damage))
@@ -30,8 +31,7 @@
 /datum/martial_art/the_sleeping_carp/remove(mob/living/carbon/human/user)
 	STOP_PROCESSING(SSfastprocess, src)
 	UnregisterSignal(user, list(COMSIG_ATOM_BULLET_ACT, COMSIG_ATOM_UPDATE_OVERLAYS, COMSIG_MOB_APPLY_DAMAGE, COMSIG_MOB_CLICKON))
-	user.physiology.pressure_mod *= 4
-	user.physiology.cold_mod *= 4
+	adjust_focus(-focus_level) // remove space protection and update overlays
 	user.faction.Remove("carp")
 	QDEL_NULL(focus_shield)
 	return ..()
@@ -58,12 +58,14 @@
 
 /datum/martial_art/the_sleeping_carp/proc/lunge(mob/living/carbon/human/user, atom/target)
 	playsound(user, 'sound/weapons/punchmiss.ogg', 60, 1, -1)
-	user.AddComponent(/datum/component/after_image, 0.5 SECONDS, 0.5, TRUE)
-	user.throw_at(target, 7, 2, user, TRUE, callback = CALLBACK(src, PROC_REF(end_lunge), user))
-	user.changeNext_move(CLICK_CD_MELEE * 2) // this gets reduced on a successful hit
 	ADD_TRAIT(user, TRAIT_IMMOBILIZED, MARTIALART_SLEEPINGCARP)
+	user.AddComponent(/datum/component/after_image, 0.5 SECONDS, 0.5, TRUE)
+	user.changeNext_move(CLICK_CD_MELEE * 2) // this gets reduced on a successful hit
+	user.apply_status_effect(STATUS_EFFECT_DODGING)
+	user.throw_at(target, 7, 3, user, TRUE, callback = CALLBACK(src, PROC_REF(end_lunge), user))
 
 /datum/martial_art/the_sleeping_carp/proc/end_lunge(mob/living/carbon/human/user)
+	user.remove_status_effect(STATUS_EFFECT_DODGING)
 	var/datum/component/after_image = user.GetComponent(/datum/component/after_image)
 	if(after_image)
 		qdel(after_image)
@@ -76,10 +78,20 @@
 	return FALSE
 
 /datum/martial_art/the_sleeping_carp/process(delta_time)
-	if(focus_level > 0)
+	if(focus_decay_immunity > 0)
+		focus_decay_immunity -= delta_time SECONDS
+	else if(focus_level > 0)
 		adjust_focus(FOCUS_DECAY_RATE * delta_time)
 
 /datum/martial_art/the_sleeping_carp/proc/adjust_focus(amount = 0)
+	if(amount > 0) // take some time before losing focus
+		focus_decay_immunity = FOCUS_DECAY_COOLDOWN
+		if(focus_level <= 0)
+			ADD_TRAIT(martial_owner, TRAIT_RESISTLOWPRESSURE, MARTIALART_SLEEPINGCARP) // go hang out with space carp!
+			ADD_TRAIT(martial_owner, TRAIT_RESISTCOLD, MARTIALART_SLEEPINGCARP)
+	else if(focus_level > 0 && focus_level + amount <= 0)
+		REMOVE_TRAIT(martial_owner, TRAIT_RESISTLOWPRESSURE, MARTIALART_SLEEPINGCARP)
+		REMOVE_TRAIT(martial_owner, TRAIT_RESISTCOLD, MARTIALART_SLEEPINGCARP)
 	focus_level = clamp(focus_level + amount, 0, 100)
 	martial_owner.update_appearance(UPDATE_OVERLAYS)
 
@@ -90,18 +102,22 @@
 /datum/martial_art/the_sleeping_carp/proc/on_apply_damage(mob/living/carbon/human/defender, damage = 0, damagetype = BRUTE, def_zone = null, blocked = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, attack_direction = null)
 	if(focus_level <= 0)
 		return NONE
+	if(blocked >= 100)
+		return NONE
+	if(damage <= 0)
+		return NONE
 	if(defender.incapacitated())
 		return NONE
-	var/adjusted_damage = damage * (100 - blocked) / 100
-	if(damagetype == STAMINA)
-		adjusted_damage *= 0.5
-	if(adjusted_damage > focus_level && adjusted_damage > 0)
-		adjusted_damage -= focus_level
+	var/effective_damage = damage * (damagetype == STAMINA ? 0.5 : 1) * (100 - blocked) / 100
+	if(effective_damage > focus_level)
+		var/effective_block = 100 * focus_level / effective_damage
+		to_chat(defender, "Focus: [focus_level]") // remove this
 		adjust_focus(-focus_level) // this needs to be set to zero before calling apply_damage again or it causes an infinite loop
-		var/damage_amount = defender.apply_damage(adjusted_damage, damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
+		var/damage_taken = defender.apply_damage(damage, damagetype, def_zone, effective_block, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
+		to_chat(defender, "Damage: [damage], Taken: [damage_taken], Armor: [blocked]%, Effective Block: [effective_block]%") // remove this
 		defender.visible_message(span_danger("[src] deflects some of the incoming damage!"), span_userdanger("You deflect some of the incoming damage!"))
 	else
-		adjust_focus(-adjusted_damage)
+		adjust_focus(-effective_damage)
 		defender.visible_message(span_danger("[src] deflects the attack!"), span_userdanger("You deflect the attack!"))
 	return COMPONENT_NO_APPLY_DAMAGE
 
@@ -110,13 +126,17 @@
 		return NONE
 	if(defender.dna?.check_mutation(HULK))
 		return NONE
-	var/adjusted_damage = incoming.damage
-	if(incoming.damage_type == STAMINA)
-		adjusted_damage *= 0.5
-	if(incoming.damage > focus_level) // can't block the full damage, no reflection
+	var/effective_damage = incoming.damage
+	if(defender.status_flags & GODMODE) // you won't take damage anyway, deflect because it looks cool
+		effective_damage = 0
+	else
+		if(incoming.damage_type == STAMINA)
+			effective_damage *= 0.5
+		effective_damage *= (100 - defender.getarmor(def_zone, incoming.armor_flag)) / 100
+	if(effective_damage > focus_level) // can't block the full damage, no reflection
 		return NONE
 	if(!incoming.nodamage) // only lose focus if it was actually going to do real damage
-		adjust_focus(-incoming.damage)
+		adjust_focus(-effective_damage)
 	defender.visible_message(span_danger("[defender] deflects the projectile!"), span_userdanger("You deflect the projectile!"))
 	playsound(defender, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, 1)
 	incoming.firer = defender
@@ -153,14 +173,13 @@
 			span_warning("[A] spins around and kicks [D] in the head!"),
 			span_userdanger("[A] spins around and kicks you in the jaw!"),
 		)
-		step_to(D,get_step(D,D.dir),1)
 		var/turf/target_turf = get_edge_target_turf(D, get_dir(A, D))
+		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
 		D.throw_at(target_turf, 2, 2, A, TRUE) // throw them back a few tiles
 		D.apply_damage(A.get_punchdamagehigh() + 10, A.dna.species.attack_type, BODY_ZONE_HEAD, wound_bonus = CANT_WOUND)	//20 damage
 		D.Knockdown(CLICK_CD_MELEE) // short knockdown
 		A.changeNext_move(CLICK_CD_MELEE * 1.5) // heavy attack, longer cooldown
 		A.emote("flip")
-		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
 		adjust_focus(20)
 		return TRUE
 	return basic_hit(A,D)
@@ -222,7 +241,8 @@
 			adjust_focus(30)
 		A.emote("flip")
 		A.forceMove(get_turf(D))
-		A.changeNext_move(CLICK_CD_MELEE * 1.5) // take some time to recover
+		A.Immobilize(0.5 SECONDS)
+		A.changeNext_move(CLICK_CD_MELEE * 2) // take some time to recover
 		D.apply_damage(dunk_damage, A.dna.species.attack_type, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 		playsound(get_turf(D), 'sound/effects/wounds/crack2.ogg', 75, 1, -1) // ouch, that's gotta hurt
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 75, 1, -1)
@@ -230,25 +250,10 @@
 	return basic_hit(A,D)
 
 /datum/martial_art/the_sleeping_carp/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(A != D) // A!=D prevents grabbing yourself
-		if(D.stat == DEAD)
-			return FALSE
-		if(A.pulling == D)
-			wrist_wrench(A, D)
-			return TRUE
-		old_grab_state = A.grab_state
-		D.grabbedby(A, 1)
-		if(old_grab_state == GRAB_PASSIVE)
-			D.Immobilize(1.2 SECONDS) // immobilize long enough to capitalize on it
-			A.setGrabState(GRAB_AGGRESSIVE) //Instant agressive grab if on grab intent
-			log_combat(A, D, "grabbed", addition="aggressively")
-			D.visible_message(
-				span_warning("[A] violently grabs [D]!"),
-				span_userdanger("[A] violently grabs you!"),
-			)
+	if(A.pulling == D && D.stat != DEAD)
+		wrist_wrench(A, D)
 		return TRUE
-	else
-		return FALSE
+	return FALSE
 
 /datum/martial_art/the_sleeping_carp/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(D.stat == DEAD)
@@ -277,16 +282,16 @@
 	)
 	D.apply_damage(harm_damage, A.dna.species.attack_type, wound_bonus = CANT_WOUND)
 	playsound(get_turf(D), 'sound/weapons/punch1.ogg', 25, 1, -1)
-	if(D.getBruteLoss() > 80 && (D.mobility_flags & MOBILITY_STAND))
+	if(D.getBruteLoss() > 90 && (D.mobility_flags & MOBILITY_STAND))
 		var/datum/brain_trauma/mild/concussion/ouchie = new()
 		D.gain_trauma(ouchie, TRAUMA_RESILIENCE_BASIC)
 		D.visible_message(span_warning("[A] knocks [D] out cold with an uppercut!"), span_userdanger("[A] knocks you out cold!"))
 		D.Unconscious(2 SECONDS) // short knockout, enough time for an elbow drop
 		D.Knockdown(3 SECONDS)
+	A.changeNext_move(CLICK_CD_MELEE * 0.75) // basic hits are faster
 	log_combat(A, D, "[atk_verb] (Sleeping Carp)")
 	if(D.stat != DEAD)
 		adjust_focus(10)
-	A.changeNext_move(CLICK_CD_MELEE * 0.75) // basic hits are faster
 	return TRUE
 
 /mob/living/carbon/human/proc/sleeping_carp_help()
@@ -300,8 +305,8 @@
 	to_chat(usr, "[span_notice("Wrist Wrench")]: Grab twice. Forces opponent to drop item in hand and immobilizes for a short time.")
 	to_chat(usr, "[span_notice("Flying Kick")]: Left click to perform a flying back kick, dealing heavy damage and sending you off balance for a moment.")
 	to_chat(usr, "[span_notice("Suplex")]: Left click while grabbing. Decent damage scaling with focus, knocks opponent onto the ground.")
-	to_chat(usr, "[span_notice("Stomach Knee")]: Right click while grabbing. Knocks the wind out of your opponent and disarms.")
-	to_chat(usr, "[span_notice("Elbow Drop")]: Left click. Opponent must be on the ground. Deals damage based on your focus, instantly kills anyone in critical condition.")
+	to_chat(usr, "[span_notice("Stomach Knee")]: Right click while grabbing. Causes temporary suffocation.")
+	to_chat(usr, "[span_notice("Elbow Drop")]: Left click a downed opponent. Deals damage based on your focus, instantly kills anyone in critical condition.")
 
 	to_chat(usr, "<b><i>You will only deflect projectiles when you have enough focus to deflect all incoming damage.</i></b>")
 
@@ -351,6 +356,9 @@
 	if(C.stat)
 		to_chat(user, span_warning("It would be dishonorable to attack a foe while they cannot retaliate."))
 		return
+	var/datum/martial_art/the_sleeping_carp/carp = user.mind?.has_martialart(MARTIALART_SLEEPINGCARP)
+	if(carp)
+		carp.adjust_focus(15) // synergy!
 	var/list/modifiers = params2list(params)
 	if(HAS_TRAIT(src, TRAIT_WIELDED) && !(modifiers && modifiers[RIGHT_CLICK])) // right click to harm
 		if(!ishuman(target))
