@@ -745,7 +745,7 @@
 	glass_desc = "You can unleash the ape, but without the pop of the can?"
 
 /datum/reagent/consumable/monkey_energy/on_mob_life(mob/living/carbon/affected_mob)
-	M.reagents.add_reagent(/datum/reagent/drug/caffeine, metabolization_rate * 2) //effectively metabolize into caffeine
+	affected_mob.reagents.add_reagent(/datum/reagent/drug/caffeine, metabolization_rate * 2) //effectively metabolize into caffeine
 	affected_mob.adjust_jitter(20 SECONDS)
 	affected_mob.adjust_dizzy(2 SECONDS * REM)
 	affected_mob.remove_status_effect(/datum/status_effect/drowsiness)
