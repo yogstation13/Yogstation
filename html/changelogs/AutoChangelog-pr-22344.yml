@@ -1,7 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Can no longer blind through walls with radiant burst"
-  - bugfix: "Can no longer blind blind people with powered radiant burst"
-  - tweak: "Power chromie now gives radiant burst extra aoe like intended"
-  - tweak: "Power chromie now actually gives more blind power like intended"
