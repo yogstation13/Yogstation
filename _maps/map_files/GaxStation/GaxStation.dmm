@@ -33204,6 +33204,7 @@
 "qcV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small,
+/obj/effect/spawner/backrooms_portal,
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
 "qcW" = (

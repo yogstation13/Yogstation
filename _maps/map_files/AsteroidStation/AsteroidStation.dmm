@@ -26021,6 +26021,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"hpK" = (
+/obj/effect/spawner/backrooms_portal,
+/turf/open/floor/plasteel,
+/area/quartermaster/warehouse)
 "hqn" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/lootdrop/randomdrink,
@@ -93753,7 +93757,7 @@ aJI
 aZs
 xga
 xIK
-hSk
+hpK
 dCg
 gBO
 aZs

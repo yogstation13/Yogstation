@@ -39904,6 +39904,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central)
+"qKv" = (
+/obj/effect/spawner/backrooms_portal,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "qKy" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
@@ -97434,7 +97438,7 @@ ylr
 ylr
 ylr
 wBM
-dcG
+qKv
 rjk
 fWP
 fQK
