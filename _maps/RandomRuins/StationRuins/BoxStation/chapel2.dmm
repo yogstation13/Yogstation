@@ -1,11 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "an" = (
-/obj/machinery/door/poddoor{
+/obj/machinery/mass_driver{
+	dir = 1;
 	id = "chapelgun";
-	name = "Chapel Launcher Door"
+	name = "Holy Driver"
 	},
-/obj/structure/fans/tiny,
-/turf/open/space/basic,
+/obj/item/reagent_containers/food/snacks/grown/poppy,
+/turf/open/floor/plating,
 /area/chapel/office)
 "as" = (
 /obj/effect/turf_decal/ramp_middle,
@@ -605,7 +606,12 @@
 /turf/open/floor/carpet/black,
 /area/chapel/main)
 "FN" = (
-/turf/closed/wall,
+/obj/machinery/door/poddoor{
+	id = "chapelgun";
+	name = "Chapel Launcher Door"
+	},
+/obj/structure/fans/tiny,
+/turf/open/space/basic,
 /area/space/nearstation)
 "Gn" = (
 /obj/item/nullrod,
@@ -672,15 +678,6 @@
 "IL" = (
 /turf/open/floor/carpet/red,
 /area/chapel/main)
-"IN" = (
-/obj/machinery/mass_driver{
-	dir = 1;
-	id = "chapelgun";
-	name = "Holy Driver"
-	},
-/obj/item/reagent_containers/food/snacks/grown/poppy,
-/turf/open/floor/plating,
-/area/chapel/office)
 "IS" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -1445,9 +1442,9 @@ Cq
 xL
 "}
 (16,1,1) = {"
-an
+FN
 DX
-IN
+an
 zg
 cC
 Kz
@@ -1468,7 +1465,7 @@ wA
 "}
 (17,1,1) = {"
 zg
-FN
+zg
 zg
 wA
 wA

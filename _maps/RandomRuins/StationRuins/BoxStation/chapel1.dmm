@@ -445,14 +445,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
-"Cb" = (
-/obj/structure/fans/tiny,
-/obj/machinery/door/poddoor{
-	id = "chapelgun";
-	name = "Chapel Launcher Door"
-	},
-/turf/open/floor/plating,
-/area/chapel/main)
 "Ck" = (
 /turf/closed/wall,
 /area/chapel/main)
@@ -620,6 +612,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
+"OS" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/poddoor{
+	id = "chapelgun";
+	name = "Chapel Launcher Door"
+	},
+/turf/open/floor/plating,
+/area/space/nearstation)
 "PM" = (
 /obj/structure/chair/pew/right{
 	dir = 1
@@ -721,13 +721,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
-"SU" = (
-/obj/effect/landmark/event_spawn,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/chapel/main)
 "SX" = (
 /obj/structure/bodycontainer/crematorium{
 	id = "crematoriumChapel"
@@ -792,8 +785,12 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "XX" = (
-/turf/closed/wall,
-/area/space/nearstation)
+/obj/effect/landmark/event_spawn,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/chapel/main)
 "Yh" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -1205,8 +1202,8 @@ ZG
 Ck
 "}
 (16,1,1) = {"
-Cb
-SU
+OS
+XX
 nS
 Ck
 Fi
@@ -1229,7 +1226,7 @@ II
 (17,1,1) = {"
 Ck
 Ck
-XX
+Ck
 II
 II
 II
