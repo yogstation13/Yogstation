@@ -441,6 +441,10 @@
 	default = 64
 	min_val = 0
 
+/datum/config_entry/number/bismuthcap
+	config_entry_value = 6
+	min_val = 0
+
 /datum/config_entry/flag/dynamic_config_enabled
 
 /datum/config_entry/number/engine_type

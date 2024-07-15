@@ -77,7 +77,7 @@
 /datum/crafting_recipe/food/spaghettimeatball
 	name = "Spaghetti and Meatballs"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti = 1,
+		/obj/item/reagent_containers/food/snacks/spaghetti/pastatomato = 1,
 		/obj/item/reagent_containers/food/snacks/meatball = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/spaghetti/meatballspaghetti

@@ -499,6 +499,7 @@
 /obj/structure/railing/corner{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_corner,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "agN" = (
@@ -524,10 +525,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"ahg" = (
-/obj/structure/lattice,
-/turf/closed/wall,
-/area/crew_quarters/fitness/recreation)
 "ahm" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -2229,6 +2226,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
+"aHc" = (
+/obj/structure/stairs/goon/wide/right{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "aHd" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/cable{
@@ -3699,10 +3705,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
-"bcx" = (
-/obj/structure/lattice,
-/turf/closed/wall,
-/area/maintenance/starboard/aft)
 "bcA" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	name = "N2 to Pure"
@@ -10337,10 +10339,6 @@
 /obj/item/hand_labeler_refill,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"dbD" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/closed/wall,
-/area/maintenance/port/aft)
 "dbO" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -13112,8 +13110,13 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "dRf" = (
-/obj/structure/stairs/north,
-/turf/open/floor/plasteel/dark,
+/obj/structure/stairs/goon/wide/left{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/mine/living_quarters)
 "dRl" = (
 /obj/structure/sign/map/right{
@@ -13670,6 +13673,9 @@
 	},
 /obj/structure/railing{
 	dir = 8
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -16262,10 +16268,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/fore)
-"ePg" = (
-/obj/structure/lattice,
-/turf/closed/wall/r_wall,
-/area/security/prison)
 "ePi" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -17412,6 +17414,7 @@
 /obj/structure/fans/tiny{
 	resistance_flags = 115
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plating,
 /area/mine/abandoned)
 "fiU" = (
@@ -21236,6 +21239,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "glv" = (
@@ -25295,6 +25299,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"htp" = (
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/plating,
+/area/maintenance/port)
 "hts" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -27725,6 +27733,7 @@
 /obj/structure/fans/tiny{
 	resistance_flags = 115
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plating/snowed/colder,
 /area/mine/abandoned)
 "ihb" = (
@@ -28714,11 +28723,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"iuW" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "iuY" = (
 /obj/structure/rack,
 /obj/item/storage/secure/briefcase,
@@ -32441,6 +32445,15 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
+"jvC" = (
+/obj/structure/stairs/goon/wide/right{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mine/abandoned)
 "jvE" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -35618,6 +35631,9 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "kqF" = (
@@ -36566,10 +36582,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"kDP" = (
-/obj/structure/lattice,
-/turf/closed/wall/r_wall,
-/area/aisat)
 "kEA" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -37274,6 +37286,9 @@
 	},
 /obj/effect/turf_decal/stripes/corner,
 /obj/structure/railing/corner,
+/obj/effect/turf_decal/ramp_corner{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "kNr" = (
@@ -45555,7 +45570,12 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/break_room)
 "ncA" = (
-/obj/structure/stairs/north,
+/obj/structure/stairs/goon/wide/left{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/mine/abandoned)
 "ncH" = (
@@ -48152,10 +48172,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"nPG" = (
-/obj/structure/lattice,
-/turf/closed/wall/r_wall,
-/area/engine/engineering)
 "nPN" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "qm_warehouse";
@@ -53643,6 +53659,9 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/railing,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "ptR" = (
@@ -55785,6 +55804,9 @@
 	},
 /obj/structure/railing{
 	dir = 4
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -65810,6 +65832,7 @@
 /obj/structure/fans/tiny{
 	resistance_flags = 115
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plating,
 /area/mine/abandoned)
 "sVf" = (
@@ -66634,10 +66657,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
-"tfP" = (
-/obj/structure/lattice,
-/turf/closed/wall/r_wall,
-/area/icemoon/top_layer/outdoors)
 "tfS" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -69456,6 +69475,9 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "tVt" = (
@@ -70681,10 +70703,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"una" = (
-/obj/structure/lattice,
-/turf/closed/wall,
-/area/escapepodbay)
 "une" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -78098,6 +78116,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/foyer)
+"wop" = (
+/obj/structure/stairs/goon/wide,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "wot" = (
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
@@ -78173,10 +78198,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"wpJ" = (
-/obj/structure/lattice,
-/turf/closed/wall,
-/area/maintenance/port/aft)
 "wpM" = (
 /obj/item/kirbyplants{
 	icon_state = "plant-03"
@@ -79404,6 +79425,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
+"wHy" = (
+/obj/structure/stairs/goon/wide,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mine/abandoned)
 "wHH" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -101793,7 +101821,7 @@ lbu
 lbu
 lbu
 iwT
-ncA
+wHy
 fiM
 iJS
 xXW
@@ -102050,7 +102078,7 @@ lbu
 lbu
 lbu
 iwT
-ncA
+jvC
 igO
 xXW
 kss
@@ -167325,7 +167353,7 @@ ibA
 eQD
 ptD
 lTL
-dRf
+wop
 glq
 hbq
 vhD
@@ -167582,7 +167610,7 @@ hcL
 fNF
 ptD
 lTL
-dRf
+aHc
 glq
 hbq
 shd
@@ -231385,8 +231413,8 @@ fSP
 fSP
 fSP
 fSP
-iuW
-fyE
+fSP
+fSP
 ueX
 ozK
 ozK
@@ -231643,7 +231671,7 @@ nhh
 nhh
 nhh
 kDc
-fyE
+fSP
 ozK
 ozK
 ozK
@@ -233446,7 +233474,7 @@ fSP
 orH
 nKV
 vbS
-wpJ
+fSP
 ueX
 ueX
 exO
@@ -234475,7 +234503,7 @@ aCp
 fSP
 fSP
 fSP
-wpJ
+fSP
 fSP
 wiT
 kgU
@@ -234733,7 +234761,7 @@ fSP
 nhh
 nhh
 oeV
-wpJ
+fSP
 wiT
 exO
 kgJ
@@ -235761,7 +235789,7 @@ qTQ
 uQT
 uQT
 mqk
-wpJ
+fSP
 wiT
 kgU
 kgU
@@ -236250,7 +236278,7 @@ mWs
 eiU
 mOp
 gxJ
-noz
+htp
 fSP
 eeN
 nHe
@@ -236535,7 +236563,7 @@ okB
 raW
 oCk
 jgx
-dbD
+fSP
 ozK
 anv
 kug
@@ -237026,7 +237054,7 @@ dzt
 dzt
 lwo
 dzt
-fSP
+dzt
 neL
 wJp
 dzt
@@ -238225,9 +238253,9 @@ ozK
 azn
 ozK
 ueX
-ePg
-ePg
-ePg
+gIV
+gIV
+gIV
 gIV
 pCz
 tZr
@@ -238996,7 +239024,7 @@ ozK
 ueX
 ozK
 ozK
-ePg
+gIV
 hue
 tvY
 dGp
@@ -246570,8 +246598,8 @@ dWi
 fNE
 cFq
 dbQ
-una
-una
+sxN
+sxN
 iPX
 iPX
 iPX
@@ -251969,7 +251997,7 @@ ksP
 ksP
 ksP
 ksP
-bcx
+ksP
 ozK
 ozK
 ozK
@@ -252226,7 +252254,7 @@ ksP
 bQS
 bQS
 lCF
-bcx
+ksP
 ueX
 ueX
 ueX
@@ -252483,7 +252511,7 @@ ksP
 bQS
 bQS
 bQS
-bcx
+ksP
 ozK
 ueX
 ozK
@@ -256593,7 +256621,7 @@ ksP
 iRv
 nny
 ovw
-nny
+mWO
 mWO
 ozK
 ozK
@@ -256998,8 +257026,8 @@ ozK
 ozK
 ozK
 ozK
-ahg
-ahg
+rGa
+rGa
 rGa
 rGa
 nyc
@@ -261447,7 +261475,7 @@ wwf
 fDG
 tRh
 uOd
-tfP
+bdu
 uOd
 ueX
 ozK
@@ -261704,7 +261732,7 @@ wwf
 fDG
 ueX
 uOd
-tfP
+bdu
 kwD
 ozK
 ozK
@@ -262218,7 +262246,7 @@ fDG
 fDG
 ueX
 kwD
-tfP
+bdu
 uOd
 ozK
 ozK
@@ -262475,7 +262503,7 @@ bBc
 fDG
 tRh
 uOd
-tfP
+bdu
 uOd
 ueX
 ueX
@@ -262732,7 +262760,7 @@ bBc
 fDG
 tRh
 uOd
-tfP
+bdu
 uOd
 ozK
 ozK
@@ -262989,7 +263017,7 @@ bBc
 fDG
 ueX
 uOd
-tfP
+bdu
 uOd
 ozK
 ozK
@@ -263246,7 +263274,7 @@ fDG
 fDG
 ueX
 uOd
-tfP
+bdu
 uOd
 ozK
 ozK
@@ -263439,7 +263467,7 @@ ueX
 ueX
 ueX
 bXm
-nPG
+ept
 whE
 whE
 whE
@@ -263503,7 +263531,7 @@ rPu
 fDG
 tRh
 uOd
-tfP
+bdu
 kwD
 ozK
 ozK
@@ -263760,7 +263788,7 @@ rPu
 fDG
 tRh
 uOd
-tfP
+bdu
 uOd
 ozK
 ozK
@@ -264274,7 +264302,7 @@ fDG
 fDG
 ueX
 uOd
-tfP
+bdu
 uOd
 ozK
 ozK
@@ -264788,7 +264816,7 @@ kLI
 fDG
 tRh
 uOd
-tfP
+bdu
 uOd
 ozK
 ozK
@@ -265045,7 +265073,7 @@ kLI
 fDG
 ueX
 kwD
-tfP
+bdu
 uOd
 ozK
 ozK
@@ -265559,7 +265587,7 @@ tRh
 ueX
 tRh
 uOd
-tfP
+bdu
 uOd
 ozK
 ozK
@@ -265816,7 +265844,7 @@ uOd
 uOd
 uOd
 uOd
-tfP
+bdu
 uOd
 ozK
 ozK
@@ -266051,9 +266079,9 @@ uOd
 wtU
 uOd
 ueX
-tfP
-tfP
-tfP
+bdu
+bdu
+bdu
 iny
 ueX
 ueX
@@ -266067,13 +266095,13 @@ ueX
 ueX
 tRh
 ueX
-tfP
-tfP
-tfP
+bdu
+bdu
+bdu
 iny
-tfP
-tfP
-tfP
+bdu
+bdu
+bdu
 uOd
 ozK
 ozK
@@ -269900,7 +269928,7 @@ diS
 jYF
 jYF
 jYF
-kDP
+jYF
 jYF
 jYF
 tRh
@@ -272984,7 +273012,7 @@ fHR
 jYF
 jYF
 jYF
-kDP
+jYF
 jYF
 jYF
 tRh

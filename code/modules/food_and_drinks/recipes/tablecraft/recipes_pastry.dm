@@ -294,6 +294,14 @@ datum/crafting_recipe/food/donut/meat
 	result = /obj/item/reagent_containers/food/snacks/donkpocket/berry
 	category = CAT_PASTRY
 
+/datum/crafting_recipe/food/donkpocket/mouse
+	name = "Mousepocket"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
+		/obj/item/reagent_containers/food/snacks/deadmouse = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/donkpocket/mouse
+	category = CAT_PASTRY
 ////////////////////////////////////////////////MUFFINS AND CUPCAKES////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/berrymuffin

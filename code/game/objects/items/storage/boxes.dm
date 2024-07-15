@@ -1393,7 +1393,7 @@
 #define CARTON_LEMON_SORBET "lemon sorbet"
 #define CARTON_CARAMEL "caramel ice cream"
 #define CARTON_BANANA "banana ice cream"
-#define CARTON_ORANGE_CREAMSICKLE "orange creamsickle"
+#define CARTON_ORANGE_CREAMSICLE "orange creamsicle"
 #define CARTON_PEACH "peach ice cream"
 #define CARTON_CHERRY_CHOCOLATE "cherry chocolate ice cream"
 #define CARTON_MEAT "meat lover's ice cream"
@@ -1420,7 +1420,7 @@
 /obj/item/storage/box/ice_cream_carton/attackby(obj/item/A, mob/user, params)
 	//Allow for name and desc to be changed with pen
 	if(istype(A, /obj/item/pen))
-		var/choice = input(usr, "Choose which flavor to change to", "Changing Carton Flavor") as null|anything in list(CARTON_PLAIN, CARTON_VANILLA, CARTON_CHOCOLATE, CARTON_STRAWBERRY, CARTON_BLUE, CARTON_LEMON_SORBET, CARTON_CARAMEL, CARTON_BANANA, CARTON_ORANGE_CREAMSICKLE, CARTON_PEACH, CARTON_CHERRY_CHOCOLATE, CARTON_MEAT)
+		var/choice = input(usr, "Choose which flavor to change to", "Changing Carton Flavor") as null|anything in list(CARTON_PLAIN, CARTON_VANILLA, CARTON_CHOCOLATE, CARTON_STRAWBERRY, CARTON_BLUE, CARTON_LEMON_SORBET, CARTON_CARAMEL, CARTON_BANANA, CARTON_ORANGE_CREAMSICLE, CARTON_PEACH, CARTON_CHERRY_CHOCOLATE, CARTON_MEAT)
 		if(choice != null)
 			name = "Big Top [choice] carton"
 			desc = "A classic ice cream brand; this carton contains [choice]."
@@ -1444,7 +1444,7 @@
 		return .
 	else
 		carton_overlay = "_lid"
-	
+
 	var/mutable_appearance/ice_cream_overlay = mutable_appearance(icon, "ice_cream[carton_overlay]")
 	. += ice_cream_overlay
 
@@ -1511,7 +1511,7 @@
 #undef CARTON_LEMON_SORBET
 #undef CARTON_CARAMEL
 #undef CARTON_BANANA
-#undef CARTON_ORANGE_CREAMSICKLE
+#undef CARTON_ORANGE_CREAMSICLE
 #undef CARTON_PEACH
 #undef CARTON_CHERRY_CHOCOLATE
 #undef CARTON_MEAT

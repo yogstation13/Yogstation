@@ -1232,6 +1232,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "aEO" = (
@@ -1842,6 +1843,7 @@
 	pixel_x = 11;
 	pixel_y = 8
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "aTR" = (
@@ -2899,6 +2901,9 @@
 /obj/effect/turf_decal/siding/wideplating/corner{
 	dir = 4
 	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
+	},
 /turf/open/indestructible/grass/sand,
 /area/hydroponics/garden)
 "buE" = (
@@ -3090,6 +3095,9 @@
 	dir = 4
 	},
 /obj/machinery/seed_extractor,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "bBo" = (
@@ -8435,6 +8443,7 @@
 	dir = 8
 	},
 /obj/machinery/washing_machine,
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/toilet/auxiliary)
 "ebI" = (
@@ -12468,6 +12477,9 @@
 	dir = 4
 	},
 /obj/machinery/biogenerator,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "fOd" = (
@@ -14169,6 +14181,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "gGa" = (
@@ -17540,6 +17553,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "imX" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/plasteel/stairs/goon/stairs2_wide{
 	dir = 1
 	},
@@ -22735,6 +22751,9 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "kVA" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/plasteel/stairs/goon/stairs_wide{
 	dir = 1
 	},
@@ -26421,6 +26440,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "mIS" = (
@@ -34553,6 +34573,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/plasteel/stairs/goon/stairs_middle,
 /area/hydroponics/garden)
 "qQC" = (
@@ -35489,6 +35512,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/indestructible/grass/sand,
 /area/hydroponics/garden)
 "rmC" = (
@@ -37609,6 +37633,7 @@
 	dir = 1
 	},
 /obj/machinery/washing_machine,
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/toilet/auxiliary)
 "snD" = (
@@ -38761,6 +38786,9 @@
 /turf/open/floor/plating,
 /area/maintenance/department/science/central)
 "sQs" = (
+/obj/effect/turf_decal/ramp_corner{
+	dir = 8
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/toilet/auxiliary)
 "sQy" = (
@@ -39876,7 +39904,12 @@
 "trI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel/stairs/goon/stairs_wide,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/turf/open/floor/plasteel/stairs/goon/stairs_wide{
+	dir = 1
+	},
 /area/hydroponics/garden)
 "tsz" = (
 /turf/open/floor/plasteel/dark,
@@ -41870,6 +41903,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
+/obj/structure/railing/corner,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "uwi" = (
@@ -44962,7 +44996,12 @@
 	persistence_id = "public";
 	pixel_x = 32
 	},
-/turf/open/floor/plasteel/stairs/goon/stairs2_wide,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/turf/open/floor/plasteel/stairs/goon/stairs2_wide{
+	dir = 1
+	},
 /area/hydroponics/garden)
 "vTP" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
@@ -45833,6 +45872,10 @@
 	dir = 8;
 	pixel_x = 24
 	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 1
+	},
+/obj/structure/railing/corner,
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "woR" = (
@@ -46688,6 +46731,9 @@
 	dir = 4
 	},
 /obj/machinery/vending/hydroseeds/weak,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "wKL" = (
@@ -46992,6 +47038,9 @@
 	dir = 4
 	},
 /obj/machinery/vending/hydronutrients,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "wTB" = (
@@ -49640,7 +49689,7 @@
 /obj/machinery/door/window/eastleft{
 	dir = 8;
 	name = "Hydroponics Window";
-	req_one_access_txt = "30;35"
+	req_one_access_txt = "35"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)

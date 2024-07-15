@@ -58,7 +58,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("pasta" = 1, "tomato" = 1, "meat" = 1)
-	foodtype = GRAIN | MEAT
+	foodtype = GRAIN | VEGETABLES| MEAT
 
 /obj/item/reagent_containers/food/snacks/spaghetti/spesslaw
 	name = "spesslaw"

@@ -50040,11 +50040,7 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
 "vaD" = (
-/turf/closed/indestructible{
-	desc = "A wall impregnated with Fixium, able to withstand massive explosions with ease";
-	icon_state = "riveted";
-	name = "hyper-reinforced wall"
-	},
+/turf/closed/indestructible/riveted/testingsite,
 /area/space/nearstation)
 "vaW" = (
 /obj/machinery/light/small{
