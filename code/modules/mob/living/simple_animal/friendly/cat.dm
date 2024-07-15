@@ -177,8 +177,9 @@
 /mob/living/simple_animal/pet/cat/update_icon_state()
 	. = ..()
 	if(stat == DEAD)
-		return
-	if(resting)
+		icon_state = "[icon_living]_dead"
+		collar_type = "[initial(collar_type)]_dead"
+	else if(resting)
 		if(sitting)
 			icon_state = "[icon_living]_sit"
 			collar_type = "[initial(collar_type)]_sit"
