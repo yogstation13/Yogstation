@@ -284,10 +284,15 @@
 	. = ..()
 	if(prob(75))
 		weighted_feature_spawn_list |= pick(typesof(/obj/item/circuitboard))
-		weighted_feature_spawn_list |= pick(typesof(/obj/item/circuitboard)) 
-		weighted_feature_spawn_list |= pick(typesof(/obj/item/circuitboard)) 
-		weighted_feature_spawn_list |= pick(typesof(/obj/item/circuitboard)) 
-		weighted_feature_spawn_list |= pick(typesof(/obj/item/circuitboard)) 
+	if(prob(75))
+		weighted_feature_spawn_list |= pick(typesof(/obj/item/circuitboard))
+	if(prob(75))
+		weighted_feature_spawn_list |= pick(typesof(/obj/item/circuitboard))
+	if(prob(75))
+		weighted_feature_spawn_list |= pick(typesof(/obj/item/circuitboard))
+	if(prob(75))
+		weighted_feature_spawn_list |= pick(typesof(/obj/item/circuitboard))
+	
 
 
 /datum/dungeon_room_theme/maintenance/bank
@@ -297,7 +302,7 @@
 		/obj/item/coin/silver = 5,
 		/obj/item/stack/sheet/mineral/gold = 10, ///this DLC is about letting go, letting go of poverty!!!
 		/obj/item/stack/spacecash/c1000 = 2,
-		/obj/item/stack/sheet/mineral/diamond = 1
+		/obj/item/stack/sheet/mineral/diamond = 5
 		)
 	weighted_mob_spawn_list = list(
 		/mob/living/simple_animal/hostile/hivebot/range = 2,
@@ -341,7 +346,86 @@
 	. = ..()
 	for(var/i in 1 to 3)
 		if(prob(10))
-		//if i include all types of every stock part and subtype, it gets super bogged down, so one from each pool
 			weighted_feature_spawn_list[/obj/item/kitchen/knife/combat/bone]++
 		else
 			weighted_feature_spawn_list[/obj/item/melee/spear/bonespear/chitinspear]++
+
+/datum/dungeon_room_theme/maintenance/hardsuit
+	weighted_feature_spawn_list = list(
+		list(/obj/machinery/suit_storage_unit,/obj/item/clothing/suit/space/hardsuit/mining),
+		list(/obj/machinery/suit_storage_unit,/obj/item/clothing/suit/space/hardsuit/ancient),
+		list(/obj/machinery/suit_storage_unit,/obj/item/clothing/suit/space/hardsuit/engine),
+		list(/obj/machinery/suit_storage_unit,/obj/item/clothing/suit/space/hardsuit/medical)
+		)
+
+	weighted_mob_spawn_list = list(
+		/mob/living/simple_animal/hostile/robot/burst = 2,
+		/mob/living/simple_animal/hostile/robot/burst = 2
+		)
+
+/datum/dungeon_room_theme/maintenance/lasgun
+	weighted_feature_spawn_list = list(
+		/obj/item/gun/energy/laser/captain/scattershot 
+		)
+
+	weighted_mob_spawn_list = list(
+		/mob/living/simple_animal/hostile/robot/burst = 2,
+		/mob/living/simple_animal/hostile/robot/advanced/ranged = 1
+		)
+
+/datum/dungeon_room_theme/maintenance/autolathe
+	weighted_feature_spawn_list = list(
+		/obj/machinery/autolathe/hacked = 1,
+		/obj/machinery/autolathe = 1,
+		/obj/machinery/autolathe = 1,
+		/obj/item/stack/sheet/glass/fifty = 1,
+		/obj/item/stack/sheet/metal/fifty = 1,
+		/obj/item/stack/sheet/mineral/silver/fifty = 1
+		)
+
+/datum/dungeon_room_theme/maintenance/eskimo
+	weighted_mob_spawn_list = list(
+		/mob/living/simple_animal/hostile/skeleton/eskimo = 2,
+		/mob/living/simple_animal/hostile/skeleton/eskimo = 1
+		)
+
+/datum/dungeon_room_theme/maintenance/chasm_fake
+	weighted_possible_floor_types = list(
+		/turf/open/floor/fakepit = 3,
+		/turf/open/floor/fakepit = 5,
+		/turf/open/floor/fakepit= 3, 
+		)
+
+/datum/dungeon_room_theme/maintenance/mine_room
+	weighted_feature_spawn_list = list(
+		/obj/effect/mine/kickmine = 1,
+		/obj/effect/mine/creampie = 5,
+		/obj/effect/spawner/lootdrop/random_anomaly_core = 2
+		)
+
+/datum/dungeon_room_theme/maintenance/mineral_room
+	weighted_feature_spawn_list = list(
+		/obj/item/stack/sheet/mineral/diamond = 5,
+		/obj/item/stack/sheet/mineral/uranium = 5,
+		/obj/item/stack/sheet/mineral/plasma = 5,
+		/obj/item/stack/sheet/mineral/gold = 5,
+		/obj/item/stack/sheet/mineral/silver = 5,
+		/obj/item/stack/sheet/mineral/mythril = 1
+		)
+	
+	weighted_mob_spawn_list = list(
+		/mob/living/simple_animal/hostile/asteroid/goliath/beast = 1,
+		/mob/living/simple_animal/hostile/asteroid/goliath/beast = 1
+		)
+
+/datum/dungeon_room_theme/maintenance/mineral_room
+	weighted_feature_spawn_list = list(
+		/obj/item/clothing/gloves/combat = 1,
+		/obj/item/kitchen/knife/combat = 1,
+		/obj/machinery/atmospherics/components/unary/vent_pump/on = 1
+		)
+	
+	
+	weighted_mob_spawn_list = list(
+		/mob/living/simple_animal/hostile/retaliate/goat/suspicious = 1,
+		)
