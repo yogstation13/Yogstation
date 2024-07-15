@@ -51,7 +51,7 @@
 	animate(owner, 0.5 SECONDS, color = null)
 
 /datum/action/cooldown/spell/aoe/radiantburst/cast_on_thing_in_aoe(atom/victim, atom/caster)
-	if(can_see(victim, caster))
+	if(!can_see(victim, caster))
 		return
 	if(ishuman(victim))
 		var/mob/living/carbon/human/hurt = victim
