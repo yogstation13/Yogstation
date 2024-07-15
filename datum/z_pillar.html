@@ -16,7 +16,7 @@
 <h1>/<a href="datum.html">datum</a>/<a href="datum/z_pillar.html">z_pillar</a>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3c812167bef9ac643084769e93a8cfb5cc203ae3/code/datums/elements/turf_transparency.dm#L70">
+            <a href="https://github.com/yogstation13/Yogstation/blob/8dc6deeac6e2565ad7ce53dcad871af66e39936e/code/datums/elements/turf_transparency.dm#L70">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;turf_transparency.dm 70"/></a></h1>
 
 <p>Grouping datum that manages transparency for a block of space
@@ -37,24 +37,24 @@ We'll only reup if we either have no souece, or if the source is a transparent t
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3c812167bef9ac643084769e93a8cfb5cc203ae3/code/datums/elements/turf_transparency.dm#L77">
+            <a href="https://github.com/yogstation13/Yogstation/blob/8dc6deeac6e2565ad7ce53dcad871af66e39936e/code/datums/elements/turf_transparency.dm#L77">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;turf_transparency.dm 77"/></a></h3>
         <p>Assoc list of turfs using z holders in the form displayed turf -&gt; z holder</p><h3 id="var/turf_sources"><aside class="declaration">var </aside>turf_sources
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3c812167bef9ac643084769e93a8cfb5cc203ae3/code/datums/elements/turf_transparency.dm#L75">
+            <a href="https://github.com/yogstation13/Yogstation/blob/8dc6deeac6e2565ad7ce53dcad871af66e39936e/code/datums/elements/turf_transparency.dm#L75">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;turf_transparency.dm 75"/></a></h3>
         <p>Assoc list in the form displayed turf -&gt; list of sources</p><h2 id="proc">Proc Details</h2><h3 id="proc/display_turf"><aside class="declaration">proc </aside>display_turf<aside>(/<a href="turf.html">turf</a>/to_display, /<a href="turf.html">turf</a>/source) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3c812167bef9ac643084769e93a8cfb5cc203ae3/code/datums/elements/turf_transparency.dm#L97">
+            <a href="https://github.com/yogstation13/Yogstation/blob/8dc6deeac6e2565ad7ce53dcad871af66e39936e/code/datums/elements/turf_transparency.dm#L97">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;turf_transparency.dm 97"/></a></aside>
         </h3>
         <p>Displays a turf from the z level below us on our level</p><h3 id="proc/hide_turf"><aside class="declaration">proc </aside>hide_turf<aside>(/<a href="turf.html">turf</a>/to_hide, /<a href="turf.html">turf</a>/source) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3c812167bef9ac643084769e93a8cfb5cc203ae3/code/datums/elements/turf_transparency.dm#L131">
+            <a href="https://github.com/yogstation13/Yogstation/blob/8dc6deeac6e2565ad7ce53dcad871af66e39936e/code/datums/elements/turf_transparency.dm#L131">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;turf_transparency.dm 131"/></a></aside>
         </h3>
         <p>Basically, if we used to be under a non transparent turf, but are no longer in that position
@@ -62,7 +62,7 @@ Then we add to the transparent turf we're now under, and nuke the old object
 Hides an existing turf from our vis_contents, or the vis_contents of the source if applicable</p><h3 id="proc/parent_cleared"><aside class="declaration">proc </aside>parent_cleared<aside>(/<a href="turf.html">turf</a>/visual, /<a href="turf.html">turf</a>/current_holder) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3c812167bef9ac643084769e93a8cfb5cc203ae3/code/datums/elements/turf_transparency.dm#L155">
+            <a href="https://github.com/yogstation13/Yogstation/blob/8dc6deeac6e2565ad7ce53dcad871af66e39936e/code/datums/elements/turf_transparency.dm#L155">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;turf_transparency.dm 155"/></a></aside>
         </h3>
         <p>Called when a transparent turf is cleared. We wait a tick, then check to see what
@@ -71,14 +71,14 @@ We do not need to do this for non transparent holders, because they will have th
 When a transparent holder comes back.</p><h3 id="proc/refresh_orphan"><aside class="declaration">proc </aside>refresh_orphan<aside>(/<a href="turf.html">turf</a>/orphan, /<a href="turf.html">turf</a>/parent) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3c812167bef9ac643084769e93a8cfb5cc203ae3/code/datums/elements/turf_transparency.dm#L160">
+            <a href="https://github.com/yogstation13/Yogstation/blob/8dc6deeac6e2565ad7ce53dcad871af66e39936e/code/datums/elements/turf_transparency.dm#L160">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;turf_transparency.dm 160"/></a></aside>
         </h3>
         <p>Runs the actual refresh of some formerly orphaned via vis_loc deletiong turf
 We'll only reup if we either have no souece, or if the source is a transparent turf</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/3c812167bef9ac643084769e93a8cfb5cc203ae3">3c81216</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/8dc6deeac6e2565ad7ce53dcad871af66e39936e">8dc6dee</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
