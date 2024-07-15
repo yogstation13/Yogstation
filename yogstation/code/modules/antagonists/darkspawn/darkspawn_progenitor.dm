@@ -91,6 +91,7 @@
 	//add passive traits, elements, and components
 	ADD_TRAIT(src, TRAIT_HOLY, INNATE_TRAIT) //sorry no magic
 	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, INNATE_TRAIT) //so people can actually look at the sprite without the weird bobbing up and down
+	ADD_TRAIT(src, TRAIT_PSIONICALLY_IMMUNE, INNATE_TRAIT) //so no psionic fuckery can happen
 	AddElement(/datum/element/death_explosion, 20, 20, 20) //with INFINITY health, they're not really able to die, but IF THEY DO
 	AddComponent(/datum/component/light_eater)
 
