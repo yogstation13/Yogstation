@@ -283,6 +283,10 @@
 /datum/dungeon_room_theme/maintenance/machine_parts/pre_initialize()
 	. = ..()
 	if(prob(75))
+		weighted_feature_spawn_list |= pick(typesof(/obj/item/circuitboard))
+		weighted_feature_spawn_list |= pick(typesof(/obj/item/circuitboard)) 
+		weighted_feature_spawn_list |= pick(typesof(/obj/item/circuitboard)) 
+		weighted_feature_spawn_list |= pick(typesof(/obj/item/circuitboard)) 
 		weighted_feature_spawn_list |= pick(typesof(/obj/item/circuitboard)) 
 
 
