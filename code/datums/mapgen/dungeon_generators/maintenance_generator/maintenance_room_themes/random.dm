@@ -319,7 +319,7 @@
 
 		)
 	weighted_mob_spawn_list = list(
-		/mob/living/simple_animal/hostile/retaliate/goat/ = 2
+		/mob/living/simple_animal/hostile/retaliate/goat = 2
 		)
 
 /datum/dungeon_room_theme/maintenance/ancient_armory
