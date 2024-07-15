@@ -1,3 +1,4 @@
+//plants and shit
 /datum/dungeon_room_theme/maintenance/botany
 	weighted_possible_floor_types = list(
 		/turf/open/floor/plating = 3, 
@@ -29,7 +30,7 @@
 	for(var/i in 1 to 5)
 		weighted_feature_spawn_list |= pick(subtypesof(/obj/item/seeds) - /obj/item/seeds/lavaland)
 
-
+///mineral loot room
 /datum/dungeon_room_theme/maintenance/material_storeroom
 	weighted_feature_spawn_list = list(
 		/obj/effect/spawner/lootdrop/random_anomaly_core = 1,
@@ -59,7 +60,7 @@
 		if(stack_to_randomize.amount == 1)
 			stack_to_randomize.amount = rand(1, 25)
 
-
+///you work out bro?
 /datum/dungeon_room_theme/maintenance/gym
 	weighted_feature_spawn_list = list(
 		/obj/item/reagent_containers/glass/beaker/waterbottle = 5,
@@ -91,7 +92,7 @@
 				gym_mob.name = "\improper Gym Rat"
 				gym_mob.desc = "He's not about to settle for Gouda-nough."
 				
-
+///one man's junk is another mans... also junk
 /datum/dungeon_room_theme/maintenance/junk
 	weighted_feature_spawn_list = list(
 		/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 1,
@@ -117,7 +118,7 @@
 		if(trash_animal)
 			trash_animal.faction |= "trash"
 
-
+///doctor!
 /datum/dungeon_room_theme/maintenance/medical
 	weighted_possible_floor_types = list(
 		/turf/open/floor/plasteel = 5,
@@ -171,6 +172,7 @@
 			if(istype(medical_professional, /mob/living/simple_animal/hostile/zombie) && prob(1))
 				medical_professional.desc = "Oh my god he IS a surgeon..."
 
+///we can rebuild him.
 /datum/dungeon_room_theme/maintenance/robotics
 	weighted_feature_spawn_list = list(
 		/obj/effect/decal/cleanable/robot_debris = 2, 
@@ -179,7 +181,6 @@
 		/obj/item/weldingtool/largetank = 1,
 		/obj/structure/frame/machine = 1,
 		/obj/structure/frame/computer = 1,
-		/obj/effect/spawner/lootdrop/random_anomaly_core = 1
 		)
 	weighted_mob_spawn_list = list(
 		/mob/living/simple_animal/hostile/hivebot = 5, 
@@ -205,6 +206,7 @@
 	weighted_feature_spawn_list |= pick(subtypesof(/obj/item/stock_parts/micro_laser))
 	weighted_feature_spawn_list |= pick(subtypesof(/obj/item/stock_parts/matter_bin))
 
+///this is the best room, unless you hate spiders, then it's the worst.
 /datum/dungeon_room_theme/maintenance/spiders
 	weighted_feature_spawn_list = list(
 		/obj/structure/spider/stickyweb = 5, 
@@ -218,7 +220,7 @@
 		/mob/living/simple_animal/hostile/poison/giant_spider/ice = 2,
 		)
 
-
+///powergamers... even in the backrooms...
 /datum/dungeon_room_theme/maintenance/xenobio
 	weighted_possible_floor_types = list(
 		/turf/open/floor/plasteel/dark = 3,
@@ -265,6 +267,7 @@
 		else
 			weighted_mob_spawn_list[/mob/living/simple_animal/slime]++
 
+///domo arigato
 /datum/dungeon_room_theme/maintenance/machine_parts
 	weighted_feature_spawn_list = list(
 		/obj/effect/decal/cleanable/robot_debris = 2, 
@@ -272,7 +275,8 @@
 		/obj/item/stack/cable_coil/random = 5,
 		/obj/structure/frame/machine = 3,
 		/obj/structure/frame/computer = 2,
-		/obj/effect/spawner/lootdrop/random_anomaly_core = 1
+		/obj/effect/spawner/lootdrop/random_anomaly_core = 1,
+		/obj/effect/mine/stun
 		)
 	weighted_mob_spawn_list = list(
 		/mob/living/simple_animal/hostile/hivebot = 5, 
@@ -294,7 +298,7 @@
 		weighted_feature_spawn_list |= pick(typesof(/obj/item/circuitboard))
 	
 
-
+///dead money reference except I couldnt add father elijah
 /datum/dungeon_room_theme/maintenance/bank
 	weighted_feature_spawn_list = list(
 		/obj/structure/safe = 1, 
@@ -308,6 +312,7 @@
 		/mob/living/simple_animal/hostile/hivebot/range = 2,
 		)
 
+///mama mia
 /datum/dungeon_room_theme/maintenance/kitchen
 	weighted_feature_spawn_list = list(
 		/obj/machinery/griddle = 1,
@@ -322,6 +327,7 @@
 		/mob/living/simple_animal/hostile/retaliate/goat = 2
 		)
 
+///just lik the founding fathers intended
 /datum/dungeon_room_theme/maintenance/ancient_armory
 	weighted_possible_floor_types = list(
 		/turf/open/floor/plasteel/dark = 3,
@@ -335,7 +341,8 @@
 		list(/obj/structure/rack , /obj/item/melee/spear/plugged_musket) = 1,
 		list(/obj/structure/rack , /obj/item/clothing/suit/armor/vest, /obj/item/clothing/head/helmet/riot) = 1,
 		/obj/structure/frame/machine = 1,
-		/obj/structure/frame/computer = 1,	
+		/obj/structure/frame/computer = 1,
+		/obj/effect/mine/stun	
 		)
 	
 	weighted_mob_spawn_list = list(
@@ -350,6 +357,7 @@
 		else
 			weighted_feature_spawn_list[/obj/item/melee/spear/bonespear/chitinspear]++
 
+///these don't actually spawn inside the suit storage and I think thats funny
 /datum/dungeon_room_theme/maintenance/hardsuit
 	weighted_feature_spawn_list = list(
 		list(/obj/machinery/suit_storage_unit,/obj/item/clothing/suit/space/hardsuit/mining),
@@ -363,6 +371,7 @@
 		/mob/living/simple_animal/hostile/robot/burst = 2
 		)
 
+///this gun blows so much ass using it is actually more likely to get you killed
 /datum/dungeon_room_theme/maintenance/lasgun
 	weighted_feature_spawn_list = list(
 		/obj/item/gun/energy/laser/captain/scattershot 
@@ -372,7 +381,7 @@
 		/mob/living/simple_animal/hostile/robot/burst = 2,
 		/mob/living/simple_animal/hostile/robot/advanced/ranged = 1
 		)
-
+///lathes, nough said
 /datum/dungeon_room_theme/maintenance/autolathe
 	weighted_feature_spawn_list = list(
 		/obj/machinery/autolathe/hacked = 1,
@@ -382,27 +391,27 @@
 		/obj/item/stack/sheet/metal/fifty = 1,
 		/obj/item/stack/sheet/mineral/silver/fifty = 1
 		)
-
+///eskimo enemy variety, they came here for the winter
 /datum/dungeon_room_theme/maintenance/eskimo
 	weighted_mob_spawn_list = list(
 		/mob/living/simple_animal/hostile/skeleton/eskimo = 2,
 		/mob/living/simple_animal/hostile/skeleton/eskimo = 1
 		)
-
+///I really really really want to include a real chasm but god knows im not strong enough
 /datum/dungeon_room_theme/maintenance/chasm_fake
 	weighted_possible_floor_types = list(
 		/turf/open/floor/fakepit = 3,
 		/turf/open/floor/fakepit = 5,
 		/turf/open/floor/fakepit= 3, 
 		)
-
+///im so adding more mines
 /datum/dungeon_room_theme/maintenance/mine_room
 	weighted_feature_spawn_list = list(
 		/obj/effect/mine/kickmine = 1,
 		/obj/effect/mine/creampie = 5,
 		/obj/effect/spawner/lootdrop/random_anomaly_core = 2
 		)
-
+///mineral room 2 but with danger involved
 /datum/dungeon_room_theme/maintenance/mineral_room
 	weighted_feature_spawn_list = list(
 		/obj/item/stack/sheet/mineral/diamond = 5,
@@ -417,8 +426,8 @@
 		/mob/living/simple_animal/hostile/asteroid/goliath/beast = 1,
 		/mob/living/simple_animal/hostile/asteroid/goliath/beast = 1
 		)
-
-/datum/dungeon_room_theme/maintenance/mineral_room
+///sus, amongus.
+/datum/dungeon_room_theme/maintenance/sus_room
 	weighted_feature_spawn_list = list(
 		/obj/item/clothing/gloves/combat = 1,
 		/obj/item/kitchen/knife/combat = 1,
@@ -428,4 +437,36 @@
 	
 	weighted_mob_spawn_list = list(
 		/mob/living/simple_animal/hostile/retaliate/goat/suspicious = 1,
+		)
+///pizza tower, or spiderman 2 reference, depending on the year you time travelled from
+/datum/dungeon_room_theme/maintenance/pizza_time
+	weighted_feature_spawn_list = list(
+		/obj/item/reagent_containers/food/snacks/pizza = 1,
+		/obj/item/reagent_containers/food/snacks/pizza = 1,
+		/obj/item/circuitboard/machine/griddle = 1,
+		/obj/item/clothing/suit/toggle/chef = 1,
+		/obj/item/clothing/suit/apron/chef = 1
+		)
+///cuackles played this once
+/datum/dungeon_room_theme/maintenance/oxygen_included
+	weighted_feature_spawn_list = list(
+		/obj/structure/tank_dispenser  = 1,
+		/obj/structure/tank_dispenser  = 1,
+		/obj/item/tank/internals/emergency_oxygen = 3,
+		/obj/item/tank/internals/emergency_oxygen/double = 1,
+		/obj/item/tank/internals/emergency_oxygen/vox = 1
+		)
+///we couldnt afford the surgery tools
+/datum/dungeon_room_theme/maintenance/medical_surgical
+	weighted_possible_floor_types = list(
+		/turf/open/floor/plasteel/white = 3,
+		/turf/open/floor/plasteel = 5,
+		/turf/open/floor/plating = 3, 
+		)
+
+	weighted_feature_spawn_list = list(
+		/obj/item/storage/firstaid/regular = 1,
+		/obj/item/storage/firstaid/toxin = 1,
+		/obj/machinery/computer/operating = 1, 
+		/obj/structure/table/optable = 1,
 		)
