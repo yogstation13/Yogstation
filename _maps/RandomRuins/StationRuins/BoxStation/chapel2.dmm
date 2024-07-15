@@ -611,7 +611,7 @@
 	name = "Chapel Launcher Door"
 	},
 /obj/structure/fans/tiny,
-/turf/open/space/basic,
+/turf/open/floor/plating,
 /area/space/nearstation)
 "Gn" = (
 /obj/item/nullrod,
