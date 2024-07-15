@@ -269,14 +269,14 @@
 	var/jumpspeed = 4 - user.cached_multiplicative_slowdown
 	jumpspeed = clamp(jumpspeed, 0.75, 4)
 
-	user.throw_at(target, 15, jumpspeed, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), user))
-	user.Immobilize(1 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the leap
-
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(user.loc,user)
 	animate(D, alpha = 0, color = "#000000", transform = matrix()*2, time = 0.3 SECONDS)
 	animate(user, time = (heavy ? 0.4 : 0.2)SECONDS, pixel_y = 20)//we up in the air
 	playsound(user, 'sound/effects/gravhit.ogg', 15)
 	playsound(user, 'sound/effects/dodge.ogg', 15, TRUE)
+
+	user.Immobilize(1 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the leap
+	user.throw_at(target, 15, jumpspeed, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), user))
 	return COMSIG_MOB_CANCEL_CLICKON
 
 /datum/martial_art/worldbreaker/proc/leap_end(mob/living/carbon/human/user)
