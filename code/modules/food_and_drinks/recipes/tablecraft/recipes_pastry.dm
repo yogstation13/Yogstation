@@ -410,7 +410,7 @@ datum/crafting_recipe/food/donut/meat
 	reqs = list(
 		/datum/reagent/consumable/sugar = 5,
 		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
-		/datum/reagent/consumable/coffee = 5
+		/datum/reagent/consumable/coffee/hot = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/sugarcookie/spookycoffin
 	category = CAT_PASTRY

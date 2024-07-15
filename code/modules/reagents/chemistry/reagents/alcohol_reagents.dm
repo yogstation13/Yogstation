@@ -196,8 +196,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "This is a glass of Thirteen Loko, it appears to be of the highest quality. The drink, not the glass."
 
 /datum/reagent/consumable/ethanol/thirteenloko/on_mob_life(mob/living/carbon/M)
-	M.adjust_drowsiness(-7 SECONDS)
-	M.AdjustSleeping(-40)
+	M.reagents.add_reagent(/datum/reagent/drug/caffeine, metabolization_rate) //effectively metabolize into caffeine
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	if(!HAS_TRAIT(M, TRAIT_ALCOHOL_TOLERANCE))
 		M.adjust_jitter(5 SECONDS)

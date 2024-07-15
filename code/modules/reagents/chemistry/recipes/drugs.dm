@@ -41,7 +41,7 @@
 	name = /datum/reagent/drug/bath_salts
 	id = /datum/reagent/drug/bath_salts
 	results = list(/datum/reagent/drug/bath_salts = 7)
-	required_reagents = list(/datum/reagent/toxin/bad_food = 1, /datum/reagent/saltpetre = 1, /datum/reagent/consumable/nutriment = 1, /datum/reagent/space_cleaner = 1, /datum/reagent/consumable/enzyme = 1, /datum/reagent/consumable/tea = 1, /datum/reagent/mercury = 1)
+	required_reagents = list(/datum/reagent/toxin/bad_food = 1, /datum/reagent/saltpetre = 1, /datum/reagent/consumable/nutriment = 1, /datum/reagent/space_cleaner = 1, /datum/reagent/consumable/enzyme = 1, /datum/reagent/consumable/tea/hot = 1, /datum/reagent/mercury = 1)
 	required_temp = 374
 
 /datum/chemical_reaction/aranesp
@@ -73,7 +73,7 @@
 	name = "Pump-Up"
 	id = /datum/reagent/drug/pumpup
 	results = list(/datum/reagent/drug/pumpup = 5)
-	required_reagents = list(/datum/reagent/medicine/epinephrine = 2, /datum/reagent/consumable/coffee = 5)
+	required_reagents = list(/datum/reagent/medicine/epinephrine = 2, /datum/reagent/consumable/coffee/hot = 5)
 
 /datum/chemical_reaction/blue_eye
 	name = "Blue-Eye"

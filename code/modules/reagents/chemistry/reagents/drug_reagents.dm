@@ -794,3 +794,50 @@
 		M.emote(pick("twitch","drool","moan","giggle"))
 	..()
 	. = 1
+
+/**
+ * basic wakefulness chem
+ * addiction gets less bad over time rather than the inverse
+ */
+/datum/reagent/drug/caffeine
+	name = "Caffeine"
+	description = "Slightly increases wakefulness. If overdosed it will cause jitters and heart problems."
+	reagent_state = SOLID //powder in pure form
+	color = "#ffffff" //very white
+	overdose_threshold = 20 //please don't consume pure caffeine
+	addiction_threshold = 80 //not easy to get addicted to unless you have way too much
+	trippy = FALSE
+
+/datum/reagent/drug/caffeine/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(prob(1))
+		var/caffeine_message = pick("You feel alert.")
+		to_chat(M, span_notice("[caffeine_message]"))
+	M.adjust_drowsiness(-6 SECONDS * REM)
+	M.AdjustSleeping(-4 SECONDS, FALSE)
+	M.adjust_dizzy(-4 SECONDS * REM)
+
+/datum/reagent/drug/caffeine/overdose_process(mob/living/M)
+	. = ..()
+	M.adjust_jitter_up_to(10 SECONDS, 60 SECONDS)
+	M.adjustOrganLoss(ORGAN_SLOT_HEART, 1.25*REM)
+
+/datum/reagent/drug/caffeine/addiction_act_stage1(mob/living/M)
+	. = ..()
+	if(prob(5) && iscarbon(M))
+		M.adjust_drowsiness(4 SECONDS * REM)
+
+/datum/reagent/drug/caffeine/addiction_act_stage2(mob/living/M)
+	. = ..()
+	if(prob(20) && iscarbon(M))
+		M.adjust_drowsiness(3 SECONDS * REM)
+
+/datum/reagent/drug/caffeine/addiction_act_stage3(mob/living/M)
+	. = ..()
+	if(prob(20) && iscarbon(M))
+		M.adjust_drowsiness(2 SECONDS * REM)
+
+/datum/reagent/drug/caffeine/addiction_act_stage4(mob/living/M)
+	. = ..()
+	if(prob(40) && iscarbon(M))
+		M.adjust_drowsiness(1 SECONDS * REM)

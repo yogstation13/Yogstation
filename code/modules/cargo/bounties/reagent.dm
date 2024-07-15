@@ -40,7 +40,7 @@
 	var/static/list/possible_reagents = list(\
 		/datum/reagent/consumable/ethanol/antifreeze,\
 		/datum/reagent/consumable/ethanol/andalusia,\
-		/datum/reagent/consumable/tea/arnold_palmer,\
+		/datum/reagent/consumable/tea/hot/arnold_palmer,\
 		/datum/reagent/consumable/ethanol/b52,\
 		/datum/reagent/consumable/ethanol/bananahonk,\
 		/datum/reagent/consumable/ethanol/beepsky_smash,\
@@ -66,8 +66,8 @@
 		/datum/reagent/consumable/ethanol/rum_coke,\
 		/datum/reagent/consumable/ethanol/screwdrivercocktail,\
 		/datum/reagent/consumable/ethanol/snowwhite,\
-		/datum/reagent/consumable/soy_latte,\
-		/datum/reagent/consumable/cafe_latte,\
+		/datum/reagent/consumable/coffee/hot/latte/soy,\
+		/datum/reagent/consumable/coffee/hot/latte,\
 		/datum/reagent/consumable/ethanol/syndicatebomb,\
 		/datum/reagent/consumable/ethanol/tequila_sunrise,\
 		/datum/reagent/consumable/ethanol/manly_dorf,\
@@ -112,7 +112,7 @@
 		/datum/reagent/consumable/ethanol/silencer,\
 		/datum/reagent/consumable/ethanol/peppermint_patty,\
 		/datum/reagent/consumable/ethanol/aloe,\
-		/datum/reagent/consumable/pumpkin_latte)
+		/datum/reagent/consumable/coffee/hot/latte/pumpkin)
 
 	var/reagent_type = pick(possible_reagents)
 	wanted_reagent = new reagent_type

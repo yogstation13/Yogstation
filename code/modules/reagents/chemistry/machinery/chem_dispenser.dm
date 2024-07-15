@@ -516,10 +516,10 @@
 	dispensable_reagents = list(
 		/datum/reagent/water,
 		/datum/reagent/consumable/ice,
-		/datum/reagent/consumable/coffee,
+		/datum/reagent/consumable/coffee/hot,
 		/datum/reagent/consumable/cream,
-		/datum/reagent/consumable/tea,
-		/datum/reagent/consumable/icetea,
+		/datum/reagent/consumable/tea/hot,
+		/datum/reagent/consumable/tea/cold,
 		/datum/reagent/consumable/space_cola,
 		/datum/reagent/consumable/rootbeer,
 		/datum/reagent/consumable/tonic,

@@ -346,6 +346,9 @@
 	glass_name = "glass of bug cream"
 	glass_desc = "This came from a WHAT?!"
 
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------Coffee----------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/reagent/consumable/coffee
 	name = "Coffee"
 	description = "Coffee is a brewed drink prepared from roasted seeds, commonly called coffee beans, of the coffee plant."
@@ -358,20 +361,82 @@
 	glass_desc = "Don't drop it, or you'll send scalding liquid and glass shards everywhere."
 
 /datum/reagent/consumable/coffee/overdose_process(mob/living/M)
-	M.adjust_jitter(5 SECONDS)
-	..()
+	. = ..()
+	M.reagents.add_reagent(/datum/reagent/drug/caffeine, 3) //way too much caffeine
 
 /datum/reagent/consumable/coffee/on_mob_life(mob/living/carbon/M)
-	M.adjust_dizzy(-10 SECONDS * REM)
-	M.adjust_drowsiness(-6 SECONDS * REM)
-	M.AdjustSleeping(-40, FALSE)
-	//310.15 is the normal bodytemp.
-	M.adjust_bodytemperature(25 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
+	. = ..()
+	M.reagents.add_reagent(/datum/reagent/drug/caffeine, metabolization_rate) //effectively metabolize into caffeine
+
+/**
+ * hot coffee, heats you up
+ * we do this because having chems impart temperature to you directly would let chemists fry people alive instantly
+ */
+/datum/reagent/consumable/coffee/hot
+	var/heat = 25
+
+/datum/reagent/consumable/coffee/hot/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	M.adjust_bodytemperature(heat * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
 	if(holder.has_reagent(/datum/reagent/consumable/frostoil))
 		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5)
-	..()
-	. = 1
 
+/datum/reagent/consumable/coffee/hot/latte
+	name = "Cafe Latte"
+	description = "A nice, strong and tasty beverage while you are reading."
+	color = "#664300" // rgb: 102, 67, 0
+	quality = DRINK_NICE
+	taste_description = "bitter cream"
+	glass_icon_state = "cafe_latte"
+	glass_name = "cafe latte"
+	glass_desc = "A nice, strong and refreshing beverage while you're reading."
+	heat = 5 //less hot becase of the milk
+
+/datum/reagent/consumable/coffee/hot/latte/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(M.getBruteLoss() && prob(20))
+		M.heal_bodypart_damage(1,0, 0)
+	
+/datum/reagent/consumable/coffee/hot/latte/pumpkin
+	name = "Pumpkin Latte"
+	description = "A mix of pumpkin juice and coffee."
+	color = "#F4A460"
+	quality = DRINK_VERYGOOD
+	nutriment_factor = 3 * REAGENTS_METABOLISM
+	taste_description = "creamy pumpkin"
+	glass_icon_state = "pumpkin_latte"
+	glass_name = "pumpkin latte"
+	glass_desc = "A mix of coffee and pumpkin juice."
+
+/datum/reagent/consumable/coffee/hot/latte/soy
+	name = "Soy Latte"
+	description = "A nice and tasty beverage while you are reading your hippie books."
+	color = "#664300" // rgb: 102, 67, 0
+	quality = DRINK_NICE
+	taste_description = "creamy coffee"
+	glass_icon_state = "soy_latte"
+	glass_name = "soy latte"
+	glass_desc = "A nice and refreshing beverage while you're reading."
+	
+/**
+ * cold coffee, cools you down
+ * we do this because having chems impart temperature to you directly would let chemists fry people alive instantly
+ */
+/datum/reagent/consumable/coffee/ice
+	name = "Iced Coffee"
+	description = "Coffee and ice, refreshing and cool."
+	taste_description = "bitter coldness"
+	glass_icon_state = "icedcoffeeglass"
+	glass_name = "iced coffee"
+	glass_desc = "A drink to perk you up and refresh you!"
+
+/datum/reagent/consumable/coffee/ice/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
+
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------------Tea-----------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/reagent/consumable/tea
 	name = "Tea"
 	description = "Tasty black tea, it has antioxidants, it's good for you!"
@@ -383,15 +448,56 @@
 	glass_desc = "Drinking it from here would not seem right."
 
 /datum/reagent/consumable/tea/on_mob_life(mob/living/carbon/M)
-	M.adjust_dizzy(-2 SECONDS)
-	M.adjust_drowsiness(-1 SECONDS)
+	. = ..()
+	M.reagents.add_reagent(/datum/reagent/drug/caffeine, metabolization_rate) //effectively metabolize into caffeine
 	M.adjust_jitter(-3 SECONDS)
-	M.AdjustSleeping(-20, FALSE)
 	if(M.getToxLoss() && prob(20))
 		M.adjustToxLoss(-1, 0)
+
+/**
+ * hot tea, heats you up
+ * we do this because having chems impart temperature to you directly would let chemists fry people alive instantly
+ */
+/datum/reagent/consumable/tea/hot
+
+/datum/reagent/consumable/tea/hot/on_mob_life(mob/living/carbon/M)
+	. = ..()
 	M.adjust_bodytemperature(20 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
-	..()
-	. = 1
+
+/datum/reagent/consumable/tea/hot/arnold_palmer
+	name = "Arnold Palmer"
+	description = "Encourages the patient to go golfing."
+	color = "#FFB766"
+	quality = DRINK_NICE
+	nutriment_factor = 2
+	taste_description = "bitter tea"
+	glass_icon_state = "arnold_palmer"
+	glass_name = "Arnold Palmer"
+	glass_desc = "You feel like taking a few golf swings after a few swigs of this."
+
+/datum/reagent/consumable/tea/hot/arnold_palmer/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(prob(5))
+		to_chat(M, "<span class = 'notice'>[pick("You remember to square your shoulders.","You remember to keep your head down.","You can't decide between squaring your shoulders and keeping your head down.","You remember to relax.","You think about how someday you'll get two strokes off your golf game.")]</span>")
+
+/**
+ * cold tea, cools you down
+ * we do this because having chems impart temperature to you directly would let chemists fry people alive instantly
+ */
+/datum/reagent/consumable/tea/cold
+	name = "Iced Tea"
+	description = "No relation to a certain rap artist/actor."
+	quality = DRINK_SODA // sweet tea is sugary
+	nutriment_factor = 0
+	taste_description = "sweet tea"
+	glass_icon_state = "icedteaglass"
+	glass_name = "iced tea"
+	glass_desc = "All natural, antioxidant-rich flavour sensation."
+
+/datum/reagent/consumable/tea/cold/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
+
 
 /datum/reagent/consumable/aloejuice
 	name = "Aloe Juice"
@@ -419,62 +525,6 @@
 	glass_desc = "This drink leaves you feeling nostalgic for some reason."
 
 
-/datum/reagent/consumable/tea/arnold_palmer
-	name = "Arnold Palmer"
-	description = "Encourages the patient to go golfing."
-	color = "#FFB766"
-	quality = DRINK_NICE
-	nutriment_factor = 2
-	taste_description = "bitter tea"
-	glass_icon_state = "arnold_palmer"
-	glass_name = "Arnold Palmer"
-	glass_desc = "You feel like taking a few golf swings after a few swigs of this."
-
-/datum/reagent/consumable/tea/arnold_palmer/on_mob_life(mob/living/carbon/M)
-	if(prob(5))
-		to_chat(M, "<span class = 'notice'>[pick("You remember to square your shoulders.","You remember to keep your head down.","You can't decide between squaring your shoulders and keeping your head down.","You remember to relax.","You think about how someday you'll get two strokes off your golf game.")]</span>")
-	..()
-	. = 1
-
-/datum/reagent/consumable/icecoffee
-	name = "Iced Coffee"
-	description = "Coffee and ice, refreshing and cool."
-	color = "#102838" // rgb: 16, 40, 56
-	nutriment_factor = 0
-	taste_description = "bitter coldness"
-	glass_icon_state = "icedcoffeeglass"
-	glass_name = "iced coffee"
-	glass_desc = "A drink to perk you up and refresh you!"
-
-/datum/reagent/consumable/icecoffee/on_mob_life(mob/living/carbon/M)
-	M.adjust_dizzy(-5 SECONDS)
-	M.adjust_drowsiness(-3 SECONDS)
-	M.AdjustSleeping(-40, FALSE)
-	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
-	M.adjust_jitter(5 SECONDS)
-	..()
-	. = 1
-
-/datum/reagent/consumable/icetea
-	name = "Iced Tea"
-	description = "No relation to a certain rap artist/actor."
-	color = "#104038" // rgb: 16, 64, 56
-	quality = DRINK_SODA // sweet tea is sugary
-	nutriment_factor = 0
-	taste_description = "sweet tea"
-	glass_icon_state = "icedteaglass"
-	glass_name = "iced tea"
-	glass_desc = "All natural, antioxidant-rich flavour sensation."
-
-/datum/reagent/consumable/icetea/on_mob_life(mob/living/carbon/M)
-	M.adjust_dizzy(-2 SECONDS)
-	M.adjust_drowsiness(-1 SECONDS)
-	M.AdjustSleeping(-40, FALSE)
-	if(M.getToxLoss() && prob(20))
-		M.adjustToxLoss(-1, 0)
-	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
-	..()
-	. = 1
 
 /datum/reagent/consumable/space_cola
 	name = "Cola"
@@ -487,7 +537,7 @@
 	glass_desc = "A glass of refreshing Space Cola."
 
 /datum/reagent/consumable/space_cola/on_mob_life(mob/living/carbon/M)
-	M.adjust_drowsiness(-5 SECONDS)
+	M.reagents.add_reagent(/datum/reagent/drug/caffeine, metabolization_rate) //effectively metabolize into caffeine
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
 
@@ -502,7 +552,7 @@
 	glass_desc = "A glass of refreshing fizzing root beer."
 
 /datum/reagent/consumable/rootbeer/on_mob_life(mob/living/carbon/M)
-	M.adjust_drowsiness(-5 SECONDS)
+	M.reagents.add_reagent(/datum/reagent/drug/caffeine, metabolization_rate) //effectively metabolize into caffeine
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
 
@@ -554,6 +604,7 @@
 	..()
 
 /datum/reagent/consumable/grey_bull/on_mob_life(mob/living/carbon/M)
+	M.reagents.add_reagent(/datum/reagent/drug/caffeine, metabolization_rate * 2) //effectively metabolize into caffeine
 	M.adjust_jitter(20 SECONDS)
 	M.adjust_dizzy(1 SECONDS)
 	M.remove_status_effect(/datum/status_effect/drowsiness)
@@ -590,7 +641,7 @@
 	glass_desc = "Dr. Gibb. Not as dangerous as the glass_name might imply."
 
 /datum/reagent/consumable/dr_gibb/on_mob_life(mob/living/carbon/M)
-	M.adjust_drowsiness(-6 SECONDS)
+	M.reagents.add_reagent(/datum/reagent/drug/caffeine, metabolization_rate) //effectively metabolize into caffeine
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
 
@@ -694,6 +745,7 @@
 	glass_desc = "You can unleash the ape, but without the pop of the can?"
 
 /datum/reagent/consumable/monkey_energy/on_mob_life(mob/living/carbon/affected_mob)
+	M.reagents.add_reagent(/datum/reagent/drug/caffeine, metabolization_rate * 2) //effectively metabolize into caffeine
 	affected_mob.adjust_jitter(20 SECONDS)
 	affected_mob.adjust_dizzy(2 SECONDS * REM)
 	affected_mob.remove_status_effect(/datum/status_effect/drowsiness)
@@ -723,48 +775,6 @@
 /datum/reagent/consumable/ice/on_mob_life(mob/living/carbon/M)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
-
-/datum/reagent/consumable/soy_latte
-	name = "Soy Latte"
-	description = "A nice and tasty beverage while you are reading your hippie books."
-	color = "#664300" // rgb: 102, 67, 0
-	quality = DRINK_NICE
-	taste_description = "creamy coffee"
-	glass_icon_state = "soy_latte"
-	glass_name = "soy latte"
-	glass_desc = "A nice and refreshing beverage while you're reading."
-
-/datum/reagent/consumable/soy_latte/on_mob_life(mob/living/carbon/M)
-	M.adjust_dizzy(-5 SECONDS)
-	M.adjust_drowsiness(-3 SECONDS)
-	M.SetSleeping(0, FALSE)
-	M.adjust_bodytemperature(5 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
-	M.adjust_jitter(5 SECONDS)
-	if(M.getBruteLoss() && prob(20))
-		M.heal_bodypart_damage(1,0, 0)
-	..()
-	. = 1
-
-/datum/reagent/consumable/cafe_latte
-	name = "Cafe Latte"
-	description = "A nice, strong and tasty beverage while you are reading."
-	color = "#664300" // rgb: 102, 67, 0
-	quality = DRINK_NICE
-	taste_description = "bitter cream"
-	glass_icon_state = "cafe_latte"
-	glass_name = "cafe latte"
-	glass_desc = "A nice, strong and refreshing beverage while you're reading."
-
-/datum/reagent/consumable/cafe_latte/on_mob_life(mob/living/carbon/M)
-	M.adjust_dizzy(-10 SECONDS * REM)
-	M.adjust_drowsiness(-12 SECONDS * REM)
-	M.SetSleeping(0, FALSE)
-	M.adjust_bodytemperature(5 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
-	M.adjust_jitter(5 SECONDS)
-	if(M.getBruteLoss() && prob(20))
-		M.heal_bodypart_damage(1,0, 0)
-	..()
-	. = 1
 
 /datum/reagent/consumable/doctor_delight
 	name = "The Doctor's Delight"
@@ -878,17 +888,6 @@
 		if(isjellyperson(C))
 			to_chat(C, span_notice("Just like us, just like jelly!"))
 	return ..()
-
-/datum/reagent/consumable/pumpkin_latte
-	name = "Pumpkin Latte"
-	description = "A mix of pumpkin juice and coffee."
-	color = "#F4A460"
-	quality = DRINK_VERYGOOD
-	nutriment_factor = 3 * REAGENTS_METABOLISM
-	taste_description = "creamy pumpkin"
-	glass_icon_state = "pumpkin_latte"
-	glass_name = "pumpkin latte"
-	glass_desc = "A mix of coffee and pumpkin juice."
 
 /datum/reagent/consumable/gibbfloats
 	name = "Gibb Floats"

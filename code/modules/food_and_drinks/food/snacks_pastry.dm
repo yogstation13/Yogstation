@@ -579,7 +579,7 @@
 	desc = "Spooky! It's got delicious coffee flavouring!"
 	icon = 'icons/obj/halloween_items.dmi'
 	icon_state = "coffincookie"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/coffee = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/coffee/hot = 3)
 	tastes = list("cookie" = 2, "coffee" = 1, "sweetness" = 1)
 
 /obj/item/reagent_containers/food/snacks/chococornet

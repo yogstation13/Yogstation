@@ -621,13 +621,13 @@
 	color = "#DFDFDF"
 	taste_description = "mayonnaise"
 
-/datum/reagent/consumable/tearjuice
+/datum/reagent/consumable/tea/hotrjuice
 	name = "Tear Juice"
 	description = "A blinding substance extracted from certain onions."
 	color = "#c0c9a0"
 	taste_description = "bitterness"
 
-/datum/reagent/consumable/tearjuice/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/consumable/tea/hotrjuice/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(!istype(M))
 		return
 	if(!permeability)
@@ -642,7 +642,7 @@
 			M.adjust_eye_blur(5)
 	return ..()
 
-/datum/reagent/consumable/tearjuice/on_mob_life(mob/living/carbon/M)
+/datum/reagent/consumable/tea/hotrjuice/on_mob_life(mob/living/carbon/M)
 	..()
 	if(M.eye_blurry)	//Don't worsen vision if it was otherwise fine
 		M.adjust_eye_blur(4)

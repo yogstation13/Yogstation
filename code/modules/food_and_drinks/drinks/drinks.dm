@@ -206,7 +206,7 @@
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "coffee"
-	list_reagents = list(/datum/reagent/consumable/coffee = 30)
+	list_reagents = list(/datum/reagent/consumable/coffee/hot = 30)
 	resistance_flags = FREEZE_PROOF
 	isGlass = FALSE
 	foodtype = BREAKFAST
@@ -252,7 +252,7 @@
 /obj/item/reagent_containers/food/drinks/mug/tea
 	name = "Duke Purple tea"
 	desc = "An insult to Duke Purple is an insult to the Space Queen! Any proper gentleman will fight you, if you sully this tea."
-	list_reagents = list(/datum/reagent/consumable/tea = 30)
+	list_reagents = list(/datum/reagent/consumable/tea/hot = 30)
 
 /obj/item/reagent_containers/food/drinks/mug/coco
 	name = "Dutch hot coco"
