@@ -659,8 +659,7 @@
 	)
 
 /datum/quirk/junkie/caffeine/on_spawn()
-	drug_container_type = pickweight(
-		)
+	drug_container_type = pickweight(weighted_items)
 	return ..()
 
 /datum/quirk/unstable
