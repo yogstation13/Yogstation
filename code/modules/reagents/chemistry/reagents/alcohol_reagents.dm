@@ -8,7 +8,7 @@
 
 /datum/reagent/consumable/ethanol
 	name = "Ethanol"
-	addiction_name = "Alcohol"
+	addiction_name = "alcohol"
 	description = "A well-known alcohol with a variety of applications."
 	color = "#404030" // rgb: 64, 64, 48
 	nutriment_factor = 0
@@ -93,7 +93,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 //////////STOUT AND ITS COCKTAILS//////////
 /datum/reagent/consumable/ethanol/beer/stout
 	name = "Stout Beer"
-	description = "a darker colored beer, made of barley and roast malt."
+	description = "A darker colored beer, made of barley and roast malt."
 	color = "#221915" // rgb: 34, 25, 21
 	taste_description = "malt and chocolate"
 	glass_name = "glass of stout"

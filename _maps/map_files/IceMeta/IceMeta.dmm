@@ -499,6 +499,7 @@
 /obj/structure/railing/corner{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_corner,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "agN" = (
@@ -2224,6 +2225,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
+"aHc" = (
+/obj/structure/stairs/goon/wide/right{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "aHd" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/cable{
@@ -13099,8 +13109,13 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "dRf" = (
-/obj/structure/stairs/north,
-/turf/open/floor/plasteel/dark,
+/obj/structure/stairs/goon/wide/left{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/mine/living_quarters)
 "dRl" = (
 /obj/structure/sign/map/right{
@@ -13657,6 +13672,9 @@
 	},
 /obj/structure/railing{
 	dir = 8
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -17395,6 +17413,7 @@
 /obj/structure/fans/tiny{
 	resistance_flags = 115
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plating,
 /area/mine/abandoned)
 "fiU" = (
@@ -21219,6 +21238,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "glv" = (
@@ -27712,6 +27732,7 @@
 /obj/structure/fans/tiny{
 	resistance_flags = 115
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plating/snowed/colder,
 /area/mine/abandoned)
 "ihb" = (
@@ -32419,6 +32440,15 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
+"jvC" = (
+/obj/structure/stairs/goon/wide/right{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mine/abandoned)
 "jvE" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -35596,6 +35626,9 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "kqF" = (
@@ -37248,6 +37281,9 @@
 	},
 /obj/effect/turf_decal/stripes/corner,
 /obj/structure/railing/corner,
+/obj/effect/turf_decal/ramp_corner{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "kNr" = (
@@ -45529,7 +45565,12 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/break_room)
 "ncA" = (
-/obj/structure/stairs/north,
+/obj/structure/stairs/goon/wide/left{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/mine/abandoned)
 "ncH" = (
@@ -53613,6 +53654,9 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/railing,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "ptR" = (
@@ -55755,6 +55799,9 @@
 	},
 /obj/structure/railing{
 	dir = 4
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -65780,6 +65827,7 @@
 /obj/structure/fans/tiny{
 	resistance_flags = 115
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plating,
 /area/mine/abandoned)
 "sVf" = (
@@ -69421,6 +69469,9 @@
 "tVb" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
+	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -78060,6 +78111,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/foyer)
+"wop" = (
+/obj/structure/stairs/goon/wide,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "wot" = (
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
@@ -79362,6 +79420,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
+"wHy" = (
+/obj/structure/stairs/goon/wide,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mine/abandoned)
 "wHH" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -101751,7 +101816,7 @@ lbu
 lbu
 lbu
 iwT
-ncA
+wHy
 fiM
 iJS
 xXW
@@ -102008,7 +102073,7 @@ lbu
 lbu
 lbu
 iwT
-ncA
+jvC
 igO
 xXW
 kss
@@ -167283,7 +167348,7 @@ ibA
 eQD
 ptD
 lTL
-dRf
+wop
 glq
 hbq
 vhD
@@ -167540,7 +167605,7 @@ hcL
 fNF
 ptD
 lTL
-dRf
+aHc
 glq
 hbq
 shd
