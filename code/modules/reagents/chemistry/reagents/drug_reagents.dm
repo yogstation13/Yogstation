@@ -808,6 +808,7 @@
 	overdose_threshold = 20 //please don't consume pure caffeine
 	addiction_threshold = 30 //not easy to get addicted to unless you have way too much
 	trippy = FALSE
+	var/list/overdose_text = list("Your head pounds.", "You feel lethargic.", "You feel drowsy.", "You feel weak.", "You just want to sleep.")
 
 /datum/reagent/drug/caffeine/on_mob_life(mob/living/carbon/M)
 	. = ..()
@@ -823,22 +824,26 @@
 	M.set_jitter_if_lower(20 SECONDS)
 	M.adjustOrganLoss(ORGAN_SLOT_HEART, 1.25*REM)
 
+/datum/reagent/drug/caffeine/proc/apply_drowsy(mob/living/M)
+	M.adjust_drowsiness_up_to(3 SECONDS * REM, 10 SECONDS)
+	if(prob(50))
+		to_chat(M, span_warning(pick(overdose_text)))
+
+/**
+ * doesn't call the parent addiction acts because it doesn't function the same way
+ */
 /datum/reagent/drug/caffeine/addiction_act_stage1(mob/living/M)
-	. = ..()
-	if(prob(50) && iscarbon(M))
-		M.adjust_drowsiness(3 SECONDS * REM)
+	if(prob(75) && iscarbon(M))
+		apply_drowsy(M)
 
 /datum/reagent/drug/caffeine/addiction_act_stage2(mob/living/M)
-	. = ..()
-	if(prob(40) && iscarbon(M))
-		M.adjust_drowsiness(3 SECONDS * REM)
+	if(prob(60) && iscarbon(M))
+		apply_drowsy(M)
 
 /datum/reagent/drug/caffeine/addiction_act_stage3(mob/living/M)
-	. = ..()
-	if(prob(30) && iscarbon(M))
-		M.adjust_drowsiness(3 SECONDS * REM)
+	if(prob(45) && iscarbon(M))
+		apply_drowsy(M)
 
 /datum/reagent/drug/caffeine/addiction_act_stage4(mob/living/M)
-	. = ..()
-	if(prob(20) && iscarbon(M))
-		M.adjust_drowsiness(3 SECONDS * REM)
+	if(prob(30) && iscarbon(M))
+		apply_drowsy(M)
