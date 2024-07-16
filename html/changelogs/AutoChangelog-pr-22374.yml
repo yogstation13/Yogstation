@@ -1,0 +1,5 @@
+author: "Dorsidwarf, ktlwjec"
+delete-after: true 
+changes: 
+  - tweak: "Fried eggs are made by cracking an egg on the griddle with right-click, and then frying it on the griddle."
+  - imageadd: "Changed the double-yolk egg sprite to a single-yolk one."
