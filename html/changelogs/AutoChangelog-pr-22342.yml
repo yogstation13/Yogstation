@@ -1,0 +1,7 @@
+author: "wonderinghost"
+delete-after: true 
+changes: 
+  - bugfix: "you can finally mail to dorms"
+  - mapping: "repaths disposals and uses the sort map helpers"
+  - mapping: "xenobio and viro get 2 bins (same on box)"
+  - mapping: "heads, viro, qm, and xenobio gets new bins"
