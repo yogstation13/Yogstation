@@ -10,7 +10,7 @@
 #define ICE_CREAM_CHERRY_CHOCOLATE 10
 #define ICE_CREAM_MEAT_LOVERS 11
 #define CONE_CAKE 12
-#define CONE_CHOC 13
+#define CONE_CHOCOLATE 13
 
 /obj/machinery/ice_cream_vat
 	name = "ice cream vat"
@@ -22,6 +22,7 @@
 	use_power = NO_POWER_USE
 	layer = BELOW_OBJ_LAYER
 	max_integrity = 300
+	var/max_storage = 15
 	var/selected_ice_cream = ICE_CREAM_VANILLA
 	var/selected_cone = CONE_CAKE
 	var/static/list/starting_contents_list = list(
@@ -46,7 +47,7 @@
 
 /obj/item/reagent_containers/food/snacks/ice_cream_cone
 	name = "ice cream cone base"
-	desc = "Please report this, as this should not meant to be seen."
+	desc = "Please report this, as this should not be seen."
 	icon = 'icons/obj/kitchen.dmi'
 	bitesize = 3
 	foodtype = GRAIN
