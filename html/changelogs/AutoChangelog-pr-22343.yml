@@ -1,0 +1,7 @@
+author: "wonderinghost"
+delete-after: true 
+changes: 
+  - mapping: "updates recycling room"
+  - mapping: "overhauls disposals on donut, considerably more disposal bins in station with helpers"
+  - mapping: "adds a maint door to det's office"
+  - mapping: "delivery room is a bit bigger for a wrap pipe sort"
