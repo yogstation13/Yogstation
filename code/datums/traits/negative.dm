@@ -655,7 +655,7 @@
 		/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 100,
 		/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy = 100,
 		/obj/item/reagent_containers/food/drinks/mug/tea = 50,
-		/obj/item/reagent_containers/food/drinks/soda_cans/thirteenloko = 10,
+		/obj/item/reagent_containers/food/drinks/soda_cans/thirteenloko = 1, //super rare because it's dangerous
 		/obj/item/reagent_containers/food/drinks/bottle/nukacola = 1 //super rare to get nuka cola because it's actually kinda bad (irradiates you)
 	)
 
