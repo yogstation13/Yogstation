@@ -58,7 +58,7 @@
 
 /datum/chemical_reaction/gravedigger
 	name = "Grave-Digger"
-	id = /datum/reagent/consumable/graveyard
+	id = /datum/reagent/consumable/space_cola/graveyard
 	results = list(/datum/reagent/consumable/space_cola/gravedigger = 3)
 	required_reagents = list(/datum/reagent/consumable/space_cola = 1, /datum/reagent/consumable/space_cola/dr_gibb = 1, /datum/reagent/consumable/space_up = 1) //soda
 
