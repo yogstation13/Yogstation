@@ -642,7 +642,7 @@
 /datum/quirk/junkie/caffeine
 	name = "Caffeine addict"
 	desc = "Whether it's punching through drywall while on Grey Bull, or downing 100 cups of coffee in a day, you can't get enough caffeine."
-	icon = "coffee-pot"
+	icon = "mug-hot"
 	value = -2
 	mood_quirk = TRUE
 	gain_text = span_danger("You could really use some caffeine right about now.")
