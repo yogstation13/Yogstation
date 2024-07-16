@@ -13,7 +13,7 @@
 	var/t_is = p_are()
 	var/obscure_name
 	var/robotic = FALSE //robotic mobs look different under certain circumstances
-	if(mob_biotypes & MOB_ROBOTIC)//please someone tell me this is stupid and i can do it all in one line
+	if(mob_biotypes & MOB_ROBOTIC && !HAS_TRAIT(src, TRAIT_DISGUISED)) //if someone's trying to disguise, always use the default text, it's less obvious because people are used to it
 		robotic = TRUE
 
 	if(isliving(user))
@@ -489,14 +489,14 @@
 	// What examine_tgui.dm uses to determine if flavor text appears as "Obscured".
 	var/face_obscured = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
-	if(HAS_TRAIT(src, TRAIT_HUSK))
+	if(HAS_TRAIT(src, TRAIT_HUSK)) //can't identify hulk
 		flavor_text_link = span_notice("This person has been husked, and is unrecognizable!")
-	else if ((HAS_TRAIT(src, TRAIT_DISFIGURED)))
+	else if (HAS_TRAIT(src, TRAIT_DISFIGURED)) //can't identify disfigured
 		flavor_text_link = span_notice("This person has been horribly disfigured, and is unrecognizable!")
-	else if (!(face_obscured))
-		flavor_text_link = span_notice("[preview_text]... <a href='?src=[REF(src)];lookup_info=open_examine_panel'>\[Look closer?\]</a>")
-	else
+	else if (face_obscured || HAS_TRAIT(src, TRAIT_DISGUISED)) //won't print flavour text of hidden
 		flavor_text_link = span_notice("<a href='?src=[REF(src)];lookup_info=open_examine_panel'>\[Examine closely...\]</a>")
+	else //do it normally
+		flavor_text_link = span_notice("[preview_text]... <a href='?src=[REF(src)];lookup_info=open_examine_panel'>\[Look closer?\]</a>")
 	if (flavor_text_link)
 		. += flavor_text_link
 
