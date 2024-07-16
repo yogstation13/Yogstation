@@ -124,7 +124,7 @@
 	name = "Polonium"
 	id = /datum/reagent/toxin/polonium
 	results = list(/datum/reagent/toxin/polonium = 1)
-	required_reagents = list(/datum/reagent/redspace = 1, /datum/reagent/consumable/nuka_cola = 1, /datum/reagent/uranium= 1)
+	required_reagents = list(/datum/reagent/redspace = 1, /datum/reagent/consumable/energy_drink/nuka_cola = 1, /datum/reagent/uranium= 1)
 	mix_message = span_danger("The mixture suddenly flashes a brilliant red, leaving behind a slurry of pale green glowing slush.")
 
 /datum/chemical_reaction/spewium

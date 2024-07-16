@@ -804,6 +804,7 @@
 	description = "Slightly increases wakefulness. If overdosed it will cause jitters and heart problems."
 	reagent_state = SOLID //powder in pure form
 	color = "#ffffff" //very white
+	metabolization_rate = REAGENTS_METABOLISM
 	overdose_threshold = 20 //please don't consume pure caffeine
 	addiction_threshold = 80 //not easy to get addicted to unless you have way too much
 	trippy = FALSE

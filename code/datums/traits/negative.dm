@@ -642,7 +642,7 @@
 /datum/quirk/junkie/caffeine
 	name = "Caffeine addict"
 	desc = "Whether it's punching through drywall while on Grey Bull, or downing 100 cups of coffee in a day, you can't get enough caffeine."
-	icon = "beer"
+	icon = "coffee-pot"
 	value = -2
 	mood_quirk = TRUE
 	gain_text = span_danger("You could really use some caffeine right about now.")
@@ -651,11 +651,12 @@
 	reagent_type = /datum/reagent/drug/caffeine
 	junkie_warning = "You suddenly feel like you need some caffeine..."
 	var/list/weighted_items = list(
-		/obj/item/reagent_containers/food/drinks/coffee = 20,
-		/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 10,
-		/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy = 10,
-		/obj/item/reagent_containers/food/drinks/mug/tea = 5,
-		/obj/item/reagent_containers/food/drinks/soda_cans/thirteenloko = 1
+		/obj/item/reagent_containers/food/drinks/coffee = 200,
+		/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 100,
+		/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy = 100,
+		/obj/item/reagent_containers/food/drinks/mug/tea = 50,
+		/obj/item/reagent_containers/food/drinks/soda_cans/thirteenloko = 10,
+		/obj/item/reagent_containers/food/drinks/bottle/nukacola = 1 //super rare to get nuka cola because it's actually kinda bad (irradiates you)
 	)
 
 /datum/quirk/junkie/caffeine/on_spawn()

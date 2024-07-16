@@ -17,7 +17,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/icecream = 1,
 		/datum/reagent/consumable/bluecherryjelly = 5,
-		/datum/reagent/consumable/spacemountainwind = 15,
+		/datum/reagent/consumable/space_cola/spacemountainwind = 15,
 		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/spacefreezy
@@ -249,7 +249,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/sillycup = 1,
 		/datum/reagent/consumable/ice = 15,
-		/datum/reagent/consumable/spacemountainwind = 5
+		/datum/reagent/consumable/space_cola/spacemountainwind = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/snowcones/spacemountainwind
 	category = CAT_ICE

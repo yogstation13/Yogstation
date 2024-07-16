@@ -92,7 +92,7 @@
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/filled/nuka_cola
 	name = "Nuka Cola"
-	list_reagents = list(/datum/reagent/consumable/nuka_cola = 50)
+	list_reagents = list(/datum/reagent/consumable/energy_drink/nuka_cola = 50)
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/egg)) //breaking eggs
