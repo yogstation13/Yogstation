@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed worldbreaker users getting stuck immobilized sometimes"
+  - bugfix: "Fixed worldbreaker users being unable to recharge"
