@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - experiment: "Rewrote some species abilities, please report any unusual functionality"
