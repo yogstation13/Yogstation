@@ -8,7 +8,7 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 	if(!prev_lying)
 		gib_animation()
 
-	spill_organs(no_brain, no_organs, no_bodyparts, unequip_everything)
+	spill_organs(no_brain, no_organs, no_bodyparts)
 
 	if(!no_bodyparts)
 		spread_bodyparts(no_brain, no_organs)
