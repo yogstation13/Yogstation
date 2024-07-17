@@ -17,7 +17,7 @@
 	mutantstomach = /obj/item/organ/stomach/cell
 	mutantears = /obj/item/organ/ears/robot
 	mutantlungs = /obj/item/organ/lungs/ipc
-	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
+	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord, /obj/item/organ/cyberimp/chest/cooling_intake)
 	mutant_bodyparts = list("ipc_screen", "ipc_antenna", "ipc_chassis")
 	default_features = list("mcolor" = "#7D7D7D", "ipc_screen" = "Static", "ipc_antenna" = "None", "ipc_chassis" = "Morpheus Cyberkinetics(Greyscale)")
 	meat = /obj/item/stack/sheet/plasteel{amount = 5}
@@ -415,6 +415,7 @@ ipc martial arts stuff
 	punchdamagelow = 5
 	punchdamagehigh = 12
 	punchstunthreshold = 12
+	mutant_organs = list()
 	inherent_traits = list(
 		TRAIT_RESISTCOLD,
 		TRAIT_RADIMMUNE,
@@ -429,7 +430,7 @@ ipc martial arts stuff
 		TRAIT_TOXIMMUNE,
 		TRAIT_EASILY_WOUNDED,
 		TRAIT_NODEFIB,
-		TRAIT_POWERHUNGRY,
+		TRAIT_NOHUNGER, //nuclear powered or some shit, idk
 		TRAIT_DISGUISED
 		)
 
@@ -500,6 +501,8 @@ ipc martial arts stuff
 	special_step_sounds = null
 	special_walk_sounds = null
 	species_traits |= fake_species.species_traits
+	if(!(MUTCOLORS in fake_species.species_traits)) //some species don't have mutcolors
+		species_traits -= MUTCOLORS
 	inherent_traits |= fake_species.inherent_traits
 	if(!(NO_UNDERWEAR in fake_species.species_traits))
 		species_traits -= NO_UNDERWEAR
@@ -509,8 +512,9 @@ ipc martial arts stuff
 	attack_sound = fake_species.attack_sound
 	miss_sound = fake_species.miss_sound
 	nojumpsuit = fake_species.nojumpsuit
-	limbs_id = fake_species.limbs_id
+	limbs_id = fake_species.limbs_id || fake_species.id
 	limb_icon_file = fake_species.limb_icon_file
+	is_dimorphic = fake_species.is_dimorphic
 	use_skintones = fake_species.use_skintones
 	fixed_mut_color = fake_species.fixed_mut_color
 	H.bubble_icon = fake_species.bubble_icon
@@ -544,6 +548,7 @@ ipc martial arts stuff
 	miss_sound = initial(miss_sound)
 	nojumpsuit = initial(nojumpsuit)
 	limbs_id = initial(limbs_id)
+	is_dimorphic = initial(is_dimorphic)
 	limb_icon_file = initial(limb_icon_file)
 	use_skintones = initial(use_skintones)
 	H.bubble_icon = initial(bubble_icon)
