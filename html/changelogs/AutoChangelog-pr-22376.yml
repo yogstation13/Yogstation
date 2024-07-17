@@ -1,0 +1,4 @@
+author: "Likteer, ktlwjec"
+delete-after: true 
+changes: 
+  - rscadd: "Green Beer has an overdose effect (55 units) that will turn your skin green."
