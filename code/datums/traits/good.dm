@@ -297,7 +297,7 @@
 	name = "Crafty"
 	desc = "You're very good at making stuff, and can craft faster than others."
 	icon = "wrench"
-	value = 2
+	value = 1
 	mob_trait = TRAIT_CRAFTY
 	gain_text = span_notice("You feel like crafting some stuff.")
 	lose_text = span_danger("You lose the itch to craft.")
