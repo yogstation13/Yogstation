@@ -640,7 +640,7 @@
 	. = ..()
 
 /datum/quirk/junkie/caffeine
-	name = "Caffeine addict"
+	name = "Caffeine Addict"
 	desc = "Whether it's punching through drywall while on Grey Bull, or downing 100 cups of coffee in a day, you can't get enough caffeine."
 	icon = "mug-hot"
 	value = -2
