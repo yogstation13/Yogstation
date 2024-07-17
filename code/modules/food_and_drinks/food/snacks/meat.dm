@@ -343,7 +343,7 @@
 	filling_color = "#B22222"
 	tastes = list("chicken" = 1, "antibiotics" = 1)
 
-/obj/item/reagent_containers/food/snacks/meat/slab/penguin/MakeGrillable()
+/obj/item/reagent_containers/food/snacks/meat/slab/chicken/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/steak/chicken, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) //Add medium rare later maybe?
 
 /obj/item/reagent_containers/food/snacks/meat/slab/blessed
@@ -556,7 +556,7 @@
 	name = "raw chicken cutlet"
 	tastes = list("chicken" = 1, "antibiotics" = 1)
 
-/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/penguin/MakeGrillable()
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/chicken/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/chicken, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
 
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/axolotl
