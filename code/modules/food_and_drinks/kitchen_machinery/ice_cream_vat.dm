@@ -1,17 +1,3 @@
-#define ICE_CREAM_VANILLA 1
-#define ICE_CREAM_CHOCOLATE 2
-#define ICE_CREAM_STRAWBERRY 3
-#define ICE_CREAM_BLUE 4
-#define ICE_CREAM_LEMON 5
-#define ICE_CREAM_CARAMEL 6
-#define ICE_CREAM_BANANA 7
-#define ICE_CREAM_ORANGE 8
-#define ICE_CREAM_PEACH 9
-#define ICE_CREAM_CHERRY_CHOCOLATE 10
-#define ICE_CREAM_MEAT_LOVERS 11
-#define CONE_CAKE 12
-#define CONE_CHOCOLATE 13
-
 /obj/machinery/ice_cream_vat
 	name = "ice cream vat"
 	desc = "Ding-aling ding dong. Get your Nanotrasen-approved ice cream!"
@@ -22,24 +8,46 @@
 	use_power = NO_POWER_USE
 	layer = BELOW_OBJ_LAYER
 	max_integrity = 300
-	var/max_storage = 15
-	var/selected_ice_cream = ICE_CREAM_VANILLA
-	var/selected_cone = CONE_CAKE
-	var/static/list/starting_contents_list = list(
-												/obj/item/reagent_containers/food/snacks/ice_cream_scoop = 5,
-												/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla = 5,
-												/obj/item/reagent_containers/food/snacks/ice_cream_scoop/chocolate = 5,
-												/obj/item/reagent_containers/food/snacks/ice_cream_scoop/strawberry = 5,
-												/obj/item/reagent_containers/food/snacks/ice_cream_scoop/blue = 5,
-												/obj/item/reagent_containers/food/snacks/ice_cream_scoop/lemon_sorbet = 5,
-												/obj/item/reagent_containers/food/snacks/ice_cream_scoop/caramel = 5,
-												/obj/item/reagent_containers/food/snacks/ice_cream_scoop/banana = 5,
-												/obj/item/reagent_containers/food/snacks/ice_cream_scoop/orange_creamsicle = 5,
-												/obj/item/reagent_containers/food/snacks/ice_cream_scoop/peach = 5,
-												/obj/item/reagent_containers/food/snacks/ice_cream_scoop/cherry_chocolate = 5,
-												/obj/item/reagent_containers/food/snacks/ice_cream_scoop/meat = 5,
-												/obj/item/reagent_containers/food/snacks/ice_cream_cone/cake = 5,
-												/obj/item/reagent_containers/food/snacks/ice_cream_cone/chocolate = 5)
+	var/max_storage = 15 //Max ammount of any one scoop/cone type in storage
+	var/selected_ice_cream = ice_cream_list[1]
+	var/selected_cone = cone_list[1]
+	//List of ice cream scoops to start with and to draw from
+	var/list/ice_cream_list = list(
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/chocolate = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/strawberry = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/blue = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/lemon_sorbet = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/caramel = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/banana = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/orange_creamsicle = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/peach = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/cherry_chocolate = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/meat = 5)
+	//List of cones to start with and to draw from
+	var/list/cone_list = list(
+		/obj/item/reagent_containers/food/snacks/ice_cream_cone/cake = 10,
+		/obj/item/reagent_containers/food/snacks/ice_cream_cone/chocolate = 10)
+
+
+/obj/machinery/ice_cream_vat/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "IceCreamVat", ui)
+		ui.open()
+		ui.set_autoupdate(TRUE)
+
+/obj/machinery/ice_cream_vat/ui_data(mob/user)
+	var/list/items = list()
+	items["cones"] = list()
+	items["ice_cream"] = list()
+	for(var/cone in cone_list)
+		var/list/details = list()
+		details["item_name"] = cone.name
+		details["item_quantity"] = cone.
+		details["item_max_quantity"] = max_storage
+		details["item_type_path"] = cone.type
 
 ///////////////////
 //ICE CREAM CONES//
