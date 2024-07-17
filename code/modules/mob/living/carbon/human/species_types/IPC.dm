@@ -430,8 +430,7 @@ ipc martial arts stuff
 		TRAIT_TOXIMMUNE,
 		TRAIT_EASILY_WOUNDED,
 		TRAIT_NODEFIB,
-		TRAIT_NOHUNGER, //nuclear powered or some shit, idk
-		TRAIT_DISGUISED
+		TRAIT_NOHUNGER //nuclear powered or some shit, idk
 		)
 
 //infiltrators
@@ -519,11 +518,11 @@ ipc martial arts stuff
 	fixed_mut_color = fake_species.fixed_mut_color
 	H.bubble_icon = fake_species.bubble_icon
 	yogs_draw_robot_hair = TRUE
-
 	var/robotic = (fake_species.inherent_biotypes & MOB_ROBOTIC)
 	for(var/obj/item/bodypart/O in H.bodyparts)
 		O.render_like_organic = robotic //make sure to copy limbs as normal
 
+	ADD_TRAIT(H, TRAIT_DISGUISED, type)
 	H.update_body_parts()
 	H.regenerate_icons() //to update limb icon cache with the new damage overlays
 
@@ -557,6 +556,7 @@ ipc martial arts stuff
 	for(var/obj/item/bodypart/O in H.bodyparts)
 		O.render_like_organic = TRUE // Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
 		
+	REMOVE_TRAIT(H, TRAIT_DISGUISED, type)
 	H.update_body_parts()
 	H.regenerate_icons()
 
