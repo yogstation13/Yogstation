@@ -753,6 +753,7 @@
 /datum/reagent/medicine/morphine/on_mob_end_metabolize(mob/living/L)
 	L.unignore_slowdown(type)
 	REMOVE_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
+	SEND_SIGNAL(L, COMSIG_CLEAR_MOOD_EVENT, "[type]_high")
 	..()
 
 /datum/reagent/medicine/morphine/on_mob_life(mob/living/carbon/M)
