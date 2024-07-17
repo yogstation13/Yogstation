@@ -1,0 +1,6 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Kinetic javelins now point in the direction they're being thrown"
+  - tweak: "Kinetic javelins now throw 50% faster"
+  - tweak: "Loyalty javelin now throws 25% slower"
