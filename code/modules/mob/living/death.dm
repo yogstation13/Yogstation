@@ -1,6 +1,6 @@
 GLOBAL_VAR_INIT(permadeath, FALSE)
 
-/mob/living/proc/gib(no_brain, no_organs, no_bodyparts, unequip_everything)
+/mob/living/proc/gib(no_brain, no_organs, no_bodyparts, unequip_everything = TRUE)
 	var/prev_lying = lying
 	if(stat != DEAD)
 		death(TRUE)
