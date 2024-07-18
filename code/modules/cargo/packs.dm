@@ -2836,6 +2836,23 @@
 	crate_name = "mech pilot's suit crate"
 	crate_type = /obj/structure/closet/crate/wooden
 
+/datum/supply_pack/costumes_toys/paintball
+	name = "Mixed Paintball Supply Crate"
+	desc = "Contains four paintball guns and extra ammo."
+	cost = 2500
+	contraband = TRUE
+	contains = list(/obj/item/gun/ballistic/automatic/toy/paintball/blue,
+					/obj/item/gun/ballistic/automatic/toy/paintball/blue,
+					/obj/item/gun/ballistic/automatic/toy/paintball,
+					/obj/item/gun/ballistic/automatic/toy/paintball,
+					/obj/item/ammo_box/magazine/toy/paintball,
+					/obj/item/ammo_box/magazine/toy/paintball,
+					/obj/item/ammo_box/magazine/toy/paintball,
+					/obj/item/ammo_box/magazine/toy/paintball/blue,
+					/obj/item/ammo_box/magazine/toy/paintball/blue,
+					/obj/item/ammo_box/magazine/toy/paintball/blue)
+	crate_name = "mixed paintball supply crate"
+
 /datum/supply_pack/costumes_toys/costume_original
 	name = "Original Costume Crate"
 	desc = "Reenact Shakespearean plays with this assortment of outfits. Contains eight different costumes!"
@@ -2855,6 +2872,25 @@
 					/obj/item/clothing/suit/hooded/bee_costume)
 	crate_name = "original costume crate"
 	crate_type = /obj/structure/closet/crate/wooden
+
+/datum/supply_pack/costumes_toys/paintball_ammo
+	name = "Paintball Ammo Crate"
+	desc = "Plenty of paintball ammo in a variety of colors."
+	cost = 700
+	contraband = TRUE
+	contains = list(/obj/item/ammo_box/magazine/toy/paintball,
+					/obj/item/ammo_box/magazine/toy/paintball,
+					/obj/item/ammo_box/magazine/toy/paintball,
+					/obj/item/ammo_box/magazine/toy/paintball/blue,
+					/obj/item/ammo_box/magazine/toy/paintball/blue,
+					/obj/item/ammo_box/magazine/toy/paintball/blue,
+					/obj/item/ammo_box/magazine/toy/paintball/pink,
+					/obj/item/ammo_box/magazine/toy/paintball/pink,
+					/obj/item/ammo_box/magazine/toy/paintball/purple,
+					/obj/item/ammo_box/magazine/toy/paintball/purple,
+					/obj/item/ammo_box/magazine/toy/paintball/orange,
+					/obj/item/ammo_box/magazine/toy/paintball/orange)
+	crate_name = "paintball ammo crate"
 
 /datum/supply_pack/costumes_toys/costume
 	name = "Standard Costume Crate"

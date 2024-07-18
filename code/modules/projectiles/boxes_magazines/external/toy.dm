@@ -1,6 +1,6 @@
 /obj/item/ammo_box/magazine/toy
 	name = "foam force META magazine"
-	ammo_type = /obj/item/ammo_casing/reusable/foam_dart	
+	ammo_type = /obj/item/ammo_casing/reusable/foam_dart
 	caliber = CALIBER_FOAM
 	var/hugbox = FALSE
 
@@ -81,3 +81,83 @@
 
 /obj/item/ammo_box/magazine/toy/smgm45/hugbox
 	hugbox = TRUE
+
+//paintballs
+/obj/item/ammo_box/magazine/toy/paintball
+	name = "paintball ammo cartridge (red)"
+	ammo_type = /obj/item/ammo_casing/paintball
+	icon_state = "paintballmag"
+	max_ammo = 20
+
+/obj/item/ammo_box/magazine/toy/paintball/blue
+	name = "paintball ammo cartridge (blue)"
+	ammo_type = /obj/item/ammo_casing/paintball/blue
+
+/obj/item/ammo_box/magazine/toy/paintball/pink
+	name = "paintball ammo cartridge (pink)"
+	ammo_type = /obj/item/ammo_casing/paintball/pink
+
+/obj/item/ammo_box/magazine/toy/paintball/purple
+	name = "paintball ammo cartridge (purple)"
+	ammo_type = /obj/item/ammo_casing/paintball/purple
+
+/obj/item/ammo_box/magazine/toy/paintball/orange
+	name = "paintball ammo cartridge (orange)"
+	ammo_type = /obj/item/ammo_casing/paintball/orange
+
+/obj/item/ammo_casing/paintball
+	name = "paintball"
+	icon_state = "paintball"
+	desc = "A red coloured plastic ball filled with paint."
+	color = "#C73232"
+	projectile_type = /obj/projectile/bullet/paintball
+
+/obj/item/ammo_casing/paintball/blue
+	desc = "A blue coloured plastic ball filled with paint."
+	color = "#5998FF"
+	projectile_type = /obj/projectile/bullet/paintball/blue
+
+/obj/item/ammo_casing/paintball/pink
+	desc = "A pink coloured plastic ball filled with paint."
+	color = "#FF69DA"
+	projectile_type = /obj/projectile/bullet/paintball/pink
+
+/obj/item/ammo_casing/paintball/purple
+	desc = "A purple coloured plastic ball filled with paint."
+	color = "#910AFF"
+	projectile_type = /obj/projectile/bullet/paintball/purple
+
+/obj/item/ammo_casing/paintball/orange
+	desc = "An orange coloured plastic ball filled with paint."
+	color = "#FF9326"
+	projectile_type = /obj/projectile/bullet/paintball/orange
+
+/obj/projectile/bullet/paintball
+	damage = 0
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "paintball-live"
+	color = "#C73232"
+
+/obj/projectile/bullet/paintball/blue
+	color = "#5998FF"
+
+/obj/projectile/bullet/paintball/pink
+	color = "#FF69DA"
+
+/obj/projectile/bullet/paintball/purple
+	color = "#910AFF"
+
+/obj/projectile/bullet/paintball/orange
+	color = "#FF9326"
+
+/obj/projectile/bullet/paintball/on_hit(atom/target, blocked = FALSE)
+	if(iscarbon(target))
+		var/mob/living/carbon/human/H = target
+		var/image/paintoverlay = image('icons/effects/paintball.dmi')
+		paintoverlay.color = color
+		paintoverlay.icon_state = pick("1","2","3","4","5","6","7")
+		H.overlays += paintoverlay
+		to_chat(H, span_warning("You feel a sharp sting."))
+		H.adjustStaminaLoss(5)
+	else if(isturf(target))
+		target.color = color //paints walls that it hits with paint
