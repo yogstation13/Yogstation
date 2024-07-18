@@ -615,7 +615,7 @@
 	color = "#8CFF00" // rgb: 135, 255, 0
 	quality = DRINK_SODA
 	taste_description = "tangy lime and lemon soda"
-	glass_icon_state = "glass_yellow"
+	glass_icon_state = "lemonlime"
 	glass_name = "glass of lemon-lime"
 	glass_desc = "You're pretty certain a real fruit has never actually touched this."
 
