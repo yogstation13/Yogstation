@@ -500,7 +500,7 @@
 	name = "flask of unholy water"
 	desc = "Toxic to nonbelievers; reinvigorating to the faithful - this flask may be sipped or thrown."
 	icon = 'icons/obj/drinks.dmi'
-	icon_state = "holyflask"
+	icon_state = "unholyflask"
 	color = "#333333"
 	list_reagents = list(/datum/reagent/fuel/unholywater = 50)
 
