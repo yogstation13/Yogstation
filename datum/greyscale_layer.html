@@ -16,7 +16,7 @@
 <h1>/<a href="datum.html">datum</a>/<a href="datum/greyscale_layer.html">greyscale_layer</a>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3e09e7c64a02b57d2252f07d66208dfdd86c1928/code/datums/greyscale/layer.dm#L1">
+            <a href="https://github.com/yogstation13/Yogstation/blob/a62a0ee847f2401beeaae872cf35307a31139aab/code/datums/greyscale/layer.dm#L1">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;layer.dm 1"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
@@ -35,26 +35,26 @@ The colors var will only contain colors that this layer is configured to use.</t
 Will error on incorrect, missing, or unexpected values.</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/CrossVerify"><aside class="declaration">proc </aside>CrossVerify<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3e09e7c64a02b57d2252f07d66208dfdd86c1928/code/datums/greyscale/layer.dm#L64">
+            <a href="https://github.com/yogstation13/Yogstation/blob/a62a0ee847f2401beeaae872cf35307a31139aab/code/datums/greyscale/layer.dm#L64">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;layer.dm 64"/></a></aside>
         </h3>
         <p>Use this proc for extra verification needed by a particular layer, gets run after all greyscale configs have finished reading their json files.</p><h3 id="proc/DiskRefresh"><aside class="declaration">proc </aside>DiskRefresh<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3e09e7c64a02b57d2252f07d66208dfdd86c1928/code/datums/greyscale/layer.dm#L24">
+            <a href="https://github.com/yogstation13/Yogstation/blob/a62a0ee847f2401beeaae872cf35307a31139aab/code/datums/greyscale/layer.dm#L24">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;layer.dm 24"/></a></aside>
         </h3>
         <p>Override this if you need to do something during a full config refresh from disk, return TRUE if something was changed</p><h3 id="proc/Generate"><aside class="declaration">proc </aside>Generate<aside>(/list/colors, /list/render_steps, /icon/new_icon) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3e09e7c64a02b57d2252f07d66208dfdd86c1928/code/datums/greyscale/layer.dm#L69">
+            <a href="https://github.com/yogstation13/Yogstation/blob/a62a0ee847f2401beeaae872cf35307a31139aab/code/datums/greyscale/layer.dm#L69">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;layer.dm 69"/></a></aside>
         </h3>
         <p>Used to actualy create the layer using the given colors
 Do not override, use InternalGenerate instead</p><h3 id="proc/GetExpectedValues"><aside class="declaration">proc </aside>GetExpectedValues<aside>(/list/required_values, /list/optional_values) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3e09e7c64a02b57d2252f07d66208dfdd86c1928/code/datums/greyscale/layer.dm#L59">
+            <a href="https://github.com/yogstation13/Yogstation/blob/a62a0ee847f2401beeaae872cf35307a31139aab/code/datums/greyscale/layer.dm#L59">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;layer.dm 59"/></a></aside>
         </h3>
         <p>Gathers information from the layer about what variables are expected in the json.
@@ -63,27 +63,27 @@ The lists are formatted like keyname:keytype_define.
 The key name is assigned to the var named the same on the layer type.</p><h3 id="proc/Initialize"><aside class="declaration">proc </aside>Initialize<aside>(icon_file) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3e09e7c64a02b57d2252f07d66208dfdd86c1928/code/datums/greyscale/layer.dm#L20">
+            <a href="https://github.com/yogstation13/Yogstation/blob/a62a0ee847f2401beeaae872cf35307a31139aab/code/datums/greyscale/layer.dm#L20">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;layer.dm 20"/></a></aside>
         </h3>
         <p>Override this to do initial set up</p><h3 id="proc/InternalGenerate"><aside class="declaration">proc </aside>InternalGenerate<aside>(/list/colors, /list/render_steps, /icon/new_icon) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3e09e7c64a02b57d2252f07d66208dfdd86c1928/code/datums/greyscale/layer.dm#L81">
+            <a href="https://github.com/yogstation13/Yogstation/blob/a62a0ee847f2401beeaae872cf35307a31139aab/code/datums/greyscale/layer.dm#L81">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;layer.dm 81"/></a></aside>
         </h3>
         <p>Override this to implement layers.
 The colors var will only contain colors that this layer is configured to use.</p><h3 id="proc/ReadJsonData"><aside class="declaration">proc </aside>ReadJsonData<aside>(/list/json_data) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3e09e7c64a02b57d2252f07d66208dfdd86c1928/code/datums/greyscale/layer.dm#L29">
+            <a href="https://github.com/yogstation13/Yogstation/blob/a62a0ee847f2401beeaae872cf35307a31139aab/code/datums/greyscale/layer.dm#L29">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;layer.dm 29"/></a></aside>
         </h3>
         <p>Handles the processing of the json data and conversion to correct value types.
 Will error on incorrect, missing, or unexpected values.</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/3e09e7c64a02b57d2252f07d66208dfdd86c1928">3e09e7c</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/a62a0ee847f2401beeaae872cf35307a31139aab">a62a0ee</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
