@@ -28,6 +28,7 @@
 	cap = new(src)
 
 /obj/item/device/holoprojector/Destroy()
+	. = ..()
 	for(var/obj/effect/dummy/hologram/H in holograms)
 		qdel(H)
 
