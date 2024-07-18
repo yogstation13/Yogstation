@@ -343,7 +343,7 @@
 	name = "magboot implant"
 	desc = "Integrated maglock implant, allows easy movement in a zero-gravity environment."
 	implant_type = "magboot"
-	var/datum/action/innate/magboots/implant_ability
+	var/datum/action/cooldown/spell/toggle/maglock/implant_ability
 
 /obj/item/organ/cyberimp/leg/magboot/l
 	zone = BODY_ZONE_L_LEG
@@ -355,44 +355,3 @@
 /obj/item/organ/cyberimp/leg/magboot/RemoveEffect()
 	if(implant_ability)
 		implant_ability.Remove(owner)
-	owner.remove_movespeed_modifier("Magbootimplant")
-
-/datum/action/innate/magboots
-	var/lockdown = FALSE
-	name = "Maglock"
-	check_flags = AB_CHECK_CONSCIOUS
-	button_icon_state = "magboots0"
-	button_icon = 'icons/obj/clothing/shoes.dmi'
-	background_icon_state = "bg_default"
-
-/datum/action/innate/magboots/Grant(mob/M)
-	if(!ishuman(M))
-		return
-	. = ..()
-	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(UpdateSpeed))
-
-/datum/action/innate/magboots/Remove(mob/M)
-	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
-	. = ..()
-
-/datum/action/innate/magboots/Trigger()
-	if(!lockdown)
-		ADD_TRAIT(owner, TRAIT_NOSLIPWATER, "maglock implant")
-		ADD_TRAIT(owner, TRAIT_NOSLIPICE, "maglock_implant")
-		ADD_TRAIT(owner, TRAIT_MAGBOOTS, "maglock implant")
-		button_icon_state = "magboots1"
-	else
-		REMOVE_TRAIT(owner, TRAIT_NOSLIPWATER, "maglock implant")
-		REMOVE_TRAIT(owner, TRAIT_NOSLIPICE, "maglock_implant")
-		REMOVE_TRAIT(owner, TRAIT_MAGBOOTS, "maglock implant")
-		button_icon_state = "magboots0"
-	build_all_button_icons()
-	lockdown = !lockdown
-	to_chat(owner, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
-	owner.update_gravity(owner.has_gravity())
-
-/datum/action/innate/magboots/proc/UpdateSpeed()
-	if(lockdown && !HAS_TRAIT(owner, TRAIT_IGNORESLOWDOWN) && owner.has_gravity())
-		owner.add_movespeed_modifier("Magbootimplant", update=TRUE, priority=100, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
-	else if(owner.has_movespeed_modifier("Magbootimplant"))
-		owner.remove_movespeed_modifier("Magbootimplant")

@@ -122,6 +122,12 @@
 
 	if(isliving(target))
 		var/mob/living/living_target = target
+		if(ishuman(target))
+			var/mob/living/carbon/human/species_check = living_target
+			if(species_check?.dna?.species?.species_traits && (NOBLOOD in species_check.dna.species.species_traits))
+				to_chat(user, span_warning("[target] has no blood to draw!."))
+				return SECONDARY_ATTACK_CONTINUE_CHAIN
+
 		var/drawn_amount = reagents.maximum_volume - reagents.total_volume
 		if(target != user)
 			target.visible_message(span_danger("[user] is trying to take a blood sample from [target]!"), \
