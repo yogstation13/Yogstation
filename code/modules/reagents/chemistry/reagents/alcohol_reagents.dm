@@ -2461,7 +2461,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	color = "#FFF1B2"
 	quality = DRINK_FANTASTIC
 	taste_description = "tequila, creme de menthe, and a hint of medicine?"
-	glass_icon_state = "flaming_moe2"
+	glass_icon_state = "flaming_moe"
 	glass_name = "Flaming Moe"
 	glass_desc = "An amazing concoction of various different bar drinks and a secret ingredient"
 
