@@ -1,0 +1,6 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Jellypeople continue to take water damage even when dead"
+  - tweak: "Jellypeople take clone damage from being wet instead of stamina + burn"
+  - tweak: "Jellypeople very slowly regenerate clone damage when at high blood levels and alive"
