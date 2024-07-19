@@ -526,7 +526,7 @@
 	desc = "Repurposed shuttle engine."
 	id = "mech_afterburner"
 	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/melee_weapon/afterburner
+	build_path = /obj/item/mecha_parts/mecha_equipment/afterburner
 	materials = list(/datum/material/iron = 10000, /datum/material/plasma = 5000, /datum/material/uranium = 1000, /datum/material/bluespace = 50)
 	construction_time = 100
 	category = list("Exosuit Equipment")
