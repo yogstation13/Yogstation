@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "fixed a bugged suit being given to paramedics"
+  - tweak: "Moves paramedic clothes from the locker into the medidrobe"
