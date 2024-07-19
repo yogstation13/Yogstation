@@ -373,14 +373,20 @@
 
 ///this gun blows so much ass using it is actually more likely to get you killed
 /datum/dungeon_room_theme/maintenance/lasgun
-	weighted_feature_spawn_list = list(
-		/obj/item/gun/energy/laser/captain/scattershot 
-		)
 
 	weighted_mob_spawn_list = list(
 		/mob/living/simple_animal/hostile/robot/burst = 2,
 		/mob/living/simple_animal/hostile/robot/advanced/ranged = 1
 		)
+
+/datum/dungeon_room_theme/maintenance/lasgun/pre_initialize()
+	. = ..()
+	for(var/i in 1 to 5)
+		if(prob(10))
+			weighted_feature_spawn_list[/obj/item/gun/energy/laser/captain/scattershot ]++
+		else
+			weighted_feature_spawn_list[/obj/item/melee/spear/bonespear/chitinspear]++
+
 ///lathes, nough said
 /datum/dungeon_room_theme/maintenance/autolathe
 	weighted_feature_spawn_list = list(
