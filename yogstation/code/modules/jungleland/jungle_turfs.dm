@@ -255,7 +255,7 @@ Temperature: 126.85 °C (400 K)
 			if(HAS_TRAIT(L,TRAIT_TOXIMMUNE) || HAS_TRAIT(L,TRAIT_TOXINLOVER))
 				return
 			
-			humie.reagents.add_reagent(/datum/reagent/toxic_metabolities, 2 * acid_strength)
+			humie.reagents.add_reagent(/datum/reagent/toxic_metabolites, 2 * acid_strength)
 
 		else if(prob(25 * acid_strength))
 			L.acid_act(5 * acid_strength, 7.5 * acid_strength)
