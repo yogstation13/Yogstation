@@ -3,7 +3,8 @@
 	name = "\improper H.O.N.K"
 	icon_state = "honker"
 	step_in = 3
-	max_integrity = 140
+	max_integrity = 280
+	integrity_failure = 140
 	deflect_chance = 60
 	internal_damage_threshold = 60
 	armor = list(MELEE = -20, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 20, FIRE = 100, ACID = 100)
@@ -11,7 +12,6 @@
 	infra_luminosity = 5
 	operation_req_access = list(ACCESS_THEATRE)
 	internals_req_access = list(ACCESS_MECH_SCIENCE, ACCESS_THEATRE)
-	wreckage = /obj/structure/mecha_wreckage/honker
 	add_req_access = 0
 	max_equip = 3
 	var/squeak = 0

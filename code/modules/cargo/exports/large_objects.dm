@@ -135,9 +135,6 @@
 /datum/export/large/mech/applies_to(obj/O)
 	if(!..())
 		return FALSE
-
-	var/obj/mecha/ME = O
-	ME.wreckage = null // So the mech doesn't blow up in the cargo shuttle
 	if(sellable)
 		return TRUE
 
