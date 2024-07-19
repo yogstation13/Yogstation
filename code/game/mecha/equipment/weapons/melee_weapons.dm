@@ -536,7 +536,11 @@
 	var/list/modifiers = params2list(params)
 	if(modifiers[RIGHT_CLICK])
 		crusher.fire_destabilizer(target, user, params)
-		return
+		return FALSE
+	if(chassis.Adjacent(target) && istype(target, /obj/item/crusher_trophy))
+		var/obj/item/crusher_trophy/trophy = target
+		trophy.add_to(crusher, user)
+		return FALSE
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/kinetic_crusher/special_hit(atom/target)
@@ -628,11 +632,11 @@
 		var/turf/closed/mineral/ore_turf = entering_loc
 		ore_turf.gets_drilled(chassis.occupant, FALSE)
 		hit_something = TRUE
-	if(isgroundlessturf(entering_loc))
-		chassis.throwing.maxrange += 1 // we are literally FLYING!! no ground friction to hold us back!!
+	if(isgroundlessturf(entering_loc)) // we are literally FLYING!! no ground friction to hold us back!!
+		chassis.throwing.maxrange += (chassis.throwing.maxrange - chassis.throwing.dist_travelled < 2 ? 1 : 0.5)
 
 	var/kinetic_damage = max(chassis.force * (initial(chassis.step_in) / 2), minimum_damage) // heavier mechs have more kinetic energy
-	if(istype(chassis, /obj/mecha/working) && lavaland_equipment_pressure_check(get_turf(entering_loc))) // less air resistance means MORE SPEED!!!!
+	if(istype(chassis, /obj/mecha/working/clarke) && lavaland_equipment_pressure_check(get_turf(entering_loc))) // less air resistance means MORE SPEED!!!!
 		kinetic_damage *= 2
 	if(entering_loc.uses_integrity && entering_loc.density)
 		entering_loc.take_damage(kinetic_damage * structure_damage_mult, BRUTE, MELEE, FALSE, null, 50)
@@ -643,6 +647,8 @@
 			continue
 		if(hit_atom.uses_integrity && (hit_atom.density || hit_atom.buckled_mobs?.len))
 			hit_atom.take_damage(kinetic_damage * structure_damage_mult, BRUTE, MELEE, FALSE, null, 50)
+			if(istype(hit_atom, /obj/structure/flora))
+				hit_atom.atom_destruction(BRUTE)
 			if(!hit_atom.anchored)
 				hit_atom.throw_at(get_step(hit_atom, get_dir(chassis, hit_atom)), 1, 5, chassis.occupant, TRUE)
 			hit_something = TRUE
@@ -660,7 +666,8 @@
 		playsound(entering_loc, 'sound/effects/meteorimpact.ogg', 25, TRUE)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/afterburner/proc/after_move()
-	if(!chassis.throwing || !chassis.has_gravity())
+	var/turf/chassis_turf = get_turf(chassis)
+	if(!chassis.throwing || !chassis.has_gravity() || isgroundlessturf(chassis_turf))
 		return
 	playsound(chassis.loc, chassis.stepsound, 50, TRUE)
 
