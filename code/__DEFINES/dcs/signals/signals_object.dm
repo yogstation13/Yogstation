@@ -143,9 +143,6 @@
 
 ///from base of mob/living/carbon/attacked_by(): (mob/living/carbon/target, mob/living/user, hit_zone)
 #define COMSIG_ITEM_ATTACK_ZONE "item_attack_zone"
-///from base of obj/item/hit_reaction(): (list/args)
-#define COMSIG_ITEM_HIT_REACT "item_hit_react"
-	#define COMPONENT_HIT_REACTION_BLOCK (1<<0)
 
 /// from /datum/component/cleave_attack/perform_sweep(): (atom/target, obj/item/item, mob/living/user, params) 
 #define COMSIG_ATOM_CLEAVE_ATTACK "atom_cleave_attack"

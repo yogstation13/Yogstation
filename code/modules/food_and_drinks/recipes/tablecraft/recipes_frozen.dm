@@ -15,6 +15,7 @@
 /datum/crafting_recipe/food/spacefreezy
 	name ="Space freezy"
 	reqs = list(
+		/obj/item/reagent_containers/food/snacks/icecream = 1,
 		/datum/reagent/consumable/bluecherryjelly = 5,
 		/datum/reagent/consumable/spacemountainwind = 15,
 		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla = 1
@@ -25,6 +26,7 @@
 /datum/crafting_recipe/food/sundae
 	name ="Sundae"
 	reqs = list(
+		/obj/item/reagent_containers/food/snacks/icecream = 1,
 		/obj/item/reagent_containers/food/snacks/grown/cherries = 1,
 		/obj/item/reagent_containers/food/snacks/grown/banana = 1,
 		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla = 1
@@ -35,6 +37,7 @@
 /datum/crafting_recipe/food/honkdae
 	name ="Honkdae"
 	reqs = list(
+		/obj/item/reagent_containers/food/snacks/icecream = 1,
 		/obj/item/clothing/mask/gas/clown_hat = 1,
 		/obj/item/reagent_containers/food/snacks/grown/cherries = 1,
 		/obj/item/reagent_containers/food/snacks/grown/banana = 2,

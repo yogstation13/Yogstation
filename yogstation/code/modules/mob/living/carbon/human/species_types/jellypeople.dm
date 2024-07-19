@@ -11,16 +11,20 @@
 	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, PROC_REF(handle_altclick))
 
 /datum/species/jelly/slime/proc/handle_altclick(mob/living/carbon/human/M, mob/living/carbon/human/target)
-	if(M && M.mind && swap_body && swap_body.can_swap(target))
-		swap_body.swap_to_dupe(M.mind, target)
+	if(M && M.mind)
+		var/datum/action/innate/swap_body/this_swap = locate() in instantiated_abilities
+		if(!this_swap || !this_swap.can_swap(target))
+			return
+		this_swap.swap_to_dupe(M.mind, target)
 		return COMSIG_MOB_CANCEL_CLICKON
 
 /datum/action/innate/swap_body/swap_to_dupe(datum/mind/M, mob/living/carbon/human/dupe)
 	var/mob/living/carbon/human/old = M.current
 	. = ..()
 	if(old != M.current && dupe == M.current && isslimeperson(dupe))
-		var/datum/species/jelly/slime/other_spec = dupe.dna.species
-		var/datum/action/innate/swap_body/other_swap = other_spec.swap_body
+		var/datum/action/innate/swap_body/other_swap = locate() in dupe.actions
+		if(!other_swap)
+			return
 		// theoretically the transfer_to proc is supposed to transfer the ui from the mob.
 		// so I try to get the UI from one of the two mobs and schlump it over to the new action button
 		var/datum/tgui/ui = SStgui.get_open_ui(old, src, "main") || SStgui.get_open_ui(dupe, src, "main")
@@ -40,10 +44,10 @@
 	var/mob/living/carbon/human/dupe = M.current
 	if(old != dupe && isslimeperson(dupe) && isslimeperson(old))
 		// transfer the swap-body ui if it's open
-		var/datum/species/jelly/slime/this_spec = old.dna.species
-		var/datum/species/jelly/slime/other_spec = dupe.dna.species
-		var/datum/action/innate/swap_body/this_swap = this_spec.swap_body
-		var/datum/action/innate/swap_body/other_swap = other_spec.swap_body
+		var/datum/action/innate/swap_body/this_swap = locate() in old.actions
+		var/datum/action/innate/swap_body/other_swap = locate() in dupe.actions
+		if(!this_swap && !other_swap)
+			return
 		var/datum/tgui/ui = SStgui.get_open_ui(old, this_swap, "main") || SStgui.get_open_ui(dupe, this_swap, "main")
 		if(ui)
 			SStgui.on_close(ui) // basically removes it from lists is all this proc does.

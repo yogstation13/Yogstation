@@ -753,6 +753,7 @@
 /datum/reagent/medicine/morphine/on_mob_end_metabolize(mob/living/L)
 	L.unignore_slowdown(type)
 	REMOVE_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
+	SEND_SIGNAL(L, COMSIG_CLEAR_MOOD_EVENT, "[type]_high")
 	..()
 
 /datum/reagent/medicine/morphine/on_mob_life(mob/living/carbon/M)
@@ -1289,7 +1290,7 @@
 
 /datum/reagent/medicine/naloxone
 	name = "Naloxone"
-	description = "Rapidly purges most hazardous chemicals. Causes muscle weakness, and in higher dosages, brain and liver damage"
+	description = "Rapidly purges most hazardous chemicals. Causes muscle weakness, and in higher dosages, brain and liver damage."
 	reagent_state = LIQUID
 	color = "#27870a"
 	overdose_threshold = 20

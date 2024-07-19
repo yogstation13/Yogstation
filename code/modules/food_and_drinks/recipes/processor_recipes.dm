@@ -57,6 +57,16 @@
 	output = /obj/item/reagent_containers/food/snacks/raw_meatball/bear
 	blacklist = null
 
+/datum/food_processor_process/chicken
+	input = /obj/item/reagent_containers/food/snacks/meat/slab/chicken
+	output = /obj/item/reagent_containers/food/snacks/raw_meatball/chicken
+	blacklist = null
+
+/datum/food_processor_process/cutlet/chicken
+	input = /obj/item/reagent_containers/food/snacks/meat/cutlet/chicken
+	output = /obj/item/reagent_containers/food/snacks/raw_meatball/chicken
+	blacklist = null
+
 /datum/food_processor_process/bacon
 	input = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet
 	output = /obj/item/reagent_containers/food/snacks/meat/rawbacon
