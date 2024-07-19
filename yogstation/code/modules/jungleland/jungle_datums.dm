@@ -598,5 +598,5 @@
 		holder.remove_reagent(type, volume)
 
 
-#undef STAGE_1_THRESHOLD
+#undef STAGE_THRESHOLD
 #undef ALERT_ID
