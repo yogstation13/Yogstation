@@ -1363,6 +1363,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cig_paper_pack"
+	foldable = null
 
 /obj/item/storage/box/rollingpapers/Initialize(mapload)
 	. = ..()
