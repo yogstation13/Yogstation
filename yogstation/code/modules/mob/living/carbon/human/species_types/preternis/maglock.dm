@@ -1,10 +1,11 @@
 /datum/action/cooldown/spell/toggle/maglock
 	name = "Maglock"
+	desc = "Enable and disable your mag-pulse traction system."
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "magboots0"
 	button_icon = 'icons/obj/clothing/shoes.dmi'
-	background_icon_state = "bg_default"
-	overlay_icon_state = "bg_alien_border"
+	background_icon_state = ACTION_BUTTON_DEFAULT_BACKGROUND
+	overlay_icon_state = null
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/toggle/maglock/Grant(mob/M)
@@ -36,3 +37,5 @@
 		owner.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown = 1, blacklisted_movetypes=(FLYING|FLOATING))
 	else
 		owner.remove_movespeed_modifier(type)
+
+/datum/action/cooldown/spell/toggle/maglock/implant //subtype so the implant doesn't remove the preternis version
