@@ -1,0 +1,4 @@
+author: "cark"
+delete-after: true 
+changes: 
+  - mapping: "replaces the wrench in cere shuttle medbay with a medical wrench"
