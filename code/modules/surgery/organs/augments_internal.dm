@@ -31,7 +31,7 @@
 		if(BODY_ZONE_R_ARM)
 			slot = ORGAN_SLOT_RIGHT_ARM_AUG
 		else
-			CRASH("Invalid zone for [type]")
+			stack_trace("Invalid zone for [type]")
 			return FALSE
 	return TRUE
 
