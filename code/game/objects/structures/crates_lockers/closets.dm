@@ -666,7 +666,7 @@ GLOBAL_LIST_EMPTY(lockers)
 		air_contents = null
 
 /obj/structure/closet/return_air()
-	if(welded)
+	if(air_contents)
 		return air_contents
 	return ..()
 
