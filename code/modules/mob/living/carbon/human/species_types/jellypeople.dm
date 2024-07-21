@@ -584,9 +584,12 @@
 	var/activation_type = SLIME_ACTIVATE_MINOR
 	var/datum/species/jelly/luminescent/species
 
-/datum/action/innate/use_extract/New(_species)
-	..()
-	species = _species
+/datum/action/innate/use_extract/link_to(Target)
+	. = ..()
+	if(ishuman(target))
+		var/mob/living/carbon/human/humie = target
+		if(humie?.dna?.species)
+			species = humie.dna.species
 
 /datum/action/innate/use_extract/IsAvailable(feedback = FALSE)
 	if(..())
