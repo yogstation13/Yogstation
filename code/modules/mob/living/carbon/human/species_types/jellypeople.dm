@@ -456,11 +456,12 @@
 		around.</span>",
 		span_notice("...and move this one instead."))
 
-
-///////////////////////////////////LUMINESCENTS//////////////////////////////////////////
-
-//Luminescents are able to consume and use slime extracts, without them decaying.
-
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------Luminescents------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Luminescents are able to consume and use slime extracts, without them decaying.
+ */
 /datum/species/jelly/luminescent
 	name = "Luminescent"
 	plural_form = null
