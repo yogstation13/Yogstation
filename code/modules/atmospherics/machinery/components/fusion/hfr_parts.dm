@@ -1,14 +1,14 @@
 /**
  * This file contain the eight parts surrounding the main core, those are: fuel input, moderator input, waste output, interface and the corners
  * The file also contain the guicode of the machine
- * hours wasted making the syndie ones work: 1
+ * hours wasted making the syndie ones work: 2
  */
 /obj/machinery/atmospherics/components/unary/hypertorus
 	icon = 'icons/obj/atmospherics/components/hypertorus.dmi'
 	icon_state = "core_off"
 
-	name = "thermomachine"
-	desc = "Heats or cools gas in connected pipes."
+	name = "generic HFR part"
+	desc = "call 1-800-CODER immediately, someone (probably a mapper or admin) really dun fucked up here"
 	anchored = TRUE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
@@ -123,7 +123,7 @@
 	circuit = /obj/item/circuitboard/machine/HFR_waste_output
 
 /obj/machinery/atmospherics/components/unary/hypertorus/waste_output/syndicate
-	circuit = /obj/item/circuitboard/machine/HFR_waste_input
+	circuit = /obj/item/circuitboard/machine/HFR_waste_output //if this fails tests i will not be held responsible, i did not write this code
 	syndicate_machine = TRUE
 	icon_state = "waste_output_syndie_off"
 	icon_state_open = "waste_output_syndie_open"
