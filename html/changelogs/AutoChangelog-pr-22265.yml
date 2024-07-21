@@ -1,0 +1,6 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Enables jungleland's acid rain"
+  - tweak: "jungleland acid rain only injects toxic metabolites rather than apply acid"
+  - bugfix: "jungleland mobs now have the proper weather immunities"
