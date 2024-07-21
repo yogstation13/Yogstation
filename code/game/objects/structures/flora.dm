@@ -1,5 +1,5 @@
 /obj/structure/flora
-	resistance_flags = FLAMMABLE
+	resistance_flags = FLAMMABLE | UNACIDABLE
 	max_integrity = 150
 	anchored = TRUE
 
