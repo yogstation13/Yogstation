@@ -1,0 +1,6 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes guass rifle from generating infinite sparks when shooting with an empty chamber"
+  - bugfix: "Fixes gauss rifle having invisible projectiles"
+  - spellcheck: "fixes gauss rifle having improper capitalization"
