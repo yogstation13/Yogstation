@@ -444,6 +444,44 @@
 	. = ..()
 	AddComponent(/datum/component/slippery, 30)
 
+/obj/item/reagent_containers/food/snacks/roast_dinner
+	name = "roast dinner"
+	desc = "A luxuriously roasted chicken, accompanied by cabbage, parsnip, potatoes, peas, stuffing and a small boat of gravy."
+	icon_state = "full_roast"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 21, /datum/reagent/consumable/nutriment/vitamin = 6)
+	tastes = list("chicken" = 3, "vegetables" = 1, "gravy" = 1)
+	foodtype = MEAT | VEGETABLES | GRAIN
+	w_class = WEIGHT_CLASS_NORMAL
+	slices_num = 3
+	slice_path = /obj/item/reagent_containers/food/snacks/roast_slice
+
+/obj/item/reagent_containers/food/snacks/roast_slice
+	name = "roast dinner portion"
+	desc = "A small plate of roast chicken, peas, cabbage, parsnips, potatoes, stuffing and gravy."
+	icon_state = "roast_slice"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 7, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("chicken" = 3, "vegetables" = 1, "gravy" = 1)
+	foodtype = MEAT | VEGETABLES | GRAIN
+
+/obj/item/reagent_containers/food/snacks/roast_dinner_tofu
+	name = "tofu roast dinner"
+	desc = "A luxuriously roasted tofu-'chicken', accompanied by cabbage, parsnip, potatoes, peas, stuffing and a small boat of soy-based gravy."
+	icon_state = "full_roast_tofu"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 21, /datum/reagent/consumable/nutriment/vitamin = 6)
+	tastes = list("tofu" = 3, "vegetables" = 1, "gravy" = 1)
+	foodtype = VEGETABLES | GRAIN
+	w_class = WEIGHT_CLASS_NORMAL
+	slices_num = 3
+	slice_path = /obj/item/reagent_containers/food/snacks/roast_slice_tofu
+
+/obj/item/reagent_containers/food/snacks/roast_slice_tofu
+	name = "tofu roast dinner portion"
+	desc = "A small plate of roast tofu-'chicken', peas, cabbage, parsnips, potatoes, stuffing and soy-based gravy."
+	icon_state = "roast_slice_tofu"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 7, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("tofu" = 3, "vegetables" = 1, "gravy" = 1)
+	foodtype = VEGETABLES | GRAIN
+
 ////////////////////////////////////////////ANIMAL CUBES////////////////////////////////////////////
 
 /obj/item/reagent_containers/food/snacks/monkeycube
