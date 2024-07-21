@@ -1,0 +1,4 @@
+author: "ktlwjec"
+delete-after: true 
+changes: 
+  - bugfix: "Rolling paper pack will no longer turn invisible after removing a rolling paper."
