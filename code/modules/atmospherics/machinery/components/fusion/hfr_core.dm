@@ -172,7 +172,7 @@
 /obj/machinery/atmospherics/components/unary/hypertorus/core/syndicate
 	desc = "This is the Hypertorus Fusion Reactor core, an advanced piece of technology to finely tune the reaction inside of the machine. It has I/O for cooling gases. This one has been modified by the Syndicate, both to look cool and only transmit on Syndicate frequencies."
 	radio_key = /obj/item/encryptionkey/syndicate
-	syndicate_machine = 1
+	syndicate_machine = TRUE
 	icon_state = "core_syndie_off"
 	icon_state_open = "core_syndie_open"
 	icon_state_off = "core_syndie_off"
