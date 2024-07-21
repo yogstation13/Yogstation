@@ -312,7 +312,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/yog_jungle/blobby/Initialize(mapload,spawned_size = 3)
 	. = ..()
-	current_size = spawned_size > 0 ? spawned_size : current_size
+	current_size = clamp(spawned_size, 1, current_size)
 	melee_damage_lower = melee_damage_lower * current_size
 	melee_damage_upper = melee_damage_upper * current_size
 	var/matrix/M = new

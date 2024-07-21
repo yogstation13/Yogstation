@@ -115,19 +115,21 @@
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	crusher_loot = /obj/item/crusher_trophy/jungleland/blob_brain
+	/// Increments up as splits happen, used to shrink the mob
 	var/stage = 1
+	/// How much health needs to be lost to split off new blobs
+	var/stage_threshold = 100 //every 100 health lost, split off
 
 /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_blobby/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
-	if((stage == 1 && health <= 300) || (stage == 2 && health <= 200) || (stage == 3 && health <= 100))
+	if(stage < (maxHealth/stage_threshold - health/stage_threshold) + 1)
 		increment_stage()
-		return
 
 /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_blobby/proc/increment_stage()
 	if(!target)
 		return
-	var/mob/living/simple_animal/hostile/A = new /mob/living/simple_animal/hostile/asteroid/yog_jungle/blobby(get_step(src,turn(get_dir(src,target),90)),4 - stage)
-	var/mob/living/simple_animal/hostile/B = new /mob/living/simple_animal/hostile/asteroid/yog_jungle/blobby(get_step(src,turn(get_dir(src,target),-90)),4 - stage)
+	var/mob/living/simple_animal/hostile/A = new /mob/living/simple_animal/hostile/asteroid/yog_jungle/blobby(get_step(src,turn(get_dir(src,target),90)), 4 - stage)
+	var/mob/living/simple_animal/hostile/B = new /mob/living/simple_animal/hostile/asteroid/yog_jungle/blobby(get_step(src,turn(get_dir(src,target),-90)), 4 - stage)
 	A.PickTarget(list(target))
 	B.PickTarget(list(target))
 	stage++
@@ -173,7 +175,7 @@
 	addtimer(CALLBACK(src, PROC_REF(finish_shoot), targeted_atom), 1 SECONDS) //give it a slight telegraph before doing the attack
 
 /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_dryad/proc/finish_shoot(atom/targeted_atom)
-	for(var/i in 0 to rand(1, max_spawn))
+	for(var/i in 1 to rand(1, max_spawn))
 		var/to_spawn = pickweight(spawnables)
 		var/mob/living/simple_animal/hostile/spawned = new to_spawn(get_step(src,pick(GLOB.cardinals)))
 		spawned.PickTarget(targeted_atom)
