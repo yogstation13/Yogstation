@@ -229,3 +229,14 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/roast_dinner_tofu
 	category = CAT_MEAT
+
+
+/datum/crafting_recipe/food/fried_chicken
+	name = "Fried Chicken"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/meat/steak/chicken = 1,
+		/datum/reagent/consumable/corn_starch = 5,
+		/datum/reagent/consumable/flour = 5
+	)
+	result = /obj/item/reagent_containers/food/snacks/fried_chicken
+	category = CAT_MEAT
