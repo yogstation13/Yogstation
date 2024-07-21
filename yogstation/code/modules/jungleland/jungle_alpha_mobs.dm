@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha
 	gold_core_spawnable = NO_SPAWN
 	sentience_type = SENTIENCE_BOSS
-	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
+	mob_biotypes = MOB_BEAST | MOB_ORGANIC
 
 /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/death(gibbed)
 	new /obj/structure/closet/crate/necropolis/tendril(loc)

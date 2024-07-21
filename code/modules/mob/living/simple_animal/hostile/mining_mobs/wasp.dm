@@ -6,6 +6,7 @@
 	icon_state = "wasp"
 	icon_living = "wasp"
 	icon_aggro = "wasp"
+	mob_biotypes = (MOB_BEAST | MOB_ORGANIC)
 	icon_dead = "wasp_dead"
 	icon_gib = "syndicate_gib"
 	throw_message = "bounces harmlessly off the"
@@ -13,7 +14,10 @@
 	movement_type = FLYING
 	ranged = 1
 	ranged_cooldown_time = 120
+	speak = list("bzzzzz")
 	speak_emote = list("buzzes")
+	emote_hear = list("buzzes")
+	emote_taunt = list("buzzes")	
 	vision_range = 5
 	aggro_vision_range = 9
 	speed = 2

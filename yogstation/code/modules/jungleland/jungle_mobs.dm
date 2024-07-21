@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/asteroid/yog_jungle //yog_jungle and not just jungle because TG has some mobs under /jungle/ that i dont want to fuck with and override (they are unused, but like whats the point..)
 	icon = 'yogstation/icons/mob/jungle.dmi'
+	mob_biotypes = MOB_BEAST | MOB_ORGANIC
 	vision_range = 4
-	pressure_resistance = 100
  
 /mob/living/simple_animal/hostile/asteroid/yog_jungle/attacked_by(obj/item/I, mob/living/user)
 	if(stat == CONSCIOUS && AIStatus != AI_OFF && !client && user)
@@ -14,7 +14,6 @@
 	icon_state = "dryad"
 	icon_living = "dryad"
 	icon_dead = "dryad_dead"
-	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
 	speak = list("eak!","sheik!","ahik!","keish!")
 	speak_emote = list("shimmers", "vibrates")
 	emote_hear = list("vibes.","sings.","shimmers.")
@@ -22,7 +21,6 @@
 	speak_chance = 1
 	taunt_chance = 1
 	turns_per_move = 1
-	butcher_results = list()
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "hits"
@@ -54,7 +52,6 @@
 	icon_state = "corrupted_dryad"
 	icon_living = "corrupted_dryad"
 	icon_dead = "corrupted_dryad_dead"
-	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
 	speak = list("eak!","sheik!","ahik!","keish!")
 	speak_emote = list("shimmers", "vibrates")
 	emote_hear = list("vibes.","sings.","shimmers.")
@@ -82,7 +79,6 @@
 	icon_state = "meduracha"
 	icon_living = "meduracha"
 	icon_dead = "meduracha_dead"
-	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
 	speak = list("hgrah!","blrp!","poasp!","ahkr!")
 	speak_emote = list("bubbles", "vibrates")
 	emote_hear = list("gazes.","bellows.","splashes.")
@@ -156,7 +152,6 @@
 	icon_state = "skin_twister"
 	icon_living = "skin_twister"
 	icon_dead = "skin_twister_dead"
-	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
 	speak = list("AGRH!","SAGH!","REAAH!","REEIK!")
 	speak_emote = list("roars", "howls")
 	emote_hear = list("stalks.","listens.","hears.")
@@ -286,7 +281,6 @@
 	icon_state = "blobby"
 	icon_living = "blobby"
 	icon_dead = "blobby_dead"
-	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
 	speak = list("brbl","bop","pop","blsp")
 	speak_emote = list("bops", "pops")
 	emote_hear = list("vibrates.","listens.","hears.")
@@ -345,12 +339,10 @@
 /mob/living/simple_animal/hostile/asteroid/wasp/yellowjacket
 	name = "yellow jacket"
 	desc = "A large and aggressive creature with a massive stinger."
-	pressure_resistance = 100
 	move_to_delay = 6
 	maxHealth = 160
 	health = 160
 	butcher_results = list(/obj/item/stinger = 1,/obj/item/stack/sheet/animalhide/weaver_chitin = 1, /obj/item/stack/sheet/sinew = 1, /obj/item/stack/sheet/bone = 1)
-	loot = list()
 	alpha_type = /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_yellowjacket
 
 //the same thing, but with malaria instead of toxins
@@ -361,26 +353,16 @@
 	icon_state = "mosquito"
 	icon_living = "mosquito"
 	icon_dead = "mosquito_dead"
-	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
-	speak = list("bzzzzz")
-	speak_emote = list("buzzes")
-	emote_hear = list("buzzes")
-	emote_taunt = list("buzzes")	
-	move_to_delay = 4
-	ranged_cooldown_time = 3 SECONDS
-	pressure_resistance = 100
-	speak_chance = 0
-	taunt_chance = 0
-	turns_per_move = 0
-	butcher_results = list(/obj/item/stinger = 1,/obj/item/stack/sheet/animalhide/weaver_chitin = 1, /obj/item/stack/sheet/sinew = 2)
-	response_help  = "pets"
-	response_disarm = "gently pushes aside"
-	response_harm   = "hits"
-	maxHealth = 60
+	maxHealth = 60 //swat it once and it dies
 	health = 60
-	spacewalk = TRUE
-	melee_damage_lower = 20
+	melee_damage_lower = 20 //hits harder
 	melee_damage_upper = 20
+	move_to_delay = 4 //moves faster
+	turns_per_move = 0
+	ranged_cooldown_time = 3 SECONDS //dashes faster
+
+	butcher_results = list(/obj/item/stinger = 1,/obj/item/stack/sheet/animalhide/weaver_chitin = 1, /obj/item/stack/sheet/sinew = 2)
+	spacewalk = TRUE
 	alpha_type = /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_yellowjacket/mosquito
 	poison_per_attack = 0
 	dash_speed = 0.8
@@ -412,7 +394,6 @@
 	icon_living = "emeraldspider"
 	icon_dead = "emeraldspider_dead"
 	butcher_results = list(/obj/item/stack/sheet/bone = 4, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/animalhide/weaver_chitin = 4, /obj/item/reagent_containers/food/snacks/meat/slab/spider = 2)
-	loot = list()
 	attacktext = "bites"
 	gold_core_spawnable = HOSTILE_SPAWN
 	health = 240

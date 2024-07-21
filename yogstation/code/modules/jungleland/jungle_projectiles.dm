@@ -13,6 +13,11 @@
 	damage = 20
 	armor_flag = MELEE
 
+/obj/projectile/jungle/damage_orb/on_hit(atom/target, blocked)
+	if(istype(target, /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_dryad) || istype(target, /mob/living/simple_animal/hostile/asteroid/yog_jungle/corrupted_dryad))
+		return BULLET_ACT_FORCE_PIERCE
+	return ..()
+
 /obj/projectile/jungle/meduracha_spit
 	name = "Glob of toxic goo"
 	icon_state = "meduracha_spit"
