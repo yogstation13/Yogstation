@@ -1,0 +1,4 @@
+author: "N3D6"
+delete-after: true 
+changes: 
+  - rscdel: "removes teg from roundstart rotation (stop adding it back dear god)"
