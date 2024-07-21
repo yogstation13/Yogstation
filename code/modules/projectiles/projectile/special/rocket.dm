@@ -98,8 +98,9 @@
 
 /obj/projectile/bullet/bolt
 	name = "bolt"
-	icon_state = "bolt"
 	desc = "A smaller and faster rod."
+	icon_state = "ka_tracer"
+	color = COLOR_ASSISTANT_GRAY
 	damage = 25
 
 /obj/projectile/bullet/cartridge

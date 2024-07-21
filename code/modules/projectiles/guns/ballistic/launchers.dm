@@ -123,7 +123,7 @@
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/gauss
-	name = "Gauss rifle"
+	name = "gauss rifle"
 	desc = "A makeshift gauss rifle, barely holding together with tape and cables"
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "gauss"
