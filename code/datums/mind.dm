@@ -399,7 +399,7 @@
 
 
 //Register a signal to the creator such that if they gain an antagonist datum, they also get it
-/datum/mind/proc/add_creator_antag(mob/living/creator, datum/antagonist/antag)
+/datum/mind/proc/add_creator_antag(datum/mind/creator, datum/antagonist/antag)
 	var/antag_type = antag.type
 
 	//don't give them a full antag status if there's a suitable servant antag datum
@@ -412,7 +412,7 @@
 
 	add_antag_datum(antag_type)
 
-/datum/mind/proc/remove_creator_antag(mob/living/creator, datum/antagonist/antag)
+/datum/mind/proc/remove_creator_antag(datum/mind/creator, datum/antagonist/antag)
 	var/antag_type = antag.type
 
 	//make sure to do it here too so the proper tag is removed
@@ -427,8 +427,8 @@
 
 //Link a new mobs mind to the creator of said mob. They will join any team they are currently on, and will only switch teams when their creator does.
 /datum/mind/proc/enslave_mind_to_creator(mob/living/creator)
-	RegisterSignal(creator, COMSIG_ANTAGONIST_GAINED, PROC_REF(add_creator_antag), creator) //re-enslave to the new antag
-	RegisterSignal(creator, COMSIG_ANTAGONIST_REMOVED, PROC_REF(remove_creator_antag), creator) //remove enslavement to the antag
+	RegisterSignal(creator.mind, COMSIG_ANTAGONIST_GAINED, PROC_REF(add_creator_antag)) //re-enslave to the new antag
+	RegisterSignal(creator.mind, COMSIG_ANTAGONIST_REMOVED, PROC_REF(remove_creator_antag)) //remove enslavement to the antag
 
 	if(iscultist(creator))
 		SSticker.mode.add_cultist(src)
