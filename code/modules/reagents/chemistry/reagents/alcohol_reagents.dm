@@ -8,7 +8,7 @@
 
 /datum/reagent/consumable/ethanol
 	name = "Ethanol"
-	addiction_name = "Alcohol"
+	addiction_name = "alcohol"
 	description = "A well-known alcohol with a variety of applications."
 	color = "#404030" // rgb: 64, 64, 48
 	nutriment_factor = 0
@@ -93,7 +93,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 //////////STOUT AND ITS COCKTAILS//////////
 /datum/reagent/consumable/ethanol/beer/stout
 	name = "Stout Beer"
-	description = "a darker colored beer, made of barley and roast malt."
+	description = "A darker colored beer, made of barley and roast malt."
 	color = "#221915" // rgb: 34, 25, 21
 	taste_description = "malt and chocolate"
 	glass_name = "glass of stout"
@@ -138,10 +138,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Green Beer"
 	description = "An alcoholic beverage brewed since ancient times on Old Earth. This variety is dyed a festive green."
 	color = "#A8E61D"
+	overdose_threshold = 55 //More than a glass
 	taste_description = "green piss water"
 	glass_icon_state = "greenbeerglass"
 	glass_name = "glass of green beer"
 	glass_desc = "A freezing pint of green beer. Festive."
+	var/saved_color
 
 /datum/reagent/consumable/ethanol/beer/green/on_mob_life(mob/living/carbon/M)
 	if(M.color != color)
@@ -150,6 +152,19 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/beer/green/on_mob_end_metabolize(mob/living/M)
 	M.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, color)
+
+/datum/reagent/consumable/ethanol/beer/green/overdose_process(mob/living/M)
+	metabolization_rate = 1 * REAGENTS_METABOLISM
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/N = M
+		if(N.dna.species.use_skintones)
+			saved_color = N.skin_tone
+			N.skin_tone = "green"
+		else if(MUTCOLORS in N.dna.species.species_traits)
+			saved_color = N.dna.features["mcolor"]
+			N.dna.features["mcolor"] = "#A8E61D"
+		N.regenerate_icons()
 
 /datum/reagent/consumable/ethanol/kahlua
 	name = "Kahlua"

@@ -32,4 +32,4 @@
 	var/mob/living/carbon/human/H = target 
 	var/chance = 100 - H.getarmor(null,BIO)
 	if(prob(max(10,chance * 0.75))) // higher chance than toxic water
-		H.reagents.add_reagent(/datum/reagent/toxic_metabolities,15)
+		H.reagents.add_reagent(/datum/reagent/toxic_metabolites,15)

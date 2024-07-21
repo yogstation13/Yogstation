@@ -13,7 +13,7 @@
 					/obj/item/storage/fancy/cigarettes/cigpack_nonico = 3,
 					/obj/item/storage/box/matches = 10,
 					/obj/item/lighter/greyscale = 4,
-					/obj/item/storage/fancy/rollingpapers = 5)
+					/obj/item/storage/box/rollingpapers = 5)
 	contraband = list(/obj/item/clothing/mask/vape = 5)
 	premium = list(/obj/item/storage/fancy/cigarettes/cigpack_robustgold = 3,
 				   /obj/item/lighter = 3,
@@ -35,7 +35,7 @@
 					/obj/item/storage/fancy/cigarettes/cigpack_midori = 1,
 					/obj/item/storage/box/matches = 10,
 					/obj/item/lighter/greyscale = 4,
-					/obj/item/storage/fancy/rollingpapers = 5)
+					/obj/item/storage/box/rollingpapers = 5)
 
 /obj/machinery/vending/cigarette/beach //Used in the lavaland_biodome_beach.dmm ruin
 	name = "\improper ShadyCigs Ultra"
@@ -50,7 +50,7 @@
 					/obj/item/storage/fancy/cigarettes/cigpack_cannabis = 5,
 					/obj/item/storage/box/matches = 10,
 					/obj/item/lighter/greyscale = 4,
-					/obj/item/storage/fancy/rollingpapers = 5)
+					/obj/item/storage/box/rollingpapers = 5)
 	premium = list(/obj/item/storage/fancy/cigarettes/cigpack_mindbreaker = 5,
 					/obj/item/clothing/mask/vape = 5,
 					/obj/item/lighter = 3)
