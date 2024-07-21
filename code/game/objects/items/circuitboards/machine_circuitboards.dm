@@ -411,7 +411,7 @@
 	req_components = list(
 		/obj/item/stack/sheet/plasteel = 5)
 
-/obj/item/circuitboard/machine/HFR_waste_input/syndicate
+/obj/item/circuitboard/machine/HFR_waste_output/syndicate
 	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/waste_output/syndicate
 
 /obj/item/circuitboard/machine/HFR_moderator_input
