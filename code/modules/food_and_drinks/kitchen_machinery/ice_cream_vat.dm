@@ -8,9 +8,9 @@
 	use_power = NO_POWER_USE
 	layer = BELOW_OBJ_LAYER
 	max_integrity = 300
-	var/max_storage = 15 //Max ammount of any one scoop/cone type in storage
-	var/selected_ice_cream = ice_cream_list[1]
-	var/selected_cone = cone_list[1]
+	//Max ammount of any one scoop/cone type in storage
+	var/max_storage = 15
+	var/selected_ice_cream = null
 	//List of ice cream scoops to start with and to draw from
 	var/list/ice_cream_list = list(
 		/obj/item/reagent_containers/food/snacks/ice_cream_scoop = 5,
@@ -39,15 +39,30 @@
 		ui.set_autoupdate(TRUE)
 
 /obj/machinery/ice_cream_vat/ui_data(mob/user)
-	var/list/items = list()
-	items["cones"] = list()
-	items["ice_cream"] = list()
-	for(var/cone in cone_list)
+	var/list/data = list()
+	data["cones"] = list()
+	data["ice_cream"] = list()
+	for(var/cone_item in cone_list)
+		var/obj/item/reagent_containers/food/snacks/ice_cream_cone/cone = new cone_item
 		var/list/details = list()
 		details["item_name"] = cone.name
-		details["item_quantity"] = cone.
-		details["item_max_quantity"] = max_storage
+		details["item_quantity"] = cone_item
 		details["item_type_path"] = cone.type
+
+		var/icon/cone_pic = getFlatIcon(cone)
+		var/md5 = md5(fcopy_rsc(cone_pic))
+		if(!SSassets.cache["photo_[md5]_[cone.name]_icon.png"])
+			SSassets.transport.register_asset("photo_[md5]_[cone.name]_icon.png", cone_pic)
+		SSassets.transport.send_assets(user, list("photo_[md5]_[cone.name]_icon.png" = cone_pic))
+		details["cone_pic"] = SSassets.transport.get_asset_url("photo_[md5]_[cone.name]_icon.png")
+		data["cones" += cone_item]
+		
+	return data
+
+/obj/machinery/ice_cream_vat/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
 
 ///////////////////
 //ICE CREAM CONES//

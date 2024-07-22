@@ -13,7 +13,6 @@ type IceCreamStats = {
   item_image: string;
   item_name: string;
   item_quantity: number;
-  item_max_quantity: number;
   item_type_path: string;
 }
 
@@ -21,7 +20,6 @@ type ConeStats = {
   item_image: string;
   item_name: string;
   item_quantity: number;
-  item_max_quantity: number;
   item_type_path: string;
 }
 
@@ -64,7 +62,7 @@ const ConesRow = (props, context) => {
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
         <Box>
-          {data.item_quantity}/{data.item_max_quantity}
+          {data.item_quantity}
         </Box>
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
@@ -101,7 +99,7 @@ const IceCreamRow = (props, context) => {
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
         <Box>
-          {data.item_quantity}/{data.item_max_quantity}
+          {data.item_quantity}
         </Box>
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
