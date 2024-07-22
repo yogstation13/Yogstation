@@ -1,8 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "no longer get stopped from deploying arm implants if you're holding an item in the opposite hand"
-  - bugfix: "arm autosurgeons have smart implanting again"
-  - bugfix: "leg implants no longer sometimes grant the ability twice"
-  - bugfix: "fixes maglock not having a description"
-  - bugfix: "fixes maglock having an incorrect border"
