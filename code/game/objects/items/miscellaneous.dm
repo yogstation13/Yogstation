@@ -172,5 +172,5 @@
 	item_state = "radio"
 
 // LIQUIDS TM REMOVE THIS
-/obj/item/choice_beacon/supermatter/generate_display_names()
+/obj/item/choice_beacon/liquids/generate_display_names()
 	return list("Liquid Pump" = /obj/structure/liquid_pump)
