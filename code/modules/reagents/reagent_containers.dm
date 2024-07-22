@@ -160,7 +160,7 @@
 		else
 			reagents.reaction(target, TOUCH)
 			var/turf/targets_loc = target.loc
-			if(istype(targets_loc, /turf/open))
+			if(istype(targets_loc, /turf/open) && !target.density)
 				targets_loc.add_liquid_from_reagents(reagents)
 			else
 				targets_loc = get_step_towards(targets_loc, thrownby)
