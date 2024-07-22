@@ -3245,3 +3245,11 @@
 	small_item = TRUE
 	contains = list(/obj/item/wallframe/telescreen/preset)
 	crate_name = "telescreen crate"
+
+// LIQUIDS TM REMOVE THIS
+/datum/supply_pack/service/janitor/pump
+	name = "Liquids Pump Crate"
+	desc = "A crate containing a portable liquid pump, for stations that lack proper liquid infrastructure."
+	cost = 2000
+	crate_name = "liquid pump crate"
+	contains = list(/obj/structure/liquid_pump)
