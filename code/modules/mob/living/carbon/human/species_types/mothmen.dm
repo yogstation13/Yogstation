@@ -1,7 +1,7 @@
 /datum/species/moth
 	name = "Ex'hai"
 	plural_form = "Ex'hau"
-	id = "moth"
+	id = SPECIES_MOTH
 	say_mod = "flutters"
 	default_color = "00FF00"
 	species_traits = list(LIPS, NOEYESPRITES,HAS_FLESH,HAS_BONE)
@@ -111,28 +111,28 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "feather-alt",
-			SPECIES_PERK_NAME = "Precious Wings",
-			SPECIES_PERK_DESC = "Moths can fly in pressurized, zero-g environments and safely land short falls using their wings.",
+			SPECIES_PERK_NAME = "Flutter-Wings",
+			SPECIES_PERK_DESC = "Ex'hau naturally have large, delicate wings. They can fly in pressurized, zero-g environments and safely land \
+								short falls using them. Take care however, as they're easily burnt off.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "tshirt",
-			SPECIES_PERK_NAME = "Meal Plan",
-			SPECIES_PERK_DESC = "Moths can eat clothes for nourishment.",
+			SPECIES_PERK_ICON = "scroll",
+			SPECIES_PERK_NAME = "Silky Sustenance",
+			SPECIES_PERK_DESC = "Ex'hau are able to feed off proteins found in most fabrics, letting them eat cloth and most clothing for nourishment.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-			SPECIES_PERK_ICON = "fire",
-			SPECIES_PERK_NAME = "Ablazed Wings",
-			SPECIES_PERK_DESC = "Moth wings are fragile, and can be easily burnt off.",
+			SPECIES_PERK_ICON = "fa-solid fa-eye",
+			SPECIES_PERK_NAME = "Nocturnal Eyes",
+			SPECIES_PERK_DESC = "Ex'hau have very sensitive eyes. Welding may need more than one layer of protection, \
+				and sunglasses won't shield them from flashes.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-			SPECIES_PERK_ICON = "sun",
-			SPECIES_PERK_NAME = "Bright Lights",
-			SPECIES_PERK_DESC = "Moths need an extra layer of flash protection to protect \
-				themselves, such as against security officers or when welding. Welding \
-				masks will work.",
+			SPECIES_PERK_ICON = "mosquito",
+			SPECIES_PERK_NAME = "Fluffy Pests",
+			SPECIES_PERK_DESC = "Ex'hau are very similar to insects genetically, and are hurt much more by fly swatters and insecticides.",
 		),
 	)
 

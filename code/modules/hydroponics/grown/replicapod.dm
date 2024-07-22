@@ -112,12 +112,11 @@
 			podman.ckey = ckey_holder
 		podman.gender = blood_gender
 		podman.faction |= factions
-		if(!features["mcolor"])
-			features["mcolor"] = "#59CE00"
+		
 		for(var/V in quirks)
 			new V(podman)
-		podman.hardset_dna(null,null,null,podman.real_name,blood_type, new /datum/species/pod,features)//Discard SE's and UI's, podman cloning is inaccurate, and always make them a podman
-		podman.set_cloned_appearance()
+		podman.hardset_dna(null, null, null, podman.real_name, blood_type, /datum/species/pod, features)//Discard SE's and UI's, podman cloning is inaccurate, and always make them a podman
+		
 		podman.dna.species.exotic_blood = max(reagents_add) || /datum/reagent/water
 		log_cloning("[key_name(mind)] cloned as a podman via [src] in [parent] at [AREACOORD(parent)].")
 		to_chat(podman, span_userdanger("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.")) //yogs

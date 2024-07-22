@@ -51,7 +51,7 @@
 	// Hats need to be 1 up
 	offset_features = list(OFFSET_HEAD = list(0,1))
 
-	var/datum/action/innate/change_screen/change_screen
+	species_abilities = list(/datum/action/innate/change_screen)
 
 	smells_like = "industrial lubricant"
 
@@ -66,9 +66,6 @@
 	if(A)
 		A.Remove(C)
 		QDEL_NULL(A)
-	if(ishuman(C) && !change_screen)
-		change_screen = new
-		change_screen.Grant(C)
 	for(var/obj/item/bodypart/O in C.bodyparts)
 		O.render_like_organic = TRUE // Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
 		var/chassis = C.dna.features["ipc_chassis"]
@@ -82,8 +79,6 @@
 /datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	QDEL_NULL(C.particles)
-	if(change_screen)
-		change_screen.Remove(C)
 
 /datum/species/ipc/proc/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
@@ -139,7 +134,44 @@
 /datum/species/ipc/create_pref_unique_perks()
 	var/list/to_add = list()
 
-	// TODO
+	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "brain",
+			SPECIES_PERK_NAME = "Rerouted Consciousness",
+			SPECIES_PERK_DESC = "IPCs have positronic brains located in their chest rather than their head. \
+								They can survive decapitation, but revival needs special reactivation surgery done on the brain.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "wrench",
+			SPECIES_PERK_NAME = "Working Machine",
+			SPECIES_PERK_DESC = "IPCs are manufactured to be quick and cheap workers. \
+								They use tools and items faster than most races.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "robot",
+			SPECIES_PERK_NAME = "Automata",
+			SPECIES_PERK_DESC = "IPCs are completely inorganic. \
+								They boast complete immunity to toxins, cell damage, disease, husking, and have no need to breathe. \
+								Their \"organs\" will not heal naturally however, and must be replaced if damaged.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "trash-alt",
+			SPECIES_PERK_NAME = "Random Access Memories", // RIP daft punk
+			SPECIES_PERK_DESC = "IPCs hold all recent memories in their RAM chips, which wipe automatically on death. \
+								An IPC will never remember when or how it died, regardless of how long it's been dead."
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "dna",
+			SPECIES_PERK_NAME = "Missing Sequence",
+			SPECIES_PERK_DESC = "IPCs have no DNA or genetic sequence. \
+								They can't be affected by genetic mutations, nor be cloned.",
+		),
+	)
 
 	return to_add
 
@@ -391,7 +423,7 @@ ipc martial arts stuff
 	var/list/initial_step_sounds
 	var/list/initial_walk_sounds
 	var/list/initial_genders
-	var/list/blacklisted_species = list(/datum/species/ethereal, /datum/species/moth)//species that really don't work with this system (lizards aren't quite right either, but whatever)
+	var/list/blacklisted_species = list(/datum/species/ethereal, /datum/species/moth, /datum/species/gorilla)//species that really don't work with this system (lizards aren't quite right either, but whatever)
 	var/list/old_features
 	var/old_gender
 	var/ipc_color

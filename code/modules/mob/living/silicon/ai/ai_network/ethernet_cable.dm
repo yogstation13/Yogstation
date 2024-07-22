@@ -97,14 +97,14 @@ By design, d1 is the smallest direction and d2 is the highest
 			to_chat(user, span_warning("Not enough cable!"))
 			return
 		coil.cable_join(src, user)
-	
+
 	else if(W.tool_behaviour == TOOL_MULTITOOL)
 		if(!network)
 			return
 		to_chat(user, span_danger("Connected CPU: [network.resources.total_cpu()]THz\nConnected RAM: [network.resources.total_ram()]TB\nHosted AIs: [network.ai_list.len]\nNetwork Count: [network.resources.networks.len]"))
-		
-			
-	
+
+
+
 	else if(istype(W, /obj/item/modular_computer))
 		var/obj/item/modular_computer/MC = W
 
@@ -187,7 +187,7 @@ By design, d1 is the smallest direction and d2 is the highest
 				C.network.add_cable(src) //else, we simply connect to the matching cable ai network
 				C.network.rebuild_remote()
 
-	
+
 
 // merge with the ai networks of power objects in the given direction
 /obj/structure/ethernet_cable/proc/mergeConnectedNetworks(direction)
@@ -241,21 +241,21 @@ By design, d1 is the smallest direction and d2 is the highest
 				else
 					network.add_cable(C) //the cable was ai networkless, let's just add it to our ai network
 					network.rebuild_remote()
-		
+
 		else if(istype(AM, /obj/machinery/ai)) //other power machines
 			var/obj/machinery/ai/M = AM
 
 			if(M.network == network)
 				continue
 
-			to_connect += M //we'll connect the machines after all cables are merged 
-			
+			to_connect += M //we'll connect the machines after all cables are merged
+
 
 	//now that cables are done, let's connect found machines
 	for(var/obj/machinery/ai/PM in to_connect)
 		if(!PM.connect_to_ai_network())
 			PM.disconnect_from_ai_network() //if we somehow can't connect the machine to the new ai network, remove it from the old nonetheless
-	
+
 
 //////////////////////////////////////////////
 // ai networks handling helpers
@@ -319,7 +319,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 		propagate_ai_network(O, newAN)//... and propagates it to the other side of the cable
 
-		
+
 
 // cut the cable's ai network at this cable and updates the powergrid
 /obj/structure/ethernet_cable/proc/cut_cable_from_ainet(remove=TRUE)
@@ -347,7 +347,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		moveToNullspace()
 
 	network.remove_cable(src) //remove the cut cable from its ai network
-	
+
 
 	addtimer(CALLBACK(O,PROC_REF(auto_propogate_cut_cable), O), 0) //so we don't rebuild the network X times when singulo/explosion destroys a line of X cables
 
@@ -371,7 +371,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	desc = "A coil of shielded ethernet cable."
 	custom_price = 25
 	gender = NEUTER //That's a cable coil sounds better than that's some cable coils
-	icon = 'icons/obj/power.dmi'
+	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "wire"
 	item_state = "coil"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -379,7 +379,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	max_amount = MAXCOIL
 	amount = MAXCOIL
 	merge_type = /obj/item/stack/ethernet_coil // This is here to let its children merge between themselves
-	
+
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3

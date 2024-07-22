@@ -1,42 +1,42 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/open/floor/mineral/plastitanium/airless/broken,
-/area/space)
+/area/template_noop)
 "b" = (
 /turf/closed/wall/mineral/plastitanium,
-/area/space)
+/area/template_noop)
 "f" = (
 /turf/template_noop,
-/area/space)
+/area/template_noop)
 "h" = (
 /obj/machinery/modular_computer,
 /turf/open/floor/mineral/plastitanium/airless/broken,
-/area/space)
+/area/template_noop)
 "m" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
-/area/space)
+/area/template_noop)
 "n" = (
 /obj/item/cardboard_cutout/adaptive,
 /turf/open/floor/mineral/plastitanium/airless/broken,
-/area/space)
+/area/template_noop)
 "o" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/airless/broken,
-/area/space)
+/area/template_noop)
 "r" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/space)
+/area/template_noop)
 "w" = (
 /obj/machinery/door/poddoor/shutters,
 /turf/open/floor/mineral/plastitanium/airless/broken,
-/area/space)
+/area/template_noop)
 "x" = (
 /obj/item/clothing/glasses/eyepatch,
 /turf/open/floor/mineral/plastitanium/airless/broken,
-/area/space)
+/area/template_noop)
 "z" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 1
@@ -45,36 +45,36 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/template_noop)
 "F" = (
 /obj/effect/mine/stun,
 /turf/open/floor/mineral/plastitanium/airless/broken,
-/area/space)
+/area/template_noop)
 "H" = (
 /obj/item/clothing/under/syndicate/tacticool,
 /turf/open/floor/mineral/plastitanium/airless/broken,
-/area/space)
+/area/template_noop)
 "L" = (
 /obj/machinery/door/airlock/hatch,
 /turf/open/floor/mineral/plastitanium/airless/broken,
-/area/space)
+/area/template_noop)
 "P" = (
 /obj/machinery/shuttle/engine{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/template_noop)
 "S" = (
 /obj/structure/closet/cardboard/metal,
 /turf/open/floor/mineral/plastitanium/airless/broken,
-/area/space)
+/area/template_noop)
 "Z" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
 /obj/item/clothing/glasses/night,
 /turf/open/floor/mineral/plastitanium/airless/broken,
-/area/space)
+/area/template_noop)
 
 (1,1,1) = {"
 f

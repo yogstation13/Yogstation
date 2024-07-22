@@ -646,7 +646,7 @@ Nothing else in the console has ID requirements.
 			var/list/materials = linked_destroy.loaded_item.materials
 			l += "<div class='statusDisplay'><A href='?src=[REF(src)];deconstruct=[RESEARCH_MATERIAL_RECLAMATION_ID]'>[materials.len? "Material Reclamation" : "Destroy Item"]</A>"
 			for (var/M in materials)
-				l += "* [CallMaterialName(M)] x [materials[M]]"
+				l += "* [CallMaterialName(M)] x [materials[M] * (linked_destroy.decon_mod/10)]"
 			l += "</div>[RDSCREEN_NOBREAK]"
 			anything = TRUE
 

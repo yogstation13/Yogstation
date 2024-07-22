@@ -1,7 +1,7 @@
 //Largely negative status effects go here, even if they have small benificial effects
 //STUN EFFECTS
 /datum/status_effect/incapacitating
-	tick_interval = 0
+	tick_interval = 1
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
 	remove_on_fullheal = TRUE
@@ -355,7 +355,7 @@
 /datum/status_effect/belligerent
 	id = "belligerent"
 	duration = 70
-	tick_interval = 0 //tick as fast as possible
+	tick_interval = 1 //tick as fast as possible
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = /atom/movable/screen/alert/status_effect/belligerent
 	var/leg_damage_on_toggle = 2 //damage on initial application and when the owner tries to toggle to run
@@ -1063,7 +1063,7 @@
 	return ..()
 
 /datum/status_effect/broken_will/tick()
-	if(is_darkspawn_or_thrall(owner) || owner.stat == DEAD)
+	if(is_team_darkspawn(owner) || owner.stat == DEAD)
 		qdel(src)
 		return
 	owner.Unconscious(15)

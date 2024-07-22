@@ -22,7 +22,7 @@
 
 	var/list/possible_biomes = list(
 		BIOME_BARREN = list(	LOW_HUMIDITY = /datum/biome/jungleland/barren_rocks,
-						MED_HUMIDITY = /datum/biome/jungleland/dry_swamp, 
+						MED_HUMIDITY = /datum/biome/jungleland/dry_swamp,
 						HIGH_HUMIDITY = /datum/biome/jungleland/dying_forest),
 
 		BIOME_TOXIC = list(	LOW_HUMIDITY = /datum/biome/jungleland/toxic_pit,
@@ -51,6 +51,11 @@
 		)
 
 	var/list/ore_preferences = list(
+		ORE_EMPTY = list(
+			WORLEY_REG_SIZE = 10,
+			WORLEY_THRESHOLD = 3,
+			WORLEY_NODE_PER_REG = 50),
+
 		ORE_IRON = list(
 			WORLEY_REG_SIZE = 10,
 			WORLEY_THRESHOLD = 3,
@@ -99,6 +104,12 @@
 //creates a 2d map of every single ore vein on the map
 /datum/map_generator/jungleland/proc/generate_ores(list/turfs)
 	var/list/ore_strings = list(
+		ORE_EMPTY  = rustg_worley_generate("[ore_preferences[ORE_EMPTY][WORLEY_REG_SIZE]]",
+										"[ore_preferences[ORE_EMPTY][WORLEY_THRESHOLD]]",
+										"[ore_preferences[ORE_EMPTY][WORLEY_NODE_PER_REG]]",
+										"[world.maxx]",
+										"1",
+										"2"),
 		ORE_BLUESPACE  = rustg_worley_generate("[ore_preferences[ORE_BLUESPACE][WORLEY_REG_SIZE]]",
 										"[ore_preferences[ORE_BLUESPACE][WORLEY_THRESHOLD]]",
 										"[ore_preferences[ORE_BLUESPACE][WORLEY_NODE_PER_REG]]",
@@ -156,6 +167,7 @@
 										"2"))
 	//order of generation, ordered from rarest to most common
 	var/list/generation_queue = list(
+		ORE_EMPTY,
 		ORE_IRON,
 		ORE_SILVER,
 		ORE_TITANIUM,
@@ -166,7 +178,7 @@
 		ORE_DILITHIUM,
 		ORE_BLUESPACE
 	)
-	var/return_list[world.maxx * world.maxy] 
+	var/return_list[world.maxx * world.maxy]
 
 
 	for(var/t in turfs)
@@ -184,7 +196,7 @@
 
 		CHECK_TICK
 
-	//guaranteed spawn at least some rare ores like bluespace and dilithium in small pockets 
+	//guaranteed spawn at least some rare ores like bluespace and dilithium in small pockets
 
 	for(var/i in 0 to 64)
 		var/x = rand(16,239)
@@ -205,31 +217,31 @@
 			return_list[world.maxx * y_o + x_o] = ORE_BLUESPACE
 
 	return return_list
-		
+
 /datum/map_generator/jungleland/generate_terrain(list/turfs)
 	var/start_time = REALTIMEOFDAY
 	var/list/ore_map = generate_ores(turfs)
-	
+
 	var/toxic_seed = rand(0, 50000)
 	var/humid_seed = rand(0, 50000)
 	var/list/density_strings = list()
 	density_strings[LOW_DENSITY] = rustg_worley_generate("[cellular_preferences[LOW_DENSITY][WORLEY_REG_SIZE]]",
 								 				"[cellular_preferences[LOW_DENSITY][WORLEY_THRESHOLD]]",
-												"[cellular_preferences[LOW_DENSITY][WORLEY_NODE_PER_REG]]", 
+												"[cellular_preferences[LOW_DENSITY][WORLEY_NODE_PER_REG]]",
 												"[world.maxx]",
 												"1",
 												"2")
 
 	density_strings[MED_DENSITY] = rustg_cnoise_generate("[cellular_preferences[MED_DENSITY][CA_INITIAL_CLOSED_CHANCE]]",
 									 			"[cellular_preferences[MED_DENSITY][CA_SMOOTHING_INTERATIONS]]",
-												"[cellular_preferences[MED_DENSITY][CA_BIRTH_LIMIT]]", 
+												"[cellular_preferences[MED_DENSITY][CA_BIRTH_LIMIT]]",
 												"[cellular_preferences[MED_DENSITY][CA_DEATH_LIMIT]]",
 												"[world.maxx]",
 												"[world.maxy]")
 
 	density_strings[HIGH_DENSITY] = rustg_worley_generate("[cellular_preferences[HIGH_DENSITY][WORLEY_REG_SIZE]]",
 								 				"[cellular_preferences[HIGH_DENSITY][WORLEY_THRESHOLD]]",
-												"[cellular_preferences[HIGH_DENSITY][WORLEY_NODE_PER_REG]]", 
+												"[cellular_preferences[HIGH_DENSITY][WORLEY_NODE_PER_REG]]",
 												"[world.maxx]",
 												"1",
 												"2")
@@ -252,15 +264,15 @@
 		if(istype(generated_terrain,/turf/open/floor/plating/dirt/jungleland))
 			var/turf/open/floor/plating/dirt/jungleland/J = generated_terrain
 			J.ore_present = ore_map[world.maxx * (gen_turf.y - 1) + gen_turf.x]
-		var/area/jungleland/jungle_area = selected_biome.this_area 
+		var/area/jungleland/jungle_area = selected_biome.this_area
 		var/area/old_area = generated_terrain.loc
 		generated_terrain.change_area(old_area, jungle_area)
 		CHECK_TICK
 
 	for(var/biome in subtypesof(/datum/biome/jungleland))
-		var/datum/biome/jungleland/selected_biome = SSmapping.biomes[biome] 
+		var/datum/biome/jungleland/selected_biome = SSmapping.biomes[biome]
 		selected_biome.this_area.reg_in_areas_in_z()
 
-	var/message = "Jungle land finished in [(REALTIMEOFDAY - start_time)/10]s!"
+	var/message = "Jungleland finished in [(REALTIMEOFDAY - start_time)/10]s!"
 	to_chat(world, "<span class='boldannounce'>[message]</span>")
 	log_world(message)

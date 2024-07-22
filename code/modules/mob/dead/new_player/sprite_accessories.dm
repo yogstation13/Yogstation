@@ -2011,6 +2011,22 @@
 	name = "Dark Tiger"
 	icon_state = "dtiger"
 
+/datum/sprite_accessory/tails/lizard/ltiger
+	name = "Light Tiger"
+	icon_state = "ltiger"
+
+/datum/sprite_accessory/tails_animated/lizard/ltiger
+	name = "Light Tiger"
+	icon_state = "ltiger"
+
+/datum/sprite_accessory/tails/lizard/plated
+	name = "Plated"
+	icon_state = "plated"
+
+/datum/sprite_accessory/tails_animated/lizard/plated
+	name = "Plated"
+	icon_state = "plated"
+
 /datum/sprite_accessory/tails/lizard/spikes
 	name = "Spikes"
 	icon_state = "spikes"
@@ -2377,6 +2393,14 @@
 /datum/sprite_accessory/spines_animated/aqautic
 	name = "Aquatic"
 	icon_state = "aqua"
+
+/datum/sprite_accessory/spines/plated
+	name = "Plated"
+	icon_state = "plated"
+
+/datum/sprite_accessory/spines_animated/plated
+	name = "Plated"
+	icon_state = "plated"
 
 /datum/sprite_accessory/legs 	//legs are a special case, they aren't actually sprite_accessories but are updated with them.
 	icon = null					//These datums exist for selecting legs on preference, and little else

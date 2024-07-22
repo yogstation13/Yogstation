@@ -266,10 +266,10 @@
 	I.dropped(src)
 	return FALSE
 
-/mob/proc/drop_all_held_items()
+/mob/proc/drop_all_held_items(force = FALSE)
 	. = FALSE
 	for(var/obj/item/I in held_items)
-		. |= dropItemToGround(I)
+		. |= dropItemToGround(I, force)
 
 //Here lie drop_from_inventory and before_item_take, already forgotten and not missed.
 
@@ -398,12 +398,12 @@
 			items += s_store
 	return items
 
-/mob/living/proc/unequip_everything()
+/mob/living/proc/unequip_everything(force = FALSE)
 	var/list/items = list()
 	items |= get_equipped_items(TRUE)
 	for(var/I in items)
-		dropItemToGround(I)
-	drop_all_held_items()
+		dropItemToGround(I, force)
+	drop_all_held_items(force)
 
 
 /mob/living/carbon/proc/check_obscured_slots(transparent_protection)

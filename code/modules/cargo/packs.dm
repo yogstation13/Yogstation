@@ -90,10 +90,10 @@
 	name = "Biological Emergency Crate"
 	desc = "This crate holds 2 full bio suits which will protect you from viruses."
 	cost = 2000
-	contains = list(/obj/item/clothing/head/bio_hood,
-					/obj/item/clothing/head/bio_hood,
-					/obj/item/clothing/suit/bio_suit,
-					/obj/item/clothing/suit/bio_suit,
+	contains = list(/obj/item/clothing/head/bio_hood/general,
+					/obj/item/clothing/head/bio_hood/general,
+					/obj/item/clothing/suit/bio_suit/general,
+					/obj/item/clothing/suit/bio_suit/general,
 					/obj/item/storage/bag/bio,
 					/obj/item/reagent_containers/syringe/antiviral,
 					/obj/item/reagent_containers/syringe/antiviral,
@@ -2405,6 +2405,24 @@
 					/obj/item/reagent_containers/food/snacks/grown/pumpkin,
 					/obj/item/reagent_containers/food/snacks/grown/cucumber)
 	crate_name = "food crate"
+
+/datum/supply_pack/organic/ice_cream
+	name = "Big Top Ice Cream Crate"
+	desc = "A crate with a carton of every flavor of Big Top brand ice cream."
+	cost = 2500
+	contains = list(/obj/item/storage/box/ice_cream_carton,
+					/obj/item/storage/box/ice_cream_carton/vanilla,
+					/obj/item/storage/box/ice_cream_carton/chocolate,
+					/obj/item/storage/box/ice_cream_carton/strawberry,
+					/obj/item/storage/box/ice_cream_carton/blue,
+					/obj/item/storage/box/ice_cream_carton/lemon_sorbet,
+					/obj/item/storage/box/ice_cream_carton/caramel,
+					/obj/item/storage/box/ice_cream_carton/banana,
+					/obj/item/storage/box/ice_cream_carton/orange_creamsicle,
+					/obj/item/storage/box/ice_cream_carton/peach,
+					/obj/item/storage/box/ice_cream_carton/cherry_chocolate,
+					/obj/item/storage/box/ice_cream_carton/meat)
+	crate_name = "ice cream crate"
 
 /datum/supply_pack/organic/vending/hydro_refills
 	name = "Hydroponics Vending Machines Refills"

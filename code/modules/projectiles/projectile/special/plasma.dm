@@ -35,6 +35,11 @@
 	if(istype(newloc,/turf/open/floor/plating/dirt/jungleland))
 		var/turf/open/floor/plating/dirt/jungleland/JG = newloc
 		JG.spawn_rock()
+		if(explosive) //so the plasmacutter ore upgrade spawns double
+			JG.spawn_ores()
+		if(mine_range > 0)
+			mine_range -= 2 //mine_range is less effective on lavaland
+			range++
 
 //yogs end
 /obj/projectile/plasma/on_hit(atom/target)
