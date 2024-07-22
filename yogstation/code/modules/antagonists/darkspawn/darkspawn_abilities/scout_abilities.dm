@@ -27,7 +27,8 @@
 	return ..()
 
 /datum/action/cooldown/spell/toggle/light_eater/Enable()
-	owner.balloon_alert(owner, "Akna")
+	if(isdarkspawn(owner))
+		owner.balloon_alert(owner, "Akna")
 	owner.visible_message(span_warning("[owner]'s arm contorts into a blade!"), span_velvet("You transform your arm into a blade."))
 	playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
 	if(!armblade)
@@ -35,7 +36,8 @@
 	owner.put_in_hands(armblade)
 
 /datum/action/cooldown/spell/toggle/light_eater/Disable()
-	owner.balloon_alert(owner, "Haoo")
+	if(isdarkspawn(owner))
+		owner.balloon_alert(owner, "Haoo")
 	owner.visible_message(span_warning("[owner]'s blade transforms back!"), span_velvet("You dispel the blade."))
 	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
 	if(armblade)

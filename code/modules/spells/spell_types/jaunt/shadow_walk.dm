@@ -70,7 +70,7 @@
 
 	if(!QDELETED(jaunter) && isliving(jaunter)) //heal in the dark
 		var/mob/living/living_jaunter = jaunter
-		living_jaunter.heal_overall_damage((healing_rate * delta_time), (healing_rate * delta_time), 0)
+		living_jaunter.heal_ordered_damage(healing_rate * delta_time, list(CLONE, BURN, BRUTE), BODYPART_ANY)
 
 /obj/effect/dummy/phased_mob/shadow/relaymove(mob/living/user, direction)
 	var/turf/oldloc = loc

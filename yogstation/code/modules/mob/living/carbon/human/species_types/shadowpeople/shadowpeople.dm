@@ -1,5 +1,3 @@
-#define HEART_RESPAWN_THRESHHOLD 40
-#define HEART_SPECIAL_SHADOWIFY 2
 ///cooldown between charges of the projectile absorb 
 #define DARKSPAWN_REFLECT_COOLDOWN 15 SECONDS
 
@@ -123,18 +121,48 @@
 //------------------------Midround antag exclusive species------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/species/shadow/nightmare
-	name = "Nightmare"
-	plural_form = null
 	id = SPECIES_NIGHTMARE
 	limbs_id = SPECIES_SHADOW
 	burnmod = 1.5
-	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE)
-	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
+	no_equip = list(
+		ITEM_SLOT_MASK, 
+		ITEM_SLOT_OCLOTHING, 
+		ITEM_SLOT_ICLOTHING, 
+		ITEM_SLOT_GLOVES, 
+		ITEM_SLOT_FEET, 
+		ITEM_SLOT_SUITSTORE
+		)
+
+	species_traits = list(
+		NOBLOOD,
+		NO_UNDERWEAR,
+		NO_DNA_COPY,
+		NOTRANSSTING,
+		NOEYESPRITES,
+		NOFLASH
+		)
+
+	inherent_traits = list(
+		TRAIT_RESISTCOLD,
+		TRAIT_NOBREATH,
+		TRAIT_RESISTHIGHPRESSURE,
+		TRAIT_RESISTLOWPRESSURE,
+		TRAIT_NOGUNS,
+		TRAIT_RADIMMUNE,
+		TRAIT_VIRUSIMMUNE,
+		TRAIT_PIERCEIMMUNE,
+		TRAIT_NODISMEMBER,
+		TRAIT_NOHUNGER
+		)
+		
 	mutanteyes = /obj/item/organ/eyes/shadow
-	mutant_organs = list(/obj/item/organ/heart/nightmare)
+	mutantheart = /obj/item/organ/heart/nightmare
 	mutantbrain = /obj/item/organ/brain/nightmare
 	shadow_charges = 1
+
+	species_abilities = list(
+		/datum/action/cooldown/spell/toggle/light_eater
+		)
 
 	var/info_text = "You are a <span class='danger'>Nightmare</span>. The ability <span class='warning'>shadow walk</span> allows unlimited, unrestricted movement in the dark while activated. \
 					Your <span class='warning'>light eater</span> will destroy any light producing objects you attack, as well as destroy any lights a living creature may be holding. You will automatically dodge gunfire and melee attacks when on a dark tile. If killed, you will eventually revive if left in darkness."
@@ -152,7 +180,6 @@
 //----------------------Roundstart antag exclusive species------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/species/shadow/darkspawn
-	name = "Darkspawn"
 	id = SPECIES_DARKSPAWN
 	limbs_id = SPECIES_DARKSPAWN
 	possible_genders = list(PLURAL)
@@ -223,146 +250,4 @@
 /datum/species/shadow/darkspawn/check_roundstart_eligible()
 	return FALSE
 
-////////////////////////////////////////////////////////////////////////////////////
-//------------------------------Darkspawn organs----------------------------------//
-////////////////////////////////////////////////////////////////////////////////////
-/obj/item/organ/eyes/darkspawn //special eyes that innately have night vision without having a toggle that adds action clutter
-	name = "darkspawn eyes"
-	desc = "It turned out they had them after all!"
-	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD //far more durable eyes than most
-	healing_factor = 2 * STANDARD_ORGAN_HEALING
-	lighting_cutoff = LIGHTING_CUTOFF_HIGH
-	color_cutoffs = list(12, 0, 50)
-	sight_flags = SEE_MOBS
-
-/obj/item/organ/ears/darkspawn //special ears that are a bit tankier and have innate sound protection
-	name = "darkspawn ears"
-	desc = "It turned out they had them after all!"
-	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD //far more durable ears than most
-	healing_factor = 2 * STANDARD_ORGAN_HEALING
-	bang_protect = 1
-
-////////////////////////////////////////////////////////////////////////////////////
-//------------------------------Nightmare organs----------------------------------//
-////////////////////////////////////////////////////////////////////////////////////
-/obj/item/organ/brain/nightmare
-	name = "tumorous mass"
-	desc = "A fleshy growth that was dug out of the skull of a Nightmare."
-	icon_state = "brain-x-d"
-	var/datum/action/cooldown/spell/jaunt/shadow_walk/our_jaunt
-
-/obj/item/organ/brain/nightmare/Insert(mob/living/carbon/host, special = FALSE)
-	..()
-	if(!isshadowperson(host))
-		host.set_species(/datum/species/shadow/nightmare)
-		visible_message(span_warning("[host] thrashes as [src] takes root in [host.p_their()] body!"))
-	
-	our_jaunt = new(host)
-	our_jaunt.Grant(host)
-
-/obj/item/organ/brain/nightmare/Remove(mob/living/carbon/host, special = FALSE)
-	QDEL_NULL(our_jaunt)
-	return ..()
-
-/obj/item/organ/heart/nightmare
-	name = "heart of darkness"
-	desc = "An alien organ that twists and writhes when exposed to light."
-	icon = 'icons/obj/surgery.dmi'
-	icon_state = "demon_heart-on"
-	visual = TRUE
-	color = "#1C1C1C"
-	var/respawn_progress = 0
-	var/obj/item/light_eater/blade
-	decay_factor = 0
-
-/obj/item/organ/heart/nightmare/Initialize(mapload)
-	AddElement(/datum/element/update_icon_blocker)
-	return ..()
-
-/obj/item/organ/heart/nightmare/attack(mob/M, mob/living/carbon/user, obj/target)
-	if(M != user)
-		return ..()
-	user.visible_message(span_warning("[user] raises [src] to [user.p_their()] mouth and tears into it with [user.p_their()] teeth!"), \
-						 span_danger("[src] feels unnaturally cold in your hands. You raise [src] your mouth and devour it!"))
-	playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
-
-
-	user.visible_message(span_warning("Blood erupts from [user]'s arm as it reforms into a weapon!"), \
-						 span_userdanger("Icy blood pumps through your veins as your arm reforms itself!"))
-	user.temporarilyRemoveItemFromInventory(src, TRUE)
-	Insert(user)
-
-/obj/item/organ/heart/nightmare/Insert(mob/living/carbon/M, special = 0)
-	..()
-	if(special != HEART_SPECIAL_SHADOWIFY)
-		blade = new/obj/item/light_eater
-		blade.force = 25
-		blade.armour_penetration = 35
-		M.put_in_hands(blade)
-	START_PROCESSING(SSobj, src)
-
-/obj/item/organ/heart/nightmare/Remove(mob/living/carbon/M, special = 0)
-	STOP_PROCESSING(SSobj, src)
-	respawn_progress = 0
-	if(blade && special != HEART_SPECIAL_SHADOWIFY)
-		M.visible_message(span_warning("\The [blade] disintegrates!"))
-		QDEL_NULL(blade)
-	..()
-
-/obj/item/organ/heart/nightmare/Stop()
-	return 0
-
-/obj/item/organ/heart/nightmare/process()
-	if(QDELETED(owner) || owner.stat != DEAD || !owner)
-		respawn_progress = 0
-		return
-	var/turf/T = get_turf(owner)
-
-	if(istype(T))
-		var/light_amount = T.get_lumcount()
-		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
-			respawn_progress++
-			playsound(owner,'sound/effects/singlebeat.ogg',40,1)
-	if(respawn_progress >= HEART_RESPAWN_THRESHHOLD)
-		owner.revive(full_heal = TRUE)
-		if(!(isshadowperson(owner)))
-			var/mob/living/carbon/old_owner = owner
-			Remove(owner, HEART_SPECIAL_SHADOWIFY)
-			old_owner.set_species(/datum/species/shadow)
-			Insert(old_owner, HEART_SPECIAL_SHADOWIFY)
-			to_chat(owner, span_userdanger("You feel the shadows invade your skin, leaping into the center of your chest! You're alive!"))
-			SEND_SOUND(owner, sound('sound/effects/ghost.ogg'))
-		owner.visible_message(span_warning("[owner] staggers to [owner.p_their()] feet!"))
-		playsound(owner, 'sound/hallucinations/far_noise.ogg', 50, 1)
-		respawn_progress = 0
-
-//Weapon
-/obj/item/light_eater
-	name = "light eater" //as opposed to heavy eater
-	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
-	icon_state = "light_eater"
-	item_state = "light_eater"
-	force = 18
-	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
-	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
-	hitsound = 'sound/weapons/bladeslice.ogg'
-	item_flags = ABSTRACT
-	w_class = WEIGHT_CLASS_HUGE
-	sharpness = SHARP_EDGED
-	wound_bonus = -40
-	resistance_flags = ACID_PROOF
-
-/obj/item/light_eater/Initialize(mapload)
-	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
-	AddComponent(/datum/component/butchering, 80, 70)
-	AddComponent(/datum/component/light_eater)
-
-/obj/item/light_eater/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //this doesn't work and i have no clue why
-	. = ..()
-	if(isinhands)
-		. += emissive_appearance(icon, "[item_state]_emissive", src)
-
 #undef DARKSPAWN_REFLECT_COOLDOWN
-#undef HEART_SPECIAL_SHADOWIFY
-#undef HEART_RESPAWN_THRESHHOLD
