@@ -29,7 +29,7 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(902 modules,
+<aside>(903 modules,
     3176/11204 macros, 28.3%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
@@ -1164,6 +1164,7 @@ transformations and other events that cause new languages to become available.</
     <li><a href="code/modules/surgery/healing.html" title="code&#x2F;modules&#x2F;surgery&#x2F;healing">healing</a></li>
     <li><a href="code/modules/surgery/limb_augmentation.html" title="code&#x2F;modules&#x2F;surgery&#x2F;limb_augmentation">limb_augmentation</a></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;surgery&#x2F;organs">organs</span><ul class="index-tree">
+    <li><a href="code/modules/surgery/organs/augment_legs.html" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;augment_legs">augment_legs</a></li>
     <li><a href="code/modules/surgery/organs/eyes.html" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;eyes">eyes</a></li>
     <li><a href="code/modules/surgery/organs/vocal_cords.html" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;vocal_cords">vocal_cords</a></li>
     </ul></li>
@@ -1303,7 +1304,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1292 detailed/2163 documented/30489 total, 7.1%)</aside></h3>
+<aside>(1294 detailed/2173 documented/30491 total, 7.1%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1495,6 +1496,7 @@ to do this, you can make someone your favorite vassal, or you can kill them and 
     <li><a href="datum/action/cooldown/bloodsucker/trackvamp.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;bloodsucker&#x2F;trackvamp">Track Monster</a> - From 'Cellular Emporium'... somehow?</li>
     <li><a href="datum/action/cooldown/bloodsucker/vassal_blood.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;bloodsucker&#x2F;vassal_blood">Help Vassal</a></li>
     </ul></li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;boost">Dash</span> - also literally used for the jumpboots themselves</li>
     <li class="has-children"><a href="datum/action/cooldown/buster.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;buster">buster</a> - Welcome to the Hell that is Buster Arm
 I hope you find yourself at home here
 Originally shitcoded by Lazenn, reorganized by ynot01
@@ -1667,6 +1669,7 @@ All mobs consumed are revived after the demon is killed.</li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;seek_master">Seek your Master</span> - Master-Tracker</li>
     <li><span class="no-substance">spider&#x2F;</span><a href="datum/action/innate/spider/lay_eggs.html" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;spider&#x2F;lay_eggs">Lay Eggs</a></li>
+    <li><a href="datum/action/innate/wheelies.html" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;wheelies">Toggle Wheely-Heel&#x27;s Wheels</a></li>
     </ul></li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;action&#x2F;item_action">item_action</span><ul class="index-tree">
     <li><a href="datum/action/item_action/activate_uber.html" title="&#x2F;datum&#x2F;action&#x2F;item_action&#x2F;activate_uber">Activate Übercharge</a> - this could remove an admin-given godmode but theres like 0.001% chance that will ever be an issue</li>
@@ -2704,7 +2707,7 @@ They attach to an atom and provide the editor + playback functionality.</li>
     <li><a href="datum/species/golem/uranium.html" title="&#x2F;datum&#x2F;species&#x2F;golem&#x2F;uranium">Uranium Golem</a></li>
     </ul></li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;species&#x2F;jelly">jelly</span><ul class="index-tree">
-    <li><a href="datum/species/jelly/luminescent.html" title="&#x2F;datum&#x2F;species&#x2F;jelly&#x2F;luminescent">Luminescent</a> - LUMINESCENTS</li>
+    <li><a href="datum/species/jelly/luminescent.html" title="&#x2F;datum&#x2F;species&#x2F;jelly&#x2F;luminescent">Luminescent</a> - Luminescents are able to consume and use slime extracts, without them decaying.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;species&#x2F;jelly&#x2F;slime">Slimeperson</span> - SLIMEPEOPLE</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;species&#x2F;jelly&#x2F;stargazer">Stargazer</span> - STARGAZERS</li>
     </ul></li>
@@ -3686,6 +3689,17 @@ Given to Nuke Ops members.</li>
     </ul></li>
     <li><span class="no-substance">body_egg&#x2F;</span><a href="obj/item/organ/body_egg/alien_embryo.html" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;body_egg&#x2F;alien_embryo">alien embryo</a></li>
     <li><a href="obj/item/organ/brain.html" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;brain">brain</a></li>
+    <li class="has-children"><span class="no-substance">cyberimp&#x2F;</span><a href="obj/item/organ/cyberimp/leg.html" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;cyberimp&#x2F;leg">leg implant</a><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;cyberimp&#x2F;leg&#x2F;airshoes">advanced propulsion implant</span> - functions like the traitor item, airshoes, by well known &quot;coder&quot; Lazenn</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;cyberimp&#x2F;leg&#x2F;clownshoes">clownshoes implant</span> - Clown shoes implant, functions much like how the shoes work, but without being able to turn them off</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;cyberimp&#x2F;leg&#x2F;galosh">antislip implant</span> - Water no-slip
+functionally identical to galoshes</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;cyberimp&#x2F;leg&#x2F;jumpboots">jumpboots implant</span> - Functions just like the miner's jumpboots</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;cyberimp&#x2F;leg&#x2F;magboot">magboot implant</span> - different scooter, should probably rewrite the wheelies one so this can just be a subtype at some point</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;cyberimp&#x2F;leg&#x2F;noslip">advanced antislip implant</span> - full noslip
+for antag stuff</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;cyberimp&#x2F;leg&#x2F;wheelies">wheelies implant</span> - functions like the wicked sick wheelies</li>
+    </ul></li>
     <li class="has-children"><a href="obj/item/organ/eyes.html" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;eyes">eyes</a><ul class="index-tree">
     <li><a href="obj/item/organ/eyes/ethereal.html" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;eyes&#x2F;ethereal">fractal eyes</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;eyes&#x2F;robotic">robotic eyes</span> - Robotic</li>
@@ -4293,7 +4307,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/bd0db798e621bf8240758f7f305e4179d191d1b1">bd0db79</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/e42c08d115322bcf95f85ca70539d95b1b1627fc">e42c08d</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
