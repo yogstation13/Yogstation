@@ -407,6 +407,20 @@
 		qdel(nugget_man)
 	. = ..()
 
+/obj/item/reagent_containers/food/snacks/fried_chicken
+	name = "fried chicken"
+	desc = "A juicy hunk of chicken meat, fried to perfection."
+	icon_state = "fried_chicken1"
+	filling_color = "#B22222"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("chicken" = 3, "fried batter" = 1)
+	foodtype = MEAT | FRIED
+
+/obj/item/reagent_containers/food/snacks/fried_chicken/Initialize(mapload)
+	. = ..()
+	if(prob(50))
+		icon_state = "fried_chicken2"
+
 /obj/item/reagent_containers/food/snacks/pigblanket
 	name = "pig in a blanket"
 	desc = "A tiny sausage wrapped in a flakey, buttery roll. Free this pig from its blanket prison by eating it."
