@@ -43,16 +43,6 @@
 	result = /obj/item/reagent_containers/food/snacks/eggwrap
 	category = CAT_EGG
 
-/datum/crafting_recipe/food/friedegg
-	name = "Fried Egg"
-	reqs = list(
-		/datum/reagent/consumable/sodiumchloride = 1,
-		/datum/reagent/consumable/blackpepper = 1,
-		/obj/item/reagent_containers/food/snacks/egg = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/friedegg
-	category = CAT_EGG
-
 /datum/crafting_recipe/food/spidereggsham
 	name = "Green Eggs and Ham"
 	reqs = list(

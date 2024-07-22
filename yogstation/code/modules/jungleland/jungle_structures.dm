@@ -364,6 +364,7 @@
 	faction = list("mining")
 	max_mobs = 3
 	max_integrity = 250
+	resistance_flags = UNACIDABLE
 	move_resist = INFINITY
 	anchored = TRUE
 	density = FALSE

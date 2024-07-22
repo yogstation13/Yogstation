@@ -52,15 +52,13 @@
 	name = "Mass Driver";
 	req_access_txt = "22"
 	},
-/obj/machinery/mass_driver{
-	dir = 4;
-	id = "chapelgun";
-	name = "Holy Driver"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/turf/open/floor/plating,
+/obj/structure/sign/warning/vacuum/external{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "du" = (
 /obj/structure/table/wood,
@@ -280,12 +278,10 @@
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "nS" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_y = 32
-	},
-/obj/effect/landmark/event_spawn,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
+/obj/machinery/mass_driver{
+	dir = 1;
+	id = "chapelgun";
+	name = "Holy Driver"
 	},
 /turf/open/floor/plating,
 /area/chapel/main)
@@ -616,6 +612,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
+"OS" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/poddoor{
+	id = "chapelgun";
+	name = "Chapel Launcher Door"
+	},
+/turf/open/floor/plating,
+/area/space/nearstation)
 "PM" = (
 /obj/structure/chair/pew/right{
 	dir = 1
@@ -781,13 +785,12 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "XX" = (
-/obj/machinery/door/poddoor{
-	id = "chapelgun";
-	name = "Chapel Launcher Door"
+/obj/effect/landmark/event_spawn,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
 	},
-/obj/structure/fans/tiny,
 /turf/open/floor/plating,
-/area/space/nearstation)
+/area/chapel/main)
 "Yh" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -1199,8 +1202,8 @@ ZG
 Ck
 "}
 (16,1,1) = {"
-Ck
-Ck
+OS
+XX
 nS
 Ck
 Fi
@@ -1223,7 +1226,7 @@ II
 (17,1,1) = {"
 Ck
 Ck
-XX
+Ck
 II
 II
 II

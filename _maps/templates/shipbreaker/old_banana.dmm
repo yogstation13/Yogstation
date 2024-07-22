@@ -17,12 +17,6 @@
 "q" = (
 /turf/open/floor/mineral/bananium/airless,
 /area/template_noop)
-"r" = (
-/obj/structure/chair/bananium{
-	dir = 8
-	},
-/turf/open/floor/mineral/bananium/airless,
-/area/template_noop)
 "u" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -69,9 +63,8 @@
 /turf/open/floor/mineral/bananium/airless,
 /area/template_noop)
 "T" = (
-/obj/structure/table/bananium,
-/obj/item/reagent_containers/food/snacks/burger/clown,
 /obj/item/bikehorn,
+/obj/item/reagent_containers/food/snacks/burger/clown,
 /turf/open/floor/mineral/bananium/airless,
 /area/template_noop)
 "Y" = (
@@ -125,7 +118,7 @@ Y
 Y
 Y
 u
-r
+q
 q
 M
 Y

@@ -430,7 +430,7 @@
 /obj/item/reagent_containers/glass/mixbowl //chef's bowl
 	name = "mixing bowl"
 	desc = "A large bowl for mixing ingredients."
-	icon = 'yogstation/icons/obj/food/containers.dmi'
+	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "mixbowl"
 	item_state = "mixbowl"
 	w_class = WEIGHT_CLASS_NORMAL

@@ -195,3 +195,48 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/spam_musubi
 	category = CAT_MEAT
+
+/datum/crafting_recipe/food/full_roast
+	name = "Roast Chicken Dinner"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/meat/steak/chicken = 3,
+		/obj/item/reagent_containers/food/snacks/roastparsnip = 3,
+		/obj/item/reagent_containers/food/snacks/grown/onion = 1,
+		/obj/item/reagent_containers/food/snacks/grown/peas = 3,
+		/obj/item/reagent_containers/food/snacks/grown/potato = 6,
+		/obj/item/reagent_containers/food/snacks/grown/cabbage = 1,
+		/datum/reagent/consumable/flour = 5,
+		/datum/reagent/consumable/gravy = 15,
+		/datum/reagent/consumable/sodiumchloride = 2,
+		/datum/reagent/consumable/blackpepper = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/roast_dinner
+	category = CAT_MEAT
+
+/datum/crafting_recipe/food/full_roast_tofu
+	name = "Meat-Free Roast Dinner"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/tofu = 6,
+		/obj/item/reagent_containers/food/snacks/roastparsnip = 3,
+		/obj/item/reagent_containers/food/snacks/grown/onion = 1,
+		/obj/item/reagent_containers/food/snacks/grown/peas = 3,
+		/obj/item/reagent_containers/food/snacks/grown/potato = 6,
+		/obj/item/reagent_containers/food/snacks/grown/cabbage = 1,
+		/datum/reagent/consumable/flour = 5,
+		/datum/reagent/consumable/soymilk = 15,
+		/datum/reagent/consumable/sodiumchloride = 2,
+		/datum/reagent/consumable/blackpepper = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/roast_dinner_tofu
+	category = CAT_MEAT
+
+
+/datum/crafting_recipe/food/fried_chicken
+	name = "Fried Chicken"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/meat/steak/chicken = 1,
+		/datum/reagent/consumable/corn_starch = 5,
+		/datum/reagent/consumable/flour = 5
+	)
+	result = /obj/item/reagent_containers/food/snacks/fried_chicken
+	category = CAT_MEAT

@@ -8,7 +8,7 @@
 	initial_language_holder = /datum/language_holder/synthetic
 	infra_luminosity = 0
 	bubble_icon = BUBBLE_MACHINE
-	weather_immunities = list(WEATHER_ASH)
+	weather_immunities = WEATHER_STORM
 	mob_biotypes = MOB_ROBOTIC
 	deathsound = 'sound/voice/borg_deathsound.ogg'
 	speech_span = SPAN_ROBOT
