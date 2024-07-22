@@ -89,12 +89,12 @@
 		if(speed_mult >= 0.2)
 			speed_mult -= 0.05
 		if(free_space <= 0)
-			to_chat(user, span_warning("Your [src] can't absorb any more!"))
+			to_chat(user, span_warning("You cant absorb any more liquid with \the [src]!"))
 			return TRUE
 		if(!do_after(user, src.mopspeed * speed_mult, target = target))
 			break
 		if(the_mop.reagents.total_volume == the_mop.mopcap)
-			to_chat(user, span_warning("Your [src] can't absorb any more!"))
+			to_chat(user, span_warning("You cant absorb any more liquid with \the [src]!"))
 			break
 		if(targeted_group?.reagents_per_turf)
 			targeted_group?.trans_to_seperate_group(the_mop.reagents, min(targeted_group?.reagents_per_turf, 5))
