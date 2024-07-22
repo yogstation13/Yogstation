@@ -30,7 +30,7 @@ export const IceCreamVat = (props, context) => {
       <Window.Content>
         <Section title="Cones">
           <Stack.Item>
-            <ConesRow/>
+            <ConeRow/>
           </Stack.Item>
         </Section>
         <Section title="Scoops">
@@ -43,7 +43,7 @@ export const IceCreamVat = (props, context) => {
   );
 };
 
-const ConesRow = (props, context) => {
+const ConeRow = (props, context) => {
   const { act, data } = useBackend<ConeStats>(context);
 
   return (
@@ -64,6 +64,17 @@ const ConesRow = (props, context) => {
         <Box>
           {data.item_quantity}
         </Box>
+      </Table.Cell>
+      <Table.Cell collapsing textAlign="center">
+        <Button
+          fluid
+          disabled={(
+            data.item_quantity === 0
+          )}
+          content={'Select'}
+          onClick={() => act('select', {
+            itemPath: data.item_type_path,
+          })} />
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
       <Button

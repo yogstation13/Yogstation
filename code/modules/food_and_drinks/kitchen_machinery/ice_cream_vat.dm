@@ -1,3 +1,6 @@
+#define STORAGE_CAPACITY_ICE_CREAM 70
+#define STORAGE_CAPACITY_CONE 30
+
 /obj/machinery/ice_cream_vat
 	name = "ice cream vat"
 	desc = "Ding-aling ding dong. Get your Nanotrasen-approved ice cream!"
@@ -8,28 +11,31 @@
 	use_power = NO_POWER_USE
 	layer = BELOW_OBJ_LAYER
 	max_integrity = 300
-	//Max ammount of any one scoop/cone type in storage
-	var/max_storage = 15
+	var/stored_ice_cream = 0
+	var/stored_cones = 0
+	//Ice cream to be dispenced into cone on attackby
 	var/selected_ice_cream = null
-	//List of ice cream scoops to start with and to draw from
-	var/list/ice_cream_list = list(
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/chocolate = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/strawberry = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/blue = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/lemon_sorbet = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/caramel = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/banana = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/orange_creamsicle = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/peach = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/cherry_chocolate = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/meat = 5)
-	//List of cones to start with and to draw from
-	var/list/cone_list = list(
-		/obj/item/reagent_containers/food/snacks/ice_cream_cone/cake = 10,
-		/obj/item/reagent_containers/food/snacks/ice_cream_cone/chocolate = 10)
-
+	//Cone to be dispenced with alt click
+	var/selected_cone = null
+	//Items within the vat
+	var/list/stored_items = list()
+	//List of ice cream scoops to start with
+	var/list/item_list = list(
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/chocolate,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/strawberry,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/blue,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/lemon_sorbet,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/caramel,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/banana,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/orange_creamsicle,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/peach,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/cherry_chocolate,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/meat,
+		/obj/item/reagent_containers/food/snacks/ice_cream_cone/cake,
+		/obj/item/reagent_containers/food/snacks/ice_cream_cone/chocolate)
+	//Please don't add anything other than scoops or cones to the list or it could/maybe/possibly/definitely break it
 
 /obj/machinery/ice_cream_vat/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -42,20 +48,26 @@
 	var/list/data = list()
 	data["cones"] = list()
 	data["ice_cream"] = list()
-	for(var/cone_item in cone_list)
-		var/obj/item/reagent_containers/food/snacks/ice_cream_cone/cone = new cone_item
-		var/list/details = list()
-		details["item_name"] = cone.name
-		details["item_quantity"] = cone_item
-		details["item_type_path"] = cone.type
+	for(var/item_detail in stored_items)
 
-		var/icon/cone_pic = getFlatIcon(cone)
-		var/md5 = md5(fcopy_rsc(cone_pic))
-		if(!SSassets.cache["photo_[md5]_[cone.name]_icon.png"])
-			SSassets.transport.register_asset("photo_[md5]_[cone.name]_icon.png", cone_pic)
-		SSassets.transport.send_assets(user, list("photo_[md5]_[cone.name]_icon.png" = cone_pic))
-		details["cone_pic"] = SSassets.transport.get_asset_url("photo_[md5]_[cone.name]_icon.png")
-		data["cones" += cone_item]
+		var/list/details = list()
+		var/obj/item/reagent_containers/food/snacks/item
+
+		details["item_name"] = item.name
+		details["item_quantity"] = item_detail
+		details["item_type_path"] = item.type
+
+		var/icon/item_pic = getFlatIcon(item)
+		var/md5 = md5(fcopy_rsc(item_pic))
+		if(!SSassets.cache["photo_[md5]_[item.name]_icon.png"])
+			SSassets.transport.register_asset("photo_[md5]_[item.name]_icon.png", item_pic)
+		SSassets.transport.send_assets(user, list("photo_[md5]_[item.name]_icon.png" = item_pic))
+		details["item_pic"] = SSassets.transport.get_asset_url("photo_[md5]_[item.name]_icon.png")
+		
+		if(istype(/obj/item, /obj/item/reagent_containers/food/snacks/ice_cream_scoop))
+			data["ice_cream" += item]
+		else
+			data["cones" += item]
 		
 	return data
 
@@ -63,6 +75,21 @@
 	. = ..()
 	if(.)
 		return
+
+/obj/machinery/ice_cream_vat/Initialize(mapload)
+	. = ..()
+	//Add list items to vat's storage
+	for(var/list_item in item_list)
+		var/obj/item/reagent_containers/food/snacks/item = list_item
+		if(istype(/obj/item, /obj/item/reagent_containers/food/snacks/ice_cream_scoop))
+			//Store 5 of every scoop in list
+			stored_items[item.name] = 5
+		else
+			//Store 10 of every cone in list
+			stored_items[item.name] = 10
+		
+#undef STORAGE_CAPACITY_ICE_CREAM
+#undef STORAGE_CAPACITY_CONE
 
 ///////////////////
 //ICE CREAM CONES//
