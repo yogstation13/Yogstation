@@ -44,11 +44,20 @@ const ConeRow = (props, context) => {
   const { cones = [] } = data;
 
   return (
-    <Stack>
+    <Stack vertical>
       {cones.map(flavor => (
         <Stack.Item
          key={flavor.item_name}>
-           {capitalize(flavor.item_name)}
+            <Stack.Item>
+              <Box
+              as="img"
+              src={resolveAsset(flavor.item_image)}
+              height="36px"
+              style={{
+                '-ms-interpolation-mode': 'nearest-neighbor',
+                'image-rendering': 'pixelated' }} />
+            </Stack.Item>
+            {capitalize(flavor.item_name)}
         </Stack.Item>
      ))}
     </Stack>
@@ -60,7 +69,7 @@ const IceCreamRow = (props, context) => {
   const { ice_cream = [] } = data;
 
   return (
-    <Stack>
+    <Stack vertical>
       {ice_cream.map(flavor => (
         <Stack.Item
          key={flavor.item_name}>

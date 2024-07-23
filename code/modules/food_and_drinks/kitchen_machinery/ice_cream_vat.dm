@@ -57,7 +57,7 @@
 		if(!SSassets.cache["photo_[md5]_[item.name]_icon.png"])
 			SSassets.transport.register_asset("photo_[md5]_[item.name]_icon.png", item_pic)
 		SSassets.transport.send_assets(user, list("photo_[md5]_[item.name]_icon.png" = item_pic))
-		details["item_pic"] = SSassets.transport.get_asset_url("photo_[md5]_[item.name]_icon.png")
+		details["item_image"] = SSassets.transport.get_asset_url("photo_[md5]_[item.name]_icon.png")
 
 		if(istype(item, /obj/item/reagent_containers/food/snacks/ice_cream_scoop))
 			data["ice_cream"] += list(details)
