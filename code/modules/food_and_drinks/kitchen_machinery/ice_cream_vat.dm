@@ -65,9 +65,9 @@
 		details["item_pic"] = SSassets.transport.get_asset_url("photo_[md5]_[item.name]_icon.png")
 		
 		if(istype(/obj/item, /obj/item/reagent_containers/food/snacks/ice_cream_scoop))
-			data["ice_cream" += item]
+			data["ice_cream"] += item
 		else
-			data["cones" += item]
+			data["cones"] += item
 		
 	return data
 
@@ -84,9 +84,11 @@
 		if(istype(/obj/item, /obj/item/reagent_containers/food/snacks/ice_cream_scoop))
 			//Store 5 of every scoop in list
 			stored_items[item.name] = 5
+			stored_ice_cream += 5
 		else
 			//Store 10 of every cone in list
 			stored_items[item.name] = 10
+			stored_cones += 10
 		
 #undef STORAGE_CAPACITY_ICE_CREAM
 #undef STORAGE_CAPACITY_CONE
