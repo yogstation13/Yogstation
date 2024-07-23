@@ -164,7 +164,7 @@
 		name = initial(name)
 	update_appearance(UPDATE_ICON)
 
-/mob/living/simple_animal/spiderbot/gib()
+/mob/living/simple_animal/spiderbot/gib(no_brain, no_organs, no_bodyparts, no_items)
 	eject_brain()
 	new /obj/effect/decal/remains/robot(loc)
 	qdel(src)
