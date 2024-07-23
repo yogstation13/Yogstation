@@ -216,7 +216,7 @@ Temperature: 126.85 °C (400 K)
 	else if (isliving(thing))
 		. = TRUE
 		var/mob/living/L = thing
-		if(WEATHER_ACID in L.weather_immunities) //if they're immune to acid weather
+		if(L.weather_immunities & WEATHER_ACID) //if they're immune to acid weather
 			return
 		if(L.movement_type & (FLYING|FLOATING)) //YOU'RE FLYING OVER IT
 			return	
@@ -233,7 +233,7 @@ Temperature: 126.85 °C (400 K)
 				return
 		else if(isliving(buckle_check))
 			var/mob/living/live = buckle_check
-			if(WEATHER_ACID in live.weather_immunities)
+			if(live.weather_immunities & WEATHER_ACID)
 				return
 			if(live.movement_type & (FLYING|FLOATING))
 				return
@@ -255,7 +255,7 @@ Temperature: 126.85 °C (400 K)
 			if(HAS_TRAIT(L,TRAIT_TOXIMMUNE) || HAS_TRAIT(L,TRAIT_TOXINLOVER))
 				return
 			
-			humie.reagents.add_reagent(/datum/reagent/toxic_metabolities, 2 * acid_strength)
+			humie.reagents.add_reagent(/datum/reagent/toxic_metabolites, 2 * acid_strength)
 
 		else if(prob(25 * acid_strength))
 			L.acid_act(5 * acid_strength, 7.5 * acid_strength)

@@ -520,111 +520,83 @@
 	name = "Concentrated toxin"
 	toxpwr = 2
 
-#define STAGE_1_THRESHOLD 15
-#define STAGE_2_THRESHOLD 30
-#define STAGE_3_THRESHOLD 45
+#define STAGE_THRESHOLD 15
 #define ALERT_ID "toxic_buildup_metabolites"
-/datum/reagent/toxic_metabolities
-	name = "Toxic metabolities"
+/datum/reagent/toxic_metabolites
+	name = "Toxic metabolites"
 	description = "Deadly toxic buildup of metabolities caused by direct exposition to jungleland's environment."
-	taste_description = "death"
 	color = "#002d09"
 	harmful = TRUE
 	can_synth = FALSE
 	self_consuming = TRUE
 	taste_mult = 100
+	taste_description = "death"
 	metabolization_rate = 0.5
 
 	var/stage = 1
-	var/old_volume = 0
+	var/old_stage = 1
 	var/alert_type = /atom/movable/screen/alert/status_effect/toxic_buildup
 
 // consumes 2 every 2 seconds
-/datum/reagent/toxic_metabolities/on_mob_life(mob/living/carbon/M)
+/datum/reagent/toxic_metabolites/on_mob_life(mob/living/carbon/M)
 	. = ..()
 	if(HAS_TRAIT(M,TRAIT_SULPH_PIT_IMMUNE))
 		cure()
 		return
-	switch(volume)
-		if(0 to STAGE_1_THRESHOLD)
-			if(old_volume > STAGE_1_THRESHOLD)
-				decrement_stage(M)
 
+	stage = min(floor(volume/STAGE_THRESHOLD) + 1, 4)
+	if(stage != old_stage) //so we don't keep updating the alert if we don't need to
+		M.throw_alert(ALERT_ID,alert_type,stage)
+	old_stage = stage
+
+	switch(stage)
+		if(1)
 			M.adjustToxLoss(0.25, forced = TRUE)
-			// STAGE 1
-		if(STAGE_1_THRESHOLD to STAGE_2_THRESHOLD)
-			if(old_volume < STAGE_1_THRESHOLD)
-				increment_stage(M)
-			if(old_volume > STAGE_2_THRESHOLD)
-				decrement_stage(M)
 
+		if(2)
 			M.adjustToxLoss(0.5, forced = TRUE)
 			M.adjustOrganLoss(ORGAN_SLOT_LIVER,0.25)
-			M.adjustStaminaLoss(2.5)
 			if(prob(2.5))
 				to_chat(M, "You feel slight burning coming from within you, as the toxins singe you from within!")
 				M.adjustFireLoss(5)
-			// STAGE 2
-		if(STAGE_2_THRESHOLD to STAGE_3_THRESHOLD)
-			if(old_volume < STAGE_2_THRESHOLD)
-				increment_stage(M)
-			if(old_volume > STAGE_3_THRESHOLD)
-				decrement_stage(M)
+
+		if(3)
 			M.adjustToxLoss(1, forced = TRUE)
-			M.adjustOrganLoss(ORGAN_SLOT_LIVER,0.5)
+			M.adjustOrganLoss(ORGAN_SLOT_LIVER, 0.5)
 			M.adjustStaminaLoss(5)
+			M.clear_stamina_regen()
 			if(prob(5))
 				to_chat(M, "You feel a burning sensation coming from within you, as the toxins burn you from within!")
 				M.adjustFireLoss(10)
-			// STAGE 3
-		if(STAGE_3_THRESHOLD to INFINITY)
-			if(old_volume < STAGE_3_THRESHOLD)
-				increment_stage(M)
+
+		if(4)
 			M.adjustToxLoss(2.5, forced = TRUE)
-			M.adjustOrganLoss(ORGAN_SLOT_LIVER,1)
+			M.adjustOrganLoss(ORGAN_SLOT_LIVER, 1)
 			M.adjustStaminaLoss(10)
+			M.clear_stamina_regen()
 			if(prob(10))
 				to_chat(M, "You feel deep burning sensation from within as the toxins burn you from within!")
 				M.adjustFireLoss(15)
-			// STAGE 4
-	old_volume = volume
 
-/datum/reagent/toxic_metabolities/on_mob_add(mob/living/L)
+/datum/reagent/toxic_metabolites/on_mob_add(mob/living/L)
 	. = ..()
 	if(HAS_TRAIT(L,TRAIT_SULPH_PIT_IMMUNE))
 		cure()
 		return
-	RegisterSignal(L,COMSIG_REGEN_CORE_HEALED,PROC_REF(cure))
-	switch(volume)
-		if(0 to STAGE_1_THRESHOLD)
-			stage = 1
-		if(STAGE_1_THRESHOLD to STAGE_2_THRESHOLD)
-			stage = 2
-		if(STAGE_2_THRESHOLD to STAGE_3_THRESHOLD)
-			stage = 3
-		if(STAGE_3_THRESHOLD to INFINITY)
-			stage = 4
-	old_volume = volume
+	RegisterSignal(L, COMSIG_REGEN_CORE_HEALED,PROC_REF(cure))
+	stage = min(floor(volume/STAGE_THRESHOLD) + 1, 4)
+	old_stage = stage
 	L.throw_alert(ALERT_ID,alert_type,stage)
 
-/datum/reagent/toxic_metabolities/on_mob_delete(mob/living/L)
+/datum/reagent/toxic_metabolites/on_mob_delete(mob/living/L)
+	UnregisterSignal(L, COMSIG_REGEN_CORE_HEALED)
 	L.clear_alert(ALERT_ID)
 	return ..()
-	
-/datum/reagent/toxic_metabolities/proc/decrement_stage(mob/living/L)
-	stage = max(1,stage - 1)
-	L.throw_alert(ALERT_ID,alert_type,stage)
 
-/datum/reagent/toxic_metabolities/proc/increment_stage(mob/living/L)
-	stage = min(4,stage + 1)
-	L.throw_alert(ALERT_ID,alert_type,stage)
-
-/datum/reagent/toxic_metabolities/proc/cure()
+/datum/reagent/toxic_metabolites/proc/cure()
 	if(holder)
 		holder.remove_reagent(type, volume)
 
 
-#undef STAGE_1_THRESHOLD
-#undef STAGE_2_THRESHOLD
-#undef STAGE_3_THRESHOLD
+#undef STAGE_THRESHOLD
 #undef ALERT_ID

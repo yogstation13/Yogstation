@@ -36345,11 +36345,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
-"jXY" = (
-/obj/structure/grille,
-/obj/structure/grille,
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
 "jYd" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -38055,10 +38050,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/quartermaster/office)
-"kHS" = (
-/obj/structure/transit_tube/curved/flipped,
-/turf/open/space/basic,
-/area/space/nearstation)
 "kIe" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "hopqueue";
@@ -42521,6 +42512,11 @@
 	},
 /turf/open/floor/wood/large,
 /area/crew_quarters/heads/captain)
+"msA" = (
+/obj/structure/transit_tube/curved/flipped,
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
 "msD" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -54117,13 +54113,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"qEI" = (
-/obj/structure/lattice,
-/obj/structure/transit_tube/curved{
-	dir = 8
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "qFh" = (
 /obj/item/clothing/under/rank/prisoner,
 /obj/item/clothing/under/rank/prisoner,
@@ -61442,13 +61431,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft_starboard)
-"tiH" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/camera{
-	c_tag = "Atmospherics Exterior Airlock"
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "tiJ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -71046,6 +71028,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft_starboard)
+"wHz" = (
+/obj/machinery/camera{
+	c_tag = "Atmospherics Exterior Airlock"
+	},
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
 "wHG" = (
 /obj/structure/sign/painting{
 	persistence_id = "public";
@@ -109866,8 +109855,8 @@ aaa
 aaa
 aaa
 aaa
-gXs
 aaa
+aJt
 aaa
 ucZ
 aaa
@@ -110123,8 +110112,8 @@ aaa
 oIO
 aaa
 aaa
-gXs
 aaa
+aJt
 aaa
 ucZ
 aaa
@@ -110369,28 +110358,28 @@ wxr
 gXs
 gXs
 gXs
-qEI
-aJt
-tgE
-aJt
-aJt
-aJt
-tgE
+ttn
+aaa
+gXs
 aJt
 aJt
 aJt
-tgE
+gXs
+aJt
+aJt
+aJt
+gXs
 aJt
 aJt
 aJt
 ucZ
 aJt
 aJt
-tgE
+gXs
 aJt
 aJt
 aJt
-tgE
+gXs
 gXs
 gXs
 pEf
@@ -110625,9 +110614,9 @@ cjQ
 cjQ
 cjQ
 xBO
-tiH
-pEf
-kHS
+wHz
+gXs
+msA
 jFu
 jFu
 jFu
@@ -110885,15 +110874,15 @@ dzN
 pEf
 pEf
 pEf
-pEf
+gXs
 aaa
 aaa
 aaa
-pEf
+gXs
 aaa
 aaa
 aaa
-pEf
+gXs
 aaa
 aaa
 aaa
@@ -112712,7 +112701,7 @@ aaa
 aaa
 gXs
 aaa
-aaH
+aKN
 aKN
 aaa
 aaa
@@ -116294,7 +116283,7 @@ pEf
 pEf
 pEf
 pEf
-jXD
+cva
 cva
 cva
 cva
@@ -117833,7 +117822,7 @@ aaa
 aaa
 aaa
 aaa
-tgE
+gXs
 koy
 cva
 cva
@@ -118345,7 +118334,7 @@ aaa
 aaa
 aaa
 aaa
-jXY
+aKN
 gXs
 gXs
 pEf
@@ -118602,11 +118591,11 @@ aaa
 aaa
 aaa
 aaa
-jXY
+aKN
 aaa
 gXs
 pEf
-jXD
+cva
 cva
 cva
 dOn
@@ -118859,12 +118848,12 @@ aaa
 aaa
 aaa
 aaa
-jXY
+aKN
 gXs
 gXs
 pEf
 pEf
-jXD
+cva
 cva
 cva
 sAu
@@ -119116,13 +119105,13 @@ aaa
 aaa
 aaa
 aaa
-jXY
+aKN
 aaa
 gXs
 gXs
 pEf
 ogh
-jXD
+cva
 cva
 cva
 iXp
@@ -120148,7 +120137,7 @@ aaa
 aaa
 aaa
 aaa
-jnA
+aKN
 gXs
 gXs
 gXs
@@ -120160,7 +120149,7 @@ pEf
 gXs
 gXs
 gXs
-jnA
+aKN
 aaa
 aaa
 aaa
@@ -120415,8 +120404,8 @@ gXs
 gXs
 gXs
 gXs
-jnA
-jnA
+aKN
+aKN
 aaa
 aaa
 aaa
@@ -120663,15 +120652,15 @@ aaa
 aaa
 aaa
 aaa
-jnA
+aKN
 gXs
-jnA
+aKN
 gXs
-jnA
-jnA
-jnA
+aKN
+aKN
+aKN
 gXs
-jnA
+aKN
 aaa
 aaa
 aaa
@@ -120921,13 +120910,13 @@ aaa
 aaa
 aaa
 aaa
-jnA
+aKN
 aaa
-jnA
+aKN
 aaa
 aaa
 aaa
-jnA
+aKN
 aaa
 aaa
 aaa

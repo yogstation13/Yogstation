@@ -111,6 +111,6 @@
 		if(fireproof)
 			REMOVE_TRAIT(H, TRAIT_RESISTHIGHPRESSURE, DISEASE_TRAIT)
 			REMOVE_TRAIT(H, TRAIT_RESISTHEAT, DISEASE_TRAIT)
-			H.weather_immunities -= WEATHER_ASH
-			H.weather_immunities -= WEATHER_LAVA
+			H.weather_immunities &= ~WEATHER_ASH
+			H.weather_immunities &= ~WEATHER_LAVA
 

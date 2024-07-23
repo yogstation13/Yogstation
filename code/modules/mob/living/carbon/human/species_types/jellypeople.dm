@@ -29,6 +29,7 @@
 
 /datum/species/jelly/on_species_loss(mob/living/carbon/C)
 	C.faction -= "slime"
+	C.remove_movespeed_modifier("slime_person_wet")
 	return ..()
 
 /datum/species/jelly/on_species_gain(mob/living/carbon/C, datum/species/old_species)
@@ -36,29 +37,53 @@
 	C.faction |= "slime"
 
 /datum/species/jelly/spec_life(mob/living/carbon/human/H)
-	if(H.stat == DEAD) //can't farm slime jelly from a dead slime/jelly person indefinitely
-		return
-
 	handle_wetness(H)
 
+	if(H.stat == DEAD) //can't farm slime jelly from a dead slime/jelly person indefinitely
+		return
 	
 	if(!H.blood_volume)
 		H.blood_volume += 5
 		H.adjustBruteLoss(5)
 		to_chat(H, span_danger("You feel empty!"))
 
-	if(H.blood_volume < BLOOD_VOLUME_NORMAL(H))
-		if(H.nutrition >= NUTRITION_LEVEL_STARVING)
-			H.blood_volume += 3
-			H.adjust_nutrition(-2.5)
-	if(H.blood_volume < BLOOD_VOLUME_OKAY(H))
-		if(prob(5))
-			to_chat(H, span_danger("You feel drained!"))
-	if(H.blood_volume < BLOOD_VOLUME_BAD(H))
-		Cannibalize_Body(H)
+	switch(H.blood_volume)
+		if(0 to (BLOOD_VOLUME_GENERIC * BLOOD_BAD_MULTI))
+			Cannibalize_Body(H)
+
+		if((BLOOD_VOLUME_GENERIC * BLOOD_BAD_MULTI) to (BLOOD_VOLUME_GENERIC * BLOOD_OKAY_MULTI))
+			if(prob(5))
+				to_chat(H, span_danger("You feel drained!"))
+
+		if((BLOOD_VOLUME_GENERIC * BLOOD_OKAY_MULTI) to BLOOD_VOLUME_GENERIC)
+			if(H.nutrition >= NUTRITION_LEVEL_STARVING)
+				H.blood_volume += 3
+				H.adjust_nutrition(-2.5)
+
+		if(BLOOD_VOLUME_GENERIC to INFINITY)
+			H.adjustCloneLoss(-0.5) //slowly re-knit cell damage
+      
 	var/datum/action/innate/regenerate_limbs/ability = locate() in instantiated_abilities
 	if(ability)
 		ability.build_all_button_icons()
+
+/datum/species/jelly/proc/handle_wetness(mob/living/carbon/human/H)
+	var/datum/status_effect/fire_handler/wet_stacks/wetness = H.has_status_effect(/datum/status_effect/fire_handler/wet_stacks)
+	if(wetness && wetness.stacks >= 1) // needs at least 1 wetness stack to do anything
+		H.add_movespeed_modifier("slime_person_wet", update = TRUE, priority = 102, multiplicative_slowdown = 0.5, blacklisted_movetypes=(FLYING|FLOATING))
+		H.adjustCloneLoss(2)
+		if(H.stat != DEAD)
+			H.set_jitter_if_lower(10 SECONDS)
+			H.set_stutter_if_lower(1 SECONDS)
+			if(!soggy)//play once when it starts
+				H.emote("scream")
+				to_chat(H, span_userdanger("Every cell in your body begins to break down from the excess of water, get dry!"))
+		H.adjust_wet_stacks(-1)
+		soggy = TRUE
+	else if(soggy)
+		H.remove_movespeed_modifier("slime_person_wet")
+		to_chat(H, "You breathe a sigh of relief as you dry off.")
+		soggy = FALSE
 
 /datum/species/jelly/proc/Cannibalize_Body(mob/living/carbon/human/H)
 	var/list/limbs_to_consume = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG) - H.get_missing_limbs()
@@ -161,26 +186,6 @@
 		to_chat(H, span_warning("...but there is not enough of you to fix everything! You must attain more mass to heal completely!"))
 		return
 	to_chat(H, span_warning("...but there is not enough of you to go around! You must attain more mass to heal!"))
-
-/datum/species/jelly/proc/handle_wetness(mob/living/carbon/human/H)
-	var/datum/status_effect/fire_handler/wet_stacks/wetness = H.has_status_effect(/datum/status_effect/fire_handler/wet_stacks)
-	if(wetness && wetness.stacks >= 1) // needs at least 1 wetness stack to do anything
-		H.add_movespeed_modifier("slime_person_wet", update = TRUE, priority = 102, multiplicative_slowdown = 0.5, blacklisted_movetypes=(FLYING|FLOATING))
-		//damage has a flat amount with an additional amount based on how wet they are
-		H.adjustStaminaLoss(8 - (H.fire_stacks / 2))
-		H.clear_stamina_regen()
-		H.adjustFireLoss(2.5 - (H.fire_stacks / 3))
-		H.set_jitter_if_lower(10 SECONDS)
-		H.set_stutter_if_lower(1 SECONDS)
-		if(!soggy)//play once when it starts
-			H.emote("scream")
-			to_chat(H, span_userdanger("Every cell in your body begins to break down from the excess of water, get dry!"))
-		H.adjust_wet_stacks(-1)
-		soggy = TRUE
-	else if(soggy)
-		H.remove_movespeed_modifier("slime_person_wet")
-		to_chat(H, "You breathe a sigh of relief as you dry off.")
-		soggy = FALSE
 
 ////////////////////////////////////////////////////////SLIMEPEOPLE///////////////////////////////////////////////////////////////////
 
@@ -451,11 +456,12 @@
 		around.</span>",
 		span_notice("...and move this one instead."))
 
-
-///////////////////////////////////LUMINESCENTS//////////////////////////////////////////
-
-//Luminescents are able to consume and use slime extracts, without them decaying.
-
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------Luminescents------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Luminescents are able to consume and use slime extracts, without them decaying.
+ */
 /datum/species/jelly/luminescent
 	name = "Luminescent"
 	plural_form = null
@@ -578,9 +584,12 @@
 	var/activation_type = SLIME_ACTIVATE_MINOR
 	var/datum/species/jelly/luminescent/species
 
-/datum/action/innate/use_extract/New(_species)
-	..()
-	species = _species
+/datum/action/innate/use_extract/link_to(Target)
+	. = ..()
+	if(ishuman(target))
+		var/mob/living/carbon/human/humie = target
+		if(humie?.dna?.species)
+			species = humie.dna.species
 
 /datum/action/innate/use_extract/IsAvailable(feedback = FALSE)
 	if(..())
