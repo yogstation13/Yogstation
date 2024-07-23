@@ -18,29 +18,27 @@
 	//Cone to be dispenced with alt click
 	var/selected_cone = null
 	//Items within the vat
-	var/list/stored_items = list()
-	//List of ice cream scoops to start with
-	var/list/item_list = list(
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/chocolate,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/strawberry,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/blue,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/lemon_sorbet,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/caramel,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/banana,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/orange_creamsicle,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/peach,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/cherry_chocolate,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/meat,
-		/obj/item/reagent_containers/food/snacks/ice_cream_cone/cake,
-		/obj/item/reagent_containers/food/snacks/ice_cream_cone/chocolate)
+	var/list/stored_items = list(
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/chocolate = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/strawberry = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/blue = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/lemon_sorbet = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/caramel = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/banana = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/orange_creamsicle = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/peach = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/cherry_chocolate = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/meat = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_cone/cake = 10,
+		/obj/item/reagent_containers/food/snacks/ice_cream_cone/chocolate = 10)
 	//Please don't add anything other than scoops or cones to the list or it could/maybe/possibly/definitely break it
 
 /obj/machinery/ice_cream_vat/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "IceCreamVat", ui)
+		ui = new(user, src, "IceCreamVat", name)
 		ui.open()
 		ui.set_autoupdate(TRUE)
 
@@ -51,7 +49,7 @@
 	for(var/item_detail in stored_items)
 
 		var/list/details = list()
-		var/obj/item/reagent_containers/food/snacks/item
+		var/obj/item/reagent_containers/food/snacks/item = new item_detail
 
 		details["item_name"] = item.name
 		details["item_quantity"] = item_detail
@@ -65,9 +63,9 @@
 		details["item_pic"] = SSassets.transport.get_asset_url("photo_[md5]_[item.name]_icon.png")
 		
 		if(istype(/obj/item, /obj/item/reagent_containers/food/snacks/ice_cream_scoop))
-			data["ice_cream"] += item
+			data["ice_cream"] += details
 		else
-			data["cones"] += item
+			data["cones"] += details
 		
 	return data
 
@@ -75,21 +73,7 @@
 	. = ..()
 	if(.)
 		return
-
-/obj/machinery/ice_cream_vat/Initialize(mapload)
-	. = ..()
-	//Add list items to vat's storage
-	for(var/list_item in item_list)
-		var/obj/item/reagent_containers/food/snacks/item = list_item
-		if(istype(/obj/item, /obj/item/reagent_containers/food/snacks/ice_cream_scoop))
-			//Store 5 of every scoop in list
-			stored_items[item.name] = 5
-			stored_ice_cream += 5
-		else
-			//Store 10 of every cone in list
-			stored_items[item.name] = 10
-			stored_cones += 10
-		
+	
 #undef STORAGE_CAPACITY_ICE_CREAM
 #undef STORAGE_CAPACITY_CONE
 
