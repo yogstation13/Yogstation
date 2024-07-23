@@ -14,8 +14,8 @@
 	var/selected_cone = null
 	//Items currently stored in the vat
 	var/list/stored_items = list()
-	//Items to be added upon creation to the vat
-	var/list/starting_items = list(
+	//Items to be added upon creation to the vat and what is used for the UI
+	var/list/ui_list = list(
 		/obj/item/reagent_containers/food/snacks/ice_cream_scoop,
 		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla,
 		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/chocolate,
@@ -43,7 +43,7 @@
 	var/list/data = list()
 	data["cones"] = list()
 	data["ice_cream"] = list()
-	for(var/item_detail in stored_items)
+	for(var/item_detail in ui_list)
 
 		var/list/details = list()
 		var/obj/item/reagent_containers/food/snacks/item = new item_detail
@@ -58,32 +58,37 @@
 			SSassets.transport.register_asset("photo_[md5]_[item.name]_icon.png", item_pic)
 		SSassets.transport.send_assets(user, list("photo_[md5]_[item.name]_icon.png" = item_pic))
 		details["item_pic"] = SSassets.transport.get_asset_url("photo_[md5]_[item.name]_icon.png")
-		
-		if(istype(/obj/item, /obj/item/reagent_containers/food/snacks/ice_cream_scoop))
-			data["ice_cream"] += details
+
+		if(istype(item, /obj/item/reagent_containers/food/snacks/ice_cream_scoop))
+			data["ice_cream"] += list(details)
 		else
-			data["cones"] += details
+			data["cones"] += list(details)
 		
 	return data
 
 /obj/machinery/ice_cream_vat/ui_act(action, list/params)
 	. = ..()
+
 	if(.)
 		return
 
 /obj/machinery/ice_cream_vat/proc/find_amount(target_list, target)
 	var/amount = 0
 	
-	for(var/item in target_list)
-		if(item == target)
+	for(var/list_item in target_list)
+		if(list_item == target)
 			amount += 1
 	
 	return amount
 
 /obj/machinery/ice_cream_vat/Initialize(mapload)
 	. = ..()
-	for(var/item in starting_items)
-		for(var/i in 1 to 5)
+
+	for(var/item in ui_list)
+		//Remember to change it to 5 scoops, 10 cones
+		var/loop_cycles = 5
+
+		for(var/i in 1 to loop_cycles)
 			stored_items += item
 
 ///////////////////
