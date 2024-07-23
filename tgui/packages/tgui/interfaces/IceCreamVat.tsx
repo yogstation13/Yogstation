@@ -1,6 +1,6 @@
 import { capitalize } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
-import { Button, Stack, Section, Tabs, Table, Box, TextArea } from '../components';
+import { Button, Stack, Section, Tabs, Box, TextArea } from '../components';
 import { Window } from '../layouts';
 import { resolveAsset } from './../assets';
 
@@ -26,7 +26,7 @@ type ConeStats = {
 export const IceCreamVat = (props, context) => {
 
   return(
-    <Window width={650} height={500} resizable>
+    <Window width={550} height={500} resizable>
       <Window.Content>
         <Section title="Cones">
           <ConeRow/>
@@ -46,19 +46,46 @@ const ConeRow = (props, context) => {
   return (
     <Stack vertical>
       {cones.map(flavor => (
-        <Stack.Item
-         key={flavor.item_name}>
-            <Stack.Item>
-              <Box
-              as="img"
-              src={resolveAsset(flavor.item_image)}
-              height="36px"
-              style={{
-                '-ms-interpolation-mode': 'nearest-neighbor',
-                'image-rendering': 'pixelated' }} />
-            </Stack.Item>
+        <Stack.Divider
+         key={flavor.item_name}
+         fontSize="16px"
+         collapsing>
+            <Box
+            as="img"
+            src={resolveAsset(flavor.item_image)}
+            height="38px"
+            style={{
+              '-ms-interpolation-mode': 'nearest-neighbor',
+              'image-rendering': 'pixelated' }} />
             {capitalize(flavor.item_name)}
-        </Stack.Item>
+            <Stack.Item
+              collapsing
+              textAlign="right">
+            {flavor.item_quantity} in storage
+            <Button
+            content="Select"
+            textAlign="center"
+            fontSize="16px"
+            disabled={(
+              flavor.item_quantity === 0
+            )}
+            onClick={() => act("select", {
+            itemPath: flavor.item_type_path,
+            })}
+            />
+            <Button
+            content="Dispence"
+            textAlign="center"
+            fontSize="16px"
+            disabled={(
+              flavor.item_quantity === 0
+            )}
+            onClick={() => act("dispence", {
+            itemPath: flavor.item_type_path,
+            })}
+            />
+            </Stack.Item>
+        </Stack.Divider>
      ))}
     </Stack>
   );
