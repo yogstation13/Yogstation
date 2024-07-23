@@ -17,22 +17,23 @@
 	var/selected_ice_cream = null
 	//Cone to be dispenced with alt click
 	var/selected_cone = null
+	var/list/stored_items = list()
 	//Items within the vat
-	var/list/stored_items = list(
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/chocolate = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/strawberry = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/blue = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/lemon_sorbet = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/caramel = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/banana = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/orange_creamsicle = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/peach = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/cherry_chocolate = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/meat = 5,
-		/obj/item/reagent_containers/food/snacks/ice_cream_cone/cake = 10,
-		/obj/item/reagent_containers/food/snacks/ice_cream_cone/chocolate = 10)
+	var/list/starting_items = list(
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/chocolate,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/strawberry,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/blue,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/lemon_sorbet,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/caramel,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/banana,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/orange_creamsicle,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/peach,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/cherry_chocolate,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/meat,
+		/obj/item/reagent_containers/food/snacks/ice_cream_cone/cake,
+		/obj/item/reagent_containers/food/snacks/ice_cream_cone/chocolate)
 	//Please don't add anything other than scoops or cones to the list or it could/maybe/possibly/definitely break it
 
 /obj/machinery/ice_cream_vat/ui_interact(mob/user, datum/tgui/ui)
@@ -52,7 +53,7 @@
 		var/obj/item/reagent_containers/food/snacks/item = new item_detail
 
 		details["item_name"] = item.name
-		details["item_quantity"] = item_detail
+		details["item_quantity"] = find_amount(stored_items, item_detail)
 		details["item_type_path"] = item.type
 
 		var/icon/item_pic = getFlatIcon(item)
@@ -73,7 +74,23 @@
 	. = ..()
 	if(.)
 		return
+
+/obj/machinery/ice_cream_vat/proc/find_amount(target_list, target)
+	var/amount = 0
 	
+	for(var/item in target_list)
+		if(item == target)
+			amount += 1
+	
+	return amount
+
+/obj/machinery/ice_cream_vat/Initialize(mapload)
+	. = ..()
+	for(var/item in starting_items)
+		for(var/i in 1 to 5)
+			stored_items += item
+
+
 #undef STORAGE_CAPACITY_ICE_CREAM
 #undef STORAGE_CAPACITY_CONE
 
