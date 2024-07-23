@@ -1,6 +1,3 @@
-#define STORAGE_CAPACITY_ICE_CREAM 70
-#define STORAGE_CAPACITY_CONE 30
-
 /obj/machinery/ice_cream_vat
 	name = "ice cream vat"
 	desc = "Ding-aling ding dong. Get your Nanotrasen-approved ice cream!"
@@ -11,14 +8,13 @@
 	use_power = NO_POWER_USE
 	layer = BELOW_OBJ_LAYER
 	max_integrity = 300
-	var/stored_ice_cream = 0
-	var/stored_cones = 0
 	//Ice cream to be dispenced into cone on attackby
 	var/selected_ice_cream = null
 	//Cone to be dispenced with alt click
 	var/selected_cone = null
+	//Items currently stored in the vat
 	var/list/stored_items = list()
-	//Items within the vat
+	//Items to be added upon creation to the vat
 	var/list/starting_items = list(
 		/obj/item/reagent_containers/food/snacks/ice_cream_scoop,
 		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla,
@@ -89,10 +85,6 @@
 	for(var/item in starting_items)
 		for(var/i in 1 to 5)
 			stored_items += item
-
-
-#undef STORAGE_CAPACITY_ICE_CREAM
-#undef STORAGE_CAPACITY_CONE
 
 ///////////////////
 //ICE CREAM CONES//

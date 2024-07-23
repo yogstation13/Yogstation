@@ -29,14 +29,10 @@ export const IceCreamVat = (props, context) => {
     <Window width={650} height={500} resizable>
       <Window.Content>
         <Section title="Cones">
-          <Stack.Item>
-            <ConeRow/>
-          </Stack.Item>
+          <ConeRow/>
         </Section>
         <Section title="Scoops">
-          <Stack.Item>
-            <IceCreamRow/>
-          </Stack.Item>
+          <IceCreamRow/>
         </Section>
       </Window.Content>
     </Window>
@@ -44,97 +40,33 @@ export const IceCreamVat = (props, context) => {
 };
 
 const ConeRow = (props, context) => {
-  const { act, data } = useBackend<ConeStats>(context);
+  const { act, data } = useBackend<Data>(context);
+  const { cones = [] } = data;
 
   return (
-    <Table.Row>
-      <Table.Cell collapsing>
-        <Box
-        as="img"
-        src={resolveAsset(data.item_image)}
-        height="96px"
-        style={{
-          '-ms-interpolation-mode': 'nearest-neighbor',
-          'image-rendering': 'pixelated' }} />
-      </Table.Cell>
-      <Table.Cell bold>
-        {data.item_name}
-      </Table.Cell>
-      <Table.Cell collapsing textAlign="center">
-        <Box>
-          {data.item_quantity}
-        </Box>
-      </Table.Cell>
-      <Table.Cell collapsing textAlign="center">
-        <Button
-          fluid
-          disabled={(
-            data.item_quantity === 0
-          )}
-          content={'Select'}
-          onClick={() => act('select', {
-            itemPath: data.item_type_path,
-          })} />
-      </Table.Cell>
-      <Table.Cell collapsing textAlign="center">
-      <Button
-          fluid
-          disabled={(
-            data.item_quantity === 0
-          )}
-          content={'Dispense'}
-          onClick={() => act('dispense', {
-            itemPath: data.item_type_path,
-          })} />
-      </Table.Cell>
-    </Table.Row>
+    <Stack>
+      {cones.map(flavor => (
+        <Stack.Item
+         key={flavor.item_name}>
+           {capitalize(flavor.item_name)}
+        </Stack.Item>
+     ))}
+    </Stack>
   );
 };
 
 const IceCreamRow = (props, context) => {
-  const { act, data } = useBackend<IceCreamStats>(context);
+  const { act, data } = useBackend<Data>(context);
+  const { ice_cream = [] } = data;
 
   return (
-    <Table.Row>
-      <Table.Cell collapsing>
-        <Box
-        as="img"
-        src={resolveAsset(data.item_image)}
-        height="96px"
-        style={{
-          '-ms-interpolation-mode': 'nearest-neighbor',
-          'image-rendering': 'pixelated' }} />
-      </Table.Cell>
-      <Table.Cell bold>
-        {data.item_name}
-      </Table.Cell>
-      <Table.Cell collapsing textAlign="center">
-        <Box>
-          {data.item_quantity}
-        </Box>
-      </Table.Cell>
-      <Table.Cell collapsing textAlign="center">
-        <Button
-          fluid
-          disabled={(
-            data.item_quantity === 0
-          )}
-          content={'Select'}
-          onClick={() => act('select', {
-            itemPath: data.item_type_path,
-          })} />
-      </Table.Cell>
-      <Table.Cell collapsing textAlign="center">
-      <Button
-          fluid
-          disabled={(
-            data.item_quantity === 0
-          )}
-          content={'Dispense'}
-          onClick={() => act('dispense', {
-            itemPath: data.item_type_path,
-          })} />
-      </Table.Cell>
-    </Table.Row>
+    <Stack>
+      {ice_cream.map(flavor => (
+        <Stack.Item
+         key={flavor.item_name}>
+           {capitalize(flavor.item_name)}
+        </Stack.Item>
+     ))}
+    </Stack>
   );
 };
