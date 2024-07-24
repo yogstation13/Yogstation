@@ -12,9 +12,11 @@
 	var/selected_ice_cream = null
 	//Cone to be dispenced with alt click
 	var/selected_cone = null
+	//Max amount of items that can be in vat's storage
+	var/storage_capacity = 120
 	//Items currently stored in the vat
 	var/list/stored_items = list()
-	//Items to be added upon creation to the vat and what is used for the UI
+	//Items to be added upon creation to the vat and what is shown in the UI
 	var/list/ui_list = list(
 		/obj/item/reagent_containers/food/snacks/ice_cream_scoop,
 		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla,
@@ -40,18 +42,24 @@
 		ui.set_autoupdate(TRUE)
 
 /obj/machinery/ice_cream_vat/ui_data(mob/user)
+	//Define variables from UI
 	var/list/data = list()
 	data["cones"] = list()
 	data["ice_cream"] = list()
+
+	//Loop through list for data to send to UI
 	for(var/item_detail in ui_list)
 
+		//Create needed list and variable for geting data for UI
 		var/list/details = list()
 		var/obj/item/reagent_containers/food/snacks/item = new item_detail
 
+		//Get information for UI
 		details["item_name"] = item.name
 		details["item_quantity"] = find_amount(stored_items, item_detail)
 		details["item_type_path"] = item.type
 
+		//Get an image for the UI
 		var/icon/item_pic = getFlatIcon(item)
 		var/md5 = md5(fcopy_rsc(item_pic))
 		if(!SSassets.cache["photo_[md5]_[item.name]_icon.png"])
@@ -59,11 +67,13 @@
 		SSassets.transport.send_assets(user, list("photo_[md5]_[item.name]_icon.png" = item_pic))
 		details["item_image"] = SSassets.transport.get_asset_url("photo_[md5]_[item.name]_icon.png")
 
+		//Sort into different data lists depending on what the item is
 		if(istype(item, /obj/item/reagent_containers/food/snacks/ice_cream_scoop))
 			data["ice_cream"] += list(details)
 		else
 			data["cones"] += list(details)
-		
+
+	//Send stored information to UI	
 	return data
 
 /obj/machinery/ice_cream_vat/ui_act(action, list/params)
@@ -72,22 +82,33 @@
 	if(.)
 		return
 
-/obj/machinery/ice_cream_vat/proc/find_amount(target_list, target)
+/obj/machinery/ice_cream_vat/proc/find_amount(list/target_list, target)
 	var/amount = 0
 	
-	for(var/list_item in target_list)
-		if(list_item == target)
-			amount += 1
+	//Check to see if it is even in the list before going through it
+	if(target_list.Find(target))
+
+		//Loop through given list, counting every instance of the given variable
+		for(var/list_item in target_list)
+			if(list_item == target)
+				amount += 1
 	
 	return amount
 
 /obj/machinery/ice_cream_vat/Initialize(mapload)
 	. = ..()
-
+	
+	//Loop through and add items from ui_list into stored_items
 	for(var/item in ui_list)
-		//Remember to change it to 5 scoops, 10 cones
+		
 		var/loop_cycles = 5
+		var/obj/item/reagent_containers/food/snacks/check_item = new item
+		
+		//5 of every scoop; 10 of every cone
+		if(istype(check_item, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
+			loop_cycles = 10
 
+		//Add amount of items to the list depending on type, with 5 being the base amount
 		for(var/i in 1 to loop_cycles)
 			stored_items += item
 
@@ -102,8 +123,10 @@
 	bitesize = 3
 	foodtype = GRAIN
 	var/ice_creamed = FALSE //FALSE when empty, TRUE when scooped
-	var/extra_reagent = null //For adding chems to specific cones
-	var/extra_reagent_amount = 1 //Amount of extra_reagent to add to cone
+	//For adding chems to specific cones
+	var/extra_reagent = null
+	//Amount of extra_reagent to add to cone
+	var/extra_reagent_amount = 1
 
 /obj/item/reagent_containers/food/snacks/ice_cream_cone/Initialize(mapload)
 	. = ..()
