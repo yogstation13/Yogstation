@@ -18,7 +18,7 @@
 	list_reagents = list(/datum/reagent/consumable/eggyolk = 5, /datum/reagent/growthserum = 1)
 	cooked_type = /obj/item/reagent_containers/food/snacks/boiledegg
 	filling_color = "#F0E68C"
-	foodtype = EGG
+	foodtype = EGG | RAW
 	grind_results = list()
 	var/mob/living/egg_rper
 
@@ -52,6 +52,25 @@
 		new/obj/effect/decal/cleanable/food/egg_smudge(T)
 		reagents.reaction(hit_atom, TOUCH)
 		qdel(src)
+
+/obj/item/reagent_containers/food/snacks/egg/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
+
+	if(!istype(target, /obj/machinery/griddle))
+		return SECONDARY_ATTACK_CALL_NORMAL
+
+	var/atom/broken_egg = new /obj/item/reagent_containers/food/snacks/rawegg(target.loc)
+	broken_egg.pixel_x = pixel_x
+	broken_egg.pixel_y = pixel_y
+	reagents.copy_to(broken_egg,reagents.total_volume)
+
+	var/obj/machinery/griddle/hit_griddle = target
+	hit_griddle.AddToGrill(broken_egg, user)
+
+	qdel(src)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/reagent_containers/food/snacks/egg/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/toy/crayon))
@@ -96,16 +115,29 @@
 /obj/item/reagent_containers/food/snacks/egg/yellow
 	icon_state = "egg-yellow"
 
+/obj/item/reagent_containers/food/snacks/rawegg
+	name = "raw egg"
+	desc = "Supposedly good for you, if you can stomach it. Better fried."
+	icon_state = "rawegg"
+	bitesize = 1
+	list_reagents = list(/datum/reagent/consumable/eggyolk = 5, /datum/reagent/growthserum = 1)
+	tastes = list("raw egg" = 6, "sliminess" = 1)
+	foodtype = EGG | RAW
+
+/obj/item/reagent_containers/food/snacks/rawegg/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/friedegg, rand(20 SECONDS, 35 SECONDS), TRUE, FALSE)
+
 /obj/item/reagent_containers/food/snacks/friedegg
 	name = "fried egg"
-	desc = "A fried egg, with a touch of salt and pepper."
+	desc = "A fried egg. Would go well with a touch of salt and pepper."
 	icon_state = "friedegg"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	bitesize = 1
 	filling_color = "#FFFFF0"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
-	tastes = list("egg" = 4, "salt" = 1, "pepper" = 1)
+	list_reagents = list(/datum/reagent/consumable/eggyolk = 2, /datum/reagent/consumable/nutriment = 3)
+	tastes = list("egg" = 4)
 	foodtype = FRIED | BREAKFAST | EGG
+	burns_on_grill = TRUE
 
 /obj/item/reagent_containers/food/snacks/boiledegg
 	name = "boiled egg"

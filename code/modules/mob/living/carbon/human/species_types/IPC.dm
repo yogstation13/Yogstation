@@ -51,7 +51,7 @@
 	// Hats need to be 1 up
 	offset_features = list(OFFSET_HEAD = list(0,1))
 
-	var/datum/action/innate/change_screen/change_screen
+	species_abilities = list(/datum/action/innate/change_screen)
 
 	smells_like = "industrial lubricant"
 
@@ -66,9 +66,6 @@
 	if(A)
 		A.Remove(C)
 		QDEL_NULL(A)
-	if(ishuman(C) && !change_screen)
-		change_screen = new
-		change_screen.Grant(C)
 	for(var/obj/item/bodypart/O in C.bodyparts)
 		O.render_like_organic = TRUE // Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
 		var/chassis = C.dna.features["ipc_chassis"]
@@ -82,8 +79,6 @@
 /datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	QDEL_NULL(C.particles)
-	if(change_screen)
-		change_screen.Remove(C)
 
 /datum/species/ipc/proc/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT

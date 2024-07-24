@@ -19,7 +19,7 @@
 	armour_penetration = 100
 	obj_damage = INFINITY
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
-	weather_immunities = list(WEATHER_LAVA, WEATHER_ASH)
+	weather_immunities = ALL
 	status_flags = NONE
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0) //Leaving something at 0 means it's off - has no maximum
 	unsuitable_atmos_damage = 0

@@ -27,17 +27,6 @@
 	for(var/item_type in item_types)
 		items_list.Add(new item_type(src))
 
-/obj/item/organ/cyberimp/arm/proc/SetSlotFromZone()
-	switch(zone)
-		if(BODY_ZONE_L_ARM)
-			slot = ORGAN_SLOT_LEFT_ARM_AUG
-		if(BODY_ZONE_R_ARM)
-			slot = ORGAN_SLOT_RIGHT_ARM_AUG
-		else
-			stack_trace("Invalid zone for [type]")
-			return FALSE
-	return TRUE
-
 /obj/item/organ/cyberimp/arm/update_icon(updates=ALL)
 	. = ..()
 	if(zone == BODY_ZONE_R_ARM)
@@ -125,7 +114,14 @@
 		var/obj/item/assembly/flash/F = holder
 		F.set_light(7)
 
-	var/obj/item/arm_item = owner.get_active_held_item()
+	var/obj/item/arm_item
+	switch(zone)
+		if(BODY_ZONE_R_ARM)
+			arm_item = owner.get_item_for_held_index(2)
+		if(BODY_ZONE_L_ARM)
+			arm_item = owner.get_item_for_held_index(1)
+		else
+			arm_item = owner.get_active_held_item()
 
 	if(arm_item)
 		if(!owner.dropItemToGround(arm_item))

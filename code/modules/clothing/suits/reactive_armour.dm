@@ -185,6 +185,7 @@
 	desc = "An experimental suit of armor that renders the wearer invisible on detection of imminent harm, and creates a decoy that runs away from the owner. You can't fight what you can't see."
 	cooldown_message = span_danger("The reactive stealth system activates, but is not charged enough to fully cloak!")
 	emp_message = span_warning("The reactive stealth armor's threat assessment system crashes...")
+	reactivearmor_cooldown_duration = 15 SECONDS
 	///when triggering while on cooldown will only flicker the alpha slightly. this is how much it removes.
 	var/cooldown_alpha_removal = 50
 	///cooldown alpha flicker- how long it takes to return to the original alpha

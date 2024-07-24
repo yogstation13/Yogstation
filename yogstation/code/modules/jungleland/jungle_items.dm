@@ -8,7 +8,7 @@
 	if(!isliving(user))
 		return
 	var/mob/living/living_user = user
-	living_user.reagents.add_reagent(/datum/reagent/toxic_metabolities,15)
+	living_user.reagents.add_reagent(/datum/reagent/toxic_metabolites,15)
 /obj/item/dummy_malaria
 	name = "test dummy"
 	desc = "what"
@@ -37,7 +37,7 @@
 
 /obj/item/full_tar_crystal
 	name = "Ominous Crystal"
-	desc = "a crystal that has been repaired from 3 parts, it emantes dark energy."
+	desc = "A crystal that has been repaired from three parts, it emanates dark energy."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "tar_crystal"
 	max_integrity = 400
@@ -45,7 +45,7 @@
 
 /obj/item/explosive_shroom
 	name = "Explosive Shroom"
-	desc = "Mushroom picked from a foreign world, it will explode when handled too harshly"
+	desc = "Mushroom picked from a foreign world, it will explode when handled too harshly."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "explosive_shroom"
 
@@ -85,7 +85,7 @@
 
 /obj/item/seeds/jungleland/kuku
 	name = "pack of kuku bush seeds"
-	desc = "These seeds will grow into a beautiful twisting fruiting bush"
+	desc = "These seeds will grow into a beautiful twisting fruiting bush."
 	icon_state = "seed-kuku"
 	species = "kuku"
 	plantname = "Kuku Berry"
@@ -102,7 +102,7 @@
 
 /obj/item/seeds/jungleland/bonji
 	name = "pack of bonji bush seeds"
-	desc = "These seeds will grow into a beautiful twisting fruiting bush"
+	desc = "These seeds will grow into a beautiful twisting fruiting bush."
 	icon_state = "seed-bonji"
 	species = "bonji"
 	plantname = "Bonji Berry"
@@ -120,7 +120,7 @@
 
 /obj/item/seeds/jungleland/bianco
 	name = "pack of bianco bush seeds"
-	desc = "These seeds will grow into a beautiful twisting fruiting bush"
+	desc = "These seeds will grow into a beautiful twisting fruiting bush."
 	icon_state = "seed-bianco"
 	species = "bianco"
 	plantname = "Bianco Berry"
@@ -138,7 +138,7 @@
 
 /obj/item/seeds/jungleland/liberal_hats
 	name = "pack of liberal hat mycelium"
-	desc = "These spores should grow into liberal hats"
+	desc = "These spores should grow into liberal hats."
 	icon_state = "mycelium-liberal-hat"
 	species = "liberal_hat"
 	plantname = "Liberal Hat"
@@ -150,14 +150,14 @@
 
 /obj/item/reagent_containers/food/snacks/grown/jungle/cinchona_bark
 	name = "Cinchona Bark"
-	desc = "Powerful healing herb that can help with curing many exotic diseases"
+	desc = "Powerful healing herb that can help with curing many exotic diseases."
 	icon_state = "cinchona_bark"
 	seed = /obj/item/seeds/jungleland/cinchona
 	distill_reagent = /datum/reagent/space_cleaner/sterilizine/primal
 
 /obj/item/seeds/jungleland/cinchona
 	name = "pack of cinchona seeds"
-	desc = "These seeds should grow into cinchona shrubs"
+	desc = "These seeds should grow into cinchona shrubs."
 	icon_state = "seed-cinchona"
 	species = "cinchona"
 	plantname = "Cinchona"
@@ -168,7 +168,7 @@
 
 /obj/item/seeds/jungleland/magnus_purpura
 	name = "pack of magnus purpura seeds"
-	desc = "These seeds should grow into cinchona shrubs"
+	desc = "These seeds should grow into cinchona shrubs."
 	icon_state = "seed-magnus_purpura"
 	species = "magnus_purpura"
 	plantname = "Magnus Purpura"
@@ -179,10 +179,11 @@
 
 /obj/item/reagent_containers/food/snacks/grown/jungle/magnus_purpura
 	name = "Magnus Purpura flower"
-	desc = "A head of a massive flower, it contains potent anti-acidic enzymes that allow someone to temporarily be immune to highly corrosive waters on jungleland. It can be processed futher to increase it's efficiency."
+	desc = "A head of a massive flower, it contains potent anti-acidic enzymes that allow someone to temporarily be immune to highly corrosive waters on jungleland. It can be processed futher to increase its efficiency."
 	icon_state = "magnus_purpura_flower"
 	seed = /obj/item/seeds/jungleland/magnus_purpura
 	distill_reagent = /datum/reagent/magnus_purpura_enzyme/condensed
+	bitesize = 10 //instantly consume the entire thing
 
 /obj/item/organ/regenerative_core/dryad
 	name = "Dryad heart"
@@ -205,7 +206,7 @@
 /obj/item/organ/regenerative_core/dryad/preserved(implanted)
 	. = ..()
 	name = "preserved [initial(name)]"
-	desc = "Heart of a dryad. It can be used to heal completely, unlike others, this one won't decay"
+	desc = "Heart of a dryad. It can be used to heal completely. Unlike others, this one won't decay."
 
 /obj/item/organ/regenerative_core/dryad/go_inert()
 	..()
@@ -217,7 +218,7 @@
 
 /obj/item/organ/regenerative_core/dryad/corrupted
 	name = "Corrupted dryad heart"
-	desc = "Heart of a corrupted dryad, for now it still lives, and i may use some of it's strength to help me live aswell."
+	desc = "Heart of a corrupted dryad, for now it still lives, and I may use some of its strength to help me live as well."
 	icon_state = "corrupted_heart"
 	status_effect = /datum/status_effect/corrupted_dryad
 
@@ -247,21 +248,21 @@
 
 /obj/item/stack/sheet/skin_twister
 	name = "skin twister hide"
-	desc = "Hide of a skin twister"
+	desc = "Hide of a skin twister."
 	singular_name = "skintwister hide piece"
 	icon = 'yogstation/icons/obj/stack_objects.dmi'
 	icon_state = "sheet-skintwister_hide"
 
 /obj/item/stack/sheet/slime
 	name = "slime granule"
-	desc = "densely compacted granulate of organic slime"
+	desc = "Densely compacted granulate of organic slime."
 	singular_name = "slime granulate"
 	icon = 'yogstation/icons/obj/stack_objects.dmi'
 	icon_state = "sheet-slime"
 
 /obj/item/stack/sheet/meduracha
 	name = "meduracha tentacles"
-	desc = "sharp and wiry limbs of a meduracha"
+	desc = "Sharp and wiry limbs of a meduracha."
 	singular_name = "meduracha tentacle"
 	icon = 'yogstation/icons/obj/stack_objects.dmi'
 	icon_state = "sheet-meduracha"
@@ -269,13 +270,13 @@
 
 /obj/item/stinger
 	name = "giant insect stinger"
-	desc = "a stinger of a giant exotic insect, quite sharp"
+	desc = "A stinger of a giant exotic insect, quite sharp."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "stinger"
 
 /obj/item/melee/stinger_sword
 	name = "stinger sword"
-	desc = "a sword made out of giant insect stinger crudely glued to a metal rod"
+	desc = "A sword made out of giant insect stinger crudely glued to a metal rod."
 	force = 15
 	armour_penetration = 75
 	icon = 'yogstation/icons/obj/jungle.dmi'
@@ -293,7 +294,7 @@
 
 /obj/item/stinger_trident	//an awesome trident made of fauna parts and metal. Is slightly superior to bonespear, though doesn't have slowdown/reach, since thats pretty bad vs jungle fauna.
 	name = "stinger trident"
-	desc = "a well-crafted trident made of metal and insect stingers tied together with still prickly meduracha tentacles."
+	desc = "A well-crafted trident made of metal and insect stingers tied together with still prickly meduracha tentacles."
 	force = 11
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "sting_trident0"
@@ -325,7 +326,7 @@
 
 /obj/item/slime_sling
 	name = "slime sling"
-	desc = "a sling made out of organic slime... why are you aiming at me?"
+	desc = "A sling made out of organic slime... why are you aiming at me?"
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "slime_sling_0"
 
@@ -453,7 +454,7 @@
 
 /obj/item/crusher_trophy/jungleland/aspect_of_tar
 	name = "Aspect of tar"
-	desc = "It pulsates with a corroding, everpresent energy"
+	desc = "It pulsates with a corroding, everpresent energy."
 	icon_state = "aspect_of_tar"
 	denied_type = /obj/item/crusher_trophy/jungleland/aspect_of_tar
 	var/last_applied
@@ -483,7 +484,7 @@
 	denied_type = /obj/item/crusher_trophy/jungleland/meduracha_tentacles
 
 /obj/item/crusher_trophy/jungleland/meduracha_tentacles/effect_desc()
-	return "Infects the mob with toxins that cause half of backstabs damage after 5 seconds"
+	return "Infects the mob with toxins that cause half of backstabs damage after 5 seconds."
 
 /obj/item/crusher_trophy/jungleland/meduracha_tentacles/on_mark_detonation(mob/living/target, mob/living/user)
 	. = ..()
@@ -544,7 +545,7 @@
 
 /obj/item/crusher_trophy/jungleland/dryad_branch
 	name = "Dryad Branch"
-	desc = "Branch of a living tree, it still holds some of it's power."
+	desc = "Branch of a living tree, it still holds some of its power."
 	icon_state = "dryad_branch"
 	denied_type = /obj/item/crusher_trophy/jungleland/dryad_branch
 
@@ -638,7 +639,7 @@
 
 /obj/item/crusher_trophy/jungleland/wasp_head
 	name = "Matriarch wasp's head"
-	desc = "It's eyes still stare at you."
+	desc = "Its eyes still stare at you."
 	icon_state = "wasp_head"
 	denied_type = /obj/item/crusher_trophy/jungleland/wasp_head
 
@@ -646,7 +647,7 @@
 	var/first_loc
 
 /obj/item/crusher_trophy/jungleland/wasp_head/effect_desc()
-	return "Increases the damage of mark detonation proprotionally to distance travelled."
+	return "Increases the damage of mark detonation proportionally to distance travelled."
 
 /obj/item/crusher_trophy/jungleland/wasp_head/on_projectile_fire(obj/projectile/destabilizer/marker, mob/living/user)
 	first_loc = get_turf(user)
@@ -658,7 +659,7 @@
 
 /obj/item/stack/sheet/ivory_crumbles
 	name = "ivory crumbles"
-	desc = "pale and beautiful crumbles of past long gone."
+	desc = "Pale and beautiful crumbles of past long gone."
 	singular_name = "ivory crumble"
 	icon = 'yogstation/icons/obj/stack_objects.dmi'
 	icon_state = "sheet-ivory"

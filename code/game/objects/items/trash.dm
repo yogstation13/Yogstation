@@ -84,7 +84,7 @@
 
 /obj/item/trash/floursack
 	name = "torn flour sack"
-	icon = 'yogstation/icons/obj/food/containers.dmi'
+	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "floursad"
 	desc = "Perhaps it shouldn't have been filled with water."
 

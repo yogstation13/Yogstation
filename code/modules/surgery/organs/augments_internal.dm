@@ -19,7 +19,21 @@
 		add_overlay(overlay)
 	return ..()
 
-
+//moved here and combined from legs and arm implants so there's no need to differentiate between limb implants since this is the only proc we need
+/obj/item/organ/cyberimp/proc/SetSlotFromZone()
+	switch(zone)
+		if(BODY_ZONE_L_LEG)
+			slot = ORGAN_SLOT_LEFT_LEG_AUG
+		if(BODY_ZONE_R_LEG)
+			slot = ORGAN_SLOT_RIGHT_LEG_AUG
+		if(BODY_ZONE_L_ARM)
+			slot = ORGAN_SLOT_LEFT_ARM_AUG
+		if(BODY_ZONE_R_ARM)
+			slot = ORGAN_SLOT_RIGHT_ARM_AUG
+		else
+			stack_trace("Invalid zone for [type]")
+			return FALSE
+	return TRUE
 
 //[[[[BRAIN]]]]
 
