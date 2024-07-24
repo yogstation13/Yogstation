@@ -240,8 +240,8 @@
 		M.take_damage(45, BURN, MELEE, 1)
 
 	// changes turf to toxic water temporarily
-	if(!istype(T, /turf/closed) && !istype(T, /turf/open/water/toxic_pit/deep))
-		var/lava_turf = /turf/open/water/toxic_pit/deep
+	if(!istype(T, /turf/closed) && !istype(T, /turf/open/water/smooth/toxic_pit/deep))
+		var/lava_turf = /turf/open/water/smooth/toxic_pit/deep
 		var/reset_turf = T.type
 		T.ChangeTurf(lava_turf, flags = CHANGETURF_INHERIT_AIR)
 		sleep(reset_time)
