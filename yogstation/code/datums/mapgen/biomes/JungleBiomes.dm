@@ -82,11 +82,11 @@
 	loose_flora_density = 10
 
 	fauna_types = list(
-		/mob/living/simple_animal/hostile/yog_jungle/emeraldspider = 15,
-		/mob/living/simple_animal/hostile/yog_jungle/mosquito = 15, 
-		/mob/living/simple_animal/hostile/yog_jungle/blobby = 10,
-		/mob/living/simple_animal/hostile/yog_jungle/meduracha = 10,
-		/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/emeraldspider = 15,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/mosquito = 15, 
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/blobby = 10,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/meduracha = 10,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister = 1
 		)
 	fauna_density = 0.4
 
@@ -117,11 +117,11 @@
 	loose_flora_density = 20
 
 	fauna_types = list(
-		/mob/living/simple_animal/hostile/yog_jungle/meduracha = 50,
-		/mob/living/simple_animal/hostile/yog_jungle/mosquito = 40,
-		/mob/living/simple_animal/hostile/yog_jungle/blobby = 25,
-		/mob/living/simple_animal/hostile/yog_jungle/emeraldspider = 2,
-		/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/meduracha = 50,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/mosquito = 40,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/blobby = 25,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/emeraldspider = 2,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister = 1
 		)
 	fauna_density = 0.7
 
@@ -148,10 +148,10 @@
 	dense_flora_density = 50
 
 	fauna_types = list(
-		/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad = 60,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/corrupted_dryad = 60,
 		/mob/living/simple_animal/hostile/asteroid/goldgrub = 30,
-		/mob/living/simple_animal/hostile/yog_jungle/mosquito = 10,
-		/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/mosquito = 10,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister = 1
 		)
 	fauna_density = 0.8
 	this_area = /area/jungleland/dying_forest
@@ -187,11 +187,11 @@
 	loose_flora_density = 60
 
 	fauna_types = list(
-		/mob/living/simple_animal/hostile/yog_jungle/dryad = 65,
-		/mob/living/simple_animal/hostile/yog_jungle/emeraldspider = 15,
-		/mob/living/simple_animal/hostile/yog_jungle/mosquito = 10, 
-		/mob/living/simple_animal/hostile/yog_jungle/yellowjacket = 10, 
-		/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/dryad = 65,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/emeraldspider = 15,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/mosquito = 10, 
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/yellowjacket = 10, 
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister = 1,
 		)
 	fauna_density = 0.65
 	this_area = /area/jungleland/proper
