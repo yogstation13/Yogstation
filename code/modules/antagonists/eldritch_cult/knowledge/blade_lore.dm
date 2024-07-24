@@ -127,7 +127,7 @@
 	var/mob/living/attacker = isliving(hitby) ? hitby : hitby.loc
 
 	// Uh oh, looks like we couldn't find an attacker. Time to panic!
-	if(!attacker)
+	if(!isliving(attacker))
 		CRASH("Blade dance failed to find a valid attacker!")
 
 	// // Let's check their held items to see if we can do a riposte
