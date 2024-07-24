@@ -1,0 +1,5 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Nerve support nanite program cost reduced from 20 to 7"
+  - tweak: "Nerve support now also reduces stamina damage by 25%"
