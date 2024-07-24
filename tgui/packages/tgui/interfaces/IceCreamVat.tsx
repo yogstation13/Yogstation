@@ -1,6 +1,6 @@
 import { capitalize } from 'common/string';
-import { useBackend, useLocalState } from '../backend';
-import { Button, Section, Stack, Table, Tabs, Box, TextArea } from '../components';
+import { useBackend } from '../backend';
+import { Button, Section, Table, Tabs, Box, TextArea } from '../components';
 import { Window } from '../layouts';
 import { resolveAsset } from './../assets';
 
@@ -76,19 +76,19 @@ const ConeRow = (props, context) => {
             disabled={(
               flavor.item_quantity === 0
             )}
-            onClick={() => act("select", {
+            onClick={() => act("selectCone", {
             itemPath: flavor.item_type_path,
             })}
             />
             <Button
             fluid
-            content="Dispence"
+            content="Dispense"
             textAlign="center"
             fontSize="16px"
             disabled={(
               flavor.item_quantity === 0
             )}
-            onClick={() => act("dispence", {
+            onClick={() => act("dispense", {
             itemPath: flavor.item_type_path,
             })}
             />
@@ -135,19 +135,19 @@ const IceCreamRow = (props, context) => {
             disabled={(
               flavor.item_quantity === 0
             )}
-            onClick={() => act("select", {
+            onClick={() => act("selectScoop", {
             itemPath: flavor.item_type_path,
             })}
             />
             <Button
             fluid
-            content="Dispence"
+            content="Dispense"
             textAlign="center"
             fontSize="16px"
             disabled={(
               flavor.item_quantity === 0
             )}
-            onClick={() => act("dispence", {
+            onClick={() => act("dispense", {
             itemPath: flavor.item_type_path,
             })}
             />
