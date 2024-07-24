@@ -55,7 +55,7 @@
 /area/template_noop)
 "E" = (
 /obj/structure/stone_tile/surrounding/burnt,
-/mob/living/simple_animal/hostile/megafauna/dragon,
+/mob/living/simple_animal/hostile/megafauna/dragon/jungle,
 /turf/open/lava,
 /area/template_noop)
 "O" = (
