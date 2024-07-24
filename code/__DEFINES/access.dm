@@ -15,6 +15,8 @@
 #define ACCESS_COMMAND "command"
 /// Access to the AI Upload Room Doors as well as the AI satellite. Also used for controlling the machinery in the AI Upload (turrets, foam dispensers)
 #define ACCESS_AI_UPLOAD "ai_upload"
+/// Access to rooms in the mini-sat the AI usually resides in. Given to Network Admins to let them do maintenance on the AI.
+#define ACCESS_AI_SAT "ai_sat"
 /// Access to the Teleporter Room, and some cargo crates.
 #define ACCESS_TELEPORTER "teleporter"
 /// Access to the EVA Storage Room, and some cargo crates.
@@ -23,8 +25,6 @@
 #define ACCESS_RC_ANNOUNCE "rc_announce"
 /// Access used for events (Red Alert, BSA, Emergency Maintenance) which require at least two people to swipe at the same time to authorize it
 #define ACCESS_KEYCARD_AUTH "keycard_auth"
-/// Access for the "minisat", but is actually used for the small maintenance cubicle some AI satellites may have.
-#define ACCESS_MINISAT "minisat"
 /// Access used to run the NTNet Tablet Application WireCarp, which allows you to diagnose and view NTNet logging.
 #define ACCESS_NETWORK "network"
 /// Access used to override "personal control" on a personal locker, meaning you are able to open any of those lockers/wardrobes.
@@ -39,24 +39,24 @@
 
 //---  SECURITY  ---//
 
-/// Security's General Access. In mapping, grants access to spaces such as to the "meeting room" or firing range, as well as being the general access that Tablet/Computer Programs check for "heads". Also unlocks other types of security equipment.
+/// Security's General Access, armaments vendor, security lockers, and other secure gear. Basically things Officers or Wardens should access, but never Lawyers or Detectives.
 #define ACCESS_SECURITY "security"
-/// Access that ONLY grants access to the front doors of the Brig. Never use this more for anything than that, please.
-#define ACCESS_BRIG_ENTRANCE "brig_entrance"
+/// Access to the front doors of the Brig, the "secure" portion of the Courtroom, and department outposts. Notably given to Lawyers, Heads of Staff, and Detectives.
+#define ACCESS_SECURITY_ENTRANCE "security_entrance"
 /// Access to brig cells, brig timers, permabrig, gulag, gulag teleporter, gulag shuttle, prisoner management console, and some security cargo crates.
 #define ACCESS_BRIG "brig"
 /// Access to the armory, security incinerator (when present), and the execution/re-education chamber.
 #define ACCESS_ARMORY "armory"
-/// Access to the "secure" portion of the courtroom, like where the judge and everyone sits..
-#define ACCESS_COURT "court"
-/// The "Weapons Permit" Access, or the one that lets you walk past secbots without them charging at you as you hold your weaponry.
-#define ACCESS_WEAPONS "weapons"
-/// Access used for the Head of Security's personal quarters in mapping, as well as other HoS-related things.
-#define ACCESS_HOS "hos"
 /// Access for the detective to get into their office, the medical data console, and some other detective-related stuff.
 #define ACCESS_DETECTIVE "detective"
 /// Access granted to the brig physician, used for the brig medbay doors.
 #define ACCESS_BRIG_PHYS 
+/// Access to the "secure" portion of the courtroom, like where the judge and everyone sits..
+#define ACCESS_COURT "court"
+/// The "Weapons Permit" Access, or the one that lets you walk past secbots without them charging at you as you hold your weaponry.
+#define ACCESS_WEAPONS_PERMIT "weapons_permit"
+/// Access used for the Head of Security's personal quarters in mapping, as well as other HoS-related things.
+#define ACCESS_HOS "hos"
 
 
 //---  ENGINEERING  ---//
@@ -67,19 +67,19 @@
 #define ACCESS_ATMOSPHERICS "atmospherics"
 /// Access to all maintenance tunnels on the station. This overrides any "departmental maintenance" access, this has free roaming range everywhere.
 #define ACCESS_MAINT_TUNNELS "maint_tunnels"
+/// Access to all external "space facing" airlocks on the station. Used such that people don't easily "jump ship", or restict free ingress/egress to only a few points on the station.
+#define ACCESS_EXTERNAL_AIRLOCKS "external airlocks"
 /// Access to get into APCs, engineering equipment lockers, typically mapped in for key power rooms across the station, engineering vending machines, emitters, and some other stuff.
 #define ACCESS_ENGINE_EQUIP "engine_equip"
-/// Access to "construction" areas of the station. However, in mapping, it's used to get access to the front door and lathe room of the engineering department.
+/// Access to "construction" areas of the station. However, in mapping, it's also used to get access to the front door and lathe room of the engineering department.
 #define ACCESS_CONSTRUCTION "construction"
 /// Access to the technical storage room (contains all the boards and other miscellaneous engineering gear).
 #define ACCESS_TECH_STORAGE "tech_storage"
-/// Access to telecomms, machinery, and tablets.
+/// Access to the Telecomms Server Room, traffic control console, machinery, and tablets.
 #define ACCESS_TCOMMS "tcomms"
 /// Access to the Auxiliary Base Room, as well as the ability over launching it.
 #define ACCESS_AUX_BASE "aux_base"
-/// Access to all external "space facing" airlocks on the station. Used such that people don't easily "jump ship", or restict free ingress/egress to only a few points on the station.
-#define ACCESS_EXTERNAL_AIRLOCKS "external airlocks"
-/// Access for the Chief Engineer's personal quarters in mapping, as well as some other CE-related things.
+/// Access for the Chief Engineer's office, Secure Tech Storage, as well as some other CE-related things.
 #define ACCESS_CE "ce"
 
 
@@ -87,14 +87,14 @@
 
 /// General access to Medbay, like the front doors, the treatment center, the medical records console, defibrillator mounts, and more.
 #define ACCESS_MEDICAL "medical"
+/// Access to the surgery rooms, as well as the equipment and buttons there.
+#define ACCESS_SURGERY "surgery"
+/// Access to the Paramedic Staging Area.
+#define ACCESS_PARAMEDIC "paramedic"
 /// Access to the Morgue.
 #define ACCESS_MORGUE "morgue"
-/// Access to the secure morgue area.
-#define ACCESS_MORGUE_SECURE "morgue_secure"
 /// Access to the chemistry lab, or the smaller room in medical with the multiple chem dispensers and pill pressers. The Chemist's main position.
 #define ACCESS_CHEMISTRY "chemistry"
-/// Access to the surgery rooms and privacy shutters there.
-#define ACCESS_SURGERY "surgery"
 /// Access to the cloning lab, usually adjacent to the genetics lab. Given to Medical Doctors so they can't also enter Genetics.
 #define ACCESS_CLONING
 /// Access to the Virology portion of the medical department, as well as the virology crate.
@@ -107,12 +107,12 @@
 
 //---  SUPPLY  ---//
 
-/// General access for Cargo, allows for entry to Cargo Bay and Cargo's Office.
+/// General access needed to enter Cargo, allows entry into the Cargo Office and Mail/Delivery Office.
 #define ACCESS_CARGO "cargo"
-/// Access to the Shipping and Mailing Rooms on several maps.
-#define ACCESS_MAIL "mail"
-/// Access for a room where the ORM may be kept, or to release materials from the ORM.
-#define ACCESS_MINERAL_STOREROOM "mineral_storeroom"
+/// Access to the Cargo Bay and Warehouse. Separated from the above to prevent miners processing cargo.
+#define ACCESS_CARGO_BAY "cargo_bay"
+/// Access to release materials from the ORM.
+#define ACCESS_ORM "orm"
 /// Access to the "on-station" Mining Portion of the Cargo Department.
 #define ACCESS_MINING "mining"
 /// Access to the "off-station" Mining Station, which contains gear dedicated for miners to do their job best, as well as seek shelter from the inhospitable elements.
@@ -127,19 +127,21 @@
 
 /// General access for Science, allows for entry to the general hallways of Science, as well as the main lathe room.
 #define ACCESS_SCIENCE "science"
-/// Access to the specialized research experimentation rooms within Science, as well as what gives access to lockers and access to TechWeb programs.
+/// Access to the specialized research experimentation rooms within Science.
 #define ACCESS_RESEARCH "research"
-/// Access to the Ordnance Mixing Lab and the Ordnance Bomb Range.
-#define ACCESS_ORDNANCE "ordnance"
-/// Access to the Ordnance Storage Room, where all of the bomb-making gases are stored.
-#define ACCESS_ORDNANCE_STORAGE "ordnance_storage"
+/// Access to the Toxins Mixing Lab and Toxins Test Area equipment.
+#define ACCESS_TOXINS "toxins"
+/// Access to the Toxins Storage Room, where all of the bomb-making gases are stored.
+#define ACCESS_TOXINS_STORAGE "toxins_storage"
+/// Access to the Experimentation Lab, containing the E.X.P.E.R.I-MENTOR. Uses of this access is set to change in the future.
+#define ACCESS_EXPERIMENTATION "experimentation"
 /// Access to the Genetics division of Science.
 #define ACCESS_GENETICS "genetics"
 /// Access to the Robotics division of Science, as well as opening up silicon cyborgs and other simple robots.
 #define ACCESS_ROBOTICS "robotics"
 /// Access to the Xenobiology division of Science.
 #define ACCESS_XENOBIOLOGY "xenobiology"
-/// Access for the Research Director's personal quarters in mapping, as well as some other RD-related things.
+/// Access for the Research Director's personal quarters in mapping, the R&D server room, as well as some other RD-related things.
 #define ACCESS_RD "rd"
 
 
@@ -170,21 +172,21 @@
 
 
 
-//---  AWAY MISSIONS  ---//
-// For generic away-mission/ruin access. Why would normal crew have access to a long-abandoned derelict or a 2000 year-old temple?
+//---  RUINS  ---//
+// For generic ruin access. Why would normal crew have access to a long-abandoned derelict or a 2000 year-old temple?
 
-#define ACCESS_AWAY_GENERAL "away_general"
-#define ACCESS_AWAY_COMMAND "away_command"
-#define ACCESS_AWAY_SEC "away_sec"
-#define ACCESS_AWAY_ENGINEERING "away_engineering"
-#define ACCESS_AWAY_MEDICAL "away_medical"
-#define ACCESS_AWAY_SUPPLY "away_supply"
-#define ACCESS_AWAY_SCIENCE "away_science"
-#define ACCESS_AWAY_MAINTENANCE "away_maintenance"
-#define ACCESS_AWAY_GENERIC1 "away_generic1"
-#define ACCESS_AWAY_GENERIC2 "away_generic2"
-#define ACCESS_AWAY_GENERIC3 "away_generic3"
-#define ACCESS_AWAY_GENERIC4 "away_generic4"
+#define ACCESS_RUINS_GENERAL "ruins_general"
+#define ACCESS_RUINS_COMMAND "ruins_command"
+#define ACCESS_RUINS_SEC "ruins_sec"
+#define ACCESS_RUINS_ENGINEERING "ruins_engineering"
+#define ACCESS_RUINS_MEDICAL "ruins_medical"
+#define ACCESS_RUINS_SUPPLY "ruins_supply"
+#define ACCESS_RUINS_SCIENCE "ruins_science"
+#define ACCESS_RUINS_MAINTENANCE "ruins_maintenance"
+#define ACCESS_RUINS_GENERIC1 "ruins_generic1"
+#define ACCESS_RUINS_GENERIC2 "ruins_generic2"
+#define ACCESS_RUINS_GENERIC3 "ruins_generic3"
+#define ACCESS_RUINS_GENERIC4 "ruins_generic4"
 
 
 //---  MECH  ---//
@@ -195,6 +197,7 @@
 #define ACCESS_MECH_SECURITY "mech_security"
 #define ACCESS_MECH_SCIENCE "mech_science"
 #define ACCESS_MECH_ENGINE "mech_engine"
+#define ACCESS_MECH_RUINS "mech_ruins"
 
 
 //---  ADMIN  ---//
@@ -209,7 +212,7 @@
 #define ACCESS_CENT_TELEPORTER "cent_teleporter"
 #define ACCESS_CENT_CAPTAIN "cent_captain"
 #define ACCESS_CENT_BAR "cent_bar"
-/// Special Ops. Captain's display case, Marauder and Seraph mechs.
+/// Special Ops. Captain's display case, Marauder/Seraph mechs, .
 #define ACCESS_CENT_SPECOPS "cent_specops" ///Remind me to separate to captain, centcom, and syndicate mech access later -SonofSpace
 
 
@@ -243,296 +246,3 @@
 	log_game("[key_name(user)] [change_description] to an ID card [(id_card.registered_name) ? "belonging to [id_card.registered_name]." : "with no registered name."]"); \
 	user.investigate_log("[change_description] to an ID card [(id_card.registered_name) ? "belonging to [id_card.registered_name]." : "with no registered name."]", INVESTIGATE_ACCESSCHANGES); \
 	user.log_message("[change_description] to an ID card [(id_card.registered_name) ? "belonging to [id_card.registered_name]." : "with no registered name."]", LOG_GAME); \
-
-
-/// Displayed name for Common ID card accesses.
-#define ACCESS_FLAG_COMMON_NAME "Common"
-/// Bitflag for Common ID card accesses. See COMMON_ACCESS.
-#define ACCESS_FLAG_COMMON (1 << 0)
-
-/// Displayed name for Command ID card accesses.
-#define ACCESS_FLAG_COMMAND_NAME "Command"
-/// Bitflag for Command ID card accesses. See COMMAND_ACCESS.
-#define ACCESS_FLAG_COMMAND (1 << 1)
-
-/// Displayed name for Private Command ID card accesses.
-#define ACCESS_FLAG_PRV_COMMAND_NAME "Private Command"
-/// Bitflag for Private Command ID card accesses. See PRIVATE_COMMAND_ACCESS.
-#define ACCESS_FLAG_PRV_COMMAND (1 << 2)
-
-/// Displayed name for Captain ID card accesses.
-#define ACCESS_FLAG_CAPTAIN_NAME "Captain"
-/// Bitflag for Captain ID card accesses. See CAPTAIN_ACCESS.
-#define ACCESS_FLAG_CAPTAIN (1 << 3)
-
-/// Displayed name for Centcom ID card accesses.
-#define ACCESS_FLAG_CENTCOM_NAME "Centcom"
-/// Bitflag for Centcom ID card accesses. See CENTCOM_ACCESS.
-#define ACCESS_FLAG_CENTCOM (1 << 4)
-
-/// Displayed name for Syndicate ID card accesses.
-#define ACCESS_FLAG_SYNDICATE_NAME "Syndicate"
-/// Bitflag for Syndicate ID card accesses. See SYNDICATE_ACCESS.
-#define ACCESS_FLAG_SYNDICATE (1 << 5)
-
-/// Displayed name for Offstation/Ruin/Away Mission ID card accesses.
-#define ACCESS_FLAG_AWAY_NAME "Away"
-/// Bitflag for Offstation/Ruin/Away Mission ID card accesses. See AWAY_ACCESS.
-#define ACCESS_FLAG_AWAY (1 << 6)
-
-/// Displayed name for Special accesses that ordinarily shouldn't be on ID cards.
-#define ACCESS_FLAG_SPECIAL_NAME "Special"
-/// Bitflag for Special accesses that ordinaryily shouldn't be on ID cards. See CULT_ACCESS.
-#define ACCESS_FLAG_SPECIAL (1 << 7)
-
-
-
-/// Departmental/general/common area accesses. Do not use direct, access via SSid_access.get_flag_access_list(ACCESS_FLAG_COMMON)
-#define COMMON_ACCESS list( \
-	ACCESS_ATMOSPHERICS, \
-	ACCESS_AUX_BASE, \
-	ACCESS_BAR, \
-	ACCESS_BIT_DEN, \
-	ACCESS_BRIG, \
-	ACCESS_BRIG_ENTRANCE, \
-	ACCESS_CARGO, \
-	ACCESS_CHAPEL_OFFICE, \
-	ACCESS_CONSTRUCTION, \
-	ACCESS_COURT, \
-	ACCESS_CREMATORIUM, \
-	ACCESS_DETECTIVE, \
-	ACCESS_ENGINE_EQUIP, \
-	ACCESS_ENGINEERING, \
-	ACCESS_EVA, \
-	ACCESS_EXTERNAL_AIRLOCKS, \
-	ACCESS_GATEWAY, \
-	ACCESS_GENETICS, \
-	ACCESS_HYDROPONICS, \
-	ACCESS_JANITOR, \
-	ACCESS_KITCHEN, \
-	ACCESS_LAWYER, \
-	ACCESS_LIBRARY, \
-	ACCESS_MAINT_TUNNELS, \
-	ACCESS_MECH_MINING, \
-	ACCESS_MECH_MEDICAL, \
-	ACCESS_MECH_SECURITY, \
-	ACCESS_MECH_SCIENCE, \
-	ACCESS_MECH_ENGINE, \
-	ACCESS_MEDICAL, \
-	ACCESS_MINERAL_STOREROOM, \
-	ACCESS_MINING, \
-	ACCESS_MINING_STATION, \
-	ACCESS_MORGUE_SECURE, \
-	ACCESS_MORGUE, \
-	ACCESS_NETWORK, \
-	ACCESS_ORDNANCE, \
-	ACCESS_ORDNANCE_STORAGE, \
-	ACCESS_PHARMACY, \
-	ACCESS_PLUMBING, \
-	ACCESS_PSYCHOLOGY, \
-	ACCESS_QM, \
-	ACCESS_RESEARCH, \
-	ACCESS_ROBOTICS, \
-	ACCESS_SCIENCE, \
-	ACCESS_SECURITY, \
-	ACCESS_SERVICE, \
-	ACCESS_SHIPPING, \
-	ACCESS_SURGERY, \
-	ACCESS_THEATRE, \
-	ACCESS_VIROLOGY, \
-	ACCESS_WEAPONS, \
-	ACCESS_XENOBIOLOGY, \
-)
-
-/// Command staff/secure accesses, think bridge/armoury, ai_upload, notably access to modify ID cards themselves. Do not use direct, access via SSid_access.get_flag_access_list(ACCESS_FLAG_COMMAND)
-#define COMMAND_ACCESS list( \
-	ACCESS_AI_UPLOAD, \
-	ACCESS_ALL_PERSONAL_LOCKERS, \
-	ACCESS_ARMORY, \
-	ACCESS_CHANGE_IDS, \
-	ACCESS_COMMAND, \
-	ACCESS_EVA, \
-	ACCESS_KEYCARD_AUTH, \
-	ACCESS_MINISAT, \
-	ACCESS_RC_ANNOUNCE, \
-	ACCESS_TCOMMS, \
-	ACCESS_TECH_STORAGE, \
-	ACCESS_TELEPORTER, \
-	ACCESS_VAULT, \
-)
-
-/// Private head of staff offices, usually only granted to most cards by trimming. Do not use direct, access via SSid_access.get_flag_access_list(ACCESS_FLAG_PRV_COMMAND)
-#define PRIVATE_COMMAND_ACCESS list( \
-	ACCESS_CE, \
-	ACCESS_CMO, \
-	ACCESS_HOS, \
-	ACCESS_HOP, \
-	ACCESS_QM, \
-	ACCESS_RD, \
-)
-
-/// Captains private rooms. Do not use direct, access via SSid_access.get_flag_access_list(ACCESS_FLAG_CAPTAIN)
-#define CAPTAIN_ACCESS list( \
-	ACCESS_CAPTAIN, \
-)
-/// Centcom area stuff. Do not use direct, access via SSid_access.get_flag_access_list(ACCESS_FLAG_CENTCOM)
-#define CENTCOM_ACCESS list( \
-	ACCESS_CENT_BAR, \
-	ACCESS_CENT_CAPTAIN, \
-	ACCESS_CENT_GENERAL, \
-	ACCESS_CENT_LIVING, \
-	ACCESS_CENT_MEDICAL, \
-	ACCESS_CENT_SPECOPS, \
-	ACCESS_CENT_STORAGE, \
-	ACCESS_CENT_TELEPORTER, \
-	ACCESS_CENT_THUNDER, \
-)
-
-/// Syndicate areas off station. Do not use direct, access via SSid_access.get_flag_access_list(ACCESS_FLAG_SYNDICATE)
-#define SYNDICATE_ACCESS list( \
-	ACCESS_SYNDICATE, \
-	ACCESS_SYNDICATE_LEADER, \
-)
-
-/// Away missions/gateway/space ruins.  Do not use direct, access via SSid_access.get_flag_access_list(ACCESS_FLAG_AWAY)
-#define AWAY_ACCESS list( \
-	ACCESS_AWAY_COMMAND, \
-	ACCESS_AWAY_ENGINEERING, \
-	ACCESS_AWAY_GENERAL, \
-	ACCESS_AWAY_GENERIC1, \
-	ACCESS_AWAY_GENERIC2, \
-	ACCESS_AWAY_GENERIC3, \
-	ACCESS_AWAY_GENERIC4, \
-	ACCESS_AWAY_MAINTENANCE, \
-	ACCESS_AWAY_MEDICAL, \
-	ACCESS_AWAY_SCIENCE, \
-	ACCESS_AWAY_SEC, \
-	ACCESS_AWAY_SUPPLY, \
-)
-
-/// Weird internal Cult access that prevents non-cult from using their doors.  Do not use direct, access via SSid_access.get_flag_access_list(ACCESS_FLAG_SPECIAL)
-#define CULT_ACCESS list( \
-	ACCESS_BLOODCULT, \
-)
-
-/// Name for the Global region.
-#define REGION_ALL_GLOBAL "All"
-/// Used to seed the accesses_by_region list in SSid_access. A list of every single access in the game.
-#define REGION_ACCESS_ALL_GLOBAL REGION_ACCESS_ALL_STATION + CENTCOM_ACCESS + SYNDICATE_ACCESS + AWAY_ACCESS + CULT_ACCESS
-/// Name for the Station All Access region.
-#define REGION_ALL_STATION "Station"
-/// Used to seed the accesses_by_region list in SSid_access. A list of all station accesses.
-#define REGION_ACCESS_ALL_STATION COMMON_ACCESS + COMMAND_ACCESS + PRIVATE_COMMAND_ACCESS + CAPTAIN_ACCESS
-/// Name for the General region.
-#define REGION_GENERAL "General"
-/// Used to seed the accesses_by_region list in SSid_access. A list of general service accesses that are overseen by the HoP.
-#define REGION_ACCESS_GENERAL list( \
-	ACCESS_BAR, \
-	ACCESS_CHAPEL_OFFICE, \
-	ACCESS_CREMATORIUM, \
-	ACCESS_HYDROPONICS, \
-	ACCESS_JANITOR, \
-	ACCESS_KITCHEN, \
-	ACCESS_LAWYER, \
-	ACCESS_LIBRARY, \
-	ACCESS_SERVICE, \
-	ACCESS_THEATRE, \
-)
-/// Name for the Security region.
-#define REGION_SECURITY "Security"
-/// Used to seed the accesses_by_region list in SSid_access. A list of all security regional accesses that are overseen by the HoS.
-#define REGION_ACCESS_SECURITY list( \
-	ACCESS_ARMORY, \
-	ACCESS_BRIG, \
-	ACCESS_BRIG_ENTRANCE, \
-	ACCESS_COURT, \
-	ACCESS_DETECTIVE, \
-	ACCESS_HOS, \
-	ACCESS_MECH_SECURITY, \
-	ACCESS_SECURITY, \
-	ACCESS_WEAPONS, \
-)
-/// Name for the Medbay region.
-#define REGION_MEDBAY "Medbay"
-/// Used to seed the accesses_by_region list in SSid_access. A list of all medbay regional accesses that are overseen by the CMO.
-#define REGION_ACCESS_MEDBAY list( \
-	ACCESS_CMO, \
-	ACCESS_MECH_MEDICAL, \
-	ACCESS_MEDICAL, \
-	ACCESS_MORGUE, \
-	ACCESS_MORGUE_SECURE, \
-	ACCESS_PHARMACY, \
-	ACCESS_PLUMBING, \
-	ACCESS_PSYCHOLOGY, \
-	ACCESS_SURGERY, \
-	ACCESS_VIROLOGY, \
-)
-/// Name for the Research region.
-#define REGION_RESEARCH "Research"
-/// Used to seed the accesses_by_region list in SSid_access. A list of all research regional accesses that are overseen by the RD.
-#define REGION_ACCESS_RESEARCH list( \
-	ACCESS_AI_UPLOAD, \
-	ACCESS_GENETICS, \
-	ACCESS_MECH_SCIENCE, \
-	ACCESS_MINISAT, \
-	ACCESS_NETWORK, \
-	ACCESS_ORDNANCE, \
-	ACCESS_ORDNANCE_STORAGE, \
-	ACCESS_RD, \
-	ACCESS_RESEARCH, \
-	ACCESS_ROBOTICS, \
-	ACCESS_SCIENCE, \
-	ACCESS_XENOBIOLOGY, \
-)
-/// Name for the Engineering region.
-#define REGION_ENGINEERING "Engineering"
-/// Used to seed the accesses_by_region list in SSid_access. A list of all engineering regional accesses that are overseen by the CE.
-#define REGION_ACCESS_ENGINEERING list( \
-	ACCESS_ATMOSPHERICS, \
-	ACCESS_AUX_BASE, \
-	ACCESS_CE, \
-	ACCESS_CONSTRUCTION, \
-	ACCESS_ENGINEERING, \
-	ACCESS_ENGINE_EQUIP, \
-	ACCESS_EXTERNAL_AIRLOCKS, \
-	ACCESS_MAINT_TUNNELS, \
-	ACCESS_MECH_ENGINE, \
-	ACCESS_MINISAT, \
-	ACCESS_TCOMMS, \
-	ACCESS_TECH_STORAGE, \
-)
-/// Name for the Supply region.
-#define REGION_SUPPLY "Supply"
-/// Used to seed the accesses_by_region list in SSid_access. A list of all cargo regional accesses that are overseen by the HoP.
-#define REGION_ACCESS_SUPPLY list( \
-	ACCESS_BIT_DEN, \
-	ACCESS_CARGO, \
-	ACCESS_MECH_MINING, \
-	ACCESS_MINERAL_STOREROOM, \
-	ACCESS_MINING, \
-	ACCESS_MINING_STATION, \
-	ACCESS_QM, \
-	ACCESS_SHIPPING, \
-	ACCESS_VAULT, \
-)
-/// Name for the Command region.
-#define REGION_COMMAND "Command"
-/// Used to seed the accesses_by_region list in SSid_access. A list of all command regional accesses that are overseen by the Captain.
-#define REGION_ACCESS_COMMAND list( \
-	ACCESS_AI_UPLOAD, \
-	ACCESS_ALL_PERSONAL_LOCKERS, \
-	ACCESS_CAPTAIN, \
-	ACCESS_CHANGE_IDS, \
-	ACCESS_COMMAND, \
-	ACCESS_EVA, \
-	ACCESS_GATEWAY, \
-	ACCESS_HOP, \
-	ACCESS_KEYCARD_AUTH, \
-	ACCESS_RC_ANNOUNCE, \
-	ACCESS_TELEPORTER, \
-	ACCESS_VAULT, \
-)
-/// Name for the Centcom region.
-#define REGION_CENTCOM "Central Command"
-/// Used to seed the accesses_by_region list in SSid_access. A list of all CENTCOM_ACCESS regional accesses.
-#define REGION_ACCESS_CENTCOM CENTCOM_ACCESS
