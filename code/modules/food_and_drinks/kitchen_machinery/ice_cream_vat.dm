@@ -8,12 +8,16 @@
 	use_power = NO_POWER_USE
 	layer = BELOW_OBJ_LAYER
 	max_integrity = 300
-	//Ice cream to be dispenced into cone on attackby
-	var/selected_ice_cream = null
+	//Ice cream to be dispensed into cone on attackby
+	var/selected_scoop = null
 	//Cone to be dispenced with alt click
 	var/selected_cone = null
 	//Max amount of items that can be in vat's storage
 	var/storage_capacity = 120
+	//If it starts empty or not
+	var/start_empty = FALSE
+	//Sound made when an item is dispensed
+	var/dispense_sound = 'sound/machines/machine_vend.ogg'
 	//Items currently stored in the vat
 	var/list/stored_items = list()
 	//Items to be added upon creation to the vat and what is shown in the UI
@@ -56,7 +60,7 @@
 
 		//Get information for UI
 		details["item_name"] = item.name
-		details["item_quantity"] = find_amount(stored_items, item_detail)
+		details["item_quantity"] = find_amount(item_detail)
 		details["item_type_path"] = item.type
 
 		//Get an image for the UI
@@ -82,35 +86,65 @@
 	if(.)
 		return
 
-/obj/machinery/ice_cream_vat/proc/find_amount(list/target_list, target)
+	var/itemPath = text2path(params["itemPath"])
+	var/obj/item/reagent_containers/food/snacks/selected_item = new itemPath
+
+	switch(action)
+		if("selectCone")
+			selected_cone = itemPath
+			usr.visible_message(span_notice("[usr] sets [src] to dispense [selected_item.name]s."), span_notice("You set [src] to dispense [selected_item.name]s."))
+		if("selectScoop")
+			selected_scoop = itemPath
+			usr.visible_message(span_notice("[usr] sets [src] to dispense [selected_item.name]s."), span_notice("You set [src] to dispense [selected_item.name]s."))
+		if("dispense")
+			dispense_item("ui_button", itemPath, usr)
+
+/obj/machinery/ice_cream_vat/proc/find_amount(target)
 	var/amount = 0
 	
 	//Check to see if it is even in the list before going through it
-	if(target_list.Find(target))
+	if(stored_items.Find(target))
 
-		//Loop through given list, counting every instance of the given variable
-		for(var/list_item in target_list)
+		//Loop through stored items, counting every instance of the given target
+		for(var/list_item in stored_items)
 			if(list_item == target)
 				amount += 1
 	
 	return amount
 
+/obj/machinery/ice_cream_vat/proc/dispense_item(method, received_item, mob/user)
+
+	var/obj/item/reagent_containers/food/snacks/dispensed_item = new received_item
+
+	if(find_amount(received_item) > 0)
+		switch(method)
+			if("ui_button")
+				stored_items -= received_item
+				user.put_in_hands(dispensed_item)
+				user.visible_message(span_notice("[usr] dispences [dispensed_item.name] from [src]."), span_notice("You dispence [dispensed_item.name] from [src]."))
+
+		playsound(src, dispense_sound, 50, TRUE, extrarange = -3)
+	else
+		user.balloon_alert(user, "All out!")
+
 /obj/machinery/ice_cream_vat/Initialize(mapload)
 	. = ..()
 	
-	//Loop through and add items from ui_list into stored_items
-	for(var/item in ui_list)
-		
-		var/loop_cycles = 5
-		var/obj/item/reagent_containers/food/snacks/check_item = new item
-		
-		//5 of every scoop; 10 of every cone
-		if(istype(check_item, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
-			loop_cycles = 10
+	if(!start_empty)
 
-		//Add amount of items to the list depending on type, with 5 being the base amount
-		for(var/i in 1 to loop_cycles)
-			stored_items += item
+		//Loop through and add items from ui_list into stored_items
+		for(var/item in ui_list)
+			
+			var/loop_cycles = 5
+			var/obj/item/reagent_containers/food/snacks/check_item = new item
+			
+			//5 of every scoop; 10 of every cone
+			if(istype(check_item, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
+				loop_cycles = 10
+
+			//Add amount of items to the list depending on type, with 5 being the base amount
+			for(var/i in 1 to loop_cycles)
+				stored_items += item
 
 ///////////////////
 //ICE CREAM CONES//
