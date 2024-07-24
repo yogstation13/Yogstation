@@ -21,12 +21,6 @@
 /turf/closed/indestructible/singularity_act()
 	return
 
-/turf/closed/indestructible/abductor/attackby(obj/item/attacking_item, mob/user, params)
-	if(istype(attacking_item, /obj/item/poster) && Adjacent(user))
-		return place_poster(attacking_item, user)
-
-	return ..()
-
 /turf/closed/indestructible/oldshuttle
 	name = "strange shuttle wall"
 	icon = 'icons/turf/shuttleold.dmi'
@@ -69,6 +63,11 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	smoothing_groups = SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_CLOSED_TURFS
 
+/turf/closed/indestructible/riveted/testingsite
+	name = "hyper-reinforced wall"
+	desc = "A reinforced wall layered with plastitanium and riveted nanocarbynes. \
+			It's made to withstand the strength of any blast, and is too complex to be deconstructed by normal means."
+
 /turf/closed/indestructible/syndicate
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
 	icon_state = "plastitanium_wall-0"
@@ -92,7 +91,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	canSmoothWith = SMOOTH_GROUP_WOOD_WALLS
 
 
-/turf/closed/indestructible/alien
+/turf/closed/indestructible/abductor
 	name = "alien wall"
 	desc = "A wall with alien alloy plating."
 	icon = 'icons/turf/walls/abductor_wall.dmi'
@@ -102,8 +101,11 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	smoothing_groups = SMOOTH_GROUP_ABDUCTOR_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_ABDUCTOR_WALLS
 
-/turf/closed/indestructible/abductor
-	icon_state = "alien1"
+/turf/closed/indestructible/abductor/attackby(obj/item/attacking_item, mob/user, params)
+	if(istype(attacking_item, /obj/item/poster) && Adjacent(user))
+		return place_poster(attacking_item, user)
+
+	return ..()
 
 /turf/closed/indestructible/opshuttle
 	icon_state = "wall3"

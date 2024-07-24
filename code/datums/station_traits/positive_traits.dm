@@ -142,7 +142,7 @@
 	// Should be themed around their job/department. If no theme is possible, a basic cybernetic organ is fine.
 	var/static/list/job_to_cybernetic = list(
 		/datum/job/assistant = /obj/item/organ/heart/cybernetic,
-		/datum/job/artist = /obj/item/organ/heart/cybernetic, 
+		/datum/job/artist = /obj/item/organ/heart/cybernetic,
 		/datum/job/atmos = /obj/item/organ/cyberimp/mouth/breathing_tube, // Inhaling gases.
 		/datum/job/bartender = /obj/item/organ/liver/cybernetic/upgraded, // Drinking their own drinks.
 		/datum/job/brigphysician = /obj/item/organ/cyberimp/eyes/hud/medical,
@@ -163,7 +163,7 @@
 		/datum/job/head_of_personnel = /obj/item/organ/eyes/robotic,
 		/datum/job/hos = /obj/item/organ/cyberimp/brain/anti_drop,
 		/datum/job/hydro = /obj/item/organ/cyberimp/chest/nutriment,
-		/datum/job/janitor = /obj/item/organ/heart/cybernetic, // ACTUAL x-ray eyes is likely "not balanced" and all alternatives suck. So boring heart.
+		/datum/job/janitor = /obj/item/organ/cyberimp/arm/toolset/janitor,
 		/datum/job/lawyer = /obj/item/organ/heart/cybernetic/upgraded,
 		/datum/job/mime = /obj/item/organ/tongue/robot, // ...
 		/datum/job/mining = /obj/item/organ/cyberimp/chest/reviver, // Replace with a reusable mining-specific implant if one is added later.

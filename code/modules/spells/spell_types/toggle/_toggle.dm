@@ -4,23 +4,28 @@
 	var/active = FALSE
 	
 /datum/action/cooldown/spell/toggle/New()
-	..()
+	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 
 /datum/action/cooldown/spell/toggle/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 	
+/datum/action/cooldown/spell/toggle/Remove(mob/living/remove_from)
+	if(active)
+		Disable()
+	return ..()
+
 /datum/action/cooldown/spell/toggle/process()
 	build_all_button_icons(ALL) //so as to be consistent with situational requirements, keep the button updated
 
 /datum/action/cooldown/spell/toggle/cast(atom/cast_on)
-	. = ..()
 	active = !active
 	if(active)
 		Enable()
 	else
 		Disable()
+	return ..()
 
 /datum/action/cooldown/spell/toggle/is_action_active(atom/movable/screen/movable/action_button/current_button)
 	return active

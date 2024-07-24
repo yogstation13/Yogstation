@@ -223,6 +223,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	/// Do we try to prevent reset_perspective() from working? Useful for Dullahans to stop perspective changes when they're looking through their head.
 	var/prevent_perspective_change = FALSE
 
+	/// List of the type path of every ability innate to this species
+	var/list/species_abilities = list()
+	/// List of the created abilities, stored for the purpose of removal later, please do not touch this if you don't need to
+	var/list/datum/action/instantiated_abilities = list()
+
 ///////////
 // PROCS //
 ///////////
@@ -500,6 +505,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		fly = new
 		fly.Grant(C)
 
+	for(var/ability_path in species_abilities)
+		var/datum/action/ability = new ability_path(C)
+		ability.Grant(C)
+		instantiated_abilities += ability
+
 	C.add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 100, override=TRUE, multiplicative_slowdown=speedmod, movetypes=(~FLYING))
 	C.regenerate_icons()
 	SEND_SIGNAL(C, COMSIG_SPECIES_GAIN, src, old_species)
@@ -544,6 +554,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				C.dna.species.mutant_bodyparts -= "wingsdetail"
 			C.dna.features["wingsdetail"] = "None"
 		C.update_body()
+
+	for(var/datum/action/ability as anything in instantiated_abilities)
+		ability.Remove(C)
+		instantiated_abilities -= ability
+		qdel(ability)
 
 	C.remove_movespeed_modifier(MOVESPEED_ID_SPECIES)
 

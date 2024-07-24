@@ -555,7 +555,7 @@
 		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 		return 
 
-	if(HAS_TRAIT(mob_occupant,TRAIT_SHORT_TELOMERES))
+	if(TRAIT_SHORT_TELOMERES in dna.features)
 		say("Error: Scan indicates occupant's DNA telomeres are too short to properly scan. Aborting.")
 		return
 

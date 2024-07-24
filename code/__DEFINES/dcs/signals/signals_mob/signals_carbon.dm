@@ -123,3 +123,8 @@
 
 /// from  base of mob/living/carbon/set_species(): (new_race)
 #define COMSIG_CARBON_SPECIESCHANGE "mob_carbon_specieschange"
+
+/// from base of mob/living/carbon/toggle_throw_mode()
+#define COMSIG_CARBON_TOGGLE_THROW "toggle_throwmode"
+	// Prevents the toggle
+	#define COMSIG_CARBON_BLOCK_TOGGLE_THROW (1 << 0)

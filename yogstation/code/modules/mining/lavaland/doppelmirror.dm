@@ -222,7 +222,7 @@
 /mob/living/simple_animal/hostile/double/dust(just_ash, drop_items, force)
 	death()
 
-/mob/living/simple_animal/hostile/double/gib()
+/mob/living/simple_animal/hostile/double/gib(no_brain, no_organs, no_bodyparts, no_items)
 	death()
 
 //reflection's abilities
