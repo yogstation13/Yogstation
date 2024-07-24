@@ -256,7 +256,7 @@
 	description = "Yellowish liquid with potent anti-acidic properties"
 	color = "#e0ea4e"
 	taste_description = "sweet"
-	metabolization_rate = 0.1
+	metabolization_rate = 0.2
 	var/alert_id = "magnus_purpura"
 
 /datum/reagent/magnus_purpura_enzyme/on_mob_metabolize(mob/living/L)
@@ -278,7 +278,7 @@
 	description = "Yellowish liquid with VERY potent anti-acidic properties"
 	color = "#eeff00"
 	taste_description = "sweet"
-	metabolization_rate = 0.05
+	metabolization_rate = 0.1
 	alert_id = "magnus_purpura_condensed"
 
 //i tried to base it off of actual malaria

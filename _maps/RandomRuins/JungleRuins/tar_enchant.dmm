@@ -10,13 +10,13 @@
 	dir = 8
 	},
 /obj/structure/stone_tile/surrounding_tile,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/jungleland/explored)
 "e" = (
 /obj/structure/stone_tile/block{
 	dir = 1
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/jungleland/explored)
 "t" = (
 /obj/structure/stone_tile{
@@ -28,22 +28,22 @@
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 4
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/jungleland/explored)
 "C" = (
 /obj/structure/stone_tile/block{
 	dir = 8
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/jungleland/explored)
 "F" = (
 /obj/structure/stone_tile/surrounding,
 /obj/structure/enchanting_table,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/jungleland/explored)
 "G" = (
 /obj/structure/stone_tile/block,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/jungleland/explored)
 "K" = (
 /obj/structure/stone_tile,
@@ -53,7 +53,7 @@
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 8
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/jungleland/explored)
 "M" = (
 /obj/structure/stone_tile,
@@ -63,13 +63,13 @@
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 1
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/jungleland/explored)
 "P" = (
 /obj/structure/stone_tile/block{
 	dir = 4
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/jungleland/explored)
 
 (1,1,1) = {"
