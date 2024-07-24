@@ -17,7 +17,7 @@
 /area/ruin/unpowered)
 "cV" = (
 /obj/structure/fence,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "dc" = (
 /obj/effect/decal/cleanable/blood/tracks,
@@ -73,7 +73,7 @@
 /area/ruin/unpowered)
 "gy" = (
 /obj/structure/foamedmetal/iron,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/ruin/unpowered)
 "gR" = (
 /obj/structure/chair,
@@ -171,7 +171,7 @@
 /area/ruin/unpowered)
 "nT" = (
 /obj/structure/fence/corner,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "nW" = (
 /obj/structure/chair{
@@ -198,7 +198,7 @@
 /area/ruin/unpowered)
 "rr" = (
 /obj/structure/barricade/wooden,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "se" = (
 /turf/closed/wall/mineral/iron,
@@ -286,7 +286,7 @@
 /obj/structure/fence/cut/large{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "AL" = (
 /obj/structure/chair/office/dark{
@@ -296,7 +296,7 @@
 /area/ruin/unpowered)
 "AP" = (
 /obj/structure/fence/door,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "Bo" = (
 /obj/structure/window/reinforced/fulltile,
@@ -304,7 +304,7 @@
 /turf/open/floor/plating,
 /area/ruin/unpowered)
 "Bu" = (
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "CA" = (
 /obj/effect/decal/cleanable/blood,
@@ -434,7 +434,7 @@
 /obj/structure/fence{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "Le" = (
 /obj/machinery/door/airlock/glass{
@@ -547,7 +547,7 @@
 /turf/open/floor/plating,
 /area/ruin/unpowered)
 "ZO" = (
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/ruin/unpowered)
 "ZP" = (
 /obj/effect/decal/cleanable/dirt,

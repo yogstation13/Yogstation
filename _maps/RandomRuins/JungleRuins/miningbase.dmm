@@ -7,7 +7,7 @@
 /obj/structure/sign/departments/minsky/supply/mining{
 	pixel_y = -32
 	},
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/mine/eva_secondary)
 "ak" = (
 /turf/open/indestructible/grass/sand,
@@ -845,7 +845,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/mine/eva)
 "hH" = (
 /obj/machinery/door/airlock{
@@ -1183,7 +1183,7 @@
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "lK" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 "lM" = (
 /obj/structure/disposalpipe/segment{
@@ -1342,7 +1342,7 @@
 /turf/open/floor/plasteel,
 /area/mine/eva)
 "oU" = (
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "pc" = (
 /obj/machinery/space_heater,
@@ -2017,7 +2017,7 @@
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "Ap" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/jungleland/explored)
 "Ar" = (
 /obj/machinery/vending/boozeomat,
@@ -2248,7 +2248,7 @@
 /area/mine/infirmary)
 "Cv" = (
 /obj/structure/lattice/catwalk,
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/jungleland/explored)
 "CE" = (
 /obj/effect/turf_decal/siding/wood/corner{

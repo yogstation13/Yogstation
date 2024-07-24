@@ -218,7 +218,7 @@
 
 /obj/structure/herb/attack_hand(mob/user)
 	. = ..()
-	if(!do_after(user,10 SECONDS,src))
+	if(!do_after(user, 5 SECONDS, src))
 		return
 
 	for(var/i in 1 to picked_amt)
@@ -233,14 +233,15 @@
 	icon_state = "explosive_shrooms"
 	picked_amt = 1
 	picked_result = /obj/item/explosive_shroom
+	var/delay = (2.5 SECONDS)
 
 /obj/structure/herb/explosive_shrooms/Cross(atom/movable/AM)
 	. = ..()
 	if(!isliving(AM) || ishostile(AM))
 		return
 
-	animate(src,time=2.49 SECONDS, color = "#e05a5a")
-	addtimer(CALLBACK(src,PROC_REF(explode)),2.5 SECONDS)
+	animate(src,time= delay, color = "#e05a5a")
+	addtimer(CALLBACK(src,PROC_REF(explode)), delay)
 
 /obj/structure/herb/explosive_shrooms/proc/explode()
 	dyn_explosion(get_turf(src),4)
@@ -308,8 +309,7 @@
 
 /obj/structure/flytrap/Initialize()
 	. = ..()
-	var/outcome = rand(1,3)
-	switch(outcome)
+	switch(rand(1,3))
 		if(1)
 			craving = /obj/item/stack/sheet/meduracha
 			desc = "The mouth doesn't look big enough to hurt you, but it does look very hungry. It seems peckish for some meduracha tentacles."
@@ -324,8 +324,7 @@
 	if(istype(W, craving) && full == FALSE )
 		user.visible_message(span_notice("[user] feeds the [src], and watches as it spews out materials!"),span_notice("You place the [W] inside the mouth of the [src], watching as it devours it and shoots out minerals!"))
 		full = TRUE
-		var/lootoutcome = rand(1,25)
-		switch(lootoutcome)
+		switch(rand(1,25))
 			if(1 to 8)
 				for(var/i in 1 to 5)
 					new /obj/item/stack/ore/dilithium_crystal(get_turf(src))
