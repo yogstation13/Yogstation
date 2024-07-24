@@ -489,7 +489,7 @@
 	// What examine_tgui.dm uses to determine if flavor text appears as "Obscured".
 	var/face_obscured = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
-	if(HAS_TRAIT(src, TRAIT_HUSK)) //can't identify hulk
+	if(HAS_TRAIT(src, TRAIT_HUSK)) //can't identify husk
 		flavor_text_link = span_notice("This person has been husked, and is unrecognizable!")
 	else if (HAS_TRAIT(src, TRAIT_DISFIGURED)) //can't identify disfigured
 		flavor_text_link = span_notice("This person has been horribly disfigured, and is unrecognizable!")
