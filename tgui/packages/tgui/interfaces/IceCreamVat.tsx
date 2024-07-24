@@ -1,6 +1,6 @@
 import { capitalize } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
-import { Button, Stack, Section, Tabs, Box, TextArea } from '../components';
+import { Button, Section, Stack, Table, Tabs, Box, TextArea } from '../components';
 import { Window } from '../layouts';
 import { resolveAsset } from './../assets';
 
@@ -26,8 +26,9 @@ type ConeStats = {
 export const IceCreamVat = (props, context) => {
 
   return(
-    <Window width={550} height={500} resizable>
-      <Window.Content>
+    <Window width={620} height={600} resizable>
+      <Window.Content
+        scrollable>
         <Section title="Cones">
           <ConeRow/>
         </Section>
@@ -44,25 +45,31 @@ const ConeRow = (props, context) => {
   const { cones = [] } = data;
 
   return (
-    <Stack vertical>
+    <Table>
       {cones.map(flavor => (
-        <Stack.Divider
+        <Table.Row
          key={flavor.item_name}
-         fontSize="16px"
-         collapsing>
+         fontSize="14px">
+            <Table.Cell>
             <Box
             as="img"
             src={resolveAsset(flavor.item_image)}
-            height="38px"
+            height="32px"
             style={{
               '-ms-interpolation-mode': 'nearest-neighbor',
               'image-rendering': 'pixelated' }} />
+            </Table.Cell>
+            <Table.Cell
+              bold>
             {capitalize(flavor.item_name)}
-            <Stack.Item
-              collapsing
+            </Table.Cell>
+            <Table.Cell
               textAlign="right">
             {flavor.item_quantity} in storage
+            </Table.Cell>
+            <Table.Cell>
             <Button
+            fluid
             content="Select"
             textAlign="center"
             fontSize="16px"
@@ -74,6 +81,7 @@ const ConeRow = (props, context) => {
             })}
             />
             <Button
+            fluid
             content="Dispence"
             textAlign="center"
             fontSize="16px"
@@ -84,10 +92,10 @@ const ConeRow = (props, context) => {
             itemPath: flavor.item_type_path,
             })}
             />
-            </Stack.Item>
-        </Stack.Divider>
+            </Table.Cell>
+        </Table.Row>
      ))}
-    </Stack>
+    </Table>
   );
 };
 
@@ -96,13 +104,56 @@ const IceCreamRow = (props, context) => {
   const { ice_cream = [] } = data;
 
   return (
-    <Stack vertical>
+    <Table>
       {ice_cream.map(flavor => (
-        <Stack.Item
-         key={flavor.item_name}>
-           {capitalize(flavor.item_name)}
-        </Stack.Item>
+        <Table.Row
+         key={flavor.item_name}
+         fontSize="14px">
+            <Table.Cell>
+            <Box
+            as="img"
+            src={resolveAsset(flavor.item_image)}
+            height="32px"
+            style={{
+              '-ms-interpolation-mode': 'nearest-neighbor',
+              'image-rendering': 'pixelated' }} />
+            </Table.Cell>
+            <Table.Cell
+              bold>
+            {capitalize(flavor.item_name)}
+            </Table.Cell>
+            <Table.Cell
+              textAlign="right">
+            {flavor.item_quantity} in storage
+            </Table.Cell>
+            <Table.Cell>
+            <Button
+            fluid
+            content="Select"
+            textAlign="center"
+            fontSize="16px"
+            disabled={(
+              flavor.item_quantity === 0
+            )}
+            onClick={() => act("select", {
+            itemPath: flavor.item_type_path,
+            })}
+            />
+            <Button
+            fluid
+            content="Dispence"
+            textAlign="center"
+            fontSize="16px"
+            disabled={(
+              flavor.item_quantity === 0
+            )}
+            onClick={() => act("dispence", {
+            itemPath: flavor.item_type_path,
+            })}
+            />
+            </Table.Cell>
+        </Table.Row>
      ))}
-    </Stack>
+    </Table>
   );
 };

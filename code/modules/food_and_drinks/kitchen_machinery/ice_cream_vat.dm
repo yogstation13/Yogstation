@@ -32,7 +32,7 @@
 		/obj/item/reagent_containers/food/snacks/ice_cream_cone/chocolate)
 	//Please don't add anything other than scoops or cones to the list or it could/maybe/possibly/definitely break it
 
-/obj/machinery/ice_cream_vat/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/ice_cream_vat/ui_interact(mob/user, datum/tgui/ui) //Thanks bug eating lizard for helping me with the UI
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "IceCreamVat", name)
