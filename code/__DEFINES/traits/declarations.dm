@@ -925,6 +925,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define STATION_TRAIT_UNIQUE_AI "station_trait_unique_ai"
 #define STATION_TRAIT_UNNATURAL_ATMOSPHERE "station_trait_unnatural_atmosphere"
 #define STATION_TRAIT_VENDING_SHORTAGE "station_trait_vending_shortage"
+#define STATION_TRAIT_MOONSCORCH "station_trait_moonscorch"
 
 /// This atom is currently spinning.
 #define TRAIT_SPINNING "spinning"
@@ -1051,3 +1052,200 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_ALWAYS_WANTED "always_wanted"
 
 // END TRAIT DEFINES
+
+
+
+
+
+
+
+
+
+
+//mob traits
+
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------Basic defines-----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/// Makes the mob blind
+#define TRAIT_BLIND 			"blind"
+/// Makes the mob have a blur around the outer half of the screen
+#define TRAIT_NEARSIGHT			"nearsighted"
+/// Prevents the mob from using tools
+#define TRAIT_MONKEYLIKE		"monkeylike" //sets IsAdvancedToolUser to FALSE
+
+
+
+
+
+/// Not allowed to touch anything (even with TK) or use things in hand
+#define TRAIT_NOINTERACT		"no_interact"
+
+
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------Utility activity defines------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/// Provides a bonus to brain trauma healing
+#define TRAIT_PSYCH				"psych-diagnosis"
+
+////////////////////////////////////////////////////////////////////////////////////
+//-------------------------Utility protection defines-----------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/// Provides complete emp immunity to the atom, but not anything they're holding
+#define TRAIT_EMPPROOF_SELF		"emp_immunity_self"
+/// Provides complete emp immunity to everything being held, but not the atom itself
+#define TRAIT_EMPPROOF_CONTENTS "emp_immunity_contents"
+/// Provides immunity to the blinding of welding without providing immunity to other sources of flash
+#define TRAIT_SAFEWELD		"safe_welding"
+/// protects the holder from throw_impact
+#define TRAIT_IMPACTIMMUNE		"impact_immunity"
+/// Immunity to slipping on ice
+#define TRAIT_NOSLIPICE			"noslip_ice"
+/// Immunity to slipping on water
+#define TRAIT_NOSLIPWATER		"noslip_water"
+/// Immunity to slipping
+#define TRAIT_NOSLIPALL			"noslip_all"
+
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------Combat related defines-------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/// Requires getting lower health before damage slowdown begins
+#define TRAIT_REDUCED_DAMAGE_SLOWDOWN "reduced_damage_slowdown"
+/// Reduces the strength of damage slowdown by 50% (stacks with high resist)
+#define TRAIT_RESISTDAMAGESLOWDOWN "resistdamageslowdown"
+/// Reduces the strength of damage slowdown by 75% (stacks with regular resist)
+#define TRAIT_HIGHRESISTDAMAGESLOWDOWN "highresistdamageslowdown"
+/// Prevents use of commonly available instant or near instant stun weapons
+#define TRAIT_NO_STUN_WEAPONS	"no_stun_weapons"
+
+#define TRAIT_NO_GRENADES		"no_nades"
+
+////////////////////////////////////////////////////////////////////////////////////
+//-------------------------Species Specific defines-------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/// Uses electricity instead of food (does not provide a way to recharge)
+#define TRAIT_POWERHUNGRY		"power_hungry"
+/// Prevent species from changing while they have the trait
+#define TRAIT_SPECIESLOCK "species_lock"
+/// Heals when drinking milk and certain milk based drinks
+#define	TRAIT_CALCIUM_HEALER	"calcium_healer"
+/// Used for Durathread golem choking
+#define	TRAIT_MAGIC_CHOKE		"magic_choke"
+
+#define TRAIT_MEDICALIGNORE     "medical_ignore"
+#define TRAIT_SLIME_EMPATHY		"slime-empathy"
+#define TRAIT_ACIDBLOOD         "acid_blood"
+#define TRAIT_PRESERVED_ORGANS	"preserved_organs"
+#define TRAIT_SKINNY			"skinny"  //For those with a slightly thinner torso sprite
+
+
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------Quirk defines----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+#define TRAIT_SHELTERED			"sheltered"
+#define TRAIT_RANDOM_ACCENT		"random_accent"
+
+
+/// Makes the screen go black and white while illuminating all mobs based on their body temperature
+#define TRAIT_INFRARED_VISION	"infrared_vision"
+
+
+#define TRAIT_QUICKEST_CARRY	"quickest-carry"
+#define TRAIT_STRONG_GRIP		"strong-grip"
+
+#define TRAIT_SURGERY_PREPARED	"surgery_prepared"
+#define TRAIT_NO_PASSIVE_COOLING "no-passive-cooling"
+#define TRAIT_NO_PASSIVE_HEATING "no-passive-heating"
+#define TRAIT_BLOODY_MESS_LITE	"bloody_mess_lite" //weak heparin, otherwise the same
+#define TRAIT_NO_BLOOD_REGEN	"no_blood_regen" //prevents regenerating blood
+#define TRAIT_NOPULSE           "nopulse" // Your heart doesn't beat
+#define TRAIT_MASQUERADE        "masquerade" // Falsifies Health analyzer blood levels
+#define TRAIT_NOCLONE			"noclone" // No cloning
+#define TRAIT_NODEFIB			"nodefib" // No defibbing
+#define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp
+#define TRAIT_EAT_MORE			"eat_more" //You get hungry three times as fast
+#define TRAIT_BOTTOMLESS_STOMACH "bottomless_stomach" // Can never be full
+#define TRAIT_MESONS			"mesons"
+#define TRAIT_MAGBOOTS			"magboots"
+#define TRAIT_BADMAIL			"badmail"	//Your mail is going to be worse than average
+#define TRAIT_SHORT_TELOMERES	"short_telomeres" //You cannot be CLOONED
+#define TRAIT_LONG_TELOMERES	"long_telomeres" //You get CLOONED faster!!!
+///You become a Marine that can eat crayons!!!
+#define TRAIT_MARINE  "marine"
+
+/// Whether we're sneaking, from the alien sneak ability.
+/// Maybe worth generalizing into a general "is sneaky" / "is stealth" trait in the future.
+#define TRAIT_ALIEN_SNEAK "sneaking_alien"
+
+///This mob can't use vehicles
+#define TRAIT_NOVEHICLE	"no_vehicle"
+
+/// You can't see color!
+#define TRAIT_COLORBLIND "color_blind"
+
+/// This person is crying
+#define TRAIT_CRYING "crying"
+
+#define TRAIT_NO_STORAGE		"no-storage" //you cannot put this in any container, backpack, box etc
+
+#define TRAIT_POOR_AIM			"poor_aim"
+
+#define TRAIT_DRUNK_HEALING		"drunk_healing"
+
+#define TRAIT_ALLERGIC			"allergic"
+#define TRAIT_KLEPTOMANIAC		"kleptomaniac"
+#define TRAIT_EAT_LESS			"eat_less"
+#define TRAIT_CRAFTY			"crafty"
+#define TRAIT_ANOREXIC			"anorexic"
+
+#define TRAIT_SEE_REAGENTS		"see_reagents"
+#define TRAIT_STARGAZED			"stargazed"
+
+/// The item is magically cursed
+#define CURSED_ITEM_TRAIT(item_type) "cursed_item_[item_type]"
+
+#define PSEUDOCIDER_TRAIT "pseudocider_trait"
+
+#define ATTACHMENT_TRAIT "attachment-trait"
+
+/// A trait given by a specific status effect (not sure why we need both but whatever!)
+#define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
+
+/// Trait applied by element
+#define ELEMENT_TRAIT(source) "element_trait_[source]"
+
+
+// unique trait sources, still defines
+#define CLONING_POD_TRAIT "cloning-pod"
+#define CHANGELING_HIVEMIND_MUTE "ling_mute"
+#define ABYSSAL_GAZE_BLIND "abyssal_gaze"
+#define HIGHLANDER "highlander"
+#define NUKEOP_TRAIT "nuke-op"
+#define DEATHSQUAD_TRAIT "deathsquad"
+#define ANTI_DROP_IMPLANT_TRAIT "anti-drop-implant"
+#define HIVEMIND_ONE_MIND_TRAIT "one_mind"
+#define VR_ZONE_TRAIT "vr_zone_trait"
+#define GUARDIAN_TRAIT "guardian_trait"
+#define STARGAZER_TRAIT "stargazer"
+#define MADE_UNCLONEABLE "made-uncloneable"
+/// Source trait for Bloodsuckers-related traits
+#define BLOODSUCKER_TRAIT "bloodsucker_trait"
+/// Source trait for Monster Hunter-related traits
+#define HUNTER_TRAIT "monsterhunter_trait"
+/// Source trait during a Frenzy
+#define FRENZY_TRAIT "frenzy_trait"
+/// Source trait while Feeding
+#define FEED_TRAIT "feed_trait"
+#define HORROR_TRAIT "horror"
+#define HOLDER_TRAIT "holder_trait"
+#define SINFULDEMON_TRAIT "sinfuldemon"
+#define CHANGESTING_TRAIT "changesting"
+#define POSIBRAIN_TRAIT "positrait"
+#define SYNTHETIC_TRAIT "synthetictrait"
+#define WRIST_STRAP_TRAIT "wrist_strap"
+#define GRIMOIRE_TRAIT "grimoire_trait"
+
+
+
+#define RANDOM_BLACKOUTS "random_blackouts"
+#define CULT_EYES "cult_eyes"
