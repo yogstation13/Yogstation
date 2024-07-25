@@ -112,6 +112,29 @@
 			for(var/i in 1 to loop_cycles)
 				stored_items += item
 
+/obj/machinery/ice_cream_vat/examine(mob/user)
+	. = ..()
+
+	//Cones
+	if(selected_cone == null)
+		. += span_notice("You can <b>Alt Click</b> to dispense a cone once one is selected.")
+	else
+		var/obj/item/reagent_containers/food/snacks/examine_cone = new selected_cone
+		. += span_notice("<b>Alt Click</b> to dispense [examine_cone.name].")
+
+	//Scoops
+	if(selected_scoop == null)
+		. += span_notice("No ice cream scoop currently selected.")
+	else
+		var/obj/item/reagent_containers/food/snacks/examine_scoop = new selected_scoop
+		. += span_notice("[examine_scoop.name] is currently selected.")
+
+/obj/machinery/ice_cream_vat/AltClick(mob/living/carbon/user)
+	if(selected_cone != null)
+		dispense_item(selected_cone)
+	else
+		user.balloon_alert(user, "None selected!")
+
 /obj/machinery/ice_cream_vat/proc/find_amount(target)
 	var/amount = 0
 	
@@ -135,7 +158,7 @@
 		user.visible_message(span_notice("[user] dispences [ui_item.name] from [src]."), span_notice("You dispence [ui_item.name] from [src]."))
 		playsound(src, dispense_sound, 25, TRUE, extrarange = -3)
 	else
-		//In case buttons don't disable themselves
+		//For Alt click and in case buttons don't disable themselves
 		user.balloon_alert(user, "All out!")
 
 /obj/machinery/ice_cream_vat/proc/select_item(received_item, mob/user = usr)
