@@ -388,6 +388,8 @@
 	maxHealth = 750
 	health = 750
 
+	weather_immunities = ALL
+	
 	obj_damage = 400
 	armour_penetration = 20
 	melee_damage_lower = 40
@@ -417,9 +419,7 @@
 	AddElement(/datum/element/death_explosion, 3, 6, 12)
 	AddElement(/datum/element/effect_trail, /obj/effect/forcefield/cosmic_field/fast)
 	AddComponent(/datum/component/regenerator, outline_colour = "#b97a5d")
-	ADD_TRAIT(src, TRAIT_LAVA_IMMUNE, INNATE_TRAIT)
-	ADD_TRAIT(src, TRAIT_ASHSTORM_IMMUNE, INNATE_TRAIT)
-	ADD_TRAIT(src, TRAIT_NO_TELEPORT, MEGAFAUNA_TRAIT)
+	ADD_TRAIT(src, TRAIT_NO_TELEPORT, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, INNATE_TRAIT)
 	set_light(4, l_color = "#dcaa5b")
 

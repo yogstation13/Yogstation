@@ -130,3 +130,12 @@
  * THAT FILE IS FOUND INSIDE THE TRAITS FOLDER 
  */
 /////////////////////////////////////////////////////////////////////////////////////////////////
+
+/// The item is magically cursed
+#define CURSED_ITEM_TRAIT(item_type) "cursed_item_[item_type]"
+
+/// A trait given by a specific status effect (not sure why we need both but whatever!)
+#define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
+
+/// Trait applied by element
+#define ELEMENT_TRAIT(source) "element_trait_[source]"
