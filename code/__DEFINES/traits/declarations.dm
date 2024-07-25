@@ -54,6 +54,39 @@
 ////////////////////////////////////////////////////////////////////////////////////
 #define TRAIT_SHELTERED			"sheltered"
 #define TRAIT_RANDOM_ACCENT		"random_accent"
+#define TRAIT_ALCOHOL_TOLERANCE "alcohol_tolerance"
+#define TRAIT_HEAVY_DRINKER "heavy_drinker"
+#define TRAIT_AGEUSIA "ageusia"
+#define TRAIT_HEAVY_SLEEPER "heavy_sleeper"
+#define TRAIT_NIGHT_VISION "night_vision"
+#define TRAIT_LIGHT_STEP "light_step"
+#define TRAIT_SPIRITUAL "spiritual"
+#define TRAIT_CLOWN_ENJOYER "clown_enjoyer"
+#define TRAIT_MIME_FAN "mime_fan"
+#define TRAIT_VORACIOUS "voracious"
+#define TRAIT_SELF_AWARE "self_aware"
+#define TRAIT_FREERUNNING "freerunning"
+#define TRAIT_SKITTISH "skittish"
+#define TRAIT_PROSOPAGNOSIA "prosopagnosia"
+#define TRAIT_TAGGER "tagger"
+#define TRAIT_PHOTOGRAPHER "photographer"
+#define TRAIT_MUSICIAN "musician"
+#define TRAIT_LIGHT_DRINKER "light_drinker"
+#define TRAIT_EMPATH "empath"
+#define TRAIT_FRIENDLY "friendly"
+#define TRAIT_GRABWEAKNESS "grab_weakness"
+#define TRAIT_SNOB "snob"
+#define TRAIT_BALD "bald"
+#define TRAIT_SHAVED "shaved"
+#define TRAIT_BADTOUCH "bad_touch"
+#define TRAIT_EXTROVERT "extrovert"
+#define TRAIT_INTROVERT "introvert"
+#define TRAIT_ANXIOUS "anxious"
+#define TRAIT_SMOKER "smoker"
+#define TRAIT_POSTERBOY "poster_boy"
+#define TRAIT_THROWINGARM "throwing_arm"
+#define TRAIT_SETTLER "settler"
+
 
 
 /// Makes the screen go black and white while illuminating all mobs based on their body temperature
@@ -684,8 +717,6 @@
 #define TRAIT_KEEP_TOGETHER "keep-together"
 
 // cargo traits
-///If the item will block the cargo shuttle from flying to centcom
-#define TRAIT_BANNED_FROM_CARGO_SHUTTLE "banned_from_cargo_shuttle"
 ///If the crate's contents are immune to the missing item manifest error
 #define TRAIT_NO_MISSING_ITEM_ERROR "no_missing_item_error"
 ///If the crate is immune to the wrong content in manifest error
@@ -696,38 +727,8 @@
 
 // item traits
 #define TRAIT_NODROP "nodrop"
-/// cannot be inserted in a storage.
-#define TRAIT_NO_STORAGE_INSERT "no_storage_insert"
 /// Visible on t-ray scanners if the atom/var/level == 1
 #define TRAIT_T_RAY_VISIBLE "t-ray-visible"
-/// If this item's been grilled
-#define TRAIT_FOOD_GRILLED "food_grilled"
-/// If this item's been fried
-#define TRAIT_FOOD_FRIED "food_fried"
-/// This is a silver slime created item
-#define TRAIT_FOOD_SILVER "food_silver"
-/// If this item's been made by a chef instead of being map-spawned or admin-spawned or such
-#define TRAIT_FOOD_CHEF_MADE "food_made_by_chef"
-/// The items needs two hands to be carried
-#define TRAIT_NEEDS_TWO_HANDS "needstwohands"
-/// Can't be catched when thrown
-#define TRAIT_UNCATCHABLE "uncatchable"
-/// Fish in this won't die
-#define TRAIT_FISH_SAFE_STORAGE "fish_case"
-/// Stuff that can go inside fish cases
-#define TRAIT_FISH_CASE_COMPATIBILE "fish_case_compatibile"
-/// If the item can be used as a bit.
-#define TRAIT_FISHING_BAIT "fishing_bait"
-/// The quality of the bait. It influences odds of catching fish
-#define TRAIT_BASIC_QUALITY_BAIT "baic_quality_bait"
-#define TRAIT_GOOD_QUALITY_BAIT "good_quality_bait"
-#define TRAIT_GREAT_QUALITY_BAIT "great_quality_bait"
-/// Baits with this trait will ignore bait preferences and related fish traits.
-#define TRAIT_OMNI_BAIT "omni_bait"
-/// Plants that were mutated as a result of passive instability, not a mutation threshold.
-#define TRAIT_PLANT_WILDMUTATE "wildmutation"
-/// If you hit an APC with exposed internals with this item it will try to shock you
-#define TRAIT_APC_SHOCKING "apc_shocking"
 /// Properly wielded two handed item
 #define TRAIT_WIELDED "wielded"
 /// This item is currently performing a cleaving attack
@@ -761,39 +762,6 @@
 /// determines whether or not objects are haunted and teleport/attack randomly
 #define TRAIT_HAUNTED "haunted"
 
-//quirk traits
-#define TRAIT_ALCOHOL_TOLERANCE "alcohol_tolerance"
-#define TRAIT_HEAVY_DRINKER "heavy_drinker"
-#define TRAIT_AGEUSIA "ageusia"
-#define TRAIT_HEAVY_SLEEPER "heavy_sleeper"
-#define TRAIT_NIGHT_VISION "night_vision"
-#define TRAIT_LIGHT_STEP "light_step"
-#define TRAIT_SPIRITUAL "spiritual"
-#define TRAIT_CLOWN_ENJOYER "clown_enjoyer"
-#define TRAIT_MIME_FAN "mime_fan"
-#define TRAIT_VORACIOUS "voracious"
-#define TRAIT_SELF_AWARE "self_aware"
-#define TRAIT_FREERUNNING "freerunning"
-#define TRAIT_SKITTISH "skittish"
-#define TRAIT_PROSOPAGNOSIA "prosopagnosia"
-#define TRAIT_TAGGER "tagger"
-#define TRAIT_PHOTOGRAPHER "photographer"
-#define TRAIT_MUSICIAN "musician"
-#define TRAIT_LIGHT_DRINKER "light_drinker"
-#define TRAIT_EMPATH "empath"
-#define TRAIT_FRIENDLY "friendly"
-#define TRAIT_GRABWEAKNESS "grab_weakness"
-#define TRAIT_SNOB "snob"
-#define TRAIT_BALD "bald"
-#define TRAIT_SHAVED "shaved"
-#define TRAIT_BADTOUCH "bad_touch"
-#define TRAIT_EXTROVERT "extrovert"
-#define TRAIT_INTROVERT "introvert"
-#define TRAIT_ANXIOUS "anxious"
-#define TRAIT_SMOKER "smoker"
-#define TRAIT_POSTERBOY "poster_boy"
-#define TRAIT_THROWINGARM "throwing_arm"
-#define TRAIT_SETTLER "settler"
 
 /// This mob always lands on their feet when they fall, for better or for worse.
 #define TRAIT_CATLIKE_GRACE "catlike_grace"

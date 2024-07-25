@@ -78,9 +78,6 @@
 	src.unwield_callback = unwield_callback
 	src.wielded_stats = wielded_stats
 
-	if(require_twohands)
-		ADD_TRAIT(parent, TRAIT_NEEDS_TWO_HANDS, ABSTRACT_ITEM_TRAIT)
-
 // Inherit the new values passed to the component
 /datum/component/two_handed/InheritComponent(
 	datum/component/two_handed/new_comp,
