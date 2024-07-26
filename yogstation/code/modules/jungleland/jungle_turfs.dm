@@ -91,6 +91,8 @@ Temperature: 126.85 °C (400 K)
 	spawn_ores()
 
 /turf/open/floor/plating/dirt/jungleland/proc/spawn_ores()
+	if(ore_present == ORE_EMPTY || !can_spawn_ore)
+		return
 	var/datum/ore_patch/ore = GLOB.jungle_ores[ ore_present ]
 	if(ore)
 		ore.spawn_at(src)
