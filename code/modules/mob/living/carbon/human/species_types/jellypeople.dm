@@ -10,6 +10,7 @@
 	inherent_traits = list(TRAIT_TOXINLOVER)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/slime
 	exotic_blood = /datum/reagent/toxin/slimejelly
+	exotic_bloodtype = "J" //this isn't used for anything other than bloodsplatter colours
 	mutanttongue = /obj/item/organ/tongue/slime
 	mutantlungs = /obj/item/organ/lungs/slime
 	damage_overlay_type = ""
