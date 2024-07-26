@@ -501,7 +501,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 		for (var/datum/guardian_ability/minor/M in stats.minor_abilities)
 			. += span_holoparasite("<b>MINOR ABILITY:</b> [M.name] - [M.desc]")
 
-/mob/living/simple_animal/hostile/guardian/gib()
+/mob/living/simple_animal/hostile/guardian/gib(no_brain, no_organs, no_bodyparts, no_items)
 	death()
 	if (summoner?.current)
 		to_chat(summoner.current, "<span class='danger'><B>Your [src] was blown up!</span></B>")

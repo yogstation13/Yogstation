@@ -119,7 +119,7 @@
 
 /obj/projectile/floating_blade
 	name = "blade"
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/weapons/shortsword.dmi'
 	icon_state = "knife"
 	speed = 2
 	damage = 25

@@ -136,16 +136,15 @@
 	user.weapon_slow(I)
 	if(user.combat_mode && stat == DEAD && (butcher_results || guaranteed_butcher_results)) //can we butcher it?
 		var/datum/component/butchering/butchering = I.GetComponent(/datum/component/butchering)
-		if(butchering && butchering.butchering_enabled)
+		if(I.is_sharp() && !butchering)
+			I.AddComponent(/datum/component/butchering, 80 * I.toolspeed) //give sharp objects butchering functionality, for consistency
+			butchering = I.GetComponent(/datum/component/butchering)
+		if(butchering && butchering.butchering_enabled && !HAS_TRAIT(I, TRAIT_CLEAVING))
 			to_chat(user, span_notice("You begin to butcher [src]..."))
 			playsound(loc, butchering.butcher_sound, 50, TRUE, -1)
 			if(do_after(user, butchering.speed, src) && Adjacent(I))
 				butchering.Butcher(user, src)
 			return TRUE
-		else if(I.is_sharp() && !butchering) //give sharp objects butchering functionality, for consistency
-			I.AddComponent(/datum/component/butchering, 80 * I.toolspeed)
-			attackby(I, user, params) //call the attackby again to refresh and do the butchering check again
-			return
 	return I.attack(src, user, params)
 
 /mob/living/attackby_secondary(obj/item/weapon, mob/living/user, params)

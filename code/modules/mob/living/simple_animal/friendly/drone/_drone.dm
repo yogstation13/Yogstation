@@ -162,7 +162,7 @@
 	alert_drones(DRONE_NET_DISCONNECT)
 
 
-/mob/living/simple_animal/drone/gib()
+/mob/living/simple_animal/drone/gib(no_brain, no_organs, no_bodyparts, no_items)
 	dust()
 
 /mob/living/simple_animal/drone/get_butt_sprite()
