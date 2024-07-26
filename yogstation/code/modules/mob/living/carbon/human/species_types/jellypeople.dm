@@ -11,12 +11,11 @@
 	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, PROC_REF(handle_altclick))
 
 /datum/species/jelly/slime/proc/handle_altclick(mob/living/carbon/human/M, mob/living/carbon/human/target)
-	if(M && M.mind)
+	if(M?.mind)
 		var/datum/action/innate/swap_body/this_swap = locate() in instantiated_abilities
-		if(!this_swap || !this_swap.can_swap(target))
-			return
-		this_swap.swap_to_dupe(M.mind, target)
-		return COMSIG_MOB_CANCEL_CLICKON
+		if(this_swap?.can_swap(target))
+			this_swap.swap_to_dupe(M.mind, target)
+			return COMSIG_MOB_CANCEL_CLICKON
 
 /datum/action/innate/swap_body/swap_to_dupe(datum/mind/M, mob/living/carbon/human/dupe)
 	var/mob/living/carbon/human/old = M.current
