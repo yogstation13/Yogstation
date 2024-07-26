@@ -734,7 +734,7 @@ datum/status_effect/stabilized/blue/on_remove()
 	return ..()
 
 /datum/status_effect/stabilized/cerulean/proc/dead()
-		addtimer(CALLBACK(src, PROC_REF(transfer)), 4, TIMER_UNIQUE) //0.4  seconds delay to account for delayed dust/gib effects, shouldn't affect gameplay
+	addtimer(CALLBACK(src, PROC_REF(transfer)), 4, TIMER_UNIQUE) //0.4  seconds delay to account for delayed dust/gib effects, shouldn't affect gameplay
 
 /datum/status_effect/stabilized/cerulean/proc/transfer()
 	UnregisterSignal(owner, COMSIG_GLOB_MOB_DEATH)
@@ -745,10 +745,9 @@ datum/status_effect/stabilized/blue/on_remove()
 			if(owner.mind)
 				owner.mind.transfer_to(clone)
 			clone = null
-			qdel(linked_extract)
-		if(!clone || clone.stat == DEAD)
+		else if(!clone || clone.stat == DEAD)
 			to_chat(owner, span_notice("[linked_extract] desperately tries to move your soul to a living body, but can't find one!"))
-			qdel(linked_extract)
+	qdel(linked_extract)
 
 /datum/status_effect/stabilized/cerulean/on_remove()
 	if(clone)
