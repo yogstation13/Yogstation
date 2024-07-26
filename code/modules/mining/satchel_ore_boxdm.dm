@@ -18,8 +18,10 @@
 	else
 		return ..()
 
-/obj/structure/ore_box/crowbar_act(mob/living/user, obj/item/I)
-	if(I.use_tool(src, user, 50, volume=50))
+/obj/structure/ore_box/crowbar_act(mob/living/user, obj/item/tool)
+	if(istype(tool, /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp))
+		return FALSE // prevent accidentally prying it apart when trying to pick it up
+	if(tool.use_tool(src, user, 50, volume=50))
 		user.visible_message("[user] pries \the [src] apart.",
 			span_notice("You pry apart \the [src]."),
 			span_italics("You hear splitting wood."))

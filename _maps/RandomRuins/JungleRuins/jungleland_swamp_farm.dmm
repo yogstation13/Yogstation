@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /obj/structure/flora/stump,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "b" = (
 /obj/structure/closet/crate/wooden,
@@ -12,7 +12,7 @@
 /area/ruin/unpowered)
 "d" = (
 /obj/structure/flora/ausbushes/stalkybush,
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 "e" = (
 /obj/structure/fans/tiny/invisible,
@@ -28,7 +28,7 @@
 "j" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/cultivator/rake,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "l" = (
 /turf/open/floor/wood,
@@ -48,11 +48,11 @@
 /area/ruin/unpowered)
 "q" = (
 /obj/structure/flora/rock/pile,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "s" = (
-/mob/living/simple_animal/hostile/yog_jungle/meduracha,
-/turf/open/water/toxic_pit,
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/meduracha,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 "t" = (
 /obj/structure/chair/sofa/bamboo/right,
@@ -77,12 +77,12 @@
 "x" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/shovel,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "y" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/seeds/wheat/rice,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "A" = (
 /obj/structure/mineral_door/wood,
@@ -113,11 +113,11 @@
 /turf/open/floor/bamboo,
 /area/ruin/unpowered)
 "G" = (
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "I" = (
 /obj/machinery/hydroponics/soil,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "K" = (
 /obj/structure/chair/sofa/bamboo/left,
@@ -127,11 +127,11 @@
 	},
 /area/ruin/unpowered)
 "L" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 "M" = (
 /obj/item/seeds/wheat/rice,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "N" = (
 /obj/structure/table/wood,
@@ -162,7 +162,7 @@
 /obj/item/seeds/wheat/rice,
 /obj/item/seeds/wheat/rice,
 /obj/item/seeds/wheat/rice,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "T" = (
 /obj/structure/table/wood,
@@ -188,7 +188,7 @@
 /area/ruin/unpowered)
 "Z" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 
 (1,1,1) = {"

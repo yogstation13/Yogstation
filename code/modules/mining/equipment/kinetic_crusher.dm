@@ -44,6 +44,14 @@
 	QDEL_LIST(trophies)
 	return ..()
 
+/obj/item/kinetic_crusher/exosuit
+	name = "exosuit kinetic crusher"
+	item_flags = NO_MAT_REDEMPTION | DROPDEL
+
+/obj/item/kinetic_crusher/exosuit/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, INNATE_TRAIT)
+
 /obj/item/kinetic_crusher/examine(mob/living/user)
 	. = ..()
 	. += span_notice("<b>Right click</b> to mark a large creature with the destabilizing force, then hit them in melee to do <b>[force + detonation_damage]</b> damage.")
@@ -87,6 +95,9 @@
 	. = ..()
 	if(!proximity_flag || !isliving(target))
 		return
+	detonate_mark(target, user, magmite)
+
+/obj/item/kinetic_crusher/proc/detonate_mark(mob/living/target, mob/living/user, magmite = FALSE)
 	var/datum/status_effect/crusher_mark/CM = target.has_status_effect(STATUS_EFFECT_CRUSHERMARK)
 	if(!CM || CM.hammer_synced != src || !target.remove_status_effect(STATUS_EFFECT_CRUSHERMARK))
 		return
@@ -122,11 +133,14 @@
 	if(!HAS_TRAIT(src, TRAIT_WIELDED))
 		to_chat(user, span_warning("[src] is too heavy to use with one hand!"))
 		return
+	if(!isturf(user.loc))
+		return
+	fire_destabilizer(target, user, clickparams, magmite)
+
+/obj/item/kinetic_crusher/proc/fire_destabilizer(atom/target, mob/user, clickparams, magmite)
 	if(!charged)
 		return
-	var/turf/proj_turf = user.loc
-	if(!isturf(proj_turf))
-		return
+	var/turf/proj_turf = get_turf(user)
 	var/obj/projectile/destabilizer/D = new projectile_type(proj_turf)
 	for(var/obj/item/crusher_trophy/crusher_trophy as anything in trophies)
 		crusher_trophy.on_projectile_fire(D, user)
@@ -137,8 +151,7 @@
 	D.fire()
 	charged = FALSE
 	icon_state = "[base_icon_state]_uncharged"
-	addtimer(CALLBACK(src, PROC_REF(recharge)), charge_time)
-	return
+	addtimer(CALLBACK(src, PROC_REF(recharge), magmite), charge_time)
 
 /obj/item/kinetic_crusher/proc/recharge(magmite = FALSE)
 	if(!charged)

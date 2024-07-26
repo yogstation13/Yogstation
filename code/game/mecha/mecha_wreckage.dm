@@ -2,169 +2,35 @@
 ////////  Mecha wreckage   ////////
 ///////////////////////////////////
 
-
+// Mapping helpers, real mechs no longer create a separate object when wrecked.
 /obj/structure/mecha_wreckage
 	name = "exosuit wreckage"
-	desc = "Remains of some unfortunate mecha. Repairable, given some work."
+	desc = "Remains of some unfortunate mecha, damaged beyond repair."
 	icon = 'icons/mecha/mecha.dmi'
 	density = TRUE
 	anchored = FALSE
 	opacity = FALSE
-	var/state = MECHA_WRECK_CUT
-	var/orig_mecha
-	var/can_be_reconstructed = FALSE
-	var/hint // Examine hint
-	var/list/equipment = list() // Equipment that the mech retains
-	// Total repair will take 80/40/27/20 seconds depending on capacitor tier. Roboticists repair 20% faster, so 64/32/21/16 seconds instead.
-	var/repair_efficiency = 0 // Capacitor tier
-	var/obj/item/stock_parts/cell/cell ///Keeps track of the mech's cell
-	var/obj/item/stock_parts/scanning_module/scanmod ///Keeps track of the mech's scanning module
-	var/mob/living/silicon/ai/AI //AIs to be salvaged
-	var/self_destruct = 0 // no self-destruct by default
-
-/obj/structure/mecha_wreckage/examine(mob/user)
-	. = ..()
-	switch(repair_efficiency)
-		if(0)
-			. += span_danger("There was no capacitor to save this poor mecha from its doomed fate! It cannot be repaired!")
-		if(1)
-			. += span_danger("The weak capacitor did what little it could in preventing total destruction of this mecha. It is barely recoverable.")
-		if(2)
-			. += span_danger("The capacitor barely held the parts together upon its destruction. Repair will be difficult.")
-		if(3)
-			. += span_danger("The capacitor did well in preventing too much damage. Repair will be manageable.")
-		if(4)
-			. += span_danger("The capacitor did such a good job in preserving the chassis that you could almost call it functional. But it isn't. Repair should be easy though.")
-	if(hint)
-		. += hint
+	var/orig_mecha = /obj/mecha
+	var/repairable = FALSE
 
 /obj/structure/mecha_wreckage/Initialize(mapload, mob/living/silicon/ai/AI_pilot)
 	. = ..()
+	return INITIALIZE_HINT_LATELOAD
 
-	if(self_destruct)
-		audible_message("*beep* *beep* *beep*")
-		playsound(src, 'sound/machines/triple_beep.ogg', 75, TRUE)
-		addtimer(CALLBACK(src, PROC_REF(detonate), self_destruct), 0.5 SECONDS)
-
-	if(!AI_pilot) //Type-checking for this is already done in mecha/Destroy()
-		return
-
-	AI = AI_pilot
-	AI.apply_damage(150, BURN) //Give the AI a bit of damage from the "shock" of being suddenly shut down
-	AI.death() //The damage is not enough to kill the AI, but to be 'corrupted files' in need of repair.
-	AI.forceMove(src) //Put the dead AI inside the wreckage for recovery
-	add_overlay(mutable_appearance('icons/obj/projectiles.dmi', "green_laser")) //Overlay for the recovery beacon
-	AI.controlled_mech = null
-	AI.remote_control = null
-
-/obj/structure/mecha_wreckage/Destroy()
+/obj/structure/mecha_wreckage/LateInitialize()
 	. = ..()
-	if(self_destruct && !QDELETED(src))
-		detonate(self_destruct)
-
-/obj/structure/mecha_wreckage/proc/detonate(explosion_size)
-	if(QDELETED(src))
-		return
-	explosion(get_turf(src), round(explosion_size / 4), round(explosion_size / 2), round(explosion_size))
+	var/obj/mecha/new_mecha = new orig_mecha(loc)
+	if(!repairable)
+		new_mecha.name = name
+		new_mecha.desc = desc
+		if(new_mecha.capacitor)
+			QDEL_NULL(new_mecha.capacitor)
+	new_mecha.atom_break()
 	qdel(src)
 
 /obj/structure/mecha_wreckage/examine(mob/user)
 	. = ..()
-	if(AI)
-		. += span_notice("The AI recovery beacon is active.")
-
-/obj/structure/mecha_wreckage/attackby(obj/item/I, mob/living/user, params)
-	if(!can_be_reconstructed)
-		return ..()
-	if(!repair_efficiency)
-		return ..()
-	
-	switch(state)
-		if(MECHA_WRECK_CUT)
-			if(I.tool_behaviour == TOOL_WELDER && !user.combat_mode)
-				user.visible_message(span_notice("[user] begins to weld together \the [src]'s broken parts..."),
-										span_notice("You begin welding together \the [src]'s broken parts..."))
-				if(I.use_tool(src, user, 200/repair_efficiency, amount = 5, volume = 100, robo_check = TRUE))
-					state = MECHA_WRECK_DENTED
-					hint = span_notice("The chassis has suffered major damage and will require the dents to be smoothed out with a <b>welder</b>.")
-					to_chat(user, span_notice("The parts are loosely reattached, but are dented wildly out of place."))
-				return
-		if(MECHA_WRECK_DENTED)
-			if(I.tool_behaviour == TOOL_WELDER && !user.combat_mode)
-				user.visible_message(span_notice("[user] welds out the many, many dents in \the [src]'s chassis..."),
-										span_notice("You weld out the many, many dents in \the [src]'s chassis..."))
-				if(I.use_tool(src, user, 200/repair_efficiency, amount = 5, volume = 100, robo_check = TRUE))
-					state = MECHA_WRECK_LOOSE
-					hint = span_notice("The mecha wouldn't make it two steps before falling apart. The bolts must be tightened with a <b>wrench</b>.")
-					to_chat(user, span_notice("The chassis has been repaired, but the bolts are incredibly loose and need to be tightened."))
-				return
-		if(MECHA_WRECK_LOOSE)
-			if(I.tool_behaviour == TOOL_WRENCH)
-				user.visible_message(span_notice("[user] slowly tightens the bolts of \the [src]..."),
-										span_notice("You slowly tighten the bolts of \the [src]..."))
-				if(I.use_tool(src, user, 180/repair_efficiency, volume = 50, robo_check = TRUE))
-					state = MECHA_WRECK_UNWIRED
-					hint = span_notice("The mech is nearly ready, but the <b>wiring</b> has been fried and needs repair.")
-					to_chat(user, span_notice("The bolts are tightened and the mecha is looking as good as new, but the wiring was fried in the destruction and needs repair."))
-				return
-		if(MECHA_WRECK_UNWIRED)
-			if(istype(I, /obj/item/stack/cable_coil) && I.tool_start_check(user, amount=5))
-				if(AI)
-					to_chat(user, span_danger("You cannot repair a mech with an AI inside of it."))
-					return
-				user.visible_message(span_notice("[user] starts repairing the wiring on \the [src]..."),
-										span_notice("You start repairing the wiring on \the [src]..."))
-				if(I.use_tool(src, user, 120/repair_efficiency, amount = 5, volume = 50, robo_check = TRUE))
-					create_mech()
-					to_chat(user, span_notice("The mecha has been fully repaired."))
-				return
-	return ..()
-
-/obj/structure/mecha_wreckage/proc/create_mech()
-	if(!orig_mecha)
-		return
-	
-	var/obj/mecha/M = new orig_mecha(loc)
-	QDEL_NULL(M.cell)
-	QDEL_NULL(M.scanmod)
-	QDEL_NULL(M.capacitor)
-	
-	if(cell)
-		cell.forceMove(M)
-	if(scanmod)
-		scanmod.forceMove(M)
-	
-	for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
-		E.attach(M)
-	
-	M.CheckParts(M.contents)
-
-	qdel(src)
-	QDEL_NULL(scanmod)
-	QDEL_NULL(cell)
-	
-
-/obj/structure/mecha_wreckage/transfer_ai(interaction, mob/user, mob/living/silicon/ai/ai_unused, obj/item/aicard/card) //ai_unused is unused but having it is better than having  it be null or _ for readability
-	if(!..())
-		return
-
- //Proc called on the wreck by the AI card.
-	if(interaction == AI_TRANS_TO_CARD) //AIs can only be transferred in one direction, from the wreck to the card.
-		if(!AI) //No AI in the wreck
-			to_chat(user, span_warning("No AI backups found."))
-			return
-		cut_overlays() //Remove the recovery beacon overlay
-		AI.forceMove(card) //Move the dead AI to the card.
-		card.AI = AI
-		if(AI.client) //AI player is still in the dead AI and is connected
-			to_chat(AI, "The remains of your file system have been recovered on a mobile storage device.")
-		else //Give the AI a heads-up that it is probably going to get fixed.
-			AI.notify_ghost_cloning("You have been recovered from the wreckage!", source = card)
-		to_chat(user, "[span_boldnotice("Backup files recovered")]: [AI.name] ([rand(1000,9999)].exe) salvaged from [name] and stored within local memory.")
-		AI = null
-	else
-		return ..()
-
+	. += span_danger("There was no capacitor to save this poor mecha from its doomed fate! It cannot be repaired!")
 
 /obj/structure/mecha_wreckage/gygax
 	name = "\improper Gygax wreckage"
@@ -175,7 +41,6 @@
 	name = "\improper Dark Gygax wreckage"
 	icon_state = "darkgygax-broken"
 	orig_mecha = /obj/mecha/combat/gygax/dark
-	self_destruct = 4
 
 /obj/structure/mecha_wreckage/marauder
 	name = "\improper Marauder wreckage"
@@ -187,7 +52,6 @@
 	icon_state = "mauler-broken"
 	desc = "The Syndicate won't be very happy about this..."
 	orig_mecha = /obj/mecha/combat/marauder/mauler
-	self_destruct = 4
 
 /obj/structure/mecha_wreckage/seraph
 	name = "\improper Seraph wreckage"

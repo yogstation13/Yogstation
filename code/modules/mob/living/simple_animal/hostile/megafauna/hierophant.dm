@@ -749,6 +749,6 @@ Difficulty: Hard
 	desc = "Heed its words."
 	invisibility = 100
 
-/mob/living/simple_animal/hostile/megafauna/hierophant/gib()
+/mob/living/simple_animal/hostile/megafauna/hierophant/gib(no_brain, no_organs, no_bodyparts, no_items)
 	death()
 	..()
