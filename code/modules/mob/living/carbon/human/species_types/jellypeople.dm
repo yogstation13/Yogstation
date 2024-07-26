@@ -22,6 +22,9 @@
 	swimming_component = /datum/component/swimming/dissolve
 	hair_color = "mutcolor"
 	hair_alpha = 140
+	liked_food = TOXIC //tasty toxins
+	disliked_food = ALCOHOL | JUNKFOOD //junkfood is too oily, and alcohol is a disinfectant
+	toxic_food = PINEAPPLE //enzymes dissolve the jelly from the inside
 
 	species_abilities = list(/datum/action/innate/regenerate_limbs)
 
