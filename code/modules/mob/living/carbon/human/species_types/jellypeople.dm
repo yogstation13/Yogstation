@@ -23,9 +23,6 @@
 	swimming_component = /datum/component/swimming/dissolve
 	hair_color = "mutcolor"
 	hair_alpha = 140
-	liked_food = TOXIC
-	disliked_food = GROSS
-	toxic_food = PINEAPPLE
 
 	species_abilities = list(/datum/action/innate/regenerate_limbs)
 
