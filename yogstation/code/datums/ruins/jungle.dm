@@ -135,6 +135,8 @@
 	description = "Ash Drake"
 	suffix = "jungleland_barren_drake.dmm"
 	always_place = TRUE
+	allow_duplicates = TRUE
+	cost = 20
 
 ////////////////////////////////////////////////////////////////////////////////////
 //---------------------------------Dry swamp biome--------------------------------//
