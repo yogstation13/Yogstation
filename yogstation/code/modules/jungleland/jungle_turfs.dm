@@ -85,10 +85,10 @@ Temperature: 126.85 °C (400 K)
 /turf/open/floor/plating/dirt/jungleland/proc/spawn_rock()
 	if(ore_present == ORE_EMPTY || !can_spawn_ore)
 		return
-	can_spawn_ore = FALSE
 	if(spawn_overlay)
 		add_overlay(image(icon='yogstation/icons/obj/jungle.dmi',icon_state="dug_spot",layer=BELOW_OBJ_LAYER))
 	spawn_ores()
+	can_spawn_ore = FALSE
 
 /turf/open/floor/plating/dirt/jungleland/proc/spawn_ores()
 	if(ore_present == ORE_EMPTY || !can_spawn_ore)
