@@ -6,17 +6,23 @@
 /datum/map_template/ruin/jungle/all
 	should_place_on_top = FALSE
 
-/datum/map_template/ruin/jungle/dying/crashed_ship
-	name = "Crashed Ship"
-	id = "jungle-crashed-ship"
-	description = "The remains of a long crashed ship, weathered away into scrap."
-	suffix = "jungleland_dead_crashedship.dmm"	
+/datum/map_template/ruin/jungle/all/miningbase //THIS IS THE MINING BASE. DO NOT FUCK WITH THIS UNLESS YOU ARE 100% CERTAIN YOU KNOW WHAT YOU'RE DOING, OR THE MINING BASE WILL DISAPPEAR
+	name = "Mining Base"
+	id = "miningbase"
+	description = "The mining base that Nanotrasen uses for their mining operations."
+	suffix = "miningbase.dmm"
+	always_place = TRUE
+	unpickable = TRUE
+	cost = 0
 
-/datum/map_template/ruin/jungle/dying/testing_facility
-	name = "Testing-facility"
-	id = "jungle-testing-facility"
-	description = "A testing facility, were bodily experiments were conducted on people, safely remote from scrutiny."
-	suffix = "jungleland_dead_testingfacility.dmm"
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------All biomes-------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/map_template/ruin/jungle/all/syndicate_base //has to be all biomes cause its so big it wont spawn otherwise
+	name = "Syndicate Base"
+	id = "jungle-syndicate-base"
+	description = "A large permanent research and comms station run by the syndicate."
+	suffix = "jungleland_swamp_syndicatestation.dmm"	
 
 /datum/map_template/ruin/jungle/all/ivymen_nest
 	name = "Ivymen Nest"
@@ -24,6 +30,48 @@
 	description = "A dormant nest filled with primal plant creatures, waiting to hatch."
 	suffix = "jungleland_jungle_ivymen_nest.dmm"
 
+//TAR TEMPLES
+/datum/map_template/ruin/jungle/all/tar_temple0
+	name = "Tar Temple 0"
+	id = "tar_temple"
+	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
+	suffix = "tar_temple0.dmm"
+	always_place = TRUE
+	cost = 0
+
+/datum/map_template/ruin/jungle/all/tar_temple2
+	name = "Tar temple 2"
+	id = "jungle-swamp-tar-temple"
+	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
+	suffix = "jungleland_swamp_tartemple.dmm"	
+	always_place = TRUE
+	cost = 0
+
+/datum/map_template/ruin/jungle/all/tar_temple3
+	name = "Tar temple 3"
+	id = "jungle-proper-tar-temple"
+	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
+	suffix = "jungleland_jungle_tartemple.dmm"	
+	always_place = TRUE
+	cost = 0
+
+/datum/map_template/ruin/jungle/all/tar_assistant
+	name = "Tar Assistant"
+	id = "jungle-proper-tar-assistant"
+	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
+	suffix = "tar_assistant.dmm"	
+	cost = 5
+
+/datum/map_template/ruin/jungle/all/tar_enchant
+	name = "Tar Enchant"
+	id = "jungle-proper-tar-enchant"
+	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
+	suffix = "tar_enchant.dmm"	
+	cost = 5
+
+////////////////////////////////////////////////////////////////////////////////////
+//-------------------------------Jungle biome-------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/map_template/ruin/jungle/proper/old_temple
 	name = "Ancient Temple"
 	id = "jungle-old-temple"
@@ -66,6 +114,31 @@
 	description = "A vile den of sin, run by a demon contracted to make as much profit as possible off everyone planetside."
 	suffix = "jungleland_jungle_sinden.dmm"	
 
+/**
+ * Nests
+ */
+/datum/map_template/ruin/jungle/proper/jungle_nest
+	name = "Jungle Nest"
+	id = "jungle-proper-nest"
+	description = "a nest"
+	suffix = "jungleland_jungle_nest.dmm"	
+	allow_duplicates = TRUE 
+	always_place = TRUE
+	cost = 2
+
+/**
+ * Megafauna
+ */
+/datum/map_template/ruin/jungle/proper/drake
+	name = "Ash Drake"
+	id = "jungle_drake"
+	description = "Ash Drake"
+	suffix = "jungleland_barren_drake.dmm"
+	always_place = TRUE
+
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------Dry swamp biome--------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/map_template/ruin/jungle/swamp/cave
 	name = "Cave"
 	id = "jungle-cave"
@@ -97,73 +170,21 @@
 	 	However, it looks like it could've been pretty, at least in the past..."
 	suffix = "jungleland_swamp_carp_pond.dmm"	
 
-/* disables this till marmio fixes it */
-/datum/map_template/ruin/jungle/all/syndicate_base //has to be all biomes cause its so big it wont spawn otherwise
-	name = "Syndicate Base"
-	id = "jungle-syndicate-base"
-	description = "A large permanent research and comms station run by the syndicate."
-	suffix = "jungleland_swamp_syndicatestation.dmm"	
-
-/datum/map_template/ruin/jungle/all/miningbase //THIS IS THE MINING BASE. DO NOT FUCK WITH THIS UNLESS YOU ARE 100% CERTAIN YOU KNOW WHAT YOU'RE DOING, OR THE MINING BASE WILL DISAPPEAR
-	name = "Mining Base"
-	id = "miningbase"
-	description = "The mining base that Nanotrasen uses for their mining operations."
-	suffix = "miningbase.dmm"
+/**
+ * Nests
+ */
+/datum/map_template/ruin/jungle/swamp/swamp_nest
+	name = "Swamp Nest"
+	id = "jungle-swamp-nest"
+	description = "a nest"
+	suffix = "jungleland_swamp_nest.dmm"	
+	allow_duplicates = TRUE 
 	always_place = TRUE
-	unpickable = TRUE
-	cost = 0
+	cost = 2
 
-//TAR TEMPLES
-/datum/map_template/ruin/jungle/all/tar_temple0
-	name = "Tar Temple 0"
-	id = "tar_temple"
-	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
-	suffix = "tar_temple0.dmm"
-	always_place = TRUE
-	cost = 0
-
-/datum/map_template/ruin/jungle/all/tar_king_phylactery
-	name = "Tar King's Phylactery"
-	id = "jungle-tar-king"
-	description = "In this place lies the core of this world's cancer. \
-		Resting deep within the obsidian, sealed under an altar untouched by time, it awaits the day it will finally take form."
-	suffix = "jungleland_tar_king.dmm"
-	always_place = TRUE
-	cost = 0
-
-/datum/map_template/ruin/jungle/all/tar_temple2
-	name = "Tar temple 2"
-	id = "jungle-swamp-tar-temple"
-	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
-	suffix = "jungleland_swamp_tartemple.dmm"	
-	always_place = TRUE
-	cost = 0
-
-/datum/map_template/ruin/jungle/all/tar_temple3
-	name = "Tar temple 3"
-	id = "jungle-proper-tar-temple"
-	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
-	suffix = "jungleland_jungle_tartemple.dmm"	
-	always_place = TRUE
-	cost = 0
-
-/datum/map_template/ruin/jungle/all/tar_assistant
-	name = "Tar Assistant"
-	id = "jungle-proper-tar-assistant"
-	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
-	suffix = "tar_assistant.dmm"	
-	cost = 5
-
-
-/datum/map_template/ruin/jungle/all/tar_enchant
-	name = "Tar Enchant"
-	id = "jungle-proper-tar-enchant"
-	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
-	suffix = "tar_enchant.dmm"	
-	cost = 5
-
-
-//MEGAFAUNA
+/**
+ * Megafauna
+ */
 /datum/map_template/ruin/jungle/swamp/miner
 	name = "Blood Drunk Miner"
 	id = "swamp_miner"
@@ -171,6 +192,36 @@
 	suffix = "jungleland_swamp_miner.dmm"	
 	always_place = TRUE
 
+////////////////////////////////////////////////////////////////////////////////////
+//-------------------------------Dying forest biome-------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/map_template/ruin/jungle/dying/crashed_ship
+	name = "Crashed Ship"
+	id = "jungle-crashed-ship"
+	description = "The remains of a long crashed ship, weathered away into scrap."
+	suffix = "jungleland_dead_crashedship.dmm"	
+
+/datum/map_template/ruin/jungle/dying/testing_facility
+	name = "Testing-facility"
+	id = "jungle-testing-facility"
+	description = "A testing facility, were bodily experiments were conducted on people, safely remote from scrutiny."
+	suffix = "jungleland_dead_testingfacility.dmm"
+	
+/**
+ * Nests
+ */
+/datum/map_template/ruin/jungle/dying/dead_nest
+	name = "Dying Forest Nest"
+	id = "jungle-dying-nest"
+	description = "a nest"
+	suffix = "jungleland_dead_nest.dmm"	
+	allow_duplicates = TRUE
+	always_place = TRUE
+	cost = 2
+
+/**
+ * Megafauna
+ */
 /datum/map_template/ruin/jungle/dying/colossus
 	name = "Colossus"
 	id = "dying_colossus"
@@ -185,51 +236,9 @@
 	suffix = "jungleland_dead_bubblegum.dmm"
 	always_place = TRUE
 
-/datum/map_template/ruin/jungle/tar/drake
-	name = "Ash Drake"
-	id = "barren_drake"
-	description = "Ash Drake"
-	suffix = "jungleland_barren_drake.dmm"
-	always_place = TRUE
-	allow_duplicates = TRUE
-	cost = 20
-
-//NESTS
-/datum/map_template/ruin/jungle/dying/dead_nest
-	name = "Dying Forest Nest"
-	id = "jungle-dying-nest"
-	description = "a nest"
-	suffix = "jungleland_dead_nest.dmm"	
-	allow_duplicates = TRUE
-	always_place = TRUE
-	cost = 2
-
-/datum/map_template/ruin/jungle/proper/jungle_nest
-	name = "Jungle Nest"
-	id = "jungle-proper-nest"
-	description = "a nest"
-	suffix = "jungleland_jungle_nest.dmm"	
-	allow_duplicates = TRUE 
-	always_place = TRUE
-	cost = 2
-	
-/datum/map_template/ruin/jungle/swamp/swamp_nest
-	name = "Swamp Nest"
-	id = "jungle-swamp-nest"
-	description = "a nest"
-	suffix = "jungleland_swamp_nest.dmm"	
-	allow_duplicates = TRUE 
-	always_place = TRUE
-	cost = 2
-
-/datum/map_template/ruin/jungle/tar/barren_nest
-	name = "Barren Nest"
-	id = "jungle-barren-nest"
-	description = "a nest"
-	suffix = "jungleland_barren_nest.dmm"	
-	allow_duplicates = TRUE 
-	always_place = TRUE
-
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------Tar biome--------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/map_template/ruin/jungle/tar/obsidian_pillar0
 	name = "Obsidian pillar"
 	id = "jungle-dying-obsidian-pillar0"
@@ -257,3 +266,26 @@
 	description = "obsidian pillar"
 	suffix = "obsidian_pillar3.dmm"	
 	cost = 1
+
+/**
+ * Nests
+ */
+/datum/map_template/ruin/jungle/tar/barren_nest
+	name = "Barren Nest"
+	id = "jungle-barren-nest"
+	description = "a nest"
+	suffix = "jungleland_barren_nest.dmm"	
+	allow_duplicates = TRUE 
+	always_place = TRUE
+
+/**
+ * Megafauna
+ */
+/datum/map_template/ruin/jungle/tar/tar_king_phylactery
+	name = "Tar King's Phylactery"
+	id = "jungle-tar-king"
+	description = "In this place lies the core of this world's cancer. \
+		Resting deep within the obsidian, sealed under an altar untouched by time, it awaits the day it will finally take form."
+	suffix = "jungleland_tar_king.dmm"
+	always_place = TRUE
+	cost = 0
