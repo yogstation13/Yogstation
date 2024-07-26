@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(903 modules,
-    3176/11205 macros, 28.3%)</aside></h3>
+<aside>(906 modules,
+    3176/11208 macros, 28.3%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -1243,6 +1243,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="yogstation/code/datums/components/crawl.html" title="yogstation&#x2F;code&#x2F;datums&#x2F;components&#x2F;crawl">crawl</a></li>
     <li><a href="yogstation/code/datums/components/pinnable_accessory.html" title="yogstation&#x2F;code&#x2F;datums&#x2F;components&#x2F;pinnable_accessory">pinnable_accessory</a></li>
     </ul></li>
+    <li><span class="no-substance">mapgen&#x2F;biomes&#x2F;</span><a href="yogstation/code/datums/mapgen/biomes/JungleBiomes.html" title="yogstation&#x2F;code&#x2F;datums&#x2F;mapgen&#x2F;biomes&#x2F;JungleBiomes">JungleBiomes</a></li>
     <li><span class="no-substance">martial&#x2F;</span><a href="yogstation/code/datums/martial/stealth.html" title="yogstation&#x2F;code&#x2F;datums&#x2F;martial&#x2F;stealth">stealth</a></li>
     <li><span class="no-substance">ruins&#x2F;</span><a href="yogstation/code/datums/ruins/station.html" title="yogstation&#x2F;code&#x2F;datums&#x2F;ruins&#x2F;station">station</a></li>
     </ul></li>
@@ -1268,7 +1269,9 @@ SPDX-License-Identifier: MIT</li>
     <li><span class="no-substance">donor&#x2F;</span><a href="yogstation/code/modules/donor/unique_donator_items.html" title="yogstation&#x2F;code&#x2F;modules&#x2F;donor&#x2F;unique_donator_items">unique_donator_items</a></li>
     <li class="has-children"><span title="yogstation&#x2F;code&#x2F;modules&#x2F;jungleland">jungleland</span><ul class="index-tree">
     <li><a href="yogstation/code/modules/jungleland/ghost_role_spawners.html" title="yogstation&#x2F;code&#x2F;modules&#x2F;jungleland&#x2F;ghost_role_spawners">ghost_role_spawners</a></li>
+    <li><a href="yogstation/code/modules/jungleland/jungle_alpha_mobs.html" title="yogstation&#x2F;code&#x2F;modules&#x2F;jungleland&#x2F;jungle_alpha_mobs">jungle_alpha_mobs</a></li>
     <li><a href="yogstation/code/modules/jungleland/jungle_datums.html" title="yogstation&#x2F;code&#x2F;modules&#x2F;jungleland&#x2F;jungle_datums">jungle_datums</a></li>
+    <li><a href="yogstation/code/modules/jungleland/jungle_mobs.html" title="yogstation&#x2F;code&#x2F;modules&#x2F;jungleland&#x2F;jungle_mobs">jungle_mobs</a></li>
     </ul></li>
     <li><span class="no-substance">research&#x2F;designs&#x2F;</span><a href="yogstation/code/modules/research/designs/spacepod_designs.html" title="yogstation&#x2F;code&#x2F;modules&#x2F;research&#x2F;designs&#x2F;spacepod_designs">spacepod_designs</a></li>
     <li><span class="no-substance">ruins&#x2F;</span><a href="yogstation/code/modules/ruins/lavaland_ruin_code.html" title="yogstation&#x2F;code&#x2F;modules&#x2F;ruins&#x2F;lavaland_ruin_code">lavaland_ruin_code</a></li>
@@ -1304,7 +1307,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1295 detailed/2174 documented/30491 total, 7.1%)</aside></h3>
+<aside>(1297 detailed/2187 documented/30503 total, 7.2%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1511,6 +1514,7 @@ Base for all buster arm actions<ul class="index-tree">
     </ul></li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;domain">Rat King&#x27;s Domain</span> - Increase the rat king's domain</li>
+    <li><a href="datum/action/cooldown/mecha_afterburner.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;mecha_afterburner">Fire Afterburner</a></li>
     <li><a href="datum/action/cooldown/riot.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;riot">Raise Army</a> - This action checks all nearby mice, and converts them into hostile rats. If no mice are nearby, creates a new one.</li>
     <li class="has-children"><a href="datum/action/cooldown/spell.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell">The spell action</a> - This is the base action for how many of the game's
 spells (and spell adjacent) abilities function.
@@ -1665,7 +1669,7 @@ All mobs consumed are revived after the demon is killed.</li>
     <li><a href="datum/action/innate/expand_sight.html" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;expand_sight">Expand Sight</a></li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;mecha">mecha</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;mecha&#x2F;equipment">equipment</span> - Equipment Actions</li>
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;mecha&#x2F;mech_defence_mode">Toggle Defence Mode</span> - Specific Ability Actions</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;mecha&#x2F;mech_defence_mode">Toggle Defense Mode</span> - Specific Ability Actions</li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;seek_master">Seek your Master</span> - Master-Tracker</li>
     <li><span class="no-substance">spider&#x2F;</span><a href="datum/action/innate/spider/lay_eggs.html" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;spider&#x2F;lay_eggs">Lay Eggs</a></li>
@@ -1745,7 +1749,13 @@ The namespace folder's name will change if any of the assets change. (excluding 
     <li><a href="datum/barsign.html" title="&#x2F;datum&#x2F;barsign">barsign</a></li>
     <li><a href="datum/beam.html" title="&#x2F;datum&#x2F;beam">beam</a></li>
     <li class="has-children"><a href="datum/biome.html" title="&#x2F;datum&#x2F;biome">biome</a> - This datum handles the transitioning from a turf to a specific biome, and handles spawning decorative structures and mobs.<ul class="index-tree">
-    <li><a href="datum/biome/jungleland.html" title="&#x2F;datum&#x2F;biome&#x2F;jungleland">jungleland</a></li>
+    <li class="has-children"><a href="datum/biome/jungleland.html" title="&#x2F;datum&#x2F;biome&#x2F;jungleland">jungleland</a><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;biome&#x2F;jungleland&#x2F;dry_swamp">dry_swamp</span> - Dry swamp</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;biome&#x2F;jungleland&#x2F;dying_forest">dying_forest</span> - Dying forest</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;biome&#x2F;jungleland&#x2F;jungle">jungle</span> - Jungle</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;biome&#x2F;jungleland&#x2F;tar_wastes">tar_wastes</span> - Tar wastes</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;biome&#x2F;jungleland&#x2F;toxic_pit">toxic_pit</span> - Toxic pit</li>
+    </ul></li>
     </ul></li>
     <li><a href="datum/bitfield.html" title="&#x2F;datum&#x2F;bitfield">bitfield</a> - Specifies a bitfield for smarter debugging</li>
     <li><a href="datum/blood_type.html" title="&#x2F;datum&#x2F;blood_type">?</a></li>
@@ -3037,7 +3047,8 @@ Copies the stock dna setup from the dummy/consistent type</li>
     </ul></li>
     <li><a href="mob/living/simple_animal/drone.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;drone">Drone</a></li>
     <li class="has-children"><a href="mob/living/simple_animal/hostile.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile">hostile</a><ul class="index-tree">
-    <li class="has-children"><span class="no-substance">asteroid&#x2F;</span><a href="mob/living/simple_animal/hostile/asteroid/elite.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;asteroid&#x2F;elite">elite</a><ul class="index-tree">
+    <li class="has-children"><a href="mob/living/simple_animal/hostile/asteroid.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;asteroid">asteroid</a><ul class="index-tree">
+    <li class="has-children"><a href="mob/living/simple_animal/hostile/asteroid/elite.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;asteroid&#x2F;elite">elite</a><ul class="index-tree">
     <li><a href="mob/living/simple_animal/hostile/asteroid/elite/broodmother.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;asteroid&#x2F;elite&#x2F;broodmother">Goliath Broodmother</a> - A stronger, faster variation of the goliath.  Has the ability to spawn baby goliaths, which it can later detonate at will.
 When it's health is below half, tendrils will spawn randomly around it.  When it is below a quarter of health, this effect is doubled.
 It's attacks are as follows:</li>
@@ -3050,6 +3061,17 @@ It's attacks are as follows:</li>
     <li><a href="mob/living/simple_animal/hostile/asteroid/elite/pandora.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;asteroid&#x2F;elite&#x2F;pandora">Pandora</a> - A box with a similar design to the Hierophant which trades large, single attacks for more frequent smaller ones.
 As it's health gets lower, the time between it's attacks decrease.
 It's attacks are as follows:</li>
+    </ul></li>
+    <li><span class="no-substance">wasp&#x2F;</span><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;asteroid&#x2F;wasp&#x2F;yellowjacket">yellow jacket</span> - jungle version of the wasp. Slightly weaker and faster, with different loot. Renamed to avoid confusion. Credit to original creator.</li>
+    <li class="has-children"><span title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;asteroid&#x2F;yog_jungle">yog_jungle</span><ul class="index-tree">
+    <li class="has-children"><span title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;asteroid&#x2F;yog_jungle&#x2F;alpha">alpha</span><ul class="index-tree">
+    <li><a href="mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_blobby.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;asteroid&#x2F;yog_jungle&#x2F;alpha&#x2F;alpha_blobby">Gelatinous Giant</a></li>
+    <li><span class="no-substance">alpha_dryad&#x2F;</span><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;asteroid&#x2F;yog_jungle&#x2F;alpha&#x2F;alpha_dryad&#x2F;corrupted">Wrath of Corruption</span> - Corrupted version also shoots, but spawns less enemies and mostly spawns corrupted dryads</li>
+    </ul></li>
+    <li><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;asteroid&#x2F;yog_jungle&#x2F;blobby">Blobby</span> - Splits upon death, summoning two smaller versions of itself</li>
+    <li><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;asteroid&#x2F;yog_jungle&#x2F;emeraldspider">emerald spider</span> - basically shoots bolas as the target</li>
+    <li><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;asteroid&#x2F;yog_jungle&#x2F;skin_twister">Skin twister</span> - Disguises as a killed player, calling for help over comms to trick people into getting killed too</li>
+    </ul></li>
     </ul></li>
     <li class="has-children"><a href="mob/living/simple_animal/hostile/bloodsucker.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;bloodsucker">bloodsucker</a><ul class="index-tree">
     <li><a href="mob/living/simple_animal/hostile/bloodsucker/possessedarmor.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;bloodsucker&#x2F;possessedarmor">possessed armor</a></li>
@@ -4198,7 +4220,7 @@ Chance to give Bat form, or turn them into a bat.</li>
     <li><a href="obj/structure/grille.html" title="&#x2F;obj&#x2F;structure&#x2F;grille">grille</a></li>
     <li><a href="obj/structure/knock_tear.html" title="&#x2F;obj&#x2F;structure&#x2F;knock_tear">???</a></li>
     <li><a href="obj/structure/ladder.html" title="&#x2F;obj&#x2F;structure&#x2F;ladder">ladder</a></li>
-    <li class="has-children"><a href="obj/structure/mecha_wreckage.html" title="&#x2F;obj&#x2F;structure&#x2F;mecha_wreckage">exosuit wreckage</a> - Mecha wreckage<ul class="index-tree">
+    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;mecha_wreckage">exosuit wreckage</span> - Mecha wreckage<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;mecha_wreckage&#x2F;loaded_ripley">intact Ripley wreckage</span> - Mecha wreckage</li>
     </ul></li>
     <li><a href="obj/structure/mineral_door.html" title="&#x2F;obj&#x2F;structure&#x2F;mineral_door">metal door</a></li>
@@ -4309,7 +4331,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/ccac3f7c970a8a35148fb1d4f99d366b26cb4704">ccac3f7</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/0b6adb8b6f78235fbd176d593c1d107e86632801">0b6adb8</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
