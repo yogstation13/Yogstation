@@ -21,6 +21,8 @@
 #define ACCESS_TELEPORTER "teleporter"
 /// Access to the EVA Storage Room, and some cargo crates.
 #define ACCESS_EVA "eva"
+/// Access to the vault on the station, for accessing the station's budget, the nuke core, or the Ore Silo.
+#define ACCESS_VAULT "vault"
 /// Access to make an announcement through the Requests Console found in an office.
 #define ACCESS_RC_ANNOUNCE "rc_announce"
 /// Access used for events (Red Alert, BSA, Emergency Maintenance) which require at least two people to swipe at the same time to authorize it
@@ -39,10 +41,10 @@
 
 //---  SECURITY  ---//
 
-/// Security's General Access, armaments vendor, security lockers, and other secure gear. Basically things Officers or Wardens should access, but never Lawyers or Detectives.
+/// Security's General Access, armaments vendor, security lockers, and other secure gear. Applied to things to Officers and Wardens should access, but never Lawyers or Detectives.
 #define ACCESS_SECURITY "security"
 /// Access to the front doors of the Brig, the "secure" portion of the Courtroom, and department outposts. Notably given to Lawyers, Heads of Staff, and Detectives.
-#define ACCESS_SECURITY_ENTRANCE "security_entrance"
+#define ACCESS_SEC_BASIC "sec_basic"
 /// Access to brig cells, brig timers, permabrig, gulag, gulag teleporter, gulag shuttle, prisoner management console, and some security cargo crates.
 #define ACCESS_BRIG "brig"
 /// Access to the armory, security incinerator (when present), and the execution/re-education chamber.
@@ -50,9 +52,7 @@
 /// Access for the detective to get into their office, the medical data console, and some other detective-related stuff.
 #define ACCESS_DETECTIVE "detective"
 /// Access granted to the brig physician, used for the brig medbay doors.
-#define ACCESS_BRIG_PHYS
-/// Access to the "secure" portion of the courtroom, like where the judge and everyone sits..
-#define ACCESS_COURT "court"
+#define ACCESS_BRIG_PHYS "brig_phys"
 /// The "Weapons Permit" Access, or the one that lets you walk past secbots without them charging at you as you hold your weaponry.
 #define ACCESS_WEAPONS_PERMIT "weapons_permit"
 /// Access used for the Head of Security's personal quarters in mapping, as well as other HoS-related things.
@@ -113,14 +113,12 @@
 #define ACCESS_CARGO "cargo"
 /// Access to the Cargo Bay and Warehouse. Separated from the above to prevent miners processing cargo.
 #define ACCESS_CARGO_BAY "cargo_bay"
-/// Access to release materials from the ORM.
-#define ACCESS_ORM "orm"
 /// Access to the "on-station" Mining Portion of the Cargo Department.
 #define ACCESS_MINING "mining"
 /// Access to the "off-station" Mining Station, which contains gear dedicated for miners to do their job best, as well as seek shelter from the inhospitable elements.
 #define ACCESS_MINING_STATION "mining_station"
-/// Access to the vault on the station, for accessing the station's budget, the nuke core, or the Ore Silo.
-#define ACCESS_VAULT "vault"
+/// Access to release materials from the ORM.
+#define ACCESS_MATERIALS "materials"
 /// Access for the Quartermaster's personal quarters in mapping, as well as some other QM-related things.
 #define ACCESS_QM "qm"
 
@@ -143,6 +141,8 @@
 #define ACCESS_ROBOTICS "robotics"
 /// Access to the Xenobiology division of Science.
 #define ACCESS_XENOBIOLOGY "xenobiology"
+/// Access to the research Server Room, containing the important R&D research servers and AI networking machines.
+#define ACCESS_RND_SERVERS "rnd_servers"
 /// Access for the Research Director's personal quarters in mapping, the R&D server room, as well as some other RD-related things.
 #define ACCESS_RD "rd"
 
