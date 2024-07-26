@@ -421,7 +421,9 @@
 /datum/quirk/cyberorgan/heart/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
-	if(NOBLOOD in species.species_traits) // species with NOBLOOD don't have a heart
+	var/disallowed_trait = (NOBLOOD in species.species_traits || STABLEBLOOD in species.species_traits) // species with NOBLOOD don't have a heart
+	qdel(species)
+	if(disallowed_trait)
 		return "You don't have a heart!"
 	return ..()
 

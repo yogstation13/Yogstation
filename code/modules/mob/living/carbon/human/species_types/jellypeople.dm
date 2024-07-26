@@ -6,7 +6,7 @@
 	default_color = "00FF90"
 	say_mod = "chirps"
 	bubble_icon = BUBBLE_SLIME
-	species_traits = list(MUTCOLORS, EYECOLOR, NOBLOOD, HAIR)
+	species_traits = list(MUTCOLORS, EYECOLOR, STABLEBLOOD, HAIR)
 	inherent_traits = list(TRAIT_TOXINLOVER)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/slime
 	exotic_blood = /datum/reagent/toxin/slimejelly
@@ -196,7 +196,7 @@
 	plural_form = "Slimepeople"
 	id = SPECIES_SLIMEPERSON
 	default_color = "00FFFF"
-	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,NOBLOOD)
+	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,STABLEBLOOD)
 	say_mod = "says"
 	hair_color = "mutcolor"
 	hair_alpha = 150

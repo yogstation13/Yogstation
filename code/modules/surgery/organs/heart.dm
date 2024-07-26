@@ -108,7 +108,7 @@
 		failed = TRUE
 
 /obj/item/organ/heart/get_availability(datum/species/species)
-	return !(NOBLOOD in species.species_traits)
+	return !((NOBLOOD in species.species_traits) || (STABLEBLOOD in species.species_traits))
 
 /obj/item/organ/heart/cursed
 	name = "cursed heart"

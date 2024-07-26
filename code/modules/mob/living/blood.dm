@@ -25,7 +25,7 @@
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
 
-	if(NOBLOOD in dna.species.species_traits || bleedsuppress || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
+	if(NOBLOOD in dna.species.species_traits || bleedsuppress || (HAS_TRAIT(src, TRAIT_FAKEDEATH)) || STABLEBLOOD in dna.species.species_traits)
 		return
 
 	if(mind && IS_BLOODSUCKER(src)) // Prevents Bloodsuckers from naturally regenerating Blood - Even while on masquerade
