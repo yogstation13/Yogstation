@@ -81,7 +81,7 @@
 
 /datum/blood_type/jelly
 	name = "J"
-	color = "#801E28" 
+	color = COLOR_MAROON 
 	compatible_types = list(/datum/blood_type/jelly)
 
 ////////////////////////////////////////////////////////////////
