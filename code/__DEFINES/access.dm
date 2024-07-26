@@ -50,7 +50,7 @@
 /// Access for the detective to get into their office, the medical data console, and some other detective-related stuff.
 #define ACCESS_DETECTIVE "detective"
 /// Access granted to the brig physician, used for the brig medbay doors.
-#define ACCESS_BRIG_PHYS 
+#define ACCESS_BRIG_PHYS
 /// Access to the "secure" portion of the courtroom, like where the judge and everyone sits..
 #define ACCESS_COURT "court"
 /// The "Weapons Permit" Access, or the one that lets you walk past secbots without them charging at you as you hold your weaponry.
@@ -73,8 +73,10 @@
 #define ACCESS_ENGINE_EQUIP "engine_equip"
 /// Access to "construction" areas of the station. However, in mapping, it's also used to get access to the front door and lathe room of the engineering department.
 #define ACCESS_CONSTRUCTION "construction"
-/// Access to the technical storage room (contains all the boards and other miscellaneous engineering gear).
+/// Access to the Tech Storage room, containing lots of machine boards and other miscellaneous engineering gear.
 #define ACCESS_TECH_STORAGE "tech_storage"
+/// Access to the Secure Tech Storage room, containing unreplaceable high-value machine boards.
+#define ACCESS_SECURE_TECH "secure_tech"
 /// Access to the Telecomms Server Room, traffic control console, machinery, and tablets.
 #define ACCESS_TCOMMS "tcomms"
 /// Access to the Auxiliary Base Room, as well as the ability over launching it.
