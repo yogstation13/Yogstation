@@ -28,7 +28,9 @@
 
 /datum/quirk/blooddeficiency/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (NOBLOOD in initial(species_type.species_traits)) //can't lose blood if your species doesn't have any
+	species_type = new species_type()
+	var/disallowed_trait = (NOBLOOD in species_type.species_traits) // Cant lose blood if your species doesn't have any
+	qdel(species_type)
 
 	if(disallowed_trait)
 		return "You don't have blood!"
@@ -154,8 +156,9 @@
 
 /datum/quirk/light_drinker/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) || !(initial(species_type.inherent_biotypes) & MOB_ORGANIC)// Cant drink or process alcohol
-
+	species_type = new species_type()
+	var/disallowed_trait = (NOMOUTH in species_type.species_traits) || !(initial(species_type.inherent_biotypes) & MOB_ORGANIC)// Cant drink or process alcohol
+	qdel(species_type)
 	if(disallowed_trait)
 		return "You don't have the ability to consume alcohol!"
 	return FALSE
@@ -683,7 +686,9 @@
 
 /datum/quirk/allergic/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = !(TRAIT_MEDICALIGNORE in initial(species_type.inherent_traits))
+	species_type = new species_type()
+	var/disallowed_trait = (TRAIT_MEDICALIGNORE in species_type.inherent_traits)
+	qdel(species_type)
 
 	if(disallowed_trait)
 		return "You don't benefit from the use of medicine."
@@ -765,7 +770,9 @@
 
 /datum/quirk/hemophilia/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (NOBLOOD in initial(species_type.species_traits))
+	species_type = new species_type()
+	var/disallowed_trait = (NOBLOOD in species_type.species_traits)
+	qdel(species_type)
 
 	if(disallowed_trait)
 		return "You can't bleed."
@@ -826,8 +833,10 @@
 
 /datum/quirk/telomeres_short/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/no_dna = (NO_DNA_COPY in initial(species_type.species_traits)) //Can't pick if you have no DNA bruv.
-	var/no_clone = (TRAIT_NOCLONE in initial(species_type.inherent_traits))
+	species_type = new species_type()
+	var/no_dna = (NO_DNA_COPY in  species_type.species_traits) //Can't pick if you have no DNA bruv.
+	var/no_clone = (TRAIT_NOCLONE in species_type.inherent_traits)
+	qdel(species_type)
 	if(no_dna)
 		return "You have no DNA!"
 	else if(no_clone)

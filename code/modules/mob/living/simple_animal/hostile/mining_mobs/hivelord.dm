@@ -276,7 +276,7 @@
 	aggro_vision_range = 9
 	speed = 3
 	faction = list("mining")
-	weather_immunities = list(WEATHER_LAVA, WEATHER_ASH)
+	weather_immunities = ALL
 	obj_damage = 30
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	// Purple, but bright cause we're gonna need to spot mobs on lavaland

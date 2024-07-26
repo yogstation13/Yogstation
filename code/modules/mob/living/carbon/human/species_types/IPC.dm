@@ -7,7 +7,7 @@
 	bubble_icon = BUBBLE_ROBOT // beep boop
 	possible_genders = list(PLURAL, NEUTER) // A MERE OBJECT
 	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,NOZOMBIE,MUTCOLORS,NOHUSK,NOBLOOD,NO_UNDERWEAR)
-	inherent_traits = list(TRAIT_PSIONICALLY_IMMUNE, TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_NOBREATH,TRAIT_LIMBATTACHMENT,TRAIT_EASYDISMEMBER,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB,TRAIT_POWERHUNGRY)
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_NOBREATH,TRAIT_LIMBATTACHMENT,TRAIT_EASYDISMEMBER,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB,TRAIT_POWERHUNGRY)
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	mutantbrain = /obj/item/organ/brain/positron
 	mutantheart = /obj/item/organ/heart/cybernetic/ipc
@@ -51,11 +51,7 @@
 	// Hats need to be 1 up
 	offset_features = list(OFFSET_HEAD = list(0,1))
 
-	latency_chance = 0
-	possible_faculties = NONE
-	starting_psi_level = NONE
-
-	var/datum/action/innate/change_screen/change_screen
+	species_abilities = list(/datum/action/innate/change_screen)
 
 	smells_like = "industrial lubricant"
 
@@ -66,9 +62,10 @@
 /datum/species/ipc/on_species_gain(mob/living/carbon/C, datum/species/old_species) // Let's make that IPC actually robotic.
 	. = ..()
 	C.particles = new /particles/smoke/ipc()
-	if(ishuman(C) && !change_screen)
-		change_screen = new
-		change_screen.Grant(C)
+	var/obj/item/organ/appendix/A = C.getorganslot(ORGAN_SLOT_APPENDIX) // Easiest way to remove it.
+	if(A)
+		A.Remove(C)
+		QDEL_NULL(A)
 	for(var/obj/item/bodypart/O in C.bodyparts)
 		O.render_like_organic = TRUE // Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
 		var/chassis = C.dna.features["ipc_chassis"]
@@ -82,8 +79,6 @@
 /datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	QDEL_NULL(C.particles)
-	if(change_screen)
-		change_screen.Remove(C)
 
 /datum/species/ipc/proc/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
@@ -415,7 +410,7 @@ ipc martial arts stuff
 	punchdamagelow = 5
 	punchdamagehigh = 12
 	punchstunthreshold = 12
-	inherent_traits = list(TRAIT_PSIONICALLY_IMMUNE, TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_NOBREATH,TRAIT_LIMBATTACHMENT,TRAIT_NODISMEMBER,TRAIT_NOLIMBDISABLE,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB,TRAIT_POWERHUNGRY)
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_NOBREATH,TRAIT_LIMBATTACHMENT,TRAIT_NODISMEMBER,TRAIT_NOLIMBDISABLE,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB,TRAIT_POWERHUNGRY)
 
 //infiltrators
 /datum/species/ipc/self/insurgent

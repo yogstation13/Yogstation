@@ -55,9 +55,9 @@
 	default_features = list("weathering" = "None", "antenna" = "None", "preternis_eye" = "Standard", "preternis_core" = "Core")
 	wings_icon = "Elytra"
 
+	species_abilities = list(/datum/action/cooldown/spell/toggle/maglock)
+
 	//new variables
-	var/datum/action/innate/maglock/maglock
-	var/lockdown = FALSE
 	var/eating_msg_cooldown = FALSE
 	var/emag_lvl = 0
 	var/soggy = FALSE
@@ -82,11 +82,6 @@
 
 	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, PROC_REF(drain_power_from))
 
-	if(ishuman(C))
-		maglock = new
-		maglock.Grant(C)
-		lockdown = FALSE
-
 /datum/species/preternis/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()
 	for (var/V in C.bodyparts)
@@ -100,52 +95,6 @@
 	C.clear_alert("preternis_emag") //this means a changeling can transform from and back to a preternis to clear the emag status but w/e i cant find a solution to not do that
 	C.clear_fullscreen("preternis_emag")
 	C.remove_movespeed_modifier("preternis_water")
-	C.remove_movespeed_modifier("preternis_maglock")
-
-	if(lockdown)
-		maglock.Trigger(TRUE)
-	if(maglock)
-		maglock.Remove(C)
-
-
-/datum/action/innate/maglock
-	var/datum/species/preternis/owner_species
-	var/lockdown = FALSE
-	name = "Maglock"
-	check_flags = AB_CHECK_CONSCIOUS
-	button_icon_state = "magboots0"
-	button_icon = 'icons/obj/clothing/shoes.dmi'
-	background_icon_state = "bg_default"
-
-/datum/action/innate/maglock/Grant(mob/M)
-	if(!ispreternis(M))
-		return
-	var/mob/living/carbon/human/H = M 
-	owner_species = H.dna.species
-	. = ..()
-
-/datum/action/innate/maglock/Trigger(silent = FALSE)
-	var/mob/living/carbon/human/H = usr
-	if(!lockdown)
-		ADD_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
-		ADD_TRAIT(H, TRAIT_NOSLIPICE, "preternis_maglock")
-		button_icon_state = "magboots1"
-	else
-		REMOVE_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
-		REMOVE_TRAIT(H, TRAIT_NOSLIPICE, "preternis_maglock")
-		button_icon_state = "magboots0"
-	build_all_button_icons()
-	lockdown = !lockdown
-	owner_species.lockdown = !owner_species.lockdown
-	if(!silent)
-		to_chat(H, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
-	H.update_gravity(H.has_gravity())
-
-/datum/species/preternis/negates_gravity(mob/living/carbon/human/H)
-	return (..() || lockdown)
-
-/datum/species/preternis/has_heavy_gravity()
-	return (..() || lockdown)
 
 /datum/species/preternis/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
 	. = ..()
@@ -185,13 +134,6 @@
 	emag_lvl = 0
 	H.clear_alert("preternis_emag")
 	H.clear_fullscreen("preternis_emag")
-
-/datum/species/preternis/movement_delay(mob/living/carbon/human/H)
-	. = ..()
-	if(lockdown && !HAS_TRAIT(H, TRAIT_IGNORESLOWDOWN) && H.has_gravity())
-		H.add_movespeed_modifier("preternis_magboot", update=TRUE, priority=100, multiplicative_slowdown=1, blacklisted_movetypes=(FLYING|FLOATING))
-	else if(H.has_movespeed_modifier("preternis_magboot"))
-		H.remove_movespeed_modifier("preternis_magboot")
 	
 /datum/species/preternis/spec_life(mob/living/carbon/human/H)
 	. = ..()
