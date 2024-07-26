@@ -956,7 +956,7 @@
 /turf/open/floor/plasteel,
 /area/space/nearstation)
 "art" = (
-/obj/structure/bookcase/random/nonfiction,
+/obj/machinery/psionic_awakener,
 /turf/open/floor/wood,
 /area/medical/psych)
 "arA" = (
@@ -11754,6 +11754,7 @@
 	name = "Chief Medical Officer RC";
 	pixel_x = -32
 	},
+/obj/machinery/psi_monitor,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
 "eLb" = (

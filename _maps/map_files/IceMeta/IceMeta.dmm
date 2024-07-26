@@ -2162,6 +2162,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
+/obj/machinery/psionic_awakener,
 /turf/open/floor/wood,
 /area/medical/psych)
 "aGg" = (
@@ -67002,6 +67003,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/hfr)
+"toR" = (
+/obj/machinery/psi_monitor,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/cmo)
 "toS" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10
@@ -240276,7 +240281,7 @@ mgB
 qdA
 nTH
 wgD
-dCO
+toR
 mCm
 oqY
 vTt
