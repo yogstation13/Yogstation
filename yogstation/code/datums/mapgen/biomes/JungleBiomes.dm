@@ -47,15 +47,33 @@
 		var/obj/structure/flora = pickweight(loose_flora)
 		new flora(gen_turf)
 
+/**
+ * Tar wastes
+ */
 /datum/biome/jungleland/tar_wastes
 	turf_type = /turf/open/floor/plating/dirt/jungleland/obsidian
 	closed_turf = /turf/open/water/smooth/tar_basin
-	loose_flora = list(/obj/structure/flora/rock = 2,/obj/structure/flora/rock/pile = 2)
+
+	loose_flora = list(
+		/obj/structure/flora/rock = 2,
+		/obj/structure/flora/rock/pile = 2
+		)
 	loose_flora_density = 10
+
 	fauna_density = 0.5 
-	fauna_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random = 33,/mob/living/simple_animal/hostile/asteroid/goliath/beast = 33,/mob/living/simple_animal/hostile/asteroid/goldgrub = 25,/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1, /mob/living/simple_animal/hostile/asteroid/marrowweaver = 7)
+	fauna_types = list(
+		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random = 33,
+		/mob/living/simple_animal/hostile/asteroid/goliath/beast = 33,
+		/mob/living/simple_animal/hostile/asteroid/goldgrub = 25,
+		/mob/living/simple_animal/hostile/asteroid/marrowweaver = 7,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister = 1,
+		)
+
 	this_area = /area/jungleland/tar_wastes
 
+/**
+ * Dry swamp
+ */
 /datum/biome/jungleland/dry_swamp
 	turf_type = /turf/open/floor/plating/dirt/jungleland/deep_sand
 	closed_turf = /turf/open/water/smooth/toxic_pit
@@ -82,17 +100,20 @@
 	loose_flora_density = 10
 
 	fauna_types = list(
-		/mob/living/simple_animal/hostile/yog_jungle/emeraldspider = 15,
-		/mob/living/simple_animal/hostile/yog_jungle/mosquito = 15, 
-		/mob/living/simple_animal/hostile/yog_jungle/blobby = 10,
-		/mob/living/simple_animal/hostile/yog_jungle/meduracha = 10,
-		/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/emeraldspider = 15,
+		/mob/living/simple_animal/hostile/asteroid/wasp/mosquito = 15, 
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/blobby = 10,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/meduracha = 10,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister = 1
 		)
 	fauna_density = 0.4
 
 	spawn_fauna_on_closed = TRUE
 	this_area = /area/jungleland/dry_swamp
 
+/**
+ * Toxic pit
+ */
 /datum/biome/jungleland/toxic_pit
 	turf_type = /turf/open/floor/plating/dirt/jungleland/shallow_mud
 	closed_turf = /turf/open/water/smooth/toxic_pit
@@ -117,17 +138,20 @@
 	loose_flora_density = 20
 
 	fauna_types = list(
-		/mob/living/simple_animal/hostile/yog_jungle/meduracha = 50,
-		/mob/living/simple_animal/hostile/yog_jungle/mosquito = 40,
-		/mob/living/simple_animal/hostile/yog_jungle/blobby = 25,
-		/mob/living/simple_animal/hostile/yog_jungle/emeraldspider = 2,
-		/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/meduracha = 50,
+		/mob/living/simple_animal/hostile/asteroid/wasp/mosquito = 40,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/blobby = 25,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/emeraldspider = 2,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister = 1
 		)
 	fauna_density = 0.7
 
 	spawn_fauna_on_closed = TRUE
 	this_area = /area/jungleland/toxic_pit
 
+/**
+ * Dying forest
+ */
 /datum/biome/jungleland/dying_forest
 	turf_type = /turf/open/floor/plating/dirt/jungleland/deep_sand
 	closed_turf = /turf/open/floor/plating/dirt/jungleland/shallow_mud
@@ -148,14 +172,17 @@
 	dense_flora_density = 50
 
 	fauna_types = list(
-		/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad = 60,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/corrupted_dryad = 60,
 		/mob/living/simple_animal/hostile/asteroid/goldgrub = 30,
-		/mob/living/simple_animal/hostile/yog_jungle/mosquito = 10,
-		/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1
+		/mob/living/simple_animal/hostile/asteroid/wasp/mosquito = 10,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister = 1
 		)
 	fauna_density = 0.8
 	this_area = /area/jungleland/dying_forest
 
+/**
+ * Jungle
+ */
 /datum/biome/jungleland/jungle
 	turf_type = /turf/open/floor/plating/dirt/jungleland/jungle
 	closed_turf = /turf/open/floor/plating/dirt/jungleland/jungle
@@ -187,11 +214,11 @@
 	loose_flora_density = 60
 
 	fauna_types = list(
-		/mob/living/simple_animal/hostile/yog_jungle/dryad = 65,
-		/mob/living/simple_animal/hostile/yog_jungle/emeraldspider = 15,
-		/mob/living/simple_animal/hostile/yog_jungle/mosquito = 10, 
-		/mob/living/simple_animal/hostile/yog_jungle/yellowjacket = 10, 
-		/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/dryad = 65,
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/emeraldspider = 15,
+		/mob/living/simple_animal/hostile/asteroid/wasp/mosquito = 10, 
+		/mob/living/simple_animal/hostile/asteroid/wasp/yellowjacket = 10, 
+		/mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister = 1,
 		)
 	fauna_density = 0.65
 	this_area = /area/jungleland/proper

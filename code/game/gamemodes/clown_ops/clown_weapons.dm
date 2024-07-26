@@ -285,7 +285,6 @@
 	max_temperature = 35000
 	operation_req_access = list(ACCESS_SYNDICATE)
 	internals_req_access = list(ACCESS_SYNDICATE)
-	wreckage = /obj/structure/mecha_wreckage/honker/dark
 	max_equip = 4
 
 /obj/mecha/combat/honker/dark/add_cell(obj/item/stock_parts/cell/C)
@@ -309,7 +308,6 @@
 /obj/mecha/combat/honker/dark/crew
 	operation_req_access = list()
 	internals_req_access = list()
-	wreckage = /obj/structure/mecha_wreckage/honker/dark/crew
 
 /obj/mecha/combat/honker/dark/crew/loaded/Initialize(mapload)
 	. = ..()

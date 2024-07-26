@@ -1187,6 +1187,7 @@
 #include "code\game\mecha\equipment\tools\work_tools.dm"
 #include "code\game\mecha\equipment\weapons\mecha_ammo.dm"
 #include "code\game\mecha\equipment\weapons\melee_weapons.dm"
+#include "code\game\mecha\equipment\weapons\other_weapons.dm"
 #include "code\game\mecha\equipment\weapons\weapons.dm"
 #include "code\game\mecha\medical\medical.dm"
 #include "code\game\mecha\medical\odysseus.dm"

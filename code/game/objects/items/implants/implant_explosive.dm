@@ -47,7 +47,7 @@
 	if(delay <= 7)
 		explosion(src,heavy,medium,weak,weak, flame_range = weak)
 		if(imp_in)
-			imp_in.gib(1)
+			imp_in.gib(no_brain = TRUE, no_items = TRUE)
 		qdel(src)
 		return
 	timed_explosion()

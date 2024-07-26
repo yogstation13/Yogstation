@@ -24,7 +24,7 @@
 		if(R.glass_icon_state)
 			icon_state = R.glass_icon_state
 		else
-			var/mutable_appearance/reagent_overlay = mutable_appearance(icon, "glassoverlay")
+			var/mutable_appearance/reagent_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "drinking_glass0")
 			icon_state = "glass_empty"
 			reagent_overlay.color = mix_color_from_reagents(reagents.reagent_list)
 			add_overlay(reagent_overlay)
@@ -67,7 +67,7 @@
 			icon_state = largest_reagent.shot_glass_icon_state
 		else
 			icon_state = "shotglassclear"
-			var/mutable_appearance/shot_overlay = mutable_appearance(icon, "shotglassoverlay")
+			var/mutable_appearance/shot_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "shot_glass0")
 			shot_overlay.color = mix_color_from_reagents(reagents.reagent_list)
 			add_overlay(shot_overlay)
 

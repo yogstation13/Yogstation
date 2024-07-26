@@ -4,12 +4,12 @@
 	icon_state = "phazon"
 	step_in = 2
 	dir_in = 2 //Facing South.
-	max_integrity = 200
+	max_integrity = 400
+	integrity_failure = 200
 	deflect_chance = 30
 	armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 30, BIO = 100, RAD = 50, FIRE = 100, ACID = 100)
 	max_temperature = 25000
 	infra_luminosity = 3
-	wreckage = /obj/structure/mecha_wreckage/phazon
 	add_req_access = 1
 	internal_damage_threshold = 25
 	force = 15
