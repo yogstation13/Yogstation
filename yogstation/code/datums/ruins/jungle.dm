@@ -130,10 +130,11 @@
  * Megafauna
  */
 /datum/map_template/ruin/jungle/proper/drake
-	name = "Ash Drake"
-	id = "jungle_drake"
-	description = "Ash Drake"
-	suffix = "jungleland_barren_drake.dmm"
+	name = "Jungle Dragon"
+	id = "jungle_dragon"
+	description = "Mighty beasts clad in verdant scales stalk the planet in an endless search for the heart of the spreading tar. \
+    These once-noble guardians grow more desperate by the day, attacking anything they suspect might know of the artifact they seek."
+	suffix = "jungleland_jungle_dragon.dmm"
 	always_place = TRUE
 	allow_duplicates = TRUE
 	cost = 20
