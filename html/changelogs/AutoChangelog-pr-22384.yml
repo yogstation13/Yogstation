@@ -1,0 +1,5 @@
+author: " Cark, Flikr (New sprites), AMyriad (Code) and the original PR authors Kryson, MTandi, Zeckle, CoiledLamb, Retlaw34, Imaginos16, Crumpaloo, PestoVerde32, ErdinyoBarboza"
+delete-after: true 
+changes: 
+  - imageadd: "added new sprites for nearly every mixed drink, soda, and bottle in the game."
+  - imagedel: "deleted the old sprites for nearly every mixed drink, soda, and bottle in the game."
