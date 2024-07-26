@@ -1105,6 +1105,9 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		/obj/item/reagent_containers/food/snacks/grown/shell, //base types
 		/obj/item/reagent_containers/food/snacks/store/bread,
 		/obj/item/reagent_containers/food/snacks/grown/nettle,
+		/obj/item/reagent_containers/food/snacks/burger/cluwneburger, //permanent cluwnification
+		/obj/item/reagent_containers/food/snacks/burger/roburger, //permanent borgification
+		/obj/item/reagent_containers/food/snacks/burger/roburgerbig, //same thing
 		/obj/item/reagent_containers/food/snacks/fish, // debug fish
 		/obj/item/reagent_containers/food/snacks/powercrepe //obscenely strong for a food item and shouldn't just be randomly spawned
 		)
