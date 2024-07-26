@@ -86,12 +86,32 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("pie" = 1, "meat" = 1)
 	foodtype = GRAIN | MEAT
+	slices_num = 5
+	slice_path = /obj/item/reagent_containers/food/snacks/meatpieslice
+
+/obj/item/reagent_containers/food/snacks/meatpieslice
+	name = "meat pie slice"
+	desc = "A slice of meat pie."
+	icon = 'icons/obj/food/piecake.dmi'
+	icon_state = "meatpie_slice"
+	tastes = list("pie" = 1, "meat" = 1)
+	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/pie/tofupie
 	name = "tofu pie"
 	desc = "A delicious tofu pie."
 	icon_state = "meatpie"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("pie" = 1, "tofu" = 1)
+	foodtype = GRAIN | VEGETABLES
+	slices_num = 5
+	slice_path = /obj/item/reagent_containers/food/snacks/tofupieslice
+
+/obj/item/reagent_containers/food/snacks/tofupieslice
+	name = "tofu pie slice"
+	desc = "A slice of tofu pie."
+	icon = 'icons/obj/food/piecake.dmi'
+	icon_state = "meatpie_slice"
 	tastes = list("pie" = 1, "tofu" = 1)
 	foodtype = GRAIN | VEGETABLES
 
@@ -130,12 +150,32 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("pie" = 1, "meat" = 1, "acid" = 1)
 	foodtype = GRAIN | MEAT
+	slices_num = 5
+	slice_path = /obj/item/reagent_containers/food/snacks/xenopieslice
+
+/obj/item/reagent_containers/food/snacks/xenopieslice
+	name = "xeno pie slice"
+	desc = "Oh god... Is that still moving?"
+	icon = 'icons/obj/food/piecake.dmi'
+	icon_state = "xenopie_slice"
+	tastes = list("pie" = 1, "meat" = 1, "acid" = 1)
+	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/pie/applepie
 	name = "apple pie"
 	desc = "A pie containing sweet sweet love...or apple."
 	icon_state = "applepie"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
+	tastes = list("pie" = 1, "apple" = 1)
+	foodtype = GRAIN | FRUIT | SUGAR
+	slices_num = 5
+	slice_path = /obj/item/reagent_containers/food/snacks/applepieslice
+
+/obj/item/reagent_containers/food/snacks/applepieslice
+	name = "apple pie slice"
+	desc = "A slice of comfy apple pie."
+	icon = 'icons/obj/food/piecake.dmi'
+	icon_state = "applepie_slice"
 	tastes = list("pie" = 1, "apple" = 1)
 	foodtype = GRAIN | FRUIT | SUGAR
 
@@ -145,6 +185,16 @@
 	icon_state = "cherrypie"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("pie" = 7, "Nicole Paige Brooks" = 2)
+	foodtype = GRAIN | FRUIT | SUGAR
+	slices_num = 5
+	slice_path = /obj/item/reagent_containers/food/snacks/cherrypieslice
+
+/obj/item/reagent_containers/food/snacks/cherrypieslice
+	name = "cherry pie slice"
+	desc = "A slice of delicious cherry pie."
+	icon = 'icons/obj/food/piecake.dmi'
+	icon_state = "cherrypie_slice"
+	tastes = list("pie" = 1, "cherries" = 1)
 	foodtype = GRAIN | FRUIT | SUGAR
 
 /obj/item/reagent_containers/food/snacks/pie/pumpkinpie
@@ -230,6 +280,16 @@
 	desc = "Tastes like blue and cold."
 	icon_state = "frostypie"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 6)
+	tastes = list("mint" = 1, "pie" = 1)
+	foodtype = GRAIN | FRUIT | SUGAR
+	slices_num = 5
+	slice_path = /obj/item/reagent_containers/food/snacks/frostypieslice
+
+/obj/item/reagent_containers/food/snacks/frostypieslice
+	name = "frosty pie slice"
+	desc = "A slice of frosty pie."
+	icon = 'icons/obj/food/piecake.dmi'
+	icon_state = "frostypie_slice"
 	tastes = list("mint" = 1, "pie" = 1)
 	foodtype = GRAIN | FRUIT | SUGAR
 
