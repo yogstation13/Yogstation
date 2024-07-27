@@ -118,11 +118,8 @@
 	if(!airlock)
 		qdel(src)
 		return
-	if(airlock.cyclelinkedx || airlock.cyclelinkedy)	//yogs start
-		cyclelinkairlock_target()
-	else
-		if(cyclelinkeddir)
-			cyclelinkairlock()		//yogs end
+	if(airlock.cyclelinkeddir)
+		airlock.cyclelinkairlock()
 	if(airlock.closeOtherId)
 		airlock.update_other_id()
 	if(airlock.abandoned)

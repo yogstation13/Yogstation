@@ -180,7 +180,7 @@
 	switch(code)
 		if(0)
 			return get_all_accesses()
-		if(1) // Service
+		if(1) // Service/Civilian
 			return list(ACCESS_SERVICE,
 						ACCESS_THEATRE,
 						ACCESS_CHAPEL_OFFICE,
@@ -269,6 +269,26 @@
 						ACCESS_PERSONAL_LOCKERS,
 						ACCESS_CHANGE_IDS,
 						ACCESS_CAPTAIN)
+
+/// Gets the name from region ID
+/proc/get_region_accesses_name(code)
+	switch(code)
+		if(0)
+			return "All"
+		if(1) // Service/Civilian
+			return "Service"
+		if(2) // Security
+			return "Security"
+		if(3) // Medical
+			return "Medbay"
+		if(4) // Science
+			return "Science"
+		if(5) // Engineering
+			return "Engineering"
+		if(6) // Supply
+			return "Supply"
+		if(7) // Command
+			return "Command"
 
 /// Gets teh description for an access
 /proc/get_access_desc(A)
