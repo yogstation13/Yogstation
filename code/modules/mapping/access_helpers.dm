@@ -61,11 +61,6 @@
 	access_list += ACCESS_VAULT
 	return access_list
 
-/obj/effect/mapping_helpers/airlock/access/any/command/hop/get_access()
-	var/list/access_list = ..()
-	access_list += ACCESS_HOP
-	return access_list
-
 /obj/effect/mapping_helpers/airlock/access/any/command/captain/get_access()
 	var/list/access_list = ..()
 	access_list += ACCESS_CAPTAIN
@@ -370,6 +365,11 @@
 	access_list += ACCESS_LAWYER
 	return access_list
 
+/obj/effect/mapping_helpers/airlock/access/any/service/hop/get_access()
+	var/list/access_list = ..()
+	access_list += ACCESS_HOP
+	return access_list
+
 
 /// REQ ALL ///
 // Applies onto req_access_txt (requires ALL of the given accesses to open)
@@ -407,11 +407,6 @@
 /obj/effect/mapping_helpers/airlock/access/all/command/vault/get_access()
 	var/list/access_list = ..()
 	access_list += ACCESS_VAULT
-	return access_list
-
-/obj/effect/mapping_helpers/airlock/access/all/command/hop/get_access()
-	var/list/access_list = ..()
-	access_list += ACCESS_HOP
 	return access_list
 
 /obj/effect/mapping_helpers/airlock/access/all/command/captain/get_access()
@@ -717,6 +712,11 @@
 /obj/effect/mapping_helpers/airlock/access/all/service/lawyer/get_access()
 	var/list/access_list = ..()
 	access_list += ACCESS_LAWYER
+	return access_list
+
+/obj/effect/mapping_helpers/airlock/access/all/service/hop/get_access()
+	var/list/access_list = ..()
+	access_list += ACCESS_HOP
 	return access_list
 
 
