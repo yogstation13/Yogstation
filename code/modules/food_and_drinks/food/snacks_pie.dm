@@ -69,6 +69,16 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/berryjuice = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("pie" = 1, "blackberries" = 1)
 	foodtype = GRAIN | FRUIT | SUGAR
+	slices_num = 5
+	slice_path = /obj/item/reagent_containers/food/snacks/berryclafoutisslice
+
+/obj/item/reagent_containers/food/snacks/berryclafoutisslice
+	name = "berry clafoutis slice"
+	desc = "A slice of berry clafoutis."
+	icon = 'icons/obj/food/piecake.dmi'
+	icon_state = "berryclafoutis_slice"
+	tastes = list("pie" = 1, "blackberries" = 1)
+	foodtype = GRAIN | FRUIT | SUGAR
 
 /obj/item/reagent_containers/food/snacks/pie/bearypie
 	name = "beary pie"
@@ -76,6 +86,16 @@
 	icon_state = "bearypie"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 3)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 3)
+	tastes = list("pie" = 1, "meat" = 1, "salmon" = 1)
+	foodtype = GRAIN | SUGAR | MEAT | FRUIT
+	slices_num = 5
+	slice_path = /obj/item/reagent_containers/food/snacks/bearypieslice
+
+/obj/item/reagent_containers/food/snacks/bearypieslice
+	name = "beary pie slice"
+	desc = "A slice of beary pie."
+	icon = 'icons/obj/food/piecake.dmi'
+	icon_state = "bearypie_slice"
 	tastes = list("pie" = 1, "meat" = 1, "salmon" = 1)
 	foodtype = GRAIN | SUGAR | MEAT | FRUIT
 
