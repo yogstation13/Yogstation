@@ -29,14 +29,12 @@
 #define ACCESS_KEYCARD_AUTH "keycard_auth"
 /// Access used to run the NTNet Tablet Application WireCarp, which allows you to diagnose and view NTNet logging.
 #define ACCESS_NETWORK "network"
-/// Access used to override "personal control" on a personal locker, meaning you are able to open any of those lockers/wardrobes.
-#define ACCESS_ALL_PERSONAL_LOCKERS "all_personal_lockers"
+/// Access used to override "personal control" on all personal lockers, meaning you are able to open any of those lockers/wardrobes.
+#define ACCESS_PERSONAL_LOCKERS "personal_lockers"
 /// Access used for Access-Changing Programs, this one will unlock all options that can be ever given via that program.
 #define ACCESS_CHANGE_IDS "change_ids"
 /// Access used for the Captain's personal quarters in mapping, as well as what allows one to order emergency shuttles.
 #define ACCESS_CAPTAIN "captain"
-/// Access used for the Head of Personnel's personal quarters in mapping, as well as the security console and other HoP-related things.
-#define ACCESS_HOP "hop"
 
 
 //---  SECURITY  ---//
@@ -98,7 +96,7 @@
 /// Access to the chemistry lab, or the smaller room in medical with the multiple chem dispensers and pill pressers. The Chemist's main position.
 #define ACCESS_CHEMISTRY "chemistry"
 /// Access to the cloning lab, usually adjacent to the genetics lab. Given to Medical Doctors so they can't also enter Genetics.
-#define ACCESS_CLONING
+#define ACCESS_CLONING "cloning"
 /// Access to the Virology portion of the medical department, as well as the virology crate.
 #define ACCESS_VIROLOGY "virology"
 /// Access to the Psychologist's office.
@@ -171,6 +169,8 @@
 #define ACCESS_LAWYER "lawyer"
 /// Access to the Gift Shop's back doors.
 #define ACCESS_CLERK "clerk"
+/// Access used for the Head of Personnel's personal quarters in mapping, as well as the security console and other HoP-related things.
+#define ACCESS_HOP "hop"
 
 
 
@@ -194,11 +194,11 @@
 //---  MECH  ---//
 // Mech Access, allows maintanenace of internal components and altering keycard requirements.
 
-#define ACCESS_MECH_MINING "mech_mining"
-#define ACCESS_MECH_MEDICAL "mech_medical"
 #define ACCESS_MECH_SECURITY "mech_security"
-#define ACCESS_MECH_SCIENCE "mech_science"
 #define ACCESS_MECH_ENGINE "mech_engine"
+#define ACCESS_MECH_MEDICAL "mech_medical"
+#define ACCESS_MECH_MINING "mech_mining"
+#define ACCESS_MECH_SCIENCE "mech_science"
 #define ACCESS_MECH_RUINS "mech_ruins"
 
 
