@@ -521,6 +521,46 @@
 	construction_time = 100
 	category = list("Exosuit Equipment")
 
+/datum/design/mech_afterburner
+	name = "Exosuit Module (CL-56 \"Hardlight\" Afterburner)"
+	desc = "Repurposed shuttle engine."
+	id = "mech_afterburner"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/afterburner
+	materials = list(/datum/material/iron = 10000, /datum/material/plasma = 5000, /datum/material/uranium = 1000, /datum/material/bluespace = 50)
+	construction_time = 100
+	category = list("Exosuit Equipment")
+
+/datum/design/mech_crusher
+	name = "Exosuit Module (Kinetic Crusher)"
+	desc = "A mounted version of the kinetic crusher."
+	id = "mech_crusher"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/kinetic_crusher
+	materials = list(/datum/material/iron = 10000, /datum/material/glass = 2000)
+	construction_time = 100
+	category = list("Exosuit Equipment")
+
+/datum/design/mech_scythe
+	name = "Exosuit Module (Hydraulic Scythe)"
+	desc = "Hydraulic-actuated scythe for exosuits."
+	id = "mech_scythe"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/scythe
+	materials = list(/datum/material/iron = 10000, /datum/material/glass = 2000)
+	construction_time = 100
+	category = list("Exosuit Equipment")
+
+/datum/design/mech_magtreads
+	name = "Exosuit Module (Magnetic Treads)"
+	desc = "A set of magnetic exosuit treads."
+	id = "mech_magtreads"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/mag_treads
+	materials = list(/datum/material/iron = 5000, /datum/material/gold = 2000)
+	construction_time = 50
+	category = list("Exosuit Equipment")
+
 /datum/design/mech_diamond_drill
 	name = "Exosuit Mining (Diamond Mining Drill)"
 	desc = "An upgraded version of the standard drill."
