@@ -231,9 +231,6 @@
 #define ACCESS_BLOODCULT "bloodcult"
 #define ACCESS_CLOCKCULT "clockcult"
 
-/// HUNTERS
-#define ACCESS_HUNTER "hunter"
-
 
 //---  MISCELLANEOUS  ---//
 /// For things that aren't ever supposed to be accessed
