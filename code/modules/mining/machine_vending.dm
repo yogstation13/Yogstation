@@ -455,9 +455,9 @@
 		I.access |=	ACCESS_MINING
 		I.access |= ACCESS_MINING_STATION
 		I.access |= ACCESS_MECH_MINING
-		I.access |= ACCESS_MINERAL_STOREROOM
+		I.access |= ACCESS_MATERIALS
 		I.access |= ACCESS_CARGO
-		I.access |= ACCESS_MAILSORTING
+		I.access |= ACCESS_CARGO
 		to_chat(user, "You upgrade [I] with mining access.")
 		qdel(src)
 

@@ -187,7 +187,7 @@
 /obj/effect/mob_spawn/human/corpse/cat_butcher
 	name = "The Cat Surgeon"
 	id_job = "Cat Surgeon"
-	id_access_list = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_MAINT)
+	id_access_list = list(ACCESS_RUINS_GENERAL, ACCESS_RUINS_MAINTENANCE)
 	hair_style = "Cut Hair"
 	facial_hair_style = "Watson Mustache"
 	skin_tone = "caucasian1"

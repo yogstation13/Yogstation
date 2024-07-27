@@ -17,8 +17,8 @@
 
 	alt_titles = list("Threat Response Officer", "Civilian Protection Officer", "Corporate Officer", "Peacekeeper")
 
-	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_FORENSICS_LOCKERS)
-	base_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MECH_SECURITY, ACCESS_MINERAL_STOREROOM) // See /datum/job/officer/get_access()
+	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_DETECTIVE)
+	base_access = list(ACCESS_SECURITY, ACCESS_SEC_BASIC, ACCESS_BRIG, ACCESS_WEAPONS_PERMIT, ACCESS_MECH_SECURITY, ACCESS_MATERIALS) // See /datum/job/officer/get_access()
 	paycheck = PAYCHECK_HARD
 	paycheck_department = ACCOUNT_SEC
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
@@ -70,35 +70,35 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 	switch(department)
 		if(SEC_DEPT_SUPPLY)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/supply
-			dep_access = list(ACCESS_MAILSORTING, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_CARGO)
+			dep_access = list(ACCESS_CARGO, ACCESS_CARGO_BAY, ACCESS_MINING, ACCESS_MINING_STATION)
 			destination = /area/security/checkpoint/supply
 			spawn_point = locate(/obj/effect/landmark/start/depsec/supply) in GLOB.department_security_spawns
 			accessory = /obj/item/clothing/accessory/armband/cargo
 			minimal_lightup_areas |= GLOB.supply_lightup_areas
 		if(SEC_DEPT_ENGINEERING)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/engi
-			dep_access = list(ACCESS_CONSTRUCTION, ACCESS_ENGINE, ACCESS_ATMOSPHERICS)
+			dep_access = list(ACCESS_ENGINEERING, ACCESS_ATMOSPHERICS, ACCESS_CONSTRUCTION, ACCESS_TECH_STORAGE, ACCESS_TCOMMS)
 			destination = /area/security/checkpoint/engineering
 			spawn_point = locate(/obj/effect/landmark/start/depsec/engineering) in GLOB.department_security_spawns
 			accessory = /obj/item/clothing/accessory/armband/engine
 			minimal_lightup_areas |= GLOB.engineering_lightup_areas
 		if(SEC_DEPT_MEDICAL)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/med
-			dep_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CLONING)
+			dep_access = list(ACCESS_MEDICAL, ACCESS_SURGERY, ACCESS_PARAMEDIC, ACCESS_CHEMISTRY, ACCESS_CLONING, ACCESS_VIROLOGY ACCESS_PSYCHOLOGY, ACCESS_GENETICS)
 			destination = /area/security/checkpoint/medical
 			spawn_point = locate(/obj/effect/landmark/start/depsec/medical) in GLOB.department_security_spawns
 			accessory =  /obj/item/clothing/accessory/armband/medblue
 			minimal_lightup_areas |= GLOB.medical_lightup_areas
 		if(SEC_DEPT_SCIENCE)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/sci
-			dep_access = list(ACCESS_RESEARCH, ACCESS_TOX, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY)
+			dep_access = list(ACCESS_SCIENCE, ACCESS_TOXINS, ACCESS_EXPERIMENTATION, ACCESS_GENETICS, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY)
 			destination = /area/security/checkpoint/science
 			spawn_point = locate(/obj/effect/landmark/start/depsec/science) in GLOB.department_security_spawns
 			accessory = /obj/item/clothing/accessory/armband/science
 			minimal_lightup_areas |= GLOB.science_lightup_areas
 		if(SEC_DEPT_SERVICE)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/service
-			dep_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_LIBRARY, ACCESS_THEATRE, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE, ACCESS_MANUFACTURING )
+			dep_access = list(ACCESS_THEATRE, ACCESS_CHAPEL_OFFICE, ACCESS_LIBRARY, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_HYDROPONICS, ACCESS_JANITOR, ACCESS_CLERK)
 			destination = /area/security/checkpoint/service
 			spawn_point = locate(/obj/effect/landmark/start/depsec/service) in GLOB.department_security_spawns
 			accessory =  /obj/item/clothing/accessory/armband/service

@@ -158,7 +158,7 @@
 
 /obj/structure/closet/secure_closet/detective
 	name = "\improper detective's cabinet"
-	req_access = list(ACCESS_FORENSICS_LOCKERS)
+	req_access = list(ACCESS_DETECTIVE)
 	icon_state = "cabinet"
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
@@ -198,7 +198,7 @@
 	anchored = TRUE
 	name = "Secure Evidence Closet"
 	req_access_txt = "0"
-	req_one_access_txt = list(ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS)
+	req_one_access_txt = list(ACCESS_ARMORY, ACCESS_DETECTIVE)
 
 /obj/structure/closet/secure_closet/brig/PopulateContents()
 	..()
@@ -211,7 +211,7 @@
 
 /obj/structure/closet/secure_closet/courtroom
 	name = "courtroom locker"
-	req_access = list(ACCESS_COURT)
+	req_access = list(ACCESS_SEC_BASIC)
 
 /obj/structure/closet/secure_closet/courtroom/PopulateContents()
 	..()
@@ -231,7 +231,7 @@
 /obj/structure/closet/secure_closet/contraband/heads
 	anchored = TRUE
 	name = "Contraband Locker"
-	req_access = list(ACCESS_HEADS)
+	req_access = list(ACCESS_COMMAND)
 
 /obj/structure/closet/secure_closet/armory1
 	name = "armory armor locker"

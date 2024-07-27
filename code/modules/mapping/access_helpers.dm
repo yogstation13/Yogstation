@@ -738,7 +738,7 @@
 
 /obj/effect/mapping_helpers/airlock/access/all/ruins/security/get_access()
 	var/list/access_list = ..()
-	access_list += list(ACCESS_RUINS_SEC)
+	access_list += list(ACCESS_RUINS_SECURITY)
 	return access_list
 
 /obj/effect/mapping_helpers/airlock/access/all/ruins/engineering/get_access()

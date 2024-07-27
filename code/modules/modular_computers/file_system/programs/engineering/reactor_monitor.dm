@@ -7,7 +7,7 @@
 	program_icon_state = "smmon_0"
 	extended_desc = "This program connects to specially calibrated sensors to provide information on the status of nuclear reactors."
 	requires_ntnet = TRUE
-	transfer_access = ACCESS_ENGINE
+	transfer_access = ACCESS_ENGINEERING
 	program_icon = "radiation" // duh
 	//network_destination = "reactor monitoring system" dont need anymore?
 	size = 2

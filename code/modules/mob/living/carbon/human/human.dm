@@ -297,7 +297,7 @@
 						else //Implant and standard glasses check access
 							if(H.wear_id)
 								var/list/access = H.wear_id.GetAccess()
-								if(ACCESS_SEC_DOORS in access)
+								if(ACCESS_SEC_BASIC in access)
 									allowed_access = H.get_authentification_name()
 
 						if(!allowed_access)
@@ -462,7 +462,7 @@
 
 	//Check for weapons
 	if( (judgement_criteria & JUDGE_WEAPONCHECK) && weaponcheck)
-		if(!idcard || !(ACCESS_WEAPONS in idcard.access))
+		if(!idcard || !(ACCESS_WEAPONS_PERMIT in idcard.access))
 			for(var/obj/item/I in held_items) //if they're holding a gun
 				if(weaponcheck.Invoke(I))
 					threatcount += 4

@@ -122,7 +122,7 @@
 	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/power/apc/away //general away mission access
-	req_access = list(ACCESS_AWAY_GENERAL)
+	req_access = list(ACCESS_RUINS_GENERAL)
 
 /obj/machinery/power/apc/highcap/five_k
 	cell_type = /obj/item/stock_parts/cell/upgraded/plus

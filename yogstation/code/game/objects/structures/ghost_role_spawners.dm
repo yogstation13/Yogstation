@@ -208,7 +208,7 @@
 /obj/item/card/id/bus/crewmember/captain
 	name = "Captain"
 	desc = "An employee ID used to access areas around the ship."
-	access = list(ACCESS_CAPTAIN, ACCESS_SECURITY, ACCESS_RESEARCH)
+	access = list(ACCESS_CAPTAIN, ACCESS_SECURITY, ACCESS_SCIENCE)
 
 /obj/item/card/id/bus/crewmember/captain/New()
 	..()
@@ -217,7 +217,7 @@
 /obj/item/card/id/bus/crewmember/sec
 	name = "Security Officer"
 	desc = "An employee ID used to access areas around the ship."
-	access = list(ACCESS_SECURITY, ACCESS_RESEARCH)
+	access = list(ACCESS_SECURITY, ACCESS_SCIENCE)
 
 /obj/item/card/id/bus/crewmember/sec/New()
 	..()
@@ -226,7 +226,7 @@
 /obj/item/card/id/bus/crewmember
 	name = "Crew member"
 	desc = "An employee ID used to access areas around the ship."
-	access = list(ACCESS_RESEARCH)
+	access = list(ACCESS_SCIENCE)
 
 /obj/item/card/id/bus/crewmember/New()
 	..()

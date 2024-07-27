@@ -125,7 +125,7 @@
 
 /// General access for Science, allows for entry to the general hallways of Science, as well as the main lathe room.
 #define ACCESS_SCIENCE "science"
-/// Access to the specialized research experimentation rooms within Science.
+/// Access needed to research tech nodes at R&D consoles. May also be needed to access some scientific equipment.
 #define ACCESS_RESEARCH "research"
 /// Access to the Toxins Mixing Lab and Toxins Test Area equipment.
 #define ACCESS_TOXINS "toxins"
@@ -181,12 +181,13 @@
 
 #define ACCESS_RUINS_GENERAL "ruins_general"
 #define ACCESS_RUINS_COMMAND "ruins_command"
-#define ACCESS_RUINS_SEC "ruins_sec"
+#define ACCESS_RUINS_SECURITY "ruins_security"
 #define ACCESS_RUINS_ENGINEERING "ruins_engineering"
 #define ACCESS_RUINS_MEDICAL "ruins_medical"
 #define ACCESS_RUINS_SUPPLY "ruins_supply"
 #define ACCESS_RUINS_SCIENCE "ruins_science"
 #define ACCESS_RUINS_MAINTENANCE "ruins_maintenance"
+#define ACCESS_RUINS_MATERIALS "ruins_materials"
 #define ACCESS_RUINS_GENERIC1 "ruins_generic1"
 #define ACCESS_RUINS_GENERIC2 "ruins_generic2"
 #define ACCESS_RUINS_GENERIC3 "ruins_generic3"

@@ -12,7 +12,7 @@
 	desc = "A console used for high-priority announcements and emergencies."
 	icon_screen = "comm"
 	icon_keyboard = "tech_key"
-	req_access = list(ACCESS_HEADS)
+	req_access = list(ACCESS_COMMAND)
 	circuit = /obj/item/circuitboard/computer/communications
 	light_color = LIGHT_COLOR_BLUE
 
@@ -72,7 +72,7 @@
 /obj/machinery/computer/communications/proc/authenticated_as_non_silicon_head(mob/user)
 	if(issilicon(user))
 		return FALSE
-	return ACCESS_HEADS in authorize_access
+	return ACCESS_COMMAND in authorize_access
 
 /// Are we a silicon, OR logged in?
 /obj/machinery/computer/communications/proc/authenticated(mob/user)
@@ -154,7 +154,7 @@
 					to_chat(usr, span_warning("You need to swipe your ID!"))
 					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 					return
-				if (!(ACCESS_HEADS in id_card.access))
+				if (!(ACCESS_COMMAND in id_card.access))
 					to_chat(usr, span_warning("You are not authorized to do this!"))
 					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 					return

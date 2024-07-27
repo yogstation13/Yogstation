@@ -14,9 +14,9 @@
 
 	outfit = /datum/outfit/job/engineer
 
-	added_access = list(ACCESS_ATMOSPHERICS, ACCESS_RESEARCH, ACCESS_RND)
-	base_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE,
-									ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_TCOMSAT, ACCESS_MINERAL_STOREROOM)
+	added_access = list(ACCESS_ATMOSPHERICS, ACCESS_SCIENCE, ACCESS_RESEARCH)
+	base_access = list(ACCESS_ENGINEERING, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE,
+									ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_MATERIALS)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_ENG
 
@@ -61,19 +61,19 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	switch(department)
 		if(ENG_DEPT_SUPPLY)
 			ears = /obj/item/radio/headset/headset_eng/department/supply
-			dep_access = list(ACCESS_MAILSORTING, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_CARGO)
+			dep_access = list(ACCESS_CARGO, ACCESS_CARGO_BAY, ACCESS_MINING, ACCESS_MINING_STATION)
 			accessory = /obj/item/clothing/accessory/armband/cargo
 		if(ENG_DEPT_MEDICAL)
 			ears = /obj/item/radio/headset/headset_eng/department/med
-			dep_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CLONING, ACCESS_VIROLOGY, ACCESS_GENETICS)
+			dep_access = list(ACCESS_MEDICAL, ACCESS_SURGERY, ACCESS_MORGUE, ACCESS_CLONING, ACCESS_GENETICS)
 			accessory =  /obj/item/clothing/accessory/armband/medblue
 		if(ENG_DEPT_SCIENCE)
 			ears = /obj/item/radio/headset/headset_eng/department/sci
-			dep_access = list(ACCESS_RESEARCH, ACCESS_TOX, ACCESS_XENOBIOLOGY, ACCESS_TOX_STORAGE)
+			dep_access = list(ACCESS_SCIENCE, ACCESS_TOXINS, ACCESS_TOXINS_STORAGE, ACCESS_EXPERIMENTATION, ACCESS_XENOBIOLOGY)
 			accessory = /obj/item/clothing/accessory/armband/science
 		if(ENG_DEPT_SERVICE)
 			ears = /obj/item/radio/headset/headset_eng/department/service
-			dep_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_LIBRARY, ACCESS_THEATRE, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE, ACCESS_MANUFACTURING, ACCESS_SERVHALL)
+			dep_access = list(ACCESS_SERVICE, ACCESS_THEATRE, ACCESS_CHAPEL_OFFICE, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_HYDROPONICS, ACCESS_JANITOR, ACCESS_CLERK)
 			accessory =  /obj/item/clothing/accessory/armband/service
 
 	if(accessory)

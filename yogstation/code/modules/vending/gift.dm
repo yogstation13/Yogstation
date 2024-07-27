@@ -5,7 +5,7 @@
 	icon_state = "gifts"
 	icon_deny = "gifts-deny"
 	panel_type = "panel-gift"
-	req_access = list(ACCESS_MANUFACTURING)
+	req_access = list(ACCESS_CLERK)
 	product_slogans = "Toys For All!;Oh its a Gift!;A Gift for Your Loved ones!;Purchase more Gifts, Now!"
 	vend_reply = "Thank you for using Gift Vendor!"
 	products = list(/obj/item/toy/heartballoon = 3,

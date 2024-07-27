@@ -7,7 +7,7 @@
 	desc = "Used to view and edit personnel's security records."
 	icon_screen = "security"
 	icon_keyboard = "security_key"
-	req_one_access = list(ACCESS_SECURITY, ACCESS_FORENSICS_LOCKERS)
+	req_one_access = list(ACCESS_SECURITY, ACCESS_DETECTIVE)
 	circuit = /obj/item/circuitboard/computer/secure_data
 
 	var/screen = MAIN_SCREEN

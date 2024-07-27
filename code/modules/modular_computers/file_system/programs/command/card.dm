@@ -12,7 +12,7 @@
 	category = PROGRAM_CATEGORY_EQUIPMENT
 	program_icon_state = "id"
 	extended_desc = "Program for programming employee ID cards to access parts of the station."
-	transfer_access = ACCESS_HEADS
+	transfer_access = ACCESS_COMMAND
 	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_PDA
 	size = 8
 	tgui_id = "NtosCard"

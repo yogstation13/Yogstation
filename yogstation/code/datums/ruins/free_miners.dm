@@ -21,7 +21,7 @@
 	circuit = /obj/item/circuitboard/computer/white_ship/miner
 	shuttleId = "whiteship"
 	possible_destinations = "whiteship_away;whiteship_home;whiteship_z4;whiteship_mining0;whiteship_mining1;whiteship_mining2;whiteship_custom"
-	req_access = list(ACCESS_FREEMINER_CAPTAIN)
+	req_access = list(ACCESS_RUINS_COMMAND)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/whiteship/miner
 	name = "Free Miner Navigation Computer"
@@ -118,15 +118,15 @@
 
 /obj/item/card/id/freeminer
 	name = "Free Miner Crewman ID"
-	access = list(ACCESS_MINERAL_STOREROOM, ACCESS_FREEMINER, ACCESS_MECH_FREEMINER)
+	access = list(ACCESS_RUINS_MATERIALS,  ACCESS_MECH_RUINS)
 
 /obj/item/card/id/freeminer/engi
 	name = "Free Miner Engineer ID"
-	access = list(ACCESS_MINERAL_STOREROOM, ACCESS_FREEMINER, ACCESS_MECH_FREEMINER, ACCESS_FREEMINER_ENGINEER)
+	access = list(ACCESS_RUINS_MATERIALS, ACCESS_MECH_RUINS, ACCESS_RUINS_ENGINEERING)
 
 /obj/item/card/id/freeminer/captain
 	name = "Free Miner Ship Pilot ID"
-	access = list(ACCESS_MINERAL_STOREROOM, ACCESS_FREEMINER, ACCESS_MECH_FREEMINER, ACCESS_FREEMINER_ENGINEER, ACCESS_FREEMINER_CAPTAIN)
+	access = list(ACCESS_RUINS_MATERIALS, ACCESS_MECH_RUINS, ACCESS_RUINS_COMMAND)
 
 /obj/item/storage/box/ids/free_miners
 	name = "box of spare IDs"

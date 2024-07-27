@@ -523,7 +523,7 @@
 				M.check_access()
 				if (ACCESS_MAINT_TUNNELS in M.req_access)
 					M.req_access = list()
-					M.req_one_access = list(ACCESS_BRIG,ACCESS_ENGINE)
+					M.req_one_access = list(ACCESS_BRIG,ACCESS_ENGINEERING)
 			message_admins("[key_name_admin(mob_user)] made all maint doors engineering and brig access-only.")
 		if("infinite_sec")
 			if(!check_rights_for(rights, R_DEBUG))

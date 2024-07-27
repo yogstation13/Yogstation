@@ -32,7 +32,7 @@
 	var/can_claim = FALSE
 	var/obj/item/card/id/C = usr?.get_idcard()
 	// Security officers and wardens
-	if(istype(C) && (ACCESS_SECURITY in C.access) && (ACCESS_WEAPONS in C.access) && !(ACCESS_HOS in C.access))
+	if(istype(C) && (ACCESS_SECURITY in C.access) && (ACCESS_WEAPONS_PERMIT in C.access) && !(ACCESS_HOS in C.access))
 		allowed = TRUE
 	// Hasn't claimed a weapon yet
 	if(C?.registered_account && !C.registered_account.sec_weapon_claimed)
@@ -123,7 +123,7 @@
 	var/can_claim = FALSE
 	var/obj/item/card/id/C = user?.get_idcard()
 	// Security officers and wardens
-	if(istype(C) && (ACCESS_SECURITY in C.access) && (ACCESS_WEAPONS in C.access) && !(ACCESS_HOS in C.access))
+	if(istype(C) && (ACCESS_SECURITY in C.access) && (ACCESS_WEAPONS_PERMIT in C.access) && !(ACCESS_HOS in C.access))
 		allowed = TRUE
 	// Hasn't claimed a weapon yet
 	if(C?.registered_account && !C.registered_account.sec_weapon_claimed)

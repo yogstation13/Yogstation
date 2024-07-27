@@ -85,7 +85,7 @@ GLOBAL_LIST_EMPTY(PDABombCodes)
 						targetid = card_slot.GetID()
 					
 				if(targetid) // Adjust difficulty based on target's access
-					difficulty += BitCount(text2num(targetid.access_txt) & (ACCESS_MEDICAL | ACCESS_SECURITY | ACCESS_ENGINE | ACCESS_THEATRE | ACCESS_JANITOR | ACCESS_HEADS))
+					difficulty += BitCount(text2num(targetid.access_txt) & (ACCESS_MEDICAL | ACCESS_SECURITY | ACCESS_ENGINEERING | ACCESS_THEATRE | ACCESS_JANITOR | ACCESS_COMMAND))
 				
 				if(SEND_SIGNAL(target_computer, COMSIG_TABLET_CHECK_DETONATE) & COMPONENT_TABLET_NO_DETONATE || prob(difficulty * 15))
 					computer.visible_message(span_notice("Detonation failed. [bomb.uses] charges remaining."), null, null, 1)

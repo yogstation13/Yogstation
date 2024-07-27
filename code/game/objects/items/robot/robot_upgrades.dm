@@ -149,7 +149,7 @@
 
 /// Changes the access requirements to a cyborg's cover to need freeminer engineer access.
 /obj/item/borg/upgrade/panel_access_remover/freeminer/action(mob/living/silicon/robot/R, user = usr)
-	R.req_access = list(ACCESS_FREEMINER_ENGINEER)
+	R.req_access = list(ACCESS_RUINS_ENGINEERING)
 	new /obj/item/borg/upgrade/panel_access_remover/freeminer(R.drop_location()) // Makes this upgrade "re-usable" by creating a new one while using all the functionality of `one_use`.
 	return TRUE
 

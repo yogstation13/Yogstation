@@ -8,7 +8,7 @@
 	name = "nanite remote control"
 	desc = "A device that can remotely control active nanites through wireless signals."
 	w_class = WEIGHT_CLASS_SMALL
-	req_access = list(ACCESS_RESEARCH)
+	req_access = list(ACCESS_SCIENCE)
 	icon = 'icons/obj/device.dmi'
 	icon_state = "nanite_remote"
 	item_flags = NOBLUDGEON

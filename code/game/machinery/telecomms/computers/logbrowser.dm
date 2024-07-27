@@ -14,7 +14,7 @@
 
 	var/universal_translate = FALSE // set to TRUE if it can translate nonhuman speech
 
-	req_access = list(ACCESS_TCOMSAT)
+	req_access = list(ACCESS_TCOMMS)
 	circuit = /obj/item/circuitboard/computer/comm_server
 	tgui_id = "LogBrowser"
 

@@ -14,7 +14,7 @@
 	alt_titles = list("Chef", "Hash Slinger", "Sous-chef", "Culinary Artist", "Culinarian")
 
 	added_access = list(ACCESS_HYDROPONICS, ACCESS_BAR)
-	base_access = list(ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM, ACCESS_SERVHALL)
+	base_access = list(ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MATERIALS, ACCESS_SERVICE)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 

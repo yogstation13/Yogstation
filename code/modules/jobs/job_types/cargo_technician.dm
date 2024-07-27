@@ -15,7 +15,7 @@
 	alt_titles = list("Deliveryperson", "Mail Service", "Exports Handler", "Cargo Trainee", "Crate Pusher", "Courier")
 
 	added_access = list(ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION)
-	base_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM)
+	base_access = list(ACCESS_CARGO, ACCESS_MAINT_TUNNELS, ACCESS_CARGO_BAY, ACCESS_MATERIALS)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CAR
 

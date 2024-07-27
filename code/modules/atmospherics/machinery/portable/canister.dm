@@ -534,7 +534,7 @@
 		if("restricted")
 			restricted = !restricted
 			if(restricted)
-				req_access = list(ACCESS_ENGINE)
+				req_access = list(ACCESS_ENGINEERING)
 			else
 				req_access = list()
 				. = TRUE

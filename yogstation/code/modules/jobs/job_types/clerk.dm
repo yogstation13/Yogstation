@@ -8,7 +8,7 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	added_access = list()
-	base_access = list(ACCESS_MANUFACTURING, ACCESS_SERVHALL)
+	base_access = list(ACCESS_ SERVICE, ACCESS_CLERK)
 	alt_titles = list("Salesman", "Gift Shop Attendent", "Retail Worker")
 	outfit = /datum/outfit/job/clerk
 	paycheck = PAYCHECK_EASY
