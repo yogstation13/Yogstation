@@ -15,9 +15,9 @@
 /area/template_noop)
 "e" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Storage and Crew Quarters";
-	req_access_txt = "150"
+	name = "Storage and Crew Quarters"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/mineral/plastitanium/airless/broken,
 /area/template_noop)
 "f" = (
@@ -32,9 +32,9 @@
 /area/template_noop)
 "g" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Bridge";
-	req_access_txt = "150"
+	name = "Bridge"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/mineral/plastitanium/airless/broken,
 /area/template_noop)
 "h" = (
@@ -124,9 +124,8 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/template_noop)
 "M" = (
-/obj/machinery/door/airlock/external/glass{
-	req_access_txt = "150"
-	},
+/obj/machinery/door/airlock/external/glass,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/mineral/plastitanium/red/airless,
 /area/template_noop)
 "O" = (

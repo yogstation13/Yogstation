@@ -667,7 +667,7 @@
 "ajG" = (
 /obj/machinery/door/airlock/command{
 	name = "Council Chamber";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -6200,7 +6200,7 @@
 "bPr" = (
 /obj/machinery/door/airlock/command{
 	name = "Council Chamber";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -14672,7 +14672,7 @@
 	id = "council blast";
 	name = "Council Chamber Blast Door Control";
 	pixel_x = -28;
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
@@ -15955,7 +15955,7 @@
 	name = "Bridge Access Blast Door Control";
 	pixel_x = -24;
 	pixel_y = -24;
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -17664,7 +17664,7 @@
 	id = "evashutter";
 	name = "E.V.A. Storage Shutter Control";
 	pixel_y = -24;
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -18550,7 +18550,7 @@
 "fzp" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/firedoor/border_only{
@@ -18727,7 +18727,7 @@
 	},
 /obj/machinery/door/window/brigdoor{
 	name = "Command Desk";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
@@ -32085,7 +32085,7 @@
 	},
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge Access";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -33996,7 +33996,7 @@
 	id = "evashutter";
 	name = "E.V.A. Storage Shutter Control";
 	pixel_x = 30;
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/firedoor/border_only{
@@ -34469,7 +34469,7 @@
 	name = "Bridge Access Blast Door Control";
 	pixel_x = 24;
 	pixel_y = -24;
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 4
@@ -34721,7 +34721,7 @@
 	},
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge Access";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -35204,7 +35204,7 @@
 	name = "Transit Tube Lockdown";
 	pixel_x = -24;
 	pixel_y = -5;
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/button/door{
 	desc = "A remote control-switch for secure storage.";
@@ -38312,7 +38312,7 @@
 	dir = 4;
 	name = "RCD Storage";
 	pixel_x = 1;
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -38968,7 +38968,7 @@
 	},
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge Access";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -40223,7 +40223,7 @@
 "lLf" = (
 /obj/machinery/door/airlock/command{
 	name = "Corporate Showroom";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -40704,7 +40704,7 @@
 	},
 /obj/machinery/door/airlock/command{
 	name = "Corporate Showroom";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -41262,7 +41262,7 @@
 "lYQ" = (
 /obj/machinery/door/airlock/command{
 	name = "Command Desk";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -42853,7 +42853,7 @@
 	},
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -43599,7 +43599,7 @@
 	dir = 8;
 	name = "Magboot Storage";
 	pixel_x = -1;
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -43982,14 +43982,14 @@
 	name = "Bridge Access Blast Door Control";
 	pixel_x = -1;
 	pixel_y = -24;
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/button/door{
 	id = "council blast";
 	name = "Council Chamber Blast Door Control";
 	pixel_x = -1;
 	pixel_y = -34;
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/camera{
 	c_tag = "Bridge - Command Chair";
@@ -45822,7 +45822,7 @@
 	dir = 8;
 	name = "Jetpack Storage";
 	pixel_x = -1;
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/structure/window/reinforced,
 /obj/structure/rack,
@@ -46356,7 +46356,7 @@
 	name = "Teleporter Shutter Control";
 	pixel_x = 30;
 	pixel_y = 5;
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/firedoor/border_only{
@@ -46868,7 +46868,7 @@
 "nAM" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/firedoor/border_only{
@@ -61615,7 +61615,7 @@
 "rQJ" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Secure Network Access";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -70109,7 +70109,7 @@
 "uiY" = (
 /obj/machinery/door/airlock/command{
 	name = "Corporate Showroom";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -80232,7 +80232,7 @@
 	id = "corporate_privacy";
 	name = "corporate showroom shutters control";
 	pixel_x = 28;
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/item/poster/random_official,
 /obj/item/poster/random_official,
@@ -83579,7 +83579,7 @@
 /obj/machinery/door/window/westleft{
 	dir = 4;
 	name = "Bridge Deliveries";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";

@@ -7,8 +7,7 @@
 	dir = 2
 	},
 /obj/machinery/door/airlock/external{
-	id_tag = "syndicatecutter_bolt_port";
-	req_access_txt = "150"
+	id_tag = "syndicatecutter_bolt_port"
 	},
 /obj/docking_port/mobile{
 	callTime = 150;
@@ -22,6 +21,7 @@
 	preferred_direction = 4;
 	width = 22
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating,
 /area/shuttle/yogs/stealthcruiser)
 "ac" = (
@@ -69,9 +69,9 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/external{
-	id_tag = "syndicatecutter_bolt_port";
-	req_access_txt = "150"
+	id_tag = "syndicatecutter_bolt_port"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating,
 /area/shuttle/yogs/stealthcruiser)
 "aj" = (
@@ -143,7 +143,7 @@
 	normaldoorcontrol = 1;
 	pixel_x = -4;
 	pixel_y = 25;
-	req_access_txt = "150";
+	req_access_txt = "syndicate";
 	specialfunctions = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -349,7 +349,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm{
-	dir = 8;
+	dir = 4;
 	pixel_x = -26
 	},
 /turf/open/floor/plasteel/dark/side{
@@ -477,9 +477,8 @@
 "bn" = (
 /obj/structure/table,
 /obj/effect/turf_decal/stripes/line,
-/obj/machinery/airalarm{
-	pixel_y = 24;
-	req_access = 150
+/obj/machinery/airalarm/syndicate{
+	pixel_y = 24
 	},
 /obj/effect/landmark/start/infiltrator_objective,
 /turf/open/floor/mineral/plastitanium,
@@ -500,7 +499,7 @@
 	},
 /obj/machinery/door/window/southleft{
 	name = "Weapon Storage";
-	req_access_txt = "150"
+	req_access_txt = "syndicate"
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
@@ -521,7 +520,7 @@
 	base_state = "right";
 	icon_state = "right";
 	name = "Weapon Storage";
-	req_access_txt = "150"
+	req_access_txt = "syndicate"
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
@@ -542,11 +541,9 @@
 	name = "tactical chair"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/airalarm{
+/obj/machinery/airalarm/syndicate{
 	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -24;
-	req_access = list(150)
+	pixel_x = -24
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -697,7 +694,7 @@
 	normaldoorcontrol = 1;
 	pixel_x = -4;
 	pixel_y = -25;
-	req_access_txt = "150";
+	req_access_txt = "syndicate";
 	specialfunctions = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -760,9 +757,9 @@
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/external{
-	id_tag = "syndicatecutter_bolt_starboard";
-	req_access_txt = "150"
+	id_tag = "syndicatecutter_bolt_starboard"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating,
 /area/shuttle/yogs/stealthcruiser)
 "bS" = (
@@ -783,9 +780,9 @@
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/external{
-	id_tag = "syndicatecutter_bolt_starboard";
-	req_access_txt = "150"
+	id_tag = "syndicatecutter_bolt_starboard"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating,
 /area/shuttle/yogs/stealthcruiser)
 "bW" = (
@@ -842,8 +839,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/security/glass{
-	name = "Equipment Room";
-	req_access_txt = "150"
+	name = "Equipment Room"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -851,6 +847,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
 "qo" = (
@@ -865,11 +862,10 @@
 /area/shuttle/yogs/stealthcruiser)
 "rY" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/airalarm{
+/obj/machinery/airalarm/syndicate{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24;
-	req_access = list(150)
+	pixel_x = -24
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
@@ -878,8 +874,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/hatch{
-	name = "Cockpit";
-	req_access_txt = "150"
+	name = "Cockpit"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -887,6 +882,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
 "xE" = (
@@ -922,7 +918,8 @@
 	locked = 1;
 	pixel_x = 30;
 	pixel_y = -33;
-	req_access = 150
+	req_access = null;
+	req_access_txt = "syndicate"
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
@@ -985,14 +982,12 @@
 /area/shuttle/yogs/stealthcruiser)
 "JT" = (
 /obj/machinery/recharge_station/fullupgrade,
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Syndicate Cutter APC";
-	pixel_x = -25;
-	req_access = 150
-	},
 /obj/structure/cable{
 	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/syndicate{
+	name = "Syndicate Cutter APC";
+	pixel_x = -25
 	},
 /turf/open/floor/plating,
 /area/shuttle/yogs/stealthcruiser)
@@ -1001,8 +996,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/engineering{
-	name = "Engineering";
-	req_access_txt = "150"
+	name = "Engineering"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -1010,6 +1004,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating,
 /area/shuttle/yogs/stealthcruiser)
 "Pz" = (
@@ -1022,7 +1017,7 @@
 	name = "Bridge Blast Door Control";
 	pixel_x = 25;
 	pixel_y = 8;
-	req_access_txt = "150"
+	req_access_txt = "syndicate"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
@@ -1032,21 +1027,17 @@
 "SN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/airalarm{
-	dir = 8;
-	icon_state = "alarm0";
+/obj/machinery/airalarm/syndicate{
 	pixel_x = 24;
-	req_access = 150
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/yogs/stealthcruiser)
 "Vb" = (
 /obj/effect/turf_decal/delivery,
-/obj/machinery/airalarm{
+/obj/machinery/airalarm/syndicate{
 	dir = 1;
-	pixel_y = -24;
-	req_access = null;
-	req_access_txt = "150"
+	pixel_y = -24
 	},
 /obj/machinery/sleeper/syndie/fullupgrade{
 	dir = 1

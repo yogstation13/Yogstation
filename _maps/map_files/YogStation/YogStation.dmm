@@ -4131,7 +4131,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/command{
 	name = "Command Tool Storage";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -7681,7 +7681,7 @@
 /obj/machinery/door/window/eastright{
 	dir = 1;
 	name = "Bridge Delivery";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/effect/turf_decal/delivery,
 /obj/structure/cable{
@@ -11789,7 +11789,7 @@
 "bPg" = (
 /obj/machinery/door/airlock/command{
 	name = "Command Tool Storage";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -11925,7 +11925,7 @@
 	},
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -15101,7 +15101,7 @@
 	},
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -17169,7 +17169,7 @@
 	},
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -24161,7 +24161,7 @@
 	name = "Bridge Blast Door Control";
 	pixel_x = 28;
 	pixel_y = 8;
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/button/door{
 	id = "tcomms_bridge";
@@ -33218,7 +33218,7 @@
 	},
 /obj/machinery/door/airlock/command{
 	name = "Command Tool Storage";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -38358,7 +38358,7 @@
 "kNX" = (
 /obj/machinery/door/airlock/command{
 	name = "Conference Room";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -43486,7 +43486,7 @@
 	},
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4

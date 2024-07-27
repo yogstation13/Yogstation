@@ -141,14 +141,13 @@
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "uS" = (
-/obj/machinery/door/airlock/gold/glass{
-	req_access_txt = "19"
-	},
+/obj/machinery/door/airlock/gold/glass,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/wood,
+/obj/effect/mapping_helpers/airlock/access/all/command/general,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "vq" = (

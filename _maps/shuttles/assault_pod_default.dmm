@@ -2,10 +2,10 @@
 "a" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Assault Pod";
-	opacity = 1;
-	req_access_txt = "150"
+	opacity = 1
 	},
 /obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating,
 /area/shuttle/assault_pod)
 "b" = (
@@ -25,18 +25,17 @@
 /obj/machinery/door/airlock/centcom{
 	aiControlDisabled = 1;
 	name = "Assault Pod";
-	opacity = 1;
-	req_access_txt = "150"
+	opacity = 1
 	},
 /obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating,
 /area/shuttle/assault_pod)
 "f" = (
 /obj/machinery/door/airlock/centcom{
 	aiControlDisabled = 1;
 	name = "Assault Pod";
-	opacity = 1;
-	req_access_txt = "150"
+	opacity = 1
 	},
 /obj/docking_port/mobile/assault_pod{
 	dwidth = 3;
@@ -45,6 +44,7 @@
 	preferred_direction = 4
 	},
 /obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating,
 /area/shuttle/assault_pod)
 "h" = (

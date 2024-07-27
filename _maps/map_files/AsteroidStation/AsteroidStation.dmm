@@ -9370,7 +9370,7 @@
 "ciE" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -20753,7 +20753,7 @@
 "fJm" = (
 /obj/machinery/door/airlock/command{
 	name = "Conference Room";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -26547,7 +26547,7 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge Access";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 2
@@ -30945,7 +30945,7 @@
 "iSZ" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -47083,7 +47083,7 @@
 "nRQ" = (
 /obj/machinery/door/airlock/command{
 	name = "Bridge Access";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -47230,7 +47230,7 @@
 /obj/machinery/door/window/eastright{
 	dir = 1;
 	name = "Bridge Delivery";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/central)
@@ -47263,7 +47263,7 @@
 	name = "Bridge Blast Door Control";
 	pixel_x = 28;
 	pixel_y = 8;
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -48295,7 +48295,7 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge Access";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 2
@@ -51881,7 +51881,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/northright{
 	name = "Emergency Storage";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/item/flashlight,
 /obj/item/storage/toolbox/emergency{
@@ -52000,7 +52000,7 @@
 "prI" = (
 /obj/machinery/door/airlock/command{
 	name = "Command Tool Storage";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -59712,7 +59712,7 @@
 "rKI" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -61953,7 +61953,7 @@
 /obj/machinery/suit_storage_unit/command,
 /obj/machinery/door/window/northright{
 	name = "Emergency Storage";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -62438,7 +62438,7 @@
 	},
 /obj/machinery/door/window/northleft{
 	name = "Emergency Storage";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -73104,7 +73104,7 @@
 /obj/machinery/suit_storage_unit/command,
 /obj/machinery/door/window/northleft{
 	name = "Emergency Storage";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/structure/window/reinforced{
 	dir = 4

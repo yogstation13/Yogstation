@@ -154,8 +154,7 @@
 /area/chapel/main)
 "gJ" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Chapel Maintenance";
-	req_access_txt = "12"
+	name = "Chapel Maintenance"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -166,6 +165,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/template_noop)
 "gL" = (
@@ -238,7 +238,7 @@
 /obj/machinery/door/window{
 	dir = 8;
 	name = "Mass Driver";
-	req_access_txt = "22"
+	req_access_txt = "chapel_office"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -276,9 +276,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance{
-	name = "Crematorium Maintenance";
-	req_access_txt = "27"
+	name = "Crematorium Maintenance"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/crematorium,
 /turf/open/floor/plating,
 /area/template_noop)
 "mq" = (
@@ -508,13 +508,13 @@
 /area/chapel/main)
 "Dj" = (
 /obj/machinery/door/morgue{
-	name = "Confession Booth (Chaplain)";
-	req_access_txt = "22"
+	name = "Confession Booth (Chaplain)"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/chapel_office,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "Dq" = (
@@ -717,9 +717,9 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/public/glass{
-	name = "Chapel Office";
-	req_access_txt = "22"
+	name = "Chapel Office"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/chapel_office,
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
 "Kc" = (
@@ -738,7 +738,7 @@
 /obj/machinery/door/window/eastleft{
 	dir = 8;
 	name = "Coffin Storage";
-	req_access_txt = "22"
+	req_access_txt = "chapel_office"
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
@@ -869,7 +869,7 @@
 /obj/structure/closet/crate/coffin,
 /obj/machinery/door/window/eastleft{
 	name = "Coffin Storage";
-	req_access_txt = "22"
+	req_access_txt = "chapel_office"
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
@@ -1075,8 +1075,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock{
-	name = "Crematorium";
-	req_access_txt = "27"
+	name = "Crematorium"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1087,6 +1086,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/crematorium,
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
 "Zw" = (

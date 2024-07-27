@@ -77,7 +77,7 @@
 	access_list += ACCESS_SECURITY
 	return access_list
 
-/obj/effect/mapping_helpers/airlock/access/any/security/entrance/get_access()
+/obj/effect/mapping_helpers/airlock/access/any/security/basic/get_access()
 	var/list/access_list = ..()
 	access_list += ACCESS_SEC_BASIC
 	return access_list
@@ -92,12 +92,12 @@
 	access_list += ACCESS_ARMORY
 	return access_list
 
-/obj/effect/mapping_helpers/airlock/access/any/security/court/get_access()
+/obj/effect/mapping_helpers/airlock/access/any/security/detective/get_access()
 	var/list/access_list = ..()
 	access_list += ACCESS_DETECTIVE
 	return access_list
 
-/obj/effect/mapping_helpers/airlock/access/any/security/court/get_access()
+/obj/effect/mapping_helpers/airlock/access/any/security/brig_phys/get_access()
 	var/list/access_list = ..()
 	access_list += ACCESS_BRIG_PHYS
 	return access_list
@@ -365,6 +365,11 @@
 	access_list += ACCESS_LAWYER
 	return access_list
 
+/obj/effect/mapping_helpers/airlock/access/any/service/clerk/get_access()
+	var/list/access_list = ..()
+	access_list += ACCESS_CLERK
+	return access_list
+
 /obj/effect/mapping_helpers/airlock/access/any/service/hop/get_access()
 	var/list/access_list = ..()
 	access_list += ACCESS_HOP
@@ -425,7 +430,7 @@
 	access_list += ACCESS_SECURITY
 	return access_list
 
-/obj/effect/mapping_helpers/airlock/access/all/security/entrance/get_access()
+/obj/effect/mapping_helpers/airlock/access/all/security/basic/get_access()
 	var/list/access_list = ..()
 	access_list += ACCESS_SEC_BASIC
 	return access_list
@@ -440,12 +445,12 @@
 	access_list += ACCESS_ARMORY
 	return access_list
 
-/obj/effect/mapping_helpers/airlock/access/all/security/court/get_access()
+/obj/effect/mapping_helpers/airlock/access/all/security/detective/get_access()
 	var/list/access_list = ..()
 	access_list += ACCESS_DETECTIVE
 	return access_list
 
-/obj/effect/mapping_helpers/airlock/access/all/security/court/get_access()
+/obj/effect/mapping_helpers/airlock/access/all/security/brig_phys/get_access()
 	var/list/access_list = ..()
 	access_list += ACCESS_BRIG_PHYS
 	return access_list
@@ -712,6 +717,11 @@
 /obj/effect/mapping_helpers/airlock/access/all/service/lawyer/get_access()
 	var/list/access_list = ..()
 	access_list += ACCESS_LAWYER
+	return access_list
+
+/obj/effect/mapping_helpers/airlock/access/all/service/clerk/get_access()
+	var/list/access_list = ..()
+	access_list += ACCESS_CLERK
 	return access_list
 
 /obj/effect/mapping_helpers/airlock/access/all/service/hop/get_access()

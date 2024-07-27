@@ -112,7 +112,7 @@
 "add" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -7341,7 +7341,7 @@
 	id = "evashutter";
 	name = "E.V.A. Storage Shutter Control";
 	pixel_x = 24;
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
@@ -10367,7 +10367,7 @@
 	},
 /obj/machinery/door/airlock/command{
 	name = "Command Tool Storage";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
 	dirx = 2;
@@ -14507,7 +14507,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/door/airlock/command{
 	name = "Conference Room";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -15183,7 +15183,7 @@
 /obj/machinery/button/door{
 	id = "teleshutter";
 	name = "Teleporter Shutter Control";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /turf/closed/wall/r_wall,
 /area/teleporter)
@@ -17487,7 +17487,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/command{
 	name = "Command Tool Storage";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
 	dirx = -2;
@@ -21341,7 +21341,7 @@
 	name = "Bridge Blast Door Control";
 	pixel_x = -7;
 	pixel_y = -34;
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/structure/chair/comfy/black{
 	dir = 4;
@@ -31887,7 +31887,7 @@
 	name = "E.V.A. Storage Shutter Control";
 	pixel_x = -24;
 	pixel_y = 8;
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/light_switch{
 	pixel_x = -24;
@@ -33020,7 +33020,7 @@
 "pYt" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -40915,7 +40915,7 @@
 "tUy" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Conference Room Maintenance";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{

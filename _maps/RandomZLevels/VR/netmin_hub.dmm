@@ -5111,9 +5111,9 @@
 /area/awaymission/vr/abandoned_mine)
 "PN" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Armory";
-	req_access_txt = "200"
+	name = "Armory"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
 "PO" = (

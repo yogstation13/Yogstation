@@ -63,6 +63,12 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
+"cg" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "cY" = (
 /obj/structure/window{
 	dir = 8
@@ -96,6 +102,9 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
@@ -403,12 +412,12 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/mining/glass{
-	name = "Cargo Office";
-	req_access_txt = "50"
+	name = "Cargo Office"
 	},
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "pc" = (
@@ -419,6 +428,9 @@
 /area/shuttle/escape)
 "pe" = (
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/light/colour_cycle/dancefloor_a,
 /area/shuttle/escape)
 "ph" = (
@@ -466,6 +478,9 @@
 /area/shuttle/escape)
 "qU" = (
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/shuttle/escape)
 "qW" = (
@@ -476,8 +491,7 @@
 /area/shuttle/escape)
 "ri" = (
 /obj/machinery/door/airlock/mining/glass{
-	name = "Cargo Office";
-	req_access_txt = "50"
+	name = "Cargo Office"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -488,6 +502,7 @@
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "rN" = (
@@ -496,7 +511,7 @@
 	name = "Table Privacy Shutters";
 	pixel_x = -28;
 	pixel_y = -5;
-	req_access_txt = "40"
+	req_access_txt = "cmo"
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
@@ -561,6 +576,9 @@
 	id = "4861tableshutters";
 	name = "Privacy Shutters"
 	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "tA" = (
@@ -586,6 +604,9 @@
 "uf" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
 	},
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/shuttle/escape)
@@ -651,7 +672,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/westleft{
 	name = "Cargo Desk";
-	req_access_txt = "31"
+	req_access_txt = "cargo"
 	},
 /obj/item/deskbell/preset/supply{
 	pixel_x = 8;
@@ -668,7 +689,7 @@
 "wB" = (
 /obj/machinery/door/window/westleft{
 	name = "Bridge";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -730,6 +751,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/turf_decal/ramp_corner,
 /turf/open/floor/light/colour_cycle/dancefloor_a,
 /area/shuttle/escape)
 "zB" = (
@@ -785,7 +807,7 @@
 	id = "48641ragecageexit";
 	name = "Rage Cage Exit Doors";
 	pixel_x = 24;
-	req_access_txt = "40"
+	req_access_txt = "cmo"
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -980,6 +1002,12 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/light/colour_cycle/dancefloor_a,
 /area/shuttle/escape)
 "HT" = (
@@ -1022,7 +1050,7 @@
 /obj/machinery/door/window/westleft{
 	dir = 4;
 	name = "Bridge";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -1215,6 +1243,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel/stairs,
 /area/shuttle/escape)
 "Vm" = (
@@ -1523,7 +1552,7 @@ Xo
 (9,1,1) = {"
 gO
 eo
-dn
+cg
 Vl
 bV
 yS

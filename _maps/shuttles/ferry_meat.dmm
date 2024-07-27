@@ -13,8 +13,7 @@
 /area/shuttle/transport)
 "d" = (
 /obj/machinery/door/airlock/freezer{
-	name = "Meat Tradeship Backroom";
-	req_access_txt = "28"
+	name = "Meat Tradeship Backroom"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -22,6 +21,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/kitchen,
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/transport)
 "e" = (

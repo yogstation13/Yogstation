@@ -267,8 +267,7 @@
 /area/clerk)
 "R" = (
 /obj/machinery/door/airlock{
-	name = "Gambling Hall";
-	req_access_txt = "36"
+	name = "Gambling Hall"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -279,6 +278,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/clerk,
 /turf/open/floor/wood,
 /area/clerk)
 "S" = (
@@ -294,11 +294,11 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock{
-	name = "Gambling Hall";
-	req_access_txt = "36"
+	name = "Gambling Hall"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/mapping_helpers/airlock/access/all/service/clerk,
 /turf/open/floor/wood,
 /area/clerk)
 "U" = (

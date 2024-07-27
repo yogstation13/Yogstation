@@ -1413,7 +1413,7 @@
 "eB" = (
 /obj/machinery/door/window/eastleft{
 	name = "Heads of Staff";
-	req_access_txt = "19"
+	req_access_txt = "command"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)

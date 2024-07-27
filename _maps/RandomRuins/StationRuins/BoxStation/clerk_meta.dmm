@@ -198,8 +198,7 @@
 /area/clerk)
 "A" = (
 /obj/machinery/door/airlock{
-	name = "Gift Shop";
-	req_access_txt = "36"
+	name = "Gift Shop"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -217,6 +216,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/clerk,
 /turf/open/floor/plasteel/dark,
 /area/clerk)
 "B" = (
@@ -313,8 +313,7 @@
 /area/clerk)
 "O" = (
 /obj/machinery/door/airlock{
-	name = "Gift Shop";
-	req_access_txt = "36"
+	name = "Gift Shop"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -328,6 +327,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/clerk,
 /turf/open/floor/wood,
 /area/clerk)
 "P" = (
@@ -368,14 +368,14 @@
 	},
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
 /obj/machinery/door/airlock{
-	name = "Gift Shop";
-	req_access_txt = "36"
+	name = "Gift Shop"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/mapping_helpers/airlock/access/all/service/clerk,
 /turf/open/floor/plasteel/dark,
 /area/clerk)
 "T" = (

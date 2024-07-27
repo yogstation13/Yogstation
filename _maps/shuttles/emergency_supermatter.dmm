@@ -200,13 +200,14 @@
 /area/shuttle/escape)
 "aL" = (
 /obj/machinery/door/airlock/external{
-	name = "Emergency Launch Catwalk";
-	req_access_txt = "10;13"
+	name = "Emergency Launch Catwalk"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "aM" = (
