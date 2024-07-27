@@ -105,14 +105,50 @@
 	if(!mapload)
 		log_mapping("[src] spawned outside of mapload!")
 		return
-
-/obj/effect/mapping_helpers/airlock/LateInitialize()
-	. = ..()
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 	if(!airlock)
 		log_mapping("[src] failed to find an airlock at [AREACOORD(src)]")
 	else
 		payload(airlock)
+	qdel(src)
+
+/obj/effect/mapping_helpers/airlock/LateInitialize()
+	. = ..()
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+	if(!airlock)
+		qdel(src)
+		return
+	if(cyclelinkedx || cyclelinkedy)	//yogs start
+		cyclelinkairlock_target()
+	else
+		if(cyclelinkeddir)
+			cyclelinkairlock()		//yogs end
+	if(airlock.closeOtherId)
+		airlock.update_other_id()
+	if(airlock.abandoned)
+		var/outcome = rand(1,100)
+		switch(outcome)
+			if(1 to 9)
+				var/turf/here = get_turf(src)
+				for(var/obj/machinery/door/firedoor/FD in here)
+					qdel(FD)
+				for(var/turf/closed/T in range(2, src))
+					here.place_on_top(T.type)
+					qdel(src)
+					return
+				here.place_on_top(/turf/closed/wall)
+				qdel(src)
+				return
+			if(10 to 11)
+				airlock.lights = FALSE
+				airlock.locked = TRUE
+			if(12 to 15)
+				airlock.locked = TRUE
+			if(16 to 23)
+				airlock.welded = TRUE
+			if(24 to 30)
+				airlock.panel_open = TRUE
+	update_appearance()
 	qdel(src)
 
 /obj/effect/mapping_helpers/airlock/proc/payload(obj/machinery/door/airlock/payload)
@@ -155,7 +191,6 @@
 	else
 		airlock.locked = TRUE
 
-
 /obj/effect/mapping_helpers/airlock/unres
 	name = "airlock unresctricted side helper"
 	icon_state = "airlock_unres_helper"
@@ -173,6 +208,15 @@
 	else
 		airlock.abandoned = TRUE
 
+/obj/effect/mapping_helpers/airlock/inaccessible
+	name = "airlock inaccessible helper"
+	icon_state = "airlock_inaccessible"
+
+/obj/effect/mapping_helpers/airlock/inaccessible/payload(obj/machinery/door/airlock/airlock)
+	if(airlock.req_one_access != null)
+		log_mapping("[src] at [AREACOORD(src)] tried to set req_access, but req__one_access was already set!")
+	else
+		airlock.req_access += list(ACCESS_INACCESSIBLE)
 
 //needs to do its thing before spawn_rivers() is called
 INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)

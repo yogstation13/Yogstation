@@ -19,10 +19,10 @@
 
 	switch(signal.data["command"])
 		if("open")
-			open(1)
+			open(TRUE)
 
 		if("close")
-			close(1)
+			close(TRUE)
 
 		if("unlock")
 			locked = FALSE
@@ -37,14 +37,14 @@
 			update_appearance()
 
 			sleep(0.2 SECONDS)
-			open(1)
+			open(TRUE)
 
 			locked = TRUE
 			update_appearance()
 
 		if("secure_close")
 			locked = FALSE
-			close(1)
+			close(TRUE)
 
 			locked = TRUE
 			sleep(0.2 SECONDS)

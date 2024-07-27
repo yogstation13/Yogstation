@@ -49,9 +49,9 @@
 #define ACCESS_BRIG "brig"
 /// Access to the armory, security incinerator (when present), and the execution/re-education chamber.
 #define ACCESS_ARMORY "armory"
-/// Access for the detective to get into their office, the medical data console, and some other detective-related stuff.
+/// Access for the Detective to get into their office, the medical data console, and some other detective-related stuff.
 #define ACCESS_DETECTIVE "detective"
-/// Access granted to the brig physician, used for the brig medbay doors.
+/// Access for the Brig Physician and their locker, also used for the Brig Infirmary doors.
 #define ACCESS_BRIG_PHYS "brig_phys"
 /// The "Weapons Permit" Access, or the one that lets you walk past secbots without them charging at you as you hold your weaponry.
 #define ACCESS_WEAPONS_PERMIT "weapons_permit"

@@ -198,38 +198,6 @@
 	if(cut_wires_on_break)
 		wires.cut_all()
 
-/obj/machinery/door/airlock/LateInitialize()
-	. = ..()
-	if(cyclelinkedx || cyclelinkedy)	//yogs start
-		cyclelinkairlock_target()
-	else
-		if(cyclelinkeddir)
-			cyclelinkairlock()		//yogs end
-	if(abandoned)
-		var/outcome = rand(1,100)
-		switch(outcome)
-			if(1 to 9)
-				var/turf/here = get_turf(src)
-				for(var/obj/machinery/door/firedoor/FD in here)
-					qdel(FD)
-				for(var/turf/closed/T in range(2, src))
-					here.place_on_top(T.type)
-					qdel(src)
-					return
-				here.place_on_top(/turf/closed/wall)
-				qdel(src)
-				return
-			if(10 to 11)
-				lights = FALSE
-				locked = TRUE
-			if(12 to 15)
-				locked = TRUE
-			if(16 to 23)
-				welded = TRUE
-			if(24 to 30)
-				panel_open = TRUE
-	update_appearance(UPDATE_ICON)
-
 /obj/machinery/door/airlock/proc/rebuild_parts()
 	if(part_overlays)
 		vis_contents -= part_overlays
