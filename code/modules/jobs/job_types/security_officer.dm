@@ -84,7 +84,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 			minimal_lightup_areas |= GLOB.engineering_lightup_areas
 		if(SEC_DEPT_MEDICAL)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/med
-			dep_access = list(ACCESS_MEDICAL, ACCESS_SURGERY, ACCESS_PARAMEDIC, ACCESS_CHEMISTRY, ACCESS_CLONING, ACCESS_VIROLOGY ACCESS_PSYCHOLOGY, ACCESS_GENETICS)
+			dep_access = list(ACCESS_MEDICAL, ACCESS_SURGERY, ACCESS_PARAMEDIC, ACCESS_CHEMISTRY, ACCESS_CLONING, ACCESS_VIROLOGY, ACCESS_PSYCHOLOGY, ACCESS_GENETICS)
 			destination = /area/security/checkpoint/medical
 			spawn_point = locate(/obj/effect/landmark/start/depsec/medical) in GLOB.department_security_spawns
 			accessory =  /obj/item/clothing/accessory/armband/medblue
