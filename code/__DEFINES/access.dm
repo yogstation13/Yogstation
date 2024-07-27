@@ -27,8 +27,6 @@
 #define ACCESS_RC_ANNOUNCE "rc_announce"
 /// Access used for events (Red Alert, BSA, Emergency Maintenance) which require at least two people to swipe at the same time to authorize it
 #define ACCESS_KEYCARD_AUTH "keycard_auth"
-/// Access used to run the NTNet Tablet Application WireCarp, which allows you to diagnose and view NTNet logging.
-#define ACCESS_NETWORK "network"
 /// Access used to override "personal control" on all personal lockers, meaning you are able to open any of those lockers/wardrobes.
 #define ACCESS_PERSONAL_LOCKERS "personal_lockers"
 /// Access used for Access-Changing Programs, this one will unlock all options that can be ever given via that program.
@@ -77,6 +75,8 @@
 #define ACCESS_SECURE_TECH "secure_tech"
 /// Access to the Telecomms Server Room, traffic control console, machinery, and tablets.
 #define ACCESS_TCOMMS "tcomms"
+/// Access needed to view message logs recorded on the message monitor console in Telecomms. 
+#define ACCESS_TCOMMS_ADMIN "tcomms_admin"
 /// Access to the Auxiliary Base Room, as well as the ability over launching it.
 #define ACCESS_AUX_BASE "aux_base"
 /// Access for the Chief Engineer's office, Secure Tech Storage, as well as some other CE-related things.
@@ -137,6 +137,8 @@
 #define ACCESS_GENETICS "genetics"
 /// Access to the Robotics division of Science, as well as opening up silicon cyborgs and other simple robots.
 #define ACCESS_ROBOTICS "robotics"
+/// Access to the Robotics division of Science, as well as opening up silicon cyborgs and other simple robots.
+#define ACCESS_ROBO_CONTROL "robo_control"
 /// Access to the Xenobiology division of Science.
 #define ACCESS_XENOBIOLOGY "xenobiology"
 /// Access to the research Server Room, containing the important R&D research servers and AI networking machines.

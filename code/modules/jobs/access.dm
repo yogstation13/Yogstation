@@ -180,18 +180,80 @@
 	switch(code)
 		if(0)
 			return get_all_accesses()
-		if(1) //station general
-			return list(ACCESS_KITCHEN,ACCESS_BAR, ACCESS_HYDROPONICS, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_LIBRARY, ACCESS_THEATRE, ACCESS_LAWYER, ACCESS_MANUFACTURING, ACCESS_SERVHALL)
-		if(2) //security
-			return list(ACCESS_SEC_DOORS, ACCESS_WEAPONS, ACCESS_SECURITY, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS, ACCESS_COURT, ACCESS_MECH_SECURITY, ACCESS_HOS)
-		if(3) //medbay
-			return list(ACCESS_MEDICAL, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_MORGUE, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_SURGERY, ACCESS_MECH_MEDICAL, ACCESS_CMO, ACCESS_PARAMEDIC, ACCESS_BRIG_PHYS, ACCESS_PSYCH) // yogs - Yog jobs
-		if(4) //research
-			return list(ACCESS_RESEARCH, ACCESS_RND, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_GENETICS, ACCESS_ROBO_CONTROL, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, ACCESS_MECH_SCIENCE, ACCESS_MINISAT, ACCESS_RD, ACCESS_NETWORK, ACCESS_AI_UPLOAD)
-		if(5) //engineering and maintenance
-			return list(ACCESS_CONSTRUCTION, ACCESS_MAINT_TUNNELS, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_TECH_STORAGE, ACCESS_SECURE_TECH_STORAGE, ACCESS_ATMOSPHERICS, ACCESS_MECH_ENGINE, ACCESS_TCOMSAT, ACCESS_MINISAT, ACCESS_CE, ACCESS_TCOM_ADMIN, ACCESS_RC_ANNOUNCE) // yogs - Yog jobs
-		if(6) //supply
-			return list(ACCESS_MAILSORTING, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MECH_MINING, ACCESS_MINERAL_STOREROOM, ACCESS_CARGO, ACCESS_QM, ACCESS_VAULT)
+		if(1) // Service
+			return list(ACCESS_SERVICE,
+						ACCESS_THEATRE,
+						ACCESS_CHAPEL_OFFICE,
+						ACCESS_CREMATORIUM,
+						ACCESS_LIBRARY,
+						ACCESS_BAR,
+						ACCESS_KITCHEN,
+						ACCESS_HYDROPONICS,
+						ACCESS_JANITOR,
+						ACCESS_LAWYER
+						ACCESS_CLERK,
+						ACCESS_HOP)
+		if(2) // Security
+			return list(ACCESS_SECURITY,
+						ACCESS_SEC_BASIC,
+						ACCESS_BRIG,
+						ACCESS_ARMORY,
+						ACCESS_DETECTIVE,
+						ACCESS_BRIG_PHYS,
+						ACCESS_WEAPONS_PERMIT,
+						ACCESS_LAWYER,
+						ACCESS_MECH_SECURITY,
+						ACCESS_HOS)
+		if(3) // Medical
+			return list(ACCESS_MEDICAL,
+						ACCESS_SURGERY,
+						ACCESS_PARAMEDIC,
+						ACCESS_MORGUE,
+						ACCESS_CHEMISTRY,
+						ACCESS_VIROLOGY,
+						ACCESS_PSYCHOLOGY,
+						ACCESS_GENETICS,
+						ACCESS_BRIG_PHYS,
+						ACCESS_MECH_MEDICAL,
+						ACCESS_CMO)
+		if(4) // Science
+			return list(ACCESS_SCIENCE,
+						ACCESS_RESEARCH,
+						ACCESS_TOXINS,
+						ACCESS_TOXINS_STORAGE,
+						ACCESS_EXPERIMENTATION,
+						ACCESS_GENETICS,
+						ACCESS_ROBOTICS,
+						ACCESS_ROBO_CONTROL,
+						ACCESS_XENOBIOLOGY,
+						ACCESS_RND_SERVERS,
+						ACCESS_AI_UPLOAD,
+						ACCESS_AI_SAT,
+						ACCESS_MECH_SCIENCE,
+						ACCESS_RD)
+		if(5) // Engineering
+			return list(ACCESS_ENGINEERING,
+						ACCESS_ATMOSPHERICS,
+						ACCESS_MAINT_TUNNELS,
+						ACCESS_EXTERNAL_AIRLOCKS,
+						ACCESS_ENGINE_EQUIP,
+						ACCESS_CONSTRUCTION,
+						ACCESS_TECH_STORAGE,
+						ACCESS_SECURE_TECH,
+						ACCESS_TCOMMS,
+						ACCESS_TCOMMS_ADMIN,
+						ACCESS_AUX_BASE,
+						ACCESS_MECH_ENGINE,
+						ACCESS_CE)
+		if(6) // Supply
+			return list(ACCESS_CARGO,
+						ACCESS_CARGO_BAY,
+						ACCESS_MINING,
+						ACCESS_MINING_STATION,
+						ACCESS_MATERIALS,
+						ACCESS_VAULT,
+						ACCESS_MECH_MINING,
+						ACCESS_QM)
 		if(7) // Command
 			return list(ACCESS_COMMAND,
 						ACCESS_AI_UPLOAD,
@@ -207,27 +269,6 @@
 						ACCESS_PERSONAL_LOCKERS,
 						ACCESS_CHANGE_IDS,
 						ACCESS_CAPTAIN)
-
-
-/// Gets the name from region ID
-/proc/get_region_accesses_name(code)
-	switch(code)
-		if(0)
-			return "All"
-		if(1) //station general
-			return "General"
-		if(2) //security
-			return "Security"
-		if(3) //medbay
-			return "Medbay"
-		if(4) //research
-			return "Research"
-		if(5) //engineering and maintenance
-			return "Engineering"
-		if(6) //supply
-			return "Supply"
-		if(7) //command
-			return "Command"
 
 /// Gets teh description for an access
 /proc/get_access_desc(A)
@@ -248,8 +289,6 @@
 			return "RC Announcements"
 		if(ACCESS_KEYCARD_AUTH)
 			return "Keycode Auth."
-		if(ACCESS_NETWORK)
-			return "Network Access"
 		if(ACCESS_PERSONAL_LOCKERS)
 			return "Personal Lockers"
 		if(ACCESS_CHANGE_IDS)
@@ -290,6 +329,8 @@
 			return "Secure Tech Storage"
 		if(ACCESS_TCOMMS)
 			return "Telecommunications"
+		if(ACCESS_TCOMS_ADMIN)
+			return "Telecommunication Logs Auth."
 		if(ACCESS_AUX_BASE)
 			return "Aux. Base Construction"
 		if(ACCESS_CE)
@@ -338,6 +379,8 @@
 			return "Genetics Lab"
 		if(ACCESS_ROBOTICS)
 			return "Robotics Lab"
+		if(ACCESS_ROBO_CONTROL)
+			return "Robotics and Bot Control"
 		if(ACCESS_XENOBIOLOGY)
 			return "Xenobiology Lab"
 		if(ACCESS_RND_SERVERS)
