@@ -35,6 +35,7 @@
 	name = "ratnik 5 tracksuit"
 	desc = "Badly translated labels tell you to clean this in Vodka. Great for squatting in."
 	icon_state = "trackpants"
+	worn_icon = 'icons/mob/clothing/uniform/shorts_pants_shirts.dmi'
 	can_adjust = FALSE
 	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	resistance_flags = NONE
