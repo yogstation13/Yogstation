@@ -3,9 +3,7 @@
 /turf/open/space,
 /area/space)
 "ab" = (
-/turf/closed/indestructible{
-	icon_state = "iron0"
-	},
+/turf/closed/indestructible,
 /area/awaymission/challenge/start)
 "ac" = (
 /obj/structure/girder,
@@ -120,9 +118,7 @@
 /turf/open/floor/plasteel/airless,
 /area/awaymission/challenge/start)
 "aA" = (
-/turf/closed/indestructible{
-	icon_state = "iron0"
-	},
+/turf/closed/indestructible,
 /area/awaymission/challenge/main)
 "aB" = (
 /obj/structure/girder,
@@ -556,9 +552,7 @@
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
 "bP" = (
-/turf/closed/indestructible{
-	icon_state = "iron0"
-	},
+/turf/closed/indestructible,
 /area/awaymission/challenge/end)
 "bQ" = (
 /obj/item/gun/ballistic/revolver/russian,
@@ -662,9 +656,9 @@
 "cf" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Airlock";
-	opacity = 1;
-	req_access_txt = "109"
+	opacity = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/admin/captain,
 /turf/open/floor/plating,
 /area/awaymission/challenge/end)
 "cg" = (
@@ -771,9 +765,9 @@
 "cx" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Security";
-	opacity = 1;
-	req_access_txt = "109"
+	opacity = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/admin/captain,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/challenge/end)
 "cy" = (
@@ -792,16 +786,14 @@
 /area/space/nearstation)
 "cA" = (
 /obj/structure/sign/warning/securearea,
-/turf/closed/indestructible{
-	icon_state = "iron0"
-	},
+/turf/closed/indestructible,
 /area/awaymission/challenge/end)
 "cB" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Administrator";
-	opacity = 1;
-	req_access_txt = "109"
+	opacity = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/admin/captain,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/challenge/end)
 "cC" = (
@@ -1091,9 +1083,9 @@
 "dk" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Gateway Access";
-	opacity = 1;
-	req_access_txt = "109"
+	opacity = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/admin/captain,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/challenge/end)
 "dl" = (

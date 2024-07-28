@@ -78,8 +78,7 @@
 /area/shuttle/escape)
 "ak" = (
 /obj/machinery/door/airlock/medical/glass{
-	name = "Escape Shuttle Infirmary";
-	req_access_txt = "5"
+	name = "Escape Shuttle Infirmary"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -87,17 +86,18 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "al" = (
 /obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock";
-	req_access_txt = "2"
+	name = "Emergency Shuttle Airlock"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "am" = (

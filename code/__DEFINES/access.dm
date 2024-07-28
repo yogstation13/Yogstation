@@ -13,9 +13,9 @@
 
 /// Command General Access, typically used for accessing the doors to the bridge, as well as being the general access that Tablet/Computer Programs check for "heads".
 #define ACCESS_COMMAND "command"
-/// Access to the AI Upload Room Doors as well as the AI satellite. Also used for controlling the machinery in the AI Upload (turrets, foam dispensers)
-#define ACCESS_AI_UPLOAD "ai_upload"
-/// Access to rooms in the mini-sat the AI usually resides in. Given to Network Admins to let them do maintenance on the AI.
+/// Access to critical-to-function AI rooms and equipment such as the AI Core, AI Upload, AI mini-sat maintenance, turret controls, and foam dispensers.
+#define ACCESS_AI_MASTER "ai_master"
+/// Access to non-critical rooms in the mini-sat the AI usually resides in. Given to Network Admins to let them do maintenance on the AI.
 #define ACCESS_AI_SAT "ai_sat"
 /// Access to the Teleporter Room, and some cargo crates.
 #define ACCESS_TELEPORTER "teleporter"

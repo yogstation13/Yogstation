@@ -251,7 +251,7 @@
 	name = "Secure Snack Storage Lockdown";
 	pixel_x = 23;
 	pixel_y = -21;
-	req_access_txt = "200"
+	req_access_txt = "ruins_general"
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
@@ -687,8 +687,7 @@
 "EO" = (
 /obj/machinery/door/airlock/vault{
 	id_tag = "snack_vault";
-	name = "Secure Snack Storage";
-	req_access_txt = "200"
+	name = "Secure Snack Storage"
 	},
 /obj/machinery/door/poddoor/preopen{
 	id = "snack_vault";
@@ -701,6 +700,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/powered/gaming)
 "Gt" = (
@@ -918,7 +918,7 @@
 	name = "Secure Snack Storage Lockdown";
 	pixel_x = -22;
 	pixel_y = -21;
-	req_access_txt = "200"
+	req_access_txt = "ruins_general"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/powered/gaming)

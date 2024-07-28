@@ -799,7 +799,7 @@
 	var/locked = TRUE
 	var/control_area = null //can be area name, path or nothing.
 	var/ailock = 0 // AI cannot use this
-	req_access = list(ACCESS_AI_UPLOAD)
+	req_access = list(ACCESS_AI_MASTER)
 	var/list/obj/machinery/porta_turret/turrets = list()
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 

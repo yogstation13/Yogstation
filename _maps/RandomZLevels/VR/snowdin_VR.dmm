@@ -3473,8 +3473,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/medical/glass{
-	name = "Medbay Storage";
-	req_access_txt = "surgery"
+	name = "Medbay Storage"
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -3482,6 +3481,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/medical/surgery,
 /turf/open/floor/plasteel/white,
 /area/awaymission/snowdin/post)
 "hP" = (
@@ -6328,8 +6328,7 @@
 	},
 /obj/machinery/door/airlock/security{
 	name = "Security Checkpoint";
-	req_access = null;
-	req_access_txt = "security"
+	req_access = null
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -6341,6 +6340,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security,
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/secpost)
 "nH" = (

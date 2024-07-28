@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "b" = (
 /obj/structure/table/wood,
-/obj/item/clothing/under/waiter,
+/obj/item/clothing/under/suit/waiter,
 /obj/item/clothing/accessory/waistcoat,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)

@@ -2362,7 +2362,7 @@
 /obj/item/assembly/flash/handheld,
 /obj/item/storage/box/firingpins,
 /obj/structure/closet/crate/secure/weapon{
-	req_access_txt = "203"
+	req_access_txt = "ruins_security"
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
@@ -4587,8 +4587,7 @@
 "qc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/highsecurity{
-	name = "Prototype Laboratory";
-	req_access_txt = "200"
+	name = "Prototype Laboratory"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -4597,20 +4596,21 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/white/side,
 /area/ruin/space/has_grav/ancientstation/proto)
 "qd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/airlock/highsecurity{
-	name = "Prototype Laboratory";
-	req_access_txt = "200"
+	name = "Prototype Laboratory"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/white/side,
 /area/ruin/space/has_grav/ancientstation/proto)
 "qe" = (
@@ -8835,7 +8835,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/secure/engineering{
 	name = "plasma tank crate";
-	req_access_txt = "204"
+	req_access_txt = "ruins_engineering"
 	},
 /obj/item/tank/internals/plasma/full,
 /obj/item/tank/internals/plasma/full,

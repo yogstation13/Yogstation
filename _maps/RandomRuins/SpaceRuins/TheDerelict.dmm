@@ -387,12 +387,12 @@
 /area/ruin/space/derelict/bridge/ai_upload)
 "bh" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Starboard Solar Access";
-	req_access_txt = "10"
+	name = "Starboard Solar Access"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/engineering,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/solar_control)
 "bi" = (
@@ -910,19 +910,19 @@
 /area/ruin/space/derelict/bridge/access)
 "cV" = (
 /obj/machinery/door/airlock/command{
-	name = "E.V.A.";
-	req_access_txt = "18"
+	name = "E.V.A."
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/command,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
 "cW" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Engineering Secure Storage";
-	req_access_txt = "10"
+	name = "Engineering Secure Storage"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/engineering,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
 "cX" = (
@@ -946,9 +946,9 @@
 /area/ruin/space/derelict/gravity_generator)
 "da" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Engineering Access";
-	req_access_txt = "10"
+	name = "Engineering Access"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/engineering,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/gravity_generator)
 "db" = (
@@ -1113,8 +1113,7 @@
 /area/ruin/space/derelict/singularity_engine)
 "dC" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Engineering Access";
-	req_access_txt = "10"
+	name = "Engineering Access"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1122,6 +1121,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/engineering,
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/gravity_generator)
 "dD" = (
@@ -1225,12 +1225,12 @@
 /area/ruin/space/derelict/singularity_engine)
 "dT" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Engineering Access";
-	req_access_txt = "10"
+	name = "Engineering Access"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/engineering,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/gravity_generator)
 "dU" = (
@@ -1413,7 +1413,7 @@
 "eB" = (
 /obj/machinery/door/window/eastleft{
 	name = "Heads of Staff";
-	req_access_txt = "command"
+	req_access_txt = "ruins_command"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
@@ -1643,7 +1643,7 @@
 /obj/machinery/door/window{
 	dir = 2;
 	name = "Captain's Quarters";
-	req_access_txt = "20"
+	req_access_txt = "ruins_command"
 	},
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
@@ -1813,9 +1813,9 @@
 /area/ruin/space/derelict/singularity_engine)
 "fR" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Tech Storage";
-	req_access_txt = "23"
+	name = "Tech Storage"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/engineering,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/bridge/access)
 "fS" = (
@@ -2217,9 +2217,9 @@
 /area/ruin/space/derelict/medical/chapel)
 "hu" = (
 /obj/machinery/door/airlock/medical{
-	name = "Morgue";
-	req_access_txt = "6"
+	name = "Morgue"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/medical,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/derelict/medical/chapel)
 "hv" = (
@@ -2277,9 +2277,9 @@
 /area/ruin/space/derelict/medical/chapel)
 "hG" = (
 /obj/machinery/door/morgue{
-	name = "coffin storage";
-	req_access_txt = "22"
+	name = "coffin storage"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/derelict/medical/chapel)
 "hH" = (
@@ -2586,7 +2586,7 @@
 	},
 /obj/machinery/door/window{
 	dir = 4;
-	req_access_txt = "25"
+	req_access_txt = "ruins_general"
 	},
 /obj/structure/closet/crate/coffin,
 /turf/open/floor/plating,
@@ -2696,9 +2696,9 @@
 /area/ruin/space/derelict/medical)
 "ja" = (
 /obj/machinery/door/airlock/public/glass{
-	name = "Med-Sci";
-	req_access_txt = "9"
+	name = "Med-Sci"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/science,
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/medical)
 "jb" = (
@@ -2930,9 +2930,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/research{
-	name = "Toxins Research";
-	req_access_txt = "7"
+	name = "Toxins Research"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/science,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary)
 "jR" = (
@@ -3043,9 +3043,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/research{
-	name = "Toxins Research";
-	req_access_txt = "7"
+	name = "Toxins Research"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/science,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/arrival)
 "ki" = (
@@ -3070,6 +3070,7 @@
 /obj/machinery/door/airlock/command{
 	name = "Teleporter Room"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/command,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/medical/chapel)
 "km" = (
@@ -3226,12 +3227,12 @@
 /area/ruin/space/derelict/hallway/primary)
 "kR" = (
 /obj/machinery/door/airlock/security{
-	name = "Security";
-	req_access_txt = "1"
+	name = "Security"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/security,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary)
 "kS" = (
@@ -3302,9 +3303,9 @@
 /area/ruin/space/derelict/hallway/primary)
 "lh" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Atmospherics Access";
-	req_access_txt = "24"
+	name = "Atmospherics Access"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/engineering,
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/hallway/primary)
 "li" = (
@@ -3488,9 +3489,9 @@
 /area/ruin/space/derelict/atmospherics)
 "lP" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Atmospherics Access";
-	req_access_txt = "24"
+	name = "Atmospherics Access"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/engineering,
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/atmospherics)
 "lQ" = (
@@ -3789,9 +3790,9 @@
 /area/ruin/space/derelict/hallway/secondary)
 "mW" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Aux Storage";
-	req_access_txt = "23"
+	name = "Aux Storage"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/engineering,
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/hallway/secondary)
 "mX" = (
@@ -4000,9 +4001,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/engineering{
-	name = "Aft Solar Access";
-	req_access_txt = "10"
+	name = "Aft Solar Access"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/engineering,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/se_solar)
 "nD" = (
@@ -4057,9 +4058,9 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/door/airlock/engineering{
-	name = "Aft Solar Access";
-	req_access_txt = "10"
+	name = "Aft Solar Access"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/engineering,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/se_solar)
 "nM" = (
@@ -4475,10 +4476,10 @@
 /area/ruin/space/derelict/singularity_engine)
 "RF" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Engineering Access";
-	req_access_txt = "10"
+	name = "Engineering Access"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/engineering,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/gravity_generator)
 "Sv" = (

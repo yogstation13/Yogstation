@@ -32,6 +32,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel/stairs/goon/white_stairs_alone{
 	dir = 1
 	},
@@ -45,7 +46,7 @@
 	dir = 4
 	},
 /obj/machinery/firealarm{
-	dir = 4;
+	dir = 8;
 	pixel_x = 26
 	},
 /turf/open/floor/plasteel/dark,
@@ -65,8 +66,7 @@
 /area/ruin/space/has_grav/listeningstation/quarters)
 "ai" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Bathroom";
-	req_access_txt = "150"
+	name = "Bathroom"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -75,6 +75,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "aj" = (
@@ -234,8 +235,7 @@
 "aO" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
-	id_tag = "syndie_listeningpost_external_engi";
-	req_access_txt = "150"
+	id_tag = "syndie_listeningpost_external_engi"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -243,6 +243,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/effect/turf_decal/sand/plating,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/engineering)
 "aP" = (
@@ -261,9 +262,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "aT" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	req_access_txt = "150"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
@@ -279,6 +278,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/engineering)
 "aU" = (
@@ -310,6 +310,7 @@
 "aX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "aY" = (
@@ -336,7 +337,7 @@
 	id = "lpost_privacy_left";
 	name = "Privacy Shutters";
 	pixel_y = 23;
-	req_access_txt = "150"
+	req_access_txt = "syndicate"
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
@@ -481,8 +482,9 @@
 	name = "Airlock Emergency Bolts";
 	normaldoorcontrol = 1;
 	pixel_y = -24;
-	req_access_txt = "150";
-	specialfunctions = 4
+	req_access_txt = "syndicate";
+	specialfunctions = 4;
+	pixel_x = -3
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/engineering)
@@ -802,6 +804,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel/stairs/goon/stairs_alone{
 	dir = 1
 	},
@@ -875,6 +878,9 @@
 /area/ruin/space/has_grav/listeningstation/quarters)
 "hp" = (
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/plasteel/stairs/goon/white_stairs_alone,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "hr" = (
@@ -885,6 +891,9 @@
 	dir = 1
 	},
 /obj/item/kirbyplants,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "hv" = (
@@ -931,8 +940,11 @@
 	dir = 10
 	},
 /obj/machinery/firealarm{
-	dir = 4;
+	dir = 8;
 	pixel_x = 26
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
@@ -948,7 +960,7 @@
 	id = "lpost_warehouse";
 	name = "Warehouse Shutters";
 	pixel_y = -24;
-	req_access_txt = "150"
+	req_access_txt = "syndicate"
 	},
 /obj/effect/turf_decal/delivery,
 /obj/structure/closet/crate/critter,
@@ -1014,6 +1026,9 @@
 /obj/structure/closet/wardrobe/black{
 	anchored = 1
 	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "iz" = (
@@ -1069,7 +1084,7 @@
 "iO" = (
 /obj/structure/closet/secure_closet/medical1{
 	req_access = null;
-	req_access_txt = "150"
+	req_access_txt = "syndicate"
 	},
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 4
@@ -1083,7 +1098,7 @@
 	id = "lpost_privacy_right";
 	name = "Privacy Shutters";
 	pixel_y = 23;
-	req_access_txt = "150"
+	req_access_txt = "syndicate"
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
@@ -1100,13 +1115,10 @@
 "jn" = (
 /obj/machinery/door/window/northright{
 	name = "Document Storage";
-	req_access_txt = "150"
+	req_access_txt = "syndicate"
 	},
 /obj/item/paper/monitorkey,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
 /obj/item/paper/fluff/ruins/listeningstation/odd_report,
 /obj/item/paper/fluff/ruins/listeningstation/receipt,
 /obj/item/paper/fluff/ruins/listeningstation/reports/april,
@@ -1227,20 +1239,18 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/external{
-	id_tag = "syndie_listeningpost_external";
-	req_access_txt = "150"
+	id_tag = "syndie_listeningpost_external"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/airlock)
 "kR" = (
-/obj/structure/closet/syndicate{
-	req_access_txt = "150"
-	},
+/obj/structure/closet/syndicate,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_box/a357,
 /obj/item/crowbar/red,
@@ -1446,6 +1456,7 @@
 /area/ruin/space/has_grav/listeningstation/quarters)
 "rO" = (
 /obj/machinery/oven,
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "rP" = (
@@ -1458,6 +1469,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/sign/poster/contraband/random{
 	pixel_x = 32
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
 	},
 /turf/open/floor/plasteel/stairs/goon/stairs_alone,
 /area/ruin/space/has_grav/listeningstation/quarters)
@@ -1572,6 +1586,7 @@
 "tF" = (
 /obj/structure/table/reinforced,
 /obj/machinery/reagentgrinder/kitchen,
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "tG" = (
@@ -1593,8 +1608,7 @@
 /area/ruin/space/has_grav/listeningstation/quarters)
 "tK" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Cabin";
-	req_access_txt = "150"
+	name = "Cabin"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -1605,6 +1619,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "tO" = (
@@ -1651,9 +1666,8 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/hallway)
 "um" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	req_access_txt = "150"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "uy" = (
@@ -1790,9 +1804,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/telecomms)
 "we" = (
-/obj/structure/closet/syndicate{
-	req_access_txt = "150"
-	},
+/obj/structure/closet/syndicate,
 /obj/item/ammo_box/magazine/m10mm,
 /obj/item/crowbar/red,
 /obj/item/clothing/head/HoS/beret/syndicate,
@@ -1821,6 +1833,9 @@
 	desc = "A descendant of the legendary Cayenne, a failed Syndicate experiment in weaponized space carp technology, it now serves as a lovable mascot.";
 	faction = list("Syndicate");
 	name = "Cayenne II"
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
@@ -1952,6 +1967,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood/broken/six,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "zg" = (
@@ -2053,7 +2069,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/mineral/ore_redemption{
-	req_access = list(150)
+	req_access = list("syndicate")
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
@@ -2080,12 +2096,12 @@
 /obj/item/reagent_containers/food/snacks/meat/slab,
 /obj/item/reagent_containers/food/snacks/meat/slab,
 /obj/item/reagent_containers/food/snacks/meat/slab,
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Da" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Shower";
-	req_access_txt = "150"
+	name = "Shower"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -2094,6 +2110,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Dk" = (
@@ -2337,6 +2354,7 @@
 "IC" = (
 /obj/machinery/griddle,
 /obj/item/reagent_containers/glass/mixbowl,
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "IU" = (
@@ -2361,7 +2379,7 @@
 	id = "lpost_warehouse";
 	name = "Warehouse Shutters";
 	pixel_x = -24;
-	req_access_txt = "150"
+	req_access_txt = "syndicate"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/airlock)
@@ -2714,6 +2732,12 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/hallway)
+"OQ" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "OV" = (
 /obj/machinery/light/small{
 	brightness = 3;
@@ -2835,12 +2859,13 @@
 "Qq" = (
 /obj/structure/table/reinforced,
 /obj/machinery/microwave,
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "QE" = (
 /obj/machinery/door/window/northleft{
 	name = "Telecommunications";
-	req_access_txt = "150"
+	req_access_txt = "syndicate"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -2881,11 +2906,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
 "Ri" = (
+/obj/structure/fans/tiny,
 /obj/machinery/door/airlock/hatch{
-	name = "Telecommunications";
-	req_access_txt = "150"
+	name = "Telecommunications"
 	},
-/obj/structure/holosign/barrier/atmos,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/telecomms)
 "RB" = (
@@ -2899,14 +2924,14 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/external{
-	id_tag = "syndie_listeningpost_external_engi";
-	req_access_txt = "150"
+	id_tag = "syndie_listeningpost_external_engi"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /obj/effect/turf_decal/sand/plating,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/engineering)
 "Si" = (
@@ -2942,8 +2967,7 @@
 /area/ruin/space/has_grav/listeningstation/airlock)
 "Su" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Cabin";
-	req_access_txt = "150"
+	name = "Cabin"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -2954,6 +2978,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "SG" = (
@@ -3031,7 +3056,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/door/window/survival_pod{
 	name = "Showcase and Self-Destruct Access";
-	req_access_txt = "150"
+	req_access_txt = "syndicate"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/turf_decal/tile/red/fourcorners,
@@ -3064,8 +3089,8 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/hallway)
 "UC" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plasteel/grimy,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "UF" = (
 /obj/machinery/vending/boozeomat/syndicate_access,
@@ -3097,25 +3122,27 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/box/donkpockets,
 /obj/item/storage/box/donkpockets,
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Vu" = (
 /obj/machinery/firealarm{
-	dir = 8;
+	dir = 4;
 	pixel_x = -26
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "VE" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /obj/machinery/door/airlock/external{
-	id_tag = "syndie_listeningpost_external";
-	req_access_txt = "150"
+	id_tag = "syndie_listeningpost_external"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/airlock)
 "VH" = (
@@ -3135,7 +3162,7 @@
 	name = "Airlock Emergency Bolts";
 	normaldoorcontrol = 1;
 	pixel_x = 24;
-	req_access_txt = "150";
+	req_access_txt = "syndicate";
 	specialfunctions = 4
 	},
 /obj/effect/turf_decal/tile/red/anticorner/contrasted{
@@ -3224,9 +3251,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/highsecurity{
-	name = "Telecommunications";
-	req_access_txt = "150"
+	name = "Telecommunications"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/telecomms)
 "Xl" = (
@@ -3271,6 +3298,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
 	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "XE" = (
@@ -3287,14 +3317,13 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/maintenance_hatch{
-	req_access_txt = "150"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "XI" = (
@@ -3371,6 +3400,9 @@
 	dir = 1
 	},
 /obj/item/kirbyplants,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "YH" = (
@@ -3845,7 +3877,7 @@ sb
 kz
 aY
 pp
-aV
+OQ
 af
 wj
 cR
@@ -3883,9 +3915,9 @@ aN
 zV
 NN
 Nn
-tg
+UC
 aV
-aV
+OQ
 tg
 iO
 ua

@@ -105,9 +105,10 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /obj/machinery/door/airlock/external{
-	name = "MiniSat External Access";
-	req_access_txt = "65"
+	name = "MiniSat External Access"
 	},
+/obj/effect/mapping_helpers/airlock/access/any/command/ai_sat,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/tcomms,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
 "bV" = (
@@ -129,8 +130,7 @@
 /area/ai_monitored/turret_protected/ai)
 "cn" = (
 /obj/machinery/door/airlock/hatch{
-	name = "MiniSat Teleporter Room";
-	req_one_access_txt = "17;65"
+	name = "MiniSat Teleporter Room"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -140,6 +140,8 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/any/command/teleporter,
+/obj/effect/mapping_helpers/airlock/access/any/command/ai_sat,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "cJ" = (
@@ -635,9 +637,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/airlock/external{
-	name = "MiniSat External Access";
-	req_access_txt = "65"
+	name = "MiniSat External Access"
 	},
+/obj/effect/mapping_helpers/airlock/access/any/command/ai_sat,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/tcomms,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
 "lm" = (
@@ -704,8 +707,7 @@
 /area/ai_monitored/storage/satellite)
 "lN" = (
 /obj/machinery/door/airlock/maintenance_hatch{
-	name = "MiniSat Maintenance";
-	req_access_txt = "65"
+	name = "MiniSat Maintenance"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -716,6 +718,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/command/ai_master,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "mb" = (
@@ -902,8 +905,7 @@
 "pP" = (
 /obj/machinery/door/airlock/highsecurity{
 	id_tag = "ai_core_airlock_exterior";
-	name = "AI Core";
-	req_access_txt = "16"
+	name = "AI Core"
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -921,6 +923,7 @@
 /obj/structure/ethernet_cable{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/command/ai_master,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "pQ" = (
@@ -1259,8 +1262,7 @@
 /area/tcommsat/server)
 "xf" = (
 /obj/machinery/door/airlock/engineering/glass{
-	name = "Server Room";
-	req_access_txt = "61"
+	name = "Server Room"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -1280,6 +1282,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/tcomms,
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
 "xn" = (
@@ -1419,8 +1422,7 @@
 /area/ai_monitored/turret_protected/ai)
 "zk" = (
 /obj/machinery/door/airlock/hatch{
-	name = "MiniSat Monitoring Room";
-	req_access_txt = "65"
+	name = "MiniSat Monitoring Room"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -1433,6 +1435,7 @@
 /obj/structure/ethernet_cable{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/command/ai_sat,
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
 "zp" = (
@@ -1847,8 +1850,7 @@
 /area/ai_monitored/turret_protected/aisat_interior)
 "Hw" = (
 /obj/machinery/door/airlock/hatch{
-	name = "Telecomms Control Room";
-	req_access_txt = "61"
+	name = "Telecomms Control Room"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -1859,6 +1861,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/tcomms,
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
 "HD" = (
@@ -1977,13 +1980,14 @@
 /area/ai_monitored/storage/satellite)
 "Kt" = (
 /obj/machinery/door/airlock/external{
-	name = "MiniSat External Access";
-	req_one_access_txt = "65;61"
+	name = "MiniSat External Access"
 	},
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/any/command/ai_sat,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/tcomms,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
 "KM" = (
@@ -2033,8 +2037,7 @@
 /area/ai_monitored/turret_protected/aisat_interior)
 "Lm" = (
 /obj/machinery/door/airlock/hatch{
-	name = "MiniSat Antechamber";
-	req_access_txt = "65"
+	name = "MiniSat Antechamber"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -2049,6 +2052,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/command/ai_sat,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/aisat_interior)
 "Lt" = (
@@ -2261,9 +2265,6 @@
 /turf/closed/wall,
 /area/tcommsat/computer)
 "Pe" = (
-/obj/machinery/door/airlock/public{
-	id_tag = "ai_core_airlock_interior"
-	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -2277,6 +2278,11 @@
 /obj/structure/ethernet_cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/door/airlock/highsecurity{
+	id_tag = "ai_core_airlock_exterior";
+	name = "AI Core"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/command/ai_master,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "Pg" = (
@@ -2685,13 +2691,13 @@
 /area/solar/port/aft)
 "Vc" = (
 /obj/machinery/door/airlock/maintenance_hatch{
-	name = "MiniSat Maintenance";
-	req_access_txt = "65"
+	name = "MiniSat Maintenance"
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
 	dir = 8
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower,
+/obj/effect/mapping_helpers/airlock/access/all/command/ai_master,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "Vm" = (
@@ -2754,8 +2760,7 @@
 /area/ai_monitored/turret_protected/aisat_interior)
 "WY" = (
 /obj/machinery/door/airlock/engineering/glass{
-	name = "Server Room";
-	req_access_txt = "61"
+	name = "Server Room"
 	},
 /obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
@@ -2772,6 +2777,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/tcomms,
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/server)
 "Xc" = (
@@ -2850,9 +2856,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
-	name = "MiniSat External Access";
-	req_one_access_txt = "65;61"
+	name = "MiniSat External Access"
 	},
+/obj/effect/mapping_helpers/airlock/access/any/command/ai_sat,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/tcomms,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
 "Yo" = (

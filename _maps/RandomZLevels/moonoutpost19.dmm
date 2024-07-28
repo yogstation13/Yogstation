@@ -536,14 +536,12 @@
 	},
 /area/awaymission/moonoutpost19/syndicate)
 "bo" = (
-/obj/machinery/airalarm{
-	pixel_y = 24;
-	req_access = null;
-	req_access_txt = "150"
-	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
+	},
+/obj/machinery/airalarm/syndicate{
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
@@ -605,7 +603,7 @@
 /obj/machinery/door/window{
 	dir = 1;
 	name = "Gateway Access";
-	req_access_txt = "150"
+	req_access_txt = "syndicate"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -733,13 +731,11 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24;
-	req_access = null;
-	req_access_txt = "150"
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/airalarm/syndicate{
+	dir = 8;
+	pixel_x = 24
+	},
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -857,9 +853,9 @@
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/highsecurity{
-	name = "Gateway";
-	req_access_txt = "150"
+	name = "Gateway"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -914,13 +910,11 @@
 /area/awaymission/moonoutpost19/syndicate)
 "bU" = (
 /obj/machinery/portable_atmospherics/canister/air,
-/obj/machinery/airalarm{
-	pixel_y = 24;
-	req_access = null;
-	req_access_txt = "150"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
+	},
+/obj/machinery/airalarm/syndicate{
+	pixel_y = 24
 	},
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
@@ -1020,10 +1014,8 @@
 	},
 /area/awaymission/moonoutpost19/syndicate)
 "cd" = (
-/obj/machinery/airalarm/unlocked{
-	pixel_y = 24;
-	req_access = null;
-	req_access_txt = "150"
+/obj/machinery/airalarm/syndicate{
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel{
 	dir = 8;
@@ -1256,9 +1248,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/engineering{
-	name = "Power Maintenance";
-	req_access_txt = "150"
+	name = "Power Maintenance"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -1411,9 +1403,8 @@
 	locked = 1;
 	name = "Worn-out APC";
 	pixel_y = -23;
-	req_access = null;
-	req_access_txt = "150";
-	start_charge = 0
+	start_charge = 0;
+	req_access = list("syndicate")
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -1511,18 +1502,16 @@
 	},
 /area/awaymission/moonoutpost19/syndicate)
 "cS" = (
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24;
-	req_access = null;
-	req_access_txt = "150"
-	},
 /obj/machinery/light/broken{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
+	},
+/obj/machinery/airalarm/syndicate{
+	dir = 8;
+	pixel_x = 24
 	},
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006;
@@ -1691,13 +1680,11 @@
 /area/awaymission/moonoutpost19/syndicate)
 "dh" = (
 /obj/structure/chair/wood/normal,
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24;
-	req_access = null;
-	req_access_txt = "150"
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/airalarm/syndicate{
+	dir = 4;
+	pixel_x = -24
+	},
 /turf/open/floor/wood{
 	heat_capacity = 1e+006;
 	initial_gas_mix = "co2=48.7;n2=13.2;o2=32.4;TEMP=251"
@@ -1721,11 +1708,9 @@
 	},
 /area/awaymission/moonoutpost19/syndicate)
 "dk" = (
-/obj/machinery/airalarm{
+/obj/machinery/airalarm/syndicate{
 	dir = 8;
-	pixel_x = 24;
-	req_access = null;
-	req_access_txt = "150"
+	pixel_x = 24
 	},
 /turf/open/floor/wood{
 	heat_capacity = 1e+006
@@ -1799,7 +1784,7 @@
 /area/awaymission/moonoutpost19/syndicate)
 "dr" = (
 /obj/structure/closet/secure_closet/personal/cabinet{
-	req_access_txt = "150"
+	req_access_txt = "syndicate"
 	},
 /obj/item/ammo_box/magazine/m10mm{
 	icon_state = "9x19p-8"
@@ -1824,7 +1809,7 @@
 "dt" = (
 /obj/structure/closet/secure_closet/personal/cabinet{
 	locked = 0;
-	req_access_txt = "150"
+	req_access_txt = "syndicate"
 	},
 /obj/item/stack/spacecash/c50,
 /turf/open/floor/wood{
@@ -1837,10 +1822,10 @@
 	density = 0;
 	icon_state = "open";
 	opacity = 0;
-	req_access_txt = "150";
 	set_obj_flags = "EMAGGED"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006;
 	initial_gas_mix = "co2=48.7;n2=13.2;o2=32.4;TEMP=251"
@@ -1994,12 +1979,12 @@
 	density = 0;
 	icon_state = "open";
 	opacity = 0;
-	req_access_txt = "150";
 	set_obj_flags = "EMAGGED"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006;
 	icon_plating = "asteroidplating";
@@ -2396,7 +2381,7 @@
 	name = "Containment Chamber Blast Doors";
 	pixel_x = 4;
 	pixel_y = -2;
-	req_access_txt = "201"
+	req_access_txt = "ruins_maintenance"
 	},
 /obj/machinery/button/ignition{
 	id = "awayxenobio";
@@ -2534,14 +2519,13 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "201"
-	},
+/obj/machinery/door/airlock/maintenance,
 /obj/effect/decal/cleanable/blood/tracks{
 	desc = "Your instincts say you shouldn't be following these.";
 	dir = 8;
 	icon_state = "ltrails_1"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/maintenance,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -2767,9 +2751,9 @@
 	icon_state = "open";
 	name = "Xenobiology Lab";
 	opacity = 0;
-	req_access_txt = "201";
 	set_obj_flags = "EMAGGED"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/maintenance,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -2988,7 +2972,7 @@
 	icon_state = "sec";
 	locked = 1;
 	name = "security officer's locker";
-	req_access_txt = "201"
+	req_access_txt = "ruins_maintenance"
 	},
 /obj/item/clothing/suit/armor/vest,
 /obj/item/reagent_containers/spray/pepper,
@@ -3158,9 +3142,9 @@
 /area/awaymission/moonoutpost19/research)
 "gk" = (
 /obj/machinery/door/airlock/security/glass{
-	name = "Security Post";
-	req_access_txt = "201"
+	name = "Security Post"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/maintenance,
 /turf/open/floor/plasteel/white{
 	heat_capacity = 1e+006
 	},
@@ -3182,7 +3166,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/firealarm{
-	dir = 4;
+	dir = 8;
 	pixel_x = 28
 	},
 /obj/structure/alien/weeds,
@@ -3506,7 +3490,7 @@
 	id = "Awaybiohazard";
 	name = "Biohazard Shutter Control";
 	pixel_x = -25;
-	req_access_txt = "201"
+	req_access_txt = "ruins_maintenance"
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -3756,7 +3740,7 @@
 /area/awaymission/moonoutpost19/hive)
 "hm" = (
 /obj/machinery/vending/medical{
-	req_access_txt = "201"
+	req_access_txt = "ruins_maintenance"
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 2;
@@ -3799,7 +3783,7 @@
 	icon_state = "rd";
 	locked = 1;
 	name = "research director's locker";
-	req_access_txt = "201"
+	req_access_txt = "ruins_maintenance"
 	},
 /obj/item/storage/backpack/satchel/tox,
 /obj/item/clothing/gloves/color/latex,
@@ -3913,7 +3897,7 @@
 /obj/structure/table,
 /obj/item/storage/firstaid/fire,
 /obj/machinery/firealarm{
-	dir = 4;
+	dir = 8;
 	pixel_x = 28
 	},
 /turf/open/floor/plasteel/white/side{
@@ -3940,9 +3924,9 @@
 	icon_state = "open";
 	name = "Research Director's Office";
 	opacity = 0;
-	req_access_txt = "201";
 	set_obj_flags = "EMAGGED"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/maintenance,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
 	},
@@ -3976,9 +3960,9 @@
 /area/awaymission/moonoutpost19/research)
 "hG" = (
 /obj/machinery/door/airlock/research/glass{
-	name = "Research Storage";
-	req_access_txt = "201"
+	name = "Research Storage"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/maintenance,
 /turf/open/floor/plasteel/white{
 	heat_capacity = 1e+006
 	},
@@ -4207,10 +4191,10 @@
 /area/awaymission/moonoutpost19/research)
 "ie" = (
 /obj/machinery/door/airlock/medical{
-	name = "Research Division";
-	req_access_txt = "201"
+	name = "Research Division"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/maintenance,
 /turf/open/floor/plasteel/white{
 	heat_capacity = 1e+006
 	},
@@ -4315,13 +4299,13 @@
 	id = "Awaybiohazard";
 	name = "Biohazard Shutter Control";
 	pixel_y = 8;
-	req_access_txt = "201"
+	req_access_txt = "ruins_maintenance"
 	},
 /obj/machinery/button/door{
 	id = "AwayRD";
 	name = "Privacy Shutter Control";
 	pixel_y = -2;
-	req_access_txt = "201"
+	req_access_txt = "ruins_maintenance"
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -5563,7 +5547,7 @@
 /area/awaymission/moonoutpost19/arrivals)
 "kO" = (
 /obj/machinery/firealarm{
-	dir = 4;
+	dir = 8;
 	pixel_x = 24
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -5630,7 +5614,7 @@
 "kU" = (
 /obj/structure/closet/secure_closet/personal/cabinet{
 	locked = 0;
-	req_access_txt = "201"
+	req_access_txt = "ruins_maintenance"
 	},
 /obj/item/clothing/under/suit/navy,
 /turf/open/floor/carpet{
@@ -5860,7 +5844,7 @@
 /area/awaymission/moonoutpost19/arrivals)
 "ls" = (
 /obj/machinery/firealarm{
-	dir = 4;
+	dir = 8;
 	pixel_x = 24
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -5890,9 +5874,9 @@
 /area/awaymission/moonoutpost19/arrivals)
 "lu" = (
 /obj/machinery/door/airlock{
-	name = "Kitchen Cold Room";
-	req_access_txt = "201"
+	name = "Kitchen Cold Room"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/maintenance,
 /turf/open/floor/plasteel/showroomfloor{
 	heat_capacity = 1e+006
 	},
@@ -5920,7 +5904,7 @@
 	name = "Kitchen Crate"
 	},
 /obj/item/storage/box/mousetraps,
-/obj/item/clothing/under/waiter,
+/obj/item/clothing/under/suit/waiter,
 /turf/open/floor/plasteel/showroomfloor{
 	heat_capacity = 1e+006;
 	initial_temperature = 273.15
@@ -6038,9 +6022,9 @@
 "lQ" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
-	name = "Kitchen";
-	req_access_txt = "201"
+	name = "Kitchen"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/maintenance,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/moonoutpost19/arrivals)
 "lR" = (
@@ -6183,7 +6167,7 @@
 	icon_state = "secure";
 	locked = 0;
 	name = "kitchen Cabinet";
-	req_access_txt = "201"
+	req_access_txt = "ruins_maintenance"
 	},
 /obj/item/reagent_containers/food/condiment/flour,
 /obj/item/reagent_containers/food/condiment/flour,
@@ -6198,7 +6182,7 @@
 /obj/structure/closet/secure_closet/freezer{
 	locked = 0;
 	name = "meat fridge";
-	req_access_txt = "201"
+	req_access_txt = "ruins_maintenance"
 	},
 /obj/item/reagent_containers/food/snacks/meat/slab/monkey,
 /obj/item/reagent_containers/food/snacks/meat/slab/monkey,
@@ -6213,7 +6197,7 @@
 /obj/structure/closet/secure_closet/freezer{
 	locked = 0;
 	name = "refrigerator";
-	req_access_txt = "201"
+	req_access_txt = "ruins_maintenance"
 	},
 /obj/item/reagent_containers/food/condiment/milk,
 /obj/item/reagent_containers/food/condiment/milk,
@@ -6561,9 +6545,9 @@
 "nb" = (
 /obj/structure/closet/secure_closet/personal/cabinet{
 	locked = 0;
-	req_access_txt = "201"
+	req_access_txt = "ruins_maintenance"
 	},
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/rank/civilian/assistantformal,
 /turf/open/floor/carpet{
 	heat_capacity = 1e+006
 	},
@@ -6760,9 +6744,8 @@
 	},
 /area/awaymission/moonoutpost19/arrivals)
 "nz" = (
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "201"
-	},
+/obj/machinery/door/airlock/maintenance,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/maintenance,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -6971,7 +6954,7 @@
 "nT" = (
 /obj/structure/closet/secure_closet/personal/cabinet{
 	locked = 0;
-	req_access_txt = "201"
+	req_access_txt = "ruins_maintenance"
 	},
 /obj/item/clothing/under/suit/burgundy,
 /turf/open/floor/carpet{
@@ -7097,7 +7080,7 @@
 	icon_state = "science";
 	locked = 0;
 	name = "scientist's locker";
-	req_access_txt = "201"
+	req_access_txt = "ruins_maintenance"
 	},
 /obj/item/clothing/suit/toggle/labcoat,
 /turf/open/floor/plasteel{
@@ -7110,7 +7093,7 @@
 	icon_state = "science";
 	locked = 1;
 	name = "scientist's locker";
-	req_access_txt = "201"
+	req_access_txt = "ruins_maintenance"
 	},
 /obj/item/clothing/suit/toggle/labcoat,
 /obj/item/tank/internals/air,
@@ -7138,12 +7121,12 @@
 /area/awaymission/moonoutpost19/arrivals)
 "Mm" = (
 /obj/machinery/door/airlock/medical{
-	name = "Research Division";
-	req_access_txt = "201"
+	name = "Research Division"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/maintenance,
 /turf/open/floor/plasteel/white{
 	heat_capacity = 1e+006
 	},

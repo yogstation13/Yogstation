@@ -36,9 +36,9 @@
 	access_list += ACCESS_COMMAND
 	return access_list
 
-/obj/effect/mapping_helpers/airlock/access/any/command/ai_upload/get_access()
+/obj/effect/mapping_helpers/airlock/access/any/command/ai_master/get_access()
 	var/list/access_list = ..()
-	access_list += ACCESS_AI_UPLOAD
+	access_list += ACCESS_AI_MASTER
 	return access_list
 
 /obj/effect/mapping_helpers/airlock/access/any/command/ai_sat/get_access()
@@ -389,9 +389,9 @@
 	access_list += ACCESS_COMMAND
 	return access_list
 
-/obj/effect/mapping_helpers/airlock/access/all/command/ai_upload/get_access()
+/obj/effect/mapping_helpers/airlock/access/all/command/ai_master/get_access()
 	var/list/access_list = ..()
-	access_list += ACCESS_AI_UPLOAD
+	access_list += ACCESS_AI_MASTER
 	return access_list
 
 /obj/effect/mapping_helpers/airlock/access/all/command/ai_sat/get_access()

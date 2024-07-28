@@ -228,12 +228,6 @@
 "aO" = (
 /turf/open/floor/plating,
 /area/awaymission/research/interior/maint)
-"aP" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	req_access_txt = "12"
-	},
-/turf/open/floor/plating,
-/area/awaymission/research/interior/maint)
 "aQ" = (
 /obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/plasteel/white,
@@ -548,9 +542,8 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior/engineering)
 "bx" = (
-/obj/machinery/door/airlock/external{
-	req_access_txt = "13"
-	},
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plating,
 /area/awaymission/research/interior/maint)
 "by" = (
@@ -922,14 +915,14 @@
 /area/awaymission/research/interior)
 "cq" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Engine Room";
-	req_access_txt = "10"
+	name = "Engine Room"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior/engineering)
 "cr" = (
@@ -943,8 +936,7 @@
 /area/awaymission/research/interior)
 "cs" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Engine Room";
-	req_access_txt = "10"
+	name = "Engine Room"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/turf_decal/tile/yellow{
@@ -953,6 +945,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior/engineering)
 "ct" = (
@@ -987,10 +980,9 @@
 /turf/closed/wall/r_wall,
 /area/awaymission/research/interior/genetics)
 "cy" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Genetics Maintenance";
-	req_access_txt = "9"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/awaymission/research/interior/maint)
 "cz" = (
@@ -1189,9 +1181,9 @@
 	},
 /obj/machinery/door/airlock/highsecurity{
 	aiDisabledIdScanner = 1;
-	name = "Gateway Access";
-	req_access_txt = "205"
+	name = "Gateway Access"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plating,
 /area/awaymission/research/interior/gateway)
 "cS" = (
@@ -1289,19 +1281,18 @@
 /area/awaymission/research/interior/maint)
 "cZ" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Engine Room";
-	req_access_txt = "10"
+	name = "Engine Room"
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior)
 "da" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Engine Room";
-	req_access_txt = "10"
+	name = "Engine Room"
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -1309,6 +1300,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior)
 "db" = (
@@ -1878,18 +1870,18 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/highsecurity{
 	aiDisabledIdScanner = 1;
-	name = "Secure Storage C";
-	req_access_txt = "205"
+	name = "Secure Storage C"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/secure)
 "dX" = (
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/highsecurity{
 	aiDisabledIdScanner = 1;
-	name = "Secure Storage D";
-	req_access_txt = "205"
+	name = "Secure Storage D"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/secure)
 "dY" = (
@@ -2060,16 +2052,6 @@
 "es" = (
 /turf/open/floor/plating,
 /area/awaymission/research/interior)
-"et" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	req_access_txt = "12"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/turf/open/floor/plating,
-/area/awaymission/research/interior/maint)
 "eu" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
@@ -2197,12 +2179,8 @@
 /turf/open/floor/plating,
 /area/awaymission/research/interior/maint)
 "eH" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	req_access_txt = "12"
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/awaymission/research/interior/maint)
 "eI" = (
@@ -2281,7 +2259,7 @@
 "eQ" = (
 /obj/machinery/door/window/northright{
 	name = "Cell Door";
-	req_access_txt = "63"
+	req_access_txt = "sec_basic"
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -2301,8 +2279,7 @@
 "eS" = (
 /obj/machinery/door/airlock/security/glass{
 	id_tag = "outerbrig";
-	name = "Brig";
-	req_access_txt = "63"
+	name = "Brig"
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -2310,6 +2287,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plasteel,
 /area/awaymission/research/interior/security)
 "eT" = (
@@ -2706,13 +2684,13 @@
 /area/awaymission/research/interior/cryo)
 "fK" = (
 /obj/machinery/door/airlock/research{
-	name = "Cryogenetics Research";
-	req_access_txt = "9"
+	name = "Cryogenetics Research"
 	},
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/science/general,
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior/cryo)
 "fL" = (
@@ -2724,8 +2702,7 @@
 /area/awaymission/research/interior)
 "fM" = (
 /obj/machinery/door/airlock/research{
-	name = "Cryogenetics Research";
-	req_access_txt = "9"
+	name = "Cryogenetics Research"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -2734,6 +2711,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/science/general,
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior)
 "fN" = (
@@ -2796,13 +2774,13 @@
 "fS" = (
 /obj/machinery/door/airlock/security/glass{
 	id_tag = "outerbrig";
-	name = "Brig";
-	req_access_txt = "63"
+	name = "Brig"
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior)
 "fT" = (
@@ -2966,12 +2944,12 @@
 "gg" = (
 /obj/machinery/door/airlock/highsecurity{
 	aiDisabledIdScanner = 1;
-	name = "Power Storage";
-	req_access_txt = "205"
+	name = "Power Storage"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/secure)
 "gh" = (
@@ -3000,12 +2978,12 @@
 	},
 /obj/machinery/door/airlock/highsecurity{
 	aiDisabledIdScanner = 0;
-	name = "Vault Storage";
-	req_access_txt = "205"
+	name = "Vault Storage"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/secure)
 "gm" = (
@@ -3017,8 +2995,7 @@
 /area/awaymission/research/interior/secure)
 "gn" = (
 /obj/machinery/door/airlock/research{
-	name = "Secure Storage";
-	req_access_txt = "9,63"
+	name = "Secure Storage"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3026,6 +3003,8 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/any/security/basic,
+/obj/effect/mapping_helpers/airlock/access/any/science/general,
 /turf/open/floor/plating,
 /area/awaymission/research/interior/secure)
 "go" = (
@@ -3046,8 +3025,7 @@
 /area/awaymission/research/interior)
 "gq" = (
 /obj/machinery/door/airlock/research{
-	name = "Cryogenetics Research";
-	req_access_txt = "9"
+	name = "Cryogenetics Research"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3055,6 +3033,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/science/general,
 /turf/open/floor/plating,
 /area/awaymission/research/interior)
 "gr" = (
@@ -3097,8 +3076,7 @@
 /area/awaymission/research/interior)
 "gt" = (
 /obj/machinery/door/airlock/research{
-	name = "Cryogenetics Research";
-	req_access_txt = "9"
+	name = "Cryogenetics Research"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -3113,6 +3091,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/science/general,
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior/cryo)
 "gu" = (
@@ -3575,8 +3554,7 @@
 "hb" = (
 /obj/machinery/door/airlock/security/glass{
 	id_tag = "outerbrig";
-	name = "Brig";
-	req_access_txt = "63"
+	name = "Brig"
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -3584,6 +3562,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior)
 "hc" = (
@@ -3880,7 +3859,7 @@
 "hE" = (
 /obj/machinery/door/window/southright{
 	name = "Cell Door";
-	req_access_txt = "63"
+	req_access_txt = "sec_basic"
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -3918,18 +3897,18 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/highsecurity{
 	aiDisabledIdScanner = 1;
-	name = "Secure Storage A";
-	req_access_txt = "205"
+	name = "Secure Storage A"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/secure)
 "hJ" = (
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/highsecurity{
 	aiDisabledIdScanner = 1;
-	name = "Secure Storage B";
-	req_access_txt = "205"
+	name = "Secure Storage B"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/secure)
 "hK" = (
@@ -4351,16 +4330,6 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/research/interior/maint)
-"iv" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Security Maintenance";
-	req_access_txt = "63"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/awaymission/research/interior/maint)
 "iw" = (
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 4;
@@ -4575,15 +4544,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/awaymission/research/interior/maint)
-"iT" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/maintenance_hatch{
-	req_access_txt = "12"
-	},
-/turf/open/floor/plating,
 /area/awaymission/research/interior/maint)
 "iU" = (
 /obj/structure/cable{
@@ -6371,8 +6331,7 @@
 /area/awaymission/research/interior)
 "va" = (
 /obj/machinery/door/airlock/research{
-	name = "Cryogenetics Research";
-	req_access_txt = "9"
+	name = "Cryogenetics Research"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -6381,6 +6340,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/science/general,
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior)
 "wM" = (
@@ -6406,12 +6366,8 @@
 /turf/open/floor/plating,
 /area/awaymission/research/interior/escapepods)
 "zn" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	req_access_txt = "12"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
@@ -6419,8 +6375,7 @@
 /area/awaymission/research/interior/maint)
 "Bx" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Engine Room";
-	req_access_txt = "10"
+	name = "Engine Room"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -6429,12 +6384,12 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior)
 "Do" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	req_access_txt = "12"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
@@ -6443,8 +6398,7 @@
 "Km" = (
 /obj/machinery/door/airlock/security/glass{
 	id_tag = "outerbrig";
-	name = "Brig";
-	req_access_txt = "63"
+	name = "Brig"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -6453,6 +6407,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior)
 "Qd" = (
@@ -6473,8 +6428,7 @@
 "Qz" = (
 /obj/machinery/door/airlock/security/glass{
 	id_tag = "outerbrig";
-	name = "Brig";
-	req_access_txt = "63"
+	name = "Brig"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -6485,12 +6439,12 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior)
 "TD" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Engine Room";
-	req_access_txt = "10"
+	name = "Engine Room"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -6501,6 +6455,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior)
 "TE" = (
@@ -6515,8 +6470,7 @@
 "Uu" = (
 /obj/machinery/door/airlock/security/glass{
 	id_tag = "outerbrig";
-	name = "Brig";
-	req_access_txt = "63"
+	name = "Brig"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -6525,12 +6479,12 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior)
 "UA" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	req_access_txt = "12"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
@@ -6539,8 +6493,7 @@
 "WR" = (
 /obj/machinery/door/airlock/security/glass{
 	id_tag = "outerbrig";
-	name = "Brig";
-	req_access_txt = "63"
+	name = "Brig"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -6551,6 +6504,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plasteel/white,
 /area/awaymission/research/interior)
 "XE" = (
@@ -37265,7 +37219,7 @@ ad
 aH
 cm
 dZ
-et
+cy
 fa
 fC
 gs
@@ -39077,7 +39031,7 @@ cK
 dt
 cK
 cK
-cy
+eH
 cd
 id
 cd
@@ -39088,7 +39042,7 @@ iX
 iX
 iX
 iX
-aP
+eH
 iX
 iX
 iX
@@ -42164,7 +42118,7 @@ iK
 iN
 iM
 id
-iT
+eH
 iX
 iX
 iX
@@ -42905,7 +42859,7 @@ ar
 ar
 ar
 ar
-aP
+eH
 ar
 ar
 ar
@@ -43207,7 +43161,7 @@ lN
 lU
 lU
 lY
-aP
+eH
 cd
 mb
 mi
@@ -43449,7 +43403,7 @@ id
 id
 id
 id
-iT
+eH
 iX
 jp
 jG
@@ -43466,7 +43420,7 @@ iX
 iX
 iX
 cd
-aP
+eH
 mi
 mn
 mn
@@ -43969,7 +43923,7 @@ jq
 jH
 kd
 iD
-iT
+eH
 iD
 iD
 iD
@@ -44997,7 +44951,7 @@ js
 jJ
 ke
 cp
-iT
+eH
 iD
 iD
 iD
@@ -45007,7 +44961,7 @@ iD
 iD
 iD
 iD
-aP
+eH
 iD
 mp
 mx
@@ -46261,11 +46215,11 @@ aH
 aO
 aO
 aO
-aP
+eH
 fT
 gG
 hc
-aP
+eH
 cm
 bD
 cw
@@ -49371,7 +49325,7 @@ jh
 lg
 lt
 kh
-aP
+eH
 cd
 aH
 ad
@@ -50639,7 +50593,7 @@ hH
 hR
 hR
 ik
-iv
+eH
 cw
 aH
 ad
