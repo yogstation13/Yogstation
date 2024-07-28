@@ -1265,10 +1265,10 @@
 /turf/open/floor/mineral/plastitanium,
 /area/yogs/infiltrator_base)
 "cC" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
 "cD" = (
@@ -1281,7 +1281,7 @@
 "cF" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/corner{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
@@ -1422,15 +1422,6 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
-/turf/open/floor/plasteel,
-/area/yogs/infiltrator_base)
-"cR" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
 "cS" = (
@@ -2242,7 +2233,7 @@ bM
 cd
 cp
 cD
-cR
+bP
 aj
 aj
 aj
