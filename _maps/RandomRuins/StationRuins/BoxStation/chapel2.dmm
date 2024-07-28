@@ -590,7 +590,8 @@
 	icon_state = "airlock_control_standby";
 	id = "chapelgun";
 	name = "Mass Driver Controller";
-	pixel_y = 30
+	pixel_y = 30;
+	req_access_txt = "chapel_office"
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)

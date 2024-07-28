@@ -6109,7 +6109,8 @@
 /area/maintenance/starboard/aft)
 "aRJ" = (
 /obj/machinery/door/airlock/mining{
-	req_access_txt = "48"
+	req_access_txt = "48";
+	name = "Mining Bay"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
