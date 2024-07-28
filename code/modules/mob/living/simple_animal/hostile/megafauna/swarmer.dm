@@ -50,7 +50,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	mob_biotypes = MOB_ROBOTIC
 	gps_name = "Hungry Signal"
 	faction = list("mining", "boss", "swarmer")
-	weather_immunities = list(WEATHER_LAVA, WEATHER_ASH)
+	weather_immunities = ALL
 	stop_automated_movement = TRUE
 	wander = FALSE
 	layer = BELOW_MOB_LAYER
@@ -107,7 +107,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 /mob/living/simple_animal/hostile/swarmer/ai
 	wander = 1
 	faction = list("swarmer", "mining")
-	weather_immunities = list(WEATHER_ASH) //wouldn't be fun otherwise
+	weather_immunities = WEATHER_STORM //wouldn't be fun otherwise
 	AIStatus = AI_ON
 
 /mob/living/simple_animal/hostile/swarmer/ai/Initialize(mapload)

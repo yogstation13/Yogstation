@@ -69,7 +69,7 @@
 
 
 /obj/mecha/proc/get_stats_part()
-	var/integrity = atom_integrity/max_integrity*100
+	var/integrity = 100 * (atom_integrity - integrity_failure) / (max_integrity - integrity_failure)
 	var/cell_charge = get_charge()
 	var/datum/gas_mixture/int_tank_air = 0
 	var/tank_pressure = 0
@@ -100,7 +100,7 @@
 						<b>Environment pressure: </b>[environment_pressure>WARNING_HIGH_PRESSURE ? span_danger("[environment_pressure]"): environment_pressure]kPa<br>
 						<b>Environment temperature: </b> [environment_temperature]&deg;K|[environment_temperature - T0C]&deg;C<br>
 						[dna_lock?"<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[dna_lock]</span> \[<a href='?src=[REF(src)];reset_dna=1'>Reset</a>\]<br>":""]<br>
-						[defence_action.owner ? "<b>Defence Mode: </b> [defence_mode ? "Enabled" : "Disabled"]<br>" : ""]
+						[defence_action.owner ? "<b>Defense Mode: </b> [defence_mode ? "Enabled" : "Disabled"]<br>" : ""]
 						[overload_action.owner ? "<b>Leg Actuators Overload: </b> [leg_overload_mode ? "Enabled" : "Disabled"]<br>" : ""]
 						[smoke_action.owner ? "<b>Smoke: </b> [smoke]<br>" : ""]
 						[zoom_action.owner ? "<b>Zoom: </b> [zoom_mode ? "Enabled" : "Disabled"]<br>" : ""]
@@ -393,12 +393,10 @@
 	if(href_list["repair_int_control_lost"])
 		occupant_message("Recalibrating coordination system...")
 		log_message("Recalibration of coordination system started.", LOG_MECHA)
-		var/T = loc
-		spawn(100)
-			if(T == loc)
-				clearInternalDamage(MECHA_INT_CONTROL_LOST)
-				occupant_message(span_notice("Recalibration successful."))
-				log_message("Recalibration of coordination system finished with 0 errors.", LOG_MECHA)
-			else
-				occupant_message(span_warning("Recalibration failed!"))
-				log_message("Recalibration of coordination system failed with 1 error.", LOG_MECHA, color="red")
+		if(do_after(occupant, 10 SECONDS, src))
+			clearInternalDamage(MECHA_INT_CONTROL_LOST)
+			occupant_message(span_notice("Recalibration successful."))
+			log_message("Recalibration of coordination system finished with 0 errors.", LOG_MECHA)
+		else
+			occupant_message(span_warning("Recalibration failed!"))
+			log_message("Recalibration of coordination system failed with 1 error.", LOG_MECHA, color="red")

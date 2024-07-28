@@ -1357,6 +1357,29 @@
 	desc = "A bag containing fresh, dry coffee robusta beans. Ethically sourced and packaged by Waffle Corp."
 	beantype = /obj/item/reagent_containers/food/snacks/grown/coffee/robusta
 
+/obj/item/storage/box/rollingpapers
+	name = "rolling paper pack"
+	desc = "A pack of Nanotrasen brand rolling papers."
+	w_class = WEIGHT_CLASS_TINY
+	icon = 'icons/obj/cigarettes.dmi'
+	icon_state = "cig_paper_pack"
+	foldable = null
+
+/obj/item/storage/box/rollingpapers/Initialize(mapload)
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 10
+	STR.set_holdable(list(/obj/item/rollingpaper))
+
+/obj/item/storage/box/rollingpapers/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/rollingpaper(src)
+
+/obj/item/storage/box/rollingpapers/update_overlays()
+	. = ..()
+	if(!contents.len)
+		. += "[icon_state]_empty"
+
 #define CARTON_PLAIN "plain ice cream"
 #define CARTON_VANILLA "vanilla ice cream"
 #define CARTON_CHOCOLATE "chocolate ice cream"

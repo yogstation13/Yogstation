@@ -407,6 +407,20 @@
 		qdel(nugget_man)
 	. = ..()
 
+/obj/item/reagent_containers/food/snacks/fried_chicken
+	name = "fried chicken"
+	desc = "A juicy hunk of chicken meat, fried to perfection."
+	icon_state = "fried_chicken1"
+	filling_color = "#B22222"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("chicken" = 3, "fried batter" = 1)
+	foodtype = MEAT | FRIED
+
+/obj/item/reagent_containers/food/snacks/fried_chicken/Initialize(mapload)
+	. = ..()
+	if(prob(50))
+		icon_state = "fried_chicken2"
+
 /obj/item/reagent_containers/food/snacks/pigblanket
 	name = "pig in a blanket"
 	desc = "A tiny sausage wrapped in a flakey, buttery roll. Free this pig from its blanket prison by eating it."
@@ -443,6 +457,44 @@
 /obj/item/reagent_containers/food/snacks/meatclown/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 30)
+
+/obj/item/reagent_containers/food/snacks/roast_dinner
+	name = "roast dinner"
+	desc = "A luxuriously roasted chicken, accompanied by cabbage, parsnip, potatoes, peas, stuffing and a small boat of gravy."
+	icon_state = "full_roast"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 21, /datum/reagent/consumable/nutriment/vitamin = 6)
+	tastes = list("chicken" = 3, "vegetables" = 1, "gravy" = 1)
+	foodtype = MEAT | VEGETABLES | GRAIN
+	w_class = WEIGHT_CLASS_NORMAL
+	slices_num = 3
+	slice_path = /obj/item/reagent_containers/food/snacks/roast_slice
+
+/obj/item/reagent_containers/food/snacks/roast_slice
+	name = "roast dinner portion"
+	desc = "A small plate of roast chicken, peas, cabbage, parsnips, potatoes, stuffing and gravy."
+	icon_state = "roast_slice"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 7, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("chicken" = 3, "vegetables" = 1, "gravy" = 1)
+	foodtype = MEAT | VEGETABLES | GRAIN
+
+/obj/item/reagent_containers/food/snacks/roast_dinner_tofu
+	name = "tofu roast dinner"
+	desc = "A luxuriously roasted tofu-'chicken', accompanied by cabbage, parsnip, potatoes, peas, stuffing and a small boat of soy-based gravy."
+	icon_state = "full_roast_tofu"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 21, /datum/reagent/consumable/nutriment/vitamin = 6)
+	tastes = list("tofu" = 3, "vegetables" = 1, "gravy" = 1)
+	foodtype = VEGETABLES | GRAIN
+	w_class = WEIGHT_CLASS_NORMAL
+	slices_num = 3
+	slice_path = /obj/item/reagent_containers/food/snacks/roast_slice_tofu
+
+/obj/item/reagent_containers/food/snacks/roast_slice_tofu
+	name = "tofu roast dinner portion"
+	desc = "A small plate of roast tofu-'chicken', peas, cabbage, parsnips, potatoes, stuffing and soy-based gravy."
+	icon_state = "roast_slice_tofu"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 7, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("tofu" = 3, "vegetables" = 1, "gravy" = 1)
+	foodtype = VEGETABLES | GRAIN
 
 ////////////////////////////////////////////ANIMAL CUBES////////////////////////////////////////////
 

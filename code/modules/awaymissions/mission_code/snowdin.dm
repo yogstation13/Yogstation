@@ -178,9 +178,9 @@
 	if (isliving(thing)) //objects are unaffected for now
 		. = TRUE
 		var/mob/living/L = thing
-		if(L.movement_type & FLYING)
+		if(L.movement_type & (FLYING|FLOATING))
 			return	//YOU'RE FLYING OVER IT
-		if(WEATHER_SNOW in L.weather_immunities)
+		if(L.weather_immunities & WEATHER_SNOW)
 			return
 
 		var/buckle_check = L.buckling
@@ -193,7 +193,7 @@
 
 		else if(isliving(buckle_check))
 			var/mob/living/live = buckle_check
-			if(WEATHER_SNOW in live.weather_immunities)
+			if(live.weather_immunities & WEATHER_SNOW)
 				return
 
 		L.adjustFireLoss(2)

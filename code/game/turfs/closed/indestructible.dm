@@ -1,8 +1,7 @@
 /turf/closed/indestructible
 	name = "wall"
 	desc = "Effectively impervious to conventional methods of destruction."
-	icon = 'icons/turf/walls/wall.dmi'
-	icon_state = "wall-0"
+	icon = 'icons/turf/walls.dmi'
 	explosion_block = 50
 	turf_flags = NOJAUNT | NO_RUST
 
@@ -40,7 +39,7 @@
 	icon_state = "corner"
 
 /turf/closed/indestructible/splashscreen
-	name = "Space Station 13"
+	name = "Yogstation 13"
 	desc = null
 	icon = 'icons/blanks/blank_title.png'
 	icon_state = ""

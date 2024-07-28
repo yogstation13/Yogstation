@@ -396,7 +396,7 @@
 	name = "Ivymen"
 	id = "ivymen"
 	limbs_id = SPECIES_PODPERSON
-	inherent_traits = list(TRAIT_NOGUNS,TRAIT_RESISTHIGHPRESSURE)
+	inherent_traits = list(TRAIT_NOGUNS,TRAIT_RESISTHIGHPRESSURE, TRAIT_SULPH_PIT_IMMUNE)
 	speedmod = 0
 	mutantlungs = /obj/item/organ/lungs/plant/ivymen
 	disliked_food = DAIRY
@@ -407,7 +407,7 @@
 
 /datum/species/pod/ivymen/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	C.weather_immunities -= WEATHER_ACID
+	C.weather_immunities &= ~WEATHER_ACID
 
 
 #undef STATUS_MESSAGE_COOLDOWN

@@ -75,74 +75,103 @@
 	energy_drain = 100
 	range = MECHA_MELEE|MECHA_RANGED
 	var/atom/movable/locked
-	var/mode = 1 //1 - gravsling 2 - gravpush
+	var/datum/beam/gravity_beam
 
+/obj/item/mecha_parts/mecha_equipment/gravcatapult/detach(atom/moveto)
+	set_target(null)
+	return ..()
 
-/obj/item/mecha_parts/mecha_equipment/gravcatapult/action(atom/movable/target)
+/obj/item/mecha_parts/mecha_equipment/gravcatapult/action(atom/movable/target, mob/living/user, params)
 	if(!action_checks(target))
 		return
-	switch(mode)
-		if(1)
-			if(!locked)
-				if(!istype(target) || target.anchored || target.move_resist >= MOVE_FORCE_EXTREMELY_STRONG)
-					occupant_message("Unable to lock on [target]")
-					return
-				if(ismob(target))
-					var/mob/M = target
-					if(M.mob_negates_gravity())
-						occupant_message("Unable to lock on [target]")
-						return
-				locked = target
-				occupant_message("Locked on [target]")
-				send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
-			else if(target!=locked)
-				if(locked in view(chassis))
-					var/turf/targ = get_turf(target)
-					var/turf/orig = get_turf(locked)
-					locked.throw_at(target, 14, 1.5)
-					locked = null
-					send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
-					log_game("[key_name(chassis.occupant)] used a Gravitational Catapult to throw [locked] (From [AREACOORD(orig)]) at [target] ([AREACOORD(targ)]).")
-					return TRUE
-				else
-					locked = null
-					occupant_message("Lock on [locked] disengaged.")
-					send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
-		if(2)
-			var/list/atoms = list()
-			if(isturf(target))
-				atoms = range(3, target)
-			else
-				atoms = orange(3, target)
-			for(var/atom/movable/A in atoms)
-				if(A.anchored || A.move_resist >= MOVE_FORCE_EXTREMELY_STRONG)
-					continue
-				if(ismob(A))
-					var/mob/M = A
-					if(M.mob_negates_gravity())
-						continue
-				spawn(0)
-					var/iter = 5-get_dist(A,target)
-					for(var/i=0 to iter)
-						step_away(A,target)
-						sleep(0.2 SECONDS)
-			var/turf/T = get_turf(target)
-			log_game("[key_name(chassis.occupant)] used a Gravitational Catapult repulse wave on [AREACOORD(T)]")
-			return TRUE
-
-
-/obj/item/mecha_parts/mecha_equipment/gravcatapult/get_equip_info()
-	return "[..()] [mode==1?"([locked||"Nothing"])":null] \[<a href='?src=[REF(src)];mode=1'>S</a>|<a href='?src=[REF(src)];mode=2'>P</a>\]"
-
-/obj/item/mecha_parts/mecha_equipment/gravcatapult/Topic(href, href_list)
-	..()
-	if(href_list["mode"])
-		mode = text2num(href_list["mode"])
+	var/list/modifiers = params2list(params)
+	if(modifiers[RIGHT_CLICK])
+		if(locked)
+			set_target(null)
+			return
+		if(get_dist(chassis, target) > 7)
+			balloon_alert(chassis.occupant, "too far!")
+			return
+		if(!ismovable(target) || target.anchored || target.move_resist >= INFINITY)
+			return
+		if(ismob(target))
+			var/mob/M = target
+			if(M.mob_negates_gravity())
+				occupant_message("Unable to lock on [target]")
+				return
+		set_target(target)
+		return
+	else if(locked)
+		var/turf/targ = get_turf(target)
+		var/turf/orig = get_turf(locked)
+		locked.throw_at(target, 14, 1.5)
+		set_target(null)
 		send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
-	return
+		log_game("[key_name(chassis.occupant)] used a Gravitational Catapult to throw [locked] (From [AREACOORD(orig)]) at [target] ([AREACOORD(targ)]).")
+		return TRUE
+	else
+		var/turf/center
+		if(user.client) //try to get the precise angle to the user's mouse rather than just the tile clicked on
+			center = get_turf_in_angle(mouse_angle_from_client(user.client), get_turf(chassis))
+		if(!center) //if no fancy targeting has happened, default to something alright
+			center = get_turf_in_angle(get_angle(chassis, target), get_turf(chassis))
+		to_chat(chassis.occupant, "Repulse Epicenter: [center] ([center?.x],[center?.y])")
+		new /obj/effect/temp_visual/kinetic_blast(center)
 
+		INVOKE_ASYNC(src, PROC_REF(do_repulse), center, user)
+		return TRUE
 
+/obj/item/mecha_parts/mecha_equipment/gravcatapult/proc/do_repulse(turf/center, mob/user)
+	playsound(center, 'sound/weapons/resonator_blast.ogg', 50, 1)
+	var/atom/movable/gravity_lens/shockwave = new(get_turf(center))
+	shockwave.transform *= 0.1 //basically invisible
+	shockwave.pixel_x = -240
+	shockwave.pixel_y = -240
+	shockwave.alpha = 200 //slightly weaker looking
+	animate(shockwave, alpha = 0, transform = matrix().Scale(0.24), time = 3)//the scale of this is VERY finely tuned to range
+	QDEL_IN(shockwave, 4)
 
+	chassis.visible_message(span_warning("[chassis] repels everything in front of it!"))
+
+	var/throw_dir = get_dir(chassis, center)
+	for(var/atom/movable/hit_atom in range(1, center))
+		if(hit_atom == chassis)
+			continue
+		if(!hit_atom.anchored)
+			hit_atom.throw_at(get_edge_target_turf(hit_atom, throw_dir), 5, 2, user, TRUE)
+		if(isitem(hit_atom))
+			return
+		if(hit_atom.uses_integrity) // damages structures
+			var/damage = 15
+			if(get_turf(hit_atom) == center)
+				damage *= 2 //anything in the center takes more
+			hit_atom.take_damage(damage, sound_effect = FALSE)
+
+	log_game("[key_name(chassis.occupant)] used a Gravitational Catapult repulse wave on [AREACOORD(center)]")
+
+/obj/item/mecha_parts/mecha_equipment/gravcatapult/proc/set_target(atom/movable/target)
+	if(target == locked)
+		return
+	if(gravity_beam)
+		QDEL_NULL(gravity_beam)
+	if(locked)
+		UnregisterSignal(locked, COMSIG_MOVABLE_MOVED, PROC_REF(target_check))
+		UnregisterSignal(chassis, COMSIG_MOVABLE_MOVED, PROC_REF(target_check))
+	if(!target)
+		locked = null
+		send_byjax(chassis.occupant, "exosuit.browser", "[REF(src)]", src.get_equip_info())
+		return
+	locked = target
+	gravity_beam = chassis.Beam(target, "rped_upgrade", time = INFINITY)
+	send_byjax(chassis.occupant,"exosuit.browser", "[REF(src)]", src.get_equip_info())
+	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(target_check))
+	RegisterSignal(chassis, COMSIG_MOVABLE_MOVED, PROC_REF(target_check))
+
+/obj/item/mecha_parts/mecha_equipment/gravcatapult/proc/target_check()
+	if(!locked)
+		return
+	if(get_dist(chassis, locked) > 7)
+		set_target(null)
 
 //////////////////////////// ARMOR BOOSTER MODULES //////////////////////////////////////////////////////////
 
@@ -174,7 +203,7 @@
 	range = 0
 	var/deflect_coeff = 1.15
 	var/damage_coeff = 0.8
-	selectable = 0
+	selectable = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/proc/projectile_react()
 	if(action_checks(src))
@@ -194,6 +223,7 @@
 	var/health_boost = 1
 	var/icon/droid_overlay
 	var/list/repairable_damage = list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH)
+	equip_actions = list(/datum/action/innate/mecha/equipment/toggle_repair)
 	selectable = 0
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid/Destroy()
@@ -203,46 +233,28 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid/attach(obj/mecha/M as obj)
-	..()
+	. = ..()
 	droid_overlay = new(src.icon, icon_state = "repair_droid")
 	M.add_overlay(droid_overlay)
+	RegisterSignal(chassis, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_chassis_overlays))
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid/detach()
 	chassis.cut_overlay(droid_overlay)
-	STOP_PROCESSING(SSobj, src)
-	..()
+	if(!equip_ready)
+		STOP_PROCESSING(SSobj, src)
+	UnregisterSignal(chassis, COMSIG_ATOM_UPDATE_OVERLAYS)
+	return ..()
 
-/obj/item/mecha_parts/mecha_equipment/repair_droid/get_equip_info()
-	if(!chassis)
-		return
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp; [src.name] - <a href='?src=[REF(src)];toggle_repairs=1'>[equip_ready?"A":"Dea"]ctivate</a>"
-
-
-/obj/item/mecha_parts/mecha_equipment/repair_droid/Topic(href, href_list)
-	..()
-	if(href_list["toggle_repairs"])
-		chassis.cut_overlay(droid_overlay)
-		if(equip_ready)
-			START_PROCESSING(SSobj, src)
-			droid_overlay = new(src.icon, icon_state = "repair_droid_a")
-			log_message("Activated.", LOG_MECHA)
-			set_ready_state(0)
-		else
-			STOP_PROCESSING(SSobj, src)
-			droid_overlay = new(src.icon, icon_state = "repair_droid")
-			log_message("Deactivated.", LOG_MECHA)
-			set_ready_state(1)
-		chassis.add_overlay(droid_overlay)
-		send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
-
+/obj/item/mecha_parts/mecha_equipment/repair_droid/proc/update_chassis_overlays(atom/source, list/overlays)
+	overlays += droid_overlay
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid/process()
-	if(!chassis)
+	if(!chassis || chassis.wrecked)
 		STOP_PROCESSING(SSobj, src)
 		set_ready_state(1)
 		return
 	var/h_boost = health_boost
-	var/repaired = 0
+	var/repaired = FALSE
 	if(chassis.internal_damage & MECHA_INT_SHORT_CIRCUIT)
 		h_boost *= -2
 	else if(chassis.internal_damage && prob(15))
@@ -253,23 +265,33 @@
 				break
 	if(h_boost < 0)
 		chassis.take_damage(-h_boost)
-		repaired = 1
+		repaired = TRUE
 	if(chassis.get_integrity() < chassis.max_integrity && h_boost > 0)
 		chassis.update_integrity(chassis.get_integrity() + min(h_boost, chassis.max_integrity-chassis.get_integrity()))
-		repaired = 1
+		repaired = TRUE
 	if(repaired)
 		if(!chassis.use_power(energy_drain))
 			STOP_PROCESSING(SSobj, src)
 			set_ready_state(1)
-	else //no repair needed, we turn off
-		STOP_PROCESSING(SSobj, src)
-		set_ready_state(1)
-		chassis.cut_overlay(droid_overlay)
-		droid_overlay = new(src.icon, icon_state = "repair_droid")
-		chassis.add_overlay(droid_overlay)
+			chassis.update_appearance(UPDATE_OVERLAYS)
 
+/datum/action/innate/mecha/equipment/toggle_repair
+	name = "Toggle Repairs"
+	button_icon_state = "mech_repair_off"
 
-
+/datum/action/innate/mecha/equipment/toggle_repair/Activate()
+	var/obj/item/mecha_parts/mecha_equipment/repair_droid/repair_droid = equipment
+	if(repair_droid.equip_ready)
+		START_PROCESSING(SSobj, repair_droid)
+		repair_droid.log_message("Activated.", LOG_MECHA)
+	else
+		STOP_PROCESSING(SSobj, repair_droid)
+		repair_droid.log_message("Deactivated.", LOG_MECHA)
+	repair_droid.droid_overlay = new(repair_droid.icon, icon_state = "repair_droid[repair_droid.equip_ready ? "_a" : ""]")
+	button_icon_state = "mech_repair_[repair_droid.equip_ready ? "on" : "off"]"
+	repair_droid.set_ready_state(!repair_droid.equip_ready)
+	chassis.update_appearance(UPDATE_OVERLAYS)
+	build_all_button_icons()
 
 /////////////////////////////////// TESLA ENERGY RELAY ////////////////////////////////////////////////
 
@@ -554,6 +576,23 @@
 		thrust_trail.stop()
 		return
 	return COMSIG_MOVABLE_ALLOW_SPACEMOVE
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/alien
+	name = "anti-gravity engine"
+	desc = "A set of thrusters from an unknown source. Uses not-understood methods to propel exosuits seemingly for free."
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/alien/attach(obj/mecha/new_mecha)
+	. = ..()
+	RegisterSignal(new_mecha, COMSIG_ATOM_HAS_GRAVITY, PROC_REF(grav_check))
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/alien/detach(atom/moveto)
+	UnregisterSignal(chassis, COMSIG_ATOM_HAS_GRAVITY)
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/alien/proc/grav_check(obj/mecha/attached_mech, turf/location, list/gravs)
+	if(!thrusters_active)
+		return
+	gravs.Add(0) // screw gravity!
 
 /datum/action/innate/mecha/equipment/toggle_thrusters
 	name = "Toggle Thrusters"

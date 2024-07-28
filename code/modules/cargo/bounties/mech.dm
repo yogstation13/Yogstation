@@ -5,10 +5,7 @@
 /datum/bounty/item/mech/ship(obj/O)
 	if(!applies_to(O))
 		return
-	if(istype(O, /obj/mecha))
-		var/obj/mecha/M = O
-		M.wreckage = null // So the mech doesn't explode.
-	..()
+	return ..()
 
 /datum/bounty/item/mech/mark_high_priority(scale_reward)
 	return ..(max(scale_reward * 0.7, 1.2))
