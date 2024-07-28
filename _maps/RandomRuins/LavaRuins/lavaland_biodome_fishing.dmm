@@ -27,8 +27,7 @@
 /area/ruin/powered/fishing/shop)
 "aF" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "kitchen storage";
-	req_access_txt = "Fisherman"
+	name = "kitchen storage"
 	},
 /obj/effect/turf_decal/trimline/brown/filled/end,
 /obj/machinery/door/firedoor/border_only,
@@ -448,10 +447,6 @@
 "ld" = (
 /obj/structure/rack,
 /obj/item/ship_in_a_bottle,
-/obj/item/clothing/under/sailor,
-/obj/item/clothing/under/sailor,
-/obj/item/clothing/under/sailor,
-/obj/item/clothing/under/sailor,
 /obj/effect/spawner/lootdrop/glowstick,
 /obj/effect/spawner/lootdrop/glowstick,
 /obj/effect/spawner/lootdrop/glowstick,
@@ -786,15 +781,13 @@
 	id = "fishshop";
 	name = "Giftshop Shutters";
 	pixel_x = 28;
-	pixel_y = 8;
-	req_access_txt = "Fisherman"
+	pixel_y = 8
 	},
 /obj/machinery/button/door{
 	id = "fishing lockdown";
 	name = "Lockdown Control";
 	pixel_x = 28;
-	pixel_y = -7;
-	req_access_txt = "Fisherman"
+	pixel_y = -7
 	},
 /obj/effect/mob_spawn/human/fishing/alive,
 /obj/structure/cloth_curtain,
@@ -848,8 +841,7 @@
 	id = "fishing lockdown";
 	name = "Lockdown Control";
 	pixel_x = 25;
-	pixel_y = -6;
-	req_access_txt = "Fisherman"
+	pixel_y = -6
 	},
 /obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel,
@@ -1007,8 +999,7 @@
 	dir = 4
 	},
 /obj/machinery/door/window/westleft{
-	dir = 2;
-	req_access_txt = "Fisherman"
+	dir = 2
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
@@ -1332,15 +1323,13 @@
 	id = "fishing lockdown";
 	name = "Lockdown Control";
 	pixel_x = -23;
-	pixel_y = 9;
-	req_access_txt = "Fisherman"
+	pixel_y = 9
 	},
 /obj/machinery/button/door{
 	id = "fishshop";
 	name = "Giftshop Shutters";
 	pixel_x = -23;
-	pixel_y = -6;
-	req_access_txt = "Fisherman"
+	pixel_y = -6
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/shop)
@@ -1418,8 +1407,7 @@
 /area/ruin/powered/fishing/shop)
 "Gv" = (
 /obj/machinery/door/airlock/wood{
-	name = "bunk room";
-	req_access_txt = "Fisherman"
+	name = "bunk room"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -1506,9 +1494,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/fishing/kitchen)
 "IW" = (
-/obj/machinery/door/window/westleft{
-	req_access_txt = "Fisherman"
-	},
+/obj/machinery/door/window/westleft,
 /obj/machinery/door/poddoor/shutters{
 	id = "fishshop"
 	},
@@ -1676,8 +1662,7 @@
 "Qn" = (
 /obj/effect/turf_decal/caution/stand_clear,
 /obj/machinery/door/airlock/glass{
-	name = "kitchen access";
-	req_access_txt = "Fisherman"
+	name = "kitchen access"
 	},
 /obj/effect/turf_decal/trimline/brown/filled/line,
 /obj/effect/turf_decal/trimline/brown/filled/line{
@@ -1902,9 +1887,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/machinery/door/window/westleft{
-	req_access_txt = "Fisherman"
-	},
+/obj/machinery/door/window/westleft,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ruin/powered/fishing/tcom)
 "Vn" = (
@@ -2058,7 +2041,7 @@
 /area/ruin/powered/fishing/shop)
 "Zd" = (
 /obj/machinery/firealarm{
-	dir = 8;
+	dir = 4;
 	pixel_x = -26
 	},
 /turf/open/water/safe,

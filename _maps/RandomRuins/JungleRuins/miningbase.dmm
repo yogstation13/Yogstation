@@ -2743,10 +2743,10 @@
 /area/mine/maintenance)
 "Ji" = (
 /obj/machinery/door/window/eastleft{
-	req_access_txt = "48"
+	req_access_txt = "mining_station"
 	},
 /obj/machinery/door/window/westleft{
-	req_access_txt = "48"
+	req_access_txt = "mining_station"
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 8
