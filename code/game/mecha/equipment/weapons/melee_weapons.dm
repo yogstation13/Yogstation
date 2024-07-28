@@ -698,6 +698,8 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/mop/proc/on_pre_move(obj/mecha/mech, atom/newloc)
+	if(mech.equipment_disabled || mech.completely_disabled)
+		return
 	if(!auto_sweep)
 		return
 	var/mop_dir = get_dir(mech, newloc)
