@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Slimes can no longer paralyze for up to 26 seconds with a single click"
+  - tweak: "Slimes now have a chance to daze targets when glomping them"
