@@ -1,10 +1,11 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/obj/machinery/power/apc/auto_name/south{
-	pixel_y = -23
-	},
 /obj/structure/cable{
 	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/syndicate{
+	name = "Power Station APC";
+	pixel_y = -23
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/reactor)
@@ -663,12 +664,12 @@
 /area/ruin/syndicate_icemoon/engine)
 "dq" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/auto_name/south{
-	pixel_y = -23;
-	req_access = list(150)
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
+	},
+/obj/machinery/power/apc/syndicate{
+	name = "Central Hallway APC";
+	pixel_y = -23
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
@@ -727,10 +728,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "dB" = (
-/obj/machinery/power/apc/auto_name/west{
-	pixel_x = -25;
-	req_access = list(150)
-	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
@@ -744,6 +741,10 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc/syndicate{
+	name = "Warehouse APC";
+	pixel_x = -25
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
 "dF" = (
@@ -2102,9 +2103,9 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/auto_name/south{
-	pixel_y = -23;
-	req_access = list(150)
+/obj/machinery/power/apc/syndicate{
+	name = "Research Wing APC";
+	pixel_y = -23
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
@@ -2240,7 +2241,8 @@
 /area/ruin/syndicate_icemoon/command)
 "mc" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
-	req_access = list(150)
+	req_access = null;
+	req_access_txt = "syndicate"
 	},
 /obj/effect/spawner/lootdrop/donkpockets,
 /obj/effect/spawner/lootdrop/donkpockets,
@@ -2482,16 +2484,16 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/canteen)
 "nf" = (
-/obj/machinery/power/apc/auto_name/north{
-	pixel_y = 23;
-	req_access = list(150)
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
 	},
 /obj/structure/filingcabinet,
 /obj/structure/cable{
 	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/syndicate{
+	name = "Command APC";
+	pixel_y = 23
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/command)
@@ -2522,7 +2524,8 @@
 /area/ruin/syndicate_icemoon/research)
 "np" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
-	req_access = list(150)
+	req_access = null;
+	req_access_txt = "syndicate"
 	},
 /obj/item/storage/box/ingredients/american,
 /obj/item/storage/box/ingredients/delights,
@@ -2597,10 +2600,6 @@
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
 "nL" = (
-/obj/machinery/power/apc/auto_name/north{
-	pixel_y = 23;
-	req_access = list(150)
-	},
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -2617,6 +2616,10 @@
 /obj/item/stack/sheet/metal/twenty,
 /obj/item/stack/sheet/glass{
 	amount = 10
+	},
+/obj/machinery/power/apc/syndicate{
+	name = "Security Wing APC";
+	pixel_y = 23
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
@@ -2662,8 +2665,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/cable,
-/obj/machinery/power/apc/auto_name/east{
-	req_access = list(150)
+/obj/machinery/power/apc/syndicate{
+	name = "Engineering Wing APC";
+	pixel_x = 25
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
@@ -3792,12 +3796,12 @@
 /area/ruin/syndicate_icemoon/command)
 "uG" = (
 /obj/machinery/deepfryer,
-/obj/machinery/power/apc/auto_name/south{
-	pixel_y = -23;
-	req_access = list(150)
-	},
 /obj/structure/cable{
 	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/syndicate{
+	name = "Canteen APC";
+	pixel_y = -23
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
@@ -5506,11 +5510,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/reactor)
 "Db" = (
-/obj/machinery/power/apc/auto_name/west{
-	pixel_x = -25;
-	req_access = list(150)
-	},
 /obj/structure/cable,
+/obj/machinery/power/apc/syndicate{
+	pixel_x = -25;
+	name = "Shed APC"
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/shed)
 "De" = (
@@ -6200,10 +6204,6 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/auto_name/west{
-	pixel_x = -25;
-	req_access = list(150)
-	},
 /obj/structure/closet/crate,
 /obj/item/paper{
 	info = "Due to several incidents of dumbasses tripping into plasma rivers, we have stocked plasmaman survival supplies. Not that you'll be able to get them alive anyway."
@@ -6216,6 +6216,10 @@
 /obj/item/tank/internals/plasmaman/belt/full,
 /obj/item/tank/internals/plasmaman/full,
 /obj/item/tank/internals/plasmaman/full,
+/obj/machinery/power/apc/syndicate{
+	name = "Medical Wing APC";
+	pixel_x = -25
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/medical)
 "Gp" = (
@@ -6833,7 +6837,8 @@
 /area/ruin/syndicate_icemoon/hallway)
 "JZ" = (
 /obj/structure/closet/secure_closet/freezer/meat{
-	req_access = list(150)
+	req_access = null;
+	req_access_txt = "syndicate"
 	},
 /obj/machinery/light/small,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
@@ -6978,10 +6983,6 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/auto_name/north{
-	pixel_y = 23;
-	req_access = list(150)
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
 	},
@@ -6993,6 +6994,10 @@
 	},
 /obj/machinery/light_switch{
 	pixel_x = 13;
+	pixel_y = 23
+	},
+/obj/machinery/power/apc/syndicate{
+	name = "Crew Quarters APC";
 	pixel_y = 23
 	},
 /turf/open/floor/wood,
@@ -7549,7 +7554,8 @@
 /obj/item/storage/firstaid/hypospray/syndicate,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/storage/lockbox/vialbox/hypo_deluxe{
-	req_access = list(150)
+	req_access = null;
+	req_access_txt = "syndicate"
 	},
 /obj/effect/turf_decal/siding/blue{
 	dir = 10
@@ -8293,12 +8299,12 @@
 /area/icemoon/surface/outdoors)
 "SG" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/apc/auto_name/south{
-	pixel_y = -23;
-	req_access = list(150)
-	},
 /obj/structure/cable{
 	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/syndicate{
+	name = "Maintenance APC";
+	pixel_y = -23
 	},
 /turf/open/floor/plasteel,
 /area/ruin/syndicate_icemoon/maintenance)
@@ -9252,9 +9258,9 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/auto_name/north{
-	pixel_y = 23;
-	req_access = list(150)
+/obj/machinery/power/apc/syndicate{
+	name = "Xenobiology Wing APC";
+	pixel_y = 23
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)

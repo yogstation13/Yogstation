@@ -3395,7 +3395,8 @@
 /area/ruin/powered/syndicate_lava_base/bar)
 "Ft" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
-	req_access = list(150)
+	req_access = null;
+	req_access_txt = "syndicate"
 	},
 /obj/item/kitchen/knife/butcher,
 /obj/item/clothing/suit/apron/chef,
@@ -4505,7 +4506,8 @@
 /area/ruin/powered/syndicate_lava_base/bar)
 "Pk" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
-	req_access = list(150)
+	req_access = null;
+	req_access_txt = "syndicate"
 	},
 /obj/effect/spawner/lootdrop/donkpockets,
 /obj/item/storage/box/ingredients/vegetarian,
@@ -4870,7 +4872,8 @@
 /obj/item/storage/lockbox/vialbox/virology{
 	pixel_x = -7;
 	pixel_y = 2;
-	req_access = list(150)
+	req_access = null;
+	req_access_txt = "syndicate"
 	},
 /obj/item/book/manual/wiki/infections{
 	pixel_y = 7
@@ -5323,7 +5326,8 @@
 /obj/item/storage/firstaid/hypospray/syndicate,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/storage/lockbox/vialbox/hypo_deluxe{
-	req_access = list(150)
+	req_access = null;
+	req_access_txt = "syndicate"
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)

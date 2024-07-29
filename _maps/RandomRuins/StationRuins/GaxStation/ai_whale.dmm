@@ -108,6 +108,7 @@
 	name = "MiniSat External Access"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/command/ai_sat,
+/obj/effect/mapping_helpers/airlock/access/any/command/teleporter,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/tcomms,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -640,6 +641,7 @@
 	name = "MiniSat External Access"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/command/ai_sat,
+/obj/effect/mapping_helpers/airlock/access/any/command/teleporter,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/tcomms,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -1987,6 +1989,7 @@
 	dir = 1
 	},
 /obj/effect/mapping_helpers/airlock/access/any/command/ai_sat,
+/obj/effect/mapping_helpers/airlock/access/any/command/teleporter,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/tcomms,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -2859,6 +2862,7 @@
 	name = "MiniSat External Access"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/command/ai_sat,
+/obj/effect/mapping_helpers/airlock/access/any/command/teleporter,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/tcomms,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)

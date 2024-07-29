@@ -437,10 +437,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
 	},
-/obj/machinery/power/apc/auto_name/west{
-	pixel_x = -25;
-	req_access = list(150)
-	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -448,6 +444,10 @@
 	icon_state = "0-2"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc/syndicate{
+	name = "Maintenance APC";
+	pixel_x = -25
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/engineering)
 "by" = (
@@ -911,10 +911,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
 	},
-/obj/machinery/power/apc/auto_name/north{
-	pixel_y = 23;
-	req_access = list(150)
-	},
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -926,6 +922,10 @@
 /obj/item/stock_parts/cell/bluespace,
 /obj/item/stock_parts/cell/bluespace,
 /obj/item/storage/part_replacer/bluespace,
+/obj/machinery/power/apc/syndicate{
+	pixel_y = 23;
+	name = "Warehouse APC"
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
 "hW" = (
@@ -1156,9 +1156,6 @@
 /obj/structure/flora/tree/jungle/small,
 /turf/open/floor/plating/asteroid,
 /area/ruin/space/has_grav/listeningstation/quarters)
-"jw" = (
-/turf/closed/wall/rust,
-/area/ruin/space/has_grav/listeningstation)
 "jB" = (
 /obj/effect/baseturf_helper/asteroid/airless,
 /turf/closed/wall/explosive,
@@ -1330,16 +1327,16 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/hallway)
 "ms" = (
-/obj/machinery/power/apc/auto_name/west{
-	pixel_x = -25;
-	req_access = list(150)
-	},
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red/anticorner/contrasted{
 	dir = 8
+	},
+/obj/machinery/power/apc/syndicate{
+	name = "Telecommunications APC";
+	pixel_x = -25
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/telecomms)
@@ -1570,11 +1567,11 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/auto_name/north{
-	pixel_y = 23;
-	req_access = list(150)
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc/syndicate{
+	pixel_y = 23;
+	name = "Crew Quarters APC"
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "tz" = (
@@ -1694,7 +1691,8 @@
 /obj/machinery/advanced_airlock_controller{
 	dir = 0;
 	pixel_x = 24;
-	req_access = list(150)
+	req_access = null;
+	req_access_txt = "syndicate"
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/engineering)
@@ -1922,19 +1920,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/listeningstation/hallway)
-"yI" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc/auto_name/north{
-	pixel_y = 23;
-	req_access = list(150)
-	},
-/turf/open/floor/plating/asteroid/airless,
-/area/ruin/space/has_grav/listeningstation)
 "yN" = (
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/listeningstation/telecomms)
@@ -2088,7 +2073,8 @@
 	pixel_y = 23
 	},
 /obj/structure/closet/secure_closet/freezer/fridge{
-	req_access = list(150)
+	req_access = null;
+	req_access_txt = "syndicate"
 	},
 /obj/item/reagent_containers/food/condiment/enzyme,
 /obj/item/reagent_containers/food/snacks/meat/slab,
@@ -2379,7 +2365,8 @@
 	id = "lpost_warehouse";
 	name = "Warehouse Shutters";
 	pixel_x = -24;
-	req_access_txt = "syndicate"
+	req_access_txt = "syndicate";
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/airlock)
@@ -2399,10 +2386,6 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation)
 "JQ" = (
-/obj/machinery/power/apc/auto_name/north{
-	pixel_y = 23;
-	req_access = list(150)
-	},
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -2411,6 +2394,10 @@
 	dir = 1
 	},
 /obj/item/kirbyplants/random,
+/obj/machinery/power/apc/syndicate{
+	pixel_y = 23;
+	name = "Central Hallway APC"
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/hallway)
 "JS" = (
@@ -2758,10 +2745,6 @@
 /turf/open/floor/plating/asteroid,
 /area/ruin/space/has_grav/listeningstation)
 "OZ" = (
-/obj/machinery/power/apc/auto_name/north{
-	pixel_y = 23;
-	req_access = list(150)
-	},
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 1
 	},
@@ -2774,6 +2757,10 @@
 	},
 /obj/structure/cable{
 	icon_state = "2-4"
+	},
+/obj/machinery/power/apc/syndicate{
+	pixel_y = 23;
+	name = "Dock APC"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/airlock)
@@ -3003,7 +2990,8 @@
 /obj/machinery/advanced_airlock_controller{
 	dir = 0;
 	pixel_x = 24;
-	req_access = list(150)
+	req_access = null;
+	req_access_txt = "syndicate"
 	},
 /obj/machinery/light/small{
 	brightness = 3;
@@ -4596,8 +4584,8 @@ Mw
 NO
 NO
 NO
-jw
-yI
+NO
+lq
 NO
 NO
 NO

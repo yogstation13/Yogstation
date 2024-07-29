@@ -182,7 +182,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /turf/open/floor/plating,
 /area/maintenance/solars/port/fore)
 "aci" = (
@@ -4081,7 +4082,7 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/effect/mapping_helpers/airlock/access/any/security/general,
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "bhZ" = (
@@ -11607,8 +11608,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/eastleft{
-	name = "Mail";
-	req_access_txt = "cargo"
+	name = "Mail"
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -11645,7 +11645,7 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/effect/mapping_helpers/airlock/access/any/security/general,
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
 "dvD" = (
@@ -12693,9 +12693,9 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/machinery/door/firedoor/border_only,
 /obj/structure/disposalpipe/segment,
 /obj/effect/mapping_helpers/airlock/access/all/supply/mining,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "dKX" = (
@@ -19698,6 +19698,7 @@
 /obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
@@ -24384,11 +24385,11 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/machinery/door/airlock/research/glass{
-	name = "Secondary AI Core";
-	normalspeed = 0
+/obj/machinery/door/airlock/command/glass{
+	id_tag = "secondary_aicore_exterior";
+	name = "AI Networking"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/science/general,
+/obj/effect/mapping_helpers/airlock/access/all/command/ai_sat,
 /turf/open/floor/plasteel,
 /area/ai_monitored/secondarydatacore)
 "hfk" = (
@@ -29404,7 +29405,7 @@
 "iFF" = (
 /obj/machinery/door/airlock/command/glass{
 	id_tag = "secondary_aicore_interior";
-	name = "Physical Core Access"
+	name = "Networking Chamber Access"
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
@@ -38401,7 +38402,7 @@
 	dir = 4;
 	name = "RCD Storage";
 	pixel_x = 1;
-	req_access_txt = "command"
+	req_access_txt = "eva"
 	},
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -38800,7 +38801,8 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
 "lns" = (
@@ -43710,7 +43712,7 @@
 	dir = 8;
 	name = "Magboot Storage";
 	pixel_x = -1;
-	req_access_txt = "command"
+	req_access_txt = "eva"
 	},
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -45845,7 +45847,8 @@
 "nif" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/closet/secure_closet/contraband/armory{
-	req_access = list(63)
+	req_access = null;
+	req_access_txt = "sec_basic"
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -45944,7 +45947,7 @@
 	dir = 8;
 	name = "Jetpack Storage";
 	pixel_x = -1;
-	req_access_txt = "command"
+	req_access_txt = "eva"
 	},
 /obj/structure/window/reinforced,
 /obj/structure/rack,
@@ -50376,6 +50379,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
@@ -51913,7 +51917,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/fore)
 "oVE" = (
@@ -59938,7 +59943,8 @@
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/atmospherics/pipe/layer_manifold,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/fore)
 "rnE" = (
@@ -62329,7 +62335,7 @@
 /obj/item/paper,
 /obj/machinery/door/window/eastleft{
 	dir = 2;
-	name = "Kitchen Window";
+	name = "Hydroponics Window";
 	req_access_txt = "hydroponics"
 	},
 /obj/machinery/door/firedoor/border_only,
@@ -69986,7 +69992,8 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/layer_manifold,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
 "ufT" = (
@@ -71100,7 +71107,8 @@
 "uvE" = (
 /obj/machinery/door/window/northleft{
 	dir = 8;
-	name = "Disposals Chute"
+	name = "Disposals Chute";
+	req_access_txt = "teleporter"
 	},
 /obj/machinery/disposal/deliveryChute{
 	dir = 8;
@@ -71490,12 +71498,11 @@
 /area/engine/atmos/distro)
 "uBM" = (
 /obj/machinery/mineral/ore_redemption,
-/obj/effect/turf_decal/delivery,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/quartermaster/miningoffice)
 "uCm" = (
 /obj/structure/cable/yellow{
@@ -74080,7 +74087,7 @@
 /obj/machinery/door/airlock/external,
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "vmq" = (
@@ -75698,7 +75705,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "vJR" = (
@@ -81154,7 +81161,7 @@
 "xjt" = (
 /obj/machinery/door/airlock/command/glass{
 	id_tag = "secondary_aicore_exterior";
-	name = "Physical Core Access"
+	name = "Networking Chamber Access"
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
@@ -84376,7 +84383,8 @@
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/atmospherics/pipe/layer_manifold,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /turf/open/floor/plating,
 /area/maintenance/solars/port/fore)
 "xYI" = (

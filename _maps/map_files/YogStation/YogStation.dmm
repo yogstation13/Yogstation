@@ -19306,9 +19306,6 @@
 	name = "Mech Bay APC";
 	pixel_x = -25
 	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
 /turf/open/floor/mech_bay_recharge_floor,
 /area/science/robotics/mechbay)
 "edT" = (
@@ -44731,9 +44728,6 @@
 "ndK" = (
 /obj/structure/cable{
 	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
 	},
 /turf/open/floor/circuit,
 /area/science/robotics/mechbay)
@@ -119285,7 +119279,7 @@ baT
 eHW
 uJu
 bhM
-bhM
+biJ
 bhM
 biO
 blA

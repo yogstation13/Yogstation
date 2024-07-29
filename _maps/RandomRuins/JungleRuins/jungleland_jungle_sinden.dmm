@@ -542,7 +542,8 @@
 /area/ruin/powered/sinden)
 "HD" = (
 /obj/structure/closet/secure_closet/personal/cabinet{
-	req_access = list(25)
+	req_access = null;
+	req_access_txt = "bar"
 	},
 /obj/item/storage/firstaid/regular,
 /obj/item/stack/spacecash/c200,

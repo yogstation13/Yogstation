@@ -1851,7 +1851,7 @@
 	dir = 2;
 	name = "Gateway APC";
 	pixel_y = -23;
-	req_access = 150
+	req_access_txt = "syndicate"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"

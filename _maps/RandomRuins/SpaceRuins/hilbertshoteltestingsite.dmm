@@ -145,10 +145,10 @@
 /area/ruin/space/has_grav/hilbertresearchfacility)
 "z" = (
 /obj/machinery/door/airlock/vault{
-	name = "secured door";
-	req_access = 207
+	name = "secured door"
 	},
 /obj/effect/mapping_helpers/airlock/locked,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/generic3,
 /turf/open/floor/plasteel/grimy{
 	icon_state = "engine"
 	},
@@ -187,10 +187,9 @@
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/hilbertresearchfacility)
 "I" = (
-/obj/machinery/door/airlock/highsecurity{
-	req_access = 207
-	},
+/obj/machinery/door/airlock/highsecurity,
 /obj/effect/mapping_helpers/airlock/locked,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/generic3,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/hilbertresearchfacility)
 "J" = (

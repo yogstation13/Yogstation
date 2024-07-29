@@ -3411,7 +3411,8 @@
 	icon_state = "1-2"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
 "bHY" = (
@@ -5672,7 +5673,6 @@
 /turf/open/floor/plating,
 /area/storage/tech)
 "cJd" = (
-/obj/structure/cable,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/science/robotics/lab)
 "cJt" = (
@@ -6246,7 +6246,8 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
 "cXc" = (
@@ -10992,7 +10993,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/fore)
 "feN" = (
@@ -21591,7 +21593,8 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
 "kmh" = (
@@ -23110,7 +23113,8 @@
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/atmospherics/pipe/layer_manifold,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/fore)
 "lbS" = (
@@ -33252,7 +33256,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/layer_manifold,
-/obj/effect/mapping_helpers/airlock/access/all/security/basic,
+/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/plating,
 /area/security/prison)
 "qcv" = (
@@ -35481,7 +35485,7 @@
 /area/quartermaster/office)
 "riA" = (
 /obj/machinery/door/airlock/command/glass{
-	name = "Chief Medical Officer's Office"
+	name = "Chief Medical Officer"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -35787,9 +35791,6 @@
 "rpU" = (
 /obj/structure/cable{
 	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -38632,7 +38633,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/all/security/basic,
+/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/plating,
 /area/security/prison)
 "sKP" = (
@@ -39232,7 +39233,8 @@
 "sYa" = (
 /obj/machinery/quantumpad{
 	map_pad_id = "vaulttoai";
-	map_pad_link_id = "aitovault"
+	map_pad_link_id = "aitovault";
+	name = "AI Satellite Transport"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
@@ -40495,7 +40497,8 @@
 	icon_state = "1-2"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
 "tHs" = (
@@ -42911,7 +42914,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/airlock/research/glass{
-	name = "R&D Server and Networking";
+	name = "R&D Servers and Networking";
 	normalspeed = 0
 	},
 /obj/effect/mapping_helpers/airlock/access/all/science/rnd_servers,
