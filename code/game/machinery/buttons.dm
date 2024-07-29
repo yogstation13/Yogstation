@@ -256,12 +256,12 @@
 /obj/machinery/button/door/incinerator_vent_atmos_main
 	name = "turbine vent control"
 	id = INCINERATOR_ATMOS_MAINVENT
-	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS)
+	req_one_access = list(ACCESS_ATMOSPHERICS)
 
 /obj/machinery/button/door/incinerator_vent_atmos_aux
 	name = "combustion chamber vent control"
 	id = INCINERATOR_ATMOS_AUXVENT
-	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS)
+	req_one_access = list(ACCESS_ATMOSPHERICS)
 
 /obj/machinery/button/door/incinerator_vent_syndicatelava_main
 	name = "turbine vent control"

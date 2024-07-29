@@ -77,7 +77,7 @@
 #define ACCESS_TCOMMS "tcomms"
 /// Access needed to view message logs recorded on the message monitor console in Telecomms. 
 #define ACCESS_TCOMMS_ADMIN "tcomms_admin"
-/// Access to the Auxiliary Base Room, as well as the ability over launching it.
+/// Access to the Auxiliary Base Room, as well as the ability to launch it.
 #define ACCESS_AUX_BASE "aux_base"
 /// Access for the Chief Engineer's office, Secure Tech Storage, as well as some other CE-related things.
 #define ACCESS_CE "ce"
