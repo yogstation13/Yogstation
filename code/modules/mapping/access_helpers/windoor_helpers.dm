@@ -1,5 +1,4 @@
 /obj/effect/mapping_helpers/windoor/access
-	layer = DOOR_ACCESS_HELPER_LAYER
 	icon_state = "windoor_access"
 
 // These are mutually exclusive; can't have req_any and req_all

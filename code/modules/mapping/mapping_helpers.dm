@@ -218,7 +218,7 @@
 
 // Windoor helpers
 /obj/effect/mapping_helpers/windoor
-    layer = DOOR_ACCESS_HELPER_LAYER
+    layer = WINDOW_HELPER_LAYER
     late = TRUE
 
 /obj/effect/mapping_helpers/windoor/Initialize(mapload)

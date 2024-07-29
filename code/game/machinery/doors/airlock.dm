@@ -68,7 +68,7 @@
 	smoothing_groups = SMOOTH_GROUP_AIRLOCK
 
 	FASTDMM_PROP(\
-		pinned_vars = list("req_access_txt", "req_one_access_txt", "name")\
+		pinned_vars = list("req_access", "req_one_access", "name")\
 	)
 
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN

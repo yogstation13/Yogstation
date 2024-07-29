@@ -4,7 +4,7 @@
 
 /obj/structure/fireaxecabinet/bridge
 	//bridge fireaxe has different access
-	req_one_access = list(ACCESS_CAPTAIN, ACCESS_CE)
+	req_access = list(ACCESS_COMMAND)
 
 /obj/structure/fireaxecabinet/Initialize(mapload)//<-- mirrored/overwritten proc
 	. = ..()

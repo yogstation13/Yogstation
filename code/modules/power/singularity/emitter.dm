@@ -60,7 +60,7 @@
 	active_power_usage = FALSE
 	idle_power_usage = FALSE
 	locked = TRUE
-	req_access_txt = "100"
+	req_access = list(ACCESS_CENT_GENERAL)
 	state = EMITTER_WELDED
 	use_power = FALSE
 
