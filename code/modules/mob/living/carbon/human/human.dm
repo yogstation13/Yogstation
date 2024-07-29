@@ -1081,9 +1081,6 @@
 /mob/living/carbon/human/species/abductor
 	race = /datum/species/abductor
 
-/mob/living/carbon/human/species/android
-	race = /datum/species/android
-
 /mob/living/carbon/human/species/dullahan
 	race = /datum/species/dullahan
 
