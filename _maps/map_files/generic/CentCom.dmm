@@ -21417,7 +21417,6 @@
 	pixel_x = -4;
 	pixel_y = 2
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
 "bUq" = (
@@ -21789,11 +21788,6 @@
 	icon_state = "title5"
 	},
 /area/centcom/testchamber)
-"fxu" = (
-/obj/effect/mapping_helpers/airlock/access/all/admin/general,
-/obj/structure/fans/tiny,
-/turf/open/floor/plasteel,
-/area/centcom/control)
 "fxK" = (
 /obj/machinery/vending/modularpc,
 /turf/open/floor/plasteel/bluespace,
@@ -22118,6 +22112,9 @@
 /area/centcom)
 "ivD" = (
 /obj/effect/mapping_helpers/airlock/access/all/admin/general,
+/obj/machinery/door/airlock/centcom{
+	name = "CentCom Security"
+	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "iCm" = (
@@ -22242,12 +22239,6 @@
 	icon_state = "info26"
 	},
 /area/centcom/testchamber)
-"jQn" = (
-/obj/machinery/door/airlock/centcom{
-	name = "CentCom Security"
-	},
-/turf/open/floor/wood,
-/area/centcom/control)
 "jQK" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/light,
@@ -23644,22 +23635,6 @@
 /obj/machinery/light,
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom/syndicate_mothership/control)
-"wNb" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/door/airlock/centcom{
-	name = "CentCom Security"
-	},
-/turf/open/floor/plasteel/dark,
-/area/centcom/control)
 "wNE" = (
 /obj/machinery/door/airlock/centcom{
 	name = "CentCom"
@@ -73348,8 +73323,8 @@ aio
 aka
 akm
 akm
-fxu
-wNb
+alT
+aiC
 aiC
 amm
 amX
@@ -74638,7 +74613,7 @@ akl
 akm
 akm
 akm
-jQn
+akl
 ivD
 aiC
 akm

@@ -477,6 +477,10 @@
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'
 
+/obj/machinery/door/morgue/curator
+	name = "Private Study"
+	req_access = list(ACCESS_LIBRARY)
+
 /obj/machinery/door/get_dumping_location(obj/item/storage/source,mob/user)
 	return null
 

@@ -95,7 +95,7 @@
 	return late ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_QDEL
 
 
-//airlock helpers
+// Airlock helpers
 /obj/effect/mapping_helpers/airlock
 	layer = DOOR_HELPER_LAYER
 	late = TRUE
@@ -214,6 +214,24 @@
 		log_mapping("[src] at [AREACOORD(src)] tried to set req_access, but req__one_access was already set!")
 	else
 		airlock.req_access += list(ACCESS_INACCESSIBLE)
+
+
+// Windoor helpers
+/obj/effect/mapping_helpers/windoor
+	layer = DOOR_ACCESS_HELPER_LAYER
+	late = TRUE
+
+/obj/effect/mapping_helpers/windoor/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_mapping("[src] spawned outside of mapload!")
+		return
+	var/obj/machinery/door/window/windoor = locate(/obj/machinery/door/window) in loc
+	if(!windoor)
+		log_mapping("[src] failed to find an windoor at [AREACOORD(src)]")
+	else
+		payload(windoor)
+	qdel(src)
 
 //needs to do its thing before spawn_rivers() is called
 INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
