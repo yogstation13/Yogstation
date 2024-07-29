@@ -5,14 +5,14 @@
 // These are mutually exclusive; can't have req_any and req_all
 /obj/effect/mapping_helpers/airlock/access/any/payload(obj/machinery/door/airlock/airlock)
 	if(airlock.req_access != null)
-		log_mapping("[src] at [AREACOORD(src)] tried to set req_one_access, but req_access was already set!")
+		log_mapping("[src] access helper at [AREACOORD(src)] tried to set req_one_access, but req_access was already set!")
 	else
 		var/list/access_list = get_access()
 		airlock.req_one_access += access_list
 
 /obj/effect/mapping_helpers/airlock/access/all/payload(obj/machinery/door/airlock/airlock)
 	if(airlock.req_one_access != null)
-		log_mapping("[src] at [AREACOORD(src)] tried to set req_one_access, but req_access was already set!")
+		log_mapping("[src] access helper at [AREACOORD(src)] tried to set req_one_access, but req_access was already set!")
 	else
 		var/list/access_list = get_access()
 		airlock.req_access += access_list
@@ -23,8 +23,9 @@
 
 
 //// HELPERS START - PLEASE KEEP EVERYTHING IN THE SAME ORDER AS IN ACCESS.DM THANKS
+
 /// REQ ANY ///
-// Applies onto req_one_access_txt (only requires ONE of the given accesses to open)
+// Applies onto req_one_access (only requires ONE of the given accesses to open)
 
 //---  COMMAND  ---//
 
@@ -377,7 +378,8 @@
 
 
 /// REQ ALL ///
-// Applies onto req_access_txt (requires ALL of the given accesses to open)
+// Applies onto req_access (requires ALL of the given accesses to open)
+// Note: If a door only has one access req, - always - use this type
 
 //---  COMMAND  ---//
 

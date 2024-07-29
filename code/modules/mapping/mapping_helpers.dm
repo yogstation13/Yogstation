@@ -218,20 +218,30 @@
 
 // Windoor helpers
 /obj/effect/mapping_helpers/windoor
-	layer = DOOR_ACCESS_HELPER_LAYER
-	late = TRUE
+    layer = DOOR_ACCESS_HELPER_LAYER
+    late = TRUE
 
 /obj/effect/mapping_helpers/windoor/Initialize(mapload)
-	. = ..()
-	if(!mapload)
-		log_mapping("[src] spawned outside of mapload!")
-		return
-	var/obj/machinery/door/window/windoor = locate(/obj/machinery/door/window) in loc
-	if(!windoor)
-		log_mapping("[src] failed to find an windoor at [AREACOORD(src)]")
-	else
-		payload(windoor)
-	qdel(src)
+    . = ..()
+    if(!mapload)
+        log_mapping("[src] spawned outside of mapload!")
+        return
+    var/success = FALSE
+    var/windoor_present = FALSE
+    for(var/obj/machinery/door/window/windoor in loc)
+        windoor_present = TRUE
+        if(windoor.dir != dir)
+            continue
+        payload(windoor)
+        success = TRUE
+    if(!success)
+        log_mapping("[src] failed to find a windoor at [AREACOORD(src)]")
+    if(windoor_present && !success)
+        log_mapping("[src] attempted to imprint access at [AREACOORD(src)] but found no valid windoors (windoor present but not matching dir)")
+    qdel(src)
+
+/obj/effect/mapping_helpers/windoor/proc/payload(obj/machinery/door/window/payload)
+	return
 
 //needs to do its thing before spawn_rivers() is called
 INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
