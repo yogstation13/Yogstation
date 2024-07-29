@@ -44563,7 +44563,7 @@
 	id = "Biohazard";
 	name = "Biohazard Shutter Control";
 	pixel_x = -7;
-	req_access_txt = "sec_basic"
+	req_access_txt = "security"
 	},
 /obj/machinery/button/door{
 	desc = "A remote control switch for the research division entryway.";
@@ -44572,7 +44572,7 @@
 	normaldoorcontrol = 1;
 	pixel_x = 7;
 	pixel_y = 7;
-	req_access_txt = "sec_basic"
+	req_access_txt = "security"
 	},
 /obj/machinery/button/door{
 	desc = "A remote control switch for the research division entryway.";
@@ -44581,7 +44581,7 @@
 	normaldoorcontrol = 1;
 	pixel_x = 7;
 	pixel_y = -2;
-	req_access_txt = "sec_basic"
+	req_access_txt = "security"
 	},
 /obj/machinery/firealarm{
 	dir = 4;
@@ -68673,9 +68673,9 @@
 	id = "MedbayFoyer";
 	name = "Medbay Doors Control";
 	normaldoorcontrol = 1;
-	pixel_x = -36;
-	pixel_y = 7;
-	req_access_txt = "paramedic"
+	pixel_x = -24;
+	pixel_y = 6;
+	req_access_txt = "security"
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
@@ -70298,7 +70298,7 @@
 	dir = 8;
 	icon_state = "left";
 	name = "Security Delivery";
-	req_access_txt = "security"
+	req_one_access_txt = "security;detective"
 	},
 /obj/effect/turf_decal/delivery,
 /obj/structure/disposalpipe/segment{
@@ -78184,15 +78184,14 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12;48;50;1"
-	},
+/obj/machinery/door/airlock/maintenance,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "wrv" = (
@@ -81771,7 +81770,7 @@
 	name = "Atmospherics Lockdown";
 	pixel_x = 24;
 	pixel_y = 24;
-	req_access_txt = "sec_basic"
+	req_access_txt = "security"
 	},
 /obj/machinery/button/door{
 	desc = "A remote control-switch for the engineering security doors.";
@@ -81779,7 +81778,7 @@
 	name = "Engineering Lockdown";
 	pixel_x = 24;
 	pixel_y = 14;
-	req_access_txt = "sec_basic"
+	req_access_txt = "security"
 	},
 /obj/structure/table,
 /obj/item/paper_bin{

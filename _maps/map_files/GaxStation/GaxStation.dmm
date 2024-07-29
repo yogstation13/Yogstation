@@ -34167,7 +34167,7 @@
 /obj/structure/table,
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching the RD's goons from the safety of your own office.";
-	dir = 4;
+	dir = 8;
 	name = "Research Monitor";
 	network = list("rd");
 	pixel_y = 2
@@ -41393,7 +41393,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/plating,
 /area/maintenance/department/medical/central)
 "ucL" = (
@@ -42913,11 +42914,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/airlock/research/glass{
-	name = "R&D Servers and Networking";
-	normalspeed = 0
-	},
 /obj/effect/mapping_helpers/airlock/access/all/science/rnd_servers,
+/obj/machinery/door/airlock/command{
+	name = "R&D Servers and Networking"
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/secondarydatacore)
 "uRz" = (

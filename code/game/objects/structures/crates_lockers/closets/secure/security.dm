@@ -289,7 +289,7 @@
 
 /obj/structure/closet/secure_closet/lethalshots
 	name = "shotgun lethal rounds"
-	req_access = list(ACCESS_ARMORY)
+	req_access = list(ACCESS_SECURITY)
 	icon_state = "tac"
 
 /obj/structure/closet/secure_closet/lethalshots/PopulateContents()
@@ -297,12 +297,13 @@
 	for(var/i in 1 to 3)
 		new /obj/item/storage/box/lethalshot(src)
 
-//Yogs Start: Brig Pysh Closet
+//Yogs Start: Brig Phys Closet
 /obj/structure/closet/secure_closet/physician
 	name = "\improper brig physician's cabinet"
-	req_access = list(ACCESS_BRIG_PHYS)
 	icon = 'yogstation/icons/obj/closet.dmi'
 	icon_state = "physician"
+
+	req_access = list(ACCESS_BRIG_PHYS)
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
 	door_anim_time = 0
