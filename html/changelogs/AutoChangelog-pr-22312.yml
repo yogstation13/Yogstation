@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscdel: "Deletes the depreciated android species"
-  - tweak: "Synth conversion chaplain ritual now converts people into IPC insurgents"
