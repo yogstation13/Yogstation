@@ -243,6 +243,17 @@
 /obj/effect/mapping_helpers/windoor/proc/payload(obj/machinery/door/window/payload)
 	return
 
+/obj/effect/mapping_helpers/windoor/inaccessible
+	name = "windoor inaccessible helper"
+	icon_state = "windoor_inaccessible"
+
+/obj/effect/mapping_helpers/windoor/inaccessible/payload(obj/machinery/door/window/windoor)
+	if(windoor.req_one_access != null)
+		log_mapping("[src] at [AREACOORD(src)] tried to set req_access, but req_one_access was already set!")
+	else
+		windoor.req_access += list(ACCESS_INACCESSIBLE)
+
+
 //needs to do its thing before spawn_rivers() is called
 INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 

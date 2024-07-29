@@ -825,14 +825,14 @@
 	name = "Cockpit Window Blast Doors";
 	pixel_x = 26;
 	pixel_y = 32;
-	req_access_txt = "command"
+	req_access = list(ACCESS_COMMAND)
 	},
 /obj/machinery/button/door{
 	id = "ock_cargo_door";
 	name = "Cargo Airlock Blast Doors";
 	pixel_x = 39;
 	pixel_y = 32;
-	req_access_txt = "command"
+	req_access = list(ACCESS_COMMAND)
 	},
 /turf/open/floor/plasteel/rockvault,
 /area/shuttle/escape)

@@ -2258,14 +2258,16 @@
 /area/awaymission/research/interior/maint)
 "eQ" = (
 /obj/machinery/door/window/northright{
-	name = "Cell Door";
-	req_access_txt = "sec_basic"
+	name = "Cell Door"
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 4
+	},
+/obj/effect/mapping_helpers/windoor/access/all/security/basic{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/research/interior/security)
@@ -3858,13 +3860,13 @@
 /area/awaymission/research/interior/maint)
 "hE" = (
 /obj/machinery/door/window/southright{
-	name = "Cell Door";
-	req_access_txt = "sec_basic"
+	name = "Cell Door"
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/windoor/access/all/security/basic,
 /turf/open/floor/plasteel,
 /area/awaymission/research/interior/security)
 "hF" = (
@@ -5182,7 +5184,7 @@
 	icon_state = "0-2"
 	},
 /turf/open/floor/plating,
-/area/awaymission/research/interior/dorm)
+/area/awaymission/research/interior/maint)
 "kq" = (
 /obj/machinery/door/airlock{
 	id_tag = "Dorm1";
@@ -5540,9 +5542,6 @@
 	dir = 8
 	},
 /area/awaymission/research/interior/dorm)
-"ln" = (
-/turf/open/floor/plasteel,
-/area/space/nearstation)
 "lo" = (
 /obj/structure/table/wood,
 /obj/structure/bedsheetbin,
@@ -5857,7 +5856,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plating,
-/area/awaymission/research/interior/escapepods)
+/area/awaymission/research/interior/maint)
 "ma" = (
 /turf/closed/wall/r_wall,
 /area/awaymission/research/interior/escapepods)
@@ -40585,7 +40584,7 @@ kr
 jn
 jF
 jF
-ln
+jF
 jF
 lL
 jk

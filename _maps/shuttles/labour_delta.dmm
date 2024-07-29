@@ -45,7 +45,7 @@
 	id = "gulagshuttleflasher";
 	name = "Flash Control";
 	pixel_y = -26;
-	req_access_txt = "security"
+	req_access = list(ACCESS_SECURITY)
 	},
 /obj/machinery/light,
 /turf/open/floor/mineral/plastitanium/red,

@@ -39,7 +39,7 @@
 	id = "escape_cockpit_windows";
 	name = "Cockpit Window Blast Doors";
 	pixel_x = -7;
-	req_access_txt = "command"
+	req_access = list(ACCESS_COMMAND)
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
@@ -267,7 +267,7 @@
 	id = "escape_cockpit_blast";
 	name = "Cockpit Airlock Blast Doors";
 	pixel_y = -26;
-	req_access_txt = "command"
+	req_access = list(ACCESS_COMMAND)
 	},
 /obj/effect/turf_decal/raven/two,
 /turf/open/floor/plasteel/dark,
@@ -2290,7 +2290,7 @@
 	pixel_x = 5;
 	pixel_y = 32;
 	req_access = null;
-	req_access_txt = "command"
+	req_access = list(ACCESS_COMMAND)
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)

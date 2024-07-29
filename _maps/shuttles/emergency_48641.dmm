@@ -23,6 +23,12 @@
 	dir = 1
 	},
 /obj/structure/reagent_dispensers/watertank,
+/obj/machinery/button/door{
+	id = "48641ragecageexit";
+	name = "Rage Cage Exit Doors";
+	pixel_x = 24;
+	req_access = req_access = list(ACCESS_CMO)
+	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bB" = (
@@ -511,7 +517,7 @@
 	name = "Table Privacy Shutters";
 	pixel_x = -28;
 	pixel_y = -5;
-	req_access_txt = "cmo"
+	req_access = req_access = list(ACCESS_CMO)
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
@@ -671,8 +677,7 @@
 "wz" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/westleft{
-	name = "Cargo Desk";
-	req_access_txt = "cargo"
+	name = "Cargo Desk"
 	},
 /obj/item/deskbell/preset/supply{
 	pixel_x = 8;
@@ -684,18 +689,23 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/windoor/access/all/supply/general{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "wB" = (
 /obj/machinery/door/window/westleft{
-	name = "Bridge";
-	req_access_txt = "command"
+	name = "Bridge"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes{
 	dir = 10
+	},
+/obj/effect/mapping_helpers/windoor/access/all/command/general{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -798,18 +808,6 @@
 "Bu" = (
 /obj/effect/turf_decal/stripes,
 /turf/open/floor/wood,
-/area/shuttle/escape)
-"Bw" = (
-/obj/machinery/shieldgen{
-	anchored = 1
-	},
-/obj/machinery/button/door{
-	id = "48641ragecageexit";
-	name = "Rage Cage Exit Doors";
-	pixel_x = 24;
-	req_access_txt = "cmo"
-	},
-/turf/open/floor/plasteel,
 /area/shuttle/escape)
 "Bz" = (
 /obj/structure/window/reinforced{
@@ -1049,14 +1047,16 @@
 "Jg" = (
 /obj/machinery/door/window/westleft{
 	dir = 4;
-	name = "Bridge";
-	req_access_txt = "command"
+	name = "Bridge"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes{
 	dir = 6
+	},
+/obj/effect/mapping_helpers/windoor/access/all/command/general{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -1699,7 +1699,7 @@ nD
 tp
 KX
 eC
-Bw
+Hb
 bq
 Lp
 yw

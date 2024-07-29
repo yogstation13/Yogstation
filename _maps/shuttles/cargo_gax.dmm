@@ -111,14 +111,14 @@
 	name = "Loading Doors";
 	pixel_x = 24;
 	pixel_y = 8;
-	req_access_txt = "cargo_bay"
+	req_access = list(ACCESS_CARGO_BAY)
 	},
 /obj/machinery/button/door{
 	id = "QMLoaddoor";
 	name = "Loading Doors";
 	pixel_x = 24;
 	pixel_y = -8;
-	req_access_txt = "cargo_bay"
+	req_access = list(ACCESS_CARGO_BAY)
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/supply)

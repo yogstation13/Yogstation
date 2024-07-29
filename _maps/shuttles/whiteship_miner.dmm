@@ -1128,8 +1128,7 @@
 	},
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
-	pixel_x = -28;
-	req_access_txt = null
+	pixel_x = -28
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/shuttle/abandoned)

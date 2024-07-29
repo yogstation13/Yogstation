@@ -1836,11 +1836,10 @@
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post)
 "em" = (
-/obj/machinery/power/apc{
+/obj/machinery/power/apc/syndicate{
 	dir = 2;
 	name = "Gateway APC";
 	pixel_y = -23;
-	req_access_txt = "syndicate"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -6508,7 +6507,7 @@
 	icon_state = "sec";
 	locked = 1;
 	name = "security officer's locker";
-	req_access_txt = "security"
+	req_access = list(ACCESS_SECURITY)
 	},
 /obj/item/restraints/handcuffs,
 /obj/item/assembly/flash,
@@ -7741,7 +7740,7 @@
 	name = "Turbine Access Console";
 	pixel_x = -8;
 	pixel_y = -26;
-	req_access_txt = "construction"
+	req_access = list(ACCESS_CONSTRUCTION)
 	},
 /obj/machinery/button/ignition/indestructible{
 	id = "snowdin_turbine_ignitor";

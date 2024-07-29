@@ -110,7 +110,7 @@
 	name = "Cockpit View Control";
 	pixel_x = 32;
 	pixel_y = 32;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
@@ -462,7 +462,7 @@
 	id = "smindicate";
 	name = "external door control";
 	pixel_y = 26;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/docking_port/mobile{
 	dheight = 1;
@@ -933,12 +933,14 @@
 "bZ" = (
 /obj/machinery/door/window{
 	dir = 1;
-	name = "Surgery";
-	req_access_txt = "syndicate"
+	name = "Surgery"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/medical)
@@ -1037,12 +1039,14 @@
 "ch" = (
 /obj/machinery/door/window{
 	dir = 1;
-	name = "Technological Storage";
-	req_access_txt = "syndicate"
+	name = "Technological Storage"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/armory)
@@ -1343,8 +1347,7 @@
 	},
 /obj/machinery/door/window/brigdoor{
 	dir = 1;
-	name = "Mass Driver";
-	req_access_txt = "syndicate"
+	name = "Mass Driver"
 	},
 /obj/machinery/computer/pod/old{
 	density = 0;
@@ -1352,8 +1355,11 @@
 	icon_state = "airlock_control_standby";
 	id = "syndiedriver";
 	name = "Mass Driver Controller";
-	pixel_x = -41;
-	pixel_y = 8
+	pixel_x = -24;
+	req_access = req_access = list(ACCESS_SYNDICATE)
+	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)

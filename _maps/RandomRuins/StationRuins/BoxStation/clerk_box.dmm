@@ -21,9 +21,7 @@
 /turf/open/floor/plasteel,
 /area/clerk)
 "c" = (
-/obj/machinery/door/window/southleft{
-	req_access_txt = "clerk"
-	},
+/obj/machinery/door/window/southleft,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -36,6 +34,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/mapping_helpers/windoor/access/all/service/clerk,
 /turf/open/floor/plasteel,
 /area/clerk)
 "d" = (
@@ -76,13 +75,15 @@
 	id = "giftshop";
 	name = "Gift Shop Internal Shutters";
 	pixel_x = 26;
-	pixel_y = 24
+	pixel_y = 24;
+	req_access = list(ACCESS_CLERK)
 	},
 /obj/machinery/button/door{
 	id = "giftshop_ext";
 	name = "Gift Shop External Shutters";
 	pixel_x = 40;
-	pixel_y = 24
+	pixel_y = 24;
+	req_access = list(ACCESS_CLERK)
 	},
 /obj/structure/cable{
 	icon_state = "1-8"

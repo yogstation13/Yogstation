@@ -954,6 +954,10 @@
 		icon_state = "control_kill"
 	else
 		icon_state = "control_stun"
+	
+/obj/machinery/turretid/syndicate // Please use this when making syndicate bases so we don't have to keep varediting it
+	icon_state = "control_kill"
+	req_access = list(ACCESS_SYNDICATE)
 
 /obj/item/wallframe/turret_control
 	name = "turret control frame"

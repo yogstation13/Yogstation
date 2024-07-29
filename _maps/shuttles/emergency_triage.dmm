@@ -521,9 +521,9 @@
 /obj/item/storage/firstaid/advanced{
 	pixel_y = 10
 	},
-/obj/machinery/door/window/brigdoor/southright{
-	req_access_txt = "security"
-	},
+/obj/machinery/door/window/brigdoor/southright,
+/obj/effect/mapping_helpers/windoor/access/any/security/general,
+/obj/effect/mapping_helpers/windoor/access/any/security/brig_phys,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "El" = (
@@ -790,7 +790,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/structure/closet/secure_closet{
 	name = "Plasmaman Supplies Locker";
-	req_access_txt = "medical"
+	req_access = list(ACCESS_MEDICAL)
 	},
 /obj/item/clothing/under/plasmaman,
 /obj/item/clothing/under/plasmaman,

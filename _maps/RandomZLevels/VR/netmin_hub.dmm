@@ -2772,7 +2772,6 @@
 	},
 /obj/machinery/door/airlock/highsecurity{
 	name = "????";
-	req_access_txt = "0"
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
@@ -6008,7 +6007,6 @@
 "Wf" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Storage";
-	req_access_txt = "0"
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/scientist_raid)

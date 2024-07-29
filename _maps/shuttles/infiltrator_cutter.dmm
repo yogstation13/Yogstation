@@ -143,7 +143,7 @@
 	normaldoorcontrol = 1;
 	pixel_x = -4;
 	pixel_y = 25;
-	req_access_txt = "syndicate";
+	req_access = list(ACCESS_SYNDICATE);
 	specialfunctions = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -498,8 +498,7 @@
 	dir = 8
 	},
 /obj/machinery/door/window/southleft{
-	name = "Weapon Storage";
-	req_access_txt = "syndicate"
+	name = "Weapon Storage"
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
@@ -512,6 +511,7 @@
 /obj/item/grenade/plastic/c4{
 	pixel_x = 13
 	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/yogs/stealthcruiser)
 "bq" = (
@@ -519,8 +519,7 @@
 /obj/machinery/door/window/southleft{
 	base_state = "right";
 	icon_state = "right";
-	name = "Weapon Storage";
-	req_access_txt = "syndicate"
+	name = "Weapon Storage"
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
@@ -533,6 +532,7 @@
 /obj/item/grenade/flashbang{
 	pixel_x = 5
 	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/yogs/stealthcruiser)
 "br" = (
@@ -694,7 +694,7 @@
 	normaldoorcontrol = 1;
 	pixel_x = -4;
 	pixel_y = -25;
-	req_access_txt = "syndicate";
+	req_access = list(ACCESS_SYNDICATE);
 	specialfunctions = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -912,14 +912,11 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/turretid{
-	icon_state = "control_kill";
+/obj/machinery/turretid/syndicate{
 	lethal = 1;
 	locked = 1;
 	pixel_x = 30;
-	pixel_y = -33;
-	req_access = null;
-	req_access_txt = "syndicate"
+	pixel_y = -33
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
@@ -1017,7 +1014,7 @@
 	name = "Bridge Blast Door Control";
 	pixel_x = 25;
 	pixel_y = 8;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9

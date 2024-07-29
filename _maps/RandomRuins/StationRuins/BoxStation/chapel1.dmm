@@ -49,14 +49,16 @@
 "dl" = (
 /obj/machinery/door/window{
 	dir = 8;
-	name = "Mass Driver";
-	req_access_txt = "chapel_office"
+	name = "Mass Driver"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = 32
+	},
+/obj/effect/mapping_helpers/windoor/access/all/service/chapel_office{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
@@ -492,8 +494,10 @@
 "Gl" = (
 /obj/structure/closet/crate/coffin,
 /obj/machinery/door/window/eastleft{
-	name = "Coffin Storage";
-	req_access_txt = "chapel_office"
+	name = "Coffin Storage"
+	},
+/obj/effect/mapping_helpers/windoor/access/all/service/chapel_office{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
@@ -579,7 +583,8 @@
 /area/template_noop)
 "Ny" = (
 /obj/machinery/door/morgue{
-	name = "Confession Booth (Chaplain)"
+	name = "Confession Booth (Chaplain)";
+	req_access = list(ACCESS_CHAPEL_OFFICE)
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -587,7 +592,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/service/chapel_office,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "NG" = (
@@ -655,8 +659,10 @@
 /obj/structure/closet/crate/coffin,
 /obj/machinery/door/window/eastleft{
 	dir = 8;
-	name = "Coffin Storage";
-	req_access_txt = "chapel_office"
+	name = "Coffin Storage"
+	},
+/obj/effect/mapping_helpers/windoor/access/all/service/chapel_office{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
@@ -856,7 +862,7 @@
 	id = "chapelgun";
 	name = "Mass Driver Controller";
 	pixel_x = 24;
-	req_access_txt = "chapel_office"
+	req_access = list(ACCESS_CHAPEL_OFFICE)
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
