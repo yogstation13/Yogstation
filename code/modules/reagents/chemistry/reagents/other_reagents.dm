@@ -709,13 +709,6 @@
 	race = /datum/species/abductor
 	mutationtext = span_danger("The pain subsides. You feel... alien.")
 
-/datum/reagent/mutationtoxin/android
-	name = "Android Mutation Toxin"
-	description = "A robotic toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/android
-	mutationtext = span_danger("The pain subsides. You feel... artificial.")
-
 
 //BLACKLISTED RACES
 /datum/reagent/mutationtoxin/skeleton
