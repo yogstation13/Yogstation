@@ -11,7 +11,7 @@
 
 //---  COMMAND  ---//
 
-/// Command General Access, typically used for accessing the doors to the bridge, as well as being the general access that Tablet/Computer Programs check for "heads".
+/// Command General Access, used for accessing the doors to the bridge, the communications console, and the general access that Tablet/Computer Programs check for "heads".
 #define ACCESS_COMMAND "command"
 /// Access to critical-to-function AI rooms and equipment such as the AI Core, AI Upload, AI mini-sat maintenance, turret controls, and foam dispensers.
 #define ACCESS_AI_MASTER "ai_master"
