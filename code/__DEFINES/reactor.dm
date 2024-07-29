@@ -21,7 +21,7 @@
 #define REACTOR_MAX_CRITICALITY 5 //No more criticality than N for now.
 #define REACTOR_MAX_FUEL_RODS 5 //Maximum number of fuel rods that can fit in the reactor
 
-#define REACTOR_POWER_FLAVOURISER 1000 //To turn those KWs into something usable
+#define REACTOR_POWER_FLAVOURISER 150 //To turn those KWs into something usable
 #define REACTOR_PERMEABILITY_FACTOR 500 // How effective permeability-type moderators are
 #define REACTOR_CONTROL_FACTOR 250 // How effective control-type moderators are
 
