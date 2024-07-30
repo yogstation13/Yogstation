@@ -13,7 +13,7 @@
 	alt_titles = list("Ecologist", "Agriculturist", "Botany Greenhorn", "Hydroponicist", "Gardener")
 
 	added_access = list(ACCESS_BAR, ACCESS_KITCHEN)
-	base_access = list(ACCESS_HYDROPONICS, ACCESS_MORGUE, ACCESS_MATERIALS, ACCESS_SERVICE)
+	base_access = list(ACCESS_SERVICE, ACCESS_HYDROPONICS, ACCESS_MORGUE)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_BOTANIST

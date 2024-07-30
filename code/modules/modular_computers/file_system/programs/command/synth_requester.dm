@@ -49,7 +49,7 @@ GLOBAL_LIST_INIT(granted_synthetic_access, list())
 			return TRUE
 		if("grant_supply")
 			if(ACCESS_HOP in user_id.access)
-				var/relevant_access = list(ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_CARGO, ACCESS_MINING_STATION, ACCESS_MATERIALS)
+				var/relevant_access = list(ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_CARGO, ACCESS_MINING_STATION)
 				if(GLOB.granted_synthetic_access[SUPPLY])
 					GLOB.granted_synthetic_access[SUPPLY] = FALSE
 					binary_talk("Synthetic assistance no longer required in the Supply department", "Synthetic Access Requester")

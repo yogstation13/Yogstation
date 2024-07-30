@@ -31,7 +31,7 @@
 #define ACCESS_PERSONAL_LOCKERS "personal_lockers"
 /// Access used for Access-Changing Programs, this one will unlock all options that can be ever given via that program.
 #define ACCESS_CHANGE_IDS "change_ids"
-/// Access used for the Captain's personal quarters in mapping, as well as what allows one to order emergency shuttles.
+/// Access used for the Captain's personal quarters in mapping, the spare ID cabinet, and the antique gun (but only on gamma alert or above).
 #define ACCESS_CAPTAIN "captain"
 
 
@@ -39,13 +39,13 @@
 
 /// Security's General Access, armaments vendor, security lockers, and other secure gear. Applied to things to Officers and Wardens should access, but never Lawyers or Detectives.
 #define ACCESS_SECURITY "security"
-/// Access to the front doors of the Brig, the "secure" portion of the Courtroom, and department outposts. Notably given to Lawyers, Heads of Staff, and Detectives.
+/// Access to the front doors of the Brig, the "secure" portion of the Courtroom, and department outposts. Given to Lawyers, Heads of Staff, and Detectives.
 #define ACCESS_SEC_BASIC "sec_basic"
 /// Access to brig cells, brig timers, permabrig, gulag, gulag teleporter, gulag shuttle, prisoner management console, and some security cargo crates.
 #define ACCESS_BRIG "brig"
 /// Access to the armory, security incinerator (when present), and the execution/re-education chamber.
 #define ACCESS_ARMORY "armory"
-/// Access for the Detective to get into their office, the medical data console, and some other detective-related stuff.
+/// Access for the Detective, their office, and medical data console. Always mixed with ACCESS_SECURITY in the security office/delivery windoor, and the arrivals and departure sec checkpoints.
 #define ACCESS_DETECTIVE "detective"
 /// Access for the Brig Physician and their locker, also used for the Brig Infirmary doors.
 #define ACCESS_BRIG_PHYS "brig_phys"
@@ -115,8 +115,6 @@
 #define ACCESS_MINING "mining"
 /// Access to the "off-station" Mining Station, which contains gear dedicated for miners to do their job best, as well as seek shelter from the inhospitable elements.
 #define ACCESS_MINING_STATION "mining_station"
-/// Access to release materials from the ORM.
-#define ACCESS_MATERIALS "materials"
 /// Access for the Quartermaster's personal quarters in mapping, as well as some other QM-related things.
 #define ACCESS_QM "qm"
 

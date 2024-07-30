@@ -14,7 +14,7 @@
 	outfit = /datum/outfit/job/bartender
 
 	added_access = list(ACCESS_HYDROPONICS, ACCESS_KITCHEN, ACCESS_MORGUE)
-	base_access = list(ACCESS_BAR, ACCESS_MATERIALS, ACCESS_WEAPONS_PERMIT, ACCESS_SERVICE)
+	base_access = list(ACCESS_SERVICE, ACCESS_BAR, ACCESS_WEAPONS_PERMIT)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_BARTENDER

@@ -13,8 +13,9 @@
 
 	alt_titles = list("Librarian", "Journalist", "Archivist", "Cartographer", "Space Archaeologist")
 
-	added_access = list()
-	base_access = list(ACCESS_LIBRARY, ACCESS_CONSTRUCTION, ACCESS_MINING_STATION, ACCESS_SERVICE)
+	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS)
+	base_access = list(ACCESS_SERVICE, ACCESS_LIBRARY, ACCESS_CONSTRUCTION, ACCESS_MINING_STATION)
+
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CIV
 	mind_traits = list(TRAIT_BLOODSUCKER_HUNTER)
