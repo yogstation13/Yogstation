@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Beartraps now need to be anchored in order to deal damage when triggered"
