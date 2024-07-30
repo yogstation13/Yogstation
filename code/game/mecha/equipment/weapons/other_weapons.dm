@@ -5,11 +5,14 @@
 	selectable = FALSE // your mech IS the weapon
 	var/minimum_damage = 10
 	var/structure_damage_mult = 4
+	var/list/hit_list = list()
 	equip_actions = list(/datum/action/cooldown/mecha_afterburner)
 
 /obj/item/mecha_parts/mecha_equipment/afterburner/can_attach(obj/mecha/new_mecha)
 	if(!(new_mecha.melee_allowed || istype(new_mecha, /obj/mecha/working/clarke))) // clarke because it's fucking COOL
 		return FALSE
+	if(locate(type) in new_mecha.equipment)
+		return FALSE // no stacking multiple afterburners to get around the cooldown
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/afterburner/attach(obj/mecha/new_mecha)
@@ -52,11 +55,15 @@
 			hit_something = TRUE
 		else if(isliving(hit_atom))
 			var/mob/living/stomped = hit_atom
+			if(stomped in hit_list)
+				continue
 			if(!stomped.check_shields(chassis, kinetic_damage * structure_damage_mult, "[chassis]", MELEE_ATTACK, 50)) // i mean, you can TRY to block it
 				stomped.apply_damage(kinetic_damage * (isanimal(stomped) ? 4 : 1), BRUTE, BODY_ZONE_CHEST) // bonus damage to simple mobs
 				stomped.Knockdown(0.5 SECONDS) // just long enough for the mech to pass over
 			if(stomped.mobility_flags & MOBILITY_STAND) // still standing? knock them back!
 				stomped.throw_at(get_step(stomped, get_dir(chassis, stomped)), 1, 5, chassis.occupant, TRUE)
+			else
+				hit_list += stomped // anything not a simplemob should only be hit once
 			hit_something = TRUE
 
 	if(hit_something)
@@ -77,12 +84,15 @@
 	button_icon_state = "mech_afterburner"
 	/// The exosuit linked to this action.
 	var/obj/mecha/chassis
+	var/obj/item/mecha_parts/mecha_equipment/afterburner/rocket
 	/// Whether the linked exosuit has received bonus armor from charging.
 	var/bonus_lavaland_armor = FALSE
 
-/datum/action/cooldown/mecha_afterburner/Grant(mob/living/L, obj/mecha/M)
-	if(M)
-		chassis = M
+/datum/action/cooldown/mecha_afterburner/Grant(mob/living/new_owner, obj/mecha/new_mecha, obj/item/mecha_parts/mecha_equipment/new_equip)
+	if(new_mecha)
+		chassis = new_mecha
+	if(new_equip)
+		rocket = new_equip
 	return ..()
 
 /datum/action/cooldown/mecha_afterburner/Activate()
@@ -119,3 +129,5 @@
 		bonus_lavaland_armor = FALSE
 	chassis.completely_disabled = FALSE
 	chassis.movement_type &= ~FLYING
+	qdel(rocket.hit_list)
+	rocket.hit_list = list()
