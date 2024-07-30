@@ -1,0 +1,5 @@
+author: "ktlwjec"
+delete-after: true 
+changes: 
+  - bugfix: "Premium carpet crate will once again contain plain carpets instead of exotic ones."
+  - imageadd: "Certain carpet tiles have had their invisibility removed."
