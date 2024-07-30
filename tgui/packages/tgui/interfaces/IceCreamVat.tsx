@@ -73,9 +73,6 @@ const ConeRow = (props, context) => {
             content="Select"
             textAlign="center"
             fontSize="16px"
-            disabled={(
-              flavor.item_quantity === 0
-            )}
             onClick={() => act("select", {
             itemPath: flavor.item_type_path,
             })}
@@ -132,9 +129,6 @@ const IceCreamRow = (props, context) => {
             content="Select"
             textAlign="center"
             fontSize="16px"
-            disabled={(
-              flavor.item_quantity === 0
-            )}
             onClick={() => act("select", {
             itemPath: flavor.item_type_path,
             })}

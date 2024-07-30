@@ -17,7 +17,9 @@
 	//If it starts empty or not
 	var/start_empty = FALSE
 	//Sound made when an item is dispensed
-	var/dispense_sound = 'sound/machines/machine_vend.ogg'
+	var/dispense_sound = 'sound/machines/click.ogg'
+	//Sound made when selecting/deselecting an item
+	var/select_sound = 'sound/machines/doorclick.ogg'
 	//Items currently stored in the vat
 	var/list/stored_items = list()
 	//Items to be added upon creation to the vat and what is shown in the UI
@@ -135,6 +137,18 @@
 	else
 		user.balloon_alert(user, "None selected!")
 
+/obj/machinery/ice_cream_vat/attackby(obj/item/A, mob/user, params)
+	//Adding to storage
+	if(istype(A, /obj/item/reagent_containers/food/snacks/ice_cream_cone) || istype(A, /obj/item/reagent_containers/food/snacks/ice_cream_scoop))
+		//Check if there is room
+		if(stored_items.len <= storage_capacity)
+			stored_items += A.type
+			qdel(A)
+			return
+		else
+			user.balloon_alert(user, "No space!")
+	..()
+
 /obj/machinery/ice_cream_vat/proc/find_amount(target)
 	var/amount = 0
 	
@@ -165,13 +179,29 @@
 
 	var/obj/item/reagent_containers/food/snacks/ui_item = new received_item
 
+	//Deselecting
+	if(istype(ui_item, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
+		if(selected_cone == ui_item.type)
+			user.visible_message(span_notice("[user] deselects [ui_item.name] from [src]."), span_notice("You deselect [ui_item.name] from [src]."))
+			selected_cone = null
+			playsound(src, select_sound, 25, TRUE, extrarange = -3)
+			return
+	else if(selected_scoop == ui_item.type)
+		user.visible_message(span_notice("[user] deselects [ui_item.name] from [src]."), span_notice("You deselect [ui_item.name] from [src]."))
+		selected_scoop = null
+		playsound(src, select_sound, 25, TRUE, extrarange = -3)
+		return
+
+	//Selecting
 	if(find_amount(ui_item.type) > 0)
 		if(istype(ui_item, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
 			selected_cone = ui_item.type
 		else
 			selected_scoop = ui_item.type
+		playsound(src, select_sound, 25, TRUE, extrarange = -3)
 		user.visible_message(span_notice("[user] sets [src] to dispense [ui_item.name]s."), span_notice("You set [src] to dispense [ui_item.name]s."))
-
+	else
+		user.balloon_alert(user, "All out!")
 ///////////////////
 //ICE CREAM CONES//
 ///////////////////
