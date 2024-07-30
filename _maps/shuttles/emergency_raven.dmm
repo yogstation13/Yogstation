@@ -580,8 +580,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/medical/glass{
-	name = "Escape Shuttle Infirmary";
-	req_one_access_txt = "2;19"
+	name = "Escape Shuttle Infirmary"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -589,6 +588,8 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/any/command/general,
+/obj/effect/mapping_helpers/airlock/access/any/security/general,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "bp" = (
@@ -2289,7 +2290,6 @@
 	lethal = 1;
 	pixel_x = 5;
 	pixel_y = 32;
-	req_access = null;
 	req_access = list(ACCESS_COMMAND)
 	},
 /turf/open/floor/plasteel/dark,

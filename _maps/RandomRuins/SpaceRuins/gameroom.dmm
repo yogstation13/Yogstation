@@ -251,7 +251,7 @@
 	name = "Secure Snack Storage Lockdown";
 	pixel_x = 23;
 	pixel_y = -21;
-	req_access_txt = "ruins_general"
+	req_access = list(ACCESS_RUINS_GENERAL)
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
@@ -594,7 +594,6 @@
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
 	pixel_x = -32;
-	req_access_txt = "0";
 	use_power = 0
 	},
 /turf/open/floor/carpet,
@@ -918,7 +917,7 @@
 	name = "Secure Snack Storage Lockdown";
 	pixel_x = -22;
 	pixel_y = -21;
-	req_access_txt = "ruins_general"
+	req_access = list(ACCESS_RUINS_GENERAL)
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/powered/gaming)

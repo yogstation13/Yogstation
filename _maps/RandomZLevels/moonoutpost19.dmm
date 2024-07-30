@@ -602,13 +602,15 @@
 "bs" = (
 /obj/machinery/door/window{
 	dir = 1;
-	name = "Gateway Access";
-	req_access_txt = "syndicate"
+	name = "Gateway Access"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general{
 	dir = 1
 	},
 /turf/open/floor/plasteel{
@@ -1784,7 +1786,7 @@
 /area/awaymission/moonoutpost19/syndicate)
 "dr" = (
 /obj/structure/closet/secure_closet/personal/cabinet{
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/item/ammo_box/magazine/m10mm{
 	icon_state = "9x19p-8"
@@ -1809,7 +1811,7 @@
 "dt" = (
 /obj/structure/closet/secure_closet/personal/cabinet{
 	locked = 0;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/item/stack/spacecash/c50,
 /turf/open/floor/wood{
@@ -2381,7 +2383,7 @@
 	name = "Containment Chamber Blast Doors";
 	pixel_x = 4;
 	pixel_y = -2;
-	req_access_txt = "ruins_maintenance"
+	req_access = list(ACCESS_RUINS_MAINTENANCE)
 	},
 /obj/machinery/button/ignition{
 	id = "awayxenobio";
@@ -2972,7 +2974,7 @@
 	icon_state = "sec";
 	locked = 1;
 	name = "security officer's locker";
-	req_access_txt = "ruins_maintenance"
+	req_access = list(ACCESS_RUINS_MAINTENANCE)
 	},
 /obj/item/clothing/suit/armor/vest,
 /obj/item/reagent_containers/spray/pepper,
@@ -3490,7 +3492,7 @@
 	id = "Awaybiohazard";
 	name = "Biohazard Shutter Control";
 	pixel_x = -25;
-	req_access_txt = "ruins_maintenance"
+	req_access = list(ACCESS_RUINS_MAINTENANCE)
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -3740,7 +3742,7 @@
 /area/awaymission/moonoutpost19/hive)
 "hm" = (
 /obj/machinery/vending/medical{
-	req_access_txt = "ruins_maintenance"
+	req_access = list(ACCESS_RUINS_MAINTENANCE)
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 2;
@@ -3783,7 +3785,7 @@
 	icon_state = "rd";
 	locked = 1;
 	name = "research director's locker";
-	req_access_txt = "ruins_maintenance"
+	req_access = list(ACCESS_RUINS_MAINTENANCE)
 	},
 /obj/item/storage/backpack/satchel/tox,
 /obj/item/clothing/gloves/color/latex,
@@ -4299,13 +4301,13 @@
 	id = "Awaybiohazard";
 	name = "Biohazard Shutter Control";
 	pixel_y = 8;
-	req_access_txt = "ruins_maintenance"
+	req_access = list(ACCESS_RUINS_MAINTENANCE)
 	},
 /obj/machinery/button/door{
 	id = "AwayRD";
 	name = "Privacy Shutter Control";
 	pixel_y = -2;
-	req_access_txt = "ruins_maintenance"
+	req_access = list(ACCESS_RUINS_MAINTENANCE)
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -4621,9 +4623,7 @@
 /turf/closed/wall/rust,
 /area/awaymission/moonoutpost19/arrivals)
 "iU" = (
-/obj/machinery/vending/boozeomat{
-	req_access_txt = "0"
-	},
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
 	},
@@ -5614,7 +5614,7 @@
 "kU" = (
 /obj/structure/closet/secure_closet/personal/cabinet{
 	locked = 0;
-	req_access_txt = "ruins_maintenance"
+	req_access = list(ACCESS_RUINS_MAINTENANCE)
 	},
 /obj/item/clothing/under/suit/navy,
 /turf/open/floor/carpet{
@@ -6167,7 +6167,7 @@
 	icon_state = "secure";
 	locked = 0;
 	name = "kitchen Cabinet";
-	req_access_txt = "ruins_maintenance"
+	req_access = list(ACCESS_RUINS_MAINTENANCE)
 	},
 /obj/item/reagent_containers/food/condiment/flour,
 /obj/item/reagent_containers/food/condiment/flour,
@@ -6182,7 +6182,7 @@
 /obj/structure/closet/secure_closet/freezer{
 	locked = 0;
 	name = "meat fridge";
-	req_access_txt = "ruins_maintenance"
+	req_access = list(ACCESS_RUINS_MAINTENANCE)
 	},
 /obj/item/reagent_containers/food/snacks/meat/slab/monkey,
 /obj/item/reagent_containers/food/snacks/meat/slab/monkey,
@@ -6197,7 +6197,7 @@
 /obj/structure/closet/secure_closet/freezer{
 	locked = 0;
 	name = "refrigerator";
-	req_access_txt = "ruins_maintenance"
+	req_access = list(ACCESS_RUINS_MAINTENANCE)
 	},
 /obj/item/reagent_containers/food/condiment/milk,
 /obj/item/reagent_containers/food/condiment/milk,
@@ -6545,7 +6545,7 @@
 "nb" = (
 /obj/structure/closet/secure_closet/personal/cabinet{
 	locked = 0;
-	req_access_txt = "ruins_maintenance"
+	req_access = list(ACCESS_RUINS_MAINTENANCE)
 	},
 /obj/item/clothing/under/rank/civilian/assistantformal,
 /turf/open/floor/carpet{
@@ -6954,7 +6954,7 @@
 "nT" = (
 /obj/structure/closet/secure_closet/personal/cabinet{
 	locked = 0;
-	req_access_txt = "ruins_maintenance"
+	req_access = list(ACCESS_RUINS_MAINTENANCE)
 	},
 /obj/item/clothing/under/suit/burgundy,
 /turf/open/floor/carpet{
@@ -7080,7 +7080,7 @@
 	icon_state = "science";
 	locked = 0;
 	name = "scientist's locker";
-	req_access_txt = "ruins_maintenance"
+	req_access = list(ACCESS_RUINS_MAINTENANCE)
 	},
 /obj/item/clothing/suit/toggle/labcoat,
 /turf/open/floor/plasteel{
@@ -7093,7 +7093,7 @@
 	icon_state = "science";
 	locked = 1;
 	name = "scientist's locker";
-	req_access_txt = "ruins_maintenance"
+	req_access = list(ACCESS_RUINS_MAINTENANCE)
 	},
 /obj/item/clothing/suit/toggle/labcoat,
 /obj/item/tank/internals/air,

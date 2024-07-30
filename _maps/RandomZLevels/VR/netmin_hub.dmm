@@ -3450,8 +3450,7 @@
 /area/awaymission/vr/scientist_raid)
 "Cn" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Engineering";
-	req_one_access_txt = "0"
+	name = "Engineering"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/abandoned_mine)

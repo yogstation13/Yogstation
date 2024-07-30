@@ -224,7 +224,7 @@
 	name = "Inn Front door Shutter";
 	pixel_x = 6;
 	pixel_y = -24;
-	req_access_txt = "bar"
+	req_access = list(ACCESS_BAR)
 	},
 /turf/open/floor/wood/broken/two,
 /area/ruin/powered/inn)
@@ -374,13 +374,12 @@
 /turf/open/floor/wood/broken/five,
 /area/ruin/powered/inn)
 "mW" = (
-/obj/machinery/door/window/southright{
-	req_access_txt = "bar"
-	},
+/obj/machinery/door/window/southright,
 /obj/machinery/light/small{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/windoor/access/all/service/bar,
 /turf/open/floor/wood,
 /area/ruin/powered/inn)
 "nd" = (

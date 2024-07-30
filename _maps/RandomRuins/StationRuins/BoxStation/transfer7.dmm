@@ -173,7 +173,7 @@
 	name = "Transfer Area Lockdown";
 	pixel_x = 25;
 	pixel_y = -5;
-	req_access_txt = "brig"
+	req_access = list(ACCESS_BRIG)
 	},
 /obj/machinery/button/flasher{
 	id = "executionflash";
@@ -199,7 +199,7 @@
 	name = "Vent to Space";
 	pixel_x = 25;
 	pixel_y = -15;
-	req_access_txt = "brig"
+	req_access = list(ACCESS_BRIG)
 	},
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel/dark,

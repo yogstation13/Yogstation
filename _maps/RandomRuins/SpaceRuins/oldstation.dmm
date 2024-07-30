@@ -2362,7 +2362,7 @@
 /obj/item/assembly/flash/handheld,
 /obj/item/storage/box/firingpins,
 /obj/structure/closet/crate/secure/weapon{
-	req_access_txt = "ruins_security"
+	req_access = list(ACCESS_RUINS_SECURITY)
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
@@ -8835,7 +8835,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/secure/engineering{
 	name = "plasma tank crate";
-	req_access_txt = "ruins_engineering"
+	req_access = list(ACCESS_RUINS_ENGINEERING)
 	},
 /obj/item/tank/internals/plasma/full,
 /obj/item/tank/internals/plasma/full,

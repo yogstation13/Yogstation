@@ -247,7 +247,7 @@
 	name = "Radiation Shutters Control";
 	pixel_x = 24;
 	pixel_y = 0;
-	req_access_txt = "engineering"
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -337,7 +337,7 @@
 	name = "Radiation Shutters Control";
 	pixel_x = 24;
 	pixel_y = 0;
-	req_access_txt = "engineering"
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -352,7 +352,7 @@
 	name = "Radiation Shutters Control";
 	pixel_x = -24;
 	pixel_y = 0;
-	req_access_txt = "engineering"
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -601,7 +601,7 @@
 	name = "Radiation Shutters Control";
 	pixel_x = -24;
 	pixel_y = 0;
-	req_access_txt = "engineering"
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /mob/living/simple_animal/opossum/poppy,
 /turf/open/floor/engine,

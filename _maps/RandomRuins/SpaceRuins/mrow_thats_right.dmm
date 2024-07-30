@@ -162,10 +162,10 @@
 	name = "kitty protection door"
 	},
 /obj/machinery/door/window{
-	name = "kitty door";
-	req_access_txt = "ruins_general"
+	name = "kitty door"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/mapping_helpers/windoor/access/all/ruins/general,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/cat_man)
 "aB" = (
@@ -293,11 +293,13 @@
 	name = "kitty protection door"
 	},
 /obj/machinery/door/window/westleft{
-	name = "kitty door";
-	req_access_txt = "ruins_general"
+	name = "kitty door"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
+	},
+/obj/effect/mapping_helpers/windoor/access/all/ruins/general{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/cat_man)
@@ -619,10 +621,12 @@
 	name = "kitty protection door"
 	},
 /obj/machinery/door/window/northleft{
-	name = "kitty door";
-	req_access_txt = "ruins_general"
+	name = "kitty door"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/mapping_helpers/windoor/access/all/ruins/general{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/cat_man)
 "bJ" = (

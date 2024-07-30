@@ -208,10 +208,7 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
 	},
-/obj/machinery/mineral/ore_redemption{
-	req_access = null;
-	req_access_txt = "syndicate"
-	},
+/obj/machinery/mineral/ore_redemption,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/testlab)
 "bE" = (
@@ -575,7 +572,7 @@
 /area/ruin/powered/syndicate_lava_base/arrivals)
 "ej" = (
 /obj/structure/closet/crate/secure/weapon{
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/item/ammo_box/c10mm{
 	pixel_y = 6
@@ -772,7 +769,7 @@
 /obj/machinery/button/door{
 	id = "lavalandsyndi_virology";
 	name = "Virology Blast Door Control";
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/item/storage/box/monkeycubes,
 /obj/effect/turf_decal/siding/green{
@@ -784,8 +781,7 @@
 /obj/item/storage/lockbox/vialbox/virology{
 	pixel_x = -7;
 	pixel_y = 2;
-	req_access = null;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/item/book/manual/wiki/infections{
 	pixel_y = 7
@@ -1234,8 +1230,7 @@
 /obj/item/storage/firstaid/hypospray/syndicate,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/storage/lockbox/vialbox/hypo_deluxe{
-	req_access = null;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/machinery/airalarm/syndicate{
 	dir = 4;
@@ -1565,8 +1560,7 @@
 /area/ruin/powered/syndicate_lava_base/engineering)
 "hr" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
-	req_access = null;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/machinery/airalarm/syndicate{
 	dir = 1;
@@ -1856,7 +1850,7 @@
 	id = "syndicate_lavaland_vault_windows";
 	name = "Vault Window Shutters";
 	pixel_y = -24;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/vault)
@@ -1881,7 +1875,7 @@
 	name = "Vault Bolt Control";
 	normaldoorcontrol = 1;
 	pixel_y = -24;
-	req_access_txt = "syndicate";
+	req_access = list(ACCESS_SYNDICATE);
 	specialfunctions = 4
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -2020,7 +2014,7 @@
 	id = "lavalandsyndi_bar";
 	name = "Bar Blast Door Control";
 	pixel_y = 26;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -2064,7 +2058,7 @@
 	id = "lavalandsyndi_chemistry";
 	name = "Chemistry Blast Door Control";
 	pixel_y = 26;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/machinery/chem_master,
 /obj/effect/turf_decal/siding/purple{
@@ -2086,7 +2080,7 @@
 	id = "lavalandsyndi_telecomms";
 	name = "Telecomms Blast Door Control";
 	pixel_y = 26;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -2847,7 +2841,7 @@
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/closet/crate/secure/gear{
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
@@ -3003,7 +2997,7 @@
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/structure/closet/syndicate{
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/item/gun/ballistic/shotgun/doublebarrel,
 /obj/item/ammo_casing/shotgun/beanbag,
@@ -3305,8 +3299,7 @@
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "lT" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
-	req_access = null;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/item/storage/box/donkpockets{
 	pixel_x = 2
@@ -3445,7 +3438,7 @@
 	name = "syndicate commander's gloves"
 	},
 /obj/structure/closet/crate/secure/gear{
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /turf/open/floor/plating/lavaland_baseturf,
 /area/ruin/powered/syndicate_lava_base/engineering)
@@ -3651,7 +3644,7 @@
 /obj/item/circuitboard/machine/clonescanner,
 /obj/structure/closet/crate/secure/medical{
 	desc = "A crate with a lock on it, painted in the scheme of the station's doctors. This one is marked to contain prototype circuitry and clearly hasn't been touched in years.";
-	req_access_txt = "syndicate_leader"
+	req_access = list(ACCESS_SYNDICATE_LEADER)
 	},
 /obj/item/paper{
 	info = "You have been assigned to test an old cloner system provided to us by one of our research stations. Your monkeys should make excellent DNA sources. Do not clone too many crew, and be prepared to treat genetic defects and cellular damage."
@@ -3868,8 +3861,7 @@
 	name = "Vault Bolt Control";
 	normaldoorcontrol = 1;
 	pixel_y = 24;
-	req_access_txt = "syndicate";
-	specialfunctions = 4
+	req_access = list(ACCESS_SYNDICATE)specialfunctions=4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,
@@ -3930,7 +3922,7 @@
 	id = "lavalandsyndi_arrivals";
 	name = "Arrivals Blast Door Control";
 	pixel_y = -26;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/decal/cleanable/dirt,
@@ -3961,7 +3953,7 @@
 	id = "lavalandsyndi_medsci";
 	name = "Medical Bay Shutters";
 	pixel_y = 24;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
@@ -4366,7 +4358,7 @@
 	id = "lavalandsyndi";
 	name = "Syndicate Experimentation Lockdown Control";
 	pixel_y = -26;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/effect/turf_decal/siding/purple,
 /turf/open/floor/mineral/plastitanium,
@@ -4377,7 +4369,7 @@
 	id = "lavalandsyndi";
 	name = "Syndicate Experimentation Lockdown Control";
 	pixel_y = 26;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 1
@@ -4391,11 +4383,13 @@
 	id = "syndielavaland_disposals"
 	},
 /obj/machinery/door/window/brigdoor/westleft{
-	name = "Disposals Conveyor";
-	req_access_txt = "syndicate"
+	name = "Disposals Conveyor"
 	},
 /obj/structure/sign/warning/deathsposal{
 	pixel_x = 32
+	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/cargo)
@@ -4501,8 +4495,7 @@
 /area/ruin/powered/syndicate_lava_base/medbay)
 "tZ" = (
 /obj/machinery/door/window/brigdoor{
-	name = "Isolation Pen";
-	req_access_txt = "syndicate"
+	name = "Isolation Pen"
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -4512,6 +4505,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
 "ua" = (
@@ -4590,8 +4584,7 @@
 /area/ruin/powered/syndicate_lava_base/main)
 "uT" = (
 /obj/machinery/door/window/northleft{
-	name = "Bar";
-	req_access_txt = "syndicate"
+	name = "Bar"
 	},
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -4606,6 +4599,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/light_switch{
 	pixel_x = 24
+	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/syndicate_lava_base/bar)
@@ -5020,7 +5016,7 @@
 	id = "lavalandsyndi_cargo";
 	name = "Cargo Bay Blast Door Control";
 	pixel_x = 26;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -5476,7 +5472,7 @@
 	id = "lavalandsyndi_cargo";
 	name = "Cargo Bay Blast Door Control";
 	pixel_x = 26;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
@@ -5490,16 +5486,13 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/chemistry)
 "Gv" = (
-/obj/machinery/turretid{
+/obj/machinery/turretid/syndicate{
 	ailock = 1;
 	control_area = "/area/ruin/powered/syndicate_lava_base/main";
 	dir = 1;
-	icon_state = "control_kill";
 	lethal = 1;
 	name = "Base turret controls";
-	pixel_y = 30;
-	req_access = null;
-	req_access_txt = "syndicate"
+	pixel_y = 30
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -5957,7 +5950,7 @@
 	dir = 1
 	},
 /obj/structure/closet/crate/secure/gear{
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/item/clothing/gloves/combat,
 /obj/item/clothing/gloves/combat,
@@ -6644,13 +6637,15 @@
 	dir = 4
 	},
 /obj/machinery/door/window/eastright{
-	name = "Kitchen";
-	req_access_txt = "syndicate"
+	name = "Kitchen"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general{
 	dir = 4
 	},
 /turf/open/floor/plasteel/cafeteria,

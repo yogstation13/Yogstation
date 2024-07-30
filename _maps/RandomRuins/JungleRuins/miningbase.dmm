@@ -2742,16 +2742,18 @@
 /turf/open/floor/plasteel/dark/side,
 /area/mine/maintenance)
 "Ji" = (
-/obj/machinery/door/window/eastleft{
-	req_access_txt = "mining_station"
-	},
-/obj/machinery/door/window/westleft{
-	req_access_txt = "mining_station"
-	},
+/obj/machinery/door/window/eastleft,
+/obj/machinery/door/window/westleft,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/all/supply/mining_station{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/windoor/access/all/supply/mining_station{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,

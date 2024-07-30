@@ -85,8 +85,7 @@
 "aU" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/closet/secure_closet/freezer/kitchen{
-	req_access = null;
-	req_access_txt = "bar"
+	req_access = list(ACCESS_BAR)
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
@@ -385,8 +384,7 @@
 	pixel_y = 32
 	},
 /obj/structure/closet/secure_closet/freezer/fridge{
-	req_access = null;
-	req_access_txt = "bar"
+	req_access = list(ACCESS_BAR)
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
@@ -828,8 +826,7 @@
 /area/ruin/space/has_grav/powered/spacebar)
 "Gk" = (
 /obj/structure/closet/secure_closet/freezer/meat{
-	req_access = null;
-	req_access_txt = "bar"
+	req_access = list(ACCESS_BAR)
 	},
 /obj/structure/window{
 	dir = 4
@@ -1032,7 +1029,7 @@
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
 	pixel_x = -32;
-	req_access_txt = "0";
+	req_access = null;
 	use_power = 0
 	},
 /turf/open/floor/plasteel,
@@ -1118,7 +1115,7 @@
 	name = "Bar Shutters Control";
 	pixel_x = 25;
 	pixel_y = 24;
-	req_access_txt = "bar"
+	req_access = list(ACCESS_BAR)
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)

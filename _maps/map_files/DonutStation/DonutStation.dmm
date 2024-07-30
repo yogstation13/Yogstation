@@ -1869,7 +1869,7 @@
 	name = "Incinerator airlock control";
 	pixel_x = -22;
 	pixel_y = 22;
-	req_access_txt = "atmospherics"
+	req_access = list(ACCESS_ATMOSPHERICS)
 	},
 /obj/machinery/doorButtons/access_button{
 	idDoor = "incinerator_airlock_interior";
@@ -1878,7 +1878,7 @@
 	name = "Incinerator airlock control";
 	pixel_x = -22;
 	pixel_y = -21;
-	req_access_txt = "atmospherics"
+	req_access = list(ACCESS_ATMOSPHERICS)
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
@@ -2808,7 +2808,7 @@
 	name = "Mech Bay Door Control";
 	pixel_x = 24;
 	pixel_y = -6;
-	req_access_txt = "robotics"
+	req_access = list(ACCESS_ROBOTICS)
 	},
 /obj/machinery/light_switch{
 	pixel_x = 24;
@@ -4959,7 +4959,7 @@
 	name = "Privacy Shutter Controls";
 	pixel_x = -24;
 	pixel_y = 8;
-	req_access_txt = "kitchen"
+	req_access = list(ACCESS_KITCHEN)
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -5439,7 +5439,7 @@
 	},
 /obj/machinery/embedded_controller/radio/airlock_controller/incinerator_toxmix{
 	pixel_y = 28;
-	req_access_txt = "toxins"
+	req_access = list(ACCESS_TOXINS)
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -5949,21 +5949,21 @@
 	id = "xenobio_main";
 	name = "Main containment blast doors";
 	pixel_x = -32;
-	req_access_txt = "xenobiology"
+	req_access = list(ACCESS_XENOBIOLOGY)
 	},
 /obj/machinery/button/door{
 	id = "xenobio_r";
 	name = "Right side containment blast doors";
 	pixel_x = -32;
 	pixel_y = 10;
-	req_access_txt = "xenobiology"
+	req_access = list(ACCESS_XENOBIOLOGY)
 	},
 /obj/machinery/button/door{
 	id = "xenobio_l";
 	name = "Left side containment blast doors";
 	pixel_x = -32;
 	pixel_y = -10;
-	req_access_txt = "xenobiology"
+	req_access = list(ACCESS_XENOBIOLOGY)
 	},
 /obj/machinery/disposal/bin{
 	name = "sample disposal unit"
@@ -6922,14 +6922,14 @@
 	name = "Secure Storage Control";
 	pixel_x = -8;
 	pixel_y = 24;
-	req_access_txt = "engineering"
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /obj/machinery/button/door{
 	id = "enginepashutter";
 	name = "Particle Accelerator Shutter Control";
 	pixel_x = 2;
 	pixel_y = 24;
-	req_access_txt = "engineering"
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /obj/machinery/photocopier/faxmachine{
 	department = "Chief Engineer";
@@ -7422,14 +7422,14 @@
 	idSelf = "ai_core_airlock_control";
 	pixel_x = 25;
 	pixel_y = 7;
-	req_access_txt = "ai_master"
+	req_access = list(ACCESS_AI_MASTER)
 	},
 /obj/machinery/doorButtons/access_button{
 	idDoor = "ai_core_airlock_exterior";
 	idSelf = "ai_core_airlock_control";
 	pixel_x = 23;
 	pixel_y = -7;
-	req_access_txt = "ai_master"
+	req_access = list(ACCESS_AI_MASTER)
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -7460,7 +7460,7 @@
 	name = "Incinerator Access Console";
 	pixel_x = -25;
 	pixel_y = -25;
-	req_access_txt = "atmospherics"
+	req_access = list(ACCESS_ATMOSPHERICS)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -7854,7 +7854,7 @@
 	name = "Privacy Shutters Control";
 	pixel_x = 25;
 	pixel_y = 10;
-	req_access_txt = "hop"
+	req_access = list(ACCESS_HOP)
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hop)
@@ -8122,7 +8122,7 @@
 	name = "Bridge Blast Door Control";
 	pixel_x = 28;
 	pixel_y = 8;
-	req_access_txt = "command"
+	req_access = list(ACCESS_COMMAND)
 	},
 /turf/open/floor/carpet,
 /area/bridge)
@@ -8991,14 +8991,14 @@
 	name = "Privacy Shutters Control";
 	pixel_x = 6;
 	pixel_y = -25;
-	req_access_txt = "hop"
+	req_access = list(ACCESS_HOP)
 	},
 /obj/machinery/button/door{
 	id = "hopqueue";
 	name = "Queue Shutters Control";
 	pixel_x = -4;
 	pixel_y = -25;
-	req_access_txt = "hop"
+	req_access = list(ACCESS_HOP)
 	},
 /obj/machinery/light_switch{
 	pixel_x = -4;
@@ -12685,14 +12685,14 @@
 	name = "Cell Shutters";
 	pixel_x = -7;
 	pixel_y = 30;
-	req_access_txt = "brig"
+	req_access = list(ACCESS_BRIG)
 	},
 /obj/machinery/button/door{
 	id = "Prison Gate";
 	name = "Prison Wing Lockdown";
 	pixel_x = 7;
 	pixel_y = 30;
-	req_access_txt = "brig"
+	req_access = list(ACCESS_BRIG)
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
@@ -14518,7 +14518,7 @@
 	name = "Secure Storage Control";
 	pixel_x = 7;
 	pixel_y = 25;
-	req_access_txt = "engine_equip"
+	req_access = list(ACCESS_ENGINE_EQUIP)
 	},
 /obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower{
 	dir = 1
@@ -24231,8 +24231,7 @@
 /area/tcommsat/server)
 "kal" = (
 /obj/machinery/door/airlock/hatch{
-	name = "TeleSat Space Access Airlock";
-	req_one_access_txt = "32;19"
+	name = "TeleSat Space Access Airlock"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -30341,7 +30340,7 @@
 /obj/machinery/door/window/eastleft{
 	dir = 8;
 	name = "Research Desk";
-	req_one_access_txt = "science;robotics"
+	req_one_access = list(ACCESS_SCIENCE, ACCESS_ROBOTICS)
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "researchprivate";
@@ -49780,7 +49779,7 @@
 	name = "Desk Privacy Shutters Control";
 	pixel_x = 24;
 	pixel_y = -4;
-	req_one_access_txt = "science;robotics"
+	req_one_access = list(ACCESS_SCIENCE, ACCESS_ROBOTICS)
 	},
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 4

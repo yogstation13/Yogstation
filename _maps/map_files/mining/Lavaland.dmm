@@ -2968,7 +2968,7 @@
 	id = "labor";
 	name = "Labor Camp Lockdown";
 	pixel_y = 28;
-	req_access_txt = "brig"
+	req_access = list(ACCESS_BRIG)
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/fans/tiny,

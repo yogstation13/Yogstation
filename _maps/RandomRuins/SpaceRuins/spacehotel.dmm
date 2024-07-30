@@ -2159,8 +2159,7 @@
 /area/ruin/space/has_grav/hotel/bar)
 "fE" = (
 /obj/machinery/vending/boozeomat{
-	req_access_txt = "ruins_general";
-	req_access = null
+	req_access = list(ACCESS_RUINS_GENERAL)
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -2573,8 +2572,7 @@
 /area/ruin/space/has_grav/hotel/bar)
 "gC" = (
 /obj/structure/closet/secure_closet/freezer/meat{
-	req_access_txt = "ruins_general";
-	req_access = null
+	req_access = list(ACCESS_RUINS_GENERAL)
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
@@ -2661,8 +2659,7 @@
 /obj/item/reagent_containers/food/condiment/milk,
 /obj/item/reagent_containers/food/condiment/milk,
 /obj/structure/closet/secure_closet/freezer/fridge{
-	req_access_txt = "ruins_general";
-	req_access = null
+	req_access = list(ACCESS_RUINS_GENERAL)
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
@@ -2837,8 +2834,7 @@
 /obj/item/reagent_containers/food/condiment/flour,
 /obj/item/reagent_containers/food/condiment/flour,
 /obj/structure/closet/secure_closet/freezer/kitchen{
-	req_access = null;
-	req_access_txt = "ruins_general"
+	req_access = list(ACCESS_RUINS_GENERAL)
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
@@ -3109,7 +3105,7 @@
 /area/ruin/space/has_grav/hotel/custodial)
 "hT" = (
 /obj/machinery/vending/dinnerware{
-	req_access_txt = "ruins_general"
+	req_access = list(ACCESS_RUINS_GENERAL)
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
@@ -3989,8 +3985,7 @@
 	dir = 4;
 	icon_state = "rightsecure";
 	name = "Cell Door";
-	req_access = null;
-	req_access_txt = "ruins_security"
+	req_access = null
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -4001,6 +3996,9 @@
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/all/ruins/security{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/security)
@@ -4479,8 +4477,7 @@
 /area/ruin/space/has_grav/hotel/security)
 "lT" = (
 /obj/structure/closet/secure_closet/security{
-	req_access = null;
-	req_access_txt = "ruins_security"
+	req_access = list(ACCESS_RUINS_SECURITY)
 	},
 /obj/item/gun/energy/laser/scatter/shotty,
 /obj/item/clothing/head/helmet/justice,
@@ -5039,8 +5036,10 @@
 	dir = 4;
 	icon_state = "right";
 	layer = 3;
-	name = "Hotel Bar Access";
-	req_access_txt = "ruins_general"
+	name = "Hotel Bar Access"
+	},
+/obj/effect/mapping_helpers/windoor/access/all/ruins/general{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/bar)

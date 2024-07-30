@@ -214,7 +214,7 @@
 	id = "icemoon_syndicate_canteen_windows";
 	name = "Canteen Shutters";
 	pixel_y = 24;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/machinery/oven,
 /turf/open/floor/plasteel/cafeteria,
@@ -2175,8 +2175,7 @@
 /obj/structure/table/glass,
 /obj/machinery/door/window/northleft{
 	dir = 2;
-	name = "First-Aid Supplies";
-	req_access_txt = "syndicate"
+	name = "First-Aid Supplies"
 	},
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/regular{
@@ -2187,6 +2186,7 @@
 	pixel_x = -3;
 	pixel_y = -3
 	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general,
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
 "lR" = (
@@ -2241,8 +2241,7 @@
 /area/ruin/syndicate_icemoon/command)
 "mc" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
-	req_access = null;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/effect/spawner/lootdrop/donkpockets,
 /obj/effect/spawner/lootdrop/donkpockets,
@@ -2287,7 +2286,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/closet/crate/secure/gear{
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/effect/turf_decal/box/white/corners{
 	dir = 4
@@ -2325,12 +2324,13 @@
 /obj/item/paper_bin,
 /obj/structure/table/reinforced,
 /obj/item/pen,
-/obj/machinery/door/window/brigdoor/northleft{
-	req_access_txt = "syndicate_leader"
-	},
+/obj/machinery/door/window/brigdoor/northleft,
 /obj/machinery/door/window,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/leader{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
@@ -2524,8 +2524,7 @@
 /area/ruin/syndicate_icemoon/research)
 "np" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
-	req_access = null;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/item/storage/box/ingredients/american,
 /obj/item/storage/box/ingredients/delights,
@@ -2730,8 +2729,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/window/eastright{
-	name = "Kitchen";
-	req_access_txt = "syndicate"
+	name = "Kitchen"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -2740,6 +2738,9 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/wood/corner/thin,
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general{
+	dir = 4
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
 "oI" = (
@@ -2778,7 +2779,9 @@
 	dir = 8
 	},
 /obj/machinery/door/window{
-	req_access_txt = "syndicate";
+	dir = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general{
 	dir = 8
 	},
 /turf/open/floor/engine,
@@ -2883,7 +2886,7 @@
 /obj/structure/closet/crate/secure/gear{
 	desc = "A secure gear crate. A faded note on it reads 'CHAIR NOT INCLUDED'.";
 	name = "electric chair kit crate";
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/item/screwdriver/nuke,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -3629,7 +3632,9 @@
 	dir = 4
 	},
 /obj/machinery/door/window{
-	req_access_txt = "syndicate";
+	dir = 4
+	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general{
 	dir = 4
 	},
 /turf/open/floor/engine,
@@ -3716,7 +3721,7 @@
 /area/ruin/syndicate_icemoon/hallway)
 "ub" = (
 /obj/structure/closet/crate/secure/weapon{
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/item/ammo_box/c10mm{
 	pixel_y = 6
@@ -3986,7 +3991,7 @@
 /area/ruin/syndicate_icemoon/medical)
 "vR" = (
 /obj/structure/closet/crate/secure/gear{
-	req_access_txt = "syndicate";
+	req_access = list(ACCESS_SYNDICATE);
 	desc = "An old, dusty crate."
 	},
 /obj/item/clothing/gloves/color/captain/centcom/admiral{
@@ -4201,7 +4206,7 @@
 	id = "syndie_icemoon_warehouse";
 	name = "Warehouse Shutters";
 	pixel_y = -24;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -4309,7 +4314,9 @@
 	},
 /obj/machinery/light,
 /obj/machinery/door/window{
-	req_access_txt = "syndicate";
+	dir = 4
+	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general{
 	dir = 4
 	},
 /turf/open/floor/engine,
@@ -4398,7 +4405,7 @@
 /obj/machinery/button/door{
 	id = "syndieicemoon_sci_shutters";
 	name = "Window Shutters";
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/white,
@@ -4567,7 +4574,7 @@
 	name = "Vault Bolt Control";
 	normaldoorcontrol = 1;
 	pixel_y = -24;
-	req_access_txt = "syndicate_leader";
+	req_access = list(ACCESS_SYNDICATE_LEADER);
 	specialfunctions = 4;
 	pixel_x = 6
 	},
@@ -4585,7 +4592,7 @@
 	id = "syndicate_icemoon_bridge_windows";
 	name = "Window Shutters";
 	pixel_y = -24;
-	req_access_txt = "syndicate_leader";
+	req_access = list(ACCESS_SYNDICATE_LEADER);
 	specialfunctions = 4;
 	pixel_x = -6
 	},
@@ -5025,7 +5032,7 @@
 	id = "syndie_icemoon_warehouse";
 	name = "Warehouse Shutters";
 	pixel_y = 24;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -5049,7 +5056,7 @@
 /obj/machinery/button/door{
 	id = "syndicate_icemoon_reactor_access";
 	name = "Reactor Access";
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/reactor)
@@ -5124,7 +5131,7 @@
 "Bt" = (
 /obj/machinery/button/door{
 	id = "syndieicemoon_observatory_shutters";
-	req_access_txt = "syndicate";
+	req_access = list(ACCESS_SYNDICATE);
 	name = "Observatory Shutters";
 	pixel_x = -24
 	},
@@ -5673,7 +5680,7 @@
 	dir = 1
 	},
 /obj/structure/closet/crate/secure/gear{
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/item/clothing/gloves/combat,
 /obj/item/clothing/gloves/combat,
@@ -5881,7 +5888,7 @@
 /obj/machinery/button/door{
 	id = "syndieicemoon_sci_shutters";
 	name = "Window Shutters";
-	req_access_txt = list("syndicate_leader")
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
@@ -6837,8 +6844,7 @@
 /area/ruin/syndicate_icemoon/hallway)
 "JZ" = (
 /obj/structure/closet/secure_closet/freezer/meat{
-	req_access = null;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/machinery/light/small,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
@@ -6904,7 +6910,6 @@
 	id = "syndie_icemoon_surgery_holo";
 	name = "Surgery Holosign";
 	pixel_x = 24;
-	req_access_txt = "syndicate";
 	pixel_y = -3
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -6918,7 +6923,7 @@
 	name = "Window Shutters";
 	pixel_x = 24;
 	pixel_y = 6;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
@@ -7313,7 +7318,7 @@
 	id = "syndicate_icemoon_dorms_window";
 	name = "Window Shutters";
 	pixel_y = -24;
-	req_access_txt = "syndicate";
+	req_access = list(ACCESS_SYNDICATE);
 	pixel_x = -6
 	},
 /obj/effect/turf_decal/siding/wood,
@@ -7547,15 +7552,13 @@
 /area/icemoon/surface/outdoors)
 "OA" = (
 /obj/structure/closet/secure_closet/medical1{
-	req_access = null;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/item/gun/syringe/rapidsyringe,
 /obj/item/storage/firstaid/hypospray/syndicate,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/storage/lockbox/vialbox/hypo_deluxe{
-	req_access = null;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/effect/turf_decal/siding/blue{
 	dir = 10
@@ -7728,7 +7731,7 @@
 	name = "Vault Bolt Control";
 	normaldoorcontrol = 1;
 	pixel_y = 24;
-	req_access_txt = "syndicate_leader";
+	req_access = list(ACCESS_SYNDICATE_LEADER);
 	specialfunctions = 4
 	},
 /turf/open/floor/circuit/red/anim,
@@ -7947,7 +7950,7 @@
 	info = "Please be advised that the firing pins in your standard-issue SMG and the research team's rifles are designed to explode if removed. DO NOT TRY TO REMOVE THEM."
 	},
 /obj/structure/closet/crate/secure/weapon{
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/effect/turf_decal/box/white,
 /obj/item/gun/ballistic/shotgun/doublebarrel,
@@ -8170,11 +8173,13 @@
 "Sj" = (
 /obj/machinery/door/window/eastright{
 	name = "Bar";
-	req_access_txt = "syndicate";
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
+	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/canteen)
@@ -8752,7 +8757,7 @@
 	id = "syndicate_icemoon_hop_shutters";
 	name = "Window Shutters";
 	pixel_y = -24;
-	req_access_txt = "syndicate";
+	req_access = list(ACCESS_SYNDICATE);
 	specialfunctions = 4;
 	pixel_x = -6
 	},
@@ -9015,7 +9020,7 @@
 	id = "syndicate_icemoon_powerstation_windows";
 	name = "Window Shutters";
 	pixel_x = 24;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -9037,7 +9042,7 @@
 /obj/machinery/button/door{
 	id = "syndicate_icemoon_reactor_vent";
 	name = "Reactor Vent";
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/item/sealant{
 	pixel_x = 12
@@ -9351,7 +9356,7 @@
 	id = "syndieicemoon_brig_cell";
 	name = "Cell Lockdown";
 	pixel_x = 24;
-	req_access_txt = "syndicate"
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 6

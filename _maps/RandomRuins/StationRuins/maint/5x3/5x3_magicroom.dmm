@@ -44,7 +44,7 @@
 /area/template_noop)
 "Y" = (
 /obj/machinery/vending/autodrobe{
-	req_access_txt = "0"
+	req_access = null
 	},
 /turf/open/floor/carpet/black,
 /area/template_noop)

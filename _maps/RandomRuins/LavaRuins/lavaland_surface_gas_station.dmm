@@ -14,7 +14,7 @@
 	},
 /obj/structure/closet/crate/secure{
 	name = "Emergency Supplies Crate";
-	req_access_txt = "clerk"
+	req_access = list(ACCESS_CLERK)
 	},
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
@@ -236,13 +236,13 @@
 /area/ruin/powered/gasstation)
 "iq" = (
 /obj/machinery/door/window{
-	req_access = null;
-	req_access_txt = "clerk"
+	req_access = null
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "cashiershutters";
 	name = "Cashier Shutters"
 	},
+/obj/effect/mapping_helpers/windoor/access/all/service/clerk,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/gasstation)
 "ir" = (
@@ -632,7 +632,7 @@
 /obj/machinery/button/door{
 	id = "cashiershutters";
 	name = "Cashier Lockdown";
-	req_access_txt = "clerk"
+	req_access = list(ACCESS_CLERK)
 	},
 /turf/closed/wall/rust,
 /area/ruin/powered/gasstation)
@@ -781,7 +781,7 @@
 /obj/machinery/button/door{
 	id = "gasstation";
 	name = "Gas Station Lockdown";
-	req_access_txt = "clerk"
+	req_access = list(ACCESS_CLERK)
 	},
 /turf/closed/wall/rust,
 /area/ruin/powered/gasstation)

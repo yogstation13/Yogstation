@@ -9592,13 +9592,15 @@
 "eyp" = (
 /obj/machinery/door/window/southright{
 	dir = 8;
-	name = "Bar Door";
-	req_one_access_txt = "bar"
+	name = "Bar Door"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/all/service/bar{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -27358,9 +27360,7 @@
 /turf/open/floor/plasteel,
 /area/security/processing)
 "ngZ" = (
-/obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12:36"
-	},
+/obj/machinery/door/airlock/maintenance,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
@@ -38802,7 +38802,7 @@
 /obj/machinery/door/window/southright{
 	dir = 8;
 	name = "Research and Development Desk";
-	req_one_access_txt = "science;robotics"
+	req_one_access = list(ACCESS_SCIENCE, ACCESS_ROBOTICS)
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "rnd";
@@ -43647,7 +43647,7 @@
 	name = "Shutters Control Button";
 	pixel_x = -7;
 	pixel_y = -24;
-	req_one_access_txt = "science;robotics"
+	req_one_access = list(ACCESS_SCIENCE, ACCESS_ROBOTICS)
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
@@ -49816,18 +49816,28 @@
 "ydm" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastleft{
-	name = "Kitchen Window";
-	req_one_access_txt = "hydroponics;kitchen"
+	name = "Kitchen Window"
 	},
 /obj/machinery/door/window/eastleft{
 	dir = 8;
-	name = "Hydroponics Window";
-	req_one_access_txt = "hydroponics;kitchen"
+	name = "Hydroponics Window"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/any/service/hydroponics{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/windoor/access/any/service/hydroponics{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/any/service/kitchen{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/windoor/access/any/service/kitchen{
 	dir = 8
 	},
 /turf/open/floor/plasteel,

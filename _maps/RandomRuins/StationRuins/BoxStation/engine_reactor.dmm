@@ -822,7 +822,7 @@
 /obj/machinery/button/door{
 	id = "reactorcore";
 	name = "Core Access";
-	req_access_txt = "engineering"
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
@@ -1196,7 +1196,7 @@
 /obj/machinery/button/door{
 	id = "reactorvent";
 	name = "Core Vent";
-	req_access_txt = "engineering"
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)

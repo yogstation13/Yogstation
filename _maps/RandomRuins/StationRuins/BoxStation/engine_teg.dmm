@@ -179,7 +179,7 @@
 	name = "Hot Chamber Vent";
 	pixel_x = -26;
 	pixel_y = 8;
-	req_access_txt = "engineering"
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /mob/living/simple_animal/opossum/poppy,
 /obj/structure/chair/office/dark{
@@ -807,7 +807,7 @@
 	id = "teghot";
 	name = "Hot Chamber Vent";
 	pixel_x = 26;
-	req_access_txt = "engineering"
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /obj/structure/lattice/catwalk,
 /turf/template_noop,

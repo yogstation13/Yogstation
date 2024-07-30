@@ -1066,13 +1066,13 @@
 	id = "reactorcore";
 	name = "Core Access";
 	pixel_y = -2;
-	req_access_txt = "engineering"
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /obj/machinery/button/door{
 	id = "reactorvent";
 	name = "Core Vent";
 	pixel_y = 8;
-	req_access_txt = "engineering"
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8

@@ -200,7 +200,7 @@
 	id = "teghot";
 	name = "Hot Chamber Vent";
 	pixel_y = 22;
-	req_access_txt = "engineering"
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
@@ -891,7 +891,7 @@
 	name = "Hot Chamber Vent";
 	pixel_x = -7;
 	pixel_y = -24;
-	req_access_txt = "engineering"
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /obj/machinery/button/ignition{
 	id = "teghotburn";

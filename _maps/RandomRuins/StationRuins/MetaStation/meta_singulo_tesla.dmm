@@ -278,7 +278,7 @@
 	name = "Radiation Shutters Control";
 	pixel_x = 0;
 	pixel_y = -24;
-	req_access_txt = "engineering"
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -440,7 +440,7 @@
 	id = "engsm";
 	name = "Radiation Shutters Control";
 	pixel_y = -24;
-	req_access_txt = "engineering"
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -571,7 +571,7 @@
 	id = "engsm";
 	name = "Radiation Shutters Control";
 	pixel_y = 24;
-	req_access_txt = "engineering"
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -735,7 +735,7 @@
 	name = "Radiation Shutters Control";
 	pixel_x = 0;
 	pixel_y = 24;
-	req_access_txt = "engineering"
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)

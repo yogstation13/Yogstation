@@ -362,7 +362,7 @@
 	name = "Transfer Area Lockdown";
 	pixel_x = 25;
 	pixel_y = -5;
-	req_access_txt = "brig"
+	req_access = list(ACCESS_BRIG)
 	},
 /obj/machinery/button/flasher{
 	id = "executionflash";
@@ -383,7 +383,7 @@
 	name = "Crush";
 	pixel_x = 25;
 	pixel_y = -15;
-	req_access_txt = "brig"
+	req_access = list(ACCESS_BRIG)
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
