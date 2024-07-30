@@ -60,10 +60,11 @@
 			if(!stomped.check_shields(chassis, kinetic_damage * structure_damage_mult, "[chassis]", MELEE_ATTACK, 50)) // i mean, you can TRY to block it
 				stomped.apply_damage(kinetic_damage * (isanimal(stomped) ? 4 : 1), BRUTE, BODY_ZONE_CHEST) // bonus damage to simple mobs
 				stomped.Knockdown(0.5 SECONDS) // just long enough for the mech to pass over
+				to_chat(stomped, span_userdanger("[chassis] crashes into you at full speed!"))
 			if(stomped.mobility_flags & MOBILITY_STAND) // still standing? knock them back!
 				stomped.throw_at(get_step(stomped, get_dir(chassis, stomped)), 1, 5, chassis.occupant, TRUE)
 			else
-				hit_list += stomped // anything not a simplemob should only be hit once
+				hit_list += stomped
 			hit_something = TRUE
 
 	if(hit_something)
@@ -98,6 +99,7 @@
 /datum/action/cooldown/mecha_afterburner/Activate()
 	if(chassis.completely_disabled)
 		return
+	chassis.pass_flags |= PASSMOB // for not getting stopped by anything that can't be knocked down
 	chassis.movement_type |= FLYING // for doing sick jumps over chasms
 	chassis.completely_disabled = TRUE
 	chassis.AddComponent(/datum/component/after_image, 0.7 SECONDS, 0.5, FALSE)
@@ -129,5 +131,6 @@
 		bonus_lavaland_armor = FALSE
 	chassis.completely_disabled = FALSE
 	chassis.movement_type &= ~FLYING
+	chassis.pass_flags &= ~PASSMOB
 	qdel(rocket.hit_list)
 	rocket.hit_list = list()
