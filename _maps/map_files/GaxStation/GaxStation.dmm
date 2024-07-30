@@ -14105,7 +14105,8 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/basic,
+/obj/effect/mapping_helpers/airlock/access/any/security/detective,
+/obj/effect/mapping_helpers/airlock/access/any/security/general,
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
 "gCc" = (
@@ -24384,7 +24385,8 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/basic,
+/obj/effect/mapping_helpers/airlock/access/any/security/detective,
+/obj/effect/mapping_helpers/airlock/access/any/security/general,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/customs)
 "lEH" = (
@@ -31762,7 +31764,8 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/basic,
+/obj/effect/mapping_helpers/airlock/access/any/security/detective,
+/obj/effect/mapping_helpers/airlock/access/any/security/general,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
 "pqj" = (
@@ -32403,7 +32406,8 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/basic,
+/obj/effect/mapping_helpers/airlock/access/any/security/detective,
+/obj/effect/mapping_helpers/airlock/access/any/security/general,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "pHQ" = (
@@ -36129,7 +36133,10 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/effect/mapping_helpers/windoor/access/all/security/basic{
+/obj/effect/mapping_helpers/windoor/access/any/security/detective{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/windoor/access/any/security/general{
 	dir = 1
 	},
 /turf/open/floor/plating,

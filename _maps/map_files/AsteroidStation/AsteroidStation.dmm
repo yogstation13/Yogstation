@@ -4530,7 +4530,10 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/windoor/access/all/security/basic{
+/obj/effect/mapping_helpers/windoor/access/any/security/detective{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/windoor/access/any/security/general{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -33196,7 +33199,8 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/effect/mapping_helpers/airlock/access/all/security/basic,
+/obj/effect/mapping_helpers/airlock/access/any/security/detective,
+/obj/effect/mapping_helpers/airlock/access/any/security/general,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
 "juW" = (
@@ -72399,7 +72403,8 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/effect/mapping_helpers/airlock/access/all/security/basic,
+/obj/effect/mapping_helpers/airlock/access/any/security/detective,
+/obj/effect/mapping_helpers/airlock/access/any/security/general,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
 "vwp" = (

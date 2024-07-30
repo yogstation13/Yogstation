@@ -480,11 +480,16 @@
 	},
 /obj/machinery/door/window/brigdoor{
 	dir = 4;
-	name = "Security Desk";
-	req_access_txt = "sec_basic"
+	name = "Security Desk"
 	},
 /obj/item/folder/red,
 /obj/item/pen,
+/obj/effect/mapping_helpers/windoor/access/any/security/detective{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/windoor/access/any/security/general{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "agB" = (
@@ -37284,6 +37289,12 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/table/reinforced,
 /obj/item/paper,
+/obj/effect/mapping_helpers/windoor/access/any/security/detective{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/windoor/access/any/security/general{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/hallway/primary/port)
 "kPy" = (
@@ -40037,7 +40048,8 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/basic,
+/obj/effect/mapping_helpers/airlock/access/any/security/detective,
+/obj/effect/mapping_helpers/airlock/access/any/security/general,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/customs)
 "lHV" = (
@@ -49194,7 +49206,8 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/basic,
+/obj/effect/mapping_helpers/airlock/access/any/security/detective,
+/obj/effect/mapping_helpers/airlock/access/any/security/general,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "oeF" = (
@@ -56039,8 +56052,7 @@
 "qic" = (
 /obj/machinery/door/window/brigdoor{
 	name = "Arrivals Security Checkpoint";
-	pixel_y = -8;
-	req_access_txt = "sec_basic"
+	pixel_y = -8
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /mob/living/simple_animal/crab/kreb{
@@ -76436,7 +76448,8 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/basic,
+/obj/effect/mapping_helpers/airlock/access/any/security/detective,
+/obj/effect/mapping_helpers/airlock/access/any/security/general,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "vTj" = (
