@@ -24,7 +24,7 @@
 /area/template_noop)
 "E" = (
 /obj/structure/flora/rock/pile/largejungle,
-/mob/living/simple_animal/hostile/megafauna/dragon/jungle/,
+/mob/living/simple_animal/hostile/megafauna/dragon/jungle,
 /turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 "O" = (
