@@ -44,8 +44,7 @@
 	},
 /obj/machinery/door/window/eastright{
 	dir = 2;
-	name = "Research and Development Desk";
-	req_one_access_txt = "science;robotics"
+	name = "Research and Development Desk"
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "research_shutters";
@@ -60,6 +59,8 @@
 	pixel_y = 7
 	},
 /obj/item/storage/pencil_holder/crew,
+/obj/effect/mapping_helpers/windoor/access/any/science/robotics,
+/obj/effect/mapping_helpers/windoor/access/any/science/general,
 /turf/open/floor/plating,
 /area/science/lab)
 "aaU" = (
@@ -3676,7 +3677,7 @@
 	name = "Warehouse Door Control";
 	pixel_x = 24;
 	pixel_y = 28;
-	req_access_txt = "cargo_bay"
+	req_access = list(ACCESS_CARGO_BAY)
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
@@ -4002,7 +4003,7 @@
 	name = "Loading Doors";
 	pixel_x = -27;
 	pixel_y = -5;
-	req_access_txt = "cargo_bay"
+	req_access = list(ACCESS_CARGO_BAY)
 	},
 /obj/machinery/button/door{
 	id = "QMLoaddoor2";
@@ -4010,7 +4011,7 @@
 	name = "Loading Doors";
 	pixel_x = -27;
 	pixel_y = 5;
-	req_access_txt = "cargo_bay"
+	req_access = list(ACCESS_CARGO_BAY)
 	},
 /obj/machinery/computer/cargo{
 	dir = 4
@@ -10186,6 +10187,9 @@
 /area/crew_quarters/heads/hor)
 "cZx" = (
 /obj/machinery/chem_dispenser,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/medical/psych)
 "cZB" = (
@@ -10905,12 +10909,20 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastright{
 	dir = 8;
-	name = "Genetics Desk";
-	req_access_txt = "genetics"
+	name = "Genetics Desk"
 	},
 /obj/item/deskbell/preset/genetics{
 	pixel_x = 8;
 	pixel_y = -3
+	},
+/obj/effect/mapping_helpers/windoor/access/all/science/genetics{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/medical/genetics)
@@ -13348,7 +13360,7 @@
 	name = "Warehouse Door Control";
 	pixel_x = -24;
 	pixel_y = 28;
-	req_access_txt = "cargo_bay"
+	req_access = list(ACCESS_CARGO_BAY)
 	},
 /obj/effect/turf_decal/loading_area{
 	dir = 4
@@ -32691,8 +32703,7 @@
 "jBg" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastright{
-	name = "Research and Development Desk";
-	req_one_access_txt = "science;robotics"
+	name = "Research and Development Desk"
 	},
 /obj/item/folder/white{
 	pixel_x = 4;
@@ -32716,6 +32727,12 @@
 /obj/item/deskbell/preset/sci{
 	pixel_x = -7;
 	pixel_y = -3
+	},
+/obj/effect/mapping_helpers/windoor/access/any/science/robotics{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/windoor/access/any/science/general{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/science/lab)
@@ -42166,6 +42183,15 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/security/checkpoint/medical)
+"mjN" = (
+/obj/structure/closet/secure_closet/security/sec,
+/obj/effect/turf_decal/bot,
+/obj/machinery/door/window/brigdoor/security/holding{
+	id = "Holding Cell";
+	name = "Holding Cell"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/main)
 "mjX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -46113,14 +46139,19 @@
 	},
 /obj/machinery/door/window/eastleft{
 	dir = 1;
-	name = "Research and Development Deliveries";
-	req_one_access_txt = "science;robotics"
+	name = "Research and Development Deliveries"
 	},
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /obj/effect/turf_decal/delivery,
 /obj/structure/disposalpipe/segment,
+/obj/effect/mapping_helpers/windoor/access/any/science/robotics{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/windoor/access/any/science/general{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/science/lab)
 "noz" = (
@@ -51165,13 +51196,15 @@
 "oGR" = (
 /obj/machinery/door/window/westright{
 	dir = 1;
-	name = "Atmospherics Access";
-	req_access_txt = "atmospherics"
+	name = "Atmospherics Access"
 	},
 /obj/structure/window/reinforced{
 	dir = 4
 	},
 /obj/effect/turf_decal/loading_area,
+/obj/effect/mapping_helpers/windoor/access/all/engineering/atmos{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "oGY" = (
@@ -52590,8 +52623,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/northleft{
 	dir = 4;
-	name = "Engineering Desk";
-	req_one_access_txt = "32;19"
+	name = "Engineering Desk"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -52604,6 +52636,18 @@
 	pixel_y = -3
 	},
 /obj/item/storage/pencil_holder/crew,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/any/engineering/construction{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/windoor/access/any/engineering/general{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/engine/foyer)
 "phd" = (
@@ -52665,9 +52709,7 @@
 	},
 /obj/machinery/door/window/brigdoor/security/holding{
 	id = "Holding Cell";
-	name = "Holding Cell";
-	req_one_access_txt = "security;detective";
-	req_one_access = null
+	name = "Holding Cell"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -53249,7 +53291,7 @@
 	id = "qm_warehouse";
 	name = "Warehouse Door Control";
 	pixel_y = -24;
-	req_access_txt = "cargo_bay"
+	req_access = list(ACCESS_CARGO_BAY)
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -57675,6 +57717,9 @@
 /area/crew_quarters/fitness/recreation)
 "qFG" = (
 /obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -64944,6 +64989,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/wood,
 /area/medical/psych)
 "sKP" = (
@@ -68571,8 +68617,7 @@
 /area/medical/medbay/aft)
 "tKR" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Cargo Bay Warehouse Maintenance";
-	req_one_access_txt = "31;48"
+	name = "Cargo Bay Warehouse Maintenance"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -70290,12 +70335,17 @@
 	base_state = "left";
 	dir = 8;
 	icon_state = "left";
-	name = "Security Delivery";
-	req_one_access_txt = "security;detective"
+	name = "Security Delivery"
 	},
 /obj/effect/turf_decal/delivery,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/effect/mapping_helpers/windoor/access/any/security/detective{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/any/security/general{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
@@ -72615,8 +72665,7 @@
 /obj/item/pen,
 /obj/machinery/door/window/northleft{
 	dir = 2;
-	name = "Atmospherics Desk";
-	req_access_txt = "atmospherics"
+	name = "Atmospherics Desk"
 	},
 /obj/machinery/door/poddoor/preopen{
 	id = "atmos";
@@ -72628,6 +72677,11 @@
 	},
 /obj/item/storage/pencil_holder/crew,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/windoor/access/all/engineering/atmos,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "uPS" = (
@@ -76956,8 +77010,7 @@
 /area/engine/atmos/distro)
 "waV" = (
 /obj/machinery/door/airlock/hatch{
-	name = "MiniSat Access";
-	req_one_access_txt = "10;32"
+	name = "MiniSat Access"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -77517,7 +77570,7 @@
 	name = "Psych Office Shutters Control";
 	pixel_x = -5;
 	pixel_y = -25;
-	req_access_txt = psychology
+	req_access = list(ACCESS_PSYCHOLOGY)
 	},
 /obj/machinery/light_switch{
 	pixel_x = 8;
@@ -83495,7 +83548,7 @@
 	id = "qm_warehouse";
 	name = "Warehouse Door Control";
 	pixel_y = 24;
-	req_access_txt = "cargo_bay"
+	req_access = list(ACCESS_CARGO_BAY)
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -245029,7 +245082,7 @@ loB
 lkw
 une
 rER
-rmt
+mjN
 nwn
 xvh
 iSo
