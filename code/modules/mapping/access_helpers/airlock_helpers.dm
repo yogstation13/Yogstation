@@ -245,11 +245,6 @@
 	access_list += ACCESS_MINING_STATION
 	return access_list
 
-/obj/effect/mapping_helpers/airlock/access/any/supply/materials/get_access()
-	var/list/access_list = ..()
-	access_list += ACCESS_MATERIALS
-	return access_list
-
 /obj/effect/mapping_helpers/airlock/access/any/supply/qm/get_access()
 	var/list/access_list = ..()
 	access_list += ACCESS_QM
@@ -598,11 +593,6 @@
 /obj/effect/mapping_helpers/airlock/access/all/supply/mining_station/get_access()
 	var/list/access_list = ..()
 	access_list += ACCESS_MINING_STATION
-	return access_list
-
-/obj/effect/mapping_helpers/airlock/access/all/supply/materials/get_access()
-	var/list/access_list = ..()
-	access_list += ACCESS_MATERIALS
 	return access_list
 
 /obj/effect/mapping_helpers/airlock/access/all/supply/qm/get_access()
