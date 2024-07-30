@@ -57,7 +57,7 @@
 
 //---  ENGINEERING  ---//
 
-/// Engineering General Access, grants access to the standard parts of engineering (as well as the Supermatter and related equipment).
+/// Engineering General Access, grants access to the standard parts of Engineering and the Engine Room.
 #define ACCESS_ENGINEERING "engineering"
 /// Access to Atmospherics Sections of the Engineering Department, as well as air alarms.
 #define ACCESS_ATMOSPHERICS "atmospherics"
@@ -79,7 +79,7 @@
 #define ACCESS_TCOMMS_ADMIN "tcomms_admin"
 /// Access to the Auxiliary Base Room, as well as the ability to launch it.
 #define ACCESS_AUX_BASE "aux_base"
-/// Access for the Chief Engineer's office, Secure Tech Storage, as well as some other CE-related things.
+/// Access for the Chief Engineer's office, as well as some other CE-related things.
 #define ACCESS_CE "ce"
 
 

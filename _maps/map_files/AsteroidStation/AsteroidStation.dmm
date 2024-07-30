@@ -78488,7 +78488,7 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/ministile/hop{
 	name = "Cargo line turnstile";
-	req_one_access = list(50)
+	req_access = list(ACCESS_CARGO)
 	},
 /obj/effect/turf_decal/loading_area{
 	dir = 1
@@ -81621,7 +81621,7 @@
 /obj/machinery/ministile/hop{
 	dir = 1;
 	name = "Cargo line turnstile";
-	req_one_access = list(50)
+	req_access = list(ACCESS_CARGO)
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/turf_decal/loading_area,

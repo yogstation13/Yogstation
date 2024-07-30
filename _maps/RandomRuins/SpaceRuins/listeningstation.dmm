@@ -2445,7 +2445,7 @@
 	department = "Unidentified";
 	desc = "Used to send black pages to Nanotrasen stations.";
 	name = "Syndicate Fax Machine";
-	req_one_access = list(150)
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/dirt,

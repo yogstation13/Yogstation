@@ -19071,7 +19071,7 @@
 "dXX" = (
 /obj/machinery/computer/rdconsole/production{
 	dir = 8;
-	req_access = list(32)
+	req_access = list(ACCESS_ENGINEERING)
 	},
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 5

@@ -5443,7 +5443,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/mecha/combat/durand,
+/obj/mecha/combat/durand{
+	internals_req_access = null;
+	operation_req_access = null
+	},
 /turf/open/floor/engine,
 /area/centcom/testchamber)
 "arc" = (
@@ -7987,7 +7990,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/mecha/combat/phazon,
+/obj/mecha/combat/phazon{
+	internals_req_access = null;
+	operation_req_access = null
+	},
 /turf/open/floor/engine,
 /area/centcom/testchamber)
 "awf" = (
@@ -9648,7 +9654,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/mecha/medical/odysseus,
+/obj/mecha/medical/odysseus{
+	internals_req_access = null;
+	operation_req_access = null
+	},
 /turf/open/floor/engine,
 /area/centcom/testchamber)
 "azV" = (
@@ -14864,7 +14873,8 @@
 	dir = 8
 	},
 /obj/mecha/combat/marauder/mauler{
-	internals_req_access = list(303,302)
+	internals_req_access = null;
+	operation_req_access = null
 	},
 /obj/item/card/id/syndicate,
 /turf/open/floor/engine,
@@ -16039,7 +16049,8 @@
 	dir = 8
 	},
 /obj/mecha/combat/marauder/seraph{
-	internals_req_access = list(303,302)
+	internals_req_access = null;
+	operation_req_access = null
 	},
 /obj/item/card/id/centcom,
 /turf/open/floor/engine,
@@ -16628,7 +16639,8 @@
 	dir = 8
 	},
 /obj/mecha/combat/gygax/dark{
-	internals_req_access = list(303,302)
+	internals_req_access = null;
+	operation_req_access = null
 	},
 /obj/item/card/id/syndicate,
 /turf/open/floor/engine,
@@ -16744,7 +16756,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/mecha/combat/gygax,
+/obj/mecha/combat/gygax{
+	internals_req_access = null;
+	operation_req_access = null
+	},
 /turf/open/floor/engine,
 /area/centcom/testchamber)
 "aOJ" = (
@@ -17728,7 +17743,8 @@
 	dir = 8
 	},
 /obj/mecha/combat/marauder{
-	internals_req_access = list(303,302)
+	internals_req_access = null;
+	operation_req_access = null
 	},
 /obj/item/card/id/centcom,
 /turf/open/floor/engine,
@@ -20409,7 +20425,8 @@
 	dir = 8
 	},
 /obj/mecha/combat/reticence{
-	internals_req_access = list(303,302)
+	internals_req_access = null;
+	operation_req_access = null
 	},
 /turf/open/floor/engine,
 /area/centcom/testchamber)
@@ -20868,7 +20885,8 @@
 	dir = 8
 	},
 /obj/mecha/combat/honker{
-	internals_req_access = list(303,302)
+	internals_req_access = null;
+	operation_req_access = null
 	},
 /turf/open/floor/engine,
 /area/centcom/testchamber)
@@ -21437,7 +21455,7 @@
 /area/centcom)
 "bVV" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
-	req_access = list(150)
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/item/storage/box/donkpockets{
 	pixel_x = 2
@@ -23390,7 +23408,7 @@
 /area/centcom/tdome/tdomeobserve)
 "uRI" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
-	req_access = list(150)
+	req_access = list(ACCESS_SYNDICATE)
 	},
 /obj/item/kitchen/knife/butcher,
 /obj/item/clothing/suit/apron/chef,

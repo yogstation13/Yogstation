@@ -162,7 +162,7 @@
 "bx" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/closet/secure_closet/contraband/armory{
-	req_access = list(63)
+	req_access = list(ACCESS_SEC_BASIC)
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
