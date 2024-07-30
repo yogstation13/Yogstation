@@ -9824,14 +9824,11 @@
 	},
 /area/maintenance/port/fore)
 "cUk" = (
-/obj/machinery/door/morgue{
-	name = "Private Study"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/effect/mapping_helpers/airlock/access/all/service/library,
+/obj/machinery/door/morgue/curator,
 /turf/open/floor/engine/cult,
 /area/library)
 "cUo" = (
@@ -18741,7 +18738,7 @@
 	id = "research_shutters";
 	name = "research shutters control";
 	pixel_x = 28;
-	req_one_access_txt = "science;robotics"
+	req_one_access = list(ACCESS_SCIENCE, ACCESS_ROBOTICS)
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
@@ -46826,16 +46823,15 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/customs)
 "nxL" = (
-/obj/machinery/door/morgue{
-	name = "Relic Closet"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/service/chapel_office,
+/obj/machinery/door/morgue/chaplain{
+	name = "Relic Closet"
+	},
 /turf/open/floor/plasteel/cult,
 /area/chapel/office)
 "nyc" = (
@@ -48605,16 +48601,13 @@
 /turf/open/floor/circuit/green/telecomms,
 /area/ai_monitored/secondarydatacore)
 "nWM" = (
-/obj/machinery/door/morgue{
-	name = "Confession Booth (Chaplain)"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/service/chapel_office,
+/obj/machinery/door/morgue/chaplain,
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
 "nWO" = (
@@ -68252,7 +68245,7 @@
 	name = "research shutters control";
 	pixel_x = -26;
 	pixel_y = -26;
-	req_one_access_txt = "science;robotics"
+	req_one_access = list(ACCESS_SCIENCE, ACCESS_ROBOTICS)
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1

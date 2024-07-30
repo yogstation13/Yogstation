@@ -5249,7 +5249,6 @@
 "caS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/airlock/maintenance,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -5261,6 +5260,7 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/maintenance_hatch,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "cbl" = (
@@ -13415,7 +13415,7 @@
 	id = "aux_base_shutters";
 	name = "Public Shutters Control";
 	pixel_x = 24;
-	req_one_access_txt = "32;47;48"
+	req_access = list(ACCESS_AUX_BASE)
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
@@ -18892,10 +18892,7 @@
 /turf/open/floor/wood,
 /area/lawoffice)
 "hLQ" = (
-/obj/machinery/door/morgue{
-	name = "Confession Booth (Chaplain)"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/service/chapel_office,
+/obj/machinery/door/morgue/chaplain,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "hLW" = (
@@ -21916,8 +21913,7 @@
 /area/tcommsat/computer)
 "jhB" = (
 /obj/machinery/door/airlock/external{
-	name = "AISat External Access";
-	req_one_access_txt = "32;19"
+	name = "AISat External Access"
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/structure/barricade/wooden,
@@ -30339,8 +30335,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastleft{
 	dir = 8;
-	name = "Research Desk";
-	req_one_access = list(ACCESS_SCIENCE, ACCESS_ROBOTICS)
+	name = "Research Desk"
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "researchprivate";
@@ -30358,6 +30353,12 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/effect/mapping_helpers/windoor/access/any/science/robotics{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/any/science/general{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/science/lab)
@@ -38398,16 +38399,13 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "pZj" = (
-/obj/machinery/door/morgue{
-	name = "Private Study"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/service/library,
+/obj/machinery/door/morgue/curator,
 /turf/open/floor/engine/cult,
 /area/library)
 "pZt" = (
@@ -39359,8 +39357,7 @@
 /area/maintenance/aft)
 "qrg" = (
 /obj/machinery/door/airlock/external{
-	name = "AISat External Access";
-	req_one_access_txt = "32;19"
+	name = "AISat External Access"
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/structure/barricade/wooden,
@@ -52970,13 +52967,11 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/maintenance_hatch,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "wcC" = (
@@ -56067,9 +56062,13 @@
 /turf/open/floor/catwalk_floor/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "xnG" = (
-/obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12"
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/maintenance_hatch,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "xnI" = (

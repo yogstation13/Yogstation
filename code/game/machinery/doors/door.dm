@@ -481,6 +481,10 @@
 	name = "Private Study"
 	req_access = list(ACCESS_LIBRARY)
 
+/obj/machinery/door/morgue/chaplain
+	name = "Confession Booth (Chaplain)"
+	req_access = list(ACCESS_CHAPEL_OFFICE)
+
 /obj/machinery/door/get_dumping_location(obj/item/storage/source,mob/user)
 	return null
 

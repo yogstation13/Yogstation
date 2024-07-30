@@ -1056,8 +1056,7 @@
 	base_state = "left";
 	dir = 8;
 	icon_state = "left";
-	name = "Security Delivery";
-	req_one_access_txt = "security;detective"
+	name = "Security Delivery"
 	},
 /obj/effect/turf_decal/delivery,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -1071,6 +1070,12 @@
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
+	},
+/obj/effect/mapping_helpers/windoor/access/any/security/detective{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/any/security/general{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
@@ -3013,13 +3018,13 @@
 	base_state = "left";
 	dir = 2;
 	icon_state = "left";
-	name = "Robotics Desk";
-	req_one_access_txt = "29;75"
+	name = "Robotics Desk"
 	},
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 8
 	},
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower,
+/obj/effect/mapping_helpers/windoor/access/any/science/robotics,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "awr" = (
@@ -6177,13 +6182,11 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "aRQ" = (
-/obj/machinery/door/morgue{
-	name = "Private Study"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/morgue/curator,
 /turf/open/floor/plasteel/cult,
 /area/library)
 "aRR" = (
@@ -9043,7 +9046,7 @@
 	name = "Shutters Control Button";
 	pixel_x = 24;
 	pixel_y = -24;
-	req_one_access_txt = "29;75"
+	req_access = list(ACCESS_ROBOTICS)
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
@@ -19953,7 +19956,7 @@
 	name = "Shutters Control Button";
 	pixel_x = -6;
 	pixel_y = 25;
-	req_one_access_txt = "29;75"
+	req_access = list(ACCESS_ROBOTICS)
 	},
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 9
@@ -20326,8 +20329,7 @@
 "evC" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/southright{
-	name = "Research and Development Desk";
-	req_one_access_txt = "science;robotics"
+	name = "Research and Development Desk"
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "rnd";
@@ -20344,6 +20346,8 @@
 /obj/item/storage/pencil_holder/crew{
 	pixel_x = 8
 	},
+/obj/effect/mapping_helpers/windoor/access/any/science/robotics,
+/obj/effect/mapping_helpers/windoor/access/any/science/general,
 /turf/open/floor/plating,
 /area/science/lab)
 "evD" = (
@@ -25490,10 +25494,15 @@
 	base_state = "left";
 	dir = 8;
 	icon_state = "left";
-	name = "Research Division Delivery";
-	req_one_access_txt = "science;robotics"
+	name = "Research Division Delivery"
 	},
 /obj/effect/turf_decal/delivery,
+/obj/effect/mapping_helpers/windoor/access/any/science/robotics{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/any/science/general{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/science/lab)
 "gji" = (
@@ -35839,8 +35848,7 @@
 	base_state = "left";
 	dir = 2;
 	icon_state = "left";
-	name = "Robotics Desk";
-	req_access_txt = "robotics"
+	name = "Robotics Desk"
 	},
 /obj/item/paper_bin{
 	pixel_x = -3;
@@ -35858,6 +35866,7 @@
 /obj/item/storage/pencil_holder/crew{
 	pixel_x = 8
 	},
+/obj/effect/mapping_helpers/windoor/access/any/science/robotics,
 /turf/open/floor/plating,
 /area/science/robotics/lab)
 "jOd" = (
@@ -36686,8 +36695,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/northleft{
 	dir = 2;
-	name = "Engineering Desk";
-	req_access_txt = "engineering"
+	name = "Engineering Desk"
 	},
 /obj/item/deskbell/preset/engi{
 	pixel_x = -6;
@@ -36700,6 +36708,8 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/windoor/access/any/engineering/construction,
+/obj/effect/mapping_helpers/windoor/access/any/engineering/general,
 /turf/open/floor/plating,
 /area/engine/foyer)
 "khi" = (
@@ -37675,13 +37685,13 @@
 	name = "bar shutters"
 	},
 /obj/machinery/door/window/southright{
-	name = "Bar Door";
-	req_one_access_txt = "25;28"
+	name = "Bar Door"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/windoor/access/all/service/bar,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "kAg" = (
@@ -39571,8 +39581,7 @@
 /area/crew_quarters/kitchen)
 "llu" = (
 /obj/machinery/door/window{
-	name = "SMES Chamber";
-	req_access_txt = "engine_equip"
+	name = "SMES Chamber"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -39587,6 +39596,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/windoor/access/all/engineering/equipment,
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
 "llx" = (
@@ -44256,7 +44266,7 @@
 	name = "Research Lab Shutters Control";
 	pixel_x = -6;
 	pixel_y = 24;
-	req_one_access_txt = "science;robotics"
+	req_one_access = list(ACCESS_SCIENCE, ACCESS_ROBOTICS)
 	},
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 1
@@ -59897,8 +59907,7 @@
 	base_state = "left";
 	dir = 8;
 	icon_state = "left";
-	name = "Robotics Desk";
-	req_access_txt = "robotics"
+	name = "Robotics Desk"
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "robotics2";
@@ -59915,6 +59924,9 @@
 /obj/item/deskbell/preset/robotics{
 	pixel_x = 9;
 	pixel_y = -4
+	},
+/obj/effect/mapping_helpers/windoor/access/any/science/robotics{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
@@ -64434,8 +64446,7 @@
 "uqN" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/westleft{
-	name = "Cargo Desk";
-	req_access_txt = "cargo"
+	name = "Cargo Desk"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -64450,6 +64461,9 @@
 /obj/item/storage/pencil_holder/crew{
 	pixel_x = -6;
 	pixel_y = -10
+	},
+/obj/effect/mapping_helpers/windoor/access/all/supply/general{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/quartermaster/office)
@@ -70560,8 +70574,7 @@
 /area/hallway/secondary/entry)
 "wzQ" = (
 /obj/machinery/door/window/westleft{
-	name = "Delivery Desk";
-	req_access_txt = "cargo"
+	name = "Delivery Desk"
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only{
@@ -70573,6 +70586,9 @@
 /obj/item/deskbell/preset/delivery{
 	pixel_x = 8;
 	pixel_y = -3
+	},
+/obj/effect/mapping_helpers/windoor/access/all/supply/general{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/quartermaster/sorting)

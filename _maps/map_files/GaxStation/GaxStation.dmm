@@ -6678,14 +6678,11 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "dhw" = (
-/obj/machinery/door/morgue{
-	name = "Private Study"
-	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/airlock/access/all/service/library,
+/obj/machinery/door/morgue/curator,
 /turf/open/floor/plating,
 /area/library)
 "dhK" = (
@@ -15865,16 +15862,13 @@
 /turf/open/floor/wood,
 /area/library)
 "hvc" = (
-/obj/machinery/door/morgue{
-	name = "Confession Booth (Chaplain)"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/service/chapel_office,
+/obj/machinery/door/morgue/chaplain,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "hvC" = (

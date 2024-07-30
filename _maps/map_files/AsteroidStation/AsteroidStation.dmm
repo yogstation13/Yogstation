@@ -3792,16 +3792,13 @@
 /turf/open/indestructible/sound/pool/end,
 /area/crew_quarters/fitness)
 "aGy" = (
-/obj/machinery/door/morgue{
-	name = "Confession Booth (Chaplain)"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/service/chapel_office,
+/obj/machinery/door/morgue/chaplain,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "aGA" = (
@@ -29445,8 +29442,7 @@
 /area/security/prison)
 "irl" = (
 /obj/machinery/door/airlock/engineering/glass{
-	name = "Engineering";
-	req_one_access_txt = "10;32"
+	name = "Engineering"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -42496,9 +42492,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "mvr" = (
-/obj/machinery/door/morgue{
-	name = "Private Study"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
@@ -42511,7 +42504,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/service/library,
+/obj/machinery/door/morgue/curator,
 /turf/open/floor/carpet,
 /area/library)
 "mvN" = (
@@ -49344,10 +49337,6 @@
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "oyn" = (
-/obj/machinery/door/airlock{
-	name = "Hydroponics Maintenance";
-	req_one_access_txt = "0"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -49355,6 +49344,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/access/all/service/hydroponics,
+/obj/machinery/door/airlock/maintenance{
+	name = "Hydroponics Maintenance"
+	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "oyo" = (
