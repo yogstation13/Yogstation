@@ -1929,12 +1929,12 @@
 					/obj/item/stack/tile/carpet/fifty,
 					/obj/item/stack/tile/carpet/black/fifty,
 					/obj/item/stack/tile/carpet/black/fifty,
-					/obj/item/stack/tile/carpet/blue/fifty, //yogs start - adds coloured carpets
-					/obj/item/stack/tile/carpet/blue/fifty,
-					/obj/item/stack/tile/carpet/green/fifty,
-					/obj/item/stack/tile/carpet/green/fifty,
-					/obj/item/stack/tile/carpet/purple/fifty,
-					/obj/item/stack/tile/carpet/purple/fifty) //yogs end
+					/obj/item/stack/tile/carpet/plainblue/fifty, //yogs start - adds coloured carpets
+					/obj/item/stack/tile/carpet/plainblue/fifty,
+					/obj/item/stack/tile/carpet/plaingreen/fifty,
+					/obj/item/stack/tile/carpet/plaingreen/fifty,
+					/obj/item/stack/tile/carpet/plainpurple/fifty,
+					/obj/item/stack/tile/carpet/plainpurple/fifty) //yogs end
 	crate_name = "premium carpet crate"
 
 /datum/supply_pack/service/carpet_exotic
