@@ -255,8 +255,8 @@
 		if(Z.density == TRUE && Z.anchored == TRUE)
 			for(var/mob/living/S in thrown)
 				grab(user, S, slamdam) 
-				S.Knockdown(1.5 SECONDS)
-				S.Immobilize(1.5 SECONDS)
+				S.Knockdown(1.0 SECONDS)
+				S.Immobilize(1.0 SECONDS)
 				if(isanimal(S) && S.stat == DEAD)
 					S.gib()
 				if(istype(Z, /obj/machinery/disposal/bin)) // dumpster living things tossed into the trash
