@@ -3861,7 +3861,8 @@
 	name = "Vault Bolt Control";
 	normaldoorcontrol = 1;
 	pixel_y = 24;
-	req_access = list(ACCESS_SYNDICATE)specialfunctions=4
+	req_access = list(ACCESS_SYNDICATE);
+	specialfunctions=4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,
