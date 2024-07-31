@@ -12,8 +12,9 @@
 	alt_titles = list("Researcher", "Toxins Specialist", "Physicist", "Test Associate", "Anomalist", "Quantum Physicist", "Theoretical Physicist", "Xenobiologist", "Explosives Technician", "Hypothetical Physicist")
 	outfit = /datum/outfit/job/scientist
 
-	added_access = list(ACCESS_ROBO_CONTROL, ACCESS_TECH_STORAGE, ACCESS_GENETICS)
-	base_access = list(ACCESS_SCIENCE, ACCESS_TOXINS, ACCESS_TOXINS_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MECH_SCIENCE)
+	added_access = list(ACCESS_ROBO_CONTROL, ACCESS_GENETICS)
+	base_access = list(ACCESS_SCIENCE, ACCESS_RESEARCH, ACCESS_TOXINS, ACCESS_TOXINS_STORAGE,
+					ACCESS_EXPERIMENTATION, ACCESS_XENOBIOLOGY, ACCESS_AUX_BASE, ACCESS_MECH_SCIENCE)
 
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_SCI

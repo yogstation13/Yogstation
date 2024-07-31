@@ -13,7 +13,9 @@
 	alt_titles = list("Custodian", "Sanitation Worker", "Cleaner", "Caretaker", "Maid")
 
 	added_access = list()
-	base_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_SCIENCE, ACCESS_MEDICAL, ACCESS_SERVICE)
+	base_access = list(ACCESS_SERVICE, ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_CARGO,
+					ACCESS_SCIENCE, ACCESS_MEDICAL, ACCESS_CONSTRUCTION)
+
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 

@@ -17,8 +17,10 @@
 
 	alt_titles = list("Threat Response Officer", "Civilian Protection Officer", "Corporate Officer", "Peacekeeper")
 
-	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_DETECTIVE)
-	base_access = list(ACCESS_SECURITY, ACCESS_SEC_BASIC, ACCESS_BRIG, ACCESS_WEAPONS_PERMIT, ACCESS_MECH_SECURITY) // See /datum/job/officer/get_access()
+	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_DETECTIVE, ACCESS_BRIG_PHYS)
+	base_access = list(ACCESS_SECURITY, ACCESS_SEC_BASIC, ACCESS_BRIG, ACCESS_WEAPONS_PERMIT,
+					ACCESS_EXTERNAL_AIRLOCKS, ACCESS_MECH_SECURITY) // See /datum/job/officer/get_access()
+
 	paycheck = PAYCHECK_HARD
 	paycheck_department = ACCOUNT_SEC
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)

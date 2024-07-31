@@ -247,6 +247,7 @@
 						ACCESS_TCOMMS,
 						ACCESS_TCOMMS_ADMIN,
 						ACCESS_AUX_BASE,
+						ACCESS_AI_SAT,
 						ACCESS_MECH_ENGINE,
 						ACCESS_CE)
 		if(6) // Supply

@@ -14,6 +14,7 @@
 
 	added_access = list(ACCESS_CHEMISTRY)
 	base_access = list(ACCESS_MEDICAL, ACCESS_PSYCHOLOGY)
+
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
 	mind_traits = list(TRAIT_PSYCH)
