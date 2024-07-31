@@ -27,14 +27,15 @@
 
 	var/synth_slowed = FALSE
 	var/synth_force_decreased = FALSE
-	var/synth_audible_warning = FALSE
+	var/synth_audible_warning = FALSE //reminder, change all these booleans to instead use bitflags or something
 	var/synth_temp_freeze = FALSE
 
 	var/list/synth_action_log = list()
 
 
 /datum/ai_dashboard/synth_dashboard
-
+	//bit of free ram to muck around with
+	free_ram = 1
 
 /datum/ai_dashboard/synth_dashboard/New(mob/living/new_owner)
 	if(!istype(new_owner))
@@ -46,7 +47,7 @@
 	completed_projects = list()
 	running_projects = list()
 	cpu_usage = list()
-
+	ram_usage = list()
 
 	for(var/path in subtypesof(/datum/ai_project/synth_project))
 		var/datum/ai_project/newProject = path
@@ -95,10 +96,16 @@
 		ui.open()
 
 /datum/ai_dashboard/synth_dashboard/proc/switch_shell(mob/living/carbon/human/old_shell, mob/living/carbon/human/new_shell)
+	var/list/restart = list()
 	for(var/datum/ai_project/running_project in running_projects)
 		running_project.stop(TRUE)
-		running_project.synth = new_shell
-		running_project.run_project(FALSE, TRUE)
+		restart += running_project
+
+	old_shell.mind.transfer_to(new_shell) //transfer the mind between the stop and restart or we can't handle mind specific things in the projects
+	
+	for(var/datum/ai_project/to_restart as anything in restart)
+		to_restart.synth = new_shell
+		to_restart.run_project(FALSE, TRUE)
 	owner = new_shell
 	punishment_shell_switch(old_shell, new_shell)
 
@@ -113,8 +120,17 @@
 	suspicion_tick()
 
 /datum/ai_dashboard/synth_dashboard/run_project(datum/ai_project/project)
-	project.run_project()
-	return TRUE
+	var/current_ram = free_ram //they have no physical ram to upgrade, so it's entirely determined by free ram
+
+	var/total_ram_used = 0
+	for(var/I in ram_usage)
+		total_ram_used += ram_usage[I]
+
+	if(current_ram - total_ram_used >= project.ram_required && project.canRun())
+		project.run_project()
+		ram_usage[project.name] += project.ram_required
+		return TRUE
+	return FALSE
 
 /datum/ai_dashboard/synth_dashboard/proc/suspicion_tick()
 	var/mob/living/carbon/human/H = owner

@@ -84,6 +84,19 @@ export const SynthDashboard = (props, context) => {
               Utilized CPU Power
             </LabeledControls.Item>
             <LabeledControls.Item>
+              <ProgressBar
+                ranges={{
+                  good: [data.current_ram * 0.7, Infinity],
+                  average: [data.current_ram * 0.3, data.current_ram * 0.7],
+                  bad: [0, data.current_ram * 0.3],
+                }}
+                value={data.used_ram}
+                maxValue={data.current_ram}>
+                {data.used_ram ? data.used_ram : 0}/{data.current_ram} TB
+              </ProgressBar>
+              Utilized RAM Capacity
+            </LabeledControls.Item>
+            <LabeledControls.Item>
               <Box color={governor_color} bold>{governor_status}</Box>
               Governor Module Status
             </LabeledControls.Item>
