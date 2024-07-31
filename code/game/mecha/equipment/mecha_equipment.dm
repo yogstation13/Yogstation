@@ -242,7 +242,7 @@
 // Grant any actions to the pilot
 /obj/item/mecha_parts/mecha_equipment/proc/grant_actions(mob/pilot)
 	for(var/datum/action/action as anything in equip_actions)
-		action.Grant(pilot)
+		action.Grant(pilot, chassis, src)
 
 // Remove the actions!!!!
 /obj/item/mecha_parts/mecha_equipment/proc/remove_actions(mob/pilot)

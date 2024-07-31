@@ -79,7 +79,7 @@
 		qdel(src)
 
 /// Grants the action to the passed mob, making it the owner
-/datum/action/proc/Grant(mob/grant_to)
+/datum/action/proc/Grant(mob/grant_to, ...)
 	if(isnull(grant_to))
 		Remove(owner)
 		return
