@@ -20373,8 +20373,7 @@
 /obj/item/storage/pencil_holder/crew{
 	pixel_x = 8
 	},
-/obj/effect/mapping_helpers/windoor/access/any/science/robotics,
-/obj/effect/mapping_helpers/windoor/access/any/science/general,
+/obj/effect/mapping_helpers/windoor/access/all/science/general,
 /turf/open/floor/plating,
 /area/science/lab)
 "evD" = (
@@ -25528,10 +25527,7 @@
 	name = "Research Division Delivery"
 	},
 /obj/effect/turf_decal/delivery,
-/obj/effect/mapping_helpers/windoor/access/any/science/robotics{
-	dir = 8
-	},
-/obj/effect/mapping_helpers/windoor/access/any/science/general{
+/obj/effect/mapping_helpers/windoor/access/all/science/general{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -44319,7 +44315,7 @@
 	name = "Research Lab Shutters Control";
 	pixel_x = -6;
 	pixel_y = 24;
-	req_one_access = list(ACCESS_SCIENCE, ACCESS_ROBOTICS)
+	req_access = list(ACCESS_SCIENCE)
 	},
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 1

@@ -43723,7 +43723,7 @@
 	name = "Shutters Control Button";
 	pixel_x = -7;
 	pixel_y = -24;
-	req_one_access = list(ACCESS_SCIENCE, ACCESS_ROBOTICS)
+	req_access = list(ACCESS_SCIENCE)
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)

@@ -18715,7 +18715,7 @@
 	name = "Shutters Control Button";
 	pixel_x = -25;
 	pixel_y = -26;
-	req_access = list(ACCESS_SCIENCE, ACCESS_ROBOTICS)
+	req_access = list(ACCESS_SCIENCE)
 	},
 /obj/effect/turf_decal/trimline/purple/filled/line/lower,
 /turf/open/floor/plasteel/white,
@@ -37544,10 +37544,7 @@
 	pixel_x = -10;
 	pixel_y = -1
 	},
-/obj/effect/mapping_helpers/windoor/access/any/science/robotics{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/windoor/access/any/science/general{
+/obj/effect/mapping_helpers/windoor/access/all/science/general{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -52994,10 +52991,7 @@
 	name = "Research Division Delivery"
 	},
 /obj/effect/turf_decal/delivery,
-/obj/effect/mapping_helpers/windoor/access/any/science/robotics{
-	dir = 8
-	},
-/obj/effect/mapping_helpers/windoor/access/any/science/general{
+/obj/effect/mapping_helpers/windoor/access/all/science/general{
 	dir = 8
 	},
 /turf/open/floor/plasteel,

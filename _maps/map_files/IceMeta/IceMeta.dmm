@@ -59,8 +59,7 @@
 	pixel_y = 7
 	},
 /obj/item/storage/pencil_holder/crew,
-/obj/effect/mapping_helpers/windoor/access/any/science/robotics,
-/obj/effect/mapping_helpers/windoor/access/any/science/general,
+/obj/effect/mapping_helpers/windoor/access/all/science/general,
 /turf/open/floor/plating,
 /area/science/lab)
 "aaU" = (
@@ -18769,7 +18768,7 @@
 	id = "research_shutters";
 	name = "research shutters control";
 	pixel_x = 28;
-	req_one_access = list(ACCESS_SCIENCE, ACCESS_ROBOTICS)
+	req_access = list(ACCESS_SCIENCE)
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
@@ -32765,10 +32764,7 @@
 	pixel_x = -7;
 	pixel_y = -3
 	},
-/obj/effect/mapping_helpers/windoor/access/any/science/robotics{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/windoor/access/any/science/general{
+/obj/effect/mapping_helpers/windoor/access/all/science/general{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -46210,10 +46206,7 @@
 	},
 /obj/effect/turf_decal/delivery,
 /obj/structure/disposalpipe/segment,
-/obj/effect/mapping_helpers/windoor/access/any/science/robotics{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/windoor/access/any/science/general{
+/obj/effect/mapping_helpers/windoor/access/all/science/general{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -68398,7 +68391,7 @@
 	name = "research shutters control";
 	pixel_x = -26;
 	pixel_y = -26;
-	req_one_access = list(ACCESS_SCIENCE, ACCESS_ROBOTICS)
+	req_access = list(ACCESS_SCIENCE)
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
