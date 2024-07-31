@@ -6,7 +6,7 @@
 	default_color = "00FF90"
 	say_mod = "chirps"
 	bubble_icon = BUBBLE_SLIME
-	species_traits = list(MUTCOLORS, EYECOLOR, STABLEBLOOD, HAIR)
+	species_traits = list(MUTCOLORS, EYECOLOR, STABLEBLOOD, HAIR, HAS_FLESH)
 	inherent_traits = list(TRAIT_TOXINLOVER)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/slime
 	exotic_blood = /datum/reagent/toxin/slimejelly
@@ -197,7 +197,7 @@
 	plural_form = "Slimepeople"
 	id = SPECIES_SLIMEPERSON
 	default_color = "00FFFF"
-	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,STABLEBLOOD)
+	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,STABLEBLOOD, HAS_FLESH)
 	say_mod = "says"
 	hair_color = "mutcolor"
 	hair_alpha = 150
@@ -211,7 +211,7 @@
 	var/list/mob/living/carbon/bodies
 
 /datum/species/jelly/slime/on_species_loss(mob/living/carbon/C)
-	bodies -= C // This means that the other bodies maintain a link
+	LAZYREMOVE(bodies, C)// This means that the other bodies maintain a link
 	// so if someone mindswapped into them, they'd still be shared.
 	bodies = null
 	C.blood_volume = min(C.blood_volume, BLOOD_VOLUME_NORMAL(C))
@@ -220,10 +220,7 @@
 /datum/species/jelly/slime/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
 	if(ishuman(C))
-		if(!bodies || !bodies.len)
-			bodies = list(C)
-		else
-			bodies |= C
+		LAZYADD(bodies, C)
 
 
 //If you're cloned you get your body pool back
@@ -296,7 +293,7 @@
 	H.notransform = 0
 
 	var/datum/species/jelly/slime/origin_datum = H.dna.species
-	origin_datum.bodies |= spare
+	LAZYADD(origin_datum.bodies, spare)
 
 	var/datum/species/jelly/slime/spare_datum = spare.dna.species
 	spare_datum.bodies = origin_datum.bodies
@@ -421,11 +418,11 @@
 	var/datum/species/jelly/slime/SS = H.dna.species
 
 	if(QDELETED(dupe)) 					//Is there a body?
-		SS.bodies -= dupe
+		LAZYREMOVE(SS.bodies, dupe)
 		return FALSE
 
 	if(!isslimeperson(dupe)) 			//Is it a slimeperson?
-		SS.bodies -= dupe
+		LAZYREMOVE(SS.bodies, dupe)
 		return FALSE
 
 	if(H.stat != CONSCIOUS) 			//Are we alive and awake?
@@ -434,10 +431,10 @@
 	if(dupe.stat != CONSCIOUS) 			//Is it alive and awake?
 		return FALSE
 
-	if(dupe.mind && dupe.mind.active) 	//Is it unoccupied?
+	if(dupe?.mind?.active) 	//Is it unoccupied?
 		return FALSE
 
-	if(!(dupe in SS.bodies))			//Do we actually own it?
+	if(!LAZYFIND(SS.bodies, dupe))			//Do we actually own it?
 		return FALSE
 
 	return TRUE
