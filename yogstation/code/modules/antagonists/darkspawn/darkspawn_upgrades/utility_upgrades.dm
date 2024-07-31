@@ -119,23 +119,23 @@
 	
 /datum/psi_web/thrall_heal
 	name = "Thrall Recovery"
-	desc = "Heals all vthralls for an amount of brute and burn."
+	desc = "Target a location, heals all thralls within a 9x9 area."
 	lore_description = "While thralls are expendable, they do have their use."
 	icon_state = "heal_veils"
 	willpower_cost = 1
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
-	learned_abilities = list(/datum/action/cooldown/spell/thrallbuff/heal)
+	learned_abilities = list(/datum/action/cooldown/spell/pointed/thrallbuff/heal)
 	
 /datum/psi_web/thrall_speed
 	name = "Thrall Envigorate"
-	desc = "Give all thralls a temporary movespeed bonus."
+	desc = "Target a location, gives a temporary speed boost to all thralls within a 9x9 area."
 	lore_description = "Thralls are expendable, push them until they break."
 	icon_state = "speedboost_veils"
 	willpower_cost = 1
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
-	learned_abilities = list(/datum/action/cooldown/spell/thrallbuff/speed)
+	learned_abilities = list(/datum/action/cooldown/spell/pointed/thrallbuff/speed)
 	
 /datum/psi_web/elucidate
 	name = "Elucidate"

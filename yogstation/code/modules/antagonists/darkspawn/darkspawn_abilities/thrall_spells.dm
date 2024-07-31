@@ -276,9 +276,9 @@
 //////////////////////////////////////////////////////////////////////////
 //-----------------------Global AOE Buff spells-------------------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/thrallbuff
+/datum/action/cooldown/spell/pointed/thrallbuff
 	name = "Empower thrall"
-	desc = "buffs all thralls with some sort of effect."
+	desc = "buffs all thralls within a certain range of the target with some sort of effect."
 	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
@@ -291,59 +291,83 @@
 	cooldown_time = 1 MINUTES
 	spell_requirements = SPELL_CASTABLE_AS_BRAIN
 	sound = 'sound/magic/staff_healing.ogg'
+	cast_range = INFINITY
 	/// If the buff also buffs all darkspawns
 	var/darkspawns_too = FALSE
 	/// Text to be put in the balloon alert upon cast
 	var/language_output = "DEBUGIFY"
+	/// radius of the buff aoe
+	var/buff_range = 4
+	/// Colour of the outline that gets temporarily applied
+	var/outline_colour
+	/// Duration of the buff (also used for the visual effect)
+	var/buff_duration = 9
 
-/datum/action/cooldown/spell/thrallbuff/before_cast(atom/cast_on)
+/datum/action/cooldown/spell/pointed/thrallbuff/before_cast(atom/cast_on)
 	. = ..()
 	var/datum/antagonist/darkspawn/dude = isdarkspawn(owner)
 	if(dude)
 		darkspawns_too = HAS_TRAIT(dude, TRAIT_DARKSPAWN_BUFFALLIES)
 
-/datum/action/cooldown/spell/thrallbuff/cast(atom/cast_on) //this looks like a mess, i'm sure it can be optimized
+/datum/action/cooldown/spell/pointed/thrallbuff/cast(atom/cast_on) //this looks like a mess, i'm sure it can be optimized
 	. = ..()
+	if(get_dist(cast_on, owner) > 10)
+		playsound(get_turf(cast_on), sound, 50, TRUE)
 	owner.balloon_alert(owner, "[language_output]")
-	for(var/datum/antagonist/thrall/lackey in GLOB.antagonists)
-		if(lackey.owner?.current && ishuman(lackey.owner.current))
-			var/mob/living/carbon/human/target = lackey.owner.current
-			if(target && istype(target))//sanity check
-				empower(target)
-	if(darkspawns_too)
-		for(var/datum/antagonist/darkspawn/ally in GLOB.antagonists)
-			if(ally.owner?.current && ishuman(ally.owner.current))
-				var/mob/living/carbon/human/target = ally.owner.current
-				if(target && istype(target))//sanity check
-					if(target == owner)//no self buffing
-						continue
-					empower(target)
+	for(var/mob/living/carbon/target in range(buff_range, cast_on))
+		if(target == owner) //no buffing yourself
+			continue
+		if(!is_team_darkspawn(target))
+			continue
+		if(!darkspawns_too && isdarkspawn(target)) //doesn't buff allied darkspawns unless it's upgraded
+			continue
+		empower(target)
+		if(outline_colour)
+			add_outline(target)
 	
-/datum/action/cooldown/spell/thrallbuff/proc/empower(mob/living/carbon/human/target)
+/datum/action/cooldown/spell/pointed/thrallbuff/proc/add_outline(mob/living/carbon/target)
+	target.add_filter(name, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 0, "size" = 1))
+	var/filter = target.get_filter(name)
+	animate(filter, alpha = 200, time = 0.5 SECONDS, loop = -1)
+	animate(alpha = 0, time = 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(remove_outline), target), buff_duration, TIMER_UNIQUE | TIMER_OVERRIDE)
+
+/datum/action/cooldown/spell/pointed/thrallbuff/proc/remove_outline(mob/living/carbon/target)
+	if(!target || QDELETED(target))
+		return
+	var/filter = target.get_filter(name)
+	animate(filter)
+	target.remove_filter(name)
+
+/datum/action/cooldown/spell/pointed/thrallbuff/proc/empower(mob/living/carbon/target)
 	return
 
 ////////////////////////////Global AOE heal//////////////////////////
-/datum/action/cooldown/spell/thrallbuff/heal
-	name = "thrall recovery"
-	desc = "Heals all thralls for an amount of brute and burn."
+/datum/action/cooldown/spell/pointed/thrallbuff/heal
+	name = "Thrall recovery"
+	desc = "Target a location, heals all thralls within a 9x9 area."
 	button_icon_state = "heal_veils"
-	var/heal_amount = 50
 	language_output = "Plyn othra"
+	outline_colour = COLOR_GREEN
+	var/heal_amount = 70
 
-/datum/action/cooldown/spell/thrallbuff/heal/empower(mob/living/carbon/human/target)
+/datum/action/cooldown/spell/pointed/thrallbuff/heal/empower(mob/living/carbon/target)
 	to_chat(target, span_velvet("You feel healed."))
 	target.heal_ordered_damage(heal_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE, BRAIN), BODYPART_ANY)
 
 ////////////////////////////Temporary speed boost//////////////////////////
-/datum/action/cooldown/spell/thrallbuff/speed
+/datum/action/cooldown/spell/pointed/thrallbuff/speed
 	name = "Thrall envigorate"
-	desc = "Give all thralls a temporary movespeed bonus."
+	desc = "Target a location, gives a temporary speed boost to all thralls within a 9x9 area."
 	button_icon_state = "speedboost_veils"
 	language_output = "Vyzthun"
+	outline_colour = COLOR_YELLOW
+	buff_duration = 15 SECONDS
+	var/speed_strength = -0.7
 
-/datum/action/cooldown/spell/thrallbuff/speed/empower(mob/living/carbon/human/target)
+/datum/action/cooldown/spell/pointed/thrallbuff/speed/empower(mob/living/carbon/target)
 	to_chat(target, span_velvet("You feel fast."))
-	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, -0.5, 15 SECONDS, type)
+	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, speed_strength, buff_duration, type)
 
 //////////////////////////////////////////////////////////////////////////
 //----------------Single target global ally giga buff-------------------//
