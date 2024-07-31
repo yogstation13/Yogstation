@@ -2222,12 +2222,10 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "aHc" = (
-/obj/structure/stairs/goon/wide/right{
-	dir = 1
-	},
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
+/obj/structure/stairs/wide_right,
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "aHd" = (
@@ -13008,12 +13006,10 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "dRf" = (
-/obj/structure/stairs/goon/wide/left{
-	dir = 1
-	},
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
+/obj/structure/stairs/wide_left,
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "dRl" = (
@@ -32243,12 +32239,10 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "jvC" = (
-/obj/structure/stairs/goon/wide/right{
-	dir = 1
-	},
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
+/obj/structure/stairs/wide_right,
 /turf/open/floor/plating,
 /area/mine/abandoned)
 "jvE" = (
@@ -45321,12 +45315,10 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/break_room)
 "ncA" = (
-/obj/structure/stairs/goon/wide/left{
-	dir = 1
-	},
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
+/obj/structure/stairs/wide_left,
 /turf/open/floor/plating,
 /area/mine/abandoned)
 "ncH" = (
@@ -77778,10 +77770,10 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/foyer)
 "wop" = (
-/obj/structure/stairs/goon/wide,
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
+/obj/structure/stairs/wide_mid,
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "wot" = (
@@ -79078,10 +79070,10 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
 "wHy" = (
-/obj/structure/stairs/goon/wide,
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
+/obj/structure/stairs/wide_mid,
 /turf/open/floor/plating,
 /area/mine/abandoned)
 "wHH" = (
