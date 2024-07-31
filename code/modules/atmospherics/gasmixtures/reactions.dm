@@ -278,27 +278,6 @@
 //Fusion Rework Counter: Please increment this if you make a major overhaul to this system again.
 //6 reworks
 
-/datum/gas_reaction/cold_fusion
-	exclude = FALSE
-	priority = COLDFUSION
-	name = "Cold Plasmic Fusion"
-	id = "coldfusion"
-
-/datum/gas_reaction/cold_fusion/init_reqs()
-	min_requirements = list(
-		"TEMP" = FUSION_TEMPERATURE_THRESHOLD_MINIMUM,
-		"MAX_TEMP" = FUSION_TEMPERATURE_THRESHOLD,
-		GAS_DILITHIUM = MINIMUM_MOLE_COUNT,
-		GAS_TRITIUM = FUSION_TRITIUM_MOLES_USED,
-		GAS_PLASMA = FUSION_MOLE_THRESHOLD,
-		GAS_CO2 = FUSION_MOLE_THRESHOLD)
-
-/datum/gas_reaction/cold_fusion/react(datum/gas_mixture/air, datum/holder)
-	if(air.return_temperature() < (FUSION_TEMPERATURE_THRESHOLD - FUSION_TEMPERATURE_THRESHOLD_MINIMUM) * NUM_E**( - air.get_moles(GAS_DILITHIUM) * DILITHIUM_LAMBDA) + FUSION_TEMPERATURE_THRESHOLD_MINIMUM)
-		// This is an exponential decay equation, actually. Horizontal Asymptote is FUSION_TEMPERATURE_THRESHOLD_MINIMUM.
-		return NO_REACTION
-	return fusion_react(air, holder)
-
 /datum/gas_reaction/fusion
 	exclude = FALSE
 	priority = FUSION
@@ -307,15 +286,16 @@
 
 /datum/gas_reaction/fusion/init_reqs()
 	min_requirements = list(
-		"TEMP" = FUSION_TEMPERATURE_THRESHOLD, 
+		"TEMP" = FUSION_TEMPERATURE_THRESHOLD_MINIMUM, 
 		GAS_TRITIUM = FUSION_TRITIUM_MOLES_USED,
 		GAS_PLASMA = FUSION_MOLE_THRESHOLD,
-		GAS_CO2 = FUSION_MOLE_THRESHOLD)
+		GAS_CO2 = FUSION_MOLE_THRESHOLD,
+	)
 
 /datum/gas_reaction/fusion/react(datum/gas_mixture/air, datum/holder)
-	return fusion_react(air, holder)
-
-/proc/fusion_react(datum/gas_mixture/air, datum/holder)
+	if(air.return_temperature() < (FUSION_TEMPERATURE_THRESHOLD - FUSION_TEMPERATURE_THRESHOLD_MINIMUM) * NUM_E**( - air.get_moles(GAS_DILITHIUM) * DILITHIUM_LAMBDA) + FUSION_TEMPERATURE_THRESHOLD_MINIMUM)
+		// This is an exponential decay equation, actually. Horizontal Asymptote is FUSION_TEMPERATURE_THRESHOLD_MINIMUM.
+		return NO_REACTION
 	if(!air.analyzer_results)
 		air.analyzer_results = new
 	var/list/cached_scan_results = air.analyzer_results
