@@ -1,8 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Adds synth project to download more ram"
-  - rscadd: "Synths now have 1 ram by default"
-  - tweak: "All synth research projects now require 1 ram to maintain"
-  - tweak: "heat and cold protection no longer give innate suspicion"
-  - bugfix: "fixes a runtime caused by swapping synth shells while a program runs"
