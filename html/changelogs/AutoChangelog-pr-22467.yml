@@ -1,6 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed afterburner doing more damage than intended"
-  - tweak: "Added chat message for being hit with afterburner"
-  - tweak: "Removes being able to attach multiple afterburners to one mech"
