@@ -83,6 +83,7 @@
 /obj/machinery/ice_cream_vat/ui_act(action, list/params)
 	. = ..()
 	if(.)
+
 		return
 
 	switch(action)
@@ -108,7 +109,7 @@
 			if(istype(check_item, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
 				loop_cycles = 10
 
-			//Add amount of items to the list depending on type, with 5 being the base amount
+			//Add amount of items to the list depending on type
 			for(var/i in 1 to loop_cycles)
 				new item(src)
 
@@ -136,14 +137,51 @@
 		user.balloon_alert(user, "None selected!")
 
 /obj/machinery/ice_cream_vat/attackby(obj/item/A, mob/user, params)
-	//Adding to storage
+	//Adding individual item to storage
 	if(istype(A, /obj/item/reagent_containers/food/snacks/ice_cream_cone) || istype(A, /obj/item/reagent_containers/food/snacks/ice_cream_scoop))
 		//Check if there is room
-		if(contents.len <= storage_capacity)
+		if(contents.len < storage_capacity)
 			A.forceMove(src)
+			user.visible_message(span_notice("[user] inserts [A] into [src]."), span_notice("You insert [A] into [src]."))
+			playsound(src, 'sound/effects/rustle2.ogg', 50, TRUE, extrarange = -3)
+
 			return
 		else
 			user.balloon_alert(user, "No space!")
+	//Adding carton contents to storage
+	else if(istype(A, /obj/item/storage/box/ice_cream_carton))
+		var/end_message = "[user] empties the [A] into [src]."
+		var/end_self_message = "You empty the [A] into [src]."
+		//Check to see if it is empty
+		if(A.contents.len > 0 && contents.len < storage_capacity)
+			//Hide carton's storage UI to prevent ghost scoop bug
+			SEND_SIGNAL(A, COMSIG_TRY_STORAGE_HIDE_FROM, user)
+			//Loop through all contents
+			for(var/obj/item/reagent_containers/food/snacks/ice_cream_scoop/carton_item in A)
+				//Transfer items one at a time
+				carton_item.forceMove(src)
+
+				if(contents.len >= storage_capacity)
+					//Unique message depending on carton and vat contents
+					if(A.contents.len == 0)
+						end_message = "[user] empties the [A] into [src], filling it to its capacity."
+						end_self_message = "You empty the [A] into [src], filling it to its capacity."
+					else
+						end_message = "[user] fills [src] to its capacity, with some ice cream still in the [A]."
+						end_self_message = "You fill [src] to its capacity, with some ice cream still in the [A]."
+					break
+			user.visible_message(span_notice(end_message), span_notice(end_self_message))
+			playsound(src, 'sound/effects/rustle2.ogg', 50, TRUE, extrarange = -3)
+
+			return
+		else
+			if(A.contents.len == 0)
+				user.balloon_alert(user, "Carton empty!")
+			else
+				user.balloon_alert(user, "Vat full!")
+
+			return
+
 	..()
 
 /obj/machinery/ice_cream_vat/proc/find_amount(obj/item/counting_item)
@@ -167,7 +205,7 @@
 		user.visible_message(span_notice("[user] dispences [ui_item.name] from [src]."), span_notice("You dispence [ui_item.name] from [src]."))
 		playsound(src, dispense_sound, 25, TRUE, extrarange = -3)
 	else
-		//For Alt click and in case buttons don't disable themselves
+		//For Alt click and when buttons don't disable themselves
 		user.balloon_alert(user, "All out!")
 
 /obj/machinery/ice_cream_vat/proc/select_item(received_item, mob/user = usr)
@@ -180,11 +218,13 @@
 			user.visible_message(span_notice("[user] deselects [ui_item.name] from [src]."), span_notice("You deselect [ui_item.name] from [src]."))
 			selected_cone = null
 			playsound(src, select_sound, 25, TRUE, extrarange = -3)
+
 			return
 	else if(selected_scoop == ui_item.type)
 		user.visible_message(span_notice("[user] deselects [ui_item.name] from [src]."), span_notice("You deselect [ui_item.name] from [src]."))
 		selected_scoop = null
 		playsound(src, select_sound, 25, TRUE, extrarange = -3)
+
 		return
 
 	//Selecting
