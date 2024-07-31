@@ -348,7 +348,7 @@
 	desc = "Target a location, heals all thralls within a 9x9 area."
 	button_icon_state = "heal_veils"
 	language_output = "Plyn othra"
-	outline_colour = COLOR_GREEN
+	outline_colour = COLOR_VIBRANT_LIME
 	var/heal_amount = 70
 
 /datum/action/cooldown/spell/pointed/thrallbuff/heal/empower(mob/living/carbon/target)
