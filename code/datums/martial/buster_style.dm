@@ -4,12 +4,13 @@
 #define COOLDOWN_SLAM 0.8 SECONDS
 
 
+
 /datum/martial_art/buster_style
 	name = "Buster Style"
 	id = MARTIALART_BUSTERSTYLE
 	no_guns = FALSE
 	help_verb = /mob/living/carbon/human/proc/buster_style_help
-	var/list/thrown = list()
+	var/atom/movable/thrown = null
 	COOLDOWN_DECLARE(next_wire)
 	COOLDOWN_DECLARE(next_mop)
 	COOLDOWN_DECLARE(next_grapple)
@@ -17,7 +18,6 @@
 	var/old_density //so people grappling something arent pushed by it until it's thrown
 
 //proc the moves will use for damage dealing
-
 /datum/martial_art/buster_style/proc/grab(mob/living/user, mob/living/target, damage)
 	var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
 	var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 15)
@@ -30,15 +30,10 @@
 	if(target.mobility_flags & MOBILITY_STAND)
 		animate(target, transform = matrix(90, MATRIX_ROTATE), time = 0 SECONDS, loop = 0)
 
-//Check for if someone is allowed to be stood back up
+//standing them back up if appropriate
 /datum/martial_art/buster_style/proc/wakeup(mob/living/target)
 	if(target.mobility_flags & MOBILITY_STAND)
 		animate(target, transform = null, time = 0.4 SECONDS, loop = 0)
-
-//proc for clearing the thrown list, mostly so the lob proc doesnt get triggered when it shouldn't
-/datum/martial_art/buster_style/proc/drop(mob/living/target)
-	for(var/atom/movable/K in thrown)
-		thrown.Remove(K)
 
 /datum/martial_art/buster_style/can_use(mob/living/carbon/human/H)
 	var/obj/item/bodypart/r_arm/robot/buster/R = H.get_bodypart(BODY_ZONE_R_ARM)
@@ -62,11 +57,11 @@
 				if((R?.bodypart_disabled))
 					return FALSE
 	if(H.restrained() || H.get_active_held_item() || HAS_TRAIT(H, TRAIT_PACIFISM) || !(H.mobility_flags & MOBILITY_MOVE) || H.stat != CONSCIOUS)
-		for(var/atom/movable/K in thrown)
-			thrown.Remove(K)
-			walk(K,0)
-			K.density = old_density
-			animate(K, time = 0 SECONDS, pixel_y = 0)
+		if(thrown)
+			walk(thrown,0)
+			thrown.density = old_density
+			animate(thrown, time = 0 SECONDS, pixel_y = 0)
+			thrown = null
 		for(var/obj/structure/bed/grip/F in get_turf(H))
 			F.Destroy()
 		return FALSE
@@ -81,7 +76,6 @@
 	var/list/modifiers = params2list(params)
 	if(!can_use(H) || modifiers[SHIFT_CLICK] || modifiers[ALT_CLICK] || modifiers[CTRL_CLICK])
 		return NONE
-
 	H.face_atom(target) //for the sake of moves that care about user orientation like mop and slam
 	if(modifiers[RIGHT_CLICK])
 		if(H == target)
@@ -91,7 +85,7 @@
 		else
 			return mop(H) // right click at range to mop
 	else
-		if(thrown.len > 0)
+		if(thrown)
 			return lob(H, target) // left click to throw
 		else if(get_dist(H, target) <= 1)
 			return slam(H, target) // left click in melee to slam
@@ -138,16 +132,15 @@
 	if(isstructure(target) || ismachinery(target) || ismecha(target))
 		var/obj/I = target
 		old_density = I.density
-		if(ismecha(I)) // Can pick up mechs
+		if(ismecha(I)) 
 			I.anchored = FALSE
-		if(I.anchored == TRUE) // Cannot pick up anchored structures
-			if(istype(I, /obj/machinery/vending)) // Can pick up vending machines, even if anchored
+		if(I.anchored == TRUE) 
+			if(istype(I, /obj/machinery/vending))
 				I.anchored = FALSE
 				I.visible_message(span_warning("[user] grabs [I] and tears it off the bolts securing it!"))
 			else
 				return
-		if(user in I.contents)
-			to_chat(user, span_warning("You can't throw something while you're inside of it!")) //as funny as throwing lockers from the inside is i dont think i can get away with it
+		if(!isturf(user.loc)) //as funny as throwing lockers from the inside is i dont think i can get away with it
 			return
 		COOLDOWN_START(src, next_grapple, COOLDOWN_GRAPPLE)
 		user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
@@ -156,22 +149,20 @@
 		I.forceMove(Z)
 		I.density = FALSE 
 		walk_towards(I, user, 0, 0)
-		// Reset the item to its original state
 		if(get_dist(I, user) > 1)
 			I.density = old_density
-		thrown |= I // Mark the item for throwing
+		thrown = I 
 		if(ismecha(I))
 			I.anchored = TRUE
 		return COMSIG_MOB_CANCEL_CLICKON
 	if(isliving(target))
 		var/mob/living/L = target
-		var/obj/structure/bed/grip/F = new(Z, user) // Buckles them to an invisible bed
+		var/obj/structure/bed/grip/F = new(Z, user) 
 		COOLDOWN_START(src, next_grapple, COOLDOWN_GRAPPLE)
 		user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)
 		old_density = L.density // for the sake of noncarbons not playing nice with lying down
 		L.density = FALSE
 		L.visible_message(span_warning("[user] grabs [L] and lifts [L.p_them()] off the ground!"))
-		L.Stun(1 SECONDS) //so the user has time to aim their throw
 		to_chat(L, span_userdanger("[user] grapples you and lifts you up into the air! Resist [user.p_their()] grip!"))
 		L.forceMove(Z)
 		F.buckle_mob(target)
@@ -179,36 +170,30 @@
 		if(get_dist(L, user) > 1)
 			L.density = old_density
 			return
-		thrown |= L // Marks the mob to throw
+		thrown = L 
 		return COMSIG_MOB_CANCEL_CLICKON
 
 
-/datum/martial_art/buster_style/proc/lob(mob/living/user, atom/target) //proc for throwing something you picked up with grapple
+/datum/martial_art/buster_style/proc/lob(mob/living/user, atom/target, distance = 0) //proc for throwing something you picked up with grapple
 	if(!user.combat_mode)
 		return
-	var/slamdam = 7
-	var/objdam = 50
 	var/throwdam = 15
 	var/target_dist = get_dist(user, target)
 	var/turf/D = get_turf(target)	
-	var/atom/tossed = thrown[1]
-	walk(tossed,0)
-	tossed.density = old_density
+	var/list/flying = list()
+	walk(thrown,0)
+	thrown.density = old_density
 	user.stop_pulling()
-	if(get_dist(tossed, user) > 1)//cant reach the thing i was supposed to be throwing anymore
-		drop()
+	if(get_dist(thrown, user) > 1)//cant reach the thing i was supposed to be throwing anymore
+		thrown = null
 		return 
-	for(var/obj/I in thrown)
-		animate(I, time = 0.2 SECONDS, pixel_y = 0) //to get it back to normal since it was lifted before
-	if(user in tossed.contents)
-		to_chat(user, span_warning("You can't throw something while you're inside of it!"))
-		return
-	if(iscarbon(tossed)) // Logic that tears off a damaged limb or tail
-		var/mob/living/carbon/tossedliving = thrown[1]
+	animate(thrown, time = 0.2 SECONDS, pixel_y = 0) //to get it back to normal since it was lifted before
+	if(iscarbon(thrown)) //throwing someone by whatever limb and ripping it off if it's hurt enough
+		var/mob/living/carbon/tossedliving = thrown
 		var/obj/item/bodypart/limb_to_hit = tossedliving.get_bodypart(user.zone_selected)
 		if(!tossedliving.buckled)
 			return COMSIG_MOB_CANCEL_CLICKON
-		grab(user, tossedliving, throwdam) // Apply damage
+		grab(user, tossedliving, throwdam)
 		for(var/obj/structure/bed/grip/F in view(2, user))
 			F.Destroy()
 		if(!limb_to_hit)
@@ -228,74 +213,84 @@
 				tossedliving.visible_message(span_warning("[user] throws [tossedliving] by [tossedliving.p_their()] tail, severing [tossedliving.p_them()] from it!")) //"I'm taking this back."
 				T.Remove(tossedliving)
 				user.put_in_hands(T)
-	user.visible_message(span_warning("[user] throws [tossed]!"))
-	for(var/i = 1 to target_dist)
-		var/dir_to_target = get_dir(get_turf(tossed), D) //vars that let the thing be thrown while moving similar to things thrown normally
-		var/turf/T = get_step(get_turf(tossed), dir_to_target)
-		if(T.density) // crash into a wall and damage everything flying towards it before stopping 
+	user.visible_message(span_warning("[user] throws [thrown]!"))
+	flying |= thrown
+	soar(user, thrown, D, target_dist, flying)
+
+
+
+
+
+
+/datum/martial_art/buster_style/proc/soar(mob/living/user, atom/movable/center, turf/endzone, distance = 0, list/thrown) //proc for throwing something you picked up with grapple
+	var/slamdam = 7
+	var/objdam = 50
+	if(distance == 0)
+		return
+	var/dir_to_target = get_dir(get_turf(center), endzone) //vars that let the thing be thrown while moving similar to things thrown normally
+	var/turf/next = get_step(get_turf(center), dir_to_target)
+	if(next.density) // crash into a wall and damage everything flying towards it before stopping 
+		for(var/mob/living/S in thrown)
+			grab(user, S, slamdam) 
+			S.Knockdown(1.0 SECONDS)
+			S.Immobilize(1.0 SECONDS)
+			if(isanimal(S) && S.stat == DEAD) 
+				S.gib()	
+		for(var/obj/O in thrown)
+			O.take_damage(objdam) 
+			center.visible_message(span_warning("[O] collides with [next]!"))
+		thrown = null
+		return COMSIG_MOB_CANCEL_CLICKON
+	for(var/obj/Z in next.contents) //scooping obstacles up if theyre not nailed down, almost same as above otherwise
+		for(var/atom/movable/thrown_atom in thrown) 
+			if(Z.density == TRUE) 
+				if(thrown_atom.uses_integrity)
+					thrown_atom.take_damage(objdam)
+				thrown_atom.Bump(Z)
+				if(istype(thrown_atom, /obj/mecha)) //mechs are probably heavy as hell so stop flying after making contact with resistance
+					thrown -= thrown_atom
+		if(Z.density == TRUE && Z.anchored == FALSE) //if the thing hit isn't anchored it starts flying too
+			thrown |= Z 
+			Z.take_damage(50) 
+		if(Z.density == TRUE && Z.anchored == TRUE)
 			for(var/mob/living/S in thrown)
 				grab(user, S, slamdam) 
 				S.Knockdown(1.5 SECONDS)
 				S.Immobilize(1.5 SECONDS)
 				if(isanimal(S) && S.stat == DEAD)
-					S.gib()	
-			for(var/obj/O in thrown)
-				O.take_damage(objdam) 
-				target.visible_message(span_warning("[O] collides with [T]!"))
-			drop()
-			return COMSIG_MOB_CANCEL_CLICKON
-		for(var/obj/Z in T.contents) // crash into something solid and damage it along with thrown objects that hit it
-			for(var/atom/movable/thrown_atom in thrown) 
-				if(Z.density == TRUE) 
-					if(thrown_atom.uses_integrity)
-						thrown_atom.take_damage(objdam)
-					thrown_atom.Bump(Z)
-					if(istype(thrown_atom, /obj/mecha)) // mechs are probably heavy as hell so stop flying after making contact with resistance
-						thrown -= thrown_atom
-			if(Z.density == TRUE && Z.anchored == FALSE) // if the thing hit isn't anchored it starts flying too
-				thrown |= Z 
-				Z.take_damage(50) 
-			if(Z.density == TRUE && Z.anchored == TRUE) // If the thing is solid and anchored like a window or grille or table it hurts people thrown that crash into it too
-				for(var/mob/living/S in thrown)
-					grab(user, S, slamdam) 
-					S.Knockdown(1.5 SECONDS)
-					S.Immobilize(1.5 SECONDS)
-					if(isanimal(S) && S.stat == DEAD)
-						S.gib()
-					if(istype(Z, /obj/machinery/disposal/bin)) // dumpster living things tossed into the trash
-						var/obj/machinery/disposal/bin/dumpster = D
-						S.forceMove(Z)
-						Z.visible_message(span_warning("[S] is thrown down the trash chute!"))
-						dumpster.do_flush()
-						drop()
-						return COMSIG_MOB_CANCEL_CLICKON
-				Z.take_damage(objdam)
-				if(Z.density == TRUE && Z.anchored == TRUE)
-					drop()
-					return COMSIG_MOB_CANCEL_CLICKON // if the solid thing we hit doesnt break then the thrown thing is stopped
-		for(var/mob/living/M in T.contents) // if the thrown mass hits a person then they get tossed and hurt too along with people in the thrown mass
-			if(user != M)
-				grab(user, M, slamdam) 
-				M.Knockdown(1.5 SECONDS) 
-				for(var/mob/living/S in thrown)
-					grab(user, S, slamdam) 
-					S.Knockdown(1 SECONDS) 
-				thrown |= M 
-			for(var/obj/O in thrown)
-				O.take_damage(objdam) // Damage all thrown objects
-		if(T) // if the next tile wont stop the thrown mass from continuing
+					S.gib()
+				if(istype(Z, /obj/machinery/disposal/bin)) // dumpster living things tossed into the trash
+					var/obj/machinery/disposal/bin/dumpster = Z
+					S.forceMove(Z)
+					Z.visible_message(span_warning("[S] is thrown down the trash chute!"))
+					dumpster.do_flush()
+					thrown = null
+					return COMSIG_MOB_CANCEL_CLICKON
+			Z.take_damage(objdam)
+			if(Z.density == TRUE && Z.anchored == TRUE)
+				thrown = null
+				return COMSIG_MOB_CANCEL_CLICKON // if the solid thing we hit doesnt break then the thrown thing is stopped
+	for(var/mob/living/M in next.contents) // if the thrown mass hits a person then they get tossed and hurt too along with people in the thrown mass
+		if(user != M)
+			grab(user, M, slamdam) 
+			M.Knockdown(1.5 SECONDS) 
 			for(var/mob/living/S in thrown)
-				S.Knockdown(1.5 SECONDS)
-				S.Immobilize(1.5 SECONDS)
-			for(var/atom/movable/K in thrown) // to make the mess of things that's being thrown almost look like a normal throw
-				K.SpinAnimation(0.2 SECONDS, 1) 
-				sleep(0.001 SECONDS)
-				K.forceMove(T)
-				if(isspaceturf(T)) // throw them like normal if it's into space
-					var/atom/throw_target = get_edge_target_turf(K, dir_to_target)
-					K.throw_at(throw_target, 6, 4, user, 3)
-					thrown.Remove(K)
-	drop()
+				grab(user, S, slamdam) 
+				S.Knockdown(1 SECONDS) 
+			thrown |= M 
+		for(var/obj/O in thrown)
+			O.take_damage(objdam) 
+	if(next) // if the next tile wont stop the thrown mass from continuing
+		for(var/mob/living/S in thrown)
+			S.Knockdown(1.0 SECONDS)
+			S.Immobilize(1.0 SECONDS)
+		for(var/atom/movable/K in thrown) // to make the mess of things that's being thrown almost look like a normal throw
+			K.SpinAnimation(0.2 SECONDS, 1) 
+			K.forceMove(next)
+			if(isspaceturf(next)) //jettison
+				var/atom/throw_target = get_edge_target_turf(K, dir_to_target)
+				K.throw_at(throw_target, 6, 4, user, 3)
+	addtimer(CALLBACK(src, PROC_REF(soar), user, center, endzone, distance-1, thrown), 0.01 SECONDS)
 	return COMSIG_MOB_CANCEL_CLICKON
 
 /*---------------------------------------------------------------
@@ -307,76 +302,84 @@
 
 /datum/martial_art/buster_style/proc/mop(mob/living/user)
 	var/jumpdistance = 5
-	var/dragdam = 8
-	var/crashdam = 10
-	var/turf/T = get_step(get_turf(user), user.dir)
-	var/turf/Z = get_turf(user)
-	var/list/mopped = list()
 	if(!COOLDOWN_FINISHED(src, next_mop))
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
-	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, user)
-	user.visible_message(span_warning("[user] sprints forward with [user.p_their()] hand outstretched!"))
 	COOLDOWN_START(src, next_mop, COOLDOWN_MOP)
-	playsound(user,'sound/effects/gravhit.ogg', 20, TRUE)
+	user.visible_message(span_warning("[user] sprints forward with [user.p_their()] hand outstretched!"))
 	user.Immobilize(0.1 SECONDS) //so they dont skip through the target
-	for(var/i = 1 to jumpdistance)
-		if(T.density) // If we're about to hit a wall, stop
-			return COMSIG_MOB_CANCEL_CLICKON
-		for(var/obj/object in T.contents) // If we're about to hit a table or something that isn't destroyed, stop
+	initiate(user)
+	dashattack(user, user.dir, jumpdistance)
+	return COMSIG_MOB_CANCEL_CLICKON
+
+
+/datum/martial_art/buster_style/proc/initiate(mob/living/user)
+	var/obj/effect/temp_visual/decoy/fading/onesecond/F = new(get_turf(user), user)
+	animate(F, alpha = 100, color = "#d40a0a")
+	walk_towards(F, user, 0, 1.5)
+	playsound(user,'sound/effects/gravhit.ogg', 20, 1)
+
+
+/datum/martial_art/buster_style/proc/dashattack(mob/living/user, dir, distance = 0)
+	var/dragdam = 8
+	var/crashdam = 10
+	var/turf/front = get_step(get_turf(user), dir)
+	var/turf/further = get_step(front, dir)
+	if(distance == 0 || (!front) || (!further))
+		return
+	user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
+	for(var/mob/living/target in front)
+		(grab(user, target, dragdam))
+	if(further.density)
+		for(var/mob/living/target in front)
+			user.visible_message(span_warning("[user] rams [target] into [further]!"))
+			to_chat(target, span_userdanger("[user] rams you into [further]!"))
+			target.Bump(further)
+			target.Knockdown(1 SECONDS)
+			grab(user, target, crashdam)
+		return
+	for(var/mob/living/L in front.contents)
+		L.add_fingerprint(user, FALSE)
+		playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
+		wakeup(L)
+		footsies(L)
+		to_chat(L, span_userdanger("[user] grinds you against the ground!"))
+		to_chat(L, span_userdanger("[user] catches you with [user.p_their()] hand and drags you down!"))
+		user.visible_message(span_warning("[user] hits [L] and drags them through the dirt!"))
+		L.Immobilize(0.3 SECONDS)
+		wakeup(L)
+		if(isanimal(L))
+			if(L.stat == DEAD)
+				L.visible_message(span_warning("[L] is ground into paste!"))
+				L.gib()
+		if(isspaceturf(further))
+			var/atom/throw_target = get_edge_target_turf(L, user.dir)
+			wakeup(L)
+			L.throw_at(throw_target, 2, 4, user, 3) 
+	if(front.density || (!(front.reachableTurftestdensity(T = front))))
+		return
+	else
+		user.forceMove(front)
+	for(var/obj/object in further.contents) //seeing if the speedbump can stop the incoming trash pile
+		if(object.density == TRUE)
+			for(var/mob/living/shield in front.contents)
+				if(shield == user)
+					continue
+				grab(user, shield, crashdam)
+				shield.Bump(object)
+				shield.Knockdown(1 SECONDS)
+				user.visible_message(span_warning("[user] rams [shield] into [object]!"))
+				to_chat(shield, span_userdanger("[user] rams you into [object]!"))
+				object.take_damage(200)
 			if(object.density == TRUE)
 				return COMSIG_MOB_CANCEL_CLICKON
-		if(thrown.len > 0) // do this or mopping while holding someone will break everything
-			lob(user, T)
-		if(T)
-			sleep(0.01 SECONDS)
-			user.forceMove(T) // Move us forward
-			walk_towards(F, user, 0, 1.5)
-			animate(F, alpha = 0, color = "#d40a0a", time = 0.5 SECONDS) // Cool after-image
-			for(var/mob/living/mophead in T.contents) // Take all mobs we encounter with us
-				if(mophead != user) 
-					user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
-					mopped |= mophead // Add them to the list of things we are mopping
-					mophead.Immobilize(0.1 SECONDS) //also to prevent clipping through the user
-					mophead.add_fingerprint(user, FALSE)
-					var/turf/Q = get_step(get_turf(user), user.dir) // get the turf behind the thing we're attacking
-					to_chat(mophead, span_userdanger("[user] grinds you against the ground!"))
-					footsies(mophead)
-					if(isspaceturf(T)) // If we're about to hit space, throw the first mob into space
-						var/atom/throw_target = get_edge_target_turf(mophead, user.dir)
-						wakeup(mophead)
-						mophead.throw_at(throw_target, 2, 4, user, 3) // throwing them outside
-					if(Q.density) // If we're about to hit a wall
-						wakeup(mophead)
-						grab(user, mophead, crashdam) 
-						user.visible_message(span_warning("[user] rams [mophead] into [Q]!"))
-						to_chat(mophead, span_userdanger("[user] rams you into [Q]!"))
-						mophead.Bump(Q)
-						mophead.Knockdown(1 SECONDS)
-						mophead.Immobilize(1.5 SECONDS)
-						return COMSIG_MOB_CANCEL_CLICKON // Then stop here
-					for(var/obj/object in Q.contents) // If we're about to hit a dense object like a table or window
-						wakeup(mophead)
-						if(object.density == TRUE)
-							grab(user, mophead, crashdam) 
-							user.visible_message(span_warning("[user] rams [mophead] into [object]!"))
-							to_chat(mophead, span_userdanger("[user] rams you into [object]!"))
-							object.take_damage(200) // Damage dense object
-							mophead.Bump(object)
-							mophead.Knockdown(1 SECONDS)
-							mophead.Immobilize(1 SECONDS)
-							if(object.density == TRUE) // If it wasn't destroyed, stop here
-								return COMSIG_MOB_CANCEL_CLICKON
-					user.forceMove(get_turf(mophead)) // Move buster arm user (forward) on top of the mopped mob
-					to_chat(mophead, span_userdanger("[user] catches you with [user.p_their()] hand and drags you down!"))
-					user.visible_message(span_warning("[user] hits [mophead] and drags them through the dirt!"))
-					mophead.forceMove(Q) // Move mopped mob forward
-					wakeup(mophead)
-					grab(user, mophead, dragdam) 
-					playsound(mophead,'sound/effects/meteorimpact.ogg', 60, 1)
-			T = get_step(user, user.dir) // Move our goalpost forward one
-	for(var/mob/living/C in mopped) // Return everyone to standing if they should be
-		wakeup(C)
+	for(var/mob/living/incoming in front.contents)
+		if(incoming == user)
+			continue
+		incoming.forceMove(further)
+	if(front.density || (!(front.reachableTurftestdensity(T = front))))
+		return
+	addtimer(CALLBACK(src, PROC_REF(dashattack), user, dir, distance-1), 0.1 SECONDS)
 	return COMSIG_MOB_CANCEL_CLICKON
 
 /*---------------------------------------------------------------
@@ -399,8 +402,8 @@
 		return COMSIG_MOB_CANCEL_CLICKON // don't do a normal punch
 	COOLDOWN_START(src, next_slam, COOLDOWN_SLAM)
 	user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
-	var/turf/Q = get_step(get_turf(user), turn(user.dir,180)) // Get the turf behind us
-	if(Q.density) // If there's a wall behind us
+	var/turf/Q = get_step(get_turf(user), turn(user.dir,180)) 
+	if(Q.density)
 		var/turf/closed/wall/W = Q
 		grab(user, target, walldam) 
 		footsies(target)
@@ -412,45 +415,45 @@
 		to_chat(target, span_userdanger("[user] crushes you against [Q]!"))
 		playsound(target, 'sound/effects/meteorimpact.ogg', 60, 1)
 		playsound(user, 'sound/effects/gravhit.ogg', 20, 1)
-		if(!istype(W, /turf/closed/wall/r_wall)) // Attempt to destroy the wall
+		if(!istype(W, /turf/closed/wall/r_wall)) //cant break rwalls
 			W.dismantle_wall(1)
 		else		
 			grab(user, target, walldam) 
-			target.forceMove(Z) // If we couldn't smash the wall, put them under our tile
-			return COMSIG_MOB_CANCEL_CLICKON // Stop here, don't apply any more damage or checks
-	for(var/obj/D in Q.contents) // If there's dense objects behind us, apply damage to the mob for each one they are slammed into
-		if(D.density == TRUE) // If it's a dense object like a window or table, otherwise skip
-			if(istype(D, /obj/machinery/disposal/bin)) // Flush them down disposals
+			target.forceMove(Z) 
+			Z.break_tile()
+			return COMSIG_MOB_CANCEL_CLICKON 
+	for(var/obj/D in Q.contents) //bludgeoning everything in the landing zone
+		if(D.density == TRUE) 
+			if(istype(D, /obj/machinery/disposal/bin)) 
 				var/obj/machinery/disposal/bin/dumpster = D
 				target.forceMove(D)
 				dumpster.do_flush()
 				to_chat(target, span_userdanger("[user] throws you down disposals!"))
 				user.visible_message(span_warning("[target] is thrown down the trash chute!"))
-				return COMSIG_MOB_CANCEL_CLICKON // Stop here
+				return COMSIG_MOB_CANCEL_CLICKON 
 			user.visible_message(span_warning("[user] turns around and slams [target] against [D]!"))
 			target.Bump(D)
-			D.take_damage(400) // Heavily damage and hopefully break the object
+			D.take_damage(400) 
 			grab(user, target, crashdam) 
 			footsies(target)
 			if(isanimal(target) && target.stat == DEAD)
 				target.visible_message(span_warning("[target] explodes into gore on impact!"))
 				target.gib()
-			sleep(0.2 SECONDS)
-			wakeup(target)
-	for(var/mob/living/M in Q.contents) // If there's mobs behind us, apply damage to the mob for each one they are slammed into
-		grab(user, target, crashdam) // Apply damage to the target
+			addtimer(CALLBACK(src, PROC_REF(wakeup), target), 0.2 SECONDS)
+	for(var/mob/living/M in Q.contents) 
+		grab(user, target, crashdam) 
 		footsies(target)
 		if(isanimal(target) && target.stat == DEAD)
 			target.visible_message(span_warning("[target] explodes into gore on impact!"))
 			target.gib()
-		sleep(0.2 SECONDS)
-		wakeup(target)
+		addtimer(CALLBACK(src, PROC_REF(wakeup), target), 0.2 SECONDS)
 		to_chat(target, span_userdanger("[user] throws you into [M]"))
 		to_chat(M, span_userdanger("[user] throws [target] into you!"))
 		user.visible_message(span_warning("[target] slams into [M]!"))
-		grab(user, M, crashdam) // Apply damage to mob that was behind us
-	target.forceMove(Q) // Move the mob behind us
-	if(istype(Q, /turf/open/space)) // If they got slammed into space, throw them into deep space
+		grab(user, M, crashdam) 
+	Q.break_tile()
+	target.forceMove(Q) 
+	if(istype(Q, /turf/open/space)) //thrown away instead if theres no floor
 		user.setDir(turn(user.dir,180))
 		var/atom/throw_target = get_edge_target_turf(target, user.dir)
 		target.throw_at(throw_target, 2, 4, user, 3)
@@ -461,13 +464,12 @@
 	to_chat(target, span_userdanger("[user] catches you with [user.p_their()] hand and crushes you on the ground!"))
 	user.visible_message(span_warning("[user] turns around and slams [target] against the ground!"))
 	user.setDir(turn(user.dir, 180))
-	grab(user, target, supdam) // Apply damage for the slam itself, independent of whether anything was hit
+	grab(user, target, supdam) 
 	footsies(target)
 	if(isanimal(target) && target.stat == DEAD)
 		target.visible_message(span_warning("[target] explodes into gore on impact!"))
 		target.gib()
-	sleep(0.2 SECONDS)
-	wakeup(target)
+	addtimer(CALLBACK(src, PROC_REF(wakeup), target), 0.2 SECONDS)
 	return COMSIG_MOB_CANCEL_CLICKON
 
 /*---------------------------------------------------------------

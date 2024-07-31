@@ -1384,7 +1384,6 @@
 #include "code\game\objects\items\devices\taperecorder.dm"
 #include "code\game\objects\items\devices\traitordevices.dm"
 #include "code\game\objects\items\devices\transfer_valve.dm"
-#include "code\game\objects\items\devices\busterarm\_buster.dm"
 #include "code\game\objects\items\devices\busterarm\buster_limb.dm"
 #include "code\game\objects\items\devices\busterarm\busterharpoon.dm"
 #include "code\game\objects\items\devices\busterarm\gasharpoon.dm"
