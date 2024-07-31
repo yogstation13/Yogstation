@@ -218,7 +218,7 @@
 
 /obj/structure/herb/attack_hand(mob/user)
 	. = ..()
-	if(!do_after(user,10 SECONDS,src))
+	if(!do_after(user, 5 SECONDS, src))
 		return
 
 	for(var/i in 1 to picked_amt)
@@ -233,14 +233,15 @@
 	icon_state = "explosive_shrooms"
 	picked_amt = 1
 	picked_result = /obj/item/explosive_shroom
+	var/delay = (2.5 SECONDS)
 
 /obj/structure/herb/explosive_shrooms/Cross(atom/movable/AM)
 	. = ..()
 	if(!isliving(AM) || ishostile(AM))
 		return
 
-	animate(src,time=2.49 SECONDS, color = "#e05a5a")
-	addtimer(CALLBACK(src,PROC_REF(explode)),2.5 SECONDS)
+	animate(src,time= delay, color = "#e05a5a")
+	addtimer(CALLBACK(src,PROC_REF(explode)), delay)
 
 /obj/structure/herb/explosive_shrooms/proc/explode()
 	dyn_explosion(get_turf(src),4)
@@ -308,8 +309,7 @@
 
 /obj/structure/flytrap/Initialize()
 	. = ..()
-	var/outcome = rand(1,3)
-	switch(outcome)
+	switch(rand(1,3))
 		if(1)
 			craving = /obj/item/stack/sheet/meduracha
 			desc = "The mouth doesn't look big enough to hurt you, but it does look very hungry. It seems peckish for some meduracha tentacles."
@@ -324,8 +324,7 @@
 	if(istype(W, craving) && full == FALSE )
 		user.visible_message(span_notice("[user] feeds the [src], and watches as it spews out materials!"),span_notice("You place the [W] inside the mouth of the [src], watching as it devours it and shoots out minerals!"))
 		full = TRUE
-		var/lootoutcome = rand(1,25)
-		switch(lootoutcome)
+		switch(rand(1,25))
 			if(1 to 8)
 				for(var/i in 1 to 5)
 					new /obj/item/stack/ore/dilithium_crystal(get_turf(src))
@@ -364,6 +363,7 @@
 	faction = list("mining")
 	max_mobs = 3
 	max_integrity = 250
+	resistance_flags = UNACIDABLE
 	move_resist = INFINITY
 	anchored = TRUE
 	density = FALSE
@@ -384,31 +384,28 @@ GLOBAL_LIST_INIT(nests, list())
 	return ..()
 
 /obj/structure/spawner/nest/proc/spawn_mother_monster()
-	var/mob/living/simple_animal/hostile/yog_jungle/type = pick(mob_types)
-	if(initial(type.alpha_type) == 0)
-		var/mob/living/simple_animal/hostile/yog_jungle/monster = new type(loc)
+	var/mob/living/simple_animal/hostile/asteroid/yog_jungle/enemy_type = pick(mob_types)
+	if(!initial(enemy_type.alpha_type))
+		var/mob/living/simple_animal/hostile/asteroid/yog_jungle/monster = new enemy_type(loc)
 		monster.setMaxHealth(monster.maxHealth * 1.5)
-		monster.health = monster.maxHealth * 1.5
-		monster.move_to_delay = max(monster.move_to_delay / 2, 1)
-		if(monster.alpha_damage_boost == 1) //mobs with really high damage amounts may be exempt from giant damage boosts
-			monster.melee_damage_lower *= 1.5
-			monster.melee_damage_upper *= 1.5
-		monster.faction = list("mining")
-		var/matrix/M = matrix()
-		M.Scale(1.5,1.5)
-		monster.transform = M
+		monster.health = monster.maxHealth
+		monster.move_to_delay = max(monster.move_to_delay / 2, 2)
+		monster.melee_damage_lower *= 1.5
+		monster.melee_damage_upper *= 1.5
+		monster.transform = matrix().Scale(1.5)
 		monster.color = "#c30505"
 		return
-	type = initial(type.alpha_type)
-	new type(loc)
+	enemy_type = initial(enemy_type.alpha_type)
+	new enemy_type(loc)
+
 /obj/structure/spawner/nest/jungle
-	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/dryad, /mob/living/simple_animal/hostile/yog_jungle/yellowjacket)
+	possible_mob_types = list(/mob/living/simple_animal/hostile/asteroid/yog_jungle/dryad, /mob/living/simple_animal/hostile/asteroid/wasp/yellowjacket)
 
 /obj/structure/spawner/nest/swamp
-	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/mosquito,/mob/living/simple_animal/hostile/yog_jungle/meduracha, /mob/living/simple_animal/hostile/yog_jungle/blobby)
+	possible_mob_types = list(/mob/living/simple_animal/hostile/asteroid/wasp/mosquito,/mob/living/simple_animal/hostile/asteroid/yog_jungle/meduracha, /mob/living/simple_animal/hostile/asteroid/yog_jungle/blobby)
 
 /obj/structure/spawner/nest/dying
-	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad,/mob/living/simple_animal/hostile/yog_jungle/mosquito)
+	possible_mob_types = list(/mob/living/simple_animal/hostile/asteroid/yog_jungle/corrupted_dryad,/mob/living/simple_animal/hostile/asteroid/wasp/mosquito)
 
 /obj/effect/spawner/tendril_spawner
 

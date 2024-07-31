@@ -6,6 +6,7 @@
 	icon_state = "wasp"
 	icon_living = "wasp"
 	icon_aggro = "wasp"
+	mob_biotypes = (MOB_BEAST | MOB_ORGANIC)
 	icon_dead = "wasp_dead"
 	icon_gib = "syndicate_gib"
 	throw_message = "bounces harmlessly off the"
@@ -13,10 +14,12 @@
 	movement_type = FLYING
 	ranged = 1
 	ranged_cooldown_time = 120
+	speak = list("bzzzzz")
 	speak_emote = list("buzzes")
+	emote_hear = list("buzzes")
+	emote_taunt = list("buzzes")	
 	vision_range = 5
 	aggro_vision_range = 9
-	see_in_dark = 7
 	speed = 2
 	maxHealth = 200
 	health = 200
@@ -33,6 +36,7 @@
 	var/revving_charge = FALSE
 	var/poison_type = /datum/reagent/toxin/venom
 	var/poison_per_attack = 5
+	var/dash_speed = 1
 
 /mob/living/simple_animal/hostile/asteroid/wasp/AttackingTarget()
 	..()
@@ -71,9 +75,8 @@
 	setDir(dir)
 	SLEEP_CHECK_DEATH(delay)
 	revving_charge = FALSE
-	var/movespeed = 1
-	walk_towards(src, T, movespeed)
-	SLEEP_CHECK_DEATH(get_dist(src, T) * movespeed)
+	walk_towards(src, T, dash_speed)
+	SLEEP_CHECK_DEATH(get_dist(src, T) * dash_speed)
 	walk(src, 0) // cancel the movement
 	charging = FALSE
 

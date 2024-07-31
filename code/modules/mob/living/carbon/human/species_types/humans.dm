@@ -1,6 +1,6 @@
 /datum/species/human
 	name = "Human"
-	id = "human"
+	id = SPECIES_HUMAN
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,HAS_FLESH,HAS_BONE)
 	default_features = list("mcolor" = "#FFFFFF", "wings" = "None")
@@ -140,18 +140,19 @@
 	if(CONFIG_GET(number/default_laws) == 0) // Default lawset is set to Asimov
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "robot",
-			SPECIES_PERK_NAME = "Asimov Superiority",
-			SPECIES_PERK_DESC = "The AI and their cyborgs are, by default, subservient only \
-				to humans. As a human, silicons are required to both protect and obey you.",
+			SPECIES_PERK_ICON = "terminal",
+			SPECIES_PERK_NAME = "Asimov Priority",
+			SPECIES_PERK_DESC = "The AI and their cyborgs are, by default, subservient only to humans. \
+								As a human, silicons are required to both protect and obey you.",
 		))
 
 	if(CONFIG_GET(flag/enforce_human_authority))
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "bullhorn",
-			SPECIES_PERK_NAME = "Chain of Command",
-			SPECIES_PERK_DESC = "Nanotrasen only recognizes humans for Captain and Head of Personel. In addition to this, humans get more than other species.",
+			SPECIES_PERK_ICON = "star-half-alt",
+			SPECIES_PERK_NAME = "Nanotrasen's Trusted",
+			SPECIES_PERK_DESC = "Humans are the only race Nanotrasen trusts to run their stations and bear the rank of Captain. \
+								Per company policy, they may also work as any and all Heads of Staff without restrictions.",
 		))
 
 	return to_add

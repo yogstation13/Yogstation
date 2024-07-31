@@ -4,7 +4,7 @@
 	// Reptilian humanoids with scaled skin and tails.
 	name = "Vuulek"
 	plural_form = "Vuulen"
-	id = "lizard"
+	id = SPECIES_LIZARD
 	say_mod = "hisses"
 	default_color = "00FF00"
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,HAS_FLESH,HAS_BONE,HAS_TAIL)
@@ -173,10 +173,19 @@
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
-		SPECIES_PERK_ICON = "thermometer-empty",
-		SPECIES_PERK_NAME = "Cold-blooded",
-		SPECIES_PERK_DESC = "Lizardpeople have difficulty regulating their body temperature, they're not quite as affected by the temperature itself though.",
-	))
+		SPECIES_PERK_ICON = "thermometer-half",
+		SPECIES_PERK_NAME = "Cold-Blooded",
+		SPECUES_PERK_DESC = "Vuulen are cold-blooded, and have evolved to withstand extreme temperatures for longer than most. \
+							They're also affected by temperature psychologically, becoming more awake and alert in heat, but grow tired and drowsy in the cold.",
+		),
+		list(
+		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+		SPECIES_PERK_ICON = "commenting",
+		SPECIES_PERK_NAME = "Reptilian Ssspeech",
+		SPECIES_PERK_DESC = "Vuulen have a forked tongue, similar to that of a snake. \
+							They have a tendency to hisss when ssspeaking.",
+		),
+	)
 
 	return to_add
 
@@ -185,8 +194,8 @@
 */
 /datum/species/lizard/ashwalker
 	name = "Ash Walker"
-	id = "ashlizard"
-	limbs_id = "lizard"
+	id = SPECIES_LIZARD_ASH
+	limbs_id = SPECIES_LIZARD
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,DIGITIGRADE,HAS_FLESH,HAS_BONE,HAS_TAIL)
 	inherent_traits = list(TRAIT_NOGUNS) //yogs start - ashwalkers have special lungs and actually breathe
 	mutantlungs = /obj/item/organ/lungs/ashwalker // yogs end
@@ -199,12 +208,12 @@
 
 /datum/species/lizard/ashwalker/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	C.weather_immunities -= WEATHER_ASH
+	C.weather_immunities &= ~WEATHER_ASH
 
 //Ash walker shaman, worse defensive stats, but better at surgery and have a healing touch ability
 /datum/species/lizard/ashwalker/shaman
 	name = "Ash Walker Shaman"
-	id = "ashlizardshaman"
+	id = SPECIES_LIZARD_ASH_SHAMAN
 	armor = -1 //more of a support than a standard ashwalker, don't get hit
 	brutemod = 1.15
 	burnmod = 1.15
@@ -267,8 +276,8 @@
 */
 /datum/species/lizard/draconid
 	name = "Draconid"
-	id = "draconid"
-	limbs_id = "lizard"
+	id = SPECIES_LIZARD_DRACONID
+	limbs_id = SPECIES_LIZARD
 	fixed_mut_color = "#A02720" 	//Deep red
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,DIGITIGRADE,HAS_FLESH,HAS_BONE,HAS_TAIL)
 	inherent_traits = list(TRAIT_RESISTHEAT)	//Dragons like fire, not cold blooded because they generate fire inside themselves or something
@@ -284,7 +293,7 @@
 
 /datum/species/lizard/draconid/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	C.weather_immunities -= WEATHER_ASH
+	C.weather_immunities &= ~WEATHER_ASH
 
 // yogs end
 

@@ -29,8 +29,8 @@ SUBSYSTEM_DEF(mapping)
 	var/list/jungleland_proper_ruins_templates = list()
 	var/list/jungleland_dying_ruins_templates = list()
 	var/list/jungleland_swamp_ruins_templates = list()
-	var/list/jungleland_barren_ruins_templates = list()
 	var/list/jungleland_general_ruins_templates = list()
+	var/list/jungleland_tar_ruins_templates = list()
 	//Yogs end
 
 	var/list/shuttle_templates = list()
@@ -149,7 +149,7 @@ SUBSYSTEM_DEF(mapping)
 		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/proper), jungleland_proper_ruins_templates, clear_below = TRUE)
 		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/dying_forest), jungleland_dying_ruins_templates, clear_below = TRUE)
 		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/toxic_pit), jungleland_swamp_ruins_templates, clear_below = TRUE)
-		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/barren_rocks), jungleland_barren_ruins_templates, clear_below = TRUE)
+		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/tar_wastes), jungleland_tar_ruins_templates, clear_below = TRUE)
 	else
 		run_map_generation()
 	//YOGS EDIT
@@ -602,10 +602,10 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 /datum/controller/subsystem/mapping/proc/preloadRuinTemplates()
 	// Still supporting bans by filename
-	var/list/banned = generateMapList("[global.config.directory]/lavaruinblacklist.txt")
-	banned += generateMapList("[global.config.directory]/spaceruinblacklist.txt")
-	banned += generateMapList("[global.config.directory]/iceruinblacklist.txt")
-	banned += generateMapList("[global.config.directory]/jungleruinblacklist.txt")
+	var/list/banned = generateMapList("lavaruinblacklist.txt")
+	banned += generateMapList("spaceruinblacklist.txt")
+	banned += generateMapList("iceruinblacklist.txt")
+	banned += generateMapList("jungleruinblacklist.txt")
 
 	for(var/item in sortList(subtypesof(/datum/map_template/ruin), /proc/cmp_ruincost_priority))
 		var/datum/map_template/ruin/ruin_type = item
@@ -638,10 +638,10 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			jungleland_dying_ruins_templates[R.name] = R
 		else if(istype(R,/datum/map_template/ruin/jungle/swamp))
 			jungleland_swamp_ruins_templates[R.name] = R
-		else if(istype(R,/datum/map_template/ruin/jungle/barren))
-			jungleland_barren_ruins_templates[R.name] = R
 		else if(istype(R,/datum/map_template/ruin/jungle/all))
 			jungleland_general_ruins_templates[R.name] = R
+		else if(istype(R,/datum/map_template/ruin/jungle/tar))
+			jungleland_tar_ruins_templates[R.name] = R
 		//Yogs end
 
 /datum/controller/subsystem/mapping/proc/preloadShuttleTemplates()

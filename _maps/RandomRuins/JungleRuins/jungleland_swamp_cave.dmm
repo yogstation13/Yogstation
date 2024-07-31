@@ -1,70 +1,70 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "j" = (
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/ruin/unpowered)
 "k" = (
 /obj/item/stack/sheet/bone,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/ruin/unpowered)
 "l" = (
 /obj/effect/decal/remains/human,
 /obj/item/pickaxe/silver,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/ruin/unpowered)
 "s" = (
 /obj/effect/decal/remains/human,
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/ruin/unpowered)
 "w" = (
 /obj/effect/decal/remains/human,
 /obj/item/clothing/suit/space/hardsuit/powerarmor_t45b,
 /obj/item/clothing/gloves/combat,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/ruin/unpowered)
 "x" = (
 /turf/closed/mineral/ash_rock/jungle/deepjungle,
 /area/ruin/unpowered)
 "y" = (
 /obj/structure/flora/ash/tall_shroom,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/ruin/unpowered)
 "z" = (
 /obj/item/stack/sheet/bone,
 /obj/item/reagent_containers/autoinjector/medipen/survival,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/ruin/unpowered)
 "A" = (
 /obj/structure/spawner/mining/basilisk,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/ruin/unpowered)
 "C" = (
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
 "F" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/ruin/unpowered)
 "H" = (
 /obj/structure/flora/ash/cap_shroom,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/ruin/unpowered)
 "K" = (
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/ruin/unpowered)
 "N" = (
 /obj/structure/flora/ash/stem_shroom,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/ruin/unpowered)
 "O" = (
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "P" = (
 /obj/structure/flora/ash/cacti,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/ruin/unpowered)
 "R" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 "X" = (
 /turf/closed/mineral/ash_rock/jungle/deepjungle,

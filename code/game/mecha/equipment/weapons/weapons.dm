@@ -65,7 +65,7 @@
 		sleep(max(0, projectile_delay))
 
 	if(kickback)
-		chassis.newtonian_move(turn(chassis.dir,180))
+		chassis.newtonian_move(get_dir(target, chassis))
 	chassis.log_message("Fired from [src.name], targeting [target].", LOG_MECHA)
 	return 1
 

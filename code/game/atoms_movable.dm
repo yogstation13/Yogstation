@@ -1014,6 +1014,9 @@
 
 	. = TRUE // No failure conditions past this point.
 
+	if(throwing?.callback) // Already being thrown, make sure to invoke any callbacks
+		throwing.callback.Invoke()
+
 	var/datum/thrownthing/TT = new()
 	TT.thrownthing = src
 	TT.target = target

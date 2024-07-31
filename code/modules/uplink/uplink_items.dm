@@ -341,7 +341,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/dangerous/gasharpoon
 	name = "GasHarpoon"
-	desc = "A repurposed space-whaling tool attatched to a glove, can be used as a sturdy weapon in both hands, or worn as a glove to allow access to it's harpoon."
+	desc = "A repurposed space-whaling tool attached to a glove, can be used as a sturdy weapon in both hands, or worn as a glove to allow access to its harpoon."
 	item = /obj/item/clothing/gloves/gasharpoon
 	cost = 10
 	surplus = 0
@@ -1548,6 +1548,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 7
 	manufacturer = /datum/corporation/traitor/cybersun
 
+/datum/uplink_item/device_tools/projector
+	name = "Holographic Object Projector"
+	item = /obj/item/device/holoprojector
+	desc = "A device for masters of deception and trickery. This item allows you to scan objects and create \
+			holograms of them. The holograms will dissipate when interacted with. You can replace the stock \
+			parts it comes with to increase the maximum number of holograms and variety of scannable objects."
+	cost = 4
+	manufacturer = /datum/corporation/traitor/cybersun
+
 /datum/uplink_item/stealthy_tools/codespeak_manual
 	name = "Codespeak Manual"
 	desc = "Syndicate agents can be trained to use a series of codewords to convey complex information, which sounds like random concepts and drinks to anyone listening. \
@@ -2357,7 +2366,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	Syndicate brand \"Extra-Bright Lantern™\". Enjoy."
 	cost = 2
 	item = /obj/item/flashlight/lantern/syndicate
-	restricted_species = list("moth")
+	restricted_species = list(SPECIES_MOTH)
 
 /datum/uplink_item/race_restricted/syndigenetics
 	name = "Fire Breath implanter"
@@ -2365,14 +2374,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 6
 	manufacturer = /datum/corporation/traitor/vahlen
 	item = /obj/item/dnainjector/firebreath
-	restricted_species = list("lizard", "draconid")
+	restricted_species = list(SPECIES_LIZARD, SPECIES_LIZARD_DRACONID)
 
 /datum/uplink_item/race_restricted/flyingfang
 	name = "Flying Fang Tablet"
 	desc = "This tablet contains a set of old vuulek fighting techniques, increasing your melee combat effectiveness but preventing you from using armor, most common stun weapons, or guns."
 	cost = 14
 	item = /obj/item/book/granter/martial/flyingfang
-	restricted_species = list("lizard", "draconid")
+	restricted_species = list(SPECIES_LIZARD, SPECIES_LIZARD_DRACONID)
 
 /datum/uplink_item/race_restricted/hammerimplant
 	name = "Vxtvul Hammer Implant"
@@ -2382,7 +2391,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			fling bodies, and heavily damage mechs. Vir'ln krx'tai, lost one."
 	cost = 10
 	item = /obj/item/autosurgeon/suspicious/syndie_hammer
-	restricted_species = list("preternis")
+	restricted_species = list(SPECIES_PRETERNIS)
 
 /datum/uplink_item/race_restricted/hammerimplant/New()
 	..()
@@ -2395,7 +2404,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 3
 	manufacturer = /datum/corporation/traitor/donkco
 	item = /obj/item/seeds/tomato/killer
-	restricted_species = list("pod")
+	restricted_species = list(SPECIES_PODPERSON)
 
 /datum/uplink_item/race_restricted/radiationbomb
 	name = "Radiation grenade"
@@ -2403,7 +2412,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	manufacturer = /datum/corporation/traitor/waffleco
 	item = /obj/item/grenade/chem_grenade/radiation
-	restricted_species = list("plasmaman")
+	restricted_species = list(SPECIES_PLASMAMAN)
 
 /datum/uplink_item/race_restricted/hulk
 	name = "Hulk Mutator"
@@ -2411,7 +2420,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 12
 	manufacturer = /datum/corporation/traitor/vahlen
 	item = /obj/item/dnainjector/hulkmut
-	restricted_species = list("human")
+	restricted_species = list(SPECIES_HUMAN)
 
 // Role-specific items
 /datum/uplink_item/role_restricted

@@ -231,7 +231,7 @@
 /mob/living/simple_animal/revenant/dust(just_ash, drop_items, force)
 	death()
 
-/mob/living/simple_animal/revenant/gib()
+/mob/living/simple_animal/revenant/gib(no_brain, no_organs, no_bodyparts, no_items)
 	death()
 
 /mob/living/simple_animal/revenant/death()

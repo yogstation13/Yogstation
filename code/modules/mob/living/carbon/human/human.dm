@@ -489,7 +489,7 @@
 		threatcount += 2
 
 	//Check for nonhuman scum
-	if(dna && dna.species.id && dna.species.id != "human")
+	if(dna && dna.species.id && dna.species.id != SPECIES_HUMAN)
 		threatcount += 1
 
 	//mindshield implants imply trustworthyness
@@ -514,6 +514,7 @@
 	underwear = "Nude"
 	update_body()
 	update_hair()
+	dna.update_dna_identity()
 
 /mob/living/carbon/human/singularity_pull(S, current_size)
 	..()
@@ -1079,9 +1080,6 @@
 
 /mob/living/carbon/human/species/abductor
 	race = /datum/species/abductor
-
-/mob/living/carbon/human/species/android
-	race = /datum/species/android
 
 /mob/living/carbon/human/species/dullahan
 	race = /datum/species/dullahan

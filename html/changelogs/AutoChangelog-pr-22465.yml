@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed mechs getting stuck permanently if thrown during an afterburner charge"

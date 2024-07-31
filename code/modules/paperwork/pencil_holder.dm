@@ -32,10 +32,11 @@
 			icon_state = "pencilholder_3"
 		if(20)
 			icon_state = "pencilholder_4"
-	
+
 /obj/item/storage/pencil_holder/crew
 //THE POPULATED CAN FOR CREW
 	name = "pencil holder"
+	icon_state = "pencilholder_3"
 
 /obj/item/storage/pencil_holder/crew/PopulateContents()
 	new	/obj/item/pen(src)
@@ -55,6 +56,7 @@
 //CRAYON CAN
 	name = "crayon holder"
 	desc = "What's mightier, the pen or the e-sword?"
+	icon_state = "pencilholder_2"
 
 /obj/item/storage/pencil_holder/crew/creative/PopulateContents()
 	new	/obj/item/toy/crayon/red(src)
@@ -65,12 +67,13 @@
 	new	/obj/item/toy/crayon/purple(src)
 	new	/obj/item/toy/crayon/black(src)
 	new	/obj/item/toy/crayon/white(src)
-	
+
 /obj/item/storage/pencil_holder/crew/fancy
 //HOITY TOITY PENS CAN
 	name = "caligraphy holder"
 	desc = "For creating beautiful caligraphy, or forging checks."
-	
+	icon_state = "pencilholder_2"
+
 /obj/item/storage/pencil_holder/crew/fancy/PopulateContents()
 	new	/obj/item/pen/fountain(src)
 	new	/obj/item/pen/fountain(src)
@@ -79,4 +82,4 @@
 	new	/obj/item/pen/fountain(src)
 	new	/obj/item/pen/fountain(src)
 	new	/obj/item/pen/fountain(src)
-	
+

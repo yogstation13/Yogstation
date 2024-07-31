@@ -322,18 +322,23 @@
 		return
 
 	var/mob/living/victim = target
+	//don't close the trap if they're as small as a mouse
+	if(victim.mob_size <= MOB_SIZE_TINY)
+		return
+	if(!ignore_movetypes && (victim.movement_type & MOVETYPES_NOT_TOUCHING_GROUND))
+		return
+
+	if(!anchored)
+		visible_message(span_notice("[src] flops about uselessly as it gets triggered without being properly anchored to the ground."))
+		close_trap()
+		return
+
 	if(istype(victim.buckled, /obj/vehicle))
 		var/obj/vehicle/ridden_vehicle = victim.buckled
 		if(!ridden_vehicle.are_legs_exposed) //close the trap without injuring/trapping the rider if their legs are inside the vehicle at all times.
 			close_trap()
 			ridden_vehicle.visible_message(span_danger("[ridden_vehicle] triggers \the [src]."))
 			return
-
-	//don't close the trap if they're as small as a mouse
-	if(victim.mob_size <= MOB_SIZE_TINY)
-		return
-	if(!ignore_movetypes && (victim.movement_type & MOVETYPES_NOT_TOUCHING_GROUND))
-		return
 
 	close_trap()
 	if(ignore_movetypes)

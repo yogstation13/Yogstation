@@ -111,7 +111,7 @@
 
 	return ..(P, def_zone)
 
-/mob/living/carbon/human/proc/check_shields(atom/AM, damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0, damage_type = BRUTE)
+/mob/living/carbon/human/check_shields(atom/AM, damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0, damage_type = BRUTE)
 	var/block_result = SEND_SIGNAL(src, COMSIG_HUMAN_CHECK_SHIELDS, AM, damage, attack_text, attack_type, armour_penetration, damage_type)
 	SEND_SIGNAL(src, COMSIG_HUMAN_AFTER_BLOCK, block_result)
 	return block_result
@@ -833,7 +833,7 @@
 				if(0 to NUTRITION_LEVEL_STARVING)
 					combined_msg += span_danger("You're starving!")
 
-	if(dna.species.id == "skeleton")
+	if(isskeleton(src))
 		var/obj/item/clothing/under/under = w_uniform
 		if((!under || under.adjusted) && (!wear_suit))
 			play_xylophone()

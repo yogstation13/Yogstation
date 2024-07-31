@@ -46,8 +46,8 @@ Temperature: 126.85 °C (400 K)
 /area/jungleland/toxic_pit
 	name = "Toxic Pit"
 
-/area/jungleland/barren_rocks
-	name = "Barren Rocks"
+/area/jungleland/tar_wastes
+	name = "Tar Wastes"
 
 /area/jungleland/dry_swamp
 	name = "Rocky Beach"
@@ -66,7 +66,7 @@ Temperature: 126.85 °C (400 K)
 	icon_state = "jungle"
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
-	baseturfs = /turf/open/water/toxic_pit
+	baseturfs = /turf/open/water/smooth/toxic_pit
 	icon_state_regular_floor = "jungle" //used to remember what icon state the tile should have by default
 	icon_regular_floor = 'yogstation/icons/turf/floors/jungle.dmi' //used to remember what icon the tile should have by default
 	icon_plating = "jungle"
@@ -74,6 +74,8 @@ Temperature: 126.85 °C (400 K)
 	var/ore_present = ORE_EMPTY
 	var/spawn_overlay = TRUE
 	var/can_mine = TRUE
+	light_power = 2
+	light_range = 2 // fullbright it for proper shadows and darkspawn interaction
 
 /turf/open/floor/plating/dirt/jungleland/drill_act(obj/item/mecha_parts/mecha_equipment/drill/drill)
 	if(drill.do_after_mecha(src, 10 / drill.drill_level))
@@ -83,9 +85,14 @@ Temperature: 126.85 °C (400 K)
 /turf/open/floor/plating/dirt/jungleland/proc/spawn_rock()
 	if(ore_present == ORE_EMPTY || !can_spawn_ore)
 		return
-	can_spawn_ore = FALSE
 	if(spawn_overlay)
 		add_overlay(image(icon='yogstation/icons/obj/jungle.dmi',icon_state="dug_spot",layer=BELOW_OBJ_LAYER))
+	spawn_ores()
+	can_spawn_ore = FALSE
+
+/turf/open/floor/plating/dirt/jungleland/proc/spawn_ores()
+	if(ore_present == ORE_EMPTY || !can_spawn_ore)
+		return
 	var/datum/ore_patch/ore = GLOB.jungle_ores[ ore_present ]
 	if(ore)
 		ore.spawn_at(src)
@@ -116,42 +123,24 @@ Temperature: 126.85 °C (400 K)
 /turf/open/floor/plating/dirt/jungleland/ex_act(severity, target)
 	if(can_spawn_ore && prob( (severity/3)*100  ))
 		spawn_rock()
+		
 /turf/open/floor/plating/dirt/jungleland/barren_rocks
 	name = "rocky surface"
 	desc = "Surface covered by rocks, pebbles and stones."
 	icon_state = "barren_rocks"
 	icon_plating = "barren_rocks"
 	icon_state_regular_floor = "barren_rocks"
+	light_power = 0
+	light_range = 0
 
-/turf/open/floor/plating/dirt/jungleland/toxic_rocks
-	name = "mud"
-	desc = "Liquid mixed with dirt."
-	icon_state = "toxic_rocks"
-	icon_plating = "toxic_rocks"
-	icon_state_regular_floor = "toxic_rocks"
-
-/turf/open/floor/plating/dirt/jungleland/dry_swamp
-	name = "sand"
-	desc = "Mounds upon mounds of sand."
-	icon_state = "dry_swamp"
-	icon_plating = "dry_swamp"
-	icon_state_regular_floor = "dry_swamp"
-
-/turf/open/floor/plating/dirt/jungleland/toxic_pit
+/turf/open/floor/plating/dirt/jungleland/shallow_mud
 	name = "shallow mud"
 	desc = "Pit of shallow mud."
 	icon_state = "toxic_pit"
 	icon_plating = "toxic_pit"
 	icon_state_regular_floor = "toxic_pit"
 
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1
-	name = "dried surface"
-	desc = "It used to be a riverbed."
-	icon_state = "dry_swamp1"
-	icon_plating = "dry_swamp1"
-	icon_state_regular_floor = "dry_swamp1"
-
-/turf/open/floor/plating/dirt/jungleland/dying_forest
+/turf/open/floor/plating/dirt/jungleland/deep_sand
 	name = "deep sand"
 	desc = "This sand runs deep into the earth."
 	icon_state = "dying_forest"
@@ -186,22 +175,27 @@ Temperature: 126.85 °C (400 K)
 		ore_present = pick(GLOB.quarry_ores)
 	can_spawn_ore = TRUE
 
-/turf/open/water/toxic_pit
+/turf/open/water/smooth/toxic_pit
 	name = "sulphuric pit"
 	desc = "Very toxic."
 	color = "#00c167"
+
 	slowdown = 2
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
-	baseturfs = /turf/open/water/toxic_pit
+	baseturfs = /turf/open/water/smooth/toxic_pit
+
+	light_power = 2
+	light_range = 2 // fullbright it for proper shadows and darkspawn interaction
+
 	///multiplier for the strength of the toxicity, multiplies basically every damage value and damage probability
 	var/acid_strength = 1
 
-/turf/open/water/toxic_pit/Initialize(mapload)
+/turf/open/water/smooth/toxic_pit/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/lingering, CALLBACK(src, PROC_REF(toxic_stuff)), GLOB.lavasafeties)
 
-/turf/open/water/toxic_pit/proc/toxic_stuff(thing, delta_time)
+/turf/open/water/smooth/toxic_pit/proc/toxic_stuff(thing, delta_time)
 	if(isobj(thing))
 		var/obj/O = thing
 		if((O.resistance_flags & (UNACIDABLE|INDESTRUCTIBLE)) || O.throwing)
@@ -212,7 +206,7 @@ Temperature: 126.85 °C (400 K)
 	else if (isliving(thing))
 		. = TRUE
 		var/mob/living/L = thing
-		if(WEATHER_ACID in L.weather_immunities) //if they're immune to acid weather
+		if(L.weather_immunities & WEATHER_ACID) //if they're immune to acid weather
 			return
 		if(L.movement_type & (FLYING|FLOATING)) //YOU'RE FLYING OVER IT
 			return	
@@ -229,7 +223,7 @@ Temperature: 126.85 °C (400 K)
 				return
 		else if(isliving(buckle_check))
 			var/mob/living/live = buckle_check
-			if(WEATHER_ACID in live.weather_immunities)
+			if(live.weather_immunities & WEATHER_ACID)
 				return
 			if(live.movement_type & (FLYING|FLOATING))
 				return
@@ -251,18 +245,18 @@ Temperature: 126.85 °C (400 K)
 			if(HAS_TRAIT(L,TRAIT_TOXIMMUNE) || HAS_TRAIT(L,TRAIT_TOXINLOVER))
 				return
 			
-			humie.reagents.add_reagent(/datum/reagent/toxic_metabolities, 2 * acid_strength)
+			humie.reagents.add_reagent(/datum/reagent/toxic_metabolites, 2 * acid_strength)
 
 		else if(prob(25 * acid_strength))
 			L.acid_act(5 * acid_strength, 7.5 * acid_strength)
 
-/turf/open/water/toxic_pit/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
+/turf/open/water/smooth/toxic_pit/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	switch(the_rcd.construction_mode)
 		if(RCD_FLOORWALL)
 			return list("mode" = RCD_FLOORWALL, "delay" = 0, "cost" = 3)
 	return FALSE
 
-/turf/open/water/toxic_pit/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
+/turf/open/water/smooth/toxic_pit/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
 	switch(passed_mode)
 		if(RCD_FLOORWALL)
 			to_chat(user, span_notice("You build a floor."))
@@ -273,12 +267,12 @@ Temperature: 126.85 °C (400 K)
 /turf/open/water/safe/jungle
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 
-/turf/open/water/toxic_pit/deep
+/turf/open/water/smooth/toxic_pit/deep
 	name = "deep sulphuric pit"
 	desc = "Extraordinarily toxic."
 	color = "#004700"
-	slowdown = 4
-	baseturfs = /turf/open/water/toxic_pit/deep
+	slowdown = 5
+	baseturfs = /turf/open/water/smooth/toxic_pit/deep
 	acid_strength = 2
 
 /turf/open/floor/wood/jungle
@@ -292,7 +286,7 @@ Temperature: 126.85 °C (400 K)
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 
 /turf/open/floor/plating/jungle_baseturf/dying
-	baseturfs = /turf/open/floor/plating/dirt/jungleland/dying_forest
+	baseturfs = /turf/open/floor/plating/dirt/jungleland/deep_sand
 
 /turf/open/indestructible/grass/jungle
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
@@ -310,28 +304,30 @@ Temperature: 126.85 °C (400 K)
 	baseturfs = /turf/open/floor/plating/dirt/jungleland/jungle
 
 /turf/closed/mineral/ash_rock/jungle/swamp
-	turf_type = /turf/open/floor/plating/dirt/jungleland/toxic_pit
-	baseturfs = /turf/open/floor/plating/dirt/jungleland/toxic_pit
+	turf_type = /turf/open/floor/plating/dirt/jungleland/shallow_mud
+	baseturfs = /turf/open/floor/plating/dirt/jungleland/shallow_mud
 
-/turf/open/water/tar_basin
+/turf/open/water/smooth/tar_basin
 	name = "tar basin"
 	color = "#680047"
 	slowdown = 4
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
-	baseturfs = /turf/open/water/tar_basin
+	baseturfs = /turf/open/water/smooth/tar_basin
 
 
 /turf/open/floor/plating/dirt/jungleland/obsidian
 	name =	"obsidian ground"
 	desc = "Dark crystaline flooring."
 	icon_state = "obsidian"
+	light_range = 0
 
 /turf/closed/obsidian
 	name = "obsidian wall"
 	desc = "Obsidian wall tearing out of the earth, it reflects light in all the colours you could ever imagine, and you can see something shining brightly within it. You can't quite seem to destroy it with a pickaxe, but maybe an explosion may suffice?"
 	icon = 'yogstation/icons/turf/walls/obsidian.dmi'
 	icon_state = "wall"
+	base_icon_state = "wall"
 	smoothing_groups = SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_MINERAL_WALLS
 	canSmoothWith = SMOOTH_GROUP_MINERAL_WALLS
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER

@@ -1,19 +1,19 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "c" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "d" = (
 /obj/item/stack/sheet/bone,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "f" = (
 /obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "h" = (
 /obj/structure/flytrap,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "i" = (
 /obj/structure/flora/grass/jungle/b,
@@ -36,19 +36,19 @@
 /area/template_noop)
 "p" = (
 /obj/structure/flora/junglebush,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "q" = (
 /obj/structure/flora/rock/pile,
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 "r" = (
 /obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "s" = (
 /mob/living/simple_animal/hostile/carp/jungle,
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 "t" = (
 /obj/structure/chair/sofa/bamboo/left,
@@ -62,7 +62,7 @@
 /obj/item/reagent_containers/food/snacks/grown/harebell{
 	desc = "It's as purple as a carp..."
 	},
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "w" = (
 /obj/item/stack/sheet/sinew,
@@ -77,19 +77,19 @@
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
 "B" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 "C" = (
 /obj/item/stack/sheet/animalhide/carpdragon,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "D" = (
 /obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "E" = (
 /obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "G" = (
 /obj/item/stack/sheet/animalhide/carpdragon,
@@ -109,7 +109,7 @@
 /area/template_noop)
 "K" = (
 /obj/item/stack/sheet/sinew,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "L" = (
 /turf/open/floor/wood/jungle,
@@ -120,15 +120,15 @@
 /area/template_noop)
 "O" = (
 /obj/structure/flora/stump,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "P" = (
 /mob/living/simple_animal/hostile/carp/jungle,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "Q" = (
 /obj/structure/flora/tree/jungle/small,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "R" = (
 /obj/item/toy/plush/carpplushie/dehy_carp,
@@ -140,11 +140,11 @@
 /area/template_noop)
 "T" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "U" = (
 /obj/structure/flora/ausbushes/stalkybush,
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 "V" = (
 /obj/structure/flora/ausbushes/brflowers,
@@ -155,11 +155,11 @@
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
 "Y" = (
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 "Z" = (
 /obj/structure/flora/ausbushes/brflowers,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/shallow_mud,
 /area/template_noop)
 
 (1,1,1) = {"

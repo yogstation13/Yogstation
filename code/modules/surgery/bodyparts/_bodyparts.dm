@@ -964,9 +964,9 @@
 			if(should_draw_gender)
 				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 			else if(use_digitigrade)
-				if("[species_id]" == "polysmorph")
+				if("[species_id]" == SPECIES_POLYSMORPH)
 					limb.icon_state = "pdigitigrade_[use_digitigrade]_[body_zone]"
-				else if("[species_id]" == "preternis")
+				else if("[species_id]" == SPECIES_PRETERNIS)
 					limb.icon_state = "preternis_[use_digitigrade]_[body_zone]"
 				else
 					limb.icon_state = "digitigrade_[use_digitigrade]_[body_zone]"

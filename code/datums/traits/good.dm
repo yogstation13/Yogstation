@@ -13,7 +13,10 @@
 
 /datum/quirk/no_taste/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) // Cant drink
+	species_type = new species_type()
+	var/disallowed_trait = (NOMOUTH in species_type.species_traits) // Cant eat
+	qdel(species_type)
+	
 	if(disallowed_trait)
 		return "You don't have the ability to eat!"
 	return FALSE
@@ -30,7 +33,9 @@
 
 /datum/quirk/alcohol_tolerance/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) // Cant drink
+	species_type = new species_type()
+	var/disallowed_trait = (NOMOUTH in species_type.species_traits) // Cant eat
+	qdel(species_type)
 
 	if(disallowed_trait)
 		return "You don't have the ability to drink!"
@@ -67,7 +72,9 @@
 
 /datum/quirk/drunkhealing/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) // Cant drink
+	species_type = new species_type()
+	var/disallowed_trait = (NOMOUTH in species_type.species_traits) // Cant eat
+	qdel(species_type)
 
 	if(disallowed_trait) // Cant drink
 		return "You don't have the ability to drink!"
@@ -231,7 +238,9 @@
 
 /datum/quirk/toxic_tastes/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) // Cant drink
+	species_type = new species_type()
+	var/disallowed_trait = (NOMOUTH in species_type.species_traits) // Cant eat
+	qdel(species_type)
 
 	if(disallowed_trait) // Cant eat
 		return "You don't have the ability to eat!"
@@ -266,7 +275,9 @@
 
 /datum/quirk/voracious/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) // Cant drink
+	species_type = new species_type()
+	var/disallowed_trait = (NOMOUTH in species_type.species_traits) // Cant eat
+	qdel(species_type)
 
 	if(disallowed_trait) // Cant eat
 		return "You don't have the ability to eat!"
@@ -286,7 +297,7 @@
 	name = "Crafty"
 	desc = "You're very good at making stuff, and can craft faster than others."
 	icon = "wrench"
-	value = 2
+	value = 1
 	mob_trait = TRAIT_CRAFTY
 	gain_text = span_notice("You feel like crafting some stuff.")
 	lose_text = span_danger("You lose the itch to craft.")
@@ -356,8 +367,10 @@
 
 /datum/quirk/telomeres_long/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/no_dna = (NO_DNA_COPY in initial(species_type.species_traits)) //Can't pick if you have no DNA bruv.
-	var/no_clone = (TRAIT_NOCLONE in initial(species_type.inherent_traits))
+	species_type = new species_type()
+	var/no_dna = (NO_DNA_COPY in species_type.species_traits) //Can't pick if you have no DNA bruv.
+	var/no_clone = (TRAIT_NOCLONE in species_type.inherent_traits)
+	qdel(species_type)
 	if(no_dna)
 		return "You have no DNA!"
 	else if(no_clone)
@@ -372,7 +385,7 @@
 	mob_trait = TRAIT_MARINE
 	gain_text = span_notice("You've graduated top of your class and have over 300 confirmed kills.")
 	lose_text = span_danger("You've lost the fierceless spirit of a Marine, alongside your appetite for crayons.")
-	medical_record_text = ("Patient's stomach is unusually proficient at digesting wax.")
+	medical_record_text = "Patient's stomach is unusually proficient at digesting wax."
 
 /datum/quirk/multilingual
 	name = "Multilingual"
