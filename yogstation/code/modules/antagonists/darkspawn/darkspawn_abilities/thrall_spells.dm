@@ -352,7 +352,7 @@
 
 /datum/action/cooldown/spell/pointed/thrallbuff/heal/empower(mob/living/carbon/target)
 	to_chat(target, span_velvet("You feel healed."))
-	if(target.heal_ordered_damage(heal_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE, BRAIN), BODYPART_ANY))
+	if(target.heal_ordered_damage(heal_amount, list(BURN, BRUTE, TOX, OXY, STAMINA, CLONE, BRAIN), BODYPART_ANY))
 		new /obj/effect/temp_visual/heal(get_turf(target), COLOR_GREEN) //if it does any healing, spawn a heal visual, maybe it won't blow the cover of a thrall that happens to be full health
 
 ////////////////////////////Temporary speed boost//////////////////////////
