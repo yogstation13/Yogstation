@@ -175,6 +175,7 @@
 	product = /obj/item/reagent_containers/food/snacks/grown/jungle/magnus_purpura
 	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
 	growthstages = 3
+	mutatelist = list(/obj/item/seeds/kudzu) //get the fuck outta here kudzu
 	reagents_add = list(/datum/reagent/magnus_purpura_enzyme = 0.25)
 
 /obj/item/reagent_containers/food/snacks/grown/jungle/magnus_purpura

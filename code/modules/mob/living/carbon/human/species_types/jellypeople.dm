@@ -14,14 +14,17 @@
 	mutantlungs = /obj/item/organ/lungs/slime
 	damage_overlay_type = ""
 	liked_food = MEAT
-	coldmod = 6
+	coldmod = 3
 	heatmod = 0.5
-	burnmod = 0.5 // = 1/2x generic burn damage
+	burnmod = 0.8 // now only 20% as effective!
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/jelly
 	swimming_component = /datum/component/swimming/dissolve
 	hair_color = "mutcolor"
 	hair_alpha = 140
+	liked_food = TOXIC //tasty toxins
+	disliked_food = ALCOHOL | JUNKFOOD //junkfood is too oily, and alcohol is a disinfectant
+	toxic_food = PINEAPPLE //enzymes dissolve the jelly from the inside
 
 	species_abilities = list(/datum/action/innate/regenerate_limbs)
 
