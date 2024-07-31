@@ -275,7 +275,7 @@ Auto Patrol: []"},
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		threat = H.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, PROC_REF(check_for_weapons)))
-		if(H.check_shields(src, baton_damage, "[src]'s baton"))
+		if(H.check_shields(src, baton_damage, "[src]'s baton", MELEE_ATTACK, damage_type = STAMINA))
 			return
 	else
 		threat = C.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, PROC_REF(check_for_weapons)))
