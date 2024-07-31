@@ -68,7 +68,7 @@
 		to_chat(user, span_notice("You knock on the mirror and call your reflection back into focus."))
 		reflected.forceMove(src)
 		update_icon(inhabited = TRUE)
-		COOLDOWN_START(src, next_search, COOLDOWN_RECALL)
+		COOLDOWN_START(src, next_recall, COOLDOWN_RECALL)
 	if(istype(action, /datum/action/item_action/rerollmirror))
 		if(!reflected)
 			to_chat(user, span_notice("The mirror is dormant."))
