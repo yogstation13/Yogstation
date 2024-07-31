@@ -19,7 +19,7 @@
 
 	outfit = /datum/outfit/job/cmo
 
-	added_access = list(ACCESS_CAPTAIN) //Yogs: Gives CMO access to the brig physicians locker
+	added_access = list(ACCESS_CAPTAIN, ACCESS_AI_SAT, ACCESS_AI_MASTER) //Yogs: Gives CMO access to the brig physicians locker
 	base_access = list(ACCESS_COMMAND, ACCESS_MEDICAL, ACCESS_CMO, ACCESS_SURGERY,
 					ACCESS_PARAMEDIC, ACCESS_MORGUE, ACCESS_CHEMISTRY, ACCESS_CLONING,
 					ACCESS_VIROLOGY, ACCESS_PSYCHOLOGY, ACCESS_GENETICS, ACCESS_BRIG_PHYS,
