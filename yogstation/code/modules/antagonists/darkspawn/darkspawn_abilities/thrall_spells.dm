@@ -311,7 +311,7 @@
 
 /datum/action/cooldown/spell/pointed/thrallbuff/cast(atom/cast_on) //this looks like a mess, i'm sure it can be optimized
 	. = ..()
-	if(get_dist(cast_on, owner) > 10)
+	if(get_dist(cast_on, owner) > 7)
 		playsound(get_turf(cast_on), sound, 50, TRUE)
 	owner.balloon_alert(owner, "[language_output]")
 	for(var/mob/living/carbon/target in range(buff_range, cast_on))
