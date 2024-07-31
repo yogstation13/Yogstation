@@ -301,7 +301,7 @@
 	/// Colour of the outline that gets temporarily applied
 	var/outline_colour
 	/// Duration of the buff (also used for the visual effect)
-	var/buff_duration = 9
+	var/buff_duration = 1 SECONDS
 
 /datum/action/cooldown/spell/pointed/thrallbuff/before_cast(atom/cast_on)
 	. = ..()
@@ -348,12 +348,12 @@
 	desc = "Target a location, heals all thralls within a 9x9 area."
 	button_icon_state = "heal_veils"
 	language_output = "Plyn othra"
-	outline_colour = COLOR_VIBRANT_LIME
 	var/heal_amount = 70
 
 /datum/action/cooldown/spell/pointed/thrallbuff/heal/empower(mob/living/carbon/target)
 	to_chat(target, span_velvet("You feel healed."))
-	target.heal_ordered_damage(heal_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE, BRAIN), BODYPART_ANY)
+	if(target.heal_ordered_damage(heal_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE, BRAIN), BODYPART_ANY))
+		new /obj/effect/temp_visual/heal(get_turf(target), COLOR_GREEN) //if it does any healing, spawn a heal visual, maybe it won't blow the cover of a thrall that happens to be full health
 
 ////////////////////////////Temporary speed boost//////////////////////////
 /datum/action/cooldown/spell/pointed/thrallbuff/speed
