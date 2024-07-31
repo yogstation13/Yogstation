@@ -1,0 +1,9 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "IPC insurgents no longer have implants that give them away"
+  - tweak: "IPC insurgents no longer need to recharge"
+  - bugfix: "IPC insurgents no longer have flavour text that can give them away"
+  - bugfix: "Fixes IPC insurgents not properly disguising as species that don't have mutant colors"
+  - bugfix: "Fixes IPC insurgents no longer use robotic damage terms while disguised"
+  - bugfix: "Fixes IPC insurgents having an incorrect chat bubble while disguised"
