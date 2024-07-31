@@ -73,8 +73,10 @@
 
 		//Sort into different data lists depending on what the item is
 		if(istype(item, /obj/item/reagent_containers/food/snacks/ice_cream_scoop))
+			details["selected_item"] = selected_scoop
 			data["ice_cream"] += list(details)
 		else
+			details["selected_item"] = selected_cone
 			data["cones"] += list(details)
 
 	//Send stored information to UI	
