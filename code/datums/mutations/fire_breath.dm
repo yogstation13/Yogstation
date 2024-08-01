@@ -53,7 +53,12 @@
 
 	var/mob/living/carbon/our_lizard = cast_on
 	if(!our_lizard.is_mouth_covered())
-		return
+		if(ismecha(our_lizard.loc)) // might be inside a mech that's sealed off
+			var/obj/mecha/lizard_mech = our_lizard.loc
+			if(!lizard_mech.enclosed)
+				return
+		else
+			return
 
 	our_lizard.adjust_fire_stacks(cone_levels)
 	our_lizard.ignite_mob()
