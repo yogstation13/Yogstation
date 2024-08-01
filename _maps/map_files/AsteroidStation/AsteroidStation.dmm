@@ -15401,7 +15401,7 @@
 	name = "Loading Doors";
 	pixel_x = 7;
 	pixel_y = -24;
-	req_access = list(ACCESS_CARGO_BAY))
+	req_access = list(ACCESS_CARGO_BAY)
 	},
 /obj/machinery/button/door{
 	id = "QMLoaddoor2";
