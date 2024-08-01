@@ -54,7 +54,7 @@
 		R = reagent_type
 		//We evaporate. bye bye
 		if(initial(R.evaporates))
-			var/remove_amount = min((initial(R.evaporation_rate)), R.volume, (liquid_group.reagents_per_turf / length(liquid_group.reagents.reagent_list.len)))
+			var/remove_amount = min((initial(R.evaporation_rate)), R.volume, (liquid_group.reagents_per_turf / length(liquid_group.reagents.reagent_list)))
 			liquid_group.remove_specific(src, remove_amount, R, TRUE)
 			any_change = TRUE
 			R.evaporate(src.loc, remove_amount)
