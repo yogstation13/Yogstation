@@ -54,11 +54,15 @@
 		R = reagent_type
 		//We evaporate. bye bye
 		if(initial(R.evaporates))
-			var/remove_amount = min((initial(R.evaporation_rate)), R.volume, (liquid_group.reagents_per_turf / length(liquid_group.reagents.reagent_list)))
+			var/remove_amount = min((initial(R.evaporation_rate) * GLOB.global_evaporation_rate), R.volume, (liquid_group.reagents_per_turf / length(liquid_group.reagents.reagent_list)))
 			liquid_group.remove_specific(src, remove_amount, R, TRUE)
 			any_change = TRUE
 			R.evaporate(src.loc, remove_amount)
-
+		if(initial(R.group_evaporation_rate))
+			var/remove_amount = min((initial(R.group_evaporation_rate) * GLOB.global_evaporation_rate), liquid_group.total_reagent_volume, (liquid_group.reagents_per_turf / length(liquid_group.reagents.reagent_list)))
+			liquid_group.remove_any(src, remove_amount)
+			any_change = TRUE
+			R.evaporate(src.loc, remove_amount)
 	if(!any_change)
 		SSliquids.evaporation_queue -= my_turf
 		return

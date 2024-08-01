@@ -209,8 +209,12 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		return ..()
 	var/obj/effect/abstract/liquid_turf/old_liquids = liquids
 	var/datum/liquid_group/old_group = liquids?.liquid_group
+	var/evaporating = FALSE
 	if(old_group)
 		old_group.remove_from_group(liquids.my_turf)
+		if(SSliquids.evaporation_queue[src])
+			evaporating = TRUE
+			SSliquids.evaporation_queue -= src
 	if ((flags & CHANGETURF_INHERIT_AIR) && ispath(path, /turf/open))
 		var/datum/gas_mixture/stashed_air = new()
 		stashed_air.copy_from(air)
@@ -232,6 +236,8 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 			old_liquids.my_turf = newTurf
 			newTurf.liquids = old_liquids
 			old_group.add_to_group(newTurf)
+			if(evaporating)
+				SSliquids.evaporation_queue[newTurf] = TRUE
 	else
 		if(turf_fire)
 			qdel(turf_fire)

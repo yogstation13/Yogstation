@@ -1,5 +1,7 @@
 #define REM REAGENTS_EFFECT_MULTIPLIER
 
+GLOBAL_VAR_INIT(global_evaporation_rate, 1)
+
 GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 /proc/build_name2reagent()
@@ -89,6 +91,8 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/opacity = 175
 	///The rate of evaporation in units per call
 	var/evaporation_rate = 1
+	///The rate of evaporation for the entire GROUP per call, for special things like drying agent
+	var/group_evaporation_rate = 0
 	/// do we have a turf exposure (used to prevent liquids doing un-needed processes)
 	var/turf_exposure = FALSE
 	/// are we slippery?

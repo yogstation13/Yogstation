@@ -1638,6 +1638,8 @@
 	reagent_state = LIQUID
 	color = "#A70FFF"
 	taste_description = "dryness"
+	group_evaporation_rate = 16
+	evaporation_rate = 0 //will never evaporate on it's own
 
 /datum/reagent/drying_agent/reaction_turf(turf/open/T, reac_volume)
 	if(istype(T))

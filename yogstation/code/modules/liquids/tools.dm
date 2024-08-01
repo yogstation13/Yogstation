@@ -1,5 +1,5 @@
 /client/proc/spawn_liquid()
-	set category = "Admin.Unused"
+	set category = "Misc.Unused"
 	set name = "Spawn Liquid"
 	set desc = "Spawns an amount of chosen liquid at your current location."
 
@@ -32,7 +32,7 @@
 
 /client/proc/remove_liquid()
 	set name = "Remove Liquids"
-	set category = "Admin.Unused"
+	set category = "Misc.Unused"
 	set desc = "Removes liquids in a specified radius."
 	var/turf/epicenter = get_turf(mob)
 
