@@ -53,7 +53,7 @@
 
 	var/mob/living/carbon/our_lizard = cast_on
 	if(!our_lizard.is_mouth_covered())
-		if(ismecha(our_lizard.loc)) // might be inside a mech that's sealed off
+		if(ismecha(our_lizard.loc)) // if inside an enclosed mech, the fire will be trapped inside
 			var/obj/mecha/lizard_mech = our_lizard.loc
 			if(!lizard_mech.enclosed)
 				return
@@ -68,6 +68,10 @@
 	. = ..()
 	if(!isliving(cast_on))
 		return
+	if(ismecha(our_lizard.loc)) // the fire has nowhere to go and doesn't leave the mech, unless it's open
+		var/obj/mecha/lizard_mech = our_lizard.loc
+		if(lizard_mech.enclosed)
+			return
 
 	var/mob/living/living_cast_on = cast_on
 	// When casting, throw the caster backwards a few tiles.
