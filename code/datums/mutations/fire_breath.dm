@@ -69,7 +69,7 @@
 	if(!isliving(cast_on))
 		return
 	if(ismecha(cast_on.loc)) // the fire has nowhere to go and doesn't leave the mech, unless it's open
-		var/obj/mecha/lizard_mech = our_lizard.loc
+		var/obj/mecha/lizard_mech = cast_on.loc
 		if(lizard_mech.enclosed)
 			return
 
