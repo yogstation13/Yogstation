@@ -9,10 +9,10 @@
 	name = "camera bug"
 	desc = "For illicit snooping through the camera network."
 	icon = 'icons/obj/device.dmi'
-	icon_state	= "camera_bug"
-	w_class		= WEIGHT_CLASS_TINY
-	item_state	= "camera_bug"
-	throw_speed	= 4
+	icon_state = "camera_bug"
+	w_class = WEIGHT_CLASS_TINY
+	item_state = "camera_bug"
+	throw_speed = 4
 	throw_range	= 20
 	item_flags = NOBLUDGEON
 
