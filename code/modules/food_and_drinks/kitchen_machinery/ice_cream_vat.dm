@@ -10,7 +10,7 @@
 	max_integrity = 300
 	//Ice cream to be dispensed into cone on attackby
 	var/selected_scoop = null
-	//Cone to be dispenced with alt click
+	//Cone to be dispensed with alt click
 	var/selected_cone = null
 	//Max amount of items that can be in vat's storage
 	var/storage_capacity = 120
@@ -118,38 +118,101 @@
 /obj/machinery/ice_cream_vat/examine(mob/user)
 	. = ..()
 
-	//Cones
+	//Selected cones
 	if(selected_cone == null)
 		. += span_notice("You can <b>Alt Click</b> to dispense a cone once one is selected.")
 	else
 		var/obj/item/reagent_containers/food/snacks/examine_cone = new selected_cone
 		. += span_notice("<b>Alt Click</b> to dispense [examine_cone.name].")
 
-	//Scoops
+	//Selected scoops
 	if(selected_scoop == null)
 		. += span_notice("No ice cream scoop currently selected.")
 	else
 		var/obj/item/reagent_containers/food/snacks/examine_scoop = new selected_scoop
 		. += span_notice("[examine_scoop.name] is currently selected.")
 
+	//Scooping cone instruction
+	. += span_notice("<b>Right Click</b> to add a scoop to a cone.")
+
+//For dispensing selected cone
 /obj/machinery/ice_cream_vat/AltClick(mob/living/carbon/user)
 	if(selected_cone != null)
 		dispense_item(selected_cone)
 	else
 		user.balloon_alert(user, "None selected!")
 
+//For scooping cones
+/obj/machinery/ice_cream_vat/attackby_secondary(obj/item/A, mob/user, params)
+	//Check if item is a cone
+	if(istype(A, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
+		var/obj/item/reagent_containers/food/snacks/ice_cream_cone/cone = A
+		//Check if cone is scooped
+		if(cone.scooped == FALSE)
+			//Check if a scoop has been selected
+			if(selected_scoop != null)
+				//Check if there are any of selected scoop in contents
+				if(find_amount(selected_scoop) > 0)
+					//Select last of selected scoop in contents
+					var/obj/item/reagent_containers/food/snacks/cone_scoop = LAZYACCESS(contents, last_index(selected_scoop))
+					//Remove scoop from contents and add relevant variables to cone
+					cone_scoop.forceMove(loc)
+					cone.reagents.reagent_list += cone_scoop.reagents.reagent_list
+					cone.foodtype = cone_scoop.foodtype
+					//Change description of cone
+					cone.desc = "[cone.base_desc] with a [cone_scoop.name]."
+					//Add overlay of scoop to cone
+					cone.add_overlay(cone_scoop.icon_state)
+					//Alert that the cone has been scooped
+					user.visible_message(span_notice("[user] scoops a [cone_scoop.name] into the [cone.name]"), span_notice("You scoop a [cone_scoop.name] into the [cone.name]"))
+					//Set scooped to TRUE
+					cone.scooped = TRUE
+					//Delete scoop
+					qdel(cone_scoop)
+
+					playsound(src, 'sound/effects/rustle2.ogg', 50, TRUE, extrarange = -3)
+
+				//Warn user that there are no selected scoops left
+				else
+					user.balloon_alert(user, "No selected scoops in storage!")
+
+			//Warn user about no selected scoop
+			else
+				user.balloon_alert(user, "No scoop selected!")
+
+		//Warn user about cone already being scooped
+		else
+			user.balloon_alert(user, "Already scooped!")
+
+	//Warn user about invalid item
+	else
+		user.balloon_alert(user, "Invalid item!")
+
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+//For adding items to storage
 /obj/machinery/ice_cream_vat/attackby(obj/item/A, mob/user, params)
-	//Adding individual item to storage
-	if(istype(A, /obj/item/reagent_containers/food/snacks/ice_cream_cone) || istype(A, /obj/item/reagent_containers/food/snacks/ice_cream_scoop))
+	//For adding individual items
+	if(istype(A, /obj/item/reagent_containers/food/snacks/ice_cream_cone) || istype(A, /obj/item/reagent_containers/food/snacks/ice_cream_scoop))	
 		//Check if there is room
 		if(contents.len < storage_capacity)
+			//If a cone, check if it has already been scooped. If it has, do not store it
+			if(istype(A, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
+				var/obj/item/reagent_containers/food/snacks/ice_cream_cone/cone = A
+				if(cone.scooped == TRUE)
+					user.balloon_alert(user, "Cannot store scooped cones!")
+
+					return
+			//Move item to content
 			A.forceMove(src)
 			user.visible_message(span_notice("[user] inserts [A] into [src]."), span_notice("You insert [A] into [src]."))
 			playsound(src, 'sound/effects/rustle2.ogg', 50, TRUE, extrarange = -3)
 
 			return
 		else
+			//Warn about full capacity
 			user.balloon_alert(user, "No space!")
+
 	//Adding carton contents to storage
 	else if(istype(A, /obj/item/storage/box/ice_cream_carton))
 		var/end_message = "[user] empties the [A] into [src]."
@@ -181,8 +244,9 @@
 				user.balloon_alert(user, "Carton empty!")
 			else
 				user.balloon_alert(user, "Vat full!")
-
 			return
+
+	
 
 	..()
 
@@ -201,10 +265,10 @@
 	var/obj/item/reagent_containers/food/snacks/ui_item = new received_item
 
 	if(find_amount(ui_item) > 0)
-		var/obj/item/reagent_containers/food/snacks/dispenced_item = LAZYACCESS(contents, last_index(ui_item))
-		dispenced_item.forceMove(loc)
-		user.put_in_hands(dispenced_item)
-		user.visible_message(span_notice("[user] dispences [ui_item.name] from [src]."), span_notice("You dispence [ui_item.name] from [src]."))
+		var/obj/item/reagent_containers/food/snacks/dispensed_item = LAZYACCESS(contents, last_index(ui_item))
+		dispensed_item.forceMove(loc)
+		user.put_in_hands(dispensed_item)
+		user.visible_message(span_notice("[user] dispenses [ui_item.name] from [src]."), span_notice("You dispense [ui_item.name] from [src]."))
 		playsound(src, dispense_sound, 25, TRUE, extrarange = -3)
 	else
 		//For Alt click and when buttons don't disable themselves
@@ -262,7 +326,10 @@
 	icon = 'icons/obj/kitchen.dmi'
 	bitesize = 3
 	foodtype = GRAIN
-	var/ice_creamed = FALSE //FALSE when empty, TRUE when scooped
+	//Used for changing the description after being scooped
+	var/base_desc = null
+	//If the cone has a scoop or not
+	var/scooped = FALSE
 	//For adding chems to specific cones
 	var/extra_reagent = null
 	//Amount of extra_reagent to add to cone
@@ -277,14 +344,16 @@
 
 /obj/item/reagent_containers/food/snacks/ice_cream_cone/cake
 	name = "cake ice cream cone"
-	desc = "Delicious cake cone, but no ice cream."
+	desc = "A delicious cake cone, but with no ice cream."
 	icon_state = "icecream_cone_waffle"
 	tastes = list("bland" = 6)
+	base_desc = "A delicious cake cone"
 	extra_reagent = /datum/reagent/consumable/nutriment
 	
 /obj/item/reagent_containers/food/snacks/ice_cream_cone/chocolate
 	name = "chocolate ice cream cone"
-	desc = "Delicious chocolate cone, but no ice cream."
+	desc = "A delicious chocolate cone, but with no ice cream."
 	icon_state = "icecream_cone_chocolate"
 	tastes = list("bland" = 4, "chocolate" = 6)
+	base_desc = "A delicious chocolate cone"
 	extra_reagent = /datum/reagent/consumable/coco
