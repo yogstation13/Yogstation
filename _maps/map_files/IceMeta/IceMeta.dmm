@@ -5216,7 +5216,7 @@
 	id = "supplybridge";
 	name = "Shuttle Bay External Bridge Control";
 	pixel_y = 27;
-	req_access = list(ACCESS_EXTERNAL)
+	req_access = list(ACCESS_EXTERNAL_AIRLOCKS)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -44538,7 +44538,7 @@
 	id = "Podbaydoor";
 	pixel_x = 24;
 	pixel_y = -1;
-	req_access = list(ACCESS_EXTERNAL);
+	req_access = list(ACCESS_EXTERNAL_AIRLOCKS);
 	name = "Shipbreaking External Control"
 	},
 /turf/open/floor/plasteel/dark,
@@ -62935,7 +62935,7 @@
 	id = "Podbaydoor";
 	pixel_x = -24;
 	pixel_y = -1;
-	req_access = list(ACCESS_EXTERNAL);
+	req_access = list(ACCESS_EXTERNAL_AIRLOCKS);
 	name = "Shipbreaking External Control"
 	},
 /obj/machinery/light,
@@ -84200,7 +84200,7 @@
 	id = "supplybridge";
 	name = "Shuttle Bay External Bridge Control";
 	pixel_y = 27;
-	req_access = list(ACCESS_EXTERNAL)
+	req_access = list(ACCESS_EXTERNAL_AIRLOCKS)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
