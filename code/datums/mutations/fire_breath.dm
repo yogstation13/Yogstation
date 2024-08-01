@@ -53,25 +53,27 @@
 
 	var/mob/living/carbon/our_lizard = cast_on
 	if(!our_lizard.is_mouth_covered())
-		if(ismecha(our_lizard.loc)) // if inside an enclosed mech, the fire will be trapped inside
-			var/obj/mecha/lizard_mech = our_lizard.loc
-			if(!lizard_mech.enclosed)
-				return
-		else
-			return
+		return
 
 	our_lizard.adjust_fire_stacks(cone_levels)
 	our_lizard.ignite_mob()
 	to_chat(our_lizard, span_warning("Something in front of your mouth catches fire!"))
 
+/datum/action/cooldown/spell/cone/staggered/fire_breath/make_cone(list/cone_turfs, atom/caster)
+	if(ismecha(caster.loc))
+		var/obj/mecha/lizard_mech = caster.loc
+		if(lizard_mech.enclosed) // inside an enclosed exosuit, everything inside gets cooked
+			for(var/mob/living/cooked in lizard_mech)
+				cooked.adjust_fire_stacks(cone_levels)
+				cooked.ignite_mob()
+				to_chat(cooked, span_warning("You're cooked alive by the flames!"))
+			return
+	return ..()
+
 /datum/action/cooldown/spell/cone/staggered/fire_breath/after_cast(atom/cast_on)
 	. = ..()
 	if(!isliving(cast_on))
 		return
-	if(ismecha(cast_on.loc)) // the fire has nowhere to go and doesn't leave the mech, unless it's open
-		var/obj/mecha/lizard_mech = cast_on.loc
-		if(lizard_mech.enclosed)
-			return
 
 	var/mob/living/living_cast_on = cast_on
 	// When casting, throw the caster backwards a few tiles.
