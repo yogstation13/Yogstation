@@ -32,10 +32,6 @@ const speciesmap = {
     "icon": "robot",
     "color": "#edee1b",
   },
-  "Android": {
-    "icon": "cog",
-    "color": "#06b4cf",
-  },
   "Felinid": {
     "icon": "paw",
     "color": "#f52ab4",
