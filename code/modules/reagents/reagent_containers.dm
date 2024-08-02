@@ -11,7 +11,6 @@
 	var/list/list_reagents = null
 	var/spawned_disease = null
 	var/disease_amount = 20
-	var/spillable = FALSE
 
 /obj/item/reagent_containers/Initialize(mapload, vol)
 	. = ..()
@@ -30,7 +29,7 @@
 /obj/item/reagent_containers/proc/attack_on_liquids_turf(obj/item/reagent_containers/my_beaker, turf/T, mob/living/user, obj/effect/abstract/liquid_turf/liquids)
 	if(!user.Adjacent(T))
 		return FALSE
-	if(!my_beaker.spillable)
+	if(!my_beaker.is_open_container())
 		return FALSE
 	if(!user.Adjacent(T))
 		return FALSE
