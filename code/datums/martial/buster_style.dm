@@ -15,6 +15,13 @@
 	COOLDOWN_DECLARE(next_mop)
 	COOLDOWN_DECLARE(next_grapple)
 	COOLDOWN_DECLARE(next_slam)
+	var/soarslamdam = 7
+	var/soarobjdam = 50
+	var/dashdragdam = 8
+	var/dashcrashdam = 10
+	var/slamsupdam = 20
+	var/slamcrashdam = 10
+	var/slamwalldam = 20
 	var/old_density //so people grappling something arent pushed by it until it's thrown
 
 //proc the moves will use for damage dealing
@@ -134,7 +141,7 @@
 		old_density = I.density
 		if(ismecha(I)) 
 			I.anchored = FALSE
-		if(I.anchored == TRUE) 
+		if(I.anchored) 
 			if(istype(I, /obj/machinery/vending))
 				I.anchored = FALSE
 				I.visible_message(span_warning("[user] grabs [I] and tears it off the bolts securing it!"))
@@ -165,7 +172,7 @@
 		L.visible_message(span_warning("[user] grabs [L] and lifts [L.p_them()] off the ground!"))
 		to_chat(L, span_userdanger("[user] grapples you and lifts you up into the air! Resist [user.p_their()] grip!"))
 		L.forceMove(Z)
-		F.buckle_mob(target)
+		F.buckle_mob(target) //makes the victim follow with an invisible bed
 		walk_towards(F, user, 0, 0)
 		if(get_dist(L, user) > 1)
 			L.density = old_density
@@ -222,30 +229,28 @@
 
 
 
-/datum/martial_art/buster_style/proc/soar(mob/living/user, atom/movable/center, turf/endzone, distance = 0, list/thrown) //proc for throwing something you picked up with grapple
-	var/slamdam = 7
-	var/objdam = 50
+/datum/martial_art/buster_style/proc/soar(mob/living/user, atom/movable/center, turf/endzone, distance = 0, list/lobbed) //proc for throwing something you picked up with grapple
 	if(distance == 0)
 		return
 	var/dir_to_target = get_dir(get_turf(center), endzone) //vars that let the thing be thrown while moving similar to things thrown normally
 	var/turf/next = get_step(get_turf(center), dir_to_target)
 	if(next.density) // crash into a wall and damage everything flying towards it before stopping 
-		for(var/mob/living/S in thrown)
-			grab(user, S, slamdam) 
+		for(var/mob/living/S in lobbed)
+			grab(user, S, soarslamdam) 
 			S.Knockdown(1.0 SECONDS)
 			S.Immobilize(1.0 SECONDS)
 			if(isanimal(S) && S.stat == DEAD) 
 				S.gib()	
-		for(var/obj/O in thrown)
-			O.take_damage(objdam) 
+		for(var/obj/O in lobbed)
+			O.take_damage(soarobjdam) 
 			center.visible_message(span_warning("[O] collides with [next]!"))
 		thrown = null
 		return COMSIG_MOB_CANCEL_CLICKON
 	for(var/obj/Z in next.contents) //scooping obstacles up if theyre not nailed down, almost same as above otherwise
-		for(var/atom/movable/thrown_atom in thrown) 
+		for(var/atom/movable/thrown_atom in lobbed) 
 			if(Z.density == TRUE) 
 				if(thrown_atom.uses_integrity)
-					thrown_atom.take_damage(objdam)
+					thrown_atom.take_damage(soarobjdam)
 				thrown_atom.Bump(Z)
 				if(istype(thrown_atom, /obj/mecha)) //mechs are probably heavy as hell so stop flying after making contact with resistance
 					thrown -= thrown_atom
@@ -253,8 +258,8 @@
 			thrown |= Z 
 			Z.take_damage(50) 
 		if(Z.density == TRUE && Z.anchored == TRUE)
-			for(var/mob/living/S in thrown)
-				grab(user, S, slamdam) 
+			for(var/mob/living/S in lobbed)
+				grab(user, S, soarslamdam) 
 				S.Knockdown(1.0 SECONDS)
 				S.Immobilize(1.0 SECONDS)
 				if(isanimal(S) && S.stat == DEAD)
@@ -266,25 +271,25 @@
 					dumpster.do_flush()
 					thrown = null
 					return COMSIG_MOB_CANCEL_CLICKON
-			Z.take_damage(objdam)
+			Z.take_damage(soarobjdam)
 			if(Z.density == TRUE && Z.anchored == TRUE)
 				thrown = null
 				return COMSIG_MOB_CANCEL_CLICKON // if the solid thing we hit doesnt break then the thrown thing is stopped
 	for(var/mob/living/M in next.contents) // if the thrown mass hits a person then they get tossed and hurt too along with people in the thrown mass
 		if(user != M)
-			grab(user, M, slamdam) 
+			grab(user, M, soarslamdam) 
 			M.Knockdown(1.5 SECONDS) 
-			for(var/mob/living/S in thrown)
-				grab(user, S, slamdam) 
+			for(var/mob/living/S in lobbed)
+				grab(user, S, soarslamdam) 
 				S.Knockdown(1 SECONDS) 
 			thrown |= M 
-		for(var/obj/O in thrown)
-			O.take_damage(objdam) 
+		for(var/obj/O in lobbed)
+			O.take_damage(soarobjdam) 
 	if(next) // if the next tile wont stop the thrown mass from continuing
-		for(var/mob/living/S in thrown)
+		for(var/mob/living/S in lobbed)
 			S.Knockdown(1.0 SECONDS)
 			S.Immobilize(1.0 SECONDS)
-		for(var/atom/movable/K in thrown) // to make the mess of things that's being thrown almost look like a normal throw
+		for(var/atom/movable/K in lobbed) // to make the mess of things that's being thrown almost look like a normal throw
 			K.SpinAnimation(0.2 SECONDS, 1) 
 			K.forceMove(next)
 			if(isspaceturf(next)) //jettison
@@ -321,22 +326,20 @@
 
 
 /datum/martial_art/buster_style/proc/dashattack(mob/living/user, dir, distance = 0)
-	var/dragdam = 8
-	var/crashdam = 10
 	var/turf/front = get_step(get_turf(user), dir)
 	var/turf/further = get_step(front, dir)
 	if(distance == 0 || (!front) || (!further))
 		return
 	user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
 	for(var/mob/living/target in front)
-		(grab(user, target, dragdam))
+		(grab(user, target, dashdragdam))
 	if(further.density)
 		for(var/mob/living/target in front)
 			user.visible_message(span_warning("[user] rams [target] into [further]!"))
 			to_chat(target, span_userdanger("[user] rams you into [further]!"))
 			target.Bump(further)
 			target.Knockdown(1 SECONDS)
-			grab(user, target, crashdam)
+			grab(user, target, dashcrashdam)
 		return
 	for(var/mob/living/L in front.contents)
 		L.add_fingerprint(user, FALSE)
@@ -365,7 +368,7 @@
 			for(var/mob/living/shield in front.contents)
 				if(shield == user)
 					continue
-				grab(user, shield, crashdam)
+				grab(user, shield, dashcrashdam)
 				shield.Bump(object)
 				shield.Knockdown(1 SECONDS)
 				user.visible_message(span_warning("[user] rams [shield] into [object]!"))
@@ -393,9 +396,6 @@
 /datum/martial_art/buster_style/proc/slam(mob/living/user, mob/living/target)
 	if(!isliving(target) || !user.combat_mode || user == target)
 		return
-	var/supdam = 20
-	var/crashdam = 10
-	var/walldam = 20
 	var/turf/Z = get_turf(user)
 	if(!COOLDOWN_FINISHED(src, next_slam))
 		to_chat(user, span_warning("You can't do that yet!"))
@@ -405,7 +405,7 @@
 	var/turf/Q = get_step(get_turf(user), turn(user.dir,180)) 
 	if(Q.density)
 		var/turf/closed/wall/W = Q
-		grab(user, target, walldam) 
+		grab(user, target, slamwalldam) 
 		footsies(target)
 		if(isanimal(target) && target.stat == DEAD)
 			target.visible_message(span_warning("[target] explodes into gore on impact!"))
@@ -418,7 +418,7 @@
 		if(!istype(W, /turf/closed/wall/r_wall)) //cant break rwalls
 			W.dismantle_wall(1)
 		else		
-			grab(user, target, walldam) 
+			grab(user, target, slamwalldam) 
 			target.forceMove(Z) 
 			Z.break_tile()
 			return COMSIG_MOB_CANCEL_CLICKON 
@@ -434,14 +434,14 @@
 			user.visible_message(span_warning("[user] turns around and slams [target] against [D]!"))
 			target.Bump(D)
 			D.take_damage(400) 
-			grab(user, target, crashdam) 
+			grab(user, target, slamcrashdam) 
 			footsies(target)
 			if(isanimal(target) && target.stat == DEAD)
 				target.visible_message(span_warning("[target] explodes into gore on impact!"))
 				target.gib()
 			addtimer(CALLBACK(src, PROC_REF(wakeup), target), 0.2 SECONDS)
 	for(var/mob/living/M in Q.contents) 
-		grab(user, target, crashdam) 
+		grab(user, target, slamcrashdam) 
 		footsies(target)
 		if(isanimal(target) && target.stat == DEAD)
 			target.visible_message(span_warning("[target] explodes into gore on impact!"))
@@ -450,7 +450,7 @@
 		to_chat(target, span_userdanger("[user] throws you into [M]"))
 		to_chat(M, span_userdanger("[user] throws [target] into you!"))
 		user.visible_message(span_warning("[target] slams into [M]!"))
-		grab(user, M, crashdam) 
+		grab(user, M, slamcrashdam) 
 	Q.break_tile()
 	target.forceMove(Q) 
 	if(istype(Q, /turf/open/space)) //thrown away instead if theres no floor
@@ -464,7 +464,7 @@
 	to_chat(target, span_userdanger("[user] catches you with [user.p_their()] hand and crushes you on the ground!"))
 	user.visible_message(span_warning("[user] turns around and slams [target] against the ground!"))
 	user.setDir(turn(user.dir, 180))
-	grab(user, target, supdam) 
+	grab(user, target, slamsupdam) 
 	footsies(target)
 	if(isanimal(target) && target.stat == DEAD)
 		target.visible_message(span_warning("[target] explodes into gore on impact!"))
