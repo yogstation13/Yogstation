@@ -95,6 +95,14 @@
 	input = /obj/item/reagent_containers/food/snacks/grown/parsnip
 	output = /obj/item/reagent_containers/food/snacks/roastparsnip
 
+/datum/food_processor_process/raw_cake_cone
+	input = /obj/item/reagent_containers/food/snacks/raw_cone/cake
+	output = /obj/item/reagent_containers/food/snacks/ice_cream_cone/cake
+
+/datum/food_processor_process/raw_chocolate_cone
+	input = /obj/item/reagent_containers/food/snacks/raw_cone/chocolate
+	output = /obj/item/reagent_containers/food/snacks/ice_cream_cone/chocolate
+
 /datum/food_processor_process/mob/slime
 	input = /mob/living/simple_animal/slime
 	output = null

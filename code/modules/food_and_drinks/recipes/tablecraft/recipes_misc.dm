@@ -357,3 +357,21 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/pineapple_friedrice
 	category = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/raw_cake_cone
+	name = "Raw Cake Cone"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/rawpastrybase = 1,
+		/datum/reagent/consumable/sugar = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/raw_cone/cake
+	category = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/raw_chocolate_cone
+	name = "Raw Chocolate Cone"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/rawpastrybase = 1,
+		/datum/reagent/consumable/coco = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/raw_cone/chocolate
+	category = CAT_MISCFOOD
