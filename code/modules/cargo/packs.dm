@@ -493,7 +493,7 @@
 
 /datum/supply_pack/security/stormtrooper
 	name = "Stormtrooper Crate"
-	desc = "Three Sets of standard issue Stormtrooper Armor, Should help you defeat light-wielding wizards. Requires Security access to open."
+	desc = "Three sets of standard issue stormtrooper armor. Should help you defeat light-wielding wizards. Requires Security access to open."
 	cost = 10000
 	contains = list(/obj/item/clothing/suit/armor/stormtrooper,
 					/obj/item/clothing/suit/armor/stormtrooper,
@@ -502,6 +502,17 @@
 					/obj/item/clothing/head/helmet/stormtrooper,
 					/obj/item/clothing/head/helmet/stormtrooper)
 	crate_name = "stormtrooper crate"
+	crate_type = /obj/structure/closet/crate/secure/gear
+
+/datum/supply_pack/security/plasma_secsuit
+	name = "Plasmaman Security Envirosuit Crate"
+	desc = "Contains two sets of lightly-armored security envirosuits for Plasmamen. Order now and we'll throw in two free helmets! Requires Security access to open."
+	cost = 4000
+	contains = list(/obj/item/clothing/under/plasmaman/security,
+					/obj/item/clothing/under/plasmaman/security,
+					/obj/item/clothing/head/helmet/space/plasmaman/security,
+					/obj/item/clothing/head/helmet/space/plasmaman/security)
+	crate_name = "security envirosuit crate"
 	crate_type = /obj/structure/closet/crate/secure/gear
 
 //////////////////////////////////////////////////////////////////////////////

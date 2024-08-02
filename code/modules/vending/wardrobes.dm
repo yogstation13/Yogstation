@@ -58,9 +58,7 @@
 					/obj/item/clothing/head/helmet/secconhelm = 3,
 					/obj/item/clothing/suit/armor/secconcoat = 3,
 					/obj/item/clothing/head/beret/sec/secconhat = 3,
-					/obj/item/clothing/suit/armor/secconvest = 3,
-					/obj/item/clothing/under/plasmaman/security = 3,
-					/obj/item/clothing/head/helmet/space/plasmaman/security = 3)
+					/obj/item/clothing/suit/armor/secconvest = 3)
 	premium = list(/obj/item/clothing/under/rank/security/navyblue = 3,
 					/obj/item/clothing/suit/armor/officerjacket = 3,
 					/obj/item/clothing/head/beret/sec/navyofficer = 3)
