@@ -1,5 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - rscdel: "Removed security envirosuits from SecDrobes"
-  - rscadd: "Added security envirosuit crates to cargo, purchasable with 4000cr"
