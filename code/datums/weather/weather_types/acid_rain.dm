@@ -69,11 +69,9 @@
 		L.extinguish_mob() // permeability affects the negative fire stacks but not the extinguishing
 
 		// if preternis, update wetness instantly when applying more water instead of waiting for the next life tick
-		if(ishuman(L))
+		if(ispreternis(L) || isjellyperson(L))
 			var/mob/living/carbon/human/H = L
-			var/datum/species/preternis/P = H.dna?.species
-			if(istype(P))
-				P.handle_wetness(H)
+			H?.dna?.species?.spec_life(H)
 
 /**
  * Acid rain also injects toxic metabolites to mobs that can have reagents
