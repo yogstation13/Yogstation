@@ -50,8 +50,9 @@
 	var/list/data = list()
 	data["cones"] = list()
 	data["ice_cream"] = list()
+	data["tabs"] = list()
 
-	//Loop through list for data to send to UI
+	//Loop through starting list for data to send to main tab
 	for(var/item_detail in ui_list)
 
 		//Create needed list and variable for geting data for UI
@@ -78,6 +79,20 @@
 		else
 			details["selected_item"] = selected_cone
 			data["cones"] += list(details)
+
+	//Loop through children of /datum/info_tab/ice_cream_vat for data to send to info tab
+	for(var/info_detail in subtypesof(/datum/info_tab/ice_cream_vat))
+		
+		//Create needed list and variable for geting data for UI
+		var/list/details = list()
+		var/datum/info_tab/ice_cream_vat/item = new info_detail
+
+		//Get info from children
+		details["section_title"] = item.section
+		details["section_text"] = item.section_text
+
+		//Add info to data
+		data["info_tab"] += list(details)
 
 	//Send stored information to UI	
 	return data
@@ -348,7 +363,7 @@
 	icon_state = "icecream_cone_waffle"
 	tastes = list("bland" = 6)
 	base_desc = "A delicious cake cone"
-	extra_reagent = /datum/reagent/consumable/nutriment
+	extra_reagent = /datum/reagent/consumable/sugar
 	
 /obj/item/reagent_containers/food/snacks/ice_cream_cone/chocolate
 	name = "chocolate ice cream cone"
@@ -357,3 +372,26 @@
 	tastes = list("bland" = 4, "chocolate" = 6)
 	base_desc = "A delicious chocolate cone"
 	extra_reagent = /datum/reagent/consumable/coco
+
+///////////////////////////
+//ICE CREAM CONE CRAFTING//
+///////////////////////////
+
+/obj/item/reagent_containers/food/snacks/raw_cone
+	name = "raw cone"
+	desc = "Please report this, as this should not be seen."
+	icon = 'icons/obj/food/food_ingredients.dmi'
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
+	tastes = list("bland" = 6)
+	foodtype = GRAIN | DAIRY
+
+/obj/item/reagent_containers/food/snacks/raw_cone/cake
+	name = "raw cake cone"
+	desc = "A raw cake cone that needs to be processed."
+	icon_state = "raw_cake_cone"
+
+/obj/item/reagent_containers/food/snacks/raw_cone/chocolate
+	name = "raw chocolate cone"
+	desc = "A raw chocolate cone that needs to be processed."
+	icon_state = "raw_chocolate_cone"

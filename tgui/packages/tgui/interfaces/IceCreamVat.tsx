@@ -1,13 +1,18 @@
 import { capitalize } from 'common/string';
-import { useBackend } from '../backend';
-import { Button, Section, Table, Tabs, Box, TextArea,  } from '../components';
+import { useBackend, useLocalState } from '../backend';
+import { Button, Section, Table, Tabs, Box, TextArea, Stack } from '../components';
 import { Window } from '../layouts';
 import { resolveAsset } from './../assets';
 
 //Store data for cones and scoops within Data
 type Data = {
+  tabs: Tab[];
+}
+
+type Tab = {
   cones: ConeStats[];
   ice_cream: IceCreamStats[];
+  info_tab: InformationStats[];
 }
 
 //Stats specific for scoops
@@ -28,7 +33,21 @@ type ConeStats = {
   selected_item: string;
 }
 
+//Stats for info tab
+type InformationStats = {
+  section_title: string;
+  section_content: string;
+}
+
 export const IceCreamVat = (props, context) => {
+  const { data } = useBackend<Data>(context)
+
+  const { tabs = [] } = data;
+  const [ selectedMainTab, setMainTab ] = useLocalState<Tab>(
+    context,
+    'tab',
+    tabs[0]
+  )
 
   return(
     //Create window for ui
@@ -36,14 +55,25 @@ export const IceCreamVat = (props, context) => {
       {/* Add constants to window and make it scrollable */}
       <Window.Content
         scrollable>
-        {/* Add in rows for cones */}
-        <Section title="Cones">
-          <ConeRow/>
-        </Section>
-        {/* Add in rows for scoops */}
-        <Section title="Scoops">
-          <IceCreamRow/>
-        </Section>
+        <Stack>
+          <Tabs>
+            <Tabs.Tab
+              title="Vat">
+              {/* Add in rows for cones */}
+              <Section title="Cones">
+                <ConeRow/>
+              </Section>
+              {/* Add in rows for scoops */}
+              <Section title="Scoops">
+                <IceCreamRow/>
+              </Section>
+            </Tabs.Tab>
+            <Tabs.Tab
+              title="Infomation">
+              <InfoTab/>
+            </Tabs.Tab>
+          </Tabs>
+        </Stack>
       </Window.Content>
     </Window>
   );
@@ -51,7 +81,7 @@ export const IceCreamVat = (props, context) => {
 
 const ConeRow = (props, context) => {
   //Get data from ui_data in backend code
-  const { act, data } = useBackend<Data>(context);
+  const { act, data } = useBackend<Tab>(context);
   //Get cones information from data
   const { cones = [] } = data;
 
@@ -120,7 +150,7 @@ const ConeRow = (props, context) => {
 
 const IceCreamRow = (props, context) => {
   //Get data from ui_data in backend code
-  const { act, data } = useBackend<Data>(context);
+  const { act, data } = useBackend<Tab>(context);
   //Get ice_cream information from data
   const { ice_cream = [] } = data;
 
@@ -184,5 +214,23 @@ const IceCreamRow = (props, context) => {
         </Table.Row>
      ))}
     </Table>
+  );
+};
+
+const InfoTab = (props, context) => {
+  //Get data from ui_data in backend code
+  const { act, data } = useBackend<Tab>(context);
+  //Get ice_cream information from data
+  const { info_tab = [] } = data;
+
+  return (
+      <Tabs verticle>
+        {info_tab.map(information => (
+        <Tabs.Tab
+          title={information.section_title}>
+          {information.section_content}
+        </Tabs.Tab>
+         ))}
+      </Tabs>
   );
 };
