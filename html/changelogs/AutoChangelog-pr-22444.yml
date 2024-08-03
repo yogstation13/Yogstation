@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Bombnanas no longer come from silver slime extracts"
+  - bugfix: "Bombnanas now appear slippery like their non bomb counterparts"
