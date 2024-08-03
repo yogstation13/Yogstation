@@ -15,8 +15,6 @@
 	var/list/access_log = list()
 	/// Output from compiling to the servers
 	var/list/compiler_output = list()
-	/// Which tab to be viewing
-	var/view_mode = VIEW_COMPILE
 
 	circuit = /obj/item/circuitboard/computer/telecomms/comm_traffic
 
