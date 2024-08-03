@@ -61,7 +61,7 @@ const ScriptEditor = (props, context) => {
 
 const MainMenu = (props, context) => {
   const { act, data } = useBackend(context);
-  const { user_name } = data;
+  const { emagged, user_name } = data;
   const [tabIndex, setTabIndex] = useLocalState(context, "tab-index", 1);
   return (
     <>
@@ -73,6 +73,7 @@ const MainMenu = (props, context) => {
               icon="power-off"
               color="purple"
               content="Log Out"
+              disabled={emagged}
               onClick={() => act('log_out')}
             />
           </Stack.Item>
@@ -139,7 +140,7 @@ const CompilerOutput = (props, context) => {
 
 const ServerList = (props, context) => {
   const { act, data } = useBackend(context);
-  const { compiler_output, network, server_data, show_logs, user_name } = data;
+  const { network, server_data } = data;
   return (
     <>
       <Box>
