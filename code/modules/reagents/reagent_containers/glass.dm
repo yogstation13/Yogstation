@@ -7,6 +7,8 @@
 	resistance_flags = ACID_PROOF
 
 
+
+
 /obj/item/reagent_containers/glass/attack(mob/M, mob/living/user, obj/target)
 	if(!canconsume(M, user))
 		return
@@ -112,6 +114,8 @@
 	icon_state = "beaker"
 	item_state = "beaker"
 	materials = list(/datum/material/glass=500)
+	pickup_sound = 'sound/items/handling/beaker_pickup.ogg'
+	drop_sound = 'sound/items/handling/beaker_place.ogg'
 
 /obj/item/reagent_containers/glass/beaker/Initialize(mapload)
 	. = ..()
