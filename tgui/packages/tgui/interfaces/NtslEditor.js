@@ -44,16 +44,17 @@ const ScriptEditor = (props, context) => {
   return (
     <Box width="100%" height="100%">
       {user_name ?
-      <TextArea
-        value={stored_code}
-        width="100%"
-        height="100%"
-        onChange={(e, value) => act('save_code', {
-          saved_code: value,
-        })}
-      /> : <Section width="100%" height="100%">
-        {stored_code}
-      </Section>
+        <TextArea
+          value={stored_code}
+          width="100%"
+          height="100%"
+          onChange={(e, value) => act('save_code', {
+            saved_code: value,
+          })}
+        /> :
+        <Section width="100%" height="100%">
+          {stored_code}
+        </Section>
       }
     </Box>
   );
@@ -123,12 +124,13 @@ const CompilerOutput = (props, context) => {
       <Box>
         <Button
           mb={1}
+          icon="save"
           content='Compile & Run'
           onClick={() => act('compile_code')}
         />
       </Box>
       <Window.Content fill scrollable mt={10}>
-        {compiler_output ? compiler_output.map((error_message, index) => (
+        {compiler_output ? compiler_output.map((error_message, key) => (
           <Box>
             {error_message}
           </Box>
@@ -146,6 +148,7 @@ const ServerList = (props, context) => {
       <Box>
         <Button
           mb={1}
+          icon="sync"
           content='Reconnect to Network'
           onClick={() => act('refresh_servers')}
         />
@@ -159,7 +162,7 @@ const ServerList = (props, context) => {
           })}
         />
       </Box>
-        {server_data.map((nt_server, index) => (
+        {server_data.map((nt_server, key) => (
           <Box>
               <Button.Checkbox
                 mb={0.5}
@@ -190,7 +193,7 @@ const LogViewer = (props, context) => {
         />
       </Box>
       <Window.Content fill scrollable mt={10}>
-        {access_log ? access_log.map((access_message, index) => (
+        {access_log ? access_log.map((access_message, key) => (
           <Box>
             {access_message}
           </Box>
