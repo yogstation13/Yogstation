@@ -65,8 +65,6 @@
 
 /datum/weather/acid_rain/proc/is_acid_immune(atom/L)
 	while (L && !isturf(L))
-		if(ismecha(L)) //Mechs are immune
-			return TRUE
 		if(isliving(L))// if we're a non immune mob inside an immune mob we have to reconsider if that mob is immune to protect ourselves
 			var/mob/living/the_mob = L
 			var/acid_armour = the_mob.getarmor(null, ACID)

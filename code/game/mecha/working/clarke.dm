@@ -10,6 +10,7 @@
 	fast_pressure_step_in = 1.5
 	slow_pressure_step_in = 2
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	weather_protection = WEATHER_LAVA|WEATHER_STORM
 	light_power = 7
 	deflect_chance = 10
 	flags_1 = HEAR_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
