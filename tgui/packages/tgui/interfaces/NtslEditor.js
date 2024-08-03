@@ -129,13 +129,13 @@ const CompilerOutput = (props, context) => {
           onClick={() => act('compile_code')}
         />
       </Box>
-      <Window.Content fill scrollable mt={10}>
-        {compiler_output ? compiler_output.map((error_message, key) => (
-          <Box>
+      <Section fill scrollable height="90%">
+        {compiler_output ? compiler_output.map((error_message, index) => (
+          <Box key={index}>
             {error_message}
           </Box>
         )) : "No compile errors."}
-      </Window.Content>
+      </Section>
     </>
   );
 };
@@ -162,8 +162,9 @@ const ServerList = (props, context) => {
           })}
         />
       </Box>
-        {server_data.map((nt_server, key) => (
-          <Box>
+      <Section fill scrollable height="85%">
+        {server_data.map((nt_server, index) => (
+          <Box key={index}>
               <Button.Checkbox
                 mb={0.5}
                 checked={nt_server.run_code}
@@ -174,6 +175,7 @@ const ServerList = (props, context) => {
               />
           </Box>
         ))}
+      </Section>
     </>
   );
 };
@@ -192,13 +194,13 @@ const LogViewer = (props, context) => {
           onClick={() => act('clear_logs')}
         />
       </Box>
-      <Window.Content fill scrollable mt={10}>
-        {access_log ? access_log.map((access_message, key) => (
-          <Box>
+      <Section fill scrollable height="90%">
+        {access_log ? access_log.map((access_message, index) => (
+          <Box key={index}>
             {access_message}
           </Box>
         )) : "Access log could not be found. Please contact an administrator."}
-      </Window.Content>
+      </Section>
     </>
   );
 };
