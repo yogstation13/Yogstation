@@ -357,7 +357,7 @@
 
 ////////////////////////////Temporary speed boost//////////////////////////
 /datum/action/cooldown/spell/pointed/thrallbuff/speed
-	name = "Thrall envigorate"
+	name = "Thrall invigorate"
 	desc = "Target a location, gives a temporary speed boost to all thralls within a 9x9 area."
 	button_icon_state = "speedboost_veils"
 	language_output = "Vyzthun"

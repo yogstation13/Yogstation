@@ -128,7 +128,7 @@
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/thrallbuff/heal)
 	
 /datum/psi_web/thrall_speed
-	name = "Thrall Envigorate"
+	name = "Thrall Invigorate"
 	desc = "Target a location, gives a temporary speed boost to all thralls within a 9x9 area."
 	lore_description = "Thralls are expendable, push them until they break."
 	icon_state = "speedboost_veils"
