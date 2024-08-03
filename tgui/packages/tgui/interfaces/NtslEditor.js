@@ -106,9 +106,9 @@ const MainMenu = (props, context) => {
               Logs
             </Tabs.Tab>
           </Tabs>
-          { tabIndex === 1 && <CompilerOutput/> }
-          { tabIndex === 2 && <ServerList/> }
-          { tabIndex === 3 && <LogViewer/> }
+          { tabIndex === 1 && <CompilerOutput /> }
+          { tabIndex === 2 && <ServerList /> }
+          { tabIndex === 3 && <LogViewer /> }
         </Section>
       }
     </>
