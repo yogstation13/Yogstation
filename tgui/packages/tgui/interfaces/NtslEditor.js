@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../backend';
-import { Button, Input, Table, Tabs, TextArea,  Section, Stack, Box } from '../components';
+import { Button, Input, Tabs, TextArea, Section, Stack, Box } from '../components';
 import { Window } from '../layouts';
 
 
@@ -56,8 +56,8 @@ const ScriptEditor = (props, context) => {
       </Section>
       }
     </Box>
-  )
-}
+  );
+};
 
 const MainMenu = (props, context) => {
   const { act, data } = useBackend(context);
@@ -106,14 +106,14 @@ const MainMenu = (props, context) => {
               Logs
             </Tabs.Tab>
           </Tabs>
-          {tabIndex === 1 && <CompilerOutput/>}
-          {tabIndex === 2 && <ServerList/>}
-          {tabIndex === 3 && <LogViewer/>}
+          { tabIndex === 1 && <CompilerOutput/> }
+          { tabIndex === 2 && <ServerList/> }
+          { tabIndex === 3 && <LogViewer/> }
         </Section>
       }
     </>
-  )
-}
+  );
+};
 
 const CompilerOutput = (props, context) => {
   const { act, data } = useBackend(context);
@@ -135,8 +135,8 @@ const CompilerOutput = (props, context) => {
         )) : "No compile errors."}
       </Window.Content>
     </>
-  )
-}
+  );
+};
 
 const ServerList = (props, context) => {
   const { act, data } = useBackend(context);
@@ -197,5 +197,5 @@ const LogViewer = (props, context) => {
         )) : "Access log could not be found. Please contact an administrator."}
       </Window.Content>
     </>
-  )
-}
+  );
+};
