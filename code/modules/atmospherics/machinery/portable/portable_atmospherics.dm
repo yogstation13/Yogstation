@@ -14,6 +14,10 @@
 
 	var/maximum_pressure = 90 * ONE_ATMOSPHERE
 
+	var/insert_sound = 'sound/effects/tank_insert_clunky.ogg'
+	var/remove_sound = 'sound/effects/tank_remove_thunk.ogg'
+	var/sound_vol = 50
+
 /obj/machinery/portable_atmospherics/Initialize(mapload)
 	. = ..()
 	SSair.start_processing_machine(src)
@@ -98,12 +102,16 @@
 			span_notice(" Click [src] with another gas tank to hot swap [holding].")
 
 /obj/machinery/portable_atmospherics/proc/replace_tank(mob/living/user, close_valve, obj/item/tank/new_tank)
+	if(!user)
+		return FALSE
 	if(holding)
 		holding.forceMove(drop_location())
+		playsound(src, remove_sound, sound_vol)
 		if(Adjacent(user) && !issiliconoradminghost(user))
 			user.put_in_hands(holding)
 	if(new_tank)
 		holding = new_tank
+		playsound(src, insert_sound, sound_vol)
 	else
 		holding = null
 	update_appearance(UPDATE_ICON)
