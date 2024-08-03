@@ -1,7 +1,3 @@
-#define VIEW_COMPILE 1
-#define VIEW_NETWORK 2
-#define VIEW_LOGS 3
-
 /obj/machinery/computer/telecomms/traffic
 	name = "telecommunications traffic control console"
 
@@ -125,11 +121,6 @@
 				return TRUE
 			create_log("has logged out.")
 			user_name = null
-			return TRUE
-		if("set_tab")
-			if(!user_name)
-				return
-			view_mode = params["new_tab"]
 			return TRUE
 		if("clear_logs")
 			if(!user_name)
