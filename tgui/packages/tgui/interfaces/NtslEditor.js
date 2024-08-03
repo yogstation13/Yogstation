@@ -128,7 +128,7 @@ const CompilerOutput = (props, context) => {
         />
       </Box>
       <Window.Content fill scrollable mt={10}>
-        {compiler_output ? compiler_output.map(error_message => (
+        {compiler_output ? compiler_output.map((error_message, index) => (
           <Box>
             {error_message}
           </Box>
@@ -159,7 +159,7 @@ const ServerList = (props, context) => {
           })}
         />
       </Box>
-        {server_data.map(nt_server => (
+        {server_data.map((nt_server, index) => (
           <Box>
               <Button.Checkbox
                 mb={0.5}
@@ -190,7 +190,7 @@ const LogViewer = (props, context) => {
         />
       </Box>
       <Window.Content fill scrollable mt={10}>
-        {access_log ? access_log.map(access_message => (
+        {access_log ? access_log.map((access_message, index) => (
           <Box>
             {access_message}
           </Box>
