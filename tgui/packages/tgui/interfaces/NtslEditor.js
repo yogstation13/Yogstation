@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../backend';
-import { Button, Input, Tabs, TextArea, Section, Stack, Box } from '../components';
+import { Box, Button, Divider, Input, Tabs, TextArea, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 
@@ -50,6 +50,9 @@ const ScriptEditor = (props, context) => {
           height="100%"
           onChange={(e, value) => act('save_code', {
             saved_code: value,
+          })}
+          onEnter={(e, value) => act('save_code', {
+            saved_code: value+"\n",
           })}
         /> :
         <Section width="100%" height="100%">
@@ -129,7 +132,8 @@ const CompilerOutput = (props, context) => {
           onClick={() => act('compile_code')}
         />
       </Box>
-      <Section fill scrollable height="90%">
+      <Divider />
+      <Section fill scrollable height="87.2%">
         {compiler_output ? compiler_output.map((error_message, index) => (
           <Box key={index}>
             {error_message}
@@ -162,7 +166,8 @@ const ServerList = (props, context) => {
           })}
         />
       </Box>
-      <Section fill scrollable height="85%">
+      <Divider />
+      <Section fill scrollable height="82%">
         {server_data.map((nt_server, index) => (
           <Box key={index}>
               <Button.Checkbox
@@ -194,7 +199,8 @@ const LogViewer = (props, context) => {
           onClick={() => act('clear_logs')}
         />
       </Box>
-      <Section fill scrollable height="90%">
+      <Divider />
+      <Section fill scrollable height="87.2%">
         {access_log ? access_log.map((access_message, index) => (
           <Box key={index}>
             {access_message}
