@@ -4,29 +4,19 @@ import { Window } from '../layouts';
 
 
 export const NtslEditor = (props, context) => {
-  const { act, data } = useBackend(context);
-
-  // Ideally we'd display a large window for it all...
-  const idealWidth = 800,
-    idealHeight = 600;
-
-  // ...but we should check for small screens, to play nicely with eg laptops.
-  const winWidth = window.screen.availWidth;
-  const winHeight = window.screen.availHeight;
-
   // Make sure we don't start larger than 50%/80% of screen width/height.
-  const width = Math.min(idealWidth, winWidth * 0.5);
-  const height = Math.min(idealHeight, winHeight * 0.8);
+  const winWidth = Math.min(900, window.screen.availWidth * 0.5);
+  const winHeight = Math.min(600, window.screen.availHeight * 0.8);
 
   return (
     <Window
       title="Traffic Control Console"
-      width={width}
-      height={height}
+      width={winWidth}
+      height={winHeight}
       >
       <Window.Content>
         <Stack fill>
-          <Stack.Item width="80%">
+          <Stack.Item width={winWidth-240}>
             <ScriptEditor />
           </Stack.Item>
           <Stack.Item>
@@ -45,6 +35,8 @@ const ScriptEditor = (props, context) => {
     <Box width="100%" height="100%">
       {user_name ?
         <TextArea
+          noborder
+          scrollbar
           value={stored_code}
           width="100%"
           height="100%"
