@@ -1,6 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "fixes slimepeople being unable to draw jelly blood using a syringe"
-  - bugfix: "fixes slimepeople being completely immune to all forms of bleeding"
-  - tweak: "Slime jelly is now a dark lime green instead of maroon"
