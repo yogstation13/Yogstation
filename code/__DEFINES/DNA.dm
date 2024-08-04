@@ -192,6 +192,8 @@
 #define HAIRCOLOR		26
 #define FACEHAIRCOLOR	27
 #define MUTCOLORS_SECONDARY		28
+/// doesn't care about their blood level through normal means, but still has it
+#define STABLEBLOOD 29
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
