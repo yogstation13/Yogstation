@@ -36,7 +36,7 @@ type ConeStats = {
 //Stats for info tab
 type InformationStats = {
   section_title: string;
-  section_content: string;
+  section_text: string;
 }
 
 export const IceCreamVat = (props, context) => {
@@ -209,20 +209,15 @@ const IceCreamRow = (props, context) => {
   );
 };
 
-const InfoRow = (props, context) => {
-  //Get data from ui_data in backend code
-  const { data } = useBackend<Tab>(context);
-
-  //Get data from tab
-  const[infoContent] = useLocalState<InformationStats | null>(context, "info", null);
-
-  if(infoContent!==null) {
+const InfoContentRow = (props, context) => {
+  //Get the tab's content
+  const[infoContent] = useLocalState(context, 'selectedInfoTab', "null");
     return (
-      <Section>
-        infoContent.section_content
+      <Section
+      fontSize="16px">
+        {infoContent}
       </Section>
     );
-  }
 };
 
 const VatTab = (props, context) => {
@@ -250,21 +245,26 @@ const InfoTab = (props, context) => {
 
   //Get info_tab information from data
   const { info_tab = [] } = data;
-  const [ selectedInfoTab, setInfoTab ] = useLocalState(context, 'selectedInfoTab', "Vat Instructions");
-
-  //Make a constant for storing the seleted tab's information
-  const[infoContent] = useLocalState<InformationStats | null>(context, "info", null);
+  //Make constant to transfer information to InfoContentRow
+  const [ selectedInfoTab, setInfoTab ] = useLocalState(context, 'selectedInfoTab', "null");
 
   return (
-      <Tabs vertical>
-        {info_tab.map(information => (
-        <Tabs.Tab
-        key={information.section_title}
-        selected={information.section_title === selectedInfoTab}
-        onClick={() => setInfoTab(information.section_title)}>
-          {information.section_title}
-        </Tabs.Tab>
-         ))}
-      </Tabs>
+    <Stack>
+        <Stack.Item>
+          <Tabs vertical>
+            {info_tab.map(information => (
+            <Tabs.Tab
+            key={information.section_title}
+            selected={information.section_text === selectedInfoTab}
+            onClick={() => setInfoTab(information.section_text)}>
+              {information.section_title}
+            </Tabs.Tab>
+            ))}
+          </Tabs>
+        </Stack.Item>
+        <Stack.Item>
+          <InfoContentRow/>
+        </Stack.Item>
+    </Stack>
   );
 };
