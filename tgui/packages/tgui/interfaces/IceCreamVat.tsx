@@ -40,8 +40,9 @@ type InformationStats = {
 }
 
 export const IceCreamVat = (props, context) => {
+  //Get information from backend code
   const { data } = useBackend<Data>(context)
-
+  // Make a variable for storing a number that represents the current selected tab
   const [ selectedMainTab, setMainTab ] = useLocalState(context, 'selectedMainTab', 0);
 
   return(
@@ -50,21 +51,32 @@ export const IceCreamVat = (props, context) => {
       {/* Add constants to window and make it scrollable */}
       <Window.Content
         scrollable>
+          {/* Create tabs for the vat and information tabs */}
           <Tabs fluid>
             <Tabs.Tab
               icon="ice-cream"
+              bold
+              //Show the vat tab when the selectedMainTab is 0
               selected={selectedMainTab === 0}
+              //Set selectedMainTab to 0 when the vat tab is clicked
               onClick={() => setMainTab(0)}>
+              {/* Put 'Vat' in the tab to differentiate it from other tabs */}
               Vat
             </Tabs.Tab>
             <Tabs.Tab
               icon="info"
+              bold
+              //Show the information tab when the selectedMainTab is 1
               selected={selectedMainTab === 1}
+              //Set selectedMainTab to 1 when the information tab is clicked
               onClick={() => setMainTab(1)}>
+              {/* Put 'Information' in the tab to differentiate it from other tabs */}
               Information
             </Tabs.Tab>
           </Tabs>
+          {/* If selectedMainTab is 0, show the UI elements in VatTab */}
           {selectedMainTab == 0 && <VatTab/>}
+          {/* If selectedMainTab is 1, show the UI elements in InfoTab */}
           {selectedMainTab == 1 && <InfoTab/>}
       </Window.Content>
     </Window>
@@ -210,9 +222,15 @@ const IceCreamRow = (props, context) => {
 };
 
 const InfoContentRow = (props, context) => {
-  //Get the tab's content
-  const[infoContent] = useLocalState(context, 'selectedInfoTab', "null");
-    return (
+  //Get data from ui_data in backend code
+  const { data } = useBackend<Tab>(context);
+  //Get info_tab information from data
+  const { info_tab = [] } = data;
+  //Make constant that starts with the section_text of the first element of info_tab and which will recieve new data from InfoTab
+  const[infoContent] = useLocalState(context, 'selectedInfoTab', info_tab[0].section_text);
+
+  //Return a section with the tab's section_text
+  return (
       <Section
       fontSize="16px">
         {infoContent}
@@ -242,26 +260,34 @@ const VatTab = (props, context) => {
 const InfoTab = (props, context) => {
   //Get data from ui_data in backend code
   const { data } = useBackend<Tab>(context);
-
   //Get info_tab information from data
   const { info_tab = [] } = data;
-  //Make constant to transfer information to InfoContentRow
-  const [ selectedInfoTab, setInfoTab ] = useLocalState(context, 'selectedInfoTab', "null");
+  //Make constant that starts with the section_text of the first element of info_tab and which can send new data to InfoContentRow
+  const [ selectedInfoTab, setInfoTab ] = useLocalState(context, 'selectedInfoTab', info_tab[0].section_text);
 
+  //Return organized elements for the main UI
   return (
+    //Stack them for appealing layout
     <Stack>
         <Stack.Item>
+          {/* Start tabs and make them vertical */}
           <Tabs vertical>
+            {/* Use map to allow for dynamic tabs */}
             {info_tab.map(information => (
+            //Create new tab based on current info_tab element
             <Tabs.Tab
-            key={information.section_title}
+            bold
+            //A tab is selected when the current element's section_text equals the value of selectedInfoTab
             selected={information.section_text === selectedInfoTab}
+            //When clicked, selectedInfoTab will be set to the clicked tab's section_text
             onClick={() => setInfoTab(information.section_text)}>
+              {/* Put the section_title in the tab to differentiate it from other tabs */}
               {information.section_title}
             </Tabs.Tab>
             ))}
           </Tabs>
         </Stack.Item>
+        {/* Show the section_text stored in selectedInfotab */}
         <Stack.Item>
           <InfoContentRow/>
         </Stack.Item>
