@@ -6,7 +6,7 @@
 /obj/item/clothing/shoes/xeno_wraps/science,
 /obj/item/clothing/shoes/jackboots,
 /obj/item/clothing/under/rank/scientist/skirt,
-/obj/item/clothing/under/rank/security/skirt,
+/obj/item/clothing/under/rank/security/officer/skirt,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/pod/light,
 /area/ruin/powered)
