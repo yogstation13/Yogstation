@@ -3,7 +3,8 @@
 	name = "\improper Marauder"
 	icon_state = "marauder"
 	step_in = 5
-	max_integrity = 500
+	max_integrity = 1000
+	integrity_failure = 500
 	deflect_chance = 25
 	armor = list(MELEE = 50, BULLET = 55, LASER = 40, ENERGY = 0, BOMB = 30, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_temperature = 60000
@@ -11,7 +12,6 @@
 	infra_luminosity = 3
 	operation_req_access = list(ACCESS_CENT_SPECOPS)
 	internals_req_access = list(ACCESS_CENT_SPECOPS)
-	wreckage = /obj/structure/mecha_wreckage/marauder
 	add_req_access = 0
 	internal_damage_threshold = 25
 	force = 40
@@ -50,7 +50,6 @@
 	internals_req_access = list(ACCESS_CENT_SPECOPS)
 	step_in = 3
 	max_integrity = 550
-	wreckage = /obj/structure/mecha_wreckage/seraph
 	internal_damage_threshold = 20
 	force = 50
 	max_equip = 6
@@ -81,10 +80,10 @@
 	icon_state = "mauler"
 	operation_req_access = list(ACCESS_SYNDICATE)
 	internals_req_access = list(ACCESS_SYNDICATE)
-	wreckage = /obj/structure/mecha_wreckage/mauler
 	max_equip = 8
 	destruction_sleep_duration = 20
 	ejection_distance = 8
+	self_destruct = 4
 
 /obj/mecha/combat/marauder/mauler/loaded/Initialize(mapload)
 	. = ..()

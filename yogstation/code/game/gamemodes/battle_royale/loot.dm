@@ -229,7 +229,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/singularityhammer = -2,
 		
 		/obj/item/vibro_weapon = -3, //Strong melee weapon, but not enough to be -5
-		/obj/item/autosurgeon/arm/syndicate/syndie_mantis = -3,
+		/obj/item/autosurgeon/suspicious/syndie_mantis = -3,
 		/obj/item/melee/chainsaw/demon = -3,
 
 		/obj/item/melee/dualsaber = -4,
@@ -333,8 +333,8 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/grenade/plastic/c4 = 3,
 
 		/obj/item/book/granter/action/spell/smoke/lesser = 2,
-		/obj/item/multisurgeon/jumpboots = 2,
-		/obj/item/autosurgeon/reviver = 2,
+		/obj/item/autosurgeon/jumpboots = 2,
+		/obj/item/autosurgeon/suspicious/reviver = 2,
 		/obj/item/grenade/plastic/c4 = 2,
 		/obj/effect/spawner/lootdrop/weakgene = 2,
 
@@ -347,20 +347,20 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/effect/spawner/lootdrop/ammobox = 0,
 		/obj/item/warp_whistle = 0,
 		/obj/item/gun/magic/staff/animate = 0, //no clue why you'd want this, but why not
-		/obj/item/multisurgeon/wheelies = 0,
+		/obj/item/autosurgeon/wheelies = 0,
 		/obj/item/grenade/plastic/c4 = 0, //it's c4 all the way down buddy
 
 		/obj/item/autosurgeon/thermal_eyes = -1,
-		/obj/item/autosurgeon/xray_eyes = -1,
+		/obj/item/autosurgeon/suspicious/xray_eyes = -1,
 		/obj/item/gun/magic/wand/door = -1,
 		/obj/item/gun/magic/staff/door = -1,
 		/obj/item/storage/backpack/duffelbag/syndie = -1,
 		/obj/item/slimecross/stabilized/red = -1,
-		/obj/item/autosurgeon/reviver = -1,
+		/obj/item/autosurgeon/suspicious/reviver = -1,
 		/obj/effect/spawner/lootdrop/ammobox = -1,
 		/obj/item/slime_sling = -1,
 
-		/obj/item/multisurgeon/airshoes = -2,
+		/obj/item/autosurgeon/suspicious/airshoes = -2,
 		/obj/item/grenade/syndieminibomb = -2,
 		/obj/item/dragons_blood = -2,
 		/obj/item/dragons_blood/refined = -2,
@@ -407,7 +407,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/bodypart/l_arm/robot/buster = -5,
 		/obj/item/demon_core = -5,
 
-		/obj/item/autosurgeon/syndicate/spinalspeed = -6, // No opportunity cost speed boost
+		/obj/item/autosurgeon/suspicious/spinalspeed = -6, // No opportunity cost speed boost
 
 		/obj/item/storage/belt/wands/full = -7, //not quite spellbook, but some of these wands are FUCKED
 		/obj/item/spellbook = -7, //literally auto-win IF you have the time to use it (a lot of spells are robe locked too)

@@ -18,6 +18,10 @@
 	armour_penetration = 100
 	dismemberment = 100
 
+/obj/projectile/bullet/a84mm/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_SHIELDBUSTER, INNATE_TRAIT) // you can't block a fucking missile, MQIIB!!!!!!!!
+
 /obj/projectile/bullet/a84mm/on_hit(atom/target, blocked = FALSE)
 	..()
 	explosion(target, -1, 1, 3, 1, 0, flame_range = 4)
@@ -50,7 +54,8 @@
 	/turf/closed,
 	/obj/mecha,
 	/obj/machinery/door/,
-	/obj/machinery/door/poddoor/shutters
+	/obj/machinery/door/poddoor/shutters,
+	/obj/structure/window
 	)
 
 /obj/item/broken_missile
@@ -77,6 +82,10 @@
 	damage = 30
 	demolition_mod = 20 // YARRR
 
+/obj/projectile/bullet/cball/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_SHIELDBUSTER, INNATE_TRAIT) // YO HO HO AND A BOTTLE OF BLACK POWDER
+
 /obj/projectile/bullet/cball/on_hit(atom/target, blocked=0)
 	var/atom/throw_target = get_edge_target_turf(target, firer.dir)
 	if(ismecha(target) || isliving(target))
@@ -90,8 +99,9 @@
 
 /obj/projectile/bullet/bolt
 	name = "bolt"
-	icon_state = "bolt"
 	desc = "A smaller and faster rod."
+	icon_state = "ka_tracer"
+	color = COLOR_ASSISTANT_GRAY
 	damage = 25
 
 /obj/projectile/bullet/cartridge

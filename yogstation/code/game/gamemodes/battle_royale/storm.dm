@@ -8,7 +8,7 @@
 	end_message = null
 	telegraph_duration = 10 SECONDS //actually give them a brief moment to react
 	end_duration = 1
-	immunity_type = "fuckno"
+	immunity_type = NONE
 	telegraph_sound = 'yogstation/sound/effects/battleroyale/stormclosing.ogg'
 	end_sound = 'yogstation/sound/effects/battleroyale/stormalert.ogg'
 	weather_duration = INFINITY

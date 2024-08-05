@@ -10,9 +10,7 @@
 
 spl99	=	Host
 Xantam	=	Host
- 
-aquizit = Council Member
-hisakaki = Council Member
+
 cowbot93 = Council Member
 
 jamied12	=	Head Developer

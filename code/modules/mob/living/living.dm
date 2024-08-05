@@ -170,9 +170,11 @@
 		return TRUE
 	//anti-riot equipment is also anti-push
 	for(var/obj/item/I in M.held_items)
-		if(!istype(M, /obj/item/clothing))
-			if(prob(I.block_chance*2))
-				return
+		var/datum/component/blocking/block_component = I.GetComponent(/datum/component/blocking)
+		if(!block_component) // can't use signals for this or it'll trip stuff like reactive armor
+			continue
+		if(block_component.blocking && block_component.can_block(M, src, 0, UNARMED_ATTACK))
+			return TRUE
 
 /mob/living/get_photo_description(obj/item/camera/camera)
 	var/list/mob_details = list()
@@ -883,11 +885,6 @@
 				if(what.doStrip(src, who))
 					log_combat(src, who, "stripped [what] off")
 
-	if(Adjacent(who)) //update inventory window
-		who.show_inv(src)
-	else
-		src << browse(null,"window=mob[REF(who)]")
-
 // The src mob is trying to place an item on someone
 // Override if a certain mob should be behave differently when placing items (can't, for example)
 /mob/living/stripPanelEquip(obj/item/what, mob/who, where)
@@ -918,11 +915,6 @@
 							what.forceMove(get_turf(who))
 					else
 						who.equip_to_slot(what, where, TRUE)
-
-		if(Adjacent(who)) //update inventory window
-			who.show_inv(src)
-		else
-			src << browse(null,"window=mob[REF(who)]")
 
 /mob/living/singularity_pull(S, current_size)
 	..()
@@ -1205,7 +1197,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	var/datum/status_effect/fire_handler/fire_handler = has_status_effect(/datum/status_effect/fire_handler)
 	if(fire_handler)
 		fire_handler.update_overlay()
-		
+
 /**
  * Extinguish all fire on the mob
  *
@@ -1698,7 +1690,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 //	if(!resting)
 //		get_up()
 	set_resting(FALSE)
-	
+
 /mob/living/proc/move_to_error_room()
 	var/obj/effect/landmark/error/error_landmark = locate(/obj/effect/landmark/error) in GLOB.landmarks_list
 	if(error_landmark)
@@ -1710,3 +1702,22 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		var/ERROR_ERROR_LANDMARK_ERROR = "ERROR-ERROR: ERROR landmark missing!"
 		log_mapping(ERROR_ERROR_LANDMARK_ERROR)
 		CRASH(ERROR_ERROR_LANDMARK_ERROR)
+
+//plays a short clipping animation then send the mob into the backrooms
+/mob/living/proc/clip_into_backrooms()
+	playsound(get_turf(src), 'yogstation/sound/effects/backrooms_clipping.ogg', 80, FALSE)
+	set_resting(FALSE)
+	Immobilize(1.9 SECONDS, TRUE, TRUE)
+	var/x_diff = 4
+	var/y_diff = 1
+	var/rotation = 40
+	if(prob(50))
+		rotation *= -1
+	animate(src, pixel_x = x_diff, pixel_y = y_diff, time = 0.5, transform = matrix(rotation + x_diff, MATRIX_ROTATE), loop = 18, flags = ANIMATION_RELATIVE|ANIMATION_PARALLEL)
+	animate(pixel_x = -x_diff , pixel_y = -y_diff, transform = matrix(rotation - x_diff, MATRIX_ROTATE), time = 0.5, flags = ANIMATION_RELATIVE)
+	sleep(1.8 SECONDS)
+	pixel_x = 0
+	pixel_y = 0
+	set_resting(FALSE)
+	transform = matrix()
+	sendToBackrooms()

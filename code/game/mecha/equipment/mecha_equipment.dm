@@ -39,9 +39,11 @@
 	var/list/action_type_list = equip_actions.Copy()
 	equip_actions = list()
 	for(var/path in action_type_list)
-		var/datum/action/innate/mecha/equipment/action = new path
-		action.equipment = src
-		equip_actions.Add(action)
+		var/datum/action/new_action = new path
+		if(istype(new_action, /datum/action/innate/mecha/equipment))
+			var/datum/action/innate/mecha/equipment/equip_action = new_action
+			equip_action.equipment = src
+		equip_actions.Add(new_action)
 	qdel(action_type_list)
 
 /obj/item/mecha_parts/mecha_equipment/proc/update_chassis_page()
@@ -106,19 +108,25 @@
 
 /obj/item/mecha_parts/mecha_equipment/proc/action_checks(atom/target)
 	if(!target)
-		return 0
+		return FALSE
 	if(!chassis)
-		return 0
+		return FALSE
 	if(!equip_ready)
-		return 0
+		return FALSE
 	if(energy_drain && !chassis.has_charge(energy_drain))
-		return 0
+		return FALSE
 	if(chassis.is_currently_ejecting)
-		return 0
+		return FALSE
 	if(chassis.equipment_disabled)
 		to_chat(chassis.occupant, "<span=warn>Error -- Equipment control unit is unresponsive.</span>")
-		return 0
-	return 1
+		return FALSE
+	if(isliving(target) && harmful && (HAS_TRAIT(chassis.occupant, TRAIT_PACIFISM) || !synth_check(chassis.occupant, SYNTH_RESTRICTED_WEAPON)))
+		to_chat(chassis.occupant, span_warning("You don't want to harm other living beings!"))
+		return FALSE
+	if(isliving(target) && harmful && HAS_TRAIT(chassis.occupant, TRAIT_NO_STUN_WEAPONS))
+		to_chat(chassis.occupant, span_warning("You cannot use non-lethal weapons!"))
+		return FALSE
+	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/proc/action(atom/target, mob/living/user, params)
 	return 0
@@ -233,10 +241,10 @@
 
 // Grant any actions to the pilot
 /obj/item/mecha_parts/mecha_equipment/proc/grant_actions(mob/pilot)
-	for(var/datum/action/innate/mecha/equipment/action as anything in equip_actions)
-		action.Grant(pilot)
+	for(var/datum/action/action as anything in equip_actions)
+		action.Grant(pilot, chassis, src)
 
 // Remove the actions!!!!
 /obj/item/mecha_parts/mecha_equipment/proc/remove_actions(mob/pilot)
-	for(var/datum/action/innate/mecha/equipment/action as anything in equip_actions)
+	for(var/datum/action/action as anything in equip_actions)
 		action.Remove(pilot)

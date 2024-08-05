@@ -55,9 +55,9 @@
 			GLOB.permissions.edit_perms(params["ckey"])
 			return TRUE
 		if("removeAdmin")
-			GLOB.permissions.remove_admin(params["ckey"])	
+			GLOB.permissions.remove_admin(params["ckey"])
 			return TRUE
-	
+
 
 // /datum/admins/proc/edit_admin_permissions(action, target, operation, page)
 // 	if(!check_rights(R_PERMISSIONS))
@@ -263,7 +263,7 @@
 		return
 	if(GLOB.permissions.admins.len < CONFIG_GET(number/auto_deadmin_threshold))
 		log_admin("[owner] auto-deadmin failed due to low admin count.")
-		to_chat(owner, span_userdanger("You have not be auto-deadminned due to lack of admins on the server, you can still deadmin manually."))
+		to_chat(owner, span_userdanger("You have not been auto-deadminned due to lack of admins on the server, you can still deadmin manually."))
 		return FALSE
 	to_chat(owner, span_interface("You are now a normal player."))
 	var/old_owner = owner

@@ -79,6 +79,7 @@
 					/obj/item/clothing/head/wizard/fake/brown = 1,
 					/obj/item/staff = 3,
 					/obj/item/toy/dummy = 2,
+					/obj/item/clothing/suit/jacket/urinal_costume = 1,
 					/obj/item/clothing/mask/gas/sexyclown = 1,
 					/obj/item/clothing/under/rank/civilian/clown/sexy = 1,
 					/obj/item/clothing/mask/gas/sexymime = 1,

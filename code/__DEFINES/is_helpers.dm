@@ -92,7 +92,6 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isipc(A) (is_species(A, /datum/species/ipc))
 #define isinsurgent(A) (is_species(A, /datum/species/ipc/self/insurgent))
 #define issnail(A) (is_species(A, /datum/species/snail))
-#define isandroid(A) (is_species(A, /datum/species/android))
 #define isshadowperson(A) (is_species(A, /datum/species/shadow))
 #define is_synth(A) (is_species(A,/datum/species/wy_synth))
 #define isdummy(A) (istype(A, /mob/living/carbon/human/dummy))
@@ -165,6 +164,8 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isfauna(A) (istype(A, /mob/living/simple_animal/hostile/asteroid))
 
 #define ismegafauna(A) (istype(A, /mob/living/simple_animal/hostile/megafauna))
+
+#define isjunglealpha(A) (istype(A, /mob/living/simple_animal/hostile/megafauna))
 
 #define isclown(A) (istype(A, /mob/living/simple_animal/hostile/retaliate/clown))
 

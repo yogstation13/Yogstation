@@ -1,3 +1,8 @@
+///If it spawns firedoors to ensure mass spacing doesn't happen
+#define ATMOS_CONTROL_FIREDOORS "spawn_firedoors"
+///If it spawns atmos fans to ensure mass spacing doesn't happen
+#define ATMOS_CONTROL_FANS "spawn_fans"
+
 /datum/map_generator/dungeon_generator/maintenance
 	weighted_open_turf_types = list(
 		/turf/open/floor/plating = 10, 
@@ -6,22 +11,66 @@
 	weighted_closed_turf_types = list(/turf/closed/wall = 5, /turf/closed/wall/rust = 2 )
 	room_datum_path = /datum/dungeon_room/maintenance
 	room_theme_path = /datum/dungeon_room_theme/maintenance
+
+	probability_room_types = list(ROOM_TYPE_RUIN = 75, ROOM_TYPE_SPACE = 20)
 	
-	//var/list/used_spawn_points = list()
+	///Boolean, whether or not firelocks are added to the maintenance
+	var/atmos_control = ATMOS_CONTROL_FIREDOORS
+	///Boolean, wether or not apcs are added to the maintenance
+	var/include_apcs = TRUE
+
+	///Weighted list of extra features that spawn against walls.
+	var/list/weighted_againstwall_spawn_list = list(
+		/obj/machinery/space_heater = 2,
+		/obj/structure/closet/emcloset = 2,
+		/obj/structure/closet/firecloset = 2,
+		/obj/structure/closet/toolcloset = 1,
+		list(/obj/structure/table, /obj/effect/spawner/lootdrop/maintenance) = 1, //we do it this way so we can spawn things in groups
+		list(/obj/structure/rack, /obj/effect/spawner/lootdrop/maintenance) = 1
+	)
+	///Weighted list of extra features that spawn out in the open
+	var/list/weighted_openfloor_spawn_list = list(
+		/obj/structure/grille = 3,
+		/obj/structure/grille/broken = 4,
+		/obj/structure/girder/displaced = 2,
+		/obj/effect/spawner/lootdrop/maintenance = 2
+	)
+	///Weighted list of extra features that spawn in narrow hallways
+	var/list/weighted_hallway_spawn_list = list(
+		/obj/structure/grille = 3,
+		/obj/structure/grille/broken = 4,
+		/obj/structure/girder/displaced = 2,
+		/obj/effect/spawner/lootdrop/maintenance = 2
+	)
+	///multiplied by the number of valid turf to decide how many things should be spawned
+	var/feature_spawn_ratio = 0.15
 
 /datum/map_generator/dungeon_generator/maintenance/build_dungeon()
 	. = ..()
-	add_firelocks()
-	add_apcs()
-	wire_apcs()
+	if(atmos_control)
+		add_atmos_control()
+	if(include_apcs)
+		add_apcs()
+		wire_apcs()
 	add_maint_loot()
 
-/datum/map_generator/dungeon_generator/maintenance/proc/add_firelocks()
+/datum/map_generator/dungeon_generator/maintenance/proc/add_atmos_control()
 	///we only want to look to place firedoors every 5 tiles, so we don't place too many
 	var/step_increment = 5
 	var/consecutive_firedoor_limit = 3
 	var/list/fire_door_spawn_points = list()
-	var/fire_doors_path = /obj/effect/mapping_helpers/firedoor_border_spawner
+
+	var/fire_doors_path
+	switch(atmos_control)
+		if(ATMOS_CONTROL_FANS)
+			fire_doors_path = /obj/structure/fans/tiny/indestructible
+		if(ATMOS_CONTROL_FIREDOORS)
+			fire_doors_path = /obj/effect/mapping_helpers/firedoor_border_spawner
+
+	if(!fire_doors_path)
+		return
+
+	//spawn vertical lines of atmos control
 	for(var/y in min_y to max_y step step_increment)
 		fire_door_spawn_points = list()
 		for(var/turf/current_turf in block(locate(min_x,y,z_level),locate(max_x,y,z_level)))
@@ -34,7 +83,10 @@
 			if(fire_door_spawn_points.len > consecutive_firedoor_limit && current_turf.is_blocked_turf(TRUE))
 				fire_door_spawn_points = list()
 	
-	fire_doors_path = /obj/effect/mapping_helpers/firedoor_border_spawner/horizontal
+	if(atmos_control == ATMOS_CONTROL_FIREDOORS)
+		fire_doors_path = /obj/effect/mapping_helpers/firedoor_border_spawner/horizontal
+
+	//spawn horizontal lines of atmos control
 	for(var/x in min_x to max_x step step_increment)
 		fire_door_spawn_points = list()
 		for(var/turf/current_turf in block(locate(x,min_y,z_level),locate(x,max_y,z_level)))
@@ -50,7 +102,7 @@
 /datum/map_generator/dungeon_generator/maintenance/proc/add_maint_loot()
 	//Gax maints typically ends up being about 2000 turfs, so this would end up being ~200 items, structures, and decals to decorate maint with
 	var/list/valid_spawn_points = typecache_filter_list(working_turfs, typecacheof(/turf/open/floor))
-	var/items_to_spawn = ROUND_UP(valid_spawn_points.len * 0.15)
+	var/items_to_spawn = ROUND_UP(valid_spawn_points.len * feature_spawn_ratio)
 	var/max_attempts = 5
 	var/attempts = max_attempts
 
@@ -80,48 +132,24 @@
 			//what the fuck how did you get here
 			brazil = TRUE
 
+		var/list/things_to_spawn = list()
+
 		if(brazil)
-			new /obj/item/toy/plush/lizard/azeel(spawn_point)
-			items_to_spawn--
-		
+			things_to_spawn = /obj/item/toy/plush/lizard/azeel
 		else if(blocking_passage)
-			switch(rand(1,10))
-				if(1 to 6)
-					new /obj/structure/grille/broken(spawn_point)
-					
-				else
-					new /obj/structure/grille(spawn_point)
-			items_to_spawn--
+			things_to_spawn = pick_weight(weighted_hallway_spawn_list)
 		else if(against_wall)
-			switch(rand(1,10))
-				if(1 to 3)
-					if(prob(50))
-						new /obj/structure/table(spawn_point)
-					else
-						new /obj/structure/rack(spawn_point)
-					items_to_spawn--
-					new /obj/effect/spawner/lootdrop/maintenance(spawn_point)
-				if(4 to 5)
-					new /obj/machinery/space_heater(spawn_point)
-				if(6 to 7)
-					new /obj/structure/closet/emcloset(spawn_point)
-				if(8 to 9)
-					new /obj/structure/closet/firecloset(spawn_point)
-				if(10)
-					new /obj/structure/closet/toolcloset(spawn_point)
-			items_to_spawn--
+			things_to_spawn = pick_weight(weighted_againstwall_spawn_list)
 		else
-			switch(rand(1,10))
-				if(1 to 3)
-					new /obj/structure/grille/broken(spawn_point)
-				if(4 to 6)
-					new /obj/structure/girder/displaced(spawn_point)
-				if(7 to 9)
-					new /obj/structure/grille(spawn_point)
-				else
-					new /obj/effect/spawner/lootdrop/maintenance(spawn_point)
-			items_to_spawn--
-		//used_spawn_points += spawn_point
+			things_to_spawn = pick_weight(weighted_openfloor_spawn_list)
+
+		if(!islist(things_to_spawn)) //we're expecting a list, but most things in the list won't be one
+			things_to_spawn = list(things_to_spawn) //so we put them in a list
+
+		for(var/i in things_to_spawn)
+			new i(spawn_point)
+		items_to_spawn--
+			
 		attempts = max_attempts
 
 /datum/map_generator/dungeon_generator/maintenance/proc/add_apcs()
@@ -148,7 +176,7 @@
 			attempts--
 		
 		//We're not actually building these so they can break if Init doesn't trigger right like using a generator mid round
-		if(!apc_placed.area)
+		if(apc_placed && !apc_placed.area)
 			apc_placed.area = get_area(apc_placed.loc)
 
 /datum/map_generator/dungeon_generator/maintenance/proc/wire_apcs()
@@ -261,3 +289,33 @@
 		//what the fuck how did you get here
 		brazil = TRUE
 	return "blocked directions: [blocked_directions], against a wall: [against_wall], in a one tile hallway: [blocking_passage], brazil: [brazil]"
+
+////////////////////////////////////////////////////////////////
+//------------Generator specifically for the Z level----------//
+////////////////////////////////////////////////////////////////
+/datum/map_generator/dungeon_generator/maintenance/backrooms
+	probability_room_types = list(ROOM_TYPE_RUIN = 75) //remove the space
+	feature_spawn_ratio = 0.20 //slightly more dense in features than regular maints
+
+	//removes firelocks and apcs as the area is large enough that it annihilates the server if it has a bunch of firelocks
+	atmos_control = null
+	include_apcs = FALSE
+
+/datum/map_generator/dungeon_generator/maintenance/backrooms/New(area/generate_in)
+	if(SSbackrooms.picked_theme)
+		var/datum/generator_theme/picked_theme = SSbackrooms.picked_theme
+		if(length(picked_theme.weighted_possible_floor_types))
+			weighted_open_turf_types = picked_theme.weighted_possible_floor_types
+		if(length(picked_theme.weighted_possible_wall_types))
+			weighted_closed_turf_types = picked_theme.weighted_possible_wall_types
+		//never let walls and floor be reduced to nothing, but let features be reduced to nothing
+		weighted_againstwall_spawn_list = picked_theme.weighted_againstwall_spawn_list
+		weighted_openfloor_spawn_list = picked_theme.weighted_openfloor_spawn_list
+		weighted_hallway_spawn_list = picked_theme.weighted_hallway_spawn_list
+	return ..()
+
+/turf/open/floor/plating/backrooms
+	baseturfs = /turf/open/floor/plating/backrooms	
+
+#undef ATMOS_CONTROL_FIREDOORS
+#undef ATMOS_CONTROL_FANS

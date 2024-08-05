@@ -19,10 +19,10 @@
 	armour_penetration = 100
 	obj_damage = INFINITY
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
-	weather_immunities = list("lava", "ash")
-	status_flags = NONE	
+	weather_immunities = ALL
+	status_flags = NONE
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0) //Leaving something at 0 means it's off - has no maximum
-	unsuitable_atmos_damage = 0	
+	unsuitable_atmos_damage = 0
 
 	//movement stats
 	speed = 0 //slower than a person, RUN RUN RUN RUN
@@ -95,7 +95,7 @@
 	AddComponent(/datum/component/light_eater)
 
 	//so the progenitor can hear people's screams over radio
-	var/obj/item/radio/headset/silicon/ai/radio = new(src) 
+	var/obj/item/radio/headset/silicon/ai/radio = new(src)
 	radio.wires.cut(WIRE_TX) //but not talk over it
 
 	//give them a fancy name (and help the darkspawn tell where they are in the dark)
@@ -107,7 +107,7 @@
 
 	//have them fade into existence and play a sound cry when they finish fading in
 	alpha = 0
-	animate(src, alpha = 255, time = 4 SECONDS) 
+	animate(src, alpha = 255, time = 4 SECONDS)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(sound_to_playing_players), 'yogstation/sound/magic/sacrament_complete.ogg', 50), 4 SECONDS, TIMER_UNIQUE)
 	time_to_next_roar = world.time + roar_cooldown //prevent immediate roaring causing sound overlap
 	update_appearance(UPDATE_OVERLAYS)
@@ -151,7 +151,7 @@
 	for(var/mob/M in GLOB.player_list)
 		if(get_dist(M, src) > 7)
 			M.playsound_local(src, 'yogstation/sound/creatures/progenitor_distant.ogg', 35, FALSE, falloff_exponent = 5)
-		else if(is_darkspawn_or_thrall(M) || M==src) //the progenitor is PROBABLY a darkspawn, but just in case
+		else if(is_team_darkspawn(M) || M==src) //the progenitor is PROBABLY a darkspawn, but just in case
 			continue
 		else if(isliving(M))
 			var/mob/living/L = M
@@ -180,9 +180,9 @@
 /mob/living/simple_animal/hostile/darkspawn_progenitor/ex_act() //sorry no bombs
 	return
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/gib() //no shuttlegib either
+/mob/living/simple_animal/hostile/darkspawn_progenitor/gib(no_brain, no_organs, no_bodyparts, no_items) //no shuttlegib either
 	return
-	
+
 //////////////////////////////////////////////////////////////////////////
 //--------------------------Progenitor attack---------------------------//
 //////////////////////////////////////////////////////////////////////////
@@ -210,8 +210,8 @@
 	if(!isliving(cast_on)) //sanity check
 		return
 	var/mob/living/target = cast_on
-	if(is_darkspawn_or_thrall(target))
+	if(is_team_darkspawn(target))
 		return
 	var/zoinks = rand(1, 50) / 100 //like, this isn't even my final form!
-	owner.visible_message(span_warning("[owner]'s sigils flare as it glances at [target]!"), span_velvet("You direct [zoinks]% of your psionic power into [target]'s mind!."))
+	owner.visible_message(span_warning("[owner]'s sigils flare as it glances at [target]!"), span_velvet("You direct [zoinks]% of your psionic power into [target]'s mind!"))
 	target.apply_status_effect(STATUS_EFFECT_PROGENITORCURSE)

@@ -32,6 +32,7 @@
 	var/hardness = 30 
 	var/slicing_duration = 200  //default time taken to slice the wall
 	var/sheet_type = /obj/item/stack/sheet/metal
+	var/scrap_type = /obj/item/stack/scrap/plating
 	var/sheet_amount = 2
 	var/girder_type = /obj/structure/girder
 	var/smash_flags = ENVIRONMENT_SMASH_WALLS|ENVIRONMENT_SMASH_RWALLS
@@ -98,6 +99,8 @@
 	return TRUE
 
 /turf/closed/wall/proc/dismantle_wall(devastated = FALSE, explode = FALSE)
+	if(resistance_flags & INDESTRUCTIBLE)
+		return
 	if(devastated)
 		devastate_wall()
 	else
@@ -117,15 +120,25 @@
 	QUEUE_SMOOTH_NEIGHBORS(src)
 
 /turf/closed/wall/proc/break_wall()
-	new sheet_type(src, sheet_amount)
+	var/area/shipbreak/A = get_area(src)
+	if(istype(A)) //if we are actually in the shipbreaking zone...
+		new scrap_type(src, sheet_amount)
+	else
+		new sheet_type(src, sheet_amount)
 	return new girder_type(src)
 
 /turf/closed/wall/proc/devastate_wall()
-	new sheet_type(src, sheet_amount)
+	var/area/shipbreak/A = get_area(src)
+	if(istype(A))
+		new scrap_type(src, sheet_amount)
+	else
+		new sheet_type(src, sheet_amount)
 	if(girder_type)
 		new /obj/item/stack/sheet/metal(src)
 
 /turf/closed/wall/ex_act(severity, target)
+	if(resistance_flags & INDESTRUCTIBLE)
+		return
 	if(target == src)
 		dismantle_wall(TRUE, TRUE)
 		return

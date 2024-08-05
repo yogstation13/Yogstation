@@ -14,6 +14,7 @@
 	program_icon_state = "arcade"
 	extended_desc = "A port of the classic game 'Minesweeper', redesigned to run on tablets."
 	requires_ntnet = FALSE
+	category = PROGRAM_CATEGORY_GAMES
 	network_destination = "arcade network"
 	size = 6
 	tgui_id = "NtosMinesweeper"

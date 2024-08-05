@@ -390,7 +390,7 @@
 			var/mob/living/carbon/human/H
 			if(ishuman(M.current))
 				H = M.current
-			return M.current.stat != DEAD && !issilicon(M.current) && !isbrain(M.current) && (!H || H.dna.species.id != "memezombies")
+			return M.current.stat != DEAD && !issilicon(M.current) && !isbrain(M.current) && (!H || H.dna.species.id != SPECIES_ZOMBIE_INFECTIOUS)
 		else if(isliving(M.current))
 			if(isAI(M.current))
 				var/mob/living/silicon/ai/AI = M.current

@@ -2,6 +2,11 @@
 	mood_change = 3
 	description = "<span class='nicegreen'>Everything just feels better after a drink or two.</span>\n"
 
+/datum/mood_event/soda
+	description = "<span class='nicegreen'>That was sugary sweet!</span>\n"
+	mood_change = 3
+	timeout = 2 MINUTES // sugar high wears off fast
+
 /datum/mood_event/quality_nice
 	description = "<span class='nicegreen'>That drink wasn't bad at all.</span>\n"
 	mood_change = 5

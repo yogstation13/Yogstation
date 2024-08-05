@@ -4,6 +4,7 @@
 	desc = "It's a sight."
 	attachment_type = TYPE_SIGHT
 	var/accuracy = 0
+	var/mouse_icon // https://www.byond.com/docs/ref/#/client/var/mouse_pointer_icon
 
 /obj/item/attachment/scope/on_attach(obj/item/gun/G, mob/user = null)
 	. = ..()
@@ -13,23 +14,44 @@
 	. = ..()
 	G.spread += accuracy
 
+/obj/item/attachment/scope/pickup_user(mob/user)
+	. = ..()
+	if(user && user.client && mouse_icon)
+		user.client.mouse_override_icon = mouse_icon
+		user.update_mouse_pointer()
+
+/obj/item/attachment/scope/equip_user(mob/user)
+	. = ..()
+	if(user && user.client && mouse_icon)
+		user.client.mouse_override_icon = null
+		user.update_mouse_pointer()
+
+/obj/item/attachment/scope/drop_user(mob/user)
+	. = ..()
+	if(user && user.client && mouse_icon)
+		user.client.mouse_override_icon = null
+		user.update_mouse_pointer()
+
 /obj/item/attachment/scope/simple
 	name = "simple sight"
-	desc = "A simple yet elegant scope. Better than ironsights."
+	desc = "A rugged scope with LED dots for nighttime planetside operations. Better than ironsights."
 	icon_state = "simple_sight"
 	accuracy = 3
+	mouse_icon = 'icons/effects/mouse_pointers/simple_sight.dmi'
 
 /obj/item/attachment/scope/holo
 	name = "holographic sight"
 	desc = "A highly advanced sight that projects a holographic design onto its lens, providing unobscured and precise view of your target."
 	icon_state = "holo_sight"
 	accuracy = 6
+	mouse_icon = 'icons/effects/mouse_pointers/holo_sight.dmi'
 
 /obj/item/attachment/scope/infrared
 	name = "infrared sight"
 	desc = "A polarizing camera that picks up infrared radiation. The quality is rather poor, so it ends up making it harder to aim."
 	icon_state = "ifr_sight"
 	accuracy = -2
+	mouse_icon = 'icons/effects/mouse_pointers/infr_sight.dmi'
 	actions_list = list(/datum/action/item_action/toggle_infrared_sight)
 
 /obj/item/attachment/scope/infrared/attack_self(mob/user)

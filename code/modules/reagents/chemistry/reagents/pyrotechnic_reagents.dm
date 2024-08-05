@@ -68,7 +68,7 @@
 		if(prob(reac_volume))
 			W.ScrapeAway()
 
-/datum/reagent/clf3/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+/datum/reagent/clf3/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(istype(M))
 		if(!(methods & (INGEST|INJECT)))
 			M.adjust_fire_stacks(min(reac_volume/5, 10))
@@ -141,7 +141,7 @@
 	accelerant_quality = 20
 	compatible_biotypes = ALL_BIOTYPES
 
-/datum/reagent/phlogiston/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+/datum/reagent/phlogiston/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	M.adjust_fire_stacks(1)
 	var/burndmg = max(0.3*M.fire_stacks, 0.3)
 	M.adjustFireLoss(burndmg, 0)
@@ -169,7 +169,7 @@
 	M.adjust_fire_stacks(1)
 	..()
 
-/datum/reagent/napalm/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+/datum/reagent/napalm/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(istype(M))
 		if(!(methods & (INGEST|INJECT)))
 			M.adjust_fire_stacks(min(reac_volume/4, 20))
@@ -185,8 +185,8 @@
 
 
 /datum/reagent/cryostylane/on_mob_life(mob/living/carbon/M) //TODO: code freezing into an ice cube
-	if(M.reagents.has_reagent(/datum/reagent/oxygen))
-		M.reagents.remove_reagent(/datum/reagent/oxygen, 0.5)
+	if(M.reagents.has_reagent(/datum/reagent/gas/oxygen))
+		M.reagents.remove_reagent(/datum/reagent/gas/oxygen, 0.5)
 		M.adjust_bodytemperature(-15)
 	..()
 
@@ -204,8 +204,8 @@
 	self_consuming = TRUE
 
 /datum/reagent/pyrosium/on_mob_life(mob/living/carbon/M)
-	if(M.reagents.has_reagent(/datum/reagent/oxygen))
-		M.reagents.remove_reagent(/datum/reagent/oxygen, 0.5)
+	if(M.reagents.has_reagent(/datum/reagent/gas/oxygen))
+		M.reagents.remove_reagent(/datum/reagent/gas/oxygen, 0.5)
 		M.adjust_bodytemperature(15)
 	..()
 
@@ -302,7 +302,7 @@
 /datum/reagent/firefighting_foam/reaction_obj(obj/O, reac_volume)
 	O.extinguish()
 
-/datum/reagent/firefighting_foam/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+/datum/reagent/firefighting_foam/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(methods & (VAPOR|TOUCH))
 		M.adjust_wet_stacks(reac_volume)
 		M.extinguish_mob()

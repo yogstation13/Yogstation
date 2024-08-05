@@ -30,6 +30,11 @@
 	/// Color to apply to the area while weather is occuring
 	var/weather_color = null
 
+	/// In deciseconds, how long until the next weather on this Z level once this starts (lower end)
+	var/cooldown_lower = 3000 
+	/// In deciseconds, how long until the next weather on this z level once this starts (higher end)
+	var/cooldown_higher = 6000
+
 	/// Displayed once the weather is over
 	var/end_message = "<span class='danger'>The wind relents its assault.</span>"
 	/// In deciseconds, how long the "wind-down" graphic will appear before vanishing entirely
@@ -197,10 +202,10 @@
 	if(istype(mob_to_check.loc, /obj/structure/closet))
 		var/obj/structure/closet/current_locker = mob_to_check.loc
 		if(current_locker.weather_protection)
-			if((immunity_type in current_locker.weather_protection) || (WEATHER_ALL in current_locker.weather_protection))
+			if(current_locker.weather_protection & immunity_type)
 				return
 
-	if((immunity_type in mob_to_check.weather_immunities) || (WEATHER_ALL in mob_to_check.weather_immunities))
+	if(mob_to_check.weather_immunities & immunity_type)
 		return
 
 	if(!(get_area(mob_to_check) in impacted_areas))

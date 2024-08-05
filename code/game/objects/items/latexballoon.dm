@@ -1,7 +1,7 @@
 /obj/item/latexballon
 	name = "latex glove"
 	desc = "Sterile and airtight."
-	icon = 'icons/obj/toy.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "latexballon"
 	item_state = "lgloves"
 	force = 0

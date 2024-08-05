@@ -1514,7 +1514,7 @@
 	loot = list(/obj/effect/decal/remains/human);
 	name = "Jim The Door Technician";
 	wander = 0;
-	weather_immunities = list("ash")
+	weather_immunities = 1
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)

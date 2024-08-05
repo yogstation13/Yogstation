@@ -63,6 +63,7 @@
 	else
 		var/synth_count = owner.ai_network.synth_list.len
 		data["current_cpu"] = owner.ai_network.local_cpu_usage[SYNTH_RESEARCH] ? (owner.ai_network.resources.cpu_sources[owner.ai_network] * owner.ai_network.local_cpu_usage[SYNTH_RESEARCH]) / synth_count : 0
+		data["current_ram"] = 0
 
 	if(!isAI(owner))
 		var/mob/living/carbon/human/H = owner
@@ -90,6 +91,7 @@
 		data["max_ram"] = owner.ai_network.resources.total_ram()
 	else
 		data["max_cpu"] = owner.ai_network.resources.cpu_sources[owner.ai_network]
+		data["max_ram"] = free_ram //synths have vastly simplified ram
 
 	data["human_lock"] = owner.ai_network.resources.human_lock
 

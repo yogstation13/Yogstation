@@ -10,7 +10,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "c" = (
 /obj/item/stack/rods,
@@ -30,7 +30,7 @@
 /turf/open/floor/plating/lavaland_baseturf,
 /area/template_noop)
 "h" = (
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "i" = (
 /obj/structure/table,
@@ -83,11 +83,11 @@
 /area/template_noop)
 "w" = (
 /obj/structure/flora/tree/dead/jungle,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "x" = (
 /obj/item/stack/sheet/metal,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "y" = (
 /obj/machinery/computer{
@@ -145,7 +145,7 @@
 /area/ruin/unpowered)
 "S" = (
 /obj/structure/shuttle/engine/propulsion,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "V" = (
 /turf/open/floor/plating/jungle_baseturf/dying,
@@ -157,11 +157,11 @@
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "Y" = (
 /obj/item/stack/rods,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "Z" = (
 /obj/item/stack/sheet/metal,

@@ -229,11 +229,7 @@
 /turf/closed/wall,
 /area/template_noop)
 "M" = (
-/turf/closed/indestructible{
-	desc = "A wall impregnated with Fixium, able to withstand massive explosions with ease";
-	icon_state = "riveted";
-	name = "hyper-reinforced wall"
-	},
+/turf/closed/indestructible/riveted/testingsite,
 /area/template_noop)
 "P" = (
 /obj/effect/turf_decal/stripes/line{

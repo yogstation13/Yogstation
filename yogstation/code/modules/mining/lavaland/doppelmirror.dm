@@ -4,7 +4,7 @@
 /obj/item/dopmirror
 	name = "ominous mirror"
 	desc = "What do you see looking back at you?"
-	icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
+	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "mirrornormal"
 	actions_types = list(/datum/action/item_action/mirrorrecall, /datum/action/item_action/rerollmirror)
 	COOLDOWN_DECLARE(next_search)
@@ -68,7 +68,7 @@
 		to_chat(user, span_notice("You knock on the mirror and call your reflection back into focus."))
 		reflected.forceMove(src)
 		update_icon(inhabited = TRUE)
-		COOLDOWN_START(src, next_search, COOLDOWN_RECALL)
+		COOLDOWN_START(src, next_recall, COOLDOWN_RECALL)
 	if(istype(action, /datum/action/item_action/rerollmirror))
 		if(!reflected)
 			to_chat(user, span_notice("The mirror is dormant."))
@@ -105,7 +105,7 @@
 /datum/action/item_action/mirrorrecall
 	name = "Recall"
 	desc = "Bring the reflection back into the mirror."
-	button_icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
+	button_icon = 'icons/obj/lavaland/artefacts.dmi'
 	button_icon_state = "mirrornormal"
 
 /datum/action/item_action/rerollmirror
@@ -211,7 +211,7 @@
 /mob/living/simple_animal/hostile/double/AttackingTarget()
 	..()
 	var/mob/living/simple_animal/M = target
-	if(ismegafauna(M) || istype(M, /mob/living/simple_animal/hostile/asteroid) || istype(M, /mob/living/simple_animal/hostile/yog_jungle))
+	if(ismegafauna(M) || istype(M, /mob/living/simple_animal/hostile/asteroid) || istype(M, /mob/living/simple_animal/hostile/asteroid/yog_jungle))
 		M.apply_damage(melee_fauna_bonus, BRUTE)
 
 /mob/living/simple_animal/hostile/double/bullet_act(obj/projectile/P)
@@ -222,14 +222,14 @@
 /mob/living/simple_animal/hostile/double/dust(just_ash, drop_items, force)
 	death()
 
-/mob/living/simple_animal/hostile/double/gib()
+/mob/living/simple_animal/hostile/double/gib(no_brain, no_organs, no_bodyparts, no_items)
 	death()
 
 //reflection's abilities
 
 /datum/action/innate/jumpback
 	name = "Return to Mirror"
-	button_icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
+	button_icon = 'icons/obj/lavaland/artefacts.dmi'
 	button_icon_state = "mirrornormal"
 
 /datum/action/innate/jumpback/Activate()
@@ -245,7 +245,7 @@
 #define COOLDOWN_REAPPEAR 20 SECONDS
 /datum/action/innate/appear
 	name = "Exit Mirror"
-	button_icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
+	button_icon = 'icons/obj/lavaland/artefacts.dmi'
 	button_icon_state = "mirrorcrack"
 	COOLDOWN_DECLARE(next_appearance)
 
@@ -315,5 +315,5 @@
 /obj/projectile/doppshot/on_hit(atom/target, blocked = FALSE)
 	var/mob/living/M = target
 	M.apply_damage(actual_damage, BRUTE)
-	if(ismegafauna(M) || istype(M, /mob/living/simple_animal/hostile/asteroid) || istype(M, /mob/living/simple_animal/hostile/yog_jungle))
+	if(ismegafauna(M) || istype(M, /mob/living/simple_animal/hostile/asteroid) || istype(M, /mob/living/simple_animal/hostile/asteroid/yog_jungle))
 		M.apply_damage(ranged_fauna_bonus, BRUTE)

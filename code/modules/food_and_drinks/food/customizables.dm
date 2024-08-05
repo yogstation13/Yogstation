@@ -247,8 +247,8 @@
 	icon_state = "bowl"
 
 /obj/item/reagent_containers/food/snacks/customizable/sandwich
-	name = "toast"
-	desc = "A timeless classic."
+	name = "bread slice"
+	desc = "A slice of delicious bread with additional toppings."
 	ingredients_placement = INGREDIENTS_STACK
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "breadslice"

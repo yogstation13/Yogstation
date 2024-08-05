@@ -123,7 +123,7 @@
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/gauss
-	name = "Gauss rifle"
+	name = "gauss rifle"
 	desc = "A makeshift gauss rifle, barely holding together with tape and cables"
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "gauss"
@@ -143,7 +143,7 @@
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	pin = /obj/item/firing_pin
 
-/obj/item/gun/ballistic/gauss/afterattack()
+/obj/item/gun/ballistic/gauss/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
 	. = ..()
 	playsound(loc, "sparks", 75, 1, -1)
 	do_sparks(8, 3, usr)
@@ -184,11 +184,27 @@
 		if(magazine.stored_ammo.len > 0)
 			user.balloon_alert(user, "Already loaded!")
 			return
-		user.visible_message(span_warning("[user] starts reloading the [src]!"), span_notice("You start reloading the [src]."))
+		user.visible_message(span_warning("[user] starts reloading [src]!"), span_notice("You start reloading [src]."))
 		reloading_active = TRUE
 		if(!do_after(user, 5 SECONDS, user))
 			reloading_active = FALSE
 			user.balloon_alert(user, "You were interrupted!")
 			return
 		reloading_active = FALSE
-	return ..()
+
+	if(istype(A, /obj/item/kitchen/knife/plug_bayonet))
+		//Turn it into a spear if unloaded and has no bayonet
+		if(magazine.stored_ammo.len != 0)
+			user.balloon_alert(user, "Unload it!")
+			return
+		else if(src.bayonet)
+			user.balloon_alert(user, "Remove its bayonet!")
+			return
+		else
+			user.balloon_alert(user, "Barrel plugged!")
+			user.visible_message(span_warning("[user] plugs [src]!"), span_notice("You plug [src]."))
+			var/obj/item/melee/spear/plugged_musket/P = new /obj/item/melee/spear/plugged_musket
+			qdel(src)
+			qdel(A)
+			user.put_in_hands(P)
+	..()
