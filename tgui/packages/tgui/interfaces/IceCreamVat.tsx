@@ -42,12 +42,7 @@ type InformationStats = {
 export const IceCreamVat = (props, context) => {
   const { data } = useBackend<Data>(context)
 
-  const { tabs = [] } = data;
-  const [ selectedMainTab, setMainTab ] = useLocalState<Tab>(
-    context,
-    'tab',
-    tabs[0]
-  )
+  const [ selectedMainTab, setMainTab ] = useLocalState(context, 'selectedMainTab', 0);
 
   return(
     //Create window for ui
@@ -56,9 +51,12 @@ export const IceCreamVat = (props, context) => {
       <Window.Content
         scrollable>
         <Stack>
-          <Tabs>
+          <Tabs fluid>
             <Tabs.Tab
-              title="Vat">
+              icon="ice-cream"
+              selected={selectedMainTab === 0}
+              onClick={() => setMainTab(0)}>
+              Vat
               {/* Add in rows for cones */}
               <Section title="Cones">
                 <ConeRow/>
@@ -69,7 +67,10 @@ export const IceCreamVat = (props, context) => {
               </Section>
             </Tabs.Tab>
             <Tabs.Tab
-              title="Infomation">
+              icon="info"
+              selected={selectedMainTab === 1}
+              onClick={() => setMainTab(1)}>
+              Information
               <InfoTab/>
             </Tabs.Tab>
           </Tabs>
@@ -219,16 +220,29 @@ const IceCreamRow = (props, context) => {
 
 const InfoTab = (props, context) => {
   //Get data from ui_data in backend code
-  const { act, data } = useBackend<Tab>(context);
+  const { data } = useBackend<Tab>(context);
+
   //Get ice_cream information from data
   const { info_tab = [] } = data;
+  const [ selectedInfoTab, setInfoTab ] = useLocalState<InformationStats>(
+    context,
+    'tab',
+    info_tab[0]
+  )
 
   return (
-      <Tabs verticle>
+      <Tabs vertical>
         {info_tab.map(information => (
         <Tabs.Tab
-          title={information.section_title}>
-          {information.section_content}
+        key={information}
+        selected={information === selectedInfoTab}
+        onClick={() => setInfoTab(information)}>
+          {information.section_title}
+          <Stack>
+            <Stack.Item>
+              {information.section_content}
+            </Stack.Item>
+          </Stack>
         </Tabs.Tab>
          ))}
       </Tabs>
