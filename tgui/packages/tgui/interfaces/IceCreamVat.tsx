@@ -50,31 +50,22 @@ export const IceCreamVat = (props, context) => {
       {/* Add constants to window and make it scrollable */}
       <Window.Content
         scrollable>
-        <Stack>
           <Tabs fluid>
             <Tabs.Tab
               icon="ice-cream"
               selected={selectedMainTab === 0}
               onClick={() => setMainTab(0)}>
               Vat
-              {/* Add in rows for cones */}
-              <Section title="Cones">
-                <ConeRow/>
-              </Section>
-              {/* Add in rows for scoops */}
-              <Section title="Scoops">
-                <IceCreamRow/>
-              </Section>
             </Tabs.Tab>
             <Tabs.Tab
               icon="info"
               selected={selectedMainTab === 1}
               onClick={() => setMainTab(1)}>
               Information
-              <InfoTab/>
             </Tabs.Tab>
           </Tabs>
-        </Stack>
+          {selectedMainTab == 0 && <VatTab/>}
+          {selectedMainTab == 1 && <InfoTab/>}
       </Window.Content>
     </Window>
   );
@@ -218,31 +209,60 @@ const IceCreamRow = (props, context) => {
   );
 };
 
+const InfoRow = (props, context) => {
+  //Get data from ui_data in backend code
+  const { data } = useBackend<Tab>(context);
+
+  //Get data from tab
+  const[infoContent] = useLocalState<InformationStats | null>(context, "info", null);
+
+  if(infoContent!==null) {
+    return (
+      <Section>
+        infoContent.section_content
+      </Section>
+    );
+  }
+};
+
+const VatTab = (props, context) => {
+
+  //For organizing the vat tab's information
+  return (
+  <Stack vertical>
+    <Stack.Item>
+      <Section title="Cones">
+        <ConeRow/>
+      </Section>
+    </Stack.Item>
+    <Stack.Item>
+      <Section title="Scoops">
+        <IceCreamRow/>
+      </Section>
+    </Stack.Item>
+  </Stack>
+  );
+};
+
 const InfoTab = (props, context) => {
   //Get data from ui_data in backend code
   const { data } = useBackend<Tab>(context);
 
-  //Get ice_cream information from data
+  //Get info_tab information from data
   const { info_tab = [] } = data;
-  const [ selectedInfoTab, setInfoTab ] = useLocalState<InformationStats>(
-    context,
-    'tab',
-    info_tab[0]
-  )
+  const [ selectedInfoTab, setInfoTab ] = useLocalState(context, 'selectedInfoTab', "Vat Instructions");
+
+  //Make a constant for storing the seleted tab's information
+  const[infoContent] = useLocalState<InformationStats | null>(context, "info", null);
 
   return (
       <Tabs vertical>
         {info_tab.map(information => (
         <Tabs.Tab
-        key={information}
-        selected={information === selectedInfoTab}
-        onClick={() => setInfoTab(information)}>
+        key={information.section_title}
+        selected={information.section_title === selectedInfoTab}
+        onClick={() => setInfoTab(information.section_title)}>
           {information.section_title}
-          <Stack>
-            <Stack.Item>
-              {information.section_content}
-            </Stack.Item>
-          </Stack>
         </Tabs.Tab>
          ))}
       </Tabs>
