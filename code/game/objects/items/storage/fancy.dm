@@ -68,10 +68,9 @@
 	name = "donut box"
 	desc = "Mmm. Donuts."
 	icon = 'icons/obj/food/containers.dmi'
-	icon_state = "donutbox_inner"
+	icon_state = "donutbox"
 	icon_type = "donut"
 	spawn_type = /obj/item/reagent_containers/food/snacks/donut
-	fancy_open = TRUE
 	appearance_flags = KEEP_TOGETHER
 
 /obj/item/storage/fancy/donut_box/Initialize(mapload)
@@ -378,30 +377,6 @@
 /obj/item/storage/fancy/cigarettes/cigpack_mindbreaker/PopulateContents()
 	for(var/i in 1 to 6)
 		new /obj/item/clothing/mask/cigarette/rollie/mindbreaker(src)
-
-/obj/item/storage/fancy/rollingpapers
-	name = "rolling paper pack"
-	desc = "A pack of Nanotrasen brand rolling papers."
-	w_class = WEIGHT_CLASS_TINY
-	icon = 'icons/obj/cigarettes.dmi'
-	icon_state = "cig_paper_pack"
-	icon_type = "rolling paper"
-	spawn_type = /obj/item/rollingpaper
-
-/obj/item/storage/fancy/rollingpapers/Initialize(mapload)
-	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 10
-	STR.set_holdable(list(/obj/item/rollingpaper))
-
-/obj/item/storage/fancy/rollingpapers/PopulateContents()
-	for(var/i in 1 to 10)
-		new /obj/item/rollingpaper(src)
-
-/obj/item/storage/fancy/rollingpapers/update_overlays()
-	. = ..()
-	if(!contents.len)
-		. += "[icon_state]_empty"
 
 /////////////
 //CIGAR BOX//

@@ -90,10 +90,10 @@
 	name = "Biological Emergency Crate"
 	desc = "This crate holds 2 full bio suits which will protect you from viruses."
 	cost = 2000
-	contains = list(/obj/item/clothing/head/bio_hood,
-					/obj/item/clothing/head/bio_hood,
-					/obj/item/clothing/suit/bio_suit,
-					/obj/item/clothing/suit/bio_suit,
+	contains = list(/obj/item/clothing/head/bio_hood/general,
+					/obj/item/clothing/head/bio_hood/general,
+					/obj/item/clothing/suit/bio_suit/general,
+					/obj/item/clothing/suit/bio_suit/general,
 					/obj/item/storage/bag/bio,
 					/obj/item/reagent_containers/syringe/antiviral,
 					/obj/item/reagent_containers/syringe/antiviral,
@@ -493,7 +493,7 @@
 
 /datum/supply_pack/security/stormtrooper
 	name = "Stormtrooper Crate"
-	desc = "Three Sets of standard issue Stormtrooper Armor, Should help you defeat light-wielding wizards. Requires Security access to open."
+	desc = "Three sets of standard issue stormtrooper armor. Should help you defeat light-wielding wizards. Requires Security access to open."
 	cost = 10000
 	contains = list(/obj/item/clothing/suit/armor/stormtrooper,
 					/obj/item/clothing/suit/armor/stormtrooper,
@@ -502,6 +502,17 @@
 					/obj/item/clothing/head/helmet/stormtrooper,
 					/obj/item/clothing/head/helmet/stormtrooper)
 	crate_name = "stormtrooper crate"
+	crate_type = /obj/structure/closet/crate/secure/gear
+
+/datum/supply_pack/security/plasma_secsuit
+	name = "Plasmaman Security Envirosuit Crate"
+	desc = "Contains two sets of lightly-armored security envirosuits for Plasmamen. Order now and we'll throw in two free helmets! Requires Security access to open."
+	cost = 4000
+	contains = list(/obj/item/clothing/under/plasmaman/security,
+					/obj/item/clothing/under/plasmaman/security,
+					/obj/item/clothing/head/helmet/space/plasmaman/security,
+					/obj/item/clothing/head/helmet/space/plasmaman/security)
+	crate_name = "security envirosuit crate"
 	crate_type = /obj/structure/closet/crate/secure/gear
 
 //////////////////////////////////////////////////////////////////////////////
@@ -717,7 +728,7 @@
 	desc = "Burn, baby burn. Contains three incendiary grenades, three plasma canisters, and a flamethrower. Requires Armory access to open."
 	cost = 1500
 	access = ACCESS_HEADS
-	contains = list(/obj/item/flamethrower/full,
+	contains = list(/obj/item/gun/flamethrower/full,
 					/obj/item/tank/internals/plasma,
 					/obj/item/tank/internals/plasma,
 					/obj/item/tank/internals/plasma,
@@ -1428,7 +1439,7 @@
 
 /datum/supply_pack/medical/bloodpacks
 	name = "Blood Pack Variety Crate"
-	desc = "Contains eight different blood packs for reintroducing blood to patients."
+	desc = "Contains many different blood packs for reintroducing blood to patients."
 	cost = 3500
 	contains = list(/obj/item/reagent_containers/blood,
 					/obj/item/reagent_containers/blood,
@@ -1439,6 +1450,7 @@
 					/obj/item/reagent_containers/blood/OPlus,
 					/obj/item/reagent_containers/blood/OMinus,
 					/obj/item/reagent_containers/blood/lizard,
+					/obj/item/reagent_containers/blood/vox,
 					/obj/item/reagent_containers/blood/ethereal)
 	crate_name = "blood freezer"
 	crate_type = /obj/structure/closet/crate/freezer
@@ -1605,13 +1617,6 @@
 	contains = list(/obj/item/defibrillator/loaded,
 					/obj/item/defibrillator/loaded)
 	crate_name = "defibrillator crate"
-
-/datum/supply_pack/medical/iv_drip
-	name = "IV Drip Crate"
-	desc = "Contains a single IV drip for administering blood to patients."
-	cost = 1000
-	contains = list(/obj/machinery/iv_drip)
-	crate_name = "iv drip crate"
 
 /datum/supply_pack/medical/supplies
 	name = "Medical Supplies Crate"
@@ -1935,12 +1940,12 @@
 					/obj/item/stack/tile/carpet/fifty,
 					/obj/item/stack/tile/carpet/black/fifty,
 					/obj/item/stack/tile/carpet/black/fifty,
-					/obj/item/stack/tile/carpet/blue/fifty, //yogs start - adds coloured carpets
-					/obj/item/stack/tile/carpet/blue/fifty,
-					/obj/item/stack/tile/carpet/green/fifty,
-					/obj/item/stack/tile/carpet/green/fifty,
-					/obj/item/stack/tile/carpet/purple/fifty,
-					/obj/item/stack/tile/carpet/purple/fifty) //yogs end
+					/obj/item/stack/tile/carpet/plainblue/fifty, //yogs start - adds coloured carpets
+					/obj/item/stack/tile/carpet/plainblue/fifty,
+					/obj/item/stack/tile/carpet/plaingreen/fifty,
+					/obj/item/stack/tile/carpet/plaingreen/fifty,
+					/obj/item/stack/tile/carpet/plainpurple/fifty,
+					/obj/item/stack/tile/carpet/plainpurple/fifty) //yogs end
 	crate_name = "premium carpet crate"
 
 /datum/supply_pack/service/carpet_exotic
@@ -2412,6 +2417,24 @@
 					/obj/item/reagent_containers/food/snacks/grown/cucumber)
 	crate_name = "food crate"
 
+/datum/supply_pack/organic/ice_cream
+	name = "Big Top Ice Cream Crate"
+	desc = "A crate with a carton of every flavor of Big Top brand ice cream."
+	cost = 2500
+	contains = list(/obj/item/storage/box/ice_cream_carton,
+					/obj/item/storage/box/ice_cream_carton/vanilla,
+					/obj/item/storage/box/ice_cream_carton/chocolate,
+					/obj/item/storage/box/ice_cream_carton/strawberry,
+					/obj/item/storage/box/ice_cream_carton/blue,
+					/obj/item/storage/box/ice_cream_carton/lemon_sorbet,
+					/obj/item/storage/box/ice_cream_carton/caramel,
+					/obj/item/storage/box/ice_cream_carton/banana,
+					/obj/item/storage/box/ice_cream_carton/orange_creamsicle,
+					/obj/item/storage/box/ice_cream_carton/peach,
+					/obj/item/storage/box/ice_cream_carton/cherry_chocolate,
+					/obj/item/storage/box/ice_cream_carton/meat)
+	crate_name = "ice cream crate"
+
 /datum/supply_pack/organic/vending/hydro_refills
 	name = "Hydroponics Vending Machines Refills"
 	desc = "When the clown takes all the banana seeds. Contains a NutriMax refill and an MegaSeed Servitor refill."
@@ -2441,6 +2464,22 @@
 					/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy
 					)
 	crate_name = "grilling fuel kit crate"
+
+/datum/supply_pack/organic/food_cart
+	name = "Food Cart Crate"
+	desc = "Contains a food cart for all your mobile food needs."
+	cost = 5000
+	crate_type = /obj/structure/closet/crate/large
+	contains = list(/obj/machinery/food_cart)
+	crate_name = "food cart crate"
+
+/datum/supply_pack/organic/icecream_vat
+	name = "Ice cream Vat Crate"
+	desc = "A vat of ice-cold icecream for those hot shifts in Atmospherics."
+	cost = 5000
+	crate_type = /obj/structure/closet/crate/large
+	contains = list(/obj/machinery/icecream_vat)
+	crate_name = "ice cream vat crate"
 
 //////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// Livestock /////////////////////////////////////

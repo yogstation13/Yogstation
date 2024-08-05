@@ -20,8 +20,9 @@
 	if(GET_MUTATION_POWER(src) <= 1) // we only care about power from here on
 		return
 
-	to_modify.cone_levels += 2  // Cone fwooshes further, and...
-	to_modify.self_throw_range += 1 // the breath throws the user back more
+	to_modify.cone_levels += 2  // Cone fwooshes further,
+	to_modify.self_throw_range += 1 // the breath throws the user back more,
+	to_modify.max_damage = 40	// and the burn is burnier
 
 /datum/action/cooldown/spell/cone/staggered/fire_breath
 	name = "Fire Breath"
@@ -39,6 +40,8 @@
 	respect_density = TRUE
 	/// The range our user is thrown backwards after casting the spell
 	var/self_throw_range = 1
+	/// The max point-blank damage dealt by the cone
+	var/max_damage = 25
 
 /datum/action/cooldown/spell/cone/staggered/fire_breath/before_cast(atom/cast_on)
 	. = ..()
@@ -56,6 +59,17 @@
 	our_lizard.ignite_mob()
 	to_chat(our_lizard, span_warning("Something in front of your mouth catches fire!"))
 
+/datum/action/cooldown/spell/cone/staggered/fire_breath/make_cone(list/cone_turfs, atom/caster)
+	if(ismecha(caster.loc))
+		var/obj/mecha/lizard_mech = caster.loc
+		if(lizard_mech.enclosed) // inside an enclosed exosuit, everything inside gets cooked
+			for(var/mob/living/cooked in lizard_mech)
+				cooked.adjust_fire_stacks(cone_levels)
+				cooked.ignite_mob()
+				to_chat(cooked, span_warning("You're cooked alive by the flames!"))
+			return
+	return ..()
+
 /datum/action/cooldown/spell/cone/staggered/fire_breath/after_cast(atom/cast_on)
 	. = ..()
 	if(!isliving(cast_on))
@@ -71,6 +85,14 @@
 	)
 	// Try to set us to our original direction after, so we don't end up backwards.
 	living_cast_on.setDir(original_dir)
+	//If we have the empowered version it'll also knock us down, assuming we cant use our hands to remain balanced
+	//Using the throw range to check for empowering because it's easier
+	if(iscarbon(cast_on) && (self_throw_range > 1))
+		var/mob/living/carbon/lizard_projectile = cast_on
+		if(lizard_projectile.restrained())
+			lizard_projectile.Knockdown(2 SECONDS)
+			to_chat(lizard_projectile, span_warning("You can't keep your balance with your hands restrained!"))
+
 
 /datum/action/cooldown/spell/cone/staggered/fire_breath/calculate_cone_shape(current_level)
 	// This makes the cone shoot out into a 3 wide column of flames.
@@ -86,7 +108,7 @@
 /datum/action/cooldown/spell/cone/staggered/fire_breath/do_mob_cone_effect(mob/living/target_mob, atom/caster, level)
 	// Further out targets take less immediate burn damage and get less fire stacks.
 	// The actual burn damage application is not blocked by fireproofing, like space dragons.
-	target_mob.apply_damage(max(10, 40 - (5 * level)), BURN)
+	target_mob.apply_damage(max(10, max_damage - (5 * level)), BURN, wound_bonus = -50, bare_wound_bonus = 40)
 	target_mob.adjust_fire_stacks(max(2, 5 - level))
 	target_mob.ignite_mob()
 

@@ -14,16 +14,16 @@
 /obj/structure/stone_tile/cracked{
 	dir = 8
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "ah" = (
 /obj/structure/stone_tile/surrounding_tile/burnt{
 	dir = 8
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "ai" = (
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "aj" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
@@ -34,7 +34,7 @@
 	dir = 5
 	},
 /obj/structure/stone_tile/surrounding_tile/cracked,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "ak" = (
 /obj/item/melee/spear/bamboospear{
@@ -54,7 +54,7 @@
 	pixel_y = -18
 	},
 /obj/effect/decal/remains/human,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "al" = (
 /turf/template_noop,
@@ -66,7 +66,7 @@
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 9
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "aq" = (
 /obj/structure/flora/ausbushes/brflowers{
@@ -85,11 +85,11 @@
 /obj/structure/stone_tile/surrounding_tile/burnt{
 	dir = 8
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "at" = (
 /obj/structure/stone_tile/surrounding_tile/burnt,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "au" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
@@ -99,7 +99,7 @@
 /obj/structure/stone_tile/block/cracked{
 	dir = 8
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "av" = (
 /obj/structure/flora/ausbushes/lavendergrass{
@@ -135,7 +135,7 @@
 /turf/open/floor/plating/dirt/jungleland/obsidian,
 /area/ruin/unpowered/tar_temple)
 "az" = (
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "aF" = (
 /obj/structure/stone_tile/block/cracked,
@@ -145,7 +145,7 @@
 /obj/structure/stone_tile/burnt{
 	dir = 4
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "aH" = (
 /obj/structure/stone_tile/cracked{
@@ -154,7 +154,7 @@
 /obj/structure/stone_tile/surrounding_tile/burnt{
 	dir = 4
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "aI" = (
 /obj/structure/flora/ausbushes/ppflowers{
@@ -173,11 +173,11 @@
 /obj/structure/stone_tile/surrounding_tile/burnt{
 	dir = 1
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "aM" = (
 /obj/structure/tar_altar,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "aN" = (
 /turf/open/floor/plating/dirt/jungleland/obsidian,
@@ -187,7 +187,7 @@
 	dir = 1
 	},
 /obj/structure/stone_tile/surrounding_tile/cracked,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "aP" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
@@ -196,7 +196,7 @@
 /obj/structure/stone_tile/cracked{
 	dir = 8
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "aS" = (
 /obj/structure/necropolis_gate{
@@ -209,11 +209,11 @@
 	dir = 1
 	},
 /obj/structure/stone_tile/burnt,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "aX" = (
 /obj/structure/bonfire,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "aY" = (
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
@@ -230,7 +230,7 @@
 /obj/structure/stone_tile/block{
 	dir = 8
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "gg" = (
 /obj/structure/stone_tile/burnt{
@@ -239,7 +239,7 @@
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 8
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "ko" = (
 /obj/structure/flora/ausbushes/brflowers{
@@ -258,7 +258,7 @@
 /obj/structure/stone_tile/cracked{
 	dir = 8
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "pP" = (
 /mob/living/simple_animal/hostile/tar/amalgamation,
@@ -269,20 +269,20 @@
 	dir = 6
 	},
 /obj/structure/stone_tile/surrounding_tile/burnt,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "rI" = (
 /obj/structure/stone_tile/surrounding_tile/burnt{
 	dir = 4
 	},
 /obj/structure/stone_tile/surrounding_tile/burnt,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "tG" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 1
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "wB" = (
 /obj/structure/stone_tile/surrounding_tile/burnt{
@@ -294,7 +294,7 @@
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 9
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "xw" = (
 /obj/structure/flora/ausbushes/lavendergrass{
@@ -311,34 +311,34 @@
 	pixel_y = 11;
 	pixel_x = -8
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "zB" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 8
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Ci" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 10
 	},
 /obj/structure/stone_tile/surrounding_tile/cracked,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Co" = (
 /obj/structure/stone_tile/cracked,
 /obj/structure/stone_tile/burnt{
 	dir = 1
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Du" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 1
 	},
 /obj/structure/stone_tile/surrounding_tile/burnt,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Dz" = (
 /obj/structure/stone_tile/surrounding_tile{
@@ -347,32 +347,32 @@
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 1
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "DD" = (
 /obj/structure/stone_tile/block{
 	dir = 1
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Ek" = (
 /obj/structure/stone_tile/cracked,
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 1
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Es" = (
 /obj/structure/stone_tile/block{
 	dir = 4
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Fu" = (
 /obj/structure/stone_tile/surrounding_tile/burnt{
 	dir = 1
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "FX" = (
 /obj/structure/stone_tile/slab/cracked{
@@ -385,7 +385,7 @@
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 8
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Hc" = (
 /obj/structure/stone_tile/slab/cracked{
@@ -402,7 +402,7 @@
 	dir = 10
 	},
 /obj/structure/stone_tile/center/burnt,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Hd" = (
 /mob/living/simple_animal/hostile/tar/shade,
@@ -413,11 +413,11 @@
 /obj/structure/stone_tile/surrounding_tile/burnt{
 	dir = 1
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Kv" = (
 /obj/structure/stone_tile/slab/cracked,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Lw" = (
 /obj/structure/stone_tile/surrounding_tile/burnt{
@@ -428,7 +428,7 @@
 	pixel_x = -10;
 	list_reagents = list(/datum/reagent/sulphur = 0.5, /datum/reagent/water = 0.5)
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Nk" = (
 /obj/structure/stone_tile/surrounding_tile{
@@ -437,24 +437,24 @@
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 8
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Og" = (
 /obj/structure/stone_tile/slab/cracked{
 	dir = 6
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "RE" = (
 /obj/item/flashlight/lantern,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/template_noop)
 "Tg" = (
 /obj/structure/stone_tile/surrounding_tile,
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 4
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Uh" = (
 /obj/structure/necropolis_gate{
@@ -477,18 +477,18 @@
 /obj/structure/stone_tile/surrounding_tile/burnt{
 	dir = 4
 	},
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Wl" = (
 /obj/structure/stone_tile/block,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "WZ" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 4
 	},
 /obj/structure/stone_tile/surrounding_tile,
-/turf/open/water/tar_basin,
+/turf/open/water/smooth/tar_basin,
 /area/ruin/unpowered/tar_temple)
 
 (1,1,1) = {"

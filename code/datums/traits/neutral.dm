@@ -27,10 +27,9 @@
 
 /datum/quirk/vegetarian/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) // Cant eat
-	qdel(species)
+	species_type = new species_type()
+	var/disallowed_trait = (NOMOUTH in species_type.species_traits) // Cant eat
+	qdel(species_type)
 
 	if(disallowed_trait)
 		return "You don't have the ability to eat!"
@@ -58,7 +57,9 @@
 
 /datum/quirk/pineapple_liker/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) // Cant eat
+	species_type = new species_type()
+	var/disallowed_trait = (NOMOUTH in species_type.species_traits) // Cant eat
+	qdel(species_type)
 
 	if(disallowed_trait)
 		return "You don't have the ability to eat!"
@@ -86,7 +87,9 @@
 
 /datum/quirk/pineapple_hater/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) // Cant eat
+	species_type = new species_type()
+	var/disallowed_trait = (NOMOUTH in species_type.species_traits) // Cant eat
+	qdel(species_type)
 
 	if(disallowed_trait)
 		return "You don't have the ability to eat!"
@@ -117,7 +120,9 @@
 
 /datum/quirk/deviant_tastes/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) // Cant eat
+	species_type = new species_type()
+	var/disallowed_trait = (NOMOUTH in species_type.species_traits) // Cant eat
+	qdel(species_type)
 
 	if(disallowed_trait)
 		return "You don't have the ability to eat!"
@@ -174,7 +179,9 @@
 
 /datum/quirk/colorist/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (HAIR in initial(species_type.species_traits)) // No Hair
+	species_type = new species_type()
+	var/disallowed_trait = (HAIR in species_type.species_traits) || ("vox_quills" in species_type.mutant_bodyparts) //no hair
+	qdel(species_type)
 
 	if(!disallowed_trait)
 		return "You don't have hair!"
@@ -414,7 +421,9 @@
 /datum/quirk/cyberorgan/heart/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
-	if(NOBLOOD in species.species_traits) // species with NOBLOOD don't have a heart
+	var/disallowed_trait = ((NOBLOOD in species.species_traits) || (STABLEBLOOD in species.species_traits)) // species with NOBLOOD don't have a heart
+	qdel(species)
+	if(disallowed_trait)
 		return "You don't have a heart!"
 	return ..()
 

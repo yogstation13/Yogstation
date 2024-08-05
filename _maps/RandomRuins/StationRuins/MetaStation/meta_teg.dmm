@@ -908,7 +908,7 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Hc" = (
-/obj/machinery/atmospherics/components/unary/tank/toxins{
+/obj/machinery/atmospherics/components/unary/tank/plasma{
 	dir = 4;
 	volume = 6e+006
 	},

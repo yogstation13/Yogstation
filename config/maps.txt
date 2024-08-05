@@ -22,7 +22,6 @@ map yogstation
 endmap
 
 map icemeta
-	minplayers 25
 	votable
 endmap
 

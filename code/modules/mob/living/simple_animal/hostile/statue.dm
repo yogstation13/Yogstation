@@ -107,7 +107,7 @@
 	if(!can_be_seen(get_turf(loc)))
 		..()
 
-/mob/living/simple_animal/hostile/statue/face_atom()
+/mob/living/simple_animal/hostile/statue/face_atom(atom/target, forced = FALSE)
 	if(!can_be_seen(get_turf(loc)))
 		..()
 
@@ -146,7 +146,7 @@
 
 // Turn to dust when gibbed
 
-/mob/living/simple_animal/hostile/statue/gib()
+/mob/living/simple_animal/hostile/statue/gib(no_brain, no_organs, no_bodyparts, no_items)
 	dust()
 
 

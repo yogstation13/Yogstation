@@ -73,3 +73,8 @@
 /area/security/podbay
 	name = "Security Podbay"
 	icon_state = "security"
+
+
+/area/shipbreak
+	name = "Shipbreak Zone"
+	icon_state = "escape"

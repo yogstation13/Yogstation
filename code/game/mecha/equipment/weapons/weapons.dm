@@ -65,7 +65,7 @@
 		sleep(max(0, projectile_delay))
 
 	if(kickback)
-		chassis.newtonian_move(turn(chassis.dir,180))
+		chassis.newtonian_move(get_dir(target, chassis))
 	chassis.log_message("Fired from [src.name], targeting [target].", LOG_MECHA)
 	return 1
 
@@ -114,7 +114,7 @@
 	desc = "A weapon for combat exosuits. Shoots heavy lasers."
 	icon_state = "mecha_laser"
 	energy_drain = 60
-	projectile = /obj/projectile/beam/laser/heavylaser
+	projectile = /obj/projectile/beam/laser/heavylaser/no_fire
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/xray

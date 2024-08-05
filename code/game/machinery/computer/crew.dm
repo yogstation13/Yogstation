@@ -197,7 +197,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			brutedam = round(tracked_mob.getBruteLoss(),1)
 
 			//species check
-			if (ishumanbasic(tracked_mob))
+			if (ishumanbasic(tracked_mob)) //this should really just pull the species name or something rather than having all these checks
 				species = "Human"
 			if (ispreternis(tracked_mob))
 				species = "Robot"
@@ -229,8 +229,6 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				species = "Snail"
 			if (isabductor(tracked_mob))
 				species = "Alien"
-			if (isandroid(tracked_mob))
-				species = "Android"
 
 			for(var/obj/item/bodypart/part in tracked_mob.bodyparts)
 				if(part.bodypart_disabled == TRUE) //check if has disabled limbs

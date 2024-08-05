@@ -19,10 +19,10 @@ REVIVAL_BRAIN_LIFE -1
 
 JOB_SPECIES_WHITELIST /datum/job/captain human
 JOB_SPECIES_WHITELIST /datum/job/hop human,lizard,plasmaman,ipc
-JOB_SPECIES_WHITELIST /datum/job/hos human,lizard,pod,preternis,polysmorph
-JOB_SPECIES_WHITELIST /datum/job/chief_engineer human,lizard,pod,plasmaman,moth,ethereal,preternis,polysmorph,ipc
-JOB_SPECIES_WHITELIST /datum/job/rd human,lizard,pod,plasmaman,moth,ethereal,preternis,polysmorph,ipc
-JOB_SPECIES_WHITELIST /datum/job/cmo human,lizard,pod,plasmaman,moth,ethereal,preternis,polysmorph,ipc
+JOB_SPECIES_WHITELIST /datum/job/hos human,lizard,pod,preternis,polysmorph,vox
+JOB_SPECIES_WHITELIST /datum/job/chief_engineer human,lizard,pod,plasmaman,moth,ethereal,preternis,polysmorph,ipc,vox
+JOB_SPECIES_WHITELIST /datum/job/rd human,lizard,pod,plasmaman,moth,ethereal,preternis,polysmorph,ipc,vox
+JOB_SPECIES_WHITELIST /datum/job/cmo human,lizard,pod,plasmaman,moth,ethereal,preternis,polysmorph,ipc,vox
 
 
 ## OOC DURING ROUND ###
@@ -140,7 +140,7 @@ PROBABILITY SECRET_EXTENDED 0
 PROBABILITY DEVIL 0
 PROBABILITY DEVIL_AGENTS 0
 PROBABILITY ZOMBIE 1
-PROBABILITY DYNAMIC 12
+PROBABILITY DYNAMIC 0
 
 ## Percent weight reductions for three of the most recent modes
 
@@ -562,6 +562,7 @@ ROUNDSTART_RACES preternis
 ROUNDSTART_RACES polysmorph
 #ROUNDSTART_RACES snail
 ROUNDSTART_RACES ipc
+ROUNDSTART_RACES vox
 
 ## Races that are better than humans in some ways, but worse in others
 ROUNDSTART_RACES ethereal
@@ -694,6 +695,9 @@ ROUNDSTART_TRAITS
 
 ## Cap on how many regal rat minions there can be
 #RATCAP 64
+
+## Cap on how many bismuths there can be
+#BISMUTHCAP 6
 
 ## Enable the capitalist agenda on your server.
 ECONOMY

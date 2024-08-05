@@ -1,7 +1,8 @@
 /turf/open/floor/ballpit
 	desc = "A bunch of balls compressed together into a tile. Fun for the whole family!"
-	icon = 'yogstation/icons/turf/floors/ballpit_smooth.dmi'
-	icon_state = "smooth"
+	icon = 'yogstation/icons/turf/floors/ballpit.dmi'
+	icon_state = "ballpit-255"
+	base_icon_state = "ballpit"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	smoothing_groups = SMOOTH_GROUP_TURF_BALLPIT
 	canSmoothWith = SMOOTH_GROUP_TURF_BALLPIT

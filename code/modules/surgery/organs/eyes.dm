@@ -94,16 +94,20 @@
 /obj/item/organ/eyes/proc/generate_body_overlay(mob/living/carbon/human/parent)
 	if(!istype(parent) || parent.getorgan(/obj/item/organ/eyes) != src)
 		CRASH("Generating a body overlay for [src] targeting an invalid parent '[parent]'.")
-
-	var/mutable_appearance/eye_overlay = mutable_appearance('icons/mob/human_face.dmi', eye_icon_state, -BODY_LAYER)
+	var/obj/item/bodypart/head/head = parent.get_bodypart(BODY_ZONE_HEAD)
+	var/mutable_appearance/eye_overlay = mutable_appearance(head.eyes_icon, eye_icon_state, -BODY_LAYER)
 	var/list/overlays = list(eye_overlay)
 
 	if((EYECOLOR in parent.dna.species.species_traits))
 		eye_overlay.color = eye_color
 
+	if(head.eyes_static)
+		var/mutable_appearance/eyes_static_sprite = mutable_appearance(eye_overlay.icon, "[eye_overlay.icon_state]_static_[head.eyes_static]", eye_overlay.layer, appearance_flags = RESET_COLOR)
+		eye_overlay.add_overlay(eyes_static_sprite)
+
 	// Cry emote overlay
-	if (HAS_TRAIT(parent, TRAIT_CRYING)) // Caused by the *cry emote
-		var/mutable_appearance/tears_overlay = mutable_appearance('icons/mob/human_face.dmi', "tears", -BODY_ADJ_LAYER)
+	if(HAS_TRAIT(parent, TRAIT_CRYING)) // Caused by the *cry emote
+		var/mutable_appearance/tears_overlay = mutable_appearance(head.eyes_icon, "tears", -BODY_ADJ_LAYER)
 		tears_overlay.color = COLOR_DARK_CYAN
 		overlays += tears_overlay
 
@@ -514,22 +518,26 @@
 	name = "fractal eyes"
 	desc = "Crystalline eyes from an Ethereal. Seeing with them should feel like using a kaleidoscope, but somehow it isn't."
 	icon_state = "ethereal_eyes"
+	actions_types = list(/datum/action/item_action/organ_action/use)
 	///Color of the eyes, is set by the species on gain
 	var/ethereal_color = "#9c3030"
+	var/active = FALSE
+
+/obj/item/organ/eyes/ethereal/Remove(mob/living/carbon/M, special)
+	. = ..()
+	M?.client?.view_size?.zoomIn()
 
 /obj/item/organ/eyes/ethereal/Initialize(mapload)
 	. = ..()
 	add_atom_colour(ethereal_color, FIXED_COLOUR_PRIORITY)
 
-/obj/item/organ/eyes/ethereal/Insert(mob/living/carbon/M, special, drop_if_replaced, initialising)
-	. = ..()
-	var/client/dude = M.client
-	if(dude)
-		dude.view_size.resetToDefault(getScreenSize(dude.prefs.read_preference(/datum/preference/toggle/widescreen)))
-		dude.view_size.addTo("2x2")
+/obj/item/organ/eyes/ethereal/ui_action_click()
+	var/client/dude = owner.client
+	if(!dude)
+		return
 
-/obj/item/organ/eyes/ethereal/Remove(mob/living/carbon/M, special)
-	var/client/dude = M.client
-	if(dude)
-		dude.view_size.resetToDefault(getScreenSize(dude.prefs.read_preference(/datum/preference/toggle/widescreen)))
-	. = ..()
+	active=!active
+	if(active)
+		dude.view_size.zoomOut(2)
+	else
+		dude.view_size.zoomIn()

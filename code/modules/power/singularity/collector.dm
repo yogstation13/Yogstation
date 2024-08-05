@@ -5,7 +5,7 @@
 
 // stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT*(machine_tier+power_bonus)
 #define RAD_COLLECTOR_EFFICIENCY 80 	// radiation needs to be over this amount to get power
-#define RAD_COLLECTOR_COEFFICIENT 100
+#define RAD_COLLECTOR_COEFFICIENT 40
 #define RAD_COLLECTOR_STORED_OUT 0.1	// (this*100)% of stored power outputted per tick. Doesn't actualy change output total, lower numbers just means collectors output for longer in absence of a source
 #define RAD_COLLECTOR_MINING_CONVERSION_RATE 0.000125 //This is gonna need a lot of tweaking to get right. This is the number used to calculate the conversion of watts to research points per process()
 #define RAD_COLLECTOR_OUTPUT min(stored_power, (stored_power*RAD_COLLECTOR_STORED_OUT)+1000) //Produces at least 1000 watts if it has more than that stored
@@ -260,7 +260,7 @@
 	. = ..()
 	if(active)
 		if(mode == POWER)
-			. += "<span class='notice'>[src]'s display states that it has stored <b>[DisplayPower(stored_power)]</b>, and processing <b>[DisplayPower(RAD_COLLECTOR_OUTPUT)]</b>.</span>"
+			. += "<span class='notice'>[src]'s display states that it has stored <b>[DisplayJoules(stored_power)]</b>, and processing <b>[DisplayPower(RAD_COLLECTOR_OUTPUT)]</b>.</span>"
 		else if(mode == SCIENCE)
 			. += "<span class='notice'>[src]'s display states that it has stored a total of <b>[stored_power*RAD_COLLECTOR_MINING_CONVERSION_RATE]</b>, and producing [last_output*60] research points per minute.</span>"
 		else if(mode == MONEY)
@@ -295,7 +295,7 @@
 /obj/machinery/power/rad_collector/rad_act(pulse_strength, collectable_radiation)
 	. = ..()
 	if(loaded_tank && active && collectable_radiation && pulse_strength > RAD_COLLECTOR_EFFICIENCY)
-		stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT*(machine_tier+power_bonus)
+		stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT*sqrt(machine_tier+power_bonus)
 
 /obj/machinery/power/rad_collector/update_overlays()
 	. = ..()
@@ -327,9 +327,9 @@
 
 /obj/machinery/power/rad_collector/bullet_act(obj/projectile/P)
 	if(istype(P, /obj/projectile/energy/nuclear_particle))
-		rad_act(P.irradiate * P.damage) // equivalent of a 2000 strength rad pulse for each particle
-		P.damage = 0
-	..()
+		rad_act(P.irradiate * P.damage, collectable_radiation = TRUE) // equivalent of a 2000 strength rad pulse for each particle
+		P.nodamage = TRUE
+	return ..()
 
 #undef RAD_COLLECTOR_EFFICIENCY
 #undef RAD_COLLECTOR_COEFFICIENT

@@ -14,7 +14,7 @@
 	hardware_flag = PROGRAM_PDA
 	max_hardware_size = WEIGHT_CLASS_SMALL
 	w_class = WEIGHT_CLASS_SMALL
-	max_bays = 1
+	max_bays = 2
 	steel_sheet_cost = 1
 	slot_flags = ITEM_SLOT_ID | ITEM_SLOT_BELT
 

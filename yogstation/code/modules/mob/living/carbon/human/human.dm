@@ -16,7 +16,10 @@
 /mob/living/carbon/human/species/pod/ivymen //jungleland
 	race = /datum/species/pod/ivymen
 
+/mob/living/carbon/human/species/vox
+	race = /datum/species/vox
+
 /mob/living/carbon/human/get_blood_state()
-	if(NOBLOOD in dna.species.species_traits) //Can't have blood problems if your species doesn't have any blood, innit?
+	if((NOBLOOD in dna.species.species_traits) || (STABLEBLOOD in dna.species.species_traits)) //Can't have blood problems if your species doesn't have any blood, innit?
 		return BLOOD_SAFE
 	. = ..()

@@ -27,17 +27,6 @@
 	for(var/item_type in item_types)
 		items_list.Add(new item_type(src))
 
-/obj/item/organ/cyberimp/arm/proc/SetSlotFromZone()
-	switch(zone)
-		if(BODY_ZONE_L_ARM)
-			slot = ORGAN_SLOT_LEFT_ARM_AUG
-		if(BODY_ZONE_R_ARM)
-			slot = ORGAN_SLOT_RIGHT_ARM_AUG
-		else
-			stack_trace("Invalid zone for [type]")
-			return FALSE
-	return TRUE
-
 /obj/item/organ/cyberimp/arm/update_icon(updates=ALL)
 	. = ..()
 	if(zone == BODY_ZONE_R_ARM)
@@ -82,6 +71,8 @@
 		return FALSE
 
 	UnregisterSignal(holder, COMSIG_ITEM_PREDROPPED)
+	UnregisterSignal(owner, COMSIG_CARBON_TOGGLE_THROW)
+	UnregisterSignal(owner, COMSIG_CARBON_REMOVE_LIMB)
 
 	if(!syndicate_implant)
 		owner.visible_message(span_notice("[owner] retracts [holder] back into [owner.p_their()] [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
@@ -102,6 +93,8 @@
 /obj/item/organ/cyberimp/arm/proc/on_drop(datum/source, mob/user)
 	Retract()
 
+/obj/item/organ/cyberimp/arm/proc/throw_mode()
+
 /obj/item/organ/cyberimp/arm/proc/Extend(obj/item/item)
 	if(!(item in src))
 		stack_trace("[item.type] is not in [type] and cannot be extended!")
@@ -109,6 +102,8 @@
 
 	holder = item
 	RegisterSignal(holder, COMSIG_ITEM_PREDROPPED, PROC_REF(on_drop))
+	RegisterSignal(owner, COMSIG_CARBON_TOGGLE_THROW, PROC_REF(throw_mode))
+	RegisterSignal(owner, COMSIG_CARBON_REMOVE_LIMB, PROC_REF(Retract))
 	ADD_TRAIT(holder, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
 	holder.resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -119,7 +114,14 @@
 		var/obj/item/assembly/flash/F = holder
 		F.set_light(7)
 
-	var/obj/item/arm_item = owner.get_active_held_item()
+	var/obj/item/arm_item
+	switch(zone)
+		if(BODY_ZONE_R_ARM)
+			arm_item = owner.get_item_for_held_index(2)
+		if(BODY_ZONE_L_ARM)
+			arm_item = owner.get_item_for_held_index(1)
+		else
+			arm_item = owner.get_active_held_item()
 
 	if(arm_item)
 		if(!owner.dropItemToGround(arm_item))
@@ -217,8 +219,9 @@
 /obj/item/organ/cyberimp/arm/toolset/l
 	zone = BODY_ZONE_L_ARM
 
-/obj/item/organ/cyberimp/arm/toolset/on_drop(datum/source, mob/user)
+/obj/item/organ/cyberimp/arm/toolset/throw_mode() //press r to toggle items instead of prepping a throw
 	ui_action_click()
+	return COMSIG_CARBON_BLOCK_TOGGLE_THROW
 
 /obj/item/organ/cyberimp/arm/toolset/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!(locate(/obj/item/kitchen/knife/combat/cyborg) in items_list))
@@ -248,6 +251,21 @@
 	name = "surgical toolset implant"
 	desc = "A set of surgical tools hidden behind a concealed panel on the user's arm."
 	items_list = list(/obj/item/retractor/augment, /obj/item/hemostat/augment, /obj/item/cautery/augment, /obj/item/surgicaldrill/augment, /obj/item/scalpel/augment, /obj/item/circular_saw/augment)
+
+/obj/item/organ/cyberimp/arm/toolset/botany
+	name = "botanical toolset implant"
+	desc = "A set of botanical tools hidden behind a concealed panel on the user's arm."
+	items_list = list(/obj/item/hatchet, /obj/item/cultivator, /obj/item/plant_analyzer, /obj/item/reagent_containers/glass/bucket, /obj/item/reagent_containers/dropper)
+
+/obj/item/organ/cyberimp/arm/toolset/janitor
+	name = "janitorial toolset implant"
+	desc = "A set of janitorial tools hidden behind a concealed panel on the user's arm."
+	items_list = list(/obj/item/mop/advanced, /obj/item/broom, /obj/item/reagent_containers/spray/cleaner, /obj/item/holosign_creator/janibarrier, /obj/item/lightreplacer)
+
+/obj/item/organ/cyberimp/arm/toolset/clown
+	name = "comedy toolset implant"
+	desc = "A set of comedy tools hidden behind a concealed panel on the user's arm."
+	items_list = list(/obj/item/holosign_creator/clown, /obj/item/reagent_containers/spray/waterflower/lube, /obj/item/gun/water/full, /obj/item/bikehorn/airhorn)
 
 /obj/item/organ/cyberimp/arm/esword
 	name = "arm-mounted energy blade"

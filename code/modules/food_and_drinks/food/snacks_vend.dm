@@ -213,7 +213,8 @@
 	. = ..()
 	contained_animal = new /mob/living/simple_animal/mouse/fat(get_turf(src))
 	to_chat(user, span_warning("You pry open the [src]. A [contained_animal.name] falls out from inside!"))
-	On_Consume(user)//give trash
+	qdel(src)
+	user.put_in_hands(new /obj/item/trash/vermin) //give trash
 
 /obj/item/reagent_containers/food/snacks/vermin/attack(mob/living/M, mob/user, def_zone)
 	to_chat(user, span_warning("You need to open [src]' lid first."))

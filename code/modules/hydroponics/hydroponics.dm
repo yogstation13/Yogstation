@@ -113,6 +113,7 @@
 		adjustWeeds(-0.5 * delta_time)
 		adjustPests(-0.5 * delta_time)
 		adjustToxic(-2)
+		needs_update = TRUE
 
 	if(world.time > (lastcycle + cycledelay))
 		lastcycle = world.time
@@ -214,8 +215,8 @@
 			else
 				weedinvasion() // Weed invasion into empty tray
 			needs_update = 1
-		if (needs_update)
-			update_appearance(UPDATE_ICON)
+	if(needs_update)
+		update_appearance(UPDATE_ICON)
 	return
 
 /obj/machinery/hydroponics/proc/nutrimentMutation()
@@ -402,7 +403,7 @@
 		if(myseed)
 			qdel(myseed)
 			myseed = null
-		var/newWeed = pick(/obj/item/seeds/liberty, /obj/item/seeds/angel, /obj/item/seeds/nettle/death, /obj/item/seeds/kudzu)
+		var/newWeed = pick(/obj/item/seeds/liberty, /obj/item/seeds/angel, /obj/item/seeds/nettle/death)
 		myseed = new newWeed
 		dead = 0
 		hardmutate()

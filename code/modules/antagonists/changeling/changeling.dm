@@ -131,7 +131,7 @@
 
 /datum/antagonist/changeling/proc/make_absorbable()
 	var/mob/living/carbon/C = owner.current
-	if(ishuman(C) && (NO_DNA_COPY in C.dna.species.species_traits || !C.has_dna()))
+	if(ishuman(C) && ((NO_DNA_COPY in C.dna.species.species_traits) || !C.has_dna() || (NOHUSK in C.dna.species.species_traits)))
 		to_chat(C, span_userdanger("You have been made a human, as your original race had incompatible DNA."))
 		C.set_species(/datum/species/human, TRUE, TRUE)
 		if(C.client?.prefs?.read_preference(/datum/preference/name/backup_human) && !is_banned_from(C.client?.ckey, "Appearance"))
@@ -345,6 +345,7 @@
 			prof.righthand_file_list[slot] = I.righthand_file
 			prof.worn_icon_list[slot] = I.worn_icon
 			prof.worn_icon_state_list[slot] = I.worn_icon_state
+			prof.sprite_sheets_list[slot] = I.sprite_sheets
 			prof.exists_list[slot] = 1
 		else
 			continue
@@ -676,6 +677,7 @@
 	new_profile.socks = socks
 	new_profile.worn_icon_list = worn_icon_list.Copy()
 	new_profile.worn_icon_state_list = worn_icon_state_list.Copy()
+	new_profile.sprite_sheets_list = sprite_sheets_list.Copy()
 	new_profile.stored_scars = stored_scars.Copy()
 
 /datum/antagonist/changeling/xenobio

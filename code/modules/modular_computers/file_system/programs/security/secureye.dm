@@ -4,7 +4,7 @@
 /datum/computer_file/program/secureye
 	filename = "secureye"
 	filedesc = "SecurEye"
-	category = PROGRAM_CATEGORY_SEC
+	category = PROGRAM_CATEGORY_SECURITY
 	ui_header = "borg_mon.gif"
 	program_icon_state = "generic"
 	extended_desc = "This program allows access to standard security camera networks."
@@ -186,7 +186,7 @@
 /datum/computer_file/program/secureye/mining
 	filename = "overwatch"
 	filedesc = "OverWatch"
-	category = PROGRAM_CATEGORY_SUPL
+	category = PROGRAM_CATEGORY_SUPPLY
 	extended_desc = "This program allows access to the mining base camera network."
 	transfer_access = ACCESS_MINING
 	size = 5

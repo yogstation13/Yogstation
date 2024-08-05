@@ -94,7 +94,7 @@
 /obj/item/melee/sickly_blade
 	name = "sickly blade"
 	desc = "A sickly, green crescent blade, decorated with an ornamental eye. You feel like you're being watched..."
-	icon = 'icons/obj/eldritch.dmi'
+	icon = 'icons/obj/weapons/khopesh.dmi'
 	icon_state = "eldritch_blade"
 	item_state = "eldritch_blade"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
@@ -186,7 +186,10 @@
 	force = 5
 	armour_penetration = 10
 	throwforce = 5
-	block_chance = 10
+
+/obj/item/melee/sickly_blade/bone/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/blocking, block_force = 10)
 
 /obj/item/melee/sickly_blade/cosmic
 	name = "cosmic blade"
@@ -194,14 +197,18 @@
 	icon_state = "cosmic_blade"
 	item_state = "cosmic_blade"
 
-/obj/item/melee/sickly_blade/dark/attack(mob/living/M, mob/living/user, secondattack = FALSE)
+/obj/item/melee/sickly_blade/dark/attack(mob/living/M, mob/living/user, params, secondattack = FALSE)
 	. = ..()
-	var/obj/item/mantis/blade/secondsword = user.get_inactive_held_item()
+	var/obj/item/melee/sickly_blade/bone/secondsword = user.get_inactive_held_item()
 	if(istype(secondsword, /obj/item/melee/sickly_blade/bone) && !secondattack)
-		sleep(0.2 SECONDS)
-		secondsword.attack(M, user, TRUE)
-		user.changeNext_move(CLICK_CD_MELEE)
+		addtimer(CALLBACK(src, PROC_REF(secondattack), M, user, params, secondsword), 2, TIMER_UNIQUE | TIMER_OVERRIDE)
 	return
+
+/obj/item/melee/sickly_blade/dark/proc/secondattack(mob/living/M, mob/living/user, params, obj/item/mantis/blade/secondblade)
+	if(QDELETED(secondblade) || QDELETED(src))
+		return
+	secondblade.attack(M, user, params, TRUE)
+	user.changeNext_move(CLICK_CD_MELEE)
 
 /obj/item/melee/sickly_blade/knock
 	name = "key blade"
@@ -382,15 +389,15 @@
 		return TRUE
 
 	set_cloak(0)
-	UnregisterSignal(current_user, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_BULLET_ACT))
+	UnregisterSignal(current_user, list(COMSIG_MOVABLE_MOVED, COMSIG_HUMAN_CHECK_SHIELDS))
 	if(user)
-		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_BULLET_ACT))
+		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_HUMAN_CHECK_SHIELDS))
 
 	var/mob/new_user = loc
 	if(istype(new_user) && new_user.get_item_by_slot(ITEM_SLOT_OCLOTHING) == src)
 		current_user = new_user
 		RegisterSignal(current_user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
-		RegisterSignal(current_user, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_projectile_hit))
+		RegisterSignal(current_user, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(dodge))
 		START_PROCESSING(SSobj, src)
 	else
 		STOP_PROCESSING(SSobj, src)
@@ -410,28 +417,18 @@
 		return
 	set_cloak(cloak + (cloak_charge_rate * delta_time))
 
-/obj/item/clothing/suit/cultrobes/void/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(!isprojectile(hitby) && dodge(owner, hitby, attack_text))
-		return TRUE
-	return ..()
-
 /obj/item/clothing/suit/cultrobes/void/proc/on_move(mob/user, Dir, Forced = FALSE)
 	if(update_signals(user))
 		set_cloak(cloak - cloak_move_loss)
 
-/obj/item/clothing/suit/cultrobes/void/proc/on_projectile_hit(mob/living/carbon/human/user, obj/projectile/P, def_zone)
-	SIGNAL_HANDLER
-	if(dodge(user, P, "[P]"))
-		return BULLET_ACT_FORCE_PIERCE
-
-/obj/item/clothing/suit/cultrobes/void/proc/dodge(mob/living/carbon/human/user, atom/movable/hitby, attack_text)
+/obj/item/clothing/suit/cultrobes/void/proc/dodge(mob/living/carbon/human/user, atom/movable/hitby, damage, attack_text)
 	if(!update_signals(user) || current_user.incapacitated() || !prob(cloak))
-		return FALSE
+		return NONE
 
 	set_cloak(cloak - cloak_dodge_loss)
 	current_user.balloon_alert_to_viewers("Dodged!", "Dodged!", COMBAT_MESSAGE_RANGE)
 	current_user.visible_message(span_danger("[current_user] dodges [attack_text]!"), span_userdanger("You dodge [attack_text]"), null, COMBAT_MESSAGE_RANGE)
-	return TRUE
+	return SHIELD_DODGE
 
 
 /obj/item/clothing/suit/cultrobes/void/equipped(mob/living/user, slot)

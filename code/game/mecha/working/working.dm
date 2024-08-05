@@ -1,4 +1,5 @@
 /obj/mecha/working
+	force = 10
 	internal_damage_threshold = 60
 	var/fast_pressure_step_in = 1.5 //step_in while in low pressure conditions
 	var/slow_pressure_step_in = 2.0 //step_in while in normal pressure conditions

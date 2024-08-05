@@ -28,7 +28,9 @@
 
 /datum/quirk/blooddeficiency/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (NOBLOOD in initial(species_type.species_traits)) //can't lose blood if your species doesn't have any
+	species_type = new species_type()
+	var/disallowed_trait = (NOBLOOD in species_type.species_traits) // Cant lose blood if your species doesn't have any
+	qdel(species_type)
 
 	if(disallowed_trait)
 		return "You don't have blood!"
@@ -154,8 +156,9 @@
 
 /datum/quirk/light_drinker/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) || !(initial(species_type.inherent_biotypes) & MOB_ORGANIC)// Cant drink or process alcohol
-
+	species_type = new species_type()
+	var/disallowed_trait = (NOMOUTH in species_type.species_traits) || !(initial(species_type.inherent_biotypes) & MOB_ORGANIC)// Cant drink or process alcohol
+	qdel(species_type)
 	if(disallowed_trait)
 		return "You don't have the ability to consume alcohol!"
 	return FALSE
@@ -188,7 +191,7 @@
 
 /datum/quirk/nyctophobia/on_process()
 	var/mob/living/carbon/human/H = quirk_holder
-	if((H.dna.species.id in list("shadow", "nightmare", "darkspawn")) || is_darkspawn_or_thrall(H))
+	if(isshadowperson(H) || is_team_darkspawn(H))
 		return //we're tied with the dark, so we don't get scared of it; don't cleanse outright to avoid cheese
 	var/turf/T = get_turf(quirk_holder)
 	var/lums = T.get_lumcount()
@@ -621,11 +624,10 @@
 			return
 		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "wrong_cigs", /datum/mood_event/wrong_brand)
 
-
 /datum/quirk/junkie/drunkard
 	name = "Drunkard"
 	desc = "In space there's no such thing as day drinking."
-	icon = "beer" 
+	icon = "beer"
 	value = -2
 	mood_quirk = TRUE
 	gain_text = span_danger("You could really go for a stiff drink right about now.")
@@ -633,14 +635,14 @@
 	medical_record_text = "Patient is known to be dependent on alcohol."
 	reagent_type = /datum/reagent/consumable/ethanol
 	junkie_warning = "You suddenly feel like you need another drink..."
-	
+
 /datum/quirk/junkie/drunkard/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.reagents.add_reagent(/datum/reagent/consumable/ethanol, 20)
 	drug_container_type = pick(/obj/item/reagent_containers/food/drinks/beer/light/plastic)
 	. = ..()
 
-	
+
 /datum/quirk/junkie/drunkard/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/disallowed_trait = !(initial(species_type.inherent_biotypes) & MOB_ORGANIC) //if you can't process organic chems you couldn't get addicted in the first place
@@ -668,7 +670,6 @@
 	mob_trait = TRAIT_ALLERGIC
 	gain_text = span_danger("You remember your allergic reaction to a common medicine.")
 	lose_text = span_notice("You no longer are allergic to medicine.")
-	medical_record_text = "Patient has a severe allergic reaction to a common medicine."
 	var/allergy_chem_list = list(	/datum/reagent/medicine/inacusiate,
 									/datum/reagent/medicine/silver_sulfadiazine,
 									/datum/reagent/medicine/styptic_powder,
@@ -685,7 +686,9 @@
 
 /datum/quirk/allergic/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = !(TRAIT_MEDICALIGNORE in initial(species_type.inherent_traits))
+	species_type = new species_type()
+	var/disallowed_trait = (TRAIT_MEDICALIGNORE in species_type.inherent_traits)
+	qdel(species_type)
 
 	if(disallowed_trait)
 		return "You don't benefit from the use of medicine."
@@ -696,6 +699,7 @@
 	var/datum/reagent/allergy = GLOB.chemical_reagents_list[reagent_id]
 	to_chat(quirk_holder, span_danger("You remember you are allergic to [allergy.name]."))
 	quirk_holder.allergies += allergy
+	medical_record_text = "Patient has a severe allergic reaction to [allergy.name]."
 
 /datum/quirk/allergic/on_process()
 	var/mob/living/carbon/H = quirk_holder
@@ -736,7 +740,7 @@
 				return
 		if(!H.get_active_held_item())
 			to_chat(quirk_holder, span_danger("You can't keep your eyes off [I.name]."))
-			H.UnarmedAttack(I)
+			H.UnarmedAttack(I, TRUE, list())
 
 /datum/quirk/ineloquent
 	name = "Ineloquent"
@@ -766,7 +770,9 @@
 
 /datum/quirk/hemophilia/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (NOBLOOD in initial(species_type.species_traits))
+	species_type = new species_type()
+	var/disallowed_trait = (NOBLOOD in species_type.species_traits)
+	qdel(species_type)
 
 	if(disallowed_trait)
 		return "You can't bleed."
@@ -823,16 +829,41 @@
 	desc = "Due to hundreds of cloning cycles, your DNA's telomeres are dangerously shortened. Your DNA can't support cloning without expensive DNA restructuring, and what's worse- you work for Nanotrasen."
 	icon = "magnifying-glass-minus"
 	value = -2
-	mob_trait = TRAIT_SHORT_TELOMERES
 	medical_record_text = "DNA analysis indicates that the patient's DNA telomeres are artificially shortened from previous cloner usage."
 
 /datum/quirk/telomeres_short/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (NO_DNA_COPY in initial(species_type.species_traits)) //Can't pick if you have no DNA bruv.
-
-	if(disallowed_trait)
+	species_type = new species_type()
+	var/no_dna = (NO_DNA_COPY in  species_type.species_traits) //Can't pick if you have no DNA bruv.
+	var/no_clone = (TRAIT_NOCLONE in species_type.inherent_traits)
+	qdel(species_type)
+	if(no_dna)
 		return "You have no DNA!"
+	else if(no_clone)
+		return "Your species cannot be cloned!"
 	return FALSE
+
+//we apply it directly to the dna so it carries over to the brain mob if someone tries to clone the brain
+/datum/quirk/telomeres_short/New(mob/living/quirk_mob, spawn_effects, no_init)
+	. = ..()
+	var/datum/dna/holder = quirk_holder?.has_dna()
+	if(holder)
+		holder.features |= TRAIT_SHORT_TELOMERES
+
+/datum/quirk/telomeres_short/Destroy()
+	. = ..()
+	var/datum/dna/holder = quirk_holder?.has_dna()
+	if(holder)
+		holder.features -= TRAIT_SHORT_TELOMERES
+
+/datum/quirk/telomeres_short/transfer_mob(mob/living/to_mob)
+	. = ..()
+	var/datum/dna/holder = quirk_holder?.has_dna()
+	if(holder)
+		holder.features -= TRAIT_SHORT_TELOMERES
+	holder = to_mob?.has_dna()
+	if(holder)
+		holder.features |= TRAIT_SHORT_TELOMERES
 
 /datum/quirk/body_purist
 	name = "Body Purist"

@@ -21,7 +21,7 @@
   * make sure you add an update to the schema_version stable in the db changelog
   */
 
-#define DB_MINOR_VERSION 13
+#define DB_MINOR_VERSION 14
 #define DB_BOUND_CREDENTIALS_FLAG_BYPASS_BANS "bypass_bans"
 #define DB_BOUND_CREDENTIALS_FLAG_ALLOW_PROXIES "allow_proxies"
 
@@ -150,7 +150,6 @@
 #define INIT_ORDER_TICKER			55
 #define INIT_ORDER_MAPPING			50
 #define INIT_ORDER_EARLY_ASSETS 	48
-#define INIT_ORDER_NETWORKS			45
 #define INIT_ORDER_ECONOMY			40
 #define INIT_ORDER_OUTPUTS			35
 #define INIT_ORDER_ATOMS			30
@@ -171,6 +170,7 @@
 #define INIT_ORDER_ECHELON			-10
 #define INIT_ORDER_LIGHTING			-20
 #define INIT_ORDER_SHUTTLE			-21
+#define INIT_ORDER_BACKROOMS		-30 // relies on basically everything to be initialized first
 #define INIT_ORDER_MINOR_MAPPING	-40
 #define INIT_ORDER_BLUESPACE_LOCKER -45
 #define INIT_ORDER_DISCORD			-60
@@ -199,7 +199,6 @@
 #define FIRE_PRIORITY_SPACEDRIFT	30
 #define FIRE_PRIORITY_FIELDS		30
 #define FIRE_PRIORITY_SMOOTHING 	35
-#define FIRE_PRIORITY_NETWORKS		40
 #define FIRE_PRIORITY_OBJ			40
 #define FIRE_PRIORITY_ACID			40
 #define FIRE_PRIORITY_BURNING		40

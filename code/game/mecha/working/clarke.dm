@@ -4,17 +4,17 @@
 	name = "\improper Clarke"
 	icon_state = "clarke"
 	max_temperature = 65000
-	max_integrity = 200
-	step_in = 1.25
+	max_integrity = 400
+	integrity_failure = 200
+	step_in = 2
 	fast_pressure_step_in = 1.5
 	slow_pressure_step_in = 2
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	light_power = 7
 	deflect_chance = 10
 	flags_1 = HEAR_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
-	armor = list(MELEE = 20, BULLET = 10, LASER = 20, ENERGY = 0, BOMB = 60, BIO = 0, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 25, BULLET = 10, LASER = 20, ENERGY = 0, BOMB = 60, BIO = 0, RAD = 100, FIRE = 100, ACID = 100)
 	max_equip = 7
-	wreckage = /obj/structure/mecha_wreckage/clarke
 	enter_delay = 40
 	pivot_step = TRUE
 	/// Handles an internal ore box for Clarke
@@ -26,6 +26,7 @@
 	box = new /obj/structure/ore_box(src)
 	var/obj/item/mecha_parts/mecha_equipment/orebox_manager/ME = new(src)
 	ME.attach(src)
+	AddComponent(/datum/component/armor_plate, 5, /obj/item/stack/sheet/animalhide/weaver_chitin, list(MELEE = 5, BULLET = 2, LASER = 2))
 
 /obj/mecha/working/clarke/Destroy()
 	box.dump_box_contents()

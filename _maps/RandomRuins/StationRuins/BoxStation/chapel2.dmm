@@ -1,7 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "an" = (
-/obj/machinery/vending/wardrobe/chap_wardrobe,
-/turf/open/floor/carpet/red,
+/obj/machinery/mass_driver{
+	dir = 1;
+	id = "chapelgun";
+	name = "Holy Driver"
+	},
+/obj/item/reagent_containers/food/snacks/grown/poppy,
+/turf/open/floor/plating,
 /area/chapel/office)
 "as" = (
 /obj/effect/turf_decal/ramp_middle,
@@ -66,6 +71,7 @@
 	dir = 8;
 	pixel_x = 26
 	},
+/obj/machinery/vending/wardrobe/chap_wardrobe,
 /turf/open/floor/carpet/red,
 /area/chapel/office)
 "dd" = (
@@ -128,6 +134,7 @@
 /obj/structure/disposalpipe/sorting/mail{
 	sortType = 17
 	},
+/obj/effect/mapping_helpers/mail_sorting/service/chapel,
 /turf/open/floor/carpet/black,
 /area/chapel/office)
 "gr" = (
@@ -233,16 +240,13 @@
 	name = "Mass Driver";
 	req_access_txt = "22"
 	},
-/obj/machinery/mass_driver{
-	dir = 4;
-	id = "chapelgun";
-	name = "Holy Driver"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/item/reagent_containers/food/snacks/grown/poppy,
-/turf/open/floor/plating,
+/obj/structure/sign/warning/vacuum/external{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
 /area/chapel/office)
 "kU" = (
 /obj/effect/turf_decal/ramp_middle,
@@ -537,9 +541,6 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "DX" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_y = 32
-	},
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1441,10 +1442,10 @@ Cq
 xL
 "}
 (16,1,1) = {"
-zg
+FN
 DX
-zg
 an
+zg
 cC
 Kz
 XU
@@ -1464,7 +1465,7 @@ wA
 "}
 (17,1,1) = {"
 zg
-FN
+zg
 zg
 wA
 wA

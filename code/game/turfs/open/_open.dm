@@ -15,7 +15,7 @@
 	var/barefootstep = null
 	var/clawfootstep = null
 	var/heavyfootstep = null
-	
+
 	/// Determines the type of damage overlay that will be used for the tile
 	var/damaged_dmi = null
 	var/broken = FALSE
@@ -230,6 +230,27 @@
 	base_icon_state = "carpet_red"
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_RED
 	canSmoothWith = SMOOTH_GROUP_CARPET_RED
+
+/turf/open/indestructible/carpet/plainblue
+	icon = 'icons/turf/floors/carpet_plainblue.dmi'
+	icon_state = "carpet_plainblue-255"
+	base_icon_state = "carpet_plainblue"
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_PLAIN_BLUE
+	canSmoothWith = SMOOTH_GROUP_CARPET_PLAIN_BLUE
+
+/turf/open/indestructible/carpet/plaingreen
+	icon = 'icons/turf/floors/carpet_plaingreen.dmi'
+	icon_state = "carpet_plaingreen-255"
+	base_icon_state = "carpet_plaingreen"
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_PLAIN_GREEN
+	canSmoothWith = SMOOTH_GROUP_CARPET_PLAIN_GREEN
+
+/turf/open/indestructible/carpet/plainpurple
+	icon = 'icons/turf/floors/carpet_plainpurple.dmi'
+	icon_state = "carpet_plainpurple-255"
+	base_icon_state = "carpet_plainpurple"
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_PLAIN_PURPLE
+	canSmoothWith = SMOOTH_GROUP_CARPET_PLAIN_PURPLE
 
 /turf/open/indestructible/carpet/royalblack
 	icon = 'icons/turf/floors/carpet_royalblack.dmi'
@@ -554,8 +575,9 @@
 		icon_state = "necro[rand(2,3)]"
 
 /turf/open/indestructible/brazil/lostit
-	icon = 'yogstation/icons/turf/floors/ballpit_smooth.dmi'
-	icon_state = "smooth"
+	icon = 'yogstation/icons/turf/floors/ballpit.dmi'
+	icon_state = "ballpit-255"
+	base_icon_state = "ballpit"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_BRAZIL
 	canSmoothWith = SMOOTH_GROUP_BRAZIL
