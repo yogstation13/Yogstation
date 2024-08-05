@@ -30,11 +30,6 @@ map gaxstation
 	votable
 endmap
 
-map asteroidstation
-	minplayers 40
-	votable
-endmap
-
 map donutstation
 	maxplayers 50
 	votable
