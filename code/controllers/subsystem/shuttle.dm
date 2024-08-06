@@ -241,11 +241,11 @@ SUBSYSTEM_DEF(shuttle)
 				emergency.request(null, set_coefficient = 0.4)
 			return
 	if(world.time - SSticker.round_start_time >= 2 HOURS) //auto call the shuttle after 2 hours 
-		var/msg = "Automatically dispatching shuttle due to lack of shift end response."
-		message_admins(msg)
-		emergency_no_recall = TRUE
-		priority_announce("Dispatching shuttle due to lack of shift end response.")
+		emergency_no_recall = TRUE //no recalling after 2 hours
 		if(emergency.mode == SHUTTLE_IDLE)
+			var/msg = "Automatically dispatching shuttle due to lack of shift end response."
+			message_admins(msg)
+			priority_announce("Dispatching shuttle due to lack of shift end response.")
 			emergency.request(null)
 
 /datum/controller/subsystem/shuttle/proc/block_recall(lockout_timer)
