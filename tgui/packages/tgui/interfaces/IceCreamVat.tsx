@@ -4,7 +4,7 @@ import { Button, Section, Table, Tabs, Box, TextArea, Stack } from '../component
 import { Window } from '../layouts';
 import { resolveAsset } from './../assets';
 
-//Store data for cones and scoops within Data
+// Store data for cones and scoops within Data
 type Data = {
   tabs: Tab[];
 }
@@ -15,7 +15,7 @@ type Tab = {
   info_tab: InformationStats[];
 }
 
-//Stats specific for scoops
+// Stats specific for scoops
 type IceCreamStats = {
   item_image: string;
   item_name: string;
@@ -24,7 +24,7 @@ type IceCreamStats = {
   selected_item: string;
 }
 
-//Stats specific for cones
+// Stats specific for cones
 type ConeStats = {
   item_image: string;
   item_name: string;
@@ -33,20 +33,20 @@ type ConeStats = {
   selected_item: string;
 }
 
-//Stats for info tab
+// Stats for info tab
 type InformationStats = {
   section_title: string;
   section_text: string;
 }
 
 export const IceCreamVat = (props, context) => {
-  //Get information from backend code
-  const { data } = useBackend<Data>(context)
+  // Get information from backend code
+  const { data } = useBackend<Data>(context);
   // Make a variable for storing a number that represents the current selected tab
-  const [ selectedMainTab, setMainTab ] = useLocalState(context, 'selectedMainTab', 0);
+  const [selectedMainTab, setMainTab] = useLocalState(context, 'selectedMainTab', 0);
 
   return(
-    //Create window for ui
+    // Create window for ui
     <Window width={620} height={600} resizable>
       {/* Add constants to window and make it scrollable */}
       <Window.Content
@@ -56,9 +56,9 @@ export const IceCreamVat = (props, context) => {
             <Tabs.Tab
               icon="ice-cream"
               bold
-              //Show the vat tab when the selectedMainTab is 0
+              // Show the vat tab when the selectedMainTab is 0
               selected={selectedMainTab === 0}
-              //Set selectedMainTab to 0 when the vat tab is clicked
+              // Set selectedMainTab to 0 when the vat tab is clicked
               onClick={() => setMainTab(0)}>
               {/* Put 'Vat' in the tab to differentiate it from other tabs */}
               Vat
@@ -66,35 +66,35 @@ export const IceCreamVat = (props, context) => {
             <Tabs.Tab
               icon="info"
               bold
-              //Show the information tab when the selectedMainTab is 1
+              // Show the information tab when the selectedMainTab is 1
               selected={selectedMainTab === 1}
-              //Set selectedMainTab to 1 when the information tab is clicked
+              // Set selectedMainTab to 1 when the information tab is clicked
               onClick={() => setMainTab(1)}>
               {/* Put 'Information' in the tab to differentiate it from other tabs */}
               Information
             </Tabs.Tab>
           </Tabs>
           {/* If selectedMainTab is 0, show the UI elements in VatTab */}
-          {selectedMainTab == 0 && <VatTab/>}
+          {selectedMainTab === 0 && <VatTab/> }
           {/* If selectedMainTab is 1, show the UI elements in InfoTab */}
-          {selectedMainTab == 1 && <InfoTab/>}
+          {selectedMainTab === 1 && <InfoTab/> }
       </Window.Content>
     </Window>
   );
 };
 
 const ConeRow = (props, context) => {
-  //Get data from ui_data in backend code
+  // Get data from ui_data in backend code
   const { act, data } = useBackend<Tab>(context);
-  //Get cones information from data
+  // Get cones information from data
   const { cones = [] } = data;
 
   return (
-    //Create Table for horizontal format
+    // Create Table for horizontal format
     <Table>
       {/* Use map to create dynamic rows based on the contents of cones, with flavor being the individual item and its stats */}
       {cones.map(flavor => (
-        //Start row for holding ui elements and given data
+        // Start row for holding ui elements and given data
         <Table.Row
          key={flavor.item_name}
          fontSize="14px">
@@ -125,7 +125,7 @@ const ConeRow = (props, context) => {
             content="Select"
             textAlign="center"
             fontSize="16px"
-            //Make the button green if the row's item's type path matches the selected item's type path
+            // Make the button green if the row's item's type path matches the selected item's type path
             selected={flavor.selected_item === flavor.item_type_path}
             onClick={() => act("select", {
             itemPath: flavor.item_type_path,
@@ -137,7 +137,7 @@ const ConeRow = (props, context) => {
             content="Dispense"
             textAlign="center"
             fontSize="16px"
-            //Dissable if there is none of the item in storage
+            // Dissable if there is none of the item in storage
             disabled={(
               flavor.item_quantity === 0
             )}
@@ -153,17 +153,17 @@ const ConeRow = (props, context) => {
 };
 
 const IceCreamRow = (props, context) => {
-  //Get data from ui_data in backend code
+  // Get data from ui_data in backend code
   const { act, data } = useBackend<Tab>(context);
-  //Get ice_cream information from data
+  // Get ice_cream information from data
   const { ice_cream = [] } = data;
 
   return (
-    //Create Table for horizontal format
+    // Create Table for horizontal format
     <Table>
       {/* Use map to create dynamic rows based on the contents of ice_cream, with flavor being the individual item and its stats */}
       {ice_cream.map(flavor => (
-        //Start row for holding ui elements and given data
+        // Start row for holding ui elements and given data
         <Table.Row
          key={flavor.item_name}
          fontSize="14px">
@@ -194,7 +194,7 @@ const IceCreamRow = (props, context) => {
             content="Select"
             textAlign="center"
             fontSize="16px"
-            //Make the button green if the row's item's type path matches the selected item's type path
+            // Make the button green if the row's item's type path matches the selected item's type path
             selected={flavor.selected_item === flavor.item_type_path}
             onClick={() => act("select", {
             itemPath: flavor.item_type_path,
@@ -206,7 +206,7 @@ const IceCreamRow = (props, context) => {
             content="Dispense"
             textAlign="center"
             fontSize="16px"
-            //Dissable if there is none of the item in storage
+            // Dissable if there is none of the item in storage
             disabled={(
               flavor.item_quantity === 0
             )}
@@ -222,14 +222,14 @@ const IceCreamRow = (props, context) => {
 };
 
 const InfoContentRow = (props, context) => {
-  //Get data from ui_data in backend code
+  // Get data from ui_data in backend code
   const { data } = useBackend<Tab>(context);
-  //Get info_tab information from data
+  // Get info_tab information from data
   const { info_tab = [] } = data;
-  //Make constant that starts with the section_text of the first element of info_tab and which will recieve new data from InfoTab
+  // Make constant that starts with the section_text of the first element of info_tab and which will recieve new data from InfoTab
   const[infoContent] = useLocalState(context, 'selectedInfoTab', info_tab[0].section_text);
 
-  //Return a section with the tab's section_text
+  // Return a section with the tab's section_text
   return (
       <Section
       fontSize="16px">
@@ -240,17 +240,17 @@ const InfoContentRow = (props, context) => {
 
 const VatTab = (props, context) => {
 
-  //For organizing the vat tab's information
+  // For organizing the vat tab's information
   return (
   <Stack vertical>
     <Stack.Item>
       <Section title="Cones">
-        <ConeRow/>
+        <ConeRow />
       </Section>
     </Stack.Item>
     <Stack.Item>
       <Section title="Scoops">
-        <IceCreamRow/>
+        <IceCreamRow />
       </Section>
     </Stack.Item>
   </Stack>
@@ -258,28 +258,29 @@ const VatTab = (props, context) => {
 };
 
 const InfoTab = (props, context) => {
-  //Get data from ui_data in backend code
+  // Get data from ui_data in backend code
   const { data } = useBackend<Tab>(context);
-  //Get info_tab information from data
+  // Get info_tab information from data
   const { info_tab = [] } = data;
-  //Make constant that starts with the section_text of the first element of info_tab and which can send new data to InfoContentRow
-  const [ selectedInfoTab, setInfoTab ] = useLocalState(context, 'selectedInfoTab', info_tab[0].section_text);
+  // Make constant that starts with the section_text of the first element of info_tab and which can send new data to InfoContentRow
+  const [selectedInfoTab, setInfoTab] = useLocalState(context, 'selectedInfoTab', info_tab[0].section_text);
 
-  //Return organized elements for the main UI
+  // Return organized elements for the main UI
   return (
-    //Stack them for appealing layout
+    // Stack them for appealing layout
     <Stack>
         <Stack.Item>
           {/* Start tabs and make them vertical */}
           <Tabs vertical>
             {/* Use map to allow for dynamic tabs */}
             {info_tab.map(information => (
-            //Create new tab based on current info_tab element
+            // Create new tab based on current info_tab element
             <Tabs.Tab
             bold
-            //A tab is selected when the current element's section_text equals the value of selectedInfoTab
+            key={information.section_title}
+            // A tab is selected when the current element's section_text equals the value of selectedInfoTab
             selected={information.section_text === selectedInfoTab}
-            //When clicked, selectedInfoTab will be set to the clicked tab's section_text
+            // When clicked, selectedInfoTab will be set to the clicked tab's section_text
             onClick={() => setInfoTab(information.section_text)}>
               {/* Put the section_title in the tab to differentiate it from other tabs */}
               {information.section_title}
@@ -289,7 +290,7 @@ const InfoTab = (props, context) => {
         </Stack.Item>
         {/* Show the section_text stored in selectedInfotab */}
         <Stack.Item>
-          <InfoContentRow/>
+          <InfoContentRow />
         </Stack.Item>
     </Stack>
   );
