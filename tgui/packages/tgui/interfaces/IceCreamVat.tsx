@@ -75,9 +75,9 @@ export const IceCreamVat = (props, context) => {
             </Tabs.Tab>
           </Tabs>
           {/* If selectedMainTab is 0, show the UI elements in VatTab */}
-          {selectedMainTab === 0 && <VatTab/> }
+          {selectedMainTab === 0 && <VatTab />}
           {/* If selectedMainTab is 1, show the UI elements in InfoTab */}
-          {selectedMainTab === 1 && <InfoTab/> }
+          {selectedMainTab === 1 && <InfoTab />}
       </Window.Content>
     </Window>
   );
