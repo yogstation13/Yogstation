@@ -113,8 +113,6 @@
 	while (L && !isturf(L))
 		if(HAS_TRAIT(L, TRAIT_SULPH_PIT_IMMUNE))
 			return TRUE
-		if(ismecha(L)) //Mechs are immune
-			return TRUE
 		if(isliving(L))// if we're a non immune mob inside an immune mob we have to reconsider if that mob is immune to protect ourselves
 			var/mob/living/the_mob = L
 			var/acid_armour = the_mob.getarmor(null, ACID)
