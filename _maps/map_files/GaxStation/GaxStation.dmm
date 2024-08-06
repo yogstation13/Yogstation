@@ -2373,6 +2373,7 @@
 /obj/effect/turf_decal/trimline/red/corner{
 	dir = 4
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bfb" = (
@@ -5499,8 +5500,11 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "cES" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_wide{
-	dir = 8
+	dir = 4
 	},
 /area/bridge)
 "cEZ" = (
@@ -6113,6 +6117,9 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "cVa" = (
@@ -6166,6 +6173,9 @@
 	},
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -7304,6 +7314,9 @@
 /area/security/checkpoint/medical)
 "dxA" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "dxH" = (
@@ -7515,6 +7528,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"dDw" = (
+/obj/effect/turf_decal/trimline/white/filled/corner/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "dDx" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -13152,6 +13172,12 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 6
 	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "gfu" = (
@@ -14466,6 +14492,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"gMF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/ramp_middle,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "gMU" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
@@ -14593,7 +14628,12 @@
 /obj/effect/turf_decal/trimline/red/arrow_ccw{
 	dir = 4
 	},
-/turf/open/floor/plasteel/stairs/goon/dark_stairs_alone,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/turf/open/floor/plasteel/stairs/goon/dark_stairs_alone{
+	dir = 1
+	},
 /area/hallway/secondary/entry)
 "gRV" = (
 /obj/machinery/atmospherics/pipe/layer_manifold{
@@ -15202,6 +15242,9 @@
 	},
 /obj/structure/cable{
 	icon_state = "2-8"
+	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -20374,6 +20417,9 @@
 /obj/effect/turf_decal/trimline/secred/warning/lower{
 	dir = 4
 	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "jHj" = (
@@ -20996,7 +21042,12 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plasteel/stairs/goon/stairs_middle,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/turf/open/floor/plasteel/stairs/goon/stairs_middle{
+	dir = 1
+	},
 /area/hallway/secondary/entry)
 "jXr" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -21139,6 +21190,9 @@
 /obj/structure/closet/firecloset/full,
 /obj/effect/turf_decal/trimline/white/filled/line/lower{
 	dir = 1
+	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -24555,8 +24609,11 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "lMp" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_wide2{
-	dir = 8
+	dir = 4
 	},
 /area/bridge)
 "lMu" = (
@@ -24859,6 +24916,10 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
+"lSG" = (
+/obj/effect/turf_decal/ramp_middle,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "lSI" = (
 /obj/effect/decal/cleanable/glass,
 /obj/structure/disposalpipe/segment,
@@ -24967,6 +25028,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "lVT" = (
@@ -27476,8 +27538,11 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_wide2{
-	dir = 8
+	dir = 4
 	},
 /area/bridge)
 "nlR" = (
@@ -28665,6 +28730,9 @@
 "nMP" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
 	dir = 4
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
@@ -30635,6 +30703,9 @@
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 4
 	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "oRt" = (
@@ -31098,6 +31169,9 @@
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 4
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
@@ -34358,6 +34432,9 @@
 	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "qJl" = (
@@ -34572,7 +34649,9 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
-/turf/open/floor/plasteel/stairs/goon/stairs_middle,
+/turf/open/floor/plasteel/stairs/goon/stairs_middle{
+	dir = 1
+	},
 /area/hydroponics/garden)
 "qQC" = (
 /obj/machinery/navbeacon{
@@ -34691,6 +34770,9 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "qSn" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/plasteel/stairs/goon/stairs_wide{
 	dir = 1
 	},
@@ -35174,6 +35256,10 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 5
 	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "rdP" = (
@@ -37967,6 +38053,9 @@
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 4
+	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
@@ -43461,6 +43550,9 @@
 /obj/structure/railing,
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
+/obj/effect/turf_decal/ramp_corner{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "vgJ" = (
@@ -45515,6 +45607,9 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "wgK" = (
@@ -45596,7 +45691,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/stairs/goon/stairs_alone{
-	dir = 8
+	dir = 4
 	},
 /area/escapepodbay)
 "wiA" = (
@@ -46049,6 +46144,9 @@
 /obj/structure/railing,
 /obj/effect/turf_decal/trimline/red/arrow_ccw{
 	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
 	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_alone{
 	dir = 4
@@ -47203,6 +47301,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
 	},
+/obj/effect/turf_decal/ramp_middle,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "wYp" = (
@@ -48159,6 +48261,9 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "xus" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/plasteel/stairs/goon/stairs2_wide{
 	dir = 1
 	},
@@ -49395,6 +49500,14 @@
 "xXn" = (
 /turf/closed/wall/r_wall,
 /area/security/detectives_office)
+"xXs" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "xXt" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
 /turf/open/floor/plasteel,
@@ -92575,7 +92688,7 @@ vvd
 vmy
 vvd
 qSn
-nPi
+dDw
 vvd
 atx
 pnP
@@ -92832,7 +92945,7 @@ qub
 wcy
 lzE
 jWH
-lzE
+gMF
 oAE
 nVD
 kMw
@@ -93089,7 +93202,7 @@ mPt
 vvd
 vvd
 xus
-vvd
+lSG
 rRY
 atx
 pnP
@@ -94890,7 +95003,7 @@ rrI
 faQ
 btB
 wYh
-aAR
+xXs
 aAR
 blt
 aAR
