@@ -2225,7 +2225,9 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
-/obj/structure/stairs/wide_right,
+/obj/structure/stairs/wide_right{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "aHd" = (
@@ -13009,7 +13011,9 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
-/obj/structure/stairs/wide_left,
+/obj/structure/stairs/wide_left{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "dRl" = (
@@ -32242,7 +32246,9 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
-/obj/structure/stairs/wide_right,
+/obj/structure/stairs/wide_right{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/mine/abandoned)
 "jvE" = (
@@ -45318,7 +45324,9 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
-/obj/structure/stairs/wide_left,
+/obj/structure/stairs/wide_left{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/mine/abandoned)
 "ncH" = (
@@ -77773,7 +77781,9 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
-/obj/structure/stairs/wide_mid,
+/obj/structure/stairs/wide_mid{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "wot" = (
@@ -79073,7 +79083,9 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
-/obj/structure/stairs/wide_mid,
+/obj/structure/stairs/wide_mid{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/mine/abandoned)
 "wHH" = (
