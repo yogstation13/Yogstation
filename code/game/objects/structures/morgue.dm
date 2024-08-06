@@ -233,9 +233,6 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	RemoveElement(/datum/element/update_icon_blocker)
 	connected = new /obj/structure/tray/c_tray(src)
 	connected.connected = src
-	if(mapload && prob(1))
-		new /obj/structure/bodycontainer/crematorium/creamatorium(get_turf(src))
-		qdel(src)
 
 /obj/structure/bodycontainer/crematorium/update_icon_state()
 	. = ..()
@@ -334,21 +331,6 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		locked = FALSE
 		update_appearance(UPDATE_ICON)
 		playsound(src.loc, 'sound/machines/ding.ogg', 50, 1) //you horrible people
-
-/obj/structure/bodycontainer/crematorium/creamatorium
-	name = "crematorium"
-	desc = "A human incinerator. Works well during ice cream socials."
-
-/obj/structure/bodycontainer/crematorium/creamatorium/finish_cremate(mob/user)
-	var/list/icecreams = new()
-	for(var/i_scream in get_all_contents(/mob/living))
-		var/obj/item/reagent_containers/food/snacks/icecream/IC = new()
-		IC.set_cone_type("waffle")
-		IC.add_mob_flavor(i_scream)
-		icecreams += IC
-	. = ..()
-	for(var/obj/IC in icecreams)
-		IC.forceMove(src)
 
 /*
  * Generic Tray
