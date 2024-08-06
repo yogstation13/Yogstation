@@ -341,7 +341,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/dangerous/gasharpoon
 	name = "GasHarpoon"
-	desc = "A repurposed space-whaling tool attatched to a glove, can be used as a sturdy weapon in both hands, or worn as a glove to allow access to it's harpoon."
+	desc = "A repurposed space-whaling tool attached to a glove, can be used as a sturdy weapon in both hands, or worn as a glove to allow access to its harpoon."
 	item = /obj/item/clothing/gloves/gasharpoon
 	cost = 10
 	surplus = 0
@@ -1546,6 +1546,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			move the projector from their hand. Disguised users move slowly, and projectiles pass over them."
 	item = /obj/item/chameleon
 	cost = 7
+	manufacturer = /datum/corporation/traitor/cybersun
+
+/datum/uplink_item/device_tools/projector
+	name = "Holographic Object Projector"
+	item = /obj/item/device/holoprojector
+	desc = "A device for masters of deception and trickery. This item allows you to scan objects and create \
+			holograms of them. The holograms will dissipate when interacted with. You can replace the stock \
+			parts it comes with to increase the maximum number of holograms and variety of scannable objects."
+	cost = 4
 	manufacturer = /datum/corporation/traitor/cybersun
 
 /datum/uplink_item/stealthy_tools/codespeak_manual

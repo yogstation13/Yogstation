@@ -182,13 +182,11 @@
 	trash = /obj/item/grown/bananapeel/bombanana
 	bitesize = 1
 	customfoodfilling = FALSE
-	seed = null
 	tastes = list("explosives" = 10)
 	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1)
 
 /obj/item/grown/bananapeel/bombanana
 	desc = "A peel from a banana. Why is it beeping?"
-	seed = null
 	var/det_time = 50
 	var/obj/item/grenade/syndieminibomb/concussion/bomb
 
@@ -285,7 +283,6 @@
 	max_temperature = 35000
 	operation_req_access = list(ACCESS_SYNDICATE)
 	internals_req_access = list(ACCESS_SYNDICATE)
-	wreckage = /obj/structure/mecha_wreckage/honker/dark
 	max_equip = 4
 
 /obj/mecha/combat/honker/dark/add_cell(obj/item/stock_parts/cell/C)
@@ -309,7 +306,6 @@
 /obj/mecha/combat/honker/dark/crew
 	operation_req_access = list()
 	internals_req_access = list()
-	wreckage = /obj/structure/mecha_wreckage/honker/dark/crew
 
 /obj/mecha/combat/honker/dark/crew/loaded/Initialize(mapload)
 	. = ..()

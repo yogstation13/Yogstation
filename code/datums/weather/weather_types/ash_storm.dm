@@ -77,8 +77,6 @@
 
 /datum/weather/ash_storm/proc/is_ash_immune(atom/L)
 	while (L && !isturf(L))
-		if(ismecha(L)) //Mechs are immune
-			return TRUE
 		if(ishuman(L)) //Are you immune?
 			var/mob/living/carbon/human/H = L
 			var/thermal_protection = H.get_thermal_protection()
@@ -86,13 +84,12 @@
 				return TRUE
 		if(isliving(L))// if we're a non immune mob inside an immune mob we have to reconsider if that mob is immune to protect ourselves
 			var/mob/living/the_mob = L
-			if((WEATHER_ASH in the_mob.weather_immunities) || (WEATHER_ALL in the_mob.weather_immunities))
+			if(the_mob.weather_immunities & immunity_type)
 				return TRUE
 		if(istype(L, /obj/structure/closet))
 			var/obj/structure/closet/the_locker = L
-			if(the_locker.weather_protection)
-				if((WEATHER_ASH in the_locker.weather_protection) || (WEATHER_ALL in the_locker.weather_protection))
-					return TRUE
+			if(the_locker.weather_protection & immunity_type)
+				return TRUE
 		L = L.loc //Check parent items immunities (recurses up to the turf)
 	return FALSE //RIP you
 

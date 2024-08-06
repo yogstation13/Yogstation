@@ -1,4 +1,5 @@
 /datum/crafting_recipe/food
+	time = 1.5 SECONDS //this is closer to assembly than mechanical crafting
 	var/real_parts
 	/// A rough equivilance for how much nutrition this recipe's result will provide
 	var/total_nutriment_factor = 0

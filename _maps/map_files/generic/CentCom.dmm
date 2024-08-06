@@ -2113,31 +2113,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"ako" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien20"
-	},
-/area/centcom/abductor_ship)
-"akp" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien21"
-	},
-/area/centcom/abductor_ship)
-"akq" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien22"
-	},
-/area/centcom/abductor_ship)
-"akr" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien23"
-	},
-/area/centcom/abductor_ship)
-"aks" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien24"
-	},
-/area/centcom/abductor_ship)
 "akt" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -2284,16 +2259,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"akK" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien16"
-	},
-/area/centcom/abductor_ship)
-"akL" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien17"
-	},
-/area/centcom/abductor_ship)
 "akM" = (
 /obj/machinery/abductor/experiment{
 	team_number = 4
@@ -2311,16 +2276,6 @@
 	team_number = 4
 	},
 /turf/open/floor/plating/abductor,
-/area/centcom/abductor_ship)
-"akP" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien18"
-	},
-/area/centcom/abductor_ship)
-"akQ" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien19"
-	},
 /area/centcom/abductor_ship)
 "akR" = (
 /obj/effect/turf_decal/stripes/line{
@@ -2463,11 +2418,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/centcom/control)
-"alg" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien14"
-	},
-/area/centcom/abductor_ship)
 "alh" = (
 /obj/machinery/computer/camera_advanced/abductor{
 	team_number = 4
@@ -2483,9 +2433,9 @@
 /area/centcom/abductor_ship)
 "alk" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien15"
+	icon_state = "abductor_wall-12"
 	},
-/area/centcom/abductor_ship)
+/area/bluespace_locker)
 "all" = (
 /turf/open/floor/plating,
 /area/centcom/syndicate_mothership/control)
@@ -2627,11 +2577,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"alB" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien12"
-	},
-/area/centcom/abductor_ship)
 "alC" = (
 /obj/item/retractor/alien,
 /obj/item/hemostat/alien,
@@ -2658,11 +2603,6 @@
 /obj/structure/table/abductor,
 /obj/item/storage/box/alienhandcuffs,
 /turf/open/floor/plating/abductor,
-/area/centcom/abductor_ship)
-"alH" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien13"
-	},
 /area/centcom/abductor_ship)
 "alI" = (
 /turf/open/space/transit,
@@ -2805,11 +2745,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/centcom/control)
-"alX" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien10"
-	},
-/area/centcom/abductor_ship)
 "alY" = (
 /obj/item/surgical_drapes,
 /obj/item/paper/guides/antag/abductor,
@@ -2817,11 +2752,6 @@
 /obj/structure/table/abductor,
 /obj/item/cautery/alien,
 /turf/open/floor/plating/abductor,
-/area/centcom/abductor_ship)
-"alZ" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien11"
-	},
 /area/centcom/abductor_ship)
 "ama" = (
 /turf/open/floor/engine,
@@ -3028,16 +2958,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/centcom/control)
-"amr" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien6"
-	},
-/area/centcom/abductor_ship)
-"ams" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien7"
-	},
-/area/centcom/abductor_ship)
 "amt" = (
 /obj/machinery/abductor/gland_dispenser,
 /turf/open/floor/plating/abductor,
@@ -3051,16 +2971,6 @@
 "amv" = (
 /obj/structure/bed/abductor,
 /turf/open/floor/plating/abductor,
-/area/centcom/abductor_ship)
-"amw" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien8"
-	},
-/area/centcom/abductor_ship)
-"amx" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien9"
-	},
 /area/centcom/abductor_ship)
 "amy" = (
 /obj/effect/turf_decal/stripes/corner{
@@ -3351,26 +3261,6 @@
 /area/centcom/control)
 "anb" = (
 /turf/closed/indestructible/abductor,
-/area/centcom/abductor_ship)
-"anc" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien2"
-	},
-/area/centcom/abductor_ship)
-"and" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien3"
-	},
-/area/centcom/abductor_ship)
-"ane" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien4"
-	},
-/area/centcom/abductor_ship)
-"anf" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien5"
-	},
 /area/centcom/abductor_ship)
 "ang" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
@@ -19099,8 +18989,8 @@
 "aUt" = (
 /obj/structure/closet/bluespace/internal,
 /turf/open/indestructible{
-	icon = 'icons/turf/walls.dmi';
-	icon_state = "alien22"
+	icon = 'icons/turf/walls/abductor_wall.dmi';
+	icon_state = "abductor_wall-12"
 	},
 /area/bluespace_locker)
 "aUu" = (
@@ -22814,7 +22704,7 @@
 /turf/open/floor/engine,
 /area/centcom/syndicate_mothership)
 "pJM" = (
-/turf/closed/indestructible/alien,
+/turf/closed/indestructible/abductor,
 /area/bluespace_locker)
 "pLF" = (
 /obj/machinery/vending/wardrobe/cargo_wardrobe,
@@ -24304,11 +24194,11 @@ aaa
 aaa
 aaa
 aaa
-akK
-alg
-alB
-alX
-amr
+anb
+anb
+anb
+anb
+anb
 aaa
 aaa
 aaa
@@ -24331,11 +24221,11 @@ aaa
 aaa
 aaa
 aaa
-akK
-alg
-alB
-alX
-amr
+anb
+anb
+anb
+anb
+anb
 aaa
 aaa
 aaa
@@ -24361,11 +24251,11 @@ aaa
 aaa
 aaa
 aaa
-akK
-alg
-alB
-alX
-amr
+anb
+anb
+anb
+anb
+anb
 aaa
 aaa
 aaa
@@ -24388,11 +24278,11 @@ aaa
 aaa
 aaa
 aaa
-akK
-alg
-alB
-alX
-amr
+anb
+anb
+anb
+anb
+anb
 aaa
 aaa
 aLV
@@ -24560,12 +24450,12 @@ aaa
 aaa
 aaa
 aaa
-ako
-akL
+anb
+anb
 alh
 alC
 alY
-ams
+anb
 anb
 aaa
 aaa
@@ -24587,12 +24477,12 @@ aaa
 aaa
 aaa
 aaa
-ako
-akL
+anb
+anb
 aBe
 alC
 alY
-ams
+anb
 anb
 aaa
 aaa
@@ -24617,12 +24507,12 @@ aaa
 aaa
 aaa
 aaa
-ako
-akL
+anb
+anb
 aJF
 alC
 alY
-ams
+anb
 anb
 aaa
 aaa
@@ -24644,12 +24534,12 @@ aaa
 aaa
 aaa
 aaa
-ako
-akL
+anb
+anb
 aLS
 alC
 alY
-ams
+anb
 anb
 aaa
 aLV
@@ -24817,13 +24707,13 @@ aaa
 aaa
 aaa
 aaa
-akp
+anb
 akM
 ali
 alD
 ali
 amt
-anc
+anb
 aaa
 aaa
 aaa
@@ -24844,13 +24734,13 @@ aaa
 aaa
 aaa
 aaa
-akp
+anb
 aAu
 ali
 aBQ
 ali
 amt
-anc
+anb
 aaa
 aaa
 aaa
@@ -24874,13 +24764,13 @@ aaa
 aaa
 aaa
 aaa
-akp
+anb
 aJA
 ali
 aJM
 ali
 amt
-anc
+anb
 aaa
 aaa
 aaa
@@ -24901,13 +24791,13 @@ aaa
 aaa
 aaa
 aaa
-akp
+anb
 aLK
 ali
 aLT
 ali
 amt
-anc
+anb
 aaa
 aLV
 aLW
@@ -25074,13 +24964,13 @@ aaa
 aaa
 aaa
 aaa
-akq
+anb
 akN
 ali
 alE
 ali
 amu
-and
+anb
 aaa
 aaa
 aaa
@@ -25101,13 +24991,13 @@ aaa
 aaa
 aaa
 aaa
-akq
+anb
 aAv
 ali
 alE
 ali
 amu
-and
+anb
 aaa
 aaa
 aaa
@@ -25131,13 +25021,13 @@ aaa
 aaa
 aaa
 aaa
-akq
+anb
 aJB
 ali
 alE
 ali
 amu
-and
+anb
 aaa
 aaa
 aaa
@@ -25158,13 +25048,13 @@ aaa
 aaa
 aaa
 aaa
-akq
+anb
 aLL
 ali
 alE
 ali
 amu
-and
+anb
 aaa
 aLV
 aLW
@@ -25331,13 +25221,13 @@ aaa
 aaa
 aaa
 aaa
-akr
+anb
 akO
 ali
 alF
 ali
 amv
-ane
+anb
 aaa
 aaa
 aaa
@@ -25358,13 +25248,13 @@ aaa
 aaa
 aaa
 aaa
-akr
+anb
 aAw
 ali
 aBR
 ali
 amv
-ane
+anb
 aaa
 aaa
 aaa
@@ -25388,13 +25278,13 @@ aaa
 aaa
 aaa
 aaa
-akr
+anb
 aJC
 ali
 aJN
 ali
 amv
-ane
+anb
 aaa
 aaa
 aaa
@@ -25415,13 +25305,13 @@ aaa
 aaa
 aaa
 aaa
-akr
+anb
 aLM
 ali
 aLU
 ali
 amv
-ane
+anb
 aaa
 aLV
 aLW
@@ -25588,13 +25478,13 @@ aaa
 aaa
 aaa
 aaa
-aks
-akP
+anb
+anb
 alj
 alG
 alj
-amw
-anf
+anb
+anb
 aaa
 aaa
 aaa
@@ -25615,13 +25505,13 @@ aaa
 aaa
 aaa
 aaa
-aks
-akP
+anb
+anb
 alj
 alG
 alj
-amw
-anf
+anb
+anb
 aaa
 aaa
 aaa
@@ -25645,13 +25535,13 @@ aaa
 aaa
 aaa
 aaa
-aks
-akP
+anb
+anb
 alj
 alG
 alj
-amw
-anf
+anb
+anb
 aaa
 aaa
 aaa
@@ -25672,13 +25562,13 @@ aaa
 aaa
 aaa
 aaa
-aks
-akP
+anb
+anb
 alj
 alG
 alj
-amw
-anf
+anb
+anb
 aaa
 aLV
 aLW
@@ -25846,11 +25736,11 @@ aaa
 aaa
 aaa
 aaa
-akQ
-alk
-alH
-alZ
-amx
+anb
+anb
+anb
+anb
+anb
 aaa
 aaa
 aaa
@@ -25873,11 +25763,11 @@ aaa
 aaa
 aaa
 aaa
-akQ
-alk
-alH
-alZ
-amx
+anb
+anb
+anb
+anb
+anb
 aaa
 aaa
 aaa
@@ -25903,11 +25793,11 @@ aaa
 aaa
 aaa
 aaa
-akQ
-alk
-alH
-alZ
-amx
+anb
+anb
+anb
+anb
+anb
 aaa
 aaa
 aaa
@@ -25930,11 +25820,11 @@ aaa
 aaa
 aaa
 aaa
-akQ
-alk
-alH
-alZ
-amx
+anb
+anb
+anb
+anb
+anb
 aaa
 aaa
 aLV
@@ -42895,7 +42785,7 @@ aOQ
 aOQ
 aOQ
 aOQ
-pJM
+alk
 aVa
 aVa
 aVa
@@ -43409,7 +43299,7 @@ aOQ
 aOQ
 aOQ
 aOQ
-pJM
+alk
 aVa
 aVa
 aVa

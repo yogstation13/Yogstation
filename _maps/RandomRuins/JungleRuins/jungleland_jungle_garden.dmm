@@ -11,7 +11,7 @@
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
 "e" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 "f" = (
 /obj/structure/sink/puddle,
@@ -41,7 +41,7 @@
 /turf/open/indestructible/grass/jungle,
 /area/template_noop)
 "u" = (
-/mob/living/simple_animal/hostile/yog_jungle/dryad{
+/mob/living/simple_animal/hostile/asteroid/yog_jungle/dryad{
 	desc = "An elderly spirit. It looks to have tended to this quaint garden for a very long time.";
 	name = "The Gardener"
 	},

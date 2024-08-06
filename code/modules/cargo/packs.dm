@@ -90,10 +90,10 @@
 	name = "Biological Emergency Crate"
 	desc = "This crate holds 2 full bio suits which will protect you from viruses."
 	cost = 2000
-	contains = list(/obj/item/clothing/head/bio_hood,
-					/obj/item/clothing/head/bio_hood,
-					/obj/item/clothing/suit/bio_suit,
-					/obj/item/clothing/suit/bio_suit,
+	contains = list(/obj/item/clothing/head/bio_hood/general,
+					/obj/item/clothing/head/bio_hood/general,
+					/obj/item/clothing/suit/bio_suit/general,
+					/obj/item/clothing/suit/bio_suit/general,
 					/obj/item/storage/bag/bio,
 					/obj/item/reagent_containers/syringe/antiviral,
 					/obj/item/reagent_containers/syringe/antiviral,
@@ -493,7 +493,7 @@
 
 /datum/supply_pack/security/stormtrooper
 	name = "Stormtrooper Crate"
-	desc = "Three Sets of standard issue Stormtrooper Armor, Should help you defeat light-wielding wizards. Requires Security access to open."
+	desc = "Three sets of standard issue stormtrooper armor. Should help you defeat light-wielding wizards. Requires Security access to open."
 	cost = 10000
 	contains = list(/obj/item/clothing/suit/armor/stormtrooper,
 					/obj/item/clothing/suit/armor/stormtrooper,
@@ -502,6 +502,17 @@
 					/obj/item/clothing/head/helmet/stormtrooper,
 					/obj/item/clothing/head/helmet/stormtrooper)
 	crate_name = "stormtrooper crate"
+	crate_type = /obj/structure/closet/crate/secure/gear
+
+/datum/supply_pack/security/plasma_secsuit
+	name = "Plasmaman Security Envirosuit Crate"
+	desc = "Contains two sets of lightly-armored security envirosuits for Plasmamen. Order now and we'll throw in two free helmets! Requires Security access to open."
+	cost = 4000
+	contains = list(/obj/item/clothing/under/plasmaman/security,
+					/obj/item/clothing/under/plasmaman/security,
+					/obj/item/clothing/head/helmet/space/plasmaman/security,
+					/obj/item/clothing/head/helmet/space/plasmaman/security)
+	crate_name = "security envirosuit crate"
 	crate_type = /obj/structure/closet/crate/secure/gear
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1929,12 +1940,12 @@
 					/obj/item/stack/tile/carpet/fifty,
 					/obj/item/stack/tile/carpet/black/fifty,
 					/obj/item/stack/tile/carpet/black/fifty,
-					/obj/item/stack/tile/carpet/blue/fifty, //yogs start - adds coloured carpets
-					/obj/item/stack/tile/carpet/blue/fifty,
-					/obj/item/stack/tile/carpet/green/fifty,
-					/obj/item/stack/tile/carpet/green/fifty,
-					/obj/item/stack/tile/carpet/purple/fifty,
-					/obj/item/stack/tile/carpet/purple/fifty) //yogs end
+					/obj/item/stack/tile/carpet/plainblue/fifty, //yogs start - adds coloured carpets
+					/obj/item/stack/tile/carpet/plainblue/fifty,
+					/obj/item/stack/tile/carpet/plaingreen/fifty,
+					/obj/item/stack/tile/carpet/plaingreen/fifty,
+					/obj/item/stack/tile/carpet/plainpurple/fifty,
+					/obj/item/stack/tile/carpet/plainpurple/fifty) //yogs end
 	crate_name = "premium carpet crate"
 
 /datum/supply_pack/service/carpet_exotic

@@ -68,7 +68,7 @@
 		to_chat(user, span_notice("You knock on the mirror and call your reflection back into focus."))
 		reflected.forceMove(src)
 		update_icon(inhabited = TRUE)
-		COOLDOWN_START(src, next_search, COOLDOWN_RECALL)
+		COOLDOWN_START(src, next_recall, COOLDOWN_RECALL)
 	if(istype(action, /datum/action/item_action/rerollmirror))
 		if(!reflected)
 			to_chat(user, span_notice("The mirror is dormant."))
@@ -211,7 +211,7 @@
 /mob/living/simple_animal/hostile/double/AttackingTarget()
 	..()
 	var/mob/living/simple_animal/M = target
-	if(ismegafauna(M) || istype(M, /mob/living/simple_animal/hostile/asteroid) || istype(M, /mob/living/simple_animal/hostile/yog_jungle))
+	if(ismegafauna(M) || istype(M, /mob/living/simple_animal/hostile/asteroid) || istype(M, /mob/living/simple_animal/hostile/asteroid/yog_jungle))
 		M.apply_damage(melee_fauna_bonus, BRUTE)
 
 /mob/living/simple_animal/hostile/double/bullet_act(obj/projectile/P)
@@ -222,7 +222,7 @@
 /mob/living/simple_animal/hostile/double/dust(just_ash, drop_items, force)
 	death()
 
-/mob/living/simple_animal/hostile/double/gib()
+/mob/living/simple_animal/hostile/double/gib(no_brain, no_organs, no_bodyparts, no_items)
 	death()
 
 //reflection's abilities
@@ -315,5 +315,5 @@
 /obj/projectile/doppshot/on_hit(atom/target, blocked = FALSE)
 	var/mob/living/M = target
 	M.apply_damage(actual_damage, BRUTE)
-	if(ismegafauna(M) || istype(M, /mob/living/simple_animal/hostile/asteroid) || istype(M, /mob/living/simple_animal/hostile/yog_jungle))
+	if(ismegafauna(M) || istype(M, /mob/living/simple_animal/hostile/asteroid) || istype(M, /mob/living/simple_animal/hostile/asteroid/yog_jungle))
 		M.apply_damage(ranged_fauna_bonus, BRUTE)

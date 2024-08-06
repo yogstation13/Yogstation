@@ -94,7 +94,7 @@
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED] //yogs medhud
 	H.show_to(src)
 
-/mob/living/simple_animal/revenant/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
+/mob/living/simple_animal/revenant/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE)
 	return FALSE
 
 /mob/living/simple_animal/revenant/proc/random_revenant_name()
@@ -231,7 +231,7 @@
 /mob/living/simple_animal/revenant/dust(just_ash, drop_items, force)
 	death()
 
-/mob/living/simple_animal/revenant/gib()
+/mob/living/simple_animal/revenant/gib(no_brain, no_organs, no_bodyparts, no_items)
 	death()
 
 /mob/living/simple_animal/revenant/death()

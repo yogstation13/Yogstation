@@ -14,21 +14,8 @@
 		/obj/item/reagent_containers/food/snacks/meat/slab/bear,
 		/obj/item/reagent_containers/food/snacks/meat/slab/chicken)
 
-/datum/food_processor_process/cutlet
-	input = /obj/item/reagent_containers/food/snacks/meat/cutlet/plain
-	output = /obj/item/reagent_containers/food/snacks/raw_meatball
-	blacklist = list(/obj/item/reagent_containers/food/snacks/meat/cutlet/plain/human,
-		/obj/item/reagent_containers/food/snacks/meat/cutlet/xeno,
-		/obj/item/reagent_containers/food/snacks/meat/cutlet/bear,
-		/obj/item/reagent_containers/food/snacks/meat/cutlet/chicken)
-
 /datum/food_processor_process/human
 	input = /obj/item/reagent_containers/food/snacks/meat/slab/human
-	output = /obj/item/reagent_containers/food/snacks/raw_meatball/human
-	blacklist = null
-
-/datum/food_processor_process/cutlet/human
-	input = /obj/item/reagent_containers/food/snacks/meat/cutlet/plain/human
 	output = /obj/item/reagent_containers/food/snacks/raw_meatball/human
 	blacklist = null
 
@@ -42,19 +29,14 @@
 	output = /obj/item/reagent_containers/food/snacks/raw_meatball/xeno
 	blacklist = null
 
-/datum/food_processor_process/cutlet/xeno
-	input = /obj/item/reagent_containers/food/snacks/meat/cutlet/xeno
-	output = /obj/item/reagent_containers/food/snacks/raw_meatball/xeno
-	blacklist = null
-
 /datum/food_processor_process/meat/bear
 	input = /obj/item/reagent_containers/food/snacks/meat/slab/bear
 	output = /obj/item/reagent_containers/food/snacks/raw_meatball/bear
 	blacklist = null
 
-/datum/food_processor_process/cutlet/bear
-	input = /obj/item/reagent_containers/food/snacks/meat/cutlet/bear
-	output = /obj/item/reagent_containers/food/snacks/raw_meatball/bear
+/datum/food_processor_process/chicken
+	input = /obj/item/reagent_containers/food/snacks/meat/slab/chicken
+	output = /obj/item/reagent_containers/food/snacks/raw_meatball/chicken
 	blacklist = null
 
 /datum/food_processor_process/bacon

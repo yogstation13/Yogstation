@@ -19,7 +19,7 @@
 				if(isgun(target))
 					RegisterSignal(target, COMSIG_PROJECTILE_ON_HIT, PROC_REF(on_projectile_hit))
 				RegisterSignal(target, COMSIG_ITEM_AFTERATTACK, PROC_REF(on_afterattack))
-				RegisterSignal(target, COMSIG_ITEM_HIT_REACT, PROC_REF(on_hit_reaction))
+				RegisterSignal(target, COMSIG_ITEM_POST_BLOCK, PROC_REF(on_block))
 			else if(isprojectile(target))
 				RegisterSignal(target, COMSIG_PROJECTILE_SELF_ON_HIT, PROC_REF(on_projectile_self_hit))
 	else if(isprojectilespell(target))
@@ -33,7 +33,7 @@
 	UnregisterSignal(source, list(
 		COMSIG_MOVABLE_IMPACT,
 		COMSIG_ITEM_AFTERATTACK,
-		COMSIG_ITEM_HIT_REACT,
+		COMSIG_ITEM_POST_BLOCK,
 		COMSIG_PROJECTILE_ON_HIT,
 	))
 	return ..()
@@ -135,16 +135,14 @@
  *
  * Arguments:
  * - [source][/obj/item]: The item what was used to block the target
- * - [owner][/mob/living/carbon/human]: The mob that blocked the target with the source
- * - [hitby][/atom/movable]: The movable that was blocked by the owner with the source
- * - attack_text: The text tring that will be used to report that the target was blocked
- * - final_block_chance: The probability of blocking the target with the source
+ * - [defender][/mob/living/carbon/human]: The mob that blocked the target with the source
+ * - [incoming][/atom/movable]: The movable that was blocked by the owner with the source
+ * - damage: The damage of the incoming attack
  * - attack_type: The type of attack that was blocked
  */
-/datum/element/light_eater/proc/on_hit_reaction(obj/item/source, mob/living/carbon/human/owner, atom/movable/hitby, attack_text, final_block_chance, damage, attack_type, damage_type)
+/datum/element/light_eater/proc/on_block(obj/item/source, mob/living/defender, atom/movable/incoming, damage, attack_type)
 	SIGNAL_HANDLER
-	if(prob(final_block_chance))
-		eat_lights(hitby, source)
+	eat_lights(incoming, source)
 	return NONE
 
 /**

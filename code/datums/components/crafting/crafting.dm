@@ -155,11 +155,12 @@
 		return ", missing component."
 	if(!check_tools(a, R, contents))
 		return ", missing tool."
+	var/timer = R.time
 	if(ismob(a))
 		var/mob/mob = a
 		if(mob && HAS_TRAIT(mob, TRAIT_CRAFTY))
-			R.time *= 0.75
-	if(!do_after(a, R.time, a))
+			timer *= 0.75
+	if(!do_after(a, timer, a))
 		return "."
 	contents = get_surroundings(a, R.blacklist) // Double checking since items could no longer be there after the do_after().
 	if(!check_contents(a, R, contents))

@@ -1139,19 +1139,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
-"cm" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker/cryoxadone,
-/obj/item/wrench,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/shuttle/escape)
 "cn" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/tile/neutral{
@@ -2089,6 +2076,19 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
+"TN" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/item/wrench/medical,
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
 "Uo" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -2899,7 +2899,7 @@ bc
 Ah
 cd
 ab
-cm
+TN
 ct
 cp
 cp

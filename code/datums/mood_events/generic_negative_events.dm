@@ -220,11 +220,6 @@
 	description = "<span class='warning'>I caught that fish mid-conversation... I can't believe I did that...</span>\n"
 	mood_change = -1
 
-/datum/mood_event/ate_without_table
-	description = "<span class='warning'>I had to eat a meal off the ground. Can't we get a table around here?</span>\n"
-	mood_change = -3
-	timeout = 1 MINUTES
-
 /datum/mood_event/wet_preternis
 	description = "<span class='boldwarning'>MY EVERYTHING HURTS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>\n"
 	mood_change = -10

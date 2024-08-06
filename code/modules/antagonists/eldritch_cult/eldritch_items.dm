@@ -197,14 +197,18 @@
 	icon_state = "cosmic_blade"
 	item_state = "cosmic_blade"
 
-/obj/item/melee/sickly_blade/dark/attack(mob/living/M, mob/living/user, secondattack = FALSE)
+/obj/item/melee/sickly_blade/dark/attack(mob/living/M, mob/living/user, params, secondattack = FALSE)
 	. = ..()
-	var/obj/item/mantis/blade/secondsword = user.get_inactive_held_item()
+	var/obj/item/melee/sickly_blade/bone/secondsword = user.get_inactive_held_item()
 	if(istype(secondsword, /obj/item/melee/sickly_blade/bone) && !secondattack)
-		sleep(0.2 SECONDS)
-		secondsword.attack(M, user, TRUE)
-		user.changeNext_move(CLICK_CD_MELEE)
+		addtimer(CALLBACK(src, PROC_REF(secondattack), M, user, params, secondsword), 2, TIMER_UNIQUE | TIMER_OVERRIDE)
 	return
+
+/obj/item/melee/sickly_blade/dark/proc/secondattack(mob/living/M, mob/living/user, params, obj/item/mantis/blade/secondblade)
+	if(QDELETED(secondblade) || QDELETED(src))
+		return
+	secondblade.attack(M, user, params, TRUE)
+	user.changeNext_move(CLICK_CD_MELEE)
 
 /obj/item/melee/sickly_blade/knock
 	name = "key blade"

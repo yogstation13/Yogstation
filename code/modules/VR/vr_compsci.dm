@@ -96,7 +96,7 @@ GLOBAL_LIST_EMPTY(last_used_transmuter)
 /obj/machinery/computer/compsci_mission_selector/ui_act(action, list/params)
 	if(..())
 		return
-	
+
 	switch(action)
 		if("start_mission")
 			var/mission_id = params["mission_id"]
@@ -107,13 +107,13 @@ GLOBAL_LIST_EMPTY(last_used_transmuter)
 
 /obj/machinery/compsci_reciever
 	name = "bluespace item transmuter"
-	desc = "Use this to send artifacts back ot the station"
+	desc = "Use this to send artifacts back to the station."
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "transmuter"
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
 	pass_flags = PASSTABLE
-	
+
 /obj/machinery/compsci_reciever/Initialize(mapload)
 	. = ..()
 	var/turf/T = get_turf(src)
@@ -121,7 +121,7 @@ GLOBAL_LIST_EMPTY(last_used_transmuter)
 		if(!GLOB.compsci_vr_mission_reciever)
 			GLOB.compsci_vr_mission_reciever = src
 		name = "bluespace item reciever"
-		desc = "Used to recieve artifacts from remote exploration parties."
+		desc = "Used to receive artifacts from remote exploration parties."
 
 /obj/machinery/compsci_reciever/Destroy()
 	. = ..()
@@ -141,7 +141,7 @@ GLOBAL_LIST_EMPTY(last_used_transmuter)
 			return TRUE
 		return FALSE
 
-	
+
 	if(GLOB.compsci_vr.current_mission && istype(I, GLOB.compsci_vr.current_mission.completion_item))
 		var/obj/machinery/compsci_reciever/station_machine = GLOB.compsci_vr_mission_reciever
 		I.forceMove(station_machine.drop_location())

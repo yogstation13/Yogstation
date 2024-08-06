@@ -33,7 +33,7 @@
 	id = "cap_trimmed"
 
 /datum/skillcape/hop
-	name = "cape of the head of personel"
+	name = "cape of the head of personnel"
 	job = "Head of Personnel"
 	path = /obj/item/clothing/neck/skillcape/hop
 	id = "hop"

@@ -45,17 +45,18 @@
 //---------------------------------Adding organs----------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /obj/item/autosurgeon/attackby(obj/item/I, mob/user, params) //putting new things in
-	if(!insert_organ(I, user))
-		return ..()
+	if(!user.combat_mode)
+		insert_organ(I, user)
+	return ..()
 		
 /obj/item/autosurgeon/proc/insert_organ(obj/inserted, mob/user, bypass_refills)
-	if(is_type_in_typecache(inserted, blacklisted_organs) || !is_type_in_typecache(inserted, organ_types))
-		if(user)
-			to_chat(user, span_notice("[inserted] does not fit in \the [src]."))
-		return FALSE
 	if(!refills && !bypass_refills)
 		if(user)
 			to_chat(user, span_notice("[src] has already been used up."))
+		return FALSE
+	if(is_type_in_typecache(inserted, blacklisted_organs) || !is_type_in_typecache(inserted, organ_types))
+		if(user)
+			to_chat(user, span_notice("[inserted] does not fit in \the [src]."))
 		return FALSE
 	if(ispath(inserted))
 		inserted = new inserted()
@@ -79,25 +80,22 @@
 		to_chat(user, span_notice("You change the autosurgeon to target the [target_arm == BODY_ZONE_L_ARM ? "left" : "right"] arm."))
 
 /obj/item/autosurgeon/proc/swap_arm()
-	if(target_arm == BODY_ZONE_L_ARM)
-		target_arm = BODY_ZONE_R_ARM
-	else if(target_arm == BODY_ZONE_R_ARM)
-		target_arm = BODY_ZONE_L_ARM
+	target_arm = target_arm == BODY_ZONE_L_ARM ? BODY_ZONE_R_ARM : BODY_ZONE_L_ARM
 
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------Attempts to implant a single item---------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /obj/item/autosurgeon/proc/handle_surgery(obj/item, mob/living/carbon/human/user)
 	if(istype(item, /obj/item/organ/cyberimp/arm)) //these cunts have two limbs to select from, we'll want to check both because players are too lazy to do that themselves
-		var/obj/item/organ/cyberimp/arm/bastard = item
+		var/obj/item/organ/cyberimp/bastard = item
 		bastard.zone = target_arm //try the preferred limb
 		bastard.SetSlotFromZone()
 		swap_arm()
-		if(user.getorganslot(bastard.zone)) //preferred limb is full
+		if(user.getorganslot(bastard.slot)) //preferred limb is full
 			bastard.zone = target_arm
 			bastard.SetSlotFromZone()
 			swap_arm()
-			if(user.getorganslot(bastard.zone)) //other limb is full, revert to the first selection and just FUCKING DO IT
+			if(user.getorganslot(bastard.slot)) //other limb is full, revert to the first selection and just FUCKING DO IT
 				bastard.zone = target_arm
 				bastard.SetSlotFromZone()
 				swap_arm()
