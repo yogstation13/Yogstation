@@ -345,6 +345,10 @@
 		T = get_turf(src)
 	var/list/temp_blood_DNA
 	if(small_drip)
+		if(!QDELETED(T.liquids)) //just add it to our liquids
+			var/list/blood_drop = list(get_blood_id() = 0.1)
+			T.add_liquid_list(blood_drop, FALSE, 300)
+			return
 		// Only a certain number of drips (or one large splatter) can be on a given turf.
 		var/obj/effect/decal/cleanable/blood/drip/drop = locate() in T
 		if(drop)
