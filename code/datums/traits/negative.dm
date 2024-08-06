@@ -642,14 +642,29 @@
 	drug_container_type = pick(/obj/item/reagent_containers/food/drinks/beer/light/plastic)
 	. = ..()
 
+/datum/quirk/junkie/caffeine
+	name = "Caffeine Addict"
+	desc = "Whether it's punching through drywall while on Grey Bull, or downing 100 cups of coffee in a day, you can't get enough caffeine."
+	icon = "mug-hot"
+	value = -2
+	mood_quirk = TRUE
+	gain_text = span_danger("You could really use some caffeine right about now.")
+	lose_text = span_notice("You no longer feel dependent on caffeine to function.")
+	medical_record_text = "Patient is known to be dependent on caffeine."
+	reagent_type = /datum/reagent/drug/caffeine
+	junkie_warning = "You suddenly feel like you need some caffeine..."
+	var/list/weighted_items = list(
+		/obj/item/reagent_containers/food/drinks/coffee = 200,
+		/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 100,
+		/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy = 100,
+		/obj/item/reagent_containers/food/drinks/mug/tea = 50,
+		/obj/item/reagent_containers/food/drinks/soda_cans/thirteenloko = 1, //super rare because it's dangerous
+		/obj/item/reagent_containers/food/drinks/bottle/nukacola = 1 //super rare to get nuka cola because it's actually kinda bad (irradiates you)
+	)
 
-/datum/quirk/junkie/drunkard/check_quirk(datum/preferences/prefs)
-	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = !(initial(species_type.inherent_biotypes) & MOB_ORGANIC) //if you can't process organic chems you couldn't get addicted in the first place
-
-	if(disallowed_trait)
-		return "You don't process normal chemicals!"
-	return FALSE
+/datum/quirk/junkie/caffeine/on_spawn()
+	drug_container_type = pickweight(weighted_items)
+	return ..()
 
 /datum/quirk/unstable
 	name = "Unstable"
