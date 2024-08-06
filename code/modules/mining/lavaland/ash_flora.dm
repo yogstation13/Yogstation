@@ -222,6 +222,7 @@
 	product = /obj/item/reagent_containers/food/snacks/grown/ash_flora/cactus_fruit
 	genes = list(/datum/plant_gene/trait/fire_resistance)
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
+	mutatelist = list(/obj/item/seeds/kudzu) //get the fuck outta here kudzu
 	growthstages = 2
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.02, /datum/reagent/consumable/vitfro = 0.08, /datum/reagent/consumable/ashresin = 0.02)
 

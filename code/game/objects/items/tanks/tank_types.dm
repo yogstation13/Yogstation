@@ -10,7 +10,7 @@
 /// Allows carbon to toggle internals via AltClick of the equipped tank.
 /obj/item/tank/internals/AltClick(mob/user)
 	..()
-	if((loc == user) && user.canUseTopic(src, be_close = TRUE, no_dextery = TRUE, no_tk = TRUE))
+	if((loc == user) && user.canUseTopic(src, be_close = TRUE, no_dexterity = TRUE, no_tk = TRUE))
 		toggle_internals(user)
 
 /obj/item/tank/internals/examine(mob/user)
@@ -183,6 +183,7 @@
 /obj/item/tank/internals/emergency_oxygen/double
 	name = "double emergency oxygen tank"
 	icon_state = "emergency_double"
+	item_state = "emergency_engi"
 	volume = 8
 
 /obj/item/tank/internals/emergency_oxygen/double/empty/populate_gas()

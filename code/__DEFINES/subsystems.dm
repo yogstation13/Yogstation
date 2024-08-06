@@ -21,7 +21,7 @@
   * make sure you add an update to the schema_version stable in the db changelog
   */
 
-#define DB_MINOR_VERSION 13
+#define DB_MINOR_VERSION 14
 #define DB_BOUND_CREDENTIALS_FLAG_BYPASS_BANS "bypass_bans"
 #define DB_BOUND_CREDENTIALS_FLAG_ALLOW_PROXIES "allow_proxies"
 

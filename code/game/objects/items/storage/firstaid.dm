@@ -342,7 +342,7 @@
 
 /obj/item/storage/firstaid/hypospray/PopulateContents()
 	if(empty || !ispath(stored_hypo))
-		return 
+		return
 	new stored_hypo(src)
 
 /obj/item/storage/firstaid/hypospray/hypo
@@ -491,6 +491,7 @@
 	name = "deluxe hypospray kit"
 	desc = "An advanced kit containing a deluxe hypospray and large vials for most ailments."
 	icon_state = "hypodeluxe"
+	item_state = "firstaid-o2"
 	stored_hypo = /obj/item/hypospray/deluxe
 
 /obj/item/storage/firstaid/hypospray/deluxe/PopulateContents()
@@ -513,6 +514,7 @@
 	name = "\improper QMC hypospray kit"
 	desc = "An advanced kit containing a QMC hypospray and medical supplies for most situations found on lavaland."
 	icon_state = "hypoqmc"
+	item_state = "firstaid-qmc"
 	stored_hypo = /obj/item/hypospray/qmc
 
 /obj/item/storage/firstaid/hypospray/qmc/PopulateContents()

@@ -5,7 +5,7 @@
 	id = "synthetic"
 	say_mod = "states"
 
-	limbs_id = "human"
+	limbs_id = SPECIES_HUMAN
 	damage_overlay_type = "synth"
 
 	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,NOZOMBIE,NOHUSK,NOBLOOD, NO_UNDERWEAR)
@@ -228,8 +228,7 @@
 
 /datum/species/wy_synth/proc/transfer(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/mind/our_mind = user.mind
-	user.mind.transfer_to(target)
-	our_mind.synth_os.switch_shell(user, target)
+	our_mind.synth_os.switch_shell(user, target) //handles the mind transfer to prevent project runtimes
 
 	target.real_name = "[user.real_name]"	//Randomizing the name so it shows up separately in the shells list
 	target.name = target.real_name

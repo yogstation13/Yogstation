@@ -128,6 +128,8 @@
 /mob/living/carbon/proc/toggle_throw_mode()
 	if(stat)
 		return
+	if(SEND_SIGNAL(src, COMSIG_CARBON_TOGGLE_THROW) & COMSIG_CARBON_BLOCK_TOGGLE_THROW)
+		return
 	if(ismecha(loc))
 		var/obj/mecha/M = loc
 		if(M.occupant == src)
@@ -217,7 +219,7 @@
 /mob/living/carbon/Topic(href, href_list)
 	..()
 	// Embed Stuff
-	if(href_list["embedded_object"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
+	if(href_list["embedded_object"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERITY))
 		var/obj/item/bodypart/L = locate(href_list["embedded_limb"]) in bodyparts
 		if(!L)
 			return

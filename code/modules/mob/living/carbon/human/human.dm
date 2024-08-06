@@ -164,7 +164,7 @@
 	spreadFire(AM)
 
 /mob/living/carbon/human/Topic(href, href_list)
-	if(href_list["embedded_object"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
+	if(href_list["embedded_object"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERITY))
 		var/obj/item/bodypart/L = locate(href_list["embedded_limb"]) in bodyparts
 		if(!L)
 			return
@@ -489,7 +489,7 @@
 		threatcount += 2
 
 	//Check for nonhuman scum
-	if(dna && dna.species.id && dna.species.id != "human")
+	if(dna && dna.species.id && dna.species.id != SPECIES_HUMAN)
 		threatcount += 1
 
 	//mindshield implants imply trustworthyness
@@ -514,6 +514,7 @@
 	underwear = "Nude"
 	update_body()
 	update_hair()
+	dna.update_dna_identity()
 
 /mob/living/carbon/human/singularity_pull(S, current_size)
 	..()
@@ -715,7 +716,7 @@
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, "#000000")
 	cut_overlay(MA)
 
-/mob/living/carbon/human/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
+/mob/living/carbon/human/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE)
 	if(!(mobility_flags & MOBILITY_UI))
 		to_chat(src, span_warning("You can't do that right now!"))
 		return FALSE
@@ -1031,7 +1032,7 @@
 			nutrition = 0
 			dna?.species.get_hunger_alert(src)
 			return FALSE
-		if(nutrition >= NUTRITION_LEVEL_FAT)
+		if(nutrition >= NUTRITION_LEVEL_FAT && change > 0)
 			return FALSE
 		change = min(change, NUTRITION_LEVEL_FAT - nutrition) // no getting fat
 	..()
@@ -1079,9 +1080,6 @@
 
 /mob/living/carbon/human/species/abductor
 	race = /datum/species/abductor
-
-/mob/living/carbon/human/species/android
-	race = /datum/species/android
 
 /mob/living/carbon/human/species/dullahan
 	race = /datum/species/dullahan

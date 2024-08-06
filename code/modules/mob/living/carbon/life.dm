@@ -549,7 +549,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 /mob/living/carbon/proc/needs_heart()
 	if(HAS_TRAIT(src, TRAIT_STABLEHEART))
 		return FALSE
-	if(dna && dna.species && (NOBLOOD in dna.species.species_traits)) //not all carbons have species!
+	if(dna?.species && ((NOBLOOD in dna.species.species_traits) || (STABLEBLOOD in dna.species.species_traits))) //not all carbons have species!
 		return FALSE
 	return TRUE
 

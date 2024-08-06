@@ -296,6 +296,19 @@ CREATE TABLE IF NOT EXISTS `mentor` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `mentor_interactions`;
+CREATE TABLE IF NOT EXISTS `mentor_interactions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `round_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `when` datetime NOT NULL DEFAULT current_timestamp(),
+  `ckey` varchar(32) NOT NULL,
+  `target_ckey` varchar(32) DEFAULT NULL,
+  `ckey_mentor` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `target_mentor` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `message` text,
+  PRIMARY KEY (`id`),
+  KEY `idx_round` (`round_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `mentor_memo`;
 CREATE TABLE IF NOT EXISTS `mentor_memo` (

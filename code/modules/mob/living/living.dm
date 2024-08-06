@@ -1031,14 +1031,14 @@
 /mob/living/proc/give()
 	return
 
-/mob/living/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
+/mob/living/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE)
 	if(incapacitated())
 		to_chat(src, span_warning("You can't do that right now!"))
 		return FALSE
 	if(be_close && !in_range(M, src))
 		to_chat(src, span_warning("You are too far away!"))
 		return FALSE
-	if(!no_dextery)
+	if(!no_dexterity)
 		to_chat(src, span_warning("You don't have the dexterity to do this!"))
 		return FALSE
 	return TRUE
@@ -1378,10 +1378,15 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		mobility_flags |= MOBILITY_STAND
 		lying = 0
 
-	if(should_be_lying || restrained || incapacitated())
-		mobility_flags &= ~(MOBILITY_UI|MOBILITY_PULL)
+	if(restrained || incapacitated())
+		mobility_flags &= ~MOBILITY_UI
 	else
-		mobility_flags |= MOBILITY_UI|MOBILITY_PULL
+		mobility_flags |= MOBILITY_UI
+
+	if(should_be_lying || restrained || incapacitated())
+		mobility_flags &= ~MOBILITY_PULL
+	else
+		mobility_flags |= MOBILITY_PULL
 
 	SEND_SIGNAL(src, COMSIG_LIVING_SET_BODY_POSITION, mobility_flags, .) //REMOVE THIS WHEN LAYING DOWN GETS PORTED
 

@@ -753,6 +753,7 @@
 /datum/reagent/medicine/morphine/on_mob_end_metabolize(mob/living/L)
 	L.unignore_slowdown(type)
 	REMOVE_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
+	SEND_SIGNAL(L, COMSIG_CLEAR_MOOD_EVENT, "[type]_high")
 	..()
 
 /datum/reagent/medicine/morphine/on_mob_life(mob/living/carbon/M)
@@ -921,7 +922,7 @@
 		M.visible_message(span_warning("[M]'s body shivers slightly, maybe the dose wasn't enough..."))
 		return ..()
 	if(M.stat == DEAD)
-		if(M.suiciding || M.hellbound || ismegafauna(M)) //they are never coming back
+		if(M.suiciding || M.hellbound || ismegafauna(M) || isjunglealpha(M)) //they are never coming back
 			M.visible_message(span_warning("[M]'s body does not react..."))
 			return
 		if(iscarbon(M) && (M.getBruteLoss() + M.getFireLoss() >= 100 || HAS_TRAIT(M, TRAIT_HUSK))) //body is too damaged to be revived
@@ -1289,7 +1290,7 @@
 
 /datum/reagent/medicine/naloxone
 	name = "Naloxone"
-	description = "Rapidly purges most hazardous chemicals. Causes muscle weakness, and in higher dosages, brain and liver damage"
+	description = "Rapidly purges most hazardous chemicals. Causes muscle weakness, and in higher dosages, brain and liver damage."
 	reagent_state = LIQUID
 	color = "#27870a"
 	overdose_threshold = 20

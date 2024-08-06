@@ -43,6 +43,143 @@
 	tastes = list("ice cream" = 1, "banana" = 1, "a bad joke" = 1)
 	foodtype = FRUIT | DAIRY | SUGAR
 
+
+/////////////
+//ICE CREAM//
+/////////////
+
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop
+	name = "plain ice cream scoop"
+	desc = "Also known as sweet cream; it still makes for a tasty treat."
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "icecream_plain"
+	bonus_reagents = list(/datum/reagent/consumable/ice_cream = 2)
+	list_reagents = list(/datum/reagent/consumable/ice_cream = 10)
+	filling_color = "#EDF7DF"
+	tastes = list("ice cream" = 1)
+	foodtype = DAIRY | SUGAR
+
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla
+	name = "vanilla ice cream scoop"
+	desc = "The most commonly known ice cream flavor; it has bean and still is widely popular."
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "icecream_vanilla"
+	bonus_reagents = list(/datum/reagent/consumable/ice_cream/vanilla = 2)
+	list_reagents = list(/datum/reagent/consumable/ice_cream/vanilla = 10)
+	filling_color = "#ECE2C5"
+	tastes = list("ice cream" = 1, "vanilla" = 1)
+	foodtype = DAIRY | SUGAR
+
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/chocolate
+	name = "chocolate ice cream scoop"
+	desc = "Ice cream mixed with natural cocoa; made for those who can't get enough chocolate."
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "icecream_chocolate"
+	bonus_reagents = list(/datum/reagent/consumable/ice_cream/chocolate = 2)
+	list_reagents = list(/datum/reagent/consumable/ice_cream/chocolate = 10)
+	filling_color = "#865C32"
+	tastes = list("ice cream" = 1, "chocolate" = 1)
+	foodtype = DAIRY | SUGAR | CHOCOLATE
+
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/strawberry
+	name = "strawberry ice cream scoop"
+	desc = "Ice cream supposedly made with real strawberries."
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "icecream_strawberry"
+	bonus_reagents = list(/datum/reagent/consumable/ice_cream/strawberry = 2)
+	list_reagents = list(/datum/reagent/consumable/ice_cream/strawberry = 10)
+	filling_color = "#EFB8B8"
+	tastes = list("ice cream" = 1, "strawberries" = 1)
+	foodtype = DAIRY | SUGAR | FRUIT
+
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/blue
+	name = "blue ice cream scoop"
+	desc = "A faintly blue ice cream flavor; it is notorious for its ability to stain."
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "icecream_blue"
+	bonus_reagents = list(/datum/reagent/consumable/ice_cream/blue = 2)
+	list_reagents = list(/datum/reagent/consumable/ice_cream/blue = 10)
+	filling_color = "#B8C5EF"
+	tastes = list("ice cream" = 1, "blue" = 1)
+	foodtype = DAIRY | SUGAR | ALCOHOL
+
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/lemon_sorbet
+	name = "lemon sorbet scoop"
+	desc = "An ancient frozen treat supposedly invented by the Persians that is still enjoyed today."
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "icecream_lemon sorbet"
+	bonus_reagents = list(/datum/reagent/consumable/ice_cream/lemon_sorbet = 2)
+	list_reagents = list(/datum/reagent/consumable/ice_cream/lemon_sorbet = 10)
+	filling_color = "#D4DB86"
+	tastes = list("ice cream" = 1, "lemons" = 1)
+	foodtype = DAIRY | SUGAR | FRUIT
+
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/caramel
+	name = "caramel ice cream scoop"
+	desc = "Ice cream that has been flavored with caramel; a treat for sugar lovers."
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "icecream_caramel"
+	bonus_reagents = list(/datum/reagent/consumable/ice_cream/caramel = 2)
+	list_reagents = list(/datum/reagent/consumable/ice_cream/caramel = 10)
+	filling_color = "#BC762F"
+	tastes = list("ice cream" = 1, "caramel" = 1)
+	foodtype = DAIRY | SUGAR
+
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/banana
+	name = "banana ice cream scoop"
+	desc = "The ice cream of choice for clowns everywhere. Honk!"
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "icecream_banana"
+	bonus_reagents = list(/datum/reagent/consumable/ice_cream/banana = 2)
+	list_reagents = list(/datum/reagent/consumable/ice_cream/banana = 10)
+	filling_color = "#DEDE00"
+	tastes = list("ice cream" = 1, "banana" = 1)
+	foodtype = DAIRY | SUGAR | FRUIT
+
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/orange_creamsicle
+	name = "orange creamsicle scoop"
+	desc = "An ice cream flavor made after a popular popsicle flavor. It is not quite the same off the stick..."
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "icecream_orangesicle"
+	bonus_reagents = list(/datum/reagent/consumable/ice_cream/orange_creamsicle = 2)
+	list_reagents = list(/datum/reagent/consumable/ice_cream/orange_creamsicle = 10)
+	filling_color = "#D8B258"
+	tastes = list("ice cream" = 1, "oranges" = 1)
+	foodtype = DAIRY | SUGAR | FRUIT
+
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/peach
+	name = "peach ice cream scoop"
+	desc = "Ice cream flavored with peaches; it is rather uncommon due to wizards buying up most of it."
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "icecream_peach"
+	bonus_reagents = list(/datum/reagent/consumable/ice_cream/peach = 2)
+	list_reagents = list(/datum/reagent/consumable/ice_cream/peach = 10)
+	filling_color = "#CD8D68"
+	tastes = list("ice cream" = 1, "peaches" = 1)
+	foodtype = DAIRY | SUGAR | FRUIT
+
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/cherry_chocolate
+	name = "cherry chocolate ice cream scoop"
+	desc = "A wonderfully tangy and sweet ice cream made with coco and cherries."
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "icecream_cherry chocolate"
+	bonus_reagents = list(/datum/reagent/consumable/ice_cream/cherry_chocolate = 2)
+	list_reagents = list(/datum/reagent/consumable/ice_cream/cherry_chocolate = 10)
+	filling_color = "#6F0000"
+	tastes = list("ice cream" = 1, "cherries" = 1, "chocolate" = 1)
+	foodtype = DAIRY | SUGAR | FRUIT | CHOCOLATE
+
+/obj/item/reagent_containers/food/snacks/ice_cream_scoop/meat
+	name = "meat lover's ice cream scoop"
+	desc = "Ice cream flavored with meat, because someone wanted meat in their ice cream."
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "icecream_mob"
+	bonus_reagents = list(/datum/reagent/consumable/ice_cream/meat = 2)
+	list_reagents = list(/datum/reagent/consumable/ice_cream/meat = 10)
+	filling_color = "#BD0000"
+	tastes = list("ice cream" = 1, "blood" = 1)
+	foodtype = DAIRY | SUGAR | MICE
+
 /////////////
 //SNOWCONES//
 /////////////

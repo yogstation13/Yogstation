@@ -41,7 +41,7 @@ export const ReactorStats = (props, context) => {
           <ProgressBar
             value={data.power}
             minValue={0}
-            maxValue={10000000}
+            maxValue={2000000}
             color="yellow">
             {formatSiUnit(data.power, 0, "W")}
           </ProgressBar>

@@ -259,7 +259,6 @@
 	compatible_biotypes = ALL_BIOTYPES
 	organ_flags = ORGAN_SYNTHETIC
 	icon_state = "tonguerobot"
-	say_mod = "states"
 	attack_verb = list("beeped", "booped")
 	modifies_speech = TRUE
 	taste_sensitivity = NO_TASTE_SENSITIVITY // not as good as an organic tongue

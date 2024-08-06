@@ -1,7 +1,7 @@
 /datum/species/mush //mush mush codecuck
 	name = "Mushroomperson"
 	plural_form = "Mushroompeople"
-	id = "mush"
+	id = SPECIES_MUSHROOM
 	mutant_bodyparts = list("caps")
 	default_features = list("caps" = "Round")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN | SLIME_EXTRACT

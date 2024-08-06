@@ -73,7 +73,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 			accessory = /obj/item/clothing/accessory/armband/science
 		if(ENG_DEPT_SERVICE)
 			ears = /obj/item/radio/headset/headset_eng/department/service
-			dep_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_LIBRARY, ACCESS_THEATRE, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE, ACCESS_MANUFACTURING)
+			dep_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_LIBRARY, ACCESS_THEATRE, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE, ACCESS_MANUFACTURING, ACCESS_SERVHALL)
 			accessory =  /obj/item/clothing/accessory/armband/service
 
 	if(accessory)

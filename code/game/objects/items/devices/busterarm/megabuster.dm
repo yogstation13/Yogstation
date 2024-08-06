@@ -5,7 +5,51 @@
 	* Items
 	In regards to actions or items with left and right subtypes, list the base, then left, then right.
 */
-////////////////// Action //////////////////
+
+/obj/item/megabuster
+	item_flags = DROPDEL
+	w_class = 5
+	icon = 'icons/obj/weapons/hand.dmi'
+	icon_state = "disintegrate"
+	item_state = "disintegrate"
+	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
+
+/obj/item/megabuster/Initialize(mapload, mob/living/user)
+	. = ..()
+	ADD_TRAIT(src, HAND_REPLACEMENT_TRAIT, NOBLUDGEON)
+
+/// Item counterpart to the action's grab(), applies damage
+/obj/item/megabuster/proc/hit(mob/living/user, mob/living/target, damage)
+		var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
+		var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
+		target.apply_damage(damage, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
+
+//knocking them down
+/datum/action/cooldown/buster/proc/footsies(mob/living/target)
+	if(target.mobility_flags & MOBILITY_STAND)
+		animate(target, transform = matrix(90, MATRIX_ROTATE), time = 0 SECONDS, loop = 0)
+
+//standing them back up if appropriate
+/datum/action/cooldown/buster/proc/wakeup(mob/living/target)
+	if(target.mobility_flags & MOBILITY_STAND)
+		animate(target, transform = null, time = 0.4 SECONDS, loop = 0)
+
+
+/datum/action/cooldown/buster
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	button_icon = 'icons/mob/actions/actions_arm.dmi'
+
+
+/datum/action/cooldown/buster/IsAvailable(feedback = FALSE)
+	. = ..()
+	if(!isliving(owner))
+		return FALSE
+	if(HAS_TRAIT(owner, TRAIT_PACIFISM))
+		return FALSE
+
+
 /datum/action/cooldown/buster/megabuster
 	name = "Mega Buster"
 	desc = "Put the buster arm through its paces to gain extreme power for five seconds. Connecting the blow will devastate the target and send them flying, taking others with \
@@ -13,9 +57,9 @@
 	button_icon_state = "ponch"
 	cooldown_time = 20 SECONDS
 
-/// Left buster-arm means megabuster goes in left hand
+///left hand
 /datum/action/cooldown/buster/megabuster/l/Activate()
-	var/obj/item/buster/megabuster/B = new()
+	var/obj/item/megabuster/B = new()
 	owner.visible_message(span_userdanger("[owner]'s left arm begins crackling loudly!"))
 	playsound(owner,'sound/effects/beepskyspinsabre.ogg', 60, 1)
 	if(do_after(owner, 2 SECONDS, owner, timed_action_flags = IGNORE_USER_LOC_CHANGE))
@@ -27,9 +71,9 @@
 				owner.swap_hand(0)
 			StartCooldown()
 
-/// Right buster-arm means megabuster goes in right hand
+///right hand
 /datum/action/cooldown/buster/megabuster/r/Activate()
-	var/obj/item/buster/megabuster/B = new()
+	var/obj/item/megabuster/B = new()
 	owner.visible_message(span_userdanger("[owner]'s right arm begins crackling loudly!"))
 	playsound(owner,'sound/effects/beepskyspinsabre.ogg', 60, 1)
 	if(do_after(owner, 2 SECONDS, owner, timed_action_flags = IGNORE_USER_LOC_CHANGE))
@@ -57,8 +101,8 @@
 		return FALSE
 	return ..()
 
-////////////////// Megabuster Item //////////////////
-/obj/item/buster/megabuster
+
+/obj/item/megabuster
 	name = "supercharged fist"
 	desc = "The result of all the prosthetic's power building up. It's fading fast."
 	icon = 'icons/obj/weapons/hand.dmi'
@@ -73,41 +117,54 @@
 	var/objdam = 400
 	var/objcolldam = 120
 	var/hitobjdam = 10
+	var/anchoredthingdam = 50
+	var/list/snowballcontents = list()
 
-/// Lights cigarettes
-/obj/item/buster/megabuster/ignition_effect(atom/A, mob/user)
+
+/obj/item/megabuster/ignition_effect(atom/A, mob/user)
 	playsound(user,'sound/misc/fingersnap1.ogg', 20, 1)
 	playsound(user,'sound/effects/sparks4.ogg', 20, 1)
 	do_sparks(5, TRUE, src)
-	. = span_rose("With a single snap, [user] sets [A] alight with sparks from [user.p_their()] metal fingers.")
+	. = span_rose("With a snap, [user] sets [A] alight with sparks from [user.p_their()] metal fingers.")
 
-/// Only lasts 5 seconds, fades out
-/obj/item/buster/megabuster/Initialize(mapload, mob/living/user)
+
+/obj/item/megabuster/Initialize(mapload, mob/living/user)
 	. = ..()
 	animate(src, alpha = 50, time = 5 SECONDS)
-	QDEL_IN(src, 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(store), user), 5 SECONDS)
 
-/// Punch logic
-/// Stuff that you can do multiple times:
-/// 	Destroy walls
-/// 	Harm and throw structures
-/// 	Harm items
-/// Stuff that you can do ONCE and then it self-deletes:
-/// 	Destroy r-walls
-/// 	Harm mechs
-/// 	Harm and throw mobs
-/obj/item/buster/megabuster/afterattack(atom/target, mob/living/user, proximity)
-	var/direction = user.dir
-	var/list/knockedback = list()
-	var/mob/living/L = target
+/obj/item/megabuster/proc/store(mob/living/user)
+	src.forceMove(user) //putting it back in ur pocket for later to avoid addtimer runtimes
+	QDEL_IN(src, 2 SECONDS)
 
-	// Sanity
-	if(!proximity)
+
+/obj/item/megabuster/afterattack(atom/target, mob/living/user, proximity)
+	if(isopenturf(target) || iseffect(target) || !proximity || (target == user))
 		return
-	if(target == user)
+	snowballcontents |= target
+	user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
+	playsound(target, 'sound/effects/gravhit.ogg', 60, 1)
+	if(iswallturf(target))
+		var/turf/closed/wall/W = target
+		if(istype(W, /turf/closed/wall/r_wall))
+			W.dismantle_wall(1)
+			store(user) // no breaking more than one rwall
+		else
+			W.dismantle_wall(1)
+		user.visible_message(span_warning("[user] demolishes [W]!"))
 		return
-
-	// Punch items. Can't destroy brains though.
+	if(ismecha(target)) 
+		var/obj/mecha/A = target
+		A.take_damage(mechdam) 
+		user.visible_message(span_warning("[user] crushes [target]!"))
+		store(user) // no instant durand obliteration i fear
+	if(isstructure(target) || ismachinery(target))
+		user.visible_message(span_warning("[user] strikes [target]!"))
+		var/obj/I = target
+		if(I.anchored == TRUE)
+			I.take_damage(objdam)
+			return
+		I.take_damage(50)
 	if(isitem(target))
 		var/obj/I = target
 		if(!isturf(I.loc))
@@ -119,126 +176,116 @@
 			I.take_damage(objdam)
 			user.visible_message(span_warning("[user] pulverizes [I]!"))
 		return
-	
-	// Punch open turf (does nothing)
-	if(isopenturf(target))
-		return
-	if(iseffect(target))
-		return
-	user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
-	playsound(L, 'sound/effects/gravhit.ogg', 60, 1)
-	if(iswallturf(target)) // Destroys a wall
-		var/turf/closed/wall/W = target
-		if(istype(W, /turf/closed/wall/r_wall))
-			W.dismantle_wall(1)
-			qdel(src) // Destroying reinforced walls will instantly start cooldown
-		else
-			W.dismantle_wall(1)
-		user.visible_message(span_warning("[user] demolishes [W]!"))
-		return
-	
-	if(ismecha(target)) // Do good damage to a mech 
-		var/obj/mecha/A = target
-		A.take_damage(mechdam) // Apply damage
-		user.visible_message(span_warning("[user] crushes [target]!"))
-		qdel(src) // Hitting mechs will instantly start cooldown
-	
-	if(isstructure(target) || ismachinery(target)) // Do big damage to anchored objects, or less to unanchored, but throw them
-		user.visible_message(span_warning("[user] strikes [target]!"))
-		var/obj/I = target
-		if(I.anchored == TRUE)
-			I.take_damage(objdam)
-			return // Stop here
-		I.take_damage(50) // If not anchored, do less damage
-		knockedback |= I // and then throw it backwards
-		if(QDELETED(I)) // If it was destroyed by the damage, don't try to throw it
+	if(ismovable(target))
+		for(var/mob/M in view(7, user))
+			shake_camera(M, 2, 3)
+		if(isobj(target))
+			var/obj/snowball = target
+			snowball.SpinAnimation(0.5 SECONDS, 2)
+			addtimer(CALLBACK(src, PROC_REF(fly), user, snowball, user.dir, flightdist))
 			return
-	
-	if(isliving(L)) // Punching a mob
-		if(prob(5))
-			if(prob(50))
-				user.say("FUCK YOU!!")
-			else
-				user.say("JACKPOT!!")
-		var/obj/item/bodypart/limb_to_hit = L.get_bodypart(user.zone_selected)
-		var/armor = L.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
-		qdel(src, force = TRUE) // Punching mobs instantly starts the cooldown
-		shake_camera(L, 4, 3) 
-		L.apply_damage(punchdam, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND) 
-		if(!limb_to_hit)
-			limb_to_hit = L.get_bodypart(BODY_ZONE_CHEST)
-		if(iscarbon(L))
-			if(limb_to_hit.brute_dam == limb_to_hit.max_damage) // If the limb is destroyed
-				if(istype(limb_to_hit, /obj/item/bodypart/chest))
-					knockedback |= L // You can't toss off their torso.
-				else // If you target a limb and it's fully damaged then lop it off
-					var/atom/throw_target = get_edge_target_turf(L, direction)
-					to_chat(L, span_userdanger("[user] blows [limb_to_hit] off with inhuman force!"))
-					user.visible_message(span_warning("[user] punches [limb_to_hit] clean off!"))
-					limb_to_hit.drop_limb()
-					limb_to_hit.throw_at(throw_target, 8, 4, user, 3)
-					L.Paralyze(3 SECONDS)
-					return // Stop here, don't bother throwing
-		L.SpinAnimation(0.5 SECONDS, 2)
-		to_chat(L, span_userdanger("[user] hits you with a blast of energy and sends you flying!"))
-		if(!istype(limb_to_hit, /obj/item/bodypart/head))
-			user.visible_message(span_warning("[user] blasts [L] with a surge of energy and sends [L.p_them()] flying!"))
-		else
-			user.visible_message(span_warning("[user] smashes [user.p_their()] fist upwards into [L]'s jaw, sending [L.p_them()] flying!"))//slicer's request
-		knockedback |= L
-	for(var/mob/M in view(7, user))
-		shake_camera(M, 2, 3)
-	var/turf/P = get_turf(user)
-	// Introducing: snowflake throw logic
-	// Like grapple, but much stronger
-	// Damages most structures and walls it comes in contact with
-	// Applies damage to the victim depending on what they hit, if anything
-	for(var/i = 2 to flightdist) // For each tile they are thrown
-		var/turf/T = get_ranged_target_turf(P, direction, i)
-		if(T.density) // Ouch, we hit a wall!
-			var/turf/closed/wall/W = T
-			for(var/obj/J in knockedback) // For every object that is flying, damage it again
-				J.take_damage(objcolldam)
-			for(var/mob/living/S in knockedback) // For every mob that is flying, damage them again
-				hit(user, S, colldam)
-				S.Knockdown(1.5 SECONDS)
-				S.Immobilize(1.5 SECONDS)
-				if(isanimal(S) && S.stat == DEAD)
-					S.gib()
-			if(!istype(W, /turf/closed/wall/r_wall)) // Destroy the wall if it's not a reinforced wall
-				playsound(L,'sound/effects/meteorimpact.ogg', 50, 1)
-				W.dismantle_wall(1)
-			else
-				return // We can't destroy rwalls, stop!
-		for(var/obj/D in T.contents)
-			if(D.density == TRUE) // Ouch, we hit a dense object like a window or table!
-				for(var/obj/J in knockedback) // For every object that is flying, damage it again
-					J.take_damage(objcolldam)
-				for(var/mob/living/S in knockedback) // For every mob that is flying, damage them again
-					hit(user, S, hitobjdam)
-				if(D.anchored == FALSE) // If the object is unanchored, take it with us
-					knockedback |= D
-					D.take_damage(50)
-				if(D.anchored == TRUE) // If the object is anchored, damage it
-					D.take_damage(objdam)
-					if(D.density == TRUE) // If the object is still dense, stop!!!
-						return
-					for(var/mob/living/S in knockedback)
-						hit(user, S, colldam)
-						if(isanimal(S) && S.stat == DEAD)
-							S.gib()		
-		for(var/mob/living/M in T.contents) // For each mob we hit, damage our mobs, damage them, and take them with us
-			hit(user, M, colldam)
-			for(var/mob/living/S in knockedback)
-				hit(user, S, colldam)
-			knockedback |= M
-		if(T)
-			// Move us forward
-			for(var/atom/movable/K in knockedback)
-				K.SpinAnimation(0.2 SECONDS, 1)
-				sleep(0.001 SECONDS)
-				K.forceMove(T)
-				if(istype(T, /turf/open/space)) // If we hit space, keep flying
-					var/atom/throw_target = get_edge_target_turf(K, direction)
-					K.throw_at(throw_target, 6, 4, user, 3)
-					return
+		if(isliving(target))
+			var/mob/living/L = target
+			to_chat(L, span_userdanger("[user] hits you with a blast of energy and sends you flying!"))
+			if(prob(5))
+				if(prob(50))
+					user.say("FUCK YOU!!")
+				else
+					user.say("JACKPOT!!")
+			var/obj/item/bodypart/limb_to_hit = L.get_bodypart(user.zone_selected)
+			var/armor = L.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
+			store(user) 
+			L.apply_damage(punchdam, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND) 
+			if(!limb_to_hit)
+				limb_to_hit = L.get_bodypart(BODY_ZONE_CHEST)
+			if(iscarbon(L))
+				if(limb_to_hit.brute_dam == limb_to_hit.max_damage) 
+					if(istype(limb_to_hit, /obj/item/bodypart/chest))
+						to_chat(L, span_userdanger("[user] hits you with a blast of energy and sends you flying!"))
+						if(!istype(limb_to_hit, /obj/item/bodypart/head))
+							user.visible_message(span_warning("[user] blasts [L] with a surge of energy and sends [L.p_them()] flying!"))
+						else
+							user.visible_message(span_warning("[user] smashes [user.p_their()] fist upwards into [L]'s jaw, sending [L.p_them()] flying!"))//slicer's request
+					else 
+						var/atom/throw_target = get_edge_target_turf(L, user.dir)
+						to_chat(L, span_userdanger("[user] blows [limb_to_hit] off with inhuman force!"))
+						user.visible_message(span_warning("[user] punches [limb_to_hit] clean off!"))
+						limb_to_hit.drop_limb()
+						limb_to_hit.throw_at(throw_target, 8, 4, user, 3)
+						L.Paralyze(3 SECONDS)
+						return 
+			L.SpinAnimation(0.5 SECONDS, 2)
+			addtimer(CALLBACK(src, PROC_REF(fly), user, L, user.dir, flightdist))
+
+
+/obj/item/megabuster/proc/fly(mob/living/user, atom/movable/ball, dir, triplength = 0)
+	if(triplength == 0)
+		for(var/atom/movable/I in snowballcontents)
+			snowballcontents.Remove(I)
+		return
+	var/turf/Q = get_step(get_turf(ball), dir)
+	var/turf/current = (get_turf(ball))
+	for(var/atom/speedbump in Q.contents)
+		if(isitem(speedbump) || !ismovable(speedbump) || !(speedbump.density))
+			continue
+		var/atom/movable/H = speedbump
+		if(isobj(H) && H.density)
+			var/obj/O = H
+			O.take_damage(objcolldam)
+			if(O.anchored == TRUE)
+				O.take_damage(anchoredthingdam) // bonus damage for being a stubborn stupid door
+				continue
+			snowballcontents |= O
+		if(isliving(H))
+			hit(user, H, colldam)
+			snowballcontents |= H
+		for(var/atom/movable/T in current.contents)
+			if(isliving(T))
+				hit(user, T, hitobjdam)
+			if(isobj(T))
+				T.take_damage(objcolldam)
+		H.forceMove(current) // so the speedbump joins the snowball instead of working as intended
+	if(Q.density) 
+		var/turf/closed/wall/W = Q
+		for(var/obj/J in current)
+			J.take_damage(objcolldam)
+		for(var/mob/living/S in current)
+			hit(user, S, colldam)
+			S.Knockdown(1.5 SECONDS)
+			S.Immobilize(1.5 SECONDS)
+			if(isanimal(S) && S.stat == DEAD)
+				S.gib()
+		if(!istype(W, /turf/closed/wall/r_wall))
+			playsound(W,'sound/effects/meteorimpact.ogg', 50, 1)
+			W.dismantle_wall(1)
+	for(var/atom/movable/I in snowballcontents)
+		I.forceMove(current)
+	if(Q.density)
+		for(var/atom/movable/I in snowballcontents)
+			snowballcontents.Remove(I)
+		return
+	for(var/atom/movable/T in snowballcontents)
+		T.SpinAnimation(0.2 SECONDS, 1)
+		if((!(Q.reachableTurftestdensity(T = Q))))
+			for(var/atom/movable/I in snowballcontents)
+				snowballcontents.Remove(I)
+			return  
+		T.forceMove(Q)
+	addtimer(CALLBACK(src, PROC_REF(fly), user, ball, dir, triplength-1), 0.01 SECONDS)	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
