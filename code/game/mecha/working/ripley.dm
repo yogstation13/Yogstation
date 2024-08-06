@@ -3,13 +3,13 @@
 	name = "\improper APLU MK-I \"Ripley\""
 	icon_state = "ripley"
 	silicon_icon_state = "ripley-empty"
-	step_in = 1.5 //Move speed, lower is faster.
+	step_in = 2 //Move speed, lower is faster.
 	max_temperature = 20000
-	max_integrity = 200
+	max_integrity = 400
+	integrity_failure = 200
 	deflect_chance = 15
 	armor = list(MELEE = 40, BULLET = 20, LASER = 10, ENERGY = 0, BOMB = 40, BIO = 0, RAD = 20, FIRE = 100, ACID = 100)
 	max_equip = 6
-	wreckage = /obj/structure/mecha_wreckage/ripley
 	internals_req_access = list(ACCESS_MECH_ENGINE, ACCESS_MECH_SCIENCE, ACCESS_MECH_MINING, ACCESS_MECH_FREEMINER)
 	var/list/cargo = new
 	var/cargo_capacity = 15
@@ -66,14 +66,14 @@
 	name = "\improper APLU MK-II \"Firefighter\""
 	icon_state = "firefighter"
 	max_temperature = 65000
-	max_integrity = 250
+	max_integrity = 500
+	integrity_failure = 250
 	fast_pressure_step_in = 1.75 //step_in while in low pressure conditions
 	slow_pressure_step_in = 3 //step_in while in normal pressure conditions
 	step_in = 3
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	flags_1 = HEAR_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 60, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
-	wreckage = /obj/structure/mecha_wreckage/ripley/firefighter
 	enclosed = TRUE
 	enter_delay = 40
 	silicon_icon_state = null
@@ -99,7 +99,6 @@
 	slow_pressure_step_in = 3
 	opacity=0
 	light_power = 7
-	wreckage = /obj/structure/mecha_wreckage/ripley/deathripley
 	enclosed = TRUE
 	enter_delay = 40
 	silicon_icon_state = null
@@ -132,7 +131,7 @@
 
 /obj/mecha/working/ripley/mining/Initialize(mapload)
 	. = ..()
-	update_integrity(75) //Low starting health
+	update_integrity(275) //Low starting health
 	if(cell)
 		cell.charge = FLOOR(cell.charge * 0.25, 1) //Starts at very low charge
 	if(prob(70)) //Maybe add a drill

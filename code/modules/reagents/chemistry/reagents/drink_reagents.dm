@@ -210,7 +210,6 @@
 	description = "A mixture of milk and.... cola? Who the fuck would do this?"
 	color = "#EAC7A4"
 	taste_description = "dairy and caffeine"
-	glass_icon_state = "glass_cilk"
 	glass_name = "glass of cilk"
 	glass_desc = "A mixture of milk and... cola? Who the fuck would do this?"
 
@@ -590,10 +589,10 @@
 /datum/reagent/consumable/space_cola
 	name = "Cola"
 	description = "A refreshing beverage."
-	color = "#100800"
+	color = "#100800" // rgb: 16, 8, 0
 	quality = DRINK_SODA
 	taste_description = "cola"
-	glass_icon_state  = "glass_brown"
+	glass_icon_state  = "spacecola_glass"
 	glass_name = "glass of Space Cola"
 	glass_desc = "A glass of refreshing Space Cola."
 
@@ -696,7 +695,7 @@
 	color = "#8CFF00" // rgb: 135, 255, 0
 	quality = DRINK_SODA
 	taste_description = "tangy lime and lemon soda"
-	glass_icon_state = "glass_yellow"
+	glass_icon_state = "lemonlime"
 	glass_name = "glass of lemon-lime"
 	glass_desc = "You're pretty certain a real fruit has never actually touched this."
 
@@ -710,7 +709,7 @@
 	color = "#9385bf" // rgb: 58, 52, 75
 	quality = DRINK_SODA
 	taste_description = "sweet and salty tang"
-	glass_icon_state = "glass_red"
+	glass_icon_state = "pwrgame_glass"
 	glass_name = "glass of Pwr Game"
 	glass_desc = "Goes well with a Vlad's salad."
 
@@ -724,7 +723,7 @@
 	color = "#f00060" // rgb: 94, 0, 38
 	quality = DRINK_SODA
 	taste_description = "carbonated metallic soda"
-	glass_icon_state = "glass_red"
+	glass_icon_state = "shamblerjuice_glass"
 	glass_name = "glass of Shambler's juice"
 	glass_desc = "Mmm mm, shambly."
 
@@ -1024,6 +1023,7 @@
 	color = "#f7d26a"
 	quality = DRINK_NICE
 	taste_description = "sweet ginger spice"
+	glass_icon_state = "soldry_glass"
 	glass_name = "Sol Dry"
 	glass_desc = "A soothing, mellow drink made from ginger."
 

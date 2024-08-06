@@ -160,8 +160,8 @@
 	mob_storage_capacity = 1
 	contents_pressure_protection = 0.8
 	contents_thermal_insulation = 0.5
-	foldedbag_path = /obj/item/bodybag/environmental/
-	weather_protection = list(WEATHER_ACID, WEATHER_ASH, WEATHER_RAD, WEATHER_SNOW, ) // Does not protect against lava or the The Floor Is Lava spell.
+	foldedbag_path = /obj/item/bodybag/environmental
+	weather_protection = WEATHER_STORM
 
 /obj/structure/closet/body_bag/environmental/nanotrasen
 	name = "elite environmental protection bag"
@@ -171,7 +171,7 @@
 	contents_pressure_protection = 1
 	contents_thermal_insulation = 1
 	foldedbag_path = /obj/item/bodybag/environmental/nanotrasen/
-	weather_protection = list(WEATHER_ALL)
+	weather_protection = WEATHER_STORM
 
 /// Securable enviro. bags
 
@@ -292,7 +292,7 @@
 	contents_pressure_protection = 1
 	contents_thermal_insulation = 1
 	foldedbag_path = /obj/item/bodybag/environmental/prisoner/syndicate
-	weather_protection = list(WEATHER_ALL)
+	weather_protection = WEATHER_STORM
 	breakout_time = 8 MINUTES
 	sinch_time = 4 SECONDS
 

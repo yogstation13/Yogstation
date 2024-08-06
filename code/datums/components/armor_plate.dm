@@ -53,6 +53,7 @@
 /datum/component/armor_plate/proc/applyplate(datum/source, obj/item/I, mob/user, params)
 	if(!istype(I,upgrade_item))
 		return
+	. = COMPONENT_NO_AFTERATTACK
 	if(amount >= maxamount)
 		to_chat(user, span_warning("You can't improve [parent] any further!"))
 		return

@@ -30942,8 +30942,6 @@
 	dir = 5
 	},
 /obj/structure/closet/secure_closet/paramedic,
-/obj/item/roller,
-/obj/item/clothing/glasses/hud/health,
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
 "pcu" = (

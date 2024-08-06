@@ -251,7 +251,7 @@
 		mecha.aimob_exit_mech(src)
 	..()
 
-/mob/living/simple_animal/hostile/syndicate/mecha_pilot/gib()
+/mob/living/simple_animal/hostile/syndicate/mecha_pilot/gib(no_brain, no_organs, no_bodyparts, no_items)
 	if(mecha)
 		mecha.aimob_exit_mech(src)
 	..()

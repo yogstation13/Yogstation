@@ -55,7 +55,7 @@
 
 	if(ishuman(holder))
 		var/mob/living/carbon/human/holder_human = holder
-		obscured = (holder_human.wear_mask && (holder_human.wear_mask.flags_inv & HIDEFACE)) || (holder_human.head && (holder_human.head.flags_inv & HIDEFACE))
+		obscured = (holder_human.wear_mask && (holder_human.wear_mask.flags_inv & HIDEFACE)) || (holder_human.head && (holder_human.head.flags_inv & HIDEFACE)) || HAS_TRAIT(holder_human, TRAIT_DISGUISED)
 		flavor_text = obscured ? "Obscured" :  holder_human.dna.features["flavor_text"]
 		if(!obscured)
 			headshot += holder_human.dna.features["headshot"]

@@ -8,7 +8,7 @@
 	if(!isliving(user))
 		return
 	var/mob/living/living_user = user
-	living_user.reagents.add_reagent(/datum/reagent/toxic_metabolities,15)
+	living_user.reagents.add_reagent(/datum/reagent/toxic_metabolites,15)
 /obj/item/dummy_malaria
 	name = "test dummy"
 	desc = "what"
@@ -175,6 +175,7 @@
 	product = /obj/item/reagent_containers/food/snacks/grown/jungle/magnus_purpura
 	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
 	growthstages = 3
+	mutatelist = list(/obj/item/seeds/kudzu) //get the fuck outta here kudzu
 	reagents_add = list(/datum/reagent/magnus_purpura_enzyme = 0.25)
 
 /obj/item/reagent_containers/food/snacks/grown/jungle/magnus_purpura
@@ -183,6 +184,7 @@
 	icon_state = "magnus_purpura_flower"
 	seed = /obj/item/seeds/jungleland/magnus_purpura
 	distill_reagent = /datum/reagent/magnus_purpura_enzyme/condensed
+	bitesize = 10 //instantly consume the entire thing
 
 /obj/item/organ/regenerative_core/dryad
 	name = "Dryad heart"

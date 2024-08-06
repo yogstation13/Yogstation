@@ -208,7 +208,7 @@
 
 /datum/species/lizard/ashwalker/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	C.weather_immunities -= WEATHER_ASH
+	C.weather_immunities &= ~WEATHER_ASH
 
 //Ash walker shaman, worse defensive stats, but better at surgery and have a healing touch ability
 /datum/species/lizard/ashwalker/shaman
@@ -293,7 +293,7 @@
 
 /datum/species/lizard/draconid/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	C.weather_immunities -= WEATHER_ASH
+	C.weather_immunities &= ~WEATHER_ASH
 
 // yogs end
 
