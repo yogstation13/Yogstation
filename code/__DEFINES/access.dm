@@ -126,7 +126,7 @@
 /// Access needed to research tech nodes at R&D consoles. May also be needed to access some scientific equipment.
 #define ACCESS_RESEARCH "research"
 /// Access to the Toxins Mixing Lab and Toxins Test Area equipment.
-#define ACCESS_TOXINS "toxins"r
+#define ACCESS_TOXINS "toxins"
 /// Access to the Toxins Storage Room, where all of the bomb-making gases are stored.
 #define ACCESS_TOXINS_STORAGE "toxins_storage"
 /// Access to the Experimentation Lab, containing the E.X.P.E.R.I-MENTOR. Uses of this access is set to change in the future.
