@@ -1134,9 +1134,8 @@
 	glass_icon_state = "dr_gibb_glass"
 	glass_name = "glass of Dr. Gibb"
 	glass_desc = "Dr. Gibb. Not as dangerous as the glass_name might imply."
-	accelerant_quality = 10
+	accelerant_quality = 15
 	compatible_biotypes = ALL_BIOTYPES
-	liquid_fire_power = 25
 
 /datum/reagent/fuel/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)//Splashing people with welding fuel to make them easy to ignite!
 	if(methods & (TOUCH|VAPOR))
@@ -1456,7 +1455,7 @@
 	color = "#C8A5DC"
 	taste_description = "oil"
 	compatible_biotypes = ALL_BIOTYPES
-	liquid_fire_power = 15
+	accelerant_quality = 8
 
 /datum/reagent/oil/on_mob_life(mob/living/carbon/M)
 	M.adjustFireLoss(-2*REM, FALSE, FALSE, BODYPART_ROBOTIC)

@@ -506,7 +506,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/total_burn_power = 0
 	var/total_burn_rate = 0
 	for(var/datum/reagent/reagent_type in reagents.reagent_list)
-		var/burn_power = initial(reagent_type.liquid_fire_power)
+		var/burn_power = initial(reagent_type.accelerant_quality)
 		if(burn_power)
 			total_burn_power += burn_power * reagent_type.volume
 			total_burn_rate += burn_power

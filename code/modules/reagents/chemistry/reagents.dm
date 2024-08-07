@@ -64,8 +64,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/addiction_name = null
 	/// What biotypes can process this? We'll assume by default that it affects organics (and undead, for plasmemes)
 	var/compatible_biotypes = ALL_NON_ROBOTIC
-	/// How flammable is this material?
-	var/accelerant_quality = 0
+	
 	/// You fucked up and this is now triggering its overdose effects, purge that shit quick.
 	var/overdosed = 0
 	///if false stops metab in liverless mobs
@@ -81,10 +80,8 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	
 	///Whether it will evaporate if left untouched on a liquids simulated puddle
 	var/evaporates = TRUE
-	///How much fire power does the liquid have, for burning on simulated liquids. Not enough fire power/unit of entire mixture may result in no fire
-	var/liquid_fire_power = 0
-	///How fast does the liquid burn on simulated turfs, if it does
-	var/liquid_fire_burnrate = 0
+	/// How flammable is this material? For liquid spills and molotov cocktails
+	var/accelerant_quality = 0
 	///Whether a fire from this requires oxygen in the atmosphere
 	var/fire_needs_oxygen = TRUE
 	///The opacity of the chems used to determine the alpha of liquid turfs

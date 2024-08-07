@@ -165,7 +165,6 @@
 	self_consuming = TRUE
 	accelerant_quality = 20
 	compatible_biotypes = ALL_BIOTYPES
-	liquid_fire_power = 1
 
 /datum/reagent/napalm/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(1)

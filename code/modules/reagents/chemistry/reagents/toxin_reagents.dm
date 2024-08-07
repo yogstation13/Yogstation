@@ -60,7 +60,7 @@
 	taste_mult = 1.5
 	color = "#8228A0"
 	toxpwr = 3
-	accelerant_quality = 10
+	accelerant_quality = 50 //OWWW
 	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/toxin/plasma/on_mob_life(mob/living/carbon/C)
