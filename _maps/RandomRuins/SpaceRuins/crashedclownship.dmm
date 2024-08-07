@@ -44,7 +44,7 @@
 "k" = (
 /obj/structure/closet/secure_closet{
 	name = "clown locker";
-	req_access = list(ACCESS_THEATRE)
+	req_access = list("theatre")
 	},
 /obj/item/clothing/shoes/clown_shoes/banana_shoes,
 /obj/effect/spawner/lootdrop/maintenance/two,

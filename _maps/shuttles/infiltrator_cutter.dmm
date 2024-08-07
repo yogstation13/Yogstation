@@ -143,7 +143,7 @@
 	normaldoorcontrol = 1;
 	pixel_x = -4;
 	pixel_y = 25;
-	req_access = list(ACCESS_SYNDICATE);
+	req_access = list("syndicate");
 	specialfunctions = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -694,7 +694,7 @@
 	normaldoorcontrol = 1;
 	pixel_x = -4;
 	pixel_y = -25;
-	req_access = list(ACCESS_SYNDICATE);
+	req_access = list("syndicate");
 	specialfunctions = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -1014,7 +1014,7 @@
 	name = "Bridge Blast Door Control";
 	pixel_x = 25;
 	pixel_y = 8;
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9

@@ -147,7 +147,7 @@
 	desc = "A display case containing an expensive forgery, probably.";
 	pixel_y = -4;
 	start_showpiece_type = /obj/item/fakeartefact;
-	req_access = list(ACCESS_MINING)
+	req_access = list("mining")
 	},
 /turf/open/floor/carpet/black,
 /area/survivalpod)

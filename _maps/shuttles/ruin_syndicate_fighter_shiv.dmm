@@ -27,7 +27,7 @@
 	dir = 8;
 	name = "Syndicate Fighter APC";
 	pixel_x = -25;
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/machinery/computer/security{
 	dir = 1;
@@ -112,7 +112,7 @@
 	name = "External Bolt Control";
 	normaldoorcontrol = 1;
 	pixel_x = -25;
-	req_access = list(ACCESS_SYNDICATE);
+	req_access = list("syndicate");
 	specialfunctions = 4
 	},
 /obj/effect/decal/cleanable/dirt,

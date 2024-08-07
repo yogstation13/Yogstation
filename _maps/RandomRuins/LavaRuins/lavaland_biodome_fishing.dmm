@@ -375,7 +375,7 @@
 /area/ruin/powered/fishing/shop)
 "kB" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
-	req_access = "Fisherman"
+	req_access = null
 	},
 /obj/item/reagent_containers/glass/mixbowl{
 	pixel_x = 1;
@@ -1701,7 +1701,7 @@
 /area/ruin/powered/fishing/hall)
 "QL" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
-	req_access = "Fisherman"
+	req_access = null
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,

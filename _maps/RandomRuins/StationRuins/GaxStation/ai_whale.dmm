@@ -1678,14 +1678,14 @@
 	idSelf = "ai_core_airlock_control";
 	pixel_x = 25;
 	pixel_y = 7;
-	req_access = list(ACCESS_AI_MASTER)
+	req_access = list("ai_master")
 	},
 /obj/machinery/doorButtons/access_button{
 	idDoor = "ai_core_airlock_interior";
 	idSelf = "ai_core_airlock_control";
 	pixel_x = 23;
 	pixel_y = -7;
-	req_access = list(ACCESS_AI_MASTER)
+	req_access = list("ai_master")
 	},
 /obj/machinery/camera{
 	c_tag = "MiniSat  Antechamber";
@@ -2591,7 +2591,7 @@
 	idSelf = "ai_core_airlock_control";
 	pixel_x = -23;
 	pixel_y = 7;
-	req_access = list(ACCESS_AI_MASTER)
+	req_access = list("ai_master")
 	},
 /obj/machinery/light,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -2736,7 +2736,7 @@
 	idSelf = "ai_core_airlock_control";
 	pixel_x = -23;
 	pixel_y = 7;
-	req_access = list(ACCESS_AI_MASTER)
+	req_access = list("ai_master")
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
@@ -2834,7 +2834,7 @@
 	idSelf = "ai_core_airlock_control";
 	pixel_x = 23;
 	pixel_y = -7;
-	req_access = list(ACCESS_AI_MASTER)
+	req_access = list("ai_master")
 	},
 /obj/machinery/light{
 	dir = 1

@@ -2159,7 +2159,7 @@
 /area/ruin/space/has_grav/hotel/bar)
 "fE" = (
 /obj/machinery/vending/boozeomat{
-	req_access = list(ACCESS_RUINS_GENERAL)
+	req_access = list("ruins_general")
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -2572,7 +2572,7 @@
 /area/ruin/space/has_grav/hotel/bar)
 "gC" = (
 /obj/structure/closet/secure_closet/freezer/meat{
-	req_access = list(ACCESS_RUINS_GENERAL)
+	req_access = list("ruins_general")
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
@@ -2659,7 +2659,7 @@
 /obj/item/reagent_containers/food/condiment/milk,
 /obj/item/reagent_containers/food/condiment/milk,
 /obj/structure/closet/secure_closet/freezer/fridge{
-	req_access = list(ACCESS_RUINS_GENERAL)
+	req_access = list("ruins_general")
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
@@ -2834,7 +2834,7 @@
 /obj/item/reagent_containers/food/condiment/flour,
 /obj/item/reagent_containers/food/condiment/flour,
 /obj/structure/closet/secure_closet/freezer/kitchen{
-	req_access = list(ACCESS_RUINS_GENERAL)
+	req_access = list("ruins_general")
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
@@ -3105,7 +3105,7 @@
 /area/ruin/space/has_grav/hotel/custodial)
 "hT" = (
 /obj/machinery/vending/dinnerware{
-	req_access = list(ACCESS_RUINS_GENERAL)
+	req_access = list("ruins_general")
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
@@ -4477,7 +4477,7 @@
 /area/ruin/space/has_grav/hotel/security)
 "lT" = (
 /obj/structure/closet/secure_closet/security{
-	req_access = list(ACCESS_RUINS_SECURITY)
+	req_access = list("ruins_security")
 	},
 /obj/item/gun/energy/laser/scatter/shotty,
 /obj/item/clothing/head/helmet/justice,

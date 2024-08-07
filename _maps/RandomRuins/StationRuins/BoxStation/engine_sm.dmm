@@ -196,7 +196,7 @@
 	id = "engsm";
 	name = "Radiation Shutters Control";
 	pixel_y = -24;
-	req_access = list(ACCESS_ENGINEERING)
+	req_access = list("engineering")
 	},
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
 	dir = 1

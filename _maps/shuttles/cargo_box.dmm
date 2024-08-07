@@ -42,14 +42,14 @@
 	name = "Loading Doors";
 	pixel_x = 24;
 	pixel_y = 8;
-	req_access = list(ACCESS_CARGO_BAY)
+	req_access = list("cargo_bay")
 	},
 /obj/machinery/button/door{
 	id = "QMLoaddoor";
 	name = "Loading Doors";
 	pixel_x = 24;
 	pixel_y = -8;
-	req_access = list(ACCESS_CARGO_BAY)
+	req_access = list("cargo_bay")
 	},
 /obj/machinery/light{
 	dir = 4

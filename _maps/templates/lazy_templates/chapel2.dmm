@@ -511,7 +511,7 @@
 "Dj" = (
 /obj/machinery/door/morgue{
 	name = "Confession Booth (Chaplain)";
-	req_access = list(ACCESS_CHAPEL_OFFICE)
+	req_access = list("chapel_office")
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{

@@ -76,14 +76,14 @@
 	name = "Gift Shop Internal Shutters";
 	pixel_x = 26;
 	pixel_y = 24;
-	req_access = list(ACCESS_CLERK)
+	req_access = list("clerk")
 	},
 /obj/machinery/button/door{
 	id = "giftshop_ext";
 	name = "Gift Shop External Shutters";
 	pixel_x = 40;
 	pixel_y = 24;
-	req_access = list(ACCESS_CLERK)
+	req_access = list("clerk")
 	},
 /obj/structure/cable{
 	icon_state = "1-8"

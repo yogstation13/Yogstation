@@ -337,7 +337,7 @@
 	id = "lpost_privacy_left";
 	name = "Privacy Shutters";
 	pixel_y = 23;
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
@@ -482,7 +482,7 @@
 	name = "Airlock Emergency Bolts";
 	normaldoorcontrol = 1;
 	pixel_y = -24;
-	req_access = list(ACCESS_SYNDICATE);
+	req_access = list("syndicate");
 	specialfunctions = 4;
 	pixel_x = -3
 	},
@@ -960,7 +960,7 @@
 	id = "lpost_warehouse";
 	name = "Warehouse Shutters";
 	pixel_y = -24;
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/effect/turf_decal/delivery,
 /obj/structure/closet/crate/critter,
@@ -1083,7 +1083,7 @@
 /area/ruin/space/has_grav/listeningstation/hallway)
 "iO" = (
 /obj/structure/closet/secure_closet/medical1{
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 4
@@ -1097,7 +1097,7 @@
 	id = "lpost_privacy_right";
 	name = "Privacy Shutters";
 	pixel_y = 23;
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
@@ -1692,7 +1692,7 @@
 /obj/machinery/advanced_airlock_controller{
 	dir = 0;
 	pixel_x = 24;
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/engineering)
@@ -2073,7 +2073,7 @@
 	pixel_y = 23
 	},
 /obj/structure/closet/secure_closet/freezer/fridge{
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/item/reagent_containers/food/condiment/enzyme,
 /obj/item/reagent_containers/food/snacks/meat/slab,
@@ -2364,7 +2364,7 @@
 	id = "lpost_warehouse";
 	name = "Warehouse Shutters";
 	pixel_x = -24;
-	req_access = list(ACCESS_SYNDICATE);
+	req_access = list("syndicate");
 	pixel_y = 6
 	},
 /turf/open/floor/plasteel/dark,
@@ -2445,7 +2445,7 @@
 	department = "Unidentified";
 	desc = "Used to send black pages to Nanotrasen stations.";
 	name = "Syndicate Fax Machine";
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/dirt,
@@ -2991,7 +2991,7 @@
 /obj/machinery/advanced_airlock_controller{
 	dir = 0;
 	pixel_x = 24;
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/machinery/light/small{
 	brightness = 3;
@@ -3150,7 +3150,7 @@
 	name = "Airlock Emergency Bolts";
 	normaldoorcontrol = 1;
 	pixel_x = 24;
-	req_access = list(ACCESS_SYNDICATE);
+	req_access = list("syndicate");
 	specialfunctions = 4
 	},
 /obj/effect/turf_decal/tile/red/anticorner/contrasted{

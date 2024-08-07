@@ -27,7 +27,7 @@
 	id = "48641ragecageexit";
 	name = "Rage Cage Exit Doors";
 	pixel_x = 24;
-	req_access = req_access = list(ACCESS_CMO)
+	req_access = list("cmo")
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -517,7 +517,7 @@
 	name = "Table Privacy Shutters";
 	pixel_x = -28;
 	pixel_y = -5;
-	req_access = req_access = list(ACCESS_CMO)
+	req_access = list("cmo")
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)

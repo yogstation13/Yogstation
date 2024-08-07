@@ -588,7 +588,7 @@
 "Ny" = (
 /obj/machinery/door/morgue{
 	name = "Confession Booth (Chaplain)";
-	req_access = list(ACCESS_CHAPEL_OFFICE)
+	req_access = list("chapel_office")
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -858,7 +858,7 @@
 	id = "chapelgun";
 	name = "Mass Driver Controller";
 	pixel_x = 24;
-	req_access = list(ACCESS_CHAPEL_OFFICE)
+	req_access = list("chapel_office")
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)

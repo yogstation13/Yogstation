@@ -1507,7 +1507,7 @@
 	id = "engsm";
 	name = "Radiation Shutters Control";
 	pixel_x = 24;
-	req_access = list(ACCESS_ENGINEERING)
+	req_access = list("engineering")
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4

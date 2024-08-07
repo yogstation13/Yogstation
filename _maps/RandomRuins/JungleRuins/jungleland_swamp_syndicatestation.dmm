@@ -724,14 +724,14 @@
 	id = "lavalandsyndi_telecomms";
 	name = "Telecomms Blast Door Control";
 	pixel_y = 36;
-	req_access = list(ACCESS_SYNDICATE);
+	req_access = list("syndicate");
 	pixel_x = -6
 	},
 /obj/machinery/button/door{
 	id = "lavalandsyndi_centralwindows";
 	name = "Exterior Windows Blast Door Control";
 	pixel_y = 36;
-	req_access = list(ACCESS_SYNDICATE);
+	req_access = list("syndicate");
 	pixel_x = 6
 	},
 /obj/item/radio/intercom{
@@ -901,7 +901,7 @@
 "ja" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/closet/crate/secure/weapon{
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/item/ammo_box/c10mm{
 	pixel_y = 6
@@ -1642,7 +1642,7 @@
 	id = "lavalandsyndi_bar";
 	name = "Bar Blast Door Control";
 	pixel_y = 26;
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/machinery/door/window/northleft{
 	dir = 8;
@@ -2591,7 +2591,7 @@
 	id = "lavalandsyndi_cargo";
 	name = "Cargo Bay Blast Door Control";
 	pixel_x = 26;
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -3182,7 +3182,7 @@
 	id = "syndie_lavaland_exitdoors";
 	name = "Central External Airlock Blast Door Control";
 	pixel_y = -24;
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/structure/safe/floor,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
@@ -3399,7 +3399,7 @@
 /area/ruin/powered/syndicate_lava_base/bar)
 "Ft" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/item/kitchen/knife/butcher,
 /obj/item/clothing/suit/apron/chef,
@@ -3495,7 +3495,7 @@
 "Gs" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/closet/crate/secure/gear{
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/item/clothing/gloves/combat,
 /obj/item/clothing/gloves/combat,
@@ -3546,7 +3546,7 @@
 	id = "lavalandsyndi";
 	name = "Syndicate Experimentation Lockdown Control";
 	pixel_y = -26;
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /turf/open/floor/engine,
 /area/ruin/powered/syndicate_lava_base/chemistry)
@@ -4509,7 +4509,7 @@
 /area/ruin/powered/syndicate_lava_base/bar)
 "Pk" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/effect/spawner/lootdrop/donkpockets,
 /obj/item/storage/box/ingredients/vegetarian,
@@ -4836,7 +4836,7 @@
 	id = "lavalandsyndi";
 	name = "Syndicate Experimentation Lockdown Control";
 	pixel_y = 26;
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
@@ -4876,7 +4876,7 @@
 /obj/item/storage/lockbox/vialbox/virology{
 	pixel_x = -7;
 	pixel_y = 2;
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/item/book/manual/wiki/infections{
 	pixel_y = 7
@@ -5329,7 +5329,7 @@
 /obj/item/storage/firstaid/hypospray/syndicate,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/storage/lockbox/vialbox/hypo_deluxe{
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)

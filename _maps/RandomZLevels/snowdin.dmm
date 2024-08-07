@@ -6578,7 +6578,7 @@
 	icon_state = "sec";
 	locked = 1;
 	name = "security officer's locker";
-	req_access = list(ACCESS_RUINS_GENERAL)
+	req_access = list("ruins_general")
 	},
 /obj/item/restraints/handcuffs,
 /obj/item/assembly/flash,
@@ -7815,7 +7815,7 @@
 	name = "Turbine Access Console";
 	pixel_x = -8;
 	pixel_y = -26;
-	req_access = list(ACCESS_RUINS_GENERAL)
+	req_access = list("ruins_general")
 	},
 /obj/machinery/button/ignition{
 	id = "snowdin_turbine_ignitor";

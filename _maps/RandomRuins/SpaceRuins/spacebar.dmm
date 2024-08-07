@@ -85,7 +85,7 @@
 "aU" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/closet/secure_closet/freezer/kitchen{
-	req_access = list(ACCESS_BAR)
+	req_access = list("bar")
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
@@ -384,7 +384,7 @@
 	pixel_y = 32
 	},
 /obj/structure/closet/secure_closet/freezer/fridge{
-	req_access = list(ACCESS_BAR)
+	req_access = list("bar")
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
@@ -826,7 +826,7 @@
 /area/ruin/space/has_grav/powered/spacebar)
 "Gk" = (
 /obj/structure/closet/secure_closet/freezer/meat{
-	req_access = list(ACCESS_BAR)
+	req_access = list("bar")
 	},
 /obj/structure/window{
 	dir = 4
@@ -1115,7 +1115,7 @@
 	name = "Bar Shutters Control";
 	pixel_x = 25;
 	pixel_y = 24;
-	req_access = list(ACCESS_BAR)
+	req_access = list("bar")
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)

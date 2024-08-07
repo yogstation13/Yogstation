@@ -790,7 +790,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/structure/closet/secure_closet{
 	name = "Plasmaman Supplies Locker";
-	req_access = list(ACCESS_MEDICAL)
+	req_access = list("medical")
 	},
 /obj/item/clothing/under/plasmaman,
 /obj/item/clothing/under/plasmaman,

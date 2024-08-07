@@ -598,7 +598,7 @@
 	name = "Cockpit Window Blast Doors";
 	pixel_x = -7;
 	pixel_y = 32;
-	req_access = list(ACCESS_COMMAND)
+	req_access = list("command")
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)

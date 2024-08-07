@@ -1613,7 +1613,7 @@
 	name = "Loading Doors";
 	pixel_x = -27;
 	pixel_y = -5;
-	req_access = list(ACCESS_CENT_STORAGE)
+	req_access = list("cent_storage")
 	},
 /obj/machinery/button/door/indestructible{
 	id = "XCCQMLoaddoor2";
@@ -1621,7 +1621,7 @@
 	name = "Loading Doors";
 	pixel_x = -27;
 	pixel_y = 5;
-	req_access = list(ACCESS_CENT_STORAGE)
+	req_access = list("cent_storage")
 	},
 /obj/machinery/computer/cargo{
 	dir = 4
@@ -7763,7 +7763,7 @@
 	name = "Hanger Bay Shutters";
 	pixel_x = -8;
 	pixel_y = 24;
-	req_access = list(ACCESS_CENT_GENERAL)
+	req_access = list("cent_general")
 	},
 /obj/machinery/button/door/indestructible{
 	id = "XCCsec3";
@@ -8139,7 +8139,7 @@
 	id = "XCCFerry";
 	name = "Hanger Bay Shutters";
 	pixel_y = 24;
-	req_access = list(ACCESS_CENT_GENERAL)
+	req_access = list("cent_general")
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -8674,7 +8674,7 @@
 	id = "XCCsec1";
 	name = "CC Shutter 1 Control";
 	pixel_y = -24;
-	req_access = list(ACCESS_CENT_GENERAL)
+	req_access = list("cent_general")
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -15084,7 +15084,7 @@
 /obj/machinery/button/door/indestructible{
 	id = "thunderdomehea";
 	name = "Heavy Supply Control";
-	req_access = list(ACCESS_CENT_THUNDER)
+	req_access = list("cent_thunder")
 	},
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
@@ -15103,7 +15103,7 @@
 /obj/machinery/button/door/indestructible{
 	id = "thunderdome";
 	name = "Main Blast Doors Control";
-	req_access = list(ACCESS_CENT_THUNDER)
+	req_access = list("cent_thunder")
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/light,
@@ -15123,7 +15123,7 @@
 /obj/machinery/button/door/indestructible{
 	id = "thunderdomegen";
 	name = "General Supply Control";
-	req_access = list(ACCESS_CENT_THUNDER)
+	req_access = list("cent_thunder")
 	},
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
@@ -21455,7 +21455,7 @@
 /area/centcom)
 "bVV" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/item/storage/box/donkpockets{
 	pixel_x = 2
@@ -23408,7 +23408,7 @@
 /area/centcom/tdome/tdomeobserve)
 "uRI" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/item/kitchen/knife/butcher,
 /obj/item/clothing/suit/apron/chef,
@@ -23440,7 +23440,7 @@
 /obj/machinery/button/door{
 	id = "nukie_leader_dorm_windows";
 	name = "Window Shutters";
-	req_access = list(ACCESS_SYNDICATE_LEADER)
+	req_access = list("syndicate_leader")
 	},
 /turf/open/floor/wood,
 /area/centcom/syndicate_mothership/control)

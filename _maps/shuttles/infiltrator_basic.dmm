@@ -110,7 +110,7 @@
 	name = "Cockpit View Control";
 	pixel_x = 32;
 	pixel_y = 32;
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
@@ -462,7 +462,7 @@
 	id = "smindicate";
 	name = "external door control";
 	pixel_y = 26;
-	req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/docking_port/mobile{
 	dheight = 1;
@@ -1356,7 +1356,7 @@
 	id = "syndiedriver";
 	name = "Mass Driver Controller";
 	pixel_x = -24;
-	req_access = req_access = list(ACCESS_SYNDICATE)
+	req_access = list("syndicate")
 	},
 /obj/effect/mapping_helpers/windoor/access/all/syndicate/general{
 	dir = 1

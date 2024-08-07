@@ -224,7 +224,7 @@
 	name = "Inn Front door Shutter";
 	pixel_x = 6;
 	pixel_y = -24;
-	req_access = list(ACCESS_BAR)
+	req_access = list("bar")
 	},
 /turf/open/floor/wood/broken/two,
 /area/ruin/powered/inn)
