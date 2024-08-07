@@ -987,11 +987,15 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		if(!target_atom.anchored && !target_atom.pulledby && (target_atom.move_resist < INFINITY))
 			if(expected_turf_height < LIQUID_ANKLES_LEVEL_HEIGHT)
 				return
-			step(target_atom, direction)
-			if(isliving(target_atom) && prob(60))
+			if(isliving(target_atom))
 				var/mob/living/target_living = target_atom
-				if(target_living.slip(6 SECONDS, null, FALSE, 6 SECONDS, TRUE))
-					to_chat(target_living, span_danger("You are knocked down by the currents!"))
+				if(!target_living.mob_has_heavy_gravity()) //push everything EXCEPT living things that have heavy gravity
+					step(target_living, direction)
+					if(prob(60))
+						if(target_living.slip(6 SECONDS, null, FALSE, 6 SECONDS, TRUE))
+							to_chat(target_living, span_danger("You are knocked down by the currents!"))
+			else
+				step(target_atom, direction)
 
 /datum/liquid_group/proc/fetch_temperature_queue()
 	if(!cached_temperature_shift)
