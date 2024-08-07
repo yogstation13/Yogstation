@@ -30,6 +30,7 @@
 	liked_food = MEAT | GRILLED | SEAFOOD | MICE | FRUIT
 	inert_mutation = FIREBREATH
 	deathsound = 'sound/voice/lizard/deathsound.ogg'
+	screamsound = 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' // Yog - not pitched bear growls
 	wings_icon = "Dragon"
 	species_language_holder = /datum/language_holder/lizard
 	var/heat_stunmod = 0
@@ -301,14 +302,6 @@
 	return TRUE
 
 #undef LIZARD_SLOWDOWN
-
-/datum/species/lizard/get_scream_sound(mob/living/carbon/human/lizard)
-	return pick(
-		'sound/voice/lizard/lizard_scream_1.ogg',
-		'sound/voice/lizard/lizard_scream_2.ogg',
-		'sound/voice/lizard/lizard_scream_3.ogg',
-		'yogstation/sound/voice/lizardperson/lizard_scream.ogg',
-	)
 
 /datum/species/lizard/get_cough_sound(mob/living/carbon/human/lizard)
 	if(lizard.gender == FEMALE)
