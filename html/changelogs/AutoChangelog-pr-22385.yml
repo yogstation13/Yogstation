@@ -1,7 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Added caffeine junkie negative quirk"
-  - rscadd: "Added caffeine as a reagent"
-  - tweak: "most caffeinated drinks now give caffeine to the consumer"
-  - experiment: "shifted how certain coffee drinks are handled, announce any unusual effects"

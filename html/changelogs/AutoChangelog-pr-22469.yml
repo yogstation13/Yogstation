@@ -1,7 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Darkspawn warlock thrallbuff skills now need to target an area"
-  - tweak: "Thrall envigorate has a slightly stronger speed buff"
-  - tweak: "Thrall recovery heals for more and only heals stamina if there's no other damage"
-  - tweak: "Thrallbuff skills now have a visual indicator that they've done something"
