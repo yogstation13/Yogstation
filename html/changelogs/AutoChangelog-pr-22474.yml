@@ -1,0 +1,5 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - soundadd: "Added back old lizard scream sfx as their default scream sound"
+  - sounddel: "Sent current lizard screams to https://earth.google.com/web/@40.2521841,58.4394959,91.50559343a,0d,60y,274.29829212h,67.99745708t,0r/data=ChIaEAoKL20vMG41d2QwORgBIAEiMAosQUYxUWlwT3B6cUlMNkFhT0pzV2Jqc0VXTFVES2NNNXlWWGtPQnlPcVcwMXoQBQ where they belong"
