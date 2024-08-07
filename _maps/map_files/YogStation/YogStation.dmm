@@ -50626,7 +50626,7 @@
 	name = "Public Teleporter Access Control";
 	pixel_x = -6;
 	pixel_y = 24;
-	req_access = list("teleporter")"
+	req_access = list("teleporter")
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
@@ -57274,7 +57274,7 @@
 	name = "Public Teleporter Access Control";
 	pixel_x = -6;
 	pixel_y = -24;
-	req_access = list("teleporter")"
+	req_access = list("teleporter")
 	},
 /turf/open/floor/plating,
 /area/teleporter)
@@ -61935,7 +61935,7 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
-/turf/open/floor/plasteel/stairs{
+/turf/open/floor/plasteel/stairs/goon/stairs_alone{
 	dir = 1
 	},
 /area/escapepodbay)

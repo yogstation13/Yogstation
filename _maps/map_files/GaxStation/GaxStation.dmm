@@ -5511,8 +5511,11 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "cES" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_wide{
-	dir = 8
+	dir = 4
 	},
 /area/bridge)
 "cEZ" = (
@@ -6133,6 +6136,9 @@
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
+	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
@@ -7325,6 +7331,9 @@
 /area/security/checkpoint/medical)
 "dxA" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "dxH" = (
@@ -13201,6 +13210,12 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 6
 	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "gfu" = (
@@ -14660,7 +14675,9 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
-/turf/open/floor/plasteel/stairs/goon/dark_stairs_alone,
+/turf/open/floor/plasteel/stairs/goon/dark_stairs_alone{
+	dir = 1
+	},
 /area/hallway/secondary/entry)
 "gRV" = (
 /obj/machinery/atmospherics/pipe/layer_manifold{
@@ -15249,7 +15266,7 @@
 /obj/machinery/button/door{
 	id = "teleshutter";
 	name = "Teleporter Shutter Control";
-	req_access = list("teleporter")"
+	req_access = list("teleporter")
 	},
 /turf/closed/wall/r_wall,
 /area/teleporter)
@@ -20459,6 +20476,9 @@
 /obj/effect/turf_decal/trimline/secred/warning/lower{
 	dir = 4
 	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "jHj" = (
@@ -21087,7 +21107,9 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
-/turf/open/floor/plasteel/stairs/goon/stairs_middle,
+/turf/open/floor/plasteel/stairs/goon/stairs_middle{
+	dir = 1
+	},
 /area/hallway/secondary/entry)
 "jXr" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -24657,8 +24679,11 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "lMp" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_wide2{
-	dir = 8
+	dir = 4
 	},
 /area/bridge)
 "lMu" = (
@@ -27519,6 +27544,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
+"njz" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/effect/turf_decal/ramp_middle,
+/turf/open/floor/plating,
+/area/maintenance/department/bridge)
 "njB" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/visible{
 	dir = 1
@@ -27588,8 +27618,11 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_wide2{
-	dir = 8
+	dir = 4
 	},
 /area/bridge)
 "nlR" = (
@@ -28780,6 +28813,9 @@
 "nMP" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
 	dir = 4
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
@@ -31218,6 +31254,9 @@
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 4
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
@@ -34500,6 +34539,9 @@
 	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "qJl" = (
@@ -34714,7 +34756,9 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
-/turf/open/floor/plasteel/stairs/goon/stairs_middle,
+/turf/open/floor/plasteel/stairs/goon/stairs_middle{
+	dir = 1
+	},
 /area/hydroponics/garden)
 "qQC" = (
 /obj/machinery/navbeacon{
@@ -35324,6 +35368,10 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 5
 	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "rdP" = (
@@ -38122,6 +38170,9 @@
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 4
+	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
@@ -43651,6 +43702,9 @@
 /obj/structure/railing,
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
+/obj/effect/turf_decal/ramp_corner{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "vgJ" = (
@@ -45716,6 +45770,9 @@
 "wgx" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
@@ -96163,7 +96220,7 @@ ajU
 dfE
 aLl
 aLl
-xut
+njz
 iNf
 xut
 aLl
