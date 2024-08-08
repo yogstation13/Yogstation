@@ -158,7 +158,7 @@
 
 /obj/structure/closet/secure_closet/detective
 	name = "\improper detective's cabinet"
-	req_access = list(ACCESS_FORENSICS_LOCKERS)
+	req_access = list(ACCESS_DETECTIVE)
 	icon_state = "cabinet"
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
@@ -197,8 +197,7 @@
 /obj/structure/closet/secure_closet/evidence
 	anchored = TRUE
 	name = "Secure Evidence Closet"
-	req_access_txt = "0"
-	req_one_access_txt = list(ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS)
+	req_access = list(ACCESS_ARMORY, ACCESS_DETECTIVE)
 
 /obj/structure/closet/secure_closet/brig/PopulateContents()
 	..()
@@ -211,7 +210,7 @@
 
 /obj/structure/closet/secure_closet/courtroom
 	name = "courtroom locker"
-	req_access = list(ACCESS_COURT)
+	req_access = list(ACCESS_SEC_BASIC)
 
 /obj/structure/closet/secure_closet/courtroom/PopulateContents()
 	..()
@@ -231,7 +230,7 @@
 /obj/structure/closet/secure_closet/contraband/heads
 	anchored = TRUE
 	name = "Contraband Locker"
-	req_access = list(ACCESS_HEADS)
+	req_access = list(ACCESS_COMMAND)
 
 /obj/structure/closet/secure_closet/armory1
 	name = "armory armor locker"
@@ -289,7 +288,7 @@
 
 /obj/structure/closet/secure_closet/lethalshots
 	name = "shotgun lethal rounds"
-	req_access = list(ACCESS_ARMORY)
+	req_access = list(ACCESS_SECURITY)
 	icon_state = "tac"
 
 /obj/structure/closet/secure_closet/lethalshots/PopulateContents()
@@ -297,12 +296,13 @@
 	for(var/i in 1 to 3)
 		new /obj/item/storage/box/lethalshot(src)
 
-//Yogs Start: Brig Pysh Closet
+//Yogs Start: Brig Phys Closet
 /obj/structure/closet/secure_closet/physician
 	name = "\improper brig physician's cabinet"
-	req_access = list(ACCESS_BRIG_PHYS)
 	icon = 'yogstation/icons/obj/closet.dmi'
 	icon_state = "physician"
+
+	req_access = list(ACCESS_BRIG_PHYS)
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
 	door_anim_time = 0

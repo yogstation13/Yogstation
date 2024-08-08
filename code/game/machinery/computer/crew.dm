@@ -229,8 +229,6 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				species = "Snail"
 			if (isabductor(tracked_mob))
 				species = "Alien"
-			if (isandroid(tracked_mob))
-				species = "Android"
 
 			for(var/obj/item/bodypart/part in tracked_mob.bodyparts)
 				if(part.bodypart_disabled == TRUE) //check if has disabled limbs

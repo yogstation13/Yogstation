@@ -16,7 +16,7 @@
 	icon_living = "tar_king"
 	icon = 'yogstation/icons/mob/jungle64x64.dmi'
 	health_doll_icon = "tar_king"
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mob_biotypes = (MOB_ORGANIC | MOB_HUMANOID)
 	light_color = "#dd35d5"
 	combat_mode = TRUE
 	melee_damage_lower = 40

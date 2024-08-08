@@ -219,8 +219,8 @@
 
 /obj/item/stack/tile/carpet/blue
 	name = "exotic blue carpet"
-	icon_state = "tile-carpet-blue"
-	item_state = "tile-carpet-blue"
+	icon_state = "tile-carpet-exoticblue"
+	item_state = "tile-carpet-exoticblue"
 	turf_type = /turf/open/floor/carpet/blue
 	tableVariant = /obj/structure/table/wood/fancy/blue
 
@@ -233,8 +233,8 @@
 
 /obj/item/stack/tile/carpet/green
 	name = "exotic green carpet"
-	icon_state = "tile-carpet-green"
-	item_state = "tile-carpet-green"
+	icon_state = "tile-carpet-exoticgreen"
+	item_state = "tile-carpet-exoticgreen"
 	turf_type = /turf/open/floor/carpet/green
 	tableVariant = /obj/structure/table/wood/fancy/green
 
@@ -247,8 +247,8 @@
 
 /obj/item/stack/tile/carpet/purple
 	name = "exotic purple carpet"
-	icon_state = "tile-carpet-purple"
-	item_state = "tile-carpet-purple"
+	icon_state = "tile-carpet-exoticpurple"
+	item_state = "tile-carpet-exoticpurple"
 	turf_type = /turf/open/floor/carpet/purple
 	tableVariant = /obj/structure/table/wood/fancy/purple
 
@@ -294,6 +294,23 @@
 	turf_type = /turf/open/floor/carpet/donk
 	merge_type = /obj/item/stack/tile/carpet/donk
 
+/obj/item/stack/tile/carpet/plainblue
+	name = "blue carpet"
+	icon_state = "tile-carpet-blue"
+	item_state = "tile-carpet-blue"
+	turf_type = /turf/open/floor/carpet/plainblue
+
+/obj/item/stack/tile/carpet/plaingreen
+	name = "green carpet"
+	icon_state = "tile-carpet-green"
+	item_state = "tile-carpet-green"
+	turf_type = /turf/open/floor/carpet/plaingreen
+
+/obj/item/stack/tile/carpet/plainpurple
+	name = "purple carpet"
+	icon_state = "tile-carpet-purple"
+	item_state = "tile-carpet-purple"
+	turf_type = /turf/open/floor/carpet/plainpurple
 
 /obj/item/stack/tile/carpet/fifty
 	amount = 50
@@ -323,6 +340,15 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/royalblue/fifty
+	amount = 50
+
+/obj/item/stack/tile/carpet/plainblue/fifty
+	amount = 50
+
+/obj/item/stack/tile/carpet/plaingreen/fifty
+	amount = 50
+
+/obj/item/stack/tile/carpet/plainpurple/fifty
 	amount = 50
 
 
@@ -441,14 +467,14 @@
 	materials = list() // All other Borg versions of items have no Metal or Glass - RR
 	is_cyborg = 1
 	cost = 125
-	
+
 /obj/item/stack/tile/eighties
 	name = "retro tile"
 	singular_name = "retro floor tile"
 	desc = "A stack of floor tiles that remind you of an age of funk."
 	icon_state = "tile_eighties"
 	turf_type = /turf/open/floor/eighties
-	
+
 /obj/item/stack/tile/eighties/loaded
 	amount = 15
 
