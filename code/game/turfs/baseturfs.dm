@@ -40,11 +40,11 @@
 /// Places a turf on top - for map loading
 /turf/proc/load_on_top(turf/added_layer, flags)
 	var/area/our_area = get_area(src)
-	flags = our_area.PlaceOnTopReact(list(baseturfs), added_layer, flags)
+	flags = our_area.place_on_topReact(list(baseturfs), added_layer, flags)
 
 	if(flags & CHANGETURF_SKIP) // We haven't been initialized
 		if(flags_1 & INITIALIZED_1)
-			stack_trace("CHANGETURF_SKIP was used in a PlaceOnTop call for a turf that's initialized. This is a mistake. [src]([type])")
+			stack_trace("CHANGETURF_SKIP was used in a place_on_top call for a turf that's initialized. This is a mistake. [src]([type])")
 		assemble_baseturfs()
 
 	var/turf/new_turf

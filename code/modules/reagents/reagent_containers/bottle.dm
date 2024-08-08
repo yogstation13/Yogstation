@@ -460,7 +460,7 @@
 	base_icon_state = "coffee_cup"
 	possible_transfer_amounts = list(10)
 	volume = 30
-	spillable = TRUE
+	reagent_flags = OPENCONTAINER
 
 /obj/item/reagent_containers/glass/coffee_cup/update_icon_state()
 	icon_state = reagents.total_volume ? base_icon_state : "[base_icon_state]_e"
@@ -715,7 +715,7 @@
 	fill_icon_thresholds = list(0, 20, 40, 60, 80, 100)
 	possible_transfer_amounts = list(5, 10)
 	amount_per_transfer_from_this = 5
-	spillable = FALSE
+	reagent_flags = OPENCONTAINER_NOSPILL
 	///variable to tell if the bottle can be refilled
 	var/cap_on = TRUE
 	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC
