@@ -298,9 +298,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/closet/secure_closet/personal/cabinet{
 	locked = 0;
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
-/obj/item/clothing/under/pj/blue,
 /turf/open/floor/carpet{
 	heat_capacity = 1e+006
 	},
@@ -345,7 +344,7 @@
 	},
 /obj/structure/closet/secure_closet/personal/cabinet{
 	locked = 0;
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /obj/item/clothing/under/suit/female,
 /turf/open/floor/carpet{
@@ -382,7 +381,7 @@
 	icon_state = "hydro";
 	locked = 0;
 	name = "botanist's locker";
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /obj/item/storage/bag/plants/portaseeder,
 /obj/item/plant_analyzer,
@@ -410,7 +409,7 @@
 	icon_state = "sec";
 	locked = 1;
 	name = "security officer's locker";
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -1022,7 +1021,7 @@
 	icon_state = "hydro";
 	locked = 0;
 	name = "botanist's locker";
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /obj/item/clothing/suit/apron,
 /obj/item/storage/bag/plants/portaseeder,
@@ -1758,7 +1757,7 @@
 /obj/structure/closet/secure_closet/freezer{
 	locked = 0;
 	name = "meat fridge";
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /turf/open/floor/plasteel/showroomfloor{
 	heat_capacity = 1e+006
@@ -1781,7 +1780,7 @@
 /obj/structure/closet/secure_closet/freezer{
 	locked = 0;
 	name = "refrigerator";
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5;
@@ -1823,9 +1822,9 @@
 /area/awaymission/undergroundoutpost45/central)
 "dR" = (
 /obj/machinery/door/airlock/security{
-	name = "Security Checkpoint";
-	req_access_txt = "201"
+	name = "Security Checkpoint"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -1897,9 +1896,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/public/glass{
-	name = "Hydroponics";
-	req_access_txt = "201"
+	name = "Hydroponics"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -1941,9 +1940,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/command{
-	name = "Gateway Chamber";
-	req_access_txt = "201"
+	name = "Gateway Chamber"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -1961,9 +1960,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance{
-	name = "Security Checkpoint Maintenance";
-	req_access_txt = "201"
+	name = "Security Checkpoint Maintenance"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -2045,9 +2044,9 @@
 "eo" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass{
-	name = "Hydroponics";
-	req_access_txt = "201"
+	name = "Hydroponics"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -2111,10 +2110,9 @@
 	},
 /area/awaymission/undergroundoutpost45/caves)
 "ev" = (
-/obj/item/clothing/under/pj/red,
 /obj/structure/closet/secure_closet/personal/cabinet{
 	locked = 0;
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /turf/open/floor/carpet{
 	heat_capacity = 1e+006
@@ -2142,8 +2140,10 @@
 	base_state = "right";
 	dir = 8;
 	icon_state = "right";
-	name = "Security Checkpoint";
-	req_access_txt = "201"
+	name = "Security Checkpoint"
+	},
+/obj/effect/mapping_helpers/windoor/access/all/ruins/general{
+	dir = 8
 	},
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
@@ -2285,8 +2285,10 @@
 	base_state = "left";
 	dir = 8;
 	icon_state = "left";
-	name = "Security Checkpoint";
-	req_access_txt = "201"
+	name = "Security Checkpoint"
+	},
+/obj/effect/mapping_helpers/windoor/access/all/ruins/general{
+	dir = 8
 	},
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
@@ -2326,8 +2328,10 @@
 	base_state = "left";
 	dir = 4;
 	icon_state = "left";
-	name = "Hydroponics Desk";
-	req_access_txt = "201"
+	name = "Hydroponics Desk"
+	},
+/obj/effect/mapping_helpers/windoor/access/all/ruins/general{
+	dir = 4
 	},
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
@@ -2489,8 +2493,10 @@
 	base_state = "right";
 	dir = 4;
 	icon_state = "right";
-	name = "Hydroponics Desk";
-	req_access_txt = "201"
+	name = "Hydroponics Desk"
+	},
+/obj/effect/mapping_helpers/windoor/access/all/ruins/general{
+	dir = 4
 	},
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
@@ -2725,9 +2731,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance{
-	name = "Hydroponics Maintenance";
-	req_access_txt = "201"
+	name = "Hydroponics Maintenance"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -2871,8 +2877,10 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/window/eastleft{
 	dir = 1;
-	name = "Hydroponics Desk";
-	req_access_txt = "201"
+	name = "Hydroponics Desk"
+	},
+/obj/effect/mapping_helpers/windoor/access/all/ruins/general{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark{
 	heat_capacity = 1e+006
@@ -3051,9 +3059,9 @@
 /area/awaymission/undergroundoutpost45/crew_quarters)
 "gi" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Kitchen Maintenance";
-	req_access_txt = "201"
+	name = "Kitchen Maintenance"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -3082,7 +3090,6 @@
 	name = "Kitchen Crate"
 	},
 /obj/item/storage/box/mousetraps,
-/obj/item/clothing/under/waiter,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor{
 	heat_capacity = 1e+006
@@ -3149,9 +3156,9 @@
 /area/awaymission/undergroundoutpost45/crew_quarters)
 "gu" = (
 /obj/machinery/door/airlock{
-	name = "Kitchen Cold Room";
-	req_access_txt = "201"
+	name = "Kitchen Cold Room"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/showroomfloor{
 	heat_capacity = 1e+006
 	},
@@ -3474,7 +3481,7 @@
 	dir = 8
 	},
 /obj/machinery/firealarm{
-	dir = 8;
+	dir = 4;
 	pixel_x = -24
 	},
 /turf/open/floor/plasteel{
@@ -3566,9 +3573,7 @@
 	},
 /area/awaymission/undergroundoutpost45/crew_quarters)
 "ho" = (
-/obj/machinery/vending/boozeomat{
-	req_access_txt = "0"
-	},
+/obj/machinery/vending/boozeomat,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -3855,8 +3860,7 @@
 "hP" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass{
-	name = "Kitchen";
-	req_access_txt = "201"
+	name = "Kitchen"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3865,6 +3869,7 @@
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -4128,7 +4133,7 @@
 /area/awaymission/undergroundoutpost45/crew_quarters)
 "ip" = (
 /obj/machinery/firealarm{
-	dir = 8;
+	dir = 4;
 	pixel_x = -24
 	},
 /obj/structure/disposalpipe/segment,
@@ -4175,9 +4180,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/window{
-	name = "Gateway Chamber";
-	req_access_txt = "201"
+	name = "Gateway Chamber"
 	},
+/obj/effect/mapping_helpers/windoor/access/all/ruins/general,
 /turf/open/floor/plasteel/dark{
 	heat_capacity = 1e+006
 	},
@@ -4578,7 +4583,7 @@
 	icon_state = "secure";
 	locked = 0;
 	name = "kitchen Cabinet";
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /obj/item/reagent_containers/food/condiment/flour,
 /obj/item/reagent_containers/food/condiment/flour,
@@ -4669,9 +4674,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/research{
-	name = "Gateway Observation";
-	req_access_txt = "201"
+	name = "Gateway Observation"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/dark{
 	heat_capacity = 1e+006
 	},
@@ -4766,14 +4771,14 @@
 /area/awaymission/undergroundoutpost45/crew_quarters)
 "jy" = (
 /obj/machinery/door/window/southright{
-	name = "Bar Door";
-	req_access_txt = "201"
+	name = "Bar Door"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/windoor/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -4800,13 +4805,13 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock{
-	name = "Kitchen";
-	req_access_txt = "201"
+	name = "Kitchen"
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -4909,9 +4914,9 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/airlock/research{
-	name = "Research Lab";
-	req_access_txt = "201"
+	name = "Research Lab"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/white{
 	heat_capacity = 1e+006
 	},
@@ -5120,7 +5125,7 @@
 	icon_state = "rd";
 	locked = 1;
 	name = "research director's locker";
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5;
@@ -5204,9 +5209,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/command{
-	name = "Gateway EVA";
-	req_access_txt = "201"
+	name = "Gateway EVA"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -5215,7 +5220,7 @@
 /obj/item/clothing/under/suit/navy,
 /obj/structure/closet/secure_closet/personal/cabinet{
 	locked = 0;
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /turf/open/floor/carpet{
 	heat_capacity = 1e+006
@@ -5429,9 +5434,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/research{
-	name = "Research Division Access";
-	req_access_txt = "201"
+	name = "Research Division Access"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/white{
 	heat_capacity = 1e+006
 	},
@@ -5505,12 +5510,12 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/research{
-	name = "Research Division Access";
-	req_access_txt = "201"
+	name = "Research Division Access"
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/white{
 	heat_capacity = 1e+006
 	},
@@ -5919,7 +5924,7 @@
 	icon_state = "sec";
 	locked = 1;
 	name = "security officer's locker";
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -5961,9 +5966,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/research{
-	name = "Research Division Access";
-	req_access_txt = "201"
+	name = "Research Division Access"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/white{
 	heat_capacity = 1e+006
 	},
@@ -6058,12 +6063,12 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/research{
-	name = "Research Division Access";
-	req_access_txt = "201"
+	name = "Research Division Access"
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 2
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/white{
 	heat_capacity = 1e+006
 	},
@@ -6225,9 +6230,9 @@
 /area/awaymission/undergroundoutpost45/research)
 "lO" = (
 /obj/machinery/door/airlock/research{
-	name = "Research Division Access";
-	req_access_txt = "201"
+	name = "Research Division Access"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/white{
 	heat_capacity = 1e+006
 	},
@@ -6439,9 +6444,9 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/airlock/command{
-	name = "Research Director's Office";
-	req_access_txt = "201"
+	name = "Research Director's Office"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5;
 	heat_capacity = 1e+006
@@ -6603,7 +6608,7 @@
 /obj/item/clothing/glasses/meson,
 /obj/structure/closet/secure_closet/engineering_personal{
 	locked = 0;
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -6758,9 +6763,9 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/airlock/maintenance{
-	name = "Research Maintenance";
-	req_access_txt = "201"
+	name = "Research Maintenance"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -7943,14 +7948,14 @@
 	id = "UO45_biohazard";
 	name = "Biohazard Door Control";
 	pixel_y = 8;
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /obj/machinery/button/door{
 	desc = "A remote control-switch that controls the privacy shutters.";
 	id = "UO45_rdprivacy";
 	name = "Privacy Shutter Control";
 	pixel_y = -2;
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5;
@@ -8007,9 +8012,9 @@
 /area/awaymission/undergroundoutpost45/research)
 "oE" = (
 /obj/machinery/door/airlock/security/glass{
-	name = "Security Office";
-	req_access_txt = "201"
+	name = "Security Office"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/white{
 	heat_capacity = 1e+006
 	},
@@ -8380,7 +8385,7 @@
 	id = "UO45_biohazard";
 	name = "Biohazard Door Control";
 	pixel_y = -24;
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red,
@@ -8651,9 +8656,9 @@
 /area/awaymission/undergroundoutpost45/research)
 "pI" = (
 /obj/machinery/door/airlock/command{
-	name = "Server Room";
-	req_access_txt = "201"
+	name = "Server Room"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/dark{
 	heat_capacity = 1e+006
 	},
@@ -8662,6 +8667,7 @@
 /obj/machinery/door/airlock{
 	name = "Private Restroom"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/freezer{
 	heat_capacity = 1e+006
 	},
@@ -8676,9 +8682,9 @@
 /area/awaymission/undergroundoutpost45/research)
 "pM" = (
 /obj/machinery/door/airlock/research/glass{
-	name = "Research Storage";
-	req_access_txt = "201"
+	name = "Research Storage"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/white{
 	heat_capacity = 1e+006
 	},
@@ -8840,9 +8846,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/airlock/engineering/glass{
-	name = "SMES Room";
-	req_access_txt = "201"
+	name = "SMES Room"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/dark{
 	heat_capacity = 1e+006
 	},
@@ -8972,7 +8978,7 @@
 /area/awaymission/undergroundoutpost45/research)
 "qq" = (
 /obj/machinery/vending/medical{
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 6;
@@ -9166,8 +9172,7 @@
 	layer = 2.9
 	},
 /obj/structure/closet/secure_closet/engineering_personal{
-	req_access = null;
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow{
@@ -9299,9 +9304,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/command/glass{
-	name = "Server Room";
-	req_access_txt = "201"
+	name = "Server Room"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/dark{
 	heat_capacity = 1e+006
 	},
@@ -9587,8 +9592,7 @@
 	locked = 1;
 	name = "UO45 Engineering APC";
 	pixel_x = -25;
-	req_access = null;
-	req_access_txt = "201";
+	req_access = list("ruins_general");
 	start_charge = 100
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -9618,7 +9622,7 @@
 	name = "Engineering Lockdown";
 	pixel_x = 24;
 	pixel_y = 6;
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /obj/item/clothing/suit/armor/vest,
 /obj/item/clothing/head/helmet,
@@ -9626,7 +9630,7 @@
 	icon_state = "sec";
 	locked = 1;
 	name = "security officer's locker";
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -9642,9 +9646,8 @@
 "rs" = (
 /obj/structure/closet/secure_closet/personal/cabinet{
 	locked = 0;
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
-/obj/item/clothing/under/pj/red,
 /turf/open/floor/carpet{
 	heat_capacity = 1e+006
 	},
@@ -9772,9 +9775,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance{
-	name = "Research Maintenance";
-	req_access_txt = "201"
+	name = "Research Maintenance"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -10107,14 +10110,16 @@
 	base_state = "left";
 	dir = 4;
 	icon_state = "left";
-	name = "Engineering Reception";
-	req_access_txt = "201"
+	name = "Engineering Reception"
 	},
 /obj/item/paper_bin{
 	pixel_x = 1;
 	pixel_y = 9
 	},
 /obj/item/pen,
+/obj/effect/mapping_helpers/windoor/access/all/ruins/general{
+	dir = 4
+	},
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -10185,7 +10190,7 @@
 	},
 /obj/structure/closet/secure_closet/personal/cabinet{
 	locked = 0;
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /turf/open/floor/carpet{
 	heat_capacity = 1e+006
@@ -10209,8 +10214,7 @@
 	icon_state = "mining";
 	locked = 0;
 	name = "miner's equipment";
-	req_access = null;
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /obj/item/storage/backpack/satchel/eng,
 /obj/item/clothing/gloves/fingerless,
@@ -10559,10 +10563,12 @@
 	base_state = "right";
 	dir = 4;
 	icon_state = "right";
-	name = "Engineering Reception";
-	req_access_txt = "201"
+	name = "Engineering Reception"
 	},
 /obj/item/folder/red,
+/obj/effect/mapping_helpers/windoor/access/all/ruins/general{
+	dir = 4
+	},
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -10962,7 +10968,7 @@
 	name = "Privacy Shutters";
 	pixel_x = -24;
 	pixel_y = 6;
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -11088,10 +11094,10 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/engineering{
-	name = "Engineering Maintenance";
-	req_access_txt = "201"
+	name = "Engineering Maintenance"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -11301,9 +11307,9 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/airlock/engineering{
-	name = "Engineering Foyer";
-	req_access_txt = "201"
+	name = "Engineering Foyer"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -11589,10 +11595,10 @@
 /area/awaymission/undergroundoutpost45/engineering)
 "uF" = (
 /obj/machinery/door/airlock/security/glass{
-	name = "Security Office";
-	req_access_txt = "201"
+	name = "Security Office"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -11603,9 +11609,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/airlock/engineering{
-	name = "Engineering";
-	req_access_txt = "201"
+	name = "Engineering"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -12095,9 +12101,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/engineering{
-	name = "Engineering";
-	req_access_txt = "201"
+	name = "Engineering"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -12175,9 +12181,9 @@
 /area/awaymission/undergroundoutpost45/mining)
 "vM" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Mining Maintenance";
-	req_access_txt = "201"
+	name = "Mining Maintenance"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -12186,9 +12192,9 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/airlock/mining/glass{
-	name = "Mining Foyer";
-	req_access_txt = "201"
+	name = "Mining Foyer"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -12200,9 +12206,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/airlock/mining/glass{
-	name = "Mining Foyer";
-	req_access_txt = "201"
+	name = "Mining Foyer"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -12273,9 +12279,7 @@
 /obj/structure/sign/warning/electricshock{
 	pixel_y = -32
 	},
-/obj/machinery/vending/engivend{
-	req_access_txt = "0"
-	},
+/obj/machinery/vending/engivend,
 /obj/machinery/camera{
 	c_tag = "Engineering Foyer";
 	dir = 1;
@@ -12489,8 +12493,7 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/door/airlock/command/glass{
-	name = "Chief Engineer";
-	req_access_txt = "201"
+	name = "Chief Engineer"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/tile/neutral{
@@ -12503,6 +12506,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -12967,8 +12971,7 @@
 	pixel_y = -24
 	},
 /obj/structure/closet/secure_closet/miner{
-	req_access = null;
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel{
@@ -13108,9 +13111,9 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/airlock/mining{
-	name = "Processing Area";
-	req_access_txt = "201"
+	name = "Processing Area"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -13119,13 +13122,13 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/airlock/mining{
-	name = "Processing Area";
-	req_access_txt = "201"
+	name = "Processing Area"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -13159,7 +13162,7 @@
 	name = "Engineering Lockdown";
 	pixel_x = -6;
 	pixel_y = -24;
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /obj/machinery/button/door{
 	desc = "A remote control-switch for secure storage.";
@@ -13167,7 +13170,7 @@
 	name = "Engineering Secure Storage";
 	pixel_x = 6;
 	pixel_y = -24;
-	req_access_txt = "201"
+	req_access = list("ruins_general")
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13443,12 +13446,12 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mining/glass{
-	name = "Mining EVA";
-	req_access_txt = "201"
+	name = "Mining EVA"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -13589,11 +13592,11 @@
 "xX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/airlock/external{
-	name = "Mining External Airlock";
-	req_access_txt = "201"
+	name = "Mining External Airlock"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -13664,10 +13667,10 @@
 /area/awaymission/undergroundoutpost45/mining)
 "yf" = (
 /obj/machinery/door/airlock/external{
-	name = "Mining External Airlock";
-	req_access_txt = "201"
+	name = "Mining External Airlock"
 	},
 /obj/effect/turf_decal/sand,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel,
 /area/awaymission/undergroundoutpost45/mining)
 "yg" = (

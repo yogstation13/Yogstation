@@ -715,9 +715,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/powered)
 "bQ" = (
-/obj/machinery/door/airlock/security/glass{
-	req_access_txt = "63"
-	},
+/obj/machinery/door/airlock/security/glass,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8;
@@ -731,6 +729,7 @@
 	dir = 1;
 	icon_state = "tile_corner"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plasteel,
 /area/ruin/powered)
 "bR" = (
@@ -752,9 +751,7 @@
 /area/ruin/powered)
 "bS" = (
 /obj/structure/fans/tiny/invisible,
-/obj/machinery/door/airlock/security/glass{
-	req_one_access_txt = "63"
-	},
+/obj/machinery/door/airlock/security/glass,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8;
@@ -768,6 +765,7 @@
 	dir = 1;
 	icon_state = "tile_corner"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plasteel,
 /area/ruin/powered)
 "bT" = (
