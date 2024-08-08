@@ -503,8 +503,7 @@
 "by" = (
 /obj/machinery/door/airlock/security/glass{
 	id_tag = "innerbrig";
-	name = "Security Checkpoint";
-	req_access_txt = "63"
+	name = "Security Checkpoint"
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -516,6 +515,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/derelictoutpost)
 "bz" = (
@@ -586,6 +586,11 @@
 	color = "#8EC127";
 	desc = "Thick material shaped into a wall. Eugh.";
 	icon_state = "smooth";
+	name = "gelatinous wall"
+	},
+/obj/structure/alien/resin/wall{
+	color = "#8EC127";
+	desc = "Thick material shaped into a wall. Eugh.";
 	name = "gelatinous wall"
 	},
 /turf/open/floor/plasteel,
@@ -978,13 +983,13 @@
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
 "cr" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Power Storage";
-	req_access_txt = "10"
+	name = "Power Storage"
 	},
-/obj/structure/barricade/wooden,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
+/obj/structure/barricade/wooden,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
 "cs" = (
@@ -1783,16 +1788,15 @@
 	},
 /area/ruin/space/has_grav/derelictoutpost)
 "dO" = (
-/obj/structure/alien/resin/membrane{
-	color = "#4BAE56";
-	desc = "A strange combination of thin, gelatinous material.";
-	icon_state = "smooth";
-	name = "gelatinous membrane"
-	},
 /obj/effect/decal/cleanable/blood/old{
 	dir = 8;
 	icon_state = "trails_1";
 	name = "dried blood trail"
+	},
+/obj/structure/alien/resin/membrane{
+	color = "#4BAE56";
+	desc = "A strange combination of thin, gelatinous material.";
+	name = "gelatinous membrane"
 	},
 /turf/open/floor/plating{
 	icon_state = "wall_thermite";
@@ -1832,6 +1836,11 @@
 	desc = "A strange combination of thin, gelatinous material.";
 	icon_state = "smooth";
 	name = "gelatinous membrane"
+	},
+/obj/structure/alien/resin/wall{
+	color = "#8EC127";
+	desc = "Thick material shaped into a wall. Eugh.";
+	name = "gelatinous wall"
 	},
 /turf/open/floor/plating/asteroid,
 /area/ruin/space/has_grav/derelictoutpost)
@@ -1940,7 +1949,6 @@
 /obj/structure/alien/resin/membrane{
 	color = "#4BAE56";
 	desc = "A strange combination of thin, gelatinous material.";
-	icon_state = "smooth";
 	name = "gelatinous membrane"
 	},
 /turf/open/floor/plating/asteroid/airless,
@@ -2005,7 +2013,6 @@
 /obj/structure/alien/resin/wall{
 	color = "#8EC127";
 	desc = "Thick material shaped into a wall. Eugh.";
-	icon_state = "smooth";
 	name = "gelatinous wall"
 	},
 /turf/open/floor/plating/asteroid,
@@ -2188,6 +2195,20 @@
 /obj/machinery/door/airlock/maintenance,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
+"rI" = (
+/obj/structure/alien/resin/wall{
+	color = "#8EC127";
+	desc = "Thick material shaped into a wall. Eugh.";
+	icon_state = "smooth";
+	name = "gelatinous wall"
+	},
+/obj/structure/alien/resin/wall{
+	color = "#8EC127";
+	desc = "Thick material shaped into a wall. Eugh.";
+	name = "gelatinous wall"
+	},
+/turf/open/floor/plating/asteroid,
+/area/ruin/unpowered/no_grav)
 "uV" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -2195,6 +2216,20 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
+"Ks" = (
+/obj/structure/alien/resin/wall{
+	color = "#8EC127";
+	desc = "Thick material shaped into a wall. Eugh.";
+	icon_state = "smooth";
+	name = "gelatinous wall"
+	},
+/obj/structure/alien/resin/wall{
+	color = "#8EC127";
+	desc = "Thick material shaped into a wall. Eugh.";
+	name = "gelatinous wall"
+	},
+/turf/open/floor/plating/asteroid,
+/area/ruin/space/has_grav/derelictoutpost)
 "LB" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -3164,8 +3199,8 @@ aZ
 dO
 aZ
 en
-en
-en
+rI
+rI
 ad
 ad
 aa
@@ -3201,8 +3236,8 @@ dP
 cR
 cR
 cR
-cm
-cm
+Ks
+Ks
 aa
 aa
 aa
@@ -3238,9 +3273,9 @@ eg
 cR
 cR
 cR
-cm
-cm
-cm
+Ks
+Ks
+Ks
 aa
 aa
 aa
@@ -3276,7 +3311,7 @@ ev
 dD
 cR
 cR
-cm
+Ks
 aa
 aa
 aa
@@ -3343,10 +3378,10 @@ cC
 bl
 cC
 dD
-cm
-cm
-cm
-cm
+Ks
+Ks
+Ks
+Ks
 cR
 dR
 aa
@@ -3379,12 +3414,12 @@ bF
 bF
 bl
 cR
-cm
+Ks
 cR
 cR
 cR
 cR
-cm
+Ks
 aa
 aa
 aa
@@ -3415,12 +3450,12 @@ bl
 bF
 bl
 bl
-cm
+Ks
 dt
-cm
-cm
-cm
-cm
+Ks
+Ks
+Ks
+Ks
 aa
 aa
 aa
@@ -3451,9 +3486,9 @@ bl
 bF
 dk
 cR
-cm
+Ks
 cR
-cm
+Ks
 aa
 aa
 aa
@@ -3486,8 +3521,8 @@ bF
 bl
 bF
 bl
-cm
-cm
+Ks
+Ks
 eg
 dR
 aa
@@ -3516,13 +3551,13 @@ bX
 cl
 cD
 cR
-cm
+Ks
 dm
-cm
+Ks
 dD
-cm
-cm
-cm
+Ks
+Ks
+Ks
 cR
 bl
 dR
@@ -3552,7 +3587,7 @@ aZ
 aZ
 cE
 cR
-cm
+Ks
 dn
 du
 cR
@@ -3561,7 +3596,7 @@ cR
 cR
 cR
 ev
-cm
+Ks
 aa
 aa
 aa
@@ -3585,19 +3620,19 @@ ad
 aC
 aC
 aC
-cm
+Ks
 cF
 cS
 cZ
 do
 cR
-cm
-cm
+Ks
+Ks
 dR
 dR
 dR
-cm
-cm
+Ks
+Ks
 aa
 aa
 aa
@@ -3621,13 +3656,13 @@ ad
 ad
 ad
 aC
-cm
-cm
-cm
-cm
-cm
-cm
-cm
+Ks
+Ks
+Ks
+Ks
+Ks
+Ks
+Ks
 aa
 ad
 ad
