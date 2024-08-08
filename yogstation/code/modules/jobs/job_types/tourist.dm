@@ -1,18 +1,17 @@
 /datum/job/tourist
 	title = "Tourist"
-	description = "Enjoy the new sights and scenery on board the station, free of any woes that might assail you."
+	description = "Enjoy the sights and scenery on board the station, free of any woes that might assail you. Good for new players."
 	orbit_icon = "camera-retro"
 	faction = "Station"
 	total_positions = -1
 	spawn_positions = -1
-	supervisors = "the head of personnel"
+	supervisors = "yourself"
 	added_access = list()
 	base_access = list()
 	alt_titles = list("Visitor", "Traveler", "Siteseer")
 	outfit = /datum/outfit/job/tourist
-	paycheck = PAYCHECK_EASY
+	paycheck = PAYCHECK_MINIMAL //more of an allowance from your parents or something
 	paycheck_department = ACCOUNT_CIV
-	display_order = JOB_DISPLAY_ORDER_TOURIST
 	minimal_character_age = 18 //Gotta go explore the galaxy and see the stuff
 
 	mail_goodies = list(
@@ -23,11 +22,10 @@
 		/obj/item/clothing/glasses/sunglasses = 1
   )
 
-	departments_list = list(
-		/datum/job_department/service,
-	)
-
 	smells_like = "sunscreen"
+
+	display_order = JOB_DISPLAY_ORDER_TOURIST
+	department_for_prefs = /datum/job_department/assistant
 
 	//we use this in an inverse way
 	exp_requirements = 3000 //50 hours of playing lock the job off

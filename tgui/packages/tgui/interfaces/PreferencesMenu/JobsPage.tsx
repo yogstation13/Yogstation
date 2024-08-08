@@ -109,9 +109,10 @@ const PriorityHeaders = () => {
 const PriorityButtons = (props: {
   createSetPriority: CreateSetPriority,
   isOverflow: boolean,
+  isTourist: boolean,
   priority: JobPriority,
 }) => {
-  const { createSetPriority, isOverflow, priority } = props;
+  const { createSetPriority, isOverflow, isTourist, priority } = props;
 
   return (
     <Stack
@@ -122,7 +123,7 @@ const PriorityButtons = (props: {
         "padding-left": "0.3em",
       }}
     >
-      {isOverflow
+      {(isOverflow || isTourist)
         ? (
           <>
             <PriorityButton
@@ -186,6 +187,7 @@ const JobRow = (props: {
   const { className, job, name } = props;
 
   const isOverflow = data.overflow_role === name;
+  const isTourist = "Tourist" === name;
   const priority = data.job_preferences[name];
   const selected = data.job_alt_titles[name] || name;
   const createSetPriority = createCreateSetPriorityFromName(context, name);
@@ -227,6 +229,7 @@ const JobRow = (props: {
     rightSide = (<PriorityButtons
       createSetPriority={createSetPriority}
       isOverflow={isOverflow}
+      isTourist={isTourist}
       priority={priority}
     />);
   }
