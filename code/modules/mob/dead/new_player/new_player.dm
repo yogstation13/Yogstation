@@ -343,7 +343,7 @@
 	if(QDELETED(src))
 		return JOB_UNAVAILABLE_GENERIC
 	if(!job.player_old_enough(client))
-		if(istype(job, /datum/job/tourist))
+		if(job.title == "Tourist")
 			return JOB_UNAVAILABLE_TOURIST //yogs change, tourists are only for new players
 		else
 			return JOB_UNAVAILABLE_ACCOUNTAGE

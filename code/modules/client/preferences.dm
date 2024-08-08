@@ -475,6 +475,10 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/character_preview_view)
 	if (!job)
 		return FALSE
 
+	if(job.title == "Tourist" && level != null) //yogs change: tourist is newbie players only
+		if(tgui_alert(parent, "Tourist is a job for exploring the station at your own pace.\n You can never roll antagonist, or be the target for one.", "Enable Tourist mode?", list("Yes", "No"), 30 SECONDS) != "Yes")
+			return FALSE
+
 	if (level == JP_HIGH)
 		var/overflow_role_title = SSjob.overflow_role
 
