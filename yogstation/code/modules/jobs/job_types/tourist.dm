@@ -4,7 +4,7 @@
 	orbit_icon = "camera-retro"
 	faction = "Station"
 	total_positions = -1
-	spawn_positions = 0
+	spawn_positions = -1
 	supervisors = "the head of personnel"
 	added_access = list()
 	base_access = list()
@@ -30,7 +30,7 @@
 	smells_like = "sunscreen"
 
 	//we use this in an inverse way
-	exp_requirements = 300 //5 hours of playing lock the job off
+	exp_requirements = 3000 //50 hours of playing lock the job off
 	exp_type = EXP_TYPE_CREW
 
 /**
