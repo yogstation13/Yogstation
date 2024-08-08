@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(905 modules,
-    3180/11210 macros, 28.4%)</aside></h3>
+<aside>(906 modules,
+    3217/11214 macros, 28.7%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -870,6 +870,10 @@ transformations and other events that cause new languages to become available.</
     <li><a href="code/modules/lighting/lighting_source.html" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_source">lighting_source</a></li>
     </ul></li>
     <li class="has-children"><a href="code/modules/mapping.html" title="code&#x2F;modules&#x2F;mapping">mapping</a><ul class="index-tree">
+    <li class="has-children"><span title="code&#x2F;modules&#x2F;mapping&#x2F;access_helpers">access_helpers</span><ul class="index-tree">
+    <li><a href="code/modules/mapping/access_helpers/airlock_helpers.html" title="code&#x2F;modules&#x2F;mapping&#x2F;access_helpers&#x2F;airlock_helpers">airlock_helpers</a></li>
+    <li><a href="code/modules/mapping/access_helpers/windoor_helpers.html" title="code&#x2F;modules&#x2F;mapping&#x2F;access_helpers&#x2F;windoor_helpers">windoor_helpers</a></li>
+    </ul></li>
     <li><a href="code/modules/mapping/preloader.html" title="code&#x2F;modules&#x2F;mapping&#x2F;preloader">preloader</a></li>
     <li><a href="code/modules/mapping/reader.html" title="code&#x2F;modules&#x2F;mapping&#x2F;reader">reader</a></li>
     <li><a href="code/modules/mapping/ruins.html" title="code&#x2F;modules&#x2F;mapping&#x2F;ruins">ruins</a></li>
@@ -1288,7 +1292,6 @@ SPDX-License-Identifier: MIT</li>
     </ul></li>
     <li><span class="no-substance">Interpreter&#x2F;</span><a href="yogstation/code/modules/scripting/Interpreter/Interpreter.html" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter">Interpreter</a></li>
     <li><span class="no-substance">Parser&#x2F;</span><a href="yogstation/code/modules/scripting/Parser/Expressions.html" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Parser&#x2F;Expressions">Expressions</a></li>
-    <li><a href="yogstation/code/modules/scripting/client_verbs.html" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;client_verbs">client_verbs</a></li>
     </ul></li>
     <li><span class="no-substance">uplink&#x2F;</span><a href="yogstation/code/modules/uplink/uplink_item.html" title="yogstation&#x2F;code&#x2F;modules&#x2F;uplink&#x2F;uplink_item">uplink_item</a></li>
     <li><span class="no-substance">webhook&#x2F;</span><a href="yogstation/code/modules/webhook/webhook.html" title="yogstation&#x2F;code&#x2F;modules&#x2F;webhook&#x2F;webhook">webhook</a></li>
@@ -1304,7 +1307,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1292 detailed/2191 documented/30540 total, 7.2%)</aside></h3>
+<aside>(1293 detailed/2196 documented/30881 total, 7.1%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -3221,7 +3224,19 @@ In landmarks.dm and not unit_test.dm so it is always active in the mapping tools
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;light_emitter">Light emitter</span> - Light<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;light_emitter&#x2F;red_energy_sword">red_energy_sword</span> - Base mob</li>
     </ul></li>
-    <li><span class="no-substance">mapping_helpers&#x2F;</span><a href="obj/effect/mapping_helpers/ztrait_injector.html" title="&#x2F;obj&#x2F;effect&#x2F;mapping_helpers&#x2F;ztrait_injector">ztrait injector</a></li>
+    <li class="has-children"><span title="&#x2F;obj&#x2F;effect&#x2F;mapping_helpers">mapping_helpers</span><ul class="index-tree">
+    <li class="has-children"><span class="no-substance">airlock&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;mapping_helpers&#x2F;airlock&#x2F;access">access</span><ul class="index-tree">
+    <li><span class="no-substance">all&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;mapping_helpers&#x2F;airlock&#x2F;access&#x2F;all&#x2F;command">command</span> - REQ ALL</li>
+    <li><span class="no-substance">any&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;mapping_helpers&#x2F;airlock&#x2F;access&#x2F;any&#x2F;command">command</span> - / HELPERS START - PLEASE KEEP EVERYTHING IN THE SAME ORDER AS IN ACCESS.DM THANKS
+REQ ANY ///</li>
+    </ul></li>
+    <li class="has-children"><span class="no-substance">windoor&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;mapping_helpers&#x2F;windoor&#x2F;access">access</span><ul class="index-tree">
+    <li><span class="no-substance">all&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;mapping_helpers&#x2F;windoor&#x2F;access&#x2F;all&#x2F;command">command</span> - REQ ALL</li>
+    <li><span class="no-substance">any&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;mapping_helpers&#x2F;windoor&#x2F;access&#x2F;any&#x2F;command">command</span> - / HELPERS START - PLEASE KEEP EVERYTHING IN THE SAME ORDER AS IN ACCESS.DM THANKS
+REQ ANY ///</li>
+    </ul></li>
+    <li><a href="obj/effect/mapping_helpers/ztrait_injector.html" title="&#x2F;obj&#x2F;effect&#x2F;mapping_helpers&#x2F;ztrait_injector">ztrait injector</a></li>
+    </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;meatgrinder">Meat Grinder</span> - Meatgrinder</li>
     <li><a href="obj/effect/meteor.html" title="&#x2F;obj&#x2F;effect&#x2F;meteor">the concept of meteor</a></li>
     <li><a href="obj/effect/mine.html" title="&#x2F;obj&#x2F;effect&#x2F;mine">dummy mine</a></li>
@@ -4018,6 +4033,7 @@ Enables crew to create requests, crew can sign up to perform the request, and th
     <li class="has-children"><a href="obj/machinery/computer/shuttle.html" title="&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;shuttle">shuttle console</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;shuttle&#x2F;mining">mining shuttle console</span> - Shuttle Computer</li>
     </ul></li>
+    <li><span class="no-substance">telecomms&#x2F;</span><a href="obj/machinery/computer/telecomms/traffic.html" title="&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;telecomms&#x2F;traffic">telecommunications traffic control console</a></li>
     <li><a href="obj/machinery/computer/terminal.html" title="&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;terminal">terminal</a></li>
     </ul></li>
     <li><a href="obj/machinery/conveyor.html" title="&#x2F;obj&#x2F;machinery&#x2F;conveyor">conveyor belt</a></li>
@@ -4335,7 +4351,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64">c6b056f</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/9acc635bd15db122489e9741cff876ee5577a73a">9acc635</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>

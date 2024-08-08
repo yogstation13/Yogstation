@@ -14,204 +14,403 @@
  &mdash; <a href="code/__DEFINES/access.html#define">Define Details</a></header>
 <main>
 <h1>code/__DEFINES/access.dm 
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm">
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm"/></a></h1>
 
 <table class="summary" cellspacing="0">
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_BRIG">ACCESS_BRIG</a></th><td>Brig cells+timers, permabrig, gulag+gulag shuttle, prisoner management console</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_ARMORY">ACCESS_ARMORY</a></th><td>Armory, gulag teleporter, execution chamber</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_FORENSICS_LOCKERS">ACCESS_FORENSICS_LOCKERS</a></th><td>Detective's office, forensics lockers, security+medical records</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_MEDICAL">ACCESS_MEDICAL</a></th><td>Medical general access</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_MORGUE">ACCESS_MORGUE</a></th><td>Morgue access</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_TOX">ACCESS_TOX</a></th><td>R&amp;D department, burn chamber on some maps</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_TOX_STORAGE">ACCESS_TOX_STORAGE</a></th><td>Toxins storage, burn chamber on some maps</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_GENETICS">ACCESS_GENETICS</a></th><td>Genetics access</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_ENGINE">ACCESS_ENGINE</a></th><td>Engineering area, power monitor, power flow control console</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_ENGINE_EQUIP">ACCESS_ENGINE_EQUIP</a></th><td>APCs, EngiVend/YouTool, engineering equipment lockers</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_HEADS">ACCESS_HEADS</a></th><td>Bridge, EVA storage windoors, gateway shutters, AI integrity restorer, clone record deletion, comms console</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_RC_ANNOUNCE">ACCESS_RC_ANNOUNCE</a></th><td>Request console announcements</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_KEYCARD_AUTH">ACCESS_KEYCARD_AUTH</a></th><td>Used for events which require at least two people to confirm them</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_TCOMSAT">ACCESS_TCOMSAT</a></th><td>has access to the entire telecomms satellite / machinery</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_SEC_DOORS">ACCESS_SEC_DOORS</a></th><td>Outer brig doors, department security posts</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_MINERAL_STOREROOM">ACCESS_MINERAL_STOREROOM</a></th><td>For releasing minerals from the ORM</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_WEAPONS">ACCESS_WEAPONS</a></th><td>Weapon authorization for secbots</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_NETWORK">ACCESS_NETWORK</a></th><td>NTnet diagnostics/monitoring software</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CLONING">ACCESS_CLONING</a></th><td>Cloning room and clone pod ejection</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_PARAMEDIC">ACCESS_PARAMEDIC</a></th><td>Paramedic Office</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_TCOM_ADMIN">ACCESS_TCOM_ADMIN</a></th><td>Access to the Network admins monitoring room</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_GENERAL">ACCESS_CENT_GENERAL</a></th><td>General facilities. CentCom ferry.</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_THUNDER">ACCESS_CENT_THUNDER</a></th><td>Thunderdome.</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_SPECOPS">ACCESS_CENT_SPECOPS</a></th><td>Special Ops. Captain's display case, Marauder and Seraph mechs.</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_MEDICAL">ACCESS_CENT_MEDICAL</a></th><td>Medical/Research</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_LIVING">ACCESS_CENT_LIVING</a></th><td>Living quarters.</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_STORAGE">ACCESS_CENT_STORAGE</a></th><td>Generic storage areas.</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_TELEPORTER">ACCESS_CENT_TELEPORTER</a></th><td>Teleporter.</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_CAPTAIN">ACCESS_CENT_CAPTAIN</a></th><td>Captain's office/ID comp/AI.</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_BAR">ACCESS_CENT_BAR</a></th><td>The non-existent CentCom Bar</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_SYNDICATE">ACCESS_SYNDICATE</a></th><td>General Syndicate Access. Includes Syndicate mechs and ruins.</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_SYNDICATE_LEADER">ACCESS_SYNDICATE_LEADER</a></th><td>Nuke Op Leader Access</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_AWAY_GENERAL">ACCESS_AWAY_GENERAL</a></th><td>Away general facilities.</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_AWAY_MAINT">ACCESS_AWAY_MAINT</a></th><td>Away maintenance</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_AWAY_MED">ACCESS_AWAY_MED</a></th><td>Away medical</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_AWAY_SEC">ACCESS_AWAY_SEC</a></th><td>Away security</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_AWAY_ENGINE">ACCESS_AWAY_ENGINE</a></th><td>Away engineering</td></tr>
-        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_AWAY_GENERIC1">ACCESS_AWAY_GENERIC1</a></th><td>Away generic access</td></tr></table><h2 id="define">Define Details</h2>
-<h3 id="define/ACCESS_ARMORY"><aside class="declaration">#define </aside>ACCESS_ARMORY
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L6">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 6"/></a>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_COMMAND">ACCESS_COMMAND</a></th><td>Command General Access, used for accessing the doors to the bridge, the communications console, and the general access that Tablet/Computer Programs check for &quot;heads&quot;.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_AI_MASTER">ACCESS_AI_MASTER</a></th><td>Access to critical-to-function AI rooms and equipment such as the AI Core, AI Upload, AI mini-sat maintenance, turret controls, and foam dispensers.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_AI_SAT">ACCESS_AI_SAT</a></th><td>Access to non-critical rooms in the mini-sat the AI usually resides in. Given to Network Admins to let them do maintenance on the AI.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_TELEPORTER">ACCESS_TELEPORTER</a></th><td>Access to the Teleporter Room, and some cargo crates.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_EVA">ACCESS_EVA</a></th><td>Access to the EVA Storage Room, and some cargo crates.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_VAULT">ACCESS_VAULT</a></th><td>Access to the vault on the station, for accessing the station's budget, the nuke core, or the Ore Silo.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_RC_ANNOUNCE">ACCESS_RC_ANNOUNCE</a></th><td>Access to make an announcement through the Requests Console found in an office.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_KEYCARD_AUTH">ACCESS_KEYCARD_AUTH</a></th><td>Access used for events (Red Alert, BSA, Emergency Maintenance) which require at least two people to swipe at the same time to authorize it</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_PERSONAL_LOCKERS">ACCESS_PERSONAL_LOCKERS</a></th><td>Access used to override &quot;personal control&quot; on all personal lockers, meaning you are able to open any of those lockers/wardrobes.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CHANGE_IDS">ACCESS_CHANGE_IDS</a></th><td>Access used for Access-Changing Programs, this one will unlock all options that can be ever given via that program.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CAPTAIN">ACCESS_CAPTAIN</a></th><td>Access used for the Captain's personal quarters in mapping, the spare ID cabinet, and the antique gun (but only on gamma alert or above).</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_SECURITY">ACCESS_SECURITY</a></th><td>Security's General Access, armaments vendor, security lockers, and other secure gear. Applied to things to Officers and Wardens should access, but never Lawyers or Detectives.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_SEC_BASIC">ACCESS_SEC_BASIC</a></th><td>Access to the front doors of the Brig, the &quot;secure&quot; portion of the Courtroom, and department outposts. Given to Lawyers, Heads of Staff, and Detectives.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_BRIG">ACCESS_BRIG</a></th><td>Access to brig cells, brig timers, permabrig, gulag, gulag teleporter, gulag shuttle, prisoner management console, and some security cargo crates.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_ARMORY">ACCESS_ARMORY</a></th><td>Access to the armory, security incinerator (when present), and the execution/re-education chamber.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_DETECTIVE">ACCESS_DETECTIVE</a></th><td>Access for the Detective, their office, and medical data console. Always mixed with ACCESS_SECURITY in the security office/delivery windoor, and the arrivals and departure sec checkpoints.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_BRIG_PHYS">ACCESS_BRIG_PHYS</a></th><td>Access for the Brig Physician and their locker, also used for the Brig Infirmary doors.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_WEAPONS_PERMIT">ACCESS_WEAPONS_PERMIT</a></th><td>The &quot;Weapons Permit&quot; Access, or the one that lets you walk past secbots without them charging at you as you hold your weaponry.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_HOS">ACCESS_HOS</a></th><td>Access used for the Head of Security's personal quarters in mapping, as well as other HoS-related things.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_ENGINEERING">ACCESS_ENGINEERING</a></th><td>Engineering General Access, grants access to the standard parts of Engineering and the Engine Room.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_ATMOSPHERICS">ACCESS_ATMOSPHERICS</a></th><td>Access to Atmospherics Sections of the Engineering Department, as well as air alarms.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_MAINT_TUNNELS">ACCESS_MAINT_TUNNELS</a></th><td>Access to all maintenance tunnels on the station. This overrides any &quot;departmental maintenance&quot; access, this has free roaming range everywhere.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_EXTERNAL_AIRLOCKS">ACCESS_EXTERNAL_AIRLOCKS</a></th><td>Access to all external &quot;space facing&quot; airlocks on the station. Used such that people don't easily &quot;jump ship&quot;, or restict free ingress/egress to only a few points on the station.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_ENGINE_EQUIP">ACCESS_ENGINE_EQUIP</a></th><td>Access to get into APCs, engineering equipment lockers, typically mapped in for key power rooms across the station, engineering vending machines, emitters, and some other stuff.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CONSTRUCTION">ACCESS_CONSTRUCTION</a></th><td>Access to &quot;construction&quot; areas of the station. However, in mapping, it's also used to get access to the front door and lathe room of the engineering department.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_TECH_STORAGE">ACCESS_TECH_STORAGE</a></th><td>Access to the Tech Storage room, containing lots of machine boards and other miscellaneous engineering gear.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_SECURE_TECH">ACCESS_SECURE_TECH</a></th><td>Access to the Secure Tech Storage room, containing unreplaceable high-value machine boards.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_TCOMMS">ACCESS_TCOMMS</a></th><td>Access to the Telecomms Server Room, traffic control console, machinery, and tablets.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_TCOMMS_ADMIN">ACCESS_TCOMMS_ADMIN</a></th><td>Access needed to view message logs recorded on the message monitor console in Telecomms.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_AUX_BASE">ACCESS_AUX_BASE</a></th><td>Access to the Auxiliary Base Room, as well as the ability to launch it.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CE">ACCESS_CE</a></th><td>Access for the Chief Engineer's office, as well as some other CE-related things.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_MEDICAL">ACCESS_MEDICAL</a></th><td>General access to Medbay, like the front doors, the treatment center, the medical records console, defibrillator mounts, and more.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_SURGERY">ACCESS_SURGERY</a></th><td>Access to the surgery rooms, as well as the equipment and buttons there.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_PARAMEDIC">ACCESS_PARAMEDIC</a></th><td>Access to the Paramedic Staging Area.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_MORGUE">ACCESS_MORGUE</a></th><td>Access to the Morgue.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CHEMISTRY">ACCESS_CHEMISTRY</a></th><td>Access to the chemistry lab, or the smaller room in medical with the multiple chem dispensers and pill pressers. The Chemist's main position.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CLONING">ACCESS_CLONING</a></th><td>Access to the cloning lab, usually adjacent to the genetics lab. Given to Medical Doctors so they can't also enter Genetics.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_VIROLOGY">ACCESS_VIROLOGY</a></th><td>Access to the Virology portion of the medical department, as well as the virology crate.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_PSYCHOLOGY">ACCESS_PSYCHOLOGY</a></th><td>Access to the Psychologist's office.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CMO">ACCESS_CMO</a></th><td>Access for the Chief Medical Officer's personal quarters in mapping, as well as some other CMO-related things.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CARGO">ACCESS_CARGO</a></th><td>General access needed to enter Cargo, allows entry into the Cargo Office and Mail/Delivery Office.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CARGO_BAY">ACCESS_CARGO_BAY</a></th><td>Access to the Cargo Bay and Warehouse. Separated from the above to prevent miners processing cargo.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_MINING">ACCESS_MINING</a></th><td>Access to the &quot;on-station&quot; Mining Portion of the Cargo Department.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_MINING_STATION">ACCESS_MINING_STATION</a></th><td>Access to the &quot;off-station&quot; Mining Station, which contains gear dedicated for miners to do their job best, as well as seek shelter from the inhospitable elements.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_QM">ACCESS_QM</a></th><td>Access for the Quartermaster's personal quarters in mapping, as well as some other QM-related things.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_SCIENCE">ACCESS_SCIENCE</a></th><td>General access for Science, allows for entry to the general hallways of Science, as well as the main lathe room.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_RESEARCH">ACCESS_RESEARCH</a></th><td>Access needed to research tech nodes at R&amp;D consoles. May also be needed to access some scientific equipment.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_TOXINS">ACCESS_TOXINS</a></th><td>Access to the Toxins Mixing Lab and Toxins Test Area equipment.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_TOXINS_STORAGE">ACCESS_TOXINS_STORAGE</a></th><td>Access to the Toxins Storage Room, where all of the bomb-making gases are stored.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_EXPERIMENTATION">ACCESS_EXPERIMENTATION</a></th><td>Access to the Experimentation Lab, containing the E.X.P.E.R.I-MENTOR. Uses of this access is set to change in the future.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_GENETICS">ACCESS_GENETICS</a></th><td>Access to the Genetics division of Science.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_ROBOTICS">ACCESS_ROBOTICS</a></th><td>Access to the Robotics division of Science, as well as opening up silicon cyborgs and other simple robots.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_ROBO_CONTROL">ACCESS_ROBO_CONTROL</a></th><td>Access to the Robotics division of Science, as well as opening up silicon cyborgs and other simple robots.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_XENOBIOLOGY">ACCESS_XENOBIOLOGY</a></th><td>Access to the Xenobiology division of Science.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_RND_SERVERS">ACCESS_RND_SERVERS</a></th><td>Access to the research Server Room, containing the important R&amp;D research servers and AI networking machines.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_RD">ACCESS_RD</a></th><td>Access for the Research Director's personal quarters in mapping, the R&amp;D server room, as well as some other RD-related things.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_SERVICE">ACCESS_SERVICE</a></th><td>General access for Service, allows for entry to the Service Hallway.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_THEATRE">ACCESS_THEATRE</a></th><td>Access to the Theatre, as well as other vending machines related to the theatre. Sometimes also used as the &quot;clown's&quot; access in code.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CHAPEL_OFFICE">ACCESS_CHAPEL_OFFICE</a></th><td>Access to the Chaplain's office.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CREMATORIUM">ACCESS_CREMATORIUM</a></th><td>Access to the chapel's crematorium.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_LIBRARY">ACCESS_LIBRARY</a></th><td>Access to the curator's private rooms in the Library and the trophy display cases, as well as access both into and out of the Library via Maintenance.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_BAR">ACCESS_BAR</a></th><td>Access to the Bar, the Bar's Backroom, the bar sign, the bar robot portal, and the bar's vending machines. Some other bar-things too.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_KITCHEN">ACCESS_KITCHEN</a></th><td>Access to the Kitchen, the Kitchen's Coldroom, the kitchen's vending machines, and the food robot portal. Some other chef-things too.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_HYDROPONICS">ACCESS_HYDROPONICS</a></th><td>Access to the Botany Division of the station and some other Botanist things.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_JANITOR">ACCESS_JANITOR</a></th><td>Access to the Janitor's room, and some tablet apps for control of the station's janitorial equipment.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_LAWYER">ACCESS_LAWYER</a></th><td>Access to the Lawyer's office.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CLERK">ACCESS_CLERK</a></th><td>Access to the Gift Shop's back doors.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_HOP">ACCESS_HOP</a></th><td>Access used for the Head of Personnel's personal quarters in mapping, as well as the security console and other HoP-related things.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_GENERAL">ACCESS_CENT_GENERAL</a></th><td>General facilities. Centcom ferry.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_SPECOPS">ACCESS_CENT_SPECOPS</a></th><td>Special Ops. Captain's display case, Marauder/Seraph mechs, .
+Remind me to separate to captain, centcom, and syndicate mech access later -SonofSpace</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_SYNDICATE">ACCESS_SYNDICATE</a></th><td>SYNDICATE</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_BLOODCULT">ACCESS_BLOODCULT</a></th><td>CULTS</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_INACCESSIBLE">ACCESS_INACCESSIBLE</a></th><td>For things that aren't ever supposed to be accessed</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_ALERT_ADMINS">ACCESS_ALERT_ADMINS</a></th><td></td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/LOG_ID_ACCESS_CHANGE">LOG_ID_ACCESS_CHANGE</a></th><td>Logging define for ID card access changes</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ACCESS_AI_MASTER"><aside class="declaration">#define </aside>ACCESS_AI_MASTER
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 17"/></a>
     </h3>
-    <p>Armory, gulag teleporter, execution chamber</p><h3 id="define/ACCESS_AWAY_ENGINE"><aside class="declaration">#define </aside>ACCESS_AWAY_ENGINE
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L137">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 137"/></a>
+    <p>Access to critical-to-function AI rooms and equipment such as the AI Core, AI Upload, AI mini-sat maintenance, turret controls, and foam dispensers.</p><h3 id="define/ACCESS_AI_SAT"><aside class="declaration">#define </aside>ACCESS_AI_SAT
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 19"/></a>
     </h3>
-    <p>Away engineering</p><h3 id="define/ACCESS_AWAY_GENERAL"><aside class="declaration">#define </aside>ACCESS_AWAY_GENERAL
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L129">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 129"/></a>
+    <p>Access to non-critical rooms in the mini-sat the AI usually resides in. Given to Network Admins to let them do maintenance on the AI.</p><h3 id="define/ACCESS_ALERT_ADMINS"><aside class="declaration">#define </aside>ACCESS_ALERT_ADMINS
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L242">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 242"/></a>
     </h3>
-    <p>Away general facilities.</p><h3 id="define/ACCESS_AWAY_GENERIC1"><aside class="declaration">#define </aside>ACCESS_AWAY_GENERIC1
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L139">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 139"/></a>
+    <ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>END ACCESS IDS - - - ///
+A list of access levels that, when added to an ID card, will warn admins.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul><h3 id="define/ACCESS_ARMORY"><aside class="declaration">#define </aside>ACCESS_ARMORY
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 47"/></a>
     </h3>
-    <p>Away generic access</p><h3 id="define/ACCESS_AWAY_MAINT"><aside class="declaration">#define </aside>ACCESS_AWAY_MAINT
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L131">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 131"/></a>
+    <p>Access to the armory, security incinerator (when present), and the execution/re-education chamber.</p><h3 id="define/ACCESS_ATMOSPHERICS"><aside class="declaration">#define </aside>ACCESS_ATMOSPHERICS
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 63"/></a>
     </h3>
-    <p>Away maintenance</p><h3 id="define/ACCESS_AWAY_MED"><aside class="declaration">#define </aside>ACCESS_AWAY_MED
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L133">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 133"/></a>
-    </h3>
-    <p>Away medical</p><h3 id="define/ACCESS_AWAY_SEC"><aside class="declaration">#define </aside>ACCESS_AWAY_SEC
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L135">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 135"/></a>
-    </h3>
-    <p>Away security</p><h3 id="define/ACCESS_BRIG"><aside class="declaration">#define </aside>ACCESS_BRIG
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L4">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 4"/></a>
-    </h3>
-    <p>Brig cells+timers, permabrig, gulag+gulag shuttle, prisoner management console</p><h3 id="define/ACCESS_CENT_BAR"><aside class="declaration">#define </aside>ACCESS_CENT_BAR
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L117">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 117"/></a>
-    </h3>
-    <p>The non-existent CentCom Bar</p><h3 id="define/ACCESS_CENT_CAPTAIN"><aside class="declaration">#define </aside>ACCESS_CENT_CAPTAIN
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L115">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 115"/></a>
-    </h3>
-    <p>Captain's office/ID comp/AI.</p><h3 id="define/ACCESS_CENT_GENERAL"><aside class="declaration">#define </aside>ACCESS_CENT_GENERAL
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L101">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 101"/></a>
-    </h3>
-    <p>General facilities. CentCom ferry.</p><h3 id="define/ACCESS_CENT_LIVING"><aside class="declaration">#define </aside>ACCESS_CENT_LIVING
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L109">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 109"/></a>
-    </h3>
-    <p>Living quarters.</p><h3 id="define/ACCESS_CENT_MEDICAL"><aside class="declaration">#define </aside>ACCESS_CENT_MEDICAL
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L107">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 107"/></a>
-    </h3>
-    <p>Medical/Research</p><h3 id="define/ACCESS_CENT_SPECOPS"><aside class="declaration">#define </aside>ACCESS_CENT_SPECOPS
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L105">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 105"/></a>
-    </h3>
-    <p>Special Ops. Captain's display case, Marauder and Seraph mechs.</p><h3 id="define/ACCESS_CENT_STORAGE"><aside class="declaration">#define </aside>ACCESS_CENT_STORAGE
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L111">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 111"/></a>
-    </h3>
-    <p>Generic storage areas.</p><h3 id="define/ACCESS_CENT_TELEPORTER"><aside class="declaration">#define </aside>ACCESS_CENT_TELEPORTER
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L113">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 113"/></a>
-    </h3>
-    <p>Teleporter.</p><h3 id="define/ACCESS_CENT_THUNDER"><aside class="declaration">#define </aside>ACCESS_CENT_THUNDER
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L103">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 103"/></a>
-    </h3>
-    <p>Thunderdome.</p><h3 id="define/ACCESS_CLONING"><aside class="declaration">#define </aside>ACCESS_CLONING
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L81">
+    <p>Access to Atmospherics Sections of the Engineering Department, as well as air alarms.</p><h3 id="define/ACCESS_AUX_BASE"><aside class="declaration">#define </aside>ACCESS_AUX_BASE
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L81">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 81"/></a>
     </h3>
-    <p>Cloning room and clone pod ejection</p><h3 id="define/ACCESS_ENGINE"><aside class="declaration">#define </aside>ACCESS_ENGINE
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L20">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 20"/></a>
+    <p>Access to the Auxiliary Base Room, as well as the ability to launch it.</p><h3 id="define/ACCESS_BAR"><aside class="declaration">#define </aside>ACCESS_BAR
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L161">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 161"/></a>
     </h3>
-    <p>Engineering area, power monitor, power flow control console</p><h3 id="define/ACCESS_ENGINE_EQUIP"><aside class="declaration">#define </aside>ACCESS_ENGINE_EQUIP
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L22">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 22"/></a>
+    <p>Access to the Bar, the Bar's Backroom, the bar sign, the bar robot portal, and the bar's vending machines. Some other bar-things too.</p><h3 id="define/ACCESS_BLOODCULT"><aside class="declaration">#define </aside>ACCESS_BLOODCULT
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L229">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 229"/></a>
     </h3>
-    <p>APCs, EngiVend/YouTool, engineering equipment lockers</p><h3 id="define/ACCESS_FORENSICS_LOCKERS"><aside class="declaration">#define </aside>ACCESS_FORENSICS_LOCKERS
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L8">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 8"/></a>
+    <p>CULTS</p><h3 id="define/ACCESS_BRIG"><aside class="declaration">#define </aside>ACCESS_BRIG
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 45"/></a>
     </h3>
-    <p>Detective's office, forensics lockers, security+medical records</p><h3 id="define/ACCESS_GENETICS"><aside class="declaration">#define </aside>ACCESS_GENETICS
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L18">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 18"/></a>
+    <p>Access to brig cells, brig timers, permabrig, gulag, gulag teleporter, gulag shuttle, prisoner management console, and some security cargo crates.</p><h3 id="define/ACCESS_BRIG_PHYS"><aside class="declaration">#define </aside>ACCESS_BRIG_PHYS
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 51"/></a>
     </h3>
-    <p>Genetics access</p><h3 id="define/ACCESS_HEADS"><aside class="declaration">#define </aside>ACCESS_HEADS
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L30">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 30"/></a>
+    <p>Access for the Brig Physician and their locker, also used for the Brig Infirmary doors.</p><h3 id="define/ACCESS_CAPTAIN"><aside class="declaration">#define </aside>ACCESS_CAPTAIN
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 35"/></a>
     </h3>
-    <p>Bridge, EVA storage windoors, gateway shutters, AI integrity restorer, clone record deletion, comms console</p><h3 id="define/ACCESS_KEYCARD_AUTH"><aside class="declaration">#define </aside>ACCESS_KEYCARD_AUTH
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L67">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 67"/></a>
+    <p>Access used for the Captain's personal quarters in mapping, the spare ID cabinet, and the antique gun (but only on gamma alert or above).</p><h3 id="define/ACCESS_CARGO"><aside class="declaration">#define </aside>ACCESS_CARGO
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 111"/></a>
     </h3>
-    <p>Used for events which require at least two people to confirm them</p><h3 id="define/ACCESS_MEDICAL"><aside class="declaration">#define </aside>ACCESS_MEDICAL
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L10">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 10"/></a>
+    <p>General access needed to enter Cargo, allows entry into the Cargo Office and Mail/Delivery Office.</p><h3 id="define/ACCESS_CARGO_BAY"><aside class="declaration">#define </aside>ACCESS_CARGO_BAY
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 113"/></a>
     </h3>
-    <p>Medical general access</p><h3 id="define/ACCESS_MINERAL_STOREROOM"><aside class="declaration">#define </aside>ACCESS_MINERAL_STOREROOM
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L74">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 74"/></a>
-    </h3>
-    <p>For releasing minerals from the ORM</p><h3 id="define/ACCESS_MORGUE"><aside class="declaration">#define </aside>ACCESS_MORGUE
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L12">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 12"/></a>
-    </h3>
-    <p>Morgue access</p><h3 id="define/ACCESS_NETWORK"><aside class="declaration">#define </aside>ACCESS_NETWORK
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L79">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 79"/></a>
-    </h3>
-    <p>NTnet diagnostics/monitoring software</p><h3 id="define/ACCESS_PARAMEDIC"><aside class="declaration">#define </aside>ACCESS_PARAMEDIC
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L83">
+    <p>Access to the Cargo Bay and Warehouse. Separated from the above to prevent miners processing cargo.</p><h3 id="define/ACCESS_CE"><aside class="declaration">#define </aside>ACCESS_CE
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L83">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 83"/></a>
     </h3>
-    <p>Paramedic Office</p><h3 id="define/ACCESS_RC_ANNOUNCE"><aside class="declaration">#define </aside>ACCESS_RC_ANNOUNCE
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L65">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 65"/></a>
+    <p>Access for the Chief Engineer's office, as well as some other CE-related things.</p><h3 id="define/ACCESS_CENT_GENERAL"><aside class="declaration">#define </aside>ACCESS_CENT_GENERAL
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L210">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 210"/></a>
     </h3>
-    <p>Request console announcements</p><h3 id="define/ACCESS_SEC_DOORS"><aside class="declaration">#define </aside>ACCESS_SEC_DOORS
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L72">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 72"/></a>
+    <p>General facilities. Centcom ferry.</p><h3 id="define/ACCESS_CENT_SPECOPS"><aside class="declaration">#define </aside>ACCESS_CENT_SPECOPS
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L219">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 219"/></a>
     </h3>
-    <p>Outer brig doors, department security posts</p><h3 id="define/ACCESS_SYNDICATE"><aside class="declaration">#define </aside>ACCESS_SYNDICATE
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L121">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 121"/></a>
+    <p>Special Ops. Captain's display case, Marauder/Seraph mechs, .
+Remind me to separate to captain, centcom, and syndicate mech access later -SonofSpace</p><h3 id="define/ACCESS_CHANGE_IDS"><aside class="declaration">#define </aside>ACCESS_CHANGE_IDS
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 33"/></a>
     </h3>
-    <p>General Syndicate Access. Includes Syndicate mechs and ruins.</p><h3 id="define/ACCESS_SYNDICATE_LEADER"><aside class="declaration">#define </aside>ACCESS_SYNDICATE_LEADER
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L123">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 123"/></a>
+    <p>Access used for Access-Changing Programs, this one will unlock all options that can be ever given via that program.</p><h3 id="define/ACCESS_CHAPEL_OFFICE"><aside class="declaration">#define </aside>ACCESS_CHAPEL_OFFICE
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L155">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 155"/></a>
     </h3>
-    <p>Nuke Op Leader Access</p><h3 id="define/ACCESS_TCOMSAT"><aside class="declaration">#define </aside>ACCESS_TCOMSAT
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L69">
+    <p>Access to the Chaplain's office.</p><h3 id="define/ACCESS_CHEMISTRY"><aside class="declaration">#define </aside>ACCESS_CHEMISTRY
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 97"/></a>
+    </h3>
+    <p>Access to the chemistry lab, or the smaller room in medical with the multiple chem dispensers and pill pressers. The Chemist's main position.</p><h3 id="define/ACCESS_CLERK"><aside class="declaration">#define </aside>ACCESS_CLERK
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L171">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 171"/></a>
+    </h3>
+    <p>Access to the Gift Shop's back doors.</p><h3 id="define/ACCESS_CLONING"><aside class="declaration">#define </aside>ACCESS_CLONING
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L99">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 99"/></a>
+    </h3>
+    <p>Access to the cloning lab, usually adjacent to the genetics lab. Given to Medical Doctors so they can't also enter Genetics.</p><h3 id="define/ACCESS_CMO"><aside class="declaration">#define </aside>ACCESS_CMO
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 105"/></a>
+    </h3>
+    <p>Access for the Chief Medical Officer's personal quarters in mapping, as well as some other CMO-related things.</p><h3 id="define/ACCESS_COMMAND"><aside class="declaration">#define </aside>ACCESS_COMMAND
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 15"/></a>
+    </h3>
+    <p>Command General Access, used for accessing the doors to the bridge, the communications console, and the general access that Tablet/Computer Programs check for &quot;heads&quot;.</p><h3 id="define/ACCESS_CONSTRUCTION"><aside class="declaration">#define </aside>ACCESS_CONSTRUCTION
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 71"/></a>
+    </h3>
+    <p>Access to &quot;construction&quot; areas of the station. However, in mapping, it's also used to get access to the front door and lathe room of the engineering department.</p><h3 id="define/ACCESS_CREMATORIUM"><aside class="declaration">#define </aside>ACCESS_CREMATORIUM
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 157"/></a>
+    </h3>
+    <p>Access to the chapel's crematorium.</p><h3 id="define/ACCESS_DETECTIVE"><aside class="declaration">#define </aside>ACCESS_DETECTIVE
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 49"/></a>
+    </h3>
+    <p>Access for the Detective, their office, and medical data console. Always mixed with ACCESS_SECURITY in the security office/delivery windoor, and the arrivals and departure sec checkpoints.</p><h3 id="define/ACCESS_ENGINEERING"><aside class="declaration">#define </aside>ACCESS_ENGINEERING
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 61"/></a>
+    </h3>
+    <p>Engineering General Access, grants access to the standard parts of Engineering and the Engine Room.</p><h3 id="define/ACCESS_ENGINE_EQUIP"><aside class="declaration">#define </aside>ACCESS_ENGINE_EQUIP
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L69">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 69"/></a>
     </h3>
-    <p>has access to the entire telecomms satellite / machinery</p><h3 id="define/ACCESS_TCOM_ADMIN"><aside class="declaration">#define </aside>ACCESS_TCOM_ADMIN
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L85">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 85"/></a>
+    <p>Access to get into APCs, engineering equipment lockers, typically mapped in for key power rooms across the station, engineering vending machines, emitters, and some other stuff.</p><h3 id="define/ACCESS_EVA"><aside class="declaration">#define </aside>ACCESS_EVA
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 23"/></a>
     </h3>
-    <p>Access to the Network admins monitoring room</p><h3 id="define/ACCESS_TOX"><aside class="declaration">#define </aside>ACCESS_TOX
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L14">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 14"/></a>
+    <p>Access to the EVA Storage Room, and some cargo crates.</p><h3 id="define/ACCESS_EXPERIMENTATION"><aside class="declaration">#define </aside>ACCESS_EXPERIMENTATION
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L133">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 133"/></a>
     </h3>
-    <p>R&amp;D department, burn chamber on some maps</p><h3 id="define/ACCESS_TOX_STORAGE"><aside class="declaration">#define </aside>ACCESS_TOX_STORAGE
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L16">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 16"/></a>
+    <p>Access to the Experimentation Lab, containing the E.X.P.E.R.I-MENTOR. Uses of this access is set to change in the future.</p><h3 id="define/ACCESS_EXTERNAL_AIRLOCKS"><aside class="declaration">#define </aside>ACCESS_EXTERNAL_AIRLOCKS
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 67"/></a>
     </h3>
-    <p>Toxins storage, burn chamber on some maps</p><h3 id="define/ACCESS_WEAPONS"><aside class="declaration">#define </aside>ACCESS_WEAPONS
-            <a href="https://github.com/yogstation13/Yogstation/blob/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64/code/__DEFINES/access.dm#L77">
+    <p>Access to all external &quot;space facing&quot; airlocks on the station. Used such that people don't easily &quot;jump ship&quot;, or restict free ingress/egress to only a few points on the station.</p><h3 id="define/ACCESS_GENETICS"><aside class="declaration">#define </aside>ACCESS_GENETICS
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 135"/></a>
+    </h3>
+    <p>Access to the Genetics division of Science.</p><h3 id="define/ACCESS_HOP"><aside class="declaration">#define </aside>ACCESS_HOP
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L173">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 173"/></a>
+    </h3>
+    <p>Access used for the Head of Personnel's personal quarters in mapping, as well as the security console and other HoP-related things.</p><h3 id="define/ACCESS_HOS"><aside class="declaration">#define </aside>ACCESS_HOS
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 55"/></a>
+    </h3>
+    <p>Access used for the Head of Security's personal quarters in mapping, as well as other HoS-related things.</p><h3 id="define/ACCESS_HYDROPONICS"><aside class="declaration">#define </aside>ACCESS_HYDROPONICS
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L165">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 165"/></a>
+    </h3>
+    <p>Access to the Botany Division of the station and some other Botanist things.</p><h3 id="define/ACCESS_INACCESSIBLE"><aside class="declaration">#define </aside>ACCESS_INACCESSIBLE
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L235">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 235"/></a>
+    </h3>
+    <p>For things that aren't ever supposed to be accessed</p><h3 id="define/ACCESS_JANITOR"><aside class="declaration">#define </aside>ACCESS_JANITOR
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L167">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 167"/></a>
+    </h3>
+    <p>Access to the Janitor's room, and some tablet apps for control of the station's janitorial equipment.</p><h3 id="define/ACCESS_KEYCARD_AUTH"><aside class="declaration">#define </aside>ACCESS_KEYCARD_AUTH
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 29"/></a>
+    </h3>
+    <p>Access used for events (Red Alert, BSA, Emergency Maintenance) which require at least two people to swipe at the same time to authorize it</p><h3 id="define/ACCESS_KITCHEN"><aside class="declaration">#define </aside>ACCESS_KITCHEN
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L163">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 163"/></a>
+    </h3>
+    <p>Access to the Kitchen, the Kitchen's Coldroom, the kitchen's vending machines, and the food robot portal. Some other chef-things too.</p><h3 id="define/ACCESS_LAWYER"><aside class="declaration">#define </aside>ACCESS_LAWYER
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L169">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 169"/></a>
+    </h3>
+    <p>Access to the Lawyer's office.</p><h3 id="define/ACCESS_LIBRARY"><aside class="declaration">#define </aside>ACCESS_LIBRARY
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L159">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 159"/></a>
+    </h3>
+    <p>Access to the curator's private rooms in the Library and the trophy display cases, as well as access both into and out of the Library via Maintenance.</p><h3 id="define/ACCESS_MAINT_TUNNELS"><aside class="declaration">#define </aside>ACCESS_MAINT_TUNNELS
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 65"/></a>
+    </h3>
+    <p>Access to all maintenance tunnels on the station. This overrides any &quot;departmental maintenance&quot; access, this has free roaming range everywhere.</p><h3 id="define/ACCESS_MEDICAL"><aside class="declaration">#define </aside>ACCESS_MEDICAL
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 89"/></a>
+    </h3>
+    <p>General access to Medbay, like the front doors, the treatment center, the medical records console, defibrillator mounts, and more.</p><h3 id="define/ACCESS_MINING"><aside class="declaration">#define </aside>ACCESS_MINING
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 115"/></a>
+    </h3>
+    <p>Access to the &quot;on-station&quot; Mining Portion of the Cargo Department.</p><h3 id="define/ACCESS_MINING_STATION"><aside class="declaration">#define </aside>ACCESS_MINING_STATION
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 117"/></a>
+    </h3>
+    <p>Access to the &quot;off-station&quot; Mining Station, which contains gear dedicated for miners to do their job best, as well as seek shelter from the inhospitable elements.</p><h3 id="define/ACCESS_MORGUE"><aside class="declaration">#define </aside>ACCESS_MORGUE
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 95"/></a>
+    </h3>
+    <p>Access to the Morgue.</p><h3 id="define/ACCESS_PARAMEDIC"><aside class="declaration">#define </aside>ACCESS_PARAMEDIC
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 93"/></a>
+    </h3>
+    <p>Access to the Paramedic Staging Area.</p><h3 id="define/ACCESS_PERSONAL_LOCKERS"><aside class="declaration">#define </aside>ACCESS_PERSONAL_LOCKERS
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 31"/></a>
+    </h3>
+    <p>Access used to override &quot;personal control&quot; on all personal lockers, meaning you are able to open any of those lockers/wardrobes.</p><h3 id="define/ACCESS_PSYCHOLOGY"><aside class="declaration">#define </aside>ACCESS_PSYCHOLOGY
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 103"/></a>
+    </h3>
+    <p>Access to the Psychologist's office.</p><h3 id="define/ACCESS_QM"><aside class="declaration">#define </aside>ACCESS_QM
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 119"/></a>
+    </h3>
+    <p>Access for the Quartermaster's personal quarters in mapping, as well as some other QM-related things.</p><h3 id="define/ACCESS_RC_ANNOUNCE"><aside class="declaration">#define </aside>ACCESS_RC_ANNOUNCE
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 27"/></a>
+    </h3>
+    <p>Access to make an announcement through the Requests Console found in an office.</p><h3 id="define/ACCESS_RD"><aside class="declaration">#define </aside>ACCESS_RD
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L145">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 145"/></a>
+    </h3>
+    <p>Access for the Research Director's personal quarters in mapping, the R&amp;D server room, as well as some other RD-related things.</p><h3 id="define/ACCESS_RESEARCH"><aside class="declaration">#define </aside>ACCESS_RESEARCH
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 127"/></a>
+    </h3>
+    <p>Access needed to research tech nodes at R&amp;D consoles. May also be needed to access some scientific equipment.</p><h3 id="define/ACCESS_RND_SERVERS"><aside class="declaration">#define </aside>ACCESS_RND_SERVERS
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 143"/></a>
+    </h3>
+    <p>Access to the research Server Room, containing the important R&amp;D research servers and AI networking machines.</p><h3 id="define/ACCESS_ROBOTICS"><aside class="declaration">#define </aside>ACCESS_ROBOTICS
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 137"/></a>
+    </h3>
+    <p>Access to the Robotics division of Science, as well as opening up silicon cyborgs and other simple robots.</p><h3 id="define/ACCESS_ROBO_CONTROL"><aside class="declaration">#define </aside>ACCESS_ROBO_CONTROL
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 139"/></a>
+    </h3>
+    <p>Access to the Robotics division of Science, as well as opening up silicon cyborgs and other simple robots.</p><h3 id="define/ACCESS_SCIENCE"><aside class="declaration">#define </aside>ACCESS_SCIENCE
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L125">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 125"/></a>
+    </h3>
+    <p>General access for Science, allows for entry to the general hallways of Science, as well as the main lathe room.</p><h3 id="define/ACCESS_SECURE_TECH"><aside class="declaration">#define </aside>ACCESS_SECURE_TECH
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 75"/></a>
+    </h3>
+    <p>Access to the Secure Tech Storage room, containing unreplaceable high-value machine boards.</p><h3 id="define/ACCESS_SECURITY"><aside class="declaration">#define </aside>ACCESS_SECURITY
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 41"/></a>
+    </h3>
+    <p>Security's General Access, armaments vendor, security lockers, and other secure gear. Applied to things to Officers and Wardens should access, but never Lawyers or Detectives.</p><h3 id="define/ACCESS_SEC_BASIC"><aside class="declaration">#define </aside>ACCESS_SEC_BASIC
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 43"/></a>
+    </h3>
+    <p>Access to the front doors of the Brig, the &quot;secure&quot; portion of the Courtroom, and department outposts. Given to Lawyers, Heads of Staff, and Detectives.</p><h3 id="define/ACCESS_SERVICE"><aside class="declaration">#define </aside>ACCESS_SERVICE
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L151">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 151"/></a>
+    </h3>
+    <p>General access for Service, allows for entry to the Service Hallway.</p><h3 id="define/ACCESS_SURGERY"><aside class="declaration">#define </aside>ACCESS_SURGERY
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 91"/></a>
+    </h3>
+    <p>Access to the surgery rooms, as well as the equipment and buttons there.</p><h3 id="define/ACCESS_SYNDICATE"><aside class="declaration">#define </aside>ACCESS_SYNDICATE
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L225">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 225"/></a>
+    </h3>
+    <p>SYNDICATE</p><h3 id="define/ACCESS_TCOMMS"><aside class="declaration">#define </aside>ACCESS_TCOMMS
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L77">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 77"/></a>
     </h3>
-    <p>Weapon authorization for secbots</p></main>
+    <p>Access to the Telecomms Server Room, traffic control console, machinery, and tablets.</p><h3 id="define/ACCESS_TCOMMS_ADMIN"><aside class="declaration">#define </aside>ACCESS_TCOMMS_ADMIN
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 79"/></a>
+    </h3>
+    <p>Access needed to view message logs recorded on the message monitor console in Telecomms.</p><h3 id="define/ACCESS_TECH_STORAGE"><aside class="declaration">#define </aside>ACCESS_TECH_STORAGE
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 73"/></a>
+    </h3>
+    <p>Access to the Tech Storage room, containing lots of machine boards and other miscellaneous engineering gear.</p><h3 id="define/ACCESS_TELEPORTER"><aside class="declaration">#define </aside>ACCESS_TELEPORTER
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 21"/></a>
+    </h3>
+    <p>Access to the Teleporter Room, and some cargo crates.</p><h3 id="define/ACCESS_THEATRE"><aside class="declaration">#define </aside>ACCESS_THEATRE
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L153">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 153"/></a>
+    </h3>
+    <p>Access to the Theatre, as well as other vending machines related to the theatre. Sometimes also used as the &quot;clown's&quot; access in code.</p><h3 id="define/ACCESS_TOXINS"><aside class="declaration">#define </aside>ACCESS_TOXINS
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 129"/></a>
+    </h3>
+    <p>Access to the Toxins Mixing Lab and Toxins Test Area equipment.</p><h3 id="define/ACCESS_TOXINS_STORAGE"><aside class="declaration">#define </aside>ACCESS_TOXINS_STORAGE
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 131"/></a>
+    </h3>
+    <p>Access to the Toxins Storage Room, where all of the bomb-making gases are stored.</p><h3 id="define/ACCESS_VAULT"><aside class="declaration">#define </aside>ACCESS_VAULT
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 25"/></a>
+    </h3>
+    <p>Access to the vault on the station, for accessing the station's budget, the nuke core, or the Ore Silo.</p><h3 id="define/ACCESS_VIROLOGY"><aside class="declaration">#define </aside>ACCESS_VIROLOGY
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 101"/></a>
+    </h3>
+    <p>Access to the Virology portion of the medical department, as well as the virology crate.</p><h3 id="define/ACCESS_WEAPONS_PERMIT"><aside class="declaration">#define </aside>ACCESS_WEAPONS_PERMIT
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 53"/></a>
+    </h3>
+    <p>The &quot;Weapons Permit&quot; Access, or the one that lets you walk past secbots without them charging at you as you hold your weaponry.</p><h3 id="define/ACCESS_XENOBIOLOGY"><aside class="declaration">#define </aside>ACCESS_XENOBIOLOGY
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 141"/></a>
+    </h3>
+    <p>Access to the Xenobiology division of Science.</p><h3 id="define/LOG_ID_ACCESS_CHANGE"><aside class="declaration">#define </aside>LOG_ID_ACCESS_CHANGE
+            <aside>(user, id_card, change_description)</aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/9acc635bd15db122489e9741cff876ee5577a73a/code/__DEFINES/access.dm#L245">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 245"/></a>
+    </h3>
+    <p>Logging define for ID card access changes</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/c6b056fa197d6f2d0e2fa8e80e355ad24c944a64">c6b056f</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/9acc635bd15db122489e9741cff876ee5577a73a">9acc635</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
