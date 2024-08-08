@@ -1,6 +1,6 @@
 /datum/job/tourist
 	title = "Tourist"
-	description = "Enjoy the sights and scenery on board the station, free of any woes that might assail you. Good for new players."
+	description = "Enjoy the sights and scenery on board the station, free of any woes that might assail you. Only available to new players."
 	orbit_icon = "camera-retro"
 	faction = "Station"
 	total_positions = -1
