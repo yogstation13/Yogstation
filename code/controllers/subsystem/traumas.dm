@@ -161,7 +161,7 @@ SUBSYSTEM_DEF(traumas)
 	phobia_species = list("lizards" = typecacheof(list(/datum/species/lizard)),
 						  "skeletons" = typecacheof(list(/datum/species/skeleton, /datum/species/plasmaman)),
 						  "conspiracies" = typecacheof(list(/datum/species/abductor, /datum/species/lizard)),
-						  "robots" = typecacheof(list(/datum/species/android)),
+						  "robots" = typecacheof(list(/datum/species/ipc, /datum/species/preternis)),
 						  "the supernatural" = typecacheof(list(/datum/species/golem/clockwork, /datum/species/golem/runic)),
 						  "aliens" = typecacheof(list(/datum/species/abductor, /datum/species/jelly, /datum/species/pod,
 						  /datum/species/shadow, /datum/species/polysmorph)),

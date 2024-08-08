@@ -77,8 +77,6 @@
 
 /datum/weather/ash_storm/proc/is_ash_immune(atom/L)
 	while (L && !isturf(L))
-		if(ismecha(L)) //Mechs are immune
-			return TRUE
 		if(ishuman(L)) //Are you immune?
 			var/mob/living/carbon/human/H = L
 			var/thermal_protection = H.get_thermal_protection()

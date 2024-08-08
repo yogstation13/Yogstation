@@ -178,7 +178,7 @@
 	if (isliving(thing)) //objects are unaffected for now
 		. = TRUE
 		var/mob/living/L = thing
-		if(L.movement_type & FLYING)
+		if(L.movement_type & (FLYING|FLOATING))
 			return	//YOU'RE FLYING OVER IT
 		if(L.weather_immunities & WEATHER_SNOW)
 			return

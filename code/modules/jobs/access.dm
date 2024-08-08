@@ -136,28 +136,40 @@
 
 /// Gets all station access
 /proc/get_all_accesses()
-	return list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS, ACCESS_COURT,
-	            ACCESS_MEDICAL, ACCESS_GENETICS, ACCESS_MORGUE, ACCESS_RD,
-	            ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_CHEMISTRY, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_MAINT_TUNNELS,
-	            ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD,
-	            ACCESS_TELEPORTER, ACCESS_EVA, ACCESS_HEADS, ACCESS_CAPTAIN, ACCESS_ALL_PERSONAL_LOCKERS,
-	            ACCESS_TECH_STORAGE, ACCESS_SECURE_TECH_STORAGE, ACCESS_CHAPEL_OFFICE, ACCESS_ATMOSPHERICS, ACCESS_KITCHEN,
-	            ACCESS_BAR, ACCESS_JANITOR, ACCESS_CREMATORIUM, ACCESS_ROBO_CONTROL, ACCESS_ROBOTICS, ACCESS_CARGO, ACCESS_CONSTRUCTION,
-	            ACCESS_HYDROPONICS, ACCESS_LIBRARY, ACCESS_LAWYER, ACCESS_VIROLOGY, ACCESS_CMO, ACCESS_QM, ACCESS_SURGERY,
-	            ACCESS_THEATRE, ACCESS_RESEARCH, ACCESS_RND, ACCESS_MINING, ACCESS_MAILSORTING, ACCESS_WEAPONS,
-				ACCESS_MECH_MINING, ACCESS_MECH_ENGINE, ACCESS_MECH_SCIENCE, ACCESS_MECH_SECURITY, ACCESS_MECH_MEDICAL,
-	            ACCESS_VAULT, ACCESS_MINING_STATION, ACCESS_XENOBIOLOGY, ACCESS_CE, ACCESS_HOP, ACCESS_HOS, ACCESS_RC_ANNOUNCE,
-	            ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_GATEWAY, ACCESS_MINERAL_STOREROOM, ACCESS_MINISAT, ACCESS_NETWORK, ACCESS_CLONING, ACCESS_TCOM_ADMIN, ACCESS_PARAMEDIC, ACCESS_MANUFACTURING, ACCESS_BRIG_PHYS, ACCESS_PSYCH, ACCESS_SERVHALL) //YOGS - yogs jobs
+	return list(
+		// Service/Civilian
+		ACCESS_SERVICE, ACCESS_THEATRE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_LIBRARY, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_HYDROPONICS, ACCESS_JANITOR, ACCESS_LAWYER, ACCESS_CLERK, ACCESS_HOP,
+		// Security
+		ACCESS_SECURITY, ACCESS_SEC_BASIC, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_DETECTIVE, ACCESS_BRIG_PHYS, ACCESS_WEAPONS_PERMIT, ACCESS_MECH_SECURITY, ACCESS_HOS,
+		// Medical
+		ACCESS_MEDICAL, ACCESS_SURGERY, ACCESS_PARAMEDIC, ACCESS_MORGUE, ACCESS_CHEMISTRY, ACCESS_CLONING, ACCESS_VIROLOGY, ACCESS_PSYCHOLOGY, ACCESS_MECH_MEDICAL, ACCESS_CMO,
+		// Science
+		ACCESS_SCIENCE, ACCESS_RESEARCH, ACCESS_TOXINS, ACCESS_TOXINS_STORAGE, ACCESS_EXPERIMENTATION, ACCESS_GENETICS, ACCESS_ROBOTICS, ACCESS_ROBO_CONTROL, ACCESS_XENOBIOLOGY, ACCESS_RND_SERVERS, ACCESS_MECH_SCIENCE, ACCESS_RD,
+		// Engineering
+		ACCESS_ENGINEERING, ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_ENGINE_EQUIP, ACCESS_CONSTRUCTION, ACCESS_TECH_STORAGE, ACCESS_SECURE_TECH, ACCESS_TCOMMS, ACCESS_TCOMMS_ADMIN, ACCESS_AUX_BASE, ACCESS_MECH_ENGINE, ACCESS_CE,
+		// Supply
+		ACCESS_CARGO, ACCESS_CARGO_BAY, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MECH_MINING, ACCESS_QM,
+		// Command
+		ACCESS_COMMAND, ACCESS_AI_MASTER, ACCESS_AI_SAT, ACCESS_TELEPORTER, ACCESS_EVA, ACCESS_VAULT, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_PERSONAL_LOCKERS, ACCESS_CHANGE_IDS, ACCESS_CAPTAIN)
 
 /// Gets all centcom accesses
 /proc/get_all_centcom_access()
 	return list(ACCESS_CENT_GENERAL, ACCESS_CENT_THUNDER, ACCESS_CENT_SPECOPS, ACCESS_CENT_MEDICAL, ACCESS_CENT_LIVING, ACCESS_CENT_STORAGE, ACCESS_CENT_TELEPORTER, ACCESS_CENT_CAPTAIN)
 
-/// Gets all accesses between 1 and 500
+/// Every access in the game, temp solution
 /proc/get_debug_access()
-	. = list()
-	for(var/i = 1; i <= 500; i++)
-		. += i
+	return list(
+		ACCESS_SERVICE, ACCESS_THEATRE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_LIBRARY, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_HYDROPONICS, ACCESS_JANITOR, ACCESS_LAWYER, ACCESS_CLERK, ACCESS_HOP,
+		ACCESS_SECURITY, ACCESS_SEC_BASIC, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_DETECTIVE, ACCESS_BRIG_PHYS, ACCESS_WEAPONS_PERMIT, ACCESS_MECH_SECURITY, ACCESS_HOS,
+		ACCESS_MEDICAL, ACCESS_SURGERY, ACCESS_PARAMEDIC, ACCESS_MORGUE, ACCESS_CHEMISTRY, ACCESS_CLONING, ACCESS_VIROLOGY, ACCESS_PSYCHOLOGY, ACCESS_MECH_MEDICAL, ACCESS_CMO,
+		ACCESS_SCIENCE, ACCESS_RESEARCH, ACCESS_TOXINS, ACCESS_TOXINS_STORAGE, ACCESS_EXPERIMENTATION, ACCESS_GENETICS, ACCESS_ROBOTICS, ACCESS_ROBO_CONTROL, ACCESS_XENOBIOLOGY, ACCESS_RND_SERVERS, ACCESS_MECH_SCIENCE, ACCESS_RD,
+		ACCESS_ENGINEERING, ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_ENGINE_EQUIP, ACCESS_CONSTRUCTION, ACCESS_TECH_STORAGE, ACCESS_SECURE_TECH, ACCESS_TCOMMS, ACCESS_TCOMMS_ADMIN, ACCESS_AUX_BASE, ACCESS_MECH_ENGINE, ACCESS_CE,
+		ACCESS_CARGO, ACCESS_CARGO_BAY, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MECH_MINING, ACCESS_QM,
+		ACCESS_COMMAND, ACCESS_AI_MASTER, ACCESS_AI_SAT, ACCESS_TELEPORTER, ACCESS_EVA, ACCESS_VAULT, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_PERSONAL_LOCKERS, ACCESS_CHANGE_IDS, ACCESS_CAPTAIN,
+		ACCESS_CENT_GENERAL, ACCESS_CENT_THUNDER, ACCESS_CENT_SPECOPS, ACCESS_CENT_MEDICAL, ACCESS_CENT_LIVING, ACCESS_CENT_STORAGE, ACCESS_CENT_TELEPORTER, ACCESS_CENT_CAPTAIN,
+		ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER, ACCESS_BLOODCULT, ACCESS_CLOCKCULT,
+		ACCESS_RUINS_GENERAL, ACCESS_RUINS_COMMAND, ACCESS_RUINS_SECURITY, ACCESS_RUINS_ENGINEERING, ACCESS_RUINS_MEDICAL, ACCESS_RUINS_SUPPLY, ACCESS_RUINS_SCIENCE, ACCESS_RUINS_MAINTENANCE, ACCESS_RUINS_MATERIALS, ACCESS_RUINS_GENERIC1, ACCESS_RUINS_GENERIC2, ACCESS_RUINS_GENERIC3, ACCESS_RUINS_GENERIC4, ACCESS_MECH_RUINS,
+		ACCESS_INACCESSIBLE) // Killing myself
 
 /// Gets access for ERT
 /proc/get_ert_access(class)
@@ -175,207 +187,272 @@
 /proc/get_all_syndicate_access()
 	return list(ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER)
 
-/// Gets access from region ID
+/// Gets access from region ID - Overlap between departments for the sake of ID Console and door remote grouping
 /proc/get_region_accesses(code)
 	switch(code)
 		if(0)
 			return get_all_accesses()
-		if(1) //station general
-			return list(ACCESS_KITCHEN,ACCESS_BAR, ACCESS_HYDROPONICS, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_LIBRARY, ACCESS_THEATRE, ACCESS_LAWYER, ACCESS_MANUFACTURING, ACCESS_SERVHALL)
-		if(2) //security
-			return list(ACCESS_SEC_DOORS, ACCESS_WEAPONS, ACCESS_SECURITY, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS, ACCESS_COURT, ACCESS_MECH_SECURITY, ACCESS_HOS)
-		if(3) //medbay
-			return list(ACCESS_MEDICAL, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_MORGUE, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_SURGERY, ACCESS_MECH_MEDICAL, ACCESS_CMO, ACCESS_PARAMEDIC, ACCESS_BRIG_PHYS, ACCESS_PSYCH) // yogs - Yog jobs
-		if(4) //research
-			return list(ACCESS_RESEARCH, ACCESS_RND, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_GENETICS, ACCESS_ROBO_CONTROL, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, ACCESS_MECH_SCIENCE, ACCESS_MINISAT, ACCESS_RD, ACCESS_NETWORK, ACCESS_AI_UPLOAD)
-		if(5) //engineering and maintenance
-			return list(ACCESS_CONSTRUCTION, ACCESS_MAINT_TUNNELS, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_TECH_STORAGE, ACCESS_SECURE_TECH_STORAGE, ACCESS_ATMOSPHERICS, ACCESS_MECH_ENGINE, ACCESS_TCOMSAT, ACCESS_MINISAT, ACCESS_CE, ACCESS_TCOM_ADMIN, ACCESS_RC_ANNOUNCE) // yogs - Yog jobs
-		if(6) //supply
-			return list(ACCESS_MAILSORTING, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MECH_MINING, ACCESS_MINERAL_STOREROOM, ACCESS_CARGO, ACCESS_QM, ACCESS_VAULT)
-		if(7) //command
-			return list(ACCESS_HEADS, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD, ACCESS_SECURE_TECH_STORAGE, ACCESS_TELEPORTER, ACCESS_EVA, ACCESS_GATEWAY, ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_HOP, ACCESS_CAPTAIN, ACCESS_VAULT)
+		if(1) // Service/Civilian
+			return list(ACCESS_SERVICE,
+						ACCESS_THEATRE,
+						ACCESS_CHAPEL_OFFICE,
+						ACCESS_CREMATORIUM,
+						ACCESS_LIBRARY,
+						ACCESS_BAR,
+						ACCESS_KITCHEN,
+						ACCESS_HYDROPONICS,
+						ACCESS_JANITOR,
+						ACCESS_LAWYER,
+						ACCESS_CLERK,
+						ACCESS_HOP)
+		if(2) // Security
+			return list(ACCESS_SECURITY,
+						ACCESS_SEC_BASIC,
+						ACCESS_BRIG,
+						ACCESS_ARMORY,
+						ACCESS_DETECTIVE,
+						ACCESS_BRIG_PHYS,
+						ACCESS_WEAPONS_PERMIT,
+						ACCESS_LAWYER,
+						ACCESS_MECH_SECURITY,
+						ACCESS_HOS)
+		if(3) // Medical
+			return list(ACCESS_MEDICAL,
+						ACCESS_SURGERY,
+						ACCESS_PARAMEDIC,
+						ACCESS_MORGUE,
+						ACCESS_CHEMISTRY,
+						ACCESS_CLONING,
+						ACCESS_VIROLOGY,
+						ACCESS_PSYCHOLOGY,
+						ACCESS_GENETICS,
+						ACCESS_BRIG_PHYS,
+						ACCESS_MECH_MEDICAL,
+						ACCESS_CMO)
+		if(4) // Science
+			return list(ACCESS_SCIENCE,
+						ACCESS_RESEARCH,
+						ACCESS_TOXINS,
+						ACCESS_TOXINS_STORAGE,
+						ACCESS_EXPERIMENTATION,
+						ACCESS_GENETICS,
+						ACCESS_ROBOTICS,
+						ACCESS_ROBO_CONTROL,
+						ACCESS_XENOBIOLOGY,
+						ACCESS_RND_SERVERS,
+						ACCESS_AI_MASTER,
+						ACCESS_AI_SAT,
+						ACCESS_MECH_SCIENCE,
+						ACCESS_RD)
+		if(5) // Engineering
+			return list(ACCESS_ENGINEERING,
+						ACCESS_ATMOSPHERICS,
+						ACCESS_MAINT_TUNNELS,
+						ACCESS_EXTERNAL_AIRLOCKS,
+						ACCESS_ENGINE_EQUIP,
+						ACCESS_CONSTRUCTION,
+						ACCESS_TECH_STORAGE,
+						ACCESS_SECURE_TECH,
+						ACCESS_TCOMMS,
+						ACCESS_TCOMMS_ADMIN,
+						ACCESS_AUX_BASE,
+						ACCESS_AI_SAT,
+						ACCESS_MECH_ENGINE,
+						ACCESS_CE)
+		if(6) // Supply
+			return list(ACCESS_CARGO,
+						ACCESS_CARGO_BAY,
+						ACCESS_MINING,
+						ACCESS_MINING_STATION,
+						ACCESS_VAULT,
+						ACCESS_MECH_MINING,
+						ACCESS_QM)
+		if(7) // Command
+			return list(ACCESS_COMMAND,
+						ACCESS_AI_MASTER,
+						ACCESS_AI_SAT,
+						ACCESS_TELEPORTER,
+						ACCESS_EVA,
+						ACCESS_VAULT,
+						ACCESS_SECURE_TECH,
+						ACCESS_RND_SERVERS,
+						ACCESS_RC_ANNOUNCE,
+						ACCESS_KEYCARD_AUTH,
+						ACCESS_TCOMMS_ADMIN,
+						ACCESS_PERSONAL_LOCKERS,
+						ACCESS_CHANGE_IDS,
+						ACCESS_HOP,
+						ACCESS_CAPTAIN)
 
 /// Gets the name from region ID
 /proc/get_region_accesses_name(code)
 	switch(code)
 		if(0)
 			return "All"
-		if(1) //station general
-			return "General"
-		if(2) //security
+		if(1) // Service/Civilian
+			return "Service"
+		if(2) // Security
 			return "Security"
-		if(3) //medbay
+		if(3) // Medical
 			return "Medbay"
-		if(4) //research
-			return "Research"
-		if(5) //engineering and maintenance
+		if(4) // Science
+			return "Science"
+		if(5) // Engineering
 			return "Engineering"
-		if(6) //supply
+		if(6) // Supply
 			return "Supply"
-		if(7) //command
+		if(7) // Command
 			return "Command"
 
 /// Gets teh description for an access
 /proc/get_access_desc(A)
 	switch(A)
-		if(ACCESS_CARGO)
-			return "Cargo Bay"
-		if(ACCESS_SECURITY)
-			return "Security"
-		if(ACCESS_BRIG)
-			return "Holding Cells"
-		if(ACCESS_COURT)
-			return "Courtroom"
-		if(ACCESS_FORENSICS_LOCKERS)
-			return "Forensics"
-		if(ACCESS_MEDICAL)
-			return "Medical"
-		if(ACCESS_GENETICS)
-			return "Genetics Lab"
-		if(ACCESS_MORGUE)
-			return "Morgue"
-		if(ACCESS_RND)
-			return "R&D Lab and Console"
-		if(ACCESS_TOX)
-			return "Toxins Lab"
-		if(ACCESS_TOX_STORAGE)
-			return "Toxins Lab Storage"
-		if(ACCESS_CHEMISTRY)
-			return "Chemistry Lab"
-		if(ACCESS_RD)
-			return "RD Office"
-		if(ACCESS_BAR)
-			return "Bar"
-		if(ACCESS_JANITOR)
-			return "Custodial Closet"
-		if(ACCESS_ENGINE)
-			return "Engineering"
-		if(ACCESS_ENGINE_EQUIP)
-			return "Power and Engineering Equipment"
-		if(ACCESS_MAINT_TUNNELS)
-			return "Maintenance"
-		if(ACCESS_EXTERNAL_AIRLOCKS)
-			return "External Airlocks"
-		if(ACCESS_CHANGE_IDS)
-			return "ID Console"
-		if(ACCESS_AI_UPLOAD)
-			return "AI Chambers"
+		if(ACCESS_COMMAND)
+			return "Command General"
+		if(ACCESS_AI_MASTER) // Yog
+			return "AI Master Access"
+		if(ACCESS_AI_SAT) // Yog
+			return "AI Satellite"
 		if(ACCESS_TELEPORTER)
 			return "Teleporter"
 		if(ACCESS_EVA)
 			return "EVA"
-		if(ACCESS_HEADS)
-			return "Bridge"
-		if(ACCESS_CAPTAIN)
-			return "Captain"
-		if(ACCESS_ALL_PERSONAL_LOCKERS)
-			return "Personal Lockers"
-		if(ACCESS_CHAPEL_OFFICE)
-			return "Chapel Office"
-		if(ACCESS_TECH_STORAGE)
-			return "Technical Storage"
-		if(ACCESS_SECURE_TECH_STORAGE)
-			return "Secure Tech Storage"
-		if(ACCESS_ATMOSPHERICS)
-			return "Atmospherics"
-		if(ACCESS_CREMATORIUM)
-			return "Crematorium"
-		if(ACCESS_ARMORY)
-			return "Armory"
-		if(ACCESS_CONSTRUCTION)
-			return "Construction"
-		if(ACCESS_KITCHEN)
-			return "Kitchen"
-		if(ACCESS_HYDROPONICS)
-			return "Hydroponics"
-		if(ACCESS_LIBRARY)
-			return "Library"
-		if(ACCESS_LAWYER)
-			return "Law Office"
-		if(ACCESS_ROBO_CONTROL)
-			return "Robotics Control"
-		if(ACCESS_ROBOTICS)
-			return "Robotics"
-		if(ACCESS_VIROLOGY)
-			return "Virology"
-		if(ACCESS_CMO)
-			return "CMO Office"
-		if(ACCESS_QM)
-			return "Quartermaster"
-		if(ACCESS_SURGERY)
-			return "Surgery"
-		if(ACCESS_THEATRE)
-			return "Theatre"
-		if(ACCESS_RESEARCH)
-			return "Science"
-		if(ACCESS_MINING)
-			return "Mining"
-		if(ACCESS_MAILSORTING)
-			return "Cargo Office"
 		if(ACCESS_VAULT)
-			return "Main Vault"
-		if(ACCESS_MINING_STATION)
-			return "Mining EVA"
-		if(ACCESS_XENOBIOLOGY)
-			return "Xenobiology Lab"
-		if(ACCESS_HOP)
-			return "HoP Office"
-		if(ACCESS_HOS)
-			return "HoS Office"
-		if(ACCESS_CE)
-			return "CE Office"
+			return "Vault"
 		if(ACCESS_RC_ANNOUNCE)
 			return "RC Announcements"
 		if(ACCESS_KEYCARD_AUTH)
 			return "Keycode Auth."
-		if(ACCESS_TCOMSAT)
-			return "Telecommunications"
-		if(ACCESS_GATEWAY)
-			return "Gateway"
-		if(ACCESS_SEC_DOORS)
+		if(ACCESS_PERSONAL_LOCKERS)
+			return "Personal Lockers"
+		if(ACCESS_CHANGE_IDS)
+			return "ID Console"
+		if(ACCESS_CAPTAIN)
+			return "Captain's Quarters"
+		if(ACCESS_SECURITY)
+			return "Security General"
+		if(ACCESS_SEC_BASIC)
+			return "Security Basic"
+		if(ACCESS_BRIG)
 			return "Brig"
-		if(ACCESS_MINERAL_STOREROOM)
-			return "Mineral Storage"
-		if(ACCESS_MINISAT)
-			return "AI Satellite"
-		if(ACCESS_WEAPONS)
-			return "Weapon Permit"
-		if(ACCESS_NETWORK)
-			return "Network Access"
+		if(ACCESS_ARMORY)
+			return "Armory"
+		if(ACCESS_DETECTIVE)
+			return "Detective's Office"
+		if(ACCESS_BRIG_PHYS) // Yog
+			return "Brig Infirmary"
+		if(ACCESS_WEAPONS_PERMIT)
+			return "Weapons Permit"
+		if(ACCESS_HOS)
+			return "HoS Office"
+		if(ACCESS_ENGINEERING)
+			return "Engineering General"
+		if(ACCESS_ATMOSPHERICS)
+			return "Atmospherics"
+		if(ACCESS_MAINT_TUNNELS)
+			return "Maintenance Tunnels"
+		if(ACCESS_EXTERNAL_AIRLOCKS)
+			return "External Airlocks"
+		if(ACCESS_ENGINE_EQUIP)
+			return "Power & Engineering Equipment"
+		if(ACCESS_CONSTRUCTION)
+			return "Construction"
+		if(ACCESS_TECH_STORAGE)
+			return "Tech Storage"
+		if(ACCESS_SECURE_TECH)
+			return "Secure Tech Storage"
+		if(ACCESS_TCOMMS)
+			return "Telecommunications"
+		if(ACCESS_TCOMMS_ADMIN) // Yog
+			return "Telecomms. Systems Admin"
+		if(ACCESS_AUX_BASE)
+			return "Auxiliary Base"
+		if(ACCESS_CE)
+			return "CE Office"
+		if(ACCESS_MEDICAL)
+			return "Medbay General"
+		if(ACCESS_SURGERY)
+			return "Surgery"
+		if(ACCESS_PARAMEDIC) // Yog
+			return "Paramedic Staging"
+		if(ACCESS_MORGUE)
+			return "Morgue"
+		if(ACCESS_CHEMISTRY)
+			return "Chemistry Lab"
 		if(ACCESS_CLONING)
-			return "Cloning Room"
-		if(ACCESS_MECH_MINING)
-			return "Mining Mech Access"
+			return "Cloning Lab"
+		if(ACCESS_VIROLOGY)
+			return "Virology Lab"
+		if(ACCESS_PSYCHOLOGY)
+			return "Psychiatrist's Office"
+		if(ACCESS_CMO)
+			return "CMO Office"
+		if(ACCESS_CARGO)
+			return "Cargo General"
+		if(ACCESS_CARGO_BAY)
+			return "Cargo Bay"
+		if(ACCESS_MINING)
+			return "Mining"
+		if(ACCESS_MINING_STATION)
+			return "Mining Station"
+		if(ACCESS_QM)
+			return "QM Office"
+		if(ACCESS_SCIENCE)
+			return "Science General"
+		if(ACCESS_RESEARCH)
+			return "Research Console"
+		if(ACCESS_TOXINS)
+			return "Toxins Lab"
+		if(ACCESS_TOXINS_STORAGE)
+			return "Toxins Storage"
+		if(ACCESS_EXPERIMENTATION) // Yog
+			return "Experimentation Lab"
+		if(ACCESS_GENETICS)
+			return "Genetics Lab"
+		if(ACCESS_ROBOTICS)
+			return "Robotics Lab"
+		if(ACCESS_ROBO_CONTROL)
+			return "Robotics Bot Control"
+		if(ACCESS_XENOBIOLOGY)
+			return "Xenobiology Lab"
+		if(ACCESS_RND_SERVERS) // Yog
+			return "R&D Server Room"
+		if(ACCESS_RD)
+			return "RD Office"
+		if(ACCESS_SERVICE)
+			return "Service General"
+		if(ACCESS_THEATRE)
+			return "Theatre Backstage"
+		if(ACCESS_CHAPEL_OFFICE)
+			return "Chapel Office"
+		if(ACCESS_CREMATORIUM)
+			return "Crematorium"
+		if(ACCESS_LIBRARY)
+			return "Library"
+		if(ACCESS_BAR)
+			return "Bar"
+		if(ACCESS_KITCHEN)
+			return "Kitchen"
+		if(ACCESS_HYDROPONICS)
+			return "Hydroponics"
+		if(ACCESS_JANITOR)
+			return "Janitor's Closet"
+		if(ACCESS_LAWYER)
+			return "Law Office"
+		if(ACCESS_CLERK) // Yog
+			return "Gift Shop"
+		if(ACCESS_HOP)
+			return "HoP Office"
+		if(ACCESS_MECH_SECURITY)
+			return "Security Mech Access"	
+		if(ACCESS_MECH_ENGINE)
+			return "Engineering Mech Access"			
 		if(ACCESS_MECH_MEDICAL)
 			return "Medical Mech Access"
-		if(ACCESS_MECH_SECURITY)
-			return "Security Mech Access"
+		if(ACCESS_MECH_MINING)
+			return "Mining Mech Access"
 		if(ACCESS_MECH_SCIENCE)
 			return "Science Mech Access"
-		if(ACCESS_MECH_ENGINE)
-			return "Engineering Mech Access"
-		// yogs start - Yog jobs
-		if(ACCESS_PARAMEDIC)
-			return "Paramedic"
-		if(ACCESS_TCOM_ADMIN)
-			return "Tcomms Admin"
-		if(ACCESS_PSYCH)
-			return "Psychiatrist's Office"
-		if(ACCESS_MANUFACTURING)
-			return "Clerk"
-		if(ACCESS_BRIG_PHYS)
-			return "Brig Physician"
-		if(ACCESS_MECH_FREEMINER)
-			return "Freeminer Mech"
-		if(ACCESS_FREEMINER)
-			return "Freeminer"
-		if(ACCESS_FREEMINER_ENGINEER)
-			return "Freeminer Engineer"
-		if(ACCESS_FREEMINER_CAPTAIN)
-			return "Freeminer Captain"
-		if(ACCESS_SERVHALL)
-			return "Service Hall"
-		// yogs end
 
 /// Get descriptions for centcom accesses
 /proc/get_centcom_access_desc(A)

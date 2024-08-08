@@ -33,7 +33,7 @@ This is how the base program is setup. the rest is mostly tgui stuff. I'll use t
 
 	/// This is access required to run the program itself. ONLY SET THIS FOR
 	/// SUPER SECURE SHIT. This also acts as transfer_access as well.
-	required_access = access_network
+	required_access = access_engine_equip
 
 	/// This is the access needed to download from ntnet or host on the ptp
 	/// program. This is what you want to use most of the time.

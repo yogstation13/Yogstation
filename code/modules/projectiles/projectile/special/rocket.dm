@@ -54,7 +54,8 @@
 	/turf/closed,
 	/obj/mecha,
 	/obj/machinery/door/,
-	/obj/machinery/door/poddoor/shutters
+	/obj/machinery/door/poddoor/shutters,
+	/obj/structure/window
 	)
 
 /obj/item/broken_missile

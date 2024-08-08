@@ -379,6 +379,7 @@
 	operating = FALSE
 	air_update_turf()
 	update_freelook_sight()
+	SEND_SIGNAL(src, COMSIG_ATOM_DOOR_OPEN)
 	if(autoclose)
 		spawn(autoclose)
 			close()
@@ -399,6 +400,19 @@
 	operating = TRUE
 
 	do_animate("closing")
+
+	var/turf/open/open_turf = get_turf(src)
+	if(open_turf.liquids)
+		var/datum/liquid_group/turfs_group = open_turf.liquids.liquid_group
+		turfs_group.remove_from_group(open_turf)
+		qdel(open_turf.liquids)
+		turfs_group.try_split(open_turf)
+		for(var/dir in GLOB.cardinals)
+			var/turf/open/direction_turf = get_step(open_turf, dir)
+			if(!isopenturf(direction_turf) || !direction_turf.liquids)
+				continue
+			turfs_group.check_edges(direction_turf)
+
 	layer = closingLayer
 	if(air_tight)
 		density = TRUE
@@ -476,6 +490,14 @@
 
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'
+
+/obj/machinery/door/morgue/curator
+	name = "Private Study"
+	req_access = list(ACCESS_LIBRARY)
+
+/obj/machinery/door/morgue/chaplain
+	name = "Confession Booth (Chaplain)"
+	req_access = list(ACCESS_CHAPEL_OFFICE)
 
 /obj/machinery/door/get_dumping_location(obj/item/storage/source,mob/user)
 	return null

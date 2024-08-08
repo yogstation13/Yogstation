@@ -14,13 +14,13 @@
 /area/engine/engineering)
 "ae" = (
 /obj/machinery/door/airlock/engineering/glass{
-	name = "Supermatter Engine Room";
-	req_access_txt = "10"
+	name = "Supermatter Engine Room"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "af" = (
@@ -196,7 +196,7 @@
 	id = "engsm";
 	name = "Radiation Shutters Control";
 	pixel_y = -24;
-	req_access_txt = "10"
+	req_access = list("engineering")
 	},
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
 	dir = 1
@@ -301,14 +301,14 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/engineering/glass/critical{
 	heat_proof = 1;
-	name = "Supermatter Chamber";
-	req_access_txt = "10"
+	name = "Supermatter Chamber"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "bj" = (
@@ -424,13 +424,13 @@
 /area/engine/engineering)
 "bA" = (
 /obj/machinery/door/airlock/engineering/glass{
-	name = "Supermatter Engine Room";
-	req_access_txt = "10"
+	name = "Supermatter Engine Room"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "bD" = (
@@ -466,12 +466,12 @@
 "bH" = (
 /obj/machinery/door/airlock/engineering/glass/critical{
 	heat_proof = 1;
-	name = "Supermatter Chamber";
-	req_access_txt = "10"
+	name = "Supermatter Chamber"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "bI" = (
@@ -1462,10 +1462,10 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/external{
-	name = "Engineering External Access";
-	req_access_txt = "10;13"
+	name = "Engineering External Access"
 	},
 /obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "kP" = (
@@ -1485,11 +1485,11 @@
 "la" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
-	name = "Engineering External Access";
-	req_access_txt = "10;13"
+	name = "Engineering External Access"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "li" = (
@@ -1630,8 +1630,7 @@
 /area/engine/engineering)
 "wi" = (
 /obj/machinery/door/airlock/engineering/glass{
-	name = "Supermatter Engine Room";
-	req_access_txt = "10"
+	name = "Supermatter Engine Room"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -1648,6 +1647,7 @@
 /obj/structure/cable/orange{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "wn" = (
@@ -1771,9 +1771,9 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/engineering{
-	name = "AI Satellite Access";
-	req_access_txt = "10"
+	name = "AI Satellite Access"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "Fa" = (
@@ -1856,8 +1856,7 @@
 /area/engine/engineering)
 "JV" = (
 /obj/machinery/door/airlock/engineering/glass{
-	name = "Supermatter Engine Room";
-	req_access_txt = "10"
+	name = "Supermatter Engine Room"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -1874,12 +1873,12 @@
 /obj/structure/cable/orange{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "JY" = (
 /obj/machinery/door/airlock/engineering/glass{
-	name = "Laser Room";
-	req_access_txt = "10"
+	name = "Laser Room"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/firedoor/border_only{
@@ -1889,6 +1888,7 @@
 /obj/structure/cable/orange{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Kg" = (
@@ -1974,8 +1974,7 @@
 /area/engine/engineering)
 "Pt" = (
 /obj/machinery/door/airlock/engineering/glass{
-	name = "Laser Room";
-	req_access_txt = "10"
+	name = "Laser Room"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1988,6 +1987,7 @@
 /obj/structure/cable/orange{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Pu" = (

@@ -922,7 +922,7 @@
 		M.visible_message(span_warning("[M]'s body shivers slightly, maybe the dose wasn't enough..."))
 		return ..()
 	if(M.stat == DEAD)
-		if(M.suiciding || M.hellbound || ismegafauna(M)) //they are never coming back
+		if(M.suiciding || M.hellbound || ismegafauna(M) || isjunglealpha(M)) //they are never coming back
 			M.visible_message(span_warning("[M]'s body does not react..."))
 			return
 		if(iscarbon(M) && (M.getBruteLoss() + M.getFireLoss() >= 100 || HAS_TRAIT(M, TRAIT_HUSK))) //body is too damaged to be revived
@@ -935,20 +935,7 @@
 			M.do_jitter_animation(10)
 			addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), 10), 40) //jitter immediately, then again after 4 and 8 seconds
 			addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), 10), 80)
-			sleep(10 SECONDS) //so the ghost has time to re-enter
-			if(iscarbon(M))
-				var/mob/living/carbon/C = M
-				for(var/organ in C.internal_organs)
-					var/obj/item/organ/O = organ
-					O.setOrganDamage(0)
-			M.adjustBruteLoss(-100)
-			M.adjustFireLoss(-100)
-			M.adjustOxyLoss(-200, 0)
-			M.adjustToxLoss(-200, 0, TRUE)
-			M.updatehealth()
-			if(M.revive())
-				M.emote("gasp")
-				log_combat(M, M, "revived", src)
+			addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living, do_strange_reagent_revival)), 10 SECONDS)
 	..()
 
 /datum/reagent/medicine/strange_reagent/on_mob_life(mob/living/carbon/M)

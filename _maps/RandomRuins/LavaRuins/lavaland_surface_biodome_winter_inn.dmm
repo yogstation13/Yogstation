@@ -568,8 +568,7 @@
 /area/ruin/powered/inn)
 "Kt" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
-	req_access = null;
-	req_access_txt = "0"
+	req_access = null
 	},
 /obj/item/storage/box/donkpockets,
 /obj/item/reagent_containers/food/condiment/enzyme,
