@@ -29,7 +29,7 @@ Assistant
 		/obj/item/crowbar/large = 1
 	)
 
-	alt_titles = list("Intern", "Apprentice", "Subordinate", "Temporary Worker", "Associate")
+	alt_titles = list("Intern", "Apprentice", "Subordinate", "Temporary Worker", "Associate", "Fisher")
 
 /datum/job/assistant/get_access()
 	. = ..()

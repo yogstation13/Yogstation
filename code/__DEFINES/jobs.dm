@@ -4,6 +4,7 @@
 #define JOB_UNAVAILABLE_PLAYTIME 3
 #define JOB_UNAVAILABLE_ACCOUNTAGE 4
 #define JOB_UNAVAILABLE_SLOTFULL 5
+#define JOB_UNAVAILABLE_TOURIST 6
 
 /// Used when the `get_job_unavailable_error_message` proc can't make sense of a given code.
 #define GENERIC_JOB_UNAVAILABLE_ERROR "Error: Unknown job availability."
