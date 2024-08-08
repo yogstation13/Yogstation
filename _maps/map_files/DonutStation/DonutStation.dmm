@@ -40341,10 +40341,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central)
-"qKv" = (
-/obj/effect/spawner/backrooms_portal,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "qKy" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -97462,7 +97458,7 @@ ylr
 ylr
 ylr
 wBM
-qKv
+dcG
 rjk
 fWP
 fQK
