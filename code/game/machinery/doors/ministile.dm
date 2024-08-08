@@ -15,8 +15,8 @@
 	layer = OPEN_DOOR_LAYER
 
 /obj/machinery/ministile/hop
-	name = "HOP line turnstile"
-	req_one_access = list(ACCESS_HEADS)
+	name = "HoP line turnstile"
+	req_access = list(ACCESS_COMMAND)
 	
 /obj/machinery/ministile/Initialize(mapload)
 	. = ..()

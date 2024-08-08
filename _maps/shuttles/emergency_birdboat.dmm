@@ -265,24 +265,24 @@
 /area/shuttle/escape)
 "aL" = (
 /obj/machinery/door/airlock/command/glass{
-	name = "bridge door";
-	req_access_txt = "19"
+	name = "bridge door"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/access/all/command/general,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "aM" = (
 /obj/machinery/door/airlock/security/glass{
-	name = "security airlock";
-	req_access_txt = "63"
+	name = "security airlock"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "aN" = (
@@ -327,8 +327,7 @@
 /area/shuttle/escape)
 "aU" = (
 /obj/machinery/door/airlock/command/glass{
-	name = "bridge door";
-	req_access_txt = "19"
+	name = "bridge door"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -336,6 +335,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/command/general,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "aV" = (

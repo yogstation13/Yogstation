@@ -58,7 +58,7 @@
 #define MANIFEST_ERROR_ITEM			4
 
 #define BE_CLOSE TRUE		//in the case of a silicon, to select if they need to be next to the atom
-#define NO_DEXTERY TRUE	//if other mobs (monkeys, aliens, etc) can use this
+#define NO_DEXTERITY TRUE	//if other mobs (monkeys, aliens, etc) can use this
 #define NO_TK TRUE
 //used by canUseTopic()
 

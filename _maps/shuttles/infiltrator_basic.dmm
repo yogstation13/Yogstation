@@ -110,7 +110,7 @@
 	name = "Cockpit View Control";
 	pixel_x = 32;
 	pixel_y = 32;
-	req_access_txt = "150"
+	req_access = list("syndicate")
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
@@ -155,8 +155,7 @@
 /area/shuttle/syndicate/bridge)
 "av" = (
 /obj/machinery/door/airlock/hatch{
-	name = "Cockpit";
-	req_access_txt = "150"
+	name = "Cockpit"
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -172,6 +171,7 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
 "aw" = (
@@ -400,8 +400,7 @@
 /area/shuttle/syndicate/eva)
 "aV" = (
 /obj/machinery/door/airlock/external{
-	name = "Ready Room";
-	req_access_txt = "150"
+	name = "Ready Room"
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -417,12 +416,12 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/hallway)
 "aW" = (
 /obj/machinery/door/airlock/external{
-	name = "E.V.A. Gear Storage";
-	req_access_txt = "150"
+	name = "E.V.A. Gear Storage"
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -440,6 +439,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/eva)
 "aX" = (
@@ -462,7 +462,7 @@
 	id = "smindicate";
 	name = "external door control";
 	pixel_y = 26;
-	req_access_txt = "150"
+	req_access = list("syndicate")
 	},
 /obj/docking_port/mobile{
 	dheight = 1;
@@ -489,9 +489,7 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/eva)
 "ba" = (
-/obj/machinery/door/airlock/external{
-	req_access_txt = "150"
-	},
+/obj/machinery/door/airlock/external,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -508,6 +506,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
 "bb" = (
@@ -564,9 +563,7 @@
 /turf/closed/wall/r_wall/syndicate,
 /area/shuttle/syndicate/medical)
 "bl" = (
-/obj/machinery/door/airlock/hatch{
-	req_access_txt = "150"
-	},
+/obj/machinery/door/airlock/hatch,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -576,6 +573,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/medical)
 "bm" = (
@@ -595,9 +593,7 @@
 /turf/open/floor/circuit/red,
 /area/shuttle/syndicate/hallway)
 "bp" = (
-/obj/machinery/door/airlock/hatch{
-	req_access_txt = "150"
-	},
+/obj/machinery/door/airlock/hatch,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -607,6 +603,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/armory)
 "bq" = (
@@ -936,12 +933,14 @@
 "bZ" = (
 /obj/machinery/door/window{
 	dir = 1;
-	name = "Surgery";
-	req_access_txt = "150"
+	name = "Surgery"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/medical)
@@ -1040,12 +1039,14 @@
 "ch" = (
 /obj/machinery/door/window{
 	dir = 1;
-	name = "Technological Storage";
-	req_access_txt = "150"
+	name = "Technological Storage"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/armory)
@@ -1346,8 +1347,7 @@
 	},
 /obj/machinery/door/window/brigdoor{
 	dir = 1;
-	name = "Mass Driver";
-	req_access_txt = "150"
+	name = "Mass Driver"
 	},
 /obj/machinery/computer/pod/old{
 	density = 0;
@@ -1355,8 +1355,11 @@
 	icon_state = "airlock_control_standby";
 	id = "syndiedriver";
 	name = "Mass Driver Controller";
-	pixel_x = -41;
-	pixel_y = 8
+	pixel_x = -24;
+	req_access = list("syndicate")
+	},
+/obj/effect/mapping_helpers/windoor/access/all/syndicate/general{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
