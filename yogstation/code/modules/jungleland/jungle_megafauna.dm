@@ -39,6 +39,8 @@
 	dodge_prob = 0
 	loot = list(/obj/item/clothing/head/yogs/tar_king_crown = 1, /obj/item/gem/tarstone = 1, /obj/item/demon_core = 1)
 	crusher_loot = list(/obj/item/crusher_trophy/jungleland/aspect_of_tar = 1,/obj/item/clothing/head/yogs/tar_king_crown = 1, /obj/item/gem/tarstone = 1, /obj/item/demon_core = 1)
+	music_component = /datum/component/music_player/battle
+	music_path = /datum/music/sourced/battle/tar_king
 	var/list/attack_adjustments = list()
 	var/last_done_attack = 0
 	var/list/attack_stack = list()
