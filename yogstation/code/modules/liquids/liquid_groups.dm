@@ -952,7 +952,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		new_turf.liquids.alpha = group_alpha
 		check_edges(new_turf)
 
-		if(expected_turf_height >= LIQUID_WAIST_LEVEL_HEIGHT) //liquid is deep enough, do a splash
+		if(expected_turf_height >= LIQUID_ANKLES_LEVEL_HEIGHT) //liquid is deep enough, do a splash
 			var/obj/splashy = new /obj/effect/temp_visual/liquid_splash(new_turf)
 			if(!QDELETED(new_turf.liquids?.liquid_group))
 				splashy.color = new_turf.liquids.liquid_group.group_color
