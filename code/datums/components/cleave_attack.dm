@@ -93,6 +93,9 @@
 /datum/component/cleave_attack/proc/on_afterattack(obj/item/item, atom/target, mob/living/user, proximity_flag, click_parameters)
 	if(proximity_flag || !user.combat_mode)
 		return // don't sweep on precise hits or non-harmful intents
+	var/list/modifiers = params2list(click_parameters)
+	if(modifiers[RIGHT_CLICK]) // might be trying to block
+		return
 	perform_sweep(item, target, user, click_parameters)
 
 /datum/component/cleave_attack/proc/perform_sweep(obj/item/item, atom/target, mob/living/user, params)

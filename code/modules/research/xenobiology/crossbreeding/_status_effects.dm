@@ -701,17 +701,17 @@ datum/status_effect/stabilized/blue/on_remove()
 /datum/status_effect/stabilized/sepia/on_apply()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
+		owner.next_move_modifier *= 0.85
+		H.physiology.do_after_speed *= 0.85
 		H.physiology.stamina_mod *= 1.5
 		H.physiology.stun_mod *= 1.5
 	return ..()
 
-/datum/status_effect/stabilized/sepia/tick()
-	owner.add_movespeed_modifier(MOVESPEED_ID_SEPIA, override = TRUE, update=TRUE, priority=100, multiplicative_slowdown= rand(-1, 1), blacklisted_movetypes=(FLYING|FLOATING))
-
 /datum/status_effect/stabilized/sepia/on_remove()
-	owner.remove_movespeed_modifier(MOVESPEED_ID_SEPIA)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
+		owner.next_move_modifier /= 0.85
+		H.physiology.do_after_speed /= 0.85
 		H.physiology.stamina_mod /= 1.5
 		H.physiology.stun_mod /= 1.5
 	return ..()
@@ -730,14 +730,14 @@ datum/status_effect/stabilized/blue/on_remove()
 		C.real_name = O.real_name
 		O.dna.transfer_identity(C)
 		C.updateappearance(mutcolor_update=1)
-		RegisterSignal(owner, COMSIG_GLOB_MOB_DEATH, PROC_REF(dead))
+		RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(dead))
 	return ..()
 
 /datum/status_effect/stabilized/cerulean/proc/dead()
-		addtimer(CALLBACK(src, PROC_REF(transfer)), 4, TIMER_UNIQUE) //0.4  seconds delay to account for delayed dust/gib effects, shouldn't affect gameplay
+	addtimer(CALLBACK(src, PROC_REF(transfer)), 4, TIMER_UNIQUE) //0.4  seconds delay to account for delayed dust/gib effects, shouldn't affect gameplay
 
 /datum/status_effect/stabilized/cerulean/proc/transfer()
-	UnregisterSignal(owner, COMSIG_GLOB_MOB_DEATH)
+	UnregisterSignal(owner, COMSIG_LIVING_DEATH)
 	if(!QDELETED(owner) && owner.stat == DEAD)
 		if(clone && clone.stat != DEAD)
 			owner.visible_message(span_warning("[owner] blazes with brilliant light, [linked_extract] whisking [owner.p_their()] soul away."),
@@ -745,10 +745,9 @@ datum/status_effect/stabilized/blue/on_remove()
 			if(owner.mind)
 				owner.mind.transfer_to(clone)
 			clone = null
-			qdel(linked_extract)
-		if(!clone || clone.stat == DEAD)
+		else if(!clone || clone.stat == DEAD)
 			to_chat(owner, span_notice("[linked_extract] desperately tries to move your soul to a living body, but can't find one!"))
-			qdel(linked_extract)
+	qdel(linked_extract)
 
 /datum/status_effect/stabilized/cerulean/on_remove()
 	if(clone)

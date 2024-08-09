@@ -206,7 +206,7 @@
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "coffee"
-	list_reagents = list(/datum/reagent/consumable/coffee = 30)
+	list_reagents = list(/datum/reagent/consumable/coffee/hot = 30)
 	resistance_flags = FREEZE_PROOF
 	isGlass = FALSE
 	foodtype = BREAKFAST
@@ -252,7 +252,7 @@
 /obj/item/reagent_containers/food/drinks/mug/tea
 	name = "Duke Purple tea"
 	desc = "An insult to Duke Purple is an insult to the Space Queen! Any proper gentleman will fight you, if you sully this tea."
-	list_reagents = list(/datum/reagent/consumable/tea = 30)
+	list_reagents = list(/datum/reagent/consumable/tea/hot = 30)
 
 /obj/item/reagent_containers/food/drinks/mug/coco
 	name = "Dutch hot coco"
@@ -493,7 +493,7 @@
 	desc = "A soft drink made from roots. Non-Alcoholic."
 	custom_price = 10
 	icon_state = "Rootbeer_Mug"
-	list_reagents = list(/datum/reagent/consumable/rootbeer = 30)
+	list_reagents = list(/datum/reagent/consumable/space_cola/rootbeer = 30)
 	foodtype = SUGAR
 
 /obj/item/reagent_containers/food/drinks/soda_cans/rootbeer/Initialize(mapload)
@@ -551,7 +551,7 @@
 	name = "Space Mountain Wind"
 	desc = "Blows right through you like a space wind."
 	icon_state = "space_mountain_wind"
-	list_reagents = list(/datum/reagent/consumable/spacemountainwind = 30)
+	list_reagents = list(/datum/reagent/consumable/space_cola/spacemountainwind = 30)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/thirteenloko
@@ -565,7 +565,7 @@
 	name = "Dr. Gibb"
 	desc = "A delicious mixture of 42 different flavors."
 	icon_state = "dr_gibb"
-	list_reagents = list(/datum/reagent/consumable/dr_gibb = 30)
+	list_reagents = list(/datum/reagent/consumable/space_cola/dr_gibb = 30)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/pwr_game
@@ -585,14 +585,14 @@
 	name = "Grey Bull"
 	desc = "Grey Bull, it gives you gloves!"
 	icon_state = "energy_drink"
-	list_reagents = list(/datum/reagent/consumable/grey_bull = 20)
+	list_reagents = list(/datum/reagent/consumable/energy_drink/grey_bull = 20)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy
 	name = "Monkey Energy"
 	desc = "Unleash the ape!"
 	icon_state = "monkey_energy"
-	list_reagents = list(/datum/reagent/consumable/monkey_energy = 50)
+	list_reagents = list(/datum/reagent/consumable/energy_drink/monkey_energy = 50)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry
@@ -605,7 +605,7 @@
 	name = "canned air"
 	desc = "There is no air shortage. Do not drink."
 	icon_state = "air"
-	list_reagents = list(/datum/reagent/nitrogen = 24, /datum/reagent/oxygen = 6)
+	list_reagents = list(/datum/reagent/gas/nitrogen = 24, /datum/reagent/gas/oxygen = 6)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/buzz_fuzz
 	name = "Buzz Fuzz"

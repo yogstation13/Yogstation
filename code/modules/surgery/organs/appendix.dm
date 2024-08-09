@@ -13,16 +13,16 @@
 /obj/item/organ/appendix/update_name(updates=ALL)
 	. = ..()
 	if(inflamed)
-		name = "inflamed appendix"
+		name = "inflamed [initial(name)]"
 	else
-		name = "appendix"
+		name = initial(name)
 
 /obj/item/organ/appendix/update_icon_state()
 	. = ..()
 	if(inflamed)
-		icon_state = "appendixinflamed"
+		icon_state = "[initial(icon_state)]inflamed"
 	else
-		icon_state = "appendix"
+		icon_state = initial(icon_state)
 
 /obj/item/organ/appendix/on_life()
 	..()

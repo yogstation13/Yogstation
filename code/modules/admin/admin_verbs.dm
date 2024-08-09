@@ -132,7 +132,9 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/admin_away,
 	/client/proc/centcom_podlauncher,/*Open a window to launch a Supplypod and configure it or it's contents*/
 	/client/proc/load_json_admin_event,
-	/client/proc/event_role_manager
+	/client/proc/event_role_manager,
+	/client/proc/spawn_liquid,
+	/client/proc/remove_liquid
 	))
 GLOBAL_PROTECT(admin_verbs_fun)
 GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character, /datum/admins/proc/beaker_panel))
@@ -628,7 +630,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	if(robeless)
 		new_spell.spell_requirements &= ~SPELL_REQUIRES_WIZARD_GARB
-		new_spell.psi_cost = 0 //breaks balance, but allows non darkspawns to use darkspawn abilities
+		new_spell.bypass_cost = TRUE //breaks balance, but allows non antags to use antag specific abilities
 
 	new_spell.Grant(spell_recipient)
 

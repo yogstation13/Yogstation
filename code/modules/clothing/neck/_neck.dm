@@ -16,6 +16,8 @@
 		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedmask")
 	if(HAS_BLOOD_DNA(src))
 		var/mutable_appearance/bloody_mask = mutable_appearance('icons/effects/blood.dmi', "maskblood")
+		if(species_fitted && icon_exists(bloody_mask.icon, "maskblood_[species_fitted]"))
+			bloody_mask.icon_state = "maskblood_[species_fitted]"
 		bloody_mask.color = get_blood_dna_color(return_blood_DNA())
 		. += bloody_mask
 
@@ -183,7 +185,7 @@
 	.= ..()
 	AddComponent(/datum/component/squeak, list('sound/effects/collarbell1.ogg'=1,'sound/effects/collarbell2.ogg'=1), 50, 100, 2)
 
-/obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, mob/equipper, slot, disable_warning = 0)
+/obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
 	if(ishuman(M))
 		return FALSE
 	return ..()

@@ -17,7 +17,7 @@
 /obj/machinery/turnstile/brig
 	name = "Brig turnstile"
 	//Seccies and brig phys may always pass, either way.
-	req_one_access = list(ACCESS_SEC_DOORS)
+	req_access = list(ACCESS_SEC_BASIC)
 	max_integrity = 400 /// Made of damn good steel
 	damage_deflection = 21 /// Same as airlocks!
 

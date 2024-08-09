@@ -12,6 +12,11 @@
 	race = /datum/species/pod/ivymen
 	mutationtext = span_danger("The pain subsides. You feel... thorny.")
 
+/datum/reagent/mutationtoxin/vox
+	name = "Vox Mutation Toxin"
+	race = /datum/species/vox
+	mutationtext = span_danger("The pain subsides. You feel... beaked.")
+
 /datum/reagent/cluwnification
 	name = "Cluwne Tears"
 	description = "Tears from thousands of cluwnes compressed into a dangerous cluwnification virus."

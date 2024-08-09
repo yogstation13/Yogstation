@@ -41,7 +41,7 @@
 /obj/item/gun/magic/darkspawn/proc/on_projectile_hit(datum/source, atom/movable/firer, atom/target, angle)
 	if(isliving(target))
 		var/mob/living/M = target
-		if(is_darkspawn_or_thrall(M))
+		if(is_team_darkspawn(M))
 			if(effect_flags & STAFF_UPGRADE_HEAL)
 				M.heal_ordered_damage(30, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
 			if(effect_flags & STAFF_UPGRADE_EXTINGUISH)
@@ -71,18 +71,14 @@
 		psi_cost *= 0.5
 	if(isliving(src.loc))
 		var/mob/living/dude = src.loc
-		if(isdarkspawn(dude))
-			var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(dude)
-			if(darkspawn && !darkspawn.has_psi(psi_cost))
-				return FALSE
+		if(!(dude.mind && SEND_SIGNAL(dude.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, psi_cost)))
+			return FALSE
 	return ..()
 
 /obj/item/gun/magic/darkspawn/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 	. = ..()
-	if(. && isdarkspawn(user))
-		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
-		if(darkspawn)
-			darkspawn.use_psi(psi_cost)
+	if(. && user.mind)
+		SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = psi_cost))
 
 /obj/item/gun/magic/darkspawn/process_chamber()
 	. = ..()

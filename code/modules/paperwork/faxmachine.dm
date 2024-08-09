@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	icon = 'icons/obj/library.dmi'
 	icon_state = "fax"
 	insert_anim = "faxsend"
-	req_one_access = list(ACCESS_LAWYER, ACCESS_HEADS, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS, ACCESS_QM)
+	req_one_access = list(ACCESS_LAWYER, ACCESS_COMMAND, ACCESS_ARMORY, ACCESS_DETECTIVE, ACCESS_QM)
 	use_power = 1
 	idle_power_usage = 30
 	active_power_usage = 200

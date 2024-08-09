@@ -44,12 +44,12 @@
 		/datum/reagent/copper,
 		/datum/reagent/consumable/ethanol,
 		/datum/reagent/fluorine,
-		/datum/reagent/hydrogen,
+		/datum/reagent/gas/hydrogen,
 		/datum/reagent/iodine,
 		/datum/reagent/lithium,
 		/datum/reagent/mercury,
-		/datum/reagent/nitrogen,
-		/datum/reagent/oxygen,
+		/datum/reagent/gas/nitrogen,
+		/datum/reagent/gas/oxygen,
 		/datum/reagent/phosphorus,
 		/datum/reagent/potassium,
 		/datum/reagent/silicon,
@@ -77,6 +77,7 @@
 		/datum/reagent/diethylamine,
 		/datum/reagent/saltpetre,
 		/datum/reagent/medicine/charcoal
+		
 	)
 	var/list/emagged_reagents = list(
 		/datum/reagent/toxin/carpotoxin,
@@ -84,7 +85,8 @@
 		/datum/reagent/medicine/morphine,
 		/datum/reagent/drug/space_drugs,
 		/datum/reagent/toxin,
-		/datum/reagent/uranium
+		/datum/reagent/uranium,
+		/datum/reagent/lemoline
 	)
 
 	var/list/saved_recipes = list()
@@ -514,12 +516,12 @@
 	dispensable_reagents = list(
 		/datum/reagent/water,
 		/datum/reagent/consumable/ice,
-		/datum/reagent/consumable/coffee,
+		/datum/reagent/consumable/coffee/hot,
 		/datum/reagent/consumable/cream,
-		/datum/reagent/consumable/tea,
-		/datum/reagent/consumable/icetea,
+		/datum/reagent/consumable/tea/hot,
+		/datum/reagent/consumable/tea/cold,
 		/datum/reagent/consumable/space_cola,
-		/datum/reagent/consumable/rootbeer,
+		/datum/reagent/consumable/space_cola/rootbeer,
 		/datum/reagent/consumable/tonic,
 		/datum/reagent/consumable/sodawater,
 		/datum/reagent/consumable/lemon_lime,
@@ -539,8 +541,8 @@
 	)
 	t3_upgrade_reagents = list(
 		/datum/reagent/consumable/sol_dry,
-		/datum/reagent/consumable/spacemountainwind,
-		/datum/reagent/consumable/dr_gibb,
+		/datum/reagent/consumable/space_cola/spacemountainwind,
+		/datum/reagent/consumable/space_cola/dr_gibb,
 		/datum/reagent/consumable/space_up,
 		/datum/reagent/consumable/pwr_game
 	)
@@ -715,13 +717,13 @@
 		/datum/reagent/copper,
 		/datum/reagent/consumable/ethanol,
 		/datum/reagent/fluorine,
-		/datum/reagent/hydrogen,
+		/datum/reagent/gas/hydrogen,
 		/datum/reagent/iodine,
 		/datum/reagent/iron,
 		/datum/reagent/lithium,
 		/datum/reagent/mercury,
-		/datum/reagent/nitrogen,
-		/datum/reagent/oxygen,
+		/datum/reagent/gas/nitrogen,
+		/datum/reagent/gas/oxygen,
 		/datum/reagent/phosphorus,
 		/datum/reagent/potassium,
 		/datum/reagent/uranium/radium,

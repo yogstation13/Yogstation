@@ -5,8 +5,8 @@
 	config_tag = "nuclear"
 	report_type = "nuclear"
 	false_report_weight = 10
-	required_players = 35 // 35 players - 3 players to be the nuke ops = 32 players remaining
-	required_enemies = 3
+	required_players = 20 // scales with player count, 1 operative for every 10 players, rounded down
+	required_enemies = 2 // needs more than one person to make a team
 	recommended_enemies = 5
 	antag_flag = ROLE_OPERATIVE
 	enemy_minimum_age = 14

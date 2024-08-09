@@ -57,7 +57,7 @@
 ////////////////////////////////////////////////////////////////
 /datum/blood_type/lizard
 	name = "L"
-	color = LIGHT_COLOR_BLUEGREEN
+	color = "#f24b2e"
 	compatible_types = list(/datum/blood_type/lizard)
 
 
@@ -78,6 +78,11 @@
 	name = "E"
 	color = "#cbee63" //slightly more yellowy than regular liquid electricity because of the grey scale image used
 	compatible_types = list(/datum/blood_type/electricity)
+
+/datum/blood_type/jelly
+	name = "J"
+	color = COLOR_DARK_MODERATE_LIME_GREEN
+	compatible_types = list(/datum/blood_type/jelly)
 
 ////////////////////////////////////////////////////////////////
 //-----------------Wonky simplemob(?) bloodtypes--------------//

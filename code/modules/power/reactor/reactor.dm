@@ -40,7 +40,7 @@
 	var/next_flicker = 0 //Light flicker timer
 	var/base_power_modifier = REACTOR_POWER_FLAVOURISER
 	var/slagged = FALSE //Is this reactor even usable any more?
-	var/explosion_power = 7 //The explosion strength 
+	var/explosion_power = 7 //The explosion strength
 	//Console statistics.
 	var/last_coolant_temperature = 0
 	var/last_output_temperature = 0
@@ -261,7 +261,7 @@
 			if(prob(25) && L.z == z) //If youre running the reactor cold though, no need to flicker the lights.
 				L.flicker()
 		investigate_log("Reactor overloading at [power]% power", INVESTIGATE_REACTOR)
-	
+
 	// Meltdown this, blowout that, I just wanna grill for god's sake!
 	for(var/atom/movable/I in get_turf(src))
 		if(isliving(I))
@@ -347,7 +347,7 @@
 		// Radiation types: increases radiation
 		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_N2) * NITROGEN_RAD_MOD //An example setup of 50 moles of n2 (for dealing with spent fuel) leaves us with a radioactivity spice multiplier of 3.
 		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_CO2) * CARBON_RAD_MOD
-		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_H2) * HYDROGEN_RAD_MOD 
+		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_H2) * HYDROGEN_RAD_MOD
 		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_TRITIUM) * TRITIUM_RAD_MOD
 		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_ANTINOB) * ANTINOBLIUM_RAD_MOD
 
@@ -435,7 +435,7 @@
 		last_power_produced = power_produced
 		last_power_produced *= (max(0,power)/100) //Aaaand here comes the cap. Hotter reactor => more power.
 		last_power_produced *= base_power_modifier //Finally, we turn it into actual usable numbers.
-	
+
 	// Let's check if they're about to die, and let them know.
 	handle_alerts(delta_time)
 	update_icon()
@@ -506,7 +506,7 @@
 	vessel_integrity += integrity_restoration
 	if(vessel_integrity > initial(vessel_integrity)) //hey you cant go above
 		vessel_integrity = initial(vessel_integrity)
-	
+
 	//Second alert condition: Overpressurized (the more lethal one)
 	if(pressure >= REACTOR_PRESSURE_CRITICAL)
 		alert = TRUE
@@ -565,7 +565,7 @@
 	set_light(10)
 
 	//PANIC
-	
+
 
 //Failure condition 1: Meltdown. Achieved by having heat go over tolerances. This is less devastating because it's easier to achieve.
 //Results: Engineering becomes unusable and your engine irreparable
@@ -980,7 +980,7 @@
 	protected_areas = list(/area/maintenance, /area/ai_monitored/turret_protected/ai_upload, /area/ai_monitored/turret_protected/ai_upload_foyer,
 	/area/ai_monitored/turret_protected/ai, /area/shuttle)
 	end_message = "<span class='notice'>The ash stops falling.</span>"
-	immunity_type = "rad"
+	immunity_type = WEATHER_RAD
 
 /datum/weather/nuclear_fallout/weather_act(mob/living/L)
 	L.rad_act(2000)

@@ -13,7 +13,7 @@
 
 /mob/living/simple_animal/bot/secbot/grievous/toy //A toy version of general beepsky!
 	name = "Genewul Bweepskee"
-	desc = "An adorable looking secbot with four toy swords taped to its arms"
+	desc = "An adorable looking secbot with four toy swords taped to its arms."
 	health = 50
 	maxHealth = 50
 	baton_type = /obj/item/toy/sword

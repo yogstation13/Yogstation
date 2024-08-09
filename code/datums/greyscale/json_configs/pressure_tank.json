@@ -1,0 +1,15 @@
+{
+	"base": [
+		{
+			"type": "icon_state",
+			"icon_state": "base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "stripe",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	]
+}

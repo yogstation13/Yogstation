@@ -12,7 +12,7 @@
 	category = PROGRAM_CATEGORY_EQUIPMENT
 	program_icon_state = "id"
 	extended_desc = "Program for programming employee ID cards to access parts of the station."
-	transfer_access = ACCESS_HEADS
+	transfer_access = ACCESS_COMMAND
 	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_PDA
 	size = 8
 	tgui_id = "NtosCard"
@@ -77,7 +77,7 @@
 	var/list/head_types = list()
 	for(var/access_text in sub_managers)
 		var/list/info = sub_managers[access_text]
-		var/access = text2num(access_text)
+		var/access = access_text
 		if((access in id_card.access) && ((info["region"] in target_dept) || !length(target_dept)))
 			region_access += info["region"]
 			//I don't even know what I'm doing anymore
@@ -227,7 +227,7 @@
 		if("PRG_access")
 			if(!computer || !authenticated)
 				return
-			var/access_type = text2num(params["access_target"])
+			var/access_type = (params["access_target"])
 			if(access_type in (is_centcom ? get_all_centcom_access() : get_all_accesses()))
 				if(access_type in target_id_card.access)
 					target_id_card.access -= access_type
@@ -250,7 +250,7 @@
 		if("PRG_grantregion")
 			if(!computer || !authenticated)
 				return
-			var/region = text2num(params["region"])
+			var/region = (params["region"])
 			if(isnull(region) || (!(region in region_access) && minor))
 				return
 			target_id_card.access |= get_region_accesses(region)
@@ -259,7 +259,7 @@
 		if("PRG_denyregion")
 			if(!computer || !authenticated)
 				return
-			var/region = text2num(params["region"])
+			var/region = (params["region"])
 			if(isnull(region) || (!(region in region_access) && minor))
 				return
 			target_id_card.access -= get_region_accesses(region)

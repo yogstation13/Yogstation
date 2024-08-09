@@ -53,7 +53,6 @@
 	cached_mutable_appearance = mutable_appearance(shield_icon, shield_icon_state)
 	cached_emissive_appearance = emissive_appearance(shield_icon, shield_icon_state, parent)
 
-	RegisterSignal(parent, COMSIG_ITEM_HIT_REACT, PROC_REF(on_hit_react))
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(on_equipped))
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(on_dropped))
 
@@ -61,13 +60,14 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/datum/component/shielded/proc/on_hit_react(datum/source, mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(drain_charge())
-		var/datum/effect_system/spark_spread/s = new
-		s.set_up(2, 1, current_owner)
-		s.start()
-		current_owner.visible_message(span_danger("[current_owner]'s shields deflect [attack_text] in a shower of sparks!"))
-		return COMPONENT_HIT_REACTION_BLOCK
+/datum/component/shielded/proc/on_shield_check(mob/living/carbon/human/owner, atom/movable/hitby, damage = 0, attack_text = "the attack", attack_type = MELEE_ATTACK)
+	if(!drain_charge())
+		return NONE
+	var/datum/effect_system/spark_spread/sparks = new
+	sparks.set_up(2, 1, current_owner)
+	sparks.start()
+	current_owner.visible_message(span_danger("[current_owner]'s shields deflect [attack_text] in a shower of sparks!"))
+	return SHIELD_BLOCK
 
 /datum/component/shielded/proc/drain_charge()
 	if(!shield_active)
@@ -97,13 +97,19 @@
 
 /datum/component/shielded/proc/on_equipped(datum/source, mob/equipper, slot)
 	current_owner = equipper
-	shield_active = (target_slot == slot)
-	RegisterSignal(current_owner, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_shield_overlay))
-	current_owner.update_appearance(UPDATE_OVERLAYS)
+	if(target_slot & slot)
+		RegisterSignal(current_owner, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_shield_overlay))
+		RegisterSignal(current_owner, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(on_shield_check))
+		shield_active = TRUE
+		current_owner.update_appearance(UPDATE_OVERLAYS)
+	else // it wasn't equippped in the right slot
+		on_dropped(source, equipper)
 
 /datum/component/shielded/proc/on_dropped(datum/source,mob/dropper)
+	if(!shield_active)
+		return // our job here is already done
+	UnregisterSignal(current_owner, list(COMSIG_ATOM_UPDATE_OVERLAYS, COMSIG_HUMAN_CHECK_SHIELDS))
 	shield_active = FALSE
-	UnregisterSignal(current_owner, COMSIG_ATOM_UPDATE_OVERLAYS)
 	current_owner.update_appearance(UPDATE_OVERLAYS)
 	current_owner =  null
 

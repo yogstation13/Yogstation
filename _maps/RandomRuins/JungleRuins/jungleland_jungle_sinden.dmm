@@ -351,13 +351,12 @@
 /turf/open/floor/carpet/red,
 /area/ruin/powered/sinden)
 "tW" = (
-/obj/machinery/door/airlock/wood{
-	req_access_txt = "25"
-	},
+/obj/machinery/door/airlock/wood,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/wood,
 /area/ruin/powered/sinden)
 "tZ" = (
@@ -417,15 +416,14 @@
 /turf/open/floor/plating,
 /area/ruin/powered/sinden)
 "xT" = (
-/obj/machinery/door/airlock/wood{
-	req_access_txt = "25"
-	},
+/obj/machinery/door/airlock/wood,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/plating,
 /area/ruin/powered/sinden)
 "zw" = (
@@ -544,7 +542,7 @@
 /area/ruin/powered/sinden)
 "HD" = (
 /obj/structure/closet/secure_closet/personal/cabinet{
-	req_access = list(25)
+	req_access = list("bar")
 	},
 /obj/item/storage/firstaid/regular,
 /obj/item/stack/spacecash/c200,
@@ -596,15 +594,14 @@
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered/sinden)
 "Ln" = (
-/obj/machinery/door/airlock/wood{
-	req_access_txt = "25"
-	},
+/obj/machinery/door/airlock/wood,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/carpet/black,
 /area/ruin/powered/sinden)
 "LL" = (
@@ -628,15 +625,14 @@
 /turf/open/floor/wood,
 /area/ruin/powered/sinden)
 "Nb" = (
-/obj/machinery/door/airlock/wood{
-	req_access_txt = "25"
-	},
+/obj/machinery/door/airlock/wood,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/wood,
 /area/ruin/powered/sinden)
 "Nr" = (
@@ -766,9 +762,8 @@
 /turf/open/floor/carpet/green,
 /area/ruin/powered/sinden)
 "Va" = (
-/obj/machinery/door/airlock/wood{
-	req_access_txt = "25"
-	},
+/obj/machinery/door/airlock/wood,
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/wood,
 /area/ruin/powered/sinden)
 "Wd" = (

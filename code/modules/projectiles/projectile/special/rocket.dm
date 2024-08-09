@@ -54,7 +54,8 @@
 	/turf/closed,
 	/obj/mecha,
 	/obj/machinery/door/,
-	/obj/machinery/door/poddoor/shutters
+	/obj/machinery/door/poddoor/shutters,
+	/obj/structure/window
 	)
 
 /obj/item/broken_missile
@@ -98,8 +99,9 @@
 
 /obj/projectile/bullet/bolt
 	name = "bolt"
-	icon_state = "bolt"
 	desc = "A smaller and faster rod."
+	icon_state = "ka_tracer"
+	color = COLOR_ASSISTANT_GRAY
 	damage = 25
 
 /obj/projectile/bullet/cartridge

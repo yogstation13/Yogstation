@@ -40,6 +40,7 @@ export const Canister = (props, context) => {
                 icon="pencil-alt"
                 content="Relabel"
                 onClick={() => act('relabel')} />
+              <Button icon="palette" onClick={() => act('recolor')} />
             </>
           )}>
           <LabeledControls justify="center">

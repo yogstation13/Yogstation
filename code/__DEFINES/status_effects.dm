@@ -163,6 +163,8 @@
 
 #define STATUS_EFFECT_TAUNT /datum/status_effect/taunt //forced movement towards the person applying
 
+#define STATUS_EFFECT_HOLY_FIRE /datum/status_effect/holy_fire //not actually fire, more of a short duration damage over time
+
 /////////////
 // NEUTRAL //
 /////////////

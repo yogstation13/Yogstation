@@ -12,7 +12,7 @@ GLOBAL_LIST_INIT(granted_synthetic_access, list())
 	category = PROGRAM_CATEGORY_EQUIPMENT
 	program_icon_state = "id"
 	extended_desc = "Program for requesting synthetic assistance and granting departmental access."
-	transfer_access = ACCESS_HEADS
+	transfer_access = ACCESS_COMMAND
 	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_PDA
 	size = 4
 	tgui_id = "NtosSynthManager"
@@ -26,14 +26,14 @@ GLOBAL_LIST_INIT(granted_synthetic_access, list())
 	var/obj/item/card/id/user_id = user.get_idcard()
 	computer.play_interact_sound()
 	if(user_id)
-		if(!(ACCESS_HEADS in user_id.access))
+		if(!(ACCESS_COMMAND in user_id.access))
 			return
 
 
 	switch(action)
 		if("grant_science")
 			if(ACCESS_RD in user_id.access)
-				var/relevant_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_ROBO_CONTROL, ACCESS_TELEPORTER, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_ROBOTICS)
+				var/relevant_access = list(ACCESS_SCIENCE, ACCESS_TOXINS, ACCESS_TOXINS_STORAGE, ACCESS_ROBO_CONTROL, ACCESS_TELEPORTER, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_ROBOTICS)
 				if(GLOB.granted_synthetic_access[SCIENCE])
 					GLOB.granted_synthetic_access[SCIENCE] = FALSE
 					binary_talk("Synthetic assistance no longer required in the Science department", "Synthetic Access Requester")
@@ -49,7 +49,7 @@ GLOBAL_LIST_INIT(granted_synthetic_access, list())
 			return TRUE
 		if("grant_supply")
 			if(ACCESS_HOP in user_id.access)
-				var/relevant_access = list(ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MAILSORTING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
+				var/relevant_access = list(ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_CARGO, ACCESS_MINING_STATION)
 				if(GLOB.granted_synthetic_access[SUPPLY])
 					GLOB.granted_synthetic_access[SUPPLY] = FALSE
 					binary_talk("Synthetic assistance no longer required in the Supply department", "Synthetic Access Requester")
@@ -66,7 +66,7 @@ GLOBAL_LIST_INIT(granted_synthetic_access, list())
 			return TRUE
 		if("grant_engi")
 			if(ACCESS_CE in user_id.access)
-				var/relevant_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_ATMOSPHERICS, ACCESS_CONSTRUCTION, ACCESS_SECURE_TECH_STORAGE)
+				var/relevant_access = list(ACCESS_ENGINEERING, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_ATMOSPHERICS, ACCESS_CONSTRUCTION, ACCESS_SECURE_TECH)
 				if(GLOB.granted_synthetic_access[ENGINEERING])
 					GLOB.granted_synthetic_access[ENGINEERING] = FALSE
 					binary_talk("Synthetic assistance no longer required in the Engineering department", "Synthetic Access Requester")
@@ -82,7 +82,7 @@ GLOBAL_LIST_INIT(granted_synthetic_access, list())
 			return TRUE
 		if("grant_security")
 			if(ACCESS_HOS in user_id.access)
-				var/relevant_access = list(ACCESS_SECURITY, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS, ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS, ACCESS_BRIG_PHYS)
+				var/relevant_access = list(ACCESS_SECURITY, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_DETECTIVE, ACCESS_LAWYER, ACCESS_SEC_BASIC, ACCESS_BRIG_PHYS)
 				if(GLOB.granted_synthetic_access[SECURITY])
 					GLOB.granted_synthetic_access[SECURITY] = FALSE
 					binary_talk("Synthetic assistance no longer required in the Security department", "Synthetic Access Requester")
@@ -98,7 +98,7 @@ GLOBAL_LIST_INIT(granted_synthetic_access, list())
 			return TRUE
 		if("grant_medical")
 			if(ACCESS_CMO in user_id.access)
-				var/relevant_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_GENETICS, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_SURGERY, ACCESS_CLONING, ACCESS_PARAMEDIC, ACCESS_PSYCH)
+				var/relevant_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_GENETICS, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_SURGERY, ACCESS_CLONING, ACCESS_PARAMEDIC, ACCESS_PSYCHOLOGY)
 				if(GLOB.granted_synthetic_access[MEDICAL])
 					GLOB.granted_synthetic_access[MEDICAL] = FALSE
 					binary_talk("Synthetic assistance no longer required in the Medical department", "Synthetic Access Requester")

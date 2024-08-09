@@ -173,7 +173,7 @@
 	name = "Transfer Area Lockdown";
 	pixel_x = 25;
 	pixel_y = -5;
-	req_access_txt = "2"
+	req_access = list("brig")
 	},
 /obj/machinery/button/flasher{
 	id = "executionflash";
@@ -199,7 +199,7 @@
 	name = "Vent to Space";
 	pixel_x = 25;
 	pixel_y = -15;
-	req_access_txt = "2"
+	req_access = list("brig")
 	},
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel/dark,
@@ -246,8 +246,7 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/security/glass{
-	name = "Transfer Chamber";
-	req_access_txt = "2"
+	name = "Transfer Chamber"
 	},
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 1
@@ -255,6 +254,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/engine,
 /area/template_noop)
 "A" = (

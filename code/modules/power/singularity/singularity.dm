@@ -6,6 +6,8 @@
 /atom/movable/gravity_lens
 	plane = GRAVITY_PULSE_PLANE
 	//plane = GHOST_LAYER
+	density = FALSE
+	anchored = TRUE
 	appearance_flags = PIXEL_SCALE | RESET_TRANSFORM
 	icon = 'icons/effects/512x512.dmi'
 	icon_state = "gravitational_lensing"

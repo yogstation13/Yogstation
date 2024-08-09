@@ -8,8 +8,7 @@
 					/obj/item/assembly/igniter = 3,
 					/obj/item/assembly/signaler = 4,
 					/obj/item/assembly/signaler/button = 2,
-					/obj/item/wirecutters = 1,
-					/obj/item/cartridge/signal = 4)
+					/obj/item/wirecutters = 1)
 	premium = list(/obj/item/laserlevel = 1)
 	contraband = list(/obj/item/assembly/timer = 2,
 					  /obj/item/assembly/voice = 2,

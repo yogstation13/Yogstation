@@ -136,8 +136,13 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS S_TURF(62) ///turf/closed/wall/mineral/titanium/survival
 #define SMOOTH_GROUP_TURF_OPEN_CLIFF S_TURF(63) ///turf/open/cliff
 #define SMOOTH_GROUP_TURF_BALLPIT S_TURF(64) ///turf/open/floor/ballpit
+#define SMOOTH_GROUP_TURF_WATER S_TURF(65)
 
-#define MAX_S_TURF 64 //Always match this value with the one above it.
+#define SMOOTH_GROUP_CARPET_PLAIN_BLUE S_TURF(66) ///turf/open/indestructible/carpet/plainblue
+#define SMOOTH_GROUP_CARPET_PLAIN_GREEN S_TURF(67) ///turf/open/indestructible/carpet/plaingreen
+#define SMOOTH_GROUP_CARPET_PLAIN_PURPLE S_TURF(68) ///turf/open/indestructible/carpet/plainpurple
+
+#define MAX_S_TURF 68 //Always match this value with the one above it.
 
 #define S_OBJ(num) ("-" + #num + ",")
 /* /obj included */
@@ -160,6 +165,8 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define SMOOTH_GROUP_BAMBOO_WALLS S_TURF(17) //![/turf/closed/wall/mineral/bamboo, /obj/structure/falsewall/bamboo]
 #define SMOOTH_GROUP_PLASTINUM_WALLS S_TURF(18) //![turf/closed/indestructible/riveted/plastinum]
 #define SMOOTH_GROUP_CLOCKWORK_WALLS S_TURF(19) //![/turf/closed/wall/clockwork, /obj/structure/falsewall/brass]
+#define SMOOTH_GROUP_ELEVATED_PLASTEEL S_TURF(20)
+#define SMOOTH_GROUP_LOWERED_PLASTEEL S_TURF(21)
 
 #define SMOOTH_GROUP_PAPERFRAME S_OBJ(21) ///obj/structure/window/paperframe, /obj/structure/mineral_door/paperframe
 
@@ -201,7 +208,9 @@ DEFINE_BITFIELD(smoothing_junction, list(
 
 #define SMOOTH_GROUP_CLEANABLE_DIRT S_OBJ(68) ///obj/effect/decal/cleanable/dirt
 
-#define SMOOTH_GROUP_GAS_TANK S_OBJ(72) 
+#define SMOOTH_GROUP_GAS_TANK S_OBJ(72)
+
+#define SMOOTH_GROUP_WATER S_OBJ(73) ///obj/effect/abstract/liquid_turf
 
 
 /// Performs the work to set smoothing_groups and canSmoothWith.

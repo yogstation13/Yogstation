@@ -1514,7 +1514,7 @@
 	loot = list(/obj/effect/decal/remains/human);
 	name = "Jim The Door Technician";
 	wander = 0;
-	weather_immunities = list("ash")
+	weather_immunities = 1
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
@@ -1873,8 +1873,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance{
-	name = "Labor Camp Maintenance";
-	req_access_txt = "2"
+	name = "Labor Camp Maintenance"
 	},
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
@@ -1886,6 +1885,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
 "sk" = (
@@ -1913,8 +1913,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/security/glass{
-	name = "Labor Camp Shuttle Security Airlock";
-	req_access_txt = "2"
+	name = "Labor Camp Shuttle Security Airlock"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/preopen{
@@ -1925,6 +1924,7 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
 "sH" = (
@@ -2968,7 +2968,7 @@
 	id = "labor";
 	name = "Labor Camp Lockdown";
 	pixel_y = 28;
-	req_access_txt = "2"
+	req_access = list("brig")
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/fans/tiny,
@@ -3054,8 +3054,7 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/security/glass{
-	name = "Labor Camp Monitoring";
-	req_access_txt = "2"
+	name = "Labor Camp Monitoring"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -3070,6 +3069,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
 "Sf" = (
@@ -3362,13 +3362,13 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/security/glass{
-	name = "Labor Camp Shuttle Security Airlock";
-	req_access_txt = "2"
+	name = "Labor Camp Shuttle Security Airlock"
 	},
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
 "Yj" = (

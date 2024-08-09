@@ -124,9 +124,8 @@
 	name = "hardlight beam"
 	icon_state = "disabler_bullet"
 	armor_flag = ENERGY
-	damage = 0 // maybe don't do actual damage so pacifists can use it and silicons won't be mad
-	damage_type = BURN
-	stamina = 25
+	damage = 25 // maybe don't do actual damage so pacifists can use it and silicons won't be mad
+	damage_type = STAMINA
 	speed = 0.55
 
 //NT-USP Lethal Clip

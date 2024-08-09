@@ -8,8 +8,8 @@
 
 /obj/structure/stairs
 	name = "stairs"
-	icon = 'icons/obj/stairs.dmi'
-	icon_state = "stairs"
+	icon = 'goon/icons/turfs/floors.dmi'
+	icon_state = "stairs_alone"
 	layer = BELOW_OPEN_DOOR_LAYER
 	anchored = TRUE
 	move_resist = INFINITY
@@ -17,18 +17,6 @@
 	var/force_open_above = FALSE // replaces the turf above this stair obj with /turf/open/openspace
 	var/terminator_mode = STAIR_TERMINATOR_AUTOMATIC
 	var/turf/listeningTo
-
-/obj/structure/stairs/north
-	dir = NORTH
-
-/obj/structure/stairs/south
-	dir = SOUTH
-
-/obj/structure/stairs/east
-	dir = EAST
-
-/obj/structure/stairs/west
-	dir = WEST
 
 /obj/structure/stairs/Initialize(mapload)
 	GLOB.stairs += src
@@ -96,14 +84,6 @@
 		for(var/mob/living/buckled as anything in climber.buckled_mobs)
 			buckled.pulling?.move_from_pull(buckled, loc, buckled.glide_size)
 
-
-/obj/structure/stairs/update_icon_state()
-	. = ..()
-	if(isTerminator())
-		icon_state = "stairs_t"
-	else
-		icon_state = "stairs"
-
 /obj/structure/stairs/vv_edit_var(var_name, var_value)
 	. = ..()
 	if(!.)
@@ -156,3 +136,67 @@
 		if(S.dir == dir)
 			return FALSE
 	return TRUE
+
+
+/obj/structure/stairs/wide_mid
+	icon_state = "stairs_middle"
+	base_icon_state = "stairs_middle"
+
+/obj/structure/stairs/wide_left
+	icon_state = "stairs_wide"
+	base_icon_state = "stairs_wide"
+
+/obj/structure/stairs/wide_right
+	icon_state = "stairs2_wide"
+	base_icon_state = "stairs2_wide"
+
+
+/obj/structure/stairs/white
+	icon_state = "medstairs_alone"
+	base_icon_state = "medstairs_alone"
+
+/obj/structure/stairs/white/wide_mid
+	icon_state = "medstairs_middle"
+	base_icon_state = "medstairs_middle"
+
+/obj/structure/stairs/white/wide_left
+	icon_state = "medstairs_wide"
+	base_icon_state = "medstairs_wide"
+
+/obj/structure/stairs/white/wide_right
+	icon_state = "medstairs2_wide"
+	base_icon_state = "medstairs2_wide"
+
+
+/obj/structure/stairs/wood
+	icon_state = "woodstairs_alone"
+	base_icon_state = "woodstairs_alone"
+
+/obj/structure/stairs/wood/wide_mid
+	icon_state = "woodstairs_middle"
+	base_icon_state = "woodstairs_middle"
+
+/obj/structure/stairs/wood/wide_left
+	icon_state = "woodstairs_wide"
+	base_icon_state = "woodstairs_wide"
+
+/obj/structure/stairs/wood/wide_right
+	icon_state = "woodstairs2_wide"
+	base_icon_state = "woodstairs2_wide"
+
+
+/obj/structure/stairs/dark
+	icon_state = "darkstairs_alone"
+	base_icon_state = "darkstairs_alone"
+
+/obj/structure/stairs/dark/wide_mid
+	icon_state = "darkstairs_middle"
+	base_icon_state = "darkstairs_middle"
+
+/obj/structure/stairs/dark/wide_left
+	icon_state = "darkstairs_wide"
+	base_icon_state = "darkstairs_wide"
+
+/obj/structure/stairs/dark/wide_right
+	icon_state = "darkstairs2_wide"
+	base_icon_state = "darkstairs2_wide"

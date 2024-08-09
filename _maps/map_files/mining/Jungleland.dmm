@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "at" = (
 /obj/structure/flytrap,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "az" = (
 /obj/docking_port/stationary{
@@ -48,9 +48,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"be" = (
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
-/area/jungleland/explored)
 "bi" = (
 /obj/machinery/conveyor{
 	dir = 10;
@@ -163,7 +160,7 @@
 /area/jungleland/explored)
 "di" = (
 /obj/structure/flora/junglebush/b,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "dJ" = (
 /turf/closed/wall,
@@ -233,12 +230,11 @@
 /turf/closed/wall,
 /area/mine/laborcamp)
 "gg" = (
-/turf/open/water/deep_toxic_pit,
+/turf/open/water/smooth/toxic_pit/deep,
 /area/jungleland/explored)
 "gh" = (
 /obj/machinery/door/airlock/security/glass{
-	name = "Labor Camp Shuttle Security Airlock";
-	req_access_txt = "2"
+	name = "Labor Camp Shuttle Security Airlock"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -246,6 +242,10 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
 "gv" = (
@@ -295,13 +295,15 @@
 /area/mine/laborcamp)
 "hB" = (
 /obj/machinery/door/airlock/security/glass{
-	name = "Labor Camp Shuttle Security Airlock";
-	req_access_txt = "2"
+	name = "Labor Camp Shuttle Security Airlock"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -378,8 +380,7 @@
 /area/mine/laborcamp)
 "kD" = (
 /obj/machinery/door/airlock/security/glass{
-	name = "Labor Camp Shuttle Security Airlock";
-	req_access_txt = "2"
+	name = "Labor Camp Shuttle Security Airlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -393,6 +394,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
 "lh" = (
@@ -466,7 +468,7 @@
 /area/mine/laborcamp)
 "mx" = (
 /obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "mQ" = (
 /obj/machinery/computer/security/labor{
@@ -488,7 +490,7 @@
 	id = "labor";
 	name = "Labor Camp Lockdown";
 	pixel_y = 28;
-	req_access_txt = "2"
+	req_access = list("brig")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -537,10 +539,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/mine/laborcamp)
-"pA" = (
-/obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
-/area/jungleland/explored)
 "pQ" = (
 /obj/structure/chair/stool,
 /obj/structure/sign/poster/official/obey{
@@ -700,14 +698,14 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/maintenance{
-	name = "Labor Camp Maintenance";
-	req_access_txt = "2"
+	name = "Labor Camp Maintenance"
 	},
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/plating,
 /area/mine/laborcamp/security)
 "vE" = (
@@ -741,7 +739,7 @@
 /area/mine/laborcamp/security)
 "vR" = (
 /obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "wK" = (
 /obj/machinery/light/small,
@@ -845,7 +843,7 @@
 /area/mine/laborcamp)
 "zg" = (
 /obj/structure/flora/junglebush,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "zk" = (
 /obj/machinery/power/smes{
@@ -909,11 +907,11 @@
 /turf/open/floor/plating,
 /area/mine/laborcamp)
 "Dd" = (
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "Dg" = (
 /obj/structure/fence,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "Dj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -1035,7 +1033,7 @@
 /obj/structure/fence/corner{
 	dir = 5
 	},
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "GM" = (
 /obj/machinery/computer/shuttle/labor/one_way{
@@ -1059,7 +1057,7 @@
 /area/mine/laborcamp)
 "Hw" = (
 /obj/structure/flora/rock/pile,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "HS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -1073,7 +1071,7 @@
 /area/mine/laborcamp)
 "Ii" = (
 /obj/structure/flora/tree/dead/jungle,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "IC" = (
 /obj/machinery/power/apc{
@@ -1157,12 +1155,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
-"Lv" = (
-/obj/structure/flora/junglebush,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
-/area/jungleland/explored)
 "LE" = (
-/turf/open/water/deep_toxic_pit,
+/turf/open/water/smooth/toxic_pit/deep,
 /area/jungleland/ocean)
 "LM" = (
 /obj/structure/ore_box,
@@ -1214,11 +1208,7 @@
 /area/mine/laborcamp)
 "NM" = (
 /obj/structure/flora/tree/jungle/small,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
-/area/jungleland/explored)
-"NV" = (
-/obj/structure/flora/tree/jungle/small,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "Oi" = (
 /obj/effect/turf_decal/bot,
@@ -1245,7 +1235,7 @@
 "OJ" = (
 /obj/structure/flora/tree/jungle,
 /obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "OL" = (
 /obj/structure/window/reinforced{
@@ -1326,7 +1316,7 @@
 /area/mine/laborcamp)
 "Tq" = (
 /obj/structure/herb/liberal_hats,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "Ts" = (
 /turf/closed/wall/r_wall,
@@ -1361,7 +1351,7 @@
 /turf/open/floor/plating,
 /area/mine/laborcamp)
 "UW" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/jungleland/ocean)
 "Vt" = (
 /obj/machinery/washing_machine,
@@ -1385,8 +1375,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/security/glass{
-	name = "Labor Camp Shuttle Security Airlock";
-	req_access_txt = "2"
+	name = "Labor Camp Shuttle Security Airlock"
 	},
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
@@ -1395,6 +1384,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
 "WN" = (
@@ -5571,7 +5561,7 @@ sl
 FT
 gv
 cV
-be
+Dd
 LE
 LE
 "}
@@ -8627,7 +8617,7 @@ Dd
 vR
 Dd
 OJ
-Lv
+zg
 UW
 UW
 UW
@@ -8883,12 +8873,12 @@ UW
 UW
 UW
 Dd
-NV
+NM
 zg
 di
-be
+Dd
 di
-Lv
+zg
 UW
 UW
 LE
@@ -9143,11 +9133,11 @@ UW
 Dd
 Dd
 vR
-be
-be
-pA
+Dd
+Dd
+vR
 mx
-Lv
+zg
 UW
 UW
 UW
@@ -9402,14 +9392,14 @@ UW
 Dd
 Dd
 di
-be
-Lv
+Dd
+zg
 NM
 di
-Lv
+zg
 mx
-Lv
-be
+zg
+Dd
 UW
 LE
 LE
@@ -9660,11 +9650,11 @@ UW
 UW
 Dd
 Dd
-NV
+NM
 zg
-Lv
+zg
 di
-be
+Dd
 UW
 UW
 UW

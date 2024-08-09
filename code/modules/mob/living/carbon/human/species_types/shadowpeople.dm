@@ -10,7 +10,7 @@
 	// Humans cursed to stay in the darkness, lest their life forces drain. They regain health in shadow and die in light.
 	name = "???"
 	plural_form = "???"
-	id = "shadow"
+	id = SPECIES_SHADOW
 	possible_genders = list(PLURAL)
 	bubble_icon = BUBBLE_DARKSPAWN
 	ignored_by = list(/mob/living/simple_animal/hostile/faithless)
@@ -125,8 +125,8 @@
 /datum/species/shadow/nightmare
 	name = "Nightmare"
 	plural_form = null
-	id = "nightmare"
-	limbs_id = "shadow"
+	id = SPECIES_NIGHTMARE
+	limbs_id = SPECIES_SHADOW
 	burnmod = 1.5
 	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE)
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
@@ -153,8 +153,8 @@
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/species/shadow/darkspawn
 	name = "Darkspawn"
-	id = "darkspawn"
-	limbs_id = "darkspawn"
+	id = SPECIES_DARKSPAWN
+	limbs_id = SPECIES_DARKSPAWN
 	possible_genders = list(PLURAL)
 	nojumpsuit = TRUE
 	changesource_flags = MIRROR_BADMIN //never put this in the pride pool because they look super valid and can never be changed off of
@@ -253,7 +253,7 @@
 
 /obj/item/organ/brain/nightmare/Insert(mob/living/carbon/host, special = FALSE)
 	..()
-	if(host.dna.species.id != "nightmare")
+	if(!isshadowperson(host))
 		host.set_species(/datum/species/shadow/nightmare)
 		visible_message(span_warning("[host] thrashes as [src] takes root in [host.p_their()] body!"))
 	

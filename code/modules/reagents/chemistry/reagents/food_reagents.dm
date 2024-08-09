@@ -26,6 +26,8 @@
 	if(methods & INGEST)
 		if (quality && !HAS_TRAIT(M, TRAIT_AGEUSIA))
 			switch(quality)
+				if (DRINK_SODA)
+					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/soda)
 				if (DRINK_NICE)
 					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_nice)
 				if (DRINK_GOOD)
@@ -174,6 +176,7 @@
 	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 255, 255, 255
+	quality = DRINK_SODA
 	taste_mult = 1.5 // stop sugar drowning out other flavours
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	metabolization_rate = 2 * REAGENTS_METABOLISM
@@ -300,7 +303,7 @@
 	taste_description = "scorching agony"
 	metabolization_rate = 6 * REAGENTS_METABOLISM
 
-/datum/reagent/consumable/condensedcapsaicin/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+/datum/reagent/consumable/condensedcapsaicin/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(!ishuman(M) && !ismonkey(M))
 		return
 
@@ -604,7 +607,7 @@
 		M.adjustToxLoss(-1*REM, 0)
 	..()
 
-/datum/reagent/consumable/honey/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+/datum/reagent/consumable/honey/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
   if(iscarbon(M) && (methods & (TOUCH|VAPOR|PATCH)))
     var/mob/living/carbon/C = M
     for(var/s in C.surgeries)
@@ -618,13 +621,13 @@
 	color = "#DFDFDF"
 	taste_description = "mayonnaise"
 
-/datum/reagent/consumable/tearjuice
+/datum/reagent/consumable/tea/hotrjuice
 	name = "Tear Juice"
 	description = "A blinding substance extracted from certain onions."
 	color = "#c0c9a0"
 	taste_description = "bitterness"
 
-/datum/reagent/consumable/tearjuice/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/consumable/tea/hotrjuice/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(!istype(M))
 		return
 	if(!permeability)
@@ -639,7 +642,7 @@
 			M.adjust_eye_blur(5)
 	return ..()
 
-/datum/reagent/consumable/tearjuice/on_mob_life(mob/living/carbon/M)
+/datum/reagent/consumable/tea/hotrjuice/on_mob_life(mob/living/carbon/M)
 	..()
 	if(M.eye_blurry)	//Don't worsen vision if it was otherwise fine
 		M.adjust_eye_blur(4)
@@ -690,7 +693,7 @@
 		//Lazy list of mobs affected by the luminosity of this reagent.
 	var/list/mobs_affected
 
-/datum/reagent/consumable/tinlux/reaction_mob(mob/living/M)
+/datum/reagent/consumable/tinlux/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	add_reagent_light(M)
 
 /datum/reagent/consumable/tinlux/on_mob_end_metabolize(mob/living/M)
@@ -941,6 +944,111 @@
 	nutriment_factor = 15 * REAGENTS_METABOLISM
 	color = "#D9A066" // rgb: 217, 160, 102
 	taste_description = "peanuts"
+
+/datum/reagent/consumable/ice_cream
+	name = "Plain Ice Cream"
+	description = "Also known as sweet cream; it still makes for a tasty treat."
+	reagent_state = LIQUID //Melted ice cream, you need ice to make it solid
+	nutriment_factor = 1 * REAGENTS_METABOLISM
+	color = "#EDF7DF"
+	taste_description = "creamy"
+
+	var/flavor_chem = null //Chem added to flavored ice creams
+	var/flavor_chem_extra = null
+	var/flavor_chem_amount = 0.4 //How much of the flavor chem to add on metabolism
+
+
+/datum/reagent/consumable/ice_cream/on_mob_life(mob/living/carbon/M)
+	//Add flavor chem if there is one
+	if(flavor_chem != null)
+		holder.add_reagent(flavor_chem, flavor_chem_amount)
+		if(flavor_chem_extra != null)
+			holder.add_reagent(flavor_chem_extra, flavor_chem_amount)
+
+	//Ice cream cools you down
+	M.adjust_bodytemperature(-10 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
+
+	//Ice cream makes you happy
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "ice cream", /datum/mood_event/ice_cream, name)
+
+	..()
+
+/datum/reagent/consumable/ice_cream/vanilla
+	name = "Vanilla Ice Cream"
+	description = "The most commonly known ice cream flavor; it has been and still is widely popular."
+	color = "#ECE2C5"
+	flavor_chem = /datum/reagent/consumable/vanilla
+
+/datum/reagent/consumable/ice_cream/chocolate
+	name = "Chocolate Ice Cream"
+	description = "Ice cream mixed with natural cocoa; made for those who can't get enough chocolate."
+	color =	"#865C32"
+	flavor_chem = /datum/reagent/consumable/coco
+	taste_description = "creamy chocolate"
+
+/datum/reagent/consumable/ice_cream/strawberry
+	name = "Strawberry Ice Cream"
+	description = "Ice cream supposedly made with real strawberries."
+	color =	"#EFB8B8"
+	flavor_chem = /datum/reagent/consumable/berryjuice
+	taste_description = "fruity"
+
+/datum/reagent/consumable/ice_cream/blue
+	name = "Blue Ice Cream"
+	description = "A faintly blue ice cream flavor; it is notorious for its ability to stain."
+	color =	"#B8C5EF"
+	flavor_chem = /datum/reagent/consumable/ethanol/singulo
+	taste_description = "alcoholic"
+
+/datum/reagent/consumable/ice_cream/lemon_sorbet
+	name = "Lemon Sorbet"
+	description = "An ancient frozen treat supposedly invented by the Persians that is still enjoyed today."
+	color =	"#D4DB86"
+	flavor_chem = /datum/reagent/consumable/lemonjuice
+	taste_description = "sour"
+
+/datum/reagent/consumable/ice_cream/caramel
+	name = "Caramel Ice Cream"
+	description = "Ice cream that has been flavored with caramel; a treat for sugar lovers."
+	color =	"#BC762F"
+	flavor_chem = /datum/reagent/consumable/caramel
+	taste_description = "sweet"
+
+/datum/reagent/consumable/ice_cream/banana
+	name = "Banana Ice Cream"
+	description = "The ice cream of choice for clowns everywhere. Honk!"
+	color =	"#DEDE00"
+	flavor_chem = /datum/reagent/consumable/banana
+	taste_description = "fruity"
+
+/datum/reagent/consumable/ice_cream/orange_creamsicle
+	name = "Orange Creamsicle"
+	description = "An ice cream flavor made after a popular popsicle flavor. It is not quite the same off the stick..."
+	color =	"#D8B258"
+	flavor_chem = /datum/reagent/consumable/orangejuice
+	taste_description = "creamy fruit"
+
+/datum/reagent/consumable/ice_cream/peach
+	name = "Peach Ice Cream"
+	description = "Ice cream flavored with peaches; it is rather uncommon due to wizards buying up most of it."
+	color =	"#CD8D68"
+	flavor_chem = /datum/reagent/consumable/peachjuice
+	taste_description = "creamy fruit"
+
+/datum/reagent/consumable/ice_cream/cherry_chocolate
+	name = "Cherry Chocolate Ice Cream"
+	description = "A wonderfully tangy and sweet ice cream made with coco and cherries."
+	color =	"#6F0000"
+	flavor_chem = /datum/reagent/consumable/coco
+	flavor_chem_extra = /datum/reagent/consumable/cherryjelly
+	taste_description = "tangy and sweet"
+
+/datum/reagent/consumable/ice_cream/meat
+	name = "Meat Lover's Ice Cream"
+	description = "Ice cream flavored with meat, because someone wanted meat in their ice cream."
+	color =	"#BD0000"
+	flavor_chem = /datum/reagent/liquidgibs
+	taste_description = "meaty"
 
 /// Gets just how much nutrition this reagent is worth for the passed mob
 /datum/reagent/consumable/proc/get_nutriment_factor(mob/living/carbon/eater)

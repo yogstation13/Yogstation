@@ -149,7 +149,7 @@
 
 /// Changes the access requirements to a cyborg's cover to need freeminer engineer access.
 /obj/item/borg/upgrade/panel_access_remover/freeminer/action(mob/living/silicon/robot/R, user = usr)
-	R.req_access = list(ACCESS_FREEMINER_ENGINEER)
+	R.req_access = list(ACCESS_RUINS_ENGINEERING)
 	new /obj/item/borg/upgrade/panel_access_remover/freeminer(R.drop_location()) // Makes this upgrade "re-usable" by creating a new one while using all the functionality of `one_use`.
 	return TRUE
 
@@ -264,6 +264,7 @@
 	languages = list(
 		/datum/language/bonespeak,
 		/datum/language/draconic,
+		/datum/language/vox,
 		/datum/language/english,
 		/datum/language/etherean,
 		/datum/language/felinid,
@@ -280,6 +281,7 @@
 	languages = list(
 		/datum/language/bonespeak,
 		/datum/language/draconic,
+		/datum/language/vox,
 		/datum/language/english,
 		/datum/language/etherean,
 		/datum/language/felinid,
@@ -501,13 +503,13 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	R.weather_immunities += WEATHER_LAVA
+	R.weather_immunities |= WEATHER_LAVA
 
 /obj/item/borg/upgrade/lavaproof/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(!.)
 		return FALSE
-	R.weather_immunities -= WEATHER_LAVA
+	R.weather_immunities &= ~WEATHER_LAVA
 
 /obj/item/borg/upgrade/selfrepair
 	name = "self-repair module"
@@ -1017,7 +1019,7 @@
 	R.module.basic_modules += RPED
 	R.module.add_module(RPED, FALSE, TRUE)
 
-/obj/item/borg/upgrade/plasmacutter
+/obj/item/borg/upgrade/plasmacutter_granter
 	name = "mining cyborg plasma cutter"
 	desc = "A plasma cutter module for the mining cyborg."
 	icon = 'icons/obj/guns/energy.dmi'
@@ -1027,7 +1029,7 @@
 	module_flags = BORG_MODULE_MINER
 
 /// Gives the cyborg an advanced plasma cutter.
-/obj/item/borg/upgrade/plasmacutter/action(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/plasmacutter_granter/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -1041,7 +1043,7 @@
 	R.module.basic_modules += PC
 	R.module.add_module(PC, FALSE, TRUE)
 
-/obj/item/borg/upgrade/plasmacutter/deactivate(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/plasmacutter_granter/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(!.)
 		return FALSE

@@ -1,7 +1,11 @@
-import { FeatureColorInput, Feature, FeatureChoiced, FeatureDropdownInput } from "./base";
+import { Box, Stack } from "../../../../components";
+import { FeatureColorInput, FeatureChoicedServerData, FeatureValueProps, StandardizedDropdown, Feature, FeatureChoiced, FeatureDropdownInput } from "./base";
+import { SkinToneServerData } from "./character_preferences/skin_tone";
+import { sortHexValues } from "./character_preferences/skin_tone";
 
 export const eye_color: Feature<string> = {
-  name: "Eye color",
+  name: "Eye Color",
+  sortingPrefix: "aaaa",
   component: FeatureColorInput,
 };
 
@@ -47,6 +51,45 @@ export const feature_lizard_tail: FeatureChoiced = {
 
 export const feature_mcolor: Feature<string> = {
   name: "Mutant color",
+  component: FeatureColorInput,
+};
+
+export const feature_mcolor_secondary: Feature<string> = {
+  name: "Secondary Mutant color",
+  component: FeatureColorInput,
+};
+
+export const feature_quill_color: Feature<string> = {
+  name: "Quill Color",
+  component: FeatureColorInput,
+};
+
+export const feature_facial_quill_color: Feature<string> = {
+  name: "Facial Quill Color",
+  component: FeatureColorInput,
+};
+
+export const feature_quill_gradientstyle: FeatureChoiced = {
+  name: "Quill Gradient",
+  sortingPrefix: "v1",
+  component: FeatureDropdownInput,
+};
+
+export const feature_quill_gradientcolor: Feature<string> = {
+  name: "Quill Gradient Color",
+  sortingPrefix: "v2",
+  component: FeatureColorInput,
+};
+
+export const feature_body_markings_color: Feature<string> = {
+  name: "Body Markings Color",
+  sortingPrefix: "v6",
+  component: FeatureColorInput,
+};
+
+export const feature_tail_markings_color: Feature<string> = {
+  name: "Tail Markings Color",
+  sortingPrefix: "v4",
   component: FeatureColorInput,
 };
 
@@ -132,5 +175,102 @@ export const feature_preternis_antenna: FeatureChoiced = {
 
 export const feature_preternis_eye: FeatureChoiced = {
   name: "Eye",
+  component: FeatureDropdownInput,
+};
+
+export const feature_vox_quills: FeatureChoiced = {
+  name: 'Quillstyle',
+  component: FeatureDropdownInput,
+};
+
+export const feature_vox_facial_quills: FeatureChoiced = {
+  name: 'Facial Quillstyle',
+  component: FeatureDropdownInput,
+};
+
+export const feature_vox_tail_markings: FeatureChoiced = {
+  name: 'Tail Markings',
+  sortingPrefix: "v3",
+  component: FeatureDropdownInput,
+};
+
+export const feature_vox_body_markings: FeatureChoiced = {
+  name: 'Body Markings',
+  sortingPrefix: "v5",
+  component: FeatureDropdownInput,
+};
+
+export const feature_vox_skin_tone: Feature<string, string, SkinToneServerData> = {
+  name: "Skin Tone",
+  sortingPrefix: "a",
+  component: (props: FeatureValueProps<string, string, SkinToneServerData>) => {
+    const {
+      handleSetValue,
+      serverData,
+      value,
+    } = props;
+
+    if (!serverData) {
+      return null;
+    }
+
+    return (
+      <StandardizedDropdown
+        choices={sortHexValues(Object.entries(serverData.to_hex))
+          .map(([key]) => key)}
+        displayNames={Object.fromEntries(
+          Object.entries(serverData.display_names)
+            .map(([key, displayName]) => {
+              const hexColor = serverData.to_hex[key];
+
+              return [key, (
+                <Stack align="center" fill key={key}>
+                  <Stack.Item>
+                    <Box style={{
+                      background: hexColor.value.startsWith("#")
+                        ? hexColor.value
+                        : `#${hexColor.value}`,
+                      "box-sizing": "content-box",
+                      "height": "11px",
+                      "width": "11px",
+                    }} />
+                  </Stack.Item>
+
+                  <Stack.Item grow>
+                    {displayName}
+                  </Stack.Item>
+                </Stack>
+              )];
+            })
+        )}
+        onSetValue={handleSetValue}
+        value={value}
+      />
+    );
+  },
+};
+
+export const feature_vox_underwear: FeatureChoiced = {
+  name: 'Underwear',
+  component: FeatureDropdownInput,
+};
+
+export const feature_vox_socks: FeatureChoiced = {
+  name: 'Socks',
+  component: FeatureDropdownInput,
+};
+
+export const feature_vox_undershirt: FeatureChoiced = {
+  name: 'Undershirt',
+  component: FeatureDropdownInput,
+};
+
+export const feature_vox_tank_type: FeatureChoiced = {
+  name: 'N² Tank',
+  component: FeatureDropdownInput,
+};
+
+export const feature_vox_mask: FeatureChoiced = {
+  name: 'Mask',
   component: FeatureDropdownInput,
 };

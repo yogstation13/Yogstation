@@ -19,7 +19,21 @@
 		add_overlay(overlay)
 	return ..()
 
-
+//moved here and combined from legs and arm implants so there's no need to differentiate between limb implants since this is the only proc we need
+/obj/item/organ/cyberimp/proc/SetSlotFromZone()
+	switch(zone)
+		if(BODY_ZONE_L_LEG)
+			slot = ORGAN_SLOT_LEFT_LEG_AUG
+		if(BODY_ZONE_R_LEG)
+			slot = ORGAN_SLOT_RIGHT_LEG_AUG
+		if(BODY_ZONE_L_ARM)
+			slot = ORGAN_SLOT_LEFT_ARM_AUG
+		if(BODY_ZONE_R_ARM)
+			slot = ORGAN_SLOT_RIGHT_ARM_AUG
+		else
+			stack_trace("Invalid zone for [type]")
+			return FALSE
+	return TRUE
 
 //[[[[BRAIN]]]]
 
@@ -195,9 +209,9 @@
 	icon_state = "cyber_implants"
 	var/list/boxed = list(
 		/obj/item/autosurgeon/thermal_eyes,
-		/obj/item/autosurgeon/xray_eyes,
-		/obj/item/autosurgeon/anti_stun,
-		/obj/item/autosurgeon/reviver)
+		/obj/item/autosurgeon/suspicious/xray_eyes,
+		/obj/item/autosurgeon/suspicious/anti_stun,
+		/obj/item/autosurgeon/suspicious/reviver)
 	var/amount = 5
 
 /obj/item/storage/box/cyber_implants/PopulateContents()

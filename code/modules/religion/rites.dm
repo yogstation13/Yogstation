@@ -28,24 +28,24 @@
 	if(!ritual_invocations)
 		if(do_after(user, ritual_length, user))
 			if(invoke_msg)
-				user.say(invoke_msg, forced = "ritual")
+				user.say(invoke_msg, ignore_spam = TRUE, forced = "ritual")
 			return TRUE
 		return FALSE
 	var/first_invoke = TRUE
 	for(var/i in ritual_invocations)
 		if(first_invoke) //instant invoke
-			user.say(i)
+			user.say(i, ignore_spam = TRUE, forced = "ritual")
 			first_invoke = FALSE
 			continue
 		if(!ritual_invocations.len) //we divide so we gotta protect
 			return FALSE
 		if(!do_after(user, ritual_length/ritual_invocations.len, user))
 			return FALSE
-		user.say(i, forced = "ritual")
+		user.say(i, ignore_spam = TRUE, forced = "ritual")
 	if(!do_after(user, ritual_length/ritual_invocations.len, user)) //because we start at 0 and not the first fraction in invocations, we still have another fraction of ritual_length to complete
 		return FALSE
 	if(invoke_msg)
-		user.say(invoke_msg, forced = "ritual")
+		user.say(invoke_msg, ignore_spam = TRUE, forced = "ritual")
 	return TRUE
 
 
@@ -98,7 +98,7 @@
 			break
 	if(!human2borg)
 		return FALSE
-	human2borg.set_species(/datum/species/android)
+	human2borg.set_species(/datum/species/ipc/self/insurgent)
 	human2borg.visible_message(span_notice("[human2borg] has been converted by the rite of [name]!"))
 	return TRUE
 
@@ -466,7 +466,7 @@
 		qdel(chosen_meat)
 		chosen_meat = null //our lord and savior no longer cares about this meat
 		var/mb_message = pick("old ones, I bless this meat for you!", "old ones, I bless this flesh in your name", "old ones, I empower this flesh in your name.")
-		user.say(mb_message, forced = "ritual") //chooses one of three invoke messages to say in order to avoid auto mute and add variety.
+		user.say(mb_message, ignore_spam = TRUE, forced = "ritual") //chooses one of three invoke messages to say in order to avoid auto mute and add variety.
 		return TRUE
 	chosen_meat = null
 	to_chat(user, span_warning("The meat that was chosen for the rite is no longer on the altar!"))

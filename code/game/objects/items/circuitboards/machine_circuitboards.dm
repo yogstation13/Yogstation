@@ -1450,6 +1450,9 @@
 	build_path = /obj/machinery/shuttle/engine
 	req_components = list()
 
+/obj/item/circuitboard/machine/shuttle/engine/get_shipbreaking_reward()
+	return /obj/item/stack/scrap/core
+
 /obj/item/circuitboard/machine/shuttle/engine/plasma
 	name = "Plasma Thruster (Machine Board)"
 	build_path = /obj/machinery/shuttle/engine/plasma

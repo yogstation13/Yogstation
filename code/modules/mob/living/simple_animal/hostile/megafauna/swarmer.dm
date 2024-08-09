@@ -50,7 +50,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	mob_biotypes = MOB_ROBOTIC
 	gps_name = "Hungry Signal"
 	faction = list("mining", "boss", "swarmer")
-	weather_immunities = list(WEATHER_LAVA, WEATHER_ASH)
+	weather_immunities = ALL
 	stop_automated_movement = TRUE
 	wander = FALSE
 	layer = BELOW_MOB_LAYER
@@ -107,7 +107,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 /mob/living/simple_animal/hostile/swarmer/ai
 	wander = 1
 	faction = list("swarmer", "mining")
-	weather_immunities = list(WEATHER_ASH) //wouldn't be fun otherwise
+	weather_immunities = WEATHER_STORM //wouldn't be fun otherwise
 	AIStatus = AI_ON
 
 /mob/living/simple_animal/hostile/swarmer/ai/Initialize(mapload)
@@ -141,8 +141,12 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 /mob/living/simple_animal/hostile/swarmer/ai/Move(atom/newloc)
 	if(newloc)
 		if(newloc.z == z) //so these actions are Z-specific
-			var/datum/component/lingering/safety_check = newloc.GetComponent(/datum/component/lingering)
-			if(safety_check && !safety_check.is_safe()) 
+			var/list/components = src.GetComponents(/datum/component/lingering)
+			var/safe = TRUE
+			for(var/datum/component/lingering/safety_check as anything in components)
+				if(safety_check)
+					safe = (safe && safety_check.is_safe())
+			if(!safe)
 				StartAction(20)
 				new /obj/structure/lattice/catwalk/swarmer_catwalk(newloc)
 				return FALSE

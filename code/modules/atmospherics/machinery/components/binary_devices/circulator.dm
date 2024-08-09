@@ -124,7 +124,7 @@
 	else
 		if(!last_pressure_delta)
 			set_light(1)
-			SSvis_overlays.add_vis_overlay(src, icon, "circ-off", ABOVE_LIGHTING_PLANE, dir)
+			SSvis_overlays.add_vis_overlay(src, icon, "circ-off", LIGHTING_PRIMARY_LAYER, ABOVE_LIGHTING_PLANE, dir)
 			return
 		else
 			if(last_pressure_delta > ONE_ATMOSPHERE) //fast
@@ -132,15 +132,15 @@
 					set_light(3,2,"#4F82FF")
 				else
 					set_light(3,2,"#FF3232")
-				SSvis_overlays.add_vis_overlay(src, icon, "circ-ex[mode?"cold":"hot"]", ABOVE_LIGHTING_PLANE, dir)
-				SSvis_overlays.add_vis_overlay(src, icon, "circ-run", ABOVE_LIGHTING_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "circ-ex[mode?"cold":"hot"]", LIGHTING_PRIMARY_LAYER, ABOVE_LIGHTING_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "circ-run", LIGHTING_PRIMARY_LAYER, ABOVE_LIGHTING_PLANE, dir)
 			else	//slow
 				if(mode)
 					set_light(2,1,"#4F82FF")
 				else
 					set_light(2,1,"#FF3232")
-				SSvis_overlays.add_vis_overlay(src, icon, "circ-[mode?"cold":"hot"]", ABOVE_LIGHTING_PLANE, dir)
-				SSvis_overlays.add_vis_overlay(src, icon, "circ-slow", ABOVE_LIGHTING_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "circ-[mode?"cold":"hot"]", LIGHTING_PRIMARY_LAYER, ABOVE_LIGHTING_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "circ-slow", LIGHTING_PRIMARY_LAYER, ABOVE_LIGHTING_PLANE, dir)
 
 /obj/machinery/atmospherics/components/binary/circulator/wrench_act(mob/living/user, obj/item/I)
 	if(user.combat_mode)

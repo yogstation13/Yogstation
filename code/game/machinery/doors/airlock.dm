@@ -68,7 +68,7 @@
 	smoothing_groups = SMOOTH_GROUP_AIRLOCK
 
 	FASTDMM_PROP(\
-		pinned_vars = list("req_access_txt", "req_one_access_txt", "name")\
+		pinned_vars = list("req_access", "req_one_access", "name")\
 	)
 
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN
@@ -197,38 +197,6 @@
 		panel_open = TRUE
 	if(cut_wires_on_break)
 		wires.cut_all()
-
-/obj/machinery/door/airlock/LateInitialize()
-	. = ..()
-	if(cyclelinkedx || cyclelinkedy)	//yogs start
-		cyclelinkairlock_target()
-	else
-		if(cyclelinkeddir)
-			cyclelinkairlock()		//yogs end
-	if(abandoned)
-		var/outcome = rand(1,100)
-		switch(outcome)
-			if(1 to 9)
-				var/turf/here = get_turf(src)
-				for(var/obj/machinery/door/firedoor/FD in here)
-					qdel(FD)
-				for(var/turf/closed/T in range(2, src))
-					here.place_on_top(T.type)
-					qdel(src)
-					return
-				here.place_on_top(/turf/closed/wall)
-				qdel(src)
-				return
-			if(10 to 11)
-				lights = FALSE
-				locked = TRUE
-			if(12 to 15)
-				locked = TRUE
-			if(16 to 23)
-				welded = TRUE
-			if(24 to 30)
-				panel_open = TRUE
-	update_appearance(UPDATE_ICON)
 
 /obj/machinery/door/airlock/proc/rebuild_parts()
 	if(part_overlays)
@@ -1137,7 +1105,7 @@
 			open(2)
 		var/obj/item/umbral_tendrils/T = C
 		var/list/modifiers = params2list(params)
-		if(!T.darkspawn)
+		if(!isdarkspawn(user))
 			return ..()
 		else if((!user.combat_mode || (modifiers && modifiers[RIGHT_CLICK])) && density)
 			// we dont want Duality double-hitting the airlock when we're trying to pry it open
@@ -1147,9 +1115,9 @@
 				if(!hasPower()) // a crowbar can do this and you're telling me tentacles struggle?
 					open(2)
 					return
-				if(!T.darkspawn.has_psi(15))
+				if(!(user.mind && SEND_SIGNAL(user.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, 15)))
 					to_chat(user, span_warning("You need at least 15 Psi to force open an airlock!"))
-					return
+					return 
 				user.visible_message(span_warning("[user] starts forcing open [src]!"), span_velvet("<b>ueahz</b><br>You begin forcing open [src]..."))
 				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE)
 				if(!T.twin)
@@ -1161,28 +1129,28 @@
 				open(2)
 				if(density && !open(2))
 					to_chat(user, span_warning("Despite your attempts, [src] refuses to open!"))
-				T.darkspawn.use_psi(15)
+				SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 15))
 			else
-				if(!T.darkspawn.has_psi(30))
+				if(!(user.mind && SEND_SIGNAL(user.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, 30)))
 					to_chat(user, span_warning("You need at least 30 Psi to smash down an airlock!"))
-					return
+					return 
 				user.visible_message(span_boldwarning("[user] starts slamming [T] into [src]!"), \
 				"<span class='velvet italics'>You loudly begin smashing down [src].</span>")
 				while(atom_integrity > max_integrity * 0.25)
 					if(T.twin)
 						if(!do_after(user, rand(4, 6), src))
-							T.darkspawn.use_psi(30)
+							SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 30))
 							return
 					else
 						if(!do_after(user, rand(8, 10), src))
-							T.darkspawn.use_psi(30)
+							SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 30))
 							return
 					playsound(src, 'yogstation/sound/magic/pass_smash_door.ogg', 50, TRUE)
 					take_damage(max_integrity / rand(8, 15))
 					to_chat(user, "<span class='velvet bold'>klaj.</span>")
 				ex_act(EXPLODE_DEVASTATE)
 				user.visible_message(span_boldwarning("[user] slams down [src]!"), "<span class='velvet bold'>KLAJ.</span>")
-				T.darkspawn.use_psi(30)
+				SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 30))
 		else
 			return ..()
 	else
@@ -1373,6 +1341,7 @@
 			locked = !locked
 		if(welded)
 			welded = !welded
+	SEND_SIGNAL(src, COMSIG_AIRLOCK_OPEN, forced)
 	operating = TRUE
 	update_icon(state = AIRLOCK_OPENING, override = TRUE)
 	sleep(0.1 SECONDS)
@@ -1389,6 +1358,7 @@
 	if(delayed_close_requested)
 		delayed_close_requested = FALSE
 		addtimer(CALLBACK(src, PROC_REF(close)), 1)
+	SEND_SIGNAL(src, COMSIG_ATOM_DOOR_OPEN) /// this is different because we need one that covers all doors
 	return TRUE
 
 
@@ -1417,6 +1387,20 @@
 	var/obj/structure/window/killthis = (locate(/obj/structure/window) in get_turf(src))
 	if(killthis)
 		SSexplosions.med_mov_atom += killthis
+
+	SEND_SIGNAL(src, COMSIG_AIRLOCK_CLOSE, forced)
+
+	var/turf/open/open_turf = get_turf(src)
+	if(open_turf.liquids)
+		var/datum/liquid_group/turfs_group = open_turf.liquids.liquid_group
+		turfs_group.remove_from_group(open_turf)
+		qdel(open_turf.liquids)
+		turfs_group.try_split(open_turf)
+		for(var/dir in GLOB.cardinals)
+			var/turf/open/direction_turf = get_step(open_turf, dir)
+			if(!isopenturf(direction_turf) || !direction_turf.liquids)
+				continue
+			turfs_group.check_edges(direction_turf)
 
 	operating = TRUE
 	update_icon(state = AIRLOCK_CLOSING, override = TRUE)

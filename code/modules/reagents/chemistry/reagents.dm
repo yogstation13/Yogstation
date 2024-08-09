@@ -1,5 +1,7 @@
 #define REM REAGENTS_EFFECT_MULTIPLIER
 
+GLOBAL_VAR_INIT(global_evaporation_rate, 1)
+
 GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 /proc/build_name2reagent()
@@ -62,8 +64,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/addiction_name = null
 	/// What biotypes can process this? We'll assume by default that it affects organics (and undead, for plasmemes)
 	var/compatible_biotypes = ALL_NON_ROBOTIC
-	/// How flammable is this material?
-	var/accelerant_quality = 0
+	
 	/// You fucked up and this is now triggering its overdose effects, purge that shit quick.
 	var/overdosed = 0
 	///if false stops metab in liverless mobs
@@ -76,8 +77,23 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/harmful = FALSE
 	/// The default reagent container for the reagent. Currently only used for crafting icon/displays.
 	var/obj/item/reagent_containers/default_container = /obj/item/reagent_containers/glass/bottle
-
-	/// Are we from a material? We might wanna know that for special stuff. Like metalgen. Is replaced with a ref of the material on New()
+	
+	///Whether it will evaporate if left untouched on a liquids simulated puddle
+	var/evaporates = TRUE
+	/// How flammable is this material? For liquid spills and molotov cocktails
+	var/accelerant_quality = 0
+	///Whether a fire from this requires oxygen in the atmosphere
+	var/fire_needs_oxygen = TRUE
+	///The opacity of the chems used to determine the alpha of liquid turfs
+	var/opacity = 175
+	///The rate of evaporation in units per call
+	var/evaporation_rate = 1
+	///The rate of evaporation for the entire GROUP per call, for special things like drying agent
+	var/group_evaporation_rate = 0
+	/// do we have a turf exposure (used to prevent liquids doing un-needed processes)
+	var/turf_exposure = FALSE
+	/// are we slippery?
+	var/slippery = TRUE
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	. = ..()
@@ -147,6 +163,9 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 /// Called when the reagent container is hit by an explosion
 /datum/reagent/proc/on_ex_act(severity)
+	return
+
+/datum/reagent/proc/evaporate(turf/exposed_turf, reac_volume)
 	return
 
 /// Called if the reagent has passed the overdose threshold and is set to be triggering overdose effects
