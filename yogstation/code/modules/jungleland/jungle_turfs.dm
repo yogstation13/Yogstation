@@ -288,6 +288,9 @@ Temperature: 126.85 °C (400 K)
 /turf/open/floor/plating/jungle_baseturf/dying
 	baseturfs = /turf/open/floor/plating/dirt/jungleland/deep_sand
 
+/turf/open/floor/plating/jungle_baseturf/toxic_pit
+	baseturfs = /turf/open/water/smooth/toxic_pit
+
 /turf/open/indestructible/grass/jungle
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 
