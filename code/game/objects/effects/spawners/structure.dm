@@ -407,6 +407,7 @@ again.
 	name = "firedoor spawner" 
 	icon = 'icons/obj/structures_spawners.dmi'
 	icon_state = "firedoor_spawner"
+	layer = BELOW_OPEN_DOOR_LAYER
 
 /obj/effect/spawner/structure/firedoor/Initialize(mapload)
 	switch(dir)
