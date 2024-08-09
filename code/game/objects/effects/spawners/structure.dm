@@ -425,5 +425,5 @@ again.
 		if(NORTH,SOUTH)
 			spawn_list = list(/obj/machinery/door/firedoor/border_only/closed, /obj/machinery/door/firedoor/border_only/closed/north)
 		if(EAST,WEST)
-			spawn_list = list(/obj/machinery/door/firedoor/border_only/closedeast, /obj/machinery/door/firedoor/border_only/closed/west)
+			spawn_list = list(/obj/machinery/door/firedoor/border_only/closed/east, /obj/machinery/door/firedoor/border_only/closed/west)
 	. = ..()
