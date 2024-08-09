@@ -420,7 +420,7 @@ again.
 	name = "closed firedoor spawner" 
 	icon_state = "close_firedoor_spawner"
 
-/obj/effect/spawner/structure/firedoor/Initialize(mapload)
+/obj/effect/spawner/structure/firedoor/closed/Initialize(mapload)
 	switch(dir)
 		if(NORTH,SOUTH)
 			spawn_list = list(/obj/machinery/door/firedoor/closed/border_only, /obj/machinery/door/firedoor/closed/border_only/north)
