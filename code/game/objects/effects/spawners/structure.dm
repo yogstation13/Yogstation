@@ -401,3 +401,29 @@ again.
 		return INITIALIZE_HINT_QDEL
 	. = ..()
 	
+// Fire doors/firelocks
+
+/obj/effect/spawner/structure/firedoor
+	name = "firedoor spawner" 
+	icon = 'icons/obj/structures_spawners.dmi'
+	icon_state = "firedoor_spawner"
+
+/obj/effect/spawner/structure/firedoor/Initialize(mapload)
+	switch(dir)
+		if(NORTH,SOUTH)
+			spawn_list = list(/obj/machinery/door/firedoor/border_only, /obj/machinery/door/firedoor/border_only/north)
+		if(EAST,WEST)
+			spawn_list = list(/obj/machinery/door/firedoor/border_only/east, /obj/machinery/door/firedoor/border_only/west)
+	. = ..()
+
+/obj/effect/spawner/structure/firedoor/closed
+	name = "closed firedoor spawner" 
+	icon_state = "close_firedoor_spawner"
+
+/obj/effect/spawner/structure/firedoor/Initialize(mapload)
+	switch(dir)
+		if(NORTH,SOUTH)
+			spawn_list = list(/obj/machinery/door/firedoor/closed/border_only, /obj/machinery/door/firedoor/closed/border_only/north)
+		if(EAST,WEST)
+			spawn_list = list(/obj/machinery/door/firedoor/closed/border_only/east, /obj/machinery/door/firedoor/closed/border_only/west)
+	. = ..()
