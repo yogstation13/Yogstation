@@ -159,6 +159,16 @@
 /obj/structure/lattice,
 /turf/open/water/smooth/toxic_pit,
 /area/space)
+"eZ" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/structure/transit_tube/station,
+/obj/structure/transit_tube_pod{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/space)
 "fm" = (
 /obj/effect/turf_decal/ramp_middle{
 	dir = 4
@@ -219,6 +229,18 @@
 /obj/effect/turf_decal/ramp_corner,
 /turf/open/water/smooth/toxic_pit,
 /area/space)
+"hg" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/structure/transit_tube/curved{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/space)
 "hS" = (
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
@@ -265,6 +287,11 @@
 "jc" = (
 /obj/effect/turf_decal/ramp_middle,
 /turf/open/water/smooth/toxic_pit,
+/area/space)
+"jo" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/structure/window/reinforced/tinted,
+/turf/open/floor/plating,
 /area/space)
 "jw" = (
 /obj/effect/turf_decal/ramp_middle{
@@ -669,6 +696,10 @@
 	},
 /turf/open/water/smooth/toxic_pit,
 /area/space)
+"An" = (
+/obj/structure/transit_tube/curved/flipped,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
+/area/space)
 "Au" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -787,6 +818,12 @@
 	dir = 8
 	},
 /turf/open/water/smooth/toxic_pit,
+/area/space)
+"Dj" = (
+/obj/structure/transit_tube/junction{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/space)
 "Du" = (
 /obj/effect/turf_decal/trimline/white/corner{
@@ -1117,6 +1154,24 @@
 /obj/structure/lattice,
 /turf/open/water/smooth/toxic_pit,
 /area/space)
+"Nm" = (
+/obj/structure/transit_tube/curved{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
+/area/space)
+"Nq" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/structure/transit_tube/curved/flipped{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/space)
 "Nu" = (
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
@@ -1184,6 +1239,10 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/jungle_baseturf/toxic_pit,
 /area/space)
+"PC" = (
+/obj/structure/transit_tube/diagonal,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
+/area/space)
 "PW" = (
 /obj/effect/turf_decal/trimline/white/filled/warning{
 	dir = 8
@@ -1225,6 +1284,12 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
+/area/space)
+"RB" = (
+/obj/structure/transit_tube/curved/flipped{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/space)
 "RD" = (
 /obj/effect/turf_decal/box,
@@ -1318,6 +1383,12 @@
 "Uv" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
+/area/space)
+"UH" = (
+/obj/structure/transit_tube/diagonal{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/space)
 "UX" = (
 /obj/effect/turf_decal/trimline/white/filled/corner/lower{
@@ -1447,6 +1518,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
+/area/space)
+"Zm" = (
+/obj/structure/transit_tube/curved,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/space)
 "Zp" = (
 /obj/effect/turf_decal/ramp_middle{
@@ -291550,7 +291625,7 @@ Wd
 Wd
 AF
 AF
-iP
+AF
 AF
 eu
 HS
@@ -291804,13 +291879,13 @@ Wd
 Wd
 Wd
 Wd
+Wd
 AF
 AF
-AF
-AF
+iP
 AF
 eu
-EQ
+HS
 HS
 zM
 eu
@@ -292061,13 +292136,13 @@ Wd
 Wd
 Wd
 Wd
-iP
-iP
-iP
-iP
-iP
-ze
-uf
+AF
+AF
+AF
+AF
+AF
+eu
+EQ
 HS
 eu
 eu
@@ -292318,13 +292393,13 @@ Wd
 Wd
 Wd
 Wd
-AF
-AF
 iP
-AF
 iP
-eu
-ae
+iP
+iP
+iP
+ze
+uf
 Jx
 eu
 VV
@@ -292574,14 +292649,14 @@ Wd
 Wd
 Wd
 Wd
+Wd
 AF
 AF
+iP
 AF
-AF
-AF
-AF
+iP
 eu
-HS
+ae
 HS
 eu
 Rf
@@ -292834,8 +292909,8 @@ Wd
 AF
 AF
 AF
-AF
-AF
+Zm
+RB
 eu
 eu
 HS
@@ -293090,10 +293165,10 @@ Wd
 Wd
 AF
 AF
+PC
 AF
-AF
-HS
-HS
+jo
+hg
 HS
 HS
 HS
@@ -293346,11 +293421,11 @@ Wd
 Wd
 Wd
 AF
+Dj
 AF
 AF
-AF
-HS
-HS
+jo
+eZ
 HS
 HS
 HS
@@ -293604,10 +293679,10 @@ Wd
 Wd
 AF
 AF
+UH
 AF
-AF
-HS
-HS
+jo
+Nq
 HS
 HS
 HS
@@ -293862,8 +293937,8 @@ Wd
 Wd
 AF
 AF
-AF
-AF
+An
+Nm
 eu
 eu
 pM
