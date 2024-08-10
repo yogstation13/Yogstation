@@ -232,17 +232,17 @@ SUBSYSTEM_DEF(shuttle)
 		if(!total) return
 
 		if(alive / total <= threshold)
-			var/msg = "Automatically dispatching shuttle due to crew death."
-			message_admins(msg)
-			log_game("[msg] Alive: [alive], Roundstart: [total], Threshold: [threshold]")
 			emergency_no_recall = TRUE
-			priority_announce("Catastrophic casualties detected: crisis shuttle protocols activated - jamming recall signals across all frequencies.")
-			if(emergency.timeLeft(1) > emergency_no_recall * 0.4)
-				emergency.request(null, set_coefficient = 0.4)
-			return
+			if(emergency.timeLeft(1) > ALERT_COEFF_AUTOEVAC_CRITICAL)
+				var/msg = "Automatically dispatching shuttle due to crew death."
+				message_admins(msg)
+				log_game("[msg] Alive: [alive], Roundstart: [total], Threshold: [threshold]")
+				priority_announce("Catastrophic casualties detected: crisis shuttle protocols activated - jamming recall signals across all frequencies.")
+				emergency.request(null, set_coefficient = ALERT_COEFF_AUTOEVAC_CRITICAL)
+				return
 	if(world.time - SSticker.round_start_time >= 2 HOURS) //auto call the shuttle after 2 hours 
 		emergency_no_recall = TRUE //no recalling after 2 hours
-		if(emergency.mode == SHUTTLE_IDLE)
+		if(emergency.timeLeft(1) > SSsecurity_level.current_security_level.shuttle_call_time_mod)
 			var/msg = "Automatically dispatching shuttle due to lack of shift end response."
 			message_admins(msg)
 			priority_announce("Dispatching shuttle due to lack of shift end response.")
