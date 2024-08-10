@@ -56,8 +56,6 @@ Difficulty: Medium
 	loot = list(/obj/structure/closet/crate/necropolis/dragon)
 	butcher_results = list(/obj/item/stack/ore/diamond = 5, /obj/item/stack/sheet/sinew = 5, /obj/item/stack/sheet/bone = 30)
 	guaranteed_butcher_results = list(/obj/item/stack/sheet/animalhide/ashdrake = 10)
-	var/swooping = NONE
-	var/player_cooldown = 0
 	gps_name = "Fiery Signal"
 	deathmessage = "collapses into a pile of bones, its flesh sloughing away."
 	deathsound = 'sound/magic/demon_dies.ogg'
@@ -70,6 +68,10 @@ Difficulty: Medium
 	small_sprite_type = /datum/action/small_sprite/megafauna/drake
 	music_component = /datum/component/music_player/battle
 	music_path = /datum/music/sourced/battle/ash_drake
+	var/swooping = NONE
+	var/player_cooldown = 0
+	///sound used by any ability that shoots stuff
+	var/fire_sound = 'sound/magic/fireball.ogg'
 
 /datum/action/innate/megafauna_attack/fire_cone
 	name = "Fire Cone"
@@ -118,16 +120,12 @@ Difficulty: Medium
 				lava_swoop()
 		return
 
-	if(prob(15 + anger_modifier))
-		lava_swoop()
-
-	else if(prob(10+anger_modifier))
-		shoot_fire_attack()
-	else
-		fire_cone()
+	shoot_fire_attack()
 
 /mob/living/simple_animal/hostile/megafauna/dragon/proc/shoot_fire_attack()
-	if(health < maxHealth*0.5)
+	if(prob(15 + anger_modifier))
+		lava_swoop()
+	else if(prob(10+anger_modifier) && health < maxHealth*0.5)
 		mass_fire()
 	else
 		fire_cone()
@@ -170,7 +168,7 @@ Difficulty: Medium
 	SLEEP_CHECK_DEATH(0)
 	for(var/i = 1 to times)
 		SetRecoveryTime(50)
-		playsound(get_turf(src),'sound/magic/fireball.ogg', 200, 1)
+		playsound(get_turf(src),fire_sound, 200, 1)
 		var/increment = 360 / spiral_count
 		for(var/j = 1 to spiral_count)
 			var/list/turfs = line_target(j * increment + i * increment / 2, range, src)
@@ -238,7 +236,7 @@ Difficulty: Medium
 	light_range = initial(light_range)
 
 /mob/living/simple_animal/hostile/megafauna/dragon/proc/fire_cone(atom/at = target, meteors = TRUE)
-	playsound(get_turf(src),'sound/magic/fireball.ogg', 200, 1)
+	playsound(get_turf(src),fire_sound, 200, 1)
 	SLEEP_CHECK_DEATH(0)
 	if(prob(50) && meteors)
 		INVOKE_ASYNC(src, PROC_REF(fire_rain))
