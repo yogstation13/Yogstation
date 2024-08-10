@@ -1,6 +1,0 @@
-author: "Aquizit"
-delete-after: true 
-changes: 
-  - bugfix: "Scientists get Robotics access with skeleton crew access"
-  - tweak: "Chemists get Virology access with skeleton crew access"
-  - tweak: "Curators get base external airlocks access, no longer needing skeleton crew."

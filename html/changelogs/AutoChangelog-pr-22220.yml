@@ -1,5 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - tweak: "adjusts the values of autoevac and green alert emergency shuttle times (25 -> 15, 20 -> 12)"
-  - rscadd: "the shuttle autocalls if the round goes past 2 hours"
