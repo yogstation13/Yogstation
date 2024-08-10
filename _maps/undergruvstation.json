@@ -47,7 +47,7 @@
 			"Linkage": "Self",
 			"Weather_Acidrain": true,
 			"Gravity": true,
-			"Baseturf": "/turf/open/plating/beach/sand",
+			"Baseturf": "/turf/open/water/smooth/toxic_pit",
 			"No Parallax": true
 		}
 	],
