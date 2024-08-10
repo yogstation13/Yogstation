@@ -220,7 +220,7 @@
 	item_state = "cowboy"
 	can_adjust = FALSE
 
-/obj/item/clothing/under/rank/det/yogs
+/obj/item/clothing/under/rank/security/detective/yogs
 	name = "black detective suit"
 	desc = "A suit often worn by those detective types. Now in black!"
 	worn_icon = 'yogstation/icons/mob/clothing/uniform/uniform.dmi'
@@ -229,26 +229,26 @@
 	item_state = "black_detective"
 	can_adjust = FALSE
 
-/obj/item/clothing/under/rank/det/yogs/bluedetective
+/obj/item/clothing/under/rank/security/detective/yogs/bluedetective
 	name = "blue detective suit"
 	desc = "A suit often worn by those detective types. Now in blue!"
 	icon_state = "blue_detective"
 	item_state = "blue_detective"
 
-/obj/item/clothing/under/rank/det/yogs/golddetective
+/obj/item/clothing/under/rank/security/detective/yogs/golddetective
 	name = "gold detective suit"
 	desc = "A suit often worn by those detective types. Now in gold!"
 	icon_state = "gold_detective"
 	item_state = "gold_detective"
 	can_adjust = TRUE
 
-/obj/item/clothing/under/rank/det/yogs/greydetective
+/obj/item/clothing/under/rank/security/detective/yogs/greydetective
 	name = "grey detective suit"
 	desc = "A suit often worn by those detective types. Now in boring old grey!"
 	icon_state = "grey_detective"
 	item_state = "grey_detective"
 
-/obj/item/clothing/under/rank/det/yogs/forensictech
+/obj/item/clothing/under/rank/security/detective/yogs/forensictech
 	name = "forensic technician suit"
 	desc = "Hmm, this bloody toolbox has insulated fibers on it..."
 	icon_state = "forensic_tech"
