@@ -8,14 +8,9 @@
 	taste_description = "bitterness"
 	taste_mult = 1.2
 	evaporation_rate = 3 //6x faster than normal chems
+	/// Handled by the liver, does full damage for the highest toxpwr, and reduced for every following one
 	var/toxpwr = 1.5
 	var/silent_toxin = FALSE //won't produce a pain message when processed by liver/Life(seconds_per_tick = SSMOBS_DT, times_fired) if there isn't another non-silent toxin present.
-
-/datum/reagent/toxin/on_mob_life(mob/living/carbon/M)
-	if(toxpwr)
-		M.adjustToxLoss(toxpwr*REM, 0)
-		. = TRUE
-	..()
 
 /datum/reagent/toxin/amatoxin
 	name = "Amatoxin"
