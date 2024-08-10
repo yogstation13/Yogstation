@@ -325,7 +325,7 @@
 		temp -= ORGAN_SLOT_LIVER
 	if(HAS_TRAIT_FROM(H, TRAIT_NOBREATH, SPECIES_TRAIT))
 		temp -= ORGAN_SLOT_LUNGS
-	if(NOBLOOD in H.dna?.species.species_traits)
+	if((NOBLOOD in H.dna?.species.species_traits) || (STABLEBLOOD in H.dna?.species.species_traits))
 		temp -= ORGAN_SLOT_HEART
 	var/organ_type = organ_list[pick(temp)]
 	var/obj/item/organ/prosthetic = new organ_type(quirk_holder)
@@ -350,8 +350,9 @@
 		temp -= ORGAN_SLOT_LIVER
 	if(TRAIT_NOBREATH in species.inherent_traits)
 		temp -= ORGAN_SLOT_LUNGS
-	if(NOBLOOD in species.species_traits)
+	if((NOBLOOD in species.species_traits) || (STABLEBLOOD in species.species_traits))
 		temp -= ORGAN_SLOT_HEART
+	qdel(species)
 	if(temp.len <= 0)
 		return "You have no organs to replace!"
 

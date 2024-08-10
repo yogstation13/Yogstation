@@ -4,7 +4,7 @@
 	category = PROGRAM_CATEGORY_SUPPLY
 	program_icon_state = "id"
 	extended_desc = "This program will allow you to view the financial status of your department(s)."
-	transfer_access = ACCESS_HEADS
+	transfer_access = ACCESS_COMMAND
 	usage_flags = PROGRAM_ALL
 	requires_ntnet = 1
 	size = 3

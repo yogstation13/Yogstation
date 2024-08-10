@@ -91,8 +91,7 @@
 /area/shuttle/supply)
 "n" = (
 /obj/machinery/door/airlock/shuttle{
-	name = "Supply Shuttle Airlock";
-	req_access_txt = "31"
+	name = "Supply Shuttle Airlock"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/docking_port/mobile/supply{
@@ -106,6 +105,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/supply/cargo_bay,
 /turf/open/floor/plating,
 /area/shuttle/supply)
 "o" = (
@@ -120,13 +120,15 @@
 	id = "cargounload";
 	name = "Loading Doors";
 	pixel_x = -24;
-	pixel_y = 8
+	pixel_y = 8;
+	req_access = list("cargo_bay")
 	},
 /obj/machinery/button/door{
 	id = "cargoload";
 	name = "Loading Doors";
 	pixel_x = -24;
-	pixel_y = -8
+	pixel_y = -8;
+	req_access = list("cargo_bay")
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -147,8 +149,7 @@
 /area/shuttle/supply)
 "r" = (
 /obj/machinery/door/airlock/shuttle{
-	name = "Supply Shuttle Airlock";
-	req_access_txt = "31"
+	name = "Supply Shuttle Airlock"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor/border_only{
@@ -157,6 +158,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/supply/cargo_bay,
 /turf/open/floor/plating,
 /area/shuttle/supply)
 "s" = (

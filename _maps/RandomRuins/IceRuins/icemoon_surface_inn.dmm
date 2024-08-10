@@ -102,14 +102,14 @@
 /area/ruin/powered/inn)
 "bi" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Backroom";
-	req_access_txt = "25"
+	name = "Backroom"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/plasteel,
 /area/ruin/powered/inn)
 "bx" = (
@@ -223,7 +223,8 @@
 	id = "inndoor";
 	name = "Inn Front door Shutter";
 	pixel_x = 6;
-	pixel_y = -24
+	pixel_y = -24;
+	req_access = list("bar")
 	},
 /turf/open/floor/wood/broken/two,
 /area/ruin/powered/inn)
@@ -292,9 +293,7 @@
 /turf/open/floor/wood,
 /area/ruin/powered/inn)
 "ka" = (
-/obj/machinery/door/airlock/external{
-	req_access_txt = "25"
-	},
+/obj/machinery/door/airlock/external,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
@@ -302,6 +301,7 @@
 	dir = 8
 	},
 /obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/plasteel,
 /area/ruin/powered/inn)
 "kf" = (
@@ -374,13 +374,12 @@
 /turf/open/floor/wood/broken/five,
 /area/ruin/powered/inn)
 "mW" = (
-/obj/machinery/door/window/southright{
-	req_access_txt = "25"
-	},
+/obj/machinery/door/window/southright,
 /obj/machinery/light/small{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/windoor/access/all/service/bar,
 /turf/open/floor/wood,
 /area/ruin/powered/inn)
 "nd" = (
@@ -476,15 +475,14 @@
 /turf/open/floor/wood,
 /area/ruin/powered/inn)
 "qm" = (
-/obj/machinery/door/airlock/wood/glass{
-	req_access_txt = "25"
-	},
+/obj/machinery/door/airlock/wood/glass,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/inn)
 "qq" = (
@@ -499,7 +497,7 @@
 /area/ruin/powered/inn)
 "qT" = (
 /obj/structure/closet/secure_closet/personal/cabinet{
-	req_access = list(25)
+	req_access = list("bar")
 	},
 /obj/item/clothing/suit/hooded/wintercoat,
 /obj/item/tank/internals/emergency_oxygen,
@@ -782,7 +780,7 @@
 /obj/item/bedsheet/adjusted/brown,
 /obj/structure/bed,
 /obj/effect/mob_spawn/human/innkeeper{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/powered/inn)
@@ -861,7 +859,9 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/inn)
 "Lb" = (
-/obj/structure/closet/secure_closet/freezer/meat,
+/obj/structure/closet/secure_closet/freezer/meat{
+	req_access = list("bar")
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/inn)
 "Ld" = (
@@ -879,8 +879,7 @@
 /area/ruin/powered/inn/shed)
 "LE" = (
 /obj/machinery/door/airlock/wood{
-	name = "Personal Quarters";
-	req_access_txt = "25"
+	name = "Personal Quarters"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -888,10 +887,13 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/carpet/red,
 /area/ruin/powered/inn)
 "LU" = (
-/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/structure/closet/secure_closet/freezer/kitchen{
+	req_access = list("bar")
+	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -1090,9 +1092,7 @@
 /turf/open/floor/plating,
 /area/icemoon/underground/explored)
 "Xs" = (
-/obj/machinery/door/airlock/wood{
-	req_access_txt = "25"
-	},
+/obj/machinery/door/airlock/wood,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
@@ -1102,6 +1102,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/wood,
 /area/ruin/powered/inn)
 "XK" = (
@@ -1129,7 +1130,9 @@
 /turf/open/floor/wood,
 /area/ruin/powered/inn)
 "YJ" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/structure/closet/secure_closet/freezer/fridge{
+	req_access = list("bar")
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/inn)
 "YV" = (

@@ -21,9 +21,7 @@
 /turf/open/floor/plasteel,
 /area/clerk)
 "c" = (
-/obj/machinery/door/window/southleft{
-	req_access_txt = "36"
-	},
+/obj/machinery/door/window/southleft,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -36,6 +34,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/mapping_helpers/windoor/access/all/service/clerk,
 /turf/open/floor/plasteel,
 /area/clerk)
 "d" = (
@@ -76,13 +75,15 @@
 	id = "giftshop";
 	name = "Gift Shop Internal Shutters";
 	pixel_x = 26;
-	pixel_y = 24
+	pixel_y = 24;
+	req_access = list("clerk")
 	},
 /obj/machinery/button/door{
 	id = "giftshop_ext";
 	name = "Gift Shop External Shutters";
 	pixel_x = 40;
-	pixel_y = 24
+	pixel_y = 24;
+	req_access = list("clerk")
 	},
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -330,8 +331,7 @@
 /area/clerk)
 "A" = (
 /obj/machinery/door/airlock{
-	name = "Gift Shop";
-	req_access_txt = "36"
+	name = "Gift Shop"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -349,6 +349,7 @@
 /obj/effect/turf_decal/tile/green/opposingcorners{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/clerk,
 /turf/open/floor/plasteel,
 /area/clerk)
 "B" = (
@@ -531,8 +532,7 @@
 /area/clerk)
 "Q" = (
 /obj/machinery/door/airlock{
-	name = "Gift Shop";
-	req_access_txt = "36"
+	name = "Gift Shop"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -547,6 +547,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/effect/mapping_helpers/airlock/access/all/service/clerk,
 /turf/open/floor/plasteel,
 /area/clerk)
 "R" = (

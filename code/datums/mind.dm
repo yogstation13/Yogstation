@@ -209,6 +209,8 @@
 /datum/mind/proc/add_antag_datum(datum_type_or_instance, team)
 	if(!datum_type_or_instance)
 		return
+	if(has_antag_datum(datum_type_or_instance)) //if they already have it, don't give it again
+		return
 	var/datum/antagonist/A
 	if(!ispath(datum_type_or_instance))
 		A = datum_type_or_instance
@@ -396,10 +398,38 @@
 		return I
 
 
+//Register a signal to the creator such that if they gain an antagonist datum, they also get it
+/datum/mind/proc/add_creator_antag(datum/mind/creator, datum/antagonist/antag)
+	var/antag_type = antag.type
+
+	//don't give them a full antag status if there's a suitable servant antag datum
+	var/list/antag_downgrade = list(
+		/datum/antagonist/darkspawn = /datum/antagonist/psyche,
+		/datum/antagonist/thrall = /datum/antagonist/psyche
+	)
+	if(antag_type in antag_downgrade)
+		antag_type = antag_downgrade[antag_type]
+
+	add_antag_datum(antag_type)
+
+/datum/mind/proc/remove_creator_antag(datum/mind/creator, datum/antagonist/antag)
+	var/antag_type = antag.type
+
+	//make sure to do it here too so the proper tag is removed
+	var/list/antag_downgrade = list(
+		/datum/antagonist/darkspawn = /datum/antagonist/psyche,
+		/datum/antagonist/thrall = /datum/antagonist/psyche
+	)
+	if(antag_type in antag_downgrade)
+		antag_type = antag_downgrade[antag_type]
+
+	remove_antag_datum(antag_type)
 
 //Link a new mobs mind to the creator of said mob. They will join any team they are currently on, and will only switch teams when their creator does.
-
 /datum/mind/proc/enslave_mind_to_creator(mob/living/creator)
+	RegisterSignal(creator.mind, COMSIG_ANTAGONIST_GAINED, PROC_REF(add_creator_antag)) //re-enslave to the new antag
+	RegisterSignal(creator.mind, COMSIG_ANTAGONIST_REMOVED, PROC_REF(remove_creator_antag)) //remove enslavement to the antag
+
 	if(iscultist(creator))
 		SSticker.mode.add_cultist(src)
 
@@ -416,6 +446,9 @@
 		N.send_to_spawnpoint = FALSE
 		N.nukeop_outfit = null
 		add_antag_datum(N,converter.nuke_team)
+
+	else if(is_team_darkspawn(creator))
+		add_antag_datum(/datum/antagonist/psyche)
 
 
 	enslaved_to = WEAKREF(creator)
