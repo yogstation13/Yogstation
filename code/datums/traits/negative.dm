@@ -701,6 +701,8 @@
 		/datum/reagent/medicine/pen_acid,
 		/datum/reagent/medicine/salbutamol,
 
+		/datum/reagent/drug/caffeine, //get fucked
+		
 		/datum/reagent/medicine/mutadone,
 		/datum/reagent/medicine/charcoal, //this isn't about realism, it's about sending a message
 		/datum/reagent/medicine/mannitol, //i am a spiteful god and my creations will suffer
