@@ -748,30 +748,33 @@
 		COOLDOWN_START(src, allergies, cooldown_duration) //start it, or refresh the ongoing
 
 	if(anaphylaxis)
-		M.emote("choke")
-		M.losebreath += 5
+		H.emote("choke")
+		H.losebreath += 5
+		H.adjustStaminaLoss(10)
+		H.clear_stamina_regen()
+		H.silent = max(M.silent, 4) //can't speak, your throat is swollen shut
 		return //don't do any of the regular stuff
 
 	if(!COOLDOWN_FINISHED(src, allergies)) //if the cooldown is going
-		M.adjustToxLoss(1, TRUE, TRUE)
+		H.adjustToxLoss(1, TRUE, TRUE)
 
 		//external indicator that it's happening
 		if(prob(60)) 
 			switch(rand(0, 2))
 				if(0)
-					M.emote("cough")
+					H.emote("cough")
 				if(1)
-					M.emote("sneeze")
+					H.emote("sneeze")
 				if(2)
-					M.emote("choke")
+					H.emote("choke")
 
 		switch(rand(0, 10)) //negative effect
 			if(0 to 5)
 				to_chat(M, span_danger("Your eyes swell up and you can barely see!"))
-				M.adjust_eye_blur(3)
+				H.adjust_eye_blur(3)
 			if(6 to 9) //nice
 				to_chat(M, span_danger("You scratch at an itch."))
-				M.adjustBruteLoss(4*REM, 0)
+				H.adjustBruteLoss(4*REM, 0)
 			if(10)
 				to_chat(M, span_userdanger("You go into anaphylactic shock!"))
 				anaphylaxis = TRUE
