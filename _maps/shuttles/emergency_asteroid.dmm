@@ -17,8 +17,7 @@
 /area/shuttle/escape)
 "ad" = (
 /obj/machinery/door/airlock/security/glass{
-	name = "Emergency Shuttle Brig";
-	req_access_txt = "2"
+	name = "Emergency Shuttle Brig"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -26,6 +25,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "ae" = (
@@ -78,8 +78,7 @@
 /area/shuttle/escape)
 "ak" = (
 /obj/machinery/door/airlock/medical/glass{
-	name = "Escape Shuttle Infirmary";
-	req_access_txt = "5"
+	name = "Escape Shuttle Infirmary"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -87,17 +86,18 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "al" = (
 /obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock";
-	req_access_txt = "2"
+	name = "Emergency Shuttle Airlock"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "am" = (
@@ -383,8 +383,7 @@
 /area/shuttle/escape)
 "bg" = (
 /obj/machinery/door/airlock/command/glass{
-	name = "Emergency Shuttle Cockpit";
-	req_access_txt = "19"
+	name = "Emergency Shuttle Cockpit"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -392,6 +391,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/command/general,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "bi" = (
@@ -569,6 +569,19 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"fo" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Emergency Shuttle Brig"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
+/turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "lb" = (
 /obj/machinery/light,
@@ -999,7 +1012,7 @@ ac
 ac
 ac
 ah
-ad
+fo
 ah
 bi
 ah

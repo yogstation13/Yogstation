@@ -140,3 +140,19 @@
 /obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/hugbox
 	desc = "A bullpup two-round burst toy SMG, designated 'C-20r'. Ages 8 and up. This one feels noticably less fun..."
 	mag_type = /obj/item/ammo_box/magazine/toy/smgm45/hugbox
+
+//paintballs
+/obj/item/gun/ballistic/automatic/toy/paintball
+	name = "red paintball gun"
+	desc = "An entry level paintball gun. This one comes in red."
+	icon_state = "paintball"
+	mag_type = /obj/item/ammo_box/magazine/toy/paintball
+	mag_display = TRUE
+	fire_sound = 'sound/weapons/paintball.ogg'
+	burst_size = 2
+	clumsy_check = FALSE
+
+/obj/item/gun/ballistic/automatic/toy/paintball/blue
+	name = "blue paintball gun"
+	icon_state = "paintball-blue"
+	desc = "An entry level paintball gun. This one comes in blue."

@@ -440,6 +440,30 @@
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_RED
 	canSmoothWith = SMOOTH_GROUP_CARPET_RED
 
+/turf/open/floor/carpet/plainblue
+	icon = 'icons/turf/floors/carpet_plainblue.dmi'
+	icon_state = "carpet_plainblue-255"
+	base_icon_state = "carpet_plainblue"
+	floor_tile = /obj/item/stack/tile/carpet/plainblue
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_PLAIN_BLUE
+	canSmoothWith = SMOOTH_GROUP_CARPET_PLAIN_BLUE
+
+/turf/open/floor/carpet/plaingreen
+	icon = 'icons/turf/floors/carpet_plaingreen.dmi'
+	icon_state = "carpet_plaingreen-255"
+	base_icon_state = "carpet_plaingreen"
+	floor_tile = /obj/item/stack/tile/carpet/plaingreen
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_PLAIN_GREEN
+	canSmoothWith = SMOOTH_GROUP_CARPET_PLAIN_GREEN
+
+/turf/open/floor/carpet/plainpurple
+	icon = 'icons/turf/floors/carpet_plainpurple.dmi'
+	icon_state = "carpet_plainpurple-255"
+	base_icon_state = "carpet_plainpurple"
+	floor_tile = /obj/item/stack/tile/carpet/plainpurple
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_PLAIN_PURPLE
+	canSmoothWith = SMOOTH_GROUP_CARPET_PLAIN_PURPLE
+
 /turf/open/floor/carpet/royalblack
 	icon = 'icons/turf/floors/carpet_royalblack.dmi'
 	icon_state = "carpet_royalblack-255"

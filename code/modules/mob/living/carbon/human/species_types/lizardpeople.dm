@@ -7,15 +7,15 @@
 	id = SPECIES_LIZARD
 	say_mod = "hisses"
 	default_color = "00FF00"
-	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,HAS_FLESH,HAS_BONE,HAS_TAIL)
+	species_traits = list(MUTCOLORS,EYECOLOR,DIGITIGRADE,LIPS,HAS_FLESH,HAS_BONE,HAS_TAIL)
 	inherent_traits = list(TRAIT_COLDBLOODED)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_REPTILE
-	mutant_bodyparts = list("tail_lizard", "snout", "spines", "horns", "frills", "body_markings", "legs")
+	mutant_bodyparts = list("tail_lizard", "snout", "spines", "horns", "frills", "body_markings")
 	mutanttongue = /obj/item/organ/tongue/lizard
 	mutanttail = /obj/item/organ/tail/lizard
 	coldmod = 0.67 //used to being cold, just doesn't like it much
 	heatmod = 0.67 //greatly appreciate heat, just not too much
-	default_features = list("mcolor" = "#00FF00", "tail_lizard" = "Smooth", "snout" = "Round", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs")
+	default_features = list("mcolor" = "#00FF00", "tail_lizard" = "Smooth", "snout" = "Round", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	attack_verbs = list("slash", "scratch", "claw")
 	attack_effect = ATTACK_EFFECT_CLAW
@@ -30,6 +30,7 @@
 	liked_food = MEAT | GRILLED | SEAFOOD | MICE | FRUIT
 	inert_mutation = FIREBREATH
 	deathsound = 'sound/voice/lizard/deathsound.ogg'
+	screamsound = 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' // Yog - not pitched bear growls
 	wings_icon = "Dragon"
 	species_language_holder = /datum/language_holder/lizard
 	var/heat_stunmod = 0
@@ -301,14 +302,6 @@
 	return TRUE
 
 #undef LIZARD_SLOWDOWN
-
-/datum/species/lizard/get_scream_sound(mob/living/carbon/human/lizard)
-	return pick(
-		'sound/voice/lizard/lizard_scream_1.ogg',
-		'sound/voice/lizard/lizard_scream_2.ogg',
-		'sound/voice/lizard/lizard_scream_3.ogg',
-		'yogstation/sound/voice/lizardperson/lizard_scream.ogg',
-	)
 
 /datum/species/lizard/get_cough_sound(mob/living/carbon/human/lizard)
 	if(lizard.gender == FEMALE)

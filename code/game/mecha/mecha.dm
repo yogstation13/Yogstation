@@ -28,6 +28,7 @@
 	light_on = FALSE
 	flags_1 = HEAR_1
 	demolition_mod = 3 // mech punch go brr
+	var/weather_protection = WEATHER_STORM
 	var/ruin_mecha = FALSE //if the mecha starts on a ruin, don't automatically give it a tracking beacon to prevent metagaming.
 	var/can_move = 0 //time of next allowed movement
 	var/mob/living/carbon/occupant = null

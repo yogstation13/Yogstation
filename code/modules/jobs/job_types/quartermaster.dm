@@ -8,10 +8,16 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of personnel"
+
 	outfit = /datum/outfit/job/quartermaster
+
 	alt_titles = list("Stock Controller", "Cargo Coordinator", "Shipping Overseer", "Postmaster General")
+
 	added_access = list()
-	base_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM, ACCESS_VAULT, ACCESS_RC_ANNOUNCE)
+	base_access = list(ACCESS_CARGO, ACCESS_QM, ACCESS_CARGO_BAY, ACCESS_MINING,
+					ACCESS_MINING_STATION, ACCESS_MAINT_TUNNELS, ACCESS_MECH_MINING,
+					ACCESS_VAULT, ACCESS_AUX_BASE, ACCESS_RC_ANNOUNCE)
+
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_CAR
 	display_order = JOB_DISPLAY_ORDER_QUARTERMASTER

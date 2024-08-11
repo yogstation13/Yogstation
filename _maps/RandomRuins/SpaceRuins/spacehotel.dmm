@@ -877,8 +877,7 @@
 /area/ruin/space/has_grav/hotel/guestroom/room_6)
 "cs" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Hotel Maintenance";
-	req_access_txt = "201"
+	name = "Hotel Maintenance"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -889,6 +888,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/maintenance,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel)
 "ct" = (
@@ -1250,6 +1250,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/workroom)
 "dk" = (
@@ -1836,9 +1837,9 @@
 /area/ruin/space/has_grav/hotel)
 "eN" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Hotel Maintenance";
-	req_access_txt = "201"
+	name = "Hotel Maintenance"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/maintenance,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel)
 "eO" = (
@@ -1969,9 +1970,9 @@
 /area/ruin/space/has_grav/hotel/bar)
 "fj" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Hotel Maintenance";
-	req_access_txt = "200,201"
+	name = "Hotel Maintenance"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/maintenance,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/bar)
 "fk" = (
@@ -2068,8 +2069,7 @@
 /area/ruin/space/has_grav/hotel)
 "fs" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Hotel Maintenance";
-	req_access_txt = "201"
+	name = "Hotel Maintenance"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -2080,6 +2080,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/maintenance,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel)
 "ft" = (
@@ -2158,7 +2159,7 @@
 /area/ruin/space/has_grav/hotel/bar)
 "fE" = (
 /obj/machinery/vending/boozeomat{
-	req_access_txt = "200"
+	req_access = list("ruins_general")
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -2307,9 +2308,9 @@
 /area/ruin/space/has_grav/hotel/bar)
 "fT" = (
 /obj/machinery/door/airlock/freezer{
-	name = "Freezer";
-	req_access_txt = "200"
+	name = "Freezer"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/hotel/bar)
 "fU" = (
@@ -2498,9 +2499,9 @@
 /area/ruin/space/has_grav/hotel/bar)
 "gs" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Hotel Staff Room";
-	req_access_txt = "200"
+	name = "Hotel Staff Room"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/hotel/workroom)
 "gt" = (
@@ -2571,7 +2572,7 @@
 /area/ruin/space/has_grav/hotel/bar)
 "gC" = (
 /obj/structure/closet/secure_closet/freezer/meat{
-	req_access_txt = "200"
+	req_access = list("ruins_general")
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
@@ -2658,7 +2659,7 @@
 /obj/item/reagent_containers/food/condiment/milk,
 /obj/item/reagent_containers/food/condiment/milk,
 /obj/structure/closet/secure_closet/freezer/fridge{
-	req_access_txt = "200"
+	req_access = list("ruins_general")
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
@@ -2833,8 +2834,7 @@
 /obj/item/reagent_containers/food/condiment/flour,
 /obj/item/reagent_containers/food/condiment/flour,
 /obj/structure/closet/secure_closet/freezer/kitchen{
-	req_access = null;
-	req_access_txt = "200"
+	req_access = list("ruins_general")
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
@@ -3011,11 +3011,11 @@
 /area/ruin/space/has_grav/hotel/workroom)
 "hI" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Hotel Maintenance";
-	req_access_txt = "200,201"
+	name = "Hotel Maintenance"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/maintenance,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel)
 "hJ" = (
@@ -3105,7 +3105,7 @@
 /area/ruin/space/has_grav/hotel/custodial)
 "hT" = (
 /obj/machinery/vending/dinnerware{
-	req_access_txt = "200"
+	req_access = list("ruins_general")
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
@@ -3191,14 +3191,14 @@
 /area/ruin/space/has_grav/hotel/custodial)
 "ib" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Power Storage";
-	req_access_txt = "200,201"
+	name = "Power Storage"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/engineering,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel)
 "ic" = (
@@ -3212,11 +3212,11 @@
 /area/ruin/space/has_grav/hotel)
 "id" = (
 /obj/machinery/door/airlock/security/glass{
-	name = "Hotel Security Checkpoint";
-	req_access_txt = "203"
+	name = "Hotel Security Checkpoint"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/security,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel)
 "ie" = (
@@ -3391,8 +3391,7 @@
 /area/ruin/space/has_grav/hotel/power)
 "iw" = (
 /obj/machinery/door/airlock{
-	name = "Custodial Closet";
-	req_access_txt = "200,201"
+	name = "Custodial Closet"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3403,6 +3402,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/maintenance,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel)
 "ix" = (
@@ -3430,9 +3430,9 @@
 /area/ruin/space/has_grav/hotel/bar)
 "iA" = (
 /obj/machinery/door/airlock{
-	name = "Theatre";
-	req_access_txt = "200"
+	name = "Theatre"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/hotel/bar)
 "iB" = (
@@ -3445,8 +3445,7 @@
 /area/ruin/space/has_grav/hotel)
 "iD" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Hotel Maintenance";
-	req_access_txt = "201"
+	name = "Hotel Maintenance"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -3454,6 +3453,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/maintenance,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel)
 "iE" = (
@@ -3985,8 +3985,7 @@
 	dir = 4;
 	icon_state = "rightsecure";
 	name = "Cell Door";
-	req_access = null;
-	req_access_txt = "203"
+	req_access = null
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -3997,6 +3996,9 @@
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/all/ruins/security{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/security)
@@ -4057,10 +4059,10 @@
 /area/ruin/space/has_grav/hotel/power)
 "kI" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Air Supply";
-	req_access_txt = "200,201"
+	name = "Air Supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/engineering,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel/power)
 "kK" = (
@@ -4336,8 +4338,7 @@
 /area/ruin/space/has_grav/hotel/security)
 "lF" = (
 /obj/machinery/door/airlock/security/glass{
-	name = "Hotel Security Checkpoint";
-	req_access_txt = "203"
+	name = "Hotel Security Checkpoint"
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -4349,6 +4350,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/security,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/hotel/security)
 "lG" = (
@@ -4475,8 +4477,7 @@
 /area/ruin/space/has_grav/hotel/security)
 "lT" = (
 /obj/structure/closet/secure_closet/security{
-	req_access = null;
-	req_access_txt = "203"
+	req_access = list("ruins_security")
 	},
 /obj/item/gun/energy/laser/scatter/shotty,
 /obj/item/clothing/head/helmet/justice,
@@ -4880,12 +4881,12 @@
 /area/ruin/space/has_grav/hotel/workroom)
 "mQ" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Hotel Staff Room";
-	req_access_txt = "200"
+	name = "Hotel Staff Room"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/hotel/workroom)
 "mR" = (
@@ -5035,8 +5036,10 @@
 	dir = 4;
 	icon_state = "right";
 	layer = 3;
-	name = "Hotel Bar Access";
-	req_access_txt = "200,201"
+	name = "Hotel Bar Access"
+	},
+/obj/effect/mapping_helpers/windoor/access/all/ruins/general{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/bar)
