@@ -911,7 +911,7 @@
 /datum/reagent/toxin/delayed/on_mob_life(mob/living/carbon/M)
 	if(current_cycle > delay)
 		holder.remove_reagent(type, actual_metaboliztion_rate * M.metabolism_efficiency)
-		M.adjustToxLoss(actual_toxpwr*REM, 0)
+		toxpwr = actual_toxpwr
 		if(prob(10))
 			M.Paralyze(20, 0)
 		. = 1
