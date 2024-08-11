@@ -747,16 +747,15 @@
 			to_chat(quirk_holder, span_userdanger("You forgot you were allergic to [allergy.name]!"))
 		COOLDOWN_START(src, allergies, cooldown_duration) //start it, or refresh the ongoing
 
+	if(anaphylaxis)
+		M.emote("choke")
+		M.losebreath += 5
+		return //don't do any of the regular stuff
+
 	if(!COOLDOWN_FINISHED(src, allergies)) //if the cooldown is going
 		M.adjustToxLoss(1, TRUE, TRUE)
 
 		//external indicator that it's happening
-		if(anaphylaxis) //always choking
-			M.emote("choke")
-			M.losebreath += 5
-			return //don't do any of the regular stuff
-
-
 		if(prob(60)) 
 			switch(rand(0, 2))
 				if(0)
