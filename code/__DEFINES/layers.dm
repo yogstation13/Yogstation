@@ -185,6 +185,7 @@
 #define CLOSED_BLASTDOOR_LAYER 3.13 // ABOVE DOORS
 #define ABOVE_OBJ_LAYER 3.2
 #define ABOVE_WINDOW_LAYER 3.3
+#define WINDOW_HELPER_LAYER 3.31 // Keep above windows/windoors - see mapping_helpers.dm
 #define SIGN_LAYER 3.4
 #define CORGI_ASS_PIN_LAYER 3.41
 #define NOT_HIGH_OBJ_LAYER 3.5

@@ -18,7 +18,7 @@
 
 	circuit = /obj/item/circuitboard/computer/telecomms/comm_traffic
 
-	req_access = list(ACCESS_TCOM_ADMIN)
+	req_access = list(ACCESS_TCOMMS_ADMIN)
 	var/unlimited_range = FALSE
 
 /obj/machinery/computer/telecomms/traffic/Initialize(mapload)

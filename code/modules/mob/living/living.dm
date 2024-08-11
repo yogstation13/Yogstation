@@ -42,6 +42,7 @@
 	return ..()
 
 /mob/living/proc/ZImpactDamage(turf/T, levels)
+	SEND_SIGNAL(T, COMSIG_TURF_MOB_FALL, src)
 	visible_message(span_danger("[src] crashes into [T] with a sickening noise!"))
 	adjustBruteLoss((levels * 5) ** 1.5)
 	Knockdown(levels * 50)
@@ -632,6 +633,21 @@
 	if(admin_revive)
 		cure_fakedeath()
 	SEND_SIGNAL(src, COMSIG_LIVING_POST_FULLY_HEAL)
+
+/mob/living/proc/do_strange_reagent_revival()
+	if(iscarbon(src))
+		var/mob/living/carbon/C = src
+		for(var/organ in C.internal_organs)
+			var/obj/item/organ/O = organ
+			O.setOrganDamage(0)
+	adjustBruteLoss(-100)
+	adjustFireLoss(-100)
+	adjustOxyLoss(-200, 0)
+	adjustToxLoss(-200, 0, TRUE)
+	updatehealth()
+	if(revive())
+		emote("gasp")
+		log_combat(src, src, "revived", src)
 
 //proc called by revive(), to check if we can actually ressuscitate the mob (we don't want to revive him and have him instantly die again)
 /mob/living/proc/can_be_revived()

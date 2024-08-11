@@ -11,7 +11,6 @@
 	var/list/list_reagents = null
 	var/spawned_disease = null
 	var/disease_amount = 20
-	var/spillable = FALSE
 
 /obj/item/reagent_containers/Initialize(mapload, vol)
 	. = ..()
@@ -24,6 +23,37 @@
 		reagents.add_reagent(/datum/reagent/blood, disease_amount, data)
 
 	add_initial_reagents()
+
+	AddComponent(/datum/component/liquids_interaction, TYPE_PROC_REF(/obj/item/reagent_containers, attack_on_liquids_turf))
+
+/obj/item/reagent_containers/proc/attack_on_liquids_turf(obj/item/reagent_containers/my_beaker, turf/T, mob/living/user, obj/effect/abstract/liquid_turf/liquids)
+	if(!user.Adjacent(T))
+		return FALSE
+	if(!my_beaker.is_open_container())
+		return FALSE
+	if(!user.Adjacent(T))
+		return FALSE
+	if(user.combat_mode)
+		return FALSE
+	if(liquids.fire_state) //Use an extinguisher first
+		to_chat(user, "<span class='warning'>You can't scoop up anything while it's on fire!</span>")
+		return TRUE
+	if(liquids.liquid_group.expected_turf_height == 1)
+		to_chat(user, "<span class='warning'>The puddle is too shallow to scoop anything up!</span>")
+		return TRUE
+	var/free_space = my_beaker.reagents.maximum_volume - my_beaker.reagents.total_volume
+	if(free_space <= 0)
+		to_chat(user, "<span class='warning'>You can't fit any more liquids inside [my_beaker]!</span>")
+		return TRUE
+	var/desired_transfer = my_beaker.amount_per_transfer_from_this
+	if(desired_transfer > free_space)
+		desired_transfer = free_space
+	if(desired_transfer > liquids.liquid_group.reagents_per_turf)
+		desired_transfer = liquids.liquid_group.reagents_per_turf
+	liquids.liquid_group.trans_to_seperate_group(my_beaker.reagents, desired_transfer, liquids)
+	to_chat(user, "<span class='notice'>You scoop up around [round(desired_transfer)] units of liquids with [my_beaker].</span>")
+	user.changeNext_move(CLICK_CD_MELEE)
+	return TRUE
 
 /obj/item/reagent_containers/proc/add_initial_reagents()
 	if(list_reagents)
@@ -118,17 +148,34 @@
 		return
 
 	else
-		if(isturf(target) && reagents.reagent_list.len && thrownby)
-			log_combat(thrownby, target, "splashed (thrown) [english_list(reagents.reagent_list)]", "in [AREACOORD(target)]")
-			log_game("[key_name(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [AREACOORD(target)].")
-			message_admins("[ADMIN_LOOKUPFLW(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [ADMIN_VERBOSEJMP(target)].")
+		if(isturf(target))
+			var/turf/T = target
+			if(istype(T, /turf/open))
+				T.add_liquid_from_reagents(reagents, FALSE, reagents.chem_temp)
+			if(reagents.reagent_list.len && thrownby)
+				log_combat(thrownby, target, "splashed (thrown) [english_list(reagents.reagent_list)]", "in [AREACOORD(target)]")
+				log_game("[key_name(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [AREACOORD(target)].")
+				message_admins("[ADMIN_LOOKUPFLW(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [ADMIN_VERBOSEJMP(target)].")
+		else
+			reagents.reaction(target, TOUCH)
+			var/turf/targets_loc = target.loc
+			if(istype(targets_loc, /turf/open) && !target.density)
+				targets_loc.add_liquid_from_reagents(reagents)
+			else
+				targets_loc = get_step_towards(targets_loc, thrownby)
+				targets_loc.add_liquid_from_reagents(reagents) //not perfect but i can't figure out how to move something to the nearest visible turf from throw_target
 		visible_message(span_notice("[src] spills its contents all over [target]."))
 		reagents.reaction(target, TOUCH)
 		if(QDELETED(src))
 			return
 
-	if(!isturf(target)) // it all ends up on the floor because gravity exists
-		reagents.reaction(get_turf(target), TOUCH)
+	playsound(target, 'sound/effects/slosh.ogg', 25, TRUE)
+	var/image/splash_animation = image('icons/effects/effects.dmi', target, "splash")
+	if(isturf(target))
+		splash_animation = image('icons/effects/effects.dmi', target, "splash_floor")
+	splash_animation.color = mix_color_from_reagents(reagents.reagent_list)
+	flick_overlay_global(splash_animation, GLOB.clients, 1.0 SECONDS)
+
 	reagents.clear_reagents()
 
 /obj/item/reagent_containers/microwave_act(obj/machinery/microwave/M)

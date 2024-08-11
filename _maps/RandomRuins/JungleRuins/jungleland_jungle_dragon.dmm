@@ -1,0 +1,100 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"f" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"i" = (
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"n" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"o" = (
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"r" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"E" = (
+/obj/structure/flora/rock/pile/largejungle,
+/mob/living/simple_animal/hostile/megafauna/dragon/jungle,
+/turf/open/water/smooth/toxic_pit,
+/area/template_noop)
+"O" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/water/smooth/toxic_pit,
+/area/template_noop)
+"R" = (
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+
+(1,1,1) = {"
+a
+R
+R
+R
+n
+R
+a
+"}
+(2,1,1) = {"
+R
+R
+o
+R
+R
+R
+R
+"}
+(3,1,1) = {"
+R
+R
+R
+O
+R
+R
+n
+"}
+(4,1,1) = {"
+R
+R
+O
+E
+O
+R
+R
+"}
+(5,1,1) = {"
+i
+R
+R
+O
+R
+R
+R
+"}
+(6,1,1) = {"
+R
+n
+R
+R
+R
+f
+R
+"}
+(7,1,1) = {"
+a
+R
+R
+r
+R
+R
+a
+"}
