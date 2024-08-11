@@ -702,7 +702,7 @@
 		/datum/reagent/medicine/salbutamol,
 
 		/datum/reagent/drug/caffeine, //get fucked
-		
+
 		/datum/reagent/medicine/mutadone,
 		/datum/reagent/medicine/charcoal, //this isn't about realism, it's about sending a message
 		/datum/reagent/medicine/mannitol, //i am a spiteful god and my creations will suffer
@@ -754,7 +754,7 @@
 		H.losebreath += 5
 		H.adjustStaminaLoss(10)
 		H.clear_stamina_regen()
-		H.silent = max(M.silent, 4) //can't speak, your throat is swollen shut
+		H.silent = max(H.silent, 4) //can't speak, your throat is swollen shut
 		return //don't do any of the regular stuff
 
 	if(!COOLDOWN_FINISHED(src, allergies)) //if the cooldown is going
@@ -772,13 +772,13 @@
 
 		switch(rand(0, 10)) //negative effect
 			if(0 to 5)
-				to_chat(M, span_danger("Your eyes swell up and you can barely see!"))
+				to_chat(H, span_danger("Your eyes swell up and you can barely see!"))
 				H.adjust_eye_blur(3)
 			if(6 to 9) //nice
-				to_chat(M, span_danger("You scratch at an itch."))
-				H.adjustBruteLoss(4*REM, 0)
+				to_chat(H, span_danger("You scratch at an itch."))
+				H.adjustBruteLoss(4, 0)
 			if(10)
-				to_chat(M, span_userdanger("You go into anaphylactic shock!"))
+				to_chat(H, span_userdanger("You go into anaphylactic shock!"))
 				anaphylaxis = TRUE
 				addtimer(VARSET_CALLBACK(src, anaphylaxis, FALSE), cooldown_duration)
 
