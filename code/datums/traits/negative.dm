@@ -713,7 +713,7 @@
 	var/reagent_id
 	COOLDOWN_DECLARE(allergies)
 	/// how long allergies last after getting rid of the allergen
-	var/cooldown_duration = 20 SECONDS 
+	var/cooldown_duration = 10 SECONDS 
 	/// Wether the person is experiencing anaphylatic shock or not
 	var/anaphylaxis = FALSE
 	/// How long anaphylactic shock lasts
