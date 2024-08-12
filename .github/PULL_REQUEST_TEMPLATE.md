@@ -32,17 +32,17 @@ Important documentation information includes, but is not limited to: any numeric
 <!-- Edit the changelog below to reflect the changes made by this PR, even if the changes are minor - required for every PR that has player-facing changes.
 If you add a name after the ':cl:', that name will be used in the changelog. Leave it empty to use your GitHub name. -->
 
-:cl:  
+:cl:
 rscadd: Added new things  
 rscdel: Removed old things  
-bugfix: fixed a few things  
+bugfix: Fixed a few things  
 wip: This is work in progress  
-tweak: tweaked a few things  
-soundadd: added a new sound thingy  
-sounddel: removed an old sound thingy  
-imageadd: added some icons and images  
-imagedel: deleted some icons and images
+tweak: Tweaked a few things  
+soundadd: Added a new sound thingy  
+sounddel: Removed an old sound thingy  
+imageadd: Added some icons and images  
+imagedel: Deleted some icons and images
 mapping: This is a mapping change
-spellcheck: fixed a few typos  
+spellcheck: Fixed a few typos  
 experimental: This is experimental
 /:cl:

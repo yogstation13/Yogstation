@@ -281,3 +281,10 @@
 /datum/music/sourced/battle/stalwart
 	sound_file = 'yogstation/sound/lavaland/music/stalwart.ogg'
 	priority = 100
+/datum/music/sourced/battle/tar_king
+	sound_file = 'yogstation/sound/lavaland/music/king_of_tar.ogg'
+	priority = 100
+
+/datum/music/sourced/battle/jungledragon/meme
+	sound_file = 'yogstation/sound/jungleland/music/jungle_dragon_dokuro.ogg'
+	priority = 250

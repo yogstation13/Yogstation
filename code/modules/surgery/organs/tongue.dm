@@ -275,7 +275,8 @@
 
 /obj/item/organ/tongue/robot/handle_speech(datum/source, list/speech_args)
 	..()
-	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
+	if(!HAS_TRAIT(source, TRAIT_DISGUISED)) //disguised voice font
+		speech_args[SPEECH_SPANS] |= SPAN_ROBOT
 
 /obj/item/organ/tongue/snail
 	name = "snailtongue"
