@@ -41,3 +41,6 @@
 			mutanttail = null
 		H.dna.update_uf_block(DNA_HUMAN_TAIL_BLOCK)
 		H.dna.update_uf_block(DNA_EARS_BLOCK)
+
+/datum/species/human/vulpine/can_wag_tail(mob/living/carbon/human/H)
+	return FALSE //i ain't spriting this shit
