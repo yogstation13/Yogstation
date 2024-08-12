@@ -8,7 +8,7 @@
 	if(!is_donator(C))
 		return
 
-	switch(C.prefs.read_preference(/datum/preference/toggle/purrbation))
+	switch(C.prefs.read_preference(/datum/preference/choiced/purrbation))
 		if(PURRBATION_CAT)
 			purrbation_toggle_onlyhumans(H)
 		if(PURRBATION_FOX)
