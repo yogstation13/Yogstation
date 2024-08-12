@@ -2058,6 +2058,11 @@
 	icon_state = "fox"
 	color_src = HAIR
 
+/datum/sprite_accessory/tails_animated/human/fox
+	name = "Fox"
+	icon_state = "fox"
+	color_src = HAIR
+
 /datum/sprite_accessory/snouts
 	icon = 'icons/mob/mutant_bodyparts.dmi'
 
