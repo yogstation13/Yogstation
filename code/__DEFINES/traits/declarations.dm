@@ -260,6 +260,8 @@
 #define TRAIT_TOXIMMUNE "toxin_immune"
 /// Makes you immune to flashes
 #define TRAIT_NOFLASH "noflash"
+/// One can breath under water, you get me?
+#define TRAIT_WATER_BREATHING "water_breathing"
 
 
 ////////////////////////////////////////////////////////////////////////////////////
