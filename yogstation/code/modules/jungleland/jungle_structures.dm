@@ -212,6 +212,7 @@
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	anchored = TRUE
 	density = FALSE
+	resistance_flags = FLAMMABLE | UNACIDABLE
 
 	var/picked_result
 	var/picked_amt
