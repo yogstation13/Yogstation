@@ -232,4 +232,7 @@ GLOBAL_LIST_INIT(mining_allowed, typecacheof(list(
 	/obj/item/gun/energy/kinetic_accelerator, 
 	/obj/item/pickaxe, 
 	/obj/item/organ/regenerative_core/legion, 
-	/obj/item/kitchen/knife/combat)))
+	/obj/item/kitchen/knife/combat,
+	/obj/item/storage/bag/ore,
+	/obj/item/storage/bag/gem
+	)))

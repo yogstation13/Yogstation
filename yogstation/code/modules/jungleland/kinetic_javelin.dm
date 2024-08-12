@@ -33,6 +33,7 @@
 	throw_range = 7
 	throw_speed = 1.5
 	w_class = WEIGHT_CLASS_NORMAL
+	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	/// Base damage before any multipliers
 	var/unmodified_throwforce = 15
 	/// Extra damage in exotic environments
