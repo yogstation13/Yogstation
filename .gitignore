@@ -225,3 +225,6 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 
 # Running OpenDream locally
 tgstation.json
+
+# Autowiki
+/tools/autowiki/node_modules

@@ -89,6 +89,7 @@
 #include "timer_sanity.dm"
 #include "trait_addition_and_removal.dm"
 #include "unit_test.dm"
+#include "autowiki.dm"
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

@@ -258,7 +258,7 @@
 
 	var/list/part = list(
 		"name" = D.name,
-		"desc" = initial(built_item.desc),
+		"desc" = D.get_description(),
 		"printTime" = get_construction_time_w_coeff(initial(D.construction_time))/10,
 		"cost" = cost,
 		"id" = D.id,
@@ -272,7 +272,7 @@
 /**
   * Generates a list of resources / materials available to this Exosuit Fab
   *
-  * Returns null if there is no material container available.
+  * Returns null if there is no material container available.B
   * List format is list(material_name = list(amount = ..., ref = ..., etc.))
   */
 /obj/machinery/mecha_part_fabricator/proc/output_available_resources()
