@@ -748,7 +748,6 @@
 		if(COOLDOWN_FINISHED(src, allergies)) //if it wasn't ongoing, give a prompt
 			to_chat(quirk_holder, span_userdanger("You forgot you were allergic to [allergy.name]!"))
 		COOLDOWN_START(src, allergies, cooldown_duration) //start it, or refresh the ongoing
-		H.adjustToxLoss(1, TRUE, TRUE)
 
 	if(!COOLDOWN_FINISHED(src, allergies))
 		H.emote("choke")
