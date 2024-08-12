@@ -749,16 +749,15 @@
 			to_chat(quirk_holder, span_userdanger("You forgot you were allergic to [allergy.name]!"))
 		COOLDOWN_START(src, allergies, cooldown_duration) //start it, or refresh the ongoing
 
-	if(!COOLDOWN_FINISHED(src, allergies)anaphylaxis)
+	if(!COOLDOWN_FINISHED(src, allergies))
 		H.emote("choke")
 		H.losebreath += 3
 		H.adjust_eye_blur(2)
 		H.adjustStaminaLoss(4)
 		H.clear_stamina_regen()
 		H.silent = max(H.silent, 3) //can't speak, your throat is swollen shut
-		return //don't do any of the regular stuff
 
-	if(!COOLDOWN_FINISHED(src, allergies)) //if the cooldown is going
+	else if(!COOLDOWN_FINISHED(src, allergies)) //if the cooldown is going
 		H.adjustToxLoss(1, TRUE, TRUE)
 
 		//external indicator that it's happening
