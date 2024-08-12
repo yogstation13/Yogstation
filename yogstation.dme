@@ -2972,6 +2972,7 @@
 #include "code\modules\mob\living\carbon\human\species_types\snail.dm"
 #include "code\modules\mob\living\carbon\human\species_types\vampire.dm"
 #include "code\modules\mob\living\carbon\human\species_types\wy_synths.dm"
+#include "code\modules\mob\living\carbon\human\species_types\vulpid.dm"
 #include "code\modules\mob\living\carbon\human\species_types\zombies.dm"
 #include "code\modules\mob\living\carbon\monkey\combat.dm"
 #include "code\modules\mob\living\carbon\monkey\death.dm"
