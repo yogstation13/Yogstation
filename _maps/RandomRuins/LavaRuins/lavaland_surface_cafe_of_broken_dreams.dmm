@@ -59,8 +59,7 @@
 /area/ruin/powered)
 "aF" = (
 /obj/item/reagent_containers/glass/bottle/radscrub{
-	desc = "War. War never changes. But this can clean your radiation contamination problems!";
-	
+	desc = "War. War never changes. But this can clean your radiation contamination problems!"
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
@@ -95,7 +94,6 @@
 "aN" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
-/obj/item/clothing/under/scratch,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "aO" = (
@@ -217,8 +215,7 @@
 "bn" = (
 /obj/structure/closet/secure_closet/bar{
 	pixel_x = -3;
-	pixel_y = -1;
-	req_access_txt = "25"
+	pixel_y = -1
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)

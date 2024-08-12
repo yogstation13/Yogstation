@@ -374,7 +374,7 @@ Diagnostic HUDs!
 	var/image/holder = hud_list[DIAG_MECH_HUD]
 	var/icon/I = icon(icon, icon_state, dir)
 	holder.pixel_y = I.Height() - world.icon_size
-	holder.icon_state = "huddiag[RoundDiagBar(atom_integrity/max_integrity)]"
+	holder.icon_state = "huddiag[RoundDiagBar((atom_integrity - integrity_failure) / (max_integrity - integrity_failure))]"
 	set_hud_image_active(DIAG_MECH_HUD)
 
 /obj/mecha/proc/diag_hud_set_mechcell()

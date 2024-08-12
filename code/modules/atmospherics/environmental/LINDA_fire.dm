@@ -17,6 +17,9 @@
 	if(!air)
 		return
 
+	if(liquids && liquids.liquid_group && !liquids.fire_state)
+		liquids.liquid_group.ignite_turf(src)
+
 	if (air.get_moles(GAS_O2) < 0.5 || air.get_moles(GAS_HYPERNOB) > REACTION_OPPRESSION_THRESHOLD)
 		return
 

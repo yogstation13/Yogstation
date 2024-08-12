@@ -66,6 +66,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/pickup_sound
 	///Sound uses when dropping the item, or when its thrown.
 	var/drop_sound
+	///Do the drop and pickup sounds vary?
+	var/sound_vary = FALSE
 
 	var/w_class = WEIGHT_CLASS_NORMAL
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
@@ -528,7 +530,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	item_flags &= ~IN_INVENTORY
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED,user)
 	if(!silent)
-		playsound(src, drop_sound, DROP_SOUND_VOLUME, ignore_walls = FALSE)
+		playsound(src, drop_sound, DROP_SOUND_VOLUME, vary = sound_vary, ignore_walls = FALSE)
 
 
 // called just as an item is picked up (loc is not yet changed)

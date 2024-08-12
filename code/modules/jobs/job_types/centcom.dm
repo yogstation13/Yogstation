@@ -37,7 +37,7 @@
 	W.icon = 'icons/obj/card.dmi' //Bypasses modularisation.
 	W.icon_state = "centcom"
 	W.access = get_centcom_access("CentCom Official")
-	W.access += ACCESS_WEAPONS
+	W.access += ACCESS_WEAPONS_PERMIT
 	W.assignment = "CentCom Official"
 	W.originalassignment = "CentCom Official"
 	W.registered_name = H.real_name

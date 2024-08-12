@@ -82,6 +82,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/old_lighting_corner_NW = lighting_corner_NW
 	var/old_directional_opacity = directional_opacity
 	var/old_dynamic_lumcount = dynamic_lumcount
+
 	var/old_rcd_memory = rcd_memory
 	var/old_explosion_throw_details = explosion_throw_details
 	var/old_opacity = opacity
@@ -206,6 +207,14 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	//don't
 	if(!SSair.initialized)
 		return ..()
+	var/obj/effect/abstract/liquid_turf/old_liquids = liquids
+	var/datum/liquid_group/old_group = liquids?.liquid_group
+	var/evaporating = FALSE
+	if(old_group)
+		old_group.remove_from_group(liquids.my_turf)
+		if(SSliquids.evaporation_queue[src])
+			evaporating = TRUE
+			SSliquids.evaporation_queue -= src
 	if ((flags & CHANGETURF_INHERIT_AIR) && ispath(path, /turf/open))
 		var/datum/gas_mixture/stashed_air = new()
 		stashed_air.copy_from(air)
@@ -223,9 +232,17 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 			QDEL_NULL(newTurf.air)
 			newTurf.air = stashed_air
 			update_air_ref(planetary_atmos ? 1 : 2)
+		if(old_liquids)
+			old_liquids.my_turf = newTurf
+			newTurf.liquids = old_liquids
+			old_group.add_to_group(newTurf)
+			if(evaporating)
+				SSliquids.evaporation_queue[newTurf] = TRUE
 	else
 		if(turf_fire)
 			qdel(turf_fire)
+		if(old_liquids)
+			qdel(old_liquids)
 		if(ispath(path, /turf/closed) || ispath(path, /turf/cordon))
 			flags |= CHANGETURF_RECALC_ADJACENT
 			update_air_ref(-1)

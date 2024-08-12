@@ -81,8 +81,7 @@
 /area/shuttle/supply)
 "o" = (
 /obj/machinery/door/airlock/titanium{
-	name = "Supply Shuttle Airlock";
-	req_access_txt = "31"
+	name = "Supply Shuttle Airlock"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -90,6 +89,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/supply/cargo_bay,
 /turf/open/floor/plating,
 /area/shuttle/supply)
 "p" = (
@@ -98,13 +98,15 @@
 	id = "QMLoaddoor2";
 	name = "Loading Doors";
 	pixel_x = 24;
-	pixel_y = 8
+	pixel_y = 8;
+	req_access = list("cargo_bay")
 	},
 /obj/machinery/button/door{
 	id = "QMLoaddoor";
 	name = "Loading Doors";
 	pixel_x = 24;
-	pixel_y = -8
+	pixel_y = -8;
+	req_access = list("cargo_bay")
 	},
 /obj/machinery/conveyor_switch/oneway{
 	id = "cargoshuttle"
@@ -116,8 +118,7 @@
 /area/shuttle/supply)
 "q" = (
 /obj/machinery/door/airlock/titanium{
-	name = "Supply Shuttle Airlock";
-	req_access_txt = "31"
+	name = "Supply Shuttle Airlock"
 	},
 /obj/docking_port/mobile/supply{
 	dwidth = 3;
@@ -129,6 +130,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/supply/cargo_bay,
 /turf/open/floor/plating,
 /area/shuttle/supply)
 "r" = (
