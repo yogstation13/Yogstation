@@ -18,6 +18,8 @@
 	mutanttail = /obj/item/organ/tail/cat/fox
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 
+	smells_like = "idfk, whatever foxes smell like"
+
 /datum/species/human/vulpine/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
 	if(ishuman(C))
