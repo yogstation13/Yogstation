@@ -729,7 +729,6 @@
 	desc = "You have an uncontrollable urge to pick up things you see. Even things that don't belong to you."
 	icon = "hands-holding-circle"
 	value = -2
-	mob_trait = TRAIT_KLEPTOMANIAC
 	gain_text = span_danger("You have an unmistakeable urge to grab nearby objects.")
 	lose_text = span_notice("You no longer feel the urge to steal.")
 	medical_record_text = "Patient has an uncontrollable urge to steal."

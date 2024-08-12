@@ -33,6 +33,51 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //-----------------------------------Mob traits-----------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
+#define TRAIT_QUICKEST_CARRY	"quickest-carry"
+#define TRAIT_STRONG_GRIP		"strong-grip"
+#define TRAIT_SURGERY_PREPARED	"surgery_prepared"
+#define TRAIT_NO_PASSIVE_COOLING "no-passive-cooling"
+#define TRAIT_NO_PASSIVE_HEATING "no-passive-heating"
+#define TRAIT_BLOODY_MESS_LITE	"bloody_mess_lite" //weak heparin, otherwise the same
+#define TRAIT_NO_BLOOD_REGEN	"no_blood_regen" //prevents regenerating blood
+#define TRAIT_NOPULSE           "nopulse" // Your heart doesn't beat
+#define TRAIT_MASQUERADE        "masquerade" // Falsifies Health analyzer blood levels
+#define TRAIT_NOCLONE			"noclone" // No cloning
+#define TRAIT_NODEFIB			"nodefib" // No defibbing
+#define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp
+#define TRAIT_MESONS			"mesons"
+#define TRAIT_MAGBOOTS			"magboots"
+/// Whether we're sneaking, from the alien sneak ability.
+/// Maybe worth generalizing into a general "is sneaky" / "is stealth" trait in the future.
+#define TRAIT_ALIEN_SNEAK "sneaking_alien"
+///This mob can't use vehicles
+#define TRAIT_NOVEHICLE	"no_vehicle"
+/// You can't see color!
+#define TRAIT_COLORBLIND "color_blind"
+/// This person is crying
+#define TRAIT_CRYING "crying"
+/// you cannot put this in any container, backpack, box etc
+#define TRAIT_NO_STORAGE		"no-storage" 
+/// Crafts items using the crafting menu faster
+#define TRAIT_CRAFTY			"crafty"
+/// Gets a more detailed reagent breakdown when examining
+#define TRAIT_SEE_REAGENTS		"see_reagents"
+/// Clock cultist, item is already upgraded by a stargazer
+#define TRAIT_STARGAZED			"stargazed"
+/// Heals over time while drunk
+#define TRAIT_DRUNK_HEALING		"drunk_healing"
+/// Gets hungry slower
+#define TRAIT_EAT_LESS			"eat_less"
+/// Gets hungry three times as fast
+#define TRAIT_EAT_MORE			"eat_more"
+/// Can never be full
+#define TRAIT_BOTTOMLESS_STOMACH "bottomless_stomach"
+/// Randomly passes out
+#define RANDOM_BLACKOUTS "random_blackouts"
+/// Provides the cultist red eyes overlay
+#define CULT_EYES "cult_eyes"
+/// organs won't decay
+#define TRAIT_PRESERVED_ORGANS	"preserved_organs"
 
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------Utility activity defines------------------------------//
@@ -52,11 +97,16 @@
 #define TRAIT_HIGHRESISTDAMAGESLOWDOWN "highresistdamageslowdown"
 /// Prevents use of commonly available instant or near instant stun weapons
 #define TRAIT_NO_STUN_WEAPONS	"no_stun_weapons"
-
+/// Reduced accuracy when shooting
+#define TRAIT_POOR_AIM			"poor_aim"
+/// Can't prime grenades
 #define TRAIT_NO_GRENADES		"no_nades"
-
+/// Can't be slowed down
 #define TRAIT_IGNORESLOWDOWN "ignoreslow"
+/// Can't be slowed down via damage taken
 #define TRAIT_IGNOREDAMAGESLOWDOWN "ignoredamageslowdown"
+/// Makes the screen go black and white while illuminating all mobs based on their body temperature
+#define TRAIT_INFRARED_VISION	"infrared_vision"
 
 ////////////////////////////////////////////////////////////////////////////////////
 //-------------------------Species Specific defines-------------------------------//
@@ -73,7 +123,6 @@
 #define TRAIT_MEDICALIGNORE     "medical_ignore"
 #define TRAIT_SLIME_EMPATHY		"slime-empathy"
 #define TRAIT_ACIDBLOOD         "acid_blood"
-#define TRAIT_PRESERVED_ORGANS	"preserved_organs"
 #define TRAIT_SKINNY			"skinny"  //For those with a slightly thinner torso sprite
 
 
@@ -121,56 +170,60 @@
 #define TRAIT_LONG_TELOMERES	"long_telomeres" //You get CLOONED faster!!!
 
 
-
-/// Makes the screen go black and white while illuminating all mobs based on their body temperature
-#define TRAIT_INFRARED_VISION	"infrared_vision"
-
-
-#define TRAIT_QUICKEST_CARRY	"quickest-carry"
-#define TRAIT_STRONG_GRIP		"strong-grip"
-
-#define TRAIT_SURGERY_PREPARED	"surgery_prepared"
-#define TRAIT_NO_PASSIVE_COOLING "no-passive-cooling"
-#define TRAIT_NO_PASSIVE_HEATING "no-passive-heating"
-#define TRAIT_BLOODY_MESS_LITE	"bloody_mess_lite" //weak heparin, otherwise the same
-#define TRAIT_NO_BLOOD_REGEN	"no_blood_regen" //prevents regenerating blood
-#define TRAIT_NOPULSE           "nopulse" // Your heart doesn't beat
-#define TRAIT_MASQUERADE        "masquerade" // Falsifies Health analyzer blood levels
-#define TRAIT_NOCLONE			"noclone" // No cloning
-#define TRAIT_NODEFIB			"nodefib" // No defibbing
-#define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp
-#define TRAIT_MESONS			"mesons"
-#define TRAIT_MAGBOOTS			"magboots"
-
-/// Whether we're sneaking, from the alien sneak ability.
-/// Maybe worth generalizing into a general "is sneaky" / "is stealth" trait in the future.
-#define TRAIT_ALIEN_SNEAK "sneaking_alien"
-
-///This mob can't use vehicles
-#define TRAIT_NOVEHICLE	"no_vehicle"
-
-/// You can't see color!
-#define TRAIT_COLORBLIND "color_blind"
-
-/// This person is crying
-#define TRAIT_CRYING "crying"
-
-#define TRAIT_NO_STORAGE		"no-storage" //you cannot put this in any container, backpack, box etc
-
-#define TRAIT_POOR_AIM			"poor_aim"
-
-
-#define TRAIT_KLEPTOMANIAC		"kleptomaniac"
-#define TRAIT_CRAFTY			"crafty"
-
-#define TRAIT_SEE_REAGENTS		"see_reagents"
-#define TRAIT_STARGAZED			"stargazed"
-
-
-#define TRAIT_DRUNK_HEALING		"drunk_healing"
-#define TRAIT_EAT_LESS			"eat_less"
-#define TRAIT_EAT_MORE			"eat_more" //You get hungry three times as fast
-#define TRAIT_BOTTOMLESS_STOMACH "bottomless_stomach" // Can never be full
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------Immunity trait defines------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/// Provides complete emp immunity to the atom, but not anything they're holding
+#define TRAIT_EMPPROOF_SELF		"emp_immunity_self"
+/// Provides complete emp immunity to everything being held, but not the atom itself
+#define TRAIT_EMPPROOF_CONTENTS "emp_immunity_contents"
+/// Provides immunity to the blinding of welding without providing immunity to other sources of flash
+#define TRAIT_SAFEWELD		"safe_welding"
+/// protects the holder from throw_impact
+#define TRAIT_IMPACTIMMUNE		"impact_immunity"
+/// Immunity to slipping on ice
+#define TRAIT_NOSLIPICE			"noslip_ice"
+/// Immunity to slipping on water
+#define TRAIT_NOSLIPWATER		"noslip_water"
+/// Immunity to slipping
+#define TRAIT_NOSLIPALL			"noslip_all"
+/// This mob is immune to stun causing status effects and stamcrit.
+/// Prefer to use [/mob/living/proc/check_stun_immunity] over checking for this trait exactly.
+#define TRAIT_STUNIMMUNE "stun_immunity"
+/// Can't fall asleep
+#define TRAIT_SLEEPIMMUNE "sleep_immunity"
+/// Can't be pushed
+#define TRAIT_PUSHIMMUNE "push_immunity"
+/// Are we immune to shocks?
+#define TRAIT_SHOCKIMMUNE "shock_immunity"
+/// Immunity to low temperature damage
+#define TRAIT_RESISTCOLD "resist_cold"
+/// Immunity to high temperature damage
+#define TRAIT_RESISTHEAT "resist_heat"
+/// For when you want to be able to touch hot things, but still want fire to be an issue.
+#define TRAIT_RESISTHEATHANDS "resist_heat_handsonly"
+/// Immunity to high pressure atmos damage
+#define TRAIT_RESISTHIGHPRESSURE "resist_high_pressure"
+/// Immunity to low pressure atmos damage
+#define TRAIT_RESISTLOWPRESSURE "resist_low_pressure"
+/// This human is immune to the effects of being exploded. (ex_act)
+#define TRAIT_BOMBIMMUNE "bomb_immunity"
+/// Immune to being irradiated
+#define TRAIT_RADIMMUNE "rad_immunity"
+/// Can't be given viruses
+#define TRAIT_VIRUSIMMUNE "virus_immunity"
+/// Can't be injected with syringes and other similar things
+#define TRAIT_PIERCEIMMUNE "pierce_immunity"
+/// Can't be dismembered
+#define TRAIT_NODISMEMBER "dismember_immunity"
+/// Can't be set on fire
+#define TRAIT_NOFIRE "nonflammable"
+/// Mob is immune to toxin damage
+#define TRAIT_TOXIMMUNE "toxin_immune"
+/// Makes you immune to flashes
+#define TRAIT_NOFLASH "noflash"
+/// One can breath under water, you get me?
+#define TRAIT_WATER_BREATHING "water_breathing"
 
 
 
@@ -208,60 +261,10 @@
 #define WRIST_STRAP_TRAIT "wrist_strap"
 #define GRIMOIRE_TRAIT "grimoire_trait"
 
+/**
+ * END OF YOGS REORGANIZE, MIGHT COME BACK TO THIS
+ */
 
-
-#define RANDOM_BLACKOUTS "random_blackouts"
-#define CULT_EYES "cult_eyes"
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////
-//----------------------------Immunity trait defines------------------------------//
-////////////////////////////////////////////////////////////////////////////////////
-/// Provides complete emp immunity to the atom, but not anything they're holding
-#define TRAIT_EMPPROOF_SELF		"emp_immunity_self"
-/// Provides complete emp immunity to everything being held, but not the atom itself
-#define TRAIT_EMPPROOF_CONTENTS "emp_immunity_contents"
-/// Provides immunity to the blinding of welding without providing immunity to other sources of flash
-#define TRAIT_SAFEWELD		"safe_welding"
-/// protects the holder from throw_impact
-#define TRAIT_IMPACTIMMUNE		"impact_immunity"
-/// Immunity to slipping on ice
-#define TRAIT_NOSLIPICE			"noslip_ice"
-/// Immunity to slipping on water
-#define TRAIT_NOSLIPWATER		"noslip_water"
-/// Immunity to slipping
-#define TRAIT_NOSLIPALL			"noslip_all"
-/// This mob is immune to stun causing status effects and stamcrit.
-/// Prefer to use [/mob/living/proc/check_stun_immunity] over checking for this trait exactly.
-#define TRAIT_STUNIMMUNE "stun_immunity"
-#define TRAIT_SLEEPIMMUNE "sleep_immunity"
-#define TRAIT_PUSHIMMUNE "push_immunity"
-/// Are we immune to shocks?
-#define TRAIT_SHOCKIMMUNE "shock_immunity"
-
-#define TRAIT_RESISTCOLD "resist_cold"
-#define TRAIT_RESISTHEAT "resist_heat"
-/// For when you want to be able to touch hot things, but still want fire to be an issue.
-#define TRAIT_RESISTHEATHANDS "resist_heat_handsonly"
-#define TRAIT_RESISTHIGHPRESSURE "resist_high_pressure"
-#define TRAIT_RESISTLOWPRESSURE "resist_low_pressure"
-/// This human is immune to the effects of being exploded. (ex_act)
-#define TRAIT_BOMBIMMUNE "bomb_immunity"
-/// Immune to being irradiated
-#define TRAIT_RADIMMUNE "rad_immunity"
-/// Can't be given viruses
-#define TRAIT_VIRUSIMMUNE "virus_immunity"
-#define TRAIT_PIERCEIMMUNE "pierce_immunity"
-#define TRAIT_NODISMEMBER "dismember_immunity"
-#define TRAIT_NOFIRE "nonflammable"
-/// Mob is immune to toxin damage
-#define TRAIT_TOXIMMUNE "toxin_immune"
-/// Makes you immune to flashes
-#define TRAIT_NOFLASH "noflash"
-/// One can breath under water, you get me?
-#define TRAIT_WATER_BREATHING "water_breathing"
 
 
 ////////////////////////////////////////////////////////////////////////////////////
