@@ -39,7 +39,7 @@
 				damage_multiplier *= 0.5 //reduce the damage dealt for every subsequent toxin
 				C.adjustToxLoss(real_damage)
 				if(!HAS_TRAIT(owner, TRAIT_TOXINLOVER)) //don't hurt the liver if they like toxins
-					damage += (real_damage)
+					damage += (real_damage / 2)
 
 			//metabolize reagents
 			C.reagents.metabolize(C, can_overdose=TRUE)
