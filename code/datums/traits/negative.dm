@@ -717,7 +717,7 @@
 	/// how long allergies last after getting rid of the allergen
 	var/cooldown_duration = 10 SECONDS 
 	/// Wether the person is experiencing anaphylatic shock or not
-	var/anaphylaxis = FALSE
+	COOLDOWN_DECLARE(anaphylaxis)
 	/// How long anaphylactic shock lasts
 	var/shock_duration = 15 SECONDS
 
@@ -749,19 +749,20 @@
 			to_chat(quirk_holder, span_userdanger("You forgot you were allergic to [allergy.name]!"))
 		COOLDOWN_START(src, allergies, cooldown_duration) //start it, or refresh the ongoing
 
-	if(anaphylaxis)
+	if(!COOLDOWN_FINISHED(src, allergies)anaphylaxis)
 		H.emote("choke")
-		H.losebreath += 5
-		H.adjustStaminaLoss(10)
+		H.losebreath += 3
+		H.adjust_eye_blur(2)
+		H.adjustStaminaLoss(4)
 		H.clear_stamina_regen()
-		H.silent = max(H.silent, 4) //can't speak, your throat is swollen shut
+		H.silent = max(H.silent, 3) //can't speak, your throat is swollen shut
 		return //don't do any of the regular stuff
 
 	if(!COOLDOWN_FINISHED(src, allergies)) //if the cooldown is going
 		H.adjustToxLoss(1, TRUE, TRUE)
 
 		//external indicator that it's happening
-		if(prob(60)) 
+		if(prob(30)) 
 			switch(rand(0, 2))
 				if(0)
 					H.emote("cough")
@@ -770,17 +771,17 @@
 				if(2)
 					H.emote("choke")
 
-		switch(rand(0, 10)) //negative effect
-			if(0 to 5)
-				to_chat(H, span_danger("Your eyes swell up and you can barely see!"))
-				H.adjust_eye_blur(3)
-			if(6 to 9) //nice
-				to_chat(H, span_danger("You scratch at an itch."))
-				H.adjustBruteLoss(4, 0)
-			if(10)
-				to_chat(H, span_userdanger("You go into anaphylactic shock!"))
-				anaphylaxis = TRUE
-				addtimer(VARSET_CALLBACK(src, anaphylaxis, FALSE), cooldown_duration)
+		if(prob(40))
+			switch(rand(0, 10)) //negative effect
+				if(0 to 5)
+					to_chat(H, span_danger("Your eyes swell up and you can barely see!"))
+					H.adjust_eye_blur(3)
+				if(6 to 9) //nice
+					to_chat(H, span_danger("You scratch at an itch."))
+					H.adjustBruteLoss(2)
+				if(10)
+					to_chat(H, span_userdanger("You go into anaphylactic shock!"))
+					COOLDOWN_START(src, allergies, shock_duration)
 
 /datum/quirk/kleptomaniac
 	name = "Kleptomaniac"
