@@ -759,7 +759,7 @@
 
 	else if(!COOLDOWN_FINISHED(src, allergies)) //if the cooldown is going
 		//external indicator that it's happening
-		if(prob(30)) 
+		if(prob(50)) 
 			switch(rand(0, 2))
 				if(0)
 					H.emote("cough")
@@ -768,7 +768,7 @@
 				if(2)
 					H.emote("choke")
 
-		if(prob(40))
+		if(prob(50))
 			switch(rand(0, 10)) //negative effect
 				if(0 to 5)
 					to_chat(H, span_danger("Your eyes swell up and you can barely see!"))
