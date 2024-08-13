@@ -1824,9 +1824,12 @@
 	name = "Rad Scrub Plus"
 	description = "Are your chairs, tables, bottles and assitants glowing green? Spray em down Donk Co's new patented cleaner, Rad Scrub Plus! WARNING: SWALLOWING OR INGESTING RAD SCRUB PLUS MAY RESULT NAUSUA, POISONING, OR MESOTHELIOMA"
 	color = "#9f5a2f"
-	var/old_insulation = RAD_NO_INSULATION
 	taste_description = "metallic dust"
 	self_consuming = TRUE
+	/// Holds the old rad insulation that the mob had
+	var/old_insulation = RAD_NO_INSULATION
+	/// The insulation amount that this medicine provides
+	var/insulation_provided = RAD_MEDIUM_INSULATION
 
 /datum/reagent/medicine/radscrub/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if(methods & (TOUCH|VAPOR))
@@ -1840,7 +1843,8 @@
 	..()
 	//store the person's original insulation so they're only extra protected while it's in their system
 	old_insulation = L.rad_insulation
-	L.rad_insulation = RAD_LIGHT_INSULATION
+	if(insulation_provided > L.rad_insulation)
+		L.rad_insulation = insulation_provided
 
 /datum/reagent/medicine/radscrub/on_mob_end_metabolize(mob/living/L)
 	L.rad_insulation = old_insulation
@@ -1854,9 +1858,16 @@
 	var/datum/component/radioactive/radiation = O.GetComponent(/datum/component/radioactive)
 	if(radiation)
 		radiation.strength -= max(0, reac_volume * (RAD_BACKGROUND_RADIATION * 5))
+
 	O.wash(CLEAN_RAD | CLEAN_TYPE_WEAK)
-	if(O.rad_insulation < RAD_LIGHT_INSULATION)
-		O.rad_insulation = RAD_LIGHT_INSULATION
+	if(O.rad_insulation < insulation_provided)
+		O.rad_insulation = insulation_provided
+
+	for(var/obj/thing in O.get_all_contents()) //also clean any contents stored within
+		thing.wash(CLEAN_RAD | CLEAN_TYPE_WEAK)
+		if(thing.rad_insulation < insulation_provided)
+			thing.rad_insulation = insulation_provided
+
 
 #undef PERF_BASE_DAMAGE
 #undef REQUIRED_STRANGE_REAGENT_FOR_REVIVAL
