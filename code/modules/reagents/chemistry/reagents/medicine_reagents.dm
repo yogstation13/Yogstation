@@ -1828,7 +1828,7 @@
 	self_consuming = TRUE
 	/// Holds the old rad insulation that the mob had
 	var/old_insulation = RAD_NO_INSULATION
-	/// The insulation amount that this medicine provides
+	/// The insulation amount that this medicine provides to objects
 	var/insulation_provided = RAD_MEDIUM_INSULATION
 
 /datum/reagent/medicine/radscrub/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
@@ -1843,11 +1843,10 @@
 	..()
 	//store the person's original insulation so they're only extra protected while it's in their system
 	old_insulation = L.rad_insulation
-	if(insulation_provided > L.rad_insulation)
-		L.rad_insulation = insulation_provided
+	L.rad_insulation -= old_insulation //this reduces rad insulation to 0 (immunity)
 
 /datum/reagent/medicine/radscrub/on_mob_end_metabolize(mob/living/L)
-	L.rad_insulation = old_insulation
+	L.rad_insulation += old_insulation
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.vomit(stun = FALSE) //it binds with the radioactive particles inside you, and they have to come out somehow
