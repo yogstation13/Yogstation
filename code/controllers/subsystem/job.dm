@@ -146,6 +146,8 @@ SUBSYSTEM_DEF(job)
 			return FALSE
 		if(job.required_playtime_remaining(player.client))
 			return FALSE
+		if(job.specialized_playtime_remaining(player.client))
+			return FALSE
 		var/position_limit = job.total_positions
 		if(!latejoin)
 			position_limit = job.spawn_positions
@@ -179,6 +181,9 @@ SUBSYSTEM_DEF(job)
 			continue
 		if(job.required_playtime_remaining(player.client))
 			JobDebug("FOC player not enough xp, Player: [player]")
+			continue
+		if(job.specialized_playtime_remaining(player.client))
+			JobDebug("FOC player not enough specialized xp, Player: [player]")
 			continue
 		if(flag && (!(flag in player.client.prefs.be_special)))
 			JobDebug("FOC flag failed, Player: [player], Flag: [flag], ")
@@ -222,6 +227,10 @@ SUBSYSTEM_DEF(job)
 
 		if(job.required_playtime_remaining(player.client))
 			JobDebug("GRJ player not enough xp, Player: [player]")
+			continue
+
+		if(job.specialized_playtime_remaining(player.client))
+			JobDebug("GRJ player not enough specialized xp, Player: [player]")
 			continue
 
 		if(player.mind && (job.title in player.mind.restricted_roles))
@@ -454,6 +463,10 @@ SUBSYSTEM_DEF(job)
 
 				if(job.required_playtime_remaining(player.client))
 					JobDebug("DO player not enough xp, Player: [player], Job:[job.title]")
+					continue
+
+				if(job.specialized_playtime_remaining(player.client))
+					JobDebug("DO player not enough specialized xp, Player: [player], Job:[job.title]")
 					continue
 
 				if(player.mind && (job.title in player.mind.restricted_roles))
@@ -832,6 +845,9 @@ SUBSYSTEM_DEF(job)
 				young++
 				continue
 			if(job.required_playtime_remaining(player.client))
+				young++
+				continue
+			if(job.specialized_playtime_remaining(player.client))
 				young++
 				continue
 			switch(player.client.prefs.job_preferences[job.title])

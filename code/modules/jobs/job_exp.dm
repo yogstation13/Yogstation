@@ -45,6 +45,43 @@ GLOBAL_PROTECT(exp_to_update)
 		return FALSE
 	return TRUE
 
+/**
+ * For checking specialized experience requirements
+ */
+/datum/job/proc/specialized_playtime_remaining(client/C)
+	if(!C)
+		return 0
+	if(!CONFIG_GET(flag/use_exp_tracking))
+		return 0
+	if(!SSdbcore.Connect())
+		return 0
+	if(!num_specialized_experience || !length(specialized_experience))
+		return 0
+	if(!job_is_xp_locked(src.title))
+		return 0
+	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_rights_for(C,R_ADMIN))
+		return 0
+	var/isexempt = C.prefs.db_flags & DB_FLAG_EXEMPT
+	if(isexempt)
+		return 0
+	var/my_exp = C.calc_spec_exp(specialized_experience)
+	if(my_exp >= num_specialized_experience)
+		return 0
+	else
+		return 1
+
+//calculates the number of jobs that surpass the requirement
+/client/proc/calc_spec_exp(list/typelist)
+	var/list/explist = prefs.exp.Copy()
+	var/amount = 0
+	if(!typelist)
+		return -1
+	for(var/job in typelist)
+		if(job in explist)
+			if(explist[job] > typelist[job])
+				amount ++
+	return amount
+	
 /client/proc/calc_exp_type(exptype)
 	var/list/explist = prefs.exp.Copy()
 	var/amount = 0

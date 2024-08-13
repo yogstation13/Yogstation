@@ -17,6 +17,12 @@
 	exp_requirements = 900 //15 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SCIENCE
+	num_specialized_experience = 2
+	specialized_experience = list(
+		"Scientist" = 180, 
+		"Roboticist" = 180, 
+		"Geneticist" = 180
+		)
 	alt_titles = list("Chief Science Officer", "Head of Research", "Chief Technology Officer")
 
 	outfit = /datum/outfit/job/rd

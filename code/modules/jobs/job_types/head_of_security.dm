@@ -15,6 +15,8 @@
 	exp_requirements = 1500 //25 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
+	num_specialized_experience = 2
+	specialized_experience = list("Warden" = 180, "Security Officer" = 180, "Detective" = 180)
 	alt_titles = list("Security Commander", "Security Chief", "Chief Security Officer")
 
 	outfit = /datum/outfit/job/hos

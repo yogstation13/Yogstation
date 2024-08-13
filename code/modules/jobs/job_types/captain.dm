@@ -16,6 +16,14 @@
 	exp_requirements = 900 //15 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_COMMAND
+	num_specialized_experience = 2
+	specialized_experience = list(
+		"Head of Security" = 180, 
+		"Head of Personnel" = 180, 
+		"Chief Engineer" = 180, 
+		"Research Director" = 180, 
+		"Chief Medical Officer" = 180
+		)
 	alt_titles = list("Station Commander", "Facility Director", "Chief Executive Officer", "Big Boss")
 
 	outfit = /datum/outfit/job/captain

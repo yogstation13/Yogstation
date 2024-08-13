@@ -15,6 +15,12 @@
 	exp_requirements = 720 //fairly low skill job
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SUPPLY
+	num_specialized_experience = 2
+	specialized_experience = list(
+		"Quartermaster" = 180,
+		"Cargo Technician" = 180,
+		"Shaft Miner" = 180
+		)
 	alt_titles = list("Chief of Staff", "Head of Internal Affairs", "First Officer")
 
 	outfit = /datum/outfit/job/hop

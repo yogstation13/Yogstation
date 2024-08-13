@@ -15,6 +15,12 @@
 	exp_requirements = 1500 //25 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_ENGINEERING
+	num_specialized_experience = 2
+	specialized_experience = list(
+		"Station Engineer" = 180,
+		"Atmospheric Technician" = 180,
+		"Network Admin" = 180
+	)
 	alt_titles = list("Engineering Director", "Head of Engineering", "Senior Engineer", "Chief Engineering Officer")
 
 	outfit = /datum/outfit/job/ce

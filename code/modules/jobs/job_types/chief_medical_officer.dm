@@ -15,6 +15,16 @@
 	exp_requirements = 1500 //25 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_MEDICAL
+	num_specialized_experience = 3
+	specialized_experience = list(
+		"Medical Doctor" = 180, 
+		"Chemist" = 180, 
+		"Geneticist" = 180, 
+		"Virologist" = 180, 
+		"Paramedic" = 180,
+		"Mining Medic" = 180,
+		"Brig Physician" = 180
+	)
 	alt_titles = list("Medical Director", "Head of Medical")
 
 	outfit = /datum/outfit/job/cmo

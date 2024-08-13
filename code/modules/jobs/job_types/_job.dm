@@ -65,6 +65,10 @@
 	var/exp_type = ""
 	/// Department XP required YOGS THIS IS NOT FUCKING SET FOR EVERY JOB I HATE WHOEVER DID THIS
 	var/exp_type_department = ""
+	/// The number of jobs that need to be "achieved" to be able to play the job
+	var/num_specialized_experience = 0
+	/// Associative list of jobs with the number of minutes required
+	var/list/specialized_experience = list()
 	/// How much antag rep this job gets increase antag chances next round unless its overriden in antag_rep.txt
 	var/antag_rep = 3
 	/// Base pay of the job
