@@ -368,6 +368,10 @@
 	if (.)
 		return
 
+	if (!iscarbon(usr))
+		to_chat(usr, span_warning("You don't have the dexterity to do this!"))
+		return
+
 	. = TRUE
 
 	var/mob/user = usr
