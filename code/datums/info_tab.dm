@@ -9,7 +9,7 @@
 
 /datum/info_tab/icecream_vat/vat_instructions
 	section = "Vat Instructions"
-	section_text = "The ice cream vat allows you to select and dispense both ice cream scoops and cones, along with scooping ice cream scoops onto cones. The selected scoop will be scooped into cones, while the selected cone is what is dispensed by alt-clicking the vat. To scoop a cone, select a scoop type and then right-click the vat with an empty cone. Cones can only have one scoop of ice cream."
+	section_text = "The ice cream vat allows you to select and dispense both ice cream scoops and cones, along with scooping ice cream scoops onto cones. The selected scoop will be scooped into cones, while the selected cone is what is dispensed by alt-clicking the vat. To scoop a cone, select a scoop type and then right-click the vat with an empty cone."
 
 /datum/info_tab/icecream_vat/restocking
 	section = "Restocking"

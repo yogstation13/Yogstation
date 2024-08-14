@@ -256,7 +256,7 @@
 		//If a cone, check if it has already been scooped. If it has, do not store it
 		if(istype(target_item, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
 			var/obj/item/reagent_containers/food/snacks/ice_cream_cone/cone = target_item
-			if(cone.scooped == TRUE)
+			if(cone.scoops > 0)
 				user.balloon_alert(user, "Cannot store scooped cones!")
 
 				return
@@ -306,42 +306,63 @@
 	//Check if item is a cone
 	if(istype(target_cone, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
 		var/obj/item/reagent_containers/food/snacks/ice_cream_cone/cone = target_cone
-		//Check if cone is scooped
-		if(cone.scooped == FALSE)
-			//Check if a scoop has been selected
-			if(selected_scoop != null)
-				//Check if there are any of selected scoop in contents
-				if(find_amount(selected_scoop) > 0)
-					//Select last of selected scoop in contents
-					var/obj/item/reagent_containers/food/snacks/cone_scoop = LAZYACCESS(contents, last_index(selected_scoop))
-					//Remove scoop from contents and add relevant variables to cone
-					cone_scoop.forceMove(loc)
-					cone.reagents.reagent_list += cone_scoop.reagents.reagent_list
-					cone.foodtype = cone_scoop.foodtype
-					//Change description of cone
-					cone.desc = "[cone.base_desc] with a [cone_scoop.name]."
+		//Check if a scoop has been selected
+		if(selected_scoop != null)
+			//Check if there are any of selected scoop in contents
+			if(find_amount(selected_scoop) > 0)
+				//Select last of selected scoop in contents
+				var/obj/item/reagent_containers/food/snacks/cone_scoop = LAZYACCESS(contents, last_index(selected_scoop))
+				//Remove scoop from contents and add relevant variables to cone
+				cone_scoop.forceMove(loc)
+				cone.reagents.reagent_list += cone_scoop.reagents.reagent_list
+				cone.foodtype = cone_scoop.foodtype
+				//Determine how to add the overlay and change description and name depending on scoops value
+				if(cone.scoops == 0)
 					//Add overlay of scoop to cone
 					cone.add_overlay(cone_scoop.icon_state)
-					//Alert that the cone has been scooped
-					user.visible_message(span_notice("[user] scoops a [cone_scoop.name] into the [cone.name]"), span_notice("You scoop a [cone_scoop.name] into the [cone.name]"))
-					//Set scooped to TRUE
-					cone.scooped = TRUE
-					//Delete scoop
-					qdel(cone_scoop)
-
-					playsound(src, 'sound/effects/rustle2.ogg', 50, TRUE, extrarange = -3)
-
-				//Warn user that there are no selected scoops left
+					//Change description of cone
+					cone.desc = "A delicious [cone.base_name] with a [cone_scoop.name]."
+					//Set first_scoop
+					cone.first_scoop = cone_scoop.name
+					//Increase scooped variable
+					cone.scoops += 1
 				else
-					user.balloon_alert(user, "No selected scoops in storage!")
+					//Add overlay but with y-axis position depending on amount of scoops
+					var/mutable_appearance/TOP_SCOOP = mutable_appearance(cone_scoop.icon, "[cone_scoop.icon_state]")
+					TOP_SCOOP.pixel_y = 2 * cone.scoops
+					cone.add_overlay(TOP_SCOOP)
+					//Increase scooped variable
+					cone.scoops += 1
+					//Change name and desc based on scoop amount
+					switch(cone.scoops)
+						if(2)
+							cone.second_scoop = cone_scoop.name
+							cone.name = "double scoop [cone.base_name]"
+							cone.desc = "A delicious [cone.name] with a [cone.first_scoop] and a [cone.second_scoop]."
+						if(3)
+							cone.third_scoop = cone_scoop.name
+							cone.name = "thrice cream [cone.base_name]"
+							cone.desc = "A delicious [cone.name] with a [cone.first_scoop], a [cone.second_scoop], and a [cone.third_scoop]."
+						if(4)
+							cone.fourth_scoop = cone_scoop.name
+							cone.name = "tower scoop [cone.base_name]"
+							cone.desc = "A delicious [cone.name] with a [cone.first_scoop], a [cone.second_scoop], a [cone.third_scoop], a [cone.fourth_scoop]"
+						if(5 to INFINITY)
+							cone.desc += ", a [cone_scoop.name]"
+				//Alert that the cone has been scooped
+				user.visible_message(span_notice("[user] scoops a [cone_scoop.name] into the [cone.name]"), span_notice("You scoop a [cone_scoop.name] into the [cone.name]"))
+				//Delete scoop
+				qdel(cone_scoop)
 
-			//Warn user about no selected scoop
+				playsound(src, 'sound/effects/rustle2.ogg', 50, TRUE, extrarange = -3)
+
+			//Warn user that there are no selected scoops left
 			else
-				user.balloon_alert(user, "No scoop selected!")
+				user.balloon_alert(user, "No selected scoops in storage!")
 
-		//Warn user about cone already being scooped
+		//Warn user about no selected scoop
 		else
-			user.balloon_alert(user, "Already scooped!")
+			user.balloon_alert(user, "No scoop selected!")
 
 	//Warn user about invalid item
 	else
@@ -358,13 +379,18 @@
 	bitesize = 3
 	foodtype = GRAIN
 	//Used for changing the description after being scooped
-	var/base_desc = null
+	var/base_name = null
 	//If the cone has a scoop or not
-	var/scooped = FALSE
+	var/scoops = 0
 	//For adding chems to specific cones
 	var/extra_reagent = null
 	//Amount of extra_reagent to add to cone
 	var/extra_reagent_amount = 1
+	//Variables for cone's scoops, try to think of a better way of doing this before pushing PR
+	var/first_scoop = null
+	var/second_scoop = null
+	var/third_scoop = null
+	var/fourth_scoop = null
 
 /obj/item/reagent_containers/food/snacks/ice_cream_cone/Initialize(mapload)
 	. = ..()
@@ -373,12 +399,46 @@
 	if(extra_reagent != null)
 		reagents.add_reagent(extra_reagent, extra_reagent_amount)
 
+//Hand scooping only allows one scoop. Vat needed for multi-scooping
+/obj/item/reagent_containers/food/snacks/ice_cream_cone/attackby(obj/item/A, mob/user, params)
+	//Check if item is a scoop
+	if(istype(A, /obj/item/reagent_containers/food/snacks/ice_cream_scoop))
+		//Check if not already scooped
+		if(src.scoops == 0)
+			//Make variables for scoop and cone for readability
+			var/obj/item/reagent_containers/food/snacks/ice_cream_cone/cone = src
+			var/obj/item/reagent_containers/food/snacks/cone_scoop = A
+
+			//Add relevant variables to cone
+			cone.reagents.reagent_list += cone_scoop.reagents.reagent_list
+			cone.foodtype = cone_scoop.foodtype
+			//Set first_scoop
+			cone.first_scoop = cone_scoop.name
+			//Change description of cone
+			cone.desc = "A delicious [cone.base_name] with a [cone_scoop.name]."
+			//Add overlay of scoop to cone
+			cone.add_overlay(cone_scoop.icon_state)
+			//Alert that the cone has been scooped
+			user.visible_message(span_notice("[user] hand scoops a [cone_scoop.name] into the [cone.name]"), span_notice("You hand scoop a [cone_scoop.name] into the [cone.name]"))
+			//Increase scooped variable
+			cone.scoops += 1
+			//Delete scoop
+			qdel(cone_scoop)
+
+			playsound(src, 'sound/effects/rustle2.ogg', 50, TRUE, extrarange = -3)
+		
+		//Warn about no multi-scooping with hands
+		else
+			user.balloon_alert(user, "Cannot multi-scoop with hands!")
+
+	..()
+
 /obj/item/reagent_containers/food/snacks/ice_cream_cone/cake
 	name = "cake ice cream cone"
 	desc = "A delicious cake cone, but with no ice cream."
 	icon_state = "icecream_cone_waffle"
 	tastes = list("bland" = 6)
-	base_desc = "A delicious cake cone"
+	base_name = "cake ice cream cone"
 	extra_reagent = /datum/reagent/consumable/sugar
 	
 /obj/item/reagent_containers/food/snacks/ice_cream_cone/chocolate
@@ -386,7 +446,7 @@
 	desc = "A delicious chocolate cone, but with no ice cream."
 	icon_state = "icecream_cone_chocolate"
 	tastes = list("bland" = 4, "chocolate" = 6)
-	base_desc = "A delicious chocolate cone"
+	base_name = "chocolate ice cream cone"
 	extra_reagent = /datum/reagent/consumable/coco
 
 ///////////////////////////
