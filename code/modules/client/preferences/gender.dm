@@ -11,11 +11,14 @@
 
 	var/datum/species/species_type = preferences.read_preference(/datum/preference/choiced/species)
 
-	var/list/possible_genders = initial(species_type.possible_genders)
+	var/datum/species/species = new species_type
+
+	var/list/possible_genders = species.possible_genders
 	if(possible_genders.len < 1)
 		stack_trace("[species_type.type] has no possible genders!")
+		qdel(species)
 		return list(PLURAL)
-
+	qdel(species)
 	return pick(possible_genders)
 
 /datum/preference/choiced/gender/apply_to_human(mob/living/carbon/human/target, value)
