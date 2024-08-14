@@ -31,7 +31,7 @@
 	if(!owner_area || !owner_turf)
 		return FALSE // nullspaced?
 
-	if(owner_area.area_flags & NOTELEPORT || owner_area.noteleport) // ihate this but i'm kinda tired so you deal with it
+	if(owner_area.area_flags & NOTELEPORT) // ihate this but i'm kinda tired so you deal with it //why does everything have to be MY problem
 		if(feedback)
 			to_chat(owner, span_danger("Some dull, universal force is stopping you from jaunting here."))
 		return FALSE

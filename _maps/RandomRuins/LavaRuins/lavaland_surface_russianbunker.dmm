@@ -367,10 +367,7 @@
 /area/lavaland/surface/outdoors)
 "cE" = (
 /turf/open/lava/smooth/lava_land_surface,
-/area/ruin/unpowered{
-	name = "\improper Russian Bunker";
-	noteleport = 1
-	})
+/area/ruin/unpowered/russianbunker)
 "cG" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/item/jawsoflife,
