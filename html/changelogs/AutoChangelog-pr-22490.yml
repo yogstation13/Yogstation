@@ -1,0 +1,7 @@
+author: "Scrambledeggs00"
+delete-after: true 
+changes: 
+  - rscadd: "You can now make raw ice cream cones and process them into finished cones."
+  - rscdel: "Borgs cannot dispense ice cream and Creamatorium removed."
+  - tweak: "New UI for ice cream vat."
+  - imageadd: "Added sprites for raw cones."
