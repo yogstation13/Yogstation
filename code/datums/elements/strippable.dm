@@ -368,7 +368,7 @@
 	if (.)
 		return
 
-	if (!iscarbon(usr))
+	if (!iscarbon(usr) && !iscyborg(usr))
 		to_chat(usr, span_warning("You don't have the dexterity to do this!"))
 		return
 
