@@ -626,3 +626,32 @@
 	if(chassis)
 		chassis.ejection_distance -= ejection_distance
 	. = ..()
+
+////coral generator////
+
+
+
+/datum/action/innate/mecha/mech_overload_mode/Activate(forced_state = null)
+	if(chassis?.equipment_disabled) // If a EMP or something has messed a mech up return instead of activating -- Moogle
+		return
+	if(!owner || !chassis || chassis.occupant != owner)
+		return
+	if(!isnull(forced_state))
+		chassis.leg_overload_mode = forced_state
+	else
+		chassis.leg_overload_mode = !chassis.leg_overload_mode
+	button_icon_state = "mech_overload_[chassis.leg_overload_mode ? "on" : "off"]"
+	chassis.log_message("Toggled leg actuators overload.", LOG_MECHA)
+	if(chassis.leg_overload_mode)
+		chassis.leg_overload_mode = 1
+		chassis.bumpsmash = 1
+		chassis.step_in = min(1, round(chassis.step_in/2))
+		chassis.step_energy_drain = max(chassis.overload_step_energy_drain_min,chassis.step_energy_drain*chassis.leg_overload_coeff)
+		chassis.occupant_message(span_danger("You enable leg actuators overload."))
+	else
+		chassis.leg_overload_mode = 0
+		chassis.bumpsmash = initial(chassis.bumpsmash)
+		chassis.step_in = initial(chassis.step_in)
+		chassis.step_energy_drain = chassis.normal_step_energy_drain
+		chassis.occupant_message(span_notice("You disable leg actuators overload."))
+	build_all_button_icons()
