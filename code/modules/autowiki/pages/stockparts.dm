@@ -70,9 +70,6 @@
 	if(recipe.build_type & PROTOLATHE)
 		source_list.Add("Protolathe")
 
-	if(recipe.build_type & AWAY_LATHE)
-		source_list.Add("Ancient Protolathe")
-
 	if(recipe.build_type & AUTOLATHE)
 		source_list.Add("Autolathe")
 

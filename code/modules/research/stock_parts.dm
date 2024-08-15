@@ -13,6 +13,10 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	var/works_from_distance = FALSE
 	var/pshoom_or_beepboopblorpzingshadashwoosh = 'sound/items/rped.ogg'
 	var/alt_sound = null
+	
+	///The generic category type that the stock part belongs to.  Generic objects that should not be instantiated should have the same type and abstract_type
+	var/abstract_type = /obj/item/stock_parts
+
 
 /obj/item/storage/part_replacer/pre_attack(obj/machinery/T, mob/living/user, params)
 	if(!istype(T) || (!T.component_parts && !T.works_with_rped_anyways))
@@ -289,6 +293,11 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	materials = list(/datum/material/iron=80)
 
 // Subspace stock parts
+
+/obj/item/stock_parts/subspace
+	name = "subspace stock part"
+	desc = "What?"
+	abstract_type = /obj/item/stock_parts/subspace
 
 /obj/item/stock_parts/subspace/ansible
 	name = "subspace ansible"
