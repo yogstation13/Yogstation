@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - rscdel: "Removes synthetics from active play, for now"
