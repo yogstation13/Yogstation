@@ -3009,6 +3009,15 @@
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
+"bxF" = (
+/obj/machinery/stasis{
+	dir = 8
+	},
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/sleeper)
 "bxI" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
@@ -16025,8 +16034,8 @@
 /obj/structure/closet/secure_closet/brig,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /obj/machinery/airalarm{
-	pixel_y = -24;
-	dir = 1
+	dir = 1;
+	pixel_y = -24
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -34528,8 +34537,8 @@
 	id = "chapelgun";
 	name = "Mass Driver Controller";
 	pixel_x = -24;
-	req_access = list("chapel_office");
-	pixel_y = -4
+	pixel_y = -4;
+	req_access = list("chapel_office")
 	},
 /turf/open/floor/plating,
 /area/chapel/office)
@@ -41091,12 +41100,6 @@
 /obj/structure/grille,
 /turf/open/space/basic,
 /area/space/nearstation)
-"tTF" = (
-/obj/machinery/stasis{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/sleeper)
 "tTT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -80530,7 +80533,7 @@ dog
 cqi
 gLV
 nXR
-tTF
+bxF
 klA
 gcJ
 rjs

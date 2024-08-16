@@ -211,8 +211,6 @@
 	add_fingerprint(user)
 	if(operating || (obj_flags & EMAGGED))
 		return
-	if(!requiresID())
-		user = null //so allowed(user) always succeeds
 	if(obj_flags & CMAGGED)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -233,7 +231,7 @@
 		else
 			open()
 		return TRUE
-	if(!allowed(user))
+	if(requiresID() && !allowed(user))
 		if(density)
 			do_animate("deny")
 		return FALSE

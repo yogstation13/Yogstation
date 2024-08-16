@@ -16,7 +16,7 @@
 
 	outfit = /datum/outfit/job/chemist
 
-	added_access = list(ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_GENETICS, ACCESS_CLONING)
+	added_access = list(ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_VIROLOGY)
 	base_access = list(ACCESS_MEDICAL, ACCESS_CHEMISTRY, ACCESS_MECH_MEDICAL)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED

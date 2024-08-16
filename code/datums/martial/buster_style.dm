@@ -45,6 +45,8 @@
 /datum/martial_art/buster_style/can_use(mob/living/carbon/human/H)
 	var/obj/item/bodypart/r_arm/robot/buster/R = H.get_bodypart(BODY_ZONE_R_ARM)
 	var/obj/item/bodypart/l_arm/robot/buster/L = H.get_bodypart(BODY_ZONE_L_ARM)
+	if(!isturf(H.loc)) //as funny as throwing lockers from the inside is i dont think i can get away with it
+		return
 	if(L)
 		if(!istype(L, /obj/item/bodypart/l_arm/robot/buster))
 			if(R && !istype(R, /obj/item/bodypart/r_arm/robot/buster))
@@ -147,8 +149,6 @@
 				I.visible_message(span_warning("[user] grabs [I] and tears it off the bolts securing it!"))
 			else
 				return
-		if(!isturf(user.loc)) //as funny as throwing lockers from the inside is i dont think i can get away with it
-			return
 		COOLDOWN_START(src, next_grapple, COOLDOWN_GRAPPLE)
 		user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
 		I.visible_message(span_warning("[user] grabs [I] and lifts it above [user.p_their()] head!"))
