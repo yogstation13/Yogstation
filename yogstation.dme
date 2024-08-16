@@ -1162,7 +1162,6 @@
 #include "code\game\machinery\telecomms\machines\receiver.dm"
 #include "code\game\machinery\telecomms\machines\relay.dm"
 #include "code\game\machinery\telecomms\machines\server.dm"
-#include "code\game\mecha\coral_gen.dm"
 #include "code\game\mecha\mech_bay.dm"
 #include "code\game\mecha\mech_fabricator.dm"
 #include "code\game\mecha\mecha.dm"
