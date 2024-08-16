@@ -640,6 +640,8 @@
 	equip_actions = list(/datum/action/innate/mecha/coral_overload_mode)
 
 /obj/item/mecha_parts/mecha_equipment/coral_generator/can_attach(obj/mecha/new_mecha)
+	if(istype(new_mecha, /obj/mecha/combat/gygax)) // no gygax stacking sorry
+		return FALSE
 	if(locate(type) in new_mecha.equipment)
 		return FALSE // no stacking multiple
 	return ..()
