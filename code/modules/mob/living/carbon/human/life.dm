@@ -136,13 +136,13 @@
 
 			var/datum/species/S = dna.species
 
-			if(S.breathid == "o2")
+			if(S.breathid == GAS_O2)
 				throw_alert("not_enough_oxy", /atom/movable/screen/alert/not_enough_oxy)
-			else if(S.breathid == "tox")
+			else if(S.breathid == GAS_PLASMA)
 				throw_alert("not_enough_tox", /atom/movable/screen/alert/not_enough_tox)
-			else if(S.breathid == "co2")
+			else if(S.breathid == GAS_CO2)
 				throw_alert("not_enough_co2", /atom/movable/screen/alert/not_enough_co2)
-			else if(S.breathid == "n2")
+			else if(S.breathid == GAS_N2)
 				throw_alert("not_enough_nitro", /atom/movable/screen/alert/not_enough_nitro)
 
 			return FALSE

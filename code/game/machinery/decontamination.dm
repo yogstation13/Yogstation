@@ -7,7 +7,7 @@
 	density = TRUE
 	max_integrity = 300
 	circuit = /obj/item/circuitboard/machine/decontamination_unit
-	layer = ABOVE_WINDOW_LAYER
+	layer = OBJ_LAYER
 								// if you add more storage slots, update cook() to clear their radiation too.
 
 	var/max_n_of_items = 53

@@ -55,14 +55,14 @@
 #define LAVAPROTECT (1<<0)
 /// SUIT and HEAD items which stop pressure damage.
 /// To stop you taking all pressure damage you must have both a suit and head item with these flags. First one is high pressure (fires), second one is low (space).
-#define STOPSHIGHPRESSURE (1<<1) 
+#define STOPSHIGHPRESSURE (1<<1)
 #define STOPSLOWPRESSURE (1<<2)
 /// Blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY!
 #define BLOCK_GAS_SMOKE_EFFECT (1<<3)
 /// Mask allows internals
 #define MASKINTERNALS (1<<4)
 /// Prevents from slipping on wet floors, in space etc
-#define NOSLIP (1<<5) 
+#define NOSLIP (1<<5)
 /// Prevents from slipping on frozen floors
 #define NOSLIP_ICE (1<<6)
 /// Prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag.
@@ -71,7 +71,7 @@
 /// The voicebox in this clothing can be toggled.
 #define VOICEBOX_TOGGLABLE (1<<8)
 /// The voicebox is currently turned off.
-#define VOICEBOX_DISABLED (1<<9) 
+#define VOICEBOX_DISABLED (1<<9)
 /// Prevents you from feeling sad if you shower in them
 #define SHOWEROKAY (1<<10)
 /// Allows helmets and glasses to scan reagents.
@@ -82,6 +82,8 @@
 #define HEADINTERNALS (1<<13)
 /// Clothes that use large icons, for applying the proper overlays like blood
 #define LARGE_WORN_ICON (1<<14)
+/// Clothes that cause a larger notification when placed on a person.
+#define DANGEROUS_OBJECT (1<<15)
 
 #define STOPSPRESSUREDAMAGE 	(STOPSHIGHPRESSURE | STOPSLOWPRESSURE) //covers both high and low pressure
 

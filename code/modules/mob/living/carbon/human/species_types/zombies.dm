@@ -3,7 +3,7 @@
 /datum/species/zombie
 	// 1spooky
 	name = "High-Functioning Zombie"
-	id = "zombie"
+	id = SPECIES_ZOMBIE
 	say_mod = "moans"
 	possible_genders = list(NEUTER)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
@@ -45,8 +45,8 @@
 
 /datum/species/zombie/infectious
 	name = "Infectious Zombie"
-	id = "memezombies"
-	limbs_id = "zombie"
+	id = SPECIES_ZOMBIE_INFECTIOUS
+	limbs_id = SPECIES_ZOMBIE
 	inherent_traits = list(TRAIT_STABLELIVER, TRAIT_STABLEHEART, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_LIMBATTACHMENT,TRAIT_NOBREATH,TRAIT_NODEATH,TRAIT_FAKEDEATH,TRAIT_STUNIMMUNE)
 	mutanthands = /obj/item/zombie_hand
 	armor = 20 // 120 damage to KO a zombie, which kills it
@@ -111,8 +111,8 @@
 // Your skin falls off
 /datum/species/krokodil_addict
 	name = "Human"
-	id = "goofzombies"
-	limbs_id = "zombie" //They look like zombies
+	id = SPECIES_ZOMBIE_KROKODIL
+	limbs_id = SPECIES_ZOMBIE //They look like zombies
 	possible_genders = list(PLURAL)
 	species_traits = list(HAS_FLESH, HAS_BONE)
 	inherent_traits = list(TRAIT_EASILY_WOUNDED) //you have no skin
@@ -125,7 +125,7 @@
 /datum/species/zombie/hecata
 	name = "Sanguine Zombie"
 	id = "hecatazombie"
-	limbs_id = "zombie"
+	limbs_id = SPECIES_ZOMBIE
 	say_mod = "moans"
 	brutemod = 1.1
 	burnmod = 1.1 //more fragile, though they also dont enter soft crit

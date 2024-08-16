@@ -1,7 +1,7 @@
 //The big cheese
 /obj/structure/destructible/cheesegod
 	name = "The Gouda of All Cheese"
-	desc = "Looks Delicious!"
+	desc = "Looks delicious!"
 	icon = 'icons/effects/512x512.dmi'
 	//Sprite made by Missatessatessy
 	icon_state = "gouda"
@@ -24,7 +24,7 @@
 	send_to_playing_players(span_clown("You feel a dairy-like presence.."))
 	sound_to_playing_players('sound/effects/gouda_rises.ogg')
 	var/mutable_appearance/alert_overlay = mutable_appearance('icons/obj/food/cheese.dmi', "cheesewheel")
-	notify_ghosts("The cheese must be enjoyed! Touch Gouda at [get_area_name(src)] and become one with the cheese", null, source = src, alert_overlay = alert_overlay)
+	notify_ghosts("The cheese must be enjoyed! Touch Gouda at [get_area_name(src)] and become one with the cheese.", null, source = src, alert_overlay = alert_overlay)
 
 /obj/structure/destructible/cheesegod/Destroy()
 	STOP_PROCESSING(SSobj, src)

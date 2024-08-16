@@ -79,7 +79,7 @@
 				log_game("[M] ([key_name(M)]) was turned into a fly person")
 				if(ishuman(M))//don't remove people from the round randomly you jerks
 					var/mob/living/carbon/human/human = M
-					if(human.dna && human.dna.species.id == "human")
+					if(human.dna && human.dna.species.id == SPECIES_HUMAN)
 						to_chat(M, span_italics("You hear a buzzing in your ears."))
 						human.set_species(/datum/species/fly)
 

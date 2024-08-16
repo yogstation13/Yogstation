@@ -6,9 +6,8 @@
 /datum/crafting_recipe/food/icecreamsandwich
 	name = "Icecream sandwich"
 	reqs = list(
-		/datum/reagent/consumable/cream = 5,
-		/datum/reagent/consumable/ice = 5,
-		/obj/item/reagent_containers/food/snacks/icecream = 1
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla = 1,
+		/obj/item/reagent_containers/food/snacks/cookie = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/icecreamsandwich
 	category = CAT_ICE
@@ -16,9 +15,10 @@
 /datum/crafting_recipe/food/spacefreezy
 	name ="Space freezy"
 	reqs = list(
+		/obj/item/reagent_containers/food/snacks/ice_cream_cone/cake = 1,
 		/datum/reagent/consumable/bluecherryjelly = 5,
-		/datum/reagent/consumable/spacemountainwind = 15,
-		/obj/item/reagent_containers/food/snacks/icecream = 1
+		/datum/reagent/consumable/space_cola/spacemountainwind = 15,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/spacefreezy
 	category = CAT_ICE
@@ -26,10 +26,10 @@
 /datum/crafting_recipe/food/sundae
 	name ="Sundae"
 	reqs = list(
-		/datum/reagent/consumable/cream = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_cone/cake = 1,
 		/obj/item/reagent_containers/food/snacks/grown/cherries = 1,
 		/obj/item/reagent_containers/food/snacks/grown/banana = 1,
-		/obj/item/reagent_containers/food/snacks/icecream = 1
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/sundae
 	category = CAT_ICE
@@ -37,11 +37,11 @@
 /datum/crafting_recipe/food/honkdae
 	name ="Honkdae"
 	reqs = list(
-		/datum/reagent/consumable/cream = 5,
+		/obj/item/reagent_containers/food/snacks/ice_cream_cone/cake = 1,
 		/obj/item/clothing/mask/gas/clown_hat = 1,
 		/obj/item/reagent_containers/food/snacks/grown/cherries = 1,
 		/obj/item/reagent_containers/food/snacks/grown/banana = 2,
-		/obj/item/reagent_containers/food/snacks/icecream = 1
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/banana = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/honkdae
 	category = CAT_ICE
@@ -51,7 +51,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/cookie = 1,
 		/obj/item/reagent_containers/food/snacks/grown/cherries = 1,
-		/obj/item/reagent_containers/food/snacks/icecream = 1,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/vanilla = 1,
 		/datum/reagent/consumable/cooking_oil/fish = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/taiyaki
@@ -62,9 +62,8 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/cookie = 1,
 		/obj/item/reagent_containers/food/snacks/grown/cherries = 1,
-		/obj/item/reagent_containers/food/snacks/icecream = 1,
-		/datum/reagent/consumable/cooking_oil/fish = 1,
-		/datum/reagent/consumable/coco = 2
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/chocolate = 1,
+		/datum/reagent/consumable/cooking_oil/fish = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/taiyaki/chocolate
 	category = CAT_ICE
@@ -74,9 +73,8 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/cookie = 1,
 		/obj/item/reagent_containers/food/snacks/grown/bluecherries = 1,
-		/obj/item/reagent_containers/food/snacks/icecream = 1,
-		/datum/reagent/consumable/cooking_oil/fish = 1,
-		/datum/reagent/consumable/berryjuice = 2
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/strawberry = 1,
+		/datum/reagent/consumable/cooking_oil/fish = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/taiyaki/strawberry
 	category = CAT_ICE
@@ -86,9 +84,8 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/cookie = 1,
 		/obj/item/reagent_containers/food/snacks/grown/cherries = 1,
-		/obj/item/reagent_containers/food/snacks/icecream = 1,
-		/datum/reagent/consumable/cooking_oil/fish = 1,
-		/datum/reagent/consumable/ethanol/singulo = 2
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/blue = 1,
+		/datum/reagent/consumable/cooking_oil/fish = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/taiyaki/blue
 	category = CAT_ICE
@@ -98,9 +95,8 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/cookie = 1,
 		/obj/item/reagent_containers/food/snacks/grown/bluecherries = 1,
-		/obj/item/reagent_containers/food/snacks/icecream = 1,
+		/obj/item/reagent_containers/food/snacks/ice_cream_scoop/meat = 1,
 		/datum/reagent/consumable/cooking_oil/fish = 1,
-		/datum/reagent/blood = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/taiyaki/mobflavor
 	category = CAT_ICE
@@ -253,7 +249,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/sillycup = 1,
 		/datum/reagent/consumable/ice = 15,
-		/datum/reagent/consumable/spacemountainwind = 5
+		/datum/reagent/consumable/space_cola/spacemountainwind = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/snowcones/spacemountainwind
 	category = CAT_ICE

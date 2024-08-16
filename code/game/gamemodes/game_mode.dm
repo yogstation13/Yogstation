@@ -70,13 +70,24 @@
 /datum/game_mode/proc/can_start()
 	var/playerC = 0
 	var/unreadiedPlayers = 0
+	var/ghostPlayers = 0
 	for(var/mob/dead/new_player/player in GLOB.player_list)
-		if(player.client && (player.ready == PLAYER_READY_TO_PLAY))
+		if(!player.client)
+			continue
+
+		if(player.ready == PLAYER_READY_TO_PLAY)
 			playerC++
-		else if(player.client && (player.ready == PLAYER_NOT_READY) && !player.client.holder) //Admins don't count :)
+
+		if(player.client.holder) //Admins don't count towards unreadied or observing player count
+			continue
+
+		if(player.ready == PLAYER_NOT_READY)
 			unreadiedPlayers++
+		else if(player.ready == PLAYER_READY_TO_OBSERVE)
+			ghostPlayers++
+
 	if(!GLOB.Debug2)
-		var/adjustedPlayerCount = round(playerC + (unreadiedPlayers * UNREADIED_PLAYER_MULTIPLIER), 1)
+		var/adjustedPlayerCount = round(playerC + (unreadiedPlayers * UNREADIED_PLAYER_MULTIPLIER) + (ghostPlayers * OBSERVER_PLAYER_MULTIPLIER), 1)
 		log_game("Round can_start() with [adjustedPlayerCount] adjusted count, versus [playerC] regular player count. Requirement: [required_players] Gamemode: [name]")
 		if(adjustedPlayerCount < required_players || (maximum_players >= 0 && playerC > maximum_players))
 			return FALSE

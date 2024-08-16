@@ -1,5 +1,7 @@
 ///Minimum stamina damage where trying to block results in you being knocked down.
 #define STAGGER_THRESHOLD 75
+///Penalty for blocking too many things in quick succession.
+#define CONSECUTIVE_BLOCK_PENALTY 0.1
 ///Multiplier for block force when parrying.
 #define PARRY_BONUS 2
 ///How much to reduce block force by for each armor penetration.
@@ -28,6 +30,8 @@
 	var/last_mousedown = 0
 	///The last time this item has blocked or attempted to block.
 	var/last_block = 0
+	///Number of consecutive blocks.
+	var/consecutive_blocks = 0
 	// Parry cooldown.
 	COOLDOWN_DECLARE(parry_cd)
 
@@ -160,18 +164,20 @@
 			used_item.take_damage(damage, damage_type)
 		return NONE
 
-	. = SHIELD_BLOCK
 	ADD_TRAIT(defender, TRAIT_NO_BLOCKING, BLOCK_COOLDOWN) // prevents blocking the same thing more than once
 	SEND_SIGNAL(parent, COMSIG_ITEM_POST_BLOCK, defender, incoming, damage, attack_type)
-	
+
 	var/is_parrying = HAS_TRAIT(used_item, TRAIT_PARRYING)
 	if(is_parrying)
 		used_item.balloon_alert_to_viewers("parried!")
 		playsound(defender, 'sound/weapons/ricochet.ogg', 75, TRUE) // +PARRY
 		COOLDOWN_RESET(src, parry_cd)
+	else
+		consecutive_blocks++
+		addtimer(VARSET_CALLBACK(src, consecutive_blocks, 0), 1.5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) // blocking resets the cooldown
 	defender.visible_message(span_danger("[defender] [is_parrying ? "parries" : "blocks"] [attack_text] with [used_item]!"))
 
-	var/effective_damage = max(damage - effective_block_force, 0)
+	var/effective_damage = max((damage * (1 + consecutive_blocks * CONSECUTIVE_BLOCK_PENALTY)) - effective_block_force, 0)
 	if(damage_type == STAMINA)
 		effective_damage *= 0.5 // stamina weapons are easier to block to compensate for being far stronger
 	if(HAS_TRAIT(defender, TRAIT_STUNIMMUNE)) // in case of nitrium users (me)
@@ -180,6 +186,7 @@
 	else
 		defender.adjustStaminaLoss(effective_damage, TRUE)
 		if(defender.getStaminaLoss() >= STAGGER_THRESHOLD)
+			to_chat(defender, span_userdanger("You're knocked off-balance by [attack_text]!"))
 			defender.Knockdown(3 SECONDS, TRUE)
 
 	if(attack_type & PROJECTILE_ATTACK)
@@ -195,8 +202,10 @@
 	if(attack_type & (UNARMED_ATTACK|THROWN_PROJECTILE_ATTACK|LEAP_ATTACK))
 		playsound(defender, 'sound/weapons/smash.ogg', 50, TRUE)
 
-	if((block_flags & DAMAGE_ON_BLOCK))
+	if((block_flags & DAMAGE_ON_BLOCK) && !is_parrying)
 		used_item.take_damage(damage, damage_type)
+
+	return SHIELD_BLOCK
 
 /datum/component/blocking/proc/get_block_force(obj/item/weapon, mob/living/defender, atom/movable/incoming, damage, attack_type, armour_penetration)
 	var/force_returned = 0

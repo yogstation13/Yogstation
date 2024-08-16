@@ -6,5 +6,5 @@
     ZTRAIT_BOMBCAP_MULTIPLIER = 2.5, \
 	ZTRAIT_ACIDRAIN = TRUE, \
 	ZTRAIT_JUNGLE_RUINS = TRUE, \
-    ZTRAIT_BASETURF = /turf/open/water/toxic_pit)
+    ZTRAIT_BASETURF = /turf/open/water/smooth/toxic_pit)
 

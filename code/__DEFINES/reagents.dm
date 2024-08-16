@@ -25,7 +25,7 @@
 #define VAPOR			(1<<2)	// spray, blob attack
 #define PATCH			(1<<3)	// patches
 #define INJECT			(1<<4)	// injection
-
+#define BREATH			(1<<5)	// breathed gases
 
 //defines passed through to the on_reagent_change proc
 #define DEL_REAGENT		1	// reagent deleted (fully cleared)

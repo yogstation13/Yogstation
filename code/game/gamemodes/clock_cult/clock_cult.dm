@@ -283,7 +283,7 @@ Credit where due:
 	var/plasmaman //We use this to determine if we should activate internals in post_equip()
 
 /datum/outfit/servant_of_ratvar/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	if(H.dna.species.id == "plasmaman") //Plasmamen get additional equipment because of how they work
+	if(H.dna.species.id == SPECIES_PLASMAMAN) //Plasmamen get additional equipment because of how they work
 		head = /obj/item/clothing/head/helmet/space/plasmaman
 		uniform = /obj/item/clothing/under/plasmaman //Plasmamen generally shouldn't need chameleon suits anyways, since everyone expects them to wear their fire suit
 		r_hand = /obj/item/tank/internals/plasmaman/belt/full

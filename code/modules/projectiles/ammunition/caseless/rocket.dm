@@ -44,7 +44,7 @@
 	caliber = CALIBER_MUSKET
 	icon_state = "cartridge"
 	projectile_type = /obj/projectile/bullet/cartridge
-	firing_effect_type = /obj/effect/particle_effect/fluid/smoke
+	firing_effect_type = /obj/effect/particle_effect/fluid/smoke/bad
 
 /obj/item/ammo_casing/caseless/cartridge/black_powder
 	name = "black powder cartridge"

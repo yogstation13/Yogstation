@@ -125,13 +125,6 @@
 	cold_level_2_damage = 4
 	cold_level_3_threshold = 220
 	cold_level_3_damage = 6
-
-	heat_level_1_threshold = 500
-	heat_level_1_damage = 4
-	heat_level_2_threshold = 1000
-	heat_level_2_damage = 7
-	heat_level_3_threshold = 35000 //are you on the fucking surface of the sun or something?
-	heat_level_3_damage = 25 //you should already be dead
 	
 ///////////////////////////////////////////////////////////
 //---------------------Preternis Stomach-----------------//
@@ -149,6 +142,6 @@
 		owner.reagents.remove_reagent(/datum/reagent/consumable/nutriment, 1) //worse for actually eating (not that it matters for preterni)
 
 /obj/item/organ/stomach/cell/preternis/emp_act(severity)
-	owner.vomit(stun=FALSE) // fuck that
+	owner.vomit(0, TRUE, FALSE) // vomit blood, no stun
 	owner.adjust_disgust(2*severity)
-	to_chat(owner, "<span class='warning'>You feel violently ill as the EMP causes your stomach to kick into high gear.</span>")
+	to_chat(owner, span_warning("You feel violently ill as the EMP causes your stomach to kick into high gear."))

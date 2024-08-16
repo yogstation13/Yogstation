@@ -19,6 +19,7 @@
 	//select which parts of the diskette to load
 	var/include_se = FALSE //mutations
 	var/include_ui = FALSE //appearance
+	var/include_uf = FALSE //features
 	var/include_ue = FALSE //blood type, UE, and name
 
 	var/loading = FALSE // Nice loading text
@@ -63,7 +64,22 @@
 				. = pod
 
 /proc/grow_clone_from_record(obj/machinery/clonepod/pod, datum/data/record/R, empty)
-	return pod.growclone(R.fields["name"], R.fields["UI"], R.fields["SE"], R.fields["makeup"], R.fields["mindref"], R.fields["last_death"], R.fields["mrace"], R.fields["features"], R.fields["factions"], R.fields["quirks"], R.fields["bank_account"], R.fields["traumas"], empty, R.fields["mood"])
+	return pod.growclone(
+			clonename = R.fields["name"], 
+			ui = R.fields["UI"], 
+			mutation_index = R.fields["SE"], 
+			makeup = R.fields["makeup"],
+			mindref = R.fields["mindref"], 
+			last_death = R.fields["last_death"], 
+			mrace = R.fields["mrace"], 
+			features = R.fields["features"], 
+			factions = R.fields["factions"], 
+			quirks = R.fields["quirks"], 
+			insurance = R.fields["bank_account"], 
+			traumas = R.fields["traumas"], 
+			empty = empty, 
+			mood = R.fields["mood"],
+			)
 
 /obj/machinery/computer/cloning/process()
 	if(!(scanner && LAZYLEN(pods) && autoprocess))
@@ -259,6 +275,7 @@
 					dat += "<font class='bad'>Unable to locate Health Implant.</font><br /><br />"
 
 				dat += "<b>Unique Identifier:</b><br />[span_highlight("[active_record.fields["UI"]]")]<br>"
+				dat += "<b>Unique Features:</b><br />[span_highlight("[active_record.fields["UF"]]")]<br>"
 				dat += "<b>Structural Enzymes:</b><br /><span class='highlight'>"
 				for(var/key in active_record.fields["SE"])
 					if(key != RACEMUT)
@@ -273,10 +290,13 @@
 					dat += "<h4>Inserted Disk</h4>"
 					dat += "<b>Contents:</b> "
 					var/list/L = list()
-					if(diskette.fields["UI"])
-						L += "Unique Identifier"
+					
 					if(diskette.fields["UE"] && diskette.fields["name"] && diskette.fields["blood_type"])
 						L += "Unique Enzymes"
+					if(diskette.fields["UI"])
+						L += "Unique Identifier"
+					if(diskette.fields["UF"])
+						L += "Unique Features"
 					if(diskette.fields["SE"])
 						L += "Structural Enzymes"
 					dat += english_list(L, "Empty", " + ", " + ")
@@ -441,6 +461,7 @@
 					overwrite_field_if_available(active_record, diskette, "blood_type")
 				if(include_ui)
 					overwrite_field_if_available(active_record, diskette, "UI")
+					overwrite_field_if_available(active_record, diskette, "UF")
 				if(include_se)
 					overwrite_field_if_available(active_record, diskette, "SE")
 
@@ -534,7 +555,7 @@
 		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 		return 
 
-	if(HAS_TRAIT(mob_occupant,TRAIT_SHORT_TELOMERES))
+	if(TRAIT_SHORT_TELOMERES in dna.features)
 		say("Error: Scan indicates occupant's DNA telomeres are too short to properly scan. Aborting.")
 		return
 
@@ -552,11 +573,12 @@
 
 	R.fields["name"] = mob_occupant.real_name
 	R.fields["id"] = copytext_char(md5(mob_occupant.real_name), 2, 6)
-	R.fields["UE"] = dna.unique_enzymes
-	R.fields["UI"] = dna.unique_identity
+	R.fields["UE"] = "[dna.unique_enzymes]"
+	R.fields["UI"] = "[dna.unique_identity]"
+	R.fields["UF"] = "[dna.unique_features]"
 	R.fields["SE"] = dna.mutation_index
 	R.fields["blood_type"] = dna.blood_type
-	R.fields["features"] = dna.features
+	R.fields["features"] = dna.features.Copy()
 	R.fields["makeup"] = dna.default_mutation_genes
 	R.fields["factions"] = mob_occupant.faction
 	R.fields["quirks"] = list()

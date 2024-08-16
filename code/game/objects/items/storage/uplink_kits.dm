@@ -186,16 +186,12 @@
 			new /obj/item/book/granter/action/spell/summonitem(src) //So you can throw your lightsaber and call it back. A 1 SP cost spell that doesn't require robes
 
 		if("white_whale_holy_grail") //Unique items that don't appear anywhere else, more than 100 carps or your TC back
-			new /obj/item/pneumatic_cannon/speargun(src)
-			new /obj/item/storage/magspear_quiver(src)
+			for(var/i in 1 to 6)
+				new /obj/item/grenade/spawnergrenade/spesscarp(src) //for precise and quick delivery of carps, 5 carps per grenade for a total of 30 carps
+			new /obj/item/clothing/gloves/gasharpoon
 			new /obj/item/clothing/suit/space/hardsuit/carp(src) //1 carp
 			new /obj/item/clothing/mask/gas/carp(src) //1 carp?
-			new /obj/item/pitchfork/trident(src)
 			new /obj/item/grenade/clusterbuster/syndie/spawner_spesscarp(src) //when you need A LOT of carps, you'll get at least (but most likely more) 30 carps with that
-			new /obj/item/grenade/spawnergrenade/spesscarp(src) //for precise and quick delivery of carps, 5 carps per grenade for a total of 20 carps
-			new /obj/item/grenade/spawnergrenade/spesscarp(src)
-			new /obj/item/grenade/spawnergrenade/spesscarp(src)
-			new /obj/item/grenade/spawnergrenade/spesscarp(src)
 			new /obj/item/carpcaller(src) //to spawn carps in space, making the place safer for you and dangerous for everyone else, you should get at least 20 carps per use so 60  carps
 			new /obj/item/toy/plush/carpplushie/dehy_carp //1 carp but guaranteed complete loyalty and cuddliness
 
@@ -272,13 +268,13 @@
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
 
 		if("solo") //14 + 6x3 + 1 = 3 tc = 31 tc. it was, in fact, busted
-			new /obj/item/autosurgeon/syndicate/spinalspeed(src) //12 tc
+			new /obj/item/autosurgeon/suspicious/spinalspeed(src) //12 tc
 			new /obj/item/clothing/suit/toggle/cyberpunk/solo(src) //dont know what this costs, vague guesstimate says 6tc
-			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
-			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
+			new /obj/item/autosurgeon/suspicious/syndie_mantis(src) //6 tc
+			new /obj/item/autosurgeon/suspicious/syndie_mantis(src) //6 tc
 			new /obj/item/autosurgeon/upgraded_cyberlungs(src) //this is to remain true to the source material ok
 			new /obj/item/storage/pill_bottle/synaptizine(src) //take your drugs david, this and the lungs make up 1 tc
-			
+
 
 #undef CARP_CARP_CARP
 
@@ -876,12 +872,12 @@
 	real_name = "augmentation kit"
 
 /obj/item/storage/box/syndie_kit/augmentation/PopulateContents()
-	new /obj/item/autosurgeon/limb/head/robot(src)
-	new /obj/item/autosurgeon/limb/chest/robot(src)
-	new /obj/item/autosurgeon/limb/l_arm/robot(src)
-	new /obj/item/autosurgeon/limb/r_arm/robot(src)
-	new /obj/item/autosurgeon/limb/l_leg/robot(src)
-	new /obj/item/autosurgeon/limb/r_leg/robot(src)
+	new /obj/item/autosurgeon/head/robot(src)
+	new /obj/item/autosurgeon/chest/robot(src)
+	new /obj/item/autosurgeon/l_arm/robot(src)
+	new /obj/item/autosurgeon/r_arm/robot(src)
+	new /obj/item/autosurgeon/l_leg/robot(src)
+	new /obj/item/autosurgeon/r_leg/robot(src)
 
 /obj/item/storage/box/syndie_kit/augmentation/superior
 	real_name = "superior augmentation kit"

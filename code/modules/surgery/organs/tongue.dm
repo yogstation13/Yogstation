@@ -29,6 +29,7 @@
 		/datum/language/japanese,
 		/datum/language/machine, //yogs
 		/datum/language/darkspawn, //also yogs
+		/datum/language/vox,
 		/datum/language/encrypted,
 		/datum/language/felinid,
 		/datum/language/english,
@@ -258,7 +259,6 @@
 	compatible_biotypes = ALL_BIOTYPES
 	organ_flags = ORGAN_SYNTHETIC
 	icon_state = "tonguerobot"
-	say_mod = "states"
 	attack_verb = list("beeped", "booped")
 	modifies_speech = TRUE
 	taste_sensitivity = NO_TASTE_SENSITIVITY // not as good as an organic tongue
@@ -275,7 +275,8 @@
 
 /obj/item/organ/tongue/robot/handle_speech(datum/source, list/speech_args)
 	..()
-	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
+	if(!HAS_TRAIT(source, TRAIT_DISGUISED)) //disguised voice font
+		speech_args[SPEECH_SPANS] |= SPAN_ROBOT
 
 /obj/item/organ/tongue/snail
 	name = "snailtongue"

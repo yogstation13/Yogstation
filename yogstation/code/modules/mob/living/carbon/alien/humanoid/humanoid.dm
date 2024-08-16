@@ -1,4 +1,6 @@
 /mob/living/carbon/alien/humanoid/Initialize(mapload, null)
 	var/datum/action/cooldown/alien/regurgitate/regurgitate = new(src)
 	regurgitate.Grant(src)
+	AddElement(/datum/element/footstep, FOOTSTEP_MOB_CLAW, 0.5, -11)
+	AddElement(/datum/element/strippable, GLOB.strippable_alien_humanoid_items)
 	. = ..()

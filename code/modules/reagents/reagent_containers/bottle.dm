@@ -347,7 +347,7 @@
 
 /obj/item/reagent_containers/glass/bottle/hydrogen
 	name = "hydrogen bottle"
-	list_reagents = list(/datum/reagent/hydrogen = 30)
+	list_reagents = list(/datum/reagent/gas/hydrogen = 30)
 
 /obj/item/reagent_containers/glass/bottle/lithium
 	name = "lithium bottle"
@@ -359,11 +359,11 @@
 
 /obj/item/reagent_containers/glass/bottle/nitrogen
 	name = "nitrogen bottle"
-	list_reagents = list(/datum/reagent/nitrogen = 30)
+	list_reagents = list(/datum/reagent/gas/nitrogen = 30)
 
 /obj/item/reagent_containers/glass/bottle/oxygen
 	name = "oxygen bottle"
-	list_reagents = list(/datum/reagent/oxygen = 30)
+	list_reagents = list(/datum/reagent/gas/oxygen = 30)
 
 /obj/item/reagent_containers/glass/bottle/fluorine
 	name = "fluorine bottle"
@@ -460,7 +460,7 @@
 	base_icon_state = "coffee_cup"
 	possible_transfer_amounts = list(10)
 	volume = 30
-	spillable = TRUE
+	reagent_flags = OPENCONTAINER
 
 /obj/item/reagent_containers/glass/coffee_cup/update_icon_state()
 	icon_state = reagents.total_volume ? base_icon_state : "[base_icon_state]_e"
@@ -715,7 +715,7 @@
 	fill_icon_thresholds = list(0, 20, 40, 60, 80, 100)
 	possible_transfer_amounts = list(5, 10)
 	amount_per_transfer_from_this = 5
-	spillable = FALSE
+	reagent_flags = OPENCONTAINER_NOSPILL
 	///variable to tell if the bottle can be refilled
 	var/cap_on = TRUE
 	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC

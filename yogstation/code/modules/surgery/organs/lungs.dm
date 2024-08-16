@@ -61,3 +61,18 @@
 	heat_level_2_threshold = 600
 	heat_level_3_threshold = 1100
 
+/obj/item/organ/lungs/vox
+	name = "vox lungs"
+	icon_state = "lungs-vox"
+	desc = "They're filled with dust...wow."
+	decay_factor = 0
+	breathing_class = BREATH_VOX
+
+/obj/item/organ/lungs/vox/populate_gas_info()
+	..()
+	gas_max[GAS_O2] = 0.05
+	gas_max -= BREATH_VOX
+	gas_damage[GAS_O2] = list(min = MIN_TOXIC_GAS_DAMAGE, max = MAX_TOXIC_GAS_DAMAGE, damage_type = TOX)
+
+/obj/item/organ/lungs/vox/emp_act()
+	owner.emote("gasp")

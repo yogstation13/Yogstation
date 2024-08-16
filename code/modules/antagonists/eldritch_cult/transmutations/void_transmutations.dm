@@ -91,7 +91,12 @@
 		storm.impacted_areas = list(source_area)
 		storm.update_areas()
 		
-	priority_announce("Immense destabilization of the bluespace veil has been observed. @&#^$&#^@# The nobleman of void [user.real_name] has arrived, stepping along the Waltz that ends worlds!  $&#^@#@&#^ Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
+	priority_announce(
+		text = "[generate_heretic_text()] The nobleman of void [user.real_name] has arrived, stepping along the Waltz that ends worlds! [generate_heretic_text()]",
+		title = "[generate_heretic_text()]",
+		sound = 'sound/ambience/antag/heretic/ascend_void.ogg',
+		color_override = "pink",
+	)
 	var/datum/antagonist/heretic/ascension = H.mind.has_antag_datum(/datum/antagonist/heretic)
 	ascension.ascended = TRUE
 		

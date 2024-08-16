@@ -115,7 +115,12 @@
 			var/datum/eldritch_transmutation/voiceless_dead/ghoul2 = heretic.get_transmutation(/datum/eldritch_transmutation/voiceless_dead)
 			ghoul2.max_amt *= 3
 			var/mob/dead/observer/ghost_candidate = pick(candidates)
-			priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report two entitites of immeasurable power, one of which is of a considerable volume of organic mass. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
+			priority_announce(
+				text = "[generate_heretic_text()] Ever coiling vortex. Reality unfolded. ARMS OUTREACHED, THE LORD OF THE NIGHT, [user.real_name] has ascended! Fear the ever twisting hand! [generate_heretic_text()]",
+				title = "[generate_heretic_text()]",
+				sound = 'sound/ambience/antag/heretic/ascend_flesh.ogg',
+				color_override = "pink",
+			)
 
 			log_game("[key_name_admin(ghost_candidate)] has taken control of ([key_name_admin(summoned)]).")
 			summoned.ghostize(FALSE)
@@ -133,7 +138,12 @@
 				if(istype(spells, /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash)) //vitally important since ashen passage breaks the shit out of armsy
 					spells.Remove(user)
 					qdel(spells)
-			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the dark, for King of Arms has ascended! Our Lord of the Night has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
+			priority_announce(
+				text = "[generate_heretic_text()] Fear the dark, for King of Arms, [user.real_name] has ascended! Our Lord of the Night has come! [generate_heretic_text()]",
+				title = "[generate_heretic_text()]",
+				sound = 'sound/ambience/antag/heretic/ascend_flesh.ogg',
+				color_override = "pink",
+			)
 			SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
 			var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
 

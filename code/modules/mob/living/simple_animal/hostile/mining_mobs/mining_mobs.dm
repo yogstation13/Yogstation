@@ -2,8 +2,8 @@
 /mob/living/simple_animal/hostile/asteroid
 	vision_range = 2
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	faction = list("mining")
-	weather_immunities = list(WEATHER_LAVA, WEATHER_ASH)
+	faction = list("mining", "skintwister_cloak")
+	weather_immunities = ALL
 	obj_damage = 30
 	environment_smash = ENVIRONMENT_SMASH_WALLS
 	minbodytemp = 0
@@ -13,16 +13,18 @@
 	response_harm = "strikes"
 	status_flags = 0
 	combat_mode = TRUE
-	var/crusher_loot
-	var/throw_message = "bounces off of"
-	var/fromtendril = FALSE
 	// Pale purple, should be red enough to see stuff on lavaland
 	lighting_cutoff_red = 25
 	lighting_cutoff_green = 15
 	lighting_cutoff_blue = 35
 	mob_size = MOB_SIZE_LARGE
+	/// If we try to spawn an "empowered" version, what will it spawn
+	var/alpha_type
 	var/icon_aggro = null
+	var/crusher_loot
 	var/crusher_drop_mod = 25
+	var/throw_message = "bounces off of"
+	var/fromtendril = FALSE
 
 /mob/living/simple_animal/hostile/asteroid/Aggro()
 	..()

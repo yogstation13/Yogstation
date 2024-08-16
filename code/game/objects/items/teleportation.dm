@@ -271,6 +271,8 @@
 			var/area/dangerous_area = dangerous_turf.loc
 			if(dangerous_area.area_flags & NOTELEPORT)
 				continue
+			if(dangerous_area.noteleport) //why do we have two flags? because we're dogshit
+				continue
 			dangerous_turfs += dangerous_turf
 
 		teleport_turf = pick(dangerous_turfs)

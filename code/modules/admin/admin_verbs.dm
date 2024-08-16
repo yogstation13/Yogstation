@@ -23,7 +23,8 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/clear_all_pipenets,
 	/client/proc/debugstatpanel,
 	/client/proc/clear_mfa,
-	/client/proc/show_rights
+	/client/proc/show_rights,
+	/client/proc/remove_liquid
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -255,7 +256,8 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/cmd_display_del_log,
 	/client/proc/toggle_combo_hud,
 	/client/proc/debug_huds,
-	/client/proc/admincryo
+	/client/proc/admincryo,
+	/client/proc/spawn_liquid
 	))
 GLOBAL_PROTECT(admin_verbs_hideable)
 

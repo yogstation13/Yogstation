@@ -461,7 +461,7 @@
 				var/is_cold_recipe = C.is_cold_recipe
 				var/meets_temp_requirement = 0
 
-				if(has_reagent(/datum/reagent/hypernoblium) && C.noblium_suppression)
+				if(has_reagent(/datum/reagent/gas/hypernoblium) && C.noblium_suppression)
 					continue
 
 				for(var/B in cached_required_reagents)
@@ -742,10 +742,10 @@
 	return TRUE
 
 /// Like add_reagent but you can enter a list. Format it like this: list(/datum/reagent/toxin = 10, "beer" = 15)
-/datum/reagents/proc/add_reagent_list(list/list_reagents, list/data=null)
+/datum/reagents/proc/add_reagent_list(list/list_reagents, list/data=null, _no_react = FALSE)
 	for(var/r_id in list_reagents)
 		var/amt = list_reagents[r_id]
-		add_reagent(r_id, amt, data)
+		add_reagent(r_id, amt, data, no_react = _no_react)
 
 /// Remove a specific reagent
 /datum/reagents/proc/remove_reagent(reagent, amount, safety)//Added a safety check for the trans_id_to

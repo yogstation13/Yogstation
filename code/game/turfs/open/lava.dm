@@ -69,7 +69,7 @@ GLOBAL_LIST_INIT(lavasafeties, typecacheof(list(/obj/structure/lattice/catwalk, 
 				return
 		else if(isliving(buckle_check))
 			var/mob/living/live = buckle_check
-			if("lava" in live.weather_immunities)
+			if(live.weather_immunities & WEATHER_LAVA)
 				return
 
 		if(!L.on_fire)
@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(lavasafeties, typecacheof(list(/obj/structure/lattice/catwalk, 
 			if(S && H && S.clothing_flags & LAVAPROTECT && H.clothing_flags & LAVAPROTECT)
 				return
 
-		if("lava" in L.weather_immunities)
+		if(L.weather_immunities & WEATHER_LAVA)
 			return
 
 		L.adjustFireLoss(20 * delta_time)
@@ -184,7 +184,7 @@ GLOBAL_LIST_INIT(lavasafeties, typecacheof(list(/obj/structure/lattice/catwalk, 
 
 /turf/open/lava/rust_heretic_act()
 	return FALSE
-	
+
 /turf/open/lava/singularity_act()
 	return
 

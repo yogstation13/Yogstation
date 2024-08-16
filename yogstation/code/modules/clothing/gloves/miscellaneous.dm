@@ -29,3 +29,11 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
+
+/obj/item/clothing/gloves/color/yellow/vox
+	name = "insulated gauntlets"
+	desc = "These bizarre gauntlets seem to be fitted for...bird claws?"
+	icon_state = "gloves-vox"
+	item_state = "gloves-vox"
+	icon = 'icons/obj/clothing/species/vox/gloves.dmi'
+	species_restricted = list(SPECIES_VOX)

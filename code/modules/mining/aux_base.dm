@@ -19,7 +19,7 @@
 	interface with the mining shuttle at the landing site if a mobile beacon is also deployed."
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "dorm_available"
-	req_one_access = list(ACCESS_CARGO, ACCESS_CONSTRUCTION, ACCESS_HEADS, ACCESS_RESEARCH)
+	req_one_access = list(ACCESS_CARGO, ACCESS_CONSTRUCTION, ACCESS_COMMAND, ACCESS_SCIENCE, ACCESS_RESEARCH)
 	/// Shuttle ID of the base
 	var/shuttleId = "colony_drop"
 	/// If we give warnings before base is launched
@@ -228,9 +228,9 @@
 			/turf/closed,
 			/turf/open/lava,
 			/turf/open/indestructible,
-			/turf/open/water/toxic_pit,
-			/turf/open/water/deep_toxic_pit,
-			/turf/open/water/tar_basin,
+			/turf/open/water/smooth/toxic_pit,
+			/turf/open/water/smooth/toxic_pit/deep,
+			/turf/open/water/smooth/tar_basin,
 			)) - typecacheof(list(
 			/turf/closed/mineral,
 			))

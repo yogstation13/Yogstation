@@ -33,20 +33,20 @@
 
 /datum/chemical_reaction/icetea
 	name = "Iced Tea"
-	id = /datum/reagent/consumable/icetea
-	results = list(/datum/reagent/consumable/icetea = 4)
-	required_reagents = list(/datum/reagent/consumable/ice = 1, /datum/reagent/consumable/tea = 3)
+	id = /datum/reagent/consumable/tea/cold
+	results = list(/datum/reagent/consumable/tea/cold = 4)
+	required_reagents = list(/datum/reagent/consumable/ice = 1, /datum/reagent/consumable/tea/hot = 3)
 
 /datum/chemical_reaction/icecoffee
 	name = "Iced Coffee"
-	id = /datum/reagent/consumable/icecoffee
-	results = list(/datum/reagent/consumable/icecoffee = 4)
-	required_reagents = list(/datum/reagent/consumable/ice = 1, /datum/reagent/consumable/coffee = 3)
+	id = /datum/reagent/consumable/coffee/ice
+	results = list(/datum/reagent/consumable/coffee/ice = 4)
+	required_reagents = list(/datum/reagent/consumable/ice = 1, /datum/reagent/consumable/coffee/hot = 3)
 
 /datum/chemical_reaction/nuka_cola
 	name = "Nuka Cola"
-	id = /datum/reagent/consumable/nuka_cola
-	results = list(/datum/reagent/consumable/nuka_cola = 6)
+	id = /datum/reagent/consumable/energy_drink/nuka_cola
+	results = list(/datum/reagent/consumable/energy_drink/nuka_cola = 6)
 	required_reagents = list(/datum/reagent/uranium = 1, /datum/reagent/consumable/space_cola = 6)
 
 /datum/chemical_reaction/moonshine
@@ -58,9 +58,9 @@
 
 /datum/chemical_reaction/gravedigger
 	name = "Grave-Digger"
-	id = /datum/reagent/consumable/graveyard
-	results = list(/datum/reagent/consumable/gravedigger = 3)
-	required_reagents = list(/datum/reagent/consumable/space_cola = 1, /datum/reagent/consumable/dr_gibb = 1, /datum/reagent/consumable/space_up = 1) //soda
+	id = /datum/reagent/consumable/space_cola/gravedigger
+	results = list(/datum/reagent/consumable/space_cola/gravedigger = 3)
+	required_reagents = list(/datum/reagent/consumable/space_cola = 1, /datum/reagent/consumable/space_cola/dr_gibb = 1, /datum/reagent/consumable/space_up = 1) //soda
 
 /datum/chemical_reaction/wine
 	name = "Wine"
@@ -87,7 +87,7 @@
 	name = "Kahlua"
 	id = /datum/reagent/consumable/ethanol/kahlua
 	results = list(/datum/reagent/consumable/ethanol/kahlua = 5)
-	required_reagents = list(/datum/reagent/consumable/coffee = 5, /datum/reagent/consumable/sugar = 5)
+	required_reagents = list(/datum/reagent/consumable/coffee/hot = 5, /datum/reagent/consumable/sugar = 5)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
 
 /datum/chemical_reaction/gin_tonic
@@ -209,7 +209,7 @@
 	name = "Irish Coffee"
 	id = /datum/reagent/consumable/ethanol/irishcoffee
 	results = list(/datum/reagent/consumable/ethanol/irishcoffee = 2)
-	required_reagents = list(/datum/reagent/consumable/ethanol/irish_cream = 1, /datum/reagent/consumable/coffee = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol/irish_cream = 1, /datum/reagent/consumable/coffee/hot = 1)
 
 /datum/chemical_reaction/b52
 	name = "B-52"
@@ -299,7 +299,7 @@
 	name = "Demons Blood"
 	id = /datum/reagent/consumable/ethanol/demonsblood
 	results = list(/datum/reagent/consumable/ethanol/demonsblood = 4)
-	required_reagents = list(/datum/reagent/consumable/ethanol/rum = 1, /datum/reagent/consumable/spacemountainwind = 1, /datum/reagent/blood = 1, /datum/reagent/consumable/dr_gibb = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol/rum = 1, /datum/reagent/consumable/space_cola/spacemountainwind = 1, /datum/reagent/blood = 1, /datum/reagent/consumable/space_cola/dr_gibb = 1)
 
 /datum/chemical_reaction/booger
 	name = "Booger"
@@ -372,15 +372,15 @@
 
 /datum/chemical_reaction/soy_latte
 	name = "Soy Latte"
-	id = /datum/reagent/consumable/soy_latte
-	results = list(/datum/reagent/consumable/soy_latte = 2)
-	required_reagents = list(/datum/reagent/consumable/coffee = 1, /datum/reagent/consumable/soymilk = 1)
+	id = /datum/reagent/consumable/coffee/hot/latte/soy
+	results = list(/datum/reagent/consumable/coffee/hot/latte/soy = 2)
+	required_reagents = list(/datum/reagent/consumable/coffee/hot = 1, /datum/reagent/consumable/soymilk = 1)
 
 /datum/chemical_reaction/cafe_latte
 	name = "Cafe Latte"
-	id = /datum/reagent/consumable/cafe_latte
-	results = list(/datum/reagent/consumable/cafe_latte = 2)
-	required_reagents = list(/datum/reagent/consumable/coffee = 1, /datum/reagent/consumable/milk = 1)
+	id = /datum/reagent/consumable/coffee/hot/latte
+	results = list(/datum/reagent/consumable/coffee/hot/latte = 2)
+	required_reagents = list(/datum/reagent/consumable/coffee/hot = 1, /datum/reagent/consumable/milk = 1)
 
 /datum/chemical_reaction/acidspit
 	name = "Acid Spit"
@@ -476,7 +476,7 @@
 	name = "Thirteen Loko"
 	id = /datum/reagent/consumable/ethanol/thirteenloko
 	results = list(/datum/reagent/consumable/ethanol/thirteenloko = 3)
-	required_reagents = list(/datum/reagent/consumable/ethanol/vodka = 1, /datum/reagent/consumable/coffee = 1, /datum/reagent/consumable/limejuice = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol/vodka = 1, /datum/reagent/consumable/coffee/hot = 1, /datum/reagent/consumable/limejuice = 1)
 
 /datum/chemical_reaction/chocolatepudding
 	name = "Chocolate Pudding"
@@ -510,15 +510,15 @@
 
 /datum/chemical_reaction/pumpkin_latte
 	name = "Pumpkin space latte"
-	id = /datum/reagent/consumable/pumpkin_latte
-	results = list(/datum/reagent/consumable/pumpkin_latte = 15)
-	required_reagents = list(/datum/reagent/consumable/pumpkinjuice = 5, /datum/reagent/consumable/coffee = 5, /datum/reagent/consumable/cream = 5)
+	id = /datum/reagent/consumable/coffee/hot/latte/pumpkin
+	results = list(/datum/reagent/consumable/coffee/hot/latte/pumpkin = 15)
+	required_reagents = list(/datum/reagent/consumable/pumpkinjuice = 5, /datum/reagent/consumable/coffee/hot = 5, /datum/reagent/consumable/cream = 5)
 
 /datum/chemical_reaction/gibbfloats
 	name = "Gibb Floats"
-	id = /datum/reagent/consumable/gibbfloats
-	results = list(/datum/reagent/consumable/gibbfloats = 15)
-	required_reagents = list(/datum/reagent/consumable/dr_gibb = 5, /datum/reagent/consumable/ice = 5, /datum/reagent/consumable/cream = 5)
+	id = /datum/reagent/consumable/space_cola/dr_gibb/float
+	results = list(/datum/reagent/consumable/space_cola/dr_gibb/float = 15)
+	required_reagents = list(/datum/reagent/consumable/space_cola/dr_gibb = 5, /datum/reagent/consumable/ice = 5, /datum/reagent/consumable/cream = 5)
 
 /datum/chemical_reaction/triple_citrus
 	name = "Triple Citrus"
@@ -550,7 +550,7 @@
 	name = "Fetching Fizz"
 	id = /datum/reagent/consumable/ethanol/fetching_fizz
 	results = list(/datum/reagent/consumable/ethanol/fetching_fizz = 3)
-	required_reagents = list(/datum/reagent/consumable/nuka_cola = 1, /datum/reagent/iron = 1) //Manufacturable from only the mining station
+	required_reagents = list(/datum/reagent/consumable/energy_drink/nuka_cola = 1, /datum/reagent/iron = 1) //Manufacturable from only the mining station
 	mix_message = "The mixture slightly vibrates before settling."
 
 /datum/chemical_reaction/hearty_punch
@@ -577,9 +577,9 @@
 
 /datum/chemical_reaction/arnold_palmer
 	name = "Arnold Palmer"
-	id = /datum/reagent/consumable/tea/arnold_palmer
-	results = list(/datum/reagent/consumable/tea/arnold_palmer = 2)
-	required_reagents = list(/datum/reagent/consumable/tea = 1, /datum/reagent/consumable/lemonade = 1)
+	id = /datum/reagent/consumable/tea/hot/arnold_palmer
+	results = list(/datum/reagent/consumable/tea/hot/arnold_palmer = 2)
+	required_reagents = list(/datum/reagent/consumable/tea/hot = 1, /datum/reagent/consumable/lemonade = 1)
 	mix_message = "The smells of fresh green grass and sand traps waft through the air as the mixture turns a friendly yellow-orange."
 
 /datum/chemical_reaction/chocolate_milk
@@ -636,7 +636,7 @@
 	name = "Bastion Bourbon"
 	id = /datum/reagent/consumable/ethanol/bastion_bourbon
 	results = list(/datum/reagent/consumable/ethanol/bastion_bourbon = 2)
-	required_reagents = list(/datum/reagent/consumable/tea = 1, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/consumable/triple_citrus = 1, /datum/reagent/consumable/berryjuice = 1) //herbal and minty, with a hint of citrus and berry
+	required_reagents = list(/datum/reagent/consumable/tea/hot = 1, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/consumable/triple_citrus = 1, /datum/reagent/consumable/berryjuice = 1) //herbal and minty, with a hint of citrus and berry
 	mix_message = "You catch an aroma of hot tea and fruits as the mix blends into a blue-green color."
 
 /datum/chemical_reaction/squirt_cider
@@ -734,7 +734,7 @@
 	name = "Blank Paper"
 	id = /datum/reagent/consumable/ethanol/blank_paper
 	results = list(/datum/reagent/consumable/ethanol/blank_paper = 3)
-	required_reagents = list(/datum/reagent/consumable/ethanol/silencer = 1, /datum/reagent/consumable/nothing = 1, /datum/reagent/consumable/nuka_cola = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol/silencer = 1, /datum/reagent/consumable/nothing = 1, /datum/reagent/consumable/energy_drink/nuka_cola = 1)
 
 /datum/chemical_reaction/wizz_fizz
 	name = "Wizz Fizz"
@@ -763,7 +763,7 @@
 	name = "Turbo"
 	id = /datum/reagent/consumable/ethanol/turbo
 	results = list(/datum/reagent/consumable/ethanol/turbo = 5)
-	required_reagents = list(/datum/reagent/consumable/ethanol/moonshine = 2, /datum/reagent/nitrous_oxide = 1, /datum/reagent/consumable/ethanol/sugar_rush = 1, /datum/reagent/consumable/pwr_game = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol/moonshine = 2, /datum/reagent/gas/nitrous_oxide = 1, /datum/reagent/consumable/ethanol/sugar_rush = 1, /datum/reagent/consumable/pwr_game = 1)
 
 /datum/chemical_reaction/old_timer
 	name = "Old Timer"
@@ -775,7 +775,7 @@
 	name = "Rubberneck"
 	id = /datum/reagent/consumable/ethanol/rubberneck
 	results = list(/datum/reagent/consumable/ethanol/rubberneck = 10)
-	required_reagents = list(/datum/reagent/consumable/ethanol = 4, /datum/reagent/consumable/grey_bull = 5, /datum/reagent/consumable/astrotame = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol = 4, /datum/reagent/consumable/energy_drink/grey_bull = 5, /datum/reagent/consumable/astrotame = 1)
 
 /datum/chemical_reaction/duplex
 	name = "Duplex"
@@ -812,7 +812,7 @@
 	name = "Red Queen"
 	id = /datum/reagent/consumable/red_queen
 	results = list(/datum/reagent/consumable/red_queen = 10)
-	required_reagents = list(/datum/reagent/consumable/tea = 6, /datum/reagent/mercury = 2, /datum/reagent/consumable/blackpepper = 1, /datum/reagent/growthserum = 1)
+	required_reagents = list(/datum/reagent/consumable/tea/hot = 6, /datum/reagent/mercury = 2, /datum/reagent/consumable/blackpepper = 1, /datum/reagent/growthserum = 1)
 
 /datum/chemical_reaction/catsip
 	name = "Catsip"
