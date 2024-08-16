@@ -1,5 +1,0 @@
-author: "Aquizit"
-delete-after: true 
-changes: 
-  - rscadd: "Put a loaded defib mount on all standard stations: Box, Meta, Gax, Asteroid, Donut"
-  - rscdel: "Removed defib mount from CMO locker"

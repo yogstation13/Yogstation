@@ -1,4 +1,0 @@
-author: "Code Janitor Theos"
-delete-after: true 
-changes: 
-  - bugfix: "teleport restricting areas now restrict teleporting reliably"
