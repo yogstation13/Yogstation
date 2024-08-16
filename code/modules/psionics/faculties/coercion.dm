@@ -46,24 +46,21 @@
 			return TRUE
 
 		log_say("[key_name(user)] communed to [key_name(target)]: [text]")
-		to_chat(user) "You succeed in sending your commune to [target]! Now to see if they listen..."
+		to_chat(user, span_warning("You succeed in sending your commune to [target]! Now to see if they listen..."))
 
 		for (var/mob/M in GLOB.dead_mob_list)
 			to_chat(M,span_notice("<b>[user] psionically says to [target]:</b> [text]"))
 
 		var/mob/living/carbon/human/H = target
-		if(prob(25) && (target?.mind?.assigned_role == "Chaplain"))
-			to_chat(H, span_notice("<b>You sense [user]'s psyche enter your mind, whispering quietly:</b> [text]"))
-		else
-			to_chat(H, span_notice("<b>You feel something crawl behind your eyes, hearing:</b> [text]"))
-			if(istype(H))
-				if(prob(10) && !(H.dna.species.species_traits & NOBLOOD))
-					to_chat(H, span_warning("Your nose begins to bleed..."))
-					H.add_splatter_floor(small_drip = TRUE)
-				else if(prob(25))
-					to_chat(H, span_warning("Your head hurts..."))
-				else if(prob(50))
-					to_chat(H, span_warning("Your mind buzzes..."))
+		to_chat(H, span_notice("<b>You feel something crawl behind your eyes, hearing:</b> [text]"))
+		if(istype(H))
+			if(prob(10) && !(H.dna.species.species_traits & NOBLOOD))
+				to_chat(H, span_warning("Your nose begins to bleed..."))
+				H.add_splatter_floor(small_drip = TRUE)
+			else if(prob(25))
+				to_chat(H, span_warning("Your head hurts..."))
+			else if(prob(50))
+				to_chat(H, span_warning("Your mind buzzes..."))
 
 /datum/psionic_power/coercion/assay
 	name =				"Assay"
