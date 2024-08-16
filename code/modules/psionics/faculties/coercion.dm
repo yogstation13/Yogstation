@@ -24,7 +24,7 @@
 	cooldown =			5 SECONDS
 	min_rank =			PSI_RANK_OPERANT
 	icon_state = "coe_commune"
-	use_description =	"Activate the power with z, then click on a creature on to psionically send them a message."
+	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, then click on a creature on to psionically send them a message."
 
 /datum/psionic_power/coercion/commune/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(!istype(target) || user == target)
@@ -46,6 +46,7 @@
 			return TRUE
 
 		log_say("[key_name(user)] communed to [key_name(target)]: [text]")
+		to_chat(user) "You succeed in sending your commune to [target]! Now to see if they listen..."
 
 		for (var/mob/M in GLOB.dead_mob_list)
 			to_chat(M,span_notice("<b>[user] psionically says to [target]:</b> [text]"))
@@ -70,14 +71,14 @@
 	cooldown =			5 SECONDS
 	min_rank =			PSI_RANK_OPERANT
 	icon_state = "coe_assay"
-	use_description =	"Activate the power with z, then click on a target in order to perform a deep coercive-redactive probe of their psionic potential."
+	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, then click on a target in order to perform a deep coercive-redactive probe of their psionic potential."
 
 /datum/psionic_power/coercion/assay/invoke(mob/living/user,  mob/living/target, proximity, parameters)
 	if(!istype(target) || user == target)
 		return FALSE
 	. = ..()
 	if(.)
-		user.visible_message(span_warning("\The [user] holds the head of \the [target] in both hands..."))
+		user.visible_message(span_warning("\The [user] taps into the the head of \the [target]..."))
 		to_chat(user, span_notice("You insinuate your mentality into that of \the [target]..."))
 		to_chat(target, span_warning("Your persona is being probed by the psychic lens of \the [user]."))
 		var/speed = (4 - (user.psi.get_rank(PSI_COERCION) - 1)) SECONDS
@@ -89,71 +90,71 @@
 		target.show_psi_assay(user)
 		return TRUE
 
-/datum/psionic_power/coercion/psiping
-	name =				"Psi-ping"
-	cost =				50
-	heat =				20
-	cooldown =			20 SECONDS
-	min_rank =			PSI_RANK_OPERANT
-	icon_state = "coe_psiping"
-	use_description =	"Activate the power with z, then click on yourself with an empty hand to detect nearby psionic signatures."
-	var/searching = FALSE
+// /datum/psionic_power/coercion/psiping
+// 	name =				"Psi-ping"
+// 	cost =				50
+// 	heat =				20
+// 	cooldown =			20 SECONDS
+// 	min_rank =			PSI_RANK_OPERANT
+// 	icon_state = "coe_psiping"
+// 	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, then click on yourself with an empty hand to detect nearby psionic signatures."
+// 	var/searching = FALSE
 
-/datum/psionic_power/coercion/psiping/invoke(mob/living/user, mob/living/target, proximity, parameters)
-	if(user != target || searching)
-		return FALSE
-	. = ..()
-	if(.)
-		to_chat(user, span_notice("You take a moment to tune into the local Nlom..."))
-		searching = TRUE
-		if(!do_after(user, 3 SECONDS, user))
-			searching = FALSE
-			return FALSE 
-		searching = FALSE
-		var/list/dirs = list()
-		for(var/mob/living/L in GLOB.mob_living_list)
-			var/turf/T = get_turf(L)
-			if(!T || L == user || L.stat == DEAD || issilicon(L) || !(L.psi || isdarkspawn(L)) || (L.z != user.z))
-				continue
-			/*
-			var/image/ping_image = image(icon = 'icons/effects/effects.dmi', icon_state = "sonar_ping", loc = user)
-			ping_image.plane = LIGHTING_LAYER+1
-			ping_image.layer = LIGHTING_LAYER+1
-			ping_image.pixel_x = (T.x - user.x) * 32
-			ping_image.pixel_y = (T.y - user.y) * 32
-			user << ping_image
-			addtimer(CALLBACK(GLOBAL_PROC, /proc/qdel, ping_image), 8)
-			*/
-			var/direction = num2text(angle2dir(Get_Angle(user, L)))
-			var/dist
-			if(text2num(direction))
-				switch(get_dist(user, L))
-					if(0 to 10)
-						dist = "very close"
-					if(10 to 20)
-						dist = "close"
-					if(20 to 30)
-						dist = "a little ways away"
-					if(30 to 40)
-						dist = "farther away"
-					else
-						dist = "far away"
-			else
-				dist = "on top of you"
-			LAZYINITLIST(dirs[direction])
-			dirs[direction][dist] += 1
-		if(length(dirs))
-			var/list/feedback = list()
-			feedback += "You sense..."
-			for(var/d in dirs)
-				feedback += "[capitalize(dir2text(text2num(d)))]:"
-				for(var/dst in dirs[d])
-					feedback += "[dirs[d][dst]] psionic signature\s [dst]."
+// /datum/psionic_power/coercion/psiping/invoke(mob/living/user, mob/living/target, proximity, parameters)
+// 	if(user != target || searching)
+// 		return FALSE
+// 	. = ..()
+// 	if(.)
+// 		to_chat(user, span_notice("You take a moment to tune into the local Nlom..."))
+// 		searching = TRUE
+// 		if(!do_after(user, 3 SECONDS, user))
+// 			searching = FALSE
+// 			return FALSE 
+// 		searching = FALSE
+// 		var/list/dirs = list()
+// 		for(var/mob/living/L in GLOB.mob_living_list)
+// 			var/turf/T = get_turf(L)
+// 			if(!T || L == user || L.stat == DEAD || issilicon(L) || !(L.psi || isdarkspawn(L)) || (L.z != user.z))
+// 				continue
+// 			/*
+// 			var/image/ping_image = image(icon = 'icons/effects/effects.dmi', icon_state = "sonar_ping", loc = user)
+// 			ping_image.plane = LIGHTING_LAYER+1
+// 			ping_image.layer = LIGHTING_LAYER+1
+// 			ping_image.pixel_x = (T.x - user.x) * 32
+// 			ping_image.pixel_y = (T.y - user.y) * 32
+// 			user << ping_image
+// 			addtimer(CALLBACK(GLOBAL_PROC, /proc/qdel, ping_image), 8)
+// 			*/
+// 			var/direction = num2text(angle2dir(Get_Angle(user, L)))
+// 			var/dist
+// 			if(text2num(direction))
+// 				switch(get_dist(user, L))
+// 					if(0 to 10)
+// 						dist = "very close"
+// 					if(10 to 20)
+// 						dist = "close"
+// 					if(20 to 30)
+// 						dist = "a little ways away"
+// 					if(30 to 40)
+// 						dist = "farther away"
+// 					else
+// 						dist = "far away"
+// 			else
+// 				dist = "on top of you"
+// 			LAZYINITLIST(dirs[direction])
+// 			dirs[direction][dist] += 1
+// 		if(length(dirs))
+// 			var/list/feedback = list()
+// 			feedback += "You sense..."
+// 			for(var/d in dirs)
+// 				feedback += "[capitalize(dir2text(text2num(d)))]:"
+// 				for(var/dst in dirs[d])
+// 					feedback += "[dirs[d][dst]] psionic signature\s [dst]."
 			
-			to_chat(user, span_notice(feedback.Join("<br>")))
-		else
-			to_chat(user, span_notice("You detect no psionic signatures but your own."))
-		return TRUE
+// 			to_chat(user, span_notice(feedback.Join("<br>")))
+// 		else
+// 			to_chat(user, span_notice("You detect no psionic signatures but your own."))
+// 		return TRUE
 
 /datum/psionic_power/coercion/agony
 	name =				"Agony"
@@ -162,7 +163,7 @@
 	cooldown =			2 SECONDS
 	min_rank =			PSI_RANK_OPERANT
 	icon_state = "coe_agony"
-	use_description =	"Activate the power with z, attack someone while in combat mode to deal minor stamina damage. Higher psi levels augment the damage done."
+	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, attack someone while in combat mode to deal minor stamina damage. Higher psi levels augment the damage done."
 
 /datum/psionic_power/coercion/agony/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(!istype(target) || !proximity || user == target || !user.combat_mode)
@@ -182,7 +183,7 @@
 	cooldown =			10 SECONDS
 	min_rank =			PSI_RANK_MASTER
 	icon_state = "coe_spasm"
-	use_description =	"Activate the power with z, then target a creature to use a ranged attack that may rip the weapons away from the target."
+	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, then target a creature to use a ranged attack that may rip the weapons away from the target."
 
 /datum/psionic_power/coercion/spasm/invoke(mob/living/user, mob/living/carbon/human/target, proximity, parameters)
 	if(!istype(target) || user == target || !user.combat_mode)
@@ -206,7 +207,7 @@
 	cooldown =			8 SECONDS
 	min_rank =			PSI_RANK_MASTER
 	icon_state = "coe_focus"
-	use_description =	"Activate the power with z, then click on someone in order to cure ailments of the mind."
+	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, then click on someone in order to cure ailments of the mind."
 
 /datum/psionic_power/coercion/focus/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(!istype(target) || !proximity || user == target)
@@ -245,7 +246,7 @@
 	cooldown =			25 SECONDS //It should take a WHILE to be able to use this again.
 	min_rank =			PSI_RANK_MASTER
 	icon_state = "coe_mindread"
-	use_description =	"Activate the power with z, then click on someone in melee range to attempt to read a surface level thought."
+	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, then click on someone in melee range to attempt to read a surface level thought."
 
 /datum/psionic_power/coercion/mindread/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(!istype(target) || target == user || !proximity)
@@ -282,7 +283,7 @@
 	cooldown =			10 SECONDS
 	min_rank =			PSI_RANK_GRANDMASTER
 	icon_state = "coe_blindstrike"
-	use_description =	"Activate the power with z, then click anywhere to use a radial attack that blinds, deafens and disorients everyone near you."
+	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, then click anywhere to use a radial attack that blinds, deafens and disorients everyone near you."
 
 /datum/psionic_power/coercion/blindstrike/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	. = ..()
@@ -306,7 +307,7 @@
 	cooldown =			10 SECONDS
 	min_rank =			PSI_RANK_PARAMOUNT
 	icon_state = "coe_disarm"
-	use_description =	"Activate the power with z, then click your target with combat mode to Psionically rip their arms off."
+	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, then click your target with combat mode to Psionically rip their arms off."
 
 /datum/psionic_power/coercion/dis_arm/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(!user.combat_mode || user == target)

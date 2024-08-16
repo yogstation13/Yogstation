@@ -13,7 +13,7 @@
 	cooldown =        3 SECONDS
 	min_rank =        PSI_RANK_OPERANT
 	icon_state = "psy_blade"
-	use_description = "Activate the power with z, summon a psiblade, or psibaton if the user is a pacifist. The power the blade/baton will vary based on your mastery of the faculty."
+	use_description = "Activate the power with the 'use' key (initially bound to Z) in an empty hand, summon a psiblade, or psibaton if the user is a pacifist. The power the blade/baton will vary based on your mastery of the faculty."
 	use_sound = 'sound/effects/psi/power_fabrication.ogg'
 	admin_log = FALSE
 
@@ -64,7 +64,7 @@
 	cooldown =        10
 	min_rank =        PSI_RANK_OPERANT
 	icon_state = "psy_tinker"
-	use_description = "Activate the power with z, Use it in-hand to switch between tool types, different tools are available at different psi levels."
+	use_description = "Activate the power with the 'use' key (initially bound to Z) in an empty hand, Use it in-hand to switch between tool types, different tools are available at different psi levels."
 	use_sound = 'sound/effects/psi/power_fabrication.ogg'
 	admin_log = FALSE
 
@@ -98,7 +98,7 @@
 	cooldown =        1 SECONDS
 	min_rank =        PSI_RANK_GRANDMASTER
 	icon_state = "psy_tele"
-	use_description = "Activate the power with z, to manifest a psychokinetic grip. Use it manipulate objects at a distance."
+	use_description = "Activate the power with the 'use' key (initially bound to Z) in an empty hand, to manifest a psychokinetic grip. Use it manipulate objects at a distance."
 	admin_log = FALSE
 	use_sound = 'sound/effects/psi/power_used.ogg'
 	var/list/valid_types = list( //a list of all
