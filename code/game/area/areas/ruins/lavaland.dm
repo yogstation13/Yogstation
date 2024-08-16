@@ -69,12 +69,12 @@
 
 /area/ruin/powered/kinggoat_arena //yogs start
 	name = "King Goat Arena"
-	noteleport = TRUE
+	area_flags = NOTELEPORT
 	icon_state = "dk_yellow" //yogs end
 
 /area/ruin/unpowered/russianbunker
 	name = "Russian Bunker"
-	noteleport = TRUE
+	area_flags = NOTELEPORT
 
 /area/ruin/powered/syndicate_lava_base
 	name = "Syndicate Lavaland"
@@ -124,7 +124,7 @@
 /area/ruin/unpowered/dragonslair //yogs start
 	name = "Dragons Lair"
 	hidden = TRUE
-	noteleport = TRUE //yogs (bell)end
+	area_flags = NOTELEPORT //yogs (bell)end
 
 //Xeno Nest
 

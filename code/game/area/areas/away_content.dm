@@ -36,7 +36,7 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 	var/death = FALSE // if when you enter this zone, you die
 
 /area/awaymission/secret
-	noteleport = TRUE
+	area_flags = NOTELEPORT
 	unique = TRUE
 	hidden = TRUE
 

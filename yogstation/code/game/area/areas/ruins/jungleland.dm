@@ -5,4 +5,4 @@
 
 /area/ruin/unpowered/tar_temple
 	icon_state = "red"
-	noteleport = TRUE
+	area_flags = NOTELEPORT
