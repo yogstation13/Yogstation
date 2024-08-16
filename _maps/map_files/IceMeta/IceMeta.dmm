@@ -10499,6 +10499,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science/research)
+"ddW" = (
+/obj/machinery/stasis{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_x = -31;
+	pixel_y = 0
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "deg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer2{
 	dir = 8
@@ -13455,7 +13468,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/auto_name/west,
+/obj/machinery/power/apc/auto_name/west{
+	pixel_x = -25
+	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "dWi" = (
@@ -14174,8 +14189,8 @@
 	name = "Door Bolt Control";
 	normaldoorcontrol = 1;
 	pixel_y = -25;
-	specialfunctions = 4;
-	req_access = list("brig")
+	req_access = list("brig");
+	specialfunctions = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -14790,8 +14805,8 @@
 	name = "Cell Window Control";
 	pixel_x = -5;
 	pixel_y = -3;
-	specialfunctions = 4;
-	req_access = list("brig")
+	req_access = list("brig");
+	specialfunctions = 4
 	},
 /obj/machinery/button/door{
 	id = "briglockdown";
@@ -23712,8 +23727,8 @@
 	name = "Cell Window Control";
 	pixel_x = 5;
 	pixel_y = 27;
-	specialfunctions = 4;
-	req_access = list("security")
+	req_access = list("security");
+	specialfunctions = 4
 	},
 /obj/machinery/button/door{
 	id = "briglockdown";
@@ -44536,10 +44551,10 @@
 /obj/effect/turf_decal/bot,
 /obj/machinery/button/door{
 	id = "Podbaydoor";
+	name = "Shipbreaking External Control";
 	pixel_x = 24;
 	pixel_y = -1;
-	req_access = list("external_airlocks");
-	name = "Shipbreaking External Control"
+	req_access = list("external_airlocks")
 	},
 /turf/open/floor/plasteel/dark,
 /area/escapepodbay)
@@ -57044,8 +57059,8 @@
 /area/hallway/primary/fore)
 "quD" = (
 /obj/machinery/firealarm{
-	pixel_y = 38;
-	dir = 1
+	dir = 1;
+	pixel_y = 38
 	},
 /obj/machinery/computer/ai_server_console,
 /turf/open/floor/plasteel/grimy,
@@ -62654,7 +62669,9 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "san" = (
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -62933,10 +62950,10 @@
 /obj/structure/closet/emcloset,
 /obj/machinery/button/door{
 	id = "Podbaydoor";
+	name = "Shipbreaking External Control";
 	pixel_x = -24;
 	pixel_y = -1;
-	req_access = list("external_airlocks");
-	name = "Shipbreaking External Control"
+	req_access = list("external_airlocks")
 	},
 /obj/machinery/light,
 /turf/open/floor/plasteel,
@@ -76295,15 +76312,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"vQu" = (
-/obj/machinery/stasis{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "vQC" = (
 /obj/effect/landmark/blobstart,
 /obj/effect/turf_decal/stripes/line{
@@ -238082,7 +238090,7 @@ qGE
 kQb
 npj
 lMl
-vQu
+ddW
 lMl
 jxS
 saz

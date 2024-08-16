@@ -3426,9 +3426,9 @@
 /area/space/nearstation)
 "bnJ" = (
 /obj/machinery/conveyor{
+	dir = 5;
 	id = "garbage";
-	name = " recycler conveyor belt";
-	dir = 5
+	name = " recycler conveyor belt"
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal)
@@ -7889,9 +7889,9 @@
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /obj/machinery/door/window/brigdoor/security/cell{
+	dir = 8;
 	id = "Cell 2";
-	name = "Cell 2";
-	dir = 8
+	name = "Cell 2"
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -9457,9 +9457,9 @@
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /obj/machinery/door/window/brigdoor/security/cell{
+	dir = 8;
 	id = "Cell 3";
-	name = "Cell 3";
-	dir = 8
+	name = "Cell 3"
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -12305,7 +12305,9 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/auto_name/north,
+/obj/machinery/power/apc/auto_name/north{
+	pixel_y = 23
+	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "eVV" = (
@@ -24130,9 +24132,9 @@
 /area/maintenance/fore)
 "jYA" = (
 /obj/machinery/conveyor{
+	dir = 4;
 	id = "garbage";
-	name = " recycler conveyor belt";
-	dir = 4
+	name = " recycler conveyor belt"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -28282,8 +28284,8 @@
 /obj/structure/table/wood,
 /obj/item/taperecorder,
 /obj/item/storage/secure/safe{
-	pixel_y = -28;
-	pixel_x = 6
+	pixel_x = 6;
+	pixel_y = -28
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
@@ -34085,9 +34087,9 @@
 "oeo" = (
 /obj/machinery/recycler,
 /obj/machinery/conveyor{
+	dir = 4;
 	id = "garbage";
-	name = " recycler conveyor belt";
-	dir = 4
+	name = " recycler conveyor belt"
 	},
 /turf/open/floor/plasteel/burnt,
 /area/maintenance/disposal)
@@ -36442,8 +36444,8 @@
 	layer = 2.9
 	},
 /obj/machinery/door/window/eastleft{
-	name = "Mail";
-	dir = 2
+	dir = 2;
+	name = "Mail"
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
@@ -39928,9 +39930,9 @@
 /area/maintenance/port)
 "qBV" = (
 /obj/machinery/conveyor{
+	dir = 6;
 	id = "garbage";
-	name = " recycler conveyor belt";
-	dir = 6
+	name = " recycler conveyor belt"
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
@@ -46187,6 +46189,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"tmr" = (
+/obj/machinery/stasis{
+	dir = 4
+	},
+/obj/structure/window{
+	dir = 8
+	},
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/sleeper)
 "tmx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -50139,15 +50153,6 @@
 "uRy" = (
 /turf/open/floor/carpet/black,
 /area/crew_quarters/bar)
-"uRH" = (
-/obj/machinery/stasis{
-	dir = 4
-	},
-/obj/structure/window{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/sleeper)
 "uSS" = (
 /obj/effect/landmark/stationroom/maint/tenxten,
 /turf/template_noop,
@@ -50427,7 +50432,9 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/auto_name/north,
+/obj/machinery/power/apc/auto_name/north{
+	pixel_y = 23
+	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "uXD" = (
@@ -50577,9 +50584,9 @@
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /obj/machinery/door/window/brigdoor/security/cell{
+	dir = 8;
 	id = "Cell 1";
-	name = "Cell 1";
-	dir = 8
+	name = "Cell 1"
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -83288,7 +83295,7 @@ pev
 gQw
 gAQ
 dAp
-uRH
+tmr
 uhX
 pMJ
 fJI
