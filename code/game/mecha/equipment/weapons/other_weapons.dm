@@ -115,7 +115,6 @@
 	playsound(chassis, 'sound/vehicles/rocketlaunch.ogg', 100, TRUE) // sound effect has a short time before it gets going, so it plays before the wind up
 	if(do_after(chassis.occupant, 0.5 SECONDS, chassis, IGNORE_ALL))
 		var/delta_v = 4 / (1 + chassis.step_in) // using mech base step time to estimate mass
-		chassis.adjust_overheat(OVERHEAT_WARNING)
 		chassis.throw_at(
 			get_edge_target_turf(get_turf(chassis), chassis.dir),
 			10 * delta_v,
