@@ -581,6 +581,36 @@
 	construction_time = 100
 	category = list("Exosuit Equipment")
 
+/datum/design/mech_passive_cooling
+	name = "Exosuit Module (Passive Cooling)"
+	desc = "Passive cooling system. Requires an atmosphere."
+	id = "mech_passive_cooling"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/cooling/passive
+	materials = list(/datum/material/iron=5000,)
+	construction_time = 100
+	category = list("Exosuit Equipment")
+
+/datum/design/mech_active_cooling
+	name = "Exosuit Module (Active Cooling)"
+	desc = "Active cooling system. Requires power."
+	id = "mech_active_cooling"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/cooling/active
+	materials = list(/datum/material/iron=10000,/datum/material/gold=100)
+	construction_time = 100
+	category = list("Exosuit Equipment")
+
+/datum/design/mech_heat_sink
+	name = "Exosuit Module (Heat Sink)"
+	desc = "Slows down both heating and cooling."
+	id = "mech_heat_sink"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/heat_sink
+	materials = list(/datum/material/iron=10000,/datum/material/plasma=1000)
+	construction_time = 100
+	category = list("Exosuit Equipment")
+
 /datum/design/mech_plasma_cutter
 	name = "Exosuit Mining Design (217-D Heavy Plasma Cutter)"
 	desc = "A device that shoots resonant plasma bursts at extreme velocity. The blasts are capable of crushing rock and demolishing solid obstacles."
