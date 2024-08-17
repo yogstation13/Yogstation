@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes ipc insurgents being invisible if swapping from any organic species"
-  - bugfix: "Fixes ipc insurgents having robotic speech font while disguised"

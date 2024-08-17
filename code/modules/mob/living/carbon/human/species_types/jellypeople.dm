@@ -14,7 +14,6 @@
 	mutanttongue = /obj/item/organ/tongue/slime
 	mutantlungs = /obj/item/organ/lungs/slime
 	damage_overlay_type = ""
-	liked_food = MEAT
 	coldmod = 3
 	heatmod = 0.5
 	burnmod = 0.8 // now only 20% as effective!
@@ -23,7 +22,7 @@
 	swimming_component = /datum/component/swimming/dissolve
 	hair_color = "mutcolor"
 	hair_alpha = 140
-	liked_food = TOXIC //tasty toxins
+	liked_food = TOXIC | MEAT //tasty toxins or raw meat
 	disliked_food = ALCOHOL | JUNKFOOD //junkfood is too oily, and alcohol is a disinfectant
 	toxic_food = PINEAPPLE //enzymes dissolve the jelly from the inside
 

@@ -298,13 +298,13 @@
 		if(href_list["add_req_access"])
 			if(!(add_req_access && id_card))
 				return
-			operation_req_access += text2num(href_list["add_req_access"])
+			operation_req_access += href_list["add_req_access"]
 			output_access_dialog(id_card,usr)
 
 		if(href_list["del_req_access"])
 			if(!(add_req_access && id_card))
 				return
-			operation_req_access -= text2num(href_list["del_req_access"])
+			operation_req_access -= href_list["del_req_access"]
 			output_access_dialog(id_card, usr)
 
 		if(href_list["finish_req_access"])
