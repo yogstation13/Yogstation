@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes oversight where non-donators have access to the quiet mode toggle"
