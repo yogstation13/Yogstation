@@ -1,6 +1,7 @@
 /obj/item/mecha_parts/mecha_equipment/heat_sink
 	name = "heat sink"
 	desc = "A large heat sink for preventing large mechanical exosuits from overheating as easily, but also makes them harder to cool down."
+	icon_state = "heatsink"
 	energy_drain = 0
 	active = TRUE
 	selectable = FALSE // no.
@@ -17,6 +18,7 @@
 /obj/item/mecha_parts/mecha_equipment/cooling
 	name = "generic mech cooling system"
 	desc = "If you see this, something has gone terribly wrong."
+	icon_state = "radiator"
 	selectable = FALSE // absolutely not
 	active = TRUE
 	energy_drain = 0
@@ -25,6 +27,10 @@
 	var/cooling_rate = -5
 
 /obj/item/mecha_parts/mecha_equipment/cooling/on_process(delta_time)
+	if(!chassis.overheat)
+		return
+	if(energy_drain)
+		chassis.use_power(energy_drain * delta_time)
 	chassis.adjust_overheat(cooling_rate * delta_time)
 
 /obj/item/mecha_parts/mecha_equipment/cooling/passive
@@ -46,6 +52,6 @@
 	cooling_rate = -3
 
 /obj/item/mecha_parts/mecha_equipment/cooling/active/on_process(delta_time)
-	if(!chassis.equipment_disabled && chassis.overheat > 0) // can be disabled by EMPs
-		return ..()
-	return FALSE
+	if(chassis.equipment_disabled)
+		return FALSE
+	return ..()
