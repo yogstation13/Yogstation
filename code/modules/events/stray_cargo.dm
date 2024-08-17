@@ -20,7 +20,7 @@
 * Also randomizes the start timer
 */
 /datum/round_event/stray_cargo/setup()
-	startWhen = rand(20, 40)
+	start_when = rand(20, 40)
 	impact_area = find_event_area()
 	if(!impact_area)
 		CRASH("No valid areas for cargo pod found.")

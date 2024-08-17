@@ -129,6 +129,8 @@ SUBSYSTEM_DEF(vote)
 			if("map")
 				SSmapping.changemap(global.config.maplist[.])
 				SSmapping.map_voted = TRUE
+			if("storyteller")
+				SSgamemode.storyteller_vote_result(.)
 	if(restart)
 		var/active_admins = FALSE
 		for(var/client/C in GLOB.permissions.admins + GLOB.permissions.deadmins)
@@ -207,6 +209,14 @@ SUBSYSTEM_DEF(vote)
 					shuffle_inplace(maps)
 				for(var/valid_map in maps)
 					choices.Add(valid_map)
+			if("storyteller")
+				choices = SSgamemode.storyteller_vote_choices()
+				if((length(choices) == 1)) // Only one choice, no need to vote. Let's just auto-rotate it to the only remaining storyteller because it would just happen anyways.
+					var/de_facto_winner = choices[1]
+					SSgamemode.storyteller_vote_result(de_facto_winner)
+					to_chat(world, span_boldannounce("The storyteller vote has been skipped because there is only one storyteller left to vote for. \
+												The storyteller has been changed to [de_facto_winner]."))
+					return FALSE
 			if("custom")
 				question = stripped_input(usr,"What is the vote for?")
 				if(!question)
@@ -318,6 +328,9 @@ SUBSYSTEM_DEF(vote)
 		if("map")
 			if(CONFIG_GET(flag/allow_vote_map) || usr.client.holder)
 				initiate_vote("map",usr.key)
+		if("storyteller")
+			if(usr.client.holder)
+				initiate_vote("storyteller",usr.key)
 		if("custom")
 			if(usr.client.holder)
 				initiate_vote("custom",usr.key)

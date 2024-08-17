@@ -7,9 +7,9 @@
 	max_alert = SEC_LEVEL_DELTA
 
 /datum/round_event/chem_spill
-	announceWhen	= 1
-	startWhen		= 1
-	endWhen			= 35
+	announce_when	= 1
+	start_when		= 1
+	end_when			= 35
 	var/interval 	= 2
 	var/list/filters  = list()
 	var/randomProbability = 25
@@ -23,7 +23,7 @@
 	priority_announce("Due to a chemical spill, your pool[filters.len > 1 ? "s" : ""] may have been contaminated", "Hazmat alert")
 
 /datum/round_event/chem_spill/setup()
-	endWhen = rand(25, 100)
+	end_when = rand(25, 100)
 	for(var/obj/machinery/pool_filter/filter in GLOB.pool_filters)
 		var/turf/T = get_turf(filter)
 		if(T && is_station_level(T.z))

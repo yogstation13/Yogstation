@@ -8,7 +8,7 @@
 	gamemode_blacklist = list("blob") //Just in case a blob survives that long
 	
 /datum/round_event/ghost_role/blob
-	announceWhen	= -1
+	announce_when	= -1
 	role_name = "blob overmind"
 	fakeable = TRUE
 	var/pointmodifier = 1

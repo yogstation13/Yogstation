@@ -1,7 +1,7 @@
 /datum/round_event/portal_storm
-	startWhen = 7
-	endWhen = 999
-	announceWhen = 1
+	start_when = 7
+	end_when = 999
+	announce_when = 1
 
 	var/list/boss_spawn = list()
 	var/list/boss_types = list() //only configure this if you have hostiles
@@ -53,7 +53,7 @@
 	while(number_of_hostiles > hostiles_spawn.len)
 		hostiles_spawn += get_random_station_turf()
 
-	next_boss_spawn = startWhen + CEILING(2 * number_of_hostiles / number_of_bosses, 1)
+	next_boss_spawn = start_when + CEILING(2 * number_of_hostiles / number_of_bosses, 1)
 
 /datum/round_event/portal_storm/announce(fake)
 	set waitfor = 0
@@ -115,10 +115,10 @@
 
 /datum/round_event/portal_storm/proc/time_to_end()
 	if(!hostile_types.len && !boss_types.len)
-		endWhen = activeFor
+		end_when = activeFor
 
 	if(!number_of_hostiles && number_of_bosses)
-		endWhen = activeFor
+		end_when = activeFor
 
 // Resonance cascade event, happens after an antinoblium delamination. Better call the deathsquad.
 /datum/round_event_control/resonance_cascade
@@ -162,7 +162,7 @@
 		ANOMALY_HALLUCINATION = 140,
 		ANOMALY_GRAVITATIONAL = 160,
 	)
-	endWhen = INFINITY // keep going until it's done
+	end_when = INFINITY // keep going until it's done
 
 /datum/round_event/portal_storm/resonance_cascade/start()
 	. = ..()

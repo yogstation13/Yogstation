@@ -12,9 +12,9 @@
 	return ..()
 
 /datum/round_event/aurora_caelus
-	announceWhen = 1
-	startWhen = 21
-	endWhen = 80
+	announce_when = 1
+	start_when = 21
+	end_when = 80
 
 /datum/round_event/aurora_caelus/announce()
 	priority_announce("[station_name()]: A harmless cloud of ions is approaching your station, and will exhaust their energy battering the hull. Nanotrasen has approved a short break for all employees to relax and observe this very rare event. During this time, starlight will be bright but gentle, shifting between quiet green and blue colors. Any staff who would like to view these lights for themselves may proceed to the area nearest to them with viewing ports to open space. We hope you enjoy the lights.",
@@ -47,7 +47,7 @@
 /datum/round_event/aurora_caelus/tick()
 	if(activeFor % 8 != 0)
 		return
-	var/aurora_color = hsl_gradient((activeFor - startWhen) / (endWhen - startWhen), 0, "#A2FF80", 1, "#A2FFEE")
+	var/aurora_color = hsl_gradient((activeFor - start_when) / (end_when - start_when), 0, "#A2FF80", 1, "#A2FFEE")
 	set_starlight(aurora_color)
 
 	for(var/area/crew_quarters/kitchen/affected_area in GLOB.areas)

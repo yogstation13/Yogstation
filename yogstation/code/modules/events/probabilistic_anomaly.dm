@@ -5,8 +5,8 @@
 	max_alert = SEC_LEVEL_DELTA
 
 /datum/round_event/prob_anomaly
-	announceWhen	= 1
-	endWhen			= 30
+	announce_when	= 1
+	end_when			= 30
 	var/seed = 0
 
 /datum/round_event/prob_anomaly/announce(fake)
@@ -15,7 +15,7 @@
 	priority_announce(alert)
 
 /datum/round_event/prob_anomaly/start()
-	endWhen = rand(120,600) // About 2 to 10 minutes, more or less
+	end_when = rand(120,600) // About 2 to 10 minutes, more or less
 	seed = rand(1,1e9)
 	rand_seed(seed)
 	

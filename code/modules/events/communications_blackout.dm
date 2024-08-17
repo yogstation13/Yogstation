@@ -4,7 +4,7 @@
 	weight = 30
 
 /datum/round_event/communications_blackout
-	announceWhen	= 1
+	announce_when	= 1
 
 /datum/round_event/communications_blackout/announce(fake)
 	var/alert = pick(	"Ionospheric anomalies detected. Temporary telecommunication failure imminent. Please contact you*%fj00)`5vc-BZZT", \

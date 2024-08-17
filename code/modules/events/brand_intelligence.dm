@@ -7,8 +7,8 @@
 	max_occurrences = 1
 
 /datum/round_event/brand_intelligence
-	announceWhen	= 21
-	endWhen			= 1000	//Ends when all vending machines are subverted anyway.
+	announce_when	= 21
+	end_when			= 1000	//Ends when all vending machines are subverted anyway.
 	var/list/obj/machinery/vending/vendingMachines = list()
 	var/list/obj/machinery/vending/infectedMachines = list()
 	var/obj/machinery/vending/originMachine

@@ -197,6 +197,8 @@
 
 	//Set news report and mode result
 	mode.set_round_result()
+	SSgamemode.round_end_report()
+	SSgamemode.store_roundend_data() // store data on roundend for next round
 
 	// Check whether the cargo king achievement was achieved
 	cargoking()
@@ -351,6 +353,9 @@
 
 /datum/controller/subsystem/ticker/proc/survivor_report(popcount)
 	var/list/parts = list()
+
+	parts += "<div class='panel stationborder'><span class='header'>[("Storyteller: [SSgamemode.storyteller ? SSgamemode.storyteller.name : "N/A"]")]</span></div>"
+
 	var/station_evacuated = EMERGENCY_ESCAPED_OR_ENDGAMED
 
 	if(GLOB.round_id)

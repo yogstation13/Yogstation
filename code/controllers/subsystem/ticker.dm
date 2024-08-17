@@ -214,43 +214,13 @@ SUBSYSTEM_DEF(ticker)
 	var/init_start = world.timeofday
 		//Create and announce mode
 
-	var/list/datum/game_mode/runnable_modes
-	if(GLOB.master_mode == "random" || GLOB.master_mode == "secret")
-		runnable_modes = config.get_runnable_modes()
-
-		if(GLOB.master_mode == "secret")
-			hide_mode = 1
-			if(GLOB.secret_force_mode != "secret")
-				var/datum/game_mode/smode
-				if(runnable_modes.len)
-					smode = config.pick_mode(GLOB.secret_force_mode)
-				if(!smode.can_start())
-					message_admins(span_notice("Unable to force secret [GLOB.secret_force_mode]. [smode.required_players] players and [smode.required_enemies] eligible antagonists needed."))
-				else
-					mode = smode
-
-		if(!mode)
-			if(!runnable_modes.len)
-				mode = new /datum/game_mode/extended()
-				message_admins(span_notice("Unable to choose any non-extended gamemode, running extended."))
-			else
-				mode = pickweight(runnable_modes)
-			if(!mode)	//too few roundtypes all run too recently
-				mode = pick(runnable_modes)
-
-	else
-		mode = config.pick_mode(GLOB.master_mode)
-		if(!mode.can_start())
-			to_chat(world, "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players and [mode.required_enemies] eligible antagonists needed. Reverting to pre-game lobby.")
-			qdel(mode)
-			mode = null
-			SSjob.ResetOccupations()
-			return 0
+	mode = new /datum/game_mode/dynamic //always dynamic LOL!
+	SSgamemode.init_storyteller() //monkestation addition
 
 	CHECK_TICK
 	//Configure mode and assign player to special mode stuff
 	var/can_continue = 0
-	can_continue = src.mode.pre_setup()		//Choose antagonists
+	can_continue = SSgamemode.pre_setup()		//Choose antagonists
 	CHECK_TICK
 	can_continue = can_continue && SSjob.DivideOccupations(mode.required_jobs) 				//Distribute jobs
 	CHECK_TICK
@@ -358,6 +328,8 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/PostSetup()
 	set waitfor = FALSE
+	SSgamemode.storyteller.process(STORYTELLER_WAIT_TIME * 0.1) // we want this asap
+	SSgamemode.storyteller.round_started = TRUE
 	mode.post_setup()
 	GLOB.start_state = new /datum/station_state()
 	GLOB.start_state.count()

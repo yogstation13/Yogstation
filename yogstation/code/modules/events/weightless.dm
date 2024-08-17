@@ -4,13 +4,13 @@
 	weight = 15
 
 /datum/round_event/weightless
-	startWhen = 5
-	endWhen = 165
-	announceWhen = 1
+	start_when = 5
+	end_when = 165
+	announce_when = 1
 
 /datum/round_event/weightless/setup()
-	startWhen = rand(0,10)
-	endWhen = rand(80,120)
+	start_when = rand(0,10)
+	end_when = rand(80,120)
 
 /datum/round_event/weightless/announce()
 	priority_announce("Warning: Failsafes for the station's artificial gravity arrays have been triggered. Please be aware that if this problem recurs it may result in formation of gravitational anomalies. Nanotrasen wishes to remind you that the unauthorised formation of anomalies within Nanotrasen facilities is strictly prohibited by health and safety regulation [rand(99,9999)][pick("a","b","c")]:subclause[rand(1,20)][pick("a","b","c")].")
@@ -26,5 +26,5 @@
 			if(control && A.on)
 				control.weight *= 2	
 			A.enable()
-	if(announceWhen >= 0)
+	if(announce_when >= 0)
 		priority_announce("Artificial gravity arrays are now functioning within normal parameters. Please report any irregularities to your respective head of staff.")

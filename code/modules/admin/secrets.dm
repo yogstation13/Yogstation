@@ -581,9 +581,9 @@
 
 	if(E)
 		E.processing = FALSE
-		if(E.announceWhen>0)
+		if(E.announce_when>0)
 			if(tgui_alert(mob_user, "Would you like to alert the crew?", "Alert",list("Yes", "No")) == "No")
-				E.announceWhen = -1
+				E.announce_when = -1
 		E.processing = TRUE
 	if (mob_user)
 		log_admin("[key_name(mob_user)] used secret [action]")

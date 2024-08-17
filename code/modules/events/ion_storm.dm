@@ -34,7 +34,7 @@
 	var/ionMessage = null
 	/// If announceEvent is 0, what is the chance it is will accounce?
 	var/ionAnnounceChance = 33
-	announceWhen	= 1
+	announce_when	= 1
 
 /datum/round_event/ion_storm/add_law_only // special subtype that adds a law only
 	replaceLawsetChance = 0

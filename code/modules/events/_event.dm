@@ -35,6 +35,27 @@
 	/// Whether or not dynamic should hijack this event
 	var/dynamic_should_hijack = FALSE
 
+	/// Datum that will handle admin options for forcing the event.
+	/// If there are no options, just leave it as an empty list.
+	var/list/datum/event_admin_setup/admin_setup = list()
+	/// Flags dictating whether this event should be run on certain kinds of map
+	var/map_flags = NONE
+
+	var/roundstart = FALSE
+	var/cost = 1
+	var/reoccurence_penalty_multiplier = 0.75
+	var/shared_occurence_type
+	var/track = EVENT_TRACK_MODERATE
+	/// Last calculated weight that the storyteller assigned this event
+	var/calculated_weight = 0
+	var/tags = list() 	/// Tags of the event
+	/// List of the shared occurence types.
+	var/list/shared_occurences = list()
+	/// Whether a roundstart event can happen post roundstart. Very important for events which override job assignments.
+	var/can_run_post_roundstart = TRUE
+	/// If set then the type or list of types of storytellers we are restricted to being trigged by
+	var/list/allowed_storytellers
+
 /datum/round_event_control/vv_edit_var(var_name, var_value)
 	if(var_name == NAMEOF(src, random) && var_value) // CAN'T LET YOU DO THAT, STAR FOX
 		message_admins("No, [key_name_admin(usr)], you cannot fake force a random event.")
@@ -45,6 +66,18 @@
 	if(config && !wizardevent) // Magic is unaffected by configs
 		earliest_start = CEILING(earliest_start * CONFIG_GET(number/events_min_time_mul), 1)
 		min_players = CEILING(min_players * CONFIG_GET(number/events_min_players_mul), 1)
+
+/// Returns true if event can run in current map
+/datum/round_event_control/proc/valid_for_map()
+	if (!map_flags)
+		return TRUE
+	if (SSmapping.is_planetary())
+		if (map_flags & EVENT_SPACE_ONLY)
+			return FALSE
+	else
+		if (map_flags & EVENT_PLANETARY_ONLY)
+			return FALSE
+	return TRUE
 
 /datum/round_event_control/wizard
 	wizardevent = TRUE
@@ -137,17 +170,24 @@
 	var/processing = TRUE
 	var/datum/round_event_control/control
 
-	var/startWhen		= 0	//When in the lifetime to call start().
-	var/announceWhen	= 0	//When in the lifetime to call announce(). Set an event's announceWhen to -1 if announcement should not be shown.
-	var/endWhen			= 0	//When in the lifetime the event should end.
+	var/start_when = 0	//When in the lifetime to call start().
+	var/announce_when = 0	//When in the lifetime to call announce(). Set an event's announce_when to -1 if announcement should not be shown.
 
-	var/activeFor		= 0	//How long the event has existed. You don't need to change this.
+	var/announce_chance = 100 // Probability of announcing, used in prob(), 0 to 100, default 100. Called in process, and for a second time in the ion storm event.
+	var/end_when = 0	//When in the lifetime the event should end.
+
+	var/activeFor = 0	//How long the event has existed. You don't need to change this.
 	var/current_players	= 0 //Amount of of alive, non-AFK human players on server at the time of event start
 	var/fakeable = TRUE		//Can be faked by fake news event.
 
+	/// Whether the event called its start() yet or not.
+	var/has_started = FALSE
+	///have we finished setup?
+	var/setup = FALSE
+
 //Called first before processing.
 //Allows you to setup your event, such as randomly
-//setting the startWhen and or announceWhen variables.
+//setting the start_when and or announce_when variables.
 //Only called once.
 //EDIT: if there's anything you want to override within the new() call, it will not be overridden by the time this proc is called.
 //It will only have been overridden by the time we get to announce() start() tick() or end() (anything but setup basically).
@@ -155,44 +195,124 @@
 /datum/round_event/proc/setup()
 	return
 
-//Called when the tick is equal to the startWhen variable.
+//Called when the tick is equal to the start_when variable.
 //Allows you to start before announcing or vice versa.
 //Only called once.
 /datum/round_event/proc/start()
+	SHOULD_CALL_PARENT(FALSE)
 	return
+
+//monkestation addition starts - STORYTELLERS
+/// This section of event processing is in a proc because roundstart events may get their start invoked.
+/datum/round_event/proc/try_start()
+	if(has_started)
+		return
+	has_started = TRUE
+	processing = FALSE
+	start()
+	processing = TRUE
+
+/datum/round_event_control/roundstart
+	roundstart = TRUE
+	earliest_start = 0
+
+///Adds an occurence. Has to use the setter to properly handle shared occurences
+/datum/round_event_control/proc/add_occurence()
+	if(shared_occurence_type)
+		if(!shared_occurences[shared_occurence_type])
+			shared_occurences[shared_occurence_type] = 0
+		shared_occurences[shared_occurence_type]++
+	occurrences++
+
+///Subtracts an occurence. Has to use the setter to properly handle shared occurences
+/datum/round_event_control/proc/subtract_occurence()
+	if(shared_occurence_type)
+		if(!shared_occurences[shared_occurence_type])
+			shared_occurences[shared_occurence_type] = 0
+		shared_occurences[shared_occurence_type]--
+	occurrences--
+
+///Gets occurences. Has to use the getter to properly handle shared occurences
+/datum/round_event_control/proc/get_occurences()
+	if(shared_occurence_type)
+		if(!shared_occurences[shared_occurence_type])
+			shared_occurences[shared_occurence_type] = 0
+		return shared_occurences[shared_occurence_type]
+	return occurrences
+
+/// Prints the action buttons for this event.
+/datum/round_event_control/proc/get_href_actions()
+	if(SSticker.HasRoundStarted())
+		if(roundstart)
+			if(!can_run_post_roundstart)
+				return "<a class='linkOff'>Fire</a> <a class='linkOff'>Schedule</a>"
+			return "<a href='?src=[REF(src)];action=fire'>Fire</a> <a href='?src=[REF(src)];action=schedule'>Schedule</a>"
+		else
+			return "<a href='?src=[REF(src)];action=fire'>Fire</a> <a href='?src=[REF(src)];action=schedule'>Schedule</a> <a href='?src=[REF(src)];action=force_next'>Force Next</a>"
+	else
+		if(roundstart)
+			return "<a href='?src=[REF(src)];action=schedule'>Add Roundstart</a> <a href='?src=[REF(src)];action=force_next'>Force Roundstart</a>"
+		else
+			return "<a class='linkOff'>Fire</a> <a class='linkOff'>Schedule</a> <a class='linkOff'>Force Next</a>"
+
+/*
+/datum/round_event_control/Topic(href, href_list)
+	. = ..()
+	if(QDELETED(src))
+		return
+	switch(href_list["action"])
+		if("schedule")
+			message_admins("[key_name_admin(usr)] scheduled event [src.name].")
+			log_admin_private("[key_name(usr)] scheduled [src.name].")
+			SSgamemode.storyteller.buy_event(src, src.track)
+		if("force_next")
+			if(length(src.admin_setup))
+				for(var/datum/event_admin_setup/admin_setup_datum in src.admin_setup)
+					if(admin_setup_datum.prompt_admins() == ADMIN_CANCEL_EVENT)
+						return
+			message_admins("[key_name_admin(usr)] forced scheduled event [src.name].")
+			log_admin_private("[key_name(usr)] forced scheduled event [src.name].")
+			SSgamemode.forced_next_events[src.track] = src
+		if("fire")
+			if(length(src.admin_setup))
+				for(var/datum/event_admin_setup/admin_setup_datum in src.admin_setup)
+					if(admin_setup_datum.prompt_admins() == ADMIN_CANCEL_EVENT)
+						return
+			message_admins("[key_name_admin(usr)] fired event [src.name].")
+			log_admin_private("[key_name(usr)] fired event [src.name].")
+			run_event(random = FALSE, admin_forced = TRUE)
+*/
+
+//monkestation addition ends - STORYTELLERS
 
 //Called after something followable has been spawned by an event
 //Provides ghosts a follow link to an atom if possible
 //Only called once.
 /datum/round_event/proc/announce_to_ghosts(atom/atom_of_interest)
 	if(control.alert_observers)
-		if(atom_of_interest)
-			//Yogs start -- Makes this a bit more specific
-			var/typeofthing = "object"
-			if(iscarbon(atom_of_interest))
-				typeofthing = "person"
-			else if(ismob(atom_of_interest))
-				typeofthing = "mob"
-			else if(isturf(atom_of_interest))
-				typeofthing = "place"
-			//Yogs end
-			notify_ghosts("[control.name] has \a [typeofthing] of interest: [atom_of_interest]!", source=atom_of_interest, action=NOTIFY_ORBIT, header="Something's Interesting!")
+		if (atom_of_interest)
+			notify_ghosts(
+				"[control.name] has an object of interest: [atom_of_interest]!",
+				source = atom_of_interest,
+				action = NOTIFY_ORBIT,
+				header = "Something's Interesting!",
+			)
 	return
 
-//Called when the tick is equal to the announceWhen variable.
+//Called when the tick is equal to the announce_when variable.
 //Allows you to announce before starting or vice versa.
 //Only called once.
 /datum/round_event/proc/announce(fake)
 	return
 
-//Called on or after the tick counter is equal to startWhen.
+//Called on or after the tick counter is equal to start_when.
 //You can include code related to your event or add your own
 //time stamped events.
 //Called more than once.
 /datum/round_event/proc/tick()
 	return
 
-//Called on or after the tick is equal or more than endWhen
+//Called on or after the tick is equal or more than end_when
 //You can include code related to the event ending.
 //Do not place spawn() in here, instead use tick() to check for
 //the activeFor variable.
@@ -207,31 +327,38 @@
 //This proc will handle the calls to the appropiate procs.
 /datum/round_event/process()
 	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!setup)
+		return
 	if(!processing)
 		return
 
-	if(activeFor == startWhen)
+	if(SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RANDOM_EVENT, src) & CANCEL_RANDOM_EVENT)
+		processing = FALSE
+		kill()
+		return
+
+	if(activeFor == start_when)
 		processing = FALSE
 		start()
 		processing = TRUE
 
-	if(activeFor == announceWhen)
+	if(activeFor == announce_when && prob(announce_chance))
 		processing = FALSE
 		announce(FALSE)
 		processing = TRUE
 
-	if(startWhen < activeFor && activeFor < endWhen)
+	if(start_when < activeFor && activeFor < end_when)
 		processing = FALSE
 		tick()
 		processing = TRUE
 
-	if(activeFor == endWhen)
+	if(activeFor == end_when)
 		processing = FALSE
 		end()
 		processing = TRUE
 
 	// Everything is done, let's clean up.
-	if(activeFor >= endWhen && activeFor >= announceWhen && activeFor >= startWhen)
+	if(activeFor >= end_when && activeFor >= announce_when && activeFor >= start_when)
 		processing = FALSE
 		kill()
 
@@ -246,8 +373,8 @@
 
 
 //Sets up the event then adds the event to the the list of running events
-/datum/round_event/New(my_processing = TRUE)
-	setup()
+/datum/round_event/New(my_processing = TRUE, datum/round_event_control/event_controller)
+	control = event_controller
 	processing = my_processing
 	SSevents.running += src
 	return ..()

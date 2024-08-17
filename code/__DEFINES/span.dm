@@ -31,6 +31,7 @@
 #define span_bolddanger(str) ("<span class='bolddanger'>" + str + "</span>")
 #define span_boldnotice(str) ("<span class='boldnotice'>" + str + "</span>")
 #define span_boldwarning(str) ("<span class='boldwarning'>" + str + "</span>")
+#define span_boldbig(str) ("<span class='big bold'>" + str + "</span>")
 #define span_brass(str) ("<span class='brass'>" + str + "</span>")
 #define span_caution(str) ("<span class='caution'>" + str + "</span>")
 #define span_centcomradio(str) ("<span class='centcomradio'>" + str + "</span>")

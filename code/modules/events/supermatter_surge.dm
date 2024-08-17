@@ -24,7 +24,7 @@
 
 /datum/round_event/supermatter_surge
 	var/power = 2000
-	announceWhen = 1
+	announce_when = 1
 
 /datum/round_event/supermatter_surge/setup()
 	var/datum/round_event_control/supermatter_surge/C = control

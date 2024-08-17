@@ -6,8 +6,8 @@
 	weight = 5
 
 /datum/round_event/anomaly/anomaly_bluespace
-	startWhen = 3
-	announceWhen = 10
+	start_when = 3
+	announce_when = 10
 	anomaly_path = /obj/effect/anomaly/bluespace
 
 /datum/round_event/anomaly/anomaly_bluespace/announce(fake)

@@ -6,9 +6,9 @@
 	min_players = 10
 
 /datum/round_event/scrubber_overflow
-	announceWhen = 1
-	startWhen = 5
-	endWhen = 35
+	announce_when = 1
+	start_when = 5
+	end_when = 35
 	/// The probability that the ejected reagents will be dangerous
 	var/danger_chance = 1
 	/// Amount of reagents ejected from each scrubber

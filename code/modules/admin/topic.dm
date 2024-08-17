@@ -235,7 +235,7 @@
 		if(E)
 			E.admin_setup(usr)
 			var/datum/round_event/event = E.runEvent()
-			if(event.announceWhen>0)
+			if(event.announce_when>0)
 				event.processing = FALSE
 				var/prompt = tgui_alert(usr, "Would you like to alert the crew?", "Alert", list("Yes", "No", "Cancel"))
 				switch(prompt)
@@ -243,7 +243,7 @@
 						event.kill()
 						return
 					if("No")
-						event.announceWhen = -1
+						event.announce_when = -1
 				event.processing = TRUE
 			message_admins("[key_name_admin(usr)] has triggered an event. ([E.name])")
 			log_admin("[key_name(usr)] has triggered an event. ([E.name])")
