@@ -198,6 +198,9 @@
 ///This mob can't use vehicles
 #define TRAIT_NOVEHICLE	"no_vehicle"
 
+/// This mech is fully disabled
+#define TRAIT_MECH_DISABLED "mech_disabled"
+
 /// You can't see color!
 #define TRAIT_COLORBLIND "color_blind"
 

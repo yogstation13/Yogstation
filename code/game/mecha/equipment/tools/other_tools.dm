@@ -173,43 +173,6 @@
 	if(get_dist(chassis, locked) > 7)
 		set_target(null)
 
-//////////////////////////// ARMOR BOOSTER MODULES //////////////////////////////////////////////////////////
-
-
-/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster //what is that noise? A BAWWW from TK mutants.
-	name = "armor booster module (Close Combat Weaponry)"
-	desc = "Boosts exosuit armor against armed melee attacks. Requires energy to operate."
-	icon_state = "mecha_abooster_ccw"
-	equip_cooldown = 10
-	energy_drain = 50
-	range = 0
-	var/deflect_coeff = 1.15
-	var/damage_coeff = 0.8
-	selectable = 0
-
-/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/proc/attack_react()
-	if(action_checks(src))
-		start_cooldown()
-		return 1
-
-
-
-/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster
-	name = "armor booster module (Ranged Weaponry)"
-	desc = "Boosts exosuit armor against ranged attacks. Completely blocks taser shots. Requires energy to operate."
-	icon_state = "mecha_abooster_proj"
-	equip_cooldown = 10
-	energy_drain = 50
-	range = 0
-	var/deflect_coeff = 1.15
-	var/damage_coeff = 0.8
-	selectable = FALSE
-
-/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/proc/projectile_react()
-	if(action_checks(src))
-		start_cooldown()
-		return 1
-
 
 ////////////////////////////////// REPAIR DROID //////////////////////////////////////////////////
 
@@ -218,16 +181,16 @@
 	name = "exosuit repair droid"
 	desc = "An automated repair droid for exosuits. Scans for damage and repairs it. Can fix almost all types of external or internal damage."
 	icon_state = "repair_droid"
-	energy_drain = 50
+	energy_drain = 25
+	heat_cost = 5
 	range = 0
-	var/health_boost = 1
+	var/health_boost = 2
 	var/icon/droid_overlay
 	var/list/repairable_damage = list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH)
 	equip_actions = list(/datum/action/innate/mecha/equipment/toggle_repair)
 	selectable = 0
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid/Destroy()
-	STOP_PROCESSING(SSobj, src)
 	if(chassis)
 		chassis.cut_overlay(droid_overlay)
 	return ..()
@@ -240,23 +203,19 @@
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid/detach()
 	chassis.cut_overlay(droid_overlay)
-	if(!equip_ready)
-		STOP_PROCESSING(SSobj, src)
 	UnregisterSignal(chassis, COMSIG_ATOM_UPDATE_OVERLAYS)
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid/proc/update_chassis_overlays(atom/source, list/overlays)
 	overlays += droid_overlay
 
-/obj/item/mecha_parts/mecha_equipment/repair_droid/process()
+/obj/item/mecha_parts/mecha_equipment/repair_droid/on_process(delta_time)
 	if(!chassis || chassis.wrecked)
-		STOP_PROCESSING(SSobj, src)
-		set_ready_state(1)
-		return
-	var/h_boost = health_boost
+		return PROCESS_KILL
+	var/h_boost = health_boost * delta_time
 	var/repaired = FALSE
 	if(chassis.internal_damage & MECHA_INT_SHORT_CIRCUIT)
-		h_boost *= -2
+		h_boost *= -1
 	else if(chassis.internal_damage && prob(15))
 		for(var/int_dam_flag in repairable_damage)
 			if(chassis.internal_damage & int_dam_flag)
@@ -270,10 +229,10 @@
 		chassis.update_integrity(chassis.get_integrity() + min(h_boost, chassis.max_integrity-chassis.get_integrity()))
 		repaired = TRUE
 	if(repaired)
-		if(!chassis.use_power(energy_drain))
-			STOP_PROCESSING(SSobj, src)
-			set_ready_state(1)
+		chassis.adjust_overheat(heat_cost * delta_time)
+		if(!chassis.use_power(energy_drain * delta_time))
 			chassis.update_appearance(UPDATE_OVERLAYS)
+			return PROCESS_KILL
 
 /datum/action/innate/mecha/equipment/toggle_repair
 	name = "Toggle Repairs"
@@ -281,17 +240,15 @@
 
 /datum/action/innate/mecha/equipment/toggle_repair/Activate()
 	var/obj/item/mecha_parts/mecha_equipment/repair_droid/repair_droid = equipment
-	if(repair_droid.equip_ready)
-		START_PROCESSING(SSobj, repair_droid)
-		repair_droid.log_message("Activated.", LOG_MECHA)
-	else
-		STOP_PROCESSING(SSobj, repair_droid)
-		repair_droid.log_message("Deactivated.", LOG_MECHA)
-	repair_droid.droid_overlay = new(repair_droid.icon, icon_state = "repair_droid[repair_droid.equip_ready ? "_a" : ""]")
-	button_icon_state = "mech_repair_[repair_droid.equip_ready ? "on" : "off"]"
-	repair_droid.set_ready_state(!repair_droid.equip_ready)
+	repair_droid.active = !repair_droid.active
+	repair_droid.log_message(repair_droid.active ? "Activated." : "Deactivated.", LOG_MECHA)
+	repair_droid.droid_overlay = new(repair_droid.icon, icon_state = "repair_droid[repair_droid.active ? "_a" : ""]")
 	chassis.update_appearance(UPDATE_OVERLAYS)
 	build_all_button_icons()
+
+/datum/action/innate/mecha/equipment/toggle_repair/apply_button_icon(atom/movable/screen/movable/action_button/current_button, force)
+	button_icon_state = "mech_repair_[equipment.active ? "on" : "off"]"
+	return ..()
 
 /////////////////////////////////// TESLA ENERGY RELAY ////////////////////////////////////////////////
 
@@ -305,14 +262,9 @@
 	var/list/use_channels = list(AREA_USAGE_EQUIP,AREA_USAGE_ENVIRON,AREA_USAGE_LIGHT)
 	selectable = 0
 
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
-
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/detach()
-	STOP_PROCESSING(SSobj, src)
-	..()
-	return
+	active = FALSE
+	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/proc/get_charge()
 	if(equip_ready) //disabled
@@ -335,14 +287,8 @@
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/Topic(href, href_list)
 	..()
 	if(href_list["toggle_relay"])
-		if(equip_ready) //inactive
-			START_PROCESSING(SSobj, src)
-			set_ready_state(0)
-			log_message("Activated.", LOG_MECHA)
-		else
-			STOP_PROCESSING(SSobj, src)
-			set_ready_state(1)
-			log_message("Deactivated.", LOG_MECHA)
+		active = !active
+		log_message(active ? "Activated." : "Deactivated.", LOG_MECHA)
 
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/get_equip_info()
 	if(!chassis)
@@ -350,17 +296,13 @@
 	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp; [src.name] - <a href='?src=[REF(src)];toggle_relay=1'>[equip_ready?"A":"Dea"]ctivate</a>"
 
 
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/process()
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/on_process(delta_time)
 	if(!chassis || chassis.internal_damage & MECHA_INT_SHORT_CIRCUIT)
-		STOP_PROCESSING(SSobj, src)
-		set_ready_state(1)
-		return
+		return PROCESS_KILL
 	var/cur_charge = chassis.get_charge()
 	if(isnull(cur_charge) || !chassis.cell)
-		STOP_PROCESSING(SSobj, src)
-		set_ready_state(1)
 		occupant_message("No powercell detected.")
-		return
+		return PROCESS_KILL
 	if(cur_charge < chassis.cell.maxcharge)
 		var/area/A = get_area(chassis)
 		if(A)
@@ -370,7 +312,7 @@
 					pow_chan = c
 					break
 			if(pow_chan)
-				var/delta = min(20, chassis.cell.maxcharge-cur_charge)
+				var/delta = min(20, chassis.cell.maxcharge-cur_charge) * delta_time
 				chassis.give_power(delta)
 				A.use_power(delta*coeff, pow_chan)
 

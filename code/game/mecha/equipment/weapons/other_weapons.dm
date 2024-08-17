@@ -1,7 +1,10 @@
 /obj/item/mecha_parts/mecha_equipment/afterburner
 	name = "\improper CL-56 \"Hardlight\" Afterburner"
 	desc = "A powerful thruster designed for small shuttles, retrofitted for exosuits despite better judgement. Redirects power from all other equipment during use. It has a warning label against mounting to anything not secured."
-	icon_state = "mecha_afterburner" 
+	icon_state = "mecha_afterburner"
+	equip_cooldown = 6 SECONDS
+	energy_drain = 100
+	heat_cost = 60 // rocket engines are HOT
 	selectable = FALSE // your mech IS the weapon
 	var/minimum_damage = 10
 	var/structure_damage_mult = 4
@@ -79,7 +82,7 @@
 
 /datum/action/cooldown/mecha_afterburner
 	name = "Fire Afterburner"
-	cooldown_time = 10 SECONDS
+	cooldown_time = 6 SECONDS // short cooldown with severe overheating
 	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS
 	button_icon = 'icons/mob/actions/actions_mecha.dmi'
 	button_icon_state = "mech_afterburner"
@@ -94,21 +97,25 @@
 		chassis = new_mecha
 	if(new_equip)
 		rocket = new_equip
+		cooldown_time = new_equip.equip_cooldown
 	return ..()
 
 /datum/action/cooldown/mecha_afterburner/Activate()
-	if(chassis.completely_disabled)
+	if(HAS_TRAIT(chassis, TRAIT_MECH_DISABLED))
+		return
+	if(!rocket.equip_ready)
 		return
 	chassis.pass_flags |= PASSMOB // for not getting stopped by anything that can't be knocked down
 	chassis.movement_type |= FLYING // for doing sick jumps over chasms
-	chassis.completely_disabled = TRUE
 	chassis.AddComponent(/datum/component/after_image, 0.7 SECONDS, 0.5, FALSE)
+	ADD_TRAIT(chassis, TRAIT_MECH_DISABLED, type)
 	if(istype(chassis, /obj/mecha/working/clarke) && lavaland_equipment_pressure_check(get_turf(chassis))) // clarke gets bonus armor when charging on lavaland
 		chassis.armor.modifyRating(melee = 50)
 		bonus_lavaland_armor = TRUE
 	playsound(chassis, 'sound/vehicles/rocketlaunch.ogg', 100, TRUE) // sound effect has a short time before it gets going, so it plays before the wind up
 	if(do_after(chassis.occupant, 0.5 SECONDS, chassis, IGNORE_ALL))
 		var/delta_v = 4 / (1 + chassis.step_in) // using mech base step time to estimate mass
+		chassis.adjust_overheat(OVERHEAT_WARNING)
 		chassis.throw_at(
 			get_edge_target_turf(get_turf(chassis), chassis.dir),
 			10 * delta_v,
@@ -117,6 +124,10 @@
 			FALSE,
 			callback = CALLBACK(src, PROC_REF(charge_end))
 		)
+		rocket.start_cooldown()
+		chassis.can_move = world.time // reset next step time to stop the stationary cooling bonus
+		if(chassis.throwing) // if it ends instantly there's no need for a failsafe
+			addtimer(CALLBACK(src, PROC_REF(charge_end_failsafe)), 10 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	else // if this somehow fails then something has gone terribly wrong
 		charge_end()
 		CRASH("[type] failed to complete wind-up!")
@@ -129,8 +140,13 @@
 	if(bonus_lavaland_armor)
 		chassis.armor.modifyRating(melee = -50)
 		bonus_lavaland_armor = FALSE
-	chassis.completely_disabled = FALSE
+	REMOVE_TRAIT(chassis, TRAIT_MECH_DISABLED, type)
 	chassis.movement_type &= ~FLYING
 	chassis.pass_flags &= ~PASSMOB
 	qdel(rocket.hit_list)
 	rocket.hit_list = list()
+
+/datum/action/cooldown/mecha_afterburner/proc/charge_end_failsafe()
+	if(!chassis.throwing)
+		return
+	REMOVE_TRAIT(chassis, TRAIT_MECH_DISABLED, type)

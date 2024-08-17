@@ -154,6 +154,7 @@
 	icon_state = "mecha_analyzer"
 	selectable = 0
 	equip_cooldown = 15
+	active = FALSE // this one's handled manually
 	var/scanning_time = 0
 
 /obj/item/mecha_parts/mecha_equipment/mining_scanner/Initialize(mapload)

@@ -21,29 +21,27 @@
 			occupant_message(span_userdanger("Taking damage!"))
 		log_message("Took [damage_amount] points of damage. Damage type: [damage_type]", LOG_MECHA)
 
+/obj/mecha/update_integrity(new_value)
+	. = ..()
+	diag_hud_set_mechhealth()
+
 /obj/mecha/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
 	. = ..()
 	if(!damage_amount)
 		return 0
-	var/booster_deflection_modifier = 1
-	var/booster_damage_modifier = 1
+	var/deflection_modifier = 1
+	var/damage_modifier = 1
 	if(damage_flag == MELEE)
-		for(var/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/B in equipment)
-			if(B.attack_react())
-				booster_deflection_modifier *= B.deflect_coeff
-				booster_damage_modifier *= B.damage_coeff
-				break
-
 		if(attack_dir)
 			var/facing_modifier = get_armour_facing(dir2angle(attack_dir) - dir2angle(dir))
-			booster_damage_modifier /= facing_modifier
-			booster_deflection_modifier *= facing_modifier
-		if(prob(deflect_chance * booster_deflection_modifier))
+			damage_modifier /= facing_modifier
+			deflection_modifier *= facing_modifier
+		if(prob(deflect_chance * deflection_modifier))
 			visible_message(span_danger("[src]'s armour deflects the attack!"))
 			log_message("Armor saved.", LOG_MECHA)
 			return 0
 		if(.)
-			. *= booster_damage_modifier
+			. *= damage_modifier
 
 
 /obj/mecha/attack_hand(mob/living/user)
@@ -107,38 +105,33 @@
 	. = ..()
 
 
-/obj/mecha/bullet_act(obj/projectile/Proj) //wrapper
-	if ((!enclosed || istype(Proj, /obj/projectile/bullet/shotgun/slug/uranium))&& occupant && !silicon_pilot && !Proj.force_hit && (Proj.def_zone == BODY_ZONE_HEAD || Proj.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs
-		occupant.bullet_act(Proj) //If the sides are open, the occupant can be hit
-		return BULLET_ACT_HIT
-	if(istype(Proj, /obj/projectile/ion))
+/obj/mecha/bullet_act(obj/projectile/incoming)
+	if((!enclosed || incoming.penetration_flags & PENETRATE_OBJECTS) && occupant && !silicon_pilot && !incoming.force_hit && (incoming.def_zone == BODY_ZONE_HEAD || incoming.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs
+		occupant.bullet_act(incoming) //If the sides are open, the occupant can be hit
+	if(istype(incoming, /obj/projectile/ion))
 		return ..()
-	var/booster_deflection_modifier = 1
-	var/booster_damage_modifier = 1
-	var/attack_dir = get_dir(src, Proj)
-	for(var/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/B in equipment)
-		if(B.projectile_react())
-			booster_deflection_modifier = B.deflect_coeff
-			booster_damage_modifier = B.damage_coeff
+	var/deflection_modifier = 1
+	var/damage_modifier = 1
+	var/attack_dir = get_dir(src, incoming)
 	if(attack_dir)
 		var/facing_modifier = get_armour_facing(dir2angle(attack_dir) - dir2angle(dir))
-		booster_damage_modifier /= facing_modifier
-		booster_deflection_modifier *= facing_modifier
-	if(prob(deflect_chance * booster_deflection_modifier))
+		damage_modifier /= facing_modifier
+		deflection_modifier *= facing_modifier
+	if(prob(deflect_chance * deflection_modifier))
 		visible_message(span_danger("[src]'s armour deflects the attack!"))
 		if(super_deflects)
-			Proj.firer = src
-			Proj.setAngle(rand(0, 360))	//PTING
+			incoming.firer = src
+			incoming.setAngle(rand(0, 360))	//PTING
 			return BULLET_ACT_FORCE_PIERCE
 		else
-			Proj.damage = 0	//Armor has stopped the projectile effectively, if it has other effects that's another issue
+			incoming.damage = 0	//Armor has stopped the projectile effectively, if it has other effects that's another issue
 			return BULLET_ACT_BLOCK
 
-	Proj.damage *= booster_damage_modifier	//If you manage to shoot THROUGH a mech with something, the bullet wont be fully intact
-	if(!HAS_TRAIT(Proj, TRAIT_SHIELDBUSTER)) // Exceptionally strong projectiles do the full damage
-		Proj.demolition_mod = (1 + Proj.demolition_mod) / 2
+	incoming.damage *= damage_modifier	//If you manage to shoot THROUGH a mech with something, the bullet wont be fully intact
+	if(!HAS_TRAIT(incoming, TRAIT_SHIELDBUSTER)) // Exceptionally strong projectiles do the full damage
+		incoming.demolition_mod = (1 + incoming.demolition_mod) / 2
 
-	log_message("Hit by projectile. Type: [Proj.name]([Proj.armor_flag]).", LOG_MECHA, color="red")
+	log_message("Hit by projectile. Type: [incoming.name]([incoming.armor_flag]).", LOG_MECHA, color="red")
 	return ..()
 
 /obj/mecha/ex_act(severity, target)
@@ -181,20 +174,26 @@
 	. = ..()
 	if (. & EMP_PROTECT_SELF)
 		return
+	severity -= EMP_HEAVY * (100 - armor.getRating(ENERGY)) / 100 // energy armor is subtractive so that it's less effective against stronger EMPs and more against weaker ones
 	if(get_charge())
-		use_power((cell.charge * severity / 15))
-		
-	take_damage(4 * severity, BURN, ENERGY, 1)
+		use_power(cell.charge * severity / 40)
+	if(overheat < OVERHEAT_EMP_MAX)
+		adjust_overheat(min(severity, OVERHEAT_EMP_MAX - overheat))
+
+	take_damage(2 * severity, BURN, ENERGY, 1)
 	log_message("EMP detected", LOG_MECHA, color="red")
+
+	if(severity <= EMP_LIGHT || overheat < OVERHEAT_WARNING / 2)
+		return // only a light EMP, equipment is still fine
 
 	if(istype(src, /obj/mecha/combat))
 		mouse_pointer = 'icons/mecha/mecha_mouse-disable.dmi'
 		occupant?.update_mouse_pointer()
 	if(!equipment_disabled && occupant) //prevent spamming this message with back-to-back EMPs
 		to_chat(occupant, "<span=danger>Error -- Connection to equipment control unit has been lost.</span>")
-	overload_action.Activate(0)
-	addtimer(CALLBACK(src, /obj/mecha/proc/restore_equipment), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
-	equipment_disabled = 1
+	overload_action.Activate(FALSE)
+	addtimer(CALLBACK(src, /obj/mecha/proc/restore_equipment), (overheat / OVERHEAT_WARNING) SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE) // up to 3 seconds based on heat
+	equipment_disabled = TRUE
 
 /obj/mecha/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature>max_temperature)
