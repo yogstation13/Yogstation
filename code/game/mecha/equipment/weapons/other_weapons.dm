@@ -2,7 +2,7 @@
 	name = "\improper CL-56 \"Hardlight\" Afterburner"
 	desc = "A powerful thruster designed for small shuttles, retrofitted for exosuits despite better judgement. Redirects power from all other equipment during use. It has a warning label against mounting to anything not secured."
 	icon_state = "mecha_afterburner"
-	equip_cooldown = 6 SECONDS
+	equip_cooldown = 7 SECONDS
 	energy_drain = 100
 	heat_cost = 60 // rocket engines are HOT
 	selectable = FALSE // your mech IS the weapon
@@ -82,7 +82,7 @@
 
 /datum/action/cooldown/mecha_afterburner
 	name = "Fire Afterburner"
-	cooldown_time = 6 SECONDS // short cooldown with severe overheating
+	cooldown_time = 7 SECONDS // short cooldown with severe overheating
 	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS
 	button_icon = 'icons/mob/actions/actions_mecha.dmi'
 	button_icon_state = "mech_afterburner"
