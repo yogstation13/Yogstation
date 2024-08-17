@@ -226,7 +226,7 @@
 		chassis.take_damage(-h_boost)
 		repaired = TRUE
 	if(chassis.get_integrity() < chassis.max_integrity && h_boost > 0)
-		chassis.update_integrity(chassis.get_integrity() + min(h_boost, chassis.max_integrity-chassis.get_integrity()))
+		chassis.repair_damage(h_boost)
 		repaired = TRUE
 	if(repaired)
 		chassis.adjust_overheat(heat_cost * delta_time)

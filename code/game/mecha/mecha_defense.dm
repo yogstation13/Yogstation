@@ -20,8 +20,9 @@
 		if(. >= 5 || prob(33))
 			occupant_message(span_userdanger("Taking damage!"))
 		log_message("Took [damage_amount] points of damage. Damage type: [damage_type]", LOG_MECHA)
+		diag_hud_set_mechhealth()
 
-/obj/mecha/update_integrity(new_value)
+/obj/mecha/repair_damage(amount)
 	. = ..()
 	diag_hud_set_mechhealth()
 
@@ -200,12 +201,30 @@
 		log_message("Exposed to dangerous temperature.", LOG_MECHA, color="red")
 		take_damage(5, BURN, 0, 1)
 
+/obj/mecha/welder_act(mob/living/user, obj/item/tool, modifiers)
+	if(user.combat_mode)
+		return FALSE
+	if(wrecked)
+		try_repair(tool, user)
+	else if(atom_integrity < max_integrity)
+		while(atom_integrity < max_integrity && tool.use_tool(src, user, 1 SECONDS, volume=50, amount=1))
+			if(internal_damage & MECHA_INT_TANK_BREACH)
+				clearInternalDamage(MECHA_INT_TANK_BREACH)
+				to_chat(user, span_notice("You repair the damaged gas tank."))
+			user.visible_message(span_notice("[user] repairs some damage to [name]."), span_notice("You repair some damage to [src]."))
+			repair_damage(10)
+			if(atom_integrity == max_integrity)
+				to_chat(user, span_notice("It looks to be fully repaired now."))
+	else
+		to_chat(user, span_warning("The [name] is at full integrity!"))
+	return TRUE
+
 /obj/mecha/attackby(obj/item/W, mob/living/user, params)
 	if(user.combat_mode)
 		return ..()
 
 	if(wrecked)
-		return try_repair(W, user, params)
+		return try_repair(W, user)
 
 	if(istype(W, /obj/item/mmi))
 		if(mmi_move_inside(W,user))
@@ -302,23 +321,6 @@
 				to_chat(user, span_notice("There's already a capacitor installed."))
 		return
 
-	else if(W.tool_behaviour == TOOL_WELDER && !user.combat_mode)
-		user.changeNext_move(CLICK_CD_MELEE)
-		if(atom_integrity < max_integrity)
-			if(W.use_tool(src, user, 0, volume=50, amount=1))
-				if (internal_damage & MECHA_INT_TANK_BREACH)
-					clearInternalDamage(MECHA_INT_TANK_BREACH)
-					to_chat(user, span_notice("You repair the damaged gas tank."))
-				else
-					user.visible_message(span_notice("[user] repairs some damage to [name]."), span_notice("You repair some damage to [src]."))
-					update_integrity(atom_integrity + min(10, max_integrity-atom_integrity))
-					if(atom_integrity == max_integrity)
-						to_chat(user, span_notice("It looks to be fully repaired now."))
-			return 1
-		else
-			to_chat(user, span_warning("The [name] is at full integrity!"))
-		return 1
-
 	else if(istype(W, /obj/item/airlock_scanner))		//yogs start
 		var/obj/item/airlock_scanner/S = W
 		S.show_access(src, user)					//yogs end
@@ -326,7 +328,7 @@
 	else
 		return ..()
 
-/obj/mecha/proc/try_repair(obj/item/I, mob/living/user, params)
+/obj/mecha/proc/try_repair(obj/item/I, mob/living/user)
 	if(!capacitor?.rating)
 		to_chat(user, span_warning("[src] is damaged beyond repair, there is nothing you can do."))
 		return
