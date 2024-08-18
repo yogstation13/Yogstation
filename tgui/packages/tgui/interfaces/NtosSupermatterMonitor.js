@@ -159,7 +159,7 @@ export const NtosSupermatterMonitorContent = (props, context) => {
           </Section>
         </Stack.Item>
       </Stack>
-      <StatsHistory/>
+      <StatsHistory />
     </>
   );
 };
