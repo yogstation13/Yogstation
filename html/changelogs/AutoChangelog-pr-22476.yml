@@ -1,0 +1,7 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Added regular rain to jungleland"
+  - tweak: "permeability now affects how many wet stacks players get from rain"
+  - tweak: "rain and acid rain can now extinguish people if they're on fire"
+  - imageadd: "added grayscale rain image"
