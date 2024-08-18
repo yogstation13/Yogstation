@@ -129,7 +129,7 @@
 			do_sparks(1, FALSE, src)
 			authorization_override = TRUE //just in case it wasn't already for some reason. keycard reader is busted.
 			return
-		if(ACCESS_HEADS in C.access)
+		if(ACCESS_COMMAND in C.access)
 			if(!authorization_override)
 				authorization_override = TRUE
 				to_chat(user, span_warning("You override the safety protocols on the [src], removing access restrictions from this terminal."))
@@ -625,7 +625,7 @@
 	if(issilicon(user))
 		return TRUE
 	id_card = user.get_idcard(hand_first = TRUE)
-	return ACCESS_HEADS in id_card?.access
+	return ACCESS_COMMAND in id_card?.access
 
 /obj/machinery/mecha_part_fabricator/ui_act(action, list/params)
 	. = ..()

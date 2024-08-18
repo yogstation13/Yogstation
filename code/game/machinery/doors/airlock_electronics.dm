@@ -65,21 +65,21 @@
 		if("one_access")
 			one_access = !one_access
 		if("set")
-			var/access = text2num(params["access"])
+			var/access = (params["access"])
 			if (!(access in accesses))
 				accesses += access
 			else
 				accesses -= access
 		if("direc_set")
-			var/unres_direction = text2num(params["unres_direction"])
+			var/unres_direction = (params["unres_direction"])
 			unres_sides ^= unres_direction //XOR, toggles only the bit that was clicked
 		if("grant_region")
-			var/region = text2num(params["region"])
+			var/region = (params["region"])
 			if(isnull(region))
 				return
 			accesses |= get_region_accesses(region)
 		if("deny_region")
-			var/region = text2num(params["region"])
+			var/region = (params["region"])
 			if(isnull(region))
 				return
 			accesses -= get_region_accesses(region)

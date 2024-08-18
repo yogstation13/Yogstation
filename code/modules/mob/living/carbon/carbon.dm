@@ -219,7 +219,7 @@
 /mob/living/carbon/Topic(href, href_list)
 	..()
 	// Embed Stuff
-	if(href_list["embedded_object"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
+	if(href_list["embedded_object"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERITY))
 		var/obj/item/bodypart/L = locate(href_list["embedded_limb"]) in bodyparts
 		if(!L)
 			return
@@ -263,7 +263,7 @@
 			if(src && buckled)
 				to_chat(src, span_warning("You fail to unbuckle yourself!"))
 	else
-		buckled.user_unbuckle_mob(src,src)
+		buckled?.user_unbuckle_mob(src,src) //if we mash it after we get unbuckled before the alert dissapears we'll resist and runtime
 
 /mob/living/carbon/resist_fire()
 	adjust_fire_stacks(-5)

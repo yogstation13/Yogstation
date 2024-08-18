@@ -11,8 +11,7 @@
 /area/shuttle/escape)
 "c" = (
 /obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock";
-	req_access_txt = "2"
+	name = "Emergency Shuttle Airlock"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -20,6 +19,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "d" = (

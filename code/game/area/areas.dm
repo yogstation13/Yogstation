@@ -72,8 +72,6 @@
 	var/static_environ
 
 	var/has_gravity = 0
-	///Are you forbidden from teleporting to the area? (centcom, mobs, wizard, hand teleporter)
-	var/noteleport = FALSE
 	///Hides area from player Teleport function.
 	var/hidden = FALSE
 	///Is the area teleport-safe: no space / radiation / aggresive mobs / other dangers
@@ -158,7 +156,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
  */
 /proc/process_teleport_locs()
 	for(var/area/AR as anything in get_sorted_areas())
-		if(istype(AR, /area/shuttle) || AR.noteleport)
+		if(istype(AR, /area/shuttle) || (AR.area_flags & NOTELEPORT))
 			continue
 		if(GLOB.teleportlocs[AR.name])
 			continue
@@ -878,7 +876,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	CRASH("Bad op: area/drop_location() called")
 
 /// A hook so areas can modify the incoming args (of what??)
-/area/proc/PlaceOnTopReact(list/new_baseturfs, turf/fake_turf_type, flags)
+/area/proc/place_on_topReact(list/new_baseturfs, turf/fake_turf_type, flags)
 	return flags
 
 /// Called when a living mob that spawned here, joining the round, receives the player client.

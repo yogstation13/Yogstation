@@ -141,8 +141,9 @@
 /datum/reagent/water
 	name = "Water"
 	description = "An ubiquitous chemical substance that is composed of hydrogen and oxygen."
-	color = "#609bdf77" // rgb: 96, 155, 223, 77 (alpha)
+	color = "#00B8FF" // rgb: 170, 170, 170, 77 (alpha)
 	taste_description = "water"
+	evaporation_rate = 4 // water goes fast
 	glass_icon_state = "glass_clear"
 	glass_name = "glass of water"
 	glass_desc = "The father of all refreshments."
@@ -1126,7 +1127,7 @@
 	glass_icon_state = "dr_gibb_glass"
 	glass_name = "glass of Dr. Gibb"
 	glass_desc = "Dr. Gibb. Not as dangerous as the glass_name might imply."
-	accelerant_quality = 10
+	accelerant_quality = 15
 	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/fuel/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)//Splashing people with welding fuel to make them easy to ignite!
@@ -1447,6 +1448,7 @@
 	color = "#C8A5DC"
 	taste_description = "oil"
 	compatible_biotypes = ALL_BIOTYPES
+	accelerant_quality = 8
 
 /datum/reagent/oil/on_mob_life(mob/living/carbon/M)
 	M.adjustFireLoss(-2*REM, FALSE, FALSE, BODYPART_ROBOTIC)
@@ -1628,6 +1630,8 @@
 	reagent_state = LIQUID
 	color = "#A70FFF"
 	taste_description = "dryness"
+	group_evaporation_rate = 16
+	evaporation_rate = 0 //will never evaporate on it's own
 
 /datum/reagent/drying_agent/reaction_turf(turf/open/T, reac_volume)
 	if(istype(T))
