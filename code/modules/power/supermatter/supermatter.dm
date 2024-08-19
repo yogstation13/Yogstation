@@ -219,6 +219,13 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/damage_mod = 1
 	var/heal_mod = 1
 
+	//Data, because graphs are cool
+	var/list/powerData = list()
+	var/list/radsData = list()
+	var/list/tempData = list()
+	var/list/kpaData = list()
+	var/list/molesData = list()
+
 /obj/machinery/power/supermatter_crystal/Initialize(mapload)
 	. = ..()
 	uid = gl_uid++
@@ -789,6 +796,24 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				damage += DAMAGE_HARDCAP * explosion_point //Can't cheat by spacing the crystal to buy time, it will just delaminate faster
 			if(prob(2))
 				empulse(src, 10-support_integrity) //EMPs must always be spewing every so often to ensure that containment is guaranteed to fail.
+	
+	// I FUCKING LOVE DATA!!!!!!
+	powerData += power
+	if(powerData.len > 100)
+		powerData.Cut(1, 2)
+	radsData += last_rads
+	if(radsData.len > 100)
+		radsData.Cut(1, 2)
+	tempData += env.return_temperature()
+	if(tempData.len > 100)
+		tempData.Cut(1, 2)
+	kpaData += env.return_pressure()
+	if(kpaData.len > 100)
+		kpaData.Cut(1, 2)
+	molesData += env.total_moles()
+	if(molesData.len > 100)
+		molesData.Cut(1, 2)
+
 	return 1
 
 /obj/machinery/power/supermatter_crystal/bullet_act(obj/projectile/Proj)
