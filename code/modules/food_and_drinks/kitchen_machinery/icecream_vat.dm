@@ -177,14 +177,21 @@
 
 	..()
 
-/obj/machinery/icecream_vat/proc/find_amount(obj/item/counting_item)
+/obj/machinery/icecream_vat/proc/find_amount(obj/item/counting_item, target_name = null, list/target_list = null)
 	var/amount = 0
 
-	//Loop through contents, counting every instance of the given target
-	for(var/obj/item/list_item in contents)
-		if(list_item.type == counting_item.type)
-			amount += 1
-	
+	//If target_list is null, search contents for type paths
+	if(!target_list)
+		//Loop through contents, counting every instance of the given target
+		for(var/obj/item/list_item in contents)
+			if(list_item.type == counting_item.type)
+				amount += 1
+	//Else, search target_list
+	else
+		for(var/list_item in target_list)
+			if(list_item == target_name)
+				amount += 1
+
 	return amount
 
 /obj/machinery/icecream_vat/proc/dispense_item(received_item, mob/user = usr)
@@ -310,45 +317,28 @@
 		if(selected_scoop != null)
 			//Check if there are any of selected scoop in contents
 			if(find_amount(selected_scoop) > 0)
+				//Increase scooped variable
+				cone.scoops += 1
 				//Select last of selected scoop in contents
 				var/obj/item/reagent_containers/food/snacks/cone_scoop = LAZYACCESS(contents, last_index(selected_scoop))
 				//Remove scoop from contents and add relevant variables to cone
 				cone_scoop.forceMove(loc)
 				cone.reagents.reagent_list += cone_scoop.reagents.reagent_list
 				cone.foodtype = cone_scoop.foodtype
+				LAZYADD(cone.scoop_names, cone_scoop.name)
 				//Determine how to add the overlay and change description and name depending on scoops value
-				if(cone.scoops == 0)
+				if(cone.scoops == 1)
 					//Add overlay of scoop to cone
 					cone.add_overlay(cone_scoop.icon_state)
-					//Change description of cone
-					cone.desc = "A delicious [cone.base_name] with a [cone_scoop.name]."
-					//Set first_scoop
-					cone.first_scoop = cone_scoop.name
-					//Increase scooped variable
-					cone.scoops += 1
+					//Change name and desc
+					name_cone(cone)
 				else
 					//Add overlay but with y-axis position depending on amount of scoops
 					var/mutable_appearance/TOP_SCOOP = mutable_appearance(cone_scoop.icon, "[cone_scoop.icon_state]")
-					TOP_SCOOP.pixel_y = 2 * cone.scoops
+					TOP_SCOOP.pixel_y = 2 * (cone.scoops - 1)
 					cone.add_overlay(TOP_SCOOP)
-					//Increase scooped variable
-					cone.scoops += 1
 					//Change name and desc based on scoop amount
-					switch(cone.scoops)
-						if(2)
-							cone.second_scoop = cone_scoop.name
-							cone.name = "double scoop [cone.base_name]"
-							cone.desc = "A delicious [cone.name] with a [cone.first_scoop] and a [cone.second_scoop]."
-						if(3)
-							cone.third_scoop = cone_scoop.name
-							cone.name = "thrice cream [cone.base_name]"
-							cone.desc = "A delicious [cone.name] with a [cone.first_scoop], a [cone.second_scoop], and a [cone.third_scoop]."
-						if(4)
-							cone.fourth_scoop = cone_scoop.name
-							cone.name = "tower scoop [cone.base_name]"
-							cone.desc = "A delicious [cone.name] with a [cone.first_scoop], a [cone.second_scoop], a [cone.third_scoop], a [cone.fourth_scoop]"
-						if(5 to INFINITY)
-							cone.desc += ", a [cone_scoop.name]"
+					name_cone(cone)
 				//Alert that the cone has been scooped
 				user.visible_message(span_notice("[user] scoops a [cone_scoop.name] into the [cone.name]"), span_notice("You scoop a [cone_scoop.name] into the [cone.name]"))
 				//Delete scoop
@@ -368,6 +358,74 @@
 	else
 		user.balloon_alert(user, "Invalid item!")
 
+/obj/machinery/icecream_vat/proc/name_cone(obj/item/reagent_containers/food/snacks/ice_cream_cone/target_cone)
+	//Change name and desc based on amount of scoops
+	switch(target_cone.scoops)
+		if(1)
+			target_cone.name = "Scooped [target_cone.base_name]"
+			target_cone.desc = "A delicious [target_cone.name] with a [target_cone.scoop_names[1]]."
+		if(2)
+			target_cone.name = "Double scooped [target_cone.base_name]"
+			target_cone.desc = "A delicious [target_cone.name] with[list_scoops(target_cone.scoop_names)]."
+		if(3)
+			target_cone.name = "Thrice cream [target_cone.base_name]"
+			target_cone.desc = "A delicious [target_cone.name] with[list_scoops(target_cone.scoop_names)]."
+		if(4)
+			target_cone.name = "Quadruple scooped [target_cone.base_name]"
+			target_cone.desc = "A delicious [target_cone.name] with[list_scoops(target_cone.scoop_names)]."
+		if(5)
+			target_cone.name = "Quintuple scooped [target_cone.base_name]"
+			target_cone.desc = "A delicious [target_cone.name] with[list_scoops(target_cone.scoop_names)]."
+		if(6 to 10)
+			target_cone.name = "Tower scooped [target_cone.base_name]"
+			target_cone.desc = "A tall [target_cone.name] with[list_scoops(target_cone.scoop_names)]."
+		if(11 to 15)
+			target_cone.name = "Scoopimanjaro [target_cone.base_name]"
+			target_cone.desc = "A towering [target_cone.name] with[list_scoops(target_cone.scoop_names)]."
+		if(16 to 20)
+			target_cone.name = "Scooperest [target_cone.base_name]"
+			target_cone.desc = "A mountainous [target_cone.name] with[list_scoops(target_cone.scoop_names)]."
+		if(21 to INFINITY)
+			target_cone.name = "Scoopageddon [target_cone.base_name]"
+			target_cone.desc = "A [target_cone.name] of apocalyptic proportions with[list_scoops(target_cone.scoop_names)]."
+
+//Create properly formated string for showing a cone's scoops in its desc
+/obj/machinery/icecream_vat/proc/list_scoops(list/scoops)
+	//List used for searching through list
+	var/list/unique_scoops = null
+	//What to return for the desc
+	var/final_string = ""
+
+	//Populate unique_scoops based on given list
+	for(var/search_item in scoops)
+		if(!unique_scoops)
+			LAZYADD(unique_scoops, search_item)
+		else if(!LAZYFIND(unique_scoops, search_item))
+			LAZYADD(unique_scoops, search_item)
+	
+	//Use populated unique_scoops to make final_string
+	for(var/search_name in unique_scoops)
+		//If search_name is the only name in the list
+		if(find_amount(target_name = search_name, target_list = scoops) == LAZYLEN(scoops))
+			final_string = " [LAZYLEN(scoops)] [unique_scoops[1]]s"
+			break
+		else
+			//Check if it is not the last name in the list
+			if(LAZYFIND(unique_scoops, search_name) != LAZYLEN(unique_scoops))
+				//Check if it is the only instance in the list
+				if(find_amount(target_name = search_name, target_list = scoops) == 1)
+					final_string += " 1 [search_name],"
+				else
+					final_string += " [find_amount(target_name = search_name, target_list = scoops)] [search_name]s,"
+			else
+				//Check if it is the only instance in the list
+				if(find_amount(target_name = search_name, target_list = scoops) == 1)
+					final_string += " and 1 [search_name]"
+				else
+					final_string += " and [find_amount(target_name = search_name, target_list = scoops)] [search_name]s"
+
+	return final_string
+
 ///////////////////
 //ICE CREAM CONES//
 ///////////////////
@@ -380,17 +438,14 @@
 	foodtype = GRAIN
 	//Used for changing the description after being scooped
 	var/base_name = null
-	//If the cone has a scoop or not
+	//How many scoops it has
 	var/scoops = 0
+	//Variables for cone's scoops
+	var/list/scoop_names = null
 	//For adding chems to specific cones
 	var/extra_reagent = null
 	//Amount of extra_reagent to add to cone
 	var/extra_reagent_amount = 1
-	//Variables for cone's scoops, try to think of a better way of doing this before pushing PR
-	var/first_scoop = null
-	var/second_scoop = null
-	var/third_scoop = null
-	var/fourth_scoop = null
 
 /obj/item/reagent_containers/food/snacks/ice_cream_cone/Initialize(mapload)
 	. = ..()
@@ -412,14 +467,16 @@
 			//Add relevant variables to cone
 			cone.reagents.reagent_list += cone_scoop.reagents.reagent_list
 			cone.foodtype = cone_scoop.foodtype
-			//Set first_scoop
-			cone.first_scoop = cone_scoop.name
+			//Add scoop to scoop_names list
+			LAZYADD(cone.scoop_names, cone_scoop.name)
 			//Change description of cone
-			cone.desc = "A delicious [cone.base_name] with a [cone_scoop.name]."
+			cone.desc = "A hand scooped [cone.base_name] with a [cone_scoop.name]. Kinda gross."
 			//Add overlay of scoop to cone
 			cone.add_overlay(cone_scoop.icon_state)
 			//Alert that the cone has been scooped
 			user.visible_message(span_notice("[user] hand scoops a [cone_scoop.name] into the [cone.name]"), span_notice("You hand scoop a [cone_scoop.name] into the [cone.name]"))
+			//Change the name
+			cone.name = "Hand scooped [cone.base_name]"
 			//Increase scooped variable
 			cone.scoops += 1
 			//Delete scoop
