@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "Supermatter monitor now shows a graph of its metrics over time"
