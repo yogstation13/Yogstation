@@ -254,7 +254,7 @@
 								span_userdanger("[user] has stunned you with [src]!"))
 		log_combat(user, L, "stunned")
 
-	playsound(loc, 'sound/weapons/egloves.ogg', 50, 1, -1)
+	playsound(loc, 'sound/weapons/stunbatonhit.ogg', 50, 1, -1)
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L

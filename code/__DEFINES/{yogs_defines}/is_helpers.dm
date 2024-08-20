@@ -20,4 +20,4 @@
 
 #define isspacepod(A) (istype(A, /obj/spacepod))
 
-#define ismineralturf_inclusive(A) (istype(A, /turf/closed/mineral) || istype(A,/turf/open/floor/plating/dirt/jungleland))
+#define ismineralturf_inclusive(A) (istype(A, /turf/closed/mineral))

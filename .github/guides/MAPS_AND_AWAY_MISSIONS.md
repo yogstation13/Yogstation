@@ -3,9 +3,6 @@
 Yogstation currently comes equipped with the following maps. Our currenly active map rotation can be found [here](https://wiki.yogstation.net/wiki/Maps). All maps not in active rotation should be considered **unmaintained**.
 
 * [BoxStation (default)](https://wiki.yogstation.net/wiki/BoxStation)
-* [AsteroidStation](https://wiki.yogstation.net/wiki/AsteroidStation)
-* [MetaStation](https://wiki.yogstation.net/wiki/MetaStation)
-* [NVS Gax](https://wiki.yogstation.net/wiki/NVS_Gax)
 
 All maps have their own code file that is in the base of the _maps directory. Maps are loaded dynamically when the game starts. Follow this guideline when adding your own map, to your fork, for easy compatibility.
 

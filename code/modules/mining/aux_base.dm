@@ -172,7 +172,7 @@
 			for(var/z_level in SSmapping.levels_by_trait(ZTRAIT_MINING))
 				all_mining_turfs += Z_TURFS(z_level)
 			var/turf/LZ = pick(all_mining_turfs) //Pick a random mining Z-level turf
-			if(!ismineralturf(LZ) && !istype(LZ, /turf/open/floor/plating/asteroid) && !istype(LZ,/turf/open/floor/plating/dirt/jungleland))
+			if(!ismineralturf(LZ) && !istype(LZ, /turf/open/floor/plating/asteroid))
 			//Find a suitable mining turf. Reduces chance of landing in a bad area
 				to_chat(usr, span_warning("Landing zone scan failed. Please try again."))
 				return
@@ -246,7 +246,7 @@
 				return BAD_COORDS
 			if(istype(place.loc, /area/icemoon/surface))
 				return BAD_LAYER
-			if(!istype(place.loc, /area/lavaland/surface) && !istype(place.loc, /area/icemoon/underground) && !(istype(place.loc, /area/jungleland) && !istype(place.loc, /area/jungleland/explored)) )
+			if(!istype(place.loc, /area/lavaland/surface) && !istype(place.loc, /area/icemoon/underground))
 				return BAD_AREA
 			if(disallowed_turf_types[place.type])
 				return BAD_TURF

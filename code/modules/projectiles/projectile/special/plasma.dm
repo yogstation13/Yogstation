@@ -29,19 +29,6 @@
 	light_color = LIGHT_COLOR_RED
 	mine_range = 0
 
-//yogs begin
-/obj/projectile/plasma/Move(atom/newloc, dir)
-	. = ..()
-	if(istype(newloc,/turf/open/floor/plating/dirt/jungleland))
-		var/turf/open/floor/plating/dirt/jungleland/JG = newloc
-		if(explosive) //so the plasmacutter ore upgrade spawns double
-			JG.spawn_ores()
-		JG.spawn_rock()
-		if(mine_range > 0)
-			mine_range -= 2 //mine_range is less effective on lavaland
-			range++
-
-//yogs end
 /obj/projectile/plasma/on_hit(atom/target)
 	. = ..()
 	if(defuse && istype(target, /turf/closed/mineral/gibtonite))

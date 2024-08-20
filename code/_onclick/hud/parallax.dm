@@ -21,8 +21,6 @@
 				C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/planet/moonscorch(null, src)
 			else
 				C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/planet(null, src)
-		if(GLOB.minetype == MINETYPE_JUNGLE)
-			C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/planet/jungle(null, src)
 
 		if(SSparallax.random_layer)
 			C.parallax_layers_cached += new SSparallax.random_layer.type(null, src, FALSE, SSparallax.random_layer)
@@ -377,6 +375,3 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/parallax_layer)
 
 /atom/movable/screen/parallax_layer/planet/update_o()
 	return //Shit wont move
-
-/atom/movable/screen/parallax_layer/planet/jungle 
-	icon_state = "jungleland"

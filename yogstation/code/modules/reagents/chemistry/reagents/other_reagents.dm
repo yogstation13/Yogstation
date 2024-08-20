@@ -5,13 +5,6 @@
 	race = /datum/species/gorilla
 	mutationtext = span_danger("The pain subsides. You feel... damn dirty.")
 
-/datum/reagent/mutationtoxin/ivymen
-	name = "Ivymen Mutation Toxin"
-	description = "A thorny toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/pod/ivymen
-	mutationtext = span_danger("The pain subsides. You feel... thorny.")
-
 /datum/reagent/mutationtoxin/vox
 	name = "Vox Mutation Toxin"
 	race = /datum/species/vox

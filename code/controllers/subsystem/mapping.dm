@@ -25,13 +25,6 @@ SUBSYSTEM_DEF(mapping)
 	var/list/lava_ruins_templates = list()
 	var/list/ice_ruins_templates = list()
 	var/list/ice_ruins_underground_templates = list()
-	//Yogs edit 
-	var/list/jungleland_proper_ruins_templates = list()
-	var/list/jungleland_dying_ruins_templates = list()
-	var/list/jungleland_swamp_ruins_templates = list()
-	var/list/jungleland_general_ruins_templates = list()
-	var/list/jungleland_tar_ruins_templates = list()
-	//Yogs end
 
 	var/list/shuttle_templates = list()
 	var/list/shelter_templates = list()
@@ -141,22 +134,9 @@ SUBSYSTEM_DEF(mapping)
 	process_teleport_locs()			//Sets up the wizard teleport locations
 	preloadTemplates()
 
-	var/list/jungle_ruins = levels_by_trait(ZTRAIT_JUNGLE_RUINS)
-	//this is really fuckign hacky, but we need to have a very specific order for these things, and if jungleland isn't even being loaded then i dont fucking care.
-	if(jungle_ruins.len)
-		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/pregen), jungleland_general_ruins_templates, clear_below = TRUE)
-		run_map_generation()
-		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/proper), jungleland_proper_ruins_templates, clear_below = TRUE)
-		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/dying_forest), jungleland_dying_ruins_templates, clear_below = TRUE)
-		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/toxic_pit), jungleland_swamp_ruins_templates, clear_below = TRUE)
-		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/tar_wastes), jungleland_tar_ruins_templates, clear_below = TRUE)
-	else
-		run_map_generation()
-	//YOGS EDIT
-#ifndef LOWMEMORYMODE
-	//Pregenerate generic jungleland ruins that are biome-nonspecific 
+	run_map_generation()
 
-	//YOGS END
+#ifndef LOWMEMORYMODE
 	
 	// Create space ruin levels
 	while (space_levels_so_far < config.space_ruin_levels)
@@ -453,30 +433,7 @@ SUBSYSTEM_DEF(mapping)
 	if(config.minetype == "lavaland")
 		LoadGroup(FailedZs, "Lavaland", "map_files/mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND) //Yogs, yoglavaland
 		GLOB.minetype = MINETYPE_LAVALAND
-	//Yogs begin, jungleland gen
-	else if(config.minetype == "jungleland")
-		LoadGroup(FailedZs, "Jungleland", "map_files/mining", "Jungleland.dmm", default_traits = ZTRAITS_JUNGLELAND)
-		GLOB.minetype = MINETYPE_JUNGLE
 		
-	else if(config.minetype == "jungle_and_lavaland")
-		SSpersistence.LoadMinetype()
-		var/determinant = SSpersistence.next_minetype
-		switch(determinant)
-			if(2)
-				if(prob(50))
-					LoadGroup(FailedZs, "Lavaland", "map_files/mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
-					GLOB.minetype = MINETYPE_LAVALAND
-				else 
-					LoadGroup(FailedZs, "Jungleland", "map_files/mining", "Jungleland.dmm", default_traits = ZTRAITS_JUNGLELAND) 
-					GLOB.minetype = MINETYPE_JUNGLE
-			
-			if(1)
-				LoadGroup(FailedZs, "Lavaland", "map_files/mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
-				GLOB.minetype = MINETYPE_LAVALAND
-			
-			if(0)
-				LoadGroup(FailedZs, "Jungleland", "map_files/mining", "Jungleland.dmm", default_traits = ZTRAITS_JUNGLELAND)
-				GLOB.minetype = MINETYPE_JUNGLE
 			 
 	//Yogs end
 	else if (!isnull(config.minetype) && config.minetype != "none")
@@ -605,7 +562,6 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	var/list/banned = generateMapList("lavaruinblacklist.txt")
 	banned += generateMapList("spaceruinblacklist.txt")
 	banned += generateMapList("iceruinblacklist.txt")
-	banned += generateMapList("jungleruinblacklist.txt")
 
 	for(var/item in sortList(subtypesof(/datum/map_template/ruin), /proc/cmp_ruincost_priority))
 		var/datum/map_template/ruin/ruin_type = item
@@ -632,16 +588,6 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		//Yogs begin
 		else if(istype(R, /datum/map_template/ruin/station)) 
 			station_room_templates[R.name] = R 
-		else if(istype(R,/datum/map_template/ruin/jungle/proper))
-			jungleland_proper_ruins_templates[R.name] = R
-		else if(istype(R,/datum/map_template/ruin/jungle/dying))
-			jungleland_dying_ruins_templates[R.name] = R
-		else if(istype(R,/datum/map_template/ruin/jungle/swamp))
-			jungleland_swamp_ruins_templates[R.name] = R
-		else if(istype(R,/datum/map_template/ruin/jungle/all))
-			jungleland_general_ruins_templates[R.name] = R
-		else if(istype(R,/datum/map_template/ruin/jungle/tar))
-			jungleland_tar_ruins_templates[R.name] = R
 		//Yogs end
 
 /datum/controller/subsystem/mapping/proc/preloadShuttleTemplates()

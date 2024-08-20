@@ -48,7 +48,7 @@ EMOJIS
 
 ## These modify the run/walk speed of all mobs before the mob-specific modifiers are applied.
 RUN_DELAY 2
-WALK_DELAY 6
+WALK_DELAY 3
 
 ## The variables below affect the movement of specific mob types. THIS AFFECTS ALL SUBTYPES OF THE TYPE YOU CHOOSE!
 ## Entries completely override all subtypes. Later entries have precedence over earlier entries.
@@ -640,16 +640,13 @@ BOMBCAP 12
 ## a less lootfilled or smaller or less round effecting ruin costs less to
 ## spawn, while the converse is true. Alter this number to affect the amount
 ## of ruins.
-LAVALAND_BUDGET 60
+LAVALAND_BUDGET 0
 
 ## Ice Moon Budget
-ICEMOON_BUDGET 90
-
-## Jungleland Budget
-JUNGLELAND_BUDGET 40
+ICEMOON_BUDGET 0
 
 ## Space Ruin Budget
-Space_Budget 16
+Space_Budget 0
 
 ## Time in ds from when a player latejoins till the arrival shuttle docks at the station
 ## Must be at least 30. At least 55 recommended to be visually/aurally appropriate
@@ -663,7 +660,7 @@ ARRIVALS_SHUTTLE_DOCK_WINDOW 55
 
 ## How many wirechewing rodents you want to spawn on exposed maintenane wires at the start of the round. You may wish to set this to 0 if you're testing powernets.
 
-MICE_ROUNDSTART 5
+MICE_ROUNDSTART 0
 
 ## If the percentage of players alive (doesn't count conversions) drops below this threshold the emergency shuttle will be forcefully called (provided it can be)
 #EMERGENCY_SHUTTLE_AUTOCALL_THRESHOLD 0.2

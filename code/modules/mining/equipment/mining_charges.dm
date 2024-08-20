@@ -62,15 +62,10 @@
 	boom_sizes[3] = max(boom_sizes[3]/3, 1)
 	alert_admins = TRUE //i'm telling teacher you're gibbing clown!
 
-//YOGS EDIT BEGIN
 /obj/item/grenade/plastic/miningcharge/proc/drill_at(location,power)
 	if(istype(location,/turf/closed/mineral))
 		var/turf/closed/mineral/M = location
 		M.attempt_drill(null,TRUE,power) //orange says it doesnt include the actual middle
-	else 
-		var/turf/open/floor/plating/dirt/jungleland/J = location 
-		J.spawn_rock()
-//YOGS EDIT END
 
 //MINING CHARGE HACKER
 /obj/item/t_scanner/adv_mining_scanner/syndicate

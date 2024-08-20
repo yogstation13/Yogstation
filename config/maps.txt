@@ -21,25 +21,6 @@ map yogstation
 	votable
 endmap
 
-map icemeta
-	votable
-endmap
-
-map gaxstation
-	maxplayers 40
-	votable
-endmap
-
-map asteroidstation
-	minplayers 40
-	votable
-endmap
-
-map donutstation
-	maxplayers 50
-	votable
-endmap
-
 # Debug-only maps.
 
 map multiz_debug

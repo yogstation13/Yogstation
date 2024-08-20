@@ -13,9 +13,6 @@
 /mob/living/carbon/human/species/szlachta
 	race = /datum/species/szlachta
 
-/mob/living/carbon/human/species/pod/ivymen //jungleland
-	race = /datum/species/pod/ivymen
-
 /mob/living/carbon/human/species/vox
 	race = /datum/species/vox
 	

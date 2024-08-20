@@ -314,8 +314,6 @@
 		/obj/item/crusher_trophy/demon_claws=1,
 		/obj/item/crusher_trophy/watcher_wing=1,
 		/obj/item/reagent_containers/autoinjector/medipen/survival=3,
-		/obj/item/kinetic_javelin=1,
-		/obj/item/kinetic_javelin_core/green=1
 		)
 	l_pocket = /obj/item/reagent_containers/glass/beaker/bluespace/dorf
 

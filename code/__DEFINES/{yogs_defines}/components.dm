@@ -2,7 +2,6 @@
 #define COMSIG_STORAGE_REMOVED "storage_removed"				//from base of /datum/component/storage/remove_from_storage(): (atom/movable/AM, atom/new_location)
 
 
-#define COMSIG_JUNGLELAND_TAR_CURSE_PROC "jungleland_tar_curse_proc"
 #define COMSIG_REGEN_CORE_HEALED "regen_core_healed"
 
 #define COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE "kinetic_crusher_projectile_on_range" 				// from base of /obj/projectile/destabilizer/on_range():
