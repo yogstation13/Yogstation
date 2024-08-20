@@ -1,3 +1,8 @@
+//NOTICE:
+//not enabled due to our system. come back to rework to reflect or modernize our research system
+//remove this if completed
+
+
 /datum/autowiki/techweb
 	page = "Template:Autowiki/Content/Techweb"
 

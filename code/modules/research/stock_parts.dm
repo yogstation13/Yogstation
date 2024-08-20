@@ -13,9 +13,6 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	var/works_from_distance = FALSE
 	var/pshoom_or_beepboopblorpzingshadashwoosh = 'sound/items/rped.ogg'
 	var/alt_sound = null
-	
-	///The generic category type that the stock part belongs to.  Generic objects that should not be instantiated should have the same type and abstract_type
-	var/abstract_type = /obj/item/stock_parts
 
 
 /obj/item/storage/part_replacer/pre_attack(obj/machinery/T, mob/living/user, params)
@@ -129,6 +126,8 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon = 'icons/obj/stock_parts.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	var/rating = 1
+	///The generic category type that the stock part belongs to.  Generic objects that should not be instantiated should have the same type and abstract_type
+	var/abstract_type = /obj/item/stock_parts
 
 /obj/item/stock_parts/Initialize(mapload)
 	. = ..()
