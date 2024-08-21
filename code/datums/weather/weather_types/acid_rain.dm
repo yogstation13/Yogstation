@@ -68,6 +68,8 @@
 		L.adjust_wet_stacks(3*log(2, (50*L.get_permeability(null, TRUE) + 10) / 10))
 		L.extinguish_mob() // permeability affects the negative fire stacks but not the extinguishing
 
+		L.overlay_fullscreen("raindrops", /atom/movable/screen/fullscreen/raindrops)
+
 		// if preternis, update wetness instantly when applying more water instead of waiting for the next life tick
 		if(ispreternis(L) || isjellyperson(L))
 			var/mob/living/carbon/human/H = L
@@ -127,3 +129,12 @@
 				return TRUE
 		L = L.loc //Check parent items immunities (recurses up to the turf)
 	return FALSE //RIP you
+
+
+/**
+ * I am squeezing every last drop of brain power to make this
+ */
+/atom/movable/screen/fullscreen/raindrops
+	icon_state = "raindrops"
+	appearance_flags = PIXEL_SCALE | RESET_TRANSFORM
+	plane = GRAVITY_PULSE_PLANE 
