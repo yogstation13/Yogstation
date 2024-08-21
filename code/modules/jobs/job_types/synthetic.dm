@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(synthetic_added_access)
 	department_head = list("AI")
 	faction = "Station"
 	total_positions = 0
-	spawn_positions = 1
+	spawn_positions = 0
 	supervisors = "the AI"
 	minimal_player_age = 30
 	exp_requirements = 900

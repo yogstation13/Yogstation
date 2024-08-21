@@ -46642,19 +46642,6 @@
 /obj/effect/turf_decal/trimline/green/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
-"nQi" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/stasis{
-	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Medbay Treatment Center";
-	network = list("ss13","medbay")
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/sleeper)
 "nQl" = (
 /turf/template_noop,
 /area/science/test_area)
@@ -49384,6 +49371,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
+"oPu" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/stasis{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Medbay Treatment Center";
+	network = list("ss13","medbay")
+	},
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/sleeper)
 "oPJ" = (
 /obj/structure/table,
 /turf/open/floor/plasteel/cafeteria,
@@ -112047,7 +112050,7 @@ lKd
 kub
 pDs
 bvj
-nQi
+oPu
 sha
 bDR
 lXo

@@ -7,7 +7,7 @@
 	static_lighting = TRUE
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
-	noteleport = TRUE
+	area_flags = NOTELEPORT
 	blob_allowed = FALSE //Should go without saying, no blobs should take over centcom as a win condition.
 	flags_1 = NONE
 
@@ -123,7 +123,6 @@
 	static_lighting = TRUE
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
-	noteleport = TRUE
 	flags_1 = NONE
 
 //Abductors
@@ -133,7 +132,6 @@
 	requires_power = FALSE
 	static_lighting = FALSE
 	base_lighting_alpha = 255
-	noteleport = TRUE
 	has_gravity = STANDARD_GRAVITY
 	flags_1 = NONE
 
@@ -143,7 +141,6 @@
 	icon_state = "syndie-ship"
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
-	noteleport = TRUE
 	blob_allowed = FALSE //Not... entirely sure this will ever come up... but if the bus makes blobs AND ops, it shouldn't aim for the ops to win.
 	flags_1 = NONE
 	ambience_index = AMBIENCE_DANGER
@@ -162,7 +159,6 @@
 	static_lighting = FALSE
 	base_lighting_alpha = 255
 	has_gravity = TRUE
-	noteleport = TRUE
 	blob_allowed = FALSE
 	var/turf/origin
 
@@ -212,7 +208,6 @@
 	static_lighting = FALSE
 
 	base_lighting_alpha = 255
-	noteleport = TRUE
 	hidden = TRUE
 	ambience_index = AMBIENCE_REEBE
 
