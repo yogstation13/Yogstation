@@ -3426,9 +3426,9 @@
 /area/space/nearstation)
 "bnJ" = (
 /obj/machinery/conveyor{
+	dir = 5;
 	id = "garbage";
-	name = " recycler conveyor belt";
-	dir = 5
+	name = " recycler conveyor belt"
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal)
@@ -3444,6 +3444,21 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
+"bok" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Shipbreaking Bay"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/escapepodbay)
 "bom" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -7889,9 +7904,9 @@
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /obj/machinery/door/window/brigdoor/security/cell{
+	dir = 8;
 	id = "Cell 2";
-	name = "Cell 2";
-	dir = 8
+	name = "Cell 2"
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -9457,9 +9472,9 @@
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /obj/machinery/door/window/brigdoor/security/cell{
+	dir = 8;
 	id = "Cell 3";
-	name = "Cell 3";
-	dir = 8
+	name = "Cell 3"
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -12305,7 +12320,9 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/auto_name/north,
+/obj/machinery/power/apc/auto_name/north{
+	pixel_y = 23
+	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "eVV" = (
@@ -18325,22 +18342,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
-"hAd" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/door/airlock/external{
-	name = "Shipbreaking External Access"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
-/turf/open/floor/plating,
-/area/escapepodbay)
 "hAf" = (
 /obj/structure/window/reinforced/spawner/east,
 /obj/structure/railing{
@@ -24130,9 +24131,9 @@
 /area/maintenance/fore)
 "jYA" = (
 /obj/machinery/conveyor{
+	dir = 4;
 	id = "garbage";
-	name = " recycler conveyor belt";
-	dir = 4
+	name = " recycler conveyor belt"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -24465,22 +24466,6 @@
 /obj/structure/lattice/catwalk,
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
-"kfe" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Shipbreaking Bay"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
-/turf/open/floor/plasteel,
-/area/escapepodbay)
 "kfk" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -28282,8 +28267,8 @@
 /obj/structure/table/wood,
 /obj/item/taperecorder,
 /obj/item/storage/secure/safe{
-	pixel_y = -28;
-	pixel_x = 6
+	pixel_x = 6;
+	pixel_y = -28
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
@@ -34085,9 +34070,9 @@
 "oeo" = (
 /obj/machinery/recycler,
 /obj/machinery/conveyor{
+	dir = 4;
 	id = "garbage";
-	name = " recycler conveyor belt";
-	dir = 4
+	name = " recycler conveyor belt"
 	},
 /turf/open/floor/plasteel/burnt,
 /area/maintenance/disposal)
@@ -36442,8 +36427,8 @@
 	layer = 2.9
 	},
 /obj/machinery/door/window/eastleft{
-	name = "Mail";
-	dir = 2
+	dir = 2;
+	name = "Mail"
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
@@ -38951,6 +38936,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"qiV" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/door/airlock/external{
+	name = "Shipbreaking External Access"
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/escapepodbay)
 "qjj" = (
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel/grimy,
@@ -39928,9 +39925,9 @@
 /area/maintenance/port)
 "qBV" = (
 /obj/machinery/conveyor{
+	dir = 6;
 	id = "garbage";
-	name = " recycler conveyor belt";
-	dir = 6
+	name = " recycler conveyor belt"
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
@@ -42143,19 +42140,6 @@
 	},
 /turf/open/floor/wood,
 /area/maintenance/port/fore)
-"rAN" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/machinery/door/airlock/external{
-	name = "Shipbreaking External Access"
-	},
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
-/turf/open/floor/plating,
-/area/escapepodbay)
 "rAR" = (
 /obj/structure/railing{
 	dir = 4
@@ -46187,6 +46171,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"tmd" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/airlock/external{
+	name = "Shipbreaking External Access"
+	},
+/turf/open/floor/plating,
+/area/escapepodbay)
 "tmx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -50427,7 +50426,9 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/auto_name/north,
+/obj/machinery/power/apc/auto_name/north{
+	pixel_y = 23
+	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "uXD" = (
@@ -50577,9 +50578,9 @@
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /obj/machinery/door/window/brigdoor/security/cell{
+	dir = 8;
 	id = "Cell 1";
-	name = "Cell 1";
-	dir = 8
+	name = "Cell 1"
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -89337,7 +89338,7 @@ fCV
 jMF
 tNO
 psN
-kfe
+bok
 jjC
 hfv
 idJ
@@ -89838,7 +89839,7 @@ xSu
 rch
 rch
 mcq
-hAd
+tmd
 rch
 rch
 mcq
@@ -90346,7 +90347,7 @@ xSu
 xSu
 xSu
 rch
-rAN
+qiV
 rch
 xSu
 ylr

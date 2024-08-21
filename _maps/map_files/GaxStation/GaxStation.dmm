@@ -14547,24 +14547,6 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/security/brig)
-"gNl" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/maintenance{
-	name = "Shipbreaking Maintenance"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/turf_decal/ramp_middle,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
-/turf/open/floor/plating,
-/area/maintenance/department/eva)
 "gNJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -16024,8 +16006,8 @@
 /obj/structure/closet/secure_closet/brig,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /obj/machinery/airalarm{
-	pixel_y = -24;
-	dir = 1
+	dir = 1;
+	pixel_y = -24
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -16413,22 +16395,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"hFT" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/door/airlock/external{
-	name = "Shipbreaking External Access"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
-/turf/open/floor/plating,
-/area/escapepodbay)
 "hGw" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -22589,19 +22555,6 @@
 	},
 /turf/open/space/basic,
 /area/solar/port/aft)
-"kMi" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/machinery/door/airlock/external{
-	name = "Shipbreaking External Access"
-	},
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
-/turf/open/floor/plating,
-/area/escapepodbay)
 "kMo" = (
 /obj/structure/chair/pew/right{
 	dir = 1
@@ -22949,6 +22902,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"kXQ" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/door/airlock/external{
+	name = "Shipbreaking External Access"
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/escapepodbay)
 "kYc" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -34526,8 +34491,8 @@
 	id = "chapelgun";
 	name = "Mass Driver Controller";
 	pixel_x = -24;
-	req_access = list("chapel_office");
-	pixel_y = -4
+	pixel_y = -4;
+	req_access = list("chapel_office")
 	},
 /turf/open/floor/plating,
 /area/chapel/office)
@@ -36953,6 +36918,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"rPy" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/airlock/external{
+	name = "Shipbreaking External Access"
+	},
+/turf/open/floor/plating,
+/area/escapepodbay)
 "rPz" = (
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 1
@@ -46218,6 +46198,23 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
+"wqX" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/maintenance{
+	name = "Shipbreaking Maintenance"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/ramp_middle,
+/turf/open/floor/plating,
+/area/maintenance/department/eva)
 "wqZ" = (
 /obj/machinery/light{
 	dir = 1
@@ -95665,7 +95662,7 @@ cBB
 wUI
 jcQ
 myl
-gNl
+wqX
 nwQ
 lSl
 oxf
@@ -97461,7 +97458,7 @@ vRP
 vRP
 iLQ
 iLQ
-hFT
+rPy
 iLQ
 iLQ
 iLQ
@@ -97975,7 +97972,7 @@ vRP
 aCD
 aCD
 eQY
-kMi
+kXQ
 eQY
 aCD
 vRP

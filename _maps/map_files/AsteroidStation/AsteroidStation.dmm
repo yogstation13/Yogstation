@@ -28513,6 +28513,22 @@
 "ibk" = (
 /turf/open/floor/plating,
 /area/maintenance/central)
+"ibr" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Shipbreaking Bay"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/ramp_middle,
+/turf/open/floor/plasteel,
+/area/escapepodbay)
 "ibs" = (
 /obj/structure/chair/sofa/corner{
 	dir = 4
@@ -29406,19 +29422,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"irf" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/machinery/door/airlock/external{
-	name = "Shipbreaking External Access"
-	},
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
-/turf/open/floor/plating/airless,
-/area/escapepodbay)
 "irh" = (
 /obj/effect/turf_decal/stripes{
 	dir = 8
@@ -30608,23 +30611,6 @@
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"iKH" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Shipbreaking Bay"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/ramp_middle,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
-/turf/open/floor/plasteel,
-/area/escapepodbay)
 "iKT" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
 	dir = 8
@@ -54249,6 +54235,21 @@
 /obj/structure/dresser,
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
+"pVI" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/airlock/external{
+	name = "Shipbreaking External Access"
+	},
+/turf/open/floor/plasteel,
+/area/escapepodbay)
 "pVK" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -59987,6 +59988,18 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/captain)
+"rJO" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/door/airlock/external{
+	name = "Shipbreaking External Access"
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/escapepodbay)
 "rJT" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -68108,22 +68121,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"uam" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/door/airlock/external{
-	name = "Shipbreaking External Access"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
-/turf/open/floor/plasteel,
-/area/escapepodbay)
 "uau" = (
 /obj/effect/turf_decal/stripes/white/line,
 /turf/open/floor/plasteel,
@@ -125215,7 +125212,7 @@ sFM
 aXI
 sVl
 msW
-iKH
+ibr
 shY
 shY
 rFs
@@ -127011,7 +127008,7 @@ msb
 msb
 rUZ
 wgX
-uam
+pVI
 wgX
 wgX
 aNY
@@ -127525,7 +127522,7 @@ aES
 aNg
 rUZ
 rUZ
-irf
+rJO
 rUZ
 rUZ
 acb
