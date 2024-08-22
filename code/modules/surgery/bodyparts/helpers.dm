@@ -178,6 +178,8 @@
 			L = new /obj/item/bodypart/r_leg()
 		if(BODY_ZONE_CHEST)
 			L = new /obj/item/bodypart/chest()
+	if((L.body_part & LEG_LEFT|LEG_RIGHT) && (DIGITIGRADE in dna?.species?.species_traits))
+		L.set_digitigrade(TRUE)
 	if(L)
 		L.update_limb(fixed_icon, src)
 		if(robotic)
