@@ -100,14 +100,12 @@
 /obj/item/radio/intercom/can_receive(freq, list/levels)
 	if(levels != RADIO_NO_Z_LEVEL_RESTRICTION)
 		var/turf/position = get_turf(src)
-		if(isnull(position) || !(position.z in levels))
+		if(isnull(position) || !(position.get_virtual_z_level() in levels))
 			return FALSE
 	if(freq == FREQ_SYNDICATE)
-		if(!(src.syndie))
+		if(!(syndie))
 			return FALSE//Prevents broadcast of messages over devices lacking the encryption
-
 	return TRUE
-
 
 /obj/item/radio/intercom/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, list/message_mods = list())
 	if(message_mods[RADIO_EXTENSION] == MODE_INTERCOM)
@@ -149,3 +147,8 @@
 	pixel_shift = 29
 	inverse = TRUE
 	materials = list(/datum/material/iron = 75, /datum/material/glass = 25)
+
+/obj/item/radio/intercom/chapel/Initialize(mapload, ndir, building)
+	. = ..()
+	set_frequency(1481)
+	set_broadcasting(TRUE)

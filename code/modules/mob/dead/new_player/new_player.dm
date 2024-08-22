@@ -536,3 +536,6 @@
 	return TRUE
 
 #undef RESET_HUD_INTERVAL
+
+/mob/dead/new_player/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+	return

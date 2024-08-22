@@ -71,14 +71,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	/// If true, use_command can be toggled at will.
 	var/command = FALSE
 
+	var/headset = FALSE
+
 	///makes anyone who is talking through this anonymous.
 	var/anonymize = FALSE
 
-	
-
-	// Encryption key handling
-	var/obj/item/encryptionkey/keyslot
-	var/obj/item/encryptionkey/keyslot2
 	/// If true, can hear the special binary channel.
 	var/translate_binary = FALSE
 	/// If true, can say/hear on the special CentCom channel.
@@ -89,25 +86,17 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/list/channels
 	/// associative list of the encrypted radio channels this radio can listen/broadcast to, of the form: list(channel name = channel frequency)
 	var/list/secure_radio_connections
+	// If true, radio doesn't make sound effects (ie for Syndicate internal radio implants)
+	var/radio_silent = FALSE
 	var/list/radio_sounds = list('yogstation/sound/effects/radio1.ogg','yogstation/sound/effects/radio2.ogg','yogstation/sound/effects/radio3.ogg')
 
 	var/const/FREQ_LISTENING = 1
 	//FREQ_BROADCASTING = 2
 
-/obj/item/radio/suicide_act(mob/living/user)
-	talk_into(user, pick_list_replacements(BRAIN_DAMAGE_FILE, "brain_damage"), null, SPAN_COMMAND)
-	use_command = TRUE // converts the radio in to use LOUD per poll.
-	return OXYLOSS // you die from oxygen loss by yelling the brain damage line at full volume
-
-/obj/item/radio/proc/set_frequency(new_frequency)
-	SEND_SIGNAL(src, COMSIG_RADIO_NEW_FREQUENCY, args)
-	remove_radio(src, frequency)
-	frequency = add_radio(src, new_frequency)
-
 /obj/item/radio/Initialize(mapload)
 	wires = new /datum/wires/radio(src)
 	if(prison_radio)
-		wires.cut(WIRE_TX) // OH GOD WHY
+		wires.cut(WIRE_TX, null) // OH GOD WHY
 	secure_radio_connections = list()
 	. = ..()
 
@@ -132,13 +121,14 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	remove_radio(src, frequency)
 	frequency = add_radio(src, new_frequency)
 
+
 /obj/item/radio/proc/recalculateChannels()
 	resetChannels()
 
 	if(keyslot)
-		for(var/ch_name in keyslot.channels)
-			if(!(ch_name in channels))
-				channels[ch_name] = keyslot.channels[ch_name]
+		for(var/channel_name in keyslot.channels)
+			if(!(channel_name in channels))
+				channels[channel_name] = keyslot.channels[channel_name]
 
 		if(keyslot.translate_binary)
 			translate_binary = TRUE
@@ -157,6 +147,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	translate_binary = FALSE
 	syndie = FALSE
 	independent = FALSE
+
+///goes through all radio channels we should be listening for and readds them to the global list
+/obj/item/radio/proc/readd_listening_radio_channels()
+	for(var/channel_name in channels)
+		add_radio(src, GLOB.radiochannels[channel_name])
+
+	add_radio(src, FREQ_COMMON)
 
 /obj/item/radio/proc/make_syndie() // Turns normal radios into Syndicate radios!
 	qdel(keyslot)
@@ -205,8 +202,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		should_be_listening = listening
 
 	if(listening && on)
-		recalculateChannels()
-		add_radio(src, frequency)
+		readd_listening_radio_channels()
 	else if(!listening)
 		remove_radio_all(src)
 
@@ -356,12 +352,12 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	talk_into(speaker, raw_message, , spans, language=message_language, message_mods=filtered_mods)
 
-/// Checks if this radio can receive on the given frequency.
+// Checks if this radio can receive on the given frequency.
 /obj/item/radio/proc/can_receive(input_frequency, list/levels)
 	// deny checks
 	if (levels != RADIO_NO_Z_LEVEL_RESTRICTION)
 		var/turf/position = get_turf(src)
-		if(!position || !(position.z in levels))
+		if(!position || !(position.get_virtual_z_level() in levels))
 			return FALSE
 
 	if (input_frequency == FREQ_SYNDICATE && !syndie)
@@ -453,7 +449,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 				. = TRUE
 
 /obj/item/radio/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] starts bouncing [src] off [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message("<span class='suicide'>[user] starts bouncing [src] off [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return BRUTELOSS
 
 /obj/item/radio/examine(mob/user)
@@ -516,14 +512,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	subspace_transmission = TRUE
 	subspace_switchable = TRUE
 	dog_fashion = null
-
-/obj/item/radio/borg/resetChannels()
-	. = ..()
-
-	var/mob/living/silicon/robot/R = loc
-	if(istype(R))
-		for(var/ch_name in R.model.radio_channels)
-			channels[ch_name] = TRUE
 
 /obj/item/radio/borg/syndicate
 	syndie = TRUE

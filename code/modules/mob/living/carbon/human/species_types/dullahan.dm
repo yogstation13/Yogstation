@@ -24,7 +24,7 @@
 
 /datum/species/dullahan/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	H.flags_1 &= ~HEAR_1
+	H.lose_hearing_sensitivity(TRAIT_GENERIC)
 	var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
 	if(head)
 		head.drop_limb()
@@ -150,9 +150,8 @@
 			var/datum/species/dullahan/D = H.dna.species
 			D.update_vision_perspective(H)
 
-/obj/item/dullahan_relay
-	var/mob/living/owner
-	flags_1 = HEAR_1
+/obj/item/dullahan_relay/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
+	owner.Hear(arglist(args))
 
 /obj/item/dullahan_relay/Initialize(mapload,new_owner)
 	. = ..()

@@ -115,11 +115,11 @@
 					playsound(src, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
 					return
 				else
-					for(var/obj/machinery/telecomms/linked_machine in links)
-						remove_link(linked_machine)
+					for(var/obj/machinery/telecomms/T in links)
+						remove_link(T)
 					network = params["value"]
 					links = list()
-					current_user.log_message("has changed the network for [src] to [network].", LOG_GAME)
+					log_game("[key_name(usr)] has changed the network for [src] at [AREACOORD(src)] to [network].")
 					. = TRUE
 		if("tempfreq")
 			if(params["value"])
@@ -140,12 +140,12 @@
 			. = TRUE
 		if("unlink")
 			var/obj/machinery/telecomms/machine_to_unlink = links[text2num(params["value"])]
-			if(machine_to_unlink)
-				. = remove_link(machine_to_unlink, current_user)
+			if(T)
+				. = remove_link(T, usr)
 		if("link")
 			if(heldmultitool)
-				var/obj/machinery/telecomms/machine_to_link = heldmultitool.buffer
-				. = add_new_link(machine_to_link, current_user)
+				var/obj/machinery/telecomms/T = heldmultitool.target
+				. = add_new_link(T, usr)
 		if("buffer") // Yogs start -- holotool support
 			if(heldmultitool)
 				multitool_set_buffer(usr, heldmultitool, src)
@@ -158,7 +158,7 @@
 	add_act(action, params)
 	. = TRUE
 
-/// Adds new_connection to src's links list AND vice versa. Also updates `links_by_telecomms_type`.
+///adds new_connection to src's links list AND vice versa. also updates links_by_telecomms_type
 /obj/machinery/telecomms/proc/add_new_link(obj/machinery/telecomms/new_connection, mob/user)
 	if(!istype(new_connection) || new_connection == src)
 		return FALSE
@@ -168,15 +168,16 @@
 
 	links |= new_connection
 	new_connection.links |= src
+	new_connection.ui_update()
 
 	LAZYADDASSOCLIST(links_by_telecomms_type, new_connection.telecomms_type, new_connection)
 	LAZYADDASSOCLIST(new_connection.links_by_telecomms_type, telecomms_type, src)
 
 	if(user)
-		user.log_message("linked [src] for [new_connection].", LOG_GAME)
+		log_game("[key_name(user)] linked [src] for [new_connection] at [AREACOORD(src)].")
 	return TRUE
 
-/// Removes old_connection from src's links list AND vice versa. Also updates `links_by_telecomms_type`.
+///removes old_connection from src's links list AND vice versa. also updates links_by_telecomms_type
 /obj/machinery/telecomms/proc/remove_link(obj/machinery/telecomms/old_connection, mob/user)
 	if(!istype(old_connection) || old_connection == src)
 		return FALSE
@@ -185,12 +186,15 @@
 		links -= old_connection
 		LAZYREMOVEASSOC(links_by_telecomms_type, old_connection.telecomms_type, old_connection)
 
+
 	if(src in old_connection.links)
 		old_connection.links -= src
 		LAZYREMOVEASSOC(old_connection.links_by_telecomms_type, telecomms_type, src)
 
+	old_connection.ui_update()
+
 	if(user)
-		user.log_message("unlinked [src] and [old_connection].", LOG_GAME)
+		log_game("[key_name(user)] unlinked [src] and [old_connection] at [AREACOORD(src)].")
 
 	return TRUE
 

@@ -488,6 +488,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 //////////////
 
 /client/Del()
+	if(!gc_destroyed)
+		Destroy() //Clean up signals and timers.
+	return ..()
+
+/client/Destroy()
 	log_access("Logout: [key_name(src)]")
 	if(holder)
 		adminGreet(1)

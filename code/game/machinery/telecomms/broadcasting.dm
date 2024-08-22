@@ -158,8 +158,7 @@
 		if (TRANSMISSION_SUBSPACE)
 			// Reaches any radios on the levels
 			var/list/all_radios_of_our_frequency = GLOB.all_radios["[frequency]"]
-			if(LAZYLEN(all_radios_of_our_frequency))
-				radios = all_radios_of_our_frequency.Copy()
+			radios = all_radios_of_our_frequency.Copy()
 
 			for(var/obj/item/radio/subspace_radio in radios)
 				if(!subspace_radio.can_receive(frequency, signal_reaches_every_z_level))
@@ -187,9 +186,10 @@
 	var/list/receive = get_hearers_in_radio_ranges(radios)
 
 	// Cut out mobs with clients who are admins and have radio chatter disabled.
-	for(var/mob/R in receive)
-		if (R.client && R.client.holder && !(R.client.prefs.chat_toggles & CHAT_RADIO))
-			receive -= R
+	for(var/atom/movable/hearer as anything in receive)
+		if(!hearer)
+			stack_trace("null found in the hearers list returned by the spatial grid. this is bad")
+			continue
 
 	// Add observers who have ghost radio enabled.
 	for(var/mob/dead/observer/M in GLOB.player_list)
@@ -224,7 +224,7 @@
 	var/log_text = "\[[get_radio_name(frequency)]\] [spans_part]\"[message]\" (language: [lang_name])"
 
 	var/mob/source_mob = virt.source
-	if(istype(source_mob))
+	if(ismob(source_mob))
 		source_mob.log_message(log_text, LOG_TELECOMMS)
 	else
 		log_telecomms("[virt.source] [log_text] [loc_name(get_turf(virt.source))]")

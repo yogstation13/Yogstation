@@ -289,7 +289,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 			continue
 		if(!M.client || !client) //client is so that ghosts don't have to listen to mice
 			continue
-		if(get_dist(M, src) > 7 || M.z != z) //they're out of range of normal hearing
+		if(M.get_virtual_z_level() != get_virtual_z_level() || get_dist(M, src) > 7 ) //they're out of range of normal hearing
 			if(eavesdrop_range && !(M.client.prefs.chat_toggles & CHAT_GHOSTWHISPER)) //they're whispering and we have hearing whispers at any range off
 				continue
 			if(!(M.client.prefs.chat_toggles & CHAT_GHOSTEARS)) //they're talking normally and we have hearing at any range off
@@ -304,8 +304,10 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		eavesrendered = compose_message(src, message_language, eavesdropping, , spans, message_mods)
 
 	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
-	for(var/_AM in listening)
-		var/atom/movable/AM = _AM
+	for(var/atom/movable/AM as anything in listening)
+		if(!AM)
+			stack_trace("somehow theres a null returned from get_hearers_in_view() in send_speech!")
+			continue
 		if(eavesdrop_range && get_dist(source, AM) > message_range && !(the_dead[AM]))
 			AM.Hear(eavesrendered, src, message_language, eavesdropping, , spans, message_mods)
 		else
@@ -371,7 +373,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 
 /mob/living/proc/radio(message, list/message_mods = list(), list/spans, language)
 	var/obj/item/implant/radio/imp = locate() in src
-	if(imp && imp.radio.on)
+	if(imp?.radio.is_on())
 		if(message_mods[MODE_HEADSET])
 			imp.radio.talk_into(src, message, null, spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
