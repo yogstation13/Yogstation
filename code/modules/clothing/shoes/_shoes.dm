@@ -16,7 +16,6 @@
 	var/equipped_before_drop = FALSE
 	var/xenoshoe = NO_DIGIT  // Check for if shoes can be worn by straight legs (NO_DIGIT) which is default, both / hybrid (EITHER_STYLE), or digitigrade only (YES_DIGIT)
 	var/mutantrace_variation = NONE // Assigns shoes to have variations for if worn clothing doesn't enforce straight legs (such as cursed jumpskirts)
-	var/adjusted = FALSE // Default needed to make the above work
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, RAD = 0, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/shoes/suicide_act(mob/living/carbon/user)
@@ -60,8 +59,6 @@
 	. += bloody_shoes
 
 /obj/item/clothing/shoes/equipped(mob/user, slot)
-	if(adjusted)
-		adjusted = FALSE
 	if(!(mutantrace_variation & DIGITIGRADE_VARIATION) && ishuman(user))
 		if(slot_flags & slot)
 			ADD_TRAIT(user, TRAIT_DIGI_SQUISH, REF(src))
