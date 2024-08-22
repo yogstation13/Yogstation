@@ -180,6 +180,8 @@
 #define TRAIT_NOCLONE			"noclone" // No cloning
 #define TRAIT_NODEFIB			"nodefib" // No defibbing
 #define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp
+#define TRAIT_DIGITIGRADE		"digitigrade" // the funny lizard legs
+#define TRAIT_DIGI_SQUISH		"digi_squish" // squished funny lizard legs
 #define TRAIT_EAT_MORE			"eat_more" //You get hungry three times as fast
 #define TRAIT_BOTTOMLESS_STOMACH "bottomless_stomach" // Can never be full
 #define TRAIT_MESONS			"mesons"
