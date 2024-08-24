@@ -101,18 +101,11 @@
 	. = ..()
 	if(is_acid_immune(L)) //immunity to the acid doesn't mean immunity to the wet
 		return
-	if(ishuman(L)) //inject metabolites
-		var/mob/living/carbon/human/humie = L
-		if(humie.reagents.get_reagent_amount(/datum/reagent/toxic_metabolites) <= 25) //don't let them get up to the absolute highest metabolites tier, but they should still need to be worried
-			humie.reagents.add_reagent(/datum/reagent/toxic_metabolites, 2)
-	else
-		L.apply_damage_type(0.5, BURN)
-		L.apply_damage_type(0.5, TOX)
+	L.apply_damage_type(0.5, BURN)
+	L.apply_damage_type(0.5, TOX)
 
 /datum/weather/rain/acid/proc/is_acid_immune(atom/L)
 	while (L && !isturf(L))
-		if(HAS_TRAIT(L, TRAIT_SULPH_PIT_IMMUNE))
-			return TRUE
 		if(isliving(L))// if we're a non immune mob inside an immune mob we have to reconsider if that mob is immune to protect ourselves
 			var/mob/living/the_mob = L
 			var/acid_armour = the_mob.getarmor(null, ACID)

@@ -144,6 +144,6 @@ window "window"
 		visited-color = #ff00ff
 		style = ""
 		enable-http-images = false
-		max-lines = 1000
+		max-lines = 300
 		image = ""
 

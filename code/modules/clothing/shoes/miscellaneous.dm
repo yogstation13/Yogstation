@@ -1,4 +1,4 @@
-/obj/item/clothing/shoes/proc/step_action() //this was made to rewrite clown shoes squeaking
+/obj/item/clothing/shoes/step_action() //this was made to rewrite clown shoes squeaking
 	SEND_SIGNAL(src, COMSIG_SHOES_STEP_ACTION)
 
 /obj/item/clothing/shoes/combat //basic syndicate combat boots for nuke ops and mob corpses

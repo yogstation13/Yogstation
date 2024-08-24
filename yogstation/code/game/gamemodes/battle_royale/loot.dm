@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/claymore/bone = 3,
 		/obj/item/melee/skateboard/hoverboard = 3,
 		/obj/item/pickaxe/silver = 3,
-		/obj/item/melee/stinger_sword = 3,
+
 		/obj/item/adamantineshield = 3,
 		/obj/item/rune_scimmy = 3, //starts at 20 force, surprisingly good
 		/obj/item/storage/toolbox/mechanical/old/clean = 3,
@@ -203,7 +203,6 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/kitchen/knife/rainbowknife = 2, //has possible cloning damage, watch out
 
 		/obj/item/melee/spear/bonespear = 1,
-		/obj/item/stinger_trident = 1,
 		/obj/item/pen/red/edagger = 1,
 		/obj/item/melee/chainsaw = 1,
 		/obj/item/fireaxe/metal_h2_axe = 1,
@@ -358,7 +357,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/slimecross/stabilized/red = -1,
 		/obj/item/autosurgeon/suspicious/reviver = -1,
 		/obj/effect/spawner/lootdrop/ammobox = -1,
-		/obj/item/slime_sling = -1,
 
 		/obj/item/autosurgeon/suspicious/airshoes = -2,
 		/obj/item/grenade/syndieminibomb = -2,
@@ -386,7 +384,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/antag_spawner/contract = -3, //might be a terrible idea to add this
 		/obj/item/nullrod/hermes = -3,
 		/obj/item/battleroyale/extraarm = -3,
-		/obj/item/clothing/head/yogs/tar_king_crown = -3,
 
 		/obj/item/guardiancreator/tech/random = -4,
 		/obj/item/storage/belt/military/shadowcloak = -4, // Very strong for short bursts
@@ -405,7 +402,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/book/granter/martial/carp = -5,
 		/obj/item/battleroyale/martial/worldbreaker = -5, // Shaking the ground of Moria
 		/obj/item/bodypart/l_arm/robot/buster = -5,
-		/obj/item/demon_core = -5,
 
 		/obj/item/autosurgeon/suspicious/spinalspeed = -6, // No opportunity cost speed boost
 

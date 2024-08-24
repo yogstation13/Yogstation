@@ -17597,7 +17597,6 @@
 /area/centcom/holding)
 "aQQ" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
-/obj/effect/decal/cleanable/leaper_sludge,
 /mob/living/simple_animal/hostile/carp/ranged/chaos,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
@@ -20860,7 +20859,6 @@
 /area/centcom/testchamber)
 "aZg" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
-/obj/effect/decal/cleanable/leaper_sludge,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aZi" = (

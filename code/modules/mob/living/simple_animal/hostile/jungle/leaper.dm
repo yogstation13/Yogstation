@@ -59,16 +59,6 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	duration = 3
 
-/obj/effect/temp_visual/leaper_projectile_impact/Initialize(mapload)
-	. = ..()
-	new /obj/effect/decal/cleanable/leaper_sludge(get_turf(src))
-
-/obj/effect/decal/cleanable/leaper_sludge
-	name = "leaper sludge"
-	desc = "A small pool of sludge, containing trace amounts of leaper venom."
-	icon = 'icons/effects/tomatodecal.dmi'
-	icon_state = "tomato_floor1"
-
 /obj/structure/leaper_bubble
 	name = "leaper bubble"
 	desc = "A floating bubble containing leaper venom. The contents are under a surprising amount of pressure."

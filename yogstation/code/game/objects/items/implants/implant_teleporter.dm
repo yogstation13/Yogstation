@@ -131,10 +131,3 @@
 	pointofreturn = /area/ruin/space/has_grav/syndiederelict
 	usewhitelist = TRUE
 	retrievalmessage = "Agent retrieval complete."
-
-/obj/item/implant/teleporter/demon
-	pointofreturn = /area/ruin/powered/sinden
-	usewhitelist = TRUE
-	punishment = TRUE
-	punishment_damage = 50
-	retrievalmessage = "You think you can just abandon your contract?"

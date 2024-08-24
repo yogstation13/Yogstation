@@ -1,3 +1,6 @@
+/obj/item/clothing/proc/step_action() // for squeaking
+	SEND_SIGNAL(src, COMSIG_CLOTHING_STEP_ACTION)
+
 /obj/item/clothing
 	name = "clothing"
 	resistance_flags = FLAMMABLE

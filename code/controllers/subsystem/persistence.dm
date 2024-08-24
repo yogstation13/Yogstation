@@ -1,11 +1,6 @@
 #define FILE_ANTAG_REP "data/AntagReputation.json"
 #define ROUNDCOUNT_ENGINE_JUST_EXPLODED 0
 
-//yogs edit
-#define NEXT_MINETYPE_JUNGLE 0
-#define NEXT_MINETYPE_LAVALAND 1
-#define NEXT_MINETYPE_EITHER 2
-//yogs end
 SUBSYSTEM_DEF(persistence)
 	name = "Persistence"
 	init_order = INIT_ORDER_PERSISTENCE
@@ -417,21 +412,6 @@ SUBSYSTEM_DEF(persistence)
 			original_human.save_persistent_scars(TRUE)
 		else
 			original_human.save_persistent_scars()
-
-
-/datum/controller/subsystem/persistence/proc/LoadMinetype()
-	var/json_file = file("data/next_minetype.json")
-	if(fexists(json_file))
-		next_minetype = json_decode(file2text(json_file))
-	else 
-		next_minetype = NEXT_MINETYPE_EITHER
-	SaveMinetype()
-
-/datum/controller/subsystem/persistence/proc/SaveMinetype(minetype = NEXT_MINETYPE_EITHER)
-	var/json_file = file("data/next_minetype.json")
-	fdel(json_file)
-	WRITE_FILE(json_file, json_encode(minetype))
-
 
 #define DELAMINATION_COUNT_FILEPATH "data/rounds_since_delamination.txt"
 

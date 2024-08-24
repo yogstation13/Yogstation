@@ -34,8 +34,7 @@
 			var/list/static/clear_below_typecache = typecacheof(list(
 				/obj/structure/spawner,
 				/mob/living/simple_animal,
-				/obj/structure/flora,
-				/obj/structure/herb //YOGS EDIT
+				/obj/structure/flora
 			))
 			for(var/turf/T as anything in affected_turfs)
 				for(var/atom/thing as anything in T)
