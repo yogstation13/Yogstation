@@ -160,6 +160,10 @@
 	//because it's a downscaled large image, it starts out in the bottom left corner by default
 	holder.vis_contents += onedrop
 
+/datum/status_effect/raindrops/refresh(effect, ...) //also spawn a droplet every time we're refreshed, makes the rain look far more dense if we're standing outside
+	droplet()
+	return ..()
+
 /datum/status_effect/raindrops/on_remove()
 	owner.clear_fullscreen("raindrops")
 	if(holder && !QDELETED(holder))
