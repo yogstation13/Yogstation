@@ -151,6 +151,9 @@
 /datum/status_effect/raindrops/tick(delta_time, times_fired) //happening here for now
 	. = ..()
 	tick_interval = rand(0, 5) //next drop happens in a random amount of time
+	droplet()
+
+/datum/status_effect/raindrops/proc/droplet()
 	var/obj/effect/temp_visual/raindrops/onedrop = new(owner) //put it inside the mob so it follows the player as they move
 	onedrop.pixel_x += rand(-80, 480)
 	onedrop.pixel_y += rand(-80, 480) //get put somewhere randomly on the screen
