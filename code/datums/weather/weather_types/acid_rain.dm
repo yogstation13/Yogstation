@@ -65,6 +65,7 @@
 
 /datum/weather/rain/weather_act(mob/living/L)
 	if(L.mind || L.client) //could be pretty intensive, so only do this to things with players in them
+		L.apply_status_effect(/datum/status_effect/raindrops)
 		L.adjust_wet_stacks(3*log(2, (50*L.get_permeability(null, TRUE) + 10) / 10))
 		L.extinguish_mob() // permeability affects the negative fire stacks but not the extinguishing
 
@@ -139,8 +140,10 @@
  * this keeps track of the overlay and all raindrops
  */
 /datum/status_effect/raindrops
-	duration = 400 SECONDS //placeholder, long
+	id = "raindrops"
+	duration = 3 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
+	/// Fullscreen effect used to provide the visual to that player and only that player
 	var/atom/movable/screen/fullscreen/raindrops/holder
 
 /datum/status_effect/raindrops/on_creation(mob/living/new_owner, ...)
@@ -149,11 +152,12 @@
 	
 /datum/status_effect/raindrops/tick(delta_time, times_fired) //happening here for now
 	. = ..()
-	var/obj/effect/temp_visual/raindrops/onedrop = new(owner)
+	tick_interval = rand(0, 5) //next drop happens in a random amount of time
+	var/obj/effect/temp_visual/raindrops/onedrop = new(owner) //put it inside the mob so it follows the player as they move
+	onedrop.pixel_x += rand(-80, 480)
+	onedrop.pixel_y += rand(-80, 480) //get put somewhere randomly on the screen
+	//because it's a downscaled large image, it starts out in the bottom left corner by default
 	holder.vis_contents += onedrop
-
-/datum/status_effect/raindrops/refresh(effect, ...) //whenever we are refreshed, add a new raindrop
-	. = ..()
 
 /datum/status_effect/raindrops/on_remove()
 	owner.clear_fullscreen("raindrops")
@@ -178,7 +182,7 @@
 	icon_state = "raindrop"
 	appearance_flags = PIXEL_SCALE | RESET_TRANSFORM
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	duration = (0.5 SECONDS) //fades out over this time
+	duration = (0.8 SECONDS) //fades out over this time, not too long, not too slow
 
 /obj/effect/temp_visual/raindrops/Initialize(mapload)
 	. = ..()

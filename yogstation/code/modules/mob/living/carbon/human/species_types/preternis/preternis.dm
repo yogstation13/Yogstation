@@ -76,7 +76,6 @@
 		BP.max_damage = 35
 
 	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, PROC_REF(drain_power_from))
-	C.apply_status_effect(/datum/status_effect/raindrops)
 
 /datum/species/preternis/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()
