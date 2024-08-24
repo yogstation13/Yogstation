@@ -136,6 +136,8 @@
 	/// Whether the lights in this area aren't turned off when it's empty at roundstart
 	var/lights_always_start_on = FALSE
 
+	/// Whether to cycle brightness based on time of day
+	var/uses_daylight = FALSE
 	
 /**
   * A list of teleport locations
@@ -185,6 +187,8 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	if (unique)
 		GLOB.areas_by_type[type] = src
 	GLOB.areas += src
+	if(uses_daylight)
+		SSdaylight.add_lit_area(src)
 	return ..()
 
 /**
@@ -381,6 +385,9 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	if(!isnull(GLOB.delta_areas))
 		GLOB.delta_areas -= src
 	
+	//daylight cleanup
+	if(uses_daylight)
+		SSdaylight.remove_lit_area(src)
 	//machinery cleanup
 	STOP_PROCESSING(SSobj, src)
 	//turf cleanup
