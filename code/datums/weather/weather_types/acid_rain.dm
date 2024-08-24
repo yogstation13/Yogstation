@@ -28,7 +28,7 @@
 
 	immunity_type = WEATHER_RAIN
 
-	probability = 20
+	probability = 40
 
 	barometer_predictable = TRUE
 
@@ -95,7 +95,7 @@
 	 * So people can be immune to acid but not wet or immune to wet but not acid
 	 */
 
-	probability = 80
+	probability = 60
 
 	barometer_predictable = TRUE
 
@@ -134,7 +134,54 @@
 /**
  * I am squeezing every last drop of brain power to make this
  */
+
+/**
+ * this keeps track of the overlay and all raindrops
+ */
+/datum/status_effect/raindrops
+	duration = 400 SECONDS //placeholder, long
+	status_type = STATUS_EFFECT_REFRESH
+	var/atom/movable/screen/fullscreen/raindrops/holder
+
+/datum/status_effect/raindrops/on_creation(mob/living/new_owner, ...)
+	. = ..()
+	holder = new_owner.overlay_fullscreen("raindrops", /atom/movable/screen/fullscreen/raindrops)
+	
+/datum/status_effect/raindrops/tick(delta_time, times_fired) //happening here for now
+	. = ..()
+	var/obj/effect/temp_visual/raindrops/onedrop = new(owner)
+	holder.vis_contents += onedrop
+
+/datum/status_effect/raindrops/refresh(effect, ...) //whenever we are refreshed, add a new raindrop
+	. = ..()
+
+/datum/status_effect/raindrops/on_remove()
+	owner.clear_fullscreen("raindrops")
+	if(holder && !QDELETED(holder))
+		qdel(holder)
+	return ..()
+	
+/**
+ * This provides the images to only the person with it
+ */
 /atom/movable/screen/fullscreen/raindrops
 	icon_state = "raindrops"
 	appearance_flags = PIXEL_SCALE | RESET_TRANSFORM
 	plane = GRAVITY_PULSE_PLANE 
+	
+/**
+ * this is an individual raindrop, multiple of these are spawned and added to the fullscreen to emulate random raindrops
+ */
+/obj/effect/temp_visual/raindrops
+	plane = GRAVITY_PULSE_PLANE
+	icon = 'yogstation/icons/effects/160x160.dmi' //massive picture for smoother edges
+	icon_state = "raindrop"
+	appearance_flags = PIXEL_SCALE | RESET_TRANSFORM
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	duration = (0.5 SECONDS) //fades out over this time
+
+/obj/effect/temp_visual/raindrops/Initialize(mapload)
+	. = ..()
+	transform = matrix()/5 //we do this so it can larger if needed
+	animate(src, alpha = 0, time = duration)
+	
