@@ -151,8 +151,8 @@
 /datum/status_effect/raindrops/tick(delta_time, times_fired) //happening here for now
 	. = ..()
 	tick_interval = rand(0, 5) //next drop happens in a random amount of time
-	droplet()
-	droplet()
+	for(var/i in rand(1,2))
+		droplet()
 
 /datum/status_effect/raindrops/proc/droplet()
 	var/obj/effect/temp_visual/raindrops/onedrop = new(owner) //put it inside the mob so it follows the player as they move
@@ -162,8 +162,8 @@
 	holder.vis_contents += onedrop
 
 /datum/status_effect/raindrops/refresh(effect, ...) //also spawn a droplet every time we're refreshed, makes the rain look far more dense if we're standing outside
-	droplet()
-	droplet()
+	for(var/i in rand(1,2))
+		droplet()
 	return ..()
 
 /datum/status_effect/raindrops/on_remove()
