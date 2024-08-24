@@ -69,8 +69,6 @@
 		L.adjust_wet_stacks(3*log(2, (50*L.get_permeability(null, TRUE) + 10) / 10))
 		L.extinguish_mob() // permeability affects the negative fire stacks but not the extinguishing
 
-		L.overlay_fullscreen("raindrops", /atom/movable/screen/fullscreen/raindrops)
-
 		// if preternis, update wetness instantly when applying more water instead of waiting for the next life tick
 		if(ispreternis(L) || isjellyperson(L))
 			var/mob/living/carbon/human/H = L
