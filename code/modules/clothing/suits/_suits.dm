@@ -66,7 +66,7 @@
 		human_user.update_body_parts()
 
 /obj/item/clothing/suit/dropped(mob/user)
-	if(!(mutantrace_variation & DIGITIGRADE_VARIATION) && ishuman(user))
+	if(!(mutantrace_variation & DIGITIGRADE_VARIATION) && (flags_inv & HIDEJUMPSUIT) && ishuman(user))
 		REMOVE_TRAIT(user, TRAIT_DIGI_SQUISH, REF(src))
 		var/mob/living/carbon/human/human_user = user
 		human_user.update_inv_w_uniform()

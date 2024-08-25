@@ -126,7 +126,7 @@
 	if(ishuman(user))
 		var/update_suit = FALSE
 		var/mob/living/carbon/human/human_user = user
-		if(!(mutantrace_variation & DIGITIGRADE_VARIATION))
+		if(!(mutantrace_variation & DIGITIGRADE_VARIATION) && (body_parts_covered & LEGS))
 			REMOVE_TRAIT(user, TRAIT_DIGI_SQUISH, REF(src))
 			human_user.update_inv_shoes()
 			human_user.update_body_parts()
