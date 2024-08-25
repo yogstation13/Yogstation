@@ -1,5 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed engineer's hazard suit not using its alternate sprite"
-  - experiment: "Refactored digitigrade leg code"
