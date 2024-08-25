@@ -55,7 +55,7 @@
 	if(adjusted)
 		adjusted = FALSE
 
-	if(!(mutantrace_variation & DIGITIGRADE_VARIATION) && ishuman(user))
+	if(!(mutantrace_variation & DIGITIGRADE_VARIATION) && (flags_inv & HIDEJUMPSUIT) && ishuman(user))
 		if(slot_flags & slot)
 			ADD_TRAIT(user, TRAIT_DIGI_SQUISH, REF(src))
 		else
