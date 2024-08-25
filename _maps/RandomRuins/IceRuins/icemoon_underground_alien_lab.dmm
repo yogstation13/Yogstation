@@ -11,6 +11,14 @@
 /obj/machinery/clonepod,
 /turf/open/floor/plating/abductor,
 /area/ruin/powered/alien_lab)
+"cG" = (
+/obj/structure/door_assembly/door_assembly_abductor,
+/turf/open/floor/grass/snow,
+/area/icemoon/underground/explored)
+"ep" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating/abductor,
+/area/ruin/powered/alien_lab)
 "eK" = (
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 8
@@ -28,10 +36,6 @@
 /mob/living/carbon/human/moja,
 /turf/open/floor/plating/abductor,
 /area/ruin/powered/alien_lab)
-"iW" = (
-/obj/structure/flora/tree/dead,
-/turf/open/floor/grass/snow,
-/area/ruin/powered/alien_lab)
 "kT" = (
 /obj/effect/decal/cleanable/blood/gibs/old,
 /obj/effect/decal/cleanable/blood/gibs/down,
@@ -41,10 +45,6 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating/abductor,
 /area/ruin/powered/alien_lab)
-"lN" = (
-/obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/grass/snow,
-/area/ruin/powered/alien_lab)
 "mS" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
 /obj/structure/bed/abductor,
@@ -52,14 +52,18 @@
 /obj/item/organ/heart/gland/heals,
 /turf/open/floor/plating/abductor,
 /area/ruin/powered/alien_lab)
+"mW" = (
+/obj/structure/flora/tree/dead/jungle,
+/turf/open/floor/grass/snow,
+/area/icemoon/underground/explored)
 "nJ" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plating/abductor,
 /area/ruin/powered/alien_lab)
-"rg" = (
+"rL" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/grass/snow,
-/area/ruin/powered/alien_lab)
+/area/icemoon/underground/explored)
 "rY" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/abductor,
@@ -80,10 +84,6 @@
 /obj/effect/decal/cleanable/blood/gibs/down,
 /obj/effect/decal/cleanable/blood/gibs/down,
 /turf/open/floor/plating/abductor,
-/area/ruin/powered/alien_lab)
-"wa" = (
-/obj/structure/door_assembly/door_assembly_abductor,
-/turf/open/floor/grass/snow,
 /area/ruin/powered/alien_lab)
 "wD" = (
 /mob/living/simple_animal/hostile/abomination/altform2,
@@ -121,11 +121,6 @@
 /area/ruin/powered/alien_lab)
 "AR" = (
 /obj/machinery/light/broken,
-/turf/open/floor/plating/abductor,
-/area/ruin/powered/alien_lab)
-"AZ" = (
-/obj/structure/grille,
-/obj/effect/spawner/structure/window,
 /turf/open/floor/plating/abductor,
 /area/ruin/powered/alien_lab)
 "Be" = (
@@ -225,15 +220,22 @@
 /obj/machinery/abductor/pad,
 /turf/open/floor/plating/abductor,
 /area/ruin/powered/alien_lab)
+"NU" = (
+/turf/open/floor/grass/snow,
+/area/icemoon/underground/explored)
+"Or" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/grass/snow,
+/area/icemoon/underground/explored)
 "Qd" = (
 /obj/structure/table/abductor,
 /obj/item/organ/heart/ghetto,
 /turf/open/floor/plating/abductor,
 /area/ruin/powered/alien_lab)
-"QC" = (
-/obj/structure/flora/tree/dead/jungle,
+"QJ" = (
+/obj/structure/flora/tree/dead,
 /turf/open/floor/grass/snow,
-/area/ruin/powered/alien_lab)
+/area/icemoon/underground/explored)
 "TX" = (
 /obj/machinery/clonepod{
 	icon_state = "pod_g"
@@ -294,9 +296,6 @@
 	dir = 1
 	},
 /turf/open/floor/plating/abductor,
-/area/ruin/powered/alien_lab)
-"YZ" = (
-/turf/open/floor/grass/snow,
 /area/ruin/powered/alien_lab)
 
 (1,1,1) = {"
@@ -384,7 +383,7 @@ Jn
 Jn
 Jn
 Jn
-YZ
+NU
 fW
 fW
 fW
@@ -416,7 +415,7 @@ Nv
 Yw
 aw
 Jn
-YZ
+NU
 fW
 fW
 fW
@@ -448,7 +447,7 @@ Nv
 Nv
 Nv
 Jn
-YZ
+NU
 fW
 fW
 fW
@@ -480,7 +479,7 @@ mS
 Nv
 Nv
 Jn
-iW
+QJ
 fW
 fW
 fW
@@ -512,7 +511,7 @@ Nv
 xi
 Nv
 Jn
-YZ
+NU
 fW
 fW
 fW
@@ -544,7 +543,7 @@ Nv
 Mw
 vi
 Jn
-YZ
+NU
 fW
 fW
 fW
@@ -576,7 +575,7 @@ NG
 Jn
 Jn
 Jn
-YZ
+NU
 fW
 fW
 fW
@@ -603,9 +602,9 @@ fW
 fW
 Jn
 Be
-AZ
+ep
 Nv
-AZ
+ep
 CZ
 Jn
 fW
@@ -635,9 +634,9 @@ Jn
 Jn
 Jn
 Vn
-AZ
+ep
 Nv
-AZ
+ep
 XE
 Jn
 fW
@@ -667,9 +666,9 @@ Bk
 Nv
 Jn
 CZ
-AZ
+ep
 Nv
-AZ
+ep
 fP
 Jn
 fW
@@ -699,9 +698,9 @@ Nv
 gc
 Jn
 Ww
-AZ
+ep
 Nv
-AZ
+ep
 Vn
 Jn
 fW
@@ -731,9 +730,9 @@ Nv
 Bk
 Jn
 Xj
-AZ
+ep
 Nv
-AZ
+ep
 yO
 Jn
 fW
@@ -928,12 +927,12 @@ Nv
 Nv
 Nv
 Jn
-YZ
+NU
 Jn
 Xn
 Mz
 Jn
-YZ
+NU
 fW
 fW
 fW
@@ -960,12 +959,12 @@ Nv
 Nv
 AR
 Jn
-YZ
+NU
 Jn
 Jn
 Jn
 Jn
-YZ
+NU
 fW
 fW
 fW
@@ -992,12 +991,12 @@ Nv
 be
 Nv
 Jn
-YZ
-YZ
-YZ
-YZ
-YZ
-QC
+NU
+NU
+NU
+NU
+NU
+mW
 fW
 fW
 fW
@@ -1024,7 +1023,7 @@ Nv
 Nv
 Nv
 Jn
-YZ
+NU
 fW
 fW
 fW
@@ -1056,7 +1055,7 @@ Nv
 Nv
 Nv
 Jn
-YZ
+NU
 fW
 fW
 fW
@@ -1088,8 +1087,8 @@ Nv
 TX
 Nv
 Jn
-YZ
-YZ
+NU
+NU
 fW
 fW
 fW
@@ -1116,12 +1115,12 @@ fW
 Jn
 Nv
 Nv
-lN
+Or
 Nv
 rY
 Jn
-YZ
-YZ
+NU
+NU
 fW
 fW
 fW
@@ -1147,13 +1146,13 @@ fW
 fW
 Jn
 Jn
-YZ
-YZ
-YZ
+NU
+NU
+NU
 Jn
 Jn
-YZ
-rg
+NU
+rL
 fW
 fW
 fW
@@ -1174,17 +1173,17 @@ fW
 fW
 fW
 fW
-YZ
-YZ
+NU
+NU
 fW
-YZ
-YZ
-YZ
-YZ
-YZ
-YZ
-YZ
-YZ
+NU
+NU
+NU
+NU
+NU
+NU
+NU
+NU
 fW
 fW
 fW
@@ -1206,17 +1205,17 @@ fW
 fW
 fW
 fW
-rg
-YZ
-YZ
-YZ
-YZ
-YZ
-wa
-QC
-YZ
-YZ
-YZ
+rL
+NU
+NU
+NU
+NU
+NU
+cG
+mW
+NU
+NU
+NU
 fW
 fW
 fW
