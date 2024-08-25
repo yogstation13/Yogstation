@@ -263,8 +263,6 @@
 // /obj/item/clothing signals
 
 ///from [/mob/living/carbon/human/Move]: ()
-#define COMSIG_SHOES_STEP_ACTION "shoes_step_action"
-#define COMSIG_NECK_STEP_ACTION "neck_step_action"
 #define COMSIG_CLOTHING_STEP_ACTION "clothing_step_action"
 
 // /obj/item/implant signals

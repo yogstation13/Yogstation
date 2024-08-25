@@ -15,20 +15,6 @@
 	if(always_noslip)
 		clothing_flags |= NOSLIP
 
-/obj/item/clothing/shoes/clown_shoes/banana_shoes/step_action()
-	. = ..()
-	var/datum/component/material_container/bananium = GetComponent(/datum/component/material_container)
-	if(on)
-		if(bananium.get_material_amount(/datum/material/bananium) < 100)
-			on = !on
-			if(!always_noslip)
-				clothing_flags &= ~NOSLIP
-			update_appearance(UPDATE_ICON)
-			to_chat(loc, span_warning("You ran out of bananium!"))
-		else
-			new /obj/item/grown/bananapeel/specialpeel(get_step(src,turn(usr.dir, 180))) //honk
-			bananium.use_amount_mat(100, /datum/material/bananium)
-
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/attack_self(mob/user)
 	var/datum/component/material_container/bananium = GetComponent(/datum/component/material_container)
 	var/sheet_amount = bananium.retrieve_all()

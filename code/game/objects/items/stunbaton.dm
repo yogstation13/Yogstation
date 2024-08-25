@@ -1,7 +1,7 @@
 #define STUNBATON_DISCHARGE_INTERVAL 13 //amount of active processes it takes for the stun baton to start discharging
 /obj/item/melee/baton
 	name = "stun baton"
-	desc = "A stun baton for incapacitating people with."
+	desc = "Civil protection issue baton equipped with a toggleable electrocutive function to disable unruly citizens.."
 	icon = 'icons/obj/weapons/baton.dmi'
 	icon_state = "stunbaton"
 	item_state = "baton"
@@ -16,17 +16,17 @@
 
 	var/cooldown_check = 0
 	///how long we can't use this baton for after slapping someone with it. Does not account for melee attack cooldown (default of 0.8 seconds).
-	var/cooldown = 1.2 SECONDS
+	var/cooldown = 0.7 SECONDS
 	///how long a clown stuns themself for, or someone is stunned for if they are hit to >90 stamina damage
 	var/stunforce = 10 SECONDS
 	///how much stamina damage we deal per hit, this is combatted by energy armor
-	var/stamina_damage = 70
+	var/stamina_damage = 30
 	///are we turned on
 	var/status = FALSE
 	///the cell used by the baton
 	var/obj/item/stock_parts/cell/cell
 	///how much charge is deducted from the cell when we slap someone while on
-	var/hitcost = 1000
+	var/hitcost = 500
 	///% chance we hit someone with the correct side of the baton when thrown
 	var/throw_hit_chance = 35
 	///if not empty the baton starts with this type of cell

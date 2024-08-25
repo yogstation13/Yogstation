@@ -13,13 +13,6 @@
 	.=..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 
-/obj/item/clothing/shoes/yogs/cluwne/step_action()
-	if(footstep > 1)
-		playsound(src, "clownstep", 50, 1)
-		footstep = 0
-	else
-		footstep++
-
 /obj/item/clothing/shoes/yogs/cluwne/equipped(mob/user, slot)
 	. = ..()
 	if(!ishuman(user))

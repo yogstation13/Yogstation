@@ -31,10 +31,6 @@
 			RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(use_squeak))
 			RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(on_equip))
 			RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(on_drop))
-			if(istype(parent, /obj/item/clothing/shoes))
-				RegisterSignal(parent, COMSIG_SHOES_STEP_ACTION, PROC_REF(step_squeak))
-			if(istype(parent, /obj/item/clothing/neck))
-				RegisterSignal(parent, COMSIG_NECK_STEP_ACTION, PROC_REF(step_squeak))
 			if(istype(parent, /obj/item/clothing))
 				RegisterSignal(parent, COMSIG_CLOTHING_STEP_ACTION, PROC_REF(step_squeak))
 
