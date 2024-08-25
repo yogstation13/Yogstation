@@ -68568,15 +68568,13 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "tIJ" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Podbay Maintenence"
-	},
+/obj/machinery/door/airlock/maintenance,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
 "tIS" = (
