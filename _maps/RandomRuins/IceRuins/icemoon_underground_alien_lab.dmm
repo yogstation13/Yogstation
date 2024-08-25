@@ -124,7 +124,6 @@
 /turf/open/floor/plating/abductor,
 /area/ruin/powered/alien_lab)
 "AZ" = (
-/obj/structure/grille,
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating/abductor,
 /area/ruin/powered/alien_lab)
