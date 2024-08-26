@@ -307,6 +307,20 @@
 	return TRUE
 
 /proc/get_job_unavailable_error_message(retval, jobtitle)
+
+	if(islist(retval)) //for specialized experience it'll be passed a list (i realize this is jank but the info is passed all over the place in so many ways so this is the easiest way to do this without rewriting everything)
+		var/list/unexperienced = retval
+		var/printout = "You require more playtime in:"
+		var/initial = TRUE
+		for(var/i in unexperienced)
+			if(initial)
+				initial = FALSE
+			else
+				printout += ","
+			printout += " [i]"
+		printout += "."
+		return printout
+
 	switch(retval)
 		if(JOB_AVAILABLE)
 			return "[jobtitle] is available."
@@ -342,10 +356,12 @@
 		return JOB_UNAVAILABLE_GENERIC
 	if(!job.player_old_enough(client))
 		return JOB_UNAVAILABLE_ACCOUNTAGE
-	if(job.required_playtime_remaining(client) || job.specialized_playtime_remaining(client))
+	if(job.required_playtime_remaining(client))
 		return JOB_UNAVAILABLE_PLAYTIME
 	if(latejoin && !job.special_check_latejoin(client))
 		return JOB_UNAVAILABLE_GENERIC
+	if(job.specialized_playtime_remaining(client))
+		return job.specialized_playtime_remaining(client) //return the list of jobs not fully cleared
 	return JOB_AVAILABLE
 
 /mob/dead/new_player/proc/AttemptLateSpawn(rank)

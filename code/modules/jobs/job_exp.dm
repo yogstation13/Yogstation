@@ -64,23 +64,23 @@ GLOBAL_PROTECT(exp_to_update)
 	var/isexempt = C.prefs.db_flags & DB_FLAG_EXEMPT
 	if(isexempt)
 		return 0
-	var/my_exp = C.calc_spec_exp(specialized_experience)
-	if(my_exp >= num_specialized_experience)
+	var/list/experienced = C.calc_spec_exp(specialized_experience)
+	if(length(experienced) >= num_specialized_experience)
 		return 0
-	else
-		return 1
+	var/list/unexperienced = specialized_experience.Copy() //take the full list and remove the "experienced" jobs from it
+	unexperienced -= experienced
+	return unexperienced //return the list of jobs that still need time
 
 //calculates the number of jobs that surpass the requirement
 /client/proc/calc_spec_exp(list/typelist)
 	var/list/explist = prefs.exp.Copy()
-	var/amount = 0
+	var/list/cleared = list()
 	if(!typelist)
 		return -1
 	for(var/job in typelist)
-		if(job in explist)
-			if(explist[job] > typelist[job])
-				amount ++
-	return amount
+		if((job in explist) && (explist[job] > typelist[job]))
+			cleared += job
+	return cleared
 	
 /client/proc/calc_exp_type(exptype)
 	var/list/explist = prefs.exp.Copy()
