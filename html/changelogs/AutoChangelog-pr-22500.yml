@@ -1,0 +1,8 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "fixes some inconsistencies when liquid spread from one tile to another"
+  - tweak: "liquids now only create a splash animation when spreading if deep enough"
+  - tweak: "liquids now only splash onto objects and mobs when spreading if deep enough"
+  - tweak: "liquids now need to be slightly deeper to affect mobs"
+  - imagedel: "deletes unused \"old splash\" animation"
