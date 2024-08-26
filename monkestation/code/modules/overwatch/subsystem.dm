@@ -19,13 +19,11 @@ SUBSYSTEM_DEF(overwatch)
 	var/list/client/postponed_client_queue = list()
 
 /datum/controller/subsystem/overwatch/Initialize(timeofday)
-
 	if(!CONFIG_GET(flag/sql_enabled))
 		log_sql("Overwatch could not be loaded without SQL enabled")
-		return ..()
-
+		return SS_INIT_NO_NEED
 	Toggle()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/overwatch/stat_entry(msg)
 	return "[is_active ? "ACTIVE" : "OFFLINE"]"
