@@ -6720,6 +6720,7 @@
 #include "monkestation\code\modules\clothing\suits\costume.dm"
 #include "monkestation\code\modules\clothing\suits\toggles.dm"
 #include "monkestation\code\modules\clothing\under\_under.dm"
+#include "monkestation\code\modules\clothing\under\bomb_vest.dm"
 #include "monkestation\code\modules\clothing\under\costume.dm"
 #include "monkestation\code\modules\clothing\under\undersuit.dm"
 #include "monkestation\code\modules\clothing\under\accessories\medals.dm"
