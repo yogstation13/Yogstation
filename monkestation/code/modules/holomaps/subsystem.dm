@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(holomaps)
 	return TRUE
 
 /// Generates the base holomap and the area holomap, before passing the latter to setup_station_map to tidy it up for viewing.
-/datum/controller/subsystem/holomaps/proc/generate_holomap(var/z_level = 1)
+/datum/controller/subsystem/holomaps/proc/generate_holomap(z_level = 1)
 	// Sanity checks - Better to generate a helpful error message now than have DrawBox() runtime
 	var/icon/canvas = icon(HOLOMAP_ICON, "blank")
 	var/icon/area_canvas = icon(HOLOMAP_ICON, "blank")

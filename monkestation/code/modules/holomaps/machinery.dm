@@ -6,8 +6,8 @@
 // Credit to polaris for the code which this current map was originally based off of, and credit to VG for making it in the first place.
 
 /obj/machinery/station_map
-	name = "\improper ship holomap"
-	desc = "A virtual map of the surrounding ship."
+	name = "\improper station holomap"
+	desc = "A virtual map of the surrounding station."
 	icon = 'monkestation/code/modules/holomaps/icons/stationmap.dmi'
 	icon_state = "station_map"
 	layer = ABOVE_WINDOW_LAYER
@@ -24,16 +24,16 @@
 	/// The little "map" floor painting.
 	var/image/floor_markings
 
-	// zLevel which the map is a map for.
+	// zLevel which the map is a map for. Change this to have mapload holomaps look at other zlevels.
 	var/current_z_level
-	/// This set to FALSE when the station map is initialized on a zLevel that has its own icon formatted for use by station holomaps.
-	var/bogus = TRUE
+
 	/// The various images and icons for the map are stored in here, as well as the actual big map itself.
 	var/datum/station_holomap/holomap_datum
 
 /obj/machinery/station_map/Initialize()
 	. = ..()
-	current_z_level = loc.z
+	if(!current_z_level)
+		current_z_level = loc.z
 	SSholomaps.station_holomaps += src
 	return INITIALIZE_HINT_LATELOAD
 
@@ -50,33 +50,28 @@
 
 /obj/machinery/station_map/proc/setup_holomap()
 	holomap_datum = new()
-	bogus = FALSE
 	var/turf/current_turf = get_turf(src)
-	if(!("[HOLOMAP_EXTRA_STATIONMAP]_[current_z_level]" in SSholomaps.extra_holomaps))
-		bogus = TRUE
-		holomap_datum.initialize_holomap_bogus()
-		update_icon()
-		return
 
-	holomap_datum.initialize_holomap(current_turf.x, current_turf.y, current_z_level, reinit_base_map = TRUE, extra_overlays = handle_overlays())
+	holomap_datum.initialize_holomap(current_turf, current_z_level, reinit_base_map = TRUE, extra_overlays = handle_overlays())
 
 	floor_markings = image('monkestation/code/modules/holomaps/icons/stationmap.dmi', "decal_station_map")
 	floor_markings.dir = src.dir
 
 	update_icon()
 
-/obj/machinery/station_map/attack_hand(var/mob/user)
+/obj/machinery/station_map/attack_hand(mob/user)
 	if(user == watching_mob)
 		close_map(user)
 		return
 
 	if(watching_mob && watching_mob != user)
+		to_chat(user, span_warning("Someone else is currently watching the holomap."))
 		return
 
 	open_map(user)
 
 /// Tries to open the map for the given mob. Returns FALSE if it doesn't meet the criteria, TRUE if the map successfully opened with no runtimes.
-/obj/machinery/station_map/proc/open_map(var/mob/user)
+/obj/machinery/station_map/proc/open_map(mob/user)
 	if(!anchored || (machine_stat & (NOPOWER | BROKEN)) || !user?.client || panel_open || user.hud_used.holomap.used_station_map)
 		return FALSE
 
@@ -99,6 +94,7 @@
 	set_light(HOLOMAP_HIGH_LIGHT)
 
 	user.hud_used.holomap.used_station_map = src
+	user.hud_used.holomap.used_base_map = holomap_datum.base_map
 	user.hud_used.holomap.mouse_opacity = MOUSE_OPACITY_ICON
 	user.client.screen |= user.hud_used.holomap
 	user.client.images |= holomap_datum.base_map
@@ -106,14 +102,14 @@
 	watching_mob = user
 	use_power = ACTIVE_POWER_USE
 
-	if(bogus)
-		to_chat(user, "<span class='warning'>The holomap failed to initialize. This area of space cannot be mapped.</span>")
+	if(holomap_datum.bogus)
+		to_chat(user, span_warning("The holomap failed to initialize. This area of space cannot be mapped."))
 	else
-		to_chat(user, "<span class='warning'>A hologram of the station appears before your eyes.</span>")
+		to_chat(user, span_warning("A hologram of the station appears before your eyes."))
 
 	return TRUE
 
-/obj/machinery/station_map/attack_ai(var/mob/living/silicon/robot/user)
+/obj/machinery/station_map/attack_ai(mob/living/silicon/robot/user)
 	attack_hand(user)
 
 /obj/machinery/station_map/attack_robot(mob/user)
@@ -125,11 +121,9 @@
 
 /obj/machinery/station_map/proc/check_position()
 	SIGNAL_HANDLER
-	if(!watching_mob)
-		return
 
-	if(!Adjacent(watching_mob))
-		close_map(watching_mob)
+	if(!watching_mob || (watching_mob.loc != loc) || (dir != watching_mob.dir))
+		close_map()
 
 /obj/machinery/station_map/proc/close_map()
 	if(!watching_mob)
@@ -144,10 +138,12 @@
 			watching_mob.client?.screen -= watching_mob.hud_used.holomap
 			watching_mob.client?.images -= holomap_datum.base_map
 			watching_mob.hud_used.holomap.used_station_map = null
+			watching_mob.hud_used.holomap.used_base_map = null
 			watching_mob = null
 			set_light(HOLOMAP_LOW_LIGHT)
 
 	use_power = IDLE_POWER_USE
+	holomap_datum.reset_map()
 
 /obj/machinery/station_map/power_change()
 	. = ..()
@@ -177,9 +173,7 @@
 	else
 		icon_state = initial(icon_state)
 
-		if(bogus)
-			holomap_datum.initialize_holomap_bogus()
-		else
+		if(!holomap_datum.bogus)
 			small_station_map = image(SSholomaps.extra_holomaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[current_z_level]"], dir = src.dir)
 			add_overlay(small_station_map)
 
@@ -204,10 +198,10 @@
 
 /obj/machinery/station_map/multitool_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		to_chat(user, "<span class='warning'>You need to open the panel to change the [src]'[p_s()] settings!</span")
+		to_chat(user, span_warning("You need to open the panel to change the [src]'[p_s()] settings!"))
 		return FALSE
 	if(!SSholomaps.valid_map_indexes.len > 1)
-		to_chat(user, "<span class='warning'>There are no other maps available for [src]!</span>")
+		to_chat(user, span_warning("There are no other maps available for [src]!"))
 		return FALSE
 
 	tool.play_tool_sound(user, 50)
@@ -217,7 +211,7 @@
 	else
 		current_z_level = SSholomaps.valid_map_indexes[current_index + 1]
 
-	to_chat(user, "<span class='info'>You set the [src]'[p_s()] database index to [current_z_level].</span>")
+	to_chat(user, span_info("You set the [src]'[p_s()] database index to [current_z_level]."))
 	return TRUE
 
 /obj/machinery/station_map/crowbar_act(mob/living/user, obj/item/tool)
@@ -278,7 +272,6 @@
 			z_has_coverage = TRUE
 		if(z_has_coverage)
 			legend["Meteor Shield"] = list("icon" = image('monkestation/code/modules/holomaps/icons/8x8.dmi', icon_state = "meteor_shield"), "markers" = list(image(canvas)))
-
 	return legend
 
 /obj/machinery/station_map/engineering
@@ -297,7 +290,7 @@
 
 /obj/machinery/station_map/engineering/handle_overlays()
 	var/list/extra_overlays = ..()
-	if(bogus)
+	if(holomap_datum.bogus)
 		return extra_overlays
 
 	var/list/fire_alarms = list()

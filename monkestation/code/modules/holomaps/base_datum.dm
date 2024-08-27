@@ -7,28 +7,31 @@
 	var/list/disabled_overlays = list()
 	var/total_legend_y
 
-	var/map_x
-	var/map_y
+	/// This set to TRUE when the station map is initialized on a zLevel that doesn't have its own icon formatted for use by station holomaps.
+	var/bogus = TRUE
+	var/turf/location_turf
 	var/map_z
 
 /datum/station_holomap/New()
 	. = ..()
 	cursor = image('monkestation/code/modules/holomaps/icons/8x8.dmi', "you")
 
-/datum/station_holomap/proc/initialize_holomap(map_x, map_y, map_z, var/mob/user = null, var/reinit_base_map = FALSE, extra_overlays = list())
-	src.map_x = map_x
-	src.map_y = map_y
-	src.map_z = map_z
+/datum/station_holomap/proc/initialize_holomap(turf/T, current_z_level, mob/user = null, reinit_base_map = FALSE, extra_overlays = list())
+	bogus = FALSE
+	location_turf = T
+	map_z = current_z_level
+
+	if(!("[HOLOMAP_EXTRA_STATIONMAP]_[map_z]" in SSholomaps.extra_holomaps))
+		initialize_holomap_bogus()
+		return
 
 	if(!base_map || reinit_base_map)
 		base_map = image(SSholomaps.extra_holomaps["[HOLOMAP_EXTRA_STATIONMAP]_[map_z]"])
 
 	if(isAI(user) || isaicamera(user))
 		var/turf/eye_turf = get_turf(user?.client?.eye)
-		if(!eye_turf)
-			return
-		src.map_x = eye_turf.x
-		src.map_y = eye_turf.y
+		if(eye_turf)
+			location_turf = eye_turf
 
 	update_map(extra_overlays)
 
@@ -39,7 +42,7 @@
 
 		overlay_icon.pixel_x = HOLOMAP_LEGEND_X
 		overlay_icon.pixel_y = legend_y
-		overlay_icon.maptext = "<span class='maptext' style='font-size: 6px'>[overlay_name]</span>"
+		overlay_icon.maptext = MAPTEXT("<span style='font-size: 6px'>[overlay_name]</span>")
 		overlay_icon.maptext_x = 10
 		overlay_icon.maptext_width = 64
 		base_map.add_overlay(overlay_icon)
@@ -63,11 +66,22 @@
 /datum/station_holomap/proc/update_map(list/overlays_to_use = list())
 	base_map.cut_overlays()
 
-	if(map_x && map_y && SSmapping.level_has_all_traits(map_z, ZTRAIT_STATION))
-		cursor.pixel_x = map_x - 3 + HOLOMAP_CENTER_X
-		cursor.pixel_y = map_y - 3 + HOLOMAP_CENTER_Y
+	if(bogus)
+		var/image/legend = image('monkestation/code/modules/holomaps/icons/64x64.dmi', "notfound")
+		legend.pixel_x = 192
+		legend.pixel_y = 224
+		base_map.add_overlay(legend)
+		return
+
+	if(location_turf && location_turf.z == map_z && SSmapping.level_has_all_traits(location_turf.z, list(ZTRAIT_STATION)))
+		cursor.pixel_x = location_turf.x - 3 + HOLOMAP_CENTER_X
+		cursor.pixel_y = location_turf.y - 3 + HOLOMAP_CENTER_Y
 
 		base_map.add_overlay(cursor)
+		overlays_to_use["You are here"] = list(
+			"icon" = image('monkestation/code/modules/holomaps/icons/8x8.dmi', "you"),
+			"markers" = list()
+		)
 
 	for(var/overlay as anything in overlays_to_use)
 		if(overlay in disabled_overlays)
@@ -78,11 +92,11 @@
 
 	generate_legend(overlays_to_use)
 
+/datum/station_holomap/proc/reset_map()
+	disabled_overlays = list()
+
 /datum/station_holomap/proc/initialize_holomap_bogus()
+	bogus = TRUE
 	base_map = image('monkestation/code/modules/holomaps/icons/480x480.dmi', "stationmap")
 
-	var/image/legend = image('monkestation/code/modules/holomaps/icons/64x64.dmi', "notfound")
-	legend.pixel_x = 192
-	legend.pixel_y = 224
-
-	update_map(overlays_to_use = list(legend))
+	update_map()

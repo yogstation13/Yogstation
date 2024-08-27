@@ -14,6 +14,7 @@
 /atom/movable/screen/holomap
 	/// The owner. Used to get z-level data.
 	var/obj/machinery/station_map/used_station_map
+	var/image/used_base_map
 
 /atom/movable/screen/holomap/Click(location, control, params)
 	. = ..()
@@ -64,7 +65,8 @@
 
 	var/text_for_screentip = position_to_name["[icon_x]:[icon_y]"]
 
-	maptext = "<span class='maptext' style='text-align: center; font-size: 32px'>[text_for_screentip]</span>"
-	maptext_x = icon_x
-	maptext_y = icon_y
-	maptext_width = 96
+	used_base_map.maptext = MAPTEXT_TINY_UNICODE("<span style='text-align: center'>[text_for_screentip]</span>")
+	used_base_map.maptext_x = icon_x
+	used_base_map.maptext_y = icon_y
+	used_base_map.maptext_width = 96
+	used_base_map.maptext_height = 96
