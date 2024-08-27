@@ -80,3 +80,13 @@
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_RESEARCH
 	)
 	departmental_flags =  DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design/board/composters
+	name = "Machine Design (NT-Brand Auto Composter Board)"
+	desc = "The circuit board for a NT-Brand Auto Composter."
+	id = "composters"
+	build_path = /obj/item/circuitboard/machine/composters
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_BOTANY
+	)
+	departmental_flags =  DEPARTMENT_BITFLAG_SERVICE

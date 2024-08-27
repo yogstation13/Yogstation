@@ -4,9 +4,15 @@
 	icon = 'monkestation/icons/obj/machines/composter.dmi'
 	icon_state = "composter"
 	density = TRUE
+	circuit = /obj/item/circuitboard/machine/composters
 
 	//current biomatter level
-	var/biomatter = 80
+	var/biomatter = 0
+
+/obj/machinery/composters/Initialize(mapload)
+	. = ..()
+	if(mapload)
+		biomatter = 80
 
 /obj/machinery/composters/attacked_by(obj/item/attacking_item, mob/living/user)
 	. = ..()
@@ -80,6 +86,15 @@
 		. += mutable_appearance('monkestation/icons/obj/machines/composter.dmi', "light_off", layer = OBJ_LAYER + 0.01)
 	else
 		. += mutable_appearance('monkestation/icons/obj/machines/composter.dmi', "light_on", layer = OBJ_LAYER + 0.01)
+
+/obj/machinery/composters/screwdriver_act(mob/living/user, obj/item/tool)
+	. = ..()
+	if(!.)
+		return default_deconstruction_screwdriver(user, "composter_open", "composter", tool)
+
+/obj/machinery/composters/crowbar_act(mob/living/user, obj/item/tool)
+	if(!default_deconstruction_crowbar(tool))
+		return ..()
 
 /obj/machinery/composters/proc/compost(list/composting, allow_carbons = FALSE)
 	if(!islist(composting))

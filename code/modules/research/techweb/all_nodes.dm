@@ -1492,6 +1492,7 @@
 		"seed_extractor",
 		"adv_watering_can",
 		"plantgenes",
+		"composters", // monkestation edit: build composters
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 4000)
 	discount_experiments = list(/datum/experiment/scanning/random/plants/traits = 2000,
