@@ -1,0 +1,4 @@
+author: "PotatoTomahto"
+delete-after: True
+changes:
+  - bugfix: "fixes holomap cursor and area hover text"
