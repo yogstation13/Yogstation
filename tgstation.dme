@@ -5948,6 +5948,7 @@
 #include "monkestation\code\modules\admin\antag_tokens.dm"
 #include "monkestation\code\modules\admin\camera_view.dm"
 #include "monkestation\code\modules\admin\event_tokens.dm"
+#include "monkestation\code\modules\admin\smites\choke_on_this.dm"
 #include "monkestation\code\modules\admin\smites\dagothkillsmite.dm"
 #include "monkestation\code\modules\admin\smites\dagothstripsmite.dm"
 #include "monkestation\code\modules\admin\smites\phobia_christian_minecraft.dm"
