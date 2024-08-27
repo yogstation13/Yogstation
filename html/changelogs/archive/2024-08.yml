@@ -337,3 +337,12 @@
   ven1883:
   - bugfix: fixed cyberware quirks being incompatible with eachother
   - bugfix: Bright Eyes now is incompatible with Body Purist
+2024-08-27:
+  Absolucy:
+  - bugfix: Etheral disco balls now lag the server much less
+  - bugfix: Fixed the Overwatch subsystem initialization being reported as erroring,
+      despite the fact it initialized just fine.
+  ThePooba:
+  - rscadd: Choke on this smite
+  V2LenKagamine:
+  - rscadd: New Bomb Vest, strap it to someone for a little trolling

@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Fixed the Overwatch subsystem initialization being reported as erroring, despite the fact it initialized just fine."
