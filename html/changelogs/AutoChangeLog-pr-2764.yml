@@ -1,0 +1,6 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Androids can no longer be transform stung by changelings."
+  - bugfix: "Androids no longer suffer from liver failure."
+  - bugfix: "Facehuggers no longer waste their lives trying to hug androids (who can't host an embryo anyways.)"
