@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscadd: "NT-Brand Auto Composters can now be built and deconstructed."
