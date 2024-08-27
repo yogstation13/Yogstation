@@ -15,7 +15,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "an" = (
 /turf/open/floor/engine/n2,
@@ -28,13 +28,13 @@
 "aq" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/disk/holodisk/ruin/snowengieruin,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "ar" = (
 /obj/effect/mob_spawn/corpse/human/assistant,
 /obj/item/construction/rcd,
 /obj/structure/cable,
-/turf/open/floor/catwalk_floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "as" = (
 /obj/machinery/modular_computer/preset/civilian{
@@ -46,14 +46,14 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/effect/mapping_helpers/apc/no_charge,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "au" = (
 /obj/machinery/rnd/production/circuit_imprinter/offstation,
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 10
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "av" = (
 /obj/structure/cable,
@@ -78,14 +78,14 @@
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/rcd_ammo,
 /obj/item/rcd_ammo,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "az" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "aA" = (
 /obj/machinery/rnd/production/protolathe/department/engineering/no_tax,
@@ -96,7 +96,7 @@
 	dir = 1
 	},
 /obj/item/rcd_upgrade/frames,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "aC" = (
 /turf/open/floor/engine/o2,
@@ -114,10 +114,6 @@
 /obj/item/toy/snowball,
 /turf/open/misc/snow/actually_safe,
 /area/ruin/planetengi)
-"aF" = (
-/obj/structure/cable,
-/turf/open/floor/catwalk_floor/iron,
-/area/ruin/planetengi)
 "aG" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on,
 /turf/open/floor/engine/n2,
@@ -127,15 +123,15 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/north,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "aI" = (
 /obj/machinery/atmospherics/pipe/smart/simple/yellow/visible,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "aJ" = (
 /obj/structure/cable,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "aK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
@@ -170,12 +166,12 @@
 /area/ruin/planetengi)
 "aV" = (
 /obj/machinery/autolathe,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "aW" = (
 /obj/item/clothing/under/rank/engineering/chief_engineer,
 /obj/structure/cable,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "aX" = (
 /obj/structure/flora/rock/icy/style_random,
@@ -191,14 +187,11 @@
 /obj/machinery/atmospherics/pipe/smart/simple/yellow/visible{
 	dir = 4
 	},
-/turf/open/floor/iron,
-/area/ruin/planetengi)
-"bd" = (
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "be" = (
 /obj/machinery/atmospherics/components/binary/pump,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bi" = (
 /obj/machinery/atmospherics/components/unary/passive_vent{
@@ -234,39 +227,39 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/away/engineering,
 /obj/structure/cable,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "br" = (
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible,
 /obj/structure/sign/poster/official/build/directional/west,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bs" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible{
 	dir = 6
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bv" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/bridge_pipe/yellow/visible,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bx" = (
 /obj/machinery/atmospherics/components/trinary/filter/atmos/o2{
 	dir = 8
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "by" = (
 /obj/machinery/airalarm/directional/west,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bz" = (
 /obj/machinery/door/firedoor/heavy,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bA" = (
 /obj/structure/window/reinforced/plasma/spawner/directional/south,
@@ -275,7 +268,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 8
 	},
-/turf/open/floor/engine,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bB" = (
 /obj/structure/window/reinforced/plasma/spawner/directional/south,
@@ -284,7 +277,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4
 	},
-/turf/open/floor/engine,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bD" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -297,7 +290,7 @@
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bG" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -306,52 +299,47 @@
 /obj/effect/turf_decal/trimline/blue/warning{
 	dir = 8
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bH" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 4
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bI" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1
 	},
 /obj/structure/tank_dispenser,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bL" = (
 /obj/machinery/atmospherics/components/trinary/filter/atmos/n2,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bM" = (
 /obj/machinery/atmospherics/pipe/smart/simple/yellow/visible{
 	dir = 6
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bQ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold/yellow/visible{
 	dir = 4
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bR" = (
 /obj/machinery/atmospherics/components/unary/portables_connector,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bS" = (
 /obj/structure/table,
 /obj/item/flashlight{
 	pixel_y = 4
 	},
-/turf/open/floor/iron,
-/area/ruin/planetengi)
-"bT" = (
-/turf/open/floor/iron/corner{
-	dir = 4
-	},
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bU" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -366,26 +354,26 @@
 /obj/effect/turf_decal/trimline/blue/corner{
 	dir = 1
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bW" = (
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible{
 	dir = 6
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bY" = (
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible{
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "bZ" = (
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible{
 	dir = 4
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "ca" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -396,35 +384,35 @@
 /area/ruin/planetengi)
 "cb" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cc" = (
 /obj/machinery/atmospherics/pipe/smart/manifold/yellow/visible{
 	dir = 8
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cd" = (
 /obj/machinery/atmospherics/components/trinary/mixer/airmix,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "ce" = (
 /obj/machinery/atmospherics/pipe/smart/simple/orange/visible{
 	dir = 6
 	},
-/turf/open/floor/iron/corner,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cf" = (
 /obj/machinery/atmospherics/components/trinary/filter/flipped{
 	dir = 8
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cg" = (
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible{
 	dir = 5
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "ch" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -438,7 +426,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cj" = (
 /obj/machinery/power/energy_accumulator/tesla_coil/anchored,
@@ -446,15 +434,13 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "ck" = (
 /obj/machinery/atmospherics/components/binary/volume_pump{
 	dir = 4
 	},
-/turf/open/floor/iron/corner{
-	dir = 8
-	},
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cl" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -466,35 +452,35 @@
 "cm" = (
 /obj/item/book/manual/wiki/atmospherics,
 /obj/structure/table,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cn" = (
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cp" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
 	dir = 1
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cs" = (
 /obj/machinery/atmospherics/pipe/smart/simple/orange/visible{
 	dir = 5
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "ct" = (
 /obj/structure/window/reinforced/plasma/spawner/directional/north,
 /obj/structure/cable,
-/turf/open/floor/engine,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cu" = (
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible{
 	dir = 10
 	},
 /obj/machinery/light/directional/east,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cv" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -504,7 +490,7 @@
 /area/icemoon/surface/outdoors/nospawn)
 "cx" = (
 /obj/item/pipe_dispenser,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cD" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -522,7 +508,7 @@
 	name = "Engineering Access"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/away/engineering,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cG" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -530,11 +516,11 @@
 /area/ruin/planetengi)
 "cI" = (
 /obj/item/modular_computer/pda/clear,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cJ" = (
 /obj/item/modular_computer/pda/engineering,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cL" = (
 /obj/effect/decal/remains/human,
@@ -542,13 +528,7 @@
 /obj/effect/decal/cleanable/blood/old,
 /obj/structure/cable,
 /obj/effect/mapping_helpers/broken_floor,
-/turf/open/floor/iron,
-/area/ruin/planetengi)
-"cN" = (
-/obj/machinery/atmospherics/pipe/smart/simple/cyan/visible,
-/turf/open/floor/iron/corner{
-	dir = 1
-	},
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cO" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -560,7 +540,7 @@
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cQ" = (
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible{
@@ -569,19 +549,19 @@
 /obj/machinery/atmospherics/pipe/smart/simple/orange/visible/layer4{
 	dir = 6
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cR" = (
 /obj/machinery/atmospherics/components/binary/pump/layer4{
 	dir = 4
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cS" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/layer4{
 	dir = 8
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cU" = (
 /turf/open/floor/iron/icemoon,
@@ -593,37 +573,37 @@
 /obj/effect/turf_decal/trimline/blue/corner{
 	dir = 8
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cW" = (
 /obj/effect/mapping_helpers/broken_floor,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cX" = (
 /obj/structure/cable,
 /obj/machinery/power/emitter/welded{
 	dir = 1
 	},
-/turf/open/floor/catwalk_floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cY" = (
 /obj/item/stack/sheet/plasmarglass,
 /obj/item/card/id/advanced/engioutpost,
 /obj/effect/mapping_helpers/broken_floor,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "cZ" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible{
 	dir = 5
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "db" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/bridge_pipe/cyan/visible,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "de" = (
 /turf/template_noop,
@@ -633,35 +613,35 @@
 	dir = 4
 	},
 /obj/structure/sign/poster/official/pda_ad/directional/south,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "dg" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/simple/orange/visible/layer4,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "dh" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible{
 	dir = 4
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "di" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible{
 	dir = 10
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "dj" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "dk" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /obj/effect/mapping_helpers/broken_floor,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "dl" = (
 /obj/effect/mob_spawn/corpse/human/engineer/mod,
@@ -705,7 +685,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/closed,
 /obj/item/shard,
-/turf/open/floor/plating,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "du" = (
 /obj/effect/decal/cleanable/blood/tracks,
@@ -813,7 +793,7 @@
 /area/ruin/planetengi)
 "yF" = (
 /mob/living/basic/construct/proteon,
-/turf/open/floor/iron,
+/turf/open/floor/iron/icemoon,
 /area/ruin/planetengi)
 "Ai" = (
 /turf/open/floor/plating/snowed/smoothed/icemoon,
@@ -896,7 +876,7 @@ aG
 ba
 br
 cg
-bd
+cU
 by
 bR
 cP
@@ -958,7 +938,7 @@ do
 do
 do
 aH
-bd
+cU
 bc
 cm
 bS
@@ -1002,7 +982,7 @@ cE
 bF
 bc
 yF
-bd
+cU
 cx
 cR
 dh
@@ -1066,7 +1046,7 @@ bG
 bV
 ce
 cs
-bT
+cU
 cV
 bG
 do
@@ -1083,13 +1063,13 @@ ay
 aq
 aV
 cG
-bd
+cU
 bW
 cf
 bA
 cJ
 cW
-bd
+cU
 cG
 cU
 kS
@@ -1101,7 +1081,7 @@ Ai
 do
 av
 az
-aF
+aJ
 aW
 bq
 aJ
@@ -1110,7 +1090,7 @@ ci
 ct
 cL
 cX
-bd
+cU
 cF
 cU
 GG
@@ -1123,7 +1103,7 @@ do
 aw
 am
 ar
-bd
+cU
 cG
 bH
 bZ
@@ -1150,7 +1130,7 @@ bI
 bZ
 ck
 cu
-cN
+cn
 cg
 dk
 dt

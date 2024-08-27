@@ -77,7 +77,7 @@
 /area/station/engineering/supermatter/room)
 "kr" = (
 /obj/structure/lattice/catwalk,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "lq" = (
 /obj/machinery/door/airlock/engineering/glass{
@@ -218,7 +218,7 @@
 "wX" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "xd" = (
 /obj/machinery/power/energy_accumulator/tesla_coil,
@@ -368,7 +368,7 @@
 /obj/structure/lattice/catwalk,
 /obj/structure/cable,
 /obj/structure/cable/layer1,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "Pp" = (
 /obj/structure/cable,
