@@ -6802,6 +6802,7 @@
 #include "monkestation\code\modules\donator\code\item\choice_beacon.dm"
 #include "monkestation\code\modules\donator\code\item\clothing.dm"
 #include "monkestation\code\modules\donator\code\item\effects.dm"
+#include "monkestation\code\modules\donator\code\item\misc.dm"
 #include "monkestation\code\modules\donator\code\item\plush.dm"
 #include "monkestation\code\modules\donator\code\mob\pets.dm"
 #include "monkestation\code\modules\emotes\code\emote.dm"
