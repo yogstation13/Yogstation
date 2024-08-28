@@ -1,0 +1,4 @@
+author: "13spacemen"
+delete-after: true 
+changes: 
+  - bugfix: "French language key is now W, no longer conflicts with Vox-pidgin which is V"
