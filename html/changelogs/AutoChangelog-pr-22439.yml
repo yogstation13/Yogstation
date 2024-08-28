@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes stormtrooper armour not actually reducing firing accuracy"
+  - bugfix: "Fixes darkspawn noslip upgrade not preventing slipping"
