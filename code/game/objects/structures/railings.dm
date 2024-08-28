@@ -76,12 +76,14 @@
 /obj/structure/railing/AltClick(mob/user)
 	return ..() // This hotkey is BLACKLISTED since it's used by /datum/component/simple_rotation
 
+/* monkestation edit: replaced in [monkestation\code\modules\blueshift\structures\wooden_fence.dm]
 /obj/structure/railing/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()
 	to_chat(user, span_warning("You cut apart the railing."))
 	I.play_tool_sound(src, 100)
 	deconstruct()
 	return TRUE
+monkestation end */
 
 /obj/structure/railing/deconstruct(disassembled)
 	if((flags_1 & NODECONSTRUCT_1))

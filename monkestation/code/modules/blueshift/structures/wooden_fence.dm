@@ -23,9 +23,16 @@
 	)
 	update_appearance()
 
-// previously NO_DECONSTRUCTION
-/obj/structure/railing/wirecutter_act(mob/living/user, obj/item/I)
-	return NONE
+/obj/structure/railing/wirecutter_act(mob/living/user, obj/item/tool)
+	. = ..()
+	if(flags_1 & NODECONSTRUCT_1)
+		return NONE
+	var/deconstruct_time = anchored ? (1.5 SECONDS) : (0.5 SECONDS)
+	if(do_after(user, deconstruct_time, src))
+		user.visible_message(span_info("[user] cuts apart \the [src]."), span_warning("You cut apart \the [src]."))
+		tool.play_tool_sound(src, 50)
+		deconstruct()
+		return TRUE
 
 // Fence gates for the above mentioned fences
 
