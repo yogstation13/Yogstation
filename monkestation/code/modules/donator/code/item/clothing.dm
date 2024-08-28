@@ -468,3 +468,12 @@
 	icon_state = "holstein_cow_jumpsuit"
 	worn_icon_state = "holstein_cow_jumpsuit"
 	inhand_icon_state = null
+
+/obj/item/clothing/head/costume/noobskyboi_golden_tophat
+	name = "golden tophat"
+	desc = "A golden tophat. It smells like sulfur and chocolate?"
+	icon = 'monkestation/code/modules/donator/icons/obj/clothing.dmi'
+	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing_32x48.dmi'
+	icon_state = "noobskyboi_golden_tophat"
+	worn_icon_state = "noobskyboi_golden_tophat"
+	inhand_icon_state = null
