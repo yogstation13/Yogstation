@@ -126,7 +126,8 @@
 #define TRAIT_SKINNY			"skinny"  //For those with a slightly thinner torso sprite
 /// Wonky legs that make more work for spriters and coders
 #define TRAIT_DIGITIGRADE		"digitigrade" // the funny lizard legs
-
+/// If the legs are to be displayed like regular legs
+#define TRAIT_DIGI_SQUISH       "didi_squish"
 
 ////////////////////////////////////////////////////////////////////////////////////
 //---------------------------------Quirk defines----------------------------------//
