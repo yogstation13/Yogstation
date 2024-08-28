@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - bugfix: "AI laser gun ability can no longer be used while dead."
