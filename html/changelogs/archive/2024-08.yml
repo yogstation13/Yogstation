@@ -346,3 +346,17 @@
   - rscadd: Choke on this smite
   V2LenKagamine:
   - rscadd: New Bomb Vest, strap it to someone for a little trolling
+2024-08-28:
+  Absolucy:
+  - bugfix: Androids can no longer be transform stung by changelings.
+  - bugfix: Androids no longer suffer from liver failure.
+  - bugfix: Facehuggers no longer waste their lives trying to hug androids (who can't
+      host an embryo anyways.)
+  - bugfix: Cleaned up some more roundstart active turfs, leading to slightly better
+      init times.
+  - qol: The curator's PDA no longer disables ringer by default.
+  - rscadd: NT-Brand Auto Composters can now be built and deconstructed.
+  PotatoTomahto:
+  - bugfix: fixes holomap cursor and area hover text
+  Veth-s:
+  - rscadd: Malphy's canopics have been added to the game!
