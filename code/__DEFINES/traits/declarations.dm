@@ -124,6 +124,8 @@
 #define TRAIT_SLIME_EMPATHY		"slime-empathy"
 #define TRAIT_ACIDBLOOD         "acid_blood"
 #define TRAIT_SKINNY			"skinny"  //For those with a slightly thinner torso sprite
+/// Wonky legs that make more work for spriters and coders
+#define TRAIT_DIGITIGRADE		"digitigrade" // the funny lizard legs
 
 
 ////////////////////////////////////////////////////////////////////////////////////
