@@ -245,7 +245,6 @@
 		if("outputQW")
 			power_format_multi_output = 1 QW
 
-
 /obj/machinery/power/transmission_laser/process()
 	max_grid_load = terminal.surplus()
 	input_available = terminal.surplus()
