@@ -79,6 +79,7 @@
 		surge_class = rand(SURGE_SEVERITY_MIN, SURGE_SEVERITY_MAX)
 
 	end_when = rand(SURGE_DURATION_MIN, SURGE_DURATION_MAX)
+	setup = TRUE //monkestation addition
 
 /datum/round_event/supermatter_surge/announce(fake)
 	priority_announce("The Crystal Integrity Monitoring System has detected unusual atmospheric properties in the supermatter chamber, energy output from the supermatter crystal has increased significantly. Engineering intervention is required to stabilize the engine.", "Class [surge_class] Supermatter Surge Alert", 'sound/machines/engine_alert3.ogg')

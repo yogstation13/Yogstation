@@ -19,6 +19,7 @@
 
 	if(!spawn_location?.resolve())
 		return kill()
+	setup = TRUE //monkestation addition
 
 /datum/round_event/random_artifact/start()
 	var/marker = spawn_location.resolve()
