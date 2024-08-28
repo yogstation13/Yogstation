@@ -2,6 +2,8 @@
 	var/list/list/law_history = list() //its a list of lists
 
 /mob/living/silicon/proc/update_law_history(mob/uploader = null)
+	if(!laws) //sometimes we just don't have laws (staff of change)
+		return
 	var/ai_law_sync = "UNKNOWN/Innate laws"
 	if(!uploader && iscyborg(src))
 		var/mob/living/silicon/robot/R = src

@@ -29416,7 +29416,6 @@
 /obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plating/airless,
 /area/escapepodbay)
 "irh" = (
@@ -30622,7 +30621,6 @@
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/ramp_middle,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
 "iKT" = (
@@ -46295,6 +46293,19 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"nzB" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/stasis{
+	dir = 4
+	},
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_x = 0;
+	pixel_y = -31
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/sleeper)
 "nzK" = (
 /obj/machinery/ai/networking{
 	label = "Subcontroller";
@@ -64932,15 +64943,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"tcY" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/stasis{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/sleeper)
 "tdc" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden{
 	dir = 5
@@ -68121,7 +68123,6 @@
 /obj/machinery/door/airlock/external{
 	name = "Shipbreaking External Access"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
 "uau" = (
@@ -108337,7 +108338,7 @@ rWu
 brj
 ppp
 uYv
-tcY
+nzB
 wOY
 dmS
 ugr

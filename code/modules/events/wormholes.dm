@@ -27,7 +27,7 @@ GLOBAL_LIST_EMPTY(all_wormholes) // So we can pick wormholes to teleport to
 			continue
 
 		var/area/area = get_area(T)
-		if (!area || area.noteleport)
+		if (!area || (area.area_flags & NOTELEPORT))
 			continue
 
 		pick_turfs += T
