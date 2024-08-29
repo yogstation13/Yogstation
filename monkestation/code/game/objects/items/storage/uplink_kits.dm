@@ -208,12 +208,11 @@
 	new /obj/item/ammo_box/advanced/s12gauge(src)
 
 
-/obj/item/storage/box/syndie_kit/surplus_smg_bundle
+/obj/item/storage/box/syndie_kit/shit_smg_bundle
 	desc = "A box containing a surplus space soviet Plastikov and two magazines. Perfect for henchmen."
 
-/obj/item/storage/box/syndie_kit/surplus_smg_bundle/PopulateContents()
+/obj/item/storage/box/syndie_kit/shit_smg_bundle/PopulateContents()
 	new /obj/item/gun/ballistic/automatic/plastikov(src)
-	new /obj/item/ammo_box/magazine/plastikov9mm(src)
 	new /obj/item/ammo_box/magazine/plastikov9mm(src)
 
 #undef KIT_ITEM_CATEGORY_SUPPORT
