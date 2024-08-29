@@ -1,4 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - bugfix: "Heart disease (contracted from the heart attack random event) now has the correct badness level"

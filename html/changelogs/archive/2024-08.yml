@@ -360,3 +360,22 @@
   - bugfix: fixes holomap cursor and area hover text
   Veth-s:
   - rscadd: Malphy's canopics have been added to the game!
+2024-08-29:
+  Absolucy:
+  - bugfix: Railings can now actually be deconstructed.
+  DexeeXI:
+  - qol: admin mods now have anti rad built it. it's shrimple.
+  - bugfix: fixes the cyka blyat id cards.
+  Gboster-0:
+  - rscadd: New magnitude of power, Raynawatt for all your PTL exporting needs
+  PotatoTomahto:
+  - bugfix: Liquid pump actually works now.
+  V2LenKagamine:
+  - rscadd: Wumpa.
+  Veth-s:
+  - rscadd: Added malphy's canopics to the game.
+  Wisemonster:
+  - bugfix: Heart disease (contracted from the heart attack random event) now has
+      the correct badness level
+  - bugfix: Fixed the radiation leak event, super-matter surge event, and random artifact
+      event not triggering.
