@@ -547,11 +547,11 @@
 	for(var/obj/item/mecha_parts/mecha_equipment/weapon/W in equipment)
 		if(!W.equip_ready && (W.equip_cooldown < MECHA_MAX_COOLDOWN))
 			return
-
-	if(Adjacent(target) && !selected?.is_melee())
+	
+	if(!selected && Adjacent(target))
 		default_melee_attack(target)
 		return
-	if(selected?.action(target, user, params))
+	if(selected.action_checks(target) && selected.action(target, user, params))
 		selected.start_cooldown()
 
 /obj/mecha/proc/default_melee_attack(atom/target)
