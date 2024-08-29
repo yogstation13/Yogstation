@@ -16,7 +16,7 @@
 <h1>area <aside>/<a href="area.html">area</a></aside><aside> inherits /<a href="atom.html">atom</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L6">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L6">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 6"/></a></h1>
 
 <p>A grouping of tiles into a logical space, mostly used by map editors</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
@@ -53,6 +53,7 @@ We should instead store a list of turfs to REMOVE from it, then hook into a gett
 There is a risk of this and contained_turfs leaking, so a subsystem will run it down to 0 incrementally if it gets too large
 This uses the same nested list format as turfs_by_zlevel</td></tr>
             <tr><th><a href="area.html#var/unique">unique</a></th><td>If false, loading multiple maps with this area type will create multiple instances.</td></tr>
+            <tr><th><a href="area.html#var/uses_daylight">uses_daylight</a></th><td>Whether to cycle brightness based on time of day</td></tr>
             <tr><th><a href="area.html#var/xenobiology_compatible">xenobiology_compatible</a></th><td>Can the Xenobio management console transverse this area by default?</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
             <tr><th><a href="area.html#proc/AllowDrop">AllowDrop</a></th><td>Causes a runtime error</td></tr>
             <tr><th><a href="area.html#proc/Destroy">Destroy</a></th><td>Destroy an area and clean it up</td></tr>
@@ -99,146 +100,146 @@ only zlevels with turfs are returned. The order of the list is not guaranteed.</
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L128">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L128">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 128"/></a></h3>
         <p>Wire assignment for airlocks in this area</p><h3 id="var/ambient_buzz"><aside class="declaration">var </aside>ambient_buzz
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L97">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L97">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 97"/></a></h3>
         <p>Ambient buzz of the station, plays repeatedly, also IC</p><h3 id="var/ambient_buzz_vol"><aside class="declaration">var </aside>ambient_buzz_vol
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L99">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L99">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 99"/></a></h3>
         <p>The volume of the ambient buzz</p><h3 id="var/area_has_base_lighting"><aside class="declaration">var </aside>area_has_base_lighting
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/modules/lighting/lighting_area.dm#L7">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/modules/lighting/lighting_area.dm#L7">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_area.dm 7"/></a></h3>
         <p>Whether this area has a currently active base lighting, bool</p><h3 id="var/area_limited_icon_smoothing"><aside class="declaration">var </aside>area_limited_icon_smoothing
             <aside>&ndash; /<a href="area.html">area</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L119">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L119">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 119"/></a></h3>
         <p>Typepath to limit the areas (subtypes included) that atoms in this area can smooth with. Used for shuttles.</p><h3 id="var/base_lighting_alpha"><aside class="declaration">var </aside>base_lighting_alpha
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/modules/lighting/lighting_area.dm#L9">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/modules/lighting/lighting_area.dm#L9">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_area.dm 9"/></a></h3>
         <p>alpha 0-255 of lighting_effect and thus baselighting intensity</p><h3 id="var/base_lighting_color"><aside class="declaration">var </aside>base_lighting_color
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/modules/lighting/lighting_area.dm#L11">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/modules/lighting/lighting_area.dm#L11">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_area.dm 11"/></a></h3>
         <p>The colour of the light acting on this area</p><h3 id="var/delta_light"><aside class="declaration">var </aside>delta_light
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L84">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L84">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 84"/></a></h3>
         <p>a simple check to determine whether the lights in an area should go red during delta alert</p><h3 id="var/fire"><aside class="declaration">var </aside>fire
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L37">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L37">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 37"/></a></h3>
         <p>If true, that means one of any fire alarms in the area is active</p><h3 id="var/hidden"><aside class="declaration">var </aside>hidden
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L76">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L76">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 76"/></a></h3>
         <p>Hides area from player Teleport function.</p><h3 id="var/lighting_colour_bulb"><aside class="declaration">var </aside>lighting_colour_bulb
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L60">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L60">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 60"/></a></h3>
         <p>The color of the light bulb's light in this area</p><h3 id="var/lighting_colour_tube"><aside class="declaration">var </aside>lighting_colour_tube
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L58">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L58">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 58"/></a></h3>
         <p>The color of the light tubes' light in this area</p><h3 id="var/lighting_effects"><aside class="declaration">var </aside>lighting_effects
             <aside>&ndash; /list/mutable_appearance</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/modules/lighting/lighting_area.dm#L5">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/modules/lighting/lighting_area.dm#L5">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_area.dm 5"/></a></h3>
         <p>List of mutable appearances we underlay to show light
 In the form plane offset + 1 -&gt; appearance to use</p><h3 id="var/lights_always_start_on"><aside class="declaration">var </aside>lights_always_start_on
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L137">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L137">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 137"/></a></h3>
         <p>Whether the lights in this area aren't turned off when it's empty at roundstart</p><h3 id="var/map_generator"><aside class="declaration">var </aside>map_generator
             <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/map_generator.html">map_generator</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L131">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L131">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 131"/></a></h3>
         <p>This datum, if set, allows terrain generation behavior to be ran on Initialize()</p><h3 id="var/max_ambience_cooldown"><aside class="declaration">var </aside>max_ambience_cooldown
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L103">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L103">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 103"/></a></h3>
         <p>Used to decide what the maximum time between ambience is</p><h3 id="var/min_ambience_cooldown"><aside class="declaration">var </aside>min_ambience_cooldown
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L101">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L101">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 101"/></a></h3>
         <p>Used to decide what the minimum time between ambience is</p><h3 id="var/mood_bonus"><aside class="declaration">var </aside>mood_bonus
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L53">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L53">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 53"/></a></h3>
         <p>Bonus mood for being in this area</p><h3 id="var/mood_message"><aside class="declaration">var </aside>mood_message
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L55">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L55">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 55"/></a></h3>
         <p>Mood message for being here, only shows up if mood_bonus != 0</p><h3 id="var/safe"><aside class="declaration">var </aside>safe
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L78">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L78">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 78"/></a></h3>
         <p>Is the area teleport-safe: no space / radiation / aggresive mobs / other dangers</p><h3 id="var/show_on_sensors"><aside class="declaration">var </aside>show_on_sensors
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L82">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L82">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 82"/></a></h3>
         <p>If false, then this area will show up as gibberish on suit sensors.</p><h3 id="var/sound_environment"><aside class="declaration">var </aside>sound_environment
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L105">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L105">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 105"/></a></h3>
         <p>Used to decide what kind of reverb the area makes sound have</p><h3 id="var/static_lighting"><aside class="declaration">var </aside>static_lighting
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/modules/lighting/static_lighting_area.dm#L39">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/modules/lighting/static_lighting_area.dm#L39">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;static_lighting_area.dm 39"/></a></h3>
         <p>Whether this area allows static lighting and thus loads the lighting objects</p><h3 id="var/turfs_by_zlevel"><aside class="declaration">var </aside>turfs_by_zlevel
             <aside>&ndash; /list/list/turf</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L20">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L20">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 20"/></a></h3>
         <p>List of all turfs currently inside this area as nested lists indexed by zlevel.
 Acts as a filtered version of area.contents For faster lookup
@@ -247,7 +248,7 @@ Semi fragile, but it prevents stupid so I think it's worth it</p><h3 id="var/tur
             <aside>&ndash; /list/list/turf</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L25">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L25">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 25"/></a></h3>
         <p>turfs_by_z_level can hold MASSIVE lists, so rather then adding/removing from it each time we have a problem turf
 We should instead store a list of turfs to REMOVE from it, then hook into a getter for it
@@ -256,25 +257,31 @@ This uses the same nested list format as turfs_by_zlevel</p><h3 id="var/unique">
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L80">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L80">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 80"/></a></h3>
-        <p>If false, loading multiple maps with this area type will create multiple instances.</p><h3 id="var/xenobiology_compatible"><aside class="declaration">var </aside>xenobiology_compatible
+        <p>If false, loading multiple maps with this area type will create multiple instances.</p><h3 id="var/uses_daylight"><aside class="declaration">var </aside>uses_daylight
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L123">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L140">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 140"/></a></h3>
+        <p>Whether to cycle brightness based on time of day</p><h3 id="var/xenobiology_compatible"><aside class="declaration">var </aside>xenobiology_compatible
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L123">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 123"/></a></h3>
         <p>Can the Xenobio management console transverse this area by default?</p><h2 id="proc">Proc Details</h2><h3 id="proc/AllowDrop"><aside class="parent"><a title="/atom" href="atom.html#proc/AllowDrop">&uarr;</a></aside>AllowDrop<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L869">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 869"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L876">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 876"/></a></aside>
         </h3>
         <p>Causes a runtime error</p><h3 id="proc/Destroy"><aside class="parent"><a title="/atom" href="atom.html#proc/Destroy">&uarr;</a></aside>Destroy<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L370">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 370"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L374">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 374"/></a></aside>
         </h3>
         <p>Destroy an area and clean it up</p>
 <p>Removes the area from GLOB.areas_by_type and also stops it processing on SSobj</p>
@@ -282,23 +289,23 @@ This uses the same nested list format as turfs_by_zlevel</p><h3 id="var/unique">
 who am I to argue with old coders</p><h3 id="proc/Entered"><aside class="parent"><a title="/atom" href="atom.html#proc/Entered">&uarr;</a></aside>Entered<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/M) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L772">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 772"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L779">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 779"/></a></aside>
         </h3>
         <p>Call back when an atom enters an area</p>
 <p>Sends signals COMSIG_AREA_ENTERED and COMSIG_ENTER_AREA (to the atom)</p>
 <p>If the area has ambience, then it plays some ambience music to the ambience channel</p><h3 id="proc/Exited"><aside class="parent"><a title="/atom" href="atom.html#proc/Exited">&uarr;</a></aside>Exited<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/M) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L782">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 782"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L789">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 789"/></a></aside>
         </h3>
         <p>Called when an atom exits an area</p>
 <p>Sends signals COMSIG_AREA_EXITED and COMSIG_EXIT_AREA (to the atom)</p><h3 id="proc/Initialize"><aside class="parent"><a title="/atom" href="atom.html#proc/Initialize">&uarr;</a></aside>Initialize<aside>(mapload) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L198">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 198"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L202">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 202"/></a></aside>
         </h3>
         <p>Initalize this area</p>
 <p>intializes the dynamic area lighting and also registers the area with the z level via
@@ -306,27 +313,27 @@ reg_in_areas_in_z</p>
 <p>returns INITIALIZE_HINT_LATELOAD</p><h3 id="proc/LateInitialize"><aside class="parent"><a title="/atom" href="atom.html#proc/LateInitialize">&uarr;</a></aside>LateInitialize<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L234">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 234"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L238">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 238"/></a></aside>
         </h3>
         <p>Sets machine power levels in the area</p><h3 id="proc/ModifyFiredoors"><aside class="declaration">proc </aside>ModifyFiredoors<aside>(opening) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L462">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 462"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L469">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 469"/></a></aside>
         </h3>
         <p>Try to close all the firedoors in the area</p><h3 id="proc/New"><aside class="parent"><a title="/atom" href="atom.html#proc/New">&uarr;</a></aside>New<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L173">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 173"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L175">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 175"/></a></aside>
         </h3>
         <p>Called when an area loads</p>
 <p>Adds the item to the GLOB.areas_by_type list based on area type</p><h3 id="proc/addStaticPower"><aside class="declaration">proc </aside>addStaticPower<aside>(value, powerchannel) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L733">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 733"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L740">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 740"/></a></aside>
         </h3>
         <p>Add a static amount of power load to an area</p>
 <p>Possible channels
@@ -335,69 +342,69 @@ reg_in_areas_in_z</p>
 *AREA_USAGE_STATIC_ENVIRON</p><h3 id="proc/atmosalert"><aside class="declaration">proc </aside>atmosalert<aside>(danger_level, /<a href="obj.html">obj</a>/source) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L430">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 430"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L437">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 437"/></a></aside>
         </h3>
         <p>Generate an atmospheric alert for this area</p>
 <p>Sends to all ai players, alert consoles, drones and alarm monitor programs in the world</p><h3 id="proc/burglaralert"><aside class="declaration">proc </aside>burglaralert<aside>(/<a href="obj.html">obj</a>/trigger) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L569">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 569"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L576">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 576"/></a></aside>
         </h3>
         <p>Raise a burglar alert for this area</p>
 <p>Close and locks all doors in the area and alerts silicon mobs of a break in</p>
 <p>Alarm auto resets after 600 ticks</p><h3 id="proc/cannonize_contained_turfs"><aside class="declaration">proc </aside>cannonize_contained_turfs<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L323">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 323"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L327">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 327"/></a></aside>
         </h3>
         <p>Ensures that the contained_turfs list properly represents the turfs actually inside us</p><h3 id="proc/cannonize_contained_turfs_by_zlevel"><aside class="declaration">proc </aside>cannonize_contained_turfs_by_zlevel<aside>(zlevel_to_clean, _autoclean) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L295">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 295"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L299">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 299"/></a></aside>
         </h3>
         <p>Ensures that the contained_turfs list properly represents the turfs actually inside us</p><h3 id="proc/clear_usage"><aside class="declaration">proc </aside>clear_usage<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L747">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 747"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L754">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 754"/></a></aside>
         </h3>
         <p>Clear all power usage in area</p>
 <p>Clears all power used for equipment, light and environment channels</p><h3 id="proc/close_and_lock_door"><aside class="declaration">proc </aside>close_and_lock_door<aside>(/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/door.html">door</a>/DOOR) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L556">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 556"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L563">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 563"/></a></aside>
         </h3>
         <p>Close and lock a door passed into this proc</p>
 <p>Does this need to exist on area? probably not</p><h3 id="proc/create_area_lighting_objects"><aside class="declaration">proc </aside>create_area_lighting_objects<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/modules/lighting/static_lighting_area.dm#L46">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/modules/lighting/static_lighting_area.dm#L46">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;static_lighting_area.dm 46"/></a></aside>
         </h3>
         <p>regenerates lighting objects for turfs in this area, primary use is VV changes</p><h3 id="proc/drop_location"><aside class="parent"><a title="/atom" href="atom.html#proc/drop_location">&uarr;</a></aside>drop_location<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L875">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 875"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L882">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 882"/></a></aside>
         </h3>
         <p>Causes a runtime error</p><h3 id="proc/firealert"><aside class="declaration">proc </aside>firealert<aside>(/<a href="obj.html">obj</a>/source) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L487">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 487"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L494">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 494"/></a></aside>
         </h3>
         <p>Generate an firealarm alert for this area</p>
 <p>Sends to all ai players, alert consoles, drones and alarm monitor programs in the world</p>
 <p>Also starts the area processing on SSobj</p><h3 id="proc/firereset"><aside class="declaration">proc </aside>firereset<aside>(/<a href="obj.html">obj</a>/source, alert_only) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L521">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 521"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L528">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 528"/></a></aside>
         </h3>
         <p>Reset the firealarm alert for this area</p>
 <p>resets the alert sent to all ai players, alert consoles, drones and alarm monitor programs
@@ -405,147 +412,147 @@ in the world</p>
 <p>Also cycles the icons of all firealarms and deregisters the area from processing on SSOBJ</p><h3 id="proc/get_highest_zlevel"><aside class="declaration">proc </aside>get_highest_zlevel<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L253">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 253"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L257">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 257"/></a></aside>
         </h3>
         <p>Returns the highest zlevel that this area contains turfs for</p><h3 id="proc/get_original_area_name"><aside class="declaration">proc </aside>get_original_area_name<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L893">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 893"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L900">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 900"/></a></aside>
         </h3>
         <p>Returns the name of an area, with the original name if the area name has been changed.</p>
 <p>If an area has not been renamed, returns the area name. If it has been modified (by blueprints or other means)
 returns the current name, as well as the initial value, in the format of [Current Location Name (Original Name)]</p><h3 id="proc/get_turfs_by_zlevel"><aside class="declaration">proc </aside>get_turfs_by_zlevel<aside>(zlevel) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L278">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 278"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L282">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 282"/></a></aside>
         </h3>
         <p>Returns a list with all turfs in this zlevel.</p><h3 id="proc/get_turfs_from_all_zlevels"><aside class="declaration">proc </aside>get_turfs_from_all_zlevels<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L289">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 289"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L293">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 293"/></a></aside>
         </h3>
         <p>Merges a list containing all of the turfs zlevel lists from get_zlevel_turf_lists inside one list. Use get_zlevel_turf_lists() or get_turfs_by_zlevel() unless you need all the turfs in one list to avoid generating large lists</p><h3 id="proc/get_zlevel_turf_lists"><aside class="declaration">proc </aside>get_zlevel_turf_lists<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L265">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 265"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L269">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 269"/></a></aside>
         </h3>
         <p>Returns a nested list of lists with all turfs split by zlevel.
 only zlevels with turfs are returned. The order of the list is not guaranteed.</p><h3 id="proc/has_contained_turfs"><aside class="declaration">proc </aside>has_contained_turfs<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L331">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 331"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L335">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 335"/></a></aside>
         </h3>
         <p>Returns TRUE if we have contained turfs, FALSE otherwise</p><h3 id="proc/on_joining_game"><aside class="declaration">proc </aside>on_joining_game<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/boarder) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L883">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 883"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L890">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 890"/></a></aside>
         </h3>
         <p>Called when a living mob that spawned here, joining the round, receives the player client.</p><h3 id="proc/place_on_topReact"><aside class="declaration">proc </aside>place_on_topReact<aside>(/list/new_baseturfs, /<a href="turf.html">turf</a>/fake_turf_type, flags) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L879">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 879"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L886">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 886"/></a></aside>
         </h3>
         <p>A hook so areas can modify the incoming args (of what??)</p><h3 id="proc/power_change"><aside class="declaration">proc </aside>power_change<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L697">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 697"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L704">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 704"/></a></aside>
         </h3>
         <p>Called when the area power status changes</p>
 <p>Updates the area icon and calls power change on all machinees in the area</p><h3 id="proc/poweralert"><aside class="declaration">proc </aside>poweralert<aside>(state, /<a href="obj.html">obj</a>/source) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L397">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 397"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L404">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 404"/></a></aside>
         </h3>
         <p>Generate a power alert for this area</p>
 <p>Sends to all ai players, alert consoles, drones and alarm monitor programs in the world</p><h3 id="proc/powered"><aside class="declaration">proc </aside>powered<aside>(chan) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L670">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 670"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L677">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 677"/></a></aside>
         </h3>
         <p>Returns int 1 or 0 if the area has power for the given channel</p>
 <p>evalutes a mixture of variables mappers can set, requires_power, always_unpowered and then
 per channel power_equip, power_light, power_environ</p><h3 id="proc/process"><aside class="parent"><a title="/datum" href="datum.html#proc/process">&uarr;</a></aside>process<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L547">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 547"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L554">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 554"/></a></aside>
         </h3>
         <p>If 100 ticks has elapsed, toggle all the firedoors closed again</p><h3 id="proc/reg_in_areas_in_z"><aside class="declaration">proc </aside>reg_in_areas_in_z<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L346">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 346"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L350">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 350"/></a></aside>
         </h3>
         <p>Register this area as belonging to a z level</p>
 <p>Ensures the item is added to the SSmapping.areas_in_z list for this z</p><h3 id="proc/remove_area_lighting_objects"><aside class="declaration">proc </aside>remove_area_lighting_objects<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/modules/lighting/static_lighting_area.dm#L54">
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/modules/lighting/static_lighting_area.dm#L54">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;static_lighting_area.dm 54"/></a></aside>
         </h3>
         <p>Removes lighting objects from turfs in this area if we have them, primary use is VV changes</p><h3 id="proc/set_fire_alarm_effect"><aside class="declaration">proc </aside>set_fire_alarm_effect<aside>(delta_alert) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L598">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 598"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L605">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 605"/></a></aside>
         </h3>
         <p>Trigger the fire alarm visual affects in an area</p>
 <p>Updates the fire light on fire alarms in the area and sets all lights to emergency mode</p><h3 id="proc/setup"><aside class="declaration">proc </aside>setup<aside>(a_name) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L843">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 843"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L850">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 850"/></a></aside>
         </h3>
         <p>Setup an area (with the given name)</p>
 <p>Sets the area name, sets all status var's to false and adds the area to the sorted area list</p><h3 id="proc/unset_fire_alarm_effects"><aside class="declaration">proc </aside>unset_fire_alarm_effects<aside>(delta_alert) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L615">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 615"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L622">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 622"/></a></aside>
         </h3>
         <p>unset the fire alarm visual affects in an area</p>
 <p>Updates the fire light on fire alarms in the area and sets all lights to emergency mode</p><h3 id="proc/update_areasize"><aside class="declaration">proc </aside>update_areasize<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L858">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 858"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L865">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 865"/></a></aside>
         </h3>
         <p>Set the area size of the area</p>
 <p>This is the number of open turfs in the area contents, or FALSE if the outdoors var is set</p><h3 id="proc/update_icon_state"><aside class="parent"><a title="/atom" href="atom.html#proc/update_icon_state">&uarr;</a></aside>update_icon_state<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L646">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 646"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L653">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 653"/></a></aside>
         </h3>
         <p>Update the icon state of the area</p>
 <p>Im not sure what the heck this does, somethign to do with weather being able to set icon
 states on areas?? where the heck would that even display?</p><h3 id="proc/usage"><aside class="declaration">proc </aside>usage<aside>(chan) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L706">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 706"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L713">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 713"/></a></aside>
         </h3>
         <p>Return the usage of power per channel</p><h3 id="proc/use_power"><aside class="declaration">proc </aside>use_power<aside>(amount, chan) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/31df8df413b136ec11b5f9a6c1bd8745091b7b33/code/game/area/areas.dm#L755">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 755"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/926aabadce32c217efc77b1339b3f60b0011d621/code/game/area/areas.dm#L762">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 762"/></a></aside>
         </h3>
         <p>Add a power value amount to the stored used_x variables</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/31df8df413b136ec11b5f9a6c1bd8745091b7b33">31df8df</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/926aabadce32c217efc77b1339b3f60b0011d621">926aaba</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
