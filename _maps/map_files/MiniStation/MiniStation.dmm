@@ -2145,7 +2145,7 @@
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
 "afq" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 6
 	},
@@ -2306,10 +2306,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
-"afH" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "afI" = (
 /obj/machinery/door/airlock/security/glass{
 	id_tag = "outerbrig";
@@ -3781,7 +3777,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "aiT" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -4270,7 +4266,7 @@
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "akf" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 1
@@ -5824,10 +5820,10 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 4
 	},
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 8
 	},
 /obj/effect/mapping_helpers/airlock/access/all/command/general,
@@ -13674,10 +13670,10 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 8
 	},
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock/access/all/command/general,
@@ -15772,7 +15768,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/purple/filled/line/lower,
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/science/lab)
 "aLB" = (
@@ -16385,7 +16381,7 @@
 /turf/open/space/basic,
 /area/space)
 "aNf" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 4
 	},
@@ -16602,7 +16598,7 @@
 /area/science/mixing/chamber)
 "aNB" = (
 /obj/machinery/computer/security,
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 9
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
@@ -18730,7 +18726,7 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 8
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
@@ -19534,7 +19530,7 @@
 /turf/closed/wall,
 /area/crew_quarters/dorms)
 "aUk" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/trimline/chemorange/filled/corner/lower{
 	dir = 1
 	},
@@ -23964,6 +23960,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/escapepodbay)
+"tiC" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/table/altar_of_gods,
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
 "toe" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -24046,6 +24048,11 @@
 "tZU" = (
 /turf/open/space/basic,
 /area/shipbreak)
+"ugr" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "umX" = (
 /obj/machinery/doorButtons/airlock_controller{
 	idExterior = "virology_airlock_exterior";
@@ -105217,7 +105224,7 @@ anx
 anx
 anx
 aQW
-afH
+ugr
 aay
 aay
 abv
@@ -109814,7 +109821,7 @@ avk
 aUJ
 amr
 aMH
-aMH
+tiC
 aDy
 adt
 aMq
