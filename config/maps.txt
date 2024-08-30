@@ -41,7 +41,7 @@ map donutstation
 endmap
 
 map ministation
-	maxplayers 40
+	maxplayers 30
 	votable
 endmap
 
