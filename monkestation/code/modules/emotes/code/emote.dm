@@ -366,10 +366,17 @@
 	build_all_button_icons()
 
 	var/mob/living/spitter = on_who
-	spitter.audible_message("[emote_gurgle_msg].", deaf_message = "<span class='emote'>You see <b>[spitter]</b> gurgle their mouth.</span>", audible_message_flags = EMOTE_MESSAGE)
+	spitter.audible_message("[emote_gurgle_msg].", deaf_message = span_emote("You see <b>[spitter]</b> gurgle their mouth."), audible_message_flags = EMOTE_MESSAGE)
 
 	if(boolPlaySound)
-		playsound(spitter, 'monkestation/code/modules/emotes/sound/spit_windup.ogg', 50, TRUE)
+		playsound(
+			spitter,
+			'monkestation/code/modules/emotes/sound/spit_windup.ogg',
+			vol = 50,
+			vary = TRUE,
+			ignore_walls = FALSE,
+			mixer_channel = CHANNEL_MOB_EMOTES,
+		)
 
 	return TRUE
 
@@ -384,16 +391,31 @@
 	if(ishuman(spitter))
 		var/mob/living/carbon/human/humanoid = caller
 		if(humanoid.is_mouth_covered())
-			humanoid.audible_message("[emote_spit_msg] in their mask!", deaf_message = "<span class='emote'>You see <b>[spitter]</b> spit in their mask.</span>", audible_message_flags = EMOTE_MESSAGE)
+			humanoid.audible_message("[emote_spit_msg] in their mask!", deaf_message = span_emote("You see <b>[spitter]</b> spit in their mask."), audible_message_flags = EMOTE_MESSAGE)
 			if(boolPlaySound)
-				playsound(spitter, 'monkestation/code/modules/emotes/sound/spit_release.ogg', 50, TRUE)
+				playsound(
+					spitter,
+					'monkestation/code/modules/emotes/sound/spit_release.ogg',
+					vol = 50,
+					vary = TRUE,
+					ignore_walls = FALSE,
+					mixer_channel = CHANNEL_MOB_EMOTES,
+				)
 			src.Remove(caller)
 			return
 
 	. = ..()
-	spitter.audible_message("[emote_spit_msg].", deaf_message = "<span class='emote'>You see <b>[spitter]</b> spit.</span>", audible_message_flags = EMOTE_MESSAGE)
+	spitter.audible_message("[emote_spit_msg].", deaf_message = span_emote("You see <b>[spitter]</b> spit."), audible_message_flags = EMOTE_MESSAGE)
 	if(boolPlaySound)
-		playsound(spitter, 'monkestation/code/modules/emotes/sound/spit_release.ogg', 50, TRUE)
+		playsound(
+			spitter,
+			'monkestation/code/modules/emotes/sound/spit_release.ogg',
+			vol = 50,
+			vary = TRUE,
+			extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE,
+			ignore_walls = FALSE,
+			mixer_channel = CHANNEL_MOB_EMOTES,
+		)
 	src.Remove(caller)
 
 
