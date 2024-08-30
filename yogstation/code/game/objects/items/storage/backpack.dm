@@ -1,5 +1,3 @@
-/obj/item/storage/backpack
-	sprite_sheets = list(SPECIES_VOX = VOX_BACK_FILE)
 
 /obj/item/storage/backpack/holding
 	icon = 'yogstation/icons/obj/storage.dmi'

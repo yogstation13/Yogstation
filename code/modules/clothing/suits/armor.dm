@@ -146,7 +146,7 @@
 /obj/item/clothing/suit/armor/bone
 	name = "bone armor"
 	desc = "A mass of bones wrapped together into a protective shell. Not as effective as modern protection, but it still offers notable protection."
-	allowed = list (/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/melee/spear, /obj/item/melee/spear/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
+	allowed = list (/obj/item/tank/internals/emergency_oxygen, /obj/item/melee/spear, /obj/item/melee/spear/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
 	icon_state = "bonearmor"
 	item_state = "bonearmor"
 	blood_overlay_type = "armor"

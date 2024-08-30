@@ -259,7 +259,6 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 /obj/effect/hallucination/simple/clown/Initialize(mapload, mob/living/carbon/T, duration)
 	..(loc, T)
-	name = pick(GLOB.clown_names)
 	QDEL_IN(src,duration)
 
 /obj/effect/hallucination/simple/clown/scary

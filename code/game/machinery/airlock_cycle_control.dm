@@ -7,7 +7,6 @@
 
 // Anyways for a functioning airlock, you need an interior and an exterior door. Vents are optional.
 // If setup right, you can even make an airlock that cycles between two rooms of different atmospheres!
-// Perfect for the plasmaman atmos tech.
 
 // NOTE FOR MAPPERS:
 // PLEASE DON'T PUT THIS ON THE SAME TILE AS A VENT IF THE AIRLOCK IS BIGGER THAN 1X1.

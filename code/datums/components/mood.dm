@@ -348,12 +348,6 @@
 			add_event(null, "nutrition", /datum/mood_event/starving)
 
 /datum/component/mood/proc/HandleCharge(mob/living/L)
-	if(isethereal(L) && L.nutrition > NUTRITION_LEVEL_MOSTLY_FULL)
-		if(L.nutrition > NUTRITION_LEVEL_FULL)
-			add_event(null, "nutrition", /datum/mood_event/supercharged)
-		else
-			add_event(null, "nutrition", /datum/mood_event/overcharged)
-		return
 	switch(L.nutrition)
 		if(0 to NUTRITION_LEVEL_STARVING)
 			add_event(null, "nutrition", /datum/mood_event/decharged)

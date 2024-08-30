@@ -8,13 +8,6 @@
 	if(!is_donator(C))
 		return
 
-	switch(C.prefs.read_preference(/datum/preference/choiced/purrbation))
-		if(PURRBATION_CAT)
-			purrbation_toggle_onlyhumans(H)
-		if(PURRBATION_FOX)
-			if(ishumanbasic(H))
-				H.set_species(/datum/species/human/vulpine)
-
 	var/datum/donator_gear/donor_hat_datum = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_hat)]
 	if(donor_hat_datum)
 		var/donor_hat_type = donor_hat_datum.unlock_path

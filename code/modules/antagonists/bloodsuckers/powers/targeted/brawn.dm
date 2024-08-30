@@ -218,9 +218,6 @@
 			if(istype(I, /obj/item/clothing/head/helmet/space/hardsuit))
 				var/obj/item/clothing/head/helmet/space/hardsuit/HA = I
 				HA.set_light_on(FALSE)
-			if(istype(I, /obj/item/clothing/head/helmet/space/plasmaman))
-				var/obj/item/clothing/head/helmet/space/plasmaman/PA = I
-				PA.set_light_on(FALSE)
 			if(istype(I, /obj/item/flashlight))
 				var/obj/item/flashlight/F = I
 				F.set_light_on(FALSE)

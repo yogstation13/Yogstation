@@ -589,22 +589,6 @@ update_label("John Doe", "Clowny")
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 
-/obj/item/card/id/silver/synthetic
-	name = "synthetic identification card"
-	desc = "An integrated card that allows synthetic units access across the station."
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	item_flags = DROPDEL
-
-/obj/item/card/id/silver/synthetic/Initialize(mapload)
-	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, SYNTHETIC_TRAIT)
-
-/obj/item/card/id/silver/synthetic/GetAccess()
-	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		if(H.mind)
-			return GLOB.synthetic_base_access + GLOB.synthetic_added_access
-	return list()
 
 /obj/item/card/id/syndicate
 	name = "agent card"

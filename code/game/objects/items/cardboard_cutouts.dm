@@ -119,14 +119,6 @@
 			name = "[pick(GLOB.first_names_male)] [pick(GLOB.last_names)]"
 			desc = "A cardboat cutout of an assistant."
 			icon_state = "cutout_greytide"
-		if("Clown")
-			name = pick(GLOB.clown_names)
-			desc = "A cardboard cutout of a clown. You get the feeling that it should be in a corner."
-			icon_state = "cutout_clown"
-		if("Mime")
-			name = pick(GLOB.mime_names)
-			desc = "...(A cardboard cutout of a mime.)"
-			icon_state = "cutout_mime"
 		if("Traitor")
 			name = "[pick("Unknown", "Captain")]"
 			desc = "A cardboard cutout of a traitor."
@@ -165,10 +157,6 @@
 			name = "Swarmer ([rand(1, 999)])"
 			desc = "A cardboard cutout of a swarmer."
 			icon_state = "cutout_swarmer"
-		if("Ash Walker")
-			name = lizard_name(pick(MALE, FEMALE))
-			desc = "A cardboard cutout of an ash walker."
-			icon_state = "cutout_free_antag"
 		if("Deathsquad Officer")
 			name = pick(GLOB.commando_names)
 			desc = "A cardboard cutout of a death commando."

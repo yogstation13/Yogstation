@@ -111,10 +111,6 @@
 	description = "<span class='warning'>It sure is dark around here...</span>\n"
 	mood_change = -3
 
-/datum/mood_event/family_heirloom_missing
-	description = "<span class='boldwarning'>I'm missing my family heirloom...</span>\n"
-	mood_change = -30
-
 /datum/mood_event/healsbadman
 	description = "<span class='warning'>I feel like I'm held together by flimsy string, and could fall apart at any moment!</span>\n"
 	mood_change = -4

@@ -68,8 +68,8 @@
 		L.adjust_wet_stacks(3*log(2, (50*L.get_permeability(null, TRUE) + 10) / 10))
 		L.extinguish_mob() // permeability affects the negative fire stacks but not the extinguishing
 
-		// if preternis, update wetness instantly when applying more water instead of waiting for the next life tick
-		if(ispreternis(L) || isjellyperson(L))
+		
+		if(isjellyperson(L))
 			var/mob/living/carbon/human/H = L
 			H?.dna?.species?.spec_life(H)
 

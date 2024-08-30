@@ -619,25 +619,6 @@
 	plort_value = 250
 	activate_reagents = list(/datum/reagent/blood,/datum/reagent/toxin/plasma,"lesser plasma",/datum/reagent/toxin/slimejelly,"holy water and uranium") //Curse this snowflake reagent list.
 
-/obj/item/slime_extract/rainbow/activate(mob/living/carbon/human/user, datum/species/jelly/luminescent/species, activation_type)
-	switch(activation_type)
-		if(SLIME_ACTIVATE_MINOR)
-			user.dna.features["mcolor"] = pick("#FFFFFF","#7F7F7F", "#7FFF7F", "#7F7FFF", "#FF7F7F", "#7FFFFF", "#FF7FFF", "#FFFF7F")
-			user.dna.update_uf_block(DNA_MUTANT_COLOR_BLOCK)
-			user.updateappearance(mutcolor_update=1)
-			species.update_glow(user)
-			to_chat(user, span_notice("You feel different..."))
-			return 100
-
-		if(SLIME_ACTIVATE_MAJOR)
-			var/chosen = pick(subtypesof(/obj/item/slime_extract))
-			var/obj/item/O = new chosen(null)
-			if(!user.put_in_active_hand(O))
-				O.forceMove(user.drop_location())
-			playsound(user, 'sound/effects/splat.ogg', 50, 1)
-			user.visible_message(span_warning("[user] spits out [O]!"), span_notice("You spit out [O]!"))
-			return 150
-
 ////Slime-derived potions///
 
 /**

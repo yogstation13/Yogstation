@@ -608,11 +608,6 @@
 	. = ..()
 	UnregisterSignal(C, COMSIG_MOB_SAY)
 
-/datum/species/golem/bananium/random_name(gender,unique,lastname)
-	var/clown_name = pick(GLOB.clown_names)
-	var/golem_name = "[uppertext(clown_name)]"
-	return golem_name
-
 /datum/species/golem/bananium/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style, modifiers)
 	..()
 	if(world.time > last_banana + banana_cooldown && M != H &&  M.combat_mode)

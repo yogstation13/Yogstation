@@ -52,7 +52,6 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "n" = (
-/mob/living/simple_animal/hostile/cat_butcherer,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "o" = (

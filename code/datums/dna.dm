@@ -14,14 +14,6 @@ GLOBAL_LIST_INIT(identity_block_lengths, list(
 		"[DNA_EYE_COLOR_BLOCK]" = DNA_BLOCK_SIZE_COLOR,
 	))
 
-/**
- * The same rules of the above also apply here, with the exception that this is for the unique_features string variable
- * (commonly abbreviated with uf) and its blocks. Both ui and uf have a standard block length of 3 ASCII characters.
- */
-GLOBAL_LIST_INIT(features_block_lengths, list(
-		"[DNA_MUTANT_COLOR_BLOCK]" = DNA_BLOCK_SIZE_COLOR,
-		"[DNA_ETHEREAL_COLOR_BLOCK]" = DNA_BLOCK_SIZE_COLOR,
-	))
 
 /**
  * A list of numbers that keeps track of where ui blocks start in the unique_identity string variable of the dna datum.
@@ -185,69 +177,6 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	for(var/blocknum in 1 to DNA_UNI_IDENTITY_BLOCKS)
 		. += L[blocknum] || random_string(GET_UI_BLOCK_LEN(blocknum), GLOB.hex_characters)
 
-/datum/dna/proc/generate_unique_features()
-	. = ""
-
-	var/list/L = new /list(DNA_FEATURE_BLOCKS)
-
-	if(features["mcolor"])
-		L[DNA_MUTANT_COLOR_BLOCK] = sanitize_hexcolor(features["mcolor"], include_crunch = FALSE)
-	if(features["mcolor_secondary"])
-		L[DNA_MUTANT_COLOR_SECONDARY] = sanitize_hexcolor(features["mcolor_secondary"], include_crunch = FALSE)
-	if(features["body_markings"])
-		L[DNA_LIZARD_MARKINGS_BLOCK] = construct_block(GLOB.body_markings_list.Find(features["body_markings"]), GLOB.body_markings_list.len)
-	if(features["tail_lizard"])
-		L[DNA_LIZARD_TAIL_BLOCK] = construct_block(GLOB.tails_list_lizard.Find(features["tail_lizard"]), GLOB.tails_list_lizard.len)
-	if(features["snout"])
-		L[DNA_SNOUT_BLOCK] = construct_block(GLOB.snouts_list.Find(features["snout"]), GLOB.snouts_list.len)
-	if(features["horns"])
-		L[DNA_HORNS_BLOCK] = construct_block(GLOB.horns_list.Find(features["horns"]), GLOB.horns_list.len)
-	if(features["frills"])
-		L[DNA_FRILLS_BLOCK] = construct_block(GLOB.frills_list.Find(features["frills"]), GLOB.frills_list.len)
-	if(features["spines"])
-		L[DNA_SPINES_BLOCK] = construct_block(GLOB.spines_list.Find(features["spines"]), GLOB.spines_list.len)
-	if(features["tail_human"])
-		L[DNA_HUMAN_TAIL_BLOCK] = construct_block(GLOB.tails_list_human.Find(features["tail_human"]), GLOB.tails_list_human.len)
-	if(features["ears"])
-		L[DNA_EARS_BLOCK] = construct_block(GLOB.ears_list.Find(features["ears"]), GLOB.ears_list.len)
-	if(features["moth_wings"] != "Burnt Off")
-		L[DNA_MOTH_WINGS_BLOCK] = construct_block(GLOB.moth_wings_list.Find(features["moth_wings"]), GLOB.moth_wings_list.len)
-	if(features["caps"])
-		L[DNA_MUSHROOM_CAPS_BLOCK] = construct_block(GLOB.caps_list.Find(features["caps"]), GLOB.caps_list.len)
-	if(features["tail_polysmorph"])
-		L[DNA_POLY_TAIL_BLOCK] = construct_block(GLOB.tails_list_polysmorph.Find(features["tail_polysmorph"]), GLOB.tails_list_polysmorph.len)
-	if(features["teeth"])
-		L[DNA_POLY_TEETH_BLOCK] = construct_block(GLOB.teeth_list.Find(features["teeth"]), GLOB.teeth_list.len)
-	if(features["dome"])
-		L[DNA_POLY_DOME_BLOCK] = construct_block(GLOB.dome_list.Find(features["dome"]), GLOB.dome_list.len)
-	if(features["dorsal_tubes"])
-		L[DNA_POLY_DORSAL_BLOCK] = construct_block(GLOB.dorsal_tubes_list.Find(features["dorsal_tubes"]), GLOB.dorsal_tubes_list.len)
-	if(features["ethereal_mark"])
-		L[DNA_ETHEREAL_MARK_BLOCK] = construct_block(GLOB.ethereal_mark_list.Find(features["ethereal_mark"]), GLOB.ethereal_mark_list.len)
-	if(features["preternis_weathering"])
-		L[DNA_PRETERNIS_WEATHERING_BLOCK] = construct_block(GLOB.preternis_weathering_list.Find(features["preternis_weathering"]), GLOB.preternis_weathering_list.len)
-	if(features["preternis_antenna"])
-		L[DNA_PRETERNIS_ANTENNA_BLOCK] = construct_block(GLOB.preternis_antenna_list.Find(features["preternis_antenna"]), GLOB.preternis_antenna_list.len)
-	if(features["preternis_eye"])
-		L[DNA_PRETERNIS_EYE_BLOCK] = construct_block(GLOB.preternis_eye_list.Find(features["preternis_eye"]), GLOB.preternis_eye_list.len)
-	if(features["pod_hair"])
-		L[DNA_POD_HAIR_BLOCK] = construct_block(GLOB.pod_hair_list.Find(features["pod_hair"]), GLOB.pod_hair_list.len)
-	if(features["pod_flower"])
-		L[DNA_POD_FLOWER_BLOCK] = construct_block(GLOB.pod_flower_list.Find(features["pod_flower"]), GLOB.pod_flower_list.len)
-	if(features["vox_quills"])
-		L[DNA_VOX_QUILLS_BLOCK] = construct_block(GLOB.vox_quills_list.Find(features["vox_quills"]), GLOB.vox_quills_list.len)
-	if(features["vox_facial_quills"])
-		L[DNA_VOX_FACIAL_QUILLS_BLOCK] = construct_block(GLOB.vox_facial_quills_list.Find(features["vox_facial_quills"]), GLOB.vox_facial_quills_list.len)
-	if(features["vox_tail_markings"])
-		L[DNA_VOX_TAIL_MARKINGS_BLOCK] = construct_block(GLOB.vox_tail_markings_list.Find(features["vox_tail_markings"]), GLOB.vox_tail_markings_list.len)
-	if(features["vox_body_markings"])
-		L[DNA_VOX_BODY_MARKINGS_BLOCK] = construct_block(GLOB.vox_body_markings_list.Find(features["vox_body_markings"]), GLOB.vox_body_markings_list.len)
-	if(features["vox_skin_tone"])
-		L[DNA_VOX_SKIN_TONE_BLOCK] = construct_block(GLOB.vox_skin_tones.Find(features["vox_skin_tone"]), GLOB.vox_skin_tones.len)
-
-	for(var/blocknum in 1 to DNA_FEATURE_BLOCKS)
-		. += L[blocknum] || random_string(GET_UI_BLOCK_LEN(blocknum), GLOB.hex_characters)
-
 /datum/dna/proc/generate_dna_blocks()
 	var/bonus
 	if(species && species.inert_mutation)
@@ -358,61 +287,6 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		CRASH("UF block index is null")
 	if(!ishuman(holder))
 		CRASH("Non-human mobs shouldn't have DNA")
-	switch(blocknumber)
-		if(DNA_MUTANT_COLOR_BLOCK)
-			set_uni_feature_block(blocknumber, sanitize_hexcolor(features["mcolor"], include_crunch = FALSE))
-		if(DNA_MUTANT_COLOR_SECONDARY)
-			set_uni_feature_block(blocknumber, sanitize_hexcolor(features["mcolor_secondary"], include_crunch = FALSE))
-		if(DNA_LIZARD_MARKINGS_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.body_markings_list.Find(features["body_markings"]), GLOB.body_markings_list.len))
-		if(DNA_LIZARD_TAIL_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.tails_list_lizard.Find(features["tail_lizard"]), GLOB.tails_list_lizard.len))
-		if(DNA_SNOUT_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.snouts_list.Find(features["snout"]), GLOB.snouts_list.len))
-		if(DNA_HORNS_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.horns_list.Find(features["horns"]), GLOB.horns_list.len))
-		if(DNA_FRILLS_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.frills_list.Find(features["frills"]), GLOB.frills_list.len))
-		if(DNA_SPINES_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.spines_list.Find(features["spines"]), GLOB.spines_list.len))
-		if(DNA_HUMAN_TAIL_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.tails_list_human.Find(features["tail_human"]), GLOB.tails_list_human.len))
-		if(DNA_EARS_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.ears_list.Find(features["ears"]), GLOB.ears_list.len))
-		if(DNA_MOTH_WINGS_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.moth_wings_list.Find(features["moth_wings"]), GLOB.moth_wings_list.len))
-		if(DNA_MUSHROOM_CAPS_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.caps_list.Find(features["caps"]), GLOB.caps_list.len))
-		if(DNA_POLY_TAIL_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.tails_list_polysmorph.Find(features["tail_polysmorph"]), GLOB.tails_list_polysmorph.len))
-		if(DNA_POLY_TEETH_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.teeth_list.Find(features["teeth"]), GLOB.teeth_list.len))
-		if(DNA_POLY_DOME_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.dome_list.Find(features["dome"]), GLOB.dome_list.len))
-		if(DNA_POLY_DORSAL_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.dorsal_tubes_list.Find(features["dorsal_tubes"]), GLOB.dorsal_tubes_list.len))
-		if(DNA_ETHEREAL_MARK_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.ethereal_mark_list.Find(features["ethereal_mark"]), GLOB.ethereal_mark_list.len))
-		if(DNA_PRETERNIS_WEATHERING_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.preternis_weathering_list.Find(features["preternis_weathering"]), GLOB.preternis_weathering_list.len))
-		if(DNA_PRETERNIS_ANTENNA_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.preternis_antenna_list.Find(features["preternis_antenna"]), GLOB.preternis_antenna_list.len))
-		if(DNA_PRETERNIS_EYE_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.preternis_eye_list.Find(features["preternis_eye"]), GLOB.preternis_eye_list.len))
-		if(DNA_POD_HAIR_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.pod_hair_list.Find(features["pod_hair"]), GLOB.pod_hair_list.len))
-		if(DNA_POD_FLOWER_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.pod_flower_list.Find(features["pod_flower"]), GLOB.pod_flower_list.len))
-		if(DNA_VOX_QUILLS_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.vox_quills_list.Find(features["vox_quills"]), GLOB.vox_quills_list.len))
-		if(DNA_VOX_FACIAL_QUILLS_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.vox_facial_quills_list.Find(features["vox_facial_quills"]), GLOB.vox_facial_quills_list.len))
-		if(DNA_VOX_TAIL_MARKINGS_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.vox_tail_markings_list.Find(features["vox_tail_markings"]), GLOB.vox_tail_markings_list.len))
-		if(DNA_VOX_BODY_MARKINGS_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.vox_body_markings_list.Find(features["vox_body_markings"]), GLOB.vox_body_markings_list.len))
-		if(DNA_VOX_SKIN_TONE_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.vox_skin_tones.Find(features["vox_skin_tone"]), GLOB.vox_skin_tones.len))
 
 //Please use add_mutation or activate_mutation instead
 /datum/dna/proc/force_give(datum/mutation/human/HM)
@@ -619,71 +493,9 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	eye_color = sanitize_hexcolor(get_uni_identity_block(structure, DNA_EYE_COLOR_BLOCK))
 	facial_hair_style = GLOB.facial_hair_styles_list[deconstruct_block(get_uni_identity_block(structure, DNA_FACIAL_HAIR_STYLE_BLOCK), GLOB.facial_hair_styles_list.len)]
 	if(HAS_TRAIT(src, TRAIT_BALD))
-		if(isvox(src))
-			dna.features["vox_quills"] = "None"
-			dna.update_uf_block(DNA_VOX_QUILLS_BLOCK)
-		else
-			hair_style = "Bald"	
+		hair_style = "Bald"	
 	else
 		hair_style = GLOB.hair_styles_list[deconstruct_block(get_uni_identity_block(structure, DNA_HAIR_STYLE_BLOCK), GLOB.hair_styles_list.len)]
-	var/features = dna.unique_features
-	if(dna.features["mcolor"])
-		dna.features["mcolor"] = sanitize_hexcolor(get_uni_feature_block(features, DNA_MUTANT_COLOR_BLOCK))
-	if(dna.features["mcolor_secondary"])
-		dna.features["mcolor_secondary"] = sanitize_hexcolor(get_uni_feature_block(features, DNA_MUTANT_COLOR_SECONDARY))
-	if(dna.features["body_markings"])
-		dna.features["body_markings"] = GLOB.body_markings_list[deconstruct_block(get_uni_feature_block(features, DNA_LIZARD_MARKINGS_BLOCK), GLOB.body_markings_list.len)]
-	if(dna.features["tail_lizard"])
-		dna.features["tail_lizard"] = GLOB.tails_list_lizard[deconstruct_block(get_uni_feature_block(features, DNA_LIZARD_TAIL_BLOCK), GLOB.tails_list_lizard.len)]
-	if(dna.features["snout"])
-		dna.features["snout"] = GLOB.snouts_list[deconstruct_block(get_uni_feature_block(features, DNA_SNOUT_BLOCK), GLOB.snouts_list.len)]
-	if(dna.features["horns"])
-		dna.features["horns"] = GLOB.horns_list[deconstruct_block(get_uni_feature_block(features, DNA_HORNS_BLOCK), GLOB.horns_list.len)]
-	if(dna.features["frills"])
-		dna.features["frills"] = GLOB.frills_list[deconstruct_block(get_uni_feature_block(features, DNA_FRILLS_BLOCK), GLOB.frills_list.len)]
-	if(dna.features["spines"])
-		dna.features["spines"] = GLOB.spines_list[deconstruct_block(get_uni_feature_block(features, DNA_SPINES_BLOCK), GLOB.spines_list.len)]
-	if(dna.features["tail_human"])
-		dna.features["tail_human"] = GLOB.tails_list_human[deconstruct_block(get_uni_feature_block(features, DNA_HUMAN_TAIL_BLOCK), GLOB.tails_list_human.len)]
-	if(dna.features["ears"])
-		dna.features["ears"] = GLOB.ears_list[deconstruct_block(get_uni_feature_block(features, DNA_EARS_BLOCK), GLOB.ears_list.len)]
-	if(dna.features["moth_wings"])
-		var/genetic_value = GLOB.moth_wings_list[deconstruct_block(get_uni_feature_block(features, DNA_MOTH_WINGS_BLOCK), GLOB.moth_wings_list.len)]
-		dna.features["original_moth_wings"] = genetic_value
-		if(dna.features["moth_wings"] != "Burnt Off")
-			dna.features["moth_wings"] = genetic_value
-	if(dna.features["caps"])
-		dna.features["caps"] = GLOB.caps_list[deconstruct_block(get_uni_feature_block(features, DNA_MUSHROOM_CAPS_BLOCK), GLOB.caps_list.len)]
-	// if(features["tail_polysmorph"])
-	// 	dna.features["tail_polysmorph"] = GLOB.tails_list_polysmorph[deconstruct_block(get_uni_feature_block(features, DNA_POLY_TAIL_BLOCK), GLOB.tails_list_polysmorph.len)]
-	if(dna.features["teeth"])
-		dna.features["teeth"] = GLOB.teeth_list[deconstruct_block(get_uni_feature_block(features, DNA_POLY_TEETH_BLOCK), GLOB.teeth_list.len)]
-	if(dna.features["dome"])
-		dna.features["dome"] = GLOB.dome_list[deconstruct_block(get_uni_feature_block(features, DNA_POLY_DOME_BLOCK), GLOB.dome_list.len)]
-	if(dna.features["dorsal_tubes"])
-		dna.features["dorsal_tubes"] = GLOB.dorsal_tubes_list[deconstruct_block(get_uni_feature_block(features, DNA_POLY_DORSAL_BLOCK), GLOB.dorsal_tubes_list.len)]
-	if(dna.features["ethereal_mark"])
-		dna.features["ethereal_mark"] = GLOB.ethereal_mark_list[deconstruct_block(get_uni_feature_block(features, DNA_ETHEREAL_MARK_BLOCK), GLOB.ethereal_mark_list.len)]
-	if(dna.features["preternis_weathering"])
-		dna.features["preternis_weathering"] = GLOB.preternis_weathering_list[deconstruct_block(get_uni_feature_block(features, DNA_PRETERNIS_WEATHERING_BLOCK), GLOB.preternis_weathering_list.len)]
-	if(dna.features["preternis_antenna"])
-		dna.features["preternis_antenna"] = GLOB.preternis_antenna_list[deconstruct_block(get_uni_feature_block(features, DNA_PRETERNIS_ANTENNA_BLOCK), GLOB.preternis_antenna_list.len)]
-	if(dna.features["preternis_eye"])
-		dna.features["preternis_eye"] = GLOB.preternis_eye_list[deconstruct_block(get_uni_feature_block(features, DNA_PRETERNIS_EYE_BLOCK), GLOB.preternis_eye_list.len)]
-	if(dna.features["pod_hair"])
-		dna.features["pod_hair"] = GLOB.pod_hair_list[deconstruct_block(get_uni_feature_block(features, DNA_POD_HAIR_BLOCK), GLOB.pod_hair_list.len)]
-	if(dna.features["pod_flower"])
-		dna.features["pod_flower"] = GLOB.pod_flower_list[deconstruct_block(get_uni_feature_block(features, DNA_POD_FLOWER_BLOCK), GLOB.pod_flower_list.len)]
-	if(dna.features["vox_quills"])
-		dna.features["vox_quills"] = GLOB.vox_quills_list[deconstruct_block(get_uni_feature_block(features, DNA_VOX_QUILLS_BLOCK), GLOB.vox_quills_list.len)]
-	if(dna.features["vox_facial_quills"])
-		dna.features["vox_facial_quills"] = GLOB.vox_facial_quills_list[deconstruct_block(get_uni_feature_block(features, DNA_VOX_FACIAL_QUILLS_BLOCK), GLOB.vox_facial_quills_list.len)]
-	if(dna.features["vox_tail_markings"])
-		dna.features["vox_tail_markings"] = GLOB.vox_tail_markings_list[deconstruct_block(get_uni_feature_block(features, DNA_VOX_TAIL_MARKINGS_BLOCK), GLOB.vox_tail_markings_list.len)]
-	if(dna.features["vox_body_markings"])
-		dna.features["vox_body_markings"] = GLOB.vox_body_markings_list[deconstruct_block(get_uni_feature_block(features, DNA_VOX_BODY_MARKINGS_BLOCK), GLOB.vox_body_markings_list.len)]
-	if(dna.features["vox_skin_tone"])
-		dna.features["vox_skin_tone"] = GLOB.vox_skin_tones[deconstruct_block(get_uni_feature_block(features, DNA_VOX_SKIN_TONE_BLOCK), GLOB.vox_skin_tones.len)]
 
 	if(icon_update)
 		dna.species.handle_body(src) // We want 'update_body_parts()' to be called only if mutcolor_update is TRUE, so no 'update_body()' here.

@@ -381,36 +381,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(oldorgan)
 			oldorgan.setOrganDamage(0)
 		else if(should_have)
-			if(slot == ORGAN_SLOT_TAIL)
-				// Special snowflake code to handle tail appearances
-				var/obj/item/organ/tail/new_tail = neworgan
-				if(iscatperson(C))
-					new_tail.tail_type = C.dna.features["tail_human"]
-				if(ispolysmorph(C))
-					new_tail.tail_type = C.dna.features["tail_polysmorph"]
-				if(islizard(C))
-					var/obj/item/organ/tail/lizard/new_lizard_tail = neworgan
-					new_lizard_tail.tail_type = C.dna.features["tail_lizard"]
-					new_lizard_tail.spines = C.dna.features["spines"]
-				if(isvox(C))
-					var/obj/item/organ/tail/vox/new_vox_tail = neworgan
-					new_vox_tail.tail_type = C.dna.features["vox_skin_tone"]
-					new_vox_tail.tail_markings = C.dna.features["vox_tail_markings"]
-
-	// if(tail && (!should_have_tail || replace_current))
-	// 	tail.Remove(C,1)
-	// 	QDEL_NULL(tail)
-	// if(should_have_tail && !tail)
-	// 	tail = new mutanttail
-	// 	if(iscatperson(C))
-	// 		tail.tail_type = C.dna.features["tail_human"]
-	// 	if(ispolysmorph(C))
-	// 		tail.tail_type = C.dna.features["tail_polysmorph"]
-	// 	if(islizard(C))
-	// 		var/obj/item/organ/tail/lizard/T = tail
-	// 		T.tail_type = C.dna.features["tail_lizard"]
-	// 		T.spines = C.dna.features["spines"]
-	// 	tail.Insert(C)
 			used_neworgan = TRUE
 			neworgan.Insert(C, TRUE, FALSE)
 
@@ -600,17 +570,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(M.flags_inv & HIDEFACIALHAIR)
 			facialhair_hidden = TRUE
 
-	if(("vox_facial_quills" in H.dna.species.mutant_bodyparts) && !facialhair_hidden)
-		S = GLOB.vox_facial_quills_list[H.dna.features["vox_facial_quills"]]
-		if(S)
-			var/mutable_appearance/facial_quills_overlay = mutable_appearance(layer = -HAIR_LAYER, appearance_flags = KEEP_TOGETHER)
-			var/mutable_appearance/facial_quills_base = mutable_appearance(S.icon, S.icon_state)
-			facial_quills_base.color = forced_colour || H.facial_hair_color
-			if(S.color_blend_mode == COLOR_BLEND_ADD)
-				facial_quills_base.color = COLOR_MATRIX_ADD(facial_quills_base.color)
-			facial_quills_overlay.overlays += facial_quills_base
-			facial_quills_overlay.alpha = hair_alpha
-			standing += facial_quills_overlay
 	if(H.facial_hair_style && (FACEHAIR in species_traits) && (!facialhair_hidden || dynamic_fhair_suffix))
 		S = GLOB.facial_hair_styles_list[H.facial_hair_style]
 		if(S)
@@ -776,26 +735,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 							flower_overlay.color = H.facial_hair_color
 					flower_overlay.alpha = hair_alpha
 					standing += flower_overlay
-		if(("vox_quills" in H.dna.species.mutant_bodyparts) && !hair_hidden)
-			S = GLOB.vox_quills_list[H.dna.features["vox_quills"]]
-			if(S)
-				var/mutable_appearance/quills_overlay = mutable_appearance(layer = -HAIR_LAYER, appearance_flags = KEEP_TOGETHER)
-				var/mutable_appearance/quills_base = mutable_appearance(S.icon, S.icon_state)
-				quills_base.color = forced_colour || H.hair_color
-				if(S.color_blend_mode == COLOR_BLEND_ADD)
-					quills_base.color = COLOR_MATRIX_ADD(quills_base.color)
-				quills_overlay.overlays += quills_base
-				//Gradients
-				grad_style = H.grad_style
-				grad_color = H.grad_color
-				if(grad_style)
-					var/datum/sprite_accessory/gradient = GLOB.hair_gradients_list[grad_style]
-					var/mutable_appearance/gradient_quills = mutable_appearance(gradient.icon, gradient.icon_state)
-					gradient_quills.color = COLOR_MATRIX_OVERLAY(grad_color)
-					gradient_quills.blend_mode = BLEND_INSET_OVERLAY
-					quills_overlay.overlays += gradient_quills
-				quills_overlay.alpha = hair_alpha
-				standing += quills_overlay
+	
 	if(standing.len)
 		H.overlays_standing[HAIR_LAYER] = standing
 
@@ -893,57 +833,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	var/obj/item/bodypart/head/HD = H.get_bodypart(BODY_ZONE_HEAD)
 
-	if("tail_lizard" in mutant_bodyparts)
-		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "tail_lizard"
-
-	if("waggingtail_lizard" in mutant_bodyparts)
-		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "waggingtail_lizard"
-		else if ("tail_lizard" in mutant_bodyparts)
-			bodyparts_to_add -= "waggingtail_lizard"
-
-	if("tail_human" in mutant_bodyparts)
-		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "tail_human"
-
-
-	if("waggingtail_human" in mutant_bodyparts)
-		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "waggingtail_human"
-		else if ("tail_human" in mutant_bodyparts)
-			bodyparts_to_add -= "waggingtail_human"
-
-	if("tail_polysmorph" in mutant_bodyparts)
-		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "tail_polysmorph"
-
-	if("spines" in mutant_bodyparts)
-		if(!H.dna.features["spines"] || H.dna.features["spines"] == "None" || H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "spines"
-
-	if("waggingspines" in mutant_bodyparts)
-		if(!H.dna.features["spines"] || H.dna.features["spines"] == "None" || H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "waggingspines"
-		else if ("tail" in mutant_bodyparts)
-			bodyparts_to_add -= "waggingspines"
-
-	if("snout" in mutant_bodyparts) //Take a closer look at that snout!
-		if((H.wear_mask && !(H.wear_mask.mutantrace_variation & DIGITIGRADE_VARIATION) && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)) || !HD || HD.status == BODYPART_ROBOTIC)
-			bodyparts_to_add -= "snout"
-
-	if("frills" in mutant_bodyparts)
-		if(!H.dna.features["frills"] || H.dna.features["frills"] == "None" || H.head && (H.head.flags_inv & HIDEEARS) || !HD || HD.status == BODYPART_ROBOTIC)
-			bodyparts_to_add -= "frills"
-
-	if("horns" in mutant_bodyparts)
-		if(!H.dna.features["horns"] || H.dna.features["horns"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
-			bodyparts_to_add -= "horns"
-
-	if("ears" in mutant_bodyparts)
-		if(!H.dna.features["ears"] || H.dna.features["ears"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
-			bodyparts_to_add -= "ears"
-
+	
 	if("wings" in mutant_bodyparts)
 		if(!H.dna.features["wings"] || H.dna.features["wings"] == "None" || (H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT) && (!H.wear_suit.species_exception || !is_type_in_list(src, H.wear_suit.species_exception))))
 			bodyparts_to_add -= "wings"
@@ -964,67 +854,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		else if ("wingsdetail" in mutant_bodyparts)
 			bodyparts_to_add -= "wingsdetail_open"
 
-	if("ipc_screen" in mutant_bodyparts)
-		if(!H.dna.features["ipc_screen"] || H.dna.features["ipc_screen"] == "None" || (H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || !HD)
-			bodyparts_to_add -= "ipc_screen"
-
-	if("ipc_antenna" in mutant_bodyparts)
-		if(!H.dna.features["ipc_antenna"] || H.dna.features["ipc_antenna"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD)
-			bodyparts_to_add -= "ipc_antenna"
-
-	if("teeth" in mutant_bodyparts)
-		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)) || !HD || HD.status == BODYPART_ROBOTIC)
-			bodyparts_to_add -= "teeth"
-
-	if("dome" in mutant_bodyparts)
-		if(!H.dna.features["dome"] || H.dna.features["dome"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
-			bodyparts_to_add -= "dome"
-
-	if("ethereal_mark" in mutant_bodyparts)
-		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || (H.head && (H.head.flags_inv & HIDEEYES)) || !HD || HD.status == BODYPART_ROBOTIC)
-			bodyparts_to_add -= "ethereal_mark"
-
-	if("preternis_antenna" in mutant_bodyparts)
-		if(H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD)
-			bodyparts_to_add -= "preternis_antenna"
-
-	if("preternis_eye" in mutant_bodyparts)
-		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || (H.head && (H.head.flags_inv & HIDEEYES)) || !HD)
-			bodyparts_to_add -= "preternis_eye"
-
-
-	if("preternis_core" in mutant_bodyparts)
-		if(!get_location_accessible(H, BODY_ZONE_CHEST))
-			bodyparts_to_add -= "preternis_core"
-	if("pod_hair" in mutant_bodyparts)
-		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || (H.head && (H.head.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
-			bodyparts_to_add -= "pod_hair"
-
-	if("pod_flower" in mutant_bodyparts)
-		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || (H.head && (H.head.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
-			bodyparts_to_add -= "pod_flower"
-		if(H.dna.features["pod_flower"] != H.dna.features["pod_hair"])
-			H.dna.features["pod_flower"] = H.dna.features["pod_hair"]
-
-	if("vox_tail" in mutant_bodyparts)
-		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "vox_tail"
-	
-	if("wagging_vox_tail" in mutant_bodyparts)
-		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "wagging_vox_tail"
-		else if ("vox_tail" in mutant_bodyparts)
-			bodyparts_to_add -= "wagging_vox_tail"
-
-	if("vox_tail_markings" in mutant_bodyparts)
-		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "vox_tail_markings"
-
-	if("wagging_vox_tail_markings" in mutant_bodyparts)
-		if(!H.dna.features["vox_tail_markings"] || H.dna.features["vox_tail_markings"] == "None" || H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "vox_tail_markings"
-		else if ("vox_tail" in mutant_bodyparts)
-			bodyparts_to_add -= "wagging_vox_tail_markings"
 
 	//Digitigrade legs are stuck in the phantom zone between true limbs and mutant bodyparts. Mainly it just needs more agressive updating than most limbs.
 	var/update_needed = FALSE
@@ -1072,97 +901,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	for(var/layer in relevent_layers)
 		var/layertext = mutant_bodyparts_layertext(layer)
 
-		for(var/bodypart in bodyparts_to_add)
-			var/datum/sprite_accessory/S
-			switch(bodypart)
-				if("tail_lizard")
-					S = GLOB.tails_list_lizard[H.dna.features["tail_lizard"]]
-				if("waggingtail_lizard")
-					S = GLOB.animated_tails_list_lizard[H.dna.features["tail_lizard"]]
-				if("tail_human")
-					S = GLOB.tails_list_human[H.dna.features["tail_human"]]
-				if("tail_polysmorph")
-					S = GLOB.tails_list_polysmorph[H.dna.features["tail_polysmorph"]]
-				if("waggingtail_human")
-					S = GLOB.animated_tails_list_human[H.dna.features["tail_human"]]
-				if("spines")
-					S = GLOB.spines_list[H.dna.features["spines"]]
-				if("waggingspines")
-					S = GLOB.animated_spines_list[H.dna.features["spines"]]
-				if("snout")
-					S = GLOB.snouts_list[H.dna.features["snout"]]
-				if("frills")
-					S = GLOB.frills_list[H.dna.features["frills"]]
-				if("horns")
-					S = GLOB.horns_list[H.dna.features["horns"]]
-				if("ears")
-					S = GLOB.ears_list[H.dna.features["ears"]]
-				if("body_markings")
-					S = GLOB.body_markings_list[H.dna.features["body_markings"]]
-				if("wings")
-					S = GLOB.wings_list[H.dna.features["wings"]]
-				if("wingsopen")
-					S = GLOB.wings_open_list[H.dna.features["wings"]]
-				if("wingsdetail")
-					S = GLOB.wings_list[H.dna.features["wingsdetail"]]
-				if("wingsdetailopen")
-					S = GLOB.wings_open_list[H.dna.features["wingsdetail"]]
-				if("moth_wings")
-					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
-				if("moth_wingsopen")
-					S = GLOB.moth_wingsopen_list[H.dna.features["moth_wings"]]
-				if("caps")
-					S = GLOB.caps_list[H.dna.features["caps"]]
-				if("teeth")
-					S = GLOB.teeth_list[H.dna.features["teeth"]]
-				if("dome")
-					S = GLOB.dome_list[H.dna.features["dome"]]
-				if("dorsal_tubes")
-					S = GLOB.dorsal_tubes_list[H.dna.features["dorsal_tubes"]]
-				if("ethereal_mark")
-					S = GLOB.ethereal_mark_list[H.dna.features["ethereal_mark"]]
-				if("preternis_weathering")
-					S = GLOB.preternis_weathering_list[H.dna.features["preternis_weathering"]]
-				if("preternis_antenna")
-					S = GLOB.preternis_antenna_list[H.dna.features["preternis_antenna"]]
-				if("preternis_eye")
-					S = GLOB.preternis_eye_list[H.dna.features["preternis_eye"]]
-				if("preternis_core")
-					S = GLOB.preternis_core_list[H.dna.features["preternis_core"]]
-				if("ipc_screen")
-					S = GLOB.ipc_screens_list[H.dna.features["ipc_screen"]]
-				if("ipc_antenna")
-					S = GLOB.ipc_antennas_list[H.dna.features["ipc_antenna"]]
-				if("ipc_chassis")
-					S = GLOB.ipc_chassis_list[H.dna.features["ipc_chassis"]]
-				if("vox_tail")
-					var/obj/item/organ/tail/vox/vox_tail = H.getorganslot(ORGAN_SLOT_TAIL)
-					if(vox_tail && istype(vox_tail))
-						S = GLOB.vox_tails_list[vox_tail.tail_type]
-				if("wagging_vox_tail")
-					var/obj/item/organ/tail/vox/vox_tail = H.getorganslot(ORGAN_SLOT_TAIL)
-					if(vox_tail && istype(vox_tail))
-						S = GLOB.animated_vox_tails_list[vox_tail.tail_type]
-				if("vox_body_markings")
-					S = GLOB.vox_body_markings_list[H.dna.features["vox_body_markings"]]
-				if("vox_tail_markings")
-					var/obj/item/organ/tail/vox/vox_tail = H.getorganslot(ORGAN_SLOT_TAIL)
-					if(vox_tail && istype(vox_tail))
-						S = GLOB.vox_tail_markings_list[vox_tail.tail_markings]
-				if("wagging_vox_tail_markings")
-					var/obj/item/organ/tail/vox/vox_tail = H.getorganslot(ORGAN_SLOT_TAIL)
-					if(vox_tail && istype(vox_tail))
-						S = GLOB.animated_vox_tail_markings_list[vox_tail.tail_markings]
-			if(!S || S.icon_state == "none")
-				continue
+
 
 			var/mutable_appearance/accessory_overlay = mutable_appearance(S.icon, layer = -layer)
-
-			//A little rename so we don't have to use tail_lizard or tail_human when naming the sprites.
-			if(bodypart == "tail_lizard" || bodypart == "tail_human" || bodypart == "tail_polysmorph" || bodypart == "vox_tail")
-				bodypart = "tail"
-			else if(bodypart == "waggingtail_lizard" || bodypart == "waggingtail_human" || bodypart == "wagging_vox_tail")
-				bodypart = "waggingtail"
 
 			if(S.gender_specific)
 				accessory_overlay.icon_state = "[g]_[bodypart]_[S.icon_state]_[layertext]"
@@ -1175,25 +916,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(!(HAS_TRAIT(H, TRAIT_HUSK)))
 				if(!forced_colour)
 					switch(S.color_src)
-						if(MUTCOLORS)
-							if(H.dna.check_mutation(HULK))			//HULK GO FIRST
-								accessory_overlay.color = "#00aa00"
-							else if(fixed_mut_color)													//Then fixed color if applicable
-								accessory_overlay.color = fixed_mut_color
-							else																		//Then snowflake color
-								accessory_overlay.color = H.dna.features["mcolor"]
-						if(MUTCOLORS_SECONDARY)
-							if(fixed_mut_color)
-								accessory_overlay.color = fixed_mut_color
-							else
-								accessory_overlay.color = H.dna.features["mcolor_secondary"]
 						if(HAIR)
-							if(hair_color == "mutcolor")
-								accessory_overlay.color = H.dna.features["mcolor"]
-							else if(hair_color == "fixedmutcolor")
-								accessory_overlay.color = fixed_mut_color
-							else
-								accessory_overlay.color = H.hair_color
+							accessory_overlay.color = H.hair_color
 						if(FACEHAIR)
 							accessory_overlay.color = H.facial_hair_color
 						if(EYECOLOR)
@@ -1285,11 +1009,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			H.adjustBruteLoss(1)
 	if(flying_species)
 		HandleFlight(H)
-
-//I wag in death
-/datum/species/proc/spec_death(gibbed, mob/living/carbon/human/H)
-	stop_wagging_tail(H)
-	return
 
 //Now checks if the item is already equipped to that slot before instantly returning false because of it being there, so you can now check if an item is able to remain in a slot
 /datum/species/proc/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE)
@@ -1955,9 +1674,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		attacker_style = attacker.mind.martial_art
 	var/disarming = (modifiers && modifiers[RIGHT_CLICK])
 	if((attacker != defender) && (attacker.combat_mode || disarming) && defender.check_shields(attacker, 0, attacker.name, UNARMED_ATTACK, 0, attacker.dna.species.attack_type))
-		if(istype(attacker_style, /datum/martial_art/flyingfang) && disarming)
-			disarm(attacker, defender, attacker_style)
-			return
 		log_combat(attacker, defender, "attempted to touch")
 		defender.visible_message(span_warning("[attacker] attempted to touch [defender]!"))
 		return
@@ -2294,7 +2010,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(flying_species && H.movement_type & FLYING)
 			ToggleFlight(H)
 			flyslip(H)
-		stop_wagging_tail(H)
 	return stunmod * H.physiology.stun_mod * amount
 
 
@@ -2315,51 +2030,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/has_heavy_gravity(mob/living/carbon/human/H)
 	return FALSE
 
-////////////////
-//Tail Wagging//
-////////////////
-
-/datum/species/proc/can_wag_tail(mob/living/carbon/human/H)
-	if(H.IsParalyzed() || H.IsStun())
-		return FALSE
-	// var/obj/item/organ/tail = H.getorganslot(ORGAN_SLOT_TAIL)
-	return ("tail_human" in mutant_bodyparts) || ("waggingtail_human" in mutant_bodyparts) || ("tail_lizard" in mutant_bodyparts) || ("waggingtail_lizard" in mutant_bodyparts) || ("vox_tail" in mutant_bodyparts) || ("wagging_vox_tail" in mutant_bodyparts)
-
-/datum/species/proc/is_wagging_tail(mob/living/carbon/human/H)
-	return ("waggingtail_human" in mutant_bodyparts) || ("waggingtail_lizard" in mutant_bodyparts) || ("wagging_vox_tail" in mutant_bodyparts)
-
-/datum/species/proc/start_wagging_tail(mob/living/carbon/human/H)
-	if("tail_human" in mutant_bodyparts)
-		mutant_bodyparts -= "tail_human"
-		mutant_bodyparts |= "waggingtail_human"
-	if("tail_lizard" in mutant_bodyparts)
-		mutant_bodyparts -= "tail_lizard"
-		mutant_bodyparts -= "spines"
-		mutant_bodyparts |= "waggingtail_lizard"
-		mutant_bodyparts |= "waggingspines"
-	if("vox_tail" in mutant_bodyparts)
-		mutant_bodyparts -= "vox_tail"
-		mutant_bodyparts -= "vox_tail_markings"
-		mutant_bodyparts |= "wagging_vox_tail"
-		mutant_bodyparts |= "wagging_vox_tail_markings"
-	H.update_body()
-
-/datum/species/proc/stop_wagging_tail(mob/living/carbon/human/H)
-	if("waggingtail_human" in mutant_bodyparts)
-		mutant_bodyparts -= "waggingtail_human"
-		mutant_bodyparts |= "tail_human"
-	if("waggingtail_lizard" in mutant_bodyparts)
-		mutant_bodyparts -= "waggingtail_lizard"
-		mutant_bodyparts -= "waggingspines"
-		mutant_bodyparts |= "tail_lizard"
-		mutant_bodyparts |= "spines"
-	if("wagging_vox_tail" in mutant_bodyparts)
-		mutant_bodyparts |= "vox_tail"
-		mutant_bodyparts |= "vox_tail_markings"
-		mutant_bodyparts -= "wagging_vox_tail"
-		mutant_bodyparts -= "wagging_vox_tail_markings"
-	H.update_body()
-
 ///////////////
 //FLIGHT SHIT//
 ///////////////
@@ -2371,8 +2041,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(isnull(fly))
 		fly = new
 		fly.Grant(H)
-	if(ismoth(H)) //mothpeople don't grow new wings, they already have theirs
-		return
 	if(H.dna.features["wings"] != wings_icon)
 		mutant_bodyparts |= "wings"
 		H.dna.features["wings"] = wings_icon
@@ -2392,9 +2060,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 /datum/species/proc/CanFly(mob/living/carbon/human/H)
 	if(H.stat || !(H.mobility_flags & MOBILITY_STAND))
-		return FALSE
-	if(ismoth(H) && H.dna.features["moth_wings"] == "Burnt Off") //this is so tragic can we get an "F" in the chat
-		to_chat(H, "<span>Your crispy wings won't work anymore!</span>")
 		return FALSE
 	if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) && (!H.wear_suit.species_exception || !is_type_in_list(src, H.wear_suit.species_exception))))	//Jumpsuits have tail holes, so it makes sense they have wing holes too
 		to_chat(H, "Your suit blocks your wings from extending!")
@@ -2534,7 +2199,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	to_store += mutantliver
 	to_store += mutantstomach
 	to_store += mutantappendix
-	to_store += mutanttail
 	//We don't cache mutant hands because it's not constrained enough, too high a potential for failure
 	return to_store
 

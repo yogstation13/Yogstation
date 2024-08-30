@@ -60,8 +60,6 @@
 				cost = (EXPDIS_BASE_REWARD * 4)
 			else if(isgolem(H) || iszombie(H))
 				cost = (EXPDIS_BASE_REWARD * 3)
-			else if(isjellyperson(H) || ispodperson(H))
-				cost = (EXPDIS_BASE_REWARD * 2)
 	else
 		cost = (EXPDIS_BASE_REWARD * 0.6)
 

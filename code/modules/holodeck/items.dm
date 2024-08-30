@@ -101,7 +101,7 @@
 
 /obj/structure/holohoop/attackby(obj/item/W as obj, mob/user as mob, params)
 	var/dist = get_dist(src,user)
-	if(dist<2 || (islizard(user) && dist<4))
+	if(dist<2)
 		if(user.transferItemToLoc(W, drop_location()))
 			visible_message(span_warning(" [user] dunks [W] into \the [src]!"))
 

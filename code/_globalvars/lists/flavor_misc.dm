@@ -17,64 +17,7 @@ GLOBAL_LIST_EMPTY(undershirt_m)	 //stores only undershirt name
 GLOBAL_LIST_EMPTY(undershirt_f)	 //stores only undershirt name
 	//Socks
 GLOBAL_LIST_EMPTY(socks_list)		//stores /datum/sprite_accessory/socks indexed by name
-	//Lizard Bits (all datum lists indexed by name)
-GLOBAL_LIST_EMPTY(body_markings_list)
-GLOBAL_LIST_EMPTY(tails_list_lizard)
-GLOBAL_LIST_EMPTY(animated_tails_list_lizard)
-GLOBAL_LIST_EMPTY(snouts_list)
-GLOBAL_LIST_EMPTY(horns_list)
-GLOBAL_LIST_EMPTY(frills_list)
-GLOBAL_LIST_EMPTY(spines_list)
-GLOBAL_LIST_EMPTY(animated_spines_list)
-	//Polysmorph
-GLOBAL_LIST_EMPTY(tails_list_polysmorph)
-GLOBAL_LIST_EMPTY(teeth_list)
-GLOBAL_LIST_EMPTY(dome_list)
-GLOBAL_LIST_EMPTY(dorsal_tubes_list)
-	//Mutant Human bits
-GLOBAL_LIST_EMPTY(tails_list_human)
-GLOBAL_LIST_EMPTY(animated_tails_list_human)
-GLOBAL_LIST_EMPTY(ears_list)
-GLOBAL_LIST_EMPTY(wings_list)
-GLOBAL_LIST_EMPTY(wings_open_list)
-GLOBAL_LIST_EMPTY(moth_wings_list)
-GLOBAL_LIST_EMPTY(moth_wingsopen_list)
-GLOBAL_LIST_EMPTY(caps_list)
-GLOBAL_LIST_EMPTY(ipc_screens_list)
-GLOBAL_LIST_EMPTY(ipc_antennas_list)
-GLOBAL_LIST_EMPTY(ipc_chassis_list)
-GLOBAL_LIST_INIT(plasmaman_helmet_list, list(
-	"None" = "",
-	"Slit" = "slit",
-	"Nyan" = "nyan",
-	"Gassy" = "gassy",
-	"Bane V1" = "banev1",
-	"Bane V2" = "banev2",
-	"Halo" = "halo",
-	"Wizard" = "wizard",
-	"Plate" = "plate",
-	"Low" = "low",
-)) //for icon making -> use "enviro" before this
 
-GLOBAL_LIST_EMPTY(ethereal_mark_list) //ethereal face marks
-
-GLOBAL_LIST_EMPTY(preternis_weathering_list) //preternis body weathering
-GLOBAL_LIST_EMPTY(preternis_antenna_list) //preternis head antenna
-GLOBAL_LIST_EMPTY(preternis_eye_list) //preternis eyes
-GLOBAL_LIST_EMPTY(preternis_core_list) //preternis core (only one option, not changeable)
-GLOBAL_LIST_INIT(color_list_preternis, list( //welcome to preternis body colours, where we have colors ranging from gray to grey
-	"Factory Default" = "#FFFFFF", 
-	"Stainless Steel" = "#b4bdc7",
-	"Chrome" = "#9cb9df", 
-	"Gunmetal Gray" = "#818589", 
-	"Bronze" = "#CD7F32",
-	"Silver" = "#C0C0C0",
-	"Gold" = "#FFD700",
-	"Cobalt" = "#5fa1ff"
-	))//make sure they aren't too dark or it'll just become a mass of one colour
-
-GLOBAL_LIST_EMPTY(pod_hair_list) //ethereal face marks
-GLOBAL_LIST_EMPTY(pod_flower_list) //ethereal face marks
 GLOBAL_LIST_INIT(ghost_forms_with_directions_list, list("ghost")) //stores the ghost forms that support directional sprites
 GLOBAL_LIST_INIT(ghost_forms_with_accessories_list, list("ghost")) //stores the ghost forms that support hair and other such things
 

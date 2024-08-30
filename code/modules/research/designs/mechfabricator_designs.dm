@@ -1155,5 +1155,4 @@
 	build_type = MECHFAB
 	materials = list(/datum/material/iron = 100000, /datum/material/glass = 50000, /datum/material/plasma = 1000)
 	construction_time = 900 //one and a half minutes
-	build_path = /mob/living/carbon/human/species/ipc/empty //apparently this works
 	category = list("IPC Components")

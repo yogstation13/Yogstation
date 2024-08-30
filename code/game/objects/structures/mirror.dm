@@ -30,9 +30,6 @@
 	var/datum/species/S = H.dna.species
 	var/list/facial_hair_list = GLOB.facial_hair_styles_list
 	var/list/hair_list = GLOB.hair_styles_list
-	if(isvox(H))
-		facial_hair_list = GLOB.vox_facial_quills_list
-		hair_list = GLOB.vox_quills_list
 	if((FACEHAIR in S.species_traits) || (FACEHAIRCOLOR in S.species_traits))
 		. += list(FACIAL_HAIR = list("select a facial hair style", facial_hair_list))
 		. += list(FACE_HAIR_COLOR)
@@ -65,22 +62,14 @@
 		return
 	switch(selectiontype)
 		if(FACIAL_HAIR)
-			if(isvox(H))
-				H.dna.features["vox_facial_quills"] = selection
-				H.dna.update_uf_block(DNA_VOX_FACIAL_QUILLS_BLOCK)
-			else
-				H.facial_hair_style = selection
+			H.facial_hair_style = selection
 			H.update_hair()
 			return TRUE
 		if(HEAD_HAIR)
 			if(HAS_TRAIT(H, TRAIT_BALD) && !((selection == "Bald") || (selection == ("None"))))
 				to_chat(H, span_notice("If only growing back hair were that easy for you..."))
 				return TRUE
-			if(isvox(H))
-				H.dna.features["vox_quills"] = selection
-				H.dna.update_uf_block(DNA_VOX_QUILLS_BLOCK)
-			else
-				H.hair_style = selection
+			H.hair_style = selection
 			H.update_hair()
 			return TRUE
 
@@ -228,32 +217,6 @@
 				H.dna.real_name = newname
 			if(H.mind)
 				H.mind.name = newname
-			return TRUE
-		if(MUTANT_COLOR)
-			var/new_mutantcolor = input(H, "Choose your skin color:", "Race change",H.dna.features["mcolor"]) as color|null
-			if(!new_mutantcolor)
-				return TRUE
-			var/temp_hsv = RGBtoHSV(new_mutantcolor)
-			if(ReadHSV(temp_hsv)[3] >= ReadHSV("#3a3a3a")[3]) // mutantcolors must be bright
-				H.dna.features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
-				H.dna.update_uf_block(DNA_MUTANT_COLOR_BLOCK)
-			else
-				to_chat(H, span_notice("Invalid color. Your color is not bright enough."))
-			H.update_body()
-			H.update_hair()
-			H.update_body_parts()
-			H.update_mutations_overlay() // no hulk lizard
-		if("Secondary mutant color")
-			var/new_mutantcolor = input(H, "Choose your secondary mutant color:", "Race change",H.dna.features["mcolor_secondary"]) as color|null
-			if(!new_mutantcolor)
-				return TRUE
-			H.dna.features["mcolor_secondary"] = sanitize_hexcolor(new_mutantcolor)
-			H.dna.update_uf_block(DNA_MUTANT_COLOR_SECONDARY)
-			H.update_body()
-			H.update_hair()
-			H.update_body_parts()
-			H.update_mutations_overlay()
-
 			return TRUE
 
 /obj/structure/mirror/magic/apply_choices(selectiontype, selection, mob/living/carbon/human/H)

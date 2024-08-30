@@ -356,8 +356,6 @@
 				drop.drips++
 				drop.add_overlay(pick(drop.random_icon_states))
 				drop.transfer_mob_blood_dna(src)
-				if(isethereal(src))
-					drop.Etherealify()
 				return
 			else
 				temp_blood_DNA = drop.return_blood_DNA() //we transfer the dna from the drip to the splatter
@@ -365,8 +363,6 @@
 		else
 			drop = new(T, get_static_viruses())
 			drop.transfer_mob_blood_dna(src)
-			if(isethereal(src))
-				drop.Etherealify()
 			return
 
 	// Find a blood decal or create a new one.
@@ -377,8 +373,6 @@
 	B.transfer_mob_blood_dna(src) //give blood info to the blood decal.
 	if(temp_blood_DNA)
 		B.add_blood_DNA(temp_blood_DNA)
-	if(isethereal(src))
-		B.Etherealify()
 
 /mob/living/carbon/human/add_splatter_floor(turf/T, small_drip)
 	if(!(NOBLOOD in dna.species.species_traits))

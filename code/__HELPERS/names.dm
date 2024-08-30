@@ -1,70 +1,13 @@
-/proc/lizard_name(gender)
-	if(gender == MALE)
-		return "[pick(GLOB.lizard_names_male)]-[pick(GLOB.lizard_names_clan)]"
-	return "[pick(GLOB.lizard_names_female)]-[pick(GLOB.lizard_names_clan)]"
 
-/proc/pod_name(gender)
-	var/randname
-	switch(rand(1,4))
-		if(1) //Human
-			if(gender == MALE)
-				randname = pick(GLOB.first_names_male)
-			else
-				randname = pick(GLOB.first_names_female)
-			randname += " [pick(GLOB.last_names)]"
-			return randname
-		if(2) //Lizard
-			return lizard_name(gender)
-		if(3) //Moth
-			return moth_name()
-		if(4) //Plant
-			randname = pick(GLOB.plant_names)
-			if(prob(25))
-				randname += " [pick(GLOB.last_names)]"
-			return randname
-
-/proc/preternis_name(gender)
-	switch(rand(1,3))
-		if(1) //Adj + Noun
-			return "[pick(GLOB.adjectives)] [pick(GLOB.forge_name)]"
-		if(2) //Vxtrin name
-			switch(rand(1,4)) 
-				if(1) //Name
-					return pick(GLOB.preternis_names)
-				if(2) //Caste + Name
-					return "[pick(GLOB.preternis_class)]'[pick(GLOB.preternis_names)]"
-				if(3) //Caste + Name + Home
-					return "[pick(GLOB.preternis_class)]'[pick(GLOB.preternis_names)]-[capitalize(pick(GLOB.preternis_home))]"
-				if(4) //Name + Home
-					return "[pick(GLOB.preternis_names)]-[capitalize(pick(GLOB.preternis_home))]"
-		if(3) //Robotic name
-			return ipc_name()
-
-/proc/polysmorph_name()
-	return pick(GLOB.polysmorph_names)
-
-/proc/ethereal_name()
-	if(prob(66))
-		return "[pick(GLOB.constellations)] \Roman[rand(1,99)]"
-	return "[pick(GLOB.ethereal_names)]"
-
-/proc/plasmaman_name()
-	return "[pick(GLOB.plasmaman_names)] \Roman[rand(1,99)]"
-
-/proc/moth_name()
-	return "[pick(GLOB.moth_first)] [pick(GLOB.moth_last)]"
-
-/proc/ipc_name()
-	return "[pick(GLOB.posibrain_names)]-[rand(100, 999)]"
 
 /proc/nightmare_name() //they have one segment to the name because they're shells of what a vxtrin once was
 	switch(rand(1,3))
 		if(1) //space and capital last name
-			return "[pick(GLOB.preternis_class)]"
+			return "Mak"
 		if(2) //dash and lowercase last name
-			return "[pick(GLOB.preternis_names)]"
+			return "Leek"
 		if(3) //apostrophe and lowercase last name
-			return "[pick(GLOB.preternis_home)]"
+			return "Lak"
 
 /proc/darkspawn_name() //they have three segments to their name, but have lost sane ordering
 	var/list/order = list("name", "class", "home")
@@ -73,11 +16,11 @@
 		var/selection = pick_n_take(order)
 		switch(selection)
 			if("name")
-				name += "[capitalize(pick(GLOB.preternis_names))]"
+				name += "mak"
 			if("class")
-				name += "[capitalize(pick(GLOB.preternis_class))]"
+				name += "zak"
 			if("home")
-				name += "[capitalize(pick(GLOB.preternis_home))]"
+				name += "qa-leek"
 		switch(i)
 			if(1) //apostrophe after the first name
 				name += "'"
@@ -259,13 +202,10 @@ GLOBAL_DATUM(syndicate_code_response_regex, /regex)
 						if(names.len&&prob(70))
 							. += pick(names)
 						else
-							if(prob(10))
-								. += pick(lizard_name(MALE),lizard_name(FEMALE))
-							else
-								var/new_name = pick(pick(GLOB.first_names_male,GLOB.first_names_female))
-								new_name += " "
-								new_name += pick(GLOB.last_names)
-								. += new_name
+							var/new_name = pick(pick(GLOB.first_names_male,GLOB.first_names_female))
+							new_name += " "
+							new_name += pick(GLOB.last_names)
+							. += new_name
 					if(2)
 						. += pick(get_all_jobs())//Returns a job.
 				safety -= 1

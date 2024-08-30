@@ -280,15 +280,6 @@ Credit where due:
 
 	var/obj/item/id_type = /obj/item/card/id
 	var/obj/item/modular_computer/pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
-	var/plasmaman //We use this to determine if we should activate internals in post_equip()
-
-/datum/outfit/servant_of_ratvar/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	if(H.dna.species.id == SPECIES_PLASMAMAN) //Plasmamen get additional equipment because of how they work
-		head = /obj/item/clothing/head/helmet/space/plasmaman
-		uniform = /obj/item/clothing/under/plasmaman //Plasmamen generally shouldn't need chameleon suits anyways, since everyone expects them to wear their fire suit
-		r_hand = /obj/item/tank/internals/plasmaman/belt/full
-		mask = /obj/item/clothing/mask/breath
-		plasmaman = TRUE
 
 /datum/outfit/servant_of_ratvar/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	var/obj/item/card/id/C = new id_type()
@@ -311,9 +302,6 @@ Credit where due:
 		PDA.update_label()
 		PDA.update_appearance(UPDATE_ICON)
 		PDA.update_filters()
-
-	if(plasmaman && !visualsOnly) //If we need to breathe from the plasma tank, we should probably start doing that
-		H.open_internals(H.get_item_for_held_index(2))
 
 //This paper serves as a quick run-down to the cult as well as a changelog to refer to.
 //Check strings/clockwork_cult_changelog.txt for the changelog, and update it when you can!

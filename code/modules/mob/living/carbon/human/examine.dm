@@ -104,10 +104,7 @@
 		if(glasses)
 			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes."
 		else if(eye_color == BLOODCULT_EYE && HAS_TRAIT(src, CULT_EYES))
-			if(isipc(src))
-				. += span_warning("<B>Their monitor hums quietly, with an underlying collection of blood-red pixels swirling faintly.</B>")
-			else
-				. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
+			. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
 
 	//ears
 	if(ears && !(ITEM_SLOT_EARS in obscured))
@@ -119,12 +116,6 @@
 
 	//Status effects
 	. += status_effect_examines()
-
-	if(islist(dna.features) && dna.features["wings"] && dna.features["wings"] != "None")
-		var/badwings = ""
-		if(mind?.martial_art && istype(mind.martial_art, /datum/martial_art/ultra_violence))
-			badwings = "Weaponized "
-		. += "[t_He] [t_has] a pair of [span_warning(badwings)][(dna.features["wings"])] wings on [t_his] back"
 
 	if(user?.mind && HAS_TRAIT(user.mind, TRAIT_PSYCH) && LAZYLEN(get_traumas()))
 		var/highest_trauma = 0
@@ -592,10 +583,7 @@
 		if(glasses)
 			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes."
 		else if(eye_color == BLOODCULT_EYE && HAS_TRAIT(src, CULT_EYES))
-			if(isipc(src))
-				. += span_warning("<B>Their monitor hums quietly, with an underlying collection of blood-red pixels swirling faintly.</B>")
-			else
-				. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
+			. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
 	//ears
 	if(ears && !(ITEM_SLOT_EARS in obscured))
 		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] ears."

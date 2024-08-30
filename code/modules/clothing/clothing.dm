@@ -88,16 +88,6 @@
 	tastes = list("dust" = 1, "lint" = 1)
 	foodtype = CLOTH
 
-/obj/item/clothing/attack(mob/M, mob/living/user, params)
-	if(!user.combat_mode && ismoth(M))
-		var/obj/item/reagent_containers/food/snacks/clothing/clothing_as_food = new
-		clothing_as_food.name = name
-		if(clothing_as_food.attack(M, user, params))
-			take_damage(15, sound_effect=FALSE)
-		qdel(clothing_as_food)
-	else
-		return ..()
-
 /obj/item/clothing/attackby(obj/item/W, mob/user, params)
 	if(damaged_clothes && istype(W, repairable_by))
 		var/obj/item/stack/S = W

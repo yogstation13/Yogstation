@@ -75,26 +75,7 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 
 /proc/create_consistent_human_dna(mob/living/carbon/human/target)
 	target.dna.initialize_dna(skip_index = TRUE)
-	target.dna.features["body_markings"] = "None"
-	target.dna.features["ears"] = "None"
-	target.dna.features["frills"] = "None"
-	target.dna.features["horns"] = "None"
-	target.dna.features["mcolor"] = COLOR_VIBRANT_LIME
-	target.dna.features["mcolor_secondary"] = COLOR_RED
-	target.dna.features["moth_antennae"] = "Plain"
-	target.dna.features["moth_markings"] = "None"
-	target.dna.features["moth_wings"] = "Plain"
-	target.dna.features["snout"] = "Round"
-	target.dna.features["spines"] = "None"
-	target.dna.features["tail_cat"] = "None"
-	target.dna.features["tail_lizard"] = "Smooth"
-	target.dna.features["pod_hair"] = "Ivy"
-	target.dna.features["vox_quills"] = "None"
-	target.dna.features["vox_facial_quills"] = "None"
-	target.dna.features["vox_skin_tone"] = "lime"
-	target.dna.features["vox_tail_markings"] = "None"
-	target.dna.features["vox_body_markings"] = "None"
-
+	
 /// Provides a dummy that is consistently bald, white, naked, etc.
 /mob/living/carbon/human/dummy/consistent
 

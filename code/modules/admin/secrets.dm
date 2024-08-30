@@ -393,11 +393,6 @@
 				else
 					SEND_SOUND(H, sound(SSstation.announcer.event_sounds[ANNOUNCER_ANIMES]))
 
-				if(H.dna.features["tail_human"] == "None" || H.dna.features["ears"] == "None")
-					var/obj/item/organ/ears/cat/ears = new
-					var/obj/item/organ/tail/cat/tail = new
-					ears.Insert(H, drop_if_replaced=FALSE)
-					tail.Insert(H, drop_if_replaced=FALSE)
 				var/list/honorifics = list("[MALE]" = list("kun"), "[FEMALE]" = list("chan","tan"), "[NEUTER]" = list("san"), "[PLURAL]" = list("san")) //John Robust -> Robust-kun
 				var/list/names = splittext(H.real_name," ")
 				var/forename = names.len > 1 ? names[2] : names[1]
@@ -539,20 +534,6 @@
 			if(!check_rights_for(rights, R_ADMIN))
 				return
 			toggle_all_ctf(mob_user)
-		if("masspurrbation")
-			if(!check_rights_for(rights, R_FUN))
-				return
-			mass_purrbation()
-			message_admins("[key_name_admin(mob_user)] has put everyone on \
-				purrbation!")
-			log_admin("[key_name(mob_user)] has put everyone on purrbation.")
-		if("massremovepurrbation")
-			if(!check_rights_for(rights, R_FUN))
-				return
-			mass_remove_purrbation()
-			message_admins("[key_name_admin(mob_user)] has removed everyone from \
-				purrbation.")
-			log_admin("[key_name(mob_user)] has removed everyone from purrbation.")
 		if("activatecrittermoney")
 			if(!check_rights_for(rights, R_FUN))
 				return

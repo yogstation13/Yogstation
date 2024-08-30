@@ -68,8 +68,6 @@ export const SecretsPanel = (props, context) => {
           <Button.Confirm color={'bad'} content={'Flicker all lights'} onClick={() => act('flickerout')} disabled={!funRights} /><br />
           <Button.Confirm color={'bad'} content={'The floor is lava! (DANGEROUS: extremely lame)'} onClick={() => act('floorlava')} disabled={!funRights} /><br />
           <Button color={'bad'} content={'Change bomb cap'} onClick={() => act('changebombcap')} disabled={!funRights} /><br />
-          <Button.Confirm color={'bad'} content={'Mass Purrbation'} onClick={() => act('masspurrbation')} disabled={!funRights} /><br />
-          <Button.Confirm color={'bad'} content={'Mass Remove Purrbation'} onClick={() => act('massremovepurrbation')} disabled={!funRights} /><br />
           <Button.Confirm color={'bad'} content={'Resonance Cascade'} onClick={() => act('halflife')} disabled={!funRights} /><br />
         </Section>
         <Section title={'Debug Secrets'}>

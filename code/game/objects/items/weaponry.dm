@@ -776,8 +776,6 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/slapper/attack(mob/living/M, mob/living/carbon/human/user)
 	if(ishuman(M))
 		var/mob/living/carbon/human/L = M
-		if(L && L.dna && L.dna.species)
-			L.dna.species.stop_wagging_tail(M)
 
 	var/slap_volume = 30
 	var/hard_slap = FALSE

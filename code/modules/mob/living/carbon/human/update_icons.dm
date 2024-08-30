@@ -159,26 +159,6 @@ There are several things that need to be remembered:
 		uniform.species_fitted = null	
 		if(uniform.adjusted == ALT_STYLE)
 			target_overlay = "[target_overlay]_d"
-		else if(uniform.adjusted == DIGITIGRADE_STYLE) // yogs - digitigrade alt sprites
-			target_overlay = "[target_overlay]_l"
-		else if(uniform.adjusted == DIGIALT_STYLE)
-			target_overlay = "[target_overlay]_d_l" // yogs end
-		//Checks for GAGS
-		if(uniform.greyscale_config && uniform.greyscale_colors)
-			if("GAGS_sprite" in uniform.sprite_sheets)
-				var/list/GAGS_species = uniform.sprite_sheets["GAGS_sprite"]
-				if((SPECIES_VOX in GAGS_species) && l_leg?.species_id == SPECIES_VOX && r_leg?.species_id == SPECIES_VOX)
-					target_overlay += "_vox"
-					uniform.species_fitted = SPECIES_VOX
-		if(l_leg?.species_id == SPECIES_VOX && (r_leg?.species_id == SPECIES_VOX))//for Vox, it's the Vox legs that make regular sprites not fit
-			if(SPECIES_VOX in uniform.sprite_sheets)
-				if(icon_exists(uniform.sprite_sheets[SPECIES_VOX], uniform.icon_state))
-					icon_file = uniform.sprite_sheets[SPECIES_VOX]
-					uniform.species_fitted = SPECIES_VOX
-		else if(chest?.species_id in uniform.sprite_sheets)
-			if(icon_exists(uniform.sprite_sheets[chest.species_id], uniform.icon_state))
-				icon_file = uniform.sprite_sheets[chest.species_id]
-				uniform.species_fitted = chest.species_id
 
 		var/mutable_appearance/uniform_overlay
 
@@ -512,14 +492,6 @@ There are several things that need to be remembered:
 		S.species_fitted = null
 		var/obj/item/bodypart/l_leg = get_bodypart(BODY_ZONE_L_LEG)
 		var/obj/item/bodypart/r_leg = get_bodypart(BODY_ZONE_R_LEG)
-		if(l_leg?.species_id == r_leg?.species_id == SPECIES_VOX)//for Vox, it's the Vox legs that make regular sprites not fit
-			if(icon_exists(S.sprite_sheets[l_leg.species_id], S.icon_state))
-				icon_to_use = S.sprite_sheets[l_leg.species_id]
-				S.species_fitted = l_leg.species_id
-		else if(chest?.species_id in S.sprite_sheets)
-			if(icon_exists(S.sprite_sheets[chest.species_id], S.icon_state))
-				icon_to_use = S.sprite_sheets[chest.species_id]
-				S.species_fitted = chest.species_id
 		overlays_standing[SUIT_LAYER] = wear_suit.build_worn_icon(default_layer = SUIT_LAYER, default_icon_file = icon_to_use, override_state = worn_suit_icon)
 		var/mutable_appearance/suit_overlay = overlays_standing[SUIT_LAYER]
 		if(OFFSET_SUIT in dna.species.offset_features)
@@ -802,11 +774,6 @@ generate/load female uniform sprites matching all previously decided variables
 			. += "-organic"
 		else
 			. += "-robotic"
-		if(BP.use_digitigrade)
-			if("[dna.species]" == SPECIES_POLYSMORPH)
-				. += "-pdigitigrade[BP.use_digitigrade]"
-			else
-				. += "-digitigrade[BP.use_digitigrade]"
 		if(BP.dmg_overlay_type)
 			. += "-[BP.dmg_overlay_type]"
 		if(BP.has_static_sprite_part)

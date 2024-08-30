@@ -361,26 +361,6 @@ GENE SCANNER
 		var/mutant = FALSE
 		if (H.dna.check_mutation(HULK))
 			mutant = TRUE
-		else if (S.mutantlungs != initial(S.mutantlungs))
-			mutant = TRUE
-		else if (S.mutantbrain != initial(S.mutantbrain))
-			mutant = TRUE
-		else if (S.mutantheart != initial(S.mutantheart))
-			mutant = TRUE
-		else if (S.mutanteyes != initial(S.mutanteyes))
-			mutant = TRUE
-		else if (S.mutantears != initial(S.mutantears))
-			mutant = TRUE
-		else if (S.mutanthands != initial(S.mutanthands))
-			mutant = TRUE
-		else if (S.mutanttongue != initial(S.mutanttongue))
-			mutant = TRUE
-		else if (S.mutanttail != initial(S.mutanttail))
-			mutant = TRUE
-		else if (S.mutantliver != initial(S.mutantliver))
-			mutant = TRUE
-		else if (S.mutantstomach != initial(S.mutantstomach))
-			mutant = TRUE
 
 		combined_msg += span_info("Species: [S.name][mutant ? "-derived mutant" : ""]")
 	var/temp_span = "notice"

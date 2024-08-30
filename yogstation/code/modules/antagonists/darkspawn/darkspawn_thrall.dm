@@ -64,8 +64,6 @@
 		cam.change_cameranet(GLOB.thrallnet)
 
 	for(var/spell in abilities)
-		if(ispreternis(current_mob) && ispath(spell, /datum/action/cooldown/spell/toggle/nightvision))
-			continue //preterni are already designed for it
 		var/datum/action/cooldown/spell/new_spell = new spell(owner)
 		new_spell.Grant(current_mob)
 
@@ -167,10 +165,7 @@
 	to_chat(owner, span_progenitor("Krx'lna tyhx graha xthl'kap" ))
 
 	var/list/flavour = list()
-	if(ispreternis(owner.current))
-		flavour += "You feel the warm consciousness welcome your own. Realization spews forth as the veil recedes."
-	else
-		flavour += "You feel the vast consciousness slowly consume your own and the veil falls away."
+	flavour += "You feel the vast consciousness slowly consume your own and the veil falls away."
 	flavour += "Serve the darkspawn above all else. Your former allegiances are now forfeit."
 	flavour += "Their goal is yours, and yours is theirs."
 	to_chat(owner, span_velvet(flavour.Join("<br>")))

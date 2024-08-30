@@ -228,9 +228,6 @@
 		M.fire_stacks = max(0.5, M.fire_stacks) // make sure they're able to catch fire
 		M.ignite_mob()
 		flame_timer = 0
-		if(isplasmaman(M) && M.dna?.species) // the fire is INSIDE YOU
-			var/datum/species/plasmaman/P = M.dna.species
-			P.internal_fire = TRUE
 	..()
 
 /datum/reagent/gas/healium

@@ -73,26 +73,8 @@
 	lootcount = 5
 	loot = list(
 		/obj/item/organ/ears/penguin,
-		/obj/item/organ/ears/cat,
-		/obj/item/organ/eyes/moth,
-		/obj/item/organ/eyes/snail,
 		/obj/item/organ/tongue/bone,
-		/obj/item/organ/tongue/fly,
-		/obj/item/organ/tongue/snail,
-		/obj/item/organ/tongue/lizard,
 		/obj/item/organ/tongue/alien,
-		///obj/item/organ/tongue/ethereal,
-		/obj/item/organ/tongue/robot,
-		/obj/item/organ/tongue/zombie,
-		/obj/item/organ/tongue/vox,
-		/obj/item/organ/appendix,
-		/obj/item/organ/liver/fly,
-		/obj/item/organ/lungs/plasmaman,
-		/obj/item/organ/lungs/ethereal,
-		/obj/item/organ/lungs/vox,
-		/obj/item/organ/tail/cat,
-		/obj/item/organ/tail/lizard,
-		/obj/item/organ/tail/vox
 	)
 
 /obj/effect/spawner/lootdrop/plushies

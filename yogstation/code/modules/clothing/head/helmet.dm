@@ -1,5 +1,4 @@
 /obj/item/clothing/head/helmet
-	sprite_sheets = list(SPECIES_VOX = VOX_HELMET_FILE)
 	var/initial_state
 
 /obj/item/clothing/head/helmet/Initialize(mapload)

@@ -1,7 +1,7 @@
 /obj/item/clothing/mask/gas/civilprotection
 	name = "civil protection mask"
 	desc = "Heavy duty white mask for civil protection units."
-	icon_state = "swat"
+	icon_state = "civilprotection"
 	item_state = "swat"
 	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	flags_inv = HIDEFACIALHAIR|HIDEFACE

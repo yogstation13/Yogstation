@@ -109,8 +109,6 @@
 	if(isliving(victim))
 		var/mob/living/target = victim
 		target.extinguish_mob()
-		if(is_team_darkspawn(target) && ispreternis(target)) //don't make preterni allies wet
-			return
 		target.adjust_wet_stacks(20)
 		target.adjust_wet_stacks(20)
 	else if(isobj(victim))

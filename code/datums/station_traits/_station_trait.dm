@@ -7,7 +7,7 @@
 	///Whether or not this trait uses process()
 	var/trait_processes = FALSE
 	///Chance relative to other traits of its type to be picked
-	var/weight = 10
+	var/weight = 0
 	///The cost of the trait, which is removed from the budget.
 	var/cost = STATION_TRAIT_COST_FULL
 	///Whether this trait is always enabled; generally used for debugging

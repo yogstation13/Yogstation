@@ -96,13 +96,8 @@
 	description = "Explodes. Violently."
 	reagent_state = LIQUID
 	color = "#000000"
-	metabolization_rate = REAGENTS_METABOLISM * 2.5	//Yogs change - faster metabolization
+	metabolization_rate = REAGENTS_METABOLISM * 2.5	
 	taste_description = "salt"
-
-/datum/reagent/blackpowder/on_mob_life(mob/living/carbon/M)
-	..()
-	if(isplasmaman(M))
-		M.adjust_hallucinations(20 SECONDS)
 
 /datum/reagent/blackpowder/on_ex_act()
 	var/location = get_turf(holder.my_atom)
@@ -225,12 +220,6 @@
 /datum/reagent/teslium/on_mob_metabolize(mob/living/L)
 	. = ..()
 	ADD_TRAIT(L, TRAIT_EMPPROOF_SELF, "teslium")
-	if(ispreternis(L)) //no clue why preterni function this way, but why not (makes more sense for ethereals honestly)
-		L.add_movespeed_modifier(type, TRUE, priority=101, multiplicative_slowdown=-3, blacklisted_movetypes=(FLYING|FLOATING))
-		teslium_trip = TRUE
-		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
-			H.physiology.burn_mod *= 10
 	
 /datum/reagent/teslium/on_mob_life(mob/living/carbon/M)
 	shock_timer++

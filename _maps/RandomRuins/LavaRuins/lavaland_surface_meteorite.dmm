@@ -1850,8 +1850,6 @@
 /obj/item/clothing/under/rank/miner/lavaland,
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/item/clothing/under/plasmaman/mining,
-/obj/item/clothing/under/plasmaman/mining,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/unpowered/ash_walkers)
 "HN" = (
@@ -1881,7 +1879,6 @@
 /obj/item/scalpel/bone{
 	pixel_y = 16
 	},
-/obj/item/clothing/under/ash_robe/shaman,
 /obj/item/oar{
 	pixel_y = -1
 	},

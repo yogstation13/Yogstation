@@ -157,12 +157,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			light(lighting_text)
 	else
 		return ..()
-
-/obj/item/clothing/mask/cigarette/attack_hand(mob/user, modifiers)
-	if(!lit && isethereal(user) && user.combat_mode)
-		light("With a snap of [user.p_their()] fingers, [user] lights [src].")
-		return
-	return ..()
 	
 
 /obj/item/clothing/mask/cigarette/afterattack(obj/item/reagent_containers/glass/glass, mob/user, proximity)

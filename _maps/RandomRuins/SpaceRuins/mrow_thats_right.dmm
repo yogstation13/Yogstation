@@ -500,7 +500,6 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/cat_man)
 "bs" = (
-/mob/living/simple_animal/hostile/cat_butcherer,
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},

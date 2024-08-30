@@ -176,11 +176,6 @@
 	if(HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
 		to_chat(user, span_warning("You can't seem to remember how this works!"))
 		return
-	//yogs edit begin ---------------------------------
-	if(status && isethereal(M))
-		M.adjust_nutrition(40)
-		to_chat(M,span_notice("You get charged by [src]."))
-	//yogs edit end  ----------------------------------
 	if(iscyborg(M))
 		..()
 		return

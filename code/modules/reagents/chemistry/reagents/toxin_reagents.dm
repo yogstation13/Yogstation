@@ -67,13 +67,7 @@
 	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
 		holder.remove_reagent(/datum/reagent/medicine/epinephrine, 2*REM)
 	C.adjustPlasma(20)
-	if(isplasmaman(C))
-		toxpwr = 0
-		C.adjustBruteLoss(-0.25*REM, FALSE)
-		C.adjustFireLoss(-0.25*REM, FALSE)
-		C.adjustToxLoss(-0.5*REM, FALSE)
-	else
-		toxpwr = initial(toxpwr)
+	toxpwr = initial(toxpwr)
 	return ..()
 
 /datum/reagent/toxin/plasma/reaction_turf(turf/open/T, reac_volume)
@@ -978,7 +972,7 @@
 			if(4)
 				selected_part = BODY_ZONE_R_LEG
 		var/obj/item/bodypart/bp = M.get_bodypart(selected_part)
-		if(M.dna.species.type != /datum/species/skeleton && M.dna.species.type != /datum/species/plasmaman) //We're so sorry skeletons, you're so misunderstood
+		if(M.dna.species.type != /datum/species/skeleton) //We're so sorry skeletons, you're so misunderstood
 			if(bp)
 				bp.receive_damage(20, 0, 200, wound_bonus = rand(30, 130))
 				playsound(M, get_sfx(SFX_DESCERATION), 50, TRUE, -1)

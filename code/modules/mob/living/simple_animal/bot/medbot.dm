@@ -115,10 +115,6 @@
 
 /mob/living/simple_animal/bot/medbot/Initialize(mapload, new_skin)
 	. = ..()
-	var/datum/job/doctor/J = new /datum/job/doctor
-	access_card.access += J.get_access()
-	prev_access = access_card.access
-	qdel(J)
 	skin = new_skin
 	update_appearance(UPDATE_ICON)
 

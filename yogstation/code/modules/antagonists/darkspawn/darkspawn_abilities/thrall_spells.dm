@@ -63,14 +63,9 @@
 
 		flavour += "Your mind goes numb. Your thoughts go blank. You feel utterly empty."
 		flavour += "A consciousness brushes against your own. You dream."
-		if(ispreternis(target))
-			flavour += "Of a vast, glittering empire stretching from star to star."
-			flavour += "Then, a Void blankets the canopy, suffocating the light."
-			flavour += "Hungry eyes bear into you from the blackness. Ancient. Familiar."
-		else
-			flavour += "Of a vast, empty Void in the deep of space."
-			flavour += "Something lies in the Void. Ancient. Unknowable."
-			flavour += "It watches you with hungry eyes. Eyes filled with stars."
+		flavour += "Of a vast, empty Void in the deep of space."
+		flavour += "Something lies in the Void. Ancient. Unknowable."
+		flavour += "It watches you with hungry eyes. Eyes filled with stars."
 
 		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 			flavour += span_boldwarning("The creature's gaze swallows the universe into blackness.")

@@ -189,10 +189,7 @@
 
 /obj/item/destTagger/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] begins tagging [user.p_their()] final destination!  It looks like [user.p_theyre()] trying to commit suicide!"))
-	if (islizard(user))
-		to_chat(user, span_notice("SELECTED DESTINATION: HELL"))//lizard nerf
-	else
-		to_chat(user, span_notice("SELECTED DESTINATION: HEAVEN"))
+	to_chat(user, span_notice("SELECTED DESTINATION: HEAVEN"))
 	playsound(src, 'sound/machines/twobeep_high.ogg', 100, 1)
 	return BRUTELOSS
 

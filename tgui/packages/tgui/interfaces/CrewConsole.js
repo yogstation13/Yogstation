@@ -32,34 +32,6 @@ const speciesmap = {
     "icon": "robot",
     "color": "#edee1b",
   },
-  "Felinid": {
-    "icon": "paw",
-    "color": "#f52ab4",
-  },
-  "Moth": {
-    "icon": "feather-alt",
-    "color": "#ffebb8",
-  },
-  "Lizard": {
-    "icon": "dragon",
-    "color": "#8bf76a",
-  },
-  "Polysmorph": {
-    "icon": "certificate",
-    "color": "#802496",
-  },
-  "Podperson": {
-    "icon": "seedling",
-    "color": "#07f58a",
-  },
-  "Plasmaman": {
-    "icon": "skull",
-    "color": "#d60b66",
-  },
-  "Ethereal": {
-    "icon": "sun",
-    "color": "#f0ff66",
-  },
   "Skeleton": {
     "icon": "skull",
     "color": "#fffcfa",

@@ -216,11 +216,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	player_minimum = 20
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
-/datum/uplink_item/bundles_TC/contract_kit/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
-	if(is_species(user, /datum/species/plasmaman))
-		spawn_path = /obj/item/storage/box/syndicate/contract_kit/plasmaman
-	..()
-
 /datum/uplink_item/bundles_TC/bundle_A
 	name = "Syndi-kit Tactical"
 	desc = "Syndicate Bundles, also known as Syndi-Kits, are specialized groups of items that arrive in a plain box. \
@@ -2353,73 +2348,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/access_kit/syndicate
 	limited_stock = 1
 	cost = 5
-
-//Race-specific items
-/datum/uplink_item/race_restricted
-	category = UPLINK_CATEGORY_SPECIES
-	surplus = 0
-
-/datum/uplink_item/race_restricted/syndilamp
-	name = "Extra-Bright Lantern"
-	desc = "We heard that ex'hai such as yourself really like lamps, so we decided to grant you early access to a prototype \
-	Syndicate brand \"Extra-Bright Lantern™\". Enjoy."
-	cost = 2
-	item = /obj/item/flashlight/lantern/syndicate
-	restricted_species = list(SPECIES_MOTH)
-
-/datum/uplink_item/race_restricted/syndigenetics
-	name = "Fire Breath implanter"
-	desc = "Recently Vahlen scientists have found the formula of genetical patterns that is needed to activate vuulen genes to grant them the ability to breath fire."
-	cost = 6
-	manufacturer = /datum/corporation/traitor/vahlen
-	item = /obj/item/dnainjector/firebreath
-	restricted_species = list(SPECIES_LIZARD, SPECIES_LIZARD_DRACONID)
-
-/datum/uplink_item/race_restricted/flyingfang
-	name = "Flying Fang Tablet"
-	desc = "This tablet contains a set of old vuulek fighting techniques, increasing your melee combat effectiveness but preventing you from using armor, most common stun weapons, or guns."
-	cost = 14
-	item = /obj/item/book/granter/martial/flyingfang
-	restricted_species = list(SPECIES_LIZARD, SPECIES_LIZARD_DRACONID)
-
-/datum/uplink_item/race_restricted/hammerimplant
-	name = "Vxtvul Hammer Implant"
-	desc = "An implant which will fold a Vxtvul hammer into your chassis upon injection. \
-			This hammer can be retracted and wielded in two hands as an effective armor-piercing weapon. \
-			It can be charged by the user's concentration, which permits a single blow that will decimate construction, \
-			fling bodies, and heavily damage mechs. Vir'ln krx'tai, lost one."
-	cost = 10
-	item = /obj/item/autosurgeon/suspicious/syndie_hammer
-	restricted_species = list(SPECIES_PRETERNIS)
-
-/datum/uplink_item/race_restricted/hammerimplant/New()
-	..()
-	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
-		cost = max(1, ROUND_UP(cost/2))
-
-/datum/uplink_item/race_restricted/killertomatos
-	name = "Killer Tomatoes"
-	desc = "The Syndicates local gardeners brewed these up for our plant comrades (does not work against fellow plants)."
-	cost = 3
-	manufacturer = /datum/corporation/traitor/donkco
-	item = /obj/item/seeds/tomato/killer
-	restricted_species = list(SPECIES_PODPERSON)
-
-/datum/uplink_item/race_restricted/radiationbomb
-	name = "Radiation grenade"
-	desc = "A radiation bomb guaranteed to irradiate the fuck out of non-gaseous lifeforms."
-	cost = 4
-	manufacturer = /datum/corporation/traitor/waffleco
-	item = /obj/item/grenade/chem_grenade/radiation
-	restricted_species = list(SPECIES_PLASMAMAN)
-
-/datum/uplink_item/race_restricted/hulk
-	name = "Hulk Mutator"
-	desc = "Stolen research from a SIC scientist who went postal led to the development of this revolutionary mutator. Causes extreme muscle growth, enough to punch through walls, and practically limitless stamina, at the cost of reduced cognitive ability, and green skin pigmentation."
-	cost = 12
-	manufacturer = /datum/corporation/traitor/vahlen
-	item = /obj/item/dnainjector/hulkmut
-	restricted_species = list(SPECIES_HUMAN)
 
 // Role-specific items
 /datum/uplink_item/role_restricted

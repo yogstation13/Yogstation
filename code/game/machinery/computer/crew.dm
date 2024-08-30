@@ -199,30 +199,6 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			//species check
 			if (ishumanbasic(tracked_mob)) //this should really just pull the species name or something rather than having all these checks
 				species = "Human"
-			if (ispreternis(tracked_mob))
-				species = "Robot"
-			if (isipc(tracked_mob))
-				species = "IPC"
-			if (ispodperson(tracked_mob))
-				species = "Podperson"
-			if (islizard(tracked_mob))
-				species = "Lizard"
-			if (isplasmaman(tracked_mob))
-				species = "Plasmaman"
-			if (ispolysmorph(tracked_mob))
-				species = "Polysmorph"
-			if (ismoth(tracked_mob))
-				species = "Moth"
-			if (isflyperson(tracked_mob))
-				species = "Fly"
-			if (iscatperson(tracked_mob))
-				species = "Felinid"
-			if (isskeleton(tracked_mob))
-				species = "Skeleton"
-			if (isjellyperson(tracked_mob))
-				species = "Slime"
-			if (isethereal(tracked_mob))
-				species = "Ethereal"
 			if (iszombie(tracked_mob))
 				species = "Zombie"
 			if (issnail(tracked_mob))

@@ -7,7 +7,6 @@
 
 /datum/reagent/mutationtoxin/vox
 	name = "Vox Mutation Toxin"
-	race = /datum/species/vox
 	mutationtext = span_danger("The pain subsides. You feel... beaked.")
 
 /datum/reagent/cluwnification

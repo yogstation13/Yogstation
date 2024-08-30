@@ -530,10 +530,7 @@
 			if(prob(severity))
 				switch(rand(1,6))
 					if(1)
-						if(prob(10))
-							R.fields["name"] = random_unique_lizard_name(R.fields["gender"],1)
-						else
-							R.fields["name"] = random_unique_name(R.fields["gender"],1)
+						R.fields["name"] = random_unique_name(R.fields["gender"],1)
 					if(2)
 						R.fields["gender"]	= pick("Male", "Female", "Other")
 					if(3)

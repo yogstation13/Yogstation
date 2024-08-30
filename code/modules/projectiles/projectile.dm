@@ -250,7 +250,7 @@
 			var/splatter_dir = dir
 			if(starting)
 				splatter_dir = get_dir(starting, target_loca)
-			if(isalien(L) || ispolysmorph(L))
+			if(isalien(L))
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter(target_loca, splatter_dir)
 			else if(iscarbon(L) && !(NOBLOOD in C.dna.species.species_traits))
 				var/splatter_color

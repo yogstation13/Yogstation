@@ -24,7 +24,7 @@
 	/// Our internal techweb for limbgrower designs.
 	var/datum/techweb/stored_research
 	/// All the categories of organs we can print.
-	var/list/categories = list(SPECIES_HUMAN, SPECIES_LIZARD, SPECIES_MOTH, SPECIES_PLASMAMAN, SPECIES_ETHEREAL, SPECIES_POLYSMORPH, SPECIES_VOX, "other")
+	var/list/categories = list(SPECIES_HUMAN)
 	//yogs grower a little different because we're going to allow meats to be converted to synthflesh because hugbox
 	var/list/accepted_biomass = list(
 		/obj/item/reagent_containers/food/snacks/meat/slab/monkey = 25, 

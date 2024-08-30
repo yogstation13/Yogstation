@@ -98,7 +98,6 @@
 			break
 	if(!human2borg)
 		return FALSE
-	human2borg.set_species(/datum/species/ipc/self/insurgent)
 	human2borg.visible_message(span_notice("[human2borg] has been converted by the rite of [name]!"))
 	return TRUE
 

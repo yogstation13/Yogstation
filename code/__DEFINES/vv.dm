@@ -114,7 +114,6 @@
 
 // /mob/living/carbon/human
 #define VV_HK_SET_SPECIES "set_species"
-#define VV_HK_PURRBATION "toggle_purrbation"
 #define VV_HK_COPY_OUTFIT "copy_outfit"
 #define VV_HK_MOD_QUIRKS "mod_quirks"
 #define VV_HK_CRITTERMONEY "critter_money"

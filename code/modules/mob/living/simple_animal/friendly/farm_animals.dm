@@ -99,13 +99,6 @@
 	if(. && isliving(target))
 		var/mob/living/L = target
 		L.visible_message(span_warning("[src] rams [L]!"))
-	if(. && ishuman(target))
-		var/mob/living/carbon/human/H = target
-		if(istype(H.dna.species, /datum/species/pod))
-			var/obj/item/bodypart/NB = pick(H.bodyparts)
-			H.visible_message(span_warning("[src] takes a big chomp out of [H]!"), \
-								  span_userdanger("[src] takes a big chomp out of your [NB]!"))
-			NB.dismember()
 
 /mob/living/simple_animal/hostile/retaliate/goat/pete
 	name = "Pete"

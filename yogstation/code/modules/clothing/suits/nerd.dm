@@ -19,9 +19,7 @@
 	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 100, RAD = 100, FIRE = 50, ACID = 50)
 	allowed = list(
 		/obj/item/tank/internals/emergency_oxygen,
-		/obj/item/tank/internals/plasmaman,
 		/obj/item/gun/energy/kinetic_accelerator,
-		/obj/item/tank/internals/ipc_coolant,
 		/obj/item/crowbar,
 	)
 
@@ -130,22 +128,6 @@
 	SIGNAL_HANDLER
 
 	add_queue('sound/voice/nerdsuit/death.ogg', 5 SECONDS, purge_queue=TRUE)
-
-//Mute
-/obj/item/clothing/suit/armor/nerd/proc/handle_speech(datum/source, mob/speech_args)
-
-	SIGNAL_HANDLER
-
-	if(!(obj_flags & EMAGGED))
-		var/static/list/cancel_messages = list(
-			"You find it difficult to talk with the suit crushing your voicebox...",
-			"Your voicebox feels crushed with this suit on, making vocalization impossible...",
-			"You try to talk, but the suit restricts your throat..."
-		)
-
-		speech_args[SPEECH_MESSAGE] = ""
-
-		to_chat(source, span_warning(pick(cancel_messages)))
 
 //Fire
 /obj/item/clothing/suit/armor/nerd/proc/handle_ignite(mob/living)

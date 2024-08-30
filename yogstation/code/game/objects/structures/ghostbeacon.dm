@@ -63,11 +63,7 @@
 		return
 	var/mob/living/carbon/human/H = user.change_mob_type(/mob/living/carbon/human, get_turf(src), null, TRUE)
 	var/outfit = /datum/outfit/ghost
-	if(isplasmaman(H))
-		outfit = /datum/outfit/ghost/plasmaman
 	H.equipOutfit(outfit)
-	if(isplasmaman(H))
-		H.open_internals(H.get_item_for_held_index(2))
 	H.regenerate_icons()
 	ghosts |= H
 	H.visible_message(span_notice("[H] decends into this plane"), span_notice("You decend into the living plane."))
@@ -92,13 +88,6 @@
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	glasses = /obj/item/clothing/glasses/sunglasses
 	back = /obj/item/storage/backpack
-
-/datum/outfit/ghost/plasmaman
-	name = "Plasmaman Ghost"
-	head = /obj/item/clothing/head/helmet/space/plasmaman
-	r_hand = /obj/item/tank/internals/plasmaman/belt/full
-	mask = /obj/item/clothing/mask/breath
-	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
 
 /obj/structure/ghostbeacon/restricted
 	restricted = TRUE

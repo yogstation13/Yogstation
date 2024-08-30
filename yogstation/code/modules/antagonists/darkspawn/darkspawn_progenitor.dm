@@ -155,7 +155,7 @@
 			continue
 		else if(isliving(M))
 			var/mob/living/L = M
-			if(prob(1) && isethereal(L))
+			if(prob(1))
 				to_chat(M, span_boldannounce("They weren't just a story to keep us in line..."))
 			else
 				to_chat(M, span_boldannounce(pick(roar_text)))

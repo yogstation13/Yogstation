@@ -79,7 +79,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	return iscatperson(user) || iscat(user)
+	return iscat(user)
 
 /datum/emote/living/carbon/meow/get_sound(mob/living/user)
 	if(user.mind?.miming || !user.can_speak_vocal())

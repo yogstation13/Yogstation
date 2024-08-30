@@ -358,21 +358,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/autosurgeon/suspicious/reviver = -1,
 		/obj/effect/spawner/lootdrop/ammobox = -1,
 
-		/obj/item/autosurgeon/suspicious/airshoes = -2,
-		/obj/item/grenade/syndieminibomb = -2,
-		/obj/item/dragons_blood = -2,
-		/obj/item/dragons_blood/refined = -2,
-		/obj/item/desynchronizer = -2,
-		/obj/item/book/granter/martial/cqc = -2,
-		/obj/item/book/granter/action/spell/smoke = -2,
-		/obj/item/battleroyale/martial/phytosian = -2,
-		/obj/item/battleroyale/martial/plasmaman = -2,
-		/obj/item/battleroyale/martial/lizard = -2,
-		/obj/item/book/granter/action/spell/summonitem = -2,
-		/obj/item/nullrod/unrestricted = -2,
-		/obj/effect/spawner/lootdrop/ammobox = -2,
-		/obj/item/stand_arrow = -2, //possibly OP but it's 50/50 to get dusted
-
 		/obj/item/storage/box/syndie_kit/augmentation = -3,
 		/obj/item/storage/backpack/duffelbag/syndie/c4 = -3, //C4 Is kind of useless when you have AA
 		/obj/item/battleroyale/itemspawner/construct = -3,
@@ -389,7 +374,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/storage/belt/military/shadowcloak = -4, // Very strong for short bursts
 		/obj/item/implanter/empshield = -4, //EMP Shields are fairly useful, especially with the now wealth of xray / thermal eyes, among others
 		/obj/item/guardiancreator/carp/random = -4,
-		/obj/item/battleroyale/martial/ipc = -4,
 		/obj/item/necromantic_stone = -4,
 		/obj/item/slimecross/stabilized/sepia = -4,
 		/obj/item/melee/skateboard/hoverboard/admin = -4,
@@ -400,7 +384,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/stand_arrow/safe = -5,
 		/obj/item/mirage_drive = -5, //get out of jail free card
 		/obj/item/book/granter/martial/carp = -5,
-		/obj/item/battleroyale/martial/worldbreaker = -5, // Shaking the ground of Moria
 		/obj/item/bodypart/l_arm/robot/buster = -5,
 
 		/obj/item/autosurgeon/suspicious/spinalspeed = -6, // No opportunity cost speed boost
@@ -487,75 +470,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 /obj/item/battleroyale
 	name = "This item is created and used by the battle royale gamemode"
 	desc = "This shouldn't have been spawned"
-
-//used to grant species martial arts to other species
-/obj/item/battleroyale/martial
-	name = "IPC martial mutator"
-	desc = "Transforms you into a blood-fueled killing machine."
-	icon = 'icons/obj/module.dmi'
-	icon_state = "cyborg_upgrade"
-	var/martial = /datum/martial_art/cqc
-	var/species = /datum/species/polysmorph //get clowned on
-
-/obj/item/battleroyale/martial/attack_self(mob/user)
-	. = ..()
-	if(user.mind.martial_art.type in subtypesof(/datum/martial_art) && !(istype(user.mind.martial_art, /datum/martial_art/cqc/under_siege)))//prevents people from learning several martial arts or swapping between them
-		to_chat(user,span_warning("You already know [user.mind.martial_art.name]!"))
-		return
-
-	if(do_after(user, 2 SECONDS, user))
-		var/datum/martial_art/MA = new martial
-		user.set_species(species)
-		MA.teach(user)
-		qdel(src)
-
-/obj/item/battleroyale/martial/ipc
-	name = "IPC martial mutator"
-	desc = "Transforms you into a blood-fueled killing machine."
-	icon = 'icons/obj/module.dmi'
-	icon_state = "cyborg_upgrade"
-	martial = /datum/martial_art/ultra_violence
-	species = /datum/species/ipc
-
-/obj/item/battleroyale/martial/worldbreaker
-	name = "Worldbreaker martial mutator"
-	desc = "Transforms you into a lumbering metal juggernaut."
-	icon = 'icons/obj/drinks.dmi'
-	icon_state = "flaming_moe"
-	martial = /datum/martial_art/worldbreaker
-	species = /datum/species/preternis
-
-/obj/item/battleroyale/martial/lizard
-	name = "Lizard martial mutator"
-	desc = "Transforms you into a scaled menace."
-	icon = 'icons/obj/library.dmi'
-	icon_state = "stone_tablet"
-	martial = /datum/martial_art/flyingfang
-	species = /datum/species/lizard
-
-/obj/item/battleroyale/martial/preternis
-	name = "Preternis martial mutator"
-	desc = "Transforms you into a durable worker cyborg."
-	icon = 'icons/obj/module.dmi'
-	icon_state = "cyborg_upgrade"
-	martial = /datum/martial_art/liquidator
-	species = /datum/species/preternis
-	
-/obj/item/battleroyale/martial/phytosian
-	name = "Phytosian martial mutator"
-	desc = "Transforms you into a feral plant creature."
-	icon = 'icons/obj/wizard.dmi'
-	icon_state = "scroll2"
-	martial = /datum/martial_art/gardern_warfare
-	species = /datum/species/pod
-
-/obj/item/battleroyale/martial/plasmaman
-	name = "Plasmaman martial mutator"
-	desc = "Transforms you into terrifying always-burning skeleton."
-	icon = 'icons/obj/wizard.dmi'
-	icon_state = "scroll2"
-	martial = /datum/martial_art/explosive_fist
-	species = /datum/species/plasmaman
 
 //used for bundle items
 /obj/item/battleroyale/itemspawner

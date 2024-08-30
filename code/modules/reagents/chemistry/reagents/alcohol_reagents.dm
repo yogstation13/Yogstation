@@ -702,9 +702,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		QDEL_NULL(B)
 	return ..()
 
-/datum/reagent/consumable/ethanol/beepsky_smash/overdose_start(mob/living/carbon/M)
-	if(!HAS_TRAIT(M.mind, TRAIT_LAW_ENFORCEMENT_METABOLISM))
-		M.gain_trauma(/datum/brain_trauma/mild/phobia/security, TRAUMA_RESILIENCE_BASIC)
 
 /datum/reagent/consumable/ethanol/irish_cream
 	name = "Irish Cream"
@@ -844,15 +841,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/manhattan_proj/on_mob_life(mob/living/carbon/M)
 	M.set_drugginess(30)
-	if(isethereal(M))
-		M.adjust_nutrition(volume*REM)
 	return ..()
 
-/datum/reagent/consumable/ethanol/manhattan_proj/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
-	if(methods & INGEST)
-		if(isethereal(M))
-			to_chat(M, span_notice("Danger! Danger! High Voltage!! When we drink..."))
-	return ..()
 
 /datum/reagent/consumable/ethanol/whiskeysoda
 	name = "Whiskey Soda"
@@ -1167,17 +1157,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Acid Spit"
 	glass_desc = "A drink from Nanotrasen. Made from live aliens."
 
-/datum/reagent/consumable/ethanol/acid_spit/on_mob_life(mob/living/carbon/M)
-	if(ispolysmorph(M))
-		M.adjustFireLoss(-0.5)
-	return ..()
-
-/datum/reagent/consumable/ethanol/acid_spit/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
-	if(methods & INGEST)
-		if(ispolysmorph(M))
-			to_chat(M, span_notice("Ah! The sweet taste of Acid to wash the burns away"))
-	return ..()
-
 /datum/reagent/consumable/ethanol/amasec
 	name = "Amasec"
 	description = "Official drink of the Nanotrasen Gun-Club!"
@@ -1374,16 +1353,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	for(var/obj/item/stack/ore/O in orange(3, M))
 		step_towards(O, get_turf(M))
 
-	if(ispreternis(M))
-		for(var/obj/O in orange(2,M))
-			if(!O.anchored && (O.flags_1 & CONDUCT_1))
-				step_towards(O, get_turf(M))
-	return ..()
-
-/datum/reagent/consumable/ethanol/fetching_fizz/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
-	if(methods & INGEST)
-		if(ispreternis(M))
-			to_chat(M, span_notice("You know how it feels to be a magnet now"))
 	return ..()
 
 //Another reference. Heals those in critical condition extremely quickly.
@@ -1568,18 +1537,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			if(prob(30))
 				M.adjustToxLoss(2, 0)
 				. = 1
-
-	if(ispodperson(M))
-		M.adjustBruteLoss(-1)
-		M.adjustFireLoss(-1)
-		M.adjustToxLoss(-0.5)
-		M.adjustOxyLoss(-3)
-	return ..()
-
-/datum/reagent/consumable/ethanol/hippies_delight/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
-	if(methods & INGEST)
-		if(ispodperson(M))
-			to_chat(M, span_notice("Man... You're so high, it feels like you're healing..."))
 	return ..()
 
 /datum/reagent/consumable/ethanol/eggnog
@@ -2184,12 +2141,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/bug_spray/on_mob_life(mob/living/carbon/M)
 //Bugs should not drink Bug spray.
-	if(ismoth(M) || isflyperson(M))
+	if(isflyperson(M))
 		M.adjustToxLoss(1,0)
 	return ..()
 /datum/reagent/consumable/ethanol/bug_spray/on_mob_metabolize(mob/living/carbon/M)
 
-	if(ismoth(M) || isflyperson(M))
+	if(isflyperson(M))
 		M.emote("scream")
 	return ..()
 
@@ -2346,9 +2303,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "Although historians believe the drink was originally created to commemorate the end of an important conflict in man's past, its origins have largely been forgotten and it is today seen more as a general symbol of human supremacy."
 
 /datum/reagent/consumable/ethanol/planet_cracker/on_mob_life(mob/living/carbon/M)
-	if(islizard(M) && prob(15))
-		M.emote("scream")
-	else if(ishumanbasic(M))
+	if(ishumanbasic(M))
 		M.heal_overall_damage(0.25, 0.25)
 	return ..()
 
@@ -2659,11 +2614,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	nutriment_factor = 3 * REAGENTS_METABOLISM
 
 /datum/reagent/consumable/ethanol/protein_blend/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	if(!islizard(M))
-		M.adjust_nutrition(2 * REM * delta_time)
-		M.adjust_disgust(5 * REM * delta_time)
-	else
-		M.adjust_disgust(2 * REM * delta_time)
+	M.adjust_nutrition(2 * REM * delta_time)
+	M.adjust_disgust(5 * REM * delta_time)
 	..()
 
 /datum/reagent/consumable/ethanol/mushi_kombucha
@@ -2677,17 +2629,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "glass of mushi kombucha"
 	glass_desc = "A glass of (slightly alcoholic) fermented sweetened mushroom tea. Refreshing, if a little strange."
 
-/datum/reagent/consumable/ethanol/mushi_kombucha/on_mob_life(mob/living/carbon/M)
-	if(ismoth(M))
-		M.adjustToxLoss(-2, 0)
-	return ..()
-
-/datum/reagent/consumable/ethanol/mushi_kombucha/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
-	if(methods & INGEST)
-		if(ismoth(M))
-			to_chat(M, span_notice("You never knew how tasty shrooms in a drink could be. Until now!"))
-	return ..()
-
 /datum/reagent/consumable/ethanol/triumphal_arch
 	name = "Triumphal Arch"
 	description = "A drink celebrating the Opsillian Republic and its rapid growth. A popular tool of integration efforts."
@@ -2698,11 +2639,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "triumphal_arch"
 	glass_name = "Triumphal Arch"
 	glass_desc = "A toast to Sangris, the jewel of the vuulen."
-
-/datum/reagent/consumable/ethanol/triumphal_arch/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	if(islizard(M))
-		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "triumph", name)
-	return ..()
 
 /datum/reagent/consumable/ethanol/moscow_mule
 	name = "Moscow Mule"

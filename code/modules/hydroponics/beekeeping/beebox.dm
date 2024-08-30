@@ -16,8 +16,6 @@
 
 
 /mob/living/carbon/human/bee_friendly()
-	if(ispodperson(src)) //bees pollinate plants, duh.
-		return TRUE
 	if (wear_suit && head && istype(wear_suit, /obj/item/clothing) && istype(head, /obj/item/clothing))
 		var/obj/item/clothing/CS = wear_suit
 		var/obj/item/clothing/CH = head

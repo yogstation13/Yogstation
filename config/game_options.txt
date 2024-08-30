@@ -14,17 +14,6 @@ REVIVAL_CLONING
 ## amount of time (in hundredths of seconds) for which a brain retains the "spark of life" after the person's death (set to -1 for infinite)
 REVIVAL_BRAIN_LIFE -1
 
-## JOB_SPECIES_WHITELIST ##
-## Creates Command roles species based exceptions; comma delineated list - /datum/job/[JOB] [SPECIES 1],[SPECIES 2], etc.
-
-JOB_SPECIES_WHITELIST /datum/job/captain human
-JOB_SPECIES_WHITELIST /datum/job/hop human,lizard,plasmaman,ipc
-JOB_SPECIES_WHITELIST /datum/job/hos human,lizard,pod,preternis,polysmorph,vox
-JOB_SPECIES_WHITELIST /datum/job/chief_engineer human,lizard,pod,plasmaman,moth,ethereal,preternis,polysmorph,ipc,vox
-JOB_SPECIES_WHITELIST /datum/job/rd human,lizard,pod,plasmaman,moth,ethereal,preternis,polysmorph,ipc,vox
-JOB_SPECIES_WHITELIST /datum/job/cmo human,lizard,pod,plasmaman,moth,ethereal,preternis,polysmorph,ipc,vox
-
-
 ## OOC DURING ROUND ###
 ## Comment this out if you want OOC to be automatically disabled during the round, it will be enabled during the lobby and after the round end results.
 OOC_DURING_ROUND
@@ -551,21 +540,8 @@ SILICON_MAX_LAW_AMOUNT 10
 ## You probably want humans on your space station, but technically speaking you can turn them off without any ill effect
 ROUNDSTART_RACES human
 
-## Races that are strictly worse than humans that could probably be turned on without balance concerns
-ROUNDSTART_RACES lizard
-#ROUNDSTART_RACES gorilla
-#ROUNDSTART_RACES fly
-ROUNDSTART_RACES moth
-ROUNDSTART_RACES plasmaman
-#ROUNDSTART_RACES shadow
-ROUNDSTART_RACES preternis
-ROUNDSTART_RACES polysmorph
-#ROUNDSTART_RACES snail
-ROUNDSTART_RACES ipc
-ROUNDSTART_RACES vox
 
 ## Races that are better than humans in some ways, but worse in others
-ROUNDSTART_RACES ethereal
 #ROUNDSTART_RACES jelly
 #ROUNDSTART_RACES golem
 #ROUNDSTART_RACES adamantine

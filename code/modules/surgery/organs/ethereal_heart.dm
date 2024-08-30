@@ -28,10 +28,7 @@
 
 /obj/item/organ/heart/ethereal/Insert(mob/living/carbon/heart_owner, special = FALSE, drop_if_replaced = TRUE)
 	. = ..()
-	if(!isethereal(heart_owner))
-		brute_damage_to_stop_crystal = 5
-	else
-		brute_damage_to_stop_crystal = initial(brute_damage_to_stop_crystal)
+	brute_damage_to_stop_crystal = initial(brute_damage_to_stop_crystal)
 	RegisterSignal(heart_owner, COMSIG_MOB_STATCHANGE, PROC_REF(on_stat_change))
 	RegisterSignal(heart_owner, COMSIG_LIVING_POST_FULLY_HEAL, PROC_REF(on_owner_fully_heal))
 	RegisterSignal(heart_owner, COMSIG_QDELETING, PROC_REF(owner_deleted))

@@ -25,7 +25,7 @@
 	var/thanks_msg = "The cargo shuttle should return in five minutes. Have some supply points for your trouble."
 
 /datum/round_event/shuttle_loan/setup()
-	dispatch_type = pick(HIJACK_SYNDIE, RUSKY_PARTY, SPIDER_GIFT, DEPARTMENT_RESUPPLY, ANTIDOTE_NEEDED, PIZZA_DELIVERY, ITS_HIP_TO, MY_GOD_JC, PETA)
+	dispatch_type = pick(HIJACK_SYNDIE, RUSKY_PARTY, SPIDER_GIFT, DEPARTMENT_RESUPPLY, PIZZA_DELIVERY, ITS_HIP_TO, MY_GOD_JC, PETA)
 
 /datum/round_event/shuttle_loan/announce(fake)
 	SSshuttle.shuttle_loan = src
@@ -40,8 +40,6 @@
 			priority_announce("Cargo: Seems we've ordered doubles of our department resupply packages this month. Can we send them to you?","CentCom Supply Department")
 			thanks_msg = "The cargo shuttle should return in 5 minutes."
 			bonus_points = 0
-		if(ANTIDOTE_NEEDED)
-			priority_announce("Cargo: Your station has been chosen for an epidemiological research project. Send us your cargo shuttle to receive your research samples.", "CentCom Research Initiatives")
 		if(PIZZA_DELIVERY)
 			priority_announce("Cargo: It looks like a neighbouring station accidentally delivered their pizza to you instead.", "CentCom Spacepizza Division")
 			thanks_msg = "The cargo shuttle should return in 5 minutes."
@@ -80,8 +78,6 @@
 			SSshuttle.centcom_message += "Spider Clan gift incoming."
 		if(DEPARTMENT_RESUPPLY)
 			SSshuttle.centcom_message += "Department resupply incoming."
-		if(ANTIDOTE_NEEDED)
-			SSshuttle.centcom_message += "Virus samples incoming."
 		if(PIZZA_DELIVERY)
 			SSshuttle.centcom_message += "Pizza delivery for [station_name()]"
 		if(ITS_HIP_TO)
@@ -158,22 +154,6 @@
 				for(var/i in 1 to 5)
 					T = pick_n_take(empty_shuttle_turfs)
 					new /obj/structure/spider/stickyweb(T)
-
-			if(ANTIDOTE_NEEDED)
-				var/obj/effect/mob_spawn/human/corpse/assistant/infected_assistant = pick(/obj/effect/mob_spawn/human/corpse/assistant/beesease_infection, /obj/effect/mob_spawn/human/corpse/assistant/brainrot_infection, /obj/effect/mob_spawn/human/corpse/assistant/spanishflu_infection)
-				var/turf/T
-				for(var/i=0, i<10, i++)
-					if(prob(15))
-						shuttle_spawns.Add(/obj/item/reagent_containers/glass/bottle)
-					else if(prob(15))
-						shuttle_spawns.Add(/obj/item/reagent_containers/syringe)
-					else if(prob(25))
-						shuttle_spawns.Add(/obj/item/shard)
-					T = pick_n_take(empty_shuttle_turfs)
-					new infected_assistant(T)
-				shuttle_spawns.Add(/obj/structure/closet/crate)
-				shuttle_spawns.Add(/obj/item/reagent_containers/glass/bottle/pierrot_throat)
-				shuttle_spawns.Add(/obj/item/reagent_containers/glass/bottle/magnitis)
 
 			if(DEPARTMENT_RESUPPLY)
 				var/list/crate_types = list(
@@ -284,7 +264,6 @@
 #undef RUSKY_PARTY
 #undef SPIDER_GIFT
 #undef DEPARTMENT_RESUPPLY
-#undef ANTIDOTE_NEEDED
 #undef PIZZA_DELIVERY
 #undef ITS_HIP_TO
 #undef MY_GOD_JC

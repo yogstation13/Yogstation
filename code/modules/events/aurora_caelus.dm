@@ -39,10 +39,6 @@
 			message_admins("Aurora Caelus event caused an oven to ignite at [ADMIN_VERBOSEJMP(ruined_roast)].")
 			log_game("Aurora Caelus event caused an oven to ignite at [loc_name(ruined_roast)].")
 			announce_to_ghosts(roast_ruiner)
-		for(var/mob/living/carbon/human/seymour as anything in GLOB.carbon_list)
-			if(seymour.mind && istype(seymour.mind.assigned_role, /datum/job/cook))
-				seymour.say("My roast is ruined!!!", forced = "ruined roast")
-				seymour.emote("scream")
 
 /datum/round_event/aurora_caelus/tick()
 	if(activeFor % 8 != 0)

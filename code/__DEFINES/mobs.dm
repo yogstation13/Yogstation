@@ -99,13 +99,11 @@
 #define SPECIES_STARGAZER "stargazer"
 #define SPECIES_LIZARD "lizard"
 #define SPECIES_LIZARD_ASH "ashlizard"
-#define SPECIES_LIZARD_ASH_SHAMAN "ashlizardshaman"
 #define SPECIES_LIZARD_DRACONID "draconid"
 
 #define SPECIES_NIGHTMARE "nightmare"
 #define SPECIES_MOTH "moth"
 #define SPECIES_MUSHROOM "mush"
-#define SPECIES_PLASMAMAN "plasmaman"
 #define SPECIES_PODPERSON "pod"
 #define SPECIES_SHADOW "shadow"
 #define SPECIES_SKELETON "skeleton"

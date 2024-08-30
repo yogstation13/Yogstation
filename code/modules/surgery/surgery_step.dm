@@ -102,9 +102,6 @@
 		return FALSE
 	play_preop_sound(user, target, target_zone, tool, surgery)
 
-	if(is_species(user, /datum/species/lizard/ashwalker/shaman))//shaman is slightly better at surgeries
-		speed_mod *= 0.9
-
 	if(istype(user.get_item_by_slot(ITEM_SLOT_GLOVES), /obj/item/clothing/gloves/color/latex))
 		var/obj/item/clothing/gloves/color/latex/surgicalgloves = user.get_item_by_slot(ITEM_SLOT_GLOVES)
 		speed_mod *= surgicalgloves.surgeryspeed

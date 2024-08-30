@@ -786,16 +786,6 @@
 	var/mob/living/carbon/human/H = user
 
 	if(istype(H))
-		if(isethereal(H))
-			to_chat(H, span_notice("You start channeling some power through the [fitting] into your body."))
-			if(do_after(user, 1 SECONDS, src))
-				if(istype(H.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
-					to_chat(H, span_notice("You receive some charge from the [fitting]."))
-					H.adjust_nutrition(100)
-				else
-					to_chat(H, span_notice("You can't receive charge from the [fitting]."))
-			return
-
 		if(H.gloves)
 			var/obj/item/clothing/gloves/G = H.gloves
 			if(G.max_heat_protection_temperature)

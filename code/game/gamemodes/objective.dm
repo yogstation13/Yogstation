@@ -224,7 +224,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		if(ishuman(target.current))
 			var/mob/living/carbon/human/H = target.current
 			// This should just check for an uppercase flag
-			explanation_text = "Assassinate [target.name], the [isipc(H) ? H.dna.species.name : lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role]."
+			explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role : target.special_role]."
 		else
 			explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role : target.special_role]."
 	else
@@ -1182,8 +1182,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	for(var/datum/mind/M in SSticker.minds)
 		if(M in lings)
 			continue
-		if(isipc(M.current))
-			continue
 		if(department_head in get_department_heads(M.assigned_role))
 			if(ling_count)
 				ling_count--
@@ -1212,8 +1210,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/list/heads = SSjob.get_living_heads()
 	for(var/datum/mind/head in heads)
 		if(head in lings) //Looking at you HoP.
-			continue
-		if(isipc(head.current))
 			continue
 		if(needed_heads)
 			department_minds += head
@@ -1727,7 +1723,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/maroon_organ/update_explanation_text()
 	if(target && original_organ)
 		var/mob/living/carbon/human/H = target.current
-		explanation_text = "Ensure that [target.name], the [isipc(H) ? H.dna.species.name : lowertext(H.dna.species.name)] [target.assigned_role] does not escape alive with their original [original_organ]."
+		explanation_text = "Ensure that [target.name], the [target.assigned_role] does not escape alive with their original [original_organ]."
 	else
 		explanation_text = "Free Objective"
 	. = ..()

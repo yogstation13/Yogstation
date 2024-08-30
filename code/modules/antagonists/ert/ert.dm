@@ -79,10 +79,6 @@
 	. = ..()
 	name_source = GLOB.commando_names
 
-/datum/antagonist/ert/clown/New()
-	. = ..()
-	name_source = GLOB.clown_names
-
 /datum/antagonist/ert/deathsquad/apply_innate_effects(mob/living/mob_override)
 	ADD_TRAIT(owner, TRAIT_DISK_VERIFIER, DEATHSQUAD_TRAIT)
 

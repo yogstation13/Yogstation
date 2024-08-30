@@ -269,8 +269,6 @@
 		return power * 0.5
 	else if(M.IsSleeping())
 		return power * 0.25
-	else if(ispreternis(M) || isipc(M)) //ipc and preternis don't get round removed
-		return 0
 	else if(M.getBruteLoss() + M.getFireLoss() >= 90 && !active_coma)
 		to_chat(M, span_warning("You feel yourself slip into a regenerative coma..."))
 		active_coma = TRUE

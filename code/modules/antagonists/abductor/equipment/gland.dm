@@ -249,7 +249,7 @@
 /obj/item/organ/heart/gland/pop/activate()
 	to_chat(owner, span_notice("You feel unlike yourself."))
 	randomize_human(owner)
-	var/species = pick(list(/datum/species/human, /datum/species/lizard, /datum/species/gorilla, /datum/species/moth, /datum/species/fly)) // yogs -- gorilla people
+	var/species = pick(list(/datum/species/human))
 	owner.set_species(species)
 	owner.dna.update_dna_identity()
 

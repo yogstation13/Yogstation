@@ -726,14 +726,6 @@
 		R.data = data
 		R.on_new(data)
 
-	if(isliving(my_atom))
-		//yogs start - snowflake synth check
-		if(!istype(R, /datum/reagent/medicine/synthflesh) && ishuman(my_atom)) 
-			var/mob/living/carbon/human/H = my_atom
-			if(H?.dna?.species && istype(H.dna.species, /datum/species/ipc/self/insurgent))
-				return
-		R.on_mob_add(my_atom) //Must occur befor it could posibly run on_mob_delete
-		//yogs end
 	update_total()
 	if(my_atom)
 		my_atom.on_reagent_change(ADD_REAGENT)

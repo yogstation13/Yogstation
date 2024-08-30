@@ -60,35 +60,6 @@
 	hands_use_check = TRUE
 	emote_type = EMOTE_AUDIBLE
 
-/datum/emote/living/carbon/hiss
-	key = "hiss"
-	key_third_person = "hisses"
-	message = "hisses."
-	message_param = "hisses at %t."
-	emote_type = EMOTE_AUDIBLE
-	var/list/viable_tongues = list(/obj/item/organ/tongue/lizard, /obj/item/organ/tongue/polysmorph)
-
-/datum/emote/living/carbon/hiss/get_sound(mob/living/user)
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/H = user
-	var/obj/item/organ/tongue/T = H.getorganslot(ORGAN_SLOT_TONGUE)
-	if(istype(T, /obj/item/organ/tongue/lizard))
-		return 'sound/voice/lizard/hiss.ogg'
-	if(istype(T, /obj/item/organ/tongue/polysmorph))
-		return pick('sound/voice/hiss1.ogg','sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg')
-	if(iscatperson(user))//yogs: catpeople can hiss!
-		return pick('sound/voice/feline/hiss1.ogg', 'sound/voice/feline/hiss2.ogg', 'sound/voice/feline/hiss3.ogg')
-
-/datum/emote/living/carbon/hiss/can_run_emote(mob/living/user, status_check = TRUE, intentional)
-	if(!ishuman(user))
-		return FALSE
-	var/mob/living/carbon/human/H = user
-	var/obj/item/organ/tongue/T = H.getorganslot(ORGAN_SLOT_TONGUE)
-	if(iscatperson(user)) //yogs: cat people can hiss!
-		return TRUE
-	return is_type_in_list(T, viable_tongues)
-
 /datum/emote/living/carbon/human/hug
 	key = "hug"
 	key_third_person = "hugs"
@@ -130,7 +101,7 @@
 	sound = 'sound/voice/rattled.ogg'
 
 /datum/emote/living/carbon/human/rattle/can_run_emote(mob/living/user, status_check = TRUE, intentional)
-	return (isskeleton(user) || isplasmaman(user)) && ..()
+	return (isskeleton(user) && ..())
 
 /datum/emote/living/carbon/human/pale
 	key = "pale"
@@ -153,62 +124,6 @@
 	key = "shrug"
 	key_third_person = "shrugs"
 	message = "shrugs."
-
-// Tail thump! Lizard-tail exclusive emote.
-/datum/emote/living/carbon/human/tailthump
-	key = "thump"
-	key_third_person = "thumps their tail"
-	message = "thumps their tail!"
-	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
-
-/datum/emote/living/carbon/human/tailthump/get_sound(mob/living/user)
-	return 'sound/voice/lizard/tailthump.ogg' // Source: https://freesound.org/people/TylerAM/sounds/389665/
-
-/datum/emote/living/carbon/human/tailthump/can_run_emote(mob/user, status_check = TRUE, intentional)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/mob/living/carbon/human/H = user
-	if(!istype(H) || !H.dna || !H.dna.species)
-		return FALSE
-	if(H.IsParalyzed() || H.IsStun()) // No thumping allowed. Taken from can_wag_tail().
-		return FALSE
-	return ("tail_lizard" in H.dna.species.mutant_bodyparts) || ("waggingtail_lizard" in H.dna.species.mutant_bodyparts)
-
-/datum/emote/living/carbon/human/wag
-	key = "wag"
-	key_third_person = "wags"
-	message = "wags their tail."
-
-/datum/emote/living/carbon/human/wag/run_emote(mob/user, params, type_override, intentional)
-	. = ..()
-	if(!.)
-		return
-	var/mob/living/carbon/human/H = user
-	if(!istype(H) || !H.dna || !H.dna.species || !H.dna.species.can_wag_tail(H))
-		return
-	if(!H.dna.species.is_wagging_tail())
-		H.dna.species.start_wagging_tail(H)
-	else
-		H.dna.species.stop_wagging_tail(H)
-
-/datum/emote/living/carbon/human/wag/can_run_emote(mob/user, status_check = TRUE , intentional)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/mob/living/carbon/human/H = user
-	if(!istype(H) || !H.dna || !H.dna.species) // Here to prevent a runtime when a silicon does *help.
-		return FALSE
-	return H.dna.species.can_wag_tail(user)
-
-/datum/emote/living/carbon/human/wag/select_message_type(mob/user, intentional)
-	. = ..()
-	var/mob/living/carbon/human/H = user
-	if(!H.dna || !H.dna.species)
-		return
-	if(H.dna.species.is_wagging_tail())
-		. = null
 
 /datum/emote/living/carbon/human/flap
 	key = "flap"
@@ -238,8 +153,6 @@
 			addtimer(CALLBACK(H, open ? TYPE_PROC_REF(/mob/living/carbon/human, OpenWings) : TYPE_PROC_REF(/mob/living/carbon/human, CloseWings)), wing_time)
 
 /datum/emote/living/carbon/human/flap/get_sound(mob/living/carbon/human/user)
-	if(ismoth(user))
-		return 'sound/voice/moth/moth_flutter.ogg'
 	return ..()
 
 /datum/emote/living/carbon/human/flap/aflap

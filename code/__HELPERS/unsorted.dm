@@ -86,7 +86,7 @@
 	return TRUE
 
 //Generalised helper proc for letting mobs rename themselves. Used to be clname() and ainame()
-/mob/proc/apply_pref_name(preference_type, client/C)
+/mob/proc/apply_pref_name(preference_type, client/C, isai)
 	if(!C)
 		C = client
 	var/oldname = real_name
@@ -112,6 +112,9 @@
 				break
 		loop--
 		safety++
+
+	if(isai)
+		newname = "Overwatch"
 
 	if(newname)
 		fully_replace_character_name(oldname,newname)

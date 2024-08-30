@@ -788,16 +788,6 @@
 /area/shuttle/escape)
 "Vc" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/structure/closet/secure_closet{
-	name = "Plasmaman Supplies Locker";
-	req_access = list("medical")
-	},
-/obj/item/clothing/under/plasmaman,
-/obj/item/clothing/under/plasmaman,
-/obj/item/clothing/head/helmet/space/plasmaman,
-/obj/item/clothing/head/helmet/space/plasmaman,
-/obj/item/tank/internals/plasmaman,
-/obj/item/tank/internals/plasmaman,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "Vx" = (

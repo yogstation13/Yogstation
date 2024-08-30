@@ -57,19 +57,11 @@
 	var/mob/living/carbon/human/dummy/consistent/brother1 = new
 	var/mob/living/carbon/human/dummy/consistent/brother2 = new
 
-	brother1.dna.features["mcolor"] = "#ff4d4d"
-	brother1.set_species(/datum/species/ethereal)
-
-	brother2.dna.features["moth_antennae"] = "Plain"
-	brother2.dna.features["moth_markings"] = "None"
-	brother2.dna.features["moth_wings"] = "Plain"
-	brother2.set_species(/datum/species/moth)
-
-	var/icon/brother1_icon = render_preview_outfit(/datum/outfit/job/quartermaster, brother1)
+	var/icon/brother1_icon = render_preview_outfit(/datum/outfit/job/civilprotection, brother1)
 	brother1_icon.Blend(icon('icons/effects/blood.dmi', "maskblood"), ICON_OVERLAY)
 	brother1_icon.Shift(WEST, 8)
 
-	var/icon/brother2_icon = render_preview_outfit(/datum/outfit/job/scientist, brother2)
+	var/icon/brother2_icon = render_preview_outfit(/datum/outfit/job/civilprotection, brother2)
 	brother2_icon.Blend(icon('icons/effects/blood.dmi', "uniformblood"), ICON_OVERLAY)
 	brother2_icon.Shift(EAST, 8)
 

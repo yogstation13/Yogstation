@@ -499,8 +499,6 @@
 			continue
 		if(is_convertable_to_cult(player))
 			continue
-		if(isipc(player))
-			continue
 		if(player.stat == DEAD)
 			continue
 		target_candidates += player.mind
@@ -510,8 +508,6 @@
 			if(!player.mind)
 				continue
 			if(player.mind.has_antag_datum(/datum/antagonist/cult))
-				continue
-			if(isipc(player))
 				continue
 			if(player.stat == DEAD)
 				continue

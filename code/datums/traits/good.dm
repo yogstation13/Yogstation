@@ -341,9 +341,6 @@
 /datum/quirk/cyberorgan/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
 
-	if(species_type == /datum/species/ipc) // IPCs are already cybernetic
-		return "You already have cybernetic organs!"
-	
 	var/datum/species/species = new species_type
 	var/list/temp = organ_list.Copy()
 	if(TRAIT_TOXINLOVER in species.inherent_traits)

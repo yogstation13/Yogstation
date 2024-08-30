@@ -38,8 +38,6 @@
 			darkspawn.divulge()
 			return
 
-	if(isethereal(user))//disable the light for long enough to start divulge
-		user.dna.species.spec_emp_act(user, EMP_HEAVY)
 			
 	if(spot.get_lumcount() > SHADOW_SPECIES_DIM_LIGHT)
 		to_chat(user, span_warning("You are only able to divulge in darkness!"))
@@ -48,14 +46,6 @@
 	if(tgui_alert(user, "You are ready to divulge. This will leave you vulnerable and take a long time, are you sure?", name, list("Yes", "No")) != "Yes")
 		return
 	in_use = TRUE
-
-	if(istype(user.dna.species, /datum/species/pod))
-		to_chat(user, span_notice("Your disguise is stabilized by the divulgance..."))
-		user.reagents.add_reagent(/datum/reagent/medicine/salbutamol,20)
-
-	if(istype(user.dna.species, /datum/species/plasmaman))
-		to_chat(user, span_notice("Your bones harden to protect you from the atmosphere..."))
-		user.set_species(/datum/species/skeleton)
 
 	to_chat(user, span_velvet("You begin creating a psychic barrier around yourself..."))
 	if(!do_after(user, 3 SECONDS, user))
@@ -75,8 +65,6 @@
 	user.unequip_everything()
 
 	for(var/stage in 1 to 3)
-		if(isethereal(user))//keep the light disabled
-			user.dna.species.spec_emp_act(user, EMP_HEAVY)
 		switch(stage)
 			if(1)
 				user.visible_message(span_userdanger("Vibrations pass through the air. [user]'s eyes begin to glow a deep violet."), \
@@ -97,8 +85,6 @@
 			animate(user, color = initial(user.color), pixel_y = initial(user.pixel_y), time = 1 SECONDS)
 			in_use = FALSE
 			return
-	if(isethereal(user))//keep the light disabled
-		user.dna.species.spec_emp_act(user, EMP_HEAVY)
 	playsound(user, 'yogstation/sound/magic/divulge_ending.ogg', 50, 0)
 	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"), span_progenitor("Your mind...! can't--- THINK--"))
 	animate(user, pixel_y = user.pixel_y + 8, time = 6 SECONDS)

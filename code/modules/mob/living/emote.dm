@@ -487,7 +487,7 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/human_user = user
-	if(ishumanbasic(human_user) || iscatperson(human_user) && !HAS_MIND_TRAIT(human_user, TRAIT_MIMING))
+	if(ishumanbasic(human_user))
 		if(human_user.gender == FEMALE)
 			return pick('sound/voice/human/gasp_female1.ogg', 'sound/voice/human/gasp_female2.ogg', 'sound/voice/human/gasp_female3.ogg')
 		else

@@ -32,8 +32,8 @@
 		var/icon/icon_to_mix = getFlatIcon(user)
 		icon_to_mix.Blend(icon('icons/mob/mutant_bodyparts.dmi', "m_ears_cat_FRONT"), ICON_OVERLAY)
 		option.image = icon_to_mix
-		option.info = "[iscatperson(user) ? "Lizard" : "Felinid"]: Increased agility, speed and interaction speed, but decreased defense."
-		radial_display["Lizard/Felinid"] = option //haha yeah
+		option.info = "[ishuman(user) ? "Human" : "Human"]: Increased agility, speed and interaction speed, but decreased defense."
+		radial_display["Human"] = option //haha yeah
 	if(bloodsuckerdatum.total_blood_drank >= 250)
 		var/datum/radial_menu_choice/option = new
 		var/icon/body = icon('yogstation/icons/mob/human_parts.dmi', "gorilla_r_leg") //procedurally generated icons? don't mind if i do
@@ -63,19 +63,11 @@
 	var/mob/living/carbon/human/user = owner
 	var/datum/species/user_species = user.dna.species
 	switch(chosen_transform)
-		if("Lizard/Felinid")
-			if(iscatperson(user))
-				user.set_species(/datum/species/lizard)
-				playsound(user.loc, 'sound/voice/lizard/hiss.ogg', 50)
-			else
-				user.set_species(/datum/species/human/felinid)
-				playsound(user.loc, 'sound/voice/feline/meow1.ogg', 50)
-			if(!LAZYFIND(user_species.species_traits, DIGITIGRADE))
-				user_species.species_traits += DIGITIGRADE
-				user.dna.species.armor -= 20 //careful
-				user.dna.species.speedmod = -0.5
-				user.dna.species.action_speed_coefficient *= 0.7
-				bloodsuckerdatum.AddBloodVolume(75)
+		if("Human")
+			user.dna.species.armor -= 20 //careful
+			user.dna.species.speedmod = -0.5
+			user.dna.species.action_speed_coefficient *= 0.7
+			bloodsuckerdatum.AddBloodVolume(75)
 		if("Gorilla")
 			user.set_species(/datum/species/gorilla)
 			playsound(user.loc, 'sound/creatures/gorilla.ogg', 50)

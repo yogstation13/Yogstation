@@ -343,47 +343,11 @@
 	SAY OOGA
 	DELAY 20"}
 
-/datum/preset_holoimage/engineer
-	outfit_type = /datum/outfit/job/engineer
-
-/datum/preset_holoimage/engineer/rig
-	outfit_type = /datum/outfit/job/engineer/gloved/rig
-
-/datum/preset_holoimage/engineer/ce
-	outfit_type = /datum/outfit/job/ce
-
-/datum/preset_holoimage/engineer/ce/rig
-	outfit_type = /datum/outfit/job/engineer/gloved/rig
-
-/datum/preset_holoimage/engineer/atmos
-	outfit_type = /datum/outfit/job/atmos
-
-/datum/preset_holoimage/engineer/atmos/rig
-	outfit_type = /datum/outfit/job/engineer/gloved/rig
-
-/datum/preset_holoimage/rd
-	outfit_type = /datum/outfit/job/rd
-
-/datum/preset_holoimage/researcher
-	outfit_type = /datum/outfit/job/scientist
-
-/datum/preset_holoimage/captain
-	outfit_type = /datum/outfit/job/captain
-
-/datum/preset_holoimage/nanotrasenprivatesecurity
-	outfit_type = /datum/outfit/nanotrasensoldiercorpse2
-
-/datum/preset_holoimage/cc_official
-	outfit_type = /datum/outfit/centcom/official
-
 /datum/preset_holoimage/gorilla
 	nonhuman_mobtype = /mob/living/simple_animal/hostile/gorilla
 
 /datum/preset_holoimage/corgi
 	nonhuman_mobtype = /mob/living/simple_animal/pet/dog/corgi
-
-/datum/preset_holoimage/clown
-	outfit_type = /datum/outfit/job/clown
 
 /datum/preset_holoimage/ai/ai
 	nonhuman_mobtype = /mob/living/silicon/ai

@@ -606,16 +606,12 @@
 	. = ..()
 	var/printout = "<b>Your feel your injuries fade as a rush of adrenaline pushes you forward!</b>"
 	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "adrenaline rush", /datum/mood_event/adrenaline)
-	if(isipc(owner))
-		printout = "<b>Chassis damage exceeded acceptable levels. Auxiliary leg actuator power supply activated.</b>"
 	to_chat(owner, span_notice(printout))
 	ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 
 /datum/status_effect/adrenaline/on_remove()
 	var/printout = "<b>Your adrenaline rush dies off, and the weight of your battered body becomes apparent again...</b>"
 	SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "adrenaline rush")
-	if(isipc(owner))
-		printout = "<b>Auxiliary leg actuator power supply depleted. Movement returning to nominal levels.</b>"
 	to_chat(owner, span_warning(printout))
 	REMOVE_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 	return ..()

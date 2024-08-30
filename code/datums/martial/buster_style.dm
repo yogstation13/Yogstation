@@ -212,14 +212,6 @@
 				tossedliving.visible_message(span_warning("[user] throws [tossedliving] by [limb_to_hit], severing it from [tossedliving.p_them()]!"))
 				limb_to_hit.drop_limb()
 				user.put_in_hands(limb_to_hit)
-		if(limb_to_hit == tossedliving.get_bodypart(BODY_ZONE_PRECISE_GROIN)) //targetting the chest works for tail removal too but who cares
-			var/obj/item/organ/T = tossedliving.getorgan(/obj/item/organ/tail)
-			if(T && limb_to_hit.brute_dam >= 50)
-				to_chat(tossedliving, span_userdanger("[user] tears your tail off!"))
-				playsound(user,'sound/misc/desceration-02.ogg', 20, 1)
-				tossedliving.visible_message(span_warning("[user] throws [tossedliving] by [tossedliving.p_their()] tail, severing [tossedliving.p_them()] from it!")) //"I'm taking this back."
-				T.Remove(tossedliving)
-				user.put_in_hands(T)
 	user.visible_message(span_warning("[user] throws [thrown]!"))
 	flying |= thrown
 	soar(user, thrown, D, target_dist, flying)

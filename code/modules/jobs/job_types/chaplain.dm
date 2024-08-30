@@ -69,8 +69,8 @@
 	if(H.mind)
 		H.mind.holy_role = HOLY_ROLE_HIGHPRIEST
 
-	var/new_religion = M.client?.prefs?.read_preference(/datum/preference/name/religion) || DEFAULT_RELIGION
-	var/new_deity = M.client?.prefs?.read_preference(/datum/preference/name/deity) || DEFAULT_DEITY
+	var/new_religion = DEFAULT_RELIGION
+	var/new_deity = DEFAULT_DEITY
 
 	B.deity_name = new_deity
 

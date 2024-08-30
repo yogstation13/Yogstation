@@ -29106,10 +29106,6 @@
 	dir = 8
 	},
 /obj/structure/table,
-/obj/item/clothing/under/plasmaman/prisoner{
-	pixel_x = 12;
-	pixel_y = 2
-	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "hwK" = (
@@ -69280,9 +69276,6 @@
 /obj/item/radio/headset,
 /obj/item/radio/headset,
 /obj/item/radio/headset,
-/obj/item/clothing/under/plasmaman,
-/obj/item/clothing/head/helmet/space/plasmaman,
-/obj/item/tank/internals/plasmaman/belt/full,
 /obj/item/clothing/mask/breath,
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 9

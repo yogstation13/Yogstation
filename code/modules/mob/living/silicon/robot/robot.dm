@@ -260,9 +260,6 @@
 	var/changed_name = ""
 	if(custom_name)
 		changed_name = custom_name
-	if(changed_name == "" && C && C.prefs.read_preference(/datum/preference/name/cyborg) != DEFAULT_CYBORG_NAME)
-		apply_pref_name(/datum/preference/name/cyborg, C)
-		return
 	if(!changed_name)
 		changed_name = get_standard_name()
 

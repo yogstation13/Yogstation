@@ -213,13 +213,6 @@
 	glass_name = "glass of cilk"
 	glass_desc = "A mixture of milk and... cola? Who the fuck would do this?"
 
-/datum/reagent/consumable/cilk/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
-	if(iscatperson(M))
-		quality = DRINK_GOOD
-	else
-		quality = initial(quality) //before you ask "why is this here" I will explain it is to stop people from feeding cilk to a feline just to extract it and give it to other people for the mood buff the same way a mother bird feeds its young I know the mood buff is small but someone would definitely realize they could do it eventually
-	. = ..()
-
 /datum/reagent/consumable/milk/goat
 	name = "Goat Milk"
 	description = "An opaque white liquid produced by the mammary glands of goats."
@@ -1106,17 +1099,6 @@
 	glass_icon_state = "mushroom_tea_glass"
 	glass_name = "glass of mushroom tea"
 	glass_desc = "Oddly savoury for a drink."
-
-/datum/reagent/consumable/mushroom_tea/on_mob_life(mob/living/carbon/C)
-	if(islizard(C))
-		C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -2.5*REM)
-	..()
-
-/datum/reagent/consumable/mushroom_tea/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
-	if(methods & INGEST)
-		if(islizard(M))
-			to_chat(M, span_notice("The most important thing to a Lizard is their brains.... Probably"))
-	return ..()
 
 /datum/reagent/consumable/cucumberjuice
 	name = "Cucumber Juice"

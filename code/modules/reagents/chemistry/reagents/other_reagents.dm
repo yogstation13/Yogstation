@@ -210,12 +210,6 @@
 		M.adjust_wet_stacks(3*log(2, (reac_volume*M.get_permeability(null, TRUE) + 10) / 10))
 		M.extinguish_mob() // permeability affects the negative fire stacks but not the extinguishing
 
-		// if preternis, update wetness instantly when applying more water instead of waiting for the next life tick
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			var/datum/species/preternis/P = H.dna?.species
-			if(istype(P))
-				P.handle_wetness(H)
 	..()
 
 /datum/reagent/water/on_mob_life(mob/living/carbon/M)
@@ -424,22 +418,9 @@
 	if(reac_volume >= 1)
 		T.MakeSlippery(TURF_WET_LUBE, 15 SECONDS, min(reac_volume * 2 SECONDS, 120))
 
-/datum/reagent/lube/on_mob_metabolize(mob/living/L)
-	..()
-	if(isipc(L))
-		L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.8, blacklisted_movetypes=(FLYING|FLOATING))
-
 /datum/reagent/lube/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_modifier(type)
 	..()
-
-/datum/reagent/lube/on_mob_life(mob/living/carbon/C)
-	. = ..()
-	if(!isipc(C))
-		return
-	C.adjustFireLoss(3)
-	if(prob(10))
-		to_chat(C, span_warning("You slowly burn up as your internal mechanisms work faster than intended."))
 
 /datum/reagent/spraytan
 	name = "Spray Tan"
@@ -631,83 +612,71 @@
 	name = "Mutation Toxin"
 	description = "A corruptive toxin."
 	color = "#13BC5E" // rgb: 19, 188, 94
-	race = /datum/species/jelly/slime
 	mutationtext = span_danger("The pain subsides. Your whole body feels like slime.")
 
 /datum/reagent/mutationtoxin/felinid
 	name = "Felinid Mutation Toxin"
 	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/human/felinid
 	mutationtext = span_danger("The pain subsides. You feel... like a degenerate.")
 
 /datum/reagent/mutationtoxin/lizard
 	name = "Lizard Mutation Toxin"
 	description = "A lizarding toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/lizard
 	mutationtext = span_danger("The pain subsides. You feel... scaly.")
 
 /datum/reagent/mutationtoxin/fly
 	name = "Fly Mutation Toxin"
 	description = "An insectifying toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/fly
 	mutationtext = span_danger("The pain subsides. You feel... buzzy.")
 
 /datum/reagent/mutationtoxin/moth
 	name = "Moth Mutation Toxin"
 	description = "A glowing toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/moth
 	mutationtext = span_danger("The pain subsides. You feel... attracted to light.")
 
 /datum/reagent/mutationtoxin/pod
 	name = "Podperson Mutation Toxin"
 	description = "A vegetalizing toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/pod
 	mutationtext = span_danger("The pain subsides. You feel... plantlike.")
 
 /datum/reagent/mutationtoxin/ethereal
 	name = "Ethereal Mutation Toxin"
 	description = "An electrifying toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/ethereal
 	mutationtext = span_danger("The pain subsides. You feel... ecstatic.")
 
 /datum/reagent/mutationtoxin/preternis
 	name = "Preternis Mutation Toxin"
 	description = "A metallic precursor toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/preternis
 	mutationtext = span_danger("The pain subsides. You feel... optimized.")
 
 /datum/reagent/mutationtoxin/polysmorph
 	name = "Polysmorph Mutation Toxin"
 	description = "An acidic toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/polysmorph
 	mutationtext = span_danger("The pain subsides. You feel... Alien.")
 
 /datum/reagent/mutationtoxin/jelly
 	name = "Imperfect Mutation Toxin"
 	description = "An jellyfying toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/jelly
 	mutationtext = span_danger("The pain subsides. You feel... wobbly.")
 
 /datum/reagent/mutationtoxin/golem
 	name = "Golem Mutation Toxin"
 	description = "A crystal toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/golem/random
 	mutationtext = span_danger("The pain subsides. You feel... rocky.")
 
 /datum/reagent/mutationtoxin/abductor
 	name = "Abductor Mutation Toxin"
 	description = "An alien toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/abductor
 	mutationtext = span_danger("The pain subsides. You feel... alien.")
 
 
@@ -730,7 +699,6 @@
 	name = "Ash Mutation Toxin"
 	description = "An ashen toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/lizard/ashwalker
 	mutationtext = span_danger("The pain subsides. You feel... savage.")
 
 
@@ -747,7 +715,6 @@
 	description = "A plasma-based toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	can_synth = FALSE //uhh no? we don't want people mass producing fire skeleton toxin?
-	race = /datum/species/plasmaman
 	mutationtext = span_danger("The pain subsides. You feel... flammable.")
 
 /datum/reagent/slime_toxin
