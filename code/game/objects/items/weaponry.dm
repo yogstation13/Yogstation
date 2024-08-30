@@ -774,8 +774,6 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	attack_verb = list("slapped")
 
 /obj/item/slapper/attack(mob/living/M, mob/living/carbon/human/user)
-	if(ishuman(M))
-		var/mob/living/carbon/human/L = M
 
 	var/slap_volume = 30
 	var/hard_slap = FALSE

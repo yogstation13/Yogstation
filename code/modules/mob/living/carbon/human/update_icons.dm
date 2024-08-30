@@ -363,28 +363,13 @@ There are several things that need to be remembered:
 
 	if(shoes)
 		var/target_overlay = RESOLVE_ICON_STATE(shoes)
-		var/obj/item/bodypart/l_leg = get_bodypart(BODY_ZONE_L_LEG)
-		var/obj/item/bodypart/r_leg = get_bodypart(BODY_ZONE_R_LEG)
 		shoes.species_fitted = null
-		if(istype(shoes, /obj/item/clothing/shoes))
-			var/obj/item/clothing/shoes/S = shoes
-			if(S.adjusted == DIGITIGRADE_STYLE)
-				target_overlay = "[target_overlay]_l"
-			if("GAGS_sprite" in S.sprite_sheets)
-				var/list/GAGS_species = S.sprite_sheets["GAGS_sprite"]
-				if((l_leg?.species_id == r_leg?.species_id) && (l_leg.species_id in GAGS_species))
-					target_overlay += "_[l_leg.species_id]"
-					S.species_fitted = l_leg.species_id
 		shoes.screen_loc = ui_shoes                    //move the item to the appropriate screen loc
 		if(client && hud_used && hud_used.hud_shown)
 			if(hud_used.inventory_shown)            //if the inventory is open
 				client.screen += shoes                    //add it to client's screen
 		update_observer_view(shoes,1)
 		var/icon_to_use = DEFAULT_SHOES_FILE
-		if((l_leg?.species_id == r_leg?.species_id) && (l_leg.species_id in shoes.sprite_sheets))
-			if(icon_exists(shoes.sprite_sheets[l_leg.species_id], shoes.icon_state))
-				icon_to_use = shoes.sprite_sheets[l_leg.species_id]
-				shoes.species_fitted = l_leg.species_id
 		overlays_standing[SHOES_LAYER] = shoes.build_worn_icon(default_layer = SHOES_LAYER, default_icon_file = icon_to_use, override_state = target_overlay)
 		var/mutable_appearance/shoes_overlay = overlays_standing[SHOES_LAYER]
 		if(OFFSET_SHOES in dna.species.offset_features)
@@ -482,16 +467,11 @@ There are several things that need to be remembered:
 		wear_suit.screen_loc = ui_oclothing
 		var/obj/item/clothing/suit/S = wear_suit
 		var/worn_suit_icon = RESOLVE_ICON_STATE(S)
-		if(S.adjusted == DIGITIGRADE_STYLE)
-			worn_suit_icon = "[wear_suit.icon_state]_l" // Checks for digitgrade version of a suit and forces the alternate if it does
 		if(client && hud_used && hud_used.hud_shown)
 			if(hud_used.inventory_shown)
 				client.screen += wear_suit
-		var/obj/item/bodypart/chest/chest = get_bodypart(BODY_ZONE_CHEST)
 		var/icon_to_use = DEFAULT_SUIT_FILE
 		S.species_fitted = null
-		var/obj/item/bodypart/l_leg = get_bodypart(BODY_ZONE_L_LEG)
-		var/obj/item/bodypart/r_leg = get_bodypart(BODY_ZONE_R_LEG)
 		overlays_standing[SUIT_LAYER] = wear_suit.build_worn_icon(default_layer = SUIT_LAYER, default_icon_file = icon_to_use, override_state = worn_suit_icon)
 		var/mutable_appearance/suit_overlay = overlays_standing[SUIT_LAYER]
 		if(OFFSET_SUIT in dna.species.offset_features)

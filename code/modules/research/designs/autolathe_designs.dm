@@ -524,14 +524,6 @@
 	category = list("initial","Miscellaneous", "Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
-/datum/design/foilhat
-	name = "Tinfoil Hat"
-	id = "tinfoil_hat"
-	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 5500)
-	build_path = /obj/item/clothing/head/foilhat
-	category = list("hacked", "Miscellaneous")
-
 /datum/design/scalpel
 	name = "Scalpel"
 	id = "scalpel"

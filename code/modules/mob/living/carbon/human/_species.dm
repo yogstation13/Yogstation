@@ -197,8 +197,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/obj/item/organ/stomach/mutantstomach = /obj/item/organ/stomach
 	///Replaces default appendix with a different organ.
 	var/obj/item/organ/appendix/mutantappendix = /obj/item/organ/appendix
-	///Forces a species tail
-	var/obj/item/organ/tail/mutanttail = /obj/item/organ/tail
 	///Forces an item into this species' hands. Only an honorary mutantthing because this is not an organ and not loaded in the same way, you've been warned to do your research.
 	var/obj/item/mutanthands
 
@@ -352,10 +350,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/regenerate_organs(mob/living/carbon/C, datum/species/old_species, replace_current = TRUE, visual_only = FALSE)
 	//what should be put in if there is no mutantorgan (brains handled separately)
 	var/list/slot_mutantorgans = list(ORGAN_SLOT_BRAIN = mutantbrain, ORGAN_SLOT_HEART = mutantheart, ORGAN_SLOT_LUNGS = mutantlungs, ORGAN_SLOT_APPENDIX = mutantappendix, \
-	ORGAN_SLOT_EYES = mutanteyes, ORGAN_SLOT_EARS = mutantears, ORGAN_SLOT_TONGUE = mutanttongue, ORGAN_SLOT_LIVER = mutantliver, ORGAN_SLOT_STOMACH = mutantstomach, ORGAN_SLOT_TAIL = mutanttail)
+	ORGAN_SLOT_EYES = mutanteyes, ORGAN_SLOT_EARS = mutantears, ORGAN_SLOT_TONGUE = mutanttongue, ORGAN_SLOT_LIVER = mutantliver, ORGAN_SLOT_STOMACH = mutantstomach)
 
 	for(var/slot in list(ORGAN_SLOT_BRAIN, ORGAN_SLOT_HEART, ORGAN_SLOT_LUNGS, ORGAN_SLOT_APPENDIX, \
-	ORGAN_SLOT_EYES, ORGAN_SLOT_EARS, ORGAN_SLOT_TONGUE, ORGAN_SLOT_LIVER, ORGAN_SLOT_STOMACH, ORGAN_SLOT_TAIL))
+	ORGAN_SLOT_EYES, ORGAN_SLOT_EARS, ORGAN_SLOT_TONGUE, ORGAN_SLOT_LIVER, ORGAN_SLOT_STOMACH))
 
 		var/obj/item/organ/oldorgan = C.getorganslot(slot) //used in removing
 		var/obj/item/organ/neworgan = slot_mutantorgans[slot] //used in adding
@@ -687,54 +685,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(hair_overlay.icon)
 			standing += hair_overlay
 			standing += gradient_overlay
-		if("pod_hair" in H.dna.species.mutant_bodyparts)
-		//alright bear with me for a second while i explain this awful code since it was literally 3 days of me bumbling through blind
-		//for hair code to work, you need to start by removing the layer, as in the beginning with remove_overlay(head), then you need to use a mutable appearance variable
-		//the mutable appearance will store the sprite file dmi, the name of the sprite (icon_state), and the layer this will go on (in this case HAIR_LAYER)
-		//those are the basic variables, then you color the sprite with whatever source color you're using and set the alpha. from there it's added to the "standing" list
-		//which is storing all the individual mutable_appearance variables (each one is a sprite), and then standing is loaded into the H.overlays_standing and finalized
-		//with apply_overlays.
-		//if you're working with sprite code i hope this helps because i wish i was dead now.
-			S = GLOB.pod_hair_list[H.dna.features["pod_hair"]]
-			if(S)
-				if(ReadHSV(RGBtoHSV(H.hair_color))[3] <= ReadHSV("#777777")[3])
-					H.hair_color = H.dna.species.default_color
-				var/hair_state = S.icon_state
-				var/hair_file = S.icon
-				hair_overlay.icon = hair_file
-				hair_overlay.icon_state = hair_state
-				if(!forced_colour)
-					if(hair_color)
-						if(hair_color == "mutcolor")
-							hair_overlay.color = H.dna.features["mcolor"]
-						else if(hair_color == "fixedmutcolor")
-							hair_overlay.color = fixed_mut_color
-						else
-							hair_overlay.color = hair_color
-					else
-						hair_overlay.color = H.hair_color
-				hair_overlay.alpha = hair_alpha
-				standing+=hair_overlay
-			//var/mutable_appearance/pod_flower = mutable_appearance(GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon, GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon_state, -HAIR_LAYER)
-				S = GLOB.pod_flower_list[H.dna.features["pod_flower"]]
-				if(S)
-					var/flower_state = S.icon_state
-					var/flower_file = S.icon
-					// flower_overlay.icon = flower_file
-					// flower_overlay.icon_state = flower_state
-					var/mutable_appearance/flower_overlay = mutable_appearance(flower_file, flower_state, -HAIR_LAYER)
-					if(!forced_colour)
-						if(hair_color)
-							if(hair_color == "mutcolor")
-								flower_overlay.color = H.dna.features["mcolor"]
-							else if(hair_color == "fixedmutcolor")
-								flower_overlay.color = fixed_mut_color
-							else
-								flower_overlay.color = hair_color
-						else
-							flower_overlay.color = H.facial_hair_color
-					flower_overlay.alpha = hair_alpha
-					standing += flower_overlay
 	
 	if(standing.len)
 		H.overlays_standing[HAIR_LAYER] = standing
@@ -898,91 +848,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	var/g = (H.gender == FEMALE) ? "f" : "m"
 
-	for(var/layer in relevent_layers)
-		var/layertext = mutant_bodyparts_layertext(layer)
-
-
-
-			var/mutable_appearance/accessory_overlay = mutable_appearance(S.icon, layer = -layer)
-
-			if(S.gender_specific)
-				accessory_overlay.icon_state = "[g]_[bodypart]_[S.icon_state]_[layertext]"
-			else
-				accessory_overlay.icon_state = "m_[bodypart]_[S.icon_state]_[layertext]"
-
-			if(S.center)
-				accessory_overlay = center_image(accessory_overlay, S.dimension_x, S.dimension_y)
-
-			if(!(HAS_TRAIT(H, TRAIT_HUSK)))
-				if(!forced_colour)
-					switch(S.color_src)
-						if(HAIR)
-							accessory_overlay.color = H.hair_color
-						if(FACEHAIR)
-							accessory_overlay.color = H.facial_hair_color
-						if(EYECOLOR)
-							accessory_overlay.color = H.eye_color
-				else
-					accessory_overlay.color = forced_colour
-			if(S.color_blend_mode == COLOR_BLEND_ADD)
-				accessory_overlay.color = COLOR_MATRIX_ADD(accessory_overlay.color)
-			standing += accessory_overlay
-
-			if(S.emissive && !(HAS_TRAIT(H, TRAIT_HUSK)) && !istype(H, /mob/living/carbon/human/dummy))//don't put emissives on dummy mobs as they're used for the preference menu, which doesn't draw emissives properly
-				var/mutable_appearance/emissive_accessory_overlay = emissive_appearance(S.icon, "placeholder", H)
-
-				//A little rename so we don't have to use tail_lizard or tail_human when naming the sprites.
-				if(S.gender_specific)
-					emissive_accessory_overlay.icon_state = "[g]_[bodypart]_[S.icon_state]_[layertext]"
-				else
-					emissive_accessory_overlay.icon_state = "m_[bodypart]_[S.icon_state]_[layertext]"
-
-				if(S.center)
-					emissive_accessory_overlay = center_image(emissive_accessory_overlay, S.dimension_x, S.dimension_y)
-
-				if(!forced_colour)
-					switch(S.color_src)
-						if(MUTCOLORS)
-							if(H.dna.check_mutation(HULK))			//HULK GO FIRST
-								emissive_accessory_overlay.color = "#00aa00"
-							else if(fixed_mut_color)													//Then fixed color if applicable
-								emissive_accessory_overlay.color = fixed_mut_color
-							else																		//Then snowflake color
-								emissive_accessory_overlay.color = H.dna.features["mcolor"]
-						if(HAIR)
-							if(hair_color == "mutcolor")
-								emissive_accessory_overlay.color = H.dna.features["mcolor"]
-							else if(hair_color == "fixedmutcolor")
-								emissive_accessory_overlay.color = fixed_mut_color
-							else
-								emissive_accessory_overlay.color = H.hair_color
-						if(FACEHAIR)
-							emissive_accessory_overlay.color = H.facial_hair_color
-						if(EYECOLOR)
-							emissive_accessory_overlay.color = H.eye_color
-				else
-					emissive_accessory_overlay.color = forced_colour
-				standing += emissive_accessory_overlay
-
-			if(length(S.body_slots) || length(S.external_slots))
-				standing += return_accessory_layer(layer, S, H, accessory_overlay.color)
-			if(S.hasinner)
-				var/mutable_appearance/inner_accessory_overlay = mutable_appearance(S.icon, layer = -layer)
-				if(S.gender_specific)
-					inner_accessory_overlay.icon_state = "[g]_[bodypart]inner_[S.icon_state]_[layertext]"
-				else
-					inner_accessory_overlay.icon_state = "m_[bodypart]inner_[S.icon_state]_[layertext]"
-
-				if(S.center)
-					inner_accessory_overlay = center_image(inner_accessory_overlay, S.dimension_x, S.dimension_y)
-
-				standing += inner_accessory_overlay
-			if(HAS_TRAIT(H, TRAIT_HUSK))
-				for(var/image/sprite_image as anything in standing)
-					huskify_image(sprite_image, H, draw_blood = FALSE)
-					sprite_image.color = H.dna.species.husk_color
-		H.overlays_standing[layer] = standing.Copy()
-		standing = list()
+	if(HAS_TRAIT(H, TRAIT_HUSK))
+		for(var/image/sprite_image as anything in standing)
+			huskify_image(sprite_image, H, draw_blood = FALSE)
+			sprite_image.color = H.dna.species.husk_color
+	standing = list()
 
 	H.apply_overlay(BODY_BEHIND_LAYER)
 	H.apply_overlay(BODY_ADJ_LAYER)

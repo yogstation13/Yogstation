@@ -24,18 +24,6 @@
 	)
 	category = CAT_DRINK
 
-/datum/crafting_recipe/lizardwine
-	name = "Lizard Wine"
-	time = 4 SECONDS
-	reqs = list(
-		/obj/item/organ/tail/lizard = 1,
-		/datum/reagent/consumable/ethanol = 100,
-		/obj/item/reagent_containers/food/drinks/bottle = 1
-	)
-	blacklist = list(/obj/item/organ/tail/lizard/fake)
-	result = /obj/item/reagent_containers/food/drinks/bottle/lizardwine
-	category = CAT_DRINK
-
 /datum/crafting_recipe/moonshinejug
 	name = "Moonshine Jug"
 	time = 3 SECONDS

@@ -289,9 +289,6 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
-/obj/item/organ/tail/lizard/fake{
-	pixel_y = -12
-	},
 /turf/open/floor/grass,
 /area/template_noop)
 "H" = (

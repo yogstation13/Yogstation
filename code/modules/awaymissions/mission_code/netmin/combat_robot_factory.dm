@@ -40,7 +40,6 @@
 
 
 /obj/item/disk/holodisk/combat_robot/introduction
-	preset_image_type = /datum/preset_holoimage/cc_official
 	preset_record_text = {"
 	NAME HR Representative
 	DELAY 30
@@ -55,7 +54,6 @@
 
 
 /obj/item/disk/holodisk/combat_robot/classified
-	preset_image_type = /datum/preset_holoimage/cc_official
 	preset_record_text = {"
 	NAME Mr. Nakada
 	DELAY 30
@@ -71,7 +69,6 @@
 	DELAY 45"}
 
 /obj/item/disk/holodisk/combat_robot/experiment
-	preset_image_type = /datum/preset_holoimage/researcher
 	preset_record_text = {"
 	NAME Doctor Williams
 	DELAY 30
@@ -87,7 +84,6 @@
 	DELAY 45"}
 
 /obj/item/disk/holodisk/combat_robot/factory_floor
-	preset_image_type = /datum/preset_holoimage/nanotrasenprivatesecurity
 	preset_record_text = {"
 	NAME Officer Rymes
 	DELAY 30

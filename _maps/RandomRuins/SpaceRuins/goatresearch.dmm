@@ -185,7 +185,6 @@
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/powered)
 "aP" = (
-/obj/effect/mob_spawn/human/corpse/cargo_tech,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
@@ -325,7 +324,6 @@
 /area/ruin/powered)
 "bm" = (
 /obj/effect/turf_decal/delivery,
-/obj/effect/mob_spawn/human/corpse/cargo_tech,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/titanium/yellow,
 /area/ruin/powered)
@@ -388,7 +386,6 @@
 /area/ruin/powered)
 "by" = (
 /obj/structure/chair/wood/normal,
-/obj/effect/mob_spawn/human/corpse/cargo_tech,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
@@ -521,7 +518,6 @@
 	dir = 1;
 	icon_state = "wooden_chair"
 	},
-/obj/effect/mob_spawn/human/corpse/cargo_tech,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)

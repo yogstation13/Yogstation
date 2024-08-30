@@ -14,7 +14,6 @@ SUBSYSTEM_DEF(backrooms)
 	return SS_INIT_NO_NEED
 #endif
 
-	pick_theme()
 	generate_backrooms()
 	delete_beacons()
 	//spawn_anomalies()

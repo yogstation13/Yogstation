@@ -1529,11 +1529,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/cybersun
 	exclude_modes = list(/datum/game_mode/nuclear)
 
-/datum/uplink_item/stealthy_tools/chameleon/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
-	if(is_species(user, /datum/species/plasmaman))
-		spawn_path = /obj/item/storage/box/syndie_kit/chameleon/plasmaman
-	..()
-
 /datum/uplink_item/stealthy_tools/chameleon_proj
 	name = "Chameleon Projector"
 	desc = "Projects an image across a user, disguising them as an object scanned with it, as long as they don't \

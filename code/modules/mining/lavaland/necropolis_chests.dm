@@ -1102,7 +1102,6 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(!istype(user))
 		return
 
-	var/mob/living/carbon/human/H = user
 	to_chat(user, span_danger("You feel warmth spread through you, paired with an odd desire to burn down a village. You're suddenly a very small, humanoid ash dragon!"))
 
 	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)

@@ -1,5 +1,5 @@
 /datum/design/nerd_suit
-	name = "\improper D.O.T.A. suit"
+	name = "HEV Suit"
 	desc = "A multifunction handheld device useful for data sensing, analysis, and recording."
 	id = "nerd_suit"
 	build_type = PROTOLATHE

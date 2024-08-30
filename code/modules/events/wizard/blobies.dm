@@ -7,4 +7,4 @@
 /datum/round_event/wizard/blobies/start()
 
 	for(var/mob/living/carbon/human/H in GLOB.dead_mob_list)
-		new /mob/living/simple_animal/hostile/zombie/mostlyinfection(H.loc) //zombie memes
+		new /mob/living/simple_animal/hostile/zombie(H.loc) //zombie memes

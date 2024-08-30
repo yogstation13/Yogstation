@@ -13,7 +13,7 @@
 	emote_see = list("waits apprehensively.", "shuffles.")
 	speak_chance = 1
 	turns_per_move = 5
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard = 4, /obj/item/organ/tail/lizard = 1)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard = 4)
 	response_help = "pets"
 	response_disarm = "rolls over"
 	response_harm = "kicks"

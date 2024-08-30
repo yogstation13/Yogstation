@@ -69,7 +69,6 @@
 /datum/job_department/medical
 	department_name = DEPARTMENT_MEDICAL
 	department_bitflags = DEPARTMENT_BITFLAG_MEDICAL
-	department_head = /datum/job/cmo
 	department_experience_type = EXP_TYPE_MEDICAL
 	display_order = 4
 	label_class = "medical"
@@ -79,7 +78,6 @@
 /datum/job_department/science
 	department_name = DEPARTMENT_SCIENCE
 	department_bitflags = DEPARTMENT_BITFLAG_SCIENCE
-	department_head = /datum/job/rd
 	department_experience_type = EXP_TYPE_SCIENCE
 	display_order = 5
 	label_class = "science"
@@ -89,7 +87,6 @@
 /datum/job_department/cargo
 	department_name = DEPARTMENT_CARGO
 	department_bitflags = DEPARTMENT_BITFLAG_CARGO
-	department_head = /datum/job/qm
 	department_experience_type = EXP_TYPE_SUPPLY
 	display_order = 6
 	label_class = "supply"

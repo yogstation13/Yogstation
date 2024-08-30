@@ -80,22 +80,6 @@
 		return ..() * 2
 	return ..()
 
-// Mutant race organs.
-/datum/export/organ/mutant/cat_ears
-	cost = 100 //as much as plasma when sold in a set, not counting the skin
-	unit_name = "cat ears pair"
-	export_types = list(/obj/item/organ/ears/cat)
-
-/datum/export/organ/mutant/cat_tail
-	cost = 100
-	unit_name = "cat tail"
-	export_types = list(/obj/item/organ/tail/cat)
-
-/datum/export/organ/mutant/lizard_tail
-	cost = 300
-	unit_name = "lizard tail"
-	export_types = list(/obj/item/organ/tail/lizard)
-
 // Human organs.
 
 // Do not put human brains here, they are not sellable for a purpose.

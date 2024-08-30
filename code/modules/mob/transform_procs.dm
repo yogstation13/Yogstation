@@ -387,9 +387,6 @@
 
 	. = our_AI
 
-	if(preference_source)
-		apply_pref_name(/datum/preference/name/ai, preference_source)
-
 	qdel(src)
 
 /mob/living/carbon/human/proc/Robotize(delete_items = 0, transfer_after = TRUE)

@@ -1536,15 +1536,6 @@
 	pixel_y = 3
 	},
 /obj/item/clothing/gloves/combat,
-/obj/item/clothing/shoes/combat/coldres{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/shoes/combat/coldres,
-/obj/item/clothing/under/syndicate/combat{
-	pixel_x = -3;
-	pixel_y = 3
-	},
 /obj/item/clothing/under/syndicate/combat,
 /turf/open/floor/plasteel/dark,
 /area/yogs/infiltrator_base)
@@ -1559,11 +1550,6 @@
 	pixel_y = 3
 	},
 /obj/item/clothing/gloves/combat,
-/obj/item/clothing/shoes/combat/coldres{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/shoes/combat/coldres,
 /obj/item/clothing/under/syndicate/combat{
 	pixel_x = -3;
 	pixel_y = 3

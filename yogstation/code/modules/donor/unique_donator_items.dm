@@ -492,15 +492,6 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/orca_dress
 	name = "creator's dress"
 	unlock_path = /obj/item/clothing/suit/yogs/keiki
-/datum/donator_gear/pridejacket
-	name = "pride jacket"
-	unlock_path = /obj/item/clothing/suit/jacket/pride
-/datum/donator_gear/mlm
-	name = "MLM pride jacket"
-	unlock_path = /obj/item/clothing/suit/jacket/pride/mlm
-/datum/donator_gear/lesbian
-	name = "lesbian pride jacket"
-	unlock_path = /obj/item/clothing/suit/jacket/pride/lesbian
 /datum/donator_gear/northern_coat
 	name = "northern coat"
 	unlock_path = /obj/item/clothing/suit/hooded/wintercoat/northern

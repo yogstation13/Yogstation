@@ -904,7 +904,6 @@ GLOBAL_LIST_INIT(maintenance_loot_moderate,list(
 	/obj/item/binoculars = W_RARE,
 	/obj/item/clothing/gloves/chameleon/broken = W_RARE,
 	/obj/item/clothing/head/chameleon/broken = W_RARE,
-	/obj/item/clothing/head/foilhat = W_RARE,
 	/obj/item/clothing/mask/chameleon/broken = W_RARE,
 	/obj/item/clothing/under/chameleon/broken = W_RARE,
 	/obj/item/etherealballdeployer = W_RARE,

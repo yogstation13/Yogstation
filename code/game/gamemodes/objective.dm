@@ -222,7 +222,6 @@ GLOBAL_LIST_EMPTY(objectives)
 	..()
 	if(target && target.current)
 		if(ishuman(target.current))
-			var/mob/living/carbon/human/H = target.current
 			// This should just check for an uppercase flag
 			explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role : target.special_role]."
 		else
@@ -1722,7 +1721,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/maroon_organ/update_explanation_text()
 	if(target && original_organ)
-		var/mob/living/carbon/human/H = target.current
 		explanation_text = "Ensure that [target.name], the [target.assigned_role] does not escape alive with their original [original_organ]."
 	else
 		explanation_text = "Free Objective"

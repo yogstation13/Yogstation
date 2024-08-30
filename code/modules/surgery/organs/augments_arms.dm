@@ -328,7 +328,6 @@
 /obj/item/organ/cyberimp/arm/power_cord
 	name = "power cord implant"
 	desc = "An internal power cord hooked up to a battery. Useful if you run on volts."
-	items_list = list(/obj/item/apc_powercord)
 	slot = ORGAN_SLOT_STOMACH_AID //so ipcs don't get shafted for nothing
 	compatible_biotypes = MOB_ROBOTIC
 	zone = BODY_ZONE_CHEST

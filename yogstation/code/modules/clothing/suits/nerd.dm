@@ -2,12 +2,8 @@
 #define MORPHINE_INJECTION_DELAY (30 SECONDS)
 
 /obj/item/clothing/suit/armor/nerd
-	name = "\improper D.O.T.A. suit"
-	desc = "The Defenseless Operator Traversal Assistance suit is a highly experimental Nanotrasen designed \
-		protective full body harness designed to prolong the lifespan (and thus productivity) of an employee \
-		via surplus medical technology found in the abandoned part of maintenance no one seems to want to talk about. \
-		Unfortunately the research department couldn't design a helmet before the third quarter so this is definitely not spaceproof. \
-		One size fits most."
+	name = "Hazardous Environment Suit"
+	desc = "A Mark IV hazardous environment suit designed to provide great levels of environmental protection."
 	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "nerd"
@@ -24,7 +20,6 @@
 	)
 
 	var/static/list/funny_signals = list(
-		COMSIG_MOB_SAY = PROC_REF(handle_speech),
 		COMSIG_LIVING_DEATH = PROC_REF(handle_death),
 		COMSIG_LIVING_IGNITED = PROC_REF(handle_ignite),
 		COMSIG_LIVING_ELECTROCUTE_ACT = PROC_REF(handle_shock),

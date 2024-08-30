@@ -46,18 +46,6 @@
 	required_count = 3
 	wanted_types = list(/obj/item/organ/tongue)
 
-/datum/bounty/item/medical/lizard_tail
-	name = "Lizard Tail"
-	description = "The Wizard Federation has made off with Nanotrasen's supply of lizard tails. While CentCom is dealing with the wizards, can the station spare a tail of their own?"
-	reward = 3000
-	wanted_types = list(/obj/item/organ/tail/lizard)
-
-/datum/bounty/item/medical/cat_tail
-	name = "Cat Tail"
-	description = "Central Command has run out of heavy duty pipe cleaners. Can you ship over a cat tail to help us out?"
-	reward = 3000
-	wanted_types = list(/obj/item/organ/tail/cat)
-
 /datum/bounty/item/medical/flystomach
 	name = "Fly Stomach"
 	description = "Central Command's research team would like a fly stomach to research how they work."

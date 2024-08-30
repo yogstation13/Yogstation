@@ -404,7 +404,6 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/cat_man)
 "be" = (
-/obj/item/organ/tail/cat,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel/white/corner,
 /area/ruin/space/has_grav/powered/cat_man)
@@ -949,12 +948,6 @@
 /obj/structure/closet/crate/freezer{
 	name = "cat tails"
 	},
-/obj/item/organ/tail/cat,
-/obj/item/organ/tail/cat,
-/obj/item/organ/tail/cat,
-/obj/item/organ/tail/cat,
-/obj/item/organ/tail/cat,
-/obj/item/organ/tail/cat,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered/cat_man)
 "CL" = (

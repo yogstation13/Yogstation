@@ -285,9 +285,6 @@
 	if(prob(25))
 		return
 
-	var/obj/item/clothing/head/hat = owner.get_item_by_slot(ITEM_SLOT_HEAD)
-	if(hat && istype(hat, /obj/item/clothing/head/foilhat))
-		return
 
 	to_chat(owner, span_warning("Alert: Posibrain [severity > EMP_LIGHT ? "severely " : ""]damaged."))
 	owner.adjust_drugginess(5 * severity)

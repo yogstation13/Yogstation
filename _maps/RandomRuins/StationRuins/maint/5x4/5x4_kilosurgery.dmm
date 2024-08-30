@@ -150,8 +150,6 @@
 /obj/structure/closet/crate/freezer{
 	name = "organ storage"
 	},
-/obj/item/organ/tail/cat,
-/obj/item/organ/ears/cat,
 /obj/item/organ/heart,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)

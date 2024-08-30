@@ -37,7 +37,7 @@
 /datum/export/gear/space/suit
 	cost = 150
 	unit_name = "space suit"
-	export_types = list(/obj/item/clothing/suit/space, /obj/item/clothing/suit/space/eva, /obj/item/clothing/suit/space/nasavoid)
+	export_types = list(/obj/item/clothing/suit/space, /obj/item/clothing/suit/space/nasavoid)
 	include_subtypes = FALSE
 
 

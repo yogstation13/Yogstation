@@ -106,8 +106,6 @@
 /turf/open/floor/plating/abductor,
 /area/ruin/unpowered)
 "ay" = (
-/obj/item/organ/tail/cat,
-/obj/item/organ/tail/cat,
 /obj/item/organ/appendix,
 /obj/item/organ/tongue,
 /obj/item/organ/tongue,
@@ -191,7 +189,6 @@
 /area/ruin/unpowered)
 "aN" = (
 /obj/structure/table/abductor,
-/obj/item/organ/tail/cat,
 /obj/item/organ/tongue,
 /obj/item/organ/lungs,
 /obj/item/organ/lungs,

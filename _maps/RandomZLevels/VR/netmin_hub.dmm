@@ -1757,7 +1757,6 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
 	},
-/obj/effect/mob_spawn/human/corpse/cargo_tech,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/abandoned_mine)
 "oj" = (
@@ -3253,7 +3252,6 @@
 /turf/open/floor/carpet/blue,
 /area/awaymission/vr/scientist_raid)
 "AO" = (
-/obj/item/organ/tail/cat,
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/innards,
@@ -4795,7 +4793,6 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
 "NI" = (
-/obj/effect/mob_spawn/human/corpse/cargo_tech,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/abandoned_mine)
 "NJ" = (

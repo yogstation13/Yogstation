@@ -204,11 +204,6 @@
 	pixel_y = 3
 	},
 /obj/item/clothing/gloves/combat,
-/obj/item/clothing/shoes/combat/coldres{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/shoes/combat/coldres,
 /obj/item/clothing/under/syndicate/combat{
 	pixel_x = -3;
 	pixel_y = 3
@@ -17935,9 +17930,6 @@
 	dir = 1;
 	light_color = "#c1caff"
 	},
-/mob/living/simple_animal/hostile/zombie{
-	infection_chance = 100
-	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "aRL" = (
@@ -20507,11 +20499,6 @@
 	pixel_y = 3
 	},
 /obj/item/clothing/gloves/combat,
-/obj/item/clothing/shoes/combat/coldres{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/shoes/combat/coldres,
 /obj/item/clothing/under/syndicate/combat{
 	pixel_x = -3;
 	pixel_y = 3
@@ -22781,22 +22768,6 @@
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "oxS" = (
-/obj/item/clothing/shoes/combat/coldres{
-	pixel_x = 6;
-	pixel_y = -5
-	},
-/obj/item/clothing/shoes/combat/coldres{
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/obj/item/clothing/shoes/combat/coldres{
-	pixel_x = -7;
-	pixel_y = -5
-	},
-/obj/item/clothing/shoes/combat/coldres{
-	pixel_x = -6;
-	pixel_y = 6
-	},
 /obj/structure/rack,
 /turf/open/floor/plasteel/dark,
 /area/yogs/infiltrator_base)

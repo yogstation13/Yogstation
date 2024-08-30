@@ -223,3 +223,5 @@
 #define SPECIES_POSITIVE_PERK "positive"
 #define SPECIES_NEGATIVE_PERK "negative"
 #define SPECIES_NEUTRAL_PERK "neutral"
+
+#define DNA_FEATURE_BLOCKS 0

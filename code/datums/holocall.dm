@@ -323,7 +323,6 @@
 		unset_busy_human_dummy("HOLODISK_PRESET")
 
 /obj/item/disk/holodisk/example
-	preset_image_type = /datum/preset_holoimage/clown
 	preset_record_text = {"
 	NAME Clown
 	DELAY 10
@@ -361,7 +360,6 @@
 /obj/item/disk/holodisk/donutstation/whiteship
 	name = "Blackbox Print-out #DS024"
 	desc = "A holodisk containing the last viable recording of DS024's blackbox."
-	preset_image_type = /datum/preset_holoimage/engineer/ce
 	preset_record_text = {"
 	NAME Geysr Shorthalt
 	SAY Engine renovations complete and the ships been loaded. We all ready?
@@ -407,7 +405,6 @@
 /obj/item/disk/holodisk/ruin/snowengieruin
     name = "Blackbox Print-out #EB412"
     desc = "A holodisk containing the last moments of EB412. There's a bloody fingerprint on it."
-    preset_image_type = /datum/preset_holoimage/engineer
     preset_record_text = {"
     NAME Dave Tundrale
     SAY Maria, how's Build?

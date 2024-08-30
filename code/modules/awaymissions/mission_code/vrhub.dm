@@ -138,7 +138,6 @@
 /obj/effect/portal/permanent/one_way/recall/snowdin
 	name = "Snowdin Portal"
 	desc = "Active, but only occasionally. Leads to a snowed in wasteland."
-	equipment = /datum/outfit/vr/snowtide
 	recall_equipment = /datum/outfit/vr
 	id = "vr snowdin"
 	light_color = LIGHT_COLOR_FIRE

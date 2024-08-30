@@ -1,3 +1,6 @@
+/datum/species/proc/spec_death(gibbed, mob/living/carbon/human/H)
+	return
+
 /mob/living/carbon/human/gib_animation()
 	switch(dna.species.species_gibs)
 		if("human")

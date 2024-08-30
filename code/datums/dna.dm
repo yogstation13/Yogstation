@@ -15,6 +15,8 @@ GLOBAL_LIST_INIT(identity_block_lengths, list(
 	))
 
 
+GLOBAL_LIST_INIT(features_block_lengths, list())
+
 /**
  * A list of numbers that keeps track of where ui blocks start in the unique_identity string variable of the dna datum.
  * Commonly used by the datum/dna/set_uni_identity_block and datum/dna/get_uni_identity_block procs.
@@ -342,7 +344,6 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 /datum/dna/proc/update_dna_identity()
 	unique_identity = generate_unique_identity()
 	unique_enzymes = generate_unique_enzymes()
-	unique_features = generate_unique_features()
 
 /datum/dna/proc/initialize_dna(newblood_type, skip_index = FALSE)
 	if(newblood_type)
@@ -351,8 +352,6 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	unique_identity = generate_unique_identity()
 	if(!skip_index) //I hate this
 		generate_dna_blocks()
-	features = random_features()
-	unique_features = generate_unique_features()
 
 
 /datum/dna/stored //subtype used by brain mob's stored_dna
@@ -444,7 +443,6 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	
 	if(newfeatures)
 		dna.features = newfeatures
-		dna.generate_unique_features()
 
 	if(LAZYLEN(mutation_index))
 		dna.mutation_index = mutation_index.Copy()
@@ -618,9 +616,6 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 /mob/living/carbon/proc/random_mutate_unique_features()
 	if(!has_dna())
 		CRASH("[src] does not have DNA")
-	var/num = rand(1, DNA_FEATURE_BLOCKS)
-	dna.set_uni_feature_block(num, random_string(GET_UF_BLOCK_LEN(num), GLOB.hex_characters))
-	updateappearance(mutcolor_update = TRUE, mutations_overlay_update = TRUE)
 
 /mob/living/carbon/proc/clean_dna()
 	if(!has_dna())
@@ -643,10 +638,6 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		for(var/blocknum in 1 to DNA_UNI_IDENTITY_BLOCKS)
 			if(prob(probability))
 				M.dna.set_uni_feature_block(blocknum, random_string(GET_UI_BLOCK_LEN(blocknum), GLOB.hex_characters))
-	if(uf)
-		for(var/blocknum in 1 to DNA_FEATURE_BLOCKS)
-			if(prob(probability))
-				M.dna.set_uni_feature_block(blocknum, random_string(GET_UF_BLOCK_LEN(blocknum), GLOB.hex_characters))
 	if(ui || uf)
 		M.updateappearance(mutcolor_update=uf, mutations_overlay_update=1)
 

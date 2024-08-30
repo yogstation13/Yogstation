@@ -139,7 +139,7 @@
 
 /datum/techweb_node/nerd_suit
 	id = "nerd_suit"
-	display_name = "\improper D.O.T.A. suit"
+	display_name = "HEV Suit"
 	description = "Protect yourself and/or the crew with this highly experimental suit harness."
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 	prereq_ids = list("weaponry", "anomaly_research", "posibrain", "adv_biotech")

@@ -243,6 +243,9 @@
 	roundstart = FALSE
 	instant = TRUE
 
+/obj/effect/mob_spawn/human/corpse/delayed
+	instant = FALSE
+
 /obj/effect/mob_spawn/human/corpse/damaged
 	brute_damage = 1000
 

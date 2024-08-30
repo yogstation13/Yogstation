@@ -158,14 +158,12 @@
 	cost = 20
 	player_minimum = 25 //basically a fuckin megafauna
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //too much collateral damage with it's AOEs
-	item = /obj/item/book/granter/martial/worldbreaker
 	manufacturer = /datum/corporation/traitor/vahlen
 
 /datum/uplink_item/race_restricted/explosive_fist_art
 	name = "Burned scroll"
 	desc = "An ancient scroll, containing a guide to an ancient plasmamen martial art."
 	cost = 14
-	item = /obj/item/book/granter/martial/explosive_fist
 
 /datum/uplink_item/race_restricted/ultra_violence
 	name = "Version one upgrade module"
@@ -174,20 +172,17 @@
 			There are no half-measures, either you succeed or you die."
 	cost = 20
 	player_minimum = 25 //maybe we SHOULDNT be giving this to lowpop traitors when theres no sec?
-	item = /obj/item/book/granter/martial/ultra_violence
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) // designed around mass murder, no need to use this if you aren't allowed to do that
 
 /datum/uplink_item/race_restricted/lightning_flow
 	name = "Glowing parchment"
 	desc = "A scroll made of unusual paper, written for ethereals looking to defend themselves while exploring the material world."
 	cost = 12
-	item = /obj/item/book/granter/martial/lightning_flow
 
 /datum/uplink_item/race_restricted/wirecrawl
 	name = "Modified yellow slime extract"
 	desc = "An experimental yellow slime extract that when absorbed by an Ethereal, grants control over electrical powers."
 	cost = 8
-	item = /obj/item/book/granter/action/wirecrawl
 
 /datum/uplink_item/stealthy_weapons/camera_flash
 	name = "Camera Flash"

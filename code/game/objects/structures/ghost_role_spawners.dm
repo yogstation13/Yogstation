@@ -489,7 +489,6 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 
 /datum/outfit/syndicate_empty/icemoon_base
 	name = "Generic Syndicate Icemoon Outpost Agent"
-	uniform = /obj/item/clothing/under/syndicate/coldres
 	suit = /obj/item/clothing/suit/armor/vest
 	l_pocket = /obj/item/gun/ballistic/automatic/pistol
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/double
