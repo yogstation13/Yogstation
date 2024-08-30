@@ -41,7 +41,9 @@
 	/// Flags dictating whether this event should be run on certain kinds of map
 	var/map_flags = NONE
 
-	//monkestation vars starts
+	// monkestation start
+	/// The typepath to the event group this event is a part of.
+	var/datum/event_group/event_group = null
 	var/roundstart = FALSE
 	var/cost = 1
 	var/reoccurence_penalty_multiplier = 0.75
@@ -56,7 +58,7 @@
 	var/can_run_post_roundstart = TRUE
 	/// If set then the type or list of types of storytellers we are restricted to being trigged by
 	var/list/allowed_storytellers
-	//monkestation vars end
+	// monkestation end
 
 /datum/round_event_control/New()
 	if(config && !wizardevent) // Magic is unaffected by configs
@@ -89,15 +91,17 @@
 // Admin-created events override this.
 /datum/round_event_control/proc/can_spawn_event(players_amt, allow_magic = FALSE, fake_check = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
-//monkestation edit start
-	if(roundstart && ((SSticker.round_start_time && world.time - SSticker.round_start_time >= 2 MINUTES) || (SSgamemode.ran_roundstart && !fake_check)))
+// monkestation start: event groups and storyteller stuff
+	if(event_group && !GLOB.event_groups[event_group].can_run())
+		return FALSE
+	if(roundstart && ((SSticker.round_start_time && (world.time - SSticker.round_start_time) >= 2 MINUTES) || (SSgamemode.ran_roundstart && !fake_check)))
 		return FALSE
 	if(istype(src, /datum/round_event_control/antagonist/solo/from_ghosts) && (SSautotransfer.starttime + 85 MINUTES <= world.time))
 		return TRUE // we allow all ghost roles to run at this point and dont care about other checks
-//monkestation edit end
+// monkestation end
 	if(occurrences >= max_occurrences)
 		return FALSE
-	if(earliest_start >= world.time-SSticker.round_start_time)
+	if(earliest_start >= (world.time - SSticker.round_start_time))
 		return FALSE
 	if(!allow_magic && wizardevent != SSevents.wizardmode)
 		return FALSE
@@ -110,7 +114,7 @@
 	if(ispath(typepath, /datum/round_event/ghost_role) && !(GLOB.ghost_role_flags & GHOSTROLE_MIDROUND_EVENT))
 		return FALSE
 
-	//monkestation edit start - STORYTELLERS
+// monkestation start: storyteller stuff
 	if(checks_antag_cap && !roundstart && !SSgamemode.can_inject_antags())
 		return FALSE
 	if(!check_enemies())
@@ -119,7 +123,7 @@
 		return FALSE
 	if(SSgamemode.storyteller.disable_distribution || SSgamemode.halted_storyteller)
 		return FALSE
-	//monkestation edit end - STORYTELLERS
+// monkestation end
 
 	var/datum/game_mode/dynamic/dynamic = SSticker.mode
 	if (istype(dynamic) && dynamic_should_hijack && dynamic.random_event_hijacked != HIJACKED_NOTHING)
@@ -203,6 +207,11 @@ Runs the event
 
 	triggering = FALSE
 	log_game("[random ? "Random" : "Forced"] Event triggering: [name] ([typepath]).")
+
+	// monkestation start: event groups
+	if(event_group)
+		GLOB.event_groups[event_group].on_run(src)
+	// monkestation end
 
 	if(alert_observers)
 		round_event.announce_deadchat(random, event_cause)
