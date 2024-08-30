@@ -1,5 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - bugfix: "Airlocks now cycle correctly again!"
-  - bugfix: "Maintenance airlocks now have a chance to be broken again!"
