@@ -5229,7 +5229,6 @@
 /turf/open/floor/wood/parquet,
 /area/crew_quarters/bar)
 "amr" = (
-/obj/structure/altar_of_gods,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
 	},
@@ -6323,7 +6322,7 @@
 /area/crew_quarters/theatre)
 "aoM" = (
 /obj/machinery/atmospherics/miner/toxins,
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/engine/plasma,
 /area/engine/atmos)
 "aoN" = (
@@ -9959,7 +9958,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
-/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower,
@@ -24049,7 +24048,6 @@
 /turf/open/space/basic,
 /area/shipbreak)
 "ugr" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
 /obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/plating,
 /area/engine/engineering)
