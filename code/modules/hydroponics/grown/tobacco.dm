@@ -13,7 +13,7 @@
 	growthstages = 3
 	icon_dead = "tobacco-dead"
 	possible_mutations = list(/datum/hydroponics/plant_mutation/space_tobacco)
-	reagents_add = list(/datum/reagent/drug/nicotine = 0.03, /datum/reagent/consumable/nutriment = 0.03)
+	reagents_add = list(/datum/reagent/drug/nicotine = 0.03) ///datum/reagent/consumable/nutriment = 0.03 Thy shall not get fat from smoking
 
 /obj/item/food/grown/tobacco
 	seed = /obj/item/seeds/tobacco
@@ -31,7 +31,7 @@
 	plantname = "Space Tobacco Plant"
 	product = /obj/item/food/grown/tobacco/space
 	possible_mutations = list()
-	reagents_add = list(/datum/reagent/medicine/salbutamol = 0.05, /datum/reagent/drug/nicotine = 0.08, /datum/reagent/consumable/nutriment = 0.03)
+	reagents_add = list(/datum/reagent/medicine/salbutamol = 0.05, /datum/reagent/drug/nicotine = 0.08)  ///datum/reagent/consumable/nutriment = 0.03 Thy shall not get fat from smoking
 	rarity = 20
 
 /obj/item/food/grown/tobacco/space

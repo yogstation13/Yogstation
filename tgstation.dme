@@ -6637,6 +6637,7 @@
 #include "monkestation\code\modules\cargo\crates\science.dm"
 #include "monkestation\code\modules\cargo\crates\security.dm"
 #include "monkestation\code\modules\cargo\crates\service.dm"
+#include "monkestation\code\modules\cargo\mail\mail_token.dm"
 #include "monkestation\code\modules\cargo\markets\market_items.dm"
 #include "monkestation\code\modules\cargo\packs\engineering.dm"
 #include "monkestation\code\modules\cargo\packs\medical.dm"

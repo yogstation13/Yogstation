@@ -29,6 +29,7 @@
 		"Artist",
 		"Off-Duty Staff",
 		"Off-Duty Crew",
+		"Test Subject",
 	)
 
 /datum/job/atmospheric_technician

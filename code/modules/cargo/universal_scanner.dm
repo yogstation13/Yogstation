@@ -205,6 +205,28 @@
 			else
 				to_chat(user, span_warning("Bank account not detected. Handling tip not registered."))
 
+	// MONKESTATION EDIT START * Handling tip for mail tokens
+		if(istype(target, /obj/item/cargo/mail_token))
+			var/token_handler_tip = 0.5
+			var/obj/item/cargo/mail_token/token = target
+			var/datum/bank_account/scanner_account = scan_human.get_bank_account()
+
+			if(!istype(get_area(token), /area/shuttle/supply))
+				to_chat(user, span_warning("Shuttle placement not detected. Handling tip not registered."))
+
+			else if(token.token_handler_account)
+				to_chat(user, span_warning("Bank account for handling tip already registered!"))
+
+			else if(scanner_account)
+				token.AddComponent(/datum/component/pricetag, scanner_account, token_handler_tip, FALSE)
+				token.token_handler_account = scanner_account
+				token.token_handler_account.bank_card_talk("Bank account for [price ? "<b>[price * token_handler_tip]</b> credit " : ""]handling tip successfully registered.")
+
+			else
+				to_chat(user, span_warning("Bank account not detected. Handling tip not registered."))
+	// MONKESTATION EDIT END
+
+
 /**
  * Scans an object, target, and sets it's custom_price variable to new_custom_price, presenting it to the user.
  */

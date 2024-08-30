@@ -113,8 +113,8 @@ SUBSYSTEM_DEF(economy)
 
 		station_target = max(round(temporary_total / max(bank_accounts_by_id.len * 2, 1)) + station_target_buffer, 1)
 
-	var/effective_mailcount = round(living_player_count()/(inflation_value - 0.5)) //More mail at low inflation, and vis versa.
-	mail_waiting += clamp(effective_mailcount, 1, MAX_MAIL_PER_MINUTE * seconds_per_tick)
+	var/effective_mailcount = round(living_player_count()) ///(inflation_value - 0.5)) //More mail at low inflation, and vis versa. | MONKESTATION EDIT
+	mail_waiting += clamp(effective_mailcount, 4, MAX_MAIL_PER_MINUTE * seconds_per_tick)
 
 /**
  * Handy proc for obtaining a department's bank account, given the department ID, AKA the define assigned for what department they're under.
