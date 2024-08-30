@@ -1,0 +1,8 @@
+author: "SirNightKnight"
+delete-after: True
+changes:
+  - rscadd: "Nanotrasen has launched a new program to incentivize delivering mail. Mail tokens are now found in every letter and can be returned to Central Command for a decent bit of credits."
+  - qol: "The supplying company has further genetically modified their tobacco seeds to remove  nutriment for an easier smoking experience."
+  - rscadd: "Nanotrasen has approved Assistants signing up as Test Subjects. Peace to the Intern Union!"
+  - bugfix: "The smoking pipe and cobpipe don't default to an error texture when lit."
+  - bugfix: "Adjusted the smoking pipe texture to look better."
