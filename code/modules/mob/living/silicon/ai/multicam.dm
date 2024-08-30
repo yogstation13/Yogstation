@@ -106,7 +106,7 @@
 	base_lighting_alpha = 255
 	ambientsounds = list()
 	blob_allowed = FALSE
-	noteleport = TRUE
+	area_flags = NOTELEPORT
 	hidden = TRUE
 	safe = TRUE
 

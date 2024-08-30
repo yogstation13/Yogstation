@@ -20,7 +20,7 @@
 	var/aux_zone // used for hands
 	var/aux_layer
 	var/body_part = NONE //bitflag used to check which clothes cover this bodypart
-	var/use_digitigrade = NOT_DIGITIGRADE //Used for alternate legs, useless elsewhere
+	var/use_digitigrade = FALSE //Used for alternate legs, useless elsewhere
 	var/list/embedded_objects = list()
 	var/held_index = 0 //are we a hand? if so, which one!
 	var/render_like_organic = FALSE // TRUE is for when you want a BODYPART_ROBOTIC to pretend to be a BODYPART_ORGANIC.
@@ -685,6 +685,8 @@
 /obj/item/bodypart/proc/set_owner(new_owner)
 	if(owner == new_owner)
 		return FALSE //`null` is a valid option, so we need to use a num var to make it clear no change was made.
+	if(owner && use_digitigrade)
+		REMOVE_TRAIT(owner, TRAIT_DIGITIGRADE, REF(src))
 	. = owner
 	owner = new_owner
 	var/needs_update_disabled = FALSE //Only really relevant if there's an owner
@@ -700,6 +702,8 @@
 				SIGNAL_ADDTRAIT(TRAIT_NOLIMBDISABLE),
 				))
 	if(owner)
+		if(use_digitigrade)
+			ADD_TRAIT(owner, TRAIT_DIGITIGRADE, REF(src))
 		if(initial(can_be_disabled))
 			if(HAS_TRAIT(owner, TRAIT_NOLIMBDISABLE))
 				set_can_be_disabled(FALSE)
@@ -964,12 +968,13 @@
 			if(should_draw_gender)
 				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 			else if(use_digitigrade)
+				var/squished = owner ? HAS_TRAIT(owner, TRAIT_DIGI_SQUISH) : FALSE
 				if("[species_id]" == SPECIES_POLYSMORPH)
-					limb.icon_state = "pdigitigrade_[use_digitigrade]_[body_zone]"
+					limb.icon_state = "pdigitigrade_[squished]_[body_zone]"
 				else if("[species_id]" == SPECIES_PRETERNIS)
-					limb.icon_state = "preternis_[use_digitigrade]_[body_zone]"
+					limb.icon_state = "preternis_[squished]_[body_zone]"
 				else
-					limb.icon_state = "digitigrade_[use_digitigrade]_[body_zone]"
+					limb.icon_state = "digitigrade_[squished]_[body_zone]"
 			else
 				limb.icon_state = "[species_id]_[body_zone]"
 		else
@@ -997,7 +1002,7 @@
 		if(should_draw_gender)
 			limb.icon_state = "[body_zone]_[icon_gender]"
 		else if(use_digitigrade)
-			limb.icon_state = "digitigrade_[use_digitigrade]_[body_zone]"
+			limb.icon_state = "digitigrade_[owner ? HAS_TRAIT(owner, TRAIT_DIGI_SQUISH) : FALSE]_[body_zone]"
 		else if(body_zone == BODY_ZONE_HEAD || body_zone == BODY_ZONE_CHEST)//default to male for the torso and head if the species is agendered
 			limb.icon_state = "[body_zone]_m"
 		else

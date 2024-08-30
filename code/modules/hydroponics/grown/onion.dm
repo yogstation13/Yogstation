@@ -43,7 +43,7 @@
 	plantname = "Red Onion Sprouts"
 	weed_chance = 1
 	product = /obj/item/reagent_containers/food/snacks/grown/onion/red
-	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1, /datum/reagent/consumable/tearjuice = 0.05)
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1, /datum/reagent/consumable/tea/hotrjuice = 0.05)
 	rarity = 10
 
 /obj/item/reagent_containers/food/snacks/grown/onion/red
@@ -79,4 +79,4 @@
 	desc = "They shine like exceptionally low quality amethyst."
 	icon_state = "onionslice_red"
 	filling_color = "#C29ACF"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/tearjuice = 2.5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/tea/hotrjuice = 2.5)

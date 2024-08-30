@@ -22,11 +22,12 @@
 	. = ..()
 	AddComponent(/datum/component/butchering, 50, 100)
 
-/obj/item/mecha_parts/mecha_equipment/drill/action(atom/target)
-	if(!action_checks(target))
-		return
+/obj/item/mecha_parts/mecha_equipment/drill/action_checks(atom/target)
 	if(isspaceturf(target))
-		return
+		return FALSE
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/drill/action(atom/target)
 	if(isobj(target))
 		var/obj/target_obj = target
 		if(target_obj.resistance_flags & UNACIDABLE)

@@ -14,7 +14,7 @@
 	resistance_flags = FLAMMABLE
 	var/mopping = 0
 	var/mopcount = 0
-	var/mopcap = 15
+	var/mopcap = 45
 	var/mopspeed = 15
 	force_string = "robust... against germs"
 	var/insertable = TRUE
@@ -22,6 +22,7 @@
 /obj/item/mop/Initialize(mapload)
 	. = ..()
 	create_reagents(mopcap, REFILLABLE)
+	AddComponent(/datum/component/liquids_interaction, TYPE_PROC_REF(/obj/item/mop, attack_on_liquids_turf))
 
 
 /obj/item/mop/proc/clean(turf/A)
@@ -46,6 +47,11 @@
 		return
 
 	if(T)
+		// Disable normal cleaning if there are liquids.
+		if(T.liquids)
+			to_chat(user, span_warning("It would be quite difficult to clean this with a pool of liquids on top!"))
+			return
+
 		user.visible_message("[user] begins to clean \the [T] with [src].", span_notice("You begin to clean \the [T] with [src]..."))
 
 		var/realspeed = mopspeed
@@ -72,6 +78,33 @@
 	else
 		to_chat(user, span_warning("You are unable to fit your [name] into the [J.name]."))
 		return
+
+/obj/item/mop/proc/attack_on_liquids_turf(obj/item/mop/the_mop, turf/target, mob/user, obj/effect/abstract/liquid_turf/liquids)
+	if(!user.Adjacent(target))
+		return FALSE
+	var/free_space = mopcap - reagents.total_volume
+	var/speed_mult = 1
+	var/datum/liquid_group/targeted_group = target?.liquids?.liquid_group
+	while(!QDELETED(targeted_group))
+		if(speed_mult >= 0.2)
+			speed_mult -= 0.05
+		if(free_space <= 0)
+			to_chat(user, span_warning("You cant absorb any more liquid with \the [src]!"))
+			return TRUE
+		if(!do_after(user, src.mopspeed * speed_mult, target = target))
+			break
+		if(the_mop.reagents.total_volume == the_mop.mopcap)
+			to_chat(user, span_warning("You cant absorb any more liquid with \the [src]!"))
+			break
+		if(targeted_group?.reagents_per_turf)
+			targeted_group?.trans_to_seperate_group(the_mop.reagents, min(targeted_group?.reagents_per_turf, 5))
+			to_chat(user, span_notice("You soak up some liquids with \the [src]."))
+		else if(!QDELETED(target?.liquids?.liquid_group))
+			targeted_group = target.liquids.liquid_group
+		else
+			break
+	user.changeNext_move(CLICK_CD_MELEE)
+	return TRUE
 
 /obj/item/mop/cyborg
 	insertable = FALSE

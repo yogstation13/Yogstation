@@ -20,3 +20,4 @@ _maps/RandomRuins/IceRuins/icemoon_underground_abandoned_village.dmm
 #_maps/RandomRuins/IceRuins/icemoon_underground_lavaland.dmm
 #_maps/RandomRuins/IceRuins/icemoon_underground_bathhouse.dmm
 #_maps/RandomRuins/IceRuins/icemoon_underground_wampacave.dmm
+#_maps/RandomRuins/IceRuins/icemoon_underground_alien_lab.dmm

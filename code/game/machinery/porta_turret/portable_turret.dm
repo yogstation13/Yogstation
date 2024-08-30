@@ -17,7 +17,7 @@
 	use_power = IDLE_POWER_USE				//this turret uses and requires power
 	idle_power_usage = 50		//when inactive, this turret takes up constant 50 Equipment power
 	active_power_usage = 300	//when active, this turret takes up constant 300 Equipment power
-	req_access = list(ACCESS_SEC_DOORS)
+	req_access = list(ACCESS_SEC_BASIC)
 	power_channel = AREA_USAGE_EQUIP	//drains power from the EQUIPMENT channel
 
 	var/scan_range = 7
@@ -799,7 +799,7 @@
 	var/locked = TRUE
 	var/control_area = null //can be area name, path or nothing.
 	var/ailock = 0 // AI cannot use this
-	req_access = list(ACCESS_AI_UPLOAD)
+	req_access = list(ACCESS_AI_MASTER)
 	var/list/obj/machinery/porta_turret/turrets = list()
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
@@ -954,6 +954,10 @@
 		icon_state = "control_kill"
 	else
 		icon_state = "control_stun"
+	
+/obj/machinery/turretid/syndicate // Please use this when making syndicate bases so we don't have to keep varediting it
+	icon_state = "control_kill"
+	req_access = list(ACCESS_SYNDICATE)
 
 /obj/item/wallframe/turret_control
 	name = "turret control frame"

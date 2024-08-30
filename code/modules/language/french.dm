@@ -4,7 +4,7 @@
 	speech_verb = "says"
 	ask_verb = "asks"
 	exclaim_verb = "exclaims"
-	key = "v"
+	key = "w"
 	flags = TONGUELESS_SPEECH
 	space_chance = 100
 	default_priority = 80

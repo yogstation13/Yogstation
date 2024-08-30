@@ -321,7 +321,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 	icon_state = "hilbertshotel"
 	requires_power = FALSE
 	has_gravity = TRUE
-	noteleport = TRUE
+	area_flags = NOTELEPORT
 	hidden = TRUE
 	unique = FALSE
 	static_lighting = TRUE
@@ -400,7 +400,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 	icon_state = "hilbertshotel"
 	requires_power = FALSE
 	has_gravity = TRUE
-	noteleport = TRUE
+	area_flags = NOTELEPORT
 	hidden = TRUE
 
 /obj/item/abstracthotelstorage
@@ -461,8 +461,8 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 	oxy_damage = 500
 	mob_species = /datum/species/skeleton
 	id_job = "Head Researcher"
-	id_access = ACCESS_RESEARCH
-	id_access_list = list(ACCESS_AWAY_GENERIC3, ACCESS_RESEARCH)
+	id_access = ACCESS_RUINS_SCIENCE
+	id_access_list = list(ACCESS_RUINS_GENERIC3, ACCESS_RUINS_SCIENCE)
 	instant = TRUE
 	id = /obj/item/card/id/silver
 	uniform = /obj/item/clothing/under/rank/rnd/research_director
