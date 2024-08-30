@@ -22880,8 +22880,7 @@
 	id = "Portbowmaints";
 	name = "Shutter control";
 	pixel_x = 24;
-	pixel_y = 0;
-	req_access = list("engineering","atmospherics")
+	pixel_y = 0
 	},
 /turf/open/floor/iron/stairs/right,
 /area/station/maintenance/port/upper)
@@ -48935,8 +48934,7 @@
 	id = "Portbowmaints";
 	name = "Shutter control";
 	pixel_x = -24;
-	pixel_y = 0;
-	req_access = list("command")
+	pixel_y = 0
 	},
 /obj/machinery/door/poddoor/shutters{
 	id = "Portbowmaints";
@@ -113611,8 +113609,7 @@
 	id = "Starboardbowmaints";
 	name = "Shutter control";
 	pixel_x = 24;
-	pixel_y = 0;
-	req_access = list("engineering","atmospherics")
+	pixel_y = 0
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/fore/upper)
@@ -114547,8 +114544,7 @@
 	id = "Starboardbowmaints";
 	name = "Shutter control";
 	pixel_x = 24;
-	pixel_y = 0;
-	req_access = list("engineering","atmospherics")
+	pixel_y = 0
 	},
 /obj/machinery/door/poddoor/shutters{
 	id = "Starboardbowmaints";
