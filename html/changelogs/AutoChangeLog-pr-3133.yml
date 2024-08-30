@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Ghost messages are no longer bolded for speakers on another z-level."
