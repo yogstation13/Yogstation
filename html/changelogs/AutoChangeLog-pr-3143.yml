@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Fixed hydroponics trays not being able to go above 10% self-sustenance."
+  - bugfix: "Fixed plants with >100 potency having small sprites when harvested."
