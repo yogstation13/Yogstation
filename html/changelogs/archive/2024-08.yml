@@ -379,3 +379,11 @@
       the correct badness level
   - bugfix: Fixed the radiation leak event, super-matter surge event, and random artifact
       event not triggering.
+2024-08-30:
+  Absolucy:
+  - bugfix: Fixed hydroponics trays not being able to go above 10% self-sustenance.
+  - bugfix: Fixed plants with >100 potency having small sprites when harvested.
+  RedBaronFlyer:
+  - qol: make the cart hold 2.5x more water
+  ThePooba:
+  - bugfix: now you can buy the worst gun in the game from your uplink for your henchmen
