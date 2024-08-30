@@ -1,0 +1,7 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscadd: "Added an \"event groups\" mechanic to event/storyteller logic."
+  - rscadd: "Events in the same group will all have a shared cooldown, and some groups have a set maximum amount of times they can run."
+  - rscadd: "The more times events in a group have been ran, the cooldown will become more biased towards the upper bound of the possible cooldown time with each run."
+  - rscadd: "As an example, the \"Anomalies\" event group has a cooldown between 10 to 25 minutes."
