@@ -248,7 +248,7 @@
 	return TRUE
 
 /datum/component/plant_growing/proc/adjust_selfgrow(datum/source, amount)
-	self_sustaining_precent = clamp(self_sustaining_precent + amount, 0, 10)
+	self_sustaining_precent = clamp(self_sustaining_precent + amount, 0, 100)
 
 /datum/component/plant_growing/proc/increase_work_processes(datum/source, amount)
 	next_work -= amount
