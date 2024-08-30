@@ -232,7 +232,7 @@
 				additionalmessage = "You have mutated werewolf legs!"
 				mutation = /obj/item/clothing/shoes/wolflegs
 				slot = ITEM_SLOT_FEET
-				if(DIGITIGRADE in user.dna.species.species_traits)
+				if(HAS_TRAIT(user, TRAIT_DIGITIGRADE))
 					mutation = /obj/item/clothing/shoes/xeno_wraps/wolfdigilegs
 			if(5 to INFINITY)
 				to_chat(user, span_danger("The beast inside of you seems satisfied with your current form."))

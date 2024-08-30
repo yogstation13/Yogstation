@@ -13,8 +13,8 @@
 
 	alt_titles = list("Librarian", "Journalist", "Archivist", "Cartographer", "Space Archaeologist")
 
-	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_AUX_BASE)
-	base_access = list(ACCESS_SERVICE, ACCESS_LIBRARY, ACCESS_CONSTRUCTION, ACCESS_MINING_STATION)
+	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_AUX_BASE)
+	base_access = list(ACCESS_SERVICE, ACCESS_LIBRARY, ACCESS_CONSTRUCTION, ACCESS_MINING_STATION, ACCESS_EXTERNAL_AIRLOCKS)
 
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CIV

@@ -83,3 +83,5 @@
 #define MOVESPEED_ID_RESIN_FOAM                         "RESIN_FOAM"
 
 #define MOVESPEED_ID_SYNTH_SUSPICION                    "SYNTH_SUSPICION"
+
+#define MOVESPEED_ID_LIQUID								"LIQUID"

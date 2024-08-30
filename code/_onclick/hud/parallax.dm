@@ -368,6 +368,8 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/parallax_layer)
 /atom/movable/screen/parallax_layer/planet/proc/on_z_change(mob/source)
 	SIGNAL_HANDLER
 	var/client/boss = source.client
+	if(!boss) //since we call this when the mob logs out, we might not have an actually source.client to use.
+		boss = source.canon_client 
 	var/turf/posobj = get_turf(boss?.eye)
 	if(!posobj)
 		return

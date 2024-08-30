@@ -138,10 +138,17 @@
 	return GLOB.donor_pdas
 
 
-/datum/preference/toggle/purrbation
+/datum/preference/choiced/purrbation
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "purrbation"
 	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/purrbation/create_default_value()
+	return PURRBATION_NONE
+
+/datum/preference/choiced/purrbation/init_possible_values()
+	return list(PURRBATION_NONE, PURRBATION_CAT, PURRBATION_FOX)
+
 
 /datum/preference/choiced/donor_eorg
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
