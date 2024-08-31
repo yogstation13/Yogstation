@@ -108,7 +108,7 @@
 	desc = "A fully-loaded Scarborough Arms bullpup submachine gun. The C-20r fires .45 rounds with a \
 			24-round magazine and is compatible with suppressors."
 	item = /obj/item/gun/ballistic/automatic/c20r
-	cost = 13
+	cost = 10
 	surplus = 40
 	purchasable_from = UPLINK_NUKE_OPS
 

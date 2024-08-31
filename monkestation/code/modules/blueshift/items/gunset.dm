@@ -45,7 +45,7 @@
 	new weapon_to_spawn (src)
 	for(var/i in 1 to 2)
 		new extra_to_spawn (src)
-	new /obj/item/ammo_box/a40mm/rubber (src)
+	new /obj/item/ammo_box/a40mm (src)
 
 /obj/item/storage/toolbox/guncase/rocketlauncher
 	name = "rocket launcher gun case"

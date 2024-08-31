@@ -680,6 +680,7 @@
 /obj/item/storage/backpack/duffelbag/syndie/c20rbundle/PopulateContents()
 	new /obj/item/ammo_box/magazine/smgm45(src)
 	new /obj/item/ammo_box/magazine/smgm45(src)
+	new /obj/item/ammo_box/magazine/smgm45(src)
 	new /obj/item/gun/ballistic/automatic/c20r(src)
 	new /obj/item/suppressor(src)
 
