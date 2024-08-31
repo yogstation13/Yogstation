@@ -14,6 +14,8 @@
 	var/decrement = 0
 	///Are we regenerating right now?
 	var/is_regenerating = TRUE
+	//unga bunga
+	var/process_stamina = TRUE
 
 	///cooldowns
 	///how long until we can lose stamina again
@@ -35,17 +37,23 @@
 	return ..()
 
 /datum/stamina_container/proc/update(seconds_per_tick)
-	if(!is_regenerating)
-		if(!COOLDOWN_FINISHED(src, paused_stamina))
-			return
-		is_regenerating = TRUE
+	if(process_stamina == TRUE)
+		if(!is_regenerating)
+			if(!COOLDOWN_FINISHED(src, paused_stamina))
+				return
+			is_regenerating = TRUE
 
-	if(seconds_per_tick)
-		current = min(current + (regen_rate*seconds_per_tick), maximum)
-	if(seconds_per_tick && decrement)
-		current = max(current + (-decrement*seconds_per_tick), 0)
-	loss = maximum - current
-	loss_as_percent = loss ? (loss == maximum ? 0 : loss / maximum * 100) : 0
+		if(seconds_per_tick)
+			current = min(current + (regen_rate*seconds_per_tick), maximum)
+		if(seconds_per_tick && decrement)
+			current = max(current + (-decrement*seconds_per_tick), 0)
+		loss = maximum - current
+		loss_as_percent = loss ? (loss == maximum ? 0 : loss / maximum * 100) : 0
+
+	if(seconds_per_tick && current == maximum)
+		process_stamina = FALSE
+	else if(!(current == maximum))
+		process_stamina = TRUE
 
 	parent.on_stamina_update()
 
