@@ -231,8 +231,10 @@
 	var/datum/reagent/oxy = holder.has_reagent(/datum/reagent/oxygen)
 	if(oxy)
 		holder.remove_reagent(/datum/reagent/oxygen, 0.25)
+/* monkestation removal: we don't use ph or purity
 	else
 		holder.adjust_all_reagents_ph(-0.05*step_reaction_vol)//pH drifts faster
+monkestation end */
 
 //Sleepytime for chem
 /datum/chemical_reaction/medicine/tirimol/overheated(datum/reagents/holder, datum/equilibrium/equilibrium, impure = FALSE)

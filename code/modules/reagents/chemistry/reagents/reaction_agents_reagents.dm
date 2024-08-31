@@ -27,6 +27,7 @@
 	///The strength of the buffer where (volume/holder.total_volume)*strength. So for 1u added to 50u the ph will decrease by 0.4
 	var/strength = 30
 
+/* monkestation removal: we don't use ph or purity
 //Consumes self on addition and shifts ph
 /datum/reagent/reaction_agent/acidic_buffer/intercept_reagents_transfer(datum/reagents/target, amount)
 	. = ..()
@@ -42,6 +43,7 @@
 	target.my_atom.audible_message(span_warning("The beaker fizzes as the ph changes!"))
 	playsound(target.my_atom, 'sound/chemistry/bufferadd.ogg', 50, TRUE)
 	holder.remove_reagent(type, amount)
+monkestation end */
 
 /datum/reagent/reaction_agent/basic_buffer
 	name = "Strong Basic Buffer"
@@ -54,6 +56,7 @@
 	///The strength of the buffer where (volume/holder.total_volume)*strength. So for 1u added to 50u the ph will increase by 0.4
 	var/strength = 30
 
+/* monkestation removal: we don't use ph or purity
 /datum/reagent/reaction_agent/basic_buffer/intercept_reagents_transfer(datum/reagents/target, amount)
 	. = ..()
 	if(!.)
@@ -68,6 +71,7 @@
 	target.my_atom.audible_message(span_warning("The beaker froths as the ph changes!"))
 	playsound(target.my_atom, 'sound/chemistry/bufferadd.ogg', 50, TRUE)
 	holder.remove_reagent(type, amount)
+monkestation end */
 
 //purity testor/reaction agent prefactors
 

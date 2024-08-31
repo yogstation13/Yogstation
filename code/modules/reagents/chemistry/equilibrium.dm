@@ -336,6 +336,7 @@
 	//Calculate how much product to make and how much reactant to remove factors..
 	for(var/reagent in reaction.required_reagents)
 		holder.remove_reagent(reagent, (delta_chem_factor * reaction.required_reagents[reagent]), safety = TRUE)
+		/* monkestation removal: we don't use ph or purity
 		//Apply pH changes
 		var/pH_adjust
 		if(reaction.reaction_flags & REACTION_PH_VOL_CONSTANT)
@@ -343,6 +344,7 @@
 		else //Default adds pH independant of volume
 			pH_adjust = (delta_chem_factor * reaction.required_reagents[reagent])*(reaction.H_ion_release*h_ion_mod)
 		holder.adjust_specific_reagent_ph(reagent, pH_adjust)
+		monkestation end */
 
 	var/step_add
 	for(var/product in reaction.results)
@@ -351,6 +353,7 @@
 		//Default handiling
 		holder.add_reagent(product, step_add, null, cached_temp, purity, override_base_ph = TRUE)
 
+		/* monkestation removal: we don't use ph or purity
 		//Apply pH changes
 		var/pH_adjust
 		if(reaction.reaction_flags & REACTION_PH_VOL_CONSTANT)
@@ -358,6 +361,7 @@
 		else
 			pH_adjust = step_add*(reaction.H_ion_release*h_ion_mod)
 		holder.adjust_specific_reagent_ph(product, pH_adjust)
+		MONKESTATION END */
 		reacted_vol += step_add
 		total_step_added += step_add
 
