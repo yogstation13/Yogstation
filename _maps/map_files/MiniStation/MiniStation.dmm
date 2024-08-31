@@ -1233,22 +1233,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"add" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	filter_type = "n2o";
-	name = "N2O Fitler"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/atmos)
 "ade" = (
 /obj/machinery/computer/security{
 	dir = 4
@@ -2502,22 +2486,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"agh" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	filter_type = "co2";
-	name = "CO2 Filter"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/atmos)
 "agi" = (
 /obj/structure/sign/warning/vacuum{
 	name = "EXTERNAL AIRLOCK";
@@ -10342,23 +10310,6 @@
 /obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/main)
-"ayE" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 1;
-	filter_type = "o2";
-	name = "O2 Filter"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/atmos)
 "ayF" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -12370,22 +12321,6 @@
 "aDE" = (
 /turf/closed/wall/r_wall,
 /area/security/detectives_office)
-"aDF" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	filter_type = "plasma";
-	name = "Plasma Fitler"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/atmos)
 "aDG" = (
 /turf/open/floor/plating,
 /area/maintenance/central)
@@ -15583,23 +15518,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"aLd" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 1;
-	filter_type = "n2";
-	name = "N2 Filter"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/atmos)
 "aLe" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -22249,6 +22167,21 @@
 	},
 /turf/open/floor/grass,
 /area/medical/virology)
+"bIS" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/atmos)
 "bSx" = (
 /obj/effect/turf_decal/trimline/green/filled/corner/lower{
 	dir = 8
@@ -22702,6 +22635,19 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"gke" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/co2,
+/turf/open/floor/plasteel/dark,
+/area/engine/atmos)
 "glM" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -23888,6 +23834,21 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plasteel/dark,
 /area/escapepodbay)
+"snI" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/atmos)
 "ssb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -24040,6 +24001,19 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/medical/storage)
+"tOn" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/plasma,
+/turf/open/floor/plasteel/dark,
+/area/engine/atmos)
 "tTw" = (
 /obj/structure/chair,
 /turf/open/floor/plasteel,
@@ -24299,6 +24273,19 @@
 /obj/effect/turf_decal/trimline/green/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"xMO" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2o,
+/turf/open/floor/plasteel/dark,
+/area/engine/atmos)
 "xNi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -110117,15 +110104,15 @@ afP
 aUW
 aXB
 ayU
-agh
+gke
 aVk
 aXB
 asL
-add
+xMO
 aVk
 aXB
 aYL
-aDF
+tOn
 apS
 afP
 afl
@@ -111659,11 +111646,11 @@ adJ
 amh
 aqB
 aOi
-aLd
+snI
 aVk
 atY
 asb
-ayE
+bIS
 aVk
 aVk
 aVk
