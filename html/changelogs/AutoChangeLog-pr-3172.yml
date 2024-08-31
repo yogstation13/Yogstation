@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - sound: "Spitting sounds now respect the volume mixer, and can't be heard from the next room over."

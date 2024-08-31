@@ -387,3 +387,30 @@
   - qol: make the cart hold 2.5x more water
   ThePooba:
   - bugfix: now you can buy the worst gun in the game from your uplink for your henchmen
+2024-08-31:
+  Absolucy:
+  - bugfix: Ghost messages are no longer bolded for speakers on another z-level.
+  - rscadd: Added an "event groups" mechanic to event/storyteller logic.
+  - rscadd: Events in the same group will all have a shared cooldown, and some groups
+      have a set maximum amount of times they can run.
+  - rscadd: The more times events in a group have been ran, the cooldown will become
+      more biased towards the upper bound of the possible cooldown time with each
+      run.
+  - rscadd: As an example, the "Anomalies" event group has a cooldown between 10 to
+      25 minutes.
+  - sound: Spitting sounds now respect the volume mixer, and can't be heard from the
+      next room over.
+  SirNightKnight:
+  - rscadd: Nanotrasen has launched a new program to incentivize delivering mail.
+      Mail tokens are now found in every letter and can be returned to Central Command
+      for a decent bit of credits.
+  - qol: The supplying company has further genetically modified their tobacco seeds
+      to remove  nutriment for an easier smoking experience.
+  - rscadd: Nanotrasen has approved Assistants signing up as Test Subjects. Peace
+      to the Intern Union!
+  - bugfix: The smoking pipe and cobpipe don't default to an error texture when lit.
+  - bugfix: Adjusted the smoking pipe texture to look better.
+  Wisemonster:
+  - balance: Removed the access requirements from the maint shutters leading to Blueshifts
+      north-west and north-east upper maints.
+  - balance: Reduced the stage 1 hunger symptom nutrition drain from 25 to 10
