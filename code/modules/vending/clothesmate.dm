@@ -76,6 +76,7 @@
 				/obj/item/clothing/under/dress/sailor = 1,
 				/obj/item/clothing/under/dress/redeveninggown = 1,
 				/obj/item/clothing/suit/apron/purple_bartender = 2,
+				/obj/item/clothing/under/costume/citizen_uniform = 4,
 			),
 		),
 

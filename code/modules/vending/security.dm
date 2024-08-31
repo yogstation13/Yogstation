@@ -33,6 +33,8 @@
 		/obj/item/grenade/stingbang = 1,
 		/obj/item/watertank/pepperspray = 2,
 		/obj/item/storage/belt/holster/energy = 4,
+		/obj/item/clothing/head/helmet/civilprotection_helmet = 1, //monkestation edit
+		/obj/item/clothing/suit/armor/civilprotection_vest = 1, //monkestation edit
 		/obj/item/clothing/head/guardmanhelmet = 1, //monkestation edit: Guardman
 		/obj/item/clothing/under/guardmanuniform = 1, //monkestation edit: Guardman
 		/obj/item/clothing/suit/armor/guardmanvest = 1, //monkestation edit: Guardman

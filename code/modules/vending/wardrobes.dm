@@ -38,6 +38,9 @@
 		/obj/item/clothing/under/rank/security/brig_physician/skirt = 3, //Monkestation edit
 		/obj/item/clothing/suit/toggle/labcoat/brig_physician = 3, //Monkestation edit
 		/obj/item/clothing/shoes/sneakers/secred = 3, //Monkestation edit
+		/obj/item/clothing/under/civilprotection_uniform = 1, //monkestation edit
+		/obj/item/clothing/gloves/civilprotection_gloves = 1,
+		/obj/item/clothing/shoes/civilprotection_boots = 1, //monkestation edit
 	)
 	premium = list(
 		/obj/item/clothing/under/rank/security/officer/formal = 3,
@@ -50,7 +53,9 @@
 		/obj/item/clothing/suit/armor/secduster/cargo = 2,
 		/obj/item/clothing/head/helmet/hat/cowboy/cargo = 2,
 		/obj/item/clothing/suit/armor/secduster/science = 2,
-		/obj/item/clothing/head/helmet/hat/cowboy/science = 2
+		/obj/item/clothing/head/helmet/hat/cowboy/science = 2,
+		/obj/item/clothing/head/cop_mascot = 1, // MONKESTATION EDIT ADDITION
+		/obj/item/clothing/under/costume/cop_mascot = 1, // MONKESTATION EDIT ADDITION
 	)
 	refill_canister = /obj/item/vending_refill/wardrobe/sec_wardrobe
 	payment_department = ACCOUNT_SEC

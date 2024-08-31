@@ -67,6 +67,9 @@
 				/obj/item/clothing/under/costume/worldchampiongi = 1,
 				/obj/item/clothing/head/milkmanhat = 2,
 				/obj/item/clothing/under/costume/milkman = 2,
+				/obj/item/clothing/shoes/bb_slippers = 1,
+				/obj/item/clothing/head/bb_wig = 1,
+		        /obj/item/clothing/under/costume/bb_dress = 1,
 				//Monkestation Addition end
 			),
 		),
@@ -88,6 +91,14 @@
 				/obj/item/clothing/suit/costume/shrine_maiden = 1,
 				/obj/item/gohei = 1,
 				/obj/item/clothing/under/costume/skeleton = 1,
+				//Monkestation Addition start
+				/obj/item/clothing/shoes/costume_2021/infinity_shoes = 5,
+				/obj/item/clothing/under/costume/infinity_under = 5,
+				/obj/item/clothing/suit/infinity_jacket = 5,
+				/obj/item/clothing/gloves/infinity_gloves = 5,
+				/obj/item/clothing/suit/thekiller_robe = 1,
+				/obj/item/clothing/head/thekiller_head = 1,
+				//Monkestation Addition end
 			),
 		),
 		list(
@@ -227,6 +238,10 @@
 				/obj/item/clothing/suit/shipwreckedsuit = 2,
 				/obj/item/clothing/head/kingofbugshelmet = 2,
 				/obj/item/clothing/suit/kingofbugssuit = 2,
+				/obj/item/clothing/shoes/crueltysquad_shoes = 2, // MONKESTATION EDIT ADDITION
+				/obj/item/clothing/under/costume/crueltysquad_under = 2, // MONKESTATION EDIT ADDITION
+				/obj/item/clothing/glasses/crueltysquad_glasses = 2, // MONKESTATION EDIT ADDITION
+				/obj/item/clothing/gloves/crueltysquad_gloves = 2, // MONKESTATION EDIT ADDITION
 			),
 		),
 	)

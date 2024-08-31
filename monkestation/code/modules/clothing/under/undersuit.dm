@@ -79,6 +79,14 @@
 	worn_icon = 'monkestation/icons/mob/clothing/uniform.dmi'
 	can_adjust = FALSE
 
+/obj/item/clothing/under/civilprotection_uniform
+	name = "civil protection's uniform"
+	desc = "Suspect, prepare to receive civil judgement!"
+	icon = 'monkestation/icons/obj/clothing/uniforms.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/uniform.dmi'
+	icon_state = "civilprotection_uniform"
+	can_adjust = FALSE
+
 /obj/item/clothing/under/artisan
 	name = "culinary artisan's uniform"
 	desc = "For the chef who knows what their doing and cooks with ethically sourced monkey meat"

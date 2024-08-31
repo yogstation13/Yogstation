@@ -103,6 +103,12 @@
 	worn_icon = 'monkestation/icons/mob/clothing/suit.dmi'
 	icon_state = "guardman_vest"
 
+/obj/item/clothing/suit/armor/civilprotection_vest
+	name = "civil protection vest"
+	desc = "Used by rebels and cops alike."
+	icon = 'monkestation/icons/obj/clothing/suits.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/suit.dmi'
+	icon_state = "civilprotection_vest"
 
 //Only basic and scientist labcoats get to STAPH
 

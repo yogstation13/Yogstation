@@ -89,6 +89,49 @@
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
 	can_adjust = FALSE
 
+/obj/item/clothing/under/costume/cop_mascot
+	name = "policeman mascot suit"
+	desc = "A blue police mascot suit. On the chest is a star badge with an eye in the middle. You feel like you should be chopping people apart with power tools while wearing this."
+	icon = 'monkestation/icons/obj/clothing/uniforms.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/uniform.dmi'
+	icon_state = "cop_mascot"
+	body_parts_covered = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	alternate_worn_layer = GLOVES_LAYER
+	can_adjust = FALSE
+
+/obj/item/clothing/under/costume/crueltysquad_under
+	name = "CSIJ level I body armor"
+	desc = "Armor used by assassins working for Cruelty Squad, stripped of all of its functions for kids to play with."
+	icon = 'monkestation/icons/obj/clothing/uniforms.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/uniform.dmi'
+	icon_state = "crueltysquad_under"
+	can_adjust = FALSE
+
+/obj/item/clothing/under/costume/infinity_under
+	name = "infinity shorts"
+	desc = "Worn by those who want more matching team colors."
+	icon = 'monkestation/icons/obj/clothing/uniforms.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/uniform.dmi'
+	icon_state = "infinity_shorts"
+	body_parts_covered = CHEST|GROIN|LEGS
+	can_adjust = FALSE
+
+/obj/item/clothing/under/costume/bb_dress
+	name = "bb dress"
+	desc = "Howdy, it's me BB. Zines, zines, zines."
+	icon = 'monkestation/icons/obj/clothing/uniforms.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/uniform.dmi'
+	icon_state = "bb_dress"
+	body_parts_covered = CHEST|GROIN|ARMS
+	can_adjust = FALSE
+
+/obj/item/clothing/under/costume/citizen_uniform
+	name = "citizen uniform"
+	desc = "A blue matching uniform. It makes you feel like you're in a labor camp."
+	icon = 'monkestation/icons/obj/clothing/uniforms.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/uniform.dmi'
+	icon_state = "citizen_uniform"
+	can_adjust = FALSE
 /*
 *	LUNAR AND JAPANESE CLOTHES
 */
