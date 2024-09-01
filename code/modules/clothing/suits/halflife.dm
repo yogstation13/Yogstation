@@ -1,7 +1,7 @@
 /obj/item/clothing/suit/armor/civilprotection
 	name = "civil protection vest"
 	desc = "Kevlar weave protective vest. Provides a good level of protection to the chest."
-	icon_state = "armoralt"
+	icon_state = "civilprotection"
 	item_state = "armoralt"
 
 /obj/item/clothing/suit/armor/overwatch

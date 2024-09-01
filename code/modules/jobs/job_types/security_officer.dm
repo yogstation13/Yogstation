@@ -161,22 +161,15 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/security
 
-	ears = /obj/item/radio/headset/headset_sec/alt
-	uniform = /obj/item/clothing/under/rank/security/officer
-	uniform_skirt = /obj/item/clothing/under/rank/security/officer/skirt
+	ears = /obj/item/radio/headset/civilprotection
+	uniform = /obj/item/clothing/under/combine/civilprotection
 	gloves = /obj/item/clothing/gloves/color/black
-	head = /obj/item/clothing/head/helmet/sec
-	suit = /obj/item/clothing/suit/armor/vest/alt
+	suit = /obj/item/clothing/suit/armor/civilprotection
+	suit_store = /obj/item/gun/ballistic/automatic/pistol/usp
 	shoes = /obj/item/clothing/shoes/jackboots
-	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/jackboots
-	l_pocket = /obj/item/restraints/handcuffs
-	r_pocket = /obj/item/assembly/flash/handheld
-	backpack_contents = list(/obj/item/melee/baton/loaded=1)
 
-	backpack = /obj/item/storage/backpack/security
-	satchel = /obj/item/storage/backpack/satchel/sec
-	duffelbag = /obj/item/storage/backpack/duffelbag/sec
-	box = /obj/item/storage/box/survival/security
+	mask = /obj/item/clothing/mask/gas/civilprotection
+	belt = /obj/item/storage/belt/civilprotection/full
 
 	implants = list(/obj/item/implant/mindshield)
 

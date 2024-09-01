@@ -5,3 +5,7 @@
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = CALIBER_9X19
 	max_ammo = 18
+
+/obj/item/ammo_box/magazine/usp9mm/update_icon_state()
+	. = ..()
+	icon_state = "9x19p-[ammo_count() ? "10" : "0"]"

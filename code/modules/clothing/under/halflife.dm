@@ -4,13 +4,13 @@
 	can_adjust = FALSE
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
-	worn_icon = 'icons/mob/clothing/uniform/security.dmi'
+	worn_icon = 'icons/mob/clothing/uniform/halflife.dmi'
 
 /obj/item/clothing/under/combine/civilprotection
 	name = "civil protection jumpsuit"
 	desc = "Full-body suit which includes light kevlar weaving to provide extra protection."
-	icon_state = "rsecurity"
-	item_state = "r_suit"
+	icon_state = "civilprotection"
+	item_state = "syndicate-black"
 
 /obj/item/clothing/under/combine/civilprotection/Initialize(mapload)
 	. = ..()
