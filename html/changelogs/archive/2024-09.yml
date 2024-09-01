@@ -1,0 +1,18 @@
+2024-09-01:
+  Absolucy:
+  - bugfix: The Blah-Sucker and Ashtongue languages no longer conflict over the ",l"
+      prefix, as Ashtongue now uses ",a"
+  BoltonsHead:
+  - rscadd: the Policeman Mascot Head and Policeman Mascot Suit to the Secdrobe, where
+      you can purchase 2 in the premium section for 100 credits.
+  - rscadd: four more costumes! Alongside it is the Cruelty Squad main character clothing
+      to the autodrobe,
+  - rscadd: Infinity Jersey, wristbands, shorts, and sneakers to the autodrobe,
+  - rscadd: BB's wig, dress, and slippers to the autodrobe,
+  - rscadd: and The Killer's robe and head to the autodrobe.
+  - rscadd: Metrocop uniform to sectech drobe.
+  - rscadd: Citizen uniform to clothesmate.
+  SirNightKnight:
+  - bugfix: Made stamina a lil less wonky
+  ThePooba:
+  - balance: gchanged some nukeops gun prices

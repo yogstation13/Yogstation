@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "The Blah-Sucker and Ashtongue languages no longer conflict over the \",l\" prefix, as Ashtongue now uses \",a\""
