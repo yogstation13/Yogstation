@@ -313,22 +313,23 @@
 	if(!.)
 		return
 
-	var/datum/action/cooldown/spell/pointed/projectile/spit/spit_action = new(src)
+	if (locate(/datum/action/cooldown/spell/pointed/projectile/spit) in user.actions)
+		to_chat(user, "<B>You already have spit in your mouth!</B>")
+		return FALSE
 
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		var/hasHead = FALSE
+		var/mob/living/carbon/human/human_user = user
 
-		for(var/obj/item/bodypart/parts in H.bodyparts)
-			if(istype(parts, /obj/item/bodypart/head))
-				hasHead = TRUE
-
-		if(HAS_TRAIT(H, TRAIT_MIMING))//special spit action for mimes
-			spit_action = new /datum/action/cooldown/spell/pointed/projectile/spit/mime()
-
-		if(!hasHead)//Aint got no HEAD what da hell
+		if(!(human_user.get_bodypart(BODY_ZONE_HEAD)))
+			//Aint got no HEAD what da hell
 			to_chat(user,"<B>You try to spit but you have no head!</B>")
 			return FALSE
+
+	var/datum/action/cooldown/spell/pointed/projectile/spit/spit_action
+	if(HAS_TRAIT(user, TRAIT_MIMING))//special spit action for mimes
+		spit_action = new /datum/action/cooldown/spell/pointed/projectile/spit/mime(src)
+	else
+		spit_action = new /datum/action/cooldown/spell/pointed/projectile/spit(src)
 
 	spit_action.Grant(user)
 
