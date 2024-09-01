@@ -2,6 +2,7 @@
 	name = "corrections officer riot gear"
 	icon = 'monkestation/code/modules/blueshift/icons/unique/closet.dmi'
 	icon_state = "riot"
+	req_access = list(ACCESS_SECURITY)
 	door_anim_time = 0 //Somebody resprite or remove this 'riot' locker. It's evil.
 
 /obj/structure/closet/secure_closet/corrections_officer/PopulateContents()
