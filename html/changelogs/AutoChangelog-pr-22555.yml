@@ -1,6 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed clothes that don't cover legs breaking digitigrade legs"
-  - bugfix: "Fixed digitigrade legs making you permanently digitigrade after being removed"
-  - bugfix: "Fixed making a leg digitigrade or not after being attached not updating its owner"
