@@ -736,7 +736,15 @@
 		set_disabled(FALSE)
 
 /obj/item/bodypart/proc/set_digitigrade(use_digi = FALSE)
-	return
+	if(use_digitigrade == use_digi)
+		return
+	use_digitigrade = use_digi
+	if(!owner)
+		return
+	if(use_digi)
+		ADD_TRAIT(owner, TRAIT_DIGITIGRADE, REF(src))
+	else
+		REMOVE_TRAIT(owner, TRAIT_DIGITIGRADE, REF(src))
 
 ///Called when TRAIT_PARALYSIS is added to the limb.
 /obj/item/bodypart/proc/on_paralysis_trait_gain(obj/item/bodypart/source)
