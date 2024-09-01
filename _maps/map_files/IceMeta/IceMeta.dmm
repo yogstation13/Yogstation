@@ -273,12 +273,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
-"ady" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/mechbay)
 "adJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/light/small{
@@ -27963,9 +27957,6 @@
 /turf/open/floor/plasteel,
 /area/janitor)
 "ilv" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "ily" = (
@@ -30039,12 +30030,6 @@
 /obj/machinery/light_switch{
 	pixel_x = -23;
 	pixel_y = -2
-	},
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
@@ -59472,9 +59457,6 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/distro)
 "reD" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
 /obj/structure/sign/warning/nosmoking{
 	pixel_x = -28
 	},
@@ -59532,9 +59514,6 @@
 /area/ai_monitored/storage/satellite)
 "reY" = (
 /obj/machinery/mech_bay_recharge_port,
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
 /turf/open/floor/plating,
 /area/science/robotics/mechbay)
 "rfe" = (
@@ -71619,9 +71598,6 @@
 /turf/open/floor/plasteel,
 /area/engine/foyer)
 "uBx" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
@@ -83871,12 +83847,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"xOM" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/mechbay)
 "xOO" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -244776,8 +244746,8 @@ pex
 lkZ
 wXZ
 reD
-ady
-ady
+ilv
+ilv
 iNJ
 ilv
 tSS
@@ -245036,7 +245006,7 @@ reY
 eco
 dkB
 reY
-xOM
+ilv
 tSS
 lpq
 gIl

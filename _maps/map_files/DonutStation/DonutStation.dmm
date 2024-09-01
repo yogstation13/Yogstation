@@ -22399,6 +22399,9 @@
 	dir = 4;
 	network = list("ss13","Research")
 	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
 /turf/open/floor/circuit,
 /area/science/robotics/mechbay)
 "joZ" = (
@@ -32280,7 +32283,7 @@
 "nrZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/cable{
-	icon_state = "1-2"
+	icon_state = "1-8"
 	},
 /turf/open/floor/circuit,
 /area/science/robotics/mechbay)
@@ -32830,9 +32833,6 @@
 /area/maintenance/port/aft)
 "nGk" = (
 /obj/machinery/mech_bay_recharge_port,
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "nGL" = (
@@ -34128,9 +34128,6 @@
 /area/engine/engineering)
 "ofh" = (
 /obj/machinery/computer/mech_bay_power_console,
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "ofi" = (
@@ -35226,12 +35223,6 @@
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "oEp" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/science/robotics/mechbay)
@@ -38612,9 +38603,6 @@
 /obj/machinery/computer/mech_bay_power_console{
 	dir = 1
 	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "qda" = (
@@ -40575,12 +40563,6 @@
 "qRr" = (
 /obj/structure/cable{
 	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/mech_bay_recharge_floor,
