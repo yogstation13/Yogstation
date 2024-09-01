@@ -43,3 +43,16 @@
 	name = "The Walk-In Fridge"
 	desc = "Locked. Lopez sure runs a tight galley."
 	puzzle_id = "syndicate_fridge"
+
+// MONKESTATION EDIT START
+/obj/item/keycard/syndicate_suit_storage
+	name = "Heavy Operation Suit Storage"
+	desc = "A red keycard with an image of a skull. Using this will allow you to gain access to the Heavy Operation Suit Storage in Firebase Balthazord."
+	color = "#9c0e26"
+	puzzle_id = "syndicate_suit_storage"
+
+/obj/machinery/door/puzzle/keycard/syndicate_suit_storage
+	name = "Heavy Operation Suit Storage"
+	desc = "You heard legends of that suit. The Syndicate considers it overkill for most operations."
+	puzzle_id = "syndicate_suit_storage"
+// MONKESTATION EDIT STOP

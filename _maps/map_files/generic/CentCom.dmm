@@ -16274,8 +16274,9 @@
 /turf/open/floor/iron,
 /area/centcom/syndicate_mothership/control)
 "aQx" = (
-/turf/closed/indestructible/fakedoor{
-	name = "Sub-Laboratory Elevator"
+/obj/machinery/door/puzzle/keycard/syndicate_suit_storage,
+/turf/open/floor/iron/smooth_half{
+	dir = 4
 	},
 /area/centcom/syndicate_mothership/control)
 "aQy" = (
@@ -20282,6 +20283,24 @@
 	dir = 4
 	},
 /area/cruiser_dock)
+"hCF" = (
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lantern/syndicate{
+	pixel_x = 8;
+	pixel_y = 15
+	},
+/obj/item/ammo_box/magazine/plastikov9mm{
+	pixel_x = -8
+	},
+/obj/item/ammo_box/magazine/plastikov9mm{
+	pixel_x = -4
+	},
+/obj/item/ammo_box/magazine/plastikov9mm,
+/obj/item/ammo_box/magazine/plastikov9mm{
+	pixel_x = 4
+	},
+/turf/open/floor/catwalk_floor/iron_smooth,
+/area/centcom/syndicate_mothership/control)
 "hFg" = (
 /obj/effect/turf_decal/box/corners,
 /turf/open/floor/iron/dark/textured_large,
@@ -20422,6 +20441,17 @@
 "nhm" = (
 /turf/open/floor/iron/stairs/medium,
 /area/cruiser_dock)
+"nmt" = (
+/obj/structure/table/reinforced,
+/obj/item/tank/jetpack/oxygen/harness{
+	pixel_y = 10;
+	pixel_x = -2
+	},
+/obj/item/gun/ballistic/automatic/plastikov{
+	pixel_y = -3
+	},
+/turf/open/floor/catwalk_floor/iron_smooth,
+/area/centcom/syndicate_mothership/control)
 "npG" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 8
@@ -20584,6 +20614,15 @@
 "rdl" = (
 /turf/closed/indestructible/opsglass,
 /area/cruiser_dock)
+"rCN" = (
+/obj/machinery/light/small/directional/west,
+/obj/item/stack/cable_coil,
+/obj/item/tank/internals/emergency_oxygen/double{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/turf/open/floor/catwalk_floor/iron_smooth,
+/area/centcom/syndicate_mothership/control)
 "rHE" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 8
@@ -20632,6 +20671,11 @@
 /obj/structure/sign/poster/contraband/free_drone/directional/north,
 /turf/open/floor/iron/dark/textured_large,
 /area/cruiser_dock)
+"sNq" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/space/hardsuit/juggernaut,
+/turf/open/floor/catwalk_floor/iron_smooth,
+/area/centcom/syndicate_mothership/control)
 "sRv" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 1
@@ -20790,6 +20834,11 @@
 /obj/machinery/light/cold/directional/north,
 /turf/open/floor/iron/dark/textured_large,
 /area/cruiser_dock)
+"wul" = (
+/obj/item/storage/toolbox/syndicate,
+/obj/effect/decal/cleanable/oil/slippery,
+/turf/open/floor/catwalk_floor/iron_smooth,
+/area/centcom/syndicate_mothership/control)
 "wuw" = (
 /obj/structure/table,
 /obj/effect/spawner/random/food_or_drink/donkpockets{
@@ -22837,9 +22886,9 @@ aCp
 aCp
 aOd
 aku
-ark
-ark
-ark
+nmt
+sNq
+rCN
 aPL
 avM
 aUe
@@ -23094,9 +23143,9 @@ avL
 avu
 aHg
 aku
+hCF
 ark
-ark
-ark
+wul
 aPL
 ajG
 acX

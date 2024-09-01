@@ -41,3 +41,14 @@
 	energy = 40
 	fire = 75
 	wound = 20
+
+/datum/armor/hardsuit/juggernaut
+	melee = 80
+	bullet = 80
+	laser = 50
+	energy = 60
+	fire = 100
+	wound = 25
+	acid = 100
+	bomb = 100
+
