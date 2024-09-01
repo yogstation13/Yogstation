@@ -1,0 +1,7 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes a runtime caused by the default fire handler not having an id"
+  - tweak: "Regular rain is now more common (still less than acid rain)"
+  - imageadd: "Added displacement map sprite"
+  - imagedel: "Deleted old unused acid rain animation"
