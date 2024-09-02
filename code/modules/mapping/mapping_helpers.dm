@@ -105,12 +105,12 @@
 	if(!mapload)
 		log_mapping("[src] spawned outside of mapload!")
 		return
+
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 	if(!airlock)
 		log_mapping("[src] failed to find an airlock at [AREACOORD(src)]")
 	else
 		payload(airlock)
-	qdel(src)
 
 /obj/effect/mapping_helpers/airlock/LateInitialize()
 	. = ..()
@@ -118,6 +118,8 @@
 	if(!airlock)
 		qdel(src)
 		return
+	if(airlock.cyclelinkedx || airlock.cyclelinkedy)
+		airlock.cyclelinkairlock_target()
 	if(airlock.cyclelinkeddir)
 		airlock.cyclelinkairlock()
 	if(airlock.closeOtherId)
@@ -131,9 +133,11 @@
 					qdel(FD)
 				for(var/turf/closed/T in range(2, src))
 					here.place_on_top(T.type)
+					qdel(airlock)
 					qdel(src)
 					return
 				here.place_on_top(/turf/closed/wall)
+				qdel(airlock)
 				qdel(src)
 				return
 			if(10 to 11)
@@ -145,7 +149,7 @@
 				airlock.welded = TRUE
 			if(24 to 30)
 				airlock.panel_open = TRUE
-	update_appearance()
+	airlock.update_appearance()
 	qdel(src)
 
 /obj/effect/mapping_helpers/airlock/proc/payload(obj/machinery/door/airlock/payload)

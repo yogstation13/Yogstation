@@ -18340,7 +18340,6 @@
 /obj/machinery/door/airlock/external{
 	name = "Shipbreaking External Access"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plating,
 /area/escapepodbay)
 "hAf" = (
@@ -24480,7 +24479,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
 "kfk" = (
@@ -42155,7 +42153,6 @@
 /obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plating,
 /area/escapepodbay)
 "rAR" = (
@@ -52571,6 +52568,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/disposalpipe/segment,
+/obj/effect/mapping_helpers/airlock/access/all/medical/cmo,
 /turf/open/floor/plasteel/cafeteria,
 /area/medical/medbay/central)
 "vQv" = (

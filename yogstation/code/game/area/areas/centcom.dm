@@ -5,7 +5,7 @@
 	blob_allowed = FALSE
 	requires_power = FALSE
 	has_gravity = TRUE
-	noteleport = TRUE
+	area_flags = NOTELEPORT
 	flags_1 = NONE
 	ambience_index = AMBIENCE_DANGER
 
@@ -28,6 +28,5 @@
 	icon_state = "execution_room"
 	blob_allowed = FALSE
 	has_gravity = TRUE
-	noteleport = TRUE
 	flags_1 = NONE
 	area_flags = NOTELEPORT

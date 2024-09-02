@@ -79,14 +79,14 @@
 /obj/item/gun/energy/e_gun/dragnet/AltClick(mob/living/user) //stolen from hand teleporter code
 	var/turf/current_location = get_turf(user)//What turf is the user on?
 	var/area/current_area = current_location.loc
-	if(!current_location || current_area.noteleport || is_away_level(current_location.z) || !isturf(user.loc))//If turf was not found or they're on z level 2 or >7 which does not currently exist. or if user is not located on a turf
+	if(!current_location || (current_area.area_flags & NOTELEPORT) || is_away_level(current_location.z) || !isturf(user.loc))//If turf was not found or they're on z level 2 or >7 which does not currently exist. or if user is not located on a turf
 		to_chat(user, span_notice("\The [src] isn't capable of locking a beacon from here."))
 		return
 	var/list/L = list(  )
 	for(var/obj/machinery/computer/teleporter/com in GLOB.machines)
 		if(com.target)
 			var/area/A = get_area(com.target)
-			if(!A || A.noteleport)
+			if(!A || (A.area_flags & NOTELEPORT))
 				continue
 			if(com.power_station && com.power_station.teleporter_hub && com.power_station.engaged)
 				L["[get_area(com.target)] (Active)"] = com.target
@@ -102,12 +102,12 @@
 	else
 		var/obj/item/beacon/T = L[t1]
 		var/area/A = get_area(T)
-		if(A.noteleport)
+		if(A.area_flags & NOTELEPORT)
 			to_chat(user, span_notice("\The [src] is malfunctioning."))
 			return
 		current_location = get_turf(user)	//Recheck.
 		current_area = current_location.loc
-		if(!current_location || current_area.noteleport || is_away_level(current_location.z) || !isturf(user.loc))//If turf was not found or they're on z level 2 or >7 which does not currently exist. or if user is not located on a turf
+		if(!current_location || (current_area.area_flags & NOTELEPORT) || is_away_level(current_location.z) || !isturf(user.loc))//If turf was not found or they're on z level 2 or >7 which does not currently exist. or if user is not located on a turf
 			to_chat(user, span_notice("\The [src] isn't capable of locking a beacon from here."))
 			return
 		teletarget = T

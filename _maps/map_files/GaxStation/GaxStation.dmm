@@ -16435,7 +16435,6 @@
 /obj/machinery/door/airlock/external{
 	name = "Shipbreaking External Access"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plating,
 /area/escapepodbay)
 "hGw" = (
@@ -22608,7 +22607,6 @@
 /obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plating,
 /area/escapepodbay)
 "kMo" = (
@@ -26154,7 +26152,6 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
 "mwk" = (

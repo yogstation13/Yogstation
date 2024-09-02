@@ -34,7 +34,7 @@
 	var/turf/T = get_turf(target)
 	var/area/AU = get_area(user)
 	var/area/AT = get_area(T)
-	if(AT.noteleport || AU.noteleport)
+	if((AT.area_flags & NOTELEPORT) || (AU.area_flags & NOTELEPORT))
 		return
 	if(target in view(user.client.view, get_turf(user)))
 		var/obj/spot1 = new phaseout(get_turf(user), user.dir)

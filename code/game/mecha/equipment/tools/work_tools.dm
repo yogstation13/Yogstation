@@ -51,8 +51,6 @@
 	tool_behaviour = 0
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/action(atom/target, mob/living/user, params)
-	if(!action_checks(target))
-		return
 	if(!cargo_holder)
 		return
 	
@@ -133,8 +131,6 @@
 	real_clamp = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill/action(atom/target, mob/living/user, params)
-	if(!action_checks(target))
-		return
 	if(!cargo_holder)
 		return
 	if(isobj(target))
@@ -220,9 +216,6 @@
 	reagents.add_reagent(/datum/reagent/firefighting_foam, 1000)
 
 /obj/item/mecha_parts/mecha_equipment/extinguisher/action(atom/target) //copypasted from extinguisher. TODO: Rewrite from scratch.
-	if(!action_checks(target))
-		return
-
 	if(istype(target, /obj/structure/reagent_dispensers/foamtank) && get_dist(chassis,target) <= 1)
 		var/obj/structure/reagent_dispensers/WT = target
 		WT.reagents.trans_to(src, 1000)
@@ -488,8 +481,6 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/cable_layer/action(obj/item/stack/cable_coil/target)
-	if(!action_checks(target))
-		return
 	if(istype(target) && target.amount)
 		var/cur_amount = cable? cable.amount : 0
 		var/to_load = max(max_cable - cur_amount,0)

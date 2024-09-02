@@ -204,7 +204,7 @@
 		if(T.is_transition_turf())
 			continue // Avoid picking these.
 		var/area/A = T.loc
-		if(!A.noteleport)
+		if(!(A.area_flags & NOTELEPORT))
 			posturfs.Add(T)
 	return posturfs
 

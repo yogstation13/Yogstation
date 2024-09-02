@@ -12,9 +12,14 @@
 	energy_drain = 1000
 	range = MECHA_RANGED
 
+/obj/item/mecha_parts/mecha_equipment/teleporter/action_checks(atom/target)
+	var/area/start_area = get_area(chassis)
+	var/area/end_area = get_area(target)
+	if((start_area.area_flags|end_area.area_flags) & NOTELEPORT)
+		return FALSE
+	return ..()
+
 /obj/item/mecha_parts/mecha_equipment/teleporter/action(atom/target)
-	if(!action_checks(target) || is_centcom_level(loc.z))
-		return
 	var/turf/T = get_turf(target)
 	if(T)
 		do_teleport(chassis, T, 4, channel = TELEPORT_CHANNEL_BLUESPACE)
@@ -32,10 +37,14 @@
 	energy_drain = 300
 	range = MECHA_RANGED
 
+/obj/item/mecha_parts/mecha_equipment/wormhole_generator/action_checks(atom/target)
+	var/area/start_area = get_area(chassis)
+	var/area/end_area = get_area(target)
+	if((start_area.area_flags|end_area.area_flags) & NOTELEPORT)
+		return FALSE
+	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/wormhole_generator/action(atom/target)
-	if(!action_checks(target) || is_centcom_level(loc.z))
-		return
 	var/list/theareas = get_areas_in_range(100, chassis)
 	if(!theareas.len)
 		return
@@ -82,8 +91,6 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/gravcatapult/action(atom/movable/target, mob/living/user, params)
-	if(!action_checks(target))
-		return
 	var/list/modifiers = params2list(params)
 	if(modifiers[RIGHT_CLICK])
 		if(locked)

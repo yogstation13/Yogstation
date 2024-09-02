@@ -1412,7 +1412,7 @@
 	var/turf/T = get_turf(target)
 	var/area/AU = get_area(owner)
 	var/area/AT = get_area(T)
-	if(AT.noteleport || AU.noteleport)
+	if((AT.area_flags & NOTELEPORT) || (AU.area_flags & NOTELEPORT))
 		owner.balloon_alert(owner, "can't teleport there!")
 		return FALSE
 	return TRUE
