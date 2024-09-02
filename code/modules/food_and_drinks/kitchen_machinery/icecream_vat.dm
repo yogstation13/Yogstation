@@ -277,15 +277,15 @@
 		//Warn about full capacity
 		user.balloon_alert(user, "No space!")
 
-/obj/machinery/icecream_vat/proc/storage_container(obj/item/target_container, mob/user = usr)
+/obj/machinery/icecream_vat/proc/storage_container(obj/item/storage/box/ice_cream_carton/target_container, mob/user = usr)
 	var/end_message = "[user] empties the [target_container] into [src]."
 	var/end_self_message = "You empty the [target_container] into [src]."
 	//Check to see if it is empty
 	if(target_container.contents.len > 0 && contents.len < storage_capacity)
-		//Hide carton's storage UI to prevent ghost scoop bug
+		//Hide container's storage UI to prevent ghost scoop bug
 		SEND_SIGNAL(target_container, COMSIG_TRY_STORAGE_HIDE_FROM, user)
 		//Loop through all contents
-		for(var/obj/item/reagent_containers/food/snacks/ice_cream_scoop/carton_item in target_container)
+		for(var/obj/item/reagent_containers/food/snacks/carton_item in target_container)
 			//Transfer items one at a time
 			carton_item.forceMove(src)
 			if(contents.len >= storage_capacity)
@@ -294,8 +294,8 @@
 					end_message = "[user] empties the [target_container] into [src], filling it to its capacity."
 					end_self_message = "You empty the [target_container] into [src], filling it to its capacity."
 				else
-					end_message = "[user] fills [src] to its capacity, with some ice cream still in the [target_container]."
-					end_self_message = "You fill [src] to its capacity, with some ice cream still in the [target_container]."
+					end_message = "[user] fills [src] to its capacity, with some [target_container.contents_type] still in the [target_container]."
+					end_self_message = "You fill [src] to its capacity, with some [target_container.contents_type] still in the [target_container]."
 				break
 
 		user.visible_message(span_notice(end_message), span_notice(end_self_message))
@@ -304,7 +304,7 @@
 		return
 	else
 		if(target_container.contents.len == 0)
-			user.balloon_alert(user, "Carton empty!")
+			user.balloon_alert(user, "[target_container.contents_type] empty!")
 		else
 			user.balloon_alert(user, "Vat full!")
 		return
