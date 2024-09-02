@@ -1379,18 +1379,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"adK" = (
-/obj/machinery/door/airlock/external,
-/obj/machinery/atmospherics/pipe/layer_manifold,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/atmos,
-/turf/open/floor/plating,
-/area/engine/atmos)
 "adL" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 10
@@ -16341,21 +16329,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"aQi" = (
-/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/advanced_airlock_controller{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/engine/atmos)
 "aQk" = (
 /obj/machinery/door/airlock/mining/glass{
 	name = "Cargo Office"
@@ -23615,6 +23588,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"peQ" = (
+/obj/machinery/door/airlock/external,
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/atmos,
+/turf/open/floor/plating,
+/area/engine/atmos)
 "pgb" = (
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
@@ -24260,6 +24242,18 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
+"rXr" = (
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/advanced_airlock_controller{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/engine/atmos)
 "rYi" = (
 /turf/open/floor/plating,
 /area/space)
@@ -112063,8 +112057,8 @@ akI
 aZO
 aqE
 als
-aQi
-adK
+rXr
+peQ
 afl
 afl
 aXT
