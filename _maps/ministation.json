@@ -18,5 +18,39 @@
 			"Down": true,
 			"Baseturf": "/turf/open/openspace"
 		}
-	]
+	],
+	"job_changes": {
+		"Psychiatrist": {
+			"spawn_positions": 0,
+			"total_positions": 0
+		},
+		"Artist": {
+			"spawn_positions": 0,
+			"total_positions": 0
+		},
+		"Lawyer": {
+			"spawn_positions": 0,
+			"total_positions": 0
+		},
+		"Brig Physician": {
+			"spawn_positions": 0,
+			"total_positions": 0
+		},
+		"Clerk": {
+			"spawn_positions": 0,
+			"total_positions": 0
+		},
+		"Paramedic": {
+			"spawn_positions": 0,
+			"total_positions": 0
+		},
+		"Cook": {
+			"spawn_positions": 1,
+			"total_positions": 1
+		},
+		"Chemist": {
+			"spawn_positions": 1,
+			"total_positions": 1
+		}
+	}
 }
