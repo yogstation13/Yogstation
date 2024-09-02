@@ -33,9 +33,6 @@
 	return projectiles_per_shot
 
 /obj/item/mecha_parts/mecha_equipment/weapon/action(atom/target, mob/living/user, params)
-	if(!action_checks(target))
-		return 0
-
 	var/turf/curloc = get_turf(chassis)
 	var/turf/targloc = get_turf(target)
 	if (!targloc || !istype(targloc) || !curloc)
@@ -240,8 +237,6 @@
 	return 0
 
 /obj/item/mecha_parts/mecha_equipment/weapon/honker/action(target, params)
-	if(!action_checks(target))
-		return
 	playsound(chassis, 'sound/items/airhorn.ogg', 100, 1)
 	chassis.occupant_message("<font color='red' size='5'>HONK</font>")
 	for(var/mob/living/carbon/M in ohearers(6, chassis))
@@ -452,8 +447,6 @@
 	var/diags_first = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/action(target)
-	if(!action_checks(target))
-		return
 	var/obj/O = new projectile(chassis.loc)
 	playsound(chassis, fire_sound, 50, 1)
 	log_message("Launched a [O.name] from [name], targeting [target].", LOG_MECHA)

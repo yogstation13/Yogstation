@@ -132,3 +132,10 @@
 	id = "wampacave"
 	description = "A cave inhabited by a strange monster, with an unfortunate hero..."
 	suffix = "icemoon_underground_wampacave.dmm"
+
+/datum/map_template/ruin/icemoon/underground/alienlab
+	name = "Alien Lab"
+	id = "alienlab"
+	description = "An abandoned abductor labaratory that reeks of iron."
+	suffix = "icemoon_underground_alien_lab.dmm"
+

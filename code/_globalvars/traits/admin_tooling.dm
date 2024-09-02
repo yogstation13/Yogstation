@@ -4,7 +4,6 @@
 
 GLOBAL_LIST_INIT(admin_visible_traits, list(
 	/atom/movable = list(
-		"TRAIT_ASHSTORM_IMMUNE" = TRAIT_ASHSTORM_IMMUNE,
 		"TRAIT_RUNECHAT_HIDDEN" = TRAIT_RUNECHAT_HIDDEN,
 	),
 	/mob = list(

@@ -169,7 +169,6 @@
 
 /area/shuttle/escape/arena
 	name = "The Arena"
-	noteleport = TRUE
 	area_flags = NOTELEPORT
 
 /area/shuttle/escape/meteor
@@ -203,12 +202,12 @@
 /area/shuttle/syndicate_scout
 	name = "Syndicate Scout"
 	blob_allowed = FALSE
-	noteleport = TRUE
+	area_flags = NOTELEPORT
 
 /area/shuttle/caravan
 	blob_allowed = FALSE
 	requires_power = TRUE
-	noteleport = TRUE
+	area_flags = NOTELEPORT
 
 /area/shuttle/caravan/syndicate1
 	name = "Syndicate Fighter"

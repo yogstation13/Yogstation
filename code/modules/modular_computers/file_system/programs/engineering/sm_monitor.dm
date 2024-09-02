@@ -128,11 +128,14 @@
 		if(!air)
 			active = null
 			return
-		if(active.corruptor_attached)
-			data_corrupted = TRUE
 
 		data["active"] = TRUE
-		if(data_corrupted) //yes it goes negative, that's even more funny
+		data["powerData"] = active.powerData
+		data["radsData"] = active.radsData
+		data["tempData"] = active.tempData
+		data["kpaData"] = active.kpaData
+		data["molesData"] = active.molesData
+		if(active.corruptor_attached) //yes it goes negative, that's even more funny
 			data["SM_integrity"] = active.get_fake_integrity()
 			data["SM_power"] = active.power + round((rand()-0.5)*12000,1) 
 			data["SM_radiation"] = active.last_rads + round((rand()-0.5)*12000,1) 

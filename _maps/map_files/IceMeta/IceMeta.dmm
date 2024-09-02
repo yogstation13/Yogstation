@@ -273,12 +273,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
-"ady" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/mechbay)
 "adJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/light/small{
@@ -10499,6 +10493,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science/research)
+"ddW" = (
+/obj/machinery/stasis{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_x = -31;
+	pixel_y = 0
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "deg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer2{
 	dir = 8
@@ -13455,7 +13462,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/auto_name/west,
+/obj/machinery/power/apc/auto_name/west{
+	pixel_x = -25
+	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "dWi" = (
@@ -14174,8 +14183,8 @@
 	name = "Door Bolt Control";
 	normaldoorcontrol = 1;
 	pixel_y = -25;
-	specialfunctions = 4;
-	req_access = list("brig")
+	req_access = list("brig");
+	specialfunctions = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -14790,8 +14799,8 @@
 	name = "Cell Window Control";
 	pixel_x = -5;
 	pixel_y = -3;
-	specialfunctions = 4;
-	req_access = list("brig")
+	req_access = list("brig");
+	specialfunctions = 4
 	},
 /obj/machinery/button/door{
 	id = "briglockdown";
@@ -21963,9 +21972,6 @@
 /obj/item/radio/intercom{
 	pixel_y = 20
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
 /turf/open/floor/circuit/green,
 /area/science/robotics/mechbay)
 "gxe" = (
@@ -22497,9 +22503,6 @@
 "gFq" = (
 /obj/machinery/computer/mech_bay_power_console{
 	dir = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
 	},
 /turf/open/floor/circuit,
 /area/science/robotics/mechbay)
@@ -23712,8 +23715,8 @@
 	name = "Cell Window Control";
 	pixel_x = 5;
 	pixel_y = 27;
-	specialfunctions = 4;
-	req_access = list("security")
+	req_access = list("security");
+	specialfunctions = 4
 	},
 /obj/machinery/button/door{
 	id = "briglockdown";
@@ -27948,9 +27951,6 @@
 /turf/open/floor/plasteel,
 /area/janitor)
 "ilv" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "ily" = (
@@ -30024,12 +30024,6 @@
 /obj/machinery/light_switch{
 	pixel_x = -23;
 	pixel_y = -2
-	},
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
@@ -37414,7 +37408,6 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Shipbreaking Bay"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
 "kQR" = (
@@ -44536,10 +44529,9 @@
 /obj/effect/turf_decal/bot,
 /obj/machinery/button/door{
 	id = "Podbaydoor";
+	name = "Shipbreaking External Control";
 	pixel_x = 24;
-	pixel_y = -1;
-	req_access = list("external_airlocks");
-	name = "Shipbreaking External Control"
+	pixel_y = -1
 	},
 /turf/open/floor/plasteel/dark,
 /area/escapepodbay)
@@ -57044,8 +57036,8 @@
 /area/hallway/primary/fore)
 "quD" = (
 /obj/machinery/firealarm{
-	pixel_y = 38;
-	dir = 1
+	dir = 1;
+	pixel_y = 38
 	},
 /obj/machinery/computer/ai_server_console,
 /turf/open/floor/plasteel/grimy,
@@ -59459,9 +59451,6 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/distro)
 "reD" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
 /obj/structure/sign/warning/nosmoking{
 	pixel_x = -28
 	},
@@ -59519,9 +59508,6 @@
 /area/ai_monitored/storage/satellite)
 "reY" = (
 /obj/machinery/mech_bay_recharge_port,
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
 /turf/open/floor/plating,
 /area/science/robotics/mechbay)
 "rfe" = (
@@ -62654,7 +62640,9 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "san" = (
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -62933,10 +62921,9 @@
 /obj/structure/closet/emcloset,
 /obj/machinery/button/door{
 	id = "Podbaydoor";
+	name = "Shipbreaking External Control";
 	pixel_x = -24;
-	pixel_y = -1;
-	req_access = list("external_airlocks");
-	name = "Shipbreaking External Control"
+	pixel_y = -1
 	},
 /obj/machinery/light,
 /turf/open/floor/plasteel,
@@ -68554,15 +68541,13 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "tIJ" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Podbay Maintenence"
-	},
+/obj/machinery/door/airlock/maintenance,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
 "tIS" = (
@@ -71607,9 +71592,6 @@
 /turf/open/floor/plasteel,
 /area/engine/foyer)
 "uBx" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
@@ -76295,15 +76277,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"vQu" = (
-/obj/machinery/stasis{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "vQC" = (
 /obj/effect/landmark/blobstart,
 /obj/effect/turf_decal/stripes/line{
@@ -83868,12 +83841,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"xOM" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/mechbay)
 "xOO" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -238082,7 +238049,7 @@ qGE
 kQb
 npj
 lMl
-vQu
+ddW
 lMl
 jxS
 saz
@@ -244773,8 +244740,8 @@ pex
 lkZ
 wXZ
 reD
-ady
-ady
+ilv
+ilv
 iNJ
 ilv
 tSS
@@ -245033,7 +245000,7 @@ reY
 eco
 dkB
 reY
-xOM
+ilv
 tSS
 lpq
 gIl
