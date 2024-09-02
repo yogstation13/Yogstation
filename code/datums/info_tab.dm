@@ -13,7 +13,7 @@
 
 /datum/info_tab/icecream_vat/restocking
 	section = "Restocking"
-	section_text = "o	The ice cream vat can be restocked with new ice cream scoops and cones by left-clicking on the vat with said item. The vat can also be restocked by left-clicking on the vat with an ice cream carton or a cone box. Doing so will transfer its contents into the vat."
+	section_text = "The ice cream vat can be restocked with new ice cream scoops and cones by left-clicking on the vat with said item. The vat can also be restocked by left-clicking on the vat with an ice cream carton or a cone box. Doing so will transfer its contents into the vat."
 
 /datum/info_tab/icecream_vat/storage_capacity
 	section = "Storage Capacity"
