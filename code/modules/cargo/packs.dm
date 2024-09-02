@@ -2445,7 +2445,7 @@
 	crate_name = "sweet ice cream crate"
 
 /datum/supply_pack/organic/special_ice_cream
-	name = "Big Top Ice Cream Classics Crate"
+	name = "Big Top Ice Cream Special Crate"
 	desc = "A crate with the special flavors of blue, lemon, and meat."
 	cost = 600
 	contains = list(/obj/item/storage/box/ice_cream_carton/blue,
