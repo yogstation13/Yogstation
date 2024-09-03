@@ -241,3 +241,16 @@
 	gold_core_spawnable = NO_SPAWN
 	ai_controller = /datum/ai_controller/basic_controller/
 	ckeywhitelist = list("Bluedragon66")
+
+
+/mob/living/basic/pet/darkscug
+	name = "night slugcat"
+	desc = "ITS A FUGGIN SCRUG"
+	icon = 'icons/mob/simple/slugcats.dmi'
+	icon_state = "scug_nightcat"
+	icon_living = "scug_nightcat"
+	icon_dead = "scug_dead_nightcat"
+	icon_gib = null
+	gold_core_spawnable = NO_SPAWN
+	ai_controller = /datum/ai_controller/basic_controller/
+	ckeywhitelist = list("CaptainShiba")

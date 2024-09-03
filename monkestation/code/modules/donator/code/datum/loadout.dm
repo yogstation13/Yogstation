@@ -566,6 +566,20 @@
 	donator_only = TRUE
 	requires_purchase = FALSE
 
+
+//CaptainShiba
+/datum/loadout_item/effects/darkscug
+    ckeywhitelist = list("CaptainShiba")
+    name = "Nightcat Transformation"
+    item_path = /obj/item/effect_granter/donator/darkscug
+    requires_purchase = FALSE
+
+/datum/loadout_item/pocket_items/donator/darkscug
+	name = "Pet Delivery Beacon - Nightcat"
+	item_path = /obj/item/choice_beacon/pet/donator/darkscug
+	donator_only = TRUE
+	requires_purchase = FALSE
+	ckeywhitelist = list("CaptainShiba")
 //NoobskyBoi
 /datum/loadout_item/head/noobskyboi_golden_tophat
 	name = "Golden Tophat"

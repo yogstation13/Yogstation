@@ -95,3 +95,8 @@
 	name = "fluffy kobold"
 	default_name = "fluffy kobold"
 	donator_pet = 	/mob/living/basic/pet/fluffykobold
+
+/obj/item/choice_beacon/pet/donator/darkscug
+	name = "night slugcat"
+	default_name ="night slugcat"
+	donator_pet = 	/mob/living/basic/pet/darkscug
