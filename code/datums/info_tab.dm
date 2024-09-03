@@ -17,7 +17,7 @@
 
 /datum/info_tab/icecream_vat/storage_capacity
 	section = "Storage Capacity"
-	section_text = "The ice cream vat has a storage capacity of 120 scoops and cones combined."
+	section_text = "The ice cream vat has a storage capacity of 80 scoops and cones combined. This can be increased by upgrading its matter bin."
 
 /datum/info_tab/icecream_vat/new_scoops
 	section = "Creating New Scoops"

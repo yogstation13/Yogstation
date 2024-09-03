@@ -8,12 +8,15 @@
 	use_power = NO_POWER_USE
 	layer = BELOW_OBJ_LAYER
 	max_integrity = 300
+	component_parts = list( new /obj/item/stock_parts/matter_bin,
+							new /obj/item/circuitboard/machine/icecream_vat)
+	circuit = /obj/item/circuitboard/machine/icecream_vat
 	//Ice cream to be dispensed into cone on attackby
 	var/selected_scoop = null
 	//Cone to be dispensed with alt click
 	var/selected_cone = null
 	//Max amount of items that can be in vat's storage
-	var/storage_capacity = 120
+	var/storage_capacity = 80
 	//If it starts empty or not
 	var/start_empty = FALSE
 	//Sound made when an item is dispensed
@@ -37,6 +40,7 @@
 		/obj/item/reagent_containers/food/snacks/ice_cream_cone/cake,
 		/obj/item/reagent_containers/food/snacks/ice_cream_cone/chocolate)
 	//Please don't add anything other than scoops or cones to the list or it could/maybe/possibly/definitely break it	
+	//If adding new items to the list: INCREASE STORAGE_CAPACITY TO ACCOUNT FOR ITEM!!
 
 /obj/machinery/icecream_vat/ui_interact(mob/user, datum/tgui/ui) //Thanks bug eating lizard for helping me with the UI
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -51,6 +55,7 @@
 	data["cones"] = list()
 	data["ice_cream"] = list()
 	data["tabs"] = list()
+	data["storage"] = list()
 
 	//Loop through starting list for data to send to main tab
 	for(var/item_detail in ui_list)
@@ -94,6 +99,10 @@
 		//Add info to data
 		data["info_tab"] += list(details)
 
+	//Get content and capacity data
+	data["contents_length"] = contents.len
+	data["storage_capacity"] = storage_capacity
+
 	//Send stored information to UI	
 	return data
 
@@ -129,6 +138,11 @@
 			//Add amount of items to the list depending on type
 			for(var/i in 1 to loop_cycles)
 				new item(src)
+
+/obj/machinery/icecream_vat/RefreshParts()
+	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
+		//Capacity increases by 25 per item rating above T1
+		storage_capacity = initial(storage_capacity) + ( 25 * (B.rating - 1))
 
 /obj/machinery/icecream_vat/examine(mob/user)
 	. = ..()
@@ -174,6 +188,18 @@
 	//Adding carton contents to storage
 	else if(istype(A, /obj/item/storage/box/ice_cream_carton))
 		storage_container(A)
+
+	if(default_deconstruction_screwdriver(user, icon_state, icon_state, A))
+		if(panel_open)
+			add_overlay("[initial(icon_state)]_panel")
+		else
+			cut_overlay("[initial(icon_state)]_panel")
+		updateUsrDialog()
+		return
+
+	if(default_deconstruction_crowbar(A))
+		updateUsrDialog()
+		return
 
 	..()
 
@@ -425,6 +451,9 @@
 					final_string += " and [find_amount(target_name = search_name, target_list = scoops)] [search_name]s"
 
 	return final_string
+
+/obj/machinery/icecream_vat/empty
+	start_empty = TRUE
 
 ///////////////////
 //ICE CREAM CONES//
