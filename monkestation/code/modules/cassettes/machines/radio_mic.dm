@@ -11,6 +11,7 @@
 	density = TRUE
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE
+	pass_flags_self = parent_type::pass_flags_self | LETPASSCLICKS
 
 	/// overlay when speaker is on
 	overlay_speaker_idle = null
