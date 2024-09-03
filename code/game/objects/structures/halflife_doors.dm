@@ -1,3 +1,6 @@
+/obj/structure/mineral_door/halflife
+	icon = 'icons/obj/doors/mineral_doors.dmi'
+
 /obj/structure/mineral_door/halflife/wood
 	name = "wood door"
 	icon_state = "wood"
@@ -17,5 +20,12 @@
 /obj/structure/mineral_door/halflife/wood/crowbar_act(mob/living/user, obj/item/I)
 	return crowbar_door(user, I)
 
+/obj/structure/mineral_door/halflife/wood/room
+	icon_state = "room"
+
+/obj/structure/mineral_door/halflife/wood/house
+	icon_state = "house"
+
 /obj/structure/mineral_door/halflife/metal
 	name = "metal door"
+	icon_state = "store"

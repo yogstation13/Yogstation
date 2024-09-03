@@ -18,3 +18,11 @@
 	light_power = 0.1
 	light_range = 2
 	light_color = COLOR_STARLIGHT
+
+/area/halflife/indoors
+	name = "\improper Indoors"
+	icon_state = "away"
+
+/area/halflife/indoors/sewer
+	name = "\improper Sewer"
+	icon_state = "away"
