@@ -20,6 +20,7 @@
 	var/prox_check = TRUE //If the emag requires you to be in range
 	var/type_blacklist //List of types that require a specialized emag
 
+
 /obj/item/card/emag/attack_self(mob/user) //for traitors with balls of plastitanium
 	if(Adjacent(user))
 		user.visible_message(span_notice("[user] shows you: [icon2html(src, viewers(user))] [name]."), span_notice("You show [src]."))
@@ -73,8 +74,37 @@
 	. |= AFTERATTACK_PROCESSED_ITEM
 	if(!can_emag(target, user))
 		return
-	log_combat(user, A, "attempted to emag")
-	A.emag_act(user, src)
+	// monkestation start: microwavable emags
+	if(istype(target, /obj/machinery/microwave))
+		return
+	if (microwaved)
+		if (microwaved_uses_left <= 0)
+			to_chat(user, span_warning("the components [src] starts glowing a bright orange, before the capacitors erupt in a violent explosion!"))
+			to_chat(user, span_notice("How this small thing could have had this large of an explosion is byond you."))
+			A.emp_act(EMP_HEAVY)
+			explosion(src, heavy_impact_range = 0, light_impact_range = 3)
+			log_combat(user, A, "attempted to emag with microwaved emag, emag exploded")
+			if(!QDELETED(src)) //to check if the explosion killed it before we try to delete it
+				qdel(src)
+			return .
+		else
+			A.emp_act(EMP_LIGHT)
+		if (microwaved_uses_left == 1)
+			desc += " The capacitors are leaking."
+			to_chat(user, span_warning("the components on [src] start glowing a burning orange!"))
+			to_chat(user, span_warning("[src] feels way too hot to hold in your hand, and you fumble it on to the floor."))
+			user.dropItemToGround(src)
+			icon_state = "[icon_state]_glow"
+			src.visible_message(span_notice("[user] fumbles [src] and drops it on the ground, a glow fading from hot orange to dim red."))
+		else
+			flick("[icon_state]_spark", src)
+			to_chat(user, span_warning(pick(list("[src] sparks in your hand!", "The components on [src] start glowing!",))))
+		microwaved_uses_left--
+		log_combat(user, A, "attempted to emag with microwaved emag")
+	else
+	// monkestation end
+		log_combat(user, A, "attempted to emag")
+		A.emag_act(user, src)
 
 /obj/item/card/emag/proc/can_emag(atom/target, mob/user)
 	for (var/subtypelist in type_blacklist)
