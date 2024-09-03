@@ -43,10 +43,19 @@
 
 /obj/item/clothing/under/citizen
 	name = "citizen jumpsuit"
-	desc = "Full-body blue suit for the common citizen."
-	icon_state = "rsecurity"
+	desc = "Full-body blue suit for the common citizen. Uses sensors to allow the combine to track you."
+	icon_state = "citizenblue"
 	item_state = "r_suit"
 	can_adjust = FALSE
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
-	worn_icon = 'icons/mob/clothing/uniform/security.dmi'
+	worn_icon = 'icons/mob/clothing/uniform/halflife.dmi'
+
+/obj/item/clothing/under/citizen/refugee
+	name = "citizen jumpsuit"
+	desc = "Jeans and a t-shirt, free of any suit sensors the combine may use to track you."
+	icon_state = "refugee"
+	item_state = "r_suit"
+	can_adjust = FALSE
+	has_sensor = NO_SENSORS
+	worn_icon = 'icons/mob/clothing/uniform/halflife.dmi'
