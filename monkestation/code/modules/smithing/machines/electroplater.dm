@@ -1,6 +1,6 @@
 /obj/machinery/electroplater
 	name = "arc electroplater"
-	desc = "An industrial electroplater, using electricity it can coat basically anything in the given materials."
+	desc = "An industrial electroplater, using electricity it can coat basically anything in the given materials;adding it's traits to the item."
 
 	icon_state = "plater0"
 	icon = 'goon/icons/matsci.dmi'
@@ -9,9 +9,9 @@
 	density = TRUE
 
 	idle_power_usage = 10
-	active_power_usage = 3000
-	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	circuit = null
+	active_power_usage = 2000
+	resistance_flags = LAVA_PROOF | FIRE_PROOF
+	circuit = /obj/item/circuitboard/machine/electroplater
 
 	light_outer_range = 2
 	light_power = 1.5
@@ -34,6 +34,11 @@
 
 /obj/machinery/electroplater/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
+	if(held_item)
+		if(held_item.tool_behaviour == TOOL_WRENCH && !plating)
+			context[SCREENTIP_CONTEXT_LMB] = "Toggle Anchored."
+		if(held_item.tool_behaviour == TOOL_CROWBAR && !plating && !anchored)
+			context[SCREENTIP_CONTEXT_LMB] = "Deconstruct."
 	if((isstack(held_item) || istype(held_item, /obj/item/merged_material)) && !stored_material)
 		context[SCREENTIP_CONTEXT_LMB] = "Add Material Plate."
 	if(stored_material && held_item)
@@ -79,6 +84,16 @@
 		return
 	return ..()
 
+/obj/machinery/electroplater/attackby_secondary(obj/item/weapon, mob/user, params)
+	if(weapon.tool_behaviour == TOOL_WRENCH && !plating)
+		default_unfasten_wrench(user,weapon,40)
+		return
+	if(weapon.tool_behaviour == TOOL_CROWBAR && !plating && !anchored)
+		default_deconstruction_crowbar(weapon,1,FALSE)
+		return
+
+	return ..()
+
 /obj/machinery/electroplater/proc/try_plate()
 	if(!stored_material || !plating_item)
 		return
@@ -110,3 +125,12 @@
 	plating_item = null
 	plating = FALSE
 	icon_state = "plater0"
+
+/obj/item/circuitboard/machine/electroplater
+	name = "electroplater"
+	req_components = list(
+		/obj/item/stock_parts/matter_bin = 1,
+		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stock_parts/capacitor = 4
+	)
+	build_path = /obj/machinery/electroplater

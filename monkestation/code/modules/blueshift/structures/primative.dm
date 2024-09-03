@@ -1909,7 +1909,7 @@ GLOBAL_LIST_INIT(clay_recipes, list ( \
 	COOLDOWN_DECLARE(forging_cooldown)
 	/// Is the forge in use or not? If true, prevents most interactions with the forge
 	var/in_use = FALSE
-	/// The current 'level' of the forge, how upgraded is it from zero to three
+	/// The current 'level' of the forge, how upgraded is it from one to seven
 	var/forge_level = FORGE_LEVEL_YOU_PLAY_LIKE_A_NOOB
 	/// What smoke particles should be coming out of the forge
 	var/smoke_state = SMOKE_STATE_NONE
@@ -2208,6 +2208,10 @@ GLOBAL_LIST_INIT(clay_recipes, list ( \
 		refuel(attacking_item, user, TRUE)
 		return
 
+	if(istype(attacking_item, /obj/item/stack/sheet/mineral/plasma)) //Mmm, Spicy strong fuel
+		refuel(attacking_item, user, TRUE)
+		return
+
 	if(istype(attacking_item, /obj/item/stack/ore))
 		smelt_ore(attacking_item, user)
 		return
@@ -2229,6 +2233,10 @@ GLOBAL_LIST_INIT(clay_recipes, list ( \
 
 	if(istype(attacking_item, /obj/item/stack/sheet/mineral/coal)) // Coal is a strong fuel that doesn't need bellows to heat up properly
 		refuel(attacking_item, user, TRUE)
+		return TRUE
+
+	if(istype(attacking_item,/obj/item/stack/sheet/mineral/plasma)) //Mmm, Spicy strong fuel
+		refuel(attacking_item,user,TRUE)
 		return TRUE
 
 	if(istype(attacking_item, /obj/item/stack/ore))
@@ -2288,10 +2296,10 @@ GLOBAL_LIST_INIT(clay_recipes, list ( \
 
 	if(is_strong_fuel)
 		if(forge_fuel_strong >= 5 MINUTES)
-			fail_message(user, "[src] is full on coal")
+			fail_message(user, "[src] is full on regular fuel")
 			return
 	if(forge_fuel_weak >= 5 MINUTES)
-		fail_message(user, "[src] is full on wood")
+		fail_message(user, "[src] is full on weak fuel")
 		return
 
 	balloon_alert_to_viewers("refueling...")
@@ -2339,6 +2347,7 @@ GLOBAL_LIST_INIT(clay_recipes, list ( \
 
 	for(var/spawn_ore in 1 to ore_to_sheet_amount)
 		new spawning_item(src_turf)
+		user.mind.adjust_experience(/datum/skill/smithing, 1) //Just a little bit of XP, as a treat.
 
 	in_use = FALSE
 	qdel(ore_item)
@@ -2562,6 +2571,16 @@ GLOBAL_LIST_INIT(clay_recipes, list ( \
 		SKILL_SPEED_MODIFIER = list(1, 0.95, 0.9, 0.85, 0.75, 0.6, 0.5),
 		SKILL_PROBS_MODIFIER = list(0, 5, 10, 20, 40, 80, 100)
 	)
+	skill_item_path = /obj/item/clothing/neck/cloak/skill_reward/smithing
+
+/obj/item/clothing/neck/cloak/skill_reward/smithing
+	name = "legendary smith's cloak"
+	desc = "Those who wear this cloak have the knowledge and understanding to create weapons and tools rivaling that of a god. \
+	Often heros' songs are sung about their deeds, but only the wise know the heros' deeds were only possible thanks to a blacksmith."
+	icon = 'monkestation/code/modules/smithing/icons/cloaks.dmi'
+	worn_icon = 'monkestation/code/modules/smithing/icons/neck.dmi'
+	icon_state = "smithingcloak"
+	associated_skill_path = /datum/skill/smithing
 
 /// Called on an object when a tool with wrench capabilities is used to left click an object
 /atom/proc/billow_act(mob/living/user, obj/item/tool)

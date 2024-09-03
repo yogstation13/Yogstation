@@ -1,6 +1,6 @@
 /obj/structure/machine/assembly_bench
 	name = "assembly bench"
-	desc = "Can be used to assemble smithed parts together."
+	desc = "Can be used to assemble smithed parts together. Put in a smithed part to start."
 
 	density = TRUE
 	anchored = TRUE
@@ -17,6 +17,17 @@
 	. = ..()
 	for(var/datum/assembly_recipe/subtype as anything in subtypesof(/datum/assembly_recipe) - /datum/assembly_recipe/smithed_weapon)
 		recipes += new subtype
+	register_context()
+
+/obj/structure/machine/assembly_bench/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	if(!current_recipe && held_item)
+		context[SCREENTIP_CONTEXT_LMB] = "Add to select recipe"
+	else
+		context[SCREENTIP_CONTEXT_LMB] = "Add to progress recipe"
+	if(current_recipe)
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "Clear Recipe."
+	return CONTEXTUAL_SCREENTIP_SET
+
 
 /obj/structure/machine/assembly_bench/examine(mob/user)
 	. = ..()
@@ -24,7 +35,22 @@
 		for(var/obj/item/item as anything in current_recipe.needed_items)
 			. += span_notice("[current_recipe.needed_items[item]] [initial(item.name)] needed.")
 
+/obj/structure/machine/assembly_bench/AltClick(mob/user)
+	if(current_recipe)
+		for(var/obj/item/stored in stored_items)
+			stored.forceMove(user.loc)
+			stored_items -= stored
+		clear_recipe()
+		return TRUE
+	. = ..()
+
+
 /obj/structure/machine/assembly_bench/attackby(obj/item/attacking_item, mob/living/user, params)
+	if(attacking_item.tool_behaviour == TOOL_WRENCH && !current_recipe)
+		default_unfasten_wrench(user,attacking_item,40)
+		return
+	if(!anchored)
+		return ..()
 	if(!current_recipe)
 		for(var/datum/assembly_recipe/recipe as anything in recipes)
 			if(recipe.item_to_start != attacking_item.type)
@@ -67,6 +93,7 @@
 		return
 	if(do_after(user, current_recipe.craft_time, src))
 		current_recipe.complete_recipe()
+		user.mind.adjust_experience(/datum/skill/smithing, 10) //You made a thing! Congrats!
 
 /obj/structure/machine/assembly_bench/attack_hand(mob/living/user, list/modifiers)
 	try_complete_recipe(user)
@@ -76,6 +103,5 @@
 	current_recipe.parent = null
 	held_starting_item = null
 	QDEL_NULL(current_recipe)
-
 	QDEL_LIST(stored_items)
 	stored_items = list()

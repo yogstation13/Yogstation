@@ -17,7 +17,7 @@
 
 /obj/machinery/material_analyzer
 	name = "material analyzer"
-	desc = "This machine allows you to analyzer materials."
+	desc = "This machine allows you to analyze materials to see their traits and properties for smithing."
 
 	icon_state = "matscannerx"
 	icon = 'goon/icons/matsci.dmi'
@@ -26,7 +26,7 @@
 	density = TRUE
 
 	idle_power_usage = 10
-	active_power_usage = 1000
+	active_power_usage = 750
 	circuit = /obj/item/circuitboard/machine/material_analyzer
 
 	///the time we need to analyze a material
@@ -40,6 +40,11 @@
 
 /obj/machinery/material_analyzer/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
+	if(held_item)
+		if(held_item.tool_behaviour == TOOL_WRENCH && !analyzing)
+			context[SCREENTIP_CONTEXT_LMB] = "Toggle Anchored."
+		if(held_item.tool_behaviour == TOOL_CROWBAR && !analyzing && !anchored)
+			context[SCREENTIP_CONTEXT_LMB] = "Deconstruct."
 	if(held_item && !analyzing)
 		context[SCREENTIP_CONTEXT_LMB] = "Analyze the [held_item]."
 	return CONTEXTUAL_SCREENTIP_SET
@@ -58,6 +63,16 @@
 		return ..()
 	analyzing = FALSE
 	print_material_data(weapon)
+
+/obj/machinery/material_analyzer/attackby_secondary(obj/item/weapon, mob/user, params)
+	if(weapon.tool_behaviour == TOOL_WRENCH && !analyzing)
+		default_unfasten_wrench(user,weapon,40)
+		return
+	if(weapon.tool_behaviour == TOOL_CROWBAR && !analyzing && !anchored)
+		default_deconstruction_crowbar(weapon,1,FALSE)
+		return
+	return ..()
+
 
 /obj/machinery/material_analyzer/proc/print_material_data(obj/item/checker)
 	if(!checker.material_stats)
@@ -94,3 +109,12 @@
 	printed_paper.name = text("[checker] Material Stats")
 	printed_paper.add_raw_text(final_paper_text)
 	printed_paper.update_appearance()
+
+/obj/item/circuitboard/machine/material_analyzer
+	name = "material analyzer"
+	req_components = list(
+		/obj/item/stock_parts/matter_bin = 1,
+		/obj/item/stock_parts/capacitor = 1,
+		/obj/item/stock_parts/scanning_module = 2
+	)
+	build_path = /obj/machinery/material_analyzer

@@ -36,7 +36,7 @@
 	hardness = 70
 	thermal = 1
 	liquid_flow = 65
-	material_traits = list(/datum/material_trait/honk_blessed)
+	material_traits = list(/datum/material_trait/honk_blessed, /datum/material_trait/stunning)
 
 /datum/material/mythril
 	liquid_flow = 80
@@ -81,6 +81,7 @@
 	conductivity = 10
 	density = 50
 	hardness = 5
+	material_traits = list(/datum/material_trait/stunning)
 
 /datum/material/biomass
 	hardness = 1
@@ -91,11 +92,11 @@
 	flammability = 70
 	density = 30
 	hardness = 60
+	material_traits = list(/datum/material_trait/stunning)
 
 /datum/material/adamantine
 	hardness = 100
-	density = 10
-	material_traits = list(/datum/material_trait/weak_weapon)
+	density = 40
 
 /datum/material/hot_ice
 	thermal = 100
@@ -153,6 +154,7 @@
 	hardness = 10
 	thermal = 100
 	flammability = 85
+	material_traits = list(/datum/material_trait/stunning)
 
 /datum/material/bone
 	hardness = 75
@@ -163,6 +165,7 @@
 	hardness = 25
 	thermal = 100
 	flammability = 85
+	material_traits = list(/datum/material_trait/stunning)
 
 /datum/material/zaukerite
 	thermal = 5

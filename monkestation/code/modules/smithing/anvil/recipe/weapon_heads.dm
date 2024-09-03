@@ -27,3 +27,15 @@
 	difficulty = 2
 	total_notes = 40
 	output = /obj/item/smithed_part/weapon_part/pickaxe_head
+
+/datum/anvil_recipe/spear_blade
+	name = "Spear Blade"
+	difficulty = 1
+	total_notes = 50
+	output = /obj/item/smithed_part/weapon_part/spear_blade
+
+/datum/anvil_recipe/axe_blade
+	name = "Axe Blade"
+	difficulty = 3
+	total_notes = 55
+	output = /obj/item/smithed_part/weapon_part/axe_blade

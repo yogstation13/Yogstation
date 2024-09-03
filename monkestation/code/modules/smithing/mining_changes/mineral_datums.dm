@@ -29,6 +29,16 @@
 	weight = 1
 	icon_state = "starstone"
 
+/datum/mineral_sample_datum/stunnium
+	name = "stunnium"
+	base_traits = list(
+		/datum/material_trait/stamina_draining,
+		/datum/material_trait/shiny,
+		/datum/material_trait/stunning
+	)
+	weight = 1
+	icon_state = "molitz"
+
 /datum/mineral_sample_datum/sploop
 	name = "sploop"
 	icon_state = "fibrilith"
