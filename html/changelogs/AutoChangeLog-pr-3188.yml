@@ -1,0 +1,4 @@
+author: "flleeppyy"
+delete-after: True
+changes:
+  - admin: "new Server verb for toggling deadchat \"Toggle Deadchat\""
