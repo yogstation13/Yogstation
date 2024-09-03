@@ -451,6 +451,7 @@
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*2.5)
 	volume = 60
 	isGlass = FALSE
+	slot_flags = ITEM_SLOT_BELT
 
 /obj/item/reagent_containers/cup/glass/flask/gold
 	name = "captain's flask"
