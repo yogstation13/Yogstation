@@ -203,11 +203,6 @@
 	. += "<span class='notice'>Use <b>RIGHT-CLICK</b> on [src] to open or close it.</span>"
 
 /obj/structure/ladder/halflife/manhole/attack_hand_secondary(mob/living/user, list/modifiers)
-	. = ..()
-	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
-		return
-
-	. = SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	var/obj/item/bodypart/arm = user.get_bodypart(user.active_hand_index % 2 ? BODY_ZONE_L_ARM : BODY_ZONE_R_ARM)
 
 	if(!down && up.obstructed)
@@ -217,7 +212,7 @@
 			up.obstructed = FALSE
 			obstructed = FALSE
 			to_chat(user, span_notice("You push up on the cover from below, and slide it off."))
-			return
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(!down && !up.obstructed)
 		if(do_after(user, 10 SECONDS, target = src, interaction_key = DOAFTER_SOURCE_LADDERBLOCKERS))
@@ -226,7 +221,7 @@
 			up.obstructed = TRUE
 			obstructed = TRUE
 			to_chat(user, span_notice("You carefully drag and slide the cover back on from below."))
-			return
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	else
 		if(obstructed)
@@ -248,6 +243,7 @@
 				icon_state = "manhole_closed"
 				desc = "A heavy stamped manhole. You could probably pry it up with a crowbar to access the lower town systems. Or, try using your hands..."
 				to_chat(user, span_notice("You carefully slide the cover back on the manhole."))
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 
 /obj/structure/ladder/halflife/manhole/crowbar_act(mob/living/user, obj/item/tool)
@@ -258,7 +254,7 @@
 			icon_state = "manhole_open"
 			desc = "An open manhole. You could use a crowbar or your hands to slide the cover back on."
 			to_chat(user, span_notice("You wedge the crowbar in and pull the cover off the manhole."))
-			return
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(down && !obstructed)
 		if(do_after(user, 4 SECONDS * tool.toolspeed, target = src, interaction_key = DOAFTER_SOURCE_LADDERBLOCKERS))
@@ -267,7 +263,7 @@
 			icon_state = "manhole_closed"
 			desc = "A heavy stamped manhole. You could probably pry it up with a crowbar to access the lower town systems. Or, try using your hands..."
 			to_chat(user, span_notice("You hook the edge of the manhole cover with your crowbar and slide it back on."))
-			return
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/structure/ladder/halflife/manhole/update_icon_state()
 	. = ..()
