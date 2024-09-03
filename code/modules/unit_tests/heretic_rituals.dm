@@ -104,14 +104,13 @@
 		// Finally, we checked all of our resulting atoms and cleaned them up.
 		// The nearby_atoms list should be devoid of any atom/movables now. Let's double-check that.
 		for(var/atom/thing as anything in nearby_atoms)
-			if(!ismovable(thing))
+			if(!ismovable(thing) || istype(thing, /obj/effect/abstract))
 				continue
 
 			// There are atoms around the rune still, and there shouldn't be.
 			// All component atoms were consumed, and all resulting atoms were cleaned up.
 			// This means the ritual may have messed up somewhere. Throw a fail and clean them up so we can keep testing.
-			if(!istype(thing, /obj/effect/name_tag))
-				TEST_FAIL("Heretic rituals: ([knowledge.type]) After completing the ritual, there were non-result atoms remaining on the rune. ([thing] - [thing.type])")
+			TEST_FAIL("Heretic rituals: ([knowledge.type]) After completing the ritual, there were non-result atoms remaining on the rune. ([thing] - [thing.type])")
 			nearby_atoms -= thing
 			qdel(thing)
 
