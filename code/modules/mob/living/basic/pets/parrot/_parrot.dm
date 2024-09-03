@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 		/obj/structure/frame/computer,
 	))
 	///items we wont pick up
-	var/static/list/ignore_items = typecacheof(list(/obj/item/radio))
+	var/static/list/ignore_items = typecacheof(list(/obj/item/radio, /obj/effect)) //Monkestation addition: ignore their nametag
 
 	/// Food that Poly loves to eat (spoiler alert it's just crackers)
 	var/static/list/edibles = list(
