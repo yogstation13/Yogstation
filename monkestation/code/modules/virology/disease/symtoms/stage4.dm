@@ -92,8 +92,8 @@
 		total_healed += heal_amt * 0.2
 	else
 		total_healed += (heal_amt - current_health) * 0.2
-	mob.heal_overall_damage(brute = heal_amt, burn = heal_amt)
-	mob.adjustCloneLoss(-heal_amt)
+	mob.heal_overall_damage(brute = heal_amt, burn = heal_amt, updating_health = FALSE)
+	mob.adjustCloneLoss(-heal_amt, updating_health = TRUE)
 
 /datum/symptom/immortal/deactivate(mob/living/carbon/mob)
 	if(ishuman(mob))
