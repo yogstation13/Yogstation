@@ -8,6 +8,8 @@
 
 	var/broken = 0 //similar to machinery's stat BROKEN
 
+	var/projectile_passchance = 0 //projectile passthrough chance 100% always goes through, 0% never goes through. Definition isn't required if structure doesn't have density, duh.
+
 
 /obj/structure/Initialize(mapload)
 	if (!armor)
@@ -30,8 +32,20 @@
 
 /obj/structure/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(istype(mover) && (mover.pass_flags & PASSSTRUCTURE))
+	if(istype(loc, /obj/structure) in get_turf(mover))
 		return TRUE
+	else if(istype(mover, /obj/projectile))
+		if(!projectile_passchance)
+			return
+		if(!anchored)
+			return TRUE
+		var/obj/projectile/proj = mover
+		if(proj.firer && Adjacent(proj.firer))
+			return TRUE
+		if(prob((projectile_passchance)))
+			return TRUE
+		return FALSE
+
 
 /obj/structure/ui_act(action, params)
 	add_fingerprint(usr)

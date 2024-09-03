@@ -132,15 +132,23 @@
 		try_replace_tile(object, user, params)
 	return FALSE
 
+
 /turf/open/floor/crowbar_act(mob/living/user, obj/item/I)
+	return FALSE
+/*
 	if(user.combat_mode)
 		return FALSE
+
 	if(istype(I, /obj/item/jawsoflife/jimmy) || istype(I, /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp))
 		return FALSE
 	if(overfloor_placed && pry_tile(I, user))
 		return TRUE
+*/
+
 
 /turf/open/floor/proc/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
+	return
+/*
 	if(T.turf_type == type)
 		return
 	var/obj/item/crowbar/CB = user.is_holding_item_of_type(/obj/item/crowbar)
@@ -150,12 +158,15 @@
 	if(!istype(P))
 		return
 	P.attackby(T, user, params)
+*/
 
 /turf/open/floor/proc/pry_tile(obj/item/I, mob/user, silent = FALSE)
 	I.play_tool_sound(src, 80)
-	return remove_tile(user, silent)
+	//return remove_tile(user, silent)
 
 /turf/open/floor/proc/remove_tile(mob/user, silent = FALSE, make_tile = TRUE, force_plating)
+	return
+/*
 	if(broken || burnt)
 		broken = 0
 		burnt = 0
@@ -167,6 +178,7 @@
 		if(make_tile)
 			spawn_tile()
 	return make_plating(force_plating)
+*/
 
 /turf/open/floor/proc/has_tile()
 	return floor_tile

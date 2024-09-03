@@ -24,9 +24,6 @@
 		vessel = new()
 	if(final_form)
 		vessel.objectives = list() //Reset objectives on re-awoken vessels
-		if(ishuman(M.current))
-			vessel.glow = mutable_appearance('icons/effects/hivemind.dmi', "awoken", -BODY_BEHIND_LAYER)
-			M.current.add_overlay(vessel.glow)
 		var/datum/action/cooldown/spell/hive_comms/comms = new(src)
 		comms.Grant(src)
 		vessel.one_mind = final_form

@@ -936,7 +936,6 @@
 			for(var/datum/action/cooldown/spell/one_mind/one_mind in enemy.owner.current.actions)
 				one_mind.Remove(enemy.owner.current)
 	sound_to_playing_players('sound/effects/one_mind.ogg')
-	hive.glow = mutable_appearance('icons/effects/hivemind.dmi', "awoken", -BODY_BEHIND_LAYER)
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/atom, add_overlay), hive.glow), 150)
 	addtimer(CALLBACK(hive, TYPE_PROC_REF(/datum/antagonist/hivemind, awaken)), 150)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(send_to_playing_players), span_bigassimilator("THE ONE MIND RISES")), 150)

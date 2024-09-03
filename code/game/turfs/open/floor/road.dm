@@ -1,8 +1,39 @@
 //from Mojave Sun 13
 
 /turf/open/floor/plating/ground
-	baseturfs = /turf/open/floor/plating/ground
+	baseturfs = /turf/open/floor/plating/dirt
+	turf_flags = NO_RUST
+	tiled_dirt = FALSE
 	var/border_icon
+
+/turf/open/floor/plating/ground/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
+	return
+
+/turf/open/floor/plating/ground/break_tile()
+	return //unbreakable
+
+/turf/open/floor/plating/ground/burn_tile()
+	return //unburnable
+
+/turf/open/floor/plating/ground/MakeSlippery(wet_setting, min_wet_time, wet_time_to_add, max_wet_time, permanent)
+	return
+
+/turf/open/floor/plating/ground/MakeDry()
+	return
+
+/turf/open/floor/plating/ground/dirt
+	gender = PLURAL
+	name = "dirt"
+	desc = "Upon closer examination, it's still dirt."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "dirt"
+	baseturfs = /turf/open/floor/plating/dirt
+	planetary_atmos = TRUE
+	attachment_holes = FALSE
+	footstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	clawfootstep = FOOTSTEP_SAND
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 
 /turf/open/floor/plating/ground/road
 	name = "\proper road"

@@ -11,6 +11,7 @@
 	var/crafted = FALSE
 	/// travel time for ladder in deciseconds
 	var/travel_time = 1 SECONDS
+	var/obstructed = FALSE 
 
 /obj/structure/ladder/Initialize(mapload, obj/structure/ladder/up, obj/structure/ladder/down)
 	..()

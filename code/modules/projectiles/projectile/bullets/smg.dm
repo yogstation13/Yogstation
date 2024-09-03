@@ -32,7 +32,7 @@
 
 /obj/projectile/bullet/c46x30mm
 	name = "4.6x30mm bullet"
-	damage = 15
+	damage = 12
 	wound_bonus = -5
 	bare_wound_bonus = 5
 

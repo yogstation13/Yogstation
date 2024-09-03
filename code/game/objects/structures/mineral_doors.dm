@@ -285,12 +285,14 @@
 /obj/structure/mineral_door/wood/crowbar_act(mob/living/user, obj/item/I)
 	return crowbar_door(user, I)
 
+/*
 /obj/structure/mineral_door/wood/attackby(obj/item/I, mob/living/user)
 	if(I.is_hot())
 		fire_act(I.is_hot())
 		return
 
 	return ..()
+*/
 
 /obj/structure/mineral_door/paperframe
 	name = "paper frame door"
