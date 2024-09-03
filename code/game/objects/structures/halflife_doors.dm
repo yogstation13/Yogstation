@@ -1,5 +1,5 @@
 /obj/structure/mineral_door/halflife
-	icon = 'icons/obj/doors/mineral_doors.dmi'
+	icon = 'icons/obj/doors/wasteland_doors.dmi'
 
 /obj/structure/mineral_door/halflife/wood
 	name = "wood door"
