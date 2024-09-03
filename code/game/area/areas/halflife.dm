@@ -1,7 +1,7 @@
 /area/halflife
 	name = "\improper Unexplored Location"
 	icon_state = "away"
-	has_gravity = STANDARD_GRAVITY
+	has_gravity = TRUE
 	hidden = FALSE
 	ambience_index = AMBIENCE_RUINS
 	flags_1 = CAN_BE_DIRTY_1
@@ -10,3 +10,11 @@
 
 /area/halflife/outdoors
 	name = "\improper Unexplored Location"
+	static_lighting = TRUE
+	outdoors = TRUE
+	uses_daylight = TRUE
+	base_lighting_alpha = 0
+	sound_environment = SOUND_ENVIRONMENT_FOREST
+	light_power = 0.1
+	light_range = 2
+	light_color = COLOR_STARLIGHT

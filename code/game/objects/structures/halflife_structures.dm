@@ -84,7 +84,7 @@
 
 /obj/machinery/power/halflife/streetlamp
 	name = "\improper street lamp"
-	desc = "The combine still keep these powered, thankfully."
+	desc = "It doesn't seem functional anymore."
 	icon_state = "streetlight"
 
 /obj/machinery/power/halflife/streetlamp/corner
