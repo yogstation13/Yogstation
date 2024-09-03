@@ -8,6 +8,8 @@
 	radio_host = TRUE
 	command = TRUE
 
+	lossless = TRUE
+
 	density = TRUE
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE
