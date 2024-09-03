@@ -16,3 +16,6 @@
 
 /obj/structure/mineral_door/halflife/wood/crowbar_act(mob/living/user, obj/item/I)
 	return crowbar_door(user, I)
+
+/obj/structure/mineral_door/halflife/metal
+	name = "metal door"

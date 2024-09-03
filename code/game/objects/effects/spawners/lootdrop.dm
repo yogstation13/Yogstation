@@ -766,3 +766,23 @@
 	loot = list(/mob/living/simple_animal/hostile/asteroid/marrowweaver = 35,
 			/mob/living/simple_animal/hostile/asteroid/marrowweaver/ice = 5,
 			"" = 60)
+
+
+/obj/effect/spawner/lootdrop/halflife/loot
+	name = "common loot"
+	lootcount = 1
+
+	loot = list(
+				/obj/item/crowbar/large,
+				/obj/item/cigbutt
+				)
+
+/obj/effect/spawner/lootdrop/halflife/loot/rare
+	name = "rare loot"
+
+	loot = list(
+				/obj/item/crowbar/large = 3,
+				/obj/item/gun/ballistic/automatic/pistol/usp = 2,
+				/obj/item/gun/ballistic/automatic/mp7,
+				/obj/item/clothing/suit/armor/civilprotection
+				)

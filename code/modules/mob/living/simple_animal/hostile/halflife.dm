@@ -18,7 +18,9 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	status_flags = CANPUSH
-	del_on_death = 1
+	del_on_death = 0
+	move_to_delay = 5
+	var/idle_sounds = list('sound/creatures/halflife/zombiesound.ogg', 'sound/creatures/halflife/zombiesound2.ogg', 'sound/creatures/halflife/zombiesound3.ogg')
 
 /mob/living/simple_animal/hostile/halflife/zombie/Aggro()
 	. = ..()
@@ -31,4 +33,5 @@
 	if(stat)
 		return
 	if(prob(10))
-		playsound(src, 'sound/creatures/halflife/zombiesound.ogg', 50, TRUE)
+		var/chosen_sound = pick(idle_sounds)
+		playsound(src, chosen_sound, 50, TRUE)
