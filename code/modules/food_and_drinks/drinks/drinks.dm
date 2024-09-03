@@ -514,6 +514,12 @@
 	custom_price = 10
 	icon_state = "sodawater"
 	list_reagents = list(/datum/reagent/consumable/sodawater = 50)
+	
+/obj/item/reagent_containers/food/drinks/soda_cans/breenwater
+	name = "water can"
+	desc = "A can of Breen's private reserve water. Supposedly, it helps improve your memory!"
+	icon_state = "breenwater"
+	list_reagents = list(/datum/reagent/water = 30)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime
 	name = "orange soda"

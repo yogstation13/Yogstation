@@ -231,6 +231,18 @@
 #define NUTRITION_LEVEL_START_MIN 250
 #define NUTRITION_LEVEL_START_MAX 400
 
+#define HYDRATION_LEVEL_FULL 1000
+#define HYDRATION_LEVEL_HYDRATED 700
+#define HYDRATION_LEVEL_SMALLTHIRST 500
+#define HYDRATION_LEVEL_THIRSTY 300
+#define HYDRATION_LEVEL_DEHYDRATED 100
+
+#define NUTRITION_LEVEL_START_MIN 500
+#define NUTRITION_LEVEL_START_MAX 900
+
+#define HYDRATION_LEVEL_START_MIN 500
+#define HYDRATION_LEVEL_START_MAX 600
+
 //Disgust levels for humans
 #define DISGUST_LEVEL_MAXEDOUT 150
 #define DISGUST_LEVEL_DISGUSTED 75
@@ -341,7 +353,7 @@
 #define POCKET_STRIP_DELAY	(4 SECONDS) //time taken to search somebody's pockets
 #define DOOR_CRUSH_DAMAGE	15	//the amount of damage that airlocks deal when they crush you
 
-#define	HUNGER_FACTOR		0.1	//factor at which mob nutrition decreases
+#define	HUNGER_FACTOR		0.1	//factor at which mob nutrition or thirst decreases
 #define	REAGENTS_METABOLISM 0.4	//How many units of reagent are consumed per tick, by default.
 #define REAGENTS_EFFECT_MULTIPLIER (REAGENTS_METABOLISM / 0.4)	// By defining the effect multiplier this way, it'll exactly adjust all effects according to how they originally were with the 0.4 metabolism
 

@@ -346,6 +346,13 @@
 			add_event(null, "nutrition", /datum/mood_event/hungry)
 		if(0 to NUTRITION_LEVEL_STARVING)
 			add_event(null, "nutrition", /datum/mood_event/starving)
+	switch(L.hydration)
+		if(HYDRATION_LEVEL_HYDRATED to HYDRATION_LEVEL_FULL)
+			clear_event(null, "thirst")
+		if(HYDRATION_LEVEL_THIRSTY to HYDRATION_LEVEL_SMALLTHIRST)
+			add_event(null, "thirst", /datum/mood_event/thirsty)
+		if(0 to HYDRATION_LEVEL_THIRSTY)
+			add_event(null, "thirst", /datum/mood_event/dehydrated)
 
 /datum/component/mood/proc/HandleCharge(mob/living/L)
 	switch(L.nutrition)

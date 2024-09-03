@@ -150,6 +150,7 @@
 	shot_glass_icon_state = "shotglassclear"
 	compatible_biotypes = ALL_BIOTYPES
 	default_container = /obj/item/reagent_containers/glass/beaker/waterbottle/large
+	var/hydration = 12
 
 /*
  *	Water reaction to turf
@@ -218,6 +219,10 @@
 	M.adjust_bodytemperature(min(3,body_temperature_difference))
 	if(M.blood_volume)
 		M.blood_volume += 0.1 // water is good for you!
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(!HAS_TRAIT(H, TRAIT_NOHUNGER))
+			H.adjust_hydration(hydration)
 
 /datum/reagent/water/holywater
 	name = "Holy Water"

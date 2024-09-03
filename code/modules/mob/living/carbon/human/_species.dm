@@ -1204,6 +1204,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			H.throw_alert("nutrition", /atom/movable/screen/alert/hungry)
 		if(0 to NUTRITION_LEVEL_STARVING)
 			H.throw_alert("nutrition", /atom/movable/screen/alert/starving)
+	switch(H.hydration)
+		if(HYDRATION_LEVEL_HYDRATED to HYDRATION_LEVEL_FULL)
+			H.clear_alert("thirst")
+		if(HYDRATION_LEVEL_THIRSTY to HYDRATION_LEVEL_SMALLTHIRST)
+			H.throw_alert("thirst", /atom/movable/screen/alert/thirsty)
+		if(0 to HYDRATION_LEVEL_THIRSTY)
+			H.throw_alert("thirst", /atom/movable/screen/alert/dehydrated)
 
 /datum/species/proc/update_health_hud(mob/living/carbon/human/H)
 	return 0

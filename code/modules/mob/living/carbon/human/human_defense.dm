@@ -832,6 +832,11 @@
 					combined_msg += span_info("You feel quite hungry.")
 				if(0 to NUTRITION_LEVEL_STARVING)
 					combined_msg += span_danger("You're starving!")
+			switch(hydration)
+				if(HYDRATION_LEVEL_THIRSTY to HYDRATION_LEVEL_SMALLTHIRST)
+					combined_msg += span_info("You're thirsty.")
+				if(0 to HYDRATION_LEVEL_THIRSTY)
+					combined_msg += span_danger("You're dehydrated!")
 
 	if(isskeleton(src))
 		var/obj/item/clothing/under/under = w_uniform

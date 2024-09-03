@@ -83,6 +83,7 @@
 		var/datum/atom_hud/alternate_appearance/AA = v
 		AA.onNewMob(src)
 	set_nutrition(rand(NUTRITION_LEVEL_START_MIN, NUTRITION_LEVEL_START_MAX))
+	set_hydration(rand(HYDRATION_LEVEL_START_MIN, HYDRATION_LEVEL_START_MAX))
 	. = ..()
 	update_config_movespeed()
 	update_movespeed(TRUE)
@@ -1393,6 +1394,20 @@
 /mob/proc/set_nutrition(change) //Seriously fuck you oldcoders.
 	nutrition = max(0, change)
 	return nutrition
+
+/mob/proc/adjust_hydration(change)
+	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
+		hydration = HYDRATION_LEVEL_FULL
+	hydration = max(0, hydration + change)
+	if(hydration > HYDRATION_LEVEL_FULL)
+		hydration = HYDRATION_LEVEL_FULL
+
+/mob/proc/set_hydration(change)
+	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
+		hydration = HYDRATION_LEVEL_FULL
+	hydration = max(0, change)
+	if(hydration > HYDRATION_LEVEL_FULL)
+		hydration = HYDRATION_LEVEL_FULL
 
 /mob/proc/set_stat(new_stat)
 	if(new_stat == stat)

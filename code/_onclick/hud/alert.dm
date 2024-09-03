@@ -178,6 +178,16 @@
 	desc = "You're severely malnourished. The hunger pains make moving around a chore."
 	icon_state = "starving"
 
+/atom/movable/screen/alert/thirsty
+	name = "Thirsty"
+	desc = "Something to drink would be nice."
+	icon_state = "thirsty"
+
+/atom/movable/screen/alert/dehydrated
+	name = "Dehydrated"
+	desc = "You're severely dehydrated. Your body is sluggish and hard to move."
+	icon_state = "dehydrated"
+
 /atom/movable/screen/alert/gross
 	name = "Grossed out."
 	desc = "That was kind of gross..."

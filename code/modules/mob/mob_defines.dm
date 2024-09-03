@@ -113,6 +113,7 @@
 	/// Default body temperature
 	var/bodytemperature = BODYTEMP_NORMAL	//310.15K / 98.6F
 	var/nutrition = NUTRITION_LEVEL_START_MIN // randomised in Initialize
+	var/hydration = HYDRATION_LEVEL_START_MIN
 	/// Satiation level of the mob
 	var/satiety = 0//Carbon
 
