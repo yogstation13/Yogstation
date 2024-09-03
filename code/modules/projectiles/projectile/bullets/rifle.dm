@@ -94,3 +94,10 @@
 			L.visible_message(span_warning("[src] vanishes on contact with [target]!"))
 			qdel(src)
 			return FALSE
+
+
+/obj/projectile/bullet/pulse/ar2
+	name = "pulse round"
+	damage = 25
+	wound_bonus = -30
+	armour_penetration = 20

@@ -46,4 +46,5 @@
 	SSwardrobe.provide_type(/obj/item/restraints/handcuffs, src)
 	SSwardrobe.provide_type(/obj/item/melee/baton/loaded, src)
 	SSwardrobe.provide_type(/obj/item/barrier_taperoll/police, src)
+	SSwardrobe.provide_type(/obj/item/flashlight/seclite, src)
 	update_appearance(UPDATE_ICON)

@@ -84,3 +84,10 @@
 	caliber = CALIBER_40GL
 	icon_state = "40mmHE"
 	projectile_type = /obj/projectile/bullet/a40mm
+
+
+/obj/item/ammo_casing/caseless/pulse/ar2
+	name = "OSIPR pulse round"
+	desc = "A OSIPR grade pulse round."
+	caliber = CALIBER_10MM
+	projectile_type = /obj/projectile/bullet/pulse/ar2

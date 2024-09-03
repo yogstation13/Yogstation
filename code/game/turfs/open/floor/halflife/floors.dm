@@ -1,6 +1,7 @@
 /turf/open/floor/plating/indoor
 	gender = PLURAL
 	name = "flooring"
+	baseturfs = /turf/open/floor/plating/ground/dirt
 	icon = 'icons/turf/halflifefloor/floors.dmi'
 	attachment_holes = FALSE
 	var/has_alternate_states = FALSE //for damage, alts etc.

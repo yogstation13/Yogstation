@@ -28,6 +28,7 @@
 #define CALIBER_GATLING "gatling"   	    // Gatling (Osprey Minigun) (Don't ask)
 #define CALIBER_SPEAR "speargun"            // Spear (Speargun)
 #define CALIBER_MUSKET "musket"				// Musket Cartridge (Maintenance Musket)
+#define CALIBER_PULSROUND "pulsround"				// OSIPR pulse rounds
 
 /// Magic and other esoteric non-gun stuff
 #define CALIBER_ARROW "arrow"		        // Bows
