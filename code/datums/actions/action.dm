@@ -171,7 +171,7 @@
 		if (feedback)
 			owner.balloon_alert(owner, "hands blocked!")
 		return FALSE
-	if((check_flags & AB_CHECK_IMMOBILE) && HAS_TRAIT(owner, TRAIT_IMMOBILIZED))
+	if((check_flags & AB_CHECK_IMMOBILE) && HAS_TRAIT_NOT_FROM(owner, TRAIT_IMMOBILIZED, BUCKLED_TRAIT)) // monkestation edit: don't count buckled as immobile
 		if (feedback)
 			owner.balloon_alert(owner, "can't move!")
 		return FALSE
