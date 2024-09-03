@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - qol: "The curator booth's radio is now lossless - it is unaffected by exospheric anomalies."
