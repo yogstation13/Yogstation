@@ -1,0 +1,5 @@
+author: "Flleeppyy, Punny"
+delete-after: True
+changes:
+  - image: "Added burnt emag and hack-o-lantern designs by PunnyPunny"
+  - code_imp: "added some more features to the microwave, items can now return COMPONENT_MICROWAVE - \"DONTEJECT\", \"DONTDIRTY\", and \"DONTOPEN\""
