@@ -1,0 +1,5 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - bugfix: "Fixed Poly getting stuck in a hoarding loop"
+  - bugfix: "Fixed Poly being unable to speak"
