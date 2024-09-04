@@ -20,7 +20,7 @@
 		JOB_WARDEN,
 		JOB_BRIG_PHYSICIAN,
 	)
-	base_antags = 3
+	base_antags = 2
 	maximum_antags = 5
 	enemy_roles = list(
 		JOB_AI,
@@ -32,9 +32,8 @@
 		JOB_SECURITY_ASSISTANT,
 		JOB_WARDEN,
 	)
-	required_enemies = 5
-	// I give up, just there should be enough heads with 35 players...
-	min_players = 35
+	required_enemies = 3
+	min_players = 20
 	roundstart = TRUE
 	earliest_start = 0 SECONDS
 	weight = 4

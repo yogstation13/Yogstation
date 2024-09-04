@@ -1,9 +1,9 @@
-/datum/round_event_control/antagonist/solo/bloodcult
-	name = "Blood Cult"
+/datum/round_event_control/antagonist/solo/darkspawn
+	name = "Darkspawn"
 	tags = list(TAG_SPOOKY, TAG_DESTRUCTIVE, TAG_COMBAT, TAG_TEAM_ANTAG, TAG_MAGICAL)
-	antag_flag = ROLE_CULTIST
-	antag_datum = /datum/antagonist/cult
-	typepath = /datum/round_event/antagonist/solo/bloodcult
+	antag_flag = ROLE_DARKSPAWN
+	antag_datum = /datum/antagonist/darkspawn
+	typepath = /datum/round_event/antagonist/solo/darkspawn
 	shared_occurence_type = SHARED_HIGH_THREAT
 	restricted_roles = list(
 		JOB_AI,
@@ -36,25 +36,21 @@
 	weight = 4
 	max_occurrences = 1
 
-/datum/round_event/antagonist/solo/bloodcult
+/datum/round_event/antagonist/solo/darkspawn
 	excute_round_end_reports = TRUE
 	end_when = 60000
-	var/static/datum/team/cult/main_cult
+	var/static/datum/team/darkspawn/dark_team
 
-/datum/round_event/antagonist/solo/bloodcult/setup()
+/datum/round_event/antagonist/solo/darkspawn/setup()
 	. = ..()
-	if(!main_cult)
-		main_cult = new()
+	if(!dark_team)
+		dark_team = new()
+		dark_team.update_objectives()
+	GLOB.thrallnet.name = "Thrall net"
 
-/datum/round_event/antagonist/solo/bloodcult/start()
+/datum/round_event/antagonist/solo/darkspawn/start()
 	. = ..()
-	main_cult.setup_objectives()
-
-/datum/round_event/antagonist/solo/bloodcult/add_datum_to_mind(datum/mind/antag_mind)
-	var/datum/antagonist/cult/new_cultist = new antag_datum()
-	new_cultist.cult_team = main_cult
-	new_cultist.give_equipment = TRUE
-	antag_mind.add_antag_datum(new_cultist)
+	dark_team.update_objectives()
 
 //TEMP REMOVAL FOR TESTING
 /*/datum/round_event/antagonist/solo/bloodcult/round_end_report()

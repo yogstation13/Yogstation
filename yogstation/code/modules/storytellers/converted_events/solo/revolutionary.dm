@@ -29,9 +29,8 @@
 		JOB_SECURITY_ASSISTANT,
 		JOB_WARDEN,
 	)
-	required_enemies = 6
-	// I give up, just there should be enough heads with 35 players...
-	min_players = 35
+	required_enemies = 3
+	min_players = 25
 	roundstart = TRUE
 	earliest_start = 0 SECONDS
 	weight = 3 //value was 3, we need to manually test if this works or not before allowing it normally

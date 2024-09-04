@@ -19,7 +19,7 @@
 		JOB_WARDEN,
 		JOB_CHAPLAIN,
 	)
-	required_enemies = 5
+	required_enemies = 1
 	roundstart = TRUE
 	earliest_start = 0 SECONDS
 	weight = 2

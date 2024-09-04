@@ -20,7 +20,7 @@
 		JOB_AI,
 		JOB_CYBORG,
 	)
-	min_players = 20
+	min_players = 15
 	weight = 9
 	shared_occurence_type = SHARED_CHANGELING
 
