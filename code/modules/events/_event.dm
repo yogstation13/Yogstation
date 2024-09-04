@@ -41,6 +41,8 @@
 	/// Flags dictating whether this event should be run on certain kinds of map
 	var/map_flags = NONE
 
+	/// The typepath to the event group this event is a part of.
+	var/datum/event_group/event_group = null
 	var/roundstart = FALSE
 	var/cost = 1
 	var/reoccurence_penalty_multiplier = 0.75
@@ -85,6 +87,10 @@
 // Checks if the event can be spawned. Used by event controller and "false alarm" event.
 // Admin-created events override this.
 /datum/round_event_control/proc/canSpawnEvent(players_amt, gamemode)
+	if(event_group && !GLOB.event_groups[event_group].can_run())
+		return FALSE
+	if(roundstart && ((SSticker.round_start_time && (world.time - SSticker.round_start_time) >= 2 MINUTES)))
+		return FALSE
 	if(occurrences >= max_occurrences)
 		return FALSE
 	if(earliest_start >= world.time-SSticker.round_start_time)
@@ -149,18 +155,23 @@
 		SSblackbox.record_feedback("tally", "event_admin_cancelled", 1, typepath)
 
 /datum/round_event_control/proc/runEvent()
-	var/datum/round_event/E = new typepath()
-	E.current_players = get_active_player_count(alive_check = 1, afk_check = 1, human_check = 1)
-	E.control = src
-	SSblackbox.record_feedback("tally", "event_ran", 1, "[E]")
+	var/datum/round_event/round_event = new typepath()
+	round_event.setup()
+	round_event.current_players = get_active_player_count(alive_check = 1, afk_check = 1, human_check = 1)
+	round_event.control = src
+	SSblackbox.record_feedback("tally", "event_ran", 1, "[round_event]")
 	occurrences++
 
-	testing("[time2text(world.time, "hh:mm:ss")] [E.type]")
+	testing("[time2text(world.time, "hh:mm:ss")] [round_event.type]")
 	if(random)
 		log_game("Random Event triggering: [name] ([typepath])")
+
+	if(event_group)
+		GLOB.event_groups[event_group].on_run(src)
+
 	if(alert_observers)
 		deadchat_broadcast(" has just been[random ? " randomly" : ""] triggered!", "<b>[name]</b>") //STOP ASSUMING IT'S BADMINS!
-	return E
+	return round_event
 
 //Special admins setup
 /datum/round_event_control/proc/admin_setup()

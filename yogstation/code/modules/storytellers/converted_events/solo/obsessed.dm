@@ -15,7 +15,7 @@
 		JOB_WARDEN,
 		JOB_AI,
 		JOB_CYBORG,
-		ROLE_POSITRONIC_BRAIN,
+		ROLE_POSIBRAIN,
 	)
 	weight = 6
 	max_occurrences = 3

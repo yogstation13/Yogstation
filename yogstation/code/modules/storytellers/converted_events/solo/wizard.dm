@@ -26,7 +26,7 @@
 	min_players = 35
 	max_occurrences = 1
 
-/datum/round_event_control/antagonist/solo/wizard/can_spawn_event(players_amt, allow_magic = FALSE, fake_check = FALSE)
+/datum/round_event_control/antagonist/solo/wizard/canSpawnEvent(players_amt, allow_magic = FALSE, fake_check = FALSE)
 	. = ..()
 	if(!.)
 		return
@@ -37,7 +37,7 @@
 
 /datum/round_event/antagonist/solo/wizard/add_datum_to_mind(datum/mind/antag_mind)
 	var/mob/living/current_mob = antag_mind.current
-	SSjob.FreeRole(antag_mind.assigned_role.title)
+	SSjob.FreeRole(antag_mind.assigned_role)
 	var/list/items = current_mob.get_equipped_items(TRUE)
 	current_mob.unequip_everything()
 	for(var/obj/item/item as anything in items)
@@ -46,4 +46,4 @@
 	var/mob/living/carbon/human/new_player_mob = new //while funny, it would kind of suck to be a blind criple wizard
 	antag_mind.transfer_to(new_player_mob)
 	qdel(current_mob)
-	antag_mind.make_wizard()
+	antag_mind.make_Wizard()

@@ -1,7 +1,6 @@
 /datum/round_event_control/antagonist/solo/from_ghosts/nuclear_operative
 	name = "Nuclear Assault"
 	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT, TAG_TEAM_ANTAG, TAG_EXTERNAL)
-	antag_flag = ROLE_OPERATIVE_MIDROUND
 	antag_datum = /datum/antagonist/nukeop
 	typepath = /datum/round_event/antagonist/solo/ghost/nuclear_operative
 	restricted_roles = list(
@@ -13,7 +12,6 @@
 		JOB_DETECTIVE,
 		JOB_HEAD_OF_PERSONNEL,
 		JOB_HEAD_OF_SECURITY,
-		JOB_PRISONER,
 		JOB_RESEARCH_DIRECTOR,
 		JOB_SECURITY_OFFICER,
 		JOB_WARDEN,
@@ -42,7 +40,7 @@
 	excute_round_end_reports = TRUE
 	var/static/datum/team/nuclear/nuke_team
 	var/set_leader = FALSE
-	var/required_role = ROLE_NUCLEAR_OPERATIVE
+	var/required_role = ROLE_OPERATIVE
 	var/datum/mind/most_experienced
 
 /datum/round_event/antagonist/solo/ghost/nuclear_operative/add_datum_to_mind(datum/mind/antag_mind)
@@ -56,8 +54,7 @@
 
 	if(!most_experienced)
 		most_experienced = get_most_experienced(setup_minds, required_role)
-	antag_mind.set_assigned_role(SSjob.GetJobType(/datum/job/nuclear_operative))
-	antag_mind.special_role = ROLE_NUCLEAR_OPERATIVE
+	antag_mind.special_role = ROLE_OPERATIVE
 
 	if(!most_experienced)
 		most_experienced = antag_mind

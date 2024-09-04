@@ -14,7 +14,6 @@
 		JOB_DETECTIVE,
 		JOB_HEAD_OF_PERSONNEL,
 		JOB_HEAD_OF_SECURITY,
-		JOB_PRISONER,
 		JOB_RESEARCH_DIRECTOR,
 		JOB_SECURITY_OFFICER,
 		JOB_WARDEN,
@@ -26,7 +25,6 @@
 		JOB_DETECTIVE,
 		JOB_HEAD_OF_SECURITY,
 		JOB_SECURITY_OFFICER,
-		JOB_SECURITY_ASSISTANT,
 		JOB_WARDEN,
 	)
 	required_enemies = 3
@@ -62,12 +60,12 @@
 /datum/round_event/antagonist/solo/revolutionary/round_end_report()
 	revolution.round_result(finished)
 
-/datum/round_event/antagonist/solo/revolutionary/tick()
-	if(finished)
-		return
-	var/winner = revolution.process_victory()
-	if(isnull(winner))
-		return
+// /datum/round_event/antagonist/solo/revolutionary/tick()
+// 	if(finished)
+// 		return
+// 	var/winner = revolution.process_victory()
+// 	if(isnull(winner))
+// 		return
 
-	finished = winner
-	end()
+// 	finished = winner
+// 	end()

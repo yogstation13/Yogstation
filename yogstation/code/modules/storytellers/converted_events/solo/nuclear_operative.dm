@@ -14,7 +14,6 @@
 		JOB_DETECTIVE,
 		JOB_HEAD_OF_PERSONNEL,
 		JOB_HEAD_OF_SECURITY,
-		JOB_PRISONER,
 		JOB_RESEARCH_DIRECTOR,
 		JOB_SECURITY_OFFICER,
 		JOB_WARDEN,
@@ -29,7 +28,6 @@
 		JOB_DETECTIVE,
 		JOB_HEAD_OF_SECURITY,
 		JOB_SECURITY_OFFICER,
-		JOB_SECURITY_ASSISTANT,
 		JOB_WARDEN,
 	)
 	required_enemies = 3
@@ -43,14 +41,14 @@
 	excute_round_end_reports = TRUE
 	var/static/datum/team/nuclear/nuke_team
 	var/set_leader = FALSE
-	var/required_role = ROLE_NUCLEAR_OPERATIVE
+	var/required_role = ROLE_OPERATIVE
 	var/datum/mind/most_experienced
 
 /datum/round_event/antagonist/solo/nuclear_operative/add_datum_to_mind(datum/mind/antag_mind)
 	if(most_experienced == antag_mind)
 		return
 	var/mob/living/current_mob = antag_mind.current
-	SSjob.FreeRole(antag_mind.assigned_role.title)
+	SSjob.FreeRole(antag_mind.assigned_role)
 	var/list/items = current_mob.get_equipped_items(TRUE)
 	current_mob.unequip_everything()
 	for(var/obj/item/item as anything in items)
@@ -66,21 +64,19 @@
 		set_leader = TRUE
 		if(antag_mind != most_experienced)
 			var/mob/living/leader_mob = most_experienced.current
-			SSjob.FreeRole(most_experienced.assigned_role.title)
+			SSjob.FreeRole(most_experienced.assigned_role)
 			var/list/leader_items = leader_mob.get_equipped_items(TRUE)
 			leader_mob.unequip_everything()
 			for(var/obj/item/item as anything in leader_items)
 				qdel(item)
-		most_experienced.set_assigned_role(SSjob.GetJobType(/datum/job/nuclear_operative))
-		most_experienced.special_role = ROLE_NUCLEAR_OPERATIVE
+		most_experienced.special_role = ROLE_OPERATIVE
 		var/datum/antagonist/nukeop/leader/leader_antag_datum = most_experienced.add_antag_datum(/datum/antagonist/nukeop/leader)
 		nuke_team = leader_antag_datum.nuke_team
 
 	if(antag_mind == most_experienced)
 		return
 
-	antag_mind.set_assigned_role(SSjob.GetJobType(/datum/job/nuclear_operative))
-	antag_mind.special_role = ROLE_NUCLEAR_OPERATIVE
+	antag_mind.special_role = ROLE_OPERATIVE
 
 	var/datum/antagonist/nukeop/new_op = new antag_datum()
 	antag_mind.add_antag_datum(new_op)

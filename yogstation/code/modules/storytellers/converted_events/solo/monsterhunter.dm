@@ -40,8 +40,6 @@ GLOBAL_LIST_INIT(monster_hunter_prey_antags, typecacheof(list(
 		JOB_RESEARCH_DIRECTOR,
 		JOB_DETECTIVE,
 		JOB_HEAD_OF_SECURITY,
-		JOB_SECURITY_ASSISTANT,
-		JOB_PRISONER,
 		JOB_SECURITY_OFFICER,
 		JOB_WARDEN,
 		JOB_BRIG_PHYSICIAN,
@@ -57,7 +55,7 @@ GLOBAL_LIST_INIT(monster_hunter_prey_antags, typecacheof(list(
 	prompted_picking = TRUE
 	max_occurrences = 1
 
-/datum/round_event_control/antagonist/solo/monsterhunter/can_spawn_event(players_amt, allow_magic = FALSE, fake_check = FALSE)
+/datum/round_event_control/antagonist/solo/monsterhunter/canSpawnEvent(players_amt, allow_magic = FALSE, fake_check = FALSE)
 	. = ..()
 	if(!.)
 		return

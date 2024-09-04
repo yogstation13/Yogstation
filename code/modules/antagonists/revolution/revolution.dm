@@ -350,6 +350,14 @@
 			return FALSE
 	return TRUE
 
+/datum/team/revolution/proc/round_result(finished)
+	if (finished == REVOLUTION_VICTORY)
+		SSticker.mode_result = "win - heads killed"
+		SSticker.news_report = REVS_WIN
+	else if (finished == STATION_VICTORY)
+		SSticker.mode_result = "loss - rev heads killed"
+		SSticker.news_report = REVS_LOSE
+		
 /datum/team/revolution/roundend_report()
 	if(!members.len && !ex_headrevs.len)
 		return

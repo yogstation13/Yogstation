@@ -1,7 +1,7 @@
 /datum/round_event_control/antagonist/solo/clown_operative
 	name = "Roundstart Clown Operative"
 	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT, TAG_TEAM_ANTAG, TAG_EXTERNAL)
-	antag_flag = ROLE_CLOWN_OPERATIVE
+	antag_flag = ROLE_CLOWNOP
 	antag_datum = /datum/antagonist/nukeop/clownop
 	typepath = /datum/round_event/antagonist/solo/clown_operative
 	shared_occurence_type = SHARED_HIGH_THREAT
@@ -14,7 +14,6 @@
 		JOB_DETECTIVE,
 		JOB_HEAD_OF_PERSONNEL,
 		JOB_HEAD_OF_SECURITY,
-		JOB_PRISONER,
 		JOB_RESEARCH_DIRECTOR,
 		JOB_SECURITY_OFFICER,
 		JOB_WARDEN,
@@ -29,7 +28,6 @@
 		JOB_DETECTIVE,
 		JOB_HEAD_OF_SECURITY,
 		JOB_SECURITY_OFFICER,
-		JOB_SECURITY_ASSISTANT,
 		JOB_WARDEN,
 	)
 	required_enemies = 5
@@ -45,7 +43,7 @@
 	end_when = 60000 /// we will end on our own when revs win
 	var/static/datum/team/nuclear/nuke_team
 	var/set_leader = FALSE
-	var/required_role = ROLE_CLOWN_OPERATIVE
+	var/required_role = ROLE_CLOWNOP
 
 /datum/round_event/antagonist/solo/clown_operative/setup()
 	. = ..()
@@ -58,14 +56,13 @@
 
 /datum/round_event/antagonist/solo/clown_operative/add_datum_to_mind(datum/mind/antag_mind)
 	var/mob/living/current_mob = antag_mind.current
-	SSjob.FreeRole(antag_mind.assigned_role.title)
+	SSjob.FreeRole(antag_mind.assigned_role)
 	var/list/items = current_mob.get_equipped_items(TRUE)
 	current_mob.unequip_everything()
 	for(var/obj/item/item as anything in items)
 		qdel(item)
 
-	antag_mind.set_assigned_role(SSjob.GetJobType(/datum/job/clown_operative))
-	antag_mind.special_role = ROLE_CLOWN_OPERATIVE
+	antag_mind.special_role = ROLE_CLOWNOP
 
 	var/datum/mind/most_experienced = get_most_experienced(setup_minds, required_role)
 	if(!most_experienced)
@@ -77,7 +74,7 @@
 		nuke_team = leader_antag_datum.nuke_team
 		most_experienced.add_antag_datum(leader_antag_datum)
 		var/mob/living/carbon/human/leader = most_experienced.current
-		leader.equip_species_outfit(/datum/outfit/syndicate/clownop/leader)
+		leader.equipOutfit(/datum/outfit/syndicate/clownop/leader)
 
 	if(antag_mind == most_experienced)
 		return
