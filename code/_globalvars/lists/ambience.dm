@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(halflife_ambient_music,list(
 	'sound/ambience/vaguevoices.ogg', 
 	'sound/ambience/escapearray.ogg', 
 	'sound/ambience/resurrectedteleport.ogg'
-	'sound/ambience/calabiyaumodel.ogg'))
+	'sound/ambience/calabiyaumodel.ogg',))
 
 GLOBAL_LIST_INIT(ambience_assoc,list(
 	AMBIENCE_GENERIC = GLOB.generic_ambience,
