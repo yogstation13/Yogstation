@@ -113,11 +113,6 @@
 		are_forced = TRUE
 	else
 		mode.update_crew_infos()
-		var/pop_required = mode.min_pop_thresholds[track]
-		if(mode.active_players < pop_required)
-			message_admins("Storyteller failed to pick an event for track of [track] due to insufficient population. (required: [pop_required] active pop for [track]. Current: [mode.active_players])")
-			mode.event_track_points[track] *= TRACK_FAIL_POINT_PENALTY_MULTIPLIER
-			return
 		calculate_weights(track)
 		var/list/valid_events = list()
 		// Determine which events are valid to pick

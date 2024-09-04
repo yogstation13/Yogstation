@@ -41,32 +41,6 @@
 	config_entry_value = 1
 	min_val = 0
 
-// Minimum population
-/datum/config_entry/number/mundane_min_pop
-	config_entry_value = MUNDANE_MIN_POP
-	integer = TRUE
-	min_val = 0
-
-/datum/config_entry/number/moderate_min_pop
-	config_entry_value = MODERATE_MIN_POP
-	integer = TRUE
-	min_val = 0
-
-/datum/config_entry/number/major_min_pop
-	config_entry_value = MAJOR_MIN_POP
-	integer = TRUE
-	min_val = 0
-
-/datum/config_entry/number/roleset_min_pop
-	config_entry_value = ROLESET_MIN_POP
-	integer = TRUE
-	min_val = 0
-
-/datum/config_entry/number/objectives_min_pop
-	config_entry_value = OBJECTIVES_MIN_POP
-	integer = TRUE
-	min_val = 0
-
 // Point Thresholds
 /datum/config_entry/number/mundane_point_threshold
 	config_entry_value = MUNDANE_POINT_THRESHOLD

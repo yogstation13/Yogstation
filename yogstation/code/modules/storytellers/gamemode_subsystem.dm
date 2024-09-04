@@ -46,15 +46,6 @@ SUBSYSTEM_DEF(gamemode)
 		EVENT_TRACK_OBJECTIVES = OBJECTIVES_POINT_THRESHOLD
 		)
 
-	/// Minimum population thresholds for the tracks to fire off events.
-	var/list/min_pop_thresholds = list(
-		EVENT_TRACK_MUNDANE = MUNDANE_MIN_POP,
-		EVENT_TRACK_MODERATE = MODERATE_MIN_POP,
-		EVENT_TRACK_MAJOR = MAJOR_MIN_POP,
-		EVENT_TRACK_ROLESET = ROLESET_MIN_POP,
-		EVENT_TRACK_OBJECTIVES = OBJECTIVES_MIN_POP
-		)
-
 	/// Configurable multipliers for point gain over time.
 	var/list/point_gain_multipliers = list(
 		EVENT_TRACK_MUNDANE = 1,
@@ -444,19 +435,18 @@ SUBSYSTEM_DEF(gamemode)
 
 /datum/controller/subsystem/gamemode/proc/update_pop_scaling()
 	for(var/track in event_tracks)
-		var/low_pop_bound = min_pop_thresholds[track]
 		var/high_pop_bound = pop_scale_thresholds[track]
 		var/scale_penalty = pop_scale_penalties[track]
 
-		var/perceived_pop = min(max(low_pop_bound, active_players), high_pop_bound)
+		var/perceived_pop = min(active_players, high_pop_bound)
 
-		var/divisor = high_pop_bound - low_pop_bound
+		var/divisor = high_pop_bound
 		/// If the bounds are equal, we'd be dividing by zero or worse, if upper is smaller than lower, we'd be increasing the factor, just make it 1 and continue.
 		/// this is only a problem for bad configs
 		if(divisor <= 0)
 			current_pop_scale_multipliers[track] = 1
 			continue
-		var/scalar = (perceived_pop - low_pop_bound) / divisor
+		var/scalar = perceived_pop / divisor
 		var/penalty = scale_penalty - (scale_penalty * scalar)
 		var/calculated_multiplier = 1 - (penalty / 100)
 
@@ -785,12 +775,6 @@ SUBSYSTEM_DEF(gamemode)
 	roundstart_point_multipliers[EVENT_TRACK_ROLESET] = CONFIG_GET(number/roleset_roundstart_point_multiplier)
 	roundstart_point_multipliers[EVENT_TRACK_OBJECTIVES] = CONFIG_GET(number/objectives_roundstart_point_multiplier)
 
-	min_pop_thresholds[EVENT_TRACK_MUNDANE] = CONFIG_GET(number/mundane_min_pop)
-	min_pop_thresholds[EVENT_TRACK_MODERATE] = CONFIG_GET(number/moderate_min_pop)
-	min_pop_thresholds[EVENT_TRACK_MAJOR] = CONFIG_GET(number/major_min_pop)
-	min_pop_thresholds[EVENT_TRACK_ROLESET] = CONFIG_GET(number/roleset_min_pop)
-	min_pop_thresholds[EVENT_TRACK_OBJECTIVES] = CONFIG_GET(number/objectives_min_pop)
-
 	point_thresholds[EVENT_TRACK_MUNDANE] = CONFIG_GET(number/mundane_point_threshold)
 	point_thresholds[EVENT_TRACK_MODERATE] = CONFIG_GET(number/moderate_point_threshold)
 	point_thresholds[EVENT_TRACK_MAJOR] = CONFIG_GET(number/major_point_threshold)
@@ -900,12 +884,6 @@ SUBSYSTEM_DEF(gamemode)
 			dat += "<BR><font color='#888888'><i>This affects points generated for roundstart events and antagonists.</i></font>"
 			for(var/track in event_tracks)
 				dat += "<BR>[track]: <a href='?src=[REF(src)];panel=main;action=vars;var=roundstart_pts;track=[track]'>[roundstart_point_multipliers[track]]</a>"
-			dat += "<HR>"
-
-			dat += "<b>Minimum Population for Tracks:</b>"
-			dat += "<BR><font color='#888888'><i>This are the minimum population caps for events to be able to run.</i></font>"
-			for(var/track in event_tracks)
-				dat += "<BR>[track]: <a href='?src=[REF(src)];panel=main;action=vars;var=min_pop;track=[track]'>[min_pop_thresholds[track]]</a>"
 			dat += "<HR>"
 
 			dat += "<b>Point Thresholds:</b>"
@@ -1120,12 +1098,6 @@ SUBSYSTEM_DEF(gamemode)
 								return
 							message_admins("[key_name_admin(usr)] set roundstart pts multiplier for [track] track to [new_value].")
 							roundstart_point_multipliers[track] = new_value
-						if("min_pop")
-							var/new_value = input(usr, "New value:", "Set new value") as num|null
-							if(isnull(new_value) || new_value < 0)
-								return
-							message_admins("[key_name_admin(usr)] set minimum population for [track] track to [new_value].")
-							min_pop_thresholds[track] = new_value
 						if("pts_threshold")
 							var/new_value = input(usr, "New value:", "Set new value") as num|null
 							if(isnull(new_value) || new_value < 0)
