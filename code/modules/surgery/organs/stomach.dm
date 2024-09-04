@@ -65,7 +65,7 @@
 			if(prob(25))
 				H.adjust_eye_blur(3) //We need to add more shit down here
 
-		H.adjust_disgust(-0.5 * disgust_metabolism)
+		H.adjust_disgust(-1 * disgust_metabolism)
 	switch(H.disgust)
 		if(0 to DISGUST_LEVEL_GROSS)
 			H.clear_alert("disgust")
