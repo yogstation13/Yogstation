@@ -1,4 +1,0 @@
-author: "ToasterBiome, Cowbot93"
-delete-after: true 
-changes: 
-  - bugfix: "Heretic spells now get transferred on clone"
