@@ -65,7 +65,7 @@
 	COOLDOWN_DECLARE(cmagsound_cooldown)
 
 /obj/machinery/door/examine(mob/user)
-	. = ..()
+	/*. = ..()
 	if(red_alert_access)
 		if(SSsecurity_level.current_security_level.emergency_doors)
 			. += span_notice("Due to a security threat, its access requirements have been lifted!")
@@ -77,7 +77,7 @@
 		var/userDir = turn(get_dir(src, user), 180)
 		var/turf/T = get_step(src, userDir)
 		var/areaName = T.loc.name
-		. += span_notice("It leads into [areaName].")
+		. += span_notice("It leads into [areaName].") */
 
 /obj/machinery/door/check_access_list(list/access_list)
 	if(red_alert_access && SSsecurity_level.current_security_level.emergency_doors)
@@ -342,10 +342,10 @@
 
 /obj/machinery/door/update_icon_state()
 	. = ..()
-	if(density)
-		icon_state = "door1"
-	else
-		icon_state = "door0"
+	//if(density)
+		//icon_state = "door1"
+	//else
+		//icon_state = "door0"
 
 /obj/machinery/door/proc/do_animate(animation)
 	switch(animation)

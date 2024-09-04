@@ -54,6 +54,8 @@
 #define ALERT_NUTRITION "nutrition"
 #define ALERT_DISGUST "disgust"
 
+#define ALERT_HYDRATION "hydration"
+
 /** Environment related */
 #define ALERT_PRESSURE "pressure"
 #define ALERT_GRAVITY "gravity"

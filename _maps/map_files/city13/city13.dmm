@@ -136,6 +136,10 @@
 	},
 /turf/open/floor/plating/ground/road,
 /area/halflife/outdoors)
+"hH" = (
+/obj/machinery/door/unpowered/halflife/metal,
+/turf/open/floor/plating/indoor/woodc,
+/area/halflife/indoors)
 "hJ" = (
 /obj/structure/mineral_door/halflife/wood,
 /turf/open/floor/plating/indoor/woodc,
@@ -188,6 +192,10 @@
 /obj/machinery/light,
 /turf/open/floor/plating/indoor/woodc,
 /area/halflife/indoors)
+"jS" = (
+/obj/machinery/door/unpowered/halflife/metal/mirrored,
+/turf/open/floor/plating/ground/road,
+/area/halflife/outdoors)
 "jZ" = (
 /obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/ground/dirt,
@@ -205,10 +213,6 @@
 "kC" = (
 /obj/machinery/griddle,
 /turf/open/floor/plating/indoor/showroom,
-/area/halflife/indoors)
-"kI" = (
-/obj/machinery/door/airlock/public/glass,
-/turf/open/floor/plating/indoor/tiled10,
 /area/halflife/indoors)
 "kU" = (
 /obj/machinery/power/halflife/streetlamp/corner,
@@ -265,6 +269,10 @@
 "mT" = (
 /turf/open/floor/plating/indoor/tiled10,
 /area/halflife/indoors)
+"ne" = (
+/obj/machinery/vending/breenwater,
+/turf/open/floor/plating/ground/road,
+/area/halflife/outdoors)
 "nC" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/lootdrop/halflife/loot,
@@ -280,6 +288,10 @@
 /obj/structure/rack,
 /turf/open/floor/plating/indoor/woodc,
 /area/halflife/indoors)
+"oC" = (
+/obj/machinery/door/unpowered/halflife/wood,
+/turf/open/floor/plating/ground/road,
+/area/halflife/outdoors)
 "pf" = (
 /turf/closed/indestructible/syndicate,
 /area/halflife/outdoors)
@@ -298,6 +310,10 @@
 /obj/effect/spawner/lootdrop/halflife/loot/rare,
 /turf/open/floor/plating/indoor/concrete/bricks,
 /area/halflife/indoors/sewer)
+"qs" = (
+/obj/machinery/door/unpowered/halflife/wood/green,
+/turf/open/floor/plating/ground/road,
+/area/halflife/outdoors)
 "qC" = (
 /turf/open/openspace,
 /area/halflife/indoors)
@@ -443,6 +459,10 @@
 	},
 /turf/open/floor/plating/indoor/woodc,
 /area/halflife/indoors/sewer)
+"zX" = (
+/obj/machinery/door/unpowered/halflife/seethrough/bar,
+/turf/open/floor/plating/ground/road,
+/area/halflife/outdoors)
 "zZ" = (
 /turf/open/floor/plating/indoor/woodc,
 /area/halflife/outdoors)
@@ -500,6 +520,10 @@
 	},
 /turf/open/floor/plating/ground/sidewalk,
 /area/halflife/outdoors)
+"Cs" = (
+/obj/machinery/door/unpowered/halflife/seethrough/metal,
+/turf/open/floor/plating/ground/road,
+/area/halflife/outdoors)
 "DD" = (
 /obj/structure/halflife/street_sign/speed{
 	dir = 1
@@ -543,6 +567,12 @@
 "Gf" = (
 /obj/machinery/light{
 	dir = 4
+	},
+/turf/open/floor/plating/indoor/woodc,
+/area/halflife/indoors)
+"Gh" = (
+/obj/machinery/door/unpowered/halflife/metal{
+	dir = 1
 	},
 /turf/open/floor/plating/indoor/woodc,
 /area/halflife/indoors)
@@ -595,6 +625,10 @@
 /obj/structure/closet/secure_closet/freezer/kitchen,
 /turf/open/floor/plating/indoor/showroom,
 /area/halflife/indoors)
+"IE" = (
+/obj/machinery/door/unpowered/halflife/metal/mirrored/alt,
+/turf/open/floor/plating/ground/road,
+/area/halflife/outdoors)
 "IZ" = (
 /turf/open/floor/plating/indoor/metal,
 /area/halflife/indoors/sewer)
@@ -615,14 +649,6 @@
 	},
 /turf/open/floor/plating/indoor/metal/grate,
 /area/halflife/indoors/sewer)
-"JE" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Armory";
-	security_level = 1
-	},
-/obj/effect/mapping_helpers/airlock/access/any/security/general,
-/turf/open/floor/plating/indoor/tile/navy,
-/area/halflife/indoors)
 "JL" = (
 /mob/living/simple_animal/hostile/halflife/zombie,
 /turf/open/floor/plating/indoor/metal/grate,
@@ -728,10 +754,6 @@
 /obj/structure/mineral_door/halflife/wood,
 /turf/open/floor/plating/indoor/greentile,
 /area/halflife/indoors)
-"QQ" = (
-/obj/machinery/door/airlock/public/glass,
-/turf/open/floor/plating/indoor/tile,
-/area/halflife/indoors)
 "QU" = (
 /obj/structure/rack,
 /obj/item/clothing/gloves/color/black,
@@ -783,6 +805,10 @@
 /area/halflife/indoors/sewer)
 "Tc" = (
 /turf/open/floor/plating/ground/sidewalk,
+/area/halflife/outdoors)
+"Tg" = (
+/obj/machinery/door/unpowered/halflife/wood/mirrored/white,
+/turf/open/floor/plating/ground/road,
 /area/halflife/outdoors)
 "Tp" = (
 /obj/machinery/light/small{
@@ -58151,7 +58177,7 @@ Tc
 Tc
 Tc
 Tc
-uS
+hH
 Ks
 Ks
 Ks
@@ -58353,7 +58379,7 @@ Tc
 Tc
 Tc
 Tc
-uS
+Gh
 Ks
 Ks
 Ks
@@ -59932,7 +59958,7 @@ XQ
 XQ
 XQ
 XQ
-kI
+mT
 mT
 mT
 mT
@@ -60938,7 +60964,7 @@ cP
 VE
 XQ
 XQ
-QQ
+XQ
 cP
 cP
 cP
@@ -62381,7 +62407,7 @@ FP
 Tc
 Tc
 RV
-RV
+ne
 ja
 RV
 RV
@@ -62785,7 +62811,7 @@ FP
 Tc
 Tc
 RV
-RV
+zX
 ja
 RV
 RV
@@ -62962,7 +62988,7 @@ XQ
 XQ
 XQ
 XQ
-kI
+mT
 mT
 mT
 mT
@@ -62987,7 +63013,7 @@ FP
 Tc
 Tc
 RV
-RV
+IE
 RV
 RV
 RV
@@ -63189,7 +63215,7 @@ FP
 Tc
 OA
 RV
-RV
+jS
 ja
 RV
 RV
@@ -63391,7 +63417,7 @@ FP
 Tc
 Tc
 RV
-RV
+Cs
 RV
 RV
 RV
@@ -63593,7 +63619,7 @@ FP
 Tc
 Tc
 RV
-RV
+oC
 ja
 RV
 RV
@@ -63795,7 +63821,7 @@ FP
 Tc
 Tc
 RV
-RV
+qs
 RV
 RV
 RV
@@ -63997,7 +64023,7 @@ FP
 Tc
 Tc
 RV
-RV
+Tg
 ja
 RV
 RV
@@ -64165,7 +64191,7 @@ cP
 cP
 cP
 cP
-JE
+cP
 cP
 cP
 cP
