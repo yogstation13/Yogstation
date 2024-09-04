@@ -19,6 +19,8 @@
 #define FROZEN					(1<<15)
 #define UNIQUE_REDESC			(1<<16) // can you customize the description of the thing?
 #define CMAGGED					(1<<17)
+#define LOCKING_ITEM (1<<18)
+#define KEY_ITEM (1<<19) 
 
 // If you add new ones, be sure to add them to /obj/Initialize as well for complete mapping support
 

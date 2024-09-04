@@ -153,9 +153,6 @@ There are several things that need to be remembered:
 		//Friendly reminder that icon_exists(file, state, scream = TRUE) is your friend when debugging this code.
 		var/icon_file
 		var/target_overlay = RESOLVE_ICON_STATE(uniform) //Selects proper icon from the vars the clothing has (Search define for more.)
-		var/obj/item/bodypart/l_leg = get_bodypart(BODY_ZONE_L_LEG)
-		var/obj/item/bodypart/r_leg = get_bodypart(BODY_ZONE_R_LEG)
-		var/obj/item/bodypart/chest/chest = get_bodypart(BODY_ZONE_CHEST)
 		uniform.species_fitted = null	
 		if(uniform.adjusted == ALT_STYLE)
 			target_overlay = "[target_overlay]_d"

@@ -9,3 +9,4 @@
 #define DOAFTER_SOURCE_CHARGE_CRANKRECHARGE "doafter_charge_crank_recharge"
 
 #define DOAFTER_SOURCE_LADDERBLOCKERS "doafter_ladderblockers"
+#define DOAFTER_SOURCE_DOORS "doafter_doors"

@@ -31,7 +31,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		SPACEPOD_SLOT_CARGO = 2,
 		SPACEPOD_SLOT_WEAPON = 1,
 		SPACEPOD_SLOT_LOCK = 1)
-	var/obj/item/spacepod_equipment/lock/lock
+	var/obj/item/spacepod_equipment/lock/podlock
 	var/obj/item/spacepod_equipment/weaponry/weapon
 	var/next_firetime = 0
 	var/locked = FALSE
@@ -138,15 +138,15 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 				SE.forceMove(src)
 				SE.on_install(src)
 			return TRUE
-		if(lock && istype(W, /obj/item/device/lock_buster))
+		if(podlock && istype(W, /obj/item/device/lock_buster))
 			var/obj/item/device/lock_buster/L = W
 			if(L.on)
 				user.visible_message(user, span_warning("[user] is drilling through [src]'s lock!"),
 					span_notice("You start drilling through [src]'s lock!"))
 				if(do_after(user, 10 SECONDS * W.toolspeed, src))
-					if(lock)
-						var/obj/O = lock
-						lock.on_uninstall()
+					if(podlock)
+						var/obj/O = podlock
+						podlock.on_uninstall()
 						qdel(O)
 						user.visible_message(user, span_warning("[user] has destroyed [src]'s lock!"),
 							span_notice("You destroy [src]'s lock!"))
@@ -570,7 +570,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	if(!verb_check(FALSE))
 		return
 
-	if(!lock)
+	if(!podlock)
 		to_chat(usr, span_warning("[src] has no locking mechanism."))
 		locked = FALSE //Should never be false without a lock, but if it somehow happens, that will force an unlock.
 	else

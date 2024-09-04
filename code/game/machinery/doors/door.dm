@@ -58,6 +58,8 @@
 	var/poddoor = FALSE
 	/// Unrestricted sides. A bitflag for which direction (if any) can open the door with no access
 	var/unres_sides = 0
+	var/can_crush = TRUE
+	var/sparks = TRUE
 	// door open speed.
 	var/open_speed = 0.5 SECONDS
 	COOLDOWN_DECLARE(cmagsound_cooldown)
@@ -305,6 +307,8 @@
 
 /obj/machinery/door/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
+	if(!sparks)
+		return
 	if(. && atom_integrity > 0)
 		if(damage_amount >= 10 && prob(30))
 			spark_system.start()
@@ -426,7 +430,8 @@
 	if(safe)
 		CheckForMobs()
 	else if(!(flags_1 & ON_BORDER_1))
-		crush()
+		if(can_crush)
+			crush()
 	return TRUE
 
 /obj/machinery/door/proc/CheckForMobs()

@@ -20,6 +20,8 @@
 	///Intearaction flags
 	var/interaction_flags_atom = NONE
 
+	var/halflife_flags_1
+
 	///Reagents holder
 	var/datum/reagents/reagents = null
 
@@ -157,6 +159,8 @@
 	var/damage_deflection = 0
 
 	var/resistance_flags = NONE // INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ON_FIRE | UNACIDABLE | ACID_PROOF
+
+	var/hitted_sound
 
 /**
   * Top level of the destroy chain for most atoms
