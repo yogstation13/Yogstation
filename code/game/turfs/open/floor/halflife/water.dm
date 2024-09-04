@@ -14,6 +14,7 @@
 #define TURF_LAYER_WATER_UNDER 1.94
 #define TURF_LAYER_WATER_BASE 1.93
 
+
 #define iswater(A) (istype(A, /turf/open/halflife/water))
 
 /turf/open/halflife/water
@@ -88,9 +89,16 @@
 	icon = 'icons/turf/water.dmi'
 	density = FALSE
 	mouse_opacity = 0
-	layer = TURF_LAYER_WATER
-	plane = FLOOR_PLANE
+	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
+
+/*
+/obj/effect/overlay/halflife/water/Initialize()
+	on_changed_z_level()
+	if(SSmapping.max_plane_offset)
+		if(!SSmapping.plane_offset_blacklist["[plane]"])
+			plane = plane - (PLANE_RANGE * SSmapping.z_level_to_plane_offset[z])
+			*/
 
 /obj/effect/overlay/halflife/water/deep
 	icon_state = "water_deep_bottom"

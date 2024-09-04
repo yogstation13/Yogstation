@@ -57,6 +57,10 @@
 #define AMBIENCE_AI "ai"
 #define AMBIENCE_CREEPY "creepy" //not to be confused with spooky
 
+#define AMBIENCE_HLOUTSIDE "hloutside"
+#define AMBIENCE_HLINSIDE "hloutside"
+#define AMBIENCE_HLSEWERS "hlsewers"
+
 //default byond sound environments
 #define SOUND_ENVIRONMENT_NONE -1
 #define SOUND_ENVIRONMENT_GENERIC 0

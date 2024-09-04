@@ -162,6 +162,26 @@ GLOBAL_LIST_INIT(creepy_ambience,list(
 	'sound/hallucinations/veryfar_noise.ogg', 
 	'sound/hallucinations/wail.ogg'))
 
+GLOBAL_LIST_INIT(hloutside_ambience,list(
+	'sound/ambience/ambiruin6.ogg', 
+	'sound/ambience/trainstation.ogg', 
+	'sound/ambience/calabiyaumodel.ogg'))
+
+GLOBAL_LIST_INIT(hlinside_ambience,list(
+	'sound/ambience/trainstation.ogg', 
+	'sound/ambience/calabiyaumodel.ogg'))
+
+GLOBAL_LIST_INIT(hlsewers_ambience,list(
+	'sound/ambience/ambimaint1.ogg',
+	'sound/ambience/ambimaint2.ogg',
+	'sound/ambience/ambimaint3.ogg',
+	'sound/ambience/ambimaint4.ogg',
+	'sound/ambience/ambimaint5.ogg',
+	'sound/ambience/maintambience.ogg',
+	'sound/ambience/source_corridor2.ogg',
+	'sound/ambience/ambiruin5.ogg',))
+	
+
 GLOBAL_LIST_INIT(ambience_assoc,list(
 	AMBIENCE_GENERIC = GLOB.generic_ambience,
 	AMBIENCE_HOLY = GLOB.holy_ambience,
@@ -176,6 +196,9 @@ GLOBAL_LIST_INIT(ambience_assoc,list(
 	AMBIENCE_REEBE = GLOB.reebe_ambience,
 	AMBIENCE_CREEPY = GLOB.creepy_ambience,
 	AMBIENCE_AI = GLOB.ai_ambience,
+	AMBIENCE_HLOUTSIDE = GLOB.hloutside_ambience,
+	AMBIENCE_HLINSIDE = GLOB.hlinside_ambience,
+	AMBIENCE_HLSEWERS = GLOB.hlsewers_ambience,
 	AMBIENCE_NONE = list()))
 
 

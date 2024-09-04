@@ -3,7 +3,7 @@
 	icon_state = "away"
 	has_gravity = TRUE
 	hidden = FALSE
-	ambience_index = AMBIENCE_RUINS
+	ambience_index = AMBIENCE_HLOUTSIDE
 	flags_1 = CAN_BE_DIRTY_1
 	requires_power = FALSE
 	lights_always_start_on = TRUE
@@ -22,7 +22,11 @@
 /area/halflife/indoors
 	name = "\improper Indoors"
 	icon_state = "away"
+	ambience_index = AMBIENCE_HLINSIDE
+	sound_environment = SOUND_ENVIRONMENT_ROOM
 
 /area/halflife/indoors/sewer
 	name = "\improper Sewer"
 	icon_state = "away"
+	ambience_index = AMBIENCE_HLSEWERS
+	sound_environment = SOUND_ENVIRONMENT_CAVE

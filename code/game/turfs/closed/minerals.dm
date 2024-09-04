@@ -2,31 +2,30 @@
 
 /turf/closed/mineral //wall piece
 	name = "rock"
-	icon = MAP_SWITCH('icons/turf/smoothrocks.dmi', 'icons/turf/mining.dmi')
-	icon_state = "rock"
+	icon = 'icons/turf/walls/halflife/black_stone_walls.dmi'
+	icon_state = "black_stone_walls-0"
 	smoothing_groups = SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_MINERAL_WALLS
 	canSmoothWith = SMOOTH_GROUP_MINERAL_WALLS
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
-	baseturfs = /turf/open/floor/plating/asteroid/airless
-	initial_gas_mix = AIRLESS_ATMOS
+	baseturfs = /turf/open/floor/plating/ground/rockunder
 	opacity = TRUE
 	density = TRUE
 	// We're a BIG wall, larger then 32x32, so we need to be on the game plane
 	// Otherwise we'll draw under shit in weird ways
-	plane = GAME_PLANE
+	//plane = GAME_PLANE
 	layer = EDGED_TURF_LAYER
-	base_icon_state = "smoothrocks"
+	base_icon_state = "black_stone_walls"
 
 	// This is static
 	// Done like this to avoid needing to make it dynamic and save cpu time
 	// 4 to the left, 4 down
-	transform = MAP_SWITCH(TRANSLATE_MATRIX(-4, -4), matrix())
+	//transform = MAP_SWITCH(TRANSLATE_MATRIX(-4, -4), matrix())
 
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	initial_temperature = TCMB
 
-	var/environment_type = "asteroid"
-	var/turf/open/floor/plating/turf_type = /turf/open/floor/plating/asteroid/airless
+	var/environment_type = "planetary"
+	var/turf/open/floor/plating/turf_type = /turf/open/floor/plating/ground/rockunder
 	var/obj/item/stack/ore/mineralType = null
 	var/mineralAmt = 3
 	var/spread = 0 //will the seam spread?
@@ -42,9 +41,9 @@
 	// So we draw them as if they were on the game plane, and then overlay a copy onto
 	// The wall plane (so emissives/light masks behave)
 	// I am so sorry
-	var/static/mutable_appearance/wall_overlay = mutable_appearance('icons/turf/mining.dmi', "rock", appearance_flags = RESET_TRANSFORM)
-	wall_overlay.plane = MUTATE_PLANE(WALL_PLANE, src)
-	overlays += wall_overlay
+	//var/static/mutable_appearance/wall_overlay = mutable_appearance('icons/turf/walls/halflife/black_stone_walls.dmi', "black_stone_walls", appearance_flags = RESET_TRANSFORM)
+	//wall_overlay.plane = MUTATE_PLANE(WALL_PLANE, src)
+	//overlays += wall_overlay
 	if (mineralType && mineralAmt && spread && spreadChance)
 		for(var/dir in GLOB.cardinals)
 			if(prob(spreadChance))
@@ -52,12 +51,14 @@
 				if(istype(T, /turf/closed/mineral/random))
 					Spread(T)
 
+/*
 /turf/closed/mineral/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 	if(turf_type)
 		underlay_appearance.icon = initial(turf_type.icon)
 		underlay_appearance.icon_state = initial(turf_type.icon_state)
 		return TRUE
 	return ..()
+	*/
 
 /turf/closed/mineral/attackby(obj/item/I, mob/user, params)
 	if (!user.IsAdvancedToolUser())
@@ -118,7 +119,7 @@
 	if(hardness != initial(hardness))
 		var/mutable_appearance/cracks = mutable_appearance('icons/turf/mining.dmi',"rock_cracks", ON_EDGED_TURF_LAYER)
 		var/matrix/M = new
-		M.Translate(4,4)
+		M.Translate(0,0)
 		cracks.transform = M
 		. += cracks
 
@@ -174,11 +175,10 @@
 
 /turf/closed/mineral/random
 	var/list/mineralSpawnChanceList = list(/turf/closed/mineral/uranium = 5, /turf/closed/mineral/diamond = 1, /turf/closed/mineral/gold = 10,
-		/turf/closed/mineral/silver = 12, /turf/closed/mineral/plasma = 20, /turf/closed/mineral/iron = 40, /turf/closed/mineral/titanium = 11,
-		/turf/closed/mineral/gibtonite = 4, /turf/closed/mineral/bscrystal = 1)
+		/turf/closed/mineral/silver = 12, /turf/closed/mineral/iron = 65, /turf/closed/mineral/titanium = 11)
 		//Currently, Adamantine won't spawn as it has no uses. -Durandan
 	var/mineralChance = 13
-	var/display_icon_state = "rock"
+	var/display_icon_state = null
 
 /turf/closed/mineral/random/Initialize(mapload)
 
