@@ -331,6 +331,8 @@
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload)
 	. = ..()
+	if(dir == NORTH) //looks better with the style of walls implemented
+		pixel_y = 16
 	GLOB.lights += src
 
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_light))

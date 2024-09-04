@@ -4,7 +4,7 @@
 	baseturfs = /turf/open/floor/plating/dirt
 	turf_flags = NO_RUST
 	tiled_dirt = FALSE
-	light_power = 0.25 //faint lighting will make surrounding walls look a lot better
+	light_power = 0.25
 	light_range = 0.25
 	var/border_icon
 

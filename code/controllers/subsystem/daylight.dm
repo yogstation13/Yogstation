@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(daylight)
 
 /datum/controller/subsystem/daylight/fire(resumed = FALSE)
 	var/light_coefficient = max((sin(world.time * 360 / daylight_time) + 0.5) * 2 / 3, 0)
-	var/light_alpha = round(255 * light_coefficient)
+	var/light_alpha = round(200 * light_coefficient)
 	var/light_color = rgb(255, 130 + 125 * light_coefficient, 130 + 125 * light_coefficient)
 	for(var/area/lit_area as anything in daylight_areas)
 		lit_area.set_base_lighting(light_color, light_alpha)

@@ -60,6 +60,7 @@
 #define AMBIENCE_HLOUTSIDE "hloutside"
 #define AMBIENCE_HLINSIDE "hloutside"
 #define AMBIENCE_HLSEWERS "hlsewers"
+#define AMBIENCE_HLMUSIC "hlmusic"
 
 //default byond sound environments
 #define SOUND_ENVIRONMENT_NONE -1

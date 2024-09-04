@@ -85,4 +85,4 @@ SUBSYSTEM_DEF(ambience)
 ///Play background music, the more OOC ambience, like eerie space music
 /datum/controller/subsystem/ambience/proc/play_ambience_music(mob/M, _ambi_music, area/A)
 	if(!M.client?.channel_in_use(CHANNEL_AMBIENT_MUSIC)&& (M.client.prefs.toggles & SOUND_AMBIENCE))
-		SEND_SOUND(M, sound(_ambi_music, repeat = 0, wait = 0, volume = 75, channel = CHANNEL_AMBIENT_MUSIC))
+		SEND_SOUND(M, sound(_ambi_music, repeat = 0, wait = 0, volume = 35, channel = CHANNEL_AMBIENT_MUSIC))
