@@ -114,14 +114,6 @@
 	
 	var/list/antagonists = GLOB.special_roles.Copy()
 
-	/*for (var/datum/dynamic_ruleset/ruleset as anything in subtypesof(/datum/dynamic_ruleset))
-		var/datum/antagonist/antagonist_type = initial(ruleset.antag_datum)
-		if (isnull(antagonist_type))
-			continue
-
-		// antag_flag is guaranteed to be unique by unit tests.
-		antagonists[initial(ruleset.antag_flag)] = antagonist_type
-	*/
 	var/list/generated_icons = list()
 	var/list/to_insert = list()
 
