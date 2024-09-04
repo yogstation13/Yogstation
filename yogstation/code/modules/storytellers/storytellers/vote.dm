@@ -1,4 +1,3 @@
-/*
 /datum/vote/var/has_desc = FALSE
 
 /datum/vote/proc/return_desc(vote_name)
@@ -31,4 +30,3 @@
 
 /datum/vote/storyteller/finalize_vote(winning_option)
 	SSgamemode.storyteller_vote_result(winning_option)
-*/
