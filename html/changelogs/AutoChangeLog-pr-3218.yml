@@ -1,5 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - refactor: "Cleaned up code related to name tags."
-  - qol: "Improved the font for name tags, making them easier to read."

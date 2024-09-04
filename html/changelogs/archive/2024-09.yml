@@ -40,3 +40,51 @@
 2024-09-03:
   Absolucy:
   - balance: Alien surgical tables are now 20% faster.
+2024-09-04:
+  Absolucy:
+  - refactor: Cleaned up code related to name tags.
+  - qol: Improved the font for name tags, making them easier to read.
+  - qol: The curator booth's radio is now lossless - it is unaffected by exospheric
+      anomalies.
+  - qol: Sitting in a chair no longer stops you from doing most actions.
+  - qol: You can now reach around filing cabinets and the radio microphone.
+  Flleeppyy, Punny:
+  - image: Added burnt emag and hack-o-lantern designs by PunnyPunny
+  - code_imp: added some more features to the microwave, items can now return COMPONENT_MICROWAVE
+      - "DONTEJECT", "DONTDIRTY", and "DONTOPEN"
+  PotatoTomahto:
+  - rscadd: Flasks can now be worn on the belt slot
+  RikuTheKiller:
+  - bugfix: Fixed a health update bug with Longevity Syndrome.
+  Sorenon:
+  - bugfix: reconnected atmos in kilo station science department
+  V2LenKagamine:
+  - rscadd: Axe Smithed Item
+  - rscadd: Spear Smithed Item
+  - rscadd: Blacksmith Cape
+  - rscadd: Industrial Electroplater. Ever wanted the shine of gold and the damage
+      of Plastitanium? -- Now buildable with boards
+  - rscadd: Material Alloyer. Allows you to alloy to materials, blending their stats!
+      Works with Smithed Items!-- Now buildable with boards
+  - rscadd: Material Analizer. For seeing aforementioned stats. -- Now buildable with
+      boards
+  - rscadd: Sell Smithed items for credits based on how well they're made and what
+      they're made of
+  - rscadd: 'Armor Smithing Items: Boots, Gloves, Helmet, and Chestplate.'
+  - rscadd: 'Smithing Crate: Now for all avid-smithy-goers! Contains an anvil,assembly
+      bench,material alloy board, material Analizer board,and industrial electroplater
+      board!'
+  - qol: Forges now Accept plasma Sheets as Fuel
+  - balance: Smithed tools are affected by their quality more.
+  - bugfix: Comment in primative.dm saying there were only 3 levels of smith. there
+      are 7.
+  - bugfix: The ability to rip something off the anvil mid-smithing has been removed.
+  - refactor: anvil and bench recipe files now not 'sword' and now human readable
+  Wisemonster:
+  - bugfix: Fixed Poly getting stuck in a hoarding loop
+  - bugfix: Fixed Poly being unable to speak
+  flleeppyy:
+  - admin: new Server verb for toggling deadchat "Toggle Deadchat"
+  lmenvs:
+  - rscadd: adds CaptainShiba's pet transformation and pet! Thank you for your patronage!
+      Sprites by AbberantQuerist.

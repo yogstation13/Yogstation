@@ -1,4 +1,0 @@
-author: "Sorenon"
-delete-after: True
-changes:
-  - bugfix: "reconnected atmos in kilo station science department"
