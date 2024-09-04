@@ -214,7 +214,7 @@ SUBSYSTEM_DEF(ticker)
 	var/init_start = world.timeofday
 		//Create and announce mode
 
-	mode = new /datum/game_mode/dynamic //always dynamic LOL!
+	mode = new /datum/game_mode/extended //always secret extended LOL!
 	SSgamemode.init_storyteller() //monkestation addition
 
 	CHECK_TICK

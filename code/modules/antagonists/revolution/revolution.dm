@@ -1,5 +1,7 @@
 //How often to check for promotion possibility
 #define HEAD_UPDATE_PERIOD 300
+#define REVOLUTION_VICTORY 1
+#define STATION_VICTORY 2
 
 /datum/antagonist/rev
 	name = "Revolutionary"

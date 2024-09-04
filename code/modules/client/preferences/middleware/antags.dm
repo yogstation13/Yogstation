@@ -59,14 +59,13 @@
 /datum/preference_middleware/antags/proc/get_antag_bans()
 	var/list/antag_bans = list()
 
-	for (var/datum/dynamic_ruleset/dynamic_ruleset as anything in subtypesof(/datum/dynamic_ruleset))
-		var/antag_flag = initial(dynamic_ruleset.antag_flag)
-		var/antag_flag_override = initial(dynamic_ruleset.antag_flag_override)
+	for (var/datum/game_mode/gamemode as anything in subtypesof(/datum/game_mode))
+		var/antag_flag = initial(gamemode.antag_flag)
 
 		if (isnull(antag_flag))
 			continue
 
-		if (is_banned_from(preferences.parent.ckey, list(antag_flag_override || antag_flag, ROLE_SYNDICATE)))
+		if (is_banned_from(preferences.parent.ckey, list(antag_flag, ROLE_SYNDICATE)))
 			antag_bans += serialize_antag_name(antag_flag)
 
 	return antag_bans
@@ -77,16 +76,11 @@
 
 	var/list/antag_days_left = list()
 
-	for (var/datum/dynamic_ruleset/dynamic_ruleset as anything in subtypesof(/datum/dynamic_ruleset))
-		var/antag_flag = initial(dynamic_ruleset.antag_flag)
-		//var/antag_flag_override = initial(dynamic_ruleset.antag_flag_override)
+	for (var/datum/game_mode/gamemode as anything in subtypesof(/datum/game_mode))
+		var/antag_flag = initial(gamemode.antag_flag)
 
 		if (isnull(antag_flag))
 			continue
-
-		/*var/days_needed = preferences.parent?.get_remaining_days(
-			GLOB.special_roles[antag_flag_override || antag_flag]
-		)*/
 
 		var/days_needed = 0
 
