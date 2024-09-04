@@ -1,0 +1,5 @@
+author: "JohnFulpWillard"
+delete-after: true 
+changes: 
+  - bugfix: "Holotools should now only work as multitools when they are set to the multitool setting."
+  - bugfix: "Ghosts no longer get spammed when using telecomms machines."
