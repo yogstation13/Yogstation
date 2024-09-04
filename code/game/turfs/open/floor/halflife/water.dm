@@ -14,7 +14,6 @@
 #define TURF_LAYER_WATER_UNDER 1.94
 #define TURF_LAYER_WATER_BASE 1.93
 
-
 #define iswater(A) (istype(A, /turf/open/halflife/water))
 
 /turf/open/halflife/water
@@ -42,6 +41,7 @@
 	var/atom/watertop = /obj/effect/overlay/halflife/water/top/medium
 	var/depth = 0
 	var/coldness = -100
+	var/z_to_change = 0 //absolutely terrible, but im desperate
 
 /turf/open/halflife/water/attackby(obj/item/W, mob/user, params)
 	. = ..()
@@ -83,22 +83,17 @@
 	. = ..()
 	new watereffect(src)
 	new watertop(src)
+	if(z == 2)
+		z_to_change = -100
 
 /obj/effect/overlay/halflife/water
 	name = "water"
 	icon = 'icons/turf/water.dmi'
 	density = FALSE
 	mouse_opacity = 0
-	layer = ABOVE_ALL_MOB_LAYER
+	layer = TURF_LAYER_WATER
+	plane = FLOOR_PLANE
 	anchored = TRUE
-
-/*
-/obj/effect/overlay/halflife/water/Initialize()
-	on_changed_z_level()
-	if(SSmapping.max_plane_offset)
-		if(!SSmapping.plane_offset_blacklist["[plane]"])
-			plane = plane - (PLANE_RANGE * SSmapping.z_level_to_plane_offset[z])
-			*/
 
 /obj/effect/overlay/halflife/water/deep
 	icon_state = "water_deep_bottom"
@@ -186,7 +181,7 @@
 		if(!iswater(get_step(src, direction)))
 			M.swimming = FALSE
 			M.layer = initial(M.layer)
-			M.plane = initial(M.plane)
+			M.plane = (initial(M.plane) + z_to_change) //absolutely terrible, but im desperate
 
 /turf/open/halflife/water/Entered(atom/A, turf/OL)
 	..()
@@ -264,7 +259,7 @@
 /turf/open/halflife/water/proc/transfer_mob_layer(var/mob/living/carbon/M)
 	if(iswater(get_turf(M)))
 		M.layer = TURF_LAYER_MOB_WATER
-		M.plane = FLOOR_PLANE
+		M.plane = (FLOOR_PLANE + z_to_change)
 		M.update_icon(UPDATE_OVERLAYS)
 	else
 		return
@@ -273,7 +268,7 @@
 	name = "sewer water"
 	desc = "Murky and foul smelling water, if you could call it that."
 	baseturfs = /turf/open/halflife/water/sewer
-	dispensedreagent = /datum/reagent/water/dirty
+	dispensedreagent = /datum/reagent/water/dirty/sewer
 	light_color = "#013b09" 
 
 

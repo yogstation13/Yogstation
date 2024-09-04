@@ -151,17 +151,29 @@
 	compatible_biotypes = ALL_BIOTYPES
 	default_container = /obj/item/reagent_containers/glass/beaker/waterbottle/large
 	var/hydration = 5
+	var/toxicity = 0
+	var/disgust = 0
 
 /datum/reagent/water/dirty
 	name = "Dirty Water"
 	description = "Contaminated water that is really bad for your health."
 	color = "#22330e" 
-	taste_description = "sewer water"
-	glass_name = "glass of dirty water"
+	taste_description = "filthy water"
+	glass_name = "glass of filthy water"
 	glass_desc = "Hopefully you do not plan on drinking this."
 	glass_icon_state = null
 	shot_glass_icon_state = null
 	default_container = /obj/item/reagent_containers/glass/beaker/waterbottle
+	toxicity = 2
+	disgust = 5
+
+/datum/reagent/water/dirty/sewer
+	name = "Sewer Water"
+	description = "A cocktail of raw sewage. Absolutely disgusting."
+	color = "#705a43"
+	taste_description = "sewer water"
+	glass_name = "glass of sewer water"
+	glass_desc = "Hopefully you do not plan on drinking this."
 
 /datum/reagent/water/unpurified
 	name = "Unpurified Water"
@@ -169,6 +181,7 @@
 	color = "#0497d1"
 	taste_description = "unpurified water"
 	glass_name = "glass of unpurified water"
+	disgust = 1.25
 
 /*
  *	Water reaction to turf
@@ -235,31 +248,8 @@
 	. = ..()
 	var/body_temperature_difference = BODYTEMP_NORMAL - M.bodytemperature
 	M.adjust_bodytemperature(min(3,body_temperature_difference))
-	if(M.blood_volume)
-		M.blood_volume += 0.1 // water is good for you!
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(!HAS_TRAIT(H, TRAIT_NOHUNGER))
-			H.adjust_hydration(hydration)
-
-/datum/reagent/water/dirty/on_mob_life(mob/living/carbon/M)
-	. = ..()
-	var/body_temperature_difference = BODYTEMP_NORMAL - M.bodytemperature
-	M.adjust_bodytemperature(min(3,body_temperature_difference))
-	M.adjustToxLoss(2*REM, 0)
-	M.adjust_disgust(5)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(!HAS_TRAIT(H, TRAIT_NOHUNGER))
-			H.adjust_hydration(hydration)
-
-/datum/reagent/water/unpurified/on_mob_life(mob/living/carbon/M)
-	. = ..()
-	var/body_temperature_difference = BODYTEMP_NORMAL - M.bodytemperature
-	M.adjust_bodytemperature(min(3,body_temperature_difference))
-	if(prob(10))
-		M.adjust_disgust(2)
-		M.adjustToxLoss(1*REM, 0)
+	M.adjustToxLoss(toxicity*REM, 0)
+	M.adjust_disgust(disgust)
 	if(M.blood_volume)
 		M.blood_volume += 0.1 // water is good for you!
 	if(ishuman(M))
