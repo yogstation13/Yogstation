@@ -8,171 +8,136 @@
 	},
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/transport)
-"c" = (
-/turf/closed/wall/mineral/titanium,
+"o" = (
+/obj/structure/chair/comfy/shuttle,
+/turf/open/floor/plating/indoor/metal/plate,
 /area/shuttle/transport)
-"d" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
+"r" = (
+/turf/open/floor/plating/indoor/metal/plate,
 /area/shuttle/transport)
-"e" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
+"v" = (
+/obj/structure/chair/comfy/shuttle{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/indoor/metal/plate,
 /area/shuttle/transport)
-"f" = (
-/obj/machinery/door/airlock/titanium,
+"A" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/plating/indoor/metal/plate,
+/area/shuttle/transport)
+"B" = (
+/obj/machinery/computer/shuttle/ferry/request{
+	dir = 8
+	},
+/turf/open/floor/plating/indoor/metal/plate,
+/area/shuttle/transport)
+"I" = (
 /obj/docking_port/mobile{
 	dir = 8;
 	dwidth = 2;
 	height = 12;
-	shuttle_id = "ferry";
 	name = "ferry shuttle";
 	port_direction = 2;
+	shuttle_id = "ferry";
 	width = 5
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
+/obj/structure/fans/tiny/invisible,
+/obj/machinery/door/unpowered/halflife/metal{
 	dir = 8
 	},
-/turf/open/floor/mineral/titanium/blue,
+/turf/open/floor/plating/indoor/metal/plate,
 /area/shuttle/transport)
-"g" = (
-/turf/closed/wall/mineral/titanium/interior,
-/area/shuttle/transport)
-"h" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"i" = (
-/obj/machinery/computer/shuttle/ferry/request{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"j" = (
-/obj/structure/chair/comfy/shuttle,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"k" = (
-/obj/machinery/door/airlock/titanium,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"l" = (
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"p" = (
+"M" = (
 /obj/structure/closet/crate,
-/turf/open/floor/mineral/titanium/blue,
+/turf/open/floor/plating/indoor/metal/plate,
 /area/shuttle/transport)
-"q" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"T" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
+"R" = (
+/turf/closed/wall/halflife/metal,
 /area/shuttle/transport)
 
 (1,1,1) = {"
 a
 b
-k
+a
 b
 a
 "}
 (2,1,1) = {"
 b
-g
-l
-g
+R
+R
+R
 b
 "}
 (3,1,1) = {"
-c
-h
-l
-p
-c
+R
+A
+r
+M
+R
 "}
 (4,1,1) = {"
-c
-i
-l
-p
-c
+R
+B
+r
+M
+R
 "}
 (5,1,1) = {"
-e
-j
-l
-q
-T
+R
+o
+r
+v
+R
 "}
 (6,1,1) = {"
-c
-j
-l
-q
-c
+R
+o
+r
+v
+R
 "}
 (7,1,1) = {"
-c
-j
-l
-q
-c
+R
+o
+r
+v
+R
 "}
 (8,1,1) = {"
-c
-j
-l
-q
-c
+R
+o
+r
+v
+R
 "}
 (9,1,1) = {"
-e
-j
-l
-q
-T
+R
+o
+r
+v
+R
 "}
 (10,1,1) = {"
-c
-j
-l
-q
-c
+R
+o
+r
+v
+R
 "}
 (11,1,1) = {"
-c
-j
-l
-q
-c
+R
+o
+r
+v
+R
 "}
 (12,1,1) = {"
-c
-d
-f
-d
-c
+R
+R
+I
+R
+R
 "}

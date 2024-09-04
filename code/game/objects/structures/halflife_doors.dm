@@ -61,19 +61,19 @@
 /obj/machinery/door/unpowered/halflife/Initialize()
 	. = ..()
 	if(dir == NORTH)
-		pixel_y = 8
+		pixel_y = -8
 
 	if(dir == SOUTH)
 		pixel_y = -8
 
 	if(dir == EAST)
 		pixel_x = -3
-		pixel_y = 16
+		pixel_y = 1
 		add_overlay(image(icon,icon_state="[frametype]_frame_vertical_overlay", layer = ABOVE_ALL_MOB_LAYER))
 
 	if(dir == WEST)
 		pixel_x = -28
-		pixel_y = 16
+		pixel_y = 1
 		add_overlay(image(icon,icon_state="[frametype]_frame_vertical_overlay", layer = ABOVE_ALL_MOB_LAYER))
 
 /obj/machinery/door/unpowered/halflife/update_overlays()
