@@ -4,6 +4,8 @@
 	baseturfs = /turf/open/floor/plating/dirt
 	turf_flags = NO_RUST
 	tiled_dirt = FALSE
+	light_power = 0.25 //faint lighting will make surrounding walls look a lot better
+	light_range = 0.25
 	var/border_icon
 
 /turf/open/floor/plating/ground/try_replace_tile(obj/item/stack/tile/T, mob/user, params)

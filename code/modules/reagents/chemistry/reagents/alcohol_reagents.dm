@@ -16,7 +16,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning
 	accelerant_quality = 5
-	hydration_factor = 6 //alcohol does help with thirst, but less effectively than water.
+	hydration_factor = 2 //alcohol does help with thirst, but less effectively than water. they also metabolize slower, so thirst regen needs to be lower
 /*
 Boozepwr Chart
 Note that all higher effects of alcohol poisoning will inherit effects for smaller amounts (i.e. light poisoning inherts from slight poisoning)

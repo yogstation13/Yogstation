@@ -150,7 +150,7 @@
 	shot_glass_icon_state = "shotglassclear"
 	compatible_biotypes = ALL_BIOTYPES
 	default_container = /obj/item/reagent_containers/glass/beaker/waterbottle/large
-	var/hydration = 12
+	var/hydration = 5
 
 /*
  *	Water reaction to turf

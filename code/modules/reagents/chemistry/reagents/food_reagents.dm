@@ -21,7 +21,7 @@
 		var/mob/living/carbon/human/H = M
 		if(!(HAS_TRAIT(H, TRAIT_NOHUNGER) || HAS_TRAIT(H, TRAIT_POWERHUNGRY)))
 			H.adjust_nutrition(nutriment_factor)
-			H.adjust_hydration(hydration_factor * metabolization_rate)
+			H.adjust_hydration(hydration_factor)
 	holder?.remove_reagent(type, metabolization_rate)
 
 /datum/reagent/consumable/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1, permeability = 1)
