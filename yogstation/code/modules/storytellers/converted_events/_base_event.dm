@@ -90,14 +90,14 @@
 
 	var/job_check = 0
 	var/list/enemy_players = list()
-	if(roundstart)
-		// for(var/enemy in enemy_roles)
-		// 	var/datum/job/enemy_job = SSjob.GetJob(enemy)
-		// 	if(enemy_job && SSjob.assigned_players_by_job[enemy_job.type])
-		// 		job_check += length(SSjob.assigned_players_by_job[enemy_job.type])
-		// 		enemy_players += SSjob.assigned_players_by_job[enemy_job.type]
+	// if(roundstart)
+	// 	for(var/enemy in enemy_roles)
+	// 		var/datum/job/enemy_job = SSjob.GetJob(enemy)
+	// 		if(enemy_job && SSjob.assigned_players_by_job[enemy_job.type])
+	// 			job_check += length(SSjob.assigned_players_by_job[enemy_job.type])
+	// 			enemy_players += SSjob.assigned_players_by_job[enemy_job.type]
 
-	else
+	if (!roundstart)
 		for(var/mob/M in SSticker.mode.current_players[CURRENT_LIVING_PLAYERS])
 			if (M.stat == DEAD)
 				continue // Dead players cannot count as opponents
