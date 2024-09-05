@@ -1597,7 +1597,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		var/iteration = 1
 		while(!target_obj_type && targets_len >= iteration)
 			for(var/obj/machinery/machine as anything in GLOB.machines)
-				if(machine.z in station_zs && istype(machine, potential_target_types[iteration]) && get_area(machine) in GLOB.the_station_areas)
+				if((machine.z in station_zs) && istype(machine, potential_target_types[iteration]) && (get_area(machine) in GLOB.the_station_areas))
 					target_obj_type = potential_target_types[iteration]
 					break
 			iteration++
