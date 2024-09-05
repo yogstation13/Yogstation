@@ -82,5 +82,6 @@
 
 GLOBAL_LIST_INIT(liquid_blacklist, list(
 	/datum/reagent/sorium,
-	/datum/reagent/liquid_dark_matter
+	/datum/reagent/liquid_dark_matter,
+	/datum/reagent/hydrogen_peroxide, // no instahusk pools please
 ))

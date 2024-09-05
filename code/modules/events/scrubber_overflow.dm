@@ -105,6 +105,7 @@
 /datum/round_event/scrubber_overflow/proc/get_overflowing_reagent(dangerous)
 	return dangerous ? get_random_reagent_id() : pick(safer_chems)
 
+/* monkestation edit: replaced in [monkestation/code/modules/events/scrubber_overflow.dm]
 /datum/round_event/scrubber_overflow/start()
 	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/vent as anything in scrubbers)
 		if(!vent.loc)
@@ -124,6 +125,7 @@
 		dispensed_reagent.create_foam(/datum/effect_system/fluid_spread/foam/short, reagents_amount)
 
 		CHECK_TICK
+monkestation end */
 
 /datum/round_event_control/scrubber_overflow/threatening
 	name = "Scrubber Overflow: Threatening"

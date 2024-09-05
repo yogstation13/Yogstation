@@ -58,6 +58,10 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/list/current_temperature_queue = list()
 	///do we evaporate
 	var/evaporates = TRUE
+	/// Liquids in this group will always evaporate regardless of height
+	var/always_evaporates = FALSE
+	/// The multiplier added to the evaporation rate of all reagents in this group.
+	var/evaporation_multiplier = 1
 	///can we merge?
 	var/can_merge = TRUE
 	///number in decimal value that acts as a multiplier to the amount of liquids lost in applications
@@ -83,15 +87,25 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 /datum/liquid_group/Destroy()
 	UnregisterSignal(reagents, COMSIG_REAGENTS_DEL_REAGENT)
 	SSliquids.active_groups -= src
-
-	if(src in SSliquids.arrayed_groups)
-		SSliquids.arrayed_groups -= src /// Someone made a massive fucky wucky if this is happening
-
+	SSliquids.active_turf_group_queue -= src
+	SSliquids.arrayed_groups -= src /// Someone made a massive fucky wucky if this is happening
 	for(var/turf/member_turf as anything in members)
-		member_turf?.liquids?.liquid_group = null
-	members = list()
+		if(member_turf?.liquids?.liquid_group == src)
+			QDEL_NULL(member_turf.liquids)
+	members = null
 	burning_members = null
+	cached_edge_turfs = null
+	cached_fire_spreads = null
+	cached_reagent_list = null
+	current_temperature_queue = null
+	splitting_array = null
 	return ..()
+
+/datum/liquid_group/proc/copy_properties(datum/liquid_group/from)
+	if(isnull(from))
+		return
+	always_evaporates = from.always_evaporates
+	evaporation_multiplier = from.evaporation_multiplier
 
 /datum/liquid_group/proc/removed_reagent(datum/reagents/source, datum/reagent/modified)
 	for(var/turf/member as anything in members)
@@ -122,18 +136,20 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	process_group()
 
 /datum/liquid_group/proc/remove_from_group(turf/T, should_reprocess = TRUE)
-
-	if(T in burning_members)
+	if(isnull(T))
+		return
+	SSliquids.burning_turfs -= T
+	if(burning_members)
 		burning_members -= T
-
-	if(T in SSliquids.burning_turfs)
-		SSliquids.burning_turfs -= T
-
-	members -= T
+	if(members)
+		members -= T
 	T.liquids?.liquid_group = null
 
 	for(var/datum/reagent/reagent as anything in reagents.reagent_list)
 		reagent.remove_from_member(T.liquids)
+
+	if(QDELING(src))
+		return
 
 	if(!length(members))
 		qdel(src)
@@ -171,6 +187,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	total_reagent_volume = reagents.total_volume
 	reagents_per_turf = total_reagent_volume / length(members)
+	always_evaporates ||= otherg.always_evaporates
+	evaporation_multiplier = (evaporation_multiplier + otherg.evaporation_multiplier) * 0.5 // average the evaporation multipliers
 
 	qdel(otherg)
 	process_group()
@@ -392,6 +410,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 /datum/liquid_group/proc/move_liquid_group(obj/effect/abstract/liquid_turf/member)
 	remove_from_group(member.my_turf)
 	member.liquid_group = new(1, member)
+	member.liquid_group.copy_properties(src)
 	var/remove_amount = reagents_per_turf / length(reagents.reagent_list)
 	for(var/datum/reagent/reagent_type in reagents.reagent_list)
 		member.liquid_group.reagents.add_reagent(reagent_type, remove_amount, no_react = TRUE)
@@ -694,6 +713,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		passed_directions.Add(direction)
 
 	if(length(passed_directions))
+		if(!islist(cached_edge_turfs)) // what the fuck???
+			cached_edge_turfs = list()
 		cached_edge_turfs |= checker
 		cached_edge_turfs[checker] = passed_directions
 
@@ -808,6 +829,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/amount_to_transfer = length(connected_liquids) * reagents_per_turf
 
 	var/datum/liquid_group/new_group = new(1)
+	new_group.copy_properties(src)
 
 	for(var/turf/connected_liquid in connected_liquids)
 		new_group.check_edges(connected_liquid)
@@ -884,6 +906,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		var/amount_to_transfer = length(connected_liquids) * reagents_per_turf
 
 		var/datum/liquid_group/new_group = new(1)
+		new_group.copy_properties(src)
 		if(!members)
 			members = list()
 		trans_to_seperate_group(new_group.reagents, amount_to_transfer)

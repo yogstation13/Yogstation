@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(liquids)
 					group_process_work_queue -= liquid_group
 					continue
 				liquid_group.process_group(TRUE)
-				if(populate_evaporation && (liquid_group.expected_turf_height < LIQUID_STATE_ANKLES) && liquid_group.evaporates)
+				if(populate_evaporation && (liquid_group.always_evaporates || liquid_group.expected_turf_height < LIQUID_STATE_ANKLES) && liquid_group.evaporates)
 					for(var/turf/listed_turf as anything in liquid_group.members)
 						if(QDELETED(listed_turf))
 							continue
@@ -184,6 +184,7 @@ SUBSYSTEM_DEF(liquids)
 		list_clear_nulls(active_turf_group_queue)
 
 		if(member_counter > REQUIRED_MEMBER_PROCESSES)
+			list_clear_nulls(cached_exposures)
 			if(!length(cached_exposures))
 				for(var/datum/liquid_group/liquid_group as anything in active_turf_group_queue)
 					if(MC_TICK_CHECK)
@@ -195,30 +196,26 @@ SUBSYSTEM_DEF(liquids)
 					active_turf_group_queue -= liquid_group
 					if(!liquid_group.exposure)
 						continue
-					for(var/turf/member as anything in liquid_group.members)
-						cached_exposures += liquid_group.members
+					cached_exposures |= liquid_group.members
 
 			var/process_count = 0
 			var/list/groups_we_rebuilt = list()
 			while((process_count <= 500) && length(cached_exposures))
 				process_count++
 				var/turf/member = pick_n_take(cached_exposures)
-				if(!member)
-					break
-				if(MC_TICK_CHECK)
-					return
-
+				if(QDELETED(member) || QDELETED(member.liquids) || QDELETED(member.liquids.liquid_group))
+					continue
 				var/datum/liquid_group/liquid_group = member.liquids.liquid_group
 				if(!(liquid_group in groups_we_rebuilt))
 					groups_we_rebuilt |= liquid_group
 					liquid_group.build_turf_reagent()
 
-				cached_exposures -= member
 				if(!istype(member) || QDELING(member))
 					liquid_group.members -= member
 					continue
 				liquid_group.process_member(member)
-
+				if(MC_TICK_CHECK)
+					return
 			member_counter = 0
 		run_type = SSLIQUIDS_RUN_TYPE_CACHED_EDGES
 

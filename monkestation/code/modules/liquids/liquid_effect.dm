@@ -42,20 +42,68 @@
 
 	var/temporary_split_key
 
+/obj/effect/abstract/liquid_turf/Initialize(mapload, datum/liquid_group/group_to_add)
+	. = ..()
+	if(!small_fire)
+		small_fire = new
+	if(!medium_fire)
+		medium_fire = new
+	if(!big_fire)
+		big_fire = new
+
+	my_turf ||= loc
+
+	if(QDELETED(my_turf.liquids))
+		my_turf.liquids = src
+
+	if(!QDELETED(group_to_add))
+		group_to_add.add_to_group(my_turf)
+		set_new_liquid_state(liquid_group.group_overlay_state)
+
+	if(QDELETED(liquid_group) && QDELETED(group_to_add))
+		liquid_group = new(1, src)
+
+	if(!SSliquids)
+		CRASH("Liquid Turf created with the liquids sybsystem not yet initialized!")
+	RegisterSignal(my_turf, COMSIG_ATOM_ENTERED, PROC_REF(movable_entered))
+	RegisterSignal(my_turf, COMSIG_TURF_MOB_FALL, PROC_REF(mob_fall))
+	RegisterSignal(my_turf, COMSIG_ATOM_EXAMINE, PROC_REF(examine_turf))
+
+	if(SEND_SIGNAL(my_turf, COMSIG_TURF_LIQUIDS_CREATION, src) & BLOCK_LIQUID_CREATION)
+		return INITIALIZE_HINT_QDEL
+
+	if(z)
+		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
+
+/obj/effect/abstract/liquid_turf/Destroy(force)
+	UnregisterSignal(my_turf, list(COMSIG_ATOM_ENTERED, COMSIG_TURF_MOB_FALL, COMSIG_ATOM_EXAMINE))
+	if(!isnull(my_turf))
+		liquid_group?.remove_from_group(my_turf)
+		SSliquids.evaporation_queue -= my_turf
+		SSliquids.burning_turfs -= my_turf
+		SSliquids.cached_exposures -= my_turf
+		my_turf.liquids = null
+	liquid_group = null
+	my_turf = null
+	QUEUE_SMOOTH_NEIGHBORS(src)
+	return ..()
 
 /obj/effect/abstract/liquid_turf/proc/process_evaporation()
-	if(liquid_group.expected_turf_height > LIQUID_ANKLES_LEVEL_HEIGHT)
+	if(!liquid_group.always_evaporates && (liquid_group.expected_turf_height > LIQUID_ANKLES_LEVEL_HEIGHT))
 		SSliquids.evaporation_queue -= my_turf
 		return
 
 	//See if any of our reagents evaporates
 	var/any_change = FALSE
+	var/always_evaporates = liquid_group.always_evaporates
+	var/evaporation_multiplier = liquid_group.evaporation_multiplier
 	var/datum/reagent/R //Faster declaration
 	for(var/reagent_type in liquid_group.reagents.reagent_list)
 		R = reagent_type
 		//We evaporate. bye bye
-		if(initial(R.evaporates))
-			var/remove_amount = min((initial(R.evaporation_rate)), R.volume, (liquid_group.reagents_per_turf / length(liquid_group.reagents.reagent_list)))
+		if(initial(R.evaporates) || always_evaporates)
+			var/remove_amount = min((initial(R.evaporation_rate)) * evaporation_multiplier, R.volume, (liquid_group.reagents_per_turf / length(liquid_group.reagents.reagent_list)))
 			liquid_group.remove_specific(src, remove_amount, R, TRUE)
 			any_change = TRUE
 			R.evaporate(src.loc, remove_amount)
@@ -64,7 +112,7 @@
 		SSliquids.evaporation_queue -= my_turf
 		return
 
-/obj/effect/abstract/liquid_turf/forceMove(atom/destination, no_tp=FALSE, harderforce = FALSE)
+/obj/effect/abstract/liquid_turf/forceMove(atom/destination, no_tp = FALSE, harderforce = FALSE)
 	if(harderforce)
 		. = ..()
 
@@ -170,56 +218,6 @@
 				to_chat(C, span_userdanger("You fall in and swallow some water!"))
 		else
 			to_chat(M, span_userdanger("You fall in the water!"))
-
-/obj/effect/abstract/liquid_turf/Initialize(mapload, datum/liquid_group/group_to_add)
-	. = ..()
-	if(!small_fire)
-		small_fire = new
-	if(!medium_fire)
-		medium_fire = new
-	if(!big_fire)
-		big_fire = new
-
-	if(!my_turf)
-		my_turf = loc
-
-	if(!my_turf.liquids)
-		my_turf.liquids = src
-
-	if(group_to_add)
-		group_to_add.add_to_group(my_turf)
-		set_new_liquid_state(liquid_group.group_overlay_state)
-
-	if(!liquid_group && !group_to_add)
-		liquid_group = new(1, src)
-
-	if(!SSliquids)
-		CRASH("Liquid Turf created with the liquids sybsystem not yet initialized!")
-	my_turf = loc
-	RegisterSignal(my_turf, COMSIG_ATOM_ENTERED, PROC_REF(movable_entered))
-	RegisterSignal(my_turf, COMSIG_TURF_MOB_FALL, PROC_REF(mob_fall))
-	RegisterSignal(my_turf, COMSIG_ATOM_EXAMINE, PROC_REF(examine_turf))
-
-	if(SEND_SIGNAL(my_turf, COMSIG_TURF_LIQUIDS_CREATION, src) & BLOCK_LIQUID_CREATION)
-		return INITIALIZE_HINT_QDEL
-
-	if(z)
-		QUEUE_SMOOTH(src)
-		QUEUE_SMOOTH_NEIGHBORS(src)
-
-
-/obj/effect/abstract/liquid_turf/Destroy(force)
-	UnregisterSignal(my_turf, list(COMSIG_ATOM_ENTERED, COMSIG_TURF_MOB_FALL, COMSIG_ATOM_EXAMINE))
-	if(liquid_group)
-		liquid_group.remove_from_group(my_turf)
-	if(my_turf in SSliquids.evaporation_queue)
-		SSliquids.evaporation_queue -= my_turf
-	if(my_turf in SSliquids.burning_turfs)
-		SSliquids.burning_turfs -= my_turf
-	my_turf.liquids = null
-	my_turf = null
-	QUEUE_SMOOTH_NEIGHBORS(src)
-	return ..()
 
 /obj/effect/abstract/liquid_turf/proc/ChangeToNewTurf(turf/NewT)
 	if(NewT.liquids)
