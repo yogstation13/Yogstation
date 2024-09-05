@@ -80,3 +80,17 @@
 	greyscale_config = /datum/greyscale_config/sundress
 	greyscale_config_worn = /datum/greyscale_config/sundress_worn
 	flags_1 = IS_PLAYER_COLORABLE_1
+
+//MONKESTATION ADDITIONS
+/obj/item/clothing/under/dress/ballgown
+	name = "ballgown"
+	desc = "A luxurious ballgown best worn before midnight. A signature of the letters 'VA` is stitched on the hem."
+	icon_state = "ballgown"
+	custom_price = PAYCHECK_COMMAND
+	inhand_icon_state = null
+	body_parts_covered = CHEST|GROIN|LEGS
+	greyscale_config = /datum/greyscale_config/ballgown
+	greyscale_config_worn = /datum/greyscale_config/ballgown_worn
+	greyscale_colors = "#FFFFFF#CCECFF#FFFFFF"
+	flags_1 = IS_PLAYER_COLORABLE_1
+	flags_inv = HIDESHOES

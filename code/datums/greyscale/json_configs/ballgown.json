@@ -1,0 +1,24 @@
+{
+	"ballgown": [
+		{
+			"type": "icon_state",
+			"icon_state": "ballgown_skirt1",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "ballgown_skirt2",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "ballgown_skirt3",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		}
+
+	]
+
+}
