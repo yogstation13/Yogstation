@@ -1,0 +1,4 @@
+author: "PotatoTomahto"
+delete-after: True
+changes:
+  - rscadd: "Adds a ballgown to the autodrobe and clothesmate.\n:cl:"
