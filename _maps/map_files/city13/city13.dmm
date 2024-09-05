@@ -434,6 +434,10 @@
 	},
 /turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors)
+"vl" = (
+/obj/machinery/light/small,
+/turf/open/floor/plating/indoor/metal,
+/area/halflife/indoors/sewer)
 "vp" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -925,10 +929,6 @@
 /obj/effect/spawner/lootdrop/halflife/loot,
 /turf/open/floor/plating/indoor/concrete/bricks,
 /area/halflife/indoors/sewer)
-"Vm" = (
-/obj/machinery/light/small,
-/turf/open/floor/plating/indoor/metal,
-/area/halflife/indoors/sewer)
 "Vn" = (
 /obj/structure/fence/corner{
 	dir = 10
@@ -939,12 +939,6 @@
 /obj/structure/table/wood,
 /turf/open/floor/plating/indoor/woodc,
 /area/halflife/indoors)
-"Wn" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plating/indoor/metal,
-/area/halflife/indoors/sewer)
 "Wy" = (
 /obj/structure/lattice/catwalk,
 /turf/open/halflife/water/sewer/shallow,
@@ -988,6 +982,12 @@
 /obj/structure/table/wood,
 /turf/open/floor/plating/indoor/cafeteria,
 /area/halflife/indoors)
+"Zo" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating/indoor/metal,
+/area/halflife/indoors/sewer)
 "Zs" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirt,
@@ -40771,7 +40771,7 @@ SF
 SF
 SF
 Fw
-Wn
+Zo
 IZ
 IZ
 IZ
@@ -40782,7 +40782,7 @@ IZ
 IZ
 IZ
 IZ
-Vm
+vl
 Fw
 SF
 SF
