@@ -1,15 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
-/obj/docking_port/mobile/supply{
-	dwidth = 5;
-	width = 12
-	},
-/obj/machinery/door/unpowered/halflife/metal{
-	dir = 8
-	},
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/plating,
-/area/shuttle/supply)
 "f" = (
 /obj/machinery/light{
 	dir = 8
@@ -21,6 +10,17 @@
 	dir = 1
 	},
 /turf/open/floor/plating/indoor/metal/plate,
+/area/shuttle/supply)
+"i" = (
+/obj/docking_port/mobile/supply{
+	dwidth = 5;
+	width = 12
+	},
+/obj/structure/fans/tiny/invisible,
+/obj/machinery/door/unpowered/halflife/metal{
+	dir = 4
+	},
+/turf/open/floor/plating/indoor/metal/grate,
 /area/shuttle/supply)
 "o" = (
 /turf/closed/wall/halflife/metal,
@@ -56,12 +56,19 @@
 "J" = (
 /turf/open/floor/plating/indoor/metal/plate,
 /area/shuttle/supply)
-"O" = (
+"P" = (
+/obj/structure/fans/tiny/invisible,
+/obj/machinery/door/unpowered/halflife/metal{
+	dir = 4
+	},
+/turf/open/floor/plating/indoor/metal/grate,
+/area/shuttle/supply)
+"Z" = (
 /obj/machinery/door/unpowered/halflife/metal{
 	dir = 8
 	},
 /obj/structure/fans/tiny/invisible,
-/turf/open/floor/plating,
+/turf/open/floor/plating/indoor/metal/grate,
 /area/shuttle/supply)
 
 (1,1,1) = {"
@@ -69,9 +76,9 @@ o
 o
 o
 o
+Z
 o
-o
-o
+Z
 o
 o
 o
@@ -153,9 +160,9 @@ o
 o
 o
 o
-O
+P
 o
-d
+i
 o
 o
 o
