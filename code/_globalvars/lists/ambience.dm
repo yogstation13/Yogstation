@@ -190,6 +190,7 @@ GLOBAL_LIST_INIT(hlsewers_ambience,list(
 	'sound/ambience/source_corridor2.ogg',
 	'sound/ambience/probablynotaproblem.ogg', 
 	'sound/ambience/suppressionfield.ogg',
+	'sound/ambience/brokensymmetry.ogg',
 	'sound/ambience/ambiruin5.ogg',))
 	
 GLOBAL_LIST_INIT(halflife_ambient_music,list(
