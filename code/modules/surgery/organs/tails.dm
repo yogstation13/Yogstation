@@ -48,6 +48,11 @@
 
 /obj/item/organ/tail/cat/get_butt_sprite()
 	return BUTT_SPRITE_CAT
+	
+/obj/item/organ/tail/cat/fox
+	name = "fox tail"
+	desc = "A severed fox tail. Witty one-liner goes here."
+	tail_type = "Fox"
 
 /obj/item/organ/tail/lizard
 	name = "lizard tail"

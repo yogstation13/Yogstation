@@ -99,17 +99,16 @@
 
 	return txt
 
-/obj/item/mecha_parts/mecha_equipment/proc/is_ranged()//add a distance restricted equipment. Why not?
-	return range & MECHA_RANGED
-
-/obj/item/mecha_parts/mecha_equipment/proc/is_melee()
-	return range & MECHA_MELEE
-
-
 /obj/item/mecha_parts/mecha_equipment/proc/action_checks(atom/target)
 	if(!target)
 		return FALSE
 	if(!chassis)
+		return FALSE
+	if(chassis.Adjacent(target))
+		if(!(range & MECHA_MELEE))
+			chassis.default_melee_attack(target)
+			return FALSE
+	else if(!(range & MECHA_RANGED))
 		return FALSE
 	if(!equip_ready)
 		return FALSE

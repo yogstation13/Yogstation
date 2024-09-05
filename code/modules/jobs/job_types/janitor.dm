@@ -13,7 +13,9 @@
 	alt_titles = list("Custodian", "Sanitation Worker", "Cleaner", "Caretaker", "Maid")
 
 	added_access = list()
-	base_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM, ACCESS_CARGO, ACCESS_RESEARCH, ACCESS_MEDICAL, ACCESS_SERVHALL)
+	base_access = list(ACCESS_SERVICE, ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_CARGO,
+					ACCESS_SCIENCE, ACCESS_MEDICAL, ACCESS_CONSTRUCTION)
+
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 
@@ -46,3 +48,5 @@
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/civilian/janitor
 	uniform_skirt = /obj/item/clothing/under/rank/civilian/janitor/skirt
+	// LIQUIDS TM REMOVE THIS
+	backpack_contents = list(/obj/item/choice_beacon/liquids)

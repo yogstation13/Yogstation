@@ -94,12 +94,12 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/engineering{
-	name = "AI Satellite Access";
-	req_access_txt = "10"
+	name = "AI Satellite Access"
 	},
 /obj/machinery/atmospherics/pipe/simple/orange/hidden{
 	dir = 9
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cz" = (
@@ -211,12 +211,12 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/engineering/glass{
-	name = "Reactor Clean Room";
-	req_access_txt = "10"
+	name = "Reactor Clean Room"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "hV" = (
@@ -256,11 +256,11 @@
 "iB" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
-	name = "Engineering External Access";
-	req_access_txt = "10;13"
+	name = "Engineering External Access"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "iV" = (
@@ -669,8 +669,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/engineering/glass{
-	name = "Reactor Clean Room";
-	req_access_txt = "10"
+	name = "Reactor Clean Room"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -687,6 +686,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "vl" = (
@@ -822,7 +822,7 @@
 /obj/machinery/button/door{
 	id = "reactorcore";
 	name = "Core Access";
-	req_access_txt = "10"
+	req_access = list("engineering")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
@@ -917,10 +917,10 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/external{
-	name = "Engineering External Access";
-	req_access_txt = "10;13"
+	name = "Engineering External Access"
 	},
 /obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "CI" = (
@@ -993,8 +993,7 @@
 /area/engine/engineering)
 "FU" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Reactor Core";
-	req_one_access_txt = "10;24"
+	name = "Reactor Core"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -1009,6 +1008,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "Gc" = (
@@ -1124,8 +1124,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/engineering/glass{
-	name = "Control Room";
-	req_access_txt = "10"
+	name = "Control Room"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -1142,6 +1141,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "Jj" = (
@@ -1196,7 +1196,7 @@
 /obj/machinery/button/door{
 	id = "reactorvent";
 	name = "Core Vent";
-	req_access_txt = "10"
+	req_access = list("engineering")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
@@ -1219,8 +1219,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/engineering/glass{
-	name = "Control Room";
-	req_access_txt = "10"
+	name = "Control Room"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -1231,6 +1230,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "KS" = (

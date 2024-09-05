@@ -17,8 +17,8 @@
 
 	alt_titles = list("Forensic Analyst", "Private Eye")
 
-	added_access = list()
-	base_access = list(ACCESS_SEC_DOORS, ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_SECURITY, ACCESS_COURT, ACCESS_BRIG, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM)
+	added_access = list(ACCESS_EXTERNAL_AIRLOCKS)
+	base_access = list(ACCESS_SEC_BASIC, ACCESS_DETECTIVE, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_BRIG, ACCESS_WEAPONS_PERMIT, ACCESS_MECH_SECURITY)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_SEC
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
@@ -65,7 +65,7 @@
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/security/detective
 
 	ears = /obj/item/radio/headset/headset_sec/alt
-	uniform = /obj/item/clothing/under/rank/det
+	uniform = /obj/item/clothing/under/rank/security/detective
 	uniform_skirt = /obj/item/clothing/under/rank/security/detective/skirt
 	neck = /obj/item/clothing/neck/tie/detective
 	shoes = /obj/item/clothing/shoes/sneakers/brown

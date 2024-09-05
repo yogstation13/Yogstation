@@ -13,8 +13,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4;
-	icon_state = "vent_map_on-1"
+	dir = 4
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/deepstorage/kitchen)
@@ -308,8 +307,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4;
-	icon_state = "vent_map_on-1"
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage)
@@ -322,21 +320,21 @@
 /area/ruin/space/has_grav/deepstorage)
 "aO" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Recycling Room";
-	req_access_txt = "200"
+	name = "Recycling Room"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/crusher)
 "aP" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Recycling Room";
-	req_access_txt = "200"
+	name = "Recycling Room"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/crusher)
 "aQ" = (
@@ -497,8 +495,7 @@
 "bh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8;
-	icon_state = "vent_map_on-1"
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/storage)
@@ -567,8 +564,7 @@
 	pixel_x = 24
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8;
-	icon_state = "vent_map_on-1"
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/hydroponics)
@@ -654,12 +650,12 @@
 /area/ruin/space/has_grav/deepstorage/hydroponics)
 "bC" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "General Storage";
-	req_access_txt = "200"
+	name = "General Storage"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/storage)
 "bD" = (
@@ -1010,8 +1006,7 @@
 /area/ruin/space/has_grav/deepstorage/storage)
 "cl" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Provisions Storage";
-	req_access_txt = "200"
+	name = "Provisions Storage"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -1023,6 +1018,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/storage)
 "cm" = (
@@ -1203,8 +1199,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4;
-	icon_state = "vent_map_on-1"
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage)
@@ -1292,9 +1287,9 @@
 /area/ruin/space/has_grav/deepstorage/storage)
 "cP" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Secure Storage";
-	req_access_txt = "200"
+	name = "Secure Storage"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/deepstorage/armory)
 "cQ" = (
@@ -1735,8 +1730,7 @@
 /area/ruin/space/has_grav/deepstorage)
 "dM" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Secure Storage";
-	req_access_txt = "200"
+	name = "Secure Storage"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -1747,6 +1741,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/deepstorage/armory)
 "dN" = (
@@ -1790,8 +1785,7 @@
 /area/ruin/space/has_grav/deepstorage/armory)
 "dQ" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Airlock Control";
-	req_access_txt = "200"
+	name = "Airlock Control"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -1799,6 +1793,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/airlock)
 "dR" = (
@@ -1894,23 +1889,23 @@
 /area/ruin/space/has_grav/deepstorage)
 "dZ" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Atmospherics and Power Storage";
-	req_access_txt = "200"
+	name = "Atmospherics and Power Storage"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/power)
 "ea" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Atmospherics and Power Storage";
-	req_access_txt = "200"
+	name = "Atmospherics and Power Storage"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/power)
 "eb" = (
@@ -1954,8 +1949,7 @@
 /area/ruin/space/has_grav/deepstorage/dorm)
 "eg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1;
-	icon_state = "vent_map_on-1"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/deepstorage/armory)
@@ -2010,16 +2004,15 @@
 /obj/structure/chair/stool,
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4;
-	icon_state = "vent_map_on-1"
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/deepstorage/dorm)
 "en" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Canister Storage";
-	req_access_txt = "200"
+	name = "Canister Storage"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/deepstorage)
 "eo" = (
@@ -2159,20 +2152,20 @@
 	name = "exterior blast door access";
 	pixel_x = -24;
 	pixel_y = -8;
-	req_access_txt = "200"
+	req_access = list("ruins_general")
 	},
 /obj/machinery/button/door{
 	id = "bunkerinterior";
 	name = "interior blast door access";
 	pixel_x = -24;
-	req_access_txt = "200"
+	req_access = list("ruins_general")
 	},
 /obj/machinery/button/door{
 	id = "bunkershutter";
 	name = "hallway shutter toggle";
 	pixel_x = -24;
 	pixel_y = 8;
-	req_access_txt = "200"
+	req_access = list("ruins_general")
 	},
 /obj/machinery/computer/security/telescreen{
 	dir = 1;
@@ -2200,8 +2193,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4;
-	icon_state = "vent_map_on-1"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -2592,8 +2584,7 @@
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1;
-	icon_state = "vent_map_on-1"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/airlock)
@@ -2624,7 +2615,6 @@
 "fz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on/layer2{
 	dir = 8;
-	icon_state = "vent_map_siphon_on-1";
 	id_tag = "o2_out_bunker";
 	name = "oxygen out"
 	},
@@ -2787,8 +2777,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1;
-	icon_state = "vent_map_on-1"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/dorm)
@@ -2834,7 +2823,6 @@
 "gf" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on/layer2{
 	dir = 8;
-	icon_state = "vent_map_siphon_on-1";
 	id_tag = "n2_out_bunker";
 	name = "nitrogen out"
 	},
@@ -2943,10 +2931,10 @@
 "gz" = (
 /obj/machinery/door/airlock/highsecurity{
 	desc = "Nothing to see here, folks, just an inconspicuous airlock. Now go away!";
-	name = "Inconspicuous Airlock";
-	req_access_txt = "200"
+	name = "Inconspicuous Airlock"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/deepstorage)
 "gC" = (
@@ -3013,12 +3001,12 @@
 /area/ruin/space/has_grav/deepstorage/power)
 "gL" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "RTG Observation";
-	req_access_txt = "200"
+	name = "RTG Observation"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/deepstorage/power)
 "gN" = (
@@ -3028,13 +3016,13 @@
 "gQ" = (
 /obj/machinery/door/airlock/highsecurity{
 	desc = "Nothing to see here, folks, just an inconspicuous airlock. Now go away!";
-	name = "Inconspicuous Airlock";
-	req_access_txt = "200"
+	name = "Inconspicuous Airlock"
 	},
 /obj/structure/fans/tiny,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/deepstorage)
 "gR" = (
@@ -3064,9 +3052,9 @@
 /area/ruin/space/has_grav/deepstorage/power)
 "gY" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Telecomms";
-	req_access_txt = "200"
+	name = "Telecomms"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/ruins/general,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/deepstorage/power)
 "gZ" = (

@@ -298,8 +298,7 @@
 /area/shuttle/escape/luxury)
 "pP" = (
 /obj/machinery/door/airlock/security/glass{
-	name = "Escape Shuttle Cell";
-	req_access_txt = "2"
+	name = "Escape Shuttle Cell"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -307,6 +306,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/luxury)
 "rj" = (
@@ -632,8 +632,7 @@
 	layer = 2.6
 	},
 /obj/machinery/door/airlock/security/glass{
-	name = "Undesirables";
-	req_access_txt = "2"
+	name = "Undesirables"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -641,6 +640,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/luxury)
 "NE" = (
@@ -798,8 +798,7 @@
 	id = "ohnopoors";
 	name = "window shutters";
 	pixel_x = -23;
-	pixel_y = -9;
-	req_access_txt = "0"
+	pixel_y = -9
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1

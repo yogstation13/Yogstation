@@ -8,8 +8,12 @@
 	if(!is_donator(C))
 		return
 
-	if(C.prefs.read_preference(/datum/preference/toggle/purrbation))
-		purrbation_toggle_onlyhumans(H)
+	switch(C.prefs.read_preference(/datum/preference/choiced/purrbation))
+		if(PURRBATION_CAT)
+			purrbation_toggle_onlyhumans(H)
+		if(PURRBATION_FOX)
+			if(ishumanbasic(H))
+				H.set_species(/datum/species/human/vulpine)
 
 	var/datum/donator_gear/donor_hat_datum = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_hat)]
 	if(donor_hat_datum)
@@ -145,7 +149,7 @@
 
 			if(!clerk_sanitize)
 				choice = "Random"
-		
+
 		if(choice == "Random")
 			choice = pick(GLOB.potential_box_clerk)
 		

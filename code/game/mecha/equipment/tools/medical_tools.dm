@@ -49,8 +49,6 @@
 	return 0
 
 /obj/item/mecha_parts/mecha_equipment/medical/sleeper/action(mob/living/carbon/target)
-	if(!action_checks(target))
-		return
 	if(!istype(target))
 		return
 	if(!patient_insertion_check(target))
@@ -288,8 +286,6 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun/action(atom/movable/target)
-	if(!action_checks(target))
-		return
 	if(istype(target, /obj/item/reagent_containers/syringe))
 		return load_syringe(target)
 	if(istype(target, /obj/item/storage))//Loads syringes from boxes

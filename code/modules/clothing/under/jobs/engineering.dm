@@ -58,7 +58,6 @@
 	icon_state = "hazard"
 	item_state = "suit-orange"
 	alt_covers_chest = TRUE
-	mutantrace_variation = NONE
 
 /obj/item/clothing/under/rank/engineering/engineer/skirt
 	name = "engineer's jumpskirt"

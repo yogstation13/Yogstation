@@ -727,7 +727,7 @@
 	name = "Incendiary Weapons Crate"
 	desc = "Burn, baby burn. Contains three incendiary grenades, three plasma canisters, and a flamethrower. Requires Armory access to open."
 	cost = 1500
-	access = ACCESS_HEADS
+	access = ACCESS_COMMAND
 	contains = list(/obj/item/gun/flamethrower/full,
 					/obj/item/tank/internals/plasma,
 					/obj/item/tank/internals/plasma,
@@ -929,7 +929,7 @@
 	name = "Engineering Gear Crate"
 	desc = "Gear up with three toolbelts, high-visibility vests, welding goggles, hardhats, and two pairs of meson goggles!"
 	cost = 1300
-	access_view = ACCESS_ENGINE
+	access_view = ACCESS_ENGINEERING
 	contains = list(/obj/item/storage/belt/utility,
 					/obj/item/storage/belt/utility,
 					/obj/item/storage/belt/utility,
@@ -980,7 +980,7 @@
 	name = "P.A.C.M.A.N Generator Crate"
 	desc = "Engineers can't set up the engine? Not an issue for you, once you get your hands on this P.A.C.M.A.N. Generator! Takes in plasma and spits out sweet sweet energy."
 	cost = 2500
-	access_view = ACCESS_ENGINE
+	access_view = ACCESS_ENGINEERING
 	contains = list(/obj/machinery/power/port_gen/pacman)
 	crate_name = "PACMAN generator crate"
 	crate_type = /obj/structure/closet/crate/engineering/electrical
@@ -1042,7 +1042,7 @@
 	desc = "The pride of Nanotrasen Naval Command. The legendary Bluespace Artillery Cannon is a devastating feat of human engineering and testament to wartime determination. Highly advanced research is required for proper construction. "
 	cost = 15000
 	special = TRUE
-	access_view = ACCESS_HEADS
+	access_view = ACCESS_COMMAND
 	contains = list(/obj/item/circuitboard/machine/bsa/front,
 					/obj/item/circuitboard/machine/bsa/middle,
 					/obj/item/circuitboard/machine/bsa/back,
@@ -1055,7 +1055,7 @@
 	desc = "Secure the longevity of the current state of humanity within this massive library of scientific knowledge, capable of granting superhuman powers and abilities. Highly advanced research is required for proper construction. Also contains five DNA probes."
 	cost = 12000
 	special = TRUE
-	access_view = ACCESS_HEADS
+	access_view = ACCESS_COMMAND
 	contains = list(
 					/obj/item/circuitboard/machine/dna_vault,
 					/obj/item/dna_probe,
@@ -1071,7 +1071,7 @@
 	desc = "Contains five DNA probes for use in the DNA vault."
 	cost = 3000
 	special = TRUE
-	access_view = ACCESS_HEADS
+	access_view = ACCESS_COMMAND
 	contains = list(/obj/item/dna_probe,
 					/obj/item/dna_probe,
 					/obj/item/dna_probe,
@@ -1086,7 +1086,7 @@
 	desc = "Protect the very existence of this station with these Anti-Meteor defenses. Contains three Shield Generator Satellites."
 	cost = 3000
 	special = TRUE
-	access_view = ACCESS_HEADS
+	access_view = ACCESS_COMMAND
 	contains = list(
 					/obj/machinery/satellite/meteor_shield,
 					/obj/machinery/satellite/meteor_shield,
@@ -1100,7 +1100,7 @@
 	desc = "A control system for the Shield Generator Satellite system."
 	cost = 5000
 	special = TRUE
-	access_view = ACCESS_HEADS
+	access_view = ACCESS_COMMAND
 	contains = list(/obj/item/circuitboard/computer/sat_control)
 	crate_name= "shield control board crate"
 
@@ -1111,7 +1111,7 @@
 
 /datum/supply_pack/engine
 	group = "Engine Construction"
-	access_view = ACCESS_ENGINE
+	access_view = ACCESS_ENGINEERING
 	crate_type = /obj/structure/closet/crate/engineering
 
 /datum/supply_pack/engine/emitter
@@ -1290,7 +1290,7 @@
 	name = "50 Empty License Plates"
 	desc = "'Put those prisoners to work' - Jedi Yoda probably"
 	cost = 1000  // 50 * 25 - 1000 = 250 credits profit
-	access_view = ACCESS_SEC_DOORS
+	access_view = ACCESS_SEC_BASIC
 	contains = list(/obj/item/stack/license_plates/empty/fifty)
 	crate_name = "empty license plate crate"
 
@@ -1347,7 +1347,7 @@
 	name = "BZ Canister Crate"
 	desc = "Contains a canister of BZ. Requires Toxins access to open."
 	cost = 8000
-	access = ACCESS_TOX_STORAGE
+	access = ACCESS_TOXINS_STORAGE
 	access_view = ACCESS_ATMOSPHERICS
 	contains = list(/obj/machinery/portable_atmospherics/canister/bz)
 	crate_name = "BZ canister crate"
@@ -1742,15 +1742,15 @@
 
 /datum/supply_pack/science
 	group = "Science"
-	access_view = ACCESS_RESEARCH
+	access_view = ACCESS_SCIENCE
 	crate_type = /obj/structure/closet/crate/science
 
 /datum/supply_pack/science/plasma
 	name = "Plasma Assembly Crate"
 	desc = "Everything you need to burn something to the ground, this contains three plasma assembly sets. Each set contains a plasma tank, igniter, proximity sensor, and timer! Warranty void if exposed to high temperatures. Requires Toxins access to open."
 	cost = 1000
-	access = ACCESS_TOX_STORAGE
-	access_view = ACCESS_TOX_STORAGE
+	access = ACCESS_TOXINS_STORAGE
+	access_view = ACCESS_TOXINS_STORAGE
 	contains = list(/obj/item/tank/internals/plasma,
 					/obj/item/tank/internals/plasma,
 					/obj/item/tank/internals/plasma,
@@ -2847,6 +2847,23 @@
 	crate_name = "mech pilot's suit crate"
 	crate_type = /obj/structure/closet/crate/wooden
 
+/datum/supply_pack/costumes_toys/paintball
+	name = "Mixed Paintball Supply Crate"
+	desc = "Contains four paintball guns and extra ammo."
+	cost = 2500
+	contraband = TRUE
+	contains = list(/obj/item/gun/ballistic/automatic/toy/paintball/blue,
+					/obj/item/gun/ballistic/automatic/toy/paintball/blue,
+					/obj/item/gun/ballistic/automatic/toy/paintball,
+					/obj/item/gun/ballistic/automatic/toy/paintball,
+					/obj/item/ammo_box/magazine/toy/paintball,
+					/obj/item/ammo_box/magazine/toy/paintball,
+					/obj/item/ammo_box/magazine/toy/paintball,
+					/obj/item/ammo_box/magazine/toy/paintball/blue,
+					/obj/item/ammo_box/magazine/toy/paintball/blue,
+					/obj/item/ammo_box/magazine/toy/paintball/blue)
+	crate_name = "mixed paintball supply crate"
+
 /datum/supply_pack/costumes_toys/costume_original
 	name = "Original Costume Crate"
 	desc = "Reenact Shakespearean plays with this assortment of outfits. Contains eight different costumes!"
@@ -2866,6 +2883,25 @@
 					/obj/item/clothing/suit/hooded/bee_costume)
 	crate_name = "original costume crate"
 	crate_type = /obj/structure/closet/crate/wooden
+
+/datum/supply_pack/costumes_toys/paintball_ammo
+	name = "Paintball Ammo Crate"
+	desc = "Plenty of paintball ammo in a variety of colors."
+	cost = 700
+	contraband = TRUE
+	contains = list(/obj/item/ammo_box/magazine/toy/paintball,
+					/obj/item/ammo_box/magazine/toy/paintball,
+					/obj/item/ammo_box/magazine/toy/paintball,
+					/obj/item/ammo_box/magazine/toy/paintball/blue,
+					/obj/item/ammo_box/magazine/toy/paintball/blue,
+					/obj/item/ammo_box/magazine/toy/paintball/blue,
+					/obj/item/ammo_box/magazine/toy/paintball/pink,
+					/obj/item/ammo_box/magazine/toy/paintball/pink,
+					/obj/item/ammo_box/magazine/toy/paintball/purple,
+					/obj/item/ammo_box/magazine/toy/paintball/purple,
+					/obj/item/ammo_box/magazine/toy/paintball/orange,
+					/obj/item/ammo_box/magazine/toy/paintball/orange)
+	crate_name = "paintball ammo crate"
 
 /datum/supply_pack/costumes_toys/costume
 	name = "Standard Costume Crate"
@@ -3256,3 +3292,11 @@
 	small_item = TRUE
 	contains = list(/obj/item/wallframe/telescreen/preset)
 	crate_name = "telescreen crate"
+
+// LIQUIDS TM REMOVE THIS
+/datum/supply_pack/service/janitor/pump
+	name = "Liquids Pump Crate"
+	desc = "A crate containing a portable liquid pump, for stations that lack proper liquid infrastructure."
+	cost = 2000
+	crate_name = "liquid pump crate"
+	contains = list(/obj/structure/liquid_pump)

@@ -94,7 +94,8 @@
 		/obj/structure/flora/rock/pile = 20,
 		/obj/structure/flora/stump = 20,
 		/obj/structure/flora/tree/jungle = 10,
-		/obj/structure/herb/cinchona = 1, 
+		/obj/structure/herb/lantern = 2,
+		/obj/structure/herb/cinchona = 1,
 		/obj/structure/flytrap = 1
 		)
 	loose_flora_density = 10
@@ -207,6 +208,7 @@
 		/obj/structure/flora/ausbushes/leafybush = 20,
 		/obj/structure/flora/ausbushes/sparsegrass = 20,
 		/obj/structure/flora/ausbushes/fullgrass = 20,
+		/obj/structure/herb/lantern = 3,
 		/obj/structure/herb/fruit = 4,
 		/obj/structure/flytrap = 2,
 		/obj/structure/herb/explosive_shrooms = 1

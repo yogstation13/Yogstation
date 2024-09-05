@@ -14,7 +14,7 @@
 	},
 /obj/structure/closet/crate/secure{
 	name = "Emergency Supplies Crate";
-	req_access_txt = "36"
+	req_access = list("clerk")
 	},
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
@@ -67,10 +67,9 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/gasstation)
 "aU" = (
-/obj/machinery/door/airlock/centcom{
-	req_access_txt = "36"
-	},
+/obj/machinery/door/airlock/centcom,
 /obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/access/all/service/clerk,
 /turf/open/floor/plating,
 /area/ruin/powered/gasstation)
 "aV" = (
@@ -198,10 +197,10 @@
 /area/ruin/powered/gasstation)
 "gZ" = (
 /obj/machinery/door/airlock/hatch{
-	req_access = null;
-	req_access_txt = "36"
+	req_access = null
 	},
 /obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/access/all/service/clerk,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/gasstation)
 "ha" = (
@@ -219,19 +218,31 @@
 /obj/effect/mob_spawn/human/gasstation_clerk,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/gasstation)
+"ia" = (
+/obj/structure/window{
+	dir = 8
+	},
+/obj/structure/displaycase/labcage{
+	desc = "For displaying of more valuable items you have acquired.";
+	name = "Shop Display Case";
+	req_access = list("clerk");
+	start_showpiece_type = null
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/gasstation)
 "ii" = (
 /obj/item/trash/chips,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/gasstation)
 "iq" = (
 /obj/machinery/door/window{
-	req_access = null;
-	req_access_txt = "36"
+	req_access = null
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "cashiershutters";
 	name = "Cashier Shutters"
 	},
+/obj/effect/mapping_helpers/windoor/access/all/service/clerk,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/gasstation)
 "ir" = (
@@ -612,8 +623,7 @@
 /obj/structure/displaycase/labcage{
 	desc = "For displaying of more valuable items you have acquired.";
 	name = "Shop Display Case";
-	req_access = null;
-	req_access_txt = "36";
+	req_access = list("clerk");
 	start_showpiece_type = null
 	},
 /turf/open/floor/plasteel/white,
@@ -622,7 +632,7 @@
 /obj/machinery/button/door{
 	id = "cashiershutters";
 	name = "Cashier Lockdown";
-	req_access_txt = "36"
+	req_access = list("clerk")
 	},
 /turf/closed/wall/rust,
 /area/ruin/powered/gasstation)
@@ -722,9 +732,8 @@
 /obj/structure/displaycase/labcage{
 	desc = "For displaying of more valuable items you have acquired.";
 	name = "Shop Display Case";
-	req_access = null;
-	req_access_txt = "36";
-	start_showpiece_type = null
+	start_showpiece_type = null;
+	req_access = list("clerk")
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/gasstation)
@@ -772,7 +781,7 @@
 /obj/machinery/button/door{
 	id = "gasstation";
 	name = "Gas Station Lockdown";
-	req_access_txt = "36"
+	req_access = list("clerk")
 	},
 /turf/closed/wall/rust,
 /area/ruin/powered/gasstation)
@@ -1315,7 +1324,7 @@ cV
 cV
 RV
 sJ
-Qw
+ia
 fB
 Xf
 cV
