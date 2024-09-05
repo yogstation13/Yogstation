@@ -16,3 +16,20 @@
 	. = ..()
 	var/obj/item/suppressor/S = new(src)
 	install_suppressor(S)
+
+
+//Exclusively loot pistols. Rare, and the ammunition will be hard to attain. Much less ammo capacity than the USP match, but slightly higher damage.
+/obj/item/gun/ballistic/automatic/pistol/m1911
+	name = "\improper M1911"
+	desc = "A classic .45 handgun with a small magazine capacity. This is a very old model by this point."
+	icon_state = "m1911"
+	w_class = WEIGHT_CLASS_NORMAL
+	mag_type = /obj/item/ammo_box/magazine/m45
+	can_suppress = FALSE
+	fire_sound = "sound/weapons/pistolshotsmall.ogg"
+	feedback_types = list(
+		"fire" = 3
+	)
+
+/obj/item/gun/ballistic/automatic/pistol/m1911/no_mag
+	spawnwithmagazine = FALSE

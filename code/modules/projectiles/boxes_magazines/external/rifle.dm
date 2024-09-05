@@ -161,6 +161,9 @@
 	ammo_type = /obj/item/ammo_casing/a762/vulcan
 	sprite_designation = "I"
 
+
+// AR2 Pulse Rifle
+
 /obj/item/ammo_box/magazine/ar2
 	name = "OSIPR magazine (pulse)"
 	desc = "A 30 round magazine for an OSIPR."
@@ -168,3 +171,29 @@
 	ammo_type = /obj/item/ammo_casing/caseless/pulse/ar2
 	caliber = CALIBER_PULSROUND
 	max_ammo = 30
+
+/obj/item/ammo_box/magazine/r556
+	name = "rifle magazine (5.56mm)"
+	desc = "A standard 30-round magazine for the NT ARG 'Boarder' Rifle. Filled with 5.56 rounds."
+	icon_state = "arg556"
+	ammo_type = /obj/item/ammo_casing/a556
+	caliber = CALIBER_556NATO
+	max_ammo = 30
+
+
+//m4a1 Rifle
+
+/obj/item/ammo_box/magazine/m4a1
+	name = "rifle magazine (5.56mm)"
+	desc = "A standard 30-round magazine for the M4A1 Rifle. Filled with 5.56 rounds."
+	icon_state = "m308"
+	ammo_type = /obj/item/ammo_casing/a556
+	caliber = CALIBER_556NATO
+	max_ammo = 30
+
+/obj/item/ammo_box/magazine/m4a1/update_icon_state()
+	. = ..()
+	if(ammo_count())
+		icon_state = "m308[sprite_designation]"
+	else
+		icon_state = "m308[sprite_designation]_empty"

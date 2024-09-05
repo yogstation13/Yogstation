@@ -30,21 +30,6 @@
 /obj/item/gun/ballistic/automatic/pistol/pacifist
 	starting_mag_type = /obj/item/ammo_box/magazine/m10mm/sp
 
-/obj/item/gun/ballistic/automatic/pistol/m1911
-	name = "\improper M1911"
-	desc = "A classic .45 handgun with a small magazine capacity."
-	icon_state = "m1911"
-	w_class = WEIGHT_CLASS_NORMAL
-	mag_type = /obj/item/ammo_box/magazine/m45
-	can_suppress = FALSE
-	fire_sound = "sound/weapons/pistolshotsmall.ogg"
-	feedback_types = list(
-		"fire" = 3
-	)
-
-/obj/item/gun/ballistic/automatic/pistol/m1911/no_mag
-	spawnwithmagazine = FALSE
-
 /obj/item/gun/ballistic/automatic/pistol/deagle
 	name = "\improper Desert Eagle"
 	desc = "A robust .50 AE handgun."

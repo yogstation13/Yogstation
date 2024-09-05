@@ -22,6 +22,7 @@
 	minbodytemp = 0
 	status_flags = CANPUSH
 	move_to_delay = 5
+	deathsound = 'sound/creatures/halflife/zombiedeath.ogg'
 	var/idle_sounds = list('sound/creatures/halflife/zombiesound.ogg', 'sound/creatures/halflife/zombiesound2.ogg', 'sound/creatures/halflife/zombiesound3.ogg')
 
 /mob/living/simple_animal/hostile/halflife/zombie/Aggro()

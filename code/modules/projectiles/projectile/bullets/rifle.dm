@@ -1,18 +1,18 @@
-// 5.56mm (M-90gl Rifle + NT ARG)
+// 5.56mm (m4a1)
 
 /obj/projectile/bullet/a556
 	name = "5.56mm bullet"
-	damage = 35
-	wound_bonus = -40
+	damage = 25
+	wound_bonus = -30
 
 /obj/projectile/bullet/a556/ap
 	name = "5.56mm armor-piercing bullet"
-	damage = 31
+	damage = 20
 	armour_penetration = 50
 
 /obj/projectile/bullet/incendiary/a556
 	name = "5.56mm incendiary bullet"
-	damage = 23
+	damage = 20
 	fire_stacks = 2
 
 /obj/projectile/bullet/a556/rubber

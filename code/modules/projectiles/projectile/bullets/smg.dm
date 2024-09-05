@@ -2,17 +2,17 @@
 
 /obj/projectile/bullet/c45
 	name = ".45 ACP bullet"
-	damage = 30
+	damage = 25
 	wound_bonus = -10
 
 /obj/projectile/bullet/c45/ap
 	name = ".45 armor-piercing bullet"
-	damage = 27
+	damage = 25
 	armour_penetration = 40
 
 /obj/projectile/bullet/c45/hp
 	name = ".45 hollow-point bullet"
-	damage = 45
+	damage = 35
 	armour_penetration = -45
 	sharpness = SHARP_EDGED
 	wound_bonus = -5 //Basically L6 HP treatment on these values because it's, well, nukies
