@@ -56,13 +56,15 @@
 
 /obj/machinery/power/halflife/streetlamp
 	name = "\improper street lamp"
-	desc = "A pre-war street lamp, what more is there to say?"
+	desc = "An old street lamp, with an eerie semi-blue glow."
 	icon = 'icons/obj/halflife/streetpoles.dmi'
 	icon_state = "streetlight"
 	anchored = TRUE
 	density = TRUE
 	layer = ABOVE_ALL_MOB_LAYER
 	plane = ABOVE_GAME_PLANE
+	light_range = 3
+	light_color = "#a5ddf0"
 	max_integrity = 2000
 	pixel_x = -32
 	pixel_y = 8
@@ -81,11 +83,6 @@
 		if(prob(75)) // These things are pretty thin
 			return TRUE
 		return FALSE
-
-/obj/machinery/power/halflife/streetlamp
-	name = "\improper street lamp"
-	desc = "It doesn't seem functional anymore."
-	icon_state = "streetlight"
 
 /obj/machinery/power/halflife/streetlamp/corner
 	name = "\improper street lamp"
@@ -369,7 +366,7 @@
 	var/fencepasschance = 90
 	var/basetype = /obj/structure/halflife/fence //used for corner debugging
 	var/canpass = FALSE // if projectiles can go through
-	var/cansqueeze = TRUE //turn off for vertical states - for people
+	var/cansqueeze = FALSE //turn off for vertical states - for people / doesnt work right now
 	var/breakmats = /obj/item/stack/sheet/metal //not sure this isnt a thing on everything
 
 /obj/structure/halflife/fence/deconstruct(disassembled = TRUE)

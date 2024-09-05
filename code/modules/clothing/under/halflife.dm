@@ -11,6 +11,7 @@
 	desc = "Full-body suit which includes light kevlar weaving to provide extra protection."
 	icon_state = "civilprotection"
 	item_state = "syndicate-black"
+	has_sensor = LOCKED_SENSORS
 
 /obj/item/clothing/under/combine/civilprotection/Initialize(mapload)
 	. = ..()
@@ -47,6 +48,7 @@
 	icon_state = "citizenblue"
 	item_state = "r_suit"
 	can_adjust = FALSE
+	has_sensor = LOCKED_SENSORS
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 	worn_icon = 'icons/mob/clothing/uniform/halflife.dmi'

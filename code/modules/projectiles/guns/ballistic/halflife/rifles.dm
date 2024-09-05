@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/automatic/ar2
 	name = "\improper OSIPR"
-	desc = "A pulse rifle often dubbed the 'AR2'. Boasts superior armor piercing capabilities, accuracy, and firepower."
+	desc = "A pulse rifle often dubbed the 'AR2'. Boasts superior armor piercing capabilities, accuracy, and firepower. Biolocked to only be usable by authorised individuals."
 	icon = 'icons/obj/guns/halflife/projectile.dmi'
 	icon_state = "ar2"
 	item_state = "arg"
@@ -10,6 +10,7 @@
 	fire_delay = 2
 	burst_size = 2
 	mag_display = TRUE
+	pin = /obj/item/firing_pin/implant/mindshield
 
 
 //old rifles that are exclusively loot. Similar to the AR2, but slightly less accurate, and no armor piercing by default.

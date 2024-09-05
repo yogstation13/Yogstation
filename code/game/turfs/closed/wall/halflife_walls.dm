@@ -14,6 +14,7 @@
 	name = "brick wall"
 	icon = 'icons/turf/walls/halflife/brick.dmi'
 	desc = "A sturdy wall made of bricks."
+	max_integrity = 1500
 	icon_state = "wall-0"
 	base_icon_state = "wall"
 
@@ -21,6 +22,7 @@
 	name = "metal wall"
 	icon = 'icons/turf/walls/halflife/metal.dmi'
 	desc = "A sturdy wall made of metal."
+	max_integrity = 1500
 	icon_state = "urban_wall_regular-0"
 	base_icon_state = "urban_wall_regular"
 
