@@ -1,6 +1,6 @@
 <h1 style="font-family: Verdana; margin: 0px; padding: 0px; text-align: center;">Welcome to Half-Life 13.</h1><br>
 <span style="font-family: Verdana; margin: 0px; padding: 0px;">Welcome to the world after the 7 Hour War.</span><br>
-<span style="font-family: Verdana; margin: 0px; padding: 0px;">Survive in the post apocalyptic setting of Half-Life 2 as any number of occupations. Maybe you'll even make nice life for yourself.</span><br>
+<span style="font-family: Verdana; margin: 0px; padding: 0px;">Survive in the post apocalyptic setting of Half-Life 2 as any number of occupations. Maybe you'll even make a nice life for yourself.</span><br>
 <span style="font-family: Verdana; margin: 0px; padding: 0px;">
  ¤ <a href="https://github.com/yogstation13/Yogstation">GitHub Repo</a>
 </span><br>	

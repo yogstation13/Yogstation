@@ -297,7 +297,7 @@
 	preload = TRUE // These are used by the prefs ui, and also just kinda could use the extra help at roundstart
 
 	var/obj/item/id_type = /obj/item/card/id
-	var/obj/item/modular_computer/pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	//var/obj/item/modular_computer/pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 	var/backpack = /obj/item/storage/backpack
 	var/satchel  = /obj/item/storage/backpack/satchel
 	var/duffelbag = /obj/item/storage/backpack/duffelbag
@@ -338,18 +338,6 @@
 			B.bank_cards += C
 		H.sec_hud_set_ID()
 
-	if(pda_type)
-		var/obj/item/modular_computer/PDA = new pda_type()
-		if(istype(PDA))
-			PDA.InsertID(C)
-			H.equip_to_slot_if_possible(PDA, ITEM_SLOT_ID)
-
-			PDA.update_label()
-			PDA.update_appearance(UPDATE_ICON)
-			PDA.update_filters()
-		else
-			H.equip_to_slot_if_possible(C, ITEM_SLOT_ID)
-	else
 		H.equip_to_slot_if_possible(C, ITEM_SLOT_ID)
 
 	if(H.stat != DEAD)//if a job has a gps and it isn't a decorative corpse, rename the GPS to the owner's name

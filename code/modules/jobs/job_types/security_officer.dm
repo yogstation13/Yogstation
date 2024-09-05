@@ -1,7 +1,6 @@
 /datum/job/officer
-	title = "Security Officer"
-	description = "Protect company assets, follow Space Law\
-		, eat donuts."
+	title = "Civil Protection Officer"
+	description = "Keep the citizens in line, and in working condition."
 	orbit_icon = "shield-halved"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
@@ -13,9 +12,7 @@
 	exp_requirements = 300
 	exp_type = EXP_TYPE_CREW
 
-	outfit = /datum/outfit/job/security
-
-	alt_titles = list("Threat Response Officer", "Civilian Protection Officer", "Corporate Officer", "Peacekeeper")
+	outfit = /datum/outfit/job/civilprotection
 
 	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_DETECTIVE, ACCESS_BRIG_PHYS)
 	base_access = list(ACCESS_SECURITY, ACCESS_SEC_BASIC, ACCESS_BRIG, ACCESS_WEAPONS_PERMIT,
@@ -135,19 +132,6 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 				else
 					break
 
-	if(M?.client?.prefs)
-		var/obj/item/badge/security/badge
-		switch(M.client.prefs.exp[title] / 60)
-			if(200 to INFINITY)
-				badge = new /obj/item/badge/security/officer3
-			if(50 to 200)
-				badge = new /obj/item/badge/security/officer2
-			else
-				badge = new /obj/item/badge/security/officer1
-		badge.owner_string = H.real_name
-		var/obj/item/clothing/suit/my_suit = H.wear_suit
-		my_suit.attach_badge(badge)
-
 	if(department)
 		to_chat(M, "<b>You have been assigned to [department]!</b>")
 	else
@@ -155,11 +139,9 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 
 
 
-/datum/outfit/job/security
-	name = "Security Officer"
+/datum/outfit/job/civilprotection
+	name = "Civil Protection Officer"
 	jobtype = /datum/job/officer
-
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/security
 
 	ears = /obj/item/radio/headset/civilprotection
 	uniform = /obj/item/clothing/under/combine/civilprotection
@@ -167,6 +149,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 	suit = /obj/item/clothing/suit/armor/civilprotection
 	suit_store = /obj/item/gun/ballistic/automatic/pistol/usp
 	shoes = /obj/item/clothing/shoes/jackboots
+	glasses = /obj/item/clothing/glasses/hud/security/civilprotection
 
 	mask = /obj/item/clothing/mask/gas/civilprotection
 	belt = /obj/item/storage/belt/civilprotection/full

@@ -38,7 +38,6 @@
 	name = "Network Admin"
 	jobtype = /datum/job/network_admin
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/network_admin
 
 	l_hand = /obj/item/modular_computer/laptop/preset/network_admin
 	belt = /obj/item/storage/belt/utility/full/engi

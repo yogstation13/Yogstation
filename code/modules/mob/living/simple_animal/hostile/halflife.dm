@@ -9,6 +9,8 @@
 	stat_attack = UNCONSCIOUS //braains
 	maxHealth = 120
 	health = 120
+	speak_chance = 1
+	speak = list("G-GOD HELP ME!","OH G-GOD!","K-KILL ME!")
 	harm_intent_damage = 5
 	melee_damage_lower = 21
 	melee_damage_upper = 21

@@ -111,6 +111,13 @@
 	hud_type = DATA_HUD_SECURITY_ADVANCED
 	glass_colour_type = /datum/client_colour/glass_colour/red
 
+/obj/item/clothing/glasses/hud/security/civilprotection
+	name = "metropolice HUD"
+	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
+	icon_state = "securityhud"
+	hud_type = DATA_HUD_SECURITY_ADVANCED
+	glass_colour_type = null
+
 /obj/item/clothing/glasses/hud/security/chameleon
 	name = "chameleon security HUD"
 	desc = "A stolen security HUD integrated with Syndicate chameleon technology. Provides flash protection."

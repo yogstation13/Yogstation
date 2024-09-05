@@ -77,7 +77,7 @@
 	jobtype = /datum/job/hop
 
 	id_type = /obj/item/card/id/silver
-	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/hop
+
 
 	glasses = /obj/item/clothing/glasses/hud/personnel
 	ears = /obj/item/radio/headset/heads/hop

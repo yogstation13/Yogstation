@@ -11,7 +11,7 @@ $include resources.txt
 # CROSS_COMMS_NAME
 
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Replace 'Space station 13' with the name of your choice.
-SERVERNAME Space station 13
+SERVERNAME Half-Life 13
 
 ## Server SQL name: This is the name used to identify the server to the SQL DB, distinct from SERVERNAME as it must be at most 32 characters.
 SERVERSQLNAME yogstation
