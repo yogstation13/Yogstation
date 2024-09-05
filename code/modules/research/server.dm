@@ -288,7 +288,7 @@
 		return FALSE
 
 	to_chat(user, span_notice("You can see [front_panel_screws] screw\s. You start unscrewing [front_panel_screws == 1 ? "it" : "them"]..."))
-	while(tool.use_tool(src, user, 7.5 SECONDS, volume=100))
+	while(tool.use_tool(src, user, 2 SECONDS, volume=100))
 		front_panel_screws--
 
 		if(front_panel_screws <= 0)
@@ -304,7 +304,7 @@
 		return FALSE
 
 	to_chat(user, span_notice("You can see [source_code_hdd] in a secure housing behind the front panel. You begin to pry it loose..."))
-	if(tool.use_tool(src, user, 15 SECONDS, volume=100))
+	if(tool.use_tool(src, user, 8 SECONDS, volume=100))
 		to_chat(user, span_notice("You destroy the housing, prying [source_code_hdd] free."))
 		deconstruction_state = HDD_PRIED
 	return TRUE
@@ -314,7 +314,7 @@
 		return FALSE
 
 	to_chat(user, span_notice("There are [hdd_wires] wire\s connected to [source_code_hdd]. You start cutting [hdd_wires == 1 ? "it" : "them"]..."))
-	while(tool.use_tool(src, user, 7.5 SECONDS, volume=100))
+	while(tool.use_tool(src, user, 2 SECONDS, volume=100))
 		hdd_wires--
 
 		if(hdd_wires <= 0)

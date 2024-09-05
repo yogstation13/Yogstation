@@ -181,6 +181,8 @@
 	power_light = FALSE
 	requires_power = TRUE
 	ambience_index = AMBIENCE_MINING
+	uses_daylight = TRUE
+	daylight_multiplier = 0.7
 
 /area/icemoon/top_layer/outdoors
 	name = "Icemoon Wastes"

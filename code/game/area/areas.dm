@@ -138,6 +138,8 @@
 
 	/// Whether to cycle brightness based on time of day
 	var/uses_daylight = FALSE
+	/// Daylight brightness
+	var/daylight_multiplier = 1
 	
 /**
   * A list of teleport locations
