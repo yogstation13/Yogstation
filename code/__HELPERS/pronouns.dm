@@ -402,3 +402,48 @@
 		temp_gender = gender
 	if(temp_gender != PLURAL)
 		. = "es"
+
+//MONKESTATION EDIT START
+// Genders for plushies
+/obj/item/toy/plush/p_they(capitalized, temp_gender)
+	if(!temp_gender)
+		temp_gender = gender
+	. = "it"
+	switch(temp_gender)
+		if(FEMALE)
+			. = "she"
+		if(MALE)
+			. = "he"
+		if(PLURAL)
+			. = "they"
+	if(capitalized)
+		. = capitalize(.)
+
+/obj/item/toy/plush/p_have(temp_gender)
+	if(!temp_gender)
+		temp_gender = gender
+	. = "has"
+	if(temp_gender == PLURAL)
+		. = "have"
+
+/obj/item/toy/plush/p_their(capitalized, temp_gender)
+	if(!temp_gender)
+		temp_gender = gender
+	. = "its"
+	switch(temp_gender)
+		if(FEMALE)
+			. = "her"
+		if(MALE)
+			. = "his"
+		if(PLURAL)
+			. = "their"
+	if(capitalized)
+		. = capitalize(.)
+
+/obj/item/toy/plush/p_are(temp_gender)
+	if(!temp_gender)
+		temp_gender = gender
+	. = "is"
+	if(temp_gender == PLURAL)
+		. = "are"
+//MONKESTATION EDIT END

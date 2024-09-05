@@ -58,11 +58,13 @@ type UserData = {
 
 type StockItem = {
   name: string;
+  path: string;
   amount: number;
   colorable: boolean;
 };
 
 type CustomInput = {
+  path: string;
   name: string;
   price: number;
   img: string;
@@ -209,10 +211,10 @@ const ProductDisplay = (props: {
           })
           .map((product) => (
             <VendingRow
-              key={product.name}
+              key={product.path}
               custom={custom}
               product={product}
-              productStock={stock[product.name]}
+              productStock={stock[product.path]}
             />
           ))}
       </Table>
@@ -330,7 +332,7 @@ const ProductButton = (props) => {
       disabled={disabled}
       onClick={() =>
         act('dispense', {
-          item: product.name,
+          item: product.path,
         })
       }
     >

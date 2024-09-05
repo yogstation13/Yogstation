@@ -175,8 +175,6 @@
 	var/onstation_override = FALSE //change this on the object on the map to override the onstation check. DO NOT APPLY THIS GLOBALLY.
 
 	var/list/vending_machine_input = list()
-	///Display header on the input view
-	var/input_display_header = "Custom Vendor"
 
 	//The type of refill canisters used by this machine.
 	var/obj/item/vending_refill/refill_canister = null
@@ -214,6 +212,11 @@
 	set_wires(new /datum/wires/vending(src))
 
 	if(build_inv) //non-constructable vending machine
+		///Non-constructible vending machines do not have a refill canister to populate its products list from,
+		///Which apparently is still needed in the case we use product categories instead.
+		if(product_categories)
+			for(var/list/category as anything in product_categories)
+				products |= category["products"]
 		build_inventories()
 
 	slogan_list = splittext(product_slogans, ";")
@@ -697,6 +700,21 @@
 /atom/movable/proc/post_tilt()
 	return
 
+/proc/check_atom_crushable(atom/atom_target)
+	/// Contains structures and items that vendors shouldn't crush when we land on them.
+	var/static/list/vendor_uncrushable_objects = list(
+		/obj/structure/chair,
+		/obj/machinery/conveyor,
+	) + GLOB.WALLITEMS_INTERIOR + GLOB.WALLITEMS_EXTERIOR
+
+	if(is_type_in_list(atom_target, vendor_uncrushable_objects)) //make sure its not in the list of "uncrushable" stuff
+		return FALSE
+
+	if (atom_target.uses_integrity && !(atom_target.invisibility > SEE_INVISIBLE_LIVING)) //check if it has integrity + allow ninjas, etc to be crushed in cloak
+		return TRUE //SMUSH IT
+
+	return FALSE
+
 /obj/machinery/vending/post_crush_living(mob/living/crushed, was_alive)
 
 	if(was_alive && crushed.stat == DEAD && crushed.client)
@@ -805,7 +823,7 @@
 				post_crush_living(living_target, was_alive)
 				flags_to_return |= (SUCCESSFULLY_CRUSHED_MOB|SUCCESSFULLY_CRUSHED_ATOM)
 
-			else if (atom_target.uses_integrity && !(atom_target.invisibility > SEE_INVISIBLE_LIVING) && !(is_type_in_typecache(atom_target, GLOB.WALLITEMS_INTERIOR) || is_type_in_typecache(atom_target, GLOB.WALLITEMS_EXTERIOR)))
+			else if(check_atom_crushable(atom_target))
 				atom_target.take_damage(adjusted_damage, damage_type, damage_flag, FALSE, crush_dir)
 				crushed = TRUE
 				flags_to_return |= SUCCESSFULLY_CRUSHED_ATOM
@@ -991,22 +1009,22 @@
 	animate(src, transform = to_turn, 0.2 SECONDS)
 	tilted_rotation = 0
 
-/obj/machinery/vending/proc/loadingAttempt(obj/item/I, mob/user)
+/obj/machinery/vending/proc/loadingAttempt(obj/item/inserted_item, mob/user)
 	. = TRUE
-	if(!user.transferItemToLoc(I, src))
+	if(!user.transferItemToLoc(inserted_item, src))
 		return FALSE
-	to_chat(user, span_notice("You insert [I] into [src]'s input compartment."))
+	to_chat(user, span_notice("You insert [inserted_item] into [src]'s input compartment."))
 
 	for(var/datum/data/vending_product/product_datum in product_records + coin_records + hidden_records)
-		if(ispath(I.type, product_datum.product_path))
+		if(inserted_item.type == product_datum.product_path)
 			product_datum.amount++
-			LAZYADD(product_datum.returned_products, I)
+			LAZYADD(product_datum.returned_products, inserted_item)
 			return
 
-	if(vending_machine_input[format_text(I.name)])
-		vending_machine_input[format_text(I.name)]++
+	if(vending_machine_input[inserted_item.type])
+		vending_machine_input[inserted_item.type]++
 	else
-		vending_machine_input[format_text(I.name)] = 1
+		vending_machine_input[inserted_item.type] = 1
 	loaded_items++
 
 /obj/machinery/vending/unbuckle_mob(mob/living/buckled_mob, force = FALSE, can_fall = TRUE)
@@ -1160,11 +1178,12 @@
 	for (var/datum/data/vending_product/product_record in product_records + coin_records + hidden_records)
 		var/list/product_data = list(
 			name = product_record.name,
+			path = replacetext(replacetext("[product_record.product_path]", "/obj/item/", ""), "/", "-"),
 			amount = product_record.amount,
 			colorable = product_record.colorable,
 		)
 
-		.["stock"][product_record.name] = product_data
+		.["stock"][product_data["path"]] = product_data
 
 	.["extended_inventory"] = extended_inventory
 
@@ -1322,9 +1341,9 @@
 		vended_item.set_greyscale(colors=greyscale_colors)
 	R.amount--
 	if(usr.CanReach(src) && usr.put_in_hands(vended_item))
-		to_chat(usr, span_notice("You take [R.name] out of the slot."))
+		to_chat(usr, span_notice("You take \the [R.name] out of the slot."))
 	else
-		to_chat(usr, span_warning("[capitalize(R.name)] falls onto the floor!"))
+		to_chat(usr, span_warning("[capitalize(format_text(R.name))] falls onto the floor!"))
 	SSblackbox.record_feedback("nested tally", "vending_machine_usage", 1, list("[name]", "[R.name]"))
 	vend_ready = TRUE
 
@@ -1439,10 +1458,10 @@
  * * I - the item being loaded
  * * user - the user doing the loading
  */
-/obj/machinery/vending/proc/canLoadItem(obj/item/I, mob/user)
-	if((I.type in products) || (I.type in premium) || (I.type in contraband))
+/obj/machinery/vending/proc/canLoadItem(obj/item/loaded_item, mob/user)
+	if(!length(loaded_item.contents) && ((loaded_item.type in products) || (loaded_item.type in premium) || (loaded_item.type in contraband)))
 		return TRUE
-	to_chat(user, span_warning("[src] does not accept [I]!"))
+	to_chat(user, span_warning("[src] does not accept [loaded_item]!"))
 	return FALSE
 
 /obj/machinery/vending/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
@@ -1511,25 +1530,26 @@
 	. = ..()
 	.["access"] = compartmentLoadAccessCheck(user)
 	.["vending_machine_input"] = list()
-	for (var/O in vending_machine_input)
-		if(vending_machine_input[O] > 0)
+	for (var/obj/item/stocked_item as anything in vending_machine_input)
+		if(vending_machine_input[stocked_item] > 0)
 			var/base64
 			var/price = 0
-			for(var/obj/item/T in contents)
-				if(format_text(T.name) == O)
-					price = T.custom_price
-					if(!base64)
-						if(base64_cache[T.type])
-							base64 = base64_cache[T.type]
+			for(var/obj/item/stored_item in contents)
+				if(stored_item.type == stocked_item)
+					price = stored_item.custom_price
+					if(!base64) //generate an icon of the item to use in UI
+						if(base64_cache[stored_item.type])
+							base64 = base64_cache[stored_item.type]
 						else
-							base64 = icon2base64(getFlatIcon(T, no_anim=TRUE))
-							base64_cache[T.type] = base64
+							base64 = icon2base64(getFlatIcon(stored_item, no_anim=TRUE))
+							base64_cache[stored_item.type] = base64
 					break
 			var/list/data = list(
-				name = O,
+				path = stocked_item,
+				name = initial(stocked_item.name),
 				price = price,
 				img = base64,
-				amount = vending_machine_input[O],
+				amount = vending_machine_input[stocked_item],
 				colorable = FALSE
 			)
 			.["vending_machine_input"] += list(data)
@@ -1541,7 +1561,8 @@
 	switch(action)
 		if("dispense")
 			if(isliving(usr))
-				vend_act(usr, params["item"])
+				vend_act(usr, params)
+				vend_ready = TRUE
 			vend_ready = TRUE
 			return TRUE
 
@@ -1580,9 +1601,10 @@
  * Updating stock, account transactions, alerting users.
  * @return -- TRUE if a valid condition was met, FALSE otherwise.
  */
-/obj/machinery/vending/custom/proc/vend_act(mob/living/user, choice)
+/obj/machinery/vending/custom/proc/vend_act(mob/living/user, list/params)
 	if(!vend_ready)
 		return
+	var/obj/item/choice = text2path(params["item"]) // typepath is a string coming from javascript, we need to convert it back
 	var/obj/item/dispensed_item
 	var/obj/item/card/id/id_card = user.get_idcard(TRUE)
 	vend_ready = FALSE
@@ -1591,8 +1613,8 @@
 		flick(icon_deny, src)
 		return TRUE
 	var/datum/bank_account/payee = id_card.registered_account
-	for(var/obj/stock in contents)
-		if(format_text(stock.name) == choice)
+	for(var/obj/item/stock in contents)
+		if(istype(stock, choice))
 			dispensed_item = stock
 			break
 	if(!dispensed_item)
