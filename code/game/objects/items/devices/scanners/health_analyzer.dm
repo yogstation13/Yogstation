@@ -533,6 +533,60 @@
 			simple_scanner.show_emotion(AID_EMOTION_WARN)
 			playsound(simple_scanner, 'sound/machines/twobeep.ogg', 50, FALSE)
 
+//MONKESTATION ADDITION START
+//Cyborgs can use an integrated health analyzer even if they cant see
+/obj/item/healthanalyzer/cyborg
+
+/obj/item/healthanalyzer/cyborg/attack_self(mob/user)
+	if(!user.can_read(src, READING_CHECK_LITERACY))
+		return
+
+	scanmode = (scanmode + 1) % SCANMODE_COUNT
+	switch(scanmode)
+		if(SCANMODE_HEALTH)
+			to_chat(user, span_notice("You switch the health analyzer to check physical health."))
+		if(SCANMODE_WOUND)
+			to_chat(user, span_notice("You switch the health analyzer to report extra info on wounds."))
+
+/obj/item/healthanalyzer/cyborg/attack(mob/living/M, mob/living/carbon/human/user)
+	if(!user.can_read(src, READING_CHECK_LITERACY))
+		return
+
+	flick("[icon_state]-scan", src) //makes it so that it plays the scan animation upon scanning, including clumsy scanning
+
+	// Clumsiness/brain damage check
+	if ((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(50))
+		user.visible_message(span_warning("[user] analyzes the floor's vitals!"), \
+							span_notice("You stupidly try to analyze the floor's vitals!"))
+		to_chat(user, "[span_info("Analyzing results for The floor:\n\tOverall status: <b>Healthy</b>")]\
+				\n[span_info("Key: <font color='#00cccc'>Suffocation</font>/<font color='#00cc66'>Toxin</font>/<font color='#ffcc33'>Burn</font>/<font color='#ff3333'>Brute</font>")]\
+				\n[span_info("\tDamage specifics: <font color='#66cccc'>0</font>-<font color='#00cc66'>0</font>-<font color='#ff9933'>0</font>-<font color='#ff3333'>0</font>")]\
+				\n[span_info("Body temperature: ???")]")
+		return
+
+	if(ispodperson(M) && !advanced)
+		to_chat(user, "<span class='info'>[M]'s biological structure is too complex for the health analyzer.")
+		return
+
+	user.visible_message(span_notice("[user] analyzes [M]'s vitals."))
+	balloon_alert(user, "analyzing vitals")
+	playsound(user.loc, 'sound/items/healthanalyzer.ogg', 50)
+
+	switch (scanmode)
+		if (SCANMODE_HEALTH)
+			healthscan(user, M, mode, advanced)
+		if (SCANMODE_WOUND)
+			woundscan(user, M, src)
+
+	add_fingerprint(user)
+
+/obj/item/healthanalyzer/cyborg/attack_secondary(mob/living/victim, mob/living/user, params)
+	if(!user.can_read(src, READING_CHECK_LITERACY))
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+	chemscan(user, victim)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+//MONKESTATION ADDITION END
 
 /obj/item/healthanalyzer/simple
 	name = "wound analyzer"
