@@ -1,0 +1,4 @@
+author: "RikuTheKiller"
+delete-after: True
+changes:
+  - rscadd: "You can now permanently remove NIFs through a surgery on the head called \"NIF debonding\", but it requires OOC consent."
