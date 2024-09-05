@@ -4,7 +4,6 @@
 	has_gravity = TRUE
 	hidden = FALSE
 	ambience_index = AMBIENCE_HLOUTSIDE
-	ambient_music_index = AMBIENCE_HLMUSIC
 	flags_1 = CAN_BE_DIRTY_1
 	requires_power = FALSE
 	lights_always_start_on = TRUE
@@ -15,7 +14,7 @@
 	outdoors = TRUE
 	uses_daylight = TRUE
 	base_lighting_alpha = 0
-	sound_environment = SOUND_ENVIRONMENT_FOREST
+	sound_environment = SOUND_ENVIRONMENT_CITY
 	light_power = 0.1
 	light_range = 2
 	light_color = COLOR_STARLIGHT
@@ -32,6 +31,7 @@
 /area/halflife/indoors/sewer
 	name = "\improper Sewer"
 	base_lighting_alpha = 5
+	max_ambience_cooldown = 90 SECONDS
 	icon_state = "away"
 	ambience_index = AMBIENCE_HLSEWERS
-	sound_environment = SOUND_ENVIRONMENT_CAVE
+	sound_environment = SOUND_ENVIRONMENT_STONE_CORRIDOR

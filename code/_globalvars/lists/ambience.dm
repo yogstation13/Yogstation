@@ -163,9 +163,19 @@ GLOBAL_LIST_INIT(creepy_ambience,list(
 	'sound/hallucinations/wail.ogg'))
 
 GLOBAL_LIST_INIT(hloutside_ambience,list(
+	'sound/ambience/trainstation.ogg', 
+	'sound/ambience/vaguevoices.ogg', 
+	'sound/ambience/escapearray.ogg', 
+	'sound/ambience/resurrectedteleport.ogg',
+	'sound/ambience/calabiyaumodel.ogg',
 	'sound/ambience/ambiruin6.ogg', ))
 
 GLOBAL_LIST_INIT(hlinside_ambience,list(
+	'sound/ambience/trainstation.ogg', 
+	'sound/ambience/vaguevoices.ogg', 
+	'sound/ambience/escapearray.ogg', 
+	'sound/ambience/resurrectedteleport.ogg',
+	'sound/ambience/calabiyaumodel.ogg',
 	'sound/ambience/ambiruin6.ogg', ))
 
 GLOBAL_LIST_INIT(hlsewers_ambience,list(
@@ -176,6 +186,7 @@ GLOBAL_LIST_INIT(hlsewers_ambience,list(
 	'sound/ambience/ambimaint5.ogg',
 	'sound/ambience/maintambience.ogg',
 	'sound/ambience/source_corridor2.ogg',
+	'sound/ambience/probablynotaproblem.ogg', 
 	'sound/ambience/ambiruin5.ogg',))
 	
 GLOBAL_LIST_INIT(halflife_ambient_music,list(
@@ -207,5 +218,5 @@ GLOBAL_LIST_INIT(ambience_assoc,list(
 
 GLOBAL_LIST_INIT(ambient_music_assoc, list(
 	AMBIENCE_SPACE = GLOB.space_ambient_music,
-	AMBBIENCE_HLMUSIC = GLOB.halflife_ambient_music
+	AMBIENCE_HLMUSIC = GLOB.halflife_ambient_music
 ))

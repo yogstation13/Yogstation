@@ -45,14 +45,14 @@ SUBSYSTEM_DEF(ambience)
 	if(ambience_listening_clients[to_process] > world.time)
 		return //Not ready for the next sound
 
+	if(current_area.ambientmusic && length(current_area.ambientmusic))
+		var/ambi_music = pick(current_area.ambientmusic)
+		play_ambience_music(current_mob, ambi_music, current_area)
+
 	if(current_area.ambientsounds && length(current_area.ambientsounds))
 		var/ambi_fx = pick(current_area.ambientsounds)
 
 		play_ambience_effects(current_mob, ambi_fx, current_area)
-
-	if(current_area.ambientmusic && length(current_area.ambientmusic))
-		var/ambi_music = pick(current_area.ambientmusic)
-		play_ambience_music(current_mob, ambi_music, current_area)
 
 	ambience_listening_clients[to_process] = world.time + rand(current_area.min_ambience_cooldown, current_area.max_ambience_cooldown)
 
