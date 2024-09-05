@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - bugfix: "The round-start status summary will only be green-shift if the current storyteller is Ghost"
