@@ -53,7 +53,7 @@
 		return FALSE
 
 	var/area/checkable = get_area(src)
-	if(checkable.area_flags & BLOCK_SUICIDE)
+	if(checkable?.area_flags & BLOCK_SUICIDE)
 		to_chat(src, span_warning("You can't commit suicide here! You can ghost if you'd like."))
 		return FALSE
 

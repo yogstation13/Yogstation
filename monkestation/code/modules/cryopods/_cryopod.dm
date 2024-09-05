@@ -512,7 +512,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 		return
 
 	if(target.stat == DEAD)
-		to_chat(user, span_notice("Dead people can not be put into cryo."))
+		to_chat(user, span_warning("Dead people can not be put into cryo."))
+		return
+
+	if(target.GetComponent(/datum/component/previous_body))
+		to_chat(user, span_warning("[src] seems to reject [target]."))
 		return
 
 // Allows admins to enable players to override SSD Time check.
