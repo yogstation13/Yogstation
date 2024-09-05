@@ -96,7 +96,7 @@
 	ruletype = "Latejoin"
 
 /// By default, a rule is acceptable if it satisfies the threat level/population requirements.
-/// If your rule has extra checks, such as counting security officers, do that in ready() instead
+/// If your rule has extra checks, such as counting civil protection officers, do that in ready() instead
 /datum/dynamic_ruleset/proc/acceptable(population = 0, threat_level = 0)
 	if(minimum_players > population)
 		return FALSE

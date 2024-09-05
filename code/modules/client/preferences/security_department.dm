@@ -1,4 +1,4 @@
-/// Which department to put security officers in
+/// Which department to put Civil Protection Officers in
 /datum/preference/choiced/security_department
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	savefile_key = "prefered_security_department"
@@ -22,7 +22,7 @@
 		return FALSE
 	
 	// Job needs to be medium or high for the preference to show up
-	return preferences.job_preferences["Security Officer"] >= JP_MEDIUM
+	return preferences.job_preferences["Civil Protection Officer"] >= JP_MEDIUM
 
 /datum/preference/choiced/security_department/apply_to_human(mob/living/carbon/human/target, value)
 	return

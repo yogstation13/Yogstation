@@ -35,6 +35,7 @@
 	trait_to_give = STATION_TRAIT_EMPTY_MAINT
 
 
+/*
 /datum/station_trait/overflow_job_bureacracy
 	name = "Overflow bureacracy mistake"
 	trait_type = STATION_TRAIT_NEGATIVE
@@ -53,6 +54,7 @@
 
 /datum/station_trait/overflow_job_bureacracy/proc/set_overflow_job_override(datum/source, new_overflow_role)
 	SSjob.set_overflow_role(chosen_job)
+*/
 
 /datum/station_trait/slow_shuttle
 	name = "Slow Shuttle"

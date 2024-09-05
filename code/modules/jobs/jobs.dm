@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(original_security_positions, list(
 	"Head of Security",
 	"Warden",
 	"Detective",
-	"Security Officer"))
+	"Civil Protection Officer"))
 
 GLOBAL_LIST_INIT(security_lightup_areas,	\
 	typecacheof(list(						\
@@ -274,7 +274,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = rd_expand.Replace(job, "research director")
 	job = ce_expand.Replace(job, "chief engineer")
 	job = qm_expand.Replace(job, "quartermaster")
-	job = sec_expand.Replace(job, "security officer")
+	job = sec_expand.Replace(job, "Civil Protection Officer")
 	job = engi_expand.Replace(job, "station engineer")
 	job = atmos_expand.Replace(job, "atmospheric technician")
 	job = doc_expand.Replace(job, "medical doctor")

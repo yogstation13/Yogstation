@@ -140,10 +140,10 @@
 		ladder.add_fingerprint(user)
 		if(!do_after(user, travel_time, target = src))
 			return
-		/*playsound(user, pick('mojave/sound/halflifeeffects/ladder1.ogg',
-							'mojave/sound/halflifeeffects/ladder2.ogg',
-							'mojave/sound/halflifeeffects/ladder3.ogg',
-							'mojave/sound/halflifeeffects/ladder4.ogg'), 60) */
+		playsound(user, pick('sound/halflifesounds/halflifeeffects/ladder1.ogg',
+							'sound/halflifesounds/halflifeeffects/ladder2.ogg',
+							'sound/halflifesounds/halflifeeffects/ladder3.ogg',
+							'sound/halflifesounds/halflifeeffects/ladder4.ogg'), 60) 
 
 	var/turf/target = get_turf(ladder)
 	user.zMove(target = target, z_move_flags = ZMOVE_CHECK_PULLEDBY|ZMOVE_ALLOW_BUCKLED|ZMOVE_INCLUDE_PULLED)
@@ -346,3 +346,353 @@
 	name = "mattress"
 	desc = "Relatively clean."
 	icon_state = "stale_mattress"
+
+
+// BASE FENCES! //
+
+//Base Fence - For obj interaction
+
+/obj/structure/halflife/fence
+	name = "base fence"
+	desc = "Get this shit off the map mappa!"
+	icon = 'icons/obj/halflife/fences.dmi'
+	icon_state = "wirefence"
+	density = TRUE
+	anchored = TRUE
+	plane = ABOVE_GAME_PLANE
+	layer = ABOVE_OBJ_LAYER
+	max_integrity = 400
+	damage_deflection = 15
+	can_atmos_pass = ATMOS_PASS_YES
+	flags_1 = ON_BORDER_1
+	hitted_sound = 'sound/halflifesounds/halflifeeffects/impact/chain fence/chainfence.ogg'
+	var/fencepasschance = 90
+	var/basetype = /obj/structure/halflife/fence //used for corner debugging
+	var/canpass = FALSE // if projectiles can go through
+	var/cansqueeze = TRUE //turn off for vertical states - for people
+	var/breakmats = /obj/item/stack/sheet/metal //not sure this isnt a thing on everything
+
+/obj/structure/halflife/fence/deconstruct(disassembled = TRUE)
+	if(!(flags_1 & NODECONSTRUCT_1))
+		playsound(src, 'sound/halflifesounds/halflifeeffects/impact/chain fence/chainfence.ogg', 100, TRUE)
+		new breakmats(loc)
+		for(var/obj/item/I in src)
+			I.forceMove(loc)
+	qdel(src)
+
+/obj/structure/halflife/fence/vertical
+	icon_state = null
+	flags_1 = NONE
+	cansqueeze = FALSE
+
+/obj/structure/halflife/fence/corner
+	icon_state = null
+	var/obj/cornersetter
+
+/obj/structure/halflife/fence/junction
+	icon_state = null
+	flags_1 = NONE
+	cansqueeze = FALSE
+
+/obj/structure/halflife/fence/junction/Initialize()
+	if(dir == NORTH)
+		cansqueeze = TRUE
+	. = ..()
+
+/obj/structure/halflife/fence/Initialize()
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_EXIT = PROC_REF(on_exit),
+	)
+
+	if (flags_1 & ON_BORDER_1)
+		AddElement(/datum/element/connect_loc, loc_connections)
+	switch(dir)
+		if(SOUTH)
+			layer = ABOVE_ALL_MOB_LAYER + 0.1
+		if(NORTH)
+			layer = OBJ_LAYER
+
+/obj/structure/halflife/fence/corner/Initialize()
+	. = ..()
+	ghostfence(FALSE)
+
+/obj/structure/halflife/fence/corner/proc/ghostfence(destroyed)
+	cornersetter = new basetype(loc)
+	switch(dir)
+		if(NORTH)
+			cornersetter.dir = SOUTH
+		if(SOUTH)
+			cornersetter.dir = SOUTH
+		if(EAST)
+			cansqueeze = FALSE
+		if(WEST)
+			cansqueeze = FALSE
+
+	cornersetter.invisibility = INVISIBILITY_ABSTRACT
+	if(destroyed)
+		qdel(cornersetter)
+
+/obj/structure/halflife/fence/corner/Destroy()
+	. = ..()
+	ghostfence(TRUE)
+
+/proc/valid_fence_location(turf/dest_turf, test_dir)
+	if(!dest_turf)
+		return FALSE
+	for(var/obj/turf_content in dest_turf)
+		if(istype(turf_content, /obj/structure/halflife/fence))
+			if((turf_content.dir == test_dir))
+				return FALSE
+	return TRUE
+
+/obj/structure/halflife/fence/CanAllowThrough(atom/movable/mover, border_dir)
+	. = ..()
+
+	if(istype(mover, /obj/projectile))
+		return TRUE
+
+	if(istype(mover, /obj/projectile/bullet))
+		return TRUE
+
+	if(istype(mover, /obj/item))
+		var/obj/item/I = mover
+		if(I.w_class == WEIGHT_CLASS_TINY)
+			return TRUE
+
+	if(.)
+		return
+
+	if(cansqueeze)
+		if(ismob(mover))
+			if(get_dir(loc, src) == dir)
+				return
+
+		if(border_dir == dir)
+			return FALSE
+
+		if(istype(mover, /obj/structure/halflife/fence))
+			var/obj/structure/halflife/fence/moved_fence = mover
+			return valid_fence_location(loc, moved_fence.dir)
+
+	if(!cansqueeze)
+		return FALSE
+
+	return TRUE
+
+/obj/structure/halflife/fence/proc/on_exit(datum/source, atom/movable/leaving, direction)
+	SIGNAL_HANDLER
+
+	if(canpass)
+		if(istype(leaving, /obj/projectile) && prob(fencepasschance))
+			return
+
+		if(istype(leaving, /obj/projectile/bullet) && prob(fencepasschance))
+			return
+
+		if(istype(leaving, /obj/item))
+			var/obj/item/I = leaving
+			if(I.w_class == WEIGHT_CLASS_TINY && prob(fencepasschance))
+				return
+			else
+				return COMPONENT_ATOM_BLOCK_EXIT
+
+	if(cansqueeze)
+		if(istype(leaving, /obj/projectile) && prob(fencepasschance))
+			return
+
+		if(istype(leaving, /obj/projectile/bullet) && prob(fencepasschance))
+			return
+
+		if(istype(leaving, /obj/item))
+			var/obj/item/I = leaving
+			if(I.w_class == WEIGHT_CLASS_TINY && prob(fencepasschance))
+				return
+
+		if(leaving == src)
+			return // Let's not block ourselves.
+
+		if (leaving.pass_flags & pass_flags_self)
+			return
+
+		if(direction == dir && density)
+			leaving.Bump(src)
+			return COMPONENT_ATOM_BLOCK_EXIT
+
+// WIRE FENCES! //
+
+//Plain Wire Fence
+
+/obj/structure/halflife/fence/wire
+	name = "wire fence"
+	desc = "A basic wire fence, rusted and still standing."
+	icon_state = "wirefence"
+	max_integrity = 400
+	damage_deflection = 15
+	fencepasschance = 80
+	basetype = /obj/structure/halflife/fence/wire
+
+/obj/structure/halflife/fence/wire/end/east
+	icon_state = "wirefence_end_east"
+
+/obj/structure/halflife/fence/wire/end/west
+	icon_state = "wirefence_end_west"
+
+/obj/structure/halflife/fence/vertical/wire
+	name = "wire fence"
+	desc = "A basic wire fence, rusted and still standing."
+	icon_state = null //purely for mapping sanity
+	max_integrity = 400
+	damage_deflection = 15
+	fencepasschance = 80
+	basetype = /obj/structure/halflife/fence/wire
+	cansqueeze = FALSE
+
+/obj/structure/halflife/fence/vertical/wire/east
+	icon_state = "wirefence_east"
+
+/obj/structure/halflife/fence/vertical/wire/west
+	icon_state = "wirefence_west"
+
+/obj/structure/halflife/fence/junction/wire
+	name = "wire fence"
+	desc = "A basic wire fence, rusted and still standing."
+	icon_state = null //purely for mapping sanity
+	max_integrity = 400
+	damage_deflection = 15
+	fencepasschance = 80
+	basetype = /obj/structure/halflife/fence/wire
+	cansqueeze = FALSE
+
+/obj/structure/halflife/fence/junction/wire/east
+	icon_state = "wirefence_east_T"
+
+/obj/structure/halflife/fence/junction/wire/west
+	icon_state = "wirefence_west_T"
+
+/obj/structure/halflife/fence/corner/wire
+	name = "wire fence"
+	desc = "A basic wire fence, rusted and still standing."
+	icon_state = "wirefence_corner"
+	max_integrity = 400
+	damage_deflection = 15
+	fencepasschance = 80
+	basetype = /obj/structure/halflife/fence/wire
+
+//Wire fence door, seperated unfortunately
+
+/obj/machinery/door/unpowered/halflife/seethrough/fence/wire
+	name = "wire fence door"
+	desc = "A wire fence door, the clattered gateway to freedom perhaps."
+	icon_state = "wirefence_closed"
+	door_type = "wirefence"
+	plane = ABOVE_GAME_PLANE
+	layer = ABOVE_MOB_LAYER
+	damage_deflection = 15
+	max_integrity = 600
+	armor = list(MELEE = 50, BULLET = 60, LASER = 40, ENERGY = 50, BOMB = 30, BIO = 100, FIRE = 40, ACID = 100)
+
+/obj/machinery/door/unpowered/halflife/seethrough/fence/deconstruct(disassembled = TRUE)
+	if(!(flags_1 & NODECONSTRUCT_1))
+		playsound(src, 'sound/halflifesounds/halflifeeffects/metal_door_break.ogg', 100, TRUE)
+		new /obj/item/stack/sheet/metal(loc)
+		for(var/obj/item/I in src)
+			I.forceMove(loc)
+	qdel(src)
+
+/obj/machinery/door/unpowered/halflife/seethrough/fence/Initialize()
+	. = ..()
+	if(dir == NORTH)
+		pixel_y = -8
+
+	if(dir == SOUTH)
+		pixel_y = -8
+
+	if(dir == EAST)
+		pixel_x = -16
+		pixel_y = 0
+
+	if(dir == WEST)
+		pixel_x = -16
+		pixel_y = 0
+
+/obj/machinery/door/unpowered/halflife/seethrough/fence/open()
+	. = ..()
+	plane = GAME_PLANE
+
+/obj/machinery/door/unpowered/halflife/seethrough/fence/close()
+	. = ..()
+	if(safe)
+		for(var/atom/movable/M in get_turf(src))
+			if(M.density && M != src) //something is blocking the door
+				return
+	plane = initial(plane)
+
+//Barbed Wire Fence
+
+/obj/structure/halflife/fence/wire/barb
+	name = "barbed wire fence"
+	desc = "A menacing wire fence, topped with rusted and deadly barbed wire."
+	icon_state = "barbfence"
+	max_integrity = 800 //no difference yet except its stronger
+	damage_deflection = 20
+	fencepasschance = 70
+	basetype = /obj/structure/halflife/fence/wire/barb
+
+/obj/structure/halflife/fence/wire/end/east/barb
+	icon_state = "barbfence_end_east"
+
+/obj/structure/halflife/fence/wire/end/west/barb
+	icon_state = "barbfence_end_west"
+
+/obj/structure/halflife/fence/vertical/wire/barb
+	name = "barbed wire fence"
+	desc = "A menacing wire fence, topped with rusted and deadly barbed wire."
+	icon_state = null //purely for mapping sanity
+	max_integrity = 800
+	damage_deflection = 20
+	fencepasschance = 70
+	basetype = /obj/structure/halflife/fence/wire/barb
+	cansqueeze = FALSE
+
+/obj/structure/halflife/fence/vertical/wire/east/barb
+	icon_state = "barbfence_east"
+
+/obj/structure/halflife/fence/vertical/wire/west/barb
+	icon_state = "barbfence_west"
+
+/obj/structure/halflife/fence/junction/wire/barb
+	name = "barbed wire fence"
+	desc = "A menacing wire fence, topped with rusted and deadly barbed wire."
+	icon_state = null
+	max_integrity = 800
+	damage_deflection = 20
+	fencepasschance = 70
+	basetype = /obj/structure/halflife/fence/wire/barb
+	cansqueeze = FALSE
+
+/obj/structure/halflife/fence/junction/wire/east/barb
+	icon_state = "barbfence_east_T"
+
+/obj/structure/halflife/fence/junction/wire/west/barb
+	icon_state = "barbfence_west_T"
+
+/obj/structure/halflife/fence/corner/wire/barb
+	name = "barbed wire fence"
+	desc = "A menacing wire fence, topped with rusted and deadly barbed wire."
+	icon_state = "barbfence_corner"
+	max_integrity = 800
+	damage_deflection = 20
+	fencepasschance = 70
+	basetype = /obj/structure/halflife/fence/wire/barb
+
+//Barbed Wire fence door
+
+/obj/machinery/door/unpowered/halflife/seethrough/fence/wire/barb
+	name = "barbed wire fence door"
+	desc = "A menacing wire fence door, no jumping this one, keep out!"
+	icon_state = "barbfence_closed"
+	door_type = "barbfence"
+	max_integrity = 900
+	damage_deflection = 20
+	armor = list(MELEE = 70, BULLET = 80, LASER = 50, ENERGY = 60, BOMB = 40, BIO = 100, FIRE = 40, ACID = 100)

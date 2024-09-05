@@ -1,9 +1,9 @@
 /*
 Assistant
 */
-/datum/job/assistant
-	title = "Assistant"
-	description = "Get your space legs, assist people, ask the HoP to give you a job."
+/datum/job/citizen
+	title = "Citizen"
+	description = "Try to survive, and maybe even earn a better life."
 	orbit_icon = "toolbox"
 	faction = "Station"
 	total_positions = 5
@@ -11,7 +11,7 @@ Assistant
 	supervisors = "absolutely everyone"
 	added_access = list()			//See /datum/job/assistant/get_access()
 	base_access = list()	//See /datum/job/assistant/get_access()
-	outfit = /datum/outfit/job/assistant
+	outfit = /datum/outfit/job/citizen
 	antag_rep = 7
 	paycheck = PAYCHECK_ASSISTANT // Get a job. Job reassignment changes your paycheck now. Get over it.
 	paycheck_department = ACCOUNT_CIV
@@ -29,18 +29,16 @@ Assistant
 		/obj/item/crowbar/large = 1
 	)
 
-	alt_titles = list("Intern", "Apprentice", "Subordinate", "Temporary Worker", "Associate")
-
-/datum/job/assistant/get_access()
+/datum/job/citizen/get_access()
 	. = ..()
 	if(CONFIG_GET(flag/assistants_have_maint_access) || !CONFIG_GET(flag/jobs_have_minimal_access)) //Config has assistant maint access set
 		. |= list(ACCESS_MAINT_TUNNELS)
 
-/datum/outfit/job/assistant
-	name = "Assistant"
-	jobtype = /datum/job/assistant
+/datum/outfit/job/citizen
+	name = "Citizen"
+	jobtype = /datum/job/citizen
 
-/datum/outfit/job/assistant/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/citizen/pre_equip(mob/living/carbon/human/H)
 	if (CONFIG_GET(flag/grey_assistants))
 		uniform = /obj/item/clothing/under/color/grey
 		uniform_skirt = /obj/item/clothing/under/skirt/color/grey
@@ -50,14 +48,14 @@ Assistant
 	return ..()
 
 
-/datum/outfit/job/assistant/consistent
+/datum/outfit/job/citizen/consistent
 	name = "Assistant - Consistent"
 
-/datum/outfit/job/assistant/consistent/pre_equip(mob/living/carbon/human/target)
+/datum/outfit/job/citizen/consistent/pre_equip(mob/living/carbon/human/target)
 	..()
 	uniform = /obj/item/clothing/under/color/grey
 
-/datum/outfit/job/assistant/consistent/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/job/citizen/consistent/post_equip(mob/living/carbon/human/H, visualsOnly)
 	..()
 
 	// This outfit is used by the assets SS, which is ran before the atoms SS

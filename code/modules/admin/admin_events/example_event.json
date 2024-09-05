@@ -3,7 +3,7 @@
 	"description": "During this event you find yourself on a testing server to see if new functionality is working",
 	"command_name": "Event Command",
 	"role_settings": {
-		"/datum/job/assistant": {
+		"/datum/job/citizen": {
 			"disable": true,
 			"greeting": "As assistant during this event, you will need to do something idfk"
 		},

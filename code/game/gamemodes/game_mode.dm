@@ -718,12 +718,12 @@
 	round_credits += "<br>"
 
 	// SECURITY
-	round_credits += "<center><h1>The Brave Security Officers:</h1>"
+	round_credits += "<center><h1>The Brave Civil Protection Officers:</h1>"
 	len_before_addition = round_credits.len
 	for(var/datum/mind/current in SSticker.mode.get_all_by_department(GLOB.security_positions))
 		round_credits += "<center><h2>[current.name] as the [current.assigned_role]</h2>"
 	if(round_credits.len == len_before_addition)
-		round_credits += list("<center><h2>[station_name()] has fallen to Communism!</h2>", "<center><h2>No one was there to protect the crew!</h2>")
+		round_credits += list("<center><h2>[station_name()] has fallen to Rebellion!</h2>", "<center><h2>No one was there to keep order!</h2>")
 	round_credits += "<br>"
 
 	// MEDICAL

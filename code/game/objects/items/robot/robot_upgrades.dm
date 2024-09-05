@@ -1082,7 +1082,7 @@
 	if(CONFIG_GET(flag/disable_secborg))
 		to_chat(user, span_warning("Nanotrasen policy disallows the use of weapons of mass destruction."))
 		return FALSE
-	if(is_banned_from(R.ckey, "Security Officer"))
+	if(is_banned_from(R.ckey, "Civil Protection Officer"))
 		to_chat(user, span_warning("Nanotrasen has disallowed this cyborg from becoming this type of module."))
 		return FALSE
 	return ..()

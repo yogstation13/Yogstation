@@ -352,7 +352,7 @@
 					continue
 				if(is_special_character(H))
 					continue
-				var/list/badjobs = list("Security Officer", "Warden", "Detective", "AI", "Cyborg", "Captain", "Head of Personnel", "Head of Security")
+				var/list/badjobs = list("Civil Protection Officer", "Warden", "Detective", "AI", "Cyborg", "Captain", "Head of Personnel", "Head of Security")
 				if(H.mind.assigned_role in badjobs)
 					continue
 				var/datum/antagonist/traitor/internal_affairs/T = new()
@@ -523,12 +523,12 @@
 		if("infinite_sec")
 			if(!check_rights_for(rights, R_DEBUG))
 				return
-			var/datum/job/J = SSjob.GetJob("Security Officer")
+			var/datum/job/J = SSjob.GetJob("Civil Protection Officer")
 			if(!J)
 				return
 			J.total_positions = -1
 			J.spawn_positions = -1
-			message_admins("[key_name_admin(mob_user)] has removed the cap on security officers.")
+			message_admins("[key_name_admin(mob_user)] has removed the cap on Civil Protection Officers.")
 
 		if("ctfbutton")
 			if(!check_rights_for(rights, R_ADMIN))

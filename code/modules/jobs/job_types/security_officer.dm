@@ -12,7 +12,7 @@
 	exp_requirements = 300
 	exp_type = EXP_TYPE_CREW
 
-	outfit = /datum/outfit/job/civilprotection
+	outfit = /datum/outfit/job/officer
 
 	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_DETECTIVE, ACCESS_BRIG_PHYS)
 	base_access = list(ACCESS_SECURITY, ACCESS_SEC_BASIC, ACCESS_BRIG, ACCESS_WEAPONS_PERMIT,
@@ -139,7 +139,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 
 
 
-/datum/outfit/job/civilprotection
+/datum/outfit/job/officer
 	name = "Civil Protection Officer"
 	jobtype = /datum/job/officer
 

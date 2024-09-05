@@ -39,7 +39,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	jobs["Head of Personnel"] = 50
 	jobs["Head of Security"] = 10
 	jobs["Warden"] = 11
-	jobs["Security Officer"] = 12
+	jobs["Civil Protection Officer"] = 12
 	jobs["Detective"] = 13
 	jobs["Chief Medical Officer"] = 20
 	jobs["Chemist"] = 21
@@ -72,7 +72,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	jobs["Clerk"] = 71 //Yogs: Added IDs for this job, also need to skip 70 or it clerk would be considered a head job
 	jobs["Tourist"] = 72 //Yogs: Added IDs for this job
 	jobs["Artist"] = 73 //Yogs: Added IDs for this job
-	jobs["Assistant"] = 74 //Yogs: Assistants are with the other civilians
+	jobs["Citizen"] = 74 //Yogs: Assistants are with the other civilians
 	jobs["Admiral"] = 200
 	jobs["CentCom Commander"] = 210
 	jobs["Custodian"] = 211

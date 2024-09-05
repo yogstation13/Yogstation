@@ -105,14 +105,14 @@
 	id = "warden_trimmed"
 
 /datum/skillcape/security
-	name = "cape of the security officer"
-	job = "Security Officer"
+	name = "cape of the Civil Protection Officer"
+	job = "Civil Protection Officer"
 	path = /obj/item/clothing/neck/skillcape/security
 	id = "security"
 
 /datum/skillcape/trimmed/security
-	name = "cape of the grand security officer"
-	job = "Security Officer"
+	name = "cape of the grand Civil Protection Officer"
+	job = "Civil Protection Officer"
 	path = /obj/item/clothing/neck/skillcape/trimmed/security
 	id = "security_trimmed"
 
