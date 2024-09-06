@@ -1,0 +1,134 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"k" = (
+/turf/closed/wall/halflife/metal,
+/area/halflife/indoors/sewer)
+"B" = (
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"E" = (
+/obj/machinery/door/unpowered/halflife/metal{
+	dir = 8
+	},
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+
+(1,1,1) = {"
+k
+k
+k
+k
+E
+k
+k
+k
+k
+k
+"}
+(2,1,1) = {"
+k
+B
+B
+B
+B
+B
+B
+B
+B
+k
+"}
+(3,1,1) = {"
+k
+B
+B
+B
+B
+B
+B
+B
+B
+k
+"}
+(4,1,1) = {"
+k
+B
+B
+B
+B
+B
+B
+B
+B
+k
+"}
+(5,1,1) = {"
+k
+B
+B
+B
+B
+B
+B
+B
+B
+k
+"}
+(6,1,1) = {"
+k
+B
+B
+B
+B
+B
+B
+B
+B
+k
+"}
+(7,1,1) = {"
+k
+B
+B
+B
+B
+B
+B
+B
+B
+k
+"}
+(8,1,1) = {"
+k
+B
+B
+B
+B
+B
+B
+B
+B
+k
+"}
+(9,1,1) = {"
+k
+B
+B
+B
+B
+B
+B
+B
+B
+k
+"}
+(10,1,1) = {"
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+"}

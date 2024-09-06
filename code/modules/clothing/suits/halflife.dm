@@ -23,3 +23,12 @@
 	icon_state = "armoralt"
 	item_state = "armoralt"
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 40, BOMB = 40, BIO = 50, RAD = 50, FIRE = 50, ACID = 50, WOUND = 30)
+
+//old armor found only as loot
+/obj/item/clothing/suit/armor/kevlar
+	name = "kevlar vest"
+	desc = "A old kevlar vest. While still decently protective against bullets, the kevlar has broken down over time and is much less protective than it once was."
+	icon_state = "bulletproof"
+	item_state = "armor"
+	blood_overlay_type = "armor"
+	armor = list(MELEE = 15, BULLET = 30, LASER = 10, ENERGY = 10, BOMB = 20, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10)

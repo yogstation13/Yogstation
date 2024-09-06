@@ -1,3 +1,4 @@
+/*
 /datum/dungeon_room_theme/maintenance/ruin
 	room_type = ROOM_TYPE_RUIN
 	
@@ -29,3 +30,4 @@
 			spawner.load()
 			// if(spawner.load())
 			// 	dungeon_room_ref.features -= spawner
+*/

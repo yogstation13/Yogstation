@@ -1838,7 +1838,6 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "ang" = (
-/obj/effect/landmark/stationroom/maint/threexthree,
 /turf/template_noop,
 /area/maintenance/port/fore)
 "anp" = (
@@ -8417,7 +8416,6 @@
 /turf/open/floor/plating,
 /area/maintenance/central)
 "blb" = (
-/obj/effect/landmark/stationroom/maint/tenxfive,
 /turf/template_noop,
 /area/maintenance/port/fore)
 "ble" = (
@@ -11510,7 +11508,6 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos/foyer)
 "bLX" = (
-/obj/effect/landmark/stationroom/maint/tenxfive,
 /turf/template_noop,
 /area/maintenance/aft)
 "bLY" = (
@@ -11945,7 +11942,6 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "bQb" = (
-/obj/effect/landmark/stationroom/maint/threexfive,
 /turf/template_noop,
 /area/maintenance/starboard/fore)
 "bQi" = (
@@ -13814,7 +13810,6 @@
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
 "cmz" = (
-/obj/effect/landmark/stationroom/maint/threexfive,
 /turf/template_noop,
 /area/maintenance/starboard)
 "cmD" = (
@@ -15042,7 +15037,6 @@
 /turf/open/floor/engine/n2o,
 /area/engine/atmos/distro)
 "cCG" = (
-/obj/effect/landmark/stationroom/maint/threexthree,
 /turf/template_noop,
 /area/maintenance/starboard/aft)
 "cCR" = (
@@ -16264,7 +16258,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "cUS" = (
-/obj/effect/landmark/stationroom/maint/tenxten,
 /turf/template_noop,
 /area/maintenance/port/aft)
 "cUT" = (
@@ -17427,7 +17420,6 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
 "dtp" = (
-/obj/effect/landmark/stationroom/maint/fivexfour,
 /turf/template_noop,
 /area/maintenance/port/aft)
 "dtL" = (
@@ -19925,7 +19917,6 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "eoH" = (
-/obj/effect/landmark/stationroom/maint/threexfive,
 /turf/template_noop,
 /area/maintenance/starboard/aft)
 "eoJ" = (
@@ -20751,7 +20742,6 @@
 /turf/open/floor/plasteel,
 /area/engine/foyer)
 "eCa" = (
-/obj/effect/landmark/stationroom/maint/threexthree,
 /turf/template_noop,
 /area/maintenance/starboard/fore)
 "eCv" = (
@@ -22219,7 +22209,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "faN" = (
-/obj/effect/landmark/stationroom/maint/threexfive,
 /turf/template_noop,
 /area/maintenance/port/aft)
 "faV" = (
@@ -29958,7 +29947,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "hNs" = (
-/obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
 /area/maintenance/starboard/aft)
 "hNw" = (
@@ -36945,7 +36933,6 @@
 /turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
 "kjk" = (
-/obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
 /area/maintenance/port/fore)
 "kjm" = (
@@ -45184,7 +45171,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "nlY" = (
-/obj/effect/landmark/stationroom/maint/tenxfive,
 /turf/template_noop,
 /area/maintenance/starboard/fore)
 "nma" = (
@@ -57965,7 +57951,6 @@
 /turf/closed/wall,
 /area/engine/atmos/distro)
 "rSl" = (
-/obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
 /area/maintenance/port/aft)
 "rSz" = (
@@ -60233,7 +60218,6 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "sLs" = (
-/obj/effect/landmark/stationroom/maint/threexthree,
 /turf/template_noop,
 /area/maintenance/port)
 "sLv" = (
@@ -61022,7 +61006,6 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
 "tah" = (
-/obj/effect/landmark/stationroom/maint/threexfive,
 /turf/template_noop,
 /area/maintenance/aft)
 "tai" = (
@@ -69463,7 +69446,6 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "wbG" = (
-/obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
 /area/maintenance/starboard/fore)
 "wbH" = (
@@ -73447,7 +73429,6 @@
 /turf/open/floor/plasteel/white,
 /area/storage/tech)
 "xEg" = (
-/obj/effect/landmark/stationroom/maint/threexthree,
 /turf/template_noop,
 /area/maintenance/port/aft)
 "xEy" = (
@@ -73546,7 +73527,6 @@
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "xFW" = (
-/obj/effect/landmark/stationroom/maint/fivexfour,
 /turf/template_noop,
 /area/maintenance/port/fore)
 "xFY" = (

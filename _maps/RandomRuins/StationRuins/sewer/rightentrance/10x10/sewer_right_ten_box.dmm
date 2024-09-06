@@ -1,0 +1,134 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"e" = (
+/obj/machinery/door/unpowered/halflife/metal{
+	dir = 4
+	},
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"w" = (
+/turf/closed/wall/halflife/metal,
+/area/halflife/indoors/sewer)
+"A" = (
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+
+(1,1,1) = {"
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+"}
+(2,1,1) = {"
+w
+A
+A
+A
+A
+A
+A
+A
+A
+w
+"}
+(3,1,1) = {"
+w
+A
+A
+A
+A
+A
+A
+A
+A
+w
+"}
+(4,1,1) = {"
+w
+A
+A
+A
+A
+A
+A
+A
+A
+w
+"}
+(5,1,1) = {"
+w
+A
+A
+A
+A
+A
+A
+A
+A
+w
+"}
+(6,1,1) = {"
+w
+A
+A
+A
+A
+A
+A
+A
+A
+w
+"}
+(7,1,1) = {"
+w
+A
+A
+A
+A
+A
+A
+A
+A
+w
+"}
+(8,1,1) = {"
+w
+A
+A
+A
+A
+A
+A
+A
+A
+w
+"}
+(9,1,1) = {"
+w
+A
+A
+A
+A
+A
+A
+A
+A
+w
+"}
+(10,1,1) = {"
+w
+w
+w
+w
+e
+w
+w
+w
+w
+w
+"}

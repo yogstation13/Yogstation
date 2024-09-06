@@ -1,0 +1,134 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"z" = (
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"I" = (
+/obj/machinery/door/unpowered/halflife/metal{
+	dir = 8
+	},
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"Z" = (
+/turf/closed/wall/halflife/metal,
+/area/halflife/indoors/sewer)
+
+(1,1,1) = {"
+Z
+Z
+Z
+Z
+I
+Z
+Z
+Z
+Z
+Z
+"}
+(2,1,1) = {"
+Z
+z
+z
+z
+z
+z
+z
+z
+z
+Z
+"}
+(3,1,1) = {"
+Z
+z
+z
+z
+z
+z
+z
+z
+z
+Z
+"}
+(4,1,1) = {"
+Z
+z
+z
+z
+z
+z
+z
+z
+z
+Z
+"}
+(5,1,1) = {"
+Z
+z
+z
+z
+z
+z
+z
+z
+z
+Z
+"}
+(6,1,1) = {"
+Z
+z
+z
+z
+z
+z
+z
+z
+z
+Z
+"}
+(7,1,1) = {"
+Z
+z
+z
+z
+z
+z
+z
+z
+z
+Z
+"}
+(8,1,1) = {"
+Z
+z
+z
+z
+z
+z
+z
+z
+z
+Z
+"}
+(9,1,1) = {"
+Z
+z
+z
+z
+z
+z
+z
+z
+z
+Z
+"}
+(10,1,1) = {"
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+"}
