@@ -82,6 +82,7 @@
 	new /obj/item/clothing/suit/armor/hos(src)
 	new /obj/item/clothing/suit/armor/hos/hos_formal(src)
 	new /obj/item/clothing/suit/armor/hos/trenchcoat/winter(src)
+	new /obj/item/clothing/suit/armor/hos/trenchcoat/pimpcoat(src)
 	new /obj/item/clothing/suit/armor/vest/leather(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/gars/giga(src)
