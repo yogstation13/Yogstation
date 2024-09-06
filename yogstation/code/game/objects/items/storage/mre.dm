@@ -73,13 +73,3 @@
 	tastes = list("cardboard" = 1, "tomato" = 1, "cheese" = 1, "pepperoni" = 2)
 	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT
 
-/datum/supply_pack/organic/mre
-	name = "MRE supply kit (emergency rations)"
-	desc = "The lights are out. Oxygen's running low. You've run out of food except space weevils. Don't let this be you! Order our NT branded MRE kits today! This pack contains 5 MRE packs with a randomized menu."
-	cost = 2000 // Best prices this side of the galaxy.
-	contains = list(/obj/item/storage/box/mre,
-					/obj/item/storage/box/mre,
-					/obj/item/storage/box/mre/menu2,
-					/obj/item/storage/box/mre/menu3,
-					/obj/item/storage/box/mre/menu4)
-	crate_name = "MRE crate (emergency rations)"

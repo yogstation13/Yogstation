@@ -113,8 +113,6 @@
 		var/list/shuttle_spawns = list()
 		switch(dispatch_type)
 			if(HIJACK_SYNDIE)
-				var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/emergency/specialops]
-				pack.generate(pick_n_take(empty_shuttle_turfs))
 
 				shuttle_spawns.Add(/mob/living/simple_animal/hostile/syndicate/ranged/infiltrator)
 				shuttle_spawns.Add(/mob/living/simple_animal/hostile/syndicate/ranged/infiltrator)
@@ -124,8 +122,6 @@
 					shuttle_spawns.Add(/mob/living/simple_animal/hostile/syndicate/ranged/infiltrator)
 
 			if(RUSKY_PARTY)
-				var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/service/party]
-				pack.generate(pick_n_take(empty_shuttle_turfs))
 
 				shuttle_spawns.Add(/mob/living/simple_animal/hostile/russian)
 				shuttle_spawns.Add(/mob/living/simple_animal/hostile/russian/ranged)	//drops a mateba
@@ -136,8 +132,6 @@
 					shuttle_spawns.Add(/mob/living/simple_animal/hostile/bear/russian)
 
 			if(SPIDER_GIFT)
-				var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/emergency/specialops]
-				pack.generate(pick_n_take(empty_shuttle_turfs))
 
 				shuttle_spawns.Add(/mob/living/simple_animal/hostile/poison/giant_spider)
 				shuttle_spawns.Add(/mob/living/simple_animal/hostile/poison/giant_spider)
@@ -156,21 +150,6 @@
 					new /obj/structure/spider/stickyweb(T)
 
 			if(DEPARTMENT_RESUPPLY)
-				var/list/crate_types = list(
-					/datum/supply_pack/emergency/equipment,
-					/datum/supply_pack/security/supplies,
-					/datum/supply_pack/organic/food,
-					/datum/supply_pack/emergency/weedcontrol,
-					/datum/supply_pack/engineering/tools,
-					/datum/supply_pack/engineering/engiequipment,
-					/datum/supply_pack/science/robotics,
-					/datum/supply_pack/science/plasma,
-					/datum/supply_pack/medical/supplies
-					)
-				for(var/crate in crate_types)
-					var/datum/supply_pack/pack = SSshuttle.supply_packs[crate]
-					pack.generate(pick_n_take(empty_shuttle_turfs))
-
 				for(var/i in 1 to 5)
 					var/decal = pick(/obj/effect/decal/cleanable/food/flour, /obj/effect/decal/cleanable/robot_debris, /obj/effect/decal/cleanable/oil)
 					new decal(pick_n_take(empty_shuttle_turfs))
@@ -180,8 +159,6 @@
 				for(var/i in 1 to 6)
 					shuttle_spawns.Add(pick(prob(5) ? naughtypizza : nicepizza))
 			if(ITS_HIP_TO)
-				var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/organic/hydroponics/beekeeping_fullkit]
-				pack.generate(pick_n_take(empty_shuttle_turfs))
 
 				shuttle_spawns.Add(/obj/effect/mob_spawn/human/corpse/bee_terrorist)
 				shuttle_spawns.Add(/obj/effect/mob_spawn/human/corpse/nanotrasensoldier)
