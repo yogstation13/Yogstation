@@ -1,4 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - bugfix: "Fixes Poly freezing up after speaking"

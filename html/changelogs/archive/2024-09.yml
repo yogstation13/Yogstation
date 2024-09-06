@@ -88,3 +88,21 @@
   lmenvs:
   - rscadd: adds CaptainShiba's pet transformation and pet! Thank you for your patronage!
       Sprites by AbberantQuerist.
+2024-09-06:
+  Absolucy:
+  - bugfix: You can no longer cryo someone if their soul is in a soulcatcher.
+  - qol: Unarmed attacks with carp jaws now uses a bite effect rather than a punch
+      effect.
+  - qol: Scrubber overflows now use liquids instead of foam.
+  PotatoTomahto:
+  - rscadd: 'Adds a ballgown to the autodrobe and clothesmate.
+
+      :cl:'
+  - qol: Medical cyborg can use their health analyzer when in the dark or blind.
+  RikuTheKiller:
+  - rscadd: You can now permanently remove NIFs through a surgery on the head called
+      "NIF debonding", but it requires OOC consent.
+  Wisemonster:
+  - bugfix: The round-start status summary will only be green-shift if the current
+      storyteller is Ghost
+  - bugfix: Fixes Poly freezing up after speaking
