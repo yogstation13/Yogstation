@@ -1,0 +1,4 @@
+author: "PotatoTomahto"
+delete-after: True
+changes:
+  - bugfix: "Restored old HOS trenchcoat sprite. Winter trenchcoat sprite also fixed."
