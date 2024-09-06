@@ -110,13 +110,9 @@
       their incompatibility with magic. Yes, this means silicons (including pAIs)
       not seeing runes is intentional.
   PotatoTomahto:
-  - rscadd: 'Adds a ballgown to the autodrobe and clothesmate.
-
-      :cl:'
+  - rscadd: 'Adds a ballgown to the autodrobe and clothesmate.'
   - qol: Medical cyborg can use their health analyzer when in the dark or blind.
-  - bugfix: 'Fixes fugitive hunter victory end round text.
-
-      cl:'
+  - bugfix: 'Fixes fugitive hunter victory end round text.'
   - bugfix: Restored old HOS trenchcoat sprite. Winter trenchcoat sprite also fixed.
   RikuTheKiller:
   - rscadd: You can now permanently remove NIFs through a surgery on the head called
