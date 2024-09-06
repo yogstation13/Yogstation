@@ -2064,8 +2064,6 @@
 
 		var/list/dat = list()
 
-		usr.client.debug_variables(response)
-
 		if(response.errored)
 			dat += "<br>Failed to connect to CentCom."
 		else if(response.status_code != 200)
