@@ -219,15 +219,15 @@ Slimecrossing Items
 
 //Ration pack - Chilling Silver
 /obj/item/reagent_containers/food/snacks/rationpack
-	name = "ration pack"
-	desc = "A square bar that sadly <i>looks</i> like chocolate, packaged in a nondescript grey wrapper. Has saved soldiers' lives before - usually by stopping bullets."
+	name = "nutriment bar"
+	desc = "A 'water' flavored ration nutriment bar. Tastes gross, but at least you won't be hungry"
 	icon_state = "rationpack"
-	bitesize = 3
+	bitesize = 1
 	junkiness = 15
 	filling_color = "#964B00"
-	tastes = list("cardboard" = 3, "sadness" = 3)
+	tastes = list("gross water" = 3, "sadness" = 3)
 	foodtype = null //Don't ask what went into them. You're better off not knowing.
-	list_reagents = list(/datum/reagent/consumable/nutriment/stabilized = 10, /datum/reagent/consumable/nutriment = 2) //Won't make you fat. Will make you question your sanity.
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 
 /obj/item/reagent_containers/food/snacks/rationpack/checkLiked(fraction, mob/M)	//Nobody likes rationpacks. Nobody.
 	if(last_check_time + 50 < world.time)

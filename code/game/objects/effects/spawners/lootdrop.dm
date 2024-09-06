@@ -737,18 +737,28 @@
 			"" = 60)
 
 
+//clothes, drinks, low tier melee weapons, tools
 /obj/effect/spawner/lootdrop/halflife/loot
 	name = "common loot"
 	lootcount = 1
 
 	loot = list(
-				/obj/item/crowbar/large,
-				/obj/item/clothing/under/citizen/refugee,
-				/obj/item/clothing/head/beanie/black,
-				/obj/item/radio/off/halflife,
+				/obj/item/crowbar/large = 2,
+				/obj/item/clothing/under/citizen/refugee = 2,
+				/obj/item/clothing/head/beanie/black = 2,
+				/obj/item/radio/off/halflife = 2,
+				/obj/item/reagent_containers/food/drinks/soda_cans/breenwater,
+				/obj/item/storage/box/halflife/ration,
+				/obj/item/reagent_containers/food/snacks/chips,
+				/obj/item/reagent_containers/food/drinks/beer,
+				/obj/item/reagent_containers/food/drinks/bottle/gin,
+				/obj/item/reagent_containers/food/drinks/bottle/hooch,
+				/obj/item/reagent_containers/food/drinks/bottle/vodka,
+				/obj/item/storage/firstaid,
 				/obj/item/cigbutt
 				)
 
+//guns, ammo, armor
 /obj/effect/spawner/lootdrop/halflife/loot/rare
 	name = "rare loot"
 

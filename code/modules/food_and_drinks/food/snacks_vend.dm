@@ -36,7 +36,7 @@
 
 /obj/item/reagent_containers/food/snacks/chips
 	name = "chips"
-	desc = "Commander Riker's What-The-Crisps."
+	desc = "Horribly stale old chips, but they still taste better than rations."
 	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
 	icon_state = "chips"

@@ -115,6 +115,12 @@
 	},
 /turf/open/floor/plating/ground/road,
 /area/halflife/indoors)
+"fK" = (
+/obj/structure/sign/poster/halflife/combine/two{
+	pixel_y = 32
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/halflife/outdoors)
 "fT" = (
 /turf/open/floor/plating/indoor/carpet/green,
 /area/halflife/indoors)
@@ -148,6 +154,10 @@
 "hm" = (
 /obj/structure/halflife/fence/wire,
 /turf/open/floor/plating/indoor/tiled10,
+/area/halflife/indoors)
+"hq" = (
+/obj/machinery/light,
+/turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors)
 "hO" = (
 /obj/machinery/door/unpowered/halflife/metal{
@@ -203,6 +213,11 @@
 /obj/effect/turf_decal/road/horizontalline,
 /turf/open/floor/plating/ground/road,
 /area/halflife/outdoors)
+"jh" = (
+/obj/structure/bed/halflife/bedframe/wire,
+/obj/structure/bed/halflife/mattress/stained,
+/turf/open/floor/plating/indoor/tile,
+/area/halflife/indoors)
 "jv" = (
 /obj/machinery/light,
 /turf/open/floor/plating/indoor/woodc,
@@ -233,6 +248,12 @@
 "kC" = (
 /obj/machinery/griddle,
 /turf/open/floor/plating/indoor/showroom,
+/area/halflife/indoors)
+"kH" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/indoor/tile,
 /area/halflife/indoors)
 "kK" = (
 /obj/structure/halflife/fence/wire,
@@ -325,12 +346,6 @@
 "nJ" = (
 /obj/machinery/power/halflife/trafficlight{
 	dir = 8
-	},
-/turf/open/floor/plating/ground/sidewalk,
-/area/halflife/outdoors)
-"nO" = (
-/obj/structure/sign/poster/halflife/combine/two{
-	pixel_y = 32
 	},
 /turf/open/floor/plating/ground/sidewalk,
 /area/halflife/outdoors)
@@ -442,12 +457,6 @@
 /area/halflife/indoors)
 "uf" = (
 /obj/structure/halflife/fence/corner/wire,
-/turf/open/floor/plating/ground/dirt,
-/area/halflife/outdoors)
-"ut" = (
-/obj/structure/fence/corner{
-	dir = 4
-	},
 /turf/open/floor/plating/ground/dirt,
 /area/halflife/outdoors)
 "uB" = (
@@ -782,6 +791,12 @@
 /obj/structure/closet/secure_closet/freezer/kitchen,
 /turf/open/floor/plating/indoor/showroom,
 /area/halflife/indoors)
+"IE" = (
+/obj/structure/sign/poster/halflife/combine{
+	pixel_y = 32
+	},
+/turf/open/floor/plating/ground/sidewalk,
+/area/halflife/outdoors)
 "IZ" = (
 /turf/open/floor/plating/indoor/metal,
 /area/halflife/indoors/sewer)
@@ -871,12 +886,6 @@
 	},
 /turf/open/floor/plating/ground/road,
 /area/halflife/outdoors)
-"MB" = (
-/obj/structure/sign/poster/halflife/combine{
-	pixel_y = 32
-	},
-/turf/open/floor/plating/ground/sidewalk,
-/area/halflife/outdoors)
 "MO" = (
 /obj/machinery/door/unpowered/halflife/wood{
 	dir = 8
@@ -900,18 +909,6 @@
 /obj/structure/table,
 /turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors)
-"Nt" = (
-/obj/structure/sign/poster/halflife/combine/two{
-	pixel_y = 32
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/halflife/outdoors)
-"Ny" = (
-/obj/structure/fence{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/halflife/outdoors)
 "NC" = (
 /turf/open/floor/plating/indoor/metal/grate,
 /area/halflife/indoors/sewer)
@@ -938,6 +935,10 @@
 	dir = 4
 	},
 /area/halflife/indoors/sewer)
+"OZ" = (
+/obj/machinery/door/unpowered/halflife/seethrough/grate,
+/turf/open/floor/plating/indoor/tile,
+/area/halflife/indoors)
 "Pl" = (
 /turf/open/floor/plating/indoor/woodc,
 /area/halflife/indoors/sewer)
@@ -990,6 +991,12 @@
 	dir = 8
 	},
 /area/halflife/indoors/sewer)
+"QX" = (
+/obj/structure/sign/poster/halflife/combine/two{
+	pixel_y = 32
+	},
+/turf/open/floor/plating/ground/sidewalk,
+/area/halflife/outdoors)
 "Rv" = (
 /obj/machinery/door/unpowered/halflife/wood,
 /turf/open/floor/plating/indoor/woodc,
@@ -1116,6 +1123,10 @@
 /obj/item/clothing/under/combine/civilprotection,
 /obj/item/clothing/under/combine/civilprotection,
 /turf/open/floor/plating/indoor/tile/navy,
+/area/halflife/indoors)
+"YD" = (
+/obj/machinery/vending/breenwater,
+/turf/open/floor/plating/indoor/cafeteria,
 /area/halflife/indoors)
 "YE" = (
 /obj/structure/rack,
@@ -55661,7 +55672,7 @@ mT
 mT
 mT
 ND
-MB
+IE
 Tc
 Tc
 Tc
@@ -56573,7 +56584,7 @@ hZ
 hZ
 hZ
 ND
-MB
+IE
 Tc
 RV
 RV
@@ -59096,7 +59107,7 @@ mT
 mT
 mT
 ND
-MB
+IE
 Tc
 Tc
 Tc
@@ -64063,7 +64074,7 @@ Tc
 Tc
 Tc
 ND
-Ks
+YD
 Ks
 Ks
 Ks
@@ -66257,7 +66268,7 @@ mT
 mT
 mT
 ND
-Nt
+fK
 FP
 Tc
 RV
@@ -69261,13 +69272,13 @@ ND
 ND
 Ol
 ND
+km
 cP
 cP
 cP
 cP
 cP
-cP
-cP
+hq
 ND
 Nk
 cP
@@ -69478,7 +69489,7 @@ cP
 cP
 cP
 cP
-cP
+hq
 ND
 FP
 jZ
@@ -70407,7 +70418,7 @@ hZ
 hZ
 hZ
 ND
-MB
+IE
 ND
 hZ
 hZ
@@ -70538,7 +70549,7 @@ hZ
 hZ
 hZ
 ND
-MB
+IE
 Tc
 Tc
 Tc
@@ -70681,7 +70692,7 @@ ND
 ND
 ND
 ND
-ND
+he
 ND
 ND
 ND
@@ -70882,17 +70893,17 @@ FP
 FP
 FP
 FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-Ny
+ND
+cP
+cP
+cP
+OZ
+XQ
+XQ
+XQ
+XQ
+kH
+ND
 FP
 FP
 FP
@@ -71084,19 +71095,19 @@ FP
 FP
 FP
 FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-ut
-Zs
-Zs
+ND
+cP
+cP
+cP
+ND
+XQ
+XQ
+XQ
+XQ
+jh
+ND
+TI
+gx
 Hu
 Hu
 Hu
@@ -71286,17 +71297,17 @@ FP
 FP
 FP
 FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
+ND
+cP
+cP
+cP
+ND
+ND
+ND
+ND
+ND
+ND
+ND
 FP
 FP
 Hu
@@ -71488,17 +71499,17 @@ FP
 FP
 jZ
 FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
+ND
+cP
+cP
+cP
+OZ
+XQ
+XQ
+XQ
+XQ
+kH
+ND
 FP
 FP
 Hu
@@ -71690,17 +71701,17 @@ FP
 FP
 FP
 FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
+ND
+cP
+cP
+hq
+ND
+XQ
+XQ
+XQ
+XQ
+jh
+ND
 FP
 FP
 Hu
@@ -71892,17 +71903,17 @@ FP
 FP
 FP
 FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
+ND
+cP
+cP
+cP
+ND
+ND
+ND
+ND
+ND
+ND
+ND
 FP
 FP
 Hu
@@ -72094,17 +72105,17 @@ FP
 FP
 FP
 FP
-Hu
-Hu
-Hu
-Hu
-FP
-FP
-FP
-FP
-FP
-FP
-FP
+ND
+cP
+cP
+cP
+OZ
+XQ
+XQ
+XQ
+XQ
+kH
+ND
 FP
 FP
 Hu
@@ -72296,17 +72307,17 @@ FP
 FP
 FP
 FP
-Hu
-FP
-FP
-FP
-FP
-FP
-jZ
-FP
-FP
-FP
-FP
+ND
+cP
+cP
+cP
+ND
+XQ
+XQ
+XQ
+XQ
+jh
+ND
 FP
 FP
 Hu
@@ -72497,18 +72508,18 @@ FP
 FP
 FP
 FP
-Hu
-Hu
 FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
+ND
+ND
+ND
+ND
+ND
+ND
+ND
+ND
+ND
+ND
+ND
 FP
 FP
 Hu
@@ -72699,7 +72710,7 @@ FP
 FP
 FP
 FP
-Hu
+FP
 FP
 FP
 FP
@@ -72900,7 +72911,7 @@ FP
 FP
 FP
 FP
-Hu
+FP
 FP
 FP
 FP
@@ -75592,7 +75603,7 @@ hZ
 hZ
 hZ
 ND
-nO
+QX
 RV
 RV
 RV

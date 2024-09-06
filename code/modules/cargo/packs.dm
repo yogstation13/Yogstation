@@ -153,6 +153,16 @@
 					/obj/item/gun/ballistic/automatic/pistol/usp)
 	crate_name = "usp match gun crate"
 
+/datum/supply_pack/security/armory/uspammo
+	name = "USP Match Ammo Crate"
+	desc = "Contains four USP Match magazines. Requires Armory access to open."
+	cost = 6000
+	contains = list(/obj/item/ammo_box/magazine/usp9mm,
+					/obj/item/ammo_box/magazine/usp9mm,
+					/obj/item/ammo_box/magazine/usp9mm,
+					/obj/item/ammo_box/magazine/usp9mm)
+	crate_name = "usp match ammo crate"
+
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Engineering /////////////////////////////////////
@@ -161,84 +171,6 @@
 /datum/supply_pack/engineering
 	group = "Engineering"
 	crate_type = /obj/structure/closet/crate/engineering
-
-/datum/supply_pack/engineering/bluespace_tap
-	name = "Bluespace Harvester Parts"
-	cost = 10000
-	special = TRUE
-	contains = list(
-					/obj/item/circuitboard/machine/bluespace_tap,
-					/obj/item/paper/bluespace_tap
-					)
-	crate_name = "bluespace harvester parts crate"
-
-
-/datum/supply_pack/engineering/bsa
-	name = "Bluespace Artillery Parts"
-	desc = "The pride of Nanotrasen Naval Command. The legendary Bluespace Artillery Cannon is a devastating feat of human engineering and testament to wartime determination. Highly advanced research is required for proper construction. "
-	cost = 15000
-	special = TRUE
-	access_view = ACCESS_COMMAND
-	contains = list(/obj/item/circuitboard/machine/bsa/front,
-					/obj/item/circuitboard/machine/bsa/middle,
-					/obj/item/circuitboard/machine/bsa/back,
-					/obj/item/circuitboard/computer/bsa_control
-					)
-	crate_name= "bluespace artillery parts crate"
-
-/datum/supply_pack/engineering/dna_vault
-	name = "DNA Vault Parts"
-	desc = "Secure the longevity of the current state of humanity within this massive library of scientific knowledge, capable of granting superhuman powers and abilities. Highly advanced research is required for proper construction. Also contains five DNA probes."
-	cost = 12000
-	special = TRUE
-	access_view = ACCESS_COMMAND
-	contains = list(
-					/obj/item/circuitboard/machine/dna_vault,
-					/obj/item/dna_probe,
-					/obj/item/dna_probe,
-					/obj/item/dna_probe,
-					/obj/item/dna_probe,
-					/obj/item/dna_probe
-					)
-	crate_name= "dna vault parts crate"
-
-/datum/supply_pack/engineering/dna_probes
-	name = "DNA Vault Samplers"
-	desc = "Contains five DNA probes for use in the DNA vault."
-	cost = 3000
-	special = TRUE
-	access_view = ACCESS_COMMAND
-	contains = list(/obj/item/dna_probe,
-					/obj/item/dna_probe,
-					/obj/item/dna_probe,
-					/obj/item/dna_probe,
-					/obj/item/dna_probe
-					)
-	crate_name= "dna samplers crate"
-
-
-/datum/supply_pack/engineering/shield_sat
-	name = "Shield Generator Satellite"
-	desc = "Protect the very existence of this station with these Anti-Meteor defenses. Contains three Shield Generator Satellites."
-	cost = 3000
-	special = TRUE
-	access_view = ACCESS_COMMAND
-	contains = list(
-					/obj/machinery/satellite/meteor_shield,
-					/obj/machinery/satellite/meteor_shield,
-					/obj/machinery/satellite/meteor_shield
-					)
-	crate_name= "shield sat crate"
-
-
-/datum/supply_pack/engineering/shield_sat_control
-	name = "Shield System Control Board"
-	desc = "A control system for the Shield Generator Satellite system."
-	cost = 5000
-	special = TRUE
-	access_view = ACCESS_COMMAND
-	contains = list(/obj/item/circuitboard/computer/sat_control)
-	crate_name= "shield control board crate"
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -289,10 +221,7 @@
 					/obj/item/reagent_containers/blood/BPlus,
 					/obj/item/reagent_containers/blood/BMinus,
 					/obj/item/reagent_containers/blood/OPlus,
-					/obj/item/reagent_containers/blood/OMinus,
-					/obj/item/reagent_containers/blood/lizard,
-					/obj/item/reagent_containers/blood/vox,
-					/obj/item/reagent_containers/blood/ethereal)
+					/obj/item/reagent_containers/blood/OMinus)
 	crate_name = "blood freezer"
 	crate_type = /obj/structure/closet/crate/freezer
 
@@ -380,8 +309,8 @@
 
 /datum/supply_pack/organic/food
 	name = "Food Crate"
-	desc = "Get things cooking with this crate full of useful ingredients! Contains a dozen eggs, three bananas, and some flour, rice, milk, soymilk, salt, pepper, cinnamon, enzyme, sugar, and monkeymeat." // yogs
-	cost = 1000
+	desc = "Allow the citizens a treat with this crate filled with specially preserved old world foods." // yogs
+	cost = 2000
 	contains = list(/obj/item/reagent_containers/food/condiment/flour,
 					/obj/item/reagent_containers/food/condiment/rice,
 					/obj/item/reagent_containers/food/condiment/milk,
@@ -392,11 +321,19 @@
 					/obj/item/storage/fancy/egg_box,
 					/obj/item/reagent_containers/food/condiment/enzyme,
 					/obj/item/reagent_containers/food/condiment/sugar,
-					/obj/item/reagent_containers/food/snacks/meat/slab/monkey,
-					/obj/item/reagent_containers/food/snacks/grown/banana,
-					/obj/item/reagent_containers/food/snacks/grown/banana,
-					/obj/item/reagent_containers/food/snacks/grown/banana)
+					/obj/item/reagent_containers/food/snacks/meat/slab/monkey)
 	crate_name = "food crate"
+
+/datum/supply_pack/organic/rations
+	name = "Ration Crate"
+	desc = "A crate of five ration packs, made for easy distribution." // yogs
+	cost = 1500
+	contains = list(/obj/item/storage/box/halflife/ration,
+					/obj/item/storage/box/halflife/ration,
+					/obj/item/storage/box/halflife/ration,
+					/obj/item/storage/box/halflife/ration,
+					/obj/item/storage/box/halflife/ration)
+	crate_name = "ration crate"
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Miscellaneous ///////////////////////////////////

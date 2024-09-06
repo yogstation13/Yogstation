@@ -16,7 +16,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/hooch
 	name = "hooch bottle"
-	desc = "A bottle of rotgut. Its owner has applied some street wisdom to cleverly disguise it as a brown paper bag."
+	desc = "An old bottle of hooch. It smells absolutely terrible, and probably tastes just as bad."
 	icon_state = "hoochbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/hooch = 100)
 

@@ -1510,3 +1510,17 @@
 #undef CARTON_PEACH
 #undef CARTON_CHERRY_CHOCOLATE
 #undef CARTON_MEAT
+
+
+
+
+
+/obj/item/storage/box/halflife/ration
+	name = "ration pack"
+	desc = "A pack with ration items inside."
+	foldable = null
+	icon_state = "box"
+
+/obj/item/storage/box/halflife/ration/PopulateContents()
+	new /obj/item/reagent_containers/food/snacks/rationpack(src)
+	new /obj/item/reagent_containers/food/drinks/soda_cans/breenwater(src)
