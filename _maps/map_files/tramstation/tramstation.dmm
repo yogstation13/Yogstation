@@ -30994,14 +30994,14 @@
 	name = "Morgue"
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/all/medical/morgue,
-/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
+/obj/effect/mapping_helpers/airlock/access/any/medical/morgue,
 /turf/open/floor/iron/dark,
 /area/station/medical/morgue)
 "iUh" = (
@@ -40829,9 +40829,7 @@
 	},
 /obj/machinery/airalarm/directional/north,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/obj/machinery/computer/records/pathology{
-	dir = 2
-	},
+/obj/machinery/computer/records/pathology,
 /turf/open/floor/iron/dark,
 /area/station/medical/pathology)
 "lXH" = (
@@ -43520,9 +43518,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
 	},
-/obj/machinery/computer/records/pathology{
-	dir = 2
-	},
+/obj/machinery/computer/records/pathology,
 /turf/open/floor/iron/white,
 /area/station/medical/storage)
 "mPA" = (
@@ -45048,9 +45044,7 @@
 /obj/item/ammo_box/magazine/m35,
 /obj/item/ammo_box/magazine/m35,
 /obj/item/ammo_box/magazine/m35,
-/obj/item/gun/ballistic/automatic/pistol/paco/no_mag{
-	pixel_y = 0
-	},
+/obj/item/gun/ballistic/automatic/pistol/paco/no_mag,
 /obj/item/gun/ballistic/automatic/pistol/paco/no_mag{
 	pixel_y = 6
 	},
@@ -54973,8 +54967,7 @@
 /area/station/security/courtroom)
 "qyA" = (
 /obj/machinery/plumbing/ooze_sucker{
-	mapping_id = "6";
-	dir = 2
+	mapping_id = "6"
 	},
 /obj/machinery/light/floor/has_bulb,
 /turf/open/floor/engine,
@@ -73988,12 +73981,10 @@
 /obj/machinery/door/airlock/grunge{
 	name = "Morgue External Access"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/medical/morgue,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/all/service/kitchen,
-/obj/effect/mapping_helpers/airlock/access/all/science/robotics,
+/obj/effect/mapping_helpers/airlock/access/all/medical/morgue,
 /turf/open/floor/iron/dark,
 /area/station/medical/morgue)
 "wtP" = (
