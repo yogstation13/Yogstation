@@ -286,6 +286,10 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/instrument/violin/golden = 2,
 		) = 2,
 
+	list(//MONKESTATION ADDITION: misc
+		/obj/item/vending_refill/plushvendor = 1,
+		) = 2,
+
 	list(//fakeout items, keep this list at low relative weight
 		/obj/item/clothing/shoes/jackboots = 1,
 		/obj/item/dice/d20 = 1, //To balance out the stealth die of fates in oddities
