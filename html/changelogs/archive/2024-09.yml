@@ -110,9 +110,9 @@
       their incompatibility with magic. Yes, this means silicons (including pAIs)
       not seeing runes is intentional.
   PotatoTomahto:
-  - rscadd: 'Adds a ballgown to the autodrobe and clothesmate.'
+  - rscadd: Adds a ballgown to the autodrobe and clothesmate.
   - qol: Medical cyborg can use their health analyzer when in the dark or blind.
-  - bugfix: 'Fixes fugitive hunter victory end round text.'
+  - bugfix: Fixes fugitive hunter victory end round text.
   - bugfix: Restored old HOS trenchcoat sprite. Winter trenchcoat sprite also fixed.
   RikuTheKiller:
   - rscadd: You can now permanently remove NIFs through a surgery on the head called
@@ -132,3 +132,6 @@
       storyteller is Ghost
   - bugfix: Fixes Poly freezing up after speaking
   - rscadd: Added 4 surgery duffel bags to the centcom practice surgery area.
+  catmanpop:
+  - qol: Chemical Dispenser now actually upgrades with manipulators instead of a dump
+      at T4 and adds a few more
