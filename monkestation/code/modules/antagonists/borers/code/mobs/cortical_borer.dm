@@ -136,10 +136,10 @@ GLOBAL_LIST_INIT(borer_second_name, world.file2list("monkestation/code/modules/a
 	var/list/blacklisted_chemicals = list()
 
 
-	/// How old the borer is, starting from zero. Goes up only when inside a host
+	/// How old the borer is, starting from zero. Goes up only when inside a host and resets when a stat point is gained. This is in seconds.
 	var/maturity_age = 0
-	/// Just a little "timer" to compare to world.time
-	var/timed_maturity = 0
+	/// Whether a chem point has been granted for this maturity level. Resets when a stat point is gained.
+	var/chem_point_gained = FALSE // Technically if seconds_per_tick is like 5 this can fail at the max maturity speed but w h a t e v e r .
 
 	/// How many times you've levelled up over all
 	var/level = 0
@@ -154,17 +154,17 @@ GLOBAL_LIST_INIT(borer_second_name, world.file2list("monkestation/code/modules/a
 	/// How many chemical points the borer has
 	var/chemical_storage = 50
 	/// How fast chemicals are gained. Goes up only when inside a host
-	var/chemical_regen = 1
+	var/chemical_regen = 0.5
 
 	/// How much health you gain per level
 	var/health_per_level = 2.5
 	/// How much health regen you gain per level
-	var/health_regen_per_level = 0.02
+	var/health_regen_per_level = 0.002
 
 	/// How much more chemical storage you gain per level
 	var/chem_storage_per_level = 20
 	/// Chemical regen you gain per level
-	var/chem_regen_per_level = 1
+	var/chem_regen_per_level = 0.5
 
 	/// The list of actions that the borer has
 	var/list/datum/action/cooldown/borer/known_abilities = list(
@@ -185,8 +185,8 @@ GLOBAL_LIST_INIT(borer_second_name, world.file2list("monkestation/code/modules/a
 	/// What the host gains or loses with the borer
 	var/list/hosts_abilities = list()
 
-	/// Multiplies the current health up to the max health
-	var/health_regen = 1.02
+	/// How much health we regen per second while in a host (scales with max health) CODER NOTE: The value was 10.02 before. Assuming the first health_regen_per_level should be added to this. (0.002 as of now, so 0.102 instead of 0.1)
+	var/health_regen = 0.102
 	/// Holds the chems right before injection
 	var/obj/item/reagent_containers/reagent_holder
 	/// Lust a flavor kind of thing
@@ -320,7 +320,7 @@ GLOBAL_LIST_INIT(borer_second_name, world.file2list("monkestation/code/modules/a
 
 	//there needs to be a negative to having a borer
 	if(prob(5 * host_harm_multiplier * ((upgrade_flags & BORER_STEALTH_MODE) ? 0.1 : 1)) && human_host.getToxLoss() <= (80 * host_harm_multiplier))
-		human_host.adjustToxLoss(5 * host_harm_multiplier, TRUE, TRUE)
+		human_host.adjustToxLoss(2.5 * seconds_per_tick * host_harm_multiplier, TRUE, TRUE)
 
 	human_host.apply_status_effect(/datum/status_effect/grouped/screwy_hud/fake_healthy, type)
 
@@ -335,16 +335,15 @@ GLOBAL_LIST_INIT(borer_second_name, world.file2list("monkestation/code/modules/a
 	//this is regenerating chemical_storage
 	if(chemical_storage < max_chemical_storage)
 		if(!(upgrade_flags & BORER_STEALTH_MODE))
-			chemical_storage = min(chemical_storage + chemical_regen, max_chemical_storage)
+			chemical_storage = min(chemical_storage + chemical_regen * seconds_per_tick, max_chemical_storage)
 
 	//this is regenerating health
 	if(health < maxHealth)
 		if(!(upgrade_flags & BORER_STEALTH_MODE))
-			health = min(health * health_regen, maxHealth)
+			adjustBruteLoss(maxHealth * -health_regen * seconds_per_tick)
 
 	//this is so they can evolve
-	if(timed_maturity < world.time)
-		mature()
+	mature(seconds_per_tick)
 
 //if it doesnt have a ckey, let ghosts have it
 /mob/living/basic/cortical_borer/attack_ghost(mob/dead/observer/user)
@@ -484,35 +483,34 @@ GLOBAL_LIST_INIT(borer_second_name, world.file2list("monkestation/code/modules/a
 	return
 
 /// Called on Life() for the borer to age a bit
-/mob/living/basic/cortical_borer/proc/mature()
+/mob/living/basic/cortical_borer/proc/mature(seconds_per_tick)
 	. = TRUE
 	if(upgrade_flags & BORER_STEALTH_MODE)
 		return FALSE
-	timed_maturity = world.time + 0.5 SECONDS
-	maturity_age++
+	maturity_age += seconds_per_tick
 
 	/**
-	 * The point values are double what they seem
-	 * So in the beginning you start out with the following generation:
+	 * In the beginning you start out with the following generation:
 	 * Evolution point per 40 seconds
 	 * Chemical point per 20 seconds
 	 */
 
 	//20:40, 15:30, 10:20, 5:10
-	var/maturity_threshold = 2 SECONDS
+	var/maturity_threshold = 20
 	if(GLOB.successful_egg_number >= GLOB.objective_egg_borer_number)
-		maturity_threshold -= 0.2 SECONDS
+		maturity_threshold -= 2
 	if(length(GLOB.willing_hosts) >= GLOB.objective_willing_hosts)
-		maturity_threshold -= 1 SECOND
+		maturity_threshold -= 10
 	if(GLOB.successful_blood_chem >= GLOB.objective_blood_borer)
-		maturity_threshold -= 0.3 SECONDS
+		maturity_threshold -= 3
 
-	if(maturity_age == maturity_threshold)
+	if(!chem_point_gained && maturity_age >= maturity_threshold)
 		if(chemical_evolution < limited_borer) //you can only have a default of 10 at a time
 			chemical_evolution++
 			to_chat(src, span_notice("You gain a chemical evolution point. Spend it to learn a new chemical!"))
 		else
 			to_chat(src, span_warning("You were unable to gain a chemical evolution point due to having the max!"))
+		chem_point_gained = TRUE
 	if(maturity_age >= (maturity_threshold * 2))
 		if(stat_evolution < limited_borer)
 			stat_evolution++
@@ -520,6 +518,7 @@ GLOBAL_LIST_INIT(borer_second_name, world.file2list("monkestation/code/modules/a
 		else
 			to_chat(src, span_warning("You were unable to gain a stat evolution point due to having the max!"))
 		maturity_age = 0
+		chem_point_gained = FALSE
 
 /// Use to recalculate a borer's health and chemical stats when something retroactively affects them
 /mob/living/basic/cortical_borer/proc/recalculate_stats()
