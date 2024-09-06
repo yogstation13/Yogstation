@@ -114,6 +114,9 @@
   - qol: Medical cyborg can use their health analyzer when in the dark or blind.
   - bugfix: Fixes fugitive hunter victory end round text.
   - bugfix: Restored old HOS trenchcoat sprite. Winter trenchcoat sprite also fixed.
+  - bugfix: 'Plush refill canister is actually in maint loot now.
+
+      :cl:'
   RikuTheKiller:
   - rscadd: You can now permanently remove NIFs through a surgery on the head called
       "NIF debonding", but it requires OOC consent.
