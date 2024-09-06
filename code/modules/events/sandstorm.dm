@@ -36,6 +36,7 @@
 	if(!start_side)
 		start_side = pick(GLOB.cardinals)
 
+	/* monkestation start: use normal direction names
 	var/start_side_text = "unknown"
 	switch(start_side)
 		if(NORTH)
@@ -50,8 +51,10 @@
 			stack_trace("Sandstorm event given [start_side] as unrecognized direction. Cancelling event...")
 			kill()
 			return
+	monkestation end */
 
-	priority_announce("A large wave of space dust is approaching from the [start_side_text] side of the station. \
+	// monkestation edit: use normal direction names
+	priority_announce("A large wave of space dust is approaching from the [dir2text(start_side)] side of the station. \
 		Impact is expected in the next two minutes. All employees are encouranged to assist in repairs and damage mitigation if possible.", "Collision Emergency Alert")
 
 /datum/round_event/sandstorm/tick()
