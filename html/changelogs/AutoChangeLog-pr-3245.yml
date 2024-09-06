@@ -1,0 +1,4 @@
+author: "LordVoidron"
+delete-after: True
+changes:
+  - bugfix: "Trashbag sprites while filled and worn no longer missing."
