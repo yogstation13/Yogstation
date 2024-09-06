@@ -295,10 +295,10 @@ GLOBAL_LIST_INIT(round_end_images, world.file2list("data/image_urls.txt")) // MO
 /datum/controller/subsystem/ticker/proc/format_roundend_embed(message)
 	var/datum/discord_embed/embed = new()
 	embed.title = "Round End"
-	embed.description = @"[Join Server!](http://play.monkestation.com:7420)"
+	embed.description = CONFIG_GET(string/roundend_webhook_description)
 	embed.author = "Round Controller"
-	embed.content = "<@&999008528595419278>"
-	if(GLOB.round_end_images.len)
+	embed.content = CONFIG_GET(string/roundend_webhook_content)
+	if(length(GLOB.round_end_images))
 		embed.image = pick(GLOB.round_end_images)
 	var/round_state = "Round has ended"
 
@@ -331,7 +331,7 @@ GLOBAL_LIST_INIT(round_end_images, world.file2list("data/image_urls.txt")) // MO
 		webhook_info["username"] = CONFIG_GET(string/roundend_webhook_name)
 	if(CONFIG_GET(string/mentorhelp_webhook_pfp))
 		webhook_info["avatar_url"] = CONFIG_GET(string/roundend_webhook_pfp)
-	webhook_info["flags"] = DISCORD_SUPPRESS_NOTIFICATIONS // monke edit: @silent roundend pings
+	webhook_info["flags"] = DISCORD_SUPPRESS_NOTIFICATIONS
 	// Uncomment when servers are moved to TGS4
 	// send2chat(new /datum/tgs_message_conent("[initiator_ckey] | [message_content]"), "ahelp", TRUE)
 	var/list/headers = list()

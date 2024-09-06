@@ -17,6 +17,14 @@
 
 /datum/config_entry/string/roundend_webhook_name
 
+/datum/config_entry/string/roundend_webhook_description
+	default = @"[Join Server!](http://play.monkestation.com:7420)"
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/string/roundend_webhook_content
+	default = "<@&999008528595419278>"
+	protection = CONFIG_ENTRY_LOCKED
+
 /datum/config_entry/string/bot_dump_url
 
 //API key for Github Issues.
