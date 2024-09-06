@@ -214,6 +214,11 @@ DEFINE_BITFIELD(smoothing_junction, list(
 
 #define SMOOTH_GROUP_HLWATER S_OBJ(74) ///turf/open/halflife/water
 
+#define SMOOTH_GROUP_HLTABLES_METAL S_OBJ(75)
+#define SMOOTH_GROUP_HLTABLES_SMALL S_OBJ(76)
+#define SMOOTH_GROUP_HLTABLES_WOOD S_OBJ(77)
+#define SMOOTH_GROUP_HLTABLES_PLAYER S_OBJ(78)
+
 
 /// Performs the work to set smoothing_groups and canSmoothWith.
 /// An inlined function used in both turf/Initialize and atom/Initialize.

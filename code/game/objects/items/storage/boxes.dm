@@ -1519,7 +1519,7 @@
 	name = "ration pack"
 	desc = "A pack with ration items inside."
 	foldable = null
-	icon_state = "box"
+	icon_state = "ration"
 
 /obj/item/storage/box/halflife/ration/PopulateContents()
 	new /obj/item/reagent_containers/food/snacks/rationpack(src)

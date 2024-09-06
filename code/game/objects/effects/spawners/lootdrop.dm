@@ -755,6 +755,7 @@
 				/obj/item/reagent_containers/food/drinks/bottle/hooch,
 				/obj/item/reagent_containers/food/drinks/bottle/vodka,
 				/obj/item/storage/firstaid,
+				/obj/item/storage/firstaid/toxin,
 				/obj/item/cigbutt
 				)
 
