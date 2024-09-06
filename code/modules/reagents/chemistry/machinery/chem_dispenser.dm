@@ -65,21 +65,31 @@
 		/datum/reagent/fuel,
 		/datum/reagent/silver,
 	)
-	//these become available once the manipulator has been upgraded to tier 4 (femto)
+	//These become available once upgraded. (Monkestation Edit)
 	var/list/upgrade_reagents = list(
-		/datum/reagent/acetone,
-		/datum/reagent/ammonia,
-		/datum/reagent/ash,
-		/datum/reagent/diethylamine,
 		/datum/reagent/fuel/oil,
+		/datum/reagent/ammonia,
+		/datum/reagent/ash
+	)
+
+	var/list/upgrade_reagents2 = list(
+		/datum/reagent/acetone,
+		/datum/reagent/phenol,
+		/datum/reagent/diethylamine
+	)
+
+	var/list/upgrade_reagents3 = list(
+		/datum/reagent/medicine/mine_salve,
+		/datum/reagent/toxin,
 		/datum/reagent/saltpetre
 	)
+	
 	var/list/emagged_reagents = list(
 		/datum/reagent/toxin/carpotoxin,
 		/datum/reagent/medicine/mine_salve,
 		/datum/reagent/medicine/morphine,
 		/datum/reagent/drug/space_drugs,
-		/datum/reagent/toxin
+		/datum/reagent/australium
 	)
 
 	var/list/recording_recipe
@@ -428,12 +438,13 @@
 	for(var/datum/stock_part/capacitor/capacitor in component_parts)
 		recharge_amount *= capacitor.tier
 		parts_rating += capacitor.tier
-	for(var/datum/stock_part/manipulator/manipulator in component_parts)
-		if (manipulator.tier > 3)
+	for(var/datum/stock_part/manipulator/manipulator in component_parts) // Monkestation Edit
+		if (manipulator.tier > 1)
 			dispensable_reagents |= upgrade_reagents
-		else
-			dispensable_reagents -= upgrade_reagents
-		parts_rating += manipulator.tier
+		if (manipulator.tier > 2)
+			dispensable_reagents |= upgrade_reagents2
+		if (manipulator.tier > 3)
+			dispensable_reagents |= upgrade_reagents3
 	powerefficiency = round(newpowereff, 0.01)
 
 /obj/machinery/chem_dispenser/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
