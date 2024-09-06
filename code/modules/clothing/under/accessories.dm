@@ -299,6 +299,12 @@
 	icon_state = "medblueband"
 
 
+/obj/item/clothing/accessory/armband/rebel
+	name = "resistance armband"
+	desc = "An armband with a lambda symbol. Often worn by members of resistance cells."
+	icon_state = "rebelband"
+
+
 //////////////
 //OBJECTION!//
 //////////////

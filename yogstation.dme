@@ -2043,6 +2043,7 @@
 #include "code\modules\antagonists\nukeop\equipment\pinpointer.dm"
 #include "code\modules\antagonists\official\official.dm"
 #include "code\modules\antagonists\pirate\pirate.dm"
+#include "code\modules\antagonists\rebel\rebel.dm"
 #include "code\modules\antagonists\revenant\revenant.dm"
 #include "code\modules\antagonists\revenant\revenant_abilities.dm"
 #include "code\modules\antagonists\revenant\revenant_antag.dm"

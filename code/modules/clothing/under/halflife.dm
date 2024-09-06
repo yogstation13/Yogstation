@@ -58,6 +58,8 @@
 	desc = "Jeans and a t-shirt, free of any suit sensors the combine may use to track you."
 	icon_state = "refugee"
 	item_state = "r_suit"
-	can_adjust = FALSE
 	has_sensor = NO_SENSORS
-	worn_icon = 'icons/mob/clothing/uniform/halflife.dmi'
+
+/obj/item/clothing/under/citizen/rebel
+	name = "citizen jumpsuit"
+	desc = "Full-body blue suit for the common citizen. The scanners have been removed forcefully."
