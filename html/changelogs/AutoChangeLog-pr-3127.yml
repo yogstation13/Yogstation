@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Nanite defibrillation will no longer spam your ghost with notifications when you can't be defibbed anyways."
