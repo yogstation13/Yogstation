@@ -174,12 +174,12 @@
 	set_digitigrade(!use_digitigrade)
 
 /obj/item/bodypart/l_leg/robot/set_digitigrade(use_digi = FALSE)
-	use_digitigrade = use_digi
 	if(use_digi)
 		icon_state = digi_icon_state
 	else
 		icon_state = initial(icon_state)
 	update_icon()
+	return ..()
 	
 /obj/item/bodypart/r_leg/robot/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour != TOOL_SCREWDRIVER)
@@ -188,12 +188,12 @@
 	set_digitigrade(!use_digitigrade)
 
 /obj/item/bodypart/r_leg/robot/set_digitigrade(use_digi = FALSE)
-	use_digitigrade = use_digi
 	if(use_digi)
 		icon_state = digi_icon_state
 	else
 		icon_state = initial(icon_state)
 	update_icon()
+	return ..()
 
 /obj/item/bodypart/chest/robot
 	name = "cyborg torso"

@@ -128,12 +128,12 @@
 
 //Checks if we're holding a tool that has given quality
 //Returns the tool that has the best version of this quality
-/mob/proc/is_holding_tool_quality(quality)
+/mob/proc/is_holding_tool_quality(expected_tool_type)
 	var/obj/item/best_item
 	var/best_quality = INFINITY
 
 	for(var/obj/item/I in held_items)
-		if(I.tool_behaviour == quality && I.toolspeed < best_quality)
+		if(I.tool_behaviour == expected_tool_type && I.toolspeed < best_quality)
 			best_item = I
 			best_quality = I.toolspeed
 	return best_item
