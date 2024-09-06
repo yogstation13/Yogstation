@@ -328,6 +328,12 @@
 	},
 /turf/open/floor/plating/ground/sidewalk,
 /area/halflife/outdoors)
+"nO" = (
+/obj/structure/sign/poster/halflife/combine/two{
+	pixel_y = 32
+	},
+/turf/open/floor/plating/ground/sidewalk,
+/area/halflife/outdoors)
 "nQ" = (
 /obj/structure/rack,
 /turf/open/floor/plating/indoor/woodc,
@@ -865,6 +871,12 @@
 	},
 /turf/open/floor/plating/ground/road,
 /area/halflife/outdoors)
+"MB" = (
+/obj/structure/sign/poster/halflife/combine{
+	pixel_y = 32
+	},
+/turf/open/floor/plating/ground/sidewalk,
+/area/halflife/outdoors)
 "MO" = (
 /obj/machinery/door/unpowered/halflife/wood{
 	dir = 8
@@ -888,6 +900,12 @@
 /obj/structure/table,
 /turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors)
+"Nt" = (
+/obj/structure/sign/poster/halflife/combine/two{
+	pixel_y = 32
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/halflife/outdoors)
 "Ny" = (
 /obj/structure/fence{
 	dir = 4
@@ -55643,7 +55661,7 @@ mT
 mT
 mT
 ND
-Tc
+MB
 Tc
 Tc
 Tc
@@ -56555,7 +56573,7 @@ hZ
 hZ
 hZ
 ND
-Tc
+MB
 Tc
 RV
 RV
@@ -59078,7 +59096,7 @@ mT
 mT
 mT
 ND
-Tc
+MB
 Tc
 Tc
 Tc
@@ -66239,7 +66257,7 @@ mT
 mT
 mT
 ND
-FP
+Nt
 FP
 Tc
 RV
@@ -70389,7 +70407,7 @@ hZ
 hZ
 hZ
 ND
-Tc
+MB
 ND
 hZ
 hZ
@@ -70520,7 +70538,7 @@ hZ
 hZ
 hZ
 ND
-Tc
+MB
 Tc
 Tc
 Tc
@@ -75574,7 +75592,7 @@ hZ
 hZ
 hZ
 ND
-Tc
+nO
 RV
 RV
 RV

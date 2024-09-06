@@ -4272,7 +4272,6 @@
 #include "yogstation\code\modules\atmospherics\auxgm\breathing_classes.dm"
 #include "yogstation\code\modules\atmospherics\machinery\pipes\bluespace.dm"
 #include "yogstation\code\modules\atmospherics\unary_devices\vent_pump.dm"
-#include "yogstation\code\modules\cargo\cargo_packs.dm"
 #include "yogstation\code\modules\cargo\bounties\medical.dm"
 #include "yogstation\code\modules\cargo\exports\organs.dm"
 #include "yogstation\code\modules\cargo\exports\sheets.dm"

@@ -39,13 +39,7 @@ Assistant
 	jobtype = /datum/job/citizen
 
 /datum/outfit/job/citizen/pre_equip(mob/living/carbon/human/H)
-	if (CONFIG_GET(flag/grey_assistants))
-		uniform = /obj/item/clothing/under/color/grey
-		uniform_skirt = /obj/item/clothing/under/skirt/color/grey
-	else
-		uniform = /obj/item/clothing/under/color/random
-		uniform_skirt = /obj/item/clothing/under/skirt/color/random
-	return ..()
+	uniform = /obj/item/clothing/under/citizen
 
 
 /datum/outfit/job/citizen/consistent
