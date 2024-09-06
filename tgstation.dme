@@ -7249,6 +7249,7 @@
 #include "monkestation\code\modules\overwatch\subsystem.dm"
 #include "monkestation\code\modules\overwatch\panels\asn_panel.dm"
 #include "monkestation\code\modules\overwatch\panels\whitelist_panel.dm"
+#include "monkestation\code\modules\pai\card.dm"
 #include "monkestation\code\modules\paperwork\fax.dm"
 #include "monkestation\code\modules\paperwork\filingcabinet.dm"
 #include "monkestation\code\modules\patches_if_they_were_cool\_base_patch_changes.dm"
