@@ -1,146 +1,143 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"e" = (
+"d" = (
 /obj/machinery/door/unpowered/halflife/metal{
 	dir = 4
 	},
 /turf/open/floor/plating/indoor/concrete/bricks,
 /area/halflife/indoors/sewer)
-"v" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
+"k" = (
 /turf/open/floor/plating/indoor/concrete/bricks,
 /area/halflife/indoors/sewer)
-"w" = (
+"m" = (
+/turf/open/halflife/water/sewer/shallow,
+/area/halflife/indoors/sewer)
+"p" = (
+/turf/open/halflife/water/sewer/deep,
+/area/halflife/indoors/sewer)
+"x" = (
 /turf/closed/wall/halflife/metal,
 /area/halflife/indoors/sewer)
-"A" = (
-/turf/open/floor/plating/indoor/concrete/bricks,
-/area/halflife/indoors/sewer)
-"S" = (
+"W" = (
 /turf/open/halflife/water/sewer/medium,
-/area/halflife/indoors/sewer)
-"X" = (
-/turf/open/halflife/water/sewer/shallow,
 /area/halflife/indoors/sewer)
 
 (1,1,1) = {"
-w
-w
-w
-w
-w
-w
-w
-w
-w
-w
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
 "}
 (2,1,1) = {"
-w
-S
-S
-S
-S
-S
-X
-X
-A
-w
+x
+W
+W
+W
+W
+W
+p
+p
+p
+x
 "}
 (3,1,1) = {"
-w
-S
-S
-S
-X
-X
-X
-A
-A
-w
+x
+W
+m
+W
+W
+W
+W
+p
+p
+x
 "}
 (4,1,1) = {"
-w
-S
-S
-X
-X
-A
-A
-A
-A
-w
+x
+m
+m
+m
+W
+W
+W
+p
+p
+x
 "}
 (5,1,1) = {"
-w
-S
-X
-X
-A
-A
-A
-A
-A
-w
+x
+m
+m
+m
+W
+W
+W
+W
+p
+x
 "}
 (6,1,1) = {"
-w
-X
-X
-X
-A
-A
-A
-A
-A
-w
+x
+m
+m
+m
+m
+m
+W
+W
+p
+x
 "}
 (7,1,1) = {"
-w
-X
-X
-A
-A
-A
-A
-A
-A
-w
+x
+m
+m
+m
+m
+m
+W
+W
+W
+x
 "}
 (8,1,1) = {"
-w
-A
-A
-A
-A
-A
-A
-A
-A
-w
+x
+m
+m
+k
+m
+m
+W
+W
+W
+x
 "}
 (9,1,1) = {"
-w
-A
-v
-A
-A
-A
-A
-A
-A
-w
+x
+m
+k
+k
+m
+m
+m
+W
+W
+x
 "}
 (10,1,1) = {"
-w
-w
-w
-w
-e
-w
-w
-w
-w
-w
+x
+x
+x
+d
+x
+x
+x
+x
+x
+x
 "}

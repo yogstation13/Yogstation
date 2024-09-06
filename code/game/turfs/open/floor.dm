@@ -59,6 +59,7 @@
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
+		/*
 		if(EXPLODE_HEAVY)
 			switch(pick(1,2;75,3))
 				if(1)
@@ -82,6 +83,7 @@
 			if (prob(50))
 				src.break_tile()
 				src.hotspot_expose(1000,CELL_VOLUME)
+		*/
 
 /turf/open/floor/is_shielded()
 	for(var/obj/structure/A in contents)

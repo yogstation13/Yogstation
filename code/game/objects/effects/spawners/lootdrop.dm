@@ -775,6 +775,7 @@
 	loot = list(
 				/obj/item/crowbar/large,
 				/obj/item/clothing/under/citizen/refugee,
+				/obj/item/clothing/head/beanie/black,
 				/obj/item/cigbutt
 				)
 

@@ -1,4 +1,16 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"s" = (
+/turf/open/halflife/water/sewer/shallow,
+/area/halflife/indoors/sewer)
+"t" = (
+/obj/structure/mopbucket,
+/obj/item/mop,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"x" = (
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
 "z" = (
 /turf/open/floor/plating/indoor/concrete/bricks,
 /area/halflife/indoors/sewer)
@@ -7,6 +19,9 @@
 	dir = 8
 	},
 /turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"Q" = (
+/turf/open/floor/plating/indoor/metal/grate,
 /area/halflife/indoors/sewer)
 "Z" = (
 /turf/closed/wall/halflife/metal,
@@ -26,7 +41,7 @@ Z
 "}
 (2,1,1) = {"
 Z
-z
+t
 z
 z
 z
@@ -52,10 +67,10 @@ Z
 Z
 z
 z
-z
-z
-z
-z
+Q
+Q
+Q
+Q
 z
 z
 Z
@@ -64,10 +79,10 @@ Z
 Z
 z
 z
-z
-z
-z
-z
+Q
+s
+s
+Q
 z
 z
 Z
@@ -75,11 +90,11 @@ Z
 (6,1,1) = {"
 Z
 z
-z
-z
-z
-z
-z
+x
+Q
+s
+s
+Q
 z
 z
 Z
@@ -88,10 +103,10 @@ Z
 Z
 z
 z
-z
-z
-z
-z
+Q
+Q
+Q
+Q
 z
 z
 Z

@@ -54,7 +54,7 @@
 	worn_icon = 'icons/mob/clothing/uniform/halflife.dmi'
 
 /obj/item/clothing/under/citizen/refugee
-	name = "citizen jumpsuit"
+	name = "refugee clothes"
 	desc = "Jeans and a t-shirt, free of any suit sensors the combine may use to track you."
 	icon_state = "refugee"
 	item_state = "r_suit"

@@ -1,0 +1,172 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/turf/open/floor/plating/indoor/metal/grate,
+/area/halflife/indoors/sewer)
+"j" = (
+/mob/living/simple_animal/hostile/halflife/zombie,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"t" = (
+/turf/open/floor/plating/indoor/metal/plate,
+/area/halflife/indoors/sewer)
+"u" = (
+/obj/structure/table,
+/turf/open/floor/plating/indoor/metal/plate,
+/area/halflife/indoors/sewer)
+"y" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"z" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/halflife/loot,
+/turf/open/floor/plating/indoor/metal/plate,
+/area/halflife/indoors/sewer)
+"A" = (
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"E" = (
+/obj/machinery/door/unpowered/halflife/metal{
+	dir = 8
+	},
+/turf/open/floor/plating/indoor/metal/grate,
+/area/halflife/indoors/sewer)
+"I" = (
+/obj/machinery/door/unpowered/halflife/metal,
+/turf/open/floor/plating/indoor/metal/grate,
+/area/halflife/indoors/sewer)
+"J" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/halflife/loot/rare,
+/turf/open/floor/plating/indoor/metal/plate,
+/area/halflife/indoors/sewer)
+"M" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"S" = (
+/turf/closed/wall/halflife/metal,
+/area/halflife/indoors/sewer)
+
+(1,1,1) = {"
+S
+S
+S
+S
+S
+S
+S
+E
+S
+S
+"}
+(2,1,1) = {"
+S
+t
+t
+t
+S
+A
+A
+b
+A
+S
+"}
+(3,1,1) = {"
+S
+t
+t
+t
+I
+b
+b
+b
+A
+S
+"}
+(4,1,1) = {"
+S
+t
+t
+t
+S
+A
+A
+A
+j
+S
+"}
+(5,1,1) = {"
+S
+t
+t
+t
+S
+S
+y
+M
+A
+S
+"}
+(6,1,1) = {"
+S
+t
+t
+t
+z
+S
+A
+A
+A
+S
+"}
+(7,1,1) = {"
+S
+t
+t
+t
+u
+S
+A
+A
+A
+S
+"}
+(8,1,1) = {"
+S
+t
+t
+t
+u
+S
+j
+A
+A
+S
+"}
+(9,1,1) = {"
+S
+t
+t
+t
+J
+S
+A
+A
+A
+S
+"}
+(10,1,1) = {"
+S
+S
+S
+S
+S
+S
+S
+S
+S
+S
+"}

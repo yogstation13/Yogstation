@@ -149,9 +149,9 @@
 			NT.contents_explosion(severity, target)
 			return
 		if(EXPLODE_HEAVY)
-			dismantle_wall(pick(FALSE, TRUE), TRUE)
+			take_damage(300, BRUTE, BOMB) // less kaboom
 		if(EXPLODE_LIGHT)
-			take_damage(150, BRUTE, BOMB) // less kaboom
+			take_damage(100, BRUTE, BOMB) // less kaboom
 	if(!density)
 		..()
 	

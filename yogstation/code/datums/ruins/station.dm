@@ -277,16 +277,26 @@
 /datum/map_template/ruin/station/sewer/leftentrance/tenxten
 	prefix = "_maps/RandomRuins/StationRuins/sewer/leftentrance/10x10/"
 
-/datum/map_template/ruin/station/sewer/leftentrance/tenxten
+/datum/map_template/ruin/station/sewer/leftentrance/tenxten/box
 	id = "left_ten_box"
 	suffix = "sewer_left_ten_box.dmm"
 	name = "sewer left_ten_box"
+
+/datum/map_template/ruin/station/sewer/leftentrance/tenxten/zombie1
+	id = "left_ten_zombie1"
+	suffix = "sewer_left_ten_zombie1.dmm"
+	name = "sewer left_ten_zombie1"
 
 ///The base for 10x10 right rooms
 /datum/map_template/ruin/station/sewer/rightentrance/tenxten
 	prefix = "_maps/RandomRuins/StationRuins/sewer/rightentrance/10x10/"
 
-/datum/map_template/ruin/station/sewer/rightentrance/tenxten
+/datum/map_template/ruin/station/sewer/rightentrance/tenxten/box
 	id = "right_ten_box"
 	suffix = "sewer_right_ten_box.dmm"
 	name = "sewer right_ten_box"
+
+/datum/map_template/ruin/station/sewer/rightentrance/tenxten/flooded
+	id = "right_ten_flooded"
+	suffix = "sewer_right_ten_flooded.dmm"
+	name = "sewer right_ten_flooded"

@@ -21,6 +21,16 @@
 	explosion(src.loc,0,2,4,flame_range = 3)
 	qdel(src)
 
+/obj/item/grenade/syndieminibomb/bouncer
+	name = "Grenade"
+	desc = "Called a 'Bouncer' by Combine teams, these are light explosive grenades without much kick, that do not do much environmental damage."
+	icon_state = "smokewhite"
+
+/obj/item/grenade/syndieminibomb/concussion/prime()
+	update_mob()
+	explosion(src.loc,0,1,4,flame_range = 2)
+	qdel(src)
+
 /obj/item/grenade/syndieminibomb/concussion/frag
 	name = "frag grenade"
 	desc = "Fire in the hole."
