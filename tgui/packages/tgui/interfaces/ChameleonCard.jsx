@@ -58,10 +58,16 @@ export const ChameleonCard = (props) => {
           showBasic={!!showBasic}
           accessMod={(ref, wildcard) =>
             act('mod_access', {
-              access_target: ref,
-              access_wildcard: wildcard,
+              actions: [{ access_target: ref, access_wildcard: wildcard }],
             })
           }
+          multiAccessMod={(actions) => {
+            act('mod_access', {
+              actions: actions.map(([ref, wildcard]) => {
+                return { access_target: ref, access_wildcard: wildcard };
+              }),
+            });
+          }}
         />
       </Window.Content>
     </Window>

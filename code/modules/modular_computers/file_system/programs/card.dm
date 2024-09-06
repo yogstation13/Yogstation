@@ -215,26 +215,32 @@
 		if("PRG_access")
 			if(!computer || !authenticated_card || !inserted_auth_card)
 				return TRUE
+			// monkestation start: allow multiple access edits at once
+			var/list/id_actions = params["actions"]
+			if(!islist(id_actions) || !length(id_actions))
+				return TRUE
 			playsound(computer, SFX_TERMINAL_TYPE, 50, FALSE)
-			var/access_type = params["access_target"]
-			var/try_wildcard = params["access_wildcard"]
-			if(!(access_type in valid_access))
-				stack_trace("[key_name(usr)] ([usr]) attempted to add invalid access \[[access_type]\] to [inserted_auth_card]")
-				return TRUE
+			for(var/list/id_action in id_actions)
+				var/access_type = id_action["access_target"]
+				var/try_wildcard = id_action["access_wildcard"]
+				if(!(access_type in valid_access))
+					stack_trace("[key_name(usr)] ([usr]) attempted to add invalid access \[[access_type]\] to [inserted_auth_card]")
+					return TRUE
 
-			if(access_type in inserted_auth_card.access)
-				inserted_auth_card.remove_access(list(access_type))
-				LOG_ID_ACCESS_CHANGE(user, inserted_auth_card, "removed [SSid_access.get_access_desc(access_type)]")
-				return TRUE
+				if(access_type in inserted_auth_card.access)
+					inserted_auth_card.remove_access(list(access_type))
+					LOG_ID_ACCESS_CHANGE(user, inserted_auth_card, "removed [SSid_access.get_access_desc(access_type)]")
+					continue
 
-			if(!inserted_auth_card.add_access(list(access_type), try_wildcard))
-				to_chat(usr, span_notice("ID error: ID card rejected your attempted access modification."))
-				LOG_ID_ACCESS_CHANGE(user, inserted_auth_card, "failed to add [SSid_access.get_access_desc(access_type)][try_wildcard ? " with wildcard [try_wildcard]" : ""]")
-				return TRUE
+				if(!inserted_auth_card.add_access(list(access_type), try_wildcard))
+					to_chat(usr, span_notice("ID error: ID card rejected your attempted access modification."))
+					LOG_ID_ACCESS_CHANGE(user, inserted_auth_card, "failed to add [SSid_access.get_access_desc(access_type)][try_wildcard ? " with wildcard [try_wildcard]" : ""]")
+					return TRUE
 
-			if(access_type in ACCESS_ALERT_ADMINS)
-				message_admins("[ADMIN_LOOKUPFLW(user)] just added [SSid_access.get_access_desc(access_type)] to an ID card [ADMIN_VV(inserted_auth_card)] [(inserted_auth_card.registered_name) ? "belonging to [inserted_auth_card.registered_name]." : "with no registered name."]")
-			LOG_ID_ACCESS_CHANGE(user, inserted_auth_card, "added [SSid_access.get_access_desc(access_type)]")
+				if(access_type in ACCESS_ALERT_ADMINS)
+					message_admins("[ADMIN_LOOKUPFLW(user)] just added [SSid_access.get_access_desc(access_type)] to an ID card [ADMIN_VV(inserted_auth_card)] [(inserted_auth_card.registered_name) ? "belonging to [inserted_auth_card.registered_name]." : "with no registered name."]")
+				LOG_ID_ACCESS_CHANGE(user, inserted_auth_card, "added [SSid_access.get_access_desc(access_type)]")
+			// monkestation end
 			return TRUE
 		// Apply template to ID card.
 		if("PRG_template")

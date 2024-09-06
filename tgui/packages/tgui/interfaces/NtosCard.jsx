@@ -85,10 +85,18 @@ export const NtosCardContent = (props) => {
                 }
                 accessMod={(ref, wildcard) =>
                   act('PRG_access', {
-                    access_target: ref,
-                    access_wildcard: wildcard,
+                    actions: [
+                      { access_target: ref, access_wildcard: wildcard },
+                    ],
                   })
                 }
+                multiAccessMod={(actions) => {
+                  act('PRG_access', {
+                    actions: actions.map(([ref, wildcard]) => {
+                      return { access_target: ref, access_wildcard: wildcard };
+                    }),
+                  });
+                }}
               />
             </Box>
           )}

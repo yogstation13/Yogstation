@@ -1532,31 +1532,37 @@
 
 	switch(action)
 		if("mod_access")
-			var/access_type = params["access_target"]
-			var/try_wildcard = params["access_wildcard"]
-			if(access_type in access)
-				remove_access(list(access_type))
-				LOG_ID_ACCESS_CHANGE(usr, src, "removed [SSid_access.get_access_desc(access_type)]")
+			// monkestation start: allow multiple access edits at once
+			var/list/id_actions = params["actions"]
+			if(!islist(id_actions) || !length(id_actions))
 				return TRUE
+			for(var/list/id_action in id_actions)
+				var/access_type = id_action["access_target"]
+				var/try_wildcard = id_action["access_wildcard"]
+				if(access_type in access)
+					remove_access(list(access_type))
+					LOG_ID_ACCESS_CHANGE(usr, src, "removed [SSid_access.get_access_desc(access_type)]")
+					continue
 
-			if(!(access_type in target_card.access))
-				to_chat(usr, span_notice("ID error: ID card rejected your attempted access modification."))
-				LOG_ID_ACCESS_CHANGE(usr, src, "failed to add [SSid_access.get_access_desc(access_type)][try_wildcard ? " with wildcard [try_wildcard]" : ""]")
-				return TRUE
+				if(!(access_type in target_card.access))
+					to_chat(usr, span_notice("ID error: ID card rejected your attempted access modification."))
+					LOG_ID_ACCESS_CHANGE(usr, src, "failed to add [SSid_access.get_access_desc(access_type)][try_wildcard ? " with wildcard [try_wildcard]" : ""]")
+					return TRUE
 
-			if(!can_add_wildcards(list(access_type), try_wildcard))
-				to_chat(usr, span_notice("ID error: ID card rejected your attempted access modification."))
-				LOG_ID_ACCESS_CHANGE(usr, src, "failed to add [SSid_access.get_access_desc(access_type)][try_wildcard ? " with wildcard [try_wildcard]" : ""]")
-				return TRUE
+				if(!can_add_wildcards(list(access_type), try_wildcard))
+					to_chat(usr, span_notice("ID error: ID card rejected your attempted access modification."))
+					LOG_ID_ACCESS_CHANGE(usr, src, "failed to add [SSid_access.get_access_desc(access_type)][try_wildcard ? " with wildcard [try_wildcard]" : ""]")
+					return TRUE
 
-			if(!add_access(list(access_type), try_wildcard))
-				to_chat(usr, span_notice("ID error: ID card rejected your attempted access modification."))
-				LOG_ID_ACCESS_CHANGE(usr, src, "failed to add [SSid_access.get_access_desc(access_type)][try_wildcard ? " with wildcard [try_wildcard]" : ""]")
-				return TRUE
+				if(!add_access(list(access_type), try_wildcard))
+					to_chat(usr, span_notice("ID error: ID card rejected your attempted access modification."))
+					LOG_ID_ACCESS_CHANGE(usr, src, "failed to add [SSid_access.get_access_desc(access_type)][try_wildcard ? " with wildcard [try_wildcard]" : ""]")
+					return TRUE
 
-			if(access_type in ACCESS_ALERT_ADMINS)
-				message_admins("[ADMIN_LOOKUPFLW(usr)] just added [SSid_access.get_access_desc(access_type)] to an ID card [ADMIN_VV(src)] [(registered_name) ? "belonging to [registered_name]." : "with no registered name."]")
-			LOG_ID_ACCESS_CHANGE(usr, src, "added [SSid_access.get_access_desc(access_type)]")
+				if(access_type in ACCESS_ALERT_ADMINS)
+					message_admins("[ADMIN_LOOKUPFLW(usr)] just added [SSid_access.get_access_desc(access_type)] to an ID card [ADMIN_VV(src)] [(registered_name) ? "belonging to [registered_name]." : "with no registered name."]")
+				LOG_ID_ACCESS_CHANGE(usr, src, "added [SSid_access.get_access_desc(access_type)]")
+			// monkestation end
 			return TRUE
 
 /obj/item/card/id/advanced/chameleon/attack_self(mob/user)
