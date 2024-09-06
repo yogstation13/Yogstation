@@ -290,7 +290,7 @@
 	var/jobtype = null
 
 	uniform = /obj/item/clothing/under/color/grey
-	shoes = /obj/item/clothing/shoes/sneakers/black
+	shoes = /obj/item/clothing/shoes/brownboots
 
 	preload = TRUE // These are used by the prefs ui, and also just kinda could use the extra help at roundstart
 

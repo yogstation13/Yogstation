@@ -663,3 +663,7 @@
 		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "dripjordan")
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "nojordans", /datum/mood_event/nojordans)
 
+/obj/item/clothing/shoes/brownboots
+	name = "boots"
+	desc = "Brownish small boots which are very similar to shoes."
+	icon_state = "explorer"
