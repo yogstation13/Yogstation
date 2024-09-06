@@ -19344,6 +19344,8 @@
 	pixel_y = -7
 	},
 /obj/structure/cable,
+/obj/item/kitchen/rollingpin,
+/obj/item/knife/plastic,
 /turf/open/floor/iron/kitchen/diagonal,
 /area/station/security/prison)
 "fMR" = (
@@ -29946,11 +29948,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/captain)
-"iSZ" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/dark/diagonal_edge,
-/turf/open/floor/iron/kitchen/diagonal,
-/area/station/security/prison)
 "iTa" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/blue,
@@ -35459,6 +35456,16 @@
 "kxn" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/dark/full,
+/obj/item/storage/bag/tray,
+/obj/item/reagent_containers/condiment/saltshaker{
+	pixel_x = -3;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/condiment/peppermill{
+	dir = 1;
+	pixel_x = 3;
+	pixel_y = 9
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/security/prison)
 "kxt" = (
@@ -41899,7 +41906,6 @@
 /obj/machinery/microwave{
 	pixel_y = 6
 	},
-/obj/machinery/firealarm/directional/north,
 /turf/open/floor/iron/kitchen/diagonal,
 /area/station/security/prison)
 "moV" = (
@@ -52762,6 +52768,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/station/security/prison/visit)
+"pCv" = (
+/obj/machinery/smartfridge/food,
+/turf/closed/wall/r_wall,
+/area/station/security/corrections_officer)
 "pCB" = (
 /obj/machinery/button/door/directional/west{
 	id = "surgeryleft";
@@ -64092,6 +64102,7 @@
 "sWM" = (
 /obj/effect/turf_decal/tile/dark/diagonal_edge,
 /obj/machinery/light/warm/directional/north,
+/obj/machinery/firealarm/directional/north,
 /turf/open/floor/iron/kitchen/diagonal,
 /area/station/security/prison)
 "sWN" = (
@@ -64666,6 +64677,16 @@
 	},
 /turf/open/floor/iron,
 /area/station/security/checkpoint/engineering)
+"tfp" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/dark/diagonal_edge,
+/obj/machinery/chem_dispenser/drinks{
+	pixel_y = 6;
+	pixel_x = -2;
+	dir = 1
+	},
+/turf/open/floor/iron/kitchen/diagonal,
+/area/station/security/prison)
 "tfq" = (
 /obj/effect/turf_decal/tile/dark_blue/half{
 	dir = 8
@@ -66740,7 +66761,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/white/corner,
-/obj/machinery/light/warm/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/firedoor/border_only{
@@ -71331,7 +71351,7 @@
 /obj/effect/turf_decal/weather/dirt{
 	dir = 8
 	},
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispensers/watertank/high,
 /turf/open/floor/grass,
 /area/station/security/prison)
 "veB" = (
@@ -76512,10 +76532,14 @@
 "wBv" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/dark/diagonal_edge,
-/obj/structure/reagent_dispensers/servingdish,
 /obj/machinery/camera/directional/east{
 	c_tag = "Security - Permabrig Kitchen";
 	network = list("ss13","prison")
+	},
+/obj/machinery/chem_dispenser/drinks/beer{
+	pixel_y = 6;
+	pixel_x = 2;
+	dir = 1
 	},
 /turf/open/floor/iron/kitchen/diagonal,
 /area/station/security/prison)
@@ -125796,7 +125820,7 @@ uSh
 rtl
 cSd
 ley
-cSd
+pCv
 moL
 pLW
 xyg
@@ -126057,7 +126081,7 @@ cSd
 sWM
 rjQ
 vGA
-iSZ
+hWS
 evU
 deL
 lDa
@@ -126314,7 +126338,7 @@ cSd
 jca
 tVv
 ekL
-hWS
+tfp
 evU
 qbx
 vvF

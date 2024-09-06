@@ -85676,6 +85676,7 @@
 	pixel_x = 7;
 	pixel_y = 3
 	},
+/obj/structure/reagent_dispensers/watertank/high,
 /turf/open/floor/grass,
 /area/station/security/prison/garden)
 "qGm" = (
