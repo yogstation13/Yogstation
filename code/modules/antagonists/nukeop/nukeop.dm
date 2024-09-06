@@ -435,7 +435,7 @@
 
 	switch(get_result())
 		if(NUKE_RESULT_FLUKE)
-			parts += "<span class='redtext big'>Humiliating Syndicate Defeat</span>"
+			parts += "<span class='redtext big'>Humiliating Syndicate Defeat!</span>"
 			parts += "<B>The crew of [station_name()] gave [syndicate_name] operatives back their bomb! The syndicate base was destroyed!</B> Next time, don't lose the nuke!"
 		if(NUKE_RESULT_NUKE_WIN)
 			parts += "<span class='greentext big'>Syndicate Major Victory!</span>"
