@@ -203,10 +203,13 @@
 	trigger_cost = 25
 	trigger_cooldown = 120
 	rogue_types = list(/datum/nanite_program/shocking)
+	COOLDOWN_DECLARE(ghost_notify_cooldown)
 
 /datum/nanite_program/defib/on_trigger(comm_message)
-	host_mob.notify_ghost_cloning("Your heart is being defibrillated by nanites. Re-enter your corpse if you want to be revived!")
-	addtimer(CALLBACK(src, PROC_REF(zap)), 50)
+	if(COOLDOWN_FINISHED(src, ghost_notify_cooldown) && check_revivable())
+		host_mob.notify_ghost_cloning("Your heart is being defibrillated by nanites. Re-enter your corpse if you want to be revived!")
+		COOLDOWN_START(src, ghost_notify_cooldown, 1 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(zap)), 5 SECONDS)
 
 /datum/nanite_program/defib/proc/check_revivable()
 	if(!iscarbon(host_mob)) //nonstandard biology
@@ -219,7 +222,7 @@
 /datum/nanite_program/defib/proc/zap()
 	var/mob/living/carbon/C = host_mob
 	playsound(C, 'sound/machines/defib_charge.ogg', 50, FALSE)
-	sleep(30)
+	sleep(3 SECONDS)
 	playsound(C, 'sound/machines/defib_zap.ogg', 50, FALSE)
 	if(check_revivable())
 		playsound(C, 'sound/machines/defib_success.ogg', 50, FALSE)
