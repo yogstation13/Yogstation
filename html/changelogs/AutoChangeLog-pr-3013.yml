@@ -1,0 +1,4 @@
+author: "catmanpop"
+delete-after: True
+changes:
+  - qol: "Chemical Dispenser now actually upgrades with manipulators instead of a dump at T4 and adds a few more"
