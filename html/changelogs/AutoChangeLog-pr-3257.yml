@@ -1,0 +1,4 @@
+author: "PotatoTomahto"
+delete-after: True
+changes:
+  - bugfix: "Plush refill canister is actually in maint loot now.\n:cl:"
