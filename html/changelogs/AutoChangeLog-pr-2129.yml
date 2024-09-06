@@ -1,5 +1,0 @@
-author: "The-Black-Screen"
-delete-after: True
-changes:
-  - rscdel: "removed kitchen and robotics access helpers from the morgue maintenance airlock."
-  - bugfix: "fixed the access helpers on the morgue medical airlock being the wrong type."

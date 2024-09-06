@@ -94,15 +94,45 @@
   - qol: Unarmed attacks with carp jaws now uses a bite effect rather than a punch
       effect.
   - qol: Scrubber overflows now use liquids instead of foam.
+  - qol: Sandstorm event announcement now uses normal direction names.
+  - rscadd: Added Grant All and Remove All buttons to ID consoles and agent IDs.
+  - qol: Clicking floor tiles now also closes curator/morgue doors, like with normal
+      airlocks.
+  - bugfix: Nanite defibrillation will no longer spam your ghost with notifications
+      when you can't be defibbed anyways.
+  KnigTheThrasher:
+  - bugfix: fixed asteroid magnet on kilostation
+  - rscadd: Updated nova permabrigs with monke content
+  LordVoidron:
+  - bugfix: Trashbag sprites while filled and worn no longer missing.
+  MichiRecRoom:
+  - rscadd: pAIs cards now have a clarity disclaimer in their examine text, regarding
+      their incompatibility with magic. Yes, this means silicons (including pAIs)
+      not seeing runes is intentional.
   PotatoTomahto:
   - rscadd: 'Adds a ballgown to the autodrobe and clothesmate.
 
       :cl:'
   - qol: Medical cyborg can use their health analyzer when in the dark or blind.
+  - bugfix: 'Fixes fugitive hunter victory end round text.
+
+      cl:'
+  - bugfix: Restored old HOS trenchcoat sprite. Winter trenchcoat sprite also fixed.
   RikuTheKiller:
   - rscadd: You can now permanently remove NIFs through a surgery on the head called
       "NIF debonding", but it requires OOC consent.
+  - bugfix: Cortical borers can regenerate as intended.
+  - bugfix: Cortical borer life ticks now follow subsystem delays, making them resistant
+      to lag.
+  - spellcheck: Cortical borer objectives are now better worded and have proper spelling
+      and punctuation.
+  The-Black-Screen:
+  - rscdel: removed kitchen and robotics access helpers from the morgue maintenance
+      airlock.
+  - bugfix: fixed the access helpers on the morgue medical airlock being the wrong
+      type.
   Wisemonster:
   - bugfix: The round-start status summary will only be green-shift if the current
       storyteller is Ghost
   - bugfix: Fixes Poly freezing up after speaking
+  - rscadd: Added 4 surgery duffel bags to the centcom practice surgery area.

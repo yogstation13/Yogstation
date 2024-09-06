@@ -1,6 +1,0 @@
-author: "RikuTheKiller"
-delete-after: True
-changes:
-  - bugfix: "Cortical borers can regenerate as intended."
-  - bugfix: "Cortical borer life ticks now follow subsystem delays, making them resistant to lag."
-  - spellcheck: "Cortical borer objectives are now better worded and have proper spelling and punctuation."

@@ -1,4 +1,0 @@
-author: "MichiRecRoom"
-delete-after: True
-changes:
-  - rscadd: "pAIs cards now have a clarity disclaimer in their examine text, regarding their incompatibility with magic. Yes, this means silicons (including pAIs) not seeing runes is intentional."

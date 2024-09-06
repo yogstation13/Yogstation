@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - rscadd: "Added Grant All and Remove All buttons to ID consoles and agent IDs."
