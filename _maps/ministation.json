@@ -41,8 +41,8 @@
 			"total_positions": 0
 		},
 		"Paramedic": {
-			"spawn_positions": 0,
-			"total_positions": 0
+			"spawn_positions": 1,
+			"total_positions": 1
 		},
 		"Cook": {
 			"spawn_positions": 1,
