@@ -14342,9 +14342,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"buS" = (
-/turf/closed/wall/r_wall,
-/area/asteroid)
 "bvy" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 4
@@ -14398,10 +14395,6 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"bBR" = (
-/obj/item/flashlight/lantern,
-/turf/open/floor/plating/asteroid,
-/area/science/test_area)
 "bBY" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -15188,6 +15181,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"cql" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/asteroid)
 "cqz" = (
 /obj/machinery/light{
 	dir = 4
@@ -15358,9 +15357,6 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"czi" = (
-/turf/closed/wall,
-/area/asteroid)
 "czp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -15401,6 +15397,10 @@
 /obj/structure/chair/office,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"cBL" = (
+/obj/item/beacon,
+/turf/open/floor/plating/asteroid,
+/area/science/test_area)
 "cCs" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
@@ -16492,9 +16492,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
-"dPo" = (
-/turf/open/floor/plating/airless,
-/area/asteroid)
 "dPz" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6
@@ -18074,13 +18071,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/service)
-"fEq" = (
-/obj/structure/sign/warning/securearea{
-	desc = "A warning sign which reads 'BOMB RANGE";
-	name = "BOMB RANGE"
-	},
-/turf/closed/wall,
-/area/asteroid)
 "fFr" = (
 /obj/structure/window/reinforced{
 	pixel_y = 2
@@ -18937,6 +18927,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"gLs" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/asteroid)
 "gLv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -20996,10 +20990,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
-"jst" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating/airless,
-/area/asteroid)
 "juj" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -21872,6 +21862,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"ksm" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/asteroid)
 "kub" = (
 /obj/effect/turf_decal/trimline/purple/filled/line/lower,
 /turf/open/floor/plasteel,
@@ -25951,6 +25948,9 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft/secondary)
+"oKz" = (
+/turf/closed/wall/r_wall,
+/area/asteroid)
 "oKT" = (
 /obj/structure/rack,
 /obj/item/multitool,
@@ -26112,13 +26112,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"oQv" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/caution/stand_clear{
-	dir = 1
-	},
-/turf/open/floor/plating/airless,
-/area/asteroid)
 "oQM" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4;
@@ -26896,19 +26889,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"pMX" = (
-/obj/structure/table,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/machinery/light,
-/obj/item/hand_tele{
-	pixel_x = -4;
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/storage/eva)
 "pNr" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -26978,9 +26958,6 @@
 /obj/effect/turf_decal/trimline/green/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"pQl" = (
-/turf/open/floor/plating/asteroid,
-/area/science/test_area)
 "pQu" = (
 /obj/machinery/camera{
 	c_tag = "EVA Maintenance"
@@ -27064,6 +27041,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"pSY" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/plating/airless,
+/area/asteroid)
 "pTb" = (
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 8
@@ -27237,6 +27221,10 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
+"qcu" = (
+/obj/item/flashlight/lantern,
+/turf/open/floor/plating/asteroid,
+/area/science/test_area)
 "qdM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -29596,6 +29584,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
+"sTi" = (
+/obj/item/pickaxe,
+/turf/open/floor/plating/asteroid,
+/area/science/test_area)
 "sTM" = (
 /obj/machinery/computer/apc_control{
 	dir = 4
@@ -30416,6 +30408,9 @@
 	},
 /turf/open/floor/grass,
 /area/medical/virology)
+"tTJ" = (
+/turf/open/floor/plating/airless,
+/area/asteroid)
 "tTU" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -30579,6 +30574,9 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"uhN" = (
+/turf/closed/wall,
+/area/asteroid)
 "ujx" = (
 /obj/structure/lattice,
 /obj/item/toy/plush/lizardplushie,
@@ -31010,31 +31008,12 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor/catwalk_floor/telecomms,
 /area/ai_monitored/secondarydatacore)
-"uGR" = (
-/obj/machinery/camera{
-	active_power_usage = 0;
-	c_tag = "Bomb Test Site";
-	desc = "A specially-reinforced camera with a long lasting battery, used to monitor the bomb testing site.";
-	dir = 8;
-	invuln = 1;
-	name = "Hardened Bomb-Test Camera";
-	network = list("toxins");
-	use_power = 0
-	},
-/turf/open/floor/plating/asteroid,
-/area/science/test_area)
 "uGU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"uHv" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating/airless,
-/area/asteroid)
 "uIA" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
@@ -31207,6 +31186,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"uWE" = (
+/turf/open/floor/plating/asteroid,
+/area/science/test_area)
 "uXm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -31889,10 +31871,6 @@
 /obj/effect/turf_decal/trimline/purple/warning/lower,
 /turf/open/floor/plasteel,
 /area/science/lab)
-"vQF" = (
-/obj/item/pickaxe,
-/turf/open/floor/plating/asteroid,
-/area/science/test_area)
 "vQN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -31966,6 +31944,15 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"vWr" = (
+/obj/structure/table,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/storage/eva)
 "vXA" = (
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 4
@@ -32470,10 +32457,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"wCl" = (
-/obj/item/beacon,
-/turf/open/floor/plating/asteroid,
-/area/science/test_area)
 "wDk" = (
 /obj/item/kirbyplants/random,
 /turf/open/floor/wood,
@@ -32776,6 +32759,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"wUy" = (
+/obj/machinery/camera{
+	active_power_usage = 0;
+	c_tag = "Bomb Test Site";
+	desc = "A specially-reinforced camera with a long lasting battery, used to monitor the bomb testing site.";
+	dir = 8;
+	invuln = 1;
+	name = "Hardened Bomb-Test Camera";
+	network = list("toxins");
+	use_power = 0
+	},
+/turf/open/floor/plating/asteroid,
+/area/science/test_area)
 "wVe" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -33478,6 +33474,13 @@
 "xKN" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/storage/eva)
+"xLk" = (
+/obj/structure/sign/warning/securearea{
+	desc = "A warning sign which reads 'BOMB RANGE";
+	name = "BOMB RANGE"
+	},
+/turf/closed/wall,
+/area/asteroid)
 "xLx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -33655,13 +33658,6 @@
 	},
 /turf/open/floor/wood/parquet,
 /area/crew_quarters/bar)
-"xWQ" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/caution/stand_clear,
-/turf/open/floor/plating/airless,
-/area/asteroid)
 "xYI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/machinery/modular_computer/console/preset/cargo{
@@ -115481,7 +115477,7 @@ aTA
 aaF
 aTA
 ajR
-pMX
+vWr
 xKN
 wbl
 anx
@@ -129586,9 +129582,9 @@ aJt
 aJt
 axh
 axh
-jst
-dPo
-uHv
+gLs
+tTJ
+cql
 axh
 axh
 axh
@@ -129843,9 +129839,9 @@ aJt
 axh
 axh
 axh
-oQv
-dPo
-xWQ
+ksm
+tTJ
+pSY
 axh
 axh
 axh
@@ -130100,9 +130096,9 @@ aJt
 axh
 axh
 axh
-jst
-dPo
-uHv
+gLs
+tTJ
+cql
 axh
 axh
 axh
@@ -130871,9 +130867,9 @@ aJt
 aJt
 aJt
 aJt
-fEq
+xLk
 axh
-fEq
+xLk
 aJt
 aJt
 aJt
@@ -135240,9 +135236,9 @@ aJt
 aJt
 aJt
 aJt
-fEq
+xLk
 axh
-fEq
+xLk
 aJt
 aJt
 aJt
@@ -135496,11 +135492,11 @@ aJt
 aJt
 aJt
 aJt
-pQl
-pQl
-pQl
-pQl
-pQl
+uWE
+uWE
+uWE
+uWE
+uWE
 aJt
 aJt
 aJt
@@ -135751,14 +135747,14 @@ aJt
 aJt
 aJt
 aJt
-czi
-pQl
-vQF
-pQl
-pQl
-pQl
-pQl
-pQl
+uhN
+uWE
+sTi
+uWE
+uWE
+uWE
+uWE
+uWE
 aJt
 aJt
 aJt
@@ -136009,14 +136005,14 @@ aJt
 aJt
 aJt
 aJt
-pQl
-pQl
-pQl
-pQl
-pQl
-pQl
-pQl
-czi
+uWE
+uWE
+uWE
+uWE
+uWE
+uWE
+uWE
+uhN
 aJt
 aJt
 aJt
@@ -136266,13 +136262,13 @@ aJt
 aJt
 aJt
 axh
-pQl
-pQl
-pQl
-wCl
-pQl
-pQl
-pQl
+uWE
+uWE
+uWE
+cBL
+uWE
+uWE
+uWE
 aJt
 aJt
 aJt
@@ -136523,13 +136519,13 @@ aJt
 aJt
 aJt
 aJt
-pQl
-pQl
-pQl
-pQl
-pQl
-bBR
-pQl
+uWE
+uWE
+uWE
+uWE
+uWE
+qcu
+uWE
 axh
 aJt
 aJt
@@ -136780,13 +136776,13 @@ aJt
 aJt
 aJt
 aJt
-pQl
-pQl
-pQl
-pQl
-pQl
-pQl
-pQl
+uWE
+uWE
+uWE
+uWE
+uWE
+uWE
+uWE
 aJt
 aJt
 aJt
@@ -137038,12 +137034,12 @@ aJt
 aJt
 aJt
 aJt
-pQl
-pQl
-uGR
-pQl
-pQl
-czi
+uWE
+uWE
+wUy
+uWE
+uWE
+uhN
 aJt
 aJt
 aJt
@@ -137297,7 +137293,7 @@ aJt
 aJt
 aJt
 axh
-buS
+oKz
 aJt
 aJt
 aJt
