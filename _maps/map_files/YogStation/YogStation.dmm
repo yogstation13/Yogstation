@@ -16657,7 +16657,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "ddY" = (
-/obj/effect/spawner/lootdrop/minor/beret_or_rabbitears,
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "dea" = (
@@ -32829,7 +32828,6 @@
 /turf/open/floor/plating,
 /area/security/prison)
 "iJk" = (
-/obj/effect/spawner/lootdrop/minor/kittyears_or_rabbitears,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "iJt" = (

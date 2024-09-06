@@ -64,6 +64,13 @@
 /turf/open/floor/plating/indoor/tiled10
 	icon_state = "tiled10"
 
+
+/turf/open/floor/plating/indoor/concrete
+	icon_state = "concrete_big"
+	desc = "Concrete slabs."
+	has_alternate_states = TRUE
+	alternate_states = 1
+
 /turf/open/floor/plating/indoor/concrete/bricks
 	icon_state = "concrete_bricks"
 	has_alternate_states = TRUE 
@@ -111,6 +118,36 @@
 
 /turf/open/floor/plating/indoor/metal/grate
 	icon_state = "steel_grate"
+
+/turf/open/floor/plating/indoor/metal/pipe
+	icon_state = "pipe_straight"
+
+/turf/open/floor/plating/indoor/metal/pipe/corner
+	icon_state = "pipe_corner"
+
+/turf/open/floor/plating/indoor/metal/pipe/intersection
+	icon_state = "pipe_intersection"
+
+/turf/open/floor/plating/indoor/metal/plate
+	icon_state = "steel_solid"
+
+/turf/open/floor/plating/indoor/metal/grate
+	icon_state = "steel_grate"
+
+/turf/open/floor/plating/indoor/metal/grate/border
+	icon_state = "steel_grate_border"
+
+/turf/open/floor/plating/indoor/metal/grate/border/warning
+	icon_state = "steel_grate_warning"
+
+/turf/open/floor/plating/indoor/metal/walkway
+	icon_state = "steel_walkway"
+
+/turf/open/floor/plating/indoor/metal/walkway/corner
+	icon_state = "steel_walkway_corner"
+
+/turf/open/floor/plating/indoor/metal/walkway/end
+	icon_state = "steel_walkway_end"
 
 /turf/open/floor/plating/indoor/carpet
 	name = "carpet"

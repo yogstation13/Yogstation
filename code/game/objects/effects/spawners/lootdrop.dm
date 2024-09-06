@@ -539,37 +539,6 @@
 		loot[path] = TRUE
 	. = ..()
 
-// Minor lootdrops follow
-
-/obj/effect/spawner/lootdrop/minor/beret_or_rabbitears
-	name = "beret or rabbit ears spawner"
-	loot = list(
-		/obj/item/clothing/head/beret = 1,
-		/obj/item/clothing/head/rabbitears = 1)
-
-/obj/effect/spawner/lootdrop/minor/bowler_or_that
-	name = "bowler or top hat spawner"
-	loot = list(
-		/obj/item/clothing/head/bowler = 1,
-		/obj/item/clothing/head/that = 1)
-
-/obj/effect/spawner/lootdrop/minor/kittyears_or_rabbitears
-	name = "kitty ears or rabbit ears spawner"
-	loot = list(
-		/obj/item/clothing/head/kitty = 1,
-		/obj/item/clothing/head/rabbitears = 1)
-
-/obj/effect/spawner/lootdrop/minor/pirate_or_bandana
-	name = "pirate hat or bandana spawner"
-	loot = list(
-		/obj/item/clothing/head/pirate = 1,
-		/obj/item/clothing/head/pirate/bandana = 1)
-
-/obj/effect/spawner/lootdrop/minor/twentyfive_percent_cyborg_mask
-	name = "25% cyborg mask spawner"
-	loot = list(
-		/obj/item/clothing/mask/gas/cyborg = 25,
-		"" = 75)
 
 /obj/effect/spawner/lootdrop/aimodule_harmless // These shouldn't allow the AI to start butchering people
 	name = "harmless AI module spawner"
@@ -776,6 +745,7 @@
 				/obj/item/crowbar/large,
 				/obj/item/clothing/under/citizen/refugee,
 				/obj/item/clothing/head/beanie/black,
+				/obj/item/radio/off/halflife,
 				/obj/item/cigbutt
 				)
 
@@ -783,10 +753,11 @@
 	name = "rare loot"
 
 	loot = list(
-				/obj/item/crowbar/large = 2,
+				/obj/item/crowbar/large,
 				/obj/item/gun/ballistic/automatic/pistol/usp = 4,
 				/obj/item/gun/ballistic/automatic/mp7 = 3,
-				/obj/item/clothing/suit/armor/civilprotection = 3,
+				/obj/item/clothing/suit/armor/civilprotection = 4,
+				/obj/item/radio/off/halflife,
 				/obj/item/gun/ballistic/automatic/pistol/m1911,
 				/obj/item/gun/ballistic/automatic/m4a1,
 				/obj/item/clothing/suit/armor/kevlar

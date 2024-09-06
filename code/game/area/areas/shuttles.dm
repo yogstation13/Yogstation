@@ -113,6 +113,7 @@
 
 /area/shuttle/arrival
 	name = "Arrival Shuttle"
+	ambience_index = AMBIENCE_HLINSIDE
 	unique = TRUE  // SSjob refers to this area for latejoiners
 
 /area/shuttle/arrival/on_joining_game(mob/living/boarder)

@@ -90,7 +90,7 @@
 	poster_item_icon_state = initial(selected.poster_item_icon_state)
 	ruined = initial(selected.ruined)
 
-
+/*
 /obj/structure/sign/poster/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_WIRECUTTER)
 		I.play_tool_sound(src, 100)
@@ -100,6 +100,7 @@
 		else
 			to_chat(user, span_notice("You carefully remove the poster from the wall."))
 			roll_and_drop(user.loc)
+*/
 
 /obj/structure/sign/poster/attack_hand(mob/user)
 	. = ..()
@@ -712,6 +713,15 @@
 	var/choice = show_radial_menu(user, src, potential_records, tooltips = TRUE)
 	if(choice)
 		chosen = find_record("name", choice, GLOB.data_core.general)
+
+
+/obj/structure/sign/poster/halflife/combine
+	name = "Combine Poster"
+	desc = "A poster celebrating the combine's rule."
+	icon_state = "combine1"
+
+/obj/structure/sign/poster/halflife/combine/two
+	icon_state = "combine2"
 
 #undef PLACE_SPEED
 #undef isabductorwall

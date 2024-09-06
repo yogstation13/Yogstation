@@ -510,3 +510,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "radio_makeshift"
 	subspace_switchable = TRUE  // Made with a headset, so it can transmit over subspace I guess
 	freqlock = TRUE
+
+/obj/item/radio/off/halflife
+	icon_state = "radio"
+	name = "old radio"
+	desc = "An old radio that can communicate over specified radio waves."
