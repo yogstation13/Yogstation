@@ -17,6 +17,10 @@
 "x" = (
 /turf/closed/wall/halflife/metal,
 /area/halflife/indoors/sewer)
+"N" = (
+/obj/effect/spawner/lootdrop/halflife/loot,
+/turf/open/halflife/water/sewer/deep,
+/area/halflife/indoors/sewer)
 "W" = (
 /turf/open/halflife/water/sewer/medium,
 /area/halflife/indoors/sewer)
@@ -42,7 +46,7 @@ W
 W
 p
 p
-p
+N
 x
 "}
 (3,1,1) = {"
