@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(abscond_markers)
 
 ///Send a pod full of helpful items to the station's bridge
 /proc/send_station_support_package(list/additional_items, sent_message = "We are sending a support package to the bridge to help deal with the threats to the station.")
-	var/turf/bridge_turf = pick(GLOB.areas_by_type[/area/station/command/bridge].contained_turfs)
+	var/turf/bridge_turf = pick(GLOB.areas_by_type[/area/station/command/bridge].get_turfs_from_all_zlevels())
 	if(!bridge_turf)
 		return
 

@@ -49,9 +49,11 @@
 
 /area/proc/remove_base_lighting()
 	var/list/z_offsets = SSmapping.z_level_to_plane_offset
-	for(var/turf/T as anything in get_contained_turfs())
-		if(z_offsets[T.z])
-			T.cut_overlay(lighting_effects[z_offsets[T.z] + 1])
+	if(length(lighting_effects) > 1)
+		for(var/area_zlevel in 1 to get_highest_zlevel())
+			if(z_offsets[area_zlevel])
+				for(var/turf/T as anything in get_turfs_by_zlevel(area_zlevel))
+					T.cut_overlay(lighting_effects[z_offsets[T.z] + 1])
 	cut_overlay(lighting_effects[1])
 	QDEL_LIST(lighting_effects)
 	area_has_base_lighting = FALSE
@@ -69,12 +71,17 @@
 		lighting_effects += lighting_effect
 	add_overlay(lighting_effects[1])
 	var/list/z_offsets = SSmapping.z_level_to_plane_offset
-	for(var/turf/T as anything in get_contained_turfs())
-		T.luminosity = 1
-		// This outside loop is EXTREMELY hot because it's run by space tiles. Don't want no part in that
+	for(var/area_zlevel in 1 to get_highest_zlevel())
 		// We will only add overlays to turfs not on the first z layer, because that's a significantly lesser portion
 		// And we need to do them separate, or lighting will go fuckey
-		if(z_offsets[T.z])
-			T.add_overlay(lighting_effects[z_offsets[T.z] + 1])
+		// This inside loop is EXTREMELY hot because it's run by space tiles, so we do the if check once on the outside
+		if(length(lighting_effects) > 1 && z_offsets[area_zlevel])
+			var/lighting_effect_to_add = lighting_effects[z_offsets[area_zlevel] + 1]
+			for(var/turf/area_turf as anything in get_turfs_by_zlevel(area_zlevel))
+				area_turf.luminosity = 1
+				area_turf.add_overlay(lighting_effect_to_add)
+		else
+			for(var/turf/area_turf as anything in get_turfs_by_zlevel(area_zlevel))
+				area_turf.luminosity = 1
 
 	area_has_base_lighting = TRUE

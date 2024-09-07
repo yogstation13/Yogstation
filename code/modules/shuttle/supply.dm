@@ -63,12 +63,12 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	return ..()
 
 /obj/docking_port/mobile/supply/proc/check_blacklist(areaInstances)
-	for(var/place in areaInstances)
-		var/area/shuttle/shuttle_area = place
-		for(var/turf/shuttle_turf in shuttle_area)
-			for(var/atom/passenger in shuttle_turf.get_all_contents())
-				if((is_type_in_typecache(passenger, GLOB.blacklisted_cargo_types) || HAS_TRAIT(passenger, TRAIT_BANNED_FROM_CARGO_SHUTTLE)) && !istype(passenger, /obj/docking_port))
-					return FALSE
+	for(var/area/shuttle_area as anything in areaInstances)
+		for (var/list/zlevel_turfs as anything in shuttle_area.get_zlevel_turf_lists())
+			for(var/turf/shuttle_turf as anything in zlevel_turfs)
+				for(var/atom/passenger in shuttle_turf.get_all_contents())
+					if((is_type_in_typecache(passenger, GLOB.blacklisted_cargo_types) || HAS_TRAIT(passenger, TRAIT_BANNED_FROM_CARGO_SHUTTLE)) && !istype(passenger, /obj/docking_port))
+						return FALSE
 	return TRUE
 
 /obj/docking_port/mobile/supply/request(obj/docking_port/stationary/S)
@@ -95,10 +95,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 	var/list/empty_turfs = list()
 	for(var/area/shuttle/shuttle_area as anything in shuttle_areas)
-		for(var/turf/open/floor/T in shuttle_area)
-			if(T.is_blocked_turf())
+		for(var/turf/open/floor/shuttle_turf in shuttle_area.get_turfs_from_all_zlevels())
+			if(shuttle_turf.is_blocked_turf())
 				continue
-			empty_turfs += T
+			empty_turfs += shuttle_turf
 
 	//quickly and greedily handle chef's grocery runs first, there are a few reasons why this isn't attached to the rest of cargo...
 	//but the biggest reason is that the chef requires produce to cook and do their job, and if they are using this system they
@@ -226,12 +226,14 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/datum/export_report/ex = new
 
 	for(var/area/shuttle/shuttle_area as anything in shuttle_areas)
-		for(var/atom/movable/AM in shuttle_area)
-			if(iscameramob(AM))
-				continue
-			if(AM.anchored)
-				continue
-			export_item_and_contents(AM, export_categories, dry_run = FALSE, external_report = ex)
+		for (var/list/zlevel_turfs as anything in shuttle_area.get_zlevel_turf_lists())
+			for(var/turf/shuttle_turf as anything in zlevel_turfs)
+				for(var/atom/movable/exporting_atom in shuttle_turf)
+					if(iscameramob(exporting_atom))
+						continue
+					if(exporting_atom.anchored)
+						continue
+					export_item_and_contents(exporting_atom, export_categories, dry_run = FALSE, external_report = ex)
 
 	if(ex.exported_atoms)
 		ex.exported_atoms += "." //ugh
@@ -260,9 +262,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 	//spawn crate
 	var/list/empty_turfs = list()
-	for(var/place as anything in shuttle_areas)
-		var/area/shuttle/shuttle_area = place
-		for(var/turf/open/floor/shuttle_floor in shuttle_area)
+	for(var/area/shuttle/shuttle_area as anything in shuttle_areas)
+		for(var/turf/open/floor/shuttle_floor in shuttle_area.get_turfs_from_all_zlevels())
 			if(shuttle_floor.is_blocked_turf())
 				continue
 			empty_turfs += shuttle_floor

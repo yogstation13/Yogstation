@@ -289,16 +289,13 @@
 			continue
 		possible_turfs += open_turf
 
-	if(!LAZYLEN(possible_turfs))
-		var/turf/new_turf = get_safe_random_station_turf()
-		if(!new_turf) //SOMEHOW
-			to_chat(sent_mob, span_hypnophrase(span_reallybig("A million voices echo in your head... <i>\"Seems where you got sent here from won't \
-				be able to handle our pod... You will die here instead.\"</i></span>")))
-			if (sent_mob.can_heartattack())
-				sent_mob.set_heartattack(TRUE)
-			return
-
-		possible_turfs += new_turf
+	var/turf/return_turf = get_safe_random_station_turf()
+	if(!return_turf) //SOMEHOW
+		to_chat(sent_mob, span_hypnophrase(span_reallybig("A million voices echo in your head... <i>\"Seems where you got sent here from won't \
+			be able to handle our pod... You will die here instead.\"</i></span>")))
+		if (sent_mob.can_heartattack())
+			sent_mob.set_heartattack(TRUE)
+		return
 
 	var/obj/structure/closet/supplypod/return_pod = new()
 	return_pod.bluespace = TRUE
@@ -322,7 +319,7 @@
 	sent_mob.set_eye_blur_if_lower(100 SECONDS)
 	sent_mob.dna.species.give_important_for_life(sent_mob) // so plasmamen do not get left for dead
 
-	new /obj/effect/pod_landingzone(pick(possible_turfs), return_pod)
+	new /obj/effect/pod_landingzone(return_turf, return_pod)
 
 /// Returns a list of things that the provided mob has which we would rather that they do not have
 /datum/traitor_objective/target_player/kidnapping/proc/gather_belongings(mob/living/carbon/human/kidnapee)

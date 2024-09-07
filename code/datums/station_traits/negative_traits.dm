@@ -340,7 +340,7 @@
 /datum/station_trait/revolutionary_trashing/proc/trash_this_place()
 	for(var/area/station/command/area_to_trash in GLOB.areas)
 
-		for(var/turf/current_turf as anything in area_to_trash.get_contained_turfs())
+		for(var/turf/current_turf as anything in area_to_trash.get_turfs_from_all_zlevels())
 			if(isclosedturf(current_turf))
 				continue
 			if(prob(25))
