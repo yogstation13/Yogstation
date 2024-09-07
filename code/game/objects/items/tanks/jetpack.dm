@@ -151,7 +151,7 @@
 	classic = FALSE //uses its own custom sprite
 
 /obj/item/tank/jetpack/oxygen/captain
-	name = "\improper Captain's jetpack"
+	name = "\improper City Administrator's jetpack"
 	desc = "A compact, lightweight jetpack containing a high amount of compressed oxygen."
 	icon_state = "jetpack-captain"
 	item_state = "jetpack-captain"

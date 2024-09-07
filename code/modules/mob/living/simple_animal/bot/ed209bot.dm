@@ -54,9 +54,6 @@
 	icon_state = "[lasercolor]ed209[on]"
 	set_weapon() //giving it the right projectile and firing sound.
 	spawn(3)
-		var/datum/job/detective/J = new/datum/job/detective
-		access_card.access += J.get_access()
-		prev_access = access_card.access
 
 		if(lasercolor)
 			shot_delay = 6//Longer shot delay because JESUS CHRIST

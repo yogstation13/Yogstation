@@ -258,8 +258,8 @@
 	icon_deny = "capdrobe-deny"
 	panel_type = "panel-capdrobe"
 	req_access = list(ACCESS_CAPTAIN)
-	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use the Captain's Autodrobe!"
-	vend_reply = "Thank you for using the Captain's Autodrobe!"
+	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use the City Administrator's Autodrobe!"
+	vend_reply = "Thank you for using the City Administrator's Autodrobe!"
 	products = list(/obj/item/clothing/suit/hooded/wintercoat/captain = 1,
 					/obj/item/storage/backpack/captain = 1,
 					/obj/item/storage/backpack/satchel/cap = 1,

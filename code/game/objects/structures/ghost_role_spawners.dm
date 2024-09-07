@@ -456,7 +456,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	mask = /obj/item/clothing/mask/gas/syndicate
 
 /obj/effect/mob_spawn/human/syndicate/battlecruiser/captain
-	name = "Syndicate Battlecruiser Captain"
+	name = "Syndicate Battlecruiser City Administrator"
 	short_desc = "You are the captain aboard the syndicate flagship: the SBC Starfury."
 	flavour_text = "Your job is to oversee your crew, defend the ship, and destroy Space Station 13. The ship has an armory, multiple ships, beam cannons, and multiple crewmembers to accomplish this goal."
 	important_info = "As the captain, this whole operation falls on your shoulders. You do not need to nuke the station, causing sufficient damage and preventing your ship from being destroyed will be enough."
@@ -464,7 +464,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	id_access_list = list(150,151)
 
 /datum/outfit/syndicate_empty/SBC/assault/captain
-	name = "Syndicate Battlecruiser Captain"
+	name = "Syndicate Battlecruiser City Administrator"
 	l_pocket = /obj/item/melee/transforming/energy/sword/saber/red
 	r_pocket = /obj/item/melee/classic_baton/telescopic
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
@@ -700,7 +700,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	return ..()
 
 /obj/effect/mob_spawn/human/pirate/captain
-	rank = "Captain"
+	rank = "City Administrator"
 	outfit = /datum/outfit/pirate/space/captain
 
 /obj/effect/mob_spawn/human/pirate/gunner

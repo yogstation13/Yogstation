@@ -110,11 +110,11 @@
 	mutantrace_variation = NONE
 
 /*
- * Head of Security
+ * Divisional Lead
  */
 /obj/item/clothing/under/rank/security/head_of_security
-	name = "head of security's jumpsuit"
-	desc = "A security jumpsuit decorated for those few with the dedication to achieve the position of Head of Security."
+	name = "Divisional Lead's jumpsuit"
+	desc = "A security jumpsuit decorated for those few with the dedication to achieve the position of Divisional Lead."
 	icon_state = "rhos"
 	item_state = "r_suit"
 	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10)
@@ -122,8 +122,8 @@
 	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/security/head_of_security/skirt
-	name = "head of security's jumpskirt"
-	desc = "A security jumpskirt decorated for those few with the dedication to achieve the position of Head of Security."
+	name = "Divisional Lead's jumpskirt"
+	desc = "A security jumpskirt decorated for those few with the dedication to achieve the position of Divisional Lead."
 	icon_state = "rhos_skirt"
 	item_state = "r_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -133,20 +133,20 @@
 	mutantrace_variation = NONE
 
 /obj/item/clothing/under/rank/security/head_of_security/grey
-	name = "head of security's grey jumpsuit"
+	name = "Divisional Lead's grey jumpsuit"
 	desc = "There are old men, and there are bold men, but there are very few old, bold men."
 	icon_state = "hos"
 	item_state = "gy_suit"
 
 /obj/item/clothing/under/rank/security/head_of_security/alt
-	name = "head of security's turtleneck"
-	desc = "A stylish alternative to the normal head of security jumpsuit, complete with tactical pants."
+	name = "Divisional Lead's turtleneck"
+	desc = "A stylish alternative to the normal Divisional Lead jumpsuit, complete with tactical pants."
 	icon_state = "hosalt"
 	item_state = "bl_suit"
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/skirt
-	name = "head of security's turtleneck skirt"
-	desc = "A stylish alternative to the normal head of security jumpsuit, complete with a tactical skirt."
+	name = "Divisional Lead's turtleneck skirt"
+	desc = "A stylish alternative to the normal Divisional Lead jumpsuit, complete with a tactical skirt."
 	icon_state = "hosalt_skirt"
 	item_state = "bl_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -155,16 +155,16 @@
 	mutantrace_variation = NONE
 
 /obj/item/clothing/under/rank/security/head_of_security/hosparademale
-	name = "head of security's parade uniform"
-	desc = "A male head of security's luxury-wear, for special occasions."
+	name = "Divisional Lead's parade uniform"
+	desc = "A male Divisional Lead's luxury-wear, for special occasions."
 	icon_state = "hos_parade_male"
 	item_state = "r_suit"
 	can_adjust = FALSE
 	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/security/head_of_security/hosparadefem
-	name = "head of security's parade uniform"
-	desc = "A female head of security's luxury-wear, for special occasions."
+	name = "Divisional Lead's parade uniform"
+	desc = "A female Divisional Lead's luxury-wear, for special occasions."
 	icon_state = "hos_parade_fem"
 	item_state = "r_suit"
 	fitted = FEMALE_UNIFORM_TOP
@@ -191,8 +191,8 @@
 	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/security/head_of_security/navyblue
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Head of Security."
-	name = "head of security's formal uniform"
+	desc = "The insignia on this uniform tells you that this uniform belongs to the Divisional Lead."
+	name = "Divisional Lead's formal uniform"
 	icon_state = "hosblueclothes"
 	item_state = "hosblueclothes"
 	alt_covers_chest = TRUE

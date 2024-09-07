@@ -39,6 +39,7 @@
 	name = "\improper colt python"
 	desc = "An old colt python revolver. Uses .357 magnum ammo."
 	fire_sound = "sound/weapons/halflife/revolverfire.ogg"
+	icon = 'icons/obj/guns/halflife/projectile.dmi'
 	icon_state = "colt_python"
 	item_state = "colt_python"
 	spread = 3 //less spread

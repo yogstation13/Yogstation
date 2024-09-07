@@ -76,14 +76,14 @@
 	polldesc = "a CentCom Official"
 
 /datum/ert/official/New()
-	mission = "Conduct a routine performance review of [station_name()] and its Captain."
+	mission = "Conduct a routine performance review of [station_name()] and its City Administrator."
 
 
 /datum/ert/official/captain
 	leader_role = /datum/antagonist/centcom/captain
 	roles = list(/datum/antagonist/centcom/captain)
-	rename_team = "CentCom Captains"
-	polldesc = "a CentCom Captain"
+	rename_team = "CentCom City Administrators"
+	polldesc = "a CentCom City Administrator"
 
 /datum/ert/official/major
 	leader_role = /datum/antagonist/centcom/major

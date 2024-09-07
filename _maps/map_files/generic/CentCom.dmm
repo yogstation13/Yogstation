@@ -3879,9 +3879,9 @@
 /obj/item/flashlight/lamp,
 /obj/machinery/requests_console{
 	announcementConsole = 1;
-	department = "Captain's Desk";
+	department = "City Administrator's Desk";
 	departmentType = 5;
-	name = "Captain RC";
+	name = "City Administrator RC";
 	pixel_y = 32
 	},
 /turf/open/floor/carpet/green,
@@ -18068,7 +18068,7 @@
 /obj/structure/chair/office/dark,
 /mob/living/simple_animal/bot/cleanbot{
 	desc = "A little cleaning robot that after years of hard work, got promoted to captain and was given his own ship!";
-	name = "Captain Cleanbot"
+	name = "City Administrator Cleanbot"
 	},
 /turf/open/floor/mineral/titanium,
 /area/centcom/evac)

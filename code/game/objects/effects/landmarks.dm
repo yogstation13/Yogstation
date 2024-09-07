@@ -114,12 +114,12 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	icon_state = "Botanist"
 
 /obj/effect/landmark/start/head_of_security
-	name = "Head of Security"
-	icon_state = "Head of Security"
+	name = "Divisional Lead"
+	icon_state = "Divisional Lead"
 
 /obj/effect/landmark/start/captain
-	name = "Captain"
-	icon_state = "Captain"
+	name = "City Administrator"
+	icon_state = "City Administrator"
 
 /obj/effect/landmark/start/detective
 	name = "Detective"

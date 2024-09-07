@@ -67,7 +67,7 @@
 	icon_state = "warden2"
 
 /obj/item/badge/security/warden3
-	name = "security badge (Brig Captain)"
+	name = "security badge (Brig City Administrator)"
 	icon_state = "warden3"
 
 /obj/item/badge/security/hos1

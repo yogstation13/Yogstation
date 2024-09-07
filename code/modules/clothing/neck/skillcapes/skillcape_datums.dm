@@ -22,13 +22,13 @@
 
 /datum/skillcape/captain
 	name = "cape of the captain"
-	job = "Captain"
+	job = "City Administrator"
 	path = /obj/item/clothing/neck/skillcape/captain
 	id = "cap"
 
 /datum/skillcape/trimmed/captain
 	name = "cape of the grand commander"  
-	job = "Captain"
+	job = "City Administrator"
 	path = /obj/item/clothing/neck/skillcape/trimmed/captain
 	id = "cap_trimmed"
 
@@ -45,14 +45,14 @@
 	id = "hop_trimmed"
 
 /datum/skillcape/hos
-	name = "cape of the head of security"
-	job = "Head of Security"
+	name = "cape of the Divisional Lead"
+	job = "Divisional Lead"
 	path = /obj/item/clothing/neck/skillcape/hos
 	id = "hos"
 
 /datum/skillcape/trimmed/hos
 	name = "cape of the grand executor"
-	job = "Head of Security"
+	job = "Divisional Lead"
 	path = /obj/item/clothing/neck/skillcape/trimmed/hos
 	id = "hos_trimmed"
 

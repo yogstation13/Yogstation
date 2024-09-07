@@ -77,7 +77,7 @@
 	/// If not, let the officers do it
 	req_one_access = emergency_access
 	for(var/datum/data/record/gen_record in GLOB.data_core.general)
-		if(gen_record.fields["real_rank"] == "Head of Security" || gen_record.fields["real_rank"] == "Warden")
+		if(gen_record.fields["real_rank"] == "Divisional Lead" || gen_record.fields["real_rank"] == "Warden")
 			req_one_access = default_access
 			break
 

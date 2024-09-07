@@ -174,8 +174,8 @@
 /obj/item/clothing/under/yogs/captainartillery
 	name = "captain artillery uniform"
 	desc = "You are the commander of your men and the top of the top, dont let them down!"
-	icon_state = "Captain_Artillery_CS_s"
-	item_state = "Captain_Artillery_CS"
+	icon_state = "City Administrator_Artillery_CS_s"
+	item_state = "City Administrator_Artillery_CS"
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 	can_adjust = FALSE
@@ -292,7 +292,7 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/yogs/dictatorhos
-	name = "dictator head of security suit"
+	name = "dictator Divisional Lead suit"
 	desc = "The leader the station does not need or want."
 	icon_state = "uniform_two"
 	item_state = "uniform_two"
@@ -360,7 +360,7 @@
 	item_state = "colony_longsleeve"
 
 /obj/item/clothing/under/yogs/hoslatenight
-	name = "late night head of security uniform"
+	name = "late night Divisional Lead uniform"
 	desc = "For those more quiet shifts."
 	icon_state = "hos1_suit"
 	item_state = "hos1_suit"
@@ -381,7 +381,7 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/yogs/hoscasual
-	name = "casual head of security uniform"
+	name = "casual Divisional Lead uniform"
 	desc = "Even the HoS has to take a break from beating the clown sometimes."
 	icon_state = "hos_suit"
 	item_state = "hos_suit"

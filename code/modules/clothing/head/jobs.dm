@@ -24,7 +24,7 @@
 	playsound(user, 'sound/machines/ding.ogg', 50, 1)
 	return(FIRELOSS)
 
-//Captain
+//City Administrator
 /obj/item/clothing/head/caphat
 	name = "captain's hat"
 	desc = "It's good to be the king."
@@ -35,10 +35,10 @@
 	strip_delay = 60
 	dog_fashion = /datum/dog_fashion/head/captain
 
-//Captain: This is no longer space-worthy
+//City Administrator: This is no longer space-worthy
 /obj/item/clothing/head/caphat/parade
 	name = "captain's parade cap"
-	desc = "Worn only by Captains with an abundance of class."
+	desc = "Worn only by City Administrators with an abundance of class."
 	icon_state = "capcap"
 
 	dog_fashion = null
@@ -217,8 +217,8 @@
 //Security
 
 /obj/item/clothing/head/HoS
-	name = "head of security cap"
-	desc = "The robust standard-issue cap of the Head of Security. For showing the officers who's in charge."
+	name = "Divisional Lead cap"
+	desc = "The robust standard-issue cap of the Divisional Lead. For showing the officers who's in charge."
 	icon_state = "hoscap"
 	armor = list(MELEE = 40, BULLET = 30, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 10, RAD = 0, FIRE = 50, ACID = 60, WOUND = 10)
 	strip_delay = 80
@@ -229,8 +229,8 @@
 	desc = "A black cap fit for a high ranking syndicate officer."
 
 /obj/item/clothing/head/HoS/beret
-	name = "head of security beret"
-	desc = "A robust beret for the Head of Security, for looking stylish while not sacrificing protection."
+	name = "Divisional Lead beret"
+	desc = "A robust beret for the Divisional Lead, for looking stylish while not sacrificing protection."
 	icon_state = "hosberetblack"
 
 /obj/item/clothing/head/HoS/beret/syndicate
@@ -321,8 +321,8 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/beret/sec/navyhos
-	name = "head of security's beret"
-	desc = "A special beret with the Head of Security's insignia emblazoned on it. A symbol of excellence, a badge of courage, a mark of distinction."
+	name = "Divisional Lead's beret"
+	desc = "A special beret with the Divisional Lead's insignia emblazoned on it. A symbol of excellence, a badge of courage, a mark of distinction."
 	icon_state = "hosberet"
 
 /obj/item/clothing/head/beret/sec/navywarden

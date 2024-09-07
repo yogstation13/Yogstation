@@ -35,9 +35,9 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	. = ..()
 
 	var/list/jobs = new/list()
-	jobs["Captain"] = 00
+	jobs["City Administrator"] = 00
 	jobs["Head of Personnel"] = 50
-	jobs["Head of Security"] = 10
+	jobs["Divisional Lead"] = 10
 	jobs["Warden"] = 11
 	jobs["Civil Protection Officer"] = 12
 	jobs["Detective"] = 13

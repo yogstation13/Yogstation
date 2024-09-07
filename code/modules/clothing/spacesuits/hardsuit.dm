@@ -664,9 +664,9 @@
 	. = ..()
 	allowed = GLOB.security_hardsuit_allowed
 
-	//Head of Security hardsuit
+	//Divisional Lead hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/security/hos
-	name = "head of security's hardsuit helmet"
+	name = "Divisional Lead's hardsuit helmet"
 	desc = "A special bulky helmet designed for work in a hazardous, low pressure environment. Has an additional layer of armor."
 	icon_state = "hardsuit0-hos"
 	hardsuit_type = "hos"
@@ -675,7 +675,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/security/hos
 	icon_state = "hardsuit-hos"
-	name = "head of security's hardsuit"
+	name = "Divisional Lead's hardsuit"
 	desc = "A special bulky suit that protects against hazardous, low pressure environments. Has an additional layer of armor."
 	armor = list(MELEE = 45, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 50, BIO = 100, RAD = 50, FIRE = 95, ACID = 95, WOUND = 25, ELECTRIC = 100)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security/hos
@@ -711,7 +711,7 @@
 	. = ..()
 	allowed = GLOB.security_hardsuit_allowed
 
-	//Captain
+	//City Administrator
 /obj/item/clothing/head/helmet/space/hardsuit/swat/captain
 	name = "captain's hardsuit helmet"
 	icon_state = "capspace"

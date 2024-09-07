@@ -274,7 +274,7 @@
 	desc = "Set up one of the solar arrays as part of the Engineering team."
 	id = ENGIEDEPT + 2
 /datum/achievement/engineering/scotty
-	name = "\"I'm givin' it all she's got, Captain!\""
+	name = "\"I'm givin' it all she's got, City Administrator!\""
 	desc = "As Chief Engineer, produce more than three megawatts of power."
 	id = ENGIEDEPT + 3
 /datum/achievement/engineering/toasty

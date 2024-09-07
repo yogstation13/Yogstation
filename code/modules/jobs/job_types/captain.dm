@@ -1,5 +1,5 @@
 /datum/job/captain
-	title = "Captain"
+	title = "City Administrator"
 	description = "Be responsible for the station, manage your Heads of Staff, \
 		keep the crew alive, be prepared to do anything and everything or die \
 		horribly trying."
@@ -9,14 +9,13 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "Nanotrasen officers and Space law" //Changed to officer to separate from CentCom officials being their superior.
+	supervisors = "Overwatch" //Changed to officer to separate from CentCom officials being their superior.
 	req_admin_notify = 1
 	space_law_notify = 1 //Yogs
 	minimal_player_age = 14
 	exp_requirements = 900 //15 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_COMMAND
-	alt_titles = list("Station Commander", "Facility Director", "Chief Executive Officer", "Big Boss")
 
 	outfit = /datum/outfit/job/captain
 
@@ -57,10 +56,10 @@
 
 /datum/job/captain/announce(mob/living/carbon/human/H)
 	..()
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "Captain [H.real_name] on deck!"))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "City Administrator [H.real_name] on deck!"))
 
 /datum/outfit/job/captain
-	name = "Captain"
+	name = "City Administrator"
 	jobtype = /datum/job/captain
 
 	id_type = /obj/item/card/id/gold
@@ -87,7 +86,7 @@
 	chameleon_extras = list(/obj/item/gun/energy/e_gun, /obj/item/stamp/captain)
 
 /datum/outfit/job/captain/hardsuit
-	name = "Captain (Hardsuit)"
+	name = "City Administrator (Hardsuit)"
 
 	mask = /obj/item/clothing/mask/gas/sechailer
 	suit = /obj/item/clothing/suit/space/hardsuit/swat/captain

@@ -79,9 +79,6 @@
 /mob/living/simple_animal/bot/secbot/Initialize(mapload)
 	. = ..()
 	update_appearance(UPDATE_ICON)
-	var/datum/job/detective/J = new/datum/job/detective
-	access_card.access += J.get_access()
-	prev_access = access_card.access
 
 	//SECHUD
 	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]

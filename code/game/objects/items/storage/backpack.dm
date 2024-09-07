@@ -672,7 +672,7 @@
 	new /obj/item/implanter/sad_trombone(src)
 
 
-// Captain gets Capdrobe, other heads need some storage
+// City Administrator gets Capdrobe, other heads need some storage
 
 /obj/item/storage/backpack/duffelbag/clothing
 	name = "Clothing Dufflebag"
@@ -797,7 +797,7 @@
 	new /obj/item/clothing/shoes/jackboots/warden(src)
 
 /obj/item/storage/backpack/duffelbag/clothing/sec/head
-	name = "Head of Security's clothing duffelbag"
+	name = "Divisional Lead's clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
 
 /obj/item/storage/backpack/duffelbag/clothing/sec/head/PopulateContents()

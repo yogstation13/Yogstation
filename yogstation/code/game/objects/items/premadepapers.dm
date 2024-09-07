@@ -526,7 +526,7 @@
   * This is the default object.
   * For the RD variant, [click here.][/obj/item/clipboard/yog/paperwork/rd]
   * For the HoS variant, [click here.][/obj/item/clipboard/yog/paperwork/hos]
-  * For the Captain variant, [click here.][/obj/item/clipboard/yog/paperwork/captain]
+  * For the City Administrator variant, [click here.][/obj/item/clipboard/yog/paperwork/captain]
   * For the HoP variant, [click here.][/obj/item/clipboard/yog/paperwork/hop]
   * For the Warden's variant, [click here.][/obj/item/clipboard/yog/paperwork/warden]
   * For the CE's variant, [click here.][/obj/item/clipboard/yog/paperwork/ce]
@@ -570,9 +570,9 @@
 	update_appearance(UPDATE_ICON)
 
 /**
-  * Initializes the Head of Security's clipboard.
+  * Initializes the Divisional Lead's clipboard.
   *
-  * Initializes the Head of Security's clipboard and gives them the following:
+  * Initializes the Divisional Lead's clipboard and gives them the following:
   * [Job Change Certificate][/obj/item/paper/paperwork/jobchangecert]
   * [General Request Form][/obj/item/paper/paperwork/general_request_form]
   * [Complaint Form][/obj/item/paper/paperwork/complaint_form]
@@ -597,9 +597,9 @@
 	update_appearance(UPDATE_ICON)
 
 /**
-  * Initializes the Captain's clipboard.
+  * Initializes the City Administrator's clipboard.
   *
-  * Initializes the Captain's clipboard and gives them the following:
+  * Initializes the City Administrator's clipboard and gives them the following:
   * [Job Change Certificate][/obj/item/paper/paperwork/jobchangecert]
   * [General Request Form][/obj/item/paper/paperwork/general_request_form]
   * [Complaint Form][/obj/item/paper/paperwork/complaint_form]
@@ -610,7 +610,7 @@
   */
 /obj/item/clipboard/yog/paperwork/captain/Initialize(mapload)
 	. = ..()
-	name = "Paperwork (Captain)"
+	name = "Paperwork (City Administrator)"
 	new /obj/item/paper/paperwork/jobchangecert(src)
 	new /obj/item/paper/paperwork/general_request_form(src)
 	new /obj/item/paper/paperwork/complaint_form(src)

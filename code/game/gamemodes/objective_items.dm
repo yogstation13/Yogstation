@@ -27,28 +27,28 @@
 	return ..()
 
 /datum/objective_item/steal/caplaser
-	name = "the Captain's antique laser gun."
+	name = "the City Administrator's antique laser gun."
 	targetitem = /obj/item/gun/energy/laser/captain
 	difficulty = 5
-	excludefromjob = list("Captain")
+	excludefromjob = list("City Administrator")
 
 /datum/objective_item/steal/hoslaser
-	name = "the Head of Security's personal laser gun."
+	name = "the Divisional Lead's personal laser gun."
 	targetitem = /obj/item/gun/energy/e_gun/hos
 	difficulty = 10
-	excludefromjob = list("Head Of Security")
+	excludefromjob = list("Divisional Lead")
 
 /datum/objective_item/steal/handtele
 	name = "a hand teleporter."
 	targetitem = /obj/item/hand_tele
 	difficulty = 5
-	excludefromjob = list("Captain", "Research Director")
+	excludefromjob = list("City Administrator", "Research Director")
 
 /datum/objective_item/steal/jetpack
-	name = "the Captain's jetpack."
+	name = "the City Administrator's jetpack."
 	targetitem = /obj/item/tank/jetpack/oxygen/captain
 	difficulty = 5
-	excludefromjob = list("Captain")
+	excludefromjob = list("City Administrator")
 
 /datum/objective_item/steal/magboots
 	name = "the Chief Engineer's advanced magnetic boots."
@@ -60,7 +60,7 @@
 	name = "the medal of captaincy."
 	targetitem = /obj/item/clothing/accessory/medal/gold/captain
 	difficulty = 5
-	excludefromjob = list("Captain")
+	excludefromjob = list("City Administrator")
 
 /datum/objective_item/steal/hypo
 	name = "the Chief Medical Officer's hypospray deluxe."
@@ -72,7 +72,7 @@
 	name = "the nuclear authentication disk."
 	targetitem = /obj/item/disk/nuclear
 	difficulty = 5
-	excludefromjob = list("Captain")
+	excludefromjob = list("City Administrator")
 
 /datum/objective_item/steal/nukedisc/check_special_completion(obj/item/disk/nuclear/N)
 	return !N.fake
@@ -81,7 +81,7 @@
 	name = "a reflective jacket."
 	targetitem = /obj/item/clothing/suit/armor/laserproof
 	difficulty = 3
-	excludefromjob = list("Head of Security", "Warden")
+	excludefromjob = list("Divisional Lead", "Warden")
 
 /datum/objective_item/steal/aiupload
 	name = "an AI upload board."
@@ -230,7 +230,7 @@
 
 //Old ninja objectives.
 /datum/objective_item/special/pinpointer/nuke
-	name = "the Captain's pinpointer."
+	name = "the City Administrator's pinpointer."
 	targetitem = /obj/item/pinpointer
 	difficulty = 10
 

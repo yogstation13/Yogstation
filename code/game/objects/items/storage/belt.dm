@@ -356,7 +356,7 @@
 	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/belt/security/chief
-	name = "\improper Head of Security's toolbelt"
+	name = "\improper Divisional Lead's toolbelt"
 	desc = "Holds tools, looks snazzy."
 	icon_state = "securitybelt_hos"
 	item_state = "security_hos"

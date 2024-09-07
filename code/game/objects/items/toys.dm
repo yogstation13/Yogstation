@@ -1482,7 +1482,7 @@ obj/item/toy/turn_tracker
 	toysay = "Blaze it!"
 
 /obj/item/toy/figure/captain
-	name = "Captain action figure"
+	name = "City Administrator action figure"
 	icon_state = "captain"
 	toysay = "Any heads of staff?"
 
@@ -1553,7 +1553,7 @@ obj/item/toy/turn_tracker
 	toysay = "Giving out all access!"
 
 /obj/item/toy/figure/hos
-	name = "Head of Security action figure"
+	name = "Divisional Lead action figure"
 	icon_state = "hos"
 	toysay = "Go ahead, make my day."
 

@@ -5,7 +5,7 @@ import { Window } from "../layouts";
 
 const commandJobs = [
   "Head of Personnel",
-  "Head of Security",
+  "Divisional Lead",
   "Chief Engineer",
   "Research Director",
   "Chief Medical Officer",
@@ -48,9 +48,9 @@ export const CrewManifest = (props, context) => {
                         <Icon className="CrewManifest__Icon" name="infinity" />
                       </Tooltip>
                     )}
-                    {crewMember.rank === "Captain" && (
+                    {crewMember.rank === "City Administrator" && (
                       <Tooltip
-                        content="Captain"
+                        content="City Administrator"
                         position="bottom"
                       >
                         <Icon

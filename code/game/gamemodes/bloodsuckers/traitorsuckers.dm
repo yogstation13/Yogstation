@@ -6,7 +6,7 @@
 	traitors_possible = 3 // Hard limit on Traitors if scaling is turned off
 	restricted_jobs = list("AI", "Cyborg", "Synthetic")
 	protected_jobs = list(
-		"Captain", "Head of Personnel", "Head of Security", 
+		"City Administrator", "Head of Personnel", "Divisional Lead", 
 		"Research Director", "Chief Engineer", "Chief Medical Officer", "Curator", 
 		"Warden", "Civil Protection Officer", "Detective", "Brig Physician"
 	)

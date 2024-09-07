@@ -38,11 +38,20 @@
 		/obj/item/holosign_creator/security,
 		/obj/item/shield/riot/tele,
 		/obj/item/ammo_box/magazine/usp9mm,
+		/obj/item/ammo_box/a357,
 		/obj/item/barrier_taperoll/police
 		))
 
 /obj/item/storage/belt/civilprotection/full/PopulateContents()
 	SSwardrobe.provide_type(/obj/item/ammo_box/magazine/usp9mm, src)
+	SSwardrobe.provide_type(/obj/item/restraints/handcuffs, src)
+	SSwardrobe.provide_type(/obj/item/melee/baton/loaded, src)
+	SSwardrobe.provide_type(/obj/item/barrier_taperoll/police, src)
+	SSwardrobe.provide_type(/obj/item/flashlight/seclite, src)
+	update_appearance(UPDATE_ICON)
+
+/obj/item/storage/belt/civilprotection/divisionleadfull/PopulateContents()
+	SSwardrobe.provide_type(/obj/item/ammo_box/a357, src)
 	SSwardrobe.provide_type(/obj/item/restraints/handcuffs, src)
 	SSwardrobe.provide_type(/obj/item/melee/baton/loaded, src)
 	SSwardrobe.provide_type(/obj/item/barrier_taperoll/police, src)

@@ -2,7 +2,7 @@
 ## List of job titles followed by antag rep value, all prefixed with ANTAG_REP. See code/modules/jobs/job_types for titles
 ## Jobs with spaces in them must have an underscore instead
 ## e.g. 
-## ANTAG_REP Captain 10
+## ANTAG_REP City Administrator 10
 ## ANTAG_REP Security_Officer 5
 ## ANTAG_REP Assistant 0
 
@@ -20,7 +20,7 @@
 
 ## Heads are important and envied roles, we should reward people for playing them
 ANTAG_REP AI 6 # AI is an important role but will survive 80% of rounds
-ANTAG_REP Captain 15
+ANTAG_REP City_Administrator 15
 ANTAG_REP Chief_Engineer 10
 ANTAG_REP Chief_Medical_Officer 10
 ANTAG_REP Head_of_Personnel 12

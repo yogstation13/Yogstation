@@ -770,9 +770,9 @@ update_label("John Doe", "Clowny")
 	item_state = "gold_id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
-	registered_name = "Captain"
-	assignment = "Captain"
-	originalassignment = "Captain"
+	registered_name = "City Administrator"
+	assignment = "City Administrator"
+	originalassignment = "City Administrator"
 	registered_age = null
 
 /obj/item/card/id/captains_spare/Initialize(mapload)

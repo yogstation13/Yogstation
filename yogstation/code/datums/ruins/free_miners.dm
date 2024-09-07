@@ -96,11 +96,11 @@
 	id = /obj/item/card/id/freeminer/engi
 
 /obj/effect/mob_spawn/human/free_miner/captain
-	name = "Free Miner Captain"
-	id_job = "Free Miner Captain"
+	name = "Free Miner City Administrator"
+	id_job = "Free Miner City Administrator"
 	flavour_text = "You are a free miner, making a living mining the asteroids that were left behind when Nanotrasen moved from asteroid mining to lavaland. Try to make a profit and show those corporates who the real miners are! Your ID and the ship pilot IDs in the cockpit are the only way to move your ship. Try not to lose them!"
 	short_desc = "You are a free miner captain."
-	assignedrole = "Free Miner Captain"
+	assignedrole = "Free Miner City Administrator"
 	outfit = /datum/outfit/freeminer/captain
 	prompt_name = "the free miner captain"
 

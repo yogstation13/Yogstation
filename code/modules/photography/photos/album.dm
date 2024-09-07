@@ -63,9 +63,6 @@
 /obj/item/storage/photo_album/HoP
 	persistence_id = "HoP"
 
-/obj/item/storage/photo_album/Captain
-	persistence_id = "Captain"
-
 /obj/item/storage/photo_album/CMO
 	persistence_id = "CMO"
 

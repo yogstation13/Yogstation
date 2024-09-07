@@ -14,7 +14,6 @@
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/storage/belt/sabre(src)
 	new /obj/item/door_remote/captain(src)
-	new /obj/item/storage/photo_album/Captain(src)
 	new /obj/item/clipboard/yog/paperwork/captain(src)
 	new /obj/item/radio/security(src)
 
@@ -45,7 +44,7 @@
 	new /obj/item/storage/backpack/duffelbag/clothing/hop(src)
 
 /obj/structure/closet/secure_closet/hos
-	name = "\proper head of security's locker"
+	name = "\proper Divisional Lead's locker"
 	req_access = list(ACCESS_HOS)
 	icon_state = "hos"
 

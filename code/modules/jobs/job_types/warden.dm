@@ -5,11 +5,11 @@
 		they all eventually die."
 	orbit_icon = "handcuffs"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	department_head = list("Head of Security")
+	department_head = list("Divisional Lead")
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the head of security"
+	supervisors = "the Divisional Lead"
 	minimal_player_age = 7
 	exp_requirements = 600
 	exp_type = EXP_TYPE_CREW

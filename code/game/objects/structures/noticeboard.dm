@@ -92,8 +92,8 @@
 // Notice boards for the heads of staff (plus the qm)
 
 /obj/structure/noticeboard/captain
-	name = "Captain's Notice Board"
-	desc = "Important notices from the Captain."
+	name = "City Administrator's Notice Board"
+	desc = "Important notices from the City Administrator."
 	req_access = list(ACCESS_CAPTAIN)
 
 /obj/structure/noticeboard/hop
@@ -107,8 +107,8 @@
 	req_access = list(ACCESS_CE)
 
 /obj/structure/noticeboard/hos
-	name = "Head of Security's Notice Board"
-	desc = "Important notices from the Head of Security."
+	name = "Divisional Lead's Notice Board"
+	desc = "Important notices from the Divisional Lead."
 	req_access = list(ACCESS_HOS)
 
 /obj/structure/noticeboard/cmo

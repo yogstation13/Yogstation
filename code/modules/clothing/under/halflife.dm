@@ -22,6 +22,12 @@
 												'sound/movement/civilprotection/gear5.ogg',\
 												'sound/movement/civilprotection/gear6.ogg'), 75)
 
+/obj/item/clothing/under/combine/civilprotection/divisionallead
+	name = "divisional lead jumpsuit"
+	desc = "A version of the standard civil protection suit with slightly more protection, and red highlights."
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25,ENERGY = 25, BOMB = 25, BIO = 30, RAD = 30, FIRE = 30, ACID = 30, WOUND = 15)
+	icon_state = "divisionallead"
+
 /obj/item/clothing/under/combine/overwatch
 	name = "overwatch jumpsuit"
 	desc = "Full-body suit which includes kevlar weaving to provide extra protection."

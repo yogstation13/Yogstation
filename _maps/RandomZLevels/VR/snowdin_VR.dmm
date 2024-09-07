@@ -9630,7 +9630,7 @@
 /area/awaymission/snowdin/post/broken_shuttle)
 "we" = (
 /mob/living/simple_animal/hostile/skeleton/ice{
-	name = "Captain Bones"
+	name = "City Administrator Bones"
 	},
 /turf/open/floor/plating/asteroid/snow{
 	floor_variance = 0;

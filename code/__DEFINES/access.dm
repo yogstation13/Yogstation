@@ -31,7 +31,7 @@
 #define ACCESS_PERSONAL_LOCKERS "personal_lockers"
 /// Access used for Access-Changing Programs, this one will unlock all options that can be ever given via that program.
 #define ACCESS_CHANGE_IDS "change_ids"
-/// Access used for the Captain's personal quarters in mapping, the spare ID cabinet, and the antique gun (but only on gamma alert or above).
+/// Access used for the City Administrator's personal quarters in mapping, the spare ID cabinet, and the antique gun (but only on gamma alert or above).
 #define ACCESS_CAPTAIN "captain"
 
 
@@ -51,7 +51,7 @@
 #define ACCESS_BRIG_PHYS "brig_phys"
 /// The "Weapons Permit" Access, or the one that lets you walk past secbots without them charging at you as you hold your weaponry.
 #define ACCESS_WEAPONS_PERMIT "weapons_permit"
-/// Access used for the Head of Security's personal quarters in mapping, as well as other HoS-related things.
+/// Access used for the Divisional Lead's personal quarters in mapping, as well as other HoS-related things.
 #define ACCESS_HOS "hos"
 
 
@@ -215,7 +215,7 @@
 #define ACCESS_CENT_TELEPORTER "cent_teleporter"
 #define ACCESS_CENT_CAPTAIN "cent_captain"
 #define ACCESS_CENT_BAR "cent_bar"
-/// Special Ops. Captain's display case, Marauder/Seraph mechs, .
+/// Special Ops. City Administrator's display case, Marauder/Seraph mechs, .
 #define ACCESS_CENT_SPECOPS "cent_specops" ///Remind me to separate to captain, centcom, and syndicate mech access later -SonofSpace
 
 

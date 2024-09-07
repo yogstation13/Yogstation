@@ -115,7 +115,7 @@
 						if(T == "hop") T = "head of personnel"
 						if(T == "cmo") T = "chief medical officer"
 						if(T == "ce")  T = "chief engineer"
-						if(T == "hos") T = "head of security"
+						if(T == "hos") T = "Divisional Lead"
 						if(T == "rd")  T = "research director"
 						if(T == "qm")  T = "quartermaster"
 						if(job_count[T] == 1) //skip jobs with multiple results

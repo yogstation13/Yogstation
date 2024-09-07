@@ -298,9 +298,9 @@
 /obj/machinery/inspector_booth/proc/get_colors_by_job(real_job)
 	var/list/idfluff = list(
 	"Assistant" = list("civillian","green"),
-	"Captain" = list("captain","gold"),
+	"City Administrator" = list("captain","gold"),
 	"Head of Personnel" = list("civillian","silver"),
-	"Head of Security" = list("security","silver"),
+	"Divisional Lead" = list("security","silver"),
 	"Chief Engineer" = list("engineering","silver"),
 	"Research Director" = list("science","silver"),
 	"Chief Medical Officer" = list("medical","silver"),

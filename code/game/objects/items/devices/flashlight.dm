@@ -278,8 +278,8 @@
 
 
 /obj/item/flashlight/seclite
-	name = "seclite"
-	desc = "A robust flashlight used by security."
+	name = "flashlight"
+	desc = "A robust flashlight."
 	icon_state = "seclite"
 	item_state = "seclite"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'

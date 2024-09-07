@@ -755,6 +755,7 @@
 				/obj/item/reagent_containers/food/drinks/bottle/gin,
 				/obj/item/reagent_containers/food/drinks/bottle/hooch,
 				/obj/item/reagent_containers/food/drinks/bottle/vodka,
+				/obj/item/flashlight/seclite,
 				/obj/item/storage/firstaid,
 				/obj/item/storage/firstaid/toxin,
 				/obj/item/cigbutt
@@ -770,6 +771,7 @@
 				/obj/item/gun/ballistic/automatic/mp7 = 3,
 				/obj/item/clothing/suit/armor/civilprotection = 4,
 				/obj/item/radio/off/halflife,
+				/obj/item/gun/ballistic/shotgun/spas12,
 				/obj/item/gun/ballistic/revolver/coltpython,
 				/obj/item/gun/ballistic/bow/crossbow/rebar,
 				/obj/item/gun/ballistic/automatic/pistol/m1911,

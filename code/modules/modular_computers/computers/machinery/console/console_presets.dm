@@ -130,7 +130,7 @@
 
 // ===== HoS =====
 /obj/machinery/modular_computer/console/preset/command/hos
-	name = "head of security's console"
+	name = "Divisional Lead's console"
 	desc = "A stationary computer. This one comes preloaded with security programs."
 	starting_files = list(	new /datum/computer_file/program/chatclient,
 							new /datum/computer_file/program/budgetorders,

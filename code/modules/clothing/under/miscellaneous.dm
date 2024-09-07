@@ -499,16 +499,16 @@
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/hosparademale
-	name = "head of security's parade uniform"
-	desc = "A male head of security's luxury-wear, for special occasions."
+	name = "Divisional Lead's parade uniform"
+	desc = "A male Divisional Lead's luxury-wear, for special occasions."
 	icon_state = "hos_parade_male"
 	item_state = "r_suit"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/hosparadefem
-	name = "head of security's parade uniform"
-	desc = "A female head of security's luxury-wear, for special occasions."
+	name = "Divisional Lead's parade uniform"
+	desc = "A female Divisional Lead's luxury-wear, for special occasions."
 	icon_state = "hos_parade_fem"
 	item_state = "r_suit"
 	fitted = FEMALE_UNIFORM_TOP

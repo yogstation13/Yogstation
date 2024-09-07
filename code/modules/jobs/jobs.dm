@@ -1,7 +1,7 @@
 GLOBAL_LIST_INIT(original_command_positions, list(
-	"Captain",
+	"City Administrator",
 	"Head of Personnel",
-	"Head of Security",
+	"Divisional Lead",
 	"Chief Engineer",
 	"Research Director",
 	"Chief Medical Officer"))
@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(original_civilian_positions, list(
 	"Artist"))
 
 GLOBAL_LIST_INIT(original_security_positions, list(
-	"Head of Security",
+	"Divisional Lead",
 	"Warden",
 	"Detective",
 	"Civil Protection Officer"))
@@ -269,7 +269,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = lowertext(job)
 	job = cap_expand.Replace(job, "captain")
 	job = cmo_expand.Replace(job, "chief medical officer")
-	job = hos_expand.Replace(job, "head of security")
+	job = hos_expand.Replace(job, "Divisional Lead")
 	job = hop_expand.Replace(job, "head of personnel")
 	job = rd_expand.Replace(job, "research director")
 	job = ce_expand.Replace(job, "chief engineer")

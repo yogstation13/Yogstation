@@ -62,10 +62,10 @@
 			if(length(title) > 0)
 				header += SUBHEADER_ANNOUNCEMENT_TITLE(title)
 		if(ANNOUNCEMENT_TYPE_CAPTAIN)
-			header = MAJOR_ANNOUNCEMENT_TITLE("Captain's Announcement")
-			GLOB.news_network.SubmitArticle(text, "Captain's Announcement", "Station Announcements", null)
+			header = MAJOR_ANNOUNCEMENT_TITLE("City Administrator's Announcement")
+			GLOB.news_network.SubmitArticle(text, "City Administrator's Announcement", "Station Announcements", null)
 		if(ANNOUNCEMENT_TYPE_SYNDICATE)
-			header = MAJOR_ANNOUNCEMENT_TITLE("Syndicate Captain's Announcement")
+			header = MAJOR_ANNOUNCEMENT_TITLE("Syndicate City Administrator's Announcement")
 		else
 			header += generate_unique_announcement_header(title, sender_override)
 

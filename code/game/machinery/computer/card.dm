@@ -33,9 +33,9 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		"Assistant",
 		"Cyborg",
 		"Synthetic",
-		"Captain",
+		"City Administrator",
 		"Head of Personnel",
-		"Head of Security",
+		"Divisional Lead",
 		"Chief Engineer",
 		"Research Director",
 		"Chief Medical Officer")
@@ -358,7 +358,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 							get_subordinates("Head of Personnel")
 						if((ACCESS_HOS in user_id.access) && ((target_dept==2) || !target_dept))
 							region_access |= 2
-							get_subordinates("Head of Security")
+							get_subordinates("Divisional Lead")
 						if((ACCESS_CMO in user_id.access) && ((target_dept==3) || !target_dept))
 							region_access |= 3
 							get_subordinates("Chief Medical Officer")

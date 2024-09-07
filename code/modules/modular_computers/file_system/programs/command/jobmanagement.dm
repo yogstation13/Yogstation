@@ -17,9 +17,9 @@
 		"Assistant",
 		"Cyborg",
 		"Synthetic",
-		"Captain",
+		"City Administrator",
 		"Head of Personnel",
-		"Head of Security",
+		"Divisional Lead",
 		"Chief Engineer",
 		"Research Director",
 		"Chief Medical Officer")

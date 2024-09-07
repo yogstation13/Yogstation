@@ -54,7 +54,7 @@
 	item_state = "secconvest"
 
 /obj/item/clothing/suit/armor/vest/hosjacket
-	name = "head of security jacket"
+	name = "Divisional Lead jacket"
 	desc = "All the style of a jacket with all the protection of a armor vest!"
 	worn_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
