@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - tweak: "Break machinery objective take into account multi z stations and only assigns station machines"
