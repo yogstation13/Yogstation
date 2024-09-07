@@ -38,3 +38,18 @@
 	mag_display = TRUE
 	weapon_weight = WEAPON_MEDIUM
 	w_class = WEIGHT_CLASS_BULKY
+
+
+//the crossbow
+
+/obj/item/gun/ballistic/bow/crossbow/rebar
+	name = "Heated Rebar Crossbow"
+	desc = "A handcrafted crossbow that fires heated rods of rebar."
+	icon = 'icons/obj/guns/halflife/projectile.dmi'
+	icon_state = "rebarxbow"
+	item_state = "rebarxbow"
+	//fire_sound = 'sound/items/xbow_lock.ogg'
+	force = 12
+	spread = 0
+	draw_time = 3 SECONDS
+	mag_type = /obj/item/ammo_box/magazine/internal/bow/rebar

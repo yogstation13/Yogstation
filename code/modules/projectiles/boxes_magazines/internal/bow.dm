@@ -29,3 +29,7 @@
 	icon_state = ".50mag"
 	caliber = CALIBER_ARROW
 	max_ammo = 5
+
+/obj/item/ammo_box/magazine/internal/bow/rebar
+	ammo_type = /obj/item/ammo_casing/reusable/arrow/rebar
+	caliber = CALIBER_REBAR

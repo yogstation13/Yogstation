@@ -242,6 +242,15 @@
 	variance = 5
 	projectile_type = /obj/projectile/bullet/reusable/arrow/glass/plasma
 
+/obj/item/ammo_casing/reusable/arrow/rebar
+	name = "rebar"
+	desc = "A piece of rebar. Maybe this can be fired at someone..."
+	icon_state = "rebar"
+	item_state = "glassarrow"
+	embedding = list("embed_chance" = 30, "embedded_fall_chance" = 0)
+	projectile_type = /obj/projectile/bullet/reusable/arrow/rebar
+	caliber = CALIBER_REBAR
+
 /obj/item/ammo_casing/reusable/arrow/magic
 	name = "magic arrow"
 	desc = "An arrow made of magic that can track targets, though it can't track those under the effects of anti-magic. Can make a good throwing weapon in a pinch!"

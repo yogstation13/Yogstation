@@ -129,6 +129,14 @@
 	damage = 25
 	armour_penetration = 45 //18.75 damage against elite hardsuit assuming chest shot (and that's a long reload, draw, projectile speed, etc.)
 
+/obj/projectile/bullet/reusable/arrow/rebar
+	name = "rebar"
+	desc = "A piece of rebar. Maybe this can be fired at someone..."
+	icon_state = "rebar"
+	damage = 50
+	embed_chance = 0.5
+	armour_penetration = 40
+
 /obj/projectile/bullet/reusable/arrow/magic
 	name = "magic arrow"
 	desc = "A magic arrow thats probably tracking you, how nice!"

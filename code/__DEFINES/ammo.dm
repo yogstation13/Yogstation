@@ -34,3 +34,4 @@
 #define CALIBER_ARROW "arrow"		        // Bows
 #define CALIBER_HOOK "hook"			        // Meat hook and other hooks
 #define CALIBER_TENTACLE "tentacle"	        // Ling tentacle
+#define CALIBER_REBAR "rebar" 				//the crossbow
