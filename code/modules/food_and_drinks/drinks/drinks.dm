@@ -522,10 +522,6 @@
 	list_reagents = list(/datum/reagent/consumable/lemon_lime = 30)
 	foodtype = FRUIT
 
-/obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime/Initialize(mapload)
-	. = ..()
-	name = "lemon-lime soda"
-
 /obj/item/reagent_containers/food/drinks/soda_cans/sol_dry
 	name = "Sol Dry"
 	desc = "Maybe this will help your tummy feel better. Maybe not."
@@ -595,6 +591,13 @@
 	list_reagents = list(/datum/reagent/consumable/energy_drink/monkey_energy = 50)
 	foodtype = SUGAR | JUNKFOOD
 
+/obj/item/reagent_containers/food/drinks/soda_cans/icedcoffee
+	name = "cold fusion"
+	desc = "Theoretically impossible to be this good."
+	icon_state = "icedcoffeecan"
+	list_reagents = list(/datum/reagent/consumable/coffee/ice = 30)
+	foodtype = DAIRY | COFFEE
+
 /obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry
 	name = "Sprited Cranberry"
 	desc = "A limited edition winter spiced cranberry drink."
@@ -618,8 +621,11 @@
 	name = "Mystery Fizz"
 	desc = "Delicious soda with the added flair of mystery flavor! Note, Fizzfazz Inc. not liable for any damages caused by drinking this product."
 	icon_state = "mysterysoda"
-	var/static/list/descs = list("The entire label seems to just be a legal disclaimer.","The label reads off over 200 possible flavors."\
-	, "The date on the cap reads off that the bottle expired a decade ago...")
+	var/static/list/descs = list(
+		"The entire label seems to just be a legal disclaimer.",
+		"The label reads off over 200 possible flavors.",
+		"The date on the cap reads off that the bottle expired a decade ago..."
+		)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/mystery/Initialize(mapload)
 	list_reagents = list(get_random_reagent_id() = 30)
