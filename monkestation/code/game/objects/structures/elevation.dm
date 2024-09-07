@@ -1,0 +1,6 @@
+GIVE_TURF_ELEVATED_TRAIT(/obj/machinery/conveyor)
+GIVE_TURF_ELEVATED_TRAIT(/obj/machinery/stasis)
+GIVE_TURF_ELEVATED_TRAIT(/obj/machinery/closet)
+GIVE_TURF_ELEVATED_TRAIT(/obj/machinery/rack)
+GIVE_TURF_ELEVATED_TRAIT(/obj/machinery/table)
+GIVE_TURF_ELEVATED_TRAIT(/obj/machinery/smartfridge)

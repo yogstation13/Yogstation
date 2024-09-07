@@ -14,6 +14,7 @@ GLOBAL_LIST_INIT(typecache_machine_or_structure, typecacheof(list(
 	/obj/structure,
 )))
 
+/* monkestation removal: use TRAIT_TURF_HAS_ELEVATED_STRUCTURE instead
 /// A typecache listing structures that are considered to have surfaces that you can place items on that are higher than the floor. This, of course, should be restricted to /atom/movables. This is primarily used for food decomposition code.
 GLOBAL_LIST_INIT(typecache_elevated_structures, typecacheof(list(
 	/obj/machinery/conveyor,
@@ -24,6 +25,7 @@ GLOBAL_LIST_INIT(typecache_elevated_structures, typecacheof(list(
 	/obj/machinery/smartfridge,
 	/obj/machinery/smartfridge/drying_rack, // Redundant, given above, but this is for the sake of explicitness.
 )))
+monkestation end */
 
 /// A typecache of objects that player controlled, easily accessible, hostile mobs should not be able to attack
 GLOBAL_LIST_INIT(typecache_general_bad_hostile_attack_targets, typecacheof(list(

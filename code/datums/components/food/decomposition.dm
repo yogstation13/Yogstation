@@ -22,10 +22,17 @@
 	var/decomp_result
 	/// Does our food attract ants?
 	var/produce_ants = FALSE
+	/// Typecache of turfs that support decomposition
+	var/static/list/decomp_turf_typecache // monkestation edit: attempt at micro-optimizing
 
 /datum/component/decomposition/Initialize(mapload, decomp_req_handle, decomp_flags = NONE, decomp_result, ant_attracting = FALSE, custom_time = 0)
 	if(!isobj(parent))
 		return COMPONENT_INCOMPATIBLE
+
+	// monkestation start: attempt at micro-optimizing
+	if(!decomp_turf_typecache)
+		decomp_turf_typecache = typecacheof(/turf/open) - (typecacheof(/turf/open/lava) + typecacheof(/turf/open/misc/asteroid))
+	// monkestation end
 
 	src.decomp_flags = decomp_flags
 	src.decomp_result = decomp_result
@@ -77,14 +84,20 @@
 
 	var/turf/open/open_turf = food.loc
 
-	if(!istype(open_turf) || islava(open_turf) || isasteroidturf(open_turf)) //Are we actually in a valid open turf?
+	// monkestation start: heavily optimize this stupid proc
+	if(!is_type_in_typecache(open_turf, decomp_turf_typecache)) //Are we actually in a valid open turf?
 		remove_timer()
 		return
 
-	for(var/atom/movable/content as anything in open_turf.contents)
+	if(HAS_TRAIT(open_turf, TRAIT_ELEVATED_TURF) || HAS_TRAIT(open_turf, TRAIT_TURF_HAS_ELEVATED_STRUCTURE))
+		remove_timer()
+		return
+	/* for(var/atom/movable/content as anything in open_turf.contents)
 		if(GLOB.typecache_elevated_structures[content.type])
 			remove_timer()
 			return
+		CHECK_TICK */
+	// monkestation end
 
 	// If all other checks fail, then begin decomposition.
 	timerid = addtimer(CALLBACK(src, PROC_REF(decompose)), time_remaining, TIMER_STOPPABLE | TIMER_UNIQUE)
