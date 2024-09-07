@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - balance: "Abductor batons now have 3 charges, with a single charge regenerating every 5 seconds. A charge is needed to stun or sleep someone with the baton."
