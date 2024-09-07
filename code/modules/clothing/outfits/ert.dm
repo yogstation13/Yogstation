@@ -397,7 +397,7 @@
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset/civilprotection
-	belt = 
+	belt = /obj/item/storage/belt/civilprotection/overwatch
 	implants = list(/obj/item/implant/mindshield, /obj/item/implant/biosig_ert)
 
 	back = null
