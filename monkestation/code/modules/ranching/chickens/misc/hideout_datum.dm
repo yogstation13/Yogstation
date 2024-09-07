@@ -1,7 +1,7 @@
 /datum/hideout
 	var/list/stored_items = list()
 
-/datum/hideout/Destroy(force, ...)
+/datum/hideout/Destroy(force)
 	. = ..()
 	for(var/obj/item/item as anything in stored_items)
 		remove_item(item)

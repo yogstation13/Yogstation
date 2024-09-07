@@ -74,7 +74,7 @@
 
 	to_chat(owner, span_boldnotice("You establish a [network_name], allowing you to link minds to communicate telepathically."))
 
-/datum/component/mind_linker/Destroy(force, silent)
+/datum/component/mind_linker/Destroy(force)
 	for(var/mob/living/remaining_mob as anything in linked_mobs)
 		unlink_mob(remaining_mob)
 	linked_mobs.Cut()

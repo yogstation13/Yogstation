@@ -19,7 +19,7 @@
 
 	START_PROCESSING(SSobj, src)
 
-/datum/component/liquid_secretion/Destroy(force, silent)
+/datum/component/liquid_secretion/Destroy(force)
 	STOP_PROCESSING(SSobj, src)
 	pre_secrete_callback = null
 	return ..()

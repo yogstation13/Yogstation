@@ -19,7 +19,7 @@
 
 	START_PROCESSING(SSobj, src)
 
-/datum/component/aging/Destroy(force, silent)
+/datum/component/aging/Destroy(force)
 	death_callback = null
 	return ..()
 

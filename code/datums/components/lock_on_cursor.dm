@@ -68,7 +68,7 @@
 		RegisterSignal(mouse_tracker, COMSIG_CLICK, PROC_REF(on_catcher_click))
 	START_PROCESSING(SSfastprocess, src)
 
-/datum/component/lock_on_cursor/Destroy(force, silent)
+/datum/component/lock_on_cursor/Destroy(force)
 	clear_visuals()
 	STOP_PROCESSING(SSfastprocess, src)
 	if(on_click_callback)

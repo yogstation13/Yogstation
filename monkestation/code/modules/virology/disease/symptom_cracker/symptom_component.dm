@@ -36,7 +36,7 @@
 	. = ..()
 	UnregisterSignal(parent, COMSIG_ATOM_EXTRAPOLATOR_ACT)
 
-/datum/component/symptom_genes/Destroy(force, silent)
+/datum/component/symptom_genes/Destroy(force)
 	. = ..()
 	current_user = null
 	current_extrapolator = null

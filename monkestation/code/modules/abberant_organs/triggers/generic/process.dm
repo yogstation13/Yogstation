@@ -9,7 +9,7 @@
 	. = ..()
 	START_PROCESSING(SSabberant, src)
 
-/datum/organ_trigger/process/Destroy(force, ...)
+/datum/organ_trigger/process/Destroy(force)
 	. = ..()
 	STOP_PROCESSING(SSabberant, src)
 

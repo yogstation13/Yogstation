@@ -23,7 +23,7 @@
 	if(istype(parent, /obj/item/bodypart))
 		return
 
-/datum/component/wound_converter/Destroy(force, silent)
+/datum/component/wound_converter/Destroy(force)
 	. = ..()
 	//var/eee = exact_type_conversions[item] || general_type_conversions[item]
 

@@ -17,7 +17,7 @@
 	ADD_TRAIT(parent, TRAIT_LIVING_DRUNK, INNATE_TRAIT)
 	START_PROCESSING(SSobj, src)
 
-/datum/component/living_drunk/Destroy(force, silent)
+/datum/component/living_drunk/Destroy(force)
 	REMOVE_TRAIT(parent, TRAIT_LIVING_DRUNK, INNATE_TRAIT)
 	. = ..()
 

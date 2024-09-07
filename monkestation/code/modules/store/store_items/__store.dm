@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(all_store_datums)
 	/// Our preview sprite.
 	var/icon/dummysprite
 
-/datum/store_manager/Destroy(force, ...)
+/datum/store_manager/Destroy(force)
 	owner = null
 	QDEL_NULL(menu)
 	QDEL_NULL(custom_loadout)

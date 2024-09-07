@@ -116,7 +116,7 @@
 		RegisterSignal(parent, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZE,PROC_REF(post_parent_init))
 	START_PROCESSING(SSobj, src)
 
-/datum/material_stats/Destroy(force, ...)
+/datum/material_stats/Destroy(force)
 	. = ..()
 	STOP_PROCESSING(SSobj, src)
 	for(var/datum/material_trait/trait as anything in material_traits)

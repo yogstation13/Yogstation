@@ -4,7 +4,7 @@
 
 	cooldown_time = 15 SECONDS
 
-/datum/symptom_varient/strength/Destroy(force, ...)
+/datum/symptom_varient/strength/Destroy(force)
 	. = ..()
 	UnregisterSignal(host_symptom, COMSIG_SYMPTOM_TRIGGER)
 

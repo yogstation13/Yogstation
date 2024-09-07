@@ -15,7 +15,7 @@
 	hanging_wall_turf = target_wall
 	on_drop = on_drop_callback
 
-/datum/component/wall_mounted/Destroy(force, silent)
+/datum/component/wall_mounted/Destroy(force)
 	on_drop = null
 	return ..()
 

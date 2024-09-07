@@ -7,7 +7,7 @@
 	///Our very own dust
 	var/obj/effect/sprint_dust/dust = new(null)
 
-/datum/component/carbon_sprint/Destroy(force, silent)
+/datum/component/carbon_sprint/Destroy(force)
 	QDEL_NULL(dust)
 	return ..()
 

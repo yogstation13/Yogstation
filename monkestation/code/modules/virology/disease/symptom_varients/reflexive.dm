@@ -6,7 +6,7 @@
 
 	var/mob/living/host_mob
 
-/datum/symptom_varient/reflexive/Destroy(force, ...)
+/datum/symptom_varient/reflexive/Destroy(force)
 	. = ..()
 	if(host_mob)
 		UnregisterSignal(host_mob, COMSIG_CARBON_TAKE_BRUTE_DAMAGE)

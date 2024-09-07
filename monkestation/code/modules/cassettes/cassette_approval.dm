@@ -74,7 +74,7 @@ GLOBAL_LIST_INIT(cassette_reviews, list())
 
 	var/action_taken = FALSE
 
-/datum/cassette_review/Destroy(force, ...)
+/datum/cassette_review/Destroy(force)
 	. = ..()
 	QDEL_LIST(cassette_data)
 	submitter = null

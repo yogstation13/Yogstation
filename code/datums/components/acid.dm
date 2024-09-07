@@ -64,7 +64,7 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 	sizzle = new(parent, TRUE)
 	START_PROCESSING(SSacid, src)
 
-/datum/component/acid/Destroy(force, silent)
+/datum/component/acid/Destroy(force)
 	STOP_PROCESSING(SSacid, src)
 	if(sizzle)
 		QDEL_NULL(sizzle)

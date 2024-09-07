@@ -11,7 +11,7 @@
 
 	interaction_callback = CALLBACK(parent, on_interaction_callback)
 
-/datum/component/liquids_interaction/Destroy(force, silent)
+/datum/component/liquids_interaction/Destroy(force)
 	interaction_callback = null
 	return ..()
 

@@ -38,7 +38,7 @@ GLOBAL_LIST_EMPTY(polarization_controllers)
 	RegisterSignal(parent, COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL), PROC_REF(on_window_multitool_act))
 
 
-/datum/component/polarization_controller/Destroy(force, silent)
+/datum/component/polarization_controller/Destroy(force)
 	if(id)
 		LAZYREMOVEASSOC(GLOB.polarization_controllers, id, list(src))
 

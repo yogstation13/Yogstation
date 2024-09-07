@@ -143,7 +143,7 @@
 	if(!from_destroy)
 		qdel(src)
 
-/datum/animate_holder/Destroy(force, ...)
+/datum/animate_holder/Destroy(force)
 	remove_data(TRUE)
 	. = ..()
 

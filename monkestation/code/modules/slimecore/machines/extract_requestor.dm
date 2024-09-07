@@ -140,7 +140,7 @@
 /datum/extract_request_data/proc/on_creation()
 	RegisterSignal(host_card, COMSIG_QDELETING, PROC_REF(end_request_qdeleted))
 
-/datum/extract_request_data/Destroy(force, ...)
+/datum/extract_request_data/Destroy(force)
 	UnregisterSignal(host_card, COMSIG_QDELETING)
 	host_card = null
 	linked_console = null

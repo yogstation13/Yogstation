@@ -28,7 +28,7 @@ GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/e
 		particle_effect = new(atom_parent, fire_particles, isitem(atom_parent) ? NONE : PARTICLE_ATTACH_MOB)
 	START_PROCESSING(SSburning, src)
 
-/datum/component/burning/Destroy(force, silent)
+/datum/component/burning/Destroy(force)
 	STOP_PROCESSING(SSburning, src)
 	if(particle_effect)
 		QDEL_NULL(particle_effect)

@@ -75,7 +75,7 @@
 
 	GLOB.experiment_handlers += src
 
-/datum/component/experiment_handler/Destroy(force, silent)
+/datum/component/experiment_handler/Destroy(force)
 	. = ..()
 	GLOB.experiment_handlers -= src
 

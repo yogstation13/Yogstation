@@ -18,7 +18,7 @@
 	///our current_target
 	var/atom/target
 
-/datum/group_planning/Destroy(force, ...)
+/datum/group_planning/Destroy(force)
 	. = ..()
 	finished_mobs = null
 	in_progress_mobs = null

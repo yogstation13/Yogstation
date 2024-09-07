@@ -65,7 +65,7 @@ GLOBAL_LIST_INIT(total_unusuals_per_type, list())
 	RegisterSignal(source_object, COMSIG_ATOM_UPDATE_DESC, PROC_REF(append_unusual))
 	save_unusual_data()
 
-/datum/component/unusual_handler/Destroy(force, silent)
+/datum/component/unusual_handler/Destroy(force)
 	. = ..()
 	UnregisterSignal(source_object, COMSIG_ATOM_UPDATE_DESC)
 

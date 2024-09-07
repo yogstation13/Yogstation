@@ -76,7 +76,7 @@
  * * force set to true to force the deletion to be allowed.
  * * ... an optional list of extra arguments to pass to the proc
  */
-/datum/callback/Destroy(force=FALSE, ...)
+/datum/callback/Destroy(force = FALSE)
 	SHOULD_CALL_PARENT(FALSE)
 	if (force)
 		return ..()

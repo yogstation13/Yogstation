@@ -16,7 +16,7 @@ GLOBAL_LIST_INIT(bluespace_varient_list, list())
 	last_bluespace_id++
 	bluespace_id = last_bluespace_id
 
-/datum/symptom_varient/bluespace/Destroy(force, ...)
+/datum/symptom_varient/bluespace/Destroy(force)
 	. = ..()
 	GLOB.bluespace_varient_list -= src
 

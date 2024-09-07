@@ -17,7 +17,7 @@
 	src.befriend_level = befriend_level
 
 
-/datum/component/friendship_container/Destroy(force, silent)
+/datum/component/friendship_container/Destroy(force)
 	. = ..()
 	befriended_refs = null
 	weakrefed_friends = null

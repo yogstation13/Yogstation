@@ -8,7 +8,7 @@
 	. = ..()
 	owner = creator
 
-/datum/xp_menu/Destroy(force, ...)
+/datum/xp_menu/Destroy(force)
 	. = ..()
 	owner = null
 

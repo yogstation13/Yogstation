@@ -105,7 +105,7 @@
 	ADD_TRAIT(parent, TRAIT_DANCING, trait_source)
 	RegisterSignals(parent, dancing_stop_signals, PROC_REF(stop_dancing))
 
-/datum/component/dancing/Destroy(force, silent)
+/datum/component/dancing/Destroy(force)
 	REMOVE_TRAIT(parent, TRAIT_DANCING, trait_source)
 	//REMOVE_TRAIT(source, TRAIT_IMMOBILIZED, trait_source)
 	if(!HAS_TRAIT(parent, TRAIT_DANCING))

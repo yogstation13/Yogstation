@@ -5,7 +5,7 @@
 	cooldown_time = 5 SECONDS
 	COOLDOWN_DECLARE(next_process)
 
-/datum/symptom_varient/routine/Destroy(force, ...)
+/datum/symptom_varient/routine/Destroy(force)
 	. = ..()
 	STOP_PROCESSING(SSobj, src)
 

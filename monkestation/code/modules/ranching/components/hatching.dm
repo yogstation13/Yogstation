@@ -45,7 +45,7 @@
 
 	START_PROCESSING(SSobj, src)
 
-/datum/component/hatching/Destroy(force, silent)
+/datum/component/hatching/Destroy(force)
 	hatch_callback = null
 	return ..()
 

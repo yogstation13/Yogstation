@@ -17,7 +17,7 @@
 	///the mobs needed to be latch fed in order to mutate - stored in type = amount
 	var/list/latch_needed = list()
 
-/datum/slime_mutation_data/Destroy(force, ...)
+/datum/slime_mutation_data/Destroy(force)
 	. = ..()
 	host = null
 

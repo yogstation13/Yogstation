@@ -25,7 +25,7 @@
 	//generate_combination_strings()
 	generate_sequence()
 
-/datum/cracker_puzzle/Destroy(force, ...)
+/datum/cracker_puzzle/Destroy(force)
 	. = ..()
 	parent = null
 

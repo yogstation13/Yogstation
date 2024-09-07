@@ -72,7 +72,7 @@ GLOBAL_DATUM(cult_ratvar, /obj/ratvar)
 	gods_battle()
 	START_PROCESSING(SSobj, src)
 
-/obj/ratvar/Destroy(force, ...)
+/obj/ratvar/Destroy(force)
 	if(GLOB.cult_ratvar == src)
 		GLOB.cult_ratvar = null
 	STOP_PROCESSING(SSobj, src)

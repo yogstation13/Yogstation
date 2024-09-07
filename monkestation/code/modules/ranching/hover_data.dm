@@ -1,7 +1,7 @@
 /datum/hover_data/chicken_info
 	var/obj/effect/overlay/hover/chicken_egg
 
-/datum/hover_data/chicken_info/Destroy(force, ...)
+/datum/hover_data/chicken_info/Destroy(force)
 	. = ..()
 	qdel(chicken_egg)
 

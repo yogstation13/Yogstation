@@ -8,7 +8,7 @@
 
 	creator = WEAKREF(creator_mob)
 
-/datum/component/vac_tagged/Destroy(force, silent)
+/datum/component/vac_tagged/Destroy(force)
 	UnregisterSignal(parent, list(COMSIG_MOB_FED_ON, COMSIG_QDELETING))
 	. = ..()
 

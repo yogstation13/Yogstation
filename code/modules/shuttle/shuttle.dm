@@ -334,7 +334,7 @@
 	. = ..()
 	SSshuttle.transit_docking_ports += src
 
-/obj/docking_port/stationary/transit/Destroy(force=FALSE)
+/obj/docking_port/stationary/transit/Destroy(force = FALSE)
 	if(force)
 		if(get_docked())
 			log_world("A transit dock was destroyed while something was docked to it.")

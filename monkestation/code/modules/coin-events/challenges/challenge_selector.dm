@@ -9,7 +9,7 @@
 	owner = CLIENT_FROM_VAR(user)
 	owner.challenge_menu = src
 
-/datum/challenge_selector/Destroy(force, ...)
+/datum/challenge_selector/Destroy(force)
 	owner = null
 	return ..()
 

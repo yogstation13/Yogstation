@@ -29,7 +29,7 @@
 	src.disliked_food_types = disliked_food_types
 	src.unhappy_callbacks = unhappy_callbacks
 
-/datum/component/happiness_container/Destroy(force, silent)
+/datum/component/happiness_container/Destroy(force)
 	unhappy_callbacks = null
 	QDEL_NULL(applied_visual)
 	return ..()

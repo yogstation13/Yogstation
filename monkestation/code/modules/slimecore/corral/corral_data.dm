@@ -37,7 +37,7 @@
 	for(var/obj/machinery/corral_corner/corner as anything in corral_corners)
 		RegisterSignal(corner, COMSIG_QDELETING, PROC_REF(start_break))
 
-/datum/corral_data/Destroy(force, ...)
+/datum/corral_data/Destroy(force)
 	QDEL_LIST(corral_connectors)
 	for(var/turf/turf as anything in corral_turfs)
 		if(!QDELETED(turf))

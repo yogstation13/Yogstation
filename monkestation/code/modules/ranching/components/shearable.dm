@@ -34,7 +34,7 @@
 	created_amount = amount
 	src.created = created
 
-/datum/component/shearable/Destroy(force, silent)
+/datum/component/shearable/Destroy(force)
 	regrow = null
 	post_shear = null
 	return ..()

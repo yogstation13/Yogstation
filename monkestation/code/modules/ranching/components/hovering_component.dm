@@ -18,7 +18,7 @@
 	. = ..()
 	UnregisterSignal(parent, COMSIG_ATOM_MOUSE_ENTERED)
 
-/datum/component/hovering_information/Destroy(force, silent)
+/datum/component/hovering_information/Destroy(force)
 	. = ..()
 	QDEL_NULL(hover_information_data)
 
@@ -38,7 +38,7 @@
 /datum/hover_data
 	var/list/images_per_client = list()
 
-/datum/hover_data/Destroy(force, ...)
+/datum/hover_data/Destroy(force)
 	. = ..()
 	if(length(images_per_client))
 		for(var/key in images_per_client)

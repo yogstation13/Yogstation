@@ -60,7 +60,7 @@
 		start_time = world.time
 		QDEL_IN(src, timeout)
 
-/datum/tgui_color_picker/Destroy(force, ...)
+/datum/tgui_color_picker/Destroy(force)
 	SStgui.close_uis(src)
 	. = ..()
 

@@ -10,7 +10,7 @@ GLOBAL_LIST_EMPTY(cached_preround_items)
 	. = ..()
 	ui_interact(user)
 
-/datum/pre_round_store/Destroy(force, ...)
+/datum/pre_round_store/Destroy(force)
 	. = ..()
 	bought_item = null
 

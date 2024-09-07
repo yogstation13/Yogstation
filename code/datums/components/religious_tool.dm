@@ -28,7 +28,7 @@
 	if(override_catalyst_type)
 		catalyst_type = override_catalyst_type
 
-/datum/component/religious_tool/Destroy(force, silent)
+/datum/component/religious_tool/Destroy(force)
 	easy_access_sect = null
 	performing_rite = null
 	catalyst_type = null

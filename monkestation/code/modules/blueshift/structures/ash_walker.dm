@@ -192,7 +192,7 @@
 	RegisterSignal(human_target, COMSIG_MOVABLE_MOVED, PROC_REF(do_move))
 	RegisterSignal(human_target, COMSIG_LIVING_DEATH, PROC_REF(remove_curse))
 
-/datum/component/ash_cursed/Destroy(force, silent)
+/datum/component/ash_cursed/Destroy(force)
 	. = ..()
 	REMOVE_TRAIT(human_target, TRAIT_NO_TELEPORT, REF(src))
 	human_target.remove_movespeed_modifier(/datum/movespeed_modifier/ash_cursed)
@@ -779,7 +779,7 @@
 	RegisterSignal(atom_parent, COMSIG_ATOM_EXAMINE, PROC_REF(check_examine))
 	RegisterSignal(atom_parent, COMSIG_QDELETING, PROC_REF(delete_farm))
 
-/datum/component/simple_farm/Destroy(force, silent)
+/datum/component/simple_farm/Destroy(force)
 	//lets not hard del
 	UnregisterSignal(atom_parent, list(COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_EXAMINE, COMSIG_QDELETING))
 	atom_parent = null

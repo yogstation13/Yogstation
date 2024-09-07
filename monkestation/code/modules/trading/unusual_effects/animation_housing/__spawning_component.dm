@@ -87,7 +87,7 @@
 	if(lifetime)
 		addtimer(CALLBACK(src, PROC_REF(kill_it_with_fire)), lifetime)
 
-/datum/component/particle_spewer/Destroy(force, silent)
+/datum/component/particle_spewer/Destroy(force)
 	. = ..()
 	UnregisterSignal(source_object, list(
 		COMSIG_ITEM_EQUIPPED,

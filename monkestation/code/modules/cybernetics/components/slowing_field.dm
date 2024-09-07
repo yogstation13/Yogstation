@@ -24,7 +24,7 @@
 	AddComponent(/datum/component/connect_range, parent, connections, area_range, TRUE)
 	on_parent_moved()
 
-/datum/component/slowing_field/Destroy(force, silent)
+/datum/component/slowing_field/Destroy(force)
 	. = ..()
 	for(var/atom/a as anything in affected)
 		on_exited_turf(src, a)

@@ -25,7 +25,7 @@
 
 	START_PROCESSING(SSobj, src)
 
-/datum/component/glitching_state/Destroy(force, silent)
+/datum/component/glitching_state/Destroy(force)
 	STOP_PROCESSING(SSobj, src)
 	var/atom/movable/movable = parent
 	movable?.vis_contents -= after_images

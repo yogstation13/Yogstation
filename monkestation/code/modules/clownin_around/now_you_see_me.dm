@@ -37,7 +37,7 @@ GLOBAL_LIST_INIT(hidden_image_holders, list())
 			continue
 		add_image_to_client(the_image, listed_mob.client)
 
-/datum/component/hide_from_people/Destroy(force, silent)
+/datum/component/hide_from_people/Destroy(force)
 	. = ..()
 	GLOB.hidden_image_holders[id] -= the_image
 	for(var/mob/listed_mob as anything in GLOB.player_list)

@@ -10,7 +10,7 @@
 	owner = _owner
 	RegisterSignal()
 
-/datum/mcinterface/Destroy(force, ...)
+/datum/mcinterface/Destroy(force)
 	owner = null
 	ClearConnections()
 	return ..()

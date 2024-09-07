@@ -32,7 +32,7 @@
 
 	START_PROCESSING(SSobj, src)
 
-/datum/component/latch_feeding/Destroy(force, silent)
+/datum/component/latch_feeding/Destroy(force)
 	REMOVE_TRAIT(parent, TRAIT_FEEDING, LATCH_TRAIT)
 	target = null
 	check_and_replace = null

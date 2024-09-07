@@ -48,7 +48,7 @@
 		src.stamina_cost = stamina_cost
 	item_parent = parent
 
-/datum/component/multi_hit/Destroy(force, silent)
+/datum/component/multi_hit/Destroy(force)
 	after_hit_callback = null
 	pre_hit_callback = null
 	return ..()

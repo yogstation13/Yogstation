@@ -3,7 +3,7 @@
 	processes = FALSE
 	var/mob/attached_signal
 
-/datum/component/particle_spewer/movement/Destroy(force, silent)
+/datum/component/particle_spewer/movement/Destroy(force)
 	UnregisterSignal(source_object, COMSIG_MOVABLE_PRE_MOVE)
 	. = ..()
 	UnregisterSignal(attached_signal, COMSIG_MOVABLE_PRE_MOVE)

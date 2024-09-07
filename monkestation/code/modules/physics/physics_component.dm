@@ -121,7 +121,7 @@
 	src.stop_callback = stop_callback
 	set_angle(angle)
 
-/datum/component/movable_physics/Destroy(force, silent)
+/datum/component/movable_physics/Destroy(force)
 	bounce_callback = null
 	stop_callback = null
 	cached_transform = null
