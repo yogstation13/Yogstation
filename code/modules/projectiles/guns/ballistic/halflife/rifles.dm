@@ -49,7 +49,7 @@
 	fire_sound = "sound/weapons/halflife/crossbowfire.ogg"
 	icon_state = "rebarxbow"
 	item_state = "rebarxbow"
-	//fire_sound = 'sound/items/xbow_lock.ogg'
+	vary_fire_sound = FALSE
 	force = 12
 	spread = 0
 	draw_time = 3 SECONDS
