@@ -394,11 +394,10 @@
 	uniform = /obj/item/clothing/under/combine/overwatch
 	suit = /obj/item/clothing/suit/armor/overwatch
 	suit_store = /obj/item/gun/ballistic/automatic/ar2
-	l_pocket = /obj/item/ammo_box/magazine/ar2
-	r_pocket = /obj/item/ammo_box/magazine/ar2
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset/civilprotection
+	belt = 
 	implants = list(/obj/item/implant/mindshield, /obj/item/implant/biosig_ert)
 
 	back = null

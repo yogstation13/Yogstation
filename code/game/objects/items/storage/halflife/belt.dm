@@ -39,6 +39,7 @@
 		/obj/item/shield/riot/tele,
 		/obj/item/ammo_box/magazine/usp9mm,
 		/obj/item/ammo_box/a357,
+		/obj/item/ammo_box/magazine/ar2,
 		/obj/item/barrier_taperoll/police
 		))
 
@@ -55,5 +56,17 @@
 	SSwardrobe.provide_type(/obj/item/restraints/handcuffs, src)
 	SSwardrobe.provide_type(/obj/item/melee/baton/loaded, src)
 	SSwardrobe.provide_type(/obj/item/barrier_taperoll/police, src)
+	SSwardrobe.provide_type(/obj/item/flashlight/seclite, src)
+	update_appearance(UPDATE_ICON)
+
+/obj/item/storage/belt/civilprotection/overwatch
+	name = "overwatch belt"
+	desc = "Heavy duty belt for containing overwatch standard gear."
+
+/obj/item/storage/belt/civilprotection/overwatch/PopulateContents()
+	SSwardrobe.provide_type(/obj/item/grenade/syndieminibomb/bouncer, src)
+	SSwardrobe.provide_type(/obj/item/restraints/handcuffs, src)
+	SSwardrobe.provide_type(/obj/item/ammo_box/magazine/ar2, src)
+	SSwardrobe.provide_type(/obj/item/ammo_box/magazine/ar2, src)
 	SSwardrobe.provide_type(/obj/item/flashlight/seclite, src)
 	update_appearance(UPDATE_ICON)
