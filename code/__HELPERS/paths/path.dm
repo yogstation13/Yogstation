@@ -297,8 +297,10 @@
 	var/incapacitated = FALSE
 	/// Is our mob incorporeal
 	var/incorporeal_move = FALSE
-	/// is our mob a xenofauna or slime
+	/// monkestation addition: is our mob a xenofauna or slime
 	var/xenofauna_or_slime = FALSE
+	/// monkestation addition: do we have TRAIT_GOES_THROUGH_WOODEN_BARRICADES
+	var/goes_thru_barricades = FALSE
 	/// If our mob has a rider, what does it look like
 	var/datum/can_pass_info/rider_info = null
 	/// If our mob is buckled to something, what's it like
@@ -354,6 +356,11 @@
 	if(iscameramob(construct_from))
 		src.camera_type = construct_from.type
 	src.is_bot = isbot(construct_from)
+
+	// monkestation start: add TRAIT_GOES_THROUGH_WOODEN_BARRICADES
+	if(HAS_TRAIT(construct_from, TRAIT_GOES_THROUGH_WOODEN_BARRICADES))
+		goes_thru_barricades = TRUE
+	// monkestation end
 
 	if(construct_from.pulling)
 		src.pulling_info = new(construct_from.pulling, access, no_id, call_depth + 1)

@@ -11,6 +11,6 @@
 		CRASH("Passed non-typepath [typepath] to trim_directional_helper_suffix")
 	var/static/regex/directional_helper_regex
 	if(!directional_helper_regex)
-		directional_helper_regex = new(@"\/directional\/(north|south|east|west)$")
+		directional_helper_regex = new(@"\/(directional\/(north|south|east|west)|uncommon|rare)$")
 	var/replaced = replacetext("[typepath]", directional_helper_regex, "")
 	return text2path(replaced) || typepath

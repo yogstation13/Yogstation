@@ -1,3 +1,9 @@
+/// Sent when an item is stashed in Gary's hideout.
+#define COMSIG_ITEM_GARY_STASHED "gary_stashed"
+
+/// Sent when an item is taken/looted from Gary's hideout.
+#define COMSIG_ITEM_GARY_LOOTED "gary_looted"
+
 /// Called before an item is compressed by a bluespace compression kit: (mob/user, obj/item/compression_kit/kit)
 #define COMSIG_ITEM_PRE_COMPRESS		"item_pre_compress"
 	#define COMPONENT_STOP_COMPRESSION	(1 << 0)

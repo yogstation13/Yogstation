@@ -494,6 +494,11 @@
 /obj/machinery/atmospherics/pipe/smart/simple/yellow/visible,
 /turf/closed/wall/rust,
 /area/station/engineering/atmos)
+"aeN" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/gary,
+/turf/open/floor/iron/dark/textured,
+/area/station/maintenance/starboard/fore)
 "aeS" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -5256,6 +5261,12 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"bNu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/effect/landmark/start/gary/rare,
+/turf/open/floor/iron/showroomfloor,
+/area/station/commons/toilet/restrooms)
 "bNv" = (
 /obj/machinery/telecomms/server/presets/common,
 /obj/machinery/light/directional/west,
@@ -13165,6 +13176,7 @@
 "elc" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/mapping_helpers/broken_floor,
+/obj/effect/landmark/start/gary,
 /turf/open/floor/wood,
 /area/station/maintenance/starboard/fore)
 "ele" = (
@@ -13938,6 +13950,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
 "eyl" = (
+/obj/effect/landmark/start/gary,
 /turf/open/floor/wood,
 /area/station/maintenance/port/fore)
 "eyv" = (
@@ -18145,6 +18158,7 @@
 "fJr" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/landmark/event_spawn,
+/obj/effect/landmark/start/gary,
 /turf/open/floor/carpet/green,
 /area/station/maintenance/port/greater)
 "fJs" = (
@@ -20090,6 +20104,11 @@
 /obj/machinery/digital_clock/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/exit/departure_lounge)
+"gpk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/gary,
+/turf/open/floor/plastic,
+/area/station/maintenance/starboard/fore)
 "gpz" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -26180,7 +26199,6 @@
 "igx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/generic,
-/mob/living/basic/chicken/gary,
 /turf/open/floor/plating,
 /area/station/maintenance/department/bridge)
 "igz" = (
@@ -38028,6 +38046,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/start/hangover,
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/landmark/start/gary/rare,
 /turf/open/floor/iron/dark,
 /area/station/service/library)
 "lSs" = (
@@ -43268,6 +43287,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/landmark/start/gary,
 /turf/open/floor/plating,
 /area/station/maintenance/department/bridge)
 "nAH" = (
@@ -44112,6 +44132,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/landmark/start/gary,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard)
 "nNb" = (
@@ -55796,6 +55817,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
+/obj/effect/landmark/start/gary,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/starboard)
 "ryW" = (
@@ -77029,6 +77051,7 @@
 /obj/effect/landmark/event_spawn,
 /obj/effect/spawner/random/trash/mess,
 /obj/effect/mapping_helpers/broken_floor,
+/obj/effect/landmark/start/gary,
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/bar)
 "yaE" = (
@@ -102067,7 +102090,7 @@ uNO
 uNO
 uNO
 aIh
-wRT
+bNu
 qrv
 sGj
 xqJ
@@ -110278,7 +110301,7 @@ mOH
 lyC
 mzc
 kCx
-izu
+aeN
 agx
 izu
 kXh
@@ -112339,7 +112362,7 @@ wsa
 lRk
 oTm
 dIi
-dIi
+gpk
 dIi
 fvU
 vBv

@@ -34,9 +34,11 @@
 			pawn.fading_leap_down()
 
 	controller.blackboard[BB_GARY_HAS_SHINY] = FALSE
-	pawn.held_item.forceMove(get_turf(pawn))
-	pawn.held_shinies += pawn.held_item.type
-	pawn.held_item.AddComponent(/datum/component/garys_item)
+	var/obj/item/shiny = pawn.held_item
+	shiny?.forceMove(get_turf(pawn))
+	if(!QDELETED(shiny))
+		pawn.held_shinies += shiny.type
+		shiny.AddComponent(/datum/component/garys_item, pawn)
 	pawn.held_item = null
 
 /datum/ai_behavior/setup_hideout
@@ -57,7 +59,7 @@
 			continue
 		var/obj/item/spawned = new shiny_object(current_home)
 		pawn.hideout.add_item(spawned)
-		spawned.AddComponent(/datum/component/garys_item)
+		spawned.AddComponent(/datum/component/garys_item, pawn)
 	finish_action(controller, TRUE)
 
 /datum/ai_behavior/setup_hideout/perform(seconds_per_tick, datum/ai_controller/controller, ...)
@@ -155,6 +157,7 @@
 
 	if(!has_left_pocket && !has_right_pocket && !has_valid_hand)
 		held_item.forceMove(get_turf(target))
+		SEND_SIGNAL(held_item, COMSIG_ITEM_GARY_LOOTED, pawn)
 		finish_action(controller, FALSE)
 		return FALSE
 
@@ -165,6 +168,7 @@
 		target.equip_to_slot_if_possible(held_item, (!has_left_pocket ? ITEM_SLOT_RPOCKET : (prob(50) ? ITEM_SLOT_LPOCKET : ITEM_SLOT_RPOCKET)))
 	else
 		target.put_in_hands(held_item)
+	SEND_SIGNAL(held_item, COMSIG_ITEM_GARY_LOOTED, pawn)
 	finish_action(controller, TRUE)
 
 /datum/ai_behavior/gary_give_item/finish_action(datum/ai_controller/controller, succeeded, ...)

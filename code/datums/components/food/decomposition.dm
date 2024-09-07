@@ -36,11 +36,13 @@
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(handle_movement))
 	RegisterSignals(parent, list(
 		COMSIG_ITEM_PICKUP, //person picks up an item
-		COMSIG_ATOM_ENTERED), //Object enters a storage object (boxes, etc.)
+		COMSIG_ATOM_ENTERED, //Object enters a storage object (boxes, etc.)
+		COMSIG_ITEM_GARY_STASHED), // monkestation edit: gary
 		PROC_REF(picked_up))
 	RegisterSignals(parent, list(
 		COMSIG_ITEM_DROPPED, //Object is dropped anywhere
-		COMSIG_ATOM_EXITED), //Object exits a storage object (boxes, etc)
+		COMSIG_ATOM_EXITED,  //Object exits a storage object (boxes, etc)
+		COMSIG_ITEM_GARY_LOOTED), // monkestation edit: gary
 		PROC_REF(dropped))
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(examine))
 
@@ -63,7 +65,9 @@
 		COMSIG_MOVABLE_MOVED,
 		COMSIG_ITEM_DROPPED,
 		COMSIG_ATOM_EXITED,
-		COMSIG_ATOM_EXAMINE))
+		COMSIG_ATOM_EXAMINE,
+		COMSIG_ITEM_GARY_LOOTED, // monkestation edit: gary
+	))
 
 /datum/component/decomposition/proc/handle_movement()
 	SIGNAL_HANDLER

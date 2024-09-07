@@ -37,6 +37,13 @@
 	if(prob(5) && (world.time > controller.blackboard[BB_GARY_WANDER_COOLDOWN]))
 		controller.queue_behavior(/datum/ai_behavior/travel_towards/gary_goto_target, BB_TRAVEL_DESTINATION)
 
+/datum/ai_controller/chicken/gary/proc/set_home(turf/open/new_home)
+	if(QDELETED(new_home))
+		return
+	blackboard[BB_GARY_HIDEOUT] = list(new_home.x, new_home.y, new_home.z)
+	blackboard[BB_GARY_HIDEOUT_SETTING_UP] = TRUE
+	blackboard[BB_GARY_COME_HOME] = TRUE
+	queue_behavior(/datum/ai_behavior/travel_towards/head_to_hideout, BB_TRAVEL_DESTINATION)
 
 /datum/ai_movement/jps/gary
 	max_pathing_attempts = 25

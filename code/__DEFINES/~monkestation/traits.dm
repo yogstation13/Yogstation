@@ -22,6 +22,8 @@
 #define TRAIT_REMOVED_FROM_MANIFEST "removed_from_manifest"
 /// Station trait for when the clown has bridge access *shudders*
 #define STATION_TRAIT_CLOWN_BRIDGE "clown_bridge"
+/// Things with this trait can pass through wooden barricades.
+#define TRAIT_GOES_THROUGH_WOODEN_BARRICADES "goes_through_wooden_barricades"
 
 // /datum/mind
 /// Prevents any sort of antagonist/brainwashing conversion.

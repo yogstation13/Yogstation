@@ -31,6 +31,7 @@
 	expected_types += /obj/machinery/cryopod
 	expected_types += /obj/machinery/station_map/engineering
 	expected_types += /obj/structure/cassette_rack/prefilled
+	expected_types += /obj/effect/landmark/start/gary
 	ignored_types  += /obj/machinery/cryopod/prison
 	// monkestation end
 

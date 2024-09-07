@@ -68,14 +68,15 @@
 	assign_chicken_icon()
 	if(gender == MALE && breed_name)
 		if(breed_name_male)
-			name = " [breed_name_male]"
+			name = real_name = "[breed_name_male]"
 		else
-			name = "[breed_name] Rooster"
+			name = real_name = "[breed_name] Rooster"
 	else
 		if(breed_name_female)
-			name = " [breed_name_female]"
+			name = real_name = "[breed_name_female]"
 		else
-			name = "[breed_name] Hen"
+			name = real_name = "[breed_name] Hen"
+	update_name_tag()
 
 	build_initial_planning_tree()
 

@@ -20,7 +20,6 @@
 		controller.blackboard[BB_GARY_HIDEOUT] = list(target_turf.x, target_turf.y, target_turf.z)
 		controller.blackboard[BB_GARY_HIDEOUT_SETTING_UP] = TRUE
 		controller.blackboard[BB_GARY_COME_HOME] = TRUE
-
 		controller.queue_behavior(/datum/ai_behavior/travel_towards/head_to_hideout, BB_TRAVEL_DESTINATION)
 		return
 
