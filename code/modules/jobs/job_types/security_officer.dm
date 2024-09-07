@@ -154,7 +154,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 	mask = /obj/item/clothing/mask/gas/civilprotection
 	belt = /obj/item/storage/belt/civilprotection/full
 
-	implants = list(/obj/item/implant/mindshield)
+	implants = list(/obj/item/implant/mindshield, /obj/item/implant/biosig_ert)
 
 
 

@@ -8,7 +8,7 @@
 /obj/item/implant/biosig_ert/Initialize(mapload)
 	. = ..()
 	radio = new(src)
-	radio.keyslot = new/obj/item/encryptionkey/headset_cent // Should broadcast exclusively on the centcom channel.
+	radio.keyslot = new/obj/item/encryptionkey/headset_sec
 	radio.listening = FALSE
 	radio.recalculateChannels()
 
@@ -27,7 +27,7 @@
 
 
 	name = "[mobname]'s Biosignaller"
-	radio.talk_into(src, message, RADIO_CHANNEL_CENTCOM)
+	radio.talk_into(src, message, RADIO_CHANNEL_SECURITY)
 
 /obj/item/implant/biosig_ert/on_mob_death(mob/living/L, gibbed)
 	if(gibbed)
@@ -37,7 +37,7 @@
 
 /obj/item/implant/biosig_ert/get_data()
 	. = {"<b>Implant Specifications:</b><BR>
-		<b>Name:</b>ERT Biosignaller Implant<BR>
+		<b>Name:</b>Combine Biosignaller Implant<BR>
 		<b>Life:</b>Until death<BR>
 		<b>Important Notes:</b>Broadcasts a message to other squad members over an encrypted channel.<BR>
 		<HR>
