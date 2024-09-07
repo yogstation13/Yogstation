@@ -1,0 +1,4 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - mapping: "Fixed many mapping errors in the meteorite ruin on lavaland"
