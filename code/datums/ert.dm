@@ -20,6 +20,14 @@
 	if (!polldesc)
 		polldesc = "a Code [code] Nanotrasen Emergency Response Team"
 
+/datum/ert/overwatch
+	roles = list(/datum/antagonist/ert/overwatch)
+	leader_role = /datum/antagonist/ert/overwatch
+	rename_team = "Overwatch Strike Team"
+	code = "Delta"
+	mission = "Stabilize the city, detain city officials, kill all citizens who do not comply."
+	polldesc = "an elite Overwatch Strike Team"
+
 /datum/ert/blue
 	opendoors = FALSE
 	code = "Blue"

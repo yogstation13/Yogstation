@@ -69,6 +69,8 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 			It's made to withstand the strength of any blast, and is too complex to be deconstructed by normal means."
 
 /turf/closed/indestructible/syndicate
+	name = "combine divider wall"
+	desc = "An incredibly strong, near unbreakable wall set up by the combine."
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
 	icon_state = "plastitanium_wall-0"
 	base_icon_state = "plastitanium_wall"

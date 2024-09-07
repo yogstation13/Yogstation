@@ -91,6 +91,8 @@
 			on = !on
 			icon_state = "forcefield"
 
+
+//for semi-secure areas. Labor lead, city admin, metropolice, and perhaps trusted citizens may be allowed in.
 /obj/machinery/turnstile/brig/halflife/forcefield
 	name = "Combine Forcefield"
 	desc = "A forcefield which only allows those to pass who have proper access, or if you enter from a certain side. You may be able to turn it off with the proper access."
@@ -110,7 +112,7 @@
 	desc = "A forcefield which only allows those to pass who have proper access. You may be able to turn it off with the proper access."
 	directional = FALSE
 
-//highest security areas, only
+//highest security areas, only for the divisional lead and city admin
 /obj/machinery/turnstile/brig/halflife/forcefield/armory
 	req_access = list(ACCESS_ARMORY)
 

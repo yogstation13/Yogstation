@@ -75,9 +75,10 @@
 /datum/antagonist/ert/proc/update_name()
 	owner.current.fully_replace_character_name(owner.current.real_name,"[role] [pick(name_source)]")
 
-/datum/antagonist/ert/deathsquad/New()
+/datum/antagonist/ert/overwatch/New()
 	. = ..()
-	name_source = GLOB.commando_names
+	name_source = "OTA [rand(111,999)]"
+	outfit = /datum/outfit/ert/overwatch
 
 /datum/antagonist/ert/deathsquad/apply_innate_effects(mob/living/mob_override)
 	ADD_TRAIT(owner, TRAIT_DISK_VERIFIER, DEATHSQUAD_TRAIT)

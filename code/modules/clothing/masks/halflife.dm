@@ -73,3 +73,10 @@
 /obj/item/clothing/mask/gas/civilprotection/on_mob_death()
 	. = ..()
 	playsound(loc, pick(death_sounds), 50, 0) //lost biosignal for protection team unit 4, remaining units contain.
+
+/obj/item/clothing/mask/gas/civilprotection/overwatch
+	name = "overwatch soldier mask"
+	desc = "Heavy duty armored mask for the overwatch transhuman team."
+	icon_state = "overwatch"
+	item_state = "swat"
+	armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 20, BIO = 80, RAD = 80, FIRE = 80, ACID = 80, WOUND = 5)

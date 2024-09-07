@@ -31,9 +31,20 @@
 /obj/item/clothing/under/combine/overwatch
 	name = "overwatch jumpsuit"
 	desc = "Full-body suit which includes kevlar weaving to provide extra protection."
-	icon_state = "rsecurity"
-	item_state = "r_suit"
+	icon_state = "overwatch"
+	item_state = "syndicate-black"
+	has_sensor = LOCKED_SENSORS
 	armor = list(MELEE = 25, BULLET = 25, LASER = 25,ENERGY = 25, BOMB = 25, BIO = 30, RAD = 30, FIRE = 30, ACID = 30, WOUND = 15)
+
+/obj/item/clothing/under/combine/overwatch/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/squeak, list('sound/movement/overwatch/gear1.ogg',\
+												'sound/movement/overwatch/gear2.ogg',\
+												'sound/movement/overwatch/gear3.ogg',\
+												'sound/movement/overwatch/gear4.ogg',\
+												'sound/movement/overwatch/gear5.ogg',\
+												'sound/movement/overwatch/gear6.ogg'), 75)
+
 
 /obj/item/clothing/under/combine/overwatch/red
 	name = "overwatch jumpsuit"
