@@ -127,7 +127,7 @@
 
 /datum/record/crew/Destroy()
 	GLOB.manifest.general -= src
-	QDEL_LAZYLIST(record_photos)
+	QDEL_LAZYASSOCLIST(record_photos)
 	return ..()
 
 /**

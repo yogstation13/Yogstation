@@ -7,7 +7,7 @@
 	gender = FEMALE
 
 	maxHealth = 15
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC | MOB_BEAST
 
 	icon = 'monkestation/icons/mob/ranching/chickens.dmi'
 	icon_state = "chicken_white"

@@ -424,13 +424,12 @@
 
 	new/obj/effect/decal/cleanable/food/salt(exposed_turf)
 
-/datum/reagent/consumable/salt/expose_mob(mob/living/exposed_mob, methods, reac_volume)
+/datum/reagent/consumable/salt/expose_mob(mob/living/carbon/exposed_carbon, methods, reac_volume)
 	. = ..()
-	var/mob/living/carbon/carbies = exposed_mob
-	if(!(methods & (PATCH|TOUCH|VAPOR)))
+	if(!iscarbon(exposed_carbon) || !(methods & (PATCH|TOUCH|VAPOR)))
 		return
-	for(var/datum/wound/iter_wound as anything in carbies.all_wounds)
-		iter_wound.on_salt(reac_volume, carbies)
+	for(var/datum/wound/iter_wound as anything in exposed_carbon.all_wounds)
+		iter_wound.on_salt(reac_volume, exposed_carbon)
 
 // Salt can help with wounds by soaking up fluid, but undiluted salt will also cause irritation from the loose crystals, and it might soak up the body's water as well!
 // A saltwater mixture would be best, but we're making improvised chems here, not real ones.

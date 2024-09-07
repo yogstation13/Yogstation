@@ -116,10 +116,11 @@
 	return ..()
 
 /obj/item/organ/external/remove_from_limb()
-	ownerlimb.external_organs -= src
-	ownerlimb.remove_bodypart_overlay(bodypart_overlay)
-	if(ownerlimb.owner && external_bodytypes)
-		ownerlimb.synchronize_bodytypes(ownerlimb.owner)
+	if(!QDELETED(ownerlimb))
+		ownerlimb.external_organs -= src
+		ownerlimb.remove_bodypart_overlay(bodypart_overlay)
+		if(ownerlimb.owner && external_bodytypes)
+			ownerlimb.synchronize_bodytypes(ownerlimb.owner)
 	ownerlimb = null
 	return ..()
 

@@ -60,11 +60,10 @@
 		return FALSE
 	if(!owner_dna)//weird edge cases where speaker with no DNA would be able to communicate with lawbringer
 		return FALSE
-	if(iscarbon(speaker))
-		var/mob/living/carbon/C = speaker
-		if(!C.dna && !C.dna.unique_enzymes)
-			return FALSE
-		if(C.dna.unique_enzymes != owner_dna)
+	if(isliving(speaker))
+		var/mob/living/living_speaker = speaker
+		var/unique_enzymes = living_speaker.has_dna()?.unique_enzymes
+		if(!unique_enzymes || unique_enzymes != owner_dna)
 			return FALSE
 	else
 		return FALSE
@@ -160,11 +159,11 @@
 	if(!iscarbon(user))
 		balloon_alert(user, "invalid organism")
 		return
-	var/mob/living/carbon/C = user
 	var/voice = null
-	if(C.dna && C.dna.unique_enzymes)
+	var/unique_enzymes = user.has_dna()?.unique_enzymes
+	if(unique_enzymes)
 		if(!owner_dna)
-			owner_dna = C.dna.unique_enzymes
+			owner_dna = unique_enzymes
 			balloon_alert(user, "biometric lock engaged")
 			new /obj/item/paper/guides/lawbringer(get_turf(src))
 			user.visible_message(span_notice("The [src] prints out a sheet of paper from its authenticator"))
@@ -179,7 +178,7 @@
 
 			playsound(src, voice, 50, FALSE, -2)
 			return
-		if(C.dna.unique_enzymes == owner_dna)
+		if(unique_enzymes == owner_dna)
 			if(locked)
 				balloon_alert(user, "firing mode lock disengaged")
 				locked = FALSE
@@ -312,15 +311,14 @@
 /obj/item/firing_pin/lawbringer/proc/updatepin(mob/living/user)
 	if(!iscarbon(user))//should probably never happen
 		return
-	var/mob/living/carbon/C = user
-	owner_dna = C.dna.unique_enzymes
+	owner_dna = user.has_dna()?.unique_enzymes
 
 /obj/item/firing_pin/lawbringer/pin_auth(mob/living/carbon/user)
 	if(!iscarbon(user))
 		return FALSE
-	if(user && user.dna && user.dna.unique_enzymes)
-		if(user.dna.unique_enzymes == owner_dna)
-			return TRUE
+	var/unique_enzymes = user.has_dna()?.unique_enzymes
+	if(unique_enzymes && user.dna.unique_enzymes == owner_dna)
+		return TRUE
 	return FALSE
 
 /obj/item/firing_pin/lawbringer/auth_fail(mob/living/carbon/user)

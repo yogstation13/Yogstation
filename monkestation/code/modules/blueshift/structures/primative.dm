@@ -725,7 +725,7 @@ GLOBAL_LIST_INIT(stone_recipes, list ( \
 
 	for(var/target_item as anything in contents)
 		var/obj/item/food/grown/food_item = target_item
-		if(food_item.mill_reagent)
+		if(istype(food_item) && food_item.mill_reagent)
 			reagents.add_reagent(food_item.mill_reagent, food_item.seed.potency * 0.2)
 		seedify(target_item, t_max = 1)
 

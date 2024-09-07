@@ -96,7 +96,7 @@
 /obj/machinery/media/jukebox/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 
-	if(default_deconstruction_screwdriver(user, W))
+	if(default_deconstruction_screwdriver(user, "[state_base]-broken", state_base, W))
 		return
 	if(default_deconstruction_crowbar(W))
 		return

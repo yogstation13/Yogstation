@@ -147,7 +147,7 @@
 		span_hear("You hear a short mechanical noise."))
 
 	user.transferItemToLoc(active_item, src, TRUE)
-	UnregisterSignal(active_item, COMSIG_ITEM_ATTACK_SELF)
+	UnregisterSignal(active_item, list(COMSIG_ITEM_ATTACK_SELF, COMSIG_ITEM_ATTACK_SELF_SECONDARY))
 	active_item = null
 	playsound(get_turf(user), retract_sound, 50, TRUE)
 	return TRUE

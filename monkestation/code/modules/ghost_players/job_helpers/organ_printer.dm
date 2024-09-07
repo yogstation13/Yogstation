@@ -31,10 +31,12 @@
 			choice_list = all_bodyparts
 
 	var/atom/second_choice = tgui_input_list(user, "Choose what to fabricate", "[choice]", choice_list)
+	if(!second_choice || !ispath(second_choice, /obj/item))
+		return
 
 	new second_choice(get_turf(src))
 	say("Organic Matter Fabricated")
-	playsound(src, 'sound/machines/ding.ogg', 50, TRUE)
+	playsound(src, 'sound/machines/ding.ogg', vol = 50, vary = TRUE)
 
 
 /obj/structure/organ_creator/attackby(obj/item/attacking_item, mob/user, params)
@@ -45,4 +47,4 @@
 		return
 	qdel(attacking_item)
 	say("Organic Matter Reclaimed")
-	playsound(src, 'sound/machines/ding.ogg', 50, TRUE)
+	playsound(src, 'sound/machines/ding.ogg', vol = 50, vary = TRUE)

@@ -142,12 +142,10 @@
 		recompile_ai_tree()
 
 /mob/living/basic/slime/death(gibbed)
-	. = ..()
-	if(buckled)
-		buckled?.unbuckle_all_mobs()
+	buckled?.unbuckle_mob(src, force = TRUE)
+	return ..()
 
 /mob/living/basic/slime/Destroy()
-	. = ..()
 	for(var/datum/slime_trait/trait as anything in slime_traits)
 		remove_trait(trait)
 	UnregisterSignal(src, list(
@@ -162,6 +160,7 @@
 		qdel(mutation)
 
 	QDEL_NULL(current_color)
+	return ..()
 
 /mob/living/basic/slime/mob_try_pickup(mob/living/user, instant)
 	if(!SEND_SIGNAL(src, COMSIG_FRIENDSHIP_CHECK_LEVEL, user, FRIENDSHIP_FRIEND))
@@ -188,7 +187,7 @@
 
 /mob/living/basic/slime/resolve_right_click_attack(atom/target, list/modifiers)
 	if(GetComponent(/datum/component/latch_feeding))
-		unbuckle_all_mobs()
+		buckled?.unbuckle_mob(src, force = TRUE)
 		return
 	else if(CanReach(target) && !HAS_TRAIT(target, TRAIT_LATCH_FEEDERED))
 		AddComponent(/datum/component/latch_feeding, target, TOX, 2, 4, FALSE, CALLBACK(src, TYPE_PROC_REF(/mob/living/basic/slime, latch_callback), target))
@@ -469,15 +468,13 @@
 /mob/living/basic/slime/Life(seconds_per_tick, times_fired)
 	if(isopenturf(loc))
 		var/turf/open/my_our_turf = loc
-		if(my_our_turf.pollution)
-			my_our_turf.pollution.touch_act(src)
+		my_our_turf.pollution?.touch_act(src)
 	. = ..()
 
 /mob/living/basic/slime/proc/apply_water()
-	adjustBruteLoss(rand(15,20))
-	if(!client)
-		if(buckled)
-			unbuckle_mob(buckled, TRUE)
+	adjustBruteLoss(rand(15, 20))
+	if(QDELETED(client))
+		buckled?.unbuckle_mob(src, force = TRUE)
 	return
 
 /mob/living/basic/slime/proc/latch_callback(mob/living/target)

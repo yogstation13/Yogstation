@@ -6,7 +6,7 @@ GLOBAL_DATUM(current_eminence, /mob/living/eminence) //set to the current eminen
 	desc = "An entity forever bound to Rat'var, acting upon his will."
 	icon = 'monkestation/icons/obj/clock_cult/clockwork_effects.dmi'
 	icon_state = "eminence"
-	mob_biotypes = list(MOB_SPIRIT)
+	mob_biotypes = MOB_SPIRIT
 	mouse_opacity = MOUSE_OPACITY_ICON
 	move_on_shuttle = TRUE
 	invisibility = INVISIBILITY_OBSERVER

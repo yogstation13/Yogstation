@@ -474,13 +474,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	if(ambient_buzz != old_area.ambient_buzz)
 		L.refresh_looping_ambience()
 
-	if(isliving(arrived))
-		if(SSparticle_weather.running_eclipse_weather || SSparticle_weather.running_weather)
-			if(SSparticle_weather.running_eclipse_weather && SSmapping.level_has_all_traits(arrived.z, list(ZTRAIT_ECLIPSE)))
-				SSparticle_weather.running_eclipse_weather.weather_sound_effect(arrived)
-			if(SSparticle_weather.running_weather && SSmapping.level_has_all_traits(arrived.z, list(ZTRAIT_STATION)))
-				SSparticle_weather.running_weather.weather_sound_effect(arrived)
-
 ///Tries to play looping ambience to the mobs.
 /mob/proc/refresh_looping_ambience()
 	SIGNAL_HANDLER

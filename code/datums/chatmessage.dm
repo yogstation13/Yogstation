@@ -68,15 +68,17 @@
 	. = ..()
 	if (!istype(target))
 		CRASH("Invalid target given for chatmessage")
-	if(QDELETED(owner) || !istype(owner) || !owner.client)
+	if(!istype(owner))
 		stack_trace("/datum/chatmessage created with [isnull(owner) ? "null" : "invalid"] mob owner")
+		qdel(src)
+	else if(QDELING(owner) || QDELETED(owner.client)) // honestly they prolly just disconnected at a funny time or something
 		qdel(src)
 		return
 	INVOKE_ASYNC(src, PROC_REF(generate_image), text, target, owner, language, extra_classes, lifespan)
 
 /datum/chatmessage/Destroy()
 	remove_from_queue()
-	if (!QDELING(owned_by))
+	if (!QDELETED(owned_by))
 		if(REALTIMEOFDAY < animate_start + animate_lifespan)
 			stack_trace("Del'd before we finished fading, with [(animate_start + animate_lifespan) - REALTIMEOFDAY] time left")
 

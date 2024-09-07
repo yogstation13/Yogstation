@@ -114,6 +114,7 @@ GLOBAL_VAR(antag_prototypes)
 				GLOB.antag_prototypes[cat_id] = list(A)
 			else
 				GLOB.antag_prototypes[cat_id] += A
+			GLOB.antagonists -= A // monkestation edit: don't store the prototypes with actual antags
 	sortTim(GLOB.antag_prototypes, GLOBAL_PROC_REF(cmp_text_asc)) //monkestation edit
 	sortTim(GLOB.antag_prototypes, GLOBAL_PROC_REF(cmp_text_asc),associative=TRUE)
 

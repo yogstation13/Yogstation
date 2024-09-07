@@ -179,7 +179,7 @@ GLOBAL_PROTECT(href_token)
 		owner.remove_admin_verbs()
 		owner.holder = null
 		GLOB.mentors -= owner
-		owner.mentor_datum.owner = null
+		owner.mentor_datum?.owner = null
 		owner.mentor_datum = null
 		owner = null
 

@@ -432,9 +432,13 @@ GLOBAL_LIST_EMPTY(siren_objects)
 				var/weather_message = weather_warnings["message"]
 				message += weather_message
 			for(var/mob/living/carbon/human/affected_human in GLOB.alive_mob_list)
-				if(!affected_human.stat && affected_human.client && (affected_human.z in affected_zlevels))
-					affected_human.playsound_local('monkestation/code/modules/outdoors/sound/effects/radiostatic.ogg', affected_human.loc, 25, FALSE, mixer_channel = CHANNEL_MACHINERY)
-					affected_human.play_screen_text("<span class='langchat' style=font-size:16pt;text-align:center valign='top'><u>Weather Alert:</u></span><br>" + message["human"], /atom/movable/screen/text/screen_text/command_order, rgb(103, 214, 146))
+				if(affected_human.stat || QDELETED(affected_human.client))
+					continue
+				var/turf/affected_turf = get_turf(affected_human)
+				if(!(affected_turf?.z in affected_zlevels))
+					continue
+				affected_human.playsound_local('monkestation/code/modules/outdoors/sound/effects/radiostatic.ogg', affected_human.loc, 25, FALSE, mixer_channel = CHANNEL_MACHINERY)
+				affected_human.play_screen_text("<span class='langchat' style=font-size:16pt;text-align:center valign='top'><u>Weather Alert:</u></span><br>" + message["human"], /atom/movable/screen/text/screen_text/command_order, rgb(103, 214, 146))
     return FALSE
 
 /datum/looping_sound/dust_storm

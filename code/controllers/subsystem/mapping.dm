@@ -341,9 +341,9 @@ Used by the AI doomsday and the self-destruct nuke.
 
 /datum/controller/subsystem/mapping/proc/determine_fake_sale()
 	if(length(SSmapping.levels_by_all_traits(list(ZTRAIT_STATION, ZTRAIT_NOPARALLAX))))
-		GLOB.arcade_prize_pool += /obj/item/stack/tile/fakeice/loaded
+		GLOB.arcade_prize_pool[/obj/item/stack/tile/fakeice/loaded] = 1 // monkestation edit: fix null weight
 	else
-		GLOB.arcade_prize_pool += /obj/item/stack/tile/fakespace/loaded
+		GLOB.arcade_prize_pool[/obj/item/stack/tile/fakespace/loaded] = 1 // monkestation edit: fix null weight
 
 
 /datum/controller/subsystem/mapping/Recover()

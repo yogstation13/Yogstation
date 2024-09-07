@@ -50,10 +50,10 @@
 /mob/Destroy()
 	vis_contents -= name_tag
 	QDEL_NULL(name_tag)
-	if(client || shadow)
+	if(shadow)
 		client?.screen -= shadow
 		shadow.UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED)
-		hud_used?.always_visible_inventory -= shadow
+		hud_used.always_visible_inventory -= shadow
 		QDEL_NULL(shadow)
 	return ..()
 

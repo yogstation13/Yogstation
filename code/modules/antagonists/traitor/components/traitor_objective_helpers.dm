@@ -42,12 +42,12 @@
 /datum/component/traitor_objective_register/proc/on_fail(datum/traitor_objective/source)
 	SIGNAL_HANDLER
 	var/datum/traitor_objective/objective = parent
-	objective.fail_objective(penalty)
+	objective?.fail_objective(penalty)
 
 /datum/component/traitor_objective_register/proc/on_success()
 	SIGNAL_HANDLER
 	var/datum/traitor_objective/objective = parent
-	objective.succeed_objective()
+	objective?.succeed_objective()
 
 /datum/component/traitor_objective_register/proc/delete_self()
 	SIGNAL_HANDLER
