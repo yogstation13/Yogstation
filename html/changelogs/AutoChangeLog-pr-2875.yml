@@ -1,6 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - code_imp: "Cleaned up some code related to sign language."
-  - qol: "Sign language messages won't be italicized in low-pressure."
-  - bugfix: "Blood Cult hand spells will no longer interfere with sign language, consistent with other touch spells."

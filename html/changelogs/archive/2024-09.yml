@@ -138,3 +138,35 @@
   catmanpop:
   - qol: Chemical Dispenser now actually upgrades with manipulators instead of a dump
       at T4 and adds a few more
+2024-09-07:
+  Absolucy:
+  - refactor: Heavily optimized code related to food decomposition.
+  - code_imp: Cleaned up some code related to sign language.
+  - qol: Sign language messages won't be italicized in low-pressure.
+  - bugfix: Blood Cult hand spells will no longer interfere with sign language, consistent
+      with other touch spells.
+  - rscadd: Gary now spawns on all maps.
+  - rscadd: Gary will usually spawn near some pre-set locations scattered around maints,
+      however they can rarely choose a completely random location in maints!
+  - rscadd: Gary is now immune to shocks, and can pass through grilles, flaps, and
+      wooden barricades.
+  - qol: Gary is now always visible from the ghost orbit menu.
+  - bugfix: Fixed some minor runtime errors.
+  - bugfix: Holomap visualizations of meteor shield coverage on multi-z maps are more
+      accurate now.
+  - bugfix: Empty blood brother teams will now be cleaned up, instead of clogging
+      up the roundend report.
+  - bugfix: (Melbert) Spawning on a table or other elevated object does not offset
+      you forever
+  - bugfix: (Comxy) Fixes Star Gazer getting buckled.
+  - image: (Comxy) Removes Star Gazer alpha pixels.
+  - balance: Abductor batons now have 3 charges, with a single charge regenerating
+      every 5 seconds. A charge is needed to stun or sleep someone with the baton.
+  Absolucy, LT3, Majkl-J:
+  - code_imp: Added TGUI mobility check bypass.
+  - qol: You can now use your PDA while laying down.
+  MrBagHead:
+  - rscadd: Abductor telepads can now send plushies, adding more opportunities for
+      fun interactions.
+  ThePooba:
+  - bugfix: stop centcom breaking

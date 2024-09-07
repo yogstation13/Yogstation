@@ -1,8 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Holomap visualizations of meteor shield coverage on multi-z maps are more accurate now."
-  - bugfix: "Empty blood brother teams will now be cleaned up, instead of clogging up the roundend report."
-  - bugfix: "(Melbert) Spawning on a table or other elevated object does not offset you forever"
-  - bugfix: "(Comxy) Fixes Star Gazer getting buckled."
-  - image: "(Comxy) Removes Star Gazer alpha pixels."

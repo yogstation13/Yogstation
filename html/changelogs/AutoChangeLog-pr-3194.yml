@@ -1,7 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - rscadd: "Gary now spawns on all maps."
-  - rscadd: "Gary will usually spawn near some pre-set locations scattered around maints, however they can rarely choose a completely random location in maints!"
-  - rscadd: "Gary is now immune to shocks, and can pass through grilles, flaps, and wooden barricades."
-  - qol: "Gary is now always visible from the ghost orbit menu."
