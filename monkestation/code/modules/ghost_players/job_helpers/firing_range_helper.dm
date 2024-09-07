@@ -43,6 +43,7 @@
 	)
 	blacklisted_types = list(
 		/obj/item/ammo_box/magazine/internal,
+		/obj/item/gun/magic/artifact,
 		/obj/item/gun/energy/e_gun/dragnet,
 		/obj/item/gun/energy/ionrifle,
 		/obj/item/gun/energy/laser/instakill,
