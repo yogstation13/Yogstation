@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY_TYPED(meteor_shield_fields, /datum/proximity_monitor/advanced/
 /datum/proximity_monitor/advanced/meteor_shield/setup_field_turf(turf/open/target)
 	if(!isgroundlessturf(target))
 		return
-	if(true_host.check_los(get_turf(true_host), target))
+	if(true_host.check_los(get_turf(host), target))
 		ADD_TRAIT(target, TRAIT_COVERED_BY_METEOR_SHIELD, REF(src))
 		target.AddElement(/datum/element/meteor_shield_coverage)
 
