@@ -13,6 +13,9 @@
 	idle_power_usage = 2
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	layer = OPEN_DOOR_LAYER
+	var/forcefield = FALSE
+	var/on = TRUE
+	var/directional = TRUE //whether or not it actually permits one-way access.
 
 /obj/machinery/turnstile/brig
 	name = "Brig turnstile"
@@ -23,7 +26,10 @@
 
 /obj/machinery/turnstile/Initialize(mapload)
 	. = ..()
-	icon_state = "turnstile"
+	if(forcefield)
+		icon_state = "forcefield"
+	else
+		icon_state = "turnstile"
 
 /obj/machinery/turnstile/can_atmos_pass(turf/target_turf, vertical = FALSE)
 	return TRUE
@@ -32,13 +38,21 @@
 	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return TRUE
+	if(!on) //you can pass freely if it is off...
+		return TRUE
 	if(istype(mover, /mob/living/simple_animal/bot))
 		flick("operate", src)
-		playsound(src,'sound/items/ratchet.ogg',50,0,3)
+		if(forcefield)
+			playsound(src,'sound/halflifesounds/halflifeeffects/forcefieldbuzz.ogg',50,0,3)
+		else
+			playsound(src,'sound/items/ratchet.ogg',50,0,3)
 		return TRUE
 	else if (!isliving(mover) && !istype(mover, /obj/vehicle/ridden/wheelchair))
 		flick("deny", src)
-		playsound(src,'sound/machines/deniedbeep.ogg',50,0,3)
+		if(forcefield)
+			playsound(src,'sound/halflifesounds/halflifeeffects/forcefieldbuzz.ogg',50,0,3)
+		else
+			playsound(src,'sound/machines/deniedbeep.ogg',50,0,3)
 		return FALSE
 	var/allowed = allowed(mover)
 	//Sec can drag you out unceremoniously.
@@ -53,11 +67,53 @@
 	if(iscarbon(mover))
 		var/mob/living/carbon/C = mover
 		is_handcuffed = C.handcuffed
-	if((get_dir(loc, mover.loc) == dir && !is_handcuffed) || allowed) //Make sure looking at appropriate border, loc is first so the turnstyle faces the mover
+	if((get_dir(loc, mover.loc) == dir && !is_handcuffed && directional) || allowed) //Make sure looking at appropriate border, loc is first so the turnstyle faces the mover
 		flick("operate", src)
-		playsound(src,'sound/items/ratchet.ogg',50,0,3)
+		if(forcefield)
+			playsound(src,'sound/halflifesounds/halflifeeffects/forcefieldbuzz.ogg',50,0,3)
+		else
+			playsound(src,'sound/items/ratchet.ogg',50,0,3)
 		return TRUE
 	else
 		flick("deny", src)
-		playsound(src,'sound/machines/deniedbeep.ogg',50,0,3)
+		if(forcefield)
+			playsound(src,'sound/halflifesounds/halflifeeffects/forcefieldbuzz.ogg',50,0,3)
+		else
+			playsound(src,'sound/machines/deniedbeep.ogg',50,0,3)
 		return FALSE
+
+/obj/machinery/turnstile/brig/halflife/forcefield/AltClick(mob/user)
+	if (allowed(user))
+		if(on)
+			on = !on
+			icon_state = "forcefield_off"
+		else
+			on = !on
+			icon_state = "forcefield"
+
+/obj/machinery/turnstile/brig/halflife/forcefield
+	name = "Combine Forcefield"
+	desc = "A forcefield which only allows those to pass who have proper access, or if you enter from a certain side. You may be able to turn it off with the proper access."
+	icon = 'icons/obj/halflife/forcefield.dmi'
+	icon_state = "forcefield_map"
+	forcefield = TRUE
+
+/obj/machinery/turnstile/brig/halflife/forcefield/nodirectional
+	desc = "A forcefield which only allows those to pass who have proper access. You may be able to turn it off with the proper access."
+	directional = FALSE
+
+//for high access areas, only civil protection and the city admin should access
+/obj/machinery/turnstile/brig/halflife/forcefield/civilprotection
+	req_access = list(ACCESS_SECURITY)
+
+/obj/machinery/turnstile/brig/halflife/forcefield/civilprotection/nodirectional
+	desc = "A forcefield which only allows those to pass who have proper access. You may be able to turn it off with the proper access."
+	directional = FALSE
+
+//highest security areas, only
+/obj/machinery/turnstile/brig/halflife/forcefield/armory
+	req_access = list(ACCESS_ARMORY)
+
+/obj/machinery/turnstile/brig/halflife/forcefield/armory/nodirectional
+	desc = "A forcefield which only allows those to pass who have proper access. You may be able to turn it off with the proper access."
+	directional = FALSE
