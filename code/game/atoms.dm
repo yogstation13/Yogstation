@@ -561,7 +561,8 @@
 	return null
 
 ///Return the current air environment in this atom
-/atom/proc/return_air()
+/atom/proc/return_air() as /datum/gas_mixture
+	RETURN_TYPE(/datum/gas_mixture)
 	if(loc)
 		return loc.return_air()
 	else

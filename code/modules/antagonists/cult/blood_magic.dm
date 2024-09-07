@@ -332,7 +332,7 @@
 	righthand_file = 'icons/mob/inhands/items/touchspell_righthand.dmi'
 	icon_state = "disintegrate"
 	inhand_icon_state = "disintegrate"
-	item_flags = NEEDS_PERMIT | ABSTRACT | DROPDEL
+	item_flags = NEEDS_PERMIT | ABSTRACT | DROPDEL | HAND_ITEM // monkestation edit: add HAND_ITEM
 
 	w_class = WEIGHT_CLASS_HUGE
 	throwforce = 0

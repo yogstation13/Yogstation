@@ -174,7 +174,7 @@
 	// I'm just saving myself a variable cast by using as anything
 	for(var/obj/item/held_item as anything in carbon_parent.held_items)
 		// items like slappers/zombie claws/etc. should be ignored
-		if(isnull(held_item) || held_item.item_flags & HAND_ITEM)
+		if(QDELETED(held_item) || (held_item.item_flags & HAND_ITEM))
 			continue
 
 		busy_hands++
