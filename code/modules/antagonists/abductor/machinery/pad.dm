@@ -20,11 +20,16 @@
 	if(teleport_target == null)
 		teleport_target = GLOB.teleportlocs[pick(GLOB.teleportlocs)]
 	flick("alien-pad", src)
-	for(var/mob/living/target in loc)
-		target.forceMove(teleport_target)
-		new /obj/effect/temp_visual/dir_setting/ninja(get_turf(target), target.dir)
-		to_chat(target, span_warning("The instability of the warp leaves you disoriented!"))
-		target.Stun(60)
+// Monkestation Edit Start
+	for(var/atom/movable/target in loc)
+		if(isliving(target) || istype(target, /obj/item/toy/plush))
+			target.forceMove(teleport_target)
+			new /obj/effect/temp_visual/dir_setting/ninja(get_turf(target), target.dir)
+			if(isliving(target))
+				var/mob/living/abductedTarget = target
+				to_chat(abductedTarget, span_warning("The instability of the warp leaves you disoriented!"))
+				abductedTarget.Stun(60)
+// Monkestation Edit End
 
 /obj/machinery/abductor/pad/proc/Retrieve(mob/living/target)
 	flick("alien-pad", src)
@@ -40,11 +45,14 @@
 	new /obj/effect/temp_visual/teleport_abductor(place)
 	addtimer(CALLBACK(src, PROC_REF(doMobToLoc), place, target), 80)
 
-/obj/machinery/abductor/pad/proc/doPadToLoc(place)
+/obj/machinery/abductor/pad/proc/doPadToLoc(place)  
 	flick("alien-pad", src)
-	for(var/mob/living/target in get_turf(src))
-		target.forceMove(place)
-		new /obj/effect/temp_visual/dir_setting/ninja(get_turf(target), target.dir)
+// Monkestation Edit Start
+	for(var/atom/movable/target in get_turf(src))
+		if(isliving(target) || istype(target, /obj/item/toy/plush))
+			target.forceMove(place)
+			new /obj/effect/temp_visual/dir_setting/ninja(get_turf(target), target.dir)
+// Monkestation Edit End
 
 /obj/machinery/abductor/pad/proc/PadToLoc(place)
 	new /obj/effect/temp_visual/teleport_abductor(place)
