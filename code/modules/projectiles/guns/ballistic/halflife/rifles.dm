@@ -46,6 +46,7 @@
 	name = "Heated Rebar Crossbow"
 	desc = "A handcrafted crossbow that fires heated rods of rebar."
 	icon = 'icons/obj/guns/halflife/projectile.dmi'
+	fire_sound = "sound/weapons/halflife/crossbowfire.ogg"
 	icon_state = "rebarxbow"
 	item_state = "rebarxbow"
 	//fire_sound = 'sound/items/xbow_lock.ogg'

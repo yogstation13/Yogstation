@@ -412,51 +412,15 @@ SUBSYSTEM_DEF(ticker)
   * In addition, responsible for spawning the cyborg shell if there are no roundstart cyborgs and announcing if there ISN'T a Captain present
   */
 /datum/controller/subsystem/ticker/proc/equip_characters()
-	var/captainless = TRUE
-	var/no_cyborgs = TRUE
-	var/no_clerk = TRUE
-	var/no_chaplain = TRUE
 
 	for(var/mob/dead/new_player/N in GLOB.player_list)
 		var/mob/living/carbon/human/player = N.new_character
 		if(istype(player) && player.mind && player.mind.assigned_role)
-			if(player.mind.assigned_role == "Captain")
-				captainless = FALSE
-			if(player.mind.assigned_role == "Cyborg")
-				no_cyborgs = FALSE
-			if(player.mind.assigned_role == "Clerk")
-				no_clerk = FALSE
-			if(player.mind.assigned_role == "Chaplain")
-				no_chaplain = FALSE
 			if(player.mind.assigned_role != player.mind.special_role)
 				SSjob.EquipRank(N, player.mind.assigned_role, FALSE)
 				if(CONFIG_GET(flag/roundstart_traits) && ishuman(N.new_character))
 					SSquirks.AssignQuirks(N.new_character, N.client, TRUE)
 		CHECK_TICK
-	if(no_cyborgs)
-		var/obj/S = null
-		for(var/obj/effect/landmark/start/sloc in GLOB.start_landmarks_list)
-			if(sloc.name != "Cyborg")
-				S = sloc //so we can revert to spawning them on top of eachother if something goes wrong
-				continue
-			if(locate(/mob/living) in sloc.loc)
-				continue
-			S = sloc
-			sloc.used = TRUE
-			break
-		if(S)
-			new /mob/living/silicon/robot/shell(get_turf(S))
-
-	if(captainless)
-		for(var/mob/dead/new_player/N in GLOB.player_list)
-			if(N.new_character)
-				to_chat(N, "<FONT color='red'>No Captain is present at the start of shift. Please follow the SOP available <b><a href='https://wiki.yogstation.net/wiki/Official:Disk_Procedure'>here</a></b> to secure the disk and assign an Acting Captain.")
-			CHECK_TICK
-
-	if(no_clerk)
-		SSjob.random_clerk_init()
-	if(no_chaplain)
-		SSjob.random_chapel_init()	
 
 /datum/controller/subsystem/ticker/proc/transfer_characters()
 	var/list/livings = list()

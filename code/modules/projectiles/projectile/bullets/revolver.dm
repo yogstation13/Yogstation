@@ -83,9 +83,8 @@
 
 /obj/projectile/bullet/a357
 	name = ".357 magnum bullet"
-	damage = 40
-	armour_penetration = 15
-	wound_bonus = -45
+	damage = 30
+	wound_bonus = -40
 	wound_falloff_tile = -2.5
 	can_ricoshot = TRUE
 
@@ -100,7 +99,7 @@
 
 /obj/projectile/bullet/a357/nutcracker
 	name = ".357 Nutcracker bullet"
-	damage = 30
+	damage = 20
 
 /obj/projectile/bullet/a357/nutcracker/on_hit(atom/target) //Basically breaching slug with 1.5x damage
 	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
@@ -119,13 +118,13 @@
 
 /obj/projectile/bullet/a357/heartpiercer
 	name = ".357 Heartpiercer bullet"
-	damage = 35
+	damage = 25
 	armour_penetration = 45
 	penetrations = 1 //Goes through a single mob before ending on the next target
 
 /obj/projectile/bullet/a357/wallstake
 	name = ".357 Wallstake bullet"
-	damage = 36 //Almost entirely a meme round at this point. 36 damage barely four-shots standard armor
+	damage = 26 //Almost entirely a meme round at this point. 36 damage barely four-shots standard armor
 	wound_bonus = -35
 	sharpness = SHARP_NONE //Blunt
 

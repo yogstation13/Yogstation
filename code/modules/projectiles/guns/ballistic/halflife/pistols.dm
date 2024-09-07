@@ -33,3 +33,12 @@
 
 /obj/item/gun/ballistic/automatic/pistol/m1911/no_mag
 	spawnwithmagazine = FALSE
+
+
+/obj/item/gun/ballistic/revolver/coltpython
+	name = "\improper colt python"
+	desc = "An old colt python revolver. Uses .357 magnum ammo."
+	fire_sound = "sound/weapons/halflife/revolverfire.ogg"
+	icon_state = "colt_python"
+	item_state = "colt_python"
+	spread = 3 //less spread

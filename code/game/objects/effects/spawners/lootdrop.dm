@@ -747,6 +747,7 @@
 				/obj/item/clothing/under/citizen/refugee = 2,
 				/obj/item/clothing/head/beanie/black = 2,
 				/obj/item/radio/off/halflife = 2,
+				/obj/item/ammo_casing/reusable/arrow/rebar,
 				/obj/item/reagent_containers/food/drinks/soda_cans/breenwater,
 				/obj/item/storage/box/halflife/ration,
 				/obj/item/reagent_containers/food/snacks/chips,
@@ -769,6 +770,8 @@
 				/obj/item/gun/ballistic/automatic/mp7 = 3,
 				/obj/item/clothing/suit/armor/civilprotection = 4,
 				/obj/item/radio/off/halflife,
+				/obj/item/gun/ballistic/revolver/coltpython,
+				/obj/item/gun/ballistic/bow/crossbow/rebar,
 				/obj/item/gun/ballistic/automatic/pistol/m1911,
 				/obj/item/gun/ballistic/automatic/m4a1,
 				/obj/item/clothing/suit/armor/kevlar
