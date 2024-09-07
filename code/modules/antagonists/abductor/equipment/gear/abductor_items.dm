@@ -370,6 +370,10 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 /obj/item/melee/baton/abductor/baton_attack(mob/target, mob/living/user, modifiers)
 	if(!AbductorCheck(user))
 		return BATON_ATTACK_DONE
+	// monkestation edit: limited charges
+	if((mode == BATON_STUN || mode == BATON_SLEEP) && !use_charge(user))
+		return BATON_ATTACK_DONE
+	// monkestation end
 	return ..()
 
 /obj/item/melee/baton/abductor/baton_effect(mob/living/target, mob/living/user, modifiers, stun_override)

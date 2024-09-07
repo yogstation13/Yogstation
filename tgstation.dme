@@ -5973,6 +5973,7 @@
 #include "monkestation\code\modules\antagonists\_common\antag_datum.dm"
 #include "monkestation\code\modules\antagonists\_common\antag_hud.dm"
 #include "monkestation\code\modules\antagonists\abductor\abductor.dm"
+#include "monkestation\code\modules\antagonists\abductor\equipment\gear\abductor_items.dm"
 #include "monkestation\code\modules\antagonists\abductor\equipment\glands\blood.dm"
 #include "monkestation\code\modules\antagonists\abductor\equipment\glands\plasma.dm"
 #include "monkestation\code\modules\antagonists\abductor\equipment\glands\slime.dm"
