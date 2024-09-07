@@ -37,6 +37,11 @@
 /obj/structure/flora/tree/jungle/small,
 /turf/open/floor/plating/ground/dirt,
 /area/halflife/outdoors)
+"cG" = (
+/obj/effect/spawner/lootdrop/halflife/loot,
+/obj/structure/table/halflife/no_smooth/large/wood,
+/turf/open/floor/plating/indoor/woodc,
+/area/halflife/indoors/sewer)
 "cP" = (
 /turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors)
@@ -46,6 +51,10 @@
 	},
 /turf/open/floor/plating/ground/sidewalk,
 /area/halflife/outdoors)
+"dp" = (
+/obj/structure/table/halflife/metal/grate,
+/turf/open/floor/plating/indoor/metal,
+/area/halflife/indoors/sewer)
 "dw" = (
 /obj/machinery/vending/breenwater,
 /turf/open/floor/plating/indoor/tiled10,
@@ -344,11 +353,6 @@
 	},
 /turf/open/floor/plating/ground/sidewalk,
 /area/halflife/outdoors)
-"nC" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/lootdrop/halflife/loot,
-/turf/open/floor/plating/indoor/woodc,
-/area/halflife/indoors/sewer)
 "nJ" = (
 /obj/machinery/power/halflife/trafficlight{
 	dir = 8
@@ -403,11 +407,6 @@
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating/indoor/metal/grate,
 /area/halflife/indoors/sewer)
-"qa" = (
-/obj/structure/table,
-/obj/effect/spawner/lootdrop/halflife/loot/rare,
-/turf/open/floor/plating/indoor/concrete/bricks,
-/area/halflife/indoors/sewer)
 "qq" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/indoor/concrete,
@@ -446,10 +445,6 @@
 /obj/structure/table/halflife/metal/small,
 /turf/open/floor/plating/indoor/showroom,
 /area/halflife/indoors)
-"rE" = (
-/obj/structure/table/wood,
-/turf/open/floor/plating/indoor/woodc,
-/area/halflife/indoors/sewer)
 "rH" = (
 /turf/open/halflife/water/sewer/medium,
 /area/halflife/indoors/sewer)
@@ -477,12 +472,22 @@
 /obj/item/clothing/mask/gas/civilprotection,
 /turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors)
+"te" = (
+/obj/effect/spawner/lootdrop/halflife/loot/rare,
+/obj/structure/table/halflife/metal/grate,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
 "tg" = (
 /obj/structure/halflife/street_sign/only_direction{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/sidewalk,
 /area/halflife/outdoors)
+"tk" = (
+/obj/effect/spawner/lootdrop/halflife/loot,
+/obj/structure/table/halflife/metal/grate,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
 "tl" = (
 /mob/living/simple_animal/hostile/halflife/zombie,
 /turf/open/floor/plating/indoor/woodc,
@@ -749,6 +754,10 @@
 /area/halflife/indoors/sewer)
 "Fw" = (
 /turf/closed/wall/halflife/metal,
+/area/halflife/indoors/sewer)
+"Fz" = (
+/obj/structure/table/halflife/metal/grate,
+/turf/open/floor/plating/indoor/concrete/bricks,
 /area/halflife/indoors/sewer)
 "FP" = (
 /turf/open/floor/plating/ground/dirt,
@@ -1024,10 +1033,6 @@
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/plating/indoor/showroom,
 /area/halflife/indoors)
-"Qb" = (
-/obj/structure/table,
-/turf/open/floor/plating/indoor/metal,
-/area/halflife/indoors/sewer)
 "Qr" = (
 /obj/machinery/door/unpowered/halflife/metal{
 	dir = 4
@@ -1144,11 +1149,6 @@
 /obj/effect/landmark/stationroom/sewer/rightentrance/tenxten,
 /turf/template_noop,
 /area/halflife/indoors/sewer)
-"Va" = (
-/obj/structure/table,
-/obj/effect/spawner/lootdrop/halflife/loot,
-/turf/open/floor/plating/indoor/concrete/bricks,
-/area/halflife/indoors/sewer)
 "VM" = (
 /obj/structure/table/wood,
 /turf/open/floor/plating/indoor/woodc,
@@ -1194,10 +1194,6 @@
 /obj/item/gun/ballistic/automatic/mp7,
 /turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors)
-"YY" = (
-/obj/structure/table,
-/turf/open/floor/plating/indoor/concrete/bricks,
-/area/halflife/indoors/sewer)
 "Zs" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirt,
@@ -2010,7 +2006,7 @@ SF
 SF
 SF
 AW
-nC
+cG
 Pl
 Pl
 AW
@@ -2212,7 +2208,7 @@ SF
 SF
 SF
 AW
-rE
+Pl
 Pl
 Pl
 AW
@@ -2414,7 +2410,7 @@ SF
 SF
 SF
 AW
-rE
+Pl
 Pl
 tl
 Pl
@@ -22079,7 +22075,7 @@ Na
 Na
 Na
 Na
-YY
+Fz
 Fw
 SF
 SF
@@ -22281,7 +22277,7 @@ Na
 Na
 Na
 Na
-YY
+Fz
 Fw
 SF
 SF
@@ -22483,7 +22479,7 @@ Na
 Na
 Na
 Na
-YY
+Fz
 Fw
 SF
 SF
@@ -23077,7 +23073,7 @@ SF
 SF
 SF
 Fw
-qa
+te
 Na
 Na
 Na
@@ -23279,7 +23275,7 @@ SF
 SF
 SF
 Fw
-Va
+tk
 Na
 Na
 Na
@@ -23481,7 +23477,7 @@ SF
 SF
 SF
 Fw
-qa
+te
 Na
 Na
 Na
@@ -25826,10 +25822,10 @@ SF
 SF
 SF
 Fw
-Qb
-Qb
-Qb
-Qb
+dp
+dp
+dp
+dp
 IZ
 IZ
 Fw
@@ -34254,8 +34250,8 @@ SF
 SF
 SF
 Fw
-qa
-YY
+te
+Fz
 Na
 Na
 Na
@@ -34456,7 +34452,7 @@ SF
 SF
 SF
 Fw
-YY
+Fz
 Na
 Na
 Na
@@ -35466,10 +35462,10 @@ SF
 SF
 SF
 Fw
-YY
-YY
-Va
-YY
+Na
+Fz
+tk
+Fz
 Na
 Na
 Na
