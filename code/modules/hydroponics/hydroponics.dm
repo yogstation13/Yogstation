@@ -566,7 +566,7 @@
 		adjustHealth(round(S.get_reagent_amount(/datum/reagent/consumable/sodawater) * 0.1))
 		adjustNutri(round(S.get_reagent_amount(/datum/reagent/consumable/sodawater) * 0.1))
 
-	// Man, you guys are retards
+	// Man, you guys are ridiculous haha that's what it said before..
 	if(S.has_reagent(/datum/reagent/toxin/acid, 1))
 		adjustHealth(-round(S.get_reagent_amount(/datum/reagent/toxin/acid) * 1))
 		adjustToxic(round(S.get_reagent_amount(/datum/reagent/toxin/acid) * 1.5))
