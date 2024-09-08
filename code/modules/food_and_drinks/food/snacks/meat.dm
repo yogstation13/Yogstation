@@ -242,6 +242,20 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/xeno/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/steak/xeno, rand(40 SECONDS, 70 SECONDS), TRUE, TRUE)
 
+/obj/item/reagent_containers/food/snacks/meat/slab/xen
+	name = "xen flesh"
+	desc = "A slab of alien flesh. May not be entirely safe to eat."
+	icon_state = "xenomeat"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/toxin = 1)
+	filling_color = "#32CD32"
+	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/xen
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/xen
+	tastes = list("meat" = 1, "acid" = 1)
+	foodtype = RAW | MEAT | GROSS
+
+/obj/item/reagent_containers/food/snacks/meat/slab/xen/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/steak/xen, rand(40 SECONDS, 70 SECONDS), TRUE, TRUE)
+
 /obj/item/reagent_containers/food/snacks/meat/slab/spider
 	name = "spider meat"
 	desc = "A slab of spider meat."
@@ -418,6 +432,15 @@
 	name = "xeno steak"
 	tastes = list("meat" = 1, "acid" = 1)
 
+/obj/item/reagent_containers/food/snacks/meat/steak/xen
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/xen
+	name = "xen steak"
+	desc = "Cooked alien flesh. Should be safe to eat, although still unappetizing."
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("meat" = 1, "acid" = 1)
+	foodtype = MEAT | GROSS
+
 /obj/item/reagent_containers/food/snacks/meat/steak/spider
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/spider
 	name = "spider steak"
@@ -531,6 +554,14 @@
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/xeno/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/xeno, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
 
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/xen
+	name = "raw xen cutlet"
+	tastes = list("meat" = 1, "acid" = 1)
+	foodtype = RAW | MEAT | GROSS
+
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/xen/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/xen, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
+
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/spider
 	name = "raw spider cutlet"
 	tastes = list("cobwebs" = 1)
@@ -599,6 +630,11 @@
 /obj/item/reagent_containers/food/snacks/meat/cutlet/xeno
 	name = "xeno cutlet"
 	tastes = list("meat" = 1, "acid" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/cutlet/xen
+	name = "xen cutlet"
+	tastes = list("meat" = 1, "acid" = 1)
+	foodtype = MEAT | GROSS
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet/spider
 	name = "spider cutlet"

@@ -8,7 +8,6 @@
 	frame = /obj/item/stack/sheet/metal
 	framestack = /obj/item/stack/sheet/metal
 	framestackamount = 2
-	smoothing_flags = SMOOTH_BITMASK | SMOOTH_OBJ
 
 /obj/structure/table/halflife/deconstruction_hints(mob/user)
 	return span_notice("You could use a <b>screwdriver</b> or a <b>wrench</b> to take apart [src].")
@@ -20,8 +19,6 @@
 	icon_state = "table-0"
 	base_icon_state = "table"
 	max_integrity = 225
-	smoothing_groups = list(SMOOTH_GROUP_HLTABLES_METAL) //Don't smooth with SMOOTH_GROUP_TABLES
-	canSmoothWith = list(SMOOTH_GROUP_HLTABLES_METAL)
 	frame = /obj/item/stack/sheet/metal
 
 /obj/structure/table/halflife/metal/alt
@@ -30,15 +27,12 @@
 
 /obj/structure/table/halflife/metal/grate
 	desc = "A grated metal table, like a normal table but can't hold small stuff! Super industrial-y"
-	smoothing_groups = list(SMOOTH_GROUP_HLTABLES_METAL) 
 	icon = 'icons/obj/halflife/tables/table_metal_grate.dmi'
 	max_integrity = 200
 
 /obj/structure/table/halflife/metal/small
 	desc = "A small, low down metal table. God only knows why these were sought out after in the old days."
 	icon = 'icons/obj/halflife/tables/table_metal_small.dmi'
-	smoothing_groups = list(SMOOTH_GROUP_HLTABLES_SMALL)
-	canSmoothWith = list(SMOOTH_GROUP_HLTABLES_SMALL)
 
 /obj/structure/table/halflife/metal/heavy
 	name = "heavy-duty metal table"
@@ -57,8 +51,7 @@
 	icon_state = "table-0"
 	base_icon_state = "table"
 	max_integrity = 150
-	smoothing_groups = list(SMOOTH_GROUP_HLTABLES_WOOD)
-	canSmoothWith = list(SMOOTH_GROUP_HLTABLES_WOOD)
+
 	frame = /obj/item/stack/sheet/mineral/wood
 	framestack = /obj/item/stack/sheet/mineral/wood
 	framestackamount = 2
@@ -96,8 +89,6 @@
 	desc = "A crude table made of quality metal. Not too bad, as far as post apocalyptic furniture goes."
 	icon = 'icons/obj/halflife/tables/table_metal_built.dmi'
 	max_integrity = 140
-	smoothing_groups = list(SMOOTH_GROUP_HLTABLES_PLAYER) //Don't smooth with SMOOTH_GROUP_TABLES
-	canSmoothWith = list(SMOOTH_GROUP_HLTABLES_PLAYER)
 
 /obj/structure/table/halflife/metal/constructed/cobbled
 	name = "crude scrap metal table"
@@ -110,8 +101,6 @@
 	desc = "A crude wood table of decent quality. It probably won't fall apart any time soon."
 	icon = 'icons/obj/halflife/tables/table_wood_built.dmi'
 	max_integrity = 120
-	smoothing_groups = list(SMOOTH_GROUP_HLTABLES_PLAYER)
-	canSmoothWith = list(SMOOTH_GROUP_HLTABLES_PLAYER)
 
 /obj/structure/table/halflife/wood/constructed/cobbled
 	name = "crude scrap wood table"
