@@ -1,0 +1,4 @@
+author: "M4565, ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "makes burning surgical mats drop plastic instead of metal"
