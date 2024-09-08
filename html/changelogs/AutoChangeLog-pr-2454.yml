@@ -1,0 +1,8 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscadd: "(ChungusGamer666) Books can now be burned just like any other paper item."
+  - rscadd: "(ChungusGamer666) You can cut pages out of books with any sharp item, not just knives or wirecutters."
+  - bugfix: "(ZephyrTFA) Book's no longer take your formatting and throw it out the window."
+  - refactor: "(ZephyrTFA) Book display and rendering."
+  - rscadd: "(ChungusGamer666) You can burn bibles now! But heresy has a steep cost..."
