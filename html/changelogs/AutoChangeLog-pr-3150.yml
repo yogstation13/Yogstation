@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - balance: "Cosmic Fields now block projectiles, if they were shot by someone with a star mark."

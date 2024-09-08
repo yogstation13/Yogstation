@@ -191,6 +191,8 @@
   - rscadd: You can now reinforce clothing with 5 durathread and a welder, giving
       it additional armor.
   - rscadd: Added the "speen" emote.
+  - balance: Cosmic Fields now block projectiles, if they were shot by someone with
+      a star mark.
   DexeeXI:
   - bugfix: tables can no longer be flipped by ghosts
   - bugfix: tables can no longer be flipped by people viewing through cameras.
