@@ -72,6 +72,10 @@
 		return
 	if(!can_flip)
 		return
+	if(isobserver(user) && !is_admin(user.client))  //prevent ghosts from flipping tables but still allows admins to fuck around
+		return
+	if(!user.CanReach(src)) //prevents certain kinds of fuckers on cameras from flipping tables THROUGH A FUCKING CAMERA. ... this is why we can't have nice things.
+		return
 	user.balloon_alert_to_viewers("flipping table...")
 	if(!do_after(user, max_integrity * 0.25))
 		return
