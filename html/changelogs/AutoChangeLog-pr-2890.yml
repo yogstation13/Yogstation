@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscdel: "Remove bounties that just deprive station resources, such as water/welder tanks, pens, plants, etc."
