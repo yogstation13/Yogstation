@@ -292,7 +292,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 			if((O.type in subtypesof(/datum/objective/assassinate)) && O.check_completion()) //kill once/kill+clone objective that's already been completed, don't give a new objective
 				continue
 			O.target = null
-			O.find_target()
+			O.find_target(blacklist = list(mob_occupant.mind)) // don't pick the same person again, they're about to be deleted
 			O.update_explanation_text()
 
 			var/list/owners = O.get_owners()
