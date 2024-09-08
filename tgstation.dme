@@ -5866,6 +5866,7 @@
 #include "monkestation\code\game\machinery\trains\train_network.dm"
 #include "monkestation\code\game\objects\items.dm"
 #include "monkestation\code\game\objects\effects\countdown.dm"
+#include "monkestation\code\game\objects\effects\forcefields.dm"
 #include "monkestation\code\game\objects\effects\glowshroom.dm"
 #include "monkestation\code\game\objects\effects\landmark.dm"
 #include "monkestation\code\game\objects\effects\sprint_dust.dm"
