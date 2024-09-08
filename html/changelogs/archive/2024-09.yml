@@ -170,3 +170,8 @@
       fun interactions.
   ThePooba:
   - bugfix: stop centcom breaking
+2024-09-08:
+  Absolucy:
+  - bugfix: Actually fix Light Step.
+  - rscdel: Remove bounties that just deprive station resources, such as water/welder
+      tanks, pens, plants, etc.
