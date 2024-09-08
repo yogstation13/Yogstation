@@ -90,12 +90,12 @@
 	include_subtypes = FALSE
 
 /datum/export/organ/human/heart
-	cost = 100
+	cost = 50
 	unit_name = "heart"
 	export_types = list(/obj/item/organ/heart)
 
 /datum/export/organ/human/lungs
-	cost = 50
+	cost = 30
 	unit_name = "pair"
 	message = "of lungs"
 	export_types = list(/obj/item/organ/lungs)

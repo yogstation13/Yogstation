@@ -27,52 +27,38 @@
 
 	return round(amount/MINERAL_MATERIAL_AMOUNT)
 
-// Materials. Nothing but plasma is really worth selling. Better leave it all to RnD and sell some plasma instead.
-
-/datum/export/material/bananium
-	cost = 2500
-	export_limit = 100 //250k
-	material_id = /datum/material/bananium
-	message = "cm3 of bananium"
-
 /datum/export/material/diamond
-	cost = 1000
+	cost = 200
 	export_limit = 150 //150k
 	material_id = /datum/material/diamond
 	message = "cm3 of diamonds"
 
-/datum/export/material/plasma
-	cost = 200
-
-	material_id = /datum/material/plasma
-	message = "cm3 of plasma"
-
 /datum/export/material/uranium
-	cost = 400
+	cost = 100
 	export_limit = 300 //120k
 	material_id = /datum/material/uranium
 	message = "cm3 of uranium"
 
 /datum/export/material/gold
-	cost = 250
+	cost = 150
 	export_limit = 500 //125k
 	material_id = /datum/material/gold
 	message = "cm3 of gold"
 
 /datum/export/material/silver
-	cost = 100
+	cost = 75
 	export_limit = 500 //50k
 	material_id = /datum/material/silver
 	message = "cm3 of silver"
 
 /datum/export/material/titanium
-	cost = 125
+	cost = 75
 	export_limit = 500 //62.5k
 	material_id = /datum/material/titanium
 	message = "cm3 of titanium"
 
 /datum/export/material/plastitanium
-	cost = 325 // plasma + titanium costs, no export limit bc plasma :^
+	cost = 100 // plasma + titanium costs, no export limit bc plasma :^
 	material_id = /datum/material/titanium // code can only check for one material_id; plastitanium is half plasma, half titanium
 	message = "cm3 of plastitanium"
 

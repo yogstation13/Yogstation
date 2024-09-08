@@ -768,6 +768,7 @@
 	loot = list(
 				/obj/item/crowbar/large,
 				/obj/item/gun/ballistic/automatic/pistol/usp = 4,
+				/obj/item/ammo_box/magazine/usp9mm,
 				/obj/item/gun/ballistic/automatic/mp7 = 3,
 				/obj/item/clothing/suit/armor/civilprotection = 4,
 				/obj/item/radio/off/halflife,

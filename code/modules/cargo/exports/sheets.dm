@@ -15,7 +15,7 @@
 	export_types = list(/obj/item/stack/sheet/animalhide/monkey)
 
 /datum/export/stack/skin/human
-	cost = 500	//surprisingly easy to get human skin who would have thought
+	cost = 100	//surprisingly easy to get human skin who would have thought
 	export_limit = 50
 	export_category = EXPORT_CONTRABAND
 	unit_name = "piece"
@@ -67,7 +67,7 @@
 // For base materials, see materials.dm
 
 /datum/export/stack/plasteel
-	cost = 205 // 2000u of plasma + 2000u of metal.
+	cost = 75 // 2000u of plasma + 2000u of metal.
 	message = "of plasteel"
 	export_types = list(/obj/item/stack/sheet/plasteel)
 
@@ -84,7 +84,7 @@
 	export_types = list(/obj/item/stack/sheet/bluespace_crystal)
 
 /datum/export/stack/wood
-	cost = 30
+	cost = 5
 	unit_name = "wood plank"
 	export_types = list(/obj/item/stack/sheet/mineral/wood)
 
@@ -108,26 +108,3 @@
 	cost = 25
 	unit_name = "of ammonia crystal"
 	export_types = list(/obj/item/stack/ammonia_crystals)
-
-// Weird Stuff
-
-/datum/export/stack/abductor
-	cost = 1000
-	export_limit = 100
-	message = "of alien alloy"
-	export_types = list(/obj/item/stack/sheet/mineral/abductor)
-
-/datum/export/stack/adamantine
-	unit_name = "bar"
-	cost = 500
-	export_limit = 200
-	message = "of adamantine"
-	export_types = list(/obj/item/stack/sheet/mineral/adamantine)
-
-// Mythril. Does not occur naurally.
-/datum/export/stack/mythril
-	cost = 5000
-	export_limit = 50
-	message = "of mythril"
-	export_types = list(/obj/item/stack/sheet/mineral/mythril)
-
