@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Ensure blood volume is restored to normal levels whenever TRAIT_NOBLOOD is lost."

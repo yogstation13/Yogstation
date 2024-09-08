@@ -1,4 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - bugfix: "Fixed the disease from the random heart attack event not progressing into later stages."

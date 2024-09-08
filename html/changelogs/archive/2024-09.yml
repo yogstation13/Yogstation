@@ -175,3 +175,25 @@
   - bugfix: Actually fix Light Step.
   - rscdel: Remove bounties that just deprive station resources, such as water/welder
       tanks, pens, plants, etc.
+  - sound: Added a new meow sound that has a 5% chance to play when meow emoting.
+  - rscadd: 'Added new emotes: *mggaow and *purr'
+  - qol: Added short audio cooldowns to several audible emotes.
+  - code_imp: Cleaned up some emote code.
+  - rscadd: (ChungusGamer666) Books can now be burned just like any other paper item.
+  - rscadd: (ChungusGamer666) You can cut pages out of books with any sharp item,
+      not just knives or wirecutters.
+  - bugfix: (ZephyrTFA) Book's no longer take your formatting and throw it out the
+      window.
+  - refactor: (ZephyrTFA) Book display and rendering.
+  - rscadd: (ChungusGamer666) You can burn bibles now! But heresy has a steep cost...
+  - bugfix: Ensure blood volume is restored to normal levels whenever TRAIT_NOBLOOD
+      is lost.
+  - rscadd: You can now reinforce clothing with 5 durathread and a welder, giving
+      it additional armor.
+  - rscadd: Added the "speen" emote.
+  DexeeXI:
+  - bugfix: tables can no longer be flipped by ghosts
+  - bugfix: tables can no longer be flipped by people viewing through cameras.
+  Wisemonster:
+  - bugfix: Fixed the disease from the random heart attack event not progressing into
+      later stages.
