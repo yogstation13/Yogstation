@@ -4,6 +4,7 @@
 	message = "clicks their tongue."
 	message_ipc = "makes a click sound."
 	message_insect = "clicks their mandibles."
+	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/click/get_sound(mob/living/user)
 	if(ismoth(user) || isflyperson(user) || isarachnid(user) || istype(user, /mob/living/basic/mothroach))
@@ -18,17 +19,13 @@
 	key_third_person = "zaps"
 	message = "zaps."
 	message_param = "zaps %t."
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/zap/can_run_emote(mob/user, status_check = TRUE , intentional)
-	. = ..()
-	if(isethereal(user))
-		return TRUE
-	else
-		return FALSE
+	return ..() && isethereal(user)
 
 /datum/emote/living/zap/get_sound(mob/living/user)
-	if(isethereal(user))
-		return 'sound/machines/defib_zap.ogg'
+	return 'sound/machines/defib_zap.ogg'
 
 /datum/emote/living/hum
 	key = "hum"
@@ -38,6 +35,7 @@
 	message_AI = "lets out a droning hum."
 	message_ipc = "lets out a droning hum."
 	message_mime = "silently hums."
+	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/hiss
 	key = "hiss"
@@ -48,6 +46,7 @@
 	message_ipc = "plays a hissing noise."
 	message_mime = "acts out a hiss."
 	message_param = "hisses at %t."
+	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/hiss/get_sound(mob/living/user)
 	if(islizard(user) || isipc(user) || isAI(user) || iscyborg(user))
@@ -65,6 +64,7 @@
 	message_animal_or_basic = "attempts a thumbs up."
 	message_param = "flashes a thumbs up at %t."
 	hands_use_check = TRUE
+	emote_type = EMOTE_VISIBLE
 
 /datum/emote/living/thumbs_down
 	key = "thumbsdown"
@@ -76,15 +76,17 @@
 	message_animal_or_basic = "attempts a thumbs down."
 	message_param = "flashes a thumbs down at %t."
 	hands_use_check = TRUE
+	emote_type = EMOTE_VISIBLE
 
 /datum/emote/living/whistle
-	key="whistle"
+	key = "whistle"
 	key_third_person="whistle"
 	message = "whistles a few notes."
 	message_robot = "whistles a few synthesized notes."
 	message_AI = "whistles a synthesized song."
 	message_ipc = "whistles a few synthesized notes."
 	message_param = "whistles at %t."
+	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/scream
 	key = "scream"
@@ -175,7 +177,7 @@
 	key_third_person = "screeches"
 	message = "screeches!"
 	message_mime = "screeches silently."
-	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	emote_type = EMOTE_AUDIBLE
 	vary = FALSE
 
 /datum/emote/living/scream/screech/should_play_sound(mob/user, intentional)
@@ -189,7 +191,8 @@
 	message = "meows."
 	message_mime = "acts out a meow."
 	message_param = "meows at %t."
-	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
+	emote_type = EMOTE_AUDIBLE
+	audio_cooldown = 1.5 SECONDS
 
 /datum/emote/living/meow/can_run_emote(mob/user, status_check = TRUE, intentional = FALSE)
 	return ..() && is_cat_enough(user, include_all_anime = TRUE)
@@ -201,14 +204,25 @@
 			'monkestation/sound/voice/feline/silicon/meow2.ogg',
 			'monkestation/sound/voice/feline/silicon/meow3.ogg',
 		)
+	if(prob(5))
+		return 'monkestation/sound/voice/feline/funnymeow.ogg'
 	return pick('monkestation/sound/voice/feline/meow1.ogg', 'monkestation/sound/voice/feline/meow2.ogg', 'monkestation/sound/voice/feline/meow3.ogg', 'monkestation/sound/voice/feline/meow4.ogg')
 
-/datum/emote/living/bark/can_run_emote(mob/user, status_check = TRUE, intentional = FALSE)
-	. = ..()
-	if(HAS_TRAIT(user, TRAIT_ANIME))
-		return TRUE
-	else
-		return FALSE
+/datum/emote/living/mggaow
+	key = "mggaow"
+	key_third_person = "meows loudly"
+	message = "meows loudly!"
+	message_mime = "emphasizes a meow!"
+	message_param = "loudly meows at %t!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	audio_cooldown = 1.5 SECONDS
+
+/datum/emote/living/mggaow/can_run_emote(mob/user, status_check = TRUE, intentional = FALSE)
+	return ..() && is_cat_enough(user, include_all_anime = TRUE)
+
+/datum/emote/living/mggaow/get_sound(mob/living/user)
+	return 'monkestation/sound/voice/feline/mggaow.ogg'
 
 /datum/emote/living/bark
 	key = "bark"
@@ -217,12 +231,32 @@
 	message_mime = "barks out silence!"
 	message_ipc = "makes a synthetic bark!"
 	message_param = "barks at %t!"
-	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
+	emote_type = EMOTE_AUDIBLE
+	audio_cooldown = 1.5 SECONDS
+
+/datum/emote/living/bark/can_run_emote(mob/user, status_check = TRUE, intentional = FALSE)
+	return ..() && HAS_TRAIT(user, TRAIT_ANIME)
+
 /datum/emote/living/bark/get_sound(mob/living/user)
 	if(HAS_TRAIT(user, TRAIT_CLUMSY))
 		return 'monkestation/sound/voice/feline/bark.ogg'
 	else
-		return pick('monkestation/sound/voice/feline/bark.ogg','monkestation/sound/voice/feline/bark2.ogg') // Yes, bark trait in feline folder [Bad To The Bone]
+		return pick('monkestation/sound/voice/feline/bark.ogg', 'monkestation/sound/voice/feline/bark2.ogg') // Yes, bark trait in feline folder [Bad To The Bone]
+
+/datum/emote/living/purr
+	key = "purr"
+	key_third_person = "purrs"
+	message = "purrs."
+	message_mime = "acts out a purr."
+	message_param = "purr at %t."
+	emote_type = EMOTE_AUDIBLE
+	audio_cooldown = 8 SECONDS
+
+/datum/emote/living/purr/can_run_emote(mob/user, status_check = TRUE, intentional = FALSE)
+	return ..() && is_cat_enough(user, include_all_anime = TRUE)
+
+/datum/emote/living/purr/get_sound(mob/living/user)
+	return 'monkestation/sound/voice/feline/purr.ogg'
 
 /datum/emote/living/weh
 	key = "weh"
@@ -230,20 +264,14 @@
 	message = "wehs!"
 	message_param = "wehs at %t!"
 	message_mime = "wehs silently!"
-	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
+	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 
 /datum/emote/living/weh/get_sound(mob/living/user)
-	if(islizard(user))
-		return 'monkestation/sound/voice/weh.ogg'
-	else
-		return FALSE
+	return 'monkestation/sound/voice/weh.ogg'
 
 /datum/emote/living/weh/can_run_emote(mob/user, status_check, intentional)
-	if(islizard(user))
-		return TRUE
-	else
-		return FALSE
+	return ..() && islizard(user)
 
 /datum/emote/living/squeal
 	key = "squeal"
@@ -251,20 +279,14 @@
 	message = "squeals!"
 	message_param = "squeals at %t!"
 	message_mime = "squeals silently!"
-	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
+	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 
 /datum/emote/living/squeal/get_sound(mob/living/user)
-	if(islizard(user))
-		return 'monkestation/sound/voice/lizard/squeal.ogg' //This is from Bay
-	else
-		return FALSE
+	return 'monkestation/sound/voice/lizard/squeal.ogg' //This is from Bay
 
 /datum/emote/living/squeal/can_run_emote(mob/user, status_check, intentional)
-	if(islizard(user))
-		return TRUE
-	else
-		return FALSE
+	return ..() && islizard(user)
 
 /datum/emote/living/tailthump
 	key = "thump"
@@ -274,16 +296,10 @@
 	vary = TRUE
 
 /datum/emote/living/tailthump/get_sound(mob/living/user)
-	if(islizard(user))
-		return 'monkestation/sound/voice/lizard/tailthump.ogg' //https://freesound.org/people/TylerAM/sounds/389665/
-	else
-		return FALSE
+	return 'monkestation/sound/voice/lizard/tailthump.ogg' //https://freesound.org/people/TylerAM/sounds/389665/
 
 /datum/emote/living/tailthump/can_run_emote(mob/user, status_check, intentional)
-	if(islizard(user))
-		return TRUE
-	else
-		return FALSE
+	return ..() && islizard(user)
 
 // The below function replaces the `/datum/emote/silicon/mob_type_allowed_typecache` variable. If
 // you remove this function, be sure to replace the above variable.
