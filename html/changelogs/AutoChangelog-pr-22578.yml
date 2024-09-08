@@ -1,0 +1,5 @@
+author: "AgentCitrus, kit-katz, PowerfulBacon, ToasterBiome"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a distortion effect to the supermatter engine"
+  - bugfix: "Fixes singularity spawned by delamination to not be a gravitational one"
