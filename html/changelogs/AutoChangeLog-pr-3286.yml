@@ -1,0 +1,5 @@
+author: "DexeeXI"
+delete-after: True
+changes:
+  - bugfix: "tables can no longer be flipped by ghosts"
+  - bugfix: "tables can no longer be flipped by people viewing through cameras."
