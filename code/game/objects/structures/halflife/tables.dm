@@ -8,6 +8,7 @@
 	frame = /obj/item/stack/sheet/metal
 	framestack = /obj/item/stack/sheet/metal
 	framestackamount = 2
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_OBJ
 
 /obj/structure/table/halflife/deconstruction_hints(mob/user)
 	return span_notice("You could use a <b>screwdriver</b> or a <b>wrench</b> to take apart [src].")
@@ -29,6 +30,7 @@
 
 /obj/structure/table/halflife/metal/grate
 	desc = "A grated metal table, like a normal table but can't hold small stuff! Super industrial-y"
+	smoothing_groups = list(SMOOTH_GROUP_HLTABLES_METAL) 
 	icon = 'icons/obj/halflife/tables/table_metal_grate.dmi'
 	max_integrity = 200
 

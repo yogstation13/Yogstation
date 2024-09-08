@@ -1,0 +1,2 @@
+output_name = "sidewalk"
+template = "bitmask/diagonal_32x32.toml"
