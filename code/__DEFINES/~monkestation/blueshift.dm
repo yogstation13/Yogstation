@@ -83,9 +83,6 @@ GLOBAL_LIST_INIT(colonist_suit_allowed, list(
 	/obj/item/analyzer,
 ))
 
-/// Trait given to objects with the wallmounted component
-#define TRAIT_WALLMOUNTED "wallmounted"
-
 /// BYOND's string procs don't support being used on datum references (as in it doesn't look for a name for stringification)
 /// We just use this macro to ensure that we will only pass strings to this BYOND-level function without developers needing to really worry about it.
 #define LOWER_TEXT(thing) lowertext(UNLINT("[thing]"))

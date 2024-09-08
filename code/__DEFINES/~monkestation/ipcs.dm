@@ -21,8 +21,6 @@
 #define SYNTH_BRAIN_DAMAGE_MESSAGE_INTERVAL 20 SECONDS
 #define SYNTH_DEAF_STACKS 30
 
-#define TRAIT_REVIVES_BY_HEALING "trait_revives_by_healing"
-
 /// If a synth is revived via defib, they will get a brain trauma of this severity.
 #define SYNTH_DEFIBBED_TRAUMA_SEVERITY BRAIN_TRAUMA_SEVERE
 #define SYNTH_DEFIBBED_TRAUMA_DURATION 90 SECONDS

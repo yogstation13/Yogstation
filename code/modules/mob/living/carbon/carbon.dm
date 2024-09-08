@@ -495,12 +495,12 @@
 	if(isnull(.))
 		return
 	if(new_value == LYING_DOWN)
-		if(HAS_TRAIT(src, FOOD_SLIDE))
+		if(HAS_TRAIT(src, TRAIT_FOOD_SLIDE))
 			add_movespeed_modifier(/datum/movespeed_modifier/belly_slide)
 		else
 			add_movespeed_modifier(/datum/movespeed_modifier/carbon_crawling)
 	else
-		if(HAS_TRAIT(src, FOOD_SLIDE))
+		if(HAS_TRAIT(src, TRAIT_FOOD_SLIDE))
 			remove_movespeed_modifier(/datum/movespeed_modifier/belly_slide)
 		else
 			remove_movespeed_modifier(/datum/movespeed_modifier/carbon_crawling)

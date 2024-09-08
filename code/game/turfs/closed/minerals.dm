@@ -140,7 +140,7 @@
 		SSblackbox.record_feedback("tally", "ore_mined", mineralAmt, initial(mineralType.name))
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(HAS_TRAIT(H, FOOD_JOB_MINER))
+		if(HAS_TRAIT(H, TRAIT_FOOD_JOB_MINER))
 			var/obj/item/stack/ore/picked_ore
 			if(prob(20))
 				switch(rand(122))

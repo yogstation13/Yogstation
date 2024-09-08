@@ -241,13 +241,13 @@
 /datum/status_effect/food/belly_slide/on_apply()
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
-		ADD_TRAIT(user, FOOD_SLIDE, "food_buffs")
+		ADD_TRAIT(user, TRAIT_FOOD_SLIDE, "food_buffs")
 	return ..()
 
 /datum/status_effect/food/belly_slide/on_remove()
 	.=..()
-	if(HAS_TRAIT(owner, FOOD_SLIDE))
-		REMOVE_TRAIT(owner, FOOD_SLIDE, "food_buffs")
+	if(HAS_TRAIT(owner, TRAIT_FOOD_SLIDE))
+		REMOVE_TRAIT(owner, TRAIT_FOOD_SLIDE, "food_buffs")
 		if(owner.has_movespeed_modifier(/datum/movespeed_modifier/belly_slide))
 			owner.remove_movespeed_modifier(/datum/movespeed_modifier/belly_slide)
 
@@ -312,14 +312,14 @@
 /datum/status_effect/food/botanist/on_apply()
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
-		ADD_TRAIT(user, FOOD_JOB_BOTANIST, "food_buffs")
+		ADD_TRAIT(user, TRAIT_FOOD_JOB_BOTANIST, "food_buffs")
 	return ..()
 
 /datum/status_effect/food/botanist/on_remove()
 	.=..()
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
-		REMOVE_TRAIT(user, FOOD_JOB_BOTANIST, "food_buffs")
+		REMOVE_TRAIT(user, TRAIT_FOOD_JOB_BOTANIST, "food_buffs")
 
 
 /datum/status_effect/food/miner
@@ -334,11 +334,11 @@
 /datum/status_effect/food/miner/on_apply()
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
-		ADD_TRAIT(user, FOOD_JOB_MINER, "food_buffs")
+		ADD_TRAIT(user, TRAIT_FOOD_JOB_MINER, "food_buffs")
 	return ..()
 
 /datum/status_effect/food/miner/on_remove()
 	.=..()
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
-		REMOVE_TRAIT(user, FOOD_JOB_MINER, "food_buffs")
+		REMOVE_TRAIT(user, TRAIT_FOOD_JOB_MINER, "food_buffs")
