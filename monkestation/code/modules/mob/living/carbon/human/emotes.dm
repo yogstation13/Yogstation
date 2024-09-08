@@ -17,7 +17,7 @@
 
 	//BIBLEFART/
 	//This goes above all else because it's an instagib.
-	for(var/obj/item/storage/book/bible/Holy in Location)
+	for(var/obj/item/book/bible/Holy in Location)
 		if(Holy)
 			var/mob/living/carbon/human/Person = user //We know they are human already, it was in the emote check.
 			var/turf/T = get_step(get_step(Person, NORTH), NORTH)

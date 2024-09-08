@@ -427,6 +427,15 @@
 /obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/space/basic,
 /area/shuttle/escape)
+"hu" = (
+/obj/item/paint/paint_remover{
+	pixel_y = 8
+	},
+/obj/structure/table/wood,
+/obj/item/soap/nanotrasen,
+/obj/structure/sign/poster/official/fruit_bowl/directional/north,
+/turf/open/floor/iron/dark,
+/area/shuttle/escape)
 "hC" = (
 /obj/machinery/power/shuttle_engine/propulsion,
 /obj/structure/window/reinforced/spawner/directional/east{
@@ -460,6 +469,16 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/turf/open/floor/iron/dark,
+/area/shuttle/escape)
+"hT" = (
+/obj/item/storage/crayons{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/storage/crayons,
+/obj/structure/table/wood,
+/obj/structure/sign/poster/official/soft_cap_pop_art/directional/north,
 /turf/open/floor/iron/dark,
 /area/shuttle/escape)
 "hV" = (
@@ -529,16 +548,6 @@
 "iB" = (
 /obj/machinery/light/small/directional/west,
 /obj/machinery/photocopier,
-/turf/open/floor/iron/dark,
-/area/shuttle/escape)
-"iE" = (
-/obj/item/storage/crayons{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/storage/crayons,
-/obj/structure/table/wood,
-/obj/structure/sign/poster/official/soft_cap_pop_art/directional/north,
 /turf/open/floor/iron/dark,
 /area/shuttle/escape)
 "iI" = (
@@ -1307,6 +1316,11 @@
 /obj/effect/turf_decal/tile/red/fourcorners,
 /turf/open/floor/iron/dark,
 /area/shuttle/escape)
+"sS" = (
+/obj/structure/table/wood/fancy,
+/obj/item/book/bible,
+/turf/open/floor/carpet,
+/area/shuttle/escape)
 "sT" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/tile/red/anticorner/contrasted{
@@ -1613,14 +1627,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/shuttle/escape)
-"yr" = (
-/obj/structure/closet,
-/obj/machinery/light/small/directional/south,
-/obj/item/storage/book/bible,
-/obj/item/storage/book/bible,
-/obj/item/storage/book/bible,
-/turf/open/floor/carpet,
-/area/shuttle/escape)
 "yu" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 10
@@ -1807,6 +1813,12 @@
 /obj/item/plate,
 /obj/item/kitchen/fork,
 /turf/open/floor/iron/dark,
+/area/shuttle/escape)
+"Aw" = (
+/obj/item/book/bible,
+/obj/structure/cable,
+/obj/structure/altar_of_gods,
+/turf/open/floor/carpet,
 /area/shuttle/escape)
 "Ax" = (
 /turf/open/floor/mineral/plastitanium/red,
@@ -2024,15 +2036,6 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/shuttle/escape)
-"Dn" = (
-/obj/item/paint/paint_remover{
-	pixel_y = 8
-	},
-/obj/structure/table/wood,
-/obj/item/soap/nanotrasen,
-/obj/structure/sign/poster/official/fruit_bowl/directional/north,
-/turf/open/floor/iron/dark,
-/area/shuttle/escape)
 "Dr" = (
 /obj/machinery/camera/directional/west{
 	c_tag = "Monastery Kitchen";
@@ -2048,12 +2051,6 @@
 "Dt" = (
 /obj/structure/flora/bush,
 /turf/open/misc/asteroid,
-/area/shuttle/escape)
-"Dv" = (
-/obj/item/storage/book/bible,
-/obj/structure/cable,
-/obj/structure/altar_of_gods,
-/turf/open/floor/carpet,
 /area/shuttle/escape)
 "Dw" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -3205,11 +3202,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"Si" = (
-/obj/structure/table/wood/fancy,
-/obj/item/storage/book/bible,
-/turf/open/floor/carpet,
-/area/shuttle/escape)
 "Sj" = (
 /obj/structure/extinguisher_cabinet/directional/west,
 /obj/machinery/light/small/directional/south,
@@ -3872,6 +3864,14 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/shuttle/escape)
+"ZV" = (
+/obj/structure/closet,
+/obj/machinery/light/small/directional/south,
+/obj/item/book/bible,
+/obj/item/book/bible,
+/obj/item/book/bible,
+/turf/open/floor/carpet,
+/area/shuttle/escape)
 "ZZ" = (
 /obj/structure/cable,
 /turf/open/floor/carpet,
@@ -4401,7 +4401,7 @@ BG
 eW
 rX
 eQ
-yr
+ZV
 nr
 yO
 Ab
@@ -4743,7 +4743,7 @@ Pz
 kw
 oa
 eQ
-Si
+sS
 Ti
 RM
 Xs
@@ -5790,7 +5790,7 @@ ZZ
 ZZ
 ZZ
 ZZ
-Dv
+Aw
 sm
 jx
 iS
@@ -7111,7 +7111,7 @@ JG
 JG
 Ho
 yc
-Dn
+hu
 Vl
 oc
 oc
@@ -7275,7 +7275,7 @@ JG
 JG
 Ho
 yc
-iE
+hT
 FY
 FY
 FY

@@ -101,6 +101,13 @@
 	},
 /turf/open/floor/iron/sepia,
 /area/centcom/central_command_areas/holding)
+"cV" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/sign/poster/contraband/syndicate_recruitment/directional/west,
+/turf/open/floor/carpet/black,
+/area/centcom/central_command_areas/holding)
 "cW" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -119,11 +126,6 @@
 /area/centcom/central_command_areas/holding)
 "dg" = (
 /turf/closed/wall/mineral/wood,
-/area/centcom/central_command_areas/holding)
-"dj" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/item/storage/book/bible,
-/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/holding)
 "dy" = (
 /obj/machinery/light/small/directional/west,
@@ -158,6 +160,21 @@
 "eg" = (
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood/large,
+/area/centcom/central_command_areas/holding)
+"fb" = (
+/obj/structure/closet,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/reagent_containers/medigel/synthflesh,
+/obj/item/reagent_containers/medigel/synthflesh,
+/obj/item/reagent_containers/medigel/synthflesh,
+/obj/item/organ/internal/heart/cybernetic/tier2,
+/obj/item/organ/internal/heart/cybernetic/tier2,
+/obj/item/defibrillator,
+/obj/item/surgery_tray,
+/obj/machinery/iv_drip,
+/obj/item/emergency_bed,
+/obj/item/storage/medkit/regular,
+/turf/open/floor/iron/sepia,
 /area/centcom/central_command_areas/holding)
 "fj" = (
 /obj/machinery/light/directional/north,
@@ -785,6 +802,22 @@
 	},
 /turf/open/floor/stone,
 /area/centcom/central_command_areas/holding)
+"tj" = (
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/machinery/iv_drip,
+/obj/item/storage/medkit/regular,
+/obj/item/defibrillator,
+/obj/structure/closet,
+/obj/item/surgery_tray,
+/obj/item/emergency_bed,
+/obj/item/storage/medkit/regular,
+/obj/item/reagent_containers/medigel/synthflesh,
+/obj/item/reagent_containers/medigel/synthflesh,
+/obj/item/reagent_containers/medigel/synthflesh,
+/obj/item/organ/internal/heart/cybernetic/tier2,
+/obj/item/organ/internal/heart/cybernetic/tier2,
+/turf/open/floor/iron/sepia,
+/area/centcom/central_command_areas/holding)
 "ts" = (
 /obj/item/food/meat/slab/chicken,
 /obj/item/food/meat/slab/chicken,
@@ -1127,13 +1160,6 @@
 	},
 /turf/open/floor/iron/cafeteria,
 /area/centcom/central_command_areas/holding)
-"BN" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/structure/sign/poster/contraband/syndicate_recruitment/directional/west,
-/turf/open/floor/carpet/black,
-/area/centcom/central_command_areas/holding)
 "Ca" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
@@ -1215,22 +1241,6 @@
 "DI" = (
 /turf/open/floor/iron/sepia,
 /area/centcom/central_command_areas/holding)
-"DK" = (
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/obj/machinery/iv_drip,
-/obj/item/storage/medkit/regular,
-/obj/item/defibrillator,
-/obj/structure/closet,
-/obj/item/surgery_tray,
-/obj/item/emergency_bed,
-/obj/item/storage/medkit/regular,
-/obj/item/reagent_containers/medigel/synthflesh,
-/obj/item/reagent_containers/medigel/synthflesh,
-/obj/item/reagent_containers/medigel/synthflesh,
-/obj/item/organ/internal/heart/cybernetic/tier2,
-/obj/item/organ/internal/heart/cybernetic/tier2,
-/turf/open/floor/iron/sepia,
-/area/centcom/central_command_areas/holding)
 "DL" = (
 /obj/structure/chair/wood{
 	dir = 4
@@ -1275,6 +1285,11 @@
 /turf/open/misc/ashplanet/wateryrock{
 	initial_gas_mix = "o2=22;n2=82;TEMP=293.15"
 	},
+/area/centcom/central_command_areas/holding)
+"EG" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/item/book/bible,
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/holding)
 "EJ" = (
 /obj/item/mop,
@@ -1632,21 +1647,6 @@
 	pixel_y = 6
 	},
 /turf/open/floor/iron/cafeteria,
-/area/centcom/central_command_areas/holding)
-"Mz" = (
-/obj/structure/closet,
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/obj/item/reagent_containers/medigel/synthflesh,
-/obj/item/reagent_containers/medigel/synthflesh,
-/obj/item/reagent_containers/medigel/synthflesh,
-/obj/item/organ/internal/heart/cybernetic/tier2,
-/obj/item/organ/internal/heart/cybernetic/tier2,
-/obj/item/defibrillator,
-/obj/item/surgery_tray,
-/obj/machinery/iv_drip,
-/obj/item/emergency_bed,
-/obj/item/storage/medkit/regular,
-/turf/open/floor/iron/sepia,
 /area/centcom/central_command_areas/holding)
 "ML" = (
 /obj/structure/window/paperframe{
@@ -3273,7 +3273,7 @@ Lw
 ML
 mw
 mw
-BN
+cV
 lI
 lI
 mw
@@ -3670,7 +3670,7 @@ Ed
 (39,1,1) = {"
 Ed
 CG
-dj
+EG
 mw
 mw
 mw
@@ -3790,7 +3790,7 @@ bl
 xM
 qW
 dg
-Mz
+fb
 DI
 vH
 dg
@@ -3802,7 +3802,7 @@ rV
 dg
 aw
 Wm
-DK
+tj
 dg
 uL
 hO

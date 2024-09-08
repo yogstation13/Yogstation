@@ -284,7 +284,7 @@
 /turf/open/floor/wood/large,
 /area/centcom/tdome/arena/actual)
 "Vj" = (
-/obj/item/storage/book/bible{
+/obj/item/book/bible{
 	pixel_y = 5
 	},
 /obj/structure/table/wood,

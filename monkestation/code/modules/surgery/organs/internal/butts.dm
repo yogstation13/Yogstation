@@ -160,7 +160,7 @@
 
 	//BIBLEFART
 	//This goes above all else because it's an instagib.
-	for(var/obj/item/storage/book/bible/Holy in Location)
+	for(var/obj/item/book/bible/Holy in Location)
 		if(Holy)
 			cooling_down = TRUE
 			var/turf/T = get_step(get_step(Person, NORTH), NORTH)

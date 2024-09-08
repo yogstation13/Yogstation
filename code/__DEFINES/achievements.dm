@@ -54,6 +54,7 @@
 #define MEDAL_NARSUPREME "Narsupreme"
 #define MEDAL_SPRINGLOCK "The Man Inside the Modsuit"
 #define MEDAL_HEALTHY "Heart Healthy"
+#define MEDAL_GODS_WRATH "God's Wrath"
 #define MEDAL_DEBT_EXTINGUISHED "Debt Extinguished"
 #define MEDAL_ARCHMAGE "Archmage"
 #define MEDAL_THEORETICAL_LIMITS "All Within Theoretical Limits"

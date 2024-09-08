@@ -5,12 +5,12 @@
 /area/station/maintenance/department/crew_quarters/dorms)
 "h" = (
 /obj/structure/window/spawner/directional/east,
-/obj/item/storage/book/bible{
+/obj/item/book/bible{
 	pixel_x = -4;
 	pixel_y = -4
 	},
-/obj/item/storage/book/bible,
-/obj/item/storage/book/bible{
+/obj/item/book/bible,
+/obj/item/book/bible{
 	pixel_x = 4;
 	pixel_y = 4
 	},
