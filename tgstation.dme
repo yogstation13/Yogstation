@@ -7112,6 +7112,7 @@
 #include "monkestation\code\modules\mob\living\carbon\human\emotes.dm"
 #include "monkestation\code\modules\mob\living\carbon\human\human.dm"
 #include "monkestation\code\modules\mob\living\carbon\human\human_defines.dm"
+#include "monkestation\code\modules\mob\living\carbon\human\init_signals.dm"
 #include "monkestation\code\modules\mob\living\carbon\human\lizard_gags.dm"
 #include "monkestation\code\modules\mob\living\carbon\human\simian_gags.dm"
 #include "monkestation\code\modules\mob\living\carbon\human\worn_overlays.dm"
