@@ -1,7 +1,8 @@
 /// Assosciative list of type -> armor. Used to ensure we always hold a reference to default armor datums
 GLOBAL_LIST_INIT(armor_by_type, generate_armor_type_cache())
 
-/proc/generate_armor_type_cache()
+/proc/generate_armor_type_cache() as /list
+	RETURN_TYPE(/list)
 	var/list/armor_cache = list()
 	for(var/datum/armor/armor_type as anything in subtypesof(/datum/armor))
 		armor_type = new armor_type
@@ -12,7 +13,8 @@ GLOBAL_LIST_INIT(armor_by_type, generate_armor_type_cache())
 /**
  * Gets an armor type datum using the given type by formatting it into the expected datum tag
  */
-/proc/get_armor_by_type(armor_type)
+/proc/get_armor_by_type(armor_type) as /datum/armor
+	RETURN_TYPE(/datum/armor)
 	var/armor = locate(replacetext("[armor_type]", "/", "-"))
 	if(armor)
 		return armor
@@ -68,7 +70,8 @@ GLOBAL_LIST_INIT(armor_by_type, generate_armor_type_cache())
 	return FALSE
 
 /// Generate a brand new armor datum with the modifiers given, if ARMOR_ALL is specified only that modifier is used
-/datum/armor/proc/generate_new_with_modifiers(list/modifiers)
+/datum/armor/proc/generate_new_with_modifiers(list/modifiers) as /datum/armor
+	RETURN_TYPE(/datum/armor)
 	var/datum/armor/new_armor = new
 
 	var/all_keys = ARMOR_LIST_ALL()
@@ -88,10 +91,12 @@ GLOBAL_LIST_INIT(armor_by_type, generate_armor_type_cache())
 	return new_armor
 
 /datum/armor/immune/generate_new_with_modifiers(list/modifiers)
+	RETURN_TYPE(/datum/armor)
 	return src
 
 /// Generate a brand new armor datum with the multiplier given, if ARMOR_ALL is specified only that modifer is used
-/datum/armor/proc/generate_new_with_multipliers(list/multipliers)
+/datum/armor/proc/generate_new_with_multipliers(list/multipliers) as /datum/armor
+	RETURN_TYPE(/datum/armor)
 	var/datum/armor/new_armor = new
 
 	var/all_keys = ARMOR_LIST_ALL()
@@ -111,10 +116,12 @@ GLOBAL_LIST_INIT(armor_by_type, generate_armor_type_cache())
 	return new_armor
 
 /datum/armor/immune/generate_new_with_multipliers(list/multipliers)
+	RETURN_TYPE(/datum/armor)
 	return src
 
 /// Generate a brand new armor datum with the values given, if a value is not present it carries over
-/datum/armor/proc/generate_new_with_specific(list/values)
+/datum/armor/proc/generate_new_with_specific(list/values)  as /datum/armor
+	RETURN_TYPE(/datum/armor)
 	var/datum/armor/new_armor = new
 
 	var/all_keys = ARMOR_LIST_ALL()
@@ -134,10 +141,11 @@ GLOBAL_LIST_INIT(armor_by_type, generate_armor_type_cache())
 	return new_armor
 
 /datum/armor/immune/generate_new_with_specific(list/values)
+	RETURN_TYPE(/datum/armor)
 	return src
 
 /// Gets the rating of armor for the specified rating
-/datum/armor/proc/get_rating(rating)
+/datum/armor/proc/get_rating(rating) as num
 	// its not that I dont trust coders, its just that I don't trust coders
 	if(!(rating in ARMOR_LIST_ALL()))
 		CRASH("Attempted to get a rating '[rating]' that doesnt exist")
@@ -157,27 +165,32 @@ GLOBAL_LIST_INIT(armor_by_type, generate_armor_type_cache())
 	return ratings
 
 /datum/armor/immune/get_rating_list(inverse)
+	RETURN_TYPE(/list)
 	var/ratings = ..() // get all ratings
 	for(var/rating in ratings)
 		ratings[rating] = 100 // and set them to 100
 	return ratings
 
 /// Returns a new armor datum with the given armor added onto this one
-/datum/armor/proc/add_other_armor(datum/armor/other)
+/datum/armor/proc/add_other_armor(datum/armor/other) as /datum/armor
+	RETURN_TYPE(/datum/armor)
 	if(ispath(other))
 		other = get_armor_by_type(other)
 	return generate_new_with_modifiers(other.get_rating_list())
 
 /datum/armor/immune/add_other_armor(datum/armor/other)
+	RETURN_TYPE(/datum/armor)
 	return src
 
 /// Returns a new armor datum with the given armor removed from this one
-/datum/armor/proc/subtract_other_armor(datum/armor/other)
+/datum/armor/proc/subtract_other_armor(datum/armor/other) as /datum/armor
+	RETURN_TYPE(/datum/armor)
 	if(ispath(other))
 		other = get_armor_by_type(other)
 	return generate_new_with_modifiers(other.get_rating_list(inverse = TRUE))
 
 /datum/armor/immune/subtract_other_armor(datum/armor/other)
+	RETURN_TYPE(/datum/armor)
 	return src
 
 /// Checks if any of the armor values are non-zero, so this technically also counts negative armor!

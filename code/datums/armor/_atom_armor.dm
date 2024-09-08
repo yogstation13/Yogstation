@@ -1,5 +1,5 @@
 /// Get the atom's armor reference
-/atom/proc/get_armor()
+/atom/proc/get_armor() as /datum/armor
 	RETURN_TYPE(/datum/armor)
 	return (armor ||= get_armor_by_type(armor_type))
 
