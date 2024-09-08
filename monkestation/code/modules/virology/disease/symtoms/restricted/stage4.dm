@@ -3,6 +3,8 @@
 	desc = "If left untreated the subject will die!"
 	restricted = TRUE
 	max_multiplier = 5
+	chance = 20
+	max_chance = 20
 	var/sound = FALSE
 	badness = EFFECT_DANGER_DEADLY
 
@@ -51,6 +53,7 @@
 			affected_mob.set_heartattack(TRUE)
 			affected_mob.reagents.add_reagent(/datum/reagent/medicine/c2/penthrite, 3) // To give the victim a final chance to shock their heart before losing consciousness
 			return FALSE
+	multiplier_tweak(0.1)
 
 /datum/symptom/catapult_sneeze
 	name = "Sneezing?"
