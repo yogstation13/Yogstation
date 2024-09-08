@@ -1,0 +1,7 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - sound: "Added a new meow sound that has a 5% chance to play when meow emoting."
+  - rscadd: "Added new emotes: *mggaow and *purr"
+  - qol: "Added short audio cooldowns to several audible emotes."
+  - code_imp: "Cleaned up some emote code."
