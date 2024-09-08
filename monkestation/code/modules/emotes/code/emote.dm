@@ -465,4 +465,16 @@
 	taste_description = "metallic saltiness"
 	nutriment_factor = 0.5 * REAGENTS_METABOLISM
 	penetrates_skin = NONE
+
+/datum/emote/spin/speen
+	key = "speen"
+	key_third_person = "speens"
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
+	mob_type_allowed_typecache = /mob/living
+	mob_type_blacklist_typecache = list(/mob/living/brain)
+	audio_cooldown = 2 SECONDS
+	vary = TRUE
+
+/datum/emote/spin/speen/get_sound(mob/living/user)
+	return 'monkestation/sound/voice/speen.ogg'
 //End
