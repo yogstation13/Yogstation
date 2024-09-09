@@ -17,3 +17,4 @@
 /obj/item/radio/headset/civilprotection/divisional/overwatch
 	name = "overwatch headset"
 	desc = "Protection for ears from loud songs, along with a functioning radio for overwatch forces."
+	keyslot = new /obj/item/encryptionkey/headset_cent

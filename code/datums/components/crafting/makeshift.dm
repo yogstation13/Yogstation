@@ -37,18 +37,6 @@
 	category = CAT_TOOLS
 	always_available = FALSE
 
-/datum/crafting_recipe/makeshiftmultitool
-	name = "Makeshift Multitool"
-	reqs = list(/obj/item/assembly/igniter = 1,
-				/obj/item/assembly/signaler = 1,
-				/obj/item/stack/sheet/metal = 2,
-				/obj/item/stack/cable_coil = 10)
-	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
-	result = /obj/item/multitool/makeshift
-	time = 16 SECONDS
-	category = CAT_TOOLS
-	always_available = FALSE
-
 /datum/crafting_recipe/makeshiftscrewdriver
 	name = "Makeshift Screwdriver"
 	reqs = list(/obj/item/stack/rods = 3)
@@ -95,18 +83,6 @@
 				/obj/item/stack/cable_coil = 5)
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	result = /obj/item/radio/off/makeshift
-	time = 12 SECONDS
-	category = CAT_TOOLS
-	always_available = FALSE
-
-/datum/crafting_recipe/makeshiftemag
-	name = "Improvised Emag"	
-	reqs = list(/obj/item/stock_parts/subspace/amplifier = 1,
-        		/obj/item/card/id = 1,
-				/obj/item/electronics/firelock = 1,
-				/obj/item/stack/cable_coil = 10)
-	tool_behaviors = list(TOOL_MULTITOOL, TOOL_WIRECUTTER)
-	result = /obj/item/card/emag/improvised
 	time = 12 SECONDS
 	category = CAT_TOOLS
 	always_available = FALSE

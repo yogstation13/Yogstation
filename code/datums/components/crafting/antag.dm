@@ -59,6 +59,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 1 SECONDS
 	category = CAT_WEAPON_RANGED
+	always_available = FALSE
 
 /datum/crafting_recipe/makeshiftpistol
 	name = "Makeshift Pistol"

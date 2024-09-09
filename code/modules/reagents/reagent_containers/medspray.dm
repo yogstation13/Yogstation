@@ -108,5 +108,5 @@
 
 /obj/item/reagent_containers/medspray/sterilizine
 	name = "sterilizer spray"
-	desc = "Spray bottle loaded with non-toxic sterilizer. Useful in preparation for surgery."
+	desc = "A old can of 'Sterilizine' brand medically rated cleaner. Rated safe to use on any surface, including people, though who knows how effective it is still after all these years."
 	list_reagents = list(/datum/reagent/space_cleaner/sterilizine = 30)

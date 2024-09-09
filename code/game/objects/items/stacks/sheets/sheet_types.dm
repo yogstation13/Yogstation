@@ -300,45 +300,13 @@ GLOBAL_LIST_INIT(bamboo_recipes, list ( \
  * Cloth
  */
 GLOBAL_LIST_INIT(cloth_recipes, list ( \
-	new/datum/stack_recipe("white jumpskirt", /obj/item/clothing/under/skirt/color/white, 3), /*Ladies first*/ \
-	new/datum/stack_recipe("white jumpsuit", /obj/item/clothing/under/color/white, 3), \
-	new/datum/stack_recipe("white scarf", /obj/item/clothing/neck/scarf, 1), \
-	new/datum/stack_recipe("white shoes", /obj/item/clothing/shoes/sneakers/white, 2), \
-	null, \
-	new/datum/stack_recipe("backpack", /obj/item/storage/backpack, 4), \
-	new/datum/stack_recipe("duffel bag", /obj/item/storage/backpack/duffelbag, 6), \
-	null, \
-	new/datum/stack_recipe("bio bag", /obj/item/storage/bag/bio, 4), \
-	new/datum/stack_recipe("book bag", /obj/item/storage/bag/books, 4), \
-	new/datum/stack_recipe("chemistry bag", /obj/item/storage/bag/chemistry, 4), \
-	new/datum/stack_recipe("construction bag", /obj/item/storage/bag/construction, 4), \
-	new/datum/stack_recipe("mining satchel", /obj/item/storage/bag/ore, 4), \
-	new/datum/stack_recipe("plant bag", /obj/item/storage/bag/plants, 4), \
-	new/datum/stack_recipe("sheet snatcher", /obj/item/storage/bag/sheetsnatcher, 4), \
-	null, \
-	new/datum/stack_recipe("bedsheet", /obj/item/bedsheet, 3), \
-	new/datum/stack_recipe("empty sandbag", /obj/item/emptysandbag, 4), \
 	new/datum/stack_recipe("improvised gauze", /obj/item/stack/medical/gauze/improvised, 1, 2, 6), \
 	new/datum/stack_recipe("rag", /obj/item/reagent_containers/glass/rag, 1), \
-	null, \
-	new/datum/stack_recipe("fingerless gloves", /obj/item/clothing/gloves/fingerless, 1), \
-	new/datum/stack_recipe("white beanie", /obj/item/clothing/head/beanie, 2), \
-	new/datum/stack_recipe("white gloves", /obj/item/clothing/gloves/color/white, 3), \
-	new/datum/stack_recipe("white softcap", /obj/item/clothing/head/soft/mime, 2), \
-	null, \
-	new/datum/stack_recipe("blindfold", /obj/item/clothing/glasses/blindfold, 2), \
-	null, \
-	new/datum/stack_recipe("black beanbag", /obj/structure/chair/stool/beanbag/black, 5), \
-	new/datum/stack_recipe("blue beanbag", /obj/structure/chair/stool/beanbag/blue, 5), \
-	new/datum/stack_recipe("red beanbag", /obj/structure/chair/stool/beanbag/red, 5), \
-	new/datum/stack_recipe("green beanbag", /obj/structure/chair/stool/beanbag/green, 5), \
-	new/datum/stack_recipe("grey beanbag", /obj/structure/chair/stool/beanbag, 5), \
-	new/datum/stack_recipe("yellow beanbag", /obj/structure/chair/stool/beanbag/yellow, 5), \
 	))
 
 /obj/item/stack/sheet/cloth
 	name = "cloth"
-	desc = "Is it cotton? Linen? Denim? Burlap? Canvas? You can't tell."
+	desc = "A old piece of cloth. It's surely old and gross, but maybe it is still worthwhile using."
 	singular_name = "cloth roll"
 	icon_state = "sheet-cloth"
 	item_state = "sheet-cloth"

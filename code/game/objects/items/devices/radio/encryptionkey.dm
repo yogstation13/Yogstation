@@ -136,10 +136,10 @@
 	ADD_TRAIT(src, TRAIT_NODROP, SYNTHETIC_TRAIT)
 
 /obj/item/encryptionkey/headset_cent
-	name = "\improper CentCom radio encryption key"
+	name = "\improper Overwatch radio encryption key"
 	icon_state = "cent_cypherkey"
 	independent = TRUE
-	channels = list(RADIO_CHANNEL_CENTCOM = 1)
+	channels = list(RADIO_CHANNEL_CENTCOM = 1, RADIO_CHANNEL_SECURITY = 1, RADIO_CHANNEL_COMMAND = 1)
 
 /obj/item/encryptionkey/ai //ported from NT, this goes 'inside' the AI.
 	channels = list(RADIO_CHANNEL_COMMAND = 1, RADIO_CHANNEL_SECURITY = 1, RADIO_CHANNEL_ENGINEERING = 1, RADIO_CHANNEL_SCIENCE = 1, RADIO_CHANNEL_MEDICAL = 1, RADIO_CHANNEL_SUPPLY = 1, RADIO_CHANNEL_SERVICE = 1, RADIO_CHANNEL_AI_PRIVATE = 1)

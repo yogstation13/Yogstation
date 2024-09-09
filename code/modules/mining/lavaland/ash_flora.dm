@@ -271,19 +271,6 @@
 	reagents_add = list(/datum/reagent/consumable/tinlux = 0.04, /datum/reagent/consumable/nutriment = 0.02, /datum/reagent/drug/space_drugs = 0.02, /datum/reagent/consumable/ashresin = 0.02, /datum/reagent/consumable/nutriment = 0.1)
 
 //CRAFTING
-/datum/crafting_recipe/mushroomwood
-	name = "Wood Substitute"
-	result = /obj/item/stack/sheet/mineral/wood/mushroom
-	reqs = list(/obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings = 2)
-	time = 2 SECONDS
-	category = CAT_PRIMAL
-
-/datum/crafting_recipe/mushroom_bowl
-	name = "Mushroom Bowl"
-	result = /obj/item/reagent_containers/glass/bowl/mushroom_bowl
-	reqs = list(/obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings = 5)
-	time = 3 SECONDS
-	category = CAT_PRIMAL
 
 /obj/item/reagent_containers/food/snacks/customizable/salad/ashsalad
 	desc = "Very ashy."

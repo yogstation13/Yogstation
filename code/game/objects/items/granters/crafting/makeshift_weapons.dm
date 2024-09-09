@@ -3,6 +3,7 @@
 	desc = "A book filled with directions on how to make various weaponry."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/metal_baseball_bat, 
+	/*
 		/datum/crafting_recipe/lance, 
 		/datum/crafting_recipe/knifeboxing, 
 		/datum/crafting_recipe/pipebomb, 
@@ -21,5 +22,6 @@
 		/datum/crafting_recipe/bola_arrow, 
 		/datum/crafting_recipe/flaming_arrow, 
 		/datum/crafting_recipe/makeshiftemag
+	*/
 		)
 	icon_state = "bookCrafting"

@@ -751,6 +751,8 @@
 				/obj/item/radio/off/halflife = 2,
 				/obj/item/ammo_casing/reusable/arrow/rebar,
 				/obj/item/flashlight/seclite,
+				/obj/item/stack/sheet/cloth,
+				/obj/item/reagent_containers/medspray/sterilizine,
 				/obj/item/storage/firstaid,
 				/obj/item/storage/firstaid/toxin
 				)

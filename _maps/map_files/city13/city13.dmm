@@ -207,10 +207,6 @@
 /obj/effect/turf_decal/road/verticalcrossing,
 /turf/open/floor/plating/ground/road,
 /area/halflife/outdoors)
-"fj" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/plating/indoor/woodc,
-/area/halflife/outdoors)
 "fo" = (
 /obj/machinery/door/unpowered/halflife/wood{
 	dir = 1
@@ -516,6 +512,10 @@
 "mp" = (
 /obj/structure/halflife/street_sign/street,
 /turf/open/floor/plating/ground/sidewalk,
+/area/halflife/outdoors)
+"mx" = (
+/obj/machinery/ntnet_relay,
+/turf/open/floor/plating/indoor/woodc,
 /area/halflife/outdoors)
 "mA" = (
 /turf/open/floor/plating/indoor/metal/pipe/corner,
@@ -1601,6 +1601,10 @@
 /obj/machinery/door/unpowered/halflife/wood,
 /turf/open/floor/plating/indoor/woodc,
 /area/halflife/indoors)
+"RH" = (
+/obj/machinery/telecomms/allinone,
+/turf/open/floor/plating/indoor/woodc,
+/area/halflife/outdoors)
 "RT" = (
 /obj/machinery/door/unpowered/halflife/metal{
 	dir = 8
@@ -80130,7 +80134,7 @@ ND
 ND
 ND
 ND
-GN
+ND
 ND
 ND
 ND
@@ -80326,6 +80330,14 @@ hZ
 hZ
 hZ
 hZ
+tG
+hZ
+hZ
+hZ
+hZ
+hZ
+hZ
+tG
 hZ
 hZ
 hZ
@@ -80334,15 +80346,7 @@ hZ
 hZ
 hZ
 hZ
-hZ
-hZ
-hZ
-hZ
-hZ
-hZ
-hZ
-hZ
-hZ
+tG
 hZ
 hZ
 hZ
@@ -80927,7 +80931,7 @@ FP
 FP
 FP
 ND
-hZ
+ld
 hZ
 hZ
 hZ
@@ -82567,7 +82571,7 @@ hZ
 hZ
 hZ
 hZ
-hZ
+jv
 ND
 Tc
 Tc
@@ -83149,7 +83153,7 @@ FP
 FP
 FP
 ND
-hZ
+ld
 hZ
 hZ
 hZ
@@ -85193,7 +85197,7 @@ hZ
 hZ
 hZ
 hZ
-hZ
+jv
 ND
 Tc
 Tc
@@ -85573,7 +85577,7 @@ Hu
 FP
 FP
 ND
-hZ
+ld
 hZ
 hZ
 hZ
@@ -87190,6 +87194,7 @@ hB
 hB
 ND
 hZ
+Gf
 hZ
 hZ
 hZ
@@ -87207,8 +87212,7 @@ hZ
 hZ
 hZ
 hZ
-hZ
-hZ
+Gf
 hZ
 hZ
 hZ
@@ -91784,11 +91788,11 @@ pf
 "}
 (221,1,2) = {"
 pf
-pf
-pf
-pf
-pf
-pf
+zZ
+zZ
+zZ
+zZ
+zZ
 pf
 pf
 pf
@@ -91986,11 +91990,11 @@ pf
 "}
 (222,1,2) = {"
 pf
+mx
 zZ
 zZ
-pf
-pf
-pf
+zZ
+zZ
 pf
 pf
 pf
@@ -92188,11 +92192,11 @@ pf
 "}
 (223,1,2) = {"
 pf
-fj
 zZ
-pf
-pf
-pf
+zZ
+zZ
+zZ
+zZ
 pf
 pf
 pf
@@ -92390,11 +92394,11 @@ pf
 "}
 (224,1,2) = {"
 pf
+RH
 zZ
 zZ
-pf
-pf
-pf
+zZ
+zZ
 pf
 pf
 pf

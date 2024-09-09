@@ -23,6 +23,7 @@
 		synthesizing = TRUE
 		to_chat(owner, span_notice("You feel less hungry..."))
 		owner.adjust_nutrition(50)
+		owner.adjust_hydration(100)
 		addtimer(CALLBACK(src, PROC_REF(synth_cool)), 50)
 
 /obj/item/organ/cyberimp/chest/nutriment/proc/synth_cool()
@@ -38,8 +39,8 @@
 
 
 /obj/item/organ/cyberimp/chest/nutriment/plus
-	name = "Nutriment pump implant PLUS"
-	desc = "This implant will synthesize and pump into your bloodstream a small amount of nutriment when you are hungry."
+	name = "Combine Nutri-pump"
+	desc = "An automated food and hydration delivery system able to be installed inside of people."
 	icon_state = "chest_implant"
 	implant_color = "#006607"
 	hunger_threshold = NUTRITION_LEVEL_HUNGRY

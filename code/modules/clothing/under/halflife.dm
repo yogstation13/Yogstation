@@ -79,7 +79,9 @@
 
 /obj/item/clothing/under/citizen/rebel
 	name = "citizen jumpsuit"
-	desc = "Full-body blue suit for the common citizen. The scanners have been removed forcefully."
+	armor = list(MELEE = 10, BULLET = 10, LASER = 10,ENERGY = 10, BOMB = 10, BIO = 20, RAD = 20, FIRE = 30, ACID = 30, WOUND = 5)
+	desc = "Full-body blue suit for the common citizen. The scanners have been removed forcefully, and it has been moderately reinforced."
+	icon_state = "rebelblue"
 	has_sensor = NO_SENSORS
 
 /obj/item/clothing/under/administrator
