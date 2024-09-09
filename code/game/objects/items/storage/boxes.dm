@@ -1524,3 +1524,13 @@
 /obj/item/storage/box/halflife/ration/PopulateContents()
 	new /obj/item/reagent_containers/food/snacks/rationpack(src)
 	new /obj/item/reagent_containers/food/drinks/soda_cans/breenwater(src)
+
+/obj/item/storage/box/halflife/loyaltyration
+	name = "loyalty ration pack"
+	desc = "An improved ration pack, intended for loyalists and civil protection. The food inside is slightly more filling."
+	foldable = null
+	icon_state = "ration"
+
+/obj/item/storage/box/halflife/ration/PopulateContents()
+	new /obj/item/reagent_containers/food/snacks/rationpack/loyalty(src)
+	new /obj/item/reagent_containers/food/drinks/soda_cans/breenwater(src)

@@ -29,7 +29,7 @@
 
 /obj/item/reagent_containers/food/snacks/chocolatebar
 	name = "chocolate bar"
-	desc = "Such sweet, fattening food."
+	desc = "Old, but preserved enough that it should still be edible. This is a rare and delicious thing nowadays, savor it carefully."
 	icon_state = "chocolatebar"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/coco = 2)
 	filling_color = "#A0522D"
