@@ -1,6 +1,6 @@
 /datum/job/hos
 	title = "Divisional Lead"
-	description = "Command the civil protection team, ensure the safety of the administrator and labor lead."
+	description = "Command the civil protection team, ensure the safety of the administrator and labor lead, take over for the City Administrator if necessary."
 	orbit_icon = "user-shield"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY|DEADMIN_POSITION_CRITICAL
 	department_head = list("City Administrator")
@@ -8,7 +8,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the city administrator"
+	supervisors = "the city administrator, overwatch"
 	req_admin_notify = 1
 	minimal_player_age = 14
 	exp_requirements = 1500 //25 hours

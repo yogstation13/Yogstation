@@ -120,8 +120,8 @@
 
 /datum/supply_pack/security/armory/ar2
 	name = "OSIPR Crate"
-	desc = "Contains two Overwatch Standard Issue Pulse Rifles. Requires Armory access to open."
-	cost = 1000
+	desc = "Contains two Overwatch Standard Issue Pulse Rifles, that are only usable by authorised personnel. Requires Armory access to open."
+	cost = 1200
 	contains = list(/obj/item/gun/ballistic/automatic/ar2,
 					/obj/item/gun/ballistic/automatic/ar2)
 	crate_name = "osipr gun crate"
