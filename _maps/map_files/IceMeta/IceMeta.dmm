@@ -44533,6 +44533,7 @@
 	pixel_x = 24;
 	pixel_y = -1
 	},
+/mob/living/simple_animal/parrot/shipbreaking_hawk,
 /turf/open/floor/plasteel/dark,
 /area/escapepodbay)
 "mQz" = (

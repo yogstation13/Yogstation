@@ -11818,6 +11818,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
+"fzv" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/rack,
+/obj/item/tank/internals/oxygen,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/bag/sheetsnatcher,
+/obj/item/melee/sledgehammer,
+/obj/item/storage/bag/trash,
+/obj/item/broom,
+/mob/living/simple_animal/parrot/shipbreaking_hawk,
+/turf/open/floor/plasteel/dark,
+/area/escapepodbay)
 "fzA" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Engine Room"
@@ -96144,7 +96156,7 @@ mfB
 vTL
 tkQ
 faP
-xRw
+fzv
 iLQ
 dYL
 dYL

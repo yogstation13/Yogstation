@@ -10112,6 +10112,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "bAj" = (
+/mob/living/simple_animal/parrot/shipbreaking_hawk,
 /turf/open/floor/plasteel/dark,
 /area/escapepodbay)
 "bAo" = (
