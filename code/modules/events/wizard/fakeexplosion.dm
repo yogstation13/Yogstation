@@ -2,7 +2,7 @@
 	name = "Fake Nuclear Explosion"
 	weight = 0 //Badmin exclusive now because once it's expected its not funny
 	typepath = /datum/round_event/wizard/fake_explosion
-	max_occurrences = 1
+	max_occurrences = 01
 	earliest_start = 0 MINUTES
 
 /datum/round_event/wizard/fake_explosion/start()

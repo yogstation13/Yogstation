@@ -2,7 +2,7 @@
 	name = "Magicarp"
 	weight = 1
 	typepath = /datum/round_event/wizard/magicarp
-	max_occurrences = 1
+	max_occurrences = 01
 	earliest_start = 0 MINUTES
 
 /datum/round_event/wizard/magicarp

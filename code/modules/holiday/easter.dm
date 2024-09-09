@@ -3,7 +3,7 @@
 	holidayID = EASTER
 	typepath = /datum/round_event/easter
 	weight = -1
-	max_occurrences = 1
+	max_occurrences = 01
 	earliest_start = 0 MINUTES
 
 /datum/round_event/easter/announce(fake)
@@ -15,7 +15,7 @@
 	holidayID = EASTER
 	typepath = /datum/round_event/rabbitrelease
 	weight = 5
-	max_occurrences = 10
+	max_occurrences = 010
 
 /datum/round_event/rabbitrelease/announce(fake)
 	priority_announce("Unidentified furry objects detected coming aboard [station_name()]. Beware of Adorable-ness.", "Fluffy Alert", ANNOUNCER_ALIENS)

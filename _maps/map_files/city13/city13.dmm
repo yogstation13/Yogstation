@@ -513,10 +513,6 @@
 /obj/structure/halflife/street_sign/street,
 /turf/open/floor/plating/ground/sidewalk,
 /area/halflife/outdoors)
-"mx" = (
-/obj/machinery/ntnet_relay,
-/turf/open/floor/plating/indoor/woodc,
-/area/halflife/outdoors)
 "mA" = (
 /turf/open/floor/plating/indoor/metal/pipe/corner,
 /area/halflife/indoors)
@@ -770,6 +766,10 @@
 /obj/machinery/turnstile/brig/halflife/forcefield/nodirectional,
 /turf/open/floor/plating/indoor/tile,
 /area/halflife/indoors)
+"ue" = (
+/obj/machinery/telecomms/allinone,
+/turf/open/floor/plating/indoor/woodc,
+/area/halflife/outdoors)
 "uf" = (
 /obj/structure/halflife/fence/corner/wire,
 /turf/open/floor/plating/ground/dirt,
@@ -930,6 +930,10 @@
 	},
 /turf/open/floor/plating/indoor/concrete,
 /area/halflife/indoors/sewer)
+"yK" = (
+/obj/machinery/ntnet_relay,
+/turf/open/floor/plating/indoor/woodc,
+/area/halflife/outdoors)
 "yU" = (
 /obj/structure/chair/halflife/wood/padded,
 /turf/open/floor/plating/indoor/cafeteria,
@@ -1601,10 +1605,6 @@
 /obj/machinery/door/unpowered/halflife/wood,
 /turf/open/floor/plating/indoor/woodc,
 /area/halflife/indoors)
-"RH" = (
-/obj/machinery/telecomms/allinone,
-/turf/open/floor/plating/indoor/woodc,
-/area/halflife/outdoors)
 "RT" = (
 /obj/machinery/door/unpowered/halflife/metal{
 	dir = 8
@@ -91990,7 +91990,7 @@ pf
 "}
 (222,1,2) = {"
 pf
-mx
+yK
 zZ
 zZ
 zZ
@@ -92394,7 +92394,7 @@ pf
 "}
 (224,1,2) = {"
 pf
-RH
+ue
 zZ
 zZ
 zZ

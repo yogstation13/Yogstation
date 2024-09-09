@@ -2,7 +2,7 @@
 	name 			= "False Alarm"
 	typepath 		= /datum/round_event/falsealarm
 	weight			= 20
-	max_occurrences = 5
+	max_occurrences = 05
 	var/forced_type //Admin abuse
 	max_alert = SEC_LEVEL_DELTA
 

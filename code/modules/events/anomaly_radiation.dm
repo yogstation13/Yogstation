@@ -2,7 +2,7 @@
 	name = "Anomaly: Radiation"
 	typepath = /datum/round_event/anomaly/anomaly_radiation
 
-	max_occurrences = 7
+	max_occurrences = 00
 	weight = 20
 
 /datum/round_event/anomaly/anomaly_radiation

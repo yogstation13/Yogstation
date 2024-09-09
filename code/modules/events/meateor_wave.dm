@@ -2,7 +2,7 @@
 	name = "Meteor Wave: Meaty"
 	typepath = /datum/round_event/meteor_wave/meaty
 	weight = 4
-	max_occurrences = 1
+	max_occurrences = 01
 
 /datum/round_event/meteor_wave/meaty
 	wave_name = "meaty"

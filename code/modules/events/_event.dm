@@ -14,7 +14,7 @@
 	var/min_players = 0				//The minimum amount of alive, non-AFK human players on server required to start the event.
 
 	var/occurrences = 0				//How many times this event has occured
-	var/max_occurrences = 0		//The maximum number of times this event can occur (naturally), it can still be forced.
+	var/max_occurrences = 00		//The maximum number of times this event can occur (naturally), it can still be forced.
 									//By setting this to 0 you can effectively disable an event.
 
 	var/holidayID = ""				//string which should be in the SSeventss.holidays list if you wish this event to be holiday-specific

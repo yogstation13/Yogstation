@@ -2,7 +2,7 @@
 	name = "The Floor Is LAVA!"
 	weight = 2
 	typepath = /datum/round_event/wizard/lava
-	max_occurrences = 3
+	max_occurrences = 03
 	earliest_start = 0 MINUTES
 
 /datum/round_event/wizard/lava

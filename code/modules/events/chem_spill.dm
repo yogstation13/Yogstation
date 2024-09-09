@@ -2,7 +2,7 @@
 	name = "Chemical Spill: Normal"
 	typepath = /datum/round_event/chem_spill
 	weight = 20
-	max_occurrences = 3
+	max_occurrences = 03
 	min_players = 10
 	max_alert = SEC_LEVEL_DELTA
 
@@ -46,7 +46,7 @@
 	typepath = /datum/round_event/chem_spill/threatening
 	weight = 10
 	min_players = 25
-	max_occurrences = 1
+	max_occurrences = 01
 	earliest_start = 20 MINUTES
 
 /datum/round_event/chem_spill/threatening
@@ -58,7 +58,7 @@
 	typepath = /datum/round_event/chem_spill/catastrophic
 	weight = 5
 	min_players = 35
-	max_occurrences = 1
+	max_occurrences = 01
 	earliest_start = 30 MINUTES
 
 /datum/round_event/chem_spill/catastrophic

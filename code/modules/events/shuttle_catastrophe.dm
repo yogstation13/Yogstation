@@ -2,7 +2,7 @@
 	name = "Shuttle Catastrophe"
 	typepath = /datum/round_event/shuttle_catastrophe
 	weight = 10
-	max_occurrences = 1
+	max_occurrences = 01
 	max_alert = SEC_LEVEL_DELTA
 
 /datum/round_event_control/shuttle_catastrophe/canSpawnEvent(players, gamemode)

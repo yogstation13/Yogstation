@@ -2,7 +2,7 @@
 	name = "Scrubber Overflow: Normal"
 	typepath = /datum/round_event/scrubber_overflow
 	weight = 10
-	max_occurrences = 3
+	max_occurrences = 03
 	min_players = 10
 
 /datum/round_event/scrubber_overflow
@@ -103,7 +103,7 @@
 	typepath = /datum/round_event/scrubber_overflow/threatening
 	weight = 4
 	min_players = 25
-	max_occurrences = 1
+	max_occurrences = 01
 	earliest_start = 35 MINUTES
 
 /datum/round_event/scrubber_overflow/threatening
@@ -115,7 +115,7 @@
 	typepath = /datum/round_event/scrubber_overflow/catastrophic
 	weight = 2
 	min_players = 35
-	max_occurrences = 1
+	max_occurrences = 01
 	earliest_start = 45 MINUTES
 
 /datum/round_event/scrubber_overflow/catastrophic
@@ -126,7 +126,7 @@
 	name = "Scrubber Overflow: Beer"
 	typepath = /datum/round_event/scrubber_overflow/beer
 	weight = 0
-	max_occurrences = 0
+	max_occurrences = 00
 
 /datum/round_event/scrubber_overflow/beer
 	overflow_probability = 100

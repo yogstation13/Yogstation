@@ -2,7 +2,7 @@
 	name = "Petsplosion"
 	weight = 2
 	typepath = /datum/round_event/wizard/petsplosion
-	max_occurrences = 1 //Exponential growth is nothing to sneeze at!
+	max_occurrences = 01 //Exponential growth is nothing to sneeze at!
 	earliest_start = 0 MINUTES
 	var/mobs_to_dupe = 0
 

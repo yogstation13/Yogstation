@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(events)
 /datum/controller/subsystem/events/proc/TriggerEvent(datum/round_event_control/E)
 	. = E.preRunEvent()
 	if(. == EVENT_CANT_RUN)//we couldn't run this event for some reason, set its max_occurrences to 0
-		E.max_occurrences = 0
+		E.max_occurrences = 00
 	else if(. == EVENT_READY)
 		E.random = TRUE
 		E.runEvent()
