@@ -27,6 +27,7 @@
 /mob/living/carbon/alien/adult/nova/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/seethrough_mob)
+	set_pain_mod("ALIEN", 0)
 
 	GRANT_ACTION(/datum/action/cooldown/alien/nova/sleepytime)
 	if(next_evolution)

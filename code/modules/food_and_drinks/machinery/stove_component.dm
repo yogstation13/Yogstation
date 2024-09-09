@@ -23,6 +23,12 @@
 	var/container_y = 8
 	/// Modifies how much temperature is exposed to the reagents, and in turn modifies how fast the reagents are heated.
 	var/heat_coefficient = 0.033
+	///our stove temperature
+	var/temperature = J_LO
+	///list of temperatures
+	var/list/temperatures = list(J_LO, J_MED, J_HI)
+	///our temp index
+	var/temp_index = 1
 
 /datum/component/stove/Initialize(container_x = 0, container_y = 8, obj/item/spawn_container)
 	if(!ismachinery(parent))
@@ -37,6 +43,7 @@
 		add_container(spawn_container)
 
 /datum/component/stove/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_CLICK_ALT, PROC_REF(switch_temp))
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby))
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_SECONDARY, PROC_REF(on_attack_hand_secondary))
 	RegisterSignal(parent, COMSIG_ATOM_EXITED, PROC_REF(on_exited))
@@ -73,6 +80,7 @@
 		turn_off()
 		return
 
+	SEND_SIGNAL(container, COMSIG_STOVE_PROCESS, temperature, seconds_per_tick, parent)
 	container?.reagents.expose_temperature(SOUP_BURN_TEMP + 80, heat_coefficient)
 	real_parent.use_power(real_parent.active_power_usage)
 
@@ -165,6 +173,7 @@
 /datum/component/stove/proc/on_requesting_context(obj/machinery/source, list/context, obj/item/held_item)
 	SIGNAL_HANDLER
 
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "Change Temperature"
 	if(isnull(held_item))
 		context[SCREENTIP_CONTEXT_RMB] = "Turn [on ? "off":"on"] burner"
 		return CONTEXTUAL_SCREENTIP_SET
@@ -172,6 +181,14 @@
 	if(held_item.is_open_container())
 		context[SCREENTIP_CONTEXT_LMB] = "Place container"
 		return CONTEXTUAL_SCREENTIP_SET
+
+/datum/component/stove/proc/switch_temp(datum/source, atom/target)
+	temp_index++
+	if(temp_index > length(temperatures))
+		temp_index = 1
+	temperature = temperatures[temp_index]
+	var/atom/movable/parent_atom = parent
+	parent_atom.visible_message("Temperature set to [temperature]")
 
 /datum/component/stove/proc/on_examine(obj/machinery/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER

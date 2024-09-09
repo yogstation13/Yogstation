@@ -58,13 +58,6 @@
 	worn_icon = 'monkestation/code/modules/blueshift/icons/mob/clothing/neck.dmi'
 	icon_state = "hosmantle_blue" //There's a red version if you remove the _blue, but its not coded in currently.
 
-/obj/item/clothing/neck/mantle/bsmantle
-	name = "\proper the blueshield's mantle"
-	desc = "A plated mantle with command colors. Suitable for the one assigned to making sure they're still breathing."
-	icon = 'monkestation/code/modules/blueshift/icons/mob/clothing/neck.dmi'
-	worn_icon = 'monkestation/code/modules/blueshift/icons/mob/clothing/neck.dmi'
-	icon_state = "bsmantle"
-
 /obj/item/clothing/neck/mantle/capmantle
 	name = "\proper the captain's mantle"
 	desc = "A formal mantle to drape around the shoulders. Others stand on the shoulders of giants. You're the giant they stand on."

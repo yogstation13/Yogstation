@@ -206,35 +206,33 @@
 		. = (amount)
 
 /**
- * Builds all recipes in a given recipe list and returns an association list containing them
- *
- * Arguments:
- * * recipe_to_iterate - The list of recipes we are using to build recipes
+ * Recursively builds the recipes data for the given list of recipes, iterating through each recipe.
+ * If recipe is of type /datum/stack_recipe, it adds the recipe data to the recipes_data list with the title as the key.
+ * If recipe is of type /datum/stack_recipe_list, it recursively calls itself, scanning the entire list and adding each recipe to its category.
  */
-/obj/item/stack/proc/recursively_build_recipes(list/recipe_to_iterate)
-	var/list/L = list()
-	for(var/recipe in recipe_to_iterate)
-		if(istype(recipe, /datum/stack_recipe_list))
-			var/datum/stack_recipe_list/R = recipe
-			L["[R.title]"] = recursively_build_recipes(R.recipes)
+/obj/item/stack/proc/recursively_build_recipes(list/recipes_to_iterate)
+	var/list/recipes_data = list()
+	for(var/recipe in recipes_to_iterate)
 		if(istype(recipe, /datum/stack_recipe))
-			var/datum/stack_recipe/R = recipe
-			L["[R.title]"] = build_recipe(R)
-	return L
+			var/datum/stack_recipe/single_recipe = recipe
+			recipes_data["[single_recipe.title]"] = build_recipe_data(single_recipe)
 
-/**
- * Returns a list of properties of a given recipe
- *
- * Arguments:
- * * R - The stack recipe we are using to get a list of properties
- */
-/obj/item/stack/proc/build_recipe(datum/stack_recipe/R)
-	return list(
-		"res_amount" = R.res_amount,
-		"max_res_amount" = R.max_res_amount,
-		"req_amount" = R.req_amount,
-		"ref" = text_ref(R),
-	)
+		else if(istype(recipe, /datum/stack_recipe_list))
+			var/datum/stack_recipe_list/recipe_list = recipe
+			recipes_data["[recipe_list.title]"] = recursively_build_recipes(recipe_list.recipes)
+
+	return recipes_data
+
+/obj/item/stack/proc/build_recipe_data(datum/stack_recipe/recipe)
+	var/list/data = list()
+
+	data["ref"] = text_ref(recipe)
+	data["required_amount"] = recipe.req_amount
+	data["result_amount"] = recipe.res_amount
+	data["max_result_amount"] = recipe.max_res_amount
+	data["image"] = recipe.image
+
+	return data
 
 /**
  * Checks if the recipe is valid to be used
@@ -265,7 +263,8 @@
 /obj/item/stack/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "StackCrafting", name)
+		ui = new(user, src, "StackCraft", name)
+		ui.set_autoupdate(FALSE)
 		ui.open()
 
 /obj/item/stack/ui_data(mob/user)
@@ -278,16 +277,14 @@
 	data["recipes"] = recursively_build_recipes(recipes)
 	return data
 
-/obj/item/stack/ui_act(action, params)
-	. = ..()
-	if(.)
-		return
+/obj/item/stack/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	if(..())
+		return FALSE
 
 	switch(action)
 		if("make")
 			var/datum/stack_recipe/recipe = locate(params["ref"])
 			var/multiplier = text2num(params["multiplier"])
-
 			return make_item(usr, recipe, multiplier)
 
 /// The key / title for a radial option that shows the entire list of buildables (uses the old menu)

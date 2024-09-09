@@ -95,6 +95,7 @@
 	if(!weighted_feature_spawn_list)
 		weighted_feature_spawn_list = list(
 			/obj/structure/geyser/random = 1,
+			/obj/structure/ore_vent/random = 1,
 		)
 	feature_spawn_list = expand_weights(weighted_feature_spawn_list)
 	open_turf_types = expand_weights(weighted_open_turf_types)
@@ -217,6 +218,7 @@
 	var/megas_allowed = (generate_in.area_flags & MEGAFAUNA_SPAWN_ALLOWED) && length(megafauna_spawn_list)
 
 	var/start_time = REALTIMEOFDAY
+	SSore_generation.ore_vent_minerals = (SSore_generation.ore_vent_minerals_default).Copy()
 
 	for(var/turf/target_turf as anything in turfs)
 		if(!(target_turf.type in open_turf_types)) //only put stuff on open turfs we generated, so closed walls and rivers and stuff are skipped

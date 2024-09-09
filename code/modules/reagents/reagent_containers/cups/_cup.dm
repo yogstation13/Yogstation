@@ -89,6 +89,7 @@
 	checkLiked(fraction, target_mob)
 	////playsound(target_mob.loc,'sound/items/drink.ogg', rand(10,50), TRUE) // monkestation edit original
 	playsound(target_mob.loc,get_drink_sound(target_mob), rand(10,50), TRUE) // monkestation edit: synthesized drink sounds
+	SEND_SIGNAL(target_mob.reagents, COMSIG_DRANK_REAGENT, reagents, gulp_size)
 	if(!iscarbon(target_mob))
 		return
 	var/mob/living/carbon/carbon_drinker = target_mob
@@ -136,6 +137,7 @@
 		reagents.trans_to(chugger, gulp_size, transfered_by = chugger, methods = INGEST)
 		checkLiked(fraction, chugger)
 		playsound(chugger.loc,get_drink_sound(chugger), rand(10,50), TRUE)
+		SEND_SIGNAL(chugger.reagents, COMSIG_DRANK_REAGENT, reagents, gulp_size)
 		if(!iscarbon(chugger))
 			continue
 		var/mob/living/carbon/carbon_drinker = chugger

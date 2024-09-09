@@ -1,0 +1,667 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bo" = (
+/obj/machinery/rnd/production/protolathe/offstation,
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "mothership_right"
+	},
+/turf/open/floor/circuit/airless,
+/area/shipbreak)
+"bG" = (
+/turf/closed/wall/mineral/titanium,
+/area/shipbreak)
+"cE" = (
+/obj/machinery/conveyor_switch/oneway{
+	id = "mothership_right"
+	},
+/turf/open/floor/circuit/airless,
+/area/shipbreak)
+"cH" = (
+/obj/machinery/status_display/ai,
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shipbreak)
+"dk" = (
+/obj/machinery/door/airlock/external/ruin,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/floor/plating,
+/area/shipbreak)
+"dB" = (
+/obj/machinery/power/shuttle_engine/heater,
+/obj/structure/window/reinforced/spawner/directional/north{
+	layer = 2.9
+	},
+/turf/template_noop,
+/area/shipbreak)
+"ev" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shipbreak)
+"fi" = (
+/obj/machinery/light/cold/no_nightlight/directional/west,
+/obj/machinery/button/door/directional/west{
+	id = "mothership_left"
+	},
+/obj/structure/cable,
+/turf/open/floor/circuit/airless,
+/area/shipbreak)
+"fA" = (
+/obj/item/stack/sheet/mineral/titanium,
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"ht" = (
+/obj/structure/lattice,
+/obj/item/stack/sheet/mineral/titanium,
+/turf/template_noop,
+/area/shipbreak)
+"hQ" = (
+/obj/structure/spacevine,
+/obj/machinery/conveyor{
+	id = "mothership_main";
+	dir = 10
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"hZ" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/shipbreak)
+"ib" = (
+/turf/open/floor/circuit/airless,
+/area/shipbreak)
+"jp" = (
+/obj/structure/sign/warning/vacuum/external/directional/west,
+/obj/structure/closet/emcloset/anchored,
+/obj/machinery/light/small/directional/west,
+/turf/open/floor/plating,
+/area/shipbreak)
+"jH" = (
+/obj/machinery/power/shuttle_engine/heater,
+/obj/structure/window/reinforced/spawner/directional/north{
+	layer = 2.9
+	},
+/obj/structure/window/reinforced/spawner/directional/east,
+/turf/template_noop,
+/area/shipbreak)
+"ka" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/shipbreak)
+"mj" = (
+/obj/effect/spawner/structure/window/reinforced/shuttle,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/shipbreak)
+"mC" = (
+/obj/machinery/power/shuttle_engine/propulsion,
+/turf/template_noop,
+/area/shipbreak)
+"nJ" = (
+/obj/item/radio/intercom/directional/south,
+/obj/structure/ai_core,
+/turf/open/floor/circuit/green/airless,
+/area/shipbreak)
+"pL" = (
+/obj/machinery/light/small/directional/south,
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "mothership_main"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"qg" = (
+/obj/item/organ/internal/brain,
+/obj/structure/cable,
+/turf/open/floor/circuit/airless,
+/area/shipbreak)
+"qN" = (
+/obj/machinery/conveyor/inverted{
+	dir = 5;
+	id = "mothership_main"
+	},
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"rI" = (
+/turf/template_noop,
+/area/shipbreak)
+"we" = (
+/obj/machinery/power/smes,
+/obj/structure/cable,
+/turf/open/floor/circuit/airless,
+/area/shipbreak)
+"wg" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/circuit/airless,
+/area/shipbreak)
+"wB" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/cyborg_mothership{
+	dir = 1
+	},
+/turf/open/floor/circuit/green/airless,
+/area/shipbreak)
+"xg" = (
+/obj/machinery/mineral/stacking_machine{
+	input_dir = 2
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/shipbreak)
+"xX" = (
+/obj/machinery/conveyor_switch/oneway{
+	id = "mothership_left"
+	},
+/obj/structure/cable,
+/turf/open/floor/circuit/airless,
+/area/shipbreak)
+"ys" = (
+/obj/machinery/light/cold/no_nightlight/directional/east,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/circuit/airless,
+/area/shipbreak)
+"yL" = (
+/obj/machinery/conveyor/inverted{
+	dir = 6;
+	id = "mothership_main"
+	},
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"zp" = (
+/obj/machinery/space_heater{
+	anchored = 1
+	},
+/obj/machinery/camera/directional/west,
+/obj/item/pipe_dispenser,
+/obj/machinery/airalarm/directional/west,
+/obj/effect/mapping_helpers/airalarm/all_access,
+/obj/item/wrench,
+/turf/open/floor/plating,
+/area/shipbreak)
+"AL" = (
+/obj/machinery/mecha_part_fabricator/maint{
+	name = "forgotten exosuit fabricator";
+	dir = 8
+	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "mothership_left"
+	},
+/turf/open/floor/circuit/airless,
+/area/shipbreak)
+"AY" = (
+/obj/machinery/computer/shuttle/cyborg_mothership{
+	dir = 1
+	},
+/turf/open/floor/circuit/green/airless,
+/area/shipbreak)
+"BI" = (
+/obj/machinery/power/shuttle_engine/heater,
+/obj/structure/window/reinforced/spawner/directional/north{
+	layer = 2.9
+	},
+/obj/structure/window/reinforced/spawner/directional/west,
+/turf/template_noop,
+/area/shipbreak)
+"Cj" = (
+/obj/machinery/door/airlock/hatch,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shipbreak)
+"DF" = (
+/obj/item/stack/rods,
+/obj/machinery/light/broken/directional/east,
+/obj/machinery/button/door/directional/east{
+	id = "mothership_right"
+	},
+/turf/open/floor/circuit/airless,
+/area/shipbreak)
+"Ea" = (
+/obj/machinery/recharge_station,
+/obj/structure/sign/warning/vacuum/external/directional/east,
+/obj/machinery/camera/directional/east,
+/turf/open/floor/plating,
+/area/shipbreak)
+"FK" = (
+/obj/machinery/conveyor{
+	id = "Recycler"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"FL" = (
+/obj/structure/lattice,
+/obj/structure/marker_beacon/cerulean,
+/turf/template_noop,
+/area/shipbreak)
+"Ga" = (
+/obj/structure/spacevine,
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "mothership_main"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"Hr" = (
+/obj/item/mmi,
+/turf/open/floor/circuit/green/airless,
+/area/shipbreak)
+"HO" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/power/tracker,
+/obj/structure/cable,
+/turf/template_noop,
+/area/shipbreak)
+"Ja" = (
+/obj/structure/girder,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"Jk" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/conveyor_switch{
+	id = "Recycler";
+	name = "Recycler"
+	},
+/turf/template_noop,
+/area/shipbreak)
+"Jn" = (
+/obj/item/circuitboard/aicore,
+/obj/structure/cable,
+/turf/open/floor/circuit/green/airless,
+/area/shipbreak)
+"Js" = (
+/obj/machinery/holopad/secure,
+/obj/structure/cable,
+/turf/open/floor/circuit/green/airless,
+/area/shipbreak)
+"JW" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/open/floor/circuit/airless,
+/area/shipbreak)
+"LS" = (
+/obj/item/stack/sheet/rglass{
+	amount = 2
+	},
+/turf/open/floor/circuit/airless,
+/area/shipbreak)
+"Mf" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/door/airlock/external/ruin{
+	id_tag = "caravanpirate_bolt_port"
+	},
+/obj/effect/turf_decal/stripes/asteroid/line,
+/turf/open/floor/plating,
+/area/shipbreak)
+"NY" = (
+/obj/machinery/mineral/ore_redemption{
+	input_dir = 4
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/shipbreak)
+"OR" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/camera/directional/north,
+/obj/machinery/ore_silo,
+/turf/template_noop,
+/area/shipbreak)
+"Pc" = (
+/obj/machinery/conveyor/inverted{
+	dir = 6;
+	id = "mothership_main"
+	},
+/obj/structure/cable,
+/turf/template_noop,
+/area/shipbreak)
+"Qd" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "mothership_main"
+	},
+/turf/template_noop,
+/area/shipbreak)
+"Qm" = (
+/obj/machinery/conveyor{
+	id = "mothership_main";
+	dir = 9
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"RU" = (
+/obj/item/disk/holodisk/ruin/cyborg_mothership,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/circuit/airless,
+/area/shipbreak)
+"Th" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/shipbreak)
+"UU" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/conveyor_switch/oneway{
+	id = "mothership_main"
+	},
+/turf/template_noop,
+/area/shipbreak)
+"Vf" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "mothership_main"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"VU" = (
+/obj/structure/table,
+/obj/item/toy/talking/ai{
+	pixel_x = 7;
+	pixel_y = 10
+	},
+/obj/machinery/cell_charger,
+/obj/item/stock_parts/cell/high,
+/turf/open/floor/circuit/green/airless,
+/area/shipbreak)
+"VW" = (
+/obj/machinery/camera/directional/south,
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/south{
+	environ = 0;
+	equipment = 0;
+	lighting = 0
+	},
+/obj/effect/mapping_helpers/apc/unlocked,
+/turf/open/floor/circuit/airless,
+/area/shipbreak)
+"Wf" = (
+/obj/machinery/conveyor/inverted{
+	dir = 5;
+	id = "mothership_main"
+	},
+/obj/structure/cable,
+/turf/template_noop,
+/area/shipbreak)
+"WC" = (
+/obj/structure/cable,
+/obj/structure/table_frame,
+/obj/item/aicard,
+/obj/item/ai_module/core/full/overlord,
+/turf/open/floor/circuit/green/airless,
+/area/shipbreak)
+"WH" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "mothership_main"
+	},
+/obj/machinery/recycler{
+	dir = 1;
+	eat_dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"XU" = (
+/obj/structure/spacevine,
+/obj/machinery/conveyor{
+	id = "mothership_main"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"Ya" = (
+/obj/machinery/light/small/directional/east,
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plating,
+/area/shipbreak)
+"Yj" = (
+/obj/machinery/light/cold/no_nightlight/directional/west,
+/turf/open/floor/circuit/airless,
+/area/shipbreak)
+"ZL" = (
+/obj/machinery/conveyor{
+	id = "mothership_main";
+	dir = 10
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+
+(1,1,1) = {"
+rI
+rI
+rI
+ev
+ev
+ev
+ev
+ev
+ev
+ev
+ev
+ev
+rI
+Qd
+rI
+rI
+rI
+rI
+rI
+"}
+(2,1,1) = {"
+rI
+rI
+ev
+ev
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+ev
+Qd
+ev
+ev
+rI
+rI
+rI
+"}
+(3,1,1) = {"
+ev
+ev
+bG
+rI
+ka
+bG
+ev
+AL
+ev
+ev
+bG
+ka
+rI
+Pc
+Ga
+Qm
+dB
+mC
+rI
+"}
+(4,1,1) = {"
+bG
+ev
+ev
+bG
+bG
+ev
+fi
+xX
+wg
+Yj
+ev
+bG
+rI
+rI
+xg
+Vf
+jH
+mC
+rI
+"}
+(5,1,1) = {"
+cH
+jp
+ev
+zp
+cH
+LS
+Jn
+wB
+WC
+JW
+ib
+cH
+ka
+FL
+qN
+Vf
+Qm
+jH
+mC
+"}
+(6,1,1) = {"
+dk
+Th
+Mf
+hZ
+Cj
+qg
+Js
+nJ
+ev
+we
+VW
+ev
+OR
+UU
+WH
+Jk
+pL
+mj
+HO
+"}
+(7,1,1) = {"
+cH
+Ea
+ev
+Ya
+cH
+RU
+Hr
+AY
+VU
+ib
+ib
+cH
+ka
+FL
+yL
+FK
+ZL
+BI
+mC
+"}
+(8,1,1) = {"
+bG
+ev
+ev
+bG
+Ja
+fA
+DF
+cE
+ib
+ys
+ev
+bG
+rI
+rI
+NY
+Vf
+BI
+mC
+rI
+"}
+(9,1,1) = {"
+ev
+ev
+bG
+rI
+ht
+fA
+ev
+bo
+ev
+ev
+bG
+ka
+rI
+Wf
+XU
+hQ
+dB
+mC
+rI
+"}
+(10,1,1) = {"
+rI
+rI
+ev
+ev
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+ev
+Qd
+ev
+ev
+rI
+rI
+rI
+"}
+(11,1,1) = {"
+rI
+rI
+rI
+ev
+ev
+ev
+ev
+ev
+ev
+ev
+ev
+ev
+rI
+Qd
+rI
+rI
+rI
+rI
+rI
+"}

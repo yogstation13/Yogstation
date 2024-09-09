@@ -30,3 +30,5 @@
 
 /// Screentips are only enabled when they have context
 #define SCREENTIP_PREFERENCE_CONTEXT_ONLY "Only with tips"
+
+#define SCREENTIP_CONTEXT_MISC "Misc"

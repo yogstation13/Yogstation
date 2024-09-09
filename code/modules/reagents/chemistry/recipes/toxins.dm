@@ -248,7 +248,7 @@
 
 /datum/chemical_reaction/zombiepowder
 	results = list(/datum/reagent/toxin/zombiepowder = 2)
-	required_reagents = list(/datum/reagent/toxin/carpotoxin = 5, /datum/reagent/medicine/morphine = 5, /datum/reagent/copper = 5)
+	required_reagents = list(/datum/reagent/toxin/carpotoxin = 5, /datum/reagent/medicine/painkiller/morphine = 5, /datum/reagent/copper = 5)
 	mix_message = "The mixture turns into a strange green powder."
 	is_cold_recipe = FALSE
 	required_temp = 100

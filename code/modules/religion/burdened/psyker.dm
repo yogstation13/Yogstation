@@ -44,7 +44,7 @@
 		return
 	new_head_owner.become_blind(limb_id)
 
-/obj/item/bodypart/head/psyker/drop_limb(special, dismembered)
+/obj/item/bodypart/head/psyker/drop_limb(special, dismembered, violent)
 	owner.cure_blind(limb_id)
 	return ..()
 

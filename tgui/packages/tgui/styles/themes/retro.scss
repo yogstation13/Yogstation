@@ -41,6 +41,14 @@
   @include meta.load-css('../components/Section.scss');
 
   // Layouts
+  @include meta.load-css(
+    '../components/ImageButton.scss',
+    $with: (
+      'color-default': darken(#e8e4c9, 40%),
+      'color-disabled': #363636,
+      'color-selected': #9d0808
+    )
+  );
   @include meta.load-css('../layouts/Layout.scss');
   @include meta.load-css('../layouts/Window.scss');
   @include meta.load-css(

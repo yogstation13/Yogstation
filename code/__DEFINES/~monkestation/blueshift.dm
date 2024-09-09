@@ -329,4 +329,4 @@ GLOBAL_LIST_INIT(antag_opt_in_colors, list(
 #define OPT_IN_DEFAULT_LEVEL OPT_IN_YES_KILL
 
 /// If the player has any non-ghost role antags enabled, they are forced to use a minimum of this.
-#define OPT_IN_ANTAG_ENABLED_LEVEL OPT_IN_YES_TEMP
+#define OPT_IN_ANTAG_ENABLED_LEVEL OPT_IN_YES_KILL

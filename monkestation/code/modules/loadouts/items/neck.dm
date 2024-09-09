@@ -289,12 +289,12 @@ GLOBAL_LIST_INIT(loadout_necks, generate_loadout_items(/datum/loadout_item/neck)
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
 	requires_purchase = FALSE
 
-/*
+
 /datum/loadout_item/neck/mantle_bs
 	name = "Blueshield's Mantle"
 	item_path = /obj/item/clothing/neck/mantle/bsmantle
 	restricted_roles = list(JOB_BLUESHIELD)
-*/
+
 /datum/loadout_item/neck/mantle_cap
 	name = "Captain's Mantle"
 	item_path = /obj/item/clothing/neck/mantle/capmantle

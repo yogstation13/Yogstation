@@ -169,7 +169,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// This carbon doesn't bleed
 #define TRAIT_NOBLOOD "noblood"
 /// This just means that the carbon will always have functional liverless metabolism
-/* #define TRAIT_LIVERLESS_METABOLISM "liverless_metabolism" */
+#define TRAIT_LIVERLESS_METABOLISM "liverless_metabolism"
 /// This carbon can't be overdosed by chems
 /* #define TRAIT_OVERDOSEIMMUNE "overdose_immune" */
 /// Humans with this trait cannot be turned into zombies
@@ -1220,12 +1220,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Trait which means whatever has this is dancing by a dance machine
 /* #define TRAIT_DISCO_DANCER "disco_dancer" */
 
-/// Trait which allows mobs to instantly break down boulders.
-/* #define TRAIT_INSTANTLY_PROCESSES_BOULDERS "instantly_processes_boulders" */
-
-/// Trait applied to objects and mobs that can attack a boulder and break it down. (See /obj/item/boulder/manual_process())
-/* #define TRAIT_BOULDER_BREAKER "boulder_breaker" */
-
 /// Trait given to anything linked to, not necessarily allied to, the mansus
 /* #define TRAIT_MANSUS_TOUCHED "mansus_touched" */
 
@@ -1272,5 +1266,11 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 ///Trait which allows mobs to parry mining mob projectiles
 /* #define TRAIT_MINING_PARRYING "mining_parrying" */
+
+/// That which allows mobs to instantly break down boulders.
+#define TRAIT_INSTANTLY_PROCESSES_BOULDERS "instantly_processes_boulders"
+
+/// Trait applied to objects and mobs that can attack a boulder and break it down. (See /obj/item/boulder/manual_process())
+#define TRAIT_BOULDER_BREAKER "boulder_breaker"
 
 // END TRAIT DEFINES

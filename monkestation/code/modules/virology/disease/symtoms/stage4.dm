@@ -68,9 +68,9 @@
 
 /datum/symptom/dna/activate(mob/living/carbon/mob)
 	mob.bodytemperature = max(mob.bodytemperature, 350)
-	scramble_dna(mob, TRUE, TRUE, TRUE, rand(15, 45))
-	if(mob.cloneloss <= 50)
-		mob.adjustCloneLoss(10)
+	scramble_dna(mob, TRUE, TRUE, TRUE, rand(15,45))
+	if(mob.toxloss <= 50)
+		mob.adjustToxLoss(10)
 
 /datum/symptom/immortal
 	name = "Longevity Syndrome"
@@ -92,8 +92,8 @@
 		total_healed += heal_amt * 0.2
 	else
 		total_healed += (heal_amt - current_health) * 0.2
-	mob.heal_overall_damage(brute = heal_amt, burn = heal_amt, updating_health = FALSE)
-	mob.adjustCloneLoss(-heal_amt, updating_health = TRUE)
+	mob.heal_overall_damage(brute = heal_amt, burn = heal_amt)
+	mob.adjustToxLoss(-heal_amt)
 
 /datum/symptom/immortal/deactivate(mob/living/carbon/mob)
 	if(ishuman(mob))
@@ -147,15 +147,27 @@
 	stage = 4
 	max_multiplier = 7
 	badness = EFFECT_DANGER_HARMFUL
-	var/spawn_type= /mob/living/basic/spider/growing/spiderling/guard
-	var/spawn_name="spiderling"
+	var/list/spawn_types= list(/mob/living/basic/spider/growing/spiderling/guard = 10)
+	///what gets added based on multiplier NOT INCLUSIVE OF PREVIOUS TIERS
+	var/list/multipler_unlocks = list()
 
 /datum/symptom/spawn/activate(mob/living/carbon/mob)
-	playsound(mob.loc, 'sound/effects/splat.ogg', vol = 50, vary = TRUE)
+	check_unlocks()
+	playsound(mob.loc, 'sound/effects/splat.ogg', 50, 1)
+	var/atom/spawn_type = pick_weight(spawn_types)
+	var/spawn_name = initial(spawn_type.name)
 	var/mob/living/spawned_mob = new spawn_type(get_turf(mob))
 	mob.emote("me", 1, "vomits up a live [spawn_name]!")
 	if(multiplier < 4)
 		addtimer(CALLBACK(src, PROC_REF(kill_mob), spawned_mob), 1 MINUTES)
+
+/datum/symptom/spawn/proc/check_unlocks()
+	spawn_types = initial(spawn_types)
+	var/text_multi = num2text(round(multiplier))
+
+	if(!(text_multi in multipler_unlocks))
+		return
+	spawn_types += multipler_unlocks[text_multi]
 
 /datum/symptom/spawn/proc/kill_mob(mob/living/basic/mob)
 	mob.visible_message(span_warning("The [mob] falls apart!"), span_warning("You fall apart"))
@@ -166,8 +178,13 @@
 	desc = "Converts the infected's stomach to begin producing creatures of the blattid variety."
 	stage = 4
 	badness = EFFECT_DANGER_HINDRANCE
-	spawn_type = /mob/living/basic/cockroach
-	spawn_name = "cockroach"
+	spawn_types = list(/mob/living/basic/cockroach = 10)
+	multipler_unlocks = list(
+		"4" = list(/mob/living/basic/cockroach/glockroach = 3),
+		"5" = list(/mob/living/basic/cockroach/glockroach = 4),
+		"6" = list(/mob/living/basic/cockroach/glockroach = 5, /mob/living/basic/cockroach/glockroach/mobroach = 3),
+		"7" = list(/mob/living/basic/cockroach/glockroach = 5, /mob/living/basic/cockroach/glockroach/mobroach = 3, /mob/living/basic/cockroach/hauberoach = 3),
+		)
 
 /datum/symptom/gregarious
 	name = "Gregarious Impetus"

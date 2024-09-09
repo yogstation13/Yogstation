@@ -26,11 +26,11 @@
 
 /mob/living/carbon/gib(no_brain, no_organs, no_bodyparts, safe_gib = FALSE)
 	add_memory_in_range(src, 7, /datum/memory/witness_gib, protagonist = src)
-	if(safe_gib) // If you want to keep all the mob's items and not have them deleted
-		for(var/obj/item/W in src)
-			dropItemToGround(W)
-			if(prob(50))
-				step(W, pick(GLOB.alldirs))
+	// if(safe_gib) // If you want to keep all the mob's items and not have them deleted MONKESTATION EDIT
+	for(var/obj/item/W in src)
+		dropItemToGround(W, violent = TRUE)
+		if(prob(50))
+			step(W, pick(GLOB.alldirs))
 	var/atom/Tsec = drop_location()
 	for(var/mob/M in src)
 		M.forceMove(Tsec)
@@ -50,10 +50,11 @@
 					qdel(organs) //so the brain isn't transfered to the head when the head drops.
 					continue
 				var/org_zone = check_zone(organs.zone) //both groin and chest organs.
-				if(org_zone == BODY_ZONE_CHEST)
-					organs.Remove(src)
-					organs.forceMove(Tsec)
-					organs.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
+				if(org_zone != BODY_ZONE_CHEST)
+					continue
+				organs.Remove(src)
+				organs.forceMove(Tsec)
+				organs.fly_away(Tsec, horizontal_multiplier = 2, vertical_multiplier = 1.2)
 	else
 		for(var/obj/item/organ/organs as anything in organs)
 			if(no_brain && istype(organs, /obj/item/organ/internal/brain))
@@ -64,17 +65,18 @@
 				continue
 			organs.Remove(src)
 			organs.forceMove(Tsec)
-			organs.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
+			organs.fly_away(Tsec, horizontal_multiplier = 2, vertical_multiplier = 1.2)
 
 /// Launches all bodyparts away from the mob. skip_head will keep the head attached.
-/mob/living/carbon/spread_bodyparts(skip_head = FALSE)
+/mob/living/carbon/spread_bodyparts(skip_head = FALSE, skip_organ = FALSE, violent = FALSE)
+	var/atom/Tsec = drop_location()
 	for(var/obj/item/bodypart/part as anything in bodyparts)
 		if(skip_head && part.body_zone == BODY_ZONE_HEAD)
 			continue
 		else if(part.body_zone == BODY_ZONE_CHEST)
 			continue
-		part.drop_limb()
-		part.throw_at(get_edge_target_turf(src, pick(GLOB.alldirs)), rand(1,3), 5)
+		part.drop_limb(violent = violent)
+		part.fly_away(Tsec, horizontal_multiplier = 2, vertical_multiplier = 1.2)
 
 /mob/living/carbon/set_suicide(suicide_state) //you thought that box trick was pretty clever, didn't you? well now hardmode is on, boyo.
 	. = ..()

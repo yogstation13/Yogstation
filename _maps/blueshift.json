@@ -3,6 +3,7 @@
 	"map_name": "Blueshift",
 	"map_path": "map_files/Blueshift",
 	"map_file": "Blueshift.dmm",
+	"space_ruin_levels": 2,
 	"shuttles": {
 		"cargo": "cargo_nova",
 		"whiteship": "whiteship_blueshift",

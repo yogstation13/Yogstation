@@ -8,6 +8,7 @@
 	restricted_roles = list(
 		JOB_AI,
 		JOB_CAPTAIN,
+		JOB_BLUESHIELD,
 		JOB_CHAPLAIN,
 		JOB_CYBORG,
 		JOB_DETECTIVE,

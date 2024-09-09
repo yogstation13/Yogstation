@@ -281,6 +281,7 @@ GLOBAL_LIST_INIT(round_end_images, world.file2list("data/image_urls.txt")) // MO
 
 	//stop collecting feedback during grifftime
 	SSblackbox.Seal()
+	save_datums() // we care about this for now
 
 	// monkestation start: token backups, monkecoin rewards, challenges, and roundend webhook
 	save_tokens()

@@ -30,3 +30,5 @@
 #define FEED_TRAIT "feed_trait"
 /// Source trait during a Frenzy
 #define FRENZY_TRAIT "frenzy_trait"
+/// Source trait for slashers.
+#define TRAIT_SLASHER "slasher_trait"

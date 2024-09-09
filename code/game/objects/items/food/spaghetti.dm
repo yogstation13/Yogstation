@@ -60,7 +60,7 @@
 		// where the soul comes from
 		/datum/reagent/pax = 5,
 		/datum/reagent/medicine/psicodine = 10,
-		/datum/reagent/medicine/morphine = 5,
+		/datum/reagent/medicine/painkiller/morphine = 5,
 	)
 	tastes = list("nostalgia" = 1, "happiness" = 1)
 

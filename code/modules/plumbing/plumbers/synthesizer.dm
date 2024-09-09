@@ -20,6 +20,7 @@
 	var/list/dispensable_reagents = list(
 		/datum/reagent/aluminium,
 		/datum/reagent/bromine,
+		/datum/reagent/brine,
 		/datum/reagent/carbon,
 		/datum/reagent/chlorine,
 		/datum/reagent/copper,

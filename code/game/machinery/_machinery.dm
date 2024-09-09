@@ -821,12 +821,23 @@
 	spawn_frame(disassembled)
 
 	for(var/part in component_parts)
+		var/area/shipbreak/A = get_area(src)
 		if(istype(part, /datum/stock_part))
 			var/datum/stock_part/datum_part = part
-			new datum_part.physical_object_type(loc)
+			var/obj/item/item = new datum_part.physical_object_type(loc)
+			if(istype(A) && item.get_shipbreaking_reward()) //shipbreaking
+				var/obj/item/reward = item.get_shipbreaking_reward()
+				if(reward)
+					new reward(loc)
+					qdel(item)
 		else
 			var/obj/item/obj_part = part
 			obj_part.forceMove(loc)
+			if(istype(A) && obj_part.get_shipbreaking_reward()) //shipbreaking
+				var/obj/item/reward = obj_part.get_shipbreaking_reward()
+				if(reward)
+					new reward(loc)
+					qdel(obj_part)
 			if(istype(obj_part, /obj/item/circuitboard/machine))
 				var/obj/item/circuitboard/machine/board = obj_part
 				for(var/component in board.req_components) //loop through all stack components and spawn them

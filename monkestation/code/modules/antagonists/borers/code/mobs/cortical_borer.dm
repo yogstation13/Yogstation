@@ -122,7 +122,7 @@ GLOBAL_LIST_INIT(borer_second_name, world.file2list("monkestation/code/modules/a
 		/datum/reagent/medicine/haloperidol,
 		/datum/reagent/medicine/inacusiate,
 		/datum/reagent/medicine/mannitol,
-		/datum/reagent/medicine/morphine,
+		/datum/reagent/medicine/painkiller/morphine,
 		/datum/reagent/medicine/mutadone,
 		/datum/reagent/medicine/oculine,
 		/datum/reagent/medicine/potass_iodide,

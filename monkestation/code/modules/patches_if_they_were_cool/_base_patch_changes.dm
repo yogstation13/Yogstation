@@ -17,8 +17,9 @@
 	if(!isliving(target))
 		return
 
-	if(!do_after(user, CHEM_INTERACT_DELAY(0.1 SECONDS, user), target))
-		return
+	if(target != user)
+		if(!do_after(user, CHEM_INTERACT_DELAY(3 SECONDS, user), target))
+			return
 
 	var/list/parameters = params2list(params)
 	if(!LAZYACCESS(parameters, ICON_X) || !LAZYACCESS(parameters, ICON_Y))
@@ -62,8 +63,9 @@
 
 /obj/item/reagent_containers/pill/patch/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
-	if(!. && prob(15) && isliving(hit_atom))
-		stick(hit_atom,rand(-7,7),rand(-7,7))
+	if(!. && prob(10) && isliving(hit_atom))
+		stick(hit_atom, throwingdatum.thrower, rand(-7,7), rand(-7,7))
+		to_chat(attached, span_bolddanger("[src] has stuck to you."))
 		attached.balloon_alert_to_viewers("[src] lands on its sticky side!")
 
 ///Signal handler for COMSIG_LIVING_IGNITED, deletes this patch, if it is flammable

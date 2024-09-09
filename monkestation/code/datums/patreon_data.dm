@@ -59,7 +59,7 @@
 			access_rank =  ACCESS_COMMAND_RANK
 		if(TRAITOR_RANK)
 			access_rank =  ACCESS_TRAITOR_RANK
-		if(NUKIE_RANK, OLD_NUKIE_RANK)
+		if(NUKIE_RANK, OLD_NUKIE_RANK, REALLY_ANOTHER_FUCKING_NUKIE_RANK)
 			access_rank =  ACCESS_NUKIE_RANK
 
 /datum/patreon_data/proc/has_access(rank)
@@ -70,6 +70,6 @@
 	return FALSE
 
 /datum/patreon_data/proc/is_donator()
-	if((owned_rank != NO_RANK) && (owned_rank != UNSUBBED))
-		return TRUE
-	return FALSE
+	if((owned_rank == NO_RANK) || !owned_rank || (owned_rank == UNSUBBED))
+		return FALSE
+	return TRUE

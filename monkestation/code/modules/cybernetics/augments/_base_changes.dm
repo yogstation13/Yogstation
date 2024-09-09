@@ -88,7 +88,7 @@
 		bodypart_overlay = new bodypart_overlay_path
 		bodypart_overlay.unique_properties(src)
 		ownerlimb.add_bodypart_overlay(bodypart_overlay)
-	owner.update_body_parts()
+	owner?.update_body_parts()
 	return ..()
 
 /obj/item/organ/internal/cyberimp/remove_from_limb()

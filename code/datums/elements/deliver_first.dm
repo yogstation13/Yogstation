@@ -28,6 +28,7 @@
 	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
 	RegisterSignal(target, COMSIG_ATOM_EMAG_ACT, PROC_REF(on_emag))
 	RegisterSignal(target, COMSIG_CLOSET_POST_OPEN, PROC_REF(on_post_open))
+	RegisterSignal(target, COMSIG_FILTER_CHECK, PROC_REF(on_filter_check))
 	ADD_TRAIT(target, TRAIT_BANNED_FROM_CARGO_SHUTTLE, REF(src))
 	//registers pre_open when appropriate
 	area_check(target)
@@ -102,4 +103,9 @@
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	target.RemoveElement(/datum/element/deliver_first, goal_area_type, payment)
 
+/datum/element/deliver_first/proc/on_filter_check(obj/structure/closet/target, list/filter_locations)
+	var/name = departmental_destination_to_tag(goal_area_type)
+	if(name in filter_locations)
+		return TRUE
+	return FALSE
 #undef DENY_SOUND_COOLDOWN

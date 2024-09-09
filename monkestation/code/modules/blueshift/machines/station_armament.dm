@@ -41,9 +41,14 @@
 	w_class = WEIGHT_CLASS_TINY
 	/// How many points does this card have to use at the vendor?
 	var/points = 10
+	var/armament_type
+	var/list/access
 
 /obj/item/armament_points_card/Initialize(mapload)
 	. = ..()
+	if(armament_type)
+		AddComponent(/datum/component/armament, subtypesof(armament_type), access)
+
 	maptext = span_maptext("<div align='center' valign='middle' style='position:relative'>[points]</div>")
 
 /obj/item/armament_points_card/examine(mob/user)

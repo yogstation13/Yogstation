@@ -30,6 +30,7 @@
 	set_blood_flow(initial_flow)
 	if(limb.can_bleed() && attack_direction && victim.blood_volume > BLOOD_VOLUME_OKAY)
 		victim.spray_blood(attack_direction, severity)
+		victim.blood_particles(amount = rand(3, 6), angle = 0, min_deviation = 0, max_deviation = 360)
 
 	return ..()
 

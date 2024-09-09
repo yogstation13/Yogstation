@@ -152,11 +152,13 @@
 				victim.visible_message("<span class='smalldanger'>Blood spews out of [victim]'s mouth from the blow to [victim.p_their()] chest!</span>", span_danger("You spit out a string of blood from the blow to your chest!"), vision_distance=COMBAT_MESSAGE_RANGE)
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter(victim.loc, victim.dir, COLOR_DARK_RED)
 				victim.bleed(blood_bled)
+				victim.blood_particles(amount = 1)
 			if(20 to INFINITY)
 				victim.visible_message(span_danger("Blood spurts out of [victim]'s mouth from the blow to [victim.p_their()] chest!"), span_danger("<b>You choke up on a spray of blood from the blow to your chest!</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
 				victim.bleed(blood_bled)
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter(victim.loc, victim.dir, COLOR_DARK_RED)
 				victim.add_splatter_floor(get_step(victim.loc, victim.dir))
+				victim.blood_particles(amount = 3)
 
 /datum/wound/blunt/bone/modify_desc_before_span(desc)
 	. = ..()

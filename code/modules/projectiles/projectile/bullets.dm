@@ -13,6 +13,12 @@
 	wound_falloff_tile = -5
 	embed_falloff_tile = -3
 
+	light_system = OVERLAY_LIGHT
+	light_outer_range = 1.25
+	light_power = 1
+	light_color = COLOR_VERY_SOFT_YELLOW
+	light_on = TRUE
+
 	speed = 0.4 //twice as fast
 
 /obj/projectile/bullet/smite

@@ -312,4 +312,4 @@
 	list_reagents = list(/datum/reagent/toxin/fentanyl = 15)
 
 /obj/item/reagent_containers/syringe/contraband/morphine
-	list_reagents = list(/datum/reagent/medicine/morphine = 15)
+	list_reagents = list(/datum/reagent/medicine/painkiller/morphine = 15)

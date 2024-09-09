@@ -29,7 +29,7 @@
 	var/list/possible_chems = list(
 		list(
 			/datum/reagent/medicine/epinephrine,
-			/datum/reagent/medicine/morphine,
+			/datum/reagent/medicine/painkiller/morphine,
 			/datum/reagent/medicine/c2/convermol,
 			/datum/reagent/medicine/c2/libital,
 			/datum/reagent/medicine/c2/aiuri,

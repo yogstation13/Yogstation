@@ -7,6 +7,9 @@
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
 	sheet_type = /obj/item/stack/sheet/iron
 	value_per_unit = 0.0025
+	ore_type = /obj/item/stack/ore/iron
+	mineral_rarity = MATERIAL_RARITY_COMMON
+	points_per_unit = 1 / SHEET_MATERIAL_AMOUNT
 
 /datum/material/iron/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
 	victim.apply_damage(10, BRUTE, BODY_ZONE_HEAD, wound_bonus = 5)
@@ -28,6 +31,9 @@
 	value_per_unit = 0.0025
 	beauty_modifier = 0.05
 	armor_modifiers = list(MELEE = 0.2, BULLET = 0.2, ENERGY = 1, BIO = 0.2, FIRE = 1, ACID = 0.2)
+	ore_type = /obj/item/stack/ore/glass
+	mineral_rarity = MATERIAL_RARITY_COMMON
+	points_per_unit = 1 / SHEET_MATERIAL_AMOUNT
 
 /datum/material/glass/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
 	victim.apply_damage(10, BRUTE, BODY_ZONE_HEAD, wound_bonus = 5, sharpness = TRUE) //cronch
@@ -48,6 +54,9 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	sheet_type = /obj/item/stack/sheet/mineral/silver
 	value_per_unit = 0.025
 	beauty_modifier = 0.075
+	ore_type = /obj/item/stack/ore/silver
+	mineral_rarity = MATERIAL_RARITY_SEMIPRECIOUS
+	points_per_unit = 16 / SHEET_MATERIAL_AMOUNT
 
 /datum/material/silver/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
 	victim.apply_damage(10, BRUTE, BODY_ZONE_HEAD, wound_bonus = 5)
@@ -65,6 +74,9 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	value_per_unit = 0.0625
 	beauty_modifier = 0.15
 	armor_modifiers = list(MELEE = 1.1, BULLET = 1.1, LASER = 1.15, ENERGY = 1.15, BOMB = 1, BIO = 1, FIRE = 0.7, ACID = 1.1)
+	ore_type = /obj/item/stack/ore/gold
+	mineral_rarity = MATERIAL_RARITY_PRECIOUS
+	points_per_unit = 18 / SHEET_MATERIAL_AMOUNT
 
 /datum/material/gold/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
 	victim.apply_damage(10, BRUTE, BODY_ZONE_HEAD, wound_bonus = 5)
@@ -83,6 +95,9 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	value_per_unit = 0.25
 	beauty_modifier = 0.3
 	armor_modifiers = list(MELEE = 1.3, BULLET = 1.3, LASER = 0.6, ENERGY = 1, BOMB = 1.2, BIO = 1, FIRE = 1, ACID = 1)
+	ore_type = /obj/item/stack/ore/diamond
+	mineral_rarity = MATERIAL_RARITY_RARE
+	points_per_unit = 50 / SHEET_MATERIAL_AMOUNT
 
 /datum/material/diamond/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
 	victim.apply_damage(15, BRUTE, BODY_ZONE_HEAD, wound_bonus = 7)
@@ -99,6 +114,9 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	value_per_unit = 0.05
 	beauty_modifier = 0.3 //It shines so beautiful
 	armor_modifiers = list(MELEE = 1.5, BULLET = 1.4, LASER = 0.5, ENERGY = 0.5, FIRE = 1, ACID = 1)
+	ore_type = /obj/item/stack/ore/uranium
+	mineral_rarity = MATERIAL_RARITY_SEMIPRECIOUS
+	points_per_unit = 30 / SHEET_MATERIAL_AMOUNT
 
 /datum/material/uranium/on_applied(atom/source, amount, material_flags)
 	. = ..()
@@ -134,6 +152,9 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	value_per_unit = 0.1
 	beauty_modifier = 0.15
 	armor_modifiers = list(MELEE = 1.4, BULLET = 0.7, ENERGY = 1.2, BIO = 1.2, ACID = 0.5)
+	ore_type = /obj/item/stack/ore/plasma
+	mineral_rarity = MATERIAL_RARITY_PRECIOUS
+	points_per_unit = 15 / SHEET_MATERIAL_AMOUNT
 
 /datum/material/plasma/on_applied(atom/source, amount, material_flags)
 	. = ..()
@@ -166,6 +187,9 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	beauty_modifier = 0.5
 	sheet_type = /obj/item/stack/sheet/bluespace_crystal
 	value_per_unit = 0.15
+	ore_type = /obj/item/stack/ore/bluespace_crystal
+	mineral_rarity = MATERIAL_RARITY_RARE
+	points_per_unit = 50 / SHEET_MATERIAL_AMOUNT
 
 /datum/material/bluespace/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
 	victim.reagents.add_reagent(/datum/reagent/bluespace, rand(5, 8))
@@ -183,6 +207,9 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	value_per_unit = 0.5
 	beauty_modifier = 0.5
 	armor_modifiers = list(BOMB = 100, FIRE = 10) //Clowns cant be blown away.
+	ore_type = /obj/item/stack/ore/bananium
+	mineral_rarity = MATERIAL_RARITY_UNDISCOVERED
+	points_per_unit = 60 / SHEET_MATERIAL_AMOUNT
 
 /datum/material/bananium/on_applied(atom/source, amount, material_flags)
 	. = ..()
@@ -211,6 +238,8 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	value_per_unit = 0.0625
 	beauty_modifier = 0.05
 	armor_modifiers = list(MELEE = 1.35, BULLET = 1.3, LASER = 1.3, ENERGY = 1.25, BOMB = 1.25, BIO = 1, FIRE = 0.7, ACID = 1)
+	ore_type = /obj/item/stack/ore/titanium
+	mineral_rarity = MATERIAL_RARITY_SEMIPRECIOUS
 
 /datum/material/titanium/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
 	victim.apply_damage(15, BRUTE, BODY_ZONE_HEAD, wound_bonus = 7)
@@ -227,6 +256,8 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	value_per_unit = 0.3
 	beauty_modifier = 0.5
 	armor_modifiers = list(MELEE = 1.35, BULLET = 2, LASER = 0.5, ENERGY = 1.25, BOMB = 1.25, BIO = 1, FIRE = 1.4, ACID = 1) //rune is weak against magic lasers but strong against bullets. This is the combat triangle.
+	mineral_rarity = MATERIAL_RARITY_UNDISCOVERED
+	points_per_unit = 100 / SHEET_MATERIAL_AMOUNT
 
 /datum/material/runite/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
 	victim.apply_damage(20, BRUTE, BODY_ZONE_HEAD, wound_bonus = 10)
@@ -244,6 +275,9 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	value_per_unit = 0.0125
 	beauty_modifier = -0.01
 	armor_modifiers = list(MELEE = 1.5, BULLET = 1.1, LASER = 0.3, ENERGY = 0.5, BOMB = 1, BIO = 1, FIRE = 1.1, ACID = 1)
+	ore_type = /obj/item/stack/ore/slag
+	mineral_rarity = MATERIAL_RARITY_UNDISCOVERED //Nobody's found oil on lavaland yet.
+	points_per_unit = 4 / SHEET_MATERIAL_AMOUNT
 
 /datum/material/plastic/on_accidental_mat_consumption(mob/living/carbon/eater, obj/item/food)
 	eater.reagents.add_reagent(/datum/reagent/plastic_polymers, rand(6, 8))
@@ -303,6 +337,8 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	value_per_unit = 0.25
 	beauty_modifier = 0.4
 	armor_modifiers = list(MELEE = 1.5, BULLET = 1.5, LASER = 1.3, ENERGY = 1.3, BOMB = 1, BIO = 1, FIRE = 2.5, ACID = 1)
+	mineral_rarity = MATERIAL_RARITY_UNDISCOVERED //Doesn't naturally spawn on lavaland.
+	points_per_unit = 100 / SHEET_MATERIAL_AMOUNT
 
 /datum/material/adamantine/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
 	victim.apply_damage(20, BRUTE, BODY_ZONE_HEAD, wound_bonus = 10)
@@ -320,6 +356,8 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	strength_modifier = 1.2
 	armor_modifiers = list(MELEE = 1.5, BULLET = 1.5, LASER = 1.5, ENERGY = 1.5, BOMB = 1.5, BIO = 1.5, FIRE = 1.5, ACID = 1.5)
 	beauty_modifier = 0.5
+	mineral_rarity = MATERIAL_RARITY_UNDISCOVERED //Doesn't naturally spawn on lavaland.
+	points_per_unit = 100 / SHEET_MATERIAL_AMOUNT
 
 /* monkestation edit: this is given anyways by [/datum/material_trait/magical]
 /datum/material/mythril/on_applied_obj(atom/source, amount, material_flags)

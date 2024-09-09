@@ -11,7 +11,8 @@
 
 /datum/brain_trauma/magic/stalker_multiple/Destroy()
 	for (var/stalker in stalkers)
-		QDEL_NULL(stalker)
+		stalkers -= stalker
+		qdel(stalker)
 	return ..()
 
 /datum/brain_trauma/magic/stalker_multiple/on_gain()
@@ -22,6 +23,7 @@
 	var/turf/stalker_source = locate(owner.x + pick(-12, 12), owner.y + pick(-12, -6, 0, 6, 12), owner.z) //random corner
 	var/obj/effect/client_image_holder/stalker_phantom/stalker = new(stalker_source, owner)
 	stalkers += stalker
+	stalker.host = src
 
 /datum/brain_trauma/magic/stalker_multiple/proc/create_stalker_multiple(count)
 	var/turf/stalker_source = locate(owner.x + pick(-12, 12), owner.y + pick(-12, -6, 0, 6, 12), owner.z) //random corner
@@ -29,10 +31,12 @@
 	for (var/x = 0; x < count; x++)
 		var/obj/effect/client_image_holder/stalker_phantom/stalker = new(stalker_source, owner)
 		stalkers += stalker
+		stalker.host = src
 
 /datum/brain_trauma/magic/stalker_multiple/on_lose()
 	for (var/stalker in stalkers)
-		QDEL_NULL(stalker)
+		stalkers -= stalker
+		qdel(stalker)
 	return ..()
 
 /datum/brain_trauma/magic/stalker_multiple/on_life(seconds_per_tick, times_fired)

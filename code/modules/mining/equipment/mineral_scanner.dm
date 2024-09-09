@@ -82,7 +82,9 @@
 	duration = 35
 	pixel_x = -224
 	pixel_y = -224
+	/// What animation easing to use when we create the ore overlay on rock walls/ore vents.
+	var/easing_style = EASE_IN
 
 /obj/effect/temp_visual/mining_overlay/Initialize(mapload)
 	. = ..()
-	animate(src, alpha = 0, time = duration, easing = EASE_IN)
+	animate(src, alpha = 0, time = duration, easing = easing_style)

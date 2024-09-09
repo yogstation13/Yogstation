@@ -15,11 +15,11 @@
 	RegisterSignal(parent, COMSIG_ABBERANT_HOST_SET, PROC_REF(set_host))
 	RegisterSignal(parent, COMSIG_ABBERANT_HOST_CLEARED, PROC_REF(remove_host))
 
-/datum/organ_trigger/proc/trigger()
+/datum/organ_trigger/proc/trigger(trigger_value = 0, list/extra_data)
 	SIGNAL_HANDLER
 
 	SHOULD_CALL_PARENT(TRUE)
-	SEND_SIGNAL(parent, COMSIG_ABBERANT_TRIGGER, trigger_cost)
+	SEND_SIGNAL(parent, COMSIG_ABBERANT_TRIGGER, trigger_value, extra_data)
 
 /datum/organ_trigger/proc/set_host(atom/parent, atom/movable/incoming)
 	SIGNAL_HANDLER

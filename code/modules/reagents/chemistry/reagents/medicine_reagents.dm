@@ -595,7 +595,7 @@
 	holder.remove_reagent(/datum/reagent/toxin/histamine, 3 * REM * seconds_per_tick)
 	..()
 
-/datum/reagent/medicine/morphine
+/datum/reagent/medicine/painkiller/morphine
 	name = "Morphine"
 	description = "A painkiller that allows the patient to move at full speed even when injured. Causes drowsiness and eventually unconsciousness in high doses. Overdose will cause a variety of effects, ranging from minor to lethal."
 	reagent_state = LIQUID
@@ -607,28 +607,20 @@
 	addiction_types = list(/datum/addiction/opioids = 10)
 	metabolized_traits = list(TRAIT_ANALGESIA)
 
-/datum/reagent/medicine/morphine/on_mob_metabolize(mob/living/affected_mob)
+/datum/reagent/medicine/painkiller/morphine/on_mob_metabolize(mob/living/affected_mob)
 	..()
 	affected_mob.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 
-/datum/reagent/medicine/morphine/on_mob_end_metabolize(mob/living/affected_mob)
+/datum/reagent/medicine/painkiller/morphine/on_mob_end_metabolize(mob/living/affected_mob)
 	affected_mob.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	..()
 
-/datum/reagent/medicine/morphine/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+/datum/reagent/medicine/painkiller/morphine/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	if(current_cycle >= 5)
 		affected_mob.add_mood_event("numb", /datum/mood_event/narcotic_medium, name)
-	switch(current_cycle)
-		if(11)
-			to_chat(affected_mob, span_warning("You start to feel tired...") )
-		if(12 to 24)
-			affected_mob.adjust_drowsiness(2 SECONDS * REM * seconds_per_tick)
-		if(24 to INFINITY)
-			affected_mob.Sleeping(40 * REM * seconds_per_tick)
-			. = TRUE
 	..()
 
-/datum/reagent/medicine/morphine/overdose_process(mob/living/affected_mob, seconds_per_tick, times_fired)
+/datum/reagent/medicine/painkiller/morphine/overdose_process(mob/living/affected_mob, seconds_per_tick, times_fired)
 	if(SPT_PROB(18, seconds_per_tick))
 		affected_mob.drop_all_held_items()
 		affected_mob.set_dizzy_if_lower(4 SECONDS)

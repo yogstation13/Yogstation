@@ -190,6 +190,11 @@
 		to_chat(hud.mymob, span_boldwarning("The round is either not ready, or has already finished..."))
 		return
 
+	if(hud.mymob.client?.check_overwatch())
+		to_chat(hud.mymob, span_warning("Kindly wait until your connection has been authenticated before joining"))
+		message_admins("[hud.mymob.key] tried to use the Join button but failed the overwatch check.")
+		return
+
 	//Determines Relevent Population Cap
 	var/relevant_cap
 	var/hard_popcap = CONFIG_GET(number/hard_popcap)

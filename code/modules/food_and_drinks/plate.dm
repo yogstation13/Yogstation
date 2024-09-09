@@ -14,7 +14,7 @@
 	var/placement_offset = -15
 
 /obj/item/plate/attackby(obj/item/I, mob/user, params)
-	if(!IS_EDIBLE(I))
+	if(!IS_EDIBLE(I) && !istype(I, /obj/item/reagent_containers/cooking_container))
 		to_chat(user, span_notice("[src] is made for food, and food alone!"))
 		return
 	if(contents.len >= max_items)

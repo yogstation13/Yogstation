@@ -37,7 +37,6 @@
 	non_craftable = TRUE
 
 /datum/crafting_recipe/food/reaction/New()
-	. = ..()
 	if(!ispath(reaction, /datum/chemical_reaction))
 		return
 

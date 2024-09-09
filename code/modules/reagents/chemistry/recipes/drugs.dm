@@ -5,7 +5,7 @@
 
 /datum/chemical_reaction/krokodil
 	results = list(/datum/reagent/drug/krokodil = 6)
-	required_reagents = list(/datum/reagent/medicine/diphenhydramine = 1, /datum/reagent/medicine/morphine = 1, /datum/reagent/space_cleaner = 1, /datum/reagent/potassium = 1, /datum/reagent/phosphorus = 1, /datum/reagent/fuel = 1)
+	required_reagents = list(/datum/reagent/medicine/diphenhydramine = 1, /datum/reagent/medicine/painkiller/morphine = 1, /datum/reagent/space_cleaner = 1, /datum/reagent/potassium = 1, /datum/reagent/phosphorus = 1, /datum/reagent/fuel = 1)
 	mix_message = "The mixture dries into a pale blue powder."
 	required_temp = 380
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_DRUG
@@ -84,7 +84,7 @@
 
 /datum/chemical_reaction/aranesp
 	results = list(/datum/reagent/drug/aranesp = 3)
-	required_reagents = list(/datum/reagent/medicine/epinephrine = 1, /datum/reagent/medicine/atropine = 1, /datum/reagent/medicine/morphine = 1)
+	required_reagents = list(/datum/reagent/medicine/epinephrine = 1, /datum/reagent/medicine/atropine = 1, /datum/reagent/medicine/painkiller/morphine = 1)
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_DRUG | REACTION_TAG_TOXIN | REACTION_TAG_DAMAGING
 
 /datum/chemical_reaction/happiness

@@ -286,7 +286,7 @@
 
 /obj/projectile/bullet/c35sol
 	name = ".35 Sol Short bullet"
-	damage = 20
+	damage = 15
 
 	wound_bonus = -5 // Normal bullets are 20
 	bare_wound_bonus = 5
@@ -369,7 +369,7 @@
 
 /obj/projectile/bullet/c35sol/ripper
 	name = ".35 Sol ripper bullet"
-	damage = 15
+	damage = 12
 
 	weak_against_armour = TRUE
 

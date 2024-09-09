@@ -74,18 +74,19 @@
 	. = ..()
 	if(!proximity_flag && !scan)
 		return
-	if(isliving(target))
+	if(isliving(target) && target != usr)
 		user_data = WEAKREF(target)
 	if(scanner)
 		if(!scan)
 			if(length(stored_varient_types))
 				try_disease_modification(user, target)
-		switch(target.extrapolator_act(user, src, scan))
-			if(FALSE)
-				if(scan)
-					to_chat(user, "<span class='notice'>the extrapolator fails to return any data</span>")
-			if(TRUE)
-				to_chat(user, span_notice("You store [target]'s blood sample in [src]."))
+		else
+			switch(target.extrapolator_act(user, src, scan))
+				if(FALSE)
+					if(scan)
+						to_chat(user, "<span class='notice'>the extrapolator fails to return any data</span>")
+				if(TRUE)
+					to_chat(user, span_notice("You store [target]'s blood sample in [src]."))
 
 	else
 		to_chat(user, "<span class='warning'>the extrapolator has no scanner installed</span>")

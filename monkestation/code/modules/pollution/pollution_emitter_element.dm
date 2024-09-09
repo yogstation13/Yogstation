@@ -35,4 +35,4 @@ PROCESSING_SUBSYSTEM_DEF(pollution_emitters)
 		return PROCESS_KILL
 	for(var/atom/affected_atom as anything in affected)
 		var/turf/my_turf = get_turf(affected_atom)
-		my_turf.pollute_turf(pollutant_type, pollutant_amount)
+		my_turf?.pollute_turf(pollutant_type, pollutant_amount)

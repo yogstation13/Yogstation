@@ -158,7 +158,7 @@
 	supplementary_reagents = list(
 		/datum/reagent/consumable/honey = 8, //Hunny.
 		/datum/reagent/growthserum = 5,
-		/datum/reagent/medicine/morphine = 4, //morphine is a vital nutrient for space bears, but it is better as a supplemental for gameplay reasons.
+		/datum/reagent/medicine/painkiller/morphine = 4, //morphine is a vital nutrient for space bears, but it is better as a supplemental for gameplay reasons.
 		/datum/reagent/consumable/nutriment/vitamin = 3)
 
 	suppressive_reagents = list(
@@ -245,7 +245,7 @@
 	suppressive_reagents = list(
 		/datum/reagent/consumable/frostoil = -4,
 		/datum/reagent/cryostylane = -4,
-		/datum/reagent/medicine/morphine = -2,
+		/datum/reagent/medicine/painkiller/morphine = -2,
 		/datum/reagent/consumable/ice = -2) //Brrr!
 
 	virus_suspectibility = 0

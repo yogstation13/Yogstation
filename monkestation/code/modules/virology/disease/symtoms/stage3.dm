@@ -65,7 +65,7 @@ GLOBAL_LIST_INIT(disease_hivemind_users, list())
 		var/mob/living/carbon/human/H = mob
 		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5, 50)
 	else
-		mob.setCloneLoss(50)
+		mob.setToxLoss(50)
 
 /datum/symptom/hallucinations
 	name = "Hallucinational Syndrome"
@@ -451,8 +451,12 @@ GLOBAL_LIST_INIT(disease_hivemind_users, list())
 	desc = "Causes the infected to oversynthesize stem cells engineered towards organ generation, causing damage to the host's organs in the process. Said generated organs are expelled from the body upon completion."
 	stage = 3
 	badness = EFFECT_DANGER_HARMFUL
+	COOLDOWN_DECLARE(organ_cooldown)
 
 /datum/symptom/teratoma/activate(mob/living/carbon/mob)
+	if(!COOLDOWN_FINISHED(src, organ_cooldown))
+		return
+	COOLDOWN_START(src, organ_cooldown, 2 MINUTES)
 	var/fail_counter = 0
 	var/not_passed = TRUE
 	var/obj/item/organ/spawned_organ

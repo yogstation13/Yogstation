@@ -13,6 +13,7 @@
 
 /datum/reagent/medicine/lidocaine/overdose_process(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
+	affected_mob.cause_pain(BODY_ZONES_ALL, -1 * REM * seconds_per_tick)
 	affected_mob.adjustOrganLoss(ORGAN_SLOT_HEART,3 * REM * seconds_per_tick, 80)
 
 //Inverse Medicines//
@@ -306,6 +307,7 @@
 	else // Much longer than that however, and you're not gonna have a good day
 		if(!(our_guy.mob_biotypes & MOB_ROBOTIC))
 			our_guy.spray_blood(our_guy.dir, 2) // The before mentioned coughing up blood
+			our_guy.blood_particles(amount = rand(3, 6), angle = 0, min_deviation = 0, max_deviation = 360)
 			our_guy.emote("cough")
 			our_guy.visible_message(
 				span_danger("[our_guy] suddenly snaps back from [our_guy.p_their()] inhuman speeds, coughing up a spray of blood!"),
@@ -410,6 +412,7 @@
 	if(SPT_PROB(5, seconds_per_tick) && !(our_guy.mob_biotypes & MOB_ROBOTIC))
 		to_chat(our_guy, span_danger("You cough up a splatter of blood!"))
 		our_guy.spray_blood(our_guy.dir, 1)
+		our_guy.blood_particles(amount = rand(3, 6), angle = 0, min_deviation = 0, max_deviation = 360)
 		our_guy.emote("cough")
 
 	if(SPT_PROB(10, seconds_per_tick))

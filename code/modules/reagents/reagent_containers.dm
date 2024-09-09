@@ -346,3 +346,9 @@
 
 	filling.color = mix_color_from_reagents(reagents.reagent_list)
 	. += filling
+
+/obj/item/reagent_containers/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	after_attack_pour(user, target)
+
+/obj/item/reagent_containers/proc/after_attack_pour(mob/user, atom/target)

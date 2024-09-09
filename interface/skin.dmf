@@ -10,21 +10,21 @@ macro "default"
 
 
 menu "menu"
-	elem 
+	elem
 		name = "&File"
 		command = ""
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "&Quick screenshot\tF2"
 		command = ".screenshot auto"
 		category = "&File"
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "&Save screenshot as...\tShift+F2"
 		command = ".screenshot"
 		category = "&File"
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = ""
 		command = ""
 		category = "&File"
@@ -34,7 +34,7 @@ menu "menu"
 		command = ".reconnect"
 		category = "&File"
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "&Quit\tAlt-F4"
 		command = ".quit"
 		category = "&File"
@@ -43,22 +43,22 @@ menu "menu"
 		name = "&Help"
 		command = ""
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "&Admin Help\tF1"
 		command = "adminhelp"
 		category = "&Help"
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "&Hotkeys"
 		command = "Hotkeys-Help"
 		category = "&Help"
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "Refresh TGUI"
 		command = "refresh-tgui"
 		category = "&Help"
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "Fix Chat"
 		command = "fix-chat"
 		category = "&Help"
@@ -277,6 +277,14 @@ window "outputwindow"
 		command = ".winset \"mebutton.is-checked=true ? input.command=\"!me \\\"\" : input.command=\"\"mebutton.is-checked=true ? saybutton.is-checked=false\"\"mebutton.is-checked=true ? oocbutton.is-checked=false\""
 		is-flat = true
 		button-type = pushbox
+	elem "mediapanel"
+		type = BROWSER
+		pos = 599,460
+		size = 1x1
+		anchor1 = 100,100
+		anchor2 = -1,-1
+		is-visible = false
+		saved-params = ""
 	elem "browseroutput"
 		type = BROWSER
 		pos = 0,0
@@ -348,14 +356,6 @@ window "statwindow"
 		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
-		is-visible = false
-		saved-params = ""
-	elem "mediapanel"
-		type = BROWSER
-		pos = 392,25
-		size = 1x1
-		anchor1 = -1,-1
-		anchor2 = -1,-1
 		is-visible = false
 		saved-params = ""
 

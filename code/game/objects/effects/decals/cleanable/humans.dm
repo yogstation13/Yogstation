@@ -365,6 +365,8 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 	var/splatter_strength = 3
 	/// Insurance so that we don't keep moving once we hit a stoppoint
 	var/hit_endpoint = FALSE
+	/// Type of squirt decals we should try to create when moving
+	var/line_type = /obj/effect/decal/cleanable/blood/line
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Initialize(mapload, splatter_strength)
 	. = ..()
@@ -413,6 +415,17 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 			splatter_strength--
 	if(splatter_strength <= 0) // we used all the puff so we delete it.
 		qdel(src)
+		return
+	if(line_type && isturf(loc))
+		var/obj/effect/decal/cleanable/line = locate(line_type) in loc
+		if(line)
+			line.add_blood_DNA(blood_dna_info)
+		else
+			line = new line_type(loc, get_dir(prev_loc, loc))
+			line.add_blood_DNA(blood_dna_info)
+			line.alpha = 0
+			animate(line, alpha = initial(line.alpha), time = 2)
+
 
 /obj/effect/decal/cleanable/blood/hitsplatter/proc/loop_done(datum/source)
 	SIGNAL_HANDLER
@@ -454,3 +467,4 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 	the_window.vis_contents += final_splatter
 	the_window.bloodied = TRUE
 	qdel(src)
+

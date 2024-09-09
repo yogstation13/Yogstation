@@ -22,6 +22,7 @@ export { Flex } from './Flex';
 export { FitText } from './FitText';
 export { Grid } from './Grid';
 export { Icon } from './Icon';
+export { ImageButton } from './ImageButton';
 export { InfinitePlane } from './InfinitePlane';
 export { Interactive } from './Interactive';
 export { Input } from './Input';

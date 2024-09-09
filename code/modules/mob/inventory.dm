@@ -285,7 +285,7 @@
  * * Will pass FALSE if the item can not be dropped due to TRAIT_NODROP via doUnEquip()
  * If the item can be dropped, it will be forceMove()'d to the ground and the turf's Entered() will be called.
 */
-/mob/proc/dropItemToGround(obj/item/I, force = FALSE, silent = FALSE, invdrop = TRUE)
+/mob/proc/dropItemToGround(obj/item/I, force = FALSE, silent = FALSE, invdrop = TRUE, violent = FALSE)
 	if (isnull(I))
 		return TRUE
 
@@ -299,6 +299,11 @@
 		I.pixel_x = I.base_pixel_x + rand(-6, 6)
 		I.pixel_y = I.base_pixel_y + rand(-6, 6)
 	I.do_drop_animation(src)
+
+	if(violent)
+		var/turf/drop = drop_location()
+		I.launch_item(drop)
+
 
 //for when the item will be immediately placed in a loc other than the ground
 /mob/proc/transferItemToLoc(obj/item/I, newloc = null, force = FALSE, silent = TRUE)

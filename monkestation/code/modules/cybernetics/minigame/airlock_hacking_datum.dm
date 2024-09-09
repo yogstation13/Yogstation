@@ -44,4 +44,4 @@
  * Generates the airlock's hacking datum.
  */
 /obj/machinery/door/airlock/proc/set_hacking()
-	return new /datum/hacking/airlock(src)
+	//return new /datum/hacking/airlock(src)

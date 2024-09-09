@@ -9,8 +9,8 @@
 /datum/reagent/acetone_oxide/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)//Splashing people kills people!
 	. = ..()
 	if(methods & TOUCH | VAPOR | INGEST)
-		exposed_mob.adjustFireLoss(((reac_volume * 2) / 1.65))
-		exposed_mob.adjust_fire_stacks((reac_volume / 5))
+		exposed_mob.adjustFireLoss(min((reac_volume * 0.5) / 1.65, 25))
+		exposed_mob.adjust_fire_stacks(round(reac_volume / 50))
 
 /datum/reagent/acetone_oxide/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired) // Old acetone oxide didn't have a metabolism effect!
 	. = ..()
@@ -58,7 +58,7 @@
 /datum/reagent/hydrogen_peroxide/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)//Splashing people with h2o2 can burn them !
 	. = ..()
 	if(methods & TOUCH)
-		exposed_mob.adjustFireLoss(((reac_volume * 2) / 3))
+		exposed_mob.adjustFireLoss(min((reac_volume * 0.5) / 3, 25))
 
 /datum/reagent/hydrogen_peroxide/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired) // Old h2o2 didn't have a metabolizing effect either!
 	. = ..()

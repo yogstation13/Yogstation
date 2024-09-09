@@ -3,6 +3,7 @@
 	"map_name": "Tramstation",
 	"map_path": "map_files/tramstation",
 	"map_file": "tramstation.dmm",
+	"space_ruin_levels": 3,
 	"shuttles": {
 		"cargo": "cargo_box",
 		"ferry": "ferry_fancy",

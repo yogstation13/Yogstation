@@ -36,7 +36,14 @@ $accent-2: #ffbf00;
     )
   );
   @include meta.load-css('../components/Section.scss');
-
+  @include meta.load-css(
+    '../components/ImageButton.scss',
+    $with: (
+      'color-default': darken(colors.$primary, 20%),
+      'color-disabled': #363636,
+      'color-selected': #465899
+    )
+  );
   @include meta.load-css(
     '../components/Input.scss',
     $with: ('border-color': #7b86ff)

@@ -1,4 +1,4 @@
-/mob/living/basic/var/list/ckeywhitelist = list()
+/mob/living/basic/var/list/ckeywhitelist
 
 /client/proc/return_donator_mobs()
 	var/list/mobs = list(

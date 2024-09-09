@@ -9,6 +9,12 @@
 			"name" = "Kitchen Utensils",
 			"icon" = FA_ICON_KITCHEN_SET,
 			"products" = list(
+				/obj/item/reagent_containers/cooking_container/deep_basket = 10,
+				/obj/item/reagent_containers/cooking_container/pan = 10,
+				/obj/item/reagent_containers/cooking_container/pot = 10,
+				/obj/item/reagent_containers/cooking_container/bowl = 10,
+				/obj/item/reagent_containers/cooking_container/oven = 10,
+				/obj/item/reagent_containers/cooking_container/board = 10,
 				/obj/item/storage/bag/tray = 8,
 				/obj/item/reagent_containers/cup/soup_pot = 3,
 				/obj/item/kitchen/spoon/soup_ladle = 3,

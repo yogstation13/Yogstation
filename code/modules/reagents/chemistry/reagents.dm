@@ -126,6 +126,8 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/list/metabolized_traits
 	/// A list of traits to apply while the reagent is in a mob.
 	var/list/added_traits
+	///are we able to merge
+	var/can_merge = TRUE
 
 /datum/reagent/New()
 	SHOULD_CALL_PARENT(TRUE)

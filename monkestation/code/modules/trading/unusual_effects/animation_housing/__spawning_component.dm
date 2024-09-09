@@ -6,6 +6,8 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon = 'monkestation/code/modules/trading/icons/particles.dmi'
 	icon_state = "none"
+	underlays = null
+	overlays = null
 
 /datum/component/particle_spewer
 	var/atom/source_object
@@ -117,7 +119,8 @@
 
 	for(var/i = 0 to burstees)
 		//create and assign particle its stuff
-		var/obj/effect/abstract/particle/spawned = new(get_turf(source_object))
+		var/obj/effect/abstract/particle/spawned
+		spawned = new(get_turf(source_object))
 		if(offsets)
 			spawned.pixel_x = offset_x
 			spawned.pixel_y = offset_y

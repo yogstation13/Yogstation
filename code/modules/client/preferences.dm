@@ -399,9 +399,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	QDEL_NULL(body)
 
 	body = new
+	RegisterSignal(body, COMSIG_QDELETING, PROC_REF(clear_body))
 
 	// Without this, it doesn't show up in the menu
 	body.appearance_flags &= ~TILE_BOUND
+
+/atom/movable/screen/map_view/char_preview/proc/clear_body(atom/movable/deletee)
+	if(body == deletee)
+		body = null
 
 /datum/preferences/proc/create_character_profiles()
 	var/list/profiles = list()

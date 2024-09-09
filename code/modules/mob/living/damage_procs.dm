@@ -34,13 +34,18 @@
 	bare_wound_bonus = 0,
 	sharpness = NONE,
 	attack_direction = null,
-	attacking_item,
+	obj/item/attacking_item,
 )
 	SHOULD_CALL_PARENT(TRUE)
 	var/damage_amount = damage
 	if(!forced)
 		damage_amount *= ((100 - blocked) / 100)
 		damage_amount *= get_incoming_damage_modifier(damage_amount, damagetype, def_zone, sharpness, attack_direction, attacking_item)
+		if(attacking_item)
+			if(!SEND_SIGNAL(attacking_item, COMSIG_ITEM_DAMAGE_MULTIPLIER, src, def_zone))
+				attacking_item.last_multi = 1
+			damage_amount *= attacking_item.last_multi
+
 	if(damage_amount <= 0)
 		return 0
 

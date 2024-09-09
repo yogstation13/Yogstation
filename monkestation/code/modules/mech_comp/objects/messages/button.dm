@@ -21,6 +21,8 @@
 
 	if(!user.dropItemToGround(src))
 		return
+	if(!user.CanReach(target))
+		return
 	forceMove(target)
 	if(isclosedturf(target))
 		icon_up = "comp_switch"

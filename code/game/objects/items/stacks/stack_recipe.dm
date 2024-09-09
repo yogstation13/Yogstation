@@ -38,6 +38,8 @@
 	var/trait_modifier = 1
 	/// Category for general crafting menu
 	var/category
+	/// Cached recipe result base64 image
+	var/image
 
 /datum/stack_recipe/New(
 	title,
@@ -76,6 +78,16 @@
 	src.trait_booster = trait_booster
 	src.trait_modifier = trait_modifier
 	src.category = src.category || category || CAT_MISC
+
+	var/obj/item/result = result_type
+	var/icon/result_icon = icon(result::icon, result::icon_state, SOUTH, 1)
+	var/paint = result::color
+
+	result_icon.Scale(32, 32)
+	if(!isnull(paint) && paint != COLOR_WHITE)
+		result_icon.Blend(paint, ICON_MULTIPLY)
+
+	src.image = "[icon2base64(result_icon)]"
 
 /datum/stack_recipe/radial
 	/// Optional info to be shown on the radial option for this item

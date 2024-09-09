@@ -966,6 +966,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(failed && !(ckey in GLOB.interviews.approved_ckeys))
 		message_admins(span_adminnotice("Proxy Detection: [key_name_admin(src)] Overwatch detected this is a [string]"))
 		interviewee = TRUE
+
+	if(ckey in GLOB.interviews.approved_ckeys)
+		return FALSE
+
 	return failed
 
 /client/Click(atom/object, atom/location, control, params)

@@ -154,4 +154,9 @@
 	var/obj/effect/abstract/blank/scan/scanline = new
 
 	vis_contents += scanline
-	addtimer(CALLBACK(src, GLOBAL_PROC_REF(qdel), scanline), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(remove), scanline), 2 SECONDS)
+
+/atom/movable/proc/remove(atom/scanline)
+	vis_contents -= scanline
+	qdel(scanline)
+

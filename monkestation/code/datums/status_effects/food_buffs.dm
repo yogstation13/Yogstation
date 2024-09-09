@@ -2,6 +2,7 @@
 	duration = 10 MINUTES
 	status_type = STATUS_EFFECT_REPLACE
 	show_duration = TRUE
+	var/quality_modifier = 1
 
 /datum/status_effect/food/on_apply()
 	if(HAS_TRAIT(owner, TRAIT_GOURMAND))

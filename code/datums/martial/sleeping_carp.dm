@@ -8,6 +8,7 @@
 	allow_temp_override = FALSE
 	help_verb = /mob/living/proc/sleeping_carp_help
 	display_combos = TRUE
+	COOLDOWN_DECLARE(block_cooldown)
 	var/list/scarp_traits = list(TRAIT_NOGUNS, TRAIT_HARDLY_WOUNDED, TRAIT_NODISMEMBER, TRAIT_HEAVY_SLEEPER)
 
 /datum/martial_art/the_sleeping_carp/teach(mob/living/target, make_temporary = FALSE)
@@ -160,6 +161,9 @@
 	return ..()
 
 /datum/martial_art/the_sleeping_carp/proc/can_deflect(mob/living/carp_user)
+	if(!COOLDOWN_FINISHED(src, block_cooldown))
+		if(prob(70))
+			return FALSE
 	if(!can_use(carp_user))
 		return FALSE
 	if(!(carp_user.istate & ISTATE_HARM)) // monke edit: istates/intents
@@ -185,7 +189,9 @@
 		span_danger("[carp_user] effortlessly swats [hitting_projectile] aside! [carp_user.p_They()] can block bullets with [carp_user.p_their()] bare hands!"),
 		span_userdanger("You deflect [hitting_projectile]!"),
 	)
+	COOLDOWN_START(src, block_cooldown, 3 SECONDS)
 	playsound(carp_user, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), vol = 75, vary = TRUE)
+	carp_user.stamina?.adjust(-50)
 	hitting_projectile.firer = carp_user
 	hitting_projectile.set_angle(rand(0, 360))//SHING
 	return COMPONENT_BULLET_PIERCED

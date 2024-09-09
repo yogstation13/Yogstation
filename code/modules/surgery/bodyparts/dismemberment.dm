@@ -51,48 +51,27 @@
 		target_turf = new_turf
 		if(new_turf.density)
 			break
-	throw_at(target_turf, throw_range, throw_speed)
+	fly_away(limb_owner.drop_location())
 
 	return TRUE
 
 /obj/item/bodypart/chest/dismember(dam_type = BRUTE, silent=TRUE, wounding_type)
-	if(!owner)
+	if(!owner || (bodypart_flags & BODYPART_UNREMOVABLE))
 		return FALSE
-	var/mob/living/carbon/chest_owner = owner
-	if(bodypart_flags & BODYPART_UNREMOVABLE)
+	if(owner.status_flags & GODMODE)
 		return FALSE
-	if(HAS_TRAIT(chest_owner, TRAIT_NODISMEMBER))
+	if(HAS_TRAIT(owner, TRAIT_NODISMEMBER))
 		return FALSE
-	. = list()
-	if(wounding_type != WOUND_BURN && isturf(chest_owner.loc) && can_bleed())
-		chest_owner.add_splatter_floor(chest_owner.loc)
-	playsound(get_turf(chest_owner), 'sound/misc/splort.ogg', 80, TRUE)
-	for(var/obj/item/organ/organ as anything in chest_owner.organs)
-		var/org_zone = check_zone(organ.zone)
-		if(org_zone != BODY_ZONE_CHEST)
-			continue
-		organ.Remove(chest_owner)
-		organ.forceMove(chest_owner.loc)
-		. += organ
+	return drop_organs(violent_removal = TRUE)
 
-	for(var/obj/item/organ/external/ext_organ as anything in src.external_organs)
-		if(!(ext_organ.organ_flags & ORGAN_UNREMOVABLE))
-			ext_organ.Remove(chest_owner)
-			ext_organ.forceMove(chest_owner.loc)
-			. += ext_organ
-
-	if(cavity_item)
-		cavity_item.forceMove(chest_owner.loc)
-		. += cavity_item
-		cavity_item = null
 
 ///limb removal. The "special" argument is used for swapping a limb with a new one without the effects of losing a limb kicking in.
-/obj/item/bodypart/proc/drop_limb(special, dismembered)
+/obj/item/bodypart/proc/drop_limb(special, dismembered, violent = FALSE)
 	if(!owner)
 		return
 	var/atom/drop_loc = owner.drop_location()
 
-	SEND_SIGNAL(owner, COMSIG_CARBON_REMOVE_LIMB, src, dismembered)
+	SEND_SIGNAL(owner, COMSIG_CARBON_REMOVE_LIMB, src, dismembered, special)
 	SEND_SIGNAL(src, COMSIG_BODYPART_REMOVED, owner, dismembered)
 	update_limb(dropping_limb = TRUE)
 	//limb is out and about, it can't really be considered an implant
@@ -154,7 +133,7 @@
 		qdel(src)
 		return
 
-	if(limb_id == SPECIES_OOZELING)
+	if((limb_id == SPECIES_OOZELING) && !special)
 		to_chat(phantom_owner, span_warning("Your [src] splatters with an unnerving squelch!"))
 		playsound(phantom_owner, 'sound/effects/blobattack.ogg', 60, TRUE)
 		phantom_owner.blood_volume -= 60 //Makes for 120 when you regenerate it.
@@ -246,11 +225,11 @@
 	head.tongue = src
 	..()
 
-/obj/item/bodypart/chest/drop_limb(special)
+/obj/item/bodypart/chest/drop_limb(special, dismembered, violent)
 	if(special)
 		return ..()
 
-/obj/item/bodypart/arm/drop_limb(special)
+/obj/item/bodypart/arm/drop_limb(special, dismembered, violent)
 	var/mob/living/carbon/arm_owner = owner
 	. = ..()
 
@@ -260,7 +239,7 @@
 	if(arm_owner.hand_bodyparts[held_index] == src)
 		// We only want to do this if the limb being removed is the active hand part.
 		// This catches situations where limbs are "hot-swapped" such as augmentations and roundstart prosthetics.
-		arm_owner.dropItemToGround(arm_owner.get_item_for_held_index(held_index), 1)
+		arm_owner.dropItemToGround(arm_owner.get_item_for_held_index(held_index), 1, violent = violent)
 		arm_owner.hand_bodyparts[held_index] = null
 	if(arm_owner.handcuffed)
 		arm_owner.handcuffed.forceMove(drop_location())
@@ -271,10 +250,10 @@
 		var/atom/movable/screen/inventory/hand/associated_hand = arm_owner.hud_used.hand_slots["[held_index]"]
 		associated_hand?.update_appearance()
 	if(arm_owner.gloves)
-		arm_owner.dropItemToGround(arm_owner.gloves, TRUE)
+		arm_owner.dropItemToGround(arm_owner.gloves, TRUE, violent = violent)
 	arm_owner.update_worn_gloves() //to remove the bloody hands overlay
 
-/obj/item/bodypart/leg/drop_limb(special)
+/obj/item/bodypart/leg/drop_limb(special, dismembered, violent)
 	if(owner && !special)
 		if(owner.legcuffed)
 			owner.legcuffed.forceMove(owner.drop_location()) //At this point bodypart is still in nullspace
@@ -282,14 +261,14 @@
 			owner.legcuffed = null
 			owner.update_worn_legcuffs()
 		if(owner.shoes)
-			owner.dropItemToGround(owner.shoes, TRUE)
+			owner.dropItemToGround(owner.shoes, TRUE, violent = violent)
 	return ..()
 
-/obj/item/bodypart/head/drop_limb(special)
+/obj/item/bodypart/head/drop_limb(special, dismembered, violent)
 	if(!special)
 		//Drop all worn head items
 		for(var/obj/item/head_item as anything in list(owner.glasses, owner.ears, owner.wear_mask, owner.head))
-			owner.dropItemToGround(head_item, force = TRUE)
+			owner.dropItemToGround(head_item, force = TRUE, violent = violent)
 
 	qdel(owner.GetComponent(/datum/component/creamed)) //clean creampie overlay flushed emoji
 

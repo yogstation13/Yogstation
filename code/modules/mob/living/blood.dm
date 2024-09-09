@@ -79,7 +79,7 @@
 
 		if(iter_part.generic_bleedstacks) // If you don't have any bleedstacks, don't try and heal them
 			if(HAS_TRAIT(src, TRAIT_HEAVY_BLEEDER))
-				iter_part.adjustBleedStacks(-1, 0) /// we basically double up on bleedstacks
+				iter_part.adjustBleedStacks(-1, minimum = 0) /// we basically double up on bleedstacks
 			iter_part.adjustBleedStacks(-1, 0)
 
 	if(temp_bleed)
@@ -92,24 +92,23 @@
 		iter_part.update_part_wound_overlay()
 
 //Makes a blood drop, leaking amt units of blood from the mob
-/mob/living/carbon/proc/bleed(amt)
-	if(!blood_volume || (status_flags & GODMODE))
+/mob/living/carbon/proc/bleed(amt, no_visual = FALSE)
+	if(!blood_volume || (status_flags & GODMODE) || HAS_TRAIT(src, TRAIT_NOBLOOD))
 		return
 	blood_volume = max(blood_volume - amt, 0)
 
 	//Blood loss still happens in locker, floor stays clean
-	if(isturf(loc) && prob(sqrt(amt)*BLOOD_DRIP_RATE_MOD))
-		add_splatter_floor(loc, (amt <= 10))
+	if(!no_visual && isturf(loc) && prob(sqrt(amt) * 80))
+		add_splatter_floor(loc, small_drip = (amt < 10))
 
-/mob/living/carbon/human/bleed(amt)
+/mob/living/carbon/human/bleed(amt, no_visual = FALSE)
 	amt *= physiology.bleed_mod
-	if(!HAS_TRAIT(src, TRAIT_NOBLOOD))
-		..()
+	return ..()
 
 /// A helper to see how much blood we're losing per tick
 /mob/living/carbon/proc/get_bleed_rate()
-	if(!blood_volume)
-		return
+	if(!blood_volume || HAS_TRAIT(src, TRAIT_NOBLOOD))
+		return 0
 	var/bleed_amt = 0
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/iter_bodypart = X
@@ -117,10 +116,7 @@
 	return bleed_amt
 
 /mob/living/carbon/human/get_bleed_rate()
-	if(HAS_TRAIT(src, TRAIT_NOBLOOD))
-		return
-	. = ..()
-	. *= physiology.bleed_mod
+	return ..() * physiology.bleed_mod
 
 /**
  * bleed_warn() is used to for carbons with an active client to occasionally receive messages warning them about their bleeding status (if applicable)
@@ -324,26 +320,26 @@
 		. = safe
 
 //to add a splatter of blood or other mob liquid.
-/mob/living/proc/add_splatter_floor(turf/T, small_drip)
-	if(get_blood_id() != /datum/reagent/blood)
+/mob/living/proc/add_splatter_floor(turf/splattered, small_drip)
+	if((get_blood_id() != /datum/reagent/blood) || HAS_TRAIT(src, TRAIT_NOBLOOD))
 		return
-	if(!QDELETED(T))
-		T = get_turf(src)
-	if(QDELETED(T) || isclosedturf(T) || (isgroundlessturf(T) && !GET_TURF_BELOW(T)))
+	if(!splattered)
+		splattered = get_turf(src)
+	if(isclosedturf(splattered) || (isgroundlessturf(splattered) && !GET_TURF_BELOW(splattered)))
 		return
 
 	var/datum/reagent/blood_type = get_blood_id()
 	var/list/temp_blood_DNA
 	if(small_drip)
-		if(!QDELETED(T.liquids))
+		if(!QDELETED(splattered.liquids))
 			var/list/blood_drop = list(get_blood_id() = 0.1)
-			T.add_liquid_list(blood_drop, FALSE, 300)
+			splattered.add_liquid_list(blood_drop, FALSE, 300)
 			return
 		// Only a certain number of drips (or one large splatter) can be on a given turf.
-		var/obj/effect/decal/cleanable/blood/drip/drop = locate() in T
+		var/obj/effect/decal/cleanable/blood/drip/drop = locate() in splattered
 		if(drop)
 			if(drop.drips < 5)
-				T?.pollute_turf(/datum/pollutant/metallic_scent, 5)
+				splattered?.pollute_turf(/datum/pollutant/metallic_scent, 5)
 				drop.drips++
 				drop.add_overlay(pick(drop.random_icon_states))
 				drop.transfer_mob_blood_dna(src)
@@ -352,18 +348,18 @@
 				temp_blood_DNA = GET_ATOM_BLOOD_DNA(drop) //we transfer the dna from the drip to the splatter
 				qdel(drop)//the drip is replaced by a bigger splatter
 		else
-			T?.pollute_turf(/datum/pollutant/metallic_scent, 5)
-			drop = new(T, get_static_viruses())
+			splattered?.pollute_turf(/datum/pollutant/metallic_scent, 5)
+			drop = new(splattered, get_static_viruses())
 			drop.transfer_mob_blood_dna(src)
 			return
 
 	// Create a bit of metallic pollution, as that's how blood smells
-	T.pollute_turf(/datum/pollutant/metallic_scent, 30)
+	splattered.pollute_turf(/datum/pollutant/metallic_scent, 30)
 
 	// Find a blood decal or create a new one.
-	var/obj/effect/decal/cleanable/blood/B = locate() in T
+	var/obj/effect/decal/cleanable/blood/B = locate() in splattered
 	if(!B)
-		B = new /obj/effect/decal/cleanable/blood/splatter(T, get_static_viruses())
+		B = new /obj/effect/decal/cleanable/blood/splatter(splattered, get_static_viruses())
 	if(QDELETED(B)) //Give it up
 		return
 	B.bloodiness = min((B.bloodiness + BLOOD_AMOUNT_PER_DECAL), BLOOD_POOL_MAX)
@@ -383,7 +379,7 @@
 	if(B.count > 9)
 		qdel(B)
 		var/list/blood_large = list(get_blood_id() = 20)
-		T.add_liquid_list(blood_large, FALSE, 300)
+		splattered.add_liquid_list(blood_large, FALSE, 300)
 
 /mob/living/carbon/human/add_splatter_floor(turf/T, small_drip)
 	if(!HAS_TRAIT(src, TRAIT_NOBLOOD))
@@ -403,5 +399,34 @@
 	var/obj/effect/decal/cleanable/oil/B = locate() in T.contents
 	if(!B)
 		B = new(T)
+
+/**
+ * This proc is a helper for spraying blood for things like slashing/piercing wounds and dismemberment.
+ *
+ * The strength of the splatter in the second argument determines how much it can dirty and how far it can go
+ *
+ * Arguments:
+ * * splatter_direction: Which direction the blood is flying
+ * * splatter_strength: How many tiles it can go, and how many items it can pass over and dirty
+ */
+/mob/living/proc/spray_blood(splatter_direction, splatter_strength = 3)
+	if(!isturf(loc) || !blood_volume || HAS_TRAIT(src, TRAIT_NOBLOOD))
+		return
+	var/obj/effect/decal/cleanable/blood/hitsplatter/our_splatter = new(loc)
+	our_splatter.add_blood_DNA(GET_ATOM_BLOOD_DNA(src))
+	var/turf/targ = get_ranged_target_turf(src, splatter_direction, splatter_strength)
+	our_splatter.fly_towards(targ, splatter_strength)
+
+/**
+ * Helper proc for throwing blood particles around, similar to the spray_blood proc.
+ */
+/mob/living/proc/blood_particles(amount = rand(1, 3), angle = rand(0,360), min_deviation = -30, max_deviation = 30, min_pixel_z = 0, max_pixel_z = 6)
+	if(!isturf(loc) || !blood_volume ||HAS_TRAIT(src, TRAIT_NOBLOOD))
+		return
+	for(var/i in 1 to amount)
+		var/obj/effect/decal/cleanable/blood/particle/droplet = new(loc)
+		droplet.add_blood_DNA(GET_ATOM_BLOOD_DNA(src))
+		droplet.pixel_z = rand(min_pixel_z, max_pixel_z)
+		droplet.start_movement(angle + rand(min_deviation, max_deviation))
 
 #undef BLOOD_DRIP_RATE_MOD

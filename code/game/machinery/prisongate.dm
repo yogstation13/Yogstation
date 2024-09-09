@@ -45,6 +45,14 @@
 /obj/machinery/prisongate/CanAllowThrough(atom/movable/gate_toucher, border_dir)
 	. = ..()
 	if(!iscarbon(gate_toucher))
+		if(isvehicle(gate_toucher))
+			var/obj/vehicle/toucher = gate_toucher
+			for(var/mob/living/carbon/human in toucher.occupants)
+				if(COOLDOWN_FINISHED(src, spam_cooldown_time))
+					say("Please dismount your vehicles before trying to enter.")
+					playsound(src, 'sound/machines/buzz-two.ogg', 50, FALSE)
+					COOLDOWN_START(src, spam_cooldown_time, SPAM_CD)
+				return FALSE
 		if(!isstructure(gate_toucher))
 			return TRUE
 		var/obj/structure/cargobay = gate_toucher

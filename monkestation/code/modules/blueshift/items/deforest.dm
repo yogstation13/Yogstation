@@ -348,7 +348,7 @@
 	base_icon_state = "morpital"
 	icon_state = "morpital"
 	list_reagents = list(
-		/datum/reagent/medicine/morphine = 5,
+		/datum/reagent/medicine/painkiller/morphine = 5,
 		/datum/reagent/medicine/omnizine/protozine = 15,
 		/datum/reagent/toxin/staminatoxin = 5,
 	)

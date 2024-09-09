@@ -47,7 +47,7 @@
 	)
 #define BASE_SYNDICATE_REAGENTS list(\
 		/datum/reagent/medicine/inacusiate,\
-		/datum/reagent/medicine/morphine,\
+		/datum/reagent/medicine/painkiller/morphine,\
 		/datum/reagent/medicine/potass_iodide,\
 		/datum/reagent/medicine/syndicate_nanites\
 	)

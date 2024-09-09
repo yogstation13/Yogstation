@@ -227,7 +227,7 @@
 	icon_state = "bearmeat"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/protein = 16,
-		/datum/reagent/medicine/morphine = 5,
+		/datum/reagent/medicine/painkiller/morphine = 5,
 		/datum/reagent/consumable/nutriment/vitamin = 2,
 		/datum/reagent/consumable/cooking_oil = 6,
 	)

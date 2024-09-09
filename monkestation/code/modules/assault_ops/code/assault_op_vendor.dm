@@ -10,6 +10,8 @@
 
 /obj/item/armament_points_card/assaultops
 	points = 50
+	armament_type = /datum/armament_entry/assault_operatives
+	access = list(ACCESS_SYNDICATE)
 
 // ARMAMENT ENTRIES
 

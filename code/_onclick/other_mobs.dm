@@ -19,7 +19,7 @@
 
 	Otherwise pretty standard.
 */
-/mob/living/carbon/human/UnarmedAttack(atom/A, proximity_flag)
+/mob/living/carbon/human/UnarmedAttack(atom/A, proximity_flag, list/params)
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED) && stat < SOFT_CRIT)
 		if(src == A)
 			check_self_for_injuries()
@@ -40,7 +40,7 @@
 
 	if(!right_click_attack_chain(A) && !dna?.species?.spec_unarmedattack(src, A)) //Because species like monkeys dont use attack hand
 		//monkestation edit
-		. = A.attack_hand(src)
+		. = A.attack_hand(src, params)
 		if(.)
 			animate_interact(A, INTERACT_GENERIC)
 		//monkestation edit end
@@ -49,7 +49,7 @@
 	return target.attack_hand_secondary(src, modifiers)
 
 /// Return TRUE to cancel other attack hand effects that respect it. Modifiers is the assoc list for click info such as if it was a right click.
-/atom/proc/attack_hand(mob/user)
+/atom/proc/attack_hand(mob/user, list/params)
 	. = FALSE
 	if(!(interaction_flags_atom & INTERACT_ATOM_NO_FINGERPRINT_ATTACK_HAND))
 		add_fingerprint(user)

@@ -18,6 +18,11 @@ function SetMusic(url, time, volume, balance) {
 	if(url != "") player.addEventListener("canplay", setTime, false);
 	player.src = url;
 }
+function SetVolume(volume, balance) {
+	var player = document.getElementById('player');
+	player.volume = +volume;
+}
+
 </script>
 </head>
 <body>

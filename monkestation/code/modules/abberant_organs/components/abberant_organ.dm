@@ -49,11 +49,11 @@
 	host = null
 	SEND_SIGNAL(parent, COMSIG_ABBERANT_HOST_CLEARED)
 
-/datum/component/abberant_organ/proc/trigger()
+/datum/component/abberant_organ/proc/trigger(datum/source, trigger_value, list/extra_data)
 	SIGNAL_HANDLER
 	for(var/datum/organ_process/process as anything in processors)
-		process.trigger(host, stability)
-	SEND_SIGNAL(parent, COMSIG_ABBERANT_OUTCOME)
+		process.trigger(host, stability, trigger_value, extra_data)
+	SEND_SIGNAL(parent, COMSIG_ABBERANT_OUTCOME, trigger_value, extra_data)
 
 /datum/component/abberant_organ/proc/add_trait(datum/source, /datum/organ_trait)
 	//TODO

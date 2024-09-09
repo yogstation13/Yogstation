@@ -69,7 +69,7 @@
 /datum/ui_module/volume_mixer/proc/set_channel_volume(channel, vol, mob/user)
 	if((channel == CHANNEL_LOBBYMUSIC) || (channel == CHANNEL_MASTER_VOLUME))
 		if(isnewplayer(user))
-			user.client.media.update_volume(0.5 + (vol * 0.05))
+			user.client.media.update_volume((vol))
 
 	var/sound/S = sound(null, channel = channel, volume = vol)
 	S.status = SOUND_UPDATE

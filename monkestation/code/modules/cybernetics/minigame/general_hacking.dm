@@ -7,12 +7,11 @@ PROCESSING_SUBSYSTEM_DEF(hacking)
 
 /atom
 	/// Some atoms can be hacked so awesome
-	var/datum/hacking/hacking = null
+	var/datum/hacking/hacking
 
 /atom/Destroy(force)
 	. = ..()
-	if(hacking)
-		QDEL_NULL(hacking)
+	QDEL_NULL(hacking)
 
 /// Attempts to open the hacking interface
 /atom/proc/attempt_hacking_interaction(mob/user)

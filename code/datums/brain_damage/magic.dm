@@ -124,3 +124,9 @@
 	desc = "It's coming closer..."
 	image_icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	image_state = "curseblob"
+	var/datum/brain_trauma/magic/stalker_multiple/host
+
+/obj/effect/client_image_holder/stalker_phantom/Destroy(force)
+	. = ..()
+	host.stalkers -= src
+	host = null

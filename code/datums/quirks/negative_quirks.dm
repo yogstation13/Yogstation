@@ -592,7 +592,7 @@
 		if(BODY_ZONE_R_LEG)
 			prosthetic = new /obj/item/bodypart/leg/right/robot/surplus
 			slot_string = "right leg"
-	human_holder.del_and_replace_bodypart(prosthetic)
+	human_holder.del_and_replace_bodypart(prosthetic, TRUE)
 
 /datum/quirk/prosthetic_limb/post_add()
 	to_chat(quirk_holder, span_boldannounce("Your [slot_string] has been replaced with a surplus prosthetic. It is fragile and will easily come apart under duress. Additionally, \
@@ -609,10 +609,10 @@
 
 /datum/quirk/quadruple_amputee/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	human_holder.del_and_replace_bodypart(new /obj/item/bodypart/arm/left/robot/surplus)
-	human_holder.del_and_replace_bodypart(new /obj/item/bodypart/arm/right/robot/surplus)
-	human_holder.del_and_replace_bodypart(new /obj/item/bodypart/leg/left/robot/surplus)
-	human_holder.del_and_replace_bodypart(new /obj/item/bodypart/leg/right/robot/surplus)
+	human_holder.del_and_replace_bodypart(new /obj/item/bodypart/arm/left/robot/surplus, TRUE)
+	human_holder.del_and_replace_bodypart(new /obj/item/bodypart/arm/right/robot/surplus, TRUE)
+	human_holder.del_and_replace_bodypart(new /obj/item/bodypart/leg/left/robot/surplus, TRUE)
+	human_holder.del_and_replace_bodypart(new /obj/item/bodypart/leg/right/robot/surplus, TRUE)
 
 /datum/quirk/quadruple_amputee/post_add()
 	to_chat(quirk_holder, span_boldannounce("All your limbs have been replaced with surplus prosthetics. They are fragile and will easily come apart under duress. Additionally, \
@@ -799,7 +799,7 @@
 	hardcore_value = 4
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES
 	mail_goodies = list(/obj/effect/spawner/random/contraband/narcotics)
-	var/drug_list = list(/datum/reagent/drug/blastoff, /datum/reagent/drug/krokodil, /datum/reagent/medicine/morphine, /datum/reagent/drug/happiness, /datum/reagent/drug/methamphetamine) //List of possible IDs
+	var/drug_list = list(/datum/reagent/drug/blastoff, /datum/reagent/drug/krokodil, /datum/reagent/medicine/painkiller/morphine, /datum/reagent/drug/happiness, /datum/reagent/drug/methamphetamine) //List of possible IDs
 	var/datum/reagent/reagent_type //!If this is defined, reagent_id will be unused and the defined reagent type will be instead.
 	var/datum/reagent/reagent_instance //! actual instanced version of the reagent
 	var/where_drug //! Where the drug spawned

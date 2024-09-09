@@ -185,6 +185,9 @@
 #define DEPARTMENT_BITFLAG_SPOOKTOBER (1<<10)
 #define DEPARTMENT_SPOOKTOBER "Spooktober"
 
+#define DEPARTMENT_BITFLAG_CENTRAL_COMMAND (1<<11)
+#define DEPARTMENT_CENTRAL_COMMAND "Central Command"
+
 /* Job datum job_flags */
 /// Whether the mob is announced on arrival.
 #define JOB_ANNOUNCE_ARRIVAL (1<<0)

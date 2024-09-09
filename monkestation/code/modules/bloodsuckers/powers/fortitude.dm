@@ -22,7 +22,7 @@
 	owner.balloon_alert(owner, "fortitude turned on.")
 	to_chat(owner, span_notice("Your flesh, skin, and muscles become as steel."))
 	// Traits & Effects
-	owner.add_traits(list(TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER, TRAIT_PUSHIMMUNE, TRAIT_NO_SPRINT), FORTITUDE_TRAIT)
+	owner.add_traits(list(TRAIT_PIERCEIMMUNE, TRAIT_ANALGESIA, TRAIT_NODISMEMBER, TRAIT_PUSHIMMUNE, TRAIT_NO_SPRINT), FORTITUDE_TRAIT)
 	if(level_current >= 4)
 		owner.add_traits(list(TRAIT_STUNIMMUNE, TRAIT_CANT_STAMCRIT), FORTITUDE_TRAIT) // They'll get stun resistance + this, who cares.
 	var/mob/living/carbon/human/bloodsucker_user = owner
@@ -61,7 +61,7 @@
 		if(!HAS_TRAIT_FROM(bloodsucker_user, TRAIT_STUNIMMUNE, FORTITUDE_TRAIT))
 			bloodsucker_user.physiology.stamina_mod /= fortitude_resist
 	// Remove Traits & Effects
-	owner.remove_traits(list(TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER, TRAIT_PUSHIMMUNE, TRAIT_NO_SPRINT, TRAIT_STUNIMMUNE, TRAIT_CANT_STAMCRIT), FORTITUDE_TRAIT)
+	owner.remove_traits(list(TRAIT_PIERCEIMMUNE, TRAIT_ANALGESIA, TRAIT_NODISMEMBER, TRAIT_PUSHIMMUNE, TRAIT_NO_SPRINT, TRAIT_STUNIMMUNE, TRAIT_CANT_STAMCRIT), FORTITUDE_TRAIT)
 
 	if(was_running && bloodsucker_user.m_intent == MOVE_INTENT_WALK)
 		bloodsucker_user.set_move_intent(MOVE_INTENT_RUN)

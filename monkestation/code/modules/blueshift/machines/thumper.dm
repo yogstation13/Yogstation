@@ -44,15 +44,15 @@
 	)
 	/// How much of the listed types of ores should we spawn when spawning ore
 	var/static/list/ore_spawn_values = list(
-		/obj/item/stack/ore/iron = 25,
-		/obj/item/stack/ore/glass/basalt = 25,
-		/obj/item/stack/ore/plasma = 15,
-		/obj/item/stack/ore/uranium = 10,
-		/obj/item/stack/ore/silver = 10,
-		/obj/item/stack/ore/gold = 10,
-		/obj/item/stack/ore/titanium = 10,
-		/obj/item/stack/ore/diamond = 5,
-		/obj/item/stack/ore/bluespace_crystal = 1,
+		/obj/item/stack/ore/iron = 8000,
+		/obj/item/stack/ore/glass/basalt = 8000,
+		/obj/item/stack/ore/plasma = 7000,
+		/obj/item/stack/ore/uranium = 6000,
+		/obj/item/stack/ore/silver = 4000,
+		/obj/item/stack/ore/gold = 4000,
+		/obj/item/stack/ore/titanium = 4000,
+		/obj/item/stack/ore/diamond = 2500,
+		/obj/item/stack/ore/bluespace_crystal = 1000,
 	)
 	/// What's the limit for ore near us? Counts by stacks, not individual amounts of ore
 	var/nearby_ore_limit = 5
@@ -204,7 +204,7 @@
 	var/is_there_a_thumper_too = FALSE
 	for(var/turf/nearby_turf in orange(ore_spawn_range, src))
 		for(var/ore as anything in nearby_turf.contents)
-			if(istype(ore, /obj/item/stack/ore))
+			if(istype(ore, /obj/item/boulder))
 				nearby_ore += 1
 				continue
 			if(istype(ore, /obj/machinery/power/colony_ore_thumper))
@@ -243,8 +243,16 @@
 
 	for(var/iteration in 1 to rand(2, 4))
 		var/turf/target_turf = pick(nearby_valid_turfs)
-		var/obj/item/stack/new_ore = pick_weight(ore_weight_list)
-		new new_ore(target_turf, ore_spawn_values[new_ore.type])
+		var/obj/item/stack/ore/new_ore = pick_weight(ore_weight_list)
+		var/obj/item/stack/ore/created_ore = new new_ore
+		var/obj/item/boulder/new_boulder = new (target_turf)
+
+		var/list/new_mats = list()
+		for(var/datum/material/material as anything in created_ore.mats_per_unit)
+			new_mats[material] = ore_spawn_values[created_ore.type]
+
+		qdel(created_ore)
+		new_boulder.set_custom_materials(new_mats)
 
 	slam_jams -= slam_jams_needed
 

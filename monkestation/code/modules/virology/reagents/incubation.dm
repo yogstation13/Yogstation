@@ -1,7 +1,7 @@
 /datum/reagent/proc/disease_incubate(atom/movable/parent, datum/disease/disease, obj/machinery/disease2/incubator/machine)
 	return
 
-/datum/reagent/proc/stage_disease_incubate(datum/disease/disease, list/symptoms, obj/machinery/disease2/incubator/machine)
+/datum/reagent/proc/stage_disease_incubate(atom/movable/parent, datum/disease/disease, list/symptoms, obj/machinery/disease2/incubator/machine)
 	return
 
 

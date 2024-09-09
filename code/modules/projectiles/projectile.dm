@@ -8,6 +8,7 @@
 	icon_state = "bullet"
 	density = FALSE
 	anchored = TRUE
+	animate_movement = NO_STEPS //Use SLIDE_STEPS in conjunction with legacy
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	movement_type = FLYING
 	wound_bonus = CANT_WOUND // can't wound by default
@@ -314,8 +315,9 @@
 					new /obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter(target_turf, splatter_dir)
 				else
 					new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_turf, splatter_dir)
-				if(prob(33))
-					living_target.add_splatter_floor(target_turf)
+				if(prob(damage))
+					living_target.blood_particles(amount = rand(1, 1 + round(damage/20, 1)), angle = src.Angle)
+
 			else if (!isnull(hit_bodypart) && (hit_bodypart.biological_state & (BIO_METAL|BIO_WIRED)))
 				var/random_damage_mult = RANDOM_DECIMAL(0.85, 1.15) // SOMETIMES you can get more or less sparks
 				var/damage_dealt = ((damage / (1 - (blocked / 100))) * random_damage_mult)

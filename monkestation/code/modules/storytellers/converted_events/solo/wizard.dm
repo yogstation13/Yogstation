@@ -7,6 +7,7 @@
 	shared_occurence_type = SHARED_HIGH_THREAT
 	restricted_roles = list(
 		JOB_CAPTAIN,
+		JOB_BLUESHIELD,
 		JOB_HEAD_OF_SECURITY,
 	) // Just to be sure that a wizard getting picked won't ever imply a Captain or HoS not getting drafted
 	maximum_antags = 1

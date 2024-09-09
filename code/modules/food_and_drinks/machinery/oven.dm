@@ -139,6 +139,17 @@
 	. = ..()
 	open = !open
 	if(open)
+		timer_duration = world.time - timer_laststart
+		deltimer(oven_timer)
+		oven_timer = null
+		if(used_tray)
+			var/obj/item/reagent_containers/cooking_container/located = locate(/obj/item/reagent_containers/cooking_container) in used_tray.contents
+			if(located)
+				if(user && user.Adjacent(src))
+					located.process_item(src, user, lower_quality_on_fail=CHEWIN_BASE_QUAL_REDUCTION, send_message=TRUE)
+				else
+					located.process_item(src, user,  lower_quality_on_fail=CHEWIN_BASE_QUAL_REDUCTION)
+
 		playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
 		set_smoke_state(OVEN_SMOKE_STATE_NONE)
 		to_chat(user, span_notice("You open [src]."))
@@ -146,6 +157,8 @@
 		if(used_tray)
 			used_tray.vis_flags &= ~VIS_HIDE
 	else
+		timer_laststart = world.time
+		oven_timer = addtimer(CALLBACK(src, PROC_REF(go_off_queen)), timer_duration, TIMER_UNIQUE | TIMER_STOPPABLE)
 		playsound(src, 'sound/machines/oven/oven_close.ogg', 75, TRUE)
 		to_chat(user, span_notice("You close [src]."))
 		if(used_tray)

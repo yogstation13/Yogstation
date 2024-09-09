@@ -127,8 +127,11 @@
 	///What is the cap on our misfire probability? Do not set this to 100.
 	var/misfire_probability_cap = 25
 
+	var/wield_recoil = 0
+
 /obj/item/gun/ballistic/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/two_handed, wield_callback = CALLBACK(src, PROC_REF(on_wield)), unwield_callback = CALLBACK(src, PROC_REF(on_unwield)))
 	if(!spawn_magazine_type)
 		spawn_magazine_type = accepted_magazine_type
 	if (!spawnwithmagazine)
@@ -143,6 +146,12 @@
 		chamber_round(replace_new_round = TRUE)
 	update_appearance()
 	RegisterSignal(src, COMSIG_ITEM_RECHARGED, PROC_REF(instant_reload))
+	register_context()
+
+/obj/item/gun/ballistic/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+	context[SCREENTIP_CONTEXT_CTRL_LMB] = "Toggle Bracing"
+	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/gun/ballistic/Destroy()
 	QDEL_NULL(magazine)

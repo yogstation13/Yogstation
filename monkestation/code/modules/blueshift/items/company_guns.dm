@@ -131,7 +131,8 @@
 
 	fire_delay = 0.1 SECONDS
 
-	recoil = 1
+	recoil = 2
+	wield_recoil = 0.5
 	spread = 12.5
 	projectile_wound_bonus = -20
 
@@ -420,7 +421,7 @@
 
 	suppressor_x_offset = 9
 
-	burst_size = 1
+	burst_size = 2
 	fire_delay = 0.15 SECONDS
 	actions_types = list()
 
@@ -429,6 +430,7 @@
 	spread = 12.5
 	// Hope you didn't need to see anytime soon
 	recoil = 2
+	wield_recoil = 0.5
 
 /obj/item/gun/ballistic/automatic/xhihao_smg/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_XHIHAO)
@@ -517,6 +519,7 @@
 
 	fire_delay = 1 SECONDS
 	recoil = 3
+	wield_recoil = 1
 
 /obj/item/gun/ballistic/revolver/takbok/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_TRAPPISTE)
@@ -627,6 +630,7 @@
 	fire_delay = 1 SECONDS
 
 	recoil = 3
+	wield_recoil = 1
 
 /obj/item/gun/ballistic/automatic/pistol/trappiste/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_TRAPPISTE)
@@ -761,7 +765,8 @@
 	fire_delay = 1.2 SECONDS
 	actions_types = list()
 
-	recoil = 0.5
+	recoil = 1.5
+	wield_recoil = 0.5
 	spread = 2.5
 	projectile_wound_bonus = -20
 
@@ -824,6 +829,7 @@
 	fire_sound_volume = 100 // BOOM BABY
 
 	recoil = 4
+	wield_recoil = 2
 
 	weapon_weight = WEAPON_HEAVY
 	burst_size = 1
@@ -962,6 +968,7 @@
 	desc = "An outdated sidearm rarely seen in use by some members of the CIN. A revolver type design with a four shell cylinder. That's right, shell, this one shoots twelve guage."
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/rev12ga
 	recoil = SAWN_OFF_RECOIL
+	wield_recoil = SAWN_OFF_RECOIL * 0.5
 	weapon_weight = WEAPON_MEDIUM
 	icon = 'monkestation/code/modules/blueshift/icons/obj/company_and_or_faction_based/szot_dynamica/guns_32.dmi'
 	icon_state = "bobr"
@@ -1001,7 +1008,7 @@
 
 	bolt_type = BOLT_TYPE_OPEN
 
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
 	slot_flags = ITEM_SLOT_SUITSTORE | ITEM_SLOT_BELT
 
@@ -1015,8 +1022,8 @@
 
 	suppressor_x_offset = 11
 
-	burst_size = 3
-	fire_delay = 0.2 SECONDS
+	burst_size = 2
+	fire_delay = 0.35 SECONDS
 
 	spread = 7.5
 
@@ -1339,3 +1346,15 @@
 #undef SHORT_MOD_LASER_SPEECH
 #undef MOD_LASER_SPEECH_COOLDOWN
 #undef DEFAULT_RUNECHAT_GUN_COLOR
+
+/obj/item/gun/ballistic/proc/on_wield()
+	SIGNAL_HANDLER
+
+	recoil = wield_recoil
+	spread = spread * 0.75
+
+/obj/item/gun/ballistic/proc/on_unwield()
+	SIGNAL_HANDLER
+
+	recoil = initial(recoil)
+	spread = initial(spread)

@@ -263,15 +263,14 @@ GLOBAL_LIST_EMPTY(cached_mixer_channels)
 	S.status = SOUND_UPDATE
 	SEND_SOUND(src, S)
 
-/client/proc/playtitlemusic(vol = 0.85)
+/client/proc/playtitlemusic(vol = 85)
 	set waitfor = FALSE
 	UNTIL(SSticker.login_music_done) //wait for SSticker init to set the login music // monkestation edit: fix-lobby-music
 	UNTIL(fully_created)
 	if("[CHANNEL_LOBBYMUSIC]" in prefs.channel_volume)
 		if(prefs.channel_volume["[CHANNEL_LOBBYMUSIC]"] != 0)
-			vol *= prefs.channel_volume["[CHANNEL_LOBBYMUSIC]"] * 0.01
+			vol = prefs.channel_volume["[CHANNEL_LOBBYMUSIC]"]
 			vol *= prefs.channel_volume["[CHANNEL_MASTER_VOLUME]"] * 0.01
-
 	if((prefs && (!prefs.read_preference(/datum/preference/toggle/sound_lobby))) || CONFIG_GET(flag/disallow_title_music))
 		return
 
@@ -279,6 +278,7 @@ GLOBAL_LIST_EMPTY(cached_mixer_channels)
 		media = new /datum/media_manager(src)
 		media.open()
 		media.update_music()
+	media.lobby_music = TRUE
 
 	if(!length(SSmedia_tracks.lobby_tracks))
 		return
@@ -293,7 +293,8 @@ GLOBAL_LIST_EMPTY(cached_mixer_channels)
 		SSmedia_tracks.first_lobby_play = FALSE
 
 	var/datum/media_track/T = SSmedia_tracks.current_lobby_track
-	media.push_music(T.url, world.time, vol)
+	media.push_music(T.url, world.time, 1)
+	media.update_volume(vol) // this makes it easier if we modify volume later on
 	to_chat(src,"<span class='notice'>Lobby music: <b>[T.title]</b> by <b>[T.artist]</b>.</span>")
 
 /proc/get_rand_frequency()

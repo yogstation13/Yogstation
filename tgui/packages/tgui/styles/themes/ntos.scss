@@ -42,4 +42,8 @@ $nanotrasen: #384e68;
     $with: ('background-color': color.scale($nanotrasen, $lightness: -25%))
   );
   @include meta.load-css('../layouts/PopupWindow.scss');
+  @include meta.load-css(
+    '../components/ImageButton.scss',
+    $with: ('color-default': darken($nanotrasen, 15%))
+  );
 }

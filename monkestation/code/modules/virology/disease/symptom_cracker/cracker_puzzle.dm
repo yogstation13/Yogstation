@@ -17,6 +17,8 @@
 
 	var/datum/parent
 
+	var/list/plotted_points = list()
+
 /datum/cracker_puzzle/New(grid_size = 5, difficulty = 1, datum/parent)
 	src.grid_size = grid_size
 	src.difficulty = difficulty
@@ -47,37 +49,23 @@
 
 	var/sequence_length = 4 + difficulty
 
-	var/last_sequence_spot = null
-	var/last_vertical_sequence_spot = null
+	var/last_sequence_spot = rand(1, grid_size)
+	var/last_vertical_sequence_spot = rand(1, grid_size)
 	var/vertical = FALSE
 	for(var/i = 1 to sequence_length)
 		if(vertical)
-			var/vertical_spot = rand(1, grid_size)
-			var/list/horizontal_cut = grid[vertical_spot]
-			sequence += horizontal_cut[last_vertical_sequence_spot]
-			var/horizontal_choice = rand(1, grid_size)
-			last_sequence_spot = horizontal_choice
-
-			vertical = FALSE
-
+			var/vertical_spot = rand(1, grid_size)  // Random row (y-coordinate)
+			var/list/horizontal_cut_vert = grid[vertical_spot]  // Get the row corresponding to vertical_spot
+			sequence += horizontal_cut_vert[last_sequence_spot]  // Use the last x-coordinate to select the letter
+			last_vertical_sequence_spot = vertical_spot  // Update the y-coordinate
+			plotted_points += "[last_sequence_spot], [last_vertical_sequence_spot]"  // Log the coordinate pair
+			vertical = FALSE  // Switch to horizontal for the next iteration
 		else
-			if(!last_sequence_spot)
-				///grabs the horizontal slice of the grid
-				var/horizontal_spot = rand(1, grid_size)
-				var/list/horizontal_cut = grid[horizontal_spot]
-
-				last_sequence_spot = horizontal_spot //sets the last slice position
-
-				var/vertical_spot =  rand(1, grid_size)// we randomize the selection inside the slice
-				sequence += horizontal_cut[vertical_spot]
-				last_vertical_sequence_spot = vertical_spot //set the last vertical spot to this
-			else
-				var/list/choices = grid[last_sequence_spot]
-				var/grid_selection = rand(1, grid_size)
-				last_vertical_sequence_spot = grid_selection
-				sequence += choices[grid_selection]
-
-			vertical = TRUE
+			var/horizontal_spot = rand(1, grid_size)  // Random column (x-coordinate)
+			sequence += grid[last_vertical_sequence_spot][horizontal_spot]  // Access the column in the current row
+			last_sequence_spot = horizontal_spot  // Update the x-coordinate
+			plotted_points += "[last_sequence_spot], [last_vertical_sequence_spot]"  // Log the coordinate pair
+			vertical = TRUE  // Switch to vertical for the next iteration
 
 
 /datum/cracker_puzzle/proc/check_press(x, y)

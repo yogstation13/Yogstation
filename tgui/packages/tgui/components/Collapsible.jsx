@@ -20,7 +20,14 @@ export class Collapsible extends Component {
   render() {
     const { props } = this;
     const { open } = this.state;
-    const { children, color = 'default', title, buttons, ...rest } = props;
+    const {
+      children,
+      color = 'default',
+      title,
+      buttons,
+      contentStyle,
+      ...rest
+    } = props;
     return (
       <Box mb={1}>
         <div className="Table">
@@ -39,7 +46,11 @@ export class Collapsible extends Component {
             <div className="Table__cell Table__cell--collapsing">{buttons}</div>
           )}
         </div>
-        {open && <Box mt={1}>{children}</Box>}
+        {open && (
+          <Box mt={1} style={contentStyle}>
+            {children}
+          </Box>
+        )}
       </Box>
     );
   }

@@ -1,11 +1,15 @@
 /mob/living/basic/mouse
-	var/disease_chance = 50
+	var/disease_chance = 25
+	var/diseased = TRUE
+
+/mob/living/basic/mouse/ratking
+	diseased = FALSE
 
 /mob/living/basic/mouse/Initialize(mapload, tame, new_body_color)
 	. = ..()
 	immune_system = new(src)
 
-	if(prob(disease_chance))
+	if(prob(disease_chance) && diseased)
 		var/virus_choice = pick(subtypesof(/datum/disease/advanced)- typesof(/datum/disease/advanced/premade))
 		var/list/anti = list(
 			ANTIGEN_BLOOD	= 2,
@@ -23,6 +27,7 @@
 		)
 		var/datum/disease/advanced/disease = new virus_choice
 		disease.makerandom(list(50,90),list(10,100),anti,bad,src)
+		disease.spread_flags &= ~DISEASE_SPREAD_AIRBORNE
 		diseases = list()
 		diseases += disease
 		disease.after_add()
