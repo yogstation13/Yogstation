@@ -146,7 +146,7 @@
 
 	// Over 11, Light drinkers will constantly gain slurring up to 10 seconds of slurring.
 	if(HAS_TRAIT(owner, TRAIT_LIGHT_DRINKER) & (drunk_value >= 11))
-		owner.adjust_slurring_up_to(2.4 SECONDS, 10 SECONDS)
+		owner.adjust_timed_status_effect(4 SECONDS, /datum/status_effect/speech/slurring/drunk, max_duration = 10 SECONDS)
 	if(HAS_TRAIT(owner, TRAIT_DRUNK_HEALING) & (drunk_value >= 11)) // To save headache this will be separate for drunken resilience & effects stack with lower tiers
 		owner.adjustBruteLoss(-0.1, FALSE)
 		owner.adjustFireLoss(-0.06, FALSE)
@@ -154,7 +154,7 @@
 	// over 21 normal people will start to slur
 	if(drunk_value >= 21)
 		if(!HAS_TRAIT(owner, TRAIT_ALCOHOL_TOLERANCE))
-			owner.adjust_slurring_up_to(2.4 SECONDS, 7 SECONDS)
+			owner.adjust_timed_status_effect(4 SECONDS, /datum/status_effect/speech/slurring/drunk, max_duration = 20 SECONDS)
 
 	// Over 41, we have a 30% chance to gain confusion, and we will always have 20 seconds of dizziness.
 	if(drunk_value >= 41)
@@ -189,7 +189,7 @@
 		if(owner.stat == CONSCIOUS && prob(5))
 			to_chat(owner, span_warning("Maybe you should lie down for a bit..."))
 		if(HAS_TRAIT(owner, TRAIT_ALCOHOL_TOLERANCE))
-			owner.adjust_slurring_up_to(2.4 SECONDS, 4 SECONDS)
+			owner.adjust_timed_status_effect(4 SECONDS, /datum/status_effect/speech/slurring/drunk, max_duration = 20 SECONDS)
 
 	// Over 91, we gain even more toxloss, brain damage, and have a chance of dropping into a long sleep
 	if(drunk_value >= 91)
