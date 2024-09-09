@@ -193,11 +193,11 @@ LINEN BINS
 	newbedpath = /obj/item/bedsheet/adjusted/hos
 
 /obj/item/bedsheet/hop
-	name = "head of personnel's bedsheet"
+	name = "Labor Lead's bedsheet"
 	desc = "It is decorated with a key emblem. For those rare moments when you can rest and cuddle with Ian without someone screaming for you over the radio."
 	icon_state = "sheethop"
 	item_state = "sheethop"
-	dream_messages = list("authority", "a silvery ID", "obligation", "a computer", "an ID", "a corgi", "the head of personnel")
+	dream_messages = list("authority", "a silvery ID", "obligation", "a computer", "an ID", "a corgi", "the Labor Lead")
 	newbedpath = /obj/item/bedsheet/adjusted/hop
 
 /obj/item/bedsheet/ce

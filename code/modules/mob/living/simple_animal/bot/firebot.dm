@@ -42,9 +42,6 @@
 /mob/living/simple_animal/bot/firebot/Initialize(mapload)
 	. = ..()
 	update_appearance(UPDATE_ICON)
-	var/datum/job/engineer/J = new/datum/job/engineer
-	access_card.access += J.get_access()
-	prev_access = access_card.access
 
 	create_extinguisher()
 

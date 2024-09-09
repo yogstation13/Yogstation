@@ -311,7 +311,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 // Cigarette brands.
 
 /obj/item/clothing/mask/cigarette/space_cigarette
-	desc = "A Space Cigarette brand cigarette."
+	desc = "A cigarette."
 
 /obj/item/clothing/mask/cigarette/dromedary
 	desc = "A DromedaryCo brand cigarette."
@@ -395,7 +395,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 ////////////
 /obj/item/clothing/mask/cigarette/cigar
 	name = "premium cigar"
-	desc = "A brown roll of tobacco and... well, you're not quite sure. This thing's huge!"
+	desc = "An old cigar. Weathered, but still oh so good..."
 	icon_state = "cigaroff"
 	icon_on = "cigaron"
 	icon_off = "cigaroff" //make sure to add positional sprites in icons/obj/cigarettes.dmi if you add more.

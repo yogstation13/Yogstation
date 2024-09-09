@@ -17,91 +17,6 @@
 	else
 		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "back_pain")
 
-/datum/quirk/blooddeficiency
-	name = "Blood Deficiency"
-	desc = "Your body can't produce enough blood to sustain itself."
-	icon = "tint"
-	value = -4
-	gain_text = span_danger("You feel your vigor slowly fading away.")
-	lose_text = span_notice("You feel vigorous again.")
-	medical_record_text = "Patient requires regular treatment for blood loss due to low production of blood."
-
-/datum/quirk/blooddeficiency/check_quirk(datum/preferences/prefs)
-	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	species_type = new species_type()
-	var/disallowed_trait = (NOBLOOD in species_type.species_traits) // Cant lose blood if your species doesn't have any
-	qdel(species_type)
-
-	if(disallowed_trait)
-		return "You don't have blood!"
-	return ..()
-
-/datum/quirk/blooddeficiency/on_process()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(NOBLOOD in H.dna.species.species_traits) //can't lose blood if your species doesn't have any
-		return
-	else
-		if (H.blood_volume > (BLOOD_VOLUME_SAFE(H) - 25)) // just barely survivable without treatment
-			H.blood_volume -= 0.275
-
-/datum/quirk/blindness
-	name = "Blind"
-	desc = "You are completely blind, nothing can counteract this."
-	icon = "eye-slash"
-	value = -6
-	gain_text = span_danger("You can't see anything.")
-	lose_text = span_notice("You miraculously gain back your vision.")
-	medical_record_text = "Patient has permanent blindness."
-	job_blacklist = list("City Administrator", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Divisional Lead", "Civil Protection Officer", "Warden")
-
-/datum/quirk/blindness/add()
-	quirk_holder.become_blind(ROUNDSTART_TRAIT)
-	quirk_holder.AddComponent(/datum/component/echolocation) //add when echolocation is fixed
-
-/datum/quirk/blindness/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/clothing/glasses/blindfold/white/B = new(get_turf(H))
-	if(!H.equip_to_slot_if_possible(B, ITEM_SLOT_EYES, bypass_equip_delay_self = TRUE)) //if you can't put it on the user's eyes, put it in their hands, otherwise put it on their eyes
-		H.put_in_hands(B)
-	H.regenerate_icons()
-
-/datum/quirk/brainproblems
-	name = "Brain Tumor"
-	desc = "You have a little friend in your brain that is slowly destroying it. Better bring some mannitol!"
-	icon = "head-side-virus"
-	value = -6
-	gain_text = span_danger("You feel smooth.")
-	lose_text = span_notice("You feel wrinkled again.")
-	medical_record_text = "Patient has a tumor in their brain that is slowly driving them to brain death."
-	var/where = "at your feet"
-
-/datum/quirk/brainproblems/on_process()
-	quirk_holder.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2)
-
-/datum/quirk/brainproblems/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/mannitolpills = new /obj/item/storage/pill_bottle/mannitol/braintumor(get_turf(quirk_holder))
-	var/list/slots = list(
-		"in your left pocket" = ITEM_SLOT_LPOCKET,
-		"in your right pocket" = ITEM_SLOT_RPOCKET,
-		"in your backpack" = ITEM_SLOT_BACKPACK
-	)
-	where = H.equip_in_one_of_slots(mannitolpills, slots, FALSE) || "at your feet"
-
-/datum/quirk/brainproblems/post_add()
-	to_chat(quirk_holder, span_boldnotice("There is a pill bottle of mannitol [where]. You're going to need it."))
-
-/datum/quirk/deafness
-	name = "Deaf"
-	desc = "You are incurably deaf."
-	icon = "deaf"
-	value = -6
-	mob_trait = TRAIT_DEAF
-	gain_text = span_danger("You can't hear anything.")
-	lose_text = span_notice("You're able to hear again!")
-	medical_record_text = "Patient's cochlear nerve is incurably damaged."
-	job_blacklist = list("City Administrator", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Divisional Lead", "Civil Protection Officer", "Warden")
-
 /datum/quirk/depression
 	name = "Depression"
 	desc = "You sometimes just hate life."
@@ -117,7 +32,7 @@
 	name = "Heavy Sleeper"
 	desc = "You sleep like a rock! Whenever you're put to sleep or knocked unconscious, you take a little bit longer to wake up and cant see anything."
 	icon = "bed"
-	value = -4
+	value = -3
 	mob_trait = TRAIT_HEAVY_SLEEPER
 	gain_text = span_danger("You feel sleepy.")
 	lose_text = span_notice("You feel awake again.")
@@ -214,45 +129,7 @@
 	gain_text = span_danger("You feel repulsed by the thought of violence!")
 	lose_text = span_notice("You think you can defend yourself again.")
 	medical_record_text = "Patient is unusually pacifistic and cannot bring themselves to cause physical harm."
-	job_blacklist = list("Divisional Lead", "Civil Protection Officer", "Warden")
-
-
-/datum/quirk/paraplegic
-	name = "Paraplegic"
-	desc = "Your legs do not function. Nothing will ever fix this. But hey, free wheelchair!"
-	icon = "wheelchair"
-	value = -7
-	human_only = TRUE
-	gain_text = null // Handled by trauma.
-	lose_text = null
-	medical_record_text = "Patient has an untreatable impairment in motor function in the lower extremities."
 	job_blacklist = list("Divisional Lead", "Civil Protection Officer")
-
-/datum/quirk/paraplegic/add()
-	var/datum/brain_trauma/severe/paralysis/paraplegic/T = new()
-	var/mob/living/carbon/human/H = quirk_holder
-	H.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)
-
-/datum/quirk/paraplegic/on_spawn()
-	if(quirk_holder.buckled) // Handle late joins being buckled to arrival shuttle chairs.
-		quirk_holder.buckled.unbuckle_mob(quirk_holder)
-
-	var/turf/T = get_turf(quirk_holder)
-	var/obj/structure/chair/spawn_chair = locate() in T
-
-	var/obj/vehicle/ridden/wheelchair/wheels = new(T)
-	if(spawn_chair) // Makes spawning on the arrivals shuttle more consistent looking
-		wheels.setDir(spawn_chair.dir)
-
-	wheels.buckle_mob(quirk_holder)
-
-	// During the spawning process, they may have dropped what they were holding, due to the paralysis
-	// So put the things back in their hands.
-
-	for(var/obj/item/I in T)
-		if(I.fingerprintslast == quirk_holder.ckey)
-			quirk_holder.put_in_hands(I)
-
 
 /datum/quirk/poor_aim
 	name = "Poor Aim"
@@ -378,8 +255,7 @@
 	if(!quirk_holder.mind || quirk_holder.mind.special_role)
 		return
 	to_chat(quirk_holder, span_boldnotice("There is a bottle of mindbreaker gummy bears [where]. You're going to need it."))
-	to_chat(quirk_holder, span_boldwarning("Please note that your dissociation syndrome does NOT give you the right to attack people or otherwise cause any interference to \
-	the round. You are not an antagonist, and the rules will treat you the same as other crewmembers."))
+	to_chat(quirk_holder, span_boldwarning("Please note that your dissociation syndrome does NOT give you the right to kill random people wordlessly, though you'll likely be more unhinged than the average person."))
 
 /datum/quirk/social_anxiety
 	name = "Social Anxiety"
@@ -389,7 +265,7 @@
 	gain_text = span_danger("You start worrying about what you're saying.")
 	lose_text = span_notice("You feel easier about talking again.") //if only it were that easy!
 	medical_record_text = "Patient is usually anxious in social encounters and prefers to avoid them."
-	job_blacklist = list("City Administrator", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Divisional Lead", "Civil Protection Officer", "Warden")
+	job_blacklist = list("City Administrator", "Labor Lead", "Divisional Lead", "Civil Protection Officer")
 	var/dumb_thing = TRUE
 	mob_trait = TRAIT_ANXIOUS
 
@@ -495,11 +371,11 @@
 	name = "Junkie"
 	desc = "You can't get enough of hard drugs."
 	icon = "pills"
-	value = -4
+	value = -8
 	gain_text = span_danger("You suddenly feel the craving for drugs.")
 	lose_text = span_notice("You feel like you should kick your drug habit.")
 	medical_record_text = "Patient has a history of hard drugs."
-	var/drug_list = list(/datum/reagent/drug/crank, /datum/reagent/drug/krokodil, /datum/reagent/medicine/morphine, /datum/reagent/drug/happiness, /datum/reagent/drug/methamphetamine, /datum/reagent/drug/ketamine) //List of possible IDs
+	var/drug_list = list(/datum/reagent/medicine/morphine, /datum/reagent/drug/happiness) //List of possible IDs
 	var/reagent_id //ID picked from list
 	var/datum/reagent/reagent_type //If this is defined, reagent_id will be unused and the defined reagent type will be instead.
 	var/datum/reagent/reagent_instance
@@ -590,7 +466,7 @@
 	name = "Smoker"
 	desc = "Sometimes you just really want a smoke. Probably not great for your lungs."
 	icon = "smoking"
-	value = -2
+	value = -4
 	mood_quirk = TRUE
 	gain_text = span_danger("You could really go for a smoke right about now.")
 	lose_text = span_notice("You feel like you should quit smoking.")
@@ -600,13 +476,7 @@
 
 /datum/quirk/junkie/smoker/on_spawn()
 	drug_container_type = pick(/obj/item/storage/fancy/cigarettes,
-		/obj/item/storage/fancy/cigarettes/cigpack_midori,
-		/obj/item/storage/fancy/cigarettes/cigpack_uplift,
-		/obj/item/storage/fancy/cigarettes/cigpack_robust,
-		/obj/item/storage/fancy/cigarettes/cigpack_robustgold,
-		/obj/item/storage/fancy/cigarettes/cigpack_carp,
-		/obj/item/storage/fancy/cigarettes/cigars,
-		/obj/item/storage/fancy/cigarettes/cigars/havana)
+		/obj/item/storage/fancy/cigarettes/cigars)
 	. = ..()
 
 /datum/quirk/junkie/smoker/announce_drugs()
@@ -628,7 +498,7 @@
 	name = "Drunkard"
 	desc = "In space there's no such thing as day drinking."
 	icon = "beer"
-	value = -2
+	value = -4
 	mood_quirk = TRUE
 	gain_text = span_danger("You could really go for a stiff drink right about now.")
 	lose_text = span_notice("You no longer feel dependent on alcohol to function.")
@@ -639,32 +509,8 @@
 /datum/quirk/junkie/drunkard/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.reagents.add_reagent(/datum/reagent/consumable/ethanol, 20)
-	drug_container_type = pick(/obj/item/reagent_containers/food/drinks/beer/light/plastic)
+	drug_container_type = pick(/obj/item/reagent_containers/food/drinks/beer)
 	. = ..()
-
-/datum/quirk/junkie/caffeine
-	name = "Caffeine Addict"
-	desc = "Whether it's punching through drywall while on Grey Bull, or downing 100 cups of coffee in a day, you can't get enough caffeine."
-	icon = "mug-hot"
-	value = -2
-	mood_quirk = TRUE
-	gain_text = span_danger("You could really use some caffeine right about now.")
-	lose_text = span_notice("You no longer feel dependent on caffeine to function.")
-	medical_record_text = "Patient is known to be dependent on caffeine."
-	reagent_type = /datum/reagent/drug/caffeine
-	junkie_warning = "You suddenly feel like you need some caffeine..."
-	var/list/weighted_items = list(
-		/obj/item/reagent_containers/food/drinks/coffee = 200,
-		/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 100,
-		/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy = 100,
-		/obj/item/reagent_containers/food/drinks/mug/tea = 50,
-		/obj/item/reagent_containers/food/drinks/soda_cans/thirteenloko = 1, //super rare because it's dangerous
-		/obj/item/reagent_containers/food/drinks/bottle/nukacola = 1 //super rare to get nuka cola because it's actually kinda bad (irradiates you)
-	)
-
-/datum/quirk/junkie/caffeine/on_spawn()
-	drug_container_type = pickweight(weighted_items)
-	return ..()
 
 /datum/quirk/unstable
 	name = "Unstable"
@@ -813,7 +659,7 @@
 	gain_text = "You feel your vocabulary slipping away."
 	lose_text = "You regrasp the full extent of your linguistic prowess."
 	medical_record_text = "Patient is affected by partial loss of speech leading to a reduced vocabulary."
-	job_blacklist = list("City Administrator", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Divisional Lead", "Civil Protection Officer", "Warden")
+	job_blacklist = list("City Administrator", "Labor Lead", "Divisional Lead", "Civil Protection Officer")
 
 /datum/quirk/ineloquent/add()
 	var/datum/brain_trauma/mild/expressive_aphasia/T = new()
@@ -840,25 +686,6 @@
 		return "You can't bleed."
 	return ..()
 
-/datum/quirk/brain_damage
-	name = "Brain Damage"
-	desc = "The shuttle ride was a bit bumpy to the station."
-	icon = "brain"
-	value = -6
-	gain_text = span_danger("Your head hurts.")
-	lose_text = span_notice("Your head feels good again.")
-	medical_record_text = "Patient appears to have brain damage."
-	job_blacklist = list("City Administrator", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Divisional Lead", "Civil Protection Officer", "Warden")
-
-/datum/quirk/brain_damage/add()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/datum/brain_trauma/badtimes = list(BRAIN_TRAUMA_MILD, BRAIN_TRAUMA_SEVERE)
-	var/amount = 0 // Pray you dont get fucked
-	amount = rand(1, 3)
-
-	for(var/i = 0 to amount)
-		H.gain_trauma_type(pick(badtimes), TRAUMA_RESILIENCE_ABSOLUTE) // Mr bones wild rides takes no breaks
-
 /datum/quirk/monochromatic
 	name = "Monochromacy"
 	desc = "You suffer from full colorblindness, and perceive nearly the entire world in blacks and whites."
@@ -878,119 +705,3 @@
 /datum/quirk/monochromatic/remove()
 	if(quirk_holder)
 		quirk_holder.remove_client_colour(/datum/client_colour/monochrome)
-
-/datum/quirk/nomail
-	name = "Loser"
-	desc = "You are a complete nobody, no one would ever send you anything worthwhile in the mail."
-	icon = "envelopes-bulk"
-	value = -1
-	mob_trait = TRAIT_BADMAIL
-
-/datum/quirk/telomeres_short
-	name = "Short Telomeres"
-	desc = "Due to hundreds of cloning cycles, your DNA's telomeres are dangerously shortened. Your DNA can't support cloning without expensive DNA restructuring, and what's worse- you work for Nanotrasen."
-	icon = "magnifying-glass-minus"
-	value = -2
-	medical_record_text = "DNA analysis indicates that the patient's DNA telomeres are artificially shortened from previous cloner usage."
-
-/datum/quirk/telomeres_short/check_quirk(datum/preferences/prefs)
-	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	species_type = new species_type()
-	var/no_dna = (NO_DNA_COPY in  species_type.species_traits) //Can't pick if you have no DNA bruv.
-	var/no_clone = (TRAIT_NOCLONE in species_type.inherent_traits)
-	qdel(species_type)
-	if(no_dna)
-		return "You have no DNA!"
-	else if(no_clone)
-		return "Your species cannot be cloned!"
-	return FALSE
-
-//we apply it directly to the dna so it carries over to the brain mob if someone tries to clone the brain
-/datum/quirk/telomeres_short/New(mob/living/quirk_mob, spawn_effects, no_init)
-	. = ..()
-	var/datum/dna/holder = quirk_holder?.has_dna()
-	if(holder)
-		holder.features |= TRAIT_SHORT_TELOMERES
-
-/datum/quirk/telomeres_short/Destroy()
-	. = ..()
-	var/datum/dna/holder = quirk_holder?.has_dna()
-	if(holder)
-		holder.features -= TRAIT_SHORT_TELOMERES
-
-/datum/quirk/telomeres_short/transfer_mob(mob/living/to_mob)
-	. = ..()
-	var/datum/dna/holder = quirk_holder?.has_dna()
-	if(holder)
-		holder.features -= TRAIT_SHORT_TELOMERES
-	holder = to_mob?.has_dna()
-	if(holder)
-		holder.features |= TRAIT_SHORT_TELOMERES
-
-/datum/quirk/body_purist
-	name = "Body Purist"
-	desc = "You believe your body is a temple and its natural form is an embodiment of perfection. Accordingly, you despise the idea of ever augmenting it with unnatural parts, cybernetic, prosthetic, or anything like it."
-	icon = "person-rays"
-	value = -2
-	mood_quirk = TRUE
-	gain_text = span_danger("You now begin to hate the idea of having cybernetic implants.")
-	lose_text = span_notice("Maybe cybernetics aren't so bad. You now feel okay with augmentations and prosthetics.")
-	medical_record_text = "This patient has disclosed an extreme hatred for unnatural bodyparts and augmentations."
-	var/cybernetics_level = 0
-
-/datum/quirk/body_purist/add()
-	check_cybernetics()
-	RegisterSignal(quirk_holder, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(on_organ_gain))
-	RegisterSignal(quirk_holder, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(on_organ_lose))
-	RegisterSignal(quirk_holder, COMSIG_CARBON_ATTACH_LIMB, PROC_REF(on_limb_gain))
-	RegisterSignal(quirk_holder, COMSIG_CARBON_REMOVE_LIMB, PROC_REF(on_limb_lose))
-
-/datum/quirk/body_purist/remove()
-	UnregisterSignal(quirk_holder, list(
-		COMSIG_CARBON_GAIN_ORGAN,
-		COMSIG_CARBON_LOSE_ORGAN,
-		COMSIG_CARBON_ATTACH_LIMB,
-		COMSIG_CARBON_REMOVE_LIMB,
-	))
-	SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "body_purist")
-
-/datum/quirk/body_purist/proc/check_cybernetics()
-	var/mob/living/carbon/owner = quirk_holder
-	if(!istype(owner))
-		return
-	for(var/obj/item/bodypart/limb as anything in owner.bodyparts)
-		if(!limb.is_organic_limb())
-			cybernetics_level++
-	for(var/obj/item/organ/organ as anything in owner.internal_organs)
-		if(organ.organ_flags & ORGAN_SYNTHETIC || organ.status == ORGAN_ROBOTIC)
-			cybernetics_level++
-	update_mood()
-
-/datum/quirk/body_purist/proc/update_mood()
-	SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "body_purist")
-	if(cybernetics_level)
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "body_purist", /datum/mood_event/body_purist, -cybernetics_level * 10)
-
-/datum/quirk/body_purist/proc/on_organ_gain(datum/source, obj/item/organ/new_organ, special)
-	SIGNAL_HANDLER
-	if(new_organ.organ_flags & ORGAN_SYNTHETIC || new_organ.status == ORGAN_ROBOTIC)
-		cybernetics_level++
-		update_mood()
-
-/datum/quirk/body_purist/proc/on_organ_lose(datum/source, obj/item/organ/old_organ, special)
-	SIGNAL_HANDLER
-	if(old_organ.organ_flags & ORGAN_SYNTHETIC || old_organ.status == ORGAN_ROBOTIC)
-		cybernetics_level--
-		update_mood()
-
-/datum/quirk/body_purist/proc/on_limb_gain(datum/source, obj/item/bodypart/new_limb, special)
-	SIGNAL_HANDLER
-	if(!new_limb.is_organic_limb())
-		cybernetics_level++
-		update_mood()
-
-/datum/quirk/body_purist/proc/on_limb_lose(datum/source, obj/item/bodypart/old_limb, special)
-	SIGNAL_HANDLER
-	if(!old_limb.is_organic_limb())
-		cybernetics_level--
-		update_mood()

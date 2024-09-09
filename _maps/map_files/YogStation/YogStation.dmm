@@ -8538,7 +8538,7 @@
 /area/crew_quarters/dorms)
 "bmo" = (
 /obj/machinery/door/airlock/command{
-	name = "Head of Personnel"
+	name = "Labor Lead"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -38548,7 +38548,7 @@
 	dir = 4
 	},
 /obj/machinery/camera{
-	c_tag = "Head of Personnel's Office";
+	c_tag = "Labor Lead's Office";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -41800,8 +41800,8 @@
 "mel" = (
 /obj/structure/table,
 /obj/machinery/photocopier/faxmachine{
-	department = "Head of Personnel";
-	name = "Head of Personnel's Fax Machine"
+	department = "Labor Lead";
+	name = "Labor Lead's Fax Machine"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
@@ -44315,7 +44315,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/heads/hop";
 	dir = 4;
-	name = "Head of Personnel APC";
+	name = "Labor Lead APC";
 	pixel_x = 24
 	},
 /obj/structure/cable{
@@ -54978,7 +54978,7 @@
 	base_state = "rightsecure";
 	dir = 4;
 	icon_state = "rightsecure";
-	name = "Head of Personnel's Desk"
+	name = "Labor Lead's Desk"
 	},
 /obj/machinery/flasher{
 	id = "hopflash";
@@ -57447,9 +57447,9 @@
 	},
 /obj/machinery/requests_console{
 	announcementConsole = 1;
-	department = "Head of Personnel's Desk";
+	department = "Labor Lead's Desk";
 	departmentType = 5;
-	name = "Head of Personnel RC";
+	name = "Labor Lead RC";
 	pixel_y = -30
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
@@ -64225,7 +64225,7 @@
 /area/crew_quarters/bar)
 "ukK" = (
 /obj/machinery/door/airlock/command{
-	name = "Head of Personnel"
+	name = "Labor Lead"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1

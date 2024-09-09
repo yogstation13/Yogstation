@@ -234,7 +234,7 @@
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit
-	name = "head of personnel's suit"
+	name = "Labor Lead's suit"
 	desc = "A teal suit and yellow necktie. An authoritative yet tacky ensemble."
 	icon_state = "teal_suit"
 	item_state = "g_suit"

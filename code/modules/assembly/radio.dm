@@ -79,7 +79,7 @@
 	use_command = TRUE
 
 /obj/item/assembly/radio/bell/hop
-	message = "Presence requested at the Head of Personnel's office."
+	message = "Presence requested at the Labor Lead's office."
 	required_area = /area/crew_quarters/heads/hop
 	radio_key = /obj/item/encryptionkey/headset_com
 	radio_channel = RADIO_CHANNEL_COMMAND

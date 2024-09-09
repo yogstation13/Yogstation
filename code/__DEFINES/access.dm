@@ -169,7 +169,7 @@
 #define ACCESS_LAWYER "lawyer"
 /// Access to the Gift Shop's back doors.
 #define ACCESS_CLERK "clerk"
-/// Access used for the Head of Personnel's personal quarters in mapping, as well as the security console and other HoP-related things.
+/// Access used for the Labor Lead's personal quarters in mapping, as well as the security console and other HoP-related things.
 #define ACCESS_HOP "hop"
 
 

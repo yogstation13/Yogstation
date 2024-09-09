@@ -66,7 +66,7 @@
 
 /obj/item/reagent_containers/glass/bottle/morphine
 	name = "morphine bottle"
-	desc = "A small bottle of morphine."
+	desc = "An old bottle with a morphine label. This might take your woes away, in the correct dosage."
 	icon = 'icons/obj/chemical.dmi'
 	list_reagents = list(/datum/reagent/medicine/morphine = 30)
 

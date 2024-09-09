@@ -393,7 +393,7 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/yogs/hopcasual
-	name = "casual head of personnel uniform"
+	name = "casual Labor Lead uniform"
 	desc = "Even the HoP has to take a break from giving all access to the crew sometimes."
 	icon_state = "hop_suit"
 	item_state = "hop_suit"

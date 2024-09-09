@@ -90,7 +90,7 @@
 	icon_state = "pda-hop"
 
 /obj/item/pda/heads/hop
-	name = "\improper antique head of personnel PDA"
+	name = "\improper antique Labor Lead PDA"
 	default_cartridge = /obj/item/cartridge/hop
 	icon_state = "pda-hop"
 

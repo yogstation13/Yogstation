@@ -18,7 +18,7 @@
 		"Cyborg",
 		"Synthetic",
 		"City Administrator",
-		"Head of Personnel",
+		"Labor Lead",
 		"Divisional Lead",
 		"Chief Engineer",
 		"Research Director",

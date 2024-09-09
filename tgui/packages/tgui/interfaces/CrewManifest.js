@@ -4,7 +4,7 @@ import { Icon, Section, Table, Tooltip } from "../components";
 import { Window } from "../layouts";
 
 const commandJobs = [
-  "Head of Personnel",
+  "Labor Lead",
   "Divisional Lead",
   "Chief Engineer",
   "Research Director",

@@ -90,8 +90,8 @@
 	icon_state = "minskyspace"
 
 /obj/structure/sign/departments/minsky/command/hop
-	name = "Head of Personnel's Office"
-	desc = "A sign labeling the Head of Personnel's Office. Bribe for All Access here."
+	name = "Labor Lead's Office"
+	desc = "A sign labeling the Labor Lead's Office. Bribe for All Access here."
 	icon_state = "minskyhop"
 
 /obj/structure/sign/departments/minsky/command/bridge

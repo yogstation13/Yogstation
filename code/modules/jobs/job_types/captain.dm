@@ -13,7 +13,7 @@
 	req_admin_notify = 1
 	space_law_notify = 1 //Yogs
 	minimal_player_age = 14
-	exp_requirements = 900 //15 hours
+	exp_requirements = 600 //10 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_COMMAND
 

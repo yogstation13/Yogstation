@@ -174,8 +174,8 @@
 //CIG PACK//
 ////////////
 /obj/item/storage/fancy/cigarettes
-	name = "\improper Space Cigarettes packet"
-	desc = "The most popular brand of cigarettes, sponsors of the Space Olympics."
+	name = "\improper Cigarettes packet"
+	desc = "A old pack of cigarettes. Should still be fine, you hope."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cig"
 	item_state = "cigpacket"
@@ -384,7 +384,7 @@
 
 /obj/item/storage/fancy/cigarettes/cigars
 	name = "\improper premium cigar case"
-	desc = "A case of premium cigars. Very expensive."
+	desc = "An old case of premium cigars. This is an amazing find..."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cigarcase"
 	w_class = WEIGHT_CLASS_NORMAL

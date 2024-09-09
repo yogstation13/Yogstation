@@ -361,7 +361,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	minimap_color = "#00fff0"
 
 /area/crew_quarters/heads/hop
-	name = "Head of Personnel's Office"
+	name = "Labor Lead's Office"
 	icon_state = "hop_office"
 	minimap_color = "#070094"
 

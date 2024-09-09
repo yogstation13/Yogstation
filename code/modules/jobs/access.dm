@@ -478,7 +478,7 @@
 
 /// Gets all jobs
 /proc/get_all_jobs()
-	return list("Assistant", "City Administrator", "Head of Personnel", "Bartender", "Cook", "Botanist", "Quartermaster", "Cargo Technician",
+	return list("Assistant", "City Administrator", "Labor Lead", "Bartender", "Cook", "Botanist", "Quartermaster", "Cargo Technician",
 				"Shaft Miner", "Clown", "Mime", "Janitor", "Curator", "Lawyer", "Chaplain", "Chief Engineer", "Station Engineer",
 				"Atmospheric Technician", "Chief Medical Officer", "Medical Doctor", "Chemist", "Geneticist", "Virologist",
 				// yogs start - Yog jobs

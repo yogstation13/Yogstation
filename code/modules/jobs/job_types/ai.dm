@@ -1,11 +1,11 @@
 /datum/job/ai
-	title = "AI"
-	description = "Assist the crew, follow your laws, coordinate your cyborgs."
+	title = "Overwatch"
+	description = "NOT CURRENTLY PLAYABLE, DONT BOTHER SELECTING THIS."
 	orbit_icon = "eye"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON|DEADMIN_POSITION_CRITICAL
 	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = "your laws"
 	req_admin_notify = TRUE
 	minimal_player_age = 30

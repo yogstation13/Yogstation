@@ -367,7 +367,7 @@
 	icon_state = "capcloak"
 
 /obj/item/clothing/neck/cloak/hop
-	name = "head of personnel's cloak"
+	name = "Labor Lead's cloak"
 	desc = "Worn by the right hand of the captain. It smells faintly of bureaucracy."
 	icon_state = "hopcloak"
 

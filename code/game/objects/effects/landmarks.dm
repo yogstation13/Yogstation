@@ -61,142 +61,29 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 
 // START LANDMARKS FOLLOW. Don't change the names unless
 // you are refactoring shitty landmark code.
-/obj/effect/landmark/start/assistant
-	name = "Assistant"
+/obj/effect/landmark/start/citizen
+	name = "Citizen"
 	icon_state = "Assistant"
 
-/obj/effect/landmark/start/assistant/override
+/obj/effect/landmark/start/citizen/override
 	jobspawn_override = TRUE
 	delete_after_roundstart = FALSE
-
-/obj/effect/landmark/start/janitor
-	name = "Janitor"
-	icon_state = "Janitor"
-
-/obj/effect/landmark/start/cargo_technician
-	name = "Cargo Technician"
-	icon_state = "Cargo Technician"
-
-/obj/effect/landmark/start/bartender
-	name = "Bartender"
-	icon_state = "Bartender"
-
-/obj/effect/landmark/start/clown
-	name = "Clown"
-	icon_state = "Clown"
-
-/obj/effect/landmark/start/mime
-	name = "Mime"
-	icon_state = "Mime"
-
-/obj/effect/landmark/start/quartermaster
-	name = "Quartermaster"
-	icon_state = "Quartermaster"
-
-/obj/effect/landmark/start/atmospheric_technician
-	name = "Atmospheric Technician"
-	icon_state = "Atmospheric Technician"
-
-/obj/effect/landmark/start/cook
-	name = "Cook"
-	icon_state = "Cook"
-
-/obj/effect/landmark/start/shaft_miner
-	name = "Shaft Miner"
-	icon_state = "Shaft Miner"
 
 /obj/effect/landmark/start/civil_protection_officer
 	name = "Civil Protection Officer"
 	icon_state = "Security Officer"
 
-/obj/effect/landmark/start/botanist
-	name = "Botanist"
-	icon_state = "Botanist"
-
-/obj/effect/landmark/start/head_of_security
+/obj/effect/landmark/start/divisional_lead
 	name = "Divisional Lead"
 	icon_state = "Divisional Lead"
 
-/obj/effect/landmark/start/captain
+/obj/effect/landmark/start/city_administrator
 	name = "City Administrator"
 	icon_state = "City Administrator"
 
-/obj/effect/landmark/start/detective
-	name = "Detective"
-	icon_state = "Detective"
-
-/obj/effect/landmark/start/warden
-	name = "Warden"
-	icon_state = "Warden"
-
-/obj/effect/landmark/start/chief_engineer
-	name = "Chief Engineer"
-	icon_state = "Chief Engineer"
-
-/obj/effect/landmark/start/head_of_personnel
-	name = "Head of Personnel"
-	icon_state = "Head of Personnel"
-
-/obj/effect/landmark/start/librarian
-	name = "Curator"
-	icon_state = "Curator"
-
-/obj/effect/landmark/start/lawyer
-	name = "Lawyer"
-	icon_state = "Lawyer"
-
-/obj/effect/landmark/start/station_engineer
-	name = "Station Engineer"
-	icon_state = "Station Engineer"
-
-/obj/effect/landmark/start/medical_doctor
-	name = "Medical Doctor"
-	icon_state = "Medical Doctor"
-
-/obj/effect/landmark/start/scientist
-	name = "Scientist"
-	icon_state = "Scientist"
-
-/obj/effect/landmark/start/chemist
-	name = "Chemist"
-	icon_state = "Chemist"
-
-/obj/effect/landmark/start/roboticist
-	name = "Roboticist"
-	icon_state = "Roboticist"
-
-/obj/effect/landmark/start/research_director
-	name = "Research Director"
-	icon_state = "Research Director"
-
-/obj/effect/landmark/start/geneticist
-	name = "Geneticist"
-	icon_state = "Geneticist"
-
-/obj/effect/landmark/start/chief_medical_officer
-	name = "Chief Medical Officer"
-	icon_state = "Chief Medical Officer"
-
-/obj/effect/landmark/start/virologist
-	name = "Virologist"
-	icon_state = "Virologist"
-
-/obj/effect/landmark/start/chaplain
-	name = "Chaplain"
-	icon_state = "Chaplain"
-
-/obj/effect/landmark/start/artist
-	name = "Artist"
-	icon_state = "Artist"
-
-/obj/effect/landmark/start/cyborg
-	name = "Cyborg"
-	icon_state = "Cyborg"
-
-/obj/effect/landmark/start/synthetic
-	name = "Synthetic"
-	icon_state = "Synthetic"
-
+/obj/effect/landmark/start/labor_lead
+	name = "Labor Lead"
+	icon_state = "Labor Lead"
 
 //Department Security spawns
 

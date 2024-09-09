@@ -1,5 +1,5 @@
 /datum/mood_event/drunk
-	mood_change = 3
+	mood_change = 5
 	description = "<span class='nicegreen'>Everything just feels better after a drink or two.</span>\n"
 
 /datum/mood_event/soda

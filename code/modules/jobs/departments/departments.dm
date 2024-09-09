@@ -59,7 +59,6 @@
 /datum/job_department/engineering
 	department_name = DEPARTMENT_ENGINEERING
 	department_bitflags = DEPARTMENT_BITFLAG_ENGINEERING
-	department_head = /datum/job/chief_engineer
 	department_experience_type = EXP_TYPE_ENGINEERING
 	display_order = 3
 	label_class = "engineering"

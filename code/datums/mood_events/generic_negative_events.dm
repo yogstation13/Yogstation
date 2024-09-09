@@ -8,11 +8,11 @@
 
 /datum/mood_event/on_fire
 	description = "<span class='boldwarning'>I'M ON FIRE!!!</span>\n"
-	mood_change = -8
+	mood_change = -10
 
 /datum/mood_event/suffocation
 	description = "<span class='boldwarning'>CAN'T... BREATHE...</span>\n"
-	mood_change = -6
+	mood_change = -8
 
 /datum/mood_event/burnt_thumb
 	description = "<span class='warning'>I shouldn't play with lighters...</span>\n"

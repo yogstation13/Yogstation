@@ -106,7 +106,7 @@
 
 // Command
 /obj/item/deskbell/preset/hop
-	name = "\improper Head of Personnel's desk bell"
+	name = "\improper Labor Lead's desk bell"
 	assembly = /obj/item/assembly/radio/bell/hop
 
 // Sec

@@ -243,7 +243,7 @@
 	strip_delay = 60
 
 /obj/item/clothing/head/beret/hop
-	name = "head of personnel beret"
+	name = "Labor Lead beret"
 	desc = "A lovely blue beret with a red nanotrasen logo emblazoned on it. It seems to have a bit of dog hair in it."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'

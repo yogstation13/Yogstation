@@ -5,7 +5,7 @@
 	name = "Ageusia"
 	desc = "You can't taste anything! Toxic food will still poison you."
 	icon = "meh-blank"
-	value = 2
+	value = 4
 	mob_trait = TRAIT_AGEUSIA
 	gain_text = span_notice("You can't taste anything!")
 	lose_text = span_notice("You can taste again!")
@@ -130,25 +130,6 @@
 	lose_text = span_danger("You start tromping around like a barbarian.")
 	medical_record_text = "Patient's dexterity belies a strong capacity for stealth."
 
-/datum/quirk/musician
-	name = "Musician"
-	desc = "You can tune handheld musical instruments to play melodies that clear certain negative effects and soothe the soul."
-	icon = "guitar"
-	value = 1
-	mob_trait = TRAIT_MUSICIAN
-	gain_text = span_notice("You know everything about musical instruments.")
-	lose_text = span_danger("You forget how musical instruments work.")
-	medical_record_text = "Patient brain scans show a highly-developed auditory pathway."
-
-/datum/quirk/musician/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/choice_beacon/music/B = new(get_turf(H))
-	var/list/slots = list (
-		"backpack" = ITEM_SLOT_BACKPACK,
-		"hands" = ITEM_SLOT_HANDS,
-	)
-	H.equip_in_one_of_slots(B, slots , qdel_on_fail = TRUE)
-
 /datum/quirk/night_vision
 	name = "Night Vision"
 	desc = "You can see slightly more clearly in full darkness than most people."
@@ -165,23 +146,6 @@
 		return
 	H.update_sight()//refresh their eyesight and vision
 
-/datum/quirk/photographer
-	name = "Photographer"
-	desc = "You know how to handle a camera, shortening the delay between each shot."
-	icon = "camera"
-	value = 1
-	mob_trait = TRAIT_PHOTOGRAPHER
-	gain_text = span_notice("You know everything about photography.")
-	lose_text = span_danger("You forget how photo cameras work.")
-	medical_record_text = "Patient mentions photography as a stress-relieving hobby."
-
-/datum/quirk/photographer/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/camera/camera = new(get_turf(H))
-	H.put_in_hands(camera)
-	H.equip_to_slot(camera, ITEM_SLOT_NECK)
-	H.regenerate_icons()
-
 /datum/quirk/selfaware
 	name = "Self-Aware"
 	desc = "You know your body well, and can accurately assess the extent of your wounds."
@@ -197,71 +161,6 @@
 	value = 4
 	mob_trait = TRAIT_SKITTISH
 	medical_record_text = "Patient demonstrates a high aversion to danger and has described hiding in containers out of fear."
-
-/datum/quirk/spiritual
-	name = "Spiritual"
-	desc = "You hold a spiritual belief, whether in God, nature or the arcane rules of the universe. You gain comfort from the presence of holy people, and believe that your prayers are more special than others."
-	icon = "bible"
-	value = 1
-	mob_trait = TRAIT_SPIRITUAL
-	gain_text = span_notice("You have faith in a higher power.")
-	lose_text = span_danger("You lose faith!")
-	medical_record_text = "Patient reports a belief in a higher power."
-
-/datum/quirk/spiritual/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	H.equip_to_slot_or_del(new /obj/item/storage/fancy/candle_box(H), ITEM_SLOT_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/matches(H), ITEM_SLOT_BACKPACK)
-
-/datum/quirk/toxic_tastes
-	name = "Toxic Tastes"
-	desc = "You have a taste for normally dangerous foods."
-	icon = "face-grin-tongue"
-	value = 2
-	gain_text = span_notice("Your stomach feels robust.")
-	lose_text = span_notice("Your stomach feels normal again.")
-	medical_record_text = "Patient demonstrates abnormal ability to process certain toxins."
-
-/datum/quirk/toxic_tastes/add()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/datum/species/species = H.dna.species
-	var/toxic = species.toxic_food
-	species.liked_food |= toxic
-	species.toxic_food = null //removes toxic foods
-
-/datum/quirk/toxic_tastes/remove()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H)
-		var/datum/species/species = H.dna.species
-		species.toxic_food = initial(species.toxic_food)
-		species.liked_food = initial(species.liked_food)
-
-/datum/quirk/toxic_tastes/check_quirk(datum/preferences/prefs)
-	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	species_type = new species_type()
-	var/disallowed_trait = (NOMOUTH in species_type.species_traits) // Cant eat
-	qdel(species_type)
-
-	if(disallowed_trait) // Cant eat
-		return "You don't have the ability to eat!"
-	return FALSE
-
-/datum/quirk/tagger
-	name = "Tagger"
-	desc = "You're an experienced artist. While drawing graffiti, you can get twice as many uses out of drawing supplies."
-	icon = "spray-can"
-	value = 1
-	mob_trait = TRAIT_TAGGER
-	gain_text = span_notice("You know how to tag walls efficiently.")
-	lose_text = span_danger("You forget how to tag walls properly.")
-	medical_record_text = "Patient was recently seen for possible paint huffing incident."
-
-/datum/quirk/tagger/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/toy/crayon/spraycan/spraycan = new(get_turf(H))
-	H.put_in_hands(spraycan)
-	H.equip_to_slot(spraycan, ITEM_SLOT_BACKPACK)
-	H.regenerate_icons()
 
 /datum/quirk/voracious
 	name = "Voracious"
@@ -283,11 +182,11 @@
 		return "You don't have the ability to eat!"
 	return FALSE
 
-/datum/quirk/efficient_metabolism //about 25% slower hunger
+/datum/quirk/efficient_metabolism //about 25% slower hunger/thirst
 	name = "Efficient Metabolism"
-	desc = "Your metabolism is unusually efficient, allowing you to better process your food and go longer periods without eating."
+	desc = "Your metabolism is unusually efficient, allowing you to better process your food and go longer periods without eating or drinking."
 	icon = "utensils"
-	value = 1
+	value = 2
 	mob_trait = TRAIT_EAT_LESS
 	gain_text = span_notice("You don't feel very hungry.")
 	lose_text = span_danger("You feel a bit peckish.")
@@ -302,183 +201,3 @@
 	gain_text = span_notice("You feel like crafting some stuff.")
 	lose_text = span_danger("You lose the itch to craft.")
 	medical_record_text = "Patient is unusually speedy when creating crafts."
-
-/datum/quirk/cyberorgan //random upgraded cybernetic organ
-	name = "Upgraded Cybernetic Organ"
-	desc = "Due to a past incident you lost function of one of your organs, but now have a random upgraded cybernetic organ!"
-	icon = "building-ngo"
-	value = 3
-	medical_record_text = "During physical examination, patient was found to have an upgraded cybernetic organ."
-	var/slot_string = "organ"
-	var/list/organ_list = list(
-		ORGAN_SLOT_LUNGS = /obj/item/organ/lungs/cybernetic/upgraded, 
-		ORGAN_SLOT_HEART = /obj/item/organ/heart/cybernetic/upgraded, 
-		ORGAN_SLOT_LIVER = /obj/item/organ/liver/cybernetic/upgraded,
-	)
-	///String to denote the quality of the organ
-	var/quality = "upgraded cybernetic"
-
-/datum/quirk/cyberorgan/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/list/temp = organ_list.Copy() //pretty sure this is global so i dont want to bugger with it :)
-	if(HAS_TRAIT_FROM(H, TRAIT_TOXINLOVER, SPECIES_TRAIT))
-		temp -= ORGAN_SLOT_LIVER
-	if(HAS_TRAIT_FROM(H, TRAIT_NOBREATH, SPECIES_TRAIT))
-		temp -= ORGAN_SLOT_LUNGS
-	if((NOBLOOD in H.dna?.species.species_traits) || (STABLEBLOOD in H.dna?.species.species_traits))
-		temp -= ORGAN_SLOT_HEART
-	var/organ_type = organ_list[pick(temp)]
-	var/obj/item/organ/prosthetic = new organ_type(quirk_holder)
-	var/obj/item/organ/old_part = H.getorganslot(prosthetic.slot)
-	slot_string = prosthetic.slot
-	prosthetic.Insert(H)
-	qdel(old_part)
-	H.regenerate_icons()
-
-/datum/quirk/cyberorgan/post_add()
-	to_chat(quirk_holder, span_boldannounce("Your [slot_string] has been replaced with an [quality] variant."))
-
-/datum/quirk/cyberorgan/check_quirk(datum/preferences/prefs)
-	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-
-	var/datum/species/species = new species_type
-	var/list/temp = organ_list.Copy()
-	if(TRAIT_TOXINLOVER in species.inherent_traits)
-		temp -= ORGAN_SLOT_LIVER
-	if(TRAIT_NOBREATH in species.inherent_traits)
-		temp -= ORGAN_SLOT_LUNGS
-	if((NOBLOOD in species.species_traits) || (STABLEBLOOD in species.species_traits))
-		temp -= ORGAN_SLOT_HEART
-	qdel(species)
-	if(temp.len <= 0)
-		return "You have no organs to replace!"
-
-	return FALSE
-
-/datum/quirk/telomeres_long
-	name = "Long Telomeres"
-	desc = "You haven't been cloned much, if at all. Your DNA's telomeres are still largely unaffected by repeated cloning, enabling cloners to work faster."
-	icon = "magnifying-glass-plus"
-	value = 2
-	mob_trait = TRAIT_LONG_TELOMERES
-	medical_record_text = "DNA analysis indicates that the patient's DNA telomeres are still naturally long."
-
-/datum/quirk/telomeres_long/check_quirk(datum/preferences/prefs)
-	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	species_type = new species_type()
-	var/no_dna = (NO_DNA_COPY in species_type.species_traits) //Can't pick if you have no DNA bruv.
-	var/no_clone = (TRAIT_NOCLONE in species_type.inherent_traits)
-	qdel(species_type)
-	if(no_dna)
-		return "You have no DNA!"
-	else if(no_clone)
-		return "Your species cannot be cloned!"
-	return FALSE
-
-/datum/quirk/marine
-	name = "Marine"
-	desc = "Whether inherited from family or gained from years of service, you have the rugged blood of a Marine coursing through your veins. Crayons look quite tasty to you, and you aren't phased by eating them."
-	icon = "chevron-up"
-	value = 2
-	mob_trait = TRAIT_MARINE
-	gain_text = span_notice("You've graduated top of your class and have over 300 confirmed kills.")
-	lose_text = span_danger("You've lost the fierceless spirit of a Marine, alongside your appetite for crayons.")
-	medical_record_text = "Patient's stomach is unusually proficient at digesting wax."
-
-/datum/quirk/multilingual
-	name = "Multilingual"
-	desc = "You spent a portion of your life learning to understand an additional language. You may or may not be able to speak it based on your anatomy."
-	icon = "book"
-	value = 2
-	var/datum/language/specific
-	gain_text = span_notice("You have learned to understand an additional language.")
-	lose_text = span_notice("You have forgotten how to understand a language.")
-	var/list/blacklisted_languages = list(
-		/datum/language/codespeak,
-		/datum/language/narsie,
-		/datum/language/ratvar,
-		/datum/language/encrypted) // guh
-
-/datum/quirk/multilingual/add()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(specific)
-		H.grant_language(specific, TRUE, TRUE, LANGUAGE_MULTILINGUAL)
-	else
-		var/obj/item/organ/tongue/T = H.getorganslot(ORGAN_SLOT_TONGUE)
-		var/list/languages_possible = T.languages_possible
-		languages_possible = languages_possible - blacklisted_languages
-		languages_possible = languages_possible - H.language_holder.understood_languages
-		languages_possible = languages_possible - H.language_holder.blocked_languages
-		if(length(languages_possible))
-			var/datum/language/random_language = pick(languages_possible)
-			H.grant_language(random_language, TRUE, TRUE, LANGUAGE_MULTILINGUAL)
-
-/datum/quirk/multilingual/check_quirk(datum/preferences/prefs)
-	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-	if(species && specific)
-		var/mob/M = new /mob // can't instantiate a language holder without an owner
-		var/datum/language_holder/lang = new species.species_language_holder(M)
-		if(length(lang.understood_languages) && (specific in lang.understood_languages))
-			var/datum/language/L = new specific()
-			return "You already know [L.name]!"
-		if(length(lang.blocked_languages) && (specific in lang.blocked_languages))
-			var/datum/language/L = new specific()
-			return "You are incapable of understanding [L.name]!"
-	return FALSE
-
-/datum/quirk/multilingual/english
-	name = "Multilingual (English)"
-	desc = "You spent a portion of your life learning to understand English. You may or may not be able to speak it based on your anatomy."
-	specific = /datum/language/english
-	gain_text = span_notice("You have learned to understand English.")
-	lose_text = span_notice("You have forgotten how to understand English.")
-
-/datum/quirk/multilingual/etherean
-	name = "Multilingual (Etherean)"
-	desc = "You spent a portion of your life learning to understand Etherean. You may or may not be able to speak it based on your anatomy."
-	specific = /datum/language/etherean
-	gain_text = span_notice("You have learned to understand Etherean.")
-	lose_text = span_notice("You have forgotten how to understand Etherean.")
-
-/datum/quirk/multilingual/mothian
-	name = "Multilingual (Mothian)"
-	desc = "You spent a portion of your life learning to understand Mothian. You may or may not be able to speak it based on your anatomy."
-	specific = /datum/language/mothian
-	gain_text = span_notice("You have learned to understand Mothian.")
-	lose_text = span_notice("You have forgotten how to understand Mothian.")
-
-/datum/quirk/multilingual/draconic
-	name = "Multilingual (Draconic)"
-	desc = "You spent a portion of your life learning to understand Draconic. You may or may not be able to speak it based on your anatomy."
-	specific = /datum/language/draconic
-	gain_text = span_notice("You have learned to understand Draconic.")
-	lose_text = span_notice("You have forgotten how to understand Draconic.")
-
-/datum/quirk/multilingual/felinid
-	name = "Multilingual (Felinid)"
-	desc = "You spent a portion of your life learning to understand Felinid. You may or may not be able to speak it based on your anatomy."
-	specific = /datum/language/felinid
-	gain_text = span_notice("You have learned to understand Felinid.")
-	lose_text = span_notice("You have forgotten how to understand Felinid.")
-
-/datum/quirk/multilingual/sylvan
-	name = "Multilingual (Sylvan)"
-	desc = "You spent a portion of your life learning to understand Sylvan. You may or may not be able to speak it based on your anatomy."
-	specific = /datum/language/sylvan
-	gain_text = span_notice("You have learned to understand Sylvan.")
-	lose_text = span_notice("You have forgotten how to understand Sylvan.")
-
-/datum/quirk/multilingual/polysmorph
-	name = "Multilingual (Polysmorph)"
-	desc = "You spent a portion of your life learning to understand Polysmorph. You may or may not be able to speak it based on your anatomy."
-	specific = /datum/language/polysmorph
-	gain_text = span_notice("You have learned to understand Polysmorph.")
-	lose_text = span_notice("You have forgotten how to understand Polysmorph.")
-
-/datum/quirk/multilingual/bonespeak
-	name = "Multilingual (Bonespeak)"
-	desc = "You spent a portion of your life learning to understand Bonespeak. You may or may not be able to speak it based on your anatomy."
-	specific = /datum/language/bonespeak
-	gain_text = span_notice("You have learned to understand Bonespeak.")
-	lose_text = span_notice("You have forgotten how to understand Bonespeak.")

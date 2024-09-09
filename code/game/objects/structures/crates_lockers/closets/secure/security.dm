@@ -18,7 +18,7 @@
 	new /obj/item/radio/security(src)
 
 /obj/structure/closet/secure_closet/hop
-	name = "\proper head of personnel's locker"
+	name = "\proper Labor Lead's locker"
 	req_access = list(ACCESS_HOP)
 	icon_state = "hop"
 

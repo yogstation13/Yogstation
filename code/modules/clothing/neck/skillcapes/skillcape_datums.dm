@@ -33,14 +33,14 @@
 	id = "cap_trimmed"
 
 /datum/skillcape/hop
-	name = "cape of the head of personnel"
-	job = "Head of Personnel"
+	name = "cape of the Labor Lead"
+	job = "Labor Lead"
 	path = /obj/item/clothing/neck/skillcape/hop
 	id = "hop"
 
 /datum/skillcape/trimmed/hop
 	name = "cape of the grand torchbearer"
-	job = "Head of Personnel"
+	job = "Labor Lead"
 	path = /obj/item/clothing/neck/skillcape/trimmed/hop
 	id = "hop_trimmed"
 

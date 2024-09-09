@@ -687,7 +687,7 @@
 	STR.set_holdable(list(/obj/item/clothing))
 
 /obj/item/storage/backpack/duffelbag/clothing/hop
-	name = "Head of Personnels clothing duffelbag"
+	name = "Labor Leads clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
 
 /obj/item/storage/backpack/duffelbag/clothing/hop/PopulateContents()

@@ -17,7 +17,7 @@
 	item_state = "explorer_envirosuit"
 
 /obj/item/clothing/under/plasmaman/hop
-	name = "head of personnel's envirosuit"
+	name = "Labor Lead's envirosuit"
 	desc = "A navy-blue envirosuit with gold trimmings worn by plasmamen heads of personnel."
 	icon_state = "hop_envirosuit"
 	item_state = "hop_envirosuit"

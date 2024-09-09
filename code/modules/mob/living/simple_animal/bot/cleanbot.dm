@@ -38,10 +38,6 @@
 	get_targets()
 	icon_state = "cleanbot[on]"
 
-	var/datum/job/janitor/J = new/datum/job/janitor
-	access_card.access += J.get_access()
-	prev_access = access_card.access
-
 /mob/living/simple_animal/bot/cleanbot/turn_on()
 	..()
 	icon_state = "cleanbot[on]"

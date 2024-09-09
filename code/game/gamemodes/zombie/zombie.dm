@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(zombies)
 	antag_flag = ROLE_ZOMBIE
 	false_report_weight = 10
 	restricted_jobs = list("AI", "Cyborg", "Synthetic")
-	protected_jobs = list("Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "City Administrator", "Head of Personnel", "Chief Medical Officer", "Brig Physician", "Synthetic") //Yogs: Added Brig Physician
+	protected_jobs = list("Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "City Administrator", "Labor Lead", "Chief Medical Officer", "Brig Physician", "Synthetic") //Yogs: Added Brig Physician
 	required_players = 40
 	required_enemies = 3
 	recommended_enemies = 3

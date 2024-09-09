@@ -350,25 +350,3 @@
 	. = ..()
 	if(isobserver(user))
 		. += span_deadsay("This pizza box is anomalous, and will produce infinite pizza.")
-
-/obj/item/pizzabox/infinite/attack_self(mob/living/user)
-	QDEL_NULL(pizza)
-	if(ishuman(user))
-		attune_pizza(user)
-	. = ..()
-
-/obj/item/pizzabox/infinite/proc/attune_pizza(mob/living/carbon/human/noms) //tonight on "proc names I never thought I'd type"
-	if(!pizza_preferences[noms.ckey])
-		pizza_preferences[noms.ckey] = pickweight(pizza_types)
-		if(noms.has_quirk(/datum/quirk/pineapple_liker))
-			pizza_preferences[noms.ckey] = /obj/item/reagent_containers/food/snacks/pizza/pineapple
-		else if(noms.has_quirk(/datum/quirk/pineapple_hater))
-			var/list/pineapple_pizza_liker = pizza_types.Copy()
-			pineapple_pizza_liker -= /obj/item/reagent_containers/food/snacks/pizza/pineapple
-			pizza_preferences[noms.ckey] = pickweight(pineapple_pizza_liker)
-		else if(noms.mind && noms.mind.assigned_role == "Botanist")
-			pizza_preferences[noms.ckey] = /obj/item/reagent_containers/food/snacks/pizza/dank
-
-	var/obj/item/pizza_type = pizza_preferences[noms.ckey]
-	pizza = new pizza_type (src)
-	pizza.foodtype = noms.dna.species.liked_food //it's our favorite!

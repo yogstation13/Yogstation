@@ -117,7 +117,7 @@
 	item_state = "capspacesuit"
 
 /obj/item/clothing/suit/armor/vest/hop_formal
-	name = "head of personnel's parade jacket"
+	name = "Labor Lead's parade jacket"
 	desc = "For when an armoured vest isn't fashionable enough."
 	icon_state = "hopformal"
 	item_state = "hopformal"

@@ -304,7 +304,7 @@
 	written += new/datum/langtext("<b>Reason for Change: </b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><br>",/datum/language/common)
-	written += new/datum/langtext("<b>By submitting this form, I verify that I recognize all job changes are left to the discretion of the Head of Personnel. I acknowledge my job reassignment may not be approved.</b><br>",/datum/language/common)
+	written += new/datum/langtext("<b>By submitting this form, I verify that I recognize all job changes are left to the discretion of the Labor Lead. I acknowledge my job reassignment may not be approved.</b><br>",/datum/language/common)
 	written += new/datum/langtext("<b>Signed, </b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><br><hr>",/datum/language/common)
@@ -622,7 +622,7 @@
 	update_appearance(UPDATE_ICON)
 
 /**
-  * Initializes the Head of Personnels clipboard.
+  * Initializes the Labor Leads clipboard.
   *
   * Initializes the HoP's clipboard and gives them the following:
   * [Job Change Certificate][/obj/item/paper/paperwork/jobchangecert]

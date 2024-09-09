@@ -6,7 +6,7 @@
 	false_report_weight = 10
 	restricted_jobs = list("AI", "Cyborg", "Synthetic")
 	protected_jobs = list(
-		"City Administrator", "Head of Personnel", "Divisional Lead",
+		"City Administrator", "Labor Lead", "Divisional Lead",
 		"Research Director", "Chief Engineer", "Chief Medical Officer", "Curator", 
 		"Warden", "Civil Protection Officer", "Detective", "Brig Physician",
 	)

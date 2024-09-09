@@ -3,7 +3,7 @@
 	desc = "A one-use device that can be used to spoof and grant the access associated with a low-level job."
 	icon_state = "red_phone"
 	var/datum/job/job
-	var/list/available_jobs = list(/datum/job/hydro, /datum/job/janitor, /datum/job/cargo_tech, /datum/job/engineer)
+	var/list/available_jobs = list(/datum/job/citizen)
 
 /obj/item/access_kit/interact(mob/user)
 	. = ..()

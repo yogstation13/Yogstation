@@ -46,9 +46,6 @@
 	. = ..()
 	toolbox_color = new_toolbox_color
 	update_appearance(UPDATE_ICON)
-	var/datum/job/engineer/J = new/datum/job/engineer
-	access_card.access += J.get_access()
-	prev_access = access_card.access
 	if(toolbox_color == "s")
 		health = 100
 		maxHealth = 100

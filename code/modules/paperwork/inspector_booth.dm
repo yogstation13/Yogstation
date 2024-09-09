@@ -299,7 +299,7 @@
 	var/list/idfluff = list(
 	"Assistant" = list("civillian","green"),
 	"City Administrator" = list("captain","gold"),
-	"Head of Personnel" = list("civillian","silver"),
+	"Labor Lead" = list("civillian","silver"),
 	"Divisional Lead" = list("security","silver"),
 	"Chief Engineer" = list("engineering","silver"),
 	"Research Director" = list("science","silver"),

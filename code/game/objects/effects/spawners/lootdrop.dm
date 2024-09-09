@@ -737,7 +737,7 @@
 			"" = 60)
 
 
-//clothes, drinks, low tier melee weapons, tools
+//clothes, common melee weapons, random loot
 /obj/effect/spawner/lootdrop/halflife/loot
 	name = "common loot"
 	lootcount = 1
@@ -748,17 +748,28 @@
 				/obj/item/clothing/head/beanie/black = 2,
 				/obj/item/radio/off/halflife = 2,
 				/obj/item/ammo_casing/reusable/arrow/rebar,
-				/obj/item/reagent_containers/food/drinks/soda_cans/breenwater,
-				/obj/item/storage/box/halflife/ration,
+				/obj/item/flashlight/seclite,
+				/obj/item/storage/firstaid,
+				/obj/item/storage/firstaid/toxin
+				)
+
+//only consumable loot. Food, drinks, drugs, cigarettes, etc.
+/obj/effect/spawner/lootdrop/halflife/loot/consumables
+	name = "consumables loot"
+	lootcount = 1
+
+	loot = list(
+				/obj/item/reagent_containers/food/drinks/soda_cans/breenwater = 2,
+				/obj/item/storage/box/halflife/ration = 2,
+				/obj/item/storage/fancy/cigarettes/cigars,
+				/obj/item/storage/fancy/cigarettes,
 				/obj/item/reagent_containers/food/snacks/chips,
 				/obj/item/reagent_containers/food/drinks/beer,
 				/obj/item/reagent_containers/food/drinks/bottle/gin,
 				/obj/item/reagent_containers/food/drinks/bottle/hooch,
 				/obj/item/reagent_containers/food/drinks/bottle/vodka,
-				/obj/item/flashlight/seclite,
-				/obj/item/storage/firstaid,
-				/obj/item/storage/firstaid/toxin,
-				/obj/item/cigbutt
+				/obj/item/storage/pill_bottle/happiness,
+				/obj/item/reagent_containers/glass/bottle/morphine
 				)
 
 //guns, ammo, armor

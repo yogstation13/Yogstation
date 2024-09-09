@@ -725,7 +725,7 @@
 
 /datum/antagonist/changeling/get_preview_icon()
 	var/icon/final_icon = render_preview_outfit(/datum/outfit/changeling)
-	var/icon/split_icon = render_preview_outfit(/datum/outfit/job/engineer)
+	var/icon/split_icon = render_preview_outfit(/datum/outfit/job/officer)
 
 	final_icon.Shift(WEST, world.icon_size / 2)
 	final_icon.Shift(EAST, world.icon_size / 2)

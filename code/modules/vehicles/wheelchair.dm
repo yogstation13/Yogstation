@@ -40,10 +40,6 @@
 			canmove = FALSE
 			addtimer(VARSET_CALLBACK(src, canmove, TRUE), 2 SECONDS)
 			return FALSE
-		//paraplegic quirk users get a halved movedelay to model their life of wheelchair useage - yogs
-		if(user.has_quirk(/datum/quirk/paraplegic))
-			movedelay = 2
-		else
 			movedelay = 4
 		set_move_delay(user)
 	return ..()

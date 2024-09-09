@@ -11,7 +11,7 @@
 	antag_flag = ROLE_TRAITOR
 	antag_datum = /datum/antagonist/traitor
 	minimum_required_age = 0
-	protected_roles = list("Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "City Administrator", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
+	protected_roles = list("Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "City Administrator", "Labor Lead", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
 	restricted_roles = list("Cyborg", "Synthetic")
 	required_candidates = 1
 	weight = 5
@@ -52,7 +52,7 @@
 	name = "Blood Brothers"
 	antag_flag = ROLE_BROTHER
 	antag_datum = /datum/antagonist/brother/
-	protected_roles = list("Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "City Administrator", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
+	protected_roles = list("Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "City Administrator", "Labor Lead", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
 	restricted_roles = list("AI", "Cyborg", "Synthetic")
 	required_candidates = 2
 	weight = 4
@@ -101,7 +101,7 @@
 	name = "Changeling"
 	antag_flag = ROLE_CHANGELING
 	antag_datum = /datum/antagonist/changeling
-	protected_roles = list("Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "City Administrator", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
+	protected_roles = list("Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "City Administrator", "Labor Lead", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
 	restricted_roles = list("AI", "Cyborg", "Synthetic")
 	required_candidates = 1
 	weight = 3
@@ -139,7 +139,7 @@
 	name = "Heretics"
 	antag_flag = ROLE_HERETIC
 	antag_datum = /datum/antagonist/heretic
-	protected_roles = list("Chaplain","Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "City Administrator", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician")
+	protected_roles = list("Chaplain","Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "City Administrator", "Labor Lead", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician")
 	restricted_roles = list("AI", "Cyborg", "Synthetic")
 	required_candidates = 1
 	weight = 3
@@ -230,7 +230,7 @@
 	antag_flag = ROLE_CULTIST
 	antag_datum = /datum/antagonist/cult
 	minimum_required_age = 14
-	restricted_roles = list("Chaplain","AI", "Cyborg", "Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "City Administrator", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician", "Synthetic")
+	restricted_roles = list("Chaplain","AI", "Cyborg", "Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "City Administrator", "Labor Lead", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician", "Synthetic")
 	required_candidates = 2
 	weight = 3
 	cost = 20
@@ -428,7 +428,7 @@
 	antag_flag = ROLE_REV_HEAD
 	antag_datum = /datum/antagonist/rev/head
 	minimum_required_age = 14
-	restricted_roles = list("Civil Protection Officer", "Warden", "Detective", "AI", "Cyborg", "City Administrator", "Head of Personnel", "Divisional Lead", "Chief Engineer", "Research Director", "Chief Medical Officer", "Shaft Miner", "Mining Medic", "Brig Physician", "Synthetic")
+	restricted_roles = list("Civil Protection Officer", "Warden", "Detective", "AI", "Cyborg", "City Administrator", "Labor Lead", "Divisional Lead", "Chief Engineer", "Research Director", "Chief Medical Officer", "Shaft Miner", "Mining Medic", "Brig Physician", "Synthetic")
 	required_candidates = 3
 	weight = 1
 	delay = 7 MINUTES
@@ -850,7 +850,7 @@
 	name = "Vampire"
 	antag_flag = ROLE_VAMPIRE
 	antag_datum = /datum/antagonist/vampire
-	protected_roles = list("Divisional Lead", "City Administrator", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Civil Protection Officer", "Chaplain", "Detective", "Warden", "Brig Physician")
+	protected_roles = list("Divisional Lead", "City Administrator", "Labor Lead", "Research Director", "Chief Engineer", "Chief Medical Officer", "Civil Protection Officer", "Chaplain", "Detective", "Warden", "Brig Physician")
 	restricted_roles = list("Cyborg", "AI", "Synthetic")
 	required_candidates = 3
 	weight = 3
@@ -955,7 +955,7 @@
 	name = "Darkspawn"
 	antag_flag = ROLE_DARKSPAWN
 	antag_datum = /datum/antagonist/darkspawn
-	protected_roles = list("Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "City Administrator", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician")
+	protected_roles = list("Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "City Administrator", "Labor Lead", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician")
 	restricted_roles = list("AI", "Cyborg", "Synthetic")
 	minimum_players = 25
 	required_candidates = 2
@@ -996,7 +996,7 @@
 	antag_flag = ROLE_BLOODSUCKER
 	antag_datum = /datum/antagonist/bloodsucker
 	protected_roles = list(
-		"City Administrator", "Head of Personnel", "Divisional Lead",
+		"City Administrator", "Labor Lead", "Divisional Lead",
 		"Warden", "Civil Protection Officer", "Detective", "Brig Physician",
 		"Curator"
 	)

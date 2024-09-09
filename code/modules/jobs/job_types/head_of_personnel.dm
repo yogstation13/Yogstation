@@ -1,7 +1,6 @@
 /datum/job/hop
-	title = "Head of Personnel"
-	description = "Alter access on ID cards, manage civil and supply departments, \
-		protect Ian, run the station when the captain dies."
+	title = "Labor Lead"
+	description = "Organize work tasks for the citizens, and order any necessary materials you see fit."
 	orbit_icon = "dog"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list("City Administrator")
@@ -9,13 +8,12 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "the city administrator"
 	req_admin_notify = 1
 	minimal_player_age = 10
-	exp_requirements = 720 //fairly low skill job
+	exp_requirements = 0
 	exp_type = EXP_TYPE_CREW
-	exp_type_department = EXP_TYPE_SUPPLY
-	alt_titles = list("Chief of Staff", "Head of Internal Affairs", "First Officer")
+	exp_type_department = EXP_TYPE_CREW
 
 	outfit = /datum/outfit/job/hop
 
@@ -44,21 +42,7 @@
 		/datum/job_department/command,
 	)
 
-	mail_goodies = list(
-		/obj/item/toner = 15,
-		/obj/item/pen/fourcolor = 10,
-		/obj/item/pen/fountain = 10,
-		/obj/item/card/id/silver = 10,
-		/obj/item/stack/sheet/bone = 5,
-		/obj/item/stamp = 5,
-		/obj/item/stamp/denied = 5,
-		/obj/item/stamp/syndi = 3,
-		/obj/item/stamp/cent = 1 //the holy grail of stamps
-	)
-
 	smells_like = "bureaucracy"
-
-	minimal_lightup_areas = list(/area/crew_quarters/heads/hop, /area/security/nuke_storage)
 
 // Special handling to avoid lighting up the entirety of supply whenever there's a HoP.
 /datum/job/head_of_personnel/areas_to_light_up(minimal_access = TRUE)
@@ -73,7 +57,7 @@
 		break
 
 /datum/outfit/job/hop
-	name = "Head of Personnel"
+	name = "Labor Lead"
 	jobtype = /datum/job/hop
 
 	id_type = /obj/item/card/id/silver

@@ -117,7 +117,7 @@
 
 // ===== HoP =====
 /obj/machinery/modular_computer/console/preset/command/hop
-	name = "head of personnel's console"
+	name = "Labor Lead's console"
 	desc = "A stationary computer. This one comes preloaded with bureaucratic programs."
 	starting_files = list(	new /datum/computer_file/program/chatclient,
 							new /datum/computer_file/program/budgetorders,

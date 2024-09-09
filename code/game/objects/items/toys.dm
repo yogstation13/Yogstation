@@ -1548,7 +1548,7 @@ obj/item/toy/turn_tracker
 	toysay = "Smash!"
 
 /obj/item/toy/figure/hop
-	name = "Head of Personnel action figure"
+	name = "Labor Lead action figure"
 	icon_state = "hop"
 	toysay = "Giving out all access!"
 

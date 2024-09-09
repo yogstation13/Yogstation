@@ -77,16 +77,16 @@
 
 /datum/mood_event/gross_food
 	description = "<span class='warning'>I really didn't like that food.</span>\n"
-	mood_change = -2
+	mood_change = -3
 	timeout = 4 MINUTES
 
 /datum/mood_event/disgusting_food
 	description = "<span class='warning'>That food was disgusting!</span>\n"
-	mood_change = -4
+	mood_change = -5
 	timeout = 4 MINUTES
 
 /datum/mood_event/breakfast
-	description = "<span class='nicegreen'>Nothing like a hearty breakfast to start the shift.</span>\n"
+	description = "<span class='nicegreen'>Nothing like a hearty breakfast to start the day.</span>\n"
 	mood_change = 2
 	timeout = 10 MINUTES
 

@@ -342,15 +342,15 @@
 
 //MINOR TWEAKS/MISC
 #define AGE_MIN				18	//youngest a character can be
-#define AGE_MAX				85	//oldest a character can be
-#define AGE_MINOR			21  //legal age of space drinking and smoking
+#define AGE_MAX				60	//oldest a character can be
+#define AGE_MINOR			18  //legal age of space drinking and smoking
 #define WIZARD_AGE_MIN		30	//youngest a wizard can be
 #define APPRENTICE_AGE_MIN	29	//youngest an apprentice can be
 #define SHOES_SLOWDOWN		0	//How much shoes slow you down by default. Negative values speed you up
 #define POCKET_STRIP_DELAY	(4 SECONDS) //time taken to search somebody's pockets
 #define DOOR_CRUSH_DAMAGE	15	//the amount of damage that airlocks deal when they crush you
 
-#define	HUNGER_FACTOR		0.1	//factor at which mob nutrition or thirst decreases
+#define	HUNGER_FACTOR		0.15	//factor at which mob nutrition or thirst decreases
 #define	REAGENTS_METABOLISM 0.4	//How many units of reagent are consumed per tick, by default.
 #define REAGENTS_EFFECT_MULTIPLIER (REAGENTS_METABOLISM / 0.4)	// By defining the effect multiplier this way, it'll exactly adjust all effects according to how they originally were with the 0.4 metabolism
 

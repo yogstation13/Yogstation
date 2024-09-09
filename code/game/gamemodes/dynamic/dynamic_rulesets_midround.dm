@@ -167,7 +167,7 @@
 	name = "Syndicate Sleeper Agent"
 	antag_datum = /datum/antagonist/traitor
 	antag_flag = ROLE_TRAITOR
-	protected_roles = list("Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "City Administrator", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
+	protected_roles = list("Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "City Administrator", "Labor Lead", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
 	restricted_roles = list("Cyborg", "AI", "Positronic Brain", "Synthetic")
 	required_candidates = 1
 	weight = 7
@@ -562,7 +562,7 @@
 	name = "Vampire"
 	antag_flag = ROLE_VAMPIRE
 	antag_datum = /datum/antagonist/vampire
-	protected_roles = list("Divisional Lead", "City Administrator", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Civil Protection Officer", "Chaplain", "Detective", "Warden", "Brig Physician")
+	protected_roles = list("Divisional Lead", "City Administrator", "Labor Lead", "Research Director", "Chief Engineer", "Chief Medical Officer", "Civil Protection Officer", "Chaplain", "Detective", "Warden", "Brig Physician")
 	restricted_roles = list("Cyborg", "AI", "Synthetic")
 	required_candidates = 1
 	weight = 5
@@ -709,7 +709,7 @@
 	antag_flag = ROLE_VAMPIRICACCIDENT
 	antag_flag_override = ROLE_BLOODSUCKER
 	protected_roles = list(
-		"City Administrator", "Head of Personnel", "Divisional Lead",
+		"City Administrator", "Labor Lead", "Divisional Lead",
 		"Warden", "Civil Protection Officer", "Detective", "Brig Physician",
 		"Curator"
 	)

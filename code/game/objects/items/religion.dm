@@ -197,7 +197,7 @@
 	name = "command banner"
 	desc = "The banner of Command, a staunch and ancient line of bureaucratic kings and queens."
 	//No icon state here since the default one is the NT banner
-	job_loyalties = list("City Administrator", "Head of Personnel", "Chief Engineer", "Divisional Lead", "Research Director", "Chief Medical Officer")
+	job_loyalties = list("City Administrator", "Labor Lead", "Chief Engineer", "Divisional Lead", "Research Director", "Chief Medical Officer")
 	warcry = "Hail Nanotrasen!"
 
 /obj/item/banner/command/mundane

@@ -137,7 +137,7 @@
 	spawn_positions = 3
 	added_access = list()
 	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE)
-	supervisors = "the captain and the head of personnel"
+	supervisors = "the captain and the Labor Lead"
 	*/
 
 /datum/job/New()

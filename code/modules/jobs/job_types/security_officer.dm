@@ -9,7 +9,7 @@
 	spawn_positions = 5 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
 	supervisors = "the Divisional Lead and City Administrator"
 	minimal_player_age = 7
-	exp_requirements = 300
+	exp_requirements = 0
 	exp_type = EXP_TYPE_CREW
 
 	outfit = /datum/outfit/job/officer
