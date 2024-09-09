@@ -188,10 +188,6 @@
 			if (!authenticated_as_silicon_or_captain(usr))
 				return
 			make_announcement(usr)
-		if ("makeVoiceAnnouncement")
-			if (!authenticated_as_non_silicon_captain(usr))
-				return
-			make_voice_announcement(usr)
 		if ("messageAssociates")
 			if (!authenticated_as_non_silicon_captain(usr))
 				return
@@ -390,9 +386,7 @@
 
 		switch (ui_state)
 			if (STATE_MAIN)
-				data["canBuyShuttles"] = can_buy_shuttles(user)
 				data["canMakeAnnouncement"] = FALSE
-				data["canMakeVoiceAnnouncement"] = FALSE
 				data["canMessageAssociates"] = FALSE
 				data["canRecallShuttles"] = !issilicon(user)
 				data["canRequestNuke"] = FALSE
@@ -403,7 +397,6 @@
 				data["shuttleCalled"] = FALSE
 				data["shuttleLastCalled"] = FALSE
 				data["aprilFools"] = check_holidays(APRIL_FOOLS)
-				data["canPrintIdAndCode"] = FALSE
 
 				data["alertLevel"] = SSsecurity_level.get_current_level_as_text()
 				data["authorizeName"] = authorize_name
@@ -436,7 +429,6 @@
 
 					data["alertLevelTick"] = alert_level_tick
 					data["canMakeAnnouncement"] = TRUE
-					data["canMakeVoiceAnnouncement"] = ishuman(user)
 					data["canSetAlertLevel"] = issilicon(user) ? "NO_SWIPE_NEEDED" : "SWIPE_NEEDED"
 
 				if (SSshuttle.emergency.mode != SHUTTLE_IDLE && SSshuttle.emergency.mode != SHUTTLE_RECALL)

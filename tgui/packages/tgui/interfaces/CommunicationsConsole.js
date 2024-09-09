@@ -274,24 +274,20 @@ const PageMain = (props, context) => {
     alertLevelTick,
     aprilFools,
     callShuttleReasonMinLength,
-    canBuyShuttles,
     canMakeAnnouncement,
-    canMakeVoiceAnnouncement,
     canMessageAssociates,
     canRecallShuttles,
     canRequestNuke,
     canSendToSectors,
     canSetAlertLevel,
-    canToggleEmergencyAccess,
     emagged,
-    emergencyAccess,
     importantActionReady,
     sectors,
     shuttleCalled,
     shuttleCalledPreviously,
     shuttleCanEvacOrFailReason,
     shuttleLastCalled,
-    canPrintIdAndCode,
+
     shuttleRecallable,
   } = data;
 
@@ -389,34 +385,6 @@ const PageMain = (props, context) => {
             onClick={() => act("makePriorityAnnouncement")}
           />}
 
-          {!!canMakeVoiceAnnouncement && <Button
-            icon="bullhorn"
-            content="Make Voice Announcement"
-            onClick={() => act("makeVoiceAnnouncement")}
-          />}
-
-          {!!canPrintIdAndCode && <Button
-            icon="id-card"
-            disabled={!importantActionReady}
-            content="Print Emergency ID"
-            onClick={() => act("printSpare")}
-          />}
-
-          {!!canPrintIdAndCode && <Button
-            icon="key"
-            disabled={!importantActionReady}
-            content="Print AI Control Code"
-            tooltip={"Prints a password for making new AI control consoles. Will cancel all previous passwords."}
-            onClick={() => act("printAIControlCode")}
-          />}
-
-          {!!canToggleEmergencyAccess && <Button.Confirm
-            icon="id-card-o"
-            content={`${emergencyAccess ? "Disable" : "Enable"} Emergency Maintenance Access`}
-            color={emergencyAccess ? "bad" : undefined}
-            onClick={() => act("toggleEmergencyAccess")}
-          />}
-
           <Button
             icon="desktop"
             content="Set Status Display"
@@ -429,20 +397,9 @@ const PageMain = (props, context) => {
             onClick={() => act("setState", { state: STATE_MESSAGES })}
           />
 
-          {(canBuyShuttles !== 0) && <Button
-            icon="shopping-cart"
-            content="Purchase Shuttle"
-            disabled={canBuyShuttles !== 1}
-            // canBuyShuttles is a string detailing the fail reason
-            // if one can be given
-            tooltip={canBuyShuttles !== 1 ? canBuyShuttles : undefined}
-            tooltipPosition="right"
-            onClick={() => act("setState", { state: STATE_BUYING_SHUTTLE })}
-          />}
-
           {!!canMessageAssociates && <Button
             icon="comment-o"
-            content={`Send message to ${emagged ? "[UNKNOWN]" : "CentCom"}`}
+            content={`Send message to ${emagged ? "[UNKNOWN]" : "Overwatch"}`}
             disabled={!importantActionReady}
             onClick={() => setMessagingAssociates(true)}
           />}
@@ -463,7 +420,7 @@ const PageMain = (props, context) => {
       </Section>
 
       {!!canMessageAssociates && messagingAssociates && <MessageModal
-        label={`Message to transmit to ${emagged ? "[ABNORMAL ROUTING COORDINATES]" : "CentCom"} via quantum entanglement`}
+        label={`Message to transmit to ${emagged ? "[ABNORMAL ROUTING COORDINATES]" : "Overwatch"} via quantum entanglement`}
         notice="Please be aware that this process is very expensive, and abuse will lead to...termination. Transmission does not guarantee a response."
         icon="bullhorn"
         buttonText="Send"
