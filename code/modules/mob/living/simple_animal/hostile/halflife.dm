@@ -41,9 +41,10 @@
 
 /mob/living/simple_animal/hostile/halflife/zombie/death(gibbed)
 	if(prob(25)) //25% chance to spawn a headcrab on death
+		icon_dead = "zombie_dead_nocrab"
 		icon_state = "zombie_dead_nocrab"
 		new /mob/living/simple_animal/hostile/halflife/headcrab(get_turf(src))
-	..(1)
+	..()
 
 //leaping headcrabs
 /mob/living/simple_animal/hostile/halflife/headcrab

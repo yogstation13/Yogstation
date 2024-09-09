@@ -8,17 +8,17 @@
 	},
 /turf/open/floor/plating/indoor/metal/plate,
 /area/shuttle/arrival)
-"g" = (
-/obj/structure/chair/comfy/brown{
-	dir = 8
-	},
-/turf/open/floor/plating/indoor/grooved,
-/area/shuttle/arrival)
 "k" = (
 /obj/machinery/door/unpowered/halflife/seethrough/metal{
 	dir = 4
 	},
 /obj/structure/fans/tiny/invisible,
+/turf/open/floor/plating/indoor/grooved,
+/area/shuttle/arrival)
+"l" = (
+/obj/structure/chair/comfy/halflife/diner{
+	dir = 4
+	},
 /turf/open/floor/plating/indoor/grooved,
 /area/shuttle/arrival)
 "m" = (
@@ -31,16 +31,8 @@
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/plating/indoor/grooved,
 /area/shuttle/arrival)
-"t" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plating/indoor/grooved,
-/area/shuttle/arrival)
-"u" = (
-/obj/structure/chair/comfy/brown{
-	dir = 4
-	},
+"v" = (
+/obj/structure/table/halflife/no_smooth/metal,
 /turf/open/floor/plating/indoor/grooved,
 /area/shuttle/arrival)
 "B" = (
@@ -49,8 +41,20 @@
 	},
 /turf/closed/wall/halflife/metal,
 /area/shuttle/arrival)
-"H" = (
+"E" = (
 /obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/chair/comfy/halflife/diner{
+	dir = 8
+	},
+/turf/open/floor/plating/indoor/grooved,
+/area/shuttle/arrival)
+"K" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/chair/comfy/halflife/diner{
 	dir = 4
 	},
 /turf/open/floor/plating/indoor/grooved,
@@ -58,6 +62,12 @@
 "L" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/indoor/metal/plate,
+/area/shuttle/arrival)
+"M" = (
+/obj/structure/chair/comfy/halflife/diner{
+	dir = 8
+	},
+/turf/open/floor/plating/indoor/grooved,
 /area/shuttle/arrival)
 "T" = (
 /turf/open/floor/plating/indoor/metal/plate,
@@ -81,12 +91,12 @@ a
 (2,1,1) = {"
 m
 m
-u
-u
-t
+l
+v
+K
 W
-u
-u
+v
+l
 m
 m
 "}
@@ -129,12 +139,12 @@ m
 (6,1,1) = {"
 m
 m
-g
-g
-H
+M
+v
+E
 W
-g
-g
+v
+M
 m
 m
 "}

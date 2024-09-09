@@ -169,6 +169,19 @@
 	color_cutoffs = list(35, 10, 10)
 	glass_colour_type = /datum/client_colour/glass_colour/green
 
+/obj/item/clothing/glasses/hud/security/night/combine
+	name = "night vision combine HUD"
+	desc = "An advanced heads-up display which provides ID data and vision in complete darkness. This one is permanently set on the face."
+	icon_state = "healthhudnight"
+	flash_protect = 1
+	color_cutoffs = list(10, 10, 30)
+	lighting_cutoff = LIGHTING_CUTOFF_HIGH
+	glass_colour_type = /datum/client_colour/glass_colour/green
+
+/obj/item/clothing/glasses/hud/security/night/combine/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, COMBINESUIT_TRAIT)
+
 /obj/item/clothing/glasses/hud/security/sunglasses/gars
 	name = "\improper HUD gar glasses"
 	desc = "GAR glasses with a HUD."

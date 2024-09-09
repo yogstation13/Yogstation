@@ -21782,6 +21782,12 @@
 /obj/machinery/vending/wardrobe/bar_wardrobe,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"gJz" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating/indoor/metal,
+/area/centcom/ferry)
 "gJW" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -23058,6 +23064,12 @@
 "rLt" = (
 /turf/open/floor/plating/indoor/metal,
 /area/centcom/ferry)
+"rTX" = (
+/obj/machinery/turnstile/brig/halflife/forcefield/nodirectional{
+	dir = 1
+	},
+/turf/open/floor/plating/indoor/metal,
+/area/centcom/ferry)
 "rVA" = (
 /obj/machinery/vending/magivend,
 /turf/open/floor/plasteel/bluespace,
@@ -23086,6 +23098,17 @@
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"sqZ" = (
+/obj/structure/bed/halflife/bedframe/wire,
+/obj/structure/bed/halflife/mattress/stained,
+/turf/open/floor/plating/indoor/metal,
+/area/centcom/ferry)
+"stj" = (
+/obj/machinery/turnstile/brig/halflife/forcefield/nodirectional{
+	dir = 8
+	},
+/turf/open/floor/plating/indoor/metal,
+/area/centcom/ferry)
 "szv" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -23140,6 +23163,12 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
+"sQm" = (
+/obj/machinery/turnstile/brig/halflife/forcefield/nodirectional{
+	dir = 4
+	},
+/turf/open/floor/plating/indoor/metal,
 /area/centcom/ferry)
 "sSY" = (
 /turf/open/indestructible/wiki/info{
@@ -51512,9 +51541,9 @@ wca
 wca
 wca
 wca
-wca
-wca
-wca
+sqZ
+rLt
+rLt
 wca
 wca
 wca
@@ -51769,9 +51798,9 @@ wca
 wca
 wca
 wca
-wca
-wca
-wca
+gJz
+rLt
+rLt
 wca
 wca
 prA
@@ -52026,9 +52055,9 @@ wca
 wca
 wca
 wca
-wca
-wca
-wca
+sqZ
+rLt
+rLt
 wca
 iBl
 upb
@@ -52284,7 +52313,7 @@ wca
 wca
 wca
 wca
-wca
+sQm
 wca
 wca
 qfO
@@ -52540,9 +52569,9 @@ wca
 wca
 wca
 wca
-wca
-wca
-wca
+rLt
+rLt
+rLt
 wca
 fhs
 rLt
@@ -52797,10 +52826,10 @@ wca
 wca
 wca
 wca
-wca
-wca
-wca
-wca
+gJz
+rLt
+rLt
+rTX
 fhs
 rLt
 rLt
@@ -53054,9 +53083,9 @@ wca
 wca
 wca
 wca
-wca
-wca
-wca
+rLt
+rLt
+rLt
 wca
 fhs
 jgN
@@ -53312,7 +53341,7 @@ wca
 wca
 wca
 wca
-wca
+stj
 wca
 wca
 fhs
@@ -53568,9 +53597,9 @@ wca
 wca
 wca
 wca
-wca
-wca
-wca
+sqZ
+rLt
+rLt
 wca
 fhs
 jgN
@@ -53825,9 +53854,9 @@ wca
 wca
 wca
 wca
-wca
-wca
-wca
+gJz
+rLt
+rLt
 wca
 fhs
 jgN
@@ -54082,9 +54111,9 @@ wca
 wca
 wca
 wca
-wca
-wca
-wca
+sqZ
+rLt
+rLt
 wca
 fhs
 jgN

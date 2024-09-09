@@ -583,6 +583,17 @@
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating/indoor/metal/grate,
 /area/halflife/indoors/sewer)
+"pB" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 2;
+	height = 13;
+	name = "port bay 2";
+	shuttle_id = "ferry_home";
+	width = 5
+	},
+/turf/open/floor/plating/ground/sidewalk,
+/area/halflife/outdoors)
 "pV" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -1557,16 +1568,6 @@
 	},
 /turf/open/floor/plating/indoor/metal,
 /area/halflife/indoors/sewer)
-"Ui" = (
-/obj/docking_port/stationary{
-	dwidth = 2;
-	height = 13;
-	name = "port bay 2";
-	shuttle_id = "ferry_home";
-	width = 5
-	},
-/turf/open/floor/plating/ground/sidewalk,
-/area/halflife/outdoors)
 "Ut" = (
 /obj/machinery/light,
 /turf/open/floor/plating/indoor/cafeteria,
@@ -67979,15 +67980,15 @@ Hu
 FP
 FP
 FP
-FP
-jZ
-FP
-FP
-FP
-FP
-FP
-FP
-FP
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
 FP
 FP
 FP
@@ -68181,15 +68182,15 @@ Hu
 FP
 FP
 jZ
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
 FP
 FP
 FP
@@ -68383,15 +68384,15 @@ Hu
 FP
 FP
 FP
-FP
-FP
-bF
-FP
-FP
-FP
-FP
-bF
-FP
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
 FP
 FP
 FP
@@ -68585,15 +68586,15 @@ Hu
 FP
 FP
 FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
 FP
 FP
 FP
@@ -68787,15 +68788,15 @@ Hu
 FP
 FP
 FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
 FP
 FP
 FP
@@ -68989,15 +68990,15 @@ Hu
 FP
 FP
 FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
 FP
 FP
 FP
@@ -69191,15 +69192,15 @@ Hu
 FP
 FP
 FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
 FP
 FP
 FP
@@ -69393,15 +69394,15 @@ Hu
 FP
 FP
 FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
-FP
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
 FP
 FP
 FP
@@ -69593,6 +69594,8 @@ pf
 pf
 Hu
 FP
+FP
+FP
 Tc
 Tc
 Tc
@@ -69603,9 +69606,7 @@ Tc
 Tc
 Tc
 Tc
-Tc
-Tc
-Tc
+FP
 FP
 FP
 FP
@@ -69795,6 +69796,8 @@ pf
 pf
 Hu
 FP
+FP
+FP
 Tc
 Tc
 Tc
@@ -69805,9 +69808,7 @@ Tc
 Tc
 Tc
 Tc
-Tc
-Tc
-Tc
+FP
 FP
 FP
 FP
@@ -69997,8 +69998,8 @@ pf
 pf
 Hu
 FP
-Tc
-Tc
+FP
+FP
 Tc
 Tc
 Tc
@@ -70199,8 +70200,8 @@ pf
 pf
 Hu
 FP
-Tc
-Tc
+FP
+FP
 Tc
 Tc
 Tc
@@ -70401,19 +70402,19 @@ pf
 pf
 Hu
 FP
+FP
+FP
+Tc
+Tc
+Tc
+Tc
+pB
 Tc
 Tc
 Tc
 Tc
 Tc
 Tc
-Tc
-Tc
-Tc
-Tc
-Tc
-Tc
-Ui
 Tc
 Tc
 Tc
@@ -70603,8 +70604,8 @@ pf
 pf
 Hu
 FP
-Tc
-Tc
+FP
+FP
 Tc
 Tc
 Tc
@@ -70805,8 +70806,8 @@ pf
 pf
 Hu
 FP
-Tc
-Tc
+FP
+FP
 Tc
 Tc
 Tc
@@ -71007,6 +71008,8 @@ pf
 pf
 Hu
 FP
+FP
+FP
 Tc
 Tc
 Tc
@@ -71017,9 +71020,7 @@ Tc
 Tc
 Tc
 Tc
-Tc
-Tc
-Tc
+FP
 FP
 FP
 FP
@@ -71209,6 +71210,8 @@ pf
 pf
 Hu
 FP
+FP
+FP
 Tc
 Tc
 Tc
@@ -71219,9 +71222,7 @@ Tc
 Tc
 Tc
 Tc
-Tc
-Tc
-Tc
+FP
 FP
 FP
 FP

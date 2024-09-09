@@ -130,6 +130,7 @@
 #define SHAMEBRERO_TRAIT "shamebrero"
 #define CHRONOSUIT_TRAIT "chronosuit"
 #define LOCKED_HELMET_TRAIT "locked-helmet"
+#define COMBINESUIT_TRAIT "combinesuit"
 #define NINJA_SUIT_TRAIT "ninja-suit"
 #define SLEEPING_CARP_TRAIT "sleeping_carp"
 #define TIMESTOP_TRAIT "timestop"

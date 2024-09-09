@@ -122,8 +122,8 @@
 	buildstacktype = /obj/item/stack/sheet/metal
 
 /obj/structure/chair/comfy/halflife/captain
-	name = "captain's chair"
-	desc = "Show everyone who is in charge."
+	name = "padded chair"
+	desc = "A comfortable and secure looking chair."
 	icon_state = "captain_chair"
 
 /obj/structure/chair/comfy/halflife/ergo
@@ -385,8 +385,8 @@
 	origin_type = /obj/structure/chair/halflife/overlaypickup/plastic
 
 /obj/structure/chair/comfy/halflife/diner
-	name = "diner seat"
-	desc = "A nice padded diner style seat. A fantastic place to rest your feet."
+	name = "padded seat"
+	desc = "A nice padded seat. A fantastic place to rest your feet."
 	icon_state = "diner_chair"
 	buildstacktype = /obj/item/stack/sheet/metal
 	buildstackamount = 1

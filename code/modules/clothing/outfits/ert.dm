@@ -389,6 +389,7 @@
 /datum/outfit/ert/overwatch
 	name = "OTA Unit"
 
+	glasses = /obj/item/clothing/glasses/hud/security/night/combine
 	mask = /obj/item/clothing/mask/gas/civilprotection/overwatch
 	id = /obj/item/card/id/ert
 	uniform = /obj/item/clothing/under/combine/overwatch
