@@ -49,9 +49,11 @@
 
 GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY, SEC_DEPT_SERVICE))
 
-/*
+
 /datum/job/officer/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
+	H.faction += "combine"
+/*
 	// Assign department security
 
 	var/department

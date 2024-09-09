@@ -402,3 +402,6 @@
 	implants = list(/obj/item/implant/mindshield, /obj/item/implant/biosig_ert, /obj/item/organ/cyberimp/chest/nutriment/plus)
 
 	back = null
+
+/datum/outfit/ert/overwatch/pre_equip(mob/living/carbon/human/H)
+	H.faction += "combine"

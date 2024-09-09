@@ -13,8 +13,6 @@
 		// Make a quick flash
 		var/turf/T = get_turf(src)
 		playsound(T, 'sound/effects/phasein.ogg', 100, 1)
-		for(var/mob/living/carbon/C in viewers(T, null))
-			C.flash_act()
 
 		// Spawn some hostile syndicate critters and spread them out
 		var/list/spawned = spawn_and_random_walk(spawner_type, T, deliveryamt, walk_chance=50, admin_spawn=((flags_1 & ADMIN_SPAWNED_1) ? TRUE : FALSE))
@@ -27,8 +25,9 @@
 
 /obj/item/grenade/spawnergrenade/manhacks
 	name = "viscerator delivery grenade"
+	desc = "Packed inside is a combine Viscerator. Activate and throw, and it will automatically deploy and hunt down any non-command or civil protection."
 	spawner_type = /mob/living/simple_animal/hostile/viscerator
-	deliveryamt = 10
+	deliveryamt = 1
 
 /obj/item/grenade/spawnergrenade/spesscarp
 	name = "carp delivery grenade"

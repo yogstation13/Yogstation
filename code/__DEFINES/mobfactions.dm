@@ -9,6 +9,12 @@
 
 // Creature factions
 
+/// Combine related creatures
+#define FACTION_COMBINE "combine"
+/// headcrab related creatures
+#define FACTION_HEADCRABS "headcrab"
+/// antlion related creatures
+#define FACTION_ANTLION "antlion"
 /// Ashwalker related creatures
 #define FACTION_ASHWALKER "ashwalker"
 /// Megafauna bosses of mining

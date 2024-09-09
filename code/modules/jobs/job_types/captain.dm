@@ -58,6 +58,10 @@
 	..()
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "City Administrator [H.real_name] will be managing the city."))
 
+/datum/job/captain/after_spawn(mob/living/carbon/human/H, mob/M)
+	. = ..()
+	H.faction += "combine"
+
 /datum/outfit/job/captain
 	name = "City Administrator"
 	jobtype = /datum/job/captain

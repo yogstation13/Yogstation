@@ -48,6 +48,10 @@
 	
 	smells_like = "deadly authority"
 
+/datum/job/hos/after_spawn(mob/living/carbon/human/H, mob/M)
+	. = ..()
+	H.faction += "combine"
+
 /datum/outfit/job/hos
 	name = "Divisional Lead"
 	jobtype = /datum/job/hos

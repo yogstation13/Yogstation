@@ -56,6 +56,10 @@
 		. += list(/datum/reagent/medicine/strange_reagent = 20)
 		break
 
+/datum/job/hop/after_spawn(mob/living/carbon/human/H, mob/M)
+	. = ..()
+	H.faction += "combine"
+
 /datum/outfit/job/hop
 	name = "Labor Lead"
 	jobtype = /datum/job/hop
@@ -68,3 +72,5 @@
 	head = /obj/item/clothing/head/hardhat
 	gloves = /obj/item/clothing/gloves/color/yellow
 	belt = /obj/item/melee/classic_baton/telescopic
+
+	implants = list(/obj/item/implant/mindshield)

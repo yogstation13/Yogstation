@@ -5,6 +5,7 @@
 	icon_state = "zombie"
 	icon_living = "zombie"
 	icon_dead = "zombie_dead"
+	faction = list("headcrab")
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	stat_attack = UNCONSCIOUS //braains
 	maxHealth = 120
@@ -54,6 +55,7 @@
 	icon_state = "headcrab"
 	icon_living = "headcrab"
 	icon_dead = "headcrab_dead"
+	faction = list("headcrab")
 	mob_biotypes = MOB_ORGANIC
 	stat_attack = UNCONSCIOUS //braains
 	maxHealth = 30
