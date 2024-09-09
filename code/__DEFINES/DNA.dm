@@ -165,7 +165,7 @@
 #define NOZOMBIE		9
 /// If we want a race to have a standard color (for now this is only polysmorphs)
 #define NOCOLORCHANGE   10
-/// Uses weird leg sprites. Optional for Lizards, required for ashwalkers. Don't give it to other races unless you make sprites for this (see human_parts_greyscale.dmi)
+/// Has weird leg sprites. Used by lizards and polysmorphs. Don't give it to other races unless you make sprites for this (see human_parts_greyscale.dmi)
 #define DIGITIGRADE		11
 #define NO_UNDERWEAR	12
 #define NOLIVER			13
@@ -192,6 +192,8 @@
 #define HAIRCOLOR		26
 #define FACEHAIRCOLOR	27
 #define MUTCOLORS_SECONDARY		28
+/// doesn't care about their blood level through normal means, but still has it
+#define STABLEBLOOD 29
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"

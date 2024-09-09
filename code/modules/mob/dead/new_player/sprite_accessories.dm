@@ -2011,6 +2011,22 @@
 	name = "Dark Tiger"
 	icon_state = "dtiger"
 
+/datum/sprite_accessory/tails/lizard/ltiger
+	name = "Light Tiger"
+	icon_state = "ltiger"
+
+/datum/sprite_accessory/tails_animated/lizard/ltiger
+	name = "Light Tiger"
+	icon_state = "ltiger"
+
+/datum/sprite_accessory/tails/lizard/plated
+	name = "Plated"
+	icon_state = "plated"
+
+/datum/sprite_accessory/tails_animated/lizard/plated
+	name = "Plated"
+	icon_state = "plated"
+
 /datum/sprite_accessory/tails/lizard/spikes
 	name = "Spikes"
 	icon_state = "spikes"
@@ -2035,6 +2051,16 @@
 /datum/sprite_accessory/tails_animated/human/cat
 	name = "Cat"
 	icon_state = "cat"
+	color_src = HAIR
+
+/datum/sprite_accessory/tails/human/fox
+	name = "Fox"
+	icon_state = "fox"
+	color_src = HAIR
+
+/datum/sprite_accessory/tails_animated/human/fox
+	name = "Fox"
+	icon_state = "fox"
 	color_src = HAIR
 
 /datum/sprite_accessory/snouts
@@ -2109,7 +2135,13 @@
 /datum/sprite_accessory/ears/cat
 	name = "Cat"
 	icon_state = "cat"
-	hasinner = 1
+	hasinner = TRUE
+	color_src = HAIR
+
+/datum/sprite_accessory/ears/fox
+	name = "Fox"
+	icon_state = "fox"
+	hasinner = TRUE
 	color_src = HAIR
 
 /datum/sprite_accessory/wings/none
@@ -2378,6 +2410,14 @@
 	name = "Aquatic"
 	icon_state = "aqua"
 
+/datum/sprite_accessory/spines/plated
+	name = "Plated"
+	icon_state = "plated"
+
+/datum/sprite_accessory/spines_animated/plated
+	name = "Plated"
+	icon_state = "plated"
+
 /datum/sprite_accessory/legs 	//legs are a special case, they aren't actually sprite_accessories but are updated with them.
 	icon = null					//These datums exist for selecting legs on preference, and little else
 
@@ -2398,7 +2438,7 @@
 /datum/sprite_accessory/moth_wings
 	icon = 'yogstation/icons/mob/wings.dmi' //yogs moth sprite fix
 	color_src = null
-	
+
 /datum/sprite_accessory/moth_wingsopen
 	icon = 'icons/mob/moth_wingsopen.dmi'
 	color_src = null

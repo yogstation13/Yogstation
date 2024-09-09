@@ -3,6 +3,7 @@
 	description = "By overclocking the primary actuator in our legs, we should be able to speed up movement considerably."
 	research_cost = 1500
 	research_requirements_text = "None"
+	ram_required = 1
 	category = SYNTH_PROJECT_MOBILITY
 
 /datum/ai_project/synth_project/speed/run_project(force_run = FALSE)

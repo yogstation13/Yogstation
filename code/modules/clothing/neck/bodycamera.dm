@@ -9,6 +9,7 @@
 	desc = "A wearable camera, capable of streaming a live feed."
 	icon_state = "sec_bodycam_off"
 	item_state = "sec_bodycam"
+	worn_icon_state = "sec_bodycam"
 	var/prefix = "sec"//used for sprites, miner etc
 	strip_delay = 1 SECONDS //takes one second to strip, so a downed officer can be un-cammed quickly
 	actions_types = list(/datum/action/item_action/toggle_bodycam)
@@ -141,6 +142,7 @@
 	prefix = "miner"
 	icon_state = "miner_bodycam_off"
 	item_state = "miner_bodycam"
+	worn_icon_state = "miner_bodycam"
 	setup = TRUE
 	preset = TRUE
 	resistance_flags = FIRE_PROOF //For showing off to your friends about how you can kill an ashdrake, or some shit

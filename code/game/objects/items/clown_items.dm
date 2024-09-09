@@ -132,10 +132,10 @@
 		return
 	if(istype(target, /obj/machinery/door))
 		var/obj/machinery/door/door = target
-		if(door.obj_flags && CMAGGED)
+		if(door.obj_flags & CMAGGED)
 			user.visible_message("[user] starts to clean the ooze off \the [door.name]'s access panel.", "You start to clean the ooze off \the [door.name]'s access panel.")
 			if(do_after(user, src.cleanspeed, door))
-				to_chat(span_notice(" You clean the ooze off [src]'s access panel."))
+				to_chat(user, span_notice("You clean the ooze off \the [door.name]'s access panel."))
 				door.obj_flags &= ~CMAGGED
 				decreaseUses(user)
 			return

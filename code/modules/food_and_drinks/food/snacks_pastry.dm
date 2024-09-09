@@ -432,6 +432,25 @@
 	tastes = list("meat" = 2, "dough" = 2, "inner peace" = 1)
 	foodtype = GRAIN | MEAT
 
+/obj/item/reagent_containers/food/snacks/donkpocket/mouse
+	name = "mousepocket"
+	desc = "A mouse wrapped in delicious pastry."
+	icon_state = "donkpocketmouse"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/nutriment = 2)
+	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/mouse
+	filling_color = "#747474"
+	tastes = list("mice" = 2, "dough" = 2)
+	foodtype = GRAIN | MICE
+
+/obj/item/reagent_containers/food/snacks/donkpocket/warm/mouse
+	name = "warm mousepocket"
+	desc = "A mouse wrapped in delicious pastry."
+	icon_state = "donkpocketmouse"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/nutriment = 4)
+	tastes = list("mice" = 2, "dough" = 2)
+	foodtype = GRAIN | MICE
+
 ////////////////////////////////////////////OTHER////////////////////////////////////////////
 /obj/item/reagent_containers/food/snacks/cookie/peanut_butter
 	name = "peanut butter cookie"
@@ -560,7 +579,7 @@
 	desc = "Spooky! It's got delicious coffee flavouring!"
 	icon = 'icons/obj/halloween_items.dmi'
 	icon_state = "coffincookie"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/coffee = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/coffee/hot = 3)
 	tastes = list("cookie" = 2, "coffee" = 1, "sweetness" = 1)
 
 /obj/item/reagent_containers/food/snacks/chococornet
@@ -595,7 +614,7 @@
 
 /obj/item/reagent_containers/food/snacks/cherrycupcake
 	name = "cherry cupcake"
-	desc = "A sweet cupcake with cherry bits."
+	desc = "A sweet cupcake topped with a cherry."
 	icon_state = "cherrycupcake"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
@@ -605,7 +624,7 @@
 
 /obj/item/reagent_containers/food/snacks/bluecherrycupcake
 	name = "blue cherry cupcake"
-	desc = "Blue cherries inside a delicious cupcake."
+	desc = "A sweet cupcake topped with a blue cherry."
 	icon_state = "bluecherrycupcake"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 1)

@@ -526,7 +526,7 @@ GLOBAL_LIST_INIT(maintenance_loot_makeshift,list(
 	/obj/item/storage/belt/military/snack = W_RARE,
 	/obj/item/storage/belt/utility/makeshift = W_UNCOMMON,
 	/obj/item/storage/book/bible/booze = W_UNCOMMON,
-	/obj/item/storage/fancy/rollingpapers = W_RARE,
+	/obj/item/storage/box/rollingpapers = W_RARE,
 	/obj/item/storage/box/hug = W_RARE,
 	/obj/item/tank/jetpack/improvised = W_MYTHICAL,
 	/obj/item/rcl/ghetto = W_MYTHICAL,

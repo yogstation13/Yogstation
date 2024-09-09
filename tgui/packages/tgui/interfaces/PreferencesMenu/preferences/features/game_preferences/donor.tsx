@@ -84,17 +84,16 @@ export const donor_pda: Feature<string> = {
   },
 };
 
-export const purrbation: FeatureToggle = {
+export const purrbation: Feature<string> = {
   name: "Purrbation",
   category: "DONATOR",
-  description: "When enabled and you are a human, you will turn into a felinid.",
   component: (
-    props: FeatureValueProps<BooleanLike, boolean>,
+    props: FeatureValueProps<string, string, FeatureChoicedServerData>,
     context,
   ) => {
     const { data } = useBackend<PreferencesMenuData>(context);
 
-    return (<CheckboxInput
+    return (<FeatureDropdownInput
       {...props}
       disabled={(data.content_unlocked & 2) === 0}
     />);

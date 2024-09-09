@@ -1,7 +1,7 @@
 /datum/species/preternis
 	name = "Preternis"
 	plural_form = "Preterni"
-	id = "preternis"
+	id = SPECIES_PRETERNIS
 
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE, TRAIT_NO_BLOOD_REGEN)
@@ -50,9 +50,9 @@
 	default_features = list("weathering" = "None", "antenna" = "None", "preternis_eye" = "Standard", "preternis_core" = "Core")
 	wings_icon = "Elytra"
 
+	species_abilities = list(/datum/action/cooldown/spell/toggle/maglock)
+
 	//new variables
-	var/datum/action/innate/maglock/maglock
-	var/lockdown = FALSE
 	var/eating_msg_cooldown = FALSE
 	var/emag_lvl = 0
 	var/soggy = FALSE
@@ -77,11 +77,6 @@
 
 	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, PROC_REF(drain_power_from))
 
-	if(ishuman(C))
-		maglock = new
-		maglock.Grant(C)
-		lockdown = FALSE
-
 /datum/species/preternis/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()
 	for (var/V in C.bodyparts)
@@ -95,52 +90,6 @@
 	C.clear_alert("preternis_emag") //this means a changeling can transform from and back to a preternis to clear the emag status but w/e i cant find a solution to not do that
 	C.clear_fullscreen("preternis_emag")
 	C.remove_movespeed_modifier("preternis_water")
-	C.remove_movespeed_modifier("preternis_maglock")
-
-	if(lockdown)
-		maglock.Trigger(TRUE)
-	if(maglock)
-		maglock.Remove(C)
-
-
-/datum/action/innate/maglock
-	var/datum/species/preternis/owner_species
-	var/lockdown = FALSE
-	name = "Maglock"
-	check_flags = AB_CHECK_CONSCIOUS
-	button_icon_state = "magboots0"
-	button_icon = 'icons/obj/clothing/shoes.dmi'
-	background_icon_state = "bg_default"
-
-/datum/action/innate/maglock/Grant(mob/M)
-	if(!ispreternis(M))
-		return
-	var/mob/living/carbon/human/H = M 
-	owner_species = H.dna.species
-	. = ..()
-
-/datum/action/innate/maglock/Trigger(silent = FALSE)
-	var/mob/living/carbon/human/H = usr
-	if(!lockdown)
-		ADD_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
-		ADD_TRAIT(H, TRAIT_NOSLIPICE, "preternis_maglock")
-		button_icon_state = "magboots1"
-	else
-		REMOVE_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
-		REMOVE_TRAIT(H, TRAIT_NOSLIPICE, "preternis_maglock")
-		button_icon_state = "magboots0"
-	build_all_button_icons()
-	lockdown = !lockdown
-	owner_species.lockdown = !owner_species.lockdown
-	if(!silent)
-		to_chat(H, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
-	H.update_gravity(H.has_gravity())
-
-/datum/species/preternis/negates_gravity(mob/living/carbon/human/H)
-	return (..() || lockdown)
-
-/datum/species/preternis/has_heavy_gravity()
-	return (..() || lockdown)
 
 /datum/species/preternis/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
 	. = ..()
@@ -180,13 +129,6 @@
 	emag_lvl = 0
 	H.clear_alert("preternis_emag")
 	H.clear_fullscreen("preternis_emag")
-
-/datum/species/preternis/movement_delay(mob/living/carbon/human/H)
-	. = ..()
-	if(lockdown && !HAS_TRAIT(H, TRAIT_IGNORESLOWDOWN) && H.has_gravity())
-		H.add_movespeed_modifier("preternis_magboot", update=TRUE, priority=100, multiplicative_slowdown=1, blacklisted_movetypes=(FLYING|FLOATING))
-	else if(H.has_movespeed_modifier("preternis_magboot"))
-		H.remove_movespeed_modifier("preternis_magboot")
 	
 /datum/species/preternis/spec_life(mob/living/carbon/human/H)
 	. = ..()
@@ -314,26 +256,50 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "cookie-bite",
-			SPECIES_PERK_NAME = "Stone eater",
-			SPECIES_PERK_DESC = "Preterni can eat ores to replenish their metal skin. All ores are not created equal.",
+			SPECIES_PERK_NAME = "Stone Eater",
+			SPECIES_PERK_DESC = "Preterni are fitted with grinders in their stomach, letting them eat and process ores to replenish their metal skin. \
+								All ores are not created equal.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "wrench",
+			SPECIES_PERK_NAME = "Worker Drone",
+			SPECIES_PERK_DESC = "Preterni were designed to be quick and efficient workers. \
+								They use tools and items faster than most races.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "low-vision",
+			SPECIES_PERK_NAME = "Augmented Sight",
+			SPECIES_PERK_DESC = "Preterni have a night vision lens they can toggle built into their eyes. \
+								This lens will drain power while active.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "lungs",
+			SPECIES_PERK_NAME = "Nanovapor Filters",
+			SPECIES_PERK_DESC = "Preterni have bioengineered lungs that require little oxygen, and filter trace amounts of toxic gases from the air. \
+								However, they're prone to being damaged from breathing in cold air.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "flask",
 			SPECIES_PERK_NAME = "Chemical Purge",
-			SPECIES_PERK_DESC = "Preterni will purge any foreign chemicals after a short time of them being in the blood stream.",
+			SPECIES_PERK_DESC = "Preterni have an elaborate system of filters for decontaminating their organic parts. \
+								A percentage of all foreign chemicals in their bloodstream are purged every few seconds.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-			SPECIES_PERK_ICON = "droplet-slash",
+			SPECIES_PERK_ICON = "shower",
 			SPECIES_PERK_NAME = "Keep Dry",
-			SPECIES_PERK_DESC = "Preterni have exposed circuitry under cracks in their body, if water gets in they will short, causing weakness in the limbs and burns.",
+			SPECIES_PERK_DESC = "Preterni have exposed circuitry under the cracks in their outer shell. \
+								Contact with water will short their electronics, causing weakness in the limbs and burns.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "droplet-slash",
 			SPECIES_PERK_NAME = "Metal Marrow",
-			SPECIES_PERK_DESC = "Preterni have solid metal bones with no internal marrow. Their body will not create blood to replace any lost.",
+			SPECIES_PERK_DESC = "Preterni have solid metal bones with no internal marrow. Their body will not create blood to replace any lost."
 		),
 	)
 

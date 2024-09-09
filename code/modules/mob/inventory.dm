@@ -128,12 +128,12 @@
 
 //Checks if we're holding a tool that has given quality
 //Returns the tool that has the best version of this quality
-/mob/proc/is_holding_tool_quality(quality)
+/mob/proc/is_holding_tool_quality(expected_tool_type)
 	var/obj/item/best_item
 	var/best_quality = INFINITY
 
 	for(var/obj/item/I in held_items)
-		if(I.tool_behaviour == quality && I.toolspeed < best_quality)
+		if(I.tool_behaviour == expected_tool_type && I.toolspeed < best_quality)
 			best_item = I
 			best_quality = I.toolspeed
 	return best_item
@@ -266,10 +266,10 @@
 	I.dropped(src)
 	return FALSE
 
-/mob/proc/drop_all_held_items()
+/mob/proc/drop_all_held_items(force = FALSE)
 	. = FALSE
 	for(var/obj/item/I in held_items)
-		. |= dropItemToGround(I)
+		. |= dropItemToGround(I, force)
 
 //Here lie drop_from_inventory and before_item_take, already forgotten and not missed.
 
@@ -398,12 +398,12 @@
 			items += s_store
 	return items
 
-/mob/living/proc/unequip_everything()
+/mob/living/proc/unequip_everything(force = FALSE)
 	var/list/items = list()
 	items |= get_equipped_items(TRUE)
 	for(var/I in items)
-		dropItemToGround(I)
-	drop_all_held_items()
+		dropItemToGround(I, force)
+	drop_all_held_items(force)
 
 
 /mob/living/carbon/proc/check_obscured_slots(transparent_protection)

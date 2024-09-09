@@ -340,7 +340,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/item/warp_cube/attack_self(mob/user)
 	var/turf/current_location = get_turf(user)//yogs added a current location check that was totally ripped from the hand tele code honk
 	var/area/current_area = current_location.loc //yogs more location check stuff
-	if(!linked || current_area.noteleport) //yogs added noteleport
+	if(!linked || (current_area.area_flags & NOTELEPORT)) //yogs added noteleport
 		to_chat(user, "[src] fizzles uselessly.")
 		return
 	if(teleporting)
@@ -610,7 +610,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return
 	if(isliving(target))
 		var/mob/living/L = target
-		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid) || istype(L,/mob/living/simple_animal/hostile/yog_jungle)) //no loot allowed from the little skulls
+		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid) || istype(L,/mob/living/simple_animal/hostile/asteroid/yog_jungle)) //no loot allowed from the little skulls
 			if(!istype(L, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
 				RegisterSignal(target, COMSIG_LIVING_DEATH, PROC_REF(roll_loot), TRUE)
 			//after quite a bit of grinding, you'll be doing a total of 120 damage to fauna per hit. A lot, but i feel like the grind justifies the payoff. also this doesn't effect crew. so. go nuts.

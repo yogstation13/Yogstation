@@ -178,6 +178,8 @@
 			L = new /obj/item/bodypart/r_leg()
 		if(BODY_ZONE_CHEST)
 			L = new /obj/item/bodypart/chest()
+	if((L.body_part & LEG_LEFT|LEG_RIGHT) && (DIGITIGRADE in dna?.species?.species_traits))
+		L.set_digitigrade(TRUE)
 	if(L)
 		L.update_limb(fixed_icon, src)
 		if(robotic)
@@ -277,8 +279,10 @@
 			. = "#fff4e6"
 		if("orange")
 			. = "#ffc905"
+		if("green")
+			. = "#a8e61d"
 
-/mob/living/carbon/proc/Digitigrade_Leg_Swap(swap_back)
+/mob/living/carbon/proc/digitigrade_leg_swap(swap_back)
 	var/body_plan_changed = FALSE
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/O = X
@@ -303,12 +307,11 @@
 	if(body_plan_changed && ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if(H.w_uniform)
-			var/obj/item/clothing/under/U = H.w_uniform
-			if(U.mutantrace_variation)
-				if(swap_back)
-					U.adjusted = NORMAL_STYLE
-				else
-					U.adjusted = DIGITIGRADE_STYLE
-				H.update_inv_w_uniform()
-		if(H.shoes && !swap_back)
-			H.dropItemToGround(H.shoes)
+			H.update_inv_w_uniform()
+		if(H.wear_suit)
+			H.update_inv_wear_suit()
+		if(H.shoes)
+			if(!H.can_equip(H.shoes, ITEM_SLOT_FEET, TRUE))
+				H.dropItemToGround(H.shoes)
+			else
+				H.update_inv_shoes()

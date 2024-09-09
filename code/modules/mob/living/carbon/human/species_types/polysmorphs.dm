@@ -1,8 +1,8 @@
 /datum/species/polysmorph
 	//Human xenopmorph hybrid
 	name = "Polysmorph"
-	id = "polysmorph"
-	species_traits = list(NOEYESPRITES, MUTCOLORS, NOCOLORCHANGE, DIGITIGRADE, HAS_FLESH, HAS_BONE, HAS_TAIL)
+	id = SPECIES_POLYSMORPH
+	species_traits = list(NOEYESPRITES, DIGITIGRADE, MUTCOLORS, NOCOLORCHANGE, HAS_FLESH, HAS_BONE, HAS_TAIL)
 	possible_genders = list(FEMALE)
 	inherent_traits = list(TRAIT_ACIDBLOOD, TRAIT_SKINNY)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
@@ -40,8 +40,8 @@
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	fixed_mut_color = "#444466" //don't mess with this if you don't feel like manually adjusting the mutant bodypart sprites
-	mutant_bodyparts = list("tail_polysmorph", "dome", "dorsal_tubes", "teeth", "legs")
-	default_features = list("tail_polysmorph" = "Polys", "dome" = "None", "dorsal_tubes" = "No", "teeth" = "None", "legs" = "Normal Legs")
+	mutant_bodyparts = list("tail_polysmorph", "dome", "dorsal_tubes", "teeth")
+	default_features = list("tail_polysmorph" = "Polys", "dome" = "None", "dorsal_tubes" = "No", "teeth" = "None")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 
 	smells_like = "charred, acidic meat"
@@ -94,13 +94,55 @@
 /datum/species/polysmorph/create_pref_unique_perks()
 	var/list/to_add = list()
 
-	// TODO
-
-	return to_add
-
-/datum/species/polysmorph/create_pref_biotypes_perks()
-	var/list/to_add = list()
-
-	// TODO
+	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "running",
+			SPECIES_PERK_NAME = "Predator Genes",
+			SPECIES_PERK_DESC = "Polysmorphs keep a fraction of the agility found in their xenomorph ancestors. \
+								Their movement speed and crawl speed are slightly faster than most races.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "low-vision",
+			SPECIES_PERK_NAME = "Darkvision",
+			SPECIES_PERK_DESC = "Polysmorphs have an advanced set of eyes hidden inside their domed head. \
+								These eyes can provide infrared sight, highlighting any living thing in view even in darkness.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "lungs",
+			SPECIES_PERK_NAME = "Devolved Vessels",
+			SPECIES_PERK_DESC = "Polysmorphs have a set of plasma vessels, degraded and fused with human lungs through the spawning process. \
+								This mutated organ lets polysmorphs breathe both plasma and oxygen safely, but is easily hurt from breathing in hot air.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "bone",
+			SPECIES_PERK_NAME = "Exoskeletal",
+			SPECIES_PERK_DESC = "Polysmorphs have a rigid exoskeleton lining their bodies, making them harder to wound.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "filter",
+			SPECIES_PERK_NAME = "Reckless Filtration",
+			SPECIES_PERK_DESC = "Polysmorphs have alien livers capable of filtering out toxins much faster than most races. \
+								Despite this, it's not very tough, and takes more damage from processing too many toxins at once.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "commenting",
+			SPECIES_PERK_NAME = "Alien Sssssspeech",
+			SPECIES_PERK_DESC = "Polysmorphs have a mouthed tongue similar to xenomorphs, but without the teeth. \
+								They have a tendency to hissssss when sssssspeaking.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "wrench",
+			SPECIES_PERK_NAME = "Indextrous",
+			SPECIES_PERK_DESC = "Polysmorphs have large claw-like fingers built for slicing rather than quick or precise motions. \
+								They use tools and items a bit slower than most races.",
+		),
+	)
 
 	return to_add

@@ -10,7 +10,7 @@
 // "Floating ghost blade" effect for blade heretics
 /obj/effect/floating_blade
 	name = "knife"
-	icon = 'icons/obj/kitchen.dmi';
+	icon = 'icons/obj/weapons/shortsword.dmi'
 	icon_state = "knife"
 	layer = LOW_MOB_LAYER
 	/// The color the knife glows around it.
@@ -117,13 +117,18 @@
 
 	SIGNAL_HANDLER
 
-	if(attack_type != MELEE_ATTACK)
+	if(!(attack_type & (MELEE_ATTACK|UNARMED_ATTACK|LEAP_ATTACK)))
 		return
 
 	if(!riposte_ready)
 		return
 
-	var/mob/living/attacker = hitby.loc
+	// If it's an unarmed attack the incoming attack will be the mob itself, otherwise find the mob holding it
+	var/mob/living/attacker = isliving(hitby) ? hitby : hitby.loc
+
+	// Uh oh, looks like we couldn't find an attacker. Time to panic!
+	if(!isliving(attacker))
+		CRASH("Blade dance failed to find a valid attacker!")
 
 	// // Let's check their held items to see if we can do a riposte
 	var/obj/item/main_hand = source.get_active_held_item()
@@ -131,14 +136,11 @@
 	// // This is the item that ends up doing the "blocking" (flavor)
 	var/obj/item/striking_with
 
-	// First we'll check if the offhand is valid
-	if(!QDELETED(off_hand) && istype(off_hand, /obj/item/melee/sickly_blade))
-		striking_with = off_hand
-
-	// Then we'll check the mainhand
-	// We do mainhand second, because we want to prioritize it over the offhand
+	// Check the main hand first, if it isn't available then try the off hand
 	if(!QDELETED(main_hand) && istype(main_hand, /obj/item/melee/sickly_blade))
 		striking_with = main_hand
+	else if(!QDELETED(off_hand) && istype(off_hand, /obj/item/melee/sickly_blade))
+		striking_with = off_hand
 
 	// No valid item in either slot? No riposte
 	if(!striking_with)

@@ -27,11 +27,11 @@
 		new /datum/data/mining_equipment("Diamond Pickaxe",				/obj/item/pickaxe/diamond,											2000, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Mini Plasma Cutter",			/obj/item/gun/energy/plasmacutter/mini,								2500, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Plasma Cutter Shotgun",		/obj/item/gun/energy/plasmacutter/scatter,							5000, VENDING_WEAPON),
-		new /datum/data/mining_equipment("PC Defuser Upgrade",			/obj/item/upgrade/plasmacutter/defuser,								1000, VENDING_UPGRADE),
-		new /datum/data/mining_equipment("PC Capacity Upgrade",			/obj/item/upgrade/plasmacutter/capacity,							4500, VENDING_UPGRADE),
-		new /datum/data/mining_equipment("PC Cooldown Upgrade",			/obj/item/upgrade/plasmacutter/cooldown,							5000, VENDING_UPGRADE),
-		new /datum/data/mining_equipment("PC Range Upgrade",			/obj/item/upgrade/plasmacutter/range,								5000, VENDING_UPGRADE),
-		new /datum/data/mining_equipment("PC Ore Upgrade",				/obj/item/upgrade/plasmacutter/ore,									10000, VENDING_UPGRADE),
+		new /datum/data/mining_equipment("PC Defuser Upgrade",			/obj/item/borg/upgrade/plasmacutter/defuser,								1000, VENDING_UPGRADE),
+		new /datum/data/mining_equipment("PC Capacity Upgrade",			/obj/item/borg/upgrade/plasmacutter/capacity,							4500, VENDING_UPGRADE),
+		new /datum/data/mining_equipment("PC Cooldown Upgrade",			/obj/item/borg/upgrade/plasmacutter/cooldown,							5000, VENDING_UPGRADE),
+		new /datum/data/mining_equipment("PC Range Upgrade",			/obj/item/borg/upgrade/plasmacutter/range,								5000, VENDING_UPGRADE),
+		new /datum/data/mining_equipment("PC Ore Upgrade",				/obj/item/borg/upgrade/plasmacutter/ore,									10000, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("KA Minebot Passthrough",		/obj/item/borg/upgrade/modkit/minebot_passthrough,					100, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("KA White Tracer Rounds",		/obj/item/borg/upgrade/modkit/tracer,								100, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("KA Adjustable Tracer Rounds",	/obj/item/borg/upgrade/modkit/tracer/adjustable,					150, VENDING_UPGRADE),
@@ -308,11 +308,11 @@
 		new /datum/data/mining_equipment("Mini Plasma Cutter",			/obj/item/gun/energy/plasmacutter/mini,							500, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Plasma Cutter" ,				/obj/item/gun/energy/plasmacutter,								2500, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Plasma Cutter Shotgun",		/obj/item/gun/energy/plasmacutter/scatter,						5000, VENDING_WEAPON),
-		new /datum/data/mining_equipment("PC Defuser Upgrade",			/obj/item/upgrade/plasmacutter/defuser,							1000, VENDING_UPGRADE),
-		new /datum/data/mining_equipment("PC Capacity Upgrade",			/obj/item/upgrade/plasmacutter/capacity,						4500, VENDING_UPGRADE),
-		new /datum/data/mining_equipment("PC Cooldown Upgrade",			/obj/item/upgrade/plasmacutter/cooldown,						5000, VENDING_UPGRADE),
-		new /datum/data/mining_equipment("PC Range Upgrade",			/obj/item/upgrade/plasmacutter/range,							5000, VENDING_UPGRADE),
-		new /datum/data/mining_equipment("PC Ore Upgrade",				/obj/item/upgrade/plasmacutter/ore,									10000, VENDING_UPGRADE),
+		new /datum/data/mining_equipment("PC Defuser Upgrade",			/obj/item/borg/upgrade/plasmacutter/defuser,							1000, VENDING_UPGRADE),
+		new /datum/data/mining_equipment("PC Capacity Upgrade",			/obj/item/borg/upgrade/plasmacutter/capacity,						4500, VENDING_UPGRADE),
+		new /datum/data/mining_equipment("PC Cooldown Upgrade",			/obj/item/borg/upgrade/plasmacutter/cooldown,						5000, VENDING_UPGRADE),
+		new /datum/data/mining_equipment("PC Range Upgrade",			/obj/item/borg/upgrade/plasmacutter/range,							5000, VENDING_UPGRADE),
+		new /datum/data/mining_equipment("PC Ore Upgrade",				/obj/item/borg/upgrade/plasmacutter/ore,									10000, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("KA Minebot Passthrough",		/obj/item/borg/upgrade/modkit/minebot_passthrough,				100, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("KA White Tracer Rounds",		/obj/item/borg/upgrade/modkit/tracer,							100, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("KA Adjustable Tracer Rounds",	/obj/item/borg/upgrade/modkit/tracer/adjustable,				150, VENDING_UPGRADE),
@@ -455,9 +455,8 @@
 		I.access |=	ACCESS_MINING
 		I.access |= ACCESS_MINING_STATION
 		I.access |= ACCESS_MECH_MINING
-		I.access |= ACCESS_MINERAL_STOREROOM
 		I.access |= ACCESS_CARGO
-		I.access |= ACCESS_MAILSORTING
+		I.access |= ACCESS_CARGO
 		to_chat(user, "You upgrade [I] with mining access.")
 		qdel(src)
 

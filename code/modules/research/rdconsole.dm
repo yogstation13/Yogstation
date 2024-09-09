@@ -28,7 +28,7 @@ Nothing else in the console has ID requirements.
 	var/obj/machinery/rnd/production/protolathe/linked_lathe				//Linked Protolathe
 	var/obj/machinery/rnd/production/circuit_imprinter/linked_imprinter	//Linked Circuit Imprinter
 
-	req_access = list(ACCESS_RND)	//lA AND SETTING MANIPULATION REQUIRES SCIENTIST ACCESS.
+	req_access = list(ACCESS_RESEARCH)	//lA AND SETTING MANIPULATION REQUIRES SCIENTIST ACCESS.
 
 	//UI VARS
 	var/screen = RDSCREEN_MENU
@@ -646,7 +646,7 @@ Nothing else in the console has ID requirements.
 			var/list/materials = linked_destroy.loaded_item.materials
 			l += "<div class='statusDisplay'><A href='?src=[REF(src)];deconstruct=[RESEARCH_MATERIAL_RECLAMATION_ID]'>[materials.len? "Material Reclamation" : "Destroy Item"]</A>"
 			for (var/M in materials)
-				l += "* [CallMaterialName(M)] x [materials[M]]"
+				l += "* [CallMaterialName(M)] x [materials[M] * (linked_destroy.decon_mod/10)]"
 			l += "</div>[RDSCREEN_NOBREAK]"
 			anything = TRUE
 
@@ -1159,7 +1159,7 @@ Nothing else in the console has ID requirements.
 /obj/machinery/computer/rdconsole/robotics
 	name = "Robotics R&D Console"
 	req_access = null
-	req_access_txt = "29"
+	req_access = list(ACCESS_ROBOTICS)
 
 /obj/machinery/computer/rdconsole/robotics/Initialize(mapload)
 	. = ..()

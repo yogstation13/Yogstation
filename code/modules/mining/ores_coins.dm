@@ -66,7 +66,7 @@
 			qdel(src)
 
 /obj/item/stack/ore/attack(mob/living/M, mob/living/user)
-	if(!user.combat_mode || M != user || !ishuman(user))
+	if(user.combat_mode || M != user || !ishuman(user))
 		return ..()
 
 	var/mob/living/carbon/human/H = user
@@ -97,8 +97,8 @@
 
 /obj/item/stack/ore/uranium
 	name = "uranium ore"
-	icon_state = "Uranium ore"
-	item_state = "Uranium ore"
+	icon_state = "uranium"
+	item_state = "uranium"
 	singular_name = "uranium ore chunk"
 	points = 30
 	materials = list(/datum/material/uranium=MINERAL_MATERIAL_AMOUNT)
@@ -111,8 +111,8 @@
 
 /obj/item/stack/ore/iron
 	name = "iron ore"
-	icon_state = "Iron ore"
-	item_state = "Iron ore"
+	icon_state = "iron"
+	item_state = "iron"
 	singular_name = "iron ore chunk"
 	points = 1
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
@@ -125,8 +125,8 @@
 
 /obj/item/stack/ore/glass
 	name = "sand pile"
-	icon_state = "Glass ore"
-	item_state = "Glass ore"
+	icon_state = "glass"
+	item_state = "glass"
 	singular_name = "sand pile"
 	points = 1
 	materials = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
@@ -173,8 +173,8 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 
 /obj/item/stack/ore/plasma
 	name = "plasma ore"
-	icon_state = "Plasma ore"
-	item_state = "Plasma ore"
+	icon_state = "plasma"
+	item_state = "plasma"
 	singular_name = "plasma ore chunk"
 	points = 15
 	materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT)
@@ -191,8 +191,8 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 
 /obj/item/stack/ore/silver
 	name = "silver ore"
-	icon_state = "Silver ore"
-	item_state = "Silver ore"
+	icon_state = "silver"
+	item_state = "silver"
 	singular_name = "silver ore chunk"
 	points = 16
 	materials = list(/datum/material/silver=MINERAL_MATERIAL_AMOUNT)
@@ -210,8 +210,8 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 
 /obj/item/stack/ore/gold
 	name = "gold ore"
-	icon_state = "Gold ore"
-	icon_state = "Gold ore"
+	icon_state = "gold"
+	icon_state = "gold"
 	singular_name = "gold ore chunk"
 	points = 18
 	materials = list(/datum/material/gold=MINERAL_MATERIAL_AMOUNT)
@@ -223,22 +223,22 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 
 /obj/item/stack/ore/diamond
 	name = "diamond ore"
-	icon_state = "Diamond ore"
-	item_state = "Diamond ore"
+	icon_state = "diamond"
+	item_state = "diamond"
 	singular_name = "diamond ore chunk"
 	points = 50
 	materials = list(/datum/material/diamond=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/diamond
 	eaten_text = "The diamonds, while \"tasty\" leaves a weird sensation throughout your body."
-					
+
 /obj/item/stack/ore/diamond/eaten(mob/living/carbon/human/H)
-	H.apply_status_effect(STATUS_EFFECT_DIAMONDSKIN)	
+	H.apply_status_effect(STATUS_EFFECT_DIAMONDSKIN)
 	return TRUE
 
 /obj/item/stack/ore/bananium
 	name = "bananium ore"
-	icon_state = "Bananium ore"
-	item_state = "Bananium ore"
+	icon_state = "bananium"
+	item_state = "bananium"
 	singular_name = "bananium ore chunk"
 	points = 60
 	materials = list(/datum/material/bananium=MINERAL_MATERIAL_AMOUNT)
@@ -259,12 +259,17 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 
 /obj/item/stack/ore/titanium
 	name = "titanium ore"
-	icon_state = "Titanium ore"
-	item_state = "Titanium ore"
+	icon_state = "titanium"
+	item_state = "titanium"
 	singular_name = "titanium ore chunk"
 	points = 50
 	materials = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/titanium
+	eaten_text = "The titanium shards lacerate your insides as you eat it."
+
+/obj/item/stack/ore/titanium/eaten(mob/living/carbon/human/H)
+	H.vomit(0, TRUE, FALSE) // vomit blood, no stun
+	return TRUE
 
 /obj/item/stack/ore/slag
 	name = "slag"
@@ -273,7 +278,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	item_state = "slag"
 	singular_name = "slag chunk"
 	eaten_text = "This slag is the most utterly vile thing you've ever eaten."
-	
+
 /obj/item/stack/ore/slag/eaten(mob/living/carbon/human/H)
 	H.adjust_disgust(30)
 	return TRUE

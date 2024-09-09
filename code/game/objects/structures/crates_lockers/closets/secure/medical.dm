@@ -63,7 +63,6 @@
 	new /obj/item/door_remote/chief_medical_officer(src)
 	new /obj/item/clothing/neck/petcollar(src)
 	new /obj/item/pet_carrier(src)
-	new /obj/item/wallframe/defib_mount(src)
 	new /obj/item/circuitboard/machine/techfab/department/medical(src)
 	new /obj/item/storage/photo_album/CMO(src)
 	new /obj/item/clipboard/yog/paperwork/cmo(src)
@@ -80,37 +79,15 @@
 
 /obj/structure/closet/secure_closet/paramedic/PopulateContents()
 	..()
-	if(prob(50))
-		new /obj/item/storage/backpack/medic(src)
-	else
-		new /obj/item/storage/backpack/satchel/med(src)
-	new /obj/item/storage/firstaid/hypospray/paramedic(src)
-	new /obj/item/clothing/shoes/sneakers/white(src)
-	switch(pick("blue", "green", "purple"))
-		if ("blue")
-			new /obj/item/clothing/under/rank/medical/doctor/blue(src)
-		if ("green")
-			new /obj/item/clothing/under/rank/medical/doctor/green(src)
-		if ("purple")
-			new /obj/item/clothing/under/rank/medical/doctor/purple(src)
-	switch(pick("blue", "green", "purple"))
-		if ("blue")
-			new /obj/item/clothing/under/rank/medical/doctor/blue(src)
-		if ("green")
-			new /obj/item/clothing/under/rank/medical/doctor/green(src)
-		if ("purple")
-			new /obj/item/clothing/under/rank/medical/doctor/purple(src)
-	new /obj/item/clothing/under/rank/medical(src)
-	new /obj/item/clothing/suit/toggle/labcoat/emt(src)
-	new /obj/item/clothing/head/beret/emt/green(src)
-	new /obj/item/clothing/head/beret/emt(src)
-	new /obj/item/clothing/head/soft/emt(src)
+	new /obj/item/clothing/shoes/sneakers/white(src) //shoes and a jumpsuit in case something goes wrong, otherwise clothes are just in vendor
+	new /obj/item/clothing/under/rank/medical/doctor(src)
 	new /obj/item/defibrillator/loaded(src)
-	new /obj/item/clothing/suit/toggle/labcoat/emt/green(src)
-	new /obj/item/clothing/head/soft/emt/green (src)
+	new /obj/item/storage/firstaid/hypospray/paramedic(src)
 	new /obj/item/radio/headset/headset_med(src)
 	new /obj/item/storage/belt/medical(src)
 	new /obj/item/clothing/gloves/color/latex/nitrile(src)
+	new /obj/item/clothing/glasses/hud/health(src)
+	new /obj/item/roller(src)
 
 /obj/structure/closet/secure_closet/mmedical
 	name = "mining medic's locker"
@@ -171,7 +148,7 @@
 /obj/structure/closet/secure_closet/psych
 	name = "psychiatrist's cabinet"
 	desc = "Packed with a psychiatrist's tools of the trade"
-	req_access = list(ACCESS_PSYCH)
+	req_access = list(ACCESS_PSYCHOLOGY)
 	icon_state = "cabinet"
 
 /obj/structure/closet/secure_closet/psych/PopulateContents()

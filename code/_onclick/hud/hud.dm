@@ -632,9 +632,9 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	src.owner = owner
 
 /datum/action_group/Destroy()
-	owner = null
 	QDEL_NULL(landing)
 	QDEL_LIST(actions)
+	owner = null
 	return ..()
 
 /datum/action_group/proc/insert_action(atom/movable/screen/action, index)

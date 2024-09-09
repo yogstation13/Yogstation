@@ -223,6 +223,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	/// Do we try to prevent reset_perspective() from working? Useful for Dullahans to stop perspective changes when they're looking through their head.
 	var/prevent_perspective_change = FALSE
 
+	/// List of the type path of every ability innate to this species
+	var/list/species_abilities = list()
+	/// List of the created abilities, stored for the purpose of removal later, please do not touch this if you don't need to
+	var/list/datum/action/instantiated_abilities = list()
+
 ///////////
 // PROCS //
 ///////////
@@ -454,10 +459,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		C.hud_used.update_locked_slots()
 
 	// this needs to be FIRST because qdel calls update_body which checks if we have DIGITIGRADE legs or not and if not then removes DIGITIGRADE from species_traits
-	if(("legs" in C.dna.species.mutant_bodyparts) && C.dna.features["legs"] == "Digitigrade Legs")
-		species_traits += DIGITIGRADE
-	if(DIGITIGRADE in species_traits)
-		C.Digitigrade_Leg_Swap(FALSE)
+	if((DIGITIGRADE in species_traits) && !(DIGITIGRADE in old_species.species_traits))
+		C.digitigrade_leg_swap(FALSE)
 
 	C.mob_biotypes = inherent_biotypes
 	C.bubble_icon = bubble_icon
@@ -502,6 +505,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		fly = new
 		fly.Grant(C)
 
+	for(var/ability_path in species_abilities)
+		var/datum/action/ability = new ability_path(C)
+		ability.Grant(C)
+		instantiated_abilities += ability
+
 	C.add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 100, override=TRUE, multiplicative_slowdown=speedmod, movetypes=(~FLYING))
 	C.regenerate_icons()
 	SEND_SIGNAL(C, COMSIG_SPECIES_GAIN, src, old_species)
@@ -510,8 +518,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	if(C.dna.species.exotic_bloodtype)
 		C.dna.blood_type = random_blood_type()
-	if(DIGITIGRADE in species_traits)
-		C.Digitigrade_Leg_Swap(TRUE)
+	if((DIGITIGRADE in species_traits) && !(DIGITIGRADE in new_species.species_traits))
+		C.digitigrade_leg_swap(TRUE)
 	if(inherent_biotypes & MOB_ROBOTIC)
 		for(var/obj/item/bodypart/B in C.bodyparts)
 			B.change_bodypart_status(BODYPART_ORGANIC, FALSE, TRUE)
@@ -546,6 +554,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				C.dna.species.mutant_bodyparts -= "wingsdetail"
 			C.dna.features["wingsdetail"] = "None"
 		C.update_body()
+
+	for(var/datum/action/ability as anything in instantiated_abilities)
+		ability.Remove(C)
+		instantiated_abilities -= ability
+		qdel(ability)
 
 	C.remove_movespeed_modifier(MOVESPEED_ID_SPECIES)
 
@@ -1013,44 +1026,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		else if ("vox_tail" in mutant_bodyparts)
 			bodyparts_to_add -= "wagging_vox_tail_markings"
 
-	//Digitigrade legs are stuck in the phantom zone between true limbs and mutant bodyparts. Mainly it just needs more agressive updating than most limbs.
-	var/update_needed = FALSE
-	var/not_digitigrade = TRUE
-	for(var/X in H.bodyparts)
-		var/obj/item/bodypart/O = X
-		if(!O.use_digitigrade)
-			continue
-		not_digitigrade = FALSE
-		if(!(DIGITIGRADE in species_traits)) //Someone cut off a digitigrade leg and tacked it on
-			species_traits += DIGITIGRADE
-		var/should_be_squished = FALSE
-		if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) || (H.wear_suit.body_parts_covered & LEGS))) //Check for snowflake suit
-			var/obj/item/clothing/suit/A = H.wear_suit
-			if(!(A.mutantrace_variation & DIGITIGRADE_VARIATION))
-				should_be_squished = TRUE
-		if(H.w_uniform && (H.w_uniform.body_parts_covered & LEGS)) //Check for snowflake jumpsuit
-			var/obj/item/clothing/under/U = H.w_uniform
-			if(!(U.mutantrace_variation & DIGITIGRADE_VARIATION))
-				should_be_squished = TRUE
-		if(H.shoes)
-			var/obj/item/clothing/shoes/S = H.shoes
-			if(!(S.mutantrace_variation & DIGITIGRADE_VARIATION))
-				should_be_squished = TRUE
-			if(should_be_squished)
-				S.adjusted = NORMAL_STYLE
-			else
-				S.adjusted = DIGITIGRADE_STYLE
-			H.update_inv_shoes()
-		if(O.use_digitigrade == FULL_DIGITIGRADE && should_be_squished)
-			O.use_digitigrade = SQUISHED_DIGITIGRADE
-			update_needed = TRUE
-		else if(O.use_digitigrade == SQUISHED_DIGITIGRADE && !should_be_squished)
-			O.use_digitigrade = FULL_DIGITIGRADE
-			update_needed = TRUE
-	if(update_needed)
-		H.update_body_parts()
-	if(not_digitigrade && (DIGITIGRADE in species_traits)) //Curse is lifted
-		species_traits -= DIGITIGRADE
 	if(!bodyparts_to_add)
 		return
 
@@ -1094,8 +1069,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					S = GLOB.wings_list[H.dna.features["wingsdetail"]]
 				if("wingsdetailopen")
 					S = GLOB.wings_open_list[H.dna.features["wingsdetail"]]
-				if("legs")
-					S = GLOB.legs_list[H.dna.features["legs"]]
 				if("moth_wings")
 					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
 				if("moth_wingsopen")
@@ -1336,7 +1309,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(num_legs < 2)
 				return FALSE
 			var/obj/item/clothing/shoes/S = I
-			if(istype(S) && ((!S && (DIGITIGRADE in species_traits)) || ((DIGITIGRADE in species_traits) ? S.xenoshoe == NO_DIGIT : S.xenoshoe == YES_DIGIT))) // Checks leg compatibilty with shoe digitigrade or not flag
+			if(istype(S) && (HAS_TRAIT(H, TRAIT_DIGITIGRADE) ? S.xenoshoe == NO_DIGIT : S.xenoshoe == YES_DIGIT)) // Checks leg compatibilty with shoe digitigrade or not flag
 				if(!disable_warning)
 					to_chat(H, span_warning("This footwear isn't compatible with your feet!"))
 				return FALSE
@@ -2727,7 +2700,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "band-aid",
 			SPECIES_PERK_NAME = "Brutal Weakness",
-			SPECIES_PERK_DESC = "[plural_form] are weak to brute damage.",
+			SPECIES_PERK_DESC = "[plural_form] are weak to bruising and brute damage.",
 		))
 
 	if(brutemod < 1)
@@ -2752,7 +2725,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "shield-alt",
 			SPECIES_PERK_NAME = "Fire Resilience",
-			SPECIES_PERK_DESC = "[plural_form] are resilient to flames, and burn damage.",
+			SPECIES_PERK_DESC = "[plural_form] are resilient to fire and burn damage.",
 		))
 
 	// Shock damage
@@ -2810,7 +2783,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(heatmod < 1/* || bodytemp_heat_damage_limit > BODYTEMP_HEAT_DAMAGE_LIMIT*/)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "thermometer-empty",
+			SPECIES_PERK_ICON = "thermometer-full",
 			SPECIES_PERK_NAME = "Heat Resilience",
 			SPECIES_PERK_DESC = "[plural_form] are resilient to hotter environments.",
 		))
@@ -2847,7 +2820,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "tint-slash",
-			SPECIES_PERK_NAME = "Bloodletted",
+			SPECIES_PERK_NAME = "Bloodless",
 			SPECIES_PERK_DESC = "[plural_form] do not have blood.",
 		))
 
@@ -2897,14 +2870,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(TRAIT_POWERHUNGRY in inherent_traits)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
-			SPECIES_PERK_ICON = "charging-station", //would prefer battery-bolt, but it doesn't show up
+			SPECIES_PERK_ICON = "battery-4", //would prefer battery-bolt, but it doesn't show up
 			SPECIES_PERK_NAME = "Power-Hungry",
 			SPECIES_PERK_DESC = "[plural_form] run off electricity rather than food.",
 		))
 	if(TRAIT_EASYDISMEMBER in inherent_traits)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-			SPECIES_PERK_ICON = "user-times",
+			SPECIES_PERK_ICON = "user-minus",
 			SPECIES_PERK_NAME = "Limbs Easily Dismembered",
 			SPECIES_PERK_DESC = "[plural_form] limbs are not secured well, and as such they are easily dismembered.",
 		))
@@ -2912,7 +2885,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(TRAIT_EASILY_WOUNDED in inherent_traits)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-			SPECIES_PERK_ICON = "user-times",
+			SPECIES_PERK_ICON = "user-injured",
 			SPECIES_PERK_NAME = "Easily Wounded",
 			SPECIES_PERK_DESC = "[plural_form] skin is very weak and fragile. They are much easier to apply serious wounds to.",
 		))
@@ -2936,7 +2909,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/create_pref_biotypes_perks()
 	var/list/to_add = list()
 
-	if(inherent_biotypes & MOB_UNDEAD)
+	if((inherent_biotypes & MOB_UNDEAD) && (TRAIT_NOBREATH in inherent_traits)) // We check NOBREATH so plasmamen don't get this
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "skull",
@@ -2952,6 +2925,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_NAME = "Robotic",
 			SPECIES_PERK_DESC = "[plural_form] have limbs comprised entirely of metal and circuitry, this will make standard surgery ineffective. \
 				However, this gives [plural_form] the ability to do self-maintenance with just simple tools.",
+		))
+
+	if(DIGITIGRADE in species_traits) // Intentionally vague as preterni have DIGITIGRADE, feel free to change this when that changes
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "shoe-prints",
+			SPECIES_PERK_NAME = "Nonstandard Limbs",
+			SPECIES_PERK_DESC = "[plural_form] have oddly shaped legs, and cannot fit into most standard footwear. Footwraps may be worn instead.",
 		))
 
 	return to_add
@@ -2980,9 +2961,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(length(bonus_languages))
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "comment",
-			SPECIES_PERK_NAME = "Native Speaker",
-			SPECIES_PERK_DESC = "Alongside [initial(common_language.name)], [plural_form] gain the ability to speak [english_list(bonus_languages)].",
+			SPECIES_PERK_ICON = "book",
+			SPECIES_PERK_NAME = "[english_list(bonus_languages)] Fluency",
+			SPECIES_PERK_DESC = "Alongside [initial(common_language.name)], [plural_form] can speak and understand [english_list(bonus_languages)].",
 		))
 
 	qdel(temp_holder)

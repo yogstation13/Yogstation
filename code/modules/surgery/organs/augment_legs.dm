@@ -5,8 +5,12 @@
 	icon_state = "implant-leg"
 	w_class = WEIGHT_CLASS_NORMAL
 
-	//to determine what type of implant for checking if both legs are the same
-	var/implant_type = "leg implant"
+	/// list of all the traits granted by this
+	var/list/added_traits = list()
+
+	/// list of all the abilities granted by this
+	var/list/ability_paths = list()
+
 	COOLDOWN_DECLARE(emp_notice)
 
 /obj/item/organ/cyberimp/leg/Initialize(mapload)
@@ -14,6 +18,50 @@
 	update_appearance(UPDATE_ICON)
 	SetSlotFromZone()
 
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------Insertion and removal--------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/obj/item/organ/cyberimp/leg/Insert(mob/living/carbon/M, special, drop_if_replaced, special_zone)
+	. = ..()
+	if(HasBoth())
+		AddEffect()
+		M.add_traits(added_traits, type)
+		for(var/ability in ability_paths)
+			var/datum/action/check = locate(ability) in M.actions
+			if(check)
+				continue
+			check = new ability(M)
+			check.Grant(M)
+
+/obj/item/organ/cyberimp/leg/Remove(mob/living/carbon/M, special)
+	RemoveEffect()
+	M.remove_traits(added_traits, type)
+	for(var/ability in ability_paths)
+		var/datum/action/check = locate(ability) in M.actions
+		if(!check || !istype(check))
+			continue
+		check.Remove(M)
+		qdel(check)
+	return ..()
+
+/obj/item/organ/cyberimp/leg/proc/HasBoth()
+	if(owner.getorganslot(ORGAN_SLOT_RIGHT_LEG_AUG) && owner.getorganslot(ORGAN_SLOT_LEFT_LEG_AUG))
+		var/obj/item/organ/cyberimp/leg/left = owner.getorganslot(ORGAN_SLOT_LEFT_LEG_AUG)
+		var/obj/item/organ/cyberimp/leg/right = owner.getorganslot(ORGAN_SLOT_RIGHT_LEG_AUG)
+		if(left.name == right.name)
+			return TRUE
+	return FALSE
+
+/// override for special stuff
+/obj/item/organ/cyberimp/leg/proc/AddEffect()
+	return
+
+/obj/item/organ/cyberimp/leg/proc/RemoveEffect()
+	return
+
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------EMP effect-------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /obj/item/organ/cyberimp/leg/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
@@ -45,20 +93,13 @@
 
 /obj/item/organ/cyberimp/leg/proc/reenableleg()
 	var/obj/item/bodypart/L = owner.get_bodypart(zone)
-	if(!L)	//You got emped and then lost the leg in those 10 seconds? impressive
+	if(!L || QDELETED(L))	//You got emped and then lost the leg in those 10 seconds? impressive
 		return
 
 	L.set_disabled(FALSE)
-
-/obj/item/organ/cyberimp/leg/proc/SetSlotFromZone()
-	switch(zone)
-		if(BODY_ZONE_L_LEG)
-			slot = ORGAN_SLOT_LEFT_LEG_AUG
-		if(BODY_ZONE_R_LEG)
-			slot = ORGAN_SLOT_RIGHT_LEG_AUG
-		else
-			CRASH("Invalid zone for [type]")
-
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------EMP effect-------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /obj/item/organ/cyberimp/leg/update_icon(updates=ALL)
 	. = ..()
 	if(zone == BODY_ZONE_R_LEG)
@@ -84,68 +125,45 @@
 	to_chat(user, span_notice("You modify [src] to be installed on the [zone == BODY_ZONE_R_LEG ? "right" : "left"] leg."))
 	update_appearance(UPDATE_ICON)
 
-/obj/item/organ/cyberimp/leg/Insert(mob/living/carbon/M, special, drop_if_replaced, special_zone)
-	. = ..()
-	if(HasBoth())
-		AddEffect()
-
-/obj/item/organ/cyberimp/leg/Remove(mob/living/carbon/M, special)
-	RemoveEffect()
-	. = ..()
-
-/obj/item/organ/cyberimp/leg/proc/HasBoth()
-	if(owner.getorganslot(ORGAN_SLOT_RIGHT_LEG_AUG) && owner.getorganslot(ORGAN_SLOT_LEFT_LEG_AUG))
-		var/obj/item/organ/cyberimp/leg/left = owner.getorganslot(ORGAN_SLOT_LEFT_LEG_AUG)
-		var/obj/item/organ/cyberimp/leg/right = owner.getorganslot(ORGAN_SLOT_RIGHT_LEG_AUG)
-		if(left.implant_type == right.implant_type)
-			return TRUE
-	return FALSE
-
-/obj/item/organ/cyberimp/leg/proc/AddEffect()
-	return
-
-/obj/item/organ/cyberimp/leg/proc/RemoveEffect()
-	return
-
-//------------water noslip implant
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Specific implants---------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Water no-slip
+ * functionally identical to galoshes
+ */
 /obj/item/organ/cyberimp/leg/galosh
 	name = "antislip implant"
 	desc = "An implant that uses sensors and motors to detect when you are slipping and attempt to prevent it. It probably won't help if the floor is too slippery."
-	implant_type = "noslipwater"
+	added_traits = list(
+		TRAIT_NOSLIPWATER,
+		TRAIT_NOSLIPICE
+	)
 
 /obj/item/organ/cyberimp/leg/galosh/l
 	zone = BODY_ZONE_L_LEG
 
-/obj/item/organ/cyberimp/leg/galosh/AddEffect()
-	ADD_TRAIT(owner, TRAIT_NOSLIPWATER, "Antislip_implant")
-	ADD_TRAIT(owner, TRAIT_NOSLIPICE, "Antislip_implant")
-
-/obj/item/organ/cyberimp/leg/galosh/RemoveEffect()
-	REMOVE_TRAIT(owner, TRAIT_NOSLIPWATER, "Antislip_implant")
-	REMOVE_TRAIT(owner, TRAIT_NOSLIPICE, "Antislip_implant")
-
-//------------true noslip implant
+/**
+ * full noslip
+ * for antag stuff
+ */
 /obj/item/organ/cyberimp/leg/noslip
 	name = "advanced antislip implant"
 	desc = "An implant that uses advanced sensors to detect when you are slipping and utilize motors in order to prevent it."
 	syndicate_implant = TRUE
-	implant_type = "noslipall"
+	added_traits = list(
+		TRAIT_NOSLIPALL
+	)
 
 /obj/item/organ/cyberimp/leg/noslip/l
 	zone = BODY_ZONE_L_LEG
 
-/obj/item/organ/cyberimp/leg/noslip/AddEffect()
-	ADD_TRAIT(owner, TRAIT_NOSLIPALL, "Noslip_implant")
-
-/obj/item/organ/cyberimp/leg/noslip/RemoveEffect()
-	REMOVE_TRAIT(owner, TRAIT_NOSLIPALL, "Noslip_implant")
-
-
-//------------clown shoes implant
+/**
+ * Clown shoes implant, functions much like how the shoes work, but without being able to turn them off
+ */
 /obj/item/organ/cyberimp/leg/clownshoes
 	name = "clownshoes implant"
 	desc = "Advanced clown technology has allowed the implanting of bananium to allow for heightened prankage."
-	implant_type = "clownshoes"
 	var/datum/component/waddle
 	var/stepcount = 0
 
@@ -170,27 +188,26 @@
 		playsound(owner, pick('sound/effects/clownstep1.ogg','sound/effects/clownstep2.ogg'), 50, 1, -1)
 	stepcount ++
 
-//------------dash boots implant
+/**
+ * Functions just like the miner's jumpboots
+ */
 /obj/item/organ/cyberimp/leg/jumpboots
 	name = "jumpboots implant"
 	desc = "An implant with a specialized propulsion system for rapid foward movement."
-	implant_type = "jumpboots"
-	var/datum/action/cooldown/boost/implant_ability
+
+	added_traits = list(
+		NOSLIP_ICE
+		)
+	ability_paths = list(
+		/datum/action/cooldown/boost
+		)
 
 /obj/item/organ/cyberimp/leg/jumpboots/l
 	zone = BODY_ZONE_L_LEG
 
-/obj/item/organ/cyberimp/leg/jumpboots/AddEffect()
-	ADD_TRAIT(owner, TRAIT_NOSLIPICE, "Jumpboot_implant")
-	implant_ability = new(src)
-	implant_ability.Grant(owner)
-
-/obj/item/organ/cyberimp/leg/jumpboots/RemoveEffect()
-	REMOVE_TRAIT(owner, TRAIT_NOSLIPICE, "Jumpboot_implant")
-	if(implant_ability)
-		implant_ability.Remove(owner)
-
-//surf_ss13
+/**
+ * also literally used for the jumpboots themselves
+ */
 /datum/action/cooldown/boost
 	name = "Dash"
 	desc = "Dash forward."
@@ -226,23 +243,16 @@
 /datum/action/cooldown/boost/proc/unstun(mob/living/stunned)
 	REMOVE_TRAIT(stunned, TRAIT_IMMOBILIZED, REF(src))
 
-//------------wheelies implant
+/**
+ * functions like the wicked sick wheelies
+ */
 /obj/item/organ/cyberimp/leg/wheelies
 	name = "wheelies implant"
 	desc = "Wicked sick wheelies, but now they're not in the heel of your shoes, they just in your heels."
-	implant_type = "wheelies"
-	var/datum/action/innate/wheelies/implant_ability
+	ability_paths = list(/datum/action/innate/wheelies)
 
 /obj/item/organ/cyberimp/leg/wheelies/l
 	zone = BODY_ZONE_L_LEG
-
-/obj/item/organ/cyberimp/leg/wheelies/AddEffect()
-	implant_ability = new
-	implant_ability.Grant(owner)
-
-/obj/item/organ/cyberimp/leg/wheelies/RemoveEffect()
-	if(implant_ability)
-		implant_ability.Remove(owner)
 
 /datum/action/innate/wheelies
 	name = "Toggle Wheely-Heel's Wheels"
@@ -250,21 +260,27 @@
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "wheelys"
 	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS|AB_CHECK_LYING
+
+	/// Keeps track of the owner of the ability
 	var/mob/living/carbon/human/holder
-	var/wheelToggle = FALSE //False means wheels are not popped out
-	var/obj/vehicle/ridden/scooter/wheelys/W
+	/// Boolean for checking if the wheels are deployed
+	var/wheelToggle = FALSE
+	/// keeps track of the vehicle currently created
+	var/obj/vehicle/ridden/scooter/W
+	/// Type of scooter to create for this ability
+	var/scooter_path = /obj/vehicle/ridden/scooter/wheelys
 
 /datum/action/innate/wheelies/Grant(mob/user)
 	. = ..()
 	holder = user
-	W = new /obj/vehicle/ridden/scooter/wheelys(null)
+	W = new scooter_path(null)
 
 /datum/action/innate/wheelies/Remove(mob/M)
 	if(wheelToggle)
 		W.unbuckle_mob(holder)
 		wheelToggle = FALSE
 	QDEL_NULL(W)
-	. = ..()
+	return ..()
 
 /datum/action/innate/wheelies/Activate()
 	if(!(W.is_occupant(holder)))
@@ -277,122 +293,50 @@
 	W.buckle_mob(holder)
 	wheelToggle = TRUE
 
-//------------Airshoes implant
+/**
+ * functions like the traitor item, airshoes, by well known "coder" Lazenn
+ */
 /obj/item/organ/cyberimp/leg/airshoes
 	name = "advanced propulsion implant"
 	desc = "An implant that uses propulsion technology to keep you above the ground and let you move faster."
 	syndicate_implant = TRUE
-	implant_type = "airshoes"
-	var/datum/action/cooldown/boost/implant_dash
-	var/datum/action/innate/airshoes/implant_scooter
+
+	added_traits = list(
+		TRAIT_NOSLIPICE
+	)
+
+	ability_paths = list(
+		/datum/action/cooldown/boost/airshoes,
+		/datum/action/innate/wheelies/airshoes
+		)
 
 /obj/item/organ/cyberimp/leg/airshoes/l
 	zone = BODY_ZONE_L_LEG
 
-/obj/item/organ/cyberimp/leg/airshoes/AddEffect()
-	ADD_TRAIT(owner, TRAIT_NOSLIPICE, "Airshoes_implant")
-	implant_dash = new
-	implant_dash.Grant(owner)
-	implant_dash.jumpdistance = 7
-	implant_dash.jumpspeed = 5//this makes it function like the airshoes
-	implant_scooter = new
-	implant_scooter.Grant(owner)
+/datum/action/cooldown/boost/airshoes //this makes it function like the airshoes
+	button_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "thrust"
+	jumpdistance = 7
+	jumpspeed = 5
 
-/obj/item/organ/cyberimp/leg/airshoes/RemoveEffect()
-	REMOVE_TRAIT(owner, TRAIT_NOSLIPICE, "Airshoes_implant")
-	if(implant_dash)
-		implant_dash.Remove(owner)
-	if(implant_scooter)
-		implant_scooter.Remove(owner)
-
-/datum/action/innate/airshoes
+/datum/action/innate/wheelies/airshoes //different scooter
 	name = "Toggle thrust on air shoes."
 	desc = "Switch between walking and hovering."
 	button_icon = 'icons/mob/actions/actions_items.dmi'
-	button_icon_state = "airshoes_a"
-	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS|AB_CHECK_LYING
-	var/mob/living/carbon/human/holder
-	var/wheelToggle = FALSE //False means wheels are not popped out
-	var/obj/vehicle/ridden/scooter/airshoes/W
+	button_icon_state = "airshoes_d"
+	scooter_path = /obj/vehicle/ridden/scooter/airshoes
 
-/datum/action/innate/airshoes/Grant(mob/user)
+/datum/action/innate/wheelies/airshoes/Activate()
 	. = ..()
-	holder = user
-	W = new /obj/vehicle/ridden/scooter/airshoes(null)
+	button_icon_state = wheelToggle ? "airshoes_d" : "airshoes_a"
 
-/datum/action/innate/airshoes/Remove(mob/M)
-	if(wheelToggle)
-		W.unbuckle_mob(holder)
-		wheelToggle = FALSE
-	QDEL_NULL(W)
-	. = ..()
-
-/datum/action/innate/airshoes/Activate()
-	if(!(W.is_occupant(holder)))
-		wheelToggle = FALSE
-	if(wheelToggle)
-		W.unbuckle_mob(holder)
-		wheelToggle = FALSE
-		return
-	W.forceMove(get_turf(holder))
-	W.buckle_mob(holder)
-	wheelToggle = TRUE
-
-//------------magboot implant
+/**
+ * different scooter, should probably rewrite the wheelies one so this can just be a subtype at some point
+ */
 /obj/item/organ/cyberimp/leg/magboot
 	name = "magboot implant"
 	desc = "Integrated maglock implant, allows easy movement in a zero-gravity environment."
-	implant_type = "magboot"
-	var/datum/action/innate/magboots/implant_ability
+	ability_paths = list(/datum/action/cooldown/spell/toggle/maglock/implant)
 
 /obj/item/organ/cyberimp/leg/magboot/l
 	zone = BODY_ZONE_L_LEG
-
-/obj/item/organ/cyberimp/leg/magboot/AddEffect()
-	implant_ability = new
-	implant_ability.Grant(owner)
-
-/obj/item/organ/cyberimp/leg/magboot/RemoveEffect()
-	if(implant_ability)
-		implant_ability.Remove(owner)
-	owner.remove_movespeed_modifier("Magbootimplant")
-
-/datum/action/innate/magboots
-	var/lockdown = FALSE
-	name = "Maglock"
-	check_flags = AB_CHECK_CONSCIOUS
-	button_icon_state = "magboots0"
-	button_icon = 'icons/obj/clothing/shoes.dmi'
-	background_icon_state = "bg_default"
-
-/datum/action/innate/magboots/Grant(mob/M)
-	if(!ishuman(M))
-		return
-	. = ..()
-	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(UpdateSpeed))
-
-/datum/action/innate/magboots/Remove(mob/M)
-	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
-	. = ..()
-
-/datum/action/innate/magboots/Trigger()
-	if(!lockdown)
-		ADD_TRAIT(owner, TRAIT_NOSLIPWATER, "maglock implant")
-		ADD_TRAIT(owner, TRAIT_NOSLIPICE, "maglock_implant")
-		ADD_TRAIT(owner, TRAIT_MAGBOOTS, "maglock implant")
-		button_icon_state = "magboots1"
-	else
-		REMOVE_TRAIT(owner, TRAIT_NOSLIPWATER, "maglock implant")
-		REMOVE_TRAIT(owner, TRAIT_NOSLIPICE, "maglock_implant")
-		REMOVE_TRAIT(owner, TRAIT_MAGBOOTS, "maglock implant")
-		button_icon_state = "magboots0"
-	build_all_button_icons()
-	lockdown = !lockdown
-	to_chat(owner, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
-	owner.update_gravity(owner.has_gravity())
-
-/datum/action/innate/magboots/proc/UpdateSpeed()
-	if(lockdown && !HAS_TRAIT(owner, TRAIT_IGNORESLOWDOWN) && owner.has_gravity())
-		owner.add_movespeed_modifier("Magbootimplant", update=TRUE, priority=100, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
-	else if(owner.has_movespeed_modifier("Magbootimplant"))
-		owner.remove_movespeed_modifier("Magbootimplant")

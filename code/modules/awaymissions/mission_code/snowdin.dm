@@ -178,9 +178,9 @@
 	if (isliving(thing)) //objects are unaffected for now
 		. = TRUE
 		var/mob/living/L = thing
-		if(L.movement_type & FLYING)
+		if(L.movement_type & (FLYING|FLOATING))
 			return	//YOU'RE FLYING OVER IT
-		if(WEATHER_SNOW in L.weather_immunities)
+		if(L.weather_immunities & WEATHER_SNOW)
 			return
 
 		var/buckle_check = L.buckling
@@ -193,7 +193,7 @@
 
 		else if(isliving(buckle_check))
 			var/mob/living/live = buckle_check
-			if(WEATHER_SNOW in live.weather_immunities)
+			if(live.weather_immunities & WEATHER_SNOW)
 				return
 
 		L.adjustFireLoss(2)
@@ -214,7 +214,7 @@
 						robo_parts += NN
 					if(NN.body_zone == BODY_ZONE_HEAD) //don't add the head to the list, just transform them into an plasmaman when it's the only thing left
 						continue
-					if(NN.status == BODYPART_ORGANIC && !(NN.species_id == "plasmaman" || NN.species_id == "husk")) //getting every organic, non-plasmaman limb (augments/androids are immune to this)
+					if(NN.status == BODYPART_ORGANIC && !(NN.species_id == SPECIES_PLASMAMAN || NN.species_id == "husk")) //getting every organic, non-plasmaman limb (augments/androids are immune to this)
 						plasma_parts += NN
 
 				if(prob(35)) //checking if the delay is over & if the victim actually has any parts to nom
@@ -229,7 +229,7 @@
 						else
 							PP.visible_message(span_warning("[L]'s [NB] melts down to the bone!"))
 						var/obj/item/bodypart/replacement_part = new NB.type
-						replacement_part.species_id = "plasmaman"
+						replacement_part.species_id = SPECIES_PLASMAMAN
 						replacement_part.original_owner = "plasma river"
 						replacement_part.replace_limb(PP)
 						qdel(NB)

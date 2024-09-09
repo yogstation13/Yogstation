@@ -51,8 +51,6 @@
 	tool_behaviour = 0
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/action(atom/target, mob/living/user, params)
-	if(!action_checks(target))
-		return
 	if(!cargo_holder)
 		return
 	
@@ -133,8 +131,6 @@
 	real_clamp = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill/action(atom/target, mob/living/user, params)
-	if(!action_checks(target))
-		return
 	if(!cargo_holder)
 		return
 	if(isobj(target))
@@ -220,9 +216,6 @@
 	reagents.add_reagent(/datum/reagent/firefighting_foam, 1000)
 
 /obj/item/mecha_parts/mecha_equipment/extinguisher/action(atom/target) //copypasted from extinguisher. TODO: Rewrite from scratch.
-	if(!action_checks(target))
-		return
-
 	if(istype(target, /obj/structure/reagent_dispensers/foamtank) && get_dist(chassis,target) <= 1)
 		var/obj/structure/reagent_dispensers/WT = target
 		WT.reagents.trans_to(src, 1000)
@@ -440,6 +433,25 @@
 	else
 		STOP_PROCESSING(SSobj, t_scan)
 
+/obj/item/mecha_parts/mecha_equipment/mag_treads
+	name = "magnetic treads"
+	desc = "A set of magnetic treads for ensuring an exosuit stays secured during EVA."
+	icon_state = "mecha_magtreads"
+	selectable = FALSE
+
+/obj/item/mecha_parts/mecha_equipment/mag_treads/attach(obj/mecha/new_mecha)
+	. = ..()
+	RegisterSignal(new_mecha, COMSIG_ATOM_HAS_GRAVITY, PROC_REF(grav_check))
+
+/obj/item/mecha_parts/mecha_equipment/mag_treads/detach(atom/moveto)
+	UnregisterSignal(chassis, COMSIG_ATOM_HAS_GRAVITY)
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/mag_treads/proc/grav_check(obj/mecha/attached_mech, turf/location, list/gravs)
+	if(isgroundlessturf(location))
+		return
+	gravs.Add(STANDARD_GRAVITY)
+
 /obj/item/mecha_parts/mecha_equipment/cable_layer
 	name = "cable layer"
 	desc = "Equipment for engineering exosuits. Lays cable along the exosuit's path."
@@ -475,8 +487,6 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/cable_layer/action(obj/item/stack/cable_coil/target)
-	if(!action_checks(target))
-		return
 	if(istype(target) && target.amount)
 		var/cur_amount = cable? cable.amount : 0
 		var/to_load = max(max_cable - cur_amount,0)
@@ -628,7 +638,6 @@
 	N.update_integrity(N.max_integrity * M.get_integrity() / M.max_integrity) //This is not a repair tool
 	if (M.name != "\improper APLU MK-I \"Ripley\"")
 		N.name = M.name
-	M.wreckage = 0
 	qdel(M)
 	playsound(get_turf(N),'sound/items/ratchet.ogg',50,1)
 	return

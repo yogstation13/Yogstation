@@ -7,7 +7,7 @@
 /obj/structure/sign/departments/minsky/supply/mining{
 	pixel_y = -32
 	},
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/mine/eva_secondary)
 "ak" = (
 /turf/open/indestructible/grass/sand,
@@ -24,7 +24,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
 	},
-/mob/living/simple_animal/turtle,
+/mob/living/simple_animal/triceratops,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "av" = (
@@ -82,8 +82,7 @@
 /area/mine/storage)
 "aX" = (
 /obj/machinery/door/airlock/medical/glass{
-	name = "Infirmary";
-	req_one_access_txt = "54;63"
+	name = "Infirmary"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -100,6 +99,9 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/any/supply/mining_station,
+/obj/effect/mapping_helpers/airlock/access/any/security/basic,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
@@ -160,7 +162,7 @@
 "bx" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/closet/secure_closet/contraband/armory{
-	req_access = list(63)
+	req_access = list("sec_basic")
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -845,7 +847,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/mine/eva)
 "hH" = (
 /obj/machinery/door/airlock{
@@ -954,8 +956,7 @@
 /area/mine/living_quarters)
 "iz" = (
 /obj/machinery/door/airlock/security/glass{
-	name = "Security Office";
-	req_access_txt = "63"
+	name = "Security Office"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -963,6 +964,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "iC" = (
@@ -1183,7 +1185,7 @@
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "lK" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/template_noop)
 "lM" = (
 /obj/structure/disposalpipe/segment{
@@ -1342,7 +1344,7 @@
 /turf/open/floor/plasteel,
 /area/mine/eva)
 "oU" = (
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/deep_sand,
 /area/jungleland/explored)
 "pc" = (
 /obj/machinery/space_heater,
@@ -1386,13 +1388,13 @@
 /area/mine/break_room)
 "px" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Mining Station Maintenance";
-	req_access_txt = "48"
+	name = "Mining Station Maintenance"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/supply/mining_station,
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
 "pB" = (
@@ -1440,14 +1442,14 @@
 /obj/machinery/door/airlock/external{
 	glass = 1;
 	name = "Mining External Airlock";
-	opacity = 0;
-	req_access_txt = "54"
+	opacity = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/supply/mining_station,
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
 "qh" = (
@@ -1498,13 +1500,13 @@
 /obj/machinery/door/airlock/external{
 	glass = 1;
 	name = "Mining External Airlock";
-	opacity = 0;
-	req_access_txt = "54"
+	opacity = 0
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/turf_decal/siding/wideplating{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/supply/mining_station,
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
 "qR" = (
@@ -1832,9 +1834,11 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/medical/glass{
-	name = "Infirmary";
-	req_one_access_txt = "54;63"
+	name = "Infirmary"
 	},
+/obj/effect/mapping_helpers/airlock/access/any/supply/mining_station,
+/obj/effect/mapping_helpers/airlock/access/any/security/basic,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
 "wU" = (
@@ -2017,7 +2021,7 @@
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "Ap" = (
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/jungleland/explored)
 "Ar" = (
 /obj/machinery/vending/boozeomat,
@@ -2185,8 +2189,7 @@
 /area/mine/break_room)
 "BC" = (
 /obj/machinery/door/airlock/mining{
-	name = "Mining Station Storage";
-	req_access_txt = "48"
+	name = "Mining Station Storage"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -2203,6 +2206,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/supply/mining_station,
 /turf/open/floor/plasteel,
 /area/mine/production)
 "BM" = (
@@ -2248,7 +2252,7 @@
 /area/mine/infirmary)
 "Cv" = (
 /obj/structure/lattice/catwalk,
-/turf/open/water/toxic_pit,
+/turf/open/water/smooth/toxic_pit,
 /area/jungleland/explored)
 "CE" = (
 /obj/effect/turf_decal/siding/wood/corner{
@@ -2600,12 +2604,12 @@
 /obj/machinery/door/airlock/external{
 	glass = 1;
 	name = "Mining External Airlock";
-	opacity = 0;
-	req_access_txt = "54"
+	opacity = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/access/all/supply/mining_station,
 /turf/open/floor/plasteel,
 /area/mine/eva)
 "GT" = (
@@ -2728,26 +2732,28 @@
 /area/mine/maintenance)
 "Je" = (
 /obj/machinery/door/airlock/mining{
-	name = "Mining Station Storage";
-	req_access_txt = "48"
+	name = "Mining Station Storage"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/supply/mining_station,
 /turf/open/floor/plasteel/dark/side,
 /area/mine/maintenance)
 "Ji" = (
-/obj/machinery/door/window/eastleft{
-	req_access_txt = "48"
-	},
-/obj/machinery/door/window/westleft{
-	req_access_txt = "48"
-	},
+/obj/machinery/door/window/eastleft,
+/obj/machinery/door/window/westleft,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/all/supply/mining_station{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/windoor/access/all/supply/mining_station{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -2768,6 +2774,12 @@
 /obj/machinery/door/airlock/medical{
 	name = "Recovery Room"
 	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/access/any/supply/mining_station,
+/obj/effect/mapping_helpers/airlock/access/any/security/basic,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
@@ -2798,8 +2810,7 @@
 /obj/machinery/door/airlock/external{
 	glass = 1;
 	name = "Mining External Airlock";
-	opacity = 0;
-	req_access_txt = "54"
+	opacity = 0
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -2808,6 +2819,7 @@
 	dir = 8
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
+/obj/effect/mapping_helpers/airlock/access/all/supply/mining_station,
 /turf/open/floor/plating,
 /area/mine/storage)
 "Kf" = (
@@ -3156,19 +3168,18 @@
 /obj/machinery/door/airlock/external{
 	glass = 1;
 	name = "Mining External Airlock";
-	opacity = 0;
-	req_access_txt = "54"
+	opacity = 0
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/wideplating,
+/obj/effect/mapping_helpers/airlock/access/all/supply/mining_station,
 /turf/open/floor/plasteel,
 /area/mine/eva)
 "PS" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Mining Station Maintenance";
-	req_access_txt = "48"
+	name = "Mining Station Maintenance"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3185,6 +3196,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/supply/mining_station,
 /turf/open/floor/plasteel/dark/side{
 	dir = 8
 	},
@@ -3207,8 +3219,7 @@
 /area/mine/maintenance)
 "Qv" = (
 /obj/machinery/door/airlock/mining/glass{
-	name = "Mining Station EVA";
-	req_access_txt = "54"
+	name = "Mining Station EVA"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -3222,6 +3233,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/mapping_helpers/airlock/access/all/supply/mining_station,
 /turf/open/floor/plasteel,
 /area/mine/eva)
 "QE" = (
@@ -3304,6 +3316,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/medical,
+/obj/effect/mapping_helpers/airlock/access/any/supply/mining_station,
+/obj/effect/mapping_helpers/airlock/access/any/security/basic,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
 "RR" = (
@@ -3370,8 +3385,7 @@
 /area/mine/break_room)
 "Tf" = (
 /obj/machinery/door/airlock/atmos/glass{
-	name = "Mining Station Atmospherics";
-	req_access_txt = "48"
+	name = "Mining Station Atmospherics"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -3379,6 +3393,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/supply/mining_station,
 /turf/open/floor/plasteel/dark/side{
 	dir = 8
 	},
@@ -3399,7 +3414,9 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/machinery/door/airlock/engineering/glass,
+/obj/machinery/door/airlock/engineering/glass{
+	name = "Vacant Room"
+	},
 /turf/open/floor/plasteel,
 /area/mine/vacant)
 "TG" = (

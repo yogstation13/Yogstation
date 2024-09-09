@@ -7,12 +7,16 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of personnel"
-	added_access = list()
-	base_access = list(ACCESS_MANUFACTURING)
 	alt_titles = list("Salesman", "Gift Shop Attendent", "Retail Worker")
+
 	outfit = /datum/outfit/job/clerk
+
+	added_access = list(ACCESS_MAINT_TUNNELS)
+	base_access = list(ACCESS_SERVICE, ACCESS_CLERK)
+
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
+
 	display_order = JOB_DISPLAY_ORDER_CLERK
 	minimal_character_age = 18 //Capitalism doesn't care about age
 

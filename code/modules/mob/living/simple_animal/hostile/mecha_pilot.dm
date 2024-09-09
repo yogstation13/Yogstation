@@ -163,7 +163,7 @@
 		var/list/possible_weapons = get_mecha_equip_by_flag(MECHA_RANGED)
 		if(possible_weapons.len)
 			var/obj/item/mecha_parts/mecha_equipment/ME = pick(possible_weapons) //so we don't favor mecha.equipment[1] forever
-			if(ME.action(A))
+			if(ME.action_checks(A) && ME.action(A))
 				ME.start_cooldown()
 				return
 
@@ -251,7 +251,7 @@
 		mecha.aimob_exit_mech(src)
 	..()
 
-/mob/living/simple_animal/hostile/syndicate/mecha_pilot/gib()
+/mob/living/simple_animal/hostile/syndicate/mecha_pilot/gib(no_brain, no_organs, no_bodyparts, no_items)
 	if(mecha)
 		mecha.aimob_exit_mech(src)
 	..()

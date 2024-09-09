@@ -11,7 +11,7 @@
 	obj_damage = 400
 	light_range = 3
 	faction = list("mining", "boss")
-	weather_immunities = list(WEATHER_LAVA, WEATHER_ASH)
+	weather_immunities = ALL
 	movement_type = FLYING
 	robust_searching = TRUE
 	ranged_ignores_vision = TRUE
@@ -101,7 +101,7 @@
 /mob/living/simple_animal/hostile/megafauna/proc/spawn_crusher_loot()
 	loot = crusher_loot
 
-/mob/living/simple_animal/hostile/megafauna/gib()
+/mob/living/simple_animal/hostile/megafauna/gib(no_brain, no_organs, no_bodyparts, no_items)
 	if(health > 0)
 		return
 	else

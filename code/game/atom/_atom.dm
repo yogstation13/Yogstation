@@ -426,10 +426,7 @@
 		playsound(src, P.hitsound, 50, 1)
 		visible_message(span_danger("[src] is hit by \a [P]!"), null, null, COMBAT_MESSAGE_RANGE)
 		if(!QDELETED(src)) //Bullet on_hit effect might have already destroyed this object
-			var/demolition_mult = P.demolition_mod
-			if(istype(src, /obj/mecha) && P.demolition_mod != 1)	//snowflake damage checks for mechs
-				demolition_mult = istype(src, /obj/mecha/combat) ? min(1, (1 + P.demolition_mod)/2) : (1 + P.demolition_mod)/2
-			take_damage(P.damage * demolition_mult, P.damage_type, P.armor_flag, 0, turn(P.dir, 180), P.armour_penetration)
+			take_damage(P.damage * P.demolition_mod, P.damage_type, P.armor_flag, 0, turn(P.dir, 180), P.armour_penetration)
 
 ///Return true if we're inside the passed in atom
 /atom/proc/in_contents_of(container)//can take class or object instance as argument

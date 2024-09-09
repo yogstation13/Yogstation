@@ -1,5 +1,5 @@
 /obj/structure/flora
-	resistance_flags = FLAMMABLE
+	resistance_flags = FLAMMABLE | UNACIDABLE
 	max_integrity = 150
 	anchored = TRUE
 
@@ -127,10 +127,6 @@
 	desc = "A true feat of strength, almost as good as last year."
 	icon_state = "anchored_rod"
 	anchored = TRUE
-
-/obj/structure/festivus/erp
-	name = "pole"
-	desc = "Don't think too hard about what it'll be used for."
 
 /obj/structure/flora/tree/dead/Initialize(mapload)
 	icon_state = "tree_[rand(1, 6)]"
@@ -379,7 +375,7 @@
 	icon_state = "basalt"
 	desc = "A volcanic rock. Pioneers used to ride these babies for miles."
 	icon = 'icons/obj/flora/rocks.dmi'
-	resistance_flags = FIRE_PROOF
+	resistance_flags = parent_type::resistance_flags | FIRE_PROOF
 	density = TRUE
 	var/obj/item/stack/mineResult = /obj/item/stack/ore/glass/basalt
 

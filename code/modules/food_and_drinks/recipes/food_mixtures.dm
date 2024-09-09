@@ -1,4 +1,5 @@
 /datum/crafting_recipe/food
+	time = 1.5 SECONDS //this is closer to assembly than mechanical crafting
 	var/real_parts
 	/// A rough equivilance for how much nutrition this recipe's result will provide
 	var/total_nutriment_factor = 0
@@ -69,14 +70,14 @@
 
 /datum/chemical_reaction/coffee
 	name = "Coffee"
-	id = /datum/reagent/consumable/coffee
-	results = list(/datum/reagent/consumable/coffee = 5)
+	id = /datum/reagent/consumable/coffee/hot
+	results = list(/datum/reagent/consumable/coffee/hot = 5)
 	required_reagents = list(/datum/reagent/toxin/coffeepowder = 1, /datum/reagent/water = 5)
 
 /datum/chemical_reaction/tea
 	name = "Tea"
-	id = /datum/reagent/consumable/tea
-	results = list(/datum/reagent/consumable/tea = 5)
+	id = /datum/reagent/consumable/tea/hot
+	results = list(/datum/reagent/consumable/tea/hot = 5)
 	required_reagents = list(/datum/reagent/toxin/teapowder = 1, /datum/reagent/water = 5)
 
 /datum/chemical_reaction/soysauce

@@ -1,8 +1,8 @@
 //Subtype of human
 /datum/species/human/felinid
 	name = "Felinid Human"
-	id = "felinid"
-	limbs_id = "human"
+	id = SPECIES_FELINE
+	limbs_id = SPECIES_HUMAN
 	attack_verbs = list("slash")
 	attack_effect = ATTACK_EFFECT_CLAW
 	attack_sound = 'sound/weapons/slash.ogg'
@@ -113,7 +113,7 @@
 		purrbation_remove(H, silent)
 		. = FALSE
 
-/proc/purrbation_toggle_onlyhumans(mob/living/carbon/human/H, silent = FALSE) //same as above but doesn't work on nonhumans - used by donor purrbation to reduce *accidental* double-cursed double-mutants
+/proc/purrbation_toggle_onlyhumans(mob/living/carbon/human/H, silent = FALSE) //same as above but doesn't work on nonhumans - used by donor purrbation to reduce *accidental* double-cursed double-mutants //accidental my ASS they knew what they signed up for and they LIKED IT
 	if(!ishumanbasic(H))
 		return
 	if(!iscatperson(H))

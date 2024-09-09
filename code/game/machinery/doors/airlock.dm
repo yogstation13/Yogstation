@@ -68,7 +68,7 @@
 	smoothing_groups = SMOOTH_GROUP_AIRLOCK
 
 	FASTDMM_PROP(\
-		pinned_vars = list("req_access_txt", "req_one_access_txt", "name")\
+		pinned_vars = list("req_access", "req_one_access", "name")\
 	)
 
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN
@@ -197,38 +197,6 @@
 		panel_open = TRUE
 	if(cut_wires_on_break)
 		wires.cut_all()
-
-/obj/machinery/door/airlock/LateInitialize()
-	. = ..()
-	if(cyclelinkedx || cyclelinkedy)	//yogs start
-		cyclelinkairlock_target()
-	else
-		if(cyclelinkeddir)
-			cyclelinkairlock()		//yogs end
-	if(abandoned)
-		var/outcome = rand(1,100)
-		switch(outcome)
-			if(1 to 9)
-				var/turf/here = get_turf(src)
-				for(var/obj/machinery/door/firedoor/FD in here)
-					qdel(FD)
-				for(var/turf/closed/T in range(2, src))
-					here.place_on_top(T.type)
-					qdel(src)
-					return
-				here.place_on_top(/turf/closed/wall)
-				qdel(src)
-				return
-			if(10 to 11)
-				lights = FALSE
-				locked = TRUE
-			if(12 to 15)
-				locked = TRUE
-			if(16 to 23)
-				welded = TRUE
-			if(24 to 30)
-				panel_open = TRUE
-	update_appearance(UPDATE_ICON)
 
 /obj/machinery/door/airlock/proc/rebuild_parts()
 	if(part_overlays)
@@ -1373,6 +1341,7 @@
 			locked = !locked
 		if(welded)
 			welded = !welded
+	SEND_SIGNAL(src, COMSIG_AIRLOCK_OPEN, forced)
 	operating = TRUE
 	update_icon(state = AIRLOCK_OPENING, override = TRUE)
 	sleep(0.1 SECONDS)
@@ -1389,6 +1358,7 @@
 	if(delayed_close_requested)
 		delayed_close_requested = FALSE
 		addtimer(CALLBACK(src, PROC_REF(close)), 1)
+	SEND_SIGNAL(src, COMSIG_ATOM_DOOR_OPEN) /// this is different because we need one that covers all doors
 	return TRUE
 
 
@@ -1417,6 +1387,20 @@
 	var/obj/structure/window/killthis = (locate(/obj/structure/window) in get_turf(src))
 	if(killthis)
 		SSexplosions.med_mov_atom += killthis
+
+	SEND_SIGNAL(src, COMSIG_AIRLOCK_CLOSE, forced)
+
+	var/turf/open/open_turf = get_turf(src)
+	if(open_turf.liquids)
+		var/datum/liquid_group/turfs_group = open_turf.liquids.liquid_group
+		turfs_group.remove_from_group(open_turf)
+		qdel(open_turf.liquids)
+		turfs_group.try_split(open_turf)
+		for(var/dir in GLOB.cardinals)
+			var/turf/open/direction_turf = get_step(open_turf, dir)
+			if(!isopenturf(direction_turf) || !direction_turf.liquids)
+				continue
+			turfs_group.check_edges(direction_turf)
 
 	operating = TRUE
 	update_icon(state = AIRLOCK_CLOSING, override = TRUE)
