@@ -93,12 +93,11 @@
 	speed = 0.5 //Shotgun = slower
 	var/tile_dropoff = 0.4
 	var/tile_dropoff_s = 0.3
-	armour_penetration = -20 //Armor is 25% stronger against pellets
 	demolition_mod = 0.5 // bad at smashing through stuff
 
 /obj/projectile/bullet/pellet/shotgun_buckshot
 	name = "buckshot pellet"
-	damage = 11 //Total of 66
+	damage = 10 //Total of 60
 	wound_bonus = 5
 	bare_wound_bonus = 5
 	wound_falloff_tile = -2.5 // low damage + additional dropoff will already curb wounding potential anything past point blank

@@ -3,7 +3,7 @@
 	desc = "Heavy duty white mask for civil protection units. Provides some protection to the face."
 	icon_state = "civilprotection"
 	item_state = "swat"
-	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 80, RAD = 80, FIRE = 80, ACID = 80, WOUND = 5)
+	armor = list(MELEE = 20, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 80, RAD = 80, FIRE = 80, ACID = 80, WOUND = 5)
 	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	flags_inv = HIDEFACIALHAIR|HIDEFACE
 	flags_1 = HEAR_1
@@ -79,4 +79,4 @@
 	desc = "Heavy duty armored mask for the overwatch transhuman team."
 	icon_state = "overwatch"
 	item_state = "swat"
-	armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 20, BIO = 80, RAD = 80, FIRE = 80, ACID = 80, WOUND = 5)
+	armor = list(MELEE = 20, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 20, BIO = 80, RAD = 80, FIRE = 80, ACID = 80, WOUND = 5)
