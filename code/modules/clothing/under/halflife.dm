@@ -80,3 +80,15 @@
 /obj/item/clothing/under/citizen/rebel
 	name = "citizen jumpsuit"
 	desc = "Full-body blue suit for the common citizen. The scanners have been removed forcefully."
+	has_sensor = NO_SENSORS
+
+/obj/item/clothing/under/administrator
+	name = "administrator suit"
+	desc = "A well made blue suit, specially designed for the city administrator."
+	worn_icon = 'icons/mob/clothing/uniform/civilian.dmi'
+	can_adjust = FALSE
+	has_sensor = LOCKED_SENSORS
+	sensor_mode = SENSOR_COORDS
+	random_sensor = FALSE
+	icon_state = "lawyer_blue"
+	item_state = "lawyer_blue"

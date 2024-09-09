@@ -75,15 +75,15 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 
 /obj/effect/landmark/start/divisional_lead
 	name = "Divisional Lead"
-	icon_state = "Divisional Lead"
+	icon_state = "Head of Security"
 
 /obj/effect/landmark/start/city_administrator
 	name = "City Administrator"
-	icon_state = "City Administrator"
+	icon_state = "Captain"
 
 /obj/effect/landmark/start/labor_lead
 	name = "Labor Lead"
-	icon_state = "Labor Lead"
+	icon_state = "Head of Personnel"
 
 //Department Security spawns
 

@@ -20,15 +20,6 @@ Assistant
 
 	department_for_prefs = /datum/job_department/assistant
 
-	mail_goodies = list(
-		/obj/effect/spawner/lootdrop/donkpockets = 10, //more donkpockets
-		/obj/item/clothing/mask/gas = 10,
-		/obj/item/clothing/gloves/color/fyellow = 7,
-		/obj/item/choice_beacon/music = 5,
-		/obj/item/toy/crayon/spraycan = 3,
-		/obj/item/crowbar/large = 1
-	)
-
 /datum/job/citizen/get_access()
 	. = ..()
 	if(CONFIG_GET(flag/assistants_have_maint_access) || !CONFIG_GET(flag/jobs_have_minimal_access)) //Config has assistant maint access set

@@ -375,7 +375,7 @@
 
 /obj/item/melee/classic_baton/telescopic
 	name = "telescopic baton"
-	desc = "A compact yet robust personal defense weapon. Can be concealed when folded."
+	desc = "A old, foldable, and compact baton, often given to high ranking civillians such as city administrators. Can be used lethally or non-lethally."
 	icon_state = "telebaton_0"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
@@ -392,7 +392,7 @@
 	on_item_state = "nullrod"
 	force_on = 10
 	force_off = 0
-	stamina_damage = 40
+	stamina_damage = 20
 	block_threshold = 50
 	weight_class_on = WEIGHT_CLASS_BULKY
 	bare_wound_bonus = 5

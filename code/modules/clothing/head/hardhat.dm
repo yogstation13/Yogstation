@@ -1,6 +1,6 @@
 /obj/item/clothing/head/hardhat
 	name = "hard hat"
-	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight."
+	desc = "A old protective hardhat for your head. Comes with a built-in flashlight."
 	icon_state = "hardhat0_yellow"
 	item_state = "hardhat0_yellow"
 	worn_icon = 'icons/mob/clothing/head/head.dmi'

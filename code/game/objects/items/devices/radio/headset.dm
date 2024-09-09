@@ -137,7 +137,7 @@
 	keyslot = new /obj/item/encryptionkey/heads/captain
 
 /obj/item/radio/headset/heads/captain/alt
-	name = "\proper the captain's bowman headset"
+	name = "city administrator headset"
 	desc = "The headset of the boss. Protects ears from flashbangs."
 	icon_state = "com_headset_alt"
 	item_state = "com_headset_alt"
@@ -182,7 +182,7 @@
 
 /obj/item/radio/headset/heads/hop
 	name = "\proper the Labor Lead's headset"
-	desc = "The headset of the guy who will one day be captain."
+	desc = "The headset of the guy who organizes work tasks."
 	icon_state = "com_headset"
 	keyslot = new /obj/item/encryptionkey/heads/hop
 

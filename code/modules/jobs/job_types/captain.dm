@@ -1,7 +1,7 @@
 /datum/job/captain
 	title = "City Administrator"
-	description = "Be responsible for the station, manage your Heads of Staff, \
-		keep the crew alive, be prepared to do anything and everything or die \
+	description = "Be responsible for the city, manage your underlings, \
+		keep the city functioning, be prepared to do anything and everything or die \
 		horribly trying."
 	orbit_icon = "crown"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY|DEADMIN_POSITION_CRITICAL
@@ -9,7 +9,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "Overwatch" //Changed to officer to separate from CentCom officials being their superior.
+	supervisors = "Overwatch"
 	req_admin_notify = 1
 	space_law_notify = 1 //Yogs
 	minimal_player_age = 14
@@ -56,7 +56,7 @@
 
 /datum/job/captain/announce(mob/living/carbon/human/H)
 	..()
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "City Administrator [H.real_name] on deck!"))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "City Administrator [H.real_name] will be managing the city."))
 
 /datum/outfit/job/captain
 	name = "City Administrator"
@@ -64,30 +64,14 @@
 
 	id_type = /obj/item/card/id/gold
 
-
-	glasses = /obj/item/clothing/glasses/hud/personnel
 	ears = /obj/item/radio/headset/heads/captain/alt
-	gloves = /obj/item/clothing/gloves/color/captain
-	uniform =  /obj/item/clothing/under/rank/command/captain
-	uniform_skirt = /obj/item/clothing/under/rank/command/captain/skirt
-	suit = /obj/item/clothing/suit/armor/vest/capcarapace
+	uniform =  /obj/item/clothing/under/administrator
 	shoes = /obj/item/clothing/shoes/sneakers/brown
-	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
-	head = /obj/item/clothing/head/caphat
-	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/station_charter=1, /obj/item/gun/energy/e_gun=1) //yogs - adds egun/removes civ budget
 
-	backpack = /obj/item/storage/backpack/captain
-	satchel = /obj/item/storage/backpack/satchel/cap
-	duffelbag = /obj/item/storage/backpack/duffelbag/captain
+	belt = /obj/item/melee/classic_baton/telescopic
 
 	implants = list(/obj/item/implant/mindshield)
-	accessory = /obj/item/clothing/accessory/medal/gold/captain
-
-	chameleon_extras = list(/obj/item/gun/energy/e_gun, /obj/item/stamp/captain)
 
 /datum/outfit/job/captain/hardsuit
 	name = "City Administrator (Hardsuit)"
 
-	mask = /obj/item/clothing/mask/gas/sechailer
-	suit = /obj/item/clothing/suit/space/hardsuit/swat/captain
-	suit_store = /obj/item/tank/internals/oxygen

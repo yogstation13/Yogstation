@@ -63,15 +63,8 @@
 	id_type = /obj/item/card/id/silver
 
 
-	glasses = /obj/item/clothing/glasses/hud/personnel
 	ears = /obj/item/radio/headset/heads/hop
-	uniform = /obj/item/clothing/under/rank/command/head_of_personnel
-	uniform_skirt = /obj/item/clothing/under/rank/command/head_of_personnel/skirt
-	shoes = /obj/item/clothing/shoes/sneakers/brown
-	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
-	head = /obj/item/clothing/head/hopcap
-	backpack_contents = list(/obj/item/storage/box/ids=1,\
-		/obj/item/melee/classic_baton/telescopic=1) //yogs - removes serv budget
-
-
-	chameleon_extras = list(/obj/item/gun/energy/e_gun, /obj/item/stamp/hop)
+	uniform = /obj/item/clothing/under/citizen
+	head = /obj/item/clothing/head/hardhat
+	gloves = /obj/item/clothing/gloves/color/yellow
+	belt = /obj/item/melee/classic_baton/telescopic

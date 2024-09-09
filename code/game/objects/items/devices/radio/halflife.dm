@@ -9,3 +9,11 @@
 /obj/item/radio/headset/headset_sec/alt/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
+
+/obj/item/radio/headset/civilprotection/divisional
+	name = "divisional lead headset"
+	keyslot = new /obj/item/encryptionkey/heads/hos
+
+/obj/item/radio/headset/civilprotection/divisional/overwatch
+	name = "overwatch headset"
+	desc = "Protection for ears from loud songs, along with a functioning radio for overwatch forces."

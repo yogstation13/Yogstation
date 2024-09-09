@@ -235,12 +235,12 @@
 
 /obj/item/storage/backpack/satchel
 	name = "satchel"
-	desc = "A trendy looking satchel."
+	desc = "A old world satchel, useful for carrying stuff. It is in great condition, what a find!"
 	icon_state = "satchel-norm"
 
 /obj/item/storage/backpack/satchel/leather
 	name = "leather satchel"
-	desc = "It's a very fancy satchel made with fine leather."
+	desc = "A old world leather satchel. The leather looks a bit weathered, but it still looks great."
 	icon_state = "satchel"
 
 /obj/item/storage/backpack/satchel/leather/withwallet/PopulateContents()

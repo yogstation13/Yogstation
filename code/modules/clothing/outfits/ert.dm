@@ -397,7 +397,7 @@
 	suit_store = /obj/item/gun/ballistic/automatic/ar2
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
-	ears = /obj/item/radio/headset/civilprotection
+	ears = /obj/item/radio/headset/civilprotection/divisional/overwatch
 	belt = /obj/item/storage/belt/civilprotection/overwatch
 	implants = list(/obj/item/implant/mindshield, /obj/item/implant/biosig_ert)
 

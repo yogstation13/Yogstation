@@ -54,7 +54,7 @@
 
 	id_type = /obj/item/card/id/silver
 
-	ears = /obj/item/radio/headset/civilprotection
+	ears = /obj/item/radio/headset/civilprotection/divisional
 	uniform = /obj/item/clothing/under/combine/civilprotection/divisionallead
 	gloves = /obj/item/clothing/gloves/color/black
 	suit = /obj/item/clothing/suit/armor/civilprotection

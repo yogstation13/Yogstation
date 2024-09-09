@@ -49,9 +49,11 @@
 
 GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY, SEC_DEPT_SERVICE))
 
+/*
 /datum/job/officer/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
 	// Assign department security
+
 	var/department
 	if(M && M.client && M.client.prefs)
 		department = M.client?.prefs?.read_preference(/datum/preference/choiced/security_department)
@@ -66,6 +68,8 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 	var/list/dep_access = null
 	var/destination = null
 	var/spawn_point = null
+
+
 	switch(department)
 		if(SEC_DEPT_SUPPLY)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/supply
@@ -102,6 +106,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 			spawn_point = locate(/obj/effect/landmark/start/depsec/service) in GLOB.department_security_spawns
 			accessory =  /obj/item/clothing/accessory/armband/service
 
+
 	if(accessory)
 		var/obj/item/clothing/under/U = H.w_uniform
 		U.attach_accessory(new accessory)
@@ -137,7 +142,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 	else
 		to_chat(M, "<b>You have not been assigned to any department. Patrol the halls and help where needed.</b>")
 
-
+*/
 
 /datum/outfit/job/officer
 	name = "Civil Protection Officer"

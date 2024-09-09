@@ -2,7 +2,7 @@
 	dying_key = DYE_REGISTRY_GLOVES
 
 /obj/item/clothing/gloves/color/yellow
-	desc = "These gloves will protect the wearer from electric shock."
+	desc = "Old protective rubber gloves for handy men."
 	name = "insulated gloves"
 	icon_state = "yellow"
 	item_state = "ygloves"
