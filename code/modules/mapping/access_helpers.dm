@@ -278,6 +278,13 @@
 	access_list += list(ACCESS_SECURITY, ACCESS_MAINT_TUNNELS)
 	return access_list
 
+/// MONKESTATION EDIT BEGIN
+/obj/effect/mapping_helpers/airlock/access/any/security/brig_physician/get_access()
+	var/list/access_list = ..()
+	access_list += ACCESS_BRIG_PHYSICIAN
+	return access_list
+/// MONKESTATION EDIT END
+
 // -------------------- Service access helpers
 /obj/effect/mapping_helpers/airlock/access/any/service
 	icon_state = "access_helper_serv"
@@ -739,6 +746,12 @@
 	access_list += ACCESS_HOS
 	return access_list
 
+/// MONKESTATION EDIT BEGIN
+/obj/effect/mapping_helpers/airlock/access/all/security/brig_physician/get_access()
+	var/list/access_list = ..()
+	access_list += ACCESS_BRIG_PHYSICIAN
+	return access_list
+/// MONKESTATION EDIT END
 // -------------------- Service access helpers
 /obj/effect/mapping_helpers/airlock/access/all/service
 	icon_state = "access_helper_serv"

@@ -7298,6 +7298,7 @@
 #include "monkestation\code\modules\modular_bartending\garnishes\grown_cuts.dm"
 #include "monkestation\code\modules\modular_bartending\item_modifications\attack_additions.dm"
 #include "monkestation\code\modules\modular_bartending\item_modifications\reagent_modification.dm"
+#include "monkestation\code\modules\modular_computers\computers\item\role_tablet_presets.dm"
 #include "monkestation\code\modules\modular_computers\file_system\programs\crewmanifest.dm"
 #include "monkestation\code\modules\modular_guns\__base_attachment.dm"
 #include "monkestation\code\modules\modular_guns\__base_modular_gun.dm"

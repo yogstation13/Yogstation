@@ -5276,9 +5276,10 @@
 	id_tag = "medbay_foyer";
 	name = "Medbay"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /obj/effect/mapping_helpers/airlock/unres,
 /obj/effect/landmark/navigate_destination/med,
+/obj/effect/mapping_helpers/airlock/access/any/security/brig_physician,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/iron/white/textured,
 /area/station/medical/medbay/central)
 "bKL" = (
@@ -11956,7 +11957,8 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/maintenance,
-/obj/effect/mapping_helpers/airlock/access/all/medical/general,
+/obj/effect/mapping_helpers/airlock/access/any/security/brig_physician,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical)
 "dVT" = (
@@ -31764,7 +31766,8 @@
 /obj/machinery/door/airlock/maintenance{
 	name = "Medbay Maintenance"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/medical/general,
+/obj/effect/mapping_helpers/airlock/access/any/security/brig_physician,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "kzv" = (
@@ -35159,8 +35162,9 @@
 /obj/machinery/door/airlock/medical/glass{
 	name = "Medical Side Entrance"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /obj/effect/mapping_helpers/airlock/unres,
+/obj/effect/mapping_helpers/airlock/access/any/security/brig_physician,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/iron/dark/textured,
 /area/station/medical/medbay/central)
 "lFJ" = (
@@ -48994,8 +48998,9 @@
 /obj/machinery/door/airlock/maintenance{
 	name = "Medbay Maintenance"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /obj/machinery/duct,
+/obj/effect/mapping_helpers/airlock/access/any/security/brig_physician,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/iron/white/textured,
 /area/station/maintenance/starboard/aft)
 "qoa" = (
@@ -50841,13 +50846,14 @@
 /obj/machinery/door/airlock/medical/glass{
 	name = "Medical Side Entrance"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/any/security/brig_physician,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/iron/dark/textured,
 /area/station/medical/medbay/central)
 "qVb" = (
@@ -65142,8 +65148,9 @@
 	id_tag = "medbay_foyer";
 	name = "Medbay"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /obj/effect/mapping_helpers/airlock/unres,
+/obj/effect/mapping_helpers/airlock/access/any/security/brig_physician,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/iron/white/textured,
 /area/station/medical/medbay/central)
 "vHv" = (

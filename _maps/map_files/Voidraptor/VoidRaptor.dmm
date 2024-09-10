@@ -20648,11 +20648,12 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/duct,
-/obj/effect/mapping_helpers/airlock/access/any/medical/general,
-/obj/effect/mapping_helpers/airlock/access/any/medical/morgue,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/any/security/brig_physician,
+/obj/effect/mapping_helpers/airlock/access/any/medical/morgue,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/iron/white/textured_large,
 /area/station/medical/medbay/central)
 "gba" = (
@@ -51146,10 +51147,11 @@
 /turf/open/floor/wood/large,
 /area/station/security/courtroom)
 "otQ" = (
-/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /obj/machinery/door/airlock/maintenance{
 	name = "Medical Maintenance"
 	},
+/obj/effect/mapping_helpers/airlock/access/any/security/brig_physician,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/department/medical/morgue)
 "otU" = (
@@ -54829,8 +54831,9 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /obj/effect/mapping_helpers/airlock/access/any/medical/morgue,
+/obj/effect/mapping_helpers/airlock/access/any/security/brig_physician,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/iron/white/textured_large,
 /area/station/medical/medbay/central)
 "pte" = (

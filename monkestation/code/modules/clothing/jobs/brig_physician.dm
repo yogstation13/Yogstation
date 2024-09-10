@@ -64,7 +64,7 @@
 
 /obj/item/storage/backpack/brig_physician
 	name = "brig physician's backpack"
-	desc = "You wear this on your back and put items into it."
+	desc = "A security-grade backpack, now in security grey!"
 	icon = 'monkestation/icons/obj/clothing/jobs/brig_physician.dmi'
 	worn_icon = 'monkestation/icons/mob/clothing/jobs/brig_physician.dmi'
 	icon_state = "backpack-brigphys"
@@ -74,7 +74,7 @@
 
 /obj/item/storage/backpack/satchel/brig_physician
 	name = "brig physician's satchel"
-	desc = "You wear this on your back and put items into it."
+	desc = "A security-grade satchel, now in security grey!"
 	icon = 'monkestation/icons/obj/clothing/jobs/brig_physician.dmi'
 	worn_icon = 'monkestation/icons/mob/clothing/jobs/brig_physician.dmi'
 	icon_state = "satchel-brigphys"
@@ -84,7 +84,7 @@
 
 /obj/item/storage/backpack/duffelbag/brig_physician
 	name = "brig physician's duffelbag"
-	desc = "You wear this on your back and put items into it."
+	desc = "A large duffel bag for holding extra supplies, now in security grey!"
 	icon = 'monkestation/icons/obj/clothing/jobs/brig_physician.dmi'
 	worn_icon = 'monkestation/icons/mob/clothing/jobs/brig_physician.dmi'
 	icon_state = "duffel-brigphys"
@@ -97,3 +97,19 @@
 	desc = "A nice set of sneakers in security red. These even have the custom fabric used by medical white! Sweet!"
 	armor_type = /datum/armor/sneakers_white
 	greyscale_colors = "#a52f29#918f8c"
+
+/obj/item/storage/backpack/duffelbag/brig_physician/surgery
+	name = "brig physician's surgical bag"
+	desc = "A large duffel bag for holding extra supplies, now in security grey! This one has a material inlay with space for various sharp-looking tools."
+
+/obj/item/storage/backpack/duffelbag/brig_physician/surgery/PopulateContents()
+	new /obj/item/scalpel(src)
+	new /obj/item/hemostat(src)
+	new /obj/item/retractor(src)
+	new /obj/item/circular_saw(src)
+	new /obj/item/bonesetter(src)
+	new /obj/item/surgicaldrill(src)
+	new /obj/item/cautery(src)
+	new /obj/item/surgical_drapes(src)
+	new /obj/item/clothing/mask/surgical(src)
+	new /obj/item/blood_filter(src)

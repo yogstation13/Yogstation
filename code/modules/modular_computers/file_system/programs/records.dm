@@ -18,7 +18,7 @@
 	filename = "medrecords"
 	program_icon = "book-medical"
 	extended_desc = "Allows the user to view several basic medical records from the crew."
-	transfer_access = list(ACCESS_MEDICAL, ACCESS_FLAG_COMMAND)
+	transfer_access = list(ACCESS_MEDICAL, ACCESS_BRIG_PHYSICIAN, ACCESS_FLAG_COMMAND) ///MONKESTATION EDIT: add brig phys to medrecords.
 	available_on_ntnet = TRUE
 	mode = "medical"
 
