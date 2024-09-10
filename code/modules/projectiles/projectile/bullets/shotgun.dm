@@ -76,6 +76,7 @@
 	armour_penetration = 60 // he he funny round go through armor
 	wound_bonus = -40
 	demolition_mod = 3 // very good at smashing through stuff
+	penetration_flags = PENETRATE_OBJECTS | PENETRATE_MOBS 
 	penetrations = INFINITY //Goes through an infinite number of mobs
 
 /obj/projectile/bullet/shotgun/slug/uranium/Initialize(mapload)

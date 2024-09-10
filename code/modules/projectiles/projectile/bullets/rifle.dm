@@ -62,7 +62,7 @@
 	damage = 52
 	armour_penetration = 40
 	penetrations = 2 //Passes through two objects, stops on a mob or on a third object
-	penetration_flags = PENETRATE_OBJECTS
+	penetration_flags = PENETRATE_OBJECTS | PENETRATE_WALLS
 	demolition_mod = 1.5 // anti-armor
 
 /obj/projectile/bullet/a762/vulcan

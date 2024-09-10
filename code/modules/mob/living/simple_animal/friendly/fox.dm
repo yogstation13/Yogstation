@@ -12,7 +12,7 @@
 	emote_see = list("shakes its head.", "shivers.")
 	speak_chance = 1
 	turns_per_move = 5
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 1) //3 -> 1, foxes aren't Big
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 1, /obj/item/organ/tail/cat/fox = 1, /obj/item/organ/ears/cat/fox = 1) //3 -> 1, foxes aren't Big
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm = "kicks"

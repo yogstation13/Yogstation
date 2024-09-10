@@ -1,0 +1,5 @@
+author: "MrMelbert, ToasterBiome"
+delete-after: true 
+changes: 
+  - tweak: "People start slurring at drunk level 16 now instead of 51"
+  - rscadd: "people slur at different drunk levels now"

@@ -952,11 +952,12 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		new_turf.liquids.alpha = group_alpha
 		check_edges(new_turf)
 
-		var/obj/splashy = new /obj/effect/temp_visual/liquid_splash(new_turf)
-		if(!QDELETED(new_turf.liquids?.liquid_group))
-			splashy.color = new_turf.liquids.liquid_group.group_color
+		if(expected_turf_height >= LIQUID_ANKLES_LEVEL_HEIGHT) //liquid is deep enough, do a splash
+			var/obj/splashy = new /obj/effect/temp_visual/liquid_splash(new_turf)
+			if(!QDELETED(new_turf.liquids?.liquid_group))
+				splashy.color = new_turf.liquids.liquid_group.group_color
 
-		water_rush(new_turf, source_turf)
+			water_rush(new_turf, source_turf)
 
 	else if(!QDELETED(source_turf?.liquids?.liquid_group) && !QDELETED(new_turf?.liquids?.liquid_group) && new_turf.liquids.liquid_group != source_turf.liquids.liquid_group && source_turf.turf_height == new_turf.turf_height && new_turf.liquids.liquid_group.can_merge)
 		merge_group(new_turf.liquids.liquid_group)
@@ -984,18 +985,20 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/direction = get_dir(source_turf, new_turf)
 	for(var/atom/movable/target_atom in new_turf)
 		reagents.reaction(target_atom, TOUCH, (reagents_per_turf * 0.5))
-		if(!target_atom.anchored && !target_atom.pulledby && (target_atom.move_resist < INFINITY))
-			if(expected_turf_height < LIQUID_ANKLES_LEVEL_HEIGHT)
-				return
-			if(isliving(target_atom))
-				var/mob/living/target_living = target_atom
-				if(!target_living.mob_has_heavy_gravity()) //push everything EXCEPT living things that have heavy gravity
-					step(target_living, direction)
-					if(prob(60))
-						if(target_living.slip(6 SECONDS, null, FALSE, 6 SECONDS, TRUE))
-							to_chat(target_living, span_danger("You are knocked down by the currents!"))
-			else
-				step(target_atom, direction)
+		if(target_atom.anchored || target_atom.pulledby || (target_atom.move_resist >= INFINITY)) //thing is too heavy or secured to move
+			continue
+		
+		if(isliving(target_atom))
+			var/mob/living/target_living = target_atom
+			if(target_living.mob_has_heavy_gravity()) //if the mob is heavy, don't push them
+				continue
+			step(target_living, direction)
+			if(prob(60))
+				if(target_living.slip(6 SECONDS, null, FALSE, 6 SECONDS, TRUE))
+					to_chat(target_living, span_danger("You are knocked down by the currents!"))
+
+		else //push all objects
+			step(target_atom, direction)
 
 /datum/liquid_group/proc/fetch_temperature_queue()
 	if(!cached_temperature_shift)

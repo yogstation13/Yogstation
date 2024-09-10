@@ -95,6 +95,7 @@
 	icon_state = "kitty"
 	visual = TRUE
 	compatible_biotypes = ALL_BIOTYPES // meowchine... turn back now
+	var/ears_type = "Cat"
 	damage_multiplier = 2
 
 /obj/item/organ/ears/cat/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)
@@ -102,7 +103,7 @@
 	if(istype(H))
 		color = H.hair_color
 		H.dna.species.mutant_bodyparts |= "ears"
-		H.dna.features["ears"] = "Cat"
+		H.dna.features["ears"] = ears_type
 		H.update_body()
 
 /obj/item/organ/ears/cat/Remove(mob/living/carbon/human/H,  special = 0)
@@ -112,6 +113,10 @@
 		H.dna.features["ears"] = "None"
 		H.dna.species.mutant_bodyparts -= "ears"
 		H.update_body()
+
+/obj/item/organ/ears/cat/fox
+	name = "fox ears"
+	ears_type = "Fox"
 
 /obj/item/organ/ears/cybernetic
 	name = "cybernetic hearing apparatus"

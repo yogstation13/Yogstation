@@ -5,6 +5,7 @@
 	destroy_sound = 'sound/mecha/weapdestr.ogg'
 	mech_flags = EXOSUIT_MODULE_COMBAT
 	melee_override = TRUE
+	obj_flags = UNIQUE_RENAME // because it's COOL
 	var/restricted = TRUE //for our special hugbox exofabs
 	///	If we have a longer range weapon, such as a spear or whatever capable of hitting people further away, this is how much extra range it has
 	var/extended_range = 0
@@ -68,13 +69,11 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/start_cooldown()
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
+	chassis.adjust_overheat(heat_cost)
 	addtimer(CALLBACK(src, PROC_REF(set_ready_state), 1), chassis.melee_cooldown * attack_speed_modifier * check_eva())	//Guns only shoot so fast, but weapons can be used as fast as the chassis can swing it!
 
 //Melee weapon attacks are a little different in that they'll override the standard melee attack
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/action(atom/target, mob/living/user, params)
-	if(!action_checks(target))
-		return 0
-
 	var/turf/curloc = get_turf(chassis)
 	var/turf/targloc = get_turf(target)
 	if (!targloc || !istype(targloc) || !curloc)
@@ -182,7 +181,8 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/shortsword	//Our bread-and-butter mech shortsword for both slicing and stabbing baddies
 	name = "\improper GD6 \"Jaeger\" Shortsword"
 	desc = "An extendable arm-mounted blade with a nasty edge. It is small and fast enough to deflect some incoming attacks."
-	energy_drain = 20
+	energy_drain = 2
+	heat_cost = 3
 	weapon_damage = 10
 	precise_weapon_damage = 15
 	fauna_damage_bonus = 30		//because why not
@@ -272,7 +272,8 @@
 	desc = "An oversized, destructive-looking axe with a powered edge. While far too big for use by an individual, an exosuit might be able to wield it."
 	icon_state = "mecha_energy_axe"
 	precise_attacks = FALSE		//This is not a weapon of precision, it is a weapon of destruction
-	energy_drain = 40
+	energy_drain = 4
+	heat_cost = 8
 	weapon_damage = 30
 	fauna_damage_bonus = 30		//If you're fighting fauna with this thing, why? I mean it works, I guess.
 	base_armor_piercing = 40
@@ -303,7 +304,8 @@
 	name = "\improper HR-2 \"Ronin\" Katana"
 	desc = "An oversized, light-weight replica of an ancient style of blade. Still woefully underpowered in D&D."
 	icon_state = "mecha_katana"
-	energy_drain = 15
+	energy_drain = 2
+	heat_cost = 3
 	cleave = FALSE				//small fast blade
 	precise_weapon_damage = 10
 	attack_speed_modifier = 0.7	//live out your anime dreams in a mech
@@ -318,7 +320,8 @@
 	name = "\improper AV-98 \"Ingram\" Heavy Stun Baton" 
 	desc = "A stun baton, but bigger. The tide of toolbox-armed assistants don't stand a chance."
 	icon_state = "mecha_batong"
-	energy_drain = 300
+	energy_drain = 30
+	heat_cost = 15
 	attack_speed_modifier = 2	//needs to recharge
 	structure_damage_mult = 1
 	precise_weapon_damage = -25	//Mostly nonlethal
@@ -371,7 +374,8 @@
 	name = "\improper TO-4 \"Tahu\" Flaming Chainsword"	//ITS ALSO A CHAINSWORD FUCK YEAH
 	desc = "It's as ridiculous as it is badass. You feel like use of this this might be considered a war crime somewhere."
 	icon_state = "mecha_trogdor"
-	energy_drain = 30
+	energy_drain = 3
+	heat_cost = 5
 	precise_weapon_damage = 5	//Gotta make space for the burninating
 	attack_speed_modifier = 1.2	//Little unwieldy
 	fauna_damage_bonus = 20
@@ -399,7 +403,8 @@
 	name = "\improper ASW-8 \"Barbatos\" Heavy Maul"
 	desc = "A massive, unwieldy, mace-like weapon, this thing really looks like something you don't want to be hit by if you're not a fan of being concave."
 	icon_state = "mecha_maul"
-	energy_drain = 40
+	energy_drain = 4
+	heat_cost = 8
 	weapon_damage = 25			//Very smashy
 	precise_weapon_damage = 30
 	attack_speed_modifier = 2.5	//Very slow
@@ -421,7 +426,8 @@
 	name = "\improper MS-15 \"Gyan\" Rapier"
 	desc = "A remarkably thin blade for a weapon wielded by an exosuit, this rapier is the favorite of syndicate pilots that perfer finesse over brute force."
 	icon_state = "mecha_rapier"
-	energy_drain = 40
+	energy_drain = 4
+	heat_cost = 5
 	cleave = FALSE
 	base_armor_piercing = 25	//50 on precise attack
 	deflect_bonus = 15			//Mech fencing but it parries bullets too because robot reaction time or something
@@ -490,7 +496,8 @@
 	desc = "A pair of short, hollow blades forged of exceptionally hard metal, these weapons are capable of injecting venom into a target on a successful hit."
 	icon_state = "mecha_razer"
 	gender = PLURAL
-	energy_drain = 40
+	energy_drain = 4
+	heat_cost = 5
 	cleave = FALSE
 	base_armor_piercing = 40	//80 on precise attack
 	deflect_bonus = 5			//Helps, but is a bit to small to be particularly good at it
@@ -603,7 +610,8 @@
 	name = "\improper S5-C \"White Witch\" Shortspear"
 	desc = "A hardened, telescoping metal rod with a wicked-sharp tip. Perfect for punching holes in things normally out of reach."
 	icon_state = "mecha_spear"
-	energy_drain = 30
+	energy_drain = 3
+	heat_cost = 5
 	force = 10						//I want someone to stab someone else with this by hand
 	extended_range = 1				//Hits from a tile away
 	precise_weapon_damage = 10
@@ -663,6 +671,7 @@
 	desc = "A very big mop, designed to be attached to mechanical exosuits."
 	icon_state = "mecha_mop"
 	energy_drain = 5
+	heat_cost = 1 // get mopped nerd
 	attack_sound = 'sound/effects/slosh.ogg'
 
 	cleave = TRUE
@@ -698,7 +707,7 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/mop/proc/on_pre_move(obj/mecha/mech, atom/newloc)
-	if(mech.equipment_disabled || mech.completely_disabled)
+	if(mech.equipment_disabled || HAS_TRAIT(mech, TRAIT_MECH_DISABLED))
 		return
 	if(!auto_sweep)
 		return
@@ -746,6 +755,7 @@
 	desc = "A comically large flyswatter, presumably for killing comically large bugs."
 	attack_sound = 'sound/effects/snap.ogg'
 	icon_state = "mecha_flyswatter"
+	heat_cost = 2
 	cleave = FALSE
 	precise_attacks = TRUE
 	hit_effect = ATTACK_EFFECT_SMASH
