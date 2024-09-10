@@ -64,7 +64,7 @@
 	if(current_target)
 		LoseTarget()
 	if(!isliving(target))
-		return
+		return FALSE
 
 	current_target = target
 	active = TRUE
@@ -72,8 +72,9 @@
 	RegisterSignal(current_beam, COMSIG_QDELETING, PROC_REF(beam_died))//this is a WAY better rangecheck than what was done before (process check)
 
 	SSblackbox.record_feedback("tally", "gun_fired", 1, type)
+	return TRUE
 
-/obj/item/gun/medbeam/process()
+/obj/item/gun/medbeam/process(delta_time)
 
 	var/source = loc
 	if(!mounted && !isliving(source))
@@ -96,7 +97,7 @@
 		return
 
 	if(current_target)
-		on_beam_tick(current_target)
+		on_beam_tick(current_target, delta_time)
 
 /obj/item/gun/medbeam/proc/los_check(atom/movable/user, mob/target)
 	var/turf/user_turf = user.loc
@@ -127,14 +128,14 @@
 /obj/item/gun/medbeam/proc/on_beam_hit(mob/living/target)
 	return
 
-/obj/item/gun/medbeam/proc/on_beam_tick(mob/living/target)
+/obj/item/gun/medbeam/proc/on_beam_tick(mob/living/target, delta_time = SSOBJ_DT)
 	if(target.health != target.maxHealth)
 		new /obj/effect/temp_visual/heal(get_turf(target), COLOR_HEALING_CYAN)
 	var/need_mob_update
-	need_mob_update = target.adjustBruteLoss(-4, updating_health = FALSE, forced = TRUE)
-	need_mob_update += target.adjustFireLoss(-4, updating_health = FALSE, forced = TRUE)
-	need_mob_update += target.adjustToxLoss(-1, updating_health = FALSE, forced = TRUE)
-	need_mob_update += target.adjustOxyLoss(-1, updating_health = FALSE, forced = TRUE)
+	need_mob_update = target.adjustBruteLoss(-2 * delta_time, updating_health = FALSE, forced = TRUE)
+	need_mob_update += target.adjustFireLoss(-2 * delta_time, updating_health = FALSE, forced = TRUE)
+	need_mob_update += target.adjustToxLoss(-0.5 * delta_time, updating_health = FALSE, forced = TRUE)
+	need_mob_update += target.adjustOxyLoss(-0.5 * delta_time, updating_health = FALSE, forced = TRUE)
 	if(need_mob_update)
 		target.updatehealth()
 	return

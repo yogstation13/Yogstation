@@ -156,7 +156,7 @@
 	"atmosalerts", "atmos_control", "recycler", "autolathe", "high_micro_laser", "nano_mani", "mesons", "thermomachine", "rad_collector", "tesla_coil", "grounding_rod",
 	"cell_charger", "stack_console", "stack_machine", "conveyor_belt", "conveyor_switch", "reactor_control",
 	"oxygen_tank", "plasma_tank", "emergency_oxygen", "emergency_oxygen_engi", "plasmaman_tank_belt", "electrolyzer", "floorigniter", "crystallizer", "suit_storage_unit",
-	"atmos_thermal")
+	"atmos_thermal", "mech_heat_sink", "mech_passive_cooling")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 
 /datum/techweb_node/adv_engi
@@ -164,7 +164,7 @@
 	display_name = "Advanced Engineering"
 	description = "Pushing the boundaries of physics, one chainsaw-fist at a time."
 	prereq_ids = list("engineering", "emp_basic")
-	design_ids = list("engine_goggles", "magboots", "mech_magtreads", "forcefield_projector", "weldingmask", "decontamination_unit", "particle_emitter", "tricorder", "mass_driver")
+	design_ids = list("engine_goggles", "magboots", "mech_magtreads", "mech_active_cooling", "forcefield_projector", "weldingmask", "decontamination_unit", "particle_emitter", "tricorder", "mass_driver")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/anomaly
