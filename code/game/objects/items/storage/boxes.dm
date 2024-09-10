@@ -1531,6 +1531,6 @@
 	foldable = null
 	icon_state = "ration"
 
-/obj/item/storage/box/halflife/ration/PopulateContents()
+/obj/item/storage/box/halflife/loyaltyration/PopulateContents()
 	new /obj/item/reagent_containers/food/snacks/rationpack/loyalty(src)
 	new /obj/item/reagent_containers/food/drinks/soda_cans/breenwater(src)

@@ -15,11 +15,6 @@ endmap
 
 # Production-level maps.
 
-map yogstation
-	voteweight 0.7
-	votable
-endmap
-
 map city13
 	default
 	voteweight 1

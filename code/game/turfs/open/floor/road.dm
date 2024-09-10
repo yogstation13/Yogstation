@@ -60,6 +60,9 @@
 	icon = 'icons/turf/road_1.dmi'
 	icon_state = "road-255"
 	base_icon_state = "road"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_CARPET_PLAIN_GREEN) //i tried to make proper smoothing groups and it wouldnt work for some damn fuckin reason
+	canSmoothWith = list(SMOOTH_GROUP_CARPET_PLAIN_BLUE, SMOOTH_GROUP_CARPET_PLAIN_GREEN, SMOOTH_GROUP_WALLS)
 
 /turf/open/floor/plating/ground/road/Initialize()
 	. = ..()
@@ -98,6 +101,10 @@
 	icon = 'icons/turf/sidewalk.dmi'
 	icon_state = "sidewalk-255"
 	base_icon_state = "sidewalk"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_CARPET_PLAIN_BLUE)
+	canSmoothWith = list(SMOOTH_GROUP_CARPET_PLAIN_BLUE, SMOOTH_GROUP_CARPET_PLAIN_GREEN, SMOOTH_GROUP_WALLS)
+
 
 /turf/open/floor/plating/ground/sidewalk/Initialize()
 	. = ..()

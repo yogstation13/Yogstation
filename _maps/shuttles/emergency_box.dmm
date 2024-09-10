@@ -2,16 +2,6 @@
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
-"ao" = (
-/obj/structure/chair/comfy/halflife/diner{
-	dir = 1
-	},
-/turf/open/floor/plating/indoor/grooved,
-/area/shuttle/escape)
-"aD" = (
-/obj/structure/chair/comfy/halflife/diner,
-/turf/open/floor/plating/indoor/grooved,
-/area/shuttle/escape)
 "bi" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -23,213 +13,236 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
-"kC" = (
-/turf/open/floor/plating/indoor/grooved,
-/area/shuttle/escape)
-"lN" = (
-/obj/structure/chair/comfy/halflife/diner{
-	dir = 4
-	},
-/turf/open/floor/plating/indoor/grooved,
-/area/shuttle/escape)
-"mn" = (
-/obj/structure/table/halflife/no_smooth/metal,
-/turf/open/floor/plating/indoor/grooved,
-/area/shuttle/escape)
-"qV" = (
-/obj/structure/chair/comfy/halflife/captain{
-	dir = 4
-	},
-/turf/open/floor/plating/indoor/grooved,
-/area/shuttle/escape)
-"zn" = (
-/turf/closed/wall/halflife/metal,
-/area/shuttle/escape)
-"zW" = (
-/obj/machinery/computer/emergency_shuttle{
-	dir = 4
-	},
-/turf/open/floor/plating/indoor/grooved,
-/area/shuttle/escape)
-"Be" = (
-/obj/machinery/computer/crew{
-	dir = 8
-	},
-/turf/open/floor/plating/indoor/grooved,
-/area/shuttle/escape)
-"FV" = (
-/turf/open/floor/plating/indoor/metal/plate,
-/area/shuttle/escape)
-"Lr" = (
+"cU" = (
 /obj/docking_port/mobile/emergency{
 	dir = 2;
 	name = "Box emergency shuttle"
 	},
 /turf/closed/wall/halflife/metal,
 /area/shuttle/escape)
-"Mi" = (
+"cY" = (
+/obj/machinery/turnstile/brig/halflife/forcefield{
+	dir = 1
+	},
+/turf/open/floor/plating/indoor/metal/plate,
+/area/shuttle/escape)
+"dn" = (
+/obj/structure/chair/comfy/halflife/diner{
+	dir = 4
+	},
+/turf/open/floor/plating/indoor/grooved,
+/area/shuttle/escape)
+"fK" = (
+/obj/structure/chair/comfy/halflife/diner{
+	dir = 8
+	},
+/turf/open/floor/plating/indoor/grooved,
+/area/shuttle/escape)
+"gD" = (
+/obj/structure/chair/comfy/halflife/captain{
+	dir = 4
+	},
+/turf/open/floor/plating/indoor/grooved,
+/area/shuttle/escape)
+"lJ" = (
+/turf/closed/wall/halflife/metal,
+/area/shuttle/escape)
+"tA" = (
+/obj/structure/table/halflife/no_smooth/metal,
+/turf/open/floor/plating/indoor/grooved,
+/area/shuttle/escape)
+"vx" = (
+/obj/structure/chair/comfy/halflife/diner{
+	dir = 1
+	},
+/turf/open/floor/plating/indoor/grooved,
+/area/shuttle/escape)
+"yB" = (
+/obj/machinery/computer/crew{
+	dir = 8
+	},
+/turf/open/floor/plating/indoor/grooved,
+/area/shuttle/escape)
+"Ew" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/indoor/grooved,
+/area/shuttle/escape)
+"Hg" = (
 /obj/structure/chair/comfy/halflife/captain{
 	dir = 8
 	},
 /turf/open/floor/plating/indoor/grooved,
 /area/shuttle/escape)
-"Oj" = (
+"Hq" = (
+/obj/machinery/computer/emergency_shuttle{
+	dir = 4
+	},
+/turf/open/floor/plating/indoor/grooved,
+/area/shuttle/escape)
+"HH" = (
+/turf/open/floor/plating/indoor/metal/plate,
+/area/shuttle/escape)
+"Rn" = (
 /obj/machinery/door/unpowered/halflife/seethrough/metal{
 	dir = 8
 	},
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/plating/indoor/grooved,
 /area/shuttle/escape)
-"PA" = (
-/obj/machinery/turnstile/brig/halflife/forcefield{
-	dir = 1
-	},
-/turf/open/floor/plating/indoor/metal/plate,
-/area/shuttle/escape)
-"VO" = (
-/obj/structure/chair/comfy/halflife/diner{
+"UT" = (
+/obj/structure/table/halflife/no_smooth/metal,
+/obj/machinery/light{
 	dir = 8
 	},
+/turf/open/floor/plating/indoor/grooved,
+/area/shuttle/escape)
+"Vv" = (
+/turf/open/floor/plating/indoor/grooved,
+/area/shuttle/escape)
+"YE" = (
+/obj/structure/chair/comfy/halflife/diner,
 /turf/open/floor/plating/indoor/grooved,
 /area/shuttle/escape)
 
 (1,1,1) = {"
 aa
-zn
-zn
-zn
-zn
-zn
-Oj
-zn
-zn
-zn
-zn
-zn
-Oj
-zn
-zn
-zn
-zn
+lJ
+lJ
+lJ
+lJ
+lJ
+Rn
+lJ
+lJ
+lJ
+lJ
+lJ
+Rn
+lJ
+lJ
+lJ
+lJ
 aa
 "}
 (2,1,1) = {"
-zn
-zn
-zW
-zn
-zn
-lN
-kC
-lN
-mn
-lN
-mn
-lN
-kC
-mn
-lN
-zn
+lJ
+lJ
+Hq
+lJ
+lJ
+dn
+Vv
+dn
+UT
+dn
+tA
+dn
+Vv
+UT
+dn
+lJ
 bi
 bk
 "}
 (3,1,1) = {"
-zn
-mn
-Mi
-zn
-aD
-FV
-FV
-FV
-FV
-FV
-FV
-FV
-FV
-FV
-FV
-zn
+lJ
+tA
+Hg
+lJ
+YE
+HH
+HH
+HH
+HH
+HH
+HH
+HH
+HH
+HH
+HH
+lJ
 bi
 bk
 "}
 (4,1,1) = {"
-Lr
-kC
-kC
-PA
-FV
-FV
-FV
-ao
-aD
-FV
-ao
-aD
-FV
-FV
-FV
-zn
+cU
+Ew
+Vv
+cY
+HH
+HH
+HH
+vx
+YE
+HH
+vx
+YE
+HH
+HH
+HH
+lJ
 bi
 bk
 "}
 (5,1,1) = {"
-zn
-mn
-qV
-zn
-aD
-FV
-FV
-FV
-FV
-FV
-FV
-FV
-FV
-FV
-FV
-zn
+lJ
+tA
+gD
+lJ
+YE
+HH
+HH
+HH
+HH
+HH
+HH
+HH
+HH
+HH
+HH
+lJ
 bi
 bk
 "}
 (6,1,1) = {"
-zn
-zn
-Be
-zn
-zn
-VO
-kC
-VO
-mn
-VO
-mn
-VO
-kC
-mn
-VO
-zn
+lJ
+lJ
+yB
+lJ
+lJ
+fK
+Vv
+fK
+UT
+fK
+tA
+fK
+Vv
+UT
+fK
+lJ
 bi
 bk
 "}
 (7,1,1) = {"
 aa
-zn
-zn
-zn
-zn
-zn
-Oj
-zn
-zn
-zn
-zn
-zn
-Oj
-zn
-zn
-zn
-zn
+lJ
+lJ
+lJ
+lJ
+lJ
+Rn
+lJ
+lJ
+lJ
+lJ
+lJ
+Rn
+lJ
+lJ
+lJ
+lJ
 aa
 "}
