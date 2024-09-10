@@ -7,6 +7,10 @@
 	spawn_positions = 5
 	supervisors = "the security team"
 	exp_granted_type = EXP_TYPE_CREW
+	exp_requirements = 300
+	exp_required_type = EXP_TYPE_CREW
+	exp_required_type_department = EXP_TYPE_SECURITY
+	exp_granted_type = EXP_TYPE_CREW
 	paycheck = PAYCHECK_LOWER
 	config_tag = "PRISONER"
 
