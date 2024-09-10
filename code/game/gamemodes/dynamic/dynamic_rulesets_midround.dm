@@ -314,7 +314,7 @@
 
 /datum/dynamic_ruleset/midround/from_ghosts/nuclear
 	name = "Nuclear Assault"
-	antag_flag = ROLE_OPERATIVE
+	antag_flag = ROLE_REBEL
 	antag_datum = /datum/antagonist/nukeop
 	enemy_roles = list("AI", "Cyborg", "Civil Protection Officer", "Warden","Detective","Divisional Lead", "City Administrator")
 	required_enemies = list(3,3,3,3,2,2,1,1,0,0)

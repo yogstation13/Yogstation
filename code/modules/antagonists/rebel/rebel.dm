@@ -9,3 +9,5 @@
 
 	suit_store = /obj/item/gun/ballistic/automatic/pistol/usp
 	belt = /obj/item/storage/belt/civilprotection
+
+	l_pocket = /obj/item/flashlight/seclite

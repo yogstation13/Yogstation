@@ -8016,10 +8016,6 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/centcom/syndicate_mothership/control)
-"awm" = (
-/obj/effect/landmark/start/nukeop_leader,
-/turf/open/floor/wood,
-/area/centcom/syndicate_mothership/control)
 "awn" = (
 /turf/open/floor/wood,
 /area/centcom/syndicate_mothership/control)
@@ -15989,15 +15985,6 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plasteel,
 /area/centcom/tdome/tdomeobserve)
-"aNl" = (
-/obj/structure/chair/stool,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/landmark/start/nukeop,
-/turf/open/floor/plasteel,
-/area/centcom/syndicate_mothership/control)
 "aNm" = (
 /obj/structure/closet/crate,
 /obj/item/vending_refill/autodrobe,
@@ -41570,9 +41557,9 @@ apX
 apZ
 apZ
 arf
-aNl
+arf
 apZ
-aNl
+arf
 avv
 awn
 awn
@@ -41829,9 +41816,9 @@ arf
 asf
 ate
 apZ
-aNl
+arf
 avw
-awm
+awn
 awV
 aku
 dxn
@@ -42086,7 +42073,7 @@ arf
 asg
 atf
 apZ
-aNl
+arf
 aVb
 awn
 awW

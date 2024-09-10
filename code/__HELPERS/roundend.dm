@@ -341,10 +341,6 @@
 	//Station Goals
 	parts += station_goal_report()
 
-	CHECK_TICK
-	// Department Goals
-	parts += department_goal_report()
-
 	listclearnulls(parts)
 
 	return parts.Join()

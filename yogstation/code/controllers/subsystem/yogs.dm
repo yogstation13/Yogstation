@@ -109,33 +109,7 @@ SUBSYSTEM_DEF(Yogs)
 			account = "all" // Special case, we'll give em all the objectives
 
 		if(account)
-			if(!is_station_level(C.z))
-				continue
-			if(account == "all")
-				var/obj/item/paper/P = new /obj/item/paper(C.loc)
-				P.name = "paper - 'department goals'"
-				P.info = ""
-				var/list/listOfGoals = list()
-				for(var/datum/department_goal/d in SSYogs.department_goals)
-					if(!listOfGoals[d.account])
-						listOfGoals[d.account] = list()
-					listOfGoals[d.account] += d
-				for(account in listOfGoals)
-					P.info += "Goals for the [getDepartmentFromAccount(account)] department:<ul>"
-					for(var/datum/department_goal/d in listOfGoals[account])
-						P.info += d.get_name()
-					P.info += "</ul><br>"
-				P.update_appearance(UPDATE_ICON)
-
-			else
-				var/obj/item/paper/P = new /obj/item/paper(C.loc)
-				P.name = "paper - '[getDepartmentFromAccount(account)] department goals'"
-				P.info = "<ul>"
-				for(var/datum/department_goal/d in SSYogs.department_goals)
-					if(d.account == account)
-						P.info += d.get_name()
-				P.info += "</ul>"
-				P.update_appearance(UPDATE_ICON)
+			continue
 
 
 	for(var/path in subtypesof(/datum/corporation))

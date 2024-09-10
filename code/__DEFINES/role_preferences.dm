@@ -8,7 +8,7 @@
 //then you MUST update the database!
 #define ROLE_SYNDICATE			"Syndicate"
 #define ROLE_TRAITOR			"Traitor"
-#define ROLE_OPERATIVE			"Operative"
+#define ROLE_REBEL		"Rebel"
 #define ROLE_CLOWNOP			"Clown Operative"
 #define ROLE_CHANGELING			"Changeling"
 #define ROLE_WIZARD				"Wizard"
@@ -67,7 +67,7 @@
 // check sql_ban_system.dm as well, that's where the job bans are located.
 GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_TRAITOR = /datum/antagonist/traitor,
-	ROLE_OPERATIVE = /datum/antagonist/nukeop,
+	ROLE_REBEL = /datum/antagonist/nukeop,
 	ROLE_CLOWNOP = /datum/antagonist/nukeop/clownop,
 	ROLE_CHANGELING	= /datum/antagonist/changeling,
 	ROLE_WIZARD = /datum/antagonist/wizard,

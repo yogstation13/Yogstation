@@ -1,14 +1,14 @@
 #define FLUKEOPS_TIME_DELAY 12000 // 20 minutes, how long before the credits stop calling the nukies flukeops
 
 /datum/game_mode/nuclear
-	name = "nuclear emergency"
+	name = "rebel insurgency"
 	config_tag = "nuclear"
 	report_type = "nuclear"
 	false_report_weight = 10
-	required_players = 20 // scales with player count, 1 operative for every 10 players, rounded down
+	required_players = 20 // scales with player count, 1 rebel for every 10 players, rounded down
 	required_enemies = 2 // needs more than one person to make a team
 	recommended_enemies = 5
-	antag_flag = ROLE_OPERATIVE
+	antag_flag = ROLE_REBEL
 	enemy_minimum_age = 14
 	title_icon = "nukeops"
 
@@ -52,58 +52,6 @@
 		var/datum/mind/nuke_mind = pre_nukeops[i]
 		nuke_mind.add_antag_datum(operative_antag_datum_type)
 	return ..()
-
-/datum/game_mode/nuclear/OnNukeExplosion(off_station)
-	..()
-	nukes_left--
-
-/datum/game_mode/nuclear/check_win()
-	if (nukes_left == 0)
-		return TRUE
-	return ..()
-
-/datum/game_mode/nuclear/check_finished()
-	//Keep the round going if ops are dead but bomb is ticking.
-	if(nuke_team.operatives_dead())
-		for(var/obj/machinery/nuclearbomb/N in GLOB.nuke_list)
-			if(N.proper_bomb && (N.timing || N.exploding))
-				return FALSE
-	return ..()
-
-/datum/game_mode/nuclear/set_round_result()
-	..()
-	var result = nuke_team.get_result()
-	switch(result)
-		if(NUKE_RESULT_FLUKE)
-			SSticker.mode_result = "loss - syndicate nuked - disk secured"
-			SSticker.news_report = NUKE_SYNDICATE_BASE
-		if(NUKE_RESULT_NUKE_WIN)
-			SSticker.mode_result = "win - syndicate nuke"
-			SSticker.news_report = STATION_NUKED
-		if(NUKE_RESULT_NOSURVIVORS)
-			SSticker.mode_result = "halfwin - syndicate nuke - did not evacuate in time"
-			SSticker.news_report = STATION_NUKED
-		if(NUKE_RESULT_WRONG_STATION)
-			SSticker.mode_result = "halfwin - blew wrong station"
-			SSticker.news_report = NUKE_MISS
-		if(NUKE_RESULT_WRONG_STATION_DEAD)
-			SSticker.mode_result = "halfwin - blew wrong station - did not evacuate in time"
-			SSticker.news_report = NUKE_MISS
-		if(NUKE_RESULT_CREW_WIN_SYNDIES_DEAD)
-			SSticker.mode_result = "loss - evacuation - disk secured - syndi team dead"
-			SSticker.news_report = OPERATIVES_KILLED
-		if(NUKE_RESULT_CREW_WIN)
-			SSticker.mode_result = "loss - evacuation - disk secured"
-			SSticker.news_report = OPERATIVES_KILLED
-		if(NUKE_RESULT_DISK_LOST)
-			SSticker.mode_result = "halfwin - evacuation - disk not secured"
-			SSticker.news_report = OPERATIVE_SKIRMISH
-		if(NUKE_RESULT_DISK_STOLEN)
-			SSticker.mode_result = "halfwin - detonation averted"
-			SSticker.news_report = OPERATIVE_SKIRMISH
-		else
-			SSticker.mode_result = "halfwin - interrupted"
-			SSticker.news_report = OPERATIVE_SKIRMISH
 
 /datum/game_mode/nuclear/generate_report()
 	return "One of Central Command's trading routes was recently disrupted by a raid carried out by the Gorlex Marauders. They seemed to only be after one ship - a highly-sensitive \

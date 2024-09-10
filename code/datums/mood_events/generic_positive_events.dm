@@ -86,6 +86,11 @@
 	mood_change = 12
 	hidden = TRUE
 
+/datum/mood_event/rebel
+	description = "<span class='nicegreen'>Finally, change is in the air!</span>\n" //Used for rebels to buff up their mood
+	mood_change = 5
+	hidden = TRUE
+
 /datum/mood_event/badass_antag
 	description = span_nicegreen("I'm a fucking badass and everyone around me knows it. Just look at them; they're all fucking shaking at the mere thought of me around.\n")
 	mood_change = 15

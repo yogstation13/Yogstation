@@ -19,7 +19,7 @@
 /datum/antagonist/nukeop/leader/clownop/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/hornin.ogg', 100, FALSE, pressure_affected = FALSE)
 
-/datum/antagonist/nukeop/leader/clownop/give_alias()
+/datum/antagonist/nukeop/leader/clownop/proc/give_alias()
 	title = pick("Head Honker", "Slipmaster", "Clown King", "Honkbearer")
 	if(nuke_team && nuke_team.syndicate_name)
 		owner.current.real_name = "[nuke_team.syndicate_name] [title]"
