@@ -9,13 +9,4 @@ export const GENDERS = {
     text: "She/Her",
   },
 
-  ["plural"]: {
-    icon: "transgender",
-    text: "They/Them",
-  },
-
-  ["neuter"]: {
-    icon: "neuter",
-    text: "It/Its",
-  },
 };

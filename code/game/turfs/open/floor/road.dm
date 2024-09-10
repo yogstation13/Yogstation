@@ -101,9 +101,6 @@
 	icon = 'icons/turf/sidewalk.dmi'
 	icon_state = "sidewalk-255"
 	base_icon_state = "sidewalk"
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_CARPET_PLAIN_BLUE)
-	canSmoothWith = list(SMOOTH_GROUP_CARPET_PLAIN_BLUE, SMOOTH_GROUP_CARPET_PLAIN_GREEN, SMOOTH_GROUP_WALLS)
 
 
 /turf/open/floor/plating/ground/sidewalk/Initialize()

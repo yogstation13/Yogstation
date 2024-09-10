@@ -14,10 +14,14 @@ SUBSYSTEM_DEF(backrooms)
 	return SS_INIT_NO_NEED
 #endif
 
+	return SS_INIT_NO_NEED
+
+/*
 	generate_backrooms()
 	delete_beacons()
 	//spawn_anomalies()
 	return SS_INIT_SUCCESS
+*/
 
 /datum/controller/subsystem/backrooms/proc/pick_theme()
 	var/list/themes = typesof(/datum/generator_theme)

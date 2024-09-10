@@ -47,12 +47,6 @@
 /obj/machinery/door/unpowered/halflife/wood,
 /turf/open/floor/plating/indoor/woodc,
 /area/halflife/outdoors)
-"bA" = (
-/obj/structure/chair/halflife/metal{
-	dir = 1
-	},
-/turf/open/floor/plating/indoor/tile/navy,
-/area/halflife/indoors)
 "bC" = (
 /obj/machinery/vending/breenwater,
 /turf/open/floor/plating/ground/dirt,
@@ -193,6 +187,12 @@
 /obj/structure/halflife/trash/bricks,
 /turf/open/floor/plating/indoor/concrete/bricks,
 /area/halflife/indoors)
+"eK" = (
+/obj/machinery/power/halflife/streetlamp{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/sidewalk,
+/area/halflife/outdoors)
 "eR" = (
 /obj/machinery/door/unpowered/halflife/wood{
 	dir = 4
@@ -477,10 +477,6 @@
 	},
 /turf/open/floor/plating/indoor/woodc,
 /area/halflife/indoors)
-"lf" = (
-/obj/structure/chair/halflife/metal,
-/turf/open/floor/plating/indoor/tile/navy,
-/area/halflife/indoors)
 "lp" = (
 /obj/structure/halflife/fence/wire,
 /turf/open/floor/plating/ground/sidewalk,
@@ -600,6 +596,10 @@
 /obj/structure/chair/halflife/metal,
 /turf/open/floor/plating/indoor/woodc,
 /area/halflife/indoors)
+"og" = (
+/obj/item/storage/box/halflife/loyaltyration,
+/turf/open/floor/plating/indoor/tile/navy,
+/area/halflife/indoors)
 "om" = (
 /obj/structure/table/halflife/no_smooth/metal,
 /turf/open/floor/plating/indoor/tile/navy,
@@ -651,12 +651,6 @@
 	},
 /turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors)
-"pE" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/sidewalk,
-/area/halflife/outdoors)
 "pK" = (
 /obj/structure/chair/comfy/halflife/armchair,
 /obj/effect/landmark/start/divisional_lead,
@@ -686,6 +680,17 @@
 "qC" = (
 /turf/open/openspace,
 /area/halflife/indoors)
+"qT" = (
+/obj/docking_port/stationary{
+	dir = 2;
+	dwidth = 12;
+	height = 18;
+	name = "BoxStation emergency evac bay";
+	shuttle_id = "emergency_home";
+	width = 32
+	},
+/turf/open/floor/plating/indoor/tile,
+/area/halflife/outdoors)
 "qY" = (
 /obj/structure/table/halflife/no_smooth/large/metal/desk/alt,
 /turf/open/floor/plating/indoor/tile/navy,
@@ -723,13 +728,6 @@
 /obj/machinery/door/unpowered/halflife/seethrough/fence/wire,
 /turf/open/floor/plating/ground/road,
 /area/halflife/outdoors)
-"sc" = (
-/obj/structure/table/halflife/no_smooth/large/metal{
-	dir = 8
-	},
-/obj/item/storage/box/halflife/loyaltyration,
-/turf/open/floor/plating/indoor/tile/navy,
-/area/halflife/indoors)
 "sf" = (
 /obj/structure/table/halflife/metal/grate,
 /turf/open/floor/plating/indoor/concrete/bricks,
@@ -845,11 +843,6 @@
 /obj/structure/halflife/fence/vertical/wire/east,
 /turf/open/floor/plating/ground/road,
 /area/halflife/outdoors)
-"uT" = (
-/obj/structure/rack,
-/obj/item/grenade/spawnergrenade/manhacks,
-/turf/open/floor/plating/indoor/tile/navy,
-/area/halflife/indoors)
 "uX" = (
 /turf/open/floor/plating/indoor/metal/walkway{
 	dir = 1
@@ -902,13 +895,6 @@
 /obj/structure/halflife/trash/wood,
 /turf/open/floor/plating/indoor/concrete/bricks,
 /area/halflife/indoors/sewer)
-"wJ" = (
-/obj/structure/table/halflife/wood,
-/obj/item/reagent_containers/food/drinks/bottle/amaretto{
-	desc = "The Administrator's private reserve of alcohol. It tastes amazing, and is a one of a kind amaretto."
-	},
-/turf/open/floor/plating/indoor/tile/navy,
-/area/halflife/indoors)
 "wM" = (
 /mob/living/simple_animal/hostile/halflife/zombie,
 /turf/open/floor/plating/indoor/concrete/bricks,
@@ -976,6 +962,11 @@
 "yU" = (
 /obj/structure/chair/halflife/wood/padded,
 /turf/open/floor/plating/indoor/cafeteria,
+/area/halflife/indoors)
+"za" = (
+/obj/structure/rack,
+/obj/item/grenade/spawnergrenade/manhacks,
+/turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors)
 "zh" = (
 /obj/docking_port/stationary{
@@ -1144,6 +1135,19 @@
 /obj/structure/halflife/trash/bricks,
 /turf/open/floor/plating/ground/sidewalk,
 /area/halflife/outdoors)
+"En" = (
+/obj/structure/table/halflife/wood,
+/obj/item/reagent_containers/food/drinks/bottle/amaretto{
+	desc = "The Administrator's private reserve of alcohol. It tastes amazing, and is a one of a kind amaretto.";
+	pixel_x = -6;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/turf/open/floor/plating/indoor/tile/navy,
+/area/halflife/indoors)
 "ED" = (
 /obj/structure/halflife/trash/papers/three,
 /turf/open/floor/plating/ground/sidewalk,
@@ -1189,10 +1193,6 @@
 "FP" = (
 /turf/open/floor/plating/ground/dirt,
 /area/halflife/outdoors)
-"FS" = (
-/obj/machinery/light,
-/turf/open/floor/plating/indoor/greentile,
-/area/halflife/indoors)
 "FV" = (
 /obj/structure/halflife/fence/vertical/wire/east,
 /turf/open/floor/plating/ground/sidewalk,
@@ -1381,6 +1381,13 @@
 /obj/structure/halflife/fence/wire,
 /turf/open/floor/plating/indoor/woodc,
 /area/halflife/outdoors)
+"Kj" = (
+/obj/structure/table/halflife/no_smooth/large/metal{
+	dir = 8
+	},
+/obj/item/storage/box/halflife/loyaltyration,
+/turf/open/floor/plating/indoor/tile/navy,
+/area/halflife/indoors)
 "Kk" = (
 /obj/machinery/turnstile/brig/halflife/forcefield/nodirectional,
 /turf/open/floor/plating/indoor/woodc,
@@ -1412,22 +1419,6 @@
 /obj/effect/landmark/stationroom/sewer/leftentrance/tenxten,
 /turf/template_noop,
 /area/halflife/indoors/sewer)
-"KO" = (
-/obj/structure/table/halflife/no_smooth/large/metal,
-/obj/item/storage/box/halflife/loyaltyration,
-/turf/open/floor/plating/indoor/tile/navy,
-/area/halflife/indoors)
-"KQ" = (
-/obj/docking_port/stationary{
-	dir = 2;
-	dwidth = 12;
-	height = 18;
-	name = "BoxStation emergency evac bay";
-	shuttle_id = "emergency_home";
-	width = 32
-	},
-/turf/open/floor/plating/indoor/tile,
-/area/halflife/outdoors)
 "KU" = (
 /obj/structure/halflife/fence/wire/end/east,
 /turf/open/floor/plating/ground/sidewalk,
@@ -1581,11 +1572,25 @@
 "Pl" = (
 /turf/open/floor/plating/indoor/woodc,
 /area/halflife/indoors/sewer)
+"Pp" = (
+/obj/structure/chair/halflife/metal,
+/turf/open/floor/plating/indoor/tile/navy,
+/area/halflife/indoors)
+"Pt" = (
+/obj/structure/chair/halflife/metal{
+	dir = 1
+	},
+/turf/open/floor/plating/indoor/tile/navy,
+/area/halflife/indoors)
 "Pv" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plating/indoor/carpet,
+/area/halflife/indoors)
+"Pw" = (
+/obj/machinery/light,
+/turf/open/floor/plating/indoor/greentile,
 /area/halflife/indoors)
 "Px" = (
 /obj/structure/halflife/trash/wood,
@@ -1762,6 +1767,11 @@
 	},
 /turf/open/floor/plating/indoor/metal,
 /area/halflife/indoors/sewer)
+"Ui" = (
+/obj/structure/table/halflife/no_smooth/large/metal,
+/obj/item/storage/box/halflife/loyaltyration,
+/turf/open/floor/plating/indoor/tile/navy,
+/area/halflife/indoors)
 "Up" = (
 /obj/structure/chair/halflife/wood/padded{
 	dir = 1
@@ -1849,12 +1859,6 @@
 /obj/effect/spawner/lootdrop/halflife/loot,
 /turf/open/floor/plating/indoor/concrete/bricks,
 /area/halflife/indoors/sewer)
-"WG" = (
-/obj/machinery/power/halflife/streetlamp{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/sidewalk,
-/area/halflife/outdoors)
 "WN" = (
 /obj/effect/spawner/lootdrop/halflife/loot/consumables,
 /turf/open/floor/plating/indoor/concrete,
@@ -1892,6 +1896,12 @@
 "XQ" = (
 /turf/open/floor/plating/indoor/tile,
 /area/halflife/indoors)
+"XR" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/sidewalk,
+/area/halflife/outdoors)
 "XW" = (
 /obj/structure/halflife/trash/cardboard,
 /turf/open/floor/plating/ground/dirt,
@@ -1901,10 +1911,6 @@
 	dir = 4
 	},
 /turf/open/floor/plating/indoor/concrete/bricks,
-/area/halflife/indoors)
-"Yt" = (
-/obj/item/storage/box/halflife/loyaltyration,
-/turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors)
 "Yx" = (
 /obj/structure/chair/halflife/wood/padded{
@@ -58062,7 +58068,7 @@ RV
 ja
 RV
 RV
-WG
+eK
 Tc
 ND
 SE
@@ -61728,7 +61734,7 @@ Tc
 Tc
 Tc
 jE
-KQ
+qT
 jE
 jE
 jE
@@ -62645,7 +62651,7 @@ RV
 ja
 RV
 RV
-WG
+eK
 Tc
 ND
 Ks
@@ -63718,7 +63724,7 @@ RV
 ja
 RV
 RV
-WG
+eK
 Tc
 ND
 hZ
@@ -64266,7 +64272,7 @@ Tc
 Sf
 MR
 Tc
-pE
+XR
 Tc
 Tc
 ND
@@ -65069,7 +65075,7 @@ RV
 ja
 RV
 RV
-WG
+eK
 Tc
 Tc
 Tc
@@ -65828,7 +65834,7 @@ cP
 ND
 ZO
 My
-wJ
+En
 cP
 cP
 ND
@@ -66643,11 +66649,11 @@ Cf
 XQ
 XQ
 ND
-lf
-KO
+Pp
+Ui
 DJ
 ut
-bA
+Pt
 cP
 ND
 XQ
@@ -66845,11 +66851,11 @@ ND
 XQ
 XQ
 ND
-lf
+Pp
 cP
 cP
-Yt
-bA
+og
+Pt
 cP
 ND
 XQ
@@ -67653,11 +67659,11 @@ ND
 uD
 XQ
 ND
-lf
+Pp
 ut
 cP
-KO
-bA
+Ui
+Pt
 cP
 ND
 XQ
@@ -67855,11 +67861,11 @@ ND
 XQ
 XQ
 ND
-lf
-Yt
+Pp
+og
 cP
 cP
-bA
+Pt
 cP
 ND
 XQ
@@ -68461,12 +68467,12 @@ ND
 XQ
 XQ
 ND
-Yt
-sc
+og
+Kj
 iD
 cP
-Yt
-sc
+og
+Kj
 ND
 XQ
 XQ
@@ -69885,7 +69891,7 @@ cP
 CF
 ia
 QU
-uT
+za
 cP
 cP
 ND
@@ -70086,8 +70092,8 @@ cP
 cP
 La
 at
-uT
-uT
+za
+za
 cP
 cP
 ND
@@ -75859,7 +75865,7 @@ Fa
 Fa
 Fa
 Fa
-FS
+Pw
 ND
 FP
 ND

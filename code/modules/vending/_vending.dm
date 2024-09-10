@@ -613,8 +613,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 			L.emote("scream")
 			playsound(L, 'sound/effects/blobattack.ogg', 40, TRUE)
 			playsound(L, 'sound/effects/splat.ogg', 50, TRUE)
-			if(prob(1)) //send them to the backrooms
-				INVOKE_ASYNC(L, TYPE_PROC_REF(/mob/living, clip_into_backrooms))
 
 	var/matrix/M = matrix()
 	M.Turn(pick(90, 270))
