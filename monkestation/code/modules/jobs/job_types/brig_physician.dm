@@ -7,6 +7,9 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = SUPERVISOR_HOS
+	exp_requirements = 600
+	exp_required_type = EXP_TYPE_CREW
+	exp_required_type_department = EXP_TYPE_SECURITY
 	exp_granted_type = EXP_TYPE_CREW
 	config_tag = "BRIG_PHYSICIAN"
 
