@@ -17757,17 +17757,6 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"fQE" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -28
-	},
-/obj/effect/portal/permanent/backrooms,
-/turf/open/floor/plasteel,
-/area/quartermaster/warehouse)
 "fSn" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastright{
@@ -20395,6 +20384,11 @@
 	},
 /turf/closed/wall/r_wall,
 /area/ai_monitored/storage/eva)
+"iXM" = (
+/obj/structure/rack,
+/mob/living/simple_animal/parrot/shipbreaking_hawk,
+/turf/open/floor/plasteel/dark,
+/area/escapepodbay)
 "iZg" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -25298,6 +25292,23 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/wood,
 /area/library)
+"oiA" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Escape Podbay";
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel,
+/area/escapepodbay)
 "oiK" = (
 /obj/machinery/light{
 	dir = 1
@@ -29968,6 +29979,17 @@
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
+"tfp" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -28
+	},
+/obj/effect/portal/permanent/backrooms,
+/turf/open/floor/plasteel,
+/area/quartermaster/warehouse)
 "thF" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 4
@@ -31065,9 +31087,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
-"uFy" = (
-/turf/open/floor/plasteel/dark,
-/area/escapepodbay)
 "uFX" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -32325,24 +32344,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"wgf" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Escape Podbay";
-	dir = 4
-	},
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/mob/living/simple_animal/parrot/shipbreaking_hawk,
-/turf/open/floor/plasteel,
-/area/escapepodbay)
 "wgq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -48442,7 +48443,7 @@ nuy
 siY
 siY
 uSi
-uFy
+iXM
 kAg
 smc
 uSi
@@ -48698,7 +48699,7 @@ aOy
 taj
 taj
 toO
-wgf
+oiA
 taj
 pXt
 taj
@@ -49198,7 +49199,7 @@ cCs
 vYb
 nTE
 cUk
-fQE
+tfp
 rkk
 gVg
 aYI
