@@ -1,7 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Fixed name tags being incredibly off-center for some mobs."
-  - bugfix: "Name tags should be properly updated when VVing a mob's name now."
-  - qol: "Name tags are now always right-side up, rather than rotating with the mob."
-  - qol: "Name tags no longer inherit their mob's color."
