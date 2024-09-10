@@ -54697,6 +54697,7 @@
 /obj/item/melee/sledgehammer,
 /obj/item/storage/bag/trash,
 /obj/item/broom,
+/mob/living/simple_animal/parrot/shipbreaking_hawk,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
 "wNb" = (
