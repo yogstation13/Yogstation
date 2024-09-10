@@ -18108,6 +18108,24 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"fJt" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Escape Podbay";
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/mob/living/simple_animal/parrot/shipbreaking_hawk,
+/turf/open/floor/plasteel,
+/area/escapepodbay)
 "fKu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -19351,6 +19369,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"hcJ" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -28
+	},
+/obj/effect/portal/permanent/backrooms,
+/turf/open/floor/plasteel,
+/area/quartermaster/warehouse)
 "hcT" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/security/wooden_tv,
@@ -25935,23 +25964,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"oiA" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Escape Podbay";
-	dir = 4
-	},
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/turf/open/floor/plasteel,
-/area/escapepodbay)
 "oiD" = (
 /obj/structure/sink/kitchen{
 	dir = 8;
@@ -33165,16 +33177,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"wbT" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -28
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/warehouse)
 "wbV" = (
 /obj/machinery/atmospherics/components/unary/portables_connector,
 /obj/machinery/portable_atmospherics/canister,
@@ -49663,7 +49665,7 @@ aOy
 taj
 taj
 toO
-oiA
+fJt
 taj
 pXt
 taj
@@ -50163,7 +50165,7 @@ cCs
 vYb
 nTE
 cUk
-wbT
+hcJ
 rkk
 gVg
 aYI
