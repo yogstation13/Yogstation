@@ -223,7 +223,7 @@
 	range = 6
 	damage = 16
 	demolition_mod = 2 // bonus damage against blobs and vines, most other structures have very high fire armor
-	penetration_flags = PENETRATE_OBJECTS|PENETRATE_MOBS
+	penetration_flags = PENETRATE_OBJECTS | PENETRATE_WALLS | PENETRATE_MOBS
 	penetrations = INFINITY
 	ignore_crit = TRUE
 	///Reference to the fuel tank in the flamethrower.
@@ -262,6 +262,9 @@
 /obj/projectile/flamethrower/prehit(atom/target) // humans use a different heat protection system
 	if(nodamage)
 		return FALSE // don't do direct damage, just make fire
+	var/turf/target_turf = get_turf(target)
+	if(target.loc.return_air() != target_turf.return_air())
+		return FALSE
 	if(ishuman(target))
 		var/mob/living/carbon/human/joshua_graham = target
 		joshua_graham.apply_damage(damage, BURN, null, joshua_graham.get_heat_protection(last_burn_temp) * 100)

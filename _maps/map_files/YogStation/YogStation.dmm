@@ -57195,6 +57195,11 @@
 /obj/machinery/teleport/station,
 /turf/open/floor/plating,
 /area/teleporter)
+"rGx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/backrooms_portal,
+/turf/open/floor/plasteel,
+/area/quartermaster/warehouse)
 "rHf" = (
 /turf/open/floor/engine/vacuum,
 /area/engine/atmos/mix)
@@ -96591,7 +96596,7 @@ aTD
 aPG
 bbq
 gjl
-baS
+rGx
 hFo
 baS
 baS
