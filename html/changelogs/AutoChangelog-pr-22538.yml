@@ -1,0 +1,8 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - experiment: "Added overheat mechanics to exosuits"
+  - bugfix: "Fixed charge and integrity not updating properly on diagnostic HUD"
+  - bugfix: "Probably other stuff that I forgot about"
+  - imageadd: "Added HUD icons for overheating"
+  - imageadd: "Added sprites for new mech equipment"
