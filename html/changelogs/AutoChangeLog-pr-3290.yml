@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - balance: "Increased the chance of signs from the heart attack symptom appearing"
