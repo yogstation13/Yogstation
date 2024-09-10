@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - balance: "The NPCs from the Syndicate Shocktroops event now have much less health, deal less damage, and have very slightly longer attack cooldowns. This does not affect the NPCs in the space ruins and such, only the ones from the event."
+  - bugfix: "Syndicate Shocktroops will no longer spawn in stupid places like in the middle of a wall."
