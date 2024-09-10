@@ -525,7 +525,7 @@
 /obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime/Initialize(mapload)
 	. = ..()
 	name = "lemon-lime soda"
-
+	
 /obj/item/reagent_containers/food/drinks/soda_cans/sol_dry
 	name = "Sol Dry"
 	desc = "Maybe this will help your tummy feel better. Maybe not."
@@ -600,7 +600,7 @@
 	desc = "Theoretically impossible to be this good."
 	icon_state = "icedcoffeecan"
 	list_reagents = list(/datum/reagent/consumable/coffee/ice = 30)
-	foodtype = DAIRY
+	foodtype = DAIRY | COFFEE
 
 /obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry
 	name = "Sprited Cranberry"
