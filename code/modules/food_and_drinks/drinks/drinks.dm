@@ -597,7 +597,7 @@
 
 /obj/item/reagent_containers/food/drinks/soda_cans/icedcoffee
 	name = "cold fusion"
-	desc = "Theoretically impossible to be this good."
+	desc = "Not theoretically possible to be this good."
 	icon_state = "icedcoffeecan"
 	list_reagents = list(/datum/reagent/consumable/coffee/ice = 30)
 	foodtype = DAIRY | COFFEE
