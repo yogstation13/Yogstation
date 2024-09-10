@@ -17,7 +17,9 @@
 
 /obj/structure/window_sill/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
+	tool.play_tool_sound(src, 100)
 	deconstruct()
+	return TOOL_ACT_TOOLTYPE_SUCCESS
 
 /obj/structure/window_sill/deconstruct(disassembled = TRUE, wrench_disassembly = 0)
 	new /obj/item/stack/sheet/iron(get_turf(src))
