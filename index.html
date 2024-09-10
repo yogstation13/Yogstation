@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(915 modules,
-    3207/11171 macros, 28.7%)</aside></h3>
+<aside>(918 modules,
+    3220/11186 macros, 28.8%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -153,6 +153,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/materials.html" title="code&#x2F;__DEFINES&#x2F;materials">materials</a></li>
     <li><a href="code/__DEFINES/maths.html" title="code&#x2F;__DEFINES&#x2F;maths">maths</a></li>
     <li><a href="code/__DEFINES/matrices.html" title="code&#x2F;__DEFINES&#x2F;matrices">matrices</a></li>
+    <li><a href="code/__DEFINES/mecha.html" title="code&#x2F;__DEFINES&#x2F;mecha">mecha</a></li>
     <li><a href="code/__DEFINES/misc.html" title="code&#x2F;__DEFINES&#x2F;misc">misc</a></li>
     <li><a href="code/__DEFINES/mobfactions.html" title="code&#x2F;__DEFINES&#x2F;mobfactions">mobfactions</a></li>
     <li><a href="code/__DEFINES/mobs.html" title="code&#x2F;__DEFINES&#x2F;mobs">mobs</a></li>
@@ -410,7 +411,10 @@ SPDX-License-Identifier: MIT</li>
     <li class="has-children"><span title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators">dungeon_generators</span><ul class="index-tree">
     <li><a href="code/datums/mapgen/dungeon_generators/dungeon_room.html" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room">dungeon_room</a></li>
     <li><a href="code/datums/mapgen/dungeon_generators/dungeon_room_theme.html" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme">dungeon_room_theme</a></li>
-    <li><span class="no-substance">maintenance_generator&#x2F;</span><a href="code/datums/mapgen/dungeon_generators/maintenance_generator/maintenance_generator.html" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;maintenance_generator&#x2F;maintenance_generator">maintenance_generator</a></li>
+    <li class="has-children"><span title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;maintenance_generator">maintenance_generator</span><ul class="index-tree">
+    <li><a href="code/datums/mapgen/dungeon_generators/maintenance_generator/maintenance_generator.html" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;maintenance_generator&#x2F;maintenance_generator">maintenance_generator</a></li>
+    <li><span class="no-substance">maintenance_room_themes&#x2F;</span><a href="code/datums/mapgen/dungeon_generators/maintenance_generator/maintenance_room_themes/random.html" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;maintenance_generator&#x2F;maintenance_room_themes&#x2F;random">random</a></li>
+    </ul></li>
     </ul></li>
     </ul></li>
     <li class="has-children"><a href="code/datums/martial.html" title="code&#x2F;datums&#x2F;martial">martial</a><ul class="index-tree">
@@ -491,9 +495,12 @@ SPDX-License-Identifier: MIT</li>
     </ul></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;game&#x2F;mecha">mecha</span><ul class="index-tree">
-    <li class="has-children"><span class="no-substance">equipment&#x2F;</span><span title="code&#x2F;game&#x2F;mecha&#x2F;equipment&#x2F;tools">tools</span><ul class="index-tree">
+    <li class="has-children"><span title="code&#x2F;game&#x2F;mecha&#x2F;equipment">equipment</span><ul class="index-tree">
+    <li class="has-children"><span title="code&#x2F;game&#x2F;mecha&#x2F;equipment&#x2F;tools">tools</span><ul class="index-tree">
     <li><a href="code/game/mecha/equipment/tools/medical_tools.html" title="code&#x2F;game&#x2F;mecha&#x2F;equipment&#x2F;tools&#x2F;medical_tools">medical_tools</a></li>
     <li><a href="code/game/mecha/equipment/tools/other_tools.html" title="code&#x2F;game&#x2F;mecha&#x2F;equipment&#x2F;tools&#x2F;other_tools">other_tools</a></li>
+    </ul></li>
+    <li><span class="no-substance">weapons&#x2F;</span><a href="code/game/mecha/equipment/weapons/armor.html" title="code&#x2F;game&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;armor">armor</a></li>
     </ul></li>
     <li><a href="code/game/mecha/mecha_actions.html" title="code&#x2F;game&#x2F;mecha&#x2F;mecha_actions">mecha_actions</a></li>
     <li><a href="code/game/mecha/mecha_construction_paths.html" title="code&#x2F;game&#x2F;mecha&#x2F;mecha_construction_paths">mecha_construction_paths</a></li>
@@ -1322,7 +1329,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1311 detailed/2228 documented/31011 total, 7.2%)</aside></h3>
+<aside>(1315 detailed/2253 documented/31043 total, 7.3%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1878,6 +1885,7 @@ Items with this component that get picked up may give their parent mob the slip 
     <li class="has-children"><a href="datum/component/uplink.html" title="&#x2F;datum&#x2F;component&#x2F;uplink">syndicate uplink</a> - Uplinks<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;uplink&#x2F;nanotrasen">nanotrasen uplink</span> - NT Uplink</li>
     </ul></li>
+    <li><a href="datum/component/valuable.html" title="&#x2F;datum&#x2F;component&#x2F;valuable">valuable</a></li>
     <li><span class="no-substance">walk&#x2F;</span><a href="datum/component/walk/shadow.html" title="&#x2F;datum&#x2F;component&#x2F;walk&#x2F;shadow">shadow</a></li>
     <li><a href="datum/component/wall_mounted.html" title="&#x2F;datum&#x2F;component&#x2F;wall_mounted">wall_mounted</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;wearertargeting">wearertargeting</span> - Pull from the curent object loc</li>
@@ -2099,9 +2107,34 @@ for scheduling different subsystems for different stages of the round</li>
     <li><a href="datum/dungeon_room.html" title="&#x2F;datum&#x2F;dungeon_room">dungeon_room</a> - This datum represents a &quot;room&quot; which is created by the Dungeon Generator process. Whether you use Binary Space Partition(BSP) or Random Room Placement(RRP),
 the Rust algorith will populate the given area with rooms, which are just squares and rectangles of various dimensions with X and Y coordinates. I created
 this datum to give better control over the data the generator is using. So you can look through the list of rooms for feedback or to understand what's happening.</li>
-    <li><a href="datum/dungeon_room_theme.html" title="&#x2F;datum&#x2F;dungeon_room_theme">dungeon_room_theme</a> - Dungeon room themes determine the style of the generated rooms. If you want to create a new dungeon generator for say, Icemeta,
+    <li class="has-children"><a href="datum/dungeon_room_theme.html" title="&#x2F;datum&#x2F;dungeon_room_theme">dungeon_room_theme</a> - Dungeon room themes determine the style of the generated rooms. If you want to create a new dungeon generator for say, Icemeta,
 Then you would want to create a new subtype of room theme with maybe snow floor tiles, ice or snow walls and some fitting kind of door. Then from there further subtype
-into hostile, neutral, beneficial and whatever other types of rooms you want to appear in that area.</li>
+into hostile, neutral, beneficial and whatever other types of rooms you want to appear in that area.<ul class="index-tree">
+    <li class="has-children"><span title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance">maintenance</span><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;ancient_armory">ancient_armory</span> - just lik the founding fathers intended</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;autolathe">autolathe</span> - lathes, nough said</li>
+    <li><a href="datum/dungeon_room_theme/maintenance/bank.html" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;bank">bank</a> - dead money reference except I couldnt add father elijah</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;chasm_fake">chasm_fake</span> - I really really really want to include a real chasm but god knows im not strong enough</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;eskimo">eskimo</span> - eskimo enemy variety, they came here for the winter</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;gym">gym</span> - you work out bro?</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;hardsuit">hardsuit</span> - these don't actually spawn inside the suit storage and I think thats funny</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;junk">junk</span> - one man's junk is another mans... also junk</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;kitchen">kitchen</span> - mama mia</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;lasgun">lasgun</span> - this gun blows so much ass using it is actually more likely to get you killed</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;machine_parts">machine_parts</span> - domo arigato</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;material_storeroom">material_storeroom</span> - mineral loot room</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;medical">medical</span> - doctor!</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;medical_surgical">medical_surgical</span> - we couldnt afford the surgery tools</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;mine_room">mine_room</span> - im so adding more mines</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;mineral_room">mineral_room</span> - mineral room 2 but with danger involved</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;oxygen_included">oxygen_included</span> - cuackles played this once</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;pizza_time">pizza_time</span> - pizza tower, or spiderman 2 reference, depending on the year you time travelled from</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;robotics">robotics</span> - we can rebuild him.</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;spiders">spiders</span> - this is the best room, unless you hate spiders, then it's the worst.</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;sus_room">sus_room</span> - sus, amongus.</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;dungeon_room_theme&#x2F;maintenance&#x2F;xenobio">xenobio</span> - powergamers... even in the backrooms...</li>
+    </ul></li>
+    </ul></li>
     <li class="has-children"><a href="datum/dynamic_ruleset.html" title="&#x2F;datum&#x2F;dynamic_ruleset">dynamic_ruleset</a><ul class="index-tree">
     <li><span class="no-substance">latejoin&#x2F;</span><a href="datum/dynamic_ruleset/latejoin/provocateur.html" title="&#x2F;datum&#x2F;dynamic_ruleset&#x2F;latejoin&#x2F;provocateur">Provocateur</a></li>
     <li class="has-children"><a href="datum/dynamic_ruleset/midround.html" title="&#x2F;datum&#x2F;dynamic_ruleset&#x2F;midround">midround</a><ul class="index-tree">
@@ -3721,7 +3754,9 @@ You can only use one type at a time, you have to clear them to swap to the other
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;chassis&#x2F;sidewinder">Sidewinder chassis</span> - sidewinder</li>
     </ul></li>
     <li class="has-children"><a href="obj/item/mecha_parts/mecha_equipment.html" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment">mecha equipment</a><ul class="index-tree">
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;anticcw_armor_booster">armor booster module (Close Combat Weaponry)</span> - ARMOR BOOSTER MODULES</li>
+    <li><a href="obj/item/mecha_parts/mecha_equipment/armor.html" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;armor">armor booster module (Bad Code)</a> - ARMOR BOOSTER MODULES</li>
+    <li><a href="obj/item/mecha_parts/mecha_equipment/cooling.html" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;cooling">generic mech cooling system</a></li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;coral_generator">IA-C01G AORTA</span> - Coral Generator</li>
     <li><a href="obj/item/mecha_parts/mecha_equipment/drill.html" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;drill">exosuit drill</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;emergency_eject">emergency ejection system</span> - EJECTION</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;generator">exosuit plasma converter</span> - GENERATOR</li>
@@ -4414,7 +4449,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/73fea69d3dda904713a68fa26ed3292299b4ae2c">73fea69</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/a79dcc461acd19ff58b371cd90f0623669b4f728">a79dcc4</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
