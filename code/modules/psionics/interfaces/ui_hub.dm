@@ -73,7 +73,7 @@
 
 /obj/screen/psi/hub/MouseEntered(location, control, params)
 	. = ..()
-	openToolTip(usr, src, params, title = "[owner.mind.name]'s Psi Complexus", content = "<b>Stamina:</b> [(owner.psi.stamina/owner.psi.max_stamina)*100]%\n<b>Heat:</b> [owner.psi.heat]\n<b>Stunned:</b> [owner.psi.stun ? "True" : "False"]\n")
+	openToolTip(usr, src, params, title = "[owner.mind.name]'s Psi Complexus", content = "<b>Shift Click To Open The Psi Complexus</b>\n<b>Stamina:</b> [(owner.psi.stamina/owner.psi.max_stamina)*100]%\n<b>Heat:</b> [owner.psi.heat]\n<b>Stunned:</b> [owner.psi.stun ? "True" : "False"]\n")
 
 /obj/screen/psi/hub/MouseExited(location, control, params)
 	. = ..()
