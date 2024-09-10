@@ -1,0 +1,8 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - refactor: "Refactored heretic sacrifices to track minds instead of bodies."
+  - bugfix: "Heretics can now properly sacrifice oozeling cores."
+  - bugfix: "Heretic sacrifice targets will still be valid if they somehow change bodies, i.e if they're cloned."
+  - qol: "Heretic roundend report will now bold the names of targets who were actually sacrificed."
+  - qol: "Heretics will no longer roll off-station, non-crew, disconnected, or AFK players as targets."
