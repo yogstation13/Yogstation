@@ -7,4 +7,5 @@
 
 // Penetration flags
 #define PENETRATE_OBJECTS (1<<0)
-#define PENETRATE_MOBS (1<<1)
+#define PENETRATE_WALLS	(1<<1)
+#define PENETRATE_MOBS (1<<2)

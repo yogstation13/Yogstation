@@ -987,6 +987,8 @@
 
 /datum/weather/nuclear_fallout/telegraph()
 	..()
+	if(SSsecurity_level.get_current_level_as_number() < SEC_LEVEL_GAMMA)//if for some reason, it's already gamma, don't bother making it gamma
+		SSsecurity_level.set_level(SEC_LEVEL_GAMMA) //gamma is cool and good (also lets people powergame to save their lives)
 	status_alarm(TRUE)
 
 /datum/weather/nuclear_fallout/proc/status_alarm(active)	//Makes the status displays show the radiation warning for those who missed the announcement.

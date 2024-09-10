@@ -331,7 +331,7 @@
 	if (H.jumpsuit_style == PREF_SKIRT && uniform_skirt)
 		uniform = uniform_skirt
 
-	if((DIGITIGRADE in H.dna.species.species_traits) && digitigrade_shoes) 
+	if(HAS_TRAIT(H, TRAIT_DIGITIGRADE) && digitigrade_shoes) 
 		shoes = digitigrade_shoes
 
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

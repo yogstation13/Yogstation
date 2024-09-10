@@ -7,7 +7,7 @@
 */
 /turf/Adjacent(atom/neighbor, atom/target = null, atom/movable/mover = null)
 	if(neighbor == src)
-		return TRUE //don't be retarded!!
+		return TRUE //don't be ridiculous!!
 
 	if(istype(neighbor, /atom/movable)) //fml
 		var/atom/movable/AM = neighbor

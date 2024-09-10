@@ -1,0 +1,10 @@
+author: "cowbot92"
+delete-after: true 
+changes: 
+  - rscadd: "Adds new station side activity: Backrooms exploration"
+  - rscadd: "Adds new relics to the backrooms"
+  - rscadd: "Adds new monsters to the backrooms"
+  - wip: "This is work in progress"
+  - imageadd: "new sprites may be added"
+  - mapping: "Adds a new area to enter the backrooms on station"
+  - experiment: "This is experimental"

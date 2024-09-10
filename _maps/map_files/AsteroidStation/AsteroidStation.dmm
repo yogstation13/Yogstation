@@ -7762,9 +7762,6 @@
 /obj/machinery/computer/mech_bay_power_console{
 	dir = 4
 	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/mechbay)
 "bJC" = (
@@ -8514,12 +8511,6 @@
 "bXz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
 	},
 /turf/open/floor/circuit,
 /area/science/robotics/mechbay)
@@ -9381,12 +9372,6 @@
 /area/security/main)
 "cij" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /turf/open/floor/circuit,
 /area/science/robotics/mechbay)
 "cin" = (
@@ -12057,9 +12042,6 @@
 	dir = 8
 	},
 /obj/effect/landmark/event_spawn,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /turf/open/floor/circuit,
 /area/science/robotics/mechbay)
 "cYN" = (
@@ -24201,9 +24183,6 @@
 	pixel_y = 24;
 	req_access = list("robotics")
 	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
 /obj/machinery/button/door{
 	id = "Skynet_launch";
 	name = "Mech Bay Door Control";
@@ -26175,6 +26154,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"hpK" = (
+/obj/effect/spawner/backrooms_portal,
+/turf/open/floor/plasteel,
+/area/quartermaster/warehouse)
 "hqn" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/lootdrop/randomdrink,
@@ -29416,7 +29399,6 @@
 /obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plating/airless,
 /area/escapepodbay)
 "irh" = (
@@ -30622,7 +30604,6 @@
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/ramp_middle,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
 "iKT" = (
@@ -32866,13 +32847,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"jpN" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/circuit,
-/area/science/robotics/mechbay)
 "jqc" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -34394,9 +34368,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/cable{
 	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/mechbay)
@@ -36298,9 +36269,6 @@
 "ktk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/mechbay)
@@ -41233,9 +41201,6 @@
 "mch" = (
 /obj/machinery/mech_bay_recharge_port{
 	dir = 2
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/mechbay)
@@ -46295,6 +46260,19 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"nzB" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/stasis{
+	dir = 4
+	},
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_x = 0;
+	pixel_y = -31
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/sleeper)
 "nzK" = (
 /obj/machinery/ai/networking{
 	label = "Subcontroller";
@@ -64932,15 +64910,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"tcY" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/stasis{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/sleeper)
 "tdc" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden{
 	dir = 5
@@ -66920,9 +66889,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = -26
@@ -68121,7 +68087,6 @@
 /obj/machinery/door/airlock/external{
 	name = "Shipbreaking External Access"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
 "uau" = (
@@ -79932,9 +79897,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
 	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
 /turf/open/floor/circuit,
 /area/science/robotics/mechbay)
 "xLv" = (
@@ -80028,9 +79990,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
 	},
 /turf/open/floor/circuit,
 /area/science/robotics/mechbay)
@@ -94201,7 +94160,7 @@ aJI
 aZs
 xga
 xIK
-hSk
+hpK
 dCg
 gBO
 aZs
@@ -108337,7 +108296,7 @@ rWu
 brj
 ppp
 uYv
-tcY
+nzB
 wOY
 dmS
 ugr
@@ -110855,9 +110814,9 @@ aQZ
 gLE
 bXz
 cij
-jpN
 cij
-jpN
+cij
+cij
 ktk
 adX
 aFu

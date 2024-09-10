@@ -306,7 +306,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		src.add_donator_verbs()
 	else
 		if(prefs.read_preference(/datum/preference/toggle/quiet_mode))
-			prefs.write_preference(/datum/preference/toggle/quiet_mode, FALSE)
+			prefs.write_preference(GLOB.preference_entries[/datum/preference/toggle/quiet_mode], FALSE)
 
 	. = ..()	//calls mob.Login()
 

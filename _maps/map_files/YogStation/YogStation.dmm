@@ -7722,12 +7722,6 @@
 /turf/closed/wall,
 /area/medical/chemistry)
 "bfI" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "bfK" = (
@@ -7742,9 +7736,6 @@
 	},
 /obj/machinery/light{
 	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
 	},
 /turf/open/floor/plating,
 /area/science/robotics/mechbay)
@@ -7974,9 +7965,6 @@
 "bhy" = (
 /obj/machinery/computer/mech_bay_power_console{
 	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
@@ -8460,9 +8448,6 @@
 /obj/machinery/airalarm{
 	dir = 4;
 	pixel_x = -24
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
@@ -10127,6 +10112,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "bAj" = (
+/mob/living/simple_animal/parrot/shipbreaking_hawk,
 /turf/open/floor/plasteel/dark,
 /area/escapepodbay)
 "bAo" = (
@@ -14084,9 +14070,6 @@
 	pixel_x = -6;
 	pixel_y = 24
 	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
 /turf/open/floor/plating,
 /area/science/robotics/mechbay)
 "cpL" = (
@@ -15314,13 +15297,7 @@
 "cHN" = (
 /obj/machinery/holopad,
 /obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
 	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
@@ -19352,6 +19329,9 @@
 	dir = 8;
 	name = "Mech Bay APC";
 	pixel_x = -25
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
 	},
 /turf/open/floor/mech_bay_recharge_floor,
 /area/science/robotics/mechbay)
@@ -33980,7 +33960,6 @@
 /obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plating,
 /area/escapepodbay)
 "jcf" = (
@@ -44867,7 +44846,7 @@
 /area/maintenance/port)
 "ndK" = (
 /obj/structure/cable{
-	icon_state = "1-2"
+	icon_state = "2-8"
 	},
 /turf/open/floor/circuit,
 /area/science/robotics/mechbay)
@@ -46642,19 +46621,6 @@
 /obj/effect/turf_decal/trimline/green/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
-"nQi" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/stasis{
-	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Medbay Treatment Center";
-	network = list("ss13","medbay")
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/sleeper)
 "nQl" = (
 /turf/template_noop,
 /area/science/test_area)
@@ -49384,6 +49350,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
+"oPu" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/stasis{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Medbay Treatment Center";
+	network = list("ss13","medbay")
+	},
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/sleeper)
 "oPJ" = (
 /obj/structure/table,
 /turf/open/floor/plasteel/cafeteria,
@@ -52181,7 +52163,6 @@
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/ramp_middle,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
 "pQS" = (
@@ -57214,6 +57195,11 @@
 /obj/machinery/teleport/station,
 /turf/open/floor/plating,
 /area/teleporter)
+"rGx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/backrooms_portal,
+/turf/open/floor/plasteel,
+/area/quartermaster/warehouse)
 "rHf" = (
 /turf/open/floor/engine/vacuum,
 /area/engine/atmos/mix)
@@ -65122,7 +65108,6 @@
 /obj/machinery/door/airlock/external{
 	name = "Shipbreaking External Access"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plating,
 /area/escapepodbay)
 "uDL" = (
@@ -96611,7 +96596,7 @@ aTD
 aPG
 bbq
 gjl
-baS
+rGx
 hFo
 baS
 baS
@@ -112047,7 +112032,7 @@ lKd
 kub
 pDs
 bvj
-nQi
+oPu
 sha
 bDR
 lXo
@@ -119490,9 +119475,9 @@ baT
 baT
 eHW
 uJu
-bhM
 biJ
 bhM
+biJ
 biO
 blA
 sHM
@@ -120004,9 +119989,9 @@ aYV
 aYV
 xyG
 iQL
-bhM
 biJ
-bhM
+biJ
+biJ
 btw
 blA
 iEY

@@ -1,0 +1,6 @@
+author: "Cowbot92 & dcxgame"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a new station side pet"
+  - imageadd: "Adds a new station side pet sprites"
+  - mapping: "Adds a new station side pet to all active maps"

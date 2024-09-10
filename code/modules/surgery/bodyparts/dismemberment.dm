@@ -97,7 +97,7 @@
 		LAZYREMOVE(owner.all_scars, S)
 
 	var/mob/living/carbon/phantom_owner = owner // so we can still refer to the guy who lost their limb after said limb forgets 'em
-	owner = null
+	set_owner(null)
 
 	for(var/X in phantom_owner.surgeries) //if we had an ongoing surgery on that limb, we stop it.
 		var/datum/surgery/S = X
