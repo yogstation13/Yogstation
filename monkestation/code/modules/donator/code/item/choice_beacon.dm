@@ -100,3 +100,8 @@
 	name = "night slugcat"
 	default_name ="night slugcat"
 	donator_pet = 	/mob/living/basic/pet/darkscug
+
+/obj/item/choice_beacon/pet/donator/hypnotoad
+	name = "hypnotoad"
+	default_name ="hypnotoad"
+	donator_pet = 	/mob/living/basic/frog/hypnotoad

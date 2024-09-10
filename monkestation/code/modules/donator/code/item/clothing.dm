@@ -477,3 +477,37 @@
 	icon_state = "noobskyboi_golden_tophat"
 	worn_icon_state = "noobskyboi_golden_tophat"
 	inhand_icon_state = null
+
+/obj/item/clothing/suit/toggle/ophaq_rainbowcoat
+	icon = 'monkestation/code/modules/donator/icons/obj/clothing.dmi'
+	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing.dmi'
+	icon_state = "rainbowcoat"
+	name = "rainbow coat"
+	desc = "Woah, it's a RAINBOW coat. How's it doing that?"
+	body_parts_covered = CHEST|GROIN|ARMS
+	cold_protection = CHEST|GROIN|ARMS
+	armor_type = /datum/armor/hooded_wintercoat
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+/obj/item/clothing/suit/toggle/ophaq_rainbowcoat/Initialize(mapload)
+	. = ..()
+	allowed += list(
+		/obj/item/flashlight,
+		/obj/item/lighter,
+		/obj/item/modular_computer/pda,
+		/obj/item/radio,
+		/obj/item/storage/bag/books,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tank/internals/emergency_oxygen,
+		/obj/item/tank/internals/plasmaman,
+		/obj/item/toy,
+		/obj/item/storage/bag/chemistry,
+		/obj/item/storage/bag/bio,
+		/obj/item/storage/bag/xeno,
+	)
+
+/obj/item/clothing/shoes/kindle_kicks/jackboot
+	icon = 'monkestation/code/modules/donator/icons/obj/clothing.dmi'
+	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing.dmi'
+	icon_state = "jackboot_kindle_kicks"
+	name = "jackboot kindle kicks"
+	desc = "They look just like kindle kicks! But these are boots!"

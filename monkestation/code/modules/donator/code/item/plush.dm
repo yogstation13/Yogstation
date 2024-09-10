@@ -145,3 +145,9 @@
 	desc = "God damn thats a cute bee."
 	icon = 'monkestation/code/modules/donator/icons/obj/plushes.dmi'
 	icon_state = "poba_fat_bee"
+
+/obj/item/toy/plush/toadie_wan_kenfrogi
+	name = "Toadie Wan Kenfrogi"
+	desc = "Hello there."
+	icon = 'monkestation/code/modules/donator/icons/obj/plushes.dmi'
+	icon_state = "toadie_wan_kenfrogi"
