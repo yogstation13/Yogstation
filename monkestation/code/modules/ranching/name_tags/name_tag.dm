@@ -1,3 +1,5 @@
+#define NAME_TAG_WIDTH (world.icon_size * 5)
+
 /datum/keybinding/mob/show_names
 	hotkey_keys = list("Ctrl")
 	name = "show_names"
@@ -77,23 +79,29 @@
 	. = ..()
 	update_name_tag()
 
+/mob/living/vv_edit_var(var_name, var_value)
+	. = ..()
+	if(var_name == NAMEOF(src, name) || var_name == NAMEOF(src, real_name))
+		update_name_tag()
+
 /obj/effect/abstract/name_tag
+	name = ""
+	icon = null // we want nothing
+	alpha = 180
 	plane = PLANE_NAME_TAGS
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	name = ""
 	maptext_y = -13 //directly below characters
-
-	icon = null // we want nothing
-	appearance_flags = PIXEL_SCALE
-	alpha = 180
+	appearance_flags = PIXEL_SCALE | RESET_COLOR | RESET_TRANSFORM
 
 /obj/effect/abstract/name_tag/Initialize(mapload)
 	. = ..()
 	if(!ismovable(loc) || QDELING(loc))
 		return INITIALIZE_HINT_QDEL
-	maptext_width = world.icon_size * 5
+	var/atom/movable/movable_loc = loc
+	var/bound_width = movable_loc.bound_width || world.icon_size
+	maptext_width = NAME_TAG_WIDTH
 	maptext_height = world.icon_size * 1.5
-	maptext_x = -(world.icon_size / 2)
+	maptext_x = (NAME_TAG_WIDTH - bound_width) * -0.5
 	RegisterSignal(loc, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(update_z))
 
 /obj/effect/abstract/name_tag/Destroy(force)
@@ -111,7 +119,7 @@
 	alpha = 255
 
 /obj/effect/abstract/name_tag/proc/set_name(incoming_name)
-	maptext = "<span class='pixel c ol'>[MAPTEXT_GRAND9K(incoming_name)]</span>"
+	maptext = MAPTEXT_GRAND9K("<span style='text-align: center'>[incoming_name]</span>")
 
 /obj/effect/abstract/name_tag/proc/update_z(datum/source, turf/old_turf, turf/new_turf, same_z_layer)
 	SET_PLANE(src, PLANE_TO_TRUE(src.plane), new_turf)
@@ -144,3 +152,5 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	plane = PLANE_NAME_TAGS_BLOCKER
 	screen_loc = "BOTTOM,LEFT"
+
+#undef NAME_TAG_WIDTH
