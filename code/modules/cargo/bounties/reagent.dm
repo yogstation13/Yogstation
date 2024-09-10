@@ -43,7 +43,6 @@
 		/datum/reagent/consumable/tea/hot/arnold_palmer,\
 		/datum/reagent/consumable/ethanol/b52,\
 		/datum/reagent/consumable/ethanol/bananahonk,\
-		/datum/reagent/consumable/ethanol/beepsky_smash,\
 		/datum/reagent/consumable/ethanol/between_the_sheets,\
 		/datum/reagent/consumable/ethanol/bilk,\
 		/datum/reagent/consumable/ethanol/black_russian,\
@@ -78,7 +77,6 @@
 		/datum/reagent/consumable/ethanol/beer/green,\
 		/datum/reagent/consumable/ethanol/demonsblood,\
 		/datum/reagent/consumable/ethanol/crevice_spike,\
-		/datum/reagent/consumable/ethanol/singulo,\
 		/datum/reagent/consumable/ethanol/whiskey_sour)
 
 	var/reagent_type = pick(possible_reagents)
@@ -103,7 +101,6 @@
 		/datum/reagent/consumable/ethanol/fetching_fizz,\
 		/datum/reagent/consumable/ethanol/goldschlager,\
 		/datum/reagent/consumable/ethanol/manhattan_proj,\
-		/datum/reagent/consumable/ethanol/narsour,\
 		/datum/reagent/consumable/ethanol/neurotoxin,\
 		/datum/reagent/consumable/ethanol/patron,\
 		/datum/reagent/consumable/ethanol/quadruple_sec,\

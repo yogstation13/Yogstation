@@ -353,7 +353,7 @@
 	name = "blue taiyaki"
 	desc = "A...blue...flavored ice cream treat with a rolled cookie and cherry, in a whimsical fish shaped cone."
 	icon_state = "deluxe_taiyaki_blue"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/ice = 2, /datum/reagent/consumable/cream = 2, /datum/reagent/consumable/ethanol/singulo = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/ice = 2, /datum/reagent/consumable/cream = 2)
 	tastes = list("ice cream" = 1, "cherry" = 1, "cookie" = 1, "blue" = 1)
 	foodtype = ALCOHOL | DAIRY | SUGAR | FRUIT
 

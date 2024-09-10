@@ -168,12 +168,6 @@
 	results = list(/datum/reagent/consumable/ethanol/toxins_special = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/rum = 2, /datum/reagent/consumable/ethanol/vermouth = 1, /datum/reagent/toxin/plasma = 2)
 
-/datum/chemical_reaction/beepsky_smash
-	name = "Beepsky Smash"
-	id = /datum/reagent/consumable/ethanol/beepsky_smash
-	results = list(/datum/reagent/consumable/ethanol/beepsky_smash = 5)
-	required_reagents = list(/datum/reagent/consumable/limejuice = 2, /datum/reagent/consumable/ethanol/quadruple_sec = 2, /datum/reagent/iron = 1)
-
 /datum/chemical_reaction/doctor_delight
 	name = "Doctor's Delight"
 	id = /datum/reagent/consumable/doctor_delight
@@ -283,12 +277,6 @@
 	results = list(/datum/reagent/consumable/ethanol/bahama_mama = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/creme_de_coconut = 1, /datum/reagent/consumable/ethanol/kahlua = 1, /datum/reagent/consumable/ethanol/rum = 2, /datum/reagent/consumable/pineapplejuice = 1)
 
-/datum/chemical_reaction/singulo
-	name = "Singulo"
-	id = /datum/reagent/consumable/ethanol/singulo
-	results = list(/datum/reagent/consumable/ethanol/singulo = 10)
-	required_reagents = list(/datum/reagent/consumable/ethanol/vodka = 5, /datum/reagent/uranium/radium = 1, /datum/reagent/consumable/ethanol/wine = 5)
-
 /datum/chemical_reaction/alliescocktail
 	name = "Allies Cocktail"
 	id = /datum/reagent/consumable/ethanol/alliescocktail
@@ -393,12 +381,6 @@
 	id = /datum/reagent/consumable/ethanol/amasec
 	results = list(/datum/reagent/consumable/ethanol/amasec = 10)
 	required_reagents = list(/datum/reagent/iron = 1, /datum/reagent/consumable/ethanol/wine = 5, /datum/reagent/consumable/ethanol/vodka = 5)
-
-/datum/chemical_reaction/changelingsting
-	name = "Changeling Sting"
-	id = /datum/reagent/consumable/ethanol/changelingsting
-	results = list(/datum/reagent/consumable/ethanol/changelingsting = 5)
-	required_reagents = list(/datum/reagent/consumable/ethanol/screwdrivercocktail = 1, /datum/reagent/consumable/lemon_lime = 2)
 
 /datum/chemical_reaction/aloe
 	name = "Aloe"
@@ -595,14 +577,6 @@
 	results = list(/datum/reagent/consumable/ethanol/eggnog = 15)
 	required_reagents = list(/datum/reagent/consumable/ethanol/rum = 5, /datum/reagent/consumable/cream = 5, /datum/reagent/consumable/eggyolk = 5)
 
-/datum/chemical_reaction/narsour
-	name = "Nar'sour"
-	id = /datum/reagent/consumable/ethanol/narsour
-	results = list(/datum/reagent/consumable/ethanol/narsour = 1)
-	required_reagents = list(/datum/reagent/blood = 1, /datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/ethanol/demonsblood = 1)
-	mix_message = "The mixture develops a sinister glow."
-	mix_sound = 'sound/effects/singlebeat.ogg'
-
 /datum/chemical_reaction/quadruplesec
 	name = "Quadruple Sec"
 	id = /datum/reagent/consumable/ethanol/quadruple_sec
@@ -795,30 +769,11 @@
 	results = list(/datum/reagent/consumable/cream_soda = 4)
 	required_reagents = list(/datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/sodawater = 2, /datum/reagent/consumable/vanilla = 1)
 
-/datum/chemical_reaction/blazaam
-	name = "Blazaam"
-	id = /datum/reagent/consumable/ethanol/blazaam
-	results = list(/datum/reagent/consumable/ethanol/blazaam = 3)
-	required_reagents = list(/datum/reagent/consumable/ethanol/gin = 2, /datum/reagent/consumable/peachjuice = 1, /datum/reagent/bluespace = 1)
-
-/datum/chemical_reaction/planet_cracker
-	name = "Planet Cracker"
-	id = /datum/reagent/consumable/ethanol/planet_cracker
-	results = list(/datum/reagent/consumable/ethanol/planet_cracker = 4)
-	required_reagents = list(/datum/reagent/consumable/ethanol/champagne = 2, /datum/reagent/consumable/ethanol/lizardwine = 2, /datum/reagent/consumable/eggyolk = 1, /datum/reagent/gold = 1)
-	mix_message = "The liquid's color starts shifting as the nanogold is alternately corroded and redeposited."
-
 /datum/chemical_reaction/red_queen
 	name = "Red Queen"
 	id = /datum/reagent/consumable/red_queen
 	results = list(/datum/reagent/consumable/red_queen = 10)
 	required_reagents = list(/datum/reagent/consumable/tea/hot = 6, /datum/reagent/mercury = 2, /datum/reagent/consumable/blackpepper = 1, /datum/reagent/growthserum = 1)
-
-/datum/chemical_reaction/catsip
-	name = "Catsip"
-	id = /datum/reagent/consumable/ethanol/catsip
-	results = list(/datum/reagent/consumable/ethanol/catsip = 4)
-	required_reagents = list(/datum/reagent/consumable/ethanol/sake = 2, /datum/reagent/consumable/soymilk = 2, /datum/reagent/consumable/grenadine = 1)
 
 /datum/chemical_reaction/flaming_moe
 	name = "Flaming Moe"
@@ -826,12 +781,6 @@
 	id = /datum/reagent/consumable/ethanol/flaming_moe
 	results = list(/datum/reagent/consumable/ethanol/flaming_moe = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol/tequila = 1, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/medicine/synaptizine = 1)
-
-/datum/chemical_reaction/ratvarnac
-	name = "Justiciar Juice"
-	id = /datum/reagent/consumable/ethanol/ratvarnac
-	results = list(/datum/reagent/consumable/ethanol/ratvarnac = 4)
-	required_reagents = list(/datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/ethanol/cognac = 1, /datum/reagent/iron = 1, /datum/reagent/consumable/ethanol/tequila_sunrise = 1)
 
 /datum/chemical_reaction/godfather
 	name = "Godfather"
@@ -894,45 +843,6 @@
 	results = list(/datum/reagent/consumable/mushroom_tea = 5)
 	required_reagents = list(/datum/reagent/toxin/mushroom_powder = 1, /datum/reagent/water = 5)
 
-/datum/chemical_reaction/drink/mushi_kombucha
-	name = "Mushi Kombucha"
-	id = /datum/reagent/consumable/ethanol/mushi_kombucha
-	results = list(/datum/reagent/consumable/ethanol/mushi_kombucha = 5)
-	required_reagents = list(/datum/reagent/consumable/mushroom_tea = 3, /datum/reagent/consumable/ute_nectar = 2)
-	required_catalysts = list(/datum/reagent/consumable/enzyme = 1)
-
-/datum/chemical_reaction/drink/sea_breeze
-	name = "Sea Breeze"
-	id = /datum/reagent/consumable/ethanol/sea_breeze
-	results = list(/datum/reagent/consumable/ethanol/sea_breeze = 5)
-	required_reagents = list(/datum/reagent/consumable/ethanol/utri = 3, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/consumable/ethanol/creme_de_cacao = 1)
-
-/datum/chemical_reaction/drink/white_tiziran
-	name = "Kriiya"
-	id = /datum/reagent/consumable/ethanol/white_tiziran
-	results = list(/datum/reagent/consumable/ethanol/white_tiziran = 8)
-	required_reagents = list(/datum/reagent/consumable/ethanol/black_russian = 5, /datum/reagent/consumable/ethanol/utri = 3)
-
-/datum/chemical_reaction/drink/drunken_espatier
-	name = "Drunken Espatier"
-	id = /datum/reagent/consumable/ethanol/drunken_espatier
-	results = list(/datum/reagent/consumable/ethanol/drunken_espatier = 5)
-	required_reagents = list(/datum/reagent/consumable/ethanol/mushi_kombucha = 2, /datum/reagent/consumable/ethanol/moonshine = 2, /datum/reagent/consumable/berryjuice = 1)
-	mix_message = "The drink seems to let out a grim sigh..."
-
-/datum/chemical_reaction/drink/protein_blend
-	name = "Protein Blend"
-	id = /datum/reagent/consumable/ethanol/protein_blend
-	results = list(/datum/reagent/consumable/ethanol/protein_blend = 5)
-	required_reagents = list(/datum/reagent/toxin/bad_food = 1, /datum/reagent/consumable/ute_flour = 1, /datum/reagent/blood = 1, /datum/reagent/consumable/ethanol = 2)
-
-/datum/chemical_reaction/drink/triumphal_arch
-	name = "Triumphal Arch"
-	id = /datum/reagent/consumable/ethanol/triumphal_arch
-	results = list(/datum/reagent/consumable/ethanol/triumphal_arch = 10)
-	required_reagents = list(/datum/reagent/consumable/ethanol/mushi_kombucha = 5, /datum/reagent/consumable/ethanol/grappa = 2, /datum/reagent/consumable/lemonjuice = 2, /datum/reagent/gold = 1)
-	mix_message = "The mixture turns a deep golden hue."
-
 /datum/chemical_reaction/gin_garden
 	name = "Gin Garden"
 	id = /datum/reagent/consumable/ethanol/gin_garden
@@ -945,9 +855,3 @@
 	results = list(/datum/reagent/consumable/cucumberlemonade = 5)
 	required_reagents = list(/datum/reagent/consumable/lemon_lime = 3, /datum/reagent/consumable/cucumberjuice = 2, /datum/reagent/consumable/ice = 1)
 
-/datum/chemical_reaction/syndicate_screwdriver
-	name = "Syndicate Screwdriver"
-	id = /datum/reagent/consumable/ethanol/syndicate_screwdriver
-	results = list(/datum/reagent/consumable/ethanol/syndicate_screwdriver = 1)
-	required_reagents = list (/datum/reagent/consumable/ethanol/screwdrivercocktail = 5, /datum/reagent/consumable/ethanol/syndicatebomb = 5)
-	mix_message = "The mixture sparkles with a menacing red aura."

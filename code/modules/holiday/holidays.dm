@@ -333,21 +333,6 @@
 /datum/holiday/summersolstice/greet()
 	return "Happy Summer Solstice!"
 
-/datum/holiday/pride_week
-	name = PRIDE_WEEK
-	begin_month = JUNE
-	// Stonewall was June 28th, this captures its week.
-	begin_day = 23
-	end_day = 29
-	holiday_colors = list(
-		COLOR_PRIDE_PURPLE,
-		COLOR_PRIDE_BLUE,
-		COLOR_PRIDE_GREEN,
-		COLOR_PRIDE_YELLOW,
-		COLOR_PRIDE_ORANGE,
-		COLOR_PRIDE_RED,
-	)
-
 /datum/holiday/doctor
 	name = "Doctor's Day"
 	begin_day = 1

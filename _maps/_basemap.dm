@@ -4,9 +4,8 @@
 
 #ifndef LOWMEMORYMODE
 	#ifdef ALL_MAPS
-		#include "map_files\mining\Lavaland.dmm"
 		#include "map_files\debug\runtimestation.dmm"
-		#include "map_files\YogStation\Yogstation.dmm"
+		#include "map_files\city13\city13.dmm"
 		#ifdef TRAVISBUILDING
 			#include "templates.dm"
 		#endif

@@ -777,7 +777,6 @@
 /obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/korta_nectar
 	name = "bottle of korta syrup"
 	desc = "A pump bottle containing korta syrup. A sweet, sugary substance made from crushed sweet korta nuts."
-	list_reagents = list(/datum/reagent/consumable/korta_nectar = 50)
 
 //secret syrup
 /obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/laughsyrup

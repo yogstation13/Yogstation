@@ -45,16 +45,6 @@
 	result = /obj/item/reagent_containers/food/drinks/bottle/hooch
 	category = CAT_DRINK
 
-/datum/crafting_recipe/blazaambottle
-	name = "Blazaam Bottle"
-	time = 20
-	reqs = list(
-		/obj/item/reagent_containers/food/drinks/bottle = 1,
-		/datum/reagent/consumable/ethanol/blazaam = 100
-	)
-	result = /obj/item/reagent_containers/food/drinks/bottle/blazaam
-	category = CAT_DRINK
-
 /datum/crafting_recipe/champagnebottle
 	name = "Champagne Bottle"
 	time = 3 SECONDS

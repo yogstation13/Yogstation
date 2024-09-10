@@ -270,7 +270,6 @@
 	icon_state = "lanternfruit"
 	filling_color = "#eeff00"
 	tastes = list("tv static" = 1, "sour pear" = 1, "grapefruit" = 1)
-	distill_reagent = /datum/reagent/consumable/ethanol/wine_voltaic
 
 
 //coconut

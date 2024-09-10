@@ -891,7 +891,7 @@
 	name = /datum/reagent/consumable/ice_cream/blue
 	id = /datum/reagent/consumable/ice_cream/blue
 	results = list(/datum/reagent/consumable/ice_cream/blue = 10)
-	required_reagents = list(/datum/reagent/consumable/ice_cream = 10, /datum/reagent/consumable/ethanol/singulo = 2)
+	required_reagents = list(/datum/reagent/consumable/ice_cream = 10)
 
 /datum/chemical_reaction/ice_cream_lemon_sorbet
 	name = /datum/reagent/consumable/ice_cream/lemon_sorbet

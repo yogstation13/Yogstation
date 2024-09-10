@@ -999,7 +999,6 @@
 	name = "Blue Ice Cream"
 	description = "A faintly blue ice cream flavor; it is notorious for its ability to stain."
 	color =	"#B8C5EF"
-	flavor_chem = /datum/reagent/consumable/ethanol/singulo
 	taste_description = "alcoholic"
 
 /datum/reagent/consumable/ice_cream/lemon_sorbet

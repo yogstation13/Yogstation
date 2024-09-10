@@ -24,7 +24,6 @@
 	grind_results = list(/datum/reagent/consumable/ute_flour = 0)
 	juice_results = list(/datum/reagent/consumable/ute_milk = 0)
 	tastes = list("peppery heat" = 1)
-	distill_reagent = /datum/reagent/consumable/ethanol/utri
 
 //Sweet Ute Nut
 /obj/item/seeds/ute_nut/sweet
@@ -48,4 +47,3 @@
 	grind_results = list(/datum/reagent/consumable/ute_flour = 0)
 	juice_results = list(/datum/reagent/consumable/ute_milk = 0, /datum/reagent/consumable/ute_nectar = 0)
 	tastes = list("peppery sweet" = 1)
-	distill_reagent = /datum/reagent/consumable/ethanol/utri
