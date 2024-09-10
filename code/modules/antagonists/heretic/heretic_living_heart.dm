@@ -103,6 +103,7 @@
 	right_clicked = !!(trigger_flags & TRIGGER_SECONDARY_ACTION)
 	return ..()
 
+/* monkestation removal: replaced in [monkestation\code\modules\antagonists\heretic\heretic_living_heart.dm]
 /datum/action/cooldown/track_target/Activate(atom/target)
 	var/datum/antagonist/heretic/heretic_datum = IS_HERETIC(owner)
 	var/datum/heretic_knowledge/sac_knowledge = heretic_datum.get_knowledge(/datum/heretic_knowledge/hunt_and_sacrifice)
@@ -151,6 +152,7 @@
 
 	StartCooldown()
 	return TRUE
+monkestation end */
 
 /// Callback for the radial to ensure it's closed when not allowed.
 /datum/action/cooldown/track_target/proc/check_menu()
@@ -160,6 +162,7 @@
 		return FALSE
 	return TRUE
 
+/* monkestation removal: replaced in [monkestation\code\modules\antagonists\heretic\heretic_living_heart.dm]
 /// Gets the balloon message for who we're tracking.
 /datum/action/cooldown/track_target/proc/get_balloon_message(mob/living/carbon/human/tracked_mob)
 	var/balloon_message = "error text!"
@@ -218,3 +221,4 @@
 		balloon_message = "they're dead, " + balloon_message
 
 	return balloon_message
+monkestation end */

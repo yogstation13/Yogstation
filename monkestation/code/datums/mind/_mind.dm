@@ -4,6 +4,11 @@
 	/// The locked manifest entry for this crew member, if any.
 	var/datum/record/locked/lockfile
 
+/datum/mind/Destroy()
+	crewfile = null
+	lockfile = null
+	return ..()
+
 /datum/mind/proc/add_to_manifest(crew = TRUE, locked = FALSE)
 	if(crew && !QDELETED(crewfile))
 		GLOB.manifest.general |= crewfile
@@ -15,3 +20,6 @@
 		GLOB.manifest.general -= crewfile
 	if(locked && !QDELETED(lockfile))
 		GLOB.manifest.locked -= lockfile
+
+/datum/mind/proc/operator""()
+	return trimtext(name || current?.real_name || current?.name)

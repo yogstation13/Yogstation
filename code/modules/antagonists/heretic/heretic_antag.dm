@@ -45,10 +45,12 @@
 	var/total_sacrifices = 0
 	/// A list of TOTAL how many high value sacrifices completed. (Heads of staff)
 	var/high_value_sacrifices = 0
+	/* monkestation removal: sacrifice refactor (see [monkestation\code\modules\antagonists\heretic])
 	/// Lazy assoc list of [refs to humans] to [image previews of the human]. Humans that we have as sacrifice targets.
 	var/list/mob/living/carbon/human/sac_targets
 	/// List of all sacrifice target's names, used for end of round report
 	var/list/all_sac_targets = list()
+	monkestation end */
 	/// Whether we're drawing a rune or not
 	var/drawing_rune = FALSE
 	/// A static typecache of all tools we can scribe with.
@@ -82,9 +84,11 @@
 		PATH_MOON = COLOR_BLUE_LIGHT,
 	)
 
+/* monkestation removal: sacrifice refactor
 /datum/antagonist/heretic/Destroy()
 	LAZYNULL(sac_targets)
 	return ..()
+monkestation end */
 
 /datum/antagonist/heretic/ui_data(mob/user)
 	var/list/data = list()
@@ -428,6 +432,7 @@
 		other_sac_objective.owner = owner
 		objectives += other_sac_objective
 
+/* monkestation removal: sacrifice refactor (see [monkestation\code\modules\antagonists\heretic])
 /**
  * Add [target] as a sacrifice target for the heretic.
  * Generates a preview image and associates it with a weakref of the mob.
@@ -461,6 +466,7 @@
 	SIGNAL_HANDLER
 
 	remove_sacrifice_target(source)
+monkestation end */
 
 /**
  * Increments knowledge by one.
@@ -479,7 +485,7 @@
 
 	parts += printplayer(owner)
 	parts += "<b>Sacrifices Made:</b> [total_sacrifices]"
-	parts += "The heretic's sacrifice targets were: [english_list(all_sac_targets, nothing_text = "No one")]."
+	parts += "The heretic's sacrifice targets were: [roundend_sac_list()]." // monkestation edit: sacrifice refactor
 	if(length(objectives))
 		var/count = 1
 		for(var/datum/objective/objective as anything in objectives)
@@ -565,6 +571,7 @@
 		to_chat(admin, span_warning("You shouldn't be using this!"))
 		return
 
+	var/list/sac_targets = get_current_target_bodies() // monkestation edit: heretic refactor
 	var/list/removable = list()
 	for(var/mob/living/carbon/human/old_target as anything in sac_targets)
 		removable[old_target.name] = old_target
@@ -626,10 +633,10 @@
 
 	. += "<br>"
 	. += "<i><b>Current Targets:</b></i><br>"
+	var/list/sac_targets = get_current_target_bodies() // monkestation edit: heretic refactor
 	if(LAZYLEN(sac_targets))
 		for(var/mob/living/carbon/human/target as anything in sac_targets)
 			. += " - <b>[target.real_name]</b>, the [target.mind?.assigned_role?.title || "human"].<br>"
-
 	else
 		. += "<i>None!</i><br>"
 	. += "<br>"
@@ -796,11 +803,13 @@
 	name = "summon monsters"
 	target_amount = 2
 	explanation_text = "Summon 2 monsters from the Mansus into this realm."
+/* monkestation removal: refactored in [monkestation\code\modules\antagonists\heretic\heretic_antag.dm]
 	/// The total number of summons the objective owner has done
 	var/num_summoned = 0
 
 /datum/objective/heretic_summon/check_completion()
 	return completed || (num_summoned >= target_amount)
+monkestation end */
 
 /datum/outfit/heretic
 	name = "Heretic (Preview only)"

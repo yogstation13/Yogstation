@@ -1,0 +1,5 @@
+/datum/antagonist/heretic_monster/set_owner(datum/mind/master)
+	. = ..()
+	var/datum/antagonist/heretic/master_heretic = master?.has_antag_datum(/datum/antagonist/heretic)
+	if(master_heretic)
+		LAZYOR(master_heretic.monsters_summoned, WEAKREF(owner))

@@ -49,6 +49,8 @@
 #define TRAIT_CANT_STAMCRIT "cant_stamcrit"
 /// This mob will automatically revive when healed enough.
 #define TRAIT_REVIVES_BY_HEALING "trait_revives_by_healing"
+/// This mob is a ghost critter.
+#define TRAIT_GHOST_CRITTER "ghost_critter"
 
 // /datum/mind + /mob/living
 /// Prevents the user from casting spells using sign language. Works on both /datum/mind and /mob/living.

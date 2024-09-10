@@ -1,4 +1,3 @@
-/* monkestation removal: refactored in [monkestation\code\modules\antagonists\heretic\knowledge\sacrifice_knowledge\sacrifice_knowledge.dm]
 // The knowledge and process of heretic sacrificing.
 
 /// How long we put the target so sleep for (during sacrifice).
@@ -13,7 +12,9 @@
 	name = "Heartbeat of the Mansus"
 	desc = "Allows you to sacrifice targets to the Mansus by bringing them to a rune in critical (or worse) condition. \
 		If you have no targets, stand on a transmutation rune and invoke it to acquire some."
-	required_atoms = list(/mob/living/carbon/human = 1)
+	required_atoms = list(
+		list(/mob/living/carbon/human, /obj/item/organ/internal/brain/slime) = 1,
+	)
 	cost = 0
 	priority = MAX_KNOWLEDGE_PRIORITY // Should be at the top
 	route = PATH_START
@@ -21,16 +22,13 @@
 	var/num_targets_to_generate = 5
 	/// Whether we've generated a heretic sacrifice z-level yet, from any heretic.
 	var/static/heretic_level_generated = FALSE
-	/// A weakref to the mind of our heretic.
+	/// The mind of our heretic.
 	var/datum/mind/heretic_mind
-	/// Lazylist of minds that we won't pick as targets.
-	var/list/datum/mind/target_blacklist
 	/// An assoc list of [ref] to [timers] - a list of all the timers of people in the shadow realm currently
 	var/list/return_timers
 
 /datum/heretic_knowledge/hunt_and_sacrifice/Destroy(force)
 	heretic_mind = null
-	LAZYCLEARLIST(target_blacklist)
 	return ..()
 
 /datum/heretic_knowledge/hunt_and_sacrifice/on_research(mob/user, datum/antagonist/heretic/our_heretic)
@@ -65,27 +63,27 @@
 
 	// We've got no targets set, let's try to set some.
 	// If we recently failed to aquire targets, we will be unable to aquire any.
-	if(!LAZYLEN(heretic_datum.sac_targets))
+	if(!LAZYLEN(heretic_datum.current_sac_targets))
 		atoms += user
 		return TRUE
 
-
-	// monkestation edit: allow stamcrit targets to be sacrificed (bc they're incapable of putting up resistance)
-	// in addition, if you need to sac a head of staff, any of them will do.
-	var/datum/objective/major_sacrifice/sac_head = locate() in heretic_datum.objectives
 	// If we have targets, we can check to see if we can do a sacrifice
 	// Let's remove any humans in our atoms list that aren't a sac target
-	for(var/mob/living/carbon/human/sacrifice in atoms)
-		var/is_target = (sacrifice in heretic_datum.sac_targets)
-		var/sac_department_flag = (sacrifice.mind?.assigned_role?.departments_bitflags | sacrifice.last_mind?.assigned_role?.departments_bitflags)
-		var/is_needed_command = (sac_head && !sac_head.check_completion() && (sac_department_flag & DEPARTMENT_BITFLAG_COMMAND))
-		var/is_valid_state = (sacrifice.stat != CONSCIOUS || HAS_TRAIT_FROM(sacrifice, TRAIT_INCAPACITATED, STAMINA))
-		if(!(is_target || is_needed_command) || !is_valid_state)
-			atoms -= sacrifice
-	// monkestation end
+	for(var/thingy in atoms)
+		if(ishuman(thingy))
+			var/mob/living/carbon/human/sacrifice = thingy
+			var/is_valid_state = (sacrifice.stat != CONSCIOUS || HAS_TRAIT_FROM(sacrifice, TRAIT_INCAPACITATED, STAMINA))
+			if(!heretic_datum.can_sacrifice(sacrifice) || !is_valid_state)
+				atoms -= sacrifice
+		else if(istype(thingy, /obj/item/organ/internal/brain/slime))
+			var/obj/item/organ/internal/brain/slime/core = thingy
+			if(!heretic_datum.can_sacrifice(core))
+				atoms -= core
+		else
+			atoms -= thingy
 
 	// Finally, return TRUE if we have a target in the list
-	if(locate(/mob/living/carbon/human) in atoms)
+	if(length(atoms))
 		return TRUE
 
 	// or FALSE if we don't
@@ -94,7 +92,7 @@
 
 /datum/heretic_knowledge/hunt_and_sacrifice/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	var/datum/antagonist/heretic/heretic_datum = IS_HERETIC(user)
-	if(!LAZYLEN(heretic_datum.sac_targets))
+	if(!LAZYLEN(heretic_datum.current_sac_targets))
 		if(obtain_targets(user, heretic_datum = heretic_datum))
 			return TRUE
 		else
@@ -111,21 +109,8 @@
  * Returns FALSE if no targets are found, TRUE if the targets list was populated.
  */
 /datum/heretic_knowledge/hunt_and_sacrifice/proc/obtain_targets(mob/living/user, silent = FALSE, datum/antagonist/heretic/heretic_datum)
-
 	// First construct a list of minds that are valid objective targets.
-	var/list/datum/mind/valid_targets = list()
-	for(var/datum/mind/possible_target as anything in get_crewmember_minds())
-		if(possible_target == user.mind)
-			continue
-		if(possible_target in target_blacklist)
-			continue
-		if(!ishuman(possible_target.current))
-			continue
-		if(possible_target.current.stat == DEAD)
-			continue
-
-		valid_targets += possible_target
-
+	var/list/datum/mind/valid_targets = heretic_datum.possible_sacrifice_targets()
 	if(!length(valid_targets))
 		if(!silent)
 			to_chat(user, span_hierophant_warning("No sacrifice targets could be found!"))
@@ -160,16 +145,15 @@
 			break
 
 	// Now grab completely random targets until we'll full
-	var/target_sanity = 0
-	while(length(final_targets) < num_targets_to_generate && length(valid_targets) > num_targets_to_generate && target_sanity < 25)
+	var/remaining_targets = clamp(num_targets_to_generate - length(final_targets), 0, length(valid_targets))
+	for(var/i = 1 to remaining_targets)
 		final_targets += pick_n_take(valid_targets)
-		target_sanity++
 
 	if(!silent)
 		to_chat(user, span_danger("Your targets have been determined. Your Living Heart will allow you to track their position. Go and sacrifice them!"))
 
 	for(var/datum/mind/chosen_mind as anything in final_targets)
-		heretic_datum.add_sacrifice_target(chosen_mind.current)
+		heretic_datum.add_sacrifice_target(chosen_mind)
 		if(!silent)
 			to_chat(user, span_danger("[chosen_mind.current.real_name], the [chosen_mind.assigned_role?.title]."))
 
@@ -184,23 +168,24 @@
  * * loc - the turf the sacrifice is occuring on
  */
 /datum/heretic_knowledge/hunt_and_sacrifice/proc/sacrifice_process(mob/living/user, list/selected_atoms)
-
 	var/datum/antagonist/heretic/heretic_datum = IS_HERETIC(user)
-	var/obj/item/organ/internal/brain/slime/slime = locate() in selected_atoms
-
-	if(slime)
-		slime.rebuild_body()
-		slime.coredeath = FALSE
-		addtimer(CALLBACK(slime, TYPE_PROC_REF(/obj/item/organ/internal/brain/slime, enable_coredeath)), 20 SECONDS)
-
-	var/mob/living/carbon/human/sacrifice = locate() in selected_atoms
+	var/mob/living/carbon/human/sacrifice
+	for(var/sacrifice_candidate in selected_atoms)
+		if(ishuman(sacrifice_candidate))
+			sacrifice = sacrifice_candidate
+			break
+		else if(istype(sacrifice_candidate, /obj/item/organ/internal/brain/slime))
+			var/obj/item/organ/internal/brain/slime/core = sacrifice_candidate
+			sacrifice = core.rebuild_body(nugget = FALSE)
+			selected_atoms -= core
+			break
 	if(!sacrifice)
 		CRASH("[type] sacrifice_process didn't have a human in the atoms list. How'd it make it so far?")
-	if(!(sacrifice in heretic_datum.sac_targets))
+	if(!heretic_datum.can_sacrifice(sacrifice))
 		CRASH("[type] sacrifice_process managed to get a non-target human. This is incorrect.")
 
 	if(sacrifice.mind)
-		LAZYADD(target_blacklist, sacrifice.mind)
+		LAZYSET(heretic_datum.completed_sacrifices, WEAKREF(sacrifice.mind), TRUE)
 	heretic_datum.remove_sacrifice_target(sacrifice)
 
 	var/feedback = "Your patrons accept your offer"
@@ -240,6 +225,14 @@
 		CRASH("[type] - begin_sacrifice could not find a destination landmark OR default landmark to send the sacrifice! (Heretic's path: [our_heretic.heretic_path])")
 
 	var/turf/destination = get_turf(destination_landmark)
+
+	notify_ghosts(
+		"[heretic_mind.name] has sacrificed [sac_target] to the Mansus!",
+		source = sac_target,
+		action = NOTIFY_ORBIT,
+		notify_flags = NOTIFY_CATEGORY_NOFLASH,
+		header = "touhou hijack lol",
+	)
 
 	sac_target.visible_message(span_danger("[sac_target] begins to shudder violenty as dark tendrils begin to drag them into thin air!"))
 	sac_target.set_handcuffed(new /obj/item/restraints/handcuffs/energy/cult(sac_target))
@@ -527,4 +520,3 @@
 
 #undef SACRIFICE_SLEEP_DURATION
 #undef SACRIFICE_REALM_DURATION
-monkestation end */
