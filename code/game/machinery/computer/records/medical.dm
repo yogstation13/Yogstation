@@ -3,7 +3,7 @@
 	desc = "This can be used to check medical records."
 	icon_screen = "medcomp"
 	icon_keyboard = "med_key"
-	req_one_access = list(ACCESS_MEDICAL, ACCESS_DETECTIVE, ACCESS_GENETICS)
+	req_one_access = list(ACCESS_MEDICAL, ACCESS_DETECTIVE, ACCESS_BRIG_PHYSICIAN, ACCESS_GENETICS) //monkestation edit: adds brig physician to medical records access.
 	circuit = /obj/item/circuitboard/computer/med_data
 	light_color = LIGHT_COLOR_BLUE
 
