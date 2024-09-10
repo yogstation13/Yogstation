@@ -209,7 +209,7 @@
 	list_reagents = list(/datum/reagent/consumable/coffee/hot = 30)
 	resistance_flags = FREEZE_PROOF
 	isGlass = FALSE
-	foodtype = BREAKFAST
+	foodtype = BREAKFAST | COFFEE
 	var/lid_open = 0
 
 /obj/item/reagent_containers/food/drinks/coffee/no_lid
