@@ -1,0 +1,4 @@
+author: "AlbertNanotracen"
+delete-after: True
+changes:
+  - bugfix: "Clown masks and Mime masks now use their filters"
