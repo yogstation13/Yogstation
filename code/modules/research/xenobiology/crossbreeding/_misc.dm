@@ -242,9 +242,9 @@ Slimecrossing Items
 	..()
 
 /obj/item/reagent_containers/food/snacks/rationpack/loyalty
-	name = "nutriment bar"
-	desc = "A 'water' flavored ration nutriment bar. Tastes gross, but at least you won't be hungry. This one is slightly more filling."
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	name = "loyalty-grade nutriment bar"
+	desc = "A 'water' flavored ration nutriment bar. Tastes gross, but at least you won't be hungry. This one is more healthy and filling."
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 
 
 //Ice stasis block - Chilling Dark Blue

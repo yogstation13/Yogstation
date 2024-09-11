@@ -24,13 +24,16 @@
 	status_flags = CANPUSH
 	move_to_delay = 5
 	deathsound = 'sound/creatures/halflife/zombiedeath.ogg'
+	var/no_crab_state = "zombie_dead_nocrab"
+	var/crabless_possible = TRUE
+	var/aggro_sound = 'sound/creatures/halflife/zombieaggro.ogg'
 	var/idle_sounds = list('sound/creatures/halflife/zombiesound.ogg', 'sound/creatures/halflife/zombiesound2.ogg', 'sound/creatures/halflife/zombiesound3.ogg')
 
 /mob/living/simple_animal/hostile/halflife/zombie/Aggro()
 	. = ..()
 	set_combat_mode(TRUE)
 	if(prob(50))
-		playsound(src, 'sound/creatures/halflife/zombieaggro.ogg', 50, TRUE)
+		playsound(src, aggro_sound, 50, TRUE)
 
 /mob/living/simple_animal/hostile/halflife/zombie/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
@@ -41,11 +44,26 @@
 		playsound(src, chosen_sound, 50, TRUE)
 
 /mob/living/simple_animal/hostile/halflife/zombie/death(gibbed)
-	if(prob(25)) //25% chance to spawn a headcrab on death
-		icon_dead = "zombie_dead_nocrab"
-		icon_state = "zombie_dead_nocrab"
+	if(prob(25) && crabless_possible) //25% chance to spawn a headcrab on death
+		icon_dead = no_crab_state
+		icon_state = no_crab_state
 		new /mob/living/simple_animal/hostile/halflife/headcrab(get_turf(src))
 	..()
+
+/mob/living/simple_animal/hostile/halflife/zombie/zombine
+	name = "Zombine"
+	desc = "A shambling combine soldier, taken over by a parasitic head crab."
+	icon_state = "zombine"
+	icon_living = "zombie"
+	icon_dead = "zombine_dead"
+	maxHealth = 180
+	health = 180
+	speak = list("S-Sector, nnnot... secur-e-e...","B-Biotics-s...","O-Over...watch... r-r-reserve...")
+	attack_sound = 'sound/creatures/halflife/zombineattack.ogg'
+	deathsound = 'sound/creatures/halflife/zombinedeath.ogg'
+	crabless_possible = FALSE
+	aggro_sound = 'sound/creatures/halflife/zombineaggro.ogg'
+	idle_sounds = list('sound/creatures/halflife/zombinesound1.ogg', 'sound/creatures/halflife/zombinesound2.ogg', 'sound/creatures/halflife/zombinesound3.ogg')
 
 //leaping headcrabs
 /mob/living/simple_animal/hostile/halflife/headcrab

@@ -126,6 +126,16 @@
 					/obj/item/gun/ballistic/automatic/ar2)
 	crate_name = "osipr gun crate"
 
+/datum/supply_pack/security/armory/ar2ammo
+	name = "OSIPR Ammo Crate"
+	desc = "Contains four OSIPR magazines. Requires Armory access to open."
+	cost = 800
+	contains = list(/obj/item/ammo_box/magazine/ar2,
+					/obj/item/ammo_box/magazine/ar2,
+					/obj/item/ammo_box/magazine/ar2,
+					/obj/item/ammo_box/magazine/ar2)
+	crate_name = "osipr ammo crate"
+
 /datum/supply_pack/security/armory/mp7
 	name = "MP7 Crate"
 	desc = "Contains two MP7 submachine guns. Requires Armory access to open."
@@ -134,6 +144,16 @@
 					/obj/item/gun/ballistic/automatic/mp7)
 	crate_name = "mp7 gun crate"
 
+/datum/supply_pack/security/armory/mp7ammo
+	name = "MP7 Ammo Crate"
+	desc = "Contains four MP7 magazines. Requires Armory access to open."
+	cost = 600
+	contains = list(/obj/item/ammo_box/magazine/mp7,
+					/obj/item/ammo_box/magazine/mp7,
+					/obj/item/ammo_box/magazine/mp7,
+					/obj/item/ammo_box/magazine/mp7)
+	crate_name = "mp7 ammo crate"
+
 /datum/supply_pack/security/armory/spas12
 	name = "SPAS-12 Crate"
 	desc = "Contains two SPAS-12 shotguns. Requires Armory access to open."
@@ -141,6 +161,34 @@
 	contains = list(/obj/item/gun/ballistic/shotgun/spas12,
 					/obj/item/gun/ballistic/shotgun/spas12)
 	crate_name = "spas-12 gun crate"
+
+/datum/supply_pack/security/armory/shotgunammo
+	name = "Shotgun Buckshot Ammo Crate"
+	desc = "Contains four boxes of buckshot. Requires Armory access to open."
+	cost = 600
+	contains = list(/obj/item/storage/box/lethalshot,
+					/obj/item/storage/box/lethalshot,
+					/obj/item/storage/box/lethalshot,
+					/obj/item/storage/box/lethalshot)
+	crate_name = "buckshot crate"
+
+/datum/supply_pack/security/armory/coltpython
+	name = "Colt Python Crate"
+	desc = "Contains two Colt Python revolvers. Requires Armory access to open."
+	cost = 800
+	contains = list(/obj/item/gun/ballistic/revolver/coltpython,
+					/obj/item/gun/ballistic/revolver/coltpython)
+	crate_name = "colt python gun crate"
+
+/datum/supply_pack/security/armory/revolverammo
+	name = "Colt Python Ammo Crate"
+	desc = "Contains four Colt Python speed loaders. Requires Armory access to open."
+	cost = 600
+	contains = list(/obj/item/ammo_box/a357,
+					/obj/item/ammo_box/a357,
+					/obj/item/ammo_box/a357,
+					/obj/item/ammo_box/a357)
+	crate_name = "colt python ammo crate"
 
 /datum/supply_pack/security/armory/usp
 	name = "USP Match Crate"
@@ -306,7 +354,7 @@
 
 /datum/supply_pack/organic/food
 	name = "Food Crate"
-	desc = "Allow the citizens a treat with this crate filled with specially preserved old world foods." // yogs
+	desc = "Allow the citizens a treat with this crate filled with specially preserved old world foods." 
 	cost = 300
 	contains = list(/obj/item/reagent_containers/food/condiment/flour,
 					/obj/item/reagent_containers/food/condiment/rice,
@@ -314,7 +362,7 @@
 					/obj/item/reagent_containers/food/condiment/soymilk,
 					/obj/item/reagent_containers/food/condiment/saltshaker,
 					/obj/item/reagent_containers/food/condiment/peppermill,
-					/obj/item/reagent_containers/food/condiment/cinnamon, // Yogs -- Adds cinnamon shakers to this crate
+					/obj/item/reagent_containers/food/condiment/cinnamon, 
 					/obj/item/storage/fancy/egg_box,
 					/obj/item/reagent_containers/food/condiment/enzyme,
 					/obj/item/reagent_containers/food/condiment/sugar,
@@ -323,7 +371,7 @@
 
 /datum/supply_pack/organic/rations
 	name = "Ration Crate"
-	desc = "A crate of five ration packs, made for easy distribution." // yogs
+	desc = "A crate of five ration packs, made for easy distribution." 
 	cost = 100
 	contains = list(/obj/item/storage/box/halflife/ration,
 					/obj/item/storage/box/halflife/ration,
@@ -331,6 +379,18 @@
 					/obj/item/storage/box/halflife/ration,
 					/obj/item/storage/box/halflife/ration)
 	crate_name = "ration crate"
+
+
+/datum/supply_pack/organic/loyaltyrations
+	name = "Loyalty-grade Ration Crate"
+	desc = "A crate of five loyalty-grade ration packs, made for easy distribution." 
+	cost = 150
+	contains = list(/obj/item/storage/box/halflife/loyaltyration,
+					/obj/item/storage/box/halflife/loyaltyration,
+					/obj/item/storage/box/halflife/loyaltyration,
+					/obj/item/storage/box/halflife/loyaltyration,
+					/obj/item/storage/box/halflife/loyaltyration)
+	crate_name = "loyalty-grade ration crate"
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Miscellaneous ///////////////////////////////////
