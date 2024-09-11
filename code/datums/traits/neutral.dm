@@ -5,7 +5,7 @@
 	name = "Vegetarian"
 	desc = "You find the idea of eating meat morally and physically repulsive."
 	icon = "carrot"
-	value = 0
+	value = -1
 	gain_text = span_notice("You feel repulsion at the idea of eating meat.")
 	lose_text = span_notice("You feel like eating meat isn't that bad.")
 	medical_record_text = "Patient reports a vegetarian diet."

@@ -368,3 +368,5 @@
 /datum/component/mood/proc/check_area_mood(datum/source, area/A)
 	if(A.mood_bonus)
 		add_event(null, "area", /datum/mood_event/area, A.mood_bonus, A.mood_message)
+	else
+		clear_event(null, "area")

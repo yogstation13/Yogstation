@@ -9,7 +9,7 @@
 	lights_always_start_on = TRUE
 
 /area/halflife/outdoors
-	name = "\improper Unexplored Location"
+	name = "\improper Outdoors"
 	static_lighting = TRUE
 	outdoors = TRUE
 	uses_daylight = TRUE
@@ -18,6 +18,7 @@
 	light_power = 0.1
 	light_range = 2
 	light_color = COLOR_STARLIGHT
+	ambient_buzz = 'sound/ambience/plaza_amb.ogg'
 
 /area/halflife/indoors
 	name = "\improper Indoors"
@@ -27,6 +28,7 @@
 	light_range = 2
 	ambience_index = AMBIENCE_HLINSIDE
 	sound_environment = SOUND_ENVIRONMENT_ROOM
+	ambient_buzz = 'sound/ambience/town_ambience.ogg'
 
 /area/halflife/indoors/sewer
 	name = "\improper Sewer"
@@ -35,3 +37,7 @@
 	icon_state = "away"
 	ambience_index = AMBIENCE_HLSEWERS
 	sound_environment = SOUND_ENVIRONMENT_STONE_CORRIDOR
+	ambient_buzz = 'sound/ambience/corridor.ogg'
+	ambient_buzz_vol = 7
+	mood_bonus = -2
+	mood_message = "<span class='warning'>This place smells terrible.</span>\n"

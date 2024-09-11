@@ -7,7 +7,7 @@
 	products = list(/obj/item/reagent_containers/food/drinks/soda_cans/breenwater = 30)
 	resistance_flags = FIRE_PROOF
 	refill_canister = /obj/item/vending_refill/breen
-	default_price = 15
+	default_price = 20
 	extra_price = 1
 	payment_department = NO_FREEBIES
 

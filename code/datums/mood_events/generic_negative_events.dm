@@ -235,3 +235,8 @@
 
 /datum/mood_event/body_purist/add_effects(power)
 	mood_change = power
+
+/datum/mood_event/sewer
+	description = "<span class='warning'>It smells terrible down here...</span>\n"
+	mood_change = -2
+	timeout = 4 MINUTES
