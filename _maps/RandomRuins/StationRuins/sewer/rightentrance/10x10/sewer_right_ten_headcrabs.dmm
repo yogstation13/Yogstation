@@ -1,0 +1,156 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"f" = (
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/space)
+"o" = (
+/obj/effect/spawner/lootdrop/halflife/loot/consumables,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/space)
+"q" = (
+/mob/living/simple_animal/hostile/halflife/headcrab,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/space)
+"t" = (
+/turf/closed/wall/halflife/metal,
+/area/space)
+"C" = (
+/obj/machinery/door/unpowered/halflife/metal{
+	dir = 4
+	},
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/space)
+"H" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/space)
+"L" = (
+/obj/effect/spawner/lootdrop/halflife/loot/consumables,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/space)
+"S" = (
+/turf/open/floor/plating/indoor/metal/walkway{
+	dir = 1
+	},
+/area/space)
+
+(1,1,1) = {"
+t
+t
+t
+t
+t
+t
+t
+t
+t
+t
+"}
+(2,1,1) = {"
+t
+o
+f
+f
+t
+f
+f
+f
+f
+t
+"}
+(3,1,1) = {"
+t
+f
+f
+f
+S
+q
+f
+f
+q
+t
+"}
+(4,1,1) = {"
+t
+f
+f
+f
+S
+f
+f
+f
+f
+t
+"}
+(5,1,1) = {"
+t
+f
+f
+f
+S
+f
+f
+f
+H
+t
+"}
+(6,1,1) = {"
+t
+f
+q
+f
+S
+f
+f
+f
+f
+t
+"}
+(7,1,1) = {"
+t
+f
+f
+f
+S
+f
+f
+f
+f
+t
+"}
+(8,1,1) = {"
+t
+f
+f
+q
+S
+f
+f
+f
+f
+t
+"}
+(9,1,1) = {"
+t
+f
+f
+L
+t
+f
+f
+f
+f
+t
+"}
+(10,1,1) = {"
+t
+t
+t
+t
+t
+t
+t
+t
+C
+t
+"}

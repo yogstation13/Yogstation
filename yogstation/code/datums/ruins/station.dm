@@ -287,6 +287,11 @@
 	suffix = "sewer_left_ten_zombie1.dmm"
 	name = "sewer left_ten_zombie1"
 
+/datum/map_template/ruin/station/sewer/leftentrance/tenxten/zombine1
+	id = "left_ten_zombine1"
+	suffix = "sewer_left_ten_zombine1.dmm"
+	name = "sewer left_ten_zombine1"
+
 ///The base for 10x10 right rooms
 /datum/map_template/ruin/station/sewer/rightentrance/tenxten
 	prefix = "_maps/RandomRuins/StationRuins/sewer/rightentrance/10x10/"
@@ -300,3 +305,8 @@
 	id = "right_ten_flooded"
 	suffix = "sewer_right_ten_flooded.dmm"
 	name = "sewer right_ten_flooded"
+
+/datum/map_template/ruin/station/sewer/rightentrance/tenxten/headcrabs
+	id = "right_ten_headcrabs"
+	suffix = "sewer_right_ten_headcrabs.dmm"
+	name = "sewer right_ten_headcrabs"
