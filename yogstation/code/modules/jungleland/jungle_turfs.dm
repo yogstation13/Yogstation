@@ -82,7 +82,7 @@ Temperature: 126.85 °C (400 K)
 	var/ore_present = ORE_EMPTY
 	var/spawn_overlay = TRUE
 	var/can_mine = TRUE
-	light_power = 0.1
+	light_power = NIGHT_TURF_BRIGHTNESS
 	light_range = 2 // fullbright it for proper shadows and darkspawn interaction
 	light_color = COLOR_STARLIGHT
 
@@ -194,7 +194,7 @@ Temperature: 126.85 °C (400 K)
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/water/smooth/toxic_pit
 
-	light_power = 0.15 // reflects the moonlight
+	light_power = NIGHT_TURF_BRIGHTNESS + 0.05 // reflects the moonlight
 	light_range = 2 // fullbright it for proper shadows and darkspawn interaction
 	light_color = COLOR_STARLIGHT
 

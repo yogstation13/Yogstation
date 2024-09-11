@@ -273,12 +273,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
-"ady" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/mechbay)
 "adJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/light/small{
@@ -1002,7 +996,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
-/area/icemoon/top_layer/outdoors)
+/area/solar/starboard/fore/icemoon)
 "apf" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -1407,7 +1401,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "awF" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -1717,7 +1711,7 @@
 /area/medical/paramedic)
 "azV" = (
 /turf/closed/wall/r_wall,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "azX" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -2940,7 +2934,7 @@
 "aRc" = (
 /obj/item/stack/cable_coil,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/starboard/fore)
+/area/solar/starboard/fore/icemoon)
 "aRk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -4427,7 +4421,7 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "bnn" = (
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/door/firedoor/border_only{
@@ -4846,7 +4840,7 @@
 	},
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "buc" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -5136,7 +5130,7 @@
 	name = "turbine vent"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/top_layer/outdoors)
+/area/solar/starboard/fore/icemoon)
 "bzm" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -5369,7 +5363,7 @@
 "bBY" = (
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/starboard/fore)
+/area/solar/starboard/fore/icemoon)
 "bCd" = (
 /obj/structure/window/reinforced,
 /obj/machinery/door/firedoor/border_only{
@@ -6497,7 +6491,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "bSY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -7819,7 +7813,7 @@
 	name = "pressure chamber vent"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "cmH" = (
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
@@ -9115,7 +9109,7 @@
 	},
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "cJp" = (
 /obj/structure/chair/office/light{
 	dir = 1;
@@ -11105,7 +11099,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "dor" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -11151,7 +11145,7 @@
 "dpo" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "dpv" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -12647,7 +12641,7 @@
 	name = "pressure chamber vent"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "dKA" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -13288,7 +13282,7 @@
 "dTV" = (
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "dUc" = (
 /obj/item/cigbutt,
 /obj/effect/landmark/blobstart,
@@ -14075,7 +14069,7 @@
 	},
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/starboard/fore)
+/area/solar/starboard/fore/icemoon)
 "egt" = (
 /obj/structure/chair/office{
 	dir = 8
@@ -14943,7 +14937,7 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "ete" = (
 /obj/machinery/door/airlock/wood{
 	name = "Psychiatrists office"
@@ -15382,7 +15376,7 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "ezG" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
@@ -16241,7 +16235,7 @@
 /area/storage/primary)
 "eOp" = (
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "eOq" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -17922,7 +17916,7 @@
 "foD" = (
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "foR" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -18842,7 +18836,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/starboard/fore)
+/area/solar/starboard/fore/icemoon)
 "fDG" = (
 /obj/structure/grille,
 /turf/closed/wall/r_wall,
@@ -20207,7 +20201,7 @@
 	name = "pressure chamber vent"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "fXy" = (
 /turf/baseturf_bottom,
 /area/science/test_area)
@@ -20293,7 +20287,7 @@
 "fYh" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "fYm" = (
 /turf/closed/wall,
 /area/mine/eva)
@@ -21643,7 +21637,7 @@
 	icon_state = "0-2"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "grD" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -21977,9 +21971,6 @@
 /obj/machinery/computer/mech_bay_power_console,
 /obj/item/radio/intercom{
 	pixel_y = 20
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
 	},
 /turf/open/floor/circuit/green,
 /area/science/robotics/mechbay)
@@ -22512,9 +22503,6 @@
 "gFq" = (
 /obj/machinery/computer/mech_bay_power_console{
 	dir = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
 	},
 /turf/open/floor/circuit,
 /area/science/robotics/mechbay)
@@ -23780,7 +23768,7 @@
 "gUW" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "gVb" = (
 /obj/structure/table/wood/poker,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -24003,7 +23991,7 @@
 /area/icemoon/top_layer/outdoors)
 "gXr" = (
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "gXD" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -24108,7 +24096,7 @@
 "gZI" = (
 /obj/item/stack/cable_coil,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "gZN" = (
 /obj/machinery/light{
 	dir = 8
@@ -24396,7 +24384,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "hew" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/machinery/atmospherics/pipe/simple/violet/visible{
@@ -24579,7 +24567,7 @@
 	},
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/starboard/fore)
+/area/solar/starboard/fore/icemoon)
 "hhg" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -26563,7 +26551,7 @@
 /area/crew_quarters/bar)
 "hKJ" = (
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "hKO" = (
 /obj/structure/lattice,
 /obj/structure/window/reinforced,
@@ -26685,7 +26673,7 @@
 "hMM" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "hMS" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -27963,9 +27951,6 @@
 /turf/open/floor/plasteel,
 /area/janitor)
 "ilv" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "ily" = (
@@ -28840,7 +28825,7 @@
 "iwq" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "iwt" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -29387,7 +29372,7 @@
 /area/quartermaster/qm)
 "iEc" = (
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "iEf" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/machinery/atmospherics/miner/carbon_dioxide,
@@ -30040,12 +30025,6 @@
 	pixel_x = -23;
 	pixel_y = -2
 	},
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "iNM" = (
@@ -30487,7 +30466,7 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/top_layer/outdoors)
+/area/solar/starboard/fore/icemoon)
 "iVp" = (
 /obj/machinery/computer/operating,
 /turf/open/floor/plasteel/white,
@@ -37734,7 +37713,7 @@
 	name = "pressure chamber vent"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "kWx" = (
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
@@ -38463,7 +38442,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "ljo" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/carpet,
@@ -39333,7 +39312,7 @@
 	icon_state = "0-2"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/starboard/fore)
+/area/solar/starboard/fore/icemoon)
 "lvc" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/closet/emcloset,
@@ -39762,7 +39741,7 @@
 	name = "pressure chamber vent"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "lCF" = (
 /obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/baseturf_bottom,
@@ -41242,7 +41221,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "lWQ" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -42958,7 +42937,7 @@
 "mvF" = (
 /obj/structure/steam_fissure,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "mvR" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -43477,7 +43456,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "mCF" = (
 /obj/structure/sign/departments/minsky/supply/mining{
 	pixel_y = 32
@@ -44554,6 +44533,7 @@
 	pixel_x = 24;
 	pixel_y = -1
 	},
+/mob/living/simple_animal/parrot/shipbreaking_hawk,
 /turf/open/floor/plasteel/dark,
 /area/escapepodbay)
 "mQz" = (
@@ -44729,7 +44709,7 @@
 "mSs" = (
 /obj/item/stack/cable_coil,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "mSt" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -45026,7 +45006,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "mWa" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/white,
@@ -47395,7 +47375,7 @@
 /area/medical/medbay/central)
 "nEU" = (
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "nFi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -47894,7 +47874,7 @@
 "nMu" = (
 /obj/structure/cable,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/starboard/fore)
+/area/solar/starboard/fore/icemoon)
 "nMw" = (
 /obj/structure/closet{
 	name = "Evidence Closet 2"
@@ -49102,7 +49082,7 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "ocp" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -49773,7 +49753,7 @@
 	luminosity = 2
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "olV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -50780,7 +50760,7 @@
 /obj/structure/lattice,
 /obj/structure/lattice,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/starboard/fore)
+/area/solar/starboard/fore/icemoon)
 "oAe" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -51517,7 +51497,7 @@
 	},
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "oMP" = (
 /obj/effect/spawner/structure/window/reinforced/tinted,
 /turf/open/floor/plating,
@@ -51564,7 +51544,7 @@
 /area/crew_quarters/kitchen)
 "oNM" = (
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "oNV" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -51923,7 +51903,7 @@
 	luminosity = 2
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "oTz" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 8
@@ -52606,11 +52586,11 @@
 "pel" = (
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "pep" = (
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "pex" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -52856,7 +52836,7 @@
 	},
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "piX" = (
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -53633,7 +53613,7 @@
 	name = "turbine vent"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "psT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
@@ -55322,7 +55302,7 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "pVA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -56171,6 +56151,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"qiK" = (
+/turf/closed/wall/r_wall,
+/area/solar/starboard/fore/icemoon)
 "qiM" = (
 /obj/item/radio/intercom{
 	pixel_y = 26
@@ -58997,7 +58980,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "qWM" = (
 /turf/closed/wall/r_wall,
 /area/engine/foyer)
@@ -59061,7 +59044,7 @@
 /area/quartermaster/storage)
 "qYd" = (
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/starboard/fore)
+/area/solar/starboard/fore/icemoon)
 "qYg" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -59294,7 +59277,7 @@
 /area/crew_quarters/kitchen)
 "rbL" = (
 /turf/closed/wall/r_wall,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "rbU" = (
 /turf/closed/wall,
 /area/janitor)
@@ -59464,7 +59447,7 @@
 "req" = (
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "reA" = (
 /obj/machinery/shower{
 	pixel_y = 20
@@ -59472,9 +59455,6 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/distro)
 "reD" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
 /obj/structure/sign/warning/nosmoking{
 	pixel_x = -28
 	},
@@ -59532,9 +59512,6 @@
 /area/ai_monitored/storage/satellite)
 "reY" = (
 /obj/machinery/mech_bay_recharge_port,
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
 /turf/open/floor/plating,
 /area/science/robotics/mechbay)
 "rfe" = (
@@ -60561,7 +60538,7 @@
 "rwS" = (
 /obj/item/stack/cable_coil,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "rxg" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/bodycontainer/crematorium{
@@ -60653,7 +60630,7 @@
 "ryw" = (
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "ryA" = (
 /obj/machinery/power/apc/highcap/five_k{
 	areastring = "/area/tcommsat/server";
@@ -60757,7 +60734,7 @@
 /area/science/mixing)
 "rzO" = (
 /turf/closed/wall/r_wall,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "rzP" = (
 /obj/structure/window/reinforced,
 /obj/machinery/computer/cargo/request{
@@ -61105,7 +61082,7 @@
 "rFl" = (
 /obj/structure/cable,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "rFA" = (
 /turf/open/floor/plasteel/dark,
 /area/security/interrogation)
@@ -61460,7 +61437,7 @@
 "rLd" = (
 /obj/structure/steam_fissure,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "rLi" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
@@ -62312,7 +62289,7 @@
 "rWS" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "rXa" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -63189,7 +63166,7 @@
 "siG" = (
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/starboard/fore)
+/area/solar/starboard/fore/icemoon)
 "siJ" = (
 /obj/structure/ethernet_cable{
 	icon_state = "1-4"
@@ -64354,7 +64331,7 @@
 "szv" = (
 /obj/structure/steam_fissure,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/top_layer/outdoors)
+/area/solar/starboard/fore/icemoon)
 "szB" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod One"
@@ -65930,7 +65907,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "sWn" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/westleft{
@@ -67062,7 +67039,7 @@
 	},
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "tlI" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -71164,6 +71141,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/backrooms_portal,
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
 "ute" = (
@@ -71619,9 +71597,6 @@
 /turf/open/floor/plasteel,
 /area/engine/foyer)
 "uBx" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
@@ -72311,7 +72286,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "uJv" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Courtroom"
@@ -74122,7 +74097,7 @@
 "vkJ" = (
 /obj/structure/steam_fissure,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "vkK" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
@@ -74164,7 +74139,7 @@
 "vkY" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/starboard/fore)
+/area/solar/starboard/fore/icemoon)
 "vla" = (
 /obj/effect/turf_decal/trimline/purple/warning/lower{
 	dir = 8
@@ -75034,7 +75009,7 @@
 "vwU" = (
 /obj/structure/cable,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "vxh" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -76145,7 +76120,7 @@
 	name = "pressure chamber vent"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/top_layer/outdoors)
+/area/solar/starboard/fore/icemoon)
 "vMU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -76213,7 +76188,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "vOG" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -76745,7 +76720,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/starboard/fore)
+/area/solar/starboard/fore/icemoon)
 "vWo" = (
 /obj/machinery/vending/medical,
 /obj/effect/turf_decal/trimline/blue/line{
@@ -77731,7 +77706,7 @@
 	icon_state = "0-2"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/port/fore)
+/area/solar/port/fore/icemoon)
 "wjp" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = 32
@@ -78061,7 +78036,7 @@
 	icon_state = "0-2"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/top_layer/outdoors)
+/area/solar/starboard/fore/icemoon)
 "wnq" = (
 /obj/machinery/power/apc/highcap/fifteen_k{
 	areastring = "/area/hallway/secondary/entry";
@@ -78086,7 +78061,7 @@
 /area/maintenance/starboard)
 "wnF" = (
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/starboard/fore)
+/area/solar/starboard/fore/icemoon)
 "wnP" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -78300,7 +78275,7 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/starboard/aft)
+/area/solar/starboard/aft/icemoon)
 "wqp" = (
 /obj/item/radio/intercom{
 	pixel_y = -28
@@ -80208,7 +80183,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "wRC" = (
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 8
@@ -81079,7 +81054,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
-/area/solar/port/aft)
+/area/solar/port/aft/icemoon)
 "xfc" = (
 /obj/machinery/light{
 	dir = 8
@@ -83871,12 +83846,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"xOM" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/mechbay)
 "xOO" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -85320,7 +85289,7 @@
 "yiu" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/solar/starboard/fore)
+/area/solar/starboard/fore/icemoon)
 "yiy" = (
 /obj/structure/sign/poster/official/random,
 /turf/closed/wall,
@@ -244776,8 +244745,8 @@ pex
 lkZ
 wXZ
 reD
-ady
-ady
+ilv
+ilv
 iNJ
 ilv
 tSS
@@ -245036,7 +245005,7 @@ reY
 eco
 dkB
 reY
-xOM
+ilv
 tSS
 lpq
 gIl
@@ -260100,11 +260069,11 @@ bkq
 qYd
 wnF
 wnF
-bdu
-bdu
-bdu
-bdu
-bdu
+qiK
+qiK
+qiK
+qiK
+qiK
 wnF
 wnF
 qYd
@@ -260614,11 +260583,11 @@ bkq
 qYd
 wnF
 wnF
-bdu
-bdu
+qiK
+qiK
 apa
-bdu
-bdu
+qiK
+qiK
 yiu
 wnF
 yiu
