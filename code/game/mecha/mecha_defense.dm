@@ -490,6 +490,8 @@
 
 /obj/mecha/atom_fix()
 	. = ..()
+	if(!wrecked)
+		return
 	wrecked = FALSE
 	repair_state = 0
 	repair_hint = ""
