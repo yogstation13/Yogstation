@@ -218,7 +218,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 			C.visible_message(span_danger("[src] has honked [C]!"),\
 					span_userdanger("[src] has honked you!"))
 		else
-			C.adjust_stutter(20 SECONDS)
+			C.adjust_stutter_up_to(20 SECONDS, 50 SECONDS)
 			C.Paralyze(8 SECONDS)
 			addtimer(CALLBACK(src, PROC_REF(spam_flag_false)), cooldowntime)
 
