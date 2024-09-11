@@ -1,8 +1,0 @@
-author: "KnigTheThrasher"
-delete-after: True
-changes:
-  - rscadd: "Reworked curator's booth in kilo"
-  - rscadd: "Updated delta armoury with nova content"
-  - bugfix: "Fixed missing seed vendor in kilo public botany"
-  - bugfix: "Fixed cryo in kilo"
-  - bugfix: "Fixed a maint door in delta"

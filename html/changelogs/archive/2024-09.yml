@@ -251,6 +251,11 @@
   - rscadd: Added a new eorg area
   - bugfix: readded ctf spawner (should work now)
   - rscdel: changed how centcom ghost areas work
+  - rscadd: Reworked curator's booth in kilo
+  - rscadd: Updated delta armoury with nova content
+  - bugfix: Fixed missing seed vendor in kilo public botany
+  - bugfix: Fixed cryo in kilo
+  - bugfix: Fixed a maint door in delta
   MomoBerri:
   - rscadd: Meta and Delta have gotten renovated Isolations.
   PotatoTomahto:
