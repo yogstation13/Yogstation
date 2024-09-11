@@ -167,8 +167,8 @@
 	always_new_team = TRUE
 	var/title
 	preview_outfit = /datum/outfit/rebel
-	preview_outfit_behind = null
-
+	preview_outfit_behind = /datum/outfit/rebel
+	
 /datum/antagonist/nukeop/leader/memorize_code()
 	..()
 	if(nuke_team && nuke_team.memorized_code)
