@@ -24196,11 +24196,6 @@
 	},
 /area/station/service/chapel)
 "iIC" = (
-/obj/structure/sign/map/right{
-	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
-	icon_state = "map-right-MS";
-	pixel_y = 32
-	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/computer/station_alert,
 /turf/open/floor/iron/dark,
@@ -26053,13 +26048,9 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "jjU" = (
-/obj/structure/sign/map/left{
-	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
-	icon_state = "map-left-MS";
-	pixel_y = 32
-	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/computer/atmos_alert,
+/obj/machinery/incident_display/delam/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "jkj" = (
@@ -54456,7 +54447,6 @@
 	name = "Engineering Security Doors"
 	},
 /obj/effect/turf_decal/caution/stand_clear,
-/obj/machinery/incident_display/delam/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/engineering/break_room)
 "tcx" = (
@@ -57559,6 +57549,7 @@
 	dir = 1
 	},
 /obj/structure/sign/poster/official/moth_piping/directional/north,
+/obj/structure/tank_dispenser,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
 "uhu" = (
