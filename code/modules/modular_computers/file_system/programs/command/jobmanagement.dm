@@ -16,6 +16,7 @@
 		"AI",
 		"Assistant",
 		"Cyborg",
+		"Synthetic",
 		"Captain",
 		"Head of Personnel",
 		"Head of Security",

@@ -113,7 +113,7 @@
 	recharge_rate = 1.66
 
 
-//I am retard
+//I am ridiculous
 
 /obj/item/gun/magic/rune/death_rune
 	name = "Death To The Dead Rune"

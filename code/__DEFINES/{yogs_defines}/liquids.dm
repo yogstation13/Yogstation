@@ -45,7 +45,7 @@
 
 #define LIQUID_STATE_FOR_HEAT_EXCHANGERS LIQUID_STATE_WAIST
 
-#define LIQUID_ANKLES_LEVEL_HEIGHT 8
+#define LIQUID_ANKLES_LEVEL_HEIGHT 9 //this is the start of being negatively affected by liquid depth (technically probably closer to low calf height)
 #define LIQUID_WAIST_LEVEL_HEIGHT 19
 #define LIQUID_SHOULDERS_LEVEL_HEIGHT 29
 #define LIQUID_FULLTILE_LEVEL_HEIGHT 39

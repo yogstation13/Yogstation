@@ -91,6 +91,8 @@
 	. = {"[report_internal_damage()]
 						[integrity<30?"[span_userdanger("DAMAGE LEVEL CRITICAL")]<br>":null]
 						<b>Integrity: </b> [integrity]%<br>
+						[overheat >= OVERHEAT_THRESHOLD ? "[span_userdanger("TEMPERATURE CRITICAL")]<br>" : ""]
+						<b>Temperature: </b> [overheat]&deg;C<br>
 						<b>Powercell charge: </b>[isnull(cell_charge)?"No powercell installed":"[cell.percent()]%"]<br>
 						<b>Air source: </b>[internal_tank?"[use_internal_tank?"Internal Airtank":"Environment"]":"Environment"]<br>
 						<b>Airtank pressure: </b>[internal_tank?"[tank_pressure]kPa":"N/A"]<br>
@@ -298,13 +300,13 @@
 		if(href_list["add_req_access"])
 			if(!(add_req_access && id_card))
 				return
-			operation_req_access += text2num(href_list["add_req_access"])
+			operation_req_access += href_list["add_req_access"]
 			output_access_dialog(id_card,usr)
 
 		if(href_list["del_req_access"])
 			if(!(add_req_access && id_card))
 				return
-			operation_req_access -= text2num(href_list["del_req_access"])
+			operation_req_access -= href_list["del_req_access"]
 			output_access_dialog(id_card, usr)
 
 		if(href_list["finish_req_access"])

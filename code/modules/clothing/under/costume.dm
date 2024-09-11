@@ -344,13 +344,12 @@
 /obj/item/clothing/under/costume/drip
 	name = "incredibly fashionable outfit"
 	desc = "Expensive-looking designer vest. It radiates an aggressively attractive aura. You feel putting this on would change you forever."
-	icon = 'icons/obj/clothing/uniforms.dmi'
-	worn_icon = 'icons/mob/clothing/uniform/uniform.dmi'
-	icon_state = "drippy"
-	item_state = "drippy"
+	icon_state = "SwagOutfit"
+	item_state = "SwagOutfit"
 	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, RAD = 10, FIRE = 100, ACID = 100)
 	resistance_flags = FIRE_PROOF | ACID_PROOF | LAVA_PROOF//Miners Bizzare Adventure Drip is Unbreakable
 	can_adjust = FALSE
+	mutantrace_variation = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/costume/drip/equipped(mob/user, slot)
 	. = ..()

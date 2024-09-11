@@ -17,7 +17,7 @@
 	var/random_sensor = TRUE
 	var/sensor_mode = NO_SENSORS
 	var/can_adjust = TRUE
-	var/adjusted = NORMAL_STYLE
+	var/adjusted = FALSE
 	var/alt_covers_chest = FALSE // for adjusted/rolled-down jumpsuits, FALSE = exposes chest and arms, TRUE = exposes arms only
 	var/mutantrace_variation = NONE //Are there special sprites for specific situations? Don't use this unless you need to.
 	var/freshly_laundered = FALSE
@@ -90,7 +90,7 @@
 /obj/item/clothing/under/equipped(mob/user, slot)
 	..()
 	if(adjusted)
-		adjusted = NORMAL_STYLE
+		adjusted = FALSE
 		fitted = initial(fitted)
 		if(!alt_covers_chest)
 			body_parts_covered |= CHEST
@@ -101,39 +101,43 @@
 
 	if(!ishuman(user)) //Yogs Start: Reorganized to reduce repetition
 		return
-	var/mob/living/carbon/human/H = user
-	
-	if(mutantrace_variation & DIGITIGRADE_VARIATION)
-		var/is_digi = FALSE
-		if(DIGITIGRADE in H.dna.species.species_traits)
-			is_digi = TRUE
-		
-		if(is_digi && !adjusted == ALT_STYLE && mutantrace_variation)
-			adjusted = DIGITIGRADE_STYLE
-		else if(is_digi && adjusted == ALT_STYLE && mutantrace_variation) //Handles when you are using an alternate style while having digi legs
-			adjusted = DIGIALT_STYLE
-		else if(!is_digi && adjusted == DIGITIGRADE_STYLE)
-			adjusted = NORMAL_STYLE
-		else if(!is_digi && adjusted == DIGIALT_STYLE)
-			adjusted = ALT_STYLE
-		H.update_inv_w_uniform()
+	var/update_suit = FALSE
+	var/mob/living/carbon/human/human_user = user
+	if(!(mutantrace_variation & DIGITIGRADE_VARIATION) && (body_parts_covered & LEGS))
+		if(slot_flags & slot)
+			ADD_TRAIT(user, TRAIT_DIGI_SQUISH, REF(src))
+		else
+			REMOVE_TRAIT(user, TRAIT_DIGI_SQUISH, REF(src))
+		human_user.update_inv_shoes()
+		human_user.update_body_parts()
+		update_suit = TRUE
 //Yogs End
 	if(attached_accessory && slot != ITEM_SLOT_HANDS)
 		attached_accessory.on_clothing_equip(src, user)
 		if(attached_accessory.above_suit)
-			H.update_inv_wear_suit()
+			update_suit = TRUE
+	if(update_suit)
+		human_user.update_inv_wear_suit()
 	if(is_synth(user) && has_sensor)
 		to_chat(user, span_notice("Suit sensors disabled due to non-compatible user."))
 		sensor_mode = SENSOR_OFF
 
 /obj/item/clothing/under/dropped(mob/user)
-	if(attached_accessory)
-		attached_accessory.on_clothing_dropped(src, user)
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
+	if(ishuman(user))
+		var/update_suit = FALSE
+		var/mob/living/carbon/human/human_user = user
+		if(!(mutantrace_variation & DIGITIGRADE_VARIATION) && (body_parts_covered & LEGS))
+			REMOVE_TRAIT(user, TRAIT_DIGI_SQUISH, REF(src))
+			human_user.update_inv_shoes()
+			human_user.update_body_parts()
+			update_suit = TRUE
+		if(attached_accessory)
+			attached_accessory.on_clothing_dropped(src, user)
 			if(attached_accessory.above_suit)
-				H.update_inv_wear_suit()
-	..()
+				update_suit = TRUE
+		if(update_suit)
+			human_user.update_inv_wear_suit()
+	return ..()
 
 /obj/item/clothing/under/proc/attach_accessory(obj/item/I, mob/user, notifyAttach = 1)
 	. = FALSE
@@ -197,7 +201,7 @@
 	if(freshly_laundered)
 		. += "It looks fresh and clean."
 	if(can_adjust)
-		if(adjusted == ALT_STYLE || adjusted == DIGIALT_STYLE)
+		if(adjusted)
 			. += "Alt-click on [src] to wear it normally."
 		else
 			. += "Alt-click on [src] to wear it casually."

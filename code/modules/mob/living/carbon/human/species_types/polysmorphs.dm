@@ -2,7 +2,7 @@
 	//Human xenopmorph hybrid
 	name = "Polysmorph"
 	id = SPECIES_POLYSMORPH
-	species_traits = list(NOEYESPRITES, DIGITIGRADE, MUTCOLORS, NOCOLORCHANGE, DIGITIGRADE, HAS_FLESH, HAS_BONE, HAS_TAIL)
+	species_traits = list(NOEYESPRITES, DIGITIGRADE, MUTCOLORS, NOCOLORCHANGE, HAS_FLESH, HAS_BONE, HAS_TAIL)
 	possible_genders = list(FEMALE)
 	inherent_traits = list(TRAIT_ACIDBLOOD, TRAIT_SKINNY)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID

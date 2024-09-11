@@ -32,6 +32,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		"AI",
 		"Assistant",
 		"Cyborg",
+		"Synthetic",
 		"Captain",
 		"Head of Personnel",
 		"Head of Security",

@@ -10,7 +10,7 @@
 // "Floating ghost blade" effect for blade heretics
 /obj/effect/floating_blade
 	name = "knife"
-	icon = 'icons/obj/kitchen.dmi';
+	icon = 'icons/obj/weapons/shortsword.dmi'
 	icon_state = "knife"
 	layer = LOW_MOB_LAYER
 	/// The color the knife glows around it.
