@@ -83,6 +83,12 @@
 /turf/open/space/transit/CanBuildHere()
 	return SSshuttle.is_in_shuttle_bounds(src)
 
+/turf/open/space/transit/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
+	if(!CanBuildHere()) //no RCDing transit space if we arent part of a shuttle
+		return FALSE
+	return ..()
+	
+
 /turf/open/space/transit/south
 	dir = SOUTH
 
