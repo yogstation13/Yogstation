@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/awake_stage = ANTAG_AWAKE //What stage we are of "waking up"
 
 	//Antag panel properties
-	var/show_in_antagpanel = TRUE	//This will hide adding this antag type in antag panel, use only for internal subtypes that shouldn't be added directly but still show if possessed by mind
+	var/show_in_antagpanel = FALSE	//This will hide adding this antag type in antag panel, use only for internal subtypes that shouldn't be added directly but still show if possessed by mind
 	var/antagpanel_category = "Uncategorized"	//Antagpanel will display these together, REQUIRED
 	var/show_name_in_check_antagonists = FALSE //Will append antagonist name in admin listings - use for categories that share more than one antag type
 	var/datum/achievement/greentext/greentext_achieve // The achievement received for greentexting as this antag type. Not all antag types use this to distribute their achievements.

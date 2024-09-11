@@ -6,6 +6,7 @@
 	antag_hud_name = "synd"
 	antag_moodlet = /datum/mood_event/rebel
 	show_to_ghosts = TRUE
+	show_in_antagpanel = TRUE
 	var/datum/team/nuclear/nuke_team
 	var/always_new_team = FALSE //If not assigned a team by default ops will try to join existing ones, set this to TRUE to always create new team.
 	var/send_to_spawnpoint = TRUE //Should the user be moved to default spawnpoint.
@@ -162,10 +163,10 @@
 
 /datum/antagonist/nukeop/leader
 	name = "Nuclear Operative Leader"
-	nukeop_outfit = /datum/outfit/syndicate/leader
+	nukeop_outfit = /datum/outfit/rebel
 	always_new_team = TRUE
 	var/title
-	preview_outfit = /datum/outfit/nuclear_operative/leader
+	preview_outfit = /datum/outfit/rebel
 	preview_outfit_behind = null
 
 /datum/antagonist/nukeop/leader/memorize_code()
