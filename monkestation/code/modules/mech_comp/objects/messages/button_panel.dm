@@ -28,6 +28,7 @@
 
 	flick("comp_buttpanel1", src)
 	fire(active_buttons[selected_button])
+	playsound(src, SFX_BUTTON_CLICK, vol = 45, vary = FALSE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE, mixer_channel = CHANNEL_MACHINERY)
 	log_message("triggered by [key_name(user)]", LOG_MECHCOMP)
 	return TRUE
 

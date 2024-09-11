@@ -45,6 +45,7 @@
 /obj/item/circuit_component/compact_remote/proc/send_trigger(atom/source, mob/user)
 	SIGNAL_HANDLER
 	source.balloon_alert(user, "clicked primary button")
-	playsound(source, get_sfx(SFX_TERMINAL_TYPE), 25, FALSE)
+	//playsound(source, get_sfx(SFX_TERMINAL_TYPE), 25, FALSE)
+	playsound(src, SFX_BUTTON_CLICK, vol = 25, vary = FALSE, extrarange = SILENCED_SOUND_EXTRARANGE, mixer_channel = CHANNEL_MACHINERY) // monkestation edit: button sounds
 	entity.set_output(user)
 	signal.set_output(COMPONENT_SIGNAL)

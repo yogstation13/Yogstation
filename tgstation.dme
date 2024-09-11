@@ -452,6 +452,7 @@
 #include "code\__DEFINES\~monkestation\skills.dm"
 #include "code\__DEFINES\~monkestation\slimes.dm"
 #include "code\__DEFINES\~monkestation\smoothing.dm"
+#include "code\__DEFINES\~monkestation\sounds.dm"
 #include "code\__DEFINES\~monkestation\span.dm"
 #include "code\__DEFINES\~monkestation\status_effects.dm"
 #include "code\__DEFINES\~monkestation\storytellers.dm"

@@ -455,3 +455,4 @@
 
 /datum/action/innate/nanite_button/Activate()
 	program.press()
+	playsound(owner, SFX_BUTTON_CLICK, vol = 20, vary = FALSE, extrarange = SILENCED_SOUND_EXTRARANGE, mixer_channel = CHANNEL_MACHINERY)
