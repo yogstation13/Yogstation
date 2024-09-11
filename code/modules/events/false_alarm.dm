@@ -12,7 +12,7 @@
 
 /datum/event_admin_setup/listed_options/false_alarm/get_list()
 	var/list/possible_types = list()
-	for(var/datum/round_event_control/event_control in SSevents.control)
+	for(var/datum/round_event_control/event_control in SSgamemode.control)
 		var/datum/round_event/event = event_control.typepath
 		if(!initial(event.fakeable))
 			continue
@@ -51,7 +51,7 @@
 
 /proc/gather_false_events(players_amt, gamemode)
 	. = list()
-	for(var/datum/round_event_control/E in SSevents.control)
+	for(var/datum/round_event_control/E in SSgamemode.control)
 		if(istype(E, /datum/round_event_control/falsealarm))
 			continue
 		if(!E.canSpawnEvent(players_amt, gamemode))

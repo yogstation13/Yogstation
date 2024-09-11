@@ -53,7 +53,7 @@
 
 	var/list/events = list()
 
-	for(var/datum/round_event_control/event_control as anything in SSevents.control)
+	for(var/datum/round_event_control/event_control as anything in SSgamemode.control)
 		//add category
 		if(!categories_seen[event_control.category])
 			categories_seen[event_control.category] = TRUE
@@ -87,7 +87,7 @@
 			var/event_to_run_type = text2path(string_path)
 			if(!event_to_run_type)
 				return
-			var/datum/round_event_control/event = locate(event_to_run_type) in SSevents.control
+			var/datum/round_event_control/event = locate(event_to_run_type) in SSgamemode.control
 			if(!event)
 				return
 			if(length(event.admin_setup))

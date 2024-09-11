@@ -284,10 +284,10 @@ SUBSYSTEM_DEF(ticker)
 	webhook_send_roundstatus("ingame") //yogs - webhook support
 	Master.SetRunLevel(RUNLEVEL_GAME)
 
-	if(SSevents.holidays)
+	if(SSgamemode.holidays)
 		to_chat(world, span_notice("and..."))
-		for(var/holidayname in SSevents.holidays)
-			var/datum/holiday/holiday = SSevents.holidays[holidayname]
+		for(var/holidayname in SSgamemode.holidays)
+			var/datum/holiday/holiday = SSgamemode.holidays[holidayname]
 			to_chat(world, "<h4>[holiday.greet()]</h4>")
 
 	PostSetup()

@@ -19,7 +19,7 @@
 	var/max_occurrences = 20 //The maximum number of times this event can occur (naturally), it can still be forced.
 									//By setting this to 0 you can effectively disable an event.
 
-	var/holidayID = "" //string which should be in the SSeventss.holidays list if you wish this event to be holiday-specific
+	var/holidayID = "" //string which should be in the SSgamemodes.holidays list if you wish this event to be holiday-specific
 									//anything with a (non-null) holidayID which does not match holiday, cannot run.
 	var/wizardevent = FALSE
 	var/alert_observers = TRUE //should we let the ghosts and admins know this event is firing
@@ -103,7 +103,7 @@
 		return FALSE
 	if(earliest_start >= (world.time - SSticker.round_start_time))
 		return FALSE
-	if(!allow_magic && wizardevent != SSevents.wizardmode)
+	if(!allow_magic && wizardevent != SSgamemode.wizardmode)
 		return FALSE
 	if(players_amt < min_players)
 		return FALSE
@@ -442,14 +442,14 @@ Runs the event
 //which should be the only place it's referenced.
 //Called when start(), announce() and end() has all been called.
 /datum/round_event/proc/kill()
-	SSevents.running -= src
+	SSgamemode.running -= src
 
 
 //Sets up the event then adds the event to the the list of running events
 /datum/round_event/New(my_processing = TRUE, datum/round_event_control/event_controller)
 	control = event_controller
 	processing = my_processing
-	SSevents.running += src
+	SSgamemode.running += src
 	return ..()
 
 #undef RANDOM_EVENT_ADMIN_INTERVENTION_TIME

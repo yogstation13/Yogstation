@@ -504,6 +504,12 @@ SUBSYSTEM_DEF(gamemode)
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+/proc/check_holidays(holiday_to_find)
+	if(!CONFIG_GET(flag/allow_holidays))
+		return // Holiday stuff was not enabled in the config!
+
+	return LAZYFIND(SSgamemode.holidays, holiday_to_find)
+
 //sets up the holidays and holidays list
 /datum/controller/subsystem/gamemode/proc/getHoliday()
 	if(!CONFIG_GET(flag/allow_holidays))

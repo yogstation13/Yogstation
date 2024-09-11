@@ -90,7 +90,7 @@
 /datum/supermatter_delamination/proc/call_cascading()
 	sound_to_playing_players('sound/magic/lightningbolt.ogg', volume = 50)
 	shockwave() //a pulse when sm is blown up
-	var/datum/round_event_control/resonance_cascade/cascade_roundevent = locate(/datum/round_event_control/resonance_cascade) in SSevents.control
+	var/datum/round_event_control/resonance_cascade/cascade_roundevent = locate(/datum/round_event_control/resonance_cascade) in SSgamemode.control
 	cascade_roundevent.runEvent()
 	message_admins("The Supermatter Crystal has caused a resonance cascade.")
 

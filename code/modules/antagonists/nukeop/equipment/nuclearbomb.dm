@@ -532,7 +532,7 @@
 		disarm()
 		return
 	if(is_station_level(bomb_location.z))
-		var/datum/round_event_control/E = locate(/datum/round_event_control/scrubber_overflow/beer) in SSevents.control
+		var/datum/round_event_control/E = locate(/datum/round_event_control/scrubber_overflow/beer) in SSgamemode.control
 		if(E)
 			E.runEvent()
 		addtimer(CALLBACK(src, PROC_REF(really_actually_explode)), 110)
@@ -638,7 +638,7 @@ This is here to make the tiles around the station mininuke change when it's arme
 	var/turf/newturf = get_turf(src)
 	if(newturf && lastlocation == newturf)
 		if(last_disk_move < world.time - 5000 && prob((world.time - 5000 - last_disk_move)*0.0001))
-			var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSevents.control
+			var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSgamemode.control
 			if(istype(loneop) && loneop.occurrences < loneop.max_occurrences)
 				loneop.weight += 1
 				if(loneop.weight % 5 == 0 && SSticker.totalPlayers > 1)
@@ -648,7 +648,7 @@ This is here to make the tiles around the station mininuke change when it's arme
 	else
 		lastlocation = newturf
 		last_disk_move = world.time
-		var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSevents.control
+		var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSgamemode.control
 		if(istype(loneop) && loneop.occurrences < loneop.max_occurrences && prob(loneop.weight))
 			loneop.weight = max(loneop.weight - 1, 0)
 			if(loneop.weight % 5 == 0 && SSticker.totalPlayers > 1)

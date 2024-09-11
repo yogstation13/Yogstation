@@ -60,9 +60,9 @@
 		if(phylactery_component?.lich_mind?.has_antag_datum(/datum/antagonist/wizard))
 			return FALSE
 
-	if(SSevents.wizardmode) //If summon events was active, turn it off
-		SSevents.toggleWizardmode()
-		SSevents.resetFrequency()
+	if(SSgamemode.wizardmode) //If summon events was active, turn it off
+		SSgamemode.toggleWizardmode()
+		SSgamemode.resetFrequency()
 
 	return TRUE
 
