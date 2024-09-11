@@ -28082,6 +28082,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
+/obj/machinery/light_switch/directional/east{
+	pixel_y = 7;
+	pixel_x = 24
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "jmo" = (
@@ -38381,11 +38385,11 @@
 	name = "Queue Shutters Control";
 	req_access = list("hop")
 	},
-/obj/machinery/light_switch/directional/north{
-	pixel_x = -4;
-	pixel_y = 34
-	},
 /obj/machinery/pdapainter,
+/obj/machinery/button/ticket_machine{
+	pixel_y = 34;
+	pixel_x = -6
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "mMI" = (
@@ -46917,7 +46921,6 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/port)
 "pzz" = (
-/obj/structure/table/reinforced,
 /obj/structure/reagent_dispensers/wall/peppertank/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
@@ -71110,11 +71113,8 @@
 /area/station/maintenance/department/cargo)
 "xIY" = (
 /obj/structure/window/reinforced/tinted/spawner/directional/south,
-/obj/structure/closet/secure_closet/tac{
-	req_access = list("captain")
-	},
-/obj/effect/turf_decal/box/blue,
 /obj/machinery/door/firedoor/border_only,
+/obj/structure/table/reinforced,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "xJb" = (
@@ -87946,8 +87946,8 @@ dyk
 kDb
 emg
 juc
-juc
-juc
+kgn
+kgn
 nJa
 xqS
 rCa
@@ -88717,8 +88717,8 @@ pEY
 vaR
 uFv
 juc
-kgn
-kgn
+juc
+juc
 nJa
 vom
 pEY
