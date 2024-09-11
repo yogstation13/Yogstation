@@ -114,7 +114,7 @@
 /mob/living/carbon/human/examine_more(mob/user)
 	. = ..()
 	if(user.mind?.has_antag_datum(/datum/antagonist/brother) && !(ROLE_BROTHER in client?.prefs?.be_special))
-		. += span_orange("[p_They()] do[p_es()] not seem to be too fond of brotherly connections.")
+		. += span_userdanger("[p_They()] do[p_es()] not seem to be too fond of brotherly connections.")
 
 /obj/item/disk/nifsoft_uploader/soulcatcher
 	name = "Soulcatcher"
