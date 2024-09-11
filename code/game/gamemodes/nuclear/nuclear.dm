@@ -32,12 +32,12 @@
 		for(var/i = 0, i < n_agents, ++i)
 			var/datum/mind/new_op = antag_pick(antag_candidates)
 			pre_nukeops += new_op
-			new_op.assigned_role = "Nuclear Operative"
-			new_op.special_role = "Nuclear Operative"
+			new_op.assigned_role = "Rebel Operative"
+			new_op.special_role = "Rebel Operative"
 			//log_game("[key_name(new_op)] has been selected as a nuclear operative") | yogs - redundant
 		return TRUE
 	else
-		setup_error = "Not enough nuke op candidates"
+		setup_error = "Not enough rebel candidates"
 		return FALSE
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
