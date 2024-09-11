@@ -6,15 +6,16 @@
 	restricted_roles = list("AI", "Cyborg", "Synthetic")
 	weight = 15
 
-/datum/round_event_control/antagonist/solo/traitor/roundstart
-	name = "Traitors"
-	roundstart = TRUE
-	typepath = /datum/round_event/antagonist/solo/traitor
-	earliest_start = 0 SECONDS
-
 /datum/round_event_control/antagonist/solo/traitor/midround
 	name = "Sleeper Agents (Traitors)"
 	prompted_picking = TRUE
+
+/datum/round_event_control/antagonist/solo/traitor/roundstart
+	name = "Traitors"
+	roundstart = TRUE
+	typepath = /datum/round_event/antagonist/solo/traitor //yogs change: uses a different typepath so antag spawning can be treated differently
+	earliest_start = 0 SECONDS
+
 
 //yogs change, delayed awakening
 /datum/round_event/antagonist/solo/traitor/start()
