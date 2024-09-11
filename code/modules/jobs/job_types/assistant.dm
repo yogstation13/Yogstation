@@ -6,8 +6,8 @@ Assistant
 	description = "Try to survive, and maybe even earn a better life."
 	orbit_icon = "toolbox"
 	faction = "Station"
-	total_positions = 5
-	spawn_positions = 5
+	total_positions = 99
+	spawn_positions = 99
 	supervisors = "absolutely everyone"
 	added_access = list()			//See /datum/job/assistant/get_access()
 	base_access = list()	//See /datum/job/assistant/get_access()
