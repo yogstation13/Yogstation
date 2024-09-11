@@ -14149,10 +14149,6 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
-"bYF" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/heater,
-/turf/open/floor/plasteel,
-/area/science/mixing)
 "bZe" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -18451,6 +18447,12 @@
 	dir = 5
 	},
 /area/crew_quarters/kitchen)
+"fLM" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/heater{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "fNR" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Xenobiology Maintenance"
@@ -29052,6 +29054,12 @@
 /obj/structure/railing,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+"pJM" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "pJW" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -29686,10 +29694,6 @@
 /obj/structure/railing/corner,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"qnk" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
-/turf/open/floor/plasteel,
-/area/science/mixing)
 "qnw" = (
 /obj/structure/closet/secure_closet/lethalshots,
 /obj/machinery/door/window/brigdoor/northright{
@@ -129238,8 +129242,8 @@ aRi
 jUO
 aRi
 aXt
-qnk
-bYF
+pJM
+fLM
 mrZ
 ssj
 aXt
