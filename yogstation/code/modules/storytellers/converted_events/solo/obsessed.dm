@@ -19,6 +19,7 @@
 	)
 	weight = 6
 	max_occurrences = 3
+	min_players = 5
 
 /datum/round_event_control/antagonist/solo/obsessed/midround
 	name = "Compulsive Obsession"

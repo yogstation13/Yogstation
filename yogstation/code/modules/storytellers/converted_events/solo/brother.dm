@@ -26,6 +26,7 @@
 		JOB_WARDEN,
 		JOB_SECURITY_OFFICER,
 	)
+	min_players = 10 //need at least some players since it IS blood brothers
 	required_enemies = 1
 	weight = 12
 	maximum_antags = 2

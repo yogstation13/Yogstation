@@ -151,12 +151,13 @@
 		SSblackbox.record_feedback("tally", "event_admin_cancelled", 1, typepath)
 
 /datum/round_event_control/proc/runEvent()
-	var/datum/round_event/round_event = new typepath()
+	var/datum/round_event/round_event = new typepath(TRUE, src)
+
 	round_event.setup()
-	round_event.current_players = get_active_player_count(alive_check = 1, afk_check = 1, human_check = 1)
-	round_event.control = src
-	SSblackbox.record_feedback("tally", "event_ran", 1, "[round_event]")
+	round_event.current_players = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
 	occurrences++
+
+	SSblackbox.record_feedback("tally", "event_ran", 1, "[round_event]")
 
 	testing("[time2text(world.time, "hh:mm:ss")] [round_event.type]")
 	if(random)
