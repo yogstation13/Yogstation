@@ -400,7 +400,11 @@
 /obj/structure/toilet/greyscale{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/red/fourcorners,
+/obj/effect/turf_decal/tile/dark_red/anticorner{
+	dir = 1
+	},
+/obj/item/toy/plush/pooba_bee_plush,
+/obj/machinery/light/small/warm/directional/west,
 /turf/open/floor/iron/white,
 /area/station/security/prison/safe)
 "ahU" = (
@@ -3419,7 +3423,7 @@
 /turf/open/floor/iron,
 /area/station/security/brig)
 "bhu" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/structure/sink/kitchen/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/security/execution/education)
 "bhy" = (
@@ -4859,9 +4863,6 @@
 /obj/effect/turf_decal/tile/red/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/medical)
-"bKz" = (
-/turf/closed/wall/mineral/plastitanium,
-/area/station/security/execution/transfer)
 "bKB" = (
 /obj/structure/table,
 /obj/item/storage/box/bodybags{
@@ -8270,12 +8271,11 @@
 /turf/open/floor/engine/vacuum,
 /area/space/nearstation)
 "dcN" = (
-/obj/structure/bed,
-/obj/item/bedsheet/red,
-/obj/effect/turf_decal/tile/red/fourcorners,
 /obj/machinery/airalarm/directional/east,
-/obj/machinery/flasher/directional/north{
-	id = "IsolationFlash"
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/effect/turf_decal/tile/dark_red/anticorner{
+	dir = 4
 	},
 /turf/open/floor/iron/white,
 /area/station/security/prison/safe)
@@ -10068,9 +10068,7 @@
 /turf/open/floor/iron,
 /area/station/commons/locker)
 "dLU" = (
-/obj/effect/turf_decal/tile/red/fourcorners,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/white,
+/turf/open/floor/glass/reinforced,
 /area/station/security/prison/safe)
 "dLY" = (
 /obj/structure/table/wood,
@@ -10717,15 +10715,21 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/aft)
 "dXR" = (
-/obj/structure/sink/kitchen/directional/south{
-	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
-	name = "old sink"
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
 	},
-/obj/effect/turf_decal/tile/red/half/contrasted{
-	dir = 1
+/obj/effect/turf_decal/tile/dark_red/anticorner{
+	dir = 8
 	},
-/turf/open/floor/iron/dark,
-/area/station/security/execution/education)
+/obj/item/book/manual/wiki/security_space_law{
+	pixel_x = -5
+	},
+/obj/structure/table/reinforced,
+/obj/item/toy/crayon/red{
+	pixel_x = 8
+	},
+/turf/open/floor/iron/white,
+/area/station/security/prison/safe)
 "dXU" = (
 /turf/open/floor/engine/vacuum,
 /area/station/science/ordnance/burnchamber)
@@ -12816,6 +12820,8 @@
 /obj/machinery/firealarm/directional/east,
 /obj/machinery/light/directional/east,
 /obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/north,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/iron/dark,
 /area/station/security/execution/education)
 "eLh" = (
@@ -16088,13 +16094,18 @@
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "fWm" = (
-/obj/effect/turf_decal/tile/red/fourcorners,
-/obj/item/toy/plush/beeplushie{
-	desc = "Maybe hugging this will make you feel better about yourself.";
-	name = "Therabee"
+/obj/structure/bed{
+	dir = 4;
+	pixel_y = 4;
+	pixel_x = -2
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 4
+/obj/item/bedsheet/red{
+	dir = 4;
+	pixel_y = 4;
+	pixel_x = -3
+	},
+/obj/effect/turf_decal/tile/dark_red/half{
+	dir = 8
 	},
 /turf/open/floor/iron/white,
 /area/station/security/prison/safe)
@@ -23408,7 +23419,8 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/any/security/permabrig,
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/security/prison/safe)
 "iug" = (
@@ -35487,8 +35499,7 @@
 /area/station/maintenance/department/engine)
 "mzD" = (
 /obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced/tinted,
-/turf/open/floor/plating,
+/turf/closed/wall/r_wall,
 /area/station/security/prison/safe)
 "mzI" = (
 /obj/machinery/door/airlock/grunge{
@@ -36639,8 +36650,9 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
 "mTY" = (
-/obj/effect/turf_decal/tile/red/fourcorners,
-/obj/machinery/light/small/directional/north,
+/obj/effect/turf_decal/tile/dark_red/half{
+	dir = 1
+	},
 /turf/open/floor/iron/white,
 /area/station/security/prison/safe)
 "mUf" = (
@@ -46638,10 +46650,13 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
 "quc" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/marker_beacon/burgundy,
-/turf/open/space/basic,
-/area/space/nearstation)
+/obj/structure/cable,
+/obj/effect/spawner/structure/window/hollow/reinforced/middle,
+/obj/machinery/door/poddoor/shutters/window/preopen{
+	id = "Isolation"
+	},
+/turf/open/floor/plating,
+/area/station/security/prison/safe)
 "qul" = (
 /obj/machinery/power/terminal,
 /obj/effect/turf_decal/stripes/line,
@@ -51999,9 +52014,14 @@
 /turf/open/floor/iron/white/corner,
 /area/station/hallway/secondary/entry)
 "slI" = (
-/obj/effect/turf_decal/tile/red/fourcorners,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/dark_red/anticorner,
+/obj/machinery/camera/directional/east{
+	c_tag = "Prison Isolation Cell";
+	network = list("ss13","prison","isolation")
+	},
 /turf/open/floor/iron/white,
 /area/station/security/prison/safe)
 "smg" = (
@@ -57977,17 +57997,13 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/aft)
 "urf" = (
-/obj/structure/closet/secure_closet/injection{
-	name = "educational injections locker";
-	pixel_x = 2
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/tile/dark_red/half,
+/obj/machinery/light_switch/directional/south{
+	pixel_x = 8
 	},
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/north,
-/obj/effect/turf_decal/tile/red/half/contrasted{
-	dir = 1
-	},
-/turf/open/floor/iron/dark,
-/area/station/security/execution/education)
+/turf/open/floor/iron/white,
+/area/station/security/prison/safe)
 "urs" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
@@ -59885,13 +59901,14 @@
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/testlab)
 "vae" = (
-/obj/effect/turf_decal/tile/red/fourcorners,
-/obj/machinery/camera/directional/east{
-	c_tag = "Prison Isolation Cell";
-	network = list("ss13","prison","isolation")
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/structure/cable,
+/obj/machinery/flasher/directional/east{
+	id = "IsolationFlash"
+	},
+/obj/effect/turf_decal/tile/dark_red/half{
+	dir = 4
+	},
 /turf/open/floor/iron/white,
 /area/station/security/prison/safe)
 "vaB" = (
@@ -66200,12 +66217,18 @@
 /obj/machinery/light/directional/west,
 /obj/machinery/button/flasher{
 	id = "IsolationFlash";
-	pixel_x = -23;
+	pixel_x = -24;
 	pixel_y = 8
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/button/door/directional/west{
+	id = "Isolation";
+	req_access = list("brig");
+	pixel_y = -9;
+	pixel_x = -23
+	},
 /turf/open/floor/iron,
 /area/station/security/execution/transfer)
 "xnT" = (
@@ -92649,13 +92672,13 @@ nVL
 aWl
 aWl
 aWl
-tdW
-tdW
-tdW
-tdW
-tdW
-tdW
-dXR
+sjP
+sjP
+sjP
+sjP
+sjP
+sjP
+sjP
 bhu
 hnS
 tdW
@@ -92908,11 +92931,11 @@ lMJ
 lMJ
 lMJ
 lMJ
-sjP
+quc
 ahS
 fWm
-tdW
-urf
+dXR
+sjP
 eLd
 qNj
 tdW
@@ -93165,11 +93188,11 @@ aaa
 aaa
 aaa
 aaa
-sjP
+quc
 mTY
 dLU
-tdW
-tdW
+urf
+sjP
 tdW
 vnk
 gEg
@@ -93422,7 +93445,7 @@ aaa
 aaa
 aaa
 aaa
-sjP
+quc
 dcN
 vae
 slI
@@ -93682,7 +93705,7 @@ qrr
 sjP
 sjP
 sjP
-mzD
+sjP
 mzD
 pQx
 yey
@@ -94704,10 +94727,10 @@ aaa
 aaa
 aaa
 aaa
-quc
-lMJ
-bKz
-sIe
+aaa
+aaa
+aaa
+aaa
 sIe
 sIe
 sIe
