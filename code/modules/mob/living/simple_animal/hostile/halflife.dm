@@ -63,7 +63,7 @@
 	deathsound = 'sound/creatures/halflife/zombinedeath.ogg'
 	crabless_possible = FALSE
 	aggro_sound = 'sound/creatures/halflife/zombineaggro.ogg'
-	idle_sounds = list('sound/creatures/halflife/zombinesound1.ogg', 'sound/creatures/halflife/zombinesound2.ogg', 'sound/creatures/halflife/zombinesound3.ogg')
+	idle_sounds = list('sound/creatures/halflife/zombinesound1.ogg', 'sound/creatures/halflife/zombinesound2.ogg', 'sound/creatures/halflife/zombinesound3.ogg', 'sound/creatures/halflife/zombinesound4.ogg')
 
 //leaping headcrabs
 /mob/living/simple_animal/hostile/halflife/headcrab
