@@ -7,7 +7,7 @@
 	var/datum/team/pirate/crew
 
 	/// In the preview icon, the nukies who are behind the leader
-	var/preview_outfit_behind = /datum/outfit/pirate/space/gunner
+	var/preview_outfit_behind = /datum/outfit/rebel
 
 /datum/antagonist/pirate/greet()
 	to_chat(owner, span_boldannounce("You are a Space Pirate!"))
@@ -162,9 +162,9 @@
 */
 /datum/antagonist/pirate/get_preview_icon()
 	var/mob/living/carbon/human/dummy/consistent/captain = new
-	captain.set_species(/datum/species/skeleton)
+	captain.set_species(/datum/species/human)
 
-	var/icon/final_icon = render_preview_outfit(/datum/outfit/pirate/space/captain, captain)
+	var/icon/final_icon = render_preview_outfit(/datum/outfit/rebel, captain)
 	final_icon.Blend(make_assistant_icon(), ICON_UNDERLAY, -8, 0)
 	final_icon.Blend(make_assistant_icon(), ICON_UNDERLAY, 8, 0)
 
@@ -172,8 +172,8 @@
 
 /datum/antagonist/pirate/proc/make_assistant_icon()
 	var/mob/living/carbon/human/dummy/assistant = new
-	assistant.set_species(/datum/species/skeleton)
-	var/icon/assistant_icon = render_preview_outfit(/datum/outfit/pirate/space/gunner, assistant)
+	assistant.set_species(/datum/species/human)
+	var/icon/assistant_icon = render_preview_outfit(/datum/outfit/rebel, assistant)
 	assistant_icon.ChangeOpacity(0.5)
 
 	qdel(assistant)

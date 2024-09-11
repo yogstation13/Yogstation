@@ -3,19 +3,18 @@ import { multiline } from "common/string";
 
 export const OPERATIVE_MECHANICAL_DESCRIPTION
    = multiline`
-      Plan an assault of the station with other elite operatives and purchase your gear accordingly.
-      Kill the disk holder, anchor and arm the stolen nuclear device to the station, and return back to the base.
+      Make a plan to take down the Combine at any cost.
+      Loyalists are the enemy, the benefactors will go down.
    `;
 
 
 const Operative: Antagonist = {
   key: "operative",
-  name: "Nuclear Operative",
+  name: "Rebel",
   description: [
     multiline`
-      Congratulations, agent. Your performance lately has exceeded all expectations.
-      You will report to a Gorlex team on one of our covert bases.
-      The mission is simple; you are to steal the authentication device, deliver the payload, and exfiltrate before the payload detonates.
+      You've been living like crap for far too long.
+      Now is the day you rebel. Finally, change is in the air!
     `,
     OPERATIVE_MECHANICAL_DESCRIPTION,
   ],
