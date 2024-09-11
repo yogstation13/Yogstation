@@ -1,0 +1,7 @@
+author: "KnigTheThrasher"
+delete-after: True
+changes:
+  - rscadd: "Moved entire centcom area upwards"
+  - rscadd: "Added a new eorg area"
+  - bugfix: "readded ctf spawner (should work now)"
+  - rscdel: "changed how centcom ghost areas work"
