@@ -86,7 +86,7 @@
 /turf/open/space/transit/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	if(!CanBuildHere()) //no RCDing transit space if we arent part of a shuttle
 		return FALSE
-	..()
+	return ..()
 	
 
 /turf/open/space/transit/south
