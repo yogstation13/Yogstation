@@ -261,6 +261,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/log_viewer_new,
 	/client/proc/getserverlogs_debug,
 	/client/proc/getcurrentlogs_debug,
+	/client/proc/server_memory_stats,
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/release))
 GLOBAL_PROTECT(admin_verbs_possess)
