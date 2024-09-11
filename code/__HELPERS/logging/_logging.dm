@@ -201,7 +201,7 @@
 	WRITE_LOG(GLOB.world_map_error_log, text)
 
 /proc/log_storyteller(text)
-	WRITE_LOG(GLOB.world_map_error_log, text)
+	WRITE_LOG(GLOB.world_storyteller_log, text)
 	
 
 /**
