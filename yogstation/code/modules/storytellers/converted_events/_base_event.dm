@@ -284,14 +284,13 @@
 		if(!event_type)
 			return
 		var/datum/round_event_control/triggered_event = locate(event_type) in SSgamemode.control
-		addtimer(CALLBACK(triggered_event, TYPE_PROC_REF(/datum/round_event_control, runEvent)), 1 SECONDS) // wait a second to avoid any potential omnitraitor bs
+		addtimer(CALLBACK(triggered_event, TYPE_PROC_REF(/datum/round_event_control, runEvent), FALSE, null, FALSE, "storyteller"), 1 SECONDS) // wait a second to avoid any potential omnitraitor bs
 
 /datum/round_event/antagonist/solo/proc/spawn_extra_events()
 	if(!LAZYLEN(extra_spawned_events))
 		return
 	var/datum/round_event_control/event = pick_weight(extra_spawned_events)
-	event?.random = FALSE
-	event?.runEvent()
+	event?.runEvent(random = FALSE, event_cause = "storyteller")
 
 
 /datum/round_event/antagonist/solo/ghost/setup()

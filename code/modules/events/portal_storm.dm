@@ -126,8 +126,6 @@
 	typepath = /datum/round_event/portal_storm/resonance_cascade
 	weight = 0
 	max_occurrences = 0
-	random = FALSE // No.
-	max_alert = SEC_LEVEL_DELTA
 
 /datum/round_event/portal_storm/resonance_cascade
 	boss_types = list(

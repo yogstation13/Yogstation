@@ -3,7 +3,6 @@
 	typepath = /datum/round_event/grey_tide
 	max_occurrences = 2
 	min_players = 5
-	max_alert = SEC_LEVEL_DELTA
 
 /datum/round_event/grey_tide
 	announce_when = 50

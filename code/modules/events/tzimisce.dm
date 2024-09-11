@@ -12,7 +12,6 @@
 	typepath = /datum/round_event/ghost_role/tzimisce/bloodsucker
 	min_players = 25
 	earliest_start = 30 MINUTES
-	gamemode_whitelist = list("bloodsucker","traitorsucker")
 
 /datum/round_event/ghost_role/tzimisce/bloodsucker
 	fakeable = FALSE

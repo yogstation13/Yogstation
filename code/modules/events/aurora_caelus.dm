@@ -4,7 +4,8 @@
 	max_occurrences = 1
 	weight = 1
 	earliest_start = 5 MINUTES
-	max_alert = SEC_LEVEL_RED
+	category = EVENT_CATEGORY_FRIENDLY
+	description = "A colourful display can be seen through select windows. And the kitchen."
 
 /datum/round_event_control/aurora_caelus/canSpawnEvent(players, gamemode)
 	if(!SSmapping.empty_space)

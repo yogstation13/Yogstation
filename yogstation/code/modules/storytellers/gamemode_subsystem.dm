@@ -457,8 +457,7 @@ SUBSYSTEM_DEF(gamemode)
 	if(. == EVENT_CANT_RUN)//we couldn't run this event for some reason, set its max_occurrences to 0
 		event.max_occurrences = 0
 	else if(. == EVENT_READY)
-		event.random = TRUE
-		event.runEvent() // fallback to dynamic
+		event.runEvent(random = TRUE)
 
 ///Resets frequency multiplier.
 /datum/controller/subsystem/gamemode/proc/resetFrequency()

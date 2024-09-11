@@ -3,23 +3,24 @@
 	typepath 		= /datum/round_event/falsealarm
 	weight			= 20
 	max_occurrences = 5
-	var/forced_type //Admin abuse
-	max_alert = SEC_LEVEL_DELTA
+	category = EVENT_CATEGORY_BUREAUCRATIC
+	description = "Fakes an event announcement."
+	admin_setup = list(/datum/event_admin_setup/listed_options/false_alarm)
 
+/datum/event_admin_setup/listed_options/false_alarm
+	normal_run_option = "Random Fake Event"
 
-/datum/round_event_control/falsealarm/admin_setup()
-	if(!check_rights(R_FUN))
-		return
-
+/datum/event_admin_setup/listed_options/false_alarm/get_list()
 	var/list/possible_types = list()
-
-	for(var/datum/round_event_control/E in SSevents.control)
-		var/datum/round_event/event = E.typepath
+	for(var/datum/round_event_control/event_control in SSevents.control)
+		var/datum/round_event/event = event_control.typepath
 		if(!initial(event.fakeable))
 			continue
-		possible_types += E
+		possible_types += event_control
+	return possible_types
 
-	forced_type = input(usr, "Select the scare.","False event") as null|anything in possible_types
+/datum/event_admin_setup/listed_options/false_alarm/apply_to_event(datum/round_event/falsealarm/event)
+	event.forced_type = chosen
 
 /datum/round_event_control/falsealarm/canSpawnEvent(players_amt, gamemode)
 	return ..() && length(gather_false_events())
@@ -28,6 +29,7 @@
 	announce_when	= 0
 	end_when			= 1
 	fakeable = FALSE
+	var/forced_type //Admin abuse
 
 /datum/round_event/falsealarm/announce(fake)
 	if(fake) //What are you doing
@@ -37,10 +39,8 @@
 
 	var/events_list = gather_false_events(players_amt, gamemode)
 	var/datum/round_event_control/event_control
-	var/datum/round_event_control/falsealarm/C = control
-	if(C.forced_type)
-		event_control = C.forced_type
-		C.forced_type = null
+	if(forced_type)
+		event_control = forced_type
 	else
 		event_control = pick(events_list)
 	if(event_control)

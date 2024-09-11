@@ -4,34 +4,50 @@
 	typepath = /datum/round_event/wizard/deprevolt
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
+	admin_setup = list(
+		/datum/event_admin_setup/listed_options/departmental_revolt,
+		/datum/event_admin_setup/question/departmental_revolt_annouce,
+		/datum/event_admin_setup/question/departmental_revolt_dangerous
+	)
 
+
+///which department is revolting?
+/datum/event_admin_setup/listed_options/departmental_revolt
+	input_text = "Which department should revolt?"
+	normal_run_option = "Random"
+
+/datum/event_admin_setup/listed_options/departmental_revolt/get_list()
+	return subtypesof(/datum/job_department)
+	
+/datum/event_admin_setup/listed_options/departmental_revolt/apply_to_event(datum/round_event/wizard/deprevolt/event)
+	event.picked_department = chosen
+
+/// Announce the separatist nation to the round?
+/datum/event_admin_setup/question/departmental_revolt_annouce
+	input_text = "Announce This New Independent State?"
+
+/datum/event_admin_setup/question/departmental_revolt_annouce/apply_to_event(datum/round_event/wizard/deprevolt/event)
+	event.announcement = chosen
+
+/// Is it going to try fighting other nations?
+/datum/event_admin_setup/question/departmental_revolt_dangerous
+	input_text = "Dangerous Nation? This means they will fight other nations."
+
+/datum/event_admin_setup/question/departmental_revolt_dangerous/apply_to_event(datum/round_event/wizard/deprevolt/event)
+	event.dangerous = chosen
+
+
+
+/datum/round_event/wizard/deprevolt
+	///which department is revolting?
 	var/picked_department
-	var/announce = FALSE
-	var/dangerous_nation = TRUE
+	/// Announce the separatist nation to the round?
+	var/announcement = FALSE
+	/// Is it going to try fighting other nations?
+	var/dangerous = TRUE
 
-/datum/round_event_control/wizard/deprevolt/admin_setup()
-	if(!check_rights(R_FUN))
-		return
-	var/list/options = list("Random", "Uprising of Assistants", "Medical", "Engineering", "Science", "Supply", "Service", "Security")
-	picked_department = input(usr,"Which department should revolt?","Select a department") as null|anything in options
-
-	var/announce_question = tgui_alert(usr, "Announce This New Independent State?", "Secession", list("Announce", "No Announcement"))
-	if(announce_question == "Announce")
-		announce = TRUE
-
-	var/dangerous_question = tgui_alert(usr, "Dangerous Nation? This means they will fight other nations.", "Conquest", list("Yes", "No"))
-	if(dangerous_question == "No")
-		dangerous_nation = FALSE
-
-	//this is down here to allow the random system to pick a department whilst considering other independent departments
-	if(!picked_department || picked_department == "Random")
-		picked_department = null
-		return
 
 /datum/round_event/wizard/deprevolt/start()
-
-	var/datum/round_event_control/wizard/deprevolt/event_control = control
-
 	var/list/independent_departments = list() ///departments that are already independent, these will be disallowed to be randomly picked
 	var/list/cannot_pick = list() ///departments that are already independent, these will be disallowed to be randomly picked
 	for(var/datum/antagonist/separatist/separatist_datum in GLOB.antagonists)
@@ -40,12 +56,9 @@
 		independent_departments |= separatist_datum.nation
 		cannot_pick |= separatist_datum.nation.nation_department
 
-	var/announcement = event_control.announce
-	var/dangerous = event_control.dangerous_nation
 	var/department
-	if(event_control.picked_department)
-		department = event_control.picked_department
-		event_control.picked_department = null
+	if(picked_department)
+		department = picked_department
 	else
 		department = pick(list("Uprising of Assistants", "Medical", "Engineering", "Science", "Supply", "Service", "Security") - cannot_pick)
 		if(!department)

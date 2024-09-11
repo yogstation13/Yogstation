@@ -4,7 +4,6 @@
 	weight = 20
 	max_occurrences = 3
 	min_players = 10
-	max_alert = SEC_LEVEL_DELTA
 
 /datum/round_event/chem_spill
 	announce_when	= 1
