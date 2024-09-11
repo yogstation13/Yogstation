@@ -4889,11 +4889,7 @@
 /obj/effect/turf_decal/trimline/red/corner{
 	dir = 4
 	},
-/obj/structure/table/glass,
-/obj/item/healthanalyzer{
-	pixel_y = 10
-	},
-/obj/item/clothing/gloves/latex,
+/obj/structure/closet/secure_closet/brig_physician,
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "buK" = (
@@ -69072,6 +69068,10 @@
 	},
 /obj/effect/turf_decal/trimline/red/mid_joiner{
 	dir = 1
+	},
+/obj/item/clothing/gloves/latex,
+/obj/item/healthanalyzer{
+	pixel_y = 10
 	},
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 1
