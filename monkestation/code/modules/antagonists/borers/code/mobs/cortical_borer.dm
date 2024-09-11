@@ -139,7 +139,7 @@ GLOBAL_LIST_INIT(borer_second_name, world.file2list("monkestation/code/modules/a
 	/// How old the borer is, starting from zero. Goes up only when inside a host and resets when a stat point is gained. This is in seconds.
 	var/maturity_age = 0
 	/// Whether a chem point has been granted for this maturity level. Resets when a stat point is gained.
-	var/chem_point_gained = FALSE // Technically if seconds_per_tick is like 5 this can fail at the max maturity speed but w h a t e v e r .
+	var/chem_point_gained = FALSE // Technically if delta_time is like 5 this can fail at the max maturity speed but w h a t e v e r .
 
 	/// How many times you've levelled up over all
 	var/level = 0
@@ -314,6 +314,7 @@ GLOBAL_LIST_INIT(borer_second_name, world.file2list("monkestation/code/modules/a
 
 /mob/living/basic/cortical_borer/Life(seconds_per_tick, times_fired)
 	. = ..()
+
 	//can only do stuff when we are inside a LIVING human
 	if(!inside_human() || human_host?.stat == DEAD)
 		return
@@ -343,7 +344,7 @@ GLOBAL_LIST_INIT(borer_second_name, world.file2list("monkestation/code/modules/a
 			adjustBruteLoss(maxHealth * -health_regen * seconds_per_tick)
 
 	//this is so they can evolve
-	mature(seconds_per_tick)
+	mature()
 
 //if it doesnt have a ckey, let ghosts have it
 /mob/living/basic/cortical_borer/attack_ghost(mob/dead/observer/user)
@@ -483,26 +484,28 @@ GLOBAL_LIST_INIT(borer_second_name, world.file2list("monkestation/code/modules/a
 	return
 
 /// Called on Life() for the borer to age a bit
-/mob/living/basic/cortical_borer/proc/mature(seconds_per_tick)
+/mob/living/basic/cortical_borer/proc/mature()
 	. = TRUE
+
 	if(upgrade_flags & BORER_STEALTH_MODE)
 		return FALSE
-	maturity_age += seconds_per_tick
+
+	maturity_age += DELTA_WORLD_TIME(SSmobs)
 
 	/**
 	 * In the beginning you start out with the following generation:
-	 * Evolution point per 40 seconds
-	 * Chemical point per 20 seconds
+	 * Evolution point per 60 seconds
+	 * Chemical point per 30 seconds
 	 */
 
 	//20:40, 15:30, 10:20, 5:10
-	var/maturity_threshold = 20
+	var/maturity_threshold = 30
 	if(GLOB.successful_egg_number >= GLOB.objective_egg_borer_number)
-		maturity_threshold -= 2
-	if(length(GLOB.willing_hosts) >= GLOB.objective_willing_hosts)
-		maturity_threshold -= 10
-	if(GLOB.successful_blood_chem >= GLOB.objective_blood_borer)
 		maturity_threshold -= 3
+	if(length(GLOB.willing_hosts) >= GLOB.objective_willing_hosts)
+		maturity_threshold -= 15
+	if(GLOB.successful_blood_chem >= GLOB.objective_blood_borer)
+		maturity_threshold -= 4.5
 
 	if(!chem_point_gained && maturity_age >= maturity_threshold)
 		if(chemical_evolution < limited_borer) //you can only have a default of 10 at a time
