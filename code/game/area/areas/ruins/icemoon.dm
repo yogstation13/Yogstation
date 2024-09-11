@@ -77,3 +77,8 @@
 //Hermit
 /area/ruin/powered/icemoon_hermit
 	name = "Icemoon Hermit"
+
+//Alien Lab
+
+/area/ruin/powered/alien_lab
+	name = "Alien Lab"

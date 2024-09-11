@@ -262,14 +262,6 @@
 	mob_trait = TRAIT_POOR_AIM
 	medical_record_text = "Patient possesses a strong tremor in both hands."
 
-/datum/quirk/poor_aim/add()
-	var/mob/living/carbon/human/H = quirk_holder
-	H.dna.species.aiminginaccuracy += 25
-
-/datum/quirk/poor_aim/remove()
-	var/mob/living/carbon/human/H = quirk_holder
-	H?.dna?.species?.aiminginaccuracy -= 25
-
 /datum/quirk/prosopagnosia
 	name = "Prosopagnosia"
 	desc = "You have a mental disorder that prevents you from being able to recognize faces at all."
@@ -682,7 +674,6 @@
 	desc = "You have had an allergic reaction to medicine in the past. Better stay away from it!"
 	icon = "prescription-bottle"
 	value = -2
-	mob_trait = TRAIT_ALLERGIC
 	gain_text = span_danger("You remember your allergic reaction to a common medicine.")
 	lose_text = span_notice("You no longer are allergic to medicine.")
 
@@ -785,7 +776,6 @@
 	desc = "You have an uncontrollable urge to pick up things you see. Even things that don't belong to you."
 	icon = "hands-holding-circle"
 	value = -2
-	mob_trait = TRAIT_KLEPTOMANIAC
 	gain_text = span_danger("You have an unmistakeable urge to grab nearby objects.")
 	lose_text = span_notice("You no longer feel the urge to steal.")
 	medical_record_text = "Patient has an uncontrollable urge to steal."

@@ -402,8 +402,7 @@
   * We then return the protection value
   */
 /atom/proc/emp_act(severity)
-	SEND_SIGNAL(src, COMSIG_ATOM_EMP_ACT, severity)
-	var/protection = NONE
+	var/protection = SEND_SIGNAL(src, COMSIG_ATOM_EMP_ACT, severity)
 	if(HAS_TRAIT(src, TRAIT_EMPPROOF_CONTENTS))
 		protection |= EMP_PROTECT_CONTENTS
 	if(HAS_TRAIT(src, TRAIT_EMPPROOF_SELF))

@@ -309,7 +309,7 @@
 
 /obj/item/bodypart/l_leg/digitigrade
 	name = "left digitigrade leg"
-	use_digitigrade = FULL_DIGITIGRADE
+	use_digitigrade = TRUE
 
 /obj/item/bodypart/l_leg/monkey
 	icon = 'icons/mob/animal_parts.dmi'
@@ -401,7 +401,7 @@
 
 /obj/item/bodypart/r_leg/digitigrade
 	name = "right digitigrade leg"
-	use_digitigrade = FULL_DIGITIGRADE
+	use_digitigrade = TRUE
 
 /obj/item/bodypart/r_leg/monkey
 	icon = 'icons/mob/animal_parts.dmi'

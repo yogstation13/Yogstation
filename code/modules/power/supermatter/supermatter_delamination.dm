@@ -97,7 +97,7 @@
 /datum/supermatter_delamination/proc/call_singulo()
 	if(!supermatter_turf)
 		return
-	var/obj/singularity/created_singularity = new(supermatter_turf)
+	var/obj/singularity/gravitational/created_singularity = new(supermatter_turf)
 	created_singularity.energy = 2400
 	created_singularity.consumedSupermatter = 1
 	message_admins("The Supermatter Crystal has created a singularity [ADMIN_JMP(created_singularity)].")

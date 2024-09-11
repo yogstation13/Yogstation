@@ -654,7 +654,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 */
 
 /datum/holiday/ramadan/shouldCelebrate(dd, mm, yy, ww, ddd)
-	return (round(((world.realtime - 285984000) / 864000) % 354.373435326843) == 0)
+	return (round(((world.realtime - 285984000) / MIDNIGHT_ROLLOVER) % 354.373435326843) == 0)
 
 /datum/holiday/ramadan/getStationPrefix()
 	return pick("Harm","Halaal","Jihad","Muslim")
@@ -663,7 +663,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	name = "End of Ramadan"
 
 /datum/holiday/ramadan/end/shouldCelebrate(dd, mm, yy, ww, ddd)
-	return (round(((world.realtime - 312768000) / 864000) % 354.373435326843) == 0)
+	return (round(((world.realtime - 312768000) / MIDNIGHT_ROLLOVER) % 354.373435326843) == 0)
 
 /datum/holiday/lifeday
 	name = "Life Day"
