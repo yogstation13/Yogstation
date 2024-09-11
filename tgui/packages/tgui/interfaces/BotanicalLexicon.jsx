@@ -1,5 +1,5 @@
 import { toTitleCase } from 'common/string';
-import { resolveAsset } from '../assets';
+import { classes } from 'common/react';
 import { useBackend, useLocalState } from '../backend';
 import { Flex, Box, Tabs, Stack } from '../components';
 import { Window } from '../layouts';
@@ -49,14 +49,11 @@ const PlantInfo = (props) => {
       </Flex.Item>
       <Flex.Item class="chicken-icon-container">
         <Box
-          class="chicken_icon"
-          as="img"
-          src={resolveAsset(selectedPlant.plant_icon)}
-          height="96px"
-          style={{
-            '-ms-interpolation-mode': 'nearest-neighbor',
-            'image-rendering': 'pixelated',
-          }}
+          mb={-2}
+          className={classes([
+            'botanical_lexicon96x96',
+            selectedPlant.plant_icon,
+          ])}
         />
       </Flex.Item>
 

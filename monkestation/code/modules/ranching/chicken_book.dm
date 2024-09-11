@@ -5,14 +5,20 @@
 	icon_state = "chicken_book"
 
 /obj/item/chicken_book/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user,src,ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user,src,"RanchingEncyclopedia")
+		ui = new(user, src, "RanchingEncyclopedia")
+		ui.set_autoupdate(FALSE)
 		ui.open()
 
-/obj/item/chicken_book/ui_act(action,list/params)
+/obj/item/chicken_book/ui_act(action, list/params)
 	if(..())
 		return
+
+/obj/item/chicken_book/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/chicken_book),
+	)
 
 /obj/item/chicken_book/ui_static_data(mob/user)
 	var/list/data = list()
@@ -79,12 +85,7 @@
 		details["nearby_items"] = obj_names.Join(",")
 		details["comes_from"] = created_mutation.can_come_from_string
 
-		var/icon/chicken_icon = getFlatIcon(F)
-		var/md5 = md5(fcopy_rsc(chicken_icon))
-		if(!SSassets.cache["photo_[md5]_[F.breed_name]_icon.png"])
-			SSassets.transport.register_asset("photo_[md5]_[F.breed_name]_icon.png", chicken_icon)
-		SSassets.transport.send_assets(user, list("photo_[md5]_[F.breed_name]_icon.png" = chicken_icon))
-		details["chicken_icon"] = SSassets.transport.get_asset_url("photo_[md5]_[F.breed_name]_icon.png")
+		details["chicken_icon"] = sanitize_css_class_name("[created_mutation.chicken_type]")
 		chicken_list += list(details)
 		qdel(F)
 		qdel(created_mutation)

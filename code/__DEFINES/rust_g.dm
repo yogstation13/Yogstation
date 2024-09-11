@@ -124,6 +124,13 @@
 #define rustg_dmi_strip_metadata(fname) RUSTG_CALL(RUST_G, "dmi_strip_metadata")(fname)
 #define rustg_dmi_create_png(path, width, height, data) RUSTG_CALL(RUST_G, "dmi_create_png")(path, width, height, data)
 #define rustg_dmi_resize_png(path, width, height, resizetype) RUSTG_CALL(RUST_G, "dmi_resize_png")(path, width, height, resizetype)
+
+#define RUSTG_RESIZE_NEAREST	"nearest"
+#define RUSTG_RESIZE_CATMULL	"catmull"
+#define RUSTG_RESIZE_GAUSSIAN	"gaussian"
+#define RUSTG_RESIZE_LANCZOS3	"lanczos3"
+#define RUSTG_RESIZE_TRIANGLE	"triangle"
+
 /**
  * input: must be a path, not an /icon; you have to do your own handling if it is one, as icon objects can't be directly passed to rustg.
  *
