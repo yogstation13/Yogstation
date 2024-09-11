@@ -1181,4 +1181,3 @@ SUBSYSTEM_DEF(gamemode)
 			listed.occurrences++
 
 #undef DEFAULT_STORYTELLER_VOTE_OPTIONS
-#undef MAX_POP_FOR_STORYTELLER_VOTE
