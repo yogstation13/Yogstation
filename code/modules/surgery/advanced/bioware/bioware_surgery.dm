@@ -1,5 +1,6 @@
 /datum/surgery/advanced/bioware
 	name = "Enhancement surgery"
+	requires_bodypart_type = NONE
 	var/bioware_target = BIOWARE_GENERIC
 
 /datum/surgery/advanced/bioware/can_start(mob/user, mob/living/carbon/human/target)
