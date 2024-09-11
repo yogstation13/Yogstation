@@ -7,7 +7,7 @@
 	cures = list(/datum/reagent/consumable/nothing)
 	agent = "Fury from the circus of hell itself."
 	viable_mobtypes = list(/mob/living/carbon/human)
-	desc = "Subject will become dizzy, confused and steadily more retarded before being turned into a cluwne!"
+	desc = "Subject will become dizzy, confused and steadily more ridiculous before being turned into a cluwne!"
 	severity = DISEASE_SEVERITY_BIOHAZARD
 	bypasses_immunity = TRUE
 

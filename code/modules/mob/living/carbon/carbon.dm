@@ -263,7 +263,7 @@
 			if(src && buckled)
 				to_chat(src, span_warning("You fail to unbuckle yourself!"))
 	else
-		buckled.user_unbuckle_mob(src,src)
+		buckled?.user_unbuckle_mob(src,src) //if we mash it after we get unbuckled before the alert dissapears we'll resist and runtime
 
 /mob/living/carbon/resist_fire()
 	adjust_fire_stacks(-5)

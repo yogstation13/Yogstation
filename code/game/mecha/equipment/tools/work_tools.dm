@@ -51,8 +51,6 @@
 	tool_behaviour = 0
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/action(atom/target, mob/living/user, params)
-	if(!action_checks(target))
-		return
 	if(!cargo_holder)
 		return
 	
@@ -133,8 +131,6 @@
 	real_clamp = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill/action(atom/target, mob/living/user, params)
-	if(!action_checks(target))
-		return
 	if(!cargo_holder)
 		return
 	if(isobj(target))
@@ -220,9 +216,6 @@
 	reagents.add_reagent(/datum/reagent/firefighting_foam, 1000)
 
 /obj/item/mecha_parts/mecha_equipment/extinguisher/action(atom/target) //copypasted from extinguisher. TODO: Rewrite from scratch.
-	if(!action_checks(target))
-		return
-
 	if(istype(target, /obj/structure/reagent_dispensers/foamtank) && get_dist(chassis,target) <= 1)
 		var/obj/structure/reagent_dispensers/WT = target
 		WT.reagents.trans_to(src, 1000)
@@ -369,8 +362,6 @@
 	selectable = FALSE
 	/// Scanning distance
 	var/distance = 6
-	/// Whether the scanning is enabled
-	var/scanning = FALSE
 	/// Stored t-ray scan images
 	var/list/t_ray_images
 
@@ -380,11 +371,11 @@
 
 /obj/item/mecha_parts/mecha_equipment/t_scanner/detach(atom/moveto)
 	UnregisterSignal(chassis, COMSIG_MOVABLE_MOVED)
-	if(scanning)
-		STOP_PROCESSING(SSobj, src)
+	update_scan(chassis.occupant, TRUE)
+	active = FALSE
 	return ..()
 
-/obj/item/mecha_parts/mecha_equipment/t_scanner/process(delta_time)
+/obj/item/mecha_parts/mecha_equipment/t_scanner/on_process(delta_time)
 	if(!update_scan(chassis.occupant))
 		return PROCESS_KILL
 
@@ -398,7 +389,7 @@
 	if(t_ray_images?.len)
 		pilot.client.images.Remove(t_ray_images)
 		QDEL_NULL(t_ray_images)
-	if(!scanning || force_remove)
+	if(!active || force_remove)
 		return FALSE
 
 	t_ray_images = list()
@@ -430,15 +421,11 @@
 
 /datum/action/innate/mecha/equipment/t_scanner/Activate()
 	var/obj/item/mecha_parts/mecha_equipment/t_scanner/t_scan = equipment
-	t_scan.scanning = !t_scan.scanning
+	t_scan.active = !t_scan.active
 	t_scan.update_scan(t_scan.chassis.occupant)
-	t_scan.chassis.occupant_message("You [t_scan.scanning ? "activate" : "deactivate"] [t_scan].")
-	button_icon_state = "t_scanner_[t_scan.scanning ? "on" : "off"]"
+	t_scan.chassis.occupant_message("You [t_scan.active ? "activate" : "deactivate"] [t_scan].")
+	button_icon_state = "t_scanner_[t_scan.active ? "on" : "off"]"
 	build_all_button_icons()
-	if(t_scan.scanning)
-		START_PROCESSING(SSobj, t_scan)
-	else
-		STOP_PROCESSING(SSobj, t_scan)
 
 /obj/item/mecha_parts/mecha_equipment/mag_treads
 	name = "magnetic treads"
@@ -494,8 +481,6 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/cable_layer/action(obj/item/stack/cable_coil/target)
-	if(!action_checks(target))
-		return
 	if(istype(target) && target.amount)
 		var/cur_amount = cable? cable.amount : 0
 		var/to_load = max(max_cable - cur_amount,0)

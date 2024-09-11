@@ -40,4 +40,5 @@
 
 /turf/closed/mineral/dilithium/ice/icemoon/top_layer
 	light_range = 2
-	light_power = 0.1
+	light_power = NIGHT_TURF_BRIGHTNESS
+	light_color = COLOR_STARLIGHT

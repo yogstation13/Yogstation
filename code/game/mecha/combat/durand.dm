@@ -13,10 +13,10 @@
 	force = 35
 
 /obj/mecha/combat/durand/GrantActions(mob/living/user, human_occupant = 0)
-	..()
+	. = ..()
 	defence_action.Grant(user, src)
 
 /obj/mecha/combat/durand/RemoveActions(mob/living/user, human_occupant = 0)
-	..()
+	. = ..()
 	defence_action.Remove(user)
 

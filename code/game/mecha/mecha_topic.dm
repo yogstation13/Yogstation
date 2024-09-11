@@ -91,6 +91,8 @@
 	. = {"[report_internal_damage()]
 						[integrity<30?"[span_userdanger("DAMAGE LEVEL CRITICAL")]<br>":null]
 						<b>Integrity: </b> [integrity]%<br>
+						[overheat >= OVERHEAT_THRESHOLD ? "[span_userdanger("TEMPERATURE CRITICAL")]<br>" : ""]
+						<b>Temperature: </b> [overheat]&deg;C<br>
 						<b>Powercell charge: </b>[isnull(cell_charge)?"No powercell installed":"[cell.percent()]%"]<br>
 						<b>Air source: </b>[internal_tank?"[use_internal_tank?"Internal Airtank":"Environment"]":"Environment"]<br>
 						<b>Airtank pressure: </b>[internal_tank?"[tank_pressure]kPa":"N/A"]<br>

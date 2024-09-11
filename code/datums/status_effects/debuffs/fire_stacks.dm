@@ -2,6 +2,7 @@
 #define MOB_BIG_FIRE_STACK_THRESHOLD 3
 
 /datum/status_effect/fire_handler
+	id = "fire_handler"
 	duration = -1
 	alert_type = null
 	status_type = STATUS_EFFECT_REFRESH //Custom code
