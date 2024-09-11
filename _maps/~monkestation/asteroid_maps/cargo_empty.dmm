@@ -1,0 +1,78 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/iron/airless,
+/area/space)
+"d" = (
+/obj/machinery/door/poddoor/shutters,
+/turf/open/floor/iron/airless,
+/area/space)
+"o" = (
+/turf/closed/wall/r_wall,
+/area/space)
+"D" = (
+/turf/open/space/basic,
+/area/space)
+
+(1,1,1) = {"
+D
+D
+D
+D
+D
+D
+D
+"}
+(2,1,1) = {"
+o
+o
+o
+o
+o
+o
+o
+"}
+(3,1,1) = {"
+o
+a
+a
+a
+a
+a
+d
+"}
+(4,1,1) = {"
+o
+a
+a
+a
+a
+a
+d
+"}
+(5,1,1) = {"
+o
+a
+a
+a
+a
+a
+d
+"}
+(6,1,1) = {"
+o
+o
+o
+o
+o
+o
+o
+"}
+(7,1,1) = {"
+D
+D
+D
+D
+D
+D
+D
+"}

@@ -1,0 +1,78 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/mineral/random/asteroid,
+/area/space)
+"e" = (
+/mob/living/basic/mining/goliath/ancient,
+/turf/open/misc/asteroid/airless/tospace,
+/area/space)
+"p" = (
+/turf/open/misc/asteroid/airless/tospace,
+/area/space)
+"T" = (
+/turf/open/space/basic,
+/area/space)
+
+(1,1,1) = {"
+T
+a
+a
+a
+a
+a
+T
+"}
+(2,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+a
+p
+a
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+p
+e
+p
+a
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+p
+a
+a
+a
+"}
+(6,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}
+(7,1,1) = {"
+T
+a
+a
+a
+a
+a
+T
+"}

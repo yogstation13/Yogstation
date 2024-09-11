@@ -1,0 +1,80 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/mineral/asteroid/tospace/gold,
+/area/space)
+"e" = (
+/turf/closed/mineral/asteroid/tospace/diamond,
+/area/space)
+"h" = (
+/turf/closed/mineral/asteroid/tospace/bscrystal,
+/area/space)
+"O" = (
+/turf/closed/mineral/random/asteroid,
+/area/space)
+"S" = (
+/turf/open/space/basic,
+/area/space)
+
+(1,1,1) = {"
+S
+O
+O
+O
+O
+O
+S
+"}
+(2,1,1) = {"
+O
+O
+O
+a
+O
+O
+O
+"}
+(3,1,1) = {"
+O
+O
+a
+e
+a
+O
+O
+"}
+(4,1,1) = {"
+O
+a
+e
+h
+e
+a
+O
+"}
+(5,1,1) = {"
+O
+O
+a
+e
+a
+O
+O
+"}
+(6,1,1) = {"
+O
+O
+O
+a
+O
+O
+O
+"}
+(7,1,1) = {"
+S
+O
+O
+O
+O
+O
+S
+"}

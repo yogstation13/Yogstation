@@ -167,7 +167,8 @@ SUBSYSTEM_DEF(materials)
 			combo[GET_MATERIAL_REF(mat)] = materials_declaration[mat] * multiplier
 		material_combos[combo_index] = combo
 	return combo
-
+///MONKESTATION REMOVAL, we dont use this boi, not removing the proc because LAYZ
 /datum/controller/subsystem/materials/proc/InitializeTemplates()
-	for(var/datum/mining_template/template as anything in typesof(/datum/mining_template))
-		LAZYADD(template_paths_by_rarity["[initial(template.rarity)]"], template)
+//	for(var/datum/mining_template/template as anything in typesof(/datum/mining_template))
+//		LAZYADD(template_paths_by_rarity["[initial(template.rarity)]"], template)
+//
