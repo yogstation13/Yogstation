@@ -224,6 +224,8 @@
       not affect the NPCs in the space ruins and such, only the ones from the event.
   - bugfix: Syndicate Shocktroops will no longer spawn in stupid places like in the
       middle of a wall.
+  - sound: Buttons and light switches now have sound effects! They might be somewhat
+      familiar, heh.
   DexeeXI:
   - bugfix: BP can now access the medical records laptop.
   - balance: All Maps, BP access is restricted to only the medbay front doors, side
@@ -232,6 +234,13 @@
   - rscadd: BP now has a new, wicked sick PDA.
   - balance: BP now has a revised list of default PDA programs.
   - qol: BP's locker now has a BP dufflebag for surgical instead. More drip!
+  KnigTheThrasher:
+  - rscadd: Moved entire centcom area upwards
+  - rscadd: Added a new eorg area
+  - bugfix: readded ctf spawner (should work now)
+  - rscdel: changed how centcom ghost areas work
+  MomoBerri:
+  - rscadd: Meta and Delta have gotten renovated Isolations.
   PotatoTomahto:
   - bugfix: Weird portable chemical mixer behavior fixed, with some improved usability.
   - bugfix: Window sills deconstruct correctly.
@@ -241,3 +250,4 @@
   - rscadd: ' timelock for brig physicians'
   Wisemonster:
   - balance: Increased the chance of signs from the heart attack symptom appearing
+  - rscadd: Ourobouros now has a Brig Physician locker
