@@ -1,7 +1,0 @@
-author: "DexeeXI"
-delete-after: True
-changes:
-  - balance: "All Maps, BP access is restricted to only the medbay front doors, side doors, appropriate maintenance doors and the medbay treatment center only. BP may only gain full medical access during skeleton crew manning."
-  - rscadd: "BP now has a new, wicked sick PDA."
-  - balance: "BP now has a revised list of default PDA programs."
-  - qol: "BP's locker now has a BP dufflebag for surgical instead. More drip!"

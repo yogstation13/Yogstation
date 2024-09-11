@@ -1,5 +1,0 @@
-author: "PotatoTomahto"
-delete-after: True
-changes:
-  - bugfix: "Weird portable chemical mixer behavior fixed, with some improved usability."
-  - bugfix: "Window sills deconstruct correctly."

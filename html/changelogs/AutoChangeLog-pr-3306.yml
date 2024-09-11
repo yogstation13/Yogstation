@@ -1,4 +1,0 @@
-author: "DexeeXI"
-delete-after: True
-changes:
-  - bugfix: "BP can now access the medical records laptop."

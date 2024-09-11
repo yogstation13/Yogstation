@@ -217,3 +217,27 @@
       players as targets.
   Odairu:
   - rscadd: ability to pixel shift items and player characters
+2024-09-11:
+  Absolucy:
+  - balance: The NPCs from the Syndicate Shocktroops event now have much less health,
+      deal less damage, and have very slightly longer attack cooldowns. This does
+      not affect the NPCs in the space ruins and such, only the ones from the event.
+  - bugfix: Syndicate Shocktroops will no longer spawn in stupid places like in the
+      middle of a wall.
+  DexeeXI:
+  - bugfix: BP can now access the medical records laptop.
+  - balance: All Maps, BP access is restricted to only the medbay front doors, side
+      doors, appropriate maintenance doors and the medbay treatment center only. BP
+      may only gain full medical access during skeleton crew manning.
+  - rscadd: BP now has a new, wicked sick PDA.
+  - balance: BP now has a revised list of default PDA programs.
+  - qol: BP's locker now has a BP dufflebag for surgical instead. More drip!
+  PotatoTomahto:
+  - bugfix: Weird portable chemical mixer behavior fixed, with some improved usability.
+  - bugfix: Window sills deconstruct correctly.
+  ThePooba:
+  - balance: Prisoners now need 5 hours of security, no more freeloading
+  - rscadd: Adds "Black" Surgical Latex Gloves
+  - rscadd: ' timelock for brig physicians'
+  Wisemonster:
+  - balance: Increased the chance of signs from the heart attack symptom appearing
