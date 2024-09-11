@@ -1,0 +1,5 @@
+author: "RikuTheKiller"
+delete-after: True
+changes:
+  - balance: "Borers now evolve slower again."
+  - bugfix: "Borer maturity (not regen or such) is now actually lag immune."
