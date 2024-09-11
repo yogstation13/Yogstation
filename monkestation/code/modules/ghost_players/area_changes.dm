@@ -26,13 +26,17 @@
 	area_flags = UNIQUE_AREA | NOTELEPORT
 
 /area/centcom/central_command_areas/supply
-	area_flags = UNIQUE_AREA | NOTELEPORT | GHOST_AREA | PASSIVE_AREA | NO_GHOSTS_DURING_ROUND
+	area_flags = UNIQUE_AREA | NOTELEPORT | PASSIVE_AREA | GHOST_AREA | NO_GHOSTS_DURING_ROUND
 
 /area/centcom/central_command_areas/borbop
 	name = "Borbop's Bar"
 	icon = 'monkestation/icons/area/areas_centcom.dmi'
 	icon_state = "borbop"
 	area_flags = UNIQUE_AREA | NOTELEPORT | GHOST_AREA | PASSIVE_AREA
+
+/area/centcom/central_command_areas/adminroom
+	name = "Private Admin Room"
+	area_flags = UNIQUE_AREA | NOTELEPORT
 
 /area/centcom/central_command_areas/kitchen
 	name = "Papa's Pizzeria"
@@ -62,14 +66,14 @@
 	name = "Admin Hangout"
 	icon = 'monkestation/icons/area/areas_centcom.dmi'
 	icon_state = "centcom_hangout"
-	area_flags = UNIQUE_AREA | NOTELEPORT | GHOST_AREA | PASSIVE_AREA | NO_GHOSTS_DURING_ROUND
+	area_flags = UNIQUE_AREA | NOTELEPORT | PASSIVE_AREA | GHOST_AREA | NO_GHOSTS_DURING_ROUND
 
 /area/centcom/central_command_areas/ghost_blocker
 	name = "During Round Ghost Blocker"
 	area_flags = NOTELEPORT | GHOST_AREA | PASSIVE_AREA | NO_GHOSTS_DURING_ROUND
 
 /area/centcom/central_command_areas/evacuation
-	area_flags = NOTELEPORT | GHOST_AREA | NO_GHOSTS_DURING_ROUND
+	area_flags = NOTELEPORT
 
 /area/centcom/central_command_areas/admin
 	area_flags = NOTELEPORT | GHOST_AREA | NO_GHOSTS_DURING_ROUND
