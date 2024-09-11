@@ -226,6 +226,18 @@
       middle of a wall.
   - sound: Buttons and light switches now have sound effects! They might be somewhat
       familiar, heh.
+  - bugfix: Blood Brother bans now properly prevent conversion.
+  - admin: Added a debug verb for admins to output the server's current memory usage
+      summary to their chat.
+  - bugfix: Cortical borer forced speech now formats messages properly.
+  - bugfix: Fixed the image previews in the chicken encyclopedia and botanical lexicon.
+  Absolucy, ChungusGamer666, jjpark-kb:
+  - bugfix: (ChungusGamer666) You can no longer make extra cloth when looming cotton
+      by spamming do afters.
+  - qol: (jjpark-kb) looms will now attempt to loop through stackable items (cotton
+      as an example)
+  AlbertNanotracen:
+  - bugfix: Clown masks and Mime masks now use their filters
   DexeeXI:
   - bugfix: BP can now access the medical records laptop.
   - balance: All Maps, BP access is restricted to only the medbay front doors, side
@@ -244,10 +256,17 @@
   PotatoTomahto:
   - bugfix: Weird portable chemical mixer behavior fixed, with some improved usability.
   - bugfix: Window sills deconstruct correctly.
+  RandomDudeFromTheRim:
+  - bugfix: fixed a typo when your bladder is full
+  RikuTheKiller:
+  - balance: Borers now evolve slower again.
+  - bugfix: Borer maturity (not regen or such) is now actually lag immune.
   ThePooba:
   - balance: Prisoners now need 5 hours of security, no more freeloading
   - rscadd: Adds "Black" Surgical Latex Gloves
   - rscadd: ' timelock for brig physicians'
+  Uristthedorf:
+  - rscadd: Experimental surgeries can now be performed on robotic limbs.
   Wisemonster:
   - balance: Increased the chance of signs from the heart attack symptom appearing
   - rscadd: Ourobouros now has a Brig Physician locker

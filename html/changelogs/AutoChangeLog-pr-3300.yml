@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - admin: "Added a debug verb for admins to output the server's current memory usage summary to their chat."
