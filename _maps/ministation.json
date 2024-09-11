@@ -23,10 +23,6 @@
 		"Captain": {
 			"special_charter": "asteroid"
 		},
-		"Psychiatrist": {
-			"spawn_positions": 0,
-			"total_positions": 0
-		},
 		"Artist": {
 			"spawn_positions": 0,
 			"total_positions": 0
