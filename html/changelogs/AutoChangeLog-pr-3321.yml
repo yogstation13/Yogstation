@@ -1,0 +1,5 @@
+author: "Absolucy, ChungusGamer666, jjpark-kb"
+delete-after: True
+changes:
+  - bugfix: "(ChungusGamer666) You can no longer make extra cloth when looming cotton by spamming do afters."
+  - qol: "(jjpark-kb) looms will now attempt to loop through stackable items (cotton as an example)"
