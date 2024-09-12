@@ -17,7 +17,7 @@
 	desc = "A variant of the arm cannon implant that fires lethal laser beams. The cannon emerges from the subject's arm and remains inside when not in use."
 	icon_state = "arm_laser"
 	items_to_create = list(/obj/item/gun/energy/laser/mounted/augment)
-	encode_info = AUGMENT_TG_LEVEL
+	encode_info = AUGMENT_SYNDICATE_LEVEL
 
 /obj/item/organ/internal/cyberimp/arm/item_set/gun/laser/l
 	zone = BODY_ZONE_L_ARM
