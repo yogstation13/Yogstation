@@ -1,5 +1,5 @@
 /datum/export/large/crate
-	cost = 50
+	cost = 30
 	unit_name = "crate"
 	export_types = list(/obj/structure/closet/crate)
 	exclude_types = list(/obj/structure/closet/crate/large, /obj/structure/closet/crate/wooden, /obj/structure/closet/crate/mail, /obj/structure/closet/crate/coffin, /obj/structure/closet/crate/secure/cheap, /obj/structure/closet/crate/secure/owned/cheap)

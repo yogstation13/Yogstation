@@ -283,8 +283,8 @@
 	age_restricted = TRUE
 
 /obj/item/reagent_containers/food/drinks/beer/light
-	name = "Carp Lite"
-	desc = "Brewed with \"Pure Ice Asteroid Spring Water\"."
+	name = "Combine Authorised Ethanol Beverage"
+	desc = "Authorised for sale to loyalist citizens. Tastes like shit, and has a horribly low proof."
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/light = 30)
 
 /obj/item/reagent_containers/food/drinks/beer/light/plastic

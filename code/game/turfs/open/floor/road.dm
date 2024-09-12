@@ -23,6 +23,9 @@
 /turf/open/floor/plating/ground/MakeDry()
 	return
 
+/turf/open/floor/plating/ground/can_have_cabling()
+	return
+
 /turf/open/floor/plating/ground/dirt
 	gender = PLURAL
 	name = "dirt"

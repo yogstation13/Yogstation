@@ -92,7 +92,6 @@ GLOBAL_LIST_INIT(spooky_ambience,list(
 GLOBAL_LIST_INIT(space_ambient_music,list(
 	'sound/ambience/ambispace.ogg',
 	'sound/ambience/ambispace2.ogg',
-	'sound/ambience/title2.ogg',
 	'sound/ambience/ambiatmos.ogg'))
 
 GLOBAL_LIST_INIT(maint_ambience,list(

@@ -1,7 +1,7 @@
 /obj/item/stack/tape
 	name = "tape"
 	singular_name = "tape"
-	desc = "Used for sticking things together."
+	desc = "A old roll of duct tape. Despite the age, you should still be able to tape stuff together with it."
 	icon = 'icons/obj/tapes.dmi'
 	icon_state = "tape_w"
 	item_flags = NOBLUDGEON

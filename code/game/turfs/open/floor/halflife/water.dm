@@ -56,6 +56,9 @@
 			to_chat(user, span_notice("\The [container] is full."))
 			return FALSE
 
+/turf/open/halflife/water/can_have_cabling()
+	return
+
 /turf/open/halflife/water/deep
 	name = "deep water"
 	desc = "Cold dirty water, it looks pretty deep."

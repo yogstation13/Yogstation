@@ -20,6 +20,10 @@
 	light_color = COLOR_STARLIGHT
 	ambient_buzz = 'sound/ambience/plaza_amb.ogg'
 
+/area/halflife/outdoors/sewage_dump
+	name = "\improper Sewage Dump"
+	ambient_buzz = 'sound/ambience/toxic_ambience.ogg'
+
 /area/halflife/indoors
 	name = "\improper Indoors"
 	icon_state = "away"
@@ -29,6 +33,10 @@
 	ambience_index = AMBIENCE_HLINSIDE
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 	ambient_buzz = 'sound/ambience/town_ambience.ogg'
+
+/area/halflife/indoors/townhall
+	name = "\improper Town Hall"
+	ambient_buzz = 'sound/ambience/citadel_ambience.ogg'
 
 /area/halflife/indoors/sewer
 	name = "\improper Sewer"

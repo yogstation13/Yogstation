@@ -24,6 +24,9 @@
 /turf/open/floor/plating/indoor/MakeDry()
 	return
 
+/turf/open/floor/plating/indoor/can_have_cabling()
+	return
+
 /turf/open/floor/plating/indoor/wood
 	name = "wood floor"
 	icon_state = "wood"

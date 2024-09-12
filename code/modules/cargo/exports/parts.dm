@@ -14,3 +14,9 @@
 	cost = 150
 	unit_name = "solar panel control board"
 	export_types = list(/obj/item/circuitboard/computer/solar_control)
+
+//Hunting headcrabs might be profitable...
+/datum/export/xenmeat
+	cost = 30
+	unit_name = "xen flesh"
+	export_types = list(/obj/item/reagent_containers/food/snacks/meat/slab/xen)
