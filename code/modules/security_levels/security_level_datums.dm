@@ -61,7 +61,7 @@
 /datum/security_level/green
 	name = "green"
 	announcement_color = "green"
-	sound = 'sound/misc/notice2.ogg' // Friendly beep
+	sound = 'sound/misc/halflife2/inaction_conspiracy.ogg' 
 	number_level = SEC_LEVEL_GREEN
 	lowering_to_configuration_key = /datum/config_entry/string/alert_green
 	shuttle_call_time_mod = ALERT_COEFF_GREEN
@@ -75,7 +75,7 @@
 /datum/security_level/blue
 	name = "blue"
 	announcement_color = "blue"
-	sound = 'sound/misc/notice1.ogg' // Angry alarm
+	sound = 'sound/misc/halflife2/anticivil_evidence.ogg' 
 	number_level = SEC_LEVEL_BLUE
 	lowering_to_configuration_key = /datum/config_entry/string/alert_blue_downto
 	elevating_to_configuration_key = /datum/config_entry/string/alert_blue_upto
@@ -89,7 +89,7 @@
 /datum/security_level/red
 	name = "red"
 	announcement_color = "red"
-	sound = 'sound/misc/notice4.ogg' // More angry alarm
+	sound = 'sound/misc/halflife2/judgement_waiver.ogg' 
 	number_level = SEC_LEVEL_RED
 	lowering_to_configuration_key = /datum/config_entry/string/alert_red_downto
 	elevating_to_configuration_key = /datum/config_entry/string/alert_red_upto
@@ -106,7 +106,7 @@
 /datum/security_level/gamma
 	name = "gamma"
 	announcement_color = "orange"
-	sound = 'sound/misc/gamma_alert.ogg'
+	sound = 'sound/misc/halflife2/auto_judgement.ogg'
 	number_level = SEC_LEVEL_GAMMA
 	elevating_to_configuration_key = /datum/config_entry/string/alert_gamma
 	lowering_to_configuration_key = /datum/config_entry/string/alert_gamma
@@ -124,7 +124,7 @@
 /datum/security_level/epsilon
 	name = "epsilon"
 	announcement_color = "grey"
-	sound = 'sound/misc/epsilon_alert.ogg'
+	sound = 'sound/misc/halflife2/auto_judgement.ogg'
 	number_level = SEC_LEVEL_EPSILON
 	elevating_to_configuration_key = /datum/config_entry/string/alert_epsilon
 	lowering_to_configuration_key = /datum/config_entry/string/alert_epsilon
@@ -146,7 +146,7 @@
 /datum/security_level/delta
 	name = "delta"
 	announcement_color = "purple"
-	sound = 'sound/misc/delta_alert.ogg'
+	sound = 'sound/misc/halflife2/auto_judgement.ogg'
 	number_level = SEC_LEVEL_DELTA
 	elevating_to_configuration_key = /datum/config_entry/string/alert_delta
 	shuttle_call_time_mod = ALERT_COEFF_DELTA
