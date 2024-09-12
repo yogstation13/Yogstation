@@ -69,13 +69,13 @@
 		return
 	zFall(movable)
 
-/turf/open/openspace/zAirIn()
+/turf/open/openspace/zAirIn(direction, turf/source)
 	return TRUE
 
-/turf/open/openspace/zAirOut()
+/turf/open/openspace/zAirOut(direction, turf/source)
 	return TRUE
 
-/turf/open/openspace/zPassIn(direction)
+/turf/open/openspace/zPassIn(atom/movable/A, direction, turf/source)
 	if(direction == DOWN)
 		for(var/obj/contained_object in contents)
 			if(contained_object.obj_flags & BLOCK_Z_IN_DOWN)
@@ -88,7 +88,7 @@
 		return TRUE
 	return FALSE
 
-/turf/open/openspace/zPassOut(direction)
+/turf/open/openspace/zPassOut(atom/movable/A, direction, turf/destination)
 	if(direction == DOWN)
 		for(var/obj/contained_object in contents)
 			if(contained_object.obj_flags & BLOCK_Z_OUT_DOWN)

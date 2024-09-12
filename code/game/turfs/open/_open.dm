@@ -59,7 +59,7 @@
 			. += mutable_appearance(damaged_dmi, pick(broken_states()))
 
 //direction is direction of travel of A
-/turf/open/zPassIn(direction)
+/turf/open/zPassIn(atom/movable/A, direction, turf/source)
 	if(direction != DOWN)
 		return FALSE
 	for(var/obj/on_us in contents)
@@ -68,7 +68,7 @@
 	return TRUE
 
 //direction is direction of travel of an atom
-/turf/open/zPassOut(direction)
+/turf/open/zPassOut(atom/movable/A, direction, turf/destination)
 	if(direction != UP)
 		return FALSE
 	for(var/obj/on_us in contents)

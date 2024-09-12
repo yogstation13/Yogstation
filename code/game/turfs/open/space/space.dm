@@ -280,13 +280,13 @@ GLOBAL_LIST_EMPTY(starlight)
 		UnregisterSignal(below, COMSIG_TURF_CHANGE)
 	return ..()
 
-/turf/open/space/openspace/zAirIn()
+/turf/open/space/openspace/zAirIn(direction, turf/source)
 	return TRUE
 
-/turf/open/space/openspace/zAirOut()
+/turf/open/space/openspace/zAirOut(direction, turf/source)
 	return TRUE
 
-/turf/open/space/openspace/zPassIn(direction)
+/turf/open/space/openspace/zPassIn(atom/movable/A, direction, turf/source)
 	if(direction == DOWN)
 		for(var/obj/contained_object in contents)
 			if(contained_object.obj_flags & BLOCK_Z_IN_DOWN)
@@ -299,7 +299,7 @@ GLOBAL_LIST_EMPTY(starlight)
 		return TRUE
 	return FALSE
 
-/turf/open/space/openspace/zPassOut(direction)
+/turf/open/space/openspace/zPassOut(atom/movable/A, direction, turf/destination)
 	if(direction == DOWN)
 		for(var/obj/contained_object in contents)
 			if(contained_object.obj_flags & BLOCK_Z_OUT_DOWN)
