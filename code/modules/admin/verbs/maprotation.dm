@@ -124,12 +124,12 @@
 
 		if(SSmapping.changemap(virtual_map))
 			message_admins("[key_name_admin(usr)] has changed the map to [virtual_map.map_name]")
+			log_admin("[key_name_admin(usr)] has changed the map to [virtual_map.map_name]")
 			SSticker.maprotatechecked = 1
 		fdel("data/custom_map_json/[config_file]")
 	else
 		var/datum/map_config/virtual_map = maprotatechoices[chosenmap]
-		message_admins("[key_name_admin(usr)] is changing the map to [virtual_map.map_name]")
-		log_admin("[key_name(usr)] is changing the map to [virtual_map.map_name]")
 		if (SSmapping.changemap(virtual_map))
 			message_admins("[key_name_admin(usr)] has changed the map to [virtual_map.map_name]")
+			log_admin("[key_name_admin(usr)] has changed the map to [virtual_map.map_name]")
 			SSticker.maprotatechecked = 1
