@@ -19,3 +19,13 @@
 		var/obj/item/organ/internal/brain/brain = target
 		if(!QDELETED(brain.brainmob?.mind))
 			return brain.brainmob.mind
+
+/proc/is_late_arrival(mob/living/player)
+	var/static/cached_result
+	if(!isnull(cached_result))
+		return cached_result
+	if(!HAS_TRAIT(SSstation, STATION_TRAIT_LATE_ARRIVALS) || (STATION_TIME_PASSED() > 1 MINUTES))
+		return cached_result = FALSE
+	if(QDELETED(player) || !istype(get_area(player), /area/shuttle/arrival))
+		return FALSE
+	return TRUE

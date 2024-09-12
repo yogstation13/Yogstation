@@ -246,8 +246,14 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 
 
 /datum/objective/mutiny/check_completion()
-	if(!target || !considered_alive(target) || considered_afk(target) || considered_exiled(target))
+	// monkestation start: fix bugs with revs ending early due to late arrivals
+	if(QDELETED(target))
 		return TRUE
+	if(is_late_arrival(target.current))
+		return FALSE
+	if(!considered_alive(target) || considered_afk(target) || considered_exiled(target))
+		return TRUE
+	// monkestation end
 	var/turf/T = get_turf(target.current)
 	return !T || !is_station_level(T.z)
 
