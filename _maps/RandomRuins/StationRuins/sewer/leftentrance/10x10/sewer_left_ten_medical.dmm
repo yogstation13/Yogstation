@@ -1,0 +1,228 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/door/unpowered/halflife/metal{
+	dir = 8
+	},
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"f" = (
+/obj/item/hemostat,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"h" = (
+/obj/item/retractor,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"j" = (
+/obj/structure/halflife/trash/papers/one,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"k" = (
+/turf/open/floor/plating/indoor/metal/grate,
+/area/halflife/indoors/sewer)
+"m" = (
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"o" = (
+/mob/living/simple_animal/hostile/halflife/zombie,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"q" = (
+/obj/structure/table/halflife/metal/grate,
+/obj/structure/halflife/trash/books,
+/turf/open/floor/plating/indoor/metal/grate,
+/area/halflife/indoors/sewer)
+"s" = (
+/obj/structure/table/halflife/metal/grate,
+/obj/item/stack/medical/suture/emergency/makeshift,
+/turf/open/floor/plating/indoor/metal/grate,
+/area/halflife/indoors/sewer)
+"t" = (
+/obj/structure/halflife/trash/papers/two,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"u" = (
+/obj/item/scalpel,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"y" = (
+/turf/closed/wall/halflife/metal,
+/area/halflife/indoors/sewer)
+"D" = (
+/obj/machinery/light/small,
+/turf/open/floor/plating/indoor/metal/grate,
+/area/halflife/indoors/sewer)
+"I" = (
+/obj/structure/table/halflife/metal/grate,
+/turf/open/floor/plating/indoor/metal/grate,
+/area/halflife/indoors/sewer)
+"K" = (
+/obj/structure/halflife/trash/books/pile_alt,
+/turf/open/floor/plating/indoor/metal/grate,
+/area/halflife/indoors/sewer)
+"M" = (
+/obj/item/surgicaldrill,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"N" = (
+/obj/item/bonesetter,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"O" = (
+/obj/item/cautery,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"Q" = (
+/obj/machinery/door/unpowered/halflife/metal,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"R" = (
+/obj/structure/halflife/trash/cardboard,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"S" = (
+/obj/item/circular_saw,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"T" = (
+/obj/structure/table/optable,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"U" = (
+/obj/structure/halflife/trash/papers/three,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"W" = (
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"Y" = (
+/obj/structure/halflife/trash/books/pile,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+
+(1,1,1) = {"
+y
+y
+y
+y
+y
+y
+a
+y
+y
+y
+"}
+(2,1,1) = {"
+y
+S
+W
+M
+y
+W
+W
+W
+q
+y
+"}
+(3,1,1) = {"
+y
+t
+W
+W
+y
+R
+W
+W
+I
+y
+"}
+(4,1,1) = {"
+y
+m
+f
+j
+y
+W
+W
+W
+s
+y
+"}
+(5,1,1) = {"
+y
+T
+o
+W
+Q
+W
+W
+W
+D
+y
+"}
+(6,1,1) = {"
+y
+O
+W
+W
+y
+W
+W
+W
+k
+y
+"}
+(7,1,1) = {"
+y
+h
+W
+u
+y
+W
+W
+W
+k
+y
+"}
+(8,1,1) = {"
+y
+U
+Y
+W
+y
+W
+W
+W
+k
+y
+"}
+(9,1,1) = {"
+y
+N
+W
+W
+y
+s
+I
+I
+K
+y
+"}
+(10,1,1) = {"
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+"}

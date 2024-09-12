@@ -292,6 +292,11 @@
 	suffix = "sewer_left_ten_zombine1.dmm"
 	name = "sewer left_ten_zombine1"
 
+/datum/map_template/ruin/station/sewer/leftentrance/tenxten/medical
+	id = "left_ten_medical"
+	suffix = "sewer_left_ten_medical.dmm"
+	name = "sewer left_ten_medical"
+
 ///The base for 10x10 right rooms
 /datum/map_template/ruin/station/sewer/rightentrance/tenxten
 	prefix = "_maps/RandomRuins/StationRuins/sewer/rightentrance/10x10/"

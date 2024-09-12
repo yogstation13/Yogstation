@@ -1,0 +1,201 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"d" = (
+/obj/machinery/door/unpowered/halflife/metal{
+	dir = 8
+	},
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"g" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"j" = (
+/mob/living/simple_animal/hostile/halflife/zombie/zombine,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"l" = (
+/turf/open/floor/plating/indoor/metal/pipe,
+/area/halflife/indoors/sewer)
+"m" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"s" = (
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"t" = (
+/obj/effect/spawner/lootdrop/halflife/loot/ammo,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"w" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/machinery/door/unpowered/halflife/metal,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"y" = (
+/turf/closed/wall/halflife/metal,
+/area/halflife/indoors/sewer)
+"A" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"B" = (
+/obj/machinery/door/unpowered/halflife/metal{
+	dir = 8
+	},
+/turf/open/floor/plating/indoor/metal/grate,
+/area/halflife/indoors/sewer)
+"H" = (
+/turf/open/floor/plating/indoor/metal/grate,
+/area/halflife/indoors/sewer)
+"O" = (
+/obj/structure/table/halflife/no_smooth/cable_reel,
+/obj/effect/spawner/lootdrop/halflife/loot/rare,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"R" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating/indoor/metal/pipe,
+/area/halflife/indoors/sewer)
+"U" = (
+/obj/structure/halflife/trash/glass/basic,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"W" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"Z" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/indoor/metal/grate,
+/area/halflife/indoors/sewer)
+
+(1,1,1) = {"
+y
+y
+B
+y
+y
+y
+y
+y
+y
+y
+"}
+(2,1,1) = {"
+y
+l
+Z
+Z
+w
+W
+W
+W
+m
+y
+"}
+(3,1,1) = {"
+y
+l
+H
+H
+y
+s
+s
+s
+g
+y
+"}
+(4,1,1) = {"
+y
+l
+H
+H
+y
+s
+s
+j
+g
+y
+"}
+(5,1,1) = {"
+y
+l
+H
+H
+y
+s
+s
+s
+g
+y
+"}
+(6,1,1) = {"
+y
+l
+H
+H
+y
+U
+s
+s
+s
+y
+"}
+(7,1,1) = {"
+y
+l
+H
+H
+y
+y
+y
+y
+d
+y
+"}
+(8,1,1) = {"
+y
+R
+H
+H
+y
+O
+A
+s
+s
+y
+"}
+(9,1,1) = {"
+y
+l
+H
+H
+y
+s
+s
+t
+s
+y
+"}
+(10,1,1) = {"
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+"}

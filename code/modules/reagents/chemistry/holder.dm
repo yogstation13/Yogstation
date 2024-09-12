@@ -355,7 +355,7 @@
 						for(var/addiction in cached_addictions)
 							var/datum/reagent/A = addiction
 							if(istype(R, A))
-								A.addiction_stage = -15 // you're satisfied for a good while.
+								A.addiction_stage = -20 // you're satisfied for a good while.
 				need_mob_update += R.on_mob_life(C)
 
 	if(can_overdose)
@@ -366,15 +366,15 @@
 				if(C && R)
 					R.addiction_stage++
 					switch(R.addiction_stage)
-						if(10 to 15)
+						if(20 to 25)
 							need_mob_update += R.addiction_act_stage1(C)
-						if(15 to 25)
+						if(25 to 30)
 							need_mob_update += R.addiction_act_stage2(C)
-						if(25 to 35)
+						if(35 to 40)
 							need_mob_update += R.addiction_act_stage3(C)
-						if(35 to 45)
+						if(40 to 50)
 							need_mob_update += R.addiction_act_stage4(C)
-						if(45 to INFINITY)
+						if(50 to INFINITY)
 							to_chat(C, span_notice("You feel like you've gotten over your need for [R.name]."))
 							SEND_SIGNAL(C, COMSIG_CLEAR_MOOD_EVENT, "[R.type]_overdose")
 							cached_addictions.Remove(R)

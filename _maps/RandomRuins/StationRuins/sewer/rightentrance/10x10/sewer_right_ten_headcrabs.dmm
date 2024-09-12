@@ -1,156 +1,156 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"f" = (
-/turf/open/floor/plating/indoor/concrete/bricks,
-/area/space)
 "o" = (
-/obj/effect/spawner/lootdrop/halflife/loot/consumables,
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating/indoor/concrete/bricks,
-/area/space)
-"q" = (
 /mob/living/simple_animal/hostile/halflife/headcrab,
 /turf/open/floor/plating/indoor/concrete/bricks,
-/area/space)
-"t" = (
-/turf/closed/wall/halflife/metal,
-/area/space)
-"C" = (
+/area/halflife/indoors/sewer)
+"p" = (
 /obj/machinery/door/unpowered/halflife/metal{
 	dir = 4
 	},
 /turf/open/floor/plating/indoor/concrete/bricks,
-/area/space)
-"H" = (
+/area/halflife/indoors/sewer)
+"B" = (
+/obj/effect/spawner/lootdrop/halflife/loot/consumables,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating/indoor/concrete/bricks,
-/area/space)
-"L" = (
+/area/halflife/indoors/sewer)
+"J" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"N" = (
+/turf/closed/wall/halflife/metal,
+/area/halflife/indoors/sewer)
+"P" = (
 /obj/effect/spawner/lootdrop/halflife/loot/consumables,
 /turf/open/floor/plating/indoor/concrete/bricks,
-/area/space)
-"S" = (
+/area/halflife/indoors/sewer)
+"U" = (
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"X" = (
 /turf/open/floor/plating/indoor/metal/walkway{
 	dir = 1
 	},
-/area/space)
+/area/halflife/indoors/sewer)
 
 (1,1,1) = {"
-t
-t
-t
-t
-t
-t
-t
-t
-t
-t
+N
+N
+N
+N
+N
+N
+N
+N
+N
+N
 "}
 (2,1,1) = {"
-t
-o
-f
-f
-t
-f
-f
-f
-f
-t
+N
+B
+U
+U
+N
+U
+U
+U
+U
+N
 "}
 (3,1,1) = {"
-t
-f
-f
-f
-S
-q
-f
-f
-q
-t
+N
+U
+U
+U
+X
+o
+U
+U
+o
+N
 "}
 (4,1,1) = {"
-t
-f
-f
-f
-S
-f
-f
-f
-f
-t
+N
+U
+U
+U
+X
+U
+U
+U
+U
+N
 "}
 (5,1,1) = {"
-t
-f
-f
-f
-S
-f
-f
-f
-H
-t
+N
+U
+U
+U
+X
+U
+U
+U
+J
+N
 "}
 (6,1,1) = {"
-t
-f
-q
-f
-S
-f
-f
-f
-f
-t
+N
+U
+o
+U
+X
+U
+U
+U
+U
+N
 "}
 (7,1,1) = {"
-t
-f
-f
-f
-S
-f
-f
-f
-f
-t
+N
+U
+U
+U
+X
+U
+U
+U
+U
+N
 "}
 (8,1,1) = {"
-t
-f
-f
-q
-S
-f
-f
-f
-f
-t
+N
+U
+U
+o
+X
+U
+U
+U
+U
+N
 "}
 (9,1,1) = {"
-t
-f
-f
-L
-t
-f
-f
-f
-f
-t
+N
+U
+U
+P
+N
+U
+U
+U
+U
+N
 "}
 (10,1,1) = {"
-t
-t
-t
-t
-t
-t
-t
-t
-C
-t
+N
+N
+N
+N
+N
+N
+N
+N
+p
+N
 "}

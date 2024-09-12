@@ -173,7 +173,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	unique = TRUE
 
 /obj/effect/landmark/stationroom/sewer/leftentrance/tenxten
-	template_names = list("sewer left_ten_box", "sewer left_ten_zombie1", "sewer left_ten_zombine1")
+	template_names = list("sewer left_ten_box", "sewer left_ten_zombie1", "sewer left_ten_zombine1", "sewer left_ten_medical")
 
 /obj/effect/landmark/stationroom/sewer/rightentrance/tenxten
 	template_names = list("sewer right_ten_box", "sewer right_ten_flooded", "sewer right_ten_headcrabs")

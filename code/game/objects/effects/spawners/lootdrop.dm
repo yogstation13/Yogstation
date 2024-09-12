@@ -776,14 +776,28 @@
 				/obj/item/reagent_containers/glass/bottle/morphine
 				)
 
-//guns, ammo, armor
+
+//ammo
+/obj/effect/spawner/lootdrop/halflife/loot/ammo
+	name = "ammo loot"
+
+	loot = list(
+				/obj/item/ammo_box/magazine/mp7 = 2,
+				/obj/item/storage/box/lethalshot,
+				/obj/item/ammo_box/magazine/usp9mm = 2,
+				/obj/item/ammo_box/a357,
+				/obj/item/ammo_casing/reusable/arrow/rebar = 3,
+				/obj/item/ammo_box/magazine/m4a1,
+				/obj/item/ammo_box/magazine/m45
+				)
+
+//guns, armor
 /obj/effect/spawner/lootdrop/halflife/loot/rare
 	name = "rare loot"
 
 	loot = list(
 				/obj/item/crowbar/large,
 				/obj/item/gun/ballistic/automatic/pistol/usp = 4,
-				/obj/item/ammo_box/magazine/usp9mm,
 				/obj/item/gun/ballistic/automatic/mp7 = 3,
 				/obj/item/clothing/suit/armor/civilprotection = 4,
 				/obj/item/radio/off/halflife,
