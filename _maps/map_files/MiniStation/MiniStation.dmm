@@ -15561,18 +15561,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"dXV" = (
-/obj/machinery/computer/shuttle/mining{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "dYe" = (
 /turf/closed/mineral/random,
 /area/asteroid)
@@ -15775,6 +15763,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"ehk" = (
+/obj/machinery/computer/shuttle/mining{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "ehC" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower,
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
@@ -23038,18 +23042,6 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel/dark,
 /area/science/nanite)
-"kxj" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/table,
-/obj/item/clothing/head/soft,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 4
-	},
-/turf/open/openspace,
-/area/quartermaster/storage)
 "kxp" = (
 /obj/machinery/light{
 	dir = 4
@@ -26307,6 +26299,22 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"nhR" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/table,
+/obj/item/clothing/head/soft,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/openspace,
+/area/quartermaster/storage)
 "nhV" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -119437,7 +119445,7 @@ wDX
 aGu
 bTS
 kgp
-dXV
+ehk
 jjZ
 auL
 auW
@@ -120477,7 +120485,7 @@ aXo
 aXo
 ita
 mVO
-kxj
+nhR
 kPV
 chN
 xwC
