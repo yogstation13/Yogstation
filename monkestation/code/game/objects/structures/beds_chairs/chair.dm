@@ -6,6 +6,7 @@
 	icon_state = "stool"
 	resistance_flags = FIRE_PROOF
 	can_buckle = FALSE
+	buildstacktype = /obj/item/stack/sheet/mineral/sandstone
 	buildstackamount = 1
 	item_chair = /obj/item/chair/stool/sandstone
 
