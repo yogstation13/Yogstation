@@ -148,7 +148,6 @@ const ALTTITLES = {
   'Forensic Technician': BASEICONS['Detective'],
   'Private Investigator': BASEICONS['Detective'],
   'Forensic Scientist': BASEICONS['Detective'],
-  'Paranormal Investigator': BASEICONS['Detective'],
   // Geneticist - dna
   'Mutation Researcher': BASEICONS['Geneticist'],
   // Head of Personnel - dog
@@ -229,7 +228,6 @@ const ALTTITLES = {
   Xenoarchaeologist: BASEICONS['Scientist'],
   'Research Assistant': BASEICONS['Scientist'],
   'Graduate Student': BASEICONS['Scientist'],
-  Cryptozoologist: BASEICONS['Scientist'],
   // Security Officer - shield-halved
   'Security Operative': BASEICONS['Security Officer'],
   Peacekeeper: BASEICONS['Security Officer'],

@@ -178,7 +178,6 @@
 		"Forensic Technician",
 		"Private Investigator",
 		"Forensic Scientist",
-		"Paranormal Investigator",
 	)
 
 /datum/job/doctor
@@ -319,7 +318,6 @@
 		"Xenoarchaeologist",
 		"Research Assistant",
 		"Graduate Student",
-		"Cryptozoologist",
 	)
 
 /datum/job/security_officer
