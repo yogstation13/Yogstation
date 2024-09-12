@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - balance: "Sol has been reworked for Bloodsuckers. Instead of burning during Sol, they'll instead get a status effect that completely disables their passive healing, slower movement and action speed, they will take 50% more damage (of any type), and some powers will either have a much higher blood cost, or be completely unavailable."
+  - bugfix: "Fixed various jank regarding oozeling bloodsuckers."
