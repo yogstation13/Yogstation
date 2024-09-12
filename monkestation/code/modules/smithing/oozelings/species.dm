@@ -184,10 +184,12 @@
 		slime.blood_volume = 0
 
 /datum/species/oozeling/proc/Cannibalize_Body(mob/living/carbon/human/slime)
+	if(HAS_TRAIT(slime, TRAIT_OOZELING_NO_CANNIBALIZE))
+		return
 	var/list/limbs_to_consume = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG) - slime.get_missing_limbs()
 	var/obj/item/bodypart/consumed_limb
 
-	if(!limbs_to_consume.len)
+	if(!length(limbs_to_consume))
 		slime.losebreath++
 		return
 	if(slime.num_legs) //Legs go before arms

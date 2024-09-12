@@ -25,6 +25,8 @@
 #define TRAIT_VAULTING "vaulting" //simian trait
 /// Ethereals with this trait will not suffer negative effects from overcharge.
 #define TRAIT_ETHEREAL_NO_OVERCHARGE "ethereal_no_overcharge"
+/// Oozelings with this trait will not lose limbs from low blood/nutrition.
+#define TRAIT_OOZELING_NO_CANNIBALIZE "oozeling_no_cannibalize"
 /// Indicates that they've inhaled helium.
 #define TRAIT_HELIUM "helium"
 /// Allows the user to start any surgery, anywhere. Mostly used by abductor scientists.

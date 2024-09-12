@@ -13,9 +13,9 @@
 		Feeding while nearby (2 tiles away from) a mortal who is unaware of Bloodsuckers' existence, will cause a Masquerade Infraction\n\
 		If you get too many Masquerade Infractions, you will break the Masquerade.\n\
 		If you are in desperate need of blood, mice can be fed off of, at a cost."
-	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_WHILE_STAKED|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
-	purchase_flags = BLOODSUCKER_CAN_BUY|BLOODSUCKER_DEFAULT_POWER
+	power_flags = BP_AM_TOGGLE | BP_AM_STATIC_COOLDOWN
+	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
+	purchase_flags = BLOODSUCKER_CAN_BUY | BLOODSUCKER_DEFAULT_POWER
 	bloodcost = 0
 	cooldown_time = 15 SECONDS
 	///Amount of blood taken, reset after each Feed. Used for logging.

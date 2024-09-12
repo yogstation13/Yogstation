@@ -38,16 +38,24 @@
 	var/bloodcost = 0
 	///The cost to MAINTAIN this Power - Only used for Constant Cost Powers
 	var/constant_bloodcost = 0
+	/// A multiplier for the bloodcost during sol.
+	var/sol_multiplier
 
 // Modify description to add cost.
 /datum/action/cooldown/bloodsucker/New(Target)
 	. = ..()
+	update_desc()
+
+/datum/action/cooldown/bloodsucker/proc/update_desc(rebuild = TRUE)
+	desc = initial(desc)
 	if(bloodcost > 0)
 		desc += "<br><br><b>COST:</b> [bloodcost] Blood"
 	if(constant_bloodcost > 0)
 		desc += "<br><br><b>CONSTANT COST:</b><i> [name] costs [constant_bloodcost] Blood maintain active.</i>"
 	if(power_flags & BP_AM_SINGLEUSE)
 		desc += "<br><br><b>SINGLE USE:</br><i> [name] can only be used once per night.</i>"
+	if(rebuild)
+		build_all_button_icons(UPDATE_BUTTON_NAME)
 
 /datum/action/cooldown/bloodsucker/Destroy()
 	bloodsuckerdatum_power = null
@@ -135,6 +143,9 @@
 		if(!can_upkeep)
 			to_chat(user, span_warning("You don't have the blood to upkeep [src]!"))
 			return FALSE
+	if((check_flags & BP_CANT_USE_DURING_SOL) && user.has_status_effect(/datum/status_effect/bloodsucker_sol))
+		to_chat(user, span_warning("You can't use [src] during Sol!"))
+		return FALSE
 	return TRUE
 
 /// NOTE: With this formula, you'll hit half cooldown at level 8 for that power.

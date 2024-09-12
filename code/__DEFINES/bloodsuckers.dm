@@ -15,6 +15,9 @@
 /// Once blood is this high, will exit Frenzyshak
 #define FRENZY_THRESHOLD_EXIT 250
 
+/// Minimum blood required for bloodsucker oozelings to auto-revive
+#define OOZELING_MIN_REVIVE_BLOOD_THRESHOLD (FRENZY_THRESHOLD_ENTER * 10)
+
 /**
  * Vassal defines
  */
@@ -67,6 +70,8 @@
 #define BP_CANT_USE_WHILE_INCAPACITATED (1<<3)
 /// This Power can't be used while unconscious
 #define BP_CANT_USE_WHILE_UNCONSCIOUS (1<<4)
+/// This Power can't be used during Sol
+#define BP_CANT_USE_DURING_SOL (1<<5)
 
 /// This Power can be purchased by Bloodsuckers
 #define BLOODSUCKER_CAN_BUY (1<<0)

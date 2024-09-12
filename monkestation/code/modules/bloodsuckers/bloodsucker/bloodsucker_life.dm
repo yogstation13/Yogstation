@@ -64,7 +64,7 @@
 	// Apply to Volume
 	AddBloodVolume(blood_taken)
 	// Reagents (NOT Blood!)
-	if(target.reagents && target.reagents.total_volume)
+	if(target.reagents?.total_volume)
 		target.reagents.trans_to(owner.current, INGEST, 1) // Run transfer of 1 unit of reagent from them to me.
 	owner.current.playsound_local(null, 'sound/effects/singlebeat.ogg', vol = 40, vary = TRUE) // Play THIS sound for user only. The "null" is where turf would go if a location was needed. Null puts it right in their head.
 	total_blood_drank += blood_taken
@@ -76,11 +76,16 @@
 
 /// Constantly runs on Bloodsucker's LifeTick, and is increased by being in Torpor/Coffins
 /datum/antagonist/bloodsucker/proc/HandleHealing(mult = 1)
-	var/actual_regen = bloodsucker_regen_rate + additional_regen
+	if(QDELETED(owner?.current))
+		return
+	var/in_torpor = is_in_torpor()
 	// Don't heal if I'm staked or on Masquerade (+ not in a Coffin). Masqueraded Bloodsuckers in a Coffin however, will heal.
-	if(owner.current.am_staked() || (HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && !is_in_torpor()))
+	if(owner.current.am_staked())
 		return FALSE
-	owner.current.adjustCloneLoss(-1 * (actual_regen * 4) * mult, 0)
+	if(!in_torpor && (HAS_TRAIT(owner.current, TRAIT_MASQUERADE) || owner.current.has_status_effect(/datum/status_effect/bloodsucker_sol)))
+		return FALSE
+	var/actual_regen = bloodsucker_regen_rate + additional_regen
+	owner.current.adjustCloneLoss(-1 * (actual_regen * 4) * mult)
 	owner.current.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1 * (actual_regen * 4) * mult) //adjustBrainLoss(-1 * (actual_regen * 4) * mult, 0)
 	if(!iscarbon(owner.current)) // Damage Heal: Do I have damage to ANY bodypart?
 		return
@@ -89,23 +94,23 @@
 	var/bruteheal = min(user.getBruteLoss_nonProsthetic(), actual_regen) // BRUTE: Always Heal
 	var/fireheal = 0 // BURN: Heal in Coffin while Fakedeath, or when damage above maxhealth (you can never fully heal fire)
 	// Checks if you're in a coffin here, additionally checks for Torpor right below it.
-	var/amInCoffin = istype(user.loc, /obj/structure/closet/crate/coffin)
-	if(amInCoffin && is_in_torpor())
-		if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && (COOLDOWN_FINISHED(src, bloodsucker_spam_healing)))
-			to_chat(user, span_alert("You do not heal while your Masquerade ability is active."))
-			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_MASQUERADE)
-			return
-		fireheal = min(user.getFireLoss_nonProsthetic(), actual_regen)
-		mult *= 5 // Increase multiplier if we're sleeping in a coffin.
-		costMult /= 2 // Decrease cost if we're sleeping in a coffin.
-		user.extinguish_mob()
-		user.remove_all_embedded_objects() // Remove Embedded!
-		if(check_limbs(costMult))
-			return TRUE
-	// In Torpor, but not in a Coffin? Heal faster anyways.
-	else if(is_in_torpor())
-		fireheal = min(user.getFireLoss_nonProsthetic(), actual_regen) / 1.2 // 20% slower than being in a coffin
-		mult *= 3
+	if(in_torpor)
+		if(istype(user.loc, /obj/structure/closet/crate/coffin))
+			if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && (COOLDOWN_FINISHED(src, bloodsucker_spam_healing)))
+				to_chat(user, span_alert("You do not heal while your Masquerade ability is active."))
+				COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_MASQUERADE)
+				return
+			fireheal = min(user.getFireLoss_nonProsthetic(), actual_regen)
+			mult *= 5 // Increase multiplier if we're sleeping in a coffin.
+			costMult /= 2 // Decrease cost if we're sleeping in a coffin.
+			user.extinguish_mob()
+			user.remove_all_embedded_objects() // Remove Embedded!
+			if(check_limbs(costMult))
+				return TRUE
+		// In Torpor, but not in a Coffin? Heal faster anyways.
+		else
+			fireheal = min(user.getFireLoss_nonProsthetic(), actual_regen) / 1.2 // 20% slower than being in a coffin
+			mult *= 3
 	// Heal if Damaged
 	if((bruteheal + fireheal > 0) && mult > 0) // Just a check? Don't heal/spend, and return.
 		// We have damage. Let's heal (one time)
@@ -164,16 +169,9 @@
 		bloodsuckeruser.revive()
 	for(var/datum/wound/iter_wound as anything in bloodsuckeruser.all_wounds)
 		iter_wound.remove_wound()
-	// From [powers/panacea.dm]
-	var/list/bad_organs = list(
-		bloodsuckeruser.get_organ_by_type(/obj/item/organ/internal/body_egg),
-		bloodsuckeruser.get_organ_by_type(/obj/item/organ/internal/zombie_infection))
-	for(var/tumors in bad_organs)
-		var/obj/item/organ/yucky_organs = tumors
-		if(!istype(yucky_organs))
-			continue
-		yucky_organs.Remove(bloodsuckeruser)
-		yucky_organs.forceMove(get_turf(bloodsuckeruser))
+	for(var/obj/item/organ/organ as anything in typecache_filter_list(bloodsuckeruser.organs, yucky_organ_typecache))
+		organ.Remove(bloodsuckeruser)
+		organ.forceMove(bloodsuckeruser.drop_location())
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -198,7 +196,7 @@
 		final_death()
 		return
 	// Fire Damage? (above double health)
-	if(owner.current.getFireLoss() >= owner.current.maxHealth * 2.5)
+	if(owner.current.getFireLoss() >= (owner.current.maxHealth * 2.5))
 		final_death()
 		return
 	// Staked while "Temp Death" or Asleep
@@ -208,12 +206,13 @@
 	// Temporary Death? Convert to Torpor.
 	if(is_in_torpor())
 		return
-	to_chat(owner.current, span_danger("Your immortal body will not yet relinquish your soul to the abyss. You enter Torpor."))
+	to_chat(owner.current, span_userdanger("Your immortal body will not yet relinquish your soul to the abyss. You enter Torpor."))
 	check_begin_torpor(TRUE)
 
 /datum/antagonist/bloodsucker/proc/HandleStarving() // I am thirsty for blood!
 	// Nutrition - The amount of blood is how full we are.
-	owner.current.set_nutrition(min(bloodsucker_blood_volume, NUTRITION_LEVEL_FED))
+	if(!isoozeling(owner.current))
+		owner.current.set_nutrition(min(bloodsucker_blood_volume, NUTRITION_LEVEL_FED))
 
 	// BLOOD_VOLUME_GOOD: [336] - Pale
 //	handled in bloodsucker_integration.dm
@@ -286,7 +285,7 @@
 	owner.current.drop_all_held_items()
 	owner.current.unequip_everything()
 	user.remove_all_embedded_objects()
-	playsound(owner.current, 'sound/effects/tendril_destroyed.ogg', 40, TRUE)
+	playsound(owner.current, 'sound/effects/tendril_destroyed.ogg', vol = 40, vary = TRUE)
 
 	if(SEND_SIGNAL(src, BLOODSUCKER_FINAL_DEATH) & DONT_DUST)
 		return

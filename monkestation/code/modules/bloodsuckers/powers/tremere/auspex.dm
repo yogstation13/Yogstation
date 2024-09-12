@@ -19,9 +19,10 @@
 	power_explanation = "Level 1: Auspex:\n\
 		When Activated, you will be hidden in a Cloak of Darkness.\n\
 		Click any area up to 2 tile away to teleport there, ending the Power."
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
+	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
 	bloodcost = 5
 	constant_bloodcost = 2
+	sol_multiplier = 4
 	cooldown_time = 12 SECONDS
 	target_range = 2
 	prefire_message = "Where do you wish to teleport to?"

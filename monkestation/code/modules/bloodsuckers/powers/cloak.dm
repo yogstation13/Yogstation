@@ -8,10 +8,11 @@
 		Additionally, while Cloak is active, you are completely invisible to the AI.\n\
 		Higher levels will increase how invisible you are."
 	power_flags = BP_AM_TOGGLE
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_UNCONSCIOUS
-	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
+	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_UNCONSCIOUS
+	purchase_flags = BLOODSUCKER_CAN_BUY | VASSAL_CAN_BUY
 	bloodcost = 5
 	constant_bloodcost = 0.2
+	sol_multiplier = 2.5
 	cooldown_time = 5 SECONDS
 	var/was_running
 
@@ -20,7 +21,13 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	for(var/mob/living/watchers in view(9, owner) - owner)
+	for(var/mob/living/watcher in view(9, owner) - owner)
+		if(watcher.stat == DEAD || QDELETED(watcher.client))
+			continue
+		if(IS_BLOODSUCKER(watcher) || IS_VASSAL(watcher))
+			continue
+		if(watcher.is_blind())
+			continue
 		owner.balloon_alert(owner, "you can only vanish unseen.")
 		return FALSE
 	return TRUE

@@ -8,12 +8,13 @@
 		While using Fortitude, attempting to run will crush you.\n\
 		At level 4, you gain complete stun immunity.\n\
 		Higher levels will increase Brute and Stamina resistance."
-	power_flags = BP_AM_TOGGLE|BP_AM_COSTLESS_UNCONSCIOUS
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY
-	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
+	power_flags = BP_AM_TOGGLE | BP_AM_COSTLESS_UNCONSCIOUS
+	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_IN_FRENZY
+	purchase_flags = BLOODSUCKER_CAN_BUY | VASSAL_CAN_BUY
 	bloodcost = 30
 	cooldown_time = 8 SECONDS
 	constant_bloodcost = 0.2
+	sol_multiplier = 3
 	var/was_running
 	var/fortitude_resist // So we can raise and lower your brute resist based on what your level_current WAS.
 
@@ -47,7 +48,7 @@
 	if(user.m_intent != MOVE_INTENT_WALK)
 		user.set_move_intent(MOVE_INTENT_WALK)
 		user.balloon_alert(user, "you attempt to run, crushing yourself.")
-		user.adjustBruteLoss(rand(5,15))
+		user.take_overall_damage(brute = rand(5, 15))
 	/// We don't want people using fortitude being able to use vehicles
 	if(user.buckled && istype(user.buckled, /obj/vehicle))
 		user.buckled.unbuckle_mob(src, force=TRUE)

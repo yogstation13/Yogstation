@@ -617,11 +617,11 @@
 		if(!receiver.owner.current)
 			continue
 		var/mob/receiver_mob = receiver.owner.current
-		to_chat(receiver_mob, rendered)
-	to_chat(user, rendered) // tell yourself, too.
+		to_chat(receiver_mob, rendered, type = MESSAGE_TYPE_RADIO)
+	to_chat(user, rendered, type = MESSAGE_TYPE_RADIO, avoid_highlighting = TRUE) // tell yourself, too.
 
 	for(var/mob/dead_mob in GLOB.dead_mob_list)
 		var/link = FOLLOW_LINK(dead_mob, user)
-		to_chat(dead_mob, "[link] [rendered]")
+		to_chat(dead_mob, "[link] [rendered]", type = MESSAGE_TYPE_RADIO)
 
 	speech_args[SPEECH_MESSAGE] = ""
