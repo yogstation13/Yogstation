@@ -37,6 +37,7 @@
 /datum/reagent/processing
 	name = "Generic Processing Reagent"
 	data = list("materials" = list())
+	restricted = TRUE
 
 /datum/reagent/processing/dirty_slurry
 	name = "Dirty Slurry"
@@ -46,6 +47,7 @@
 
 /datum/reagent/brine
 	name = "Brine"
+	restricted = TRUE
 
 
 /obj/item/processing/amalgam
