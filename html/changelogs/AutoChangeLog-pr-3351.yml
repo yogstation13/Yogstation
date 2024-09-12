@@ -1,0 +1,4 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - bugfix: "Makes robo tot laser arm usable again"
