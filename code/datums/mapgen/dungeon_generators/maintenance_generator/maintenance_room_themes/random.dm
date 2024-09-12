@@ -381,7 +381,7 @@
 	. = ..()
 	for(var/i in 1 to 5)
 		if(prob(10))
-			weighted_feature_spawn_list[/obj/item/gun/energy/laser/captain/scattershot ]++
+			weighted_feature_spawn_list[/obj/item/gun/energy/laser/scattershot ]++
 		else
 			weighted_feature_spawn_list[/obj/item/melee/spear/bonespear/chitinspear]++
 
