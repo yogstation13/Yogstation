@@ -1,3 +1,4 @@
+/* monkestation edit: overwritten in [code\modules\events\brand_intelligence.dm]
 /datum/round_event_control/brand_intelligence
 	name = "Brand Intelligence"
 	typepath = /datum/round_event/brand_intelligence
@@ -93,3 +94,4 @@
 
 /datum/event_admin_setup/listed_options/brand_intelligence/apply_to_event(datum/round_event/brand_intelligence/event)
 	event.chosen_vendor_type = chosen
+*/
