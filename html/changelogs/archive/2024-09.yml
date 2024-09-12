@@ -275,3 +275,15 @@
   Wisemonster:
   - balance: Increased the chance of signs from the heart attack symptom appearing
   - rscadd: Ourobouros now has a Brig Physician locker
+2024-09-12:
+  MomoBerri:
+  - bugfix: several blueshift issues
+  - bugfix: fixes to metastation
+  - bugfix: boxstation fixes
+  RandomDudeFromTheRim:
+  - bugfix: Modsuits are no longer deepfriable
+  V2LenKagamine:
+  - rscadd: New asteroids to discover and pillage
+  - rscdel: Old Asteroid Generation
+  - qol: Astroid Magnet now gives a general compass direction along with AZIMUTH
+  - code_imp: Asteroid Magnet now pulls from DMM files instead of being a generator.

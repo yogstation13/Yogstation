@@ -1,7 +1,0 @@
-author: "V2LenKagamine"
-delete-after: True
-changes:
-  - rscadd: "New asteroids to discover and pillage"
-  - rscdel: "Old Asteroid Generation"
-  - qol: "Astroid Magnet now gives a general compass direction along with AZIMUTH"
-  - code_imp: "Asteroid Magnet now pulls from DMM files instead of being a generator."
