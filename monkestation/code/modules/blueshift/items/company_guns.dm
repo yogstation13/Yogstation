@@ -394,7 +394,7 @@
 
 /obj/item/gun/ballistic/automatic/xhihao_smg
 	name = "\improper Bogseo Submachine Gun"
-	desc = "A weapon that could hardly be called a 'sub' machinegun, firing the monstrous .585 cartridge. \
+	desc = "A weapon that could hardly be called a 'sub' machinegun, firing the .27-54 cartridge. \
 		It provides enough kick to bruise a shoulder pretty bad if used without protection."
 
 	icon = 'monkestation/code/modules/blueshift/icons/obj/company_and_or_faction_based/xhihao_light_arms/guns32x.dmi'
@@ -412,7 +412,7 @@
 	weapon_weight = WEAPON_HEAVY
 	slot_flags = ITEM_SLOT_SUITSTORE | ITEM_SLOT_BELT
 
-	accepted_magazine_type = /obj/item/ammo_box/magazine/c585trappiste_pistol
+	accepted_magazine_type = /obj/item/ammo_box/magazine/miecz
 
 	fire_sound = 'monkestation/code/modules/blueshift/sounds/smg_heavy.ogg'
 	can_suppress = TRUE
