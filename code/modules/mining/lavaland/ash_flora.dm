@@ -95,12 +95,12 @@
 
 /obj/structure/flora/ash/cap_shroom
 	icon_state = "r_mushroom"
-	name = "tall mushrooms"
-	desc = "Several mushrooms, the larger of which have a ring of conks at the midpoint of their stems."
+	name = "murky mushrooms"
+	desc = "Several mushrooms, known to grow near sewage, the larger of which have a ring of conks at the midpoint of their stems."
 	harvested_name = "small mushrooms"
 	harvested_desc = "Several small mushrooms near the stumps of what likely were larger mushrooms."
 	harvest = /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_cap
-	harvest_amount_high = 4
+	harvest_amount_high = 3
 	harvest_time = 50
 	harvest_message_low = "You slice the cap off a mushroom."
 	harvest_message_med = "You slice off a few conks from the larger mushrooms."
@@ -175,11 +175,11 @@
 	grind_results = list(/datum/reagent/toxin/mushroom_powder = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_cap
-	name = "mushroom cap"
-	desc = "The cap of a large mushroom."
+	name = "murky mushroom cap"
+	desc = "The cap of a murky mushroom. Known to grow near sewage, it likely isn't healthy to eat by itself, but might prove useful for other applications."
 	icon_state = "mushroom_cap"
 	seed = /obj/item/seeds/lavaland/inocybe
-	distill_reagent = /datum/reagent/consumable/ethanol/inocybeshine
+	//distill_reagent = /datum/reagent/consumable/ethanol/inocybeshine
 	grind_results = list(/datum/reagent/toxin/mushroom_powder = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_stem
@@ -187,6 +187,7 @@
 	desc = "A long mushroom stem. It's slightly glowing."
 	icon_state = "mushroom_stem"
 	seed = /obj/item/seeds/lavaland/ember
+	can_distill = FALSE
 	distill_reagent = /datum/reagent/consumable/ethanol/embershroomcream
 	grind_results = list(/datum/reagent/toxin/mushroom_powder = 0)
 
@@ -250,14 +251,14 @@
 
 /obj/item/seeds/lavaland/inocybe
 	name = "pack of inocybe mycelium"
-	desc = "This mycelium grows into an inocybe mushroom, a species of Lavaland origin with hallucinatory and toxic effects."
+	desc = "This mycelium grows into an inocybe mushroom, a species of mushroom which has recently appeared and is known to grow near sewage."
 	icon_state = "mycelium-inocybe"
 	species = "inocybe"
 	plantname = "Inocybe Mushrooms"
 	product = /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_cap
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/fire_resistance)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
-	reagents_add = list(/datum/reagent/toxin/mindbreaker = 0.04, /datum/reagent/consumable/entpoly = 0.08, /datum/reagent/drug/mushroomhallucinogen = 0.04, /datum/reagent/consumable/ashresin = 0.02, /datum/reagent/consumable/nutriment = 0.1)
+	reagents_add = list(/datum/reagent/toxin/mindbreaker = 0.04, /datum/reagent/consumable/entpoly = 0.08, /datum/reagent/consumable/nutriment = 0.1)
 
 /obj/item/seeds/lavaland/ember
 	name = "pack of embershroom mycelium"

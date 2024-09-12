@@ -1,7 +1,7 @@
 //Microwaving doesn't use recipes, instead it calls the microwave_act of the objects. For food, this creates something based on the food's cooked_type
 
 /obj/machinery/microwave
-	name = "bluespace microwave oven"
+	name = "microwave oven"
 	desc = "Cooks and boils stuff."
 	icon = 'icons/obj/machines/microwave.dmi'
 	icon_state = "map_icon"

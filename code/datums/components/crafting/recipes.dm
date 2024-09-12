@@ -342,3 +342,17 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/bait/wild
 	category = CAT_BAIT
+
+
+/datum/crafting_recipe/pretreat_paper
+	name = "Pre-treat paper for fermentation"
+	result = /obj/item/reagent_containers/food/drinks/sillycup
+	time = 10 SECONDS
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/bait/worm = 1,
+		/obj/item/reagent_containers/food/snacks/bait/worm = 1,
+		/obj/item/stack/medical/gauze/improvised = 1
+	)
+	category = CAT_MISC
+
+/obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_cap
