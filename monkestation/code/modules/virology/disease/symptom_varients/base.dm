@@ -46,5 +46,4 @@
 	COOLDOWN_START(src, host_cooldown, cooldown_time)
 
 /datum/symptom_varient/proc/Copy(datum/symptom/new_symp)
-	var/datum/symptom_varient/new_varient = new new_symp
-	return new_varient
+	return new type(new_symp)
