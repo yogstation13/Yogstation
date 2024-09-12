@@ -8,13 +8,15 @@ export const ArtifactForm = (props) => {
   const {
     allorigins,
     chosenorigin,
+    allfaults,
+    chosenfault,
     alltypes,
     chosentype,
     alltriggers,
     chosentriggers,
   } = data;
   return (
-    <Window width={480} height={400} title={'Analysis Form'} theme={'paper'}>
+    <Window width={480} height={600} title={'Analysis Form'} theme={'paper'}>
       <Window.Content>
         <Section title="Origin">
           {allorigins.map((key) => (
@@ -31,13 +33,28 @@ export const ArtifactForm = (props) => {
             />
           ))}
         </Section>
+        <Section title="Fault">
+          {allfaults.map((thing) => (
+            <Button
+              key={thing}
+              icon={chosenfault === thing ? 'check-square-o' : 'square-o'}
+              content={thing}
+              selected={chosenfault === thing}
+              onClick={() =>
+                act('fault', {
+                  fault: thing,
+                })
+              }
+            />
+          ))}
+        </Section>
         <Section title="Type">
           {alltypes.map((x) => (
             <Button
               key={x}
-              icon={chosentype === x ? 'check-square-o' : 'square-o'}
+              icon={chosentype.includes(x) ? 'check-square-o' : 'square-o'}
               content={x}
-              selected={chosentype === x}
+              selected={chosentype.includes(x)}
               onClick={() =>
                 act('type', {
                   type: x,

@@ -1,10 +1,21 @@
 /obj/item/ammo_casing/magic/artifact
 	projectile_type = /obj/projectile/magic/artifact
-
+	var/datum/artifact_effect/gun/stored_comp
 /obj/item/ammo_casing/magic/artifact/ready_proj(atom/target, mob/living/user, quiet, zone_override = "", atom/fired_from)
 	if(!loaded_projectile)
 		return
-	var/datum/component/artifact/gun/gun = fired_from.GetComponent(/datum/component/artifact/gun)
+	var/datum/component/artifact/component = fired_from.GetComponent(/datum/component/artifact)
+	var/datum/artifact_effect/gun/gun
+	if(!stored_comp)
+		for(var/datum/artifact_effect/eff in component.artifact_effects)
+			if(istype(eff,/datum/artifact_effect/gun))
+				gun = eff
+				stored_comp = gun
+				break
+	else
+		gun = stored_comp
+	if(!gun)
+		return
 	loaded_projectile.damage = gun.damage / pellets
 	loaded_projectile.icon_state = gun.projectile_icon
 	loaded_projectile.damage_type = gun.dam_type
@@ -39,9 +50,15 @@
 	pinless = TRUE
 	recharge_rate = 1
 	antimagic_flags = null
-	var/datum/component/artifact/assoc_comp = /datum/component/artifact/gun
+	obj_flags = CAN_BE_HIT
+	var/datum/component/artifact/assoc_comp = /datum/component/artifact
 
-ARTIFACT_SETUP(/obj/item/gun/magic/artifact, SSobj)
+ARTIFACT_SETUP(/obj/item/gun/magic/artifact, SSobj, null, /datum/artifact_effect/gun, ARTIFACT_SIZE_SMALL)
+
+/obj/item/gun/magic/artifact/attack_self(mob/user, modifiers)
+	. = ..()
+	to_chat(user,span_notice("You squeeze the [src] tightly."))
+	on_artifact_touched(src,user,modifiers)
 
 /obj/item/gun/magic/artifact/can_shoot()
 	return assoc_comp.active

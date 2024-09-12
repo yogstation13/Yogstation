@@ -1,15 +1,17 @@
 /datum/artifact_fault/reagent
-	name = "Generic Reagent Injector"
+	name = "Chemical Force Injector Fault"
 	trigger_chance = 15
 	visible_message = "shoots a syringe out."
 	var/list/reagents = list()
 
-/datum/artifact_fault/reagent/on_trigger(datum/component/artifact/component)
+	research_value = 100
+
+/datum/artifact_fault/reagent/on_trigger()
 	. = ..()
 	if(!length(reagents))
 		return
 
-	var/center_turf = get_turf(component.parent)
+	var/center_turf = get_turf(our_artifact.parent)
 
 	if(!center_turf)
 		CRASH("[src] had attempted to trigger, but failed to find the center turf!")
@@ -21,7 +23,7 @@
 /datum/artifact_fault/reagent/poison
 	name = "Poison"
 
-/datum/artifact_fault/reagent/poison/on_trigger(datum/component/artifact/component)
+/datum/artifact_fault/reagent/poison/on_trigger()
 	if(!reagents.len) //mostly copied from reagents.dm but oh well
 		for(var/datum/reagent/reagent as anything in subtypesof(/datum/reagent/toxin))
 			if(initial(reagent.chemical_flags) & REAGENT_CAN_BE_SYNTHESIZED)

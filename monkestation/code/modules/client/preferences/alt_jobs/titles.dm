@@ -292,6 +292,7 @@
 		"Biorobotics Director",
 		"Research Supervisor",
 		"Chief Science Officer",
+		"Chief Artificer",
 	)
 
 /datum/job/roboticist
@@ -318,6 +319,7 @@
 		"Xenoarchaeologist",
 		"Research Assistant",
 		"Graduate Student",
+		"Artificer"
 	)
 
 /datum/job/security_officer

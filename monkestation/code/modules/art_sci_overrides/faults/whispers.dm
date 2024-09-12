@@ -1,13 +1,15 @@
 /datum/artifact_fault/whisper
-	name = "Generic Whisper"
-	trigger_chance = 30
-	var/list/whispers = list()
+	name = "Wispering Fault"
+	trigger_chance = 75
+	var/list/whispers = list("Help me!","I've seen your sins","Egg.")
 
-/datum/artifact_fault/whisper/on_trigger(datum/component/artifact/component)
+	research_value = 50
+
+/datum/artifact_fault/whisper/on_trigger()
 	if(!length(whispers))
 		return
 
-	var/center_turf = get_turf(component.parent)
+	var/center_turf = get_turf(our_artifact.parent)
 
 	if(!center_turf)
 		CRASH("[src] had attempted to trigger, but failed to find the center turf!")

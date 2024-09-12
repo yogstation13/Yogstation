@@ -10,12 +10,18 @@
 	inhand_icon_state = "plasmashiv"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	obj_flags = CAN_BE_HIT
 	var/special_cooldown_time
 	var/special
-	var/datum/component/artifact/assoc_comp = /datum/component/artifact/melee
+	var/datum/component/artifact/assoc_comp = /datum/component/artifact
 	COOLDOWN_DECLARE(special_cooldown)
 
-ARTIFACT_SETUP(/obj/item/melee/artifact, SSobj)
+ARTIFACT_SETUP(/obj/item/melee/artifact, SSobj, null, /datum/artifact_effect/melee, ARTIFACT_SIZE_SMALL)
+
+/obj/item/melee/artifact/attack_self(mob/user, modifiers)
+	. = ..()
+	to_chat(user,span_notice("You squeeze the [src] tightly."))
+	on_artifact_touched(src,user,modifiers)
 
 /obj/item/melee/artifact/afterattack(mob/living/victim, mob/user, proximity)
 	if(!istype(victim) || !assoc_comp.active || !COOLDOWN_FINISHED(src,special_cooldown) || !special || !proximity)

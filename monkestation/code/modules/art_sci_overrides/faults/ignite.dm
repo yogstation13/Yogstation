@@ -1,10 +1,14 @@
 /datum/artifact_fault/ignite
-	name = "Combust"
-	trigger_chance = 9
+	name = "Combustion Fault"
+	trigger_chance = 10
 	visible_message = "starts rapidly heating up while covering everything around it in something that seems to be oil."
 
-/datum/artifact_fault/ignite/on_trigger(datum/component/artifact/component)
-	var/center_turf = get_turf(component.parent)
+	research_value = 200
+
+	weight = ARTIFACT_UNCOMMON
+
+/datum/artifact_fault/ignite/on_trigger()
+	var/center_turf = get_turf(our_artifact.parent)
 
 	if(!center_turf)
 		CRASH("[src] had attempted to trigger, but failed to find the center turf!")

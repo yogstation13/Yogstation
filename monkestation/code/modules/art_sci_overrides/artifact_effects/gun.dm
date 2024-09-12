@@ -1,26 +1,20 @@
 #define LOWEST_POSSIBLE_CLICK_CD 3
 #define HIGHEST_POSSIBLE_CLICK_CD 15
 
-/datum/component/artifact/gun
-	associated_object = /obj/item/gun/magic/artifact
+/datum/artifact_effect/gun
 	artifact_size = ARTIFACT_SIZE_SMALL
-	type_name = "Ranged Weapon"
+	type_name = "Ranged Weapon Effect"
 	weight = ARTIFACT_VERYUNCOMMON //rare
-	xray_result = "COMPLEX"
 	valid_activators = list(
 		/datum/artifact_activator/range/heat,
 		/datum/artifact_activator/range/shock,
 		/datum/artifact_activator/range/radiation
 	)
-	valid_faults = list(
-		/datum/artifact_fault/ignite = 10,
-		/datum/artifact_fault/warp = 10,
-		/datum/artifact_fault/reagent/poison = 10,
-		/datum/artifact_fault/death = 2,
-		/datum/artifact_fault/tesla_zap = 5,
-		/datum/artifact_fault/grow = 10,
-		/datum/artifact_fault/explosion = 2,
-	)
+	valid_type_paths = list(/obj/item/gun/magic/artifact)
+
+	research_value = 500
+
+	examine_discovered = span_warning("It appears to be some sort of projectile weapon!")
 
 	//list of projectile exclusive projectiles
 	///damage each shot does
@@ -46,14 +40,11 @@
 	var/list/damage_types = list(
 		BRUTE,
 		BURN,
-		TOX,
-		OXY,
-		BRAIN,
-		STAMINA
+		TOX
 	)
 
-/datum/component/artifact/gun/setup()
-	var/obj/item/gun/magic/artifact/our_wand = holder
+/datum/artifact_effect/gun/setup()
+	var/obj/item/gun/magic/artifact/our_wand = our_artifact.holder
 	var/obj/item/ammo_casing/casing = our_wand.chambered
 	//randomize our casing
 	casing.click_cooldown_override = rand(LOWEST_POSSIBLE_CLICK_CD, HIGHEST_POSSIBLE_CLICK_CD)
@@ -62,7 +53,7 @@
 		spread += 0.1
 
 	spread += prob(65) ? rand(0.0, 0.2) : rand(0.3, 1.0)
-	damage = rand(-5, 25)
+	damage = rand(-10, 30)
 
 	projectile_icon = pick("energy","scatterlaser","toxin","energy","spell","pulse1","bluespace","gauss","gaussweak","gaussstrong","redtrac","omnilaser","heavylaser","laser","infernoshot","cryoshot","arcane_barrage")
 	dam_type = pick(damage_types)
