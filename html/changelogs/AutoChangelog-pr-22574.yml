@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes scattershot laser rifle from completing the antique laser gun grand theft objective"
