@@ -1,6 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Adds canned iced coffee"
-  - tweak: "tweaks caffeine overdose to give warnings before starting to put you to sleep"
-  - imageadd: "Adds canned iced coffee sprites"
