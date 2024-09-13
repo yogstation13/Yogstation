@@ -211,6 +211,7 @@
 		/datum/job/atmospheric_technician = /obj/item/organ/internal/cyberimp/arm/item_set/atmospherics, // monkestation edit: cybernetics overhaul (useful job stuff)
 		/datum/job/bartender = /obj/item/organ/internal/liver/cybernetic/tier3,
 		/datum/job/bitrunner = /obj/item/organ/internal/eyes/robotic/thermals,
+		/datum/job/blueshield = /obj/item/organ/internal/cyberimp/arm/ammo_counter, // monkestation edit: cybernetics for recently added job
 		/datum/job/botanist = /obj/item/organ/internal/cyberimp/arm/item_set/botany, // monkestation edit: cybernetics overhaul (useful job stuff)
 		/datum/job/captain = /obj/item/organ/internal/heart/cybernetic/tier3,
 		/datum/job/cargo_technician = /obj/item/organ/internal/stomach/cybernetic/tier2,
@@ -236,6 +237,7 @@
 		/datum/job/research_director = /obj/item/organ/internal/cyberimp/bci,
 		/datum/job/roboticist = /obj/item/organ/internal/cyberimp/arm/item_set/connector, // monkestation edit: cybernetics overhaul (useful job stuff)
 		/datum/job/scientist = /obj/item/organ/internal/ears/cybernetic,
+		/datum/job/security_assistant = /obj/item/organ/internal/cyberimp/leg/accelerator, // monkestation edit: cybernetics for recently added job
 		/datum/job/security_officer = /obj/item/organ/internal/cyberimp/arm/item_set/flash,
 		/datum/job/shaft_miner = /obj/item/organ/internal/cyberimp/arm/item_set/mining_drill/diamond, // monkestation edit: cybernetics overhaul (useful job stuff)
 		/datum/job/station_engineer = /obj/item/organ/internal/cyberimp/arm/item_set/toolset,
