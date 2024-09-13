@@ -5,7 +5,7 @@
 	name = "Change Places!"
 	weight = 2
 	typepath = /datum/round_event/wizard/shuffleloc
-	max_occurrences = 05
+	max occurences = 0
 	earliest_start = 0 MINUTES
 
 /datum/round_event/wizard/shuffleloc/start()
@@ -41,7 +41,7 @@
 	name = "Change Faces!"
 	weight = 4
 	typepath = /datum/round_event/wizard/shufflenames
-	max_occurrences = 05
+	max occurences = 0
 	earliest_start = 0 MINUTES
 
 /datum/round_event/wizard/shufflenames/start()
@@ -75,7 +75,7 @@
 	name = "Change Minds!"
 	weight = 1
 	typepath = /datum/round_event/wizard/shuffleminds
-	max_occurrences = 03
+	max occurences = 0
 	earliest_start = 0 MINUTES
 
 /datum/round_event/wizard/shuffleminds/start()

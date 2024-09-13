@@ -219,7 +219,6 @@
 					/obj/item/grenade/spawnergrenade/manhacks)
 	crate_name = "viscerator crate"
 
-/obj/item/grenade/spawnergrenade/manhacks
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Engineering /////////////////////////////////////
@@ -419,3 +418,11 @@
 					/obj/item/pickaxe,
 					/obj/item/pickaxe)
 	crate_name = "pickaxe crate"
+
+/datum/supply_pack/misc/water_miner
+	name = "Water Harvester"
+	desc = "A heavy duty water harvester. Can be placed over water and wrenched into place, then activated to automatically package water for reselling." 
+	cost = 300
+	contains = list(/obj/machinery/water_miner)
+	crate_name = "water harvester crate"
+	crate_type = /obj/structure/closet/crate/large

@@ -2,7 +2,7 @@
 	name = "Summon Guns"
 	weight = 1
 	typepath = /datum/round_event/wizard/summonguns
-	max_occurrences = 01
+	max occurences = 0
 	earliest_start = 0 MINUTES
 
 /datum/round_event_control/wizard/summonguns/New()
@@ -17,7 +17,7 @@
 	name = "Summon Magic"
 	weight = 1
 	typepath = /datum/round_event/wizard/summonmagic
-	max_occurrences = 01
+	max occurences = 0
 	earliest_start = 0 MINUTES
 
 /datum/round_event_control/wizard/summonmagic/New()

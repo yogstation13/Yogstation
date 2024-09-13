@@ -20,3 +20,8 @@
 	cost = 30
 	unit_name = "xen flesh"
 	export_types = list(/obj/item/reagent_containers/food/snacks/meat/slab/xen)
+
+/datum/export/watercanister
+	cost = 50
+	unit_name = "water canister"
+	export_types = list(/obj/item/water_canister)

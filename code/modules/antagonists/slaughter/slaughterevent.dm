@@ -2,7 +2,7 @@
 	name = "Spawn Slaughter Demon"
 	typepath = /datum/round_event/ghost_role/slaughter
 	weight = 2 //Very rare
-	max_occurrences = 00
+	max_occurrences = 0
 	earliest_start = 1 HOURS
 	min_players = 20
 	dynamic_should_hijack = TRUE

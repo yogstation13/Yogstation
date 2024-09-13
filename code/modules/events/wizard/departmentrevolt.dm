@@ -2,7 +2,7 @@
 	name = "Departmental Uprising"
 	weight = 0 //An order that requires order in a round of chaos was maybe not the best idea. Requiescat in pace departmental uprising August 2014 - March 2015
 	typepath = /datum/round_event/wizard/deprevolt
-	max_occurrences = 01
+	max occurences = 0
 	earliest_start = 0 MINUTES
 
 	var/picked_department

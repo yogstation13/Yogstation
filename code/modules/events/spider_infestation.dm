@@ -2,7 +2,7 @@
 	name = "Spider Infestation"
 	typepath = /datum/round_event/spider_infestation
 	weight = 5
-	max_occurrences = 01
+	max occurences = 0
 	min_players = 25
 	dynamic_should_hijack = TRUE
 

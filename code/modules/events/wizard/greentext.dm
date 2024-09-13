@@ -2,7 +2,7 @@
 	name = "Greentext"
 	weight = 4
 	typepath = /datum/round_event/wizard/greentext
-	max_occurrences = 01
+	max occurences = 0
 	earliest_start = 0 MINUTES
 
 /datum/round_event/wizard/greentext/start()

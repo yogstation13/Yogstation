@@ -1,7 +1,7 @@
 /datum/round_event_control/zombie
 	name = "Spawn Zombie"
 	typepath = /datum/round_event/ghost_role/zombie
-	max_occurrences = 01
+	max occurences = 0
 	min_players = 20
 	weight = 4
 	dynamic_should_hijack = TRUE

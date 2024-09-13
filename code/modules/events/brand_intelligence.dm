@@ -4,7 +4,7 @@
 	weight = 5
 
 	min_players = 15
-	max_occurrences = 01
+	max_occurrences = 0
 
 /datum/round_event/brand_intelligence
 	announceWhen	= 21

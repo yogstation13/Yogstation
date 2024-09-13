@@ -2,7 +2,7 @@
 	name = "Race Swap"
 	weight = 2
 	typepath = /datum/round_event/wizard/race
-	max_occurrences = 05
+	max occurences = 0
 	earliest_start = 0 MINUTES
 
 /datum/round_event/wizard/race/start()

@@ -1,7 +1,7 @@
 /datum/round_event_control/grey_tide
 	name = "Grey Tide"
 	typepath = /datum/round_event/grey_tide
-	max_occurrences = 02
+	max occurences = 0
 	min_players = 5
 	max_alert = SEC_LEVEL_DELTA
 

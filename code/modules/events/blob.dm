@@ -2,7 +2,7 @@
 	name = "Blob"
 	typepath = /datum/round_event/ghost_role/blob
 	weight = 8
-	max_occurrences = 01
+	max_occurrences = 0
 	min_players = 30
 	dynamic_should_hijack = TRUE
 	gamemode_blacklist = list("blob") //Just in case a blob survives that long

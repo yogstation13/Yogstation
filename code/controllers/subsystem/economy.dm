@@ -164,7 +164,7 @@ SUBSYSTEM_DEF(economy)
 /datum/controller/subsystem/economy/proc/car_payout()
 	var/datum/bank_account/D = get_dep_account(ACCOUNT_CAR)
 	if(D)
-		D.adjust_money(500)
+		D.adjust_money(50) //small stipend for cargo to get naturally
 
 /datum/controller/subsystem/economy/proc/secmedsrv_payout()
 	for(var/mob/living/carbon/human/human_player in GLOB.player_list)

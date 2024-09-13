@@ -3,7 +3,7 @@
 	typepath = /datum/round_event/grid_check
 	gamemode_blacklist = list("darkspawn") //no free win for darkspawns
 	weight = 10
-	max_occurrences = 03
+	max_occurrences = 0
 
 /datum/round_event/grid_check
 	announceWhen	= 1

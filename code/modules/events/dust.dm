@@ -2,7 +2,7 @@
 	name = "Minor Space Dust"
 	typepath = /datum/round_event/space_dust
 	weight = 200
-	max_occurrences = 01000
+	max_occurrences = 0
 	earliest_start = 0 MINUTES
 	alert_observers = FALSE
 	max_alert = SEC_LEVEL_DELTA
@@ -19,7 +19,7 @@
 	name = "Sandstorm"
 	typepath = /datum/round_event/sandstorm
 	weight = 0
-	max_occurrences = 00
+	max_occurrences = 0
 	earliest_start = 0 MINUTES
 
 /datum/round_event/sandstorm

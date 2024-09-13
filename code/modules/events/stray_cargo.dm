@@ -3,7 +3,7 @@
 	name = "Stray Cargo Pod"
 	typepath = /datum/round_event/stray_cargo
 	weight = 20
-	max_occurrences = 04
+	max occurences = 0
 	earliest_start = 10 MINUTES
 
 ///Spawns a cargo pod containing a random cargo supply pack on a random area of the station

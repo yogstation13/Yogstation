@@ -28,7 +28,7 @@
 	name = "Portal Storm: Constructs"
 	typepath = /datum/round_event/portal_storm/portal_storm_narsie
 	weight = 0
-	max_occurrences = 00
+	max_occurrences = 0
 
 /datum/round_event/portal_storm/portal_storm_narsie
 	boss_types = list(/mob/living/simple_animal/hostile/construct/builder = 6)
@@ -125,7 +125,7 @@
 	name = "Resonance Cascade"
 	typepath = /datum/round_event/portal_storm/resonance_cascade
 	weight = 0
-	max_occurrences = 00
+	max_occurrences = 0
 	random = FALSE // No.
 	max_alert = SEC_LEVEL_DELTA
 

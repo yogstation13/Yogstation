@@ -4,7 +4,7 @@
 	typepath = /datum/round_event/dolphin_migration
 	weight = 15
 	earliest_start = 10 MINUTES
-	max_occurrences = 06
+	max_occurrences = 0
 
 /datum/round_event/dolphin_migration
 	announceWhen	= 3

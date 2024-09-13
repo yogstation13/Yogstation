@@ -2,7 +2,7 @@
 	name = "Spacevine"
 	typepath = /datum/round_event/spacevine
 	weight = 15
-	max_occurrences = 01
+	max occurences = 0
 	min_players = 25
 
 /datum/round_event/spacevine

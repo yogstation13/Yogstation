@@ -2,7 +2,7 @@
 	name = "RPG Loot"
 	weight = 3
 	typepath = /datum/round_event/wizard/rpgloot
-	max_occurrences = 01
+	max occurences = 0
 	earliest_start = 0 MINUTES
 
 /datum/round_event/wizard/rpgloot/start()

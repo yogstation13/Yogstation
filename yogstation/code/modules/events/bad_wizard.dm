@@ -2,7 +2,7 @@
 	name = "Bad Wizard"
 	typepath = /datum/round_event/ghost_role/bad_wizard
 	gamemode_blacklist = list("wizard")
-	max_occurrences = 01
+	max_occurrences = 0
 	min_players = 20
 	weight = 5
 

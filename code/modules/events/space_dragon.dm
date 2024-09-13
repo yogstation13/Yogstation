@@ -2,7 +2,7 @@
 	name = "Spawn Space Dragon"
 	typepath = /datum/round_event/ghost_role/space_dragon
 	weight = 7
-	max_occurrences = 01
+	max occurences = 0
 	min_players = 20
 	dynamic_should_hijack = TRUE
 

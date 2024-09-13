@@ -2,7 +2,7 @@
 	name = "Mass Hallucination"
 	typepath = /datum/round_event/mass_hallucination
 	weight = 10
-	max_occurrences = 02
+	max_occurrences = 0
 	min_players = 1
 
 /datum/round_event/mass_hallucination

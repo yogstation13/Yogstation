@@ -1,7 +1,7 @@
 /datum/round_event_control/bureaucratic_error
 	name = "Bureaucratic Error"
 	typepath = /datum/round_event/bureaucratic_error
-	max_occurrences = 01
+	max_occurrences = 0
 	weight = 5
 	max_alert = SEC_LEVEL_DELTA
 

@@ -2,7 +2,7 @@
 	name = "Supermatter Surge"
 	typepath = /datum/round_event/supermatter_surge
 	weight = 15
-	max_occurrences = 04
+	max occurences = 0
 	earliest_start = 10 MINUTES
 	var/forced_power
 

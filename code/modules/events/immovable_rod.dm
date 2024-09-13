@@ -11,7 +11,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	name = "Immovable Rod"
 	typepath = /datum/round_event/immovable_rod
 	min_players = 18
-	max_occurrences = 03
+	max_occurrences = 0
 	earliest_start = 20 MINUTES
 	var/atom/special_target
 
