@@ -779,6 +779,7 @@
 	if (!camera_light_on)
 		to_chat(src, "Camera lights deactivated.")
 
+		list_clear_nulls(lit_cameras)
 		for (var/obj/machinery/camera/C in lit_cameras)
 			C.set_light(0)
 			lit_cameras = list()
@@ -797,8 +798,12 @@
 	var/list/obj/machinery/camera/visible = list()
 	for (var/datum/camerachunk/chunk as anything in eyeobj.visibleCameraChunks)
 		for (var/z_key in chunk.cameras)
-			for(var/obj/machinery/camera/camera as anything in chunk.cameras[z_key])
-				if (!camera.can_use() || get_dist(camera, eyeobj) > 7 || !camera.internal_light)
+			var/list/z_cameras = chunk.cameras[z_key]
+			list_clear_nulls(z_cameras)
+			for(var/obj/machinery/camera/camera as anything in z_cameras)
+				if(QDELETED(camera))
+					continue
+				if(!camera.can_use() || get_dist(camera, eyeobj) > 7 || !camera.internal_light)
 					continue
 				visible |= camera
 
