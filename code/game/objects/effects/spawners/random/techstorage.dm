@@ -44,6 +44,15 @@
 		/obj/item/circuitboard/machine/chem_dispenser/drinks,
 		/obj/item/circuitboard/machine/chem_dispenser/drinks/beer,
 		/obj/item/circuitboard/computer/slot_machine,
+		// monkestation start: botany stuff
+		/obj/item/circuitboard/machine/composters,
+		/obj/item/circuitboard/machine/plantgenes,
+		/obj/item/circuitboard/machine/biogenerator,
+		/obj/item/circuitboard/machine/hydroponics,
+		/obj/item/circuitboard/machine/seed_extractor,
+		/obj/item/circuitboard/machine/chicken_grinder,
+		/obj/item/circuitboard/machine/feed_machine,
+		// monkestation end
 	)
 
 /obj/effect/spawner/random/techstorage/rnd_all

@@ -21,6 +21,7 @@
 	name = "feed machine (Machine Board)"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
+	build_path = /obj/machinery/feed_machine
 	req_components = list(
 		/datum/stock_part/matter_bin = 3,
 		/datum/stock_part/manipulator = 1)
