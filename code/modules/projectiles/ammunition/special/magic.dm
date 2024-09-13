@@ -51,6 +51,9 @@
 /obj/item/ammo_casing/magic/arcane_barrage
 	projectile_type = /obj/projectile/magic/arcane_barrage
 
+/obj/item/ammo_casing/magic/vort_blast
+	projectile_type = /obj/projectile/magic/vort_blast
+
 /obj/item/ammo_casing/magic/honk
 	projectile_type = /obj/projectile/bullet/honker
 

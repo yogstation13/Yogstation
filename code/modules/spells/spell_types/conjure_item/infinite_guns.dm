@@ -39,3 +39,12 @@
 	button_icon_state = "arcane_barrage"
 
 	item_type = /obj/item/gun/ballistic/rifle/boltaction/enchanted/arcane_barrage
+
+/datum/action/cooldown/spell/conjure_item/infinite_guns/vort_blast
+	name = "Vortal Blast"
+	cooldown_time = 6 SECONDS
+	desc = "Use the vortessence to ready a vortal bolt in your hand."
+	button_icon_state = "vortblast"
+	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
+
+	item_type = /obj/item/gun/ballistic/rifle/boltaction/enchanted/vort_blast

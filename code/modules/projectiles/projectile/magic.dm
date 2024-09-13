@@ -424,6 +424,16 @@
 	armor_flag = MAGIC 
 	hitsound = 'sound/weapons/barragespellhit.ogg'
 
+/obj/projectile/magic/vort_blast
+	name = "vortal bolt"
+	icon_state = "xray"
+	damage = 40
+	damage_type = BURN
+	nodamage = FALSE
+	armour_penetration = 30
+	armor_flag = MAGIC 
+	hitsound = 'sound/weapons/halflife/attack_shoot.ogg'
+
 /obj/projectile/magic/locker
 	name = "locker bolt"
 	icon_state = "locker"

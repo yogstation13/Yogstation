@@ -127,6 +127,24 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted/arcane_barrage
 
+/obj/item/gun/ballistic/rifle/boltaction/enchanted/vort_blast
+	name = "vortal blast"
+	desc = "Galunga."
+	pin = /obj/item/firing_pin/magic
+	guns_left = 0
+	icon = 'icons/obj/weapons/hand.dmi'
+	fire_sound = "sound/weapons/halflife/attack_charge.ogg"
+	icon_state = "mansus"
+	item_state = "vort"
+	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
+	can_bayonet = FALSE
+	item_flags = NEEDS_PERMIT | DROPDEL | ABSTRACT | NOBLUDGEON
+	flags_1 = NONE
+	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
+
+	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted/vort_blast
+
 /obj/item/gun/ballistic/rifle/boltaction/enchanted/dropped()
 	. = ..()
 	guns_left = 0
@@ -135,6 +153,9 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	user.throw_item(pick(oview(7,get_turf(user))))
 
 /obj/item/gun/ballistic/rifle/boltaction/enchanted/arcane_barrage/discard_gun(mob/living/user)
+	qdel(src)
+
+/obj/item/gun/ballistic/rifle/boltaction/enchanted/vort_blast/discard_gun(mob/living/user)
 	qdel(src)
 
 /obj/item/gun/ballistic/rifle/boltaction/enchanted/attack_self()
