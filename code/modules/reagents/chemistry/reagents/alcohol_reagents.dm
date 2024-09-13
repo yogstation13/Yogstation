@@ -2432,3 +2432,20 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Gin Garden"
 	glass_desc = "Hey, someone forgot the herb and... the cucumber in my cocktail!"
 
+/datum/reagent/consumable/ethanol/fermented_paper
+	name = "Undistilled Paper Alcohol"
+	description = "A strong, disgusting, and toxic mix of undistilled alcoholic beverage."
+	color = "#664300" // rgb: 102, 67, 0
+	boozepwr = 30
+	taste_description = "terrible bitterness"
+	glass_icon_state = "glass_brown2"
+	glass_name = "glass of undistilled paper alcohol"
+	glass_desc = "A strong, disgusting, and toxic mix of undistilled alcoholic beverage."
+
+/datum/reagent/consumable/ethanol/inocybeshine/on_mob_life(mob/living/carbon/M)
+	if(prob(10))
+		M.adjustStaminaLoss(10,0)
+		M.adjust_eye_blur(3)
+		M.adjust_disgust(2)
+		. = TRUE
+	return ..()

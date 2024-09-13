@@ -25,7 +25,8 @@
 
 /obj/item/grenade/spawnergrenade/manhacks
 	name = "viscerator delivery grenade"
-	desc = "Packed inside is a combine Viscerator. Activate and throw, and it will automatically deploy and hunt down any non-command or civil protection."
+	desc = "An offline viscerator. Activate and throw, and it will automatically deploy and hunt down any non-command or civil protection."
+	icon_state = "manhack"
 	spawner_type = /mob/living/simple_animal/hostile/viscerator
 	deliveryamt = 1
 

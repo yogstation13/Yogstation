@@ -210,6 +210,16 @@
 					/obj/item/ammo_box/magazine/usp9mm)
 	crate_name = "usp match ammo crate"
 
+/datum/supply_pack/security/armory/manhacks
+	name = "Viscerator Crate"
+	desc = "Contains three activatable viscerators. Requires Armory access to open."
+	cost = 400
+	contains = list(/obj/item/grenade/spawnergrenade/manhacks,
+					/obj/item/grenade/spawnergrenade/manhacks,
+					/obj/item/grenade/spawnergrenade/manhacks)
+	crate_name = "viscerator crate"
+
+/obj/item/grenade/spawnergrenade/manhacks
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Engineering /////////////////////////////////////
@@ -401,3 +411,11 @@
 /datum/supply_pack/misc
 	group = "Miscellaneous Supplies"
 
+/datum/supply_pack/misc/pickaxes
+	name = "Pickaxe Crate"
+	desc = "A crate of three pickaxes, for use in the mines." 
+	cost = 100
+	contains = list(/obj/item/pickaxe,
+					/obj/item/pickaxe,
+					/obj/item/pickaxe)
+	crate_name = "pickaxe crate"

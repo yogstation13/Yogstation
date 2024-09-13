@@ -751,6 +751,7 @@
 				/obj/item/radio/off/halflife = 2,
 				/obj/item/ammo_casing/reusable/arrow/rebar,
 				/obj/item/flashlight/seclite,
+				/obj/item/kitchen/knife/makeshift,
 				/obj/item/lighter/greyscale,
 				/obj/item/stack/tape = 1,
 				/obj/item/stack/cable_coil/yellow,

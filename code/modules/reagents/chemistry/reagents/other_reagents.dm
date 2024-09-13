@@ -2077,3 +2077,10 @@
 	M.adjustOrganLoss(ORGAN_SLOT_HEART, 0.25*REM)
 	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 0.25*REM)
 	..()
+
+/datum/reagent/cellulase
+	name = "Cellulase"
+	description = "An enzyme from mushrooms which is capable of breaking down cellulose."
+	reagent_state = LIQUID
+	color = "#969696"
+	taste_description = "fungus"

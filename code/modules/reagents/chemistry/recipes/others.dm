@@ -1014,3 +1014,13 @@
 	id = "ice_cream_meat"
 	required_reagents = list(/datum/reagent/consumable/ice_cream/meat = 10, /datum/reagent/consumable/ice = 2)
 	ice_cream_scoop = /obj/item/reagent_containers/food/snacks/ice_cream_scoop/meat
+
+
+
+/datum/chemical_reaction/paperfermentation
+	name = "Paper Fermentation"
+	id = "paper_fermentation"
+	mix_message = "The cellulose mixes with the cellulase and heat, before fermenting into a gross mush."
+	results = list(/datum/reagent/consumable/ethanol/fermented_paper = 5, /datum/reagent/consumable/ethanol = 5) //try to seperate the ethanol out...
+	required_reagents = list(/datum/reagent/cellulose = 6, /datum/reagent/cellulase = 4)
+	required_temp = 450

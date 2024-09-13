@@ -119,14 +119,8 @@
 /obj/machinery/modular_computer/console/preset/command/hop
 	name = "Labor Lead's console"
 	desc = "A stationary computer. This one comes preloaded with bureaucratic programs."
-	starting_files = list(	new /datum/computer_file/program/chatclient,
-							new /datum/computer_file/program/budgetorders,
-							new /datum/computer_file/program/card_mod,
-							new /datum/computer_file/program/job_management,
-							new /datum/computer_file/program/crew_manifest,
-							new /datum/computer_file/program/bounty_board,
-							new /datum/computer_file/program/cargobounty,
-							new /datum/computer_file/program/secureye/mining)
+	starting_files = list(	new /datum/computer_file/program/card_mod,
+							new /datum/computer_file/program/crew_manifest)
 
 // ===== HoS =====
 /obj/machinery/modular_computer/console/preset/command/hos

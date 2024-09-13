@@ -180,7 +180,7 @@
 	icon_state = "mushroom_cap"
 	seed = /obj/item/seeds/lavaland/inocybe
 	//distill_reagent = /datum/reagent/consumable/ethanol/inocybeshine
-	grind_results = list(/datum/reagent/toxin/mushroom_powder = 0)
+	grind_results = list(/datum/reagent/cellulase = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_stem
 	name = "mushroom stem"
@@ -258,7 +258,7 @@
 	product = /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_cap
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/fire_resistance)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
-	reagents_add = list(/datum/reagent/toxin/mindbreaker = 0.04, /datum/reagent/consumable/entpoly = 0.08, /datum/reagent/consumable/nutriment = 0.1)
+	reagents_add = list(/datum/reagent/cellulase = 0.06, /datum/reagent/consumable/entpoly = 0.06, /datum/reagent/consumable/nutriment = 0.1)
 
 /obj/item/seeds/lavaland/ember
 	name = "pack of embershroom mycelium"

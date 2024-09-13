@@ -19,6 +19,7 @@
 	light_range = 2
 	light_color = COLOR_STARLIGHT
 	ambient_buzz = 'sound/ambience/plaza_amb.ogg'
+	ambient_buzz_vol = 20
 
 /area/halflife/outdoors/sewage_dump
 	name = "\improper Sewage Dump"

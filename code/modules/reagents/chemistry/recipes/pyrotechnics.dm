@@ -112,6 +112,7 @@
 	results = list(/datum/reagent/thermite = 3)
 	required_reagents = list(/datum/reagent/aluminium = 1, /datum/reagent/iron = 1, /datum/reagent/gas/oxygen = 1)
 
+/*
 /datum/chemical_reaction/emp_pulse
 	name = "EMP Pulse"
 	id = "emp_pulse"
@@ -124,7 +125,7 @@
 	created_volume = min(created_volume, 200)
 	empulse(location, min(round(created_volume / 12), EMP_HEAVY), round(created_volume / 7), 1)
 	holder.clear_reagents()
-
+*/
 
 /datum/chemical_reaction/beesplosion
 	name = "Bee Explosion"
