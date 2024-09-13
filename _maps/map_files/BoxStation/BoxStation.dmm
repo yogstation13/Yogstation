@@ -1428,6 +1428,11 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/station/maintenance/department/security/brig)
+"ayE" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/tank_dispenser,
+/turf/open/floor/iron/dark,
+/area/station/engineering/atmos)
 "azm" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 1
@@ -6611,6 +6616,10 @@
 /area/station/maintenance/department/medical)
 "chs" = (
 /obj/structure/table,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/rods/fifty,
+/obj/item/stack/rods/fifty,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos)
@@ -7707,7 +7716,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/table,
+/obj/machinery/pipedispenser/disposal,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos)
 "cCv" = (
@@ -67687,7 +67696,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/tank_dispenser,
+/obj/machinery/atmospherics/components/unary/bluespace_sender,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos)
 "wCb" = (
@@ -104966,7 +104975,7 @@ cCr
 pfo
 son
 xBk
-chs
+ayE
 mDv
 bMM
 pXp
