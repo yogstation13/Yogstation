@@ -1,0 +1,5 @@
+author: "KnigTheThrasher"
+delete-after: True
+changes:
+  - rscadd: "Kilo docking bay has been moved somewhere else"
+  - rscadd: "Improved Kilo xenobiology piping and disposals"
