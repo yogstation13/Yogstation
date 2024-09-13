@@ -591,7 +591,7 @@
 	if(selected.action_checks(target) && selected.action(target, user, params))
 		selected.start_cooldown()
 
-/obj/mecha/proc/default_melee_attack(atom/target)
+/obj/mecha/proc/default_melee_attack(atom/target, cooldown_override = 0)
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		target = pick(oview(1,src))
 	if(!melee_can_hit || !istype(target, /atom))
@@ -601,7 +601,7 @@
 	target.mech_melee_attack(src, force, TRUE)
 	melee_can_hit = FALSE
 	adjust_overheat(punch_heat_cost)
-	addtimer(VARSET_CALLBACK(src, melee_can_hit, TRUE), melee_cooldown)
+	addtimer(VARSET_CALLBACK(src, melee_can_hit, TRUE), cooldown_override ? cooldown_override : melee_cooldown)
 
 
 /obj/mecha/proc/range_action(atom/target)
@@ -691,9 +691,12 @@
 
 	var/move_result = 0
 	var/oldloc = loc
-	var/step_time = step_in * check_eva()
+	var/step_time = step_in
 	if(overheat > OVERHEAT_THRESHOLD)
-		can_move += (min(overheat, OVERHEAT_MAXIMUM) - OVERHEAT_THRESHOLD) / OVERHEAT_THRESHOLD // up to 0.5 slower based on overheating
+		step_time += (min(overheat, OVERHEAT_MAXIMUM) - OVERHEAT_THRESHOLD) / OVERHEAT_THRESHOLD // up to 0.5 slower based on overheating
+	if(leg_overload_mode)
+		step_time = min(1, step_in / 2)
+	step_time *= check_eva()
 
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		set_glide_size(DELAY_TO_GLIDE_SIZE(step_time))
@@ -706,7 +709,7 @@
 	if(move_result || loc != oldloc)// halfway done diagonal move still returns false
 		use_power(step_energy_drain)
 		if(leg_overload_mode)
-			adjust_overheat(OVERLOAD_HEAT_COST)
+			adjust_overheat(OVERLOAD_HEAT_COST * step_time)
 		can_move = world.time + step_time
 		return TRUE
 	return FALSE
@@ -763,9 +766,8 @@
 			return
 		if(bumpsmash && occupant) //Need a pilot to push the PUNCH button.
 			if(!equipment_disabled)
-				if(nextsmash < world.time)
-					default_melee_attack(obstacle) //Non-equipment melee attack
-					nextsmash = world.time + smashcooldown
+				if(melee_can_hit < world.time)
+					default_melee_attack(obstacle, smashcooldown) //Non-equipment melee attack
 					if(!obstacle || obstacle.CanPass(src,newloc))
 						step(src,dir)
 		if(isobj(obstacle))
