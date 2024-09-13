@@ -458,29 +458,29 @@
 
 	return final_string
 
-/obj/machinery/icecream_vat/proc/scooping_failure(obj/item/reagent_containers/food/snacks/ice_cream_cone/target_cone, mob/user = usr)
-//Base chance of failure
-var/base_chance = 15
-//Chance of failure that is multiplied by scoop count minus 4
-var/added_chance = 5
-//Total chance of failure
-var/failure_chance = base_chance + (added_chance * (target_cone.scoops - 4))
+/obj/machinery/icecream_vat/proc/scooping_failure(obj/item/reagent_containers/food/snacks/ice_cream_cone/target_cone, /mob/living/carbon/user = usr)
+	//Base chance of failure
+	var/base_chance = 15
+	//Chance of failure that is multiplied by scoop count minus 4
+	var/added_chance = 5
+	//Total chance of failure
+	var/failure_chance = base_chance + (added_chance * (target_cone.scoops - 4))
 
-if(prob(failure_chance))
-	switch(target_cone.scoops)
-		//Alert user
-		if(5 to 9)
-			user.visible_message(span_alert("[user] accidently crushes their [target_cone.name] while trying to add another scoop!"), span_alert("You accidently crush your [target_cone.name] while trying to add another scoop!"))
-		//Alert user and damage them based on amount of scoops
-		if(10 to 20)
-			user.visible_message(span_alert("[user] accidently tips their [target_cone.name] over and is hit in the ensuing avalanche!"), span_alert("You accidently tip your [target_cone.name] over and are hit by the ensuing avalanche!"))
-			//Maximum of 20 brute damage from failure
-			user.adjustBruteLoss(target_cone.scoops)
-		//Explode them
-		if(21 to INFINITY)
-			
-	//Delete cone if failed
-	qdel(cone)
+	if(prob(failure_chance))
+		switch(target_cone.scoops)
+			//Alert user
+			if(5 to 9)
+				user.visible_message(span_alert("[user] accidently crushes their [target_cone.name] while trying to add another scoop!"), span_alert("You accidently crush your [target_cone.name] while trying to add another scoop!"))
+			//Alert user and damage them based on amount of scoops
+			if(10 to 20)
+				user.visible_message(span_alert("[user] accidently tips their [target_cone.name] over and is hit in the ensuing avalanche!"), span_alert("You accidently tip your [target_cone.name] over and are hit by the ensuing avalanche!"))
+				//Maximum of 20 brute damage from failure
+				user.adjustBruteLoss(target_cone.scoops)
+			//Explode them
+			if(21 to INFINITY)
+				
+		//Delete cone if failed
+		qdel(target_cone)
 
 /obj/machinery/icecream_vat/empty
 	start_empty = TRUE
