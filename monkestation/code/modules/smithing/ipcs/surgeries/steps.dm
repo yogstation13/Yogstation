@@ -1,6 +1,6 @@
 //cut wires
 /datum/surgery_step/cut_wires
-	name = "cut wires"
+	name = "cut wires (wirecutter)"
 	implements = list(
 		TOOL_WIRECUTTER = 100,
 		TOOL_SCALPEL = 75,
@@ -25,7 +25,7 @@
 
 //pry off plating
 /datum/surgery_step/pry_off_plating
-	name = "pry off plating"
+	name = "pry off plating (crowbar)"
 	implements = list(
 		TOOL_CROWBAR = 100,
 		TOOL_HEMOSTAT = 10,
@@ -47,7 +47,7 @@
 
 //weld plating
 /datum/surgery_step/weld_plating
-	name = "weld plating"
+	name = "weld plating (welder)"
 	implements = list(
 		TOOL_WELDER = 100,
 	)
@@ -69,7 +69,7 @@
 
 //replace wires
 /datum/surgery_step/replace_wires
-	name = "replace wires"
+	name = "replace wires (coil)"
 	implements = list(/obj/item/stack/cable_coil = 100)
 	time = 2.4 SECONDS
 	var/cableamount = 5
@@ -98,7 +98,7 @@
 
 //add plating
 /datum/surgery_step/add_plating
-	name = "add plating"
+	name = "add plating (iron sheets)"
 	implements = list(/obj/item/stack/sheet/iron = 100)
 	time = 2.4 SECONDS
 	var/ironamount = 5
