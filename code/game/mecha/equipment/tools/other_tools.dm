@@ -614,7 +614,6 @@
 		chassis.AddComponent(/datum/component/after_image, 0.5 SECONDS, 0.5, TRUE)
 		chassis.bumpsmash = TRUE
 		chassis.leg_overload_mode = TRUE
-		chassis.step_in = min(1, round(chassis.step_in/2))
 		chassis.occupant_message(span_danger("You enable coral engine overload."))
 	else
 		var/datum/component/after_image/chassis_after_image = chassis.GetComponent(/datum/component/after_image)
@@ -622,6 +621,5 @@
 			qdel(chassis_after_image)
 		chassis.bumpsmash = FALSE
 		chassis.leg_overload_mode = FALSE
-		chassis.step_in = initial(chassis.step_in)
 		chassis.occupant_message(span_notice("You disable coral engine overload."))
 	build_all_button_icons()
