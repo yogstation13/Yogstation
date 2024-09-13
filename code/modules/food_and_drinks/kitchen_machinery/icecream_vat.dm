@@ -19,6 +19,8 @@
 	var/storage_capacity = 80
 	//If it starts empty or not
 	var/start_empty = FALSE
+	//If the vat will perform scooping_failure proc
+	var/scoop_fail = TRUE
 	//Sound made when an item is dispensed
 	var/dispense_sound = 'sound/machines/click.ogg'
 	//Sound made when selecting/deselecting an item
@@ -41,7 +43,7 @@
 		/obj/item/reagent_containers/food/snacks/ice_cream_cone/chocolate)
 	//Please don't add anything other than scoops or cones to the list or it could/maybe/possibly/definitely break it	
 	//If adding new items to the list: INCREASE STORAGE_CAPACITY TO ACCOUNT FOR ITEM!!
-
+	
 /obj/machinery/icecream_vat/ui_interact(mob/user, datum/tgui/ui) //Thanks bug eating lizard for helping me with the UI
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -372,6 +374,10 @@
 
 				playsound(src, 'sound/effects/rustle2.ogg', 50, TRUE, extrarange = -3)
 
+				//If there are more than four scoops and scoop_fail is true, check for scooping failure
+				if(cone.scoops > 4 && scoop_fail)
+					scooping_failure(cone)
+
 			//Warn user that there are no selected scoops left
 			else
 				user.balloon_alert(user, "No selected scoops in storage!")
@@ -402,16 +408,16 @@
 		if(5)
 			target_cone.name = "Quintuple scooped [target_cone.base_name]"
 			target_cone.desc = "A delicious [target_cone.name] with[list_scoops(target_cone.scoop_names)]."
-		if(6 to 10)
+		if(6 to 9)
 			target_cone.name = "Tower scooped [target_cone.base_name]"
 			target_cone.desc = "A tall [target_cone.name] with[list_scoops(target_cone.scoop_names)]."
-		if(11 to 15)
+		if(10 to 14)
 			target_cone.name = "Scoopimanjaro [target_cone.base_name]"
 			target_cone.desc = "A towering [target_cone.name] with[list_scoops(target_cone.scoop_names)]."
-		if(16 to 20)
+		if(15 to 19)
 			target_cone.name = "Scooperest [target_cone.base_name]"
 			target_cone.desc = "A mountainous [target_cone.name] with[list_scoops(target_cone.scoop_names)]."
-		if(21 to INFINITY)
+		if(20 to INFINITY)
 			target_cone.name = "Scoopageddon [target_cone.base_name]"
 			target_cone.desc = "A [target_cone.name] of apocalyptic proportions with[list_scoops(target_cone.scoop_names)]."
 
@@ -451,6 +457,30 @@
 					final_string += " and [find_amount(target_name = search_name, target_list = scoops)] [search_name]s"
 
 	return final_string
+
+/obj/machinery/icecream_vat/proc/scooping_failure(obj/item/reagent_containers/food/snacks/ice_cream_cone/target_cone, mob/user = usr)
+//Base chance of failure
+var/base_chance = 15
+//Chance of failure that is multiplied by scoop count minus 4
+var/added_chance = 5
+//Total chance of failure
+var/failure_chance = base_chance + (added_chance * (target_cone.scoops - 4))
+
+if(prob(failure_chance))
+	switch(target_cone.scoops)
+		//Alert user
+		if(5 to 9)
+			user.visible_message(span_alert("[user] accidently crushes their [target_cone.name] while trying to add another scoop!"), span_alert("You accidently crush your [target_cone.name] while trying to add another scoop!"))
+		//Alert user and damage them based on amount of scoops
+		if(10 to 20)
+			user.visible_message(span_alert("[user] accidently tips their [target_cone.name] over and is hit in the ensuing avalanche!"), span_alert("You accidently tip your [target_cone.name] over and are hit by the ensuing avalanche!"))
+			//Maximum of 20 brute damage from failure
+			user.adjustBruteLoss(target_cone.scoops)
+		//Explode them
+		if(21 to INFINITY)
+			
+	//Delete cone if failed
+	qdel(cone)
 
 /obj/machinery/icecream_vat/empty
 	start_empty = TRUE
