@@ -1,4 +1,4 @@
-/datum/species/vortigaunt
+/datum/species/vortigaunt //vorts are hardier, stronger, but a bit slower than humans. However, they cant wear most things or use guns asides from vortal blasts.
 	name = "Vortigaunt"
 	id = "vortigaunt"
 	limbs_id = "vortigaunt"
@@ -6,13 +6,14 @@
 	nojumpsuit = TRUE
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
 	siemens_coeff = 0
-	brutemod = 0.9
-	burnmod = 0.9
+	brutemod = 0.75
+	burnmod = 0.75
 	stunmod = 0.8
-	speedmod = 0.25
+	speedmod = 0.33
 	punchdamagelow = 10
 	punchdamagehigh = 12
 	punchstunthreshold = 17
+	special_step_sounds = list('sound/movement/vort/vort_foot1.ogg', 'sound/movement/vort/vort_foot2.ogg', 'sound/movement/vort/vort_foot3.ogg', 'sound/movement/vort/vort_foot4.ogg' )
 	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE, ITEM_SLOT_HEAD)
 	species_traits = list(NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
 	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,
