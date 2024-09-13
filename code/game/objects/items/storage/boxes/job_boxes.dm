@@ -292,6 +292,7 @@
 	desc = "Contains spares of every science job skillchip."
 
 /obj/item/storage/box/skillchips/science/PopulateContents()
+	new/obj/item/skillchip/job/research_director(src)
 	new/obj/item/skillchip/job/roboticist(src)
 	new/obj/item/skillchip/job/roboticist(src)
 	new/obj/item/skillchip/cyberjacker(src)
