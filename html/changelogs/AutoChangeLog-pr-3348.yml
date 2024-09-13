@@ -1,4 +1,0 @@
-author: "MomoBerri"
-delete-after: True
-changes:
-  - bugfix: "adds a normal floor tile underneath a certain airlock in a certain lavaland ruin."

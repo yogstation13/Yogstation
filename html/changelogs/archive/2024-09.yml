@@ -287,3 +287,48 @@
   - rscdel: Old Asteroid Generation
   - qol: Astroid Magnet now gives a general compass direction along with AZIMUTH
   - code_imp: Asteroid Magnet now pulls from DMM files instead of being a generator.
+2024-09-13:
+  Absolucy:
+  - bugfix: Fixed Gary being invisible when dead.
+  - rscdel: Remove slurry and brine from maintpill pool.
+  - balance: Reworked the Brand Intelligence event.
+  - balance: Killing the "origin" vendor will put a stop to the entire event, including
+      already animated vendors.
+  - balance: Brand Intelligence only infects vendors within a randomized range of
+      the origin vendor.
+  - balance: Brand Intelligence doesn't last forever, ending automatically after around
+      ~15 minutes or so.
+  - balance: Brand Intelligence won't affect prison wing vendors, as the prisoners
+      likely have no means of deconstructing the vendors.
+  - balance: Tweaked the weights of target departments for Brand Intelligence.
+  - qol: Ghosts can now examine vendors to see if they're affected by Brand Intelligence
+      or not.
+  - balance: Examining vendors closely will give hints as to their rebellion status.
+      Silicons and anyone with a diagnostic HUD will see even more detail.
+  - refactor: Heavily refactored and cleaned up code relating to Brand Intelligence.
+  - balance: Sol has been reworked for Bloodsuckers. Instead of burning during Sol,
+      they'll instead get a status effect that completely disables their passive healing,
+      slower movement and action speed, they will take 50% more damage (of any type),
+      and some powers will either have a much higher blood cost, or be completely
+      unavailable.
+  - bugfix: Fixed various jank regarding oozeling bloodsuckers.
+  Absolucy, carlarctg:
+  - qol: Ash Ascension spells have high transparency
+  MomoBerri:
+  - bugfix: sandstone stools now deconstruct properly into sandstone bricks.
+  - bugfix: adds a normal floor tile underneath a certain airlock in a certain lavaland
+      ruin.
+  PotatoTomahto:
+  - rscadd: Adds "Cryptozoologist" and "Paranormal Investigator" alt titles.
+  RandomDudeFromTheRim:
+  - bugfix: Split Personas can speak with owner and vice versa now once again
+  RikuTheKiller:
+  - bugfix: Varients work now.
+  Shoddd:
+  - bugfix: Makes robo tot laser arm usable again
+  Wisemonster:
+  - balance: The Bogseo now uses .27-54 Cesarzowa rounds, instead of .585 trappiste
+      rounds
+  - balance: The Bogseo smg gunset for the Blueshield now comes with 1 box of .27-54
+      Cesarzowa piercing bullets, and 2 boxes of the rubber variant.
+  - balance: The trappiste ammo boxes now contain 32 rounds

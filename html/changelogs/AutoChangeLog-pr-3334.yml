@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - rscdel: "Remove slurry and brine from maintpill pool."
