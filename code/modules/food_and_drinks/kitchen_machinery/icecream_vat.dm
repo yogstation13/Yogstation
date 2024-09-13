@@ -471,17 +471,13 @@
 			//Alert user
 			if(5 to 9)
 				user.visible_message(span_alert("[user] accidently crushes their [target_cone.name] while trying to add another scoop!"), span_alert("You accidently crush your [target_cone.name] while trying to add another scoop!"))
-				//Delete cone
-				qdel(target_cone)
 			//Alert user and damage them based on amount of scoops
 			if(10 to 20)
 				user.visible_message(span_alert("[user] accidently tips their [target_cone.name] over and is hit in the ensuing avalanche!"), span_alert("You accidently tip your [target_cone.name] over and are hit by the ensuing avalanche!"))
 				//Maximum of 20 brute damage from failure
 				user.adjustBruteLoss(target_cone.scoops)
 				//Cool them down
-				user.adjust_bodytemperature((-2 * target_cone.scoops) * TEMPERATURE_DAMAGE_COEFFICIENT, target_cone.scoops)
-				//Delete cone
-				qdel(target_cone)
+				user.adjust_bodytemperature((-6 * target_cone.scoops) * TEMPERATURE_DAMAGE_COEFFICIENT, target_cone.scoops)
 			//Punish them for their hubris
 			if(21 to INFINITY)
 				user.visible_message(span_alert("[user] is minced in a flash of light!"), span_alert("Within nanoseconds, your [target_cone.name] colapses into itself. The ensuing micro singularity rips you to shreads!"))
@@ -489,6 +485,8 @@
 				user.say(pick("Oh no...", "Mein gott...", "Uh oh...", "Fuuuuu...", "Shiiii...", "Not yoggers..."), forced="scoop fail")
 				//Explode their spessmen
 				explosion(user.loc,1,1,1,flash_range = 15)
+		//Delete cone after failure
+		qdel(target_cone)
 
 /obj/machinery/icecream_vat/empty
 	start_empty = TRUE
