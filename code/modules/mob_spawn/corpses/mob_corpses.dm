@@ -48,6 +48,18 @@
 	id = null
 	id_trim = null
 
+//monkestation edit begin
+/obj/effect/mob_spawn/corpse/human/syndicatecommando/lessenedgear/listeningpost
+	outfit = /datum/outfit/syndicatecommandocorpse/lessenedgear/listeningpost
+
+/datum/outfit/syndicatecommandocorpse/lessenedgear/listeningpost
+	name = "Forgotten Comms Agent Corpse"
+	back = /obj/item/storage/backpack
+	uniform = /obj/item/clothing/under/syndicate/sniper //corpse drip
+	neck = /obj/item/clothing/neck/large_scarf/syndie
+	head = /obj/item/clothing/head/soft/black
+//monke business ends
+
 /obj/effect/mob_spawn/corpse/human/syndicatestormtrooper
 	name = "Syndicate Stormtrooper"
 	hairstyle = "Bald"

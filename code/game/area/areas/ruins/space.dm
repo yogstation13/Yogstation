@@ -546,10 +546,7 @@
 	name = "\improper Abandoned Ship"
 
 
-//SYNDICATE LISTENING POST STATION
-
-/area/ruin/space/has_grav/listeningstation
-	name = "\improper Listening Post"
+//some sorta ancient shuttle idk
 
 /area/ruin/space/has_grav/powered/ancient_shuttle
 	name = "\improper Ancient Shuttle"
@@ -560,7 +557,7 @@
 
 /area/ruin/space/has_grav/hellfactoryoffice
 	name = "\improper Hell Factory Office"
-	area_flags = VALID_TERRITORY | BLOBS_ALLOWED | UNIQUE_AREA | NOTELEPORT
+	area_flags = VALID_TERRITORY | BLOBS_ALLOWED | UNIQUE_AREA | NOTELEPORT //who decided blobs should be allowed, i don't know, but it's funny
 
 //Ruin of Spinward Smoothies
 

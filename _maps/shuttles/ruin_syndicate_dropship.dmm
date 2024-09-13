@@ -15,6 +15,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/structure/fans/tiny,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/ruin/caravan/syndicate3)
 "bt" = (
@@ -127,6 +128,7 @@
 "kc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red/half/contrasted,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/shuttle/ruin/caravan/syndicate3)
 "kk" = (
@@ -169,6 +171,7 @@
 /obj/machinery/airalarm/directional/west,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/shuttle/ruin/caravan/syndicate3)
 "ox" = (
@@ -188,6 +191,7 @@
 	req_access = list("syndicate");
 	specialfunctions = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/shuttle/ruin/caravan/syndicate3)
 "rQ" = (
@@ -232,6 +236,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/structure/fans/tiny,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/ruin/caravan/syndicate3)
 "zP" = (
@@ -349,6 +354,7 @@
 	req_access = list("syndicate");
 	specialfunctions = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/shuttle/ruin/caravan/syndicate3)
 "KN" = (
@@ -368,6 +374,7 @@
 /area/shuttle/ruin/caravan/syndicate3)
 "Mc" = (
 /obj/effect/turf_decal/tile/red/half/contrasted,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/shuttle/ruin/caravan/syndicate3)
 "Nn" = (
@@ -410,6 +417,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/shuttle/ruin/caravan/syndicate3)
 "RT" = (
@@ -478,6 +486,12 @@
 /area/shuttle/ruin/caravan/syndicate3)
 "Vp" = (
 /obj/machinery/firealarm/directional/west,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/shuttle/ruin/caravan/syndicate3)
+"Zh" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/shuttle/ruin/caravan/syndicate3)
 "ZF" = (
@@ -538,7 +552,7 @@ uI
 uI
 Vh
 Ib
-iN
+Zh
 kc
 Nn
 uI
@@ -547,7 +561,7 @@ uI
 uI
 kR
 mq
-iN
+Zh
 rQ
 JK
 uI
@@ -565,7 +579,7 @@ UI
 bh
 oW
 nA
-iN
+Zh
 Vp
 JT
 wS

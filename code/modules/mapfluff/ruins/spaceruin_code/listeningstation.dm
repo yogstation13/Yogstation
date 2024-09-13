@@ -36,11 +36,19 @@
 	<br>
 	<br> It's not like anyone but me reads these, why else should I talk about my base upkeep? Today: the "lobby".
 "}
+//monkestation edit: goliath
+/obj/item/paper/fluff/ruins/listeningstation/reports/june/goliath
+	name = "hastily-written report"
+	default_raw_text = {"Heard some strange noises in the lobby, leaving this in case something happens.
+	<br> Some sorta loud banging behind one of the walls. I'm going to go take a look.
+	<br> Got my gun just in case, hopefully it isn't anything I need to use it for.
+"}
+//monkey business end
 
 // "Anderson" starts writing here
 /obj/item/paper/fluff/ruins/listeningstation/reports/july
 	name = "july report"
-	default_raw_text = {"Hey, old guy got a transfer, and I was next in line. I'll show them how we do it over at the Gorlex Marauders! Let's monitor some stuff. This will be fun.
+	default_raw_text = {"Hey, old guy went missing, and I was next in line. I'll show them how we do it over at the Gorlex Marauders! Let's monitor some stuff. This will be fun.
 	<br> It seems "old guy" did some upkeep around the base, and I will admit: it's nice. The lobby is shoddy for some reason. Not sure why that is.
 	<br> I read some of the older reports, and it seems like interesting stuff. No idea where June is. Ah well, maybe he got out in May?
 	<br> Odd sleeper, the frost covered it up. They were telling me about this on the way here, that it's meant to be a replacement to ensure "seamless" operation of this base. Okay?
@@ -60,7 +68,7 @@
 /obj/item/paper/fluff/ruins/listeningstation/reports/september
 	name = "september report"
 	default_raw_text = {"i'm... not doing good. i'm doing so bad. the sleeper is still there. my friend died in a sleeper malfunction. it overheated.
-	<br> i don't want to unplug it, i don't want to wake them up. i don't go in the bedroom anymore, i have a small cot in the lobby area. i'm lonely.
+	<br> i don't want to unplug it, i don't want to wake them up. i don't go near the backup anymore. i'm lonely.
 	<br> blowing myself up is out of the question. it'll kill them too. i've killed many people in my life, but i think ending another that way
 	<br> will probably send me to hell. if hell is anything like this, i'd rather try and salvage as much as i can before i pass. death awaits us all.
 	<br>
@@ -115,4 +123,17 @@
 	<br>You may view intelligence reports from your predecessors in the filing cabinet in your office.
 	"}
 
-
+// MONKESTATION EDIT: monkestation new listening post. im not making a seperate file for modularising some goddamn fluff on the other side of a file. this is why git exists
+/obj/item/paper/fluff/ruins/listeningstation/engineer
+	name = "message from syndicate engineering"
+	default_raw_text = {"This outpost's pretty messy compared to other models, so here's the basic rundown of every room and whatnot:
+	<br>As is to be expected, you've probably already found your way around the lounge area: it's where you'll spend most of your day, given the frequent dark periods on Nanotrasen stations.
+	<br>You also have a self-destruct issued for emergencies - probably don't wanna touch that.
+	<br>There's also your office, equipped with everything needed to communicate with agents and decieve (or just annoy) Nanotrasen crew - given this is being faxed, you're probably here.
+	<br>Service areas should be behind the yellow airlock - that's the laundry, engineering area, and life support: the relay is also through here.
+	<br>Entrance's opposite - it's reconfigured by different post crews for different uses: some use it as a lobby, some use it for cargo handling, others just cut it up for parts and leave it in shoddy condition.
+	<br>Infirmary's below - it's got a proper sleeper modified to allow you to use it without external assistance, as well as some supplies.
+	<br>There's also a pile of garden equipment in the excavation near medical - have fun with that.
+	<br>
+	<br>Enjoy your assignment."}
+// end monkey business
