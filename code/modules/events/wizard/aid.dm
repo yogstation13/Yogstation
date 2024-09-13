@@ -5,7 +5,7 @@
 	name = "Robeless Casting"
 	weight = 2
 	typepath = /datum/round_event/wizard/robelesscasting
-	max occurences = 0
+	max occurrences = 0
 	earliest_start = 0 MINUTES
 
 /datum/round_event/wizard/robelesscasting/start()
@@ -30,7 +30,7 @@
 	name = "Improved Casting"
 	weight = 3
 	typepath = /datum/round_event/wizard/improvedcasting
-	max occurences = 0 //because that'd be max level spells
+	max occurrences = 0 //because that'd be max level spells
 	earliest_start = 0 MINUTES
 
 /datum/round_event/wizard/improvedcasting/start()

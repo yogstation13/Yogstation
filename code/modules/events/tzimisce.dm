@@ -1,13 +1,13 @@
 /datum/round_event_control/tzimisce
 	name = "Spawn Tzimisce"
 	typepath = /datum/round_event/ghost_role/tzimisce
-	max occurences = 0
+	max occurrences = 0
 	min_players = 25
 	earliest_start = 45 MINUTES
 
 /datum/round_event_control/tzimisce/bloodsucker
 	name = "Spawn Tzimisce - Bloodsucker"
-	max occurences = 0
+	max occurrences = 0
 //	weight = 2000
 	typepath = /datum/round_event/ghost_role/tzimisce/bloodsucker
 	min_players = 25

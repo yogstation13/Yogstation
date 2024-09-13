@@ -2,7 +2,7 @@
 	name = "Scrubber Overflow: Normal"
 	typepath = /datum/round_event/scrubber_overflow
 	weight = 10
-	max occurences = 0
+	max occurrences = 0
 	min_players = 10
 
 /datum/round_event/scrubber_overflow
@@ -103,7 +103,7 @@
 	typepath = /datum/round_event/scrubber_overflow/threatening
 	weight = 4
 	min_players = 25
-	max occurences = 0
+	max occurrences = 0
 	earliest_start = 35 MINUTES
 
 /datum/round_event/scrubber_overflow/threatening
@@ -115,7 +115,7 @@
 	typepath = /datum/round_event/scrubber_overflow/catastrophic
 	weight = 2
 	min_players = 35
-	max occurences = 0
+	max occurrences = 0
 	earliest_start = 45 MINUTES
 
 /datum/round_event/scrubber_overflow/catastrophic

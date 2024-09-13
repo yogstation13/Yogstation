@@ -2,7 +2,7 @@
 	name = "Imposter Wizard"
 	weight = 1
 	typepath = /datum/round_event/wizard/imposter
-	max occurences = 0
+	max occurrences = 0
 	earliest_start = 0 MINUTES
 
 /datum/round_event/wizard/imposter/start()

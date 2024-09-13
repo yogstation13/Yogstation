@@ -66,7 +66,7 @@
 	holidayID = CHRISTMAS
 	typepath = /datum/round_event/santa
 	weight = 20
-	max occurences = 0
+	max occurrences = 0
 	earliest_start = 30 MINUTES
 
 /datum/round_event/santa

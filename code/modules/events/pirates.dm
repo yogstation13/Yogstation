@@ -2,7 +2,7 @@
 	name = "Space Pirates"
 	typepath = /datum/round_event/pirates
 	weight = 8
-	max occurences = 0
+	max occurrences = 0
 	min_players = 10
 	earliest_start = 30 MINUTES
 	dynamic_should_hijack = TRUE

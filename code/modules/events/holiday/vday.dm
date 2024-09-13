@@ -10,7 +10,7 @@
 	holidayID = VALENTINES
 	typepath = /datum/round_event/valentines
 	weight = -1							//forces it to be called, regardless of weight
-	max occurences = 0
+	max occurrences = 0
 	earliest_start = 0 MINUTES
 
 /datum/round_event/valentines/start()

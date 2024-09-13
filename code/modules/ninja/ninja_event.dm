@@ -12,7 +12,7 @@ Contents:
 /datum/round_event_control/ninja
 	name = "Space Ninja"
 	typepath = /datum/round_event/ghost_role/ninja
-	max occurences = 0
+	max occurrences = 0
 	earliest_start = 40 MINUTES
 	min_players = 15
 	dynamic_should_hijack = TRUE

@@ -19,10 +19,3 @@ export const quiet_mode: FeatureToggle = {
     />);
   },
 };
-
-export const pref_mood: FeatureToggle = {
-  name: "Enable mood",
-  category: "GAMEPLAY",
-  description: "Enable the mood system.",
-  component: CheckboxInput,
-};

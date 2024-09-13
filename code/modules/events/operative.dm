@@ -2,7 +2,7 @@
 	name = "Lone Operative"
 	typepath = /datum/round_event/ghost_role/operative
 	weight = 0 //Admin only
-	max occurences = 0
+	max occurrences = 0
 	dynamic_should_hijack = TRUE
 
 /datum/round_event/ghost_role/operative

@@ -1,7 +1,7 @@
 /datum/round_event_control/sinfuldemon
 	name = "Create Demon of Sin"
 	typepath = /datum/round_event/ghost_role/sinfuldemon
-	max occurences = 0 //misery loves company
+	max occurrences = 0 //misery loves company
 	weight = 5 //50% less likely to happen compared to most events
 	min_players = 15
 	earliest_start = 20 MINUTES

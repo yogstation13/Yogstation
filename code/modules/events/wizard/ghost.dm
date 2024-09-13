@@ -2,7 +2,7 @@
 	name = "G-G-G-Ghosts!"
 	weight = 3
 	typepath = /datum/round_event/wizard/ghost
-	max occurences = 0
+	max occurrences = 0
 	earliest_start = 0 MINUTES
 
 /datum/round_event/wizard/ghost/start()
@@ -16,7 +16,7 @@
 	name = "Possessing G-G-G-Ghosts!"
 	weight = 2
 	typepath = /datum/round_event/wizard/possession
-	max occurences = 0
+	max occurrences = 0
 	earliest_start = 0 MINUTES
 
 /datum/round_event/wizard/possession/start()

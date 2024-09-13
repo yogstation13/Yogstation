@@ -2,7 +2,7 @@
 	name = "Mass Zombie Outbreak" //yogs zombie memes
 	weight = 3
 	typepath = /datum/round_event/wizard/blobies
-	max occurences = 0
+	max occurrences = 0
 
 /datum/round_event/wizard/blobies/start()
 

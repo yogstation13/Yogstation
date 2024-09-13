@@ -12,7 +12,7 @@
 /datum/round_event_control/shuttle_loan
 	name = "Shuttle Loan"
 	typepath = /datum/round_event/shuttle_loan
-	max occurences = 0
+	max occurrences = 0
 	earliest_start = 7 MINUTES
 	max_alert = SEC_LEVEL_DELTA
 
