@@ -114,9 +114,7 @@
   - qol: Medical cyborg can use their health analyzer when in the dark or blind.
   - bugfix: Fixes fugitive hunter victory end round text.
   - bugfix: Restored old HOS trenchcoat sprite. Winter trenchcoat sprite also fixed.
-  - bugfix: 'Plush refill canister is actually in maint loot now.
-
-      :cl:'
+  - bugfix: Plush refill canister is actually in maint loot now.
   RikuTheKiller:
   - rscadd: You can now permanently remove NIFs through a surgery on the head called
       "NIF debonding", but it requires OOC consent.
@@ -325,9 +323,7 @@
   - bugfix: (vinylspiders) Fixed a hard delete with soapboxes.
   - bugfix: (SmArtKar) Fixed soapbox component sometimes runtiming roundstart.
   Gw0sty:
-  - rscadd: 'Adds R.D.S.P.L.X. skill chip to the science skill chip box.
-
-      :cl:'
+  - rscadd: Adds R.D.S.P.L.X. skill chip to the science skill chip box.
   KnigTheThrasher:
   - rscadd: Kilo docking bay has been moved somewhere else
   - rscadd: Improved Kilo xenobiology piping and disposals
