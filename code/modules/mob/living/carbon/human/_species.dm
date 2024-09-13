@@ -1294,7 +1294,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(!HAS_TRAIT(H, TRAIT_NOHUNGER))
 			var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
 			if((hungry >= 70) && !flight) //Being hungry will still allow you to use a flightsuit/wings.
-				. += hungry / 50
+				. += hungry / 60
 
 		if(gravity > STANDARD_GRAVITY)
 			var/grav_force = min(gravity - STANDARD_GRAVITY,3)
