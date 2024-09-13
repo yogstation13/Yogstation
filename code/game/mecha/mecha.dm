@@ -764,12 +764,10 @@
 	else
 		if(..()) //mech was thrown
 			return
-		if(bumpsmash && occupant) //Need a pilot to push the PUNCH button.
-			if(!equipment_disabled)
-				if(melee_can_hit < world.time)
-					default_melee_attack(obstacle, smashcooldown) //Non-equipment melee attack
-					if(!obstacle || obstacle.CanPass(src,newloc))
-						step(src,dir)
+		if(bumpsmash && occupant && !equipment_disabled && melee_can_hit) //Need a pilot to push the PUNCH button.
+			default_melee_attack(obstacle, smashcooldown) //Non-equipment melee attack
+			if(!obstacle || obstacle.CanPass(src,newloc))
+				step(src,dir)
 		if(isobj(obstacle))
 			var/obj/O = obstacle
 			if(!O.anchored)
