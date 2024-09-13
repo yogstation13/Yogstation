@@ -1,6 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "The Opposing Force panel now properly sets the max length of its text inputs, rather than silently cutting the input off afterwards."
-  - qol: "Changed the maximum opfor objective title length from 40 to 64."
-  - qol: "Changed the maximum opfor admin chat length to 1024 - the usual maximum message length."

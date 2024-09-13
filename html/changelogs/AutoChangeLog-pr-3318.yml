@@ -1,5 +1,0 @@
-author: "Absolucy, vinylspiders, SmArtKar"
-delete-after: True
-changes:
-  - bugfix: "(vinylspiders) Fixed a hard delete with soapboxes."
-  - bugfix: "(SmArtKar) Fixed soapbox component sometimes runtiming roundstart."

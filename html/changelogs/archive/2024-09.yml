@@ -312,12 +312,30 @@
       and some powers will either have a much higher blood cost, or be completely
       unavailable.
   - bugfix: Fixed various jank regarding oozeling bloodsuckers.
+  - rscadd: Added various botany circuit boards to Tech Storage.
+  - bugfix: Fix runtime error spam relating to AI camera lighting.
+  - bugfix: The Opposing Force panel now properly sets the max length of its text
+      inputs, rather than silently cutting the input off afterwards.
+  - qol: Changed the maximum opfor objective title length from 40 to 64.
+  - qol: Changed the maximum opfor admin chat length to 1024 - the usual maximum message
+      length.
   Absolucy, carlarctg:
   - qol: Ash Ascension spells have high transparency
+  Absolucy, vinylspiders, SmArtKar:
+  - bugfix: (vinylspiders) Fixed a hard delete with soapboxes.
+  - bugfix: (SmArtKar) Fixed soapbox component sometimes runtiming roundstart.
+  Gw0sty:
+  - rscadd: 'Adds R.D.S.P.L.X. skill chip to the science skill chip box.
+
+      :cl:'
+  KnigTheThrasher:
+  - rscadd: Kilo docking bay has been moved somewhere else
+  - rscadd: Improved Kilo xenobiology piping and disposals
   MomoBerri:
   - bugfix: sandstone stools now deconstruct properly into sandstone bricks.
   - bugfix: adds a normal floor tile underneath a certain airlock in a certain lavaland
       ruin.
+  - bugfix: fixes contractor guide formatting.
   PotatoTomahto:
   - rscadd: Adds "Cryptozoologist" and "Paranormal Investigator" alt titles.
   RandomDudeFromTheRim:
