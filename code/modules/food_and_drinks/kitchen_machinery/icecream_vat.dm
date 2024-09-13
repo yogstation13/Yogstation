@@ -376,7 +376,7 @@
 
 				//If there are more than four scoops and scoop_fail is true, check for scooping failure
 				if(cone.scoops > 4 && scoop_fail)
-					scooping_failure(cone)
+					scooping_failure(cone, usr)
 
 			//Warn user that there are no selected scoops left
 			else
@@ -458,7 +458,7 @@
 
 	return final_string
 
-/obj/machinery/icecream_vat/proc/scooping_failure(obj/item/reagent_containers/food/snacks/ice_cream_cone/target_cone, /mob/living/carbon/user = usr)
+/obj/machinery/icecream_vat/proc/scooping_failure(obj/item/reagent_containers/food/snacks/ice_cream_cone/target_cone, mob/living/carbon/human/user = usr)
 	//Base chance of failure
 	var/base_chance = 15
 	//Chance of failure that is multiplied by scoop count minus 4
@@ -471,16 +471,24 @@
 			//Alert user
 			if(5 to 9)
 				user.visible_message(span_alert("[user] accidently crushes their [target_cone.name] while trying to add another scoop!"), span_alert("You accidently crush your [target_cone.name] while trying to add another scoop!"))
+				//Delete cone
+				qdel(target_cone)
 			//Alert user and damage them based on amount of scoops
 			if(10 to 20)
 				user.visible_message(span_alert("[user] accidently tips their [target_cone.name] over and is hit in the ensuing avalanche!"), span_alert("You accidently tip your [target_cone.name] over and are hit by the ensuing avalanche!"))
 				//Maximum of 20 brute damage from failure
 				user.adjustBruteLoss(target_cone.scoops)
-			//Explode them
+				//Cool them down
+				user.adjust_bodytemperature((-2 * target_cone.scoops) * TEMPERATURE_DAMAGE_COEFFICIENT, target_cone.scoops)
+				//Delete cone
+				qdel(target_cone)
+			//Punish them for their hubris
 			if(21 to INFINITY)
-				
-		//Delete cone if failed
-		qdel(target_cone)
+				user.visible_message(span_alert("[user] is minced in a flash of light!"), span_alert("Within nanoseconds, your [target_cone.name] colapses into itself. The ensuing micro singularity rips you to shreads!"))
+				//Regret
+				user.say(pick("Oh no...", "Mein gott...", "Uh oh...", "Fuuuuu...", "Shiiii...", "Not yoggers..."), forced="scoop fail")
+				//Explode their spessmen
+				explosion(user.loc,1,1,1,flash_range = 15)
 
 /obj/machinery/icecream_vat/empty
 	start_empty = TRUE
