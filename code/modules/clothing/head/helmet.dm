@@ -144,6 +144,12 @@
 	inhand_icon_state = "blueshift_helmet"
 	custom_premium_price = PAYCHECK_COMMAND
 
+/obj/item/clothing/head/helmet/guardmanhelmet
+	name = "guardman's helmet"
+	desc = "Keeps your brain intact when fighting heretics"
+	icon = 'monkestation/icons/obj/clothing/hats.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/head.dmi'
+	icon_state = "guardman_helmet"
 
 /obj/item/clothing/head/helmet/toggleable
 	dog_fashion = null
