@@ -26,5 +26,15 @@
 	centerspawner = FALSE
 	template_height = 26
 	template_width = 29
-	weight = 4 // Should probably be rarer than the other two engines.
+	weight = 8
+	station_name = "Box Station"
+
+/datum/map_template/random_room/random_engines/box_sm_teg
+	name = "Box SM TEG Engine"
+	room_id = "box_sm_teg"
+	mappath = "_maps/~monkestation/RandomEngines/BoxStation/sm_teg.dmm"
+	centerspawner = FALSE
+	template_height = 26
+	template_width = 29
+	weight = 6
 	station_name = "Box Station"

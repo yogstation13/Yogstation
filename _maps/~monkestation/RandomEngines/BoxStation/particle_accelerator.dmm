@@ -20,9 +20,8 @@
 /area/station/engineering/main)
 "cp" = (
 /obj/machinery/camera/emp_proof/directional/north{
-	c_tag = "Engineering - Station Particle Accelerator, Northeast";
-	name = "engineering camera";
-	dir = 9
+	c_tag = "Engineering - Station Particle Accelerator, Northwest";
+	name = "engineering camera"
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
@@ -48,7 +47,7 @@
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "dV" = (
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/department/engine)
 "fX" = (
 /obj/effect/turf_decal/stripes/line,
@@ -192,6 +191,12 @@
 /obj/item/stack/cable_coil,
 /turf/open/floor/plating,
 /area/station/engineering/main)
+"lg" = (
+/obj/machinery/light/small/directional/south,
+/obj/structure/cable,
+/obj/item/kirbyplants/random,
+/turf/open/floor/iron/dark,
+/area/station/engineering/main)
 "lC" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
@@ -221,7 +226,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/light/small/directional/north,
 /obj/machinery/button/door/directional/north{
 	id = "particle_accelerator";
 	name = "Particle Accelerator Shutters Control";
@@ -283,8 +287,10 @@
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "rU" = (
-/obj/machinery/light/directional/south,
+/obj/machinery/light/small/directional/south,
 /obj/structure/cable,
+/obj/structure/extinguisher_cabinet/directional/south,
+/obj/item/kirbyplants/random,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "sM" = (
@@ -297,6 +303,10 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
+/area/station/engineering/main)
+"sQ" = (
+/obj/structure/chair,
+/turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "tq" = (
 /obj/effect/turf_decal/stripes/line,
@@ -469,6 +479,11 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"BY" = (
+/obj/effect/turf_decal/tile/yellow/fourcorners,
+/obj/machinery/camera/autoname/directional/west,
+/turf/open/floor/iron,
+/area/station/engineering/main)
 "Cp" = (
 /obj/structure/table,
 /obj/machinery/camera/directional/north{
@@ -540,6 +555,7 @@
 	name = "Engine Storage Control";
 	req_access = list("engineering")
 	},
+/obj/machinery/camera/autoname/directional/west,
 /obj/structure/tank_holder/oxygen/yellow,
 /turf/open/floor/plating,
 /area/station/engineering/main)
@@ -702,7 +718,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line,
-/obj/machinery/light/directional/north,
+/obj/machinery/light/small/directional/north,
 /obj/structure/sign/warning/vacuum/external/directional/north,
 /turf/open/floor/plating,
 /area/station/engineering/main)
@@ -716,6 +732,7 @@
 /obj/effect/turf_decal/stripes/end{
 	dir = 4
 	},
+/obj/machinery/camera/autoname/directional/east,
 /obj/structure/tank_holder/oxygen/yellow,
 /turf/open/floor/plating,
 /area/station/engineering/main)
@@ -739,6 +756,11 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
 	},
+/turf/open/floor/iron,
+/area/station/engineering/main)
+"SS" = (
+/obj/effect/turf_decal/tile/yellow/fourcorners,
+/obj/machinery/camera/autoname/directional/east,
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "TF" = (
@@ -798,8 +820,7 @@
 "ZW" = (
 /obj/machinery/camera/emp_proof/directional/south{
 	name = "engineering camera";
-	c_tag = "Engineering - Station Particle Accelerator, Southeast";
-	dir = 5
+	c_tag = "Engineering - Station Particle Accelerator, Southwest"
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
@@ -809,7 +830,7 @@ PG
 oN
 oN
 oN
-oN
+PG
 PG
 GW
 GW
@@ -974,7 +995,7 @@ GW
 "}
 (7,1,1) = {"
 PG
-oN
+sQ
 GK
 oN
 ge
@@ -1002,10 +1023,10 @@ Cs
 "}
 (8,1,1) = {"
 PG
-oN
+sQ
 GK
 hq
-rU
+lg
 PG
 GW
 GW
@@ -1030,7 +1051,7 @@ GW
 "}
 (9,1,1) = {"
 PG
-oN
+sQ
 GK
 oN
 PG
@@ -1085,13 +1106,13 @@ wX
 El
 "}
 (11,1,1) = {"
-Fz
+BY
 mE
 iV
 bj
 PG
 PV
-PG
+Cq
 Zp
 Zp
 Zp
@@ -1477,13 +1498,13 @@ wX
 El
 "}
 (25,1,1) = {"
-Fz
+SS
 mE
 TF
 SB
 PG
 PV
-PG
+Cq
 Zp
 Zp
 Zp

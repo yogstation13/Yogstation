@@ -62,6 +62,11 @@
 /obj/machinery/light/floor/has_bulb,
 /turf/open/floor/iron,
 /area/station/commons/lounge)
+"dQ" = (
+/obj/effect/turf_decal/tile/bar/opposingcorners,
+/obj/machinery/restaurant_portal/restaurant,
+/turf/open/floor/iron,
+/area/station/commons/lounge)
 "ei" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -95,6 +100,12 @@
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /obj/structure/chair,
 /obj/effect/landmark/start/assistant,
+/turf/open/floor/iron,
+/area/station/commons/lounge)
+"fV" = (
+/obj/effect/turf_decal/tile/bar/opposingcorners,
+/obj/machinery/light/small/directional/north,
+/obj/machinery/barsign/directional/north,
 /turf/open/floor/iron,
 /area/station/commons/lounge)
 "gW" = (
@@ -186,7 +197,10 @@
 /area/station/service/theater)
 "uI" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
-/obj/structure/chair/stool/bar/directional/west,
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/iron,
 /area/station/commons/lounge)
 "vg" = (
@@ -217,7 +231,10 @@
 /area/station/commons/lounge)
 "zQ" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
-/obj/machinery/barsign/directional/north,
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/iron,
 /area/station/commons/lounge)
 "Ca" = (
@@ -295,7 +312,7 @@
 "EP" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /obj/machinery/camera/autoname/directional/north,
-/obj/machinery/restaurant_portal/restaurant,
+/obj/machinery/light/small/directional/north,
 /turf/open/floor/iron,
 /area/station/commons/lounge)
 "FT" = (
@@ -349,6 +366,11 @@
 /obj/machinery/holopad,
 /turf/open/floor/iron,
 /area/station/commons/lounge)
+"Lc" = (
+/obj/effect/turf_decal/tile/bar/opposingcorners,
+/obj/machinery/media/jukebox,
+/turf/open/floor/iron,
+/area/station/commons/lounge)
 "Ly" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /obj/structure/table/wood/poker,
@@ -363,6 +385,17 @@
 	dir = 9
 	},
 /turf/open/floor/iron,
+/area/station/commons/lounge)
+"Mq" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/public/glass{
+	name = "Bar"
+	},
+/turf/open/floor/iron/textured,
 /area/station/commons/lounge)
 "Nm" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
@@ -431,8 +464,8 @@
 /area/station/commons/lounge)
 "WG" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
-/obj/machinery/media/jukebox,
-/obj/machinery/light/directional/north,
+/obj/structure/chair/stool/bar/directional/west,
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/iron,
 /area/station/commons/lounge)
 "XC" = (
@@ -454,9 +487,9 @@ tH
 EF
 tH
 PD
-uI
 cD
-uI
+WG
+cD
 DZ
 tH
 XC
@@ -469,7 +502,7 @@ sZ
 "}
 (2,1,1) = {"
 Ca
-zQ
+tH
 EF
 EF
 EF
@@ -488,13 +521,13 @@ sZ
 "}
 (3,1,1) = {"
 Ca
-tH
+fV
 kE
 tH
 DV
 On
 EF
-On
+uI
 On
 tH
 Nm
@@ -506,8 +539,8 @@ JF
 sZ
 "}
 (4,1,1) = {"
-zF
-Dt
+Ca
+Lc
 tH
 tH
 TB
@@ -525,12 +558,12 @@ Od
 sZ
 "}
 (5,1,1) = {"
-Ca
-EP
+Mq
+tH
 tH
 tH
 FT
-FT
+zQ
 dy
 FT
 CA
@@ -544,8 +577,8 @@ uC
 ae
 "}
 (6,1,1) = {"
-Ca
-WG
+zF
+tH
 tH
 tH
 tH
@@ -563,16 +596,16 @@ NZ
 NZ
 "}
 (7,1,1) = {"
-Ca
-eR
+Mq
+tH
 tH
 DR
 ZX
-az
+CQ
 EF
 fx
 TB
-Cg
+CQ
 tH
 tH
 mi
@@ -582,16 +615,16 @@ NZ
 NZ
 "}
 (8,1,1) = {"
-zF
-tH
+Ca
+EP
 tH
 xm
 Ly
-CQ
+az
 EF
 xm
 TB
-CQ
+Cg
 tH
 tH
 mi
@@ -621,9 +654,9 @@ dp
 "}
 (10,1,1) = {"
 Ca
-fx
-TB
-Cg
+dQ
+Dt
+eR
 Ca
 cH
 Uq

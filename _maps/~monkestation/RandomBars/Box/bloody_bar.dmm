@@ -36,6 +36,11 @@
 	},
 /turf/open/floor/cult,
 /area/station/commons/lounge)
+"ev" = (
+/obj/machinery/light/small/directional/north,
+/obj/machinery/barsign/directional/north,
+/turf/open/floor/cult,
+/area/station/commons/lounge)
 "eO" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -88,7 +93,7 @@
 /turf/template_noop,
 /area/template_noop)
 "lu" = (
-/obj/machinery/barsign/directional/north,
+/obj/machinery/restaurant_portal/restaurant,
 /turf/open/floor/cult,
 /area/station/commons/lounge)
 "ng" = (
@@ -106,8 +111,8 @@
 /turf/open/floor/plating,
 /area/station/commons/lounge)
 "qb" = (
-/obj/machinery/media/jukebox,
-/obj/machinery/light/directional/north,
+/obj/machinery/camera/autoname/directional/north,
+/obj/machinery/light/small/directional/north,
 /turf/open/floor/cult,
 /area/station/commons/lounge)
 "rV" = (
@@ -203,8 +208,7 @@
 /turf/open/floor/cult,
 /area/station/commons/lounge)
 "DC" = (
-/obj/machinery/camera/autoname/directional/north,
-/obj/machinery/restaurant_portal/restaurant,
+/obj/machinery/media/jukebox,
 /turf/open/floor/cult,
 /area/station/commons/lounge)
 "DJ" = (
@@ -407,9 +411,9 @@ Bl
 ue
 Bl
 DJ
-gA
 wp
 gA
+wp
 ae
 Bl
 wM
@@ -422,7 +426,7 @@ kL
 "}
 (2,1,1) = {"
 Gh
-lu
+Bl
 ue
 ue
 ue
@@ -441,13 +445,13 @@ kL
 "}
 (3,1,1) = {"
 Gh
-Bl
+ev
 eu
 Bl
 FU
 Ie
 ue
-Ie
+FU
 Ie
 Bl
 FK
@@ -459,8 +463,8 @@ Sg
 kL
 "}
 (4,1,1) = {"
-jf
-cT
+Gh
+DC
 Bl
 Bl
 QE
@@ -478,12 +482,12 @@ em
 kL
 "}
 (5,1,1) = {"
-Gh
-DC
+gf
+Bl
 Bl
 Bl
 gA
-gA
+wp
 Iy
 gA
 wp
@@ -497,8 +501,8 @@ jL
 wz
 "}
 (6,1,1) = {"
-Gh
-qb
+jf
+Bl
 Bl
 Bl
 Bl
@@ -516,8 +520,8 @@ KM
 KM
 "}
 (7,1,1) = {"
-Gh
-ZK
+gf
+Bl
 Bl
 fk
 uS
@@ -535,14 +539,14 @@ KM
 KM
 "}
 (8,1,1) = {"
-jf
-Bl
+Gh
+qb
 Bl
 sW
 bi
-fK
+ng
 ue
-sW
+fk
 uS
 fK
 rV
@@ -574,9 +578,9 @@ fa
 "}
 (10,1,1) = {"
 Gh
-sW
-uS
-ng
+lu
+cT
+ZK
 Gh
 gf
 pq

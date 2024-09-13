@@ -68,6 +68,10 @@
 	},
 /turf/open/floor/bronze,
 /area/station/commons/lounge)
+"iB" = (
+/obj/machinery/media/jukebox,
+/turf/open/floor/bronze,
+/area/station/commons/lounge)
 "jv" = (
 /obj/machinery/light/directional/east,
 /turf/open/floor/bronze/flat,
@@ -217,8 +221,7 @@
 /turf/open/floor/bronze/flat,
 /area/station/service/theater)
 "Iw" = (
-/obj/machinery/media/jukebox,
-/obj/machinery/light/directional/north,
+/obj/machinery/restaurant_portal/restaurant,
 /turf/open/floor/bronze,
 /area/station/commons/lounge)
 "Jy" = (
@@ -267,6 +270,7 @@
 /turf/open/floor/bronze,
 /area/station/commons/lounge)
 "Ov" = (
+/obj/machinery/light/small/directional/north,
 /obj/machinery/barsign/directional/north,
 /turf/open/floor/bronze,
 /area/station/commons/lounge)
@@ -317,7 +321,7 @@
 /area/station/commons/lounge)
 "Tu" = (
 /obj/machinery/camera/autoname/directional/north,
-/obj/machinery/restaurant_portal/restaurant,
+/obj/machinery/light/small/directional/north,
 /turf/open/floor/bronze,
 /area/station/commons/lounge)
 "TL" = (
@@ -385,9 +389,9 @@ TL
 qG
 TL
 LJ
-qn
 LI
 qn
+LI
 Mm
 TL
 PP
@@ -400,7 +404,7 @@ Wj
 "}
 (2,1,1) = {"
 OD
-Ov
+TL
 qG
 qG
 qG
@@ -419,13 +423,13 @@ Wj
 "}
 (3,1,1) = {"
 OD
-TL
+Ov
 dN
 TL
 ol
 il
 qG
-il
+ol
 il
 TL
 ZZ
@@ -437,8 +441,8 @@ Ya
 Wj
 "}
 (4,1,1) = {"
-Go
-kq
+OD
+iB
 TL
 Ui
 Jy
@@ -456,12 +460,12 @@ Ef
 Wj
 "}
 (5,1,1) = {"
-OD
-Tu
+cr
+TL
 TL
 TL
 qn
-qn
+LI
 fp
 qn
 LI
@@ -475,8 +479,8 @@ FG
 Ie
 "}
 (6,1,1) = {"
-OD
-Iw
+Go
+TL
 TL
 TL
 TL
@@ -494,8 +498,8 @@ ca
 ca
 "}
 (7,1,1) = {"
-OD
-RG
+cr
+TL
 TL
 mm
 Jy
@@ -513,14 +517,14 @@ ca
 ca
 "}
 (8,1,1) = {"
-Go
-TL
+OD
+Tu
 TL
 si
 Jy
-cu
+JZ
 qG
-si
+mm
 Jy
 cu
 hB
@@ -552,9 +556,9 @@ zp
 "}
 (10,1,1) = {"
 OD
-si
-Jy
-JZ
+Iw
+kq
+RG
 OD
 cr
 tn

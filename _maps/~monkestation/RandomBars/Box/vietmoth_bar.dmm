@@ -34,7 +34,6 @@
 /turf/open/floor/grass,
 /area/station/commons/lounge)
 "ew" = (
-/obj/machinery/camera/autoname/directional/north,
 /obj/machinery/restaurant_portal/restaurant,
 /turf/open/floor/grass,
 /area/station/commons/lounge)
@@ -60,9 +59,9 @@
 /turf/open/floor/grass,
 /area/station/commons/lounge)
 "gY" = (
-/obj/machinery/media/jukebox,
-/obj/machinery/light/directional/north,
-/turf/open/floor/grass,
+/obj/machinery/camera/autoname/directional/north,
+/obj/machinery/light/small/directional/north,
+/turf/open/water/jungle,
 /area/station/commons/lounge)
 "hS" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -173,7 +172,7 @@
 /turf/open/floor/grass,
 /area/station/commons/lounge)
 "py" = (
-/obj/machinery/barsign/directional/north,
+/obj/machinery/media/jukebox,
 /turf/open/floor/grass,
 /area/station/commons/lounge)
 "pP" = (
@@ -298,6 +297,8 @@
 /turf/open/floor/grass,
 /area/station/commons/lounge)
 "CX" = (
+/obj/machinery/light/small/directional/north,
+/obj/machinery/barsign/directional/north,
 /obj/structure/flora/bush/jungle/a/style_random,
 /turf/open/floor/grass,
 /area/station/commons/lounge)
@@ -461,9 +462,9 @@ nj
 jK
 nj
 OY
-Oz
 nR
 Oz
+nR
 po
 nj
 YM
@@ -476,7 +477,7 @@ yJ
 "}
 (2,1,1) = {"
 Ub
-py
+nj
 jK
 Bs
 jK
@@ -503,7 +504,7 @@ nj
 jK
 QO
 dx
-dx
+vy
 Dg
 xk
 AS
@@ -513,8 +514,8 @@ EB
 yJ
 "}
 (4,1,1) = {"
-tT
-nB
+Ub
+py
 nj
 nj
 FS
@@ -532,8 +533,8 @@ vc
 yJ
 "}
 (5,1,1) = {"
-Ub
-ew
+vv
+nj
 QO
 nj
 Oz
@@ -551,8 +552,8 @@ zv
 Im
 "}
 (6,1,1) = {"
-Ub
-gY
+tT
+nj
 nj
 lY
 Ke
@@ -570,8 +571,8 @@ ZC
 ZC
 "}
 (7,1,1) = {"
-Ub
-BD
+vv
+nj
 mL
 mL
 mL
@@ -589,8 +590,8 @@ jB
 jB
 "}
 (8,1,1) = {"
-tT
-mL
+Ub
+gY
 mL
 Yt
 FS
@@ -628,9 +629,9 @@ Ol
 "}
 (10,1,1) = {"
 Ub
-qi
-FS
-HA
+ew
+nB
+BD
 Ub
 vv
 Hh
