@@ -66,40 +66,40 @@
 	build_all_button_icons()
 	on_who.update_icons()
 
-/datum/action/cooldown/alien/acid/nova/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/alien/acid/nova/InterceptClickOn(mob/living/user, params, atom/target)
 	. = ..()
 	if(!.)
-		unset_click_ability(caller, refund_cooldown = FALSE)
+		unset_click_ability(user, refund_cooldown = FALSE)
 		return FALSE
 
-	var/turf/user_turf = caller.loc
-	var/turf/target_turf = get_step(caller, target.dir)
+	var/turf/user_turf = user.loc
+	var/turf/target_turf = get_step(user, target.dir)
 	if(!isturf(target_turf))
 		return FALSE
 
 	var/modifiers = params2list(params)
-	caller.visible_message(
-		span_danger("[caller] spits [projectile_name]!"),
+	user.visible_message(
+		span_danger("[user] spits [projectile_name]!"),
 		span_alertalien("You spit [projectile_name]."),
 	)
 
 	if(acid_projectile)
-		var/obj/projectile/spit_projectile = new acid_projectile(caller.loc)
-		spit_projectile.preparePixelProjectile(target, caller, modifiers)
-		spit_projectile.firer = caller
+		var/obj/projectile/spit_projectile = new acid_projectile(user.loc)
+		spit_projectile.preparePixelProjectile(target, user, modifiers)
+		spit_projectile.firer = user
 		spit_projectile.fire()
-		playsound(caller, spit_sound, 100, TRUE, 5, 0.9)
-		caller.newtonian_move(get_dir(target_turf, user_turf))
+		playsound(user, spit_sound, 100, TRUE, 5, 0.9)
+		user.newtonian_move(get_dir(target_turf, user_turf))
 		return TRUE
 
 	if(acid_casing)
-		var/obj/item/ammo_casing/casing = new acid_casing(caller.loc)
-		playsound(caller, spit_sound, 100, TRUE, 5, 0.9)
-		casing.fire_casing(target, caller, null, null, null, ran_zone(), 0, caller)
-		caller.newtonian_move(get_dir(target_turf, user_turf))
+		var/obj/item/ammo_casing/casing = new acid_casing(user.loc)
+		playsound(user, spit_sound, 100, TRUE, 5, 0.9)
+		casing.fire_casing(target, user, null, null, null, ran_zone(), 0, user)
+		user.newtonian_move(get_dir(target_turf, user_turf))
 		return TRUE
 
-	CRASH("Neither acid_projectile or acid_casing are set on [caller]'s spit attack!")
+	CRASH("Neither acid_projectile or acid_casing are set on [user]'s spit attack!")
 
 /datum/action/cooldown/alien/acid/nova/Activate(atom/target)
 	return TRUE

@@ -64,7 +64,7 @@
 	build_all_button_icons()
 	return TRUE
 
-/datum/action/cooldown/spell/pointed/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/spell/pointed/InterceptClickOn(mob/living/user, params, atom/target)
 
 	var/atom/aim_assist_target
 	if(aim_assist && isturf(target))
@@ -74,7 +74,7 @@
 			// If we didn't find a human, we settle for any living at all
 			aim_assist_target = locate(/mob/living) in target
 
-	return ..(caller, params, aim_assist_target || target)
+	return ..(user, params, aim_assist_target || target)
 
 /datum/action/cooldown/spell/pointed/is_valid_target(atom/cast_on)
 	if(cast_on == owner)

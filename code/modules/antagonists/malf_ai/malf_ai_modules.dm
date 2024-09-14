@@ -442,19 +442,19 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 	. = ..()
 	desc = "[desc] It has [uses] use\s remaining."
 
-/datum/action/innate/ai/ranged/override_machine/do_ability(mob/living/caller, atom/clicked_on)
-	if(caller.incapacitated())
-		unset_ranged_ability(caller)
+/datum/action/innate/ai/ranged/override_machine/do_ability(mob/living/user, atom/clicked_on)
+	if(user.incapacitated())
+		unset_ranged_ability(user)
 		return FALSE
 	if(!ismachinery(clicked_on))
-		to_chat(caller, span_warning("You can only animate machines!"))
+		to_chat(user, span_warning("You can only animate machines!"))
 		return FALSE
 	var/obj/machinery/clicked_machine = clicked_on
 	if(!clicked_machine.can_be_overridden() || is_type_in_typecache(clicked_machine, GLOB.blacklisted_malf_machines))
-		to_chat(caller, span_warning("That machine can't be overridden!"))
+		to_chat(user, span_warning("That machine can't be overridden!"))
 		return FALSE
 
-	caller.playsound_local(caller, 'sound/misc/interference.ogg', 50, FALSE, use_reverb = FALSE)
+	user.playsound_local(user, 'sound/misc/interference.ogg', 50, FALSE, use_reverb = FALSE)
 	adjust_uses(-1)
 
 	if(uses)
@@ -462,15 +462,15 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 		build_all_button_icons()
 
 	clicked_machine.audible_message(span_userdanger("You hear a loud electrical buzzing sound coming from [clicked_machine]!"))
-	addtimer(CALLBACK(src, PROC_REF(animate_machine), caller, clicked_machine), 5 SECONDS) //kabeep!
-	unset_ranged_ability(caller, span_danger("Sending override signal..."))
+	addtimer(CALLBACK(src, PROC_REF(animate_machine), user, clicked_machine), 5 SECONDS) //kabeep!
+	unset_ranged_ability(user, span_danger("Sending override signal..."))
 	return TRUE
 
-/datum/action/innate/ai/ranged/override_machine/proc/animate_machine(mob/living/caller, obj/machinery/to_animate)
+/datum/action/innate/ai/ranged/override_machine/proc/animate_machine(mob/living/user, obj/machinery/to_animate)
 	if(QDELETED(to_animate))
 		return
 
-	new /mob/living/simple_animal/hostile/mimic/copy/machine(get_turf(to_animate), to_animate, caller, TRUE)
+	new /mob/living/simple_animal/hostile/mimic/copy/machine(get_turf(to_animate), to_animate, user, TRUE)
 
 /// Destroy RCDs: Detonates all non-cyborg RCDs on the station.
 /datum/ai_module/destructive/destroy_rcd
@@ -519,38 +519,38 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 	..()
 	desc = "[desc] It has [uses] use\s remaining."
 
-/datum/action/innate/ai/ranged/overload_machine/proc/detonate_machine(mob/living/caller, obj/machinery/to_explode)
+/datum/action/innate/ai/ranged/overload_machine/proc/detonate_machine(mob/living/user, obj/machinery/to_explode)
 	if(QDELETED(to_explode))
 		return
 
 	var/turf/machine_turf = get_turf(to_explode)
-	message_admins("[ADMIN_LOOKUPFLW(caller)] overloaded [to_explode.name] ([to_explode.type]) at [ADMIN_VERBOSEJMP(machine_turf)].")
-	caller.log_message("overloaded [to_explode.name] ([to_explode.type])", LOG_ATTACK)
+	message_admins("[ADMIN_LOOKUPFLW(user)] overloaded [to_explode.name] ([to_explode.type]) at [ADMIN_VERBOSEJMP(machine_turf)].")
+	user.log_message("overloaded [to_explode.name] ([to_explode.type])", LOG_ATTACK)
 	explosion(to_explode, heavy_impact_range = 2, light_impact_range = 3)
 	if(!QDELETED(to_explode)) //to check if the explosion killed it before we try to delete it
 		qdel(to_explode)
 
-/datum/action/innate/ai/ranged/overload_machine/do_ability(mob/living/caller, atom/clicked_on)
-	if(caller.incapacitated())
-		unset_ranged_ability(caller)
+/datum/action/innate/ai/ranged/overload_machine/do_ability(mob/living/user, atom/clicked_on)
+	if(user.incapacitated())
+		unset_ranged_ability(user)
 		return FALSE
 	if(!ismachinery(clicked_on))
-		to_chat(caller, span_warning("You can only overload machines!"))
+		to_chat(user, span_warning("You can only overload machines!"))
 		return FALSE
 	var/obj/machinery/clicked_machine = clicked_on
 	if(is_type_in_typecache(clicked_machine, GLOB.blacklisted_malf_machines))
-		to_chat(caller, span_warning("You cannot overload that device!"))
+		to_chat(user, span_warning("You cannot overload that device!"))
 		return FALSE
 
-	caller.playsound_local(caller, SFX_SPARKS, 50, 0)
+	user.playsound_local(user, SFX_SPARKS, 50, 0)
 	adjust_uses(-1)
 	if(uses)
 		desc = "[initial(desc)] It has [uses] use\s remaining."
 		build_all_button_icons()
 
 	clicked_machine.audible_message(span_userdanger("You hear a loud electrical buzzing sound coming from [clicked_machine]!"))
-	addtimer(CALLBACK(src, PROC_REF(detonate_machine), caller, clicked_machine), 5 SECONDS) //kaboom!
-	unset_ranged_ability(caller, span_danger("Overcharging machine..."))
+	addtimer(CALLBACK(src, PROC_REF(detonate_machine), user, clicked_machine), 5 SECONDS) //kaboom!
+	unset_ranged_ability(user, span_danger("Overcharging machine..."))
 	return TRUE
 
 /// Blackout: Overloads a random number of lights across the station. Three uses.
@@ -1050,7 +1050,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 	. = ..()
 	desc = "[desc] It has [uses] use\s remaining."
 
-/datum/action/innate/ai/ranged/emag/do_ability(mob/living/caller, atom/clicked_on)
+/datum/action/innate/ai/ranged/emag/do_ability(mob/living/user, atom/clicked_on)
 
 	// Only things with of or subtyped of any of these types may be remotely emagged
 	var/static/list/compatable_typepaths = list(
@@ -1062,13 +1062,13 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 		/mob/living/silicon,
 	)
 
-	if (!isAI(caller))
+	if (!isAI(user))
 		return FALSE
 
-	var/mob/living/silicon/ai/ai_caller = caller
+	var/mob/living/silicon/ai/ai_caller = user
 
 	if(ai_caller.incapacitated())
-		unset_ranged_ability(caller)
+		unset_ranged_ability(user)
 		return FALSE
 
 	if (!ai_caller.can_see(clicked_on))
@@ -1147,15 +1147,15 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 	. = ..()
 	desc = "[desc] It has [uses] use\s remaining."
 
-/datum/action/innate/ai/ranged/core_tilt/do_ability(mob/living/caller, atom/clicked_on)
+/datum/action/innate/ai/ranged/core_tilt/do_ability(mob/living/user, atom/clicked_on)
 
 	if (!COOLDOWN_FINISHED(src, time_til_next_tilt))
-		caller.balloon_alert(caller, "on cooldown!")
+		user.balloon_alert(user, "on cooldown!")
 		return FALSE
 
-	if (!isAI(caller))
+	if (!isAI(user))
 		return FALSE
-	var/mob/living/silicon/ai/ai_caller = caller
+	var/mob/living/silicon/ai/ai_caller = user
 
 	if (ai_caller.incapacitated() || !isturf(ai_caller.loc))
 		return FALSE
@@ -1198,8 +1198,8 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 	return ai_caller.fall_and_crush(target, MALF_AI_ROLL_DAMAGE, MALF_AI_ROLL_CRIT_CHANCE, null, paralyze_time, picked_dir, rotation = get_rotation_from_dir(picked_dir))
 
 /// Used in our radial menu, state-checking proc after the radial menu sleeps
-/datum/action/innate/ai/ranged/core_tilt/proc/radial_check(mob/living/silicon/ai/caller)
-	if (QDELETED(caller) || caller.incapacitated() || caller.stat == DEAD)
+/datum/action/innate/ai/ranged/core_tilt/proc/radial_check(mob/living/silicon/ai/user)
+	if (QDELETED(user) || user.incapacitated() || user.stat == DEAD)
 		return FALSE
 
 	if (uses <= 0)
@@ -1240,14 +1240,14 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 	. = ..()
 	desc = "[desc] It has [uses] use\s remaining."
 
-/datum/action/innate/ai/ranged/remote_vendor_tilt/do_ability(mob/living/caller, atom/clicked_on)
+/datum/action/innate/ai/ranged/remote_vendor_tilt/do_ability(mob/living/user, atom/clicked_on)
 
-	if (!isAI(caller))
+	if (!isAI(user))
 		return FALSE
-	var/mob/living/silicon/ai/ai_caller = caller
+	var/mob/living/silicon/ai/ai_caller = user
 
 	if(ai_caller.incapacitated())
-		unset_ranged_ability(caller)
+		unset_ranged_ability(user)
 		return FALSE
 
 	if(!isvendor(clicked_on))
@@ -1268,7 +1268,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 		clicked_vendor.balloon_alert(ai_caller, "inoperable!")
 		return FALSE
 
-	var/picked_dir_string = show_radial_menu(ai_caller, clicked_vendor, GLOB.all_radial_directions, custom_check = CALLBACK(src, PROC_REF(radial_check), caller, clicked_vendor))
+	var/picked_dir_string = show_radial_menu(ai_caller, clicked_vendor, GLOB.all_radial_directions, custom_check = CALLBACK(src, PROC_REF(radial_check), user, clicked_vendor))
 	if (isnull(picked_dir_string))
 		return FALSE
 	var/picked_dir = text2dir(picked_dir_string)
@@ -1288,7 +1288,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 		desc = "[initial(desc)] It has [uses] use\s remaining."
 		build_all_button_icons()
 
-	unset_ranged_ability(caller, span_danger("Tilting..."))
+	unset_ranged_ability(user, span_danger("Tilting..."))
 	return TRUE
 
 /datum/action/innate/ai/ranged/remote_vendor_tilt/proc/do_vendor_tilt(obj/machinery/vending/vendor, turf/target)
@@ -1301,8 +1301,8 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 	vendor.tilt(target, MALF_VENDOR_TIPPING_CRIT_CHANCE)
 
 /// Used in our radial menu, state-checking proc after the radial menu sleeps
-/datum/action/innate/ai/ranged/remote_vendor_tilt/proc/radial_check(mob/living/silicon/ai/caller, obj/machinery/vending/clicked_vendor)
-	if (QDELETED(caller) || caller.incapacitated() || caller.stat == DEAD)
+/datum/action/innate/ai/ranged/remote_vendor_tilt/proc/radial_check(mob/living/silicon/ai/user, obj/machinery/vending/clicked_vendor)
+	if (QDELETED(user) || user.incapacitated() || user.stat == DEAD)
 		return FALSE
 
 	if (QDELETED(clicked_vendor))
@@ -1311,8 +1311,8 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 	if (uses <= 0)
 		return FALSE
 
-	if (!caller.can_see(clicked_vendor))
-		to_chat(caller, span_warning("Lost sight of [clicked_vendor]!"))
+	if (!user.can_see(clicked_vendor))
+		to_chat(user, span_warning("Lost sight of [clicked_vendor]!"))
 		return FALSE
 
 	return TRUE

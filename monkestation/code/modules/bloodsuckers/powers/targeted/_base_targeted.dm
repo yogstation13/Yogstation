@@ -88,5 +88,5 @@
 	StartCooldown()
 	DeactivatePower()
 
-/datum/action/cooldown/bloodsucker/targeted/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/bloodsucker/targeted/InterceptClickOn(mob/living/user, params, atom/target)
 	click_with_power(target)

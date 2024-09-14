@@ -402,11 +402,11 @@
 	var/mob/living/L = on_who
 	src.Remove(L)
 
-/datum/action/cooldown/spell/pointed/projectile/spit/InterceptClickOn(mob/living/caller, params, atom/target)
-	var/mob/living/spitter = caller
+/datum/action/cooldown/spell/pointed/projectile/spit/InterceptClickOn(mob/living/user, params, atom/target)
+	var/mob/living/spitter = user
 
 	if(ishuman(spitter))
-		var/mob/living/carbon/human/humanoid = caller
+		var/mob/living/carbon/human/humanoid = user
 		if(humanoid.is_mouth_covered())
 			humanoid.audible_message("[emote_spit_msg] in their mask!", deaf_message = span_emote("You see <b>[spitter]</b> spit in their mask."), audible_message_flags = EMOTE_MESSAGE)
 			if(boolPlaySound)
@@ -418,7 +418,7 @@
 					ignore_walls = FALSE,
 					mixer_channel = CHANNEL_MOB_EMOTES,
 				)
-			src.Remove(caller)
+			src.Remove(user)
 			return
 
 	. = ..()
@@ -433,7 +433,7 @@
 			ignore_walls = FALSE,
 			mixer_channel = CHANNEL_MOB_EMOTES,
 		)
-	src.Remove(caller)
+	src.Remove(user)
 
 
 /datum/action/cooldown/spell/pointed/projectile/spit/mime

@@ -708,13 +708,13 @@ DEFINE_BITFIELD(turret_flags, list(
 	remote_controller = null
 	return TRUE
 
-/obj/machinery/porta_turret/proc/InterceptClickOn(mob/living/caller, params, atom/A)
+/obj/machinery/porta_turret/proc/InterceptClickOn(mob/living/user, params, atom/A)
 	if(!manual_control)
 		return FALSE
-	if(!can_interact(caller))
+	if(!can_interact(user))
 		remove_control()
 		return FALSE
-	log_combat(caller,A,"fired with manual turret control at")
+	log_combat(user,A,"fired with manual turret control at")
 	target(A)
 	return TRUE
 

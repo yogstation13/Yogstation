@@ -81,13 +81,13 @@
 	if(refund_cooldown)
 		to_chat(on_who, span_notice("You stop preparing your [on_who == owner ? "":"steed's "]pimp-tentacle."))
 
-/datum/action/cooldown/tentacle_slap/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/tentacle_slap/InterceptClickOn(mob/living/user, params, atom/target)
 	// Check if we can slap
 	if(!isliving(target) || target == owner)
 		return FALSE
 
 	if(!owner.Adjacent(target))
-		owner.balloon_alert(caller, "too far!")
+		owner.balloon_alert(user, "too far!")
 		return FALSE
 
 	// Do the slap
@@ -97,8 +97,8 @@
 
 	// Give feedback from the slap.
 	// Additional feedback for if a rider did it
-	if(caller != owner)
-		to_chat(caller, span_notice("You command [owner] to slap [target] with its tentacles."))
+	if(user != owner)
+		to_chat(user, span_notice("You command [owner] to slap [target] with its tentacles."))
 
 	return TRUE
 
