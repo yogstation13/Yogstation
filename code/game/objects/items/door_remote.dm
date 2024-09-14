@@ -33,7 +33,7 @@
 			mode = REMOTE_EMERGENCY
 		if(REMOTE_EMERGENCY)
 			mode = REMOTE_OPEN
-	playsound(user, 'sound/items/door_remote.ogg', 50, TRUE)
+	playsound(user, 'sound/items/door_remote.ogg', 85, TRUE)
 	update_icon_state()
 	to_chat(user, "Now in mode: [mode].")
 
