@@ -33,6 +33,7 @@
 			mode = REMOTE_EMERGENCY
 		if(REMOTE_EMERGENCY)
 			mode = REMOTE_OPEN
+	playsound(user, 'sound/items/door_remote.ogg', 50, TRUE)
 	update_icon_state()
 	to_chat(user, "Now in mode: [mode].")
 
@@ -89,11 +90,11 @@
 /obj/item/door_remote/update_icon_state()
 	var/icon_state_mode
 	switch(mode)
-		if(WAND_OPEN)
+		if(REMOTE_OPEN)
 			icon_state_mode = "open"
-		if(WAND_BOLT)
+		if(REMOTE_BOLT)
 			icon_state_mode = "bolt"
-		if(WAND_EMERGENCY)
+		if(REMOTE_EMERGENCY)
 			icon_state_mode = "emergency"
 
 	icon_state = "[base_icon_state]_[department]_[icon_state_mode]"
@@ -102,43 +103,49 @@
 
 /obj/item/door_remote/omni
 	name = "omni door remote"
-	desc = "This door remote can access any door on the station."
+	desc = "The holy grail of all door remotes. It can control any door on the station and beyond."
 	department = "omni"
 	region_access = list(0)
 
 /obj/item/door_remote/captain
 	name = "command door remote"
+	desc = "Remotely controls airlocks in command areas, including certain other secure rooms."
 	department = "com"
 	region_access = list(7)
 
 /obj/item/door_remote/chief_engineer
 	name = "engineering door remote"
+	desc = "Remotely controls airlocks in the engineering department, including maintenance tunnels."
 	department = "eng"
 	region_access = list(5)
 
 /obj/item/door_remote/research_director
 	name = "research door remote"
+	desc = "Remotely controls airlocks in the research department."
 	department = "sci"
 	region_access = list(4)
 
 /obj/item/door_remote/head_of_security
 	name = "security door remote"
+	desc = "Remotely controls airlocks in the security department."
 	department = "sec"
 	region_access = list(2)
 
 /obj/item/door_remote/quartermaster
 	name = "supply door remote"
-	desc = "Remotely controls airlocks. This remote has additional Vault access."
+	desc = "Remotely controls airlocks in the supply department. Also comes with additional Vault access."
 	department = "sup"
 	region_access = list(6)
 
 /obj/item/door_remote/chief_medical_officer
 	name = "medical door remote"
+	desc = "Remotely controls airlocks in the medical department."
 	department = "med"
 	region_access = list(3)
 
 /obj/item/door_remote/civillian
 	name = "civilian door remote"
+	desc = "Remotely controls airlocks in civilian areas, including public airlocks."
 	department = "civ"
 	region_access = list(1, 6)
 
