@@ -1,7 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed being unable to attach plasmacutter equipment"
-  - bugfix: "Fixed mech plasmacutter not working as a welder sometimes"
-  - bugfix: "Fixed mech armor equipment not actually giving the mech armor"
-  - bugfix: "Fixed runtime error when clicking on stuff in a mech without equipment selected"
