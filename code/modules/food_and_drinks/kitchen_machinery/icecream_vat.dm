@@ -349,10 +349,13 @@
 				cone.scoops += 1
 				//Select last of selected scoop in contents
 				var/obj/item/reagent_containers/food/snacks/cone_scoop = LAZYACCESS(contents, last_index(selected_scoop))
-				//Remove scoop from contents and add relevant variables to cone
+				//Remove scoop from contents
 				cone_scoop.forceMove(loc)
-				cone.reagents.reagent_list += cone_scoop.reagents.reagent_list
+				//Add scoop's reagents to cone
+				cone_scoop.reagents.trans_to(cone, cone_scoop.reagents.total_volume, transfered_by = user)
+				//Change cone's foodtype to scoop's
 				cone.foodtype = cone_scoop.foodtype
+				//Add scoop to scoop_names list
 				LAZYADD(cone.scoop_names, cone_scoop.name)
 				//Determine how to add the overlay and change description and name depending on scoops value
 				if(cone.scoops == 1)
@@ -528,9 +531,9 @@
 			//Make variables for scoop and cone for readability
 			var/obj/item/reagent_containers/food/snacks/ice_cream_cone/cone = src
 			var/obj/item/reagent_containers/food/snacks/cone_scoop = A
-
-			//Add relevant variables to cone
-			cone.reagents.reagent_list += cone_scoop.reagents.reagent_list
+			//Add scoop's reagents to cone
+			cone_scoop.reagents.trans_to(cone, cone_scoop.reagents.total_volume, transfered_by = user)
+			//Change cone's foodtype to scoop's
 			cone.foodtype = cone_scoop.foodtype
 			//Add scoop to scoop_names list
 			LAZYADD(cone.scoop_names, cone_scoop.name)
