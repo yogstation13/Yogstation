@@ -110,8 +110,8 @@ const MainPage = () => {
         <Section scrollable fill>
           <Stack vertical>
             <Stack.Item textColor="red" fontSize="20px">
-              You are a Cortical Borer, a creature that crawls into peoples
-              ear&#39;s to then settle on the brain
+              You are a Cortical Borer, a creature that crawls into peoples ears
+              to then settle in the brain.
             </Stack.Item>
             <Stack.Item>
               <ObjectivePrintout />

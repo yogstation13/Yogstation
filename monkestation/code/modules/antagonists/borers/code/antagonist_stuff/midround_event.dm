@@ -68,8 +68,9 @@
 	for(var/repeating_code in 1 to choosing_number)
 		var/mob/dead/observer/new_borer = pick(candidates)
 		candidates -= new_borer
-		var/turf/vent_turf = get_turf(pick(vents))
-		var/mob/living/basic/cortical_borer/spawned_cb = new /mob/living/basic/cortical_borer(vent_turf)
+		var/vent = pick(vents)
+		var/mob/living/basic/cortical_borer/spawned_cb = new /mob/living/basic/cortical_borer(get_turf(vent))
+		spawned_cb.move_into_vent(vent)
 		spawned_cb.ckey = new_borer.ckey
 		spawned_cb.mind.add_antag_datum(/datum/antagonist/cortical_borer/hivemind)
 		announce_to_ghosts(spawned_cb)

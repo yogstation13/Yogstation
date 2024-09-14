@@ -8,7 +8,7 @@ const CorticalBorer: Antagonist = {
     multiline`
     You are a slug that crawls into peoples ears and
     then manipulates them in various ways
-    to make sure your species survives and thrives
+    to make sure your species survives and thrives.
     `,
   ],
   category: Category.Midround,

@@ -120,16 +120,18 @@ GLOBAL_LIST_INIT(antag_token_config, load_antag_token_config())
 			/datum/antagonist/rev/head,
 			/datum/antagonist/wizard,
 			/datum/antagonist/clock_cultist,
-			/datum/antagonist/ninja
+			/datum/antagonist/ninja,
 		)),
 		MEDIUM_THREAT = init_antag_list(list(
 			/datum/antagonist/heretic,
-			/datum/antagonist/bloodsucker
+			/datum/antagonist/bloodsucker,
+			/datum/antagonist/cortical_borer/hivemind,
 		)),
 		LOW_THREAT = init_antag_list(list(
 			/datum/antagonist/florida_man,
 			/datum/antagonist/traitor,
-			/datum/antagonist/paradox_clone
+			/datum/antagonist/paradox_clone,
+			/datum/antagonist/cortical_borer,
 		))
 	)
 	var/static/list/toml_keys = list(

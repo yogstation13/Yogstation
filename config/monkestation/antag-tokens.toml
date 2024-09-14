@@ -1,3 +1,3 @@
-low = ["traitor", "florida_man", "paradox_clone"]
-medium = ["heretic", "bloodsucker"]
+low = ["traitor", "florida_man", "paradox_clone", "cortical_borer"]
+medium = ["heretic", "bloodsucker", "cortical_borer/hivemind"]
 high = ["cult", "rev/head", "wizard", "clock_cultist", "ninja"]
