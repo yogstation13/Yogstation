@@ -108,11 +108,9 @@
 		return FALSE
 	if(!chassis)
 		return FALSE
-	if(chassis.Adjacent(target))
-		if(!(range & MECHA_MELEE))
-			chassis.default_melee_attack(target)
-			return FALSE
-	else if(!(range & MECHA_RANGED))
+	if(!(range & MECHA_MELEE) && chassis.default_melee_attack(target))
+		return FALSE
+	if(!(range & MECHA_RANGED) && !chassis.Adjacent(target))
 		return FALSE
 	if(!equip_ready)
 		return FALSE
