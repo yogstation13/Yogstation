@@ -20,9 +20,6 @@
 	name = "water"
 	desc = "Cold dirty water."
 	icon = 'icons/turf/water.dmi'
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_CARPET_ROYAL_BLUE)
-	canSmoothWith = list(SMOOTH_GROUP_CARPET_ROYAL_BLUE)
 	baseturfs = /turf/open/halflife/water
 	footstep = FOOTSTEP_WATER
 	barefootstep = FOOTSTEP_WATER

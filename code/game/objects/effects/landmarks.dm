@@ -85,6 +85,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = "Labor Lead"
 	icon_state = "Head of Personnel"
 
+/obj/effect/landmark/start/vortigaunt_slave
+	name = "Vortigaunt Slave"
+	icon_state = "Head of Personnel"
+
 //Department Security spawns
 
 /obj/effect/landmark/start/depsec

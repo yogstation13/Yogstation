@@ -67,7 +67,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	jobs["Chaplain"] = 65
 	jobs["Clown"] = 66
 	jobs["Mime"] = 67
-	jobs["Janitor"] = 68
+	jobs["Vortigaunt Slave"] = 68
 	jobs["Lawyer"] = 69
 	jobs["Clerk"] = 71 //Yogs: Added IDs for this job, also need to skip 70 or it clerk would be considered a head job
 	jobs["Tourist"] = 72 //Yogs: Added IDs for this job

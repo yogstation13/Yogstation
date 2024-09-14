@@ -34,7 +34,7 @@
 		"Bartender" = list("civillian","black"),
 		"Botanist" = list("civillian","blue"),
 		"Cook" = list("civillian","white"),
-		"Janitor" = list("civillian","purple"),
+		"Vortigaunt Slave" = list("civillian","purple"),
 		"Curator" = list("civillian","purple"),
 		"Chaplain" = list("civillian","black"),
 		"Clown" = list("clown","rainbow"),

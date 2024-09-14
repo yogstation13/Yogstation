@@ -200,8 +200,8 @@
 	custom_price = 10
 
 /obj/item/clothing/neck/anti_magic_collar
-	name = "anti-magic collar"
-	desc = "A tight collar used on prisoners to restrict their use of magic, while leaving them vulnerable to it's effects"
+	name = "vortessence restrictor"
+	desc = "A contraption which prevents vortigaunts from using the vortessence."
 	icon_state = "antimagiccollar"
 	resistance_flags = FIRE_PROOF
 	var/inmate_name = "none"

@@ -8,10 +8,4 @@
 # and will override any duplicate entries in the database.									  #
 ###############################################################################################
 
-spl99	=	Host
-Xantam	=	Host
-
-cowbot93 = Council Member
-
-jamied12	=	Head Developer
-baiomu = Head Developer
+Marmio64	=	Host
