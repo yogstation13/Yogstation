@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes emagged honkbot applying nearly permanent stuttering and jittering if getting spammed"
