@@ -1,8 +1,0 @@
-author: "The-Black-Screen"
-delete-after: True
-changes:
-  - rscadd: "added a new random engine map for boxstation, added more fire extinguishers, miscellaneous things."
-  - rscdel: "removed a pipe gun, removed the burned clown skeleton, miscellaneous things."
-  - qol: "added a direct entrance from the exam room to cryogenics, added a northern entrance to all random bar maps."
-  - bugfix: "tried to fix some lights being weird."
-  - code_imp: "added the new engine to boxstation's engines file."

@@ -1,5 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - balance: "The confusion symptom's (Topographical Cretinism) confusion no longer infinitely stacks - it will no longer COMPLETELY randomize your movement."
-  - balance: "The confusion symptom can now only activate every 1 to 5 seconds."

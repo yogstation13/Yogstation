@@ -1,4 +1,0 @@
-author: "MomoBerri"
-delete-after: True
-changes:
-  - bugfix: "adds a bluespace sender and a disposals dispenser to boxstation atmos."

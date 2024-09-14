@@ -346,3 +346,44 @@
   - balance: The Bogseo smg gunset for the Blueshield now comes with 1 box of .27-54
       Cesarzowa piercing bullets, and 2 boxes of the rubber variant.
   - balance: The trappiste ammo boxes now contain 32 rounds
+2024-09-14:
+  Absolucy:
+  - balance: The confusion symptom's (Topographical Cretinism) confusion no longer
+      infinitely stacks - it will no longer COMPLETELY randomize your movement.
+  - balance: The confusion symptom can now only activate every 1 to 5 seconds.
+  Addust:
+  - rscadd: We've been picking up radio traffic from a nearby asteroid in the area.
+      It appears the Syndicate has commissioned a new listening station.
+  - rscadd: We've also seen reports of a second agent operating from the outpost.
+  Gw0sty:
+  - rscadd: 'Accelerator Cybernetic for Security Assistants and S.M.A.R.T. Ammo Counters
+      for Blueshields during the Cybernetic Revolution Station Trait.
+
+      :cl:'
+  - qol: 'Brought IPC surgery steps more in line with normal surgery steps
+
+      :cl:'
+  - bugfix: 'Made Peacekeeper Cyborg transformation message more broad.
+
+      :cl:'
+  MomoBerri:
+  - bugfix: adds a bluespace sender and a disposals dispenser to boxstation atmos.
+  PotatoTomahto:
+  - rscadd: Ghosts can now see mood changes.
+  RandomDudeFromTheRim:
+  - bugfix: made gorilla transformation when affected by excess amounts of genetic
+      damage work
+  Shoddd:
+  - bugfix: fixed secoffs not getting paco with non standard suit
+  - bugfix: Security's Guardman Helmet now armored
+  - bugfix: Makes Aphid hive exit indestructible
+  SirNightKnight:
+  - qol: Removed the FOV restriction from bio hoods.
+  The-Black-Screen:
+  - rscadd: added a new random engine map for boxstation, added more fire extinguishers,
+      miscellaneous things.
+  - rscdel: removed a pipe gun, removed the burned clown skeleton, miscellaneous things.
+  - qol: added a direct entrance from the exam room to cryogenics, added a northern
+      entrance to all random bar maps.
+  - bugfix: tried to fix some lights being weird.
+  - code_imp: added the new engine to boxstation's engines file.
