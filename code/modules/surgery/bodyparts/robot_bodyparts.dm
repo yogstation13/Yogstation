@@ -170,32 +170,30 @@
 /obj/item/bodypart/l_leg/robot/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour != TOOL_SCREWDRIVER)
 		return ..()
-	to_chat(user, span_notice("You configure [src] into [use_digitigrade != FULL_DIGITIGRADE ? "digitigrade" : "plantigrade"] mode."))
-	set_digitigrade(use_digitigrade != FULL_DIGITIGRADE)
+	to_chat(user, span_notice("You configure [src] into [!use_digitigrade ? "digitigrade" : "plantigrade"] mode."))
+	set_digitigrade(!use_digitigrade)
 
 /obj/item/bodypart/l_leg/robot/set_digitigrade(use_digi = FALSE)
 	if(use_digi)
-		use_digitigrade = FULL_DIGITIGRADE
 		icon_state = digi_icon_state
 	else
-		use_digitigrade = NOT_DIGITIGRADE
 		icon_state = initial(icon_state)
 	update_icon()
+	return ..()
 	
 /obj/item/bodypart/r_leg/robot/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour != TOOL_SCREWDRIVER)
 		return ..()
-	to_chat(user, span_notice("You configure [src] into [use_digitigrade != FULL_DIGITIGRADE ? "digitigrade" : "plantigrade"] mode."))
-	set_digitigrade(use_digitigrade != FULL_DIGITIGRADE)
+	to_chat(user, span_notice("You configure [src] into [!use_digitigrade ? "digitigrade" : "plantigrade"] mode."))
+	set_digitigrade(!use_digitigrade)
 
 /obj/item/bodypart/r_leg/robot/set_digitigrade(use_digi = FALSE)
 	if(use_digi)
-		use_digitigrade = FULL_DIGITIGRADE
 		icon_state = digi_icon_state
 	else
-		use_digitigrade = NOT_DIGITIGRADE
 		icon_state = initial(icon_state)
 	update_icon()
+	return ..()
 
 /obj/item/bodypart/chest/robot
 	name = "cyborg torso"

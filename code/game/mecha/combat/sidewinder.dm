@@ -27,7 +27,7 @@
 		return
 	if(user.incapacitated())							//Pilot can't move
 		return
-	if(completely_disabled || is_currently_ejecting)	//mech can't move
+	if(HAS_TRAIT(src, TRAIT_MECH_DISABLED) || is_currently_ejecting)	//mech can't move
 		return
 	if(state)											//Maintenance mode, can't move
 		occupant_message(span_warning("Maintenance protocols in effect."))
@@ -67,6 +67,6 @@
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier/razerfang	//Not a snake without fangs right?
 	ME.attach(src)
-	ME = new /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster
+	ME = new /obj/item/mecha_parts/mecha_equipment/armor/ranged
 	ME.attach(src)
 	max_ammo()

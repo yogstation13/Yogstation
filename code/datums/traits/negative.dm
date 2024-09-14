@@ -262,14 +262,6 @@
 	mob_trait = TRAIT_POOR_AIM
 	medical_record_text = "Patient possesses a strong tremor in both hands."
 
-/datum/quirk/poor_aim/add()
-	var/mob/living/carbon/human/H = quirk_holder
-	H.dna.species.aiminginaccuracy += 25
-
-/datum/quirk/poor_aim/remove()
-	var/mob/living/carbon/human/H = quirk_holder
-	H?.dna?.species?.aiminginaccuracy -= 25
-
 /datum/quirk/prosopagnosia
 	name = "Prosopagnosia"
 	desc = "You have a mental disorder that prevents you from being able to recognize faces at all."
@@ -642,14 +634,30 @@
 	drug_container_type = pick(/obj/item/reagent_containers/food/drinks/beer/light/plastic)
 	. = ..()
 
+/datum/quirk/junkie/caffeine
+	name = "Caffeine Addict"
+	desc = "Whether it's punching through drywall while on Grey Bull, or downing 100 cups of coffee in a day, you can't get enough caffeine."
+	icon = "mug-hot"
+	value = -2
+	mood_quirk = TRUE
+	gain_text = span_danger("You could really use some caffeine right about now.")
+	lose_text = span_notice("You no longer feel dependent on caffeine to function.")
+	medical_record_text = "Patient is known to be dependent on caffeine."
+	reagent_type = /datum/reagent/drug/caffeine
+	junkie_warning = "You suddenly feel like you need some caffeine..."
+	var/list/weighted_items = list(
+		/obj/item/reagent_containers/food/drinks/soda_cans/icedcoffee = 200,
+		/obj/item/reagent_containers/food/drinks/coffee = 100, //who just carries around a styrofoam cup of coffee in their backpack
+		/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 100,
+		/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy = 100,
+		/obj/item/reagent_containers/food/drinks/mug/tea = 50,
+		/obj/item/reagent_containers/food/drinks/soda_cans/thirteenloko = 1, //super rare because it's dangerous
+		/obj/item/reagent_containers/food/drinks/bottle/nukacola = 1 //super rare to get nuka cola because it's actually kinda bad (irradiates you)
+	)
 
-/datum/quirk/junkie/drunkard/check_quirk(datum/preferences/prefs)
-	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = !(initial(species_type.inherent_biotypes) & MOB_ORGANIC) //if you can't process organic chems you couldn't get addicted in the first place
-
-	if(disallowed_trait)
-		return "You don't process normal chemicals!"
-	return FALSE
+/datum/quirk/junkie/caffeine/on_spawn()
+	drug_container_type = pickweight(weighted_items)
+	return ..()
 
 /datum/quirk/unstable
 	name = "Unstable"
@@ -667,32 +675,51 @@
 	desc = "You have had an allergic reaction to medicine in the past. Better stay away from it!"
 	icon = "prescription-bottle"
 	value = -2
-	mob_trait = TRAIT_ALLERGIC
 	gain_text = span_danger("You remember your allergic reaction to a common medicine.")
 	lose_text = span_notice("You no longer are allergic to medicine.")
-	var/allergy_chem_list = list(	/datum/reagent/medicine/inacusiate,
-									/datum/reagent/medicine/silver_sulfadiazine,
-									/datum/reagent/medicine/styptic_powder,
-									/datum/reagent/medicine/omnizine,
-									/datum/reagent/medicine/oculine,
-									/datum/reagent/medicine/neurine,
-									/datum/reagent/medicine/bicaridine,
-									/datum/reagent/medicine/kelotane,
-									/datum/reagent/medicine/c2/libital,
-									/datum/reagent/medicine/c2/aiuri) //Everything in the list can be healed from another source round-start
+
+	var/allergy_chem_list = list(	
+		/datum/reagent/medicine/inacusiate,
+		/datum/reagent/medicine/silver_sulfadiazine,
+		/datum/reagent/medicine/styptic_powder,
+		/datum/reagent/medicine/omnizine,
+		/datum/reagent/medicine/oculine,
+		/datum/reagent/medicine/neurine,
+		/datum/reagent/medicine/bicaridine,
+		/datum/reagent/medicine/kelotane,
+		/datum/reagent/medicine/c2/libital,
+		/datum/reagent/medicine/c2/aiuri,
+		/datum/reagent/medicine/atropine,
+		/datum/reagent/medicine/pen_acid,
+		/datum/reagent/medicine/salbutamol,
+
+		/datum/reagent/drug/caffeine, //get fucked
+
+		/datum/reagent/medicine/mutadone,
+		/datum/reagent/medicine/charcoal, //this isn't about realism, it's about sending a message
+		/datum/reagent/medicine/mannitol, //i am a spiteful god and my creations will suffer
+		/datum/reagent/medicine/cryoxadone, //mortals shall look to the heavens and cry "why must you subject us to this cruel torment"
+		/datum/reagent/medicine/synthflesh, //i shall look upon at them and laugh
+		/datum/reagent/water //FOR I AM THE GOD OF THIS WORLD AND MY WORD IS LAW
+		)
+
+	/// Allergy reagent
 	var/reagent_id
-	var/cooldown_time = 1 MINUTES //Cant act again until the first wears off
-	var/cooldown = FALSE
+	COOLDOWN_DECLARE(allergies)
+	/// how long allergies last after getting rid of the allergen
+	var/cooldown_duration = 10 SECONDS 
+	/// Wether the person is experiencing anaphylatic shock or not
+	COOLDOWN_DECLARE(anaphylaxis)
+	/// How long anaphylactic shock lasts
+	var/shock_duration = 15 SECONDS
 
 /datum/quirk/allergic/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	species_type = new species_type()
-	var/disallowed_trait = (TRAIT_MEDICALIGNORE in species_type.inherent_traits)
-	qdel(species_type)
+	var/disallowed_trait = !(initial(species_type.inherent_biotypes) & MOB_ORGANIC)
 
 	if(disallowed_trait)
-		return "You don't benefit from the use of medicine."
-	return ..()
+		return "You don't process normal chemicals!"
+	return FALSE
 
 /datum/quirk/allergic/on_spawn()
 	reagent_id = pick(allergy_chem_list)
@@ -703,27 +730,53 @@
 
 /datum/quirk/allergic/on_process()
 	var/mob/living/carbon/H = quirk_holder
+
+	if(H.stat == DEAD)
+		return
+
 	var/datum/reagent/allergy = GLOB.chemical_reagents_list[reagent_id]
-	if(cooldown == FALSE && H.reagents.has_reagent(reagent_id))
-		to_chat(quirk_holder, span_danger("You forgot you were allergic to [allergy.name]!"))
-		H.reagents.add_reagent(/datum/reagent/toxin/histamine, rand(5,10))
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), cooldown_time)
 
-/datum/quirk/allergic/check_quirk(datum/preferences/prefs)
-	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = !(initial(species_type.inherent_biotypes) & MOB_ORGANIC)
+	if(H.reagents.has_reagent(reagent_id)) //check if there are chems
+		if(COOLDOWN_FINISHED(src, allergies)) //if it wasn't ongoing, give a prompt
+			to_chat(quirk_holder, span_userdanger("You forgot you were allergic to [allergy.name]!"))
+		COOLDOWN_START(src, allergies, cooldown_duration) //start it, or refresh the ongoing
 
-	if(disallowed_trait)
-		return "You don't process normal chemicals!"
-	return FALSE
+	if(!COOLDOWN_FINISHED(src, allergies))
+		H.emote("choke")
+		H.losebreath += 3
+		H.adjust_eye_blur(2)
+		H.adjustStaminaLoss(4)
+		H.clear_stamina_regen()
+		H.silent = max(H.silent, 3) //can't speak, your throat is swollen shut
+
+	else if(!COOLDOWN_FINISHED(src, allergies)) //if the cooldown is going
+		//external indicator that it's happening
+		if(prob(50)) 
+			switch(rand(0, 2))
+				if(0)
+					H.emote("cough")
+				if(1)
+					H.emote("sneeze")
+				if(2)
+					H.emote("choke")
+
+		if(prob(50))
+			switch(rand(0, 10)) //negative effect
+				if(0 to 5)
+					to_chat(H, span_danger("Your eyes swell up and you can barely see!"))
+					H.adjust_eye_blur(3)
+				if(6 to 9) //nice
+					to_chat(H, span_danger("You scratch at an itch."))
+					H.adjustBruteLoss(2)
+				if(10)
+					to_chat(H, span_userdanger("You go into anaphylactic shock!"))
+					COOLDOWN_START(src, allergies, shock_duration)
 
 /datum/quirk/kleptomaniac
 	name = "Kleptomaniac"
 	desc = "You have an uncontrollable urge to pick up things you see. Even things that don't belong to you."
 	icon = "hands-holding-circle"
 	value = -2
-	mob_trait = TRAIT_KLEPTOMANIAC
 	gain_text = span_danger("You have an unmistakeable urge to grab nearby objects.")
 	lose_text = span_notice("You no longer feel the urge to steal.")
 	medical_record_text = "Patient has an uncontrollable urge to steal."

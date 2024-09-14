@@ -113,11 +113,27 @@
 				breath = loc_as_obj.handle_internal_lifeform(src, BREATH_VOLUME)
 
 			else if(isturf(loc)) //Breathe from loc as turf
-				var/breath_ratio = 0
-				if(environment)
-					breath_ratio = BREATH_VOLUME/environment.return_volume()
+				var/turf/our_turf = loc
+				if(our_turf.liquids && !HAS_TRAIT(src, TRAIT_NOBREATH) && ((body_position == LYING_DOWN && our_turf.liquids.liquid_state >= LIQUID_STATE_WAIST) || (body_position == STANDING_UP && our_turf.liquids.liquid_state >= LIQUID_STATE_FULLTILE)))
+					//Officially trying to breathe underwater
+					if(HAS_TRAIT(src, TRAIT_WATER_BREATHING))
+						failed_last_breath = FALSE
+						clear_alert("not_enough_oxy")
+						return FALSE
+					adjustOxyLoss(3)
+					failed_last_breath = TRUE
+					if(oxyloss <= OXYGEN_DAMAGE_CHOKING_THRESHOLD && stat == CONSCIOUS)
+						to_chat(src, span_userdanger("You hold in your breath!"))
+					else
+						//Try and drink water
+						our_turf.liquids.liquid_group.transfer_to_atom(src, CHOKE_REAGENTS_INGEST_ON_BREATH_AMOUNT)
+						visible_message(span_warning("[src] chokes on water!"), span_userdanger("You're choking on water!"))
+				else
+					var/breath_ratio = 0
+					if(environment)
+						breath_ratio = BREATH_VOLUME/environment.return_volume()
 
-				breath = loc.remove_air_ratio(breath_ratio)
+					breath = loc.remove_air_ratio(breath_ratio)
 		else //Breathe from loc as obj again
 			if(istype(loc, /obj/))
 				var/obj/loc_as_obj = loc
@@ -549,7 +565,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 /mob/living/carbon/proc/needs_heart()
 	if(HAS_TRAIT(src, TRAIT_STABLEHEART))
 		return FALSE
-	if(dna && dna.species && (NOBLOOD in dna.species.species_traits)) //not all carbons have species!
+	if(dna?.species && ((NOBLOOD in dna.species.species_traits) || (STABLEBLOOD in dna.species.species_traits))) //not all carbons have species!
 		return FALSE
 	return TRUE
 

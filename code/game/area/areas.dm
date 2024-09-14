@@ -72,8 +72,6 @@
 	var/static_environ
 
 	var/has_gravity = 0
-	///Are you forbidden from teleporting to the area? (centcom, mobs, wizard, hand teleporter)
-	var/noteleport = FALSE
 	///Hides area from player Teleport function.
 	var/hidden = FALSE
 	///Is the area teleport-safe: no space / radiation / aggresive mobs / other dangers
@@ -138,6 +136,10 @@
 	/// Whether the lights in this area aren't turned off when it's empty at roundstart
 	var/lights_always_start_on = FALSE
 
+	/// Whether to cycle brightness based on time of day
+	var/uses_daylight = FALSE
+	/// Daylight brightness
+	var/daylight_multiplier = 1
 	
 /**
   * A list of teleport locations
@@ -158,7 +160,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
  */
 /proc/process_teleport_locs()
 	for(var/area/AR as anything in get_sorted_areas())
-		if(istype(AR, /area/shuttle) || AR.noteleport)
+		if(istype(AR, /area/shuttle) || (AR.area_flags & NOTELEPORT))
 			continue
 		if(GLOB.teleportlocs[AR.name])
 			continue
@@ -187,6 +189,8 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	if (unique)
 		GLOB.areas_by_type[type] = src
 	GLOB.areas += src
+	if(uses_daylight)
+		SSdaylight.add_lit_area(src)
 	return ..()
 
 /**
@@ -383,6 +387,9 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	if(!isnull(GLOB.delta_areas))
 		GLOB.delta_areas -= src
 	
+	//daylight cleanup
+	if(uses_daylight)
+		SSdaylight.remove_lit_area(src)
 	//machinery cleanup
 	STOP_PROCESSING(SSobj, src)
 	//turf cleanup
@@ -878,7 +885,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	CRASH("Bad op: area/drop_location() called")
 
 /// A hook so areas can modify the incoming args (of what??)
-/area/proc/PlaceOnTopReact(list/new_baseturfs, turf/fake_turf_type, flags)
+/area/proc/place_on_topReact(list/new_baseturfs, turf/fake_turf_type, flags)
 	return flags
 
 /// Called when a living mob that spawned here, joining the round, receives the player client.

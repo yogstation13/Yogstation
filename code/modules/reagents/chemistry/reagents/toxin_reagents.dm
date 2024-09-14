@@ -7,6 +7,7 @@
 	color = "#CF3600" // rgb: 207, 54, 0
 	taste_description = "bitterness"
 	taste_mult = 1.2
+	evaporation_rate = 3 //6x faster than normal chems
 	var/toxpwr = 1.5
 	var/silent_toxin = FALSE //won't produce a pain message when processed by liver/Life(seconds_per_tick = SSMOBS_DT, times_fired) if there isn't another non-silent toxin present.
 
@@ -59,7 +60,7 @@
 	taste_mult = 1.5
 	color = "#8228A0"
 	toxpwr = 3
-	accelerant_quality = 10
+	accelerant_quality = 50 //OWWW
 	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/toxin/plasma/on_mob_life(mob/living/carbon/C)
@@ -128,7 +129,7 @@
 /datum/reagent/toxin/slimejelly
 	name = "Slime Jelly"
 	description = "A gooey semi-liquid produced from one of the deadliest lifeforms in existence. SO REAL."
-	color = "#801E28" // rgb: 128, 30, 40
+	color = COLOR_DARK_MODERATE_LIME_GREEN // rgb: 128, 30, 40
 	toxpwr = 0
 	taste_description = "slime"
 	taste_mult = 1.3

@@ -212,6 +212,7 @@
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	anchored = TRUE
 	density = FALSE
+	resistance_flags = FLAMMABLE | UNACIDABLE
 
 	var/picked_result
 	var/picked_amt
@@ -275,17 +276,39 @@
 	var/fruit = pick("kuku","bonji","bianco")
 	switch(fruit)
 		if("kuku")
-			name = "Kuku bush"
+			name = "kuku bush"
 			icon_state = "kuku_plant"
 			picked_result = /obj/item/reagent_containers/food/snacks/grown/jungle/kuku
 		if("bonji")
-			name = "Bonji bush"
+			name = "bonji bush"
 			icon_state = "bonji_plant"
 			picked_result = /obj/item/reagent_containers/food/snacks/grown/jungle/bonji
 		if("bianco")
-			name = "Bianco bush"
+			name = "bianco bush"
 			icon_state = "bianco_plant"
 			picked_result = /obj/item/reagent_containers/food/snacks/grown/jungle/bianco
+
+/obj/structure/herb/lantern
+	name = "lanternfruit bush"
+	desc = "A sofly glowing fruiting plant, I wonder what the berry tastes like?"
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	icon_state = "lantern_plant"
+	picked_result = /obj/item/reagent_containers/food/snacks/grown/lanternfruit
+	picked_amt = 1
+	light_range = 4
+	light_power = 0.5
+	light_color = "#FFFF66"
+
+/obj/structure/herb/lantern/Initialize(mapload)
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/structure/herb/lantern/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/structure/herb/lantern/process(delta_time)
+	set_light_power((1 - sin(world.time * 360 / SSdaylight.daylight_time)) / 4)
 
 /obj/structure/herb/magnus_purpura
 	name = "Magnus Purpura"

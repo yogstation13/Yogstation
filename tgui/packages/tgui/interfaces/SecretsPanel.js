@@ -60,7 +60,7 @@ export const SecretsPanel = (props, context) => {
           <Button.Confirm color={'bad'} content={'Everyone is the IAA (except sec/cap/hop)'} onClick={() => act('iaa_all')} disabled={!funRights} /><br />
           <Button.Confirm color={'bad'} content={'There can only be one!'} onClick={() => act('onlyone')} disabled={!funRights} /><br />
           <Button.Confirm color={'bad'} content={'There can only be one! (40-second delay)'} onClick={() => act('delayed_onlyone')} disabled={!funRights} /><br />
-          <Button.Confirm color={'bad'} content={'Make all players stupid'} onClick={() => act('retardify')} disabled={!funRights} /><br />
+          <Button.Confirm color={'bad'} content={'Make all players stupid'} onClick={() => act('stupify')} disabled={!funRights} /><br />
           <Button.Confirm color={'bad'} content={'Egalitarian Station Mode (All doors are open access)'} onClick={() => act('eagles')} disabled={!funRights} /><br />
           <Button.Confirm color={'bad'} content={'Anarcho-Capitalist Station Mode (More things cost money)'} onClick={() => act('ancap')} disabled={!funRights} /><br />
           <Button.Confirm color={'bad'} content={'Break all lights'} onClick={() => act('blackout')} disabled={!funRights} /><br />

@@ -562,7 +562,6 @@
 /obj/structure/window/reinforced,
 /obj/structure/table,
 /obj/item/storage/bag/tray,
-/obj/item/clothing/under/waiter,
 /turf/open/floor/plasteel/cafeteria,
 /area/shuttle/escape)
 "bg" = (
@@ -701,13 +700,12 @@
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "bA" = (
-/obj/machinery/door/airlock/public/glass{
-	req_access_txt = "2"
-	},
+/obj/machinery/door/airlock/public/glass,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "bB" = (
@@ -780,13 +778,13 @@
 /area/shuttle/escape)
 "bO" = (
 /obj/machinery/door/airlock/public/glass{
-	name = "Cockpit";
-	req_access_txt = "19"
+	name = "Cockpit"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/access/all/command/general,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "bQ" = (
@@ -801,13 +799,13 @@
 /area/shuttle/escape)
 "bT" = (
 /obj/machinery/door/airlock/public/glass{
-	name = "Brig";
-	req_access_txt = "2"
+	name = "Brig"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "cM" = (

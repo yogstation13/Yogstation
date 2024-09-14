@@ -163,3 +163,14 @@
 	user.gib()
 	playsound(src, 'sound/items/eatfood.ogg', 50, 1, -1)
 	return MANUAL_SUICIDE
+
+/obj/item/choice_beacon/liquids
+	name = "Free Liquid Pump Kit"
+	desc = "Kit containing a free liquid pump from SPAAAACE."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "gangtool-blue"
+	item_state = "radio"
+
+// LIQUIDS TM REMOVE THIS
+/obj/item/choice_beacon/liquids/generate_display_names()
+	return list("Liquid Pump" = /obj/structure/liquid_pump)

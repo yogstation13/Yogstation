@@ -134,7 +134,7 @@
 	// If fired without aiming or at someone too close, it will do much less
 	damage = 30
 	stamina = 30
-	penetration_flags = PENETRATE_OBJECTS | PENETRATE_MOBS
+	penetration_flags = PENETRATE_OBJECTS | PENETRATE_WALLS | PENETRATE_MOBS
 	penetrations = INFINITY
 
 // Extra ammunition can be made with a heretic ritual.

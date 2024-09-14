@@ -368,7 +368,7 @@
 	aoe_range = 0 // no AOE, has piercing instead
 	penetrations = 2
 	tracer_fire_chance = 50
-	penetration_flags = PENETRATE_OBJECTS | PENETRATE_MOBS
+	penetration_flags = PENETRATE_OBJECTS | PENETRATE_WALLS | PENETRATE_MOBS
 
 /obj/projectile/beam/beam_rifle/hitscan/impact
 	damage = 30 // total of 60 on direct hit

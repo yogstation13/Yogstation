@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	icon_state = "cellconsole_1"
 	density = FALSE
 	interaction_flags_machine = INTERACT_MACHINE_OFFLINE
-	req_one_access = list(ACCESS_HEADS, ACCESS_ARMORY) //Heads of staff or the warden can go here to claim recover items from their department that people went were cryodormed with.
+	req_one_access = list(ACCESS_COMMAND, ACCESS_ARMORY) //Heads of staff or the warden can go here to claim recover items from their department that people went were cryodormed with.
 	var/mode = null
 
 	//Used for logging people entering cryosleep and important items they are carrying.
@@ -292,7 +292,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 			if((O.type in subtypesof(/datum/objective/assassinate)) && O.check_completion()) //kill once/kill+clone objective that's already been completed, don't give a new objective
 				continue
 			O.target = null
-			O.find_target()
+			O.find_target(blacklist = list(mob_occupant.mind)) // don't pick the same person again, they're about to be deleted
 			O.update_explanation_text()
 
 			var/list/owners = O.get_owners()

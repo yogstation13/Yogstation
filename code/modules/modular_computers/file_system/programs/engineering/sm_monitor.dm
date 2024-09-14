@@ -6,7 +6,7 @@
 	program_icon_state = "smmon_0"
 	extended_desc = "This program connects to specially calibrated supermatter sensors to provide information on the status of supermatter-based engines."
 	requires_ntnet = TRUE
-	transfer_access = ACCESS_ENGINE
+	transfer_access = ACCESS_ENGINEERING
 	network_destination = "supermatter monitoring system"
 	size = 5
 	tgui_id = "NtosSupermatterMonitor"
@@ -128,11 +128,14 @@
 		if(!air)
 			active = null
 			return
-		if(active.corruptor_attached)
-			data_corrupted = TRUE
 
 		data["active"] = TRUE
-		if(data_corrupted) //yes it goes negative, that's even more funny
+		data["powerData"] = active.powerData
+		data["radsData"] = active.radsData
+		data["tempData"] = active.tempData
+		data["kpaData"] = active.kpaData
+		data["molesData"] = active.molesData
+		if(active.corruptor_attached) //yes it goes negative, that's even more funny
 			data["SM_integrity"] = active.get_fake_integrity()
 			data["SM_power"] = active.power + round((rand()-0.5)*12000,1) 
 			data["SM_radiation"] = active.last_rads + round((rand()-0.5)*12000,1) 
