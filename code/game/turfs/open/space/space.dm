@@ -256,7 +256,7 @@ GLOBAL_LIST_EMPTY(starlight)
 
 /turf/open/space/openspace
 	icon = 'icons/turf/floors.dmi'
-	icon_state = MAP_SWITCH("pure_white", "transparent")
+	icon_state = MAP_SWITCH("pure_white", "invisible")
 	plane = TRANSPARENT_FLOOR_PLANE
 
 /turf/open/space/openspace/Initialize(mapload) // handle plane and layer here so that they don't cover other obs/turfs in Dream Maker
@@ -286,7 +286,7 @@ GLOBAL_LIST_EMPTY(starlight)
 /turf/open/space/openspace/zAirOut(direction, turf/source)
 	return TRUE
 
-/turf/open/space/openspace/zPassIn(atom/movable/A, direction, turf/source)
+/turf/open/space/openspace/zPassIn(direction)
 	if(direction == DOWN)
 		for(var/obj/contained_object in contents)
 			if(contained_object.obj_flags & BLOCK_Z_IN_DOWN)
@@ -299,7 +299,7 @@ GLOBAL_LIST_EMPTY(starlight)
 		return TRUE
 	return FALSE
 
-/turf/open/space/openspace/zPassOut(atom/movable/A, direction, turf/destination)
+/turf/open/space/openspace/zPassOut(direction)
 	if(direction == DOWN)
 		for(var/obj/contained_object in contents)
 			if(contained_object.obj_flags & BLOCK_Z_OUT_DOWN)

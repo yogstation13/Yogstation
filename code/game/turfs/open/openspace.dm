@@ -75,7 +75,7 @@
 /turf/open/openspace/zAirOut(direction, turf/source)
 	return TRUE
 
-/turf/open/openspace/zPassIn(atom/movable/A, direction, turf/source)
+/turf/open/openspace/zPassIn(direction)
 	if(direction == DOWN)
 		for(var/obj/contained_object in contents)
 			if(contained_object.obj_flags & BLOCK_Z_IN_DOWN)
@@ -88,7 +88,7 @@
 		return TRUE
 	return FALSE
 
-/turf/open/openspace/zPassOut(atom/movable/A, direction, turf/destination)
+/turf/open/openspace/zPassOut(direction)
 	if(direction == DOWN)
 		for(var/obj/contained_object in contents)
 			if(contained_object.obj_flags & BLOCK_Z_OUT_DOWN)
