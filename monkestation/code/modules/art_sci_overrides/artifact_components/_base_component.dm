@@ -162,6 +162,15 @@
 		if(try_add_effect(effect))
 			effects_amount--
 
+/datum/component/artifact/Destroy(force)
+	QDEL_NULL(artifact_origin)
+	QDEL_NULL(analysis)
+	QDEL_NULL(chosen_fault)
+	QDEL_LIST(activators)
+	QDEL_LIST(artifact_effects)
+	discovered_activators.Cut()
+	discovered_effects.Cut()
+	return ..()
 
 /datum/component/artifact/RegisterWithParent()
 	RegisterSignals(parent, list(COMSIG_ATOM_DESTRUCTION, COMSIG_QDELETING), PROC_REF(on_destroy))

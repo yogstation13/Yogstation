@@ -37,8 +37,11 @@
 
 /datum/artifact_effect/New()
 	. = ..()
-	potency = rand(1,100)
+	potency = rand(1, 100)
 
+/datum/artifact_effect/Destroy(force)
+	our_artifact = null
+	return ..()
 
 ///Called when the artifact has been created
 /datum/artifact_effect/proc/setup()

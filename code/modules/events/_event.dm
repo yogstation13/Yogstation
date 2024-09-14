@@ -71,6 +71,12 @@
 	for(var/admin_setup_type in admin_setup_types)
 		admin_setup += new admin_setup_type(src)
 
+// monkestation start: fix some hard deletes
+/datum/round_event_control/Destroy(force)
+	QDEL_LIST(admin_setup)
+	return ..()
+// monkestation end
+
 /datum/round_event_control/wizard
 	category = EVENT_CATEGORY_WIZARD
 	wizardevent = TRUE

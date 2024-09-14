@@ -118,7 +118,7 @@ Basically, we fill the time between now and 2s from now with hands based off the
 		hands++
 	for(var/id in timer_ids) // So that we can be certain that all timers are deleted at the end.
 		deltimer(id)
-	timer_ids.Cut()
+	timer_ids?.Cut()
 	return ..()
 
 /datum/reagent/inverse/helgrasp/heretic

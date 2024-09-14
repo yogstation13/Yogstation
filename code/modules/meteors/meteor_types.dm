@@ -327,8 +327,8 @@
 	signature = "bluespace flux"
 
 /obj/effect/meteor/bluespace/Bump()
-	..()
-	if(prob(35))
+	. = ..()
+	if(!QDELETED(src) && prob(35)) // monkestation edit: runtime fix
 		do_teleport(src, get_turf(src), 6, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 
 /obj/effect/meteor/banana

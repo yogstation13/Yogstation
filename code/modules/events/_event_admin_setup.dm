@@ -7,6 +7,12 @@
 /datum/event_admin_setup/New(event_control)
 	src.event_control = event_control
 
+// monkestation start: fix some hard deletes
+/datum/event_admin_setup/Destroy(force)
+	event_control = null
+	return ..()
+// monkestation end
+
 /datum/event_admin_setup/proc/prompt_admins()
 	SHOULD_CALL_PARENT(FALSE)
 	CRASH("Unimplemented prompt_admins() on [event_control]'s admin setup.")

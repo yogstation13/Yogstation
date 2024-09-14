@@ -126,6 +126,7 @@
 	set_angle(angle)
 
 /datum/component/movable_physics/Destroy(force)
+	STOP_PROCESSING(SSmovable_physics, src)
 	bounce_callback = null
 	stop_callback = null
 	cached_transform = null
@@ -150,7 +151,7 @@
 // NOTE: This component will work very poorly at anything less than ticking 10 times per second
 /datum/component/movable_physics/process(seconds_per_tick)
 	var/atom/movable/moving_atom = parent
-	if(!isturf(moving_atom.loc) || !has_movement())
+	if(!isturf(moving_atom.loc) || QDELING(moving_atom.loc) || !has_movement())
 		stop_movement()
 		return PROCESS_KILL
 
@@ -259,8 +260,7 @@
 	moving_atom.pixel_z = z_floor
 	if(cached_transform)
 		animate(moving_atom, transform = cached_transform, time = 0, loop = 0)
-	if(stop_callback)
-		stop_callback.Invoke()
+	stop_callback?.Invoke()
 	if((physics_flags & MPHYSICS_QDEL_WHEN_NO_MOVEMENT) && !QDELING(src))
 		qdel(src)
 
@@ -280,8 +280,7 @@
 	if(bounce_spin_speed && !visual_angle_velocity && !visual_angle_friction)
 		moving_atom.SpinAnimation(speed = bounce_spin_speed, loops = max(0, bounce_spin_loops))
 	vertical_velocity = abs(vertical_velocity * vertical_conservation_of_momentum)
-	if(bounce_callback)
-		bounce_callback.Invoke()
+	bounce_callback?.Invoke()
 
 /// Basically handles bumping on a solid object and ricocheting away according to a dose of Newton's third law
 /datum/component/movable_physics/proc/on_bump(atom/movable/source, atom/bumped_atom)
@@ -293,8 +292,7 @@
 	var/incidence = GET_ANGLE_OF_INCIDENCE(face_angle, angle + 180)
 	var/new_angle = SIMPLIFY_DEGREES(face_angle + incidence)
 	set_angle(new_angle)
-	if(bump_callback)
-		bump_callback.Invoke(bumped_atom)
+	bump_callback?.Invoke(bumped_atom)
 	if(!visual_angle_velocity)
 		return
 	incidence = GET_ANGLE_OF_INCIDENCE(face_angle, source.visual_angle + 180)

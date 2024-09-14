@@ -38,8 +38,7 @@
 		machine_stat |= BROKEN
 
 /obj/machinery/media/jukebox/Destroy()
-	qdel(wires)
-	wires = null
+	QDEL_NULL(wires)
 	return ..()
 
 /obj/machinery/media/jukebox/proc/getTracksList()
@@ -136,6 +135,10 @@
 	if (panel_open)
 		add_overlay("panel_open")
 
+/obj/machinery/media/jukebox/on_set_panel_open(old_value)
+	. = ..()
+	update_icon()
+
 /obj/machinery/media/jukebox/attack_hand(mob/user)
 	if(machine_stat & (NOPOWER | BROKEN))
 		to_chat(usr, "\The [src] doesn't appear to function.")
@@ -218,7 +221,7 @@
 /obj/machinery/media/jukebox/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 
-	if(default_deconstruction_screwdriver(user, W))
+	if(default_deconstruction_screwdriver(user, icon_state, icon_state, W))
 		return
 	if(default_deconstruction_crowbar(W))
 		return

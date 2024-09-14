@@ -842,11 +842,11 @@ GLOBAL_LIST_INIT(purchasable_nifsofts, list(
 		return FALSE
 
 	if(!is_type_in_list(target_glasses, glasses_whitelist))
-		balloon_alert("incompatible!")
+		balloon_alert(user, "incompatible!")
 		return FALSE
 
 	if(HAS_TRAIT(target_glasses, TRAIT_NIFSOFT_HUD_GRANTER))
-		balloon_alert("already upgraded!")
+		balloon_alert(user, "already upgraded!")
 		return FALSE
 
 	user.visible_message(span_notice("[user] upgrades [target_glasses] with [src]."), span_notice("You upgrade [target_glasses] to be NIF HUD compatible."))

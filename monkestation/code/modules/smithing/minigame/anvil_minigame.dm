@@ -49,7 +49,7 @@
 
 	generate_anvil_beats(TRUE)
 
-	if(!user.client || user.incapacitated())
+	if(QDELETED(user.client) || user.incapacitated())
 		return FALSE
 	. = TRUE
 	anvil_hud = new
@@ -57,6 +57,15 @@
 	RegisterSignal(user.client, COMSIG_CLIENT_CLICK_DIRTY, PROC_REF(check_click))
 
 	START_PROCESSING(SSfishing, src)
+
+/datum/anvil_challenge/Destroy(force)
+	if(anvil_hud)
+		user?.client?.screen -= anvil_hud
+		QDEL_NULL(anvil_hud)
+	user = null
+	selected_recipe = null
+	host_anvil = null
+	return ..()
 
 /datum/anvil_challenge/proc/generate_anvil_beats(init = FALSE)
 	var/list/new_notes = list()
@@ -168,6 +177,7 @@
 	else
 		user.mind.adjust_experience(/datum/skill/smithing, round(2.5 * (total_notes - failed_notes))) //Every good Hit = 2 XP
 	anvil_hud.end_minigame()
+	user.client?.screen -= anvil_hud
 	QDEL_NULL(anvil_hud)
 	host_anvil.smithing = FALSE
 	host_anvil.generate_item(success)

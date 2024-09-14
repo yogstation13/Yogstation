@@ -32,6 +32,10 @@
 	if(air_conditioning)
 		SSair.start_processing_machine(src)
 
+/obj/machinery/airalarm/Destroy()
+	SSair.stop_processing_machine(src)
+	return ..()
+
 /obj/machinery/airalarm/examine(mob/user)
 	. = ..()
 	var/status = air_conditioning ? (ac_active ? "active" : "idle") : "disabled"

@@ -15,6 +15,10 @@
 	///Our Artifact
 	var/datum/component/artifact/our_artifact
 
+/datum/artifact_fault/Destroy(force)
+	our_artifact = null
+	return ..()
+
 ///called when the artifact gets a stimulus, and passes its trigger chance effect.
 /datum/artifact_fault/proc/on_trigger()
 	return

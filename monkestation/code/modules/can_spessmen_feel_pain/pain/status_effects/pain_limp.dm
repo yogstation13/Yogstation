@@ -40,6 +40,8 @@
 		)
 
 /datum/status_effect/limp/pain/update_limp()
+	if(QDELING(owner))
+		return
 	var/mob/living/carbon/human/limping_human = owner
 
 	left = limping_human.pain_controller.body_zones[BODY_ZONE_L_LEG]
