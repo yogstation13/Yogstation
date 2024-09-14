@@ -20,7 +20,7 @@
 
 /obj/structure/liquid_pump/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
-	default_unfasten_wrench(user, I, 40)
+	default_unfasten_wrench(user, I, 20)
 	if(!anchored && turned_on)
 		toggle_working()
 	return TRUE
