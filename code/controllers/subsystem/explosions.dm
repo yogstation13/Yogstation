@@ -353,9 +353,8 @@ SUBSYSTEM_DEF(explosions)
 	if(adminlog)
 		message_admins("Explosion with size (Devast: [devastation_range], Heavy: [heavy_impact_range], Light: [light_impact_range], Flame: [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)]. Possible cause: [explosion_cause]. Last fingerprints: [who_did_it].")
 		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [loc_name(epicenter)].  Possible cause: [explosion_cause]. Last fingerprints: [who_did_it_game_log].")
-
 	//monkestation edit start
-	deadchat_broadcast("Explosion with size: Devast: [devastation_range], Heavy: [heavy_impact_range], Light: [light_impact_range], Flame: [flame_range].", \
+		deadchat_broadcast("Explosion with size: Devast: [devastation_range], Heavy: [heavy_impact_range], Light: [light_impact_range], Flame: [flame_range].", \
 						turf_target = epicenter, message_type = DEADCHAT_ANNOUNCEMENT)
 	//monkestation edit end
 

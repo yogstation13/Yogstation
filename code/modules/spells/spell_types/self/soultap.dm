@@ -45,6 +45,8 @@
 	cast_on.health = min(cast_on.health, cast_on.maxHealth)
 
 	for(var/datum/action/cooldown/spell/spell in cast_on.actions)
+		if(istype(spell, /datum/action/cooldown/spell/pointed/mind_transfer)) //monkestation edit
+			continue //monkestation edit
 		spell.reset_spell_cooldown()
 
 	// If the tap took all of our life, we die and lose our soul!

@@ -682,10 +682,11 @@
 	project_action = new(src)
 	project_action.Grant(grant_to)
 
-	grant_to.AddComponent(/datum/component/mind_linker, \
+	grant_to.AddComponent( \
+		/datum/component/mind_linker/active_linking, \
 		network_name = "Slime Link", \
-		linker_action_path = /datum/action/innate/link_minds, \
 		signals_which_destroy_us = list(COMSIG_SPECIES_LOSS), \
+		linker_action_path = /datum/action/innate/link_minds, \
 	)
 
 //Species datums don't normally implement destroy, but JELLIES SUCK ASS OUT OF A STEEL STRAW

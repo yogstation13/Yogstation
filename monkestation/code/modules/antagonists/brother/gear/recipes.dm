@@ -41,6 +41,6 @@
 /datum/bb_gear/granter/elance
 	name = "Recipe: Explosive Lance (Grenade)"
 	desc = "Contains a recipe book, allowing you to learn the knowledge to build an explosive lance (grenade)."
-	spawn_path = /obj/item/spear/explosive
-	preview_path = /obj/item/book/granter/crafting_recipe/maint_gun/explosive_lance
+	spawn_path = /obj/item/book/granter/crafting_recipe/maint_gun/explosive_lance
+	preview_path = /obj/item/spear/explosive
 

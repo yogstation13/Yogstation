@@ -12,7 +12,7 @@
 		YOU WILL NOT SURVIVE THIS."
 	icon = 'icons/hud/screen_alert.dmi'
 	icon_state = "wounded"
-	minimum_time = 90 MINUTES // This will probably immediately end the round if it gets finished.
+	minimum_time = 80 MINUTES // This will probably immediately end the round if it gets finished. //monkestation edit: from 90 to 80 minutes
 	ritual_invoke_time = 60 SECONDS // Really give the crew some time to interfere with this one.
 	dire_warning = TRUE
 	glow_colour = "#be000048"

@@ -37,7 +37,7 @@
 	icon_grow = "TreePaper-G"
 
 	product = /obj/item/paper
-	possible_mutations = list(/datum/hydroponics/plant_mutation/money)
+//	possible_mutations = list(/datum/hydroponics/plant_mutation/money) //money trees moved to the maint pool
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 
 /obj/item/seeds/tree/money

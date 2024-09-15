@@ -1,3 +1,4 @@
+// Proximity monitor applies forced gravity to all turfs in range.
 /datum/proximity_monitor/advanced/gravity
 	edge_is_a_field = TRUE
 	var/gravity_value = 0
@@ -10,7 +11,9 @@
 
 /datum/proximity_monitor/advanced/gravity/setup_field_turf(turf/target)
 	. = ..()
-	if (isnull(modified_turfs[target]))
+	if(!isnull(modified_turfs[target]))
+		return
+	if(HAS_TRAIT(target, TRAIT_FORCED_GRAVITY))
 		return
 	target.AddElement(/datum/element/forced_gravity, gravity_value, can_override = TRUE)
 	modified_turfs[target] = gravity_value
@@ -19,7 +22,8 @@
 	. = ..()
 	if(isnull(modified_turfs[target]))
 		return
-	target.RemoveElement(/datum/element/forced_gravity, modified_turfs[target])
+	var/grav_value = modified_turfs[target] || 0
+	target.RemoveElement(/datum/element/forced_gravity, grav_value)
 	modified_turfs -= target
 
 // Subtype which pops up a balloon alert when a mob enters the field

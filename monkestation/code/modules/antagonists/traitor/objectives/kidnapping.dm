@@ -21,7 +21,7 @@
 	var/list/target_belongings = list()
 
 /datum/traitor_objective/target_player/kidnapping/common
-	progression_reward = list(2 MINUTES, 4 MINUTES)
+	progression_reward = list(10 MINUTES, 15 MINUTES)
 	telecrystal_reward = list(2, 3)
 	target_jobs = list(
 		// Cargo
@@ -57,7 +57,7 @@
 	telecrystal_reward = 3 //go bully the assistants
 
 /datum/traitor_objective/target_player/kidnapping/uncommon //Hard to fish out targets
-	progression_reward = list(4 MINUTES, 8 MINUTES)
+	progression_reward = list(15 MINUTES, 20 MINUTES)
 	telecrystal_reward = list(3, 4)
 	given_contractor_rep = 2
 
@@ -75,7 +75,7 @@
 	alive_bonus = 4
 
 /datum/traitor_objective/target_player/kidnapping/rare
-	progression_reward = list(8 MINUTES, 12 MINUTES)
+	progression_reward = list(20 MINUTES, 25 MINUTES)
 	telecrystal_reward = list(4, 5)
 	given_contractor_rep = 3
 
@@ -93,7 +93,7 @@
 	alive_bonus = 5
 
 /datum/traitor_objective/target_player/kidnapping/captain
-	progression_reward = list(12 MINUTES, 16 MINUTES)
+	progression_reward = list(25 MINUTES, 30 MINUTES)
 	telecrystal_reward = list(5, 6)
 	given_contractor_rep = 4
 

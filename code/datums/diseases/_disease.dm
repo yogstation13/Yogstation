@@ -69,7 +69,7 @@ GLOBAL_LIST_INIT(inspectable_diseases, list())
 
 ///Proc to process the disease and decide on whether to advance, cure or make the sympthoms appear. Returns a boolean on whether to continue acting on the symptoms or not.
 /datum/disease/proc/stage_act(seconds_per_tick, times_fired)
-	var/slowdown = affected_mob.reagents.has_reagent(/datum/reagent/medicine/antipathogenic/spaceacillin) ? 0.5 : 1 // spaceacillin slows stage speed by 50%
+	var/slowdown = HAS_TRAIT(affected_mob, TRAIT_VIRUS_RESISTANCE) ? 0.5 : 1 // spaceacillin slows stage speed by 50%
 
 	if(has_cure())
 		if(SPT_PROB(cure_chance, seconds_per_tick))
@@ -106,7 +106,7 @@ GLOBAL_LIST_INIT(inspectable_diseases, list())
 	if(!(spread_flags & DISEASE_SPREAD_AIRBORNE) && !force_spread)
 		return
 
-	if(affected_mob.reagents.has_reagent(/datum/reagent/medicine/antipathogenic/spaceacillin) || (affected_mob.satiety > 0 && prob(affected_mob.satiety/10)))
+	if(HAS_TRAIT(affected_mob, TRAIT_VIRUS_RESISTANCE) || (affected_mob.satiety > 0 && prob(affected_mob.satiety/10)))
 		return
 
 	affected_mob.spread_airborne_diseases()

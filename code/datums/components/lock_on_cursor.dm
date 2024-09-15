@@ -43,6 +43,7 @@
 	datum/callback/on_click_callback,
 	datum/callback/on_lock,
 	datum/callback/can_target_callback,
+	catcher_default_click = TRUE, //monkestation edit
 )
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE

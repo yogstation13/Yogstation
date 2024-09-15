@@ -154,6 +154,7 @@
 			skillchip.set_metadata(chip)
 	// monkestation end
 	check_tier_progression(target)
+	return TRUE
 
 /// Picks a random mutated organ from the infuser entry which is also compatible with the target mob.
 /// Tries to return a typepath of a valid mutant organ if all of the following criteria are true:

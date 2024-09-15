@@ -4,12 +4,12 @@
 	created_product = /obj/item/paper
 	created_seed = /obj/item/seeds/tree/paper
 
-
-/datum/hydroponics/plant_mutation/money
+//money treee seeds have been moved to the rare maint pool
+/*/datum/hydroponics/plant_mutation/money
 	mutates_from = list(/obj/item/seeds/tree/paper)
 	required_potency = list(30, INFINITY)
 	created_product = /obj/item/stack/spacecash/c10
-	created_seed = /obj/item/seeds/tree/money
+	created_seed = /obj/item/seeds/tree/money*/
 
 /datum/hydroponics/plant_mutation/steel
 	mutates_from = list(/obj/item/seeds/tree)

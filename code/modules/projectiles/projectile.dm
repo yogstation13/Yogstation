@@ -519,8 +519,10 @@
 		return process_hit(T, select_target(T, target, bumped), bumped, hit_something) // try to hit something else
 	// at this point we are going to hit the thing
 	// in which case send signal to it
-	if (SEND_SIGNAL(target, COMSIG_PROJECTILE_PREHIT, args, src) & PROJECTILE_INTERRUPT_HIT)
-		qdel(src)
+	var/signal_bitfield = SEND_SIGNAL(target, COMSIG_PROJECTILE_PREHIT, args, src) //monkestation edit
+	if (signal_bitfield & PROJECTILE_INTERRUPT_HIT)
+		if(!(signal_bitfield & PROJECTILE_INTERRUPT_BLOCK_QDEL)) //monkestation edit
+			qdel(src)
 		return BULLET_ACT_BLOCK
 	if(mode == PROJECTILE_PIERCE_HIT)
 		++pierces
@@ -919,7 +921,7 @@
 		process_homing()
 	var/forcemoved = FALSE
 	for(var/i in 1 to SSprojectiles.global_iterations_per_move)
-		if(QDELETED(src))
+		if(QDELETED(src) || !trajectory) //monkestation edit: adds the trajectory check
 			return
 		trajectory.increment(trajectory_multiplier)
 		var/turf/T = trajectory.return_turf()

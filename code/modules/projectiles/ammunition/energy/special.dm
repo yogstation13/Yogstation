@@ -65,7 +65,7 @@
 	projectile_type = /obj/projectile/energy/tesla_cannon
 
 /obj/item/ammo_casing/energy/shrink
-	projectile_type = /obj/projectile/beam/shrink
+	projectile_type = /obj/projectile/magic/shrink/alien
 	select_name = "shrink ray"
 	e_cost = 200
 

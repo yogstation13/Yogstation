@@ -125,13 +125,13 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// This human is immune to the effects of being exploded. (ex_act)
 #define TRAIT_BOMBIMMUNE "bomb_immunity"
 /// This mob won't get gibbed by nukes going off
-/* #define TRAIT_NUKEIMMUNE "nuke_immunity" */
+#define TRAIT_NUKEIMMUNE "nuke_immunity"
 /// Can't be given viruses
 #define TRAIT_VIRUSIMMUNE "virus_immunity"
 /// Won't become a husk under any circumstances
 /* #define TRAIT_UNHUSKABLE "trait_unhuskable" */
 /// Reduces the chance viruses will spread to this mob, and if the mob has a virus, slows its advancement
-/* #define TRAIT_VIRUS_RESISTANCE "virus_resistance" */
+#define TRAIT_VIRUS_RESISTANCE "virus_resistance"
 #define TRAIT_GENELESS "geneless"
 #define TRAIT_PIERCEIMMUNE "pierce_immunity"
 #define TRAIT_NODISMEMBER "dismember_immunity"
@@ -1022,9 +1022,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Isn't attacked harmfully by blob structures
 #define TRAIT_BLOB_ALLY "blob_ally"
 /// Has the chuuni component
-/* #define TRAIT_CHUUNIBYOU "chuunibyou" */
+#define TRAIT_CHUUNIBYOU "chuunibyou"
 /// Has splattercasting
-/* #define TRAIT_SPLATTERCASTER "splattercaster" */
+#define TRAIT_SPLATTERCASTER "splattercaster"
 
 ///Traits given by station traits
 /* #define STATION_TRAIT_ASSISTANT_GIMMICKS "station_trait_assistant_gimmicks" */
@@ -1154,7 +1154,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// This atom can have spells cast from it if a mob is within it
 /// This means the "caster" of the spell is changed to the mob's loc
 /// Note this doesn't mean all spells are guaranteed to work or the mob is guaranteed to cast
-/* #define TRAIT_CASTABLE_LOC "castable_loc" */
+#define TRAIT_CASTABLE_LOC "castable_loc"
 
 /// Needs above trait to work.
 /// This trait makes it so that any cast spells will attempt to transfer to the location's location.

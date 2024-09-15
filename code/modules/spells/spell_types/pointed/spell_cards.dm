@@ -7,7 +7,8 @@
 
 	school = SCHOOL_EVOCATION
 	cooldown_time = 5 SECONDS
-	cooldown_reduction_per_rank = 1 SECONDS
+	cooldown_reduction_per_rank = 2 SECONDS
+	spell_max_level = 3
 
 	invocation = "Sigi'lu M'Fan 'Tasia!"
 	invocation_type = INVOCATION_SHOUT
@@ -21,7 +22,7 @@
 	/// A weakref to the mob we're currently targeting with the lockon component.
 	var/datum/weakref/current_target_weakref
 	/// The turn rate of the spell cards in flight. (They track onto locked on targets)
-	var/projectile_turnrate = 10
+	var/projectile_turnrate = 15 //monkestation edit: from 10 to 15
 	/// The homing spread of the spell cards in flight.
 	var/projectile_pixel_homing_spread = 32
 	/// The initial spread of the spell cards when fired.
@@ -47,6 +48,7 @@
 		target_typecache = GLOB.typecache_living, \
 		lock_amount = 1, \
 		on_lock = CALLBACK(src, PROC_REF(on_lockon_component)), \
+		catcher_default_click = FALSE, /*monkestation edit*/ \
 	)
 
 /datum/action/cooldown/spell/pointed/projectile/spell_cards/proc/on_lockon_component(list/locked_weakrefs)

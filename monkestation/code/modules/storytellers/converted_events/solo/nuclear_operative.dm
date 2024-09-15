@@ -58,11 +58,9 @@
 	for(var/obj/item/item as anything in items)
 		qdel(item)
 
+	create_human_mob_copy(get_turf(current_mob), current_mob)
 	if(!most_experienced)
-		most_experienced = get_most_experienced(setup_minds, required_role)
-
-	if(!most_experienced)
-		most_experienced = antag_mind
+		most_experienced = get_most_experienced(setup_minds, required_role) || antag_mind
 
 	if(!set_leader)
 		set_leader = TRUE
@@ -73,6 +71,7 @@
 			leader_mob.unequip_everything()
 			for(var/obj/item/item as anything in leader_items)
 				qdel(item)
+			leader_mob = create_human_mob_copy(get_turf(leader_mob), leader_mob)
 		most_experienced.set_assigned_role(SSjob.GetJobType(/datum/job/nuclear_operative))
 		most_experienced.special_role = ROLE_NUCLEAR_OPERATIVE
 		var/datum/antagonist/nukeop/leader/leader_antag_datum = most_experienced.add_antag_datum(/datum/antagonist/nukeop/leader)

@@ -65,6 +65,7 @@
 	for(var/obj/item/item as anything in items)
 		qdel(item)
 
+	create_human_mob_copy(get_turf(current_mob), current_mob)
 	antag_mind.set_assigned_role(SSjob.GetJobType(/datum/job/clown_operative))
 	antag_mind.special_role = ROLE_CLOWN_OPERATIVE
 
@@ -75,10 +76,11 @@
 	if(!set_leader)
 		set_leader = TRUE
 		var/datum/antagonist/nukeop/leader/leader_antag_datum = new()
+		var/mob/living/carbon/human/leader_mob = most_experienced.current
+		leader_mob = create_human_mob_copy(get_turf(leader_mob), leader_mob)
 		nuke_team = leader_antag_datum.nuke_team
 		most_experienced.add_antag_datum(leader_antag_datum)
-		var/mob/living/carbon/human/leader = most_experienced.current
-		leader.equip_species_outfit(/datum/outfit/syndicate/clownop/leader)
+		leader_mob.equip_species_outfit(/datum/outfit/syndicate/clownop/leader)
 
 	if(antag_mind == most_experienced)
 		return
