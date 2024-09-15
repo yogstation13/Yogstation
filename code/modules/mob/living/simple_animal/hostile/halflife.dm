@@ -26,14 +26,16 @@
 	deathsound = 'sound/creatures/halflife/zombiedeath.ogg'
 	var/no_crab_state = "zombie_dead_nocrab"
 	var/crabless_possible = TRUE
+	var/idle_sound_chance = 50
+	var/sound_vary = TRUE
 	var/aggro_sound = 'sound/creatures/halflife/zombieaggro.ogg'
 	var/idle_sounds = list('sound/creatures/halflife/zombiesound.ogg', 'sound/creatures/halflife/zombiesound2.ogg', 'sound/creatures/halflife/zombiesound3.ogg')
 
 /mob/living/simple_animal/hostile/halflife/zombie/Aggro()
 	. = ..()
 	set_combat_mode(TRUE)
-	if(prob(50))
-		playsound(src, aggro_sound, 50, TRUE)
+	if(prob(idle_sound_chance))
+		playsound(src, aggro_sound, 50, sound_vary)
 
 /mob/living/simple_animal/hostile/halflife/zombie/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
@@ -41,7 +43,7 @@
 		return
 	if(prob(10))
 		var/chosen_sound = pick(idle_sounds)
-		playsound(src, chosen_sound, 50, TRUE)
+		playsound(src, chosen_sound, 50, sound_vary)
 
 /mob/living/simple_animal/hostile/halflife/zombie/death(gibbed)
 	if(prob(25) && crabless_possible) //25% chance to spawn a headcrab on death
@@ -65,6 +67,71 @@
 	aggro_sound = 'sound/creatures/halflife/zombineaggro.ogg'
 	idle_sounds = list('sound/creatures/halflife/zombinesound1.ogg', 'sound/creatures/halflife/zombinesound2.ogg', 'sound/creatures/halflife/zombinesound3.ogg', 'sound/creatures/halflife/zombinesound4.ogg')
 
+/mob/living/simple_animal/hostile/halflife/zombie/fast
+	name = "Fast Zombie"
+	desc = "A terrifying skinless human, taken over by a parasitic head crab."
+	icon_state = "fastzombie"
+	icon_living = "fastzombie"
+	icon_dead = "fastzombie_dead"
+	faction = list("headcrab")
+	maxHealth = 100
+	health = 100
+	speak_chance = 0
+	melee_damage_lower = 8
+	melee_damage_upper = 10
+	rapid_melee = 4 //attacks quite fast
+	attack_sound = 'sound/creatures/halflife/fastzombieattack.ogg'
+	combat_mode = TRUE
+	move_to_delay = 3
+	ranged = 1 //for jumping
+	deathsound = 'sound/creatures/halflife/fastzombiedeath.ogg'
+	no_crab_state = "fastzombie_nocrab"
+	idle_sound_chance = 100
+	sound_vary = FALSE
+	aggro_sound = 'sound/creatures/halflife/fastzombiealert.ogg'
+	idle_sounds = list('sound/creatures/halflife/fastzombie_breath.ogg', 'sound/creatures/halflife/fastzombiesound1.ogg', 'sound/creatures/halflife/fastzombiesound2.ogg', 'sound/creatures/halflife/fastzombiesound3.ogg')
+	var/charging = FALSE
+	var/revving_charge = FALSE
+	var/dash_speed = 1
+
+/mob/living/simple_animal/hostile/halflife/zombie/fast/OpenFire()
+	if(charging)
+		return
+	var/tturf = get_turf(target)
+	if(!isturf(tturf))
+		return
+	if(get_dist(src, target) <= 7)
+		charge()
+		ranged_cooldown = world.time + ranged_cooldown_time
+
+/mob/living/simple_animal/hostile/halflife/zombie/fast/proc/charge(atom/chargeat = target, delay = 5)
+	if(!chargeat)
+		return
+	var/chargeturf = get_turf(chargeat)
+	if(!chargeturf)
+		return
+	var/dir = get_dir(src, chargeturf)
+	var/turf/T = get_ranged_target_turf(chargeturf, dir, 2)
+	if(!T)
+		return
+	charging = TRUE
+	revving_charge = TRUE
+	walk(src, 0)
+	setDir(dir)
+	SLEEP_CHECK_DEATH(delay)
+	revving_charge = FALSE
+	playsound(src, 'sound/creatures/halflife/fastzombieleap.ogg', 40, sound_vary)
+	walk_towards(src, T, dash_speed)
+	SLEEP_CHECK_DEATH(get_dist(src, T) * dash_speed)
+	walk(src, 0) // cancel the movement
+	charging = FALSE
+
+/mob/living/simple_animal/hostile/halflife/zombie/fast/Move()
+	if(revving_charge)
+		return FALSE
+	..()
+
+
 //leaping headcrabs
 /mob/living/simple_animal/hostile/halflife/headcrab
 	name = "Headcrab"
@@ -82,7 +149,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 10
 	attack_vis_effect = ATTACK_EFFECT_BITE
-	ranged = 1 //for charging
+	ranged = 1 //for leaping
 	attacktext = "bites"
 	attack_sound = 'sound/creatures/halflife/headcrabbite.ogg'
 	combat_mode = TRUE
