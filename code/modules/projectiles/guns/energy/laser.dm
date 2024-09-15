@@ -43,16 +43,19 @@
 	desc = "The NT-S01 laser gun is NTs first attempt to provide an inbuilt recharger, and is the first in its line as an 'S' or special class weapon given to space station command members. Due to how expensive it is to produce, and that the material used to do so deteriorates quickly, it was decommissioned, and the few models left are used as prizes meant to never see the light of day."
 	force = 10
 	ammo_x_offset = 3
-	selfcharge = 1
+	selfcharge = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
-/obj/item/gun/energy/laser/captain/scattershot
+/obj/item/gun/energy/laser/scattershot
 	name = "scatter shot laser rifle"
 	icon_state = "lasercannon"
-	item_state = LASER
 	desc = "An industrial-grade heavy-duty laser rifle with a modified laser lens to scatter its shot into multiple smaller lasers. The inner-core can self-charge for theoretically infinite use."
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/scatter, /obj/item/ammo_casing/energy/laser)
+	ammo_x_offset = 3
+	force = 10
+	selfcharge = TRUE
 	shaded_charge = FALSE
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/gun/energy/laser/cyborg
 	can_charge = FALSE

@@ -802,6 +802,64 @@
 	reagent_state = LIQUID
 	color = "#ccccff"
 	metabolization_rate = REAGENTS_METABOLISM
+	overdose_threshold = 20 //please don't consume pure caffeine
+	addiction_threshold = 20 //the addiction isn't that dangerous
+	trippy = FALSE
+	var/list/overdose_text = list("Your head pounds.", "You feel lethargic.", "You feel drowsy.", "You feel weak.", "You just want to sleep.")
+
+/datum/reagent/drug/caffeine/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(prob(1))
+		var/caffeine_message = pick("You feel alert.")
+		to_chat(M, span_notice("[caffeine_message]"))
+	M.adjust_drowsiness(-6 SECONDS * REM)
+	M.AdjustSleeping(-4 SECONDS, FALSE)
+	M.adjust_dizzy(-4 SECONDS * REM)
+
+/datum/reagent/drug/caffeine/overdose_process(mob/living/M)
+	. = ..()
+	ADD_TRAIT(L, TRAIT_THERMAL_VISION, type)
+	L.add_client_colour(/datum/client_colour/thirdeye)
+	L.update_sight()
+
+/datum/reagent/drug/three_eye/on_mob_end_metabolize(mob/living/L)
+	REMOVE_TRAIT(L, TRAIT_THERMAL_VISION, type)
+	L.remove_client_colour(/datum/client_colour/thirdeye)
+	L.update_sight()
+	return ..()
+
+/datum/reagent/drug/caffeine/proc/apply_drowsy(mob/living/M)
+	M.adjust_drowsiness_up_to(3 SECONDS * REM, 10 SECONDS)
+	if(prob(50))
+		to_chat(M, span_warning(pick(overdose_text)))
+
+/**
+ * doesn't call the parent addiction acts because it doesn't function the same way
+ */
+/datum/reagent/drug/caffeine/addiction_act_stage1(mob/living/M)
+	if(prob(50) && iscarbon(M))
+		to_chat(M, span_warning(pick(overdose_text))) //don't start getting drowsy right away, just start with warnings from headaches and the like
+
+/datum/reagent/drug/caffeine/addiction_act_stage2(mob/living/M)
+	if(prob(75) && iscarbon(M))
+		apply_drowsy(M)
+
+/datum/reagent/drug/caffeine/addiction_act_stage3(mob/living/M)
+	if(prob(60) && iscarbon(M))
+		apply_drowsy(M)
+
+/datum/reagent/drug/caffeine/addiction_act_stage4(mob/living/M)
+	if(prob(45) && iscarbon(M))
+		apply_drowsy(M)
+
+
+/datum/reagent/drug/three_eye
+	name = "Three Eye"
+	taste_description = "liquid starlight"
+	description = "Three Eye is one of the most notorious narcotics to ever come out of the independant habitats, allowing those who take it to see through walls."
+	reagent_state = LIQUID
+	color = "#ccccff"
+	metabolization_rate = REAGENTS_METABOLISM
 	overdose_threshold = 25
 
 	// M A X I M U M C H E E S E

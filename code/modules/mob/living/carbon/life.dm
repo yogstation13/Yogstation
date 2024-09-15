@@ -128,11 +128,12 @@
 						//Try and drink water
 						our_turf.liquids.liquid_group.transfer_to_atom(src, CHOKE_REAGENTS_INGEST_ON_BREATH_AMOUNT)
 						visible_message(span_warning("[src] chokes on water!"), span_userdanger("You're choking on water!"))
-				var/breath_ratio = 0
-				if(environment)
-					breath_ratio = BREATH_VOLUME/environment.return_volume()
+				else
+					var/breath_ratio = 0
+					if(environment)
+						breath_ratio = BREATH_VOLUME/environment.return_volume()
 
-				breath = loc.remove_air_ratio(breath_ratio)
+					breath = loc.remove_air_ratio(breath_ratio)
 		else //Breathe from loc as obj again
 			if(istype(loc, /obj/))
 				var/obj/loc_as_obj = loc
