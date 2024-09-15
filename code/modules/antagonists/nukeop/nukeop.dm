@@ -36,7 +36,7 @@
 	return TRUE
 
 /datum/antagonist/nukeop/greet()
-	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/particleghost.ogg',80,0)
+	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/particleghost.ogg',50,0)
 	to_chat(owner, span_notice("You are a member of the resistance!"))
 	owner.announce_objectives()
 

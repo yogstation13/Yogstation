@@ -21,6 +21,7 @@
 							TRAIT_NOCRITDAMAGE, TRAIT_GENELESS, TRAIT_NOSOFTCRIT, TRAIT_HARDLY_WOUNDED)
 	mutanteyes = /obj/item/organ/eyes/alien
 	var/datum/action/cooldown/spell/conjure_item/infinite_guns/vort_blast/galunga
+	var/datum/action/cooldown/spell/touch/vort_heal/vortheal
 
 /datum/species/vortigaunt/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
@@ -33,8 +34,12 @@
 /datum/species/vortigaunt/on_species_loss(mob/living/carbon/C)
 	..()
 	galunga.Remove(C)
+	vortheal.Remove(C)
 
 /datum/species/vortigaunt/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
 	galunga = new(C)
 	galunga.Grant(C)
+
+	vortheal = new(C)
+	vortheal.Grant(C)
