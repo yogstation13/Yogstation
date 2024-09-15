@@ -1,4 +1,0 @@
-author: "PotatoTomahto"
-delete-after: True
-changes:
-  - bugfix: "Mood hud should no longer constantly appear when retoggling ghost hud."

@@ -1,6 +1,0 @@
-author: "RikuTheKiller"
-delete-after: True
-changes:
-  - rscadd: "Borers are now available in the antag token menu. (regular and neutered)"
-  - bugfix: "Borers now spawn in vents, rather than on top of them."
-  - spellcheck: "Fixed some minor typos and whatnot."

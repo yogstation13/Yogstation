@@ -1,8 +1,0 @@
-author: "Comxy, Fikou, lessthnthree, Rhials, Ghommie, MrMelbert, IndieanaJones, san7890, Holoo-1, PKPenguin321, larentoun, Das15, carlarctg, Jacquerel, JohnFulpWillard"
-delete-after: True
-changes:
-  - rscadd: "Wizards can now purchase mirror shields"
-  - rscadd: "The Fireball spell in wizards spellbooks has been replaced with Fire Ball"
-  - balance: "The magical chem sprayed now comes with a bio suit and wizard combat gloves"
-  - balance: "The wizard MODsuit shield has been reworked and now costs 1"
-  - bugfix: "spell cards work again"

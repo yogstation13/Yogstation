@@ -387,3 +387,25 @@
       entrance to all random bar maps.
   - bugfix: tried to fix some lights being weird.
   - code_imp: added the new engine to boxstation's engines file.
+2024-09-15:
+  Absolucy:
+  - bugfix: Fixed various runtimes and hard deletes.
+  ? Comxy, Fikou, lessthnthree, Rhials, Ghommie, MrMelbert, IndieanaJones, san7890,
+    Holoo-1, PKPenguin321, larentoun, Das15, carlarctg, Jacquerel, JohnFulpWillard
+  : - rscadd: Wizards can now purchase mirror shields
+    - rscadd: The Fireball spell in wizards spellbooks has been replaced with Fire
+        Ball
+    - balance: The magical chem sprayed now comes with a bio suit and wizard combat
+        gloves
+    - balance: The wizard MODsuit shield has been reworked and now costs 1
+    - bugfix: spell cards work again
+  PotatoTomahto:
+  - balance: Wrenching and unwrenching the liquid pump takes 2 seconds instead of
+      4.
+  - bugfix: Mood hud should no longer constantly appear when retoggling ghost hud.
+  RikuTheKiller:
+  - rscadd: Borers are now available in the antag token menu. (regular and neutered)
+  - bugfix: Borers now spawn in vents, rather than on top of them.
+  - spellcheck: Fixed some minor typos and whatnot.
+  Shoddd:
+  - bugfix: Ash walkers can now use flight potions
