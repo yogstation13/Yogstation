@@ -14,7 +14,7 @@
 		list(/obj/structure/table, /obj/item/reagent_containers/glass/bottle/nutrient/ez, /obj/item/reagent_containers/glass/bottle/nutrient/rh) = 1,
 		list(/obj/structure/table, /obj/item/cultivator, /obj/item/hatchet) = 1,
 		/obj/item/reagent_containers/glass/bottle/ammonia = 1,
-		/obj/item/reagent_containers/glass/bottle/diethylamine = 1,
+		/obj/item/reagent_containers/glass/bottle/diethylamine = 1
 		)
 
 	weighted_mob_spawn_list = list(
@@ -42,6 +42,7 @@
 		/obj/machinery/power/port_gen/pacman = 1,
 		/obj/structure/frame/machine = 2,
 		/obj/structure/frame/computer = 1,
+		/obj/effect/spawner/lootdrop/nullspace_crystal_spawner = 1
 		)
 
 /datum/dungeon_room_theme/maintenance/material_storeroom/pre_initialize()
@@ -103,6 +104,7 @@
 		/mob/living/simple_animal/mouse = 3, 
 		/mob/living/simple_animal/opossum = 1,
 		/mob/living/simple_animal/hostile/retaliate/goat = 1,
+		/obj/effect/spawner/lootdrop/nullspace_crystal_spawner
 		)
 
 /datum/dungeon_room_theme/maintenance/junk/pre_initialize()
@@ -128,6 +130,7 @@
 		/obj/machinery/iv_drip = 2,
 		/obj/machinery/stasis = 1,
 		/obj/machinery/sleeper = 1,
+		/obj/effect/spawner/lootdrop/nullspace_crystal_spawner = 1
 	)
 	weighted_mob_spawn_list = list(
 		/mob/living/simple_animal/hostile/zombie = 3,
@@ -179,6 +182,7 @@
 		/obj/item/weldingtool/largetank = 1,
 		/obj/structure/frame/machine = 1,
 		/obj/structure/frame/computer = 1,
+		/obj/effect/spawner/lootdrop/nullspace_crystal_spawner = 1
 		)
 	weighted_mob_spawn_list = list(
 		/mob/living/simple_animal/hostile/hivebot = 5, 
@@ -210,6 +214,7 @@
 		/obj/structure/spider/stickyweb = 5, 
 		/obj/structure/spider/cocoon = 5,
 		/obj/structure/spider/spiderling = 2,
+		/obj/effect/spawner/lootdrop/nullspace_crystal_spawner = 1
 		)
 	
 	weighted_mob_spawn_list = list(
@@ -233,6 +238,7 @@
 		list(/obj/structure/table, /obj/item/reagent_containers/glass/beaker/waterbottle, /obj/item/reagent_containers/food/snacks/monkeycube) = 1,
 		/obj/structure/frame/machine = 1,
 		/obj/structure/frame/computer = 1,	
+		/obj/effect/spawner/lootdrop/nullspace_crystal_spawner = 1
 		)
 	
 	weighted_mob_spawn_list = list(
@@ -274,7 +280,8 @@
 		/obj/structure/frame/machine = 3,
 		/obj/structure/frame/computer = 2,
 		/obj/effect/spawner/lootdrop/random_anomaly_core = 1,
-		/obj/effect/mine/stun
+		/obj/effect/mine/stun = 1,
+		/obj/effect/spawner/lootdrop/nullspace_crystal_spawner = 1
 		)
 	weighted_mob_spawn_list = list(
 		/mob/living/simple_animal/hostile/hivebot = 5, 
@@ -304,7 +311,8 @@
 		/obj/item/coin/silver = 5,
 		/obj/item/stack/sheet/mineral/gold = 10, ///this DLC is about letting go, letting go of poverty!!!
 		/obj/item/stack/spacecash/c1000 = 2,
-		/obj/item/stack/sheet/mineral/diamond = 5
+		/obj/item/stack/sheet/mineral/diamond = 5,
+		/obj/effect/spawner/lootdrop/nullspace_crystal_spawner = 1
 		)
 	weighted_mob_spawn_list = list(
 		/mob/living/simple_animal/hostile/hivebot/range = 2,
@@ -318,7 +326,8 @@
 		/obj/structure/closet/secure_closet/freezer/fridge = 1,
 		/obj/item/storage/box/donkpockets = 1,
 		/obj/item/kitchen/knife = 1,
-		/obj/effect/spawner/lootdrop/random_meat = 5
+		/obj/effect/spawner/lootdrop/random_meat = 5,
+		/obj/effect/spawner/lootdrop/nullspace_crystal_spawner = 1
 
 		)
 	weighted_mob_spawn_list = list(
@@ -340,7 +349,8 @@
 		list(/obj/structure/rack , /obj/item/clothing/suit/armor/vest, /obj/item/clothing/head/helmet/riot) = 1,
 		/obj/structure/frame/machine = 1,
 		/obj/structure/frame/computer = 1,
-		/obj/effect/mine/stun	
+		/obj/effect/mine/stun,
+		/obj/effect/spawner/lootdrop/nullspace_crystal_spawner = 1
 		)
 	
 	weighted_mob_spawn_list = list(
@@ -381,7 +391,7 @@
 	. = ..()
 	for(var/i in 1 to 5)
 		if(prob(10))
-			weighted_feature_spawn_list[/obj/item/gun/energy/laser/captain/scattershot ]++
+			weighted_feature_spawn_list[/obj/item/gun/energy/laser/captain/scattershot]++
 		else
 			weighted_feature_spawn_list[/obj/item/melee/spear/bonespear/chitinspear]++
 
@@ -393,7 +403,8 @@
 		/obj/machinery/autolathe = 1,
 		/obj/item/stack/sheet/glass/fifty = 1,
 		/obj/item/stack/sheet/metal/fifty = 1,
-		/obj/item/stack/sheet/mineral/silver/fifty = 1
+		/obj/item/stack/sheet/mineral/silver/fifty = 1,
+		/obj/effect/spawner/lootdrop/nullspace_crystal_spawner = 1
 		)
 ///eskimo enemy variety, they came here for the winter
 /datum/dungeon_room_theme/maintenance/eskimo
@@ -413,7 +424,8 @@
 	weighted_feature_spawn_list = list(
 		/obj/effect/mine/kickmine = 1,
 		/obj/effect/mine/creampie = 7,
-		/obj/effect/spawner/lootdrop/random_anomaly_core = 1
+		/obj/effect/spawner/lootdrop/random_anomaly_core = 1,
+		/obj/effect/spawner/lootdrop/nullspace_crystal_spawner = 1
 		)
 ///mineral room 2 but with danger involved
 /datum/dungeon_room_theme/maintenance/mineral_room
@@ -423,7 +435,8 @@
 		/obj/item/stack/sheet/mineral/plasma = 5,
 		/obj/item/stack/sheet/mineral/gold = 5,
 		/obj/item/stack/sheet/mineral/silver = 5,
-		/obj/item/stack/sheet/mineral/mythril = 1
+		/obj/item/stack/sheet/mineral/mythril = 1,
+		/obj/effect/spawner/lootdrop/nullspace_crystal_spawner = 1
 		)
 	
 	weighted_mob_spawn_list = list(
@@ -435,7 +448,8 @@
 	weighted_feature_spawn_list = list(
 		/obj/item/clothing/gloves/combat = 1,
 		/obj/item/kitchen/knife/combat = 1,
-		/obj/machinery/atmospherics/components/unary/vent_pump/on = 1
+		/obj/machinery/atmospherics/components/unary/vent_pump/on = 1,
+		/obj/effect/spawner/lootdrop/nullspace_crystal_spawner = 1
 		)
 	
 	
@@ -449,7 +463,8 @@
 		/obj/item/reagent_containers/food/snacks/pizza = 1,
 		/obj/item/circuitboard/machine/griddle = 1,
 		/obj/item/clothing/suit/toggle/chef = 1,
-		/obj/item/clothing/suit/apron/chef = 1
+		/obj/item/clothing/suit/apron/chef = 1,
+		/obj/effect/spawner/lootdrop/nullspace_crystal_spawner = 1
 		)
 ///cuackles played this once
 /datum/dungeon_room_theme/maintenance/oxygen_included
@@ -458,14 +473,15 @@
 		/obj/structure/tank_dispenser  = 1,
 		/obj/item/tank/internals/emergency_oxygen = 3,
 		/obj/item/tank/internals/emergency_oxygen/double = 1,
-		/obj/item/tank/internals/emergency_oxygen/vox = 1
+		/obj/item/tank/internals/emergency_oxygen/vox = 1,
+		/obj/effect/spawner/lootdrop/nullspace_crystal_spawner = 1
 		)
 ///we couldnt afford the surgery tools
 /datum/dungeon_room_theme/maintenance/medical_surgical
 	weighted_possible_floor_types = list(
 		/turf/open/floor/plasteel/white = 3,
 		/turf/open/floor/plasteel = 5,
-		/turf/open/floor/plating = 3, 
+		/turf/open/floor/plating = 3,
 		)
 
 	weighted_feature_spawn_list = list(
@@ -473,4 +489,5 @@
 		/obj/item/storage/firstaid/toxin = 1,
 		/obj/machinery/computer/operating = 1, 
 		/obj/structure/table/optable = 1,
+		/obj/effect/spawner/lootdrop/nullspace_crystal_spawner = 1
 		)
