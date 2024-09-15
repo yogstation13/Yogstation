@@ -14,6 +14,7 @@
 	desc = "A healing ball of vortal energy."
 	icon_state = "mansus"
 	item_state = "vort"
+	invocation_type = INVOCATION_NONE
 
 /datum/action/cooldown/spell/touch/vort_heal/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/victim, mob/living/carbon/caster)
 	playsound(caster, 'sound/weapons/halflife/attack_shoot.ogg', 50, TRUE)
