@@ -11,8 +11,11 @@
 /obj/item/psychic_power/telekinesis/process()
 	if(!focus || !isturf(focus.loc) || !valid_distance(owner, focus))
 		qdel(src)
-		return
-	. = ..()
+	else if(!owner || loc != owner || !(src in owner.held_items))
+		if(ishuman(loc))
+			var/mob/living/carbon/human/host = loc
+			host.remove_embedded_object(src)
+		qdel(src)
 
 /obj/item/psychic_power/telekinesis/proc/set_focus(atom/movable/_focus)
 

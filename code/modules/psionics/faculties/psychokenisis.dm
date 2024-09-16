@@ -96,7 +96,7 @@
 	name =            "Telekinesis"
 	cost =            5
 	cooldown =        1 SECONDS
-	min_rank =        PSI_RANK_GRANDMASTER
+	min_rank =        PSI_RANK_MASTER
 	icon_state = "psy_tele"
 	use_description = "Activate the power with the 'use' key (initially bound to Z) in an empty hand, to manifest a psychokinetic grip. Use it manipulate objects at a distance."
 	admin_log = FALSE
