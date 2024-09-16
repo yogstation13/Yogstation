@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Fixed the Goldeneye shuttle console becoming a nukie shuttle console when reconstructed."
