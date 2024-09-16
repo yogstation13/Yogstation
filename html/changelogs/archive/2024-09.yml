@@ -409,3 +409,10 @@
   - spellcheck: Fixed some minor typos and whatnot.
   Shoddd:
   - bugfix: Ash walkers can now use flight potions
+2024-09-16:
+  Absolucy:
+  - bugfix: Fixed the Goldeneye shuttle console becoming a nukie shuttle console when
+      reconstructed.
+  PotatoTomahto:
+  - bugfix: Bot launch pad fixed and renamed to "orbital bot pad".
+  - bugfix: Stationary medbot healing sprite fixed.
