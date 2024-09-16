@@ -126,7 +126,7 @@
 		var/arguments  = list()
 		if(SSticker.mode)
 			to_set += "game_mode = :game_mode"
-			arguments ["game_mode"] = SSticker.mode
+			arguments ["game_mode"] = SSgamemode.storyteller ? SSgamemode.storyteller : SSticker.mode
 		if(GLOB.revdata.originmastercommit)
 			to_set += "commit_hash = :commit_hash"
 			arguments ["commit_hash"] = GLOB.revdata.originmastercommit
