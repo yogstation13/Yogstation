@@ -20,15 +20,16 @@
 		return FALSE
 	. = ..()
 	if(.)
+		var/psyrank = user.psi.get_rank(PSI_ENERGISTICS)
 		if(istype(target))
 			user.visible_message(span_danger("\The [user] sends a jolt of electricity arcing into \the [target]!"))
-			target.electrocute_act(rand(15,45), user, 1, user.zone_selected, stun = (user.psi.get_rank(PSI_ENERGISTICS) >= PSI_RANK_PARAMOUNT))
+			target.electrocute_act(rand(psyrank * 5, psyrank * 10), user, 1, user.zone_selected, stun = (psyrank >= PSI_RANK_PARAMOUNT))
 			return TRUE
 		else if(isatom(target))
 			var/obj/item/stock_parts/cell/charging_cell = target.get_cell()
 			if(istype(charging_cell))
 				user.visible_message(span_danger("\The [user] sends a jolt of electricity arcing into \the [target], charging it!"))
-				charging_cell.give(rand(15,45))
+				charging_cell.give(rand(psyrank * 5, psyrank * 10))
 			return TRUE
 		else
 			return FALSE
@@ -53,7 +54,7 @@
 			playsound(S.loc, "sparks", 50, 1)
 		else
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-			s.set_up(5, 1, target)
+			s.set_up(user.psi.get_rank(PSI_ENERGISTICS), 1, target)
 			s.start()
 		return TRUE
 
@@ -67,6 +68,8 @@
 	use_description = "Activate the power with the 'use' key (initially bound to Z) in an empty hand, then use this ranged laser attack with combat mode on. Your mastery of Energistics will determine how powerful the laser is. Be wary of overuse, and try not to fry your own brain."
 
 /datum/psionic_power/energistics/zorch/invoke(mob/living/user, mob/living/target, proximity, parameters)
+	if(!user.combat_mode) 
+		return FALSE
 	. = ..()
 	if(.)
 		if(HAS_TRAIT(user, TRAIT_PACIFISM) && user.psi.zorch_harm)

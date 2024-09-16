@@ -11,7 +11,7 @@
 	if(istype(I, /obj/machinery/psionic_awakener))
 		var/obj/machinery/psionic_awakener/cart = I
 		cart.nullspace_dust += dust
-		to_chat(user, span_notice("You force the nullspace crystal into the psionic awakener's crystal port, you can hear a soft grinding sound."))
+		to_chat(user, span_notice("You force the [name] into the psionic awakener's crystal port, you can hear a soft grinding sound."))
 		qdel(src)
 
 /obj/item/nullspace_crystal/brilliant

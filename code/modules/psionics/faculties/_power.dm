@@ -32,6 +32,11 @@
 		if(user_rank < min_rank)
 			return FALSE
 
+	if(isitem(target))//don't invoke if we're clicking in our inventory
+		var/obj/item/thing = target
+		if(thing in user.get_all_contents())
+			return FALSE
+
 	if(cost && !user.psi.spend_power(cost, heat))
 		return FALSE
 
