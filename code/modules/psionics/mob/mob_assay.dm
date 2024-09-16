@@ -80,3 +80,21 @@
 	var/datum/browser/popup = new(viewer, "psi_assay_\ref[src]", "Psi-Assay")
 	popup.set_content(jointext(dat,null))
 	popup.open()
+
+/datum/psi_complexus/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PsionicComplexus", "oppa gangnam style")
+		ui.open()
+
+/datum/psi_complexus/ui_data(mob/user)
+	var/list/data = list()
+	return data
+
+/datum/psi_complexus/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+
+/datum/psi_complexus/ui_state()
+	return GLOB.always_state
