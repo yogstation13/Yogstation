@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Cleaning stickers off the floor now properly drops the sticker instead of runtiming and permanently sending it to nullspace."

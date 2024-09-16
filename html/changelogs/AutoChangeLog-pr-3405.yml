@@ -1,7 +1,0 @@
-author: "The-Black-Screen"
-delete-after: True
-changes:
-  - rscadd: "added more dirt to maintenance, added more fire extinguishers, miscellaneous things."
-  - rscdel: "removed the construction area, miscellaneous things."
-  - qol: "added a northern entrance to all random bar maps, changed a lot of stuff in a lot of areas, removed airlocks from specific maintenance area paths."
-  - bugfix: "added a lot of the changes that were supposed to be in PR 2213."
