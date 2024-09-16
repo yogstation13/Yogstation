@@ -27,7 +27,7 @@
 /obj/item/nullspace_crystal/true
 	name = "true nullspace crystal"
 	desc = "a crystal made of pure condensed nullspace, looking through it is like a kaleidoscope, with different versions of you looking back."
-	dust = 100
+	dust = 50
 
 /obj/effect/spawner/lootdrop/nullspace_crystal_spawner
 	name = "nullspace crystal spawner"
