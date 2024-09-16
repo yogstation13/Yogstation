@@ -35,6 +35,7 @@
 	name = "medical utility uniform"
 	desc = "A utility uniform worn by Medical doctors."
 	icon_state = "util_med"
+	can_adjust = TRUE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/medical/doctor/nova/utility/syndicate

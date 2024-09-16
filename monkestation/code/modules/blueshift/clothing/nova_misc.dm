@@ -30,7 +30,7 @@
 	desc = "A utility uniform worn by civilian-ranked crew."
 	icon_state = "utility"
 	body_parts_covered = CHEST|ARMS|GROIN|LEGS
-	can_adjust = FALSE
+	can_adjust = TRUE
 
 /obj/item/clothing/under/misc/nova/utility/syndicate
 	armor_type = /datum/armor/clothing_under/utility_syndicate

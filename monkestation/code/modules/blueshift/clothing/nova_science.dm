@@ -46,7 +46,6 @@
 	desc = "A utility uniform worn by NT-certified Science staff."
 	icon_state = "util_sci"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
-	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/rnd/scientist/nova/utility/syndicate
 	desc = "A utility uniform worn by Science staff."
