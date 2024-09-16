@@ -328,7 +328,7 @@ SUBSYSTEM_DEF(gamemode)
 
 /// We roll points to be spent for roundstart events, including antagonists.
 /datum/controller/subsystem/gamemode/proc/roll_pre_setup_points()
-	if(storyteller.disable_distribution || halted_storyteller)
+	if(storyteller?.disable_distribution || halted_storyteller)
 		return
 	/// Distribute points
 	for(var/track in event_track_points)
@@ -373,7 +373,7 @@ SUBSYSTEM_DEF(gamemode)
 
 /// Because roundstart events need 2 steps of firing for purposes of antags, here is the first step handled, happening before occupation division.
 /datum/controller/subsystem/gamemode/proc/handle_pre_setup_roundstart_events()
-	if(storyteller.disable_distribution)
+	if(storyteller?.disable_distribution)
 		return
 	if(halted_storyteller)
 		message_admins("WARNING: Didn't roll roundstart events (including antagonists) due to the storyteller being halted.")

@@ -79,10 +79,10 @@ export const ForceEvent = (props) => {
   );
 };
 
-export const PanelOptions = (props) => {
-  const [searchQuery, setSearchQuery] = useLocalState('searchQuery', '');
+export const PanelOptions = (props, context) => {
+  const [searchQuery, setSearchQuery] = useLocalState('searchQuery', context, '');
 
-  const [announce, setAnnounce] = useLocalState('announce', true);
+  const [announce, setAnnounce] = useLocalState('announce', context, true);
 
   return (
     <Stack width="240px">
@@ -111,13 +111,13 @@ export const PanelOptions = (props) => {
   );
 };
 
-export const EventSection = (props) => {
-  const { data, act } = useBackend<ForceEventData>();
+export const EventSection = (props, context) => {
+  const { data, act } = useBackend<ForceEventData>(context);
   const { categories, events } = data;
 
-  const [category] = useLocalState('category', categories[0]);
-  const [searchQuery] = useLocalState('searchQuery', '');
-  const [announce] = useLocalState('announce', true);
+  const [category] = useLocalState('category', context, categories[0]);
+  const [searchQuery] = useLocalState('searchQuery', context, '');
+  const [announce] = useLocalState('announce', context, true);
 
   const preparedEvents = paginateEvents(
     events.filter((event) => {
@@ -174,11 +174,11 @@ export const EventSection = (props) => {
   );
 };
 
-export const EventTabs = (props) => {
-  const { data } = useBackend<ForceEventData>();
+export const EventTabs = (props, context) => {
+  const { data } = useBackend<ForceEventData>(context);
   const { categories } = data;
 
-  const [category, setCategory] = useLocalState('category', categories[0]);
+  const [category, setCategory] = useLocalState('category', context, categories[0]);
 
   const layerCats = paginate(categories, CATEGORY_PAGE_ITEMS);
 
