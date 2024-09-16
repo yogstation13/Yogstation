@@ -82,7 +82,7 @@
 /obj/screen/psi/hub/Click(location, control, params)
 	var/list/click_params = params2list(params)
 	if(click_params["shift"])
-		owner.show_psi_assay(owner)
+		owner.psi.ui_interact(owner)
 		return
 	if(owner.stat != CONSCIOUS)
 		return
