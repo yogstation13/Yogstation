@@ -238,25 +238,23 @@
 
 	var/list/weighted_candidates = return_antag_rep_weight(cliented_list)
 
-	while(length(possible_candidates) && length(candidates) < antag_count) //both of these pick_n_take from possible_candidates so this should be fine
+	while(length(weighted_candidates) && length(candidates) < antag_count) //we pick_n_take from weighted_candidates so this should be fine
+		var/client/picked_client = pick_n_take_weighted(weighted_candidates)
+		var/mob/picked_mob = picked_client.mob
+		
+		if(!picked_mob || QDELETED(picked_mob)) //if the mob has somehow died or disappeared while we were prompting a previous player
+			continue
+
+		log_storyteller("[prompted_picking ? "Prompted" : "Picked"] antag event mob: [picked_mob], antag: [antag_flag], current special role: [picked_mob.mind?.special_role ? picked_mob.mind.special_role : "none"]")
 		if(prompted_picking)
-			var/client/picked_client = pick_n_take_weighted(weighted_candidates)
-			var/mob/picked_mob = picked_client.mob
-			log_storyteller("Prompted antag event mob: [picked_mob], special role: [picked_mob.mind?.special_role ? picked_mob.mind.special_role : "none"]")
-			if(picked_mob)
-				candidates |= pollCandidates(
-					Question = "Would you like to be a [cast_control.name]?",
-					jobbanType = antag_flag,
-					be_special_flag = antag_flag,
-					poll_time = 20 SECONDS,
-					group = list(picked_mob)
-				)
+			candidates |= pollCandidates(
+				Question = "Would you like to be a [cast_control.name]?",
+				jobbanType = antag_flag,
+				be_special_flag = antag_flag,
+				poll_time = 20 SECONDS,
+				group = list(picked_mob)
+			)
 		else
-			if(!length(weighted_candidates))
-				break
-			var/client/picked_client = pick_n_take_weighted(weighted_candidates)
-			var/mob/picked_mob = picked_client.mob
-			log_storyteller("Picked antag event mob: [picked_mob], special role: [picked_mob.mind?.special_role ? picked_mob.mind.special_role : "none"]")
 			candidates |= picked_mob
 
 
@@ -266,7 +264,7 @@
 			break
 
 		var/mob/candidate = pick_n_take(candidates)
-		log_storyteller("Antag event spawned mob: [candidate], special role: [candidate.mind?.special_role ? candidate.mind.special_role : "none"]")
+		log_storyteller("Antag event spawned mob: [candidate], current special role: [candidate.mind?.special_role ? candidate.mind.special_role : "none"]")
 
 		if(candidate.client) //I hate this
 			SSpersistence.antag_rep -= candidate.client.ckey

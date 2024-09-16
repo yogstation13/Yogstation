@@ -51,12 +51,13 @@
 
 	///If we can't spawn the scheduled event, refund it.
 	if(!ignores_checks && !event.canSpawnEvent(1000)) //FALSE argument to ignore popchecks, to prevent scheduled events from failing from people dying/cryoing etc.
-		message_admins("Scheduled Event: [event] was unable to run and has been refunded.")
+		message_admins("Scheduled Event: [event] was unable to run and has been refunded.")		
+		log_storyteller("Scheduled Event: [event] was unable to run and has been refunded")
 		SSgamemode.refund_scheduled_event(src)
 		return
 
 	///Trigger the event and remove the scheduled datum
-	message_admins("Scheduled Event: [event] successfully triggered.")
+	message_admins("Scheduled Event: [event] successfully triggered.")		
 	SSgamemode.TriggerEvent(event, ignores_checks)
 	SSgamemode.remove_scheduled_event(src)
 

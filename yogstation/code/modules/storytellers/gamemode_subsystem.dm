@@ -453,6 +453,7 @@ SUBSYSTEM_DEF(gamemode)
 		current_pop_scale_multipliers[track] = calculated_multiplier
 
 /datum/controller/subsystem/gamemode/proc/TriggerEvent(datum/round_event_control/event, forced = FALSE)
+	log_storyteller("Event: [event] is being triggered.")
 	. = event.preRunEvent(forced)
 	if(. == EVENT_CANT_RUN)//we couldn't run this event for some reason, set its max_occurrences to 0
 		event.max_occurrences = 0
@@ -851,6 +852,7 @@ SUBSYSTEM_DEF(gamemode)
 		send_to_playing_players(span_notice("[storyteller.welcome_text]"))
 	else
 		send_to_observers(span_boldbig("<b>Storyteller is [storyteller.name]!</b>")) //observers still get to know
+	log_storyteller("Storyteller set: [storyteller.name]")
 
 /// Panel containing information, variables and controls about the gamemode and scheduled event
 /datum/controller/subsystem/gamemode/proc/admin_panel(mob/user)
