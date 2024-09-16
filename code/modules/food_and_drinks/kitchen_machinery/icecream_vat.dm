@@ -374,7 +374,7 @@
 				user.visible_message(span_notice("[user] scoops a [cone_scoop.name] into the [cone.name]"), span_notice("You scoop a [cone_scoop.name] into the [cone.name]"))
 				//Delete scoop
 				qdel(cone_scoop)
-
+				//Dispencing sound
 				playsound(src, 'sound/effects/rustle2.ogg', 50, TRUE, extrarange = -3)
 
 				//If there are more than four scoops and scoop_fail is true, check for scooping failure
