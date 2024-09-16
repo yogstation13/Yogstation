@@ -47,7 +47,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
-/area/station/maintenance/department/engine)
+/area/station/maintenance/department/engineering/central)
 "m" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -78,7 +78,7 @@
 	},
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
-/area/station/maintenance/department/engine)
+/area/station/maintenance/department/engineering/central)
 "A" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -88,7 +88,7 @@
 /area/station/engineering/main)
 "C" = (
 /turf/closed/wall/r_wall,
-/area/station/maintenance/department/engine)
+/area/station/maintenance/department/engineering/central)
 "D" = (
 /obj/machinery/light/directional/north,
 /obj/machinery/airalarm/directional/north,
@@ -167,7 +167,7 @@
 "Z" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
-/area/station/maintenance/department/engine)
+/area/station/maintenance/department/engineering/central)
 
 (1,1,1) = {"
 R
@@ -875,7 +875,7 @@ Z
 l
 z
 C
-C
+a
 a
 a
 a
@@ -902,8 +902,8 @@ f
 f
 f
 f
-f
 C
+a
 a
 a
 a
@@ -930,8 +930,8 @@ f
 f
 f
 f
-f
 C
+a
 a
 a
 a
@@ -958,17 +958,17 @@ f
 f
 f
 f
-f
 C
-R
-R
-R
-R
-Y
-Y
-Y
-R
-A
+C
+C
+C
+C
+C
+C
+C
+C
+C
+C
 A
 A
 A

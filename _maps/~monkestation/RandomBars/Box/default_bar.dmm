@@ -220,8 +220,7 @@
 /area/station/commons/lounge)
 "zm" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
-/obj/machinery/camera/autoname/directional/east,
-/obj/machinery/light/small/directional/east,
+/obj/machinery/light/directional/east,
 /obj/item/radio/intercom/directional/east,
 /turf/open/floor/iron,
 /area/station/commons/lounge)
@@ -311,7 +310,6 @@
 /area/station/commons/lounge)
 "EP" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
-/obj/machinery/camera/autoname/directional/north,
 /obj/machinery/light/small/directional/north,
 /turf/open/floor/iron,
 /area/station/commons/lounge)
@@ -345,12 +343,6 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/iron,
 /area/station/commons/lounge)
-"Jm" = (
-/obj/effect/turf_decal/tile/bar/opposingcorners,
-/obj/machinery/camera/autoname/directional/east,
-/obj/machinery/computer/slot_machine,
-/turf/open/floor/iron,
-/area/station/commons/lounge)
 "JF" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /obj/effect/spawner/random/entertainment/arcade{
@@ -368,6 +360,7 @@
 /area/station/commons/lounge)
 "Lc" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
+/obj/machinery/camera/autoname/directional/north,
 /obj/machinery/media/jukebox,
 /turf/open/floor/iron,
 /area/station/commons/lounge)
@@ -432,8 +425,7 @@
 /area/station/commons/lounge)
 "PD" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
-/obj/machinery/camera/autoname/directional/west,
-/obj/machinery/light/small/directional/west,
+/obj/machinery/light/directional/west,
 /turf/open/floor/iron,
 /area/station/commons/lounge)
 "QZ" = (
@@ -446,7 +438,6 @@
 "Tq" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /obj/structure/table/wood/poker,
-/obj/item/toy/cards/deck,
 /obj/item/clothing/mask/cigarette/cigar,
 /turf/open/floor/iron,
 /area/station/commons/lounge)
@@ -533,7 +524,7 @@ tH
 Nm
 QZ
 vO
-Jm
+vO
 IP
 JF
 sZ
@@ -546,8 +537,8 @@ tH
 TB
 TB
 EF
-Ly
 Tq
+ZX
 tH
 tH
 cL

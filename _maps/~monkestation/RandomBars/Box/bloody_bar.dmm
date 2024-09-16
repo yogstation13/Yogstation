@@ -111,7 +111,6 @@
 /turf/open/floor/plating,
 /area/station/commons/lounge)
 "qb" = (
-/obj/machinery/camera/autoname/directional/north,
 /obj/machinery/light/small/directional/north,
 /turf/open/floor/cult,
 /area/station/commons/lounge)
@@ -147,11 +146,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/machinery/holopad,
-/turf/open/floor/cult,
-/area/station/commons/lounge)
-"vj" = (
-/obj/machinery/camera/autoname/directional/east,
-/obj/machinery/computer/slot_machine,
 /turf/open/floor/cult,
 /area/station/commons/lounge)
 "wp" = (
@@ -208,12 +202,12 @@
 /turf/open/floor/cult,
 /area/station/commons/lounge)
 "DC" = (
+/obj/machinery/camera/autoname/directional/north,
 /obj/machinery/media/jukebox,
 /turf/open/floor/cult,
 /area/station/commons/lounge)
 "DJ" = (
-/obj/machinery/camera/autoname/directional/west,
-/obj/machinery/light/small/directional/west,
+/obj/machinery/light/directional/west,
 /turf/open/floor/cult,
 /area/station/commons/lounge)
 "DZ" = (
@@ -380,8 +374,7 @@
 /turf/open/floor/wood/large,
 /area/station/service/theater)
 "WG" = (
-/obj/machinery/camera/autoname/directional/east,
-/obj/machinery/light/small/directional/east,
+/obj/machinery/light/directional/east,
 /obj/item/radio/intercom/directional/east,
 /turf/open/floor/cult,
 /area/station/commons/lounge)
@@ -457,7 +450,7 @@ Bl
 FK
 eO
 ja
-vj
+ja
 es
 Sg
 kL

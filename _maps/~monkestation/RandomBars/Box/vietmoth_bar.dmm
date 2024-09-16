@@ -59,7 +59,6 @@
 /turf/open/floor/grass,
 /area/station/commons/lounge)
 "gY" = (
-/obj/machinery/camera/autoname/directional/north,
 /obj/machinery/light/small/directional/north,
 /turf/open/water/jungle,
 /area/station/commons/lounge)
@@ -172,6 +171,7 @@
 /turf/open/floor/grass,
 /area/station/commons/lounge)
 "py" = (
+/obj/machinery/camera/autoname/directional/north,
 /obj/machinery/media/jukebox,
 /turf/open/floor/grass,
 /area/station/commons/lounge)
@@ -265,11 +265,6 @@
 "yJ" = (
 /turf/template_noop,
 /area/template_noop)
-"zh" = (
-/obj/machinery/camera/autoname/directional/east,
-/obj/machinery/computer/slot_machine,
-/turf/open/floor/grass,
-/area/station/commons/lounge)
 "zv" = (
 /obj/structure/table/wood,
 /obj/item/instrument/saxophone,
@@ -325,8 +320,7 @@
 /turf/open/floor/grass,
 /area/station/commons/lounge)
 "GX" = (
-/obj/machinery/camera/autoname/directional/east,
-/obj/machinery/light/small/directional/east,
+/obj/machinery/light/directional/east,
 /obj/item/radio/intercom/directional/east,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
@@ -411,8 +405,7 @@
 /turf/open/floor/grass,
 /area/station/commons/lounge)
 "OY" = (
-/obj/machinery/camera/autoname/directional/west,
-/obj/machinery/light/small/directional/west,
+/obj/machinery/light/directional/west,
 /obj/structure/flora/bush/fullgrass/style_random,
 /obj/structure/flora/bush/flowers_br/style_random,
 /turf/open/floor/grass,
@@ -508,7 +501,7 @@ vy
 Dg
 xk
 AS
-zh
+AS
 oa
 EB
 yJ

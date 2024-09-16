@@ -69,6 +69,7 @@
 /turf/open/floor/bronze,
 /area/station/commons/lounge)
 "iB" = (
+/obj/machinery/camera/autoname/directional/north,
 /obj/machinery/media/jukebox,
 /turf/open/floor/bronze,
 /area/station/commons/lounge)
@@ -78,11 +79,6 @@
 /area/station/service/theater)
 "kq" = (
 /obj/machinery/vending/cigarette,
-/turf/open/floor/bronze,
-/area/station/commons/lounge)
-"ll" = (
-/obj/machinery/camera/autoname/directional/east,
-/obj/machinery/computer/slot_machine,
 /turf/open/floor/bronze,
 /area/station/commons/lounge)
 "mm" = (
@@ -153,8 +149,7 @@
 /turf/open/floor/bronze,
 /area/station/commons/lounge)
 "uV" = (
-/obj/machinery/camera/autoname/directional/east,
-/obj/machinery/light/small/directional/east,
+/obj/machinery/light/directional/east,
 /obj/item/radio/intercom/directional/east,
 /turf/open/floor/bronze,
 /area/station/commons/lounge)
@@ -243,8 +238,7 @@
 /turf/open/floor/bronze,
 /area/station/commons/lounge)
 "LJ" = (
-/obj/machinery/camera/autoname/directional/west,
-/obj/machinery/light/small/directional/west,
+/obj/machinery/light/directional/west,
 /turf/open/floor/bronze,
 /area/station/commons/lounge)
 "Mm" = (
@@ -320,7 +314,6 @@
 /turf/open/floor/bronze,
 /area/station/commons/lounge)
 "Tu" = (
-/obj/machinery/camera/autoname/directional/north,
 /obj/machinery/light/small/directional/north,
 /turf/open/floor/bronze,
 /area/station/commons/lounge)
@@ -435,7 +428,7 @@ TL
 ZZ
 UM
 tZ
-ll
+tZ
 yC
 Ya
 Wj

@@ -349,7 +349,7 @@
 /area/station/engineering/atmospherics_engine)
 "md" = (
 /turf/closed/wall/r_wall,
-/area/station/maintenance/department/engine)
+/area/station/maintenance/department/engineering/central)
 "mh" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
@@ -560,7 +560,7 @@
 	},
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
-/area/station/maintenance/department/engine)
+/area/station/maintenance/department/engineering/central)
 "tP" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -982,9 +982,8 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "HY" = (
-/obj/structure/sign/warning/secure_area,
-/turf/closed/wall/r_wall,
-/area/station/maintenance/department/engine)
+/turf/open/floor/plating,
+/area/station/maintenance/department/engineering/central)
 "Im" = (
 /obj/structure/sign/warning/secure_area,
 /turf/closed/wall/r_wall,
@@ -1108,7 +1107,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
-/area/station/maintenance/department/engine)
+/area/station/maintenance/department/engineering/central)
 "Mu" = (
 /obj/machinery/atmospherics/components/binary/valve/digital{
 	name = "Space to Cold Loop"
@@ -1154,7 +1153,7 @@
 "Ot" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
-/area/station/maintenance/department/engine)
+/area/station/maintenance/department/engineering/central)
 "OD" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -2186,7 +2185,7 @@ ml
 ml
 ml
 ml
-ml
+HY
 md
 Gk
 lb
@@ -2214,7 +2213,7 @@ ml
 ml
 ml
 ml
-ml
+HY
 md
 So
 IL
@@ -2242,17 +2241,17 @@ ml
 ml
 ml
 ml
-ml
-HY
-Vv
-Vv
-Vv
-Vv
-Vv
-Vv
-Vv
-Vv
-ml
+md
+md
+md
+md
+md
+md
+md
+md
+md
+md
+md
 ml
 dh
 ml

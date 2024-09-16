@@ -47,8 +47,9 @@
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "dV" = (
+/obj/structure/foamedmetal,
 /turf/open/floor/plating,
-/area/station/maintenance/department/engine)
+/area/station/maintenance/department/engineering/central)
 "fX" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
@@ -144,7 +145,7 @@
 "il" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
-/area/station/maintenance/department/engine)
+/area/station/maintenance/department/engineering/central)
 "iV" = (
 /obj/effect/turf_decal/tile/yellow/fourcorners,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -248,7 +249,7 @@
 	},
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
-/area/station/maintenance/department/engine)
+/area/station/maintenance/department/engineering/central)
 "os" = (
 /obj/machinery/power/emitter{
 	dir = 1
@@ -445,7 +446,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
-/area/station/maintenance/department/engine)
+/area/station/maintenance/department/engineering/central)
 "zF" = (
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Engine SMES Room"
@@ -810,7 +811,7 @@
 /area/space/nearstation)
 "Zx" = (
 /turf/closed/wall/r_wall,
-/area/station/maintenance/department/engine)
+/area/station/maintenance/department/engineering/central)
 "ZH" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -1595,8 +1596,8 @@ kk
 kk
 kk
 kk
+kk
 FS
-GW
 GW
 wX
 GW
@@ -1624,7 +1625,7 @@ GW
 GW
 GW
 GW
-wX
+GW
 wX
 wX
 wX
