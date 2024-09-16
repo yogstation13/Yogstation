@@ -125,7 +125,8 @@
 				valid_events[event] = round(event.calculated_weight * 10) //multiply weight by 10 to get first decimal value
 		///If we didn't get any events, remove the points inform admins and dont do anything
 		if(!length(valid_events))
-			message_admins("Storyteller failed to pick an event for track of [track].")
+			message_admins("Storyteller failed to pick an event for track of [track]. Deducting 25% of the track's points.")
+			log_storyteller("Storyteller failed to pick an event for track of [track]. Deducting 25% of the track's points.")
 			mode.event_track_points[track] *= TRACK_FAIL_POINT_PENALTY_MULTIPLIER
 			return
 		picked_event = pick_weight(valid_events)
@@ -153,8 +154,8 @@
 	if(!bought_event.roundstart)
 		total_cost *= (1 + (rand(-cost_variance, cost_variance)/100)) //Apply cost variance if not roundstart event
 	mode.event_track_points[track] = max(mode.event_track_points[track] - total_cost, 0)
-	message_admins("Storyteller purchased and triggered [bought_event] event, on [track] track, for [total_cost] cost.")
-	log_storyteller("Storyteller purchased and triggered [bought_event] event, on [track] track, for [total_cost] cost.")
+	message_admins("Storyteller purchased and [bought_event.roundstart ? "triggered" : "scheduled"] [bought_event] event, on [track] track, for [total_cost] cost.")
+	log_storyteller("Storyteller purchased and [bought_event.roundstart ? "triggered" : "scheduled"] [bought_event] event, on [track] track, for [total_cost] cost.")
 	if(bought_event.roundstart)
 		if(!ignores_roundstart)
 			SSgamemode.ran_roundstart = TRUE
