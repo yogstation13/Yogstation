@@ -242,7 +242,7 @@
 		var/client/picked_client = pick_n_take_weighted(weighted_candidates)
 		var/mob/picked_mob = picked_client.mob
 		
-		if(!picked_mob || QDELETED(picked_mob)) //if the mob has somehow died or disappeared while we were prompting a previous player
+		if(!picked_mob || QDELETED(picked_mob) || !istype(picked_mob)) //if the mob has somehow died or disappeared while we were prompting a previous player
 			continue
 
 		log_storyteller("[prompted_picking ? "Prompted" : "Picked"] antag event mob: [picked_mob], antag: [antag_flag], current special role: [picked_mob.mind?.special_role ? picked_mob.mind.special_role : "none"]")
@@ -264,7 +264,11 @@
 			break
 
 		var/mob/candidate = pick_n_take(candidates)
-		log_storyteller("Antag event spawned mob: [candidate], current special role: [candidate.mind?.special_role ? candidate.mind.special_role : "none"]")
+		if(!candidate || QDELETED(candidate) || !istype(candidate)) //if the mob has somehow died or disappeared while we were prompting a previous player
+			i-- //don't count this as an antag that was picked
+			continue
+
+		log_storyteller("Antag event spawned mob: [candidate], antag: [antag_flag], current special role: [candidate.mind?.special_role ? candidate.mind.special_role : "none"]")
 
 		if(candidate.client) //I hate this
 			SSpersistence.antag_rep -= candidate.client.ckey

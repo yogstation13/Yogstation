@@ -412,6 +412,8 @@ SUBSYSTEM_DEF(gamemode)
 	med_crew = 0
 	sec_crew = 0
 	for(var/mob/player_mob as anything in GLOB.player_list)
+		if(QDELETED(player_mob))
+			continue
 		if(!player_mob.client)
 			continue
 		if(player_mob.stat) //If they're alive
