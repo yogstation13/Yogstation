@@ -22,7 +22,7 @@
 /datum/event_admin_setup/listed_options/false_alarm/apply_to_event(datum/round_event/falsealarm/event)
 	event.forced_type = chosen
 
-/datum/round_event_control/falsealarm/canSpawnEvent(players_amt, gamemode)
+/datum/round_event_control/falsealarm/canSpawnEvent(players_amt, allow_magic = FALSE, fake_check = FALSE)
 	return ..() && length(gather_false_events())
 
 /datum/round_event/falsealarm

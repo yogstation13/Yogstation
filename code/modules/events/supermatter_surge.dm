@@ -8,7 +8,7 @@
 		/datum/event_admin_setup/input_number/surge_spiciness,
 	)
 
-/datum/round_event_control/supermatter_surge/canSpawnEvent()
+/datum/round_event_control/supermatter_surge/canSpawnEvent(players_amt, allow_magic = FALSE, fake_check = FALSE)
 	if(GLOB.main_supermatter_engine?.has_been_powered)
 		return ..()
 

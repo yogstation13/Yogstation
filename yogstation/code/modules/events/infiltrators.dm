@@ -8,7 +8,7 @@
 
 	min_players = 23
 
-/datum/round_event_control/infiltrators/canSpawnEvent(players_amt, gamemode)
+/datum/round_event_control/infiltrators/canSpawnEvent(players_amt, allow_magic = FALSE, fake_check = FALSE)
 	. = ..()
 	if(!.)
 		return .

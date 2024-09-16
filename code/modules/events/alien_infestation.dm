@@ -7,7 +7,7 @@
 
 	dynamic_should_hijack = TRUE
 
-/datum/round_event_control/alien_infestation/canSpawnEvent()
+/datum/round_event_control/alien_infestation/canSpawnEvent(players_amt, allow_magic = FALSE, fake_check = FALSE)
 	. = ..()
 	if(!.)
 		return .
