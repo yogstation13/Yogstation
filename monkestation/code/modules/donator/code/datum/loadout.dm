@@ -625,3 +625,10 @@
 	item_path = /obj/item/effect_granter/donator/hypnotoad
 	requires_purchase = FALSE
 	ckeywhitelist = list("Ophaq")
+
+//Jason Farqiour
+/datum/loadout_item/suit/mothysmantle
+	name = "Mothy's Mantle"
+	item_path = /obj/item/clothing/suit/hooded/mothysmantle
+	donator_only = TRUE
+	requires_purchase = FALSE
