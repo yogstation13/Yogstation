@@ -1,12 +1,12 @@
 /obj/item/botpad_remote
-	name = "Bot pad controller"
-	desc = "Use this device to control the connected bot pad."
-	desc_controls = "Left-click for launch, right-click for recall."
+	name = "orbital bot pad controller"
+	desc = "Use this device to control the connected orbital bot pad."
+	desc_controls = "Use in hand to launch, right-click to recall back to the pad."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "botpad_controller"
 	w_class = WEIGHT_CLASS_SMALL
 	// ID of the remote, used for linking up
-	var/id = "botlauncher"
+	// var/id = "botlauncher" MONKESTATION removal
 	var/obj/machinery/botpad/connected_botpad
 
 /obj/item/botpad_remote/Destroy()
@@ -39,7 +39,7 @@
 		else if(!connected_botpad && istype(buffered_remote, /obj/machinery/botpad))
 			connected_botpad = buffered_remote
 			connected_botpad.connected_remote = src
-			connected_botpad.id = id
+			// connected_botpad.id = id MONKESTATION REMOVAL
 			multitool.buffer = null
 			to_chat(user, span_notice("You connect the controller to the pad with data from the [multitool.name]'s buffer."))
 		else
@@ -52,7 +52,9 @@
 	if(connected_botpad.panel_open)
 		user?.balloon_alert(user, "close the panel!")
 		return
+/* MONKESTATION REMOVAL START
 	if(!(locate(/mob/living/simple_animal/bot) in get_turf(connected_botpad)))
 		user?.balloon_alert(user, "no bots detected on the pad!")
 		return
+	MONKESTATION REMOVAL END */
 	connected_botpad.launch(user)

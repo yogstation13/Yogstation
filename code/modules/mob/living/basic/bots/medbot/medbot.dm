@@ -163,7 +163,7 @@
 		icon_state = "[base_icon_state]a"
 		return
 	if(mode == BOT_HEALING)
-		icon_state = "[base_icon_state]s[medical_mode_flags & MEDBOT_STATIONARY_MODE]"
+		icon_state = "[base_icon_state]s[medical_mode_flags & MEDBOT_STATIONARY_MODE ? 1 : 0]"
 		return
 	icon_state = "[base_icon_state][medical_mode_flags & MEDBOT_STATIONARY_MODE ? 2 : 1]" //Bot has yellow light to indicate stationary mode.
 
