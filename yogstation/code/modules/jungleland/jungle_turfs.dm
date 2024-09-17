@@ -20,19 +20,27 @@ Temperature: 126.85 °C (400 K)
 
 /area/jungleland
 	name = "Jungleland"
-	static_lighting = FALSE
+	static_lighting = TRUE
 
 	base_lighting_alpha = 255
 	outdoors = TRUE
 	has_gravity = TRUE
 	always_unpowered = TRUE
+
 	poweralm = FALSE
 	power_environ = FALSE
 	power_equip = FALSE
 	power_light = FALSE
 	requires_power = TRUE
+
 	outdoors = TRUE
 	mining_speed = TRUE
+	uses_daylight = TRUE
+	base_lighting_alpha = 0
+	//base_lighting_color = COLOR_STARLIGHT
+	blob_allowed = FALSE //just in case
+	//ambience_index = AMBIENCE_JUNGLE
+	sound_environment = SOUND_ENVIRONMENT_FOREST
 
 /area/jungleland/explored
 	name = "Explored Jungle"
@@ -74,8 +82,9 @@ Temperature: 126.85 °C (400 K)
 	var/ore_present = ORE_EMPTY
 	var/spawn_overlay = TRUE
 	var/can_mine = TRUE
-	light_power = 2
+	light_power = NIGHT_TURF_BRIGHTNESS
 	light_range = 2 // fullbright it for proper shadows and darkspawn interaction
+	light_color = COLOR_STARLIGHT
 
 /turf/open/floor/plating/dirt/jungleland/drill_act(obj/item/mecha_parts/mecha_equipment/drill/drill)
 	if(drill.do_after_mecha(src, 10 / drill.drill_level))
@@ -185,8 +194,9 @@ Temperature: 126.85 °C (400 K)
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/water/smooth/toxic_pit
 
-	light_power = 2
+	light_power = NIGHT_TURF_BRIGHTNESS + 0.05 // reflects the moonlight
 	light_range = 2 // fullbright it for proper shadows and darkspawn interaction
+	light_color = COLOR_STARLIGHT
 
 	///multiplier for the strength of the toxicity, multiplies basically every damage value and damage probability
 	var/acid_strength = 1

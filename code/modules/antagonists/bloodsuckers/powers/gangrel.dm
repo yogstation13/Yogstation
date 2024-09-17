@@ -61,7 +61,6 @@
 /datum/action/cooldown/bloodsucker/gangrel/transform/proc/transform(chosen_transform)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	var/mob/living/carbon/human/user = owner
-	var/datum/species/user_species = user.dna.species
 	switch(chosen_transform)
 		if("Lizard/Felinid")
 			if(iscatperson(user))
@@ -70,17 +69,13 @@
 			else
 				user.set_species(/datum/species/human/felinid)
 				playsound(user.loc, 'sound/voice/feline/meow1.ogg', 50)
-			if(!LAZYFIND(user_species.species_traits, DIGITIGRADE))
-				user_species.species_traits += DIGITIGRADE
-				user.dna.species.armor -= 20 //careful
-				user.dna.species.speedmod = -0.5
-				user.dna.species.action_speed_coefficient *= 0.7
-				bloodsuckerdatum.AddBloodVolume(75)
+			user.dna.species.armor -= 20 //careful
+			user.dna.species.speedmod = -0.5
+			user.dna.species.action_speed_coefficient *= 0.7
+			bloodsuckerdatum.AddBloodVolume(75)
 		if("Gorilla")
 			user.set_species(/datum/species/gorilla)
 			playsound(user.loc, 'sound/creatures/gorilla.ogg', 50)
-			if(DIGITIGRADE in user_species.species_traits)
-				user_species.species_traits -= DIGITIGRADE
 			user.dna.species.punchdamagelow += 10
 			user.dna.species.punchdamagehigh += 10 //very stronk
 			user.dna.species.punchstunthreshold += 10

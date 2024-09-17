@@ -160,6 +160,8 @@
 		return FALSE
 	if(!burstmode_activated && !COOLDOWN_FINISHED(src, next_activate)) // Burstmode is not ready.
 		return FALSE
+	if(owner.stat == DEAD) 
+		return FALSE
 
 /datum/action/innate/ai/ranged/cameragun/do_ability(mob/living/caller, params, atom/target)
 	var/turf/loc_target = get_turf(target)

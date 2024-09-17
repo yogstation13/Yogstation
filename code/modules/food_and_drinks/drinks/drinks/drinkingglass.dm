@@ -13,9 +13,12 @@
 	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC
 	drop_sound = 'sound/items/handling/drinkglass_drop.ogg'
 	pickup_sound =  'sound/items/handling/drinkglass_pickup.ogg'
+	var/flipped = FALSE //are we upside down?
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/on_reagent_change(changetype)
 	cut_overlays()
+	if(flipped)
+		flipped = FALSE //just to make sure..
 	if(reagents.reagent_list.len)
 		var/datum/reagent/R = reagents.get_master_reagent()
 		if(!renamedByPlayer)
@@ -31,6 +34,25 @@
 	else
 		icon_state = "glass_empty"
 		renamedByPlayer = FALSE //so new drinks can rename the glass
+
+/obj/item/reagent_containers/food/drinks/drinkingglass/AltClick(mob/user)
+	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
+		return
+	..()
+	if(length(reagents.reagent_list) && !flipped)
+		to_chat(user, span_danger("You probably shouldn't flip this over with something in it!"))
+		return
+	flipped = !flipped
+	playsound(src, drop_sound, DROP_SOUND_VOLUME, vary = sound_vary, ignore_walls = FALSE)
+	if(flipped)
+		icon_state = initial(icon_state) + "_flipped"
+		DISABLE_BITFIELD(reagents.flags, OPENCONTAINER)
+	else
+		icon_state = initial(icon_state)
+		ENABLE_BITFIELD(reagents.flags, OPENCONTAINER)
+	user.visible_message(span_notice("[user] [flipped ? "flips" : "unflips"] [src]."), \
+	span_notice("You [flipped ? "flip" : "unflip"] [src]."))
+	
 
 //Shot glasses!//
 //  This lets us add shots in here instead of lumping them in with drinks because >logic  //
