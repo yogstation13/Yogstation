@@ -9,3 +9,5 @@ As a Citizen, you should look for work and a way to earn credits so you can affo
 As a Citizen, try operating a business! The Labor Lead only sells items in bulk, so you can turn a profit by selling said items to other people with a markup.
 Headcrab meat sells for money on the cargo Dropship. Hunting them may be lucrative.
 Water extractors are expensive upfront, but present a free source of income.
+You can make rebar crossbows and ammo with scavenged materials. Look around for things like tape, cables, and lighters.
+You can use a container to scoop water out from a tile, such as sewage. Actually drinking said sewage, is not recommended.

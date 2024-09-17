@@ -733,8 +733,8 @@
 	reagent_state = LIQUID
 	color = "#A9FBFB"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	overdose_threshold = 30
-	addiction_threshold = 25
+	overdose_threshold = 40
+	addiction_threshold = 35
 
 /datum/reagent/medicine/morphine/on_mob_metabolize(mob/living/L)
 	..()
@@ -752,9 +752,9 @@
 	switch(current_cycle)
 		if(11)
 			to_chat(M, span_warning("You start to feel tired...") )
-		if(12 to 24)
+		if(16 to 30)
 			M.adjust_drowsiness(1 SECONDS)
-		if(24 to INFINITY)
+		if(30 to INFINITY)
 			M.Sleeping(40, 0)
 			. = 1
 	if(M.stat > CONSCIOUS)

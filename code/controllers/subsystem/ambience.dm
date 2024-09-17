@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(ambience)
 ///Effect, random sounds that will play at random times, IC (requires the user to be able to hear)
 /datum/controller/subsystem/ambience/proc/play_ambience_effects(mob/M, _ambi_fx, area/A)
 	if(M.can_hear_ambience() && !M.client?.channel_in_use(CHANNEL_AMBIENT_EFFECTS) && (M.client.prefs.toggles & SOUND_AMBIENCE))
-		SEND_SOUND(M, sound(_ambi_fx, repeat = 0, wait = 0, volume = 45, channel = CHANNEL_AMBIENT_EFFECTS))
+		SEND_SOUND(M, sound(_ambi_fx, repeat = 0, wait = 0, volume = 40, channel = CHANNEL_AMBIENT_EFFECTS))
 
 ///Play background music, the more OOC ambience, like eerie space music
 /datum/controller/subsystem/ambience/proc/play_ambience_music(mob/M, _ambi_music, area/A)
