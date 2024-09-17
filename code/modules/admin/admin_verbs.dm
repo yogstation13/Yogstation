@@ -25,7 +25,9 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/clear_mfa,
 	/client/proc/show_rights,
 	/client/proc/remove_liquid,
-	/client/proc/spawn_liquid
+	/client/proc/spawn_liquid,
+	/client/proc/forceEvent,
+	/client/proc/forceGamemode
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -118,8 +120,6 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/object_say,
 	/client/proc/set_ooc,
 	/client/proc/reset_ooc,
-	/client/proc/forceEvent,
-	/client/proc/forceGamemode,
 	/client/proc/admin_change_sec_level,
 	/client/proc/toggle_nuke,
 	/client/proc/run_weather,
