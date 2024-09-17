@@ -5743,9 +5743,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/supply)
-"ape" = (
-/turf/open/space/basic,
-/area)
 "apf" = (
 /obj/structure/chair/sofa/left/brown{
 	dir = 4
@@ -12062,7 +12059,7 @@
 	name = "Andrea's Fax Machine"
 	},
 /turf/open/floor/carpet/royalblue,
-/area)
+/area/centcom/central_command_areas/admin)
 "aFK" = (
 /obj/structure/hedge,
 /obj/effect/turf_decal/siding/wood/corner{
@@ -21411,9 +21408,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/cruiser_dock)
-"pIi" = (
-/turf/open/floor/wood/large,
-/area)
 "pVf" = (
 /obj/effect/turf_decal/tile/dark/opposingcorners,
 /obj/structure/chair/sofa/corp,
@@ -51014,7 +51008,7 @@ aMc
 aMc
 aMc
 aMc
-pIi
+aMc
 aMc
 aMc
 aMc
@@ -56421,7 +56415,7 @@ kpH
 kpH
 kpH
 aaa
-ape
+aaa
 aaa
 aaa
 aaa
