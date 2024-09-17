@@ -1,23 +1,3 @@
-///Allows an admin to force an event
-/*
-/client/proc/forceEvent()
-	set name = "Trigger Event"
-	set category = "Admin.Events"
-
-	if(!holder || !check_rights(R_FUN))
-		return
-
-	holder.forceEvent()
-
-///Opens up the Force Event Panel
-/datum/admins/proc/forceEvent()
-	if(!check_rights(R_FUN))
-		return
-
-	var/datum/force_event/ui = new(usr)
-	ui.ui_interact(usr)
-*/
-/// Force Event Panel
 /datum/force_event
 
 /datum/force_event/ui_interact(mob/user, datum/tgui/ui)
