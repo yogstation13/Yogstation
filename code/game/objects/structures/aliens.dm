@@ -111,8 +111,8 @@
 
 /obj/structure/alien/weeds
 	gender = PLURAL
-	name = "resin floor"
-	desc = "A thick resin surface covers the floor."
+	name = "xenian floor"
+	desc = "A thick fungus like material is plastered across the ground, emanating a foul smell."
 	anchored = TRUE
 	density = FALSE
 	layer = CULT_OVERLAY_LAYER
@@ -190,11 +190,11 @@
 //Weed nodes
 /obj/structure/alien/weeds/node
 	name = "glowing resin"
-	desc = "Blue bioluminescence shines from beneath the surface."
+	desc = "Mushroom like growths are exuding a haze of spores and a terrible smell."
 	icon = 'icons/obj/smooth_structures/alien/weednode.dmi'
 	icon_state = "weednode-0"
 	base_icon_state = "weednode"
-	light_color = LIGHT_COLOR_BLUE
+	light_color = "#965d2f"
 	light_power = 0.5
 	var/lon_range = 4
 	var/node_range = NODERANGE
