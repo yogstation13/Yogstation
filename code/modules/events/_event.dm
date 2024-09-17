@@ -96,8 +96,8 @@
 		return FALSE
 	if(roundstart && ((SSticker.round_start_time && (world.time - SSticker.round_start_time) >= 2 MINUTES) || (SSgamemode.ran_roundstart && !fake_check)))
 		return FALSE
-	if(istype(src, /datum/round_event_control/antagonist/solo/from_ghosts) && (SSticker.round_start_time + 85 MINUTES <= world.time))
-		return TRUE // we allow all ghost roles to run at this point and dont care about other checks
+	// if(istype(src, /datum/round_event_control/antagonist/solo/from_ghosts) && (SSticker.round_start_time + 85 MINUTES <= world.time))
+	// 	return TRUE // we allow all ghost roles to run at this point and dont care about other checks
 // monkestation end
 	if(occurrences >= max_occurrences)
 		return FALSE
@@ -179,7 +179,7 @@ Runs the event
 	*/
 	UnregisterSignal(SSdcs, COMSIG_GLOB_RANDOM_EVENT)
 	var/datum/round_event/round_event = new typepath(TRUE, src)
-	if(round_event.oshan_blocked && SSmapping.config.map_name == "Oshan Station")
+	if(round_event.oshan_blocked && SSmapping.config.map_name == "Oshan Station") //we'll use this whenever we have an underwater station
 		return
 	if(admin_forced && length(admin_setup))
 		//not part of the signal because it's conditional and relies on usr heavily

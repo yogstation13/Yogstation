@@ -12,28 +12,28 @@
 		string += "Roundstart"
 	if(occurrences >= max_occurrences)
 		if(string)
-			string += ","
+			string += ",\n"
 		string += "Cap Reached"
 	if(earliest_start >= world.time-SSticker.round_start_time)
 		if(string)
-			string += ","
+			string += ",\n"
 		string +="Too Soon"
 	if(players_amt < min_players)
 		if(string)
-			string += ","
+			string += ",\n"
 		string += "Lack of players"
 	if(holidayID && !check_holidays(holidayID))
 		if(string)
-			string += ","
+			string += ",\n"
 		string += "Holiday Event"
 	if(EMERGENCY_ESCAPED_OR_ENDGAMED)
 		if(string)
-			string += ","
+			string += ",\n"
 		string += "Round End"
 	if(checks_antag_cap)
 		if(!roundstart && !SSgamemode.can_inject_antags())
 			if(string)
-				string += ","
+				string += ",\n"
 			string += "Too Many Antags"
 	return string
 
@@ -41,11 +41,11 @@
 	. =..()
 	if(!check_enemies())
 		if(.)
-			. += ", "
+			. += ",\n"
 		. += "No Enemies"
 	if(!check_required())
 		if(.)
-			. += ", "
+			. += ",\n"
 		. += "No Required"
 	return .
 
@@ -56,7 +56,7 @@
 	var/list/candidates = get_candidates() //we should optimize this
 	if(length(candidates) < antag_amt)
 		if(.)
-			. += ", "
+			. += ",\n"
 		. += "Not Enough Candidates!"
 
 	return .

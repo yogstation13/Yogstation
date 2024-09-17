@@ -9,6 +9,7 @@
 /datum/round_event_control/antagonist/solo/traitor/midround
 	name = "Sleeper Agents (Traitors)"
 	prompted_picking = TRUE
+	min_players = 5
 
 /datum/round_event_control/antagonist/solo/traitor/roundstart
 	name = "Traitors"

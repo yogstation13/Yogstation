@@ -4,10 +4,13 @@
 
 	max_occurrences = 7
 	weight = 20
+	description = "This anomaly irradiates everything within range."
+	min_wizard_trigger_potency = 1
+	max_wizard_trigger_potency = 4
 
 /datum/round_event/anomaly/anomaly_radiation
-	start_when = 3
-	announce_when = 10
+	start_when = ANOMALY_START_HARMFUL_TIME
+	announce_when = ANOMALY_ANNOUNCE_HARMFUL_TIME
 	anomaly_path = /obj/effect/anomaly/radiation
 
 /datum/round_event/anomaly/anomaly_radiation/announce(fake)
