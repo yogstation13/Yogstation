@@ -65,7 +65,7 @@
 			header = MAJOR_ANNOUNCEMENT_TITLE("City Official's Announcement")
 			GLOB.news_network.SubmitArticle(text, "City Official's Announcement", "Station Announcements", null)
 		if(ANNOUNCEMENT_TYPE_SYNDICATE)
-			header = MAJOR_ANNOUNCEMENT_TITLE("Syndicate City Administrator's Announcement")
+			header = MAJOR_ANNOUNCEMENT_TITLE("Syndicate District Administrator's Announcement")
 		else
 			header += generate_unique_announcement_header(title, sender_override)
 

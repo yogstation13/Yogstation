@@ -1,7 +1,7 @@
 {
 	"Nordic": {
-		"\bCity Administrator\b": "Kaptein",
-		"\bCity Administrators\b": "Kapteins",
+		"\bDistrict Administrator\b": "Kaptein",
+		"\bDistrict Administrators\b": "Kapteins",
 		"\bDirector\b": "Direktør",
 		"\bDirectors\b": "Direktørs",
 		"\bAdmiral\b": "Admirall",

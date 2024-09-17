@@ -19,7 +19,7 @@
 	icon_state = "goldenplaque"
 
 /obj/structure/sign/plaques/golden/captain
-	name = "The Most Robust City Administrator Award for Robustness"
+	name = "The Most Robust District Administrator Award for Robustness"
 
 /obj/structure/sign/plaques/kiddie
 	name = "\improper AI developers plaque"

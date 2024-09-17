@@ -711,7 +711,7 @@
 	. = ..()
 	allowed = GLOB.security_hardsuit_allowed
 
-	//City Administrator
+	//District Administrator
 /obj/item/clothing/head/helmet/space/hardsuit/swat/captain
 	name = "captain's hardsuit helmet"
 	icon_state = "capspace"

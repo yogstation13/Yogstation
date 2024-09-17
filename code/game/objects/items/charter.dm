@@ -3,7 +3,7 @@
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll2"
 	desc = "An official document entrusting the governance of the station \
-		and surrounding space to the City Administrator."
+		and surrounding space to the District Administrator."
 	var/used = FALSE
 	var/name_type = "station"
 
@@ -106,12 +106,12 @@
 
 /obj/item/station_charter/proc/rename_station(designation, uname, ureal_name, ukey)
 	set_station_name(designation)
-	minor_announce("[ureal_name] has designated your station as [station_name()]", "City Administrator's Charter", 0)
+	minor_announce("[ureal_name] has designated your station as [station_name()]", "District Administrator's Charter", 0)
 	log_game("[ukey] has renamed the station as [station_name()].")
 
 	name = "station charter for [station_name()]"
 	desc = "An official document entrusting the governance of \
-		[station_name()] and surrounding space to City Administrator [uname]."
+		[station_name()] and surrounding space to District Administrator [uname]."
 	SSblackbox.record_feedback("text", "station_renames", 1, "[station_name()]")
 	if(!unlimited_uses)
 		used = TRUE
@@ -135,10 +135,10 @@
 
 /obj/item/station_charter/flag/rename_station(designation, uname, ureal_name, ukey)
 	set_station_name(designation)
-	minor_announce("[ureal_name] has designated the planet as [station_name()]", "City Administrator's Banner", 0)
+	minor_announce("[ureal_name] has designated the planet as [station_name()]", "District Administrator's Banner", 0)
 	log_game("[ukey] has renamed the planet as [station_name()].")
 	name = "banner of [station_name()]"
-	desc = "The banner bears the official coat of arms of Nanotrasen, signifying that [station_name()] has been claimed by City Administrator [uname] in the name of the company."
+	desc = "The banner bears the official coat of arms of Nanotrasen, signifying that [station_name()] has been claimed by District Administrator [uname] in the name of the company."
 	SSblackbox.record_feedback("text", "station_renames", 1, "[station_name()]")
 	if(!unlimited_uses)
 		used = TRUE

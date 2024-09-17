@@ -253,7 +253,7 @@
 
 /obj/item/clothing/head/beret/captain
 	name = "captain beret"
-	desc = "A lovely blue City Administrator beret with a gold and white insignia."
+	desc = "A lovely blue District Administrator beret with a gold and white insignia."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	worn_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_captain"

@@ -343,7 +343,7 @@
 			new /obj/item/storage/box/syndicate/bundle_A(drop_location())
 			do_smoke(0, drop_location())
 		if(18)
-			//City Administrator ID
+			//District Administrator ID
 			T.visible_message(span_userdanger("A golden identification card appears!"))
 			new /obj/item/card/id/captains_spare(drop_location())
 			do_smoke(0, drop_location())

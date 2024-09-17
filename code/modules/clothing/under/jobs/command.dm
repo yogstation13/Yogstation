@@ -2,7 +2,7 @@
 	worn_icon = 'icons/mob/clothing/uniform/captain.dmi'
 
 /obj/item/clothing/under/rank/command/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
-	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"City Administrator\"."
+	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"District Administrator\"."
 	name = "captain's jumpsuit"
 	icon_state = "captain"
 	item_state = "b_suit"
@@ -13,7 +13,7 @@
 
 /obj/item/clothing/under/rank/command/captain/skirt
 	name = "captain's jumpskirt"
-	desc = "It's a blue jumpskirt with some gold markings denoting the rank of \"City Administrator\"."
+	desc = "It's a blue jumpskirt with some gold markings denoting the rank of \"District Administrator\"."
 	icon_state = "captain_skirt"
 	item_state = "b_suit"
 	body_parts_covered = CHEST|GROIN|ARMS

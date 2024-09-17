@@ -174,7 +174,7 @@
 
 /obj/item/cartridge/captain
 	name = "\improper Value-PAK cartridge"
-	desc = "Now with 350% more value!" //Give the City Administrator...EVERYTHING! (Except Mime, Clown, and Syndie)
+	desc = "Now with 350% more value!" //Give the District Administrator...EVERYTHING! (Except Mime, Clown, and Syndie)
 	icon_state = "cart-c"
 	access = ~(CART_CLOWN | CART_MIME | CART_REMOTE_DOOR)
 	bot_access_flags = SEC_BOT | MULE_BOT | FLOOR_BOT | CLEAN_BOT | MED_BOT | FIRE_BOT

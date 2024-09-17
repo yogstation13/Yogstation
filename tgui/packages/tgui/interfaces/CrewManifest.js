@@ -48,9 +48,9 @@ export const CrewManifest = (props, context) => {
                         <Icon className="CrewManifest__Icon" name="infinity" />
                       </Tooltip>
                     )}
-                    {crewMember.rank === "City Administrator" && (
+                    {crewMember.rank === "District Administrator" && (
                       <Tooltip
-                        content="City Administrator"
+                        content="District Administrator"
                         position="bottom"
                       >
                         <Icon

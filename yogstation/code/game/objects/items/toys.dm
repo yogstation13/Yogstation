@@ -94,7 +94,7 @@
 	icon_state = "jexp"
 	icon = 'yogstation/icons/obj/toy.dmi'
 	messages = list(
-			"150 rounds as City Administrator sounds PERFECT!",
+			"150 rounds as District Administrator sounds PERFECT!",
 			"Brig Officers! Perfect for newbies, but they'll get better costumes than regular officers!",
 			"S H I T C O D E",
 			"C O P Y P A S T A",

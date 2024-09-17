@@ -80,7 +80,7 @@
 	channels = list(RADIO_CHANNEL_COMMAND = 1)
 
 /obj/item/encryptionkey/heads/captain
-	name = "\proper the city administrator's encryption key"
+	name = "\proper the district administrator's encryption key"
 	icon_state = "cap_cypherkey"
 	channels = list(RADIO_CHANNEL_COMMAND = 1, RADIO_CHANNEL_SECURITY = 1)
 

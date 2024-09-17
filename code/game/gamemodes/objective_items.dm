@@ -27,10 +27,10 @@
 	return ..()
 
 /datum/objective_item/steal/caplaser
-	name = "the City Administrator's antique laser gun."
+	name = "the District Administrator's antique laser gun."
 	targetitem = /obj/item/gun/energy/laser/captain
 	difficulty = 5
-	excludefromjob = list("City Administrator")
+	excludefromjob = list("District Administrator")
 
 /datum/objective_item/steal/hoslaser
 	name = "the Divisional Lead's personal laser gun."
@@ -42,13 +42,13 @@
 	name = "a hand teleporter."
 	targetitem = /obj/item/hand_tele
 	difficulty = 5
-	excludefromjob = list("City Administrator", "Research Director")
+	excludefromjob = list("District Administrator", "Research Director")
 
 /datum/objective_item/steal/jetpack
-	name = "the City Administrator's jetpack."
+	name = "the District Administrator's jetpack."
 	targetitem = /obj/item/tank/jetpack/oxygen/captain
 	difficulty = 5
-	excludefromjob = list("City Administrator")
+	excludefromjob = list("District Administrator")
 
 /datum/objective_item/steal/magboots
 	name = "the Chief Engineer's advanced magnetic boots."
@@ -60,7 +60,7 @@
 	name = "the medal of captaincy."
 	targetitem = /obj/item/clothing/accessory/medal/gold/captain
 	difficulty = 5
-	excludefromjob = list("City Administrator")
+	excludefromjob = list("District Administrator")
 
 /datum/objective_item/steal/hypo
 	name = "the Chief Medical Officer's hypospray deluxe."
@@ -72,7 +72,7 @@
 	name = "the nuclear authentication disk."
 	targetitem = /obj/item/disk/nuclear
 	difficulty = 5
-	excludefromjob = list("City Administrator")
+	excludefromjob = list("District Administrator")
 
 /datum/objective_item/steal/nukedisc/check_special_completion(obj/item/disk/nuclear/N)
 	return !N.fake
@@ -230,7 +230,7 @@
 
 //Old ninja objectives.
 /datum/objective_item/special/pinpointer/nuke
-	name = "the City Administrator's pinpointer."
+	name = "the District Administrator's pinpointer."
 	targetitem = /obj/item/pinpointer
 	difficulty = 10
 

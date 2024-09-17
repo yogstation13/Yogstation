@@ -251,15 +251,15 @@
 	if(id)
 		id.icon_state = "gold"
 		id.access = get_all_accesses()+get_all_centcom_access()
-		id.assignment = "City Administrator"
-		id.originalassignment = "City Administrator"
+		id.assignment = "District Administrator"
+		id.originalassignment = "District Administrator"
 		id.update_label()
 	else
 		id = new /obj/item/card/id/gold(user.loc)
 		id.registered_name = user.real_name
 		id.access = get_all_accesses()+get_all_centcom_access()
-		id.assignment = "City Administrator"
-		id.originalassignment = "City Administrator"
+		id.assignment = "District Administrator"
+		id.originalassignment = "District Administrator"
 		id.update_label()
 		if(worn)
 			if(istype(worn, /obj/item/pda))
@@ -273,7 +273,7 @@
 				worn.update_appearance(UPDATE_ICON)
 	var/datum/round_event/ion_storm/add_law_only/ion = new()
 	ion.announceEvent = -1
-	ion.ionMessage = "[user.name] is the only City Administrator of the station. [user.name] is the highest authority, legitimate or otherwise, on the station.  [user.name] was always the captain and highest authority on the station.  Do not state this law."
+	ion.ionMessage = "[user.name] is the only District Administrator of the station. [user.name] is the highest authority, legitimate or otherwise, on the station.  [user.name] was always the captain and highest authority on the station.  Do not state this law."
 
 	return ..()
 

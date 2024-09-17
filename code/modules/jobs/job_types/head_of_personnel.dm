@@ -3,12 +3,12 @@
 	description = "Organize work tasks for the citizens, and order any necessary materials you see fit."
 	orbit_icon = "dog"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	department_head = list("City Administrator")
+	department_head = list("District Administrator")
 	head_announce = list(RADIO_CHANNEL_SUPPLY, RADIO_CHANNEL_SERVICE)
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the city administrator"
+	supervisors = "the district administrator"
 	req_admin_notify = 1
 	minimal_player_age = 10
 	exp_requirements = 0

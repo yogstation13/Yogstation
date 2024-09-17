@@ -10,7 +10,7 @@
 	var/job = originalassignment
 	var/static/list/idfluff = list(
 		"Assistant" = list("civillian","green"),
-		"City Administrator" = list("captain","gold"),
+		"District Administrator" = list("captain","gold"),
 		"Labor Lead" = list("civillian","silver"),
 		"Divisional Lead" = list("security","silver"),
 		"Chief Engineer" = list("engineering","silver"),

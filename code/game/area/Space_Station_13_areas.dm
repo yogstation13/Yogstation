@@ -340,13 +340,13 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	lights_always_start_on = FALSE
 
 /area/crew_quarters/heads/captain
-	name = "City Administrator's Office"
+	name = "District Administrator's Office"
 	icon_state = "captain"
 	minimap_color = "#2900d8"
 	sound_environment = SOUND_AREA_WOODFLOOR
 
 /area/crew_quarters/heads/captain/private
-	name = "City Administrator's Quarters"
+	name = "District Administrator's Quarters"
 	icon_state = "captain"
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 

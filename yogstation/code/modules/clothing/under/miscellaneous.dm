@@ -174,8 +174,8 @@
 /obj/item/clothing/under/yogs/captainartillery
 	name = "captain artillery uniform"
 	desc = "You are the commander of your men and the top of the top, dont let them down!"
-	icon_state = "City Administrator_Artillery_CS_s"
-	item_state = "City Administrator_Artillery_CS"
+	icon_state = "District Administrator_Artillery_CS_s"
+	item_state = "District Administrator_Artillery_CS"
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 	can_adjust = FALSE

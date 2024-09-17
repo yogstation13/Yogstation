@@ -299,7 +299,7 @@
 			Toggle off the anchor, move it, and re-anchor.<br><br>
 			Good luck. Remember the order:<br>
 			<b>Disk, Code, Safety, Timer, Disk, RUN!</b><br>
-			Intelligence Analysts believe that normal Nanotrasen procedure is for the City Administrator to secure the nuclear authorisation disk.<br>
+			Intelligence Analysts believe that normal Nanotrasen procedure is for the District Administrator to secure the nuclear authorisation disk.<br>
 			Good luck!
 			</html>"}
 

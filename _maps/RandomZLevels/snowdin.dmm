@@ -9758,7 +9758,7 @@
 /area/awaymission/snowdin/post/broken_shuttle)
 "we" = (
 /mob/living/simple_animal/hostile/skeleton/ice{
-	name = "City Administrator Bones"
+	name = "District Administrator Bones"
 	},
 /turf/open/floor/plating/asteroid/snow{
 	floor_variance = 0;

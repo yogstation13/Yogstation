@@ -1482,7 +1482,7 @@ obj/item/toy/turn_tracker
 	toysay = "Blaze it!"
 
 /obj/item/toy/figure/captain
-	name = "City Administrator action figure"
+	name = "District Administrator action figure"
 	icon_state = "captain"
 	toysay = "Any heads of staff?"
 

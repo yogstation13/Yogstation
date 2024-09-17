@@ -2,7 +2,7 @@
 ## List of job titles followed by antag rep value, all prefixed with ANTAG_REP. See code/modules/jobs/job_types for titles
 ## Jobs with spaces in them must have an underscore instead
 ## e.g. 
-## ANTAG_REP City Administrator 10
+## ANTAG_REP District Administrator 10
 ## ANTAG_REP Security_Officer 5
 ## ANTAG_REP Assistant 0
 

@@ -265,7 +265,7 @@
 	gain_text = span_danger("You start worrying about what you're saying.")
 	lose_text = span_notice("You feel easier about talking again.") //if only it were that easy!
 	medical_record_text = "Patient is usually anxious in social encounters and prefers to avoid them."
-	job_blacklist = list("City Administrator", "Labor Lead", "Divisional Lead", "Civil Protection Officer")
+	job_blacklist = list("District Administrator", "Labor Lead", "Divisional Lead", "Civil Protection Officer")
 	var/dumb_thing = TRUE
 	mob_trait = TRAIT_ANXIOUS
 
@@ -659,7 +659,7 @@
 	gain_text = "You feel your vocabulary slipping away."
 	lose_text = "You regrasp the full extent of your linguistic prowess."
 	medical_record_text = "Patient is affected by partial loss of speech leading to a reduced vocabulary."
-	job_blacklist = list("City Administrator", "Labor Lead", "Divisional Lead", "Civil Protection Officer")
+	job_blacklist = list("District Administrator", "Labor Lead", "Divisional Lead", "Civil Protection Officer")
 
 /datum/quirk/ineloquent/add()
 	var/datum/brain_trauma/mild/expressive_aphasia/T = new()

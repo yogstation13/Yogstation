@@ -238,7 +238,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/captainhat
-	name = "City Administrator Hat (Collectable)"
+	name = "District Administrator Hat (Collectable)"
 	unlock_path = /obj/item/clothing/head/collectable/captain
 	slot = ITEM_SLOT_HEAD
 

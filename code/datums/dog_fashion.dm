@@ -55,7 +55,7 @@
 
 
 /datum/dog_fashion/head/captain
-	name = "City Administrator REAL_NAME"
+	name = "District Administrator REAL_NAME"
 	desc = "Probably better than the last captain."
 
 /datum/dog_fashion/head/kitty

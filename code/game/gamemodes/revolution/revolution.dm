@@ -17,8 +17,8 @@
 	report_type = "revolution"
 	antag_flag = ROLE_REV_HEAD
 	false_report_weight = 10
-	restricted_jobs = list("Civil Protection Officer", "Warden", "Detective", "AI", "Cyborg", "City Administrator", "Labor Lead", "Divisional Lead", "Chief Engineer", "Research Director", "Chief Medical Officer", "Shaft Miner", "Mining Medic", "Brig Physician", "Synthetic") //Yogs: Added Brig Physician
-	required_jobs = list(list("City Administrator"=1),list("Labor Lead"=1),list("Divisional Lead"=1),list("Chief Engineer"=1),list("Research Director"=1),list("Chief Medical Officer"=1)) //Any head present
+	restricted_jobs = list("Civil Protection Officer", "Warden", "Detective", "AI", "Cyborg", "District Administrator", "Labor Lead", "Divisional Lead", "Chief Engineer", "Research Director", "Chief Medical Officer", "Shaft Miner", "Mining Medic", "Brig Physician", "Synthetic") //Yogs: Added Brig Physician
+	required_jobs = list(list("District Administrator"=1),list("Labor Lead"=1),list("Divisional Lead"=1),list("Chief Engineer"=1),list("Research Director"=1),list("Chief Medical Officer"=1)) //Any head present
 	required_players = 25
 	required_enemies = 2
 	recommended_enemies = 3

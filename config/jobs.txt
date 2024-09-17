@@ -2,7 +2,7 @@
 #Format is: [Job name]=[total positions],[spawn positions]
 #Job names must be identical to the title var of each job datum
 #Positions can be set to -1 to allow unlimited slots
-City Administrator=1,1
+District Administrator=1,1
 Labor Lead=1,1
 Divisional Lead=1,1
 Chief Engineer=1,1

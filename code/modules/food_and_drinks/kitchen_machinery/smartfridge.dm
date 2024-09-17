@@ -606,7 +606,7 @@
 	name = "drink showcase"
 	desc = "A refrigerated storage unit for tasty, tasty alcohol."
 	max_n_of_items = 100
-	product_slogans = "Only the finest beverages for the discerning crewmember.;All our drinks are served ice-cold.;Happy Hour begins every shift at 12:00.;Don't worry, I won't tell the City Administrator you drink on the shift.;This'll get ya drunk.;Bottoms up!;Delightfully refreshing!;Show me the way to go home, I'm tired and I want to go to bed...;This unit contains the bartender's latest creations."
+	product_slogans = "Only the finest beverages for the discerning crewmember.;All our drinks are served ice-cold.;Happy Hour begins every shift at 12:00.;Don't worry, I won't tell the District Administrator you drink on the shift.;This'll get ya drunk.;Bottoms up!;Delightfully refreshing!;Show me the way to go home, I'm tired and I want to go to bed...;This unit contains the bartender's latest creations."
 	pitches = TRUE
 
 /obj/machinery/smartfridge/drinks/accept_check(obj/item/O)

@@ -33,7 +33,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		"Assistant",
 		"Cyborg",
 		"Synthetic",
-		"City Administrator",
+		"District Administrator",
 		"Labor Lead",
 		"Divisional Lead",
 		"Chief Engineer",

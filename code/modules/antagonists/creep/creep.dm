@@ -94,7 +94,7 @@
 /datum/antagonist/obsessed/proc/forge_objectives(datum/mind/obsessionmind)
 	var/list/objectives_left = list("spendtime", "polaroid", "hug")
 
-	if(obsessionmind.assigned_role && obsessionmind.assigned_role != "City Administrator")
+	if(obsessionmind.assigned_role && obsessionmind.assigned_role != "District Administrator")
 		objectives_left += "jealous"//if they have no coworkers, jealousy will pick someone else on the station. this will never be a free objective, nice.
 
 	for(var/i in 1 to 3)

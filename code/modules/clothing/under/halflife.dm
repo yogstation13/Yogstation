@@ -86,7 +86,7 @@
 
 /obj/item/clothing/under/administrator
 	name = "administrator suit"
-	desc = "A well made blue suit, specially designed for the city administrator."
+	desc = "A well made blue suit, specially designed for the district administrator."
 	worn_icon = 'icons/mob/clothing/uniform/civilian.dmi'
 	can_adjust = FALSE
 	has_sensor = LOCKED_SENSORS

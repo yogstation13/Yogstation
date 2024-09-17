@@ -672,7 +672,7 @@
 	new /obj/item/implanter/sad_trombone(src)
 
 
-// City Administrator gets Capdrobe, other heads need some storage
+// District Administrator gets Capdrobe, other heads need some storage
 
 /obj/item/storage/backpack/duffelbag/clothing
 	name = "Clothing Dufflebag"

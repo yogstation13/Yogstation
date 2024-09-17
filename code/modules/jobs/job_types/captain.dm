@@ -1,5 +1,5 @@
 /datum/job/captain
-	title = "City Administrator"
+	title = "District Administrator"
 	description = "Be responsible for the city, manage your underlings, \
 		keep the city functioning, be prepared to do anything and everything or die \
 		horribly trying."
@@ -56,14 +56,14 @@
 
 /datum/job/captain/announce(mob/living/carbon/human/H)
 	..()
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "City Administrator [H.real_name] will be managing the city."))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "District Administrator [H.real_name] will be managing the city."))
 
 /datum/job/captain/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
 	H.faction += "combine"
 
 /datum/outfit/job/captain
-	name = "City Administrator"
+	name = "District Administrator"
 	jobtype = /datum/job/captain
 
 	id_type = /obj/item/card/id/gold
@@ -77,5 +77,5 @@
 	implants = list(/obj/item/implant/mindshield)
 
 /datum/outfit/job/captain/hardsuit
-	name = "City Administrator (Hardsuit)"
+	name = "District Administrator (Hardsuit)"
 

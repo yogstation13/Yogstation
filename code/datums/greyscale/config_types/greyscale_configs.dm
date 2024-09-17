@@ -157,7 +157,7 @@
 	json_config = 'code/datums/greyscale/json_configs/pda_chaplain.json'
 
 /datum/greyscale_config/tablet/captain
-	name = "City Administrator PDA"
+	name = "District Administrator PDA"
 	json_config = 'code/datums/greyscale/json_configs/pda_captain.json'
 
 /datum/greyscale_config/tablet/clown

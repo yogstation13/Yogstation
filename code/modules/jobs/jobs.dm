@@ -1,5 +1,5 @@
 GLOBAL_LIST_INIT(original_command_positions, list(
-	"City Administrator",
+	"District Administrator",
 	"Labor Lead",
 	"Divisional Lead",
 	"Chief Engineer",

@@ -23,10 +23,10 @@
 	wuv_happy = "screams happily!"
 	wuv_angy = "screams angrily!"
 
-//City Administrator fox
+//District Administrator fox
 /mob/living/simple_animal/pet/fox/Renault
 	name = "Renault"
-	desc = "Renault, the City Administrator's trustworthy fox."
+	desc = "Renault, the District Administrator's trustworthy fox."
 	gender = MALE
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE

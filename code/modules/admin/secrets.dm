@@ -352,7 +352,7 @@
 					continue
 				if(is_special_character(H))
 					continue
-				var/list/badjobs = list("Civil Protection Officer", "Warden", "Detective", "AI", "Cyborg", "City Administrator", "Labor Lead", "Divisional Lead")
+				var/list/badjobs = list("Civil Protection Officer", "Warden", "Detective", "AI", "Cyborg", "District Administrator", "Labor Lead", "Divisional Lead")
 				if(H.mind.assigned_role in badjobs)
 					continue
 				var/datum/antagonist/traitor/internal_affairs/T = new()

@@ -14515,7 +14515,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/heads/captain";
 	dir = 1;
-	name = "City Administrator's Office APC";
+	name = "District Administrator's Office APC";
 	pixel_y = 23
 	},
 /obj/structure/cable{
@@ -22647,7 +22647,7 @@
 /obj/effect/turf_decal/ramp_middle,
 /obj/machinery/door/window/northleft{
 	dir = 2;
-	name = "City Administrator's Desk Door"
+	name = "District Administrator's Desk Door"
 	},
 /obj/effect/mapping_helpers/windoor/access/all/command/captain,
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_wide,
@@ -28857,9 +28857,9 @@
 	},
 /obj/machinery/requests_console{
 	announcementConsole = 1;
-	department = "City Administrator's Desk";
+	department = "District Administrator's Desk";
 	departmentType = 5;
-	name = "City Administrator RC";
+	name = "District Administrator RC";
 	pixel_x = -30
 	},
 /obj/structure/disposalpipe/trunk{
@@ -36020,7 +36020,7 @@
 /obj/machinery/door/window{
 	base_state = "right";
 	icon_state = "right";
-	name = "City Administrator's Desk Door"
+	name = "District Administrator's Desk Door"
 	},
 /obj/effect/mapping_helpers/windoor/access/all/command/captain,
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_wide2,
@@ -42665,7 +42665,7 @@
 	pixel_x = 32
 	},
 /obj/machinery/camera{
-	c_tag = "City Administrator's Office";
+	c_tag = "District Administrator's Office";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -45477,7 +45477,7 @@
 /area/science/robotics/lab)
 "nsz" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "City Administrator's Office Maintenance"
+	name = "District Administrator's Office Maintenance"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/firedoor/border_only{
@@ -54837,7 +54837,7 @@
 /area/quartermaster/storage)
 "qNB" = (
 /obj/machinery/door/airlock/command{
-	name = "City Administrator's Office"
+	name = "District Administrator's Office"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -61736,7 +61736,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/airlock/command{
-	name = "City Administrator's Quarters"
+	name = "District Administrator's Quarters"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -67767,8 +67767,8 @@
 	dir = 5
 	},
 /obj/machinery/photocopier/faxmachine{
-	department = "City Administrator";
-	name = "City Administrator's Fax Machine"
+	department = "District Administrator";
+	name = "District Administrator's Fax Machine"
 	},
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
@@ -73228,7 +73228,7 @@
 	dir = 4
 	},
 /obj/machinery/camera/motion{
-	c_tag = "City Administrator's Quarters";
+	c_tag = "District Administrator's Quarters";
 	dir = 1
 	},
 /turf/open/floor/carpet/blue,

@@ -33,7 +33,7 @@
 	if(!ert_team && !mission)
 		var/datum/objective/missionobj = new
 		missionobj.owner = owner
-		missionobj.explanation_text = "Conduct a routine performance review of [station_name()] and its City Administrator."
+		missionobj.explanation_text = "Conduct a routine performance review of [station_name()] and its District Administrator."
 		missionobj.completed = 1
 		mission = missionobj
 		objectives |= mission
@@ -52,8 +52,8 @@
 	. = ..()
 
 /datum/antagonist/centcom/captain
-	name = "CentCom City Administrator"
-	role = "City Administrator"
+	name = "CentCom District Administrator"
+	role = "District Administrator"
 	outfit = /datum/outfit/centcom/captain
 
 /datum/antagonist/centcom/major

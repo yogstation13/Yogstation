@@ -120,7 +120,7 @@
 			desc = "A cardboat cutout of an assistant."
 			icon_state = "cutout_greytide"
 		if("Traitor")
-			name = "[pick("Unknown", "City Administrator")]"
+			name = "[pick("Unknown", "District Administrator")]"
 			desc = "A cardboard cutout of a traitor."
 			icon_state = "cutout_traitor"
 		if("Nuke Op")

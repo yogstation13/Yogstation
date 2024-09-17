@@ -12,10 +12,10 @@
 	body_parts_covered = CHEST|GROIN
 	allowed = list(/obj/item/reagent_containers/spray/plantbgone, /obj/item/plant_analyzer, /obj/item/seeds, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/glass/beaker, /obj/item/cultivator, /obj/item/reagent_containers/spray/pestspray, /obj/item/hatchet, /obj/item/storage/bag/plants)
 
-//City Administrator
+//District Administrator
 /obj/item/clothing/suit/captunic
 	name = "captain's parade tunic"
-	desc = "Worn by a City Administrator to show their class."
+	desc = "Worn by a District Administrator to show their class."
 	icon_state = "captunic"
 	item_state = "bio_suit"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS

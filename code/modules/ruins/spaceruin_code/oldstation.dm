@@ -102,7 +102,7 @@
 		"x1 NT-K-9 / NT-H1 Health Analyzer - inform Chief Medical Officer before removing",
 		"x1 NT-K-12 B01 RIG Hardsuit - inform Chief Engineer before removing",
 		"x1 NT-K-13 'Singularity Generator' - alert all crew when moving due to volatility",
-		"You MUST have permission of the City Administrator and Research Director to move any prototypes!",
+		"You MUST have permission of the District Administrator and Research Director to move any prototypes!",
 		"Please be advised that your non-disclosure agreement means this manifest is not for public distribution under any circumstances. Don't reveal our hard work!"
 		)
 

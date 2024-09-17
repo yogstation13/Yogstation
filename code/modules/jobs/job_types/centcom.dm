@@ -47,8 +47,8 @@
 
 /datum/outfit/centcom/official/nopda
 	pdaequip = FALSE
-/datum/outfit/centcom/captain //CentCom City Administrator. Essentially a station captain.
-	name = "CentCom City Administrator"
+/datum/outfit/centcom/captain //CentCom District Administrator. Essentially a station captain.
+	name = "CentCom District Administrator"
 
 	uniform = /obj/item/clothing/under/rank/centcom/commander
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/centcom
@@ -73,8 +73,8 @@
 	W.icon_state = "centcom_silver" //Not gold because he doesn't command a station.
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("CentCom Official")
-	W.assignment = "CentCom City Administrator"
-	W.originalassignment = "CentCom City Administrator"
+	W.assignment = "CentCom District Administrator"
+	W.originalassignment = "CentCom District Administrator"
 	W.registered_name = H.real_name
 	W.update_label()
 

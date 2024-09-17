@@ -17,7 +17,7 @@
 		"Assistant",
 		"Cyborg",
 		"Synthetic",
-		"City Administrator",
+		"District Administrator",
 		"Labor Lead",
 		"Divisional Lead",
 		"Chief Engineer",

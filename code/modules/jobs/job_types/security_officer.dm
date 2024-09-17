@@ -7,7 +7,7 @@
 	faction = "Station"
 	total_positions = 5 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
 	spawn_positions = 5 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
-	supervisors = "the Divisional Lead and City Administrator"
+	supervisors = "the Divisional Lead and District Administrator"
 	minimal_player_age = 7
 	exp_requirements = 0
 	exp_type = EXP_TYPE_CREW

@@ -185,14 +185,14 @@
 	the bridge and figure out what is going on. A dark feeling swells in your gut as you climb out of your pod. \
 	Ensure that your crew survives this journey.. Do not attempt to leave the ship unless instructed to.</b>"
 	outfit = /datum/outfit/crewmember/captain
-	assignedrole = "Exploratory Crew City Administrator"
+	assignedrole = "Exploratory Crew District Administrator"
 
 /obj/effect/mob_spawn/human/bus/crewmember/captain/Destroy()
 	new/obj/structure/fluff/empty_sleeper/syndicate(get_turf(src))
 	return ..()
 
 /datum/outfit/crewmember/captain
-	name = "Exploratory Security City Administrator"
+	name = "Exploratory Security District Administrator"
 	
 	id = /obj/item/card/id/bus/crewmember/captain
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -206,13 +206,13 @@
 	back = /obj/item/storage/backpack/captain
 	
 /obj/item/card/id/bus/crewmember/captain
-	name = "City Administrator"
+	name = "District Administrator"
 	desc = "An employee ID used to access areas around the ship."
 	access = list(ACCESS_CAPTAIN, ACCESS_SECURITY, ACCESS_SCIENCE)
 
 /obj/item/card/id/bus/crewmember/captain/New()
 	..()
-	registered_account = new("City Administrator", FALSE)
+	registered_account = new("District Administrator", FALSE)
 	
 /obj/item/card/id/bus/crewmember/sec
 	name = "Security Officer"

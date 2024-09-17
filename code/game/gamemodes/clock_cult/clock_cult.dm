@@ -53,7 +53,7 @@ Credit where due:
 	if(!istype(M))
 		return FALSE
 	if(M.mind)
-		if(ishuman(M) && (M.mind.assigned_role in list("City Administrator", "Chaplain")))
+		if(ishuman(M) && (M.mind.assigned_role in list("District Administrator", "Chaplain")))
 			return FALSE
 		var/mob/living/master = M.mind.enslaved_to?.resolve()
 		if(master && !iscultist(master))
@@ -143,8 +143,8 @@ Credit where due:
 	required_enemies = 3
 	recommended_enemies = 3
 	enemy_minimum_age = 14
-	protected_jobs = list("AI", "Cyborg", "Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "City Administrator", "Brig Physician") //Silicons can eventually be converted //Yogs: Added Brig Physician
-	restricted_jobs = list("Chaplain", "City Administrator", "Synthetic")
+	protected_jobs = list("AI", "Cyborg", "Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "District Administrator", "Brig Physician") //Silicons can eventually be converted //Yogs: Added Brig Physician
+	restricted_jobs = list("Chaplain", "District Administrator", "Synthetic")
 	announce_span = "brass"
 	announce_text = "Servants of Ratvar are trying to summon the Justiciar!\n\
 	<span class='brass'>Servants</span>: Construct defenses to protect the Ark. Sabotage the station!\n\

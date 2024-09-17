@@ -444,8 +444,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			id = new /obj/item/card/id/gold(H.loc)
 			id.access = get_debug_access()
 			id.registered_name = H.real_name
-			id.assignment = "City Administrator"
-			id.originalassignment = "City Administrator"
+			id.assignment = "District Administrator"
+			id.originalassignment = "District Administrator"
 			id.update_label()
 
 			if(worn)

@@ -1644,7 +1644,7 @@
 "fp" = (
 /obj/machinery/door/window{
 	dir = 2;
-	name = "City Administrator's Quarters"
+	name = "District Administrator's Quarters"
 	},
 /obj/structure/grille,
 /obj/effect/mapping_helpers/windoor/access/all/ruins/command,

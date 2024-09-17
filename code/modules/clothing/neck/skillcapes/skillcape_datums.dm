@@ -22,13 +22,13 @@
 
 /datum/skillcape/captain
 	name = "cape of the captain"
-	job = "City Administrator"
+	job = "District Administrator"
 	path = /obj/item/clothing/neck/skillcape/captain
 	id = "cap"
 
 /datum/skillcape/trimmed/captain
 	name = "cape of the grand commander"  
-	job = "City Administrator"
+	job = "District Administrator"
 	path = /obj/item/clothing/neck/skillcape/trimmed/captain
 	id = "cap_trimmed"
 

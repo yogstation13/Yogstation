@@ -375,7 +375,7 @@
 
 /obj/item/melee/classic_baton/telescopic
 	name = "telescopic baton"
-	desc = "A old, foldable, and compact baton, often given to high ranking civillians such as city administrators. Can be used lethally or non-lethally."
+	desc = "A old, foldable, and compact baton, often given to high ranking civillians such as district administrators. Can be used lethally or non-lethally."
 	icon_state = "telebaton_0"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'

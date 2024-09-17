@@ -78,7 +78,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	icon_state = "Head of Security"
 
 /obj/effect/landmark/start/city_administrator
-	name = "City Administrator"
+	name = "District Administrator"
 	icon_state = "Captain"
 
 /obj/effect/landmark/start/labor_lead

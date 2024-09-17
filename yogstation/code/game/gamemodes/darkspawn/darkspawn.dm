@@ -9,7 +9,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	recommended_enemies = 1
 	enemy_minimum_age = 24 //reasonably complicated antag
 	restricted_jobs = list("AI", "Cyborg", "Synthetic")
-	protected_jobs = list("Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "City Administrator", "Labor Lead", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician") //Added Brig Physician
+	protected_jobs = list("Civil Protection Officer", "Warden", "Detective", "Divisional Lead", "District Administrator", "Labor Lead", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician") //Added Brig Physician
 	title_icon = "darkspawn"
 	round_ends_with_antag_death = TRUE
 	var/list/datum/mind/darkspawns = list()

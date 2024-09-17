@@ -24,7 +24,7 @@
 	playsound(user, 'sound/machines/ding.ogg', 50, 1)
 	return(FIRELOSS)
 
-//City Administrator
+//District Administrator
 /obj/item/clothing/head/caphat
 	name = "captain's hat"
 	desc = "It's good to be the king."
@@ -35,10 +35,10 @@
 	strip_delay = 60
 	dog_fashion = /datum/dog_fashion/head/captain
 
-//City Administrator: This is no longer space-worthy
+//District Administrator: This is no longer space-worthy
 /obj/item/clothing/head/caphat/parade
 	name = "captain's parade cap"
-	desc = "Worn only by City Administrators with an abundance of class."
+	desc = "Worn only by District Administrators with an abundance of class."
 	icon_state = "capcap"
 
 	dog_fashion = null
